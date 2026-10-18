@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "7270c149379514ea5401",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "writing r1 comprehensive revision",
+  "task_key": "worker_writing_r1_comprehensive_revision_20260521T160726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r1_comprehensive_revision_20260521T160726.log",
+    "occurrence": 1,
+    "bytes": 1795224,
+    "sha256": "92ac4cbb6faf4b0698bd5e813041a991361c4ffc80a4989b0648bce033570c4f"
+  },
+  "statistics": {
+    "messages": 481,
+    "user_turns": 0,
+    "tool_calls": 173,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 173,
+      "tool_result": 173,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 481,
+      "chunks": [
+        {
+          "path": "7270c149379514ea5401-part-0001.json",
+          "message_count": 61
+        },
+        {
+          "path": "7270c149379514ea5401-part-0002.json",
+          "message_count": 158
+        },
+        {
+          "path": "7270c149379514ea5401-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7270c149379514ea5401-part-0004.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ]
+}

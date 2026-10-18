@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ab7efdfdfb919b8110b0",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops kill duplicate gemma2",
+  "task_key": "worker_ops_kill_duplicate_gemma2_20260515T191937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicate_gemma2_20260515T191937_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "c81602aa4ae17ec50b8f1857f11901e6118f785800c85c6f4b9916cf5685a776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 364035** — 已成功 kill，进程不存在\n- **PID 364542** — 在 kill 前就已经不存在了（可能已自行结束或崩溃）\n- **GPU 显存** — 当前只有 PID 362950 占用 16966 MiB，364035 的 ~18GB 显存已释放\n\n注意：注册的 `gemma2_downstream_k2_4task` 进程（PID 364542）已经消亡，可能需要检查其输出日志确认是正常完成还是异常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

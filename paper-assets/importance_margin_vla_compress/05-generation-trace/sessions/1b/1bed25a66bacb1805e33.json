@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "1bed25a66bacb1805e33",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "setup libero env data",
+  "task_key": "worker_setup_libero_env_data_20260516T125821",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_libero_env_data_20260516T125821.log",
+    "occurrence": 1,
+    "bytes": 1011842,
+    "sha256": "f315c9d0f9145443722caa6608a23613364f843e9da3dccb892a3e2c4716dbc2"
+  },
+  "statistics": {
+    "messages": 526,
+    "user_turns": 0,
+    "tool_calls": 201,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 120,
+      "tool_call": 201,
+      "tool_result": 201,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 526,
+      "chunks": [
+        {
+          "path": "1bed25a66bacb1805e33-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bed25a66bacb1805e33-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bed25a66bacb1805e33-part-0003.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ]
+}

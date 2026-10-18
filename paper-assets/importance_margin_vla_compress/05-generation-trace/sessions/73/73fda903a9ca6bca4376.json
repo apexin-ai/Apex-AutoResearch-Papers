@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73fda903a9ca6bca4376",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops extract k07 results",
+  "task_key": "worker_ops_extract_k07_results_20260518T045802",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_extract_k07_results_20260518T045802_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "a9d20d981e2f14b23e827878ceec1cb771bcf8571efaeeab438ba26a45b8390d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE, cron deleted.\n\n## OpenVLA k=0.7 Random Pruning Results (256→179 tokens)\n\n**Overall SR: 49.0% (245/500)**\n\n| Task | SR | Successes |\n|---|---|---|\n| alphabet soup | 74% | 37/50 |\n| orange juice | 76% | 38/50 |\n| ketchup | 68% | 34/50 |\n| salad dressing | 64% | 32/50 |\n| tomato sauce | 62% | 31/50 |\n| bbq sauce | 46% | 23/50 |\n| milk | 40% | 20/50 |\n| chocolate pudding | 32% | 16/50 |\n| cream cheese | 18% | 9/50 |\n| butter | 10% | 5/50 |\n\n**Degradation curve so far:**\n- k=1.0 (baseline, 256 tokens): **74.0%**\n- k=0.7 (179 tokens): **49.0%** (−25.0 pp, −33.8%)\n- k=0.5 (128 tokens): **37.4%** (−36.6 pp, −49.5%)\n\nDegradation is non-linear — removing 30% of tokens already costs 25 pp. The curve is steeper than linear, confirming significant redundancy is limited. Tasks with small/hard-to-distinguish objects (butter, cream cheese) are hit hardest."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

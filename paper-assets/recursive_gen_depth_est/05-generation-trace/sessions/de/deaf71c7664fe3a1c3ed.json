@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "deaf71c7664fe3a1c3ed",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code debug false failure",
+  "task_key": "worker_code_debug_false_failure_20260514T182414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_debug_false_failure_20260514T182414.log",
+    "occurrence": 1,
+    "bytes": 630193,
+    "sha256": "c51ea38a4b8c277eb865bb155e0e9c6c59b0e83412523e3b41121859643d7b5d"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 1,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 97,
+      "tool_result": 97,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "deaf71c7664fe3a1c3ed-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "deaf71c7664fe3a1c3ed-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "deaf71c7664fe3a1c3ed-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ]
+}

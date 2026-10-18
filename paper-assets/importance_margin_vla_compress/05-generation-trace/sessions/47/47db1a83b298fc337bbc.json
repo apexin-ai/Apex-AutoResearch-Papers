@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "47db1a83b298fc337bbc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops rename buggy entropy file",
+  "task_key": "worker_ops_rename_buggy_entropy_file_20260518T072106",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_rename_buggy_entropy_file_20260518T072106_result.json",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "0704c1618f931fff8b099e580ae2211066a3ebfd818045ebf74a6c55eb5152b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均存在：\n\n- `smolvla_attention_entropy_perlayer_DEPRECATED_wrong_tasks.json` — 1125 bytes, 15:03 创建（旧 buggy 文件，已重命名）\n- `smolvla_attention_entropy_perlayer_fixed.json` — 1340 bytes, 15:18 创建（新的正确文件）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

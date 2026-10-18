@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3e8fc85f9f224c8956cb",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "agent / loop_4_1778881013.md",
+  "task_key": "loop_4_1778881013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778881013.md",
+    "occurrence": 1,
+    "bytes": 4732,
+    "sha256": "999a15f41ba086930453651328630d4db1b79f68b462df80a0b6fc2d2d8e7879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T20:03:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **本项目唯一 GPU: cqa1-38874 cuda:0**（RTX PRO 6000 Blackwell 98GB）。项目配置 `execution.servers` 只有这一台，不要在其他 GPU 上启动任何实验\n- **所有脚本必须设 `export CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13`**，否则 flashinfer 在 Blackwell SM120 上 JIT 编译失败\n- **LLaMA-3.1-Instruct 系列必须用 chat template 包装 prompt**，裸文本会导致模型输出空 JSON `[]`（gen_tokens=2）。Qwen3 不受影响\n- **vLLM gpu_memory_utilization 用 0.80**（不是 0.90/0.95），Blackwell 上 0.90+ 会 OOM 如果有残留进程\n- **ARR May 25 提交**，距今 10 天。多模型验证硬截止 May 18 (D024)\n- 论文数字必须用 bootstrap 校正值（Few-NERD pairwise r=0.112 不是 0.156，confusion ratio=21.2x 不是 9.9x）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-38874 (root@), 1× RTX PRO 6000 Blackwell 98GB, CUDA 13.1\n- **工作目录**: `/root/schema-dag-extraction`\n- **Python**: `/root/miniconda3/bin/python` (conda base, Python 3.12.3)。**不要创建 venv，用 conda base**\n- **关键包**: vLLM 0.20.2, torch 2.10.0+cu128, flashinfer 0.6.11.post2, nvidia-cuda-nvcc 13.2.78\n- **模型路径**:\n  - Qwen3-32B-FP8: `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n  - LLaMA-3.1-8B-Instruct: `/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n  - LLaMA-3.3-70B AWQ 残留 ~36GB 待清理\n- **数据**: `/root/schema-dag-extraction/data/parquet/test.parquet` (Few-NERD 1000 samples)\n- **W&B**: 本项目不用 W&B（inference-only 实验，metrics 直接从 JSON 结果文件读取）\n- **活跃进程**: exp012_llama_8b_r2_exp2 PID 321037（tmux session，status=PREPARING 但已 submit）。**无活跃 cron**（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚完成**: exp012_llama_8b_r2 exp1（count curve）成功——LLaMA-3.1-8B recall 0.702→0.273 (-43pp)，跨模型 Channel 1 复现。Per-batch recall correlation r=0.7249（两模型难度高度相关）。Paper writing workers 完成了 conclusion、abstract、full-draft-init。\n\n**Registry 关键状态**:\n- `exp012_llama_8b_r2`: DONE (success) — exp1 count curve 完成，exp2 在 count_12/random/0 的 998/1000 处 vLLM 卡死\n- `exp012_llama_8b_r2_exp2`: PREPARING — BCS-controlled factorial 重跑，PID 321037 已提交但状态未更新到 RUNNING。**第一件事：检查这个进程是否还活着**，cron 没有在监控它\n- 总计 28 实验：成功 12 / 负向 4 / 失败 10 / killed 2\n\n**等待中**:\n- exp012_llama_8b_r2_exp2 完成回调（但 cron 未激活——需要手动 poll 或注册 cron）\n- Paper Agent Full Draft 后续章节（experimental_setup → results → ...）\n- Director 无未决决策\n\n### 4. 📋 待办（条件触发式）\n- **立即**: 检查 PID 321037 是否存活 → 存活则注册 cron 监控；死了则查 log 诊断并重提交\n- exp012_llama_8b_r2_exp2 完成 → 分析 BCS-controlled results（对比 Qwen3 exp2） → 更新 registry → 汇报 Director（Channel 2 跨模型验证结果）\n- Channel 2 验证成功 → Patch LLaMA-8B 数据进论文 Table/Figure → 继续 Full Draft\n- Channel 2 验证失败 → 论文改为 \"Channel 1 跨模型 + Channel 2 单模型\" framing，8B 作为 partial replication\n- Full Draft 完成 → Reviewer 对抗循环 → 最终提交 ARR May 25\n- **磁盘**: 清理 AWQ 70B 残留 (~36GB)，当前 248/250GB 快满\n\n### 5. 🎯 战略上下文\n- **核心结论**: Type confusability 独立于 type count 驱动 LLM IE 质量下降，通过两个正交 channel（count→recall, confusability→type confusion）。三任务验证（NER/RE/ED），2-claim analysis paper + SDGD negative result as future work\n- **决策链**: D019 砍掉 Claim 3 (SDGD) → D020 启动 Paper Agent → D022 放弃 70B 转 8B → D024 多模型硬截止 May 18 → D026 exp006 交互效应 negative 不入论文 → D027 exp1 跨模型成功\n- **最容易判断错的事**:\n  1. exp012_llama_8b_r2_exp2 的 PREPARING 状态有坑——它已经 submit 了但 cron 没挂上，可能是 orphan 进程。**不要假设它在被监控**\n  2. LLaMA-8B 的 exact/relaxed F1 全是 0，这**不是** bug——是因为 LLaMA 不输出字符偏移量。只看 text_match 指标\n  3. 40-rel 中间点已放弃（3 次 fail），不要再尝试。16-rel vs 80-rel 的 3.4× amplification 够用\n  4. SDGD 已确认 negative (v1+v2)，不要再跑 SDGD 相关实验，只作为 negative result 写进论文\n  5. Bootstrap 校正值 vs 原始值容易搞混——论文只能用校正值（见 memory.md \"Bootstrap 指标校正\"）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d415fa4ece1c223e41e3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops sync experiment plan",
+  "task_key": "worker_ops_sync_experiment_plan_20260518T213700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_experiment_plan_20260518T213700_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "89929f20cce0f698191ece86423b71adc2d303bdc4f198ba933ca9f2a53ab609"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 合法，5 个 plan_id 的 registry_id 已正确关联：\n\n| plan_id | registry_id |\n|---------|-------------|\n| exp-005 | `exp_docred_confusability` |\n| exp-006 | `exp006_interaction_2x2` |\n| exp-007 | `exp016_fewrel_error_taxonomy` (选了更完整的：5 BCS bins + cross-task comparison) |\n| exp-013 | `[exp008_sdgd_v2_fewnerd, exp_confusability_batch_composition]` + status_note |\n| exp-015 | `exp015_scs_validation` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

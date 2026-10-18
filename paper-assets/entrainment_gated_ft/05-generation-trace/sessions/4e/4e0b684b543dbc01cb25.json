@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4e0b684b543dbc01cb25",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diag exp 005 status check",
+  "task_key": "worker_diag_exp-005-status-check_20260522T141953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp-005-status-check_20260522T141953_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "5daace3e6b2cc8d5194c0e69e251518c11d6e3f88a50c702d32451af2ade6f87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### GPU 状态\n- **RTX PRO 6000** (cuda:0)，97GB 显存，**空闲**（0% 利用率，0MiB 占用，无进程）\n\n### 评估进程\n- **无评估进程在运行**（GPU 也确认无进程）\n\n### 产出文件 (`exp005_zoo_expansion/`)\n- 目录存在，包含 3 个版本的运行脚本和日志\n- `priority1_v3.log`（218KB，最新 22:20）— 日志显示**正在下载模型**，不是在跑评估\n\n### 模型下载状态\n\n| 模型 | 状态 |\n|------|------|\n| **GLA-hybrid-3-1** | ✅ 已完成（1.3GB，含 model.safetensors 1.33GB） |\n| **DeltaNet-hybrid-3-1** | ❌ 空目录，未下载 |\n| **HGRN-hybrid-3-1** | ❌ 空目录，未下载 |\n\n### 正在进行的下载\n- `priority1_v3.log` 显示有一个下载在进行：**model.safetensors 52% (655M/1.24G)**，速度约 345-408 kB/s\n- 但 GPU 上无进程 → 这个下载进程可能已经**断开或挂起**（日志是最后写入状态）\n- HF cache: 478MB\n\n### 结论\n1. GLA 模型已下载完成；DeltaNet 和 HGRN 目录为空，下载未启动或失败\n2. 日志显示有下载在 52% 处，但当前无活跃进程 → **下载可能已中断**\n3. GPU 完全空闲，没有评估在跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

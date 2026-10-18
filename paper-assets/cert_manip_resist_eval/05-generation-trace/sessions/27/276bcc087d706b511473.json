@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "276bcc087d706b511473",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper figure dominance heatmap",
+  "task_key": "worker_paper_figure_dominance_heatmap_20260524T180637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_dominance_heatmap_20260524T180637_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "f6497db6a05d0103b0433971193c48fcab66a5e093e95a64dddd3385fe3e11ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 Predictor Dominance Heatmap，输出至：\n\n- **PDF**: `docs/paper/figures/fig_dominance_heatmap.pdf`\n- **PNG**: `docs/paper/figures/fig_dominance_heatmap.png`\n\n经 4 轮迭代，核心叙事清晰可见：K=3 列颜色混杂（紫/橙/灰/蓝），K≥5 后大面积转蓝（K_eff dominant），Position Bias 全行灰色（两个 predictor 都不显著）。脚本保留在 `/tmp/gen_dominance_heatmap.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

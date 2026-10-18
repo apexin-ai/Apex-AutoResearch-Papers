@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "id": "bf4905a111e65fe9746b",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "exp exp 005 zoo expansion",
+  "task_key": "worker_exp_exp-005-zoo-expansion_20260522T122429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-zoo-expansion_20260522T122429.log",
+    "occurrence": 1,
+    "bytes": 2836623,
+    "sha256": "285d21b64900aee2837745b1c0f51c476c1d2db8162571ac305982a8b1fcfec7"
+  },
+  "statistics": {
+    "messages": 2187,
+    "user_turns": 2,
+    "tool_calls": 933,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 308,
+      "tool_call": 933,
+      "tool_result": 933,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 324,
+      "chunks": [
+        {
+          "path": "bf4905a111e65fe9746b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0002.json",
+          "message_count": 144
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 929,
+      "chunks": [
+        {
+          "path": "bf4905a111e65fe9746b-part-0002.json",
+          "message_count": 36
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0007.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 934,
+      "chunks": [
+        {
+          "path": "bf4905a111e65fe9746b-part-0007.json",
+          "message_count": 7
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf4905a111e65fe9746b-part-0013.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ]
+}

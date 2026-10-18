@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b3a171a9079af8d5ecc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check status urgent",
+  "task_key": "worker_check_status-urgent_20260514T105857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_status-urgent_20260514T105857_result.json",
+    "occurrence": 1,
+    "bytes": 3370,
+    "sha256": "37fb3230c4346de8068830c6f3a51eb7a40837a69d10b7454e767d36dd632b51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 1. GPU STATUS ===\n0, 44 %, 4357 MiB, 97887 MiB\n1, 0 %, 0 MiB, 97887 MiB\n\n=== 2. PIPELINE PROCESSES ===\nroot      87758  1.2  0.0 12001176 931316 ?     Sl   18:14   0:34 python scripts/lora_finetune.py --input_data data/depth_0.jsonl --output_dir checkpoints/lora_depth_0 --gpu 0\nroot      90992  113  0.2 37734380 2204416 pts/1 Rl  18:28  35:00 python scripts/generate_next_depth.py --adapter_dir checkpoints/lora_depth_0 --output_path data/depth_1.jsonl --target_depth 1 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct --gpu 0\n\n=== 3. TMUX SESSIONS ===\n(tmux ls blocked by read-only mode; ps shows tmux session \"mvp_pipeline_004\" running)\n\n=== 4. DATA FILES ===\ntotal 18988\ndrwxr-xr-x 2 root root       60 May 14 18:28 .\ndrwxr-xr-x 6 root root       84 May 14 17:56 ..\n-rw-r--r-- 1 root root 11053344 May 14 18:14 depth_0.jsonl\n-rw-r--r-- 1 root root  6137969 May 14 18:59 depth_1.jsonl\n\n=== 5. CHECKPOINTS ===\ntotal 4\ndrwxr-xr-x 3 root root   34 May 14 18:23 .\ndrwxr-xr-x 6 root root   84 May 14 17:56 ..\ndrwxr-xr-x 3 root root 4096 May 14 18:28 lora_depth_0\n\nNO_CHECKPOINTS_BASE\n\n=== 6. INSTRUCT PIPELINE LOG (last 10) ===\n{'loss': '2.096', 'grad_norm': '0.1719', 'learning_rate': '6.39e-06', 'epoch': '2.909'}\n{'loss': '2.1', 'grad_norm': '0.1611', 'learning_rate': '4.26e-06', 'epoch': '2.941'}\n{'loss': '2.057', 'grad_norm': '0.1748', 'learning_rate': '2.13e-06', 'epoch': '2.973'}\n{'train_runtime': '324.9', 'train_samples_per_second': '46.16', 'train_steps_per_second': '2.89', 'train_loss': '2.1', 'epoch': '3'}\nTraining complete. Final loss: 2.1002\nLoRA adapter saved to checkpoints/lora_depth_0\n=== Step 2: Generate depth-1 ===\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\nLoading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct\nLoading weights: 100%|██████████| 338/338 [00:00<00:00, 5891.22it/s]\n\n=== 7. BASE PIPELINE LOG (last 10) ===\nNO_BASE_LOG\n\n=== 8. BASE MODEL DOWNLOAD STATUS ===\n--- path1: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/ ---\ntotal 11264\n-rw-r--r-- 1 root root      44 May 14 18:33 .mdl\n-rw------- 1 root root     638 May 14 18:00 .msc\n-rw-r--r-- 1 root root   11343 May 14 17:57 LICENSE\n-rw-r--r-- 1 root root    3850 May 14 17:57 README.md\n-rw-r--r-- 1 root root     684 May 14 17:57 config.json\n-rw-r--r-- 1 root root       2 May 14 17:57 configuration.json\n-rw-r--r-- 1 root root     138 May 14 17:57 generation_config.json\n-rw-r--r-- 1 root root 1671839 May 14 17:57 merges.txt\n-rw-r--r-- 1 root root 7031645 May 14 18:00 tokenizer.json\n-rw-r--r-- 1 root root    7228 May 14 17:57 tokenizer_config.json\n-rw-r--r-- 1 root root 2776833 May 14 17:58 vocab.json\n\n--- path2: /root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-1.5B/ ---\ntotal 8\ndrwxr-xr-x  6 root root   85 May 14 18:22 .\ndrwxr-xr-x 10 root root 4096 May 14 18:25 ..\ndrwxr-xr-x  3 root root   62 May 14 17:59 .no_exist\ndrwxr-xr-x  2 root root 4096 May 14 18:22 blobs\ndrwxr-xr-x  2 root root   26 May 14 17:57 refs\ndrwxr-xr-x  3 root root   62 May 14 17:57 snapshots\n\n--- path3: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B/ ---\nBASE_NOT_DOWNLOADED_path3\n\n=== 9. DISK USAGE ===\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/md0        250G   56G  195G  23% /root/autodl-tmp\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

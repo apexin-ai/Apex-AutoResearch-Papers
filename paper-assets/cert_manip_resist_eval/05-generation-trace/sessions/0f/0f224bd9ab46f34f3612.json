@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "0f224bd9ab46f34f3612",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis near chance fix",
+  "task_key": "worker_analysis_near-chance-fix_20260525T094538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_near-chance-fix_20260525T094538.log",
+    "occurrence": 1,
+    "bytes": 676759,
+    "sha256": "5e7a424037e455c94d35682e1643eed226b42d7972fca1231d670d2daa6319f5"
+  },
+  "statistics": {
+    "messages": 368,
+    "user_turns": 0,
+    "tool_calls": 155,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 155,
+      "tool_result": 155,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 368,
+      "chunks": [
+        {
+          "path": "0f224bd9ab46f34f3612-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f224bd9ab46f34f3612-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f224bd9ab46f34f3612-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ]
+}

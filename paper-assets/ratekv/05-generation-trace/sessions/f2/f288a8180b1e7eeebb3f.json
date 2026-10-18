@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "f288a8180b1e7eeebb3f",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code plan 009 oracle comparison",
+  "task_key": "worker_code_plan_009_oracle_comparison_20260514T110435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_009_oracle_comparison_20260514T110435.log",
+    "occurrence": 1,
+    "bytes": 615704,
+    "sha256": "669dcce47a075f2ac3482fa0affb5fefb6b551e9c10e929f6e85db377255c702"
+  },
+  "statistics": {
+    "messages": 225,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 59,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "f288a8180b1e7eeebb3f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f288a8180b1e7eeebb3f-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e51877a4c00014ce072a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code d015 g4 absolute threshold",
+  "task_key": "worker_code_d015-g4-absolute-threshold_20260515T203457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d015-g4-absolute-threshold_20260515T203457_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "ad1f5c5239dd7dd8930423ed215f2114ce210fa77171e34ebcfd929118952754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "G4 works correctly — median of `[0.1070, 0.2176, 0.5479]` = `0.2176` < 1.0 → PASS.\n\n### 修改前 vs 修改后对比\n\n| 方面 | D014 (旧) | D015 (新) |\n|------|-----------|-----------|\n| **G4 指标** | `1 - mean(imm_led)/mean(bl_led)` (relative decrease) | `median(imm_led_ratios)` (absolute value) |\n| **G4 阈值** | ≥ 30% decrease | < 1.0 |\n| **G4 依赖** | 需要 baseline + IMM 的 LED ratio | 只需 IMM 的 LED ratio |\n| **Fallback** | baseline L=0 时 auto-PASS | 无 fallback；IMM 没有 LED 字段则 FAIL |\n| **聚合方式** | mean | median |\n| **Gate dict key** | `G4_led_ratio_decrease` | `G4_led_ratio_median` |\n\n### 验证结果\n- `--help` 参数接口不变（`--baseline`, `--imm`, `--condition`, `--output`）\n- dry-run 输出格式正确：`G4 PASS: LED ratio median = 0.2176 < 1.0 (certified bound)`\n- G1/G2/G3 逻辑完全未动——从输出可见它们仍独立判定（G1 N/A→FAIL, G2 N/A→FAIL, G3 7.17→FAIL，与旧逻辑一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

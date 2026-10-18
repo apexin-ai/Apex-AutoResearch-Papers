@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ceff6fb1aee148e9a415",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code e3 token cosine similarity",
+  "task_key": "worker_code_e3_token_cosine_similarity_20260523T054900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_e3_token_cosine_similarity_20260523T054900_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "7e304c82507311c6f5173c44f5ad2f98685fd8290209646ec7a2c6cc3fdd5c1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 westd-41074 服务器（568 行）。\n\n## 设计思路与 Hook 位置总结\n\n**每个模型的 post-connector token 提取方式：**\n\n| 模型 | Hook 位置 | 提取方法 | 实际 token 数 |\n|------|-----------|----------|--------------|\n| **π0** | `paligemma.model.multi_modal_projector` | 直接调用 vision_tower → projector → ×√d | 256 (1 cam) |\n| **π0.5** | `paligemma.model.multi_modal_projector` | 同上，2 个 camera 分别处理后 concat | 512 (2×256) |\n| **X-VLA** | `model.forward_vlm()[\"vlm_features\"]` | 调 `_build_model_inputs` + `forward_vlm`，取返回的 vlm_features | ~50 |\n| **OpenVLA** | `vla.projector` output | 直接调 `vla.vision_backbone(pixels)` → `vla.projector(patches)` | 256 |\n| **OFT** | `vla.projector` output | 两张图分别过 vision_backbone，concat 后过 projector | 512 (2×256) |\n| **SmolVLA** | `connector` module (forward hook) | Hook connector + 调 `prepare_images` 触发 forward pass | 128 (2×64) |\n\n**注意事项：**\n- π0.5 理论 768 tokens (3 image slots)，但 LIBERO 只有 2 cameras，实际提取 512\n- π0、X-VLA、OFT 模型不在 westd-41074 上，脚本会自动 skip（需在对应服务器运行）\n- 支持 `--models pi05,openvla,smolvla` 参数选择性运行\n- 输出：heatmap PDF/PNG + stats JSON + 原始矩阵 NPZ，均保存在 `artifacts/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

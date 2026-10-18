@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "15fc02b3b4816743c1f0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260519T180445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260519T180445_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "9e314757663a49113e3e9403ac1a5733d334b8138f5a87a1e0440d2062fbc5dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All constraints pass:\n- 0 em-dashes/en-dashes\n- No forbidden terms\n- No -ing phrase endings\n- ~1548 total words (including LaTeX markup; body text is ~1300 words, well within the 1800 budget)\n\nThe file is at `docs/paper/sections/experiments.tex`. It covers all five subsections (Task-Specific Convergence, Scale-Dependent Convergence, Per-Example Divergence, Decoupling, Robustness), defines Table 1 (`table*`), Table 2 (`table`), and Figure 2, and every number traces to the provided data files."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

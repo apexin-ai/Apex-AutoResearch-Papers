@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b5890e6457cc10f67e13",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper arr precheck anon format",
+  "task_key": "worker_paper_arr_precheck_anon_format_20260522T072452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_arr_precheck_anon_format_20260522T072452_result.json",
+    "occurrence": 1,
+    "bytes": 3133,
+    "sha256": "1a6da756e5d33c1e138be7445bdde2d7ba73721df767150cfed65a0f6582bb34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the report:\n\n---\n\n## ARR 提交预检报告\n\n### 1. Anonymization\n\n**a) Author: PASS**\n- `main.tex:19` → `\\author{Anonymous}`\n- `supplementary.tex:13` → `\\author{Anonymous}`\n- 无真名、无机构名泄露\n\n**b) Acknowledgments: PASS**\n- 全文无 `\\section*{Acknowledgments}` 或致谢内容\n- 无 funding/grant/NSF/NSFC 信息\n\n**c) Code URLs: PASS**\n- 作者 .tex 文件中无 github.com / gitlab / huggingface.co / zenodo URL\n- `acl.sty:4` 有 ACL style repo 注释，属于模板文件，无影响\n\n**d) PDF metadata: PASS**\n- PDF Author 字段：空\n- PDF Title 字段：空\n- 无 `\\pdfinfo` 或 `\\hypersetup{pdfauthor=...}` 设置\n\n**e) Other leaks: PASS**\n- 无 \"our previous work\" / \"we previously showed\" 等自引泄露\n- 无 `/home/username/` 等文件路径泄露（`main.fls` 含本地路径，但属编译产物，不提交）\n\n---\n\n### 4. Format\n\n**a) Style: PASS**\n- `main.tex:3` → `\\usepackage[review]{acl}` ✓\n- 使用 ACL style（`acl.sty` 来自 acl-org/acl-style-files）\n\n**b) Pages: PASS**\n- Limitations 从第 8 页中段开始，References 在第 10 页\n- 正文（不含 Limitations）≤ 8 页，符合 EMNLP 2026 要求\n- 注：Limitations 占近 2 页（5 条 + 2 段），偏长（EMNLP 2026 惯例 3 点左右即可），但不计入页数限制\n\n**c) References: WARN**\n- 所有条目均有 title / author / year / venue（booktitle 或 journal）✓\n- arXiv preprint 均标注了 arXiv ID ✓\n- **27 个 @inproceedings 条目缺少 pages 字段**（常见但可能被 Reviewer 标记）：\n  `golde-2025-familiarity`, `baan-2023-ecological`, `llm-pee-2025`, `parse-2025`, `crossagentie-2025`, `cmas-ner-2025`, `uniner-2024`, `gollie-2024`, `gliner-2024`, `gliner2-2025`, `dror-2018-significance`, `knowcoder-2024`, `slot-2025`, `ethayarajh-contextual-2019`, `cai-isotropy-clusters-2021`, `codeie-2023`, `adelie-2024`, `oneke-2025`, `fewnerd-2021`, `fewrel-2018`, `maven-2020`, `docred-2019`, `sentence-bert-2019`, `minilm-2020`, `sclar-sensitivity-2024`, `vllm-2023`, `xie-zeroshot-ner-2023`\n- **BibTeX 警告**：`guo-2021-label-confusion` 同时使用了 volume 和 number 字段（不影响输出，但建议移除 number）\n- 2 个 arXiv preprint 可能已正式发表需要更新：`instructuie-2023`（2023 年 arXiv）、`promptner-2023`（2023 年 arXiv）\n\n**d) Review mode: PASS**\n- `\\usepackage[review]{acl}` 自动启用行号（`acl.sty:19`：review 选项设置 `\\acl@linenumberstrue`）\n- 无 camera-ready 专用设置（无 `final` 选项、无 `\\acl@finalcopytrue`）\n\n---\n\n### 总结\n\n| 检查项 | 状态 |\n|--------|------|\n| 1a Author | PASS |\n| 1b Acknowledgments | PASS |\n| 1c Code URLs | PASS |\n| 1d PDF metadata | PASS |\n| 1e Other leaks | PASS |\n| 4a Style | PASS |\n| 4b Pages | PASS |\n| 4c References | WARN — 27 条缺 pages，2 条 arXiv 可能已正式发表 |\n| 4d Review mode | PASS |\n\n唯一需要处理的是 references.bib 中缺失的 pages 字段。建议至少为核心引用（数据集、主要 baseline）补全 pages。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

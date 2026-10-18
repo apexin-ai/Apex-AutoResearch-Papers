@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d5e2000135af34f39220",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "writing method relatedwork draft",
+  "task_key": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-relatedwork-draft_20260515T035316_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "d80cdaebe2a0c53c0f931d7dc3811edd31826458101ace3540f5ca1fab982bee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件已完成并注册：\n\n**`method_framework.md`** — Section 3 完整框架：\n- 3.1 Problem Formulation: 定义 SCS、BCS、schema complexity 双因子模型\n- 3.2 Controlled Experiment Design: count curve + within-count BCS correlation + multi-channel degradation模型（count→recall, confusability→precision）\n- 3.3 SDGD Framework: 5 步算法描述 + `\\begin{algorithm}` 格式伪代码 + adaptive threshold（$\\tau = \\mu + k_\\sigma \\cdot \\sigma$）+ oracle baseline 区分 + 复杂度分析\n- 3.4 SDGD-zero vs SDGD-cal: 两个变体的数据需求、信号来源、校准流程、对比表\n\n**`related_work_draft.md`** — Section 2 三维度组织：\n- 2.1 Schema Decomposition for IE: UniNER, LLM-PEE, PARSE, KGGen, DEE, SPT, DLISC（7篇），明确 SDGD 与每个方法的区别\n- 2.2 Confusability-Aware NLP: IEPile（训练时 vs 推理时）、Familiarity（评估偏差 vs 提取混淆）、CROSSAGENTIE/CMAS（reactive debate vs proactive decomposition）、Lost-in-the-Middle\n- 2.3 LLM-Based IE: GoLLIE, Code4UIE, KnowCoder, Self-improving NER, ReasoningNER, ZeroNER, GLiNER/GLiNER2, NuNER, survey\n\n**`maven_description.md`** — 1 段约 150 words：168 types、FrameNet hierarchy、4480 docs、118K mentions、sibling confusion 14.6-19.8%、三个选择理由（cross-task, larger schema, external confusability evidence）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

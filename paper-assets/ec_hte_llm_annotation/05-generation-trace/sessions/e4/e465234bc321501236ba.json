@@ -1,0 +1,817 @@
+{
+  "schema_version": "1.0",
+  "id": "e465234bc321501236ba",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 008 local inference scripts",
+  "task_key": "worker_code_exp-008-local-inference-scripts_20260521T115154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-008-local-inference-scripts_20260521T115154.log",
+    "occurrence": 1,
+    "bytes": 50885,
+    "sha256": "946f6835aa8b05db2c75c4ae3e3f328e8495ccb7f915d7885b47e2a67e1e1ddd"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+                "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e36ca1c4-db00-4df7-bf34-464e0844374b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu-ec-hte-llm-annotation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779378600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "dd1b5300-1b52-4d80-ae14-41c4b1340198",
+                "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the reference files to understand the existing patterns, then write both scripts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "2a51efb0-9c9e-47be-9556-cc2f9453f738",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4nwE13Bu7hWx7CwKmDtxH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LztfjuV1ezMb1ij9pkP49f",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp008_gpt5x_annotate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "98a76471-2db3-4a52-b0ed-56266b81cf58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4nwE13Bu7hWx7CwKmDtxH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T11:52:04.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LztfjuV1ezMb1ij9pkP49f",
+              "type": "tool_result",
+              "content": "1\t\"\"\"GPT-5.x annotation for exp-008. Tries gpt-5.4 → gpt-5 → gpt-5-mini in order.\"\"\"\n2\timport json, os, sys, time\n3\timport pandas as pd\n4\tfrom openai import OpenAI\n5\t\n6\tAPI_KEY = [REDACTED]'/home/ubuntu/ec_hte_llm_annotation/.api_key').read().strip()\n7\tCLIENT = OpenAI(api_key=[REDACTED], base_url='http://47.94.22.126/v1')\n8\tMODELS_TO_TRY = ['gpt-5.4', 'gpt-5', 'gpt-5-mini']\n9\tPROMPT = (\n10\t    'Classify the sentiment of the following tweet as exactly one of: '\n11\t    'positive, neutral, negative.\\n\\n'\n12\t    'Tweet: \"{text}\"\\n\\n'\n13\t    'Reply with ONLY one word: positive, neutral, or negative.'\n14\t)\n15\tDATA = '/home/ubuntu/ec_hte_llm_annotation/results/pilot_gemini_annotations.csv'\n16\t\n17\tdef test_model(model_name):\n18\t    \"\"\"Test if a model works with a simple prompt. Returns True if ok.\"\"\"\n19\t    try:\n20\t        resp = CLIENT.chat.completions.create(\n21\t            model=model_name,\n22\t            messages=[{\"role\": \"user\", \"content\": \"Say hello.\"}],\n23\t            max_tokens=50\n24\t        )\n25\t        content = resp.choices[0].message.content\n26\t        if content and len(content.strip()) > 0:\n27\t            print(f\"  ✓ {model_name} works: '{content.strip()[:50]}'\")\n28\t            return True\n29\t        print(f\"  ✗ {model_name}: empty response\")\n30\t        return False\n31\t    except Exception as e:\n32\t        print(f\"  ✗ {model_name}: {e}\")\n33\t        return False\n34\t\n35\tdef find_working_model():\n36\t    print(\"Testing GPT-5.x models...\")\n37\t    for m in MODELS_TO_TRY:\n38\t        if test_model(m):\n39\t            return m\n40\t    return None\n41\t\n42\tdef classify(model, text, max_retries=3):\n43\t    label_map = {'negative': 0, 'neutral': 1, 'positive': 2}\n44\t    for attempt in range(max_retries):\n45\t        try:\n46\t            resp = CLIENT.chat.completions.create(\n47\t                model=model,\n48\t                messages=[{\"role\": \"user\", \"content\": PROMPT.format(text=text)}],\n49\t                max_tokens=500\n50\t            )\n51\t            s = resp.choices[0].message.content.strip().lower()\n52\t            if s in label_map:\n53\t                return label_map[s]\n54\t            for k in label_map:\n55\t                if k in s:\n56\t                    return label_map[k]\n57\t            print(f\"  Unparseable: '{s[:60]}', retry {attempt+1}\")\n58\t        except Exception as e:\n59\t            print(f\"  Error: {e}, retry {attempt+1}\")\n60\t            time.sleep(10)\n61\t    return -1\n62\t\n63\tdef main():\n64\t    model = find_working_model()\n65\t    if not model:\n66\t        print(\"ERROR: No GPT-5.x model available. Exiting.\")\n67\t        sys.exit(1)\n68\t\n69\t    print(f\"\\nUsing model: {model}\")\n70\t    ckpt = f'/home/ubuntu/ec_hte_llm_annotation/results/exp008_checkpoint_{model}.json'\n71\t\n72\t    df = pd.read_csv(DATA)\n73\t    results = []\n74\t    start_idx = 0\n75\t    if os.path.exists(ckpt):\n76\t        existing = json.load(open(ckpt))\n77\t        start_idx = len(existing)\n78\t        results = existing\n79\t        print(f\"Resuming from {start_idx}\")\n80\t\n81\t    for i in range(start_idx, len(df)):\n82\t        text = df.iloc[i]['text']\n83\t        label = classify(model, text)\n84\t        results.append(label)\n85\t        if (i + 1) % 50 == 0:\n86\t            json.dump(results, open(ckpt, 'w'))\n87\t            ok = sum(1 for r in results if r >= 0)\n88\t            print(f\"[{i+1}/{len(df)}] done, {ok} valid\", flush=True)\n89\t        time.sleep(1.0)\n90\t\n91\t    json.dump(results, open(ckpt, 'w'))\n92\t    ok = sum(1 for r in results if r >= 0)\n93\t    print(f\"\\nDONE: model={model}, {len(results)} total, {ok} valid\")\n94\t    # Write model name for downstream script\n95\t    with open('/home/ubuntu/ec_hte_llm_annotation/results/exp008_gpt5x_model_used.txt', 'w') as f:\n96\t        f.write(model)\n97\t\n98\tif __name__ == '__main__':\n99\t    main()\n100\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "6601f042-842d-4a9a-aab5-38fa6fa707f6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp008_gpt5x_annotate.py",
+                "content": "\"\"\"GPT-5.x annotation for exp-008. Tries gpt-5.4 → gpt-5 → gpt-5-mini in order.\"\"\"\nimport json, os, sys, time\nimport pandas as pd\nfrom openai import OpenAI\n\nAPI_KEY = [REDACTED]'/home/ubuntu/ec_hte_llm_annotation/.api_key').read().strip()\nCLIENT = OpenAI(api_key=[REDACTED], base_url='http://47.94.22.126/v1')\nMODELS_TO_TRY = ['gpt-5.4', 'gpt-5', 'gpt-5-mini']\nPROMPT = (\n    'Classify the sentiment of the following tweet as exactly one of: '\n    'positive, neutral, negative.\\n\\n'\n    'Tweet: \"{text}\"\\n\\n'\n    'Reply with ONLY one word: positive, neutral, or negative.'\n)\nDATA = '/home/ubuntu/ec_hte_llm_annotation/results/pilot_gemini_annotations.csv'\n\ndef test_model(model_name):\n    \"\"\"Test if a model works with a simple prompt. Returns True if ok.\"\"\"\n    try:\n        resp = CLIENT.chat.completions.create(\n            model=model_name,\n            messages=[{\"role\": \"user\", \"content\": \"Say hello.\"}],\n            max_tokens=50\n        )\n        content = resp.choices[0].message.content\n        if content and len(content.strip()) > 0:\n            print(f\"  ✓ {model_name} works: '{content.strip()[:50]}'\")\n            return True\n        print(f\"  ✗ {model_name}: empty response\")\n        return False\n    except Exception as e:\n        print(f\"  ✗ {model_name}: {e}\")\n        return False\n\ndef find_working_model():\n    print(\"Testing GPT-5.x models...\")\n    for m in MODELS_TO_TRY:\n        if test_model(m):\n            return m\n    return None\n\ndef classify(model, text, max_retries=3):\n    label_map = {'negative': 0, 'neutral': 1, 'positive': 2}\n    for attempt in range(max_retries):\n        try:\n            resp = CLIENT.chat.completions.create(\n                model=model,\n                messages=[{\"role\": \"user\", \"content\": PROMPT.format(text=text)}],\n                max_tokens=500\n            )\n            s = resp.choices[0].message.content.strip().lower()\n            if s in label_map:\n                return label_map[s]\n            for k in label_map:\n                if k in s:\n                    return label_map[k]\n            print(f\"  Unparseable: '{s[:60]}', retry {attempt+1}\")\n        except Exception as e:\n            print(f\"  Error: {e}, retry {attempt+1}\")\n            time.sleep(10)\n    return -1\n\ndef main():\n    model = find_working_model()\n    if not model:\n        print(\"ERROR: No GPT-5.x model available. Exiting.\")\n        sys.exit(1)\n\n    print(f\"\\nUsing model: {model}\")\n    ckpt = f'/home/ubuntu/ec_hte_llm_annotation/results/exp008_checkpoint_{model}.json'\n\n    df = pd.read_csv(DATA)\n    results = []\n    start_idx = 0\n    if os.path.exists(ckpt):\n        existing = json.load(open(ckpt))\n        start_idx = len(existing)\n        results = existing\n        print(f\"Resuming from {start_idx}\")\n\n    for i in range(start_idx, len(df)):\n        text = df.iloc[i]['text']\n        label = classify(model, text)\n        results.append(label)\n        if (i + 1) % 50 == 0:\n            json.dump(results, open(ckpt, 'w'))\n            ok = sum(1 for r in results if r >= 0)\n            print(f\"[{i+1}/{len(df)}] done, {ok} valid\", flush=True)\n        time.sleep(1.0)\n\n    json.dump(results, open(ckpt, 'w'))\n    ok = sum(1 for r in results if r >= 0)\n    print(f\"\\nDONE: model={model}, {len(results)} total, {ok} valid\")\n    # Write model name for downstream script\n    with open('/home/ubuntu/ec_hte_llm_annotation/results/exp008_gpt5x_model_used.txt', 'w') as f:\n        f.write(model)\n\nif __name__ == '__main__':\n    main()\n",
+                "numLines": 100,
+                "startLine": 1,
+                "totalLines": 100
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AP2wRRH78VXXLXygoKLyzn",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/pilot_gemini_annotations.csv",
+                "description": "Check CSV structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "5ac16f61-11f1-4716-87e5-8d1d3196d969",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4nwE13Bu7hWx7CwKmDtxH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T11:52:05.306Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AP2wRRH78VXXLXygoKLyzn",
+              "type": "tool_result",
+              "content": "idx,text,true_label,llm_label,has_hashtag,has_mention,text_length_bin\n10476,\"when you jacked into your house without keys. hell yeah, i'm david blaine jr.\",2,2,False,False,short\n1824,Cigarettes and Valentines,1,1,False,False,short\n409,@user we'll miss you in Seattle! Especially when you win your NL Cy Young award!,2,2,False,True,medium\n12149,I'm not going to sack Tony romo but I will sack dak,0,0,False,False,short",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "3c63f98c-89ce-4dc2-8051-13fc35aa0816",
+            "tool_use_result": {
+              "stdout": "idx,text,true_label,llm_label,has_hashtag,has_mention,text_length_bin\n10476,\"when you jacked into your house without keys. hell yeah, i'm david blaine jr.\",2,2,False,False,short\n1824,Cigarettes and Valentines,1,1,False,False,short\n409,@user we'll miss you in Seattle! Especially when you win your NL Cy Young award!,2,2,False,True,medium\n12149,I'm not going to sack Tony romo but I will sack dak,0,0,False,False,short",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R9RBwJRHzS1Kd2A3yzZ1qD",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/",
+                "description": "Create output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "df3d185f-7366-43f3-8ac0-298d75e60661",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4nwE13Bu7hWx7CwKmDtxH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T11:52:05.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R9RBwJRHzS1Kd2A3yzZ1qD",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "441a3d55-d93e-49b8-8431-f4b357d4ed56",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of the reference script and data format. Let me write both scripts.",
+              "signature": "EqgCCmMIDRgCKkCm2596HTWl+/QPB5YxPOsb5vcyZtZmKUAqgeuHNQhkkJe7a2G4DNLhwh2UVXBe60aJ4rPmljpciKRLhxw1ex47Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDOHtThB7iSrBsMa8ZhoMNAPSy4o1zKQnFsdoIjD55hxksJEfAvad58IL4hM2kndq1iIAzOwag9vsQpro+Foz6DodGRJCWTpJ60XArHQqc9sTuRk8KYinDlBGX2z+z09fDs2Aw4C/uYk8cMHFrralG+TbfrkBQNRGPR7IUfsd6gY6LqDxRtwU/1ONs7syLZDFrGB79afzvsLBTTu9gh05Bz+VMzyp2xTvF2bxFWKFxDVJGhc2R3KStyKz+BE+XWFNjzIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "ba94aa0a-5efb-427f-ba99-d1b19fcf0e42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016t7zCXBGUGXSTYFU23A5iW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1890,
+                "cache_read_input_tokens": 18279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1890
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write both scripts in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "18839598-feb3-46b4-8e3e-2e07511a9683",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016t7zCXBGUGXSTYFU23A5iW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1890,
+                "cache_read_input_tokens": 18279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1890
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RaMrQhsYjuZRK2qDXUKXwq",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/llama31_8b_annotate.py",
+                "content": "# exp-008: Local Llama-3.1-8B-Instruct sentiment annotation for TweetEval\n#\n# Input:  results/pilot_gemini_annotations.csv (500 tweets, cols: idx, text, true_label, ...)\n# Output: results/exp008_checkpoint_llama-3.1-8b.json (list of integer labels per row)\n#         results/exp008_local_model_used.txt (model identifier)\n# Labels: 0=negative, 1=neutral, 2=positive, -1=parse failure\n#\n# Usage:\n#   pip install transformers torch accelerate\n#   python llama31_8b_annotate.py [--device cuda:0] [--batch-size 1] [--resume] [--model-path PATH]\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nimport time\n\nimport pandas as pd\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nPROJECT_ROOT = \"/home/ubuntu/ec_hte_llm_annotation\"\nDATA_PATH = os.path.join(PROJECT_ROOT, \"results/pilot_gemini_annotations.csv\")\nCHECKPOINT_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_checkpoint_llama-3.1-8b.json\")\nMODEL_USED_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_local_model_used.txt\")\nDEFAULT_MODEL = \"meta-llama/Llama-3.1-8B-Instruct\"\n\nPROMPT_TEMPLATE = (\n    'Classify the sentiment of the following tweet as exactly one of: '\n    'positive, neutral, negative.\\n\\n'\n    'Tweet: \"{text}\"\\n\\n'\n    'Reply with ONLY one word: positive, neutral, or negative.'\n)\n\nLABEL_MAP = {\"negative\": 0, \"neutral\": 1, \"positive\": 2}\n\n\ndef parse_label(text: str) -> int:\n    text = text.strip().lower()\n    if text in LABEL_MAP:\n        return LABEL_MAP[text]\n    for keyword in LABEL_MAP:\n        if keyword in text:\n            return LABEL_MAP[keyword]\n    match = re.search(r\"\\b(positive|neutral|negative)\\b\", text)\n    if match:\n        return LABEL_MAP[match.group(1)]\n    return -1\n\n\ndef load_model(model_path: str, device: str):\n    print(f\"Loading tokenizer from {model_path} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16\n    print(f\"Loading model in {dtype} on {device} ...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path,\n        torch_dtype=dtype,\n        device_map=device,\n        trust_remote_code=True,\n    )\n    model.eval()\n    return model, tokenizer\n\n\ndef classify_single(model, tokenizer, tweet_text: str, device: str) -> int:\n    messages = [\n        {\"role\": \"user\", \"content\": PROMPT_TEMPLATE.format(text=tweet_text)},\n    ]\n    input_ids = tokenizer.apply_chat_template(messages, return_tensors=\"pt\", add_generation_prompt=True)\n    input_ids = input_ids.to(model.device)\n\n    with torch.no_grad():\n        output_ids = model.generate(\n            input_ids,\n            max_new_tokens=10,\n            do_sample=False,\n            temperature=None,\n            top_p=None,\n        )\n\n    new_tokens = output_ids[0, input_ids.shape[1]:]\n    response = tokenizer.decode(new_tokens, skip_special_tokens=True)\n    return parse_label(response)\n\n\ndef warmup(model, tokenizer, device: str) -> float:\n    print(\"Running warmup inference ...\")\n    start = time.time()\n    classify_single(model, tokenizer, \"This is a test tweet.\", device)\n    elapsed = time.time() - start\n    print(f\"Warmup done in {elapsed:.2f}s\")\n    return elapsed\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Llama-3.1-8B TweetEval sentiment annotation\")\n    parser.add_argument(\"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\")\n    parser.add_argument(\"--batch-size\", type=int, default=1, help=\"Batch size (default: 1)\")\n    parser.add_argument(\"--resume\", action=\"store_true\", help=\"Resume from checkpoint\")\n    parser.add_argument(\"--model-path\", default=DEFAULT_MODEL, help=\"HuggingFace model ID or local path\")\n    args = parser.parse_args()\n\n    df = pd.read_csv(DATA_PATH)\n    total = len(df)\n    print(f\"Loaded {total} tweets from {DATA_PATH}\")\n\n    results = []\n    start_idx = 0\n    if args.resume and os.path.exists(CHECKPOINT_PATH):\n        with open(CHECKPOINT_PATH) as f:\n            results = json.load(f)\n        start_idx = len(results)\n        print(f\"Resuming from index {start_idx}\")\n\n    if start_idx >= total:\n        print(\"All annotations already complete.\")\n        return\n\n    try:\n        model, tokenizer = load_model(args.model_path, args.device)\n    except RuntimeError as e:\n        if \"out of memory\" in str(e).lower() or \"CUDA\" in str(e):\n            print(f\"OOM loading model: {e}\")\n            print(\"Try: --device cpu (slow) or use a GPU with >=16GB VRAM\")\n            sys.exit(1)\n        raise\n\n    per_item = warmup(model, tokenizer, args.device)\n    remaining = total - start_idx\n    est_minutes = (remaining * per_item) / 60\n    print(f\"Estimated time for {remaining} remaining tweets: {est_minutes:.1f} min\")\n\n    failed = 0\n    t0 = time.time()\n\n    for i in range(start_idx, total):\n        tweet = df.iloc[i][\"text\"]\n        try:\n            label = classify_single(model, tokenizer, str(tweet), args.device)\n        except RuntimeError as e:\n            if \"out of memory\" in str(e).lower():\n                torch.cuda.empty_cache()\n                print(f\"OOM at index {i}. Try reducing --batch-size or use a larger GPU.\")\n                with open(CHECKPOINT_PATH, \"w\") as f:\n                    json.dump(results, f)\n                print(f\"Checkpoint saved at {len(results)} annotations.\")\n                sys.exit(1)\n            raise\n\n        results.append(label)\n        if label == -1:\n            failed += 1\n\n        if (i + 1) % 50 == 0:\n            with open(CHECKPOINT_PATH, \"w\") as f:\n                json.dump(results, f)\n            valid = sum(1 for r in results if r >= 0)\n            elapsed = time.time() - t0\n            rate = (i - start_idx + 1) / elapsed\n            print(f\"[{i + 1}/{total}] {valid} valid, {failed} failed, {rate:.1f} tweets/s\", flush=True)\n\n    with open(CHECKPOINT_PATH, \"w\") as f:\n        json.dump(results, f)\n\n    with open(MODEL_USED_PATH, \"w\") as f:\n        f.write(args.model_path)\n\n    valid = sum(1 for r in results if r >= 0)\n    elapsed = time.time() - t0\n    print(f\"\\n--- Summary ---\")\n    print(f\"Model:   {args.model_path}\")\n    print(f\"Total:   {len(results)}\")\n    print(f\"Valid:   {valid}\")\n    print(f\"Failed:  {failed}\")\n    print(f\"Time:    {elapsed:.1f}s ({elapsed / 60:.1f} min)\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "a3a0277c-2d68-4f2b-91b9-868570181f89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016t7zCXBGUGXSTYFU23A5iW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1890,
+                "cache_read_input_tokens": 18279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1890
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T11:52:37.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RaMrQhsYjuZRK2qDXUKXwq",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/llama31_8b_annotate.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "1dfe3aba-170f-4075-88b3-b78431ea5130",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/llama31_8b_annotate.py",
+              "content": "# exp-008: Local Llama-3.1-8B-Instruct sentiment annotation for TweetEval\n#\n# Input:  results/pilot_gemini_annotations.csv (500 tweets, cols: idx, text, true_label, ...)\n# Output: results/exp008_checkpoint_llama-3.1-8b.json (list of integer labels per row)\n#         results/exp008_local_model_used.txt (model identifier)\n# Labels: 0=negative, 1=neutral, 2=positive, -1=parse failure\n#\n# Usage:\n#   pip install transformers torch accelerate\n#   python llama31_8b_annotate.py [--device cuda:0] [--batch-size 1] [--resume] [--model-path PATH]\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nimport time\n\nimport pandas as pd\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nPROJECT_ROOT = \"/home/ubuntu/ec_hte_llm_annotation\"\nDATA_PATH = os.path.join(PROJECT_ROOT, \"results/pilot_gemini_annotations.csv\")\nCHECKPOINT_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_checkpoint_llama-3.1-8b.json\")\nMODEL_USED_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_local_model_used.txt\")\nDEFAULT_MODEL = \"meta-llama/Llama-3.1-8B-Instruct\"\n\nPROMPT_TEMPLATE = (\n    'Classify the sentiment of the following tweet as exactly one of: '\n    'positive, neutral, negative.\\n\\n'\n    'Tweet: \"{text}\"\\n\\n'\n    'Reply with ONLY one word: positive, neutral, or negative.'\n)\n\nLABEL_MAP = {\"negative\": 0, \"neutral\": 1, \"positive\": 2}\n\n\ndef parse_label(text: str) -> int:\n    text = text.strip().lower()\n    if text in LABEL_MAP:\n        return LABEL_MAP[text]\n    for keyword in LABEL_MAP:\n        if keyword in text:\n            return LABEL_MAP[keyword]\n    match = re.search(r\"\\b(positive|neutral|negative)\\b\", text)\n    if match:\n        return LABEL_MAP[match.group(1)]\n    return -1\n\n\ndef load_model(model_path: str, device: str):\n    print(f\"Loading tokenizer from {model_path} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16\n    print(f\"Loading model in {dtype} on {device} ...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path,\n        torch_dtype=dtype,\n        device_map=device,\n        trust_remote_code=True,\n    )\n    model.eval()\n    return model, tokenizer\n\n\ndef classify_single(model, tokenizer, tweet_text: str, device: str) -> int:\n    messages = [\n        {\"role\": \"user\", \"content\": PROMPT_TEMPLATE.format(text=tweet_text)},\n    ]\n    input_ids = tokenizer.apply_chat_template(messages, return_tensors=\"pt\", add_generation_prompt=True)\n    input_ids = input_ids.to(model.device)\n\n    with torch.no_grad():\n        output_ids = model.generate(\n            input_ids,\n            max_new_tokens=10,\n            do_sample=False,\n            temperature=None,\n            top_p=None,\n        )\n\n    new_tokens = output_ids[0, input_ids.shape[1]:]\n    response = tokenizer.decode(new_tokens, skip_special_tokens=True)\n    return parse_label(response)\n\n\ndef warmup(model, tokenizer, device: str) -> float:\n    print(\"Running warmup inference ...\")\n    start = time.time()\n    classify_single(model, tokenizer, \"This is a test tweet.\", device)\n    elapsed = time.time() - start\n    print(f\"Warmup done in {elapsed:.2f}s\")\n    return elapsed\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Llama-3.1-8B TweetEval sentiment annotation\")\n    parser.add_argument(\"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\")\n    parser.add_argument(\"--batch-size\", type=int, default=1, help=\"Batch size (default: 1)\")\n    parser.add_argument(\"--resume\", action=\"store_true\", help=\"Resume from checkpoint\")\n    parser.add_argument(\"--model-path\", default=DEFAULT_MODEL, help=\"HuggingFace model ID or local path\")\n    args = parser.parse_args()\n\n    df = pd.read_csv(DATA_PATH)\n    total = len(df)\n    print(f\"Loaded {total} tweets from {DATA_PATH}\")\n\n    results = []\n    start_idx = 0\n    if args.resume and os.path.exists(CHECKPOINT_PATH):\n        with open(CHECKPOINT_PATH) as f:\n            results = json.load(f)\n        start_idx = len(results)\n        print(f\"Resuming from index {start_idx}\")\n\n    if start_idx >= total:\n        print(\"All annotations already complete.\")\n        return\n\n    try:\n        model, tokenizer = load_model(args.model_path, args.device)\n    except RuntimeError as e:\n        if \"out of memory\" in str(e).lower() or \"CUDA\" in str(e):\n            print(f\"OOM loading model: {e}\")\n            print(\"Try: --device cpu (slow) or use a GPU with >=16GB VRAM\")\n            sys.exit(1)\n        raise\n\n    per_item = warmup(model, tokenizer, args.device)\n    remaining = total - start_idx\n    est_minutes = (remaining * per_item) / 60\n    print(f\"Estimated time for {remaining} remaining tweets: {est_minutes:.1f} min\")\n\n    failed = 0\n    t0 = time.time()\n\n    for i in range(start_idx, total):\n        tweet = df.iloc[i][\"text\"]\n        try:\n            label = classify_single(model, tokenizer, str(tweet), args.device)\n        except RuntimeError as e:\n            if \"out of memory\" in str(e).lower():\n                torch.cuda.empty_cache()\n                print(f\"OOM at index {i}. Try reducing --batch-size or use a larger GPU.\")\n                with open(CHECKPOINT_PATH, \"w\") as f:\n                    json.dump(results, f)\n                print(f\"Checkpoint saved at {len(results)} annotations.\")\n                sys.exit(1)\n            raise\n\n        results.append(label)\n        if label == -1:\n            failed += 1\n\n        if (i + 1) % 50 == 0:\n            with open(CHECKPOINT_PATH, \"w\") as f:\n                json.dump(results, f)\n            valid = sum(1 for r in results if r >= 0)\n            elapsed = time.time() - t0\n            rate = (i - start_idx + 1) / elapsed\n            print(f\"[{i + 1}/{total}] {valid} valid, {failed} failed, {rate:.1f} tweets/s\", flush=True)\n\n    with open(CHECKPOINT_PATH, \"w\") as f:\n        json.dump(results, f)\n\n    with open(MODEL_USED_PATH, \"w\") as f:\n        f.write(args.model_path)\n\n    valid = sum(1 for r in results if r >= 0)\n    elapsed = time.time() - t0\n    print(f\"\\n--- Summary ---\")\n    print(f\"Model:   {args.model_path}\")\n    print(f\"Total:   {len(results)}\")\n    print(f\"Valid:   {valid}\")\n    print(f\"Failed:  {failed}\")\n    print(f\"Time:    {elapsed:.1f}s ({elapsed / 60:.1f} min)\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HeCcoR41jrRRJHzhezkTys",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/qwen25_7b_annotate.py",
+                "content": "# exp-008: Local Qwen2.5-7B-Instruct sentiment annotation for TweetEval\n#\n# Input:  results/pilot_gemini_annotations.csv (500 tweets, cols: idx, text, true_label, ...)\n# Output: results/exp008_checkpoint_qwen2.5-7b.json (list of integer labels per row)\n#         results/exp008_local_model_used.txt (model identifier)\n# Labels: 0=negative, 1=neutral, 2=positive, -1=parse failure\n#\n# Usage:\n#   pip install transformers torch accelerate\n#   python qwen25_7b_annotate.py [--device cuda:0] [--batch-size 1] [--resume] [--model-path PATH]\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nimport time\n\nimport pandas as pd\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nPROJECT_ROOT = \"/home/ubuntu/ec_hte_llm_annotation\"\nDATA_PATH = os.path.join(PROJECT_ROOT, \"results/pilot_gemini_annotations.csv\")\nCHECKPOINT_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_checkpoint_qwen2.5-7b.json\")\nMODEL_USED_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_local_model_used.txt\")\nDEFAULT_MODEL = \"Qwen/Qwen2.5-7B-Instruct\"\n\nPROMPT_TEMPLATE = (\n    'Classify the sentiment of the following tweet as exactly one of: '\n    'positive, neutral, negative.\\n\\n'\n    'Tweet: \"{text}\"\\n\\n'\n    'Reply with ONLY one word: positive, neutral, or negative.'\n)\n\nLABEL_MAP = {\"negative\": 0, \"neutral\": 1, \"positive\": 2}\n\n\ndef parse_label(text: str) -> int:\n    text = text.strip().lower()\n    if text in LABEL_MAP:\n        return LABEL_MAP[text]\n    for keyword in LABEL_MAP:\n        if keyword in text:\n            return LABEL_MAP[keyword]\n    match = re.search(r\"\\b(positive|neutral|negative)\\b\", text)\n    if match:\n        return LABEL_MAP[match.group(1)]\n    return -1\n\n\ndef load_model(model_path: str, device: str):\n    print(f\"Loading tokenizer from {model_path} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16\n    print(f\"Loading model in {dtype} on {device} ...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path,\n        torch_dtype=dtype,\n        device_map=device,\n        trust_remote_code=True,\n    )\n    model.eval()\n    return model, tokenizer\n\n\ndef classify_single(model, tokenizer, tweet_text: str, device: str) -> int:\n    messages = [\n        {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": PROMPT_TEMPLATE.format(text=tweet_text)},\n    ]\n    input_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n    inputs = tokenizer(input_text, return_tensors=\"pt\").to(model.device)\n\n    with torch.no_grad():\n        output_ids = model.generate(\n            **inputs,\n            max_new_tokens=10,\n            do_sample=False,\n            temperature=None,\n            top_p=None,\n        )\n\n    new_tokens = output_ids[0, inputs[\"input_ids\"].shape[1]:]\n    response = tokenizer.decode(new_tokens, skip_special_tokens=True)\n    return parse_label(response)\n\n\ndef warmup(model, tokenizer, device: str) -> float:\n    print(\"Running warmup inference ...\")\n    start = time.time()\n    classify_single(model, tokenizer, \"This is a test tweet.\", device)\n    elapsed = time.time() - start\n    print(f\"Warmup done in {elapsed:.2f}s\")\n    return elapsed\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Qwen2.5-7B TweetEval sentiment annotation\")\n    parser.add_argument(\"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\")\n    parser.add_argument(\"--batch-size\", type=int, default=1, help=\"Batch size (default: 1)\")\n    parser.add_argument(\"--resume\", action=\"store_true\", help=\"Resume from checkpoint\")\n    parser.add_argument(\"--model-path\", default=DEFAULT_MODEL, help=\"HuggingFace model ID or local path\")\n    args = parser.parse_args()\n\n    df = pd.read_csv(DATA_PATH)\n    total = len(df)\n    print(f\"Loaded {total} tweets from {DATA_PATH}\")\n\n    results = []\n    start_idx = 0\n    if args.resume and os.path.exists(CHECKPOINT_PATH):\n        with open(CHECKPOINT_PATH) as f:\n            results = json.load(f)\n        start_idx = len(results)\n        print(f\"Resuming from index {start_idx}\")\n\n    if start_idx >= total:\n        print(\"All annotations already complete.\")\n        return\n\n    try:\n        model, tokenizer = load_model(args.model_path, args.device)\n    except RuntimeError as e:\n        if \"out of memory\" in str(e).lower() or \"CUDA\" in str(e):\n            print(f\"OOM loading model: {e}\")\n            print(\"Try: --device cpu (slow) or use a GPU with >=16GB VRAM\")\n            sys.exit(1)\n        raise\n\n    per_item = warmup(model, tokenizer, args.device)\n    remaining = total - start_idx\n    est_minutes = (remaining * per_item) / 60\n    print(f\"Estimated time for {remaining} remaining tweets: {est_minutes:.1f} min\")\n\n    failed = 0\n    t0 = time.time()\n\n    for i in range(start_idx, total):\n        tweet = df.iloc[i][\"text\"]\n        try:\n            label = classify_single(model, tokenizer, str(tweet), args.device)\n        except RuntimeError as e:\n            if \"out of memory\" in str(e).lower():\n                torch.cuda.empty_cache()\n                print(f\"OOM at index {i}. Try reducing --batch-size or use a larger GPU.\")\n                with open(CHECKPOINT_PATH, \"w\") as f:\n                    json.dump(results, f)\n                print(f\"Checkpoint saved at {len(results)} annotations.\")\n                sys.exit(1)\n            raise\n\n        results.append(label)\n        if label == -1:\n            failed += 1\n\n        if (i + 1) % 50 == 0:\n            with open(CHECKPOINT_PATH, \"w\") as f:\n                json.dump(results, f)\n            valid = sum(1 for r in results if r >= 0)\n            elapsed = time.time() - t0\n            rate = (i - start_idx + 1) / elapsed\n            print(f\"[{i + 1}/{total}] {valid} valid, {failed} failed, {rate:.1f} tweets/s\", flush=True)\n\n    with open(CHECKPOINT_PATH, \"w\") as f:\n        json.dump(results, f)\n\n    with open(MODEL_USED_PATH, \"w\") as f:\n        f.write(args.model_path)\n\n    valid = sum(1 for r in results if r >= 0)\n    elapsed = time.time() - t0\n    print(f\"\\n--- Summary ---\")\n    print(f\"Model:   {args.model_path}\")\n    print(f\"Total:   {len(results)}\")\n    print(f\"Valid:   {valid}\")\n    print(f\"Failed:  {failed}\")\n    print(f\"Time:    {elapsed:.1f}s ({elapsed / 60:.1f} min)\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "793b73c3-27c0-423d-ba28-f5a09f7f7739",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016t7zCXBGUGXSTYFU23A5iW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1890,
+                "cache_read_input_tokens": 18279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1890
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T11:52:54.552Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HeCcoR41jrRRJHzhezkTys",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/qwen25_7b_annotate.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "85f17dbf-57e1-4261-91fd-2f9083eb1da3",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/artifacts/exp-008/scripts/qwen25_7b_annotate.py",
+              "content": "# exp-008: Local Qwen2.5-7B-Instruct sentiment annotation for TweetEval\n#\n# Input:  results/pilot_gemini_annotations.csv (500 tweets, cols: idx, text, true_label, ...)\n# Output: results/exp008_checkpoint_qwen2.5-7b.json (list of integer labels per row)\n#         results/exp008_local_model_used.txt (model identifier)\n# Labels: 0=negative, 1=neutral, 2=positive, -1=parse failure\n#\n# Usage:\n#   pip install transformers torch accelerate\n#   python qwen25_7b_annotate.py [--device cuda:0] [--batch-size 1] [--resume] [--model-path PATH]\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nimport time\n\nimport pandas as pd\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nPROJECT_ROOT = \"/home/ubuntu/ec_hte_llm_annotation\"\nDATA_PATH = os.path.join(PROJECT_ROOT, \"results/pilot_gemini_annotations.csv\")\nCHECKPOINT_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_checkpoint_qwen2.5-7b.json\")\nMODEL_USED_PATH = os.path.join(PROJECT_ROOT, \"results/exp008_local_model_used.txt\")\nDEFAULT_MODEL = \"Qwen/Qwen2.5-7B-Instruct\"\n\nPROMPT_TEMPLATE = (\n    'Classify the sentiment of the following tweet as exactly one of: '\n    'positive, neutral, negative.\\n\\n'\n    'Tweet: \"{text}\"\\n\\n'\n    'Reply with ONLY one word: positive, neutral, or negative.'\n)\n\nLABEL_MAP = {\"negative\": 0, \"neutral\": 1, \"positive\": 2}\n\n\ndef parse_label(text: str) -> int:\n    text = text.strip().lower()\n    if text in LABEL_MAP:\n        return LABEL_MAP[text]\n    for keyword in LABEL_MAP:\n        if keyword in text:\n            return LABEL_MAP[keyword]\n    match = re.search(r\"\\b(positive|neutral|negative)\\b\", text)\n    if match:\n        return LABEL_MAP[match.group(1)]\n    return -1\n\n\ndef load_model(model_path: str, device: str):\n    print(f\"Loading tokenizer from {model_path} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16\n    print(f\"Loading model in {dtype} on {device} ...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path,\n        torch_dtype=dtype,\n        device_map=device,\n        trust_remote_code=True,\n    )\n    model.eval()\n    return model, tokenizer\n\n\ndef classify_single(model, tokenizer, tweet_text: str, device: str) -> int:\n    messages = [\n        {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": PROMPT_TEMPLATE.format(text=tweet_text)},\n    ]\n    input_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n    inputs = tokenizer(input_text, return_tensors=\"pt\").to(model.device)\n\n    with torch.no_grad():\n        output_ids = model.generate(\n            **inputs,\n            max_new_tokens=10,\n            do_sample=False,\n            temperature=None,\n            top_p=None,\n        )\n\n    new_tokens = output_ids[0, inputs[\"input_ids\"].shape[1]:]\n    response = tokenizer.decode(new_tokens, skip_special_tokens=True)\n    return parse_label(response)\n\n\ndef warmup(model, tokenizer, device: str) -> float:\n    print(\"Running warmup inference ...\")\n    start = time.time()\n    classify_single(model, tokenizer, \"This is a test tweet.\", device)\n    elapsed = time.time() - start\n    print(f\"Warmup done in {elapsed:.2f}s\")\n    return elapsed\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Qwen2.5-7B TweetEval sentiment annotation\")\n    parser.add_argument(\"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\")\n    parser.add_argument(\"--batch-size\", type=int, default=1, help=\"Batch size (default: 1)\")\n    parser.add_argument(\"--resume\", action=\"store_true\", help=\"Resume from checkpoint\")\n    parser.add_argument(\"--model-path\", default=DEFAULT_MODEL, help=\"HuggingFace model ID or local path\")\n    args = parser.parse_args()\n\n    df = pd.read_csv(DATA_PATH)\n    total = len(df)\n    print(f\"Loaded {total} tweets from {DATA_PATH}\")\n\n    results = []\n    start_idx = 0\n    if args.resume and os.path.exists(CHECKPOINT_PATH):\n        with open(CHECKPOINT_PATH) as f:\n            results = json.load(f)\n        start_idx = len(results)\n        print(f\"Resuming from index {start_idx}\")\n\n    if start_idx >= total:\n        print(\"All annotations already complete.\")\n        return\n\n    try:\n        model, tokenizer = load_model(args.model_path, args.device)\n    except RuntimeError as e:\n        if \"out of memory\" in str(e).lower() or \"CUDA\" in str(e):\n            print(f\"OOM loading model: {e}\")\n            print(\"Try: --device cpu (slow) or use a GPU with >=16GB VRAM\")\n            sys.exit(1)\n        raise\n\n    per_item = warmup(model, tokenizer, args.device)\n    remaining = total - start_idx\n    est_minutes = (remaining * per_item) / 60\n    print(f\"Estimated time for {remaining} remaining tweets: {est_minutes:.1f} min\")\n\n    failed = 0\n    t0 = time.time()\n\n    for i in range(start_idx, total):\n        tweet = df.iloc[i][\"text\"]\n        try:\n            label = classify_single(model, tokenizer, str(tweet), args.device)\n        except RuntimeError as e:\n            if \"out of memory\" in str(e).lower():\n                torch.cuda.empty_cache()\n                print(f\"OOM at index {i}. Try reducing --batch-size or use a larger GPU.\")\n                with open(CHECKPOINT_PATH, \"w\") as f:\n                    json.dump(results, f)\n                print(f\"Checkpoint saved at {len(results)} annotations.\")\n                sys.exit(1)\n            raise\n\n        results.append(label)\n        if label == -1:\n            failed += 1\n\n        if (i + 1) % 50 == 0:\n            with open(CHECKPOINT_PATH, \"w\") as f:\n                json.dump(results, f)\n            valid = sum(1 for r in results if r >= 0)\n            elapsed = time.time() - t0\n            rate = (i - start_idx + 1) / elapsed\n            print(f\"[{i + 1}/{total}] {valid} valid, {failed} failed, {rate:.1f} tweets/s\", flush=True)\n\n    with open(CHECKPOINT_PATH, \"w\") as f:\n        json.dump(results, f)\n\n    with open(MODEL_USED_PATH, \"w\") as f:\n        f.write(args.model_path)\n\n    valid = sum(1 for r in results if r >= 0)\n    elapsed = time.time() - t0\n    print(f\"\\n--- Summary ---\")\n    print(f\"Model:   {args.model_path}\")\n    print(f\"Total:   {len(results)}\")\n    print(f\"Valid:   {valid}\")\n    print(f\"Failed:  {failed}\")\n    print(f\"Time:    {elapsed:.1f}s ({elapsed / 60:.1f} min)\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Two scripts written to `artifacts/exp-008/scripts/`:\n\n**`llama31_8b_annotate.py`** — `meta-llama/Llama-3.1-8B-Instruct`\n- Uses `tokenizer.apply_chat_template` with Llama's native chat format (no system message, as Llama 3.1 works fine with user-only)\n- Returns tensors directly from `apply_chat_template`\n\n**`qwen25_7b_annotate.py`** — `Qwen/Qwen2.5-7B-Instruct`\n- Uses Qwen's chat template with a system message (`\"You are a helpful assistant.\"`, Qwen's default)\n- Calls `apply_chat_template(tokenize=False)` then tokenizes separately, matching Qwen's recommended pattern\n\nBoth scripts share the same structure: same prompt as exp-008, bfloat16/float16 auto-select, greedy decoding (`do_sample=False`, `max_new_tokens=10`), checkpoint every 50 to JSON, OOM handling, `--device`/`--batch-size`/`--resume`/`--model-path` CLI flags, warmup timing estimate, and end-of-run summary."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "uuid": "87cd8b4f-9a46-4534-be49-20e4fbf6fe04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HhWdmH3Qc3pXdzr2PrkSgG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4573,
+                "cache_read_input_tokens": 20169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4573
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Two scripts written to `artifacts/exp-008/scripts/`:\n\n**`llama31_8b_annotate.py`** — `meta-llama/Llama-3.1-8B-Instruct`\n- Uses `tokenizer.apply_chat_template` with Llama's native chat format (no system message, as Llama 3.1 works fine with user-only)\n- Returns tensors directly from `apply_chat_template`\n\n**`qwen25_7b_annotate.py`** — `Qwen/Qwen2.5-7B-Instruct`\n- Uses Qwen's chat template with a system message (`\"You are a helpful assistant.\"`, Qwen's default)\n- Calls `apply_chat_template(tokenize=False)` then tokenizes separately, matching Qwen's recommended pattern\n\nBoth scripts share the same structure: same prompt as exp-008, bfloat16/float16 auto-select, greedy decoding (`do_sample=False`, `max_new_tokens=10`), checkpoint every 50 to JSON, OOM handling, `--device`/`--batch-size`/`--resume`/`--model-path` CLI flags, warmup timing estimate, and end-of-run summary."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 62769,
+            "duration_api_ms": 63740,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "f991a6f3-a4d6-4823-9492-c23c8eb8d67e",
+            "total_cost_usd": 0.23245675,
+            "usage": {
+              "input_tokens": 4,
+              "cache_creation_input_tokens": 12901,
+              "cache_read_input_tokens": 50289,
+              "output_tokens": 5003,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 12901,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 306,
+                  "cache_read_input_tokens": 20169,
+                  "cache_creation_input_tokens": 4573,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4573
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1481,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001586,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4,
+                "outputTokens": 5003,
+                "cacheReadInputTokens": 50289,
+                "cacheCreationInputTokens": 12901,
+                "webSearchRequests": 0,
+                "costUSD": 0.23087074999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b167cf28-081f-45da-b8cb-263947f53830"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ]
+}

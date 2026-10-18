@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "75d8c45871f562042c6d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu mistral hires bf16 v2",
+  "task_key": "worker_gpu_mistral_hires_bf16_v2_20260514T211111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_mistral_hires_bf16_v2_20260514T211111_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "bbbb19f7cb95ed7c56c89315428e219f1fec21e37879dd4fa4995bcebcd4cb74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n- **模型下载**：ModelScope 404 失败，改用 HuggingFace 下载成功，模型在 `/root/autodl-tmp/models/Mistral-7B-v0.3`（3 个 safetensors 分片，共 ~13.7GB）\n- **config.json**：HuggingFace 官方版本自带 `model_type: \"mistral\"`，无需修复\n- **模型验证**：model_type=mistral, num_layers=32, num_kv_heads=8\n- **实验 `mistral_hires_bf16_2bitonly_v4`** 已在 westd-37397 的 cuda:1 上运行\n  - Baseline PPL: 5.8702\n  - 进度：1/256 heads，ETA ~129 min\n  - 日志：`~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log`\n  - tmux session：`mistral_hires_bf16_2bitonly_v4`\n\n注意：`submit_training_job` 设置了 `CUDA_VISIBLE_DEVICES=1`，所以脚本内需用 `--gpu cuda:0`（而非 cuda:1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bc1959aae4f9edacca61",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops gpu process check",
+  "task_key": "worker_ops_gpu_process_check_20260517T124730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_process_check_20260517T124730_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "e881067ab5e2e12572c9174452a56c4e5c604723bc1c2ded157dd8b674a5f411"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**GPU 进程状态：**\n- **PID 705918 (Binoculars/Fast-DetectGPT pilot)** — **已死**。cuda:0 完全空闲 (0MiB, 0% util)。ps aux 也无此进程。项目目录中未找到任何 binoculars/fast-detect 相关文件（脚本和结果均无）。\n- **PID 695547 (prompted_gen_gpt2xl_001)** — **运行中**。cuda:1, 15676MiB, 63% util。启动命令：`python scripts/prompted_generation_eval.py --gpu 1`\n\n**MLP Baseline 结果：**\n\n| Variant | Mean Acc | Delta vs RF (0.782) |\n|---------|----------|---------------------|\n| MLP-128-128 | 0.7866 | +0.0046 |\n| MLP-64-128-64 | 0.7895 | +0.0075 |\n| **MLP-Poly-Top5** | **0.7906** | **+0.0086** |\n\n结论：最好的 MLP 也只比 RF 高不到 1pp，feature bottleneck confirmed。\n\n结果已保存至服务器 `artifacts/gpu_check_20260517.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

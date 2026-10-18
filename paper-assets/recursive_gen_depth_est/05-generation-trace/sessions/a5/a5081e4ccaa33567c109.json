@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5081e4ccaa33567c109",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis olmo topk50 ppl outlier",
+  "task_key": "worker_analysis_olmo_topk50_ppl_outlier_20260515T043814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_olmo_topk50_ppl_outlier_20260515T043814_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "914ecb42b7e88af25cb8ac637550ff53526fca17bf4e0aa45d15260080363604"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 核心发现\n\n**1 个样本贡献了 depth-1 mean_ppl 总和的 94.4%**（sample_id=6923, mean_ppl=1.43e13, 但 p90_ppl 仅 105.3）。少量 token 的灾难性预测失败主导了 sample-level mean。\n\n### mean_ppl 无法修复\n\n即使用最激进的过滤（剔除 >1e6 或 trimming 到 p99），mean_ppl 的 depth 排序仍然非单调：\n- 原始: 2.96e4 → **3.03e9** → 1.88e8 → 1.75e6\n- 剔除 >1e6: 17484 → 21794 → **29779** → 14723（depth 0→2 反而递增）\n\n### p90_ppl 完美单调\n\n566.8 → 143.0 → 91.7 → 73.1，无需任何过滤。Spearman ρ = −0.853 vs mean_ppl 的 −0.406。\n\n### 根因\n\nToken-level perplexity 分布极度重尾（depth 1-2 的 kurtosis > 4900），CV 达 67×。p90_ppl 的 CV 仅 0.28-0.67，skewness < 1，接近高斯分布。\n\n### 论文用文本\n\n已写入 artifact，3 句话解释 percentile-based features 优于 mean-based 的统计机制。\n\n产出文件: `artifacts/olmo_topk50_mean_ppl_outlier_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

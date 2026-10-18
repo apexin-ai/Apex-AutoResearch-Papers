@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "c4302b4edbb526094cbb",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "pipeline claude crossbench scoring",
+  "task_key": "worker_pipeline_claude-crossbench-scoring_20260523T005801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_claude-crossbench-scoring_20260523T005801.log",
+    "occurrence": 1,
+    "bytes": 671825,
+    "sha256": "f77f85be0c35de4c8fd99508684af4a6acb8ba7b56de7da399145712a12089e6"
+  },
+  "statistics": {
+    "messages": 456,
+    "user_turns": 0,
+    "tool_calls": 170,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 2,
+      "assistant": 77,
+      "tool_call": 170,
+      "tool_result": 170,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 456,
+      "chunks": [
+        {
+          "path": "c4302b4edbb526094cbb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4302b4edbb526094cbb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4302b4edbb526094cbb-part-0003.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ]
+}

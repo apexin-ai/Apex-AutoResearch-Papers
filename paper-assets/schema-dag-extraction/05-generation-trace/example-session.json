@@ -1,0 +1,573 @@
+{
+  "schema_version": "1.0",
+  "id": "d148805112ce41231b9b",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "Reviewer 1 coordination",
+  "task_key": "feishu_group_oc_ac7ab7270b6b5caecee04f89b11aab3e_reviewer_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_ac7ab7270b6b5caecee04f89b11aab3e_reviewer_1.jsonl",
+    "occurrence": 1,
+    "bytes": 2444702,
+    "sha256": "4938ca6c24cd67a181df96127343f561443f4b5581cf8cda64affc5338fd83e7"
+  },
+  "paper_title": "How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 2306,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T00:53:34.104070+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## Round 1 审稿任务 — Reviewer 1（方法严谨性）\n\n**论文：** \"Does Type Confusability Drive Schema-Induced Degradation in Training-Free LLM Information Extraction?\"\n**Venue：** EMNLP 2026 Main Conference（ARR May 25 cycle）\n**格式要求：** 长文 8 页 + 无限参考文献，ACL 模板，double-blind，mandatory Limitations section，Responsible NLP Research Checklist\n**论文路径：** `projects/schema-dag-extraction/docs/paper/main.tex`（各章节在同目录下：abstract.tex, introduction.tex, related_work.tex, experimental_setup.tex, results.tex, sdgd_negative.tex, discussion.tex；Limitations 在 main.tex 内）\n\n### 你的审查侧重\n\n**1. 实验设计与统计方法**\n- 两个实验范式（count curves + BCS-controlled）的设计是否合理？是否真正隔离了 count 和 confusability？\n- BCS-controlled 实验中 low-BCS vs high-BCS batch 的构造是否有偏？样本量（5 batches/count level, 27 total）是否足够？\n- Bootstrap CI 的使用是否恰当？是否有应报而未报的统计检验？\n- 16-rel 到 80-rel 的 3.4× amplification 是两点比较，统计可靠性如何？\n- Pairwise correlation r=0.112 (r²=1.3%) 的效应量是否被过度解读？\n\n**2. 评估指标**\n- 三个任务使用不同评估指标（text-match F1, accuracy, relaxed F1）是否合理？跨任务可比性如何？\n- NER 的 text-match 而非 exact span match 评估是否引入偏差？\n- MAVEN relaxed F1 的定义是否足够严格？\n\n**3. 可复现性**\n- 实验细节是否充分？（模型配置、prompt 模板、decoding 参数、随机种子）\n- v1/v2 prompt 切换的处理是否透明？\n- Cross-model validation (Llama-3.1-8B) 的覆盖范围是否充分？\n\n**4. SDGD 负面结果**\n- Merge amplification 的分析是否充分？是否遗漏了可能的 merge 策略？\n- 负面结果的呈现是否公平客观？\n\n请按以下格式输出审稿报告：\n- Summary (2-3 句)\n- Strengths (逐条)\n- Weaknesses (逐条，标注 [Must-Fix] 或 [Should-Fix] 或 [Minor])\n- Questions (需要作者澄清的)\n- Overall Assessment (strong reject / weak reject / borderline / weak accept / strong accept + 简要理由)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T00:53:42.833452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T00:53:42.884102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T00:53:47.373354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR review form criteria 2025 2026 reviewer guidelines scoring"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T00:53:49.281861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T00:53:50.137966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\n15\t\\title{Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction?}\n16\t\n17\t\\author{Anonymous}\n18\t\n19\t\\begin{document}\n20\t\\maketitle\n21\t\n22\t\\input{abstract}\n23\t\n24\t\\input{introduction}\n25\t\n26\t\\input{related_work}\n27\t\n28\t\\input{experimental_setup}\n29\t\n30\t\\input{results}\n31\t\n32\t\\input{sdgd_negative}\n33\t\n34\t\\input{discussion}\n35\t\n36\t\\section*{Limitations}\n37\tThe primary experiments use Qwen3-32B. Channel~1 (count effect) has been validated on Meta-Llama-3.1-8B-Instruct (recall decline $-$43\\,pp, per-batch $r = 0.725$ with Qwen3-32B). Channel~2 was validated cross-model on FewRel RE: Llama-3.1-8B-Instruct shows $\\Delta = -27.1$\\,pp at count 8 and $-23.9$\\,pp at count 16, comparable to Qwen3-32B's $-31.2$\\,pp. High-BCS accuracy is model-invariant ($\\approx$0.51), with cross-model divergence confined to the low-BCS regime. On Few-NERD NER, the effect was not robustly detectable, likely due to floor effects at 8B scale and the noisier text-match metric. The pairwise confusability signal explains roughly 1.3--1.7\\% of the variance in type confusion---entity frequency, prompt position effects, and type definition quality likely contribute to the remaining variance. Our decomposition experiments test only union-based merge strategies; calibration-aware or joint-decoding alternatives remain unexplored. We conducted a within-dataset $2\\!\\times\\!2$ factorial analysis (count $\\times$ BCS) on Few-NERD; the interaction term was directionally consistent but not statistically significant ($z = -0.67$, $p = 0.50$), possibly due to BCS range compression in high-count schemas. The primary evidence for count--confusability interaction remains the $3.4\\ti\n…[truncated 3802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T00:53:50.389521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T00:53:50.390021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tTraining-free LLM information extraction---prompting models with target schemas without fine-tuning---degrades sharply as schema complexity grows: NER recall drops from 0.72 to 0.42 with 64 candidate types, and RE accuracy falls from 85.7\\% to 50.4\\% with 80 relations. Prior work conflates type count with type confusability, leaving the mechanisms unclear. We conduct the first controlled empirical study isolating these factors across three IE tasks and three datasets, introducing the Schema Confusability Score (SCS) and two experimental paradigms: count curves that vary schema size while randomizing confusability, and BCS-controlled experiments that fix size while varying confusability. Our experiments reveal two degradation channels: a count channel that suppresses recall as candidate types increase, and a confusability channel where semantically similar types trigger intra-batch substitution errors---cleanly separable in RE but interacting in NER. Confusability effects amplify $3.4\\times$ as schema size grows from 16 to 80 types, with accuracy gaps widening from 9.1 to 31.2 percentage points. Both channels replicate on Llama-3.1-8B (count $r = 0.725$; confusability $\\Delta = -27$\\,pp), with high-BCS accuracy converging to a model-invariant floor. Our confusability-aware decomposition yields an informative negative result: merge amplification destroys precision across all strategies, identifying a structural bottleneck for decompose-then-merge pipelines in zero-shot IE.\n3\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T00:53:50.491160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T00:53:50.541977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations---near halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat causes this schema-induced degradation? Prior work has proposed decomposition strategies that implicitly assume different answers. \\citet{uniner-2024} extract each type independently, assuming types can be treated as separable. \\citet{llm-pee-2025} partition large event schemas by type embedding similarity before extraction, assuming that semantic overlap between co-presented types drives errors. \\citet{parse-2025} rewrite and optimize schema definitions, assuming that description quality is the bottleneck. Each approach improves extraction under certain conditions, but none isolates \\emph{why} schemas degrade performance in the first place. The closest work, LLM-PEE \\cite{llm-pee-2025}, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor---or what combination---accounts for the observed gains. More broadly, all prior approaches conflate two dis\n…[truncated 3551 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T00:53:54.661156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR review form criteria 2025 2026 reviewer guidelines scoring\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md\"},{\"title\":\"ACLRollingReview (@ReviewAcl) / X\",\"url\":\"https://x.com/reviewacl\"}]\n\nBased on the search results, here's the key information about ACL ARR review form criteria, reviewer guidelines, and scoring for 2025-2026:\n\n## Reviewer Scoring System\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation. The soundness scores \n…[truncated 1366 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "WebSearch",
+            "elapsed_ms": 7287
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T00:54:00.034620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T00:54:00.490985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\subsection{Training-Free LLM Information Extraction}\n5\t\\label{sec:rw_training_free}\n6\t\n7\tRecent surveys categorize LLM-based IE along instruction-tuning and code-generation axes \\cite{llm4ie-survey-2024}. Approaches span instruction tuning for unified IE \\cite{instructuie-2023}, code-style schema encoding \\cite{knowcoder-2024,codeie-2023}, annotation-guided zero-shot extraction \\cite{gollie-2024,adelie-2024}, and schema-driven decoding \\cite{slot-2025,oneke-2025}. For NER, methods include zero-shot decomposition by entity type \\cite{xie-zeroshot-ner-2023,promptner-2023}, ChatGPT distillation \\cite{uniner-2024}, bidirectional transformers \\cite{gliner-2024,gliner2-2025}, self-improvement \\cite{self-improve-ner-2024}, type descriptions \\cite{zeroner-2025}, and guided synthesis \\cite{guidex-2025,nuner-2024}. Relation extraction benefits from self-prompting \\cite{self-prompting-re-2024} and retrieval-augmented code generation \\cite{code4uie-2024}. \\citet{familiarity-2025} highlight evaluation pitfalls by quantifying label shifts in zero-shot NER. Separately, constrained decoding via JSON schema enforcement \\cite{json-schema-bench-2025} guarantees structurally valid outputs; all our experiments use vLLM's constrained JSON decoding (\\S\\ref{sec:model}).\n8\t\n9\tThese methods perform well with moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales, nor proposes quantitative metrics for inter-type confusability. Our work fills both gaps.\n10\t\n11\t\\subsection{Schema Complexity in IE}\n12\t\\label{sec:rw_schema}\n13\t\n14\tThe most directly related work is LLM-PEE \\cite{llm-pee-2025}, which addresses event extraction with massive type inventories by partitioning schemas based on type embedding similarity. LLM-PEE clusters event types and assigns each cluster to a separate extraction prompt, demonstrating improved performance on schemas with hundreds of types. Our work is complement\n…[truncated 2472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 455
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T00:54:00.542961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T00:54:00.947702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experimental_setup}\n3\t\n4\tWe evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED).\n5\t\n6\t\\subsection{Tasks and Datasets}\n7\t\\label{sec:datasets}\n8\t\n9\t\\paragraph{Few-NERD (NER).}\n10\tFew-NERD \\cite{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains, making it suitable for cross-domain evaluation. We sample 1{,}000 test instances and evaluate with token-level text matching.\n11\t\n12\t\\paragraph{FewRel (RE).}\n13\tFewRel \\cite{fewrel-2018} contains 80 relation types sourced from Wikidata. Since the validation split covers only 16 relations, we combine the training and validation splits to obtain the full 80-relation pool required for schema-scale experiments, and sample 1{,}000 balanced instances. Each instance provides a sentence with marked head and tail entities; the task is to classify the relation.\n14\t\n15\t\\paragraph{MAVEN (ED).}\n16\tMAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology, making it a same-domain schema. We use the validation set (8{,}042 sentences containing 18{,}904 event mentions) for evaluation, as test set labels are not publicly available. The task requires both trigger identification and event type classification.\n17\t\n18\tTable~\\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \\S\\ref{sec:scs}.\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\small\n23\t\\resizebox{\\columnwidth}{!}{%\n24\t\\begin{tabular}{llrrlll}\n25\t\\toprule\n26\t\\textbf{Dataset} & \\textbf{Task} & \\textbf{\\# Types} & \\textbf{\\# Eval Units} & \\textbf{Domain} & \\textbf{BCS Range} & \\textbf{Embedding} \\\\\n27\t\\midrule\n28\tFew-NERD & NER & 66 & 1{,}000 & Cross & 0.77-\n…[truncated 6755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T00:54:01.098780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T00:54:01.450987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Count-Degradation Curves}\n5\t\\label{sec:count_curves}\n6\t\n7\tWe first examine how extraction performance changes as the number of types in the prompt schema increases (Experiment~1; see Figure~\\ref{fig:count_curves} in the Appendix for visualizations).\n8\t\n9\t\\paragraph{NER (Few-NERD).}\n10\tRecall generally declines from 0.72 at count${}\\,=\\,1$ to 0.42 at count${}\\,=\\,64$, a 42\\% relative drop, with minor non-monotonicity at intermediate counts (e.g., 0.527 at count${}\\,=\\,22$ to 0.551 at count${}\\,=\\,44$). Precision moves in the opposite direction, rising from 0.11 to 0.52, reflecting a shift from over-prediction to under-prediction as more candidate types compete in the prompt. F1 exhibits an inverted-U shape, peaking at intermediate counts where the precision--recall trade-off is most balanced.\n11\t\n12\t\\paragraph{RE (FewRel).}\n13\tAccuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ through 58.8\\% at count${}\\,=\\,40$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously. (The count${}\\,=\\,40$ evaluation uses 40-relation subsets sampled from the 80-relation pool, not an independent schema.)\n14\t\n15\t\\paragraph{ED (MAVEN).}\n16\tIn contrast to NER and RE, MAVEN relaxed F1 \\emph{increases} from 0.106 at count${}\\,=\\,1$ to 0.247 at count${}\\,=\\,44$. This reversal arises from three properties of the MAVEN setup: (i)~trigger-level relaxed matching, which requires only token overlap rather than exact span match; (ii)~MAVEN's 168 event types derive from the FrameNet ontology, forming a same-domain hierarchy where co-presented types provide disambiguating context; and (iii)~extreme class imbalance---rare event types benefit from being presented alongside related types that prime the model toward the correct semantic region. We investigate this reversal further in \\S\\ref{sec:centrality_confound}.\n17\t\n18\t\\paragraph{Cross-model replication.}\n19\tChannel~1 \n…[truncated 12248 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T00:54:01.451392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T00:54:02.456423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Why Naive Decomposition Fails}\n2\t\\label{sec:sdgd}\n3\t\n4\tThe multi-channel degradation model (\\S\\ref{sec:results}) raises an interventional question: if confusability drives type confusion, can we decompose the schema so that confusable types never co-occur in the same prompt?  We test this idea with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), a method that uses the pairwise SCS matrix to partition types into low-confusability batches, runs extraction independently on each batch, and merges the results.\n5\t\n6\t\\paragraph{Decomposition protocol.}\n7\tWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent---i.e., highly confusable---types share a color. Each color class forms one extraction batch, and predictions are merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation, following the strategy of \\citet{uniner-2024}. Table~\\ref{tab:sdgd_results} summarizes the results on Few-NERD.\n8\t\n9\t\\paragraph{All decomposition modes degrade F1.}\n10\tTable~\\ref{tab:sdgd_results} reports the outcome.  Single-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368).  SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop.  Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586).  Every decomposition mode falls below the single-pass baseline.\n11\t\n12\t\\begin{table}[t]\n13\t\\centering\n14\t\\small\n15\t\\resizebox{\\columnwidth}{!}{%\n16\t\\begin{tabular}{lrccc}\n17\t\\toprule\n18\t\\textbf{Mode} & \\textbf{\\# Batches} & \\text\n…[truncated 3015 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T00:54:02.457031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T00:54:02.909523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe isolated schema-induced degradation into count-driven recall decline and confusability-driven type confusion, showed these channels are separable in RE but interact in NER, and confirmed that both channels replicate across model families on RE (Meta-Llama-3.1-8B-Instruct: count $r = 0.725$, confusability $\\Delta = -27$\\,pp), with high-BCS accuracy converging to a model-invariant floor. We further identified a centrality confound on same-domain schemas and demonstrated that merge amplification is the bottleneck for decompose-then-merge pipelines. Cross-batch calibration or joint decoding is the key next step.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T00:54:02.910012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T00:54:02.960648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T00:54:08.435527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form criteria, scoring scales, and all dimensions that reviewers must evaluate. Include the exact scale descriptions for soundness, excitement, overall recommendation, and any other scored dimensions."
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T00:54:14.711966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Evaluation Criteria\n\n## Primary Scored Dimensions\n\n### Reviewer Confidence\nScale 1-5, where:\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- **4**: \"Quite sure. I tried to check the important points carefully.\"\n- **3**: \"Pretty sure, but there's a chance I missed something.\"\n- **2**: \"Willing to defend my evaluation, but it is fairly likely that I missed some details.\"\n- **1**: \"Not my area, or paper is very hard to understand.\"\n\n### Soundness\nScale 1-5 (with .5 increments):\n- **5**: \"This study is one of the most thorough I have seen, given its type.\"\n- **4**: \"This study provides sufficient support for all of its claims.\"\n- **3**: \"This study provides sufficient support for its main claims.\"\n- **2**: \"Some of the main claims are not sufficiently supported.\"\n- **1**: \"This study is not yet sufficiently thorough to warrant publication.\"\n\n### Excitement\nScale 1-5 (with .5 increments):\n- **5**: \"I would recommend this paper to others and/or attend its presentation.\"\n- **4**: \"I would mention this paper to others and/or make an effort to attend.\"\n- **3**: \"I might mention some points of this paper to others.\"\n- **2**: \"Does not resonate with me, but it might with others.\"\n- **1**: \"Does not resonate with me, and I don't think it would with others.\"\n\n### Overall Assessment\nScale 1-5 (with .5 increments):\n- **5**: Consider for Award (top 2.5%)\n- **4**: Conference acceptance\n- **3**: Findings acceptance\n- **2**: Resubmit next cycle\n- **1**: Do not resubmit\n\n## Additional Evaluation Sections\n\n**Reproducibility** (1-5 scale), **Datasets** (1-5 scale), **Software** (1-5 scale), **Author Identity Knowledge** (1-5 scale), plus qualitative sections addressing limitations, ethical concerns, and ethics review necessity."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 6276
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T00:57:22.252502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 — Round 1 审稿报告（方法严谨性）\n\n### Summary\n\n本文首次对 training-free LLM 信息抽取中的 schema-induced degradation 进行了受控实验分析，将性能退化分解为 count channel（类型数量→recall 下降）和 confusability channel（语义相似性→类型替换错误），并提出 SCS/BCS 指标量化 schema 混淆度。实验涵盖 NER/RE/ED 三个任务，辅以跨模型验证，最后通过 SDGD 实验给出 decompose-then-merge 失败的负面结果。研究问题有价值、实验设计新颖，但若干方法论问题削弱了核心 claim 的可靠性。\n\n---\n\n### Strengths\n\n**S1.** 研究问题定义清晰且有实际意义。将 count 和 confusability 拆分为独立 channel 的思路是该领域的空白，实验设计（count curves + BCS-controlled）逻辑上互补，从 correlational 到 interventional 层层递进。\n\n**S2.** Error taxonomy 分析（§5.4, Table 4）质量高。IntraSub 随 BCS 单调递增（RE: ρ=0.954）、RE 中 100% confusion 为 intra-batch 的发现清晰有力，为 Channel 2 提供了机制层面的证据。NER 与 RE 在 missed-entity pattern 上的分歧也被如实报告。\n\n**S3.** Centrality confound 分析（§5.5）是对 BCS 指标局限性的坦诚自省，与 representation degeneration 文献的连接恰当。\n\n**S4.** 跨模型验证设计合理：不同家族（Qwen vs. Llama）、不同规模（32B vs. 8B）。High-BCS accuracy 在两个模型上收敛到 ≈51% 的 model-invariant floor 是一个有趣的发现。\n\n**S5.** Limitations section 异常详尽，主动披露了 factorial 检验不显著（z=−0.67, p=0.50）、3.4× 为两点比较等问题。\n\n---\n\n### Weaknesses\n\n**W1 [Must-Fix] 3.4× amplification 的统计基础薄弱**\n\n3.4× amplification（31.2pp / 9.1pp）是论文最突出的定量 claim（出现在 abstract、introduction、contributions、results），但存在两个严重问题：\n\n(a) 基线无 CI。16-rel 条件下 low-BCS 和 high-BCS 各只有 1 个 batch（Table 3 注释确认）。9.1pp 基线是单次观测，无法评估不确定性。论文只对 80-rel CI 做了传播（1.9–4.7×），但分母方差被完全忽略。\n\n(b) 跨 pool 比较引入混淆。16-rel 来自 validation split，80-rel 来自 train+val 合并的 80 relations。type pool 组成完全不同，amplification 可能部分归因于 pool 差异而非 scale 效应。\n\n建议：在 80-rel pool 内构造 16-type 子集的 BCS-controlled 实验（多个 low/high batch），获取可比 baseline 并附 CI。当前 3.4× 应降格为描述性观察。\n\n**W2 [Must-Fix] Pairwise SCS 效应量极小，framing 过度**\n\nr=0.112, r²=1.3%（Table 2）。论文将其定位为 \"the first factor empirically isolated\"，掩盖了 embedding similarity 仅解释 1.3% confusion 方差的事实。§5.2 中 nonzero-confusion 子集分析（ρ=0.27–0.31）存在 conditioning on the outcome 问题——剔除 confusion=0 的 pair 人为抬高相关性。\n\n建议：明确承认解释力有限；删除或重新框定 nonzero-confusion 分析并讨论 conditioning bias。\n\n**W3 [Must-Fix] NER 上 count×confusability 交互的证据不足**\n\n§5.4 声称 NER 中两个 channel \"interact\"，但 Limitations 中的 2×2 factorial 检验不显著（z=−0.67, p=0.50）。这是 Contribution 1 的核心组成部分，缺乏统计支撑。\n\n建议：提供更有力的交互证据，或降级为 \"suggestive but not statistically confirmed\"。\n\n**W4 [Should-Fix] SDGD 负面结果仅覆盖两种 merge 策略，overclaim \"structural bottleneck\"**\n\n§6 仅测试 union merge 和 confidence-gated merge 就声称 \"structural bottleneck\"。未测试 span-level NMS、majority voting、calibration-based reranking 等替代方案。且仅在 Few-NERD 上测试，单数据集 + 两种策略不足以支撑 \"structural\" 修饰语。\n\n建议：测试更多 merge 策略，在 FewRel 上复现，或弱化表述。\n\n**W5 [Should-Fix] v1/v2 prompt 切换引入实验内混淆**\n\nv1（fabricate offset 96.5%）用于 count curves 和 BCS-controlled NER；v2 用于后续实验和跨模型比较。绝对数值跨实验不直接可比。\n\n建议：统一用 v2 重跑核心实验，或提供 v1/v2 对照消融。\n\n**W6 [Should-Fix] Embedding 模型不一致**\n\nFew-NERD 用 Qwen3-32B embeddings，FewRel/MAVEN 用 MiniLM。不同 embedding 空间的 BCS 不可直接比较，削弱跨任务一致性。\n\n**W7 [Should-Fix] FewRel 数据集构造可能引入偏差**\n\n合并 train+val splits 且未说明 1,000 balanced instances 的抽样方式。\n\n**W8 [Minor] 完整 prompt 模板未在 appendix 中提供，影响可复现性。\n\n**W9 [Minor] MAVEN 结果实质上反驳 count channel 的普遍性（F1 随 count 上升），abstract/introduction 表述应更谨慎。\n\n**W10 [Minor] 缺少与 supervised IE baseline 的参照。\n\n---\n\n### Questions\n\nQ1. 如果在 80-rel pool 内抽 16-type 子集做 BCS-controlled，amplification 估计值是否变化？\nQ2. 是否探索过多变量模型（加入 type frequency、prompt position 等）提升解释力？\nQ3. SDGD 的 single_pass baseline 用的是 v1 还是 v2 prompt？\nQ4. NER cross-model 效应 \"not robustly detectable\"，如何排除 confusability channel 为 Qwen3 特有？\nQ5. High-BCS ≈51% floor 的来源？是否接近随机猜测？\n\n---\n\n### Overall Assessment\n\n**Soundness**: 3/5\n**Excitement**: 3.5/5\n**Overall**: 3/5 (Findings acceptance)\n**Confidence**: 4/5\n\n论文研究问题好、实验设计有新意、写作透明度高，但 W1–W3 三个 Must-Fix 问题需要实质性修正才能达到 Main Conference 接收标准。建议修改后以 Findings 投稿，或补充实验后提升至 Main Conference 水平。",
+              "reviewer_id": "1",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T00:57:26.017932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3765
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T00:57:34.457744+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n总结：给出 **Overall 3/5 (Findings acceptance)**，识别了 3 个 Must-Fix 问题：\n\n1. **3.4× amplification 统计基础薄弱**——16-rel baseline 仅 1 个 batch 无 CI，且跨 pool 比较引入混淆\n2. **Pairwise SCS r²=1.3% 效应量极小但 framing 偏强**——nonzero-confusion 子集分析存在 conditioning on the outcome 偏差\n3. **NER count×confusability 交互缺乏统计支撑**——factorial 检验 p=0.50 不显著，但论文仍将其作为核心 contribution\n\n另有 4 个 Should-Fix（SDGD overclaim、v1/v2 prompt 混淆、embedding 不一致、FewRel 数据构造）和 3 个 Minor 问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ac7ab7270b6b5caecee04f89b11aab3e:reviewer_1"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ]
+}

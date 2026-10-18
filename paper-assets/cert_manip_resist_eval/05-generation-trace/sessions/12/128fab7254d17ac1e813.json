@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "128fab7254d17ac1e813",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "experiment temperature pilot",
+  "task_key": "worker_experiment_temperature-pilot_20260523T084612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_temperature-pilot_20260523T084612.log",
+    "occurrence": 1,
+    "bytes": 952571,
+    "sha256": "5c878d6d5df202b08d1907adf4a6b8b0e8cb3cb27e0fc2207abd8ea84fd9bcc4"
+  },
+  "statistics": {
+    "messages": 522,
+    "user_turns": 1,
+    "tool_calls": 200,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 200,
+      "tool_result": 200,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 501,
+      "chunks": [
+        {
+          "path": "128fab7254d17ac1e813-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "128fab7254d17ac1e813-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "128fab7254d17ac1e813-part-0003.json",
+          "message_count": 141
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "128fab7254d17ac1e813-part-0003.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ]
+}

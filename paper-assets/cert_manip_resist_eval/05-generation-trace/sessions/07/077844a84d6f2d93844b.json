@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "077844a84d6f2d93844b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code anon repo path cleanup",
+  "task_key": "worker_code_anon-repo-path-cleanup_20260523T125904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-path-cleanup_20260523T125904_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "f62c55557362d8777a44cfe53d3a132ba52c2463e3e2de2c4aad77556e6ac47c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 修改文件数 | 72 个 |\n| `autodl-tmp` 残留 | 0 |\n| `/root/` 残留 | 0 |\n| `miniconda3` 残留 | 0 |\n| `network_turbo` 残留 | 1（已注释） |\n| Force-push | 成功 (`f9a3944`) |\n| Token 清除 | 已完成 |\n| 不确定残留 | 无 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "437c1ea511787dbbdaf6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel formal health check",
+  "task_key": "worker_ssh_fewrel-formal-health-check_20260515T120947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-formal-health-check_20260515T120947_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "96d5e373eff778ae37a686a65c63e2b4975eb49318caff2e514993d0a41abd34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验启动失败\n\n**原因**：缺少必需参数 `--mode`。脚本立即退出并打印 usage 信息：\n\n```\nrun_fewrel_formal.py: error: the following arguments are required: --mode\n```\n\n**状态汇总**：\n- PID 262365：已死亡\n- GPU 占用：无\n- 日志仅包含 argparse 报错，未进入任何实际执行阶段\n\n**修复**：重新提交时需加 `--mode` 参数（可选值：`exp1`, `exp2`, `dry_run`）。建议先用 `--mode dry_run` 验证流程，再跑正式实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

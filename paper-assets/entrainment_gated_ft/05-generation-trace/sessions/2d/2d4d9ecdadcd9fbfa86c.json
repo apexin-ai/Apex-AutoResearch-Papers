@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d4d9ecdadcd9fbfa86c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 005 extended jaccard",
+  "task_key": "worker_analysis_exp-005-extended-jaccard_20260523T020824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-extended-jaccard_20260523T020824_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "b51158f19b3aab30fc761983ded1ae71bb833d4dab36bfe8e14def705b564abc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## 4-Benchmark × 5-Architecture Pairwise Jaccard 结果\n\n| Benchmark | n_samples | mean J_helped | mean J_hurt | z_helped 范围 | z_hurt 范围 | 显著对 |\n|-----------|-----------|---------------|-------------|---------------|-------------|--------|\n| LAMBADA | 5,153 | 0.1221 | 0.0946 | [9.0, 12.2] | [6.3, 10.9] | 10/10 |\n| ARC-Easy | 2,376 | 0.1081 | 0.1047 | [3.5, 9.2] | [3.7, 7.5] | 10/10 |\n| HellaSwag | 10,042 | 0.0931 | 0.0815 | [10.3, 19.2] | [10.2, 16.3] | 10/10 |\n| PIQA | 1,838 | 0.0928 | 0.0863 | [3.1, 9.5] | [3.2, 7.2] | 10/10 |\n\n**Grand mean**: J_helped=0.1040, J_hurt=0.0918  \n**Total significant**: **40/40** (helped + hurt 各 40 对全部 p<0.01)\n\n### 要点\n- HellaSwag 的 z-score 最高（z_helped 最高达 19.2），因为样本量最大（10042）\n- PIQA 样本量最小（1838），z-score 相对较低但仍全部显著（最低 z=3.08）\n- J_helped 一致高于 J_hurt（4/4 benchmarks），表明 helped set 的跨架构一致性更强\n- 从 2 benchmarks 扩展到 4 benchmarks 后，结论完全一致：attention-mediated sample sensitivity 是 architecture-independent 的\n\n产出文件：`/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json`（已注册 artifact + 更新 registry）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

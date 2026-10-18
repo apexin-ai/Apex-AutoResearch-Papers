@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd1eec3abae4c64515ba",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh maven analysis scripts",
+  "task_key": "worker_ssh_maven-analysis-scripts_20260515T062257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_maven-analysis-scripts_20260515T062257_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "dec6f570fc2ee8f1c327aa770a6de3657da279340890a78c1a2f8c7c457a9ba4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n**新增文件**: `src/analyze_maven_results.py`（服务器 + 本地同步）\n\n**CLI 用法**:\n\n```bash\n# dry-run（mock data 验证逻辑）\npython3 src/analyze_maven_results.py \\\n    --bcs_matrix artifacts/maven_bcs_matrix_qwen3.pt \\\n    --output results/maven_analysis_dryrun.json \\\n    --dry-run\n\n# exp-004 跑完后的实际分析\npython3 src/analyze_maven_results.py \\\n    --results_dir artifacts/exp004/ \\\n    --bcs_matrix artifacts/maven_bcs_matrix_qwen3.pt \\\n    --output results/maven_analysis.json\n```\n\n**dry-run 结果**（mock 数据，correlation 预期不显著）:\n\n| Layer | 指标 | 值 |\n|-------|------|----|\n| L1 Pairwise | 780 pairs, Pearson r | -0.038 (p=0.29) |\n| L1 Nonzero-only | n=552, Spearman ρ | -0.050 (p=0.24) |\n| L2 Per-type | 40 types, Pearson r | -0.028 (p=0.86) |\n| L2 Partial r | (控制 log-freq) | -0.029 (p=0.86) |\n| L3 count_12 | n=25, r(F1,pctBCS) | -0.021 (p=0.92) |\n| L3 count_24 | n=25, bcs_range=0.053 | -0.173 (p=0.41) |\n\n三层分析逻辑均正确运行，输出格式符合规范。等 exp-004 (PID 224685) 结束后将 `--results_dir` 指向实际输出目录即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

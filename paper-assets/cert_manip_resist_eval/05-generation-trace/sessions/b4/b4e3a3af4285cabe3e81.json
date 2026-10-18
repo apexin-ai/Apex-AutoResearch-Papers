@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b4e3a3af4285cabe3e81",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper appendix attacks",
+  "task_key": "worker_paper_appendix-attacks_20260522T221224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-attacks_20260522T221224_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "7f0f2ab7cee7340b754ee90bf7a58b0c767f8e5d77e31ae7c1788aed857f9235"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`appendix_attacks.tex` 已写入，作为 Appendix E (Section `\\ref{app:attacks}`)。`main.tex` 已更新引入该文件。\n\n内容结构：一段总述 + 六个 `\\paragraph{}` 各 1--2 句说明攻击机制 + 一个 `table*` 列出所有 representative templates（用 `\\texttt{}` 排版）。Position bias 无模板文本，表中说明其为 swap 操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

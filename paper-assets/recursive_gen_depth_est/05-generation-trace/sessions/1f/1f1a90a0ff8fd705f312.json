@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f1a90a0ff8fd705f312",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh batch feature extraction restart",
+  "task_key": "worker_ssh_batch_feature_extraction_restart_20260515T035255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_batch_feature_extraction_restart_20260515T035255_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "f5cbb161e149a05006e26494475a0501eb6b33a6a248b75ceb78fd9300e3b838"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**batch_feature_extraction_5cells 已全部完成，无需重启。**\n\n| Cell | 行数 | 状态 |\n|------|------|------|\n| gpt2xl_topk50 | 20,000 | 完成 |\n| gpt2xl_temp09 | 20,000 | 完成 |\n| olmo_topk50 | 20,000 | 完成 |\n| olmo_temp09 | 20,000 | 完成 |\n| pythia_topk50 | 20,000 | 完成 |\n\n- 总计 100,000 行，每个 cell 20,000 samples × 19 features\n- 输出路径：`results/{cell}/features.jsonl`\n- Registry 已更新为 DONE/success\n- cuda:0 当前空闲，可用于下游分类任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

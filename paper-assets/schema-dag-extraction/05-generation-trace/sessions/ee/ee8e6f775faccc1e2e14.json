@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ee8e6f775faccc1e2e14",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis docred error taxonomy",
+  "task_key": "worker_analysis_docred_error_taxonomy_20260519T173228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_error_taxonomy_20260519T173228_result.json",
+    "occurrence": 1,
+    "bytes": 1682,
+    "sha256": "64ad7cb6b413b70adb350468c5583e74506b8b27fca508e6145c9ec2e4a179ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `/root/schema-dag-extraction/analysis/docred_error_taxonomy.json`。\n\n## DocRED Error Taxonomy 结果\n\n### 按 BCS Bin 的错误分布\n\n| Bin | BCS均值 | N批次 | 样本数 | Accuracy | IntraSub率 | Missed率 | IntraSub占错误比 |\n|-----|---------|-------|--------|----------|-----------|---------|----------------|\n| very_low | 0.385 | 15 | 1137 | 67.2% | 4.8% | 28.1% | 14.5% |\n| low | 0.440 | 17 | 2497 | 57.7% | 13.5% | 28.8% | 31.9% |\n| medium | 0.549 | 48 | 5721 | 55.1% | 22.4% | 22.6% | 49.8% |\n| high | 0.678 | 19 | 2663 | 41.3% | 37.0% | 21.6% | 63.1% |\n| very_high | 0.743 | 11 | 847 | 41.9% | 41.9% | 16.2% | 72.2% |\n\n### Spearman 相关性（110 batches, 55 count_16 + 55 count_32）\n\n| 指标 | ρ | p |\n|------|---|---|\n| **IntraSub率 vs BCS** | **0.843** | 8.1e-31 *** |\n| IntraSub占错误比 vs BCS | 0.828 | 6.5e-29 *** |\n| ExtraSub率 vs BCS | N/A (恒=0) | — |\n| Missed率 vs BCS | -0.589 | 1.3e-11 *** |\n| Accuracy vs BCS | -0.741 | 2.3e-20 *** |\n\nPer config_key: count_16 ρ=0.847, count_32 ρ=0.800。\n\n### 跨任务对比\n\n| 任务 | IntraSub ρ(BCS) |\n|------|-----------------|\n| FewRel (sentence RE) | 0.954 |\n| Few-NERD (NER) | 1.000 |\n| **DocRED (document RE)** | **0.843** |\n\n### 关键发现\n\n- **IntraSub 与 BCS 强正相关复现成功**，ρ=0.843 (p<1e-30)\n- ExtraSub 恒为 0 — DocRED 实验也是 forced-choice，模型从不预测 batch 外类型\n- IntraSub 占总错误的比例从低 BCS 的 14.5% 单调递增到高 BCS 的 72.2%\n- ρ 略低于 FewRel/Few-NERD，符合预期：document-level RE 有更长上下文带来的额外噪声源"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

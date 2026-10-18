@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5a6286d0e485c099fd3d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k07 long seed44 strict w27",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k07_long_seed44_strict_w27_20260528T000104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k07_long_seed44_strict_w27_20260528T000104_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "723c0a459df99b57580fa542fd1b229a635f67d0c989e3d4eef14c30ea31d06a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**最终 SR: 63.8%** (319/500)，EXIT_CODE=0，无报错。\n\n### 3-seed 统计 (L2norm k=0.7, Long)\n\n| seed | SR |\n|------|-----|\n| 42 | 63.2% |\n| 43 | 65.4% |\n| 44 | 63.8% |\n| **mean±std** | **64.1% ± 1.1%** |\n\n与 2-seed 的 64.3%±1.1% 基本一致，第三个种子落在已有 error bar 范围内，方差没有增大。\n\n### Per-task breakdown (seed44)\n\n| Task | SR |\n|------|-----|\n| T0 alphabet_soup_tomato | 74% |\n| T1 cream_cheese_butter | 88% |\n| T2 stove_moka_pot | 76% |\n| T3 black_bowl_drawer | 46% |\n| T4 white_mug_left_plate | 56% |\n| T5 book_back_shelf | 78% |\n| T6 white_mug_plate | 60% |\n| T7 alphabet_soup_cream | 60% |\n| T8 both_moka_pots | 8% |\n| T9 yellow_white_mug_microwave | 92% |\n\n### Hypothesis 判断\n\n**确认。** seed44=63.8% 与前两个种子高度一致，3-seed mean 64.1%±1.1% 的低方差证实 L2norm k=0.7 在 Long suite 上呈现稳定的 smooth degradation，而非 cliff-like drop。这为 L2norm 下降段 vs Attn cliff 后平台段的对比提供了可靠的统计基础。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

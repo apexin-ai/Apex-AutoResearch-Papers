@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94af56c89b43633fedc0",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama 3seed downstream ci",
+  "task_key": "worker_code_llama_3seed_downstream_ci_20260515T215434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_3seed_downstream_ci_20260515T215434_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "46199238109552c667c4e18604a081075297d230d7f49b88b30538904d00c406"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并运行中。\n\n**状态**：\n- 脚本 `run_llama_3seed_downstream_ci.py` 已创建并通过 dry-run\n- tmux 会话 `llama_3seed_ci` 在 cuda:1 上运行\n- MCKP 分配：{4: 253, 8: 1, 2: 2}, budget=0.2500\n- 模型正在加载，随后执行 bf16 baseline → uniform 4-bit → 3×MCKP-k2 评估\n- 日志：`/root/ratekv/llama_3seed_downstream_ci.log`\n- 输出：`/root/ratekv/artifacts/llama_3seed_downstream_ci_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3d28b416fba174d8245",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "ops archive project",
+  "task_key": "worker_ops_archive-project_20260525T204512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_archive-project_20260525T204512_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "00ebed56f26239d8fc14d2c3b3ba642b68d32d32fcc8a36a254b440a05db1ed4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归档完成。汇总如下：\n\n| 子目录 | 大小 | 内容 |\n|--------|------|------|\n| `code/` | 568K | 全部 .py/.sh/.md/.txt 脚本和 README |\n| `checkpoints/` | 531M | attention_weights/ 下 3 个 .pt 文件 |\n| `results/` | 5.8G | results/ results_1.3b/ results_7b/ results_v5/ lm_eval_clean/ logs/ analysis_output/ + 根目录 .json/.log |\n| `data/` | 0 | 原项目 data/ 为空，跳过 |\n| `paper/` | 536M | analysis/（含 paper_data/ CSV + figures/ PDF）、generate_figures.py、FINAL_REPORT.md、code_release.zip |\n\n**归档总大小：6.8G**，位于 `/root/entrainment_gated_ft_archive/`。原始文件未删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

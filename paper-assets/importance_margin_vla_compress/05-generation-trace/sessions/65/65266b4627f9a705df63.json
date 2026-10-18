@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "65266b4627f9a705df63",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest l2norm k07 cqa1",
+  "task_key": "worker_ops_harvest-l2norm-k07-cqa1_20260527T161530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-l2norm-k07-cqa1_20260527T161530_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "f9da99163ed37d63cf7905bdf9d0e75fe98f84c027c5e3da633caf3fb1cebdfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n**π0.5 L2norm k=0.7 Long strict seed42** — **SR = 63.2%**（316/500），耗时 251.7 min\n\nPer-task: T0=76%, T1=90%, T2=72%, T3=46%, T4=56%, T5=80%, T6=52%, T7=58%, T8=8%, T9=94%\n\nCliff curve 中间点定位：strict 模式下 L2norm k=0.7 的 63.2% 与 lenient 模式完全一致，说明该 keep ratio 下没有 lenient/strict 差异。对比 cliff curve：k=0.85 strict=70.8% → **k=0.7 strict=63.2%** → k=0.5 lenient=49.2%，从 k=0.85 到 k=0.7 下降 7.6pp，曲线在此区间仍呈平缓下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

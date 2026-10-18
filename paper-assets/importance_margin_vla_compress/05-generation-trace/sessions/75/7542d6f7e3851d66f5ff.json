@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7542d6f7e3851d66f5ff",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval k03 trained prune",
+  "task_key": "worker_eval_k03_trained_prune_20260517T120434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_k03_trained_prune_20260517T120434_result.json",
+    "occurrence": 1,
+    "bytes": 332,
+    "sha256": "3d1f49daf671792d64e93367784310cbad0c6626e982d09de36222089c6c600e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动并正常运行：\n- **PID**: 50820, GPU 2\n- **配置**: checkpoint=`libero_acis_stage1only_k03/stage1_done/checkpoint.pt`, mode=acis_prune, k_ratio=0.3\n- **任务**: libero_object, 10 tasks, 50 eps/task\n- 第一个 episode 已完成（FAIL），符合预期\n\n约 5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2dd3077a03bd78013bc5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd cleanup and download",
+  "task_key": "worker_ops_westd_cleanup_and_download_20260517T143021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd_cleanup_and_download_20260517T143021_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "65d96727842ba621a213a58121f95a8fe2587e11276dec513c87be32bea6ff16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。最终汇总：\n\n---\n\n## 磁盘清理 (Plan B)\n\n| 清理项 | 释放空间 |\n|--------|---------|\n| HF cache (`datasets/parquet/`) | ~35G |\n| `imm_anchor` (14 个 step 目录) | ~16.8G |\n| `imm_anchor_v7_1` (14 个 step 目录) | ~16.8G |\n| `baseline_v6_alpha16` (5 个 step 目录) | ~6G |\n| **合计** | **~72G** |\n\n**清理前**: 226G used / 25G free (91%)\n**清理后**: 154G used / 97G free (62%)\n\n保护目录未动：`libero_imm_twostage_fullft/`、`acis_stage1only_k05/`、所有 `eval_results/`。每个清理目录仅保留 `step_029999` + `latest` 符号链接。\n\n---\n\n## OpenVLA 下载\n\n**模型** (`/root/autodl-tmp/openvla-libero-object/`): 15G, 16 个文件全部下载完成 (OK)\n- 4 个 safetensors 分片: 4.6G + 4.7G + 4.7G + 251M\n- config/tokenizer/其他配置文件: 11 个\n\n**仓库** (`/root/autodl-tmp/openvla-repo/`): shallow clone 完成 (LFS skipped)\n\n---\n\n## 最终磁盘状态\n\n```\n/dev/md0   250G  168G  83G  67%  /root/autodl-tmp\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

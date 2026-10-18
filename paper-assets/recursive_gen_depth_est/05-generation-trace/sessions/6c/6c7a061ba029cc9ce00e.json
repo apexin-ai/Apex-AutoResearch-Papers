@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c7a061ba029cc9ce00e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp pythia seed43 001",
+  "task_key": "worker_exp_pythia_seed43_001_20260518T130548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pythia_seed43_001_20260518T130548_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "2c7b990769a0650cb5860617cdf39317b4fdab536ba2968ec2d2ea949dfde59d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 运行正常。Step 1 LoRA 训练 depth_0 进行中，12% (122/939 steps)，~3.5 it/s。\n\n实验已提交，汇总：\n\n| 项目 | 值 |\n|------|------|\n| exp_id | `pythia_seed43_001` |\n| 脚本 | `scripts/run_pythia_seed43.sh` |\n| 模型 | Pythia-1.4B (local: `/root/autodl-tmp/models/pythia-1.4b`) |\n| seed | 43 |\n| samples/depth | 5000 |\n| depths | d0-d3 (4-class) |\n| GPU | cuda:1 (CUDA_VISIBLE_DEVICES=1) |\n| tmux session | `pythia_seed43_001` |\n| 输出目录 | `results/pythia_seed43/` |\n| registry 状态 | RUNNING |\n\n全流程 8 步：LoRA d0 → gen d1 → LoRA d1 → gen d2 → LoRA d2 → gen d3 → feature extraction → RF eval。`eval_second_seed.py` 已内置 `np.clip(X, -1e10, 1e10)` 防护。预计 2-3h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1d674188d16afa01ce1c",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_14_1779854564.md",
+  "task_key": "loop_14_1779854564",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1779854564.md",
+    "occurrence": 1,
+    "bytes": 4890,
+    "sha256": "f1fbe09b4cb65b6ddb654f5cb3a93c0c4fa859c0788693a039fcaf951626ac6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-27T02:15:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 14 张：westd-27271(cuda:0,1), cqa1-33015(cuda:0,1,2,3), westd-41074(cuda:0,1,2,3), westd-38929(cuda:0,1,2,3)\n- cqa1-33015 只跑 π0.5 实验（transformers 5.5.3，OpenVLA 不兼容）\n- OpenVLA 非 Object 套件必须显式传 `--model_path` + `--unnorm_key`，默认会静默加载 Object 模型产出垃圾结果\n- westd-38929 模型路径有 `models/` 前缀：`/root/autodl-tmp/models/openvla-libero-object`，其他服务器直接在 `/root/autodl-tmp/` 下\n- submit_training_job 命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && python ...`）；cqa1 必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`\n- kill 进程前必须 `stat -c %Y <log>` 验证 >30min 无更新，Long suite 日志间隔 10-20min 正常\n\n### 2. 🖥️ 基础设施快照\n| 服务器 | GPU | 工作目录 | Python | 模型 |\n|--------|-----|---------|--------|------|\n| westd-38929 | 4×RTX | `/root/autodl-tmp/importance_margin_vla_compress` | miniconda3 base | Object: `models/openvla-libero-object`, Long: `models/openvla-7b-finetuned-libero-10` |\n| westd-41074 | 4×RTX | `/root/autodl-tmp/importance_margin_vla_compress` | miniconda3 base | Object: `openvla-7b-finetuned-libero-object`, Long: 已 rsync |\n| westd-27271 | 2×RTX PRO 6000 | `/root/autodl-tmp/importance_margin_vla_compress` | miniconda3 base (conda) | Object ✅, Goal: `openvla-7b-finetuned-libero-goal` |\n| cqa1-33015 | 4×GPU | `/root/autodl-tmp/importance_margin_vla_compress` | miniconda3 base (conda) | π0.5 专用, Goal: `openvla-libero-goal` |\n\n- W&B: 项目 `importance_margin_vla_compress`\n- 活跃进程（reconcile_crons 确认）：\n  - eval_openvla_random_k05_long_seed42_v2 (pid 279274, westd-38929:cuda:1)\n  - eval_openvla_random_k085_long_seed42_v3 (pid 415537, westd-41074:cuda:0)\n  - eval_openvla_attn_k07_object_seed42_v2 (westd-41074:cuda:2)\n  - eval_openvla_attn_k085_goal_seed42_v3 (pid 412621, westd-38929:GPU2)\n  - eval_openvla_l2norm_k095_object_seed42 (westd-41074, pid=eval_k095_obj)\n  - eval_openvla_l2norm_k085_object_seed42 (westd-41074, pid=eval_k085_obj)\n  - eval_openvla_l2norm_k085_goal_seed42 (westd-27271)\n  - eval_openvla_attn_k09_goal_seed43_v4 (westd-27271, pid 112477)\n\n### 3. 📊 当前状态\n**刚完成**：eval_openvla_random_k085_object_seed42_v2 = **61.4%** (success)。已汇报 Director。westd-38929:cuda:0 释放。\n\n**正在等待 2 个 Worker 回调**：\n1. `worker_diagnose_eval_pi05_random_k05_long_seed42_v3_20260526T100618` — 诊断 cqa1-33015 上 π0.5 Random k=0.5 Long v3 进程消失（cron 报 \"Process gone, no sentinel\"）\n2. `worker_audit_gpu_status_all_servers_20260526T100629` — 全 4 台服务器 nvidia-smi 审计，确认实际 GPU 占用（资源跟踪显示 14 张分配仅 4 张确认在跑，registry 显示 9 个 RUNNING）\n\n**资源缺口**：报告显示 10/14 GPU 空闲，但多数可能是跟踪不一致（registry RUNNING 但未被 resource tracker 确认）。GPU 审计 Worker 返回后才能确定真实空闲数。\n\n**Deadline**：CoRL 2026 Paper = May 29（2 天后）\n\n### 4. 📋 待办（条件触发式）\n- GPU 审计 Worker 回调 → 根据实际空闲 GPU 列表，从 PREPARING 实验中选取可立即提交的实验填满空闲卡\n- π0.5 诊断 Worker 回调 → 如果实验实际已完成，提取 metrics 更新 registry 转 DONE；如果崩溃，在 cqa1 释放的 GPU 上重跑\n- eval_openvla_l2norm_k085_object_seed42 完成 → 形成三方法 k=0.85 Object 完整对比（Random=61.4%, Attn=55%, L2norm=?），汇报 Director\n- eval_openvla_l2norm_k095_object_seed42 完成 → L2norm Object cliff curve: k=0.9(70.6%) → k=0.95(?) → k=0.85(?)\n- 所有当前 cliff curve 实验完成 → 整合数据，更新 paper 图表，推进 May 29 提交\n\n### 5. 🎯 战略上下文\n**核心论点**：VLA vision token compressibility 取决于 scoring method × connector × task 三维交互，不存在全局最优 scoring method（\"importance margin\" 概念）。\n\n**关键数据已有**：\n- Crossover table 16/16 完成（OpenVLA k=0.9, 4 suites × 4 methods）\n- Position encoding sensitivity 确认（D237: L2norm 单调 + Random V-shape）\n- π0.5 Object L2norm vs Random crossover 约 k≈0.75\n\n**当前阶段**：补充 cliff curve 中间点（k=0.85, k=0.7, k=0.5），丰富 paper 图表。Paper Agent 已完成 D237 叙事升级。\n\n**易错点**：\n- π0.5 Random Long cliff curve 非单调（k=0.9 骤降后 k=0.75 回升），数据暂不可用于定稿，待验证\n- westd-41074 上 L2norm k=0.85/k=0.95 Object 用 tee 部署而非 tmux，进程脆弱可能已崩（M129 教训）\n- cqa1 上 pip 环境必须 conda activate，直接 python 找不到\n- SimplerEnv 已放弃（D209），论文 benchmark = LIBERO only\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

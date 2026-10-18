@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4aa5925e5a71552f4bba",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k09 long seed46 strict w38",
+  "task_key": "worker_analyze_eval_pi05_random_k09_long_seed46_strict_w38_20260528T095110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k09_long_seed46_strict_w38_20260528T095110_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "849c4d2f93bbc21ee9d8f3ee1d94c8344677c73334d40d2b113bbc8974c3dd54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n## π0.5 Random k=0.9 Long seed46 结果\n\n**总体 SR: 33.4%** (167/500)，EXIT_CODE=0，无报错。\n\n### Per-task breakdown\n\n| Task | SR |\n|---|---|\n| T0 alphabet_soup_tomato | 12% |\n| T1 cream_cheese_butter | 40% |\n| T2 stove_moka_pot | 40% |\n| T3 black_bowl_drawer | 52% |\n| T4 white_mug_left_plate | 24% |\n| T5 book_back_shelf | 26% |\n| T6 white_mug_plate | 12% |\n| T7 alphabet_soup_cream | 44% |\n| T8 moka_pots_stove | 8% |\n| T9 yellow_white_mug_microwave | 76% |\n\n### 5-seed 对比 (Random k=0.9 Long)\n\n| Seed | SR |\n|---|---|\n| s42 | 34.2% |\n| s43 | 35.0% |\n| s44 | 31.8% |\n| s45 | 33.2% |\n| **s46** | **33.4%** |\n| **Mean** | **33.52%** |\n| **Std** | **±1.1pp** |\n\nseed46 (33.4%) 落在已有 seeds 的范围内（31.8%–35.0%），与均值 33.52% 几乎一致。5-seed 标准差仅 1.1pp，Random k=0.9 的 error bar 非常紧凑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

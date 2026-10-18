@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9f57d87810f567daf677",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper final transparency fixes",
+  "task_key": "worker_paper_final_transparency_fixes_20260516T084723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_transparency_fixes_20260516T084723_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "832d4983705012b635ba7929519ddd595c2fb76cd512ca74ef5d6a7ce33e1fed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **修改 1（Limitations 模型覆盖度）**：已存在，无需改。现有措辞 \"Primary experiments use Qwen3-32B with cross-model validation on Llama-3.1-8B-Instruct. Whether patterns hold for proprietary models (GPT-4, Gemini) remains unverified.\" 已覆盖同一要点。\n\n- **修改 2（oracle routing 声明）**：已添加。在 sdgd_negative.tex 第 13 行，三个 decomposition 条件的结果之前插入：\"All decomposition conditions use oracle routing (each instance is routed to the batch containing its gold type).\"\n\n- **编译**：成功，无 undefined citations/references。\n\n- **页数**：正文 7 页（≤8 ✓），总计 15 页（含 checklist + references + appendix）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

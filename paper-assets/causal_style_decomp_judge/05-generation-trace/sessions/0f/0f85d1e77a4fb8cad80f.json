@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0f85d1e77a4fb8cad80f",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code scoring register gpt4o",
+  "task_key": "worker_code_scoring_register_gpt4o_20260521T024221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_register_gpt4o_20260521T024221_result.json",
+    "occurrence": 1,
+    "bytes": 159,
+    "sha256": "35fc84944d8f414e28a72b08efa2740484cd1c6f2b9e2943fe72b97054dfb368"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API 返回 402（Insufficient balance）。**API 402 仍未恢复，余额不足，无法继续执行 GPT-4o scoring。** 请充值后重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d071fa0f86a696235d51",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis mdd computation",
+  "task_key": "worker_analysis_mdd_computation_20260519T070039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mdd_computation_20260519T070039_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "7a3b1f40ee5bba543b3ce66c9d29388c8870036aa2f95cc605e1ef78aa4d30e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/mdd_computation/mdd_results.md`。\n\n核心结论：**MDD = EDD 在所有 12 个 profile 上成立**。所有 AUC profile 严格单调递减，不存在非单调（U 型）pattern，因此 MDD 相对 EDD 没有额外信息。\n\n具体数据：\n- 9-cell atlas (T=0.70)：8/9 cells EDD=MDD=3，唯一例外是 Pythia top-k (d2v3=0.692 < 0.70, EDD=MDD=2)\n- 深度扩展：3 个模型均 EDD=MDD=4，d4v5 AUC 收敛到 0.681-0.684 (跨模型 range 仅 0.003)\n- 唯一非单调 profile 出现在 atlas 外的 Qwen2.5-1.5B-Instruct (d1v2=0.620 < d2v3=0.664)，但该模型所有 pairs < 0.70，MDD=EDD=0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

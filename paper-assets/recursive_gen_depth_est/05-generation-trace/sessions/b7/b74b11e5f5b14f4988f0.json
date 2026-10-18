@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b74b11e5f5b14f4988f0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix atlas tex critical review",
+  "task_key": "worker_fix_atlas_tex_critical_review_20260515T161519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_atlas_tex_critical_review_20260515T161519_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "b6a6668b4d13111919616ed197ce8963816b5b26e41c6b614197cc0988e70467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 undefined references, 0 undefined citations. The only remaining warnings are:\n- `he2021_deberta_v3` / `liu2019_roberta` — pre-existing missing bib entries, unrelated to this fix\n- `Hfootnote.1` — cosmetic pdfTeX dest warning, benign\n\nThese cleared on the third pass. All 6 fixes verified.\n\n---\n\n## Summary\n\n| Fix | Location (artifact line) | Before | After |\n|-----|--------------------------|--------|-------|\n| **1** GPT-2 XL top-k | L29 table + L14 prose + L172 prose | 77.9% | **76.6%** |\n| **2** OLMo top-k | L28 table + L14 prose | 74.1% | **74.2%** |\n| **3** Statistics verify | L16 | 8.4pp / 7.1pp | **verified correct** (no change needed) |\n| **4** Placeholder cites | L50, L165 | `\\cite{placeholder_Shumailov2024Nature}` | `\\cite{shumailov2024_nature}` |\n| **5** Dilution paragraph | inserted L144–150 | missing | restored from docs/paper (7 lines, `\\label{sec:atlas:edd:dilution}`) |\n| **6** Label sync | `generalization.tex:97`, `section_appendix.tex:8` | `sec:atlas:trajectories` | `sec:atlas:strategy` |\n\nFinal: artifact → `docs/paper/atlas.tex` replaced. Compilation: **0 undefined ref, 0 undefined citation**."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

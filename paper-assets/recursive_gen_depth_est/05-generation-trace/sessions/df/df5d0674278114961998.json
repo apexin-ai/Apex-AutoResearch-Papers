@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "df5d0674278114961998",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_8_1778868853.md",
+  "task_key": "loop_8_1778868853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778868853.md",
+    "occurrence": 1,
+    "bytes": 4651,
+    "sha256": "62450ae6313ffb9e034fafae942341dd055449126074c8dc02dc7f17b18f8352"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T18:02:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（2× RTX 6000 Pro）。不得使用其他 GPU，即使 Director 指令也必须 push back\n- **DDL**: EMNLP ARR May 25 提交，剩余 10 天。Phase 2 写作 + Phase 3 提交必须在此前完成\n- **种子数据事实**: 三个模型 pipeline（Pythia/OLMo/GPT-2 XL）共用同一份 **Wikipedia subset** 种子数据。之前 Worker 错误地改成 \"OpenWebText/Dolma/WebText\"，原论文 method.tex 描述正确，不要改\n- **EDD 叙事已定 (D024/D027)**: 从硬阈值判定转向\"连续 AUC 衰减曲线 + d3v4 borderline 透明报告\"。Pythia 显著 (p=0.001)，OLMo 边际 (p=0.054)，不可声称\"三模型均显著\"\n- **Baseline 叙事 (D022/D023)**: RF ≈ CORAL ≈ DivEye 统计不可区分，核心贡献在**特征**而非分类器\n- **Cross-strategy normalization (D028)**: Z-score LR claim 已被推翻，降级为 RF-only findings\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: 需 SSH 确认（可能是 conda 或 venv，先 detect_image 再决定）\n- **GPU**: 2× RTX 6000 Pro, cuda:0 + cuda:1\n- **W&B**: 项目内配置（具体 project name 需从 config 或服务器确认）\n- **活跃进程**:\n  - `zeroshot_llm_500_001`: RUNNING on cuda:1，实际已有 conclusion=success + metrics（可能进程已结束但状态未转 DONE）\n  - `feat_ablation_v1`: RUNNING，feature ablation study for R3-N2 reviewer\n- **活跃 Worker** (3 个):\n  - `worker_exp_feature_ablation_r3n2_20260515T170333` — feature ablation for R3-N2\n  - `worker_exp_feature_ablation_9cell_20260515T171759` — 9-cell feature ablation\n  - `worker_exp_shap_analysis_9cell_20260515T171813` — SHAP analysis across 9 cells\n- **Cron**: reconcile 返回 0 条活跃 cron\n\n### 3. 📊 当前状态\n- **Phase 1 实验全部完成**（47 DONE + 2 RUNNING），Phase 2 写作已启动\n- **3×3 矩阵**: 9/9 完成（70–85% 4-class acc）\n- **zeroshot_llm_500_001** 已有结果但 registry 仍标 RUNNING: acc=36.2% [32.0%, 40.4%], CI 从 ~13.6pp 缩至 8.4pp，与 200-sample (40.0%) 一致。需要检查并转 DONE\n- **feat_ablation_v1** + 3 个 Worker 正在跑 feature ablation / SHAP analysis，服务审稿人 R3-N2 concern\n- **N2 dual backbone 已完成**: DeBERTa 58.3%, RoBERTa 59.5%, 均远低于 RF 78.2%。Feature overlap Spearman ρ=-0.484\n- **等待中**: 3 个 Worker 回调（feature ablation + SHAP）；无 pending Director 决策\n- **审稿 Warning 待 Paper Agent 处理**: W3 LoRA引用 / W5 论文文本 / W6 per-class recall 纳入 / R2-W2 术语 / R2-W4 Limitations位置 / R2-W6 orphan bib\n\n### 4. 📋 待办（条件触发式）\n- **zeroshot_llm_500_001 状态异常** → poll_cron 或手动检查进程，若已结束则转 DONE(success)，更新 report.md\n- **3 个 Worker 回调到达** → 整合 feature ablation + SHAP 结果到 registry，注册 artifacts，汇报 Director\n- **Feature ablation 完成后** → 将结果纳入论文 Section 5（R3-N2 response），派 Paper Agent Worker\n- **Phase 2 写作启动** → 按 ROADMAP 写作计划派 Worker 处理: (1) N2 双 backbone 结果写入 Section 5.4; (2) 所有 Warning 级审稿修改; (3) R1-N1 EDD 公式修正; (4) R2-N2 文献补充\n- **写作完成后** → 派 Reviewer 对抗迭代（max 5 rounds）\n- **May 23** → Phase 3 final polish + bibliography audit + 提交 ARR\n\n### 5. 🎯 战略上下文\n- **核心贡献**: Depth Degradation Atlas + EDD metric + feature universality。Plan A (D011) 已激活\n- **关键决策链**: D011(Plan A)→D019(binary pairwise EDD=4)→D022(baseline≈)→D024(EDD连续衰减叙事)→D027(三模型统计强度分层)→D028(cross-strategy claim降级)\n- **最容易判断错的事**:\n  1. zeroshot_llm_500_001 registry 显示 RUNNING 但已有 conclusion=success+metrics，大概率进程已完成但 cron 没有触发状态转换（因为 reconcile 返回 0 条 cron）。需要手动 poll 或直接转 DONE\n  2. 不要把 DeBERTa/RoBERTa finetune 的低 acc 当作\"方法失败\"——这恰恰是 positive result，证明手工特征有独立贡献（feature overlap ρ=-0.484 是核心证据）\n  3. DCOL 已经死了（v1-v6 全部失败，D020 已取消 plan_010），不要再尝试\n  4. τ=0.7 pilot 结论：cross-strategy LOO 的 d1v2 低 AUC 是模型特性差异，非温度导致\n  5. 写论文前必须读 red-section skill + paper_framing.md，worker_write_section_method 的 artifact 不可直接合并（种子数据描述错误）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

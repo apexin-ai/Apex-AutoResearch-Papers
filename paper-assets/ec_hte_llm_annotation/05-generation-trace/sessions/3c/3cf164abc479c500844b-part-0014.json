@@ -1,0 +1,2932 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3cf164abc479c500844b",
+  "rounds": [
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 2341,
+          "timestamp": "2026-05-25T06:12:34.370895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_23/_pdf_images/submitted_p28.png"
+            }
+          },
+          "id": "event-002341"
+        },
+        {
+          "source_line": 2342,
+          "timestamp": "2026-05-25T06:12:35.382639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2426
+          },
+          "id": "event-002342"
+        },
+        {
+          "source_line": 2343,
+          "timestamp": "2026-05-25T06:12:35.383966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2072
+          },
+          "id": "event-002343"
+        },
+        {
+          "source_line": 2344,
+          "timestamp": "2026-05-25T06:12:35.384316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_23/_pdf_images/submitted_p29.png"
+            }
+          },
+          "id": "event-002344"
+        },
+        {
+          "source_line": 2345,
+          "timestamp": "2026-05-25T06:12:35.636706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_23/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-002345"
+        },
+        {
+          "source_line": 2346,
+          "timestamp": "2026-05-25T06:12:35.639416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1824
+          },
+          "id": "event-002346"
+        },
+        {
+          "source_line": 2347,
+          "timestamp": "2026-05-25T06:12:36.551285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2180
+          },
+          "id": "event-002347"
+        },
+        {
+          "source_line": 2348,
+          "timestamp": "2026-05-25T06:12:36.904127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1519
+          },
+          "id": "event-002348"
+        },
+        {
+          "source_line": 2349,
+          "timestamp": "2026-05-25T06:12:37.157839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1521
+          },
+          "id": "event-002349"
+        },
+        {
+          "source_line": 2350,
+          "timestamp": "2026-05-25T06:12:46.269077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_23/_pdf_images/submitted_p31.png"
+            }
+          },
+          "id": "event-002350"
+        },
+        {
+          "source_line": 2351,
+          "timestamp": "2026-05-25T06:12:46.722706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_23/_pdf_images/submitted_p32.png"
+            }
+          },
+          "id": "event-002351"
+        },
+        {
+          "source_line": 2352,
+          "timestamp": "2026-05-25T06:12:47.285544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1016
+          },
+          "id": "event-002352"
+        },
+        {
+          "source_line": 2353,
+          "timestamp": "2026-05-25T06:12:47.286041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_23/_pdf_images/submitted_p33.png"
+            }
+          },
+          "id": "event-002353"
+        },
+        {
+          "source_line": 2354,
+          "timestamp": "2026-05-25T06:12:48.241493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1518
+          },
+          "id": "event-002354"
+        },
+        {
+          "source_line": 2355,
+          "timestamp": "2026-05-25T06:12:48.241956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex"
+            }
+          },
+          "id": "event-002355"
+        },
+        {
+          "source_line": 2356,
+          "timestamp": "2026-05-25T06:12:48.444239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1158
+          },
+          "id": "event-002356"
+        },
+        {
+          "source_line": 2357,
+          "timestamp": "2026-05-25T06:12:48.444753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Correction Prescribed by the Identity}\n2\t\\label{sec:method}\n3\t\n4\tTheorem~\\ref{thm:bias_identity} identifies per-subgroup misclassification deviation as the bias source; the natural correction is per-subgroup confusion matrix inversion.\n5\tThis correction (EC-HTE) proceeds in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.\n6\tThe complete procedure is summarized in Algorithm~\\ref{alg:echte} (Appendix~\\ref{app:algorithm}) and illustrated in Figure~\\ref{fig:method_overview}.\n7\t\n8\t\\subsection{Hierarchical Bayes Confusion Matrix Estimation}\n9\t\n10\tWe place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\\{C_s\\}_{s=1}^K$.\n11\tThe model estimates the full $J \\times J$ confusion matrix per subgroup and does not require symmetric error rates~(A2); (A2) simplifies only the diagnostic (Proposition~\\ref{prop:debiasing_hurts}).\n12\tFor each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior centered at the global pooled confusion matrix $\\hat{C}_{\\text{global}}$: $\\text{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$, where $\\hat{C}_{\\text{global},j}$ is the $j$-th row of the pooled CM and $\\alpha_0 > 0$ is a shared concentration parameter estimated via empirical Bayes (marginal likelihood maximization).\n13\tWe place a $\\mathrm{Gamma}(3, 1)$ hyperprior on $\\alpha_0$, robust to $2\\times$ perturbation (Appendix~\\ref{app:hyperprior}).\n14\tLarge $\\alpha_0$ pulls estimates toward $\\hat{C}_{\\text{global}}$; small $\\alpha_0$ allows subgroup-specific rates to dominate---partial pooling borrows strength while preserving heterogeneity.\n15\t\n16\tPosterior inference uses empirical Bayes optimization ($<$5ms; Markov chain Monte Carlo (MCMC) alternative in Appendix~\\ref{app:mcmc}).\n17\tHierarchical Bayesian (HB) estimation outperforms stratified MLE in 87.5\\% of configurations (Section~\\ref{sec:ec_hte_eval}); below $\n…[truncated 2309 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-002357"
+        },
+        {
+          "source_line": 2358,
+          "timestamp": "2026-05-25T06:12:48.495348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-25T06:12:48.596418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\t\\begin{figure}[t]\n4\t\\centering\n5\t\\includegraphics[width=\\columnwidth]{figures/fig4_budget_compact.pdf}\n6\t\\caption{RMSE vs.\\ expert budget under extreme heterogeneity. Crossover at $n{=}250$ ($K{=}2$) and $n{=}1000$ ($K{=}4$); shaded bands: $\\pm 1$ SD across subgroups. Full grid in Appendix~\\ref{app:budget}.}\n7\t\\label{fig:budget_compact}\n8\t\\end{figure}\n9\t\n10\t\\subsection{Setup}\n11\t\n12\tWe test on synthetic ($N{=}5{,}000$, $K \\in \\{2, 4\\}$, controlled $\\Delta\\tau$ and $\\Delta\\pi$, 100 Monte Carlo (MC) runs) and semi-synthetic data-generating processes (DGPs) spanning four NLP tasks---sentiment analysis (TweetEval~\\cite{barbieri2020tweeteval}, $K{=}4$), hate speech detection (CivilComments, $K{=}4$), stance detection ($K{=}5$; Appendix~\\ref{app:stance}), and topic classification (AG News, $K{=}4$; Appendix~\\ref{app:agnews})---with full specifications in Appendix~\\ref{app:dgp}.\n13\t\n14\tWe compare: (1) \\textit{Naive} (no correction), (2) \\textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\\cite{angelopoulos2023ppi,egami2023dsl} with homogeneous error), (3) \\textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \\textit{HB EC-HTE} (per-subgroup correction), (5) \\textit{PPCI}~\\cite{sui2026ppci}, and (6) \\textit{EC-HTE+PPCI}.\n15\tFor CausalForest~\\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.\n16\tPrimary metrics are $|\\text{bias}|$, root mean squared error (RMSE), and 95\\% confidence interval (CI) coverage, averaged across subgroups and 100 MC runs.\n17\tRobustness validations cover eight conditions including asymmetric errors, subgroup misspecification, and treatment-dependent misclassification (all $\\geq$89.5\\% coverage; Appendices~\\ref{app:hatespeech}--\\ref{app:treatment_dep}).\n18\tSemi-synthetic evaluation uses 16 empirical LLM confusion matrices (8 LLMs $\\times$ 2 datasets; Appendix~\\ref{app:semireal}).\n19\t\n20\t\\subsection{Empirical Validation of the Bias Identity}\n21\t\\label{sec:bias_mechanism}\n22\t\n23\t\\b\n…[truncated 5984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-25T06:12:54.630879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-002360"
+        },
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-25T06:12:55.536375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tPer-subgroup correction requires $n_{\\text{expert}}/K \\geq 50$ expert labels per subgroup and moderate classifier accuracy ($\\text{FPR}_s, \\text{FNR}_s < 0.5$); at $K{=}8$, RMSE exceeds global correction under fixed expert budget (Appendix~\\ref{app:k8_subgroups}).\n5\tAssumption~(A3) requires balanced effect modifier prevalence; under class imbalance ($P(Z{=}1) = 0.1$), the identity remains exact ($R^2 \\geq 0.976$) but EC-HTE's RMSE advantage narrows (ratio 1.06--1.68; Appendix~\\ref{app:classimbalance}).\n6\tAssumption~(A1)---conditional independence of misclassification and potential outcomes---is not empirically testable; sensitivity analysis shows robustness up to $\\gamma_T \\leq 0.05$ for treatment-dependent misclassification (coverage $\\geq$89.7\\%; Appendix~\\ref{app:treatment_dep}).\n7\tGround-truth subgroup CATEs are unavailable in public datasets---classic causal inference benchmarks lack the LLM annotation step that creates the measurement error we address---so all evaluations use synthetic CATE injection on real text features and real LLM annotations (Appendices~\\ref{app:dgp},~\\ref{app:multilm}).\n8\tWhen LLMs annotate both the effect modifier and the outcome variable, covariate-side and outcome-side misclassification errors may be correlated, violating the independence structure assumed by combining EC-HTE with post-prediction causal inference (PPCI) frameworks~\\cite{sui2026ppci}; practitioners should verify error independence or apply joint correction when both variables are LLM-annotated.\n9\tCode and data generation scripts are publicly available.\\footnote{\\url{https://anonymous.4open.science/r/ec-hte}}\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-25T06:12:55.536888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-002362"
+        },
+        {
+          "source_line": 2363,
+          "timestamp": "2026-05-25T06:12:55.841677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tStandard confusion-matrix correction can reverse causal conclusions when misclassification rates vary across subgroups.\n4\tWe derived an exact bias identity ($R^2 \\geq 0.97$) that yields a diagnostic for flagging harmful correction and prescribes per-subgroup correction when $\\Delta\\pi > 0.15$ and $n_{\\text{expert}}/K \\geq 50$, validated across 11 real LLMs and four NLP tasks.\n5\tPractitioners should estimate per-subgroup confusion matrices before applying any correction; the framework is task-agnostic and composes with prediction-powered inference."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 304
+          },
+          "id": "event-002363"
+        },
+        {
+          "source_line": 2364,
+          "timestamp": "2026-05-25T06:12:55.842171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-002364"
+        },
+        {
+          "source_line": 2365,
+          "timestamp": "2026-05-25T06:12:55.892909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{EC-HTE Procedure}\n2\t\\label{app:algorithm}\n3\t\n4\t\\begin{algorithm}[t]\n5\t\\caption{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}\n6\t\\label{alg:echte}\n7\t\\begin{algorithmic}[1]\n8\t\\Require Observations $\\{(Y_i, W_i, \\hat{Z}_i, X_i)\\}_{i=1}^N$; expert labels $\\{Z_j^*\\}_{j=1}^{n_{\\text{expert}}}$; subgroup map $S: \\mathcal{X} \\to \\{1,\\ldots,K\\}$\n9\t\\Ensure Corrected CATE estimates $\\hat{\\tau}(z)$ with variance-adjusted CIs\n10\t\\Statex\n11\t\\State \\textbf{Preconditions:} verify $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$ and $\\max_s(\\text{FPR}_s, \\text{FNR}_s) < 0.5$; if either fails, use global correction\n12\t\\Statex\n13\t\\State \\textbf{Step 1: Estimate per-subgroup confusion matrices (HB)}\n14\t\\State $\\alpha_0 \\gets \\arg\\max_{\\alpha} \\prod_{s=1}^{K} p(\\text{data}_s \\mid \\alpha, \\hat{C}_{\\text{global}})$ \\Comment{empirical Bayes}\n15\t\\For{$s = 1, \\ldots, K$}\n16\t    \\State $C_s[j,\\cdot] \\sim \\mathrm{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$\n17\t    \\State $\\hat{C}_s[j,k] \\gets \\frac{n_{s,jk} + \\alpha_0 \\cdot \\hat{C}_{\\text{global},j,k}}{n_{s,j\\cdot} + \\alpha_0}$ \\Comment{posterior mean}\n18\t\\EndFor\n19\t\\Statex\n20\t\\State \\textbf{Step 2: Correct observed outcome moments}\n21\t\\For{$s = 1, \\ldots, K$}\n22\t    \\If{$\\kappa(\\hat{C}_s) > 100$} $\\hat{C}_s \\gets \\bar{C}$ \\Comment{singularity guard}\n23\t    \\EndIf\n24\t    \\State $\\tilde{\\boldsymbol{\\mu}}_s \\gets \\hat{C}_s^{-1} \\hat{\\boldsymbol{\\mu}}_s$\n25\t\\EndFor\n26\t\\Statex\n27\t\\State \\textbf{Step 3: CausalForestDML with variance-adjusted SEs}\n28\t\\State Train CausalForest (honest splitting) on corrected outcome moments $\\tilde{\\boldsymbol{\\mu}}_s$\n29\t\\State $\\mathrm{se}_{\\mathrm{adj},i} \\gets \\sqrt{\\mathrm{diag}(\\hat{C}_{S_i}^{-1}\\, \\mathrm{diag}(\\mathrm{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top})}$\n30\t\\State \\Return $\\hat{\\tau}(z)$ with 95\\% CIs from $\\mathrm{se}_{\\mathrm{adj}}$\n31\t\\end{algorithmic}\n32\t\\end{algorithm}\n33\t\n34\t\\subsection{Condition Number Guard Ablation}\n35\t\\label{app:kappa_ablation}\n36\t\n37\tThe singular\n…[truncated 4023 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002365"
+        },
+        {
+          "source_line": 2366,
+          "timestamp": "2026-05-25T06:13:02.787289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+              "offset": "100",
+              "limit": "150"
+            }
+          },
+          "id": "event-002366"
+        },
+        {
+          "source_line": 2367,
+          "timestamp": "2026-05-25T06:13:02.838495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\n101\t\\paragraph{Finite-sample remainder.}\n102\tWhen $\\hat{C}_s = C_s + E_s$ with $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$ (central limit theorem), the estimated correction $\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s$ deviates from its population counterpart by\n103\t$\\|\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s - M_{\\text{global}}^{-1} M_s\\| \\leq \\kappa(M_{\\text{global}}) \\cdot O_p(n_{\\text{expert}}^{-1/2})$,\n104\twhere $\\kappa(M) = \\|M\\| \\cdot \\|M^{-1}\\|$ is the condition number~\\citep{stewart1990matrix}.\n105\tThis motivates the $\\kappa > 100$ singularity guard in Section~\\ref{sec:method}.\n106\t\n107\t\\section{Multi-class Extension and Proof}\n108\t\\label{app:multiclass}\n109\t\n110\t\\begin{corollary}[Multi-class Extension]\n111\t\\label{cor:multiclass}\n112\tFor $K > 2$ subgroups with $J$ effect-modifier levels and uniform off-diagonal misclassification (misclassified observations from class $j$ are distributed equally among the remaining $J{-}1$ classes), the subgroup bias of global correction generalizes to\n113\t\\begin{equation}\n114\t\\mathrm{bias}_{\\mathrm{global}}(z, s) = \\sum_{j=1}^{J} \\bigl(\\bar{\\pi}_j - \\pi_{s,j}\\bigr) \\cdot \\bigl(\\tau(j) - \\bar{\\tau}\\bigr) \\cdot g(\\bar{\\pi}),\n115\t\\label{eq:multiclass}\n116\t\\end{equation}\n117\twhere $g(\\bar{\\pi})$ collects the matrix-inversion amplification terms.\\footnote{For $J=3$ with symmetric misclassification (off-diagonal errors uniform), $g(\\bar{\\pi}) = 1/(1 - 3\\bar{\\pi}/2)$, generalizing the $J{=}2$ factor $1/(1-2\\bar{\\pi})$. In general, $g(\\bar{\\pi}) = 1/(1 - J\\bar{\\pi}/(J-1))$.}\n118\tThe essential structure, $\\sum_s w_s (\\bar{\\pi}_j - \\pi_{s,j}) = 0$, ensures that bias redistributes across subgroups rather than vanishing in aggregate.\n119\t\\end{corollary}\n120\t\n121\t\\paragraph{Proof.}\n122\tFor $K > 2$ subgroups with $J$ effect-modifier levels, the subgroup-specific mixing matrix $M_s$ is $J \\times J$ with entries $M_s[j, j'] = P(Z{=}j' \\mid \\hat{Z}{=}j, S{=}s)$.\n123\tThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n124\t\n125\tThe \n…[truncated 11639 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002367"
+        },
+        {
+          "source_line": 2368,
+          "timestamp": "2026-05-25T06:17:28.774654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿意见：方法严谨性审查\n\n### 1. Summary\n\n本文推导了一个精确的偏差恒等式（Theorem 1），揭示当 LLM 分类器的误分类率在子群间存在异质性时，全局混淆矩阵校正会在子群层面引入 δ_s·Δτ/(1−2π̄) 的偏差，并可能逆转因果效应符号。基于此理论，作者提出 EC-HTE 方法，通过层级贝叶斯估计子群混淆矩阵进行分层校正，并在合成和半合成数据上进行了广泛验证。论文问题选择具有时效性，理论结果简洁优雅，但在假设可检验性、实验设计的生态效度和有限样本理论方面存在若干需要回应的问题。\n\n---\n\n### 2. Strengths\n\n**S1. 理论结果新颖且实用。** Theorem 1 将全局校正偏差精确分解为三个可解释的因子（子群误差偏离 δ_s、效应异质性 Δτ、矩阵逆放大因子 1/(1−2π̄)），并推导出 Δτ-free 的诊断准则（Proposition 5），使从业者无需估计处理效应即可识别有害校正。这一 \"debiasing can hurt\" 的发现对当前 LLM 标注的因果推断实践有直接指导意义。\n\n**S2. 证明正确且完整。** Theorem 1 的证明（Appendix B）通过直接矩阵计算得到 M_global^{-1}M_s − I = δ_s/(1−2π̄)·[−1,1;1,−1]，代数推导无误。Proposition 3（A5 放松）和 Proposition 5（debiasing hurts 的充要条件）的证明同样严谨。Remark 2 关于非对称误分类的推广（B_s·1=0 源于随机矩阵的行和性质）论证合理。\n\n**S3. 实验覆盖面广。** 520 个合成配置 + 4 个 NLP 任务的半合成评估 + 16 个真实 LLM 混淆矩阵 + 48 个非对称配置 + 多种鲁棒性检验（A1 违反、类别不平衡、混杂处理），形成了系统性的证据链。\n\n**S4. 操作条件清晰。** 明确给出了 EC-HTE 优于全局校正的边界条件（Δπ>0.15, n_expert/K≥50, K≤4, FNR<0.50），并诚实地指出全局校正在何时更优。\n\n**S5. 与 PPCI 的组合。** Appendix K 展示了 EC-HTE 处理协变量侧误分类、PPCI 处理结果侧误差的互补性，|bias| 从 0.179 降至 0.007。\n\n---\n\n### 3. Weaknesses\n\n**N1 [critical] 半合成评估中 A1 由构造满足，无法验证方法对现实 A1 违反的鲁棒性**\n\n- 具体位置：Section 5.1, Appendix E (DGP)\n- 问题：所有评估均使用合成 CATE 注入到真实文本特征上（Y = τ(Z)·T + η），这保证了 A1（误分类与潜在结果的条件独立性）在构造上成立。然而在实际 NLP 应用中，LLM 分类错误极可能与文本内容相关（例如讽刺、隐晦表达同时影响分类准确率和结果变量），此时 A1 系统性违反。论文虽在 Appendix Z.2-Z.3 进行了 A1 敏感性分析（γ_T ≤ 0.20），但报告 γ_T = 0.10 时覆盖率即降至 75%——这意味着在中等程度的 A1 违反下方法表现已显著退化。\n- 为什么影响接收：这是该框架的核心假设，但在所有评估中都无法被挑战。读者无法判断 EC-HTE 在真实因果推断场景中的实际可靠性。\n- 建议修改方向：(i) 至少构造一个 A1 结构性违反的 DGP（如让 π_s 依赖于 Y 或 X），展示方法退化的具体边界；(ii) 引用或开发敏感性分析框架来量化 A1 违反对 bias identity 的影响幅度。\n\n**N2 [critical] 有限样本余项的表述存在内部不一致**\n\n- 具体位置：Section 3 (theory.tex line 92) vs. Appendix B (line 103)\n- 问题：主文声称有限样本余项为 R_n = O_p(n_expert^{-1/2} · κ(C_s)²)，其中\"squared condition number arises from the Neumann expansion\"。然而 Appendix B 给出的界为 ||M̂_global^{-1} M̂_s − M_global^{-1} M_s|| ≤ κ(M_global) · O_p(n_expert^{-1/2})——是 κ 而非 κ²。标准矩阵扰动理论对 A^{-1} 的一阶扰动给出 ||A^{-1}||² · ||E||，但对乘积 M_global^{-1} M_s 的扰动则涉及更复杂的结构。主文与附录的不一致损害了读者对有限样本保证的信心。\n- 为什么影响接收：这是论文的核心理论结果之一，κ vs. κ² 对实际操作（κ-guard 阈值选择）有直接影响。\n- 建议修改方向：统一表述，给出 M_global^{-1} M_s 的完整扰动界的严格推导，明确 κ 还是 κ² 是正确的阶。\n\n**W1 [warning] 部分真实 LLM 模型的 R² 低至 0.76，与 \"exact identity\" 的声称不匹配**\n\n- 具体位置：Abstract (\"per-model range 0.76–0.99\"), Table 23 (Appendix W, p.25)\n- 问题：Table 23 显示 GPT-4o-mini 在 Civil Comments 上的 R² = 0.76，这意味着 bias identity 仅解释 76% 的偏差变异。对于声称\"exact\"的恒等式，24% 的未解释变异相当大。论文在 Appendix W 将低 R² 归因于 \"near-homogeneous per-subgroup error\" 导致的回归弱信号，但这实际上说明 identity 在 δ_s 较小时的预测精度有限——而这恰恰是从业者最需要判断\"是否需要校正\"的场景。\n- 建议：(i) 在主文中报告 per-model R² 的分布（不仅在 abstract 中），讨论低 R² 场景的含义；(ii) 区分\"数学上精确\"与\"统计上可验证\"两个概念。\n\n**W2 [warning] 100 次 MC 模拟对覆盖率估计的统计精度不足**\n\n- 具体位置：Section 5.1 (\"100 Monte Carlo runs\"), 全文各处覆盖率报告\n- 问题：95% 覆盖率的 100 次 MC 估计的标准误约为 √(0.95×0.05/100) ≈ 0.022，即 95% CI 为 [0.907, 0.993]。论文报告的许多覆盖率值（如 0.94, 0.95, 0.96）的差异在 MC 噪声范围内不可区分。特别是论文在多处比较不同方法的覆盖率差异（如 Global 0.87 vs. HB EC-HTE 0.94），这些差异虽然看起来有意义，但在 100 次 MC 下统计显著性有限。\n- 建议：(i) 增加到至少 500-1000 次 MC；或 (ii) 在所有覆盖率报告中附加 MC 标准误，让读者自行判断差异的可靠性。Appendix Q 报告了 MC SEs ≤ 0.005，但这是 bias/RMSE 的 MC SE，不是覆盖率的 MC SE。\n\n**W3 [warning] 诊断准则 AUC = 0.86（对称）偏低，实践后果未讨论**\n\n- 具体位置：Section 5.4 (experiments.tex line 86), \"AUC = 0.86 symmetric, 0.96 asymmetric\"\n- 问题：对称场景下 AUC = 0.86 意味着诊断存在非平凡的假阳性/假阴性率。假阳性（错误推荐 EC-HTE）会引入不必要的方差；假阴性（错误推荐 Global）会遗留有害偏差。论文未讨论这两类错误的不对称代价，也未给出精确率/召回率/决策阈值的分析。\n- 建议：报告 Proposition 5 诊断在不同阈值下的 precision/recall 曲线，讨论从业者应如何在\"多余方差\"与\"遗留偏差\"之间权衡。\n\n**W4 [warning] SE 调整公式忽略了混淆矩阵估计本身的不确定性**\n\n- 具体位置：Section 4.3, Algorithm 1 line 16\n- 问题：SE 公式 se_adj = √(diag(Ĉ_s^{-1} diag(se²) Ĉ_s^{-T})) 仅传播了原始估计量的 SE，未考虑 Ĉ_s 的估计不确定性。这是一个 delta-method 近似，会低估总体不确定性。论文建议在 n_expert/K < 50 时使用 bootstrap（B=100），但：(a) B=100 对 bootstrap SE 估计也偏低（通常推荐 B ≥ 200-500）；(b) 即使 n_expert/K ≥ 50，忽略 CM 估计不确定性仍会导致 CI 偏窄。\n- 建议：(i) 推导包含 CM 估计不确定性的完整 SE 公式；或 (ii) 系统性地展示 plug-in SE vs. bootstrap SE 的差距，明确 plug-in 近似的有效范围。\n\n**W5 [warning] 操作条件（K≤4）限制了方法的适用范围**\n\n- 具体位置：Section 5.4 (Operating conditions), Appendix I (K=8)\n- 问题：论文明确指出 K≤4 是操作条件，K=8 时 RMSE 超过全局校正。然而在实际 NLP 应用中，子群数量常远超 4（如情感分析中的多个人口统计交叉组、多语言场景）。论文未讨论如何在 K 较大时折衷使用（如对子群进行聚合以降低有效 K），也未探讨 K 的限制是否来源于根本性的偏差-方差权衡还是仅仅是专家标注预算不足。\n- 建议：(i) 分析 K 限制的根本原因（是否可通过增加 n_expert 克服？）；(ii) 讨论子群聚合策略作为实用折衷方案。\n\n**W6 [warning] 与 Frazis-Loewenstein 的比较可能不公平**\n\n- 具体位置：Table 1 (F-L Scalar, F-L Per-sub.), Section 5.3\n- 问题：F-L 校正（Frazis and Loewenstein, 2003）设计用于 OLS 回归中误测二元回归变量的标量衰减偏差，不是为 CATE 估计或混淆矩阵逆设计的。将 F-L 应用于本文场景并展示其表现差，不足以说明 EC-HTE 的优越性，因为 F-L 本身就不是为这个问题设计的 baseline。\n- 建议：明确说明 F-L 的设计初衷与适用范围，将其定位为\"如果从业者错误地套用 F-L 会怎样\"，而非\"EC-HTE 优于 F-L\"。\n\n---\n\n### 4. Questions\n\n**Q1.** Theorem 1 推导中 M_global = Σ_s w_s M_s 要求知道真实的子群权重 w_s。在实践中 w_s 需要从数据中估计，引入额外不确定性。w_s 的估计误差如何传播到 bias identity？是否需要修正？\n\n**Q2.** Section 4.1 中 EB 估计 α_0 使用边际似然最大化。当子群数 K 较小（如 K=2）时，边际似然的优化面可能不平坦——α_0 的估计是否稳定？是否进行了 α_0 估计的敏感性分析（除 Appendix G.1 中 Gamma 超参数扰动外）？\n\n**Q3.** Corollary 6（多类扩展，Appendix C）假设均匀的非对角误分类（misclassified observations from class j are distributed equally among remaining J−1 classes）。这一假设在 LLM 分类器中通常不成立（例如相似类别之间的混淆远高于不相似类别）。非均匀非对角误分类如何影响 bias identity 的形式？论文承认\"closed-form amplification factor does not [persist]\"但未量化近似误差。\n\n**Q4.** 半合成评估中，子群定义使用 has_hashtag × text_length_bin（Section E, Appendix）。这些子群特征是否会在真实 NLP 任务中自然出现？子群定义的选择如何影响 Δπ 和因此影响 EC-HTE 的效果？\n\n**Q5.** Algorithm 1 中 κ-guard 阈值固定为 100，但 Appendix A.1 的消融实验显示实际 κ_max = 1.89，guard 从未被触发。这是否意味着 guard 的设计完全基于理论考量而无实证支撑？在什么实际场景下 κ 会达到 100？\n\n---\n\n### 5. Missing References\n\n- **Egami et al. (2024)**, \"Using Imperfect Surrogates for Downstream Inference\" (NeurIPS) — 讨论了使用 LLM 预测进行因果推断时的偏差问题，与本文场景高度相关但引用时未充分比较方法差异\n- **Zrnic and Candès (2024b)**, \"Active Statistical Inference\" — 主动推断框架可能提供比固定预算更高效的专家标注分配策略\n- **Angelopoulos et al. (2023)** 的理论部分关于 PPI 在异质性误差下的表现——应与 Theorem 1 的结论对比\n- 测量误差文献中 **Buonaccorsi (2010)** \"Measurement Error: Models, Methods, and Applications\" 提供了更全面的偏差-方差权衡框架\n\n（注：Egami et al. 2023 和 Zrnic & Candès 2024 已被引用，但比较不够深入。）\n\n---\n\n### 6. Overall Assessment\n\n**Overall**: 3.5 (Borderline Conference)\n\n**Confidence**: 4/5\n\n**一句话总结**: 理论结果正确且实用，但\"exact identity\"与实际验证之间的落差（R²低至0.76、A1由构造满足、有限样本理论内部不一致）使方法的可靠性声称难以完全令人信服。\n\n#### 官方维度打分（ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | Theorem 1 证明正确；但有限样本余项 κ vs κ² 不一致，A1 不可检验且敏感性分析显示中等违反即导致覆盖率大幅下降 |\n| Excitement | 3.5/5 | 问题选择具有时效性（LLM标注×因果推断），\"debiasing hurts\"的发现有实践价值；但核心理论是相对直接的矩阵代数，方法上是标准的层级贝叶斯 |\n| Reproducibility | 4/5 | 提供匿名代码仓库，DGP 描述清晰，超参数完整报告；但100次MC的覆盖率估计精度不足 |\n| Overall | 3.5/5 | 介于 Findings 和主会议之间。理论正确但深度有限，实验广泛但生态效度不足 |\n\n#### 接收条件\n\n若作者能回应以下问题，可上调至 4.0 (Conference)：\n1. 解决有限样本余项 κ vs κ² 的不一致（N2）\n2. 补充至少一个 A1 结构性违反下的实验评估（N1）\n3. 增加 MC 次数或在覆盖率报告中附加 MC SE（W2）",
+              "reviewer_id": "1",
+              "project": "ec_hte_llm_annotation"
+            }
+          },
+          "id": "event-002368"
+        },
+        {
+          "source_line": 2369,
+          "timestamp": "2026-05-25T06:17:33.391031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_489afd65980834a91024fd48e21d984f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4616
+          },
+          "id": "event-002369"
+        },
+        {
+          "source_line": 2370,
+          "timestamp": "2026-05-25T06:17:46.520036+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n核心判断：**Overall 3.5（Borderline Conference）**。\n\n主要发现：\n- **理论正确**：Theorem 1 的矩阵代数推导无误，Proposition 3/5、Corollary 4 均正确\n- **2 个 Critical 问题**：(1) 半合成评估中 A1 由构造满足，无法验证对现实 A1 违反的鲁棒性，且 γ_T=0.10 时覆盖率已降至 75%；(2) 有限样本余项在主文（κ²）与附录（κ）之间存在不一致\n- **6 个 Warning 问题**：部分 LLM 的 R² 低至 0.76 与\"exact\"声称矛盾、100 次 MC 对覆盖率估计精度不足、诊断 AUC=0.86 偏低且未讨论决策后果、SE 调整忽略 CM 估计不确定性、K≤4 限制适用范围、F-L 比较可能不公平\n- **格式合规**：正文 8 页、abstract <200 words、double-blind 匿名、Limitations 在正文中，均符合要求"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1"
+          },
+          "id": "event-002370"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 2371,
+          "timestamp": "2026-05-25T06:19:56.421263+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享：Reviewer 2 的完整审稿意见\n\n请逐条阅读 Reviewer 2 的审稿意见，对每一个 Critical/Warning/Question 点逐条回应 `[AGREE]` 或 `[REBUT]`（附简短理由）。关注与你自己审稿意见的交集与分歧。\n\n---\n\n**Reviewer 2 Overall: 3.5 (Borderline Conference)**\n\n**Critical 问题：**\n\n**N1 [critical] 理论新颖性深度有限——核心推导是 straightforward 的矩阵代数**\n- Theorem 1 本质是 M_global⁻¹M_s - I 的标准线性代数操作。Product form δ_s·Δτ/(1-2π̄) 是自然但非深刻的结果。Proposition 5 是 Theorem 1 的直接推论。HB CM estimation 是 Dawid-Skene 的直接应用。\n- R2 认为 EMNLP 主会议期待 substantial novelty，但本文技术门槛较低。\n\n**N2 [critical] 缺乏 fully real-data validation**\n- 所有评估使用真实文本+真实 LLM 标注但注入合成 CATE。无法证明 sign reversal 在实际研究中确实发生。External validity 存疑。\n\n**Warning 问题：**\n\n**W1 [warning] EMNLP 社区适配性存疑**\n- 核心 contribution 在测量误差理论而非 NLP。四个 NLP 任务是验证平台而非研究对象。CivilComments identity subgroup 发现仅在 Appendix M 一段提及。\n\n**W2 [warning] \"Debiasing hurts\" framing 可能夸大**\n- 14.9% sign reversal 来自 τ(0)=0.03 配置（很小的 true effect）。τ(0)=0.10 时 methods converge。Appendix Z.8 数据（31% at τ(0)=0.01, 14.9% at 0.03, ~0% at larger）应入正文。\n\n**W3 [warning] Missing reference: Filtered PPI (Xu & Sun 2026)**\n- 处理 heterogeneous prediction quality 的 PPI 扩展，selection vs correction 策略对比未讨论。\n\n**W4 [warning] Subgroup-dependent noise 与 instance-dependent noise 联系不清**\n- EC-HTE 假设介于 class-dependent（太弱）和 instance-dependent（太强）之间的 sweet spot，未明确 positioning。\n\n**W5 [warning] Abstract 信息密度过高**\n- R² 值、精确百分比等定量细节对 EMNLP 读者是 information overload。\n\n**Questions：**\n- Q1: Theorem 1 product form 与 omitted variable bias Frisch-Waugh 分解的联系？\n- Q2: propensity estimation error + LLM annotation error 共存时表现？\n- Q3: Δπ > 0.15 threshold 的理论依据？\n- Q4: \"all 8 real LLMs amplify bias\" 是否因 extreme heterogeneity DGP 导致？\n\n---\n\n请对以上每个 Critical (N1, N2)、Warning (W1-W5)、Question (Q1-Q4) 逐条给出 `[AGREE]` 或 `[REBUT]`，附简短理由。重点关注你自己审稿中未覆盖但 R2 提出的问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002371"
+        },
+        {
+          "source_line": 2372,
+          "timestamp": "2026-05-25T06:21:08.200902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 对 Reviewer 2 审稿意见的交叉回应\n\n---\n\n### Critical 问题\n\n**[AGREE] R2-N1: 理论新颖性深度有限**\n\n同意核心判断。我在自己的审稿中将 Excitement 打 3.5/5，理由一致：Theorem 1 是 M_global⁻¹M_s − I 的直接计算，Proposition 5 是其代数推论，HB 估计是标准工具。但我补充两点nuance：(a) 新颖性不仅在推导难度，也在于 *识别问题并给出可操作的诊断*——bias identity 虽然推导简单，但此前文献（包括 Frazis-Loewenstein 2003、Angelopoulos et al. 2023）均未在子群异质性误差下推导过这一恒等式；(b) EMNLP 近年接收了不少理论深度中等但实用价值高的工作。因此我认为这是 borderline 而非 reject 的理由。\n\n**[AGREE] R2-N2: 缺乏 fully real-data validation**\n\n与我的 N1 一致。我的 N1 进一步指出了根本原因：合成 CATE 注入使 A1（条件独立性）在构造上成立，导致方法永远不会面对其最脆弱假设的挑战。R2 的表述更聚焦于 external validity，我的更聚焦于 assumption validation——两者互补，共同构成对本文最核心的批评。\n\n---\n\n### Warning 问题\n\n**[REBUT] R2-W1: EMNLP 社区适配性存疑**\n\n不同意这构成实质性弱点。EMNLP/ACL 近年有大量 measurement error × NLP 的工作被接收：Egami et al. (2023, DSL) 发表于 NeurIPS 但被 ACL 社区广泛引用；Angelopoulos et al. (2023, PPI) 同样是统计方法论用 NLP 任务验证；Sui et al. (2026, PPCI) 也是理论驱动的工作。本文使用四个 NLP 任务不仅作为验证平台，也展示了 LLM 标注异质性是 NLP 特有现象（Section 5.5, Table 12 的 per-subgroup 误分类率，以及 Section V 的 11 个 LLM 的 cross-model 验证）。CivilComments 的 identity subgroup 发现虽在附录中，但展示了 NLP 社区关心的具体 harm（demographic bias）。Venue fit 不应成为 weakness。\n\n**[AGREE] R2-W2: \"Debiasing hurts\" framing 可能夸大**\n\n同意。14.9% sign reversal 来自 τ(0)=0.03 的极端配置。论文标题 \"When Debiasing Hurts\" 和 abstract 中 \"14.9% of configurations\" 给人的印象是这是一个普遍现象，但实际上它集中在 true effect 很小的场景。Appendix Z.8 的 Table 38 明确显示 τ(0) ≥ 0.05 时 sign reversal 大幅下降。这些信息应在正文中呈现以 calibrate 读者预期。不过我补充：即使 sign reversal 不频繁，bias *amplification*（非符号翻转）在 Δπ > 0.12 时仍然普遍（Figure 4b），这一点 R2 未充分承认。\n\n**[REBUT] R2-W3: Missing reference Filtered PPI (Xu & Sun 2026)**\n\n我无法验证此引用的存在性和相关性。如果该工作确实处理 heterogeneous prediction quality 下的 PPI，那确实应被讨论。但 R2 未提供足够信息让我判断其与本文的具体关系（selection vs. correction 是不同策略，本文的 contribution 在 *诊断何时需要校正* 和 *如何校正*，filtered PPI 可能是互补而非竞争方法）。建议 R2 提供更具体的引用信息和比较维度。\n\n**[AGREE] R2-W4: Subgroup-dependent noise 与 instance-dependent noise 联系不清**\n\n同意这是一个定位问题。论文假设误分类率在子群内均匀（π_s 是子群级常数），这介于全局均匀噪声和实例级噪声之间。论文未明确讨论这一选择的理论后果：如果子群内噪声仍有异质性，EC-HTE 的子群级校正能捕获多少变异？Appendix P（subgroup misspecification）部分回应了这一点（coverage ≥ 0.945），但未从 noise model 分类的角度进行系统性定位。\n\n**[AGREE] R2-W5: Abstract 信息密度过高**\n\n部分同意。Abstract 在 ~180 words 内塞入了 R² 值、百分比、操作条件等大量定量细节，对初次阅读的读者不友好。但我不认为这是严重问题——EMNLP abstract 有 200 词限制，作者选择了信息密度最大化策略。建议将部分定量细节（如 \"per-model range 0.76–0.99\", \"14.9% of configurations\"）移至 introduction。\n\n---\n\n### Questions\n\n**[AGREE] R2-Q1: Theorem 1 与 omitted variable bias / Frisch-Waugh 的联系**\n\n好问题。bias identity 的形式 δ_s·Δτ/(1−2π̄) 确实类似于 omitted variable bias 的乘积结构（遗漏变量偏差 = 遗漏变量系数 × 遗漏变量与included变量的相关性）。论文可以在 Related Work 中简要讨论这一类比，增强理论直觉。但我认为形式上的相似性不意味着推导上的等价——bias identity 来自矩阵逆的扰动，omitted variable bias 来自投影分解，机制不同。\n\n**[AGREE] R2-Q2: Propensity estimation error + LLM annotation error 共存时表现**\n\n与我对论文 Appendix Z.4（confounded treatment）的理解一致。论文在 Appendix Z.4 展示了 EC-HTE 在 IPW-DIM 估计器下与 oracle propensity 配合的效果（coverage 94.3%），但使用的是 *oracle* propensity。当 propensity 本身有估计误差时，CM 校正与 propensity 误差的交互作用未被研究。这是一个合理的扩展方向。\n\n**[REBUT] R2-Q3: Δπ > 0.15 threshold 的理论依据**\n\n论文实际上给出了依据：Proposition 5 的 diagnostic condition |δ_s|/((1−2π̄)·π_s) > 1 是理论推导，Δπ > 0.15 是该条件在实验中对应的 *经验性操作阈值*（Section 5.4）。这不是一个凭空选择的数字，而是理论条件的经验翻译。可以更清楚地说明这一联系，但不构成方法论缺陷。\n\n**[AGREE] R2-Q4: \"all 8 real LLMs amplify bias\" 是否因 extreme heterogeneity DGP**\n\n合理质疑。Section 5.2 的 \"all 8 real LLMs amplifying bias\" 声称来自 extreme heterogeneity DGP（π ∈ {0.05, 0.10, 0.15, 0.25}），这是论文选择的最极端配置。在 moderate heterogeneity 下，Table 8（main text, p.8）显示 methods converge (p > 0.05)。因此 \"all 8 LLMs\" 的声称应限定为 \"under extreme heterogeneity\"，否则有夸大之嫌。这与 R2-W2 关于 framing 的批评一致。\n\n---\n\n### 与我自己审稿的交集与分歧总结\n\n**交集**：R2 的 N1（理论深度）、N2（无真实数据验证）与我的评估一致。W2（framing 夸大）我亦认同。最终评分相同（3.5 Borderline Conference）。\n\n**分歧**：\n1. R2-W1（venue fit）我不同意——EMNLP 接收此类工作有先例。\n2. R2 未覆盖但我认为重要的问题：(a) 有限样本余项 κ vs κ² 的内部不一致（我的 N2）；(b) SE 公式忽略 CM 估计不确定性（我的 W4）；(c) 100 次 MC 对覆盖率估计的精度问题（我的 W2）；(d) 诊断 AUC=0.86 的实践后果（我的 W3）。这些是方法严谨性层面的具体技术问题，R2 更侧重宏观层面的 novelty 和 framing 批评。\n\n**综合判断**：两位 reviewer 的核心关切高度一致（理论深度中等 + 无真实数据验证），分歧在于对 NLP 社区适配性和 framing 严重性的判断。我维持 3.5 (Borderline Conference) 的评分。",
+              "reviewer_id": "1",
+              "project": "ec_hte_llm_annotation"
+            }
+          },
+          "id": "event-002372"
+        },
+        {
+          "source_line": 2373,
+          "timestamp": "2026-05-25T06:21:13.381359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_489afd65980834a91024fd48e21d984f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 5180
+          },
+          "id": "event-002373"
+        },
+        {
+          "source_line": 2374,
+          "timestamp": "2026-05-25T06:21:27.186153+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。对 R2 的 11 个点逐条给出了 AGREE/REBUT：\n\n- **AGREE 8 项**：N1（理论深度）、N2（无真实验证）、W2（framing 夸大）、W4（noise model 定位）、W5（abstract 过密）、Q1（Frisch-Waugh 类比）、Q2（propensity error 交互）、Q4（extreme DGP 条件化声称）\n- **REBUT 3 项**：W1（venue fit 有先例）、W3（Filtered PPI 引用无法验证）、Q3（Δπ>0.15 有理论依据）\n\n关键补充：R2 侧重宏观层面（novelty、framing），我的审稿覆盖了 R2 未触及的技术问题（κ vs κ² 不一致、SE 公式缺陷、MC 精度、诊断 AUC）。两人评分一致（3.5 Borderline Conference），核心关切高度重叠。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1"
+          },
+          "id": "event-002374"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 2375,
+          "timestamp": "2026-05-25T21:16:50.077371+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n你是 Reviewer 1，负责 **方法严谨性** 审查。\n\n## 论文信息\n- 标题: \"When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects\"\n- 论文路径: `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/submitted.pdf`\n\n## Venue 要求（EMNLP 2026, via ARR）\n- **格式**: ACL 双栏模板，`\\usepackage[review]{acl}`\n- **页数**: 正文严格 8 页限制，参考文献无限制\n- **Limitations**: 必须有，放在 Conclusion 之后，不计入页数（但不能含过多额外内容）\n- **匿名**: Double-blind\n- **Abstract**: 不超过 200 words\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference (主会议), 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n\n### 1. 理论推导（重点）\n- Theorem 1 (Bias Decomposition Identity) 的证明是否完整、严密？假设 (A1)-(A5) 是否合理？\n- Proposition 3 (A5 relaxation) 推导是否正确？\n- Proposition 5 (debiasing can increase bias) 条件推导是否严谨？\n- Remark 2 (asymmetric case) 声称是否有充分支撑？\n- 有限样本余项 O_p(κ²·n^{-1/2}) 是否正确？\n- Corollary 4 (aggregate bias) 是否 trivial？\n\n### 2. 方法设计\n- Hierarchical Bayes CM estimation: 先验选择是否合理？empirical Bayes vs MCMC 选择是否有讨论？\n- κ-guard (阈值 100): 是否有理论依据？与 O_p remainder 的关系？\n- SE adjustment 公式的正确性\n- Algorithm 1 是否完整、可复现？\n\n### 3. 实验严谨性\n- DGP 设计是否合理？参数范围覆盖是否充分？\n- MC=100 runs 是否足够支撑 coverage 声称？\n- 评价指标 (|bias|, RMSE, coverage) 选择是否合适？\n- Semi-synthetic 与 fully synthetic 结果的一致性\n- CausalForest / R-learner 集成验证的充分性\n- 操作条件 (Δπ>0.15, n_expert≥250, K≤4) 的实证支撑\n\n### 4. 假设合理性\n- (A1) conditional independence: 实际场景中是否可能被违反？sensitivity analysis 是否充分？\n- (A2) symmetric misclassification: 即使有 Remark 说不需要，论文结构是否过度依赖此假设？\n- (A3) balanced effect modifier: 放松后 R²≥0.976 但 RMSE advantage narrows — 是否充分讨论？\n- (A5) homogeneous treatment effects: Proposition 3 是否充分解决了这个限制？\n\n请按标准审稿格式输出：Summary → Strengths → Weaknesses (逐条编号，标注 severity: Must-Fix / Should-Fix / Minor) → Questions → Missing References → Overall Assessment (含评分和置信度)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002375"
+        },
+        {
+          "source_line": 2376,
+          "timestamp": "2026-05-25T21:17:00.940271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-002376"
+        },
+        {
+          "source_line": 2377,
+          "timestamp": "2026-05-25T21:17:00.992114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-002377"
+        },
+        {
+          "source_line": 2378,
+          "timestamp": "2026-05-25T21:17:05.358581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 review form criteria dimensions scoring guidelines"
+            }
+          },
+          "id": "event-002378"
+        },
+        {
+          "source_line": 2379,
+          "timestamp": "2026-05-25T21:17:07.517177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/submitted.pdf",
+              "pages": "1-10",
+              "project": "ec_hte_llm_annotation",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002379"
+        },
+        {
+          "source_line": 2380,
+          "timestamp": "2026-05-25T21:17:13.853357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 review form criteria dimensions scoring guidelines\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"ACLRollingReview (@ReviewAcl) / Posts / X\",\"url\":\"https://x.com/ReviewAcl\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"}]\n\nBased on the search results, here's what I found about the ACL ARR 2026 review form criteria, dimensions, and scoring guidelines:\n\n## Review Scoring Dimensions\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\n## Key Scoring Criteria\n\n**Soundness:** The soundness scores must be justified by the text of the review.\n\n**Overall Recommendation:** The Overall assessment score is an explicit recommendation for the outcome of this paper, if it were committed to an *ACL venue. This is a composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact.\n\n## Distinction Between Main Conference and Findings Papers\n\nThe main criteria for Findings are soundness and \n…[truncated 727 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "WebSearch",
+            "elapsed_ms": 8494
+          },
+          "id": "event-002380"
+        },
+        {
+          "source_line": 2381,
+          "timestamp": "2026-05-25T21:17:17.493957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 433.7}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 653.9}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 390.5}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 511.7}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 448.4}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 444.9}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 465.1}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 430.8}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": \n…[truncated 460 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 9976
+          },
+          "id": "event-002381"
+        },
+        {
+          "source_line": 2382,
+          "timestamp": "2026-05-25T21:17:26.356072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form: all scoring dimensions, their scales, descriptions, and any guidelines for each score level. Include soundness, excitement, overall assessment, confidence, and any other dimensions."
+            }
+          },
+          "id": "event-002382"
+        },
+        {
+          "source_line": 2383,
+          "timestamp": "2026-05-25T21:17:26.456928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-002383"
+        },
+        {
+          "source_line": 2384,
+          "timestamp": "2026-05-25T21:17:26.509723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-002384"
+        },
+        {
+          "source_line": 2385,
+          "timestamp": "2026-05-25T21:17:27.114972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-002385"
+        },
+        {
+          "source_line": 2386,
+          "timestamp": "2026-05-25T21:17:27.115385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-002386"
+        },
+        {
+          "source_line": 2387,
+          "timestamp": "2026-05-25T21:17:28.070953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1614
+          },
+          "id": "event-002387"
+        },
+        {
+          "source_line": 2388,
+          "timestamp": "2026-05-25T21:17:28.372626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1862
+          },
+          "id": "event-002388"
+        },
+        {
+          "source_line": 2389,
+          "timestamp": "2026-05-25T21:17:28.475779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1360
+          },
+          "id": "event-002389"
+        },
+        {
+          "source_line": 2390,
+          "timestamp": "2026-05-25T21:17:28.727346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1611
+          },
+          "id": "event-002390"
+        },
+        {
+          "source_line": 2391,
+          "timestamp": "2026-05-25T21:17:32.893218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Scoring Dimensions\n\n## 1. **Reviewer Confidence**\nScale: 1-5\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- **4**: \"Quite sure. I tried to check the important points carefully.\"\n- **3**: \"Pretty sure, but there's a chance I missed something.\"\n- **2**: \"Willing to defend my evaluation, but it is fairly likely that I missed some details.\"\n- **1**: \"Not my area, or paper is very hard to understand.\"\n\n## 2. **Soundness**\nScale: 1-5 (with .5 increments)\n- **5**: \"Excellent: This study is one of the most thorough I have seen, given its type.\"\n- **4**: \"Strong: This study provides sufficient support for all of its claims.\"\n- **3**: \"Acceptable: This study provides sufficient support for its main claims.\"\n- **2**: \"Poor: Some of the main claims are not sufficiently supported.\"\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication.\"\n\n## 3. **Excitement**\nScale: 1-5 (with .5 increments)\n- **5**: \"Highly Exciting: I would recommend this paper to others.\"\n- **4**: \"Exciting: I would mention this paper to others.\"\n- **3**: \"Interesting: I might mention some points of this paper to others.\"\n- **2**: \"Potentially Interesting: this paper does not resonate with me.\"\n- **1**: \"Not Exciting: this paper does not resonate with me.\"\n\n## 4. **Overall Assessment**\nScale: 1-5 (with .5 increments)\n- **5**: Consider for Award (top 2.5% papers)\n- **4**: Conference acceptance\n- **3**: Findings acceptance\n- **2**: Resubmit next cycle\n- **1**: Do not resubmit\n\n## 5. **Additional Dimensions**\n- **Reproducibility** (1-5 scale)\n- **Datasets** (1-5 scale if applicable)\n- **Software** (1-5 scale if applicable)\n- **Author Identity Knowledge** (1-5 scale)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 6537
+          },
+          "id": "event-002391"
+        },
+        {
+          "source_line": 2392,
+          "timestamp": "2026-05-25T21:17:38.714542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-002392"
+        },
+        {
+          "source_line": 2393,
+          "timestamp": "2026-05-25T21:17:39.669178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-002393"
+        },
+        {
+          "source_line": 2394,
+          "timestamp": "2026-05-25T21:17:39.719978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-002394"
+        },
+        {
+          "source_line": 2395,
+          "timestamp": "2026-05-25T21:17:40.175992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-002395"
+        },
+        {
+          "source_line": 2396,
+          "timestamp": "2026-05-25T21:17:40.731301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-002396"
+        },
+        {
+          "source_line": 2397,
+          "timestamp": "2026-05-25T21:17:41.838648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2118
+          },
+          "id": "event-002397"
+        },
+        {
+          "source_line": 2398,
+          "timestamp": "2026-05-25T21:17:41.839134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-002398"
+        },
+        {
+          "source_line": 2399,
+          "timestamp": "2026-05-25T21:17:41.839384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-002399"
+        },
+        {
+          "source_line": 2400,
+          "timestamp": "2026-05-25T21:17:42.196465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2020
+          },
+          "id": "event-002400"
+        },
+        {
+          "source_line": 2401,
+          "timestamp": "2026-05-25T21:17:43.458116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2726
+          },
+          "id": "event-002401"
+        },
+        {
+          "source_line": 2402,
+          "timestamp": "2026-05-25T21:17:43.862054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2022
+          },
+          "id": "event-002402"
+        },
+        {
+          "source_line": 2403,
+          "timestamp": "2026-05-25T21:17:43.862931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2023
+          },
+          "id": "event-002403"
+        },
+        {
+          "source_line": 2404,
+          "timestamp": "2026-05-25T21:17:52.494602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/submitted.pdf",
+              "pages": "11-20",
+              "project": "ec_hte_llm_annotation",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002404"
+        },
+        {
+          "source_line": 2405,
+          "timestamp": "2026-05-25T21:17:53.599399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 404.7}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 470.9}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 553.2}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 483.7}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 339.8}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 500.2}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 455.7}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 378.7}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1\n…[truncated 478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1104
+          },
+          "id": "event-002405"
+        },
+        {
+          "source_line": 2406,
+          "timestamp": "2026-05-25T21:17:59.680599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-002406"
+        },
+        {
+          "source_line": 2407,
+          "timestamp": "2026-05-25T21:18:00.134407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-002407"
+        },
+        {
+          "source_line": 2408,
+          "timestamp": "2026-05-25T21:18:01.090954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1410
+          },
+          "id": "event-002408"
+        },
+        {
+          "source_line": 2409,
+          "timestamp": "2026-05-25T21:18:01.091554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-002409"
+        },
+        {
+          "source_line": 2410,
+          "timestamp": "2026-05-25T21:18:01.596623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-002410"
+        },
+        {
+          "source_line": 2411,
+          "timestamp": "2026-05-25T21:18:02.051575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1917
+          },
+          "id": "event-002411"
+        },
+        {
+          "source_line": 2412,
+          "timestamp": "2026-05-25T21:18:02.052067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-002412"
+        },
+        {
+          "source_line": 2413,
+          "timestamp": "2026-05-25T21:18:02.605606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-002413"
+        },
+        {
+          "source_line": 2414,
+          "timestamp": "2026-05-25T21:18:03.160988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2069
+          },
+          "id": "event-002414"
+        },
+        {
+          "source_line": 2415,
+          "timestamp": "2026-05-25T21:18:03.970055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1917
+          },
+          "id": "event-002415"
+        },
+        {
+          "source_line": 2416,
+          "timestamp": "2026-05-25T21:18:04.173040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2576
+          },
+          "id": "event-002416"
+        },
+        {
+          "source_line": 2417,
+          "timestamp": "2026-05-25T21:18:04.475267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1869
+          },
+          "id": "event-002417"
+        },
+        {
+          "source_line": 2418,
+          "timestamp": "2026-05-25T21:18:13.765498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/submitted.pdf",
+              "pages": "21-31",
+              "project": "ec_hte_llm_annotation",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002418"
+        },
+        {
+          "source_line": 2419,
+          "timestamp": "2026-05-25T21:18:15.019990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 464.0}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 450.0}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 506.3}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 505.5}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 519.9}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 489.4}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 498.8}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 438.3}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p29.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1\n…[truncated 697 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1254
+          },
+          "id": "event-002419"
+        },
+        {
+          "source_line": 2420,
+          "timestamp": "2026-05-25T21:18:19.688514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-002420"
+        },
+        {
+          "source_line": 2421,
+          "timestamp": "2026-05-25T21:18:20.091782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-002421"
+        },
+        {
+          "source_line": 2422,
+          "timestamp": "2026-05-25T21:18:21.048279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1359
+          },
+          "id": "event-002422"
+        },
+        {
+          "source_line": 2423,
+          "timestamp": "2026-05-25T21:18:21.051354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 959
+          },
+          "id": "event-002423"
+        },
+        {
+          "source_line": 2424,
+          "timestamp": "2026-05-25T21:18:21.102021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-002424"
+        },
+        {
+          "source_line": 2425,
+          "timestamp": "2026-05-25T21:18:21.606109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-002425"
+        },
+        {
+          "source_line": 2426,
+          "timestamp": "2026-05-25T21:18:22.108983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-002426"
+        },
+        {
+          "source_line": 2427,
+          "timestamp": "2026-05-25T21:18:22.696150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1594
+          },
+          "id": "event-002427"
+        },
+        {
+          "source_line": 2428,
+          "timestamp": "2026-05-25T21:18:22.696540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-002428"
+        },
+        {
+          "source_line": 2429,
+          "timestamp": "2026-05-25T21:18:24.400075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2793
+          },
+          "id": "event-002429"
+        },
+        {
+          "source_line": 2430,
+          "timestamp": "2026-05-25T21:18:25.104673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2995
+          },
+          "id": "event-002430"
+        },
+        {
+          "source_line": 2431,
+          "timestamp": "2026-05-25T21:18:25.309553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2613
+          },
+          "id": "event-002431"
+        },
+        {
+          "source_line": 2432,
+          "timestamp": "2026-05-25T21:18:32.999987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p23.png"
+            }
+          },
+          "id": "event-002432"
+        },
+        {
+          "source_line": 2433,
+          "timestamp": "2026-05-25T21:18:33.555999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p24.png"
+            }
+          },
+          "id": "event-002433"
+        },
+        {
+          "source_line": 2434,
+          "timestamp": "2026-05-25T21:18:34.013128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p25.png"
+            }
+          },
+          "id": "event-002434"
+        },
+        {
+          "source_line": 2435,
+          "timestamp": "2026-05-25T21:18:35.120659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p26.png"
+            }
+          },
+          "id": "event-002435"
+        },
+        {
+          "source_line": 2436,
+          "timestamp": "2026-05-25T21:18:36.032981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p27.png"
+            }
+          },
+          "id": "event-002436"
+        },
+        {
+          "source_line": 2437,
+          "timestamp": "2026-05-25T21:18:36.033484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p28.png"
+            }
+          },
+          "id": "event-002437"
+        },
+        {
+          "source_line": 2438,
+          "timestamp": "2026-05-25T21:18:36.285695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 3285
+          },
+          "id": "event-002438"
+        },
+        {
+          "source_line": 2439,
+          "timestamp": "2026-05-25T21:18:38.400717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4844
+          },
+          "id": "event-002439"
+        },
+        {
+          "source_line": 2440,
+          "timestamp": "2026-05-25T21:18:39.007703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4994
+          },
+          "id": "event-002440"
+        },
+        {
+          "source_line": 2441,
+          "timestamp": "2026-05-25T21:18:40.014682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4894
+          },
+          "id": "event-002441"
+        },
+        {
+          "source_line": 2442,
+          "timestamp": "2026-05-25T21:18:40.270386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4236
+          },
+          "id": "event-002442"
+        },
+        {
+          "source_line": 2443,
+          "timestamp": "2026-05-25T21:18:40.273916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4240
+          },
+          "id": "event-002443"
+        },
+        {
+          "source_line": 2444,
+          "timestamp": "2026-05-25T21:18:46.451989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p29.png"
+            }
+          },
+          "id": "event-002444"
+        },
+        {
+          "source_line": 2445,
+          "timestamp": "2026-05-25T21:18:46.856077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-002445"
+        },
+        {
+          "source_line": 2446,
+          "timestamp": "2026-05-25T21:18:47.360611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 908
+          },
+          "id": "event-002446"
+        },
+        {
+          "source_line": 2447,
+          "timestamp": "2026-05-25T21:18:47.361064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images/submitted_p31.png"
+            }
+          },
+          "id": "event-002447"
+        },
+        {
+          "source_line": 2448,
+          "timestamp": "2026-05-25T21:18:47.867503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1011
+          },
+          "id": "event-002448"
+        },
+        {
+          "source_line": 2449,
+          "timestamp": "2026-05-25T21:18:47.970205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 609
+          },
+          "id": "event-002449"
+        },
+        {
+          "source_line": 2450,
+          "timestamp": "2026-05-25T21:18:56.709342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/main.tex",
+              "limit": "200"
+            }
+          },
+          "id": "event-002450"
+        },
+        {
+          "source_line": 2451,
+          "timestamp": "2026-05-25T21:18:56.759989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{inconsolata}\n9\t\n10\t\\usepackage{amsmath,amssymb,amsthm}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{multirow}\n14\t\\usepackage{makecell}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{algorithm}\n17\t\\usepackage{algpseudocode}\n18\t\n19\t\\newtheorem{theorem}{Theorem}\n20\t\\newtheorem{corollary}[theorem]{Corollary}\n21\t\\newtheorem{proposition}[theorem]{Proposition}\n22\t\\newtheorem{remark}[theorem]{Remark}\n23\t\n24\t\\title{When Debiasing Hurts: An Exact Bias Identity\\\\for LLM-Annotated Treatment Effects}\n25\t\n26\t\\author{Anonymous}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t\\input{abstract}\n32\t\n33\t\\input{introduction}\n34\t\n35\t\\input{related_work}\n36\t\n37\t\\input{theory}\n38\t\n39\t\\input{method}\n40\t\n41\t\\input{experiments}\n42\t\n43\t\\input{conclusion}\n44\t\n45\t\\input{limitations}\n46\t\n47\t\\bibliography{references}\n48\t\n49\t\\appendix\n50\t\\input{appendix}\n51\t\n52\t%\\input{checklist}\n53\t\n54\t\\end{document}\n55\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002451"
+        },
+        {
+          "source_line": 2452,
+          "timestamp": "2026-05-25T21:19:02.388011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper"
+            }
+          },
+          "id": "event-002452"
+        },
+        {
+          "source_line": 2453,
+          "timestamp": "2026-05-25T21:19:02.438708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix_agnews.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix_stance.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-002453"
+        },
+        {
+          "source_line": 2454,
+          "timestamp": "2026-05-25T21:19:06.104780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex"
+            }
+          },
+          "id": "event-002454"
+        },
+        {
+          "source_line": 2455,
+          "timestamp": "2026-05-25T21:19:06.406450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Requires preamble: \\usepackage{amsthm,amsmath,amssymb}\n2\t% and: \\newtheorem{theorem}{Theorem}\n3\t%      \\newtheorem{corollary}[theorem]{Corollary}\n4\t%      \\newtheorem{proposition}[theorem]{Proposition}\n5\t\n6\t\\section{Bias Decomposition: When Debiasing Hurts}\n7\t\\label{sec:theory}\n8\t\n9\tWe formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.\n10\tConsider estimating the conditional average treatment effect (CATE) $\\tau(z) = \\mathbb{E}[Y(1) - Y(0) \\mid Z = z]$, where $Z \\in \\{0, 1\\}$ is a binary effect modifier observed only through a noisy annotation $\\hat{Z}$.\n11\tThe population consists of $K$ subgroups $S \\in \\{1, \\ldots, K\\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \\times 2$ confusion matrix $C_s$ with symmetric error rate $\\pi_s = P(\\hat{Z} \\neq Z \\mid S{=}s)$.\n12\tStandard practice estimates a single confusion matrix $\\bar{C} = \\sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\n13\tWe show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.\n14\t\n15\tWe state five assumptions maintained throughout.\n16\t%\n17\t\\begin{itemize}\n18\t\\item[\\textbf{(A1)}] \\textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.\n19\t\\item[\\textbf{(A2)}] \\textit{Symmetric misclassification (expository simplification):} $P(\\hat{Z}{=}1 \\mid Z{=}0, S{=}s) = P(\\hat{Z}{=}0 \\mid Z{=}1, S{=}s) = \\pi_s$ for all $s$. Used only to reduce $[B_s]_{z,1}$ to the scalar $\\pm\\delta_s/(1{-}2\\bar{\\pi})$; the product-form identity holds for arbitrary asymmetric matrices without~(A2) (Remark~\\ref{rem:asymmetric}).\n20\t\\item[\\textbf{(A3)}] \\textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.\n21\t\\item[\\textbf{(A4)}] \\textit{N\n…[truncated 7615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-002455"
+        },
+        {
+          "source_line": 2456,
+          "timestamp": "2026-05-25T21:19:06.406841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex"
+            }
+          },
+          "id": "event-002456"
+        },
+        {
+          "source_line": 2457,
+          "timestamp": "2026-05-25T21:19:06.758463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Correction Prescribed by the Identity}\n2\t\\label{sec:method}\n3\t\n4\tTheorem~\\ref{thm:bias_identity} identifies per-subgroup misclassification deviation as the bias source; the natural correction is per-subgroup confusion matrix inversion.\n5\tThis correction (EC-HTE) proceeds in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.\n6\tThe complete procedure is summarized in Algorithm~\\ref{alg:echte} and illustrated in Figure~\\ref{fig:method_overview}.\n7\t\n8\t\\begin{algorithm}[t]\n9\t\\caption{EC-HTE: Error-Corrected HTE}\n10\t\\label{alg:echte}\n11\t\\begin{algorithmic}[1]\n12\t\\Require $\\{(Y_i, W_i, \\hat{Z}_i, X_i)\\}_{i=1}^N$; expert labels $\\{Z_j^*\\}_{j=1}^{n_{\\text{expert}}}$; subgroup map $S$\n13\t\\Ensure Corrected CATE estimates $\\hat{\\tau}(z)$ with CIs\n14\t\\Statex\n15\t\\State \\textbf{Check:} $n_{\\text{expert}} \\cdot P(Z_{\\min}) / K \\geq 25$ and $\\max_s \\pi_s < 0.5$\n16\t\\Statex\n17\t\\State \\textbf{Step 1: Per-subgroup CMs (hierarchical Bayes)}\n18\t\\State $\\alpha_0 \\gets \\arg\\max_\\alpha \\prod_s p(\\text{data}_s \\mid \\alpha, \\hat{C}_{\\text{global}})$\n19\t\\For{$s = 1, \\ldots, K$}\n20\t    \\State $\\hat{C}_s[j,k] \\gets (n_{s,jk} + \\alpha_0 \\hat{C}_{\\text{global},j,k}) / (n_{s,j\\cdot} + \\alpha_0)$\n21\t\\EndFor\n22\t\\State \\textbf{Step 2: Stratified inversion}\n23\t\\For{$s = 1, \\ldots, K$}\n24\t    \\If{$\\kappa(\\hat{C}_s) > 100$} $\\hat{C}_s \\gets \\bar{C}$ \\Comment{$\\kappa$-guard}\n25\t    \\EndIf\n26\t    \\State $\\tilde{\\boldsymbol{\\mu}}_s \\gets \\hat{C}_s^{-1} \\hat{\\boldsymbol{\\mu}}_s$\n27\t\\EndFor\n28\t\\State \\textbf{Step 3: Downstream estimation}\n29\t\\State Feed $\\tilde{\\boldsymbol{\\mu}}_s$ into CausalForestDML (honest splitting)\n30\t\\State $\\mathrm{se}_{\\mathrm{adj},i} \\gets \\sqrt{\\mathrm{diag}(\\hat{C}_{S_i}^{-1}\\, \\mathrm{diag}(\\mathrm{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top})}$\n31\t\\end{algorithmic}\n32\t\\end{algorithm}\n33\t\n34\t\\begin{figure*}[t]\n35\t\\centering\n36\t\\include\n…[truncated 3533 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-002457"
+        },
+        {
+          "source_line": 2458,
+          "timestamp": "2026-05-25T21:19:06.758973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-002458"
+        },
+        {
+          "source_line": 2459,
+          "timestamp": "2026-05-25T21:19:06.809558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLarge language models increasingly replace human annotators in computational social science, yet their error rates can vary by up to $5\\times$ across demographic and text-feature subgroups.\n3\tWhen these noisy labels serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, the standard remedy---estimating a single confusion matrix and applying its inverse uniformly---is widely trusted to remove bias.\n4\tWe prove it can do the opposite.\n5\tWe derive an exact bias identity showing that global correction introduces a subgroup-level bias proportional to the interaction of error-rate deviation and effect heterogeneity, a product structure invisible to any pooled analysis.\n6\tThis identity reveals that correction reverses estimated causal effect signs in 14.9\\% of configurations and amplifies bias across all eight real LLMs tested.\n7\tA diagnostic corollary flags harmful correction from error rates alone, without estimating treatment effects.\n8\tGuided by the identity, we propose EC-HTE, a per-subgroup correction via hierarchical Bayesian confusion matrix estimation that reduces bias by $7.4\\times$ under extreme heterogeneity, with clear operating conditions ($\\Delta\\pi > 0.15$, $n_{\\text{expert}} \\geq 250$, $K \\leq 4$) and validated across 11 LLM--dataset combinations spanning four NLP tasks\\footnote{Code and data: \\url{https://anonymous.4open.science/r/ec_hte_llm_annotation-4CC8/}.}.\n9\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002459"
+        },
+        {
+          "source_line": 2460,
+          "timestamp": "2026-05-25T21:19:11.832848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-002460"
+        },
+        {
+          "source_line": 2461,
+          "timestamp": "2026-05-25T21:19:12.287342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\t\\subsection{Setup}\n4\t\n5\tWe test on synthetic ($N{=}5{,}000$, $K \\in \\{2, 4\\}$, controlled $\\Delta\\tau$ and $\\Delta\\pi$, 100 Monte Carlo (MC) runs) and semi-synthetic data-generating processes (DGPs) spanning four NLP tasks: sentiment analysis (TweetEval~\\cite{barbieri2020tweeteval}, $K{=}4$), hate speech detection (CivilComments, $K{=}4$), stance detection ($K{=}5$; Appendix~\\ref{app:stance}), and topic classification (AG News, $K{=}4$; Appendix~\\ref{app:agnews}), with full specifications in Appendix~\\ref{app:dgp}.\n6\t\n7\tWe compare: (1) \\textit{Naive} (no correction), (2) \\textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\\cite{angelopoulos2023ppi,egami2023dsl} with homogeneous error), (3) \\textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \\textit{HB EC-HTE} (per-subgroup correction), (5) \\textit{PPCI}~\\cite{sui2026ppci}, and (6) \\textit{EC-HTE+PPCI}.\n8\tFor CausalForest~\\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.\n9\tPrimary metrics are $|\\text{bias}|$, root mean squared error (RMSE), and 95\\% confidence interval (CI) coverage, averaged across subgroups and 100 MC runs.\n10\tRobustness validations cover eight conditions including asymmetric errors, subgroup misspecification, and treatment-dependent misclassification (all $\\geq$89.5\\% coverage; Appendices~\\ref{app:hatespeech}--\\ref{app:treatment_dep}).\n11\tSemi-synthetic evaluation uses empirical confusion matrices from 11 LLM--dataset combinations (eight LLMs across two datasets; Appendix~\\ref{app:realcm_bias}; semi-real CM validation in Appendix~\\ref{app:semireal}; open-source LLM validation in Appendix~\\ref{app:multilm_opensource}).\n12\t\n13\t\\subsection{Empirical Validation of the Bias Identity}\n14\t\\label{sec:bias_mechanism}\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\caption{Results under moderate heterogeneity and semi-synthetic data. Moderate: $\\Delta\\pi \\leq 0.10$; TweetEval: empirical subgroup structure ($K{=}4$). Metrics averaged over \n…[truncated 9141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-002461"
+        },
+        {
+          "source_line": 2462,
+          "timestamp": "2026-05-25T21:19:12.389014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+              "limit": "250"
+            }
+          },
+          "id": "event-002462"
+        },
+        {
+          "source_line": 2463,
+          "timestamp": "2026-05-25T21:19:12.490139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{EC-HTE Procedure}\n2\t\\label{app:algorithm}\n3\t\n4\tThe complete EC-HTE procedure is given in Algorithm~\\ref{alg:echte} (Section~\\ref{sec:method}).\n5\tBelow we provide additional implementation details.\n6\t\n7\t\\subsection{Condition Number Guard Ablation}\n8\t\\label{app:kappa_ablation}\n9\t\n10\tThe singularity guard in Algorithm~\\ref{alg:echte} (line~6) falls back to global correction when $\\kappa(\\hat{C}_s) > 100$.\n11\tWe verify that this threshold is not load-bearing by sweeping $\\kappa \\in \\{10, 25, 50, 100, 200, 500, 1000\\}$ under the standard DGP ($K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 100 MC runs).\n12\tAcross all configurations, the maximum observed condition number is $\\kappa_{\\max} = 1.89$ (mean 1.45, p99 1.89), providing a $53{\\times}$ safety margin below the $\\kappa{=}100$ threshold.\n13\tConsequently, the guard never triggers at any tested threshold, and all $\\kappa$ values produce identical RMSE (HB: 0.076, Global: 0.077) and zero numerical instability.\n14\tIn a stress test with near-random labeling ($\\pi_s \\approx 0.4$--$0.5$, $n_{\\text{expert}}{=}50$), the maximum condition number reaches 1{,}125, correctly triggering the $\\kappa{=}100$ guard and preventing catastrophic inversion.\n15\tThe adaptive formula $\\kappa_{\\text{adapt}} = 10 \\sqrt{n_{\\text{expert}} / K}$ recovers $\\kappa{=}100$ for this regime and scales naturally with the estimation precision.\n16\t\n17\t\\section{Full Proof of Theorem~\\ref{thm:bias_identity}}\n18\t\\label{app:derivation}\n19\t\n20\t\\paragraph{Setup.}\n21\tUnder assumptions (A1)--(A4), the observed CATE in subgroup $s$ at effect-modifier level $z$ is\n22\t\\begin{equation}\n23\t\\tau_{\\text{obs}}(z, s) = \\sum_{z'} M_s[z, z'] \\cdot \\tau(z'),\n24\t\\end{equation}\n25\twhere $M_s[z, z'] = P(Z{=}z' \\mid \\hat{Z}{=}z, S{=}s)$ is the mixing matrix.\n26\tUnder (A2)--(A3), $M_s = \\bigl[\\begin{smallmatrix} 1-\\pi_s & \\pi_s \\\\ \\pi_s & 1-\\pi_s \\end{smallmatrix}\\bigr]$.\n27\t\n28\t\\paragraph{Global correction.}\n29\tThe pooled mixing matrix is $M_\n…[truncated 17814 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-002463"
+        },
+        {
+          "source_line": 2464,
+          "timestamp": "2026-05-25T21:19:17.813612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+              "offset": "250",
+              "limit": "300"
+            }
+          },
+          "id": "event-002464"
+        },
+        {
+          "source_line": 2465,
+          "timestamp": "2026-05-25T21:19:18.215883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "250\t\\centering\n251\t\\caption{Hyperprior sensitivity summary. RMSE and coverage across 15 $(a_0, b_0)$ configurations. The default $\\text{Gamma}(3, 1)$ ranks 8th of 15 by RMSE; the best configuration $\\text{Gamma}(1, 0.5)$ yields only 1.9\\% improvement. Excluding extreme configurations ($a_0 \\cdot b_0 > 8$), RMSE varies by $<$6\\%.}\n252\t\\label{tab:hyperprior_sweep}\n253\t\\small\n254\t\\begin{tabular}{lc}\n255\t\\toprule\n256\tMetric & Value \\\\\n257\t\\midrule\n258\tDefault $\\text{Gamma}(3, 1)$ RMSE & 0.0841 \\\\\n259\tBest $\\text{Gamma}(1, 0.5)$ RMSE & 0.0825 \\\\\n260\tRMSE range (reasonable configs) & 6.0\\% \\\\\n261\tRMSE range (all 15 configs) & 17.3\\% \\\\\n262\tCoverage range & 0.925--0.938 \\\\\n263\tDefault rank & 8 / 15 \\\\\n264\t\\bottomrule\n265\t\\end{tabular}\n266\t\\end{table}\n267\t\n268\tScaling the $\\text{Gamma}(3, 1)$ hyperprior by factors of $0.5\\times$ to $2\\times$ produces $<$1\\% RMSE variation for $K{=}2$ and $\\sim$4--5\\% for $K{=}4$.\n269\tCoverage remains invariant across the sensitivity range ($\\Delta < 1.3$pp).\n270\tThese results confirm that the hierarchical estimator is robust to prior specification within a reasonable range; the default $\\text{Gamma}(3, 1)$ is near-median, and no configuration achieves more than 1.9\\% RMSE improvement over the default.\n271\t\n272\t\\section{Diagnostic ROC Curves}\n273\t\\label{app:roc}\n274\t\n275\t\\begin{figure}[t]\n276\t\\centering\n277\t\\includegraphics[width=\\columnwidth]{figures/fig4_roc.png}\n278\t\\caption{ROC curves for the $\\Delta\\tau$-free diagnostic (Proposition~\\ref{prop:debiasing_hurts}): $|\\delta_s|/((1{-}2\\bar\\pi)\\cdot\\pi_s)>1$. (A)~Setting-level ROC (AUC $= 0.89$), compared with the $|\\Delta\\pi \\times \\Delta\\tau|$ product (AUC $= 0.89$) and $\\mathrm{CV}(\\pi_s)$ (AUC $= 0.97$). (B)~Subgroup-level ROC: the $\\Delta\\pi$-only condition (AUC $= 0.86$) substantially outperforms the $|\\Delta\\pi \\times \\Delta\\tau|$ product (AUC $= 0.73$). The $\\Delta\\tau$-free diagnostic depends only on estimable misclassification rates, breaking the circular dependency that would arise\n…[truncated 17311 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-002465"
+        },
+        {
+          "source_line": 2466,
+          "timestamp": "2026-05-25T21:19:18.216341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-002466"
+        },
+        {
+          "source_line": 2467,
+          "timestamp": "2026-05-25T21:19:18.316993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tPer-subgroup correction requires sufficient expert labels ($n_{\\text{expert}} \\geq 250$ for $K{=}2$, $\\geq 500$ for $K{=}4$) and moderate classifier accuracy ($\\text{FPR}_s, \\text{FNR}_s < 0.5$); at $K{=}8$, RMSE exceeds global correction under fixed expert budget (Appendix~\\ref{app:k8_subgroups}).\n5\tAssumption~(A3) requires balanced effect modifier prevalence; under class imbalance ($P(Z{=}1) = 0.1$), the identity remains exact ($R^2 \\geq 0.976$) but EC-HTE's RMSE advantage narrows (ratio 1.06--1.68; Appendix~\\ref{app:classimbalance}).\n6\tAssumption~(A1), conditional independence of misclassification and potential outcomes, is not empirically testable; sensitivity analysis shows robustness up to $\\gamma_T \\leq 0.05$ for treatment-dependent misclassification (coverage $\\geq$89.7\\%; Appendix~\\ref{app:treatment_dep}).\n7\tGround-truth subgroup CATEs are unavailable in public datasets because classic causal inference benchmarks lack the LLM annotation step that creates the measurement error we address, so all evaluations use synthetic CATE injection on real text features and real LLM annotations (Appendices~\\ref{app:dgp},~\\ref{app:multilm}).\n8\tWhen LLMs annotate both the effect modifier and the outcome variable, covariate-side and outcome-side misclassification errors may be correlated, violating the independence structure assumed by combining EC-HTE with post-prediction causal inference (PPCI) frameworks~\\cite{sui2026ppci}; practitioners should verify error independence or apply joint correction when both variables are LLM-annotated.\n9\t\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002467"
+        },
+        {
+          "source_line": 2468,
+          "timestamp": "2026-05-25T21:25:31.516534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿意见（方法严谨性审查）\n\n**论文**: \"When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects\"\n**Venue**: EMNLP 2026 via ARR\n\n---\n\n## 总体评分\n**Overall**: 3.5 (Borderline Conference)\n**一句话总结**: 理论贡献干净且正确，揭示了 global confusion-matrix 校正在异质误分类下引入 subgroup-level 偏差的新现象；实验极其充分。但部分声明精确性不足，方法适用范围偏窄（K≤4, n_expert≥250），削弱了实际影响力。\n\n## 官方维度打分（ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4/5 | Theorem 1 证明完整正确；Proposition 3/5 推导严密；但 A3 松弛下的 \"exact\" 声明不准确，SE 公式忽略 CM 估计不确定性 |\n| Excitement | 3.5/5 | 问题真实且日益重要（LLM annotation for CSS）；bias identity 有洞见但适用场景偏窄 |\n| Reproducibility | 4/5 | Algorithm 1 描述基本完整，DGP 参数齐全，匿名代码已提供 |\n| Confidence | 4/5 | 我仔细检查了核心证明的每一步代数推导，熟悉 measurement error 和 causal inference 文献 |\n\n---\n\n## Summary\n\n本文推导了一个精确的偏差恒等式（Theorem 1），表明当 LLM 标注的误分类率在 subgroup 间异质时，标准的全局 confusion matrix 校正会引入与 δ_s·Δτ/(1−2π̄) 成正比的 subgroup-level 偏差。基于此，作者提出 EC-HTE：用层次贝叶斯估计 per-subgroup confusion matrix，再做分层校正。论文在 520+ synthetic 配置、11 个 LLM-dataset 组合、4 个 NLP 任务上验证了理论和方法。\n\n---\n\n## 主要优势\n\n**S1. 理论贡献新颖且严密。** Theorem 1 的乘积形式 δ_s·Δτ/(1−2π̄) 清晰揭示了三个因素的交互：error-rate deviation、treatment effect heterogeneity、pooled-error amplification。Appendix B 的逐步推导（Eq. 7–13）代数正确，我手动验证了 (1,1) entry 的化简和 δ_s 代入步骤。\n\n**S2. Proposition 5 的 Δτ-free diagnostic 具有独特实用价值。** 条件 |δ_s|/((1−2π̄)·π_s)>1 仅需误分类率即可判断 global correction 是否有害，打破了需要先估计 treatment effects 的循环依赖。AUC=0.86（symmetric）/0.96（asymmetric）在 48 个配置上验证（Figure 6）。\n\n**S3. 实验极其充分，诚实报告局限。** 520 个 synthetic 配置 + 48 个 asymmetric 配置 + K=8 边界分析 + 11 个 real LLM CM + robustness checks（8 个条件）。Table 1 supplementary 中 EC-HTE 在 moderate heterogeneity 下 RMSE 劣于 Global 的结果被如实报告，operating conditions 清晰列出。\n\n**S4. 方法设计有理论指导。** EC-HTE 的三阶段流程（HB CM estimation → stratified inversion → downstream integration）直接由 Theorem 1 驱动：identity 指出偏差来源是 per-subgroup CM deviation，自然解是 per-subgroup 校正。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] **A3 松弛下 \"identity remains exact\" 的声明不准确**\n- 具体位置：Section 3 倒数第二段；theory.tex line 85\n- 问题：论文称 \"Under class imbalance (relaxing A3), the identity remains exact (R²≥0.976 at P(Z=1)=0.1)\"。但 Theorem 1 的简化乘积形式 δ_s·Δτ/(1−2π̄) 依赖 A3（P(Z=0)=P(Z=1)=0.5 使 M_s=C_s）。松弛 A3 后 mixing matrix M_s≠C_s，简化形式不再精确成立。R²=0.994（balanced）→ 0.976（imbalanced）的下降正好说明存在近似误差。\"exact\" 一词在此处具有误导性。\n- 为什么影响接收：这是论文理论贡献的核心声明之一。\"exact identity\" 是标题和 abstract 的卖点。如果在常见的 class imbalance 场景下 identity 只是近似成立，读者对方法的信心会受影响。\n- 建议修改方向：(a) 明确区分 general matrix form bias(z,s)=[(M_global^{-1} M_s − I)τ]_z（总是精确的）和 simplified scalar form δ_s·Δτ/(1−2π̄)（仅在 A2+A3 下精确）；(b) 将 \"remains exact\" 改为 \"remains a close approximation (R²≥0.976)\" 或证明 general form 在松弛 A3 后仍以某种closed-form 精确成立。\n\n**N2** [critical] **Plug-in SE 公式忽略 confusion matrix 估计不确定性，且论文未充分讨论**\n- 具体位置：Algorithm 1 line 11; method.tex line 30\n- 问题：SE 公式 se_adj = √(diag(Ĉ_s^{-1} diag(se²) Ĉ_s^{-⊤})) 仅传播 outcome moment 的抽样方差，不含 Ĉ_s 本身的估计误差。在 n_expert=250, K=4 时，每个 subgroup 仅 ~62 个 expert labels，CM 估计不确定性非平凡。CausalForest 的 footnote（p.7）承认 plug-in SE 仅达 93.8% coverage，bootstrap 恢复到 ≥95%——说明 CM uncertainty 确实导致了 under-coverage。\n- 为什么影响接收：论文反复引用 \"coverage≥93-95%\" 作为方法可靠性的核心证据。如果 plug-in SE 系统性 under-cover，而 bootstrap 才是正确方案，论文应以 bootstrap 为默认推荐，并在正文（非 footnote）讨论此问题。\n- 建议修改方向：(a) 在 Section 4.3 明确讨论 plug-in vs bootstrap SE 的区别；(b) 将 bootstrap 提升为默认推荐（尤其在 n_expert/K < 100 时）；(c) 在 Table 2 中同时报告 plug-in 和 bootstrap coverage。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] **Algorithm 1 中 Ĉ_s^{-1} 在 asymmetric case 下不正确**\n- 具体位置：Algorithm 1 line 10-11; method.tex Eq. (6)\n- 问题：τ_obs = M_s · τ_true，恢复需要 M_s^{-1}（mixing matrix 的逆），不是 C_s^{-1}（forward confusion matrix 的逆）。A2+A3 下 M_s=C_s 所以无区别。但论文 Remark 2 声称 A2 不必要，Appendix J 做了 asymmetric 实验——这些场景下 Algorithm 1 应使用 M_s^{-1}（通过 Bayes rule 从 C_s 计算），而非直接 C_s^{-1}。\n- 建议：在 Algorithm 1 和 Section 4.2 中明确：asymmetric case 下先从 Ĉ_s 和 class prior 计算 M̂_s，再求逆。Appendix J 的实验可能已经这样做了（从结果看是正确的），但算法描述需要修正。\n\n**W2** [warning] **finite-sample remainder O_p(κ²·n^{-1/2}) 中的 κ 指代不一致**\n- 具体位置：Section 3 最后一段 vs Appendix B 最后一段\n- 问题：正文写 \"O_p(n_expert^{-1/2}·κ(C_s)²)\"，附录写 \"κ(M_global)²\"。κ-guard 检查的是 κ(Ĉ_s)>100。三处引用了不同的 condition number，读者无法确定哪个才是 bound 中的正确量。\n- 建议：统一符号。实际 bound 涉及 κ(M_global) 和 ||M_s||（见附录推导），应明确写出。\n\n**W3** [warning] **Operating conditions 偏窄，限制实际适用性**\n- 具体位置：Section 5.4; experiments.tex lines 125-128\n- 问题：K≤4, n_expert≥250（K=2）或 ≥500（K=4），Δπ>0.15, FNR<0.50。在很多 NLP 场景中 subgroup 数量 K>4（如按人口统计交叉分组），且获取 250+ expert labels 代价高昂。K=8 时 EC-HTE RMSE (0.340) 远超 Global (0.168)（Appendix I, Table 6）。\n- 建议：讨论如何通过 adaptive grouping 或 hierarchical subgroup structure 扩展到 K>4。Table 6 中 adaptive shrinkage 将 RMSE 从 0.340 降到 0.216，值得在正文提及。\n\n**W4** [warning] **Corollary 4 (Aggregate Bias) 贡献度偏低**\n- 具体位置：Section 3, Corollary 4\n- 问题：Cov_w(π_s, Δτ_s)/(1−2π̄) 是 Proposition 3 的直接加权平均，推导仅需一行。作为 Corollary 列出可以，但论文正文说 \"The proof is immediate\"，占据的篇幅和编号空间与贡献不匹配。\n- 建议：可以保留编号但不单独写 proof paragraph（仅说 \"follows by weighted averaging\"）。释放的空间可用于讨论 W1 或 W3。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Abstract word count 应确认不超过 200 words（EMNLP 2026 硬约束）。当前 abstract 约 140 words，合规。\n- **M2**: Figure 3 (p.4) 的 heatmap 标注 \"debiasing helps\" / \"debiasing hurts\" 分区线与 Proposition 5 的 threshold 条件吻合度可以更明确标出。\n- **M3**: Table 2 caption 中 \"Frazis and Loewenstein (2003)\" 缩写为 \"F-L Scalar/Per-sub.\" 但正文首次出现在 Table 2 本身——应在 Section 5.1 的 baselines 描述中引入。\n- **M4**: Appendix J Table 10 中 EC-HTE 在 48 个 asymmetric 配置的 **所有** 情况下均劣于 Global (RMSE 0.125 vs 0.109)，但正文 Section 3 Remark 2 仅引用了 3 个 cherry-picked 配置的优势结果 (Table 8)。建议在 Remark 2 或相关段落引用 Table 10 的全面结果以避免误导。\n\n---\n\n## Questions\n\n**Q1**: Proposition 3 relaxes A5 允许 subgroup-specific Δτ_s，但 B_s = M_global^{-1} M_s − I 不依赖 treatment effects。是否意味着 A5 从一开始就不是必要假设，Theorem 1 可以直接用 Δτ_s 表述？如果是，为什么在 Theorem 1 中设 A5 再在 Proposition 3 松弛？\n\n**Q2**: 在 CivilComments case study (Section 5.2) 中，FNR=53.3% 接近 singularity。如果 practitioner 的某些 subgroup FNR>50% 但其他 subgroup 正常，EC-HTE 的 κ-guard 会对该 subgroup fallback to global correction——这是否会引入一种新的异质性偏差（部分 subgroup per-subgroup 校正，部分 global 校正）？\n\n**Q3**: 论文假设 subgroup membership S 是已知的。在实际应用中 S 通常也需要估计或定义（如通过 text features 聚类）。S 的 misspecification 对 EC-HTE 的影响是否有分析？（Appendix O 提到了 robustness to misspecification 但我没找到详细结果。）\n\n---\n\n## Missing References\n\n- Egami et al. (2023) \"Using Imperfect Surrogates for Downstream Inference\" — 已引用\n- Angelopoulos et al. (2023) PPI — 已引用\n- Zhan, Zhao, and Dai (2024) prediction-powered confidence — 已引用\n- 无明显遗漏，参考文献覆盖了 measurement error, causal inference, NLP annotation 三个方向。\n\n---\n\n## 格式合规检查\n- ✅ `\\usepackage[review]{acl}` 匿名格式\n- ✅ 正文 8 页（content ends on p.8）\n- ✅ Limitations section 在 Conclusion 之后，篇幅适当\n- ✅ Abstract ~140 words（<200 限制）\n- ✅ References 从 p.9 开始，不计入页数限制",
+              "reviewer_id": "1",
+              "project": "ec_hte_llm_annotation"
+            }
+          },
+          "id": "event-002468"
+        },
+        {
+          "source_line": 2469,
+          "timestamp": "2026-05-25T21:25:35.181742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_489afd65980834a91024fd48e21d984f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3665
+          },
+          "id": "event-002469"
+        },
+        {
+          "source_line": 2470,
+          "timestamp": "2026-05-25T21:25:41.214306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002470"
+        },
+        {
+          "source_line": 2471,
+          "timestamp": "2026-05-25T21:25:41.214644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-002471"
+        },
+        {
+          "source_line": 2472,
+          "timestamp": "2026-05-25T21:25:45.884031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/review_round_24/_pdf_images"
+            }
+          },
+          "id": "event-002472"
+        },
+        {
+          "source_line": 2473,
+          "timestamp": "2026-05-25T21:25:46.035012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 150
+          },
+          "id": "event-002473"
+        },
+        {
+          "source_line": 2474,
+          "timestamp": "2026-05-25T21:25:58.302922+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿完成。核心结论：\n\n- **Overall 3.5 (Borderline Conference)**，Soundness 4/5，Excitement 3.5/5\n- **理论正确**：Theorem 1 证明完整，代数推导逐步验证无误；Proposition 3/5 推导严密\n- **两个 Must-Fix**：(1) A3 松弛下 \"identity remains exact\" 声明不准确（R²=0.976 说明简化形式只是近似）；(2) plug-in SE 忽略 CM 估计不确定性，bootstrap 应为默认推荐\n- **四个 Should-Fix**：Algorithm 1 中 C_s^{-1} vs M_s^{-1} 在 asymmetric case 下的区别未说明；κ² remainder 中 κ 指代不一致；operating conditions 偏窄（K≤4）；Corollary 4 贡献度偏低\n- **实验极其充分**，520+ 配置 + 11 个 real LLM CM + 8 种 robustness check，且诚实报告了方法不适用的场景"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1"
+          },
+          "id": "event-002474"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 2475,
+          "timestamp": "2026-05-25T21:28:50.371733+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉审查：请逐条回应 Reviewer 2 的审稿意见\n\n以下是 Reviewer 2 的完整审稿意见（新颖性与完整性审查）。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n---\n\n### Reviewer 2 的 Must-Fix 问题\n\n**N1** [critical] **引用 \"Sui et al., 2026\" (PPCI) 无法验证**\n- Section 4.3, Section 5.3, Limitations, Appendix K 多次引用\n- R2 论点：多次 web search 无法找到此引用。已知的 PPCI 论文 (arxiv:2502.06343) 作者为 Cadei, Demirel, De Bartolomeis 等人，并非 \"Sui et al.\"。如果引用不存在或被错误归因，涉及学术诚信。\n\n**N2** [critical] **Related Work 严重不足**\n- Section 2 仅约 7 行正文\n- 缺失领域：(a) Noisy label learning（Xia et al. 2020, Cheng et al. 2022）；(b) Measurement error identification（Mahajan 2006, He & Schennach 2008）；(c) PPI/DSL/PPCI/ForestIV 在主文中未概述各自解决的问题\n\n### Reviewer 2 的 Should-Fix 问题\n\n**W1** 新颖性相对 F-L (2003) 的增量论证不够清晰——推导本质是 2×2 矩阵代数的直接计算\n**W2** Proposition 5 的增量价值需论证——已有 per-subgroup error rates 为什么不直接运行 EC-HTE？\n**W3** Venue 适配性——核心贡献更偏 causal inference methodology 而非 NLP\n**W4** \"Debiasing\" 术语歧义——NLP 社区通常指 fairness debiasing\n**W5** Abstract 数字密度过高\n\n### Reviewer 2 的 Minor Issues\n1. Reference 中 \"Audinet de Pieuchon\" 姓名拼写可能有误\n2. Table 1 与 Table 2 之间 RMSE 差异讨论不足\n3. Figure 3 y 轴标签字体偏小\n4. 25 个 Appendix 结构可精简\n5. Conclusion 偏短，缺少更广泛影响讨论\n\n### Reviewer 2 的 Missing References\n- Xia et al. (2020) instance-dependent label noise, NeurIPS\n- Cheng et al. (2022) manifold-regularized transition matrix, CVPR\n- Zhu et al. (2022) label noise for lower-quality features, ICML\n- Mahajan (2006) misclassification identification, Econometrica\n- Keith et al. (2020) text and causal inference\n- Fong & Tyler (2021) ML predictions as regression covariates\n\n### Reviewer 2 的 Questions\nQ1: 请提供 Sui et al. 2026 PPCI 引用的完整信息\nQ2: Proposition 5 相对于直接运行 EC-HTE 的 marginal value？\nQ3: A1 在 LLM annotation 中是否现实？sensitivity analysis 范围 γ_T≤0.05 偏窄\nQ4: 是否考虑过 LLM calibration (Platt scaling) 作为替代？\n\n### Reviewer 2 的总体评分\nOverall 3.5, Soundness 3.5/5, Excitement 3/5, Confidence 4/5\n\n---\n\n请对以上每一条（N1, N2, W1-W5, Minor 1-5, Q1-Q4）逐条给出 [AGREE] 或 [REBUT]，并说明理由。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002475"
+        },
+        {
+          "source_line": 2476,
+          "timestamp": "2026-05-25T21:29:53.802917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-002476"
+        },
+        {
+          "source_line": 2477,
+          "timestamp": "2026-05-25T21:29:54.255055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\tClassical measurement error correction can amplify MSE under misspecification~\\cite{fuller1987measurement,carroll2006measurement}; \\citet{frazis2003estimating} derive scalar attenuation for homogeneous errors, which Theorem~\\ref{thm:bias_identity} generalizes to heterogeneous settings.\n5\tHTE estimators~\\cite{athey2016recursive,wager2018causal,chernozhukov2018dml} assume error-free covariates; LLM error rates vary by up to $5\\times$ across subgroups~\\cite{ashwin2025bias}.\n6\tPPI~\\cite{angelopoulos2023ppi}, DSL~\\cite{egami2023dsl}, PPCI~\\cite{sui2026ppci}, and ForestIV~\\cite{bu2023forestiv} correct population-level or outcome-side error assuming homogeneous prediction quality; none addresses effect modifier misclassification.\n7\tExtended discussion appears in Appendix~\\ref{app:related}.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-002477"
+        },
+        {
+          "source_line": 2478,
+          "timestamp": "2026-05-25T21:29:54.255394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-002478"
+        },
+        {
+          "source_line": 2479,
+          "timestamp": "2026-05-25T21:29:54.657212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tStandard confusion-matrix correction can reverse causal conclusions when misclassification rates vary across subgroups.\n4\tWe derived an exact bias identity ($R^2 \\geq 0.97$) that yields a diagnostic for flagging harmful correction and prescribes per-subgroup correction when $\\Delta\\pi > 0.15$ and $n_{\\text{expert}} \\geq 250$, validated across 11 LLM--dataset combinations spanning eight LLMs and four NLP tasks.\n5\tFor practitioners, we recommend a three-step protocol: (1)~estimate per-subgroup error rates from a pilot sample; (2)~apply the diagnostic (Proposition~\\ref{prop:debiasing_hurts}) to identify subgroups where global correction would increase bias; (3)~if $\\Delta\\pi > 0.15$ and the expert budget exceeds 250 labels, apply per-subgroup correction via EC-HTE.\n6\tWhen these conditions are not met, global correction remains appropriate; the diagnostic explicitly guards against inappropriate application.\n7\tThe framework is task-agnostic and composes with prediction-powered inference.\n8\t\n9\tMore broadly, as LLM annotation becomes standard practice in computational social science, the gap between average accuracy and subgroup-level reliability will grow with the diversity of populations studied.\n10\tOur bias identity provides a principled lens for auditing any pipeline that feeds machine-generated labels into downstream causal analysis.\n11\tFuture directions include continuous covariates, larger $K$, and joint covariate--outcome correction."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-002479"
+        },
+        {
+          "source_line": 2480,
+          "timestamp": "2026-05-25T21:29:54.657575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-002480"
+        },
+        {
+          "source_line": 2481,
+          "timestamp": "2026-05-25T21:29:54.708778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLarge language models increasingly replace human annotators in computational social science, yet their error rates can vary by up to $5\\times$ across demographic and text-feature subgroups.\n3\tWhen these noisy labels serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, the standard remedy---estimating a single confusion matrix and applying its inverse uniformly---is widely trusted to remove bias.\n4\tWe prove it can do the opposite.\n5\tWe derive an exact bias identity showing that global correction introduces a subgroup-level bias proportional to the interaction of error-rate deviation and effect heterogeneity, a product structure invisible to any pooled analysis.\n6\tThis identity reveals that correction reverses estimated causal effect signs in 14.9\\% of configurations and amplifies bias across all eight real LLMs tested.\n7\tA diagnostic corollary flags harmful correction from error rates alone, without estimating treatment effects.\n8\tGuided by the identity, we propose EC-HTE, a per-subgroup correction via hierarchical Bayesian confusion matrix estimation that reduces bias by $7.4\\times$ under extreme heterogeneity, with clear operating conditions ($\\Delta\\pi > 0.15$, $n_{\\text{expert}} \\geq 250$, $K \\leq 4$) and validated across 11 LLM--dataset combinations spanning four NLP tasks\\footnote{Code and data: \\url{https://anonymous.4open.science/r/ec_hte_llm_annotation-4CC8/}.}.\n9\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002481"
+        },
+        {
+          "source_line": 2482,
+          "timestamp": "2026-05-25T21:30:00.182251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+              "offset": "550",
+              "limit": "100"
+            }
+          },
+          "id": "event-002482"
+        },
+        {
+          "source_line": 2483,
+          "timestamp": "2026-05-25T21:30:00.333343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "550\t\\bottomrule\n551\t\\end{tabular}\n552\t\\end{table*}\n553\t\n554\tThe complementarity of EC-HTE and PPCI follows from the distinct error sources they correct: EC-HTE addresses misclassification in the effect modifier $Z$ (covariate space), while PPCI corrects specification error in the outcome model $f(X)$ (prediction space).\n555\tSince covariate misclassification and outcome model error are algebraically independent in the potential outcomes framework, their corrections compose without interference, confirmed by the 4-DGP orthogonal design (Table~\\ref{tab:ppci}), where DGP~C (both errors present) yields the largest bias reduction from the combined approach.\n556\tUnder covariate error only, PPCI adds nothing; under no error, all methods perform equivalently.\n557\t\n558\t\\section{Real-Data Case Study: Hate Speech Detection}\n559\t\\label{app:hatespeech}\n560\t\n561\tWe apply EC-HTE to the UC Berkeley Measuring Hate Speech corpus~\\cite{kennedy2020constructing}, annotating 2{,}496 comments for dehumanization using GPT-4.1.\n562\tFour text-feature subgroups are defined by crossing platform (Reddit/Gab vs.\\ Twitter/YouTube) and text length (above/below median), yielding balanced groups ($n \\approx 624$ each).\n563\t\n564\t\\paragraph{Positive finding: real-world heterogeneity.}\n565\tPer-subgroup misclassification rates range from 0.266 to 0.383, confirming heterogeneity ($\\Delta\\pi = 0.117$) in a real annotation setting.\n566\tAt the error-type level, FPR ranges from 8.5\\% to 21.3\\% across text-feature subgroups, demonstrating that subgroup-varying misclassification is not an artifact of synthetic design but arises naturally in real NLP annotation tasks.\n567\t\n568\t\\paragraph{Boundary condition: statistical power at extreme FNR.}\n569\tCorrection results are inconclusive: all corrected confidence intervals contain zero, and point estimate differences between methods are not statistically significant.\n570\tThe high baseline FNR (53.3\\%) amplifies variance through matrix inversion (variance amplification \n…[truncated 5786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-002483"
+        },
+        {
+          "source_line": 2484,
+          "timestamp": "2026-05-25T21:30:11.027127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Calibration|Platt scaling|calibration",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-002484"
+        },
+        {
+          "source_line": 2485,
+          "timestamp": "2026-05-25T21:30:11.128249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "212-\\citet{frazis2003estimating} derive exact bias formulas for OLS with a misclassified binary regressor, showing attenuation proportional to the misclassification rate, analogous to our Theorem~\\ref{thm:bias_identity} but restricted to average effects without subgroup heterogeneity.\n213-\\citet{black2000racial} demonstrate that racial misclassification in administrative data can substantially bias estimates of racial disparities.\n214-\\citet{mahajan2006identification} and \\citet{lewbel2007estimation} develop instrumental variable approaches to identify models with misclassified binary regressors, requiring exclusion restrictions unavailable when the mismeasured variable is an LLM annotation.\n215:Our setting differs in three respects: (i) the mismeasured variable is an effect modifier indexing the CATE function, not a standard regressor; (ii) misclassification rates vary across subgroups, creating the $\\delta_s \\times \\Delta\\tau$ product amplification absent from homogeneous-error analyses; and (iii) expert labels provide a direct calibration sample, enabling confusion matrix estimation without instruments.\n216-\n217-\\section{MCMC Convergence Diagnostics}\n218-\\label{app:mcmc}\n--\n1134-We verify this for the difference-in-means (DIM) estimator via Monte Carlo simulation ($K{=}2$, $n_{\\text{expert}} \\in \\{50, 100, 250, 500\\}$, 50 replications per budget level).\n1135-At each budget, we compute the plug-in 95\\% confidence interval and record empirical coverage.\n1136-Across all expert budgets, the plug-in SE yields coverage $\\geq 0.96$ (0.970, 0.960, 0.970, 0.970 for $n_{\\text{expert}} = 50, 100, 250, 500$), confirming that the analytic variance estimate is well-calibrated for the DIM estimator.\n1137:This self-calibration arises because the same noise in $\\hat{M}^{-1}$ that inflates point-estimate variance also inflates the plug-in SE, producing conservative intervals that maintain nominal coverage.\n1138-\n1139-\\paragraph{CausalForestDML.}\n1140-Under $K{=}2$ extreme heteroge\n…[truncated 2039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-002485"
+        },
+        {
+          "source_line": 2486,
+          "timestamp": "2026-05-25T21:30:27.825165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Mahajan|He.*Schennach|mahajan|schennach",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper",
+              "output_mode": "content",
+              "context": "1"
+            }
+          },
+          "id": "event-002486"
+        },
+        {
+          "source_line": 2487,
+          "timestamp": "2026-05-25T21:30:27.875968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex-213-\\citet{black2000racial} demonstrate that racial misclassification in administrative data can substantially bias estimates of racial disparities.\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex:214:\\citet{mahajan2006identification} and \\citet{lewbel2007estimation} develop instrumental variable approaches to identify models with misclassified binary regressors, requiring exclusion restrictions unavailable when the mismeasured variable is an LLM annotation.\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex-215-Our setting differs in three respects: (i) the mismeasured variable is an effect modifier indexing the CATE function, not a standard regressor; (ii) misclassification rates vary across subgroups, creating the $\\delta_s \\times \\Delta\\tau$ product amplification absent from homogeneous-error analyses; and (iii) expert labels provide a direct calibration sample, enabling confusion matrix estimation without instruments.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib-74-\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib:75:@article{mahajan2006identification,\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib-76-  title={Identification and Estimation of Regression Models with Misclassification},\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib:77:  author={Mahajan, Aprajit},\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib-78-  journal={Econometrica},\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/main.aux-750-\\bibcite{lewbel2007estimation}{{26}{2007}{{Le\n…[truncated 1279 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002487"
+        },
+        {
+          "source_line": 2488,
+          "timestamp": "2026-05-25T21:30:37.314020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "sui2026|Sui.*2026|PPCI",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib",
+              "output_mode": "content",
+              "context": "5"
+            }
+          },
+          "id": "event-002488"
+        },
+        {
+          "source_line": 2489,
+          "timestamp": "2026-05-25T21:30:37.364770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "385-  author={Mozer, Reagan},\n386-  journal={arXiv preprint arXiv:2603.19160},\n387-  year={2026}\n388-}\n389-\n390:@article{sui2026ppci,\n391-  title={Prediction-Powered Conditional Inference},\n392-  author={Sui, Yang and Zhou, Jin and Zhou, Hua and Dai, Xiaowu},\n393-  journal={arXiv preprint arXiv:2603.05575},\n394-  year={2026}\n395-}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002489"
+        },
+        {
+          "source_line": 2490,
+          "timestamp": "2026-05-25T21:32:29.514456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 交叉回应 Reviewer 2 的审稿意见\n\n---\n\n### Must-Fix 问题\n\n**[REBUT] R2-N1: 引用 \"Sui et al., 2026\" (PPCI) 无法验证**\n\n该引用在 references.bib 中有完整条目：Sui, Yang; Zhou, Jin; Zhou, Hua; Dai, Xiaowu. \"Prediction-Powered Conditional Inference.\" arXiv:2603.05575, 2026。arxiv ID 2603.05575 指向 2026 年 3 月的预印本，距今仅两个月。R2 提到的 arxiv:2502.06343（Cadei, Demirel 等人）是另一篇不同的论文，两者并非同一工作。\n\nR2 通过 web search 未找到可能因为：(a) 该预印本较新（3 月发布），搜索引擎索引延迟；(b) 搜索关键词不匹配。建议 R2 或 AC 直接访问 arxiv.org/abs/2603.05575 验证，而非依赖 web search。在确认该 arxiv ID 不存在之前，不应将此标记为学术诚信问题。\n\n**[AGREE] R2-N2: Related Work 严重不足——但需补充上下文**\n\n同意 Section 2 正文仅 ~7 行确实过于简略。但需指出几个事实：\n\n(a) Appendix F（Extended Related Work，p.13-14）包含约 1.5 页的详细讨论，涵盖 measurement error details (Fuller 1987, Carroll 2006)、annotation model extensions (Dawid 1979, Passonneau 2014, Hovy 2013, Paun 2018)、PPI extensions (Zrnic 2024)、treatment vs. effect-modifier misclassification (Imai 2010, Knox 2020)、econometrics of binary misclassification (Bound 2001, Frazis 2003, Black 2000, Mahajan 2006, Lewbel 2007)。\n\n(b) R2 声称 Mahajan (2006) 缺失——实际已在 Appendix F (appendix.tex line 214) 引用并讨论。\n\n(c) 8 页限制下将 Related Work 压缩并指向 appendix 是常见策略。\n\n不过我同意以下改进是必要的：正文应至少用 2-3 句话概述 PPI/DSL/PPCI 各自解决什么问题以及与本文的区别，而非只列举引用。R2 建议的 noisy label learning 文献 (Xia 2020, Cheng 2022) 虽然相关，但这些工作主要解决训练阶段的 label noise（学习一个鲁棒的分类器），而本文关注推理阶段的 measurement error correction（用 noisy labels 做因果推断），目标场景不同。建议在正文补充一句区分即可，无需大段引用。\n\n---\n\n### Should-Fix 问题\n\n**[REBUT] R2-W1: 新颖性相对 F-L (2003) 为增量，\"只是 2×2 矩阵代数\"**\n\n不同意。理由：\n\n1. **质变而非量变**：F-L (2003) 推导的是 homogeneous error 下的 scalar attenuation β̂ = (1−2π)β——估计值被均匀缩小。Theorem 1 揭示的是 heterogeneous error 下的 product structure δ_s·Δτ/(1−2π̄)——correction 可以在 low-error subgroups **反转** 因果效应符号（Section 5.2: 14.9% 配置出现 sign reversal，Figure 5）。Sign reversal 是 F-L 框架完全不可见的定性新现象。\n\n2. **证明简洁不等于贡献简单**。Shannon 信息论的核心定理推导也是\"直接计算\"，但 insight 是新颖的。本文的 insight 在于发现 global correction 在 subgroup 层面可以比不校正更差（Proposition 5），这对当前广泛使用 global confusion matrix correction 的 CSS 实践有直接警示意义。\n\n3. **推广维度非平凡**：F-L 只处理单一 regressor 的 scalar attenuation，不涉及 subgroup heterogeneity、effect modifier structure、或 confusion matrix inversion。Theorem 1 处理的是 K 个 subgroup 的 matrix product structure，并扩展到 multi-class (Corollary 6, Appendix C)、asymmetric CM (Remark 2, Appendix J)、heterogeneous treatment effects (Proposition 3)。\n\n**[AGREE] R2-W2: Proposition 5 增量价值需论证——部分同意**\n\nR2 的核心质疑有道理：如果已有 per-subgroup error rates（diagnostic 的输入），离 EC-HTE 的输入（per-subgroup CMs）已经很近。但 Proposition 5 的价值不仅在于 \"判断是否运行 EC-HTE\"：\n\n- **资源分配决策**：在 pilot study 阶段，practitioner 可能只有粗略的 per-subgroup accuracy（如从小样本或文献报告中获得），还未收集足够的 expert labels 做 full CM estimation。Diagnostic 帮助决定是否值得投入 n_expert≥250 的标注预算。\n- **理论理解**：条件 |δ_s|/((1−2π̄)·π_s)>1 将 \"何时 correction 有害\" 的边界以 closed-form 刻画，帮助理解机制而非仅作为工程工具。\n\n但我同意论文应更明确说明 Proposition 5 的 use case 场景，目前论述确实不充分。\n\n**[REBUT] R2-W3: Venue 适配性——核心贡献更偏 causal inference 而非 NLP**\n\n不同意。本文的：\n- 动机来自 NLP：LLM annotations 替代人工标注（Section 1 line 1-5）\n- 实验在 NLP 任务上：TweetEval (sentiment), CivilComments (hate speech), AG News (topic), stance detection，使用 8 个真实 LLM 的 confusion matrices\n- 目标读者是 CSS+NLP 交叉社区——这正是 EMNLP 近年增长最快的投稿领域之一\n- PPI/DSL 等同类工作已在 EMNLP/ACL 发表\n\nEMNLP CFP 明确包含 \"Computational Social Science\" 和 \"NLP Applications\" 作为 topics。方法论的数学基础在 measurement error / causal inference，但应用场景和验证完全在 NLP 范围内。\n\n**[AGREE] R2-W4: \"Debiasing\" 术语歧义**\n\n同意。在 NLP 社区，\"debiasing\" 最常见的含义是 fairness debiasing (removing demographic bias from word embeddings/LLMs)。本文使用 \"debiasing\" 指 measurement error correction，可能造成误导。建议在 Introduction 第一段明确区分：\"debiasing\" in this paper refers to confusion-matrix-based error correction, not fairness debiasing。标题 \"When Debiasing Hurts\" 本身是好的（有传播力），但正文需要一句话消歧。\n\n**[REBUT] R2-W5: Abstract 数字密度过高**\n\nAbstract 140 words 包含约 6 个关键数字（5×, 14.9%, 7.4×, Δπ>0.15, n_expert≥250, K≤4）。对于一篇同时有理论和实验贡献的论文，这些数字每个都对应一个核心 claim：\n- 5× 量化问题规模\n- 14.9% 量化 sign reversal 频率（核心 negative result）\n- 7.4× 量化方法改进幅度\n- operating conditions 量化适用边界\n\n去掉任何一个都会削弱 abstract 的信息量。这是风格偏好，不是质量问题。ACL/EMNLP 的高分论文中数字密集的 abstract 并不少见。\n\n---\n\n### Minor Issues\n\n**[AGREE] R2-Minor-1: \"Audinet de Pieuchon\" 拼写可能有误**\n无法独立验证，合理建议。\n\n**[REBUT] R2-Minor-2: Table 1 与 Table 2 RMSE 差异讨论不足**\nTable 1 (supplementary, moderate heterogeneity) 和 Table 2 (main, extreme heterogeneity) 的差异在 Section 5.3 末段已有明确讨论（experiments.tex lines 63-66）：\"Under moderate heterogeneity (Δπ≤0.10), methods converge: HB EC-HTE and global correction yield indistinguishable |bias| (0.005 vs. 0.009) and RMSE (0.075 vs. 0.074), confirming the diagnostic's guidance (Table 1).\"\n\n**[AGREE] R2-Minor-3: Figure 3 y 轴标签字体偏小**\n同意，我在阅读 PDF 时也注意到 Figure 3 (heatmap) 的标注密度偏高。\n\n**[REBUT] R2-Minor-4: 25 个 Appendix 可精简**\n附录数量多是因为实验覆盖面极广（这也是本文的优势之一）。每个 appendix section 回答一个具体的可预见质疑（K=8? asymmetric? class imbalance? calibration? A1 violation? confounded assignment?）。精简附录会削弱论文的 robustness 叙事。我在自己的审稿中将 \"实验极其充分\" 列为 S3 优势。\n\n**[AGREE] R2-Minor-5: Conclusion 偏短，缺少更广泛影响讨论**\n同意。Conclusion (conclusion.tex) 约 11 行，列出了 three-step protocol 但缺少对更广泛影响的讨论（如：其他 measurement error 场景、与 active learning 的结合、policy implications）。最后一句 \"Future directions include continuous covariates, larger K, and joint covariate-outcome correction\" 过于简略。\n\n---\n\n### Missing References\n\n**[REBUT] Mahajan (2006)**: 已在 Appendix F (appendix.tex line 214) 引用并讨论。R2 可能未读到附录。\n\n**[AGREE] Xia et al. (2020), Cheng et al. (2022), Zhu et al. (2022)**: 这些 noisy label learning 文献值得在 Related Work 中提及并区分——它们解决 training-time noise（学鲁棒分类器），而本文解决 inference-time measurement error（用 noisy labels 做因果推断）。一句话区分即可。\n\n**[AGREE] Keith et al. (2020)**: Text and causal inference 的综述，与本文高度相关，应引用。\n\n**[REBUT] Fong & Tyler (2021)**: 需要具体论文信息。如果指 Fong & Tyler \"Machine Learning Predictions as Regression Covariates\"，这与 PPI 框架类似但早于 PPI 的形式化。已有 PPI/DSL 引用覆盖此方向。\n\n---\n\n### Questions\n\n**[REBUT] R2-Q1: Sui et al. 2026 PPCI 引用完整信息**\n已在 bib 中确认：Sui, Yang; Zhou, Jin; Zhou, Hua; Dai, Xiaowu. \"Prediction-Powered Conditional Inference.\" arXiv:2603.05575. 2026. 建议 AC 直接验证此 arxiv ID。\n\n**[AGREE] R2-Q2: Proposition 5 的 marginal value**\n见上述 W2 回应。同意需要更好的 use-case 论证。\n\n**[REBUT] R2-Q3: A1 sensitivity range γ_T≤0.05 偏窄**\n论文实际测试范围到 γ_T=0.20（Appendix Y.3, Figure 10），覆盖 degradation 在 γ_T=0.10 时 coverage 降至 75%。论文保守地声称 robustness 仅到 γ_T≤0.05（coverage≥89.7%）。测试范围并不窄，只是 \"claim robustness\" 的范围保守——这恰恰是好的科学实践。\n\n**[REBUT] R2-Q4: LLM calibration (Platt scaling) 作为替代**\n已在 Appendix Y.7 (appendix.tex lines 1503-1531, Table 17) 实验验证。结论：calibration 将 naive coverage 从 84% 提升到 91.3%，但不达标（<95%）。Calibrated + EC-HTE 达到 96.5%。两者互补——calibration 降低 π_s，EC-HTE 修正残余的 δ_s 异质性。R2 可能未读到此 appendix。",
+              "reviewer_id": "1",
+              "project": "ec_hte_llm_annotation"
+            }
+          },
+          "id": "event-002490"
+        },
+        {
+          "source_line": 2491,
+          "timestamp": "2026-05-25T21:32:33.179680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_489afd65980834a91024fd48e21d984f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3665
+          },
+          "id": "event-002491"
+        },
+        {
+          "source_line": 2492,
+          "timestamp": "2026-05-25T21:32:44.209191+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉审查回应已提交。\n\n汇总：对 R2 的 23 个具体意见中，我给出 8 个 [AGREE]、12 个 [REBUT]、3 个部分同意。关键分歧集中在：\n\n- **N1 (PPCI 引用)**：REBUT — bib 中有完整 arxiv ID (2603.05575)，R2 可能搜索关键词不匹配，建议 AC 直接验证\n- **W1 (F-L 增量性)**：REBUT — sign reversal 是 F-L 不可见的定性新现象，证明简洁不等于贡献简单\n- **W3 (venue 适配)**：REBUT — 动机、实验、目标读者全在 NLP/CSS 范围内\n- **Q3/Q4**：REBUT — 论文附录已有对应实验（Y.3 测到 γ_T=0.20, Y.7 测了 calibration 互补性），R2 可能未阅读完整附录"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_489afd65980834a91024fd48e21d984f:reviewer_1"
+          },
+          "id": "event-002492"
+        }
+      ]
+    }
+  ]
+}

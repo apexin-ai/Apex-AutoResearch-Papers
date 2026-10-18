@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "815db7451b13581e3d44",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "data cliff curve csv",
+  "task_key": "worker_data_cliff_curve_csv_20260527T042929",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_cliff_curve_csv_20260527T042929_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "8bd7020fa50cc577022d04b4f8a7df7cc063c13a7463a727e2097d6f2c3e0271"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已生成并注册。\n\n**文件**: `artifacts/cliff_curve_data.csv`\n**数据量**: 210 行（150 reliable, 60 unreliable）\n\n覆盖范围:\n- **OpenVLA**: Object/Goal/Long/Spatial × l2norm/attention/random, k=0.3-0.95 + baseline(k=1.0)\n- **π0.5**: Object/Goal/Long/Spatial × l2norm/attention/random, k=0.1-0.95 + baseline(k=1.0)\n\n注意:\n- π0.5 Goal 和 Long baseline 来自 cqa1，标记 reliable=no（lenient condition）\n- 所有 cqa1 上的 π0.5 非 strict 实验均标记 reliable=no\n- π0.5 Long attention 全部数据为 cqa1 unreliable（无 westd strict 重跑）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

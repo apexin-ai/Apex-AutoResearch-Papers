@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9205259be563cc6c00f4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research vla model survey",
+  "task_key": "worker_research_vla_model_survey_20260519T161749",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_vla_model_survey_20260519T161749_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "3cb2dae2a5077337ad14c63f7514c883324fa8433f1e25b5fbe8bbdfac550f4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用 MCP 工具列表中。报告已写入 `artifacts/vla_model_survey.md`。\n\n## 调研结论\n\n**第三种 connector 架构首选：RoboFlamingo（Perceiver Resampler + Gated Cross-Attention）**\n\n三种 connector 形成清晰的分类体系：\n\n| Connector 类型 | 代表模型 | 压缩哲学 | Pruning 行为 |\n|---|---|---|---|\n| Pixel-shuffle + MLP | SmolVLA | 空间→通道折叠 | Cliff-edge |\n| MLP Projection | OpenVLA | 线性映射，保留冗余 | Graded degradation |\n| **Perceiver Resampler** | **RoboFlamingo** | **注意力选择性压缩** | **待验证（新发现）** |\n\nRoboFlamingo 的核心优势：\n- Perceiver Resampler 本身就是 learned token compression（N → K via cross-attention），与 MLP 和 pixel-shuffle 本质不同\n- 开源代码 + 3B/9B 两种尺寸，GPU 需求合理\n- 适配 LIBERO 需要写 dataloader + eval wrapper，但难度可控（2.5/5）\n- 科学问题明确：已经过注意力压缩的 tokens 再做 pruning 会出现什么 degradation pattern？\n\n**CogACT 状况**：有公开权重（MIT License），但 connector 和 OpenVLA 完全相同（Prismatic backbone），且无原生 LIBERO 支持。对 connector 研究无增量价值。\n\n**π0/OpenPi** 可作为补充验证（同类 connector + 不同 backbone），且 LIBERO 开箱即用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

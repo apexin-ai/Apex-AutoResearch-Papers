@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "6be420e1455c375fa7a9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "figure fig teaser",
+  "task_key": "worker_figure_fig_teaser_20260526T073233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig_teaser_20260526T073233_result.json",
+    "occurrence": 1,
+    "bytes": 2165166,
+    "sha256": "8cd57f0ce36a6fe53098cdc04603bad3d3e0b110d9095ffdacfb43bb1c50eeb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "6be420e1455c375fa7a9-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "093fa2a2d2ad012cff7f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k05 object seed42 v2",
+  "task_key": "worker_diagnose_eval_pi05_random_k05_object_seed42_v2_20260524T002036",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k05_object_seed42_v2_20260524T002036_result.json",
+    "occurrence": 1,
+    "bytes": 1251,
+    "sha256": "bd3528f1db5422c533445f0b5f103e4eb0ef2ef106bbc376d41c3a1751a430d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**实验并未失败，已成功完成。**\n\n日志显示 `eval_pi05_random_k05_object_seed42_v2` 于 2026-05-24 05:59 启动，08:08 正常结束，耗时 127 分钟。10 个 task 全部跑完（每个 50 episodes），最终结果：\n\n```\nlibero_object prune=random keep=0.5 SR=68.2%\n```\n\n各 task 成功率：\n| Task | 内容 | SR |\n|------|------|----|\n| T0 | alphabet soup | 96% |\n| T1 | cream cheese | 74% |\n| T2 | salad dressing | 60% |\n| T3 | bbq sauce | 70% |\n| T4 | ketchup | 70% |\n| T5 | tomato sauce | 48% |\n| T6 | butter | 84% |\n| T7 | milk | 56% |\n| T8 | chocolate pudding | 66% |\n| T9 | orange juice | 58% |\n\n结果已保存至 `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_object_seed42.json`。\n\n**GPU 3 当前状态**：空闲（1MiB 显存，0% 利用率，P8 省电模式），无进程占用。GPU 0-2 各有一个 python 进程在跑（各占 ~10GB）。\n\n**磁盘空间**：根分区 29%（22GB 可用），数据盘 55%（115GB 可用），均正常。\n\n**结论**：实验已正常完成，不存在失败。如果之前观察到\"进程异常退出\"，可能是之前的 v1 尝试失败后重跑的 v2 已经成功了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

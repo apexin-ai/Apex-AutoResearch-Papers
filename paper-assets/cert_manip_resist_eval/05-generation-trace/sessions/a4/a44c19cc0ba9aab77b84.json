@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a44c19cc0ba9aab77b84",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper figure fig regime transition",
+  "task_key": "worker_paper_figure_fig_regime_transition_20260523T194555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_regime_transition_20260523T194555_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "fb42ea499a93ce4bd11d3505047ce030b49ba7aca8ea5155468cd2919d14b7a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成，文件大小合理：\n\n- `fig_regime_transition.pdf` — 20KB\n- `fig_regime_transition.png` — 64KB\n\nV2 数据正确反映：K=3 时 K_eff(4) 已超过 η_max(3)，K≥5 后 η_max 降至 0，K_eff 成为 sole predictor。transition zone 标注在 K∈(3,5) 区间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

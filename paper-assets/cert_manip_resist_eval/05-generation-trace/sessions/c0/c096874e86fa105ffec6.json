@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c096874e86fa105ffec6",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "hotfix position bias invert bug",
+  "task_key": "worker_hotfix_position-bias-invert-bug_20260525T203938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_hotfix_position-bias-invert-bug_20260525T203938_result.json",
+    "occurrence": 1,
+    "bytes": 3555,
+    "sha256": "11037e09ac5956f941fd57c9556b025892cbf00e6a46f8906f5d0735cbb9c873"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是完整对比报告：\n\n---\n\n## Bug 修复\n\n删除了 3 个文件共 5 处错误的 `_invert_winners()`/`_invert()` 调用：\n- `src/unified_data_loader.py` — 2 处（checkpoint + individual scores）\n- `scripts/run_fractional_logit_v2.py` — 1 处（checkpoint）\n- `scripts/gen_p3_figures.py` — 2 处（checkpoint + individual）\n\n---\n\n## 1. Position Bias ASR 对比（per model）\n\n### MMLU × position_bias\n| Model | 修正前 | 修正后 | Δ |\n|---|---|---|---|\n| qwen2.5-72b | 0.663 | 0.370 | -0.293 |\n| llama3.1-70b | 0.600 | 0.407 | -0.193 |\n| mistral-large | 0.540 | 0.443 | -0.097 |\n| qwen2.5-32b | 0.660 | 0.390 | -0.270 |\n| qwen2.5-14b | 0.793 | 0.330 | -0.463 |\n| llama3.1-8b | 0.660 | 0.343 | -0.317 |\n| claude-opus-4 | 0.547 | 0.460 | -0.087 |\n| gpt-5.5 | 0.520 | 0.543 | +0.023 |\n| gemini-2.5-pro | 0.553 | 0.523 | -0.030 |\n| gpt-4.1 | 0.473 | 0.477 | +0.004 |\n| claude-sonnet-4 | 0.480 | 0.473 | -0.007 |\n| gpt-4o | 0.617 | 0.393 | -0.224 |\n| gemini-2.5-flash | 0.627 | 0.463 | -0.164 |\n| gpt-4o-mini | 0.543 | 0.430 | -0.113 |\n| claude-3-haiku | 0.693 | 0.363 | -0.330 |\n\n### ARC × position_bias\n| Model | 修正前 | 修正后 | Δ |\n|---|---|---|---|\n| qwen2.5-72b | 0.597 | 0.440 | -0.157 |\n| llama3.1-70b | 0.497 | 0.503 | +0.007 |\n| qwen2.5-14b | 0.777 | 0.363 | -0.413 |\n| llama3.1-8b | 0.727 | 0.273 | -0.453 |\n| claude-3-haiku | 0.830 | 0.190 | -0.640 |\n\n---\n\n## 2. η_max pooled β_std trajectory\n\n|  | K=3 | K=5 | K=7 |\n|---|---|---|---|\n| **旧** | 0.264 | 0.102 | 0.084 |\n| **新** | **0.243** | **0.091** | **0.086** |\n| CI 旧 | [0.158, 0.369] | [-0.055, 0.259] | [-0.083, 0.251] |\n| CI 新 | **[0.163, 0.323]** | **[-0.031, 0.212]** | **[-0.039, 0.211]** |\n\n## 3. K_eff pooled β_std trajectory\n\n|  | K=3 | K=5 | K=7 |\n|---|---|---|---|\n| **旧** | 0.356 | 0.435 | 0.401 |\n| **新** | **0.286** | **0.353** | **0.309** |\n\n## 4. WCB significance counts (B=999, FDR<0.05)\n\n|  | K=3 | K=5 | K=7 |\n|---|---|---|---|\n| K_eff 新 | **8/12** | **8/12** | **7/12** |\n| η_max 新 | **5/12** | **0/12** | **1/12** |\n\n## 5. Fractional logit significance (FDR<0.05)\n\n|  | K=3 | K=5 | K=7 |\n|---|---|---|---|\n| K_eff 旧 | 9/12 | 9/12 | 9/12 |\n| K_eff 新 | **10/12** | **11/12** | **11/12** |\n| η_max 旧 | 6/12 | 3/12 | 4/12 |\n| η_max 新 | **8/12** | **8/12** | **6/12** |\n| all_pos 旧 | False | False | False |\n| all_pos 新 | **False** | **False** | **False** |\n\n## 6. R² summary\n\n| K | mean R² |\n|---|---|\n| 3 | 0.3469 |\n| 5 | 0.2806 |\n| 7 | 0.2335 |\n\n---\n\n## 核心 Claim 检验\n\n| Claim | 结果 |\n|---|---|\n| **\"CI crosses zero at K≥5\"** | **YES** — K=5 CI=[-0.031, 0.212], K=7 CI=[-0.039, 0.211] |\n| **\"diversity uniformly positive (12/12)\"** | **NO** — position_bias 两个条件的 β_keff 变为负值（-0.33~-0.37），只有 10/12 为正 |\n| **\"η_max diminishes monotonically\"** | **YES** — 0.243 → 0.091 → 0.086 |\n\n---\n\n**关键发现**: 修复后 position_bias 的 β_keff 变为负值，说明对于 position_bias 攻击，panel diversity (K_eff) 反而**降低**了 ASR。\"diversity uniformly positive (12/12)\" 这一 claim 不再成立（改为 10/12）。其余核心 claim 不受影响。\n\n产出文件：\n- 对比报告: `artifacts/results/plan001/position_bias_fix_comparison.json`\n- Per-condition 详细数据: `artifacts/results/plan001/per_condition_full_reanalysis.json`\n- 分析脚本: `scripts/rerun_full_analysis_after_fix.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

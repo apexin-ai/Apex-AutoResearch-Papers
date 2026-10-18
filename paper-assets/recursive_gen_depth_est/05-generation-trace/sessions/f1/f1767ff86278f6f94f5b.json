@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1767ff86278f6f94f5b",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_3_1778815027.md",
+  "task_key": "loop_3_1778815027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778815027.md",
+    "occurrence": 1,
+    "bytes": 5159,
+    "sha256": "16963313667b278b1e228189f52929571cf68049a111dc23d07c70c0f0967705"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T02:47:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: gpu-6000pro-2 的 cuda:0 和 cuda:1，不可用其他 GPU\n- **DeBERTa 必须 float32**: DeBERTa masked_fill 与 bf16 不兼容，DCOL 训练强制 float32\n- **DCOL LoRA alpha 不能超过 16**: alpha=32 导致 NaN，Worker 已验证降到 16 解决\n- **DCOL margin_lr ≤ 1e-4**: 1e-3 导致 embedding collapse（v1 教训），1e-3 出现在 v4 spec 里但实际是 head+margins 的 lr，LoRA lr 是 3e-4——注意区分\n- **OLMo 用 olmo-1b-hf 目录**（不是 olmo-1b）\n- **Qwen2.5 系列已验证不可用**（代码占比过高，LoRA 无法覆盖）\n- **OLMo cron 有 false failure 风险**: 子进程 PID 正常退出被误判为失败，已发生两次，收到 OLMo failure 回调时先 SSH 验证\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2（2× RTX PRO 6000 Blackwell 98GB）\n- **工作目录**: `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/` 下有 `pythia-1.4b/`, `gpt2-xl/`, `olmo-1b-hf/`, `deberta-v3-large`\n- **数据**: `data/depth_0.jsonl` (5000 seed), `data/features_all.jsonl` (20000, Pythia nucleus 基线特征)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - dcol_deberta_004: PID 277577, cuda:1, tmux session, cron 监控中（10 epochs, batch 32, LoRA r=16 alpha=16, ~4.6GB 显存）\n- **活跃 Worker** (3 个 running):\n  - `worker_ssh_gpt2xl_topk50_eval_20260515T022607` — gpt2xl_topk50 评估分析\n  - `worker_code_dcol_deberta_004_20260515T023124` — DCOL v4 代码/提交\n  - `worker_ssh_bugfix_load_features_20260515T023831` — 修复 load features bug\n\n### 3. 📊 当前状态\n**3×3 矩阵: 9/9 完成（全部 success）。**\n\n| 模型 | nucleus p=0.95 | temp τ=0.9 | top-k k=50 |\n|------|---------------|-----------|-----------|\n| Pythia-1.4B | ✅ 78.2% | ✅ 76.3% | ✅ 69.6% |\n| OLMo-1B | ✅ 78.8% | ✅ 82.0% | ✅ 75.7% (74.2% RF) |\n| GPT-2 XL | ✅ 83.3% | ✅ 85.4% | ✅ 74.5% |\n\n**DCOL 进展**: v1 failed (embedding collapse), v2 failed (OOM), v3 killed (全参微调 step 340 崩溃), **v4 RUNNING** (LoRA, cuda:1, PID 277577, 前 100 steps warmup 中)\n\n**Baseline battery**: 完成。CORAL 78.1%, DivEye 78.2%, CE-MLP 74.9%, RF 78.1%, LR 75.0%, PPL-reg 62.2%。均低于 GPT-2 XL temp09 85.4%。\n\n**Atlas v1**: 完成。Monotonicity ρ=-0.82~-0.89, EDD=3, cross-model Jaccard=0.667。Atlas v2 已有分析（D009/D010 in memory.md）。\n\n**等待中**:\n- dcol_deberta_004 cron 回调（训练完成时自动触发）\n- 3 个 running Worker 的 [WORKER DONE] 回调\n- olmo_temp09_002 状态 PREPARING 但 conclusion=killed（Director 已确认取消，无需处理）\n\n### 4. 📋 待办（条件触发式）\n- **dcol_deberta_004 cron 回调到达** → 按 on-experiment-done 分叉处理：success 则更新 report.md + Atlas 对标 + 汇报 Director；negative/failed 则走 red-section framing\n- **Worker gpt2xl_topk50_eval 完成** → 整合分析结果到 registry notes，更新 report.md\n- **Worker bugfix_load_features 完成** → 确认 bug 已修复，检查是否影响已完成实验的 metrics\n- **DCOL v4 成功（4-class acc ≥ baseline RF 78%）** → DCOL 作为 secondary contribution 成立，推进论文 Method section\n- **DCOL v4 失败（acc < 78% 或训练崩溃）** → 产出 Framing 调整提案，DCOL 可能从 secondary contribution 降级为 Discussion 段落\n- **cuda:0 空闲**（gpt2xl_topk50 已完成）→ 可用于 EDD threshold sensitivity 实验 或 baseline 重跑（CE-MLP 默认参数）\n- **全部矩阵 + DCOL 完成后** → 推进论文写作（需先 Read paper_framing.md 和 writing_plan.yaml）\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D001: MVP PASS (Pythia 78.2%)\n- D002: Dream 审稿 3.0/3.0/2.5, 6 项结构性必修\n- D004: 跨策略泛化从 \"strategy-agnostic\" 降级为 \"strategy-dependent magnitude\"\n- D006: 解码策略影响是模型依赖的（Pythia 降, GPT-2 XL/OLMo 升）\n- D007: Feature importance = consistent set, not single best\n- D008: Kill dcol_v3, 转 LoRA\n- D009: Atlas v2 EDD=3 for 6/7 cells, Pythia topk50 EDD=1（关键 Discussion 论点）\n- D010: p90_ppl/var_surprisal 单调递减 + rep_ngram 单调递增（互补信号）\n\n**Framing 方向**: Atlas/EDD 是 primary contribution, DCOL 是 secondary。如果 DCOL v4 也失败，需要跟 Director 讨论是否 drop DCOL 或降为 Discussion。\n\n**易踩的坑**:\n- cuda:0 当前应该是空闲的（gpt2xl_topk50 已完成），但启动新实验前**必须 SSH 确认 nvidia-smi**，之前多次 OOM 都是因为假设 GPU 空闲\n- dcol_deberta_004 在 cuda:1 只用 4.6GB（LoRA），但不要在 cuda:1 上叠加其他实验——DeBERTa float32 显存可能随 epoch 波动\n- gpt2xl_topk50_001 的 three_class_filtered 结果为空（contamination filtering 未完成），需要 Worker 补跑\n- CE-MLP baseline 可能训练不足（仅 5 epochs），有空时用默认参数重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

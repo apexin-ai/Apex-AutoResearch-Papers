@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b9ff5b16fd8a67d7b99a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper writing results reframe",
+  "task_key": "worker_paper_writing_results_reframe_20260523T013739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_reframe_20260523T013739_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "c324e02ed622be58e38fd637898a79b6528c5d301587be7bcec81291e85a2da9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. No em-dashes, no -ing phrase endings, no \"phase transition\", no \"diversity becomes protective\". File grew from 125 to 144 lines (+19 lines, well within budget).\n\nChanges made:\n\n1. **§4.1 merged**: Combined old §4.1 (Weakest-Link Dominance) + §4.2 (Robustness) into \"Weakest-Link Dominance at K=3\". Tightened narrative to save ~10 lines. All tables (tab:dominance, tab:robustness), figures (fig:robustness), and key results preserved. Added K=3 scoping to framing and captions.\n\n2. **§4.2 new**: \"Panel-Size-Dependent Regime Transition\" with:\n   - Cross-K Bootstrap table (tab:cross\\_k): K=3/5/7 with panels, η\\_max sig, K\\_eff sig, K\\_eff direction\n   - 4 paragraphs: main finding (η\\_max cliff + K\\_eff emergence), direction consistency (all positive, ARC×sycophancy outlier), majority-threshold mechanism, K=7 max-p conservatism explanation\n\n3. **§4.3-§4.5**: Unchanged. Updated §4.4's cross-reference from `\\S\\ref{sec:robustness}` to `\\S\\ref{sec:dominance}` since robustness is now part of §4.1."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

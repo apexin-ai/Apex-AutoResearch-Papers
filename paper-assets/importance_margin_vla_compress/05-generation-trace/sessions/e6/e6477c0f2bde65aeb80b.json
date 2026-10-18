@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6477c0f2bde65aeb80b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra imm eval dryrun step5k",
+  "task_key": "worker_infra_imm-eval-dryrun-step5k_20260515T165956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_imm-eval-dryrun-step5k_20260515T165956_result.json",
+    "occurrence": 1,
+    "bytes": 1696,
+    "sha256": "6a65fea4558f8fb3c013eef1ddd3b22e0c15095e513fc09335918047ecc1a1d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### Baseline v5 (PID 31871, cuda:0) — 健康\n- **Step**: 20500/30000 (68%)\n- **Loss**: 0.0139, **Grad**: 1.23, **SPS**: 4.0\n- **Checkpoints**: step_005000, 010000, 015000, 020000 ✓\n- GPU 0: 12% util, 2281 MiB\n\n### IMM v6 (PID 35412, cuda:1) — 已崩溃\n- **崩溃 step**: 2000（又死在 step 2000）\n- **最后健康 step**: step=2000, loss=0.0089, grad=0.22, sps=3.2\n- GPU 1: 0% util, 0 MiB — 进程已退出\n- **无 checkpoint**（save_every=5000，未活到 5000）\n\n### 崩溃分析\n\n崩溃发生在 `train.py:419` 的 `evaluate()` 调用中，不是训练 forward：\n\n```\nFile \"train.py\", line 419, in evaluate\n    _, info = model(batch, step=step)\n→ smolvlm_with_expert.py:384 forward_cross_attn_layer\n→ smolvlm_with_expert.py:48 apply_rope\nRuntimeError: The size of tensor a (50) must match the size of tensor b (82) at non-singleton dimension 1\n```\n\n**根因**: eval 时 cross-attention layer 的 RoPE position embedding 维度不匹配——expert query 序列长度 50 vs position_id 对应的 cos/sin 长度 82。这是 eval batch 的序列长度与训练时不同导致的。上次也是在 step 2000 崩溃，说明 eval 是定时触发的（每 2000 步），且 eval 数据的序列长度和训练数据不一致时 RoPE 处理有 bug。\n\n### Eval dry-run：不可执行\n无 IMM checkpoint。\n\n### 下一步建议\n需要修 `evaluate()` 中 cross-attention RoPE 的序列长度处理，否则 IMM v6 每次到 eval step 都会崩。问题在 lerobot 包内的 `smolvlm_with_expert.py:384`——需要确认是调用方传的 position_id 不对，还是 apply_rope 本身不支持动态序列长度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "5dd2bd180bbb2932f048",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "deploy westd38929 pi05 cross suite",
+  "task_key": "worker_deploy_westd38929-pi05-cross-suite_20260521T184117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929-pi05-cross-suite_20260521T184117.log",
+    "occurrence": 1,
+    "bytes": 1235463,
+    "sha256": "8fbe81d71f2f5695a124131362848603574df4d164bc963b76904586a14bd8ed"
+  },
+  "statistics": {
+    "messages": 672,
+    "user_turns": 1,
+    "tool_calls": 257,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 2,
+      "assistant": 144,
+      "tool_call": 257,
+      "tool_result": 257,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 496,
+      "chunks": [
+        {
+          "path": "5dd2bd180bbb2932f048-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5dd2bd180bbb2932f048-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5dd2bd180bbb2932f048-part-0003.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "5dd2bd180bbb2932f048-part-0003.json",
+          "message_count": 44
+        },
+        {
+          "path": "5dd2bd180bbb2932f048-part-0004.json",
+          "message_count": 132
+        }
+      ]
+    }
+  ]
+}

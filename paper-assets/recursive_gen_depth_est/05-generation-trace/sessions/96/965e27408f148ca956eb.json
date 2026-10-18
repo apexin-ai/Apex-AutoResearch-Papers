@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "965e27408f148ca956eb",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing atlas",
+  "task_key": "worker_writing_atlas_20260515T155256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_atlas_20260515T155256_result.json",
+    "occurrence": 1,
+    "bytes": 1492,
+    "sha256": "06ddac03f2dc01505b7721fecdb2e56b20dd72fa7ee7a3488a411dc7a13dd415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section 4 写入完成。报告：\n\n**Word count**: ~1090 words prose + ~110 words captions = ~1200 total (within budget)\n\n**Citations needed** (placeholder keys to resolve):\n- `\\cite{placeholder_Shumailov2024Nature}` — Shumailov et al. Nature 2024, model collapse theory (used 2x: feature hierarchy shift interpretation + temperature attractor distribution)\n\n**Figures needed** (4, all placeholder):\n| Label | Content |\n|---|---|\n| `fig_atlas_heatmap` | 19-feature × 9-cell importance heatmap |\n| `fig_feature_trajectory` | p90_ppl / var_surprisal / rep_3gram across d0-d3, stratified by model+strategy |\n| `fig_auc_decay` | Binary pairwise AUC decay curves (3 models, d0-d5) with threshold lines |\n\n**Tables** (3):\n| Label | Status |\n|---|---|\n| `tab:main_matrix` | Complete (3×3 accuracy data filled) |\n| `tab:feature_importance` | Placeholder (needs per-cell top-5 from atlas_v2 artifacts) |\n| `tab:edd_sensitivity` | Summary row filled (9/9, 8/9, 7/9, 5/9); per-cell breakdown deferred |\n\n**Key narrative decisions honored**:\n- D024/D027: EDD uses continuous AUC decay narrative, NOT \"three models all achieve statistically significant EDD=4\"; full bootstrap CI + p-values reported\n- D015: Three-tier strategy classification (nucleus/temperature/top-k), no \"soft sampling\" grouping\n- D007: Feature universality framed as \"consistent feature set\" not \"var_surprisal as single best\"\n- All quantitative claims traceable to registry data"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

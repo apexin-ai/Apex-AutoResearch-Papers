@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1b558371b954acba45",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_9_1778875108.md",
+  "task_key": "loop_9_1778875108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778875108.md",
+    "occurrence": 1,
+    "bytes": 4101,
+    "sha256": "6b7f6cadeed46ab088b847ebb550ec90ad4b44bdb5bf7fea671ab0876bed5cfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T19:27:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：gpu-6000pro-2 cuda:0, cuda:1 **仅此两卡**，不得用其他设备\n- 种子数据是 **Wikipedia subset**，三个模型共用同一份，Worker 写 paper 时曾错误改成 \"OpenWebText/Dolma/WebText\"——已纠正，禁止再改\n- DCOL 路线已废弃 (v1-v6 全失败, D011/D018/D020)，不再尝试任何 DCOL 变体\n- EDD 叙事用**连续 AUC 衰减曲线**而非硬阈值判定 (D024)；d3v4 borderline 必须透明报告\n- DDL: **EMNLP ARR May 25**，距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- Python：服务器上具体路径需 SSH 确认（之前用 conda 或 system python，本 session 未 SSH）\n- 模型/数据：均在 `/root/autodl-tmp/recursive_gen_depth_est/data/` 下，各子目录按 `{model}_{strategy}` 命名\n- 活跃进程：feat_ablation_v1 (PID 473989, cron 监控中，forward selection v2 phase 2 进行中 4/9→olmo_temp09 running)\n- 特征消融结果：`/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/`\n- Artifacts 目录：本地 `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/`\n\n### 3. 📊 当前状态\n**Phase 2 写作阶段**，Phase 1 实验全部完成（成功 26 / 负向 3 / 失败 6 / 共 48）。\n\n**RUNNING 实验 (1)**：\n- `feat_ablation_v1`：9-cell feature ablation。Phase 1 完成（topk_ablation, category_ablation, LOGO, PCA, VIF）。Phase 2 forward selection v2 进行中（4/9 done，olmo_temp09 正在跑）。关键发现：var_surprisal top-1 in 6/9 cells，top-3 features 达 93% full acc，perplexity 类别单独 92-99% full acc\n\n**Running Workers (3)**：\n1. `worker_paper_r3-writing-fixes` — 论文 R3 级写作修复\n2. `worker_analysis_shap-treexplainer` — SHAP TreeExplainer 分析（feature importance 可解释性补充）\n3. `worker_exp_w2_domain_bias_design` — W2 domain bias 实验设计\n\n**等待中**：三个 Worker 回调；feat_ablation_v1 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- feat_ablation_v1 cron 回调（forward selection 完成）→ 分析结果，更新 registry，将 ablation findings 纳入论文 Section 5\n- worker_paper_r3-writing-fixes DONE → 审查产出，合并到 paper，注意种子数据描述不被错改\n- worker_analysis_shap-treexplainer DONE → 将 SHAP 结果与 RF feature importance 对比，补充 paper 可解释性叙事\n- worker_exp_w2_domain_bias_design DONE → 审查实验方案，如可行则提交审批（W2 domain bias 是 open rebuttal issue）\n- 上述 Worker 全部完成 → 处理剩余审稿修改：R1-N1 EDD 公式、R2-N2 文献、W3/W5/W6/R2-W2/R2-W4/R2-W6\n- Phase 2 writing 全部完成 → 进入 Phase 3 提交（May 23-25）：bibliography audit + final polish\n\n### 5. 🎯 战略上下文\n**核心结论链**：递归生成深度可通过 19 维统计特征（以 perplexity 分布为主导）用 RF 预测（78.2% 4-class）。跨模型 LOO 66.4%、跨策略 LOO 59.1% 证明特征有泛化性。EDD=4 跨 3 模型一致（AUC 衰减曲线叙事）。End-to-end transformer（DeBERTa/RoBERTa）远低于 RF (-19pp)，因 representation bias（Spearman ρ=-0.48 负相关）。RF ≈ CORAL ≈ DivEye 统计不可区分，核心贡献在特征而非分类器。\n\n**Framing**: Plan A 激活（Atlas/EDD primary, DCOL abandoned）。Paper story = Depth Degradation Atlas + EDD metric + feature universality。\n\n**易错点**：\n- cross-strategy temp09 d1v2 AUC 反转（GPT-2 XL 0.129, OLMo 0.253）是 covariate shift 不是 bug，已有解释 (D021)\n- 三模型 EDD 统计强度不同：Pythia 显著 (p=0.001)，OLMo 边际 (p≈0.05)——不可说\"均显著\" (D027)\n- GC4-par vs GC4-seq 不可直接对比（如果遇到类似场景）\n- Baseline 排名：RF ≈ CORAL ≈ DivEye 不可区分 (D022/D023)，不要 claim RF \"最优\"\n- plan_013/014/015 是 P2，DDL 紧张情况下优先完成论文写作，不主动开新实验除非 Director 指示\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

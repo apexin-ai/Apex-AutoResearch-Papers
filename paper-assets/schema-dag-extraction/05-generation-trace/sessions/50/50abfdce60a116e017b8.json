@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "50abfdce60a116e017b8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis statistical w2 w3 w4",
+  "task_key": "worker_analysis_statistical_w2_w3_w4_20260516T031959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_statistical_w2_w3_w4_20260516T031959_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "91ab67433a6a025bbeca41a18e66f3e694c031800d572b2d10c03f98b25b0164"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析全部完成，产出已保存至 `artifacts/d037_statistical_analyses/`：\n\n| 文件 | 内容 |\n|------|------|\n| `w3_cluster_bootstrap_results.json` | Type-level cluster bootstrap CI |\n| `w4_count_recall_ci_results.json` | Count=22 vs 44 recall CI |\n| `w2_practical_effect_results.json` | Typical BCS range practical effect |\n| `paper_text.md` | 三段论文可用文字 |\n\n服务器上的脚本在 `/root/schema-dag-extraction/scripts/d037/`。\n\n**核心结论**：\n- **W3**：Cluster-robust CI 仍显著（Few-NERD [0.057, 0.190]，MAVEN [0.070, 0.139]，均不含 0），CI 比 pair-level 更宽但结论一致\n- **W4**：count_22 和 count_44 的 CI 大幅重叠，置换检验 p=0.31，非单调性在采样变异内\n- **W2**：Typical gap 仅 2.2pp [0.4, 4.0]pp，是 extreme 31.2pp 的约 7%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "d2dd5789dfe3dd495792",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "gpu gemma2 hires bf16 2bitonly",
+  "task_key": "worker_gpu_gemma2_hires_bf16_2bitonly_20260514T220044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_gpu_gemma2_hires_bf16_2bitonly_20260514T220044.jsonl",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "8205cb78a1ab0113d2bbaf57bcc6dcc25031181681293d6fb107d671ff7587b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:00:53.850761+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_gemma2_hires_bf16_2bitonly_20260514T220044"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

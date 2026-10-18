@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e51925c1befd5203fc37",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_2_1778810259.md",
+  "task_key": "loop_2_1778810259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778810259.md",
+    "occurrence": 1,
+    "bytes": 4262,
+    "sha256": "9042801c5a7009727e374b54f9b82f8f63f5261709cd1a20b8fecae181850e19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T23:37:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**gpu-6000pro-2 cuda:0, cuda:1** 仅此两块。绝不碰其他 GPU\n- OLMo 模型路径必须用 `/root/autodl-tmp/models/olmo-1b-hf/`（不是 `olmo-1b`）\n- DCOL `margin_lr` 上限 1e-4（1e-3 导致 embedding collapse，已验证两次）\n- `olmo_temp09_002` 已 killed（false failure 误开的重跑），不要再碰\n- OLMo cron 有 false failure 风险——子进程退出 ≠ pipeline 失败，收到 OLMo failed 回调先 SSH 验证 tmux session 存活再判断\n- 僵尸进程导致过 DCOL v2 OOM，kill 实验后必须 `ps -p PID` + `nvidia-smi` 双验证\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2（2× RTX PRO 6000 Blackwell 98GB）\n- **工作目录**: `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: `/root/autodl-tmp/models/` 下：`pythia-1.4b/`, `gpt2-xl/`, `olmo-1b-hf/`, `deberta-v3-large`\n- **数据**: `data/depth_0.jsonl`（5000 Wikipedia seed），各模型子目录 `data/{model}/`\n- **HF_HOME**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - `olmo_temp09_001`: PID 205384, tmux session, cuda:1, Step 4 进行中\n  - `gpt2xl_topk50_001`: PID 211326, tmux session, cuda:0\n- **Cron**: 两个活跃（olmo_temp09_001, gpt2xl_topk50_001），reconcile 已确认均 still running\n\n### 3. 📊 当前状态\n**刚做完**: baseline_battery_001 (6种 feature-based baselines)、atlas_v1_analysis、GPT-2 XL temp09 分析。共 8 个 success 实验。\n\n**RUNNING (2)**:\n- `olmo_temp09_001` — OLMo-1B temp τ=0.9 pipeline, cuda:1, Step 4+（finetune d0-d1 已完成）\n- `gpt2xl_topk50_001` — GPT-2 XL top-k k=50 pipeline, cuda:0\n\n**PREPARING (3)**:\n- `olmo_topk50_001` — 3×3 最后一格，等 cuda:1 释放（olmo_temp09 完成后）\n- `dcol_deberta_003` — DCOL v3 重试（修复 OOM），等 cuda:0 释放（gpt2xl_topk50 完成后）\n- `olmo_temp09_002` — **已 killed**，不用管\n\n**等待中**: 两个 cron 回调（olmo_temp09_001, gpt2xl_topk50_001）\n\n### 4. 📋 待办（条件触发式）\n- `gpt2xl_topk50_001` cron 回调到达 → spawn worker 分析结果（feature extraction + classification）→ 更新 registry/report → 对比 nucleus 83.3% 和 temp09 85.4% → cuda:0 释放后提交 `dcol_deberta_003`\n- `olmo_temp09_001` cron 回调到达 → spawn worker 分析结果 → 对比 OLMo nucleus 78.8% → cuda:1 释放后提交 `olmo_topk50_001`（3×3 最后一格）\n- `olmo_topk50_001` 完成 → 3×3 矩阵 9/9 done → 汇报 Director，产出完整矩阵对比表\n- `dcol_deberta_003` 提交时 → 确保 cuda:0 完全空闲（nvidia-smi 验证 0MiB），batch_size 32 在 98GB 卡上不会 OOM\n- 3×3 矩阵全完 + DCOL 完成 → 触发 EDD threshold sensitivity 实验 (0.65/0.70/0.75/0.80)\n- Baseline battery CE-MLP 需用默认参数重跑确认（当前 5 epochs 74.9% 可能训练不足）\n\n### 5. 🎯 战略上下文\n- **核心结论**: 递归生成深度可从统计特征区分（MVP 78.2%），信号跨模型泛化（Pythia/OLMo/GPT-2 XL），跨策略有信号但强度模型依赖（D006）\n- **Framing 重心**: Atlas/EDD 为 primary contribution，DCOL 为 secondary（D002 Dream 审稿驱动）\n- **3×3 矩阵 7/9 done**，剩 2 running。趋势：连续策略(nucleus/temp)信号稳定 ±2pp，top-k 衰减 -8.6pp（Pythia）。GPT-2 XL 信号最强（85.4%）\n- **Decision chain**: D001(MVP pass) → D002(Dream 审稿，Atlas 为主) → D003(baselines 统一 DeBERTa) → D004(strategy-dependent 非 agnostic) → D005(DCOL margin_lr 修复) → D006(模型依赖性) → D007(feature set 一致性表述)\n- **易错点**:\n  - 不要把 Pythia top-k 的 -8.6pp 衰减外推到 GPT-2 XL top-k（可能方向不同，参考 temp09 案例）\n  - DCOL v3 提交前必须验证 GPU 空闲，上次 OOM 就是两实验撞 GPU\n  - OLMo false failure 已发生两次，第三次还会发生——先验证再判断\n  - Claim 措辞：用 \"strategy-dependent but signal persists\" 而非 \"strategy-agnostic\"；用 \"consistent feature set\" 而非 \"var_surprisal as single best\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b7fd3a7988a04d78aab2",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260522T010830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260522T010830_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "b731035f54cf1842b37f7fe951b7226204c9268f8d39a6e2c6fd0132d734414e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。\n\n**已自动修复 6 项**（arXiv → 正式发表版本）：\n- `tripathi2025pairwise` → COLM 2025\n- `wang2023faireval` → ACL 2024（补全作者 Kong, Lingpeng）\n- `li2024calibraeval` → ACL 2025\n- `ye2024justice` → ICLR 2025（补全 2 位缺失作者）\n- `he2021debertav3` → ICLR 2023\n- `shi2024judging` → IJCNLP-AACL 2025\n\n**交叉引用**：53 条 bib 全部被 tex 引用，tex 中无缺失引用，无冗余条目，无重复。\n\n**Tripathi (R7-REF1)**：已正确包含并引用于 `experiments.tex:135`，已从 arXiv 升级为 COLM 2025。\n\n**6 条仍为 arXiv preprint**（未找到正式版本）：wang2026fairjudge、casse2026concise、counterfactual2025rhetorical、soumik2026judging、celikyilmaz2020evaluation、stureborg2024inconsistent。\n\n**需人工确认 4 项**见报告末尾（key 命名不规范、`and others` 缩写、老 preprint 是否替换）。\n\n报告路径：`artifacts/reference_audit_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

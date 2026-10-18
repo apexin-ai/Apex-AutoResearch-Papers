@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9296ec54b33dc5333817",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research r20 literature search",
+  "task_key": "worker_research_r20_literature_search_20260519T045626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r20_literature_search_20260519T045626_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "00d8ff2fb987e92e9967da7273c0c29a26611a3680a8f68a829d7481514124db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/r20_literature_additions.md`。\n\n关键发现：\n- **MR1** — Dubey et al. (2018) ECCV，pages 71-88，信息完整\n- **MR2** — 标题与作者不匹配。\"Exploiting Class Similarity...\" 实际是 Gare & Galeotti (arXiv 2021)，而 Collier et al. 2021 是 \"Correlated Input-Dependent Label Noise\"（CVPR 2021, pages 1551-1560）。两篇都列出了 bib 和引用文本，请确认用哪篇\n- **MR3** — Park et al. (2024) \"Grammar-Aligned Decoding\"，NeurIPS 2024，核心论点：constrained decoding 会扭曲 LLM 的概率分布，直接关联 schema 约束下的 calibration 问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7b09b844fd2d1d768566",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops a6 check model spec",
+  "task_key": "worker_ops_a6-check-model-spec_20260524T125412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a6-check-model-spec_20260524T125412_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "cc0558de9255fa2b01e5cb9428fe152a6dd2a022328c59015c29ef7902a66537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已确认。\n\n## 结论\n\n### 1. K_eff sig 来自 **独立 2-predictor 模型**（情况 2）\n\n脚本中有两个独立的 OLS 回归模型，Shannon 和 K_eff **不在同一个模型里**：\n\n- **Model 1 (Shannon)**: `X_s = [1, Shannon_H, log(η_max)]` → 产出 `shannon_fdr_sig`\n- **Model 2 (K_eff)**: `X_k = [1, log(K_eff), log(η_max)]` → 产出 `keff_fdr_sig`（即表中的 \"K_eff sig\" 列）\n\n两个模型都是 `sm.OLS(y, X).fit()`，y = log(ASR + ε)。\n\n### 2. Bootstrap 参数\n\n| 参数 | 值 |\n|------|-----|\n| B (replications) | **999** (`B_BOOT = 999`) |\n| Weight type | **Webb 6-point** (`WEBB_6PT`) |\n| Clustering | **max_p_across_K_positions**（对每个 K position 分别做 bootstrap，取 max p-value） |\n| FDR α | **0.05** (`FDR_ALPHA = 0.05`) |\n| Panel set size per K | **C(15, K)** — 即 `itertools.combinations(range(15), K)`，K=3→455, K=5→3003, K=7→6435（枚举所有 15 选 K 组合，无采样截断；每个 condition 跳过 n_panels<10 的） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

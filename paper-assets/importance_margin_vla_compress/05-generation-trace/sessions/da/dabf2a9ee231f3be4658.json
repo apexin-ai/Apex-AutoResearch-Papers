@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dabf2a9ee231f3be4658",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code libero training adapt",
+  "task_key": "worker_code_libero_training_adapt_20260516T130739",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_libero_training_adapt_20260516T130739_result.json",
+    "occurrence": 1,
+    "bytes": 1518,
+    "sha256": "b3201e5b48a3a2aceed7b01a49020d471a85f4d259f233e86d0869a9171d519b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "aloha 配置完全不受影响（`image_shape` 不存在时默认 `(3,256,256)`，alpha 保持 64）。\n\n---\n\n## 完成总结\n\n### 修改清单\n\n**1. `configs/libero_baseline.yaml`** — alpha 64 → 16\n- 从 aloha mode collapse 教训出发，降低 LoRA scaling factor（scale=alpha/rank=0.5）\n\n**2. `configs/libero_imm.yaml`** — 无需修改（通过 `_base_` 继承 baseline，alpha 自动变为 16）\n\n**3. `train.py` line 118** — `_adapt_projections` 图像尺寸可配置\n- 新增 `image_shape = tuple(features.get(\"image_shape\", (3, 256, 256)))` \n- 替代原来硬编码的 `(3, 256, 256)`\n- 向后兼容：aloha 配置无 `image_shape` 字段，自动 fallback 到默认值\n\n### 验证结果\n\n| 检查项 | 状态 |\n|--------|------|\n| Python 语法 (`py_compile`) | ✅ |\n| libero_baseline 配置加载 | ✅ repo_id=HuggingFaceVLA/libero, state=8, action=7, alpha=16 |\n| libero_imm 配置继承 | ✅ IMM enabled, delta=0.3, lambda=0.5, gradient_isolation=true |\n| aloha 配置向后兼容 | ✅ state=14, action=14, alpha=64 不变 |\n| LIBERO 数据集元数据 | ✅ fps=10, 1693 episodes, 273465 frames, 40 tasks |\n| 数据集特征匹配 | ✅ image(256×256×3)×2, state(8,), action(7,) |\n\n### 训练前准备\n\n数据集 `HuggingFaceVLA/libero`（~34GB）尚未下载到本地。首次训练时会自动下载，或可提前运行：\n```bash\npython -c \"from lerobot.datasets import LeRobotDataset; LeRobotDataset('HuggingFaceVLA/libero')\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

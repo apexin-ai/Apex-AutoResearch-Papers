@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "92a43e40544cc61b4a27",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code plan 008 pruning sweep",
+  "task_key": "worker_code_plan_008_pruning_sweep_20260516T144418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan_008_pruning_sweep_20260516T144418_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "d8f1d359c76969eaad8c4531bc35fcfa958e8b0cf90490a77ea1d1d6c2e80750"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 正在加载模型（正从 HF 缓存拉 SmolVLM2 配置文件）。一切正常运行中。\n\n**已完成：**\n1. `eval_pruning_sweep.py` 已写入服务器 `/root/autodl-tmp/importance_margin_vla_compress/`\n2. 训练 job `plan_008_pruning_sweep` 已提交到 cuda:1，正在加载模型\n3. Registry 已更新（RUNNING 状态，含 hypothesis）\n\n脚本对 7 个 k_ratio (0.3~0.9) 各跑 500 batch evaluation，输出 G3 曲线表格 + sweet spot + deployable range，结果存入 `eval_results/pruning_sweep.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "706013138afe917a7376",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper fig5 method gap redraw",
+  "task_key": "worker_paper_fig5_method_gap_redraw_20260528T140851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fig5_method_gap_redraw_20260528T140851_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "1e137f90cd6990643884ebababbc7e9438256313a03cb863293e2aed9722e75d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。改动总结：\n\n- **图表类型**：垂直 bar chart → 水平 lollipop chart（stem + dot），信息密度大幅提升\n- **尺寸**：(4.5, 4.125) → (3.5, 2.1)，单栏宽度\n- **配色**：硬编码 vermillion/blue → muted academic palette（`#c44e52` 暗红 / `#4c72b0` 暗蓝）\n- **布局**：π0.5 组顶部、X-VLA 组底部，组间 subtle separator，y-label 着色区分模型\n- **17× bracket**：保留，使用精细箭头样式（`<|-|>` mutation_scale=6）\n- **字体**：Times New Roman, font.size=9, pdf.fonttype=42\n- **去掉**：top/right/left spines、粗网格线\n- 所有 4 个输出文件就位（PDF 22KB > 3KB ✓）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

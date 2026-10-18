@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5251894b92ceb4d7e5b7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp006 interaction 2x2",
+  "task_key": "worker_code_exp006_interaction_2x2_20260515T173024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_interaction_2x2_20260515T173024_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "cfc88ae195713a66ea814533ac59ac69931d5f6eaa9dab2c1a8d81d766f859a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成状态\n\n**脚本已就绪，未提交**（cuda:0 被 exp012 Llama-8B exp1 占用中）。\n\n### 脚本位置\n`/root/schema-dag-extraction/scripts/run_exp006_interaction.py` (cqa1-38874)\n\n### Dry-run 验证结果\n| Cell | Batches | BCS Range | Mean BCS |\n|------|---------|-----------|----------|\n| low_count (6) / low_bcs | 10 | [0.8327, 0.8454] | 0.8417 |\n| low_count (6) / high_bcs | 10 | [0.9526, 0.9732] | 0.9615 |\n| high_count (22) / low_bcs | 10 | [0.8993, 0.9103] | 0.9076 |\n| high_count (22) / high_bcs | 10 | [0.9732, 0.9732] | 0.9732 |\n\n共 40 batches × 1000 samples = 40,000 extractions。\n\n### 提交命令（GPU 空闲后执行）\n```\nsubmit_training_job:\n  server: cqa1-38874\n  gpu_ids: [\"cuda:0\"]\n  exp_id: exp006_interaction_2x2\n  account: root\n  timeout_hours: 3\n  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 python scripts/run_exp006_interaction.py --max_samples 1000\"\n```\n\n### 设计要点\n- 从 500 个随机 batch pool 中选 BCS 最低/最高各 10 个，确保 low/high BCS 有清晰分离\n- 复用现有 `run_extraction` (vLLM + guided_json v2) 和 `evaluate_all` (text_match)\n- 分析输出：4-cell mean F1、count/BCS main effects、interaction term (cross-difference) + z-test"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

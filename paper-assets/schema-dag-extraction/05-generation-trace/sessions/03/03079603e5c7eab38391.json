@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "03079603e5c7eab38391",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper fix appendix exp3 ner",
+  "task_key": "worker_paper_fix_appendix_exp3_ner_20260517T133636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_appendix_exp3_ner_20260517T133636_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "f381d9af0fecb17b0212b741f3c6ca9b394985fe30a153b2cfca3088b0406714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verifications pass:\n\n1. **旧值已清除** — `0.962`, `0.822`, `0.666` 均不存在\n2. **无 em-dash** — 全文无 `—`\n3. **NER 表格 6 行** — count 2/6/12/22/44/66 全部包含，数值正确\n4. **Narrative 合规** — NER 部分无 \"tightly track\" / \"near-identical\"；\"near-identical\" 仅用于 FewRel RE slopes\n5. **FewRel (Exp 1) 完整保留** — RE 表格数据和 slopes 未变\n6. **结论段按 D055 结构**：FewRel = quantitative match, NER = directional consistency + U-shape replication, combined = architecture-independent in direction"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

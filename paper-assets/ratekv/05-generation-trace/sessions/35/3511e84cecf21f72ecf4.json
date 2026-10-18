@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3511e84cecf21f72ecf4",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama aggressive check and fix",
+  "task_key": "worker_code_llama_aggressive_check_and_fix_20260514T053240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_aggressive_check_and_fix_20260514T053240_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "d25e9524bb1e3a6f354c38cb1a301118386d9108281c1033a960f1f8fb1252ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在运行中，进展良好。当前状态：\n\n**已完成：**\n- Baseline PPL: **8.0918**\n- Uniform 4-bit (ref): **8.4690** (与之前一致)\n- Budget 0.1875 (5.3x) Uniform 2-bit: **2643.77** (全2-bit，崩坏)\n- Budget 0.1875 (5.3x) MCKP: bit dist {4:128, 2:128}，正在评估 PPL，chunk ~150/564，running ppl ~57\n\n**进行中：** MCKP 5.3x 的 PPL 评估（约 27% 完成），之后还有 budget=0.125 (8x) 的两个评估。\n\n**初步观察：** MCKP 在 5.3x 下 running ppl ~57 vs uniform 2-bit 的 2643——MCKP 把一半 heads 保留在 4-bit，PPL 从 2643 降到 ~57，差距巨大。虽然 ~57 远高于 baseline 8.09，但相比 uniform 2-bit 改善了 ~46 倍。\n\n预计还需 10-15 分钟完成剩余评估。无需干预，进程正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

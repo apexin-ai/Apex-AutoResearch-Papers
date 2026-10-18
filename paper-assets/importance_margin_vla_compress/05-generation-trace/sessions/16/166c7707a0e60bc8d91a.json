@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "166c7707a0e60bc8d91a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code deploy hard forward fix",
+  "task_key": "worker_code_deploy-hard-forward-fix_20260515T172928",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_deploy-hard-forward-fix_20260515T172928_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "cabcb3cdaa27d90190f05d9aa9f644f2ce5898aa38a29e161485bb963b8ebd8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n1. `_hard_forward` 修复**已经部署在服务器上** — 使用 `binary_mask * tokens`，输出 `(B, N, D)`，无 `torch.gather` 调用\n2. dry-run **通过** — train `(4, 64, 960)`, eval `(4, 64, 960)`, 每个 batch 保留 32 tokens\n\n不需要额外修改。`_merge_borderline_tokens` 方法仍存在于文件中（行 75-111）但已是死代码，不被调用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

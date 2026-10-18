@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2eed2d4184ea24fcd3f9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops process analyzing experiments",
+  "task_key": "worker_ops_process-analyzing-experiments_20260521T223348",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_process-analyzing-experiments_20260521T223348_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "b3c5f6125a581fd0138f9ab1f7ddb8a22255f09df0c263e2d7a055d8c57ec9ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8/8 全部转 DONE。汇总：\n\n| exp_id | conclusion | key metrics | 操作 |\n|--------|-----------|-------------|------|\n| train_smart_compress_m128_resume | success | loss=0.054, steps=99999 | 直接→DONE |\n| train_smart_compress_m128_seed43 | success | loss=0.056, eval=0.061, steps=99999 | 补metrics→DONE |\n| train_smart_compress_m16_seed43 | success | loss=0.077, eval=0.062, steps=99999 | 补metrics→DONE |\n| train_smart_compress_m16_seed44_v3 | success | loss=0.068, eval=0.050, steps=99999 | 补checkpoint_path+log_path+metrics→DONE |\n| train_smart_compress_m64_seed44 | success | loss=0.031, eval=0.070, steps=99999 | 补conclusion+metrics→DONE |\n| train_smart_compress_m32_seed44 | success | loss=0.041, eval=0.064, steps=99999 | 补conclusion+metrics→DONE |\n| train_smart_compress_m96_seed44 | success | loss=0.047, eval=0.053, steps=99999 | 补conclusion+metrics→DONE |\n| **eval_pi05_random_k09_fixedmask_object_seed42_v2** | **negative** | **SR=17.0% (85/500)** | 补conclusion+metrics→DONE |\n\n**fixedmask v2 关键结论**：per-episode 固定 random mask (k=0.9) SR=17.0%，与 stochastic random k=0.9 的 ~10-12% SR 相比仅微幅提升，远未恢复到 baseline (~90%)。**temporal inconsistency 不是 k=0.9 cliff 的根因，specific tokens are critical** — 即使只丢弃 10% 的 token，如果丢掉了关键 token，性能就会崩塌。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

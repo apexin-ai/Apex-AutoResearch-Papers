@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "012b0401acfb4f1daed6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 attention k05 spatial seed42",
+  "task_key": "worker_harvest_eval_pi05_attention_k05_spatial_seed42_20260523T230413",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_attention_k05_spatial_seed42_20260523T230413_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "57a5e36059882a6921ef456e88b1ae22d5119e0de8eb809e4ac484486dab995f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或未创建）。Registry 已更新为 DONE。\n\n## 结果报告\n\n**eval_pi05_attention_k05_spatial_seed42** — DONE (negative)\n\n| 指标 | 值 |\n|------|-----|\n| Attention k=0.5 Spatial SR | **72.6%** (363/500) |\n| Random k=0.5 Spatial SR | 71.6% (358/500) |\n| Delta | **+1.0pp** (noise) |\n\n**Per-task breakdown:**\n- 高 SR: T2 table center (96%), T1 next to ramekin (92%), T7 stove (88%), T9 wooden cabinet (88%), T6 next to cookie box (86%)\n- 低 SR: T4 top drawer (28%), T5 on ramekin (32%)\n\n**D185 narrative 影响:**\n\nπ0.5 attention importance 跨 3 个 suite 的 k=0.5 表现：\n\n| Suite | Attention | Random | Delta |\n|-------|-----------|--------|-------|\n| Goal seed42 | 70.2% | 73.6% | **-3.4pp** |\n| Goal seed43 | 72.2% | 73.6% | **-1.4pp** |\n| Spatial seed42 | 72.6% | 71.6% | **+1.0pp** |\n\nAttention 在 MLP connector (π0.5) 上跨 suite 表现 ≈ Random，无系统性优势。Spatial 的 +1.0pp 在统计噪声内，不改变 Goal 双 seed 确认的结论：**attention importance 在 MLP connector 架构上失效**。与 X-VLA (BART connector) attention k=0.5 Goal=98.2% 形成鲜明对比，支持 architecture-dependent importance 的 claim。\n\n**westd-41074 GPU 2 现已空闲可用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

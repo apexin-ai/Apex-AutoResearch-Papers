@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ef30215ce8038fa9d279",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train libero seed0 dual",
+  "task_key": "worker_train_libero_seed0_dual_20260516T153736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_libero_seed0_dual_20260516T153736_result.json",
+    "occurrence": 1,
+    "bytes": 158,
+    "sha256": "4015b713db0a37c96765340e453d19b93d1868a16d2c3889bbb106ea90c73229"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时了，但训练早已正常启动（在 monitor 触发前就确认了）。无需额外操作，4 个训练都在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

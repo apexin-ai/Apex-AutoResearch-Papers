@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2c9be9e72f029794f6e2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu023 xvla round2",
+  "task_key": "worker_deploy-westd38929-gpu023-xvla-round2_20260524T005804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd38929-gpu023-xvla-round2_20260524T005804_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "d6e589772d12ae28bbbb76266d67d2d97bad927366f41e70ee4352ea2f30fb56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**All proposed experiments are already complete.** The X-VLA k=0.5 CV matrix is nearly fully populated:\n\n### X-VLA k=0.5 CV Status\n\n| Suite | Method | seed42 | seed43 | Mean |\n|-------|--------|--------|--------|------|\n| Goal | Random | 67.2% | 68.6% | 67.9% |\n| Goal | L2norm | 59.0% | 60.2% | 59.6% |\n| Object | Random | 70.6% | 71.0% | 70.8% |\n| Object | L2norm | 43.4% | 43.0% | 43.2% |\n| Long | Random | 61.6% | 58.2% | 59.9% |\n| Long | L2norm | 45.0% | **running** | — |\n| Spatial | Random | 71.4% | 72.6% | 72.0% |\n| Spatial | L2norm | 58.8% | 59.0% | 58.9% |\n\n**Only remaining gap**: L2 Long seed43 on GPU 1 (PID 432791, currently Task 9 ep 8/50 — will finish within ~10 min).\n\n**Harvested**: L2 Spatial seed43 = 59.0% (registry updated to DONE).\n\n**GPU 0/2/3 are free** with no more R6-C1 CV experiments to deploy. Available for other work."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

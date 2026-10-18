@@ -1,0 +1,1451 @@
+{
+  "schema_version": "1.0",
+  "id": "2f90374d371ce1befb95",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "eval k03 trained prune",
+  "task_key": "worker_eval_k03_trained_prune_20260517T120434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_eval_k03_trained_prune_20260517T120434.jsonl",
+    "occurrence": 1,
+    "bytes": 54970,
+    "sha256": "7bac5dd9bd028a0d7fd9b4f06bf4bdb9073c3c5d0458688bf6ca0014dd9e45ac"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "tool_call": 35,
+      "tool_result": 35,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T12:07:47.577279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T12:07:47.577742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T12:07:47.577997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -50 ~/runs/importance_margin_vla_compress/train_acis_stage1only_k03.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T12:07:47.578243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/checkpoints/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T12:07:47.578542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 15:51:23 [INFO] [stage1] step=8450/10000  margin_loss=0.1320  lr=2.16e-05  grad=14.51  sps=4.1\\\\n2026-05-17 15:51:37 [INFO] [stage1] step=8500/10000  margin_loss=0.1482  lr=2.04e-05  grad=18.67  sps=4.1\\\\n2026-05-17 15:51:47 [INFO] [stage1] step=8550/10000  margin_loss=0.1563  lr=1.93e-05  grad=60.55  sps=4.1\\\\n2026-05-17 15:51:58 [INFO] [stage1] step=8600/10000  margin_loss=0.1154  lr=1.81e-05  grad=17.95  sps=4.1\\\\n2026-05-17 15:52:10 [INFO] [stage1] step=8650/10000  margin_loss=0.0393  lr=1.71e-05  grad=28.27  sps=4.1\\\\n2026-05-17 15:52:22 [INFO] [stage1] step=8700/10000  margin_loss=0.0363  lr=1.60e-05  grad=19.36  sps=4.1\\\\n2026-05-17 15:52:34 [INFO] [stage1] step=8750/10000  margin_loss=0.0807  lr=1.50e-05  grad=13.61  sps=4.1\\\\n2026-05-17 15:52:45 [INFO] [stage1] step=8800/10000  margin_loss=0.0000  lr=1.40e-05  grad=0.00  sps=4.1\\\\n2026-05-17 15:52:58 [INFO] [stage1] step=8850/10000  margin_loss=0.1076  lr=1.31e-05  grad=43.43  sps=4.1\\\\n2026-05-17 15:53:11 [INFO] [stage1] step=8900/10000  margin_loss=0.0504  lr=1.22e-05  grad=26.90  sps=4.1\\\\n2026-05-17 15:53:24 [INFO] [stage1] step=8950/10000  margin_loss=0.1581  lr=1.14e-05  grad=30.58  sps=4.1\\\\n2026-05-17 15:53:35 [INFO] [stage1] step=9000/10000  margin_loss=0.0164  lr=1.05e-05  grad=333.44  sps=4.1\\\\n2026-05-17 15:53:47 [INFO] [stage1] step=9050/10000  margin_loss=0.0900  lr=9.77e-06  grad=23.26  sps=4.1\\\\n2026-05-17 15:53:59 [INFO] [stage1] step=9100/10000  margin_loss=0.0885  lr=9.03e-06  grad=69.81  sps=4.1\\\\n2026-05-17 15:54:11 [INFO] [stage1] step=9150/10000  margin_loss=0.0666  lr=8.32e-06  grad=14.61  sps=4.1\\\\n2026-05-17 15:54:22 [INFO] [stage1] step=9200/10000  margin_loss=0.1683  lr=7.66e-06  grad=217.68  sps=4.1\\\\n2026-05-17 15:54:33 [INFO] [stage1] step=9250/10000  margin_loss=0.0503  lr=7.04e-06  grad=12.73  sps=4.1\\\\n2026-05-17 15:54:44 [INFO] [stage1] step=9300/10000  margin_loss=0.1246  lr=6.46e-06  grad=8.29  sps=4.1\\\\n\n…[truncated 2447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T12:07:47.578824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28\\\\ndrwxr-xr-x 12 root root 4096 May 17 17:52 .\\\\ndrwxr-xr-x 12 root root 4096 May 17 17:53 ..\\\\ndrwxr-xr-x  4 root root   51 May 17 15:57 libero_acis_stage1only_k03\\\\ndrwxr-xr-x  4 root root   51 May 17 15:56 libero_acis_stage1only_k07\\\\ndrwxr-xr-x 12 root root 4096 May 17 05:25 libero_baseline\\\\ndrwxr-xr-x 12 root root 4096 May 17 06:44 libero_baseline_seed0\\\\ndrwxr-xr-x 12 root root 4096 May 17 05:26 libero_full_ft\\\\ndrwxr-xr-x 12 root root 4096 May 17 06:47 libero_full_ft_seed0\\\\ndrwxr-xr-x 12 root root 4096 May 17 12:30 libero_full_ft_seed1\\\\ndrwxr-xr-x  2 root root    6 May 17 16:38 libero_fullft_batch64\\\\ndrwxr-xr-x  6 root root   86 May 17 09:25 libero_imm_twostage_fullft_seed0\\\\ndrwxr-xr-x  3 root root   39 May 17 17:52 libero_stage2_recovery\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T12:07:47.579096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "head -30 ~/runs/importance_margin_vla_compress/eval_stage1only_object_v2_fixed.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T12:07:47.579370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/runs/importance_margin_vla_compress/eval_stage1only_object_v2_fixed.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T12:07:47.579584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "ls /root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_acis_stage1only_k03/stage1_done/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T12:07:47.579796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T12:07:47.580006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "ls ~/runs/importance_margin_vla_compress/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T12:07:47.580259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_fullft_100k.log\\\\neval_lora_100k.log\\\\nlibero_full_ft_baseline.log\\\\nlibero_fullft_batch64_v2.log\\\\nlibero_fullft_seed0.log\\\\nlibero_fullft_seed1.log\\\\nlibero_imm_fullft_100k.log\\\\nlibero_imm_fullft_k07.log\\\\nlibero_imm_fullft_seed0.log\\\\nlibero_lora_baseline.log\\\\nlibero_lora_seed0.log\\\\ntrain_acis_stage1only_k03.log\\\\ntrain_acis_stage1only_k07.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T12:07:47.580515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"eval*.py\" -maxdepth 2",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T12:07:47.580738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T12:07:47.580972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"run_eval*\" -o -name \"eval_libero*\" -maxdepth 2",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T12:07:47.581227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/run_eval_v8_fixed.sh\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/run_eval_fullft_100k.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T12:07:47.581452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cat /root/autodl-tmp/importance_margin_vla_compress/run_eval_v8_fixed.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T12:07:47.581697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\ncd /root/autodl-tmp/importance_margin_vla_compress\\\\nsource /etc/network_turbo\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport CUDA_VISIBLE_DEVICES=1\\\\n\\\\nmkdir -p eval_results\\\\n\\\\necho \\\\\\\"=== Eval 1: v8 standard (500 batches) ===\\\\\\\"\\\\npython3 -u evaluate.py \\\\\\\\\\\\n    --checkpoint checkpoints/imm_anchor_v8/step_029999 \\\\\\\\\\\\n    --config configs/imm_anchor_v8.yaml \\\\\\\\\\\\n    --max_batches 500 --seed 42 \\\\\\\\\\\\n    --output eval_results/eval_imm_v8_fixed.json\\\\n\\\\necho \\\\\\\"=== Eval 2: v8 bypass-ACIS (500 batches) ===\\\\\\\"\\\\npython3 -u evaluate.py \\\\\\\\\\\\n    --checkpoint checkpoints/imm_anchor_v8/step_029999 \\\\\\\\\\\\n    --config configs/imm_anchor_v8.yaml \\\\\\\\\\\\n    --max_batches 500 --seed 42 --bypass_acis \\\\\\\\\\\\n    --output eval_results/eval_imm_v8_bypass_fixed.json\\\\n\\\\necho \\\\\\\"=== Eval 3: baseline (500 batches) ===\\\\\\\"\\\\npython3 -u evaluate.py \\\\\\\\\\\\n    --checkpoint checkpoints/baseline/step_029999 \\\\\\\\\\\\n    --config configs/baseline.yaml \\\\\\\\\\\\n    --max_batches 500 --seed 42 \\\\\\\\\\\\n    --output eval_results/eval_baseline_v5_fixed.json\\\\n\\\\necho \\\\\\\"=== ALL DONE $(date) ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T12:07:47.581965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "head -80 /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T12:07:47.582280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO Success Rate Evaluation for SmolVLA / IMM models.\\\\n\\\\nEvaluates per-task and overall success rate on LIBERO benchmark suites.\\\\n\\\\nUsage:\\\\n    python eval_success_rate_libero.py \\\\\\\\\\\\n        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\\\\\\\\\\n        --config configs/libero_baseline.yaml \\\\\\\\\\\\n        --suite libero_object \\\\\\\\\\\\n        --num_episodes 50 \\\\\\\\\\\\n        --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"MUJOCO_GL\\\\\\\", \\\\\\\"egl\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 280,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n    \\\\\\\"libero_90\\\\\\\": 400,\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"LIBERO success rate evaluation\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Path to checkpoint.pt\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=\\\\\\\"configs/libero_baseline.yaml\\\\\\\",\\\\n                   help=\\\\\\\"Path to YAML config\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\",\\\\n                   choices=list(SUITE_MAX_STEPS.keys()),\\\\n                   help=\\\\\\\"LIBERO suite name\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=i\n…[truncated 1488 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T12:07:47.582539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*stage1*\" -o -name \"*acis*\" -o -name \"*prune*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T12:07:47.582758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T12:07:47.582978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -type f -name \"*stage1*\" -o -type f -name \"*acis*\" -o -type f -name \"*prune*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T12:07:47.583221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "ls /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T12:07:47.583449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_baseline_v5_bypass_acis.json\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v7_2_bypass_acis.json\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8_1_acis_prune.json\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8b_acis_prune.json\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8c_acis_prune.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T12:07:47.583691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"action_diversity_by_step.json\\\\neval_baseline_v5_bypass_acis.json\\\\neval_baseline_v5_final.json\\\\neval_baseline_v5_fixed.json\\\\neval_baseline_v5_step10000.json\\\\neval_baseline_v5_step5000.json\\\\neval_imm_v7_2_bypass_acis.json\\\\neval_imm_v7_2_final.json\\\\neval_imm_v7_2_step010000.json\\\\neval_imm_v7_2_step020000.json\\\\neval_imm_v7_final.json\\\\neval_imm_v8_1_acis_prune.json\\\\neval_imm_v8_1_bypass.json\\\\neval_imm_v8_1_standard.json\\\\neval_imm_v8_bypass_final.json\\\\neval_imm_v8_bypass_fixed.json\\\\neval_imm_v8_final.json\\\\neval_imm_v8_final_30k.json\\\\neval_imm_v8_fixed.json\\\\neval_imm_v8_step002000.json\\\\neval_imm_v8_step002000_bypass.json\\\\neval_imm_v8b_acis_prune.json\\\\neval_imm_v8b_bypass.json\\\\neval_imm_v8b_standard.json\\\\neval_imm_v8c_acis_prune.json\\\\neval_imm_v8c_bypass.json\\\\neval_imm_v8c_standard.json\\\\neval_lora_100k_sr.json\\\\nfullft_100k_goal.json\\\\nfullft_100k_object.json\\\\nfullft_100k_spatial.json\\\\ngate_report.json\\\\ngate_report_v7_2.json\\\\ngate_report_v8_1_final.json\\\\ngate_report_v8_final.json\\\\ngate_report_v8_step2k.json\\\\ngate_report_v8b_final.json\\\\ngate_report_v8c_final.json\\\\nlerobot_eval_investigation.md\\\\nofficial_eval_final_report.md\\\\nsim_rollout_diagnosis.md\\\\nsim_success_rate.json\\\\nsuccess_rate.json\\\\ntemp08_success_rate.json\\\\ntrajectory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T12:07:47.583942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/success_rate.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T12:07:47.584207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"baseline_step_029999\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline\\\\\\\",\\\\n    \\\\\\\"checkpoint_path\\\\\\\": \\\\\\\"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\\\\\\\",\\\\n    \\\\\\\"config_path\\\\\\\": \\\\\\\"configs/baseline_v6_alpha16.yaml\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 50,\\\\n    \\\\\\\"success_count\\\\\\\": 0,\\\\n    \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"wilson_ci_95\\\\\\\": [\\\\n      0.0,\\\\n      0.0714\\\\n    ],\\\\n    \\\\\\\"mean_episode_length_successful\\\\\\\": NaN,\\\\n    \\\\\\\"mean_episode_length_all\\\\\\\": 400.0,\\\\n    \\\\\\\"mean_reward\\\\\\\": 0.0,\\\\n    \\\\\\\"temperature\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"max_steps\\\\\\\": 400,\\\\n    \\\\\\\"action_horizon\\\\\\\": 50\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T12:07:47.584450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep -n \"acis_prune\\|acis_checkpoint\\|k_ratio\\|stage1\" /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T12:07:47.584665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T12:07:47.584874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep -n \"acis_prune\\|acis_checkpoint\\|k_ratio\\|stage1\" /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T12:07:47.585082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T12:07:47.585327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep -n \"acis_prune\" /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T12:07:47.585554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"70:    p.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"acis_prune\\\\\\\"], default=\\\\\\\"baseline\\\\\\\")\\\\n289:    if args.mode == \\\\\\\"acis_prune\\\\\\\":\\\\n350:                    if args.mode == \\\\\\\"acis_prune\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T12:07:47.585770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep -n \"k_ratio\" /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T12:07:47.585984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep -n \"acis_checkpoint\" /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T12:07:47.586209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"182:    k = max(1, int(N_vis * wrapper.k_ratio))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T12:07:47.586419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T12:07:47.586621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "sed -n '280,360p' /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T12:07:47.586830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T12:07:47.587044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "head -200 /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T12:07:47.587449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO Success Rate Evaluation for SmolVLA / IMM models.\\\\n\\\\nEvaluates per-task and overall success rate on LIBERO benchmark suites.\\\\n\\\\nUsage:\\\\n    python eval_success_rate_libero.py \\\\\\\\\\\\n        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\\\\\\\\\\n        --config configs/libero_baseline.yaml \\\\\\\\\\\\n        --suite libero_object \\\\\\\\\\\\n        --num_episodes 50 \\\\\\\\\\\\n        --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"MUJOCO_GL\\\\\\\", \\\\\\\"egl\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 280,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n    \\\\\\\"libero_90\\\\\\\": 400,\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"LIBERO success rate evaluation\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Path to checkpoint.pt\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=\\\\\\\"configs/libero_baseline.yaml\\\\\\\",\\\\n                   help=\\\\\\\"Path to YAML config\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\",\\\\n                   choices=list(SUITE_MAX_STEPS.keys()),\\\\n                   help=\\\\\\\"LIBERO suite name\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=i\n…[truncated 6433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T12:07:47.587742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -n +280 /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T12:07:47.588098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    from train import get_tokenizer_from_policy\\\\n    tokenizer = get_tokenizer_from_policy(policy)\\\\n\\\\n    ds_cfg = config.get(\\\\\\\"dataset\\\\\\\", {})\\\\n    camera_keys = ds_cfg.get(\\\\\\\"features\\\\\\\", {}).get(\\\\\\\"cameras\\\\\\\", [\\\\n        \\\\\\\"observation.images.image\\\\\\\", \\\\\\\"observation.images.image2\\\\\\\"\\\\n    ])\\\\n\\\\n    connector = None\\\\n    if args.mode == \\\\\\\"acis_prune\\\\\\\":\\\\n        connector = find_connector(policy.model)\\\\n        if connector is None:\\\\n            raise RuntimeError(\\\\\\\"Cannot find connector for ACIS hook\\\\\\\")\\\\n        log.info(\\\\\\\"Connector found for ACIS pruning\\\\\\\")\\\\n\\\\n    from libero.libero import benchmark\\\\n    from lerobot.envs.libero import get_task_init_states, LiberoEnv\\\\n\\\\n    bench_dict = benchmark.get_benchmark_dict()\\\\n    if args.suite not in bench_dict:\\\\n        raise ValueError(f\\\\\\\"Unknown suite '{args.suite}'. Available: {sorted(bench_dict.keys())}\\\\\\\")\\\\n    task_suite = bench_dict[args.suite]()\\\\n    n_tasks = len(task_suite.tasks)\\\\n\\\\n    task_ids = list(range(n_tasks))\\\\n    if args.task_ids:\\\\n        task_ids = [int(x) for x in args.task_ids.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n    log.info(\\\\\\\"Suite '%s' has %d tasks, evaluating %d: %s\\\\\\\",\\\\n             args.suite, n_tasks, len(task_ids), task_ids)\\\\n\\\\n    all_task_results = {}\\\\n    total_successes = 0\\\\n    total_episodes = 0\\\\n\\\\n    for task_id in task_ids:\\\\n        task = task_suite.get_task(task_id)\\\\n        task_desc = task.language\\\\n        log.info(\\\\\\\"--- Task %d: %s ---\\\\\\\", task_id, task_desc)\\\\n\\\\n        init_states = get_task_init_states(task_suite, task_id)\\\\n        n_init = len(init_states)\\\\n\\\\n        env = LiberoEnv(\\\\n            task_suite=task_suite,\\\\n            task_id=task_id,\\\\n            task_suite_name=args.suite,\\\\n            camera_name=\\\\\\\"agentview_image,robot0_eye_in_hand_image\\\\\\\",\\\\n            obs_type=\\\\\\\"pixels_agent_pos\\\\\\\",\\\\n            observation_width=256,\\\\n     \n…[truncated 4769 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T12:07:47.588419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress/configs -name \"*k03*\" -o -name \"*stage1*\" -o -name \"*acis*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T12:07:47.588649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/configs/libero_acis_stage1only_k07.yaml\\\\n/root/autodl-tmp/importance_margin_vla_compress/configs/libero_acis_stage1only_k03.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T12:07:47.588859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "ls /root/autodl-tmp/importance_margin_vla_compress/configs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T12:07:47.589085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"baseline.yaml\\\\nbaseline_v6_alpha16.yaml\\\\nimm_anchor.yaml\\\\nimm_anchor_v7_1.yaml\\\\nimm_anchor_v8.yaml\\\\nimm_anchor_v8_1.yaml\\\\nimm_anchor_v8_2.yaml\\\\nimm_anchor_v8b_twostage.yaml\\\\nimm_anchor_v8c_annealing.yaml\\\\nimm_delta01_lambda01.yaml\\\\nimm_delta05_lambda10.yaml\\\\nimm_k75.yaml\\\\nimm_two_stage.yaml\\\\nlibero_acis_stage1only_k03.yaml\\\\nlibero_acis_stage1only_k07.yaml\\\\nlibero_baseline.yaml\\\\nlibero_baseline_seed0.yaml\\\\nlibero_full_ft.yaml\\\\nlibero_full_ft_seed0.yaml\\\\nlibero_full_ft_seed1.yaml\\\\nlibero_fullft_batch64.yaml\\\\nlibero_imm.yaml\\\\nlibero_imm_twostage_fullft.yaml\\\\nlibero_imm_twostage_fullft_k07.yaml\\\\nlibero_imm_twostage_fullft_seed0.yaml\\\\nlibero_stage2_recovery.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T12:07:47.589337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cat /root/autodl-tmp/importance_margin_vla_compress/configs/libero_acis_stage1only_k03.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T12:07:47.589582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ACIS Stage1-only: k=0.3 (retain 30% visual tokens)\\\\n# Freeze expert, train ACIS selector only, 10K steps.\\\\n# Purpose: SR vs compression ratio curve point (k=0.3)\\\\n\\\\n_base_: libero_baseline.yaml\\\\n\\\\nmodel:\\\\n  train_expert_only: true\\\\n  lora:\\\\n    rank: 0\\\\n\\\\nimm:\\\\n  enabled: true\\\\n  gradient_isolation: false\\\\n  lambda_margin: 1.0\\\\n  delta: 0.3\\\\n  k_ratio: 0.3\\\\n  temperature: 0.5\\\\n  soft_topk_method: \\\\\\\"sigmoid\\\\\\\"\\\\n  warmup_steps: 0\\\\n\\\\nacis:\\\\n  visual_dim: 960\\\\n  action_dim: 720\\\\n  num_heads: 8\\\\n  dropout: 0.0\\\\n\\\\ntwostage:\\\\n  train_mode: \\\\\\\"twostage_fullft\\\\\\\"\\\\n  baseline_checkpoint: \\\\\\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\\\\\"\\\\n  stage1_steps: 10000\\\\n  stage2_steps: 0\\\\n  stage1_lr: 3.0e-4\\\\n  stage2_lr: 1.0e-4\\\\n  stage1_warmup_steps: 500\\\\n  stage2_warmup_steps: 0\\\\n  checkpoint_after_stage1: true\\\\n  stage1_freeze_backbone: true\\\\n  stage1_train_acis: true\\\\n  stage2_freeze_acis: true\\\\n  stage2_train_expert_only: true\\\\n\\\\ntraining:\\\\n  output_dir: \\\\\\\"checkpoints/libero_acis_stage1only_k03\\\\\\\"\\\\n  total_steps: 10000\\\\n  grad_clip: 10.0\\\\n  save_every: 5000\\\\n  eval_every: 999999\\\\n  log_every: 50\\\\n  batch_size: 4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T12:07:47.589847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8c_acis_prune.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T12:07:47.590130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eps0.0_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.008317420333623886,\\\\n    \\\\\\\"margin_mean\\\\\\\": 1.687844157218933,\\\\n    \\\\\\\"margin_median\\\\\\\": 1.2047576904296875,\\\\n    \\\\\\\"margin_std\\\\\\\": 1.7027864456176758,\\\\n    \\\\\\\"margin_min\\\\\\\": 0.000194549560546875,\\\\n    \\\\\\\"margin_max\\\\\\\": 12.153436660766602,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 1.0,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.13922227919101715,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 1.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.503793478012085,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.051498670130968094\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.008156501818448306,\\\\n    \\\\\\\"margin_mean\\\\\\\": 1.6555348634719849,\\\\n    \\\\\\\"margin_median\\\\\\\": 1.12109375,\\\\n    \\\\\\\"margin_std\\\\\\\": 1.6976484060287476,\\\\n    \\\\\\\"margin_min\\\\\\\": 0.00063323974609375,\\\\n    \\\\\\\"margin_max\\\\\\\": 13.057327270507812,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.9752574563026428,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 0.9341810345649719,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.14759264886379242,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 1.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.41722434759140015,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.055239759385585785\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.00917389137367718,\\\\n    \\\\\\\"margin_mean\\\\\\\": 1.6598080396652222,\\\\n    \\\\\\\"margin_median\\\\\\\": 1.1517524719238281,\\\\n    \\\\\\\"margin_std\\\\\\\": 1.6703379154205322,\\\\n    \\\\\\\"margin_min\\\\\\\": 2.6702880859375e-05,\\\\n    \\\\\\\"margin_max\\\\\\\": 12.940834045410156,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.955430805683136,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 0.8553304076194763,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.23193833231925964,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 1.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 3.755905866622925,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.10764793306589127\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0\n…[truncated 1081 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T12:07:47.590427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"libero_*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T12:07:47.590650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/fullft_100k_object.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T12:07:47.590869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T12:07:47.591205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"baseline\\\\\\\",\\\\n  \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"configs/libero_full_ft.yaml\\\\\\\",\\\\n  \\\\\\\"total_episodes\\\\\\\": 100,\\\\n  \\\\\\\"total_successes\\\\\\\": 36,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.36,\\\\n  \\\\\\\"wilson_ci_95\\\\\\\": [\\\\n    0.2727,\\\\n    0.4576\\\\n  ],\\\\n  \\\\\\\"num_episodes_per_task\\\\\\\": 10,\\\\n  \\\\\\\"max_steps\\\\\\\": 280,\\\\n  \\\\\\\"action_horizon\\\\\\\": 50,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the alphabet soup and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 0,\\\\n      \\\\\\\"total_episodes\\\\\\\": 10,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_steps\\\\\\\": 280.0\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 1,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the cream cheese and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 3,\\\\n      \\\\\\\"total_episodes\\\\\\\": 10,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"mean_steps\\\\\\\": 231.7\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 2,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the salad dressing and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 4,\\\\n      \\\\\\\"total_episodes\\\\\\\": 10,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"mean_steps\\\\\\\": 215.2\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 3,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the bbq sauce and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 6,\\\\n      \\\\\\\"total_episodes\\\\\\\": 10,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"mean_steps\\\\\\\": 186.8\\\\n    },\\\\n    \\\\\\\"4\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 4,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the ketchup and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 5,\\\\n      \\\\\\\"total_episodes\\\\\\\": 10,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.5,\\\\n    \n…[truncated 1590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T12:07:47.591490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "python3 -c \"import torch; ck=torch.load('/root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt', map_location='cpu', weights_only=False); print(type(ck)); print([k for k in ck.keys()][:20])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T12:07:47.591724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T12:07:47.591942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && python3 -c \"\nimport torch\nck = torch.load('checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt', map_location='cpu', weights_only=False)\nprint('Keys:', list(ck.keys()))\nif 'model_state_dict' in ck:\n    keys = list(ck['model_state_dict'].keys())\n    print('Total model keys:', len(keys))\n    acis_keys = [k for k in keys if 'acis' in k.lower()]\n    print('ACIS keys:', acis_keys)\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T12:07:47.592189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['model_state_dict', 'config', 'stage']\\\\nTotal model keys: 1020\\\\nACIS keys: ['acis.query_proj.bias', 'acis.query_proj.weight_orig', 'acis.query_proj.weight_u', 'acis.query_proj.weight_v', 'acis.q_proj.bias', 'acis.q_proj.weight_orig', 'acis.q_proj.weight_u', 'acis.q_proj.weight_v', 'acis.k_proj.bias', 'acis.k_proj.weight_orig', 'acis.k_proj.weight_u', 'acis.k_proj.weight_v', 'acis.v_proj.bias', 'acis.v_proj.weight_orig', 'acis.v_proj.weight_u', 'acis.v_proj.weight_v', 'acis.score_head.bias', 'acis.score_head.weight_orig', 'acis.score_head.weight_u', 'acis.score_head.weight_v']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T12:07:47.592442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "python3 -c \"import torch; [print(f'GPU {i}: {torch.cuda.get_device_name(i)}, mem={torch.cuda.mem_get_info(i)[1]/1e9:.1f}GB, free={torch.cuda.mem_get_info(i)[0]/1e9:.1f}GB') for i in range(torch.cuda.device_count())]\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-17T12:07:47.592663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-17T12:07:47.592872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-17T12:07:47.593086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090 D, 2727 MiB, 24564 MiB\\\\n1, NVIDIA GeForce RTX 4090 D, 3 MiB, 24564 MiB\\\\n2, NVIDIA GeForce RTX 4090 D, 3 MiB, 24564 MiB\\\\n3, NVIDIA GeForce RTX 4090 D, 3 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-17T12:07:47.593384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && source /etc/network_turbo 2>/dev/null; export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export CUDA_VISIBLE_DEVICES=2 && nohup python3 -u eval_success_rate_libero.py \\\n    --checkpoint checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt \\\n    --config configs/libero_acis_stage1only_k03.yaml \\\n    --suite libero_object \\\n    --num_episodes 50 \\\n    --gpu 0 \\\n    --seed 42 \\\n    --mode acis_prune \\\n    --output eval_results/libero_object_acis_k03_prune.json \\\n    > ~/runs/importance_margin_vla_compress/eval_k03_trained_prune.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-17T12:07:47.593653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && source /etc/network_turbo 2>/dev/null; export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export CUDA_VISIBLE_DEVICES=2 && nohup python3 -u eval_success_rate_libero.py \\\\\\\\\\\\\\\\\\\\\\\\n    --checkpoint checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt \\\\\\\\\\\\\\\\\\\\\\\\n    --config configs/libero_acis_stage1only_k03.yaml \\\\\\\\\\\\\\\\\\\\\\\\n    --suite libero_object \\\\\\\\\\\\\\\\\\\\\\\\n    --num_episodes 50 \\\\\\\\\\\\\\\\\\\\\\\\n    --gpu 0 \\\\\\\\\\\\\\\\\\\\\\\\n    --seed 42 \\\\\\\\\\\\\\\\\\\\\\\\n    --mode acis_prune \\\\\\\\\\\\\\\\\\\\\\\\n    --output eval_results/libero_object_acis_k03_prune.json \\\\\\\\\\\\\\\\\\\\\\\\n    > ~/runs/importance_margin_vla_compress/eval_k03_trained_prune.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\n设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nPID=50820\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-17T12:07:47.593912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -20 ~/runs/importance_margin_vla_compress/eval_k03_trained_prune.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-17T12:07:47.594177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading weights from local directory\\\\n2026-05-17 20:07:17 [INFO] Updated state feature shape: (6,) -> (8,)\\\\n2026-05-17 20:07:17 [INFO] Updated action feature shape: (6,) -> (7,)\\\\n2026-05-17 20:07:17 [INFO] Updated cameras: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3'] -> ['observation.images.image', 'observation.images.image2'] (shape=(3, 256, 256))\\\\n2026-05-17 20:07:17 [INFO] Full expert FT: trainable=99880992/450046176 (22.2%)\\\\n2026-05-17 20:07:18 [INFO] Model loaded in 16.1s\\\\n2026-05-17 20:07:18 [INFO] Connector found for ACIS pruning\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-17 20:07:18 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-17 20:07:18 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-17 20:07:18 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-17 20:07:19 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-17 20:07:19 [INFO] Suite 'libero_object' has 10 tasks, evaluating 10: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-17 20:07:19 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\n2026-05-17 20:07:31 [INFO]   Ep 1/50 | FAIL | steps=280\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-17T12:07:47.594452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 k03 ACIS pruning eval 运行约 5 分钟后检查进度",
+              "prompt": "评估 k=0.3 训练的 ACIS 模型的 pruning 性能：eval 已在 cqa1-33015 上运行（PID=50820），检查进度。tail ~/runs/importance_margin_vla_compress/eval_k03_trained_prune.log 查看进度。50 episodes/task, 10 tasks on libero_object, mode=acis_prune。预计 30-60 分钟。"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-17T12:07:47.594677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:12:00 (in 258s)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-17T12:07:47.594934+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动并正常运行：\n- **PID**: 50820, GPU 2\n- **配置**: checkpoint=`libero_acis_stage1only_k03/stage1_done/checkpoint.pt`, mode=acis_prune, k_ratio=0.3\n- **任务**: libero_object, 10 tasks, 50 eps/task\n- 第一个 episode 已完成（FAIL），符合预期\n\n约 5 分钟后回来检查进度。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_k03_trained_prune_20260517T120434"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 71
+    }
+  ]
+}

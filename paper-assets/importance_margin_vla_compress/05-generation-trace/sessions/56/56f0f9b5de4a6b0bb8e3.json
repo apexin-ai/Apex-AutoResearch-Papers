@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "56f0f9b5de4a6b0bb8e3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest random k09 s43 w41",
+  "task_key": "worker_ops_harvest-random-k09-s43-w41_20260527T155901",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-random-k09-s43-w41_20260527T155901_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "8c912e4fad7171688a8d4003f1f61598e928021e3904882aaa64f23fdb716b69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果汇报\n\n**π0.5 Random k=0.9 Long seed43** — 正常完成，耗时 177 min\n\n**avg_success_rate = 35.0%**（seed42 = 34.2%，差 +0.8pp，非常接近）\n\n| Task | SR% |\n|------|-----|\n| T0 alphabet soup + tomato | 22 |\n| T1 cream cheese + butter | 46 |\n| T2 stove + moka pot | 44 |\n| T3 black bowl → drawer | 50 |\n| T4 white mug → left plate | 18 |\n| T5 book → back | 32 |\n| T6 white mug → plate | 10 |\n| T7 alphabet soup + cream | 50 |\n| T8 both moka pots → stove | 4 |\n| T9 yellow mug → microwave | 74 |\n\nseed42=34.2% vs seed43=35.0%，均值 **34.6% ± 0.4pp**。Random k=0.9 的 valley 跨 seed 非常稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

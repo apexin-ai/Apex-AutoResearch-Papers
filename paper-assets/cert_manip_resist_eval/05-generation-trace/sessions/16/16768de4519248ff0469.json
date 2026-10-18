@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16768de4519248ff0469",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper compile verify d043",
+  "task_key": "worker_paper_compile-verify-d043_20260524T084556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-verify-d043_20260524T084556_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "b7e84dca274f365f0135ef9dd1d4e5e2f6299104983f51cc4a61b008675ed768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**编译结果：**\n\n- **编译状态：** 0 errors\n- **总页数：** 20 页（正文 8 页 + Limitations/References/Appendix 12 页）\n- **正文页数：** 8 页（Conclusion 结束于第 8 页，Limitations 从第 9 页开始）— 符合 ≤ 8 页限制\n- **残留审计：** 无残留旧值。所有 `9/12` 和 `10/12` 匹配均为合法当前数据引用（Q-statistic、fractional logit、threshold voting、majority、Pool A 等）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

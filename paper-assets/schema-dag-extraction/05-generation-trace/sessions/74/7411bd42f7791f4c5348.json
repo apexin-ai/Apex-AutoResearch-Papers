@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7411bd42f7791f4c5348",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "debug ner recall denominator",
+  "task_key": "worker_debug_ner-recall-denominator_20260516T223223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_ner-recall-denominator_20260516T223223_result.json",
+    "occurrence": 1,
+    "bytes": 2204,
+    "sha256": "4a6d10e21d8177ee5e7349fc487d143aa9ed45cf8001899b78975b1d65f341b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调试结论\n\n### 分母 Bug 假设：**排除**\n\n关键代码 `src/evaluate.py:79`：\n```python\ngold_entities = [e for e in samples[sid][\"entities\"] if e[\"type\"] in batch_types]\ntotal_gold += len(gold_entities)\n```\n\n分母**已正确过滤到当前 batch schema 内的类型**，不存在分母 bug。\n\n---\n\n### U 型曲线是真实现象，不是 Bug\n\n**数据汇总（text_match recall）：**\n\n| count | mean_recall | gold/batch | std |\n|-------|-------------|------------|-----|\n| 2 | 0.527 | 92.6 | — |\n| 6 | 0.390 | 239.6 | — |\n| 12 | 0.306 | 428.8 | — |\n| **22** | **0.268** | 876.4 | **0.103** |\n| 44 | 0.301 | 1771.2 | — |\n| **66** | **0.407** | 2652.0 | **0.002** |\n\n**关键证据：**\n1. count_66 = 全部 66 个 Few-NERD 类型（完整 schema），25 个 batch 完全相同，recall 方差接近 0（0.0017）\n2. count_22 的 25 个 batch 各不相同，recall 范围 [0.113, 0.444]，方差极大\n3. FewRel（classification accuracy）无 U 型，严格单调递减（0.870 → 0.504）\n\n**解释：**\n- **低 count（2-6）**：聚焦任务，少量类型 → 高 recall\n- **中 count（12-22）**：schema 变长、需区分多类型 → recall 下降\n- **高 count（44-66）**：接近 / 等于全集。count_66 时模型无需做类型筛选判断（文本中所有实体都在 schema 内）→ 更激进地提取 → recall 回升\n\n这本质上是 **extraction vs. classification 的行为差异**：partial schema 要求模型同时做两件事（识别实体 + 判断是否属于 schema 内类型），full schema 只需做识别。\n\n---\n\n### FewRel 无此问题\n\nFewRel 是 closed-set classification（从 N 选 1），accuracy 单调递减，符合预期。\n\n---\n\n### 是否需要重跑？\n\n**不需要。** 评估逻辑正确。如果论文中需要展示 \"count 增加 → 性能下降\" 的叙事：\n- FewRel 数据直接支持\n- Few-NERD 需解释 U 型：在 partial schema 下 recall 确实下降（count_2→22），但 full schema 是特殊点（无需类型过滤），应在图中标注或从 count curve 分析中排除 count_66 点，或将其单独讨论为 \"full-schema baseline\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

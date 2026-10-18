@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "3f0100d9e35c16489df9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code scoring verbosity gpt4o",
+  "task_key": "worker_code_scoring_verbosity_gpt4o_20260521T024233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_verbosity_gpt4o_20260521T024233_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "6f8e4025571700c8d7848ce1533c47586647d8b5ffe5112f439df4f7c333fb6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**API 402 仍未恢复。** 返回内容：`{\"detail\":\"Insufficient balance\"}`，HTTP 状态码 402。\n\n无法继续执行 pairwise 和 Likert scoring。需要先充值或更换 API endpoint/key。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "detail": "Insufficient balance"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

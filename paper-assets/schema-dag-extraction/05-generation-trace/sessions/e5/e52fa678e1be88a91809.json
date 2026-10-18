@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e52fa678e1be88a91809",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh westd 70b verify r2",
+  "task_key": "worker_ssh_westd-70b-verify-r2_20260517T083037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-70b-verify-r2_20260517T083037_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "67d1c7c825b315c9ac6306cc776960be87184c5df2e42684b916a0a7f7fe4b61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功重启并开始推理。\n\n## 总结\n\n| 项目 | 状态 |\n|------|------|\n| **Hostname** | autodl-container-afzl2bg1l8-d6486f58 |\n| **GPU** | 2× NVIDIA RTX PRO 6000 Blackwell (98GB/卡) |\n| **实验状态** | **已重启，推理运行中** |\n| **GPU 利用率** | 100%，每卡 89.8GB / 97.9GB |\n| **tmux session** | `exp_llama70b_cross_model` |\n| **当前进度** | Exp 1: FewRel Count Curves, processing count_16 (192 prompts) |\n\n**修复的问题：**\n1. `artifacts/fewrel_formal_full/relation_sim_matrix.pt` — 从 cqa1 传输\n2. `artifacts/sim_matrix.pt` (Few-NERD) — 从 cqa1 传输\n3. `data/parquet/` (Few-NERD parquet 数据) — 从 cqa1 传输\n4. `src/fewrel_utils.py` + `src/few_nerd_utils.py` — 从 cqa1 传输\n5. `pyarrow` 包 — pip install"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

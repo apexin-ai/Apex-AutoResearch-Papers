@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5fddb9affef3b023643b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis aggregation bootstrap",
+  "task_key": "worker_analysis_aggregation-bootstrap_20260523T171836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_aggregation-bootstrap_20260523T171836_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "360b51a08d88b0527e92c0eaaa4b3ec4e0af2b06b1f49f96ab41c507e9971aba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap 分析完成 (B=9999, 134s)。结果：\n\n| Method | Paper Table 2 | Bootstrap Direction | Bootstrap Sig |\n|--------|--------------|-------------------|--------------|\n| **Majority** | 7+/1- | 11+/1- (confirmed) | 9/12 |\n| **Weighted** | 9+/0- | 11+/1- (confirmed) | 10/12 |\n| **Threshold** | 10+/1- | 11+/1- (confirmed) | 11/12 |\n| **Bayesian** | 1+/6- | 3+/9- (reversal confirmed) | 7/12 |\n\n关键验证：\n- **Bayesian direction reversal 稳健**：6 个强负向 condition 的 positive rate 为 0-1.3%，95% CI 全在负半轴，不是统计伪迹\n- **Threshold 最稳健**：11/12 bootstrap-confirmed significant，最高一致性\n- **Weighted 方向最稳定**：除 arc_sycophancy 外全为 100% positive rate\n\n输出已写入 `docs/paper/data/aggregation_bootstrap.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f76dd80eaa26a44829b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh critical fix and check",
+  "task_key": "worker_ssh_critical-fix-and-check_20260515T170417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_critical-fix-and-check_20260515T170417_result.json",
+    "occurrence": 1,
+    "bytes": 2217,
+    "sha256": "2019c202a5d1abb6253cf26505af45420d93a69d248544b537de1ed07137357f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### run_experiment.py 修改\n- **不需要修改。** `run_experiment.py` 不直接调用 `llm.generate()`（grep 确认无匹配）\n- 它通过 `from run_extraction import run_extraction` 委托给 `run_extraction.py`\n\n### run_extraction.py\n- **已包含 chat template 逻辑，不需要修改。**\n- 第 220 行：`_needs_chat_template = any(kw in _model_id.lower() for kw in ['llama', 'mistral', 'gemma', 'phi'])`\n- 第 277 行：在 `llm.generate()` (第 288 行) 前对 prompts 做 `apply_chat_template`\n- LLaMA 模型会自动触发 chat template 包装\n\n### fewrel_40rel_r3 状态\n- **PID 300803: DEAD**（进程不存在）\n- **GPU: 0% utilization, 0 MiB / 97887 MiB** — 无任何 GPU 进程\n- **日志**: `=== ALL DONE === EXIT_CODE=0`\n- **artifacts/fewrel_40rel/**: 只有 `batch_config_exp1.json`, `preprocess_exp1.json`, `relation_sim_matrix.pt` — **无 predictions 文件**\n- **结论: 已完成，但 fewrel_40rel 目录下没有 prediction 输出文件**（可能输出到了其他路径，或只完成了预处理阶段）\n\n### exp012 启动命令\n- 脚本: `scripts/run_exp012_llama8b.sh`\n- 模型: `/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- **exp012 fewnerd 已经有结果了**: `artifacts/exp012/predictions_fewnerd_exp{1,2}_llama-3.1-8b-instruct.json`\n- 完整命令:\n```bash\nbash /root/schema-dag-extraction/scripts/run_exp012_llama8b.sh\n```\n等价于分步执行:\n```bash\npython3 src/run_experiment.py --mode exp1 --dataset fewnerd --prompt_version v2 \\\n  --types_file configs/few_nerd_types.json --embeddings_path artifacts/type_embeddings.pt \\\n  --sim_matrix_path artifacts/sim_matrix.pt \\\n  --model_path /root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct \\\n  --model_name llama-3.1-8b-instruct --max_samples 1000 --max_model_len 4096 \\\n  --gpu_memory_utilization 0.90 --output_dir artifacts/exp012\n\npython3 src/run_experiment.py --mode exp2 [同上参数]\n```\n\n**关键发现**: chat template 代码已经在 `run_extraction.py` 中实现，且对 llama 模型名自动启用。无需任何代码修改即可运行 exp012。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

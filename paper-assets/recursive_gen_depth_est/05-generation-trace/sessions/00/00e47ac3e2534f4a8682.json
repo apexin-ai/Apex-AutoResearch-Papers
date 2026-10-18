@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "00e47ac3e2534f4a8682",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "infra kill qwen download pythia",
+  "task_key": "worker_infra_kill-qwen-download-pythia_20260514T112659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-qwen-download-pythia_20260514T112659.log",
+    "occurrence": 1,
+    "bytes": 1128373,
+    "sha256": "8e773f3e4af2a6fd2f6964651c8164f8d8522159254aee4f0a60e8d1f1a997d4"
+  },
+  "statistics": {
+    "messages": 378,
+    "user_turns": 1,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 112,
+      "tool_call": 129,
+      "tool_result": 129,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 336,
+      "chunks": [
+        {
+          "path": "00e47ac3e2534f4a8682-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "00e47ac3e2534f4a8682-part-0002.json",
+          "message_count": 140
+        },
+        {
+          "path": "00e47ac3e2534f4a8682-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "00e47ac3e2534f4a8682-part-0003.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ]
+}

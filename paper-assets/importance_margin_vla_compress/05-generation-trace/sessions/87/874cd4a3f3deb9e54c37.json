@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "874cd4a3f3deb9e54c37",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose libero imm fullft k07",
+  "task_key": "worker_diagnose_libero_imm_fullft_k07_20260517T013730",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_libero_imm_fullft_k07_20260517T013730_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "f54a19f475f733a6141fd7d55981c57d4c404c92bb82f197537a5709fecc5396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：Cron 误报，训练仍在正常运行。**\n\n状态摘要：\n- **Status**: RUNNING（非退出）\n- **进度**: Step 18950/20000 (Stage2, 94.75%)\n- **GPU 3**: 99% utilization, 4131 MiB\n- **速度**: 3.1 steps/sec，预计 ~5 分钟内完成全部 20000 步\n- **最新 checkpoint**: `step_018000`\n- **Log**: `/root/runs/importance_margin_vla_compress/libero_imm_fullft_k07.log`\n- **Checkpoint dir**: `/root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_imm_twostage_fullft_k07/`\n\nRegistry 已更新为 RUNNING，notes 记录了真实状态。训练完成后需要再次检查以标记 DONE 并启动 Object eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

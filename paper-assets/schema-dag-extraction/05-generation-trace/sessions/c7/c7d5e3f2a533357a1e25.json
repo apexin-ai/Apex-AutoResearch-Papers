@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c7d5e3f2a533357a1e25",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp018 status",
+  "task_key": "worker_check_exp018_status_20260516T073310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp018_status_20260516T073310_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "4aef3570a7fd73e1340d5204b6ce6e21f328e2b63565b96c13dcc0a426b8c17f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-018 已完成\n\n重启后跳过了 vLLM extract 阶段（数据已在首次运行中提取完毕），直接汇总结果并正常退出。\n\n### 最终结果\n\n| 条件 | Accuracy | Macro-F1 | BCS |\n|------|----------|----------|-----|\n| **confusability_aware** | **0.8021** | 0.8021 | 0.5524 |\n| random_batch (15 seeds) | 0.7877 ± 0.0178 | 0.7877 ± 0.0178 | 0.5585 |\n| single_pass | 0.5042 | 0.5042 | 0.5572 |\n\n- Confusability-aware (0.8021) > random batch 95% CI 上界 (0.7967)，**提升显著**\n- Per-type：51 types improved, 28 degraded, mean Δ=+0.0144\n- 结果已保存至 `/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

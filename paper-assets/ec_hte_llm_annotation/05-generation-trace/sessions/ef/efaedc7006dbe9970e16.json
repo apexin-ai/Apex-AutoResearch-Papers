@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "efaedc7006dbe9970e16",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research literature map expansion",
+  "task_key": "worker_research_literature-map-expansion_20260521T012532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-expansion_20260521T012532_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "48b3fde79b1e4d64c3f0f92c61e5327696d92ca37d085234657ba846401d283e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. `literature_map.yaml` updated from 21 to **33 papers**. New entries by direction:\n\n| Direction | Papers Added |\n|---|---|\n| Classical measurement error (2) | Gustafson (2003), Hu & Schennach (2008) |\n| PPI extensions (2) | Angelopoulos et al. (2023) PPI++, Zrnic & Candès (2024) Cross-PPI |\n| LLM-as-annotator (2) | Pangakis et al. (2023), Reiss (2023) |\n| HTE/CATE methods (3) | Nie & Wager (2021) R-learner, Künzel et al. (2019) Metalearners, Athey & Imbens (2016) |\n| CSS methodology (2) | Grimmer et al. (2022) Text as Data, Törnberg (2023) LLM guide |\n| Bayesian annotation (1) | Paun et al. (2018) |\n\nNotes:\n- Carroll (2006), Gilardi (2023), Dawid & Skene (1979) were already present — skipped.\n- The \"Egami et al. (2022) How to Use LLMs for Text Analysis\" paper is actually by Törnberg (2023), arXiv 2307.13106. Added under that attribution.\n- New category `css-methodology` added to the categories list.\n- All 21 existing entries preserved unchanged."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b1565efc6332b2dec042",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra openrouter verify",
+  "task_key": "worker_infra_openrouter-verify_20260522T125727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_openrouter-verify_20260522T125727_result.json",
+    "occurrence": 1,
+    "bytes": 1662,
+    "sha256": "77581c70641ec30430ffe8a4c887bc1cfd909380d18e877f3fb31ed703764973"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. API 连通性\n- **模型列表接口** (`GET /models`): HTTP 200，正常返回 358 个模型\n- **Chat Completions 接口**: **HTTP 403** — `\"This model is not available in your region.\"`\n- 无论走代理还是直连，出口 IP 都是中国（116.172.96.185，宁夏），被 OpenRouter 区域封锁\n\n### 2. 目标模型 OpenRouter ID\n\n| 目标 | OpenRouter ID | 状态 | Prompt/Completion 价格 (/M tokens) |\n|------|--------------|------|-----------------------------------|\n| gpt-4o | `openai/gpt-4o` | 存在 | $2.50 / $10.00 |\n| gpt-4o-mini | `openai/gpt-4o-mini` | 存在 | $0.15 / $0.60 |\n| gpt-4.1 | `openai/gpt-4.1` | 存在 | $2.00 / $8.00 |\n| claude-sonnet-4 | `anthropic/claude-sonnet-4` | 存在 | $3.00 / $15.00 |\n| claude-opus-4 | `anthropic/claude-opus-4` | 存在 | $15.00 / $75.00 |\n| claude-3-haiku | `anthropic/claude-3-haiku` | 存在 | $0.25 / $1.25 |\n| gemini-2.5-pro | `google/gemini-2.5-pro` | 存在 | $1.25 / $10.00 |\n| gemini-2.5-flash | `google/gemini-2.5-flash` | 存在 | $0.30 / $2.50 |\n\n### 3. 不可用模型\n- **gpt-5.5**: OpenRouter 上存在 `openai/gpt-5.5` 和 `openai/gpt-5.5-pro`（非你列的 ID，但可用）\n- **gpt-4.5**: **不存在**，OpenRouter 已无此模型\n\n### 4. 核心问题\n**所有模型的 chat completions 调用均返回 403 区域限制。** AutoDL 服务器（无论走代理还是直连）出口 IP 都在中国大陆，OpenRouter 对中国 IP 封锁了推理接口。\n\n**解决方案**：需要一个非中国出口的代理/VPN，或改用不限区域的 API 服务（如直接用各厂商官方 API + 国内代理转发）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

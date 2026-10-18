@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "38b7b5e28e432db48529",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops anonymous repo push",
+  "task_key": "worker_ops_anonymous-repo-push_20260525T084125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous-repo-push_20260525T084125_result.json",
+    "occurrence": 1,
+    "bytes": 1450,
+    "sha256": "76911c739ca6d4b821dbe43eb8054048ea5507abe96f15fbfdc4bde22d22383b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n### (a) PAT 有效性\n**有效** — fetch 和 push 均成功。\n\n### (b) 推送时间戳\n**2026-05-25**，force-push 到 `main` 分支，commit `efef31f`。\n\n### (c) 仓库内容清单（79 文件）\n\n| 目录 | 文件数 | 内容 |\n|------|--------|------|\n| `src/` | 11 | 核心库：attacks, config, correlation, eval_pipeline, judge_service, keff, panels, scaling, unified_data_loader, utils, __init__ |\n| `scripts/` | 56 | 实验脚本 + 3 个 shell 脚本（run_all.py 为总入口） |\n| `scoring/src/` | 6 | API 评分模块 |\n| `scoring/scripts/` | 1 | API 批量评分脚本 |\n| `data/` | 1 | README 占位 |\n| 根目录 | 4 | README.md, requirements.txt, .gitignore, run_temperature_pilot.py |\n\n### (d) 匿名性检查结果\n\n| 检查项 | 结果 |\n|--------|------|\n| Git author/committer 为 `anonymous <anonymous@anonymous.invalid>` | **PASS** |\n| README/LICENSE/代码注释无真名、机构名 | **PASS** |\n| 所有 `.py` docstring/comment 无身份泄露（@xxx.edu, university, institute, lab, author） | **PASS** |\n| 无硬编码 API key（已替换为 `os.environ.get(...)`) | **PASS** |\n| 无硬编码服务器路径 `/root/...`（已替换为相对路径） | **PASS** |\n| requirements.txt 无身份信息 | **PASS** |\n| .gitignore 已添加，无临时文件/缓存 | **PASS** |\n\n仓库地址：`https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8db229b5c54e495ff6d3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "exp 7model preview pipeline",
+  "task_key": "worker_exp_7model-preview-pipeline_20260522T150246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_7model-preview-pipeline_20260522T150246_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "f99349b26137b42932b7526f315cd668a946c3ca0435dc2227d9cfbd551118aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 7-model preview 结果\n\n### Confound Diagnosis: 彻底打破\n| 指标 | 6-model MVP | 7-model (+ haiku) |\n|------|------------|-------------------|\n| Mean r(K_eff, η_max) | (negative range) | **+0.473** |\n| CONFOUND_BROKEN | — | **12/12** |\n| CONFOUND_SEVERE | — | **0/12** |\n\n加入 claude-3-haiku 后 confound **反转为正相关**。原因：haiku 来自不同模型族，与本地模型 MI 低（高 K_eff），同时 ASR 最高（mean=0.356 vs 本地最高 0.258）。含 haiku 的 panel 同时有高 K_eff 和高 η_max，彻底打破了 \"diversity = low vulnerability\" 的 confound。\n\n### Regression (Step 4)\n| 指标 | 6-model MVP | 7-model |\n|------|------------|---------|\n| K_eff sig negative | 1/12 | **2/12** |\n| η_max sig | 7/12 | **10/12** |\n\nη_max 显著性提升（7→10），K_eff 仍极少显著负。注意多个 condition 下 K_eff β 为**正数**（prompt_injection, score_manipulation），说明高多样性 panel 反而 ASR 更高——因为含 haiku 的多样性 panel 自带高 ASR 成员。\n\n### Random-fault (Step 5)\n| 指标 | 结果 |\n|------|------|\n| Adaptive K_eff sig neg | 2/12 |\n| RF K_eff sig neg | 1/12 |\n| K_eff gains sig under RF | 6/12 |\n| Mean ΔR² (RF − Adaptive) | **+0.237** |\n\nRF 模型 R² 系统性高于 adaptive（+0.237），说明实际 attack 行为偏离了独立错误假设。\n\n### Pipeline 状态\n无 bug，7 models × 12 conditions × 35 panels 全部完成。脚本：`scripts/run_7model_preview.py`，产出在 `artifacts/results/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

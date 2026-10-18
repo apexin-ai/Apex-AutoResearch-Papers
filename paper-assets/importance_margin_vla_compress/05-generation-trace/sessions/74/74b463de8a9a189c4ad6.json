@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "74b463de8a9a189c4ad6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval xvla l2norm k05 spatial seed42 v3",
+  "task_key": "worker_analyze_eval_xvla_l2norm_k05_spatial_seed42_v3_20260523T200627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_xvla_l2norm_k05_spatial_seed42_v3_20260523T200627_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "52d9e190bd9a103e56f1500b16691e080de22609a07ed1e4660a44e8e4780902"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。分析摘要：\n\n## X-VLA L2norm k=0.5 Spatial 结果\n\n**Overall SR: 58.8%** (294/500), 95% CI [54.4%, 63.0%]\n\n### 对比\n\n| Method | Spatial SR | vs Random Δ |\n|--------|-----------|-------------|\n| **L2norm k=0.5** | **58.8%** | **-12.6pp** |\n| Random k=0.5 | 71.4% | — |\n| Attention k=0.5 | ≥92.8% | +21.4pp |\n| Baseline (full) | ~90%+ | — |\n\n### 跨套件 L2norm 一致性\n\n| Suite | L2norm | Random | Δ |\n|-------|--------|--------|---|\n| Object | 43.4% | 70.6% | -27.2pp |\n| Long | 45.0% | 61.6% | -16.6pp |\n| **Spatial** | **58.8%** | **71.4%** | **-12.6pp** |\n\n三个套件 L2norm 全部低于 Random，确认 **L2 在 X-VLA BART connector 上全面不可靠**。\n\n### Per-task variance\n\n极端分化：Task 0=92%, Task 5=0%, 标准差约 30pp。L2 不仅整体差，且 task 间 variance 极高——说明 L2 norm 在 BART connector 中不能区分 informative vs uninformative tokens，导致部分 task 恰好保留了关键 token（高 SR）而另一些恰好丢弃（接近 0%）。\n\n### 叙事确认\n\nSpatial 数据完成了第三个独立证据点：L2 在 entangling connector（BART）上**全面反信息性**（三套件均劣于 random），而 attention scoring 全面有效（三套件均 ≥92%）。核心叙事 \"architecture-dependent validity of importance scoring\" 得到强化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

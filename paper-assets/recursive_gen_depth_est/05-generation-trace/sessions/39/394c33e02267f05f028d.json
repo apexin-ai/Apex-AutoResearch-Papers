@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "394c33e02267f05f028d",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code binoculars 14b temp09",
+  "task_key": "worker_code_binoculars_14b_temp09_20260520T042205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_binoculars_14b_temp09_20260520T042205.log",
+    "occurrence": 1,
+    "bytes": 1134807,
+    "sha256": "100ae8f864af935716b7237c06a23151563a8dce8f1c8eb47befaa4ec5e51eac"
+  },
+  "statistics": {
+    "messages": 552,
+    "user_turns": 1,
+    "tool_calls": 224,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 96,
+      "tool_call": 224,
+      "tool_result": 224,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 504,
+      "chunks": [
+        {
+          "path": "394c33e02267f05f028d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "394c33e02267f05f028d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "394c33e02267f05f028d-part-0003.json",
+          "message_count": 144
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "394c33e02267f05f028d-part-0003.json",
+          "message_count": 36
+        },
+        {
+          "path": "394c33e02267f05f028d-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ]
+}

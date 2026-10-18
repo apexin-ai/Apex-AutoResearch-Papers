@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e3bfc4c3e65ded9de3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cascade w41 gpu0 cqa1 gpu1",
+  "task_key": "worker_deploy_cascade_w41_gpu0_cqa1_gpu1_20260527T122228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cascade_w41_gpu0_cqa1_gpu1_20260527T122228_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "b54d7dc3dfefe97113fd4305dadd59bd10f26368bc37397fd4c143c418182510"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 部署汇报\n\n### 任务 1：westd-41074 GPU0 → π0.5 Attn k=0.75 strict ✅\n\n| 项目 | 值 |\n|------|-----|\n| 服务器 | westd-41074 GPU0 |\n| tmux | `pi05_attn_k075` |\n| 日志 | `eval_pi05_attn_k075_long_seed42_strict_w41.log` |\n| 状态 | 模型加载中，tmux + 日志正常 |\n| Artifact | `art_20260527_44a041` |\n\n### 任务 2：cqa1-33015 GPU1 → ❌ 不可用\n\nGPU1 仍在运行 **Random k=0.5 strict**（PID 118731, 9994 MiB），当前进度 Task 0 ep=40/50，刚起步。全部 4 张 GPU 均被占用：\n\n| GPU | 占用 |\n|-----|------|\n| 0 | Random k=0.7 (10211 MiB) |\n| 1 | Random k=0.5 strict (9994 MiB) |\n| 2 | L2norm k=0.85 strict (10463 MiB) |\n| 3 | L2norm k=0.7 strict (10533 MiB) |\n\n**Attn k=0.7 strict** 需要等 cqa1 某个 GPU 空出后再部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

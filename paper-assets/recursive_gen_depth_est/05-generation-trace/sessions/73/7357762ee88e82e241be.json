@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7357762ee88e82e241be",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code binoculars 14b temp09",
+  "task_key": "worker_code_binoculars_14b_temp09_20260520T042205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_binoculars_14b_temp09_20260520T042205_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "c702dd5c0c2017525783958d8a01859cb74eb6137ce0101265eb08388dfde0de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Binoculars baseline (14B temp09)**：RF_multi (11 features) 是最佳校准方法，4-class acc = **0.4252**。单 bino_score 仅 0.2917（≈随机）。\n\n**Merged ablation (30 features)**：\n\n| 特征集 | #feat | 4-class Acc | d1–d3 Bal Acc |\n|--------|-------|-------------|---------------|\n| bino_single | 1 | 0.2917 | 0.2779 |\n| bino_only | 11 | 0.4258 | 0.3724 |\n| stat_only | 19 | 0.5183 | 0.4559 |\n| **merged** | **30** | **0.5419** | **0.4770** |\n\nStat features（19 维）远强于 Binoculars（11 维），合并后 30 维 RF 再涨 +2.4pp 到 0.5419。Artifact 已注册：`art_20260520_d47efe`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

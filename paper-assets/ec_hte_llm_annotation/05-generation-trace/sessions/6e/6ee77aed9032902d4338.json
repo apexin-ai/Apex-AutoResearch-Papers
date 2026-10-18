@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee77aed9032902d4338",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code debiasing hurts summary",
+  "task_key": "worker_code_debiasing-hurts-summary_20260523T145836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_debiasing-hurts-summary_20260523T145836_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "54a47f84949c49f02181e71264f829464fef0e331c4e76106687e915aa0d85c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results\n\n**Grand Total: Across 2,132 subgroup-configuration pairs, global correction increases |bias| in 26.5% of cases; in 15.2% the increase exceeds 2×.**\n\n### Per-source breakdown:\n\n| Data Source | N | Hurts (%) | Severely Hurts (%) | Worst Ratio |\n|---|---|---|---|---|\n| **Synthetic (exp002 grid)** | 2,080 | 520 (25.0%) | 320 (15.4%) | 7.14× |\n| **Synthetic (extreme examples)** | 12 | 4 (33.3%) | 4 (33.3%) | 2.86× |\n| **Real LLM (MC validation)** | 39 | 39 (100%) | 0 (0%) | 1.45× |\n| **F-L comparison** | 1 | 1 (100%) | 0 (0%) | 1.04× |\n\nKey findings:\n- **Synthetic data**: 1 in 4 subgroup-config pairs is hurt by global correction; the worst case inflates bias by 7×\n- **Real LLM data**: global correction hurts in **100% of 39 LLM×dataset×n_expert configurations** (mean ratio 1.20×) — no severe cases, but universally worse than naive\n- The `exp_realcm_bias_identity.csv` was skipped for this analysis because it only contains predicted/observed bias of the global corrected estimator without a naive baseline for direct comparison\n\nOutputs:\n- `artifacts/debiasing_hurts_summary.pdf` + `.png`\n- `artifacts/debiasing_hurts_summary.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

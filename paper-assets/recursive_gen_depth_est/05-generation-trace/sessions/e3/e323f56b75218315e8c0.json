@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e323f56b75218315e8c0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper reference expansion",
+  "task_key": "worker_paper_reference_expansion_20260517T170455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_expansion_20260517T170455_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "a6efad58808b6d3513039b43a8448b1d1c45ef7e274c5201c0bba909d210628c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n- **总引用数：62**（远超 30+ 目标）\n- **无重复 bib 条目**\n- **所有 `\\cite{}` 在 bib 中均有对应条目**\n- **无 undefined citation**\n\n新增 3 篇（均来自 literature_map 中已有但 bib 中缺失的条目）：\n\n| 引用键 | 论文 | 会议 | 集成位置 |\n|--------|------|------|----------|\n| `tulchinskii2024_intrinsic_dim` | Intrinsic Dimension Estimation for Robust Detection | NeurIPS 2023 | Related Work: AI Text Detection 段 |\n| `li2024_mage` | MAGE: Machine-generated Text Detection in the Wild | ACL 2024 | Related Work: AI Text Detection 段（benchmark 列表） |\n| `penedo2024_fineweb` | The FineWeb Datasets | NeurIPS 2024 | Discussion: data curation 引用链 |\n\n论文已有的 62 篇引用覆盖了任务要求的所有类别。literature_map 中 43 篇条目现已全部在 bib 中有对应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

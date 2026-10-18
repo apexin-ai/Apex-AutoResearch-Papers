@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed1dc319160e936eb65b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 gpu2 random obj s43",
+  "task_key": "worker_deploy_westd41074_gpu2_random_obj_s43_20260524T202627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd41074_gpu2_random_obj_s43_20260524T202627_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "ab7ea37470b07e4b524308be4b044170fb34f4045c72a88d801c808acfa22f7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **exp_id**: `eval_pi05_random_k09_object_seed43_postfix`\n- **状态**: RUNNING (PID 797800)\n- **GPU2**: 25% util, 10554 MiB\n- **配置确认**: random prune, keep 230/256 tokens/image, libero_object, seed 43\n- **日志**: `logs/eval_pi05_random_k09_object_seed43_postfix.log`\n\n注意：启动时未显式设置 `CUDA_VISIBLE_DEVICES=2`（因 nohup 超时问题改用全路径 python 直接执行），但 nvidia-smi 确认进程已正确加载到 GPU2 上��"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

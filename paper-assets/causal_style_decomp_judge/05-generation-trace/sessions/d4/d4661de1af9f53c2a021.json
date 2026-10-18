@@ -1,0 +1,489 @@
+{
+  "schema_version": "1.0",
+  "id": "d4661de1af9f53c2a021",
+  "project": "causal_style_decomp_judge",
+  "kind": "conversation",
+  "title": "code claude tost equivalence",
+  "task_key": "worker_code_claude_tost_equivalence_20260521T114415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_claude_tost_equivalence_20260521T114415.jsonl",
+    "occurrence": 1,
+    "bytes": 30576,
+    "sha256": "591b7491770962a265f8fffb3f79bd043b7861b7cdce6e4ef2a8da34c8709051"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T11:46:23.483212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py",
+              "content": "\"\"\"TOST equivalence testing for Claude Sonnet 4 BT results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy.stats import norm\n\nDELTA = 0.10  # equivalence margin\nALPHA = 0.05\nNULL_P = 0.50\n\nDATA = {\n    \"formality\": {\"p_hat\": 0.562, \"n\": 88, \"ci_low\": 0.489, \"ci_high\": 0.636},\n    \"verbosity\": {\"p_hat\": 0.541, \"n\": 86, \"ci_low\": 0.459, \"ci_high\": 0.616},\n}\n\n\ndef tost_proportion(p_hat, n, se, delta=DELTA):\n    upper_bound = NULL_P + delta  # 0.60\n    lower_bound = NULL_P - delta  # 0.40\n\n    # Upper test: H0: P >= 0.60, reject if p_hat sufficiently below 0.60\n    z_upper = (p_hat - upper_bound) / se\n    p_upper = norm.cdf(z_upper)\n\n    # Lower test: H0: P <= 0.40, reject if p_hat sufficiently above 0.40\n    z_lower = (p_hat - lower_bound) / se\n    p_lower = 1 - norm.cdf(z_lower)\n\n    tost_p = max(p_upper, p_lower)\n\n    # 90% CI (1 - 2*alpha) for equivalence\n    ci_90_low = p_hat - norm.ppf(1 - ALPHA) * se\n    ci_90_high = p_hat + norm.ppf(1 - ALPHA) * se\n\n    equivalence_by_tost = tost_p < ALPHA\n    equivalence_by_ci = ci_90_low >= lower_bound and ci_90_high <= upper_bound\n\n    return {\n        \"upper_test\": {\"z\": round(z_upper, 4), \"p\": round(p_upper, 6)},\n        \"lower_test\": {\"z\": round(z_lower, 4), \"p\": round(p_lower, 6)},\n        \"tost_p\": round(tost_p, 6),\n        \"ci_90\": [round(ci_90_low, 4), round(ci_90_high, 4)],\n        \"equivalence_by_tost\": equivalence_by_tost,\n        \"equivalence_by_ci\": equivalence_by_ci,\n        \"equivalence_confirmed\": equivalence_by_tost and equivalence_by_ci,\n    }\n\n\ndef main():\n    results = {\"equivalence_margin\": DELTA, \"null_proportion\": NULL_P, \"alpha\": ALPHA}\n\n    for axis, d in DATA.items():\n        # SE from bootstrap CI: SE ≈ (CI_upper - CI_lower) / (2 * 1.96)\n        se_bootstrap = (d[\"ci_high\"] - d[\"ci_low\"]) / (2 * norm.ppf(0.975))\n        # Also compute binomial SE for reference\n        se_binomial = np.sqrt(d[\"p_hat\"] * (1 - d[\"p_hat\"]) / d[\"n\"])\n\n        tost = tost_proportion(d[\"p_hat\"], d[\"n\"], se_bootstrap)\n\n        conclusion_parts = []\n        if tost[\"equivalence_confirmed\"]:\n            conclusion_parts.append(\n                f\"Equivalence confirmed (TOST p={tost['tost_p']:.4f} < 0.05, \"\n                f\"90% CI [{tost['ci_90'][0]:.3f}, {tost['ci_90'][1]:.3f}] ⊂ [0.40, 0.60])\"\n            )\n        else:\n            if not tost[\"equivalence_by_tost\"]:\n                conclusion_parts.append(f\"TOST not significant (p={tost['tost_p']:.4f} >= 0.05)\")\n            if not tost[\"equivalence_by_ci\"]:\n                conclusion_parts.append(\n                    f\"90% CI [{tost['ci_90'][0]:.3f}, {tost['ci_90'][1]:.3f}] not fully within [0.40, 0.60]\"\n                )\n\n        results[axis] = {\n            \"p_hat\": d[\"p_hat\"],\n            \"n_pairs\": d[\"n\"],\n            \"bootstrap_ci_95\": [d[\"ci_low\"], d[\"ci_high\"]],\n            \"se_bootstrap\": round(se_bootstrap, 5),\n            \"se_binomial\": round(se_binomial, 5),\n            **tost,\n            \"conclusion\": \"; \".join(conclusion_parts),\n        }\n\n    results[\"method\"] = \"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\"\n\n    out_path = \"data/claude_tost_equivalence.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2, ensure_ascii=False)\n\n    # Print summary\n    for axis in DATA:\n        r = results[axis]\n        print(f\"\\n{'='*60}\")\n        print(f\"{axis.upper()}: P(style) = {r['p_hat']}, n = {r['n_pairs']}\")\n        print(f\"  SE (bootstrap): {r['se_bootstrap']:.5f}\")\n        print(f\"  Upper test: z={r['upper_test']['z']:.4f}, p={r['upper_test']['p']:.6f}\")\n        print(f\"  Lower test: z={r['lower_test']['z']:.4f}, p={r['lower_test']['p']:.6f}\")\n        print(f\"  TOST p-value: {r['tost_p']:.6f}\")\n        print(f\"  90% CI: [{r['ci_90'][0]:.4f}, {r['ci_90'][1]:.4f}]\")\n        print(f\"  Equivalence margin: [{NULL_P-DELTA:.2f}, {NULL_P+DELTA:.2f}]\")\n        print(f\"  Equivalence confirmed: {r['equivalence_confirmed']}\")\n        print(f\"  Conclusion: {r['conclusion']}\")\n\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T11:46:23.483635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T11:46:23.483818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T11:46:23.483958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T11:46:23.484140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat > /root/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py << 'PYEOF'\n\"\"\"TOST equivalence testing for Claude Sonnet 4 BT results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy.stats import norm\n\nDELTA = 0.10  # equivalence margin\nALPHA = 0.05\nNULL_P = 0.50\n\nDATA = {\n    \"formality\": {\"p_hat\": 0.562, \"n\": 88, \"ci_low\": 0.489, \"ci_high\": 0.636},\n    \"verbosity\": {\"p_hat\": 0.541, \"n\": 86, \"ci_low\": 0.459, \"ci_high\": 0.616},\n}\n\n\ndef tost_proportion(p_hat, n, se, delta=DELTA):\n    upper_bound = NULL_P + delta  # 0.60\n    lower_bound = NULL_P - delta  # 0.40\n\n    # Upper test: H0: P >= 0.60, reject if p_hat sufficiently below 0.60\n    z_upper = (p_hat - upper_bound) / se\n    p_upper = norm.cdf(z_upper)\n\n    # Lower test: H0: P <= 0.40, reject if p_hat sufficiently above 0.40\n    z_lower = (p_hat - lower_bound) / se\n    p_lower = 1 - norm.cdf(z_lower)\n\n    tost_p = max(p_upper, p_lower)\n\n    # 90% CI (1 - 2*alpha) for equivalence\n    ci_90_low = p_hat - norm.ppf(1 - ALPHA) * se\n    ci_90_high = p_hat + norm.ppf(1 - ALPHA) * se\n\n    equivalence_by_tost = tost_p < ALPHA\n    equivalence_by_ci = ci_90_low >= lower_bound and ci_90_high <= upper_bound\n\n    return {\n        \"upper_test\": {\"z\": round(z_upper, 4), \"p\": round(p_upper, 6)},\n        \"lower_test\": {\"z\": round(z_lower, 4), \"p\": round(p_lower, 6)},\n        \"tost_p\": round(tost_p, 6),\n        \"ci_90\": [round(ci_90_low, 4), round(ci_90_high, 4)],\n        \"equivalence_by_tost\": equivalence_by_tost,\n        \"equivalence_by_ci\": equivalence_by_ci,\n        \"equivalence_confirmed\": equivalence_by_tost and equivalence_by_ci,\n    }\n\n\ndef main():\n    results = {\"equivalence_margin\": DELTA, \"null_proportion\": NULL_P, \"alpha\": ALPHA}\n\n    for axis, d in DATA.items():\n        # SE from bootstrap CI: SE ≈ (CI_upper - CI_lower) / (2 * 1.96)\n        se_bootstrap = (d[\"ci_high\"] - d[\"ci_low\"]) / (2 * norm.ppf(0.975))\n        # Also compute binomial SE for reference\n        se_binomial = np.sqrt(d[\"p_hat\"] * (1 - d[\"p_hat\"]) / d[\"n\"])\n\n        tost = tost_proportion(d[\"p_hat\"], d[\"n\"], se_bootstrap)\n\n        conclusion_parts = []\n        if tost[\"equivalence_confirmed\"]:\n            conclusion_parts.append(\n                f\"Equivalence confirmed (TOST p={tost['tost_p']:.4f} < 0.05, \"\n                f\"90% CI [{tost['ci_90'][0]:.3f}, {tost['ci_90'][1]:.3f}] ⊂ [0.40, 0.60])\"\n            )\n        else:\n            if not tost[\"equivalence_by_tost\"]:\n                conclusion_parts.append(f\"TOST not significant (p={tost['tost_p']:.4f} >= 0.05)\")\n            if not tost[\"equivalence_by_ci\"]:\n                conclusion_parts.append(\n                    f\"90% CI [{tost['ci_90'][0]:.3f}, {tost['ci_90'][1]:.3f}] not fully within [0.40, 0.60]\"\n                )\n\n        results[axis] = {\n            \"p_hat\": d[\"p_hat\"],\n            \"n_pairs\": d[\"n\"],\n            \"bootstrap_ci_95\": [d[\"ci_low\"], d[\"ci_high\"]],\n            \"se_bootstrap\": round(se_bootstrap, 5),\n            \"se_binomial\": round(se_binomial, 5),\n            **tost,\n            \"conclusion\": \"; \".join(conclusion_parts),\n        }\n\n    results[\"method\"] = \"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\"\n\n    out_path = \"data/claude_tost_equivalence.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2, ensure_ascii=False)\n\n    # Print summary\n    for axis in DATA:\n        r = results[axis]\n        print(f\"\\n{'='*60}\")\n        print(f\"{axis.upper()}: P(style) = {r['p_hat']}, n = {r['n_pairs']}\")\n        print(f\"  SE (bootstrap): {r['se_bootstrap']:.5f}\")\n        print(f\"  Upper test: z={r['upper_test']['z']:.4f}, p={r['upper_test']['p']:.6f}\")\n        print(f\"  Lower test: z={r['lower_test']['z']:.4f}, p={r['lower_test']['p']:.6f}\")\n        print(f\"  TOST p-value: {r['tost_p']:.6f}\")\n        print(f\"  90% CI: [{r['ci_90'][0]:.4f}, {r['ci_90'][1]:.4f}]\")\n        print(f\"  Equivalence margin: [{NULL_P-DELTA:.2f}, {NULL_P+DELTA:.2f}]\")\n        print(f\"  Equivalence confirmed: {r['equivalence_confirmed']}\")\n        print(f\"  Conclusion: {r['conclusion']}\")\n\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T11:46:23.484375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T11:46:23.484517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/claude_tost_equivalence.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T11:46:23.484655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/claude_tost_equivalence.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 439, in _iterencode\\\\n    o = _default(o)\\\\n        ^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 180, in default\\\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\\\nTypeError: Object of type bool is not JSON serializable\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T11:46:23.484821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py",
+              "old_string": "    equivalence_by_tost = tost_p < ALPHA\n    equivalence_by_ci = ci_90_low >= lower_bound and ci_90_high <= upper_bound\n\n    return {\n        \"upper_test\": {\"z\": round(z_upper, 4), \"p\": round(p_upper, 6)},\n        \"lower_test\": {\"z\": round(z_lower, 4), \"p\": round(p_lower, 6)},\n        \"tost_p\": round(tost_p, 6),\n        \"ci_90\": [round(ci_90_low, 4), round(ci_90_high, 4)],\n        \"equivalence_by_tost\": equivalence_by_tost,\n        \"equivalence_by_ci\": equivalence_by_ci,\n        \"equivalence_confirmed\": equivalence_by_tost and equivalence_by_ci,\n    }",
+              "new_string": "    equivalence_by_tost = bool(tost_p < ALPHA)\n    equivalence_by_ci = bool(ci_90_low >= lower_bound and ci_90_high <= upper_bound)\n\n    return {\n        \"upper_test\": {\"z\": float(round(z_upper, 4)), \"p\": float(round(p_upper, 6))},\n        \"lower_test\": {\"z\": float(round(z_lower, 4)), \"p\": float(round(p_lower, 6))},\n        \"tost_p\": float(round(tost_p, 6)),\n        \"ci_90\": [float(round(ci_90_low, 4)), float(round(ci_90_high, 4))],\n        \"equivalence_by_tost\": equivalence_by_tost,\n        \"equivalence_by_ci\": equivalence_by_ci,\n        \"equivalence_confirmed\": equivalence_by_tost and equivalence_by_ci,\n    }"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T11:46:23.485001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T11:46:23.485129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py",
+              "old_string": "        se_bootstrap = (d[\"ci_high\"] - d[\"ci_low\"]) / (2 * norm.ppf(0.975))\n        # Also compute binomial SE for reference\n        se_binomial = np.sqrt(d[\"p_hat\"] * (1 - d[\"p_hat\"]) / d[\"n\"])",
+              "new_string": "        se_bootstrap = float((d[\"ci_high\"] - d[\"ci_low\"]) / (2 * norm.ppf(0.975)))\n        se_binomial = float(np.sqrt(d[\"p_hat\"] * (1 - d[\"p_hat\"]) / d[\"n\"]))"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T11:46:23.485309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T11:46:23.485462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T11:46:23.485652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"TOST equivalence testing for Claude Sonnet 4 BT results.\"\"\"\n2\t\n3\timport json\n4\timport numpy as np\n5\tfrom scipy.stats import norm\n6\t\n7\tDELTA = 0.10  # equivalence margin\n8\tALPHA = 0.05\n9\tNULL_P = 0.50\n10\t\n11\tDATA = {\n12\t    \"formality\": {\"p_hat\": 0.562, \"n\": 88, \"ci_low\": 0.489, \"ci_high\": 0.636},\n13\t    \"verbosity\": {\"p_hat\": 0.541, \"n\": 86, \"ci_low\": 0.459, \"ci_high\": 0.616},\n14\t}\n15\t\n16\t\n17\tdef tost_proportion(p_hat, n, se, delta=DELTA):\n18\t    upper_bound = NULL_P + delta  # 0.60\n19\t    lower_bound = NULL_P - delta  # 0.40\n20\t\n21\t    # Upper test: H0: P >= 0.60, reject if p_hat sufficiently below 0.60\n22\t    z_upper = (p_hat - upper_bound) / se\n23\t    p_upper = norm.cdf(z_upper)\n24\t\n25\t    # Lower test: H0: P <= 0.40, reject if p_hat sufficiently above 0.40\n26\t    z_lower = (p_hat - lower_bound) / se\n27\t    p_lower = 1 - norm.cdf(z_lower)\n28\t\n29\t    tost_p = max(p_upper, p_lower)\n30\t\n31\t    # 90% CI (1 - 2*alpha) for equivalence\n32\t    ci_90_low = p_hat - norm.ppf(1 - ALPHA) * se\n33\t    ci_90_high = p_hat + norm.ppf(1 - ALPHA) * se\n34\t\n35\t    equivalence_by_tost = bool(tost_p < ALPHA)\n36\t    equivalence_by_ci = bool(ci_90_low >= lower_bound and ci_90_high <= upper_bound)\n37\t\n38\t    return {\n39\t        \"upper_test\": {\"z\": float(round(z_upper, 4)), \"p\": float(round(p_upper, 6))},\n40\t        \"lower_test\": {\"z\": float(round(z_lower, 4)), \"p\": float(round(p_lower, 6))},\n41\t        \"tost_p\": float(round(tost_p, 6)),\n42\t        \"ci_90\": [float(round(ci_90_low, 4)), float(round(ci_90_high, 4))],\n43\t        \"equivalence_by_tost\": equivalence_by_tost,\n44\t        \"equivalence_by_ci\": equivalence_by_ci,\n45\t        \"equivalence_confirmed\": equivalence_by_tost and equivalence_by_ci,\n46\t    }\n47\t\n48\t\n49\tdef main():\n50\t    results = {\"equivalence_margin\": DELTA, \"null_proportion\": NULL_P, \"alpha\": ALPHA}\n51\t\n52\t    for axis, d in DATA.items():\n53\t        # SE from bootstrap CI: SE ≈ (CI_upper - CI_lower) / (2 * 1.96)\n54\t        se_bootstrap = float((d[\"ci_high\"] - d[\"ci_low\n…[truncated 2420 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T11:46:23.485833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat > /root/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py << 'PYEOF'\n\"\"\"TOST equivalence testing for Claude Sonnet 4 BT results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy.stats import norm\n\nDELTA = 0.10\nALPHA = 0.05\nNULL_P = 0.50\n\nDATA = {\n    \"formality\": {\"p_hat\": 0.562, \"n\": 88, \"ci_low\": 0.489, \"ci_high\": 0.636},\n    \"verbosity\": {\"p_hat\": 0.541, \"n\": 86, \"ci_low\": 0.459, \"ci_high\": 0.616},\n}\n\n\ndef tost_proportion(p_hat, n, se, delta=DELTA):\n    upper_bound = NULL_P + delta\n    lower_bound = NULL_P - delta\n\n    z_upper = (p_hat - upper_bound) / se\n    p_upper = float(norm.cdf(z_upper))\n\n    z_lower = (p_hat - lower_bound) / se\n    p_lower = float(1 - norm.cdf(z_lower))\n\n    tost_p = max(p_upper, p_lower)\n\n    ci_90_low = p_hat - float(norm.ppf(1 - ALPHA)) * se\n    ci_90_high = p_hat + float(norm.ppf(1 - ALPHA)) * se\n\n    equivalence_by_tost = tost_p < ALPHA\n    equivalence_by_ci = ci_90_low >= lower_bound and ci_90_high <= upper_bound\n\n    return {\n        \"upper_test\": {\"z\": round(float(z_upper), 4), \"p\": round(p_upper, 6)},\n        \"lower_test\": {\"z\": round(float(z_lower), 4), \"p\": round(p_lower, 6)},\n        \"tost_p\": round(tost_p, 6),\n        \"ci_90\": [round(ci_90_low, 4), round(ci_90_high, 4)],\n        \"equivalence_by_tost\": equivalence_by_tost,\n        \"equivalence_by_ci\": equivalence_by_ci,\n        \"equivalence_confirmed\": equivalence_by_tost and equivalence_by_ci,\n    }\n\n\ndef main():\n    results = {\"equivalence_margin\": DELTA, \"null_proportion\": NULL_P, \"alpha\": ALPHA}\n\n    for axis, d in DATA.items():\n        se_bootstrap = float((d[\"ci_high\"] - d[\"ci_low\"]) / (2 * float(norm.ppf(0.975))))\n        se_binomial = float(np.sqrt(d[\"p_hat\"] * (1 - d[\"p_hat\"]) / d[\"n\"]))\n\n        tost = tost_proportion(d[\"p_hat\"], d[\"n\"], se_bootstrap)\n\n        conclusion_parts = []\n        if tost[\"equivalence_confirmed\"]:\n            conclusion_parts.append(\n                f\"Equivalence confirmed (TOST p={tost['tost_p']:.4f} < 0.05, \"\n                f\"90% CI [{tost['ci_90'][0]:.3f}, {tost['ci_90'][1]:.3f}] within [0.40, 0.60])\"\n            )\n        else:\n            if not tost[\"equivalence_by_tost\"]:\n                conclusion_parts.append(f\"TOST not significant (p={tost['tost_p']:.4f} >= 0.05)\")\n            if not tost[\"equivalence_by_ci\"]:\n                conclusion_parts.append(\n                    f\"90% CI [{tost['ci_90'][0]:.3f}, {tost['ci_90'][1]:.3f}] not fully within [0.40, 0.60]\"\n                )\n\n        results[axis] = {\n            \"p_hat\": d[\"p_hat\"],\n            \"n_pairs\": d[\"n\"],\n            \"bootstrap_ci_95\": [d[\"ci_low\"], d[\"ci_high\"]],\n            \"se_bootstrap\": round(se_bootstrap, 5),\n            \"se_binomial\": round(se_binomial, 5),\n            **tost,\n            \"conclusion\": \"; \".join(conclusion_parts),\n        }\n\n    results[\"method\"] = \"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\"\n\n    out_path = \"data/claude_tost_equivalence.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2, ensure_ascii=False)\n\n    for axis in DATA:\n        r = results[axis]\n        print(f\"\\n{'='*60}\")\n        print(f\"{axis.upper()}: P(style) = {r['p_hat']}, n = {r['n_pairs']}\")\n        print(f\"  SE (bootstrap): {r['se_bootstrap']:.5f}\")\n        print(f\"  Upper test: z={r['upper_test']['z']:.4f}, p={r['upper_test']['p']:.6f}\")\n        print(f\"  Lower test: z={r['lower_test']['z']:.4f}, p={r['lower_test']['p']:.6f}\")\n        print(f\"  TOST p-value: {r['tost_p']:.6f}\")\n        print(f\"  90% CI: [{r['ci_90'][0]:.4f}, {r['ci_90'][1]:.4f}]\")\n        print(f\"  Equivalence margin: [0.40, 0.60]\")\n        print(f\"  Equivalence confirmed: {r['equivalence_confirmed']}\")\n        print(f\"  Conclusion: {r['conclusion']}\")\n\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T11:46:23.485999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T11:46:23.486120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/claude_tost_equivalence.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T11:46:23.486254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nFORMALITY: P(style) = 0.562, n = 88\\\\n  SE (bootstrap): 0.03750\\\\n  Upper test: z=-1.0133, p=0.155455\\\\n  Lower test: z=4.3199, p=0.000008\\\\n  TOST p-value: 0.155455\\\\n  90% CI: [0.5003, 0.6237]\\\\n  Equivalence margin: [0.40, 0.60]\\\\n  Equivalence confirmed: False\\\\n  Conclusion: TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\\\\n\\\\n============================================================\\\\nVERBOSITY: P(style) = 0.541, n = 86\\\\n  SE (bootstrap): 0.04005\\\\n  Upper test: z=-1.4731, p=0.070363\\\\n  Lower test: z=3.5204, p=0.000215\\\\n  TOST p-value: 0.070363\\\\n  90% CI: [0.4751, 0.6069]\\\\n  Equivalence margin: [0.40, 0.60]\\\\n  Equivalence confirmed: False\\\\n  Conclusion: TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\\\\n\\\\nResults saved to data/claude_tost_equivalence.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T11:46:23.486463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/data/claude_tost_equivalence.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T11:46:23.486627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"equivalence_margin\\\\\\\": 0.1,\\\\n  \\\\\\\"null_proportion\\\\\\\": 0.5,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"formality\\\\\\\": {\\\\n    \\\\\\\"p_hat\\\\\\\": 0.562,\\\\n    \\\\\\\"n_pairs\\\\\\\": 88,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      0.489,\\\\n      0.636\\\\n    ],\\\\n    \\\\\\\"se_bootstrap\\\\\\\": 0.0375,\\\\n    \\\\\\\"se_binomial\\\\\\\": 0.05289,\\\\n    \\\\\\\"upper_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": -1.0133,\\\\n      \\\\\\\"p\\\\\\\": 0.155455\\\\n    },\\\\n    \\\\\\\"lower_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": 4.3199,\\\\n      \\\\\\\"p\\\\\\\": 8e-06\\\\n    },\\\\n    \\\\\\\"tost_p\\\\\\\": 0.155455,\\\\n    \\\\\\\"ci_90\\\\\\\": [\\\\n      0.5003,\\\\n      0.6237\\\\n    ],\\\\n    \\\\\\\"equivalence_by_tost\\\\\\\": false,\\\\n    \\\\\\\"equivalence_by_ci\\\\\\\": false,\\\\n    \\\\\\\"equivalence_confirmed\\\\\\\": false,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\\\\\\\"\\\\n  },\\\\n  \\\\\\\"verbosity\\\\\\\": {\\\\n    \\\\\\\"p_hat\\\\\\\": 0.541,\\\\n    \\\\\\\"n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      0.459,\\\\n      0.616\\\\n    ],\\\\n    \\\\\\\"se_bootstrap\\\\\\\": 0.04005,\\\\n    \\\\\\\"se_binomial\\\\\\\": 0.05373,\\\\n    \\\\\\\"upper_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": -1.4731,\\\\n      \\\\\\\"p\\\\\\\": 0.070363\\\\n    },\\\\n    \\\\\\\"lower_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": 3.5204,\\\\n      \\\\\\\"p\\\\\\\": 0.000215\\\\n    },\\\\n    \\\\\\\"tost_p\\\\\\\": 0.070363,\\\\n    \\\\\\\"ci_90\\\\\\\": [\\\\n      0.4751,\\\\n      0.6069\\\\n    ],\\\\n    \\\\\\\"equivalence_by_tost\\\\\\\": false,\\\\n    \\\\\\\"equivalence_by_ci\\\\\\\": false,\\\\n    \\\\\\\"equivalence_confirmed\\\\\\\": false,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\\\\\\\"\\\\n  },\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T11:46:23.486789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/data/claude_tost_equivalence.json",
+              "content": "{\n  \"equivalence_margin\": 0.1,\n  \"null_proportion\": 0.5,\n  \"alpha\": 0.05,\n  \"formality\": {\n    \"p_hat\": 0.562,\n    \"n_pairs\": 88,\n    \"bootstrap_ci_95\": [\n      0.489,\n      0.636\n    ],\n    \"se_bootstrap\": 0.0375,\n    \"se_binomial\": 0.05289,\n    \"upper_test\": {\n      \"z\": -1.0133,\n      \"p\": 0.155455\n    },\n    \"lower_test\": {\n      \"z\": 4.3199,\n      \"p\": 8e-06\n    },\n    \"tost_p\": 0.155455,\n    \"ci_90\": [\n      0.5003,\n      0.6237\n    ],\n    \"equivalence_by_tost\": false,\n    \"equivalence_by_ci\": false,\n    \"equivalence_confirmed\": false,\n    \"conclusion\": \"TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\"\n  },\n  \"verbosity\": {\n    \"p_hat\": 0.541,\n    \"n_pairs\": 86,\n    \"bootstrap_ci_95\": [\n      0.459,\n      0.616\n    ],\n    \"se_bootstrap\": 0.04005,\n    \"se_binomial\": 0.05373,\n    \"upper_test\": {\n      \"z\": -1.4731,\n      \"p\": 0.070363\n    },\n    \"lower_test\": {\n      \"z\": 3.5204,\n      \"p\": 0.000215\n    },\n    \"tost_p\": 0.070363,\n    \"ci_90\": [\n      0.4751,\n      0.6069\n    ],\n    \"equivalence_by_tost\": false,\n    \"equivalence_by_ci\": false,\n    \"equivalence_confirmed\": false,\n    \"conclusion\": \"TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\"\n  },\n  \"method\": \"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\"\n}\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T11:46:23.486936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/data/claude_tost_equivalence.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T11:46:23.487093+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "TOST 结果出来了，**两个 axis 的等价性都未确认**（与预期不同）：\n\n| Axis | P(style) | TOST p | 90% CI | Equivalence |\n|------|----------|--------|--------|-------------|\n| Formality | 0.562 | 0.155 | [0.500, 0.624] | **No** — 90% CI 上界 0.624 超过 0.60 |\n| Verbosity | 0.541 | 0.070 | [0.475, 0.607] | **No** — 90% CI 上界 0.607 超过 0.60 |\n\n关键原因：虽然点估计接近 0.5，但 bootstrap SE 较大（n≈87 对），导致 90% CI 上界略微突破 0.60 的等价边界。lower test 都 strongly rejected（p≈0），但 upper test 未能拒绝（formality p=0.155, verbosity p=0.070）。Verbosity 接近 marginal significance。\n\n这说明在 Δ=0.10 的 margin 下，当前样本量不足以 **证明** 等价——并非说 Claude 有偏差，而是统计功效不够（underpowered）。如果放宽到 Δ=0.15，两者都能确认等价。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_claude_tost_equivalence_20260521T114415"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ]
+}

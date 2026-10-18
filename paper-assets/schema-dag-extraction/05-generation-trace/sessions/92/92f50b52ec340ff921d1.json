@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "92f50b52ec340ff921d1",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code multiseed bcs prep",
+  "task_key": "worker_code_multiseed_bcs_prep_20260518T070425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multiseed_bcs_prep_20260518T070425.log",
+    "occurrence": 1,
+    "bytes": 11021817,
+    "sha256": "545b477f75c5705b7062707fb3fff0a5da636c1a4830135de7112ae1927fd12a"
+  },
+  "statistics": {
+    "messages": 106,
+    "user_turns": 0,
+    "tool_calls": 37,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 37,
+      "tool_result": 37,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 106,
+      "chunks": [
+        {
+          "path": "92f50b52ec340ff921d1-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "92f50b52ec340ff921d1-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "92f50b52ec340ff921d1-part-0003.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ]
+}

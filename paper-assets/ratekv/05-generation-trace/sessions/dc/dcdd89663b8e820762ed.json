@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dcdd89663b8e820762ed",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh spread candidate model check",
+  "task_key": "worker_ssh_spread_candidate_model_check_20260515T220524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_spread_candidate_model_check_20260515T220524_result.json",
+    "occurrence": 1,
+    "bytes": 1930,
+    "sha256": "7dbe6db265435238ee182e35a5377a0e8e3f6ba62e190f082543fae7268ef89a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## 磁盘状态：**满了** (250G/250G, 仅剩 1.6M)\n\n### 空间使用明细\n\n| 路径 | 内容 | 大小 |\n|------|------|------|\n| .hf_cache/AI-ModelScope/CodeLlama-7b-hf | CodeLlama-7B | 51G |\n| .hf_cache/google/gemma-2-9b | Gemma-2-9B | 35G |\n| models/LLM-Research/Meta-Llama-3.1-8B | Llama-3.1-8B | 30G |\n| .hf_cache/microsoft/Phi-3-medium | Phi-3-medium | 18G |\n| .hf_cache/01ai/Yi-1.5-9B | Yi-1.5-9B | 17G |\n| .hf_cache/Qwen/Qwen2.5-7B | Qwen2.5-7B | 15G |\n| models/Mistral-7B-v0.3 | Mistral-7B | 14G |\n| .hf_cache/EleutherAI/pythia-1.4b | Pythia-1.4B | 5.5G |\n| **prov_grounded_uie/** | **其他项目（DPO/GRPO训练）** | **68G** |\n| 其他 (datasets, hub, codellama空壳等) | — | ~1G |\n\n### 4 个候选模型状态\n\n| 模型 | 在服务器? | 大小 | KV Heads (已知) | Spread 可能性 |\n|------|-----------|------|----------------|--------------|\n| Falcon-7B | **否** | ~14G | **1** (Multi-Query, 71层×1=71 total) | **最高** — 32:1 GQA |\n| DeepSeek-V2-Lite | **否** | ~16G | MLA 架构，非传统 KV heads | 未知，需实测 |\n| StableLM-3B-4E1T | **否** | ~6G | 32 (MHA，无 GQA) | 低 |\n| MPT-7B | **否** | ~13G | 32 (MHA+ALiBi，无 GQA) | 低 |\n\n### 阻塞问题\n\n**磁盘已满，无法下载任何模型。** 需要先清理空间。可选方案：\n\n1. **删除 `prov_grounded_uie/`**（68G）— 看起来是另一个项目（grounded UIE），与 ratekv 无关\n2. **删除已完成 profiling 的模型**（如不再需要的 CodeLlama 51G、Phi-3-medium 18G 等）\n3. **删除 Qwen2.5-14B 空壳和其他 0 字节别名目录**（释放微量空间）\n\n下载 Falcon-7B（最高优先级）需要 ~14G，下载所有 4 个候选需要 ~49G。\n\n**请确认可以删除哪些内容**，我立刻清理并开始下载。同时我先在本地查一下 Falcon-7B 的准确配置（32层不是71层，我需要确认）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9b66a5ae27d9735090f6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy kill v3 deploy pi05 random k07 long",
+  "task_key": "worker_deploy_kill_v3_deploy_pi05_random_k07_long_20260526T150442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_kill_v3_deploy_pi05_random_k07_long_20260526T150442_result.json",
+    "occurrence": 1,
+    "bytes": 286,
+    "sha256": "a63682d93cf23290c45e34dc8865cb55888a0b0cf4c45f9052c3096ffbaace33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已占用 10454 MiB，eval 已开始运行。\n\n```\nKILLED: eval_pi05_attention_k05_long_seed42_v3 PID=452835 — done\nDEPLOYED: yes\nVERIFIED: yes\nSERVER: cqa1-33015\nGPU: cuda:2\nPID: 467731\nGPU_MEM: 10454 MiB\nEXP_ID: eval_pi05_random_k07_long_seed42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

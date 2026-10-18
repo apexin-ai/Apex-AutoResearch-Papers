@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "da0378a1d85d5cc08a0b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra kill seetacloud scoring",
+  "task_key": "worker_infra_kill-seetacloud-scoring_20260522T134617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-seetacloud-scoring_20260522T134617_result.json",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "f877e62abb365a70b7743f4ae9785f83e79cdb9d6bb6345455d9b37740badcd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败（exit code -1）。可能原因：实例已关机或端口变更。请检查 SeetaCloud 控制台确认实例状态和 SSH 端口是否变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

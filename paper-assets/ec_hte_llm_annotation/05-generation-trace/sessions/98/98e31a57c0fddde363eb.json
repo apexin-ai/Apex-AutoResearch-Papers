@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "98e31a57c0fddde363eb",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp a civilcomments",
+  "task_key": "worker_code_exp-a-civilcomments_20260523T190133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-a-civilcomments_20260523T190133_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "212ce99c2baa3575abe723ef3d15c15a01323a63f627278f16dd4a0e33eb97b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Both output files are saved.\n\n**Key results:**\n\n**Per-subgroup misclassification heterogeneity confirmed** across all 3 LLMs on demographic subgroups:\n- ΔFPR ranges from 0.09 to 0.15 across subgroups (gender, no_identity, race_lgbtq, religion)\n- κ ranges: gpt-4o [1.95, 2.38], gpt-4o-mini [2.24, 3.13], gpt-3.5-turbo [2.16, 2.94]\n- race_lgbtq subgroup consistently has highest FPR across all models (0.38–0.63)\n\n**Semi-synthetic DGP findings** (N=5000, τ(Z=1)=0.30, MC=50):\n- **(a) Sign reversal**: Yes — 2% rate with stratified MLE at small n_expert (100–250) for gpt-4o-mini and gpt-3.5-turbo\n- **(b) Bias amplification**: 1.03x–3.32x (stratified MLE vs naive). Worst at n_expert=100 with gpt-4o (3.32x). HB EC-HTE amplification up to 3.02x with gpt-4o-mini\n- **(c) κ ranges**: 1.95–3.13 across all models/subgroups\n- **(d) Asymmetric CMs** (especially gpt-4o-mini with FPR≈0.5–0.63) cause severe ill-conditioning, making EC-HTE correction worse than naive in all cases\n\n**Output files:**\n- `artifacts/civilcomments_analysis.csv` — per-subgroup confusion matrices\n- `artifacts/civilcomments_report.md` — full report"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

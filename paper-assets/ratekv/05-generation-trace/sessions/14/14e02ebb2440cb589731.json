@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "14e02ebb2440cb589731",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "infra kill zombie",
+  "task_key": "worker_infra_kill-zombie_20260513T174138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-zombie_20260513T174138_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "859e46e3b91b55628dcbf3a5d01c5b239f4fe3b41c2c3051e5bf1b80d5eaec95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两块 GPU 已完全释放，无残留进程。\n\n| GPU | 显存占用 | 可用显存 |\n|-----|---------|---------|\n| cuda:0 | 0 MiB | 97887 MiB |\n| cuda:1 | 0 MiB | 97887 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

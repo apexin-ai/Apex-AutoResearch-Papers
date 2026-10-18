@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f9b1e59696e7ad4b7043",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis mvp baseline v2",
+  "task_key": "worker_analysis_mvp_baseline_v2_20260515T145527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mvp_baseline_v2_20260515T145527_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "a9cd282d97fc131406da3e138347f505fb9455e4adcef98b153176fb445d993a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n## mvp_baseline_v2 结果：**FAILED**\n\n**核心问题：**\n1. **训练提前终止** — 仅跑到 step 600/30000（2%），进程静默退出，无任何错误或完成信息\n2. **Loss 坍塌** — step 150 起 loss 降至 0.0000，gradient 也为 0.00，典型的 degenerate solution\n3. **无 checkpoint** — checkpoints 目录为空\n4. **W&B offline** — 无云端指标，eval 也未执行（首次 eval 在 2K steps）\n\n**Loss 轨迹摘要：** 0.2332 → 4.08（spike）→ 0.0096 → 0.0000（collapse at step 150+）\n\n**需要排查：**\n- Action 数据分布是否 normalize 后集中在零附近（模型输出零即可获得零 loss）\n- 进程退出原因（OOM kill 或 tmux 异常？）\n- 下次运行需设 `WANDB_MODE=online`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

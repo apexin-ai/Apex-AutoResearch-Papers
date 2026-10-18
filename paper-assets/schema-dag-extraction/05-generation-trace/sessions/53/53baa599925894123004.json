@@ -1,0 +1,1170 @@
+{
+  "schema_version": "1.0",
+  "id": "53baa599925894123004",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper r26 fix related work",
+  "task_key": "worker_paper_r26_fix_related_work_20260522T043743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_fix_related_work_20260522T043743.log",
+    "occurrence": 1,
+    "bytes": 61216,
+    "sha256": "7d828f91da75d00c2a6babab0a180e366c0d2a4ae47a516606d1addccfc8ec24"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "8e619599-b48d-4c2a-84a5-f0cd93927feb",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779438000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "41e4d2c2-f5a9-4f9e-96e1-6a665b7f8bd2",
+                "session_id": "2d3ed296-a643-4671-8092-ea11656c1414"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the paper files to understand the current structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "fb12f221-0b93-490c-85b4-9bdf11a0e074",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LmZ63KAv29vcTosBjzgawR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12054,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12054
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015HEmdEFsGSDurhushhQ5zj",
+              "name": "Glob",
+              "input": {
+                "pattern": "*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "6b2f8ade-f7b7-4267-afc4-86fbe9441974",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LmZ63KAv29vcTosBjzgawR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12054,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12054
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T04:37:54.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_015HEmdEFsGSDurhushhQ5zj"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "8312b87a-97ff-419b-ab33-f4218572ea60",
+            "tool_use_result": "Error: Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction."
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HRkjeQPsLTZAY3BrRnvXh9",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "dcf600bd-4349-4768-b735-5673df094e81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLqBRTkhyaSSQuZjjVZZq7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 23895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 213
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T04:38:01.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HRkjeQPsLTZAY3BrRnvXh9",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260515T053106/best/paper.tex\nartifacts/dream_reports/dream_20260515T053106/median/paper.tex\nartifacts/dream_reports/dream_20260515T053106/worst/paper.tex\nartifacts/dream_reports/dream_20260515T113743/best/paper.tex\nartifacts/dream_reports/dream_20260515T113743/median/paper.tex\nartifacts/dream_reports/dream_20260515T113743/worst/paper.tex\nartifacts/dream_reports/dream_20260515T140829/best/paper.tex\nartifacts/dream_reports/dream_20260515T140829/median/paper.tex\nartifacts/dream_reports/dream_20260515T140829/worst/paper.tex\nartifacts/_project/paper/dataset_stats.tex\nartifacts/paper/tables/dataset_stats.tex\nartifacts/_project/paper/sdgd_negative.tex\nartifacts/_project/paper/experimental_setup.tex\ndocs/paper/conclusion.tex\nartifacts/_project/paper/results.tex\nartifacts/dream_reports/dream_20260516T073533/best/paper.tex\nartifacts/dream_reports/dream_20260516T073533/median/paper.tex\nartifacts/dream_reports/dream_20260516T073533/worst/paper.tex\ndocs/paper/supplementary.tex\nartifacts/acknowledgements_draft.tex\ndocs/paper/prompt_appendix.tex\ndocs/paper/checklist.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/experimental_setup.tex\nartifacts/error_taxonomy_cross_model_table.tex\nartifacts/permutation_equivalence_latex.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/related_work.tex\ndocs/paper/results.tex\ndocs/paper/discussion.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "0cf2e70d-74d2-496f-b510-584c23a58890",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/dream_reports/dream_20260515T053106/best/paper.tex",
+                "artifacts/dream_reports/dream_20260515T053106/median/paper.tex",
+                "artifacts/dream_reports/dream_20260515T053106/worst/paper.tex",
+                "artifacts/dream_reports/dream_20260515T113743/best/paper.tex",
+                "artifacts/dream_reports/dream_20260515T113743/median/paper.tex",
+                "artifacts/dream_reports/dream_20260515T113743/worst/paper.tex",
+                "artifacts/dream_reports/dream_20260515T140829/best/paper.tex",
+                "artifacts/dream_reports/dream_20260515T140829/median/paper.tex",
+                "artifacts/dream_reports/dream_20260515T140829/worst/paper.tex",
+                "artifacts/_project/paper/dataset_stats.tex",
+                "artifacts/paper/tables/dataset_stats.tex",
+                "artifacts/_project/paper/sdgd_negative.tex",
+                "artifacts/_project/paper/experimental_setup.tex",
+                "docs/paper/conclusion.tex",
+                "artifacts/_project/paper/results.tex",
+                "artifacts/dream_reports/dream_20260516T073533/best/paper.tex",
+                "artifacts/dream_reports/dream_20260516T073533/median/paper.tex",
+                "artifacts/dream_reports/dream_20260516T073533/worst/paper.tex",
+                "docs/paper/supplementary.tex",
+                "artifacts/acknowledgements_draft.tex",
+                "docs/paper/prompt_appendix.tex",
+                "docs/paper/checklist.tex",
+                "docs/paper/abstract.tex",
+                "docs/paper/introduction.tex",
+                "docs/paper/experimental_setup.tex",
+                "artifacts/error_taxonomy_cross_model_table.tex",
+                "artifacts/permutation_equivalence_latex.tex",
+                "docs/paper/sdgd_negative.tex",
+                "docs/paper/related_work.tex",
+                "docs/paper/results.tex",
+                "docs/paper/discussion.tex",
+                "docs/paper/main.tex"
+              ],
+              "durationMs": 32,
+              "numFiles": 32,
+              "truncated": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AbNRreQfwMWTktBLRYpciN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "15d897fc-66c9-4e7c-8d5f-156a1587781d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RisdZmqNWc4ddXkBMSdHmw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 564,
+                "cache_read_input_tokens": 24108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 564
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T04:38:04.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AbNRreQfwMWTktBLRYpciN",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Training-free LLM IE.}\n5\t\\looseness=-1\n6\tTraining-free LLM IE spans instruction tuning \\citep{instructuie-2023}, code-style schema encoding \\citep{knowcoder-2024,codeie-2023}, annotation-guided extraction \\citep{gollie-2024,adelie-2024}, schema-driven decoding \\citep{slot-2025,oneke-2025}, and constrained JSON decoding \\citep{json-schema-bench-2025,willard2023efficient}. NER methods include zero-shot decomposition \\citep{xie-zeroshot-ner-2023,promptner-2023}, distillation \\citep{uniner-2024}, and bidirectional encoders \\citep{gliner-2024,gliner2-2025}; RE methods include zero-shot triplet extraction \\citep{relationprompt-2022}, constrained generation \\citep{josifoski-2022-genie}, and shared embedding spaces \\citep{boylan-2025-glirel,wadhwa-re-llm-2023}. These methods perform well with moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales.\n7\t\n8\t\\paragraph{Schema complexity in IE.}\n9\t\\looseness=-1\n10\tThe most directly related work is LLM-PEE \\citep{llm-pee-2025}, which partitions large event schemas by type embedding similarity. Our work differs in three ways: (1)~we conduct controlled analysis to understand \\emph{why} extraction degrades rather than developing an engineering solution; (2)~our BCS-controlled experiments isolate count from confusability, which LLM-PEE conflates; (3)~our SDGD experiments reveal that merge amplification (not partitioning quality) is the bottleneck in decompose-then-merge pipelines. LLM-PEE's union merge suffers the same precision collapse (0.56$\\to$0.21; \\S\\ref{sec:sdgd}). In short, LLM-PEE assumes decomposition helps; we show why it should (confusability), why it does not (merge amplification), and what predicts the degradation (BCS). Other approaches address schema complexity via hard negative mining \\citep{iepile-2024}, schema definition optimization \\citep{parse-2025}, multi-agent debate \\citep{crossagentie-2025,cmas-ner-2025}, and active prompting \\citep{reflect-learn-2026}; all treat it as an engineering problem rather than isolating degradation factors. Concurrently, \\citet{chen-2026-multi-instance} show that instance count degrades LLM multi-instance processing more than context length, consistent with our count-dominant finding. \\citet{golde-2025-familiarity} quantify training--evaluation type similarity to predict zero-shot NER difficulty; our SCS instead measures within-schema inter-type confusability without assuming access to training data. Label-space reduction approaches \\citep{haystack-to-needle-2025,dlisc-2025,spt-2025} implicitly lower batch confusability---our framework explains \\emph{why} such reduction works.\n11\t\n12\t\\paragraph{Schema complexity in dialogue and IE.}\n13\t\\looseness=-1\n14\tThe Schema-Guided Dialogue dataset~\\citep{rastogi2020towards} and SGD-X~\\citep{lee2022sgd} document degradation with schema linguistic variation; \\citet{li2023evaluating} observe count-dependent degradation in ChatGPT IE. The relationship between label similarity and confusion has precedent in visual recognition \\citep{dubey-2018-pairwise-confusion}, correlated label noise \\citep{collier-2021-correlated-noise}, hierarchical classification \\citep{deng-2010-imagenet}, and label confusion matrices \\citep{guo-2021-label-confusion,muller2019when,peterson2019human}.\n15\t\n16\t\\paragraph{SCS novelty.}\n17\t\\looseness=-1\n18\tSCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).\n19\t\n20\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "42ee25d3-b4ce-49f6-aa58-6f4652aaafe3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Training-free LLM IE.}\n\\looseness=-1\nTraining-free LLM IE spans instruction tuning \\citep{instructuie-2023}, code-style schema encoding \\citep{knowcoder-2024,codeie-2023}, annotation-guided extraction \\citep{gollie-2024,adelie-2024}, schema-driven decoding \\citep{slot-2025,oneke-2025}, and constrained JSON decoding \\citep{json-schema-bench-2025,willard2023efficient}. NER methods include zero-shot decomposition \\citep{xie-zeroshot-ner-2023,promptner-2023}, distillation \\citep{uniner-2024}, and bidirectional encoders \\citep{gliner-2024,gliner2-2025}; RE methods include zero-shot triplet extraction \\citep{relationprompt-2022}, constrained generation \\citep{josifoski-2022-genie}, and shared embedding spaces \\citep{boylan-2025-glirel,wadhwa-re-llm-2023}. These methods perform well with moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales.\n\n\\paragraph{Schema complexity in IE.}\n\\looseness=-1\nThe most directly related work is LLM-PEE \\citep{llm-pee-2025}, which partitions large event schemas by type embedding similarity. Our work differs in three ways: (1)~we conduct controlled analysis to understand \\emph{why} extraction degrades rather than developing an engineering solution; (2)~our BCS-controlled experiments isolate count from confusability, which LLM-PEE conflates; (3)~our SDGD experiments reveal that merge amplification (not partitioning quality) is the bottleneck in decompose-then-merge pipelines. LLM-PEE's union merge suffers the same precision collapse (0.56$\\to$0.21; \\S\\ref{sec:sdgd}). In short, LLM-PEE assumes decomposition helps; we show why it should (confusability), why it does not (merge amplification), and what predicts the degradation (BCS). Other approaches address schema complexity via hard negative mining \\citep{iepile-2024}, schema definition optimization \\citep{parse-2025}, multi-agent debate \\citep{crossagentie-2025,cmas-ner-2025}, and active prompting \\citep{reflect-learn-2026}; all treat it as an engineering problem rather than isolating degradation factors. Concurrently, \\citet{chen-2026-multi-instance} show that instance count degrades LLM multi-instance processing more than context length, consistent with our count-dominant finding. \\citet{golde-2025-familiarity} quantify training--evaluation type similarity to predict zero-shot NER difficulty; our SCS instead measures within-schema inter-type confusability without assuming access to training data. Label-space reduction approaches \\citep{haystack-to-needle-2025,dlisc-2025,spt-2025} implicitly lower batch confusability---our framework explains \\emph{why} such reduction works.\n\n\\paragraph{Schema complexity in dialogue and IE.}\n\\looseness=-1\nThe Schema-Guided Dialogue dataset~\\citep{rastogi2020towards} and SGD-X~\\citep{lee2022sgd} document degradation with schema linguistic variation; \\citet{li2023evaluating} observe count-dependent degradation in ChatGPT IE. The relationship between label similarity and confusion has precedent in visual recognition \\citep{dubey-2018-pairwise-confusion}, correlated label noise \\citep{collier-2021-correlated-noise}, hierarchical classification \\citep{deng-2010-imagenet}, and label confusion matrices \\citep{guo-2021-label-confusion,muller2019when,peterson2019human}.\n\n\\paragraph{SCS novelty.}\n\\looseness=-1\nSCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).\n\n",
+                "numLines": 20,
+                "startLine": 1,
+                "totalLines": 20
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016hdb2Mx5TXQ9s11o2ZM7Xx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "c41a12f5-4367-4aef-85f4-e9fe5528b05e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RisdZmqNWc4ddXkBMSdHmw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 564,
+                "cache_read_input_tokens": 24108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 564
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T04:38:04.927Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (26055 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_016hdb2Mx5TXQ9s11o2ZM7Xx"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "2c5ae379-1317-42f8-9349-2c973c669e15",
+            "tool_use_result": "Error: File content (26055 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me look at the method section where SCS/BCS are defined, to understand the current context around §3.2.",
+              "signature": "ErYCCmMIDRgCKkCqx0pkybtbSlOX8NnT/4Oky6ChF5/k+GWPa3gjJmZV6CIvhgoXJxCYJOK7dPsPhrrUUvlfL5CYiAzui3dUxnbWMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGkLEgP5CPsZM85mCxoMyoSO8V5rmV/MZPVPIjA43wL28EqAyu/iQ7iVJ2t8SbqUyg8oXfByqNkpgqxa7H8qXnm6zVoV+5z/YfxxwiwqgAGzceo/WLS3c5OE3dY916/V171BxcZ+hdOoBDOLESnLM7E9vP6I1DCGO5StnyBZIiF5FmjdSI8PAOe147o9OIKbCJNeKwygmS9hcm3n6frxNF3Oj5Hm36lo/Y9tiuWZjZb4VEc0sq7sxxGrxMS/XLxtcJqMGvNHuJdCarvXVh9AqxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "ec0c94a7-d038-4324-8ec2-c9d598d6602b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016osQdtWMffuKsn6MXWzMiK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1466,
+                "cache_read_input_tokens": 24672,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1466
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me find §3.2 where the metrics are defined."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "36083cc4-b750-407a-bf0a-f2a302da405b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016osQdtWMffuKsn6MXWzMiK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1466,
+                "cache_read_input_tokens": 24672,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1466
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rm6fPYP7EF4TcuodTNkko1",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\subsection|\\\\paragraph.*SCS|\\\\paragraph.*BCS|\\\\paragraph.*Confus|Schema Confusability|Batch Confusability",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "72c8b8e1-9a07-4d9a-bb36-1169977d68be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016osQdtWMffuKsn6MXWzMiK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1466,
+                "cache_read_input_tokens": 24672,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1466
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T04:38:11.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rm6fPYP7EF4TcuodTNkko1",
+              "type": "tool_result",
+              "content": "docs/paper/related_work.tex:16:\\paragraph{SCS novelty.}\ndocs/paper/acl.sty:236:\\def\\subsection{\\@startsection{subsection}{2}{\\z@}{-1.8ex plus\ndocs/paper/main.tex:199:\\subsection{Practical Routing Strategies on RE}\ndocs/paper/main.tex:308:\\subsection{Partial Correlation: Controlling for Degree Centrality}\ndocs/paper/main.tex:330:\\subsection{NER BCS-Null Power Analysis}\ndocs/paper/main.tex:373:\\subsection{Cross-Prompt-Variant BCS Correlation}\ndocs/paper/main.tex:404:We define Batch Confusability Score (BCS) as the \\emph{mean} pairwise SCS across all type pairs in a batch (\\S\\ref{sec:bcs_controlled}). An alternative definition takes the \\emph{maximum} pairwise SCS within each batch to capture the single most confusable pair. Here we compare both aggregation methods to verify that core conclusions are robust to this choice (Table~\\ref{tab:bcs_aggregation}).\ndocs/paper/main.tex:583:[Omitted long matching line]\ndocs/paper/main.tex:639:\\paragraph{Results.}  The BCS partial effect is unchanged after controlling for split-origin: $\\beta_{\\text{BCS}} = -0.416$, $p < 0.001$ (vs.\\ $\\beta = -0.412$, $p < 0.001$ without the covariate).  Train-origin ratio is not independently significant ($\\beta_{\\text{origin}} = -0.057$, $p = 0.245$), and $\\Delta R^2 = 0.005$.  The BCS--accuracy relationship is therefore not confounded by differential pre-training exposure at the batch level.\ndocs/paper/main.tex:739:\\paragraph{Dimension~2: BCS-controlled confusability.}\ndocs/paper/main.tex:797:[Omitted long matching line]\ndocs/paper/main.tex:820:[Omitted long matching line]\ndocs/paper/checklist.tex:5:\\subsection*{A \\quad For Every Submission}\ndocs/paper/checklist.tex:27:\\subsection*{B \\quad Scientific Artifacts}\ndocs/paper/checklist.tex:57:\\subsection*{C \\quad Computational Experiments}\ndocs/paper/checklist.tex:79:\\subsection*{D \\quad Human Annotators or Crowdworkers}\ndocs/paper/checklist.tex:105:\\subsection*{E \\quad AI-Assisted Research}\ndocs/paper/prompt_appendix.tex:22:\\subsection{Named Entity Recognition (Few-NERD)}\ndocs/paper/prompt_appendix.tex:106:\\subsection{Event Detection (MAVEN)}\ndocs/paper/prompt_appendix.tex:163:\\subsection{Relation Extraction (FewRel)}\ndocs/paper/prompt_appendix.tex:199:\\subsection{Type Definitions}\ndocs/paper/experimental_setup.tex:6:\\subsection{Tasks and Datasets}\ndocs/paper/experimental_setup.tex:21:Table~\\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \\S\\ref{sec:scs}.\ndocs/paper/experimental_setup.tex:41:\\subsection{Schema Confusability Score (SCS)}\ndocs/paper/experimental_setup.tex:45:We define the Schema Confusability Score (SCS) to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\\text{name}(t)$, an embedding function $\\text{embed}(\\cdot)$ maps the type name to a vector representation. The \\textbf{pairwise SCS} between types $t_i$ and $t_j$ is:\ndocs/paper/experimental_setup.tex:52:For a batch of types $B = \\{t_1, \\ldots, t_k\\}$, the \\textbf{Batch Confusability Score (BCS)} aggregates all pairwise similarities:\ndocs/paper/experimental_setup.tex:59:\\paragraph{SCS as a lightweight proxy.}\ndocs/paper/experimental_setup.tex:78:\\subsection{Experimental Design}\ndocs/paper/experimental_setup.tex:86:\\paragraph{Experiment 2: BCS-Controlled.}\ndocs/paper/experimental_setup.tex:89:\\subsection{Evaluation Metrics}\ndocs/paper/experimental_setup.tex:95:\\subsection{Model and Inference}\ndocs/paper/introduction.tex:15:[Omitted long matching line]\ndocs/paper/results.tex:6:\\subsection{Count-Degradation Curves}\ndocs/paper/results.tex:11:\\subsection{Pairwise Confusability and Type Confusion}\ndocs/paper/results.tex:43:\\subsection{BCS-Controlled Experiments}\ndocs/paper/results.tex:71:\\subsection{Multi-Dimensional Degradation}\ndocs/paper/results.tex:80:\\subsection{Centrality as a Potential Confound on Homogeneous Schemas}\ndocs/paper/main.aux:336:\\@writefile{toc}{\\contentsline {subsection}{\\numberline {3.2}Schema Confusability Score (SCS)}{3}{subsection.3.2}\\protected@file@percent }\ndocs/paper/main.aux:337:\\newlabel{sec:scs}{{3.2}{3}{Schema Confusability Score (SCS)}{subsection.3.2}{}}\ndocs/paper/main.aux:2394:[Omitted long matching line]\ndocs/paper/main.aux:2395:[Omitted long matching line]\ndocs/paper/main.aux:2430:[Omitted long matching line]\ndocs/paper/main.aux:2431:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "770e190c-2b61-4683-a3b4-0c9d08d68844",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/related_work.tex:16:\\paragraph{SCS novelty.}\ndocs/paper/acl.sty:236:\\def\\subsection{\\@startsection{subsection}{2}{\\z@}{-1.8ex plus\ndocs/paper/main.tex:199:\\subsection{Practical Routing Strategies on RE}\ndocs/paper/main.tex:308:\\subsection{Partial Correlation: Controlling for Degree Centrality}\ndocs/paper/main.tex:330:\\subsection{NER BCS-Null Power Analysis}\ndocs/paper/main.tex:373:\\subsection{Cross-Prompt-Variant BCS Correlation}\ndocs/paper/main.tex:404:We define Batch Confusability Score (BCS) as the \\emph{mean} pairwise SCS across all type pairs in a batch (\\S\\ref{sec:bcs_controlled}). An alternative definition takes the \\emph{maximum} pairwise SCS within each batch to capture the single most confusable pair. Here we compare both aggregation methods to verify that core conclusions are robust to this choice (Table~\\ref{tab:bcs_aggregation}).\ndocs/paper/main.tex:583:[Omitted long matching line]\ndocs/paper/main.tex:639:\\paragraph{Results.}  The BCS partial effect is unchanged after controlling for split-origin: $\\beta_{\\text{BCS}} = -0.416$, $p < 0.001$ (vs.\\ $\\beta = -0.412$, $p < 0.001$ without the covariate).  Train-origin ratio is not independently significant ($\\beta_{\\text{origin}} = -0.057$, $p = 0.245$), and $\\Delta R^2 = 0.005$.  The BCS--accuracy relationship is therefore not confounded by differential pre-training exposure at the batch level.\ndocs/paper/main.tex:739:\\paragraph{Dimension~2: BCS-controlled confusability.}\ndocs/paper/main.tex:797:[Omitted long matching line]\ndocs/paper/main.tex:820:[Omitted long matching line]\ndocs/paper/checklist.tex:5:\\subsection*{A \\quad For Every Submission}\ndocs/paper/checklist.tex:27:\\subsection*{B \\quad Scientific Artifacts}\ndocs/paper/checklist.tex:57:\\subsection*{C \\quad Computational Experiments}\ndocs/paper/checklist.tex:79:\\subsection*{D \\quad Human Annotators or Crowdworkers}\ndocs/paper/checklist.tex:105:\\subsection*{E \\quad AI-Assisted Research}\ndocs/paper/prompt_appendix.tex:22:\\subsection{Named Entity Recognition (Few-NERD)}\ndocs/paper/prompt_appendix.tex:106:\\subsection{Event Detection (MAVEN)}\ndocs/paper/prompt_appendix.tex:163:\\subsection{Relation Extraction (FewRel)}\ndocs/paper/prompt_appendix.tex:199:\\subsection{Type Definitions}\ndocs/paper/experimental_setup.tex:6:\\subsection{Tasks and Datasets}\ndocs/paper/experimental_setup.tex:21:Table~\\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \\S\\ref{sec:scs}.\ndocs/paper/experimental_setup.tex:41:\\subsection{Schema Confusability Score (SCS)}\ndocs/paper/experimental_setup.tex:45:We define the Schema Confusability Score (SCS) to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\\text{name}(t)$, an embedding function $\\text{embed}(\\cdot)$ maps the type name to a vector representation. The \\textbf{pairwise SCS} between types $t_i$ and $t_j$ is:\ndocs/paper/experimental_setup.tex:52:For a batch of types $B = \\{t_1, \\ldots, t_k\\}$, the \\textbf{Batch Confusability Score (BCS)} aggregates all pairwise similarities:\ndocs/paper/experimental_setup.tex:59:\\paragraph{SCS as a lightweight proxy.}\ndocs/paper/experimental_setup.tex:78:\\subsection{Experimental Design}\ndocs/paper/experimental_setup.tex:86:\\paragraph{Experiment 2: BCS-Controlled.}\ndocs/paper/experimental_setup.tex:89:\\subsection{Evaluation Metrics}\ndocs/paper/experimental_setup.tex:95:\\subsection{Model and Inference}\ndocs/paper/introduction.tex:15:[Omitted long matching line]\ndocs/paper/results.tex:6:\\subsection{Count-Degradation Curves}\ndocs/paper/results.tex:11:\\subsection{Pairwise Confusability and Type Confusion}\ndocs/paper/results.tex:43:\\subsection{BCS-Controlled Experiments}\ndocs/paper/results.tex:71:\\subsection{Multi-Dimensional Degradation}\ndocs/paper/results.tex:80:\\subsection{Centrality as a Potential Confound on Homogeneous Schemas}\ndocs/paper/main.aux:336:\\@writefile{toc}{\\contentsline {subsection}{\\numberline {3.2}Schema Confusability Score (SCS)}{3}{subsection.3.2}\\protected@file@percent }\ndocs/paper/main.aux:337:\\newlabel{sec:scs}{{3.2}{3}{Schema Confusability Score (SCS)}{subsection.3.2}{}}\ndocs/paper/main.aux:2394:[Omitted long matching line]\ndocs/paper/main.aux:2395:[Omitted long matching line]\ndocs/paper/main.aux:2430:[Omitted long matching line]\ndocs/paper/main.aux:2431:[Omitted long matching line]",
+              "numLines": 43
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016fkxP5WWLszQ9M4RsETer9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+                "offset": 41,
+                "limit": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "9a3af592-1b7a-4e41-b3a8-61c424d33f8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WdaVJmVt1DFkPCyGzkayMa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1684,
+                "cache_read_input_tokens": 26138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1684
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T04:38:15.537Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016fkxP5WWLszQ9M4RsETer9",
+              "type": "tool_result",
+              "content": "41\t\\subsection{Schema Confusability Score (SCS)}\n42\t\\label{sec:scs}\n43\t\n44\t\\looseness=-1\n45\tWe define the Schema Confusability Score (SCS) to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\\text{name}(t)$, an embedding function $\\text{embed}(\\cdot)$ maps the type name to a vector representation. The \\textbf{pairwise SCS} between types $t_i$ and $t_j$ is:\n46\t{\\small\n47\t\\[\n48\t\\text{SCS}(t_i, t_j) = \\cos\\bigl(\\text{embed}(\\text{name}(t_i)),\\; \\text{embed}(\\text{name}(t_j))\\bigr)\n49\t\\]\n50\t}\n51\t\n52\tFor a batch of types $B = \\{t_1, \\ldots, t_k\\}$, the \\textbf{Batch Confusability Score (BCS)} aggregates all pairwise similarities:\n53\t\\[\n54\t\\text{BCS}(B) = \\frac{1}{\\binom{k}{2}} \\sum_{i < j,\\; t_i, t_j \\in B} \\text{SCS}(t_i, t_j)\n55\t\\]\n56\t\n57\tWe use two embeddings to provide complementary perspectives: Qwen3 captures the extraction model's own type representations (self-similarity), while MiniLM provides an independent general-purpose baseline. Cross-embedding consistency holds on all datasets (Appendix~\\ref{sec:appendix_bcs_sensitivity}); MiniLM consistently yields equal or stronger correlations, which confirms that Qwen3-based estimates are conservative. We compute SCS with: (1)~Qwen3-32B \\citep{qwen3-2025} hidden-state representations (5{,}120-d) and (2)~all-MiniLM-L6-v2 \\citep{minilm-2020,sentence-bert-2019}, a 384-d sentence encoder. Few-NERD uses Qwen3 because its fine-grained same-category pairs (e.g., ``person-artist'' vs.\\ ``person-actor'') require the higher-dimensional space. MiniLM is the primary BCS embedding because sentence-transformers are trained for semantic similarity \\citep{sentence-bert-2019}; Qwen3 causal-LM states show compressed BCS range (std${}\\,=\\,0.034$ vs.\\ MiniLM std${}\\,=\\,0.081$), consistent with autoregressive anisotropy \\citep{ethayarajh-contextual-2019}. Name-only SCS yields equivalent predictive accuracy to name+definition ($\\Delta r$: $-0.023$ to $+0.035$; Appendix~\\ref{app:scs-ablation}).\n58\t\n59\t\\paragraph{SCS as a lightweight proxy.}\n60\t\\label{sec:scs-validation}\n61\tSCS is a pre-hoc proxy computable without running extraction. Pairwise SCS correlates with observed type confusion (Few-NERD $r = 0.112$, FewRel $r = 0.187$, both $p < 0.001$; Table~\\ref{tab:pairwise}), though context, frequency, and definition quality also contribute (\\S\\ref{sec:pairwise}). SCS does not capture context-dependent disambiguation or mention-level ambiguity; these factors contribute to the residual variance in pairwise analysis.\n62\t\n63\t\\begin{figure*}[t]\n64\t\\centering\n65\t\\begin{minipage}[t]{0.48\\textwidth}\n66\t\\centering\n67\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n68\t\\end{minipage}\n69\t\\hfill\n70\t\\begin{minipage}[t]{0.48\\textwidth}\n71\t\\centering\n72\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n73\t\\end{minipage}\n74\t\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 batch-composition seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Rightmost points are full-schema (negligible sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n75\t\\label{fig:main_results}\n76\t\\end{figure*}\n77\t\n78\t\\subsection{Experimental Design}\n79\t\\label{sec:exp_design}\n80\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "e3033713-6f12-4923-a789-5466cf128834",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+                "content": "\\subsection{Schema Confusability Score (SCS)}\n\\label{sec:scs}\n\n\\looseness=-1\nWe define the Schema Confusability Score (SCS) to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\\text{name}(t)$, an embedding function $\\text{embed}(\\cdot)$ maps the type name to a vector representation. The \\textbf{pairwise SCS} between types $t_i$ and $t_j$ is:\n{\\small\n\\[\n\\text{SCS}(t_i, t_j) = \\cos\\bigl(\\text{embed}(\\text{name}(t_i)),\\; \\text{embed}(\\text{name}(t_j))\\bigr)\n\\]\n}\n\nFor a batch of types $B = \\{t_1, \\ldots, t_k\\}$, the \\textbf{Batch Confusability Score (BCS)} aggregates all pairwise similarities:\n\\[\n\\text{BCS}(B) = \\frac{1}{\\binom{k}{2}} \\sum_{i < j,\\; t_i, t_j \\in B} \\text{SCS}(t_i, t_j)\n\\]\n\nWe use two embeddings to provide complementary perspectives: Qwen3 captures the extraction model's own type representations (self-similarity), while MiniLM provides an independent general-purpose baseline. Cross-embedding consistency holds on all datasets (Appendix~\\ref{sec:appendix_bcs_sensitivity}); MiniLM consistently yields equal or stronger correlations, which confirms that Qwen3-based estimates are conservative. We compute SCS with: (1)~Qwen3-32B \\citep{qwen3-2025} hidden-state representations (5{,}120-d) and (2)~all-MiniLM-L6-v2 \\citep{minilm-2020,sentence-bert-2019}, a 384-d sentence encoder. Few-NERD uses Qwen3 because its fine-grained same-category pairs (e.g., ``person-artist'' vs.\\ ``person-actor'') require the higher-dimensional space. MiniLM is the primary BCS embedding because sentence-transformers are trained for semantic similarity \\citep{sentence-bert-2019}; Qwen3 causal-LM states show compressed BCS range (std${}\\,=\\,0.034$ vs.\\ MiniLM std${}\\,=\\,0.081$), consistent with autoregressive anisotropy \\citep{ethayarajh-contextual-2019}. Name-only SCS yields equivalent predictive accuracy to name+definition ($\\Delta r$: $-0.023$ to $+0.035$; Appendix~\\ref{app:scs-ablation}).\n\n\\paragraph{SCS as a lightweight proxy.}\n\\label{sec:scs-validation}\nSCS is a pre-hoc proxy computable without running extraction. Pairwise SCS correlates with observed type confusion (Few-NERD $r = 0.112$, FewRel $r = 0.187$, both $p < 0.001$; Table~\\ref{tab:pairwise}), though context, frequency, and definition quality also contribute (\\S\\ref{sec:pairwise}). SCS does not capture context-dependent disambiguation or mention-level ambiguity; these factors contribute to the residual variance in pairwise analysis.\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 batch-composition seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Rightmost points are full-schema (negligible sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}\n\n\\subsection{Experimental Design}\n\\label{sec:exp_design}\n",
+                "numLines": 40,
+                "startLine": 41,
+                "totalLines": 100
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. The task is to add 2-3 sentences clarifying the difference between SCS/BCS and LLM-PEE. Let me look at the current related work to see what's already there and find the best insertion point.\n\nLooking at the related work, there's already substantial discussion of LLM-PEE in two places:\n1. \"Schema complexity in IE\" paragraph (line 8-10) - discusses how the work differs from LLM-PEE\n2. \"SCS novelty\" paragraph (line 16-18) - discusses how SCS inherits from LLM-PEE\n\n\nNow I'm checking what's already defined in the experimental setup. The BCS formula with mean aggregation is already documented, and the SCS novelty section touches on the relationship to LLM-PEE. The key distinction I need to emphasize is that while LLM-PEE uses similarity for partition engineering, our contribution focuses on using SCS and BCS for prediction and analysis within a controlled experimental framework—the novelty lies in the experimental design rather than the metrics themselves. Looking more carefully at the \"SCS novelty\" paragraph, I see it already establishes that the metric is a means and the methodology is the contribution. But I need to be more explicit about how we differ from LLM-PEE—they use similarity for partitioning schemas while we use it for prediction analysis. I should also clarify that BCS specifically uses the mean, not just any aggregation. The \"Schema complexity in IE\" section hints at our analytical approach versus engineering solutions, but I could strengthen that distinction by noting we're isolating confusability factors rather than proposing optimizations. SCS inherits the embedding-similarity criterion from LLM-PEE, but they serve fundamentally different purposes: LLM-PEE partitions schemas to improve extraction performance, while SCS measures pairwise type confusability and BCS aggregates these scores across all pairs in a batch. The metric itself is just the vehicle; what matters is the controlled experimental design that isolates confusability effects from count confounds. Embedding distance for type discrimination connects to metric learning and zero-shot classification, and while individual pairwise correlations are modest (1.3–1.7%), they compound at the batch level to account for roughly 22% of cross-batch variance on FewRel. I need to be careful here—the second sentence about controlled batch design is already captured in my current rewritten thinking (\"The metric is a means; the empirical findings are the contribution\"). The new content I should focus on is explicitly contrasting LLM-PEE's partitioning role with our metrics' analytical role, and clarifying that BCS is the mean of pairwise SCS values. Let me tighten this: Unlike LLM-PEE, which partitions schemas by embedding similarity, our SCS and BCS metrics serve to analyze confusability—SCS measures pairwise type confusion, while BCS aggregates these across a batch to predict accuracy decline. an empirical contribution grounded in controlled experimental design.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "ff03e38d-a1c6-419b-84ec-35501a68eed4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJMgoBJLHeWLvvXEm7bWFW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1365,
+                "cache_read_input_tokens": 27822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1365
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. The \"SCS novelty\" paragraph in `related_work.tex` is the right insertion point — it already discusses the SCS–LLM-PEE relationship but lacks the explicit functional-role distinction and MEAN aggregation clarification.\n\nInserting after the first sentence of the \"SCS novelty\" paragraph (line 18):"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "b6e94ef7-dfca-468c-abd3-534407a814f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJMgoBJLHeWLvvXEm7bWFW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1365,
+                "cache_read_input_tokens": 27822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1365
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011iLzk39i3BNQhuuWjcDfaJ",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+                "old_string": "SCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. The metric is a means; the empirical findings are the contribution",
+                "new_string": "SCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy. The metric is a means; the empirical findings are the contribution"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "775d18c9-b3f8-43ac-8cae-b6388b179e5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJMgoBJLHeWLvvXEm7bWFW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1365,
+                "cache_read_input_tokens": 27822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1365
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T04:39:15.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011iLzk39i3BNQhuuWjcDfaJ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "7ea8e464-1d3c-4c7b-801b-ce978cd0cd9f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+              "oldString": "SCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. The metric is a means; the empirical findings are the contribution",
+              "newString": "SCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy. The metric is a means; the empirical findings are the contribution",
+              "originalFile": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Training-free LLM IE.}\n\\looseness=-1\nTraining-free LLM IE spans instruction tuning \\citep{instructuie-2023}, code-style schema encoding \\citep{knowcoder-2024,codeie-2023}, annotation-guided extraction \\citep{gollie-2024,adelie-2024}, schema-driven decoding \\citep{slot-2025,oneke-2025}, and constrained JSON decoding \\citep{json-schema-bench-2025,willard2023efficient}. NER methods include zero-shot decomposition \\citep{xie-zeroshot-ner-2023,promptner-2023}, distillation \\citep{uniner-2024}, and bidirectional encoders \\citep{gliner-2024,gliner2-2025}; RE methods include zero-shot triplet extraction \\citep{relationprompt-2022}, constrained generation \\citep{josifoski-2022-genie}, and shared embedding spaces \\citep{boylan-2025-glirel,wadhwa-re-llm-2023}. These methods perform well with moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales.\n\n\\paragraph{Schema complexity in IE.}\n\\looseness=-1\nThe most directly related work is LLM-PEE \\citep{llm-pee-2025}, which partitions large event schemas by type embedding similarity. Our work differs in three ways: (1)~we conduct controlled analysis to understand \\emph{why} extraction degrades rather than developing an engineering solution; (2)~our BCS-controlled experiments isolate count from confusability, which LLM-PEE conflates; (3)~our SDGD experiments reveal that merge amplification (not partitioning quality) is the bottleneck in decompose-then-merge pipelines. LLM-PEE's union merge suffers the same precision collapse (0.56$\\to$0.21; \\S\\ref{sec:sdgd}). In short, LLM-PEE assumes decomposition helps; we show why it should (confusability), why it does not (merge amplification), and what predicts the degradation (BCS). Other approaches address schema complexity via hard negative mining \\citep{iepile-2024}, schema definition optimization \\citep{parse-2025}, multi-agent debate \\citep{crossagentie-2025,cmas-ner-2025}, and active prompting \\citep{reflect-learn-2026}; all treat it as an engineering problem rather than isolating degradation factors. Concurrently, \\citet{chen-2026-multi-instance} show that instance count degrades LLM multi-instance processing more than context length, consistent with our count-dominant finding. \\citet{golde-2025-familiarity} quantify training--evaluation type similarity to predict zero-shot NER difficulty; our SCS instead measures within-schema inter-type confusability without assuming access to training data. Label-space reduction approaches \\citep{haystack-to-needle-2025,dlisc-2025,spt-2025} implicitly lower batch confusability---our framework explains \\emph{why} such reduction works.\n\n\\paragraph{Schema complexity in dialogue and IE.}\n\\looseness=-1\nThe Schema-Guided Dialogue dataset~\\citep{rastogi2020towards} and SGD-X~\\citep{lee2022sgd} document degradation with schema linguistic variation; \\citet{li2023evaluating} observe count-dependent degradation in ChatGPT IE. The relationship between label similarity and confusion has precedent in visual recognition \\citep{dubey-2018-pairwise-confusion}, correlated label noise \\citep{collier-2021-correlated-noise}, hierarchical classification \\citep{deng-2010-imagenet}, and label confusion matrices \\citep{guo-2021-label-confusion,muller2019when,peterson2019human}.\n\n\\paragraph{SCS novelty.}\n\\looseness=-1\nSCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 15,
+                  "oldLines": 5,
+                  "newStart": 15,
+                  "newLines": 5,
+                  "lines": [
+                    " ",
+                    " \\paragraph{SCS novelty.}",
+                    " \\looseness=-1",
+                    "-SCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).",
+                    "+SCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VHtzNgXbsZino1rhCHThyQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+                "offset": 16,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "4f98285c-7005-4035-93c0-388748db6f05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NHFnsZik1sAVv3qEJUv8x7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2672,
+                "cache_read_input_tokens": 29187,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2672
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T04:39:25.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VHtzNgXbsZino1rhCHThyQ",
+              "type": "tool_result",
+              "content": "16\t\\paragraph{SCS novelty.}\n17\t\\looseness=-1\n18\tSCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).\n19\t\n20\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "315d6802-6c4c-4b6b-9816-8be9e20cf397",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+                "content": "\\paragraph{SCS novelty.}\n\\looseness=-1\nSCS inherits the embedding-similarity criterion from LLM-PEE \\citep{llm-pee-2025}. Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy. The metric is a means; the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked---BCS-controlled batches that isolate confusability from count. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical} and zero-shot classification \\citep{yin-2019-zero-shot-bench}. The modest pairwise $r^2$ (1.3--1.7\\%) compounds at the ecological batch level to explain ${\\sim}$22\\% of cross-batch RE variance on FewRel (\\S\\ref{sec:bcs_controlled}).\n\n",
+                "numLines": 5,
+                "startLine": 16,
+                "totalLines": 20
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**文件**: `docs/paper/related_work.tex:18`\n\n**插入位置**: \"SCS novelty\" 段落第一句之后，第二句（\"The metric is a means...\"）之前。\n\n**新增内容**（1 句）:\n> Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy.\n\n覆盖了三个要点：\n1. LLM-PEE 用 similarity 做 partition engineering vs. 我们做 prediction/analysis\n2. BCS = MEAN（averages all pairwise SCS）\n3. 与后续已有文字（\"The metric is a means; the empirical findings are the contribution, enabled by ... BCS-controlled batches that isolate confusability from count\"）衔接，共同强调贡献是 controlled experimental design 而非 metric 本身\n\n未添加第二句\"The contribution is not the metric itself but the controlled batch design...\"，因为紧跟的已有文字已表达相同含义，避免冗余。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "uuid": "e2259224-d65d-46e0-97d2-2b805049bee7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QmrojcPpGoKhZkbn9YQMb7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 409,
+                "cache_read_input_tokens": 31859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 409
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**文件**: `docs/paper/related_work.tex:18`\n\n**插入位置**: \"SCS novelty\" 段落第一句之后，第二句（\"The metric is a means...\"）之前。\n\n**新增内容**（1 句）:\n> Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy.\n\n覆盖了三个要点：\n1. LLM-PEE 用 similarity 做 partition engineering vs. 我们做 prediction/analysis\n2. BCS = MEAN（averages all pairwise SCS）\n3. 与后续已有文字（\"The metric is a means; the empirical findings are the contribution, enabled by ... BCS-controlled batches that isolate confusability from count\"）衔接，共同强调贡献是 controlled experimental design 而非 metric 本身\n\n未添加第二句\"The contribution is not the metric itself but the controlled batch design...\"，因为紧跟的已有文字已表达相同含义，避免冗余。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 102354,
+            "duration_api_ms": 103254,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "2d3ed296-a643-4671-8092-ea11656c1414",
+            "total_cost_usd": 0.32038575,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 20427,
+              "cache_read_input_tokens": 199522,
+              "output_tokens": 3658,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20427,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 319,
+                  "cache_read_input_tokens": 31859,
+                  "cache_creation_input_tokens": 409,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 409
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1351,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001461,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 3658,
+                "cacheReadInputTokens": 199522,
+                "cacheCreationInputTokens": 20427,
+                "webSearchRequests": 0,
+                "costUSD": 0.31892475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9692531f-8abd-4f93-b08f-caa3e9e035a6"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ]
+}

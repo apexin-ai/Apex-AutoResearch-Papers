@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9143bc7f8f050f9a12fc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "debug imm eval same sr bug",
+  "task_key": "worker_debug_imm_eval_same_sr_bug_20260517T010135",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_imm_eval_same_sr_bug_20260517T010135_result.json",
+    "occurrence": 1,
+    "bytes": 2349,
+    "sha256": "76cf75db9917e6fd3aee6a9f87f0c5d85dbd34bfe2c2598ee33a58bd7549160d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n---\n\n## 诊断结果\n\n### CHECKPOINT 路径确认\n\n| | 路径 | 大小 |\n|---|---|---|\n| IMM v2 | `checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt` | 920 MB |\n| IMM 100K | `checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt` | 920 MB |\n| **是否相同文件** | **YES — 完全相同的路径** | |\n\n从 `ps aux` 直接确认，当前正在运行的 \"IMM 100K\" eval 命令：\n```\npython eval_success_rate_libero.py \\\n  --checkpoint checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt \\\n  --config configs/libero_imm_twostage_fullft.yaml \\\n  --mode acis_prune \\\n  --output eval_results/imm_fullft_100k_libero_spatial.json\n```\n\n与 IMM v2 eval 使用的 checkpoint 和 config **完全一致**。\n\n### PER-TASK SR 对比\n\n由于用的是同一个 checkpoint，结果必然相同：`[0%, 14%, 48%, 10%, 14%, 46%, 0%, 20%, 2%, 0%]` = 77/500 = 15.4%\n\n### ACIS 加载诊断\n\n| 项目 | 结果 |\n|---|---|\n| Checkpoint 包含 ACIS keys | **YES** (20 keys, trained weights) |\n| ACIS 权重在两个 eval 中相同 | **YES** (同一文件) |\n| Eval 脚本如何加载 ACIS | **from_checkpoint** (`wrapper.load_state_dict(ckpt[\"model_state_dict\"], strict=False)`) |\n\n### BUG 根因\n\n**不是 eval 代码 bug，是 launch 错误。**\n\n`libero_imm_twostage_fullft` 这个 checkpoint 是基于 **50K baseline** 训练的 IMM 模型（config 中 `baseline_checkpoint: \"checkpoints/libero_full_ft_50k/checkpoint.pt\"`）。不存在独立的 \"IMM 100K\" 模型或 config。\n\n\"IMM 100K\" eval 被错误地启动为指向同一个 checkpoint，输出文件名 `imm_fullft_100k_*` 纯属误导命名。当前 tmux 中运行的 `imm_100k_eval_goal` 和 `imm_100k_eval_spatial` 也会产出相同的（无意义的）结果。\n\n### 下一步\n\n要获得真正的 \"IMM 100K\" 结果，需要：\n1. 创建 `configs/libero_imm_twostage_fullft_100k.yaml`，将 `baseline_checkpoint` 改为 `checkpoints/libero_full_ft_100k/checkpoint.pt`\n2. 训练该模型（stage1 10K + stage2 20K）\n3. 用新 checkpoint 跑 eval\n\n或者，如果意图是评估现有 `libero_full_ft_100k` baseline 在 `acis_prune` mode 下的表现，那需要一个包含 ACIS 权重的 checkpoint（当前 `libero_full_ft_100k/checkpoint.pt` 是纯 baseline，不含 ACIS）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

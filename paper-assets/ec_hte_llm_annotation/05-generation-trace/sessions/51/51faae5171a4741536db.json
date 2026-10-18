@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "51faae5171a4741536db",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research ppi dsl baseline",
+  "task_key": "worker_research_ppi-dsl-baseline_20260522T033902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ppi-dsl-baseline_20260522T033902_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "bf65873f94d0f32502c577b7a5596feff3a63db42812611c2b47bb779caa2b7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

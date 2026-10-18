@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bbe7464a2e4a248ee836",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops d051 start part b",
+  "task_key": "worker_ops_d051-start-part-b_20260516T222833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d051-start-part-b_20260516T222833_result.json",
+    "occurrence": 1,
+    "bytes": 391,
+    "sha256": "9da6ef59688f3bbc639ba3063173e23b6310ecb3999692abf37899f7726c5b11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。当前状态：\n\n- **tmux session `d051_batch2`** 运行中\n- **FewRel seed=123** — 已全部完成（7 levels × 25 batches 全有结果，脚本自动跳过）\n- **FewRel seed=456** — 正在加载 vLLM 模型（safetensors checkpoint 1/7），即将开始推理\n- 后续队列：Few-NERD seed=123 → Few-NERD seed=456\n\n实验链已顺利启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

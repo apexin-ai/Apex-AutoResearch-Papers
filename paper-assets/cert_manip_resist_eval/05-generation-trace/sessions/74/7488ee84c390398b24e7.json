@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7488ee84c390398b24e7",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra step1 provider batch fix",
+  "task_key": "worker_infra_step1-provider-batch-fix_20260522T115926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_step1-provider-batch-fix_20260522T115926_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "609790a22648283d9cf39ed7e45af193114a5ea59edfdc988bd8133e4ad58aad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行 8 分钟，0 个 503 警告——1 worker / 1 rps 策略有效。\n\n## 当前状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **v3 进程** | 已 kill (PID 97561, force killed) |\n| **Checkpoint 进度** | 23/126 完成 (claude-3-haiku 14/14, gpt-4o 9/14) |\n| **OpenAI 测试** | 3/3 成功（gpt-4o-mini, 3-14s/请求），503 已恢复 |\n| **新脚本** | `run_plan001_step1_batched.py` 已部署，PID 101904 运行中 |\n| **并发配置** | Claude 1w/1rps, Gemini 1w/1rps, OpenAI 1w/0.3rps |\n| **503 情况** | v1 (3w/5rps) 连续 503; v2 (1w/1rps) 0 个 503 至今 |\n| **预估耗时** | ~5-8 min/condition × 103 conditions ≈ 9-14 小时 |\n\n执行顺序：Claude (28 条件) → Gemini (14 条件) → OpenAI (61 条件，含 gpt-4o 剩余 5 条件)。\n\n日志：`tail -f ~/runs/cert_manip_resist_eval/plan001_step1_batched_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

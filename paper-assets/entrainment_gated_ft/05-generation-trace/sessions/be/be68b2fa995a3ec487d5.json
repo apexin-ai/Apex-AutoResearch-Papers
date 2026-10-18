@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be68b2fa995a3ec487d5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research exp 009 wang differentiation",
+  "task_key": "worker_research_exp_009_wang_differentiation_20260519T131120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp_009_wang_differentiation_20260519T131120_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "25a38496a7b0525556bce764f70f6976c590234a0ad769c5c8fb87995da88362"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件写入 `/root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md`（178行）。\n\n与之前版本的关键修正：\n\n1. **新增论文元数据**：标题、作者、日期、arXiv ID\n2. **修正数值错误**：\"4/6 benchmarks significant\" → 实际只有 LAMBADA 显著（p=0.008），ARC-Easy/MMLU 仅 suggestive（p=0.117）\n3. **修正 340M 数据**：std reduction 从错误的 38% 修正为 56%（0.025→0.011 at attn=4），并标注 rebound 至 0.015\n4. **修正 task-specificity 数值**：用 CSV 实际计算值替代之前的估算值（HellaSwag ρ=+0.3, ARC-C ρ=+0.6 — 这些是正相关，即无收敛甚至发散）\n5. **新增 Wang et al. 原始表格数据**：Tables 2-4 的关键数值，作为 differentiation 的证据基础\n6. **新增 verbatim extractions**：补充了 perplexity plateau、diminishing returns、practical recommendations 等此前遗漏的关键引文\n\n核心结论不变：四个 differentiation 维度均为 **fully novel**，Wang et al. 提供基础设施（72 models），我们提供分析框架（equalizer effect + paradox）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

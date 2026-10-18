@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08b4240de2ba287614da",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops gpu probe all servers",
+  "task_key": "worker_ops_gpu-probe-all-servers_20260521T205305",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu-probe-all-servers_20260521T205305_result.json",
+    "occurrence": 1,
+    "bytes": 3005,
+    "sha256": "b9c836d0838ad163996a693046571c3910d6d14c89d22d903188179c09607ee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n### 1. westd-41074 (4× RTX PRO 6000 Black 96GB)\n\n| GPU | 显存 | Util | PID | 状态 |\n|-----|------|------|-----|------|\n| 0 | 10564 / 97887 MiB | 22% | 627797 (python) | 运行中 |\n| 1 | 10554 / 97887 MiB | 33% | 629631 (python) | 运行中 |\n| 2 | 28555 / 97887 MiB | 0% | 68539 (python) | 运行中但 util=0 |\n| 3 | 27535 / 97887 MiB | 0% | 59671 (python) | 运行中但 util=0 |\n\n**vs 预期**：\n- GPU0: PID 627788→627797（偏移+9，可能 wrapper 进程，同一实验 k=0.95 v2 仍在跑）\n- GPU1: PID 629619→629631（同上，fixed-mask k=0.9 v2 仍在跑）\n- GPU2: PID 68539 **完全匹配**，VTC M96 仍在跑，但 util 从 ~71% 降到 0%——可能在 eval/checkpoint 阶段\n- GPU3: PID 59671 **完全匹配**，VTC M64v6 仍在跑，但 util 从 ~22% 降到 0%——同上\n\n**空闲 GPU**：无（全部占用）\n**磁盘**：185G / 250G (74%)\n\n---\n\n### 2. westd-38929 (4× RTX PRO 6000 Black 96GB)\n\n| GPU | 显存 | Util | PID | 状态 |\n|-----|------|------|-----|------|\n| 0 | 1 MiB | 0% | — | **空闲** |\n| 1 | 10528 / 97887 MiB | 32% | 590432 (python) | 运行中 |\n| 2 | 1 MiB | 0% | — | **空闲** |\n| 3 | 10474 / 97887 MiB | 46% | 590825 (python) | 运行中 |\n\n**vs 预期**（原 GPU0-3 跑 π0.5 Spatial cross-suite）：\n- **GPU0、GPU2 已释放**——对应的 2 个实验（baseline + 另一个 sweep config）已完成\n- GPU1、GPU3 仍在跑（新 PID 590432/590825，是剩余的 sweep 配置）\n\n**空闲 GPU**：GPU0、GPU2\n**磁盘**：199G / 250G (80%)——偏高\n\n---\n\n### 3. westd-27271 (2× RTX PRO 6000 Black 96GB)\n\n| GPU | 显存 | Util | PID | 状态 |\n|-----|------|------|-----|------|\n| 0 | 15984 / 97887 MiB | 74% | 306599 (python) | 运行中 |\n| 1 | 42189 / 97887 MiB | 0% | 921279 (python) | 运行中但 util=0 |\n\n**vs 预期**：\n- GPU0: PID 306599 **完全匹配**，OpenVLA L2norm k=0.9 仍在跑，74% util\n- GPU1: PID 921279 **完全匹配**，VTC M32 仍在跑，但 util=0（eval/checkpoint 阶段）\n\n**空闲 GPU**：无\n**磁盘**：155G / 250G (62%)\n\n---\n\n### 4. cqa1-33015 (4× RTX 4090 D 24GB)\n\n| GPU | 显存 | Util | PID | 状态 |\n|-----|------|------|-----|------|\n| 0 | 1 MiB | 0% | — | **空闲** |\n| 1 | 2180 / 24564 MiB | 24% | 579179 (python) | 运行中 |\n| 2 | 1 MiB | 0% | — | **空闲** |\n| 3 | 1 MiB | 0% | — | **空闲** |\n\n**vs 预期**（原 GPU0-2 跑 SmolVLA official sweep，GPU3 idle）：\n- **GPU0、GPU2 已释放**——sweep 中 2 个配置已完成\n- GPU1 仍在跑（PID 579179，2180 MiB，剩余的 sweep 配置）\n- GPU3 仍然空闲\n\n**空闲 GPU**：GPU0、GPU2、GPU3\n**磁盘**：176G / 250G (71%)\n\n---\n\n### 可用 GPU 汇总\n\n| 服务器 | 空闲 GPU | 备注 |\n|--------|----------|------|\n| westd-41074 | 无 | 4 卡全占 |\n| westd-38929 | GPU0, GPU2 | 2× 96GB 可用 |\n| westd-27271 | 无 | 2 卡全占 |\n| cqa1-33015 | GPU0, GPU2, GPU3 | 3× 24GB 可用 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

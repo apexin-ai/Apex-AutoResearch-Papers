@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d42c091b77703db35bc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops pi05 official checkpoint",
+  "task_key": "worker_ops_pi05-official-checkpoint_20260521T044154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_pi05-official-checkpoint_20260521T044154_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "7a5994a148e107b57f2f479ccdd4e270f34c9564234885ed5273d9f5936e4b59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All cleaned up. Here's the summary:\n\n---\n\n## Report\n\n### Bug Found & Fixed\n**Root cause of 0% SR**: `patched_embed_image` in `eval_pi05_pruning_libero.py` line 93 had an erroneous `features = features * self.paligemma.config.text_config.hidden_size**0.5` (~45.25x scaling) that the original `embed_image` doesn't have. This completely distorted image embeddings.\n\n**Fix**: Removed the scaling line from the original script.\n\n### Checkpoint\nUsing `/root/autodl-tmp/pi05_libero_finetuned` — confirmed identical to `lerobot/pi05_libero` (same model.safetensors, 7,473,096,344 bytes). No separate download needed.\n\n### 5-Episode Quick Test Results (seed=42, libero_object)\n\n| Task | SR |\n|------|-----|\n| 0 | 80% (4/5) |\n| 1 | 100% (5/5) |\n| 2 | 100% (5/5) |\n| 3 | 100% (5/5) |\n| 4 | 100% (5/5) |\n| 5 | 100% (5/5) |\n| 6 | 100% (5/5) |\n| 7 | 80% (4/5) |\n| 8 | 100% (5/5) |\n| 9 | 100% (5/5) |\n| **Overall** | **96.0% (48/50)** |\n\n### Full 50-Episode Eval\n- **PID**: 818531 (python process)\n- **GPU**: cuda:1 (CUDA_VISIBLE_DEVICES=1)\n- **Log**: `logs/eval_pi05_baseline_object_seed42_official.log`\n- **Command**: `python -u eval_pi05_pruning_libero.py --suite libero_object --prune_mode none --seed 42 --n_episodes 50 --gpu 1`\n- **Status**: Running, Task 0 ep10: 10/10=100%\n- **ETA**: ~1 hour"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

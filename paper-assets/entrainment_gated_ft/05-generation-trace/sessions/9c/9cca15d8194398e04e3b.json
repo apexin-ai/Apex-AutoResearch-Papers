@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9cca15d8194398e04e3b",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix experiments tex consistency",
+  "task_key": "worker_fix_experiments-tex-consistency_20260519T183051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_experiments-tex-consistency_20260519T183051_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "a38a3ca6e5d590284fd9aa058983997b1ca4a9a0fc91b8cd2fa6047a5be9ea34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改清单：\n\n**修复 1（§4.2 σ 表述，第 47 行）：**\n- `Overall $\\sigma$ drops 56\\%, but the trajectory is non-monotonic: a rebound at the h3-1 configuration means the highest-attention model does not achieve the lowest cross-architecture variance.`\n→ `$\\sigma$ reaches a maximum reduction of 56\\% at intermediate attention ratios, but rebounds at h3-1, yielding a net endpoint reduction of 39\\%: the trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance.`\n\n**修复 2（p-value 前导零，6 处）：**\n\n| 行 | 原文 | 修改后 |\n|---|---|---|\n| 9 | `$p = 0.017$` | `$p = .017$` |\n| 9 | `$p = 0.100$` | `$p = .100$` |\n| 11 | `$p \\geq 0.233$` | `$p \\geq .233$` |\n| 57 | `$p = 0.0005$` | `$p = .0005$` |\n| 57 | `$p = 0.020$` | `$p = .020$` |\n| 86 | `$p = 0.233$` | `$p = .233$` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

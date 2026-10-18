@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e45843ef894f03c47f86",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cleanup 41074 gpu3",
+  "task_key": "worker_ops_cleanup_41074_gpu3_20260519T214915",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup_41074_gpu3_20260519T214915_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "e17e40069292b2813a37a0701772b220fc55c9fd245db210b06338b62364c77e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part 1: westd-41074 清理\n\n**GPU 3 已清理干净** — PID 49844 已 kill，显存 0MiB。\n\n| GPU | 状态 | 进程 | 显存 |\n|-----|------|------|------|\n| 0 | 正常运行 | PID 26118 (C4-ext VTC-only) | 30,108 MiB |\n| 1 | 正常运行 | PID 47691 (C5 RoboFlamingo) | 48,080 MiB |\n| 2 | 空闲 | — | 0 MiB |\n| 3 | **已清理** | — | 0 MiB |\n\n---\n\n### Part 2: cqa1-33015 训练进度\n\n**已完成的训练（4个）：**\n\n| 实验 | 完成时间 | Final Loss | Eval Loss |\n|------|----------|-----------|-----------|\n| m32_seed44 | 05/19 16:14 | 0.0415 | 0.0635 |\n| m64_seed44 | 05/19 16:15 | 0.0310 | 0.0699 |\n| m96_seed44 | 05/19 16:01 | 0.0467 | 0.0526 |\n| m32_official | 05/19 17:20 | 0.0491 | 0.0603 |\n\n**正在运行的训练（3个）：**\n\n| 实验 | GPU | Step | Loss | SPS | 剩余 | ETA |\n|------|-----|------|------|-----|------|-----|\n| m128_seed43 | 1 | 91,650/100K | 0.107 | 3.9 | ~8,350 | **~06:26** |\n| m16_seed43 | 2 | 91,700/100K | 0.085 | 4.0 | ~8,300 | **~06:25** |\n| m16_seed44_v3 | 0 | 70,000/100K | 0.066 | 4.1 | ~30,000 | **~07:52** |\n\n**Eval 已完成（GPU 3）：**\n\n| 实验 | Suite | Overall SR | 95% CI |\n|------|-------|-----------|--------|\n| eval_m32_seed44 | libero_object | **59.6%** (298/500) | [55.2%, 63.8%] |\n\n进程 PID 685415 仍在 GPU 3（3.5GB），但 eval 日志显示已于 19:01 完成输出结果。可能是进程未退出，需要注意。\n\n**关键标注：** m128_seed43 和 m16_seed43 均已超 91K/100K（>91%），预计约 35 分钟后完成。m16_seed44_v3 进度 70%，预计约 2 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

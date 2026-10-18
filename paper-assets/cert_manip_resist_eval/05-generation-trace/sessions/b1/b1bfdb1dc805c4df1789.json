@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b1bfdb1dc805c4df1789",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "check temperature pilot pid",
+  "task_key": "worker_check_temperature-pilot-pid_20260523T092121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_temperature-pilot-pid_20260523T092121_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "a283e57e4632847210c6b37af0e55eb83967c352fc4c3df66c3185e816b8d1f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID**: `168020`\n- **tmux session**: 无（通过 nohup 后台运行）\n- **日志路径**: `/tmp/temperature_pilot.log`\n- **进度**: 8/72 条件，正在运行 `gpt-4.1-nano t=0.3 mmlu r=1`，偶有 HTTP 502 自动重试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3cffe18c1a00568e8d05",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research arr submission requirements",
+  "task_key": "worker_research_arr_submission_requirements_20260517T073558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arr_submission_requirements_20260517T073558_result.json",
+    "occurrence": 1,
+    "bytes": 8827,
+    "sha256": "e19697e08982a8d0a4611c9cd171b30705d985a67b13be23132212f467e83db2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是完整调研结果。\n\n---\n\n## 1. 页数限制\n\n| 类型 | Review 版 | Camera-ready 版 |\n|---|---|---|\n| Long paper 正文 | **8 页** | **9 页**（多 1 页用于 reviewer feedback） |\n| Short paper 正文 | **4 页** | **5 页** |\n| References | **不占页数** | **不占页数** |\n| Limitations section | **不占页数**（必须有，缺失 = desk reject） | 不占页数 |\n| Ethical Considerations | **不占页数**（可选） | 不占页数 |\n| Appendix | **不占页数**，放在 references 之后 | 不占页数 |\n| Acknowledgments | **Review 版不写**（泄露身份） | 不占页数 |\n\n**Limitations section 位置**: 在 Conclusion 之后、References 之前，不能包含新实验/分析/图表。\n\n**Appendix 格式要求**: 必须使用双栏格式（数学密集部分可例外用单栏）。自 **2025 年 7 月 cycle** 起，Appendix 格式不符将 desk reject。\n\n---\n\n## 2. 匿名化要求\n\n**核心规则**:\n- 论文中不能出现作者姓名和单位\n- 自引必须用第三人称：用 \"Smith (2020) showed...\" 而不是 \"We previously showed...\"\n- 不能引用 reviewer 无法获取的文件\n- Supplementary material 必须完全匿名\n- 禁止使用 Dropbox/Google Drive 等可追踪下载的链接，代码需用 Anonymous GitHub\n- **Review 版不写 Acknowledgments**\n\n**预印本政策（2024 年 2 月起更新）**:\n- **无匿名期**：随时可发 arXiv 预印本\n- 但广泛传播会导致更难招到不知道作者身份的 reviewer\n- ACL 对未公开发表的匿名投稿设立了特别奖项激励\n\n**LaTeX 匿名化设置**:\n```latex\n\\documentclass[11pt]{article}\n\\usepackage[review]{acl}    % review 版：匿名 + 行号 + 页码\n% \\usepackage{acl}           % camera-ready 版：显示作者，无行号\n% \\usepackage[preprint]{acl} % preprint 版：显示作者 + 页码\n```\n\n---\n\n## 3. 必须提交的材料清单\n\n### 必须提交\n| 材料 | 格式 | 说明 |\n|---|---|---|\n| **主 PDF** | ACL 模板格式 PDF，所有字体嵌入 | `pdffonts mypaper.pdf` 验证 |\n| **Responsible NLP Research Checklist** | OpenReview 提交表单中填写 | 每项 Yes/No/NA + section 编号或 justification。填写不当可 desk reject。接受后作为附录公开发表 |\n| **Limitations section** | 嵌入主 PDF，Conclusion 之后 References 之前 | 缺失 = desk reject |\n| **Author Registration Form** | 提交 deadline 后 48 小时内完成 | OpenReview profile 需含 affiliation、Semantic Scholar、DBLP、ACL Anthology 链接 |\n| **Reviewer 注册** | 提交 deadline 后 48 小时内注册 reviewer | 2025 年 5 月起所有作者必须参与审稿 |\n\n### EMNLP 2026 特有\n| 材料 | 说明 |\n|---|---|\n| **会议声明（binding）** | 提交时必须在 ARR 表单中选择 EMNLP 2026，否则无法 commit。**选择具有约束力** |\n\n### 可选提交\n| 材料 | 格式 | 说明 |\n|---|---|---|\n| **Ethical Considerations section** | 嵌入主 PDF | 推荐但非必须 |\n| **Appendix** | 主 PDF 中 references 之后，双栏格式 | reviewer 不要求阅读 |\n| **Software** | 单个 `.tgz` 或 `.zip` | 必须匿名 |\n| **Data** | 单独的 `.tgz` 或 `.zip`（与 software 分开） | 必须匿名 |\n\n### 重投 (Resubmission) 额外材料\n- 上一次提交的链接\n- **Revision summary PDF**：逐条说明如何 address 每位 reviewer 的意见\n- 可选：color-coded 修改标记版论文\n\n### Author Response（审稿后）\n- 纯文本，不允许外部链接\n- 在 Author Response 期间提交，非投稿时准备\n\n---\n\n## 4. LaTeX 模板\n\n**官方仓库**: [github.com/acl-org/acl-style-files](https://github.com/acl-org/acl-style-files)\n\n**文件列表**:\n| 文件 | 用途 |\n|---|---|\n| `acl.sty` | 主样式文件 |\n| `acl_latex.tex` | 示例文档 |\n| `acl_lualatex.tex` | LuaLaTeX 变体 |\n| `acl_natbib.bst` | 参考文献样式 |\n| `custom.bib` | 示例 bib |\n\n**基本设置**:\n```latex\n\\documentclass[11pt]{article}\n\\usepackage[review]{acl}   % review 版必须用 [review] 选项\n```\n\n**`[review]` 选项效果**: 隐藏作者信息、开启行号、显示页码\n\n**格式规格**:\n- A4 纸 (21cm x 29.7cm)，四边 margin 2.5cm\n- 双栏，栏宽 7.7cm，栏间距 0.6cm\n- 正文 11pt Times Roman，单倍行距\n- 标题 15pt bold，居中跨双栏\n- Abstract 最多 200 words，10pt，两侧各缩进 0.6cm\n- 引用格式：`acl_natbib.bst`，作者-年制，alphabetical 排序\n- References 部分标题为 \"References\"，不编号\n- 超链接深蓝色 (#000099)，无下划线\n\n**禁止修改 sty 文件**。不符合格式的论文不经审阅直接拒稿。\n\n---\n\n## 5. Responsible NLP Research Checklist（逐项）\n\n每项回答 **Yes / No / NA**，Yes 需给出 section 编号，No/NA 需给出 justification。接受后作为论文附录公开发表。\n\n### Section A: 所有提交必答\n\n| 编号 | 问题 |\n|---|---|\n| **A1** | 是否描述了工作的 limitations？（假设、鲁棒性、claim 范围、影响因素） |\n| **A2** | 是否讨论了潜在风险？（恶意使用、环境影响、公平性、隐私、安全、过度泛化、双重用途） |\n\n### Section B: 使用了科学制品（代码/数据/模型）\n\n| 编号 | 问题 |\n|---|---|\n| **B1** | 是否引用了所用制品的创建者？（原始论文、版本号、URL） |\n| **B2** | 是否讨论了 license/使用条款？ |\n| **B3** | 是否讨论了使用方式是否符合制品的 intended use？ |\n| **B4** | 是否检查了个人身份信息和冒犯性内容？ |\n| **B5** | 是否提供了制品文档？（语言、领域、人口统计信息、data card） |\n| **B6** | 是否报告了数据集相关统计？（样本数、train/dev/test 划分） |\n\n### Section C: 计算实验\n\n| 编号 | 问题 |\n|---|---|\n| **C1** | 是否报告了模型参数量、计算预算、硬件基础设施？ |\n| **C2** | 是否讨论了实验设置（含超参搜索）？ |\n| **C3** | 是否报告了结果的描述性统计？（error bars、置信区间、max/mean/single run） |\n| **C4** | 是否报告了使用的现有包的实现细节？（版本号、参数设置、修改） |\n\n### Section D: 涉及人类标注者/参与者\n\n| 编号 | 问题 |\n|---|---|\n| **D1** | 是否报告了完整的参与者指令文本？ |\n| **D2** | 是否报告了招募方式和报酬？ |\n| **D3** | 是否讨论了数据使用的知情同意？ |\n| **D4** | 是否经过伦理审查委员会批准？ |\n| **D5** | 是否报告了标注者的人口统计和地理特征？ |\n\n### Section E: AI 辅助使用\n\n| 编号 | 问题 |\n|---|---|\n| **E1** | 如使用了 AI 辅助（ChatGPT、Copilot 等），是否披露？ |\n\n**重要**: AI 写作辅助必须在 checklist + Acknowledgments 中披露（语法检查和语言润色除外）。\n\n---\n\n## 6. 投稿时间线（EMNLP 2026 / ARR May 2026 Cycle）\n\n| 事件 | 日期 |\n|---|---|\n| **ARR 提交截止** | **2026-05-25**（AoE） |\n| Reviewer 注册截止 | 2026-05-27 |\n| Reviews due | 2026-06-29 |\n| **Author Response** | **2026-07-07 至 07-13** |\n| Meta-reviews 发布 | 2026-07-30 |\n| **EMNLP 2026 Commitment 截止** | **2026-08-02** |\n| **Acceptance Notification** | **2026-08-20** |\n| **Camera-ready** | **2026-09-20** |\n| **会议日期** | **2026-10-24 至 10-29** |\n\n也可以用 **March 2026 cycle**（提交截止 2026-03-16）的论文在 08-02 之前 commit 到 EMNLP 2026。\n\n---\n\n## 7. 其他关键政策\n\n- **文本复用**: 来自其他出版物的文本不超过总 token 的 10%\n- **Dual submission 禁止**: ARR review 期间不能同时在其他 archival venue 投稿\n- **Hallucinated citations**: 虚假引用将 desk reject，作者将被禁止 commit EMNLP 2026 和 2027\n- **Author list 修改**: commit 阶段禁止修改作者列表（可改顺序）\n- **Presentation 要求**: 所有接受论文必须在会议上 present 才能出现在 proceedings 中\n\nSources:\n- [ARR Call for Papers](https://aclrollingreview.org/cfp)\n- [ARR Authors Guidelines](https://aclrollingreview.org/authors)\n- [ARR Dates and Venues](https://aclrollingreview.org/dates)\n- [ARR Anonymity Policy](https://aclrollingreview.org/anonymity/)\n- [ARR Responsible NLP Research Checklist](https://aclrollingreview.org/responsibleNLPresearch/)\n- [ARR Checklist as Appendices Policy](https://aclrollingreview.org/responsible-nlp-checklist-appendices)\n- [ARR Common Submission Problems](https://aclrollingreview.org/authorchecklist)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACL Style Files (GitHub)](https://github.com/acl-org/acl-style-files)\n- [ACLPUB Formatting Guidelines](https://acl-org.github.io/ACLPUB/formatting.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

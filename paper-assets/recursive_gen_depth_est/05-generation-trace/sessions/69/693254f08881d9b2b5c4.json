@@ -1,0 +1,1029 @@
+{
+  "schema_version": "1.0",
+  "id": "693254f08881d9b2b5c4",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "audit global reconciliation check",
+  "task_key": "worker_audit_global_reconciliation_check_20260515T045928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_global_reconciliation_check_20260515T045928.jsonl",
+    "occurrence": 1,
+    "bytes": 50780,
+    "sha256": "7a50b618246ce33fb0bd30853241341743efbd3f7e17e11f741269cd78090afb"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:05:40.428406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T05:05:40.428858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T05:05:40.429093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -name \"pairwise_auc.json\" -type f"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T05:05:40.429278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/edd_sensitivity.json"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T05:05:40.429476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "filters": "{'experiment_id': 'atlas_v2_analysis'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T05:05:40.429661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/pairwise_auc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T05:05:40.429800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/recursive_gen_depth_est/results/edd_sensitivity.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T05:05:40.429970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1257}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T05:05:40.430131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"edd_sensitivity*\" -type f"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T05:05:40.430256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/edd_sensitivity.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/edd_sensitivity_heatmap.pdf\\\\n/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/edd_sensitivity_heatmap.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T05:05:40.430373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "fields": "['experiment_id', 'status', 'metrics']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T05:05:40.430521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"edd_analysis*\" -type f"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T05:05:40.431149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cross_strategy_loo_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"mean_4class_acc\\\": 0.5908, \\\"pythia_holdout_nucleus\\\": {\\\"acc\\\": 0.6935, \\\"d1v2_auc\\\": 0.6903, \\\"d2v3_auc\\\": 0.7626}, \\\"pythia_holdout_temp09\\\": {\\\"acc\\\": 0.6281, \\\"d1v2_auc\\\": 0.576, \\\"d2v3_auc\\\": 0.724}, \\\"pythia_holdout_topk50\\\": {\\\"acc\\\": 0.5151, \\\"d1v2_auc\\\": 0.6393, \\\"d2v3_auc\\\": 0.5801}, \\\"gpt2xl_holdout_nucleus\\\": {\\\"acc\\\": 0.5993, \\\"d1v2_auc\\\": 0.7826, \\\"d2v3_auc\\\": 0.4985}, \\\"gpt2xl_holdout_temp09\\\": {\\\"acc\\\": 0.5609, \\\"d1v2_auc\\\": 0.1288, \\\"d2v3_auc\\\": 0.6366}, \\\"gpt2xl_holdout_topk50\\\": {\\\"acc\\\": 0.5364, \\\"d1v2_auc\\\": 0.8308, \\\"d2v3_auc\\\": 0.7222}, \\\"olmo_holdout_nucleus\\\": {\\\"acc\\\": 0.6538, \\\"d1v2_auc\\\": 0.7931, \\\"d2v3_auc\\\": 0.6076}, \\\"olmo_holdout_temp09\\\": {\\\"acc\\\": 0.5816, \\\"d1v2_auc\\\": 0.2529, \\\"d2v3_auc\\\": 0.7015}, \\\"olmo_holdout_topk50\\\": {\\\"acc\\\": 0.5488, \\\"d1v2_auc\\\": 0.8549, \\\"d2v3_auc\\\": 0.7107}, \\\"finding_temp09_d1v2_inversion\\\": \\\"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\\\"}}, \\\"olmo_temp09_002\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"olmo_topk50_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"lr_accuracy\\\": 0.757, \\\"lr_accuracy_ci\\\": [0.7425, 0.7702], \\\"rf_accuracy\\\": 0.742, \\\"rf_accuracy_ci\\\": [0.7282, 0.7555]}, \\\"pairwise_auc\\\": {\\\"lr\\\": {\\\"d0v1\\\": 0.9969, \\\"d0v2\\\": 0.9995, \\\"d0v3\\\": 0.9998, \\\"d1v2\\\": 0.8293, \\\"d1v3\\\": 0.9592, \\\"d2v3\\\": 0.7497}, \\\"rf\\\": {\\\"d0v1\\\": 0.993, \\\"d0v2\\\": 0.9983, \\\"d0v3\\\": 0.9991, \\\"d1v2\\\": 0.8305, \\\"d1v3\\\": 0.9591, \\\"d2v3\\\": 0.7357}}, \\\"three_class\\\": {\\\"lr_accuracy\\\": 0.6567, \\\"lr_accuracy_ci\\\": [0.6403, 0.6733], \\\"rf_accuracy\\\": 0.6517, \\\"rf_accuracy_ci\\\": [0.635, 0.6687]}, \\\"three_class_filtered\\\": {\\\"lr_accuracy\\\": 0.6703, \\\"lr_accuracy_ci\\\": [0.653, 0.6882], \\\"rf_accuracy\\\": 0.6699, \\\"rf_accuracy_ci\\\": [0.6537, 0.6875]}, \\\"three_class_filtered_auc\\\": {\\\"lr\\\": {\\\"d1v2\\\": 0.7903, \\\"d1v3\\\n…[truncated 13326 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T05:05:40.431416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/edd_analysis_9cell.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T05:05:40.431663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/pairwise_auc.json"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T05:05:40.431889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9922,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9997,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9997,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.7784,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9484,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7578\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9975,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9995,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9986,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8607,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9685,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8005\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T05:05:40.432090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/pairwise_auc.json"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T05:05:40.432288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9934,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9999,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9997,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.7833,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9374,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7652\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9968,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9993,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9991,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8327,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.959,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7928\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T05:05:40.432475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/pairwise_auc.json"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T05:05:40.432649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/olmo/pairwise_auc.json"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T05:05:40.432831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9889,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9983,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9995,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.7289,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9039,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.6804\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9927,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9983,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9978,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.7518,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9176,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.6918\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T05:05:40.433029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/pairwise_auc.json"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T05:05:40.433200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/pairwise_auc.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T05:05:40.433396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9809,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9921,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9945,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8296,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9629,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7661\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9834,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9949,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9989,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8673,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9806,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8124\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T05:05:40.433608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9976,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9999,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9999,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.891,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9842,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.816\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.996,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9997,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9995,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.901,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9874,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8214\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T05:05:40.433787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/pairwise_auc.json"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T05:05:40.433971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9969,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9995,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9998,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8293,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9592,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7497\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.993,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9983,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9991,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8305,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9591,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7357\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T05:05:40.434107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/pairwise_auc.json"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T05:05:40.434238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9808,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9941,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9937,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8469,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9686,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8651\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9941,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9965,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9988,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.9131,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9857,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8829\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T05:05:40.434364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/pairwise_auc.json"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T05:05:40.434482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/edd_sensitivity.json"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T05:05:40.434612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.984,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9998,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 1.0,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8903,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9824,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8183\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9963,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9992,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 1.0,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.9367,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9947,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.8815\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T05:05:40.434740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"logistic_regression\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9674,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9851,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9985,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.773,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.9367,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7345\\\\n  },\\\\n  \\\\\\\"random_forest\\\\\\\": {\\\\n    \\\\\\\"depth0_vs_depth1\\\\\\\": 0.9884,\\\\n    \\\\\\\"depth0_vs_depth2\\\\\\\": 0.9973,\\\\n    \\\\\\\"depth0_vs_depth3\\\\\\\": 0.9981,\\\\n    \\\\\\\"depth1_vs_depth2\\\\\\\": 0.8259,\\\\n    \\\\\\\"depth1_vs_depth3\\\\\\\": 0.963,\\\\n    \\\\\\\"depth2_vs_depth3\\\\\\\": 0.7708\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T05:05:40.435030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"thresholds\\\\\\\": [\\\\n    0.65,\\\\n    0.7,\\\\n    0.75,\\\\n    0.8\\\\n  ],\\\\n  \\\\\\\"per_cell\\\\\\\": {\\\\n    \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\",\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"nucleus_p095\\\\\\\",\\\\n      \\\\\\\"edd_by_threshold\\\\\\\": {\\\\n        \\\\\\\"0.65\\\\\\\": 3,\\\\n        \\\\\\\"0.7\\\\\\\": 3,\\\\n        \\\\\\\"0.75\\\\\\\": 3,\\\\n        \\\\\\\"0.8\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"consecutive_aucs\\\\\\\": {\\\\n        \\\\\\\"d0v1\\\\\\\": 0.9975,\\\\n        \\\\\\\"d1v2\\\\\\\": 0.8607,\\\\n        \\\\\\\"d2v3\\\\\\\": 0.8005\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia_temp09\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\",\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"temperature_09\\\\\\\",\\\\n      \\\\\\\"edd_by_threshold\\\\\\\": {\\\\n        \\\\\\\"0.65\\\\\\\": 3,\\\\n        \\\\\\\"0.7\\\\\\\": 3,\\\\n        \\\\\\\"0.75\\\\\\\": 3,\\\\n        \\\\\\\"0.8\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"consecutive_aucs\\\\\\\": {\\\\n        \\\\\\\"d0v1\\\\\\\": 0.9968,\\\\n        \\\\\\\"d1v2\\\\\\\": 0.8327,\\\\n        \\\\\\\"d2v3\\\\\\\": 0.7928\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia_topk50\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\",\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"topk_k50\\\\\\\",\\\\n      \\\\\\\"edd_by_threshold\\\\\\\": {\\\\n        \\\\\\\"0.65\\\\\\\": 3,\\\\n        \\\\\\\"0.7\\\\\\\": 2,\\\\n        \\\\\\\"0.75\\\\\\\": 2,\\\\n        \\\\\\\"0.8\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"consecutive_aucs\\\\\\\": {\\\\n        \\\\\\\"d0v1\\\\\\\": 0.9927,\\\\n        \\\\\\\"d1v2\\\\\\\": 0.7518,\\\\n        \\\\\\\"d2v3\\\\\\\": 0.6918\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo_nucleus\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"OLMo-1B\\\\\\\",\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"nucleus_p095\\\\\\\",\\\\n      \\\\\\\"edd_by_threshold\\\\\\\": {\\\\n        \\\\\\\"0.65\\\\\\\": 3,\\\\n        \\\\\\\"0.7\\\\\\\": 3,\\\\n        \\\\\\\"0.75\\\\\\\": 3,\\\\n        \\\\\\\"0.8\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"consecutive_aucs\\\\\\\": {\\\\n        \\\\\\\"d0v1\\\\\\\": 0.9834,\\\\n        \\\\\\\"d1v2\\\\\\\": 0.8673,\\\\n        \\\\\\\"d2v3\\\\\\\": 0.8124\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo_temp09\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"OLMo-1B\\\\\\\",\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"temperature_09\\\\\\\",\\\\n      \\\\\\\"edd_by_threshol\n…[truncated 4826 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T05:05:40.435278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -name \"classification_report*\" -o -name \"summary*\" -o -name \"*accuracy*\" -type f"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T05:05:40.435618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/classification_report.txt\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/baseline_battery_9cell/summary_9cell.json\\\\\n…[truncated 105 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T05:05:40.435809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/baseline_battery_9cell/summary_9cell.json"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T05:05:40.435974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -r \"accuracy\" /root/autodl-tmp/recursive_gen_depth_est/results/classification_report.txt"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T05:05:40.436243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n    \\\\\\\"rf\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7813,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.7093,\\\\n      \\\\\\\"mae\\\\\\\": 0.2387,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.8587,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.7984\\\\n    },\\\\n    \\\\\\\"lr\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7497,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.6671,\\\\n      \\\\\\\"mae\\\\\\\": 0.2767,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.7764,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.7434\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7807,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.7089,\\\\n      \\\\\\\"mae\\\\\\\": 0.2277,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.8157,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.7845\\\\n    },\\\\n    \\\\\\\"diveye\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7817,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.7098,\\\\n      \\\\\\\"mae\\\\\\\": 0.2363,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.8654,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.8092\\\\n    },\\\\n    \\\\\\\"best_method\\\\\\\": \\\\\\\"diveye\\\\\\\",\\\\n    \\\\\\\"best_acc_4class\\\\\\\": 0.7817\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"rf\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7677,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.6911,\\\\n      \\\\\\\"mae\\\\\\\": 0.2583,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.8341,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.8021\\\\n    },\\\\n    \\\\\\\"lr\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7413,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.656,\\\\n      \\\\\\\"mae\\\\\\\": 0.289,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.7854,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.7671\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.7717,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.6969,\\\\n      \\\\\\\"mae\\\\\\\": 0.2357,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.7814,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.8014\\\\n    },\\\\n    \\\\\\\"diveye\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.766,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.6884,\\\\n      \\\\\\\"mae\\\\\\\": 0.2613,\\\\n      \\\\\\\"d1v2_auc\\\\\\\": 0.8323,\\\\n      \\\\\\\"d2v3_auc\\\\\\\": 0.7964\\\\n    },\\\\n    \\\\\\\"best_method\\\\\\\": \\\\\\\"coral\\\\\\\",\\\\n    \\\\\\\"best_acc_4class\\\\\\\": 0.7717\\\\n  },\\\\n  \\\\\\\"pythia_topk50\\\\\\\": {\\\\n    \\\\\\\"rf\\\\\\\": {\\\\n      \\\\\\\"acc_4class\\\\\\\": 0.687,\\\\n      \\\\\\\"acc_3class\\\\\\\": 0.5844,\\\\\n…[truncated 6306 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T05:05:40.436398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -30 /root/autodl-tmp/recursive_gen_depth_est/results/classification_report.txt"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T05:05:40.436525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    accuracy                           0.26      4000\\\\n    accuracy                           0.25      4000\\\\n    accuracy                           0.75      4000\\\\n    accuracy                           0.78      4000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T05:05:40.436658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Random Baseline ===\\\\nAccuracy: 0.2560\\\\n              precision    recall  f1-score   support\\\\n\\\\n     depth-0       0.24      0.25      0.25      1000\\\\n     depth-1       0.27      0.28      0.27      1000\\\\n     depth-2       0.24      0.23      0.24      1000\\\\n     depth-3       0.27      0.27      0.27      1000\\\\n\\\\n    accuracy                           0.26      4000\\\\n   macro avg       0.26      0.26      0.26      4000\\\\nweighted avg       0.26      0.26      0.26      4000\\\\n\\\\n\\\\n=== Majority Baseline (always depth-0) ===\\\\nAccuracy: 0.2500\\\\n              precision    recall  f1-score   support\\\\n\\\\n     depth-0       0.25      1.00      0.40      1000\\\\n     depth-1       0.00      0.00      0.00      1000\\\\n     depth-2       0.00      0.00      0.00      1000\\\\n     depth-3       0.00      0.00      0.00      1000\\\\n\\\\n    accuracy                           0.25      4000\\\\n   macro avg       0.06      0.25      0.10      4000\\\\nweighted avg       0.06      0.25      0.10      4000\\\\n\\\\n\\\\n=== Logistic Regression ===\\\\nAccuracy: 0.7492 (95% CI: [0.7360, 0.7620])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T05:05:40.436941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/artifacts/reconciliation_check.md << 'HEREDOC'\n# Numerical Reconciliation Check\n\nGenerated: 2026-05-15\n\n## Data Sources\n1. **Pipeline `pairwise_auc.json`** — ground truth (per-cell `results/{cell}/pairwise_auc.json`)\n2. **`edd_sensitivity.json`** — `artifacts/atlas_v2/edd_sensitivity.json` (consecutive AUCs only)\n3. **Registry** — individual experiment records (per-cell experiments)\n4. **Battery `summary_9cell.json`** — `results/baseline_battery_9cell/summary_9cell.json`\n5. **Registry `baseline_battery_9cell_001`** — battery experiment registry entry\n\n---\n\n## Section 1: AUC — Pipeline vs edd_sensitivity (RF, consecutive pairs)\n\nedd_sensitivity stores only 3 consecutive pairs (d0v1, d1v2, d2v3) per cell.\n\n| Cell | Pair | Pipeline | edd_sensitivity | Δ | Match? |\n|------|------|----------|----------------|---|--------|\n| pythia_nucleus | d0v1 | 0.9975 | 0.9975 | 0.0000 | ✓ |\n| pythia_nucleus | d1v2 | 0.8607 | 0.8607 | 0.0000 | ✓ |\n| pythia_nucleus | d2v3 | 0.8005 | 0.8005 | 0.0000 | ✓ |\n| pythia_temp09 | d0v1 | 0.9968 | 0.9968 | 0.0000 | ✓ |\n| pythia_temp09 | d1v2 | 0.8327 | 0.8327 | 0.0000 | ✓ |\n| pythia_temp09 | d2v3 | 0.7928 | 0.7928 | 0.0000 | ✓ |\n| pythia_topk50 | d0v1 | 0.9927 | 0.9927 | 0.0000 | ✓ |\n| pythia_topk50 | d1v2 | 0.7518 | 0.7518 | 0.0000 | ✓ |\n| pythia_topk50 | d2v3 | 0.6918 | 0.6918 | 0.0000 | ✓ |\n| olmo_nucleus | d0v1 | 0.9834 | 0.9834 | 0.0000 | ✓ |\n| olmo_nucleus | d1v2 | 0.8673 | 0.8673 | 0.0000 | ✓ |\n| olmo_nucleus | d2v3 | 0.8124 | 0.8124 | 0.0000 | ✓ |\n| olmo_temp09 | d0v1 | 0.9960 | 0.9960 | 0.0000 | ✓ |\n| olmo_temp09 | d1v2 | 0.9010 | 0.9010 | 0.0000 | ✓ |\n| olmo_temp09 | d2v3 | 0.8214 | 0.8214 | 0.0000 | ✓ |\n| olmo_topk50 | d0v1 | 0.9930 | 0.9930 | 0.0000 | ✓ |\n| olmo_topk50 | d1v2 | 0.8305 | 0.8305 | 0.0000 | ✓ |\n| olmo_topk50 | d2v3 | 0.7357 | 0.7357 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d0v1 | 0.9941 | 0.9941 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d1v2 | 0.9131 | 0.9131 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d2v3 | 0.8829 | 0.8829 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d0v1 | 0.9963 | 0.9963 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d1v2 | 0.9367 | 0.9367 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d2v3 | 0.8815 | 0.8815 | 0.0000 | ✓ |\n| gpt2xl_topk50 | d0v1 | 0.9884 | 0.9884 | 0.0000 | ✓ |\n| gpt2xl_topk50 | d1v2 | 0.8259 | 0.8259 | 0.0000 | ✓ |\n| gpt2xl_topk50 | d2v3 | 0.7708 | 0.7708 | 0.0000 | ✓ |\n\n**Result: 27/27 match (Δ=0 for all). edd_sensitivity fully synchronized with pipeline.**\n\n---\n\n## Section 2: AUC — Pipeline vs Registry (RF, all 6 pairs)\n\nRegistry source per cell:\n- pythia_nucleus → `mvp_pipeline_pythia_002` (3 pairs only)\n- pythia_temp09 → `pythia_temp09_001` (6 pairs)\n- pythia_topk50 → `pythia_topk50_001` (6 pairs)\n- olmo_nucleus → `cross_model_olmo_002` (6 pairs)\n- olmo_temp09 → `olmo_temp09_001` (1 pair: d1v2 only)\n- olmo_topk50 → `olmo_topk50_001` (6 pairs)\n- gpt2xl_nucleus → `cross_model_gpt2xl_001` (6 pairs)\n- gpt2xl_temp09 → `gpt2xl_temp09_001` (6 pairs)\n- gpt2xl_topk50 → `gpt2xl_topk50_001` (1 pair: d1v2 only)\n\n| Cell | Pair | Pipeline | Registry | Δ | Match? |\n|------|------|----------|----------|---|--------|\n| pythia_nucleus | d0v1 | 0.9975 | 0.9975 | 0.0000 | ✓ |\n| pythia_nucleus | d1v2 | 0.8607 | 0.8607 | 0.0000 | ✓ |\n| pythia_nucleus | d2v3 | 0.8005 | 0.8005 | 0.0000 | ✓ |\n| pythia_temp09 | d0v1 | 0.9968 | 0.9968 | 0.0000 | ✓ |\n| pythia_temp09 | d0v2 | 0.9993 | 0.9993 | 0.0000 | ✓ |\n| pythia_temp09 | d0v3 | 0.9991 | 0.9991 | 0.0000 | ✓ |\n| pythia_temp09 | d1v2 | 0.8327 | 0.8327 | 0.0000 | ✓ |\n| pythia_temp09 | d1v3 | 0.9590 | 0.9590 | 0.0000 | ✓ |\n| pythia_temp09 | d2v3 | 0.7928 | 0.7928 | 0.0000 | ✓ |\n| pythia_topk50 | d0v1 | 0.9927 | 0.9927 | 0.0000 | ✓ |\n| pythia_topk50 | d0v2 | 0.9983 | 0.9983 | 0.0000 | ✓ |\n| pythia_topk50 | d0v3 | 0.9978 | 0.9978 | 0.0000 | ✓ |\n| pythia_topk50 | d1v2 | 0.7518 | 0.7518 | 0.0000 | ✓ |\n| pythia_topk50 | d1v3 | 0.9176 | 0.9176 | 0.0000 | ✓ |\n| pythia_topk50 | d2v3 | 0.6918 | 0.6918 | 0.0000 | ✓ |\n| olmo_nucleus | d0v1 | 0.9834 | 0.9834 | 0.0000 | ✓ |\n| olmo_nucleus | d0v2 | 0.9949 | 0.9949 | 0.0000 | ✓ |\n| olmo_nucleus | d0v3 | 0.9989 | 0.9989 | 0.0000 | ✓ |\n| olmo_nucleus | d1v2 | 0.8673 | 0.8673 | 0.0000 | ✓ |\n| olmo_nucleus | d1v3 | 0.9806 | 0.9806 | 0.0000 | ✓ |\n| olmo_nucleus | d2v3 | 0.8124 | 0.8124 | 0.0000 | ✓ |\n| olmo_temp09 | d1v2 | 0.9010 | 0.9010 | 0.0000 | ✓ |\n| olmo_topk50 | d0v1 | 0.9930 | 0.9930 | 0.0000 | ✓ |\n| olmo_topk50 | d0v2 | 0.9983 | 0.9983 | 0.0000 | ✓ |\n| olmo_topk50 | d0v3 | 0.9991 | 0.9991 | 0.0000 | ✓ |\n| olmo_topk50 | d1v2 | 0.8305 | 0.8305 | 0.0000 | ✓ |\n| olmo_topk50 | d1v3 | 0.9591 | 0.9591 | 0.0000 | ✓ |\n| olmo_topk50 | d2v3 | 0.7357 | 0.7357 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d0v1 | 0.9941 | 0.9941 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d0v2 | 0.9965 | 0.9965 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d0v3 | 0.9988 | 0.9988 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d1v2 | 0.9131 | 0.9131 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d1v3 | 0.9857 | 0.9857 | 0.0000 | ✓ |\n| gpt2xl_nucleus | d2v3 | 0.8829 | 0.8829 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d0v1 | 0.9963 | 0.9963 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d0v2 | 0.9992 | 0.9992 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d0v3 | 1.0000 | 1.0000 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d1v2 | 0.9367 | 0.9367 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d1v3 | 0.9947 | 0.9947 | 0.0000 | ✓ |\n| gpt2xl_temp09 | d2v3 | 0.8815 | 0.8815 | 0.0000 | ✓ |\n| gpt2xl_topk50 | d1v2 | 0.8259 | 0.8259 | 0.0000 | ✓ |\n\n**Result: 41/41 available pairs match (Δ=0 for all). Registry AUCs are exact copies of pipeline.**\n\nNote: 13 pairs not in registry (pythia_nucleus d0v2/d0v3/d1v3; olmo_temp09 d0v1/d0v2/d0v3/d1v3/d2v3; gpt2xl_topk50 d0v1/d0v2/d0v3/d1v3/d2v3). These are still in pipeline files and can be cited from there.\n\n---\n\n## Section 3: Accuracy — Battery Summary vs Registry\n\nBattery summary: `results/baseline_battery_9cell/summary_9cell.json` (RF acc_4class)\nRegistry: `baseline_battery_9cell_001.best_acc_matrix_rf`\n\n**⚠️ FINDING: Registry field `best_acc_matrix_rf` is MISLABELED.** It stores **best accuracy across all methods** (RF/LR/CORAL/DivEye), NOT RF-specific accuracy.\n\n| Cell | Battery RF acc | Battery best_method | Battery best_acc | Registry \"best_acc_matrix_rf\" | Registry matches? |\n|------|---------------|--------------------|-----------------|-----------------------------|-------------------|\n| pythia_nucleus | 0.7813 | diveye | 0.7817 | 0.782 | ≈ best_acc (Δ=0.0003) |\n| pythia_temp09 | 0.7677 | coral | 0.7717 | 0.772 | ≈ best_acc (Δ=0.0003) |\n| pythia_topk50 | 0.6870 | coral | 0.6877 | 0.688 | ≈ best_acc (Δ=0.0003) |\n| olmo_nucleus | 0.7877 | coral | 0.7960 | 0.796 | = best_acc ✓ |\n| olmo_temp09 | 0.8270 | rf | 0.8270 | 0.827 | = best_acc = RF ✓ |\n| olmo_topk50 | 0.7370 | lr | 0.7590 | 0.759 | = best_acc (LR, NOT RF!) |\n| gpt2xl_nucleus | 0.8397 | coral | 0.8433 | 0.843 | ≈ best_acc (Δ=0.0003) |\n| gpt2xl_temp09 | 0.8527 | rf | 0.8527 | 0.853 | ≈ best_acc (Δ=0.0003) |\n| gpt2xl_topk50 | 0.7540 | rf | 0.7540 | 0.754 | = best_acc = RF ✓ |\n\n**Result: Registry `best_acc_matrix_rf` values match battery `best_acc_4class` (best across ALL methods), not RF specifically. Critical for olmo_topk50 where best=LR (0.759) but RF=0.737 — a 2.2pp gap.**\n\n### Individual Experiment Registry Accuracy vs Battery RF Accuracy\n\n| Cell | Indiv. Registry Experiment | Indiv. RF acc | Battery RF acc | Δ |\n|------|---------------------------|--------------|---------------|---|\n| pythia_nucleus | mvp_pipeline_pythia_002 | 0.7820 | 0.7813 | 0.0007 |\n| pythia_temp09 | pythia_temp09_001 | 0.7625 | 0.7677 | -0.0052 |\n| pythia_topk50 | pythia_topk50_001 | 0.6960 | 0.6870 | 0.0090 |\n| olmo_nucleus | cross_model_olmo_002 | 0.7880 | 0.7877 | 0.0003 |\n| olmo_temp09 | olmo_temp09_001 | 0.8203 | 0.8270 | -0.0067 |\n| olmo_topk50 | olmo_topk50_001 | 0.7420 | 0.7370 | 0.0050 |\n| gpt2xl_nucleus | cross_model_gpt2xl_001 | 0.8330 | 0.8397 | -0.0067 |\n| gpt2xl_temp09 | gpt2xl_temp09_001 | 0.8542 | 0.8527 | 0.0015 |\n| gpt2xl_topk50 | gpt2xl_topk50_001 | 0.7660 | 0.7540 | 0.0120 |\n\n**Result: All differences ≤ 1.2pp. Expected variance from different random seeds/splits. Both are valid; battery is more systematic (same code, same date). For the paper, use battery values for cross-cell comparisons.**\n\n---\n\n## Section 4: EDD — edd_sensitivity vs Registry atlas_v2_analysis\n\n### T=0.75\n\n| Cell | edd_sensitivity EDD | \n|------|-------------------|\n| pythia_nucleus | 3 |\n| pythia_temp09 | 3 |\n| pythia_topk50 | 2 |\n| olmo_nucleus | 3 |\n| olmo_temp09 | 3 |\n| olmo_topk50 | 2 |\n| gpt2xl_nucleus | 3 |\n| gpt2xl_temp09 | 3 |\n| gpt2xl_topk50 | 3 |\n\nRegistry `atlas_v2_analysis.edd_equals_3_at_T075`: \"7/9\" → **matches** (7 cells = 3, 2 cells = 2) ✓\nRegistry `atlas_v2_analysis.edd_distribution_T075`: {2: 2, 3: 7} → **matches** ✓\n\n### T=0.80\n\n| Cell | edd_sensitivity EDD |\n|------|-------------------|\n| pythia_nucleus | 3 |\n| pythia_temp09 | 2 |\n| pythia_topk50 | 1 |\n| olmo_nucleus | 3 |\n| olmo_temp09 | 3 |\n| olmo_topk50 | 2 |\n| gpt2xl_nucleus | 3 |\n| gpt2xl_temp09 | 3 |\n| gpt2xl_topk50 | 2 |\n\nDistribution at T=0.80: {1: 1, 2: 3, 3: 5}\n(No T=0.80 specific summary in registry to cross-check, but raw values above are authoritative from edd_sensitivity.json)\n\n**Result: EDD values consistent across sources.**\n\n---\n\n## Section 5: Battery AUC vs Pipeline AUC (Systematic Drift Check)\n\nThe battery re-trains classifiers independently. Differences show seed variance, not data errors.\n\n| Cell | Pipeline RF d1v2 | Battery RF d1v2 | Δ | Pipeline RF d2v3 | Battery RF d2v3 | Δ |\n|------|-----------------|----------------|---|-----------------|----------------|---|\n| pythia_nucleus | 0.8607 | 0.8587 | +0.0020 | 0.8005 | 0.7984 | +0.0021 |\n| pythia_temp09 | 0.8327 | 0.8341 | -0.0014 | 0.7928 | 0.8021 | -0.0093 |\n| pythia_topk50 | 0.7518 | 0.7414 | +0.0104 | 0.6918 | 0.6904 | +0.0014 |\n| olmo_nucleus | 0.8673 | 0.8617 | +0.0056 | 0.8124 | 0.8152 | -0.0028 |\n| olmo_temp09 | 0.9010 | 0.9029 | -0.0019 | 0.8214 | 0.8204 | +0.0010 |\n| olmo_topk50 | 0.8305 | 0.8224 | +0.0081 | 0.7357 | 0.7364 | -0.0007 |\n| gpt2xl_nucleus | 0.9131 | 0.9135 | -0.0004 | 0.8829 | 0.8800 | +0.0029 |\n| gpt2xl_temp09 | 0.9367 | 0.9368 | -0.0001 | 0.8815 | 0.8840 | -0.0025 |\n| gpt2xl_topk50 | 0.8259 | 0.8110 | +0.0149 | 0.7708 | 0.7713 | -0.0005 |\n\nMax |Δ| for d1v2: 0.0149 (gpt2xl_topk50). Max |Δ| for d2v3: 0.0093 (pythia_temp09).\n**These are seed-variance, not data errors. Paper should cite pipeline values, not battery AUCs.**\n\n---\n\n## Summary\n\n| Check | Items | Matches | Discrepancies |\n|-------|-------|---------|--------------|\n| Pipeline vs edd_sensitivity AUC | 27 | 27 | 0 |\n| Pipeline vs Registry AUC | 41 | 41 | 0 |\n| Battery vs Registry accuracy | 9 | 9 | 0 (after understanding field = best across methods) |\n| EDD T=0.75 vs Registry | 9+2 summaries | all | 0 |\n| Battery AUC vs Pipeline AUC | 18 | — | Expected seed variance (max 0.015) |\n\n### Issues Found\n\n1. **Registry field mislabeled**: `baseline_battery_9cell_001.best_acc_matrix_rf` stores best accuracy across ALL methods, not RF-only. For olmo_topk50, this means 0.759 (LR) ≠ 0.737 (RF). If citing \"RF accuracy\" from this field, olmo_topk50 would be wrong by 2.2pp.\n\n2. **Registry coverage gaps**: 13 of 54 pipeline AUC pairs have no corresponding registry entry (olmo_temp09 missing 5 of 6, gpt2xl_topk50 missing 5 of 6, pythia_nucleus missing 3 of 6). Values exist in pipeline files but not in registry.\n\n3. **No issues with core paper numbers**: All AUC values that will appear in the paper (pipeline + edd_sensitivity) are perfectly consistent. EDD values are consistent.\nHEREDOC"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T05:05:40.437224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T05:05:40.437375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T05:05:40.437626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T05:05:40.437770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T05:05:40.437964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T05:05:40.438123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/artifacts/reconciliation_check.md"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T05:05:40.438256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"231 /root/autodl-tmp/recursive_gen_depth_est/artifacts/reconciliation_check.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T05:05:40.438447+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reconciliation 完成。文件已写入 `/root/autodl-tmp/recursive_gen_depth_est/artifacts/reconciliation_check.md`（231 行）。\n\n## 结果总览\n\n| 检查项 | 数量 | 匹配 | 差异 |\n|--------|------|------|------|\n| Pipeline vs edd_sensitivity AUC | 27 consecutive pairs | **27/27** | 0 |\n| Pipeline vs Registry AUC | 41 pairs (有数据的) | **41/41** | 0 |\n| Battery accuracy vs Registry | 9 cells | **9/9** | 0 |\n| EDD T=0.75 vs Registry | 9 cells + 2 summaries | **全部** | 0 |\n\n## 发现的问题\n\n1. **Registry 字段命名错误**：`baseline_battery_9cell_001.best_acc_matrix_rf` 实际存储的是**所有方法中的最优 accuracy**，不是 RF accuracy。影响 olmo_topk50：registry 记 0.759（实为 LR），RF 实际为 0.737，差 2.2pp。如果论文引用此字段作为\"RF accuracy\"会出错。\n\n2. **Registry 覆盖缺口**：54 个 pipeline AUC pair 中有 13 个无 registry 对应条目（olmo_temp09 缺 5/6，gpt2xl_topk50 缺 5/6，pythia_nucleus 缺 3/6）。值在 pipeline 文件中存在，但未入 registry。\n\n3. **核心论文数值无问题**：所有 AUC（pipeline ↔ edd_sensitivity）完全一致，EDD 值一致。Battery 与 pipeline 的 AUC 差异均为随机种子方差（max |Δ|=0.015），非数据错误。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_global_reconciliation_check_20260515T045928"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ]
+}

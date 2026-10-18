@@ -2,6 +2,12 @@
 
 Project directory: `causal_style_decomp_judge`
 
+## Browse generation traces
+
+[Visual browser](../../traces/index.html?project=causal_style_decomp_judge) · [Offline preview](../../traces/demo.html?project=causal_style_decomp_judge) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
+
+Includes 506 source files and 73,378 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+
 ## Asset review matrix
 
 | Requirement | Status | Organized contents and evidence | Still to verify |

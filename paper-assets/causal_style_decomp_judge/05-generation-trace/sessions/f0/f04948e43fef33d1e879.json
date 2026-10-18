@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f04948e43fef33d1e879",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper research citation fill",
+  "task_key": "worker_paper_research_citation_fill_20260521T101219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_citation_fill_20260521T101219_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "9b2d7f4b747308c7134e65751b0ddd9539518e5e5d49513e85aaff30d33fa1b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appended 10 new BibTeX entries. Total references: 37 (27 existing + 10 new).\n\n**Director-specified (6):**\n| Key | Paper | Venue |\n|-----|-------|-------|\n| `feder2021causalm` | CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics 2021 |\n| `wu2021polyjuice` | Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models | ACL 2021 |\n| `clark2021human` | All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text | ACL 2021 |\n| `amidei2019likert` | The Use of Rating and Likert Scales in NLG Human Evaluation Tasks | INLG 2019 |\n| `boubdir2023elo` | Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | NeurIPS 2024 |\n| `wu2023style` | Style Over Substance: Evaluation Biases for Large Language Models | COLING 2025 |\n\n**Additional (4):**\n| Key | Paper | Venue |\n|-----|-------|-------|\n| `liusie2024comparative` | LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons | EACL 2024 |\n| `feder2022causal` | Causal Inference in NLP: Estimation, Prediction, Interpretation and Beyond | TACL 2022 |\n| `koo2024cobbler` | Benchmarking Cognitive Biases in Large Language Models as Evaluators | Findings of ACL 2024 |\n| `panickssery2024selfpreference` | LLM Evaluators Recognize and Favor Their Own Generations | NeurIPS 2024 |\n\nAll entries verified via web search — no fabricated details. Existing entries left untouched."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

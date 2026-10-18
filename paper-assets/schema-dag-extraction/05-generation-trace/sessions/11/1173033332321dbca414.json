@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1173033332321dbca414",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "cleanup exp012 label fix gpu",
+  "task_key": "worker_cleanup_exp012_label_fix_gpu_20260515T203504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_exp012_label_fix_gpu_20260515T203504_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "3889f6cd46a2e7658e569149e72a9f07f6c5a5dec3e75f7aff3856972dd4a8cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n- **标签修正**：替换了 4 处 \"Qwen3-8B\" → \"Qwen3-32B-FP8\"，残留 0 处。\n- **GPU 已释放**：显存占用 0 MiB / 97887 MiB，GPU 利用率 0%，无 vLLM 残留进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

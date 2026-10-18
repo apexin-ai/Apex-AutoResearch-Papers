@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "399edb479468b8e757e7",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3736,
+    "sha256": "d602ea6a82c3346608a585f8b6f7392e111f622845e442e7566b5d57eac1572d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-15T12:14:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0 @ cqa1-38874（gpu_ids 白名单只有这一张）\n- SDGD 实验必须用两阶段架构（CPU decompose → GPU extract），单进程会 vLLM fork 死锁（exp-008 已踩过）\n- MAVEN 实验必须用 Qwen3 embeddings（`maven_bcs_matrix_qwen3.pt`），不要用 MiniLM 版本做正式实验（MiniLM 仅用于 ablation 对比）\n- LLaMA 模型来自 `nvidia/Llama-3.3-70B-Instruct-FP8`，绝不能用 `neuralmagic` 版本恢复下载（shard 不兼容，会损坏模型）\n- output_seed0 目录（92GB）不动——可能是别的项目的\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874 (connect.cqa1.seetacloud.com)，root 用户\n- 工作目录：`/root/schema-dag-extraction`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- Qwen3-32B-FP8：`/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n- LLaMA-3.3-70B-FP8：`/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`（15/15 shards，72.7GB，已验证）\n- MAVEN 数据：`valid.parquet`（8042 sentences, 149 active types）\n- FewRel 数据：80 relations，configs/fewrel_relation_types.json\n- 活跃进程：FewRel formal exp1 (PID 263125, tmux, cron 监控中)\n- Dream 运行中：`dream_20260515T113743`（full review mode），等回调\n\n### 3. 📊 当前状态\n**刚做完**：exp-008 SDGD-zero 诊断（负面结果 F1=0.251 < baseline 0.445）+ SDGD v2 改进方案实现（min_batch_size + confidence merge）+ 2×3 embedding ablation 矩阵完成 + paper_framing.md 多次精化到 D013\n\n**运行中**：\n- `exp_fewrel_formal` (PID 263125, cuda:0) — FewRel formal exp1+exp2，~5.5h\n- `dream_20260515T113743` — full review，等回调\n- SDGD v2 代码已就绪（CPU decompose 脚本 + GPU extract 脚本），等 GPU\n\n**等待**：\n- FewRel formal cron 回调 → 三层分析\n- Dream 回调 → 按 dream-report-action skill 处理\n- Agent 刚 RESET，新 session 会读 handoff 继续\n\n### 4. 📋 待办\n- FewRel formal 完成 → 立即跑 `analyze_fewrel_results.py` 三层分析 → 汇报 go/no-go\n- FewRel 分析完 → 启动 exp-012 LLaMA multi-model（脚本已就绪，`max_model_len=4096`）\n- exp-012 完成 → SDGD-zero v2 重跑（min_batch_size=8 + confidence merge），对比 baseline\n- SDGD v2 后 → SDGD MAVEN MiniLM（CPU decompose 已完成，GPU extract 待跑）\n- Dream 回调到 → 按 dream-report-action skill 逐条处理\n- 所有实验完成 → 激活 Paper Agent 写初稿\n\n### 5. 🎯 战略上下文\n**决策链**：D005(MVP pass) → D008(证据重构 pairwise 为主) → D009(BCS proxy task-specific) → D011(方案A: aggregation confound narrative) → D012(pairwise primary, per-type secondary) → D013(centrality confound 精化) → D014(SDGD-zero 失败,需改进)\n\n**核心结论**：Pairwise confusability 跨 NER/ED/RE 三任务普遍存在（Few-NERD Qwen3 r=0.156, MAVEN MiniLM r=0.120, FewRel batch Δ=-50pp）。Per-type aggregation 在同域 schema 有 centrality confound（MAVEN per-type 两种 embedding 都正向）。SDGD-zero v1 因 merge amplification 失败，v2 待验证。\n\n**易错点**：\n- 不要把 batch-level 正相关（BCS→高 F1）当作支持假设的证据——那是 frequency/centrality confound\n- 不要混淆 per-type mean BCS（有 centrality confound）和 pairwise SCS（干净信号）\n- SDGD 实验必须用两阶段架构，否则 vLLM fork 死锁\n- FewRel pilot 用了 MiniLM embedding，正式实验已切 Qwen3\n- `run_fewrel_formal.py` 默认 model_path 已修正为正确路径，但要确认 `--mode` 参数不能漏\n- Dream 之前崩过一次（infra bug），已自动重试，当前 dream 是第二次\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

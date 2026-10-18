@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "baeeedc308cddf082a37",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis atlas v2 formal",
+  "task_key": "worker_analysis_atlas_v2_formal_20260515T041305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_atlas_v2_formal_20260515T041305.log",
+    "occurrence": 1,
+    "bytes": 859117,
+    "sha256": "b2479afe2b7341b3a3d866e6fa018921e5af885f016df6819aae87189e066286"
+  },
+  "statistics": {
+    "messages": 249,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 245,
+      "chunks": [
+        {
+          "path": "baeeedc308cddf082a37-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "baeeedc308cddf082a37-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "baeeedc308cddf082a37-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ]
+}

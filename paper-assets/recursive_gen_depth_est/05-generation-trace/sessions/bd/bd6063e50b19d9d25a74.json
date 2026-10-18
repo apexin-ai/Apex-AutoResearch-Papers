@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bd6063e50b19d9d25a74",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops accumulation v3 bugfix westd",
+  "task_key": "worker_ops_accumulation_v3_bugfix_westd_20260519T081246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_accumulation_v3_bugfix_westd_20260519T081246_result.json",
+    "occurrence": 1,
+    "bytes": 1765,
+    "sha256": "c6ed1b68bb8ad8d082780ae8464da3dae9ad6ab7018384b90343eb63bf6b9053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告如下：\n\n---\n\n### 结果汇总\n\n**1. 进程清理**\n- 杀死 2 个 tmux session（`accum_v3_mix50`、`accum_v3_mix25`）+ 8 个孤儿进程（含 2 个 Python pipeline 进程）\n- GPU 0/1 均空闲（0MiB / 97887MiB）\n\n**2. Bug 修复确认**（`accumulation_pipeline_gpt2xl.py`）\n- **Bug 1** (L131): `target_modules=[\"c_attn\"]` → `target_modules=[\"c_attn\", \"c_proj\"]` ✓\n- **Bug 2** (L374-379): 特征提取从 `load_model()`（gpt2-xl self-reference）→ 直接加载 `EleutherAI/pythia-1.4b`（cross-model reference）✓\n- 备份在 `accumulation_pipeline_gpt2xl.py.bak`\n\n**3. 模型可用性**\n- Pythia-1.4B: 已缓存 `/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/` ✓\n- GPT-2 XL: 已缓存 `/root/autodl-tmp/.hf_cache/hub/models--gpt2-xl/` ✓\n\n**4. Python 环境**\n- Python 3.10.12（无 conda）\n- torch 2.11.0+cu128, transformers 5.8.1, peft 0.19.1, accelerate 1.13.0, scikit-learn 1.7.2, scipy 1.15.3, datasets 4.8.5\n\n**5. 数据文件**\n- `data/gpt2xl/depth_0.jsonl`: 5000 条，字段 `[text, depth, source, token_count, seed_id]` ✓\n- `data/gpt2xl/depth_1.jsonl`: 5000 条 ✓\n\n**6. 清理**\n- 删除了 `results/accumulation_v2/`（buggy run 的部分输出）\n- `results/accumulation/`（v1 实验结果）保留未动\n- 无独立 pipeline 脚本（`lora_finetune.py` 等不存在，功能全部内联在 `accumulation_pipeline_gpt2xl.py` 中）\n\n**7. 运行命令**\n```bash\n# GPU 0: mix_ratio=0.5\nCUDA_VISIBLE_DEVICES=0 bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.5 --cuda 0 --seed 42\n\n# GPU 1: mix_ratio=0.25\nCUDA_VISIBLE_DEVICES=1 bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.25 --cuda 1 --seed 42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

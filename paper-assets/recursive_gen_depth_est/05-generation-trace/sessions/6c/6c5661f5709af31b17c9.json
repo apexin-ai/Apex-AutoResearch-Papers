@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c5661f5709af31b17c9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp accum olmo temp mix50",
+  "task_key": "worker_exp_accum_olmo_temp_mix50_20260522T045521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_accum_olmo_temp_mix50_20260522T045521_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "57c48ffa62e659cc1373e5c908bd7515b3d2c6798578ab24c43061d43617cf45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `accum_olmo_temp_mix50`\n- **状态**: RUNNING\n- **服务器**: gpu-6000pro-2, cuda:0\n- **PID**: 722400 (tmux session: `accum_olmo_temp_mix50`)\n- **命令**: `python3 scripts/accumulation_pipeline_olmo_temp09.py --mix_ratio 0.5 --seed 42`\n- **日志**: `~/runs/recursive_gen_depth_est/accum_olmo_temp_mix50.log`\n\n进程已在加载 OLMo-1B 权重，Phase 1a 数据混合完成（2500 human + 2500 synthetic），正在进入 LoRA 训练阶段。参考 mix25 实验（~4.3 GPU hours），预计 4-5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

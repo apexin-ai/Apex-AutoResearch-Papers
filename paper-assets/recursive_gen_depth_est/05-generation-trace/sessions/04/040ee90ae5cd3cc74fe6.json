@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "040ee90ae5cd3cc74fe6",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analyze qwen25 14b temp09",
+  "task_key": "worker_analyze_qwen25_14b_temp09_20260520T040138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen25_14b_temp09_20260520T040138_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "5741dab5a42255dd4befb2cf3712c6d6d0e8191ee69a0a791a9e8bac8493aaa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Registry 已更新为 DONE/success，artifact 已注册。\n\n**结果摘要**：\n\n| Metric | Value |\n|--------|-------|\n| RF 4-class acc | **50.5%** (CI: 49.8–51.2%) — 2× chance |\n| LR 4-class acc | 48.65% (CI: 48.0–49.4%) |\n| RF 3-class (d1-d3) | 52.44% (CI: 51.6–53.2%) |\n| d0v1 AUC | 0.632 |\n| d1v2 AUC | **0.726** (最强 adjacent pair) |\n| d2v3 AUC | 0.618 |\n| Top features | p90_ppl, skew_ppl, kurt_ppl, p90_surprisal, var_surprisal |\n\n**未计算的 metrics**: per-depth recall, confusion matrix, MAE, QWK, EDD_{0.70}——该 pipeline 不输出这些。\n\n**评估**: 50.5% 显著超过 25% chance，depth signal 在 14B temp=0.9 下持续存在。但低于小模型同 setting（pythia ~73%, gpt2xl ~83%），符合 scaling 预期——14B 生成文本更连贯，depth 区分更难。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

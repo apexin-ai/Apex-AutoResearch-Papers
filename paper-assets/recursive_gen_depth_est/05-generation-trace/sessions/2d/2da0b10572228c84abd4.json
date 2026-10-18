@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2da0b10572228c84abd4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra research phase prep",
+  "task_key": "worker_infra_research-phase-prep_20260514T140739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_research-phase-prep_20260514T140739_result.json",
+    "occurrence": 1,
+    "bytes": 2289,
+    "sha256": "a17d091b55adf168d7c204188fbe19ab627a7474c0a22ca58581cb9573c484bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇报\n\n### 1. 模型下载状态\n\n| 模型 | 来源 | 路径 | model.safetensors | 状态 |\n|------|------|------|-------------------|------|\n| OLMo-1B | `allenai/OLMo-1B-hf` (ModelScope CDN) | `/root/autodl-tmp/models/olmo-1b/` | 4.4GB (float32) | 完整 (8 文件) |\n| GPT-2 XL | `openai-community/gpt2-xl` (hf-mirror wget) | `/root/autodl-tmp/models/gpt2-xl/` | 6.0GB (float32) | 完整 (8 文件, safetensors header 验证通过) |\n\n注：使用 `allenai/OLMo-1B-hf` 而非 `allenai/OLMo-1B`，因为后者需要 `hf_olmo` 自定义代码，前者是原生 transformers 格式（model_type=`olmo`）。\n\n### 2. LoRA target_modules\n\n| 模型 | model_type | 参数量 | vocab_size | BOS/EOS/PAD | Attention 模块类型 | LoRA targets |\n|------|-----------|--------|-----------|-------------|------------------|-------------|\n| OLMo-1B | `olmo` | 1.18B | 50280 | None / 50279 / 1 | `nn.Linear` | `q_proj`, `k_proj`, `v_proj`, `o_proj` |\n| GPT-2 XL | `gpt2` | 1.56B | 50257 | 50256 / 50256 / None | `Conv1D` | `c_attn`, `c_proj` |\n\nPipeline 脚本中 OLMo 选用 `q_proj,v_proj`（与 Pythia 的 q/v-only 策略一致），GPT-2 XL 选用 `c_attn,c_proj`。\n\n### 3. 脚本适配清单\n\n**新增文件（服务器上）：**\n- `scripts/run_pipeline_olmo.sh` — MODEL_PATH=/root/autodl-tmp/models/olmo-1b, TARGET_MODULES=q_proj,v_proj, 数据→data/olmo/, checkpoints→checkpoints/olmo/\n- `scripts/run_pipeline_gpt2xl.sh` — MODEL_PATH=/root/autodl-tmp/models/gpt2-xl, TARGET_MODULES=c_attn,c_proj, 数据→data/gpt2xl/, checkpoints→checkpoints/gpt2xl/\n\n**修改文件（服务器上）：**\n- `scripts/generate_next_depth.py` — 新增 `--top_k` (default=50), `--decoding_strategy` (choices: nucleus/topk/temp_only, default=nucleus)；generation 逻辑按策略动态构建 gen_kwargs\n\n**lora_finetune.py** — 服务器版本已有 `--target_modules` 参数（逗号分隔），无需修改。\n\n### 4. Dry-run 验证\n\n- `python scripts/generate_next_depth.py --help` — 显示 `--top_k`, `--decoding_strategy {nucleus,topk,temp_only}` 参数\n- `python scripts/lora_finetune.py --help` — 显示 `--target_modules` 参数\n- 两个模型均可通过 `AutoModelForCausalLM.from_pretrained` 在 CPU 上成功加载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

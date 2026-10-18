@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e5cb05dfce9253a7658c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops healthcheck westd41074 v2",
+  "task_key": "worker_ops_healthcheck-westd41074-v2_20260524T093538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_healthcheck-westd41074-v2_20260524T093538_result.json",
+    "occurrence": 1,
+    "bytes": 2832,
+    "sha256": "c815ec9b48f12d5843d41c62414696061356e3ea92677e9103fcd7aa96153fb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总：westd-41074 全 4 卡空闲，所有实验已完成\n\n| GPU | 实验 ID | Status | SR | Episodes | 结果文件 |\n|-----|---------|--------|-----|----------|----------|\n| 0 | eval_pi05_random_k0925_object_seed42_postfix | **COMPLETED** (17:04 today) | **27.2%** | 500 (136 succ) | `eval_results/pi05_random_k0.93_libero_object_seed42.json` |\n| 1 | eval_pi05_random_k0925_goal_seed42_v3 | **COMPLETED** (16:26 today) | **70.0%** | 500 (350 succ) | `eval_results/pi05_random_k0.93_libero_goal_seed42.json` |\n| 2 | eval_pi05_random_k095_spatial_seed42_postfix_v2 | **COMPLETED** (16:28 today) | **76.8%** | 500 (384 succ) | `eval_results/pi05_random_k0.95_libero_spatial_seed42.json` |\n| 3 | eval_pi05_l2norm_k085_goal_seed42_postfix | **COMPLETED** | **87.4%** | 500 (437 succ) | `eval_results/pi05_l2norm_k0.85_libero_goal_seed42.json` |\n\n### Per-task breakdown\n\n**GPU 0 — Random k=0.925 Object (SR=27.2%)**\n| Task | SR |\n|------|-----|\n| T0 alphabet soup | 30% |\n| T1 cream cheese | 36% |\n| T2 salad dressing | 22% |\n| T3 bbq sauce | 28% |\n| T4 ketchup | 8% |\n| T5 tomato sauce | 44% |\n| T6 butter | 48% |\n| T7 milk | 20% |\n| T8 chocolate pudding | 16% |\n| T9 orange juice | 20% |\n\n**GPU 1 — Random k=0.925 Goal (SR=70.0%)**\n| Task | SR |\n|------|-----|\n| T0 open middle drawer | 68% |\n| T1 bowl on stove | 52% |\n| T2 wine bottle on cabinet | 58% |\n| T3 open drawer + bowl inside | 64% |\n| T4 bowl on top cabinet | 94% |\n| T5 push plate | 88% |\n| T6 cream cheese in bowl | 88% |\n| T7 turn on stove | 96% |\n| T8 bowl on plate | 86% |\n| T9 wine bottle on rack | 6% |\n\n**GPU 2 — Random k=0.95 Spatial (SR=76.8%)**\n| Task | SR |\n|------|-----|\n| T0 between plate & ramekin | 100% |\n| T1 next to ramekin | 86% |\n| T2 table center | 88% |\n| T3 on cookie box | 64% |\n| T4 top drawer wooden cabinet | 50% |\n| T5 on ramekin | 80% |\n| T6 next to cookie box | 92% |\n| T7 on stove | 76% |\n| T8 next to plate | 94% |\n| T9 on wooden cabinet | 38% |\n\n**GPU 3 — L2norm k=0.85 Goal (SR=87.4%)**\n| Task | SR |\n|------|-----|\n| T0 open middle drawer | 90% |\n| T1 bowl on stove | 92% |\n| T2 wine bottle on cabinet | 98% |\n| T3 open drawer + bowl inside | 84% |\n| T4 bowl on top cabinet | 100% |\n| T5 push plate | 94% |\n| T6 cream cheese in bowl | 88% |\n| T7 turn on stove | 100% |\n| T8 bowl on plate | 84% |\n| T9 wine bottle on rack | 44% |\n\n### 额外发现（tmux session 中完成的旧实验）\n- `smolvla_spatial` session: SmolVLA official spatial baseline = **55.0%** (110/200, 20eps/task)\n- `xvla_long` session: xVLA l2norm k=0.9 libero_10 = **27.5%** (55/200, 20eps/task)\n\n### 硬件状态\n- 4× NVIDIA RTX PRO 6000 Blackwell (96GB each)\n- 全部 idle (0% util, 0 MiB VRAM)\n- 磁盘: 数据盘 86% (213G/250G) — 偏满，注意空间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

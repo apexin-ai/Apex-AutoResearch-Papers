@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ab6434ff9f6ba168c37",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "status all servers progress",
+  "task_key": "worker_status_all_servers_progress_20260527T091423",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_status_all_servers_progress_20260527T091423_result.json",
+    "occurrence": 1,
+    "bytes": 3457,
+    "sha256": "55782861b18390d0f267a631e5a6e41d7a7bfe9d33f8dcad3b34b4bb35fc6053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全服务器实验进度快照 (2026-05-27 ~17:20 UTC)\n\n---\n\n### westd-27271 (2× RTX PRO 6000 96GB)\n\n| GPU | 利用率 | 显存 | 实验 | 进度 | ETA (UTC) |\n|-----|--------|------|------|------|-----------|\n| 0 | **0%** | 1/98 GB | eval_openvla_l2norm_k09_goal_seed43_v3 | **已完成** SR=75.2% (376/500) | ✅ Done |\n| 1 | 70% | 16/98 GB | eval_openvla_l2norm_k085_object_seed42 | Task 7/10, Ep 40/50 (2.0 eps/min) | ~18:30 |\n\n> ⚠️ GPU0 上运行的不是预期的 `attn_k095_goal_seed42_v2`，而是 `l2norm_k09_goal_seed43_v3`，已完成并空闲。\n\n---\n\n### westd-38929 (4× RTX PRO 6000 96GB)\n\n| GPU | 利用率 | 显存 | 实验 | 进度 | ETA (UTC) |\n|-----|--------|------|------|------|-----------|\n| 0 | 45% | 16/98 GB | eval_openvla_random_k095_long_seed42_v2 | Task 4/10, Ep 10/50 (1.0 eps/min) | ~23:00 |\n| 1 | 75% | 16/98 GB | eval_openvla_l2norm_k095_long_seed42 | Task 8/10, Ep 20/50 (0.8 eps/min) | ~19:50 |\n| 2 | **0%** | 16/98 GB | eval_openvla_l2norm_k075_long_seed42_v2 | Task 7/10, 刚开始 (0.7 eps/min) | ~22:00 |\n| 3 | 86% | 16/98 GB | eval_openvla_attn_k095_long_seed42 | Task 8/10, Ep 30/50 (0.8 eps/min) | ~19:40 |\n\n> ⚠️ GPU2 利用率 0% 但占 16GB 显存——可能在 Task 切换间隙加载环境，非卡死（日志刚完成 Task 6）。\n\n---\n\n### westd-41074 (4× RTX PRO 6000 96GB)\n\n| GPU | 利用率 | 显存 | 实验 | 进度 | ETA (UTC) |\n|-----|--------|------|------|------|-----------|\n| 0 | **0%** | 1/98 GB | **空闲** | — | **现在可用** |\n| 1 | **0%** | 1/98 GB | **空闲** | — | **现在可用** |\n| 2 | 33% | 11/98 GB | eval_pi05_random_k095_long_seed42_strict | Task 6/10, Ep 20/50 | ~18:30 |\n| 3 | 45% | 10/98 GB | eval_pi05_l2norm_k095_long_seed42_strict | Task 8/10, Ep 10/50 (累计 89.8%) | ~18:15 |\n\n---\n\n### cqa1-33015 (4× RTX 4090 D 24GB)\n\n| GPU | 利用率 | 显存 | 实验 | 进度 | ETA (UTC) |\n|-----|--------|------|------|------|-----------|\n| 0 | 21% | 10/25 GB | eval_pi05_random_k07_long_seed42_strict_v2 | Task 2/10 即将开始 (T0=96%, T1=66%) | ~20:40 |\n| 1 | 35% | 10/25 GB | eval_pi05_random_k05_long_seed42_strict | Task 1/10, Ep 20/50 (T0=84%) | ~21:10 |\n| 2 | 21% | 10/25 GB | eval_pi05_l2norm_k085_long_seed42_strict | Task 3/10, Ep 30/50 (累计 92.7%) | ~20:00 |\n| 3 | 74% | 16/25 GB | eval_openvla_attn_k05_goal_seed42_v3 | Task 9/10, Ep 40/50 | ~18:10 |\n\n> ❌ **eval_openvla_random_k095_goal_seed42_v2 已 CRASH** — CUDA OOM，尝试在 GPU0 上和 pi05 实验共存，显存不足。\n\n---\n\n### 汇总\n\n**最早释放的 GPU：**\n1. **westd-27271 GPU0** — 现在空闲\n2. **westd-41074 GPU0, GPU1** — 现在空闲\n3. **cqa1-33015 GPU3** — ~18:10 UTC（~50 min 后）\n4. **westd-41074 GPU3** — ~18:15 UTC\n5. **westd-41074 GPU2** — ~18:30 UTC\n6. **westd-27271 GPU1** — ~18:30 UTC\n\n**异常：**\n1. **cqa1-33015 GPU0**: `eval_openvla_random_k095_goal_seed42_v2` OOM 崩溃，需要单独 GPU 重跑\n2. **westd-27271 GPU0**: 实验名与预期不符（实际跑的是 `l2norm_k09_goal_seed43_v3`），已完成，GPU 空闲\n3. **westd-38929 GPU2**: 瞬时 0% 利用率，大概率是 Task 间隙，暂不判定卡死\n4. **westd-38929 GPU0** 的 Long suite 实验（random k=0.95）进度较慢（1.0 eps/min），ETA 最晚 ~23:00 UTC，仍在 deadline (5/28 08:00 UTC) 之前\n\n**所有实验预计 5/28 00:00 UTC 前完成，无 deadline 风险。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "930d3291691d14986f2b",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "gpu gemma2 kill and debug",
+  "task_key": "worker_gpu_gemma2_kill_and_debug_20260514T160301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma2_kill_and_debug_20260514T160301.log",
+    "occurrence": 1,
+    "bytes": 754048,
+    "sha256": "1a1c3693cc831f3c9628aa4797d1bbdf5a470e2a8636003dd58e67ca9b510808"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 2,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 57,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "930d3291691d14986f2b-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "930d3291691d14986f2b-part-0001.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "930d3291691d14986f2b-part-0001.json",
+          "message_count": 86
+        },
+        {
+          "path": "930d3291691d14986f2b-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "schema_version": "1.0",
+  "id": "50a9615197d0660b14ee",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "research corl2026 template",
+  "task_key": "worker_research_corl2026_template_20260518T172947",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_research_corl2026_template_20260518T172947.jsonl",
+    "occurrence": 1,
+    "bytes": 18890,
+    "sha256": "45a8ac5b54cf708a72ca98d7d459ba011708132ffffdc7d7b3fbed529a864b59"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T17:31:04.290907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T17:31:04.291275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T17:31:04.291476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CoRL 2026 official latex template"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T17:31:04.291654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CoRL 2026 official latex template\"\n\nLinks: [{\"title\":\"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/corl\"},{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"LaTeX Templates for NeurIPS, ICML, CVPR, ACL & More | Underleaf\",\"url\":\"https://www.underleaf.ai/templates\"},{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"GitHub - korpling/CRC-template: LaTeX template for Collaborative Research Center proposals following the DFG guidelines. · GitHub\",\"url\":\"https://github.com/korpling/CRC-template\"},{\"title\":\"LaTeX Templates [Lehigh ISE / COR@L Lab Wiki]\",\"url\":\"https://coral.ise.lehigh.edu/wiki/doku.php/resources:latex\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf\"},{\"title\":\"COLM 2026 Template - Overleaf, Online LaTeX Editor\",\"url\":\"https://www.overleaf.com/latex/templates/colm-2026-template/wbwzrwczsqvg\"},{\"title\":\"Robot Learning Foundation\",\"url\":\"https://www.robot-learning.org/\"}]\n\nBased on the search results, here's information about the CoRL 2026 official LaTeX template:\n\n## Official Template Source\n\nThe official LaTeX template is available at: https://drive.google.com/file/d/1R9irIW0ImqeDHh5g8Ukm2XGy91sWxOsQ/view?usp=drive_link\n\n## Template Specifications\n\nThe CoRL LaTeX template uses a custom style based on PMLR (Proceedings of Machine Learning Research) format. Papers are limited to 8 pages of content plus unlimited references.\n\n## Important Usage Notes\n\nWhen using the template, make sure to use \"\\usepackage[final]{corl_2026}.\" For those preparing camera-ready papers, the camera-ready paper should follow the template: 8-page main text + ack\n…[truncated 426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T17:31:04.291845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CoRL 2026 instruction for authors latex template download",
+              "allowed_domains": "['corl.org', 'www.corl.org']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T17:31:04.291981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T17:31:04.292102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T17:31:04.292267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CoRL 2026 instruction for authors latex template download\"\n\nLinks: [{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"CoRL 2026 - Instruction for Presentations\",\"url\":\"https://www.corl.org/contributions/instruction-for-presentations\"},{\"title\":\"CoRL 2026 - Annoucements\",\"url\":\"https://www.corl.org/annoucements\"},{\"title\":\"CoRL 2024 - Instruction for Authors\",\"url\":\"https://2024.corl.org/contributions/instruction-for-authors\"},{\"title\":\"CoRL 2026 - Demos\",\"url\":\"https://www.corl.org/program/demos\"},{\"title\":\"CoRL 2026 - Registration\",\"url\":\"https://www.corl.org/attending/registration\"},{\"title\":\"CoRL 2026 - Contributions\",\"url\":\"https://www.corl.org/contributions\"},{\"title\":\"CoRL 2021 - Submission Instructions\",\"url\":\"https://2021.corl.org/author-information/submission-instructions\"}]\n\nBased on the search results, I found the information about the CoRL 2026 LaTeX template for authors:\n\nThe LaTeX template for CoRL 2026 is available here: https://drive.google.com/file/d/1R9irIW0ImqeDHh5g8Ukm2XGy91sWxOsQ/view?usp=drive_link\n\nAll submissions should comply with the format and length indicated, with a page limit of 8 pages for the main paper, while Acknowledgments, References, and Appendix (optional) will not count towards the page limit.\n\nYou can access the template directly from the Google Drive link provided above to download it for your paper submission.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T17:31:04.292416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://www.corl.org/contributions/instruction-for-authors",
+              "prompt": "Extract all information about: 1) LaTeX template download link, 2) submission format requirements (page limit, anonymous, line numbers), 3) documentclass options, 4) submission platform (OpenReview?), 5) any style file details (corl_2026.sty, .cls, etc)"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T17:31:04.292549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# CoRL 2026 Submission Information\n\n## 1) LaTeX Template Download Links\n\n- **Initial Submission Template**: Available at https://drive.google.com/file/d/1R9irIW0ImqeDHh5g8Ukm2XGy91sWxOsQ/view?usp=drive_link\n- **Camera-Ready Template**: Available at https://drive.google.com/file/d/19xt72-5YaVqhWRO-ErqRQZ2SPZef8FFe/view?usp=drive_link\n\n## 2) Submission Format Requirements\n\n- **Page Limit**: \"8 pages for the main paper\" for initial submission; 9 pages for camera-ready version\n- **Anonymous Submission**: Double-blind required; all papers must be anonymized for review\n- **Line Numbers**: Not mentioned in the provided content\n\n## 3) Documentclass Options\n\nThe camera-ready instructions specify: \"make sure to use `\\usepackage[final]{corl_2026}`\"\n\nThis indicates a package rather than a documentclass option, suggesting the template uses a custom `corl_2026` package.\n\n## 4) Submission Platform\n\nYes, submissions occur through OpenReview: \"Papers may be submitted through OpenReview via the link [here]\" at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference\n\n## 5) Style File Details\n\nThe document references `corl_2026` as a package (not a separate `.sty` or `.cls` file explicitly detailed). Authors should use `\\usepackage[final]{corl_2026}` in their camera-ready submissions."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T17:31:04.292748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts && mkdir -p corl_template && cd corl_template && curl -L \"https://drive.google.com/uc?export=download&id=1R9irIW0ImqeDHh5g8Ukm2XGy91sWxOsQ\" -o corl_2026_template.zip 2>&1 | tail -5 && ls -la corl_2026_template.zip && file corl_2026_template.zip",
+              "description": "Download CoRL 2026 initial submission template from Google Drive",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T17:31:04.292952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current\n                                 Dload  Upload  Total   Spent   Left   Speed\n\r  0      0   0      0   0      0      0      0                              0\r  0      0   0      0   0      0      0      0                              0\r  0      0   0      0   0      0      0      0                              0\n\r  0      0   0      0   0      0      0      0                              0\r  0      0   0      0   0      0      0      0           00:01              0\r100  17423 100  17423   0      0  13663      0   00:01   00:01          16028\r100  17423 100  17423   0      0  13662      0   00:01   00:01          16028\r100  17423 100  17423   0      0  13661      0   00:01   00:01          16028\n-rw-r--r-- 1 ubuntu ubuntu 17423 May 18 17:30 corl_2026_template.zip\ncorl_2026_template.zip: Zip archive data, made by v2.0 UNIX, extract using at least v2.0, last modified Feb 09 2026 10:00:08, uncompressed size 0, method=store"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T17:31:04.293093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "unzip -o corl_2026_template.zip && find . -type f | head -30",
+              "description": "Unzip CoRL 2026 template and list files"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T17:31:04.293341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Archive:  corl_2026_template.zip\n   creating: corl_2026_template_submission/\n  inflating: __MACOSX/._corl_2026_template_submission  \n  inflating: corl_2026_template_submission/.DS_Store  \n  inflating: __MACOSX/corl_2026_template_submission/._.DS_Store  \n  inflating: corl_2026_template_submission/example.bib  \n  inflating: __MACOSX/corl_2026_template_submission/._example.bib  \n  inflating: corl_2026_template_submission/corlabbrvnat.bst  \n  inflating: __MACOSX/corl_2026_template_submission/._corlabbrvnat.bst  \n  inflating: corl_2026_template_submission/example.tex  \n  inflating: __MACOSX/corl_2026_template_submission/._example.tex  \n  inflating: corl_2026_template_submission/corl_2026.sty  \n  inflating: __MACOSX/corl_2026_template_submission/._corl_2026.sty  \n./corl_2026_template.zip\n./corl_2026_template_submission/corl_2026.sty\n./corl_2026_template_submission/.DS_Store\n./corl_2026_template_submission/example.tex\n./corl_2026_template_submission/corlabbrvnat.bst\n./corl_2026_template_submission/example.bib\n./__MACOSX/corl_2026_template_submission/._corl_2026.sty\n./__MACOSX/corl_2026_template_submission/._example.tex\n./__MACOSX/corl_2026_template_submission/._corlabbrvnat.bst\n./__MACOSX/corl_2026_template_submission/._example.bib\n./__MACOSX/corl_2026_template_submission/._.DS_Store\n./__MACOSX/._corl_2026_template_submission"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T17:31:04.293558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/corl_template/corl_2026_template_submission/example.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T17:31:04.293749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage{corl_2026} % Use this for the initial submission.\n4\t% \\usepackage[final]{corl_2026} % Uncomment for the camera-ready ``final'' version.\n5\t% \\usepackage[preprint]{corl_2026} % Uncomment for pre-prints (e.g., arxiv); This is like ``final'', but will remove the CORL footnote.\n6\t\n7\t\\title{Formatting Instructions for CoRL 2026 Camera-Ready}\n8\t\n9\t% The \\author macro works with any number of authors. There are two\n10\t% commands used to separate the names and addresses of multiple\n11\t% authors: \\And and \\AND.\n12\t%\n13\t% Using \\And between authors leaves it to LaTeX to determine where to\n14\t% break the lines. Using \\AND forces a line break at that point. So,\n15\t% if LaTeX puts 3 of 4 authors names on the first line, and the last\n16\t% on the second line, try using \\AND instead of \\And before the third\n17\t% author name.\n18\t\n19\t% NOTE: authors will be visible only in the camera-ready and preprint versions (i.e., when using the option 'final' or 'preprint'). \n20\t% \tFor the initial submission the authors will be anonymized.\n21\t\n22\t\\author{\n23\t  Jane E.~Doe\\\\\n24\t  Department of Electrical Engineering and Computer Sciences\\\\\n25\t  University of California Berkeley \n26\t  United States\\\\\n27\t  \\texttt{janedoe@berkeley.edu} \\\\\n28\t  %% examples of more authors\n29\t  %% \\And\n30\t  %% Coauthor \\\\\n31\t  %% Affiliation \\\\\n32\t  %% Address \\\\\n33\t  %% \\texttt{email} \\\\\n34\t  %% \\AND\n35\t  %% Coauthor \\\\\n36\t  %% Affiliation \\\\\n37\t  %% Address \\\\\n38\t  %% \\texttt{email} \\\\\n39\t  %% \\And\n40\t  %% Coauthor \\\\\n41\t  %% Affiliation \\\\\n42\t  %% Address \\\\\n43\t  %% \\texttt{email} \\\\\n44\t  %% \\And\n45\t  %% Coauthor \\\\\n46\t  %% Affiliation \\\\\n47\t  %% Address \\\\\n48\t  %% \\texttt{email} \\\\\n49\t}\n50\t\n51\t\n52\t\\begin{document}\n53\t\\maketitle\n54\t\n55\t%===============================================================================\n56\t\n57\t\\begin{abstract}\n58\t    The purpose of this document is to provide both the basic paper template and submission guidelines. Abstracts should be a single \n…[truncated 6129 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T17:31:04.293908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/corl_template/corl_2026_template_submission/corl_2026.sty"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T17:31:04.294223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% File: corl_2026.sty \n2\t%\n3\t% Latex templates for the Conference on Robot Learning (CoRL)\n4\t%\n5\t% This template is heavily inspired by the NeurIPS, ICML, ICLR and IEEE Transactions latex templates.\n6\t% Hence we would like to thank: Roman Garnett and the previous mantainers of the NIPS style, Percy Liang and the previous mantainers of the ICML style, Hugo Larochelle for the ICLR style, and Michael Shell for the IEEE Transactions style.\n7\t%\n8\t% History:\n9\t% 2017/04/16 - First revision by Roberto Calandra (roberto.calandra@berkeley.edu).\n10\t%\t       Main changes:\n11\t%\t       - The abstract is more compact compared to NeurIPS/ICML\n12\t%\t       - References are by default using natbib with squared numbers (e.g., [1])\n13\t%\t       - DOI fields from the bibtex are automatically converted to hyperlinks \n14\t%\t       to the corresponding page\n15\t%\t       - acknowledgments are now a command, and the corresponding subsubsection is\n16\t%\t       automatically included only in the final version\n17\t% 2017/06/12 - Modified to use corlabbrvnat.bst, which order the reference by order of appearance in the paper\n18\t% 2017/06/13 - fixed typo\n19\t% 2018/05/09 - Slightly modified for CoRL 2018 by Jun Morimoto (xmorimo@atr.jp)\n20\t% 2019/01/28 - Slightly modified for CoRL 2019 by Jun Nakanishi (jnakanis@meijo-u.ac.jp)\n21\t% 2020/02/02 - Slightly modified for CoRL 2020 by Cynthia Matuszek (cmat@umbc.edu)\n22\t% 2020/08/19 - Added preprint option by Roberto Calandra (rcalandra@fb.com)\n23\t% 2021/05/06 - Slightly modified for CoRL 2021 by Gerhard Neumann (gerhard.neumann@kit.edu)\n24\t% 2022/03/09 - Slightly modified for CoRL 2022 by Minas Liarokapis (minas.liarokapis@auckland.ac.nz)\n25\t% 2022/03/06 - Slightly modified for CoRL 2023 by Marc Toussaint (toussaint@tu-berlin.de)\n26\t% 2024/03/26 - Slightly modified for CoRL 2024 by David Held (dheld@andrew.cmu.edu)\n27\t% 2026/01/10 - Slightly modified for CoRL 2026 by Yoonchang Sung (yoonchang.sung@ntu.edu.sg)\n28\t%\n29\t% TODO: nohyperref is not working at th\n…[truncated 14645 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T17:31:04.294479+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "模板文件已完整获取。以下是结果汇总：\n\n---\n\n## CoRL 2026 官方 LaTeX 模板\n\n### 模板来源\n- **官方页面**: [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- **Initial Submission 模板**: [Google Drive 下载](https://drive.google.com/file/d/1R9irIW0ImqeDHh5g8Ukm2XGy91sWxOsQ/view?usp=drive_link)\n- **Camera-Ready 模板**: [Google Drive 下载](https://drive.google.com/file/d/19xt72-5YaVqhWRO-ErqRQZ2SPZef8FFe/view?usp=drive_link)\n\n### 模板类型\n**CoRL 自定义 .sty**（基于 NeurIPS/ICML/ICLR 风格修改），不是 .cls 文件。\n\n模板文件清单：\n- `corl_2026.sty` — 主样式文件\n- `example.tex` — 模板主文件\n- `example.bib` — 参考文献示例\n- `corlabbrvnat.bst` — 引用排序样式（按出现顺序）\n\n### documentclass 选项\n\n```latex\n\\documentclass{article}\n\n\\usepackage{corl_2026}            % 初始投稿（匿名、带行号）\n% \\usepackage[final]{corl_2026}   % Camera-ready（显示作者、去行号）\n% \\usepackage[preprint]{corl_2026} % Preprint/arXiv（显示作者、去 CoRL 脚注）\n```\n\n可用选项：`final`, `preprint`, `nonatbib`, `nohyperref`\n\n### 关键格式规范\n- **页数**: 正文 8 页（camera-ready 9 页），References 和 Appendix 不计入\n- **匿名**: 默认 double-blind，作者显示为 \"Anonymous Author(s)\"\n- **行号**: submission 版自动启用（`\\linenumbers`），final/preprint 版无行号\n- **投稿平台**: [OpenReview](https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference)\n- **会议信息**: 第 10 届 CoRL，Austin TX, USA\n\n### 已下载位置\n模板已解压到：\n```\nartifacts/corl_template/corl_2026_template_submission/\n```\n\n**当前项目的 12 行 placeholder `corl_2026.cls` 应替换为这个官方 `corl_2026.sty`，并将 `\\documentclass` 改为 `\\documentclass{article}` + `\\usepackage{corl_2026}`。**\n\nSources:\n- [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 Homepage](https://www.corl.org/)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_corl2026_template_20260518T172947"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ]
+}

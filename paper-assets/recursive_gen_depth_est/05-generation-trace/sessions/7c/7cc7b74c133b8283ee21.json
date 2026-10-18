@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc7b74c133b8283ee21",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra predownload baseline models",
+  "task_key": "worker_infra_predownload-baseline-models_20260519T143814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_predownload-baseline-models_20260519T143814_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "2f292e09e14b95f716b5d7a4d2701e601b6b2cf957b42cce62738a850cc820b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型均已下载完成，残留文件已清理。\n\n**最终结果：**\n\n| 模型 | 缓存路径 | 大小 | 状态 |\n|------|----------|------|------|\n| `google-t5/t5-large` | `/root/autodl-tmp/.hf_cache/hub/models--google-t5--t5-large/snapshots/150ebc2c4b72291e770f58e6057481c8d2ed331a` | 2.8GB | ✓ |\n| `EleutherAI/pythia-410m` | `/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f` | 1.1GB | ✓ |\n\n两个模型都已缓存到数据盘 `/root/autodl-tmp/.hf_cache/`，snapshot 目录完整（config.json、tokenizer、model.safetensors 等文件齐全），后续 `from_pretrained` 加载时会直接走本地缓存，不再需要下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

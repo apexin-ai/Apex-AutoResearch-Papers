@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16835f382fcaae9ab671",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh llama model check",
+  "task_key": "worker_ssh_llama-model-check_20260515T063112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-model-check_20260515T063112_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "cfd561bd65c9fbf61dcacbcbb3940fb5f67da7b7b966e2d4b8c8e31525487130"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**模型未缓存，且磁盘空间不足。**\n\n| 项目 | 结果 |\n|------|------|\n| 模型缓存 | **NOT_CACHED** — HF cache 和 autodl-tmp 下均未找到任何 Llama-70B 相关目录 |\n| 磁盘空间 | `/root/autodl-tmp/` 总计 250G，已用 219G，**剩余仅 32G** |\n| FP8 70B 模型需求 | 约 **70-80GB** |\n| 结论 | **空间不足，无法下载**。缺口约 40-50GB |\n\n需要先清理磁盘腾出空间才能下载。可以检查一下 autodl-tmp 下哪些东西占空间大，看有没有可清理的。要查看吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

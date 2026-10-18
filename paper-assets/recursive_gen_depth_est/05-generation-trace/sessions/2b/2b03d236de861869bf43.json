@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2b03d236de861869bf43",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops roberta model fix",
+  "task_key": "worker_ops_roberta_model_fix_20260515T124239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_roberta_model_fix_20260515T124239_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "1934f580c71930df94386cc03dbb13a589b468b616a7cec1679eab5befedb5da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复完成\n\n| 项目 | 结果 |\n|------|------|\n| 进程清理 | PID 235755 + 4个并发下载进程全部终止 |\n| 模型验证 | **通过** — 加载成功，forward pass 正常 |\n| 参数量 | **124,645,632** (124.6M) |\n| 输出形状 | `[1, 4, 768]` |\n| 残留标记文件 | CLEAN |\n\n目录最终内容：\n- `model.safetensors` (499MB) — 从 HF cache 完整 blob 复制\n- `pytorch_model.bin` (501MB) — 之前并发进程下载的副本\n- config.json, tokenizer.json, vocab.json, merges.txt, dict.txt 等配置文件齐全"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

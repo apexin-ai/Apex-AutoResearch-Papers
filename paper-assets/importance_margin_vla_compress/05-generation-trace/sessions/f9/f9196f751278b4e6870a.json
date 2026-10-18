@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f9196f751278b4e6870a",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops batch kill preparing",
+  "task_key": "worker_ops_batch_kill_preparing_20260529T062725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_batch_kill_preparing_20260529T062725.log",
+    "occurrence": 1,
+    "bytes": 1792256,
+    "sha256": "4a7cddf9c7f611330b8204668666b878821dd6f13904ac155095fb484be0ffd6"
+  },
+  "statistics": {
+    "messages": 807,
+    "user_turns": 1,
+    "tool_calls": 392,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 392,
+      "tool_result": 392,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 608,
+      "chunks": [
+        {
+          "path": "f9196f751278b4e6870a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9196f751278b4e6870a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9196f751278b4e6870a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9196f751278b4e6870a-part-0004.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "f9196f751278b4e6870a-part-0004.json",
+          "message_count": 112
+        },
+        {
+          "path": "f9196f751278b4e6870a-part-0005.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ]
+}

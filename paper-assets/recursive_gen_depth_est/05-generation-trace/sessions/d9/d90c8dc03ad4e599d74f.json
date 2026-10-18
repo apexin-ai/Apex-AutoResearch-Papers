@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "d90c8dc03ad4e599d74f",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis d1d3 inconsistency audit",
+  "task_key": "worker_analysis_d1d3_inconsistency_audit_20260518T161211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d1d3_inconsistency_audit_20260518T161211.log",
+    "occurrence": 1,
+    "bytes": 692657,
+    "sha256": "96371be677000c4175bfad9318c83497b7e123470f5f8e23d28daaa12b9da926"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 64,
+      "tool_result": 64
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "d90c8dc03ad4e599d74f-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "d90c8dc03ad4e599d74f-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ]
+}

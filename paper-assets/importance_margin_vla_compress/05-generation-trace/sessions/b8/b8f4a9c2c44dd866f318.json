@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8f4a9c2c44dd866f318",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit cqa1 gpu usage",
+  "task_key": "worker_audit_cqa1_gpu_usage_20260524T234614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_cqa1_gpu_usage_20260524T234614_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "009018e734bc0ed12da55e487395b333a1810b6bf00b45b7488b30255fff855a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总 cqa1-33015 完整 GPU 状态：\n\n## cqa1-33015 GPU 状态表\n\n| GPU | 显存占用 | PID | 实验 | Registry 状态 |\n|-----|---------|-----|------|--------------|\n| **0** | 10308 MiB / 24564 MiB | 733134 | π0.5 Random k=0.85 Object seed43 (`eval_pi05_random_k085_object_seed43_postfix`) | RUNNING ✅ |\n| **1** | 10369 MiB / 24564 MiB | 788487 | π0.5 Random k=0.85 Spatial seed43 (`eval_pi05_random_k085_spatial_seed43_postfix`) | RUNNING ✅ |\n| **2** | 10xxx MiB (加载中) | 860107 | **新部署** π0.5 Random k=0.85 Long seed43 (`eval_pi05_random_k085_long_seed43_v2`) | RUNNING ✅ |\n| **3** | 10371 MiB / 24564 MiB | 792821 | π0.5 L2norm k=0.85 Spatial seed43 (`eval_pi05_l2norm_k085_spatial_seed43_postfix`) | RUNNING ✅ |\n\n**发现：**\n- Director 预期的 \"Random k=0.5/0.7/0.85/0.95 seed43\" 系列已完成并下线，当前 cqa1 跑的是 **k=0.85 postfix 系列**（cliff zone 补充）\n- GPU 2 原本空闲，已部署 **Random k=0.85 Long seed43** — 填补 Long suite 在 k=0.85 cliff zone 完全缺失 Random baseline 的空白（seed42/43 都没有结果文件）\n- 所有 4 张 GPU 现在都有活跃进程且 registry 匹配，无未注册实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

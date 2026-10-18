@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e94b5b78a3fd0f8ec355",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code multiseed lambada eval",
+  "task_key": "worker_code_multiseed_lambada_eval_20260518T181921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multiseed_lambada_eval_20260518T181921_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "a65e80509eeb41b6b34b2d07274a5c62978683b8ac049285791b678cc31c4ceb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**Multi-seed 评测结论：lambada_openai 对 seed 完全不敏感**\n\n| 模型 | acc | ppl | acc_stderr (bootstrap) |\n|------|-----|-----|----------------------|\n| GDN-pure | 0.5440 | 8.261 | 0.00694 |\n| GDN-h24-1 | 0.5412 | 8.552 | 0.00694 |\n\n所有已跑的 seed（0, 1, 4）对同一模型产生**完全相同**的结果（acc 和 ppl 一致到小数点后 16 位）。\n\n**原因**：lambada_openai 是 0-shot 评测任务（无 few-shot 采样），seed 只控制 few-shot example 的随机选取。0-shot 下没有随机性，评测是完全确定性的。\n\n**关于 GDN-pure vs GDN-h24-1 的差异**：\n- acc 差值 = 0.0027（GDN-pure 略高）\n- 根据 lm_eval 的 bootstrap stderr (~0.0069)，差值仅 0.39 个标准误，**不显著**\n- 按原定判断标准（差值 > 2×std），由于 cross-seed std = 0，判据退化\n\n**建议**：\n1. Multi-seed 方案对 0-shot 任务无效，不需要继续跑剩余模型的多 seed\n2. 如需统计显著性，应使用 lm_eval 自带的 bootstrap stderr（已有），或对 few-shot 任务（如 hellaswag、arc）做 multi-seed\n3. GDN-pure 和 GDN-h24-1 在 lambada 上差异不显著\n\n是否需要对 few-shot 任务（如 hellaswag 5-shot）做 multi-seed 评测？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

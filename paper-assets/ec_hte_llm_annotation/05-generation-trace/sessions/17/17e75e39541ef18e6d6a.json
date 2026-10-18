@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "17e75e39541ef18e6d6a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research p0b kappa analysis",
+  "task_key": "worker_research_p0b-kappa-analysis_20260523T135842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_p0b-kappa-analysis_20260523T135842.log",
+    "occurrence": 1,
+    "bytes": 644379,
+    "sha256": "29879d38c35459601084b8ced3325f9c54e4ba7927b414f83f220c6c3590daaf"
+  },
+  "statistics": {
+    "messages": 330,
+    "user_turns": 2,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 73,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 115,
+      "tool_result": 115,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "17e75e39541ef18e6d6a-part-0001.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "17e75e39541ef18e6d6a-part-0001.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "17e75e39541ef18e6d6a-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "17e75e39541ef18e6d6a-part-0002.json",
+          "message_count": 150
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3882b4569456d56e762a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops scale 003 status check",
+  "task_key": "worker_ops_scale_003_status_check_20260518T181725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scale_003_status_check_20260518T181725_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "bdbb9f4ce6686623acffc5d5d9df0fe018775df6752d581d5a193236758cf73d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### qwen25_14b_scale_003 — 正在运行\n\n| 项目 | 状态 |\n|------|------|\n| PID | 20700 |\n| GPU | cuda:0, 32,372 MiB / 97,887 MiB, 92% util |\n| tmux | `qwen25_14b_scale_003` (May 18 03:10 创建) |\n| 当前阶段 | **Phase 3.3b — 正在生成 d3**（5000 samples with LoRA(d2)，模型权重已加载完成，推理中）|\n\n**已完成阶段：**\n- d0→d1 训练: loss=0.3451, 3 epochs, adapter 已存 `lora_depth_0`\n- d1→d2 生成 + d2 训练: loss=0.2141, 3 epochs, adapter 已存 `lora_depth_1`, `lora_depth_2`\n- d3 生成: 模型加载完毕，正在推理\n\n**results 目录为空的原因：** 启动命令的 `{ ... tee run_003.log; } > ~/runs/....log 2>&1` 结构中，外层 redirect 捕获了 stdout，导致 tee 的文件输出无效。实际日志在 `/root/runs/recursive_gen_depth_est/qwen25_14b_scale_003.log`（186 行）。\n\n### 额外发现：detectgpt_baseline 也在跑\n\n| 项目 | 状态 |\n|------|------|\n| PID | 78073 (今天 02:10 启动) |\n| GPU | cuda:1, 3,652 MiB |\n| 阶段 | 加载 perturbation model (t5-large) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

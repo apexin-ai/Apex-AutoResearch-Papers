@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "9c21546cdedf71676907",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code formality llama rewriter",
+  "task_key": "worker_code_formality_llama_rewriter_20260524T065554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_formality_llama_rewriter_20260524T065554.log",
+    "occurrence": 1,
+    "bytes": 1633211,
+    "sha256": "0cefe0718d8ce92847c4bff0195d8ae60325b89226dfcf8d6878c93b33e27103"
+  },
+  "statistics": {
+    "messages": 1245,
+    "user_turns": 1,
+    "tool_calls": 541,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 154,
+      "tool_call": 541,
+      "tool_result": 541,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 874,
+      "chunks": [
+        {
+          "path": "9c21546cdedf71676907-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c21546cdedf71676907-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c21546cdedf71676907-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c21546cdedf71676907-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c21546cdedf71676907-part-0005.json",
+          "message_count": 154
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 371,
+      "chunks": [
+        {
+          "path": "9c21546cdedf71676907-part-0005.json",
+          "message_count": 26
+        },
+        {
+          "path": "9c21546cdedf71676907-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c21546cdedf71676907-part-0007.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2edad8ce6a75d69b7d3a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 gpu01 urgent redeploy",
+  "task_key": "worker_deploy_cqa1-gpu01-urgent-redeploy_20260525T214706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-gpu01-urgent-redeploy_20260525T214706_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "dba6448db440c809b805f3a6abaf488b99e338b04fe5687a9962c88e96f94107"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动：\n\n| GPU | 实验 | 显存 | 状态 |\n|-----|------|------|------|\n| GPU0 | zeromask_random k=0.9 Object | 10336 MiB, 12% | 运行中，已开始 eval（n_keep=230/256） |\n| GPU1 | L2norm k=0.75 Long | 20962 MiB, 36% | 运行中，已开始 eval（n_keep=192/256） |\n\n两个实验 registry 均已更新为 RUNNING，旧的 stale entries 已标记为 DONE(failed)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5d7eaa8e8af7bdb347b1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd38929 westd27271 gpu 20260526",
+  "task_key": "worker_audit_westd38929-westd27271-gpu-20260526_20260526T192539",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd38929-westd27271-gpu-20260526_20260526T192539_result.json",
+    "occurrence": 1,
+    "bytes": 1787,
+    "sha256": "6e945107f8472e3bb253a45d2470f1c933c5d218e7956ff38a371effcb5e1ede"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-38929\n\n| GPU | PID | Mode | k_ratio | Suite | Running | Util | Mem |\n|-----|-----|------|---------|-------|---------|------|-----|\n| 0 | 623613 | l2norm_prune | 0.50 | libero_10 | 5h31m | 72% | 16339/97887 MiB |\n| 1 | 668245 | random_prune | 0.85 | libero_10 | 4h03m | 62% | 16339/97887 MiB |\n| 2 | 732931 | l2norm_prune | 0.75 | libero_10 | 1h55m | 62% | 15762/97887 MiB |\n| 3 | 514356 | attention_prune | 0.85 | libero_10 | 8h16m | 62% | 15919/97887 MiB |\n\n**Cron 匹配：**\n- GPU 3 PID 514356 ← `eval_openvla_attn_k085_long_seed42_v5` (cron PID 514347, 父进程)\n- GPU 1 PID 668245 ← `eval_openvla_random_k085_long_seed42_v3` (cron PID 668236)\n- GPU 2 PID 732931 ← `eval_openvla_l2norm_k075_long_seed42` (cron PID 732922)\n\n**UNTRACKED: GPU 0 PID 623613** — `l2norm_prune k=0.50 libero_10 seed=42`，已跑 5.5 小时\n\n---\n\n## westd-27271\n\n| GPU | PID | Mode | k_ratio | Suite | Running | Util | Mem |\n|-----|-----|------|---------|-------|---------|------|-----|\n| 0 | 414927 | l2norm_prune | 0.75 | libero_goal | 2h32m | 70% | 15946/97887 MiB |\n| 1 | 397225 | attention_prune | 0.50 | libero_10 | 3h28m | 71% | 15861/97887 MiB |\n\n**Cron 匹配：**\n- GPU 0 PID 414927 ← `eval_openvla_l2norm_k075_goal_seed42_v2` (cron PID 414922)\n\n**UNTRACKED: GPU 1 PID 397225** — `attention_prune k=0.50 libero_10 seed=42`，已跑 3.5 小时\n\n---\n\n## 未追踪实验汇总\n\n| 服务器 | GPU | PID | 实验 | 运行时长 |\n|--------|-----|-----|------|----------|\n| westd-38929 | 0 | 623613 | l2norm_prune k=0.50 libero_10 seed42 | 5h31m |\n| westd-27271 | 1 | 397225 | attention_prune k=0.50 libero_10 seed42 | 3h28m |\n\n两个未追踪的都是 **k=0.50 libero_10** 的评估，分别是 l2norm 和 attention 方法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

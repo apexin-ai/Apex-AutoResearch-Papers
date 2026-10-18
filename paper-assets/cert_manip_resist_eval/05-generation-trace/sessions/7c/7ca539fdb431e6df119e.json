@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7ca539fdb431e6df119e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis r6 2c eta under kappa",
+  "task_key": "worker_analysis_r6-2c-eta-under-kappa_20260525T072558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r6-2c-eta-under-kappa_20260525T072558_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "af5b7e0f454ee9bc18300f8d55e504f176d2c1f7d48609748c367a364b650693"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n```\nη_max under κ-diversity regression:\nK=3: FDR sig 1/12, mean β_std = 0.190\nK=5: FDR sig 4/12, mean β_std = 0.104\nK=7: FDR sig 1/12, mean β_std = 0.075\n\nη_max under K_eff regression (对比):\nK=3: FDR sig 4/12, mean β_std = 0.266\nK=5: FDR sig 2/12, mean β_std = 0.101\nK=7: FDR sig 1/12, mean β_std = 0.084\n\nDecline pattern preserved? YES\n```\n\n两个关键发现：\n\n1. **单调衰减在 κ-diversity 下持存**：0.190→0.104→0.075，与 K_eff 下的 0.266→0.101→0.084 方向一致。η_max 效应量随 K 增大被稀释是 metric-agnostic 的 robust finding。\n\n2. **κ-diversity 回归中 η_max 的绝对效应量更小**（K=3 时 0.190 vs 0.266），但衰减斜率更陡（K=3→K=7 下降 60% vs 68%）。FDR 显著条件数两边都很低（κ-div 峰值 4/12 在 K=5，K_eff 峰值 4/12 在 K=3），说明 η_max 本身就是弱信号，但方向性衰减一致。\n\nJSON 已保存至 `artifacts/results/plan001/eta_under_kappa_diversity.json`，memory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

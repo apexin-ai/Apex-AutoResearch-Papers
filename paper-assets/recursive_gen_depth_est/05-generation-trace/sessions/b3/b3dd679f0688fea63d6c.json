@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b3dd679f0688fea63d6c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp plan 013 downstream curation poc",
+  "task_key": "worker_exp_plan_013_downstream_curation_poc_20260515T213758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_013_downstream_curation_poc_20260515T213758_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "7b8b15ac48b282dfdacd0d101a2fdfe0695af343d67debecbc7df265da63bfde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full 40-run finetune job is running. Summary:\n\n**Dry run result:** unfiltered/seed_42 → PPL=15.74, train_loss=1.655, 419s\n\n**Full job status:**\n- PID: **364466** on gpu-6000pro-2 (cuda:1)\n- Log: `/tmp/finetune_full.log`\n- Run 1 skipped (reusing dry run), Run 2 (unfiltered/seed_123) training at ~3.9 it/s\n- ETA: **~3.5-4 hours** (39 remaining runs × ~5-6 min each)\n- Registry: `downstream_curation_poc_001` → RUNNING\n\n**After completion**, run:\n```bash\n# Analyze phase (statistical comparison)\npython src/curation_poc.py --phase analyze\n\n# Check results\ncat results/curation_poc/summary.json\n```\n\nMonitor progress with:\n```bash\n# Check which runs are done\ngrep -E \"PPL=|SKIP|/40\\]\" /tmp/finetune_full.log\n# Check if still running\nps -p 364466 -o pid=\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

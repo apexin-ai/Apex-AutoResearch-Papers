@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7e4495b80939c027555a",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "fix w27 attn code sync",
+  "task_key": "worker_fix_w27_attn_code_sync_20260527T175538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_w27_attn_code_sync_20260527T175538.log",
+    "occurrence": 1,
+    "bytes": 693377,
+    "sha256": "0bbbb3457ad9547eed2e79f8fe4ea92d269a9f1e0d9ee9f602cd25f743b8bf44"
+  },
+  "statistics": {
+    "messages": 207,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "7e4495b80939c027555a-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "7e4495b80939c027555a-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ]
+}

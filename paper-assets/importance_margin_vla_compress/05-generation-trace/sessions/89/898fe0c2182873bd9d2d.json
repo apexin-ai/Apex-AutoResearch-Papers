@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "898fe0c2182873bd9d2d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest random k085 s45 w27",
+  "task_key": "worker_harvest_random_k085_s45_w27_20260528T025756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_random_k085_s45_w27_20260528T025756_result.json",
+    "occurrence": 1,
+    "bytes": 295,
+    "sha256": "e94f37f8bc03bc98d62c236d796325d14a7a993baac22894b681ae7b5f442537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。\n\n**Random k=0.85 seed45: SR=44.2%**\n\nPer-task: T0=52%, T1=54%, T2=52%, T3=72%, T4=6%, T5=38%, T6=34%, T7=42%, T8=14%, T9=78%\n\n**4-seed 汇总 (s42/s43/s44/s45): 47.2% / 44.0% / 45.6% / 44.2% → mean=45.25% ±1.4pp**\n\nValley 深度稳定，方差很小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

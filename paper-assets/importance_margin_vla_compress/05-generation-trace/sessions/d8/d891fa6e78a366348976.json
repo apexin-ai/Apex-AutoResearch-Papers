@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d891fa6e78a366348976",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis smolvla entropy perlayer fix",
+  "task_key": "worker_analysis_smolvla_entropy_perlayer_fix_20260518T071428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_smolvla_entropy_perlayer_fix_20260518T071428_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "89f28f166cf445d92131d00d723be385d082c14203d6551019d0ae92f55d519a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果：\n\n## 采样验证\n- 10 个 LIBERO-Object task 全部覆盖，每个 task 26 帧，共 260 帧\n- task 20-29 逐一确认（orange juice, ketchup, cream cheese, bbq sauce, alphabet soup, milk, salad dressing, butter, tomato sauce, chocolate pudding）\n\n## 结果对比\n\n| 指标 | 旧（bug, task 0-8） | 新（LIBERO-Object, task 20-29） |\n|---|---|---|\n| **Overall entropy ratio** | 0.944 | **0.9521** |\n\n差异仅 +0.008，**结论不变**：SmolVLA 的 vision attention entropy 在 LIBERO-Object 上仍然很高（~0.95），注意力分布接近均匀。\n\n## Per-layer breakdown（新结果）\n\n| Layer | Entropy | Vis Frac |\n|-------|---------|----------|\n| L0  | 0.9826 | 0.5951 |\n| L1  | 0.9561 | 0.6693 |\n| L2  | 0.9597 | 0.5137 |\n| L3  | 0.9434 | 0.6170 |\n| L4  | 0.9408 | 0.4429 |\n| L5  | 0.9406 | 0.5684 |\n| L6  | 0.9474 | 0.4555 |\n| L7  | 0.9628 | 0.5861 |\n| L8  | 0.9614 | 0.4748 |\n| L9  | 0.9572 | 0.5875 |\n| L10 | 0.9455 | 0.4638 |\n| L11 | 0.9510 | 0.6060 |\n| L12 | 0.9485 | 0.4877 |\n| L13 | 0.9311 | 0.5935 |\n| L14 | 0.9482 | 0.5264 |\n| L15 | 0.9566 | 0.6703 |\n\n所有 layer entropy 都在 0.93-0.98 范围，L13 最低（0.9311）。论文中的 claim 无需更新。结果已保存至 `eval_results/smolvla_attention_entropy_perlayer_fixed.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

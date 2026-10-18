@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d267dc9d169d1e6d871",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig keff hist r2 heatmap",
+  "task_key": "worker_ops_fig-keff-hist-r2-heatmap_20260525T155945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-keff-hist-r2-heatmap_20260525T155945_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "0c476dd6291f69161194cea9c9733a93eefd80fa414f3f1a2580e505663c5e45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个图均正确：\n\n**图 A (K_eff Histogram)**：K=3/5/7 三组分布清晰分离，均值分别为 2.09/3.48/4.87，虚线标注到位。K=3 分布最宽（相对范围），K_eff 值域 [0.75, 6.21]，符合预期。\n\n**图 B (R² Heatmap)**：Threshold 聚合方法在所有 K 值下 R² 最高（0.83/0.41/0.51），Bayesian 最低（0.09/0.17/0.10）。Majority 和 Weighted 表现接近。颜色映射和数值标注清晰。\n\n输出文件：\n- `docs/paper/figures/fig_keff_hist.pdf` + `.png`\n- `docs/paper/figures/fig_aggregation_r2_heatmap.pdf` + `.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

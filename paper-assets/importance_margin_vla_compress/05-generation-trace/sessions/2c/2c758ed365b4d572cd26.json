@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2c758ed365b4d572cd26",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy openvla attn westd38929",
+  "task_key": "worker_deploy_openvla_attn_westd38929_20260524T190203",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla_attn_westd38929_20260524T190203_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "0da688f339bb5d2cf97513c9037350caa7fb078f7d94e13099881f99aab5c22d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**无需部署 — 实验已在运行中。**\n\nGPU0 和 GPU1 上正在执行的进程 **完全匹配** 你要部署的两个实验：\n\n| GPU | PID | 命令 | 状态 |\n|-----|-----|------|------|\n| GPU0 | 692475 | `eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42` | 运行中 (90% util) |\n| GPU1 | 693434 | `eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42` | 运行中 (72% util) |\n\n启动时间约 2026-05-25 02:25。输出 JSON 尚未生成，说明评估仍在进行中。GPU2/GPU3 上也各有一个进程在跑（~10.5GB 显存）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

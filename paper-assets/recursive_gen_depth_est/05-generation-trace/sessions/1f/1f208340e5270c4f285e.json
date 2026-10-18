@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f208340e5270c4f285e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross cell baselines",
+  "task_key": "worker_analysis_cross_cell_baselines_20260515T035515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_cell_baselines_20260515T035515_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "b03a4f0eff8fde7104c95719d24f7554f620bc5dc4450ed55c1768e67e04dc3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9-cell baseline battery 完成。结果摘要：\n\n**3×3 Best Accuracy Matrix (4-class, paper Table 1):**\n\n|          | nucleus | temp09 | topk50 |\n|----------|---------|--------|--------|\n| Pythia   | 78.2%   | 77.2%  | 68.8%  |\n| OLMo     | 79.6%   | 82.7%  | 75.9%  |\n| GPT-2 XL | 84.3%   | 85.3%  | 75.4%  |\n\n**关键发现：**\n- 4 种 baselines 性能非常接近（RF ≈ CORAL > DivEye > LR），最大差距 ~4pp\n- GPT-2 XL temp09 是最强配置（85.3% RF），GPT-2 XL nucleus 次之（84.3% CORAL）\n- Top-k 解码显著削弱深度信号（-9~13pp vs nucleus），但仍远超 chance（25%）\n- 模型效应 > 解码策略效应：GPT-2 XL topk50（75.4%）仍优于 Pythia nucleus（78.2%）相当\n\n**产出位置：**\n- 完整 JSON: `gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/baseline_battery_9cell/all_results.json`\n- Artifact: `9cell_baseline_battery_results` (art_20260515_12b98b)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

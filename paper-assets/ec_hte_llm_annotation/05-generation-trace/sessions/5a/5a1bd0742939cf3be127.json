@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5a1bd0742939cf3be127",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code gpu progress check",
+  "task_key": "worker_code_gpu-progress-check_20260521T182323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-progress-check_20260521T182323_result.json",
+    "occurrence": 1,
+    "bytes": 2111,
+    "sha256": "7763f7a0465b8981118b3e1d3546b98ab59a10a37cf629059bdf04a0240d68a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-rtx6000 进度报告\n\n### 1. GPU 利用率\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 0 / 96 GB |\n| 1 | 100% | 0 / 96 GB |\n| 2 | 0% | 0 / 96 GB |\n| 3 | 0% | 0 / 96 GB |\n\nGPU 1 显示 100% 利用率但 0 显存占用，可能是后台 kernel 活动或报告异常。**无模型加载推理**。\n\n### 2. 模型下载进度\n\n| 模型 | 预估总大小 | 已下载(final+temp) | 进度 | 状态 |\n|------|-----------|-------------------|------|------|\n| Gemma-2-9B-IT | ~18 GB | 11 GB (temp) | ~61% | 下载中 |\n| Llama-3.1-8B-Instruct | ~14 GB | 1.2G final + ~8G temp | ~65% | 下载中 |\n| Qwen2.5-7B-Instruct | ~14 GB | 1.1G final + 5G temp | ~43% | 下载中 |\n| Mistral-7B-Instruct-v0.3 | ~15 GB | 3.2M final + 1.5G temp | ~10% | 下载中 |\n\nModelScope cache 另有 7.5G（LLM-Research 目录），可能是早期下载的备份。\n\n### 3. 当前运行进程\n\n有 **3 个下载进程** 并行跑：\n- `sequential_download.py` (PID 8925) — 正在下载 Llama shards\n- `download_models.py` (PID 11382) — 正在下载 Gemma/Mistral\n- `download_and_annotate.py` (PID 12489) — 正在下载 Qwen（下完后会自动开始标注）\n\n辅助脚本：`launch_when_ready.sh`、`auto_launch.sh`、`run_all.sh` 也在后台等待。\n\n### 4. 标注 log\n\n**唯一的 log 文件 `log_llama31.txt`**：Llama 标注曾经尝试但 **失败**了：\n```\nFileNotFoundError: .../model-00001-of-00004.safetensors\n```\n原因是 Llama 模型尚未下载完成（只有 shard 4 到了 final 目录，shard 1-3 还在下载）。\n\n### 5. 预估完成时间\n\n下载速度约 **600-1000 kB/s/stream**，多 shard 并行聚合约 2.5 MB/s：\n\n| 模型 | 剩余 | 预估完成 |\n|------|------|---------|\n| Llama | ~5 GB | ~35 min → **~03:00** |\n| Gemma | ~7 GB | ~47 min → **~03:10** |\n| Qwen | ~8 GB | ~55 min → **~03:20** |\n| Mistral | ~13 GB | ~90 min → **~03:55** |\n\n**全部下载完成预计 ~04:00**（北京时间），之后才能开始标注推理。标注尚未真正开始，当前阶段完全是模型下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

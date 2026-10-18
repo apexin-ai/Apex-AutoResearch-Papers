@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aba8a1b0eae80bbf7425",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_7_1778871305.md",
+  "task_key": "loop_7_1778871305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778871305.md",
+    "occurrence": 1,
+    "bytes": 3931,
+    "sha256": "1f42e1092eeb1ab6cae55d8c026daf4b618fa64686c67739073154a3389c2ffc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T18:14:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：gpu-6000pro-2 的 cuda:0 和 cuda:1，其他设备号禁止使用\n- 当前两张 GPU 均空闲（无 RUNNING 实验），feature ablation 和 SHAP 是 CPU 任务\n- Fig 4 heatmap 的 Pythia temp09 值必须用 `0.763`（不是 0.7625），已修复 banker's rounding 问题\n- 不要碰 .tex 文件——写作由 Paper Agent 处理，Agent 只做实验和图表\n- summary_9cell.json 的 accuracy 是 best-across-ALL-methods，不是 RF-only，不要用它做 per-cell RF accuracy 的数据源\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，工作目录 /root/recursive_gen_depth_est/\n- Python：/root/miniconda3/bin/python，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：9-cell 特征文件在 results/ 各子目录，每 cell 5000 samples × 4 depths × 19 features\n- 图表输出：`figures/paper/`（LaTeX 引用路径 `figures/`，有 symlink）\n- 无活跃 tmux session / cron / PID（实验全部完成，当前只有 CPU worker 在跑分析脚本）\n- 关键脚本：`src/plot_atlas_figures.py`（已修复 heatmap 数据源+舍入），`src/feature_ablation_9cell.py`，`src/shap_analysis_9cell.py`\n\n### 3. 📊 当前状态\n**刚完成**：Fig 4 Atlas heatmap 修复（per-experiment RF accuracy + Pythia temp09 舍入 0.763），PCA + leave-one-group-out 补充分析（perplexity 组 -3.5% 最关键）\n\n**等待中的 Worker 回调**：\n- `worker_exp_feature_ablation_9cell_20260515T171759`（P0 CRITICAL）：cell 3/9 完成，~78 min 剩余。做 top-k ablation、per-category ablation、forward feature selection、correlation matrix + VIF\n- `worker_exp_shap_analysis_9cell_20260515T171813`（P1）：分析实际已完成（p90_ppl top-4 in 9/9 cells），Worker 状态仍显示 running，可能在做最后收尾，即将回调\n\n**Registry RUNNING**：feat_ablation_v1（对应 P0 worker）。其他 48 个实验全部 DONE。\n\n### 4. 📋 待办\n- SHAP worker 回调到达 → 读取完整结果（p90_ppl/var_surprisal 排名、SHAP vs permutation importance 一致性），注册 artifact，更新 registry\n- Feature ablation worker 回调到达 → 提取 top-k accuracy 曲线（top-2/top-5 mean±std across 9 cells）、forward selection 饱和点、VIF 值，注册 artifact，更新 registry\n- P0 + P1 都完成 → 合并汇报 Director：格式要求是 \"top-2 和 top-5 在 9 cell 上的 mean ± std, 独立信号维度数的结论, 相关矩阵热图\"，开头带 [资源] 行\n- 汇报后 → 已有 PCA 补充数据（6-7 PCs = 90% variance），一并附上\n- Director 若要求生成其余图表（AUC decay / feature trajectory / confusion matrix）→ 派 Worker 在 gpu-6000pro-2 上用 matplotlib 生成到 figures/paper/\n\n### 5. 🎯 战略上下文\n- **项目核心结论**：19 维手工特征 RF 在 3×3 矩阵上 69.6%-85.4%，远超 end-to-end transformer（DeBERTa 58.3%, RoBERTa 59.5%）和 zero-shot LLM（36.2%）。关键发现：transformer 和 RF 关注几乎相反的特征（Spearman ρ≈-0.47），perplexity 分布统计量（p90_ppl, var_surprisal）是 RF 的核心信号但 transformer 编码不了\n- **EMNLP ARR May 25 截止**，剩 10 天。当前在响应 R3 reviewer：P0 feature ablation（证明特征非冗余）> P1 SHAP（验证 permutation importance）> 图表\n- **易错点**：cross_model_gpt2xl_001 和 cross_model_olmo_002 的命名容易误解为\"跨模型\"实验，实际是 GPT-2 XL nucleus 和 OLMo nucleus 的 per-cell 实验（早期命名不规范）\n- **已验证的 negative**：DCOL（数据复杂度）对深度分类无区分力；end-to-end transformer 在此任务上系统性弱于手工特征 RF\n- baseline_battery_9cell_001 的 best_acc_matrix 不等于 RF accuracy，差 0.2-1.7pp，Fig 4 已修复但其他引用此数据的地方需警惕\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

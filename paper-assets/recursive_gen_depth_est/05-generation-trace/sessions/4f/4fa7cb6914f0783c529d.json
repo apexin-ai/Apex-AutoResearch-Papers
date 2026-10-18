@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4fa7cb6914f0783c529d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research temp09 d1v2 inversion verify",
+  "task_key": "worker_research_temp09_d1v2_inversion_verify_20260515T044917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_temp09_d1v2_inversion_verify_20260515T044917_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "e966b9b460b069d42c7c4c801a031f540ebff1c6380eaa08f4aa742267715b77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结论：(B) 协变量偏移（Covariate Shift）**\n\n核心发现：temp09 在每个递归深度的特征值系统性低于 nucleus/topk50 约一个深度级别。例如 GPT-2 XL 的 p90_ppl（最重要特征）：\n- temp09 d1 中位数 = 92.2，恰好落在训练数据 d2 范围（65–92）内\n- temp09 d2 中位数 = 39.0，落在训练数据 d3 范围内\n\n关键证据：\n- 对每个策略独立做 z-score 标准化后重训，GPT-2 XL d1v2 AUC 从 0.1288 恢复到 **0.6817**，OLMo 从 0.2529 恢复到 **0.8340**\n- 混淆矩阵显示分类器将 temp09 d1 判为 d2/d3（52%+25%），将 d2 判为 d3（96%）—— 是系统性深度高估，不是标签反转\n- 组内 d1v2 AUC 分别为 0.9368/0.9029/0.8341，标签完全正确\n\n物理解释：temperature=0.9 对 logit 分布的修改是均匀缩放而非截断（不同于 nucleus/top-k），模型在递归过程中更快收敛到 attractor 分布，使得 temp09 在 depth N 的统计特性等同于 nucleus/topk50 在 depth N+1 的特性。\n\n报告已写入 `artifacts/temp09_d1v2_inversion_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

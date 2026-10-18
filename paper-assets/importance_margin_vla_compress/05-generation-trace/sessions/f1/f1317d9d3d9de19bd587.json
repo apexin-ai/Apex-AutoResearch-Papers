@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1317d9d3d9de19bd587",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train mlp adapter control",
+  "task_key": "worker_train_mlp_adapter_control_20260519T060656",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_mlp_adapter_control_20260519T060656_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "75cbb5d7ac905544b223115efb6a45d1d231613026380d1ab8d745c7113d4bb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n**完成总结：**\n- Killed M=16 seed44 进程，释放 cuda:0\n- 实现 `MLPCompressor`：3层 MLP (960→3840→960) + average pooling (128→32 tokens)，参数量 **22,138,560 (22.14M)**，匹配 VisionTokenCompressor M=32\n- 修改 `SmartCompressWrapper` 支持 `compressor.type: mlp` 配置切换\n- 创建 `configs/mlp_adapter_control.yaml`\n- Dry-run 验证通过，正式训练已在 tmux session `mlp_adapter_control` 中运行，step=100 loss=0.584，~3.5 sps\n- Registry 已更新为 RUNNING (`train_mlp_adapter_control`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

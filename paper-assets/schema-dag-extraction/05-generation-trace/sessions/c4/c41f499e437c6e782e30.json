@@ -1,0 +1,516 @@
+{
+  "schema_version": "1.0",
+  "id": "c41f499e437c6e782e30",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T181022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_20260515T181022.jsonl",
+    "occurrence": 1,
+    "bytes": 27316,
+    "sha256": "d2d2296c50a0d1b6b0f7243f2d9e57b46f2e0213a5df0a75798ede1f767a2bfd"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T18:12:54.137657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T18:12:54.138261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T18:12:54.138454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T18:12:54.138702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for Schema-DAG-Extraction\n2\t% Generated: 2026-05-15\n3\t% Sources: literature_map.yaml + references_survey.md\n4\t\n5\t% =============================================================================\n6\t% DIRECT COMPETITORS\n7\t% =============================================================================\n8\t\n9\t@inproceedings{llm-pee-2025,\n10\t    title     = {Towards Event Extraction with Massive Types: {LLM}-based Collaborative Annotation and Partitioning Extraction},\n11\t    author    = {Liu, Wenxuan and Li, Zixuan and Bai, Long and Zuo, Yuxin and Xu, Daozhu and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n12\t    booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n13\t    year      = {2025},\n14\t    url       = {https://aclanthology.org/2025.emnlp-main.1743/},\n15\t}\n16\t\n17\t@article{parse-2025,\n18\t    title   = {{PARSE}: {LLM} Driven Schema Optimization for Reliable Entity Extraction},\n19\t    author  = {Shrimal, Anubhav and Jain, Aryan and Chowdhury, Soumyajit and Yenigalla, Promod},\n20\t    journal = {arXiv preprint arXiv:2510.08623},\n21\t    year    = {2025},\n22\t    url     = {https://arxiv.org/abs/2510.08623},\n23\t}\n24\t\n25\t@inproceedings{dee-2024,\n26\t    title     = {Decompose, Enrich, and Extract! Schema-aware Event Extraction using {LLM}s},\n27\t    author    = {Shiri, Fatemeh and Nguyen, Van and Moghimifar, Farhad and Yoo, John and Haffari, Gholamreza and Li, Yuan-Fang},\n28\t    booktitle = {Proceedings of the IEEE International Conference on Tools with Artificial Intelligence},\n29\t    year      = {2024},\n30\t    url       = {https://arxiv.org/abs/2406.01045},\n31\t}\n32\t\n33\t@inproceedings{crossagentie-2025,\n34\t    title     = {{CROSSAGENTIE}: Cross-Type and Cross-Task Multi-Agent {LLM} Collaboration for Zero-Shot Information Extraction},\n35\t    author    = {Lu, Meng and Xie, Yuzhang and Bi, Zhenyu and Cao, Shuxiang and Wang, Xuan},\n36\t    booktitle = {Findings of the Association for Computational Linguistics: ACL\n…[truncated 19521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T18:12:54.138888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:12:54.139072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experimental_setup}\n3\t\n4\tWe evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED).\n5\t\n6\t\\subsection{Tasks and Datasets}\n7\t\\label{sec:datasets}\n8\t\n9\t\\paragraph{Few-NERD (NER).}\n10\tFew-NERD \\cite{PLACEHOLDER_fewnerd} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains, making it suitable for cross-domain evaluation. We sample 1{,}000 test instances and evaluate with token-level text matching.\n11\t\n12\t\\paragraph{FewRel (RE).}\n13\tFewRel \\cite{PLACEHOLDER_fewrel} contains 80 relation types sourced from Wikidata. We combine the training and validation splits to obtain the full set of 80 relations and sample 1{,}000 balanced instances. Each instance provides a sentence with marked head and tail entities; the task is to classify the relation.\n14\t\n15\t\\paragraph{MAVEN (ED).}\n16\tMAVEN \\cite{PLACEHOLDER_maven} defines 168 event types derived from the FrameNet ontology, making it a same-domain schema. We use the validation set (8{,}042 sentences containing 18{,}904 event mentions) for evaluation, as test set labels are not publicly available. The task requires both trigger identification and event type classification.\n17\t\n18\tTable~\\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \\S\\ref{sec:scs}.\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\small\n23\t\\begin{tabular}{llrrlll}\n24\t\\toprule\n25\t\\textbf{Dataset} & \\textbf{Task} & \\textbf{\\# Types} & \\textbf{\\# Samples} & \\textbf{Domain} & \\textbf{SCS Range} & \\textbf{Embedding} \\\\\n26\t\\midrule\n27\tFew-NERD & NER & 66 & 1{,}000 & Cross & 0.77--0.93 & Qwen3-32B \\\\\n28\tFewRel & RE & 80 & 1{,}000 & Cross & 0.42--0.97 & MiniLM \\\\\n29\tMAVEN & ED & 168 \n…[truncated 5012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:12:54.139223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:12:54.139410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Count-Degradation Curves}\n5\t\\label{sec:count_curves}\n6\t\n7\tWe first examine how extraction performance changes as the number of types in the prompt schema increases (Experiment~1). Figure~\\ref{fig:count_curves} plots per-task metrics across count levels.\n8\t\n9\t\\paragraph{NER (Few-NERD).}\n10\tRecall declines monotonically from 0.72 at count${}\\,=\\,1$ to 0.42 at count${}\\,=\\,64$, a 42\\% relative drop. Precision moves in the opposite direction, rising from 0.11 to 0.52, reflecting a shift from over-prediction to under-prediction as more candidate types compete in the prompt. F1 exhibits an inverted-U shape, peaking at intermediate counts where the precision--recall trade-off is most balanced.\n11\t\n12\t\\paragraph{RE (FewRel).}\n13\tAccuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously.\n14\t\n15\t\\paragraph{ED (MAVEN).}\n16\tIn contrast to NER and RE, MAVEN relaxed F1 \\emph{increases} from 0.106 at count${}\\,=\\,1$ to 0.247 at count${}\\,=\\,44$. This reversal arises from three properties of the MAVEN setup: (i)~trigger-level relaxed matching, which requires only token overlap rather than exact span match; (ii)~MAVEN's 168 event types derive from the FrameNet ontology, forming a same-domain hierarchy where co-presented types provide disambiguating context; and (iii)~extreme class imbalance---rare event types benefit from being presented alongside related types that prime the model toward the correct semantic region. We return to this mechanism in \\S\\ref{sec:centrality_confound}.\n17\t\n18\t\\paragraph{Summary.}\n19\tSchema size degrades extraction quality for NER and RE (Channel~1: count $\\to$ recall decline), but this pattern does not hold universally. MAVEN's reversed trend demonstrates that task structure and evaluation protocol mediate the count--performance relationship.\n20\t\n21\t\\subsection{Pairwise Confu\n…[truncated 8986 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:12:54.139585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/related_work.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:12:54.139703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:12:54.139813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:12:54.139947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experimental_setup.tex\ndocs/paper/results.tex\ndocs/paper/sdgd_negative.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:12:54.140065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T18:12:54.140214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Why Naive Decomposition Fails}\n2\t\\label{sec:sdgd}\n3\t\n4\tThe multi-channel degradation model (\\S\\ref{sec:results}) raises an interventional question: if confusability drives type confusion, can we decompose the schema so that confusable types never co-occur in the same prompt?  We test this idea with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), a method that uses the pairwise SCS matrix to partition types into low-confusability batches, runs extraction independently on each batch, and merges the results.\n5\t\n6\t\\paragraph{Decomposition protocol.}\n7\tWe compute hierarchical clustering over the SCS matrix and cut the dendrogram so that highly similar types fall into separate batches. Each batch is presented to the LLM as an independent extraction prompt; predictions are then merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation, following the strategy of \\citet{uniner-2024}. Figure~\\ref{fig:sdgd_comparison} summarizes the results on Few-NERD.\n8\t\n9\t\\paragraph{All decomposition modes degrade F1.}\n10\tTable~\\ref{tab:sdgd_results} reports the outcome.  Single-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368).  SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop.  Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586).  Every decomposition mode falls below the single-pass baseline.\n11\t\n12\t\\begin{table}[t]\n13\t\\centering\n14\t\\small\n15\t\\begin{tabular}{lccc}\n16\t\\toprule\n17\t\\textbf{Mode} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n18\t\\midrule\n19\tsingle\\_pass & 0.563 & 0.368 & 0.445 \\\\\n20\t\\midrule\n21\tsdgd\\_zero (v1) & 0.210 & 0.314 & 0.251 \\\\\n22\trandom\\_batch (v1) & 0.249 & 0.446 & 0.320\n…[truncated 3164 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T18:12:54.140435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\subsection{Training-Free LLM Information Extraction}\n\\label{sec:rw_training_free}\n\nRecent surveys categorize LLM-based IE along instruction-tuning and code-generation axes \\cite{llm4ie-survey-2024}. \\citet{instructuie-2023} pioneered multi-task instruction tuning for unified IE. On the generalist front, \\citet{knowcoder-2024} encode structured knowledge into LLMs via code-style schemas, \\citet{gollie-2024} leverage annotation guidelines for zero-shot IE, and \\citet{codeie-2023} reformulate extraction as code generation. \\citet{adelie-2024} align LLMs on IE through targeted instruction tuning, while \\citet{oneke-2025} provide a dockerized schema-guided agent system. For structured output, \\citet{slot-2025} propose schema-driven decoding that constrains LLM generation to valid extraction formats.\n\nFor NER specifically, \\citet{uniner-2024} distill open NER capability from ChatGPT into smaller models, \\citet{gliner-2024} introduce a bidirectional transformer for generalist NER with \\citet{gliner2-2025} extending it to multi-task IE, and \\citet{nuner-2024} pre-train entity recognition encoders on LLM-annotated data. Zero-shot approaches include self-improving NER through iterative refinement \\cite{self-improve-ner-2024}, type-description-driven recognition \\cite{zeroner-2025}, reasoning-based NER paradigms \\cite{reasoning-ner-2025}, and guided synthetic data generation \\cite{guidex-2025}. For relation extraction, \\citet{self-prompting-re-2024} use self-prompting to enable zero-shot relation classification, and \\citet{code4uie-2024} augment code-generation IE with retrieval. \\citet{familiarity-2025} highlight evaluation pitfalls in zero-shot NER by quantifying label shifts between synthetic training data and target schemas.\n\nThese methods demonstrate strong performance on benchmarks with moderate schema sizes (typically 4--20 types). However, none systematically investigates how performance degrades as schema complexity scales---either in the number of candidate types or in inter-type semantic similarity. Our work addresses this gap with controlled experiments isolating the effects of schema size and type confusability on training-free LLM extraction.\n\n\\subsection{Schema Complexity in IE}\n\\label{sec:rw_schema}\n\nThe most directly related work is LLM-PEE \\cite{llm-pee-2025}, which addresses event extraction with massive type inventories by partitioning schemas based on type embedding similarity. LLM-PEE clusters event types and assigns each cluster to a separate extraction prompt, demonstrating improved performance on schemas with hundreds of types. Our work is complementary in three respects. First, whereas LLM-PEE develops an engineering solution---partition to improve extraction---we conduct controlled empirical analysis to understand \\emph{why} extraction degrades. Second, LLM-PEE does not disentangle the effects of type count from type confusability; their partitioning simultaneously reduces both. Our BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}) isolate these as independent degradation channels. Third, our pairwise SCS analysis provides a theoretical explanation for why their similarity-based partitioning works: it reduces Batch Confusability Scores, directly targeting the Channel~2 degradation mechanism. Our SDGD experiments (\\S\\ref{sec:sdgd}) further reveal that the merge step---not partitioning quality---is the bottleneck in decompose-then-merge pipelines, a limitation that applies to LLM-PEE's approach as well.\n\nSeveral other approaches address schema complexity from different angles. \\citet{iepile-2024} construct a large-scale IE corpus using hard negative mining during training, where confusable types are deliberately included to improve robustness---related to our confusability analysis but in a supervised setting. \\citet{parse-2025} rewrite and optimize schema definitions to improve extraction reliability, addressing the quality rather than the structure of type descriptions. \\citet{dee-2024} decompose event schemas into sub-components before enriching and extracting, treating schema complexity through structural decomposition rather than confusability analysis. \\citet{crossagentie-2025} employ multi-agent debate for cross-type IE, resolving errors \\emph{post hoc} through reactive discussion rather than our proactive analysis of degradation causes. \\citet{cmas-ner-2025} similarly use cooperative multi-agent frameworks for zero-shot NER. \\citet{spt-2025} parameterize schemas as callable tools, abstracting complexity behind a tool-use interface, while \\citet{dlisc-2025} target on-device schema-aware IE under efficiency constraints. \\citet{kggen-2025} generate knowledge graphs under schema constraints, facing analogous scaling challenges when the target ontology grows.\n\nAll these methods treat schema complexity as an engineering problem to mitigate. We instead treat it as a scientific question: what are the independent mechanisms by which schema properties degrade extraction, and how can they be quantified?\n\n\\subsection{Representation Degeneration and Embedding Anisotropy}\n\\label{sec:rw_anisotropy}\n\nOur centrality confound analysis (\\S\\ref{sec:centrality_confound}) connects to the representation degeneration literature. \\citet{gao-repr-degen-2019} showed that word embeddings trained with language modeling objectives degenerate into a narrow cone, occupying only a subset of available directions. \\citet{ethayarajh-contextual-2019} extended this to contextual representations, demonstrating that BERT, ELMo, and GPT-2 embeddings are highly anisotropic, with upper layers occupying increasingly narrow cones.\n\nCrucially, \\citet{cai-isotropy-clusters-2021} showed that while the global embedding space is anisotropic, local clusters can be approximately isotropic. This cluster-level analysis directly explains our MAVEN results: when all 168 event types derive from a single ontology (FrameNet), their embeddings form one dense cluster where a type's mean confusability conflates semantic similarity with centrality. \\citet{godey-anisotropy-inherent-2024} proved that anisotropy is mathematically inherent to self-attention, not merely a training artifact, suggesting the centrality confound will persist across architectures. \\citet{rajaee-cluster-isotropy-2021} proposed removing dominant directions to improve isotropy, a technique that could inform centrality correction for same-domain schemas.\n\nOur work provides the first empirical demonstration that representation anisotropy creates a measurable confound in IE schema analysis, manifesting as a sign reversal in the confusability--error correlation for homogeneous ontologies.\n\n\\subsection{Context Length and Position Effects}\n\\label{sec:rw_position}\n\n\\citet{lost-in-middle-2024} demonstrated that LLMs attend preferentially to information at the beginning and end of long contexts, with retrieval accuracy degrading for items positioned in the middle. This positional bias has direct implications for IE schema prompts: when dozens of type definitions are listed sequentially, types in the middle positions may receive reduced attention. While we control for type ordering through random batching across trials, we do not fully investigate positional effects as an independent degradation channel. Disentangling positional attention decay from confusability-driven type confusion in large-schema IE prompts remains an open direction for future work.\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T18:12:54.140643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T18:12:54.140812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -oP '\\\\\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u | wc -l && echo \"---\" && grep -oP '\\\\\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u && echo \"---\" && wc -w related_work.tex",
+              "description": "Count distinct citations and word count"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T18:12:54.140986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\n---\n---\n864 related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T18:12:54.141106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oE '\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | sed 's/\\\\cite[tp]\\{//;s/\\\\cite\\{//;s/\\}//g' | tr ',' '\\n' | sed 's/^ *//;s/ *$//' | sort -u",
+              "description": "Extract distinct citation keys"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T18:12:54.141218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sed: -e expression #1, char 17: Unmatched \\{"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T18:12:54.141334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP 'cite[tp]?\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex | sed 's/cite[tp]\\{//;s/cite\\{//;s/}//g' | tr ',' '\\n' | sed 's/^ *//;s/ *$//' | sort -u",
+              "description": "Extract distinct citation keys"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T18:12:54.141450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sed: -e expression #1, char 15: Unmatched \\{"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T18:12:54.141560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport re\ntext = open('/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex').read()\nkeys = set()\nfor m in re.findall(r'\\\\\\\\cite[tp]?{([^}]+)}', text):\n    for k in m.split(','):\n        keys.add(k.strip())\nprint(f'Distinct citations: {len(keys)}')\nfor k in sorted(keys):\n    print(f'  {k}')\n# word count (strip latex commands roughly)\nclean = re.sub(r'\\\\\\\\[a-zA-Z]+({[^}]*})?', '', text)\nclean = re.sub(r'[{}\\\\\\\\~]', ' ', clean)\nwords = len(clean.split())\nprint(f'Approx words: {words}')\n\"",
+              "description": "Count citations and words via Python"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T18:12:54.141680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Distinct citations: 34\n  adelie-2024\n  cai-isotropy-clusters-2021\n  cmas-ner-2025\n  code4uie-2024\n  codeie-2023\n  crossagentie-2025\n  dee-2024\n  dlisc-2025\n  ethayarajh-contextual-2019\n  familiarity-2025\n  gao-repr-degen-2019\n  gliner-2024\n  gliner2-2025\n  godey-anisotropy-inherent-2024\n  gollie-2024\n  guidex-2025\n  iepile-2024\n  instructuie-2023\n  kggen-2025\n  knowcoder-2024\n  llm-pee-2025\n  llm4ie-survey-2024\n  lost-in-middle-2024\n  nuner-2024\n  oneke-2025\n  parse-2025\n  rajaee-cluster-isotropy-2021\n  reasoning-ner-2025\n  self-improve-ner-2024\n  self-prompting-re-2024\n  slot-2025\n  spt-2025\n  uniner-2024\n  zeroner-2025\nApprox words: 809"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T18:12:54.141827+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `related_work.tex`。\n\n- **34 个不同引用**（要求 25+）\n- **~810 正文词**（去除 LaTeX 命令后；含命令的原始文件 864 词，编译后 ~1000 词左右）\n- 4 个小节结构完整，每节末尾有定位句\n- LLM-PEE 获得最详细的三段式比较（engineering vs. analysis、count/confusability 未分离、merge bottleneck）\n- 全部引用均使用 `references.bib` 中存在的 key，无编造"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T181022"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ]
+}

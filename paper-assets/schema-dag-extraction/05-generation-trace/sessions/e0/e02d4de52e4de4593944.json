@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e02d4de52e4de4593944",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code sdgd framework design",
+  "task_key": "worker_code_sdgd-framework-design_20260515T025924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sdgd-framework-design_20260515T025924_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "c06336d32718ee74d12c1e38b10e61cf9b1d07eacf5f365000f763f23c0ec135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已写入并注册。核心内容：\n\n**算法 5 步**：pairwise cosine similarity → τ-thresholded confusability graph → greedy graph coloring → per-batch vLLM extraction → union merge\n\n**关键决策**：\n- SDGD-zero（embedding similarity）和 SDGD-cal（empirical confusion matrix）两个变体\n- τ 首选 Contribution A 的 empirical θ*，fallback adaptive mean+std ≈ 0.85\n- Greedy coloring（largest_first），66 nodes 微秒级，接近最优\n- NER 阶段 simple union merge（batch 间 type 不重叠，graph coloring 保证）\n\n**5 个模块**：`similarity.py` / `graph.py` / `decompose.py` / `merge.py` / `evaluate.py`，通过 `SDGDDecomposer` 类封装，对接现有 `build_prompt` + `build_json_schema` + `text_match_eval`。vLLM engine 只初始化一次，batch 间复用。\n\n等 exp003a 确认数据干净后开始实际编码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

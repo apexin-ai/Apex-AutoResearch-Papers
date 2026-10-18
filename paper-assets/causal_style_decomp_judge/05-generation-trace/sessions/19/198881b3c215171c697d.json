@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "198881b3c215171c697d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code llama70b crossbench",
+  "task_key": "worker_code_llama70b_crossbench_20260524T081820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b_crossbench_20260524T081820_result.json",
+    "occurrence": 1,
+    "bytes": 1809,
+    "sha256": "4d7936640968c6dc4c31f570932a1b26684babd49961b7b9b4baff4991f9ac79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results\n\n| Benchmark | Axis | n (consistent) | BT% | BT CI | BT p | Likert d | Likert p (Wilcoxon) | GEE Style OR | GEE Orig OR | Blindspot |\n|-----------|------|----------------|-----|-------|------|----------|---------------------|--------------|-------------|-----------|\n| AlpacaEval | formality | 47 | 95.7% | [89.4%, 100%] | <0.0001 | 0.211 | 0.0124 | degenerate | degenerate | **No** |\n| AlpacaEval | verbosity | 66 | 97.0% | [92.4%, 100%] | <0.0001 | 0.297 | 0.0002 | 0.54 (NS) | 0.54 (NS) | **No** |\n| MT-Bench | formality | 36 | 91.7% | [80.6%, 100%] | <0.0001 | 0.234 | 0.0029 | 32.68 (NS) | 0.89 (NS) | **No** |\n| MT-Bench | verbosity | — | — | — | — | — | — | — | — | **MISSING DATA** |\n\n### Comparison with LLMBar Llama-70B\n| Benchmark | Axis | BT% | Likert | Blindspot |\n|-----------|------|-----|--------|-----------|\n| LLMBar | formality | 69.5% | NS | **YES** |\n| LLMBar | verbosity | 73.5% | NS | **YES** |\n| AlpacaEval | formality | 95.7% | p=0.012 | No |\n| AlpacaEval | verbosity | 97.0% | p=0.0002 | No |\n| MT-Bench | formality | 91.7% | p=0.003 | No |\n\n### Key findings\n- **No blindspots on AlpacaEval/MT-Bench** — Llama-70B's Likert scores pick up the style preference (small but significant Cohen's d = 0.21–0.30), unlike LLMBar where Likert was NS.\n- **Pairwise bias is much stronger** on these benchmarks (91–97% vs 69–73% on LLMBar), with near-ceiling consistency among position-consistent pairs.\n- **Conclusion: negative** — the LLMBar blindspot pattern does not replicate on AlpacaEval/MT-Bench. The style bias is amplified (higher BT%), but so is Likert detection, eliminating the dissociation that defines a blindspot.\n- GEE is degenerate or NS across groups due to near-perfect separation in pairwise results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

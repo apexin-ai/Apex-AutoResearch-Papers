@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "5a8652a5a45457cb8bda",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 007 hb backfill",
+  "task_key": "worker_code_exp-007-hb-backfill_20260521T043502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-hb-backfill_20260521T043502.log",
+    "occurrence": 1,
+    "bytes": 690730,
+    "sha256": "f71a8ae0c0b2ed79a23ea3c2ec594c34857709d2044ef75b3ace83e951bdc5d5"
+  },
+  "statistics": {
+    "messages": 126,
+    "user_turns": 3,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 36,
+      "user": 3,
+      "tool_result": 36
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "5a8652a5a45457cb8bda-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "5a8652a5a45457cb8bda-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "5a8652a5a45457cb8bda-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "5a8652a5a45457cb8bda-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "5a8652a5a45457cb8bda-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ]
+}

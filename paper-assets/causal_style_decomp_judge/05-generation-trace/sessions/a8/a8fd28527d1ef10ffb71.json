@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a8fd28527d1ef10ffb71",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra dual model download",
+  "task_key": "worker_infra_dual_model_download_20260520T095735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dual_model_download_20260520T095735_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "146eec6d6a3f11a176b8a931952152578d81153efa493045c2460b4702b02bf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的等待任务已完成，不影响当前进度。上面的汇报即最终结果——两个下载都在后台持续运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

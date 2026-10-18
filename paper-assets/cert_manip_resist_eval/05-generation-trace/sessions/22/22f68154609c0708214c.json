@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "22f68154609c0708214c",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis near chance sensitivity",
+  "task_key": "worker_analysis_near-chance-sensitivity_20260525T091028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_near-chance-sensitivity_20260525T091028.log",
+    "occurrence": 1,
+    "bytes": 1042629,
+    "sha256": "d6e2462a0f118042484f3b7d05b997181e98091d1b8bf1499bca43291fc10268"
+  },
+  "statistics": {
+    "messages": 450,
+    "user_turns": 1,
+    "tool_calls": 182,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 182,
+      "tool_result": 182,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "22f68154609c0708214c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "22f68154609c0708214c-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "22f68154609c0708214c-part-0002.json",
+          "message_count": 32
+        },
+        {
+          "path": "22f68154609c0708214c-part-0003.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ]
+}

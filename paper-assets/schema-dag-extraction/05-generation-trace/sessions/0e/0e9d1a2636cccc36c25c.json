@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "0e9d1a2636cccc36c25c",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh exp008 fix relaunch",
+  "task_key": "worker_ssh_exp008-fix-relaunch_20260515T100611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp008-fix-relaunch_20260515T100611.log",
+    "occurrence": 1,
+    "bytes": 656206,
+    "sha256": "84f3545672ba1f31eea278c6b15e9b57890e69aff39cb9b6efefe965333b5c19"
+  },
+  "statistics": {
+    "messages": 289,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 289,
+      "chunks": [
+        {
+          "path": "0e9d1a2636cccc36c25c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0e9d1a2636cccc36c25c-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ]
+}

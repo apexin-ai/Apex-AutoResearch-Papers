@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60952fc5acbe4898d909",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code monotonicity enforcement",
+  "task_key": "worker_code_monotonicity_enforcement_20260514T005636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_monotonicity_enforcement_20260514T005636_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "ae6abd55eaa4f8ec9287de8dfcae17d28f600993e597cd991a1d75766a50bac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n## 任务 1 结论：Pareto filtering 行为\n\n当 delta_4bit > delta_2bit（非单调）时：\n\n- **`_build_pareto`**（`solve_mckp` 使用）：4-bit 被移除。Pareto front 只剩 {2-bit, 8-bit, 16-bit}，该 head 失去中间选项。Greedy solver 从 8-bit 直接跳到 2-bit。\n- **`_build_actions_no_pareto`**（`solve_mckp_constrained` 使用）：不做 Pareto filtering，4-bit 保留。但 greedy 计算 4→2 downgrade 时得到**负效率**（distortion 下降），会被视为\"免费午餐\"优先执行——基于噪声的虚假优化。\n- **`solve_greedy_ratequant`**：独立逻辑，逐步降级 16→8→4→2，也会受影响——4→2 的 marginal cost 为负，优先被选中。\n\n## 任务 2-4 完成\n\n- `enforce_monotonicity()` 已添加到 `solver.py` 末尾，不修改任何现有函数签名/行为\n- 对比脚本 `run_monotonicity_comparison.py` 已创建，等 `ppl_profiles_hires.json` 生成后即可运行\n- 设计为 opt-in：调用方在传入 solver 前显式调用 `enforce_monotonicity(profiles)`，不改变默认行为"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

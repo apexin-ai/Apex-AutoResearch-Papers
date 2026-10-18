@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9e36f5fb802f81b13a59",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis fractional logit v2 audit",
+  "task_key": "worker_analysis_fractional-logit-v2-audit_20260524T190248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fractional-logit-v2-audit_20260524T190248_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "b1dfb51106c27fa5452bc2012b3df72f75d344f6724d5261b0ad53c402033923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果输出如下。\n\n## Fractional Logit V2 审计结果\n\n| K | Paper Claims | Registry V1 | **Actual V2 (Fractional Logit)** |\n|---|-------------|-------------|----------------------------------|\n| K=3 | 9/12 | 4/12 | **9/12** |\n| K=5 | 11/12 | 9/12 | **9/12** |\n| K=7 | 12/12 | 10/12 | **9/12** |\n\n### 关键发现\n\n1. **K=3: 论文声明 9/12 → 审计确认 9/12**。完全匹配。Registry V1 的 4/12 是错误的。\n\n2. **K=5: 论文声明 11/12 → 审计得到 9/12**。论文夸大了 2 个 conditions。未通过的 3 个是 position_bias (两个 benchmark 都不显著) 和 arc×sycophancy (p=0.265)。\n\n3. **K=7: 论文声明 12/12 → 审计得到 9/12**。论文夸大了 3 个 conditions。同样的 pattern：position_bias 两个 benchmark + arc×sycophancy 未通过 FDR。\n\n4. **Position bias 在所有 K 值下都不显著**，且 K_eff 系数接近 0 或为负。这是系统性弱点。\n\n5. **Adaptive R²: 未找到任何 adaptive R² / random forest R² 数据**。论文声称 0.275，registry 记录 0.256，但服务器上完全没有这个分析的结果文件。\n\n6. **SE inflation**: clustered SE 相对基础 SE 的膨胀率普遍很低（多数 <1x），说明 max-p clustering 策略在 fractional logit 下并未显著放大标准误。\n\n结果已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

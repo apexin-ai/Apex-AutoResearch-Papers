@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eceed5d791a91d53f200",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd kill eval",
+  "task_key": "worker_ops_westd_kill_eval_20260517T080625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd_kill_eval_20260517T080625_result.json",
+    "occurrence": 1,
+    "bytes": 84,
+    "sha256": "c617b820e710faa74087e9402c089627e006bc5a672b5870e30c884c3d776998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已不在，两张 GPU 均空闲（0MiB / 0% utilization）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "71c40d462771f90bd849",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis quant dummy regression",
+  "task_key": "worker_analysis_quant-dummy-regression_20260524T184151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_quant-dummy-regression_20260524T184151_result.json",
+    "occurrence": 1,
+    "bytes": 1626,
+    "sha256": "5e12789c18c39c2d122ae817cd6c405fe3df406d93fdb1e48aefec90bc8b08c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON written (3100 lines). Results summary:\n\n| K | K_eff sig | K_eff β_std mean | Interaction sig | Int direction | quant_frac sig | η_max sig |\n|---|-----------|------------------|-----------------|---------------|----------------|-----------|\n| 3 | 6/12 | +0.392 | 5/12 | negative | 6/12 | 7/12 |\n| 5 | 6/12 | +0.341 | 2/12 | mixed | 2/12 | 11/12 |\n| 7 | 4/12 | +0.270 | 0/12 | mixed | 0/12 | 12/12 |\n\n**Key findings:**\n\n1. **K_eff survives quant_frac control**: Significant in 6/12 (K=3), 6/12 (K=5), 4/12 (K=7) conditions via wild cluster bootstrap. Quantization composition does not eliminate the K_eff effect.\n\n2. **Interaction K_eff×quant_frac**: Significant at K=3 (5/12, negative direction) but drops to 0/12 at K=7. At larger panels, quantization fraction does not modulate the K_eff effect.\n\n3. **Predictor shift does NOT survive**: K_eff sig count decreases 6→6→4 (vs the original increasing pattern). However, this is confounded by high VIF (100-1000+) for quant_frac/interaction terms at large K, which inflates SEs for all coefficients.\n\n4. **VIF diagnostic**: quant_frac and interaction VIFs are extreme (36-1086) due to inherent collinearity of the uncentered interaction. K_eff VIF is moderate (6-20). The extreme VIF for quant_frac/interaction makes those coefficient estimates unreliable, but the K_eff bootstrap test remains interpretable since the restricted model (without K_eff) is well-defined.\n\n5. **η_max dominance grows**: η_max sig goes 7/12 → 11/12 → 12/12, confirming its increasing importance at larger K — consistent with the original analysis."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

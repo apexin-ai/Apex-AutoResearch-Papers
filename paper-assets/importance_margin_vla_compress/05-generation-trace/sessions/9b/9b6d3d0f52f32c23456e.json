@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "9b6d3d0f52f32c23456e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval smart compress m96",
+  "task_key": "worker_analysis_eval_smart_compress_m96_20260518T050941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_smart_compress_m96_20260518T050941_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "b15c20c3ca513f49fcfa64b376a4c6283a97c16a2ce594b7b160443f8b126baa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。status=DONE, conclusion=success, checkpoint_path 和 log_path 已在 spec 中设置。\n\n**汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| **overall_sr** | 52.6% |\n| **total_episodes** | 500 |\n| **total_successes** | 263 |\n| **95% Wilson CI** | [48.2%, 56.9%] |\n| **运行时间** | ~55 min (wall clock 3526s) |\n| **conclusion** | success |\n\n**per_task_sr:**\n```python\n{\"alphabet_soup\": 40, \"cream_cheese\": 52, \"salad_dressing\": 56, \"bbq_sauce\": 40, \n \"ketchup\": 26, \"tomato_sauce\": 50, \"butter\": 72, \"milk\": 62, \n \"chocolate_pudding\": 86, \"orange_juice\": 42}\n```\n\n**对比：**\n| 配置 | overall_sr |\n|------|-----------|\n| SmolVLA baseline (no compress) | 44.8% |\n| **M=96 (25% compress)** | **52.6%** |\n| M=64 (50% compress) | 61.6% |\n| M=32 (75% compress) | 61.6% |\n\n假设被否定：M=96 并非上界，反而是三个压缩配置中最差的。压缩程度与性能之间不是单调关系，M=32 和 M=64 都优于 M=96 约 9 个百分点。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "alphabet_soup": 40,
+              "cream_cheese": 52,
+              "salad_dressing": 56,
+              "bbq_sauce": 40,
+              "ketchup": 26,
+              "tomato_sauce": 50,
+              "butter": 72,
+              "milk": 62,
+              "chocolate_pudding": 86,
+              "orange_juice": 42
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

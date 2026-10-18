@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2131ddb007086229115f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check d051 experiment progress",
+  "task_key": "worker_check_d051_experiment_progress_20260516T205108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d051_experiment_progress_20260516T205108_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "0043a2aa79636d452a132a79f4c04f4f78c184e8f1ea73f268a302dee7240128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D051 Batch 2 实验状态\n\n### 当前进度\n\n| 任务 | 状态 | 备注 |\n|------|------|------|\n| FewRel n=25, seed=42 | ✅ 完成 | 03:03–03:54 (51 min) |\n| Few-NERD n=25, seed=42 | 🔄 运行中 | count_22 batch 17/25 |\n| FewRel n=25, seed=123 | ⏳ 未开始 | |\n| FewRel n=25, seed=456 | ⏳ 未开始 | |\n| Few-NERD n=25, seed=123 | ⏳ 未开始 | |\n| Few-NERD n=25, seed=456 | ⏳ 未开始 | |\n\n**GPU**: RTX PRO 6000 Black (98GB), VLLM 进程占用 89GB, 21% util — 正常推理中。\n\n### Few-NERD seed=42 子进度\n\n| Count Level | 状态 | 耗时 |\n|-------------|------|------|\n| count_12 | ✅ 完成 | 22 min |\n| count_2 | ✅ 完成 | 15 min |\n| count_22 | 🔄 batch 17/25 | ~18 min elapsed, ~7 min left |\n| count_6 | ⏳ 待运行 | est. ~17 min |\n| count_44 | ⏳ 待运行 | est. ~40 min |\n| count_66 | ⏳ 待运行 | est. ~60 min |\n\n### FewRel seed=42 结果 (已完成)\n\n```\nFewRel count curves (seed=42, n=25):\ncount=4:   mean=0.870, sd=0.068, n=25\ncount=8:   mean=0.805, sd=0.082, n=25\ncount=16:  mean=0.719, sd=0.063, n=25\ncount=32:  mean=0.652, sd=0.049, n=25\ncount=40:  mean=0.606, sd=0.042, n=25\ncount=64:  mean=0.539, sd=0.026, n=25\ncount=80:  mean=0.504, sd=0.000, n=25\n```\n\n符合预期的单调递减趋势。count=80 的 sd≈0 说明在全 pool 上模型基本退化到随机水平 (1/80=0.0125，但这里 0.504 说明是 binary/pairwise 分类 accuracy)。\n\n### 时间估算\n\n- Few-NERD s42 剩余: ~2 小时\n- FewRel s123 + s456: ~1.7 小时\n- Few-NERD s123 + s456: ~5.6 小时\n- **总剩余: ~9–10 小时** (预计完成时间: 5/17 14:00–15:00)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

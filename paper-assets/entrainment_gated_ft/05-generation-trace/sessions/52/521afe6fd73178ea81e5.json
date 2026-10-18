@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "521afe6fd73178ea81e5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis confidence margin rebuttal v2",
+  "task_key": "worker_analysis_confidence-margin-rebuttal-v2_20260520T033050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_confidence-margin-rebuttal-v2_20260520T033050_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "4d124f4a29ad9ea2d48728c60a551bd7f61ab1531fb85a9f0fbbaf8cb7913c10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Borderline 假说被反转**——三个架构一致显示 hurt 样本（而非 helped 样本）集中在 decision boundary 附近：\n\n| Arch | Helped margin (mean) | Hurt margin (mean) | Cohen's d | p |\n|------|---------------------|--------------------|-----------|----|\n| GDN (h12-1) | 2.46 | 1.05 | 1.45 | 5.6e-100 |\n| RetNet (h3-1) | 2.48 | 1.29 | 1.39 | 5.0e-77 |\n| HGRN2 (h3-1) | 2.50 | 1.48 | 1.22 | 4.9e-63 |\n\n解读：\n- **Helped 样本**：pure model 以高 confidence 犯错（margin ~2.5）→ attention 纠正了\"自信的错误\"\n- **Hurt 样本**：pure model 勉强答对（margin ~1.0-1.5）→ attention 扰乱了 borderline-correct 的预测\n- 效应量极大（Cohen's d > 1.2），与之前 surface features/perplexity 无信号形成对比\n- **Rebuttal 价值**：attention 的 per-example 效应并非完全 opaque——confidence margin 是强预测信号，只是这个信号方向与直觉相反\n\n结果已存入 `artifacts/paper_data/confidence_margin_analysis.json` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

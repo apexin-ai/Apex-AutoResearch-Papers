@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16da70842ecf2733b48c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 010 convergence divergence bridge",
+  "task_key": "worker_analysis_exp-010-convergence-divergence-bridge_20260519T150134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-010-convergence-divergence-bridge_20260519T150134_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "e808be7cd354bf5f53502fc27a2a7f919a5ab811bbf8cb9cae1679d08195d565"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-010 完成。核心结果：\n\n**A. Aggregate Convergence** — Cross-arch std 单调下降 5 倍：\n| Variant | Attn ratio | Cross-arch σ |\n|---------|-----------|-------------|\n| pure | 0 | 0.0240 |\n| h24-1 | 1/25 | 0.0162 |\n| h12-1 | 1/13 | 0.0136 |\n| h6-1 | 1/7 | 0.0061 |\n| h3-1 | 1/4 | 0.0049 |\n\n**B. Per-example Divergence** — Jaccard 在所有 ratio 上保持极低且平坦：\n- J_helped: 0.092–0.100（~10% overlap）\n- J_hurt: 0.081–0.099（~9% overlap）\n- Net asymmetry 反而随 ratio 递增（0.013 → 0.040）\n\n**C. Co-evolution** — Spearman 方向正确但 n=4/5 不足以达到统计显著：\n- 5-point: std vs J_helped r=−0.70 (p=0.23), std vs J_hurt r=−0.80 (p=0.13)\n\n**关键发现**：比 \"co-evolution\" 更强的是 **paradoxical coexistence**——aggregate gap 关闭了 80%（σ 从 0.024→0.005），但 per-example Jaccard 始终 ~0.10，说明三个架构在每个 ratio 上都帮助/伤害了几乎完全不同的 sample 集合。Net asymmetry 递增意味着架构之间的 net effect 方向差异随 attention 增多而加大（HGRN2 一直是净正效应，GDN/RetNet 一直是净负效应）。\n\n输出文件：\n- CSV: `analysis/exp010_bridge_results.csv`\n- JSON: `analysis/exp010_bridge_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

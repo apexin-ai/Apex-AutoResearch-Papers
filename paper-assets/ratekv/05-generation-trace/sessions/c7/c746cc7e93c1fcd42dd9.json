@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c746cc7e93c1fcd42dd9",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis oracle process check",
+  "task_key": "worker_analysis_oracle_process_check_20260514T111951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oracle_process_check_20260514T111951_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "f21250dfe774498fbdc3493351d2f0910df46df6de6d5344b2a80d02bde4ac0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行：\n\n- **PID**: 216997\n- **GPU**: 0（`CUDA_VISIBLE_DEVICES=0`）\n- **显存占用**: 15812 MiB\n- **运行方式**: tmux session `oracle_comparison`\n\n**进度**: Layer 0，已完成 7/54 个配置评估，ETA ~21min。当前 MCKP baseline PPL=10.9131，正在逐个评估替代配置的 PPL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

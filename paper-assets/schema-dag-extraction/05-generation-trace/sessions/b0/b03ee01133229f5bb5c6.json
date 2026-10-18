@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b03ee01133229f5bb5c6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper figure fig error taxonomy",
+  "task_key": "worker_paper_figure_fig_error_taxonomy_20260515T162946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_error_taxonomy_20260515T162946_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "91c2dab4faf5a3ddfad75d13c04247c78f410382f321fb1e0189ae11f01b1f21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已注册为 artifact `art_20260515_3b3fdb`。图表生成完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

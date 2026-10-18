@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b34f236654795d1739de",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit westd41074 v2",
+  "task_key": "worker_ops_audit_westd41074_v2_20260522T054004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit_westd41074_v2_20260522T054004_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "11a57d6ff9b6e0ab88b18189486c7be3e0c89f7afa1c2318950214c81689b246"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n**GPU 3 并非空闲。** PID 59671 仍然活着，占用 27.5 GB 显存。\n\n### 4 卡真实状态\n\n| GPU | 利用率 | 显存占用 | 实验 | PID | 状态 |\n|-----|--------|----------|------|-----|------|\n| 0 | 31% | 10.6/97.9 GB | eval_pi05_l2norm_k0925_spatial_seed42 | 132954 | 运行中 |\n| 1 | 45% | 21.2/97.9 GB | eval_pi05_random_k095_object_seed43 + eval_pi05_l2norm_k0925_spatial_seed43 | 121033, 133121 | 运行中（双 eval 共卡） |\n| 2 | 0% | 28.6/97.9 GB | train_openvla_sc_m96_seed42 | 68539 | 运行中（CPU 9411min） |\n| 3 | 0% | 27.5/97.9 GB | train_openvla_sc_m64_seed42_v6 | 59671 | 运行中（CPU 4002min） |\n\n### 分析\n\n- GPU 2/3 利用率显示 0% 但显存满载且进程活跃（CPU 时间在累积），这是训练过程中 data loading 或 checkpoint 保存期间的正常现象\n- GPU 1 实际运行了 2 个 eval（registry 中未列出 eval_pi05_random_k095_object_seed43 在此 GPU）\n- **无空闲 GPU**，无法部署 eval_pi05_random_k07_spatial_seed43\n\n### 结论\n\n系统\"GPU 3 空闲\"的报告是误判——可能基于瞬时 utilization=0% 判断，但进程和显存均正常。跳过部署步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

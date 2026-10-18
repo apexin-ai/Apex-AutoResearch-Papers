@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "97a55d7db4793f0899a9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code wild data calibration 005",
+  "task_key": "worker_code_wild_data_calibration_005_20260516T045705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wild_data_calibration_005_20260516T045705_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "75e7dc99c57519b9eee17f3c4b4b2713b1b707d42ff76105e62447311471322a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**wild_data_calibration_005 完成。**\n\n## 结果汇总\n\n| Dataset | FPR | d0% | N |\n|---------|-----|-----|---|\n| WikiText | 0.0% | 100.0% | 546 |\n| OpenWebText | 0.9% | 99.1% | 5000 |\n| **RedPajama V2** | **15.3%** | **84.7%** | **5000** |\n| FineWeb | 19.46% | 80.54% | 5000 |\n| C4 | 20.2% | 79.8% | 5000 |\n\nRedPajama FPR=15.3%，与 C4 (20.2%) 和 FineWeb (19.46%) 在同一量级（差 -4.9pp / -4.16pp），进一步确认 FPR 的跨数据集一致性。\n\nweb-crawled 数据集（C4、FineWeb、RedPajama）FPR 在 15-20% 范围内集中，而高质量筛选数据集（WikiText、OpenWebText）FPR 接近 0%。这个分层模式跨 5 个数据集一致。\n\n产出文件在 `results/wild_data_calibration_005/`，已注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

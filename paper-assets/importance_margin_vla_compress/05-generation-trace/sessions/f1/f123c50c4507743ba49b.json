@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f123c50c4507743ba49b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest ov random k095 long",
+  "task_key": "worker_harvest_ov_random_k095_long_20260527T084933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_ov_random_k095_long_20260527T084933_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "b5b815fe95c245914d4f75ef2adda1a8efd31b1aec245504aa3a3b770b4cef8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## OV Random k=0.95 Long — westd-41074 (主实验)\n\n**Timed out (EXIT_CODE=124)**，只完成 8/10 tasks。\n\n| Task | Description | SR |\n|------|------------|-----|\n| 1 | soup + tomato → basket | 54.0% (27/50) |\n| 2 | cream + butter → basket | 60.0% (30/50) |\n| 3 | stove + moka pot | 54.0% (27/50) |\n| 4 | bowl → drawer | 40.0% (20/50) |\n| 5 | mugs → plates | 20.0% (10/50) |\n| 6 | book → caddy | 74.0% (37/50) |\n| 7 | mug + pudding | 32.0% (16/50) |\n| 8 | soup + cream → basket | 62.0% (31/50) |\n| 9 | moka pots → stove | **TIMEOUT** |\n| 10 | — | **NOT REACHED** |\n\n**Partial SR (8/10 tasks): 49.5%** (198/400)\n\n## Backup — westd-38929\n\n- PID 112587 仍在运行，当前进度：Task 3 Ep 40/50\n- 已完成 Task 1: 72.0%, Task 2: 70.0%\n- 预计还需 ~6h 完成全部 10 tasks\n- 注意：backup 的 Task 1-2 SR 明显高于主实验（72% vs 54%, 70% vs 60%），随机种子相同但随机剪枝每步不同，方差较大\n\n## 新实验状态 — westd-41074\n\n- **PI0.5 Attn k=0.95 Long strict v3** (PID 335081, GPU0): 已启动，模型加载完毕，开始评估\n- **OV Attn k=0.75 Long v2** (PID 335312, GPU1): 已启动，Task 1 进行中 (256→192 tokens)\n\n完整的 OV Random k=0.95 Long 结果需等 westd-38929 backup 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

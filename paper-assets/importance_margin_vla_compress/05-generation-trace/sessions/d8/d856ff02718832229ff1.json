@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d856ff02718832229ff1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops idle gpu audit and fill",
+  "task_key": "worker_ops_idle-gpu-audit-and-fill_20260521T011154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_idle-gpu-audit-and-fill_20260521T011154_result.json",
+    "occurrence": 1,
+    "bytes": 2545,
+    "sha256": "aca32da7a92e15930fa5bba7522985dfb06c9f09f24313d6db358486f0067c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full audit:\n\n---\n\n## westd-38929 (4 GPU 全空闲)\n\n```\nGPU: westd-38929:cuda:0\nExperiment: eval_openvla_prune_random_k095_seed42_v2\nStatus: INCOMPLETE (died mid-run, no error in log)\nProgress: ~task 4/10, partial results: T0=40/50, T1=21/50, T2=35/50, T3=19/40(中断)\nLog: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k095_seed42_v2.log\n\nGPU: westd-38929:cuda:1\nExperiment: eval_openvla_prune_random_k07_seed42_v2\nStatus: INCOMPLETE (died mid-run, no error in log)\nProgress: ~task 4/10, partial results: T0=36/50, T1=10/50, T2=28/50, T3=10/30(中断)\nLog: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k07_seed42_v2.log\n\nGPU: westd-38929:cuda:3\nExperiment: eval_openvla_prune_l2norm_k09_seed43_v2\nStatus: INCOMPLETE (died mid-run, no error in log)\nProgress: ~task 4/10, partial results: T0=33/50, T1=29/50, T2=33/50, T3=20/40(中断)\nLog: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_seed43_v2.log\n\nGPU: westd-38929:cuda:2\nExperiment: smolvla_baseline_spatial_seed42\nStatus: CRASHED\nError: FileNotFoundError — missing asset 'tabletop_table_Cobblestone01_GLOSS_6K.xml'\nLog: /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_baseline_spatial_seed42.log\n```\n\n**westd-38929 三个 Object eval 全部在 task 4/10 附近无声死亡（无 error/traceback），需要重跑。SmolVLA Spatial 因 LIBERO 资源文件缺失 crash。**\n\n---\n\n## cqa1-33015:cuda:2\n\n```\nGPU: cqa1-33015:cuda:2\nExperiment: eval_xvla_spatial_k05_seed42\nStatus: COMPLETED ✓\nSuccess Rate: 58.8% (294/500), 95% CI [54.4%, 63.0%]\nPer-task: T0=94%, T1=22%, T2=90%, T3=74%, T4=88%, T5=0%, T6=78%, T7=30%, T8=74%, T9=38%\nLog: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_spatial_k05_seed42.log\nResults: eval_results/xvla_spatial_k05_seed42.json\n```\n\n附注：cqa1-33015 上另有 3 个 eval 仍在跑（eval_xvla_goal_k05, goal_k09, baseline_long，均在 Ep 30-39/50 进度）。\n\n---\n\n## westd-41074:cuda:0\n\n```\nGPU: westd-41074:cuda:0\nExperiment: eval_openvla_prune_random_k05_seed42\nStatus: NOT FOUND — 无对应日志文件\n```\n\n该服务器上找到的相关结果：\n- `eval_random_k09_seed42` — **完成，64.6%** (323/500)\n- `eval_openvla_random_k095_seed43` — **完成，66.8%** (334/500)\n- `eval_openvla_random_k05_seed43` — 死于 Ep30/50 task1，0% success（不同 seed）\n\n`eval_openvla_prune_random_k05_seed42` 可能从未在此服务器启动，或日志名不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

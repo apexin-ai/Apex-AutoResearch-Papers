@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be1e033a111a6b63a5cd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 xvla random k05 object",
+  "task_key": "worker_ops_cqa1-xvla-random-k05-object_20260521T030750",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-xvla-random-k05-object_20260521T030750_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "b1d486b0e75b09084ec22a58d180877f0c87686fb1cbfab3f2ca49851126564c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n### cqa1 X-VLA Random Pruning Object Eval 状态\n\n| GPU | 实验 | 进度 | 已完成 Task SR |\n|-----|------|------|----------------|\n| cuda:0 | random k=0.9 (PID 522763) | Task 8/10 进行中 | T0:96%, T1:100%, T2:100%, T3:94%, T4:100%, T5:94%, T6:100%, T7:98% |\n| cuda:1 | random k=0.8 (PID 522984) | Task 6/10 进行中 | T0:96%, T1:88%, T2:100%, T3:92%, T4:94%, T5:96% |\n| cuda:2 | **random k=0.5 (PID 715930)** | **Task 0/10 刚启动** | Ep 1 SUCCESS |\n| cuda:3 | random k=0.85 (PID 522841) | Task 5/10 进行中 | T0:100%, T1:10%, T2:100%, T3:94%, T4:24% |\n\n- **k=0.5 已成功启动**，GPU 2 占用 4540 MiB，正常运行\n- k=0.9 和 k=0.8 表现很强（多数 task >90%），预计 1-2 小时完成\n- k=0.85 有几个 task SR 偏低（T1:10%, T4:24%），random pruning 方差较大\n- 日志路径注意：其他 3 个在 `/root/runs/importance_margin_vla_compress/`，k=0.5 在 `/root/autodl-tmp/importance_margin_vla_compress/logs/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

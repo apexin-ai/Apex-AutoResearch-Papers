@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0bec4f293f5956837fdc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code stage2 recovery prep",
+  "task_key": "worker_code_stage2_recovery_prep_20260517T094336",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_stage2_recovery_prep_20260517T094336_result.json",
+    "occurrence": 1,
+    "bytes": 2451,
+    "sha256": "b203dd51e289a82e342b2fb9c5aad7c372fefc1d42e3b4fdb9b3e863097df28a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. Config 文件\n`configs/libero_stage2_recovery.yaml` - 基于 `libero_baseline.yaml`，核心设置：\n- 从 `checkpoints/libero_acis_stage1only_k07/stage1_done/checkpoint.pt` 加载\n- `lambda_margin: 0.0` (仅 action_loss 驱动训练，ACIS 只负责 token selection)\n- `lr: 2e-6`，`total_steps: 20000`，`save_every: 2000`\n- piecewise k_ratio schedule: `[0, 0.9] → [5000, 0.7] → [10000, 0.5]`\n\n### 2. 代码修改 (train.py, 808→853 lines)\n\n| 位置 | 修改 |\n|------|------|\n| L53 | `parse_args()` 添加 `--max_steps` 参数 |\n| L325-340 | `compute_k_ratio()` 新增 `piecewise` schedule 类型，提前于 `start/end` 解析避免 KeyError |\n| L411-432 | 新增 `setup_stage2_recovery()` 函数：加载 stage1 checkpoint → `model.load_state_dict()` → 冻结 ACIS、解冻 expert |\n| L638-648 | `main()` 中新增 `is_stage2_recovery` 路径和 `--max_steps` override 逻辑 |\n\n关键设计：`stage2_recovery` 不触发 `is_twostage`，因此训练循环走 full `model()` forward（action_loss + token selection），而非 `forward_acis_only()`。\n\n### 3. Dry-run 结果\n\n```\nLoaded stage1 checkpoint from .../stage1_done/checkpoint.pt\nStage2 recovery: frozen(ACIS)=3,460,801, trainable(expert)=450,046,176\nStage2 recovery mode: lr=2.00e-06, total_steps=20000\nOverriding total_steps to 5 (dry-run)\n\nstep=0/5  loss=0.1235  action=0.1235  margin_loss=0.0000  lr=4.00e-09  grad=21.47\nstep=1/5  loss=0.0718  action=0.0718  margin_loss=0.0601  lr=8.00e-09  grad=21.72\nstep=2/5  loss=0.1061  action=0.1061  margin_loss=0.0000  lr=1.20e-08  grad=39.06\nstep=3/5  loss=0.1117  action=0.1117  margin_loss=0.0723  lr=1.60e-08  grad=23.70\nstep=4/5  loss=0.0690  action=0.0690  margin_loss=0.0100  lr=2.00e-08  grad=5.33\nTraining complete.\n```\n\n- **checkpoint 加载成功**\n- **ACIS 冻结、expert 解冻** (3.5M frozen / 450M trainable)\n- **loss == action_loss**（确认 lambda_margin=0 生效，margin_loss 仅 log 不参与训练）\n- **无 shape mismatch**\n- **1.5 steps/s** 训练速度\n\n### 4. 注意事项\n- 正式训练需设置 `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`（服务器无法访问 HuggingFace Hub）\n- stage1_done checkpoint 的 step 字段为 -1（不影响训练，仅日志显示）\n- k_ratio 在 5 步 dry-run 中始终为 0.9（正确，< 5000 步），完整运行时会在 step 5000/10000 处跳变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

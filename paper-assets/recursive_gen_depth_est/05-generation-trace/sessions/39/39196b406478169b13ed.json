@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "39196b406478169b13ed",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "writing r4 text fixes",
+  "task_key": "worker_writing_r4_text_fixes_20260516T130055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r4_text_fixes_20260516T130055.log",
+    "occurrence": 1,
+    "bytes": 632941,
+    "sha256": "fb720e53ed8899a99f5665c919c6d1dbf9862fe967859e1723ec61d1ce5f8ac9"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "39196b406478169b13ed-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "39196b406478169b13ed-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ]
+}

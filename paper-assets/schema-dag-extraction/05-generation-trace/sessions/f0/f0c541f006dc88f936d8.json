@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f0c541f006dc88f936d8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp012 vllm blackwell",
+  "task_key": "worker_diagnose_exp012_vllm_blackwell_20260515T171340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp012_vllm_blackwell_20260515T171340_result.json",
+    "occurrence": 1,
+    "bytes": 1968,
+    "sha256": "4d8088ff38379f5ea0d871b5f78f8072705fbc9aa96b73d2e0c2d0c6b077b281"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Step 3b 也完全通过！** Structured JSON output 正常：\n\n```json\n[{\"text\": \"John\", \"type\": \"person\"}, {\"text\": \"Google\", \"type\": \"organization\"}]\n```\n\n---\n\n## 诊断结论\n\n**vLLM + LLaMA-3.1-8B 在 Blackwell SM120 上完全可用。** 三项测试全部通过：\n1. 最小化测试 ✅\n2. Chat template ✅  \n3. Structured JSON output (guided decoding) ✅\n\n**SIGKILL 的真正原因不是兼容性问题，而是 GPU 显存被占用**：\n\nexp012_llama_8b.log 显示启动时 GPU 只剩 7.01 GiB / 94.97 GiB（88GB 被其他进程占了），vLLM 要求 85.48 GiB (90% utilization) 分配失败 → `ValueError`。\n\n另外，**cgroup 内存限制 = 120GB**（`free -h` 显示的 1TB 是宿主机），当前已用 ~100GB（主要是 page cache）。这可能在某些场景下导致 CPU 端 OOM 被 SIGKILL。\n\n### 可行配置（已验证）\n\n```bash\n# 确保 GPU 无残留进程\nnvidia-smi  # 确认 0MiB 占用\n\n# 运行实验\nFLASHINFER_DISABLE_VERSION_CHECK=1 python3 src/run_experiment.py \\\n  --mode exp1 \\\n  --dataset fewnerd \\\n  --prompt_version v2 \\\n  --model_path /root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3.1-8B-Instruct \\\n  --gpu_memory_utilization 0.85 \\\n  --max_model_len 4096 \\\n  --enforce_eager \\\n  ...其他参数\n```\n\n### 建议修复\n\n1. **运行前必须检查 GPU 占用**：在 `run_exp012_llama_8b.sh` 开头加 `nvidia-smi` 检查，确认 GPU 空闲\n2. **降低 gpu_memory_utilization**: 从 0.90 降到 0.85，留更多余量\n3. **脚本中 exp1 和 exp2 串行时**，确保 exp1 的 vLLM 进程完全退出后再启动 exp2（Python 进程退出后 GPU 显存应自动释放，但建议加 `sleep 5` 或检查 `nvidia-smi`）\n4. **注意模型路径**：脚本用的是 `Meta-Llama-3___1-8B-Instruct`（下划线），实际目录同时存在 `Meta-Llama-3.1-8B-Instruct`（点号），两者都有效但要保持一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

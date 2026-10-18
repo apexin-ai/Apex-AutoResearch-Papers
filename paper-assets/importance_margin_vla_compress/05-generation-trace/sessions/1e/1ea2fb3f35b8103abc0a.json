@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea2fb3f35b8103abc0a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval imm fullft dryrun westd",
+  "task_key": "worker_eval_imm_fullft_dryrun_westd_20260516T200732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_imm_fullft_dryrun_westd_20260516T200732_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "250082b893f032ab15dc2e49529fb07eb2033b5a3a8b6de063074bcb0e0525ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，全部通过。\n\n```\n=== IMM FULLFT DRY-RUN REPORT ===\nStatus: PASS\nStage 1: ACIS grad=7/10 (trainable), Expert frozen=YES (0 with grad, expect 0)\nStage 2: Expert grad=155/155 (all trainable), ACIS frozen=YES (0 with grad, expect 0)\nLoss: stage1 margin_loss=0.2998, stage2 action_loss=0.1209 (total=0.4201)\nError: None\n```\n\n关键确认项：\n1. **Stage 1** — Expert params 0 有梯度（冻结 ✓），ACIS 7/10 有梯度 ✓\n2. **Stage 2** — ACIS 0 有梯度（冻结 ✓），Expert 155/155 有梯度 ✓\n3. **无 empty optimizer 报错** ✓\n4. **Loss 合理**（非 NaN、非 0）✓\n5. Checkpoint 已正确加载（step 50000）✓\n6. Full FT 模式：trainable=99.8M/450M (22.2%) expert params ✓\n\nPipeline 验证通过，可以启动正式训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

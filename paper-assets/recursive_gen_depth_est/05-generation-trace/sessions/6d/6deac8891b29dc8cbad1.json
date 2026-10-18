@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6deac8891b29dc8cbad1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh download deberta and prep dcol",
+  "task_key": "worker_ssh_download_deberta_and_prep_dcol_20260514T192826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_download_deberta_and_prep_dcol_20260514T192826_result.json",
+    "occurrence": 1,
+    "bytes": 1993,
+    "sha256": "03dcf1098844527c04fd94038a29c6cb38335f96d66eb57149197ef2646e80df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "452 行（本地 453 行差 1 行尾换行，内容一致）。同步完成。\n\n---\n\n## 汇总\n\n### 1. 模型下载\n- **路径**: `/root/autodl-tmp/models/deberta-v3-large/`\n- **大小**: ~828MB (model.safetensors 868,069,608 bytes)\n- **验证**: 434M 参数, tokenizer vocab 128001 ✓\n- 无需重新下载，已就绪\n\n### 2. 训练数据（4 条 chain 全部完整）\n| Chain | 文件数 | 每文件行数 |\n|-------|--------|-----------|\n| Pythia nucleus (`data/`) | 4 (d0-d3) + features | 5000 |\n| Pythia temp09 (`data/pythia_temp09/`) | 4 | 5000 |\n| OLMo nucleus (`data/olmo/`) | 4 | 5000 |\n| GPT-2 XL nucleus (`data/gpt2xl/`) | 4 | 5000 |\n| **总计** | **17 文件** | **85,000 样本** |\n\n### 3. dcol_train.py 已同步\n本地版本已写入服务器，修复了：\n- `torch.cuda.amp.autocast` → `torch.amp.autocast`（消除废弃警告）\n- `evaluate()` MAE 从双次遍历改为单次遍历\n\n### 4. Pythia topk50 进度\n**仍在运行** — 当前在 Step 4 (depth-2 生成阶段)，加载 Pythia-1.4b 模型中。未完成（无 .done 文件）。\n\n### 5. DCOL 训练命令（cuda:0 释放后执行）\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/recursive_gen_depth_est && \\\nCUDA_VISIBLE_DEVICES=0,1 python scripts/dcol_train.py \\\n    --data_dirs data/ data/pythia_temp09/ data/olmo/ data/gpt2xl/ \\\n    --model_name /root/autodl-tmp/models/deberta-v3-large \\\n    --output_dir checkpoints/dcol_001/ \\\n    --max_seq_len 512 \\\n    --batch_size 8 \\\n    --gradient_accumulation 4 \\\n    --epochs 5 \\\n    --lr 2e-5 \\\n    --warmup_ratio 0.1 \\\n    --lambda_contrastive 1.0 \\\n    --lambda_ce 0.5 \\\n    --seed 42 \\\n    --bf16 \\\n    --gpu 0 \\\n    --eval_split 0.1\n```\n\n注意 `--model_name` 指向实际下载位置 `/root/autodl-tmp/models/deberta-v3-large`（非 HF cache 路径）。需要设置 `CUDA_VISIBLE_DEVICES` 以确保 GPU 可见。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

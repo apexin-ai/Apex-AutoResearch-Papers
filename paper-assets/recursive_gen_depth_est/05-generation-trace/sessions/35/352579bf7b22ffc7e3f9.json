@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "352579bf7b22ffc7e3f9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops olmo seed43 cron fix",
+  "task_key": "worker_ops_olmo_seed43_cron_fix_20260518T152051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo_seed43_cron_fix_20260518T152051_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "71250d1e61f0474fa5ff2244d3e7f0c95614455b996e7e42b7d893176aca71ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 监控已注册，确认当前实验状态：\n\n**实验 olmo_seed43_001 状态汇总：**\n- **Registry**: ANALYZING 状态，hypothesis 已设置\n- **进度**: Step 1/8 (LoRA finetune depth_0), step ~626/939 (~67%), epoch 1.31\n- **Loss**: ~2.23-2.29, grad_norm ~0.36-0.48, 训练正常\n- **GPU**: cuda:1, PID 903701, 12340MiB, 94% 利用率\n- **速度**: ~4.37 it/s, Step 1 剩余约 1.2 分钟\n\n**Cron 监控 (job e71aeab4)**:\n- 间隔: 每 15 分钟 (分钟 8/23/38/53)\n- 监控内容: GPU 进程存活、pipeline 步骤进度、训练 loss\n- 自动行为: pipeline 完成时读取 summary.json 并更新 registry 为 DONE；进程异常退出时报告错误\n- 注意: session-only，7 天自动过期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

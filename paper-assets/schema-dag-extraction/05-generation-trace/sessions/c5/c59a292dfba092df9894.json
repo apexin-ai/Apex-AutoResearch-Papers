@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c59a292dfba092df9894",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh sdgd maven minilm prep",
+  "task_key": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sdgd-maven-minilm-prep_20260515T105359_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "620814fb199737c82439744da0e940e9b483608b6af715ede87d905880c4d180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出清单：\n\n| 产出 | 状态 |\n|------|------|\n| `artifacts/maven_minilm_embeddings.pt` | [168, 384] dict |\n| `artifacts/maven_minilm_sim_matrix.pt` | [168, 168] dict, mean=0.2161, std=0.1030 |\n| `scripts/run_sdgd_maven_minilm.sh` | 两阶段脚本，4 modes |\n| `scripts/compute_maven_minilm.py` | MiniLM 计算脚本（已用） |\n| CPU decompose dry-run | 4 modes 全部通过 |\n\n**SDGD-zero decomposition 结果**：168 types → 18 batches，tau=0.3191（mean+1std），最大 batch 39 types，最小 1 type。\n\n**启动 GPU 阶段**（等 exp-008 跑完后）：\n```bash\nbash scripts/run_sdgd_maven_minilm.sh\n```\n或者只跑 Stage 2（decomposition 已生成）：\n```bash\ncd /root/schema-dag-extraction\npython3 src/sdgd_extract_gpu.py \\\n  --decompositions artifacts/exp_maven_minilm/decomposition_*.json \\\n  --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ \\\n  --types_file configs/maven_event_types.json \\\n  --dataset maven --task event --prompt_version v2 \\\n  --max_samples 1000 --output_dir artifacts/exp_maven_minilm \\\n  --max_model_len 4096\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d058b7b853b4c9f66786",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops extract m128 eval v2",
+  "task_key": "worker_ops_extract_m128_eval_v2_20260518T111843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_extract_m128_eval_v2_20260518T111843_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "fe7eae6d1fa73a2ad5ae22d12d73fa9d7969d364c17c11e85574a331c4114a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**总结：eval_smart_compress_m128 已完成。**\n- 进程已退出 (EXIT_CODE=0)\n- Suite: libero_object，M=128\n- **Overall SR: 59.8% (299/500)**，CI: [55.4%, 64.0%]\n- 只产出了 libero_object 结果（无 spatial/goal），与其他 M 值的 eval 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

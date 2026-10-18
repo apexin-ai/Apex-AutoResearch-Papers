@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17d13232bff896f08ef6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code fix diagnostic chat template",
+  "task_key": "worker_code_fix-diagnostic-chat-template_20260515T165520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-diagnostic-chat-template_20260515T165520_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "c3e31dddd24131649a2368088a47465396f3c18f0cc09ee3dace6c834a19b267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断脚本修复\n- chat template: **已添加**（`tokenizer.apply_chat_template` 包装所有 prompts）\n- syntax check: **PASS**\n\n## run_extraction.py 补丁\n- 需要修改的行: **272**（`llm.generate(prompts, sampling_params)` 前）\n- diff 内容:\n\n```diff\n@@ -269,6 +269,19 @@\n                     sample_indices.append(si)\n \n             t0 = time.time()\n+\n+            # Apply chat template for instruct models (e.g. LLaMA-3.1-Instruct)\n+            tokenizer = llm.get_tokenizer()\n+            if hasattr(tokenizer, 'chat_template') and tokenizer.chat_template:\n+                prompts = [\n+                    tokenizer.apply_chat_template(\n+                        [{\"role\": \"user\", \"content\": p}],\n+                        tokenize=False,\n+                        add_generation_prompt=True,\n+                    )\n+                    for p in prompts\n+                ]\n+\n             outputs = llm.generate(prompts, sampling_params)\n```\n\n补丁脚本在 `/root/schema-dag-extraction/scripts/patch_chat_template.py`，仅输出 diff，未修改 `run_extraction.py`。补丁对非 instruct 模型（无 chat_template）安全跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

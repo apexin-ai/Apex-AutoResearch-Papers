@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36a0c3f0a080c177ae66",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops probe and deploy s47 pending",
+  "task_key": "worker_ops_probe_and_deploy_s47_pending_20260529T060229",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_probe_and_deploy_s47_pending_20260529T060229_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "613e5a9d179a54035004091e3f461fee86b34491c2ee59a016d70faa5776247c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有服务器探测完毕。\n\n### GPU 状态汇总\n\n| 服务器 | 状态 | GPU | 显存占用 | 利用率 |\n|--------|------|-----|----------|--------|\n| cqa1-33015 | 在线 | GPU 0 | 10689/24564 MiB | 66% |\n| cqa1-33015 | 在线 | GPU 1 | 10572/24564 MiB | 20% |\n| cqa1-33015 | 在线 | GPU 2 | 10531/24564 MiB | 39% |\n| cqa1-33015 | 在线 | GPU 3 | 10525/24564 MiB | 21% |\n| westd-38929 | 在线 | GPU 0 | 10926/97887 MiB | 57% |\n| westd-41074 | 在线 | GPU 0 | 10762/97887 MiB | 38% |\n| westd-27271 | **离线** | — | — | — |\n\n### 结论\n\n- **空闲 GPU: 0**。全部 6 张卡（cqa1 ×4, w38 ×1, w41 ×1）均在运行实验，显存占用 ~10.5GB+，利用率 20%-66%。\n- **westd-27271 离线**，端口 27271 连接失败，无法使用。\n- Director 提到的 8 张 GPU 目前无法确认来源——现有服务器只有 6 张可用卡，全部占满。\n\n### 未部署实验\n\n| 实验 | 原因 |\n|------|------|\n| `eval_pi05_l2norm_k095_long_seed47` | 无空闲 GPU |\n| `eval_pi05_random_k05_long_seed47` | 无空闲 GPU |\n\n需要等当前 s47 实验陆续完成后轮换部署，或确认 w27 是否有新端口/新服务器资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

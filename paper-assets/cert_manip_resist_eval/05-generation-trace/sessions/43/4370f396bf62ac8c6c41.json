@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4370f396bf62ac8c6c41",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 epsilon sensitivity",
+  "task_key": "worker_analysis_k5-epsilon-sensitivity_20260523T140549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-epsilon-sensitivity_20260523T140549_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "1e314542704e4e0a7fd14e7e92612411d582046dcd73292b5ce4a44ca9fe2cff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `docs/paper/data/epsilon_sensitivity_k5.json`。\n\n**关键发现：**\n\n**ASR=0 比例** — arc×sycophancy 18.5%, arc×authority_bias 19.7%, arc×verbosity_bias 16.2%，低于任务描述中预期的 23%/32%（可能是之前统计基于不同口径）。\n\n**ε 敏感性结论 — K=5 下 ε 选择确实会影响系数量级，但不改变方向：**\n\n| 指标 | max_coefficient_change |\n|------|----------------------|\n| K_eff β_std | 105.75% |\n| η_max β_std | 55.54% |\n\n- 所有 12 个 condition 下，K_eff 和 η_max 的β系数在三个 ε 值间**方向一致**（全部为正）\n- **量级受 ε 影响较大**：ε=1e-3 时系数普遍更大（因为 log 变换压缩了零值附近的分布），ε=1e-9 时系数缩小\n- 最敏感的条件是高 ASR=0 比例的 arc 组合（sycophancy、authority_bias），这符合预期——零值越多，ε 对 log 变换影响越大\n- **mmlu_position_bias 和 arc_position_bias 完全不受 ε 影响**（无零值面板）\n- R² 在 ε=1e-3 时最高，ε=1e-9 时降低，说明更大的 ε 有正则化效果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0bb4485257faaa03dcaa",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama aggressive compression",
+  "task_key": "worker_code_llama_aggressive_compression_20260514T052333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_aggressive_compression_20260514T052333_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "c157c3961e3cbc2e436450992a83f642fea39bd3bcbee4ce7272d5a7498fba8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，registry 已更新为 RUNNING。\n\n实验状态：\n- **tmux session**: `llama_aggressive` on cuda:0\n- **脚本**: `run_llama_aggressive.py` — 2 个 budget 点 (0.1875 / 0.125) × MCKP + uniform 2-bit eval\n- **修正**: 任务指定的 max_2bit=36/27 太小无法达到目标 budget，已调整为 144/248\n- **预计**: ~15-18min（baseline + uniform 4-bit ref + 2×(uniform 2-bit + MCKP) eval）\n\n模型正在加载中，稍后可以用 `tail /root/ratekv/llama_aggressive.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "18a99618178d0218d0ad",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper critical fixes r1n1 r1n3 d021",
+  "task_key": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738_result.json",
+    "occurrence": 1,
+    "bytes": 1740,
+    "sha256": "b357f0d78d83d3d604dce599eb44e27d74e95848d7f2048597af4f12dce25871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有改动已验证正确。\n\n### 修改汇总\n\n**atlas.tex** — Issue 1 (R1-N1 EDD 正式定义)\n- `sec:atlas:edd` 子节：原来一句话引用 method section，改为完整的 EDD 定义段落\n- 添加了正式数学公式 `EDD_T = max{d*+1 : AUC(d*, d*+1) ≥ T}`\n- 说明了 AUC(d, d+1) 是 binary pairwise classifier 的 ROC AUC\n- 说明了 T=0.75 默认阈值及其选择理由\n- 添加了直觉含义：超过此深度后相邻深度变得统计不可区分\n\n**generalization.tex** — Issue 2 (R1-N3 end-to-end baseline 对比表)\n- `sec:gen:dcol` 子节：添加了 `tab:e2e_baselines` 表格（RF 78.2% / RoBERTa 59.5±3.2% / DeBERTa 58.3±4.7% / DeepSeek 40.0% / Chance 25.0%，含 Δ vs RF 列）\n- 说明 MLM vs disentangled attention 两种架构一致结论（1.2pp gap），排除 architecture bias\n- 新增 \"Feature overlap analysis\" 段落：Spearman ρ=-0.484 (p=0.036)，PLM 擅长 TTR (R²=0.85) 但 var_surprisal/p90_ppl R² 为负，结论：hand-crafted features 捕获 PLM 无法学到的深度信号\n\n**generalization.tex** — Issue 3 (D021 z-score claim 修正)\n- z-score 段落：删除 \"substantially improves...for nucleus and top-k holdouts\" 的 recovery 措辞\n- 改为：overall LR accuracy 25%→61%，但 temp d1v2 AUC 恶化（GPT-2 XL 0.50→0.24, OLMo 0.50→0.19）\n- 结论改为 \"genuine geometry-level shift in feature space rather than a correctable scale difference\"\n\n**introduction.tex** — Issue 3 (D021 z-score claim 修正)\n- 贡献列表第 3 条：删除 \"recovers logistic regression performance for non-temperature holdouts\"\n- 改为：overall LR accuracy 25%→61% + 不恢复 temperature d1v2 inversion + 确认 geometry-level shift"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

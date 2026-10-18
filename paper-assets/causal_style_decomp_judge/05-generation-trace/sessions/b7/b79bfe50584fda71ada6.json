@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b79bfe50584fda71ada6",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "data annotation prep",
+  "task_key": "worker_data_annotation-prep_20260522T230741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_annotation-prep_20260522T230741_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "ad9a520b8b35b8dc4afc0affc2f8e5b446e98545f6a0a05f103c87648b8881c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**抽样统计：**\n\n| | Formality | Verbosity | Total |\n|---|---|---|---|\n| NLI pass | 35 | 35 | 70 (70%) |\n| NLI fail | 15 | 15 | 30 (30%) |\n| **合计** | **50** | **50** | **100** |\n\n- Pass/fail 比例：70%/30%（精确达标）\n- 与 batch 1 (S001-S050) 无重叠（按轴检查）\n- 跨轴共享 source_id：10 个（预期行为，同源文本不同方向的 counterfactual）\n- NLI 分数分布：pass mean=0.9911, fail mean=0.6556\n- 新样本 ID 范围：S051-S150\n- 数据来源：formality pass 来自 `verified_scaled_formality.jsonl`，formality fail 来自 `verified_32b.jsonl`，verbosity pass 来自 `verified_verbosity.jsonl`，verbosity fail 组合自 3 个 verified 文件\n\n**产出文件路径（服务器）：**\n- `/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json` (163KB)\n- `/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.csv` (147KB)\n- `/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_template.csv` (147KB，含空标注字段 preserves_meaning / style_change_detected / notes)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

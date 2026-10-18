@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "66b9c5f68f96ef8261e7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops reference audit",
+  "task_key": "worker_ops_reference_audit_20260517T080108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reference_audit_20260517T080108_result.json",
+    "occurrence": 1,
+    "bytes": 4243,
+    "sha256": "f55d50200eb16f94d1ee7553d239bec8f70773f2d4cd2b0777b6b1bd0fbb3357"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。汇总结果：\n\n## Reference Audit 结果\n\n| # | Bib Key | 验证项 | 结果 | 说明 |\n|---|---------|--------|------|------|\n| 1 | mccullagh1980\\_ordinal | 标题/作者/年份/venue/卷号页码 | **PASS** | McCullagh, Peter. JRSS-B, 1980, 42(2):109-142 全部正确 |\n| 2 | wenzek2020\\_ccnet | 标题/作者/venue/年份 | **PASS** | Wenzek, Lachaux, Conneau, Chaudhary, Guzmán, Joulin, Grave. LREC 2020 正确 |\n| 3 | schaeffer2025 | arXiv ID/作者 | **FAIL** | arXiv ID 错误 + 作者列表错误（详见下方） |\n| 4 | alemohammad2024\\_mad | 作者列表 | **FAIL** | LeJeune 名字错误：bib 写 \"Lorenzo\"，实际为 \"Daniel\" |\n| 5 | knowledge\\_collapse2025 | 存在性/标题/作者/年份 | **PASS** | arXiv:2509.04796，作者 Keisha, Wu, Wang, Koshiyama, Treleaven 正确 |\n| 6 | falahati2026\\_curated | 存在性/标题/作者/年份 | **PASS** | arXiv:2605.07724, May 2026. Falahati, Mohammadi Amiri, Larson, Golab 正确 |\n| 7 | he2021\\_deberta\\_v3 | 年份 | **PASS** | bib key 写 2021 但 year 字段正确为 2023（ICLR 2023）。内容无误 |\n| 8 | frank2001 | 标题/作者/venue/年份 | **PASS** | Frank, Hall. ECML 2001, pp.145-156. Springer LNCS 2167 确认 |\n| 9 | rennie2005 | 标题/作者/venue/年份 | **PASS** | Rennie, Srebro. IJCAI Workshop on Advances in Preference Handling, 2005 正确 |\n| 10 | c2pa2024 | URL/版本 | **SUSPICIOUS** | v2.1 和 2024 年正确，但 URL 域名已迁移（见下方） |\n\n### 抽样验证（随机5条）\n\n| # | Bib Key | 结果 | 说明 |\n|---|---------|------|------|\n| S1 | shumailov2024\\_nature | **PASS** | Nature 631, 755-759 (2024), DOI 正确 |\n| S2 | holtzman2020\\_nucleus | **PASS** | ICLR 2020, arXiv:1904.09751, 作者全部正确 |\n| S3 | coral2020 | **PASS** | Pattern Recognition Letters, vol.140, pp.325-331, 2020 正确 |\n| S4 | dohmatob2024\\_tale\\_of\\_tails | **PASS** | ICML 2024, arXiv:2402.07043, 5位作者全部正确 |\n| S5 | binoculars2024 | **PASS** | ICML 2024, arXiv:2401.12070, 8位作者全部正确 |\n\n---\n\n### 需要修正的条目\n\n**1. schaeffer2025 — 两个严重错误**\n\n- **arXiv ID 错误**：bib 写 `arXiv:2502.07087`，但 2502.07087 实际是 \"Evaluating the Systematic Reasoning Abilities of Large Language Models through Graph Coloring\"（Heyman & Zylberberg），完全不相关的论文。正确 ID 为 **2503.03150**。\n- **作者列表错误**：bib 写 `Schaeffer, Rylan and Gerstgrasser, Matthias and Koyejo, Sanmi and Donoho, David L.`，但该论文实际作者为 **Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi**。Gerstgrasser 和 Donoho 不是此论文作者（他们是 arXiv:2404.01413 \"Is Model Collapse Inevitable?\" 的共同作者，可能是混淆来源）。\n\n正确 bib：\n```bibtex\n@article{schaeffer2025,\n  author    = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n  title     = {{Position: Model Collapse Does Not Mean What You Think}},\n  journal   = {arXiv preprint arXiv:2503.03150},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2503.03150},\n}\n```\n\n**2. alemohammad2024\\_mad — 作者名字错误**\n\n- bib 第6位作者写 `LeJeune, Lorenzo`，正确为 **`LeJeune, Daniel`**。\"Lorenzo\" 是第3位作者 Luzi 的名字，可能是复制错误。\n\n修正：将 `LeJeune, Lorenzo` 改为 `LeJeune, Daniel`。\n\n---\n\n### 可疑但无法确认的条目\n\n- **c2pa2024**: bib URL 为 `https://c2pa.org/specifications/specifications/2.1/specs/C2PA_Specification.html`，但当前官方域名已迁移至 `spec.c2pa.org`（搜索结果显示 PDF 在 `https://spec.c2pa.org/specifications/specifications/2.1/specs/_attachments/C2PA_Specification.pdf`）。旧 URL 可能仍重定向有效，但建议更新为当前可访问地址。\n\n---\n\n### 总结\n\n- **2 条 FAIL**（schaeffer2025, alemohammad2024\\_mad）— 必须立即修正，否则有 desk reject 风险\n- **1 条 SUSPICIOUS**（c2pa2024）— URL 建议更新\n- **其余 12 条 PASS**\n\nschaeffer2025 的问题最严重：arXiv ID 指向完全无关的论文 + 2/4 作者是 hallucinated，属于典型的 citation hallucination。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0",
+  "id": "291c0766c2583d5beba5",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper writing sdgd negative",
+  "task_key": "worker_paper_writing_sdgd_negative_20260515T180152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_sdgd_negative_20260515T180152.jsonl",
+    "occurrence": 1,
+    "bytes": 20007,
+    "sha256": "e4baa1629b8e2f03c5889c2980cb6dcef4d2696ffc8fabe9993dd1909693d0ca"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T18:03:30.041893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T18:03:30.042686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T18:03:30.042913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T18:03:30.043131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Count-Degradation Curves}\n5\t\\label{sec:count_curves}\n6\t\n7\tWe first examine how extraction performance changes as the number of types in the prompt schema increases (Experiment~1). Figure~\\ref{fig:count_curves} plots per-task metrics across count levels.\n8\t\n9\t\\paragraph{NER (Few-NERD).}\n10\tRecall declines monotonically from 0.72 at count${}\\,=\\,1$ to 0.42 at count${}\\,=\\,64$, a 42\\% relative drop. Precision moves in the opposite direction, rising from 0.11 to 0.52, reflecting a shift from over-prediction to under-prediction as more candidate types compete in the prompt. F1 exhibits an inverted-U shape, peaking at intermediate counts where the precision--recall trade-off is most balanced.\n11\t\n12\t\\paragraph{RE (FewRel).}\n13\tAccuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously.\n14\t\n15\t\\paragraph{ED (MAVEN).}\n16\tIn contrast to NER and RE, MAVEN relaxed F1 \\emph{increases} from 0.106 at count${}\\,=\\,1$ to 0.247 at count${}\\,=\\,44$. This reversal arises from three properties of the MAVEN setup: (i)~trigger-level relaxed matching, which requires only token overlap rather than exact span match; (ii)~MAVEN's 168 event types derive from the FrameNet ontology, forming a same-domain hierarchy where co-presented types provide disambiguating context; and (iii)~extreme class imbalance---rare event types benefit from being presented alongside related types that prime the model toward the correct semantic region. We return to this mechanism in \\S\\ref{sec:centrality_confound}.\n17\t\n18\t\\paragraph{Summary.}\n19\tSchema size degrades extraction quality for NER and RE (Channel~1: count $\\to$ recall decline), but this pattern does not hold universally. MAVEN's reversed trend demonstrates that task structure and evaluation protocol mediate the count--performance relationship.\n20\t\n21\t\\subsection{Pairwise Confu\n…[truncated 8986 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T18:03:30.043298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:03:30.043636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for Schema-DAG-Extraction\n2\t% Generated: 2026-05-15\n3\t% Sources: literature_map.yaml + references_survey.md\n4\t\n5\t% =============================================================================\n6\t% DIRECT COMPETITORS\n7\t% =============================================================================\n8\t\n9\t@inproceedings{llm-pee-2025,\n10\t    title     = {Towards Event Extraction with Massive Types: {LLM}-based Collaborative Annotation and Partitioning Extraction},\n11\t    author    = {Liu, Wenxuan and Li, Zixuan and Bai, Long and Zuo, Yuxin and Xu, Daozhu and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n12\t    booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n13\t    year      = {2025},\n14\t    url       = {https://aclanthology.org/2025.emnlp-main.1743/},\n15\t}\n16\t\n17\t@article{parse-2025,\n18\t    title   = {{PARSE}: {LLM} Driven Schema Optimization for Reliable Entity Extraction},\n19\t    author  = {Shrimal, Anubhav and Jain, Aryan and Chowdhury, Soumyajit and Yenigalla, Promod},\n20\t    journal = {arXiv preprint arXiv:2510.08623},\n21\t    year    = {2025},\n22\t    url     = {https://arxiv.org/abs/2510.08623},\n23\t}\n24\t\n25\t@inproceedings{dee-2024,\n26\t    title     = {Decompose, Enrich, and Extract! Schema-aware Event Extraction using {LLM}s},\n27\t    author    = {Shiri, Fatemeh and Nguyen, Van and Moghimifar, Farhad and Yoo, John and Haffari, Gholamreza and Li, Yuan-Fang},\n28\t    booktitle = {Proceedings of the IEEE International Conference on Tools with Artificial Intelligence},\n29\t    year      = {2024},\n30\t    url       = {https://arxiv.org/abs/2406.01045},\n31\t}\n32\t\n33\t@inproceedings{crossagentie-2025,\n34\t    title     = {{CROSSAGENTIE}: Cross-Type and Cross-Task Multi-Agent {LLM} Collaboration for Zero-Shot Information Extraction},\n35\t    author    = {Lu, Meng and Xie, Yuzhang and Bi, Zhenyu and Cao, Shuxiang and Wang, Xuan},\n36\t    booktitle = {Findings of the Association for Computational Linguistics: ACL\n…[truncated 19521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:03:30.043883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "content": "\\section{Why Naive Decomposition Fails}\n\\label{sec:sdgd}\n\nThe multi-channel degradation model (\\S\\ref{sec:results}) raises an interventional question: if confusability drives type confusion, can we decompose the schema so that confusable types never co-occur in the same prompt?  We test this idea with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), a method that uses the pairwise SCS matrix to partition types into low-confusability batches, runs extraction independently on each batch, and merges the results.\n\n\\paragraph{Decomposition protocol.}\nWe compute hierarchical clustering over the SCS matrix and cut the dendrogram so that highly similar types fall into separate batches. Each batch is presented to the LLM as an independent extraction prompt; predictions are then merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation, following the strategy of \\citet{uniner-2024}. Figure~\\ref{fig:sdgd_comparison} summarizes the results on Few-NERD.\n\n\\paragraph{All decomposition modes degrade F1.}\nTable~\\ref{tab:sdgd_results} reports the outcome.  Single-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368).  SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop.  Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586).  Every decomposition mode falls below the single-pass baseline.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Mode} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 0.563 & 0.368 & 0.445 \\\\\nsdgd\\_zero (v1) & 0.210 & 0.314 & 0.251 \\\\\nrandom\\_batch & 0.249 & 0.446 & 0.320 \\\\\nper\\_type & 0.194 & 0.586 & 0.292 \\\\\n\\midrule\nsdgd\\_zero (v2) & 0.202 & 0.298 & 0.241 \\\\\nrandom\\_batch (v2) & 0.233 & 0.413 & 0.301 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Few-NERD extraction under four decomposition modes.  V1 uses union merge; v2 uses confidence-gated merge.  All decomposition modes produce lower F1 than the single-pass baseline.  Decomposition boosts recall at the cost of devastating precision losses.}\n\\label{tab:sdgd_results}\n\\end{table}\n\n\\paragraph{Merge amplification.}\nThe pattern across modes is consistent: decomposition boosts recall (per-type recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194 versus 0.563).  The mechanism is straightforward.  When the same text is presented to the model $k$ times with different type subsets, each pass independently generates entity predictions.  Because LLM outputs are not calibrated across passes, the union merge step accumulates overlapping and contradictory predictions, inflating false positives.  Smaller batches amplify the effect: per-type extraction runs the most passes and suffers the worst precision.  This \\emph{merge amplification} is a structural consequence of decompose-then-merge pipelines, independent of how the decomposition is constructed.\n\n\\paragraph{Confidence-gated merge does not help.}\nA natural remedy is to resolve merge conflicts using model confidence.  Our v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span.  This intervention fails: SDGD v2 yields F1\\,=\\,0.241, below v1's 0.251.  Random-batch v2 similarly drops from 0.320 to 0.301.  The failure is consistent with prior findings that LLM confidence scores are poorly calibrated in generative IE settings \\cite{llm-calibration-survey-2024}, rendering confidence-based filtering no better than naive union.\n\n\\paragraph{Connection to prior work.}\n\\citet{llm-pee-2025} independently proposed similarity-based partitioning for large-scale event extraction, using type embeddings to split schemas before extraction.  Our controlled negative result complements their work by identifying the merge step---not the partitioning quality---as the bottleneck.  SDGD's SCS-guided partitioning successfully separates confusable types (by construction), yet F1 still drops because the merge problem is orthogonal to the decomposition problem.  This suggests that merge amplification is a general limitation of decompose-then-merge approaches, not an artifact of our specific partitioning algorithm.\n\n\\paragraph{Structural insight.}\nThe SDGD experiments establish a negative result: confusability-aware schema decomposition, while theoretically motivated by the Channel~2 degradation mechanism, does not improve extraction under union-based merging.  The bottleneck lies entirely in the merge phase.  Future approaches must address calibration across extraction passes---for instance, through cross-batch consistency scoring or joint decoding over decomposed outputs---before decomposition strategies can translate confusability signals into extraction gains.\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:03:30.044091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:03:30.044220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "description": "Count words in the output file"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:03:30.044341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "625 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:03:30.044514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "old_string": "\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Mode} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 0.563 & 0.368 & 0.445 \\\\\nsdgd\\_zero (v1) & 0.210 & 0.314 & 0.251 \\\\\nrandom\\_batch & 0.249 & 0.446 & 0.320 \\\\\nper\\_type & 0.194 & 0.586 & 0.292 \\\\\n\\midrule\nsdgd\\_zero (v2) & 0.202 & 0.298 & 0.241 \\\\\nrandom\\_batch (v2) & 0.233 & 0.413 & 0.301 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Few-NERD extraction under four decomposition modes.  V1 uses union merge; v2 uses confidence-gated merge.  All decomposition modes produce lower F1 than the single-pass baseline.  Decomposition boosts recall at the cost of devastating precision losses.}\n\\label{tab:sdgd_results}\n\\end{table}",
+              "new_string": "\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Mode} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 0.563 & 0.368 & 0.445 \\\\\n\\midrule\nsdgd\\_zero (v1) & 0.210 & 0.314 & 0.251 \\\\\nrandom\\_batch (v1) & 0.249 & 0.446 & 0.320 \\\\\nper\\_type & 0.194 & 0.586 & 0.292 \\\\\n\\midrule\nsdgd\\_zero (v2) & --- & --- & 0.241 \\\\\nrandom\\_batch (v2) & --- & --- & 0.301 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Few-NERD extraction under decomposition modes.  V1 uses union merge; v2 uses confidence-gated merge.  All decomposition modes produce lower F1 than the single-pass baseline.  Decomposition boosts recall at the cost of devastating precision losses.}\n\\label{tab:sdgd_results}\n\\end{table}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:03:30.044688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:03:30.044871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T18:03:30.045017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T18:03:30.045142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "sdgd_negative_section",
+              "type": "paper",
+              "description": "§5 Why Naive Decomposition Fails — SDGD negative result section (~500 words), covers merge amplification mechanism and confidence-gated merge failure",
+              "project": "schema-dag-extraction",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "tags": "['paper', 'section5', 'sdgd', 'negative-result']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T18:03:30.045293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_4f7caf\\\", \\\"name\\\": \\\"sdgd_negative_section\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"§5 Why Naive Decomposition Fails — SDGD negative result section (~500 words), covers merge amplification mechanism and confidence-gated merge failure\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/paper/sdgd_negative.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:03:23.766208+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"section5\\\", \\\"sdgd\\\", \\\"negative-result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T18:03:30.045452+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `/docs/paper/sdgd_negative.tex`。\n\n结构：6 段 + 1 表。动机 → SDGD 协议 → 全模式 F1 低于 baseline → merge amplification 机制 → v2 confidence-gated 失败 → LLM-PEE 关联 → 结构性洞察。引用 `llm-pee-2025`、`uniner-2024`、`llm-calibration-survey-2024`，均来自 `references.bib`。v2 的 P/R 未提供，表中标 `---`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_sdgd_negative_20260515T180152"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "516d3b37419188ecebc2",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis bcs definition fix",
+  "task_key": "worker_analysis_bcs_definition_fix_20260516T043644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bcs_definition_fix_20260516T043644.log",
+    "occurrence": 1,
+    "bytes": 630567,
+    "sha256": "5d0bba45ca7e950c6e3bcc4144c00e6fd763fbdbb0e17e763e2664fc75a8ed43"
+  },
+  "statistics": {
+    "messages": 180,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "516d3b37419188ecebc2-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "516d3b37419188ecebc2-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ]
+}

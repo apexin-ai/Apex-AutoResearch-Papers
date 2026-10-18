@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "91d8d041c80ea01d910c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit westd27271 harvest",
+  "task_key": "worker_ops_audit_westd27271_harvest_20260522T150629",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit_westd27271_harvest_20260522T150629_result.json",
+    "occurrence": 1,
+    "bytes": 2444,
+    "sha256": "128a6db89aebb664443078e537a7b63c246c9aaae6621428e5ad9be445e4dd49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇报如下：\n\n---\n\n## westd-27271 X-VLA 实验状态报告\n\n### 1. 已完成实验（re-run baselines on westd-27271）\n\n| 实验 | SR (旧 cqa1-33015) | SR (新 westd-27271) | 状态 |\n|---|---|---|---|\n| **Spatial baseline** (k=1.0) | 91.6% | **93.0%** | 已在 registry（DONE） |\n| **Goal baseline** (k=1.0) | 98.0% | **98.4%** | 已在 registry（DONE） |\n\n结果文件: `eval_results/xvla_prune_k1.0_libero_spatial.json`, `eval_results/xvla_prune_k1.0_libero_goal.json`\n\n### 2. 正在运行的实验\n\n**cuda:0 — L2norm k=0.95 Spatial** (`xvla_spatial` tmux, task 4 ~ep45/50)\n\n| Task | Baseline SR | L2norm k=0.95 SR | 变化 |\n|---|---|---|---|\n| 0 | 98% | **100%** | +2 |\n| 1 | 100% | **54%** | **-46** |\n| 2 | 100% | **96%** | -4 |\n| 3 | 98% | **100%** | +2 |\n| 4-9 | — | 进行中 | — |\n\n**cuda:1 — L2norm k=0.95 Goal** (`xvla_goal` tmux, task 5 ~ep11/50)\n\n| Task | Baseline SR | L2norm k=0.95 SR | 变化 |\n|---|---|---|---|\n| 0 | 100% | **100%** | 0 |\n| 1 | 100% | **38%** | **-62** |\n| 2 | 96% | **94%** | -2 |\n| 3 | 98% | **24%** | **-74** |\n| 4 | 100% | **18%** | **-82** |\n| 5 | 96% | 运行中 (0/11全失败) | — |\n| 6-9 | — | 待运行 | — |\n\n**关键发现：L2norm k=0.95 在 Goal suite 上表现灾难性，仅去掉 5% token 就导致多个 task 从 98-100% 暴跌到 18-38%。Spatial 上也有 Task 1 从 100% 跌到 54%。假设（2-3%以内降幅）被强烈否定。**\n\n### 3. 自动化队列（无需手动部署）\n\n**cuda:0 链** (`xvla_spatial` → `xvla_long`):\n- ✅ Spatial baseline\n- 🔄 Spatial l2norm k=0.95（运行中）\n- ⏳ Spatial l2norm k=0.9, k=0.7\n- ⏳ Long baseline → l2norm k=0.95/0.9/0.7\n\n**cuda:1 链** (`xvla_goal` → `xvla_random`):\n- ✅ Goal baseline\n- 🔄 Goal l2norm k=0.95（运行中）\n- ⏳ Goal l2norm k=0.9, k=0.7\n- ⏳ Random k=0.95/0.9/0.7 × {object, spatial, goal, long}（12个实验）\n\n### 4. Registry 更新\n\n- `eval_xvla_baseline_spatial_seed42` — 已存在（DONE, hypothesis 已更新）\n- `eval_xvla_baseline_goal_seed42` — 已存在（DONE, hypothesis 已更新）\n- `eval_xvla_l2norm_k095_spatial_seed42` — **新注册 → RUNNING**\n- `eval_xvla_l2norm_k095_goal_seed42` — **新注册 → RUNNING**\n\n### 5. GPU 空闲情况\n\n**无空闲 GPU**。两张卡各自有完整的自动化链在排队，预计总运行时间 ~20+ 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

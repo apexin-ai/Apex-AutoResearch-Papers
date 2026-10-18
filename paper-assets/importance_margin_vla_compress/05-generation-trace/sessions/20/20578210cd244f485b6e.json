@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20578210cd244f485b6e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest l2norm k07 s47 final",
+  "task_key": "worker_harvest_l2norm_k07_s47_final_20260529T022450",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_l2norm_k07_s47_final_20260529T022450_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "5f09a4a85352bfa05489532ed14f35e28a9864f079358e999bad3d5df6eaf5e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **eval_pi05_l2norm_k07_long_seed47_w41** 成功完成。\n\n**最终结果：SR = 62.0%**\n\n逐任务：T1=80%, T2=82%, T3=42%, T4=76%, T5=70%, T6=50%, T7=54%, T8=4%, T9=82%\n\nRegistry 已更新（conclusion=success, metrics 已写入）。Cron 不存在（可能已被清除），无需操作。\n\n该 seed47 的 62.0% 与 5-seed mean 63.2±1.5pp 一致，属正常范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

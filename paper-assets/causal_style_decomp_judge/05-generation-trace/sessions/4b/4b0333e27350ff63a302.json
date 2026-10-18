@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0333e27350ff63a302",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "exp r15 sf3 100pt likert multi",
+  "task_key": "worker_exp_r15-sf3-100pt-likert-multi_20260523T065159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r15-sf3-100pt-likert-multi_20260523T065159.log",
+    "occurrence": 1,
+    "bytes": 694815,
+    "sha256": "65a0f11c875e3799865a4a4763970dc5fe612211b64b4ea2d169c20f9b575953"
+  },
+  "statistics": {
+    "messages": 372,
+    "user_turns": 0,
+    "tool_calls": 151,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 63,
+      "tool_call": 151,
+      "tool_result": 151,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 372,
+      "chunks": [
+        {
+          "path": "4b0333e27350ff63a302-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b0333e27350ff63a302-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b0333e27350ff63a302-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ]
+}

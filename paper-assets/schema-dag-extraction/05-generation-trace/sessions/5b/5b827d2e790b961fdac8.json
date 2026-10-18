@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b827d2e790b961fdac8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "write table3 integration d036",
+  "task_key": "worker_write_table3_integration_d036_20260516T023123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_table3_integration_d036_20260516T023123_result.json",
+    "occurrence": 1,
+    "bytes": 1884,
+    "sha256": "4cbe6bf19ecbac186b604bfa2a36af0a2919547153e6ed0b0066f96eeddf508e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All remaining \"amplification\" references are either about **merge amplification** (SDGD pipeline issue, different concept) or have already been rewritten to the new \"stable sensitivity / wider range\" framing. The conclusion in discussion.tex references \"merge amplification\" correctly.\n\n---\n\n**修改摘要**\n\n**修改文件 (5个)**：\n1. `docs/paper/results.tex`\n2. `docs/paper/abstract.tex`\n3. `docs/paper/introduction.tex`\n4. `docs/paper/main.tex`\n5. `artifacts/_project/paper/results.tex`\n\n**关键叙事变化**：\n\n| 旧叙事 | 新叙事 |\n|--------|--------|\n| BCS 效应随 pool 增大 **3.4× 放大** | BCS--accuracy slope **跨 pool 一致** (permutation p=0.436) |\n| 31.2pp vs 9.1pp = amplification | 31.2pp vs 9.1pp = 80-rel pool 的 **BCS range 更宽** (0.46–0.68 vs 0.65–0.90) |\n| Extreme-batch Δ 作为 Panel B | **Quartile Δ** 作为辅助列（-7.42pp, -3.92pp, +0.35pp） |\n\n**Table `within_pool` 重构**：\n- 合并为单表：左侧 Regression（slope/CI/r/p），右侧 Quartile Δ（Δ/CI）\n- 底部注脚：Permutation test p=0.436\n- Caption 明确说明 80-rel (n=25) underpowered、80-pool quartile Δ CI 跨零原因（BCS range 窄）\n\n**具体行变更**：\n- `results.tex:18` — figure caption 去掉 \"3.4× amplification\"，改为 slope consistency + wider range\n- `results.tex:88-91` — 去掉 amplification 解释，改为 per-unit sensitivity 一致 + range 差异\n- `results.tex:92-122` — 重写 within-pool 段落和表格\n- `abstract.tex:2` — \"amplify 3.4×\" → \"slope consistent (permutation p=0.44), wider range → larger gaps\"\n- `introduction.tex:12,18` — findings/contributions 中同步更新\n- `main.tex:42-44` — limitations 从 \"amplification uncertainty\" 改为 \"cross-pool slope consistency\"\n- `main.tex:157` — appendix factorial 段落同步更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

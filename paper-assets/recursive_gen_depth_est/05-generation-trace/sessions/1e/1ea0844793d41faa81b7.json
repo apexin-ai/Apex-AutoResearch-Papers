@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea0844793d41faa81b7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh verify dcol readiness",
+  "task_key": "worker_ssh_verify_dcol_readiness_20260514T200618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_dcol_readiness_20260514T200618_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "02baf592d289cc5a97338a7380ae7bd8656c3218124a0a2df14ff9ff1c14ec05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查通过。\n\n## DCOL 训练就绪状态：**DCOL READY**\n\n| 检查项 | 状态 |\n|--------|------|\n| 代码文件 | `src/dcol_trainer.py` + `src/dcol_dataset.py` + `src/dcol_feature_mlp.py` + `src/dcol_eval.py` + `scripts/run_dcol_training.sh` |\n| 语法检查 | SYNTAX_OK (3 个核心文件) |\n| 模型 | DeBERTa-v3-large 已缓存在 `/root/autodl-tmp/models/deberta-v3-large` (868MB safetensors) |\n| 依赖 | torch=2.10.0+cu128, transformers=5.8.1, cuda=True, 2 GPUs |\n| 训练数据 | `data/depth_{0..3}.jsonl` 全部就绪 + `data/features_all.jsonl` (13.7MB 19维特征) |\n| 多模型数据 | gpt2xl、olmo、pythia_temp09、pythia_topk50 子目录存在 |\n| Loss | Contrastive Ordinal Loss with learnable margins (N-pair, 非 uniform 初始化 from MVP AUC) |\n| 输出 | 4 类深度分类，19 维统计特征 + [CLS] embedding |\n\n### 架构确认\n- **dcol_trainer.py**: DeBERTa-v3-large backbone + OrdinalContrastiveHead (19-dim feature projector → 128-dim contrastive embedding) + LearnableOrdinalMargins + 4-class classifier。三组学习率 (backbone/head/margins)。\n- **dcol_feature_mlp.py**: 纯 MLP 版本（无 DeBERTa），19→128→64→32 contrastive space + 4-class head。独立 baseline。\n\n### 启动命令\n\n```bash\n# DeBERTa DCOL (主实验，cuda:0)\nCUDA_VISIBLE_DEVICES=0 bash scripts/run_dcol_training.sh\n\n# 或直接 python:\nCUDA_VISIBLE_DEVICES=0 python src/dcol_trainer.py \\\n  --data_dir data/ \\\n  --model_path /root/autodl-tmp/models/deberta-v3-large \\\n  --features_path data/features_all.jsonl \\\n  --output_dir checkpoints/dcol/ \\\n  --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-3 --cl_weight 0.5\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c621aae06a78c64d2434",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260515T191020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260515T191020_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "0208fcc8d585f3c3604d674ff04adbf4dd49b7f749f4d51bd28299020c7107a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `abstract.tex`。约 260 words，覆盖全部 5 个元素。数字核对：\n\n| 指标 | Abstract | §1 一致性 |\n|------|----------|-----------|\n| NER recall 0.72→0.42 | ✓ | ✓ |\n| RE accuracy 85.7%→50.4% | ✓ | ✓ |\n| r = 0.112–0.129 | ✓ | ✓ |\n| r² ≈ 0.013–0.017 | ✓ (DR2 fix) | ✓ |\n| 3.4× amplification, 9.1→31.2 pp | ✓ | ✓ |\n| Count degradation限定NER and RE | ✓ | ✓ |\n| 无 \\cite、无禁用词 | ✓ | — |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

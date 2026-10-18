@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd0db163758b16f39d9f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code two stage prep",
+  "task_key": "worker_code_two_stage_prep_20260516T041247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_two_stage_prep_20260516T041247_result.json",
+    "occurrence": 1,
+    "bytes": 1079,
+    "sha256": "12e6a757ccf68bf325c2fad8e000a135e84425dcefeb5c29a4e83246553e90d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n### 产出清单\n\n**新文件：**\n- `configs/imm_two_stage.yaml` — Two-stage v9 配置，基于 `imm_anchor.yaml`，lambda=1.0, stage1_steps=30000, stage2_steps=0, lr=5e-4\n\n**修改文件：**\n- `train_twostage.py` — 4 处补丁：\n  1. **L324**: `max_steps` 不覆盖 stage2_steps=0 的配置\n  2. **L339**: 加载 baseline_v5 checkpoint 到 `model.policy`\n  3. **L376**: 打印参数统计（total/trainable/frozen）\n  4. **L414**: stage2_steps=0 时跳过 Stage 2 并输出 dry-run 结果\n\n**Dry-Run 结果（5 steps on GPU 1）：**\n- 冻结参数 451.5M，可训参数 3.46M (ACIS, 0.76%)\n- LoRA 梯度为 0，ACIS 梯度正常（7/10 params）\n- margin_loss 初始值 0.2969，grad_norm=15.07\n- Stage 2 正确跳过，DRY RUN PASSED\n\n**注意事项：**\n- 运行正式训练需要 `source /etc/network_turbo`（AutoDL 网络限制）\n- 有另一个 v8b_twostage 训练进程 (PID 133669) 在 GPU 1 上运行，正式训练前需确认其状态\n- 实验已注册为 `imm_two_stage_v9`，状态 PREPARING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

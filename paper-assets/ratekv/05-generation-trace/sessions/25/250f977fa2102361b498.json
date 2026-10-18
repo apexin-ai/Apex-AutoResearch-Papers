@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "250f977fa2102361b498",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp yi15 8k spotcheck",
+  "task_key": "worker_exp_yi15_8k_spotcheck_20260515T132509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_yi15_8k_spotcheck_20260515T132509_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "cf4839e9e51120ad28c70c62658661aac8efd068aa1ad39d10438e6b1baea847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册为 RUNNING。\n\n**状态**：\n- **PID**: 337148 on `westd-37397` cuda:0\n- **进度**: 模型已加载 (bf16, ~17GB)，正在跑 WikiText-2 8K stride baseline PPL 评估\n- **Solver 分配**: 180×4bit, 8×2bit, 4×8bit（与 2K 的 k=2 不同，这里用 k=8 允许更多 2-bit heads）\n- **Registry**: `yi15_8k_spotcheck` → RUNNING\n- **预计耗时**: 8K stride 评估 3 组约 15-30 分钟（9B 模型 + 8K context window）\n- **日志**: `tail /tmp/yi15_8k_spotcheck.log`\n\ntoken sequence length 警告 (338838 > 4096) 是正常的——Yi-1.5-9B 的 `max_position_embeddings=4096` 但 RoPE theta=5M 支持外推到 8K。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

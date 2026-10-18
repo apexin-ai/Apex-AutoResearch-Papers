@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad0b0c7b63f58baca946",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 024 realcm bias identity",
+  "task_key": "worker_code_exp-024-realcm-bias-identity_20260522T122608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-024-realcm-bias-identity_20260522T122608_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "391b59c969161b1e8e5467ff754fb105f70d26830a24c44b7a80b98fd46b3193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results verified. Summary:\n\n**Global R² = 0.975** across all 11 LLMs, confirming Theorem 1's bias identity `bias(z,s) = Δτ · [B_s]_{z,1}` with real LLM confusion matrices.\n\n| LLM | Dataset | R² | max\\|B\\| |\n|-----|---------|-----|----------|\n| gpt-4-turbo | TweetEval | 0.993 | 0.328 |\n| Qwen2.5-7B | TweetEval | 0.990 | 0.272 |\n| Mistral-7B | TweetEval | 0.990 | 0.242 |\n| Gemma-2-9B | TweetEval | 0.982 | 0.185 |\n| gpt-4o | CivilComments | 0.979 | 0.198 |\n| gpt-4o | TweetEval | 0.975 | 0.240 |\n| gpt-4.1 | TweetEval | 0.969 | 0.139 |\n| gpt-3.5-turbo | TweetEval | 0.948 | 0.087 |\n| gpt-3.5-turbo | CivilComments | 0.935 | 0.170 |\n| gpt-4o-mini | TweetEval | 0.929 | 0.170 |\n| gpt-4o-mini | CivilComments | 0.756 | 0.089 |\n\nR² strongly correlates with max|B| — LLMs with more heterogeneous per-subgroup error rates produce stronger bias signals that are easier to verify empirically. The one outlier (gpt-4o-mini Civil, R²=0.76) has near-homogeneous FPR/FNR across subgroups (max|B|=0.089), so the predicted biases are tiny and MC noise dominates.\n\nOutput files:\n- `results/exp_realcm_bias_identity.csv` (440 rows)\n- `results/exp_realcm_summary.csv` (11 rows)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

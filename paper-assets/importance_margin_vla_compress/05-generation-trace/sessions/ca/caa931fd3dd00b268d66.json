@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "caa931fd3dd00b268d66",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 attention k075 long seed42 v2",
+  "task_key": "worker_diagnose_eval_pi05_attention_k075_long_seed42_v2_20260526T135804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_attention_k075_long_seed42_v2_20260526T135804_result.json",
+    "occurrence": 1,
+    "bytes": 369,
+    "sha256": "da43d7e8322e7a44c442ca49ad3c728dcb91d38f63782e1d36af366fd183e6f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nRESULT: success\nSR: 52.4%\nDETAILS: π0.5 Attention k=0.75 Long (libero_10), 500 episodes 全部完成，耗时 250min。\n  T0=68% T1=78% T2=64% T3=48% T4=26% T5=50% T6=76% T7=30% T8=6% T9=78%\n  v2 重跑结果 52.4% vs v1 的 51.8%，基本一致，确认 v1 结果可靠。\n  vs k=0.9 (63.8%) 下降 11.4pp，符合 cliff curve 预期。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "70ee748edb5e02fd143a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops sync compile paper",
+  "task_key": "worker_ops_sync_compile_paper_20260518T214146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_compile_paper_20260518T214146_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "c50dfb608feca3fb5e7d22f57b8a1230157984cf7d5fd0468f2347b242fcda95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| **同步状态** | 19 个文件（11 .tex + 1 .bib + 1 .bst + 1 .sty + 1 .bbl + 4 figure PDF），全部成功 |\n| **编译结果** | **PASS** — 0 error, 0 undefined reference |\n| **Overfull hbox** | 11 处，主要在 section_appendix.tex（lines 23-387），最大 49.9pt（line 259-273） |\n| **页数** | 24 页 |\n| **数字抽查** | Table 2 Pythia nucleus = **78.7±0.6** ✓，在 atlas.tex:27 确认 |\n| **PDF** | 已拷贝到 `artifacts/main.pdf`（505K） |\n\nOverfull hbox 全部在 appendix 区域（atlas.tex 1 处 + section_appendix.tex 10 处），正文无 overfull。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

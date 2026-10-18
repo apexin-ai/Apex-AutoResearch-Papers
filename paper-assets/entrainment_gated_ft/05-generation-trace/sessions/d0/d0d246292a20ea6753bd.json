@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d246292a20ea6753bd",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis subsample sensitivity",
+  "task_key": "worker_analysis_subsample-sensitivity_20260521T132528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_subsample-sensitivity_20260521T132528_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "23c268d12089a336bcd60701ff9383c24b42c79b7fe0ed7dba8c2371b3c8bd50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册。结果摘要：\n\n**CI width at n=100**（对应 COPA 的 N=100）：\n| Benchmark | CI width |\n|-----------|----------|\n| PIQA | 0.130 |\n| HellaSwag | 0.140 |\n| ARC-Easy | 0.160 |\n| LAMBADA | 0.180 |\n\n所有 benchmark 在 n=100 时 CI width 都在 0.13–0.18，远超 0.03 稳定阈值，**COPA (N=100) 排除完全合理**。\n\n**CI width 收敛曲线**（符合 ~1/√n 衰减）：\n- n=500 时 CI width ≈ 0.06–0.08\n- n=1000 时 CI width ≈ 0.04–0.06\n- 仅 HellaSwag (N=10042, width=0.013) 和 LAMBADA (N=5153, width=0.025) 在 full N 时达到 < 0.03\n- PIQA (N=1838, width=0.034) 和 ARC-Easy (N=2376, width=0.032) 在 full N 时刚好在阈值边缘\n\n**α 越大需要更多样本**：LAMBADA (α≈0.31) 的 CI width 在每个 n 值下都最宽，因为 variance = α(1-α)/n 在 α 接近 0.5 时更大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

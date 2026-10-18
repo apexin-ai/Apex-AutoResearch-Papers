@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "403c98751ee44caeb9d9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp2 analysis update",
+  "task_key": "worker_ssh_exp2-analysis-update_20260514T232020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp2-analysis-update_20260514T232020_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "874eb7187d741f4b216f77a2be61e840df07a91e44225381e37dea73691ea5eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是修改摘要：\n\n### Reviewer 必须修正 (A)\n1. **主指标改 relaxed F1** — 原来硬编码 `metrics[\"exact\"][\"f1\"]`，现在通过 `_get_metrics(metrics, eval_mode)` 统一获取，默认 `eval_mode=\"relaxed\"`\n2. **禁用 delta 模式** — 删除了 `use_delta=True` 自动启用逻辑，delta 现在仅作为 `delta_supplementary` 输出，主分析直接做 within-count Pearson r(relaxed_F1, BCS)\n\n### D003 功能扩展 (B)\n3. **within-count Pearson r** — 每个 count_key 计算 r, p, 95% CI (Fisher z), n，加偏相关 `partial_corr(F1, BCS | count)` 合并分析\n4. **recall-only 分析** — 每个 count 同时计算 `r(recall, BCS)` 及偏相关\n5. **per-type confusion rate** — 新增 `analyze_confusion()` 函数，从原始预测+ground truth 统计 (gold_type, pred_type) 错标次数，输出 top-K confused pairs 到 `confusion_analysis.json`\n6. **eval_mode 参数** — 支持 `\"exact\"`, `\"relaxed\"`, `\"text_match\"`（text_match 不可用时 fallback 到 relaxed）\n7. **可视化** — scatter plots 保存为 `exp2_analysis_f1.png`, `exp2_analysis_recall.png`, `*_combined.png`（per-count 分色 + 回归线）\n\n### 验证\n- 语法检查通过\n- `--help` 正常输出\n- 无 eval 文件时 dry-run 不 crash\n- 275 行 → 510 行，未触碰 `run_experiment.py` 或 `evaluate.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

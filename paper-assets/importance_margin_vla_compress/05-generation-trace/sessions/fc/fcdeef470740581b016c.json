@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fcdeef470740581b016c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 gpu2 process gone",
+  "task_key": "worker_diagnose_cqa1_gpu2_process_gone_20260527T114520",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1_gpu2_process_gone_20260527T114520_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "f77d1e5be8f59c29a1b417e8285bc0092d5e8fbd961fc552db02dc6064284dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：cqa1-33015\n\n### GPU2 实验 `eval_pi05_l2norm_k085_long_seed42_strict`\n\n**状态：已完成** — 实验正常结束，进程退出，无崩溃。\n\n**结果：`overall_sr = 77.6%`**（388/500, 224.8 min）\n\nPer-task breakdown:\n| Task | SR |\n|------|-----|\n| T0 alphabet soup + tomato sauce → basket | 98% |\n| T1 cream cheese + butter → basket | 94% |\n| T2 stove + moka pot | 86% |\n| T3 black bowl → drawer | 96% |\n| T4 white mug + yellow mug → plates | 68% |\n| T5 book → caddy | 96% |\n| T6 white mug → plate + pudding | 8% |\n| T7 alphabet soup + cream cheese → basket | 80% |\n| T8 moka pots → stove | 56% |\n| T9 yellow mug → microwave | 94% |\n\n结果已保存到 `eval_results/pi05_l2norm_k0.85_libero_10_seed42.json`。无 sentinel 文件（脚本未写 .done/.failed），但日志和 JSON 输出均完整，进程正常退出。\n\n### 其他实验状态\n\n| GPU | PID | 实验 | 状态 |\n|-----|-----|------|------|\n| GPU0 | 109156 | `random k=0.7 libero_10 seed42` (v2) | **运行中** (28% util, 10GB VRAM) |\n| GPU1 | 118731 | `random k=0.5 libero_10 seed42` | **运行中** (30% util, 10GB VRAM) |\n| GPU2 | — | `l2norm k=0.85 libero_10 seed42` | **已完成**, GPU 空闲 (1MiB) |\n| GPU3 | 200112 | `l2norm k=0.9 libero_10 seed42` | **运行中** (31% util, 10GB VRAM) |\n\n### GPU 可用性\n\n**GPU2 空闲，可立即部署新实验。** 其余 3 个 GPU 均在跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

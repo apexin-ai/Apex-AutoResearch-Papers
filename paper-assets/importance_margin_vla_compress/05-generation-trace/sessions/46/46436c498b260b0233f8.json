@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "46436c498b260b0233f8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train smart compress m16 seed44 v2",
+  "task_key": "worker_train_smart_compress_m16_seed44_v2_20260519T040729",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_smart_compress_m16_seed44_v2_20260519T040729_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "b73c6019a239e701cc62abd6e7f0ed89cb8ca8d65d4d28d23154548e19e6e608"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并注册成功。\n\n**总结：**\n- **服务器**: westd-27271, GPU 0 (RTX PRO 6000 Blackwell 98GB)\n- **配置**: M=16, seed=44, 100k steps, lr=1e-4, batch_size=4\n- **状态**: RUNNING, ~5.1 steps/sec, 预计 ~5.5 小时完成\n- **日志**: `/root/autodl-tmp/importance_margin_vla_compress/logs/train_smart_compress_m16_seed44.log`\n- **Registry**: `train_smart_compress_m16_seed44` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

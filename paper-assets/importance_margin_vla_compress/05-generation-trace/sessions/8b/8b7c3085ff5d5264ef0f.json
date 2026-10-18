@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7c3085ff5d5264ef0f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research find openvla entropy data",
+  "task_key": "worker_research_find_openvla_entropy_data_20260519T034504",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_find_openvla_entropy_data_20260519T034504_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "344c341e94fffbfc54da4cd65e6f681f4802a33f0e42b486e09955e03525ff68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了全部数据。总结如下：\n\n## 搜索结果\n\n### westd-27271 上找到两个 JSON 文件\n\n**1. `eval_results/openvla_attention_entropy_real.json`** (3140 bytes, 2026-05-18 创建)\n- 基于 **250 张真实 LIBERO-Object 图片**（10 tasks × 25 frames）\n- 论文应引用此文件\n- 关键数据：\n  - `overall_entropy_ratio`: **0.6393**（论文报告 0.64 ✓）\n  - `per_layer_entropy_ratio`: L0=0.979 → L29=0.477（论文报告 L0=0.98, L29=0.48 ✓）\n  - 包含 `per_layer_entropy_std`（可画 error bar）\n  - 包含 `per_layer_vision_attention_fraction`\n  - 最低层: L29 (0.477), 最高层: L0 (0.979)\n  - 32 层 (L0-L31) 完整数据\n\n**2. `artifacts/openvla_attention_entropy.json`** (旧版，基于 20 张随机噪声图)\n- `overall_entropy_ratio`: 0.617\n- 这是早期版本，不应用于论文\n\n### cqa1-33015 上无 OpenVLA 数据\n只有 SmolVLA 的 entropy 文件（已知）。\n\n### 数据充分性\n`openvla_attention_entropy_real.json` 包含画 per-layer entropy 折线图所需的所有信息：32 层的 mean entropy ratio + std，以及 vision attention fraction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

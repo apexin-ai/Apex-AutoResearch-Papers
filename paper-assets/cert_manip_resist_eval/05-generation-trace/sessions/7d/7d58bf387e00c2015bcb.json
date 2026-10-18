@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d58bf387e00c2015bcb",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code error filter and pipeline check",
+  "task_key": "worker_code_error-filter-and-pipeline-check_20260522T161449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_error-filter-and-pipeline-check_20260522T161449_result.json",
+    "occurrence": 1,
+    "bytes": 2421,
+    "sha256": "a3de9e4261023fc176d0bad6ef43a28860a83b1bc92e8bd02bb3a25f4ba4b954"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n---\n\n## 汇报\n\n### 任务 1：ASR Error 过滤\n\n**添加位置**: `/root/cert_manip_resist_eval/src/unified_data_loader.py` 末尾\n\n**新增函数**:\n- `_is_valid_score(score)` — winner 非 None 且无 error 字段\n- `majority_vote(votes)` — 共享的 majority vote 实现\n- `compute_corrected_asr(clean_list, attacked_list, pairs)` → `(asr, n_valid, n_filtered)`\n- `compute_corrected_position_asr(clean_scores, attacked_scores, original_pairs, swapped_pairs)` → `(asr, n_valid, n_filtered)`\n- `compute_corrected_panel_asr(jids, clean, attacked, pairs)` → `(asr, n_valid, n_filtered)`\n- `compute_individual_asr_report(model_id, clean, attacked, pairs)` → `Dict[condition_key, Dict]`\n\n**Step 4/5 修改**: import 已更新，`compute_individual_asr` → `compute_corrected_asr(...)[0]`，`compute_panel_asr` → `compute_corrected_panel_asr(...)[0]`\n\n**合成测试结果**（验证过滤逻辑）:\n| Test | Buggy ASR | Corrected ASR | Diff |\n|------|-----------|---------------|------|\n| 10 samples, 4 attacked errors | 0.7000 | 0.5000 | +0.2000 inflated |\n\n**受影响模型的 error rate**:\n\n| Model | Dataset | Clean Error% | Atk Error% (avg) |\n|-------|---------|-------------|-------------------|\n| gemini-3.5-flash | mmlu | 26.3% | ~27-32% |\n| gemini-3.5-flash | arc_challenge | 7.7% | ~6-10% |\n| gemini-3.1-pro-preview | mmlu | 11.7% | ~11-17% |\n| gemini-3.1-pro-preview | arc_challenge | 1.0% | ~2-3% |\n\n其他模型 (claude-*, gpt-*) error rate ≈ 0%。\n\n### 任务 2：Pipeline 就绪状态\n\n| 检查项 | 状态 |\n|--------|------|\n| `unified_data_loader.py` import | OK |\n| `run_pipeline_15model.sh` | OK |\n| 依赖 (numpy, scipy, sklearn, pandas, statsmodels) | OK |\n| `individual_scores/` 目录 | 存在，23 files（claude-3-haiku 14 + gpt-4o 9） |\n| **缺失** | 7 个 API 模型的 score files 未传输 |\n\n### 任务 3：scp 命令模板\n\n本地 113 个 API 模型 JSON 文件（9 models），目标目录已确认存在。\n\n```bash\nscp /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scoring/results/plan001/individual_scores/{claude,gemini,gpt}*.json \\\n  seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/individual_scores/\n```\n\n已有文件会被覆盖（同数据无影响），不会传输 `__init__.py` 等非数据文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f407b0d0950b677b03ca",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "cleanup sync fig count curves py",
+  "task_key": "worker_cleanup_sync_fig_count_curves_py_20260515T233046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_sync_fig_count_curves_py_20260515T233046_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "5333cfa866b8074dd105bd35f76e4c81a1a93c5de21b4d5747060dcf15b73c31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据和 y 轴已更新：\n- `recall_a` → `[0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]`（exp001 数据）\n- `ylim` → `(0.38, 0.78)`\n\n两个文件的 panel (a) 和 panel (b) 数据现在一致。`figures/paper/` 版本保留了第三个 panel (c) MAVEN ED。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

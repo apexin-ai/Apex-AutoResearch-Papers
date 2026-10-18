@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a1560ffa61b60638fbc0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops check qwen model v2",
+  "task_key": "worker_ops_check_qwen_model_v2_20260516T024239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_qwen_model_v2_20260516T024239_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "d4e90d55c28c9ebdc03f346c102f9df0d15e46967a066d995525f479a32a9021"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**HF CACHE** (`/root/autodl-tmp/.hf_cache`):\n- `Qwen2.5-1.5B-Instruct` (ModelScope temp + HF hub)\n- `Qwen2.5-1.5B` (ModelScope temp + HF hub)\n- `Qwen3-8B` (HF hub)\n- `Qwen2.5-1.5B-base`\n\n**MODELS DIR** (`/root/autodl-tmp/models/`):\n- `Qwen/`、`Qwen2.5-1.5B/`、`Qwen3-8B/`\n\n**DISK**:\n- `/dev/md0` 250G, 已用 117G (47%), 剩余 134G\n\n**脚本模型路径** (`zeroshot_qwen7b_500.py`):\n- `MODEL_PATH = \"/root/autodl-tmp/.ms_cache/Qwen/Qwen2.5-7B-Instruct\"` — 指向 ModelScope 缓存，**不在 HF cache 或 models 目录中**。需确认 `/root/autodl-tmp/.ms_cache/Qwen/Qwen2.5-7B-Instruct` 是否实际存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

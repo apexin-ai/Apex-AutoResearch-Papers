@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "005fdb76c18162658cc5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval smart compress m96 seed43 v2",
+  "task_key": "worker_eval_smart_compress_m96_seed43_v2_20260518T213050",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smart_compress_m96_seed43_v2_20260518T213050_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "21db837bff7a0e18744fe0ca250144aaea47d277d05d39157763f2c3adf5fdaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 1. eval_smart_compress_libero.py 参数格式\n\n关键参数：`--n_queries`（M 值，required）、`--checkpoint_path`（required）。不需要 `--config`，脚本内部硬编码加载 `configs/smart_compress.yaml` 作为基础配置。\n\n## 2. m96_seed43 v2 eval 启动成功\n\n- tmux session: `eval_smart_compress_m96_seed43_v2`，GPU 2\n- 日志确认 `SmartCompressWrapper loaded: M=96, compressor params=22241280`\n- checkpoint 完整匹配，无 missing/unexpected keys\n- 前 2 个 episode 已 SUCCESS（steps=137, 131），说明模型在正常工作（之前错误的 eval 全部 timeout 280 步）\n- 输出写入 `eval_results/eval_smart_compress_m96_seed43_v2.json`\n\n## 3. m32/m64 seed43 eval 命令已保存\n\n文件：`/root/autodl-tmp/importance_margin_vla_compress/pending_eval_commands.txt`\n\n与之前错误命令的关键差异：使用 `eval_smart_compress_libero.py`（加载 SmartCompressWrapper）而非 `eval_success_rate_libero.py --mode baseline`（不加载 compressor），并通过 `--n_queries` 指定正确的 M 值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

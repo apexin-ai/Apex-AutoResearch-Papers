@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c95ed14b7789d25cf282",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code atlas analysis v1",
+  "task_key": "worker_code_atlas_analysis_v1_20260514T183352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_atlas_analysis_v1_20260514T183352_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "efa36b3e41eb8170cce51222395acaff154efa70c89782256a2fbb36dc0222b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果摘要：**\n\n| 分析 | 关键数值 |\n|------|---------|\n| **Monotonicity** | var_surprisal、p90_ppl 在 4 个 chain 上 Spearman ρ 均在 -0.82~-0.89，符合预期 |\n| **EDD** | 所有 19 个特征 × 4 个 chain 的 EDD 均为 3（depth 0-3 范围内未饱和，退化持续） |\n| **Feature Consistency** | 3-way Jaccard = 0.667，三模型共享 top-5 中 4 个特征（var_surprisal, p90_ppl, p75_ppl, mean_surprisal） |\n| **Rank Correlation** | Pythia↔GPT2XL ρ=0.904, OLMo↔GPT2XL ρ=0.853, Pythia↔OLMo ρ=0.647，全部 p<0.01 |\n\n**文件位置：**\n- 服务器：`/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas/` 下 4 个 JSON\n- 本地脚本：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/scripts/atlas_analysis.py`\n- 4 个 artifact 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

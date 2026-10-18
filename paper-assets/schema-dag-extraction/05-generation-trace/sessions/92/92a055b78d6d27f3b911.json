@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "92a055b78d6d27f3b911",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r11 q1 ner partial bcs",
+  "task_key": "worker_analysis_r11-q1-ner-partial-bcs_20260517T091808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r11-q1-ner-partial-bcs_20260517T091808_result.json",
+    "occurrence": 1,
+    "bytes": 1567,
+    "sha256": "ddf69519351d9f2f9836ac79cee7205a3c0f79429af2f6f70eaa093e63651ee9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## Few-NERD BCS-F1 Partial Correlation (n=450, 3 seeds × 150 batches)\n\n| Metric | r | p |\n|--------|---|---|\n| Raw r(BCS, F1) | 0.004 | 0.937 |\n| r(BCS, mean_freq) | -0.079 | 0.092 |\n| r(F1, mean_freq) | **0.257** | **3.4e-08** |\n| Partial r(BCS, F1 \\| freq) | 0.025 | 0.597 |\n| Partial r(BCS, F1 \\| freq+count) | 0.022 | 0.635 |\n\n### Within-count correlations (BCS vs F1):\n| Count | n | r | p | Partial r\\|freq | p |\n|-------|---|---|---|------|---|\n| 2 | 75 | 0.011 | 0.929 | 0.058 | 0.621 |\n| 6 | 75 | 0.083 | 0.481 | 0.036 | 0.761 |\n| 12 | 75 | 0.003 | 0.982 | -0.124 | 0.290 |\n| 22 | 75 | **-0.297** | **0.010** | -0.217 | 0.061 |\n| 44 | 75 | -0.063 | 0.592 | -0.114 | 0.331 |\n| 66 | 75 | 0.049 | 0.676 | 0.049 | 0.676 |\n\n### 解读\n\n1. **Raw BCS-F1 相关在 NER 中接近零** (r=0.004)，频率控制后仍无显著效应\n2. **Type frequency 确实预测 F1** (r=0.257, p<1e-7)：高频 types 更容易被提取\n3. **但 BCS 与 frequency 正交** (r=-0.079, n.s.)：high-BCS batches 并不系统性地包含高频 types\n4. **因此 frequency 不构成 BCS-F1 的混淆变量**：两者相互独立，不存在 confounding path\n5. 唯一显著的 within-count 效应在 count_22（r=-0.30, p=0.01），方向是**负**的\n\n对审稿人的回答框架：frequency 确实影响 NER extraction 难度，但它与 BCS 正交，不能解释 BCS-F1 的关系（本身就近乎为零）。\n\nFigure 已保存：`/root/schema-dag-extraction/artifacts/paper/fig_q1_ner_partial_bcs.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "da6db0ae2e4b20fcebfd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd38929 refresh 20260522T2",
+  "task_key": "worker_audit_westd38929_refresh_20260522T2_20260522T203123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd38929_refresh_20260522T2_20260522T203123_result.json",
+    "occurrence": 1,
+    "bytes": 1855,
+    "sha256": "67cfb41a46a3789c1ccae9ce56ce8578b64e4eec21b7874676f7bb84302c74c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计完成汇报\n\n### 四卡状态\n\n| GPU | 显存占用 | 利用率 | 实验 | PID | 状态 |\n|-----|---------|--------|------|-----|------|\n| cuda:0 | 10.9/97.9 GB | 30% | Random k=0.9 Long seed42 | 989045 | 运行中 (1h25m) |\n| cuda:1 | ~0 → 加载中 | 0% | **新部署** Random k=0.3 Long seed42 | 84327 | 刚启动 |\n| cuda:2 | ~0 → 加载中 | 0% | **新部署** L2norm k=0.5 Long seed42 | 84491 | 刚启动 |\n| cuda:3 | 10.7/97.9 GB | 19% | Random k=0.5 Long seed42 | 59244 | 运行中 (28m) |\n\n### 收割结果 (4个实验 RUNNING → DONE)\n\n| 实验 | Suite | Mode | k | SR | vs Baseline |\n|------|-------|------|---|-----|-------------|\n| L2norm k=0.85 Long | libero_10 | l2norm | 0.85 | **78.0%** | 91.6% → -13.6pp |\n| Random k=0.95 Long | libero_10 | random | 0.95 | **61.2%** | 91.6% → -30.4pp |\n| L2norm k=0.7 Long | libero_10 | l2norm | 0.70 | **60.0%** | 91.6% → -31.6pp |\n| Random k=0.85 Goal | libero_goal | random | 0.85 | **52.4%** | vs k=0.9 (62.6%) → -10.2pp |\n\n### 关键发现\n\n- **Long suite 对 pruning 极度敏感**：Random k=0.95 仅去掉 5% 就从 91.6% 暴跌到 61.2%（-30pp），远超其他 suite\n- **L2norm 在 Long 上仍显著优于 Random**：k=0.85 时 L2norm 78.0% vs Random k=0.95 61.2%，L2norm 去掉 15% 仍优于 Random 去掉 5%\n- **Goal Random cliff 在 k=0.85-0.9**：从 62.6% → 52.4%，每下降 5% keep_ratio 掉 ~10pp\n\n### 新部署 (2个)\n\n| 实验 | GPU | tmux session |\n|------|-----|-------------|\n| Random k=0.3 Long seed42 | cuda:1 | eval_random_k03_long |\n| L2norm k=0.5 Long seed42 | cuda:2 | eval_l2norm_k05_long |\n\n### 过期 RUNNING 条目\n\n`eval_pi05_l2norm_k095_spatial_seed42`、`eval_pi05_random_k085_spatial_seed42`、`eval_pi05_random_k0925_object_seed43` — 均已在 registry 中标记 DONE，无需处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

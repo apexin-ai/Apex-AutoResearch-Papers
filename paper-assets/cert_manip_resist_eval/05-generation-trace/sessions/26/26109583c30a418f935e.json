@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "26109583c30a418f935e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis beta reg epsilon",
+  "task_key": "worker_analysis_beta-reg-epsilon_20260522T231659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_beta-reg-epsilon_20260522T231659_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "adbf62b35ede23415d5c813ec72976bf0fb902a5cc196bce8be2fd3d221f3bf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/results/plan001/beta_reg_epsilon.json`。\n\n**Part A — Beta Regression vs OLS:**\n- Beta regression (GLM Binomial/logit) FDR sig: η_max 1/12, K_eff 0/12（远低于 OLS 的 11/12 和 8/12）\n- η_max dominates in 7/12 conditions by |std β|\n- 与 OLS 的 η_max vs K_eff 重要性排序在 **10/12 conditions 一致**，2 个 condition 排序反转（`arc_challenge__prompt_injection` 和 `arc_challenge__score_manipulation`，beta regression 中 K_eff > η_max）\n- Pseudo R² 范围 0.24–0.65\n\n**Part B — ε Sensitivity:**\n\n| ε | η_max FDR sig | K_eff FDR sig |\n|---|---|---|\n| 1e-3 | 10/12 | 8/12 |\n| 1e-6 | 11/12 | 8/12 |\n| 1e-9 | 10/12 | 6/12 |\n\n- max β change vs baseline (ε=1e-6): **472%**，主要来自 ASR 接近 0 的 condition\n- η_max 的 FDR sig count 在三个 ε 下基本稳定（10-11/12），K_eff 在 ε=1e-9 时降至 6/12"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

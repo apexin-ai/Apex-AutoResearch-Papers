@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dab3382e84314526614c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops register pilot",
+  "task_key": "worker_ops_register_pilot_20260520T233206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_register_pilot_20260520T233206_result.json",
+    "occurrence": 1,
+    "bytes": 2121,
+    "sha256": "b02afbf1ec1fa82c5d7228de3a33fb846114c1c97eea0e01e26b08b401cc543a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Here's the verdict:\n\n---\n\n## Register Axis Pilot — Results (20 samples)\n\n### Judgment Criteria\n\n| Criterion | Threshold | Result | Status |\n|-----------|-----------|--------|--------|\n| CF pass rate | ≥80% | 4/20 (20%) | **FAIL** |\n| Register-Formality agreement | ≤95% | 10/20 (50%) | **PASS** |\n\n**Overall: FAIL** (pass rate criterion not met)\n\n### Root Cause Analysis\n\nBERTScore is the sole bottleneck, not NLI:\n\n| Metric | CF pass rate |\n|--------|-------------|\n| NLI ≥ 0.90 alone | **19/20 (95%)** |\n| BERTScore ≥ 0.92 alone | 4/20 (20%) |\n| Both (current) | 4/20 (20%) |\n\nRegister rewrites change vocabulary and syntax substantially (academic jargon ↔ casual phrasing), which BERTScore (token-level similarity) penalizes heavily. Mean BERTScore is 0.8458 vs the 0.92 threshold. Meanwhile NLI confirms content is semantically preserved in 19/20 cases.\n\n### Threshold Sweep (CF)\n\n| BERTScore threshold | Pass rate (with NLI≥0.90) |\n|---|---|\n| ≥0.80 | 15/20 (75%) |\n| ≥0.84 | 12/20 (60%) |\n| ≥0.88 | 8/20 (40%) |\n| ≥0.92 (current) | 4/20 (20%) |\n\nEven at BS≥0.80 the pass rate only reaches 75%.\n\n### Key Insight\n\nRegister is structurally similar to **verbosity** — it inherently changes surface form while preserving meaning. The pipeline already handles verbosity with NLI-only verification (no BERTScore gate). Register should use the same strategy.\n\nWith NLI-only at ≥0.90: **19/20 (95%) pass rate** → would meet the ≥80% criterion.\n\n### Independence\n\nRegister-Formality agreement is 50% — the two axes are clearly orthogonal. Register captures vocabulary/syntax choices (academic jargon, passive voice) while formality captures social distance/politeness. This confirms register is a distinct, non-redundant axis.\n\n### Recommendation\n\nRegister is **viable as a third axis** but requires switching `content_verification.py` to use NLI-only verification for `--axis register` (same as verbosity). The one-line fix: add `\"register\"` alongside `\"verbosity\"` in the axis check at lines 173-178."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

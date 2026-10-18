@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7cd8f3cfbc974de460b4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops n2 check and submit",
+  "task_key": "worker_ops_n2_check_and_submit_20260515T123231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_n2_check_and_submit_20260515T123231_result.json",
+    "occurrence": 1,
+    "bytes": 2522,
+    "sha256": "2c6a134c96f8cdc03c15141f4277c6a8601419a651b61c5c337c16b1dcbf655c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是三步原始输出：\n\n---\n\n**第一步：DeBERTa 结果**\n\n`nvidia-smi`:\n```\nGPU 0: NVIDIA RTX PRO 6000 Black  73C  486W  21349MiB/97887MiB  99%  PID 231453\nGPU 1: NVIDIA RTX PRO 6000 Black  67C  400W   7765MiB/97887MiB  100% PID 235755\n```\n\n`ls results/n2_deberta_finetune/`:\n```\nfold_predictions.npz\nresults.json\n```\n\n`tail -20 ~/runs/recursive_gen_depth_est/n2_deberta_finetune_001.log`:\n```\n  step 150/1000 loss=0.3714\n  step 200/1000 loss=0.5710\n  step 250/1000 loss=0.3492\n  step 300/1000 loss=0.6224\n  step 350/1000 loss=0.3106\n  step 400/1000 loss=0.5790\n  step 450/1000 loss=0.3139\n  step 500/1000 loss=0.4157\n  step 550/1000 loss=0.2475\n  step 600/1000 loss=0.3361\n  step 650/1000 loss=0.2301\n  step 700/1000 loss=0.5010\n  step 750/1000 loss=0.5259\n  step 800/1000 loss=0.7750\n  step 850/1000 loss=0.4928\n  step 900/1000 loss=0.3020\n  step 950/1000 loss=0.4440\n  epoch 2/3 train_loss=0.5042 val_acc=0.5072\n  step 0/1000 loss=0.3354\n  step 50/1000 loss=0.2122\n```\n\n`cat results/n2_deberta_finetune/results.json`:\n```json\n{\n  \"model\": \"/root/autodl-tmp/models/deberta-v3-base\",\n  \"n_folds\": 1,\n  \"accuracy_mean\": 0.0,\n  \"accuracy_std\": 0.0,\n  \"per_class_precision\": [0.0, 0.0, 0.0, 0.0],\n  \"per_class_recall\": [0.0, 0.0, 0.0, 0.0],\n  \"per_class_f1\": [0.0, 0.0, 0.0, 0.0],\n  \"pairwise_auc_mean\": {\"d0v1\": null, \"d1v2\": null, \"d2v3\": null},\n  \"elapsed_seconds\": 3.5,\n  \"fold_results\": [{\"fold\": 0, \"accuracy\": 0.0, ...}],\n  \"config\": {\"max_len\": 512, \"batch_size\": 16, \"lr\": 2e-05, \"epochs\": 1, \"warmup_ratio\": 0.1, \"seed\": 42}\n}\n```\n\n---\n\n**第二步：提交 RoBERTa**\n\n首次尝试 `python` 失败（`nohup: failed to run command 'python': No such file or directory`），用绝对路径 `/root/miniconda3/bin/python` 重新提交，PID: 238817。\n\n---\n\n**第三步：验证 RoBERTa 启动**\n\n`nvidia-smi`:\n```\nGPU 0: 21349MiB  98%  PID 231453 (DeBERTa 仍在跑)\nGPU 1: 15902MiB 100%  PID 235755 + PID 238818 (/root/miniconda3/bin/python, 7748MiB)\n```\n\n`tail -5 logs/n2_roberta_finetune.log`:\n```\n- MISSING:\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\n  step 0/1000 loss=nan\n  step 50/1000 loss=nan\n  step 100/1000 loss=nan\n  step 150/1000 loss=nan\n```\n\nRoBERTa 已在 GPU 1 上启动运行，但 loss=nan。注意 GPU 1 上现在有两个 python 进程（PID 235755 和 238818）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

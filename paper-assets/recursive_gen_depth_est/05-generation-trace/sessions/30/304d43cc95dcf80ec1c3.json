@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "304d43cc95dcf80ec1c3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check olmo d4d5 002 status",
+  "task_key": "worker_check_olmo_d4d5_002_status_20260515T112537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_olmo_d4d5_002_status_20260515T112537_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "60bbd52d08fb3871dc053980cf3f2b7488d7ea54c7e0f7996aa2e0fd56fb1dbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告：depth_extension_olmo_d4d5_002\n\n| 检查项 | 结果 |\n|--------|------|\n| **PID 213793** | 已结束（进程不存在） |\n| **tmux session** | 无法通过 read_only 检查（tmux 被拦截），但进程已完成，无影响 |\n| **日志最后状态** | **成功完成**，EXIT_CODE=0 |\n| **GPU 0** | 55% 利用率，15641/97887 MiB（有其他任务在跑） |\n| **GPU 1** | 空闲，0% 利用率，0 MiB |\n| **features_6class.jsonl** | 存在，20.6 MB，30000 行 |\n\n### 完成内容\n\n实验已于 **2026-05-15 18:40:50 CST** 成功完成（Step 5-7 全部跑完）。产出：\n\n- `features_6class.jsonl` — 30000 行（6 class × 5000 samples）\n- `classification_report.txt`\n- `confusion_matrix.png`\n- `feature_importance.json`\n- `pairwise_auc.json`\n- `binary_pairwise/binary_pairwise_results.json`\n\nBinary pairwise sanity check 结果：\n- d1v2: AUC=0.9680（vs 4-class 0.8607，Δ=+0.1073）\n- d2v3: AUC=0.8429（vs 4-class 0.8005，Δ=+0.0424）\n\n进程已正常退出，无需恢复操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

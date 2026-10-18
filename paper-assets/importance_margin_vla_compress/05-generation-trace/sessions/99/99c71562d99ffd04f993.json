@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "99c71562d99ffd04f993",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check m128 training",
+  "task_key": "worker_ops_check_m128_training_20260518T052400",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check_m128_training_20260518T052400_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "8e0c6f0879f57f7f3c5c40ebf148d59e87ba507a313339f001ef940fcd785f83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Summary:**\n\n- Training **interrupted at step 32,500/100,000** (32.5%) by server reboot at ~13:22 UTC\n- Last checkpoint saved at step 32,000 is intact (1.5GB)\n- Registry updated: `DONE / failed`, failure_reason recorded\n- Cron deleted\n\nThe checkpoint at step 32,000 can be used to resume training if needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

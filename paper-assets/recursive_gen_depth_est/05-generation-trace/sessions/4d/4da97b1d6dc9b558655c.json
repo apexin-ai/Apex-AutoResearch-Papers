@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4da97b1d6dc9b558655c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code olmo depth ext prep",
+  "task_key": "worker_code_olmo-depth-ext-prep_20260515T091735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo-depth-ext-prep_20260515T091735_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "2cc659c44e13ba899916a36e77892af90772cf15a2d5d31c39e55ff05f2a0d5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。\n\n## 产出汇报\n\n**脚本路径**: `/root/autodl-tmp/recursive_gen_depth_est/scripts/run_depth_extension_olmo.sh`\n\n**OLMo 现有资源**:\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| 数据 d0-d3 | `data/olmo/depth_{0,1,2,3}.jsonl` | 各 5000 samples |\n| Checkpoints | `checkpoints/olmo/lora_depth_{0,1,2}/` | 均有 adapter_model.safetensors |\n| 模型 | `/root/autodl-tmp/models/olmo-1b-hf/` | 4.7GB, config.json 存在 |\n| 已有 features | `data/olmo/features.jsonl` | d0-d3 4-class (不影响新 pipeline) |\n\n**关键配置差异 (vs GPT-2 XL)**:\n- `TARGET_MODULES=\"q_proj,k_proj,v_proj\"` (GPT-2 XL 用 `c_attn,c_proj`)\n- `CUDA_VISIBLE_DEVICES=1` (GPT-2 XL 占 cuda:0)\n- 数据/checkpoint 路径均在 `olmo/` 子目录下\n\n**Dry-run 结果**: `bash -n` 语法检查通过，所有引用的 Python 脚本存在且 `--help` 正常。\n\n**预估运行时间**: ~3-4 小时\n- Step 1 (finetune d3): ~30 min\n- Step 2 (generate d4, 5000 samples): ~40 min\n- Step 3 (finetune d4): ~30 min\n- Step 4 (generate d5): ~40 min\n- Step 5 (feature extraction d0-d5): ~30 min\n- Step 6-7 (classifier + binary eval): ~5 min\n\nPipeline 含 skip 逻辑，中断后重启不会重复已完成步骤。等 Director 审批后可一键提交到 cuda:1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

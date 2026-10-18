@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cb79e146c926275c3b1e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla l2norm k09 long seed42 v3",
+  "task_key": "worker_diagnose_eval_openvla_l2norm_k09_long_seed42_v3_20260525T142007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_l2norm_k09_long_seed42_v3_20260525T142007_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "e85602aab9ded73f5ff11e661ec71128de3f4980b0379cb3be235fb8a71a96f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：实验已成功完成，无需重新提交\n\n**根因**：实验实际上**正常运行并完成**了，但监控系统误判为失败。监控在检查时可能遇到了日志文件的读取时序问题（实验运行了 557 分钟 ≈ 9.3 小时，监控轮询时可能恰好在日志刷新间隙或进程检测窗口中未捕获到信号）。\n\n**证据**：\n1. **日志完整**：`eval_openvla_l2norm_k09_long_seed42_v3.log` (5826 bytes) 包含从模型加载到全部 10 个 task × 50 episodes 的完整输出\n2. **结果已保存**：`eval_results/openvla_l2norm_prune_k09_10.json` 存在且完整，时间戳 `2026-05-25 22:06:40`\n3. **Overall SR = 0.436** (218/500)，10 个 task 均有完整的 50 episode 评估\n4. GPU 当前空闲（0MiB 占用），进程已正常退出\n5. 磁盘空间充足（数据盘 29% used）\n\n### 各 task 成功率\n\n| Task | SR |\n|------|-----|\n| alphabet soup + tomato sauce → basket | 72% |\n| cream cheese + butter → basket | 68% |\n| stove + moka pot | 52% |\n| black bowl → drawer | 34% |\n| two mugs → plates | 24% |\n| book → caddy | 78% |\n| mug + pudding → plate | 24% |\n| alphabet soup + cream cheese → basket | 48% |\n| two moka pots → stove | 20% |\n| mug → microwave | 16% |\n\n### 行动建议\n- **不需要重新提交**。数据已齐全，直接使用 `openvla_l2norm_prune_k09_10.json` 即可\n- 监控系统中该实验的状态需要手动标记为成功\n- 注意 JSON 中 `k_ratio` 字段为 `null`（可能是脚本写结果时的小 bug），但日志明确显示 `k=0.9`，`256 -> 230 vision tokens`，数据本身没问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

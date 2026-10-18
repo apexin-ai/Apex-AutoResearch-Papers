@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c49a356452f64e92a1d5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper d4v5 range fix",
+  "task_key": "worker_paper_d4v5_range_fix_20260517T190239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d4v5_range_fix_20260517T190239_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "4b324e9cd777d96e591dc0735321dab0c6c08923ddd55b1193ab1747dd737d84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The tex file uses a different representation (single averaged value 0.653, likely from a different context). The `[0.681, 0.694]` range only appeared in the markdown file.\n\n**Results:**\n\n| Model | d4v5 binary pairwise AUC |\n|-------|--------------------------|\n| GPT-2 XL | 0.681 |\n| Pythia | 0.683 |\n| OLMo | 0.684 |\n\nCorrected range: **[0.681, 0.684]** (was [0.681, 0.694])\n\nFixed in `paper/theory_section_draft.md`. The tex file (`theory_draft.tex`) does not contain this range — it uses a single-point value (0.653) in a different context (geometric decay fitting across all depth pairs, not the 3-model range)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

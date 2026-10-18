@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "083ad5f69c8701f0f506",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops westd 14b progress",
+  "task_key": "worker_ops_westd-14b-progress_20260518T114511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-14b-progress_20260518T114511_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "401fed514473b66a65342601c51aad98ade8d4efdb15980e32e45abc4bb73bbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 `ps aux` 因管道符被 read-only 模式拦截，但 `nvidia-smi` 已确认 PID 20700 存活。汇总：\n\n**进程状态**: PID 20700 运行中，GPU 0 占用 32.4GB / 97.9GB，利用率 92%\n\n**数据生成进度**:\n| 文件 | 样本数 |\n|------|--------|\n| depth_0.jsonl | 5000 |\n| depth_1.jsonl | 5000 |\n| depth_2.jsonl | 3435 (生成中) |\n\n**日志** (最新):\n- d1 LoRA 训练已完成: loss=0.3451, 3 epochs, runtime=2534s\n- Adapter 已保存: `checkpoints/qwen25_14b/lora_depth_1`\n- 当前阶段: **Phase 3.2b — 用 LoRA(d1) 生成 d2**，正在加载模型权重(已 100%)，即将开始采样 5000 条\n\n**结果文件**: `results/qwen25_14b_scale_003/` 尚不存在（未到评估阶段）\n\n**GPU**: RTX PRO 6000 Blackwell x2，GPU 0 活跃 (236W, 92%), GPU 1 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

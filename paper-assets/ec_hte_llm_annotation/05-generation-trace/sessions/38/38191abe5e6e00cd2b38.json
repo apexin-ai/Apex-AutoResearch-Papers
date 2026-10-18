@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "38191abe5e6e00cd2b38",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code loocv auc",
+  "task_key": "worker_code_loocv-auc_20260521T161839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_loocv-auc_20260521T161839.log",
+    "occurrence": 1,
+    "bytes": 593410,
+    "sha256": "e28df46226c852cb0e221aea1d7c02f9b34299532e59ef1a3ebabcdf2a0427f2"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 1,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 59,
+      "user": 1,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "38191abe5e6e00cd2b38-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "38191abe5e6e00cd2b38-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "38191abe5e6e00cd2b38-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ]
+}

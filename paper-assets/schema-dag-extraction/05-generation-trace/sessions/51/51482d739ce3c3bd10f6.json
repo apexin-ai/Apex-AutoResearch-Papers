@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "51482d739ce3c3bd10f6",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh gemini flash cross model",
+  "task_key": "worker_ssh_gemini_flash_cross_model_20260517T150614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gemini_flash_cross_model_20260517T150614.log",
+    "occurrence": 1,
+    "bytes": 691873,
+    "sha256": "949e8e8f49e61faeadd4239ad5c62fd27600fa6bb0c2831cf0a15215b2a9f6a7"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 0,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 107,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 288,
+      "chunks": [
+        {
+          "path": "51482d739ce3c3bd10f6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "51482d739ce3c3bd10f6-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ]
+}

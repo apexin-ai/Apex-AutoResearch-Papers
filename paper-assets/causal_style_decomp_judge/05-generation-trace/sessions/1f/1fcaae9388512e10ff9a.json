@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1fcaae9388512e10ff9a",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "audit data truth appendix",
+  "task_key": "worker_audit_data-truth-appendix_20260525T194238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-truth-appendix_20260525T194238_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "d0dc0bfa90a7196f1a30bc7d701e280cf9ea2b463852836c03cd1948f967f72a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是核心发现：\n\n**覆盖**：24 个附录表格，~540 个数字，其中 ~380 个与服务器 JSON 源逐一对账。\n\n**11 个问题**：\n- **严重（2）**：\n  - `tab:claude_crossbench` AEval Verb Likert d（论文 .252 vs 源 .298）和 p（.002 vs .0004）\n  - `tab:cross_bench` GPT-4o MTB Likert d（.111 vs .135）和 p（.016 vs .007）\n- **中等（5）**：\n  - `tab:nli_ablation` \"All\" 列两个 cell 与源差 0.5-1.0pp（63.0% vs 63.5%，76.0% vs 77.0%）\n  - `tab:gee_ci` Gemini verb Style OR（8.98 vs 源 9.16）\n  - `tab:holm8` Gemini Form raw p（.0306 vs 源 .0448）\n- **轻微（4）**：舍入偏差（TOST p 值 ±0.001）、fk_desc caption \"all pairs\" 实际匹配 NLI-passed\n\n**已确认修复**：GEE 脚注 n=88/n=86 已正确区分。\n\n**缺源 JSON**：tab:verb_n355、tab:concordance、tab:power、tab:bayesian_equiv 等 ~120 个数字仅有原始 JSONL/脚本，无预计算汇总，建议补充存档。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

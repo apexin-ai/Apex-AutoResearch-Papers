@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "9d3af7a3906418a6c9f6",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops registry cleanup",
+  "task_key": "worker_ops_registry-cleanup_20260523T201321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-cleanup_20260523T201321.log",
+    "occurrence": 1,
+    "bytes": 703488,
+    "sha256": "c246f389b5ead547bca46377b87cee05d554f0c8e9423ed3bed78fb67f10989a"
+  },
+  "statistics": {
+    "messages": 345,
+    "user_turns": 0,
+    "tool_calls": 163,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 163,
+      "tool_result": 163,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 345,
+      "chunks": [
+        {
+          "path": "9d3af7a3906418a6c9f6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d3af7a3906418a6c9f6-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ]
+}

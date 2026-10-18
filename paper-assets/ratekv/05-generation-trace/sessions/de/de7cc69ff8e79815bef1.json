@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "de7cc69ff8e79815bef1",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code unconstrained greedy solver comparison",
+  "task_key": "worker_code_unconstrained_greedy_solver_comparison_20260515T150027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unconstrained_greedy_solver_comparison_20260515T150027_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "c3e71bb01f0107e9287cf37d120d40127ae4a132fe496e59596f845fefad7f19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型的 greedy 和 MCKP allocation 完全相同：\n\n**Qwen-14B**: Greedy = MCKP, bit dist {2:77, 4:271, 8:35, 16:1}, distortion 完全一致\n- **Greedy PPL = 7.69**\n\n**Pythia-1.4B**: Greedy = MCKP, bit dist {2:90, 4:249, 8:45}, distortion 完全一致\n- **Greedy PPL = 31.54**\n\n可以直接填入 Table 1 的 Greedy 列。至此所有 6 个模型中，5 个 Greedy=MCKP（Yi, Llama, Gemma-2, Qwen-14B, Pythia），只有 Mistral 略有差异（7.57 vs 7.60）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

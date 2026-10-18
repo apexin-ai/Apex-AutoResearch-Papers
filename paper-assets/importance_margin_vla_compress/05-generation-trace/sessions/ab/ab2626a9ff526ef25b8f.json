@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2626a9ff526ef25b8f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check cqa1 gpu",
+  "task_key": "worker_ops_check-cqa1-gpu_20260520T143125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-cqa1-gpu_20260520T143125_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "80037f64182aff5f3ef5a32ab8ec1cac101c00726f1539293bb774c539688da4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇报 — cqa1-33015\n\n| GPU | 显存占用 | PID | 进程 | 状态 |\n|-----|---------|-----|------|------|\n| **cuda:0** | 4540 MiB | 115960 | seed44 k=0.7 libero_object | **运行中** (已跑 1h07m) |\n| **cuda:1** | 4 MiB | — | — | **空闲** ✅ |\n| **cuda:2** | 4055 MiB | 132420 | seed44 k=0.5 libero_object | **运行中** (已跑 1h02m) |\n| **cuda:3** | 4 MiB | — | — | **空闲** ✅ |\n\n### 已完成的任务\n\n**seed44 k=0.9** (PID 116978) — 已完成，22:16 结束，耗时 51.1 min\n- **Overall SR: 98.2% (491/500)**，95% CI [96.6%, 99.1%]\n- 结果已保存\n\n**seed43 k=0.5** (PID 894197) — 已完成，21:43 结束，耗时 103.4 min\n- **Overall SR: 44.2% (221/500)**，95% CI [39.9%, 48.6%]\n- 结果已保存\n\n### 结论\n\n**GPU 1 和 GPU 3 确认空闲**，可立即调度新任务。GPU 0 和 GPU 2 上的 seed44 k=0.7 / k=0.5 仍在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

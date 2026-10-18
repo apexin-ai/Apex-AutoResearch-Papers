@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f7103baee95d5adb9d7e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit cqa1 33015 gpu 20260526",
+  "task_key": "worker_audit_cqa1-33015-gpu-20260526_20260526T192200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_cqa1-33015-gpu-20260526_20260526T192200_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "adfe13433ba5f6fe8525e5bb40ade17c0bd1049d342a07f6f0766878c21c76bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncuda:0 — [BUSY] eval_pi05_l2norm_k07_long_seed42 (pid=617566), 10048MiB, 11% util\ncuda:1 — [BUSY] eval_pi05_attention_k07_long_seed42_v2 (pid=617728), 10628MiB, 29% util\ncuda:2 — [BUSY] eval_pi05_attention_k05_long_seed42_v3 (pid=582964), 10785MiB, 14% util\ncuda:3 — [BUSY] eval_pi05_attn_k095_long_seed42 (pid=546287), 10567MiB, 23% util\n真正空闲的 GPU: 无\n```\n\n4 张卡全满。运行时间参考：\n- cuda:3 k095 从 00:52 开始，已跑 ~2.5h\n- cuda:2 k05_v3 从 01:36 开始，已跑 ~1.75h\n- cuda:0 l2norm_k07 和 cuda:1 attention_k07_v2 均从 02:33 开始，已跑 ~50min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

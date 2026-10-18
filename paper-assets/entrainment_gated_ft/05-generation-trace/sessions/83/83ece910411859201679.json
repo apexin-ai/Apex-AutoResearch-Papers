@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "83ece910411859201679",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diagnose exp 005 p1 v4",
+  "task_key": "worker_diagnose_exp-005-p1-v4_20260522T150706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-005-p1-v4_20260522T150706_result.json",
+    "occurrence": 1,
+    "bytes": 1969,
+    "sha256": "909d727032a451ed913cc8d986b8c68ab7c847cc801a8ea1fdbf7be8fb3a32d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论**：实验**没有以 EXIT_CODE=1 退出** — 进程仍在运行，但 DeltaNet `model.safetensors` 的 HF 下载**卡死**了。\n\n关键事实：\n- PID 870648 及整个进程树（tmux → bash → timeout → run_p1_v4.sh → python3 snapshot_download）全部存活\n- `.incomplete` 文件停在 60MB (62,914,560 bytes)，自 23:07 起不再增长（距今已超 2 分钟）\n- 预期模型文件约 1.33GB（参考 GLA 的 `model.safetensors` = 1,332,498,184 bytes），当前仅完成 ~4.5%\n- 日志警告 `unauthenticated requests to the HF Hub`，未设置 `HF_TOKEN`\n- GLA 模型此前在 21:51 成功下载，说明网络本身可达，但 AutoDL 代理对大文件不稳定\n\n```json\n{\"root_cause\":\"HF snapshot_download for model.safetensors stalled at 60MB/1.33GB — unauthenticated HF download via AutoDL proxy hanging (Warning: unauthenticated requests)\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"Kill current stalled process: tmux kill-session -t exp-005-p1-v4\",\"Set HF_TOKEN in script for authenticated access (higher rate limits), OR switch to ModelScope download per CLAUDE.md recommendation\",\"Clean up incomplete file: rm -rf /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/.cache/\",\"Re-run experiment\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "HF snapshot_download for model.safetensors stalled at 60MB/1.33GB — unauthenticated HF download via AutoDL proxy hanging (Warning: unauthenticated requests)",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "Kill current stalled process: tmux kill-session -t exp-005-p1-v4",
+                "Set HF_TOKEN in script for authenticated access (higher rate limits), OR switch to ModelScope download per CLAUDE.md recommendation",
+                "Clean up incomplete file: rm -rf /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/.cache/",
+                "Re-run experiment"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

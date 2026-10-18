@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bd003b6266e74e4b79ec",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check 14b progress",
+  "task_key": "worker_check_14b_progress_20260520T030354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_14b_progress_20260520T030354_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "7be88ed65d899f5bc8dbe56858baaa4fa6989e63f88f9c1d3f83a6b97ca18a6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 14B 实验状态：\n\n| 实验 | GPU | 状态 | 运行时间 | 当前阶段 | 进度 |\n|------|-----|------|---------|---------|------|\n| qwen25_14b_temp09 | GPU 0 (92%, 32G) | **RUNNING** | 24h 4m | Phase 3.3b: Generate d3 | ~75% |\n| qwen25_14b_topk50 | GPU 1 (93%, 32G) | **RUNNING** | 22h 4m | Phase 3.3b: Generate d3 | ~75% |\n\n两个实验进度一致：已完成 d0→d2 的 LoRA 微调和生成，当前都在最后一个生成阶段（用 LoRA(d2) 生成 d3 的 5000 samples）。模型权重已加载完毕，正在执行文本生成。\n\n剩余 Phase 4 (特征提取) + Phase 5 (分类) 都是轻量阶段，预计今天内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

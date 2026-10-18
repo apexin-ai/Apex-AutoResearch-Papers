@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0516bebd4a9ae48c638d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code fix few nerd loader",
+  "task_key": "worker_code_fix-few-nerd-loader_20260514T173444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-few-nerd-loader_20260514T173444_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "2ee5ec96d8e1dbc97556acc75a9e442ad9196e13aa3e51bfbd450334f73e9a8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果：**\n- Test samples: 37,648（符合预期）\n- 第一个样本正确提取了 4 个细粒度实体：`building-other`, `building-hotel`, `location-GPE`, `organization-showorganization`\n- 前 100 个样本覆盖 46 个细粒度类型（如 `person-actor`, `location-GPE` 等）\n\n**修改内容：**\n1. `load_few_nerd()` 优先从本地 parquet 加载，parquet 不存在时 fallback 到 HF Hub\n2. `ner_tags` → `fine_ner_tags`（9 粗粒度 → 66 细粒度）\n3. `_tokens_to_spans()` 重写：Few-NERD 标注无 B-/I- 前缀，改为按连续同类 tag_id 分组提取 span\n4. `data_dir` 参数化，默认 `/root/schema-dag-extraction/data/parquet/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

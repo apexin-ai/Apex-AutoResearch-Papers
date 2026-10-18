@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec26ca68557849ba8e00",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train libero dual launch",
+  "task_key": "worker_train_libero_dual_launch_20260516T141300",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_libero_dual_launch_20260516T141300_result.json",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "bedc03c519289ccefa5183f2fa2c8940a2ade03c027ecf6b901bd7ce3a60b9a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进程 PID 8106 正在运行，已完成元数据加载（1693 episodes, FPS=10），正在下载 383 个数据文件。2 分钟后再检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4658a3122e1af0d2ef2c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis accum mix50 auc verification",
+  "task_key": "worker_analysis_accum_mix50_auc_verification_20260522T080642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_accum_mix50_auc_verification_20260522T080642_result.json",
+    "occurrence": 1,
+    "bytes": 1980,
+    "sha256": "cdb865efb9822ba9bb858788452684b2372510417541118a7c452e88d42017ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n## 任务 1: Pairwise AUC 验证结果\n\n用 **500-tree binary RF, 5-fold stratified CV, seed=42** 重新计算了 3 个 mix50 cell 的 pairwise AUC：\n\n| Cell | d0v1 | d1v2 | d2v3 | EDD₀.₇₀ |\n|------|------|------|------|---------|\n| GPT-2 XL mix50 | 0.9996 | 0.8305 | **0.6945** | **2** |\n| Pythia mix50 | 0.9999 | 0.7925 | **0.7159** | **3** |\n| OLMo mix50 | 0.9999 | 0.8166 | **0.7262** | **3** |\n\n- 旧值（`accumulation_pairwise_auc.json`）是用 **200 trees** 计算的（完美复现），200→500 trees 差异 ≤ 0.0042\n- **EDD 结论不受 tree 数量影响**：GPT-2 XL 始终 EDD=2，Pythia/OLMo 始终 EDD=3\n- **论文 claim \"5/6 cells preserve EDD₀.₇₀=3\" 已确认**（mix25 3/3 + mix50 2/3 = 5/6）\n\n## 任务 2: Baseline 来源分析\n\n**发现严重 bug：**\n\n1. **`accumulation_pipeline_gpt2xl.py` 和 `accumulation_pipeline_pythia_nucleus.py` 都硬编码了 `full_replacement_baseline = 0.8428`**\n2. **0.8428 = GPT-2 XL seed-43 rerun 的 4-class RF accuracy**（`results/gpt2xl/rf_eval_seed42_rerun/summary.json`）\n3. **Pythia 的 baseline 完全错误** — 0.8428 是 GPT-2 XL 的值，Pythia atlas 值是 78.2%\n4. GPT-2 XL v2 results 里 baseline=0.859（旧脚本），当前脚本被改成了 0.8428\n5. OLMo pipeline 没有 baseline 字段\n6. Atlas v2 实际值：GPT-2 XL=83.3%, Pythia=78.2%, OLMo=82.0%（100 trees, 1000 samples/depth — 与 pipeline 的 200 trees / 5000 samples 不同）\n\n**注意：这个 baseline 值只影响 summary.json 中的 `delta_vs_baseline` 显示，不影响 pairwise AUC 或 EDD 计算。** 但论文引用时需要用正确的 baseline。\n\n## 产出\n\n1. `results/accum_mix50_pairwise_auc_verified.json` — 服务器上已保存\n2. Registry 已更新：`accum_v3_mix50`, `accum_pythia_nuc_mix50`, `accum_olmo_temp_mix50` 的 metrics 含 verified pairwise_auc\n3. Artifact `art_20260522_46d805` 已注册（完整报告）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

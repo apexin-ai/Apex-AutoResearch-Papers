@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ab93ceb7a38b10a7efc7",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 006 budget sweep",
+  "task_key": "worker_code_exp-006-budget-sweep_20260521T004703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-006-budget-sweep_20260521T004703.log",
+    "occurrence": 1,
+    "bytes": 583468,
+    "sha256": "692d797e41e4225358ea7da066565a3ed80e6d46f5fb0678ff6c81ba7f9480d0"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "log": 1,
+      "system": 51,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 31,
+      "tool_result": 31,
+      "result": 37
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "ab93ceb7a38b10a7efc7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab93ceb7a38b10a7efc7-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ]
+}

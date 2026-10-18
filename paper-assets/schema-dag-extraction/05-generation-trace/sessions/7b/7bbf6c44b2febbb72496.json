@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbf6c44b2febbb72496",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "run exp017 gpt4o mini fewrel",
+  "task_key": "worker_run_exp017_gpt4o_mini_fewrel_20260516T064019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp017_gpt4o_mini_fewrel_20260516T064019.log",
+    "occurrence": 1,
+    "bytes": 9650217,
+    "sha256": "7fa887a5168c7107a4fd9dee4f16a5f6a0bb9e35e00bb4a72a69da89de150c87"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 0,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 120,
+      "tool_result": 120,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "7bbf6c44b2febbb72496-part-0001.json",
+          "message_count": 75
+        },
+        {
+          "path": "7bbf6c44b2febbb72496-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "7bbf6c44b2febbb72496-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bbf6c44b2febbb72496-part-0004.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ]
+}

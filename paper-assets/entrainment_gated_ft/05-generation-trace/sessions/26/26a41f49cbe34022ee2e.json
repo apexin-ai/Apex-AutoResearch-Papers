@@ -1,0 +1,380 @@
+{
+  "schema_version": "1.0",
+  "id": "26a41f49cbe34022ee2e",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "cron hook exp 007",
+  "task_key": "cron_hook_exp-007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_exp-007.jsonl",
+    "occurrence": 1,
+    "bytes": 17222,
+    "sha256": "7015d25c1f98b093a074138783fc4c8c8e020371181056408dcc84af4b4d4ca0"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T18:49:41.315186+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp-007\n- project: entrainment_gated_ft\n- server: westb-48145\n- log_path: ~/runs/entrainment_gated_ft/exp-007.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T18:49:51.765323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T18:49:51.815910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T18:49:55.630612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T18:49:55.631004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T18:49:56.183483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-007\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:08:19.724Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:49:39.379Z\\\", \\\"hypothesis\\\": \\\"340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 530432, \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-007.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:51:40.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"lambada_openai (lm-eval built-in)\\\", \\\"data_count\\\": \\\"5153 per model x 27 models\\\", \\\"model_name\\\": \\\"340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_source\\\": \\\"m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)\\\", \\\"eval_data\\\": \\\"lambada_openai (lm-eval built-in, 5153 samples)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:49:39.310Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:49:41.012664+00:00\\\"}]}}, \\\"exp-004-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:58:01.256Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:17:20.215Z\\\", \\\"hypothesis\\\": \\\"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for archit\n…[truncated 23393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T18:49:56.234160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 603
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T18:49:56.485333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T18:49:56.485745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T18:49:56.536355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:49:40Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 15 个实验 — ANALYZING 1, DONE 13, PREPARING 1\\\\n**DONE 分布**: failed 1, killed 1, negative 4, success 7\\\\n\\\\n### GPU 占用\\\\n- **分配**: 1 张 — westb-48145:cuda:0\\\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-48145**:\\\\n  - `/autodl-pub`: 7.8T/14T 可用（已用 45%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\\\n- `exp-004` [failed] — 2026-05-19T16:57:48\\\\n- `exp-011` [negative] — 2026-05-19T16:37:27\\\\n- `exp-010` [success] — 2026-05-19T15:12:28\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp-004`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-007 | 340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-004-r2** (success): Attent\n…[truncated 1323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T18:49:56.536907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\\\", \\\"content\\\": \\\"# entrainment_gated_ft — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 17:54 UTC | 更新原因: exp-007 正确启动 + Paper Agent 写作进行中 + 图表就绪\\\\n\\\\n## 核心方向\\\\n**Task-specific convergence + per-example decoupling in hybrid recurrent architectures**. Attention 使不同 recurrent 架构在 LAMBADA（纯上下文预测）上显著趋同（BCa CI [-1.0, -0.7]），10 benchmark 中仅此一个——task-specificity 是核心发现。Per-example Jaccard ~0.10 与 aggregate convergence 解耦（D008）。Decoupling 应为 title-level contribution。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research + Writing 并行** — exp-007 RUNNING，Paper Agent 写作中\\\\n\\\\n## 战略状态\\\\n- Claim 评分：C1: 2.5, C2: 2.0, C3: 3.5 → 基线 2.5，目标 3.0 (Findings)\\\\n- **最大 leverage = Related Work**（0 GPU cost，解决 W2，直接提升评分）\\\\n- DDL: ARR June 2026 (~June 15)，距今 ~27 天\\\\n- Paper Agent 已激活，writing_plan.yaml 已批准\\\\n\\\\n## 实验完成度\\\\n- ✅ exp-001: Task-specificity (LAMBADA ρ=-1.0, BCa CI [-1.0, -0.7])\\\\n- ✅ exp-003 + exp-003-p2: Sample characterization (within-arch negative, cross-arch KW p=0.0005)\\\\n- ✅ exp-004-r2: Attention weight extraction (GDN↔RetNet L2=0.995, HGRN2 L2≈0.20 at shallow)\\\\n- ✅ exp-008: Statistical robustness (Bonferroni adj-p=0.100, GDN-excluded sensitivity)\\\\n- ✅ exp-009: Wang et al. differentiation (4-point increment documented)\\\\n- ✅ exp-010: Decoupling (D008, Jaccard saturates at 4% attention, σ drops gradually)\\\\n- ✅ exp-011 + xstorycloze: 10-benchmark survey (all negative → task-specificity evidence)\\\\n- 🔄 **exp-007: 340M rebound mechanism — RUNNING** (~2h, 27 models LAMBADA log_samples)\\\\n- ❌ exp-002: 已取消 (D010)\\\\n- ❌ exp-006: 已取消 (7B 不可用)\\\\n\\\\n## 论文写作进度\\\\n- ✅ writing_plan.yaml 批准\\\\n- ✅ fig1_decoupling_hero (PDF+PNG)\\\\n- ✅ fig2_task_specificity (PDF+PNG, BoolQ 颜色待修)\\\\n- 🔄 Paper Agent Step 3: Literature Gap-Fill / Step 4: 正文写作\\\\n- ⏳ exp-007 完成后 → Patch §4.2 (340M per-example data)\\\\n\\\\n## 近期任务\\\\n- [ ] 等 exp-007 完成（~2h），分析 340M rebound per-example 数据\\\n…[truncated 1336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T18:50:08.871996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T18:50:08.972728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T18:50:43.671323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:exp-007",
+              "project": "entrainment_gated_ft",
+              "task_prompt": "## 任务：分析 exp-007 (340M rebound mechanism) 实验结果\n\n### 背景\nexp-007 在 westb-48145 上运行完成，进程已正常退出。这是一个 LAMBADA 评测实验，对 27 个模型（340M x16 + 1.3B x11）跑了 lambada_openai with --log_samples。\n\n**核心 hypothesis**: \"340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\"\n\n**parent**: exp-001（Task-specificity 分析，1.3B 显示 LAMBADA ρ=-1.0）\n\n### 实验规格\n- 命令：bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)\n- 服务器：westb-48145\n- 数据：lambada_openai (5153 samples per model x 27 models)\n- 模型：340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)\n- Checkpoint source: m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)\n\n### 你需要做的\n\n**Step 1: 收集原始数据**\n1. SSH 到 westb-48145，读取实验日志：`~/runs/entrainment_gated_ft/exp-007.log`\n2. 找到所有 27 个模型的 LAMBADA 评测结果（accuracy/perplexity）\n3. 找到 --log_samples 输出的 per-example 数据文件位置（通常在 lm_eval_clean/ 下的 JSON 文件中）\n4. 检查是否有报错或异常\n\n**Step 2: 计算核心指标**\n对 340M 和 1.3B 分别计算：\n1. 每个模型在 LAMBADA 上的 acc（accuracy）\n2. 按 attention ratio 分组（pure, h24-1, h12-1, h6-1, h3-1），计算每组的 cross-architecture std（跨 GDN/RetNet/HGRN2 的标准差）\n3. 计算 Spearman ρ（attention ratio vs cross-arch std）分别对 340M 和 1.3B\n4. 用 exact permutation test (two-tailed, n=5 ratios) 计算 p-value\n5. **关键**: 检查 340M 在 h3-1（attn=8）处是否出现 rebound（std 上升而非继续下降）\n\n**Step 3: Per-example 分析（340M）**\n如果 --log_samples 产出了 per-example 数据：\n1. 对 340M 的 h3-1 模型，计算 helped/hurt samples（对比 pure 模型）\n2. 计算 cross-architecture Jaccard similarity（GDN vs RetNet vs HGRN2 的 helped/hurt 集合重叠度）\n3. 与 1.3B 的 Jaccard 对比（exp-010 数据：Jaccard ~0.095）\n\n**Step 4: 写分析报告**\n在服务器上创建 `/root/entrainment_gated_ft/analysis/exp007_analysis_summary.json`，包含：\n- 所有模型的 LAMBADA acc\n- 340M 和 1.3B 的 cross-arch std by attention ratio\n- Spearman ρ 和 p-value\n- rebound 是否存在及其量化\n- helped/hurt 分析结果\n- conclusion: hypothesis 是否被支持\n\n**Step 5: 更新 registry**\n用 update_registry 更新 exp-007：\n- metrics: 包含上述核心指标\n- conclusion: success（如果 rebound 确实存在）或 negative（如果没有 rebound）\n- checkpoint_path: per-example 数据文件所在目录\n- log_path: 实验日志路径\n- status: DONE\n\n### 注意事项\n- 用 ssh_read_only 读数据，只在需要运行分析脚本时用 ssh_execute\n- 如果需要写分析脚本，在服务器上创建并运行\n- 所有数字必须从实际数据中提取，不要猜测\n- 结果需要与 exp-001 的 1.3B 数据对比：1.3B LAMBADA ρ=-1.0, raw_p=0.0167\n- 340M 之前的数据（来自 eval_340m_retnet_hgrn2）显示了 rebound pattern，本实验用 allow_neg_eigval=True 重跑并加了 log_samples\n\n### 服务器环境\n- westb-48145，用 root 账户\n- Python 环境：conda base (/root/miniconda3/)\n- 项目路径：/root/entrainment_gated_ft/\n- 模型路径：340M=/root/autodl-tmp/models/, 1.3B=/root/autodl-tmp/models_1.3b/\n",
+              "tool_groups": "['ssh', 'registry']",
+              "context": "exp-001 1.3B 结果参考：LAMBADA ρ=-1.0, cross-arch std: pure=0.024, h24-1=0.016, h12-1=0.014, h6-1=0.006, h3-1=0.005。单调递减。\nexp-010 per-example 参考：Jaccard helped ~0.092-0.100, hurt ~0.081-0.099, net asymmetry 0.013-0.040 increasing with attention ratio。"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T18:50:43.822421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "status": "running"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T18:50:46.638751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp-007_20260519T185044\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp-007_20260519T185044.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp-007_20260519T185044 started. Use get_worker_status('worker_analysis_exp-007_20260519T185044') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2967
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T18:50:46.689409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333\\\", \\\"task_type\\\": \\\"paper_research:lit_cluster_2_linear_recurrent\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-19T18:43:33.733738+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_analysis_exp-007_20260519T185044\\\", \\\"task_type\\\": \\\"analysis:exp-007\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-19T18:50:44.396277+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 2866
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T18:51:05.155200+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-007 完成回调已收到。当前状态：\n\n- **exp-007** (340M rebound mechanism): 进程正常退出，已派 Worker (`worker_analysis_exp-007`) 分析结果（读日志、计算 cross-arch std、per-example Jaccard、判断 rebound 是否存在）\n- **Worker 池**: 2 个运行中\n  1. `worker_paper_research_lit_cluster_2_linear_recurrent` — 文献调研\n  2. `worker_analysis_exp-007` — exp-007 结果分析\n\n等 Worker 分析完成回调后，更新 registry + report.md + 向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-007"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ]
+}

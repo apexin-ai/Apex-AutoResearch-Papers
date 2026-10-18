@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ebd3ebd575f207d9954c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose smolvla metaworld sweep failure",
+  "task_key": "worker_diagnose_smolvla_metaworld_sweep_failure_20260524T181755",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_smolvla_metaworld_sweep_failure_20260524T181755_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "59d834287793557f21f6c7769fb74038b75ad7d75a7746b70faeb0859c5b287e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 诊断结论\n\n**根因：监控系统误报，实验实际已全部成功完成。**\n\n监控报 \"process dead 5× with no sentinel/W&B — auto-resolved as failed\" 是因为 cron entry 中没有配置 `log_path`，自动发现也未找到位于 `/tmp/` 的日志文件。脚本本身无 bug，两个 sweep 均正常跑完并输出了 `ALL_RANDOM_DONE` / `ALL_L2NORM_DONE` sentinel。\n\n### 完整结果 (50 ep/task × 5 tasks, Overall SR)\n\n| Method | k=0.5 | k=0.85 | k=0.9 | k=0.95 | Baseline |\n|--------|-------|--------|-------|--------|----------|\n| Random | 9.6% | 4.4% | 5.6% | 6.4% | 26.4% |\n| L2Norm | 0.8% | 2.4% | **10.0%** | 7.2% | 26.4% |\n\n### 关键观察\n- Token pruning 对 SmolVLA + MetaWorld 伤害极大，最佳点 L2Norm k=0.9 (10.0%) 仅为 baseline 的 38%\n- Random pruning 结果非单调（k=0.5 反而比 k=0.95 好），噪声较大\n- drawer-open 最鲁棒（L2Norm k=0.95: 30%），其余 tasks 基本归零\n- 结果文件路径：`/root/autodl-tmp/importance_margin_vla_compress/results/{random,l2norm}_k{0.5,0.85,0.9,0.95}.json`\n\n### 修复建议\n提交 sweep 任务时配置 `log_path` 指向持久化路径（非 /tmp），或让脚本输出 W&B sentinel，使监控系统能正确追踪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

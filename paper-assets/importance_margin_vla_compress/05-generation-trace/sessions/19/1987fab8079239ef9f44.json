@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1987fab8079239ef9f44",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval openvla baseline goal seed43",
+  "task_key": "worker_analyze_eval_openvla_baseline_goal_seed43_20260525T213018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_openvla_baseline_goal_seed43_20260525T213018_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "41832b6930e7c5b921781be69ddc3cd916b185961179f3c8dbec05375a163cac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**eval_openvla_baseline_goal_seed43** → DONE (success)\n- Overall SR: **77.6%** (388/500)\n- Seed42 baseline was 74.8% → cross-seed delta = +2.8pp, confirms baseline stability\n- Average baseline across seeds: ~76.2%\n- Random k=0.9 seed43 (80.4%) still outperforms this baseline by +2.8pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

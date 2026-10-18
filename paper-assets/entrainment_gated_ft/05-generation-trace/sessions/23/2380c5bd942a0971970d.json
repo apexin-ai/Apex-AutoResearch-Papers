@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2380c5bd942a0971970d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diagnose exp 005 batch",
+  "task_key": "worker_diagnose_exp-005-batch_20260522T163242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-005-batch_20260522T163242_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "e2e134982adcf3700c3edbd8dc72716f8828cc75a8c165b58528c11d86ea995d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/exp-005-batch/diagnosis.md`。\n\n**根因**：`run_eval_download.sh` 在 00:30:51 尝试加载 HGRN h3-1 模型，但 `model.safetensors` 文件仍在被其他进程下载（mtime 00:33），导致 `SafetensorError: incomplete metadata, file not fully covered`。\n\n**次要问题**：`run_hgrn_chain.sh` 恢复脚本用了 `python -m lm_eval` 而非 patched wrapper，导致 transformers 不认识 `hgrn` 架构。\n\n**修复**：重新下载模型并验证完整性，修复 hgrn_chain.sh 使用 FLA patch，评估前增加 safetensors 完整性检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

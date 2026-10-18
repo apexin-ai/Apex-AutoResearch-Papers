@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7b6b5c844ee262bf20a2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train c5 roboflamingo finetune",
+  "task_key": "worker_train_c5_roboflamingo_finetune_20260519T192920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_c5_roboflamingo_finetune_20260519T192920_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "798009d4f7c2c5e21ad3e88b5914a526ec4f66832f363e5362ae199f01893ff8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 steps complete:\n\n| Step | Status |\n|------|--------|\n| 1. Server confirmation | westd-41074, 4x RTX PRO 6000 (96 GB each) |\n| 2. factory.py `from_config` fix | `AutoConfig.from_pretrained` + `from_config`, unfroze backbone, added `trust_remote_code=True` to tokenizer, CLIP local cache |\n| 3. Dry-run (forward+backward+checkpoint) | PASSED — arm_pred `(2,12,6)`, grip_pred `(2,12,1)`, backward OK, 10.9 GB checkpoint |\n| 4. Submit training job | PID 43102, tmux `c5-roboflamingo-libero-baseline`, GPU:1 |\n| 5. Training verified | Step 50: Loss 0.0806, Arm 0.0837, Grip 0.8456, GPU 1 at 100%, 48 GB VRAM |\n\n**Patches applied:**\n- `factory.py`: `from_config` for MPT (no weight download), CLIP local cache, backbone unfreeze, `trust_remote_code=True` on tokenizer\n- `train_libero.py`: `debug=True`, embedding resize before checkpoint load, `TRUST_REMOTE_CODE` env var\n- `action_head.py`: `copy.deepcopy(input_feature)` → `input_feature.clone().detach()` (PyTorch 2.6 compatibility)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

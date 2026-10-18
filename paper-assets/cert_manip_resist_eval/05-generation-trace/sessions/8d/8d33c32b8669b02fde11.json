@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d33c32b8669b02fde11",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 aggregation",
+  "task_key": "worker_analysis_k5-aggregation_20260523T030937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-aggregation_20260523T030937_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "99471a672dad5559042ffa813fa9d0edb2310350053cf2482604dbfe41d1d0d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=5 Aggregation Gradient 结果\n\n### Summary Table\n\n| Method | η_max FDR sig | K_eff FDR sig | K_pos | K_neg | Mean R² |\n|--------|--------------|---------------|-------|-------|---------|\n| **Majority** | 10/12 | **12/12** | 11 | 1 | 0.256 |\n| **Weighted** | 9/12 | **11/12** | 11 | 0 | 0.249 |\n| **Threshold (≥4/5)** | 12/12 | **11/12** | 11 | 0 | 0.506 |\n| **Bayesian** | 8/12 | **10/12** | **10** | **0** | 0.081 |\n\n### K=3 vs K=5 对比\n\n| Method | K=3 η_max | K=5 η_max | K=3 K_eff | K=5 K_eff |\n|--------|-----------|-----------|-----------|-----------|\n| Majority | 11/12 | 10/12 | 8/12 | **12/12** |\n| Weighted | 9/12 | 9/12 | 9/12 | **11/12** |\n| Threshold | 12/12 | 12/12 | 11/12 | 11/12 |\n| Bayesian | 9/12 | 8/12 | 7/12 (6neg) | **10/12 (0neg)** |\n\n### 关键发现\n\n**Bayesian K_eff 反转消失**：K=3 下 Bayesian 有 6/7 个显著 K_eff 为负方向（反转），K=5 下 10/10 显著 K_eff 全部正方向，`bayesian_keff_reversal = false`。\n\n机制解释：K=5 下更多 judges 参与 log-odds 累积，Bayesian calibration 的 \"高可信度 judge 被少数攻击翻转\" 效应被稀释，diversity (K_eff) 恢复为正向保护作用。\n\nMean standardized β：\n- K_eff: majority 0.334, weighted 0.401, threshold 0.442, bayesian 0.136\n- η_max: majority 0.180, weighted 0.107, threshold 0.316, bayesian 0.110\n\nK_eff 在 K=5 下全面成为主导因子（所有 4 种 aggregation 的 K_eff β_mean > η_max β_mean）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

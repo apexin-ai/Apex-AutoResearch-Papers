@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7e2a40925f3feb0bdb6c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper figure fig confusion matrix v2",
+  "task_key": "worker_paper_figure_fig_confusion_matrix_v2_20260515T100213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_confusion_matrix_v2_20260515T100213_result.json",
+    "occurrence": 1,
+    "bytes": 382,
+    "sha256": "27d22c33835d82c23474a4bdca64a13520873e83f4818882590994439da5456d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，两个面板清晰展示：\n\n- **左**: GPT-2 XL / temp 最佳 in-distribution (85.4%)，对角线强，d0 近乎完美\n- **右**: OLMo holdout 最佳 cross-model LOO (69.2%)，d0 仍强 (99.3%)，d1 尚可 (75.5%)，d2/d3 混淆明显\n\n文件已写入：\n- `figures/paper/fig_confusion_matrix.pdf`\n- `figures/paper/fig_confusion_matrix.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

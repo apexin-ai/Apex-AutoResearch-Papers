@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd13ad300706c59dc98",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code dcol training prep",
+  "task_key": "worker_code_dcol_training_prep_20260514T160308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_training_prep_20260514T160308.log",
+    "occurrence": 1,
+    "bytes": 646033,
+    "sha256": "13d76ea6a9ed04fbfbe8a85600f51b9334cd92ab7ba126896b27053efc7850fd"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 58,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "5cd13ad300706c59dc98-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5cd13ad300706c59dc98-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ]
+}

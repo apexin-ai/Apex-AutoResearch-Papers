@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "76290cbceaf1cdfe1dd0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research 1 3b model check",
+  "task_key": "worker_research_1_3b-model-check_20260518T072556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_1_3b-model-check_20260518T072556_result.json",
+    "occurrence": 1,
+    "bytes": 2411,
+    "sha256": "75c6f4d0e60d86a7a078f75780eadb6d753ba4724079f75fa216aae4b73665c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：1.3B 模型完整可用\n\n### 完整 checkpoint 清单（31 个模型）\n\n**6 种线性注意力架构 × 5 种配置 + 1 个 Transformer baseline：**\n\n| 架构 | pure | 24:1 | 12:1 | 6:1 | 3:1 |\n|------|------|------|------|-----|-----|\n| GatedDeltaNet | ✅ (1.57k↓) | ✅ | ✅ | ✅ (9↓) | ✅ (14↓) |\n| GLA | ✅ (557↓) | ✅ | ✅ | ✅ | ✅ (55↓) |\n| HGRN2 | ✅ | ✅ | ✅ (10↓) | ✅ (7↓) | ✅ |\n| HGRN | ✅ (5↓) | ✅ (25↓) | ✅ | ✅ | ✅ |\n| DeltaNet | ✅ (516↓) | ✅ (6↓) | ✅ (5↓) | ✅ | ✅ (5↓) |\n| RetNet | ✅ (519↓) | ✅ (7↓) | ✅ | ✅ | ✅ (16↓) |\n| **Transformer** | **✅ baseline (683↓)** | | | | |\n\n训练数据：100B tokens（340M 是 20B tokens）\n\n### 架构参数（GatedDeltaNet 1.3B hybrid-3-1 为例）\n\n| 参数 | 值 |\n|------|-----|\n| hidden_size | 2048 |\n| num_hidden_layers | 24 |\n| num_heads | 8 |\n| head_dim | 256 |\n| hidden_ratio | 4 (→ intermediate ≈ 8192) |\n| vocab_size | 32000 |\n| max_position_embeddings | 2048 |\n| attention layers (3:1) | [2, 5, 8, 11, 14, 17, 20, 23] (8/24 layers) |\n| torch_dtype | float32 |\n\n### 磁盘与下载估算\n\n- 单个模型：**~5.6 GB**（F32 safetensors，2 个分片：4.99 GB + 606 MB）\n- 我们实验所需子集（GatedDeltaNet + HGRN2 + RetNet × 5 ratios + Transformer baseline = 16 个模型）：**~90 GB**\n- 全部 31 个 1.3B 模型：**~174 GB**\n\n### 论文中关于 ICL/function composition 的发现\n\n**论文没有评估 ICL 或 function composition。** 评估任务为：\n\n- **语言建模**：ARC-c, ARC-e, HellaSwag, LAMBADA, OBQA, PIQA\n- **Recall**：RULER suite（Single/Multi-Key/Query/Value retrieval, CWE, FWE, QA, VT）\n\n关键发现：**\"340M models show insignificant recall capability due to their relatively small parameter count\"**，recall 仅在 1.3B 上评估。这直接解释了我们 340M 模型在 function composition 上全部 random chance 的结果。\n\n### 对我们实验的启示\n\n1. **必须升级到 1.3B** — 340M 连 recall 能力都不足，function composition（更难的任务）自然无法完成\n2. 论文推荐的最优配置是 **HGRN2 或 GatedDeltaNet，ratio 3:1 到 6:1**，这些应是我们重点关注的 variant\n3. 1.3B 模型训练了 100B tokens（5× 于 340M 的 20B），能力差异不仅来自参数量，也来自训练数据量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa2765f145cceb665d9",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "eval exp 011 additional benchmarks retry",
+  "task_key": "worker_eval_exp_011_additional_benchmarks_retry_20260519T143443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_011_additional_benchmarks_retry_20260519T143443_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "e860f7e13d55a3b78d29f8929d916587261bb535507133dd73b3e5f4d0421552"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已在后台运行，分析脚本已就绪。当前状态：\n- **已完成**：GatedDeltaNet-pure（1/16）\n- **进行中**：GatedDeltaNet-hybrid-24-1（2/16）正在 GPU 上评估\n- **后台 PID**：474289（nohup，不受连接中断影响）\n- **预计总时间**：~5-7 小时\n\n20 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

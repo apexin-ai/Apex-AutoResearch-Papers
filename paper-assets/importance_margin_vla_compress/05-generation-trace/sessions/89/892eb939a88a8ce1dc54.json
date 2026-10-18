@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "892eb939a88a8ce1dc54",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16.md",
+    "occurrence": 1,
+    "bytes": 5337,
+    "sha256": "171133424ead216e2fd8fece202e7c936fe80a987d1e1dab56299ca2a4102e50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-28T22:09:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`：4 台服务器各 cuda:0-3，w27 实际只有 GPU0/GPU1\n- π0.5 eval 必须用 strict metric（非 lenient），论文数据全部基于 strict 版本（D265 教训：旧版 lenient 结果因 zero-masking bug 不可用）\n- Attn k=0.75 seed43 统一用 cqa1=52.0%（w27 不支持 attention scoring，w27 数据不可用）\n- Random k=0.9 seed43 统一用 v2=35.0%（D292），不引用旧版 32.4%\n- **实验硬截止 May 28 20:00 BJT，CoRL 2026 Paper May 29 提交**——距截止约 6h\n- 脚本内 GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- w27 代码未同步，仅支持 none/random/l2norm，不要在 w27 上跑 attention 实验\n\n### 2. 🖥️ 基础设施快照\n- **westd-27271**: w27，工作目录 ~/runs/importance_margin_vla_compress/，2 GPU（0,1），仅支持 random/l2norm\n- **westd-38929**: w38，工作目录 ~/runs/importance_margin_vla_compress/，4 GPU（0-3）\n- **westd-41074**: w41，工作目录 ~/runs/importance_margin_vla_compress/，4 GPU（0-3）\n- **cqa1-33015**: cqa1，工作目录 ~/runs/importance_margin_vla_compress/，4 GPU（0-3），支持 attention\n- 所有服务器：aml-train 镜像，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 日志路径：`~/runs/importance_margin_vla_compress/{exp_id}.log`\n- **活跃 cron（10 个，reconcile 确认全部仍在运行）**:\n  - w38: eval_pi05_l2norm_k095_long_seed45_strict_w38 (pid=106960), eval_pi05_random_k095_long_seed45_strict_w38 (pid=155733), eval_pi05_random_k07_long_seed45_strict_w38 (pid=156371), eval_pi05_attn_k085_long_seed46_strict_w38 (pid=218239)\n  - w41: eval_pi05_attn_k07_long_seed45_strict_w41 (pid=684035), eval_pi05_random_k085_long_seed46_strict_w41 (pid=697206), eval_pi05_l2norm_k075_long_seed46_strict_w41 (pid=697663), eval_openvla_random_k095_long_seed43_w41 (pid=700644)\n  - w27: eval_openvla_l2norm_k095_long_seed43_w27 (刚创建 ~2min)\n  - 未确认服务器: eval_openvla_random_k095_goal_seed42_v4 (pid=147681)\n\n### 3. 📊 当前状态\n**刚完成**：Session-start 初始化——read_registry、reconcile_crons、读 ROADMAP/report.md/memory.md，向 Director 发送启动汇报。\n\n**发现的关键问题**：\n1. **cqa1 无任何 cron 监控**——疑似 4 GPU 全部空闲，距截止仅 ~6h 这是重大资源浪费\n2. **Registry 有 8 个 stale RUNNING 实验**（May 26-27 创建，无 cron）：eval_pi05_l2norm_k09_long_seed43_strict_cqa1, eval_pi05_l2norm_k095_long_seed43_strict_w38, eval_openvla_attn_k075_long_seed42(conclusion=failed), eval_pi05_l2norm_k085_long_seed42, eval_openvla_random_k095_object_seed42, eval_pi05_random_k07_long_seed42, eval_openvla_random_k075_goal_seed42, eval_openvla_attn_k075_goal_seed42——这些几乎肯定已完成，registry 未更新\n3. eval_openvla_random_k095_goal_seed42_v4 不在 registry 中（count=0），服务器未知\n\n**2 个 Worker 运行中**：\n- `worker_analysis_data_consolidation_precheck` (05:45 UTC, turn 2)：构建数据交叉验证表\n- `worker_diagnose_all_servers_status_check` (06:00 UTC, turn 22)：正在 SSH 检查各服务器 + 更新 stale registry 条目，即将完成\n\n**5 个 QUEUED 实验**等待部署：eval_pi05_random_k085_goal_seed43, eval_pi05_l2norm_k05_long_seed43, eval_pi05_random_k095_goal_seed43, eval_pi05_l2norm_k07_goal_seed43, eval_pi05_random_k03_long_seed43\n\n### 4. 📋 待办（条件触发式）\n- worker_diagnose_all_servers_status_check 完成 → 读回调确认 cqa1 实际 GPU 状态 + stale RUNNING 实验清理结果 → 立即请求 Director 分配 cqa1 GPU 给 QUEUED 实验并部署\n- worker_analysis_data_consolidation_precheck 完成 → 读验证表，确认数据一致性问题 → 修正 ROADMAP 数据表\n- 任一 seed45/46 cron 回调 → 收割结果、更新 registry/ROADMAP、级联部署下一个实验\n- OV 实验（OV Random k=0.95 Long s43, OV L2norm k=0.95 Long s43）完成 → OV Long cliff curve 闭合检查\n- 距截止 30min（19:30 BJT）→ 停止新部署，全面收割所有已完成实验数据，最终数据整合\n- 全部 cliff curve 闭合 → 通知 Director，Paper Agent 更新 figures\n\n### 5. 🎯 战略上下文\n- **核心发现**：Importance Margin Inverted-U（peak k=0.9, 46pp）+ Attn cliff+plateau + Random anti-monotonicity（V-shape），支持 2-Axis Framework（scoring method × connector × task 三维交互）\n- **当前阶段**：π0.5 18/18 完成，OV Long 18/18 完成，Crossover 16/16 完成。正在收集 seed45/46 扩展 error bar（从 2-seed 到 4-seed）\n- **ROADMAP 数据表已确认（2-seed）**：Importance Margin Profile 6/6 全闭合，Attn cliff+plateau 6/6 全闭合\n- **易错点**：\n  - 不要混淆 lenient/strict——本项目论文全用 strict\n  - cqa1 可能有前序实验的残留进程——部署前 Worker 必须先 nvidia-smi 确认\n  - OV 实验需 ~7h（500 episodes × 10 tasks），新部署 OV 实验已来不及在截止前完成，只部署 π0.5（~2-3h）\n  - metrics 格式不一致（比例 0.8 vs 百分比 80%），最终收割时统一转百分比\n  - eval_openvla_random_k095_goal_seed42_v4 不在 registry 中，需要定位其服务器和状态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

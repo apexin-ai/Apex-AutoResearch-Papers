@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e3ae2b6d3e88f95bd833",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis temperature pilot summary",
+  "task_key": "worker_analysis_temperature-pilot-summary_20260523T142853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_temperature-pilot-summary_20260523T142853_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "089e28748a84c98e5ab46932c8ff7ccc373f44dabc8edc118452ebaf731b758a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。从 216 个 checkpoint 聚合的结果：\n\n| 指标 | MMLU | ARC |\n|------|------|-----|\n| K_eff Δ (max-min) | 0.0332 | 0.0270 |\n| K_eff range | 2.564–2.598 | 2.684–2.711 |\n| K_eff t=0→t=1 change | +0.008 | −0.014 |\n\n- **216/216 checkpoint 全部加载**，0 失败\n- Accuracy 最大变化 0.85pp，instrument_clean = true\n- 温度对 K_eff 的影响极小（Δ < 0.034），确认温度不是有效 instrument\n- ASR 在各温度下无系统趋势\n- 输出已写入 `docs/paper/data/temperature_pilot_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

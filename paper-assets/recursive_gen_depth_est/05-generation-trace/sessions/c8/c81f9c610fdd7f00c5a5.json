@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "c81f9c610fdd7f00c5a5",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh gpt2xl topk50 reextract",
+  "task_key": "worker_ssh_gpt2xl_topk50_reextract_20260515T030647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpt2xl_topk50_reextract_20260515T030647.log",
+    "occurrence": 1,
+    "bytes": 1416365,
+    "sha256": "d562ebaab39120167aebfe40e07cf8f2f743832a0c5d4fc0cc15e7f07b6b1c87"
+  },
+  "statistics": {
+    "messages": 815,
+    "user_turns": 1,
+    "tool_calls": 331,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 145,
+      "tool_call": 331,
+      "tool_result": 331,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 546,
+      "chunks": [
+        {
+          "path": "c81f9c610fdd7f00c5a5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c81f9c610fdd7f00c5a5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c81f9c610fdd7f00c5a5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c81f9c610fdd7f00c5a5-part-0004.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "c81f9c610fdd7f00c5a5-part-0004.json",
+          "message_count": 174
+        },
+        {
+          "path": "c81f9c610fdd7f00c5a5-part-0005.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ]
+}

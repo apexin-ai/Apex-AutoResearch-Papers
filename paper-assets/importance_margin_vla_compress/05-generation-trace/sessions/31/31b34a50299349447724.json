@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "31b34a50299349447724",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 gpu utilization",
+  "task_key": "worker_diagnose_cqa1_gpu_utilization_20260519T042838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1_gpu_utilization_20260519T042838_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "c95cc1fd291cc7eb519b63532fde10792e76730fccc8e258be25ade14664bc1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 实验 | Step/Total | Loss | Speed | GPU-Util | 显存 |\n|-----|------|-----------|------|-------|----------|------|\n| 0 | m32_seed44 | 49250/100K (49.3%) | 0.094 | 4.2 sps | 0%* | 2869/24564 MiB |\n| 1 | m64_seed44 | 49250/100K (49.3%) | 0.081 | 4.2 sps | 17% | 2787/24564 MiB |\n| 2 | m96_seed44 | 51500/100K (51.5%) | 0.048 | 4.4 sps | 35% | 2787/24564 MiB |\n| 3 | m32_official | 33050/100K (33.1%) | 0.114 | 4.1 sps | 39% | 3197/24564 MiB |\n\n**IO 状态**：iowait = 0.0%，无 IO 瓶颈。CPU 利用率 14.1% us，空闲 84.8%。\n\n**注意事项**：\n- GPU 0 的 `nvidia-smi` 瞬时 Util 显示 0%，但进程正常运行（PID 737451，CPU 占用 79.9%），log 持续更新，这是 `nvidia-smi` 采样瞬间恰好在 CPU 侧做数据准备，属正常波动。\n- m32_seed44 / m64_seed44 进度基本同步（~49.2K），m96_seed44 稍快（51.5K），m32_official 晚启动约 1 小时（10:13 vs 09:12），当前 33K。\n- 每个训练都启动了 4 个 dataloader worker 子进程（CPU 占用 ~97% 每个），数据加载充分。\n- 按当前速度估算：m32/m64_seed44 剩余约 3.4 小时，m96_seed44 约 3.1 小时，m32_official 约 4.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

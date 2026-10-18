@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "30143bcd52c7311434af",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 hgrn chain",
+  "task_key": "worker_exp_exp-005-hgrn-chain_20260522T162706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-hgrn-chain_20260522T162706_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "57f5b33d37c4ea24f924e7c3c087c92ca2075904030de8e1232d4932afe44138"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行：\n\n- **tmux session**: `exp-005-hgrn-chain`\n- **PID**: 902087\n- **状态**: 正在等待 HGRN 模型下载完成（Phase 1），下载完成后自动等 GPU 空闲再跑 eval\n- **日志**: `/root/entrainment_gated_ft/results/exp005_zoo_expansion/hgrn_chain.log`\n- **超时**: 4 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

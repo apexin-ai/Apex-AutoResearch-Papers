@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bd5f1a283035831f210d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 029 a1 sensitivity",
+  "task_key": "worker_code_exp-029-a1-sensitivity_20260522T161509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-029-a1-sensitivity_20260522T161509_result.json",
+    "occurrence": 1,
+    "bytes": 33,
+    "sha256": "e7b677a01a6ce92aeff610569d80053450a8e9d4af23ccdd6234f0b116b8f218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request timed out"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

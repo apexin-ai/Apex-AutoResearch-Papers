@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bad99c9f24c21efd82c2",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis gemma2 hires bf16 2bitonly",
+  "task_key": "worker_analysis_gemma2_hires_bf16_2bitonly_20260515T005231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_hires_bf16_2bitonly_20260515T005231_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "c95b33a3a1bc2829fcd6eb18fde80426ef8f1a7cc53eb89bf1b2a5dea551d901"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提取完成。结果如下:\n\n## gemma2_hires_bf16_2bitonly 实验结果\n\n**状态**: 正常完成 (log 末尾显示 \"Profiling done in 95.4min\" + \"Saved: ...json\")\n\n### 关键指标\n| 指标 | 值 |\n|---|---|\n| top5_concentration | **0.2291** (16/336 heads) |\n| distribution_shape | **Flat** (<0.30, FAIL hires assumption) |\n| baseline_calibration_ppl | 7.3200 |\n| delta_2bit_mean / std | 0.01204 / 0.01546 |\n| delta_2bit_cv | **1.2834** |\n| layer0_dominance_ratio | **2.05x** (L0=0.02411, others=0.01175) |\n| top1_head | **L0H1, delta=+0.1906** |\n| positive_delta_heads / total | 310 / 336 |\n| total_hours | **1.59h** (5725.3s) |\n\n### Top-5 sensitive heads\n1. L0H1: +0.1906\n2. L40H6: +0.0993\n3. L29H7: +0.0757\n4. L27H6: +0.0692\n5. L21H0: +0.0687\n\n### 文件路径\n- log: `/root/runs/ratekv/gemma2_hires_bf16_2bitonly.log` ✓\n- checkpoint: `/root/ratekv/gemma2_hires_bf16_2bitonly_results.json` (1406 bytes)\n- profiles: `/root/ratekv/gemma2_hires_bf16_2bitonly_profiles.json`\n\n### 结论\n**Flat 分布,与预期一致** (concentration 0.23 → 0.2291,几乎完全吻合 standard profiling)。Layer 0 仅 2.05× 主导,远低于 Yi/Mistral 等 spike 模型 (>4×)。Gemma-2-9B 属于 hires 假设的 FAIL case。\n\n### GPU 状态\n两块 RTX PRO 6000 Blackwell 96GB 均**完全空闲** (0 MiB / 97887 MiB, 0% util)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

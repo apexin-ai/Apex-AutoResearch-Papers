@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "c66ee5b670244674b563",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "analysis w3 format confound eval",
+  "task_key": "worker_analysis_w3-format-confound-eval_20260521T082626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w3-format-confound-eval_20260521T082626.log",
+    "occurrence": 1,
+    "bytes": 825561,
+    "sha256": "de31c0d9a3a51d749f83c610a526ed0b9438671ff0b1d16d4e5689d11e354400"
+  },
+  "statistics": {
+    "messages": 679,
+    "user_turns": 0,
+    "tool_calls": 303,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 303,
+      "tool_result": 303,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 679,
+      "chunks": [
+        {
+          "path": "c66ee5b670244674b563-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c66ee5b670244674b563-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c66ee5b670244674b563-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c66ee5b670244674b563-part-0004.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ]
+}

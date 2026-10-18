@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "deaf5738f36a6db6f1ff",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel pilot launch",
+  "task_key": "worker_ssh_fewrel-pilot-launch_20260515T071432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-pilot-launch_20260515T071432_result.json",
+    "occurrence": 1,
+    "bytes": 1698,
+    "sha256": "82dce747ff28da19e8f1dcb7ec15381784992b800442fe2d8c8825e924fe6d50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pilot 完成！全部产出文件就绪。\n\n## FewRel Pilot 结果摘要\n\n### High-BCS vs Low-BCS 对比（核心结果）\n\n| Count | Low BCS (acc) | High BCS (acc) | 差异 |\n|-------|-------------|---------------|------|\n| 4 types | **91.7%** (BCS=0.42) | **70.8%** (BCS=0.97) | -20.9pp |\n| 8 types | **100%** (BCS=0.47) | **50.0%** (BCS=0.97) | -50.0pp |\n| 16 types | **91.7%** (BCS=0.57) | **43.1%** (BCS=0.97) | -48.6pp |\n\n### 关键发现\n\n1. **BCS-accuracy 负相关极其显著**：高 BCS（语义相似的 types）→ 准确率大幅下降（43-71%），低 BCS（语义不同的 types）→ 准确率很高（92-100%）\n\n2. **效应随 type 数量增大而增强**：count_4 差 21pp → count_8 差 50pp → count_16 差 49pp\n\n3. **Random batches 居中**：BCS 0.54-0.84 的随机批次准确率 75-100%，符合预期\n\n4. **Confusability 假设在 RE 上强烈成立**：当候选关系语义相似（如 participant/participant of/part of/member of），模型严重混淆，准确率不到 50%\n\n### 产出文件\n- `artifacts/fewrel_pilot/eval_results.json` - 每 batch 准确率\n- `artifacts/fewrel_pilot/predictions.json` - 374KB 完整预测\n- `artifacts/fewrel_pilot/batch_config.json` - batch 配置\n- `artifacts/fewrel_pilot/relation_sim_matrix.pt` - 关系相似度矩阵\n\n### 技术备注\n- 原始 `run_fewrel_pilot.py` 有 `enable_thinking=False` 参数 bug（vLLM 0.20.2 不支持），已修复为 `dtype=\"bfloat16\"` + 标准参数\n- vLLM EngineCore 在 torch/SentenceTransformer 之后初始化会挂起（fork 问题），用 wrapper 脚本先加载 vLLM 解决\n- 推理总耗时约 40s（15 batches），模型加载 90s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

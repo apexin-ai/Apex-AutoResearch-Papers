@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "513d7b0a431b3dd5cfbc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code baseline battery 009",
+  "task_key": "worker_code_baseline_battery_009_20260514T230042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_battery_009_20260514T230042_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "b28c109d53fb552967e0904f3a7594f0e25d6bc8cca4b43f48e9929d8fcc29fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All baselines verified. Here's the summary:\n\n**`src/baselines.py` (966 lines) — deployed and validated on server**\n\n| # | Method | Type | 4-class Acc | Notes |\n|---|--------|------|-------------|-------|\n| 1 | PPL Regression (single) | Feature | 25.1% | mean_ppl only, lower bound |\n| 2 | PPL Regression (multi) | Feature | 62.2% | 19-dim OLS |\n| 3 | CE-MLP | Feature | 74.9% | DCOL ablation (5 epochs) |\n| 4 | CORAL | Feature | 53.7% | Ordinal regression (5 epochs, needs more) |\n| 5 | DivEye (XGBoost) | Feature | **78.2%** | 14 diversity features |\n| 6 | Random Forest | Feature | **78.1%** | 19-dim, matches main method |\n| 7 | Logistic Regression | Feature | 75.0% | 19-dim |\n| 8 | Zero-shot LLM | Text | — | Code ready, needs API key |\n\nKey features:\n- Unified CLI: `python src/baselines.py --method <name> --features_path data/features_all.jsonl`\n- `--data_path` alias works\n- `--method all` runs all feature-based baselines\n- `--method zeroshot --data_dirs data/ --provider claude` for LLM baseline\n- Consistent output: 4-class acc, 3-class acc, MAE, pairwise AUC, confusion matrix, per-class recall with 95% CI"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

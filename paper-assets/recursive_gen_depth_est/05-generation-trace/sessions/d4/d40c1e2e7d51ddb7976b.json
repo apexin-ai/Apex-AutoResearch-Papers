@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d40c1e2e7d51ddb7976b",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "director / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3246,
+    "sha256": "213b59c151a053d93a22de7f2852d3c6c310c41601827e9425761512f200ff06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-15T11:13:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（2× RTX 6000 Pro），禁止使用其他卡\n- DCOL 方向已正式关闭（D018），禁止再提交 DCOL 系列实验，仅作为论文 negative analysis\n- 提交同系列实验前必须 read_registry 检查历史失败原因（C001/C002，DCOL 踩过 4 次同一坑）\n- Z-score LR cross-strategy claim 已被推翻（D021），降级为 RF-only feature importance，论文中不能再 claim LR 跨策略泛化\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2 (connect.westb.seetacloud.com)，工作目录 /root/autodl-tmp/recursive_gen_depth_est\n- GPU：cuda:0（depth_extension_gpt2xl_d4d5_001 RUNNING, PID 194929）, cuda:1（空闲已分配）\n- W&B：未配置，Git：未配置\n- 审稿群（Group C）已建立：review_chat_id = oc_db3bd143165620ee6950e6ef0826eec8\n\n### 3. 📊 当前状态\n- 44 个实验，RUNNING 1（depth_extension_gpt2xl_d4d5_001 on cuda:0），DONE 42（success 20, negative 3, failed 6, killed 13），PREPARING 1\n- Agent 正在处理：**审稿报告 Action Matrix 批量执行**（审稿 Overall 3/5 = Weak Accept，4 个 CRITICAL 待修复）\n- Agent 队列 depth=3：(1) 审稿报告修复实验+分析任务 (2) Worker done 回调（rebuttal generation code） (3) 系统告警：worker_fix_depth_extension_olmo 日志 30min 无更新可能卡死\n- cuda:1 空闲 — 应尽快派实验占满（depth_extension_olmo 修复重跑或其他候选）\n- 项目已进入审稿阶段，DDL = EMNLP ARR May 25（剩 10 天）\n\n### 4. 📋 待办（条件触发式）\n- depth_extension_gpt2xl_d4d5_001 完成 → 分析 binary pairwise d3v4/d4v5 AUC，判断 GPT-2 XL EDD 是否 =4（与 Pythia EDD=4 对比跨模型一致性）\n- Agent 完成审稿报告 4 个 CRITICAL 修复 → post_to_reviewer 反审确认修复质量，综合后更新 review_issues.yaml\n- worker_fix_depth_extension_olmo 卡死确认 → kill 并重新提交（OLMo depth extension 是 3 模型 EDD 完整对比的最后一块）\n- 审稿修复全部完成 → submit_paper_to_review 重新提交 Review Director 做二审\n- Phase 1 实验全部收尾 → director_post_to_paper_agent 启动 Phase 2 Full Draft（EMNLP \"New Missions\" track）\n\n### 5. 🎯 战略上下文\n- **核心 framing (Plan A, D011)**：Depth Degradation Atlas + EDD metric + feature universality。3×3 矩阵 9/9 完成，cross-model LOO 66.4%（gate 45% ✅），cross-strategy LOO 59.1%（9/9 > chance ✅）。Baselines (CORAL/DivEye/CE-MLP) 全部完成。EDD=4 已在 Pythia 确认，GPT-2 XL 正在跑\n- **最容易判断错的事**：(1) temp09 d1v2 AUC 反转不是 bug 而是 covariate shift 正面发现（D014/D017），z-score 修正只对 LR 有效、RF 不受益；(2) 审稿报告是 Group C（Review Director）发来的结构化审稿，不是 Research Reviewer 的 severity:critical，处理协议不同——必须先读 review-report-action skill；(3) cuda:1 空闲是资源浪费，应立即安排候选实验\n- **决策链**：D011(Plan A framing) → D018(DCOL closed) → D019(EDD=4 binary pairwise) → D020(plan_010→011b) → D021(z-score LR claim downgraded)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

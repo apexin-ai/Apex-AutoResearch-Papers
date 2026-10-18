@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5d12f9e61be2c314950a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code mlp 19feat baseline",
+  "task_key": "worker_code_mlp_19feat_baseline_20260517T115718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mlp_19feat_baseline_20260517T115718_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "faafe63f508ac1b33e477ef612384fc049e1ed8e775d08aebafb0883a9c53e7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `mlp_19feat_001` 完成，假设验证成功。\n\n**结果汇总：**\n\n| Variant | Accuracy (5-fold) | Delta vs RF |\n|---|---|---|\n| MLP 128-128 | 78.66% ± 0.61% | +0.46pp |\n| MLP 64-128-64 | 78.95% ± 0.57% | +0.75pp |\n| MLP Poly-Top5 (34 feat) | 79.06% ± 0.45% | +0.86pp |\n| **RF baseline** | **78.2%** | — |\n\n**结论：** 三个 MLP 变体均在 RF 的 1pp 以内，**特征瓶颈假设确认**。19 features 是性能天花板，换分类器无法突破。\n\n**Per-class recall 模式一致：** d0 ~99.5% > d1 ~82% > d3 ~73% > d2 ~59%。Depth-2 仍是最难区分的类。\n\n**Pairwise AUC：** d0v1 ≈ 0.997, d1v2 ≈ 0.88, d2v3 ≈ 0.82。相邻深度越深越难分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

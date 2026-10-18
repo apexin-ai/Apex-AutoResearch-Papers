@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "ae446622900bb6636a86",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 003 hb integration",
+  "task_key": "worker_code_exp-003-hb-integration_20260521T001213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-hb-integration_20260521T001213.log",
+    "occurrence": 1,
+    "bytes": 1460917,
+    "sha256": "f9aa0bf47430ec6b1bb7c408834a18fa9edd20f77b9d59542e4df246e2e34fa4"
+  },
+  "statistics": {
+    "messages": 1391,
+    "user_turns": 1,
+    "tool_calls": 664,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 3,
+      "assistant": 43,
+      "tool_call": 664,
+      "tool_result": 664,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1369,
+      "chunks": [
+        {
+          "path": "ae446622900bb6636a86-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae446622900bb6636a86-part-0009.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "ae446622900bb6636a86-part-0009.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ]
+}

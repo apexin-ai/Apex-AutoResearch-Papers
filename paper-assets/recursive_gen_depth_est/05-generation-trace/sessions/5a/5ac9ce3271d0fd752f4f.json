@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5ac9ce3271d0fd752f4f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code accumulation experiment westd",
+  "task_key": "worker_code_accumulation_experiment_westd_20260519T072407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_accumulation_experiment_westd_20260519T072407_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "506e4e826fe1dc9521353349f5ff265492ec260baf1b001c7ab27ca62249fc3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 数据结构\n- **路径**: `/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/`\n- **格式**: JSONL，字段 `text`, `depth`, `source`, `token_count`, `seed_id`\n- **每个 depth**: 5000 条，共 20000 条\n- **预计算特征**: `features.jsonl` (20000 行, 19 维统计特征)\n- d0 = Wikipedia 人类文本，d1-d3 = GPT-2 XL nucleus 递归生成\n\n### 2. 脚本\n- **路径**: `/root/autodl-tmp/recursive_gen_depth_est/scripts/accumulation_experiment.py`\n- **用法**: `python3 accumulation_experiment.py --mix_ratio 0.5 --seed 42 --output_dir results/accumulation/mix50/`\n- 直接在特征层面混合 d0 human 特征到 d1-d3，无需重新提取特征\n\n### 3. 实验 Job\n\n| 实验 | exp_id | PID | tmux session | mix_ratio |\n|------|--------|-----|-------------|-----------|\n| A (50% human) | `accum_mix50` | 108519 | `accum_mix50` | 0.5 |\n| B (25% human) | `accum_mix25` | 108797 | `accum_mix25` | 0.25 |\n\n### 4. 结果（均已完成，耗时 <1 分钟）\n\n| 指标 | Full-Replacement | Accum 25% human | Accum 50% human |\n|------|-----------------|-----------------|-----------------|\n| Overall Accuracy | **0.8421** | 0.6721 (-0.170) | 0.3551 (-0.487) |\n| Balanced Accuracy | **0.8421** | 0.6721 | 0.3551 |\n| d1-d3 Bal. Acc | **0.7953** | 0.5969 (-0.198) | 0.3959 (-0.399) |\n\n**关键发现**: accumulation 场景显著降低 depth 分类准确率。50% human 混合导致准确率从 84.2% 骤降至 35.5%（接近 4-class 随机水平 25%），25% human 混合也降至 67.2%。d0 class 在 50% 混合下 recall 仅 23.3%（大量 d0 被误分到其他 depth），因为 d1-d3 中混入的 human 特征与 d0 特征分布高度重叠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

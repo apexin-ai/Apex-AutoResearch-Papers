@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "196d93e4c0cf303c4ad9",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval d014 baseline gate",
+  "task_key": "worker_eval_d014_baseline_gate_20260515T210432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_d014_baseline_gate_20260515T210432.log",
+    "occurrence": 1,
+    "bytes": 927256,
+    "sha256": "c5a130df93af5d2b4c3b92b0cf1563f13a4d6b70c5e98ff06d8514735bd16eb6"
+  },
+  "statistics": {
+    "messages": 703,
+    "user_turns": 0,
+    "tool_calls": 311,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 311,
+      "tool_result": 311,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 703,
+      "chunks": [
+        {
+          "path": "196d93e4c0cf303c4ad9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "196d93e4c0cf303c4ad9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "196d93e4c0cf303c4ad9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "196d93e4c0cf303c4ad9-part-0004.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ]
+}

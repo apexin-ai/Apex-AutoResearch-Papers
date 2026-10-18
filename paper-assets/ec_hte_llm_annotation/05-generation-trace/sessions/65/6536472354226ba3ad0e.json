@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6536472354226ba3ad0e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code task g k8 scalability",
+  "task_key": "worker_code_task-g-k8-scalability_20260523T154030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_task-g-k8-scalability_20260523T154030_result.json",
+    "occurrence": 1,
+    "bytes": 1698,
+    "sha256": "f3e8d87d808c9f08594b2f94ecfff0abdafac832299b633c0c23d45a2eac6be4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n## K-Scalability Comparison\n\n| K | Method | \\|Bias\\| | RMSE | Coverage |\n|---|--------|---------|------|----------|\n| 2 | Naive | 0.0579 | 0.0900 | 0.823 |\n| 2 | Global | 0.0589 | 0.0994 | 0.867 |\n| 2 | **EC-HTE** | **0.0080** | **0.0888** | **0.938** |\n| 4 | Naive | 0.0624 | 0.1126 | 0.877 |\n| 4 | Global | 0.0558 | 0.1253 | 0.911 |\n| 4 | **EC-HTE** | **0.0116** | **0.1201** | **0.956** |\n| 8 | Naive | 0.1066 | 0.1330 | 0.912 |\n| 8 | **Global** | **0.1351** | **0.1680** | **0.951** |\n| 8 | EC-HTE | 0.1831 | 0.3404 | 0.956 |\n\n## Key Findings\n\n1. **EC-HTE dominates at K=2 and K=4** — lowest bias by 5-7x vs Naive/Global, with near-nominal coverage.\n\n2. **EC-HTE degrades at K=8** — RMSE explodes to 0.34 (vs Global's 0.17). Root cause: 250 expert labels / 8 subgroups = **~31 per subgroup**, far too few for reliable per-subgroup CM estimation. High-pi subgroups (s5-s7) drive the RMSE to 0.4-0.6.\n\n3. **Coverage stays ≥ 95.6% across all K** — the HB shrinkage is conservative; it inflates SEs enough to maintain coverage even when point estimates are noisy.\n\n4. **Adaptive variants help but don't close the gap** — V1 (adaptive alpha) reduces K=8 RMSE from 0.33 → 0.22, but still above Global's 0.17.\n\n5. **RMSE trend K=2→4→8**: all methods degrade, but EC-HTE degrades fastest because per-subgroup expert sample shrinks as 1/K.\n\n**Takeaway**: EC-HTE's HB shrinkage is effective when per-subgroup expert counts are sufficient (~125+ for K=2, ~125 for K=4). At K=8 with fixed n_expert=250, the method needs either more expert labels (scaling n_expert with K) or should fall back to Global correction."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

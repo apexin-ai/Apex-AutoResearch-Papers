@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa94ea538ff8009f9afd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research diveye citation verify",
+  "task_key": "worker_research_diveye_citation_verify_20260514T195449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_diveye_citation_verify_20260514T195449_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "17a84d886824955ae8540bbc5e2268b83b86c0dfd1ea97374c297f0e72635371"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DivEye 引用审计结论: **真实论文 ✓**\n\n| 字段 | 声称 | 验证结果 |\n|------|------|----------|\n| 作者 | Basani & Chen | ✓ Advik Raj Basani & Pin-Yu Chen |\n| 标题 | \"Diversity Boosts AI-Generated Text Detection\" | ✓ 完全匹配 |\n| 发表 | TMLR 2026 | ✓ 确认 (OpenReview + GitHub tag) |\n| GitHub | github.com/IBM/diveye | ✓ 存在，有完整代码 |\n\n额外发现：该工作也在 ICML 2025 DIG-BUG workshop 发表（CEUR-WS Vol-4038），有 HuggingFace Space demo 和官网 diveye.vercel.app。\n\n**行动：保留引用，无需替换。**\n\nSources:\n- [arXiv: 2509.18880](https://arxiv.org/abs/2509.18880)\n- [OpenReview](https://openreview.net/forum?id=DNgsOhGZBI)\n- [GitHub - IBM/diveye](https://github.com/IBM/diveye)\n- [HuggingFace Space](https://huggingface.co/spaces/pinyuchen/Diveye_AI_text_detector)\n- [ICML 2025 Workshop](https://icml.cc/virtual/2025/51028)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

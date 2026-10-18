@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "09d5fe6e44f3253abc17",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops vtc eval prep westd38929",
+  "task_key": "worker_ops_vtc-eval-prep-westd38929_20260521T185934",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_vtc-eval-prep-westd38929_20260521T185934.log",
+    "occurrence": 1,
+    "bytes": 661180,
+    "sha256": "287388ef3aa073397f9a6fed6739d9c781bd375291dab8842f947ed4a7ed82cf"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "09d5fe6e44f3253abc17-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "09d5fe6e44f3253abc17-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ]
+}

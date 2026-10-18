@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a20cf50beca44871e96f",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "research codellama profile prep",
+  "task_key": "worker_research_codellama_profile_prep_20260515T195330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_codellama_profile_prep_20260515T195330_result.json",
+    "occurrence": 1,
+    "bytes": 2587,
+    "sha256": "e1dfa6299adb18d08457a409751b0cb60e2c49748af787b94533f1dc5e05d378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 1. 分类规则（来自 analysis.tex 精确定义）\n\n| 条件 | 分类 | 含义 |\n|------|------|------|\n| concentration ≥ 0.50 **AND** t₁/t₅ ≤ 0.70 | **Spread** | 多头跨 bitwidth 梯度，MCKP 有效 |\n| t₁/t₅ > 0.70 **AND** concentration ≥ 0.25 | **Spike** | 单 outlier 主导，MCKP 无效 |\n| concentration < 0.25, 或 [0.25, 0.50) + t₁/t₅ ≤ 0.70 | **Flat** | 均匀敏感度，MCKP 无效 |\n\n**t₁/t₅ 定义**：最敏感 head 的 2-bit delta / top-5% heads 的 delta 之和（低=spread, 高=spike）。\n\n### 2. 跨架构参考表（Table 4, analysis.tex）\n\n| Model | GQA | KV Heads | Conc. | t₁/t₅ | Shape | MCKP vs Uniform |\n|-------|-----|----------|-------|--------|-------|----------------|\n| Qwen2.5-7B | 7:1 | 112 | **0.61** | **0.57** | **Spread** | **-29.4%** |\n| Qwen2.5-14B | 5:1 | 384 | 0.33 | 0.68 | Flat | ≈0% |\n| Yi-1.5-9B | 8:1 | 192 | 0.71 | 0.90 | Spike | ≈0% |\n| Llama-3.1-8B | 4:1 | 256 | 0.57 | 0.85 | Spike | +0.2% |\n| Mistral-7B-v0.3 | 4:1 | 256 | 0.24 | 0.41 | Flat | -0.4% |\n| Gemma-2-9B | 2:1 | 336 | 0.23 | 0.38 | Flat | -0.3% |\n| Pythia-1.4B | 1:1 | 384 | 0.24 | 0.28 | Flat | +0.7% (neg) |\n\n### 3. 分析脚本\n\n`analyze_codellama_profiling.py` — 读取 `artifacts/codellama_profiles_hires.json`，计算 concentration + t₁/t₅，输出分类和完整诊断。profiling 完成后直接运行：\n\n```bash\npython analyze_codellama_profiling.py artifacts/codellama_profiles_hires.json\n```\n\n### 4. 预测：CodeLlama-7B 最可能是 **Flat**\n\n理由：\n- **1024 heads**（32L × 32KV, MHA 1:1）→ 极端稀释。Qwen-14B 仅 384 heads 就从 Spread 稀释到 Flat（0.61→0.33）；1024 heads 几乎不可能维持 concentration ≥ 0.50\n- **MHA 1:1** → 无 GQA 驱动的功能特化，参考 Pythia-1.4B（同为 MHA 1:1, 384 heads, conc=0.24, Flat）\n- **Llama-2 家族** → Llama-3.1 是 Spike（conc=0.57, t₁/t₅=0.85），但那是 GQA 4:1 + 256 heads；CodeLlama 的 MHA + 1024 heads 会把任何 spike 信号稀释掉\n- top-5% = 51 heads，即使存在几个敏感 head，占总 delta 的比例也会被拉低\n\n**次可能**：Spike（如果代码训练在某些 head 产生极端特化），但即便如此 concentration 也难突破 0.50。\n\n**不太可能是 Spread** — 这是坏消息。CodeLlama 大概率不会成为第二个 Spread 模型来增强论文论证。如果需要第二个 Spread，应该关注 head 数量少 + 高 GQA 的模型（如 Llama-3.1-8B 的某个变体，或另一个 GQA 7:1+ 的模型）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

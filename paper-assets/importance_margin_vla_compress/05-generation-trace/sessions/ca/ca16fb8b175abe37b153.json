@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ca16fb8b175abe37b153",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k075 long seed42 strict cqa1",
+  "task_key": "worker_analyze_eval_pi05_attn_k075_long_seed42_strict_cqa1_20260527T171619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k075_long_seed42_strict_cqa1_20260527T171619_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "68431c359e8ee9466d9fdcb1474158370dfe64b80c0431c68631caebc235005e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成，无错误。\n\n```\nOverall SR: 52.4%\nPer-task: [T0=68%, T1=78%, T2=64%, T3=48%, T4=26%, T5=50%, T6=76%, T7=30%, T8=6%, T9=78%]\n状态: 正常完成 (EXIT_CODE=0)\n```\n\n与 w41 结果 (49.8%) 对比：cqa1 复制得到 52.4%，差异 +2.6pp，在跨硬件 measurement uncertainty 的合理范围内（~3pp）。两次测量均值为 51.1%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2096c6248aaaeb28123a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "verify t1t5 formula all models",
+  "task_key": "worker_verify_t1t5_formula_all_models_20260515T144250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_t1t5_formula_all_models_20260515T144250_result.json",
+    "occurrence": 1,
+    "bytes": 2070,
+    "sha256": "59529c5b39f30eb7211c409c4042b78df36a467472602a355bba49b79a0b46ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部收集。汇总如下：\n\n## 公式验证\n\n`compute_shape_metrics.py` 中的公式：\n```python\nt1_t5 = s[0] / top5_sum   # = top1_delta / top5_sum\n```\n**是 canonical formula** ✅（等价于 top1_conc / top5_conc，因为 total_sum 约掉了）\n\n## 每个模型的数据源和正确性\n\n| Model | 当前数据源 | 类型 | 当前 t1/t5 | 正确 hires 文件 | hires t1/t5 | 状态 |\n|-------|-----------|------|-----------|----------------|-------------|------|\n| Qwen2.5-7B | `hires_profiles.json` | hires flat | 0.5670 | (同) | 0.5670 | ✅ |\n| Qwen2.5-14B | `qwen14b_hires_bf16_2bitonly_profiles.json` | hires flat | 0.5693 | (同) | 0.5693 | ✅ |\n| Llama-3.1-8B | `llama_hires_bf16_2bitonly_profiles.json` | hires flat | 0.8466 | (同) | 0.8466 | ✅ |\n| Yi-1.5-9B | `yi15_hires_bf16_2bitonly_profiles.json` | hires flat | 0.9012 | (同) | 0.9012 | ✅ |\n| Pythia-1.4B | `pythia14b_hires_bf16_2bitonly_profiles.json` | hires flat | 0.1183 | (同) | 0.1183 | ✅ |\n| **Mistral-7B-v0.3** | `mistral_ppl_profiles_hires.json` | **旧 metadata 格式** | 0.1820 | `mistral_hires_bf16_2bitonly_profiles.json` | **0.2612** | ❌ **差 +43%** |\n| **Gemma-2-9B** | `gemma2_profiling_results.json` | **lowres** | 0.1757 | `gemma2_hires_bf16_2bitonly_profiles.json` | **0.2056** | ❌ **差 +17%** |\n\n## 需要修正\n\n**2 个模型数据源错误**：\n\n1. **Gemma-2-9B**：用了 lowres 文件 `gemma2_profiling_results.json`，应改为 `gemma2_hires_bf16_2bitonly_profiles.json`\n   - t1/t5: 0.1757 → 0.2056\n\n2. **Mistral-7B-v0.3**：用了旧格式 `mistral_ppl_profiles_hires.json`（带 metadata wrapper，非标准 hires bf16 2bitonly），应改为 `mistral_hires_bf16_2bitonly_profiles.json`\n   - t1/t5: 0.1820 → 0.2612\n\n**注意**：Qwen2.5-7B 的文件名 `hires_profiles.json` 命名不规范（其他模型都是 `{model}_hires_bf16_2bitonly_profiles.json`），但格式和数值均正确，无需改。\n\n是否要我修正 `compute_shape_metrics.py` 并重新生成 `shape_metrics.json`？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

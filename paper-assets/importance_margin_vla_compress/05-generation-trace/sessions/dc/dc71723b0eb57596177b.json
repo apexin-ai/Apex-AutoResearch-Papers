@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dc71723b0eb57596177b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent cqa1 collect and redeploy",
+  "task_key": "worker_urgent_cqa1-collect-and-redeploy_20260525T224038",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_cqa1-collect-and-redeploy_20260525T224038_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "f94f204e65b254f25868d9493f7655622a789b9488e5598f49cacce608eabd96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**cqa1-33015 全部 4 GPU 满载，无法立即重部署。**\n\n### 各实验状态\n\n| GPU | 实验 | 当前进度 | 预计完成 |\n|-----|------|----------|----------|\n| 0 | π0.5 zeromask_random k=0.9 Object v2 | T4/10, 前3任务全100%, T4=93% | **~40min** |\n| 1 | π0.5 L2norm k=0.75 Long v2 | T2/10, T0=96%, T1=94% | ~2.5h |\n| 2 | π0.5 Random k=0.75 Long | T1/10, T0=84% | ~3h |\n| 3 | OpenVLA Attn k=0.9 Goal seed43 | T2/10, **0% success** (异常) | 多小时 |\n\n### 已完成操作\n- 确认 `eval_pi05_l2norm_k0925_long_seed42_v2` 已 DONE (83.2%)，不需要重跑\n- 标记 `eval_pi05_l2norm_k075_long_seed42_v3` 为 DONE/failed（日志卡死，实际 v2 在跑）\n\n### 注意事项\n1. **GPU0 最快释放**（~40min）→ 届时部署 `eval_pi05_attention_k075_long_seed42`\n2. **GPU3 OpenVLA Attn Goal seed43 全 0%** — 79分钟内两个任务零成功，可能是 bug（模型路径/unnorm_key 问题）或 Attention pruning 在 Goal 上确实极差。需要后续确认\n3. GPU1 的 L2norm k=0.75 早期数据 (T0=96%, T1=94%) 显示这个压缩率下性能仍然很高，cliff 可能在更低的 k 值\n\n**下一步：约 40 分钟后回来收 GPU0 的 zeromask_random 结果并部署 Attn k=0.75。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

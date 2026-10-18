@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b119ffd2f46c5012a49",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops sync compile paper d043 final",
+  "task_key": "worker_ops_sync_compile_paper_d043_final_20260519T033834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_compile_paper_d043_final_20260519T033834_result.json",
+    "occurrence": 1,
+    "bytes": 74,
+    "sha256": "c87d061e830be5d96b46ba2c0e29580438b8c6fbcd175b042afa702c51047485"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: Stream idle timeout - partial response received"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d9a2d545e9425211a3bc",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_12_1778907579.md",
+  "task_key": "loop_12_1778907579",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778907579.md",
+    "occurrence": 1,
+    "bytes": 4572,
+    "sha256": "4662e13024570a8a25987881aaed9f3abaa9e2c46809c8fa5f24d64deea0202c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:52:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**gpu-6000pro-2 cuda:0, cuda:1** 仅此两张，其他 GPU 编号/服务器一律不可用\n- cross_scale_qwen7b_001 使用 cuda:0，tmux session 名 `cross_scale_qwen7b`，**不要 kill 也不要在 cuda:0 上起新任务**\n- submit_training_job 的 command 必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不能假设 .venv\n- 论文 DDL：**EMNLP ARR 2026-05-25**，剩 9 天，所有决策以此为硬约束\n- AutoDL 代理下 `load_dataset(\"allenai/c4\")` 会挂死，改用 FineWeb 或 hf-mirror.com 预下载 parquet\n- EDD 报告必须附 bootstrap CI + p-value（D027），Cohen's d 用配对 d_z 不用 pooled SD\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2（2× RTX 6000 Pro）\n- **工作目录**: /root/autodl-tmp/recursive_gen_depth_est\n- **Python**: /root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **模型路径**: checkpoints/ 下各子目录（qwen7b_nucleus/ 等）\n- **数据路径**: data/ 下各子目录（d0-d5 结构）\n- **特征提取参考模型**: Pythia-1.4B\n- **活跃进程**: cross_scale_qwen7b_001（PID=cross_scale_qwen7b tmux session，cuda:0，cron 监控中）\n- **Cron**: 1 个活跃（cross_scale_qwen7b_001，reconcile 确认 still running）\n- **cuda:1**: 空闲——这是失职状态，应尽快安排任务\n\n### 3. 📊 当前状态\n**唯一 RUNNING**: cross_scale_qwen7b_001（Plan_014，Qwen2.5-7B 4-bit QLoRA, nucleus p=0.95, d0-d5 × 500 samples）。验证 depth signal 在 7B scale 是否与 1-1.5B 一致。成功标准：4-class acc ≥ 60%, EDD 测定, AUC 衰减趋势方向一致。\n\n**Registry**: 68 实验，67 DONE（41 success / 4 negative / 7 failed / 其余 killed），1 RUNNING。\n\n**论文进度**: Phase 2 写作 + R3 审稿修改。R3 大部分已 resolved：\n- ✅ R3-N1~N4, R3-W1~W4, W2 domain bias（v2 重跑确认 LOGO=72.1%≈CV=72.0%）\n- ⏳ **R3-N5 cross-strategy curation** — 仍 open\n- ⏳ **W4 zero-shot 样本量** / **R2-W3 multi-τ** — open (rebuttal 阶段)\n\n**Worker 池**: 0 个 running worker。**双重失职**：cuda:1 空闲 + worker 池 < 2。\n\n**等待中**: cross_scale_qwen7b_001 的 cron 完成回调。无其他 pending Worker/Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **cross_scale_qwen7b_001 cron 回调到达** → spawn worker 分析结果（4-class acc / 6-class / EDD / AUC 衰减）→ 更新 registry → 与 1-1.5B 结果对比 → 汇报 Director（含 [资源] 行）→ 结果写入论文对应 section\n- **cross_scale 结果 acc ≥ 60%** → success，补充 paper cross-scale 证据（强化 Claim 2 Atlas 跨 scale 泛化性），更新 experiment matrix\n- **cross_scale 结果 acc < 60%** → negative，走 red-section framing 调整流程，向 Director 汇报 + 提案\n- **cuda:1 空闲**（立即）→ 应安排任务。候选：R3-N5 cross-strategy curation 实验、论文 final polish 相关计算、或 rebuttal 补充实验\n- **R3-N5 cross-strategy curation 未完成** → 需派 Worker 准备并提交实验（这是 R3 最后一个 open critical issue）\n- **所有 R3 resolved** → 派 Worker 做 bibliography audit + final polish → 提交 ARR\n\n### 5. 🎯 战略上下文\n- **核心结论**: Depth Degradation Atlas + EDD metric 是 primary contribution（Plan A, D011）。3×3 矩阵 9/9 完成，70-85% 4-class acc。DCOL 已放弃（6 次失败，D020）。\n- **决策链关键节点**: D024 EDD 叙事转为连续 AUC 衰减曲线 | D026-D027 EDD=4 三模型声明降级为\"一致边界，统计强度分层\" | D028 cross-strategy normalization claim 被推翻 | D029 domain bias 从\"无偏差\"改为\"depth dominates, residual exists\"\n- **cross_scale_qwen7b_001 是最后一个重大实验**——如果成功，提供 7B scale 泛化证据，大幅增强 Claim 2；如果 negative，需要 scope 论文为\"1-1.5B scale 现象\"\n- **易踩的坑**:\n  - 不要把不同 strategy 的 AUC 直接对比（cross-strategy feature space 不可对齐，D021/D028）\n  - EDD 统计强度是分层的（Pythia 显著 p=0.001, OLMo 边际, GPT-2 XL 不显著），不能说\"三模型均显著\"\n  - multi-τ ablation 已证明 τ=1.1 崩溃是 memorization 消失而非特征变化（memory.md），论文叙事已据此调整\n  - wild_data_calibration_002 因 C4 streaming 挂死 failed，已用 FineWeb 替代完成（wild_data_calibration_003/004）\n  - cuda:1 空闲是当前最大资源浪费，新 session 应立即安排利用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

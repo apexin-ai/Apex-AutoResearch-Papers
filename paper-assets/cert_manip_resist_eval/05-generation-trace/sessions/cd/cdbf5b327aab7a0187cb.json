@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "cdbf5b327aab7a0187cb",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis k7 keff provenance",
+  "task_key": "worker_analysis_k7-keff-provenance_20260524T073610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k7-keff-provenance_20260524T073610.log",
+    "occurrence": 1,
+    "bytes": 5716282,
+    "sha256": "ff2426f1c59389e6e8d4caf3136c87dea26dc001ce92c1d2c8d17daba1367e37"
+  },
+  "statistics": {
+    "messages": 154,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 37,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "cdbf5b327aab7a0187cb-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "cdbf5b327aab7a0187cb-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "cdbf5b327aab7a0187cb-part-0003.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ]
+}

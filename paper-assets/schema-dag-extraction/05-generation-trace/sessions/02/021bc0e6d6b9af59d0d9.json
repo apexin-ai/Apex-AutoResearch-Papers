@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "021bc0e6d6b9af59d0d9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper bcs scs format",
+  "task_key": "worker_paper_bcs_scs_format_20260522T110901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bcs_scs_format_20260522T110901_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "a65b11a98414a9698c2f95fd969ecdf17a8bb24eecaf9b9c07aa473d5cb61dff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not a real error — that's a font substitution line starting with `!$`, not a LaTeX error (`! ` with space). Compilation succeeded, 27 pages, 0 errors.\n\n**结果：**\n\n- **格式不一致数量**：2 处（均在 `docs/paper/main.tex` 第 332 行）\n- **不一致内容**：`$\\hat{\\beta}_{\\textsc{bcs}}$`（小型大写）vs 全文统一的 `\\text{BCS}`（plain 大写）\n- **统一为**：plain 大写 `\\text{BCS}`（与全文其余 100+ 处一致）\n- **修改位置**：`docs/paper/main.tex:332`，将两处 `\\textsc{bcs}` 改为 `\\text{BCS}`\n- 编译通过，0 errors"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

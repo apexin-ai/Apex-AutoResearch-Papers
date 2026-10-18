@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "774abc43818f44de400f",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap_ci_20260515T150128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_20260515T150128.log",
+    "occurrence": 1,
+    "bytes": 673612,
+    "sha256": "02d042a90cc256898cf4461c8dd517f6391489abadc177d4c5b19927fea2cae4"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "774abc43818f44de400f-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "774abc43818f44de400f-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ]
+}

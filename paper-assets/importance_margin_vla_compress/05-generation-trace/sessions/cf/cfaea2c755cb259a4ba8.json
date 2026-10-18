@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cfaea2c755cb259a4ba8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops extract l2norm k085 long pertask",
+  "task_key": "worker_ops_extract-l2norm-k085-long-pertask_20260524T131757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_extract-l2norm-k085-long-pertask_20260524T131757_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "62f20036c8d9dad3b73dc65d3b81ade1f0a19ccb5de4f3e405e69429e51ce190"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。Per-task 结果：\n\n**L2norm k=0.85 Long (seed42) — Overall SR: 78.4%**\n\n| Task | Description | SR |\n|------|------------|-----|\n| 0 | alphabet soup + tomato sauce → basket | 96% |\n| 1 | cream cheese + butter → basket | 92% |\n| 2 | stove on + moka pot | 86% |\n| 3 | black bowl → drawer + close | **100%** |\n| 4 | white mug left + yellow mug right | 76% |\n| 5 | book → caddy back | 96% |\n| 6 | white mug plate + chocolate pudding | **12%** |\n| 7 | alphabet soup + cream cheese → basket | 84% |\n| 8 | both moka pots → stove | 50% |\n| 9 | yellow white mug → microwave + close | 92% |\n\nTask 6（12%）和 Task 8（50%）是明显的弱项，其余 8 个 task 均 ≥76%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

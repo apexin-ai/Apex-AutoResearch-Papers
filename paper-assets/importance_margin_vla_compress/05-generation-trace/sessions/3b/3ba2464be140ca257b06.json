@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3ba2464be140ca257b06",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit westd38929",
+  "task_key": "worker_ops_audit-westd38929_20260524T001632",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit-westd38929_20260524T001632_result.json",
+    "occurrence": 1,
+    "bytes": 2070,
+    "sha256": "0de143572c7752755f7af5f0ac7eafc4d352c322ff6e8f530a1d9e983b52e9f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验的 registry 已更新（它们之前已部分注册）。以下是完整审计结果：\n\n---\n\n## 1. eval_xvla_random_k05_spatial_seed43 — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **72.6%** (363/500) |\n| **95% Wilson CI** | [68.5%, 76.3%] |\n| Seed | 43 |\n| Mode | random, keep_ratio=0.5 |\n\nPer-task: T0=100%, T1=38%, T2=88%, T3=92%, T4=88%, **T5=0%**, T6=94%, T7=68%, T8=92%, T9=66%\n\nRegistry 已有记录，status=DONE, conclusion=success。hypothesis 已更新。\n\n---\n\n## 2. eval_xvla_l2norm_k05_goal_seed43 — 也已完成（bonus 收割）\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **60.2%** (301/500) |\n| **95% Wilson CI** | [55.8%, 64.4%] |\n| Mode | l2_norm, keep_ratio=0.5 |\n\nPer-task: T0=84%, T1=100%, T2=98%, T3=30%, T4=100%, **T5=0%**, T6=22%, T7=74%, T8=90%, T9=4%\n\nRegistry status=DONE, conclusion=negative。hypothesis 已更新。\n\n---\n\n## 3. GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 4938 / 97887 MiB | 52% | `eval_xvla_l2norm_k05_spatial_seed43` — spatial suite 进行中 |\n| 1 | 5250 / 97887 MiB | 0%* | `eval_xvla_l2norm_k05_long_seed43` — libero_10 Task 4, Ep 8/50 |\n| 2 | 1 / 97887 MiB | 0% | **空闲** |\n| 3 | 4856 / 97887 MiB | 64% | `eval_xvla_random_k05_goal_seed43_v4` — goal suite Task 5, Ep 5/50 |\n\n*GPU 1 利用率 0% 是 nvidia-smi 采样瞬时值，进程实际在跑（PID 432791, 259% CPU）。\n\n---\n\n## 4. 活跃 tmux sessions & 进程\n\n| Session / pts | 实验 | 状态 |\n|--------------|------|------|\n| pts/0 | eval_xvla_l2norm_k05_spatial_seed43 | **运行中** — l2_norm, spatial, seed43 |\n| pts/1 | eval_xvla_l2norm_k05_long_seed43 | **运行中** — l2_norm, libero_10, seed43 |\n| pts/2 | eval_xvla_random_k05_goal_seed43_v4 | **运行中** — random, goal, seed43 |\n| pts/3 (tmux: eval_xvla_l2norm_k05_goal_seed43) | eval_xvla_l2norm_k05_goal_seed43 | **已完成** — 仅剩空 bash shell |\n\n**GPU 2 完全空闲**，可用于启动新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

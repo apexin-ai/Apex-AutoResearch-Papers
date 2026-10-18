@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c2cd7b3b1161a9a852b0",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper appendix ref ",
+  "task_key": "worker_paper_appendix_ref____20260522T015924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_ref____20260522T015924_result.json",
+    "occurrence": 1,
+    "bytes": 1918,
+    "sha256": "e1bee489c97b9262b01f1369662082cbeb0ea313b38ec1794296cca4e263caeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 11 edits are in place. Here's the summary:\n\n### 修改摘要\n\n**main.tex（appendix 部分）：**\n\n| Label | 行号 | 修改内容 |\n|-------|------|----------|\n| `tab:partial_corr` | 328 | 段首加 `As Table~\\ref{tab:partial_corr} shows,` |\n| `tab:error_examples` | 792 | 句末加 `Table~\\ref{tab:error_examples} provides illustrative confusion instances with SCS values.` |\n| `tab:prompt_variants` | 376 | 句末加 `(Table~\\ref{tab:prompt_variants})` |\n| `tab:variance_decomposition` | 666 | 段首加 `Table~\\ref{tab:variance_decomposition} shows that` |\n| `tab:bcs_aggregation` | 404 | 句末加 `(Table~\\ref{tab:bcs_aggregation})` |\n| `tab:format_independence` | 453 | 句末加 `(Table~\\ref{tab:format_independence})` |\n| `tab:scs_baselines` | 604 | 新增一句 `Table~\\ref{tab:scs_baselines} compares SCS against simple baselines for pairwise confusion prediction.`（该 section 原本无正文） |\n| `tab:relaxed_matching` | 883 | 句末加 `; Table~\\ref{tab:relaxed_matching}` |\n| `tab:fewshot_bcs` | 767 | 句末加 `(Table~\\ref{tab:fewshot_bcs})` |\n| `tab:renaming` | 861 | 句末加 `(Table~\\ref{tab:renaming})` |\n\n**results.tex：**\n\n| Label | 行号 | 修改内容 |\n|-------|------|----------|\n| `tab:partial_corr` | 47 | `(Appendix~\\ref{sec:appendix_partial_corr})` → `(Appendix~\\ref{sec:appendix_partial_corr}, Table~\\ref{tab:partial_corr})` |\n\n**跳过的 labels：**\n- `sec:conclusion`, `sec:metrics`, `sec:results` — 主文 section 标签，需从其他主文 section 引用，不改主文\n- `sec:appendix_figures`, `sec:appendix_batch_composition`, `sec:appendix_prompt_sensitivity`, `sec:appendix_cross_model_70b`, `sec:appendix_type_defs` — appendix section 标签，通常从主文引用，appendix 内无自然引用位置\n- `app:bcs-composition`, `app:cross-domain` — 同上，appendix 内无自然交叉引用位置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

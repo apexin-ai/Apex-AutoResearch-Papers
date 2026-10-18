@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0addc38b5834d7d18cba",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose smart compress failures",
+  "task_key": "worker_diagnose_smart_compress_failures_20260518T004834",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_smart_compress_failures_20260518T004834_result.json",
+    "occurrence": 1,
+    "bytes": 1697,
+    "sha256": "293390650fbf3b7fd3c2c52d1498f193a1f0da41dc4da684d7c48b9bd3b5db7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：3 个实验均已成功完成，无一失败\n\n### 1. train_smart_compress_m64\n- **状态**: 成功完成\n- **训练进度**: 99999/100000 steps（100%）\n- **完成时间**: 2026-05-18 08:25:24\n- **最终 metrics**: eval/action_loss=0.062, train/action_loss=0.045\n- **Checkpoint**: `checkpoints/smart_compress_m64/checkpoint.pt` (1.5G, step 99999)\n\n### 2. train_smart_compress_m32\n- **状态**: 成功完成\n- **训练进度**: 99999/100000 steps（100%）\n- **完成时间**: 2026-05-18 08:28:03\n- **最终 metrics**: eval/action_loss=0.052, train/action_loss=0.110\n- **Checkpoint**: `checkpoints/smart_compress_m32/checkpoint.pt` (1.5G, step 99999)\n\n### 3. train_acis_stage1only_k03\n- **状态**: 成功完成（exit code 0）\n- **运行时间**: 2026-05-17 15:16 → 15:57（约 40 分钟，stage1 only，10k steps）\n- **Checkpoint**: `checkpoints/libero_acis_stage1only_k03/stage1_done/` 目录存在\n\n### \"无 W&B metrics\" 的根因\n\n三个实验的 W&B 都运行在 **offline 模式**（`wandb sync` 提示 offline-run）。日志末尾显示：\n```\nwandb: You can sync this run to the cloud by running:\nwandb: wandb sync /root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-...\n```\n\nMetrics 已记录在本地，只是未上传到 W&B 云端。如果需要在 W&B dashboard 查看，运行对应的 `wandb sync` 命令即可。\n\n### 环境状态\n- **GPU**: 4x RTX 4090D，当前有 5 个 python 进程在跑（应该是 m96 和 m16）\n- **磁盘**: `/autodl-pub` 96% 已用但仍有 313G 可用；根分区 `/` 27% 已用（23G 可用），不是瓶颈\n- 不需要任何环境修复即可进行后续实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "284cd9fe2e0d04102e77",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 005 6arch jaccard",
+  "task_key": "worker_analysis_exp-005-6arch-jaccard_20260522T173937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-6arch-jaccard_20260522T173937_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "5dab3f5b1f24d633fd55c7ca86e8f9621823034490d8d8002f690044e68f52f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered (`art_20260522_cc1e47`). All tasks complete. Summary:\n\n---\n\n## exp-005: HGRN 评估 + 6-arch Jaccard 分析\n\n### Step 1: HGRN 评估结果\n\n| Model | lambada_openai | arc_easy |\n|-------|---------------|----------|\n| HGRN h3-1 | 0.3586 | 0.6065 |\n| HGRN pure | 0.2630 | 0.6157 |\n\nHGRN 在 lambada 上 h3-1 大幅优于 pure（+9.6pp），在 arc_easy 上 pure 略优（-0.9pp）。与其他架构模式一致：hybrid 对 lambada 帮助大，arc_easy 上差异小。\n\n### Step 2: 6-arch Pairwise Jaccard\n\n**汇总统计（C(6,2)=15 pairs）：**\n\n| Benchmark | mean J_helped | mean J_hurt | 显著对数 |\n|-----------|--------------|-------------|---------|\n| arc_easy | 0.1109 | 0.1032 | 15/15 |\n| lambada_openai | 0.1295 | 0.0906 | 15/15 |\n\n所有 30 个配对检验均显著（p<0.05, z>2.9），J_helped 一致高于 J_hurt。\n\n**子组趋势（lambada J_helped）：**\n\n| 子组 | mean J_helped | mean J_hurt | Δ J_helped |\n|------|--------------|-------------|------------|\n| 3-arch (GDN/RetNet/HGRN2) | 0.1194 | 0.0955 | — |\n| 4-arch (+GLA) | 0.1219 | 0.0965 | +0.0025 |\n| 5-arch (+DeltaNet) | 0.1221 | 0.0946 | +0.0002 |\n| 6-arch (+HGRN) | 0.1295 | 0.0906 | **+0.0074** |\n\n加入 HGRN 后 J_helped 增幅最大（+0.0074），J_hurt 下降最多（-0.004）。HGRN2-HGRN 对在 lambada 上 J_helped=0.1629，为全场最高——这两个同族架构共享了最多的 helped samples。\n\n**已完成：** `jaccard_6arch.json` 生成并注册为 artifact，registry 已更新 `6arch_jaccard` metrics。无异常结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

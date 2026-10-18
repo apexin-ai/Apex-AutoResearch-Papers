@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "45af03034ea3d403c1b2",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp phi3 download and profile",
+  "task_key": "worker_exp_phi3_download_and_profile_20260515T163926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phi3_download_and_profile_20260515T163926_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "b6b1ffa296858d8fd9e1ff6572c5fc9db8f20798e9f721615194207506dae15e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "总 incomplete: 294+724+388+231+839+220 = 2.70GB / ~26GB (10.4%)。进程运行约 30 分钟。\n\n下载在持续进行。链式脚本会在下载完成后自动验证并启动 profiling。\n\n当前状态汇总：\n- **下载进程**：PID 351291，正在通过 AutoDL 代理从 HuggingFace 下载 Phi-3-medium-128k-instruct\n- **已下载**：约 2.7GB/26GB（6 个 shard 并行下载中）\n- **自动链式脚本**：PID 352691，等待下载完成后自动验证 + 启动 profiling\n- **Registry**：phi3_medium_hires_profiling 已注册为 RUNNING\n- **预计完成时间**：下载还需 1-2 小时，profiling 约 30-60 分钟\n\n所有组件已就绪，cron 可自动监控后续状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

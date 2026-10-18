@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "53553b1eec769416fa6e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code smart compress eval fix",
+  "task_key": "worker_code_smart_compress_eval_fix_20260518T005347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_smart_compress_eval_fix_20260518T005347_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "8ed8012a957187f40c52190f06d320a103439391fa8e87f9796afb1bc6f4007a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在正常运行。\n\n## 产出汇总\n\n1. **旧进程**: 已 kill，无残留进程\n2. **Checkpoint 确认**:\n   - M=32: `/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32/checkpoint.pt` (1.5GB), 训练完成 (eval loss=0.052)\n   - M=64: `/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m64/checkpoint.pt` (1.5GB), 训练完成 (eval loss=0.062)\n3. **新 eval 脚本**: `/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py`\n   - 正确实例化 SmartCompressWrapper(policy, compress_config={\"num_queries\": M})\n   - load_state_dict 加载完整 wrapper 权重（含 compressor + policy）\n   - 推理走 `wrapper.forward_inference(batch)`，vision tokens 经过 cross-attention compression\n4. **Dry-run 结果**: M=32 加载成功，无 missing/unexpected keys，Task 0 Ep 1 SUCCESS (140 steps)，action 输出正常\n5. **正式 eval PID**:\n   - M=32 on GPU 0: PID **420909**\n   - M=64 on GPU 1: PID **426524**\n   - 两者都在正常产出 episode 结果（M=32 已跑到 ~8 eps，M=64 已跑到 ~2 eps）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

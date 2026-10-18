@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a4c6848b6ddc03000e6a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 003 hb rerun",
+  "task_key": "worker_code_exp-003-hb-rerun_20260521T023504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-hb-rerun_20260521T023504_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "f7a58950ce3b33a76ddbb4ed30e5aea477f2370935ca96317487c92621ec8694"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Results verified (301 rows summary, 30,001 rows raw). Here's the HB vs stratified_mle comparison:\n\n**Legend:** positive = HB wins (lower RMSE), `***` = HB loses by >20%, `++` = HB wins by >10%\n\n| Regime | n_exp | Pattern |\n|--------|-------|---------|\n| **extreme** | 50 | S0/S1: HB slightly better (+3–9%). S2: mixed (+15% z0, **-44% z1 \\*\\*\\***). S3: **HB much worse (-57% z0 \\*\\*\\*)** |\n| **extreme** | 100 | S0–S2: HB modestly better (+1–8%). S3: **HB strongly wins (+26/+60% ++)** |\n| **extreme** | 250 | S0–S2: HB slightly better (+1–4%). S3: HB wins (+6/+17% ++) |\n| **extreme** | 500 | All subgroups converge, HB ≈ MLE (<2% difference) |\n| **moderate** | 50 | S0/S1: HB slightly better. S2: mixed. S3: **HB much worse (-17/-54% \\*\\*\\*)** |\n| **moderate** | 100 | S0–S2: HB modestly better. S3: **HB wins (+11/+24% ++)** |\n| **moderate** | 250–500 | All converge, small HB advantage |\n\n**Key takeaway:** At n=50, HB over-shrinks the rare high-misclassification subgroup S3, producing worse RMSE (the `***` flags). At n>=100, HB's partial pooling pays off, especially for S3 where it wins substantially. By n=500, both methods converge."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

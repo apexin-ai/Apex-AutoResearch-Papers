@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a7825411da388b44696d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "fix kill orphan check kivi",
+  "task_key": "worker_fix_kill_orphan_check_kivi_20260515T144123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_orphan_check_kivi_20260515T144123_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "dafbfb5c24b3cfa70b6b2d89f321204b41c4092de8b3ca09b7bcc944f9e7d2c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**1. PID 340906 (Mistral hires 孤儿)** — 已 kill，确认死亡。\n\n**2. PID 341441 (KIVI v2)** — 进程已退出，因为**实验已完成**。\n\n**3. KIVI baseline v2 结果**：\n| 配置 | PPL |\n|------|-----|\n| KIVI-4bit-g32-r128 (Qwen2.5-7B) | **9.8976** |\n- 298938 tokens, 583 chunks, stride=512\n- 结果已保存: `/root/ratekv/artifacts/kivi_baseline_qwen7b_v2_results.json`\n- Registry 已更新为 DONE\n\n**4. GPU 状态**：\n| GPU | 型号 | 温度 | 功耗 | 显存 | Util |\n|-----|------|------|------|------|------|\n| 0 | RTX PRO 6000 Black (96GB) | 64°C | 118W/600W | 0MiB | 100% |\n| 1 | RTX PRO 6000 Black (96GB) | 36°C | 36W/600W | 0MiB | 0% |\n\n**GPU 0 异常**：显示 100% util 但 0MiB 显存且无进程。这是 kill 孤儿进程后的残留状态，通常会自行恢复。如果持续不降，可能需要 `nvidia-smi --gpu-reset -i 0`。\n\n**5. tmux 会话**：仅 `yi15_9b_full_pipeline` 存活，无 KIVI 相关 session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "427909c6aaa953c55f1d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code gemma2 downstream headfix v3",
+  "task_key": "worker_code_gemma2_downstream_headfix_v3_20260515T194418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2_downstream_headfix_v3_20260515T194418_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "b2b5f8168445cf3201d5cd8f2194f408de2533e95d89548983285650ed6c94da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证清单全部通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `orig_attn.head_dim` 返回 256 | ✅ |\n| eval_ppl.py 不影响其他模型（try/except fallback） | ✅ |\n| CUDA_VISIBLE_DEVICES=1 设置正确 | ✅ |\n| dry-run arc_challenge limit=50 通过，无 shape mismatch | ✅ (acc=0.6) |\n| registry 已更新修复信息 | ✅ |\n\n修复内容：`eval_ppl.py` 第 32-35 行，`head_dim` 改为优先从 `model.model.layers[0].self_attn.head_dim` 读取（Gemma-2 返回 256），`AttributeError` 时 fallback 到原逻辑，兼容所有其他模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

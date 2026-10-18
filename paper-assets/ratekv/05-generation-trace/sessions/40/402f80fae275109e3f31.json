@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "402f80fae275109e3f31",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu d048 hires fix 2bit rerun",
+  "task_key": "worker_gpu_d048_hires_fix_2bit_rerun_20260514T182835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d048_hires_fix_2bit_rerun_20260514T182835_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "5f03856437522d22b683398ee243671f33e35425406410b8e41f2ef41751524e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Bug 修复确认：**\n- Line 108: `for bits in [2, 4, 8]:` — 2-bit 已加入 ✓\n- Line 64: `shift_logits.float().view(-1, shift_logits.shape[-1])` — .float() 已存在 ✓\n\n**Hires profiling 启动确认：**\n- PID: 247429，tmux session: `qwen_hires_float32_d048`\n- 模型已加载，GPU 0 占用 9.2GB，正在运行\n- 模型: Qwen2.5-7B (28 layers × 4 KV heads = 112 heads × 3 bitwidths = 336 profile evals)\n- 预计完成时间: 336 × ~12s ≈ 67 min（约 1 小时）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

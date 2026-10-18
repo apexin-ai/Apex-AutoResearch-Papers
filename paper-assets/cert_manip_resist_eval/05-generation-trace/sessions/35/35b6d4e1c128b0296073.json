@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "35b6d4e1c128b0296073",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis gam tier indicator",
+  "task_key": "worker_analysis_gam-tier-indicator_20260522T190014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gam-tier-indicator_20260522T190014_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "370b54b5828431747dd1b9222b58c3f5641680bf929898e69b870bf711915f9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总结果：\n\n| Method | η_max FDR sig (/12) | K_eff FDR sig (/12) | K_eff sig+ | K_eff sig− |\n|---|---|---|---|---|\n| Canonical OLS | 11/12 | 8/12 | 7 | 1 |\n| + Tier indicators | 10/12 | 5/12 | 4 | 1 |\n| GAM (nonlinear) | 12/12 | 12/12 | 6 | 6 |\n\n关键发现：\n\n1. **Tier indicators** 吸收了部分 K_eff 效应（8→5 sig），η_max 也略降（11→10），说明 tier-level confounding 确实存在。但 K_eff 仍在 5/12 conditions 显著（4+/1−），表明控制 tier 后 K_eff 的独立效应仍部分保留。\n\n2. **GAM** 结果非常强：K_eff 在 12/12 conditions 全部显著，η_max 也是 12/12。但方向性变为 6+/6−，说明 GAM 捕捉到的是 K_eff 的非线性 partial effect 显著（即 K_eff 和 ASR 之间存在显著的非线性关系），而非单调正向关系。\n\n3. Canonical OLS 的 K_eff 7+/1− 与预期吻合。\n\nJSON 已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/gam_tier_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

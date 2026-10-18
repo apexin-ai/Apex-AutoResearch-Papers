@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "88c6d27f7a3bbcfc9d7a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 scope cleanup",
+  "task_key": "worker_ops_fp16-scope-cleanup_20260525T104835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-scope-cleanup_20260525T104835_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "08540e765fc561749e8cca31b4786ce3526a465af3bb99cd8ee5a0e5707cc864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Kill 结果\n- PID 81023 (72B AWQ): already gone\n- PID 80806 (7B FP16): **KILLED**\n- PID 80909 (7B AWQ): **KILLED**\n- PID 81175 (Mistral FP16): **KILLED**\n- PID 81214 (Mistral AWQ): already gone\n\n## 清理结果\n已删除：Qwen2.5-7B FP16/AWQ、Qwen2.5-72B AWQ、Mistral-7B FP16/AWQ 及 HF cache\n清理后可用：**88 GB** / 250 GB（65% used）\n\n## 保留下载状态\n\n| 模型 | PID | 运行时间 | 状态 | Shards 完成 |\n|------|-----|---------|------|------------|\n| Qwen2.5-14B FP16 | 80512 | 9m30s | running | **6/8** (缺 shard 1-2) |\n| Qwen2.5-32B FP16 | 80606 | 9m00s | running | **15/17** (缺 shard 15-16) |\n| Llama-3.1-8B AWQ | 80699 | 8m30s | running | **0/2** (元数据已下，safetensors 未开始) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

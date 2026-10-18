@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b2003ca847a848615f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 reeval fixed",
+  "task_key": "worker_eval_v8_reeval_fixed_20260516T034945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8_reeval_fixed_20260516T034945_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "049410954ed8cd7b3c57301f3f03103fb37c6e165616e7f133c1656a24f65cad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n## 总结\n\n**evaluate.py 5 项修复验证**：全部到位 ✅\n\n**v8 Re-eval 结果（D028 fix, 500-batch, cuda:1）**：\n\n| Gate | Value | Target | Status |\n|------|-------|--------|--------|\n| **G1** margin ratio | **50.2x** | >1 | **PASS** |\n| **G2** preservation diff | **+58.8pp** | >0 | **PASS** |\n| **G3** standard/baseline | **1.344x** | ≤1.10 | **FAIL** |\n| **G4** LED median | **0.087** | <1.0 | **PASS** |\n\n**Overall: FAIL**（G3 未达标）\n\n**与旧 buggy eval 对比**：结果在 ~5% 范围内一致。修复对 G4 影响最大（0.169→0.087，降 49%），其余指标变化不大。结论不变：gradient isolation 未解决 backbone 损伤问题，bypass/baseline = 7.12x。\n\nRegistry 和 artifact 已更新，标注 \"D028 fix re-eval\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

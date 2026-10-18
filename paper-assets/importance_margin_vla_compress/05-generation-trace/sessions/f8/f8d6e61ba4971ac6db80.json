@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f8d6e61ba4971ac6db80",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops d168 westd41074 pi05 random goal",
+  "task_key": "worker_ops_d168_westd41074_pi05_random_goal_20260522T142322",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_d168_westd41074_pi05_random_goal_20260522T142322_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "e5554e144f9502fe9636b7a87b70231a0d398a9987a870ddc6de5969bb7ded9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 Goal Random 已进入 eval 循环，Task 0 前 10 个 episodes 完成，SR=80%。\n\n汇报：\n\n---\n\n## westd-41074 GPU 状态总览\n\n| GPU | 任务 | 状态 | 详情 |\n|-----|------|------|------|\n| **cuda:0** | π0.5 Goal Random k=0.85→0.7→0.5 | **刚部署，运行中** | T0 ep=10, 80% SR。tmux: `pi05_goal_random` |\n| **cuda:1** | X-VLA Long baseline eval | **运行中** | PID 545284, 4364 MiB。tmux: `xvla_long` |\n| **cuda:2** | π0.5 Attention k=0.95 Object | **运行中**（其他 agent 部署） | PID 546011, 10671 MiB |\n| **cuda:3** | VTC M64 训练 | **运行中，60.7%** | step 60650/100000, 0.6 sps, **ETA ~18h（约 5/23 16:30）** |\n\n### 关键发现\n- **M64 训练进度 60.7%**，不是之前 reconcile 报的 93%。距完成还需约 18 小时，cuda:3 不可用，**Long Random 无法部署在此服务器**。\n- cuda:2 被其他 agent 占用（π0.5 Attention Object pruning），无空闲 GPU 可用。\n- smolvla_spatial session 已完成（spatial baseline 结果保存在 `eval_results/official_libero_spatial_baseline.json`），session 空闲但 GPU 已被 attention pruning 接管。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

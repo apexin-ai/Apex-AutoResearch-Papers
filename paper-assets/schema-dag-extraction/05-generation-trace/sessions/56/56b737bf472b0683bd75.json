@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "56b737bf472b0683bd75",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper compile check",
+  "task_key": "worker_paper_compile_check_20260516T073931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_check_20260516T073931_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "fd42e79dddf3ae3b2125398d319d7d7313c2779ca922328d04c4a168ce6268de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 预检查结果\n\n### §5 位置和词数\n- **文件**: `sdgd_negative.tex`\n- **标题**: \"Why Naive Decomposition Fails\" (`\\label{sec:sdgd}`)\n- **位置**: `main.tex` 第 33 行 `\\input{sdgd_negative}`\n- **当前词数**: 245 词（含 LaTeX 命令）\n- **结构**: 1 个 section 标题 + 2 个 paragraph（\"Merge amplification as the bottleneck\" 和 \"Confidence gating does not resolve the problem\"）\n\n### 贡献列表第 4 条（introduction.tex 第 19 行）\n> **Informative negative result.** Our SDGD experiments identify merge amplification as a structural challenge for union-based merge approaches, with direct implications for the design of schema decomposition methods.\n\n### Abstract 中的 mitigation 内容\nAbstract 最后一句已包含 SDGD 相关内容：\n> \"Our confusability-aware decomposition yields an informative negative result: merge amplification destroys precision across all strategies, identifying a structural challenge for union-based merge pipelines in zero-shot IE.\"\n\n**总结**: §5 目前非常精简（245 词，2 段），仅覆盖 merge amplification 和 confidence gating 失败。Abstract 和贡献列表都已提及此 negative result，措辞一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

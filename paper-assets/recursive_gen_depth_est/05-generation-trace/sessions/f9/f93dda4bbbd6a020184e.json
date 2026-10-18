@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f93dda4bbbd6a020184e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops instruct phase45 results",
+  "task_key": "worker_ops_instruct_phase45_results_20260517T191522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_instruct_phase45_results_20260517T191522_result.json",
+    "occurrence": 1,
+    "bytes": 1532,
+    "sha256": "fc8f61074585d2291fa7340b4ddb05d2598a4d8d869d36132e7a259db5343390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "002 的结果和 001 完全相同（同一份 features 数据，产出写入同一个路径）。两个 run 收敛到同一个结果文件。\n\n## qwen25-1p5b-instruct Phase 4+5 结果\n\n| Metric | Value |\n|---|---|\n| **RF 4-class acc** | 0.4742 [0.467, 0.4811] |\n| **LR 4-class acc** | 0.4256 [0.4184, 0.4321] |\n| **RF 3-class (no d0)** | 0.4987 [0.4905, 0.5064] |\n\n### Pairwise AUC (RF)\n\n| Pair | AUC |\n|---|---|\n| d0v1 | 0.653 |\n| d0v2 | 0.819 |\n| d0v3 | 0.902 |\n| d1v2 | 0.620 |\n| d1v3 | 0.807 |\n| d2v3 | 0.664 |\n\n### Pairwise AUC (LR)\n\n| Pair | AUC |\n|---|---|\n| d0v1 | 0.619 |\n| d0v2 | 0.773 |\n| d0v3 | 0.838 |\n| d1v2 | 0.594 |\n| d1v3 | 0.734 |\n| d2v3 | 0.621 |\n\n### Top-10 Feature Importance (RF)\n\n| Feature | Importance |\n|---|---|\n| surprisal_range | 0.0708 |\n| surprisal_position_corr | 0.0700 |\n| prob_std | 0.0687 |\n| surprisal_first_half_minus_second | 0.0640 |\n| surprisal_std | 0.0563 |\n| surprisal_diff_std | 0.0545 |\n| surprisal_iqr_10_90 | 0.0520 |\n| surprisal_skew | 0.0507 |\n| surprisal_frac_above_2std | 0.0496 |\n| surprisal_p90 | 0.0490 |\n\n### 关键观察\n\n- 样本量: 19,992 (d0=5000, d1=5000, d2=4996, d3=4996)\n- AUC 随 depth gap 单调递增（d0v1=0.653 → d0v3=0.902），符合预期\n- 相邻 depth 区分最难：d1v2 AUC=0.620 是最低的\n- Top features 全部是 surprisal 统计量，prob_std 是唯一非 surprisal 命名的 feature\n- 001 和 002 两个 run 产出完全相同（共用同一个 summary.json 和 features.npz）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "70489082a75cdab18ad1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest random k07 s43 w38",
+  "task_key": "worker_harvest_random-k07-s43-w38_20260527T185635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_random-k07-s43-w38_20260527T185635_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "c4ffdcf071a11a74da4faf5b745ead6ae50c9589fd4b8d406adf5cfd2f9a1833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**结果汇总 — π0.5 Random k=0.7 Long suite:**\n\n| | seed42 | seed43 | mean ± err |\n|---|---|---|---|\n| **Overall SR** | 66.0% | 64.4% | **65.2 ± 0.8%** |\n\nPer-task (seed43): T0=88, T1=66, T2=66, T3=80, T4=84, T5=50, T6=60, T7=70, T8=8, T9=72"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

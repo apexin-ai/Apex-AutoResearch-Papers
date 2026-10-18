@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "54a0a2e4bf0a3ad2587b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "gpu check idle audit 20260526",
+  "task_key": "worker_gpu-check_idle-audit-20260526_20260526T163308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu-check_idle-audit-20260526_20260526T163308_result.json",
+    "occurrence": 1,
+    "bytes": 1357,
+    "sha256": "b0f65ed972380c624a2b4961cf58c0dfed86e9f3521ad5e4bcf4015ff38c6d8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 实际状态\n\n### cqa1-33015 (RTX 4090D × 4)\n\n| GPU | Util | Memory | 进程 | 状态 |\n|-----|------|--------|------|------|\n| cuda:0 | 0% | 10446/24564 MiB | PID 384775 (python) | **占用中** — util=0% 但有进程占 10GB，可能在等待/加载数据 |\n| cuda:1 | 0% | 10448/24564 MiB | PID 416018 (python) | **占用中** — 同上 |\n| cuda:2 | 11% | 10162/24564 MiB | PID 467731 (python) | **占用中** — 活跃计算 |\n| cuda:3 | 0% | 1/24564 MiB | 无 | **空闲** |\n\n### westd-41074 (RTX PRO 6000 Blackwell × 4, 98GB/卡)\n\n| GPU | Util | Memory | 进程 | 状态 |\n|-----|------|--------|------|------|\n| cuda:0 | 60% | 15980/97887 MiB | PID 682346 (python) | **占用中** — 活跃训练 |\n| cuda:1 | 73% | 15980/97887 MiB | PID 652888 (python) | **占用中** — 活跃训练 |\n| cuda:2 | 0% | 1/97887 MiB | 无 | **空闲** |\n| cuda:3 | 49% | 15984/97887 MiB | PID 642262 (python) | **占用中** — 活跃训练 |\n\n## 真正空闲的 GPU\n\n- **`cqa1-33015:cuda:3`** — 0% util, 1 MiB memory, 无进程 (24GB RTX 4090D)\n- **`westd-41074:cuda:2`** — 0% util, 1 MiB memory, 无进程 (98GB RTX PRO 6000 Blackwell)\n\n注意：cqa1-33015 的 cuda:0 和 cuda:1 虽然 util=0%，但各有 python 进程占用 ~10GB 显存，不是空闲的（可能在做 eval 或数据加载间隙）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4993b2d8b0e85dcec845",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research wang 7b models",
+  "task_key": "worker_research_wang_7b_models_20260519T125547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_wang_7b_models_20260519T125547_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "8e5c5034a3156cfc3c65333cbd6f85545a14f6352e626a91352f22719a5c4bd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：Wang et al. 没有 7B 模型。**\n\n- 他们仅训练了 340M（36个）和 1.3B（36个）两个规模，共 72 个模型\n- 论文 Limitations 明确写道分析仅限 1.3B 以下，10B+ 规模是 open question\n- HuggingFace collection 已全量检查，无任何 7B 模型\n- 服务器 `/root/autodl-tmp/models_7b/` 下仅有 Qwen2.5-7B-Instruct 基座模型\n\n报告已写入并注册为 artifact (`art_20260519_6bdbaf`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

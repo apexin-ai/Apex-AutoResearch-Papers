@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "9c8351472628a9b5a466",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp shap analysis 9cell",
+  "task_key": "worker_exp_shap_analysis_9cell_20260515T171813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_shap_analysis_9cell_20260515T171813.log",
+    "occurrence": 1,
+    "bytes": 1200388,
+    "sha256": "ba2569dada0f289f2bfebe8b2f04943a6738c1ceb177f1863e5c02f75ada004a"
+  },
+  "statistics": {
+    "messages": 623,
+    "user_turns": 1,
+    "tool_calls": 266,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 2,
+      "assistant": 76,
+      "tool_call": 266,
+      "tool_result": 266,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 550,
+      "chunks": [
+        {
+          "path": "9c8351472628a9b5a466-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c8351472628a9b5a466-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c8351472628a9b5a466-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c8351472628a9b5a466-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 73,
+      "chunks": [
+        {
+          "path": "9c8351472628a9b5a466-part-0004.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ]
+}

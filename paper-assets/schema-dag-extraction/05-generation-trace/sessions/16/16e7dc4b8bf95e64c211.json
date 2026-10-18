@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16e7dc4b8bf95e64c211",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp prompt sensitivity",
+  "task_key": "worker_code_exp_prompt_sensitivity_20260517T062052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_prompt_sensitivity_20260517T062052_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "90de386a30c14b47d4d3e668bc941e8a63354c81a0edaabdf1eee4687fb08292"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full run initializing correctly: 56000 samples, 80 relations, 10 batches per count level (count_8 and count_32). Model is loading. The experiment is properly started.\n\n**Summary:**\n\n- Script: `/root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py`\n- Tmux session: `prompt_sensitivity`\n- Log: `~/runs/schema-dag-extraction/prompt_sensitivity.log`\n- GPU: cuda:0 on cqa1-38874\n- Design: 4 variants (v2, instruction_rewrite, cot, minimal) × 2 counts (8, 32) × 10 batches = 80 total batch evaluations\n  - count_8: 12 samples/type × 8 types = 96 instances per batch\n  - count_32: 12 samples/type × 32 types = 384 instances per batch\n- Dry run verified: EXIT_CODE=0, 91.67% accuracy on 1 batch with v2 prompt\n- Supports `--resume` for crash recovery\n- Output: `experiments/prompt_sensitivity/results.json` with per-variant Pearson correlations (BCS vs accuracy)\n\nEstimated runtime: ~2-4h (CoT variant will be slower due to longer outputs without constrained decoding)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

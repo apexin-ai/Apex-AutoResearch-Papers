@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "c171dd90d4b96317e70e",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code check and run benchmarks",
+  "task_key": "worker_code_check-and-run-benchmarks_20260518T112331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-and-run-benchmarks_20260518T112331.log",
+    "occurrence": 1,
+    "bytes": 1082052,
+    "sha256": "b89f0d4933e3deab66892aa0ba34b8e15e77e26b0f1ae7b2c5c2885bffd0884f"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 1,
+    "tool_calls": 163,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 135,
+      "tool_call": 163,
+      "tool_result": 163,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 436,
+      "chunks": [
+        {
+          "path": "c171dd90d4b96317e70e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c171dd90d4b96317e70e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c171dd90d4b96317e70e-part-0003.json",
+          "message_count": 76
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "c171dd90d4b96317e70e-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ]
+}

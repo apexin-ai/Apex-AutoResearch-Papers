@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d32f00349a2227e326e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research extract training hyperparams",
+  "task_key": "worker_research_extract_training_hyperparams_20260519T022017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_extract_training_hyperparams_20260519T022017_result.json",
+    "occurrence": 1,
+    "bytes": 2687,
+    "sha256": "1695df4f9c98a8c37f2d703b1e7d68a2a5e82b98f77374ce7191659471ba5e4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n## Smart Compress 训练超参数 (M=32, seed42)\n\n> 来源：`configs/smart_compress.yaml` (base config, seed=42) + `train_smart_compress.py` 中的代码。seed42 的训练 log 不在此服务器上，wall clock 数据取自 seed43 (同配置)。\n\n### Optimizer\n| 参数 | 值 | 来源 |\n|---|---|---|\n| optimizer | AdamW | script (`torch.optim.AdamW`) |\n| learning_rate | 1.0e-4 | config |\n| weight_decay | 1.0e-10 | config |\n| betas | (0.9, 0.95) | config |\n| gradient_clipping (max_grad_norm) | 10.0 | config |\n\n### Schedule\n| 参数 | 值 | 来源 |\n|---|---|---|\n| total_steps | 100,000 | config |\n| warmup_steps | 1,000 | config |\n| warmup_type | LinearLR (start_factor=0.01) | script |\n| lr_scheduler | CosineAnnealingLR | script |\n| eta_min (min lr) | 2.5e-6 | config (`decay_lr`) |\n| scheduler_composition | SequentialLR [LinearLR → CosineAnnealingLR] | script |\n\n### Batch\n| 参数 | 值 | 来源 |\n|---|---|---|\n| batch_size_per_gpu | 4 | config |\n| gradient_accumulation_steps | 1 | script (无 accumulation 逻辑) |\n| num_gpus | 1 | log (单卡 cuda:0) |\n| effective_batch_size | **4** | 4 × 1 × 1 |\n\n### Precision\n| 参数 | 值 | 来源 |\n|---|---|---|\n| mixed_precision | **None (fp32)** | script (无 autocast/GradScaler/amp) |\n\n### Compressor Architecture\n| 参数 | 值 | 来源 |\n|---|---|---|\n| num_queries (M) | 32 | config |\n| num_heads | 12 | config |\n| num_layers | 2 | config |\n| dropout | 0.1 | config |\n\n### Model\n| 参数 | 值 | 来源 |\n|---|---|---|\n| pretrained | smolvla_base | config |\n| total_params | 472,226,016 | log |\n| trainable_params | 122,060,832 (25.85%) | log |\n| compressor_params | 22,179,840 | log |\n| expert+projection_params | 99,880,992 | log |\n\n### Hardware & Timing\n| 参数 | 值 | 来源 |\n|---|---|---|\n| GPU | NVIDIA GeForce RTX 4090 D | nvidia-smi |\n| num_gpus | 1 | log |\n| wall_clock_time | ~6h 43m | log (seed43: 00:21→07:04) |\n| steps_per_second | ~4.1-4.2 | log |\n| time_per_step | ~0.24s | log |\n\n### Other\n| 参数 | 值 | 来源 |\n|---|---|---|\n| seed | 42 | config |\n| num_workers | 4 | config |\n| eval_every | 5,000 steps | config |\n| save_every | 1,000 steps | config |\n| log_every | 50 steps | config |\n| eval_batch_size | 1 | config |\n\n### 注意\n- `smart_compress_m32_official.yaml` 用了 `smolvla_libero` 作为 pretrained (而非 `smolvla_base`)，同为 seed=42。如果论文中的 M=32 seed42 结果来自 official 配置，pretrained 基座应标注为 `smolvla_libero`。\n- seed42 的训练 log 不在此服务器 `/root/runs/` 下，可能在其他服务器或 wandb 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

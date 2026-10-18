@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3474866aa2e6ca21f009",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "analysis diagnostic revision auc",
+  "task_key": "worker_analysis_diagnostic-revision-auc_20260521T151105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_diagnostic-revision-auc_20260521T151105_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "84f3556a8eadc6eb16ed8f0fa6714b983093c408099ea78ca93c280d419dd3d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Summary of results:\n\n**Setting-level AUC (49 settings, 7 with hb_wins=1):**\n\n| Diagnostic | AUC | Needs Δτ? |\n|---|---|---|\n| π CV | **0.968** | No |\n| Δπ-only (Prop 2) | **0.889** | No |\n| Cond-number κ(M̂) | 0.855 | No |\n| Δπ×Δτ (current) | 0.889 | Yes |\n\n**Subgroup-level AUC (160 points, 36 with hb_wins=1):**\n\n| Diagnostic | AUC | Needs Δτ? |\n|---|---|---|\n| Δπ-only (Prop 2) | **0.865** | No |\n| Δπ×Δτ (current) | 0.726 | Yes |\n\n**Bottom line**: The Δπ-only diagnostic matches Δπ×Δτ at the setting level (both 0.889) and substantially outperforms it at the subgroup level (0.865 vs 0.726). Δτ adds no discriminative power — the circular dependency is fully resolved. The π CV metric (0.968) is the best single-number predictor if a simpler alternative is preferred.\n\nOutput files in `artifacts/diagnostic_revision/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

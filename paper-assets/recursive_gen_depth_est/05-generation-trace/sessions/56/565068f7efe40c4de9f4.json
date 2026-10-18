@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "565068f7efe40c4de9f4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops p90 ppl verify",
+  "task_key": "worker_ops_p90_ppl_verify_20260518T160940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p90_ppl_verify_20260518T160940_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "148a934e9cd1bd0a6990da27cd5625dc58ded88157250aa142956bd9006949f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "补充 GPT-2 XL nucleus d2 的分位数：\n\n| 统计量 | 值 |\n|---|---|\n| p10 | 62.35 |\n| p25 | 75.80 |\n| p75 | 112.47 |\n| p90 | 140.51 |\n| std | 1805.84 |\n\n论文声称的 \"65-92\" 与数据不匹配：\n- p10=62.35 接近下界 65，但 median=92.33 不是上界而是中位数\n- IQR 是 75.80-112.47\n- \"65-92\" 可能指的是 **p10 到 median** 的范围，或者论文引用的是不同的统计口径"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

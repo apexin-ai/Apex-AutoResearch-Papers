@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "787a897b530478c07dd9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper prose tightening",
+  "task_key": "worker_paper_prose_tightening_20260522T024335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prose_tightening_20260522T024335_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "4f18d25af472c7fc39101648f6649ace247e0af479156d26ab68aec3a00ad9dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改摘要\n\n**results.tex — 5 处**\n\n| # | 类型 | 位置 | 改动 |\n|---|------|------|------|\n| 1 | wordiness | §Results 首段 | 合并两句 \"unless noted\"，消除冗余重复 |\n| 2 | wordiness | §Count Curves | \"the elimination of\" → \"eliminating\" |\n| 3 | wordiness | §Pairwise | \"which indicates\" → \"indicating\" |\n| 4 | sentence split | §Practical magnitude | 拆分 ~50 词的 amplification 长句（冒号→句号） |\n| 5 | sentence split | §Multi-Dimensional | \"Two factors\" 句末拆分，将 factorial 结论独立成句 |\n\n**discussion.tex — 2 处**\n\n| # | 类型 | 位置 | 改动 |\n|---|------|------|------|\n| 6 | clarity | ¶Boundary conditions | \"NER null not detected on\" → \"no NER BCS effect detected across\"（消除歧义） |\n| 7 | sentence split | ¶Boundary conditions | 拆分 ~45 词长句（冒号→句号） |\n\n统计：wordiness 3 / sentence split 3 / clarity 1。无数值、术语、引用、逻辑变动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

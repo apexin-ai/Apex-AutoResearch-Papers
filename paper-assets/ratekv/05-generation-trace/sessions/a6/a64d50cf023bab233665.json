@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a64d50cf023bab233665",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis mistral bit dist check",
+  "task_key": "worker_analysis_mistral_bit_dist_check_20260514T100413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mistral_bit_dist_check_20260514T100413_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "3971d35c8f128f4d609110a97869ef6cab62b3083e1c17e26882816bcde8780c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**怀疑确认：l0_heuristic_corrected 的 Mistral MCKP 实际用了 18 个 2-bit head，不是 16 个。**\n\n### 证据链\n\n**文件**: `/root/ratekv/mistral_hires_results.json`\n\nl0_heuristic_corrected 脚本硬编码引用的 `mckp_ppl: 7.323` 来自这个文件。该文件的 MCKP 求解配置为 `max_2bit=18`：\n\n| Bit width | Head 数量 |\n|-----------|----------|\n| 2-bit     | **18**   |\n| 4-bit     | 235      |\n| 16-bit    | 3        |\n| **总计**  | **256** (32层 × 8 KV heads) |\n\nPPL = **7.3231** — 精确匹配 k_ablation 的 k=18 结果。\n\n### 对比验证\n\n**文件**: `/root/ratekv/mistral_hires_constrained16_results.json`\n\n后续已做了修正实验，在同一 hires profile 上用 `max_2bit=16` 重新求解：\n\n| 约束 | 2-bit heads | PPL |\n|------|-------------|-----|\n| max_2bit=18（原始，有 bug） | 18 | 7.3231 |\n| max_2bit=16（修正后） | 16 | **7.3106** |\n\n差异 = -0.0125 PPL。修正后 k=16 的 MCKP PPL 应为 **7.3106**，不是 7.3231。\n\n### 根因\n\n`run_l0_heuristic_corrected.py` 中 Mistral 配置 `k=16`（L0 heuristic 用 16 个 2-bit head），但 MCKP 参考值来自 `mistral_hires_results.json`，该文件求解时用的是 `max_2bit=18`。两边的约束不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

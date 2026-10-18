@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3ee67d2902a2e56a28",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops status check all gpu",
+  "task_key": "worker_ops_status_check_all_gpu_20260518T155426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_all_gpu_20260518T155426_result.json",
+    "occurrence": 1,
+    "bytes": 1620,
+    "sha256": "a3c2c70fc3ba1baad9e6a5ff877ddeb13edb1a67758161a8c634b4ac1eac78ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. olmo_seed43 (gpu-6000pro-2 cuda:1) — 进行中\n\n| 步骤 | 状态 |\n|------|------|\n| Step 1: finetune d0 | ✅ |\n| Step 2: generate d1 | ✅ (5000/5000) |\n| Step 3: finetune d1 | ✅ (loss=1.6473) |\n| **Step 4: generate d2** | **进行中 318/5000 (6.4%)** |\n| Step 5-8 | 待执行 |\n\n**整体进度: ~40%**（8 步中完成 3 步，第 4 步刚开始）。OLMo-1B 生成速度较快，预计 d2 生成约 30-40 分钟；剩余 step 5-8（train d2 + gen d3 + feature extract + RF eval）再需约 1.5-2 小时。\n\n---\n\n### 2. qwen25_14b_scale_002 (gpu-6000pro-2 cuda:0) — 进行中\n\n当前：**Phase 3.3b Generate d3 — 3354/5000 (67.1%)**\n\nd0-d2 全部完成，d3 生成接近完成。之后还有 Phase 4（feature extraction）+ Phase 5（classification）。**整体约 85%**，预计 1-1.5 小时内完成。\n\n---\n\n### 3. qwen25_14b_scale_003 (westd-48862 cuda:0) — 进行中\n\n当前：**Phase 3.3b Generate d3 — 1233/5000 (24.7%)**\n\nd0-d2 全部完成，d3 生成中。之后还有 Phase 4 + Phase 5。**整体约 75%**，预计 2-3 小时内完成。\n\n---\n\n### GPU 使用总览\n\n| 服务器 | GPU | 显存占用 | 利用率 | 状态 |\n|--------|-----|----------|--------|------|\n| gpu-6000pro-2 | cuda:0 | 32.4G / 97.9G | 87% | qwen25_14b_scale_002 |\n| gpu-6000pro-2 | cuda:1 | 10.0G / 97.9G | 65% | olmo_seed43 |\n| westd-48862 | cuda:0 | 32.4G / 97.9G | 92% | qwen25_14b_scale_003 |\n| **westd-48862** | **cuda:1** | **0G / 97.9G** | **0%** | **空闲** |\n\nwestd-48862 的 cuda:1 完全空闲，可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

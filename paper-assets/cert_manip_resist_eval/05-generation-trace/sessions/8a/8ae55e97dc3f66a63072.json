@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8ae55e97dc3f66a63072",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "exp copula gof and step2",
+  "task_key": "worker_exp_copula-gof-and-step2_20260521T222507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_copula-gof-and-step2_20260521T222507_result.json",
+    "occurrence": 1,
+    "bytes": 82,
+    "sha256": "a53a04ed68569abf47990de0e25b8002e75bef2b33cc5ce602f28fd070bac9be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 2 后台运行中（PID=42948），3 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

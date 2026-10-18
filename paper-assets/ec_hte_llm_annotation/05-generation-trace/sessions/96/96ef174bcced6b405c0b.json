@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "96ef174bcced6b405c0b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code pilot gpt41 run",
+  "task_key": "worker_code_pilot-gpt41-run_20260521T045221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pilot-gpt41-run_20260521T045221_result.json",
+    "occurrence": 1,
+    "bytes": 77,
+    "sha256": "ac285ba8703e56ac0c5ab227b1bcf30d2c79f3a9474ae32ec9bd55188889c8cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor cleaned up (task already complete, no action needed)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

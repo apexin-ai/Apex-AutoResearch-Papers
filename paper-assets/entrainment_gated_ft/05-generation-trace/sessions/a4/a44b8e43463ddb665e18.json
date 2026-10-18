@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a44b8e43463ddb665e18",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp e4 pythia seed calibration",
+  "task_key": "worker_exp_e4-pythia-seed-calibration_20260522T101802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_e4-pythia-seed-calibration_20260522T101802_result.json",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "1f5995bd9a7988c31aba3217899fa1d276f42aa3d518be24471c4947787dd2c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估脚本已后台启动 (PID 822814)，正在串行评估 9 个 Pythia 410M seeds。每个 seed 约 5-15 分钟，总计约 1-2 小时。3 分钟后检查进展。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

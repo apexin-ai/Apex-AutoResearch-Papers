@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "37f147a28cca38670bf1",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code lmeval clean v3",
+  "task_key": "worker_code_lmeval_clean_v3_20260518T130110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lmeval_clean_v3_20260518T130110.log",
+    "occurrence": 1,
+    "bytes": 3006546,
+    "sha256": "c62d73aa7a3b88cb2cca6d1a20ce16eefffa4ccd4f39d0c8fc4efbaf73d708c9"
+  },
+  "statistics": {
+    "messages": 1134,
+    "user_turns": 3,
+    "tool_calls": 384,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 2,
+      "assistant": 349,
+      "tool_call": 384,
+      "tool_result": 384,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "37f147a28cca38670bf1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "37f147a28cca38670bf1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "37f147a28cca38670bf1-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "37f147a28cca38670bf1-part-0003.json",
+          "message_count": 129
+        },
+        {
+          "path": "37f147a28cca38670bf1-part-0004.json",
+          "message_count": 90
+        },
+        {
+          "path": "37f147a28cca38670bf1-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 449,
+      "chunks": [
+        {
+          "path": "37f147a28cca38670bf1-part-0005.json",
+          "message_count": 151
+        },
+        {
+          "path": "37f147a28cca38670bf1-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "37f147a28cca38670bf1-part-0007.json",
+          "message_count": 118
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "37f147a28cca38670bf1-part-0007.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ]
+}

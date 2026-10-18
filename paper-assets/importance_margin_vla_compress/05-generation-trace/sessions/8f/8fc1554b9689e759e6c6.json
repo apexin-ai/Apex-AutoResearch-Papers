@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8fc1554b9689e759e6c6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 gpu3 attn k075 long",
+  "task_key": "worker_deploy_westd41074-gpu3-attn-k075-long_20260526T183244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd41074-gpu3-attn-k075-long_20260526T183244_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "85ae9598d8bae9dce5863788966405b7e4999ac464b4b237ede13a5f500656a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 3 被占用，无法立即部署。**\n\n当前 4 块 GPU 全部在跑任务：\n\n| GPU | PID | 启动时间 | 任务 |\n|-----|-----|---------|------|\n| 0 | 682346 | 22:32 | random_prune k=0.85 libero_object |\n| 1 | 652888 | 21:32 | attn_prune k=0.5 libero_object |\n| 2 | 755986 | 00:41 | attn_prune k=0.75 libero_object |\n| 3 | 824210 | 02:29 | **attn_prune k=0.75 libero_10 unnorm_key=libero_10** |\n\nGPU 3 上 3 分钟前刚启动了一个类似实验，但用的是 `--unnorm_key libero_10`（非 Long 版本），我们需要的是 `--unnorm_key bridge_orig`（Long 版本）。\n\n模型路径确认：`/root/autodl-tmp/openvla-7b-finetuned-libero-10/`\n\nRegistry 已创建（PREPARING 状态）。\n\n**需要决策**：等 GPU 3 当前任务跑完后再部署，还是 kill 掉 PID 824210 腾出 GPU 3？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

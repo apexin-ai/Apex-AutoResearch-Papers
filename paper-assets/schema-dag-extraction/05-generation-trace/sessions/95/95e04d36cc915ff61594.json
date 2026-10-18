@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "95e04d36cc915ff61594",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis fewrel 80rel results",
+  "task_key": "worker_analysis_fewrel-80rel-results_20260515T133830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fewrel-80rel-results_20260515T133830_result.json",
+    "occurrence": 1,
+    "bytes": 1959,
+    "sha256": "63bea74f4bbda5fc61f0f7addae22dc72bb1aa889c412e37f86f830c500a3207"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据提取完成。\n\n## FewRel 80-rel 实验结果\n\n### 文件状态\n所有文件完整，但时间戳为 21:05-21:17 UTC（新 run PID 269256 的产出，原始结果已被覆盖）。新 run 也完整完成了 exp1 + exp2，结果可用。\n\n### Exp1: Count Curve\n\n| count | accuracy | n_batches | mean_BCS |\n|-------|----------|-----------|----------|\n| 1     | 0.8573   | 80        | 0.0000   |\n| 4     | 0.8667   | 5         | 0.6335   |\n| 8     | 0.8021   | 5         | 0.7175   |\n| 16    | 0.6958   | 5         | 0.7950   |\n| 32    | 0.6578   | 5         | 0.8893   |\n| 64    | 0.5424   | 5         | 0.9434   |\n| 80    | 0.5042   | 5         | 0.9706   |\n\n### Exp2: BCS-Controlled\n\n| count | low_BCS acc | low_BCS | high_BCS acc | high_BCS | random acc | delta |\n|-------|-------------|---------|--------------|----------|------------|-------|\n| 8     | 0.8229      | 0.4715  | 0.5104       | 0.9706   | 0.8025     | **+31.2pp** |\n| 16    | 0.8281      | 0.5705  | 0.5156       | 0.9706   | 0.7169     | **+31.2pp** |\n\n### 与 16-rel 对比\n\n| 指标 | 16-rel | 80-rel | 分析 |\n|------|--------|--------|------|\n| count_1 acc | 0.904 | 0.857 | 80-rel baseline 更低（更多 relation → 更难） |\n| count_4 acc | 0.932 | 0.867 | |\n| count_8 acc | 0.867 | 0.802 | |\n| count_16 acc | 0.778 | 0.696 | |\n| degradation (1→max) | 0.904→0.778 (-12.6pp) | 0.857→0.504 (-35.3pp) | **80-rel degradation 远强于 16-rel** |\n| BCS Δ (exp2) | -9.1pp | -31.2pp | **BCS effect 在 80-rel 下放大 3.4x** |\n\n关键发现：\n- 80-rel 的 count curve 展现出从 0.857 到 0.504 的持续下降，degradation 幅度 (35.3pp) 远大于 16-rel (12.6pp)\n- BCS effect 从 16-rel 的 -9.1pp 暴增到 -31.2pp，说明 schema 复杂度对模型性能的影响随 relation 数量增加而显著放大\n- 符合预期：更多 relations → 更大的 confusion space → 更强的 degradation + BCS effect"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

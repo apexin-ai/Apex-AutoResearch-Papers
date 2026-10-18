@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "39cd1d906aecedd90e62",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp3c pairwise confusion",
+  "task_key": "worker_ssh_exp3c-pairwise-confusion_20260515T023600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp3c-pairwise-confusion_20260515T023600_result.json",
+    "occurrence": 1,
+    "bytes": 2367,
+    "sha256": "f861723691c7d23cdd5572a7734b0bc5861ce3aa5b73db5cf2b57a0286f7fdd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## 相关性结果\n\n| 条件 | n pairs | 非零 confusion pairs | Pearson r (p) | Spearman ρ (p) |\n|------|---------|---------------------|---------------|----------------|\n| **ALL** | 1953 | 358 | **0.156** (4.6e-12) | **0.160** (1.3e-12) |\n| **count_6** | 1770 | 122 | 0.078 (1.0e-3) | 0.088 (2.2e-4) |\n| **count_12** | 1953 | 282 | **0.147** (6.7e-11) | **0.142** (2.7e-10) |\n\n非零 confusion pairs only（排除无混淆的 pair）：\n\n| 条件 | Pearson r (p) | Spearman ρ (p) |\n|------|---------------|----------------|\n| ALL | **0.206** (8.8e-5) | **0.254** (1.1e-6) |\n| count_6 | 0.158 (0.082) | **0.315** (4.0e-4) |\n| count_12 | **0.212** (3.4e-4) | **0.211** (3.7e-4) |\n\n## Top-10 most confused type pairs\n\n| Rank | Type A | Type B | Confusion | Rate | BCS |\n|------|--------|--------|-----------|------|-----|\n| 1 | person-other | person-politician | 156 | 0.040 | **0.934** |\n| 2 | person-other | person-actor | 65 | 0.019 | 0.895 |\n| 3 | person-other | person-athlete | 61 | 0.016 | **0.922** |\n| 4 | person-other | person-artist/author | 47 | 0.012 | **0.918** |\n| 5 | location-GPE | location-other | 41 | 0.009 | 0.859 |\n| 6 | building-other | location-road/railway... | 27 | 0.022 | 0.762 |\n| 7 | org-government | org-other | 26 | 0.014 | **0.902** |\n| 8 | building-other | location-GPE | 24 | 0.005 | 0.848 |\n| 9 | location-GPE | org-other | 20 | 0.004 | 0.828 |\n| 10 | org-other | org-company | 19 | 0.011 | 0.883 |\n\n## 关键发现\n\n- **BCS 与 confusion rate 显著正相关**（所有条件 p < 0.001），但效应量中等偏弱（r ≈ 0.15-0.25）\n- 限制到有实际混淆的 pairs 后相关性更强（Spearman ρ 从 0.16 提升到 0.25）\n- **Top confused pairs 几乎全是语义相近类型**：person-other ↔ person-{politician/actor/athlete/artist}（BCS 0.89-0.93）占主导，location 和 organization 子类间也高\n- count_12 比 count_6 产生更多混淆（1212 vs 421），更多 type 暴露在混淆中\n- 图片已保存：\n  - `/root/schema-dag-extraction/results/pairwise_confusion_analysis.png`\n  - `/root/schema-dag-extraction/results/pairwise_confusion_count6.png`\n  - `/root/schema-dag-extraction/results/pairwise_confusion_count12.png`\n  - JSON：`/root/schema-dag-extraction/results/pairwise_confusion_correlation.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

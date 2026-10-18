@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eaf24f5d43f193edf2a2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent westd41074 gpu03 deploy long",
+  "task_key": "worker_urgent_westd41074_gpu03_deploy_long_20260526T013854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_westd41074_gpu03_deploy_long_20260526T013854_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "fc3e2e86149ae1a1144c90be1fe15af33d3ea4864a8266ef3cbc073d1abb78cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功。汇总结果：\n\n---\n\n### 1. Kill 259256\n**已成功 force kill**\n\n### 2. 两个实验部署结果\n\n| 实验 | GPU | Bash PID | Python PID | 显存 | 状态 |\n|------|-----|----------|------------|------|------|\n| Random k=0.85 | GPU0 | 303188 | 303189 | 16169 MiB | 运行中，Task 1/10 |\n| Attn k=0.85 | GPU3 | 303981 | 303982 | 16169 MiB | 运行中，Task 1/10 |\n\n### 3. nvidia-smi 输出\n\n```\nGPU 0: 32372 / 97887 MiB  (PID 300693: 16169 MiB + PID 303189: 16169 MiB)\nGPU 1: 15980 / 97887 MiB  (PID 76492: 15961 MiB)\nGPU 2: 15980 / 97887 MiB  (PID 259181: 15961 MiB)\nGPU 3: 16188 / 97887 MiB  (PID 303982: 16169 MiB)\n```\n\n### 4. 日志确认\n\n**GPU0 Random**:\n```\n[Pruning] 256 -> 217 vision tokens (k=0.85)\n```\n\n**GPU3 Attn**:\n```\n[Attn Pruning] 256 -> 217 vision tokens (k=0.85), importance range=[0.7189, 1.6595]\n```\n\n### 5. 注意事项\n- GPU0 上有一个旧进程 PID 300693（16169 MiB），是之前 attn k=0.85 v3 实验残留。A100 98GB 空间充足，不影响新实验。\n- 两个实验注册已完成（PREPARING 状态）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

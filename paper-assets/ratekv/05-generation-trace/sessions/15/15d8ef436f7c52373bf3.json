@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "15d8ef436f7c52373bf3",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp qwen14b constrained pipeline",
+  "task_key": "worker_exp_qwen14b_constrained_pipeline_20260515T112623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen14b_constrained_pipeline_20260515T112623_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "710258d212381a612d0898cc4d260bd757b47ce6a367897553a1db89d5a26d9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**脚本**: `run_qwen14b_constrained_pipeline.py` — 三种方案 (uniform 4-bit / constrained MCKP k=8 / unconstrained MCKP) 在 WikiText-2 上的 PPL 对比。\n\n**Dry-run 结果**:\n- 384 heads (48L × 8KV), profiling 加载 + solver 运行正常\n- Constrained (k=8): {4: 374, 8: 1, 16: 1, 2: 8} — 几乎全是 4-bit\n- Unconstrained: {4: 271, 2: 77, 8: 35, 16: 1} — 77 heads 用 2-bit\n\n**运行状态**:\n- PID: 329678, GPU 1 (96GB RTX PRO 6000 Blackwell)\n- 模型已加载 (29.7GB), baseline eval 进行中 (~chunk 300/583)\n- 日志: `/root/ratekv/logs/qwen14b_constrained_pipeline.log`\n- 输出: `artifacts/qwen14b_constrained_pipeline_results.json`\n\n**预计完成**: ~20-30 min (4 轮 WikiText-2 eval × 583 chunks each, 14B 模型推理较慢)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

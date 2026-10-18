@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "cd000546ad6b3c722fa1",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research fl comparison data conflict",
+  "task_key": "worker_research_fl-comparison-data-conflict_20260525T095915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_fl-comparison-data-conflict_20260525T095915.log",
+    "occurrence": 1,
+    "bytes": 597684,
+    "sha256": "760b71d28f50196d456d24db51e8117d692aec047aafd9e513ac17cfab02b8c4"
+  },
+  "statistics": {
+    "messages": 335,
+    "user_turns": 3,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 83,
+      "record": 2,
+      "assistant": 23,
+      "tool_call": 111,
+      "user": 3,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "cd000546ad6b3c722fa1-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "cd000546ad6b3c722fa1-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "cd000546ad6b3c722fa1-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "cd000546ad6b3c722fa1-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "cd000546ad6b3c722fa1-part-0002.json",
+          "message_count": 155
+        }
+      ]
+    }
+  ]
+}

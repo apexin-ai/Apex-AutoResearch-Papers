@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "59c37db79365d4592a32",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code gpu results check",
+  "task_key": "worker_code_gpu-results-check_20260521T214556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-results-check_20260521T214556_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "72b99b19105e3d02139189d717f18c6d2d8a1b86061c27240badc187dc3de57b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 标注 CSV 完成情况（全部完成）\n\n| 模型 | 文件 | 行数 | 状态 |\n|------|------|------|------|\n| Llama-3.1-8B | `exp008_checkpoint_llama-3.1-8b_balanced.csv` | 501 | 完成 |\n| Qwen2.5-7B | `exp008_checkpoint_qwen2.5-7b_balanced.csv` | 501 | 完成 |\n| Gemma-2-9B | `exp008_checkpoint_gemma-2-9b_balanced.csv` | 501 | 完成 |\n| Mistral-7B | `exp008_checkpoint_mistral-7b_balanced.csv` | 501 | 完成 |\n\n所有 4 个模型均已完成标注，每个 CSV 501 行（1 header + 500 数据行）。\n\n### 初步分析结果（已自动生成 `multi_llm_summary.csv`）\n\n| 模型 | Accuracy | RMSE (naive) | RMSE (global) | RMSE (ec_hte) | Winner |\n|------|----------|-------------|---------------|---------------|--------|\n| Llama-3.1-8B | 0.542 | 0.408 | 0.193 | 0.408 | global |\n| Qwen2.5-7B | 0.702 | 0.440 | 0.325 | 0.440 | global |\n| Gemma-2-9B | 0.616 | 0.325 | 0.278 | 0.325 | global |\n| Mistral-7B | 0.668 | 0.453 | 0.314 | 0.453 | global |\n\n### 当前服务器状态\n- **GPU**: 4 块 GPU 全部空闲（0% 利用率，0 MiB 显存）\n- **进程**: 无 Python 标注/下载进程运行中\n- **所有任务已完成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

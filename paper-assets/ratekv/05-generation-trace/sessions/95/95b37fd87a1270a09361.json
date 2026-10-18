@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "95b37fd87a1270a09361",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "figure heatmap hires regen",
+  "task_key": "worker_figure_heatmap_hires_regen_20260514T215716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_figure_heatmap_hires_regen_20260514T215716.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "624b0ee575e591138a8ab3eb2ae554100bcc349b9e2bb1d8908efee7988d80bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:57:26.365944+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_heatmap_hires_regen_20260514T215716"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

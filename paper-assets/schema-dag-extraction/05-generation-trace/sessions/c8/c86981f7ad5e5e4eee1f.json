@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c86981f7ad5e5e4eee1f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "compute r5w1 split origin covariate",
+  "task_key": "worker_compute_r5w1_split_origin_covariate_20260516T175323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_r5w1_split_origin_covariate_20260516T175323_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "f0ab7c1152d26fbf616ee93113c7532a6b8d1708620eff41b48c64f37850b436"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无 warnings。\n\n---\n\n**完成总结：**\n\n**分析结果：**\n- N=213 multi-type batches，train_origin_ratio 范围 0.40–1.00（均值 0.80）\n- Simple regression: β_BCS = −0.412, p < 10⁻¹⁶, R² = 0.284\n- Multiple regression: β_BCS = −0.416, p < 10⁻¹⁶（不变）; β_origin = −0.057, p = 0.245（不显著）; ΔR² = 0.005\n- **结论**：split-origin 不是 BCS-accuracy 关系的 confound\n\n**论文修改：**\n- 新增 Appendix `\\section{Split-Origin Covariate Analysis}` (`\\label{app:split-origin}`)，包含 method + results\n- Limitations 的 Data contamination 条目末尾添加了 cross-reference 到新 appendix\n- 编译成功，19 页，无错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

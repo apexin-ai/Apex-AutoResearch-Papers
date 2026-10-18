@@ -1,0 +1,1451 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3da1d06caead0f03c51d",
+  "rounds": [
+    {
+      "number": 157,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-25T21:14:38.107680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Generalization and Robustness}\n2\t\\label{sec:generalization}\n3\t\n4\tWe test whether atlas accuracy (68.9--85.9\\% four-class; d1--d3: 58.9--81.5\\%) reflects genuine statistical regularities across eight generalization axes (five below, three in Appendix).\n5\t\n6\t\\subsection{Classifier Comparison and Surface-Text Ablation}\n7\t\\label{sec:gen:baselines}\n8\t\n9\tTable~\\ref{tab:baselines} compares methods across all 9 cells.\n10\tFour classifiers (RF, XGBoost, ordinal multilayer perceptron (MLP), prototypical) converge within 0.8\\,pp under cross-model transfer (Appendix~\\ref{app:learned_estimator}), which confirms a feature-determined accuracy ceiling.\n11\t\n12\t\\paragraph{Neural end-to-end baselines.}\n13\tDeBERTa-v3-base (LoRA, 53--61\\%) and RoBERTa-DCOL (ordinal contrastive, 64.5\\%) lag RF by 14--33\\,pp; note that RF features access reference-model log-probabilities unavailable to end-to-end pretrained language model (PLM) baselines (\\S\\ref{sec:discussion}).\n14\t\n15\t\\paragraph{Binary detectors and membership inference.}\n16\tPerturbation-based (DetectGPT, 28.8\\%) and membership-inference (Min-K\\% Prob, 33.2\\%) methods produce scores with no ordinal resolution (Table~\\ref{tab:baselines}); Binoculars d1v2 AUC\\,=\\,0.50--0.53 vs.\\ RF 0.93 (Appendix~\\ref{app:detector_baselines}). Binoculars convergence with our pipeline is discussed in \\S\\ref{sec:discussion}.\n17\t\n18\t\\paragraph{Surface-text ablation.}\n19\tSingle-feature regression on mean perplexity (25.1\\%) and zero-shot LLMs (best 36.2\\%; Appendix~\\ref{app:zeroshot_prompt}) confirm depth signal is inaccessible from surface text.\n20\t\n21\t\\begin{table}[t]\n22\t\\centering\n23\t\\small\n24\t\\caption{Method comparison (RF mean across 9 cells, 5-fold CV). Chance = 25\\% / 33.3\\% (d1--d3). $^\\dagger$Adapted from binary detection; Binoculars 11-feat: $p{>}0.05$ vs.\\ 19-feat RF (paired permutation test).}\n25\t\\label{tab:baselines}\n26\t\\resizebox{\\columnwidth}{!}{%\n27\t\\begin{tabular}{@{}llcc@{}}\n28\t\\toprule\n29\tMethod & Calibration & 4-Cl (\\%) & d1--d3 \n…[truncated 4400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-25T21:14:43.635048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-25T21:14:43.786353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\tFour importance measures converge (Kendall's $W{=}0.90$); Binoculars cross-perplexity features independently reach 78.1\\% (merged: 82.6\\%; Appendix~\\ref{app:feature_ablation_bino}); four classifiers converge within 0.8\\,pp (\\S\\ref{sec:gen:baselines}; Appendix~\\ref{app:learned_estimator}).\n5\tThe accuracy ceiling resides in the feature space, not the classifier: future gains require richer distributional statistics rather than more expressive classifiers.\n6\tEnd-to-end classifiers lag by 14--33\\,pp (d2 F1\\,${\\leq}$\\,0.27; Appendix~\\ref{app:e2e}, \\ref{app:dcol_iterations}): depth manifests as a global distributional shift requiring explicit passage-level aggregation inaccessible to pretrained encoders (Appendix~\\ref{app:feature_overlap}).\n7\tThe strategy effect (9.3\\,pp) exceeds the model effect (7.2\\,pp), requiring decoding-conditioned deployment or two-stage routing (\\S\\ref{sec:gen:crossstrategy}; Appendix~\\ref{app:extended_discussion}).\n8\tReference-model mismatch costs 4--11\\,pp (Appendix~\\ref{app:ref_ablation}), and a 7B self-reference probe reveals a scale ceiling ($\\mathrm{EDD}_{0.70}{=}0$; Appendix~\\ref{app:qwen7b_selfref}).\n9\tAccumulation and cross-boundary experiments (84.8\\%; Appendix~\\ref{app:accumulation_auc},~\\ref{app:cross_boundary}) confirm process-level depth fingerprints that persist under partial mixing and across model boundaries.\n10\t\n11\t\\paragraph{Practical implications.}\n12\tOrdinal depth labels enable tiered curation, retaining $d{=}1$ text while filtering $d{\\geq}2$; the lightweight pipeline (19 statistics, one 1.4B forward pass) supports inline deployment with ${\\leq}$7\\% calibrated false-positive rate (Appendix~\\ref{app:calibration}).\n13\tDepth fingerprints are thus resolvable to $\\mathrm{EDD}_{0.70}{=}3$ in 8/9 cells; scaling beyond 1.5B, paraphrase robustness, and curation remain open (Appendix~\\ref{app:curation_poc}, \\ref{app:downstream}).\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001803"
+        },
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-25T21:14:43.786900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-25T21:14:43.839270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur benchmark uses full-replacement chains at 1--1.5B parameters; real-world contamination involves accumulation at unknown mixing ratios (per-passage robustness in Appendix~\\ref{app:mixed_depth}), and depth signal attenuates at larger scales (\\S\\ref{sec:gen:crossscale}), with reference-model mismatch contributing to the observed degradation (Appendix~\\ref{app:cross_scale_full}).\n5\tCross-strategy transfer can invert adjacent-depth predictions, requiring strategy-aware deployment (\\S\\ref{sec:gen:crossstrategy}).\n6\tOn held-out web-crawl corpora, pooled-classifier raw false-positive rates range from 15\\% to 34\\%, reducible to ${\\leq}$7\\% via posterior-threshold calibration (Appendix~\\ref{app:calibration}); robustness to post-hoc paraphrasing remains untested.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-25T21:14:47.969507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-25T21:14:48.271640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{LoRA Fine-Tuning Protocol}\n2\t\\label{app:lora_protocol}\n3\t\n4\tTable~\\ref{tab:lora_protocol} lists the full LoRA fine-tuning configuration used for recursive chain construction (\\S\\ref{sec:method:benchmark}).\n5\tAt each depth $k$, a fresh LoRA adapter is initialized on the base model and trained on $\\mathcal{D}_{k-1}$; adapters are not inherited across depths.\n6\tThe HuggingFace Trainer default linear decay schedule is used with no warmup.\n7\tTarget modules are model-specific: \\texttt{query\\_key\\_value} (Pythia), \\texttt{att\\_proj} (OLMo), and \\texttt{c\\_attn} (GPT-2~XL).\n8\tCross-scale 7--8B experiments (Appendix~\\ref{app:cross_scale_full}) use Quantized LoRA (QLoRA; 4-bit NF4) with $r{=}16$, $\\alpha{=}32$; the 14B model uses FP16 LoRA with the same rank and scaling.\n9\t\n10\t\\begin{table}[h]\n11\t\\centering\n12\t\\small\n13\t\\caption{LoRA fine-tuning hyperparameters for the primary 1--1.5B benchmark. Identical across all three model families and all depth levels.}\n14\t\\label{tab:lora_protocol}\n15\t\\begin{tabular}{@{}ll@{}}\n16\t\\toprule\n17\tParameter & Value \\\\\n18\t\\midrule\n19\tLoRA rank $r$ & 16 \\\\\n20\tLoRA alpha $\\alpha$ & 32 \\\\\n21\tLoRA dropout & 0.05 \\\\\n22\tBias & none \\\\\n23\tEpochs per depth & 3 \\\\\n24\tLearning rate & $2 \\times 10^{-4}$ \\\\\n25\tLR schedule & linear decay (no warmup) \\\\\n26\tBatch size (effective) & 16 ($8 \\times 2$ grad.\\ accum.) \\\\\n27\tMax sequence length & 512 tokens \\\\\n28\tPrecision & bfloat16 \\\\\n29\tAdapter init & from scratch (base model) \\\\\n30\tSeed & 42 (primary), 43 (replication) \\\\\n31\t\\bottomrule\n32\t\\end{tabular}\n33\t\\end{table}\n34\t\n35\t\\section{Additional Results}\n36\t\\label{app:additional}\n37\t\n38\t\\subsection{Top-$k$ Feature Trajectories}\n39\t\\label{app:topk_trajectories}\n40\t\n41\tFeature trajectories for nucleus and temperature sampling appear in Figure~\\ref{fig:feature_trajectory} (\\S\\ref{sec:atlas:edd}).\n42\tTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the\n…[truncated 5046 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-001807"
+        },
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-25T21:14:48.272338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/docs/paper/references.bib"
+            }
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-25T21:14:48.373408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 101
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-25T21:14:52.295558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/docs/paper/references*"
+            }
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-25T21:14:52.748387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 452
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-25T21:14:52.799009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "file": "paper_checklist.yaml",
+              "max_chars": "5000"
+            }
+          },
+          "id": "event-001812"
+        },
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-25T21:14:52.900331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_checklist.yaml found for 'recursive_gen_depth_est'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-25T21:14:57.219833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/docs/paper/*.bib"
+            }
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-25T21:14:57.220410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-25T21:14:57.220679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-001816"
+        },
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-25T21:14:57.271100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001817"
+        },
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-25T21:15:00.790003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/**/references*"
+            }
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-25T21:15:01.292541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 502
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-25T21:15:01.343797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "100",
+              "limit": "200"
+            }
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-25T21:15:01.394602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\\paragraph{Consistency with Gini rankings.}\n101\tCPI and Gini rankings agree on the dominant feature (\\texttt{var\\_surprisal} or \\texttt{p90\\_ppl}) in 8/9 cells; the sole disagreement (GPT-2~XL top-$k$) involves a swap between rank-2 and rank-3 features.\n102\tBootstrap rank CI widths $\\leq 0.5$ for the top-2 features confirm that these rankings are not artifacts of collinearity or resampling variability.\n103\tControlling for multicollinearity via conditional permutation corroborates the Gini- and SHAP-based importance hierarchy reported in the main text.\n104\t\n105\t\\subsection{Per-Cell Gini Feature Rankings}\n106\t\\label{app:gini_per_cell}\n107\t\n108\t\\begin{table}[h]\n109\t\\centering\n110\t\\small\n111\t\\caption{Top-5 features by Gini importance. \\textbf{Bold}: top-2. \\texttt{p90\\_ppl} top-2 in 9/9; \\texttt{var\\_surprisal} 8/9 under SHAP (7/9 under Gini). Individual rankings are approximate due to multicollinearity (VIF${>}$10 for 14--16/19 features).}\n112\t\\label{tab:feature_importance}\n113\t\\resizebox{\\columnwidth}{!}{%\n114\t\\begin{tabular}{@{}l l@{}}\n115\t\\toprule\n116\tCell & Top-5 features (Gini importance, ranked) \\\\\n117\t\\midrule\n118\tPythia, nuc.       & \\textbf{var\\_surprisal\\,(.17)}, \\textbf{p90\\_ppl\\,(.15)}, mean\\_ppl\\,(.11), var\\_ppl\\,(.08), p75\\_ppl\\,(.07) \\\\\n119\tPythia, $\\tau$     & \\textbf{var\\_surprisal\\,(.17)}, \\textbf{p90\\_ppl\\,(.14)}, mean\\_ppl\\,(.11), p75\\_ppl\\,(.07), mean\\_surprisal\\,(.07) \\\\\n120\tPythia, top-$k$    & \\textbf{var\\_surprisal\\,(.16)}, \\textbf{p90\\_ppl\\,(.12)}, mean\\_ppl\\,(.11), var\\_ppl\\,(.07), mean\\_surprisal\\,(.06) \\\\\n121\tGPT-2\\,XL, nuc.    & \\textbf{var\\_surprisal\\,(.21)}, \\textbf{p90\\_ppl\\,(.21)}, p75\\_ppl\\,(.10), mean\\_surprisal\\,(.07), mean\\_ppl\\,(.06) \\\\\n122\tGPT-2\\,XL, $\\tau$  & \\textbf{p90\\_ppl\\,(.25)}, \\textbf{p75\\_ppl\\,(.15)}, mean\\_surprisal\\,(.13), var\\_surprisal\\,(.12), p50\\_ppl\\,(.05) \\\\\n123\tGPT-2\\,XL, top-$k$ & \\textbf{p90\\_ppl\\,(.24)}, \\textbf{p75\\_ppl\\,(.12)}, var\\_surprisal\\,(.10), mean\\_surprisal\\,(.09), type\\_token\\_ratio\\,(.04) \\\\\n…[truncated 10449 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-25T21:15:07.473328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "file": "decisions.yaml",
+              "max_chars": "3000"
+            }
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-25T21:15:07.929247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 53\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 14:03 UTC\\\\n  summary: MVP PASS — 递归生成深度可从统计特征高精度区分，进入 research phase\\\\n  rationale: Pythia-1.4B 4-depth pipeline 验证核心假设：4-class acc 78.2% (>>40% threshold),\\\\n    d1v2 AUC 0.861 (>>0.6 threshold)。控制实验排除域混淆（过滤代码后 acc 提升至 81.6%）。Top 特征为 surprisal\\\\n    variance 和 perplexity percentiles，说明信号来自分布窄化而非内容差异。\\\\n  related_experiments:\\\\n  - exp_id: mvp_pipeline_pythia_002\\\\n    role: primary\\\\n    result: 4-class acc 78.2%, d1v2 AUC 0.861, content-type control 81.6%\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 16:01 UTC\\\\n  summary: Dream 三档分析完成：6项结构性必修+framing重心从DCOL转向Atlas/EDD\\\\n  rationale: Dream dream_20260514T140607 full review 完成。三档(best=borderline accept\\\\n    3.0, median=Findings 3.0, worst=borderline Findings 2.5)一致指出6项结构性问题：(1)DCOL loss\\\\n    Eq.1缺repulsive term不可复现 (2)Atlas论文零图不可接受 (3)bibliography严重不足(3-10 refs,需25+) (4)d0\\\\n    confound膨胀headline metrics,需报d1-d5 acc (5)EDD threshold无sensitivity analysis (6)surprisal\\\\n    reference model未指定有circularity风险。三档均认为Atlas/EDD是primary contribution,DCOL incremental\\\\n    over CLOC——与我们的contingency plan方向一致。worst case下DCOL不显著(p=0.12),EDD=2,但任务formalization+Atlas仍可支撑Findings。关键风险：cross-model\\\\n    transfer在worst case降到33%。\\\\n  related_experiments:\\\\n  - exp_id: dream_20260514T140607\\\\n    role: dream_simulation\\\\n    result: best=3.0 median=3.0 worst=2.5\\\\n  depends_on: []\\\\n- id: D003\\\\n  date: 2026-05-14 19:45 UTC\\\\n  summary: 要求 baselines 统一使用 DeBERTa-v3-large，消除与 DCOL 的模型规模混淆变量\\\\n  rationale: Reviewer 发现 DCOL 用 DeBERTa-v3-large (435M) 而 CE/CORAL baselines 用 DeBERTa-v3-base\\\\n    (184M)，参数量差 2.4×，审稿人必问改进来源。修改 baseline 脚本支持 large 版本实验成本极低（模型已在服务器上），可彻底解耦方法贡献与模型容量。\\\\n  related_experiments:\\\\n  - exp_id: dcol_deberta_001\\\\n    role: target\\\\n    result: pending\\\\n  depends_on: []\\\\n- id: D00\n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 455
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-25T21:15:09.085049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "external_review|paperreview",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-25T21:15:09.388282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (66.8KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-review-director-79bccd15/4acb560f-4f49-4666-8e98-2ac0c772301d/tool-results/toolu_01JBiKMfG1idW4EexTUZ4jEZ.txt\n\nPreview (first 2KB):\nAGENTS.md:82:如果项目配置了外部审稿（`external_review.paperreview_ai.enabled: true`）：\nAGENTS.md:83:- 在分配内部 Reviewer 的同时，调用 `request_external_review()` 向用户群发送协助卡片\nAGENTS.md:85:- 用户在群里粘贴 paperreview.ai 审稿结果后，将其作为 `[外部审稿: Stanford Agentic Reviewer]` 纳入最终报告的独立 section\nAGENTS.md:87:- 如果内部审稿结束时外部结果仍未返回，用 `get_external_review_status()` 检查状态，在报告中标注「外部审稿：未返回」\nAGENTS.md:163:`director_get_project_overview`, `director_post_to_reviewer`, `dispatch_visual_check`, `get_external_review_status`, `get_visual_check_status`, `read_local_file`, `read_project_file`, `request_external_review`, `request_study_approval`, `submit_review_report_to_research_director`, `update_review_issues`\nCLAUDE.md:82:如果项目配置了外部审稿（`external_review.paperreview_ai.enabled: true`）：\nCLAUDE.md:83:- 在分配内部 Reviewer 的同时，调用 `request_external_review()` 向用户群发送协助卡片\nCLAUDE.md:85:- 用户在群里粘贴 paperreview.ai 审稿结果后，将其作为 `[外部审稿: Stanford Agentic Reviewer]` 纳入最终报告的独立 section\nCLAUDE.md:87:- 如果内部审稿结束时外部结果仍未返回，用 `get_external_review_status()` 检查状态，在报告中标注「外部审稿：未返回」\nCLAUDE.md:163:`director_get_project_overview`, `director_post_to_reviewer`, `dispatch_visual_check`, `get_external_review_status`, `get_visual_check_status`, `read_local_file`, `read_project_file`, `request_external_review`, `request_study_approval`, `submit_review_report_to_research_director`, `update_review_issues`\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/chats/feishu_group_oc_db3bd143165620ee6950e6ef0826eec8_director.jsonl:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/chats/feishu_group_oc_db3bd143165620ee6950e6ef0826eec8_director.jsonl\n…[truncated 55 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Grep",
+            "elapsed_ms": 303
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-25T21:15:13.667792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "external_review|paperreview_ai",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/agent",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001826"
+        },
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-25T21:15:13.769147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/agent. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_director_79bccd15.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-001827"
+        },
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-25T21:15:17.850946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "external_review|paperreview_ai",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+              "glob": "*.yaml",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-001828"
+        },
+        {
+          "source_line": 1829,
+          "timestamp": "2026-05-25T21:15:17.951795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001829"
+        },
+        {
+          "source_line": 1830,
+          "timestamp": "2026-05-25T21:15:21.520684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/**/config*.yaml"
+            }
+          },
+          "id": "event-001830"
+        },
+        {
+          "source_line": 1831,
+          "timestamp": "2026-05-25T21:15:21.621768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 101
+          },
+          "id": "event-001831"
+        },
+        {
+          "source_line": 1832,
+          "timestamp": "2026-05-25T21:15:24.489349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/recursive_gen_depth_est/config*"
+            }
+          },
+          "id": "event-001832"
+        },
+        {
+          "source_line": 1833,
+          "timestamp": "2026-05-25T21:15:24.489925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-001833"
+        },
+        {
+          "source_line": 1834,
+          "timestamp": "2026-05-25T21:15:47.849610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__dispatch_visual_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "review_chat_id": "oc_db3bd143165620ee6950e6ef0826eec8"
+            }
+          },
+          "id": "event-001834"
+        },
+        {
+          "source_line": 1835,
+          "timestamp": "2026-05-25T21:16:02.496236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"started\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "elapsed_ms": 14646
+          },
+          "id": "event-001835"
+        },
+        {
+          "source_line": 1836,
+          "timestamp": "2026-05-25T21:16:02.952057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "你是 Reviewer 1，负责**方法严谨性、实验设计、统计方法和可复现性**。\n\n## Venue 信息\n- **目标**: EMNLP 2026 (ARR May cycle)\n- **截止日期**: 2026-05-25\n- **格式**: ACL 模板, 8 页正文限制, double-blind\n- **匿名规则**: Double-blind (作者信息已隐藏)\n\n## 论文文件\n- LaTeX 主文件: `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/submitted.pdf`\n\n## 审查侧重\n\n请重点评估以下方面：\n\n1. **实验设计**：benchmark 构建是否有方法论缺陷（数据泄露、confounds、选择偏差）？full-replacement chain 设定与 real-world scenario 的 gap 是否被充分讨论？\n2. **统计方法**：RF 分类器选择是否合理？EDD 指标定义是否严谨？AUC 评估、bootstrap CI、多重比较校正是否恰当？\n3. **可复现性**：超参数、数据规模、随机种子是否充分报告？代码/数据匿名链接是否可用？\n4. **Reference model confound**：Pythia 同时作为 generator 和 reference model 的自引用优势（4-11pp）是否被充分控制和讨论？\n5. **Cross-scale validity**：14B 结果 EDD=0 (self-ref) / EDD=2 (cross-ref) 的矛盾如何解释？scale attenuation 的讨论是否充分？\n6. **Feature multicollinearity**：19 特征中 14-16 个 VIF>10，这对 feature importance 排名的可靠性有何影响？conditional permutation importance 是否充分缓解？\n\n请输出完整审稿意见，包含 Summary、Strengths、Weaknesses（逐条编号，标注严重程度 [Critical/Major/Minor]）、Questions to Authors。",
+              "reviewer_id": "1",
+              "project": "recursive_gen_depth_est",
+              "round_number": "1"
+            }
+          },
+          "id": "event-001836"
+        },
+        {
+          "source_line": 1837,
+          "timestamp": "2026-05-25T21:16:15.341204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 12389
+          },
+          "id": "event-001837"
+        },
+        {
+          "source_line": 1838,
+          "timestamp": "2026-05-25T21:16:15.493403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "你是 Reviewer 2，负责**新颖性、贡献完整性、相关工作覆盖和 claims 与证据匹配**。\n\n## Venue 信息\n- **目标**: EMNLP 2026 (ARR May cycle)\n- **截止日期**: 2026-05-25\n- **格式**: ACL 模板, 8 页正文限制, double-blind\n- **匿名规则**: Double-blind (作者信息已隐藏)\n\n## 论文文件\n- LaTeX 主文件: `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/submitted.pdf`\n\n## 审查侧重\n\n请重点评估以下方面：\n\n1. **新颖性**：recursive generation depth estimation 作为新任务的定义是否具有足够的学术贡献？EDD 指标相对于现有评估指标（如 AUC、accuracy）有何独特价值？与 model collapse 文献的区分是否清晰？\n2. **Claims vs Evidence**：\n   - \"perplexity tail features dominate\" — 是否有足够的 ablation 和 alternative explanation 排除？\n   - \"decoding strategy > model architecture\" (9.3pp vs 7.2pp) — 样本量（3×3 grid）是否足以支撑此 claim？\n   - \"EDD_0.70 = 3 in 8/9 cells\" — threshold 选择 (0.70) 的理由是否充分？\n   - \"signal attenuates with scale\" — 仅测了 14B 一个点，claim 的泛化性如何？\n3. **相关工作覆盖**：\n   - 是否遗漏重要的 model collapse / synthetic data detection 文献？\n   - 与 EditLens、TROVE、data provenance 方向的区分是否充分？\n   - 2025-2026 最新工作是否覆盖？\n4. **贡献完整性**：Discussion 和 Limitations 是否诚实地承认了方法的边界条件？partial-mixing 实验是否足以弥合 full-replacement 与 real-world 的鸿沟？\n5. **写作质量**：abstract 是否在 200 words 以内？结构是否清晰？notation 是否一致？\n\n请输出完整审稿意见，包含 Summary、Strengths、Weaknesses（逐条编号，标注严重程度 [Critical/Major/Minor]）、Questions to Authors、Missing References（如有）。",
+              "reviewer_id": "2",
+              "project": "recursive_gen_depth_est",
+              "round_number": "1"
+            }
+          },
+          "id": "event-001838"
+        },
+        {
+          "source_line": 1839,
+          "timestamp": "2026-05-25T21:16:17.048222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1554
+          },
+          "id": "event-001839"
+        },
+        {
+          "source_line": 1840,
+          "timestamp": "2026-05-25T21:16:21.971175+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 1 已启动：\n\n- 视觉审查 Agent：已派发（并行运行，不阻塞）\n- Reviewer 1（方法严谨性）：已分配\n- Reviewer 2（新颖性/完整性）：已分配\n\n等待两位 Reviewer 返回独立初审意见。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001840"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "messages": [
+        {
+          "source_line": 1841,
+          "timestamp": "2026-05-25T21:23:47.530168+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 审稿意见：Round 1\n\n**论文标题**: How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n**Venue**: EMNLP 2026 (ARR May cycle)\n**审查侧重**: 新颖性、贡献完整性、相关工作覆盖、Claims vs Evidence\n\n---\n\n## 总体评分\n\n**Overall**: 3.5 (Borderline Conference)\n**一句话总结**: 任务定义新颖、实验覆盖面广，但多个核心 claim 的统计支撑不足以匹配其表述强度，且 full-replacement 实验设定与真实场景之间的鸿沟未被充分弥合。\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 (Acceptable) | 主要贡献（任务定义 + benchmark + 特征有效性）有充分支撑；但 \"decoding > architecture\"、\"signal attenuates with scale\" 等比较性 claim 的统计证据不足 |\n| Excitement | 3/5 (Interesting) | 任务定义有新意，但受限于 full-replacement 实验设定，实际应用前景不明朗；方法本身（RF + 手工特征）缺乏技术深度上的兴奋点 |\n| Confidence | 4/5 | 仔细阅读全文含 26 页附录，熟悉 model collapse、AI text detection、ordinal classification 相关文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [Critical] \"Decoding strategy contributes at least as much as model architecture\" — 9 个 cell 无法支撑此 claim\n\n- 具体位置：Abstract 第 6 句、Section 4.1 第 3 段、Section 6 第 2 句\n- 问题：该 claim 基于 3×3 grid 的均值比较（within-model strategy gap 9.3pp vs. within-strategy model gap 7.2pp），但仅有 9 个 cell，且未对 9.3 vs. 7.2 的差异进行任何统计检验（如 paired permutation test 或 bootstrap CI on the difference）。Abstract 中 \"decoding strategy effects cross-condition transfer more than model architecture\" 的措辞暗示了一个排序关系，而非仅仅是 \"comparable\"。在如此小的样本上，2.1pp 的差异完全可能是噪声。\n- 为什么影响接收：这是论文三大 findings 之一（Finding 2），也是 abstract 的核心 claim。如果此 claim 不成立，论文的贡献叙事需要重构。\n- 建议修改方向：(1) 对 9.3 vs. 7.2 的差异提供 bootstrap CI 或置换检验 p 值；(2) 如果不显著，将措辞改为 \"decoding strategy and model architecture contribute comparably\"，删除 \"more than\" 的排序暗示；(3) 考虑增加更多 model family 或 decoding strategy 以增加统计功效。\n\n**N2** [Critical] Scale generalization claim 证据薄弱——\"signal attenuates with scale\" 基于极有限的数据点\n\n- 具体位置：Abstract 第 7 句、Section 5.4、Appendix B.18–B.19\n- 问题：主 benchmark 仅覆盖 1–1.5B（3 个模型）。7–8B 实验（Appendix B.18, Table 19）包含 Llama-3.1-8B 和 Qwen2.5-7B 两个模型，仅用 nucleus sampling，accuracy 从 ~80% 降至 ~70%。14B 实验（Appendix B.19）仅测了 Qwen2.5-14B 一个模型（且用 QLoRA 而非 full LoRA）。从 3 个 1.5B 模型 + 2 个 7–8B 模型 + 1 个 14B 模型推断 \"signal attenuates with scale\" 的单调趋势，数据点严重不足。更重要的是，reference model 始终固定为 Pythia-1.4B——当目标模型为 14B 时，reference model 比目标小一个数量级，perplexity 特征的语义可能已经改变。Appendix B.19 自己承认 \"the U-shaped pattern at Qwen2.5-7B likely originates from the cross-reference setup\"，说明 reference model confound 未解决。\n- 为什么影响接收：Scale generalization 是论文的第三个核心 finding，也是 Limitations 和 Discussion 的重要支撑。如果 attenuation 部分来自 reference model mismatch 而非 scale 本身，则因果推断不成立。\n- 建议修改方向：(1) 至少在 7B 尺度用匹配规模的 reference model（如 Llama-3.1-8B 做 reference）复现实验，分离 scale effect 和 reference mismatch effect；(2) 或将 \"signal attenuates with scale\" 从 finding 降级为 preliminary observation，在 abstract 中用更审慎的语言。\n\n**N3** [Critical] Full-replacement 假设与真实场景的鸿沟未被充分弥合\n\n- 具体位置：Section 3.2（benchmark 构造）、Section 5.3（partial-mixing）、Limitations\n- 问题：整个 benchmark 基于 full-replacement chain（每代 100% 替换训练数据）。现实中的 recursive contamination 是 partial mixing（如 Common Crawl 中混入不同比例的 AI 生成文本）。论文的 partial-mixing 实验（Section 5.3）仅测了 3 个 model-strategy cell（不是全部 9 个）、2 个混合比例（25%、50%），且 Table 10 显示 50% mixing 下 GPT-2 XL 已经失败（EDD 降至 <3）。这意味着：(a) partial-mixing 的覆盖面太窄，无法得出鲁棒结论；(b) 即使在最简单的 partial-mixing 设定下（已知比例、仅两个比例点），部分 cell 已经 break down。\n- 为什么影响接收：论文在 Introduction 中动机段（\"real-world contamination involves partial mixing at unknown mixing ratios\"）承诺了对真实场景的适用性，但实验未能交付。审稿人会质疑：如果连 50% mixing 的控制实验都有 cell 失败，该方法在未知比例的真实场景中能否工作？\n- 建议修改方向：(1) 将 partial-mixing 实验扩展到全部 9 个 cell，增加更多比例点（10%, 25%, 50%, 75%）；(2) 或者在 Introduction 中降低对真实场景适用性的暗示，明确将 full-replacement 作为 scope boundary；(3) 讨论从 full-replacement 到 partial-mixing 的 accuracy degradation 曲线是否有规律可循。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [Major] EDD 指标的新颖性和独特价值论证不充分\n\n- 具体位置：Section 3.4（Definition 1）、Section 4.3\n- 问题：EDD 本质上是对 pairwise AUC 曲线设定阈值 τ 后取最大连续深度——这在技术上是一个简单的阈值操作，而非独立的 metric contribution。论文未与其他可能的 \"depth discriminability\" 度量做比较（如：基于 accuracy 的版本、基于 effect size 的版本、基于 information-theoretic 的版本）。τ = 0.70 的选择虽然引用了 Hosmer & Lemeshow (2000) 的 \"acceptable discrimination\" 标准，但该标准原本用于 binary logistic regression 的 ROC 分析，直接移植到 ordinal depth estimation 的 pairwise AUC 场景是否合理未做论证。Section 3.4 的 sensitivity analysis（τ ∈ {0.65, 0.70, 0.80}）仅展示了 EDD 值的变化，未讨论哪个 τ 最适合深度估计的实际应用。\n- 建议：(1) 更明确地论证为什么 EDD 优于直接报告 per-pair AUC 曲线或 4-class accuracy；(2) 讨论 τ 选择对下游决策的影响；(3) 至少比较一个替代 metric 定义。\n\n**W2** [Major] PLM baseline 比较可能不公平\n\n- 具体位置：Section 5.1、Appendix B.13–B.14\n- 问题：论文声称 \"statistical features outperform feature-based methods; depth estimation therefore benefits from targeted statistical features that capture distributional tail properties absent from PLM representations\"（Section 5.1）。但 PLM baseline 仅使用 frozen CLS representations + linear probing（DeBERTa-v3-base, RoBERTa-base），以及 DCOL（fine-tuned but ordinal MLP）。这些 baseline 的能力上限远低于 fine-tuned PLM。Appendix B.13 显示 DCOL fine-tuned 到 64.5%（vs. RF 的 ~80%），但 DCOL 使用的是 ordinal loss + 小 MLP，而非充分 fine-tuned 的 encoder。论文没有测试 full fine-tuning of DeBERTa/RoBERTa on the ordinal task。这使得 \"statistical features > PLM representations\" 的 claim 可能仅反映 baseline 设计的弱点，而非方法本身的优势。\n- 建议：(1) 增加 full fine-tuned DeBERTa-v3 baseline；(2) 或将 claim 弱化为 \"statistical features outperform frozen PLM representations\"，明确限定比较范围。\n\n**W3** [Major] Seed corpus 单一性可能夸大特征一致性\n\n- 具体位置：Section 3.2 第 1 段、Section 5.2\n- 问题：Benchmark 全部基于 Wikipedia seed corpus（共享 seed corpus across all cells）。虽然 Section 5.2 测试了 cross-domain transfer（WikiText-103 → 其他域），但核心 benchmark 的 domain 同质性可能导致 perplexity tail 特征的 consistency 被高估。Table 4 的 cross-domain 结果（mean accuracy 66.4%）显著低于 in-distribution（~80%），下降超 14pp，说明 domain 是重要变量。此外，Wikipedia 文本风格相对统一（百科全书体），可能不代表 AI 生成文本在对话、创意写作、代码等多样化场景中的行为。\n- 建议：在主 benchmark 中加入至少一个非 Wikipedia domain（如 news、Reddit、arXiv abstracts）作为对照。\n\n**W4** [Minor] LoRA fine-tuning 作为 recursive training 的代理可能引入系统性偏差\n\n- 具体位置：Section 3.2（Generation pipeline）、Appendix A\n- 问题：Recursive chain 的每一代使用 LoRA fine-tuning（r=16, α=32）而非 full fine-tuning。LoRA 的低秩约束限制了模型权重的变化幅度，可能导致相邻深度之间的 distributional shift 被人为压缩（因为 LoRA 只更新少量参数）。这意味着论文观察到的 \"depth signal concentrates in perplexity tails\" 可能部分是 LoRA 的 artifact——如果用 full fine-tuning，distributional shift 可能更显著或呈现不同模式。论文未讨论 LoRA rank 的选择对 depth signal 的影响。\n- 建议：(1) 讨论 LoRA rank 选择的合理性和潜在影响；(2) 在至少一个 cell 上用 full fine-tuning 对比验证深度信号是否一致。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Table 2 脚注 5（\"Statistical tests are not corrected for multiple comparisons; p-values should be interpreted as exploratory\"）——考虑到论文有 9 个 cell 的多重比较，建议应用 Bonferroni 或 FDR correction 并在正文中报告 corrected p-values，而非仅在脚注声明 exploratory。\n- **M2**: Figure 2（feature importance heatmap）的颜色编码不够直观——星号标记的 top-7 features 与颜色深度之间的对应关系需要在 caption 中更清楚地说明。\n- **M3**: Section 3.3 中 \"effective independent dimensionality is ≈4–5\" 的 VIF 分析结论很有价值，但正文中没有给出 VIF 的具体数值范围，仅在 Appendix 中提及 VIF>10 的标准。建议在正文中至少报告 top features 的 VIF 值。\n- **M4**: Appendix B.14 提到 domain bias analysis 中发现了 initial implementation bug（\"we discovered the issue during internal review, corrected to per-depth seed group assignment\"）——这种诚实值得赞赏，但建议更明确地说明 bug 对已报告结果的影响范围。\n- **M5**: Abstract 约 185 words，符合 200-word 限制。✓\n\n---\n\n## Questions to Authors\n\n**Q1**: 对于 N1 中的 \"decoding > architecture\" claim——能否提供 9.3pp vs. 7.2pp 差异的 bootstrap 95% CI？如果 CI 包含 0，是否愿意将 claim 改为 \"comparable\"？\n\n**Q2**: 对于 N2——如果使用 7B 模型（如 Llama-3.1-8B）作为 reference model 来评估 7B 目标模型，depth signal 的 attenuation 幅度是否会显著减小？这能否区分 \"scale effect\" 和 \"reference mismatch effect\"？\n\n**Q3**: Partial-mixing 实验（Section 5.3, Table 10）中，GPT-2 XL 在 50% mixing 下 EDD 降至 <3。能否报告 25% mixing 下全部 9 个 cell 的 EDD 值，而非仅 3 个 cell？\n\n**Q4**: 论文使用 LoRA (r=16) 作为 recursive fine-tuning 的代理。是否考虑过 LoRA rank 是 depth signal 强度的一个混淆变量？如果用 r=4 或 r=64，EDD 值是否会显著变化？\n\n**Q5**: EDD metric 的实际应用场景是什么？在什么下游任务中，知道 \"EDD = 3\" 比知道 \"4-class accuracy = 80%\" 更有价值？\n\n**Q6**: Section 5.1 的 PLM 比较中，为什么没有测试 full fine-tuned DeBERTa 或 RoBERTa？在参数量可比的前提下（RF 的 19 features vs. 110M DeBERTa），feature-based 方法的优势是否依然成立？\n\n---\n\n## Missing References（建议补充）\n\n1. **Stylometric analysis 传统**：论文使用的 19 个统计特征与 stylometry / authorship attribution 文献中的特征高度重叠（如 n-gram 分布、perplexity、type-token ratio）。建议引用 stylometry 综述以定位贡献——如 Stamatatos (2009) \"A Survey of Modern Authorship Attribution Methods\" 或 Neal et al. (2017)。这能帮助读者理解为什么这些特征对 depth 有效：recursive generation 可能在 stylometric space 中产生可检测的轨迹。\n\n2. **Ordinal classification 方法论**：论文使用 Random Forest 做 ordinal classification，但未引用 ordinal-specific ensemble 方法（如 Frank & Hall, 2001 \"A Simple Approach to Ordinal Classification\" 已引用 ✓）。不过 Appendix B.25 中对比的 learned estimator 方法较少——可以考虑引用更多 ordinal regression baselines。\n\n3. **Iterative self-improvement / self-play 文献**：如 Chen et al. (2024) \"Self-Play Fine-Tuning\" 或 Yuan et al. (2024) \"Self-Rewarding Language Models\"——这些工作产生的 iterative training 与论文的 recursive generation chain 结构相似，但动机不同（improvement vs. degradation），可作为 related work 的对比。\n\n---\n\n## 主要优势\n\n1. **任务定义的原创性**：将 recursive generation depth 从 model collapse 研究中抽离出来，独立定义为 ordinal classification 问题，填补了 binary detection 和 model collapse theory 之间的空白。这个定义是清晰的、可操作的、可复现的。\n\n2. **实验覆盖面极为扎实**：26 页论文中 17 页为附录，涵盖了 feature ablation（B.1–B.4）、cross-model transfer（B.7）、accumulation AUC（B.8）、DCOL iteration（B.9）、zero-shot LLM（B.10）、temperature robustness（B.11）、PLM comparison（B.12–B.14）、domain bias（B.14）、wild-data calibration（B.15）、curation PoC（B.16）、reference model ablation（B.17）、7–14B scale（B.18–B.19）、cross-boundary（B.20）、cross-seed（B.21）、depth-4 extension（B.22）、mixed-depth corpus（B.24）、generation length（B.24）、learned estimator（B.25）、1.5B instruction-tuned（B.26）、fine-tuning probe（B.27）、feature group ablation（B.28）、RF seed robustness（B.29）、binary detector baseline（B.30）、Binoculars decomposition（B.31）、prompted generation（B.32）、extended discussion（B.33）。这种程度的实验覆盖远超多数 EMNLP submissions。\n\n3. **Feature importance 分析的多角度验证**：permutation importance、Gini importance、CPI（conditional）、SHAP 四种方法的一致性增强了 \"perplexity tail features dominate\" 这一 claim 的可信度。\n\n4. **诚实的 limitations 讨论**：论文在 Limitations 和 Appendix B.33 中坦承了 full-replacement assumption、scale limitation、reference model dependency 等问题，没有回避。Appendix B.14 甚至主动披露了 implementation bug 的发现和修正过程。\n\n5. **Benchmark 构造的方法论规范**：shared seed corpus、cross-validation splits do not leak across depths、leave-one-group-out evaluation——这些设计选择表明作者对实验严谨性的关注。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001841"
+        },
+        {
+          "source_line": 1842,
+          "timestamp": "2026-05-25T21:23:58.970559+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 2 审稿意见已收到。评分 3.5 (Borderline Conference)，提出 3 个 Critical issues（decoding > architecture claim 统计支撑不足、scale generalization 证据薄弱、full-replacement 与真实场景鸿沟）和 3 个 Major issues。\n\n等待 Reviewer 1 返回后进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001842"
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "messages": [
+        {
+          "source_line": 1843,
+          "timestamp": "2026-05-25T21:24:12.968315+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n审稿意见已提交给 Review Director。\n\n**审稿结论概要**：Overall 3.5（Borderline Conference），Soundness 3/5，Excitement 3/5。\n\n三个 Critical 问题：\n1. **\"Decoding > architecture\" claim 缺乏统计检验**——9 个 cell 上 9.3pp vs 7.2pp 的差异未做任何显著性检验，无法支撑 abstract 中的排序性 claim\n2. **Scale generalization 证据薄弱**——仅 1–1.5B 充分测试，7–14B 只有 3 个模型且 reference model confound 未解决\n3. **Full-replacement 与真实场景的鸿沟**——partial-mixing 实验仅覆盖 3/9 cells × 2 比例点，50% mixing 下已有 cell 失败\n\n三个 Major 问题：EDD 指标新颖性论证不足、PLM baseline 比较可能不公平（仅测 frozen representation）、seed corpus 单一性可能夸大特征一致性。\n\n主要优势：任务定义原创、实验覆盖面极广（17 页附录）、feature importance 多角度交叉验证、limitations 讨论诚实。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001843"
+        },
+        {
+          "source_line": 1844,
+          "timestamp": "2026-05-25T21:24:22.200027+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 2 审稿意见已收到。等待 Reviewer 1 返回后进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001844"
+        }
+      ]
+    },
+    {
+      "number": 160,
+      "messages": [
+        {
+          "source_line": 1845,
+          "timestamp": "2026-05-25T21:25:30.584366+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n## Reviewer 1 审稿意见\n\n**论文**: How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n**Venue**: EMNLP 2026 (ARR May cycle)\n**审查侧重**: 方法严谨性、实验设计、统计方法、可复现性\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.0 / 5（Findings）\n**一句话总结**: 问题形式化新颖且 atlas 设计系统，但 reference model confound 贯穿全部实验、full-replacement 假设远离真实场景、14B 规模信号消失——三个核心问题叠加后，方法的实际价值和可靠性存疑，尚不足以进入主会议。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.0 / 5 | Reference model confound 系统性膨胀 Pythia cells 结果；full-replacement 链与现实 gap 大且仅测 25-50% mixing；多重比较未校正（脚注3承认）；VIF>10 的 14-16/19 特征使 feature importance 排名不可靠 |\n| Excitement | 3.5 / 5 | 问题形式化（递归深度估计 vs. 二分检测）确实新颖；EDD 指标有设计感；atlas 概念系统。但 14B 信号消失和 full-replacement 假设严重限制实际影响力 |\n| Reproducibility | 4.0 / 5 | 超参数、种子（42/43/45）、硬件（2×RTX PRO 6000, 200 GPU-hours）、匿名代码/数据链接均有报告；cross-seed replication（B.29）覆盖 3 个种子 |\n| Confidence | 4 / 5 | 全文含 18 页 appendix 通读，熟悉 model collapse、统计检验、RF multicollinearity 相关文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [Critical] **Reference Model Confound 贯穿全部实验设计**\n- 具体位置：§3.3 (p.4)、Table 2 (p.5)、Appendix B.17 (Table 18)、B.19 (Table 22)\n- 问题：Pythia-1.4B 同时作为 3 个 generator 之一和全部 19 个特征的固定 reference model。自引用优势 4-11 pp（B.17: self=78.5% vs. GPT-2 XL cross=67.3%）。12/19 特征依赖 reference model 的 log-probability，这不是边际偏差，而是系统性地膨胀了 Pythia cells 的所有指标。论文虽在 §3.3 用 † 标记并在 Limitations 提及，但 Pythia 结果仍被纳入 Table 2 全部聚合统计（atlas 均值、feature importance 排名、EDD 分布）。更关键的是，B.19 的 14B 实验揭示了一个根本矛盾：Qwen2.5-14B self-reference EDD₀.₇₀ = 0（d0v1 AUC 仅 0.56-0.64），而 cross-reference（Pythia-1.4B）EDD₀.₇₀ = 2（d0v1 AUC 升至 0.70-0.74）。同一文本、同一特征集，仅改变 reference model 就使 EDD 从 0 跳到 2——这说明 EDD 度量的不是文本的内在深度属性，而是 reference model 与 generator 的兼容性。\n- 为什么影响接收：论文的核心 claim（\"statistical fingerprints of recursive depth\"）建立在特征能反映文本内在属性的假设上。Reference model confound 使这一假设不成立。\n- 建议修改方向：(a) 在 atlas 聚合统计中排除 Pythia self-reference cells 或单独报告；(b) 至少对一个 non-Pythia generator 使用两个不同 reference model 做 cross-validation；(c) 在主文而非仅 appendix 讨论 14B EDD 悖论及其对 \"intrinsic depth signal\" claim 的影响；(d) 考虑在 model-free 特征（7个 lexical/repetition 特征）上单独报告性能下界。\n\n**N2** [Critical] **Full-Replacement Chain 与现实场景的生态有效性 Gap 严重且讨论不足**\n- 具体位置：§3.2 (p.3)、§5.3 (p.8)、Appendix B.8 (Table 10)、Limitations (p.9)\n- 问题：Atlas 使用 100% 合成替换构建递归链——每一深度完全替换上一深度语料。真实 web 递归污染的混合比例远低于此（估计 5-30%）。§5.3 仅测试了 25% 和 50% 两个混合比例，结果已显示 8-15 pp 准确率衰减。50% mixing 下 GPT-2 XL d2v3 AUC=0.695 已低于 T=0.70 阈值（EDD 降级）。5-10% mixing 完全未测试——考虑到 25%→50% 的衰减趋势，信号可能在更低比例下消失。论文在 Limitations（p.9 第1段）仅用一句话提及 \"real-world contamination involves accumulation at unknown mixing ratios\"，未量化这一 gap 或讨论其对所有实验结论的影响。\n- 为什么影响接收：如果方法在真实污染比例（<10%）下不工作，180K-cell atlas 的全部结论仅适用于一个人工设定，学术贡献受限。\n- 建议修改方向：(a) 补充 5% 和 10% mixing ratio 实验；(b) 建立 mixing ratio vs. signal strength 的衰减曲线并外推下界；(c) 在主文明确讨论 full-replacement 设定的适用范围和局限。\n\n**N3** [Major] **14B 规模信号消失与 Scale Attenuation 讨论不充分**\n- 具体位置：§5.4 (p.8)、Appendix B.18 (Table 19)、B.19\n- 问题：Qwen2.5-14B self-reference EDD₀.₇₀ = 0，四分类准确率 50.8%（仅 2× chance）。d0v1 AUC 在三种策略下均低于 0.70（nucleus: 0.643, temp: 0.632, top-k: 0.561）。7-8B 结果混合：Llama-3.1-8B 单调衰减（d0v1=0.949→d4v5=0.618），Qwen2.5-7B 呈 U 型恢复（d0v1=0.969, d2v3=0.709, d4v5=0.772）——两个模型在同一规模上行为完全不同，无法得出一般性结论。论文在 §3.5 用 model collapse theory 解释 scale attenuation（γ→1 时 per-step 信号变弱），但这一理论预测的是 monotonic 衰减，不能解释 Qwen-7B 的 U 型 AUC 曲线。更重要的是：当前主流 LLM（7B-70B+）正处于信号衰减区间，方法的实际部署价值需要正视。\n- 为什么影响接收：scale limitation 是论文实际影响力的核心瓶颈。如果仅在 1-1.5B 工作，贡献范围有限。\n- 建议修改方向：(a) 解释 Qwen-7B U 型曲线与 model collapse theory 预测不一致的原因；(b) 讨论是否可以通过更大/更小的 reference model 缓解 14B 信号消失；(c) 在 abstract/introduction 中明确方法的 scale 适用范围。\n\n**N4** [Major] **Feature Multicollinearity 对 Importance 排名可靠性的影响**\n- 具体位置：§4.2 (p.6)、Table 1 (p.4)、Appendix B.3 (Table 6-7)\n- 问题：19 个特征中 14-16 个 VIF > 10，有效独立维度仅 4-5。在此极端多重共线性下：(a) Gini importance 已知会偏向高基数连续变量（Strobl et al., 2007, 2008 在论文中已引用但未充分讨论此 bias）；(b) CPI 通过 conditional permutation 部分缓解，但当 14-16/19 个特征都在一个相关簇中时，CPI 的 \"within-group permutation\" 的组定义本身就有问题；(c) Rank 4-5 的 bootstrap CI width 达 2.7-3.7（B.3 Table 6），确认 top-2 之外排名不稳定。Group-level ablation（§4.2：perplexity alone 76.6%）比个体排名更可靠，但论文中多处（§4.3 \"p90_ppl dominates at deeper depths\", §4.4 strategy-dependent trajectories）依赖个体特征排名做因果叙事。\n- 为什么影响接收：Feature importance 叙事是论文三大发现之一（\"depth signal concentrates in perplexity distribution tails\"）。如果排名不可靠，这一发现的置信度下降。\n- 建议修改方向：(a) 在主文报告 group-level ablation 作为 primary evidence，个体排名作为 secondary；(b) 对 rank 3+ 的特征明确标注 \"unstable under multicollinearity\"；(c) 考虑使用 elastic net 或 LASSO 做特征选择作为补充验证。\n\n**N5** [Major] **多重比较未校正**\n- 具体位置：脚注 3（§3.4, p.5）、B.15（p.16）\n- 问题：论文明确承认 \"Statistical tests are not corrected for multiple comparisons; p-values should be interpreted as exploratory\"。但实际论文中有大量比较：9 cells × 3+ pairwise depth comparisons × multiple feature rankings × cross-condition transfers = 远超 50 次假设检验。仅在一个特定测试（d3v4 AUC, §4.3）应用了 Bonferroni 校正（α=0.0167, 3 comparisons）。B.15 downstream curation PoC 也承认 \"multiple pairwise comparisons that were not corrected for multiplicity\"。当大量比较未校正时，某些 \"显著\" 发现可能是假阳性。\n- 为什么影响接收：ARR 的 Soundness 评分要求 claims 有充分 statistical support。批量未校正的 p-values 削弱了 claims 的可信度。\n- 建议修改方向：(a) 对主要 claims 涉及的比较应用 FDR 或 Bonferroni 校正并报告校正后 p-values；(b) 或者将未校正的结论明确标注为 exploratory 而非 confirmatory；(c) 区分 confirmatory（预先计划的）和 exploratory（数据驱动的）分析。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [Warning] **EDD 阈值 T=0.70 的理论依据可质疑**\n- 具体位置：Definition 1 (§3.4, p.4-5)、§4.1 sensitivity analysis\n- 问题：T=0.70 引用 Hosmer & Lemeshow (2000) 的 \"acceptable discrimination\" 阈值，但 H&L 的阈值设计用于二元 logistic regression 的 goodness-of-fit 评估，而非 pairwise ordinal AUC。将其移植到不同上下文缺乏理论依据。不过 §4.1 的 sensitivity analysis 显示 EDD 对 T ∈ {0.65, 0.70, 0.80} 在 8/9 cells 中稳定，部分缓解了此问题。\n- 建议：明确说明 T=0.70 是 operational choice 而非理论推导的结果；报告多个 T 值下的完整结果表。\n\n**W2** [Warning] **Generation Protocol 过于统一**\n- 具体位置：§3.2 (p.3)、Table 5 (Appendix A)\n- 问题：所有模型使用完全相同的 LoRA 超参数（r=16, α=32, dropout=0.05, 3 epochs）。真实递归污染中，不同迭代/模型会使用不同的微调方法和参数。BOS seeding 统一用于所有生成，可能放大 prior-depth 数据 artifacts。Table 5 确认三个模型和所有深度使用 identical 配置——这虽然提高了内部一致性，但降低了外部有效性。\n- 建议：至少在一个模型上测试不同 LoRA rank 或 full fine-tuning 对深度信号的影响。\n\n**W3** [Warning] **Cross-Strategy Transfer 效果较弱**\n- 具体位置：§5.2 (p.8)、Table 9 (Appendix B.7)\n- 问题：Leave-one-out cross-strategy 准确率仅 45.95%（4-class，chance=25%），仅 1.84× chance。Two-stage pipeline 恢复到 59.1% 但仍不理想。这意味着深度信号高度策略特异，实际部署时需先识别解码策略——但论文未讨论策略识别的准确率和误差传播。\n- 建议：在 two-stage pipeline 中报告 Stage 1（strategy identification）的准确率及其对 Stage 2 的误差级联效应。\n\n**W4** [Warning] **Ordinal Classification 使用 Non-Ordinal Classifier**\n- 具体位置：§3.4 (p.5)、§5.1 (p.7)\n- 问题：RF 不是固有有序分类器。论文在 §5.1 与 ordinal MLP (prototypical) 比较，差距仅 0.8 pp，且 QWK=0.89 表明 RF 经验上尊重有序结构。但 EDD 的二元分类器（500 棵树）与主分类器（200 棵树）之间存在评价体系不一致——主结果用四分类 RF，EDD 用 pairwise binary RF。\n- 建议：统一报告主分类器和 EDD 分类器的关系，或在主文解释为什么两者可以共存。\n\n---\n\n## 小问题（不影响接收）\n\n- §3.3 (p.4) \"Pythia results in Table 2 are marked †\" — 但 Table 2 (p.5) 中 † 标记在 PDF 中不够醒目，容易忽略。建议加粗或加脚注说明。\n- Notation 不一致：EDD 下标有时用 T（Definition 1），有时用 τ=0.70（§3.5），有时用 0.70（Table 2 caption）。建议统一。\n- §4.3 (p.6) \"Bonferroni-corrected for 3 comparisons, α=0.0167 yields p = 0.001\" — 应明确说明这 3 个比较是哪 3 个模型的 d3v4 AUC 测试。\n- Figure 3 (p.7) Y 轴 \"normalized to depth 0\" 但具体归一化方法未在 caption 中说明。\n- B.14 (p.15) 承认发现并修复了 seed-group 分配 bug，透明度好；但 initial buggy results 占用了篇幅，可以精简。\n\n---\n\n## Questions to Authors\n\n1. **Reference model dependency**: 如果使用一个完全独立的 reference model（如 GPT-2 small 或 LLaMA-3.1-8B）替代 Pythia-1.4B 作为所有 cells 的 reference model，atlas 的均值准确率和 EDD 分布会如何变化？是否测试过？\n\n2. **Low mixing ratios**: 5% 和 10% mixing ratio 下的 signal strength 是否有任何 pilot data？如果没有，作者对低比例下信号存活的预期是什么（基于 25%→50% 的衰减趋势）？\n\n3. **14B EDD paradox**: Cross-reference 使 EDD 从 0 升到 2，但 overall accuracy 下降 6.8 pp。作者如何调和这两个方向相反的结果？这是否暗示 EDD 和 accuracy 在大规模下度量的是不同的东西？\n\n4. **Qwen-7B U-shaped AUC**: d2v3=0.709 但 d4v5=0.772 的 U 型恢复在 model collapse theory 框架下如何解释？是否可能是 QLoRA 量化引入的 artifact？\n\n5. **Model-free features only**: 仅使用 7 个 model-free 特征（TTR、hapax ratio、bigram/trigram entropy、repeated n-gram fractions）的分类性能如何？这将建立一个不受 reference model confound 影响的性能下界。\n\n6. **Multiple comparisons**: 如果对 Table 2 全部 9 cells 的 depth-pair AUC 测试应用 FDR 校正（共 27 次比较：9 cells × 3 adjacent pairs），有多少会保持显著？\n\n---\n\n## 主要优势\n\n1. **问题形式化新颖**：将递归生成深度估计形式化为 ordinal classification 是一个真正的概念贡献。EDD 指标从 binary detection 升级到\"能可靠区分多深\"，比简单 accuracy 更有信息量。\n2. **Atlas 设计系统**：3 model families × 3 decoding strategies × 4 depths 的全因子设计提供了 comprehensive baseline，对后续研究有参考价值。\n3. **可复现性好**：超参数完整报告（Table 5）、多种子验证（B.29, 3 seeds, σ≤1.06 pp）、硬件和计算量（B.34, 2×RTX PRO 6000, ~200 GPU-hours）、匿名代码/数据链接。\n4. **消融充分**：34 个 appendix subsections 覆盖分类器（§5.1: RF vs. XGBoost vs. ordinal MLP）、特征（§4.2 group ablation）、reference model（B.17）、domain transfer（B.15 FineWeb/RedPajama）、calibration（B.15 threshold calibration）等。\n5. **透明度高**：脚注 3 主动声明未做多重比较校正；B.14 主动报告并修复了 seed-group bug；Limitations section 覆盖了主要局限。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001845"
+        },
+        {
+          "source_line": 1846,
+          "timestamp": "2026-05-25T21:26:13.036968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "以下是 Reviewer 2 的完整审稿意见，请逐条回应：对每个 Must-Fix 和 Should-Fix 条目，标注 [AGREE] 同意并简述理由，或 [REBUT] 反驳并引用具体 Section/Table/Figure 作为证据。\n\n---\n\n## Reviewer 2 完整审稿意见\n\n**Overall**: 3.5 (Borderline Conference), Soundness 3/5, Excitement 3/5\n\n### Must-Fix 问题\n\n**N1** [Critical] \"Decoding strategy contributes at least as much as model architecture\" — 9 个 cell 无法支撑此 claim\n- 基于 3×3 grid 的均值比较（within-model strategy gap 9.3pp vs. within-strategy model gap 7.2pp），但仅有 9 个 cell，且未对 9.3 vs. 7.2 的差异进行任何统计检验。2.1pp 的差异完全可能是噪声。这是论文三大 findings 之一。\n\n**N2** [Critical] Scale generalization claim 证据薄弱——\"signal attenuates with scale\" 基于极有限的数据点\n- 主 benchmark 仅覆盖 1–1.5B。7–8B 仅 2 个模型（仅 nucleus），14B 仅 1 个模型（QLoRA）。Reference model 始终固定为 Pythia-1.4B——当目标模型为 14B 时 reference model 比目标小一个数量级。Appendix B.19 承认 \"U-shaped pattern likely originates from cross-reference setup\"。\n\n**N3** [Critical] Full-replacement 假设与真实场景的鸿沟未被充分弥合\n- Partial-mixing 实验仅测 3/9 cells × 2 比例点（25%, 50%）。50% mixing 下 GPT-2 XL 已失败。5-10% mixing 完全未测试。\n\n### Should-Fix 问题\n\n**W1** [Major] EDD 指标的新颖性和独特价值论证不充分\n- 技术上仅是对 pairwise AUC 设定阈值取最大连续深度。τ=0.70 从 binary logistic regression 直接移植到 ordinal depth AUC 场景是否合理未论证。\n\n**W2** [Major] PLM baseline 比较可能不公平\n- PLM baseline 仅用 frozen CLS + linear probing / ordinal MLP。未测试 full fine-tuned DeBERTa。\"statistical features > PLM representations\" 的 claim 可能仅反映 baseline 设计弱点。\n\n**W3** [Major] Seed corpus 单一性可能夸大特征一致性\n- 全部基于 Wikipedia seed。Cross-domain 结果下降 14pp+。Wikipedia 百科全书体可能不代表对话、创意写作等多样场景。\n\n**W4** [Minor] LoRA fine-tuning 作为 recursive training 代理可能引入系统性偏差\n- LoRA 低秩约束可能人为压缩相邻深度 distributional shift。未讨论 LoRA rank 对 depth signal 的影响。\n\n### Missing References\n1. Stylometric analysis 传统（Stamatatos 2009, Neal et al. 2017）\n2. Ordinal classification ensemble 方法\n3. Iterative self-improvement / self-play 文献（Chen et al. 2024 Self-Play, Yuan et al. 2024 Self-Rewarding）\n\n---\n\n请逐条回应（[AGREE] 或 [REBUT]），引用具体论文内容作为证据。",
+              "reviewer_id": "1",
+              "project": "recursive_gen_depth_est",
+              "round_number": "1"
+            }
+          },
+          "id": "event-001846"
+        },
+        {
+          "source_line": 1847,
+          "timestamp": "2026-05-25T21:26:36.051408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 23014
+          },
+          "id": "event-001847"
+        },
+        {
+          "source_line": 1848,
+          "timestamp": "2026-05-25T21:26:36.404499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "以下是 Reviewer 1 的完整审稿意见，请逐条回应：对每个 Must-Fix 和 Should-Fix 条目，标注 [AGREE] 同意并简述理由，或 [REBUT] 反驳并引用具体 Section/Table/Figure 作为证据。\n\n---\n\n## Reviewer 1 完整审稿意见\n\n**Overall**: 3.0 (Findings), Soundness 3.0/5, Excitement 3.5/5\n\n### Must-Fix 问题\n\n**N1** [Critical] Reference Model Confound 贯穿全部实验设计\n- Pythia-1.4B 同时作为 generator 和 reference model，自引用优势 4-11pp。12/19 特征依赖 reference model log-probability。14B 实验揭示根本矛盾：同一文本仅改变 reference model 使 EDD 从 0 跳到 2——说明 EDD 度量的可能不是文本内在深度属性，而是 reference model 与 generator 的兼容性。\n\n**N2** [Critical] Full-Replacement Chain 与现实场景的生态有效性 Gap 严重\n- 100% 合成替换 vs 真实 5-30% 混合比例。25%→50% 已显示 8-15pp 衰减且有 cell 失败。5-10% 完全未测。论文仅用一句话在 Limitations 提及。\n\n**N3** [Major] 14B 规模信号消失与 Scale Attenuation 讨论不充分\n- Self-reference EDD=0，仅 2× chance。7-8B 结果混合（Llama-8B 单调衰减，Qwen-7B U 型恢复）。Model collapse theory 无法解释 U 型曲线。主流 LLM（7B-70B+）在信号衰减区间。\n\n**N4** [Major] Feature Multicollinearity 对 Importance 排名可靠性的影响\n- 14-16/19 特征 VIF>10，有效独立维度仅 4-5。CPI 在极端多重共线性下组定义本身有问题。Rank 4-5 CI width 2.7-3.7。Group-level ablation 比个体排名更可靠，但论文多处依赖个体排名做因果叙事。\n\n**N5** [Major] 多重比较未校正\n- 全文 50+ 假设检验（9 cells × 3 depth pairs × feature rankings × cross-condition transfers），仅 d3v4 AUC 一处做了 Bonferroni。脚注 3 声明 exploratory 但实际行文当作 confirmatory 使用。\n\n### Should-Fix 问题\n\n**W1** EDD 阈值 T=0.70 理论依据可质疑\n- 从 binary logistic regression goodness-of-fit 移植到 pairwise ordinal AUC，缺乏理论基础。不过 sensitivity analysis 部分缓解。\n\n**W2** Generation Protocol 过于统一\n- 所有模型 identical LoRA 超参（r=16, α=32, 3 epochs）。真实递归污染不会如此一致。BOS seeding 可能放大 artifacts。\n\n**W3** Cross-Strategy Transfer 效果较弱\n- Leave-one-out 仅 45.95%（1.84× chance）。Two-stage pipeline 恢复到 59.1% 但未讨论策略识别误差传播。\n\n**W4** Ordinal Classification 使用 Non-Ordinal Classifier\n- RF 不是有序分类器。主结果用 4-class RF（200 trees）与 EDD 用 binary RF（500 trees）存在评价体系不一致。\n\n### Questions to Authors\n1. 独立 reference model（非 Pythia）对全部 cells 的影响？\n2. 5%/10% mixing 有无 pilot data？\n3. 14B EDD paradox（cross-ref 使 EDD↑ 但 accuracy↓）如何调和？\n4. Qwen-7B U 型 AUC 如何解释？\n5. 仅用 7 个 model-free 特征的性能下界？\n6. 27 次深度 AUC 测试 FDR 校正后有多少保持显著？\n\n---\n\n请逐条回应（[AGREE] 或 [REBUT]），引用具体论文内容作为证据。",
+              "reviewer_id": "2",
+              "project": "recursive_gen_depth_est",
+              "round_number": "1"
+            }
+          },
+          "id": "event-001848"
+        },
+        {
+          "source_line": 1849,
+          "timestamp": "2026-05-25T21:26:37.767456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1362
+          },
+          "id": "event-001849"
+        },
+        {
+          "source_line": 1850,
+          "timestamp": "2026-05-25T21:26:40.976436+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享已发出，等待两位 Reviewer 的逐条回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001850"
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "messages": [
+        {
+          "source_line": 1851,
+          "timestamp": "2026-05-25T21:26:43.441975+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n审稿意见已提交给 Review Director。\n\n**核心判断**: Overall 3.0（Findings 水平）。\n\n**5 个 Must-Fix 问题**：\n1. **Reference model confound** [Critical]：Pythia-1.4B 同时做 generator 和 reference model，4-11pp 自引用优势贯穿全部实验；14B 的 EDD=0 (self) / EDD=2 (cross) 悖论证明 EDD 度量的不是文本内在属性而是 reference model 兼容性\n2. **Full-replacement vs. 现实 gap** [Critical]：100% 替换链远离真实场景，仅测了 25/50% mixing，5-10% 未测试\n3. **14B 信号消失** [Major]：当前主流规模（7B+）信号大幅衰减，方法部署价值受限\n4. **Feature multicollinearity** [Major]：14-16/19 VIF>10，top-2 之外排名不稳定（CI width 2.7-3.7），feature importance 叙事可靠性存疑\n5. **多重比较未校正** [Major]：50+ 次比较仅 1 处做了 Bonferroni\n\n**主要优势**：问题形式化新颖、atlas 设计系统、可复现性好、消融充分、透明度高。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001851"
+        },
+        {
+          "source_line": 1852,
+          "timestamp": "2026-05-25T21:26:51.927477+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001852"
+        }
+      ]
+    },
+    {
+      "number": 162,
+      "messages": [
+        {
+          "source_line": 1853,
+          "timestamp": "2026-05-25T21:29:18.412583+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R2-N1: \"Decoding strategy contributes at least as much as model architecture\" claim 缺乏统计支撑**\n\n同意。§4.1 (p.5) 原文：\"mean within-model strategy gap is 9.3 pp, comparable to the 7.2 pp mean within-strategy model gap; decoding strategy contributes at least as much as model family to performance variance\"。这一 claim 基于 3×3=9 个 cell 的均值比较，2.1 pp 的差异在如此小的样本上完全没有统计效力。论文未对此差异进行 permutation test、bootstrap test 或任何假设检验。作为论文 Introduction (p.2) 列出的三大发现之一（\"decoding strategy affects cross-condition transfer more than model architecture\"），该 claim 的证据强度与其在论文中的突出程度严重不匹配。\n\n补充发现：§5.2 (p.8) cross-strategy transfer 仅 45.95%（4-class）也从反面佐证了策略差异的重要性，但这并不等价于 \"contributes at least as much\" 的定量 claim。建议作者要么提供统计检验，要么将 claim 降级为 observation。\n\n---\n\n**[AGREE] R2-N2: Scale generalization 证据薄弱**\n\n同意，且补充我自己审稿中的发现。R2 准确指出了数据点稀疏的问题：7–8B 仅 2 个模型（Llama-3.1-8B + Qwen2.5-7B），14B 仅 1 个模型（Qwen2.5-14B with QLoRA）。\n\n我进一步发现了一个 R2 未充分展开的关键矛盾（B.19, Table 22）：14B self-reference EDD₀.₇₀ = 0（d0v1 AUC 仅 0.56–0.64），但 cross-reference（Pythia-1.4B）EDD₀.₇₀ = 2（d0v1 AUC 升至 0.70–0.74）。同一文本、同一特征集，仅更换 reference model 就使 EDD 从 0 跃升至 2。这说明在大规模下，EDD 度量的更多是 reference-generator 兼容性而非文本内在深度属性。\n\n此外，Qwen2.5-7B 的 U 型 AUC 曲线（d0v1=0.969, d2v3=0.709, d4v5=0.772, Table 19/20）与 Llama-3.1-8B 的单调衰减模式完全矛盾，论文的 model collapse theory（§3.5, γ→1 per-step signal attenuation）仅能解释单调衰减。B.19 承认 \"U-shaped pattern likely originates from cross-reference setup\" 恰好证明了 R2 关于 reference model confound 的观点。\n\n---\n\n**[AGREE] R2-N3: Full-replacement 假设与真实场景的鸿沟**\n\n同意。这与我自己审稿中的 N2 一致。补充具体数据：\n\n- B.8 Table 10 显示 50% mixing 下 GPT-2 XL d2v3 AUC = 0.695，已低于 T=0.70 阈值\n- 从 25% → 50% mixing，d2v3 AUC 的衰减幅度为 0.03–0.05（三个 cell 均值）\n- 如果按此趋势线性外推到 10% mixing，AUC 可能仍在阈值以上，但 5% 就存疑了\n- 论文完全未测试 <25% 的比例，而真实 web 递归污染的估计比例更可能在 5-15% 范围\n\n关键的是：partial-mixing 仅覆盖了 3/9 cells（GPT-2 XL nucleus、Pythia nucleus、OLMo temperature），其余 6 个 cell 未测试。在已测试的 3 个 cell 中就有 1 个失败（33% failure rate at 50%），这一失败率在更多 cells 上可能更高。\n\n---\n\n### Should-Fix 问题\n\n**[REBUT] R2-W1: EDD 指标的新颖性和独特价值**\n\n部分不同意。R2 将 EDD 简化为 \"pairwise AUC 设阈值取最大连续深度\"，但忽略了两个关键设计决策：\n\n1. **Contiguous prefix 约束**：EDD 要求从 (0,1) 到 (d-1,d) 的所有相邻对**连续**超过阈值，而非允许跳跃。这比简单取 max AUC 或 mean AUC 更保守但更有实际意义——如果 d1-d2 不可区分但 d2-d3 可区分，声称能区分到 d3 是误导的。Definition 1 (§3.4, p.4-5) 中 \"longest contiguous discriminable prefix\" 的形式化是对 ordinal depth 问题的恰当抽象。\n\n2. **与 model collapse 理论的对接**：§3.5 (p.5) 将 EDD 与 model collapse 的 tail erosion 理论联系，指出 EDD 提供了 classifier resolution 上的 physical ceiling——当相邻深度的分布差异低于分类器分辨率时 EDD 饱和。这不仅仅是一个 metric，而是连接理论预测和实证测量的桥梁。\n\n3. **Sensitivity analysis**：§4.1 (p.7) 报告 EDD 在 T ∈ {0.65, 0.70, 0.80} 下对 8/9 cells 稳定，Table 2 caption 和 §4.3 Figure 4 均佐证了 EDD 对阈值选择的鲁棒性。\n\n但我同意 R2 关于 **T=0.70 移植缺乏理论依据** 的具体批评（这也是我自己审稿的 W1）。Hosmer & Lemeshow (2000) 的阈值设计用于 binary logistic regression goodness-of-fit，不是 pairwise ordinal AUC。论文应明确 T=0.70 是 operational choice 而非理论推导。\n\n---\n\n**[AGREE] R2-W2: PLM baseline 比较可能不公平**\n\n同意。B.13 (p.14) 明确报告 PLM baseline 仅使用 \"frozen CLS representation + linear probing / ordinal MLP\"：\n- DeBERTa-v3-base: 64.5% (±4.7%)\n- RoBERTa-base: 59.5% (±3.2%)\n- RF (statistical features): 78.5%\n\n但 frozen CLS + linear probing 是已知最弱的 PLM adaptation 方式。Full fine-tuned DeBERTa-v3-large 在许多分类任务上性能远超 frozen probing。论文自身在 B.13 末尾承认 \"whether larger PLMs (e.g., 7B+) can close the gap via richer internal representations remains an open question\"，这隐含承认了 baseline 设计的局限。\n\n\"Statistical features > PLM representations\" 这一 claim（§6 Discussion, p.8：\"end-to-end PLMs lag RF by 14–33 pp\"）的可信度取决于 baseline 是否足够强。当前 baseline 设计不足以支撑此 claim。\n\n---\n\n**[AGREE] R2-W3: Seed corpus 单一性，但 R2 关于 14pp+ 下降的数字需要修正**\n\n同意 seed corpus 单一性是一个有效的关切。全部 atlas 基于 Wikipedia seed，百科全书文体的 token 分布（规范、事实陈述为主）可能与对话、创意写作、代码等场景差异显著。\n\n但 R2 称 \"Cross-domain 结果下降 14pp+\" 需要修正。论文实际报告的 cross-domain 数据：\n- B.26 arXiv 抽象文迁移：74.1% ± 2.0%（vs. WikiText ~78%），下降约 **4 pp**，非 14 pp\n- B.15 FineWeb/RedPajama：calibrated FPR remains ≤7%\n\nR2 可能混淆了 cross-**domain** transfer（~4 pp drop）和 cross-**model** transfer（§5.2: 66.4% mean，~12 pp drop）。尽管如此，仅测试 arXiv（同属学术/百科文体）不足以验证对话/创意写作等 far-domain 场景。建议补充至少一个非学术 domain（如 Reddit 或 fiction）。\n\n---\n\n**[AGREE] R2-W4: LoRA 作为 recursive training 代理的系统性偏差**\n\n同意。LoRA 的低秩约束（r=16, Table 5 Appendix A）在每次微调时仅更新一个低维子空间，这可能系统性地压缩相邻深度之间的分布偏移幅度。论文对此完全未讨论——Table 5 确认所有模型、所有深度使用 identical LoRA 配置。\n\n如果 LoRA rank 较低导致 per-step distributional shift 被人为缩小，那么论文报告的 EDD 值可能是 LoRA 特异的，不适用于 full fine-tuning 或 different rank 的 LoRA 递归链。至少应测试 r=4 和 r=64 来评估 rank 对 depth signal 的影响。\n\n---\n\n### Missing References\n\n**[AGREE]** 三个方向的缺失引用均合理：\n\n1. **Stylometric analysis**：论文的 19 个统计特征本质上就是 stylometric features（TTR、hapax ratio、n-gram entropy 等）。Stamatatos (2009) 的 survey 和 authorship attribution 文献是直接的方法论先驱，不引用是一个显著遗漏。这也可能帮助论文更好地定位自身贡献——将 depth estimation 与 authorship attribution 的区别和联系讲清楚。\n\n2. **Ordinal classification**：论文使用 RF 做 ordinal classification 但未引用 ordinal ensemble 方法文献。Frank & Hall (2001) 将 ordinal 分类分解为二元子任务的经典方法与论文的 EDD pairwise binary classifier 有直接关联。\n\n3. **Self-play / self-improvement**：Chen et al. (2024) Self-Play 和 Yuan et al. (2024) Self-Rewarding 代表了另一种递归生成范式（刻意的、有目标的递归），与论文研究的 \"意外\" web 递归污染形成有趣对比。引用这些工作可以拓宽论文的 Related Work 视野。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001853"
+        },
+        {
+          "source_line": 1854,
+          "timestamp": "2026-05-25T21:29:59.573809+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 1 的交叉回应。高度共识：7 项 AGREE，1 项 partial REBUT（EDD 新颖性）。R1 还补充了关键发现——14B cross-reference EDD 跃升问题和 R2 数字修正（cross-domain 下降 ~4pp 而非 14pp）。\n\n等待 Reviewer 2 的交叉回应。收到后判断收敛并合成报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001854"
+        }
+      ]
+    },
+    {
+      "number": 163,
+      "messages": [
+        {
+          "source_line": 1855,
+          "timestamp": "2026-05-25T21:30:00.594287+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 对 Reviewer 1 审稿意见的交叉回应\n\n---\n\n## Must-Fix 问题\n\n### [AGREE with caveat] R1-N1: Reference Model Confound\n\n同意 reference model confound 是真实存在的问题，但不同意其严重程度——\"贯穿全部实验设计\"过于绝对。\n\n**同意的部分**：\n- Pythia-1.4B 自引用优势 4–11pp 是事实（Section 3.3, Appendix B.17, Table 18）\n- 14B 实验中 EDD 随 reference model 改变而剧烈波动（Appendix B.19）确实说明 EDD 对 reference model 敏感\n- 这与我自己提出的 N2 问题一致：无法分离 scale effect 和 reference mismatch effect\n\n**反驳的部分**：\nR1 称 \"EDD 度量的可能不是文本内在深度属性，而是 reference model 与 generator 的兼容性\"，这个推论过强。关键证据：**主 benchmark 9 个 cell 中有 6 个（OLMo × 3 + GPT-2 XL × 3）本身就是 cross-reference 设定**（Pythia-1.4B 做 reference，OLMo/GPT-2 XL 做 generator），这些 cell 仍然达到 62.4–85.9% accuracy（Table 2）、EDD ≥ 3 in 5/6 cells。如果 EDD 纯粹度量 \"reference-generator 兼容性\"，cross-reference cells 不应该有如此强的 depth discrimination。此外，Appendix B.22（cross-reference control, Table 22）专门比较了 Pythia-1.4B reference vs. self-reference on Qwen2.5-14B，cross-reference AUC 虽低于 self-reference，但 d0-vs-d1 仍达 0.697，说明 depth signal 是存在的，只是被 reference mismatch 削弱。\n\n**结论**：reference model confound 在 14B scale 是 critical issue，但在 1–1.5B 主 benchmark 中，6/9 cross-reference cells 的成功表明 depth signal 有 intrinsic component。建议作者在 Discussion 中更明确地分离这两个效应。\n\n---\n\n### [AGREE] R1-N2: Full-Replacement Chain 与现实场景的 Gap\n\n完全同意。这与我的 N3 高度一致。\n\n补充论据：Section 5.3 的 partial-mixing 实验（Table 10）仅覆盖 3/9 cells × 2 mixing ratios，且 50% mixing 下 GPT-2 XL 已失败（EDD < 3）。更关键的是，**论文未测试 5–10% 这一最贴近真实场景的比例区间**。Introduction 第 1 段的动机——\"web text containing their own outputs\"——暗示了对真实 web-scale 混合场景的适用性，但实验未能交付。\n\nR1 指出 \"仅用一句话在 Limitations 提及\" 是准确的。Limitations（p9）的措辞是 \"real-world contamination involves accumulation at unknown mixing ratios\"，但这应该是一个 prominent caveat in the main text，而非被轻描淡写。\n\n---\n\n### [AGREE] R1-N3: 14B 规模信号消失\n\n同意，且这与我的 N2 互相印证。\n\n关键问题：Appendix B.19 中 Qwen2.5-7B 出现的 **U 型 AUC 恢复**（d0-vs-d1 下降后 d2-vs-d3 反弹）是一个无法被当前 framework 解释的异常。论文自己承认 \"the U-shaped pattern at Qwen2.5-7B likely originates from the cross-reference setup\"（Appendix B.19），但如果归因于 cross-reference，则整个 7B+ scale 的结论都受到 reference model confound 的污染，无法得出任何关于 scale 本身的结论。\n\n补充 R1 的观点：**论文在 abstract 中将 \"signal attenuates with scale\" 列为第三个 finding**，但支撑它的仅有：(1) 1.5B 主结果；(2) 2 个 7–8B 模型（行为不一致）；(3) 1 个 14B 模型（reference model confound 未分离）。这不构成 \"finding\"——最多是 \"preliminary observation\"。\n\n---\n\n### [REBUT with partial AGREE] R1-N4: Feature Multicollinearity 对 Importance 排名的影响\n\n**同意的部分**：\n- VIF > 10 for 14–16/19 features 确实意味着严重共线性（Section 3.3）\n- 个体特征排名（如 rank 4–5 CI width 2.7–3.7）确实不可靠\n- 论文在某些地方确实基于个体排名做叙事（如 Section 4.2 \"p90_ppl and var_surprisal are consistently prominent\"）\n\n**反驳的部分**：\nR1 将此升级为 Critical 级别过重。论文采取了多重缓解措施：\n1. **Group-level ablation**（Section 4.2）：perplexity family 单独达到 76.85% vs. full 78.45%——这是 robust to multicollinearity 的分析，因为它不依赖个体排名\n2. **CPI**（Appendix B.3）：Conditional Permutation Importance 专为处理 correlated features 设计——它 permute 每个 feature within its correlated partners，正是为了应对共线性。R1 质疑 \"CPI 在极端多重共线性下组定义本身有问题\"，但 CPI 的 conditioning set 是 model-defined（RF 的 split partners），不是人工指定的组\n3. **四种 importance 方法一致收敛**：permutation importance、Gini importance、CPI、SHAP 均将 perplexity tail 特征（p90_ppl, var_surprisal, kurtosis_ppl）排入 top-3（Appendix B.2–B.4, B.12）。共线性会导致个体排名不稳定，但不太可能使四种方法的 top-group 结论同时失效\n4. **论文的核心 claim 是 family-level**（\"perplexity tail statistics family dominates\"），不是 individual-level。即使 p90_ppl 和 kurtosis_ppl 的排名互换，family-level 结论不受影响\n\n**结论**：将此从 Critical 降级为 Major 更合理。建议作者删除或弱化个体特征排名的因果叙事，强调 group-level 结论。\n\n---\n\n### [AGREE] R1-N5: 多重比较未校正\n\n同意。这与我的 M1 一致，但 R1 将其升级为 Major 是合理的。\n\n论文有 9 cells × 3 adjacent depth pairs = 27 次 AUC 测试，加上 feature ranking 的 permutation test、cross-condition transfer 的 accuracy 比较等，总量远超 50。脚注 5 的 \"exploratory\" 声明与正文中 \"signal persists in all 9 cells\"（Section 4.3）、\"depth 0 recall exceeds 97% in all 9 cells\"（Section 4.1）等措辞的 confirmatory 语气不匹配。\n\n不过，我认为这个问题的实际影响有限：论文的核心 pattern（d0 easily separable, d2-d3 most confusable, perplexity tail features dominate）在 9/9 cells 中一致出现，不太可能是多重比较 artifact。**建议作者对 27 次 depth-pair AUC 测试应用 Benjamini-Hochberg FDR correction 并报告 corrected results**——这很可能不会改变结论，但会消除方法论上的质疑。\n\n---\n\n## Should-Fix 问题\n\n### [AGREE] R1-W1: EDD 阈值 T=0.70 理论依据\n\n同意。这与我的 W1 一致。Hosmer & Lemeshow (2000) 的 0.70 标准源自 binary logistic regression 的 model fit 评估，移植到 ordinal pairwise AUC 缺乏理论桥梁。不过正如 R1 所说，sensitivity analysis（τ ∈ {0.65, 0.70, 0.80}）部分缓解了对单一阈值的依赖。\n\n---\n\n### [AGREE] R1-W2: Generation Protocol 过于统一\n\n同意。这与我的 W4 一致。LoRA r=16, α=32, 3 epochs 是一组特定超参。真实 recursive contamination 中，不同代的训练方法可能完全不同（有的用 full fine-tuning，有的用 RLHF，有的用 distillation）。BOS seeding 的潜在 artifact 也是一个合理的担忧。\n\n补充：论文在 Appendix B.26 测试了 instruction-tuned model（Qwen2.5-1.5B-Instruct），但仅用一个模型、一个配置，不足以解决 protocol 统一性的根本问题。\n\n---\n\n### [REBUT with partial AGREE] R1-W3: Cross-Strategy Transfer 效果较弱\n\n**同意的部分**：\n- Leave-one-out 4-class accuracy 45.95%（1.84× chance）确实偏低\n- R1 指出 \"策略识别误差传播\" 是合理的——two-stage pipeline 的第一阶段（策略识别）如果犯错，第二阶段的 depth estimation 必然出错\n\n**反驳的部分**：\n论文并未 claim cross-strategy transfer 是 solved problem。Section 5.3（或准确说是 Section 5.2 的 cross-strategy 部分和 Section 8 的 Discussion）明确承认这是 limitation：\"Our depth estimation claims hold within-strategy when decoding configuration is known\"（Section 8/Discussion 或 similar）。此外，two-stage pipeline 将 accuracy 从 45.95% 提升到 59.1%（+13.15pp），这本身是一个 non-trivial engineering contribution——论文没有将 cross-strategy 作为主要贡献点。\n\nR1 要求讨论 \"策略识别误差传播\" 是合理的建议，但将此列为 Should-Fix（而非 Must-Fix）是恰当的。\n\n---\n\n### [REBUT] R1-W4: Ordinal Classification 使用 Non-Ordinal Classifier\n\n不同意。\n\n**证据**：Appendix B.25（Table 25）对比了 RF 与三种 ordinal/learned methods：\n- XGBoost: mean accuracy comparable to RF\n- Ordinal MLP (Frank & Hall, 2001): mean accuracy comparable to RF\n- Prototypical: mean accuracy comparable to RF\n\n所有三种 learned/ordinal methods 均未显著优于 RF。这说明 **ordinal structure 在该任务中未提供额外增益**——depth signal 的主要来源是 feature representation，而非分类器的 ordinal inductive bias。\n\n关于 \"4-class RF (200 trees) vs binary RF (500 trees) 评价体系不一致\"：这是两个不同任务——4-class 衡量整体分类性能，binary 衡量 pairwise discriminability（用于计算 EDD）。使用不同 RF 配置是合理的工程决策，因为 pairwise binary 任务更简单、样本更少，需要更多 trees 以稳定估计。论文在 Section 3.5 解释了 EDD 的 binary RF 使用 500 trees + 5-fold stratified CV。\n\n---\n\n## 对 R1 Questions 的补充意见\n\n**Q1**（独立 reference model 影响）：我也提出了类似问题（我的 Q2）。这是关键实验——如果匹配规模的 reference model（如用 OLMo-1B 做 OLMo 的 reference、GPT-2 XL 做 GPT-2 XL 的 reference）能保持 accuracy，则说明 depth signal 是 intrinsic 的；否则支持 R1 的 \"reference-generator compatibility\" 假说。\n\n**Q4**（Qwen-7B U 型 AUC）：我同意这是一个需要解释的异常。论文将其归因于 cross-reference setup，但如果所有 7B+ 实验都受 cross-reference confound 影响，则整个 scale analysis 的结论都悬空。\n\n**Q5**（仅用 7 个 model-free 特征）：这是一个很好的问题。Table 1 中 lexical (4) + repetition (3) = 7 个特征不依赖 reference model。如果这 7 个特征能达到 reasonable accuracy（如 >50%），则部分回应了 R1-N1 的 reference model confound 问题。不过论文的 feature group ablation（Section 4.2）显示 lexical + repetition 仅贡献 2.5× chance improvement，远低于 perplexity family，暗示 model-free 特征单独不够用。\n\n**Q6**（FDR 校正后显著性）：R1 问的是 27 次 depth-pair AUC 测试。按 Benjamini-Hochberg，如果原始 p < 0.001 的测试占多数（论文报告 d0-vs-d1 AUC > 0.98 in all cells），FDR correction 后应该大部分保持显著。但 d2-vs-d3 的 borderline cases（特别是 GPT-2 XL top-k, EDD < 3）可能在 correction 后失去显著性。这不会颠覆核心结论，但会影响 \"8/9 cells\" 的措辞。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n已提交对 Reviewer 2 全部 8 条意见（5 Must-Fix + 3 Should-Fix）+ Missing References 的逐条回应：\n\n- **N1-N3 全部 AGREE**：9-cell claim 无统计检验、scale generalization 数据稀疏且 14B EDD 悖论加深了 reference model confound 的严重性、full-replacement 鸿沟与 R1 自己的 N2 一致\n- **W1 REBUT**：EDD 的 contiguous prefix 约束和与 model collapse 理论的对接使其不仅仅是 \"阈值+max\"；但同意 T=0.70 移植缺乏理论依据\n- **W2-W4 全部 AGREE**：PLM baseline 仅 frozen CLS + linear probing 过弱、seed corpus 单一性有效（但修正了 R2 的 14pp 数字——实际 cross-domain 仅降 4pp）、LoRA 低秩约束可能人为压缩 depth signal\n- **Missing References AGREE**：stylometric analysis、ordinal ensemble、self-play 文献均为合理补充\n\n---\n\n[Reviewer 2 审稿结果]:\n已提交对 Reviewer 1 全部意见的逐条交叉回应。\n\n总结：\n- **N1 (Reference Model Confound)**: 部分同意——14B scale 问题确实严重，但主 benchmark 6/9 cells 本身就是 cross-reference 且表现良好，R1 的 \"贯穿全部实验\" 措辞过强\n- **N2 (Full-Replacement Gap)**: 完全同意，与我的 N3 一致\n- **N3 (14B Signal)**: 完全同意，与我的 N2 一致\n- **N4 (Multicollinearity)**: 部分反驳——论文有 group-level ablation + CPI + 四方法交叉验证作为缓解，建议降级为 Major\n- **N5 (Multiple Comparisons)**: 同意，建议 FDR correction\n- **W1–W2**: 同意\n- **W3 (Cross-Strategy)**: 部分反驳——论文未将此作为主要贡献\n- **W4 (Non-Ordinal Classifier)**: 反驳——Appendix B.25 已对比 ordinal methods，无显著增益"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001855"
+        },
+        {
+          "source_line": 1856,
+          "timestamp": "2026-05-25T21:30:31.024187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__submit_review_report_to_research_director",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001856"
+        },
+        {
+          "source_line": 1857,
+          "timestamp": "2026-05-25T21:30:31.075178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001857"
+        },
+        {
+          "source_line": 1858,
+          "timestamp": "2026-05-25T21:30:35.195933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001858"
+        },
+        {
+          "source_line": 1859,
+          "timestamp": "2026-05-25T21:30:35.648437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 452
+          },
+          "id": "event-001859"
+        },
+        {
+          "source_line": 1860,
+          "timestamp": "2026-05-25T21:30:35.649038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001860"
+        },
+        {
+          "source_line": 1861,
+          "timestamp": "2026-05-25T21:30:36.202110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-25T21:15:51.623812+00:00\\\", \\\"completed_at\\\": \\\"2026-05-25T21:19:19.997011+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 1-2\\\", \\\"message\\\": \\\"连续 2 页纯文本无任何 display item。首个视觉锚点（Figure 1）延迟到 page 3。审稿人前 2 分钟内只看到文字，缺少视觉锚定。建议：若版面允许，可考虑将 Figure 1 提前至 page 2 底部\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Figure 2（特征重要性热力图）单元格内数字字号偏小（约 6pt），9×7 网格密集。在屏幕阅读或打印时可能需要放大才能辨认具体数值。建议：增大字号或简化为 top-5 特征子集\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Table 2 列数较多（9 个 model-strategy cells），单栏内紧凑但未溢出。精度统一（小数点后一位百分比），最优值加粗，格式规范\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 3 三面板折线图，线条颜色可区分（蓝/橙/绿），但图例字号偏小。建议确认灰度打印时线型（solid/dashed/dotted）也能区分\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Figure 4 AUC 衰减曲线含 bootstrap 置信带，清晰可读。Table 4 与 Figure 4 同页，布局紧凑但无溢出\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 简短（约 6 行），覆盖 3 个关键点（规模限制、real-world 混合比例未知、分类器 vs 特征空间），符合 EMNLP 要求\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"Figure 5 混淆矩阵（3×1 排列）整体偏小，单个矩阵约 3cm 宽。单元格数字可读但较紧凑\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 13\\\", \\\"message\\\": \\\"该页密度极高：Table 9 + Figure 6 + Table 10 + Table 11 + B.10 零样本提示模板文本，附录页面紧凑但不影响主文审稿体验\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 26\\\", \\\"message\\\": \\\"最后一页内容仅占约 35-40%，剩余为空白。该页为 AI Assistance 声明和计算资源尾部，非主文内容，不影响审稿印象\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"所有表格均使用 booktabs 风格（toprule/midrule/bottomrule），无竖线，最优结果加粗，格式专业统一\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"未发现 LaTeX 渲染错误、margin 溢出、[?] 未解析引用、section heading 孤悬页底等排版问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"参考文献格式统一（pp.9-10），编号连续，无异常截断\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 1, \\\"info\\\": 11}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 553
+          },
+          "id": "event-001861"
+        },
+        {
+          "source_line": 1862,
+          "timestamp": "2026-05-25T21:30:36.202497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001862"
+        },
+        {
+          "source_line": 1863,
+          "timestamp": "2026-05-25T21:30:36.253286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001863"
+        },
+        {
+          "source_line": 1864,
+          "timestamp": "2026-05-25T21:30:42.888135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/review_issues.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001864"
+        },
+        {
+          "source_line": 1865,
+          "timestamp": "2026-05-25T21:30:42.939772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-001865"
+        },
+        {
+          "source_line": 1866,
+          "timestamp": "2026-05-25T21:30:44.900517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-001866"
+        },
+        {
+          "source_line": 1867,
+          "timestamp": "2026-05-25T21:30:44.901580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tissues:\n2\t# ============================================================\n3\t# ROUND 19 — CRITICAL (Must-Fix)\n4\t# ============================================================\n5\t\n6\t- id: R19-C1\n7\t  summary: 泛化性 claim 与证据系统性失配——跨策略 45.9%、14B EDD=0 与 fingerprints 通用性暗示矛盾\n8\t  category: framing\n9\t  severity: critical\n10\t  status: in_progress\n11\t  first_raised_round: 17\n12\t  last_seen_round: 19\n13\t  mentions:\n14\t  - {round: 17, reviewers: [1, 2], note: 'R17-N3: 跨策略 d1-d3 仅 45.9%'}\n15\t  - {round: 18, reviewers: [1, 2], note: 'R18 继续追踪，Abstract 已加 within-strategy scope 声明'}\n16\t  - {round: 19, reviewers: [1, 2], note: 'R1 AGREE R2-N2。两人共识：Abstract consistent in direction 将方向一致性包装为正面结论，但 45.9% 分类器不可用。标题 Statistical Fingerprints 暗示可迁移性与实证矛盾。Two-stage 恢复到 70.5% 但仍远低于 within-cell。R1 纠正 R2 引用的 46.7% 数字（实为 cross-tau 而非 cross-model）。'}\n17\t  action_items:\n18\t  - {round: 19, action: 'Abstract/Introduction 明确限定 claim scope 为 within known model-strategy configurations', assigned_to: research_director, status: in_progress}\n19\t  resolution: 'Intro Contribution 4 加 \"Within the tested 1--1.5B regime\" scope 限定'\n20\t  resolution_round: null\n21\t\n22\t- id: R19-C2\n23\t  summary: 14B 规模衰减 EDD_70=0 对论文立论的根本威胁——Discussion 传达不足\n24\t  category: experiment\n25\t  severity: critical\n26\t  status: in_progress\n27\t  first_raised_round: 17\n28\t  last_seen_round: 19\n29\t  mentions:\n30\t  - {round: 17, reviewers: [1, 2], note: 'R17-N2: 14B EDD=0 被 self-reference confound 污染'}\n31\t  - {round: 18, reviewers: [1, 2], note: 'R18 继续追踪'}\n32\t  - {round: 19, reviewers: [1, 2], note: 'R2-N3 Critical, R1 AGREE with precision: EDD_70=0 不等于无信号 (self-ref 50.8%=2x chance)，但序数结构已坍塌。R2 REBUT R1-W4 (14B confound)：self-ref 数据已足够分离 scale vs ref-model (50.8% vs 44.1% = ~7pp gap 远小于 30+pp 与 1.4B 的差距)。共识：1.4B 成功是 proof-of-concept，contribution list 需显式声明规模限制。'}\n33\t  action_items:\n34\t  - {round: 19, action: 'Contribution list 增加规模限制声明；Discussion 分析信号消失机制', assigned_to: research_director, status: in_progress}\n35\t  resolution: 'Discussion \"sca\n…[truncated 22995 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-001867"
+        },
+        {
+          "source_line": 1868,
+          "timestamp": "2026-05-25T21:39:26.050371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "issues_yaml": "issues:\n# ============================================================\n# ROUND 20 — CRITICAL (Must-Fix)\n# ============================================================\n\n- id: R20-C1\n  summary: \"解码策略贡献至少与模型架构相当\" claim 基于 9-cell 均值比较无统计检验\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - {round: 20, reviewers: [1, 2], note: 'R2-N1 提出, R1 完全 AGREE。§4.1 strategy gap 9.3pp vs model gap 7.2pp 差异 2.1pp 在 9 cells 上无统计效力。Introduction 列为三大发现之一但无 permutation/bootstrap test。'}\n  action_items:\n  - {round: 20, action: '提供统计检验或将 claim 从 \"at least as much\" 降级为 \"both contribute meaningfully\"', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R19-C1\n  summary: 泛化性 claim 与证据系统性失配——跨策略 45.9%、14B EDD=0 与 fingerprints 通用性暗示矛盾\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-N3: 跨策略 d1-d3 仅 45.9%'}\n  - {round: 18, reviewers: [1, 2], note: 'R18 继续追踪，Abstract 已加 within-strategy scope 声明'}\n  - {round: 19, reviewers: [1, 2], note: 'R1 AGREE R2-N2。标题 Statistical Fingerprints 暗示可迁移性与实证矛盾。Two-stage 恢复到 70.5% 但仍远低于 within-cell。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1-W3 + R2 部分 REBUT（论文未 claim cross-strategy solved）。共识：Should-Fix 级别，framing 需匹配证据。标题 fingerprints 暗示仍成问题。'}\n  action_items:\n  - {round: 19, action: 'Abstract/Introduction 明确限定 claim scope 为 within known model-strategy configurations', assigned_to: research_director, status: in_progress}\n  resolution: 'Intro Contribution 4 加 \"Within the tested 1--1.5B regime\" scope 限定'\n  resolution_round: null\n\n- id: R19-C2\n  summary: 14B 规模衰减 EDD_70=0 对论文立论的根本威胁——Discussion 传达不足\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-N2: 14B EDD=0 被 self-reference confound 污染'}\n  - {round: 18, reviewers: [1, 2], note: 'R18 继续追踪'}\n  - {round: 19, reviewers: [1, 2], note: 'R2-N3 Critical, R1 AGREE: EDD_70=0 不等于无信号但序数结构已坍塌。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1-N3 + R2-N3 完全 AGREE。补充：Qwen2.5-7B U 型 AUC 与 model collapse theory 矛盾，论文归因 cross-reference 等于承认 7B+ 结论全部受污染。Abstract \"signal attenuates with scale\" 最多为 preliminary observation。'}\n  action_items:\n  - {round: 19, action: 'Contribution list 增加规模限制声明；Discussion 分析信号消失机制', assigned_to: research_director, status: in_progress}\n  - {round: 20, action: 'Abstract 中 scale attenuation 降级为 preliminary observation 或删除', assigned_to: research_director, status: open}\n  resolution: 'Discussion \"scale attenuation\" → \"accuracy attenuation at 14B\"'\n  resolution_round: null\n\n- id: R19-C3\n  summary: 参考模型依赖限制部署可行性——12/19 特征绑定 Pythia-1.4B，正文讨论不足\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 18, reviewers: [1, 2], note: 'R18-W5: 参考模型依赖性未充分讨论为部署限制'}\n  - {round: 19, reviewers: [1, 2], note: 'R1-N1 Critical, R2-W3 后 AGREE。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1 restate confound 贯穿全部实验。R2 部分 REBUT：主 benchmark 6/9 cells 为 cross-reference 且表现良好（62.4-85.9%），depth signal 有 intrinsic component。14B confound 不可忽视。Director 判定：14B critical, 1-1.5B mitigated but 正文讨论仍不足。'}\n  action_items:\n  - {round: 19, action: '正文增加参考模型依赖的系统讨论', assigned_to: research_director, status: in_progress}\n  resolution: 'Discussion Deployment 段加参考模型依赖句 + ref_ablation 引用'\n  resolution_round: null\n\n- id: R19-W2\n  summary: Full-replacement benchmark 与真实 accumulation 场景有根本性 gap\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-N1: accumulation 场景无系统实验'}\n  - {round: 18, reviewers: [1, 2], note: '3-cell mix25 accumulation EDD 完成'}\n  - {round: 19, reviewers: [1, 2], note: 'R1-N3 Critical 后 R2 认为 Should-Fix。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1 补充：50% mixing 下 GPT-2 XL 失败（AUC=0.695），3 tested cells 33% failure rate。5-10% 比例未测试。R2 完全 AGREE。Director 升级为 Critical——Introduction 动机与实验交付之间鸿沟过大。'}\n  action_items:\n  - {round: 19, action: 'Discussion 明确承认当前基准是 idealized conditions 下的 proof-of-concept', assigned_to: research_director, status: in_progress}\n  - {round: 20, action: 'Limitations 将 full-replacement caveat 提升显著性，或 Discussion 单独讨论', assigned_to: research_director, status: open}\n  resolution: 'Discussion Accumulation 段已改写但仍需加强'\n  resolution_round: null\n\n# ============================================================\n# ROUND 20 — WARNING (Should-Fix)\n# ============================================================\n\n- id: R20-W1\n  summary: Seed corpus 仅 Wikipedia——far-domain 泛化未验证\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - {round: 20, reviewers: [1, 2], note: 'R2-W3 提出, R1 AGREE 但修正 R2 数字（cross-domain 降 ~4pp 非 14pp，R2 混淆了 cross-domain 和 cross-model）。arXiv 仍属学术文体，需测试对话/创意写作等 far-domain。'}\n  action_items:\n  - {round: 20, action: 'Discussion 讨论 domain 限制，至少承认 far-domain 未验证', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R20-W2\n  summary: LoRA r=16 统一配置——低秩约束可能人为压缩 depth signal，无 rank ablation\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - {round: 20, reviewers: [1, 2], note: 'R2-W4 提出, R1 AGREE。所有深度使用 identical LoRA config (r=16, α=32, 3 epochs)。低秩约束系统性压缩分布偏移幅度，EDD 值可能 LoRA-specific。未测试 r=4/r=64。'}\n  action_items:\n  - {round: 20, action: 'Discussion 或 Limitations 讨论 LoRA rank 对 depth signal 的潜在影响', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R20-W3\n  summary: PLM baseline 仅 frozen CLS + linear probing，信息输入不对等导致比较不公平\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - {round: 20, reviewers: [1, 2], note: 'R2-W2 提出, R1 AGREE。RF 用 12 个 reference-model token-level perplexity 特征，PLM 仅看原文 CLS。frozen CLS 是最弱 PLM adaptation。§6 \"PLMs lag RF by 14-33pp\" claim 可信度依赖 baseline 强度。'}\n  action_items:\n  - {round: 20, action: '§6 PLM 比较加条件限定 \"under frozen CLS + linear probing\"', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N4\n  summary: VIF>10 严重共线性下个体特征排名不可靠\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未作为独立 issue 提出。Section 4.2 已有 caveat + CPI 分析。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1-N4 升级为 Critical，R2 REBUT 降为 Major（group-level ablation + CPI + 4方法收敛是有效缓解）。Director 采纳 R2 论据，判定 Warning。个体排名叙事需弱化，group-level 结论成立。'}\n  action_items:\n  - {round: 20, action: '§4.2 弱化个体特征排名因果叙事，改为 group-level 叙述', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R19-C4\n  summary: 多重比较未校正但做实质性判断——需统一 FDR correction\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-W2: 多重比较未校正'}\n  - {round: 18, reviewers: [1, 2], note: 'R18 atlas.tex EDD bootstrap 已加 Bonferroni'}\n  - {round: 19, reviewers: [1, 2], note: 'R1-N2 Critical, R2 部分 AGREE。Director 降为 Warning。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1-N5 + R2 AGREE。27+ AUC tests 需 BH FDR correction。脚注 5 exploratory 与正文 confirmatory 语气不匹配。核心结论大概率不受影响但 d2-d3 borderline cases 可能需调整。'}\n  action_items:\n  - {round: 19, action: 'Binoculars 措辞改为 \"not statistically distinguishable\"', assigned_to: research_director, status: in_progress}\n  - {round: 20, action: '对 27 次 depth-pair AUC 测试应用 BH FDR correction 并报告校正后结果', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W4\n  summary: BOS seeding artifact——与 prompted generation 差 13.8pp\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 20\n  mentions:\n  - {round: 16, reviewers: [1, 2], note: 'R16-W7: BOS-seeded generation 限制生态效度'}\n  - {round: 17, reviewers: [1, 2], note: 'R17 写作修复已加强 BOS caveat'}\n  - {round: 19, reviewers: [1, 2], note: 'R1-W5 Warning, R2 AGREE。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1-W2 + R2 AGREE。13.8pp gap 暗示 depth signal 部分源于 BOS seeding 特异性。真实递归污染方法异质（full FT, RLHF, distillation）。'}\n  action_items:\n  - {round: 19, action: 'Limitations 已加 BOS-seeded generation 13.8pp 差异句', assigned_to: research_director, status: in_progress}\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W3\n  summary: Neural baseline 比较信息不对等——RF 有 reference model oracle，PLM 仅看原文\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-W3: Neural baselines 仅测试 <=125M backbone'}\n  - {round: 19, reviewers: [1, 2], note: 'R1-W1 Warning, R2 AGREE。'}\n  - {round: 20, reviewers: [1, 2], note: '继续在 R20-W3 下以 PLM baseline 信息不对等角度追踪。'}\n  action_items:\n  - {round: 19, action: 'Discussion 或 Limitations 明确标注信息不对等', assigned_to: research_director, status: in_progress}\n  resolution: '§5.1 已加 \"RF features access reference-model log-probabilities unavailable to end-to-end PLM baselines\"'\n  resolution_round: null\n\n- id: R19-M2\n  summary: 标题 Statistical Fingerprints 术语选择——弱迁移结果下 fingerprint 有 framing risk\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R2-M2, R1 轻微 REBUT（forensics 文献常用）。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1 cross-response 重申标题暗示的可迁移性与 45.95% 跨策略结果矛盾。升级为 Warning。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W5\n  summary: 序数分类框架与实际方法脱节——强调 ordinal 但主管线不利用序数结构\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R2-W2 Warning, R1 AGREE。'}\n  - {round: 20, reviewers: [1, 2], note: 'R2 REBUT R1-W4（Appendix B.25 对比 ordinal methods 无显著增益）。Director 采纳 R2 rebuttal——ordinal structure 在此任务中未提供额外增益是有效发现。保留为 info 级别建议：正文简述原因。'}\n  action_items:\n  - {round: 19, action: '正文简要讨论序数分类方法在此任务中边际改善的原因', assigned_to: research_director, status: in_progress}\n  resolution: 'Discussion 已整合 CORAL +0.3pp 句'\n  resolution_round: null\n\n- id: R19-W6\n  summary: 单 LoRA seed 主实验，2-seed replication 不足以估计方差分布\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-W1'}\n  - {round: 19, reviewers: [1, 2], note: 'R1-W6 Warning, R2 AGREE 程度较轻。'}\n  - {round: 20, reviewers: [], note: 'R20 未独立提出，但 LoRA rank 问题（R20-W2）间接关联。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W1\n  summary: 方法论创新不足——标准特征+标准分类器，未分析统计特征优于PLM的原因\n  category: method\n  severity: warning\n  status: wont_fix\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 17, reviewers: [1, 2], note: 'R17-N5'}\n  - {round: 18, reviewers: [1, 2], note: 'R18 继续追踪'}\n  - {round: 19, reviewers: [1, 2], note: 'R2-W1 Warning, R1 部分 REBUT (EMNLP accepts empirical)。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1 cross-response 对 R2-W1 REBUT：EDD contiguous prefix 和 model collapse 对接是贡献。R2 未强力反驳。Director：EDD 设计有价值，novelty 问题降级。'}\n  action_items:\n  - {round: 19, action: 'Discussion 增加一段分析原因', assigned_to: research_director, status: wont_fix}\n  resolution: '页面空间不足。EDD 设计本身有贡献。'\n  resolution_round: 19\n\n# ============================================================\n# ROUND 20 — MINOR (Info)\n# ============================================================\n\n- id: R19-M1\n  summary: Abstract 信息密度过高，14B 结果的 cross-ref vs self-ref 条件混用可能误导\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'Abstract 中 cross-reference EDD_70=2 与 self-reference EDD_70=0 混用需澄清条件。'}\n  - {round: 20, reviewers: [1, 2], note: '继续追踪。scale attenuation claim 降级同时需清理 Abstract 14B 叙事。'}\n  action_items:\n  - {round: 19, action: 'Abstract 14B 结果拆分为独立句子，明确标注 cross-reference 条件', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M3\n  summary: Figure 2/3 字号偏小，打印可读性受限\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R2-M3, R1 AGREE。'}\n  - {round: 20, reviewers: [], note: '视觉审查确认 Figure 2 heatmap cell 约 6pt，Figure 3 图例字号偏小。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M4\n  summary: Section 3.5 标题过大——Theoretical Motivation 实为经验观察\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [2], note: 'R2-M5: Empirical Motivation 可能更准确。'}\n  - {round: 20, reviewers: [2], note: 'R20 再次提出，R1 未反驳。建议改为 Empirical Motivation。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M5\n  summary: EDD 阈值 T=0.70 从 binary ROC 迁移到 ordinal pairwise AUC 缺理论论证\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R1-W2, R2 AGREE。EDD 是操作性指标，多阈值 sensitivity 已报告。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1-W1 + R2 AGREE。sensitivity analysis 部分缓解。建议正文明确为 operational choice。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M6\n  summary: Appendix B.20 Qwen2.5-7B Self-Reference 有 PLACEHOLDER 未填充\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [], note: 'Director 发现 B.20 有 PLACEHOLDER 注释未填充。'}\n  - {round: 20, reviewers: [], note: '未重新检查，继续追踪。'}\n  action_items:\n  - {round: 19, action: 'B.20 PLACEHOLDER 必须在提交前补全或删除', assigned_to: research_director, status: open}\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M7\n  summary: Missing references——stylometric analysis, ordinal classification, self-play\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: '推荐 Lakens (2017), Gutierrez (2016)。'}\n  - {round: 20, reviewers: [1, 2], note: 'R1+R2 共同推荐三个方向：(1) Stamatatos (2009) stylometric/authorship attribution survey; (2) Frank & Hall (2001) ordinal decomposition; (3) Chen et al. (2024) Self-Play + Yuan et al. (2024) Self-Rewarding。均 AGREE。'}\n  action_items: []\n  resolution: 'Lakens 2017 已加入 bib'\n  resolution_round: null\n\n# ============================================================\n# HISTORICAL ISSUES (carried forward, unchanged)\n# ============================================================\n\n- id: R17-N1\n  summary: Full-replacement 假设从根本上限制实用价值\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-W2 下追踪'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-W2 下追踪，升级为 critical'}\n  action_items:\n  - {round: 18, action: '3-cell mix25 accumulation EDD 计算完成', assigned_to: research_director, status: done}\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N2\n  summary: 14B EDD=0 被 self-reference confound 污染\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 R2 REBUT R1-W4。继续在 R19-C2 下追踪。'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-C2 下追踪'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N3\n  summary: 跨策略迁移 d1-d3 仅 45.9%\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-C1 下追踪'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-C1 下追踪'}\n  action_items:\n  - {round: 17, action: 'Abstract 已加 within-strategy scope 声明', assigned_to: research_director, status: done}\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N5\n  summary: 方法层面 novelty 不足\n  category: method\n  severity: critical\n  status: wont_fix\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-W1 下追踪，severity 降为 warning'}\n  action_items: []\n  resolution: '页面空间不足。R1 认为 EMNLP 接受 empirical contribution。'\n  resolution_round: 19\n\n- id: R17-W1\n  summary: LoRA seed 仅 2 个，统计功效不足\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-W6 下追踪'}\n  - {round: 20, reviewers: [], note: 'R20 继续在 R19-W6 下追踪'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W2\n  summary: 多重比较未校正但结论超出 exploratory 范畴\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-C4 下追踪'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-C4 下追踪'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W3\n  summary: Neural end-to-end baselines 仅测试 <=125M backbone\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-W3 下追踪'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-W3 和 R20-W3 下追踪'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W5\n  summary: Binoculars 达到统计等价性能（78.1% vs 78.4%），削弱独特价值\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未作为独立 issue 提出'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R18-W5\n  summary: 参考模型依赖性未充分讨论为部署限制\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-C3 下追踪'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-C3 下追踪'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W8\n  summary: Downstream curation PoC 不显著但 Introduction 暗示实际应用\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未作为独立 issue 提出'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-M5\n  summary: 术语不一致 (estimation vs classification)\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未作为独立 issue 提出'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R18-M1\n  summary: d0 样本是否跨 cell 共享未显式声明\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未提及。Section 3.2 已加声明。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-M2\n  summary: CI 报告不一致\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未提及'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-M4\n  summary: Missing references\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: '推荐 Lakens (2017) TOST, Gutierrez (2016)。'}\n  - {round: 20, reviewers: [1, 2], note: '新增 Stamatatos (2009), Frank & Hall (2001), Chen et al. (2024) Self-Play, Yuan et al. (2024) Self-Rewarding。'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n# Historical resolved/wont_fix (unchanged)\n- id: R16-N1\n  summary: 14B 结果削弱核心叙事\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: 'Abstract 加 scope 限定; Section 6 新增 scale dependence'\n  resolution_round: 16\n\n- id: R16-N2\n  summary: 方法贡献不足\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: 'Section 1 贡献重组'\n  resolution_round: 16\n\n- id: R16-N3\n  summary: Cross-strategy transfer d1-d3 仅 45.9%\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: 'Section 5.3 reframed'\n  resolution_round: 16\n\n- id: R16-W1\n  summary: Full-replacement vs accumulation 脱节\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: 'Section 6 新增段落'\n  resolution_round: 16\n\n- id: R16-W2\n  summary: Self-reference confound (Pythia dagger)\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 12\n  last_seen_round: 16\n  resolution: 'Reviewer 确认 dagger + ref-model ablation 67-79% 已充分'\n  resolution_round: 16\n\n- id: R16-W3\n  summary: 多重共线性对 feature importance 的影响\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 18\n  resolution: 'Section 4.2 group-level ablation'\n  resolution_round: 17\n\n- id: R16-W4\n  summary: Abstract 信息过载\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: 'Abstract 精简'\n  resolution_round: 16\n\n- id: R16-W5\n  summary: d0 膨胀 headline metrics\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 16\n  resolution: 'd1-d3 balanced accuracy 领头'\n  resolution_round: 16\n\n- id: R16-W6\n  summary: EDD T=0.70 justification\n  category: method\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: 'Sensitivity analysis 已覆盖'\n  resolution_round: 16\n\n- id: R16-W7\n  summary: BOS-seeded generation 限制生态效度\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 19\n  resolution: 'Section 3.2 BOS caveat 加强。R19 re-raised as R19-W4'\n  resolution_round: 17\n\n- id: R16-W8\n  summary: Wild-data FPR 过高\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 18\n  resolution: 'Thresholding 方案已覆盖'\n  resolution_round: 16\n\n- id: R16-W9\n  summary: Discussion 过于压缩\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: 'Section 6 扩展'\n  resolution_round: 17\n\n- id: R16-W10\n  summary: 缺具体使用场景\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 16\n  resolution: 'Section 6 含 curation scenario'\n  resolution_round: 16\n\n- id: R16-M1\n  summary: Figure 3 混淆矩阵数字极小\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 17\n  resolution: 'Acceptable for review'\n  resolution_round: 16\n\n- id: R16-M2\n  summary: 前 3 页无视觉锚点\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 19\n  resolution: 'Pipeline 太简单不需要图'\n  resolution_round: 16\n\n- id: R16-M3\n  summary: 页数合规性验证\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 19\n  resolution: '主文 8 页'\n  resolution_round: 16\n\n- id: R16-M4\n  summary: Display items 分布不均\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 18\n  resolution: 'Structural constraint'\n  resolution_round: 16\n\n- id: R16-M5\n  summary: 术语不一致\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 18\n  resolution: ''\n  resolution_round: null\n\n- id: R16-M6\n  summary: 遗漏引用 Strobl/Hooker\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 16\n  resolution: '已加入'\n  resolution_round: 16\n\n- id: R16-M7\n  summary: DeBERTa/RoBERTa 失败原因分析不足\n  category: experiment\n  severity: info\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 16\n  resolution: 'Classifier convergence evidence sufficient'\n  resolution_round: 16\n\n- id: R18-M3\n  summary: Section 3.5 标题过大\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 18\n  resolution: '已改为 Theoretical Motivation'\n  resolution_round: 18\n\n- id: R18-M6\n  summary: 生成长度固定 512 tokens\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未提及'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R18-M7\n  summary: RF 无超参搜索\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n  - {round: 19, reviewers: [], note: 'R19 未提及'}\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R15-W5\n  summary: LoRA 超参无 ablation\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 20\n  mentions:\n  - {round: 20, reviewers: [1, 2], note: 'R20-W2 重新从 LoRA rank 角度提出——低秩约束可能压缩 depth signal。'}\n  resolution: '项目收尾不再跑新实验'\n  resolution_round: 16\n\n- id: R15-W8\n  summary: 多重比较未做校正\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 15\n  last_seen_round: 20\n  mentions:\n  - {round: 19, reviewers: [1, 2], note: 'R19 继续在 R19-C4 下追踪'}\n  - {round: 20, reviewers: [1, 2], note: 'R20 继续在 R19-C4 下追踪'}\n  resolution: ''\n  resolution_round: null\n\n- id: R15-MR1\n  summary: 遗漏 Markovian Generation Chains\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: 'Section 2 已引用'\n  resolution_round: 16\n\n- id: R14-C2\n  summary: 主文超出 8 页\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 18\n  resolution: '编译验证通过'\n  resolution_round: 16\n\n- id: R13-W3\n  summary: Cross-seed replication 仅 3/9 cells\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: '用户指示不再跑新实验'\n  resolution_round: 14\n"
+            }
+          },
+          "id": "event-001868"
+        },
+        {
+          "source_line": 1869,
+          "timestamp": "2026-05-25T21:39:26.053066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"issues_yaml is not valid YAML: while parsing a block mapping\\\\n  in \\\\\\\"<unicode string>\\\\\\\", line 6, column 3:\\\\n    - id: R20-C1\\\\n      ^\\\\nexpected <block end>, but found '<scalar>'\\\\n  in \\\\\\\"<unicode string>\\\\\\\", line 7, column 30:\\\\n      summary: \\\\\\\"解码策略贡献至少与模型架构相当\\\\\\\" claim 基于 9-cell 均值比较无统计检验\\\\n                                 ^\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 2
+          },
+          "id": "event-001869"
+        },
+        {
+          "source_line": 1870,
+          "timestamp": "2026-05-25T21:42:30.988569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "issues_yaml": "issues:\n# ============================================================\n# ROUND 20 — CRITICAL (Must-Fix)\n# ============================================================\n\n- id: R20-C1\n  summary: 解码策略贡献至少与模型架构相当 claim 基于 9-cell 均值比较无统计检验\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - round: 20\n    reviewers: [1, 2]\n    note: R2-N1 提出 R1 完全 AGREE。4.1 strategy gap 9.3pp vs model gap 7.2pp 差异 2.1pp 在 9 cells 上无统计效力。Introduction 列为三大发现之一但无 permutation/bootstrap test。\n  action_items:\n  - round: 20\n    action: 提供统计检验或将 claim 降级为 both contribute meaningfully\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R19-C1\n  summary: 泛化性 claim 与证据系统性失配——跨策略 45.9% 与 fingerprints 通用性暗示矛盾\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-N3 跨策略 d1-d3 仅 45.9%\n  - round: 18\n    reviewers: [1, 2]\n    note: R18 继续追踪 Abstract 已加 within-strategy scope 声明\n  - round: 19\n    reviewers: [1, 2]\n    note: R1 AGREE R2-N2。标题 Statistical Fingerprints 暗示可迁移性与实证矛盾。\n  - round: 20\n    reviewers: [1, 2]\n    note: R1-W3 加 R2 部分 REBUT（论文未 claim cross-strategy solved）。共识 Should-Fix 级别 framing 需匹配证据。\n  action_items:\n  - round: 19\n    action: Abstract/Introduction 明确限定 claim scope 为 within known model-strategy configurations\n    assigned_to: research_director\n    status: in_progress\n  resolution: Intro Contribution 4 加 within the tested 1-1.5B regime scope 限定\n  resolution_round: null\n\n- id: R19-C2\n  summary: 14B 规模衰减 EDD_70=0 对论文立论的根本威胁——Discussion 传达不足\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-N2 14B EDD=0 被 self-reference confound 污染\n  - round: 18\n    reviewers: [1, 2]\n    note: R18 继续追踪\n  - round: 19\n    reviewers: [1, 2]\n    note: R2-N3 Critical R1 AGREE EDD_70=0 不等于无信号但序数结构已坍塌\n  - round: 20\n    reviewers: [1, 2]\n    note: R1-N3 加 R2-N3 完全 AGREE。Qwen2.5-7B U 型 AUC 与 model collapse theory 矛盾。Abstract signal attenuates with scale 最多为 preliminary observation。\n  action_items:\n  - round: 19\n    action: Contribution list 增加规模限制声明\n    assigned_to: research_director\n    status: in_progress\n  - round: 20\n    action: Abstract 中 scale attenuation 降级为 preliminary observation 或删除\n    assigned_to: research_director\n    status: open\n  resolution: Discussion scale attenuation 改为 accuracy attenuation at 14B\n  resolution_round: null\n\n- id: R19-C3\n  summary: 参考模型依赖限制部署可行性——12/19 特征绑定 Pythia-1.4B 正文讨论不足\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 18\n    reviewers: [1, 2]\n    note: R18-W5 参考模型依赖性未充分讨论为部署限制\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-N1 Critical R2-W3 后 AGREE\n  - round: 20\n    reviewers: [1, 2]\n    note: R1 restate confound 贯穿全部实验。R2 部分 REBUT 主 benchmark 6/9 cells 为 cross-reference 且表现良好。Director 判定 14B critical 1-1.5B mitigated 但正文讨论仍不足。\n  action_items:\n  - round: 19\n    action: 正文增加参考模型依赖的系统讨论\n    assigned_to: research_director\n    status: in_progress\n  resolution: Discussion Deployment 段加参考模型依赖句\n  resolution_round: null\n\n- id: R19-W2\n  summary: Full-replacement benchmark 与真实 accumulation 场景有根本性 gap\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-N1 accumulation 场景无系统实验\n  - round: 18\n    reviewers: [1, 2]\n    note: 3-cell mix25 accumulation EDD 完成\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-N3 Critical 后 R2 认为 Should-Fix\n  - round: 20\n    reviewers: [1, 2]\n    note: R1 补充 50% mixing 下 GPT-2 XL 失败 AUC=0.695 33% failure rate。5-10% 未测试。R2 完全 AGREE。Director 升级为 Critical。\n  action_items:\n  - round: 19\n    action: Discussion 明确承认当前基准是 idealized conditions 下的 proof-of-concept\n    assigned_to: research_director\n    status: in_progress\n  - round: 20\n    action: Limitations 将 full-replacement caveat 提升显著性\n    assigned_to: research_director\n    status: open\n  resolution: Discussion Accumulation 段已改写但仍需加强\n  resolution_round: null\n\n# ============================================================\n# ROUND 20 — WARNING (Should-Fix)\n# ============================================================\n\n- id: R20-W1\n  summary: Seed corpus 仅 Wikipedia far-domain 泛化未验证\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - round: 20\n    reviewers: [1, 2]\n    note: R2-W3 提出 R1 AGREE 但修正数字 cross-domain 降约4pp非14pp。arXiv 仍属学术文体 需测试对话创意写作等 far-domain。\n  action_items:\n  - round: 20\n    action: Discussion 讨论 domain 限制 至少承认 far-domain 未验证\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R20-W2\n  summary: LoRA r=16 统一配置 低秩约束可能人为压缩 depth signal 无 rank ablation\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - round: 20\n    reviewers: [1, 2]\n    note: R2-W4 提出 R1 AGREE。所有深度使用 identical LoRA config r=16 alpha=32 3 epochs。低秩约束系统性压缩分布偏移幅度 EDD 值可能 LoRA-specific。\n  action_items:\n  - round: 20\n    action: Discussion 或 Limitations 讨论 LoRA rank 对 depth signal 的潜在影响\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R20-W3\n  summary: PLM baseline 仅 frozen CLS 加 linear probing 信息输入不对等导致比较不公平\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n  - round: 20\n    reviewers: [1, 2]\n    note: R2-W2 提出 R1 AGREE。RF 用 12 个 reference-model perplexity 特征 PLM 仅看原文 CLS。Section 6 PLMs lag RF by 14-33pp 可信度依赖 baseline 强度。\n  action_items:\n  - round: 20\n    action: Section 6 PLM 比较加条件限定 under frozen CLS plus linear probing\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N4\n  summary: VIF 大于 10 严重共线性下个体特征排名不可靠\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: []\n    note: R19 未作为独立 issue 提出 Section 4.2 已有 caveat 加 CPI 分析\n  - round: 20\n    reviewers: [1, 2]\n    note: R1-N4 升级为 Critical R2 REBUT 降为 Major（group-level ablation 加 CPI 加 4方法收敛是有效缓解）。Director 采纳 R2 论据判定 Warning。个体排名叙事需弱化 group-level 结论成立。\n  action_items:\n  - round: 20\n    action: Section 4.2 弱化个体特征排名因果叙事改为 group-level 叙述\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R19-C4\n  summary: 多重比较未校正但做实质性判断 需统一 FDR correction\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-W2 多重比较未校正\n  - round: 18\n    reviewers: [1, 2]\n    note: R18 atlas.tex EDD bootstrap 已加 Bonferroni\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-N2 Critical R2 部分 AGREE Director 降为 Warning\n  - round: 20\n    reviewers: [1, 2]\n    note: R1-N5 加 R2 AGREE。27+ AUC tests 需 BH FDR correction。脚注 5 exploratory 与正文 confirmatory 语气不匹配。\n  action_items:\n  - round: 19\n    action: Binoculars 措辞改为 not statistically distinguishable\n    assigned_to: research_director\n    status: in_progress\n  - round: 20\n    action: 对 27 次 depth-pair AUC 测试应用 BH FDR correction\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W4\n  summary: BOS seeding artifact 与 prompted generation 差 13.8pp\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 20\n  mentions:\n  - round: 16\n    reviewers: [1, 2]\n    note: R16-W7 BOS-seeded generation 限制生态效度\n  - round: 17\n    reviewers: [1, 2]\n    note: R17 写作修复已加强 BOS caveat\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-W5 Warning R2 AGREE\n  - round: 20\n    reviewers: [1, 2]\n    note: R1-W2 加 R2 AGREE。13.8pp gap 暗示 depth signal 部分源于 BOS seeding 特异性。\n  action_items:\n  - round: 19\n    action: Limitations 已加 BOS-seeded generation 13.8pp 差异句\n    assigned_to: research_director\n    status: in_progress\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W3\n  summary: Neural baseline 比较信息不对等 RF 有 reference model oracle PLM 仅看原文\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-W3 Neural baselines 仅测试小于等于125M backbone\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-W1 Warning R2 AGREE\n  - round: 20\n    reviewers: [1, 2]\n    note: 继续在 R20-W3 下以 PLM baseline 信息不对等角度追踪\n  action_items:\n  - round: 19\n    action: Discussion 或 Limitations 明确标注信息不对等\n    assigned_to: research_director\n    status: in_progress\n  resolution: Section 5.1 已加 RF features access reference-model log-probabilities 句\n  resolution_round: null\n\n- id: R19-M2\n  summary: 标题 Statistical Fingerprints 术语选择 弱迁移结果下 fingerprint 有 framing risk\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R2-M2 R1 轻微 REBUT forensics 文献常用\n  - round: 20\n    reviewers: [1, 2]\n    note: R1 cross-response 重申标题暗示的可迁移性与 45.95% 跨策略结果矛盾。升级为 Warning。\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W5\n  summary: 序数分类框架与实际方法脱节 强调 ordinal 但主管线不利用序数结构\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R2-W2 Warning R1 AGREE\n  - round: 20\n    reviewers: [1, 2]\n    note: R2 REBUT R1-W4 Appendix B.25 对比 ordinal methods 无显著增益。Director 采纳 R2 rebuttal 降级为 info。\n  action_items:\n  - round: 19\n    action: 正文简要讨论序数分类方法在此任务中边际改善的原因\n    assigned_to: research_director\n    status: in_progress\n  resolution: Discussion 已整合 CORAL +0.3pp 句\n  resolution_round: null\n\n- id: R19-W6\n  summary: 单 LoRA seed 主实验 2-seed replication 不足以估计方差分布\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-W1\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-W6 Warning R2 AGREE 程度较轻\n  - round: 20\n    reviewers: []\n    note: R20 未独立提出但 LoRA rank 问题 R20-W2 间接关联\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-W1\n  summary: 方法论创新不足 标准特征加标准分类器\n  category: method\n  severity: warning\n  status: wont_fix\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 17\n    reviewers: [1, 2]\n    note: R17-N5\n  - round: 18\n    reviewers: [1, 2]\n    note: R18 继续追踪\n  - round: 19\n    reviewers: [1, 2]\n    note: R2-W1 Warning R1 部分 REBUT EMNLP accepts empirical\n  - round: 20\n    reviewers: [1, 2]\n    note: R1 cross-response 对 R2-W1 REBUT EDD contiguous prefix 和 model collapse 对接是贡献。R2 未强力反驳。\n  action_items:\n  - round: 19\n    action: Discussion 增加一段分析原因\n    assigned_to: research_director\n    status: wont_fix\n  resolution: 页面空间不足。EDD 设计本身有贡献。\n  resolution_round: 19\n\n# ============================================================\n# ROUND 20 — MINOR (Info)\n# ============================================================\n\n- id: R19-M1\n  summary: Abstract 信息密度过高 14B 结果的 cross-ref vs self-ref 条件混用可能误导\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: Abstract 中 cross-reference EDD_70=2 与 self-reference EDD_70=0 混用需澄清条件\n  - round: 20\n    reviewers: [1, 2]\n    note: 继续追踪 scale attenuation claim 降级同时需清理 Abstract 14B 叙事\n  action_items:\n  - round: 19\n    action: Abstract 14B 结果拆分为独立句子明确标注 cross-reference 条件\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M3\n  summary: Figure 2/3 字号偏小 打印可读性受限\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R2-M3 R1 AGREE\n  - round: 20\n    reviewers: []\n    note: 视觉审查确认 Figure 2 heatmap cell 约 6pt Figure 3 图例字号偏小\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M4\n  summary: Section 3.5 标题过大 Theoretical Motivation 实为经验观察\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [2]\n    note: R2-M5 Empirical Motivation 可能更准确\n  - round: 20\n    reviewers: [2]\n    note: R20 再次提出 R1 未反驳。建议改为 Empirical Motivation。\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M5\n  summary: EDD 阈值 T=0.70 从 binary ROC 迁移到 ordinal pairwise AUC 缺理论论证\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R1-W2 R2 AGREE EDD 是操作性指标 多阈值 sensitivity 已报告\n  - round: 20\n    reviewers: [1, 2]\n    note: R1-W1 加 R2 AGREE。sensitivity analysis 部分缓解。建议正文明确为 operational choice。\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M6\n  summary: Appendix B.20 Qwen2.5-7B Self-Reference 有 PLACEHOLDER 未填充\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: []\n    note: Director 发现 B.20 有 PLACEHOLDER 注释未填充\n  - round: 20\n    reviewers: []\n    note: 未重新检查 继续追踪\n  action_items:\n  - round: 19\n    action: B.20 PLACEHOLDER 必须在提交前补全或删除\n    assigned_to: research_director\n    status: open\n  resolution: ''\n  resolution_round: null\n\n- id: R19-M7\n  summary: Missing references stylometric analysis ordinal classification self-play\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: 推荐 Lakens 2017 Gutierrez 2016\n  - round: 20\n    reviewers: [1, 2]\n    note: 新增 Stamatatos 2009 stylometric survey。Frank and Hall 2001 ordinal decomposition。Chen et al 2024 Self-Play。Yuan et al 2024 Self-Rewarding。均 AGREE。\n  action_items: []\n  resolution: Lakens 2017 已加入 bib\n  resolution_round: null\n\n# ============================================================\n# HISTORICAL ISSUES (carried forward)\n# ============================================================\n\n- id: R17-N1\n  summary: Full-replacement 假设从根本上限制实用价值\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-W2 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-W2 下追踪 升级为 critical\n  action_items:\n  - round: 18\n    action: 3-cell mix25 accumulation EDD 计算完成\n    assigned_to: research_director\n    status: done\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N2\n  summary: 14B EDD=0 被 self-reference confound 污染\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-C2 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-C2 下追踪\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N3\n  summary: 跨策略迁移 d1-d3 仅 45.9%\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-C1 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-C1 下追踪\n  action_items:\n  - round: 17\n    action: Abstract 已加 within-strategy scope 声明\n    assigned_to: research_director\n    status: done\n  resolution: ''\n  resolution_round: null\n\n- id: R17-N5\n  summary: 方法层面 novelty 不足\n  category: method\n  severity: critical\n  status: wont_fix\n  first_raised_round: 17\n  last_seen_round: 19\n  resolution: 页面空间不足。R1 认为 EMNLP 接受 empirical contribution。\n  resolution_round: 19\n\n- id: R17-W1\n  summary: LoRA seed 仅 2 个 统计功效不足\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-W6 下追踪\n  - round: 20\n    reviewers: []\n    note: R20 继续在 R19-W6 下追踪\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W2\n  summary: 多重比较未校正但结论超出 exploratory 范畴\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-C4 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-C4 下追踪\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W3\n  summary: Neural end-to-end baselines 仅测试小于等于125M backbone\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-W3 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-W3 和 R20-W3 下追踪\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W5\n  summary: Binoculars 达到统计等价性能 78.1% vs 78.4% 削弱独特价值\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - round: 19\n    reviewers: []\n    note: R19 未作为独立 issue 提出\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R18-W5\n  summary: 参考模型依赖性未充分讨论为部署限制\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-C3 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-C3 下追踪\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-W8\n  summary: Downstream curation PoC 不显著但 Introduction 暗示实际应用\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - round: 19\n    reviewers: []\n    note: R19 未作为独立 issue 提出\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-M5\n  summary: 术语不一致 estimation vs classification\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n  - round: 19\n    reviewers: []\n    note: R19 未作为独立 issue 提出\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R18-M1\n  summary: d0 样本是否跨 cell 共享未显式声明\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 19\n  mentions:\n  - round: 19\n    reviewers: []\n    note: R19 未提及 Section 3.2 已加声明\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-M2\n  summary: CI 报告不一致\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 17\n  last_seen_round: 19\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R17-M4\n  summary: Missing references\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: 推荐 Lakens 2017 Gutierrez 2016\n  - round: 20\n    reviewers: [1, 2]\n    note: 新增 Stamatatos 2009 Frank and Hall 2001 Chen et al 2024 Yuan et al 2024\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R16-N1\n  summary: 14B 结果削弱核心叙事\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: Abstract 加 scope 限定 Section 6 新增 scale dependence\n  resolution_round: 16\n\n- id: R16-N2\n  summary: 方法贡献不足\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: Section 1 贡献重组\n  resolution_round: 16\n\n- id: R16-N3\n  summary: Cross-strategy transfer d1-d3 仅 45.9%\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: Section 5.3 reframed\n  resolution_round: 16\n\n- id: R16-W1\n  summary: Full-replacement vs accumulation 脱节\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: Section 6 新增段落\n  resolution_round: 16\n\n- id: R16-W2\n  summary: Self-reference confound Pythia dagger\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 12\n  last_seen_round: 16\n  resolution: Reviewer 确认 dagger 加 ref-model ablation 67-79% 已充分\n  resolution_round: 16\n\n- id: R16-W3\n  summary: 多重共线性对 feature importance 的影响\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 18\n  resolution: Section 4.2 group-level ablation\n  resolution_round: 17\n\n- id: R16-W4\n  summary: Abstract 信息过载\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: Abstract 精简\n  resolution_round: 16\n\n- id: R16-W5\n  summary: d0 膨胀 headline metrics\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 16\n  resolution: d1-d3 balanced accuracy 领头\n  resolution_round: 16\n\n- id: R16-W6\n  summary: EDD T=0.70 justification\n  category: method\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: Sensitivity analysis 已覆盖\n  resolution_round: 16\n\n- id: R16-W7\n  summary: BOS-seeded generation 限制生态效度\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 19\n  resolution: Section 3.2 BOS caveat 加强 R19 re-raised as R19-W4\n  resolution_round: 17\n\n- id: R16-W8\n  summary: Wild-data FPR 过高\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 18\n  resolution: Thresholding 方案已覆盖\n  resolution_round: 16\n\n- id: R16-W9\n  summary: Discussion 过于压缩\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 18\n  resolution: Section 6 扩展\n  resolution_round: 17\n\n- id: R16-W10\n  summary: 缺具体使用场景\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 16\n  resolution: Section 6 含 curation scenario\n  resolution_round: 16\n\n- id: R16-M1\n  summary: Figure 3 混淆矩阵数字极小\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 17\n  resolution: Acceptable for review\n  resolution_round: 16\n\n- id: R16-M2\n  summary: 前 3 页无视觉锚点\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 19\n  resolution: Pipeline 太简单不需要图\n  resolution_round: 16\n\n- id: R16-M3\n  summary: 页数合规性验证\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 19\n  resolution: 主文 8 页\n  resolution_round: 16\n\n- id: R16-M4\n  summary: Display items 分布不均\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 18\n  resolution: Structural constraint\n  resolution_round: 16\n\n- id: R16-M5\n  summary: 术语不一致\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 18\n  resolution: ''\n  resolution_round: null\n\n- id: R16-M6\n  summary: 遗漏引用 Strobl/Hooker\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 16\n  resolution: 已加入\n  resolution_round: 16\n\n- id: R16-M7\n  summary: DeBERTa/RoBERTa 失败原因分析不足\n  category: experiment\n  severity: info\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 16\n  resolution: Classifier convergence evidence sufficient\n  resolution_round: 16\n\n- id: R18-M3\n  summary: Section 3.5 标题过大\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 18\n  resolution: 已改为 Theoretical Motivation\n  resolution_round: 18\n\n- id: R18-M6\n  summary: 生成长度固定 512 tokens\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 18\n  last_seen_round: 19\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R18-M7\n  summary: RF 无超参搜索\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 18\n  last_seen_round: 19\n  action_items: []\n  resolution: ''\n  resolution_round: null\n\n- id: R15-W5\n  summary: LoRA 超参无 ablation\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 20\n  mentions:\n  - round: 20\n    reviewers: [1, 2]\n    note: R20-W2 重新从 LoRA rank 角度提出低秩约束可能压缩 depth signal\n  resolution: 项目收尾不再跑新实验\n  resolution_round: 16\n\n- id: R15-W8\n  summary: 多重比较未做校正\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 15\n  last_seen_round: 20\n  mentions:\n  - round: 19\n    reviewers: [1, 2]\n    note: R19 继续在 R19-C4 下追踪\n  - round: 20\n    reviewers: [1, 2]\n    note: R20 继续在 R19-C4 下追踪\n  resolution: ''\n  resolution_round: null\n\n- id: R15-MR1\n  summary: 遗漏 Markovian Generation Chains\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: Section 2 已引用\n  resolution_round: 16\n\n- id: R14-C2\n  summary: 主文超出 8 页\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 18\n  resolution: 编译验证通过\n  resolution_round: 16\n\n- id: R13-W3\n  summary: Cross-seed replication 仅 3/9 cells\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: 用户指示不再跑新实验\n  resolution_round: 14\n"
+            }
+          },
+          "id": "event-001870"
+        },
+        {
+          "source_line": 1871,
+          "timestamp": "2026-05-25T21:42:31.089938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 25246}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 101
+          },
+          "id": "event-001871"
+        },
+        {
+          "source_line": 1872,
+          "timestamp": "2026-05-25T21:45:34.025395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "report": "# Round 20 审稿报告\n\n**Venue**: EMNLP 2026 (via ARR)\n**Reviewers**: R1, R2 | 交叉回应完成 | 2 轮（初审 + 交叉）收敛\n\n---\n\n## Summary\n\n本文研究递归生成文本的深度估计问题——判断一段文本经历了多少代 LLM 递归重写。作者构建了 3×3 atlas（3 个 1–1.5B 模型 × 3 种解码策略 × 6 个深度层），提取 19 个统计特征（含 12 个基于参考模型的困惑度类特征），使用随机森林分类器进行 4-class ordinal 分类，并提出 Effective Discriminable Depth (EDD) 指标量化可区分深度。主要发现：(1) 在已知模型-策略配置下，1–1.5B 规模深度估计达 78.5% 准确率，EDD₀.₇₀ ≥ 3 覆盖 8/9 cells；(2) 困惑度尾部统计量族主导分类性能；(3) d0（人类文本）高度可分（AUC > 0.98）。\n\n两位 Reviewer 独立初审后完成交叉回应，关键问题充分收敛。核心共识：**论文在 1–1.5B 受控设定下的实证工作扎实，但多处 claim 系统性地超出证据支撑范围。**\n\n---\n\n## Strengths\n\n**S1. 任务定义与问题建模**\n首次将递归生成深度估计形式化为序数分类问题（§3.1），从\"检测 AI 文本\"扩展到\"区分不同递归代数\"。问题定义具有前瞻性——随着 LLM 生成文本回流训练数据，web 文本的递归深度将成为数据质量的重要维度。\n\n**S2. 系统化 Benchmark 设计**\n3 模型 × 3 策略 × 6 深度的 atlas 设计（§3.2–3.3）覆盖了关键实验维度。每个 cell 独立训练递归链、独立提取特征、独立训练分类器，避免跨 cell 数据泄漏。\n\n**S3. EDD 指标的设计理念**\nEDD 的 contiguous prefix 约束（Definition 1, §3.4）要求从 (0,1) 到 (d−1,d) 连续超过阈值——比简单的 max AUC 或 mean AUC 更保守但更有信息量。与 model collapse 理论中 per-step signal attenuation 的对接（§3.5）为指标提供了理论锚点。\n\n**S4. 特征分析深度**\nGroup-level ablation（§4.2: perplexity family 单独 76.85% vs. full 78.45%）、CPI（B.3）、SHAP（B.4）、permutation importance 四种方法交叉验证，group-level 结论在所有方法下一致收敛。\n\n**S5. d0 分离鲁棒性**\nd0 vs. d1 在所有 9 cells 中 AUC > 0.98、recall > 97%（§4.1），在 cross-model（Table 18）和 cross-domain（B.26 arXiv ~74%）场景下保持强信号。对 AI 文本检测有直接实用价值。\n\n**S6. 附录实验的广度**\nAppendix 包含 cross-model（B.17–18）、cross-reference（B.19, B.22）、partial mixing（B.8）、prompted generation（B.23）、PLM baseline（B.13）、ordinal methods（B.25）、arXiv domain（B.26）等实验，展现系统性探索。\n\n---\n\n## Weaknesses\n\n### Must-Fix\n\n**W1. [Critical] \"解码策略贡献至少与模型架构相当\" 的 claim 无统计支撑**\n§4.1 (p.5) 声称 \"mean within-model strategy gap is 9.3 pp, comparable to the 7.2 pp mean within-strategy model gap; decoding strategy contributes at least as much as model family to performance variance\"。此 claim 基于 3×3=9 cell 均值比较，2.1 pp 差异在如此小的样本上无任何统计效力。论文未进行 permutation test、bootstrap test 或任何假设检验。然而该 claim 在 Introduction (p.2) 被列为三大发现之一，证据强度与突出程度严重不匹配。\n[R1 AGREE R2-N1，完全共识]\n\n**W2. [Critical] Scale generalization 证据薄弱且自相矛盾**\n论文在 Abstract 将 \"signal attenuates with scale\" 列为第三个 finding，但支撑证据：\n- 7–8B 仅 2 个模型且行为矛盾（Llama-3.1-8B 单调衰减 vs. Qwen2.5-7B U 型恢复，B.19–20）\n- 14B 仅 1 个模型，EDD₀.₇₀ 在 self-reference 下为 0，cross-reference 下为 2（B.19, Table 22）——同一文本更换 reference model 即产生 EDD 从 0 到 2 的跃变\n- Qwen2.5-7B 的 U 型 AUC（d0v1=0.969, d2v3=0.709, d4v5=0.772）与 §3.5 per-step signal attenuation 理论矛盾，论文自行归因于 \"cross-reference setup\"（B.19），由此整个 7B+ scale 分析均受 reference model confound 污染\n此 \"finding\" 最多为 \"preliminary observation\"。\n[R1-N3 AGREE, R2-N2 AGREE, R2-N3 AGREE，完全共识]\n\n**W3. [Critical] Full-replacement 假设与真实场景的根本性鸿沟**\nIntroduction 以 \"web text containing their own outputs\" 为动机，暗示对真实 web-scale 递归污染的适用性。但实验采用 100% replacement chain，partial mixing 仅覆盖 3/9 cells × 2 比例（25%, 50%）。50% mixing 下 GPT-2 XL 已失败（d2v3 AUC=0.695 < T=0.70），已测 3 cells 中 33% failure rate。最贴近真实场景的 5–10% 比例区间完全未测试。Limitations (p.9) 仅一句话带过。\n[R1-N2 AGREE, R2-N3 AGREE，完全共识]\n\n**W4. [Critical] Reference model 依赖限制结论的内在有效性**\n19 个特征中 12 个依赖 Pythia-1.4B 作为 reference model。Pythia-1.4B 自引用优势 4–11 pp（B.17, Table 18）。14B 实验中 EDD 随 reference model 剧烈波动。\n\nR2 提出重要缓解论据：主 benchmark 6/9 cells 为 cross-reference 设定且表现良好（62.4–85.9%），表明 depth signal 存在 intrinsic component——B.22 cross-reference control 中 d0-vs-d1 AUC 仍达 0.697。R1 认为 confound 贯穿全部实验。\n\n**Director 判定**：14B scale 下 confound 不可忽视（Critical），1–1.5B 主 benchmark 中 cross-reference 的成功部分缓解了此问题。但论文未在正文充分讨论这一依赖的部署含义——12/19 特征绑定特定 reference model 对实际应用构成根本限制。\n[R1-N1, R2 部分 AGREE：14B critical, 1–1.5B mitigated]\n\n### Should-Fix\n\n**W5. [Major] 特征多重共线性下个体排名叙事过强**\nVIF > 10 覆盖 14–16/19 个特征（§3.3），个体排名 CI width 2.7–3.7。§4.2 叙事如 \"p90_ppl and var_surprisal are consistently prominent\" 基于不可靠的个体排名。\n\nR2 提出有力缓解论据：group-level ablation + CPI + SHAP + permutation importance 四方法交叉验证，group-level 结论（困惑度尾部族主导）在所有方法下一致收敛。CPI 专为处理 correlated features 设计。即使个体排名不稳定，四种方法 top-group 同时失效的概率极低。\n\n**Director 判定**：采纳 R2 论据，从 R1 的 Critical 降为 Warning。Group-level 结论成立，但个体特征的因果叙事应删除或弱化。\n[R1-N4 Critical → R2 REBUT → Director 降为 Warning]\n\n**W6. [Major] 多重比较未统一校正**\n9 cells × 3 相邻深度对 = 27 次 AUC 测试，加上 feature ranking permutation test 等总量远超 50。脚注 5 \"exploratory\" 声明与正文 \"signal persists in all 9 cells\"、\"depth 0 recall exceeds 97% in all 9 cells\" 的 confirmatory 语气不匹配。建议对 27 次 depth-pair AUC 应用 Benjamini-Hochberg FDR correction——核心结论大概率不受影响，但 d2-vs-d3 borderline cases（特别是 GPT-2 XL top-k, EDD < 3）可能在 correction 后需调整措辞。\n[R1-N5, R2 AGREE，完全共识]\n\n**W7. [Major] PLM baseline 比较信息不对等**\nB.13 PLM baseline 仅用 frozen CLS + linear probing（DeBERTa-v3-base 64.5%, RoBERTa-base 59.5%），这是已知最弱的 PLM adaptation 方式。RF 使用 12 个基于 reference model 的 token-level perplexity 特征，PLM 仅看原文 CLS embedding——二者信息输入不对等。§6 \"end-to-end PLMs lag RF by 14–33 pp\" 的 claim 可信度取决于 baseline 是否足够强。论文自身在 B.13 末尾承认 \"whether larger PLMs can close the gap remains an open question\"。\n[R1 AGREE R2-W2，完全共识]\n\n**W8. [Major] LoRA 作为递归训练代理的系统性偏差**\n所有递归链使用 identical LoRA 配置（r=16, α=32, 3 epochs, Table 5）。LoRA 低秩约束可能系统性压缩相邻深度间的分布偏移幅度，导致 EDD 值为 LoRA-specific。未测试 r=4/r=64 对 depth signal 的影响。真实递归污染中训练方法异质（full fine-tuning, RLHF, distillation 等）。\n[R1 AGREE R2-W4，完全共识]\n\n**W9. [Warning] Seed corpus 仅 Wikipedia**\n全部 atlas 基于 Wikipedia seed。arXiv 跨域下降约 4 pp（B.26: 74.1% vs. ~78%），但 arXiv 仍属学术/百科文体。未测试对话（Reddit）、创意写作（fiction）、代码等 far-domain 场景。\n（注：R1 修正了 R2 初审中 \"14 pp+\" 的说法——实际 cross-domain 降约 4 pp，R2 混淆了 cross-domain 和 cross-model transfer。）\n[R1 AGREE R2-W3，数字修正后共识]\n\n**W10. [Warning] BOS seeding artifact**\nBOS-seeded generation 与 prompted generation 差 13.8 pp（B.23），暗示深度信号部分源于 BOS seeding 特异性而非递归本身的分布偏移。\n[R1-W2, R2 AGREE]\n\n**W11. [Warning] 跨策略迁移有效性有限但 framing 过度**\nLeave-one-out 4-class accuracy 45.95%（1.84× chance, §5.2）。Two-stage pipeline 恢复至 59.1%（+13.15 pp）。R2 指出论文未将 cross-strategy 作为主要贡献，这是合理的。但标题 \"Statistical Fingerprints\" 暗示的可迁移性与实证矛盾——fingerprint 在 forensics 文献中蕴含唯一性和跨条件稳定性。\n[R1-W3, R2 部分 REBUT，分歧收窄为 framing 问题]\n\n### Minor\n\n**W12. [Info] EDD 阈值 T=0.70 迁移缺理论论证**\nHosmer & Lemeshow (2000) 的 0.70 标准源自 binary logistic regression，移植到 ordinal pairwise AUC 无理论桥梁。Sensitivity analysis（T ∈ {0.65, 0.70, 0.80}）部分缓解。建议正文明确 T=0.70 为 operational choice。\n[R1-W1, R2 AGREE]\n\n**W13. [Info] §3.5 \"Theoretical Motivation\" 内容为经验观察**\nSection 标题 \"Theoretical Motivation\" 但内容主要是经验层面的观察和启发式推理，非严格理论推导。\"Empirical Motivation\" 可能更准确。\n[R2-M5, R1 未反驳]\n\n---\n\n## Reviewer 分歧与 Director 裁定\n\n| 问题 | R1 立场 | R2 立场 | Director 裁定 |\n|------|---------|---------|---------------|\n| Reference model confound 严重程度 | Critical, 贯穿全部实验 | Critical at 14B, mitigated at 1–1.5B (6/9 cross-ref cells work) | 采纳 R2 分层判断：14B Critical, 1–1.5B 有 intrinsic signal 但正文讨论不足 |\n| Feature multicollinearity 严重程度 | Critical | Major (group-level analysis robust) | 降为 Warning——R2 的四方法收敛论据成立 |\n| EDD 新颖性 | 有贡献 (contiguous prefix + model collapse) | 低 (AUC + threshold + max) | 采纳 R1——contiguous prefix 约束是有价值的设计选择 |\n| Cross-strategy transfer 严重程度 | Should-Fix | 论文未 claim solved | Should-Fix (framing issue) |\n| Non-ordinal classifier | Should-Fix | REBUT (B.25 ordinal methods 无增益) | 采纳 R2 rebuttal, dropped |\n\n---\n\n## Questions\n\n**Q1.** 如果使用规模匹配的 reference model（如 OLMo-1B 做 OLMo 的 reference、GPT-2 XL 做 GPT-2 XL 的 reference），depth signal 是否保持？这是分离 reference model confound 与 intrinsic depth signal 的关键实验。\n\n**Q2.** Table 1 中 7 个 model-free 特征（lexical 4 + repetition 3）单独使用能达到什么准确率？如果 >50%（2× chance），则部分回应 reference model confound 问题。§4.2 group ablation 暗示 model-free 特征远弱于 perplexity family。\n\n**Q3.** 对 27 次 depth-pair AUC 测试应用 Benjamini-Hochberg FDR correction 后，哪些 cell 的 d2-vs-d3 判断会发生改变？\n\n**Q4.** Qwen2.5-7B 的 U 型 AUC 恢复（d0v1=0.969, d2v3=0.709, d4v5=0.772）如何解释？论文归因于 cross-reference setup，但如果归因成立，则所有 cross-reference 实验的 AUC 模式都不可信。\n\n**Q5.** 5–10% mixing ratio 下 depth estimation 的表现如何？这是 Introduction 动机与实验交付之间鸿沟的关键数据点。\n\n---\n\n## Missing References\n\n两位 Reviewer 共同指出以下缺失引用（均 AGREE）：\n\n1. **Stylometric analysis 文献**：论文的 19 个统计特征本质上是 stylometric features（TTR、hapax ratio、n-gram entropy 等）。Stamatatos (2009) 的 authorship attribution survey 是直接的方法论先驱。引用此文有助于定位 depth estimation 与 authorship attribution 的关系。\n\n2. **Ordinal classification 文献**：Frank & Hall (2001) 将 ordinal 分类分解为二元子任务的方法与 EDD 的 pairwise binary classifier 有直接关联。\n\n3. **Self-play / Self-improvement 文献**：Chen et al. (2024) Self-Play 和 Yuan et al. (2024) Self-Rewarding 代表刻意的递归生成范式，与本文\"意外\" web 递归污染形成有意义的对比。\n\n---\n\n## External Review\n\n外部审稿：未请求。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（2026-05-25 21:15–21:19 UTC）。\n\n| 严重级别 | 数量 |\n|---------|------|\n| Critical | 0 |\n| Warning | 1 |\n| Info | 11 |\n\n**Warning**: Pages 1–2 连续纯文本无 display item，Figure 1 延迟至 page 3。建议将 Figure 1 提前至 page 2 底部（如版面允许）。\n\n**Info 摘要**: Figure 2 (p.6) 热力图 cell 内数字约 6pt 密集阅读需放大 | Table 2 (p.5) 9 列紧凑但未溢出格式规范 | Figure 3 (p.7) 图例字号偏小建议确认灰度可区分性 | Figure 4 (p.8) + Table 4 清晰可读 | Limitations (p.9) 简短合规约 6 行 3 点 | Figure 5 (p.12) 混淆矩阵偏小但可读 | Page 13 附录密度高但不影响主文 | 全文 booktabs 格式统一无 LaTeX 渲染错误无 margin 溢出无未解析引用 | 参考文献格式统一编号连续\n\n整体排版质量良好，无格式性问题影响审稿。\n\n---\n\n## Overall Assessment\n\n**评分：3.0 / 5.0 — Findings**\n\n本文在受控设定下（1–1.5B 模型、已知解码策略、100% replacement chain、Wikipedia seed）完成了系统化的递归生成深度估计实证研究。核心发现（d0 高度可分、困惑度尾部特征主导、相邻深度可区分深度约 3–5 代）在 9/9 cells 中一致复现，实证基础扎实。EDD 指标的 contiguous prefix 设计和与 model collapse 理论的对接是有价值的方法论贡献。\n\n然而，论文存在**系统性的 claim-evidence 失配**：\n- \"解码策略贡献至少与模型架构相当\"无统计检验（W1）\n- \"Signal attenuates with scale\" 仅有 3 个 7B+ 模型、行为矛盾、且受 reference model confound 污染（W2）\n- \"Statistical features > PLM\" 基于不公平的 frozen CLS baseline（W7）\n- Introduction 动机暗示真实 web 场景适用性，但 5–10% mixing 未测试、full-replacement chain 为唯一主实验（W3）\n\n此外，12/19 特征依赖特定 reference model（W4）、LoRA r=16 统一配置可能引入系统性偏差（W8）、seed corpus 仅限 Wikipedia（W9）——这些 scope 限制在正文中讨论不足。\n\n**达到 Findings 接收水平的条件**：将 Critical claims 降级为 observations 或提供统计检验，在正文明确限定 scope（1–1.5B, within-strategy, controlled replacement），Discussion 充分讨论 reference model 依赖的部署含义。\n\n**升级至 Conference (4.0) 需要**：(1) 至少一个 5–10% mixing ratio 实验；(2) 规模匹配的 reference model 对照实验（回答 Q1）；(3) 修正 PLM baseline 为 fine-tuned 设定。\n\n---\n\n## Detailed Comments\n\n**Abstract**: 信息密度高但合规（<200 words）。\"signal attenuates with scale\" 需降级为 preliminary observation 或删除。14B 结果的 cross-ref vs self-ref 条件需分句澄清。\n\n**§1 Introduction (p.1–2)**: Contribution 4（\"decoding strategy affects cross-condition transfer more than model architecture\"）在 §4.1 无统计检验支撑，建议改为 \"decoding strategy and model architecture both contribute meaningfully to performance variance\"。\n\n**§3.3 Feature Extraction (p.4)**: 未引用 stylometric analysis 文献。19 个特征本质是 stylometric + perplexity features，应在 Related Work 或此处定位与 authorship attribution 的关系。\n\n**§3.4 Definition 1 (p.4–5)**: EDD 形式化清晰。建议添加一句说明 T=0.70 为 operational choice（参照 sensitivity analysis），非理论推导。\n\n**§3.5 Theoretical Motivation (p.5)**: 标题建议改为 \"Empirical Motivation\"——内容为经验观察而非严格理论推导。\n\n**§4.1 (p.5)**: \"mean within-model strategy gap is 9.3 pp, comparable to the 7.2 pp mean within-strategy model gap\"——2.1 pp 差异在 9 cell 上无统计效力。要么补充 permutation test，要么将 \"at least as much\" 改为 \"both contribute meaningfully\"。\n\n**§4.2 (p.6)**: 个体特征排名叙事（\"p90_ppl and var_surprisal are consistently prominent\"）在 VIF>10 下不可靠。建议改为 group-level 叙事：\"perplexity tail statistics family (p90_ppl, var_surprisal, kurtosis_ppl) collectively dominates\"。\n\n**§5.2 (p.8)**: 跨策略 45.95% 与标题 \"Statistical Fingerprints\" 暗示的可迁移性矛盾。正文应明确：当前深度估计 claim 限定于 \"within known model-strategy configurations\"。\n\n**§6 Discussion (p.8)**: \"end-to-end PLMs lag RF by 14–33 pp\" 需加条件限定：\"under frozen CLS + linear probing\"。Reference model 依赖的部署含义需单独一段讨论。\n\n**Limitations (p.9)**: 覆盖 3 点，长度合规。建议将 full-replacement 假设的局限从 Limitations 提升到 Discussion 的显著位置。\n\n**Appendix B.19**: Qwen2.5-7B U 型 AUC 是关键异常，需要超出 \"likely originates from cross-reference setup\" 的解释。如果归因于 cross-reference，则需讨论所有 cross-reference 实验结果的可信度边界。\n\n**Appendix B.20**: 检查是否仍有 PLACEHOLDER 未填充（Round 19 发现）。",
+              "project": "recursive_gen_depth_est",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.0 - Findings",
+              "review_chat_id": "oc_db3bd143165620ee6950e6ef0826eec8"
+            }
+          },
+          "id": "event-001872"
+        },
+        {
+          "source_line": 1873,
+          "timestamp": "2026-05-25T21:45:38.702484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "elapsed_ms": 4677
+          },
+          "id": "event-001873"
+        },
+        {
+          "source_line": 1874,
+          "timestamp": "2026-05-25T21:45:52.504750+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 20 审稿报告已投递。\n\n**评分：3.0 / 5.0 — Findings**\n\n核心发现：\n- **5 个 Critical**：(1) 策略贡献 claim 无统计检验；(2) Scale generalization 证据自相矛盾（U 型 AUC + 14B EDD 随 reference model 波动）；(3) Full-replacement 与真实场景鸿沟（50% mixing 已有 33% failure rate）；(4) Reference model 依赖正文讨论不足；(5) 原有 R19-W2 升级\n- **7 个 Warning**：特征共线性个体排名（R1 Critical → R2 REBUT → 降级）、多重比较需 FDR、PLM baseline 信息不对等、LoRA rank 无 ablation、单域 seed、BOS artifact、标题 framing\n- **2 个 Info**：EDD 阈值理论论证、§3.5 标题\n\n关键裁定：采纳 R2 对 reference model confound 的分层判断（14B critical / 1–1.5B mitigated）和对 multicollinearity 的降级论据；采纳 R2 对 non-ordinal classifier 的 rebuttal（B.25 ordinal methods 无增益），该 issue 不进入报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director"
+          },
+          "id": "event-001874"
+        }
+      ]
+    }
+  ]
+}

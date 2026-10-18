@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "07060ba6b5d7d8decafe",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k09 fixedmask object seed42",
+  "task_key": "worker_analysis_eval_pi05_random_k09_fixedmask_object_seed42_20260521T201008",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k09_fixedmask_object_seed42_20260521T201008_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "302c23b9b7ca2e05bc2cb5ba2bf86ecdb3f0af49803c005b65f6a165fbb3ca18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**实验失败，无 eval 数据。**\n\n**根因**：模型加载成功后，创建 preprocessor 时 `AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224')` 尝试联网下载 tokenizer，但 AutoDL 网络未启用（未 `source /etc/network_turbo`），报 `[Errno 101] Network is unreachable`。0 个 episode 被执行。\n\n**修复方案**：重跑前需要：\n1. 启动网络加速：`source /etc/network_turbo`\n2. 或者更好的方案：预下载 tokenizer 到本地路径，eval 脚本改用本地路径加载（避免 eval 依赖网络）\n\nRegistry 已更新为 DONE/failed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9084dfa618b9531d4b09",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k07 long seed45 strict w41",
+  "task_key": "worker_analyze_eval_pi05_attn_k07_long_seed45_strict_w41_20260528T080122",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k07_long_seed45_strict_w41_20260528T080122_result.json",
+    "occurrence": 1,
+    "bytes": 244,
+    "sha256": "abc93684c0afbbdfe3648636efec3f420acf9b036968062b1b661d941593b957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n**结果汇总**：π0.5 Attn k=0.7 seed45 = **53.8%**，与前 3 seed 一致（seed42=53.6%, seed43=53.8%），确认 plateau 行为稳定。4-seed 数据：53.6%, 53.8%, seed44待确认, 53.8%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

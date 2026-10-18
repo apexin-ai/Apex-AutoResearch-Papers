@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3b3de407f8d8313e3fc7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "probe westd38929 full status",
+  "task_key": "worker_probe_westd38929-full-status_20260521T233236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_probe_westd38929-full-status_20260521T233236_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "3f88ba261ca609a6a4b4dc10399b30c26450c038bcd5ac2a39e98d39434ee533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-38929 服务器状态报告\n\n### 1. GPU 状态\n\n| GPU | 型号 | 显存使用 | 利用率 | /dev 设备 |\n|-----|------|---------|--------|-----------|\n| 0 | RTX PRO 6000 Blackwell (96GB) | 1 MiB | 0% | — |\n| 1 | RTX PRO 6000 Blackwell (96GB) | 10620 MiB | 36% | nvidia1 |\n| 2 | RTX PRO 6000 Blackwell (96GB) | 10560 MiB | 37% | nvidia2 |\n| 3 | RTX PRO 6000 Blackwell (96GB) | 1 MiB | 0% | — |\n\n**容器可见 4 GPU，主机设备为 nvidia1/2/4/7**（4 块物理卡映射）。GPU 已恢复到 4 卡配置。\n\n### 2. 活跃实验\n\n| 实验 | PID | CUDA_VISIBLE_DEVICES | 启动时间 | GPU 显存 | 进度 |\n|------|-----|---------------------|---------|---------|------|\n| `l2norm k=0.925 object` | 985048 | 2 | 07:04 UTC | ~10.5 GB | **T4/10 进行中**，ep30/50，已完成 T1(98%) T2(96%) T3(100%)，当前累计 98.0%，运行 28min |\n| `random k=0.9 spatial` | 9135 | 1 | 07:27 UTC | ~10.5 GB | **T0/10 进行中**，ep20/50，SR=85%，运行 5min |\n\n两个实验都是上一轮部署的，均存活且正常推进。\n\n### 3. 空闲资源\n\n- **GPU 0 和 GPU 3 完全空闲**（0% 利用率，无进程占用）\n- 可立即分配 2 个新实验\n\n### 4. 结论\n\n服务器状态良好。4 GPU 已恢复，2 个部署实验正常运行，还有 2 个 GPU 空闲可接新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

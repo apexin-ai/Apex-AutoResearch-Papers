@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb768484935e154fd139",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops gpu6000pro2 status all",
+  "task_key": "worker_ops_gpu6000pro2-status-all_20260518T114505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu6000pro2-status-all_20260518T114505_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "771cf29dd50764b28341b9d736bbc342c754e4c1fa66d4ec728aa37986fd22bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 实验 1: gpt2xl_seed43_001 (PID 857779) — 运行中\n\n- **进程**: 存活\n- **当前阶段**: Step 6 — 生成 depth_3 (加载 gpt2-xl + LoRA adapters)\n- **已完成**:\n  - depth_0/1/2 各 5000 samples ✓\n  - depth_2 LoRA 训练完成 (final loss: 1.3255, 3 epochs, 681s)\n  - LoRA adapter 保存至 `checkpoints/gpt2xl_seed43/lora_depth_2` ✓\n- **depth_3 生成进度**: 2718/5000 samples (~54%)\n- **无 summary.json** — 尚未跑完全部 pipeline\n\n### 实验 2: qwen25_14b_scale_002 (PID 806751) — 失败/卡住\n\n- **进程**: 存活，但**模型下载失败**\n- **数据**: depth_0/1/2 各 5000 samples (这些可能是之前生成的)\n- **失败原因**: 从 hf-mirror.com 下载 `model-00005-of-00008.safetensors` 时 SSL/TLS handshake failure，aria2 返回 EXIT_CODE=1\n- **无 results 目录** — pipeline 未进入评估阶段\n\n实验 2 需要重新下载模型 shard 5/8 或换下载方式后重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

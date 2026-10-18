@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cde00f12fba866d64506",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code llama70b poll",
+  "task_key": "worker_code_llama70b_poll_20260521T141157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b_poll_20260521T141157_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "e0a19e691c9601a0a74e8ade0092573cd97ac3b5f7c261a678cd663bf75f2b09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载仍在进行中，未完成。**\n\n当前状态：\n- **已完成 shards**（`LLM-Research/Llama-3___3-70B-Instruct/`）: 6 个（00002-00008，不含00001/00006）\n- **临时/下载中 shards**（`._____temp/`）: 8 个（00001, 00006, 00009-00014）\n- **正在下载**: shard 11 (90%), shard 12 (17%), shard 13 (18%)\n- **总进度**: ~14/30 shards，约 **47%**\n- **下载进程**: PID 155871 活跃中\n- **速度**: ~4-5 MB/s\n\n按当前速度估算，剩余 ~16 shards × ~4.5GB ≈ 72GB，约需 **3-4 小时**完成。稍后再来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

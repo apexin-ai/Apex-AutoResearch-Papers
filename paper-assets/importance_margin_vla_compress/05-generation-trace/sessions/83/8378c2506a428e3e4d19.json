@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8378c2506a428e3e4d19",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "m103 verify spatial baseline westd27271",
+  "task_key": "worker_m103_verify_spatial_baseline_westd27271_20260525T012523",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_m103_verify_spatial_baseline_westd27271_20260525T012523_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "e99eec337f5bbc573b015c798b3e9c1324906528f0d6e0025b80392e34def716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. Spatial Baseline ✓ 已确认\n- **SR: 80.0% (400/500)**\n- 模型路径: `/root/autodl-tmp/openvla-7b-finetuned-libero-spatial` — 正确的 suite-specific finetuned 模型\n- seed=42, 10 tasks × 50 episodes\n- Registry 已更新\n\n### 2. L2norm k=0.9 实验（进行中）\n两个 GPU 都在跑（74%/65% utilization, ~16GB each）：\n\n| 实验 | 进度 | 已完成 tasks 累计 SR | ETA |\n|------|------|---------------------|-----|\n| **Spatial** | 7/10 tasks done, Task 8 running | 263/350 (75.1%) | ~60 min |\n| **Goal** | 6/10 tasks done, Task 7 running | 208/300 (69.3%) | ~80 min |\n\n模型加载确认：\n- Spatial: `/root/autodl-tmp/openvla-7b-finetuned-libero-spatial` + `[*] L2 norm pruning: k=0.9`\n- Goal: `/root/autodl-tmp/openvla-7b-finetuned-libero-goal` + `[*] L2 norm pruning: k=0.9`\n\n### 3. Attn k=0.9 实验 ✓ 已完成\n| Suite | SR | 模型 |\n|-------|-----|------|\n| **Goal** | 73.2% (366/500) | `openvla-7b-finetuned-libero-goal` ✓ |\n| **Spatial** | 80.4% (402/500) | `openvla-7b-finetuned-libero-spatial` ✓ |\n\n两个 Attn 实验均使用正确的 suite-specific 模型，`[*] Attention pruning: k=0.9` 确认了方法。\n\n### 对比速览（Spatial suite）\n| Method | SR |\n|--------|-----|\n| Baseline | **80.0%** |\n| Attn k=0.9 | **80.4%** (+0.4%) |\n| L2norm k=0.9 | ~75% (预估，待完成) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

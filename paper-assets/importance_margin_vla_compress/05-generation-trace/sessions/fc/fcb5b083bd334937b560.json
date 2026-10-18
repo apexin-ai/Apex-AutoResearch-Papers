@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fcb5b083bd334937b560",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_11_1779581613.md",
+  "task_key": "loop_11_1779581613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1779581613.md",
+    "occurrence": 1,
+    "bytes": 4212,
+    "sha256": "13d98704fe5733f49c958ca03890deed6f13abe4f00936723702b1337201cc80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-22T01:51:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: `cuda:0, cuda:1, cuda:2, cuda:3`（每台服务器各 4 卡）。服务器列表: westd-27271, cqa1-33015, westd-41074, westd-38929\n- westd-27271 和 cqa1-33015 当前 SSH 连接失败（端口可能变更），**不要向这两台提交新任务**直到连接恢复\n- 项目路径统一: `/root/autodl-tmp/importance_margin_vla_compress`\n- CoRL 2026 硬 deadline: Abstract 5月26日, Paper 5月29日——距今 4/7 天\n- eval 实验用 lerobot groot 框架，Python 3.12 有 dataclass field ordering bug（已 patch groot_n1.py），新服务器部署时需确认 patch 存在\n\n### 2. 🖥️ 基础设施快照\n- **westd-41074** (可达): 4×GPU, 工作目录 `/root/autodl-tmp/importance_margin_vla_compress`, Python `/root/miniconda3/bin/python`, 磁盘 812G/879G 可用\n  - 活跃: `train_openvla_sc_m96_seed42_v3` (PID 68539, cuda:2), `train_openvla_sc_m64_seed42_v6` (PID 59671)\n- **westd-38929** (可达): 4×GPU, 同路径, 磁盘 645G/879G 可用\n  - 活跃: `eval_pi05_l2norm_k085_spatial_seed42` (PID 227008, cuda:0)\n- **cqa1-33015** (SSH 失败): 应有 `eval_pi05_random_k085_object_seed43_v2` (PID 805698), `eval_pi05_random_k03_object_seed43_v2` (PID 806010)\n- **westd-27271** (SSH 失败): 无法确认状态\n- W&B: 项目指标通过 `fetch_wandb_metrics` 获取\n- HF cache: `/root/autodl-tmp/.hf_cache`（AutoDL 实例标准配置）\n\n### 3. 📊 当前状态\n**刚完成 reconcile**——两个实验刚转 ANALYZING（EXIT_CODE=0）:\n- `eval_pi05_random_k0925_object_seed43`: cliff 入口点双种子验证（seed42=27.6%）\n- `eval_pi05_random_k085_spatial_seed42`: D152 task-specificity 验证\n\n另有 `eval_pi05_l2norm_k0925_object_seed42` 已在 ANALYZING，metrics 已有: SR=99.2%（L2norm k=0.925 几乎无损）。\n\n**RUNNING (5)**:\n- 2× VTC 训练: M96 (westd-41074:2), M64v6 (westd-41074)\n- 3× π0.5 eval: l2norm k=0.85 spatial (westd-38929:0), random k=0.3 object s43 v2 (cqa1), random k=0.85 object s43 v2 (cqa1)\n\n**31 PREPARING** 等待 GPU 空出或服务器恢复。\n\n**0 Workers running**——池空，违反 L1 第5条（Worker<2=失职）。需要立即 spawn workers 处理 ANALYZING 实验结果。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: spawn worker 分析 3 个 ANALYZING 实验（eval_pi05_random_k0925_object_seed43, eval_pi05_random_k085_spatial_seed42, eval_pi05_l2norm_k0925_object_seed42）→ 提取 metrics → update_registry → 汇报 Director\n- westd-27271/cqa1-33015 恢复连接 → 检查上面的实验状态，将 PREPARING 队列中的实验调度到空闲 GPU\n- VTC M96/M64v6 训练完成 → eval gate quality → 决定是否进入论文 Table\n- eval_pi05_random_k0925_object_seed43 结果出来且 seed43≈seed42(27.6%) → 确认 cliff 起点在 [0.925, 0.95]，为 figure error bar 提供数据\n- eval_pi05_random_k085_spatial_seed42 结果高(~90%+) → 确认 D152: cliff 是 Object-specific 而非 model-intrinsic → 强化 task-specificity narrative\n- Paper Agent Step 2 figures 完成 → 推进 Step 3 正文写作\n\n### 5. 🎯 战略上下文\n**核心发现**: Vision token 可压缩性由 connector 架构决定，不同 connector family 产生截然不同的退化模式:\n- Linear projection (π0.5, X-VLA): L2norm 优于 random（低 CV → 结构化重要性分布）\n- MLP projector (OpenVLA): L2norm≈random（高 CV → 均匀分布，无法利用重要性排序）\n- Pixel-shuffle (SmolVLA): cliff-edge collapse\n\n**D139 CV Scaling Law** 是论文核心 claim: CV 越低 → L2norm vs random gap 越大。已有 3 模型验证。\n\n**易错点**:\n- report.md 显示 12/14 GPU \"空闲\"但 ROADMAP 写 14/14 active——实际是两台服务器 SSH 断了导致 cron 无法监控，**不代表实验没在跑**。cqa1 上的两个 eval 可能仍在运行（有 PID）\n- `eval_pi05_l2norm_k085_object_seed42` 有 v1/v2/v3/v4 多个版本——v2 failed (env mismatch), v3 crashed (dataclass bug), v4 success。选数据时用 v4\n- π0.5 random pruning 在 Object task 有 cliff (k≈0.85-0.925)，但 Spatial task 预计无 cliff（D152）——这是 paper 的 task-specificity argument\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

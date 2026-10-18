@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "cf9dea0bfc0d190c54e4",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval d014 v7 2 bypass acis",
+  "task_key": "worker_eval_d014-v7_2-bypass-acis_20260515T221856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_d014-v7_2-bypass-acis_20260515T221856.log",
+    "occurrence": 1,
+    "bytes": 1156295,
+    "sha256": "bba84106288a67fce94d6a46aea14c60bf170ea5dc664c91eb513728116c851f"
+  },
+  "statistics": {
+    "messages": 740,
+    "user_turns": 1,
+    "tool_calls": 314,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 3,
+      "assistant": 97,
+      "tool_call": 314,
+      "tool_result": 314,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 683,
+      "chunks": [
+        {
+          "path": "cf9dea0bfc0d190c54e4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf9dea0bfc0d190c54e4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf9dea0bfc0d190c54e4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf9dea0bfc0d190c54e4-part-0004.json",
+          "message_count": 143
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "cf9dea0bfc0d190c54e4-part-0004.json",
+          "message_count": 37
+        },
+        {
+          "path": "cf9dea0bfc0d190c54e4-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ]
+}

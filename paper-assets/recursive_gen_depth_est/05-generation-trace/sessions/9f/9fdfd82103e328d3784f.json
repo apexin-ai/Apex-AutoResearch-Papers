@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9fdfd82103e328d3784f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops rf n estimators check",
+  "task_key": "worker_ops_rf-n-estimators-check_20260518T084014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rf-n-estimators-check_20260518T084014_result.json",
+    "occurrence": 1,
+    "bytes": 1868,
+    "sha256": "c5cfc3cb569cd85ae9e50c683b0507451a6cc3b353f1dcff99ebc657b5f1c861"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RF n_estimators 汇总\n\n项目中存在 **三个不同的 n_estimators 值**：\n\n### `n_estimators=100`（早期/MVP 脚本）\n| 文件 | 行号 |\n|---|---|\n| `scripts/train_classifier.py` | :193 |\n| `scripts/eval_d1d3.py` | :73 |\n| `scripts/run_three_class_eval.py` | :169 |\n| `scripts/feature_ablation.py` | :60 (N_ESTIMATORS=100) |\n| `scripts/shap_analysis.py` | :54 |\n| `scripts/shap_supplement.py` | :123 |\n| `scripts/multi_tau_eval.py` | :109, :151 |\n\n### `n_estimators=200`（主 pipeline，当前标准配置）\n| 文件 | 行号 |\n|---|---|\n| `scripts/plan_015_wild_data.py` | :353, :361 |\n| `scripts/gpt2xl_c4_calibration.py` | :27 (N_ESTIMATORS=200) |\n| `scripts/qwen7b_eval.py` | :84, :131 |\n| `scripts/two_stage_pipeline.py` | :101, :109, :114 |\n| `scripts/wild_data_calibration_005_redpajama.py` | :208 |\n| `src/shap_analysis_9cell.py` | :46 (N_ESTIMATORS=200) |\n| `src/feature_ablation_9cell.py` | :49 |\n| `src/leave_one_group_out.py` | :45 |\n| `src/w2_domain_bias.py` | :42 |\n| `src/w2_domain_bias_v2.py` | :44 |\n| `src/w1_feature_analysis.py` | :93 |\n| `src/n3_fold_std_bootstrap.py` | :54 |\n| `src/xgb_lgbm_3cell.py` | :91 |\n| `src/curation_poc.py` | :100 |\n| `src/plan_015_olmo_wild_calibration.py` | :56, :65 |\n| `src/gpt2xl_ref_ablation.py` | :239, :292 |\n| `baselines/baseline_diveye.py` | :267 (default=200) |\n| `plan_015_c4_supplement.py` | :335, :341 |\n| `plan_015_wild_data_v2/v3/v4.py` | 多处 |\n\n### `n_estimators=500`（granularity ablation 专用）\n| 文件 | 行号 |\n|---|---|\n| `src/granularity_ablation.py` | :95, :97 |\n| `src/d23_edd_bootstrap.py` | :72 |\n\n### 结论\n\n**主 pipeline 使用 `n_estimators=200`**。`scripts/` 下早期 MVP 脚本仍为 100，`src/granularity_ablation.py` 和 `src/d23_edd_bootstrap.py` 用了 500。论文最终结果应基于 200。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

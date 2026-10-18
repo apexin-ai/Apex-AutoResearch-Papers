@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "65b79640188ca31b0aea",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code openvla vtc m64 prep",
+  "task_key": "worker_code_openvla_vtc_m64_prep_20260519T212907",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_openvla_vtc_m64_prep_20260519T212907_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "e1d76cf6ce7edfe884ad1073bdec85d711625ddfccf0e1dacb4557d0a6e56b08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n### 产出\n\n**M=64 配置文件**: `/root/autodl-tmp/importance_margin_vla_compress/configs/openvla_smart_compress_m64.yaml`\n- `num_queries: 64`（256→64 tokens, 75% 压缩）\n- VTC-only，无 LoRA\n- 其他超参与 M=32 一致\n\n**Dry-run 结果** (GPU 1, 3 steps):\n- 模型加载: 7.54B params, VisionTokenCompressor 403M trainable (5.07%)\n- 数据集: 273465 samples, 34183 batches/epoch\n- step 0: loss=15.6064, grad_norm=762.61\n- 正常完成，GPU 1 已释放\n\n**正式启动命令**:\n```bash\ncd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export WANDB_MODE=offline && CUDA_VISIBLE_DEVICES=1 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m64.yaml\n```\n\n**注意**: 环境变量必须用 `HF_HOME=/root/autodl-tmp/.hf_cache` + `TRANSFORMERS_OFFLINE=1`（不是 `HF_HUB_OFFLINE=1`），否则数据集加载会报错。这与当前 GPU 0 上运行的 M=128 训练一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

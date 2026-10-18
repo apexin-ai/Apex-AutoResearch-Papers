@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa7d1593dedb0dc348f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 download check",
+  "task_key": "worker_ops_fp16-download-check_20260525T160251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-download-check_20260525T160251_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "4e740601066cce7b9012fe7aaa5760020ef1d8fb264d0d6b2970ab930a123d06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 下载状态报告\n\n| 模型 | 状态 | Shards | 大小 | 备注 |\n|------|------|--------|------|------|\n| **Qwen2.5-14B-Instruct FP16** | ✅ Complete | 8/8 | 28GB | 日志报错 3 shards 失败（temp 路径问题），但后续自动重试成功——失败 shards 的时间戳(23:13/23:17)晚于错误时间(19:10) |\n| **Qwen2.5-32B-Instruct FP16** | ✅ Complete | 17/17 | 60GB | 日志截断在 51-64% 进度处，但进程已结束，所有 shards 均已落盘 |\n| **Llama-3.1-8B-Instruct FP16** | ✅ Complete | 4/4 | 30GB | 无日志文件（可能命名不同），文件完整 |\n| **Qwen2.5-14B-Instruct-AWQ** | ✅ Complete | 3/3 | 9.4GB | — |\n| **Qwen2.5-32B-Instruct-AWQ** | ✅ Complete | 5/5 | 19GB | — |\n| **Llama-3.1-8B-Instruct-AWQ-INT4** | ✅ Complete | 2/2 | 5.4GB | — |\n\n**存储路径**: `/root/autodl-tmp/modelscope_cache/` (非 `/root/autodl-tmp/models/`)\n\n**磁盘**: 250GB 总量，154GB 已用，**97GB 可用 (38%)**\n\n**下载进程**: 全部已结束，无残留 Python 进程。\n\n所有 6 个模型（3 FP16 + 3 AWQ）已就绪，可以开始 FP16 vs AWQ 精度对比实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

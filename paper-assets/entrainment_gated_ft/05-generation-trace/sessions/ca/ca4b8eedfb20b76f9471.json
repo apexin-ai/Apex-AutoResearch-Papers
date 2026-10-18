@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ca4b8eedfb20b76f9471",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "viz jaccard heatmap 4bench",
+  "task_key": "worker_viz_jaccard-heatmap-4bench_20260523T023717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_jaccard-heatmap-4bench_20260523T023717_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "8f0b4c8eab413c39014be7650b0871ef70fb2e12c2df4c987d0eebe2025e1485"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- PDF: `/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.pdf` (31KB)\n- PNG: `/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.png` (335KB)\n- Artifact 已注册: `art_20260523_306589`\n\n4 个 benchmark 各 10 对 pairwise Jaccard 值均从 JSON 提取，2×2 grid 布局，上三角 J_helped / 下三角 J_hurt，对角线灰色，共用 YlGnBu colorbar (0–0.20)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e800d690c627f98ce98f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code train openvla sc m128 seed42",
+  "task_key": "worker_code_train_openvla_sc_m128_seed42_20260519T180322",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_train_openvla_sc_m128_seed42_20260519T180322_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "6a48ce2f6ca1387a152e219a2526f0b7d3532db71a047f69c959ae63f18c9a2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "还在加载数据集阶段。训练已确认成功启动。\n\n**总结：**\n- **exp_id**: `train_openvla_sc_m128_seed42`\n- **服务器**: westd-41074, cuda:0 (RTX PRO 6000 Blackwell 96GB)\n- **PID**: 21116, tmux session: `train_openvla_sc_m128_seed42`\n- **状态**: RUNNING，模型已加载 (7.9B params)，VTC Compressor 403M params trainable (5.08%)\n- **配置**: 100k steps, batch_size=8, lr=1e-4, seed=42, WANDB_MODE=offline\n- **日志**: `~/runs/importance_margin_vla_compress/train_openvla_sc_m128_seed42.log`\n- **输出**: `checkpoints/openvla_sc_m128` (config 中的默认路径)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

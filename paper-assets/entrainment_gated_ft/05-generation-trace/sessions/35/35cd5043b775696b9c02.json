@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "35cd5043b775696b9c02",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper research lit cluster 2 linear recurrent",
+  "task_key": "worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "84c32ba4408cca97e0f9ff2cf66b6fd0c6d635564d9f95b9fc7199590ec2190b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"Linear Recurrent Models\" cluster 已完整，6 篇论文全部存在且 `verified: true`：\n\n**Must-cite（4/4 已覆盖）：**\n1. `gu2024mamba` — Mamba: Linear-Time Sequence Modeling with Selective State Spaces (Gu & Dao)\n2. `sun2023retnet` — Retentive Network (Sun et al. 2023)\n3. `qin2024hgrn2` — HGRN2: Gated Linear RNNs with State Expansion (Qin et al. 2024)\n4. `yang2024gateddeltanet` — Gated Delta Networks (Yang et al. 2024)\n\n**额外 2 篇：**\n5. `gu2022s4` — S4: Efficiently Modeling Long Sequences with Structured State Spaces (Gu et al. 2022, ICLR)\n6. `katharopoulos2020transformers` — Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention (Katharopoulos et al. 2020, ICML)\n\n经 Semantic Scholar API 交叉验证，所有 title、authors、arXiv ID 均与实际论文匹配。target_count=6，已有 6 篇，无缺口。\n\n**小问题（不影响正确性）：**\n- `yang2024gateddeltanet` venue 写的 `arXiv:2412.06464`，S2 显示已被 ICLR 接收\n- 部分 DOI 字段为空（HGRN2 有 `10.48550/arXiv.2404.07904`，GatedDeltaNet 有 `10.48550/arXiv.2412.06464`）\n\n该 cluster 无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "638967ed68b7c0230871",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code dcol training prep",
+  "task_key": "worker_code_dcol_training_prep_20260514T165507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_training_prep_20260514T165507_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "b3f13853b3f5ca2ce219c707a99bdf788bdfd0fe839018a9075f5d1c40ee4a65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已写入 `artifacts/dcol_code/`：\n\n| 文件 | 行数 | 功能 |\n|------|------|------|\n| `dcol_model.py` | 29 | DeBERTa-v3-large + MLP projection → 128-dim L2-normalized embedding |\n| `dcol_loss.py` | 65 | N-pair contrastive ordinal loss，可学习 margin 矩阵 M[i][j] = \\|i-j\\| × base_margin |\n| `dcol_dataset.py` | 58 | 读取 depth_X.jsonl，DepthCollator 做 tokenize + pad |\n| `train_dcol.py` | 206 | 训练主循环：AdamW（encoder/head 分组 LR）、cosine warmup、FP16、kNN eval、W&B logging、checkpoint |\n| `eval_dcol.py` | 138 | 加载 checkpoint → embedding 提取 → kNN accuracy + confusion matrix + pairwise AUC + t-SNE 可视化 |\n\n关键设计点：\n- **分组学习率**：projection head + margin 参数用 10× encoder LR\n- **Margin 矩阵**可学习且初始化为序数距离，保证 depth 差大的 pair margin 更大\n- **FP16 混合精度**通过 `torch.amp.autocast` + `GradScaler` 实现\n- **评估**用 kNN 而非 linear probe，直接反映 embedding 空间质量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

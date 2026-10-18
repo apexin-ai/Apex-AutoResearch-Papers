@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "01228f94f0c9fdb60a68",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval baseline v6 default sim",
+  "task_key": "worker_eval_baseline_v6_default_sim_20260516T122005",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_baseline_v6_default_sim_20260516T122005_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "b4f549c1184509950d498b237d021f15e38e51eec78b61b8f28c487e24510784"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50 episodes 完成。结果：\n\n## baseline_v6_alpha16 Sim Rollout 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Success Rate** | **0/50 (0.0%)** |\n| **95% Wilson CI** | [0.0%, 7.1%] |\n| Mean episode length | 400.0 (全部跑满) |\n| Mean reward | 0.0000 |\n| Wall clock per episode | ~3.4s |\n| 总耗时（不含加载） | ~170s |\n\n**所有 50 个 episode 均 FAIL，reward=0，跑满 400 步。** 模型在 sim 中完全无法完成 peg insertion 任务。\n\n这说明 baseline_v6_alpha16 (LoRA rank=32, alpha=16, step 29999) 在默认 ODE (temperature=1.0, Euler 10 steps) 下的 sim 表现为零。每 episode 仅 3.4s 完成 400 步（因为 action_horizon=50，所以每 episode 只做 8 次推理），时间合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

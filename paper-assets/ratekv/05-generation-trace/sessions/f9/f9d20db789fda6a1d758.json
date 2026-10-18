@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f9d20db789fda6a1d758",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "knowledge paper patch audit",
+  "task_key": "worker_knowledge_paper-patch-audit_20260514T184018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper-patch-audit_20260514T184018_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "d777b8e6c733d918d39edb44be23e3340fce7dd9530bf09b022e6cb69d19b84f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**论文当前只覆盖 3 个模型，Yi-1.5 和 Gemma-2 完全缺失。** 需要修改的位置共 ~40 处，分布在 7 个 LaTeX 文件中。\n\n关键分类：\n\n| 优先级 | 类别 | 位置数 | 阻断 |\n|--------|------|--------|------|\n| P0 | D048 concentration 数值 (0.59-0.66) | 4 处 | D048 结果 |\n| P0 | 0.50 threshold diagnostic | 3 处 | D048 结果 |\n| P1 | Yi-1.5 新增 (D047 反例) | ~12 处 | 无 |\n| P1 | Gemma-2 新增 | ~5 处 | 无 |\n| P1 | \"三个模型\"→\"五个模型\" | ~15 处 | 无 |\n| P2 | Spike vs Spread 新段落 | 1 处 (analysis.tex §5.1) | 无 |\n| P2 | 图表更新 (heatmap 3→5 panels) | 1-2 处 | 无 |\n\n**最大风险**：D048 float32 结果若 < 0.50，Qwen 的 concentration 跌破阈值，Claim 3 的 0.50 diagnostic 全线崩塌（当前 5/5 正确分类依赖 Qwen > 0.50）。需要备选方案：降阈值 / 换连续关系 framing / 引入绝对 distortion magnitude 作为辅助指标。\n\n详细清单含每个文件的行号和原文摘录，已写入 `artifacts/paper_patch_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

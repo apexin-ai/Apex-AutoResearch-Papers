@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bb7d2ca4c79236e57f6e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research literature map update",
+  "task_key": "worker_research_literature-map-update_20260515T030636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-update_20260515T030636_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "f0cdd989c16a9151a017443f7ee01fb9584054c58d01da53e0ec83de55163c63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。总结：\n\n**收录 25 篇论文**，分为 direct-competitor (8)、method-component (8)、background (5)、evaluation (2)、survey (2)。\n\n**Novelty 威胁评估：**\n\n| 维度 | 状态 | 说明 |\n|------|------|------|\n| Type count vs type confusability 解耦 | ✅ 安全 | 无先行工作。IEPILE 的 hard negative 最近但是 training-time，Familiarity 是 evaluation-time |\n| Schema DAG 分解 | ✅ 安全 | LLM-PEE 做 similarity partitioning，非 confusability-aware DAG |\n| Lost in the Middle → IE | ✅ 机会 | 无人将此应用到 IE task |\n| Multi-channel degradation model | ✅ 安全 | 无人提出 count + confusability + context 的形式化模型 |\n\n**⚠️ 唯一中等风险：CROSSAGENTIE** (ACL 2025 Findings) 的 cross-type debate 明确处理 entity-label conflict。需在论文中清晰区分：我们是 proactive decomposition（预防混淆），他们是 reactive debate（事后纠错）。\n\n**必须对比的 baselines：** LLM-PEE、PARSE。建议在 related work 中讨论 CROSSAGENTIE、DEE、SPT、DLISC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

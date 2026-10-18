@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad8b2d35a929187cc64c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops d166 westd41074 mixed",
+  "task_key": "worker_ops_d166_westd41074_mixed_20260522T131243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_d166_westd41074_mixed_20260522T131243_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "4e56b94c953ed06c24c9c2b0674b3e62e52f269c13455d14129146047008e1c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SmolVLA Spatial baseline progress:\n| Task | SR |\n|------|------|\n| 0 | 60.0% |\n| 1 | 45.0% |\n| 2 | 45.0% |\n| 3 | 60.0% |\n| 4 | 70.0% |\n| 5-9 | in progress |\n\nAverage so far: 56.0%. Experiments running stably on both GPUs, will continue to completion. X-VLA session has 3 sequential runs (baseline → k=0.95 → k=0.9).\n\n**OpenVLA Long remains BLOCKED** — no libero_10 fine-tuned model exists on either server. Only `openvla-libero-object` is available. This needs a decision: either skip OpenVLA Long, or use the libero_object model on libero_10 (cross-suite eval, likely poor results)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8656e08fcec4edf5d6e1",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "research libero training config",
+  "task_key": "worker_research_libero_training_config_20260516T125843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_libero_training_config_20260516T125843.log",
+    "occurrence": 1,
+    "bytes": 657413,
+    "sha256": "4972609edbaf884e5824f66b608414cc28bad4427b2f7bcd0e7b0a1aae9a97ae"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "8656e08fcec4edf5d6e1-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "8656e08fcec4edf5d6e1-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ]
+}

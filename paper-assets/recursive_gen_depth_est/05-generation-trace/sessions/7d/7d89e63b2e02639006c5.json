@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d89e63b2e02639006c5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp feature importance ablation",
+  "task_key": "worker_exp_feature_importance_ablation_20260517T205142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_feature_importance_ablation_20260517T205142_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "dfbcd0c4342b0cf646e01b54267d950e9fadddc78620da35f3064564d15e5f52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `results/feature_importance_ablation.json`。\n\n## 结果摘要\n\n### Group Ablation (leave-one-model-out CV, 4-class accuracy)\n\n| Group | #Features | Accuracy | Delta |\n|---|---|---|---|\n| **Full model (all 19)** | 19 | **0.6655** | — |\n| Perplexity only | 9 | 0.6601 | -0.0054 |\n| Entropy/Surprisal only | 5 | 0.6319 | -0.0336 |\n| Repetition/Diversity only | 5 | 0.5297 | -0.1358 |\n\n### Feature Importance Ranking (top 10)\n\n| Rank | Feature | Importance |\n|---|---|---|\n| 1 | p90_ppl | 0.2242 |\n| 2 | var_surprisal | 0.1884 |\n| 3 | mean_surprisal | 0.0909 |\n| 4 | p75_ppl | 0.0901 |\n| 5 | type_token_ratio | 0.0490 |\n| 6 | p50_ppl | 0.0417 |\n| 7 | hapax_ratio | 0.0383 |\n| 8 | entropy_of_surprisal | 0.0361 |\n| 9 | p25_ppl | 0.0347 |\n| 10 | skewness_ppl | 0.0287 |\n\n关键发现：\n- **Perplexity 组单独就能达到 66.0%**，仅比全特征低 0.5 个点，是最强特征组\n- Top-2 特征（p90_ppl + var_surprisal）占总 importance 的 41%\n- mean_ppl 和 var_ppl importance 接近零（被 percentile 特征替代）\n- Repetition/Diversity 组单独只有 53.0%，贡献最弱"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

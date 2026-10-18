@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4785edf21fd2c53ce096",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis compounding curves figure",
+  "task_key": "worker_analysis_compounding_curves_figure_20260515T214903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compounding_curves_figure_20260515T214903_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "4d748edcd4f8238e766936427a5784a4dada4103e0afdbe2804b2ab87b0deaea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，效果清晰。三条曲线清楚展示了不同 concentration 模式下 PPL 对 forced 2-bit heads 数量的敏感度差异：\n\n- **Llama (Spike, c=0.85)** — 最陡，k=256 时 PPL 爆炸到 1519\n- **Qwen (Spread, c=0.61)** — 中等斜率\n- **Mistral (Flat, c=0.24)** — 最平缓，k=256 也仅 45\n\nPDF 路径：\n- 服务器：`/root/ratekv/figures/fig_compounding_curves.pdf`\n- 本地：`docs/paper/figures/fig_compounding_curves.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b495cede2e0a0dea313e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel formal status",
+  "task_key": "worker_ssh_fewrel-formal-status_20260515T121548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-formal-status_20260515T121548_result.json",
+    "occurrence": 1,
+    "bytes": 2673,
+    "sha256": "b21d4ba91fae1f75d2edde42d527a0038323af8f0e0ff58df8a9bfd75433d3ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 进程状态\n- **PID 263125**: 存活，运行约 7 分钟（etime 格式 `MM:SS`，非 `HH:MM`）\n- 完整进程树正常：bash wrapper → timeout → bash → python3 exp2 → vLLM::EngineCore\n\n### 2. GPU 状态\n- **NVIDIA RTX PRO 6000 Black** (97887 MiB)\n- **利用率 100%**，显存 94221/97887 MiB\n- vLLM::EngineCore (PID 265311) 占用 94212 MiB\n- 初次检查时 GPU 显示 0% 是因为恰好处于模型加载阶段\n\n### 3. exp1：已完成\n\n产出文件：`predictions_exp1.json` (6.2MB), `eval_exp1.json` (29KB)\n\n**按 count level 汇总**：\n\n| Count | Batches | Mean Acc | Acc Range | BCS Range |\n|-------|---------|----------|-----------|-----------|\n| 1 | 16 | **0.904** | 0.629–1.000 | 0.000 |\n| 4 | 5 | **0.932** | 0.782–0.984 | 0.653–0.841 |\n| 8 | 5 | **0.867** | 0.794–0.952 | 0.646–0.847 |\n| 16 | 5 | **0.778** | 0.778 (identical) | 0.900 |\n\n**count_16 per-type accuracy**（全量 16 types, 所有 batch 相同）：\n\n| 难度 | Relation | Acc |\n|------|----------|-----|\n| 高 | military rank | 0.984 |\n| 高 | position played on team | 0.968 |\n| 高 | member of, original language | 0.952 |\n| 高 | voice type | 0.935 |\n| 中 | crosses, sport | 0.919 |\n| 中 | constellation | 0.839 |\n| 中 | child | 0.774 |\n| 低 | water body, spouse | 0.694 |\n| 低 | part of | 0.677 |\n| 低 | follows | 0.629 |\n| 低 | competition class, main subject | 0.581 |\n| **最低** | **mother** | **0.355** |\n\n**趋势**：count 从 1→4 精度略升（0.904→0.932），之后 8→16 明显下降（0.867→0.778）。符合\"schema 复杂度增加导致抽取退化\"的假设。count_4 高于 count_1 可能因为 count_1 的均值被 `follows`(0.629)、`main subject`(0.661) 拉低。\n\n### 4. exp2：正在运行\n\n- 配置：54 batches, 40176 inferences（count_8 + count_16, 含 low_bcs/high_bcs/random 对比组）\n- **当前进度**：正在处理 count_8_random_5（约第 8/54 batch）\n- 每 batch ~9 秒，推理速度 ~10K toks/s input, ~680 toks/s output\n- **预计剩余**：~7 分钟完成\n\n### 5. 产出文件\n\n```\nartifacts/fewrel_formal/\n├── batch_config_exp1.json    (6.7K,  completed)\n├── eval_exp1.json            (29K,   completed)\n├── predictions_exp1.json     (6.2M,  completed)\n├── preprocess_exp1.json      (272K,  completed)\n├── batch_config_exp2.json    (22K,   in progress)\n├── preprocess_exp2.json      (282K,  in progress)\n└── relation_sim_matrix.pt    (29K)\n```\n\n**结论**：实验运行正常，exp1 已出结果，exp2 约 7 分钟后完成。无错误、无 OOM、无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

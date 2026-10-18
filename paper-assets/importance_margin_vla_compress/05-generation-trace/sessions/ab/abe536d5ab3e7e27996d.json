@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "abe536d5ab3e7e27996d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper fig4 pixel shuffle fix",
+  "task_key": "worker_paper_fig4_pixel_shuffle_fix_20260528T134353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fig4_pixel_shuffle_fix_20260528T134353_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "5bcce787c335919ce618e1f9af967a540ba34f99e2ba1bd770ddfd05ec8b9106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件：**\n- PDF: `docs/paper/figures/paper/fig_pixel_shuffle.pdf` (34KB)\n- PNG: `docs/paper/figures/paper/fig_pixel_shuffle.png` (45KB)\n- Artifact 副本: `artifacts/_project/chart/fig_pixel_shuffle.pdf`\n- Gen script: `docs/paper/figures/paper/gen_fig_pixel_shuffle.py`\n\n**设计要点：**\n- 居中布局，左右对称 margin\n- 4 色系（蓝/橙/绿/紫）按行分组，grid 和 stacked token 颜色一一对应\n- Stacked token 有 4 组间隙，视觉上体现 4 行 × 4 片结构\n- 底部用灰色 mini-grid + 红色 X + 虚线边框展示 \"token 去除 = 整个 4×4 receptive field 丢失\"\n- Liberation Serif 字体，pdf.fonttype=42 矢量嵌入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

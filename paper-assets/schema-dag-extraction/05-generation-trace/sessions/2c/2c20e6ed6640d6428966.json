@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "2c20e6ed6640d6428966",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "research ref audit w1",
+  "task_key": "worker_research_ref-audit-w1_20260526T101506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-w1_20260526T101506.log",
+    "occurrence": 1,
+    "bytes": 798734,
+    "sha256": "a2298d49d994544874aeea6095449f6c06929c360f096479de8aa61d740e2c6b"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 1,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 90,
+      "tool_result": 90,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "2c20e6ed6640d6428966-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 213,
+      "chunks": [
+        {
+          "path": "2c20e6ed6640d6428966-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "2c20e6ed6640d6428966-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ]
+}

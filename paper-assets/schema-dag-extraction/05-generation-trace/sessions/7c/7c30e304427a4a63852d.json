@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7c30e304427a4a63852d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r1 statistical supplements",
+  "task_key": "worker_analysis_r1_statistical_supplements_20260521T155122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r1_statistical_supplements_20260521T155122_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "c4f26dac68acb2fa28eeb88e418a68646a229d217fbf8c049f07340b4749e89e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析完成。结果摘要：\n\n### N3.2 Partial Correlation\n- **FewRel** (N=204): zero-order r=−0.570 → partial r=**−0.537** (p<.0001), VIF=1.18。BCS 与 degree centrality 相关性仅 0.39，partial correlation 几乎不变，BCS 效应独立于 degree centrality。\n- **DocRED** (N=110): zero-order r=−0.760 → partial r=**−0.348** (p=.0002), VIF=50.9。BCS 与 degree centrality 近共线 (r=0.99)，但 partial r 仍高度显著。\n\n### W2 DocRED Range-Matched MDE\n- MDE at 80% power = **5.47pp**，observed interaction = 0.93pp，power = 7.6%\n- 样本不足以区分 true null 与 small (<5.5pp) interaction\n\n### W3 NER Null Power\n- Few-NERD BCS SD = 0.027，仅为 FewRel 的 **19.4%**\n- FewRel 的 r=−0.570 在 NERD 的 BCS range 下衰减至 r=−0.111，低于 min detectable r = 0.132\n- Power at attenuated effect = 65.1%\n- 结论：NER BCS-null 归因于 BCS variance 不足，而非 BCS-accuracy 关系不存在\n\n输出文件：\n- `artifacts/r1_statistical_supplements.json`\n- `artifacts/r1_statistical_supplements.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e69143d00026bac854f9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "fix exp006 batch config",
+  "task_key": "worker_fix_exp006_batch_config_20260515T174929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp006_batch_config_20260515T174929_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "6519153b1d8fe325a685f895f4f7e6f3c173c4064e4e5a253f29eb62b47fe919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并正常运行：\n- 40 batches × 1000 samples = 40000 extractions\n- flattening 成功（40 entries）\n- vLLM 模型正在加载（qwen3-32b-fp8）\n- tmux session: `exp006_interaction_2x2`，日志: `~/runs/schema-dag-extraction/exp006_interaction_2x2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

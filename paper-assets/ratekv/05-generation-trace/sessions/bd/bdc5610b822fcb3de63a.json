@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bdc5610b822fcb3de63a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code mvp foreground validation",
+  "task_key": "worker_code_mvp-foreground-validation_20260513T213800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-foreground-validation_20260513T213800_result.json",
+    "occurrence": 1,
+    "bytes": 3363,
+    "sha256": "6aab7bd11b2602691f8dece41beff75ddbfc8290690f598eb357cdc97e54507d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 完整运行成功。完整输出如下：\n\n---\n\n```\n`torch_dtype` is deprecated! Use `dtype` instead!\nToken indices sequence length is longer than the specified maximum sequence length for this model (298938 > 131072). Running this sequence through the model will result in indexing errors\nLoading model /root/autodl-tmp/models/Qwen2.5-1.5B...\nLoading existing profiles from profiles.json\n\n=== Crossover Analysis ===\n  Memory 0.125: 89.3% heads prefer eviction (50/56)\n  Memory 0.25: 0.0% heads prefer eviction (0/56)\n  Memory 0.5: 0.0% heads prefer eviction (0/56)\n\n=== Solver Results ===\n  Full MCKP @ 0.5: {'full': 1, 'quant': 55}, dist=0.006528, mem=0.5000\n  Quant-only @ 0.5: {'full': 1, 'quant': 55}, dist=0.006528, mem=0.5000\n  Full MCKP @ 0.25: {'quant': 54, 'evict': 2}, dist=0.539991, mem=0.2478\n  Quant-only @ 0.25: {'quant': 56}, dist=0.552362, mem=0.2478\n  Full MCKP @ 0.125: {'evict': 38, 'quant': 18}, dist=3.395526, mem=0.1239\n  Quant-only @ 0.125: {'quant': 56}, dist=14.286242, mem=0.1250\n\n=== Perplexity Evaluation ===\nEvaluating baseline (no compression)...\n  Baseline PPL: 12.46\n\nEvaluating full MCKP @ budget=0.5...\n  Full MCKP PPL: 12.52\nEvaluating quant-only MCKP @ budget=0.5...\n  Quant-only PPL: 12.52\n\nEvaluating full MCKP @ budget=0.25...\n  Full MCKP PPL: 22.67\nEvaluating quant-only MCKP @ budget=0.25...\n  Quant-only PPL: 19.91\n\nEvaluating full MCKP @ budget=0.125...\n  Full MCKP PPL: 14065.01\nEvaluating quant-only MCKP @ budget=0.125...\n  Quant-only PPL: 14700.47\n\nEvaluating uniform 4-bit...\n  Uniform 4-bit PPL: 19.26\n\n================================================================================\nRESULTS SUMMARY\n================================================================================\n  Budget |    Full MCKP |   Quant-only |   Uniform 4b |      Delta\n------------------------------------------------------------------\n      2x |        12.52 |        12.52 |          N/A |      +0.00\n      4x |        22.67 |        19.91 |        19.26 |      -2.77\n      8x |     14065.01 |     14700.47 |          N/A |    +635.46\n\nCrossover criterion (>=10% heads prefer eviction): PASS\nPPL improvement criterion (>=0.5 at any budget):  PASS\nOverall: PASS\n\nGenerating figures...\nSaved crossover_scatter.pdf/png\nSaved ppl_comparison.pdf/png\nSaved allocation_heatmap_full_0.5.pdf/png\nSaved allocation_heatmap_full_0.25.pdf/png\nSaved allocation_heatmap_full_0.125.pdf/png\n\nSaved all results to sanity_foreground_results.json\n```\n\n---\n\n**关键结果**：\n\n- **Crossover**: 在 0.125 memory budget 下，89.3% (50/56) 的 KV heads 偏好 eviction — PASS\n- **Solver**: Full MCKP 在 0.125x 时选择 38 evict + 18 quant（distortion 3.40），而 quant-only 的 distortion 是 14.29，差 4.2x\n- **PPL**: Baseline 12.46 → 2x 压缩 12.52（几乎无损），4x 压缩 22.67 (full) vs 19.91 (quant-only)，8x 压缩两者都崩溃（~14000+）\n- **Uniform 4-bit PPL**: 19.26（在 4x budget 下优于 Full MCKP 的 22.67）\n- **Overall: PASS**\n\n注意 4x budget 下 Full MCKP (22.67) 反而比 Quant-only (19.91) 和 Uniform 4-bit (19.26) 差（Delta=-2.77），说明 solver 的 eviction 选择在这个 budget 点不优。这加载的是之前已有的 profiles.json，可能需要用新 calibration 数据重新 profile。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

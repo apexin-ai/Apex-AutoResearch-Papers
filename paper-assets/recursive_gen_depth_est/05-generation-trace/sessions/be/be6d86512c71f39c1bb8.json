@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be6d86512c71f39c1bb8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix accum baseline and check baselines",
+  "task_key": "worker_fix_accum_baseline_and_check_baselines_20260519T131726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_accum_baseline_and_check_baselines_20260519T131726_result.json",
+    "occurrence": 1,
+    "bytes": 1178,
+    "sha256": "109812265ecab3d77e34ff8c80113225620b5d635503d1fd1ad22ae5a4e0af78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个进程全部存活。\n\n---\n\n## 汇总\n\n### 任务 1：accumulation 脚本 baseline 修复 ✅\n\n`accumulation_pipeline_gpt2xl.py` 中 3 处 `0.859` → `0.8428`：\n- **L633**: print 语句\n- **L634**: delta 计算（`rf_results['overall_accuracy'] - 0.8428`），delta 自动更新\n- **L646**: 结果字典\n\n服务器无 artifacts/ 目录，无报告文件引用旧值。\n\n### 任务 2：baselines 进程状态 ✅\n\n| 实验 | 原 PID | 状态 | 新 PID |\n|------|--------|------|--------|\n| Min-K% #001 | 131084 | 存活（14min） | — |\n| Min-K% #002 | 131522 | 存活（11min） | — |\n| DetectGPT #001 | 131161 | **已死**（HF httpx 崩溃） | **133098** |\n| DetectGPT #002 | 131658 | **已死**（HF httpx 崩溃） | **133269** |\n\nDetectGPT 崩溃原因：`RuntimeError: Cannot send a request, as the client has been closed.`（HF Hub 网络问题）。重提时已加 `network_turbo` + `SSL_CERT_FILE` + `HF_HUB_DISABLE_XET=1` 环境变量修复。\n\n日志路径：\n- `~/runs/recursive_gen_depth_est/detectgpt_ordinal_baseline_001_retry.log`\n- `~/runs/recursive_gen_depth_est/detectgpt_ordinal_baseline_002_retry.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

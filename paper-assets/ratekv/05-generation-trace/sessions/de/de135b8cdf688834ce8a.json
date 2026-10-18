@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "de135b8cdf688834ce8a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp mistral multi seed ppl",
+  "task_key": "worker_exp_mistral_multi_seed_ppl_20260516T035343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mistral_multi_seed_ppl_20260516T035343_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "0a45fcdb88e1f524a23fef4916df78dc7b0216453537d3ee347138d3f8ac1375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n- **exp_id**: `mistral_multi_seed_ppl`\n- **GPU**: cuda:1 (RTX PRO 6000, 98GB)\n- **日志**: `~/runs/ratekv/mistral_multi_seed_ppl.log`\n- **tmux session**: `mistral_multi_seed_ppl`\n- **输出**: `/root/ratekv/artifacts/mistral_multi_seed_ppl_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b940876f280ed10b1ea",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops kill duplicate mc",
+  "task_key": "worker_ops_kill-duplicate-mc_20260524T121015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-duplicate-mc_20260524T121015_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "57c89e427a5285fe23067b928ec59692fb056117a6d8055d41e48da1a0fef514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 状态 |\n|------|------|\n| PID 18884 | 已 kill（exit 0） |\n| PID 18494 | 运行中，etime=51:15，CPU=1275% |\n| stdout/stderr | 均重定向到 `/tmp/mc_size_cal.log`（当前为空，说明还没有 print 输出到达） |\n| 结果输出路径 | `/root/cert_manip_resist_eval/artifacts/results/plan001/monte_carlo_size_calibration.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

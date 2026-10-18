@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4461c994cd76c0e4a3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops restart k03 eval",
+  "task_key": "worker_ops_restart_k03_eval_20260518T052858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_restart_k03_eval_20260518T052858_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "ece9287ca29c60ce640d14382e82f427da8693b04abc171766c12e5a7f240bbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval restarted. Summary:\n\n- **PID 1881** on GPU 1 (16 GB, 85% util), tmux session `eval_k03_restart`\n- **Log**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_restart.log`\n- **Registry**: `eval_openvla_pruning_k03_restart` → RUNNING, parent=`eval_openvla_pruning_k03`\n- **No task range support** in the script, so all 10 tasks run from scratch (~5h estimated at ~1.7 eps/min)\n- **Partial results saved** to `artifacts/openvla_k03_partial_results.json`: 8/10 tasks, avg SR = 19.25% over 400 eps. The restart will give us a complete independent run to cross-validate."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

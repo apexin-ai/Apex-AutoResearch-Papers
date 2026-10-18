@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "95a3f9ef3ca3787abb43",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy smolvla westd38929 gpu3 v2",
+  "task_key": "worker_deploy_smolvla-westd38929-gpu3-v2_20260521T171815",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-westd38929-gpu3-v2_20260521T171815_result.json",
+    "occurrence": 1,
+    "bytes": 98,
+    "sha256": "b4194156d8e5484a5066ee05ec02dd8227ccf79bf2576441d7432542f2092611"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OpenVLA is at Task 10/10, Ep 40/50 (~6 min remaining). Polling again in 3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

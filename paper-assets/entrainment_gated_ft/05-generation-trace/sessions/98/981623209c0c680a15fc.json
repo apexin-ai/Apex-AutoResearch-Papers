@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "981623209c0c680a15fc",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis bootstrap ci alpha",
+  "task_key": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci-alpha_20260521T130458_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "169563de9820d4418f36f20999ada422328654ba70a54a2521855e1ac8f2dc6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。4 benchmarks × 5 ratios = 20 组 bootstrap 95% CI 全部计算完毕，结果摘要：\n\n| Benchmark | α 范围 | CI 宽度 |\n|-----------|--------|---------|\n| **PIQA** (n=1838) | 0.132–0.143 | ~0.031 |\n| **HellaSwag** (n=10042) | 0.146–0.150 | ~0.014 |\n| **ARC-Easy** (n=2376) | 0.201–0.226 | ~0.032 |\n| **LAMBADA** (n=5153) | 0.294–0.316 | ~0.025 |\n\n关键观察：α 在不同 attention ratio 之间变化很小（各 benchmark 内 CI 大量重叠），说明 ambiguity 主要是 benchmark-driven 而非 architecture-driven。LAMBADA 的 α 最高（~30%），HellaSwag 的 CI 最窄（得益于 10K 样本量）。\n\nArtifact 已注册：`art_20260521_31b294`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c92c153a5603c15bc2cb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh reeval 70b fewnerd unified",
+  "task_key": "worker_ssh_reeval_70b_fewnerd_unified_20260517T132526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_reeval_70b_fewnerd_unified_20260517T132526_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "9c1d158a57aa7531826edc45069849f172a63644f0d1b7ce099a234c01ea1445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。以下是统一协议后的结果：\n\n## LLaMA 70B d051 重新评估结果（text_match protocol）\n\n| Count | 70B Recall | Qwen3 Recall | Delta | 70B Precision | Qwen3 Precision |\n|-------|-----------|-------------|-------|--------------|----------------|\n| count_2 | **0.323** | 0.515 | -19pp | 0.446 | 0.320 |\n| count_6 | **0.300** | 0.399 | -10pp | 0.323 | 0.248 |\n| count_12 | **0.278** | 0.318 | -4pp | 0.311 | 0.269 |\n| count_22 | **0.252** | 0.279 | -3pp | 0.376 | 0.365 |\n| count_44 | **0.297** | 0.309 | -1pp | 0.468 | 0.504 |\n| count_66 | **0.273** | 0.407 | -13pp | 0.609 | 0.633 |\n\n## 关键发现\n\n1. **旧值完全失效**：70B count_2 从 0.962 降至 0.323（-64pp），证实旧评估协议严重失真\n2. **70B recall 在所有 count level 都低于 Qwen3**，差距 1-19pp\n3. **70B 更保守**：pred/gold ratio 0.45-0.93 vs Qwen3 在低 count 大量过度预测（count_2 ratio 3.11）。70B 高 precision / 低 recall，Qwen3 反之\n4. **中间段（count_12-44）两模型接近**，差距仅 1-4pp\n5. **count_66 差距大**（13pp）：Qwen3 在全类型场景下 recall 反弹至 0.407，70B 仍停留在 0.273\n\n结果已保存至 westd: `/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_unified_protocol.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

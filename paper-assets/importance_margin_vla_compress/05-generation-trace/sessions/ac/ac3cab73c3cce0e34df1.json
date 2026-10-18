@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac3cab73c3cce0e34df1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "p0 stdout rescue 3servers",
+  "task_key": "worker_p0_stdout-rescue-3servers_20260526T223630",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_p0_stdout-rescue-3servers_20260526T223630_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "12d0ef6f043a368e7bf1d8c459a1cac10d325e3960eb888a2195f42965bd9d7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部诊断完毕。\n\n```\n=== cqa1-33015 GPU 1 (PID 617728) — π0.5 Attn k=0.7 Long ===\n进程状态: 已死（已完成）\nstdout指向: N/A（进程已结束）\ntmux session: 有 tmux socket\n日志文件: logs/eval_pi05_attention_k07_long_seed42.log (7944 bytes)\n结果: ✅ 已完成，SR=50.8%，结果保存至 eval_results/pi05_attention_k0.70_libero_10_seed42.json\n结论: 安全 — 实验已正常完成并保存结果\n\n=== westd-38929 GPU 3 (PID 811418) — OV Random k=0.75 Goal ===\n进程状态: 存活（已运行 2h07m）\nstdout指向: pipe → tee logs/eval_openvla_random_k075_goal_seed42.log\ntmux session: 有 tmux socket\n日志文件: logs/eval_openvla_random_k075_goal_seed42.log (4076 bytes, 持续写入)\n进度: Task 6/10 进行中（Task 5 完成 SR=92%）\n结论: 安全 — 通过 `2>&1 | tee` 重定向，日志正常写入文件\n\n=== westd-27271 GPU 0 (PID 499267) — OV Attn k=0.75 Goal ===\n进程状态: 存活（已运行 2h07m）\nstdout指向: pipe → tee logs/eval_openvla_attn_k075_goal_seed42.log\ntmux session: 有 tmux socket\n日志文件: logs/eval_openvla_attn_k075_goal_seed42.log (2657 bytes, 持续写入)\n进度: Task 7/10 进行中（Task 6 完成 SR=74%）\n结论: 安全 — 通过 `2>&1 | tee` 重定向，日志正常写入文件\n```\n\n**总结：3 个实验全部安全。** cqa1 的已完成（SR=50.8%），另外两个正在通过 `tee` 写日志，预计再跑 ~1.5h 完成。无需任何干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

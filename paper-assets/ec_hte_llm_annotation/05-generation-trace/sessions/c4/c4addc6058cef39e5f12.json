@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.0",
+  "id": "c4addc6058cef39e5f12",
+  "project": "ec_hte_llm_annotation",
+  "kind": "conversation",
+  "title": "code exp 007 double correction fix",
+  "task_key": "worker_code_exp-007-double-correction-fix_20260520T223135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp-007-double-correction-fix_20260520T223135.jsonl",
+    "occurrence": 1,
+    "bytes": 18103,
+    "sha256": "9d4ce2f561cd7db31f84de1db86b0942bd4c45bafd0151207dd52fcbd39cfc53"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T22:33:28.568159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T22:33:28.569003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\texp-007: PPCI + Stratified MLE Baseline Comparison for EC-HTE\n3\tCompares measurement-model-level correction (EC-HTE) vs estimand-level correction (Stratified MLE)\n4\tvs standard PPCI approach. DGP uses pure covariate-error: only Z has LLM misclassification.\n5\tOutcome Y can optionally have measurement error (sigma_outcome > 0).\n6\t\"\"\"\n7\t\n8\timport numpy as np\n9\timport pandas as pd\n10\timport sys\n11\timport time\n12\timport warnings\n13\twarnings.filterwarnings('ignore')\n14\t\n15\t# === DGP ===\n16\t\n17\tREGIMES = {\n18\t    'extreme':     {'tau_z1': 0.5, 'tau_z0': 0.1},\n19\t    'moderate':    {'tau_z1': 0.3, 'tau_z0': 0.15},\n20\t    'homogeneous': {'tau_z1': 0.25, 'tau_z0': 0.20},\n21\t}\n22\t\n23\tMISCLASS_K2 = {\n24\t    'extreme':     [0.25, 0.05],\n25\t    'moderate':    [0.15, 0.10],\n26\t    'homogeneous': [0.12, 0.12],\n27\t}\n28\t\n29\tMISCLASS_K4 = {\n30\t    'extreme':     [0.30, 0.20, 0.10, 0.03],\n31\t    'moderate':    [0.20, 0.15, 0.10, 0.05],\n32\t    'homogeneous': [0.12, 0.12, 0.12, 0.12],\n33\t}\n34\t\n35\tOUTCOME_BIAS = {\n36\t    'extreme':     [0.3, 0.1, 0.5, 0.2],\n37\t    'moderate':    [0.15, 0.05, 0.25, 0.10],\n38\t    'homogeneous': [0.1, 0.1, 0.1, 0.1],\n39\t}\n40\t\n41\tDGP_CONFIGS = {\n42\t    'A_covariate_only':  {'has_covariate_error': True,  'has_outcome_error': False},\n43\t    'B_outcome_only':    {'has_covariate_error': False, 'has_outcome_error': True},\n44\t    'C_both_errors':     {'has_covariate_error': True,  'has_outcome_error': True},\n45\t    'D_no_error':        {'has_covariate_error': False, 'has_outcome_error': False},\n46\t}\n47\t\n48\tN = 5000\n49\tN_EXPERTS = [50, 100, 250, 500]\n50\tN_MC = 100\n51\tOUTCOME_NOISE_LEVELS = [0.0, 0.5, 1.0]\n52\t\n53\t\n54\tdef generate_data(regime_params, misclass_rates, n_expert, k_subgroups, seed,\n55\t                  sigma_outcome=0.0, outcome_noise_heterogeneous=True,\n56\t                  has_covariate_error=True, has_outcome_error=False,\n57\t                  outcome_bias_per_subgroup=None):\n58\t    \"\"\"Generate synthetic data with configurable covariate and outc\n…[truncated 25654 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T22:33:28.569487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py",
+              "old_string": "\"\"\"\nexp-007: PPCI + Stratified MLE Baseline Comparison for EC-HTE\nCompares measurement-model-level correction (EC-HTE) vs estimand-level correction (Stratified MLE)\nvs standard PPCI approach. DGP uses pure covariate-error: only Z has LLM misclassification.\nOutcome Y can optionally have measurement error (sigma_outcome > 0).\n\"\"\"",
+              "new_string": "\"\"\"\nexp-007: PPCI + Stratified MLE Baseline Comparison for EC-HTE\nCompares measurement-model-level correction (EC-HTE) vs estimand-level correction (Stratified MLE)\nvs standard PPCI approach. DGP uses pure covariate-error: only Z has LLM misclassification.\nOutcome Y can optionally have measurement error (sigma_outcome > 0).\n\nFix (2026-05-20): method_ec_hte_ppci double-correction bug.\n  Rectifier was using Z_hat grouping on gold subset, capturing both covariate and outcome error.\n  Since M^{-1} already corrects covariate error, this caused double correction under DGP A/C.\n  Fixed: rectifier now uses true Z grouping on gold subset so it only captures outcome error.\n\"\"\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T22:33:28.569967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T22:33:28.570279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py",
+              "old_string": "def method_ppci(data, s_val):\n    \"\"\"PPI rectifier for CATE estimation.\n\n    Corrects outcome-side bias using a gold-standard expert subset.\n    Gold subset has access to BOTH true Z and true Y (Y_true).\n    For each subgroup s and Z-level z:\n      1. tau_hat_all(z,s) = CATE from ALL data using Z_hat and observed Y\n      2. tau_gold(z,s) = CATE from GOLD subset using true Z and true Y\n      3. tau_hat_gold(z,s) = CATE from GOLD subset using Z_hat and observed Y\n      4. rectifier = tau_gold - tau_hat_gold\n      5. tau_ppci = tau_hat_all + rectifier\n    \"\"\"",
+              "new_string": "def method_ppci(data, s_val):\n    \"\"\"PPI rectifier for CATE estimation.\n\n    General-purpose correction using a gold-standard expert subset.\n    The rectifier captures ALL systematic error (covariate + outcome) between\n    the gold estimate (true Z, true Y) and the noisy estimate (Z_hat, observed Y).\n    This is complementary to EC-HTE's structured covariate-only correction via M^{-1}.\n\n    For each subgroup s and Z-level z:\n      1. tau_hat_all(z,s) = CATE from ALL data using Z_hat and observed Y\n      2. tau_gold(z,s) = CATE from GOLD subset using true Z and true Y\n      3. tau_hat_gold(z,s) = CATE from GOLD subset using Z_hat and observed Y\n      4. rectifier = tau_gold - tau_hat_gold  (captures covariate + outcome error)\n      5. tau_ppci = tau_hat_all + rectifier\n    \"\"\""
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T22:33:28.570721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T22:33:28.571067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py",
+              "old_string": "    results_z = {}\n    for idx, z_val in enumerate([0, 1]):\n        gold_z_mask = (Z_true_s == z_val)\n        gold_indices = expert_s_indices[gold_z_mask]\n\n        if len(gold_indices) < 4:\n            results_z[z_val] = (tau_ec[idx], se_ec[idx])\n            continue\n\n        # tau_gold: true Z + true Y on gold subset\n        gold_bool = np.zeros(len(Y), dtype=bool)\n        gold_bool[gold_indices] = True\n        tau_gold, se_gold = diff_in_means(Y_true, T, gold_bool)\n\n        # tau_hat_gold: Z_hat + observed Y on gold subset\n        gold_zhat_mask = (Z_hat[expert_s_indices] == z_val)\n        gold_zhat_indices = expert_s_indices[gold_zhat_mask]\n        gold_zhat_bool = np.zeros(len(Y), dtype=bool)\n        gold_zhat_bool[gold_zhat_indices] = True\n        tau_hat_gold, se_hat_gold = diff_in_means(Y, T, gold_zhat_bool)\n\n        if np.isnan(tau_gold) or np.isnan(tau_hat_gold):\n            results_z[z_val] = (tau_ec[idx], se_ec[idx])\n            continue\n\n        rectifier = tau_gold - tau_hat_gold\n        tau_combined = tau_ec[idx] + rectifier\n        se_combined = np.sqrt(se_ec[idx]**2 + se_gold**2 + se_hat_gold**2)\n        results_z[z_val] = (tau_combined, se_combined)",
+              "new_string": "    results_z = {}\n    for idx, z_val in enumerate([0, 1]):\n        gold_z_mask = (Z_true_s == z_val)\n        gold_indices = expert_s_indices[gold_z_mask]\n\n        if len(gold_indices) < 4:\n            results_z[z_val] = (tau_ec[idx], se_ec[idx])\n            continue\n\n        gold_bool = np.zeros(len(Y), dtype=bool)\n        gold_bool[gold_indices] = True\n\n        # tau_gold: true Z + true Y → no error\n        tau_gold, se_gold = diff_in_means(Y_true, T, gold_bool)\n\n        # tau_hat_gold_true_z: true Z + observed Y → only outcome error remains\n        tau_hat_gold_true_z, se_hat_gold = diff_in_means(Y, T, gold_bool)\n\n        if np.isnan(tau_gold) or np.isnan(tau_hat_gold_true_z):\n            results_z[z_val] = (tau_ec[idx], se_ec[idx])\n            continue\n\n        # rectifier captures outcome error only (covariate error already handled by M^{-1})\n        rectifier = tau_gold - tau_hat_gold_true_z\n        tau_combined = tau_ec[idx] + rectifier\n        se_combined = np.sqrt(se_ec[idx]**2 + se_gold**2 + se_hat_gold**2)\n        results_z[z_val] = (tau_combined, se_combined)"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T22:33:28.571600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T22:33:28.571933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py",
+              "offset": "390",
+              "limit": "60"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T22:33:28.572259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "390\t    th0, se0 = results_z.get(0, (np.nan, np.nan))\n391\t    th1, se1 = results_z.get(1, (np.nan, np.nan))\n392\t    return th0, th1, se0, se1\n393\t\n394\t\n395\tdef method_ec_hte_ppci(data, s_val, C_s, p_z_s, p_zh_s):\n396\t    \"\"\"EC-HTE + PPCI: correct covariate error via M^{-1}, then apply PPI rectifier for outcome error.\"\"\"\n397\t    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n398\t    Y_true = data['Y_true']\n399\t    expert_mask = data['expert_mask']\n400\t\n401\t    s_mask = S == s_val\n402\t    expert_s = expert_mask & s_mask\n403\t\n404\t    th0_obs, se0_obs = diff_in_means(Y, T, s_mask & (Z_hat == 0))\n405\t    th1_obs, se1_obs = diff_in_means(Y, T, s_mask & (Z_hat == 1))\n406\t    if np.isnan(th0_obs) or np.isnan(th1_obs):\n407\t        return np.nan, np.nan, np.nan, np.nan\n408\t\n409\t    M_s = build_mixing_matrix(C_s, p_z_s, p_zh_s)\n410\t    tau_ec, se_ec = invert_mixing(M_s, np.array([th0_obs, th1_obs]),\n411\t                                  np.array([se0_obs, se1_obs]))\n412\t\n413\t    n_expert_s = expert_s.sum()\n414\t    if n_expert_s < 10:\n415\t        return tau_ec[0], tau_ec[1], se_ec[0], se_ec[1]\n416\t\n417\t    expert_s_indices = np.where(expert_s)[0]\n418\t    Z_true_s = Z[expert_s_indices]\n419\t\n420\t    results_z = {}\n421\t    for idx, z_val in enumerate([0, 1]):\n422\t        gold_z_mask = (Z_true_s == z_val)\n423\t        gold_indices = expert_s_indices[gold_z_mask]\n424\t\n425\t        if len(gold_indices) < 4:\n426\t            results_z[z_val] = (tau_ec[idx], se_ec[idx])\n427\t            continue\n428\t\n429\t        gold_bool = np.zeros(len(Y), dtype=bool)\n430\t        gold_bool[gold_indices] = True\n431\t\n432\t        # tau_gold: true Z + true Y → no error\n433\t        tau_gold, se_gold = diff_in_means(Y_true, T, gold_bool)\n434\t\n435\t        # tau_hat_gold_true_z: true Z + observed Y → only outcome error remains\n436\t        tau_hat_gold_true_z, se_hat_gold = diff_in_means(Y, T, gold_bool)\n437\t\n438\t        if np.isnan(tau_gold) or np.isnan(tau_hat_gold_true_z):\n439\t   \n…[truncated 536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T22:33:28.572596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python -c \"\nimport exp007_ppci_dsl as m\nimport numpy as np\nimport pandas as pd\n\nnp.random.seed(42)\nregime = 'extreme'\nk = 2\nn_expert = 250\nsigma = 0.0\nn_mc = 5\n\nrows = []\nfor mc in range(n_mc):\n    r = m.run_one_mc(regime, m.REGIMES[regime], m.MISCLASS_K2[regime], n_expert, k, seed=mc,\n                     sigma_outcome=sigma, dgp_name='A_covariate_only',\n                     outcome_bias_per_subgroup=m.OUTCOME_BIAS[regime][:k])\n    rows.extend(r)\n\ndf = pd.DataFrame(rows)\ndf['bias_z0'] = df['tau_hat_z0'] - df['tau_true_z0']\ndf['bias_z1'] = df['tau_hat_z1'] - df['tau_true_z1']\n\nprint('DGP A (covariate-only error), extreme regime, n_expert=250, k=2, 5 MC runs')\nprint('Rectifier should be ~0 under DGP A (no outcome error)')\nprint()\nfor method in ['oracle', 'naive', 'ec_hte', 'ec_hte_ppci', 'ppci']:\n    sub = df[df['method'] == method]\n    b0 = sub['bias_z0'].mean()\n    b1 = sub['bias_z1'].mean()\n    print(f'{method:20s}  bias_z0={b0:+.4f}  bias_z1={b1:+.4f}')\n\"\n",
+              "description": "Validate fix: compare ec_hte vs ec_hte_ppci bias under DGP A",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T22:33:28.572920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T22:33:28.573175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "which python3 && python3 --version",
+              "description": "Check python3 availability"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T22:33:28.573419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/bin/python3\nPython 3.14.4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T22:33:28.573668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport exp007_ppci_dsl as m\nimport numpy as np\nimport pandas as pd\n\nnp.random.seed(42)\nregime = 'extreme'\nk = 2\nn_expert = 250\nsigma = 0.0\nn_mc = 5\n\nrows = []\nfor mc in range(n_mc):\n    r = m.run_one_mc(regime, m.REGIMES[regime], m.MISCLASS_K2[regime], n_expert, k, seed=mc,\n                     sigma_outcome=sigma, dgp_name='A_covariate_only',\n                     outcome_bias_per_subgroup=m.OUTCOME_BIAS[regime][:k])\n    rows.extend(r)\n\ndf = pd.DataFrame(rows)\ndf['bias_z0'] = df['tau_hat_z0'] - df['tau_true_z0']\ndf['bias_z1'] = df['tau_hat_z1'] - df['tau_true_z1']\n\nprint('DGP A (covariate-only error), extreme regime, n_expert=250, k=2, 5 MC runs')\nprint('Rectifier should be ~0 under DGP A (no outcome error)')\nprint()\nfor method in ['oracle', 'naive', 'ec_hte', 'ec_hte_ppci', 'ppci']:\n    sub = df[df['method'] == method]\n    b0 = sub['bias_z0'].mean()\n    b1 = sub['bias_z1'].mean()\n    print(f'{method:20s}  bias_z0={b0:+.4f}  bias_z1={b1:+.4f}')\n\"\n",
+              "description": "Validate fix: compare ec_hte vs ec_hte_ppci bias under DGP A",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T22:33:28.573961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DGP A (covariate-only error), extreme regime, n_expert=250, k=2, 5 MC runs\nRectifier should be ~0 under DGP A (no outcome error)\n\noracle                bias_z0=-0.0256  bias_z1=-0.0212\nnaive                 bias_z0=+0.0244  bias_z1=-0.0719\nec_hte                bias_z0=-0.0505  bias_z1=-0.0042\nec_hte_ppci           bias_z0=-0.0505  bias_z1=-0.0042\nppci                  bias_z0=-0.0372  bias_z1=-0.0263"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T22:33:28.574254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport exp007_ppci_dsl as m\nimport numpy as np\nimport pandas as pd\n\nregime = 'extreme'\nk = 2\nn_expert = 250\nsigma = 0.5\nn_mc = 5\n\nrows = []\nfor mc in range(n_mc):\n    r = m.run_one_mc(regime, m.REGIMES[regime], m.MISCLASS_K2[regime], n_expert, k, seed=mc,\n                     sigma_outcome=sigma, dgp_name='C_both_errors',\n                     outcome_bias_per_subgroup=m.OUTCOME_BIAS[regime][:k])\n    rows.extend(r)\n\ndf = pd.DataFrame(rows)\ndf['bias_z0'] = df['tau_hat_z0'] - df['tau_true_z0']\ndf['bias_z1'] = df['tau_hat_z1'] - df['tau_true_z1']\n\nprint('DGP C (both errors), extreme regime, n_expert=250, k=2, sigma=0.5, 5 MC runs')\nprint()\nfor method in ['oracle', 'naive', 'ec_hte', 'ec_hte_ppci', 'ppci']:\n    sub = df[df['method'] == method]\n    b0 = sub['bias_z0'].mean()\n    b1 = sub['bias_z1'].mean()\n    print(f'{method:20s}  bias_z0={b0:+.4f}  bias_z1={b1:+.4f}')\n\"\n",
+              "description": "Validate DGP C: ec_hte_ppci should improve over ec_hte",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T22:33:28.574531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DGP C (both errors), extreme regime, n_expert=250, k=2, sigma=0.5, 5 MC runs\n\noracle                bias_z0=+0.1594  bias_z1=+0.1475\nnaive                 bias_z0=+0.2238  bias_z1=+0.0792\nec_hte                bias_z0=+0.1475  bias_z1=+0.1844\nec_hte_ppci           bias_z0=-0.0411  bias_z1=-0.0163\nppci                  bias_z0=-0.0238  bias_z1=-0.0511"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T22:33:28.574871+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results look correct:\n\n- **DGP A** (covariate-only): `ec_hte_ppci` = `ec_hte` exactly (rectifier ≈ 0, no double correction)\n- **DGP C** (both errors): `ec_hte_ppci` substantially improves over `ec_hte` by correcting the remaining outcome error\n\nChanges made:\n1. **`method_ec_hte_ppci`** (line 420-446): Rectifier now uses `gold_bool` (true Z grouping) for both `tau_gold` and `tau_hat_gold_true_z`, so it only captures outcome error. Previously it used Z_hat grouping for `tau_hat_gold`, causing double correction of covariate error.\n2. **`method_ppci` docstring** (line 325-338): Clarified that the PPCI rectifier captures all systematic error (covariate + outcome), complementary to EC-HTE's structured covariate-only correction.\n3. **File header** (line 7-10): Documented the fix."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp-007-double-correction-fix_20260520T223135"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ]
+}

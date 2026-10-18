@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cf7cbca8fa1809fc341e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp fewshot bcs mitigation",
+  "task_key": "worker_code_exp_fewshot_bcs_mitigation_20260517T124103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_fewshot_bcs_mitigation_20260517T124103_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "64c8e081e3aeb3acb05a9b2b779ca5c907985b366bf76e6e59e47baeea1504b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并在运行。\n\n**总结：**\n- 脚本: `/root/schema-dag-extraction/src/run_fewshot_bcs.py`\n- 数据: FewRel 80-rel (train+val, 56000 samples), test=960 (12/rel), fewshot pool=688+/rel\n- 条件: 0-shot / 1-shot / 5-shot × count_8 / count_16 × low-BCS / high-BCS (25 batches per group)\n- 总推理次数: 43,200 (300 conditions × ~144 samples/batch avg)\n- BCS 分组: 从 60 个随机 batch 中取 BCS 最低 25 和最高 25\n- 输出: `artifacts/fewshot_bcs_mitigation/` (results_incremental.jsonl + analysis.json)\n- Registry: `exp_fewshot_bcs_mitigation` status=RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

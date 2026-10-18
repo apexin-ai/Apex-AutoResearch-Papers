@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7e1c2b26411b159027d5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp ablation pca supplement",
+  "task_key": "worker_exp_ablation_pca_supplement_20260515T173806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_ablation_pca_supplement_20260515T173806_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "85c85f96fbcbf697ee1b7de6be4a8fdce60ad2f9ca1748fa370baee73f90d911"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### PCA 有效维度\n| 阈值 | 9 cell 平均 | 范围 | merged_all |\n|------|------------|------|-----------|\n| 90% | 6-7 pc | 6–7 | 7 |\n| 95% | 7-9 pc | 7–9 | 9 |\n| 99% | 11-13 pc | 11–13 | 13 |\n\n19 维特征中，**6-7 个主成分就能解释 90% 方差**，说明特征空间存在显著冗余。\n\n### Leave-one-group-out（按影响力排序，mean Δacc across 9 cells）\n| 排除组 | 特征数 | mean Δ |\n|--------|--------|--------|\n| **perplexity** | 9 | **-0.0353** |\n| surprisal | 3 | -0.0054 |\n| repetition | 3 | -0.0022 |\n| lexical_diversity | 2 | -0.0010 |\n| ngram_entropy | 2 | -0.0006 |\n\n**Perplexity 组是最关键的特征组**，排除后准确率平均下降 3.5%，远超其他组。Surprisal 次之但影响较小 (-0.54%)。Lexical diversity 和 ngram entropy 几乎不影响性能。\n\n### 产出文件\n- `results/feature_ablation/pca_effective_dims.json`\n- `results/feature_ablation/leave_one_group_out.json`\n- `results/feature_ablation/pca_scree_plot.pdf` / `.png`\n- `src/pca_effective_dims.py`\n- `src/leave_one_group_out.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

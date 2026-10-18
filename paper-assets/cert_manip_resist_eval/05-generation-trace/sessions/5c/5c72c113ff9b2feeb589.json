@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "5c72c113ff9b2feeb589",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis wild bootstrap fix",
+  "task_key": "worker_analysis_wild-bootstrap-fix_20260522T195622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wild-bootstrap-fix_20260522T195622.log",
+    "occurrence": 1,
+    "bytes": 642920,
+    "sha256": "3080ad05ff98941346541bc7a6d724d99e3256427e2510a245da33cfe33bab45"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 67,
+      "user": 1,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "5c72c113ff9b2feeb589-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "5c72c113ff9b2feeb589-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "5c72c113ff9b2feeb589-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ]
+}

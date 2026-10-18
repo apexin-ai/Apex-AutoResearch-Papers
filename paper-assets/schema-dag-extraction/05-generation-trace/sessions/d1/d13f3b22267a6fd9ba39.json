@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d13f3b22267a6fd9ba39",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp1 check and launch exp2",
+  "task_key": "worker_ssh_exp1-check-and-launch-exp2_20260514T215328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp1-check-and-launch-exp2_20260514T215328_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "7de7005b0d6b84995420f67b63e0e8796f379a858f4d7d266b4c6b32fc022ded"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exp 1 仍在运行。进度：**74/94 batches 完成**（79%）。\n\n已完成：\n- `count_1`: 64/64 batches (全部 solo baseline 完成)\n- `count_2`: 5/5 batches\n- `count_6`: 5/5 batches\n\n当前正在运行 `count_12_random_0`，开始于 05:51:30。\n\n剩余 20 batches：\n- `count_12`: 5 batches\n- `count_22`: 5 batches  \n- `count_44`: 5 batches\n- `count_66`: 5 batches\n\ncount_6 batches 平均 ~230s/batch，更大 count 会更长。**预估剩余 ~80-120 min**（count 越大 prompt 越长，推理越慢）。\n\n现在 05:53，预计 ~07:30-08:00 完成。到时候我再检查并启动 Exp 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

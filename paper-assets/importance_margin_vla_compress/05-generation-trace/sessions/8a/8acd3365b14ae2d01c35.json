@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8acd3365b14ae2d01c35",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "infra server setup deploy v2",
+  "task_key": "worker_infra_server-setup-deploy-v2_20260515T122853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_server-setup-deploy-v2_20260515T122853.log",
+    "occurrence": 1,
+    "bytes": 832112,
+    "sha256": "fb6f8d4a2e2ae33835cd83ffdb384ec28f4b9005d6b1cf2db10b368b77fae292"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 0,
+    "tool_calls": 124,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 124,
+      "tool_result": 124,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 346,
+      "chunks": [
+        {
+          "path": "8acd3365b14ae2d01c35-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8acd3365b14ae2d01c35-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ]
+}

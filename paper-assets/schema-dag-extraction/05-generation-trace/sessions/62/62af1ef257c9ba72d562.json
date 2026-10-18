@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "62af1ef257c9ba72d562",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "exp scs name def ablation",
+  "task_key": "worker_exp_scs_name_def_ablation_20260516T114937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_scs_name_def_ablation_20260516T114937.log",
+    "occurrence": 1,
+    "bytes": 875933,
+    "sha256": "ba5c5e43467d667c4d58503a027f1f37dd1e55e5ea7c4a2e4535b97c16f6c66e"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "62af1ef257c9ba72d562-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "62af1ef257c9ba72d562-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ]
+}

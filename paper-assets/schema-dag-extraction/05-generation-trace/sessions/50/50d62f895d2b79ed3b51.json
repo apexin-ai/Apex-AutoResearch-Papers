@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "50d62f895d2b79ed3b51",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper figure2 re dual panel",
+  "task_key": "worker_paper_figure2-re-dual-panel_20260516T050556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure2-re-dual-panel_20260516T050556_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "fa3cdbdc3876ac12f87fe3ef6a50db06b2028446e42b6202ebdb8f723ecb5af7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 生成完成 (22.7 KB)。\n\n输出路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/figures/paper/fig_re_dual_panel.pdf`\n\n图表内容:\n- **(a)** RE Count Curve: log₂ x 轴，蓝色圆形 marker 连线，count=40 用红色三角标注并注明来自 80-rel pool 子集\n- **(b)** BCS-Controlled: 分组柱状图，Low-BCS（蓝）vs High-BCS（红），双箭头标注 Δ=-31.2pp 及 95% CI\n\n生成脚本保留在同目录 `gen_fig_re_dual_panel.py`，可按需调整后重新运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9ed6fc9d06e9693543ff",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 003 mixing fix",
+  "task_key": "worker_code_exp-003-mixing-fix_20260520T221750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-mixing-fix_20260520T221750_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "1e0a02f9c5406d3959a12f011d729ef3c508dfc168e814eef1abed1152dc1351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n**Summary of changes:**\n\n1. **`exp003_tweeteval.py`** — Fixed `build_mixing_matrix` to use Bayes' rule with empirical `P(Z)` and `P(Z_hat)` instead of assuming 0.5. Replaced `invert_mixing` with `invert_mixing_safe` (condition number guard). Updated output filenames to `_v2`.\n\n2. **`exp001_hb_synthetic.py`** — Added docstring note that its `build_mixing_matrix` is correct only because the DGP uses `P(Z)=0.5`.\n\n**Verification results (marginal, n_expert=500):**\n- Oracle bias unchanged (Δ = 0) — correct, not affected by mixing matrix\n- Global/Stratified `bias_z0` reduced by ~0.013–0.015 (closer to 0)\n- Global/Stratified `bias_z1` shifted from ~−0.02 to ~+0.01–0.02 (magnitude reduced)\n- Homogeneous regime: Global ≈ Stratified as expected\n\nOutput files: `results/exp003_phase_a_v2.csv` and `results/exp003_phase_a_v2_raw.csv`. Old files preserved."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

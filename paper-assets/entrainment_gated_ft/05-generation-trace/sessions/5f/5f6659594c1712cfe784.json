@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f6659594c1712cfe784",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 008 bca gdn excluded",
+  "task_key": "worker_analysis_exp_008_bca_gdn_excluded_20260519T142112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_008_bca_gdn_excluded_20260519T142112_result.json",
+    "occurrence": 1,
+    "bytes": 1368,
+    "sha256": "4aa4c435194942c5b07094fd2118aa21d0c8bfd39aacab40c901e5cb45576338"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n### Part A: Bootstrap CI for LAMBADA ρ\n- **Percentile 95% CI: [-1.0, -0.7]，不跨零**\n- Architecture resampling (10000 次，8875 有效)，bootstrap 分布仅含两个值：ρ=-1.0 (49.4%) 和 ρ=-0.7 (50.6%)\n- P(ρ > 0) = 0.000，100% 有效样本为负相关\n- BCa 在 ρ=-1.0 边界退化（z0=-3.86），不适用，改用 percentile CI\n- Jackknife: 排除任一架构后 ρ 仍为 -0.7 或 -1.0\n\n### Part B: GDN-Excluded Sensitivity\n\n| Benchmark | ρ (3 arch) | ρ (no GDN) | p (no GDN) | Direction |\n|-----------|-----------|-----------|-----------|-----------|\n| LAMBADA | -1.0 | -0.7 | 0.233 | WEAKER |\n| HellaSwag | +0.3 | +0.5 | 0.450 | STRONGER |\n| WinoGrande | +0.1 | +0.3 | 0.683 | STRONGER |\n| **ARC-Easy** | **-0.7** | **-0.9** | **0.083** | **STRONGER** |\n| ARC-Challenge | +0.6 | -0.2 | 0.783 | WEAKER |\n| MMLU | -0.7 | +0.6 | 0.350 | WEAKER |\n\n**ARC-Easy** 排除 GDN 后 ρ 从 -0.7 升至 -0.9（p=0.083），suggestive second anchor，但未达 0.05 显著性。LAMBADA 排除 GDN 后反而变弱（-1.0→-0.7），说明 GDN 对 LAMBADA convergence 贡献大。3 个 benchmark 变强，3 个变弱。\n\n产出文件：\n- `analysis/statistical_robustness_supplement.py`\n- `analysis/robustness_supplement_summary.json`\n- `analysis/robustness_supplement_gdn_excluded.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

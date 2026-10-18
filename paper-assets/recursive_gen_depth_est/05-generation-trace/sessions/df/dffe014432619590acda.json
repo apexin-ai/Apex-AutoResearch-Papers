@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dffe014432619590acda",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops check 14b gpu6000pro2",
+  "task_key": "worker_ops_check_14b_gpu6000pro2_20260517T211449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_14b_gpu6000pro2_20260517T211449_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "3dd0ac5b564d21269bffb21588557c5b9c69dc861be86fc628a9b6b68b0fcf53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gpu-6000pro-2 — qwen25_14b_scale_002 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 806751** | 存活，正在运行 |\n| **GPU 0** | 94% 利用率，32.3G / 97.9G 显存 |\n| **阶段** | Phase 2: 生成 d0（5000 unconditional samples） |\n| **d0 进度** | 4696 / 5000 samples（~94%） |\n| **总体进度** | depth 0-3 共 4 轮，当前第 1 轮接近完成 |\n| **错误** | 无。早前有模型下载 SSL 错误，已重试成功，所有 8 个 safetensors 文件完整下载 |\n\nd0 即将生成完毕（还差 ~300 条），之后进入 d1、d2、d3 的递归生成。按当前速度估计整体还需数小时完成全部 4 个 depth。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

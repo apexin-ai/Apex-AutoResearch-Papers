@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "faf9bf60f9f52ceede05",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp014 server fix verified",
+  "task_key": "worker_ops_exp014_server_fix_verified_20260521T001036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp014_server_fix_verified_20260521T001036_result.json",
+    "occurrence": 1,
+    "bytes": 1957,
+    "sha256": "b16176a9d4ef0dcc09ea9e6dba9eb6a8dd989733cd9e8867a971077b8d770c4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Step 7 完整输出：**\n\n```\nLoaded 100 pairwise records\n\n======================================================================\n  Consistency Filter Bias Analysis\n======================================================================\n  Total valid: 98\n  Consistent:   55 (56.1%)\n  Inconsistent: 43 (43.9%)\n\n  --- NLI Score ---\n  Consistent (n=55):   mean=0.8588, std=0.3270\n  Inconsistent (n=43): mean=0.9383, std=0.2056\n  Mann-Whitney U: U=1214.0, p=0.824367\n  KS test: D=0.1383, p=0.680267\n\n  --- BERTScore ---\n  Consistent (n=55):   mean=0.8547\n  Inconsistent (n=43): mean=0.8847\n  Mann-Whitney U: U=965.0, p=0.120293\n\n  --- Response Length ---\n  No text length data available (need --verified-file)\n\n  --- Position Bias ---\n  Consistent (n=55): Trial1 A rate=69.1%, Trial2 A rate=30.9%\n  Inconsistent (n=43): Trial1 A rate=55.8%, Trial2 A rate=55.8%\n\n  --- Interpretation ---\n  ✓ No significant systematic bias detected in consistency filter\n```\n\n---\n\n## 最终确认\n\n| 项目 | 状态 |\n|------|------|\n| CSV 文件存在 | `/root/.../artifacts/reanalysis_outputs/exp014_logistic_decomposition.csv` — **978 bytes** |\n| 6 行数据 | 2 direction_subset + 2 pair_bootstrap + 2 gee |\n| exp-012 | 成功执行，无报错 |\n\n### 关键数字总结\n\n**exp-014 Logistic Decomposition (n=98 pairs, 196 obs)：**\n\n| 效应 | 方法 | OR | 95% CI | p |\n|------|------|----|--------|---|\n| **formal_effect** | Pair-bootstrap | **2.2095** | [1.2280, 4.3053] | **0.0121** ✓ |\n| **formal_effect** | GEE | **2.2103** | [1.2100, 4.0377] | **0.0099** ✓ |\n| original_effect | Pair-bootstrap | 1.8145 | [0.9757, 3.3693] | 0.0643 |\n| original_effect | GEE | 1.8172 | [0.9948, 3.3194] | 0.0520 |\n\n两种方法高度一致。formality effect 显著 (p<0.05)，original preference 边缘不显著。Pair-level bootstrap 和 GEE 的 OR 几乎相同（2.21），验证了修复的正确性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

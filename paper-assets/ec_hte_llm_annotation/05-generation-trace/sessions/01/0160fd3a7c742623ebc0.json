@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0160fd3a7c742623ebc0",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research ashwin dataset",
+  "task_key": "worker_research_ashwin-dataset_20260520T212716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ashwin-dataset_20260520T212716_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "7afd9c1bed56f1549df6aa2d84f7692792e030a37f3800387c309bcf21a17193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/home/ubuntu/ec_hte_llm_annotation/results/dataset_survey.md`.\n\n**Key findings:**\n\n1. **Ashwin dataset**: Not publicly available. Anonymised version available upon request from Julian Ashwin (julian.ashwin@maastrichtuniversity.nl). IRB/privacy restrictions on Rohingya refugee interview data.\n\n2. **Top 3 alternative datasets** (all fully public):\n   - **UC Berkeley Measuring Hate Speech** — 50K comments, 11K annotators, 8 target + 6 annotator demographic dimensions, continuous Rasch-scaled labels. Best fit for EC-HTE.\n   - **Social Bias Frames (SBIC)** — 150K+ annotations, 1000+ target groups, annotator politics/race/age metadata.\n   - **POPQUORN** — 45K annotations from 1,484 US-representative annotators (sex/age/race), 4 NLP tasks. Cleanest experimental design for studying demographic effects.\n\n**Recommended strategy**: Use UC Berkeley Measuring Hate Speech as primary dataset, POPQUORN for cross-task validation, and email Ashwin in parallel for the original data."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

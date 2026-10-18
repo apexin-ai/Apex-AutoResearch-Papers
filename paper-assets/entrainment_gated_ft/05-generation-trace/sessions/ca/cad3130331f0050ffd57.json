@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cad3130331f0050ffd57",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code 1 3b hfmirror download",
+  "task_key": "worker_code_1_3b-hfmirror-download_20260518T085450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b-hfmirror-download_20260518T085450_result.json",
+    "occurrence": 1,
+    "bytes": 2462,
+    "sha256": "5f3afd099d17947a29d7474b6db20a41c3e871a6afe8181ad820e27561c057b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有评估完成。汇总结果：\n\n## 1.3B 模型评估结果汇总\n\n### Generation (func_comp) - Accuracy\n\n| Model | D=1 | D=2 | D=3 | D=4 | D=5 |\n|-------|-----|-----|-----|-----|-----|\n| **GatedDeltaNet-hybrid-3-1** | 0.094 | 0.094 | 0.124 | 0.128 | 0.118 |\n| **Transformer baseline** | 0.094 | 0.094 | 0.124 | 0.128 | 0.118 |\n| **RetNet-pure** | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |\n| Random chance | 0.100 | 0.100 | 0.100 | 0.100 | 0.100 |\n\n### Logprob - mean_rank / mean_prob / frac_rank1\n\n| Model | D=1 | D=2 | D=3 | D=4 | D=5 |\n|-------|-----|-----|-----|-----|-----|\n| **GatedDeltaNet-hybrid-3-1** | 5.1/0.103/0.096 | 5.4/0.103/0.098 | 5.4/0.108/0.128 | 5.2/0.111/0.128 | 5.3/0.106/0.118 |\n| **Transformer baseline** | **4.5/0.132/0.184** | 5.2/0.106/0.118 | 5.2/0.108/0.132 | 5.1/0.110/0.132 | 5.2/0.105/0.110 |\n| **RetNet-pure** | 5.5/0.100/0.116 | 5.4/0.100/0.118 | 5.5/0.100/0.100 | 5.5/0.100/0.080 | 5.4/0.100/0.114 |\n| Random (uniform) | 5.5/0.100/0.100 | 5.5/0.100/0.100 | 5.5/0.100/0.100 | 5.5/0.100/0.100 | 5.5/0.100/0.100 |\n\n### 关键发现\n\n1. **所有模型在 generation 上都是退化的**：GatedDeltaNet 和 Transformer 总是生成相同输出（\"1990s\" / \"11111\"），因此精度完全由 answer=1 的比例决定。RetNet-pure 生成无意义文本 \"a over Benjits\"，精度为 0。\n\n2. **Transformer 在 logprob D=1 上有微弱优势**：mean_rank=4.5（vs random 5.5），frac_rank1=18.4%（vs random 10%）。这说明 Transformer 对 depth-1 的函数组合有一定的隐式理解，但无法通过生成表达出来。\n\n3. **与 340M 结果一致**：1.3B 模型在 function composition 上同样表现为随机水平，说明模型规模从 340M 增加到 1.3B 没有带来 function composition 能力的提升。\n\n4. **GatedDeltaNet hybrid（8/24 full attn）vs Transformer（全 full attn）在 logprob 上有差距**：Transformer D=1 的 frac_rank1=18.4% 高于 GatedDeltaNet 的 9.6%，说明 full attention 在 logprob 衡量的隐式组合能力上可能有优势。\n\n### 下载速度\n\n- hf-mirror.com 通过 aria2c 16 连接：**3.4-5.0 MB/s**（略低于 10MB/s 阈值，但可用）\n- GatedDeltaNet (5.2GB): ~22 分钟\n- Transformer (4.2GB): ~18 分钟\n- RetNet-pure: 之前已下载完成\n\n### 结果文件路径\n\n- Generation: `/root/entrainment_gated_ft/results_1.3b/func_comp/`\n- Logprob: `/root/entrainment_gated_ft/results_1.3b/logprob/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

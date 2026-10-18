@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "449996af0ae4dbaf2c45",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp urgent status and launch",
+  "task_key": "worker_mvp_urgent_status_and_launch_20260520T140237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_urgent_status_and_launch_20260520T140237_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "ec28f9929bd69c5205fe2bffb94136f204fccb843c7ca45d262fa6ff2552b783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 key 相同，都是 `tum_XXB3...` 格式。API 端点 `http://47.94.22.126/v1` 拒绝认证。\n\n**当前阻塞点：judge_scoring 需要有效的 API key 才能调用 GPT-4o。**\n\n## Pipeline 状态总结\n\n| 步骤 | 文件 | 状态 |\n|------|------|------|\n| 1. data_prep | mvp_samples.jsonl (100行) | ✅ |\n| 2. counterfactual_gen | counterfactuals.jsonl (100行) | ✅ |\n| 3. content_verification | verified.jsonl (100行) | ✅ 刚完成 |\n| 4. judge_scoring | scored.jsonl | ❌ **API key 401** |\n| 5. ate_analysis | - | 🔒 等待 step 4 |\n\n### content_verification 结果（修复 NLI bug 后）\n- **CF pass rate**: 36/100 (36%) — 瓶颈是 BERTScore < 0.92（63 条不达标）\n- **NLI mean**: 0.9422（修复前 0.075，确认是 tuple vs dict 格式 bug）\n- casual→formal 通过率 57.9% vs formal→casual 22.6%\n\n### 修复记录\n- `content_verification.py`: NLI pipeline 输入必须用 dict `{\"text\": a, \"text_pair\": b}` 格式（本地+服务器已修复）\n\n### 需要你提供\nAPI endpoint `http://47.94.22.126/v1` 返回 401，`tum_XXB3...` key 无效。需要提供有效的 API key 或替代 endpoint 来运行 judge_scoring（36 条 × 3 次评分 = 108 次 GPT-4o 调用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

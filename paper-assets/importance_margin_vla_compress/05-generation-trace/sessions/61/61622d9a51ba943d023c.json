@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "61622d9a51ba943d023c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy ov attn k05 goal w27",
+  "task_key": "worker_deploy_ov_attn_k05_goal_w27_20260527T095403",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_ov_attn_k05_goal_w27_20260527T095403_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "796866a72560ca48fb39f8cc0bb4ccb8216d2c0858fd64b0a1a5e0d7affc3b9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功。\n\n**总结：**\n- **模型路径**: `/root/autodl-tmp/openvla-7b-finetuned-libero-goal` (4/4 shards 加载正常)\n- **实验**: `eval_openvla_attn_k05_goal_seed42_v4`，westd-27271 GPU0，PID 830286\n- **状态**: 已进入 Task 1/10，Attention pruning 256→128 tokens (k=0.5) 正常工作\n- **配置**: libero_goal, 10 tasks × 50 episodes = 500 total, seed=42, timeout=10h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "32d64470ee15ad881f2a",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp plan 020 bootstrap ci",
+  "task_key": "worker_exp_plan_020_bootstrap_ci_20260517T140847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_020_bootstrap_ci_20260517T140847.log",
+    "occurrence": 1,
+    "bytes": 973959,
+    "sha256": "3b36cf0e002612aef28226a2d9289b858e468409f3a6bc82043c283c7a2068cf"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 1,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 3,
+      "assistant": 67,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "32d64470ee15ad881f2a-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 392,
+      "chunks": [
+        {
+          "path": "32d64470ee15ad881f2a-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "32d64470ee15ad881f2a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "32d64470ee15ad881f2a-part-0003.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ]
+}

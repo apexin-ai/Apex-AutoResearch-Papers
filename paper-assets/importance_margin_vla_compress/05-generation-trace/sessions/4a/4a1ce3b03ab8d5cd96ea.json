@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4a1ce3b03ab8d5cd96ea",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest attn k07 s44 cqa1",
+  "task_key": "worker_harvest_attn_k07_s44_cqa1_20260528T022729",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_attn_k07_s44_cqa1_20260528T022729_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "78d2175dea3798d371a12d8b8ab8f26136d4da34d346ef0225f8827924146f1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## Attn k=0.75 Long seed44 结果\n\n**SR = 51.6%** (258/500)，运行 164 min。\n\n注意：日志显示实际 keep_ratio=0.75（192/256 tokens），命令行传入 `--keep_ratio 0.7` 但 prune 逻辑 keep 了 192/256=0.75。\n\n### Per-task 明细\n\n| Task | SR |\n|------|-----|\n| T0 alphabet soup + tomato | 72% |\n| T1 cream cheese + butter | 70% |\n| T2 stove + moka pot | 78% |\n| T3 black bowl → drawer | 28% |\n| T4 white mug + left plate | 30% |\n| T5 book → back compartment | 48% |\n| T6 white mug → plate | 74% |\n| T7 alphabet soup + cream | 26% |\n| T8 both moka pots → stove | 10% |\n| T9 yellow mug → microwave | 80% |\n\n### 3-seed 汇总\n\n| Seed | SR |\n|------|------|\n| s42 | 53.6% |\n| s43 | 53.8% |\n| s44 | 51.6% |\n| **Mean** | **53.0% ± 1.0pp** |\n\ns44 比前两个 seed 低 ~2pp，方差从 ±0.1pp 扩大到 ±1.0pp，但仍在合理范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

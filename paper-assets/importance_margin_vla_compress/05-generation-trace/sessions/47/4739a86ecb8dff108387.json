@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4739a86ecb8dff108387",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops metrics extract and deploy",
+  "task_key": "worker_ops_metrics_extract_and_deploy_20260522T023715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_metrics_extract_and_deploy_20260522T023715.log",
+    "occurrence": 1,
+    "bytes": 945988,
+    "sha256": "c40360e235c1e76663435e173cf78467394a9d1eaa69e6a3d07dbb7eb479f200"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "4739a86ecb8dff108387-part-0001.json",
+          "message_count": 63
+        },
+        {
+          "path": "4739a86ecb8dff108387-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ]
+}

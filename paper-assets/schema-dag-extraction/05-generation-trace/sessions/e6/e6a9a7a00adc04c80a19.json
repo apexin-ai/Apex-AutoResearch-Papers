@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a9a7a00adc04c80a19",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "write d037 setup rw bib edits",
+  "task_key": "worker_write_d037_setup_rw_bib_edits_20260516T034230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_d037_setup_rw_bib_edits_20260516T034230_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "0ae5c60b502612e6c008ed88a0596fdc7d3e5805e4bc36a03a905c5ad0ba2514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All entries render correctly. Summary of changes:\n\n| Task | Status |\n|------|--------|\n| **C1** — Prompt appendix cross-reference in §3.5 | Added `(full prompt templates in Appendix~\\ref{sec:appendix_prompts})` |\n| **m1** — Sentence-BERT citation | Added `sentence-bert-2019` bib entry + cited alongside `minilm-2020` in §3.2 |\n| **R2-REF-missing** — Li et al. + Wadhwa et al. | Added both bib entries + cited in §2.1 |\n| **reflect-learn-2026** — Venue verification | Confirmed AAAI 2026 at `ojs.aaai.org` — no change needed |\n| **json-schema-bench-2025** — \"and others\" fix | Replaced with full 9-author list; .bbl now shows proper \"Geng et al.\" |\n\nRemaining 3 undefined citation warnings (`ding-fewnerd-2021`, `wang-maven-2020`, `han-fewrel-2018`) are pre-existing — they come from elsewhere in the paper using wrong cite keys."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

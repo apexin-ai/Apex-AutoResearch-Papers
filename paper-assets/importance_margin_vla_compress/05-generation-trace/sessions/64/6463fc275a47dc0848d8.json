@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "6463fc275a47dc0848d8",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "debug lerobot official eval run",
+  "task_key": "worker_debug_lerobot_official_eval_run_20260516T124342",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_lerobot_official_eval_run_20260516T124342.log",
+    "occurrence": 1,
+    "bytes": 849696,
+    "sha256": "675bf0bf809b0c97d4d9a82e9b1007ee640993c743bb141ed145e91eadda5576"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 0,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 106,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "6463fc275a47dc0848d8-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "6463fc275a47dc0848d8-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ]
+}

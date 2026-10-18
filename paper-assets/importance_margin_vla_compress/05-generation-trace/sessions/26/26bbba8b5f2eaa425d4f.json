@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "26bbba8b5f2eaa425d4f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops pipeline monitor deploy v1",
+  "task_key": "worker_ops_pipeline_monitor_deploy_v1_20260522T101131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_pipeline_monitor_deploy_v1_20260522T101131_result.json",
+    "occurrence": 1,
+    "bytes": 2214,
+    "sha256": "f31b55e7c27d2b0383c4773658fc6aa9f32439a43ed06f9ef976f8afa30a4525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个新实验已注册并推进到 RUNNING。\n\n---\n\n## 已完成 + 已部署\n\n### 收割 SR\n\n| 完成的实验 | 服务器 | SR |\n|---|---|---|\n| l2norm_k05_spatial_s43 | westd-38929 GPU 0 | **58.2%** |\n| random_k03_spatial_s43 | westd-38929 GPU 1 | **51.2%** |\n| l2norm_k03_spatial_s43 | westd-38929 GPU 2 | **52.0%** |\n| random_k03_object_s43_v4 | westd-38929 GPU 3 | **32.2%** |\n| random_k085_obj_s43 | westd-41074 GPU 0 | **3.8%** |\n| baseline_goal | cqa1 GPU 0 | CRASHED (网络) |\n| baseline_long | cqa1 GPU 2 | CRASHED (网络) |\n\n### 新部署（已验证）\n\n| 新实验 | 服务器/GPU | PID | GPU 内存 | 验证 |\n|---|---|---|---|---|\n| l2norm_k095_long_s42 | westd-38929 GPU 0 | 931551 | 10753 MiB | ✓ |\n| random_k09_goal_s42 | westd-38929 GPU 1 | 931818 | 10520 MiB | ✓ |\n| l2norm_k09_goal_s42 | westd-38929 GPU 2 | 932076 | 10520 MiB | ✓ |\n| random_k085_goal_s42 | westd-38929 GPU 3 | 931023 | 9700 MiB | ✓ |\n| l2norm_k085_goal_s42 | westd-41074 GPU 0 | 399612 | 10514 MiB | ✓ T0 ep30 |\n| baseline_goal (重部署) | cqa1 GPU 0 | 352950 | 10288 MiB | ✓ |\n| baseline_long (重部署) | cqa1 GPU 2 | 353384 | 10512 MiB | ✓ |\n\n## 仍在运行\n\n| 实验 | 服务器 | 进度 | 预计完成 |\n|---|---|---|---|\n| l2norm_k09_obj_s43 | cqa1 GPU 1 | T9 ep20/50 (98%+) | ~30 min |\n\n## 问题与修复\n\n**三台服务器网络均不可达**（`[Errno 101] Network is unreachable`），导致 tokenizer `google/paligemma-3b-pt-224` 下载失败。\n\n**修复**：所有重新部署均添加 `HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1`，使用本地缓存的 tokenizer。westd-38929 GPU 0-2 首次部署漏设此变量导致崩溃，已修复并重新部署成功。\n\n## Phase 2 进度\n\n- **已部署**: 5 new + 2 baseline redeploys = **7 running**\n- **完成**: 5 (spatial s43 × 3, object s43 × 2)\n- **待部署**（等 cqa1 baselines 和 l2norm_k09_obj 完成）:\n  - `random_k09_long_s42` → cqa1 GPU 0 (after baseline_goal)\n  - `l2norm_k09_long_s42` → cqa1 GPU 2 (after baseline_long)\n  - `random_k085_long_s42` → cqa1 GPU 1 (after l2norm_k09_obj_s43，因 westd-38929 已部署 l2norm_k095_long)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

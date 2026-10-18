@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "105913cd0e9e67f95f1d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "submit exp fewrel 80pool 16sub bootstrap",
+  "task_key": "worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "471527dfe4cadcbbb59a9daf3bc60320577861d2b3beecda7ad977dbad6fde8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并正常运行。汇报如下：\n\n**实验状态**\n- **PID**: 347426 (nohup 后台进程)\n- **日志**: `/tmp/exp_80pool_16sub.log`\n- **Registry**: `exp_fewrel_80pool_16sub_bootstrap` → RUNNING\n\n**进展**\n- vLLM Qwen3-32B-FP8 加载完成 (32.04 GiB, 30.6s)\n- 推理已启动，前 3 个 batch 正常（~4-8s/batch）\n- **BCS 范围**: [0.4578, 0.6836], mean=0.5570, n=100\n\n**脚本改动**\n- 在 `run_analysis` 中增加了 `scipy.stats.linregress(bcs, accs)` 线性回归\n- 1000 次 bootstrap 重采样斜率 95% CI\n- 输出到 `bootstrap_ci.json` 的 `regression_slope` 字段\n\n**预计完成时间**\n- 100 batches × ~5s/batch ≈ 8-10 分钟（约 10:10 UTC）\n- extract 结束后自动运行 analyze 阶段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

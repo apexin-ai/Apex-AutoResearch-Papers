@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0a645938ff1152e57957",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp006 diagnosis",
+  "task_key": "worker_ops_exp006_diagnosis_20260521T044330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp006_diagnosis_20260521T044330_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "0a998ba42bf082b86a29b0f38f0d2e3e98796d31940730cf4fd697992ec0ddc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：进程**未卡住**，正常运行中\n\n### 状态\n\n| 指标 | 值 |\n|------|-----|\n| vLLM 进程 | 正常运行，port 8002，Qwen3-32B TP=1 |\n| cuda:2 | 88361 MiB 已用，利用率 100% |\n| 生成进程 | PID 106785，活跃中 |\n| 输入文件 | `scaled_formality_input.jsonl` = **400 条** |\n| 已处理 | **134 条**（日志计数），输出文件 132 行（写入略有延迟） |\n| 启动时间 | 12:16，当前 12:44 |\n\n### 根因\n\n**不是卡住，是速度慢。** 之前 worker 轮询时看到 98 条，以为不增长，实际上是每条记录需要 3 次 HTTP 请求（original / counterfactual / double_rewrite），单条处理耗时 ~3-20 秒不等。\n\n- 处理速率：134 条 / 28 分钟 ≈ **4.8 条/分钟**\n- 剩余：266 条\n- **预计还需 ~55 分钟完成**（约 13:40 左右）\n\n### 数据源\n\n输入的 400 条已由多源合并：\n- `mvp_samples.jsonl`：100 条（LLMBar，已全部处理完）\n- `verified_alpacaeval.jsonl`：存在（272KB）\n- `verified_mtbench.jsonl`：存在（428KB）\n\n当前正在处理 alpacaeval 批次（已到 alpacaeval_033）。\n\n### 建议\n\n无需干预，等它跑完即可。如需加速，可考虑增大 batch size 或并行请求，但当前进程不应中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

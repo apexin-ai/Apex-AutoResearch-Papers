@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "09c2d4fa181e506f9a21",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 random k03 long s43",
+  "task_key": "worker_diagnose_cqa1_random_k03_long_s43_20260525T160516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_result.json",
+    "occurrence": 1,
+    "bytes": 65,
+    "sha256": "7e8b92cbd2d4ee5476ca8df6b3427deda8d191d7a2c7d24489aea029ca395d66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 28, 1pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

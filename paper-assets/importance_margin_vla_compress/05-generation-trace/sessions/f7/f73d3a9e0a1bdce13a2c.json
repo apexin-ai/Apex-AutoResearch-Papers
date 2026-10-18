@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f73d3a9e0a1bdce13a2c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops urgent collect results and redeploy all",
+  "task_key": "worker_ops_urgent-collect-results-and-redeploy-all_20260521T131119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_urgent-collect-results-and-redeploy-all_20260521T131119_result.json",
+    "occurrence": 1,
+    "bytes": 2416,
+    "sha256": "472af4a5da2f5a1e226f335ab0cff0564b739eae9827b19a7cdc598935d98ad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the full status report:\n\n---\n\n## 完成实验结果\n\n| 实验 | SR | 服务器/GPU |\n|------|-----|-----------|\n| π0.5 L2norm k=0.5 seed43 | **33.6%** (seed42=33.4%, Δ=+0.2%) | westd-41074/GPU0 |\n| X-VLA l2_norm k=0.7 seed42 | **58.2%** | cqa1-33015 |\n| X-VLA l2_norm k=0.7 seed43 | **59.0%** | cqa1-33015 |\n| X-VLA l2_norm k=0.3 seed43 | **21.0%** | cqa1-33015 |\n| X-VLA random k=0.3 seed42 | **62.8%** | cqa1-33015 |\n| X-VLA random k=0.3 seed43 | **66.2%** | cqa1-33015 |\n| X-VLA random k=0.5 seed43 v2 | **71.0%** | cqa1-33015 |\n| X-VLA random k=0.7 seed43 v2 | **65.0%** | cqa1-33015 |\n| X-VLA random k=0.7 seed44 | **65.0%** | cqa1-33015 |\n\n**π0.5 L2norm k=0.5 valley 确认**：seed43=33.6% vs seed42=33.4%，差异仅 0.2%，valley 是系统性的。\n\n**X-VLA 关键发现**：l2_norm pruning 对 X-VLA 灾难性 — k=0.3 仅 21%，k=0.7 约 58-59%。而 random pruning 极为 resilient — k=0.3 仍有 63-66%，k=0.7 有 65%，k=0.5 有 71%。\n\n---\n\n## GPU 全局状态\n\n| 服务器 | GPU | 状态 | 实验/PID |\n|--------|-----|------|----------|\n| westd-41074 | GPU0 | 🟢 RUNNING | π0.5 random k=0.7 seed43 / PID 348268 |\n| westd-41074 | GPU1 | 🟢 RUNNING | π0.5 L2norm k=0.7 seed43 v2 / PID 340446 (10h17m) |\n| westd-41074 | GPU2 | 🟢 TRAINING | VTC M96 step 59250/100k (59.3%) / PID 68539 (1d9h) |\n| westd-41074 | GPU3 | 🟢 TRAINING | VTC M64v6 step 7900/100k (7.9%) / PID 59671 (3h56m) |\n| cqa1-33015 | GPU0 | 🟢 RUNNING | X-VLA l2_norm k=0.85 seed43 / PID 358232 (1h09m) |\n| cqa1-33015 | GPU1 | 🟢 RUNNING | X-VLA l2_norm k=0.3 seed42 / PID 620896 (**新部署**) |\n| cqa1-33015 | GPU2 | 🟢 RUNNING | X-VLA random k=0.85 seed43 / PID 358390 (1h09m) |\n| cqa1-33015 | GPU3 | 🟢 RUNNING | X-VLA random k=0.7 seed42 / PID 622585 (**新部署**) |\n| westd-27271 | GPU0 | 🟢 RUNNING | OpenVLA L2norm k=0.5 seed43 / PID 250599 (14m) |\n| westd-27271 | GPU1 | 🟢 TRAINING | M32 resume step 59200/100k (59.2%) / PID 921279 (1d2h) |\n\n---\n\n## 新部署\n\n| 实验 | 服务器/GPU | PID |\n|------|-----------|-----|\n| π0.5 random k=0.7 seed43 | westd-41074/GPU0 | 348268 |\n| X-VLA l2_norm k=0.3 seed42 | cqa1-33015/GPU1 | 620896 |\n| X-VLA random k=0.7 seed42 | cqa1-33015/GPU3 | 622585 |\n\n全 10 GPU 满载。cqa1 无 `eval_pi05_pruning_libero.py`，故 GPU1/3 部署 X-VLA 多 seed 补充实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5ef3d966899237ee2e58",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops deploy pi05 seed43 and check conflict",
+  "task_key": "worker_ops_deploy_pi05_seed43_and_check_conflict_20260523T073207",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy_pi05_seed43_and_check_conflict_20260523T073207_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "8b141d141b669ea63ecfa188f5c42d9cd9a6c973384fffd0a19e151c85994c70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 模型加载完成（4143.4M params，pruning random keep 230/256），正在初始化 LIBERO 环境。GPU 3 仍在加载权重。两个进程都正常运行中。\n\n---\n\n## 汇报\n\n### 任务 A：westd-41074 π0.5 实验部署\n\n**注意**：命令中的 `--mode` 和 `--num_episodes` 参数有误，实际参数为 `--prune_mode` 和 `--n_episodes`。`--mode` 被 argparse 前缀匹配为 `--model_path` 导致模型路径被覆盖；`l2_norm` 应为 `l2norm`（无下划线）。已修正后成功部署。\n\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| 2 | random k=0.9 Object seed43 | **547492** | 模型已加载（9709 MiB），pruning 配置 random keep 230/256，正在初始化 LIBERO 环境 |\n| 3 | l2norm k=0.95 Object seed42 | **548949** | 进程存活，模型权重加载中（大模型从磁盘加载较慢） |\n\n### 任务 B：westd-27271 GPU 0 VRAM 冲突检查\n\n| GPU | VRAM 使用 | VRAM 总量 | GPU 利用率 |\n|-----|-----------|-----------|-----------|\n| 0 | 20935 MiB | 97887 MiB | 66% |\n| 1 | 4371 MiB | 97887 MiB | 0% |\n\nGPU 0 上有 3 个进程（非 2 个）：\n- PID 250278: 4838 MiB\n- PID 284854: 16064 MiB\n- PID 251123: 4991 MiB\n\n**共存正常**。GPU 0 使用 20.9GB / 97.9GB（~21%），远未接近满载。PID 250278 和 284854 与预期的 X-VLA 和 OpenVLA 进程吻合（PID 略有偏移可能是子进程），另有一个额外进程 PID 251123。三个进程都在运行，无 OOM 风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

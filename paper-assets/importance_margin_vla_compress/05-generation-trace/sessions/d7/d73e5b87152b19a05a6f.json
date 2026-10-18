@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d73e5b87152b19a05a6f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd27271 long 20260522",
+  "task_key": "worker_deploy_westd27271_long_20260522_20260522T215021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd27271_long_20260522_20260522T215021_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "46ca6990447b14dc6228b077819937119db97c8f9a8e74bd4c3460c6e9845ff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务完成。总结：\n\n- **问题根因**：`make_pre_post_processors` 中的 tokenizer 加载尝试联网校验 HuggingFace（AutoDL 默认无代理），导致进程挂起\n- **修复**：添加 `HF_HUB_OFFLINE=1` 强制使用本地缓存 + `source /etc/network_turbo` 作为备选\n- **当前状态**：两个 π0.5 L2norm 实验在 westd-27271 上正常运行\n  - GPU 0: k=0.3, seed42, libero_10 (Long), 50 episodes\n  - GPU 1: k=0.5, seed43, libero_10 (Long), 50 episodes\n  - 已通过首条 episode 验证，VRAM ~10.6GB，无错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5439b210bfd9e0fc4e4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose gpu utilization",
+  "task_key": "worker_diagnose_gpu_utilization_20260528T033252",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_gpu_utilization_20260528T033252_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "ba057001a5dd32f173744a6e04b6d79a370b9ffbbd8b6551ee552cdf1f861a66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### westd-38929\n\n| GPU | Util | 显存占用 | 状态 |\n|-----|------|---------|------|\n| 0 | 45% | 10486 MiB / 97887 MiB | 正常运行 |\n| **1** | **0%** | **1 MiB / 97887 MiB** | **实验已完成，GPU 空闲** |\n| 2 | 35% | 10686 MiB / 97887 MiB | 正常运行 |\n| 3 | 13% | 11050 MiB / 97887 MiB | 正常运行（可能在 task 加载阶段） |\n\n**GPU 1 问题确认**：`pi05_attention_k0.90_seed45` 已跑完，结果已保存到 `eval_results/pi05_attention_k0.90_libero_10_seed45.json`。GPU 1 现在完全空闲，可以部署新实验。\n\n### westd-41074\n\n| GPU | Util | 显存占用 | 状态 |\n|-----|------|---------|------|\n| 0 | 18% | 10692 MiB / 97887 MiB | 正常（random_k09_long_seed45） |\n| 1 | 0% | 9961 MiB / 97887 MiB | 显存占用正常，瞬时 0% = eval task 加载阶段 |\n| 2 | 50% | 10464 MiB / 97887 MiB | 正常（l2norm_k07_long_seed45） |\n| 3 | 31% | 10638 MiB / 97887 MiB | 正常（attn_k075_long_seed45） |\n\n**w41 无异常**。4 张卡均有进程在跑，GPU 1 利用率为 0% 是 eval 间歇行为（显存 ~10GB 仍被占用，进程存活）。\n\n### 结论\n- **w38 GPU 1 空闲**，实验已完成，可部署新任务\n- **w41 全部正常**，无需干预"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

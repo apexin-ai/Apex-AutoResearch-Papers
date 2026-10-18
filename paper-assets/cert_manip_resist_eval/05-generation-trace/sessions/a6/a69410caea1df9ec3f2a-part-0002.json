@@ -1,0 +1,1717 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a69410caea1df9ec3f2a",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-24T18:37:57.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YEKwzqRwjrAFzdZ4Z3AFf1",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/draw_fig_framework.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "3d013300-daf3-444f-8966-2923627b9f2a",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/draw_fig_framework.py",
+              "oldString": "        c=C_RED, lw=0.8, ls=(0,(3,3)), alpha=0.35, ms=7)",
+              "newString": "        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.45, ms=7)",
+              "originalFile": "\"\"\"Figure 1: The Shifting Bottleneck — concept figure for EMNLP 2026.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Ellipse\nimport matplotlib.patheffects as pe\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Times New Roman', 'serif'],\n    'font.size': 11,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\nSANS = {'fontfamily': 'sans-serif'}\n\nC_BLUE = '#0072B2'; C_RED = '#D55E00'; C_TEAL = '#009E73'\nC_ORANGE = '#E69F00'; C_PURPLE = '#7B2D8E'; C_PINK = '#CC79A7'\nC_DARK = '#333333'\nFILL_BLUE = '#C5DFF0'; FILL_RED = '#F4CCCC'; FILL_TEAL = '#B2DFDB'\nFILL_ORANGE = '#FFE0B2'; FILL_PURPLE = '#E1BEE7'; FILL_PINK = '#F8BBD0'\nBOX_BG = '#F5F5F5'; BOX_EC = '#DDDDDD'; PANEL_EC = '#DDDDDD'\n\nFIG_W, FIG_H = 16, 5.5\nL_FRAC, C_FRAC, R_FRAC = 0.36, 0.22, 0.36\nH_FRAC = 0.94\nGAP = 0.02\n\ndef get_asp(frac_w):\n    return (H_FRAC * FIG_H) / (frac_w * FIG_W)\n\ndef circ(ax, x, y, r, fill, edge, label, asp, lw=1.5, fs=15):\n    w, h = 2*r/asp, 2*r\n    ax.add_patch(Ellipse((x+0.004, y-0.004), w, h,\n                         fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))\n    ax.add_patch(Ellipse((x, y), w, h,\n                         fc=fill, ec=edge, lw=lw, transform=ax.transAxes, zorder=2))\n    ax.text(x, y, label, ha='center', va='center', fontsize=fs,\n            color=C_DARK, transform=ax.transAxes, zorder=3)\n\ndef circ_edge(x, y, r, asp, target_x, target_y):\n    \"\"\"Point on ellipse edge closest to target.\"\"\"\n    dx = (target_x - x) * asp\n    dy = target_y - y\n    angle = np.arctan2(dy, dx)\n    return x + r/asp * np.cos(angle), y + r * np.sin(angle)\n\ndef diam(ax, x, y, s, color, asp, show_label=True, label_pos='above'):\n    sx = s / asp * 0.7\n    vs = [(x, y+s), (x+sx, y), (x, y-s), (x-sx, y)]\n    sh = [(v[0]+0.003, v[1]-0.003) for v in vs]\n    ax.add_patch(plt.Polygon(sh, fc='#00000008', ec='none',\n                             transform=ax.transAxes, zorder=1))\n    ax.add_patch(plt.Polygon(vs, fc=color, ec='#B34A00', lw=1.0,\n                             transform=ax.transAxes, zorder=2))\n    if show_label:\n        if label_pos == 'above':\n            ax.text(x, y+s+0.022, 'Adversary', ha='center', va='bottom',\n                    fontsize=8, color=C_RED, fontstyle='italic',\n                    transform=ax.transAxes, zorder=3, **SANS)\n        else:\n            ax.text(x+sx+0.02, y+s*0.5, 'Adversary', ha='left', va='center',\n                    fontsize=8, color=C_RED, fontstyle='italic',\n                    transform=ax.transAxes, zorder=3, **SANS)\n\ndef rbox(ax, cx, cy, w, h, lines, bg=BOX_BG, ec=BOX_EC):\n    ax.add_patch(FancyBboxPatch((cx-w/2, cy-h/2), w, h,\n                 boxstyle='round,pad=0.005,rounding_size=0.012',\n                 fc=bg, ec=ec, lw=0.7, transform=ax.transAxes, zorder=2))\n    n = len(lines)\n    for i, (txt, kw) in enumerate(lines):\n        dy = (n-1)*0.02 - i*0.04 if n > 1 else 0\n        ax.text(cx, cy+dy, txt, ha='center', va='center',\n                transform=ax.transAxes, zorder=3, **kw)\n\ndef ln(ax, x1, y1, x2, y2, c='#CCCCCC', lw=0.6, ls='-', alpha=1):\n    ax.plot([x1,x2], [y1,y2], color=c, lw=lw, ls=ls, alpha=alpha,\n            transform=ax.transAxes, zorder=1, clip_on=False)\n\ndef arr(ax, x1, y1, x2, y2, c=C_RED, lw=2, ls='-', alpha=1, ms=10):\n    a = FancyArrowPatch((x1,y1), (x2,y2),\n        arrowstyle='->,head_length=4,head_width=2.5',\n        color=c, lw=lw, linestyle=ls, alpha=alpha,\n        mutation_scale=ms, shrinkA=0, shrinkB=0,\n        transform=ax.transAxes, zorder=4, clip_on=False)\n    ax.add_patch(a)\n\n\n# ── figure ──\n\nfig = plt.figure(figsize=(FIG_W, FIG_H))\ny0 = (1 - H_FRAC) / 2\nx0_l = 0.02\nx0_c = x0_l + L_FRAC + GAP\nx0_r = x0_c + C_FRAC + GAP\n\nax_l = fig.add_axes([x0_l, y0, L_FRAC, H_FRAC])\nax_c = fig.add_axes([x0_c, y0, C_FRAC, H_FRAC])\nax_r = fig.add_axes([x0_r, y0, R_FRAC, H_FRAC])\n\nfor ax in [ax_l, ax_c, ax_r]:\n    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis('off')\n\nasp_lr = get_asp(L_FRAC)\nasp_c  = get_asp(C_FRAC)\nR = 0.072  # node radius in axes-y fraction\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (a): K = 3\n# ═══════════════════════════════════════════════════════════════════\nax = ax_l; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.022',\n    fc='white', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(a)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.16, 0.96, '$K = 3$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\n# triangle nodes — more spread out vertically\nj1 = (0.28, 0.78)\nj2 = (0.13, 0.50)\nj3 = (0.43, 0.50)\n\ncirc(ax, *j1, R, FILL_BLUE, C_BLUE, '$J_1$', asp)\ncirc(ax, *j2, R, FILL_BLUE, C_BLUE, '$J_2$', asp)\ncirc(ax, *j3, R, FILL_RED, C_RED, '$J_3$', asp, lw=2.5)\n\nfor a, b in [(j1,j2), (j2,j3), (j1,j3)]:\n    ln(ax, a[0], a[1], b[0], b[1], c='#CCCCCC', lw=0.7)\n\n# adversary diamond\nadv = (0.70, 0.78)\ndiam(ax, *adv, 0.05, C_RED, asp)\n\n# thick attack arrow: diamond bottom-left → J₃ right edge\na_end = circ_edge(j3[0], j3[1], R, asp, adv[0], adv[1])\narr(ax, adv[0]-0.02, adv[1]-0.05, a_end[0], a_end[1],\n    c=C_RED, lw=3.2, alpha=0.85, ms=14)\n\n# \"attack\" label above the arrow path\nax.text(0.56, 0.72, 'attack', fontsize=8.5, color=C_RED, fontstyle='italic',\n        ha='center', va='bottom',\n        transform=ax.transAxes, zorder=5, **SANS,\n        path_effects=[pe.withStroke(linewidth=2.5, foreground='white')])\n\n# dashed line J₃ → majority vote (shifted left to avoid arrow overlap)\nln(ax, j3[0]-0.03, j3[1]-R-0.005, j3[0]-0.06, 0.315, c='#BBBBBB', lw=0.5, ls='--')\n\nax.text(0.63, 0.395, '1 flip = majority\\ncompromised', fontsize=7.5,\n        ha='center', va='center', color='#999999', fontstyle='italic',\n        transform=ax.transAxes, **SANS, linespacing=1.3)\n\n# majority vote box\nrbox(ax, 0.33, 0.28, 0.36, 0.06,\n     [('Majority vote: $t = 2$', {'fontsize': 11, 'color': C_DARK})],\n     bg='#FAFAFA', ec='#CCCCCC')\n\n# bottleneck label\nrbox(ax, 0.50, 0.09, 0.72, 0.11,\n     [('Bottleneck: $\\\\eta_{\\\\max}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(individual weakness)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#888888'})])\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (b): Transition\n# ═══════════════════════════════════════════════════════════════════\nax = ax_c\n\ngrad = np.linspace(0, 1, 256).reshape(1, -1)\ncmap = mcolors.LinearSegmentedColormap.from_list('wc', ['#FFF3E0', '#E3F2FD'])\nax.imshow(grad, extent=[0, 1, 0, 1], aspect='auto', cmap=cmap, alpha=0.5, zorder=0)\n\nax.add_patch(FancyBboxPatch((0.03, 0.02), 0.94, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.022',\n    fc='none', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=5))\n\nax.text(0.10, 0.96, '(b)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\nax.text(0.10, 0.88, 'Transition', fontsize=11, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\n\nln(ax, 0.5, 0.15, 0.5, 0.82, c='#CCCCCC', lw=0.7, ls='--')\n\nax.text(0.50, 0.50, '$K^* \\\\in (3,\\\\, 5)$', fontsize=17, ha='center', va='center',\n        fontstyle='italic', color=C_DARK, transform=ax.transAxes, zorder=6)\n\narr(ax, 0.12, 0.72, 0.88, 0.72, c='#BBBBBB', lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.76, '$\\\\eta_{\\\\max}$ attenuates', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color='#AAAAAA',\n        transform=ax.transAxes, zorder=6, **SANS)\n\narr(ax, 0.12, 0.30, 0.88, 0.30, c=C_BLUE, lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.34, '$K_{\\\\mathrm{eff}}$ emerges', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color=C_BLUE,\n        transform=ax.transAxes, zorder=6, **SANS)\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (c): K ≥ 5\n# ═══════════════════════════════════════════════════════════════════\nax = ax_r; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.022',\n    fc='white', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(c)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.16, 0.96, '$K \\\\geq 5$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\n# pentagon\npcx, pcy = 0.36, 0.58\npr_x = 0.20\npr_y = pr_x * asp\nangles_deg = [90, 162, 234, 306, 18]\njudge_info = [\n    ('$J_1$', FILL_TEAL, C_TEAL),\n    ('$J_2$', FILL_BLUE, C_BLUE),\n    ('$J_3$', FILL_ORANGE, C_ORANGE),\n    ('$J_4$', FILL_PURPLE, C_PURPLE),\n    ('$J_5$', FILL_PINK, C_PINK),\n]\n\njpos = []\nfor deg in angles_deg:\n    rad = np.radians(deg)\n    jpos.append((pcx + pr_x*np.cos(rad), pcy + pr_y*np.sin(rad)))\n\n# MI connections\nmi_pairs = [(0,1,0.5), (0,4,0.45), (1,2,0.35), (2,3,0.4), (3,4,0.3),\n            (0,2,0.15), (1,3,0.2), (2,4,0.15)]\nfor i, j, a in mi_pairs:\n    ln(ax, jpos[i][0], jpos[i][1], jpos[j][0], jpos[j][1],\n       c='#CCCCCC', lw=0.5, ls='--', alpha=a)\n\nfor (jx, jy), (lbl, fill, edge) in zip(jpos, judge_info):\n    circ(ax, jx, jy, R, fill, edge, lbl, asp)\n\n# adversary\nadv = (0.84, 0.58)\ndiam(ax, *adv, 0.05, C_RED, asp, label_pos='right')\n\n# fan-out arrows from adversary to each judge (edge to edge)\nfor jx, jy in jpos:\n    ax0, ay0 = circ_edge(adv[0], adv[1], 0.05, asp, jx, jy)\n    ax1, ay1 = circ_edge(jx, jy, R, asp, adv[0], adv[1])\n    arr(ax, ax0, ay0, ax1, ay1,\n        c=C_RED, lw=0.8, ls=(0,(3,3)), alpha=0.35, ms=7)\n\nax.text(adv[0], adv[1]-0.11, 'must flip $\\\\geq 3$', fontsize=8.5, ha='center',\n        va='top', color=C_RED, fontstyle='italic',\n        transform=ax.transAxes, zorder=5, **SANS)\n\n# bottleneck label\nrbox(ax, 0.50, 0.09, 0.72, 0.11,\n     [('Bottleneck: $K_{\\\\mathrm{eff}}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(structural diversity)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#888888'})])\n\n# ── save ──\nOUT = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{OUT}/fig_framework.png', dpi=300, facecolor='white')\nfig.savefig(f'{OUT}/fig_framework.pdf', dpi=300, facecolor='white')\nplt.close()\nprint('Done')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 255,
+                  "oldLines": 7,
+                  "newStart": 255,
+                  "newLines": 7,
+                  "lines": [
+                    "     ax0, ay0 = circ_edge(adv[0], adv[1], 0.05, asp, jx, jy)",
+                    "     ax1, ay1 = circ_edge(jx, jy, R, asp, adv[0], adv[1])",
+                    "     arr(ax, ax0, ay0, ax1, ay1,",
+                    "-        c=C_RED, lw=0.8, ls=(0,(3,3)), alpha=0.35, ms=7)",
+                    "+        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.45, ms=7)",
+                    " ",
+                    " ax.text(adv[0], adv[1]-0.11, 'must flip $\\\\geq 3$', fontsize=8.5, ha='center',",
+                    "         va='top', color=C_RED, fontstyle='italic',"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014VsQo4Y1cm2g9ijux5pv5v",
+              "name": "Bash",
+              "input": {
+                "command": "python3 draw_fig_framework.py 2>&1",
+                "description": "Run matplotlib iteration 5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "8439364b-1d52-4504-96e9-ea640c5f740c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JyEhcvDcnbf8MLGS45n2EC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 275,
+                "cache_read_input_tokens": 114188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 275
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-24T18:38:02.306Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014VsQo4Y1cm2g9ijux5pv5v",
+              "type": "tool_result",
+              "content": "Done",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "dd36d49f-5abd-44d8-8c5d-b73251d5d22a",
+            "tool_use_result": {
+              "stdout": "Done",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017EHTz9uPqSyH6c2KcvkkQw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "65383904-c889-4116-8592-159064ec03ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TSXKWCgTnfnZfvUyL4p151",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 99,
+                "cache_read_input_tokens": 114463,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 99
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-24T18:38:05.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017EHTz9uPqSyH6c2KcvkkQw",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "4daf285a-7042-4a94-9719-83d2b109228a",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 391728
+              }
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is getting better. The \"attack\" label is now more visible above the arrow, and the arrow is cleaner. The right panel arrows are slightly more visible.\n\nBut there's a core problem: the attack arrow in the left panel appears to split into two branches near J₃. Looking at the code, this is because I'm drawing one arrow from the adversary to J₃, but the arrow starts from (adv[0]-0.02, adv[1]-0.05) which is below the diamond. The arrow line appears to go in two directions near J₃ because of the dashed line to the majority vote box.\n\n\nActually, looking more carefully at the image, I think the real issue is that the arrow path from the diamond to J₃ is overlapping with the triangle edge from J₁ to J₃. The gray triangle edge and the red arrow are sitting too close together, and it looks like there are two red lines converging on J₃. Let me trace through the arrow code—it should be drawing a single line from the adversary position to the edge of J₃, but something in the FancyArrow implementation might be causing this visual artifact.\n\nThe arrow starts at (0.68, 0.73), which is near the bottom-left of the diamond, and that positioning looks right. But I'm wondering if the triangle edges are being rendered in a way that creates visual overlap with the arrow, or if there's something about how the arrow is being drawn that's causing it to appear doubled.\n\nActually, looking at the coordinates more carefully—the gray line from J₁ to J₃ comes from the left side while the arrow from the adversary diamond comes from the right side, so they shouldn't be overlapping even though they both end at J₃. The appearance of two lines might just be a rendering artifact from the display resolution.\n\nThe \"attack\" label positioning looks good now, and the arrow itself appears to be rendering correctly as a single path from the diamond to J₃.\n\nLooking at the overall composition, the main constraint is the aspect ratio—at 16x5.5, the figure is quite wide and short, which compresses the vertical spacing. The nodes only occupy about 40% of the available vertical space. I could adjust the node positions to better fill the space, but the instructions specify that exact figsize, so I'll work within those constraints and make sure the visual hierarchy and story come through clearly. Refining the positioning and considering whether to add subtle background tints to emphasize the bottleneck distinction between the two panels. I want to push this toward publication quality by ensuring the visual contrast between the single thick arrow and scattered thin arrows really drives home the key narrative.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "b437c29e-36de-401e-8c06-d8f9e0a2bd1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDDLddzP7B6Gu7QnxfPLMe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 765,
+                "cache_read_input_tokens": 114562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Getting close. Let me do a final polish iteration — the figure needs slightly larger nodes, better use of vertical space, and stronger visual contrast between the left thick arrow and right scattered arrows."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "8629f01c-e187-4ea0-912a-4ced2fd37bad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDDLddzP7B6Gu7QnxfPLMe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 765,
+                "cache_read_input_tokens": 114562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tt7xDV6WDEQxb24Hz2hf8S",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/draw_fig_framework.py",
+                "content": "\"\"\"Figure 1: The Shifting Bottleneck — concept figure for EMNLP 2026.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Ellipse\nimport matplotlib.patheffects as pe\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Times New Roman', 'serif'],\n    'font.size': 11,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\nSANS = {'fontfamily': 'sans-serif'}\n\nC_BLUE = '#0072B2'; C_RED = '#D55E00'; C_TEAL = '#009E73'\nC_ORANGE = '#E69F00'; C_PURPLE = '#7B2D8E'; C_PINK = '#CC79A7'\nC_DARK = '#2A2A2A'\nFILL_BLUE = '#C5DFF0'; FILL_RED = '#F4CCCC'; FILL_TEAL = '#B2DFDB'\nFILL_ORANGE = '#FFE0B2'; FILL_PURPLE = '#E1BEE7'; FILL_PINK = '#F8BBD0'\nBOX_BG = '#F5F5F5'; BOX_EC = '#DDDDDD'; PANEL_EC = '#DDDDDD'\n\nFIG_W, FIG_H = 16, 5.5\nL_FRAC, C_FRAC, R_FRAC = 0.355, 0.22, 0.355\nH_FRAC = 0.96\nGAP = 0.025\n\ndef get_asp(frac_w):\n    return (H_FRAC * FIG_H) / (frac_w * FIG_W)\n\ndef circ(ax, x, y, r, fill, edge, label, asp, lw=1.5, fs=15):\n    w, h = 2*r/asp, 2*r\n    ax.add_patch(Ellipse((x+0.003, y-0.003), w, h,\n                         fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))\n    ax.add_patch(Ellipse((x, y), w, h,\n                         fc=fill, ec=edge, lw=lw, transform=ax.transAxes, zorder=2))\n    ax.text(x, y, label, ha='center', va='center', fontsize=fs,\n            color=C_DARK, transform=ax.transAxes, zorder=3)\n\ndef edge_pt(x, y, r, asp, tx, ty):\n    dx = (tx - x) * asp; dy = ty - y\n    a = np.arctan2(dy, dx)\n    return x + r/asp * np.cos(a), y + r * np.sin(a)\n\ndef diam(ax, x, y, s, color, asp, label_text='Adversary', label_pos='above'):\n    sx = s / asp * 0.7\n    vs = [(x, y+s), (x+sx, y), (x, y-s), (x-sx, y)]\n    ax.add_patch(plt.Polygon([(v[0]+0.002, v[1]-0.002) for v in vs],\n                             fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))\n    ax.add_patch(plt.Polygon(vs, fc=color, ec='#B34A00', lw=1.0,\n                             transform=ax.transAxes, zorder=2))\n    if label_pos == 'above':\n        ax.text(x, y+s+0.018, label_text, ha='center', va='bottom',\n                fontsize=8, color=C_RED, fontstyle='italic',\n                transform=ax.transAxes, zorder=3, **SANS)\n    elif label_pos == 'right':\n        ax.text(x+sx+0.015, y, label_text, ha='left', va='center',\n                fontsize=8, color=C_RED, fontstyle='italic',\n                transform=ax.transAxes, zorder=3, **SANS)\n\ndef rbox(ax, cx, cy, w, h, lines, bg=BOX_BG, ec=BOX_EC):\n    ax.add_patch(FancyBboxPatch((cx-w/2, cy-h/2), w, h,\n                 boxstyle='round,pad=0.005,rounding_size=0.012',\n                 fc=bg, ec=ec, lw=0.7, transform=ax.transAxes, zorder=2))\n    n = len(lines)\n    for i, (txt, kw) in enumerate(lines):\n        dy = (n-1)*0.018 - i*0.036 if n > 1 else 0\n        ax.text(cx, cy+dy, txt, ha='center', va='center',\n                transform=ax.transAxes, zorder=3, **kw)\n\ndef ln(ax, x1, y1, x2, y2, c='#CCCCCC', lw=0.6, ls='-', alpha=1):\n    ax.plot([x1,x2], [y1,y2], color=c, lw=lw, ls=ls, alpha=alpha,\n            transform=ax.transAxes, zorder=1, clip_on=False)\n\ndef arr(ax, x1, y1, x2, y2, c=C_RED, lw=2, ls='-', alpha=1, ms=10):\n    a = FancyArrowPatch((x1,y1), (x2,y2),\n        arrowstyle='->,head_length=4,head_width=2.5',\n        color=c, lw=lw, linestyle=ls, alpha=alpha,\n        mutation_scale=ms, shrinkA=0, shrinkB=0,\n        transform=ax.transAxes, zorder=4, clip_on=False)\n    ax.add_patch(a)\n\n\n# ── figure layout ──\nfig = plt.figure(figsize=(FIG_W, FIG_H))\ny0 = (1 - H_FRAC) / 2\nx0_l = 0.02\nx0_c = x0_l + L_FRAC + GAP\nx0_r = x0_c + C_FRAC + GAP\n\nax_l = fig.add_axes([x0_l, y0, L_FRAC, H_FRAC])\nax_c = fig.add_axes([x0_c, y0, C_FRAC, H_FRAC])\nax_r = fig.add_axes([x0_r, y0, R_FRAC, H_FRAC])\n\nfor ax in [ax_l, ax_c, ax_r]:\n    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis('off')\n\nasp_lr = get_asp(L_FRAC)\nasp_c  = get_asp(C_FRAC)\nR = 0.078\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (a): K = 3\n# ═══════════════════════════════════════════════════════════════════\nax = ax_l; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.020',\n    fc='white', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(a)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.17, 0.96, '$K = 3$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\nj1 = (0.26, 0.78)\nj2 = (0.10, 0.48)\nj3 = (0.42, 0.48)\n\ncirc(ax, *j1, R, FILL_BLUE, C_BLUE, '$J_1$', asp)\ncirc(ax, *j2, R, FILL_BLUE, C_BLUE, '$J_2$', asp)\ncirc(ax, *j3, R, FILL_RED, C_RED, '$J_3$', asp, lw=2.5)\n\nfor a, b in [(j1,j2), (j2,j3), (j1,j3)]:\n    ln(ax, a[0], a[1], b[0], b[1], c='#D0D0D0', lw=0.7)\n\n# adversary\nADV_S = 0.055\nadv = (0.70, 0.78)\ndiam(ax, *adv, ADV_S, C_RED, asp)\n\n# thick attack arrow\na_end = edge_pt(j3[0], j3[1], R, asp, adv[0], adv[1])\narr(ax, adv[0]-0.015, adv[1]-ADV_S, a_end[0], a_end[1],\n    c=C_RED, lw=3.5, alpha=0.85, ms=15)\n\nax.text(0.57, 0.73, 'attack', fontsize=8.5, color=C_RED, fontstyle='italic',\n        ha='center', va='bottom', transform=ax.transAxes, zorder=5, **SANS,\n        path_effects=[pe.withStroke(linewidth=2.5, foreground='white')])\n\n# annotation\nax.text(0.66, 0.38, '1 flip =\\nmajority\\ncompromised', fontsize=7, ha='center',\n        va='center', color='#AAAAAA', fontstyle='italic',\n        transform=ax.transAxes, **SANS, linespacing=1.2)\n\n# dashed line J₃ → majority vote\nln(ax, j3[0]-0.02, j3[1]-R-0.005, 0.30, 0.315, c='#CCCCCC', lw=0.5, ls='--')\n\n# majority vote box\nrbox(ax, 0.30, 0.28, 0.35, 0.055,\n     [('Majority vote: $t = 2$', {'fontsize': 10.5, 'color': C_DARK})],\n     bg='#FAFAFA', ec='#D0D0D0')\n\n# bottleneck\nrbox(ax, 0.50, 0.085, 0.70, 0.10,\n     [('Bottleneck: $\\\\eta_{\\\\max}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(individual weakness)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#999999'})])\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (b): Transition\n# ═══════════════════════════════════════════════════════════════════\nax = ax_c\n\ngrad = np.linspace(0, 1, 256).reshape(1, -1)\ncmap = mcolors.LinearSegmentedColormap.from_list('wc', ['#FFF3E0', '#E3F2FD'])\nax.imshow(grad, extent=[0, 1, 0, 1], aspect='auto', cmap=cmap, alpha=0.45, zorder=0)\n\nax.add_patch(FancyBboxPatch((0.03, 0.02), 0.94, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.020',\n    fc='none', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=5))\n\nax.text(0.10, 0.96, '(b)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\nax.text(0.10, 0.88, 'Transition', fontsize=11, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\n\nln(ax, 0.5, 0.12, 0.5, 0.82, c='#D0D0D0', lw=0.7, ls='--')\n\nax.text(0.50, 0.50, '$K^* \\\\in (3,\\\\, 5)$', fontsize=18, ha='center', va='center',\n        fontstyle='italic', color=C_DARK, transform=ax.transAxes, zorder=6)\n\narr(ax, 0.10, 0.72, 0.90, 0.72, c='#BBBBBB', lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.755, '$\\\\eta_{\\\\max}$ attenuates', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color='#AAAAAA',\n        transform=ax.transAxes, zorder=6, **SANS)\n\narr(ax, 0.10, 0.30, 0.90, 0.30, c=C_BLUE, lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.335, '$K_{\\\\mathrm{eff}}$ emerges', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color=C_BLUE,\n        transform=ax.transAxes, zorder=6, **SANS)\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (c): K ≥ 5\n# ═══════════════════════════════════════════════════════════════════\nax = ax_r; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.020',\n    fc='white', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(c)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.17, 0.96, '$K \\\\geq 5$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\n# pentagon\npcx, pcy = 0.35, 0.57\npr_x = 0.21; pr_y = pr_x * asp\nangles_deg = [90, 162, 234, 306, 18]\njudge_info = [\n    ('$J_1$', FILL_TEAL, C_TEAL),\n    ('$J_2$', FILL_BLUE, C_BLUE),\n    ('$J_3$', FILL_ORANGE, C_ORANGE),\n    ('$J_4$', FILL_PURPLE, C_PURPLE),\n    ('$J_5$', FILL_PINK, C_PINK),\n]\n\njpos = []\nfor deg in angles_deg:\n    rad = np.radians(deg)\n    jpos.append((pcx + pr_x*np.cos(rad), pcy + pr_y*np.sin(rad)))\n\n# MI connections (subtle)\nmi_pairs = [(0,1,0.4), (0,4,0.35), (1,2,0.3), (2,3,0.35), (3,4,0.25),\n            (0,2,0.12), (1,3,0.15), (2,4,0.12)]\nfor i, j, a in mi_pairs:\n    ln(ax, jpos[i][0], jpos[i][1], jpos[j][0], jpos[j][1],\n       c='#D5D5D5', lw=0.4, ls='--', alpha=a)\n\nfor (jx, jy), (lbl, fill, edge) in zip(jpos, judge_info):\n    circ(ax, jx, jy, R, fill, edge, lbl, asp)\n\n# adversary\nadv = (0.84, 0.57)\ndiam(ax, *adv, ADV_S, C_RED, asp, label_pos='right')\n\n# fan-out dashed arrows (edge to edge)\nfor jx, jy in jpos:\n    ax0, ay0 = edge_pt(adv[0], adv[1], ADV_S, asp, jx, jy)\n    ax1, ay1 = edge_pt(jx, jy, R, asp, adv[0], adv[1])\n    arr(ax, ax0, ay0, ax1, ay1,\n        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.4, ms=7)\n\nax.text(adv[0]-0.01, adv[1]-ADV_S-0.03, 'must flip $\\\\geq\\\\!3$',\n        fontsize=8.5, ha='center', va='top', color=C_RED, fontstyle='italic',\n        transform=ax.transAxes, zorder=5, **SANS)\n\n# bottleneck\nrbox(ax, 0.50, 0.085, 0.70, 0.10,\n     [('Bottleneck: $K_{\\\\mathrm{eff}}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(structural diversity)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#999999'})])\n\n# ── save ──\nOUT = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{OUT}/fig_framework.png', dpi=300, facecolor='white')\nfig.savefig(f'{OUT}/fig_framework.pdf', dpi=300, facecolor='white')\nplt.close()\nprint('Done')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "efb4b3c9-88b9-4775-a91f-c91db04fb2e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDDLddzP7B6Gu7QnxfPLMe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 765,
+                "cache_read_input_tokens": 114562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-24T18:39:48.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tt7xDV6WDEQxb24Hz2hf8S",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/draw_fig_framework.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "290d3ea2-593c-43f6-882d-ea71746c9192",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/draw_fig_framework.py",
+              "content": "\"\"\"Figure 1: The Shifting Bottleneck — concept figure for EMNLP 2026.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Ellipse\nimport matplotlib.patheffects as pe\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Times New Roman', 'serif'],\n    'font.size': 11,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\nSANS = {'fontfamily': 'sans-serif'}\n\nC_BLUE = '#0072B2'; C_RED = '#D55E00'; C_TEAL = '#009E73'\nC_ORANGE = '#E69F00'; C_PURPLE = '#7B2D8E'; C_PINK = '#CC79A7'\nC_DARK = '#2A2A2A'\nFILL_BLUE = '#C5DFF0'; FILL_RED = '#F4CCCC'; FILL_TEAL = '#B2DFDB'\nFILL_ORANGE = '#FFE0B2'; FILL_PURPLE = '#E1BEE7'; FILL_PINK = '#F8BBD0'\nBOX_BG = '#F5F5F5'; BOX_EC = '#DDDDDD'; PANEL_EC = '#DDDDDD'\n\nFIG_W, FIG_H = 16, 5.5\nL_FRAC, C_FRAC, R_FRAC = 0.355, 0.22, 0.355\nH_FRAC = 0.96\nGAP = 0.025\n\ndef get_asp(frac_w):\n    return (H_FRAC * FIG_H) / (frac_w * FIG_W)\n\ndef circ(ax, x, y, r, fill, edge, label, asp, lw=1.5, fs=15):\n    w, h = 2*r/asp, 2*r\n    ax.add_patch(Ellipse((x+0.003, y-0.003), w, h,\n                         fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))\n    ax.add_patch(Ellipse((x, y), w, h,\n                         fc=fill, ec=edge, lw=lw, transform=ax.transAxes, zorder=2))\n    ax.text(x, y, label, ha='center', va='center', fontsize=fs,\n            color=C_DARK, transform=ax.transAxes, zorder=3)\n\ndef edge_pt(x, y, r, asp, tx, ty):\n    dx = (tx - x) * asp; dy = ty - y\n    a = np.arctan2(dy, dx)\n    return x + r/asp * np.cos(a), y + r * np.sin(a)\n\ndef diam(ax, x, y, s, color, asp, label_text='Adversary', label_pos='above'):\n    sx = s / asp * 0.7\n    vs = [(x, y+s), (x+sx, y), (x, y-s), (x-sx, y)]\n    ax.add_patch(plt.Polygon([(v[0]+0.002, v[1]-0.002) for v in vs],\n                             fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))\n    ax.add_patch(plt.Polygon(vs, fc=color, ec='#B34A00', lw=1.0,\n                             transform=ax.transAxes, zorder=2))\n    if label_pos == 'above':\n        ax.text(x, y+s+0.018, label_text, ha='center', va='bottom',\n                fontsize=8, color=C_RED, fontstyle='italic',\n                transform=ax.transAxes, zorder=3, **SANS)\n    elif label_pos == 'right':\n        ax.text(x+sx+0.015, y, label_text, ha='left', va='center',\n                fontsize=8, color=C_RED, fontstyle='italic',\n                transform=ax.transAxes, zorder=3, **SANS)\n\ndef rbox(ax, cx, cy, w, h, lines, bg=BOX_BG, ec=BOX_EC):\n    ax.add_patch(FancyBboxPatch((cx-w/2, cy-h/2), w, h,\n                 boxstyle='round,pad=0.005,rounding_size=0.012',\n                 fc=bg, ec=ec, lw=0.7, transform=ax.transAxes, zorder=2))\n    n = len(lines)\n    for i, (txt, kw) in enumerate(lines):\n        dy = (n-1)*0.018 - i*0.036 if n > 1 else 0\n        ax.text(cx, cy+dy, txt, ha='center', va='center',\n                transform=ax.transAxes, zorder=3, **kw)\n\ndef ln(ax, x1, y1, x2, y2, c='#CCCCCC', lw=0.6, ls='-', alpha=1):\n    ax.plot([x1,x2], [y1,y2], color=c, lw=lw, ls=ls, alpha=alpha,\n            transform=ax.transAxes, zorder=1, clip_on=False)\n\ndef arr(ax, x1, y1, x2, y2, c=C_RED, lw=2, ls='-', alpha=1, ms=10):\n    a = FancyArrowPatch((x1,y1), (x2,y2),\n        arrowstyle='->,head_length=4,head_width=2.5',\n        color=c, lw=lw, linestyle=ls, alpha=alpha,\n        mutation_scale=ms, shrinkA=0, shrinkB=0,\n        transform=ax.transAxes, zorder=4, clip_on=False)\n    ax.add_patch(a)\n\n\n# ── figure layout ──\nfig = plt.figure(figsize=(FIG_W, FIG_H))\ny0 = (1 - H_FRAC) / 2\nx0_l = 0.02\nx0_c = x0_l + L_FRAC + GAP\nx0_r = x0_c + C_FRAC + GAP\n\nax_l = fig.add_axes([x0_l, y0, L_FRAC, H_FRAC])\nax_c = fig.add_axes([x0_c, y0, C_FRAC, H_FRAC])\nax_r = fig.add_axes([x0_r, y0, R_FRAC, H_FRAC])\n\nfor ax in [ax_l, ax_c, ax_r]:\n    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis('off')\n\nasp_lr = get_asp(L_FRAC)\nasp_c  = get_asp(C_FRAC)\nR = 0.078\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (a): K = 3\n# ═══════════════════════════════════════════════════════════════════\nax = ax_l; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.020',\n    fc='white', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(a)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.17, 0.96, '$K = 3$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\nj1 = (0.26, 0.78)\nj2 = (0.10, 0.48)\nj3 = (0.42, 0.48)\n\ncirc(ax, *j1, R, FILL_BLUE, C_BLUE, '$J_1$', asp)\ncirc(ax, *j2, R, FILL_BLUE, C_BLUE, '$J_2$', asp)\ncirc(ax, *j3, R, FILL_RED, C_RED, '$J_3$', asp, lw=2.5)\n\nfor a, b in [(j1,j2), (j2,j3), (j1,j3)]:\n    ln(ax, a[0], a[1], b[0], b[1], c='#D0D0D0', lw=0.7)\n\n# adversary\nADV_S = 0.055\nadv = (0.70, 0.78)\ndiam(ax, *adv, ADV_S, C_RED, asp)\n\n# thick attack arrow\na_end = edge_pt(j3[0], j3[1], R, asp, adv[0], adv[1])\narr(ax, adv[0]-0.015, adv[1]-ADV_S, a_end[0], a_end[1],\n    c=C_RED, lw=3.5, alpha=0.85, ms=15)\n\nax.text(0.57, 0.73, 'attack', fontsize=8.5, color=C_RED, fontstyle='italic',\n        ha='center', va='bottom', transform=ax.transAxes, zorder=5, **SANS,\n        path_effects=[pe.withStroke(linewidth=2.5, foreground='white')])\n\n# annotation\nax.text(0.66, 0.38, '1 flip =\\nmajority\\ncompromised', fontsize=7, ha='center',\n        va='center', color='#AAAAAA', fontstyle='italic',\n        transform=ax.transAxes, **SANS, linespacing=1.2)\n\n# dashed line J₃ → majority vote\nln(ax, j3[0]-0.02, j3[1]-R-0.005, 0.30, 0.315, c='#CCCCCC', lw=0.5, ls='--')\n\n# majority vote box\nrbox(ax, 0.30, 0.28, 0.35, 0.055,\n     [('Majority vote: $t = 2$', {'fontsize': 10.5, 'color': C_DARK})],\n     bg='#FAFAFA', ec='#D0D0D0')\n\n# bottleneck\nrbox(ax, 0.50, 0.085, 0.70, 0.10,\n     [('Bottleneck: $\\\\eta_{\\\\max}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(individual weakness)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#999999'})])\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (b): Transition\n# ═══════════════════════════════════════════════════════════════════\nax = ax_c\n\ngrad = np.linspace(0, 1, 256).reshape(1, -1)\ncmap = mcolors.LinearSegmentedColormap.from_list('wc', ['#FFF3E0', '#E3F2FD'])\nax.imshow(grad, extent=[0, 1, 0, 1], aspect='auto', cmap=cmap, alpha=0.45, zorder=0)\n\nax.add_patch(FancyBboxPatch((0.03, 0.02), 0.94, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.020',\n    fc='none', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=5))\n\nax.text(0.10, 0.96, '(b)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\nax.text(0.10, 0.88, 'Transition', fontsize=11, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\n\nln(ax, 0.5, 0.12, 0.5, 0.82, c='#D0D0D0', lw=0.7, ls='--')\n\nax.text(0.50, 0.50, '$K^* \\\\in (3,\\\\, 5)$', fontsize=18, ha='center', va='center',\n        fontstyle='italic', color=C_DARK, transform=ax.transAxes, zorder=6)\n\narr(ax, 0.10, 0.72, 0.90, 0.72, c='#BBBBBB', lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.755, '$\\\\eta_{\\\\max}$ attenuates', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color='#AAAAAA',\n        transform=ax.transAxes, zorder=6, **SANS)\n\narr(ax, 0.10, 0.30, 0.90, 0.30, c=C_BLUE, lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.335, '$K_{\\\\mathrm{eff}}$ emerges', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color=C_BLUE,\n        transform=ax.transAxes, zorder=6, **SANS)\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (c): K ≥ 5\n# ═══════════════════════════════════════════════════════════════════\nax = ax_r; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.020',\n    fc='white', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(c)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.17, 0.96, '$K \\\\geq 5$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\n# pentagon\npcx, pcy = 0.35, 0.57\npr_x = 0.21; pr_y = pr_x * asp\nangles_deg = [90, 162, 234, 306, 18]\njudge_info = [\n    ('$J_1$', FILL_TEAL, C_TEAL),\n    ('$J_2$', FILL_BLUE, C_BLUE),\n    ('$J_3$', FILL_ORANGE, C_ORANGE),\n    ('$J_4$', FILL_PURPLE, C_PURPLE),\n    ('$J_5$', FILL_PINK, C_PINK),\n]\n\njpos = []\nfor deg in angles_deg:\n    rad = np.radians(deg)\n    jpos.append((pcx + pr_x*np.cos(rad), pcy + pr_y*np.sin(rad)))\n\n# MI connections (subtle)\nmi_pairs = [(0,1,0.4), (0,4,0.35), (1,2,0.3), (2,3,0.35), (3,4,0.25),\n            (0,2,0.12), (1,3,0.15), (2,4,0.12)]\nfor i, j, a in mi_pairs:\n    ln(ax, jpos[i][0], jpos[i][1], jpos[j][0], jpos[j][1],\n       c='#D5D5D5', lw=0.4, ls='--', alpha=a)\n\nfor (jx, jy), (lbl, fill, edge) in zip(jpos, judge_info):\n    circ(ax, jx, jy, R, fill, edge, lbl, asp)\n\n# adversary\nadv = (0.84, 0.57)\ndiam(ax, *adv, ADV_S, C_RED, asp, label_pos='right')\n\n# fan-out dashed arrows (edge to edge)\nfor jx, jy in jpos:\n    ax0, ay0 = edge_pt(adv[0], adv[1], ADV_S, asp, jx, jy)\n    ax1, ay1 = edge_pt(jx, jy, R, asp, adv[0], adv[1])\n    arr(ax, ax0, ay0, ax1, ay1,\n        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.4, ms=7)\n\nax.text(adv[0]-0.01, adv[1]-ADV_S-0.03, 'must flip $\\\\geq\\\\!3$',\n        fontsize=8.5, ha='center', va='top', color=C_RED, fontstyle='italic',\n        transform=ax.transAxes, zorder=5, **SANS)\n\n# bottleneck\nrbox(ax, 0.50, 0.085, 0.70, 0.10,\n     [('Bottleneck: $K_{\\\\mathrm{eff}}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(structural diversity)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#999999'})])\n\n# ── save ──\nOUT = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{OUT}/fig_framework.png', dpi=300, facecolor='white')\nfig.savefig(f'{OUT}/fig_framework.pdf', dpi=300, facecolor='white')\nplt.close()\nprint('Done')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 20,
+                  "oldLines": 52,
+                  "newStart": 20,
+                  "newLines": 48,
+                  "lines": [
+                    " ",
+                    " C_BLUE = '#0072B2'; C_RED = '#D55E00'; C_TEAL = '#009E73'",
+                    " C_ORANGE = '#E69F00'; C_PURPLE = '#7B2D8E'; C_PINK = '#CC79A7'",
+                    "-C_DARK = '#333333'",
+                    "+C_DARK = '#2A2A2A'",
+                    " FILL_BLUE = '#C5DFF0'; FILL_RED = '#F4CCCC'; FILL_TEAL = '#B2DFDB'",
+                    " FILL_ORANGE = '#FFE0B2'; FILL_PURPLE = '#E1BEE7'; FILL_PINK = '#F8BBD0'",
+                    " BOX_BG = '#F5F5F5'; BOX_EC = '#DDDDDD'; PANEL_EC = '#DDDDDD'",
+                    " ",
+                    " FIG_W, FIG_H = 16, 5.5",
+                    "-L_FRAC, C_FRAC, R_FRAC = 0.36, 0.22, 0.36",
+                    "-H_FRAC = 0.94",
+                    "-GAP = 0.02",
+                    "+L_FRAC, C_FRAC, R_FRAC = 0.355, 0.22, 0.355",
+                    "+H_FRAC = 0.96",
+                    "+GAP = 0.025",
+                    " ",
+                    " def get_asp(frac_w):",
+                    "     return (H_FRAC * FIG_H) / (frac_w * FIG_W)",
+                    " ",
+                    " def circ(ax, x, y, r, fill, edge, label, asp, lw=1.5, fs=15):",
+                    "     w, h = 2*r/asp, 2*r",
+                    "-    ax.add_patch(Ellipse((x+0.004, y-0.004), w, h,",
+                    "+    ax.add_patch(Ellipse((x+0.003, y-0.003), w, h,",
+                    "                          fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))",
+                    "     ax.add_patch(Ellipse((x, y), w, h,",
+                    "                          fc=fill, ec=edge, lw=lw, transform=ax.transAxes, zorder=2))",
+                    "     ax.text(x, y, label, ha='center', va='center', fontsize=fs,",
+                    "             color=C_DARK, transform=ax.transAxes, zorder=3)",
+                    " ",
+                    "-def circ_edge(x, y, r, asp, target_x, target_y):",
+                    "-    \"\"\"Point on ellipse edge closest to target.\"\"\"",
+                    "-    dx = (target_x - x) * asp",
+                    "-    dy = target_y - y",
+                    "-    angle = np.arctan2(dy, dx)",
+                    "-    return x + r/asp * np.cos(angle), y + r * np.sin(angle)",
+                    "+def edge_pt(x, y, r, asp, tx, ty):",
+                    "+    dx = (tx - x) * asp; dy = ty - y",
+                    "+    a = np.arctan2(dy, dx)",
+                    "+    return x + r/asp * np.cos(a), y + r * np.sin(a)",
+                    " ",
+                    "-def diam(ax, x, y, s, color, asp, show_label=True, label_pos='above'):",
+                    "+def diam(ax, x, y, s, color, asp, label_text='Adversary', label_pos='above'):",
+                    "     sx = s / asp * 0.7",
+                    "     vs = [(x, y+s), (x+sx, y), (x, y-s), (x-sx, y)]",
+                    "-    sh = [(v[0]+0.003, v[1]-0.003) for v in vs]",
+                    "-    ax.add_patch(plt.Polygon(sh, fc='#00000008', ec='none',",
+                    "-                             transform=ax.transAxes, zorder=1))",
+                    "+    ax.add_patch(plt.Polygon([(v[0]+0.002, v[1]-0.002) for v in vs],",
+                    "+                             fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))",
+                    "     ax.add_patch(plt.Polygon(vs, fc=color, ec='#B34A00', lw=1.0,",
+                    "                              transform=ax.transAxes, zorder=2))",
+                    "-    if show_label:",
+                    "-        if label_pos == 'above':",
+                    "-            ax.text(x, y+s+0.022, 'Adversary', ha='center', va='bottom',",
+                    "-                    fontsize=8, color=C_RED, fontstyle='italic',",
+                    "-                    transform=ax.transAxes, zorder=3, **SANS)",
+                    "-        else:",
+                    "-            ax.text(x+sx+0.02, y+s*0.5, 'Adversary', ha='left', va='center',",
+                    "-                    fontsize=8, color=C_RED, fontstyle='italic',",
+                    "-                    transform=ax.transAxes, zorder=3, **SANS)",
+                    "+    if label_pos == 'above':",
+                    "+        ax.text(x, y+s+0.018, label_text, ha='center', va='bottom',",
+                    "+                fontsize=8, color=C_RED, fontstyle='italic',",
+                    "+                transform=ax.transAxes, zorder=3, **SANS)",
+                    "+    elif label_pos == 'right':",
+                    "+        ax.text(x+sx+0.015, y, label_text, ha='left', va='center',",
+                    "+                fontsize=8, color=C_RED, fontstyle='italic',",
+                    "+                transform=ax.transAxes, zorder=3, **SANS)",
+                    " ",
+                    " def rbox(ax, cx, cy, w, h, lines, bg=BOX_BG, ec=BOX_EC):",
+                    "     ax.add_patch(FancyBboxPatch((cx-w/2, cy-h/2), w, h,"
+                  ]
+                },
+                {
+                  "oldStart": 73,
+                  "oldLines": 7,
+                  "newStart": 69,
+                  "newLines": 7,
+                  "lines": [
+                    "                  fc=bg, ec=ec, lw=0.7, transform=ax.transAxes, zorder=2))",
+                    "     n = len(lines)",
+                    "     for i, (txt, kw) in enumerate(lines):",
+                    "-        dy = (n-1)*0.02 - i*0.04 if n > 1 else 0",
+                    "+        dy = (n-1)*0.018 - i*0.036 if n > 1 else 0",
+                    "         ax.text(cx, cy+dy, txt, ha='center', va='center',",
+                    "                 transform=ax.transAxes, zorder=3, **kw)",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 90,
+                  "oldLines": 8,
+                  "newStart": 86,
+                  "newLines": 7,
+                  "lines": [
+                    "     ax.add_patch(a)",
+                    " ",
+                    " ",
+                    "-# ── figure ──",
+                    "-",
+                    "+# ── figure layout ──",
+                    " fig = plt.figure(figsize=(FIG_W, FIG_H))",
+                    " y0 = (1 - H_FRAC) / 2",
+                    " x0_l = 0.02"
+                  ]
+                },
+                {
+                  "oldStart": 107,
+                  "oldLines": 7,
+                  "newStart": 102,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " asp_lr = get_asp(L_FRAC)",
+                    " asp_c  = get_asp(C_FRAC)",
+                    "-R = 0.072  # node radius in axes-y fraction",
+                    "+R = 0.078",
+                    " ",
+                    " # ═══════════════════════════════════════════════════════════════════",
+                    " # Panel (a): K = 3"
+                  ]
+                },
+                {
+                  "oldStart": 115,
+                  "oldLines": 59,
+                  "newStart": 110,
+                  "newLines": 58,
+                  "lines": [
+                    " ax = ax_l; asp = asp_lr",
+                    " ",
+                    " ax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,",
+                    "-    boxstyle='round,pad=0,rounding_size=0.022',",
+                    "-    fc='white', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=0))",
+                    "+    boxstyle='round,pad=0,rounding_size=0.020',",
+                    "+    fc='white', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=0))",
+                    " ",
+                    " ax.text(0.06, 0.96, '(a)', fontsize=15, fontweight='bold', color=C_DARK,",
+                    "         va='top', transform=ax.transAxes)",
+                    "-ax.text(0.16, 0.96, '$K = 3$', fontsize=12, color=C_DARK,",
+                    "+ax.text(0.17, 0.96, '$K = 3$', fontsize=12, color=C_DARK,",
+                    "         va='top', transform=ax.transAxes)",
+                    " ",
+                    "-# triangle nodes — more spread out vertically",
+                    "-j1 = (0.28, 0.78)",
+                    "-j2 = (0.13, 0.50)",
+                    "-j3 = (0.43, 0.50)",
+                    "+j1 = (0.26, 0.78)",
+                    "+j2 = (0.10, 0.48)",
+                    "+j3 = (0.42, 0.48)",
+                    " ",
+                    " circ(ax, *j1, R, FILL_BLUE, C_BLUE, '$J_1$', asp)",
+                    " circ(ax, *j2, R, FILL_BLUE, C_BLUE, '$J_2$', asp)",
+                    " circ(ax, *j3, R, FILL_RED, C_RED, '$J_3$', asp, lw=2.5)",
+                    " ",
+                    " for a, b in [(j1,j2), (j2,j3), (j1,j3)]:",
+                    "-    ln(ax, a[0], a[1], b[0], b[1], c='#CCCCCC', lw=0.7)",
+                    "+    ln(ax, a[0], a[1], b[0], b[1], c='#D0D0D0', lw=0.7)",
+                    " ",
+                    "-# adversary diamond",
+                    "+# adversary",
+                    "+ADV_S = 0.055",
+                    " adv = (0.70, 0.78)",
+                    "-diam(ax, *adv, 0.05, C_RED, asp)",
+                    "+diam(ax, *adv, ADV_S, C_RED, asp)",
+                    " ",
+                    "-# thick attack arrow: diamond bottom-left → J₃ right edge",
+                    "-a_end = circ_edge(j3[0], j3[1], R, asp, adv[0], adv[1])",
+                    "-arr(ax, adv[0]-0.02, adv[1]-0.05, a_end[0], a_end[1],",
+                    "-    c=C_RED, lw=3.2, alpha=0.85, ms=14)",
+                    "+# thick attack arrow",
+                    "+a_end = edge_pt(j3[0], j3[1], R, asp, adv[0], adv[1])",
+                    "+arr(ax, adv[0]-0.015, adv[1]-ADV_S, a_end[0], a_end[1],",
+                    "+    c=C_RED, lw=3.5, alpha=0.85, ms=15)",
+                    " ",
+                    "-# \"attack\" label above the arrow path",
+                    "-ax.text(0.56, 0.72, 'attack', fontsize=8.5, color=C_RED, fontstyle='italic',",
+                    "-        ha='center', va='bottom',",
+                    "-        transform=ax.transAxes, zorder=5, **SANS,",
+                    "+ax.text(0.57, 0.73, 'attack', fontsize=8.5, color=C_RED, fontstyle='italic',",
+                    "+        ha='center', va='bottom', transform=ax.transAxes, zorder=5, **SANS,",
+                    "         path_effects=[pe.withStroke(linewidth=2.5, foreground='white')])",
+                    " ",
+                    "-# dashed line J₃ → majority vote (shifted left to avoid arrow overlap)",
+                    "-ln(ax, j3[0]-0.03, j3[1]-R-0.005, j3[0]-0.06, 0.315, c='#BBBBBB', lw=0.5, ls='--')",
+                    "+# annotation",
+                    "+ax.text(0.66, 0.38, '1 flip =\\nmajority\\ncompromised', fontsize=7, ha='center',",
+                    "+        va='center', color='#AAAAAA', fontstyle='italic',",
+                    "+        transform=ax.transAxes, **SANS, linespacing=1.2)",
+                    " ",
+                    "-ax.text(0.63, 0.395, '1 flip = majority\\ncompromised', fontsize=7.5,",
+                    "-        ha='center', va='center', color='#999999', fontstyle='italic',",
+                    "-        transform=ax.transAxes, **SANS, linespacing=1.3)",
+                    "+# dashed line J₃ → majority vote",
+                    "+ln(ax, j3[0]-0.02, j3[1]-R-0.005, 0.30, 0.315, c='#CCCCCC', lw=0.5, ls='--')",
+                    " ",
+                    " # majority vote box",
+                    "-rbox(ax, 0.33, 0.28, 0.36, 0.06,",
+                    "-     [('Majority vote: $t = 2$', {'fontsize': 11, 'color': C_DARK})],",
+                    "-     bg='#FAFAFA', ec='#CCCCCC')",
+                    "+rbox(ax, 0.30, 0.28, 0.35, 0.055,",
+                    "+     [('Majority vote: $t = 2$', {'fontsize': 10.5, 'color': C_DARK})],",
+                    "+     bg='#FAFAFA', ec='#D0D0D0')",
+                    " ",
+                    "-# bottleneck label",
+                    "-rbox(ax, 0.50, 0.09, 0.72, 0.11,",
+                    "+# bottleneck",
+                    "+rbox(ax, 0.50, 0.085, 0.70, 0.10,",
+                    "      [('Bottleneck: $\\\\eta_{\\\\max}$',",
+                    "        {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),",
+                    "       ('(individual weakness)',",
+                    "-       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#888888'})])",
+                    "+       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#999999'})])",
+                    " ",
+                    " ",
+                    " # ═══════════════════════════════════════════════════════════════════"
+                  ]
+                },
+                {
+                  "oldStart": 177,
+                  "oldLines": 29,
+                  "newStart": 171,
+                  "newLines": 29,
+                  "lines": [
+                    " ",
+                    " grad = np.linspace(0, 1, 256).reshape(1, -1)",
+                    " cmap = mcolors.LinearSegmentedColormap.from_list('wc', ['#FFF3E0', '#E3F2FD'])",
+                    "-ax.imshow(grad, extent=[0, 1, 0, 1], aspect='auto', cmap=cmap, alpha=0.5, zorder=0)",
+                    "+ax.imshow(grad, extent=[0, 1, 0, 1], aspect='auto', cmap=cmap, alpha=0.45, zorder=0)",
+                    " ",
+                    " ax.add_patch(FancyBboxPatch((0.03, 0.02), 0.94, 0.96,",
+                    "-    boxstyle='round,pad=0,rounding_size=0.022',",
+                    "-    fc='none', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=5))",
+                    "+    boxstyle='round,pad=0,rounding_size=0.020',",
+                    "+    fc='none', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=5))",
+                    " ",
+                    " ax.text(0.10, 0.96, '(b)', fontsize=15, fontweight='bold', color=C_DARK,",
+                    "         va='top', transform=ax.transAxes, zorder=6)",
+                    " ax.text(0.10, 0.88, 'Transition', fontsize=11, fontweight='bold', color=C_DARK,",
+                    "         va='top', transform=ax.transAxes, zorder=6)",
+                    " ",
+                    "-ln(ax, 0.5, 0.15, 0.5, 0.82, c='#CCCCCC', lw=0.7, ls='--')",
+                    "+ln(ax, 0.5, 0.12, 0.5, 0.82, c='#D0D0D0', lw=0.7, ls='--')",
+                    " ",
+                    "-ax.text(0.50, 0.50, '$K^* \\\\in (3,\\\\, 5)$', fontsize=17, ha='center', va='center',",
+                    "+ax.text(0.50, 0.50, '$K^* \\\\in (3,\\\\, 5)$', fontsize=18, ha='center', va='center',",
+                    "         fontstyle='italic', color=C_DARK, transform=ax.transAxes, zorder=6)",
+                    " ",
+                    "-arr(ax, 0.12, 0.72, 0.88, 0.72, c='#BBBBBB', lw=1.0, alpha=0.6, ms=8)",
+                    "-ax.text(0.50, 0.76, '$\\\\eta_{\\\\max}$ attenuates', fontsize=9, ha='center',",
+                    "+arr(ax, 0.10, 0.72, 0.90, 0.72, c='#BBBBBB', lw=1.0, alpha=0.6, ms=8)",
+                    "+ax.text(0.50, 0.755, '$\\\\eta_{\\\\max}$ attenuates', fontsize=9, ha='center',",
+                    "         va='bottom', fontstyle='italic', color='#AAAAAA',",
+                    "         transform=ax.transAxes, zorder=6, **SANS)",
+                    " ",
+                    "-arr(ax, 0.12, 0.30, 0.88, 0.30, c=C_BLUE, lw=1.0, alpha=0.6, ms=8)",
+                    "-ax.text(0.50, 0.34, '$K_{\\\\mathrm{eff}}$ emerges', fontsize=9, ha='center',",
+                    "+arr(ax, 0.10, 0.30, 0.90, 0.30, c=C_BLUE, lw=1.0, alpha=0.6, ms=8)",
+                    "+ax.text(0.50, 0.335, '$K_{\\\\mathrm{eff}}$ emerges', fontsize=9, ha='center',",
+                    "         va='bottom', fontstyle='italic', color=C_BLUE,",
+                    "         transform=ax.transAxes, zorder=6, **SANS)",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 210,
+                  "oldLines": 18,
+                  "newStart": 204,
+                  "newLines": 17,
+                  "lines": [
+                    " ax = ax_r; asp = asp_lr",
+                    " ",
+                    " ax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,",
+                    "-    boxstyle='round,pad=0,rounding_size=0.022',",
+                    "-    fc='white', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=0))",
+                    "+    boxstyle='round,pad=0,rounding_size=0.020',",
+                    "+    fc='white', ec=PANEL_EC, lw=0.6, transform=ax.transAxes, zorder=0))",
+                    " ",
+                    " ax.text(0.06, 0.96, '(c)', fontsize=15, fontweight='bold', color=C_DARK,",
+                    "         va='top', transform=ax.transAxes)",
+                    "-ax.text(0.16, 0.96, '$K \\\\geq 5$', fontsize=12, color=C_DARK,",
+                    "+ax.text(0.17, 0.96, '$K \\\\geq 5$', fontsize=12, color=C_DARK,",
+                    "         va='top', transform=ax.transAxes)",
+                    " ",
+                    " # pentagon",
+                    "-pcx, pcy = 0.36, 0.58",
+                    "-pr_x = 0.20",
+                    "-pr_y = pr_x * asp",
+                    "+pcx, pcy = 0.35, 0.57",
+                    "+pr_x = 0.21; pr_y = pr_x * asp",
+                    " angles_deg = [90, 162, 234, 306, 18]",
+                    " judge_info = [",
+                    "     ('$J_1$', FILL_TEAL, C_TEAL),"
+                  ]
+                },
+                {
+                  "oldStart": 236,
+                  "oldLines": 37,
+                  "newStart": 229,
+                  "newLines": 37,
+                  "lines": [
+                    "     rad = np.radians(deg)",
+                    "     jpos.append((pcx + pr_x*np.cos(rad), pcy + pr_y*np.sin(rad)))",
+                    " ",
+                    "-# MI connections",
+                    "-mi_pairs = [(0,1,0.5), (0,4,0.45), (1,2,0.35), (2,3,0.4), (3,4,0.3),",
+                    "-            (0,2,0.15), (1,3,0.2), (2,4,0.15)]",
+                    "+# MI connections (subtle)",
+                    "+mi_pairs = [(0,1,0.4), (0,4,0.35), (1,2,0.3), (2,3,0.35), (3,4,0.25),",
+                    "+            (0,2,0.12), (1,3,0.15), (2,4,0.12)]",
+                    " for i, j, a in mi_pairs:",
+                    "     ln(ax, jpos[i][0], jpos[i][1], jpos[j][0], jpos[j][1],",
+                    "-       c='#CCCCCC', lw=0.5, ls='--', alpha=a)",
+                    "+       c='#D5D5D5', lw=0.4, ls='--', alpha=a)",
+                    " ",
+                    " for (jx, jy), (lbl, fill, edge) in zip(jpos, judge_info):",
+                    "     circ(ax, jx, jy, R, fill, edge, lbl, asp)",
+                    " ",
+                    " # adversary",
+                    "-adv = (0.84, 0.58)",
+                    "-diam(ax, *adv, 0.05, C_RED, asp, label_pos='right')",
+                    "+adv = (0.84, 0.57)",
+                    "+diam(ax, *adv, ADV_S, C_RED, asp, label_pos='right')",
+                    " ",
+                    "-# fan-out arrows from adversary to each judge (edge to edge)",
+                    "+# fan-out dashed arrows (edge to edge)",
+                    " for jx, jy in jpos:",
+                    "-    ax0, ay0 = circ_edge(adv[0], adv[1], 0.05, asp, jx, jy)",
+                    "-    ax1, ay1 = circ_edge(jx, jy, R, asp, adv[0], adv[1])",
+                    "+    ax0, ay0 = edge_pt(adv[0], adv[1], ADV_S, asp, jx, jy)",
+                    "+    ax1, ay1 = edge_pt(jx, jy, R, asp, adv[0], adv[1])",
+                    "     arr(ax, ax0, ay0, ax1, ay1,",
+                    "-        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.45, ms=7)",
+                    "+        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.4, ms=7)",
+                    " ",
+                    "-ax.text(adv[0], adv[1]-0.11, 'must flip $\\\\geq 3$', fontsize=8.5, ha='center',",
+                    "-        va='top', color=C_RED, fontstyle='italic',",
+                    "+ax.text(adv[0]-0.01, adv[1]-ADV_S-0.03, 'must flip $\\\\geq\\\\!3$',",
+                    "+        fontsize=8.5, ha='center', va='top', color=C_RED, fontstyle='italic',",
+                    "         transform=ax.transAxes, zorder=5, **SANS)",
+                    " ",
+                    "-# bottleneck label",
+                    "-rbox(ax, 0.50, 0.09, 0.72, 0.11,",
+                    "+# bottleneck",
+                    "+rbox(ax, 0.50, 0.085, 0.70, 0.10,",
+                    "      [('Bottleneck: $K_{\\\\mathrm{eff}}$',",
+                    "        {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),",
+                    "       ('(structural diversity)',",
+                    "-       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#888888'})])",
+                    "+       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#999999'})])",
+                    " ",
+                    " # ── save ──",
+                    " OUT = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'"
+                  ]
+                }
+              ],
+              "originalFile": "\"\"\"Figure 1: The Shifting Bottleneck — concept figure for EMNLP 2026.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Ellipse\nimport matplotlib.patheffects as pe\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Times New Roman', 'serif'],\n    'font.size': 11,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,\n})\nSANS = {'fontfamily': 'sans-serif'}\n\nC_BLUE = '#0072B2'; C_RED = '#D55E00'; C_TEAL = '#009E73'\nC_ORANGE = '#E69F00'; C_PURPLE = '#7B2D8E'; C_PINK = '#CC79A7'\nC_DARK = '#333333'\nFILL_BLUE = '#C5DFF0'; FILL_RED = '#F4CCCC'; FILL_TEAL = '#B2DFDB'\nFILL_ORANGE = '#FFE0B2'; FILL_PURPLE = '#E1BEE7'; FILL_PINK = '#F8BBD0'\nBOX_BG = '#F5F5F5'; BOX_EC = '#DDDDDD'; PANEL_EC = '#DDDDDD'\n\nFIG_W, FIG_H = 16, 5.5\nL_FRAC, C_FRAC, R_FRAC = 0.36, 0.22, 0.36\nH_FRAC = 0.94\nGAP = 0.02\n\ndef get_asp(frac_w):\n    return (H_FRAC * FIG_H) / (frac_w * FIG_W)\n\ndef circ(ax, x, y, r, fill, edge, label, asp, lw=1.5, fs=15):\n    w, h = 2*r/asp, 2*r\n    ax.add_patch(Ellipse((x+0.004, y-0.004), w, h,\n                         fc='#00000008', ec='none', transform=ax.transAxes, zorder=1))\n    ax.add_patch(Ellipse((x, y), w, h,\n                         fc=fill, ec=edge, lw=lw, transform=ax.transAxes, zorder=2))\n    ax.text(x, y, label, ha='center', va='center', fontsize=fs,\n            color=C_DARK, transform=ax.transAxes, zorder=3)\n\ndef circ_edge(x, y, r, asp, target_x, target_y):\n    \"\"\"Point on ellipse edge closest to target.\"\"\"\n    dx = (target_x - x) * asp\n    dy = target_y - y\n    angle = np.arctan2(dy, dx)\n    return x + r/asp * np.cos(angle), y + r * np.sin(angle)\n\ndef diam(ax, x, y, s, color, asp, show_label=True, label_pos='above'):\n    sx = s / asp * 0.7\n    vs = [(x, y+s), (x+sx, y), (x, y-s), (x-sx, y)]\n    sh = [(v[0]+0.003, v[1]-0.003) for v in vs]\n    ax.add_patch(plt.Polygon(sh, fc='#00000008', ec='none',\n                             transform=ax.transAxes, zorder=1))\n    ax.add_patch(plt.Polygon(vs, fc=color, ec='#B34A00', lw=1.0,\n                             transform=ax.transAxes, zorder=2))\n    if show_label:\n        if label_pos == 'above':\n            ax.text(x, y+s+0.022, 'Adversary', ha='center', va='bottom',\n                    fontsize=8, color=C_RED, fontstyle='italic',\n                    transform=ax.transAxes, zorder=3, **SANS)\n        else:\n            ax.text(x+sx+0.02, y+s*0.5, 'Adversary', ha='left', va='center',\n                    fontsize=8, color=C_RED, fontstyle='italic',\n                    transform=ax.transAxes, zorder=3, **SANS)\n\ndef rbox(ax, cx, cy, w, h, lines, bg=BOX_BG, ec=BOX_EC):\n    ax.add_patch(FancyBboxPatch((cx-w/2, cy-h/2), w, h,\n                 boxstyle='round,pad=0.005,rounding_size=0.012',\n                 fc=bg, ec=ec, lw=0.7, transform=ax.transAxes, zorder=2))\n    n = len(lines)\n    for i, (txt, kw) in enumerate(lines):\n        dy = (n-1)*0.02 - i*0.04 if n > 1 else 0\n        ax.text(cx, cy+dy, txt, ha='center', va='center',\n                transform=ax.transAxes, zorder=3, **kw)\n\ndef ln(ax, x1, y1, x2, y2, c='#CCCCCC', lw=0.6, ls='-', alpha=1):\n    ax.plot([x1,x2], [y1,y2], color=c, lw=lw, ls=ls, alpha=alpha,\n            transform=ax.transAxes, zorder=1, clip_on=False)\n\ndef arr(ax, x1, y1, x2, y2, c=C_RED, lw=2, ls='-', alpha=1, ms=10):\n    a = FancyArrowPatch((x1,y1), (x2,y2),\n        arrowstyle='->,head_length=4,head_width=2.5',\n        color=c, lw=lw, linestyle=ls, alpha=alpha,\n        mutation_scale=ms, shrinkA=0, shrinkB=0,\n        transform=ax.transAxes, zorder=4, clip_on=False)\n    ax.add_patch(a)\n\n\n# ── figure ──\n\nfig = plt.figure(figsize=(FIG_W, FIG_H))\ny0 = (1 - H_FRAC) / 2\nx0_l = 0.02\nx0_c = x0_l + L_FRAC + GAP\nx0_r = x0_c + C_FRAC + GAP\n\nax_l = fig.add_axes([x0_l, y0, L_FRAC, H_FRAC])\nax_c = fig.add_axes([x0_c, y0, C_FRAC, H_FRAC])\nax_r = fig.add_axes([x0_r, y0, R_FRAC, H_FRAC])\n\nfor ax in [ax_l, ax_c, ax_r]:\n    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis('off')\n\nasp_lr = get_asp(L_FRAC)\nasp_c  = get_asp(C_FRAC)\nR = 0.072  # node radius in axes-y fraction\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (a): K = 3\n# ═══════════════════════════════════════════════════════════════════\nax = ax_l; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.022',\n    fc='white', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(a)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.16, 0.96, '$K = 3$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\n# triangle nodes — more spread out vertically\nj1 = (0.28, 0.78)\nj2 = (0.13, 0.50)\nj3 = (0.43, 0.50)\n\ncirc(ax, *j1, R, FILL_BLUE, C_BLUE, '$J_1$', asp)\ncirc(ax, *j2, R, FILL_BLUE, C_BLUE, '$J_2$', asp)\ncirc(ax, *j3, R, FILL_RED, C_RED, '$J_3$', asp, lw=2.5)\n\nfor a, b in [(j1,j2), (j2,j3), (j1,j3)]:\n    ln(ax, a[0], a[1], b[0], b[1], c='#CCCCCC', lw=0.7)\n\n# adversary diamond\nadv = (0.70, 0.78)\ndiam(ax, *adv, 0.05, C_RED, asp)\n\n# thick attack arrow: diamond bottom-left → J₃ right edge\na_end = circ_edge(j3[0], j3[1], R, asp, adv[0], adv[1])\narr(ax, adv[0]-0.02, adv[1]-0.05, a_end[0], a_end[1],\n    c=C_RED, lw=3.2, alpha=0.85, ms=14)\n\n# \"attack\" label above the arrow path\nax.text(0.56, 0.72, 'attack', fontsize=8.5, color=C_RED, fontstyle='italic',\n        ha='center', va='bottom',\n        transform=ax.transAxes, zorder=5, **SANS,\n        path_effects=[pe.withStroke(linewidth=2.5, foreground='white')])\n\n# dashed line J₃ → majority vote (shifted left to avoid arrow overlap)\nln(ax, j3[0]-0.03, j3[1]-R-0.005, j3[0]-0.06, 0.315, c='#BBBBBB', lw=0.5, ls='--')\n\nax.text(0.63, 0.395, '1 flip = majority\\ncompromised', fontsize=7.5,\n        ha='center', va='center', color='#999999', fontstyle='italic',\n        transform=ax.transAxes, **SANS, linespacing=1.3)\n\n# majority vote box\nrbox(ax, 0.33, 0.28, 0.36, 0.06,\n     [('Majority vote: $t = 2$', {'fontsize': 11, 'color': C_DARK})],\n     bg='#FAFAFA', ec='#CCCCCC')\n\n# bottleneck label\nrbox(ax, 0.50, 0.09, 0.72, 0.11,\n     [('Bottleneck: $\\\\eta_{\\\\max}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(individual weakness)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#888888'})])\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (b): Transition\n# ═══════════════════════════════════════════════════════════════════\nax = ax_c\n\ngrad = np.linspace(0, 1, 256).reshape(1, -1)\ncmap = mcolors.LinearSegmentedColormap.from_list('wc', ['#FFF3E0', '#E3F2FD'])\nax.imshow(grad, extent=[0, 1, 0, 1], aspect='auto', cmap=cmap, alpha=0.5, zorder=0)\n\nax.add_patch(FancyBboxPatch((0.03, 0.02), 0.94, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.022',\n    fc='none', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=5))\n\nax.text(0.10, 0.96, '(b)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\nax.text(0.10, 0.88, 'Transition', fontsize=11, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes, zorder=6)\n\nln(ax, 0.5, 0.15, 0.5, 0.82, c='#CCCCCC', lw=0.7, ls='--')\n\nax.text(0.50, 0.50, '$K^* \\\\in (3,\\\\, 5)$', fontsize=17, ha='center', va='center',\n        fontstyle='italic', color=C_DARK, transform=ax.transAxes, zorder=6)\n\narr(ax, 0.12, 0.72, 0.88, 0.72, c='#BBBBBB', lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.76, '$\\\\eta_{\\\\max}$ attenuates', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color='#AAAAAA',\n        transform=ax.transAxes, zorder=6, **SANS)\n\narr(ax, 0.12, 0.30, 0.88, 0.30, c=C_BLUE, lw=1.0, alpha=0.6, ms=8)\nax.text(0.50, 0.34, '$K_{\\\\mathrm{eff}}$ emerges', fontsize=9, ha='center',\n        va='bottom', fontstyle='italic', color=C_BLUE,\n        transform=ax.transAxes, zorder=6, **SANS)\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Panel (c): K ≥ 5\n# ═══════════════════════════════════════════════════════════════════\nax = ax_r; asp = asp_lr\n\nax.add_patch(FancyBboxPatch((0.02, 0.02), 0.96, 0.96,\n    boxstyle='round,pad=0,rounding_size=0.022',\n    fc='white', ec=PANEL_EC, lw=0.7, transform=ax.transAxes, zorder=0))\n\nax.text(0.06, 0.96, '(c)', fontsize=15, fontweight='bold', color=C_DARK,\n        va='top', transform=ax.transAxes)\nax.text(0.16, 0.96, '$K \\\\geq 5$', fontsize=12, color=C_DARK,\n        va='top', transform=ax.transAxes)\n\n# pentagon\npcx, pcy = 0.36, 0.58\npr_x = 0.20\npr_y = pr_x * asp\nangles_deg = [90, 162, 234, 306, 18]\njudge_info = [\n    ('$J_1$', FILL_TEAL, C_TEAL),\n    ('$J_2$', FILL_BLUE, C_BLUE),\n    ('$J_3$', FILL_ORANGE, C_ORANGE),\n    ('$J_4$', FILL_PURPLE, C_PURPLE),\n    ('$J_5$', FILL_PINK, C_PINK),\n]\n\njpos = []\nfor deg in angles_deg:\n    rad = np.radians(deg)\n    jpos.append((pcx + pr_x*np.cos(rad), pcy + pr_y*np.sin(rad)))\n\n# MI connections\nmi_pairs = [(0,1,0.5), (0,4,0.45), (1,2,0.35), (2,3,0.4), (3,4,0.3),\n            (0,2,0.15), (1,3,0.2), (2,4,0.15)]\nfor i, j, a in mi_pairs:\n    ln(ax, jpos[i][0], jpos[i][1], jpos[j][0], jpos[j][1],\n       c='#CCCCCC', lw=0.5, ls='--', alpha=a)\n\nfor (jx, jy), (lbl, fill, edge) in zip(jpos, judge_info):\n    circ(ax, jx, jy, R, fill, edge, lbl, asp)\n\n# adversary\nadv = (0.84, 0.58)\ndiam(ax, *adv, 0.05, C_RED, asp, label_pos='right')\n\n# fan-out arrows from adversary to each judge (edge to edge)\nfor jx, jy in jpos:\n    ax0, ay0 = circ_edge(adv[0], adv[1], 0.05, asp, jx, jy)\n    ax1, ay1 = circ_edge(jx, jy, R, asp, adv[0], adv[1])\n    arr(ax, ax0, ay0, ax1, ay1,\n        c=C_RED, lw=1.0, ls=(0,(4,3)), alpha=0.45, ms=7)\n\nax.text(adv[0], adv[1]-0.11, 'must flip $\\\\geq 3$', fontsize=8.5, ha='center',\n        va='top', color=C_RED, fontstyle='italic',\n        transform=ax.transAxes, zorder=5, **SANS)\n\n# bottleneck label\nrbox(ax, 0.50, 0.09, 0.72, 0.11,\n     [('Bottleneck: $K_{\\\\mathrm{eff}}$',\n       {'fontsize': 13, 'fontweight': 'bold', 'color': C_DARK}),\n      ('(structural diversity)',\n       {'fontsize': 9.5, 'fontstyle': 'italic', 'color': '#888888'})])\n\n# ── save ──\nOUT = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{OUT}/fig_framework.png', dpi=300, facecolor='white')\nfig.savefig(f'{OUT}/fig_framework.pdf', dpi=300, facecolor='white')\nplt.close()\nprint('Done')\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CbowMo5hRa9UGhWAxrMXf5",
+              "name": "Bash",
+              "input": {
+                "command": "python3 draw_fig_framework.py 2>&1",
+                "description": "Run matplotlib iteration 6 (final polish)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "91541819-539a-475f-9433-7ff6ff7bad81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdaYotyu8NDp2wgkufuHPN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6342,
+                "cache_read_input_tokens": 115327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6342
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-24T18:39:53.104Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CbowMo5hRa9UGhWAxrMXf5",
+              "type": "tool_result",
+              "content": "Done",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "eaa53d45-76cf-4c5a-ba2e-64f8f3d45c13",
+            "tool_use_result": {
+              "stdout": "Done",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BD5qEWikSwKftKEncSyFfN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "2fef8450-a0f9-44d3-bbe2-1afea539d832",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014T1znJoF545kLSreD6MefM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 103,
+                "cache_read_input_tokens": 121669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 103
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-24T18:39:56.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BD5qEWikSwKftKEncSyFfN",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "b0628d41-e3eb-4894-b695-26dc82823367",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 401079
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure is looking much better now. Let me do a final assessment:\n\n**Panel (a) - K=3:**\n- ✓ Three judge nodes in triangle (J₁, J₂ blue, J₃ red)\n- ✓ Adversary diamond with label\n- ✓ Thick red attack arrow from adversary to J₃\n- ✓ \"attack\" label clearly visible\n- ✓ Majority vote box\n- ✓ \"1 flip = majority compromised\" annotation\n- ✓ Bottom bottleneck box: η_max (individual weakness)\n\n\n- ✓ Panel (b) shows the transition zone with K* ∈ (3, 5), gradient background, and the two competing mechanisms—η_max attenuating while K_eff emerges\n- ✓ Panel (c) displays five judges arranged in a pentagon with the adversary launching multiple thin dashed attacks, illustrating how the system now requires flipping several judges to compromise the majority\n- The overall figure achieves a clean, publication-ready quality—the visual contrast between the single thick arrow in panel (a) and the fanned dashed arrows in panel (c) effectively tells the security story, and while it may not reach the hand-crafted polish of top-tier conference figures, it's well-executed for a matplotlib-generated concept diagram.\n\nNow I should verify the PDF saved properly and finalize the artifact registration.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "b4f75988-c681-4065-ab50-4157d9c1eb41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LvqTFPUB6FBPS5LkGAkVWz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 765,
+                "cache_read_input_tokens": 121772,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 765
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RMagpJYJKyuxgCqEfGCHH1",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Get GOOGLE_API_KEY",
+                    "status": "completed",
+                    "activeForm": "Getting GOOGLE_API_KEY"
+                  },
+                  {
+                    "content": "Install PaperBanana and verify",
+                    "status": "completed",
+                    "activeForm": "Installing PaperBanana"
+                  },
+                  {
+                    "content": "Write intent description file",
+                    "status": "completed",
+                    "activeForm": "Writing intent description"
+                  },
+                  {
+                    "content": "Run PaperBanana generate (2 iterations done, falling back to matplotlib)",
+                    "status": "completed",
+                    "activeForm": "Running PaperBanana"
+                  },
+                  {
+                    "content": "Write matplotlib script for fig_framework",
+                    "status": "completed",
+                    "activeForm": "Writing matplotlib script"
+                  },
+                  {
+                    "content": "Visual check and iterate (6 rounds done)",
+                    "status": "completed",
+                    "activeForm": "Iterating on visual quality"
+                  },
+                  {
+                    "content": "Verify PDF output and register artifact",
+                    "status": "in_progress",
+                    "activeForm": "Verifying PDF and registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "12c594b8-8fcd-4e1a-9d90-5f9cf10f0b29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LvqTFPUB6FBPS5LkGAkVWz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 765,
+                "cache_read_input_tokens": 121772,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 765
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-24T18:40:17.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RMagpJYJKyuxgCqEfGCHH1",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "fffa07c8-761a-479d-8561-34b70b2e8a03",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Get GOOGLE_API_KEY",
+                  "status": "completed",
+                  "activeForm": "Getting GOOGLE_API_KEY"
+                },
+                {
+                  "content": "Install PaperBanana and verify",
+                  "status": "completed",
+                  "activeForm": "Installing PaperBanana"
+                },
+                {
+                  "content": "Write intent description file",
+                  "status": "completed",
+                  "activeForm": "Writing intent description"
+                },
+                {
+                  "content": "Run PaperBanana generate (2 iterations done, falling back to matplotlib)",
+                  "status": "completed",
+                  "activeForm": "Running PaperBanana"
+                },
+                {
+                  "content": "Write matplotlib script for fig_framework",
+                  "status": "in_progress",
+                  "activeForm": "Writing matplotlib script"
+                },
+                {
+                  "content": "Visual check and iterate (up to 5 rounds)",
+                  "status": "pending",
+                  "activeForm": "Iterating on visual quality"
+                },
+                {
+                  "content": "Convert PNG to PDF",
+                  "status": "pending",
+                  "activeForm": "Converting to PDF"
+                },
+                {
+                  "content": "Register artifact",
+                  "status": "pending",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Get GOOGLE_API_KEY",
+                  "status": "completed",
+                  "activeForm": "Getting GOOGLE_API_KEY"
+                },
+                {
+                  "content": "Install PaperBanana and verify",
+                  "status": "completed",
+                  "activeForm": "Installing PaperBanana"
+                },
+                {
+                  "content": "Write intent description file",
+                  "status": "completed",
+                  "activeForm": "Writing intent description"
+                },
+                {
+                  "content": "Run PaperBanana generate (2 iterations done, falling back to matplotlib)",
+                  "status": "completed",
+                  "activeForm": "Running PaperBanana"
+                },
+                {
+                  "content": "Write matplotlib script for fig_framework",
+                  "status": "completed",
+                  "activeForm": "Writing matplotlib script"
+                },
+                {
+                  "content": "Visual check and iterate (6 rounds done)",
+                  "status": "completed",
+                  "activeForm": "Iterating on visual quality"
+                },
+                {
+                  "content": "Verify PDF output and register artifact",
+                  "status": "in_progress",
+                  "activeForm": "Verifying PDF and registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure is at publication quality after 6 iterations. Key narrative — single thick attack arrow (left) vs scattered thin dashed arrows (right) — reads clearly. Let me verify the outputs and register."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "9c1f84e1-9e01-4081-8fc9-89e8ffe70029",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017wCTyiYjTCovgkjvRqvLLc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 965,
+                "cache_read_input_tokens": 122537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 965
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TfT1Mn418vSGQQQrrgEkMK",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.{png,pdf} && python3 -c \"\nfrom PIL import Image\nimg = Image.open('/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.png')\nprint(f'PNG: {img.size[0]}x{img.size[1]}px, {img.size[0]/300:.1f}x{img.size[1]/300:.1f}in at 300dpi')\n\"",
+                "description": "Verify output files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "4c2bf453-fc59-4849-b6c2-69f7fd2000e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017wCTyiYjTCovgkjvRqvLLc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 965,
+                "cache_read_input_tokens": 122537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 965
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-24T18:40:24.720Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TfT1Mn418vSGQQQrrgEkMK",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  58731 May 24 18:39 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.pdf\n-rw-r--r-- 1 ubuntu ubuntu 401079 May 24 18:39 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.png\nPNG: 4734x1614px, 15.8x5.4in at 300dpi",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "a77583a8-1764-431b-9af3-68bb668c0294",
+            "tool_use_result": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu  58731 May 24 18:39 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.pdf\n-rw-r--r-- 1 ubuntu ubuntu 401079 May 24 18:39 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.png\nPNG: 4734x1614px, 15.8x5.4in at 300dpi",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D6VeY3zV6E64q6H8xGJTTd",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "320b5158-80f8-4272-a74a-b54c5ffc5e70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RrohdKqyPzmPY4Awmgfuva",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 454,
+                "cache_read_input_tokens": 123502,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 454
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-24T18:40:27.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01D6VeY3zV6E64q6H8xGJTTd",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "46701977-b814-470f-b9d8-80f8ba371f65",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J9MmjjiGkSSvmoWc9gkUbN",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_framework",
+                "type": "chart",
+                "description": "Figure 1: The Shifting Bottleneck — three-panel concept figure showing how panel size changes adversarial vulnerability bottleneck. (a) K=3: single weak judge dominates (η_max), (b) transition zone K*∈(3,5), (c) K≥5: structural diversity dominates (K_eff). PNG+PDF at 300 DPI.",
+                "project": "cert_manip_resist_eval",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.png",
+                "tags": [
+                  "figure1",
+                  "hero-figure",
+                  "concept-diagram",
+                  "paper"
+                ],
+                "skill": "paper-banana"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "95de4d1c-65b6-4b25-ad0e-b00480afe943",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByRSbfBnK21NMP3apuu3X7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 123956,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 712
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-24T18:40:34.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J9MmjjiGkSSvmoWc9gkUbN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_3d086f\\\", \\\"name\\\": \\\"fig_framework\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 1: The Shifting Bottleneck — three-panel concept figure showing how panel size changes adversarial vulnerability bottleneck. (a) K=3: single weak judge dominates (η_max), (b) transition zone K*∈(3,5), (c) K≥5: structural diversity dominates (K_eff). PNG+PDF at 300 DPI.\\\", \\\"path\\\": \\\"projects/cert_manip_resist_eval/artifacts/_project/chart/fig_framework.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"cert_manip_resist_eval\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"paper-banana\\\", \\\"created_at\\\": \\\"2026-05-24T18:40:34.058670+00:00\\\", \\\"tags\\\": [\\\"figure1\\\", \\\"hero-figure\\\", \\\"concept-diagram\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "1757c70c-9472-459b-a5a6-a2169d16019a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_3d086f\\\", \\\"name\\\": \\\"fig_framework\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 1: The Shifting Bottleneck — three-panel concept figure showing how panel size changes adversarial vulnerability bottleneck. (a) K=3: single weak judge dominates (η_max), (b) transition zone K*∈(3,5), (c) K≥5: structural diversity dominates (K_eff). PNG+PDF at 300 DPI.\\\", \\\"path\\\": \\\"projects/cert_manip_resist_eval/artifacts/_project/chart/fig_framework.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"cert_manip_resist_eval\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"paper-banana\\\", \\\"created_at\\\": \\\"2026-05-24T18:40:34.058670+00:00\\\", \\\"tags\\\": [\\\"figure1\\\", \\\"hero-figure\\\", \\\"concept-diagram\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_3d086f\", \"name\": \"fig_framework\", \"type\": \"chart\", \"description\": \"Figure 1: The Shifting Bottleneck — three-panel concept figure showing how panel size changes adversarial vulnerability bottleneck. (a) K=3: single weak judge dominates (η_max), (b) transition zone K*∈(3,5), (c) K≥5: structural diversity dominates (K_eff). PNG+PDF at 300 DPI.\", \"path\": \"projects/cert_manip_resist_eval/artifacts/_project/chart/fig_framework.png\", \"url\": null, \"project\": \"cert_manip_resist_eval\", \"exp_id\": null, \"skill\": \"paper-banana\", \"created_at\": \"2026-05-24T18:40:34.058670+00:00\", \"tags\": [\"figure1\", \"hero-figure\", \"concept-diagram\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MREpD6TApCGaBq8HWh9j7e",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Get GOOGLE_API_KEY",
+                    "status": "completed",
+                    "activeForm": "Getting GOOGLE_API_KEY"
+                  },
+                  {
+                    "content": "Install PaperBanana and verify",
+                    "status": "completed",
+                    "activeForm": "Installing PaperBanana"
+                  },
+                  {
+                    "content": "Write intent description file",
+                    "status": "completed",
+                    "activeForm": "Writing intent description"
+                  },
+                  {
+                    "content": "Run PaperBanana generate (2 iterations done, falling back to matplotlib)",
+                    "status": "completed",
+                    "activeForm": "Running PaperBanana"
+                  },
+                  {
+                    "content": "Write matplotlib script for fig_framework",
+                    "status": "completed",
+                    "activeForm": "Writing matplotlib script"
+                  },
+                  {
+                    "content": "Visual check and iterate (6 rounds done)",
+                    "status": "completed",
+                    "activeForm": "Iterating on visual quality"
+                  },
+                  {
+                    "content": "Verify PDF output and register artifact",
+                    "status": "completed",
+                    "activeForm": "Verifying PDF and registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "7cb1bde4-48f3-4928-a437-d9d24d8c3282",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Y5n3GrHkrfAhAbzayR3oh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 664,
+                "cache_read_input_tokens": 124668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 664
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-24T18:40:39.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MREpD6TApCGaBq8HWh9j7e",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "80f48dda-8695-40c8-b357-1fa0cc49de12",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Get GOOGLE_API_KEY",
+                  "status": "completed",
+                  "activeForm": "Getting GOOGLE_API_KEY"
+                },
+                {
+                  "content": "Install PaperBanana and verify",
+                  "status": "completed",
+                  "activeForm": "Installing PaperBanana"
+                },
+                {
+                  "content": "Write intent description file",
+                  "status": "completed",
+                  "activeForm": "Writing intent description"
+                },
+                {
+                  "content": "Run PaperBanana generate (2 iterations done, falling back to matplotlib)",
+                  "status": "completed",
+                  "activeForm": "Running PaperBanana"
+                },
+                {
+                  "content": "Write matplotlib script for fig_framework",
+                  "status": "completed",
+                  "activeForm": "Writing matplotlib script"
+                },
+                {
+                  "content": "Visual check and iterate (6 rounds done)",
+                  "status": "completed",
+                  "activeForm": "Iterating on visual quality"
+                },
+                {
+                  "content": "Verify PDF output and register artifact",
+                  "status": "in_progress",
+                  "activeForm": "Verifying PDF and registering artifact"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Get GOOGLE_API_KEY",
+                  "status": "completed",
+                  "activeForm": "Getting GOOGLE_API_KEY"
+                },
+                {
+                  "content": "Install PaperBanana and verify",
+                  "status": "completed",
+                  "activeForm": "Installing PaperBanana"
+                },
+                {
+                  "content": "Write intent description file",
+                  "status": "completed",
+                  "activeForm": "Writing intent description"
+                },
+                {
+                  "content": "Run PaperBanana generate (2 iterations done, falling back to matplotlib)",
+                  "status": "completed",
+                  "activeForm": "Running PaperBanana"
+                },
+                {
+                  "content": "Write matplotlib script for fig_framework",
+                  "status": "completed",
+                  "activeForm": "Writing matplotlib script"
+                },
+                {
+                  "content": "Visual check and iterate (6 rounds done)",
+                  "status": "completed",
+                  "activeForm": "Iterating on visual quality"
+                },
+                {
+                  "content": "Verify PDF output and register artifact",
+                  "status": "completed",
+                  "activeForm": "Verifying PDF and registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 \"The Shifting Bottleneck\" 完成。\n\n**输出文件：**\n- PNG: `docs/paper/figures/fig_framework.png` (4734×1614px, 300 DPI)\n- PDF: `docs/paper/figures/fig_framework.pdf`\n- 生成脚本: `docs/paper/figures/draw_fig_framework.py`\n\n**流程：** PaperBanana 2 轮（critic 解析失败导致无法迭代 + K* 缺星号），回退 matplotlib 手写 4 轮迭代。总计 6 轮视觉检查。\n\n**核心叙事验证通过：** 左 panel 单根粗实线箭头 (η_max bottleneck) vs 右 panel 5 根细虚线散射箭头 (K_eff bottleneck)，一眼可读。Artifact 已注册 (`art_20260524_3d086f`)。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "uuid": "774fbe49-6256-418a-b68f-2a47a335c0e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XoNSmrPqTXx92h7BkQ7R71",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 322,
+                "cache_read_input_tokens": 125332,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 322
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 \"The Shifting Bottleneck\" 完成。\n\n**输出文件：**\n- PNG: `docs/paper/figures/fig_framework.png` (4734×1614px, 300 DPI)\n- PDF: `docs/paper/figures/fig_framework.pdf`\n- 生成脚本: `docs/paper/figures/draw_fig_framework.py`\n\n**流程：** PaperBanana 2 轮（critic 解析失败导致无法迭代 + K* 缺星号），回退 matplotlib 手写 4 轮迭代。总计 6 轮视觉检查。\n\n**核心叙事验证通过：** 左 panel 单根粗实线箭头 (η_max bottleneck) vs 右 panel 5 根细虚线散射箭头 (K_eff bottleneck)，一眼可读。Artifact 已注册 (`art_20260524_3d086f`)。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1161851,
+            "duration_api_ms": 872741,
+            "num_turns": 67,
+            "stop_reason": "end_turn",
+            "session_id": "a0d084c8-9408-4fa5-ae01-ea4025d9ed76",
+            "total_cost_usd": 4.197204750000001,
+            "usage": {
+              "input_tokens": 73,
+              "cache_creation_input_tokens": 113813,
+              "cache_read_input_tokens": 4564243,
+              "output_tokens": 48009,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 113813,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 261,
+                  "cache_read_input_tokens": 125332,
+                  "cache_creation_input_tokens": 322,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 322
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3087,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003162,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 73,
+                "outputTokens": 48009,
+                "cacheReadInputTokens": 4564243,
+                "cacheCreationInputTokens": 113813,
+                "webSearchRequests": 0,
+                "costUSD": 4.194042750000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9d2790d4-0d67-4f0a-923a-a56c902f383b"
+          },
+          "id": "event-000183"
+        }
+      ]
+    }
+  ]
+}

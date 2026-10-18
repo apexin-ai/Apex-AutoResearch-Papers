@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23eec975e261a0a04a62",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper writing related work expansion",
+  "task_key": "worker_paper_writing_related_work_expansion_20260521T150123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_related_work_expansion_20260521T150123_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "f280240b557faa0602539b226febaba14fb05689f8a15941c277d4345f3e33af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改总结：\n\n**related_work.tex** — 从 ~350 词扩展到 ~550 词（4 段结构保留），预计 0.75-1 页 CoRL 双栏格式：\n\n- **P1 (Vision token efficiency)**: 新增 SparseViT、TokenLearner、A-ViT、AdaViT（ViT 自适应计算）+ FasterVLM、FitPrune、CrossGET（VLM token pruning），按方法类别分组而非逐篇罗列\n- **P2 (VLA-specific)**: 无变化，内容已充分\n- **P3 (Vision connectors)**: 新增 LLaVA-1.5 引用、InternVL 2.5 + Mini-InternVL（pixel-shuffle 家族扩展）\n- **P4 (VLA compression)**: 标题改为 \"VLA compression\"，各 concurrent work 增加方法描述（不再仅列名）；Don't Run with Scissors 大幅扩展——描述 weight pruning/quantization 发现、GLUESTICK recovery 方法、与本文 vision token deletion 的机制差异\n\n**references.bib** — 新增 10 篇已验证引用：\n1. TokenLearner (Ryoo+, NeurIPS 2021)\n2. A-ViT (Yin+, CVPR 2022)\n3. AdaViT (Meng+, CVPR 2022)\n4. SparseViT (Chen+, CVPR 2023)\n5. FitPrune (Ye+, AAAI 2025)\n6. CrossGET (Shi+, ICML 2024)\n7. FasterVLM (Zhang+, arXiv 2024)\n8. LLaVA-1.5 (Liu+, CVPR 2024)\n9. InternVL 2.5 (Chen+, arXiv 2024)\n10. Mini-InternVL (Gao+, arXiv 2024)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

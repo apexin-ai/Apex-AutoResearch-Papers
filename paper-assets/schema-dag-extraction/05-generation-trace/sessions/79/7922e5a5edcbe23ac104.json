@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7922e5a5edcbe23ac104",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d047 round2 section5",
+  "task_key": "worker_paper_d047_round2_section5_20260516T124633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d047_round2_section5_20260516T124633_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "0032a44b2a3405c8792c17ed7138db86aca952af4bbba08c89d731e605ea537c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "849 words in the LaTeX source (~750 rendered). In ACL two-column 11pt format, that's approximately 1 full page plus the table.\n\nCompilation results:\n- **0 LaTeX errors**\n- **1 new overfull hbox** (10.84pt, from the table caption area — marginal; the paper already has 134 pre-existing overfull warnings)\n- **§5 spans pages 6–7** (~1+ full page)\n- §5 source: 38 LaTeX lines, 849 words (expanded from 16 lines / ~250 words)\n\nContent added:\n1. **SDGD footnote** (D8): full acronym expansion at first use\n2. **Protocol description**: graph construction, coloring, batch formation moved from appendix prose into §5 intro\n3. **Merge amplification**: expanded with precision collapse mechanism (0.563→0.210–0.249), per-type extremes, and why random > SDGD\n4. **Confidence gating**: new paragraph on v2 failure (F1 drops in both modes, calibration insufficient)\n5. **Oracle routing**: highlighted as key positive finding (+29.8pp), with deployability caveat and rank-13/15 detail\n6. **Batch composition table**: moved from appendix to §5 main text; appendix section now points to main text"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4c6548070c09bf99ea52",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp d4 depth extension olmo",
+  "task_key": "worker_exp_d4_depth_extension_olmo_20260518T190341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d4_depth_extension_olmo_20260518T190341_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "e9b1c5cc83b4945c51b5c5115ed1e8da7e6302b767701acfc66ac701887abd30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，56.6 秒。产出文件齐全：\n\n| 文件 | 说明 |\n|------|------|\n| `depth_4.jsonl` | 5000 条 d4 文本 |\n| `features_d4.jsonl` | 5000 条 d4 特征 |\n| `d4_extension_results.json` | 评估结果 |\n\n**OLMo-1B 结果汇总**：\n\n| 指标 | OLMo-1B | Pythia-1.4B | GPT-2 XL |\n|------|---------|-------------|----------|\n| d3v4 AUC | **0.9747** | 0.7887 | 0.7273 |\n| 5-class RF acc | **0.8053** | 0.7133 | 0.7403 |\n| d4 recall | **0.9014** | 0.6814 | 0.6386 |\n\n**Pairwise AUC chain**: d0v1=0.983, d1v2=0.866, d2v3=0.801, d3v4=0.975\n\n**Feature trends** (p90_ppl 单调递减 ✓): d0=483.7 → d1=136.1 → d2=66.5 → d3=42.7 → d4=28.2\n\n注意 d3v4 AUC=0.9747 远高于其他模型，说明 OLMo-1B 的 d4 generation 在 Pythia ref 下与 d3 分离度很高。var_surprisal 在 d4 出现反弹（2.49→2.83），mean_ppl 非单调。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

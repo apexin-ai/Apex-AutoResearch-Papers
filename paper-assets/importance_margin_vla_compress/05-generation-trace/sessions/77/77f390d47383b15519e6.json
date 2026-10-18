@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "77f390d47383b15519e6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 l2norm k095 goal seed42",
+  "task_key": "worker_harvest_eval_pi05_l2norm_k095_goal_seed42_20260523T224752",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_l2norm_k095_goal_seed42_20260523T224752_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "5b6b723e3d815b86cec85dc2f27827decda396fb580324deb8f80ccbe0c8de83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 报告\n\n### eval_pi05_l2norm_k095_goal_seed42 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **90.8%** (454/500) |\n| Elapsed | 90.4 min |\n| Conclusion | negative（符合预期，接近 baseline ~91.6%） |\n| Log path | `logs/eval_pi05_l2norm_k095_goal_seed42.log` |\n| Result JSON | `eval_results/pi05_l2norm_k0.95_libero_goal_seed42.json` |\n\nPer-task: 3 tasks 100%，最低 \"put the wine bottle on the rack\" 46%（一贯的难 task）。\n\n**L2norm Goal 全曲线**: k=0.3→?, k=0.5→76.4%, k=0.7→89.0%, k=0.85→85.8%, k=0.9→90.6%, k=0.925→89.0%, **k=0.95→90.8%**\n\nRegistry 已更新为 DONE。Cron 不存在（已被其他 session 删除）。\n\n### GPU 0 新任务已部署\n\n**eval_pi05_random_k09_object_seed42_v2** — PID 459609, cqa1-33015 GPU 0, tmux session `eval_pi05_random_k09_object_seed42_v2`, registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

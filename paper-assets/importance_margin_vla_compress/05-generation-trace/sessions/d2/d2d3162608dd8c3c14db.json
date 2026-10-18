@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d2d3162608dd8c3c14db",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3673,
+    "sha256": "9f041fee359f3b6e4fbe45211ed29e015b63ce79095e68c9f0917fb859df898f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-16T10:28:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-27271 的 cuda:0 和 cuda:1（两张卡全部分配给本项目）\n- 远程代码路径：`/root/autodl-tmp/importance_margin_vla_compress`，不是 `/root/importance_margin_vla_compress`\n- 日志真源在 `~/runs/importance_margin_vla_compress/*.log`（submit_training_job 输出），不是 `/root/autodl-tmp/importance_margin_vla_compress/logs/`（后者是旧日志残留，v8c_annealing_train.log 里是第一次 crash 的 traceback）\n- baseline_v6_alpha16 的 spec 里有 `data_count: null`——registry 追溯信息不完整，结论出来后要标 warning 要求补全\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-27271(root)，AutoDL 实例\n- 工作目录：`/root/autodl-tmp/importance_margin_vla_compress`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- wandb：两实验均 `WANDB_MODE=offline`，数据在 `wandb/offline-run-*`\n- 数据集：`lerobot/aloha_sim_insertion_scripted_image`（HF Hub，已缓存本地）\n- 活跃进程：\n  - mvp_imm_v8c_annealing: PID 151567 (tmux=mvp_imm_v8c_annealing, cuda:0)\n  - baseline_v6_alpha16: PID 160906 (tmux session on pts/1, cuda:1)\n\n### 3. 📊 当前状态\n刚完成两实验的中期巡检，均正常：\n- **mvp_imm_v8c_annealing** (cuda:0): step 10950/30000, sps=3.2, ETA ~1.7h。Lipschitz 稳定 (L=0.12)，margin ratio 分布合理（Δ ~1-3.6）\n- **baseline_v6_alpha16** (cuda:1): step 950/30000, sps=3.9, ETA ~2.1h。Loss 从 3.4 降到 0.027，step 700 有一次 spike (0.959) 但立即恢复\n\n等待中：\n- 两实验完成后的 cron 回调（on_done / on_failed）\n- Dream callback（paper_framing 自动审查结果）\n- Director 决策：P0 实验批准（等 Dream 回来 + baseline_v6 确认 mode collapse 修复）\n\n### 4. 📋 待办\n- baseline_v6_alpha16 完成 → 核查 action_chunk_std 是否 >0.05（vs v5 的 0.006），image sensitivity 是否恢复 → 判定 mode collapse 是否已修复\n- baseline_v6 mode collapse 修复确认 → plan_001 (sim success rate) 解封，关注 Agent 是否启动 sim rollout 重测\n- v8c_annealing 完成 → 对比 v8b 两阶段的 G1-G4 gate metrics，判断 annealing 方案是否 comparable\n- 任一实验 registry 标 DONE 但 spec 缺 checkpoint_path/data_count → severity=warning 要求补全\n- Dream callback 到达 → 审查 paper_framing 反馈的合理性\n- 任何实验使用非 cuda:0/cuda:1 设备 → severity=critical 立即打回\n\n### 5. 🎯 战略上下文\n- **MVP 已 PASS**：mvp_imm_v8b_twostage 全部 gate metrics 通过 (G1=93.23x, G2=0.56, G3-deploy=0.87x, G4=0.135)，两阶段训练彻底解决了 co-adaptation\n- **关键阻塞**：sim success rate 全部 0%，root cause 是 LoRA alpha/rank=2.0 导致 flow matching ODE collapse。baseline_v6_alpha16 (alpha=16, scale=0.5) 是修复实验——这个成功与否决定整个 post-MVP 路线能否推进\n- **Paper framing**：3 Claims (provable robustness / lossless-to-gainful compression / denoising effect)。Headline result 需要 success rate 数字，目前被 mode collapse 阻塞\n- **易错判断**：\n  - action_loss 低 ≠ 模型能用（v5 action_loss=0.004 但 sim 0% success，因为 ODE flow field 坍缩到 fixed-point attractor）\n  - v8c_annealing 是从头训 30K 步（不是继续 v8b checkpoint），它的 action_loss/margin_loss 曲线不能直接和 v8b 两阶段的中间 metrics 对比\n  - 旧日志路径 `/root/autodl-tmp/.../logs/` 里的文件是残留，实际训练日志在 `~/runs/importance_margin_vla_compress/`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fe294dd9394e7bb59fda",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code nli gate gpt4o spotcheck",
+  "task_key": "worker_code_nli_gate_gpt4o_spotcheck_20260521T095926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli_gate_gpt4o_spotcheck_20260521T095926_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "341fb8883124f542a943032dfc726066787f210525d1382df6e9e8921414439a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完毕。结果如下：\n\n## NLI Gate GPT-4o Spot-Check Results\n\n| Metric | Value |\n|--------|-------|\n| Total samples | 100 (pass: 50, fail: 50) |\n| **Overall agreement** | **65/100 (65.0%)** |\n| **Cohen's kappa** | **0.3000** (95% CI: [0.1529, 0.4556]) |\n| Pass group agreement | 47/50 (**94.0%**) |\n| Fail group agreement | 18/50 (**36.0%**) |\n\n### Per-axis breakdown\n| Axis | Agreement | Kappa | N |\n|------|-----------|-------|---|\n| formality | 77.1% | 0.2414 | 48 |\n| verbosity | 61.8% | 0.2939 | 34 |\n| register | 38.9% | 0.0917 | 18 |\n\n### Disagreement patterns (35 total)\n- **NLI=fail, GPT=pass: 32 cases** — NLI gate 拒绝但 GPT-4o 认为内容保持\n- **NLI=pass, GPT=fail: 3 cases** — NLI gate 通过但 GPT-4o 认为内容改变\n\n### 关键发现\n\n1. **NLI gate 绝非 rubber-stamp**：Pass 组 94% agreement 表明通过决策高度可靠\n2. **NLI gate 比 GPT-4o 更保守**：35 个分歧中 32 个是 NLI 拒绝但 GPT-4o 通过。Gate 倾向于 over-reject，不是 over-accept\n3. **分歧集中在 verbosity dr pairs**：很多低 NLI 分数（<0.05）的 double-rewrite 对，NLI 把长度/结构变化识别为语义变化，而 GPT-4o 认为核心含义不变\n4. **kappa=0.30 是因为 50/50 stratified sampling 放大了 fail 组分歧**。实际数据中 fail rate ~12%，实际 agreement 远高于 65%\n\n输出已保存到 `artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

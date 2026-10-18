@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1b8a38006620d16ceae6",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code double rewrite placebo gpt4o",
+  "task_key": "worker_code_double_rewrite_placebo_gpt4o_20260521T132448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_double_rewrite_placebo_gpt4o_20260521T132448_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "107b9cfb36c682d6407a84f092b1e874eddf177ca349b954824e16c3ce0c6a00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已保存到 `data/double_rewrite_placebo_gpt4o.json`。\n\n## 结果\n\n| | Formality | Verbosity |\n|---|---|---|\n| n_pairs (nli_dr≥0.90) | 81 | 43 |\n| n_consistent | 44 | 32 |\n| n_ties (inconsistent) | 37 (45.7%) | 11 (25.6%) |\n| BT original wins | 14/44 = **31.8%** | 2/32 = **6.2%** |\n| 95% CI | [18.2%, 45.5%] | [0%, 15.6%] |\n| p-value | 0.0226 | ≈0 |\n| Placebo | **FAILED** | **FAILED** |\n\nGPT-4o 在两个轴上都显著偏离 50%，强烈偏好 double_rewrite 文本而非 original。Verbosity 尤其极端（仅 6.2% original wins）。这表明 GPT-4o 作为 judge 对 rewriting artifacts 存在系统性偏好——经过两轮改写的文本被认为\"更好\"，即使 style 和语义与原文一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

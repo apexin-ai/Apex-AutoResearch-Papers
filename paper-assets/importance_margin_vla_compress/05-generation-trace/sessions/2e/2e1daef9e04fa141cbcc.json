@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2e1daef9e04fa141cbcc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy openvla random k05 seed42",
+  "task_key": "worker_deploy_openvla-random-k05-seed42_20260521T221747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla-random-k05-seed42_20260521T221747_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "237fbeab3efbdbb131a5f6d4c91c558c7818c30ee41d929b31216c0e19f70eb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有完成结果，无需重复部署。已终止刚启动的重复进程。\n\n**已有结果（eval_openvla_random_k05_object_seed42）:**\n- **Success rate: 35.8%** (179/500)\n- 服务器: westd-38929，完成时间: 2026-05-21T16:44\n- Per-task: alphabet_soup=56, cream_cheese=2, salad_dressing=40, bbq_sauce=58, ketchup=60, tomato_sauce=26, butter=0, milk=12, chocolate_pudding=30, orange_juice=74\n\n对比参考：L2norm k=0.5=39.2%，random k=0.5=35.8%，符合预期（random 略低于 L2norm）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

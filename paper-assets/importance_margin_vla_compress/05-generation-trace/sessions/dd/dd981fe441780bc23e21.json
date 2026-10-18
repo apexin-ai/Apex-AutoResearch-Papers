@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd981fe441780bc23e21",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd38929 gpu 20260526c",
+  "task_key": "worker_audit_westd38929-gpu-20260526c_20260526T200721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd38929-gpu-20260526c_20260526T200721_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "6cdae083ec4a798c027bffb1117a21022a35511cf395234d523d398f2462f972"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-38929 GPU 状态审计\n\n### 当前运行中 (4/4 GPU 占满)\n\n| GPU | PID | 实验 | 显存 | 进度 | 预计剩余 |\n|-----|-----|------|------|------|----------|\n| 0 | 623613 | OV L2norm k=0.5 Long | 15923MiB | Task 6/10 进行中 | ~4-5h |\n| 1 | 668245 | OV Random k=0.85 Long v3 | 16339MiB | Task 5/10 进行中 | ~5-6h |\n| 2 | 732931 | OV L2norm k=0.75 Long | 15762MiB | Task 3/10 进行中 (01:30启动) | ~7-8h |\n| 3 | 514356 | OV Attn k=0.85 Long v3 | 15919MiB | **Task 10/10 进行中** | **~45min** |\n\n### GPU 3 即将完成 — 当前中间结果\n\n| Task | SR |\n|------|----|\n| 1 | 60.0% |\n| 2 | 58.0% |\n| 3 | 56.0% |\n| 4 | 34.0% |\n| 5 | 38.0% |\n| 6 | 66.0% |\n| 7 | 34.0% |\n| 8 | 66.0% |\n| 9 | 24.0% |\n| 10 | 进行中 (Ep 40/50, 7/40) |\n\n9 task 平均 ≈ 48.4%，最终预计 Overall SR ≈ **45-48%**。\n\n### 已完成实验结果（已收割）\n\n| 实验 | Overall SR | 耗时 | 结果文件 |\n|------|-----------|------|----------|\n| **OV Attn k=0.7 Goal** | **66.4%** (332/500) | 251.7 min | openvla_attention_prune_k07_goal_seed42.json |\n| **OV Random k=0.5 Long v2** | **18.6%** (93/500) | 607.5 min | openvla_random_prune_k05_10_seed42.json |\n\n### GPU 0 中间结果 (L2norm k=0.5 Long)\nTasks 1-5 完成：20%, 14%, 18%, 12%, 16% → 当前均值 **16.0%**，表现很差。\n\n### GPU 1 中间结果 (Random k=0.85 Long)\nTasks 1-4 完成：60%, 64%, 60%, 32% → 当前均值 **54.0%**。\n\n### X-VLA 实验\neval_xvla_random_k05_spatial_seed43 (PID 155546) 在 westd-38929 上**不存在**——无对应 log 文件或进程，可能在 westd-27271。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

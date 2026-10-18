@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "971fb70ddf47b697a606",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 pure final eval",
+  "task_key": "worker_code_hgrn2_pure_final_eval_20260518T183049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_pure_final_eval_20260518T183049_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "33b0f2fa4c44b9f4e30c638c856e3deff824d9a5bfe7727f78429ceecf97c1a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评测完成。HGRN2-pure 全量 6 tasks 结果：\n\n| Task | Metric | Score |\n|------|--------|-------|\n| **lambada_openai** | acc | 0.4842 |\n| **lambada_openai** | ppl | 11.362 |\n| **hellaswag** | acc | 0.4564 |\n| **hellaswag** | acc_norm | 0.5983 |\n| **winogrande** | acc | 0.5919 |\n| **arc_easy** | acc | 0.7138 |\n| **arc_easy** | acc_norm | 0.6654 |\n| **arc_challenge** | acc | 0.3626 |\n| **arc_challenge** | acc_norm | 0.4002 |\n| **mmlu** | acc | 0.2387 |\n\n结果已保存至 `/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json`。\n\n所有指标在合理范围内（ppl=11.36 < 1000，acc 均 > 0.1），无异常。MMLU ~0.24 接近随机（4 选 1 基线 0.25），符合 1.3B 模型预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

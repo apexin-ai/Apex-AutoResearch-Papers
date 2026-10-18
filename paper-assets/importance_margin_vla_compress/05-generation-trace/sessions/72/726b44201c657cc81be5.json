@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "726b44201c657cc81be5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd 27271 sweep",
+  "task_key": "worker_audit_westd-27271-sweep_20260521T150230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd-27271-sweep_20260521T150230_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "7125ba81ecd30ec451151aca66165c871b43a5e0706a9b5167902fb488b21685"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 状态\n| GPU | 型号 | 显存使用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell | 15.6 / 95.6 GB | 70% |\n| 1 | RTX PRO 6000 Blackwell | 41.2 / 95.6 GB | 0% |\n\n### 1. eval_openvla_l2norm_k05_object_seed43 — **仍在运行** (GPU0)\n- PID 250599, 已运行约 15 小时\n- 当前进度: **Task 5/10**, 约 50% 完成\n- 速度: ~1.8 eps/min, 预计还需 ~2.5 小时\n\n已完成 task 的 SR:\n| Task | SR |\n|------|----|\n| 1. butter | 56.0% (28/50) |\n| 2. cream cheese | 14.0% (7/50) |\n| 3. salad dressing | 38.0% (19/50) |\n| 4. bbq sauce | 32.0% (16/50) |\n| 5. ketchup | 进行中 (23/30) |\n\n### 2. train_openvla_sc_m32_vtconly_seed42 — **仍在运行** (GPU1)\n- PID 921279, 已运行 1 天 4 小时 15 分\n- tmux session `train_openvla_sc_m32_seed42` 存活\n- GPU1 利用率 0% 可能是当前在做 data loading 或 checkpoint 保存间隙\n\n### Registry 更新\nEval 尚未完成，不更新 registry。等 10 个 task 全部跑完后再收集最终 SR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

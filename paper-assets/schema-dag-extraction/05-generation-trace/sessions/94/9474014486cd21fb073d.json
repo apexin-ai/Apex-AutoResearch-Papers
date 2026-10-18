@@ -1,0 +1,713 @@
+{
+  "schema_version": "1.0",
+  "id": "9474014486cd21fb073d",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260515T171027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_bib_sync_20260515T171027.jsonl",
+    "occurrence": 1,
+    "bytes": 35286,
+    "sha256": "32f02bb6cf3dda106ef25ed9b88165612d32a26b3d198d08515c9d8603935dc3"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:15:07.142957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T17:15:07.143581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map for schema-dag-extraction\n2\t# Updated: 2026-05-15\n3\t# Paper: Multi-channel Degradation Model + SDGD Framework for Training-free LLM IE\n4\t\n5\t# =============================================================================\n6\t# DIRECT COMPETITORS — schema decomposition for LLM-based IE\n7\t# =============================================================================\n8\t\n9\t- id: llm-pee-2025\n10\t  title: \"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction\"\n11\t  year: 2025\n12\t  venue: arXiv\n13\t  url: https://arxiv.org/abs/2503.02628\n14\t  role: direct-competitor\n15\t  relevance_note: >\n16\t    Similarity-based type recall + type-partitioning prompting for massive event types.\n17\t    Divides candidate types into partitions to reduce prompt length.\n18\t    +5.4% event detection, +6.1% argument extraction, +12.9% F1 over mainstream LLMs zero-shot.\n19\t    KEY DIFF: partitions by similarity-based recall, NOT confusability-aware.\n20\t    Our DAG decomposition is confusability-driven, not just similarity-driven.\n21\t\n22\t- id: parse-2025\n23\t  title: \"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\"\n24\t  authors: [Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, Promod Yenigalla]\n25\t  year: 2025\n26\t  venue: EMNLP 2025 Industry\n27\t  url: https://arxiv.org/abs/2510.08623\n28\t  role: direct-competitor\n29\t  relevance_note: >\n30\t    ARCHITECT autonomously rewrites JSON schemas for LLM consumption.\n31\t    SCOPE uses reflection-based extraction with guardrails. +64.7% on SWDE.\n32\t    Treats schema optimization as black-box LLM rewriting, not principled decomposition.\n33\t    Does NOT model type confusability explicitly.\n34\t\n35\t- id: dee-2024\n36\t  title: \"Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs\"\n37\t  year: 2024\n38\t  venue: arXiv\n39\t  url: https://arxiv.org/abs/2406.01045\n40\t  role: direct-competitor\n41\t  relevance_note: >\n42\t    Decomposes event extraction into detectio\n…[truncated 18556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T17:15:07.143911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/references_survey.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T17:15:07.144337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# References Survey for Schema-DAG-Extraction\n2\t\n3\t> Generated: 2026-05-15 | Purpose: Related work expansion (Dream review feedback)\n4\t\n5\t## Required References (14)\n6\t\n7\t### 1. LLM-PEE\n8\t- **Full title**: Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction\n9\t- **Authors**: Wenxuan Liu, Zixuan Li, Long Bai, Yuxin Zuo, Daozhu Xu, Xiaolong Jin, Jiafeng Guo, Xueqi Cheng\n10\t- **Venue**: EMNLP 2025 (Main)\n11\t- **arXiv/DOI**: arXiv:2503.02628 | https://aclanthology.org/2025.emnlp-main.1743/\n12\t- **Key contribution**: Proposes similarity-based type recall (ColBERT) + type-partitioning prompting to handle massive event types (3,465 types). Creates EEMT dataset (200K+ samples). Achieves 12.9% F1 improvement over mainstream LLMs in zero-shot setting.\n13\t- **Relation to our work**: [support] — Directly validates our core claim that schema partitioning improves LLM IE; their embedding-similarity partitioning is a key baseline for our DAG-based approach.\n14\t\n15\t### 2. GoLLIE\n16\t- **Full title**: GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\n17\t- **Authors**: Oscar Sainz, Iker García-Ferrero, Rodrigo Agerri, Oier Lopez de Lacalle, German Rigau, Eneko Agirre\n18\t- **Venue**: ICLR 2024\n19\t- **arXiv/DOI**: arXiv:2310.03668 | https://openreview.net/forum?id=Y3wpuxd7u9\n20\t- **Key contribution**: Fine-tunes Code-LLaMA to follow annotation guidelines encoded as Python class definitions with docstrings. Demonstrates that code-style schema representation enables zero-shot generalization to unseen IE tasks.\n21\t- **Relation to our work**: [complement] — Demonstrates code-style schema formatting for IE; our work addresses schema complexity/confusability orthogonally to schema representation format.\n22\t\n23\t### 3. GLiNER\n24\t- **Full title**: GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer\n25\t- **Authors**: Urchade Zaratiana, Nadi Tomeh, Pierre Holat, Thierry Charnois\n26\t- **V\n…[truncated 24769 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T17:15:07.144689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T17:15:07.144945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T17:15:07.145168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2505.14992",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T17:15:07.145355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2311.08921",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T17:15:07.145527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2410.01154",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T17:15:07.145675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the webpage content, the full author list for this paper is:\n\nZhihao Wen, Sheng Liang, Yaxiong Wu, Yongyue Zhang, Yong Liu"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T17:15:07.145794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2511.11978",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T17:15:07.145970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the webpage content, the full author list for this paper is:\n\nTingyu Xie, Qi Li, Yan Zhang, Zuozhu Liu, Hongwei Wang"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T17:15:07.146100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2402.15343",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T17:15:07.146216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the web page content, the full author list is:\n\nSiyi Liu, Yang Li, Jiang Li, Shan Yang, Yunshi Lan"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T17:15:07.146329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2506.00649",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T17:15:07.146452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Hui Huang, Yanping Chen, Ruizhang Huang, Chuan Lin, Yongbin Qin"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T17:15:07.146566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the paper content provided, the full author list is:\n\nSergei Bogdanov, Alexandre Constantin, Timothée Bernard, Benoit Crabbé, Etienne Bernard"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T17:15:07.146679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2311.02962",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T17:15:07.146792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, Eneko Agirre"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T17:15:07.146963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2507.18546",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T17:15:07.147088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Urchade Zaratiana, Gil Pasternak, Oliver Boyd, George Hurn-Maloney, Ash Lewis"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T17:15:07.147196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the webpage content, here is the full author list:\n\nYucan Guo, Zixuan Li, Xiaolong Jin, Yantao Liu, Yutao Zeng, Wenxuan Liu, Xiang Li, Pan Yang, Long Bai, Jiafeng Guo, Xueqi Cheng"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T17:15:07.147318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2412.10121",
+              "prompt": "Extract the full author list for this paper titled \"ZeroNER\". Return only the authors as a comma-separated list. If this is the wrong paper (Familiarity), tell me."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T17:15:07.147430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclanthology.org/2025.findings-acl.805/",
+              "prompt": "Extract the full author list for this paper. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T17:15:07.147562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclanthology.org/2025.emnlp-industry.32/",
+              "prompt": "Extract the full author list for this paper about SLOT. Return only the authors as a comma-separated list."
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T17:15:07.147754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is the wrong paper. The paper shown is titled \"Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data,\" not \"ZeroNER.\"\n\nThe authors of this paper are: Jonas Golde, Patrick Haller, Max Ploner, Fabio Barth, Nicolaas Jedema, Alan Akbik"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T17:15:07.147960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Alessio Cocchieri, Marcos Martínez Galindo, Giacomo Frisoni, Gianluca Moro, Claudio Sartori, Giuseppe Tagliavini"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T17:15:07.148148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the webpage content, the full author list for the SLOT paper is:\n\nZhengyuan Shen, Darren Yow-Bang Wang, Soumya Smruti Mishra, Zhichao Xu, Yifei Teng, Haibo Ding"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T17:15:07.148386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check if output directory exists"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T17:15:07.148579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 15 05:30 .\ndrwxr-xr-x 4 ubuntu ubuntu 4096 May 15 05:30 .."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T17:15:07.148902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "content": "% References for Schema-DAG-Extraction\n% Generated: 2026-05-15\n% Sources: literature_map.yaml + references_survey.md\n\n% =============================================================================\n% DIRECT COMPETITORS\n% =============================================================================\n\n@inproceedings{llm-pee-2025,\n    title     = {Towards Event Extraction with Massive Types: {LLM}-based Collaborative Annotation and Partitioning Extraction},\n    author    = {Liu, Wenxuan and Li, Zixuan and Bai, Long and Zuo, Yuxin and Xu, Daozhu and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n    booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n    year      = {2025},\n    url       = {https://aclanthology.org/2025.emnlp-main.1743/},\n}\n\n@article{parse-2025,\n    title   = {{PARSE}: {LLM} Driven Schema Optimization for Reliable Entity Extraction},\n    author  = {Shrimal, Anubhav and Jain, Aryan and Chowdhury, Soumyajit and Yenigalla, Promod},\n    journal = {arXiv preprint arXiv:2510.08623},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2510.08623},\n}\n\n@inproceedings{dee-2024,\n    title     = {Decompose, Enrich, and Extract! Schema-aware Event Extraction using {LLM}s},\n    author    = {Shiri, Fatemeh and Nguyen, Van and Moghimifar, Farhad and Yoo, John and Haffari, Gholamreza and Li, Yuan-Fang},\n    booktitle = {Proceedings of the IEEE International Conference on Tools with Artificial Intelligence},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2406.01045},\n}\n\n@inproceedings{crossagentie-2025,\n    title     = {{CROSSAGENTIE}: Cross-Type and Cross-Task Multi-Agent {LLM} Collaboration for Zero-Shot Information Extraction},\n    author    = {Lu, Meng and Xie, Yuzhang and Bi, Zhenyu and Cao, Shuxiang and Wang, Xuan},\n    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n    year      = {2025},\n    url       = {https://aclanthology.org/2025.findings-acl.718/},\n}\n\n@article{dlisc-2025,\n    title   = {Effective and Efficient Schema-aware Information Extraction Using On-Device {LLM}s},\n    author  = {Wen, Zhihao and Liang, Sheng and Wu, Yaxiong and Zhang, Yongyue and Liu, Yong},\n    journal = {arXiv preprint arXiv:2505.14992},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2505.14992},\n}\n\n@article{spt-2025,\n    title   = {Schema as Parameterized Tools for Universal Information Extraction},\n    author  = {Liang, Sheng and Zhang, Yongyue and Wu, Yaxiong and Tang, Ruiming and Liu, Yong},\n    journal = {arXiv preprint arXiv:2506.01276},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2506.01276},\n}\n\n@inproceedings{zeroner-2025,\n    title     = {{ZeroNER}: Fueling Zero-Shot {NER} via Entity Type Descriptions},\n    author    = {Cocchieri, Alessio and Mart{\\'\\i}nez Galindo, Marcos and Frisoni, Giacomo and Moro, Gianluca and Sartori, Claudio and Tagliavini, Giuseppe},\n    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n    year      = {2025},\n    url       = {https://aclanthology.org/2025.findings-acl.805/},\n}\n\n@inproceedings{cmas-ner-2025,\n    title     = {A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition},\n    author    = {Wang, Zihan and Zhao, Ziqi and Lyu, Yougang and Chen, Zhumin and de Rijke, Maarten and Ren, Zhaochun},\n    booktitle = {Proceedings of the ACM Web Conference 2025},\n    year      = {2025},\n    url       = {https://dl.acm.org/doi/10.1145/3696410.3714923},\n    doi       = {10.1145/3696410.3714923},\n}\n\n% =============================================================================\n% METHOD COMPONENTS\n% =============================================================================\n\n@inproceedings{uniner-2024,\n    title     = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n    author    = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2308.03279},\n}\n\n@inproceedings{gollie-2024,\n    title     = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n    author    = {Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2310.03668},\n}\n\n@inproceedings{gliner-2024,\n    title     = {{GLiNER}: Generalist Model for Named Entity Recognition using Bidirectional Transformer},\n    author    = {Zaratiana, Urchade and Tomeh, Nadi and Holat, Pierre and Charnois, Thierry},\n    booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2311.08526},\n}\n\n@inproceedings{gliner2-2025,\n    title     = {{GLiNER2}: Efficient Multi-Task {IE} System with Schema-Driven Interface},\n    author    = {Zaratiana, Urchade and Pasternak, Gil and Boyd, Oliver and Hurn-Maloney, George and Lewis, Ash},\n    booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2507.18546},\n}\n\n@inproceedings{kggen-2025,\n    title     = {{KGGen}: Extracting Knowledge Graphs from Plain Text with Language Models},\n    author    = {Mo, Belinda and Yu, Kyssen and Kazdan, Joshua and Cabezas, Joan and Mpala, Proud and Yu, Lisa and Cundy, Chris and Kanatsoulis, Charilaos and Koyejo, Sanmi},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2502.09956},\n}\n\n@inproceedings{code4uie-2024,\n    title     = {Retrieval-Augmented Code Generation for Universal Information Extraction},\n    author    = {Guo, Yucan and Li, Zixuan and Jin, Xiaolong and Liu, Yantao and Zeng, Yutao and Liu, Wenxuan and Li, Xiang and Yang, Pan and Bai, Long and Guo, Jiafeng and Cheng, Xueqi},\n    booktitle = {NeurIPS 2024 Workshop},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2311.02962},\n}\n\n@inproceedings{iepile-2024,\n    title     = {{IEPile}: Unearthing Large-Scale Schema-Based Information Extraction Corpus},\n    author    = {Gui, Honghao and Yuan, Lin and Ye, Hongbin and Zhang, Ningyu and Sun, Mengshu and Liang, Lei and Chen, Huajun},\n    booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2402.14710},\n}\n\n@article{lost-in-middle-2024,\n    title   = {Lost in the Middle: How Language Models Use Long Contexts},\n    author  = {Liu, Nelson F. and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and Bevilacqua, Michele and Petroni, Fabio and Liang, Percy},\n    journal = {Transactions of the Association for Computational Linguistics},\n    volume  = {12},\n    pages   = {157--173},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2307.03172},\n    doi     = {10.1162/tacl_a_00638},\n}\n\n% =============================================================================\n% ZERO-SHOT NER / RE BASELINES\n% =============================================================================\n\n@inproceedings{self-improve-ner-2024,\n    title     = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},\n    author    = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n    booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2311.08921},\n}\n\n@inproceedings{self-prompting-re-2024,\n    title     = {Unleashing the Power of {LLM}s in Zero-shot Relation Extraction via Self-Prompting},\n    author    = {Liu, Siyi and Li, Yang and Li, Jiang and Yang, Shan and Lan, Yunshi},\n    booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2410.01154},\n}\n\n@article{reasoning-ner-2025,\n    title   = {A Reasoning Paradigm for Named Entity Recognition},\n    author  = {Huang, Hui and Chen, Yanping and Huang, Ruizhang and Lin, Chuan and Qin, Yongbin},\n    journal = {arXiv preprint arXiv:2511.11978},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2511.11978},\n}\n\n@inproceedings{nuner-2024,\n    title     = {{NuNER}: Entity Recognition Encoder Pre-training via {LLM}-Annotated Data},\n    author    = {Bogdanov, Sergei and Constantin, Alexandre and Bernard, Timoth{\\'e}e and Crabb{\\'e}, Benoit and Bernard, Etienne},\n    booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2402.15343},\n}\n\n% =============================================================================\n% EVALUATION / BENCHMARKING\n% =============================================================================\n\n@inproceedings{familiarity-2025,\n    title     = {Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data},\n    author    = {Golde, Jonas and Haller, Patrick and Ploner, Max and Barth, Fabio and Jedema, Nicolaas and Akbik, Alan},\n    booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2412.10121},\n}\n\n@inproceedings{guidex-2025,\n    title     = {{GuideX}: Guided Synthetic Data Generation for Zero-Shot Information Extraction},\n    author    = {De La Fuente, Neil and Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agirre, Eneko},\n    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2506.00649},\n}\n\n% =============================================================================\n% SURVEYS / BACKGROUND\n% =============================================================================\n\n@article{llm4ie-survey-2024,\n    title   = {Large Language Models for Generative Information Extraction: A Survey},\n    author  = {Xu, Derong and Chen, Wei and Peng, Wenjun and Zhang, Chao and Xu, Tong and Zhao, Xiangyu and Wu, Xian and Zheng, Yefeng and Wang, Yang and Chen, Enhong},\n    journal = {Frontiers of Computer Science},\n    volume  = {18},\n    number  = {6},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2312.17617},\n    doi     = {10.1007/s11704-024-40555-y},\n}\n\n@inproceedings{knowcoder-2024,\n    title     = {{KnowCoder}: Coding Structured Knowledge into {LLM}s for Universal Information Extraction},\n    author    = {Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n    booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2403.07969},\n}\n\n@inproceedings{slot-2025,\n    title     = {{SLOT}: Structuring the Output of Large Language Models},\n    author    = {Shen, Zhengyuan and Wang, Darren Yow-Bang and Mishra, Soumya Smruti and Xu, Zhichao and Teng, Yifei and Ding, Haibo},\n    booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track},\n    year      = {2025},\n    url       = {https://aclanthology.org/2025.emnlp-industry.32/},\n}\n\n% =============================================================================\n% EMBEDDING ANISOTROPY / REPRESENTATION DEGENERATION\n% =============================================================================\n\n@inproceedings{gao-repr-degen-2019,\n    title     = {Representation Degeneration Problem in Training Natural Language Generation Models},\n    author    = {Gao, Jun and He, Di and Tan, Xu and Qin, Tao and Wang, Liwei and Liu, Tie-Yan},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1907.12009},\n}\n\n@inproceedings{ethayarajh-contextual-2019,\n    title     = {How Contextual are Contextualized Word Representations? {C}omparing the Geometry of {BERT}, {ELMo}, and {GPT-2} Embeddings},\n    author    = {Ethayarajh, Kawin},\n    booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing},\n    year      = {2019},\n    url       = {https://aclanthology.org/D19-1006/},\n}\n\n@inproceedings{cai-isotropy-clusters-2021,\n    title     = {Isotropy in the Contextual Embedding Space: Clusters and Manifolds},\n    author    = {Cai, Xingyu and Huang, Jiaji and Bian, Yuchen and Church, Kenneth},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2021},\n    url       = {https://openreview.net/forum?id=xYGNO86OWDH},\n}\n\n@inproceedings{godey-anisotropy-inherent-2024,\n    title     = {Anisotropy Is Inherent to Self-Attention in Transformers},\n    author    = {Godey, Nathan and de la Clergerie, {\\'E}ric and Sagot, Beno{\\^\\i}t},\n    booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://aclanthology.org/2024.eacl-long.3/},\n}\n\n@inproceedings{rajaee-cluster-isotropy-2021,\n    title     = {A Cluster-based Approach for Improving Isotropy in Contextual Embedding Space},\n    author    = {Rajaee, Sara and Pilehvar, Mohammad Taher},\n    booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics},\n    year      = {2021},\n    url       = {https://aclanthology.org/2021.acl-short.73/},\n}\n\n% =============================================================================\n% ADDITIONAL REFERENCES (from references_survey.md only)\n% =============================================================================\n\n@article{instructuie-2023,\n    title   = {{InstructUIE}: Multi-task Instruction Tuning for Unified Information Extraction},\n    author  = {Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai},\n    journal = {arXiv preprint arXiv:2304.08085},\n    year    = {2023},\n    url     = {https://arxiv.org/abs/2304.08085},\n}\n\n@inproceedings{codeie-2023,\n    title     = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n    author    = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n    booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics},\n    year      = {2023},\n    url       = {https://aclanthology.org/2023.acl-long.855/},\n}\n\n@inproceedings{adelie-2024,\n    title     = {{ADELIE}: Aligning Large Language Models on Information Extraction},\n    author    = {Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi},\n    booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n    year      = {2024},\n    url       = {https://aclanthology.org/2024.emnlp-main.419/},\n}\n\n@inproceedings{oneke-2025,\n    title     = {{OneKE}: A Dockerized Schema-Guided {LLM} Agent-based Knowledge Extraction System},\n    author    = {Luo, Yujie and Yan, Lingyong and Liu, Zhenghao and Ji, Yixin and Wang, Weiqi and Yu, Shi and Yan, Yukun and Wang, Shuo and Zhang, Yue and Cao, Shulin and Ren, Weicheng and Gui, Honghao and Bi, Zhen and Huang, Yongfei and Yao, Yuan and Zhang, Ningyu and Chen, Huajun},\n    booktitle = {Companion Proceedings of the ACM Web Conference 2025},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2412.20005},\n    doi       = {10.1145/3701716.3715189},\n}\n\n@inproceedings{genre-2021,\n    title     = {Autoregressive Entity Retrieval},\n    author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2021},\n    url       = {https://arxiv.org/abs/2010.00904},\n}\n\n@inproceedings{inerd-2024,\n    title     = {Informed Named Entity Recognition Decoding for Generative Language Models},\n    author    = {Deu{\\ss}er, Tobias and Hillebrand, Lars Patrick and Bauckhage, Christian and Sifa, Rafet},\n    booktitle = {Proceedings of the IEEE International Conference on Big Data},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2308.07791},\n}\n\n@inproceedings{noisebench-2024,\n    title     = {{NoiseBench}: Benchmarking the Impact of Real Label Noise on Named Entity Recognition},\n    author    = {Merdjanovska, Elena and Aynetdinov, Ansar and Akbik, Alan},\n    booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n    year      = {2024},\n    url       = {https://aclanthology.org/2024.emnlp-main.1011/},\n}\n\n@inproceedings{lrn-2021,\n    title     = {Fine-grained Entity Typing via Label Reasoning},\n    author    = {Liu, Qing and Lin, Hongyu and Xiao, Xinyan and Han, Xianpei and Sun, Le and Wu, Hua},\n    booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n    year      = {2021},\n    url       = {https://aclanthology.org/2021.emnlp-main.378/},\n}\n\n@inproceedings{genres-2024,\n    title     = {{GenRES}: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models},\n    author    = {Jiang, Pengcheng and Lin, Jiacheng and Wang, Zifeng and Sun, Jimeng and Han, Jiawei},\n    booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://aclanthology.org/2024.naacl-long.155/},\n}\n\n@inproceedings{multiconner2-2023,\n    title     = {{SemEval}-2023 Task 2: Fine-grained Multilingual Named Entity Recognition ({MultiCoNER} 2)},\n    author    = {Fetahu, Besnik and Kar, Sudipta and Chen, Zhiyu and Rokhlenko, Oleg and Malmasi, Shervin},\n    booktitle = {Proceedings of the 17th International Workshop on Semantic Evaluation},\n    year      = {2023},\n    url       = {https://aclanthology.org/2023.semeval-1.310/},\n}\n\n@inproceedings{llm-calibration-survey-2024,\n    title     = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n    author    = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n    booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://aclanthology.org/2024.naacl-long.366/},\n}\n\n@inproceedings{far-calibration-2024,\n    title     = {Fact-and-Reflection ({FaR}) Improves Confidence Calibration of Large Language Models},\n    author    = {Zhao, Xinran and Zhang, Hongming and Pan, Xiaoman and Yao, Wenlin and Yu, Dong and Wu, Tongshuang and Chen, Jianshu},\n    booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},\n    year      = {2024},\n    url       = {https://aclanthology.org/2024.findings-acl.515/},\n}\n\n@inproceedings{linkner-2024,\n    title     = {{LinkNER}: Linking Local Named Entity Recognition Models to Large Language Models using Uncertainty},\n    author    = {Zhang, Zhen and Zhao, Yuhua and Gao, Hang and Hu, Mengting},\n    booktitle = {Proceedings of the ACM Web Conference 2024},\n    year      = {2024},\n    url       = {https://dl.acm.org/doi/10.1145/3589334.3645414},\n    doi       = {10.1145/3589334.3645414},\n}\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T17:15:07.149452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T17:15:07.149646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c '^@' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "description": "Count BibTeX entries"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T17:15:07.149816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T17:15:07.150060+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "43 个 BibTeX entries，来源分布：\n\n- literature_map.yaml 原有 30 条全部覆盖\n- references_survey.md 新增 13 条：`instructuie-2023`, `codeie-2023`, `adelie-2024`, `oneke-2025`, `genre-2021`, `inerd-2024`, `noisebench-2024`, `lrn-2021`, `genres-2024`, `multiconner2-2023`, `llm-calibration-survey-2024`, `far-calibration-2024`, `linkner-2024`\n\n所有 entry 均包含 title、author、year、booktitle/journal、url 必填字段。缺失作者信息已通过 arXiv/ACL Anthology 页面补全。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260515T171027"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ]
+}

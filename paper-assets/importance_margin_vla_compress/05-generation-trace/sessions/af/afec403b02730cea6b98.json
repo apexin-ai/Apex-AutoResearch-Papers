@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "afec403b02730cea6b98",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "infra env setup westd27271",
+  "task_key": "worker_infra_env-setup-westd27271_20260515T111945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env-setup-westd27271_20260515T111945.log",
+    "occurrence": 1,
+    "bytes": 874971,
+    "sha256": "b484e5f93677639056fb1182d9657fc4aa38e27b69b73cf2c351124d85a2648e"
+  },
+  "statistics": {
+    "messages": 780,
+    "user_turns": 0,
+    "tool_calls": 353,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 69,
+      "tool_call": 353,
+      "tool_result": 353
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 780,
+      "chunks": [
+        {
+          "path": "afec403b02730cea6b98-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "afec403b02730cea6b98-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "afec403b02730cea6b98-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "afec403b02730cea6b98-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "afec403b02730cea6b98-part-0005.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ]
+}

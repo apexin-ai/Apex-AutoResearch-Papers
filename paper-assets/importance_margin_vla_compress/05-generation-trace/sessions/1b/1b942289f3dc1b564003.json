@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "1b942289f3dc1b564003",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops westd38929 gpu2 smolvla baseline spatial",
+  "task_key": "worker_ops_westd38929-gpu2-smolvla-baseline-spatial_20260521T003643",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd38929-gpu2-smolvla-baseline-spatial_20260521T003643.log",
+    "occurrence": 1,
+    "bytes": 1718327,
+    "sha256": "8ee87bda97f17c65cc0d2b339cfcd4b9b5499bb563de766fd49e6a8113d28464"
+  },
+  "statistics": {
+    "messages": 766,
+    "user_turns": 1,
+    "tool_calls": 286,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 186,
+      "tool_call": 286,
+      "tool_result": 286,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 578,
+      "chunks": [
+        {
+          "path": "1b942289f3dc1b564003-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b942289f3dc1b564003-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b942289f3dc1b564003-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b942289f3dc1b564003-part-0004.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "1b942289f3dc1b564003-part-0004.json",
+          "message_count": 128
+        },
+        {
+          "path": "1b942289f3dc1b564003-part-0005.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e5a7ad2dac1233cb95ea",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_14_1779872723.md",
+  "task_key": "loop_14_1779872723",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1779872723.md",
+    "occurrence": 1,
+    "bytes": 3977,
+    "sha256": "b1de93767cb0f5a86fcf9419746000c6cd720ec2dce471b2506d7a43185d0f74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-27T08:57:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，当前 4 台服务器各自分配见下方基础设施节\n- westd-27271 只有 2 张 GPU (cuda:0, cuda:1)，不要尝试 cuda:2/3\n- submit_training_job 的 command 必须用 `/root/miniconda3/bin/python` 绝对路径，不能用 `python`（v1 EXIT_CODE=127 教训，已在 v2 修复）\n- 实验硬截止 **2026-05-28 20:00 BJT**（D240），只补论文 figure 必需的 cliff curve 数据，不开新方向\n- **CoRL 2026 Paper 截止 May 29**，距今 2 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-38929**: 4 GPU, 工作目录 `/root/autodl-tmp/importance_margin_vla_compress/`, Python `/root/miniconda3/bin/python`\n- **westd-41074**: 4 GPU, 同上路径\n- **westd-27271**: 2 GPU, 同上路径\n- **cqa1-33015**: 4 GPU, 同上路径（跑 π0.5 实验）\n- 模型路径: `/root/autodl-tmp/models/` (各服务器本地)\n- 日志路径: `~/runs/importance_margin_vla_compress/`\n- 活跃 cron 监控 11 个进程（reconcile 已确认全部 still running）:\n  - westd-38929: Rnd k=0.85 Goal / Rnd k=0.5 Long(?) / Attn k=0.7 Goal (pid=601115) / Attn k=0.85 Long (pid=514347)\n  - westd-41074: Rnd k=0.85 Long (pid=668236) / L2n k=0.85 Obj (?) / Attn k=0.5 Obj (pid=652888) / L2n k=0.75 Obj (?)\n  - westd-27271: L2n k=0.75 Goal v2 (pid=414922) / Attn k=0.5 Long (pid=397225)\n  - cqa1: π0.5 Rnd k=0.85 Long v2 (pid=384770) / π0.5 L2n k=0.85 Long v3 (pid=416018) / Attn k=0.75 Obj (pid=755977) / Rnd k=0.85 Obj (pid=682346)\n\n### 3. 📊 当前状态\n本 session 收到 `eval_openvla_l2norm_k075_goal_seed42` 的失败 CRON 回调。该实验是 v1，因 `python` 命令找不到 (EXIT_CODE=127) 失败。**v2 已在上一个 session 中修复并提交**（改用 `/root/miniconda3/bin/python`），当前 v2 (pid=414922) 在 westd-27271 cuda:0 正常运行中，poll_cron 确认 still running。\n\n**RUNNING 实验** (11 个有 cron，加 v2 共 12 个):\n- OpenVLA cliff curve 填充：Attn k=0.7 Goal / Attn k=0.85 Long v5 / Attn k=0.5 Obj / Attn k=0.5 Long / Attn k=0.75 Obj / L2n k=0.75 Obj / L2n k=0.75 Goal v2 / L2n k=0.5 Long / Rnd k=0.85 Obj / Rnd k=0.85 Long v3\n- π0.5 cliff curve：Rnd k=0.85 Long v2 / L2n k=0.85 Long v3\n\n**等待中**: 无 Worker 回调待处理。所有实验依靠 cron 自动回调。\n\n### 4. 📋 待办（条件触发式）\n- 任何 eval 实验 cron 回调到达 → 按 on-experiment-done 流程：更新 registry + report.md + 汇报 Director + 填充 ROADMAP cliff curve 表\n- 所有 OpenVLA cliff curve 实验完成 → 整合数据到 ROADMAP，通知 Director + Paper Agent 更新论文 figure\n- 所有 π0.5 cliff curve 实验完成 → 同上\n- `eval_openvla_l2norm_k075_goal_seed42_v2` 完成 → 填补 Goal L2norm k=0.75 数据点（当前已知 k=0.85=75.4%, k=0.7=68.4%，k=0.75 定位下降斜率）\n- GPU 空出 → 检查 report.md 待处理队列，优先提交 `eval_pi05_attn_k095_long_seed42`（Attn Long 曲线顶端点）和其他排队实验\n- 实验硬截止 5/28 20:00 到达 → 停止提交新实验，进入论文收尾\n\n### 5. 🎯 战略上下文\n- **核心发现**: L2norm pruning 呈完美单调退化（D237 确认），Random 呈 V-shape（position encoding sensitivity），Attn 有 cliff。三方法行为模式完全不同，这是论文的核心 story\n- **Crossover table 16/16 已完成**，Abstract 已提交。当前阶段是 cliff curve 数据填充，用于论文 figure 精确展示三方法的退化曲线\n- **易错点**: westd-27271 的实验用 `python` 会 127，必须用绝对路径 `/root/miniconda3/bin/python`。其他三台服务器也建议统一用绝对路径\n- **决策链关键节点**: D237（L2norm 单调确认）→ D240（实验硬截止 5/28）→ 当前所有实验都是填充 cliff curve 中间点，没有新方向\n- Provenance 还有 3 个 tier-3 gap 未补全，非阻塞但提交前需处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

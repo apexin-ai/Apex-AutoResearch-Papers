@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "76f50ddc30a37ea18bc2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code baseline v6 alpha16",
+  "task_key": "worker_code_baseline_v6_alpha16_20260516T083918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_baseline_v6_alpha16_20260516T083918_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "7ac44520e77895a3a0baecde1e3b991ee4f9a83fe2ba2bcded973bebe28bf561"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n- **Config**：创建 `configs/baseline_v6_alpha16.yaml`，基于 baseline.yaml，`alpha: 64 → 16`，`output_dir: checkpoints/baseline_v6_alpha16`\n- **训练已启动**：westd-27271 cuda:1，tmux session `baseline_v6_alpha16`\n- **确认 alpha=16 生效**：日志显示 `LoRA applied: rank=32, alpha=16, trainable params: 1485312`\n- **首步 loss=3.4066**，训练正常\n- **Registry 已更新**：status=RUNNING，hypothesis 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

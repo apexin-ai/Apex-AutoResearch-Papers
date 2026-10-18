@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3d49b4faf00524625b84",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code openrouter deploy",
+  "task_key": "worker_code_openrouter-deploy_20260522T125604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openrouter-deploy_20260522T125604_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "9c64b3c5e328fd824cc9b2afc15e0af58774c33602fbdc38544dd423b2c6d2bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "import 验证通过。汇报：\n\n**api_judge_service.py 修改：**\n- L35: 新增 `_OPENROUTER_MODEL_MAP` 映射表（9 个模型）\n- L93: 默认 `api_base` → `https://openrouter.ai/api/v1`\n- L111-112: session headers 新增 `HTTP-Referer` 和 `X-Title`\n- L125: `_call_api` 中 model 字段改用 `_OPENROUTER_MODEL_MAP.get(self.model_id, self.model_id)`，`self.model_id` 本身不变\n\n**run_plan001_step1_batched.py 修改：**\n- L31: `API_KEY` → `os.environ[\"OPENROUTER_API_KEY\"]`（删除硬编码 key）\n- L32: `API_BASE` → `https://openrouter.ai/api/v1`\n- L38-51: 三个 batch 的 `max_workers` 全部改为 3，`max_rps` 全部改为 3.0\n\n**import 验证：通过**\n\n设置 `OPENROUTER_API_KEY` 环境变量后即可启动 scoring。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

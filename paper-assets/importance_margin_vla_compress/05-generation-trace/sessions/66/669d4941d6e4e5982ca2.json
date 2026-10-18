@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "669d4941d6e4e5982ca2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k07 long seed43 postfix",
+  "task_key": "worker_diagnose_eval_pi05_random_k07_long_seed43_postfix_20260524T223736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k07_long_seed43_postfix_20260524T223736_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "c9c31c0549c63292ed311fe29aa8bbfc8136a076bf5ed1a6e0842d77ac8099b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 已更新，cron 已清除。\n\n**结果汇总：**\n- **状态**: 成功 (DONE)\n- **Overall SR**: **68.6%** (343/500)\n- **耗时**: 222.9 min\n- **Per-task SR**: T0=92%, T1=74%, T2=76%, T3=70%, T4=86%, T5=52%, T6=70%, T7=72%, T8=8%, T9=86%\n\n**Dual-seed 对比 (Random k=0.7 Long)**:\n- seed42: 65.8%\n- seed43: 68.6%\n- **平均: 67.2%**, 差值 2.8pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "45e93c264e38acf699c4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd38929 full 20260526c",
+  "task_key": "worker_audit_westd38929-full-20260526c_20260526T190117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd38929-full-20260526c_20260526T190117_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "ff175ab366c99be3d319a7c91a9a9d82b1468f0affc1671d74b520b0ca13ca34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "xvla_random_k05_spatial_seed43 已完成。汇总如下：\n\n```\nGPU 0: 占用  PID=623613,  显存=16339/97887 MiB\n        实验=eval_openvla_l2norm_k05_long_seed42\n        进度=Task 5/10, Ep 20/50  运行 5h06m  状态=运行中\n\nGPU 1: 占用  PID=668245,  显存=15861/97887 MiB\n        实验=eval_openvla_random_k085_long_seed42_v3\n        进度=Task 4/10, Ep 40/50  运行 3h38m  状态=运行中\n\nGPU 2: 占用  PID=732931,  显存=16169/97887 MiB\n        实验=eval_openvla_l2norm_k075_long_seed42 (新实验，非原始追踪列表)\n        进度=Task 2/10, Ep 30/50  运行 1h31m  状态=运行中\n\nGPU 3: 占用  PID=514356,  显存=15762/97887 MiB\n        实验=eval_openvla_attn_k085_long_seed42_v3\n        进度=Task 9/10, Ep 40/50  运行 7h51m  状态=运行中(即将完成)\n\n已完成实验：\n- eval_xvla_random_k05_spatial_seed43: SR=72.6% (363/500)\n  per-task: 100%/38%/88%/92%/88%/0%/94%/68%/92%/66%\n  完成时间: 2026-05-24 07:29 UTC\n\n空闲 GPU: 无\n```\n\n注意：\n- PID 155546 (eval_xvla_random_k05_spatial_seed43) 已于 5/24 完成，无 exit 文件（日志在项目 logs/ 目录）\n- GPU 2 上运行的 l2norm_k075 不在原始追踪列表中，是后续启动的新实验\n- GPU 3 的 attn_k085 在 Task 9/10 ep 40/50，预计 ~30 分钟内完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

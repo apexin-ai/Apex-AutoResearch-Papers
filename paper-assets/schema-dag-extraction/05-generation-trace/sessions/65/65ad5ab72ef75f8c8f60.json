@@ -1,0 +1,1851 @@
+{
+  "schema_version": "1.0",
+  "id": "65ad5ab72ef75f8c8f60",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "ssh fewrel qwen3 embeddings",
+  "task_key": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_fewrel-qwen3-embeddings_20260515T113947.jsonl",
+    "occurrence": 1,
+    "bytes": 60649,
+    "sha256": "b3590c3b06d9d05cf25f29e4c88e01ed218a29a946ccc88cfb2a1b5ab2d15037"
+  },
+  "statistics": {
+    "messages": 91,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "tool_call": 45,
+      "tool_result": 45,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T11:43:44.594343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T11:43:44.594658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T11:43:44.594821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 254599 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T11:43:44.594987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T11:43:44.595112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 254943 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T11:43:44.595234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T11:43:44.595349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T11:43:44.595463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls /root/schema-dag-extraction/artifacts/exp008/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T11:43:44.595579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T11:43:44.595697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_summary.json\\\\ndecomposition.json\\\\ndecomposition_per_type.json\\\\ndecomposition_random_batch.json\\\\ndecomposition_sdgd_zero.json\\\\ndecomposition_single_pass.json\\\\nper_type_predictions.json\\\\nper_type_results.json\\\\nrandom_batch_predictions.json\\\\nrandom_batch_results.json\\\\nsdgd_zero_predictions.json\\\\nsdgd_zero_results.json\\\\nsingle_pass_predictions.json\\\\nsingle_pass_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T11:43:44.595855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/scripts/compute_fewrel_qwen3_embeddings.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T11:43:44.595989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/schema-dag-extraction/scripts/compute_fewrel_qwen3_embeddings.sh: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T11:43:44.596124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -80 /root/schema-dag-extraction/src/compute_type_embeddings.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T11:43:44.596277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute type embeddings using a causal LM (e.g. Qwen3).\\\\n\\\\nInput: Type definitions JSON, pretrained model\\\\nOutput: {type_name: embedding_tensor} saved as .pt\\\\nDependencies: torch, transformers\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef compute_embeddings(\\\\n    model_path: str,\\\\n    type_definitions: dict,\\\\n    device: str = \\\\\\\"cuda:0\\\\\\\",\\\\n    batch_size: int = 8,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute mean-pooled last-layer hidden states for each type.\\\\n\\\\n    Args:\\\\n        model_path: Path to pretrained causal LM.\\\\n        type_definitions: {type_name: definition_text}.\\\\n        device: Torch device string.\\\\n        batch_size: Number of types to process at once.\\\\n\\\\n    Returns:\\\\n        Dict mapping type_name -> embedding tensor (1D, hidden_dim).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading model from %s\\\\\\\", model_path)\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        device_map=device,\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    type_names = list(type_definitions.keys())\\\\n    type_texts = [\\\\n        f\\\\\\\"Entity type: {name}. Definition: {defn}.\\\\\\\"\\\\n        for name, defn in type_definitions.items()\\\\n    ]\\\\n\\\\n    embeddings = {}\\\\n    for i in range(0, len(type_texts), batch_size):\\\\n        batch_names = type_names[i : i + batch_size]\\\\n        batch_texts = type_texts[i : i + batch_size]\\\\n\\\\n        inputs = tokenizer(\\\\n            batch_texts, return_tensors=\\\\\\\"pt\\\\\\\", padding=True, truncation=True, max_length=512\\\\n        \n…[truncated 897 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T11:43:44.596447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls /root/schema-dag-extraction/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T11:43:44.596659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls /root/schema-dag-extraction/artifacts/fewrel_qwen3*",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T11:43:44.596887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"compute_e5_embeddings.py\\\\ncompute_maven_minilm.py\\\\ncompute_maven_qwen3_embeddings.py\\\\nrun_exp008.sh\\\\nrun_exp012_llama.sh\\\\nrun_sdgd_maven_minilm.sh\\\\nsubmit_exp012.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T11:43:44.597321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema-dag-extraction/artifacts/fewrel_qwen3*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T11:43:44.597505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/scripts/compute_maven_qwen3_embeddings.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T11:43:44.597672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Compute Qwen3-32B mean-pooled embeddings for MAVEN 168 event types.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch, json, sys, os\\\\nos.chdir(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\n\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\n\\\\nmodel_path = \\\\\\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\\\\"\\\\nprint(\\\\\\\"Loading tokenizer...\\\\\\\", flush=True)\\\\ntokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\nprint(\\\\\\\"Loading model...\\\\\\\", flush=True)\\\\nmodel = AutoModelForCausalLM.from_pretrained(\\\\n    model_path, device_map=\\\\\\\"cuda:0\\\\\\\",\\\\n    torch_dtype=torch.bfloat16, trust_remote_code=True\\\\n)\\\\nmodel.eval()\\\\nprint(\\\\\\\"Model loaded.\\\\\\\", flush=True)\\\\n\\\\n# Get MAVEN types\\\\nimport pandas as pd\\\\ndf = pd.read_parquet(\\\\\\\"data/maven_parquet/valid.parquet\\\\\\\")\\\\ntypes = set()\\\\nfor ents in df['entities']:\\\\n    if ents is None:\\\\n        continue\\\\n    lst = json.loads(ents) if isinstance(ents, str) else ents\\\\n    if lst is None:\\\\n        continue\\\\n    for e in lst:\\\\n        types.add(e['type'])\\\\ntype_names = sorted(types)\\\\nprint(f\\\\\\\"Computing embeddings for {len(type_names)} types...\\\\\\\", flush=True)\\\\n\\\\nembeddings = {}\\\\nfor i, name in enumerate(type_names):\\\\n    inputs = tokenizer(name, return_tensors=\\\\\\\"pt\\\\\\\", padding=True, truncation=True).to(\\\\\\\"cuda:0\\\\\\\")\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs, output_hidden_states=True)\\\\n        hidden = outputs.hidden_states[-1]\\\\n        mask = inputs[\\\\\\\"attention_mask\\\\\\\"].unsqueeze(-1)\\\\n        emb = (hidden * mask).sum(dim=1) / mask.sum(dim=1)\\\\n        emb = emb.squeeze().cpu()\\\\n    embeddings[name] = emb\\\\n    if (i+1) % 20 == 0:\\\\n        print(f\\\\\\\"  {i+1}/{len(type_names)}\\\\\\\", flush=True)\\\\n\\\\nprint(f\\\\\\\"All {len(type_names)} done. dim={emb.shape[0]}, dtype={emb.dtype}\\\\\\\", flush=True)\\\\n\\\\n# Save embeddings (keep bfloat16 to match Few-NERD)\\\\ntorch.save(embeddings\n…[truncated 834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T11:43:44.597826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -80 /root/schema-dag-extraction/src/compute_type_embeddings.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T11:43:44.598045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"fewrel*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T11:43:44.598219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    Args:\\\\n        model_path: Path to pretrained causal LM.\\\\n        type_definitions: {type_name: definition_text}.\\\\n        device: Torch device string.\\\\n        batch_size: Number of types to process at once.\\\\n\\\\n    Returns:\\\\n        Dict mapping type_name -> embedding tensor (1D, hidden_dim).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading model from %s\\\\\\\", model_path)\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        device_map=device,\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    type_names = list(type_definitions.keys())\\\\n    type_texts = [\\\\n        f\\\\\\\"Entity type: {name}. Definition: {defn}.\\\\\\\"\\\\n        for name, defn in type_definitions.items()\\\\n    ]\\\\n\\\\n    embeddings = {}\\\\n    for i in range(0, len(type_texts), batch_size):\\\\n        batch_names = type_names[i : i + batch_size]\\\\n        batch_texts = type_texts[i : i + batch_size]\\\\n\\\\n        inputs = tokenizer(\\\\n            batch_texts, return_tensors=\\\\\\\"pt\\\\\\\", padding=True, truncation=True, max_length=512\\\\n        ).to(device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs, output_hidden_states=True)\\\\n\\\\n        last_hidden = outputs.hidden_states[-1]  # [B, seq_len, hidden_dim]\\\\n        attention_mask = inputs[\\\\\\\"attention_mask\\\\\\\"].unsqueeze(-1)  # [B, seq_len, 1]\\\\n        masked_hidden = last_hidden * attention_mask\\\\n        summed = masked_hidden.sum(dim=1)  # [B, hidden_dim]\\\\n        counts = attention_mask.sum(dim=1)  # [B, 1]\\\\n        mean_pooled = (summed / counts).cpu()  # [B, hidden_dim]\\\\n\\\\n        for j, name in enumerate(batch_names):\\\\n            embeddings[name] = mean_pooled[j]\\\\n\\\\n        logger.info(\\\n…[truncated 1527 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T11:43:44.598367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/__pycache__/fewrel_utils.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/fewrel_utils.py\\\\n/root/schema-dag-extraction/configs/fewrel_relation_types.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T11:43:44.598527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -30 /root/schema-dag-extraction/configs/fewrel_relation_types.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T11:43:44.598687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"P931\\\\\\\": \\\\\\\"place served by transport hub\\\\\\\",\\\\n  \\\\\\\"P4552\\\\\\\": \\\\\\\"mountain range\\\\\\\",\\\\n  \\\\\\\"P140\\\\\\\": \\\\\\\"religion\\\\\\\",\\\\n  \\\\\\\"P1303\\\\\\\": \\\\\\\"instrument\\\\\\\",\\\\n  \\\\\\\"P991\\\\\\\": \\\\\\\"successful candidate\\\\\\\",\\\\n  \\\\\\\"P178\\\\\\\": \\\\\\\"developer\\\\\\\",\\\\n  \\\\\\\"P1344\\\\\\\": \\\\\\\"participant of\\\\\\\",\\\\n  \\\\\\\"P39\\\\\\\": \\\\\\\"position held\\\\\\\",\\\\n  \\\\\\\"P527\\\\\\\": \\\\\\\"has part\\\\\\\",\\\\n  \\\\\\\"P740\\\\\\\": \\\\\\\"location of formation\\\\\\\",\\\\n  \\\\\\\"P706\\\\\\\": \\\\\\\"located on terrain feature\\\\\\\",\\\\n  \\\\\\\"P84\\\\\\\": \\\\\\\"architect\\\\\\\",\\\\n  \\\\\\\"P495\\\\\\\": \\\\\\\"country of origin\\\\\\\",\\\\n  \\\\\\\"P123\\\\\\\": \\\\\\\"publisher\\\\\\\",\\\\n  \\\\\\\"P57\\\\\\\": \\\\\\\"director\\\\\\\",\\\\n  \\\\\\\"P22\\\\\\\": \\\\\\\"father\\\\\\\",\\\\n  \\\\\\\"P750\\\\\\\": \\\\\\\"distributor\\\\\\\",\\\\n  \\\\\\\"P58\\\\\\\": \\\\\\\"screenwriter\\\\\\\",\\\\n  \\\\\\\"P3373\\\\\\\": \\\\\\\"sibling\\\\\\\",\\\\n  \\\\\\\"P127\\\\\\\": \\\\\\\"owned by\\\\\\\",\\\\n  \\\\\\\"P1877\\\\\\\": \\\\\\\"after a work by\\\\\\\",\\\\n  \\\\\\\"P407\\\\\\\": \\\\\\\"language of work or name\\\\\\\",\\\\n  \\\\\\\"P1001\\\\\\\": \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n  \\\\\\\"P800\\\\\\\": \\\\\\\"notable work\\\\\\\",\\\\n  \\\\\\\"P131\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n  \\\\\\\"P176\\\\\\\": \\\\\\\"manufacturer\\\\\\\",\\\\n  \\\\\\\"P17\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n  \\\\\\\"P175\\\\\\\": \\\\\\\"performer\\\\\\\",\\\\n  \\\\\\\"P31\\\\\\\": \\\\\\\"instance of\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T11:43:44.598820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/configs/fewrel_relation_types.json')); print(type(d), len(d)); print(list(d.items())[:3] if isinstance(d,dict) else d[:3])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T11:43:44.599033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T11:43:44.599215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "wc -l /root/schema-dag-extraction/configs/fewrel_relation_types.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T11:43:44.599400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"81 /root/schema-dag-extraction/configs/fewrel_relation_types.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T11:43:44.599621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat > /root/schema-dag-extraction/scripts/compute_fewrel_qwen3_embeddings.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute Qwen3-32B mean-pooled embeddings for FewRel 80 relation types.\"\"\"\nimport torch, json, os\nos.chdir(\"/root/schema-dag-extraction\")\n\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\nimport torch.nn.functional as F\n\nmodel_path = \"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\"\nprint(\"Loading tokenizer...\", flush=True)\ntokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\nprint(\"Loading model...\", flush=True)\nmodel = AutoModelForCausalLM.from_pretrained(\n    model_path, device_map=\"cuda:0\",\n    torch_dtype=torch.bfloat16, trust_remote_code=True\n)\nmodel.eval()\nprint(\"Model loaded.\", flush=True)\n\n# Load FewRel relation types\nwith open(\"configs/fewrel_relation_types.json\") as f:\n    rel_types = json.load(f)\n\ntype_names = sorted(rel_types.keys())\nprint(f\"Computing embeddings for {len(type_names)} relation types...\", flush=True)\n\nembeddings = {}\nfor i, pid in enumerate(type_names):\n    name = rel_types[pid]\n    text = f\"Relation type: {name} ({pid})\"\n    inputs = tokenizer(text, return_tensors=\"pt\", padding=True, truncation=True).to(\"cuda:0\")\n    with torch.no_grad():\n        outputs = model(**inputs, output_hidden_states=True)\n        hidden = outputs.hidden_states[-1]\n        mask = inputs[\"attention_mask\"].unsqueeze(-1)\n        emb = (hidden * mask).sum(dim=1) / mask.sum(dim=1)\n        emb = emb.squeeze().cpu()\n    embeddings[pid] = emb\n    if (i+1) % 20 == 0:\n        print(f\"  {i+1}/{len(type_names)}\", flush=True)\n\nprint(f\"All {len(type_names)} done. dim={emb.shape[0]}, dtype={emb.dtype}\", flush=True)\n\n# Save embeddings\ntorch.save(embeddings, \"artifacts/fewrel_qwen3_embeddings.pt\")\nprint(\"Saved artifacts/fewrel_qwen3_embeddings.pt\", flush=True)\n\n# Compute similarity matrix\nE = torch.stack([embeddings[n] for n in type_names]).float()\nE_norm = F.normalize(E, dim=1)\nsim = E_norm @ E_norm.T\ntorch.save({\"similarity_matrix\": sim, \"type_names\": type_names, \"relation_labels\": {pid: rel_types[pid] for pid in type_names}}, \"artifacts/fewrel_qwen3_sim_matrix.pt\")\n\nmask_tri = torch.triu(torch.ones_like(sim), diagonal=1).bool()\nvals = sim[mask_tri]\nprint(f\"SimMatrix shape: {sim.shape}\")\nprint(f\"BCS stats: mean={vals.mean():.4f}, std={vals.std():.4f}, min={vals.min():.4f}, max={vals.max():.4f}\")\nprint(\"Saved artifacts/fewrel_qwen3_sim_matrix.pt\", flush=True)\nPYEOF\necho \"Script written.\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T11:43:44.599855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T11:43:44.600059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cd /root/schema-dag-extraction && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/compute_fewrel_qwen3_embeddings.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T11:43:44.600253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/compute_fewrel_qwen3_embeddings.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T11:43:44.600482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cd /root/schema-dag-extraction && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/compute_fewrel_qwen3_embeddings.py' > /tmp/fewrel_qwen3.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T11:43:44.600673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && nohup bash -c \\\\\\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/compute_fewrel_qwen3_embeddings.py\\\\\\\\' > /tmp/fewrel_qwen3.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=261372\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T11:43:44.600961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -20 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T11:43:44.601154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 261372 -o pid,stat,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T11:43:44.601352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading tokenizer...\\\\nLoading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\nbitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T11:43:44.601532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"261372 S          00:35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T11:43:44.601679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T11:43:44.601815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T11:43:44.602002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T11:43:44.602140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T11:43:44.602282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T11:43:44.602416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T11:43:44.602572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T11:43:44.602706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T11:43:44.602877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T11:43:44.603032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T11:43:44.603179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T11:43:44.603315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T11:43:44.603467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T11:43:44.603603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T11:43:44.603731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -8 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T11:43:44.603883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.82s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.84s/it]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T11:43:44.604046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T11:43:44.604186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.82s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.84s/it]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T11:43:44.604319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T11:43:44.604443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"The module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T11:43:44.604562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T11:43:44.604680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"The module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T11:43:44.604818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T11:43:44.604997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.82s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.84s/it]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T11:43:44.605148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T11:43:44.605283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.82s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.84s/it]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T11:43:44.605410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T11:43:44.605530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T11:43:44.605649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T11:43:44.605767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T11:43:44.605898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T11:43:44.606018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Computing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T11:43:44.606155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T11:43:44.606275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Computing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T11:43:44.606388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T11:43:44.606504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"The module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T11:43:44.606616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T11:43:44.606730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"The module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T11:43:44.606865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -8 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T11:43:44.607006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.82s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.84s/it]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n  60/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T11:43:44.607151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -8 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T11:43:44.607285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  14%|█▍        | 1/7 [00:03<00:23,  3.88s/it]\\\\rLoading checkpoint shards:  29%|██▊       | 2/7 [00:07<00:19,  3.88s/it]\\\\rLoading checkpoint shards:  43%|████▎     | 3/7 [00:11<00:15,  3.85s/it]\\\\rLoading checkpoint shards:  57%|█████▋    | 4/7 [00:15<00:11,  3.86s/it]\\\\rLoading checkpoint shards:  71%|███████▏  | 5/7 [00:19<00:07,  3.84s/it]\\\\rLoading checkpoint shards:  86%|████████▌ | 6/7 [00:23<00:03,  3.83s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.82s/it]\\\\rLoading checkpoint shards: 100%|██████████| 7/7 [00:26<00:00,  3.84s/it]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\nModel loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n  60/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T11:43:44.607418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T11:43:44.607540+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model loaded.\\\\nComputing embeddings for 80 relation types...\\\\n  20/80\\\\n  40/80\\\\n  60/80\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T11:43:44.607654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -8 /tmp/fewrel_qwen3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T11:43:44.607773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  40/80\\\\n  60/80\\\\n  80/80\\\\nAll 80 done. dim=5120, dtype=torch.bfloat16\\\\nSaved artifacts/fewrel_qwen3_embeddings.pt\\\\nSimMatrix shape: torch.Size([80, 80])\\\\nBCS stats: mean=0.8790, std=0.0723, min=0.4542, max=0.9789\\\\nSaved artifacts/fewrel_qwen3_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T11:43:44.607923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/fewrel_qwen3_embeddings.pt /root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T11:43:44.608045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 843283 May 15 19:43 /root/schema-dag-extraction/artifacts/fewrel_qwen3_embeddings.pt\\\\n-rw-r--r-- 1 root root  30169 May 15 19:43 /root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T11:43:44.608158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T11:43:44.608273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T11:43:44.608424+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果\n\n| 项目 | 值 |\n|------|-----|\n| Relation 数量 | 80 |\n| 嵌入维度 | 5120 (bfloat16) |\n| SimMatrix | 80×80 |\n| BCS mean | 0.8790 |\n| BCS std | 0.0723 |\n| BCS min | 0.4542 |\n| BCS max | 0.9789 |\n\n产出文件：\n- `artifacts/fewrel_qwen3_embeddings.pt` (843KB)\n- `artifacts/fewrel_qwen3_sim_matrix.pt` (30KB)\n\nGPU 已完全释放，无进程占用，可以立即启动 FewRel formal 实验。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947"
+          },
+          "id": "event-000091"
+        }
+      ],
+      "message_count": 91
+    }
+  ]
+}

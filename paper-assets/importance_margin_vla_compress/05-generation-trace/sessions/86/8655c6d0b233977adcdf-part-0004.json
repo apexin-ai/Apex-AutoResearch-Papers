@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8655c6d0b233977adcdf",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running on westd-27271 GPU 0. I'll check back in ~4 minutes for the first episode results."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1466431,
+            "duration_api_ms": 1299308,
+            "num_turns": 192,
+            "stop_reason": "end_turn",
+            "session_id": "36da2c5c-9089-40e8-a4d2-678d1e467595",
+            "total_cost_usd": 11.0744045,
+            "usage": {
+              "input_tokens": 162,
+              "cache_creation_input_tokens": 178217,
+              "cache_read_input_tokens": 16691557,
+              "output_tokens": 56654,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 178217,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 33,
+                  "cache_read_input_tokens": 34373,
+                  "cache_creation_input_tokens": 752,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 752
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1844,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001969,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1669,
+                "outputTokens": 60806,
+                "cacheReadInputTokens": 16858331,
+                "cacheCreationInputTokens": 178364,
+                "webSearchRequests": 0,
+                "costUSD": 11.0724355,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "76264271-e49c-45d0-9809-e499bb047190"
+          },
+          "id": "event-000541"
+        }
+      ]
+    }
+  ]
+}

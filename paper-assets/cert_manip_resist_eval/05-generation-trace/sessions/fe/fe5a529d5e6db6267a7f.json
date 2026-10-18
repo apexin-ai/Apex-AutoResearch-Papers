@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fe5a529d5e6db6267a7f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis a6 dbei predictor shift",
+  "task_key": "worker_analysis_a6-dbei-predictor-shift_20260524T120429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a6-dbei-predictor-shift_20260524T120429_result.json",
+    "occurrence": 1,
+    "bytes": 16,
+    "sha256": "0431adb3f4520f05c2975c60cbf66284deb3efb7ef2cfebcd21677376f76f434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

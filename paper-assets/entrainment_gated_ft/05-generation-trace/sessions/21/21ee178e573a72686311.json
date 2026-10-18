@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "21ee178e573a72686311",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "prep code release final",
+  "task_key": "worker_prep_code-release-final_20260523T164502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_code-release-final_20260523T164502.log",
+    "occurrence": 1,
+    "bytes": 792313,
+    "sha256": "658b67e53a3ca0471d90ffcef52f2e7ba4724608d48267bd8ce89d4efa1bc941"
+  },
+  "statistics": {
+    "messages": 292,
+    "user_turns": 1,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 49,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 96,
+      "tool_result": 96,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "21ee178e573a72686311-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "21ee178e573a72686311-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "21ee178e573a72686311-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ]
+}

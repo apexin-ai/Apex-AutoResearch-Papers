@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9fa01219068d12759b42",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "figure fig2 degradation curve update",
+  "task_key": "worker_figure_fig2_degradation_curve_update_20260518T134448",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig2_degradation_curve_update_20260518T134448_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "4307d0dd64614bbe6e1ac23870e41913d2c9886ceffcfac55d4635bed3e44ec8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 已更新。SmolVLA 曲线现有 6 个数据点（含 k=1.0 baseline），新增的 k=0.95 (x=0.05) 和 k=0.3 (x=0.7) 数据点均已正确显示。cliff-edge 从 44.8% 到 0% 的跌落现在发生在仅移除 5% tokens 处，视觉效果更强。\n\nPDF 已保存至 `docs/paper/figures/degradation_curve.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

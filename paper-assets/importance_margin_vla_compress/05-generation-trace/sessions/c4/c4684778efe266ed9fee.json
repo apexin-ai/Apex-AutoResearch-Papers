@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c4684778efe266ed9fee",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "analysis v8 step2k diagnostics",
+  "task_key": "worker_analysis_v8-step2k-diagnostics_20260516T010922",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_v8-step2k-diagnostics_20260516T010922.log",
+    "occurrence": 1,
+    "bytes": 589268,
+    "sha256": "d928f603968a9833891087bf4cfd6ffde4db412d48088295a29e56e206e95ae2"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "c4684778efe266ed9fee-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4684778efe266ed9fee-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ]
+}

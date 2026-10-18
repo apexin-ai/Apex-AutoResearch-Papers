@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2768b03fab7e842a6f23",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis shap treexplainer",
+  "task_key": "worker_analysis_shap-treexplainer_20260515T191657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_shap-treexplainer_20260515T191657_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "db46e596d96e9c9d3b6621b274cf915d9ec228bc84540db848b668f504c88d3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n## SHAP TreeExplainer 9-Cell Analysis (R3-N3)\n\n**三方法一致性极高，完全替代 attention-importance 方法：**\n\n| 指标 | 值 |\n|------|------|\n| Kendall's W (SHAP/Gini/Perm) | **0.8955** (range 0.85–0.93) |\n| ρ(SHAP, Gini) | **0.9312** |\n| ρ(SHAP, Perm) | **0.8392** |\n| 跨 cell SHAP 一致性 | mean ρ=0.80 |\n\n**Top-2 特征稳定性 (SHAP)**：\n- p90_ppl: **9/9** cells (100%)\n- var_surprisal: **8/9** cells (89%)\n\n**SHAP 聚合 Top-5**: p90_ppl → var_surprisal → p75_ppl → mean_surprisal → mean_ppl\n\n**PPL/surprisal 特征占 SHAP importance 的 88.8%**\n\n**产出文件** (`results/shap_analysis/`):\n- `concordance_summary.json` — 三方法统计\n- `three_way_comparison.json` — per-cell per-feature 三方法排名\n- `beeswarm_{pythia,gpt2xl,olmo}_nucleus095.png` — 3 个 beeswarm 图\n- `cross_cell_shap_consistency.png` — 跨 cell 一致性热力图\n- 此前已有: bar plots, heatmap, scatter 等\n\n**对 rebuttal 的价值**: 三种数学上独立的方法 (exact Shapley values / MDI / permutation-based) 在 9 个 cell 上给出高度一致的排名 (W=0.90)，完全绕过 attention weight，直接回应 Jain & Wallace (2019) 的批评。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

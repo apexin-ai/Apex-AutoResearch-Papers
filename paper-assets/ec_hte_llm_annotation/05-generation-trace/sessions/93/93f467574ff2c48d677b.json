@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "93f467574ff2c48d677b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research exp 004 data exploration",
+  "task_key": "worker_research_exp-004-data-exploration_20260520T232548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp-004-data-exploration_20260520T232548_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "a5efdc4ea81c6f33e728ae3960e5f591528fdbcc9bd17fa059556d2bfc41c19a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/home/ubuntu/ec_hte_llm_annotation/results/ucb_hate_speech_exploration.md`.\n\n**Summary of key findings:**\n\n- **135,556 annotations** across 39,565 comments by 7,912 annotators. Rich target demographics (race, religion, gender, etc.) and annotator demographics (race, gender, ideology, age, education, income).\n\n- **Recommended mapping (Scheme A)**: T = `target_race_black`, Y = `hatespeech` ordinal (per-annotation), Z = LLM-annotated dehumanization level, S = annotator race (White/Black/Other). Min cell size = 743. Observable Z×S interaction in CATE estimates — Black annotators perceive more dehumanization in anti-Black content (26.9% at max vs 21.9% for White), creating a natural LLM misclassification heterogeneity story.\n\n- **Pattern consistency is feasible**: An LLM trained on majority-perspective data would under-classify dehumanization from Black annotators' perspective. Global correction spreads this majority bias; EC-HTE preserves subgroup-specific corrections. No ground truth CATE needed — method divergence itself is the demonstration.\n\n- **Key caveat**: `hate_speech_score` is per-comment (Rasch aggregated), so ordinal labels must be used as Y for annotator-level heterogeneity. Scheme B (gender) is not recommended due to negligible treatment effect."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

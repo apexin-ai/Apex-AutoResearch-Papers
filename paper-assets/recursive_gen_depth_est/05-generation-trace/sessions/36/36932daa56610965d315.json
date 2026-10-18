@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36932daa56610965d315",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp feat ablation parallel",
+  "task_key": "worker_exp_feat_ablation_parallel_20260515T193305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_feat_ablation_parallel_20260515T193305_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "df901553ec81bf6c1bd2e1736c231b03ce4f6c1b74be49bfafeafba7b64f6047"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已全部完成，无需加速。**\n\n状态：\n- PID 473989 已结束\n- `forward_selection.json` 包含全部 9 个 cells（9 cells × 19 steps × 2 = 342 个 \"feature\" 条目，完整）\n- 所有产出文件齐全：`forward_selection.json`、`forward_selection_curve.pdf/png`、`summary.json`、`correlation_heatmap`、`vif` 等\n- 最后文件写入时间 03:31（今天），说明脚本已正常跑完\n\n关键结果摘要（来自 summary.json）：\n- 全 19 特征平均准确率：**78.47%**（std 4.94%）\n- Top-5 特征即达 **76.78%**（95% full 性能）\n- 达到 95% full 的平均特征数：**4.2**（最多 5）\n- 9 个 cell 最佳类别全部是 **perplexity**\n- Forward selection 首选特征：Pythia → `var_surprisal`，GPT2-XL/OLMo → `p90_ppl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28c6663389513ffdb6d1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops check server models and qwen progress",
+  "task_key": "worker_ops_check_server_models_and_qwen_progress_20260516T044842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_server_models_and_qwen_progress_20260516T044842_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "cf15937228161e471bc16a6b8a3c3b821d86e45ff2714a9885a946b73955b92d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### QWEN PIPELINE PROGRESS\n正在执行 **depth-4 生成**阶段——depth-3 的 QLoRA 训练已完成（final loss: 1.2019），LoRA adapter 已保存到 `checkpoints/qwen7b_nucleus/lora_depth_3`。当前正在加载模型准备生成 depth-4 数据。\n\n### GPU STATUS\n| GPU | 利用率 | 显存使用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | 54% | 8321 MiB | 97887 MiB |\n| 1 | 0% | 0 MiB | 97887 MiB |\n\n### QWEN DATA (`data/qwen7b_nucleus/`)\n```\ndepth_0.jsonl  1.1MB  May 16 11:01\ndepth_1.jsonl  1.1MB  May 16 11:28\ndepth_2.jsonl  1.1MB  May 16 11:58\ndepth_3.jsonl  1.2MB  May 16 12:25\ndepth_4.jsonl  954KB  May 16 12:49  ← 正在生成中(可能未完成)\n```\n\n### ALL MODELS\n\n**HF cache:**\n- EleutherAI/pythia-1.4b, pythia-410m\n- FacebookAI/roberta-base\n- Qwen/Qwen2.5-1.5B, Qwen3-8B\n- allenai/OLMo-1B, OLMo-1B-hf\n- microsoft/deberta-v3-base, deberta-v3-large\n- openai-community/gpt2-xl\n- roberta-base, roberta-large\n\n**ModelScope cache:**\n- allenai/OLMo-1B-hf\n- iic/nlp_deberta-v3-base_backbone\n- **Qwen/Qwen2.5-7B-Instruct**\n\n**models/ 目录:**\nEleutherAI, Qwen, Qwen2.5-1.5B, Qwen3-8B, deberta-v3-base, deberta-v3-base-ms, deberta-v3-large, gpt2-xl, olmo-1b, olmo-1b-hf, pythia-1.4b, pythia-410m, roberta-base, roberta-base-ms, roberta-large, roberta-large-ms\n\n### LLAMA CHECK\n```\n/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\n/root/autodl-tmp/.hf_cache/._____temp/LLM-Research/Meta-Llama-3.1-8B-Instruct\n```\nLlama-3.1-8B-Instruct 存在（在 HF cache 中）。\n\n### DISK\n```\n/dev/md0  250G  117G used  134G avail  47%\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

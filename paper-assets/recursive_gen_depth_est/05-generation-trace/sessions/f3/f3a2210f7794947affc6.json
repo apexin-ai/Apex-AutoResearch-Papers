@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f3a2210f7794947affc6",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops 14b status westd",
+  "task_key": "worker_ops_14b-status-westd_20260518T030323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-status-westd_20260518T030323_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "9222121b5ea53dd8c9bf492ddb82fed804ed99ff4e3c934a12ad4afb3637f630"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：运行中\n\n**PID 20700** — GPU 0 上活跃，92% util，32GB VRAM\n\n### 进度\n\n| Phase | 状态 | 详情 |\n|-------|------|------|\n| d0 生成 | ✅ 完成 | 5000/5000 samples |\n| d0 LoRA finetune | ✅ 完成 | loss=0.5451, 3 epochs, ~41min |\n| d1 生成 | 🔄 进行中 | **1969/5000** (~39%) |\n| d1 LoRA finetune | ⏳ 待开始 | |\n| d2 生成 | ⏳ 待开始 | |\n| d2 LoRA finetune | ⏳ 待开始 | |\n| d3 生成 | ⏳ 待开始 | |\n| RF 训练 | ⏳ 待开始 | |\n\n### ETA 估算\n\nd1 文件创建于 ~08:38，到 11:03 生成了 1969 samples（~820 samples/hr）。剩余 3031 samples 约需 3.7h。\n\n后续每个 depth 大约：生成 ~6h + finetune ~41min。还剩 d1 尾部 + d2 全程 + d3 全程 + RF，预计总完成时间约 **5月19日凌晨 04:00-05:00**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

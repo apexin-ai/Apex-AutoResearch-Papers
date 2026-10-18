@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "203d73e4add4a64a626b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code lora rank ablation a1",
+  "task_key": "worker_code_lora_rank_ablation_a1_20260516T174023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lora_rank_ablation_a1_20260516T174023_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "687c4c595e95d0fbdc91eb02312eeb7fe08241d624da469a0be543b4ec02bac0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常启动，rank=4 阶段正在加载模型。\n\n**总结：**\n- 修改了 `scripts/lora_finetune.py`，新增 `--lora_rank` / `--lora_alpha` CLI 参数\n- 创建了 `scripts/run_lora_rank_ablation.sh`（循环 rank∈{4,16,64}，每个跑完整 pipeline：LoRA finetune×3 → generate×3 → feature extraction）\n- ���建了 `scripts/eval_lora_rank_ablation.py`（5-fold CV + summary.json 输出）\n- 已提交到 cuda:0，exp_id=`lora_rank_ablation_001`，预计 ~3h 完成\n- 结果将写入 `/root/autodl-tmp/recursive_gen_depth_est/results/lora_rank_ablation/summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

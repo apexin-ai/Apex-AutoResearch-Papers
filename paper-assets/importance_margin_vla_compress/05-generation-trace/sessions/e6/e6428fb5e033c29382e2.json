@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6428fb5e033c29382e2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu2 gpu3 openvla k085",
+  "task_key": "worker_deploy_westd38929_gpu2_gpu3_openvla_k085_20260524T205856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_gpu2_gpu3_openvla_k085_20260524T205856_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "b3044c27711c16ffbe851ae50a1b1b36b14534eaccabf12aab16e8aacae6a12d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n```\nKill: PID 756339 [killed] — L2norm k=0.3 seed43 冗余\nGPU2: eval_openvla_attn_k085_goal_seed42, PID=860471, registry=RUNNING\nGPU3: eval_openvla_attn_k085_spatial_seed42, PID=861122, registry=RUNNING\n```\n\nwestd-38929 四卡全满：GPU0/1 跑 k=0.9/k=0.85 Object，GPU2/3 跑 k=0.85 Goal/Spatial。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

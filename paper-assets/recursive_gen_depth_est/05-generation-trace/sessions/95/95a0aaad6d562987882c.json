@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "95a0aaad6d562987882c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix qwen25 1p5b instruct 002",
+  "task_key": "worker_fix_qwen25-1p5b-instruct-002_20260517T185750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_qwen25-1p5b-instruct-002_20260517T185750_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "6ad167cb30085c8ecfa1a4129c7c17552b2467d2dd2ce2e5c81ae1a6287ff581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 正常运行中：\n\n- Phase 2-3 全部跳过（数据和 checkpoint 已存在）\n- Phase 4 特征提取已启动，BF16 修复生效，d0 正在以 ~48 it/s 提取（无报错）\n- 约 ~47 it/s × 20000 samples ≈ 7 分钟完成 Phase 4，Phase 5 分类很快\n\n**汇总**：\n- **修复内容**：line 319 的 `.float()` 已就位（BF16→FP32 转换），脚本中唯一的 `.numpy()` 调用\n- **跳过逻辑**：脚本原有的跳过逻辑覆盖了所有 Phase（d0-d3 数据、LoRA adapter、features.npz）\n- **实验 qwen25-1p5b-instruct-002**：已提交至 gpu-6000pro-2 cuda:1，Phase 4 正在执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

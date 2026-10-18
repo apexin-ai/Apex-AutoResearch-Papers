@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "18a8b882334361cd3dc3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit deploy westd27271 attn k05",
+  "task_key": "worker_audit_deploy_westd27271_attn_k05_20260526T155524",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_deploy_westd27271_attn_k05_20260526T155524_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "d083a7ffe302b3e35e1ca22e866f50f4ab6c9e221688b7c521d6eef3325c37ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。新进程 PID 397225 在 GPU 1 上占用 16169 MiB，log 显示 attention pruning 已激活（256→128 tokens）。\n\n```\nDEPLOYED: yes\nEXP_TYPE: attn_k05_long\nSERVER: westd-27271\nGPU: cuda:1\nPID: 397225\nVERIFY: GPU memory occupied (16169 MiB) + log producing output (Attn Pruning 256->128 active, Task 1/10 running)\n\nNOTE: attn_k05_goal 已完成（SR=0.4420, 221/500），无需再跑\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

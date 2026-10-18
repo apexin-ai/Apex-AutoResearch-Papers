@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aa29ae8f492f66980adb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check sdgd v2 kill or wait",
+  "task_key": "worker_check_sdgd_v2_kill_or_wait_20260515T154656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_sdgd_v2_kill_or_wait_20260515T154656_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "d2f1a6ddc9e8c5e0740a827feec69034d6c817d4614d89ddc3b37b25986f7987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 决策: **WAIT_2MIN**\n\nper_type 当前在 **batch 60/66**（正在处理第 60 个，54% 完成），每 batch 约 20 秒，预计 **2-3 分钟内完成全部实验**。\n\n---\n\n### 已完成 mode 结果\n\n| Mode | F1 | Precision | Recall | Latency | Batches |\n|------|-----|-----------|--------|---------|---------|\n| single_pass | **0.4451** | 0.5631 | 0.3679 | 79s | 1 |\n| random_batch | 0.3007 | 0.3307 | 0.2758 | 494s | 8 |\n| sdgd_zero | 0.2407 | 0.3244 | 0.1913 | 261s | 4 |\n| per_type | *running* | — | — | — | 60/66 |\n\n### per_type 进度\n- 已完成: 59/66 batch\n- 当前: batch 60，54% processed\n- 剩余: ~6 batch，预计 2-3 min\n\n### GPU 状态\n- 利用率: 14%\n- 显存占用: 94221 MiB\n\n### 建议\n**不要终止。** 剩余 6 个 batch 约 2-3 分钟即可跑完，等它自然结束后收集完整 per_type 结果。single_pass 以 F1=0.4451 领先，per_type 的完整结果是关键对比数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

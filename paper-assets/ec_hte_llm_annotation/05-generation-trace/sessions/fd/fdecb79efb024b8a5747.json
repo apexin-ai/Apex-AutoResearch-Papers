@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fdecb79efb024b8a5747",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 007 hb rerun",
+  "task_key": "worker_code_exp-007-hb-rerun_20260521T044900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-hb-rerun_20260521T044900_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "d8e360a72824cf6e671c7e19038e236af7470f89f09a306480784767d2b35cb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process is alive, 28 seconds in, 98.9% CPU — running as expected.\n\n**Summary:**\n- Changed `estimate_cm_hb_gibbs` defaults from `n_iter=4000, n_warmup=2000` to `n_iter=1000, n_warmup=500` (line 209)\n- Updated docstring and print statement to match\n- N_MC confirmed at 100\n- Dry-run passed\n- `submit_training_job` failed (SSH key issue as warned), fell back to tmux\n- Full run is active in tmux session `exp007hb` (PID 151996), outputting to `results/exp007_hb_run.log`\n- Estimated runtime: ~9 hours"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "248fd771b967e58d4f31",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra 8b readiness check",
+  "task_key": "worker_infra_8b_readiness_check_20260520T103245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_8b_readiness_check_20260520T103245_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "fee79d7d0270f092c83cc9bfa67b5a24e269d8a251699d35c471374cfcd7f78c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n**Qwen3-8B — 未完成，仍在下载中**\n- 当前大小：4.8G，缺少所有 `.safetensors` 模型权重文件（0个）\n- 已有：config.json、tokenizer_config.json、tokenizer.json 等元数据文件\n- 下载进程 PID 12091 仍在运行（已跑 33 分钟）\n\n**Qwen3-32B — 未完成，仍在下载中**\n- 当前大小：9.7G\n- 下载进程 PID 12163 仍在运行（已跑 33 分钟）\n\n**vLLM — 已就绪**\n- vLLM=0.21.0，安装正常\n\n**磁盘**\n- /root/autodl-tmp: 250G 总量，已用 17G，剩余 234G（7%），空间充足\n\n8B 模型完整大小约 16G（8个 safetensors 文件），当前只下了元数据，权重文件还没开始写入或正在下载中。需要继续等待。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

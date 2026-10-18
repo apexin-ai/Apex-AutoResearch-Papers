@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "261c52996a9da1d638f2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops c4ext eval cqa1 retry",
+  "task_key": "worker_ops_c4ext-eval-cqa1-retry_20260520T102758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_c4ext-eval-cqa1-retry_20260520T102758_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "a28007c25df6da2630c09fd64792317c4e61c5d50b71c5f4e684612dacab7741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full eval is running. Here's the status report:\n\n---\n\n**C4-ext 20K Eval Report — OpenVLA Smart Compress M=128 VTC-only (step 20000)**\n\n**Checkpoint**: `checkpoints/openvla_sc_m128/checkpoint_step20000.pt` (19GB, eval_loss=2.7768)\n- Loaded with strict match, VTC compressor 403M params\n\n**Dry-run result**: PASS (no crash/segfault)\n- Task 0, 2 episodes: 0/2 SR, 280 steps each (~48s/episode)\n- Pipeline fully functional\n\n**Full eval launched**: PID 858901 on cqa1-33015 GPU 0\n- Suite: libero_object (10 tasks × 50 episodes = 500 total)\n- Seed: 42\n- Output: `eval_results/eval_openvla_sc_m128_vtconly_20k_seed42_full.json`\n- Log: `/tmp/eval_full_openvla_sc_m128.log`\n\n**ETA**: ~6.7 hours worst case (500 episodes × ~48s), likely less if some episodes succeed early. Expected ~01:30 CST (May 21).\n\n**Fixes applied to eval script** (5 total):\n1. `map_location=device` → `\"cpu\"` — OOM fix (checkpoint was loaded to GPU alongside model)\n2. `obs[\"pixels\"][key]` fallback — lerobot LiberoEnv observation format\n3. `isinstance(result, (tuple, list))` — timm 1.x returns list instead of tuple\n4. `generate()` output slicing — transformers 4.53 returns only new tokens with `inputs_embeds`\n5. Cached `image_token_id` — was creating 403M-param wrapper per step"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

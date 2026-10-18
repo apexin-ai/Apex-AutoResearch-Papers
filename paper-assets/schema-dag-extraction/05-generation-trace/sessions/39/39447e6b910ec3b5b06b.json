@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "39447e6b910ec3b5b06b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "writing docred paper integration",
+  "task_key": "worker_writing_docred_paper_integration_20260516T050933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_docred_paper_integration_20260516T050933_result.json",
+    "occurrence": 1,
+    "bytes": 1620,
+    "sha256": "2a9044988cad90e6a9afdbb7ccc9c8769b1b4bb685218129488aaeca45fb3cc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All consistent. Summary of modifications:\n\n**Files modified (6):**\n\n1. **`abstract.tex`** — Added DocRED RE degradation stats (88.0%→38.7% with 96 types); changed \"three datasets\" → \"four datasets\"\n\n2. **`introduction.tex`** — Added DocRED to dataset list (96 relation types, document-level); updated findings summary with DocRED slope/R²; updated contribution items to reference four datasets\n\n3. **`experimental_setup.tex`** — Added DocRED dataset paragraph; added row to Table 1 (96 types, doc-level RE, cross-domain); added DocRED count levels {1,4,8,16,32,64,96}; added DocRED to BCS-controlled design (count∈{16,32}); updated metrics section\n\n4. **`results.tex`** — Added \"Document-level RE (DocRED)\" paragraph in count curves (88%→38.7%, 56% relative drop); added DocRED BCS-controlled paragraph (slope=-0.713, gap 23.3pp at count 16, 17.6pp at count 32, R²=0.525); updated summary and figure caption\n\n5. **`discussion.tex`** — Updated conclusion with DocRED replication stats (count decline -49pp, BCS slope=-0.71, R²=0.53)\n\n6. **`references.bib`** — Added `docred-2019` citation (Yao et al., ACL 2019)\n\n7. **`checklist.tex`** — Updated \"three datasets\" → \"four datasets\"\n\n**Task count consistency:** 3 IE tasks (NER, RE, ED) × 4 datasets (Few-NERD, FewRel, DocRED, MAVEN) — unified across all sections.\n\n**All numbers from artifacts:** count curve (88.0%→38.7%), BCS gaps (23.3pp, 17.6pp), slopes (-0.713, -0.690), CIs ([-0.909,-0.529], [-0.854,-0.519]), R² (0.525, 0.443), Spearman (-0.661, -0.509), quartile gaps (18.7pp, 10.5pp)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

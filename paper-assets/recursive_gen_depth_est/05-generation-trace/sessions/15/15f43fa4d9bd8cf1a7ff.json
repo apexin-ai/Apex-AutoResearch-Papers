@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "15f43fa4d9bd8cf1a7ff",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code ref model ablation 001",
+  "task_key": "worker_code_ref_model_ablation_001_20260516T074944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ref_model_ablation_001_20260516T074944_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "57f7d5c83353ddfdfbf85ce229cc53a01c4ba0d21789b2cfa4a14ec1d913d8ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果总结：\n\n## ref_model_ablation_001 结果\n\n| Reference Model | Type | 5-fold CV Accuracy |\n|---|---|---|\n| **Pythia-1.4B** | self-model (generator = ref) | 78.55% ± 0.59% |\n| **OLMo-1B** | cross-model (generator ≠ ref) | 74.51% ± 0.73% |\n\n**Delta: 4.04 pp < 5pp 阈值 → Reference model choice is ROBUST**\n\n关键论证价值：\n- 换用完全不同架构的 OLMo-1B 作为 reference model，分类准确率仅下降 4pp\n- ��明 depth signal 不是 self-model bias 的产物，而是 text 本身的内在属性\n- 直接堵住 \"你的方法只因为 generator 和 detector 是同一模型才 work\" 这个审稿攻击向量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

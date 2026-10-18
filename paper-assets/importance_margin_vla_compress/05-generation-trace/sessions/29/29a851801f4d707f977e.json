@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "29a851801f4d707f977e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval pi05 random k085 goal seed43 postfix",
+  "task_key": "worker_deploy_eval_pi05_random_k085_goal_seed43_postfix_20260524T223435",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_pi05_random_k085_goal_seed43_postfix_20260524T223435_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "6bc1f40e4658f54bcda3eee767cbdde8465187e871559651493f1e722e0916e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **实验**: `eval_pi05_random_k085_goal_seed43_postfix`\n- **服务器**: westd-41074 GPU2\n- **PID**: 10015\n- **状态**: RUNNING，模型加载中\n- **日志**: `/root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

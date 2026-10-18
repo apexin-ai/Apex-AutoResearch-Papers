@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c54f0db65ad8504a91",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "research libero eval pipeline verify",
+  "task_key": "worker_research_libero_eval_pipeline_verify_20260516T162347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_libero_eval_pipeline_verify_20260516T162347.log",
+    "occurrence": 1,
+    "bytes": 832129,
+    "sha256": "8b6a882ddf7c03fed1a2938544f46cf6a2131f0433b0faf6f307777a0151a5fd"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "f5c54f0db65ad8504a91-part-0001.json",
+          "message_count": 131
+        },
+        {
+          "path": "f5c54f0db65ad8504a91-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ]
+}

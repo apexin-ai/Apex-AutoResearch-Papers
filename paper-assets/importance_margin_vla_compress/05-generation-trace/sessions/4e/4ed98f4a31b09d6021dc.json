@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4ed98f4a31b09d6021dc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix register untracked exps 0527",
+  "task_key": "worker_fix_register_untracked_exps_0527_20260527T004625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_register_untracked_exps_0527_20260527T004625_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "d9a0c1705552f161c499e1061a9173f1746e2f137085638d4285e75324797716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部注册完成。汇总：\n\n| # | exp_id | 结果 |\n|---|--------|------|\n| 1 | `eval_openvla_attn_k05_long_seed42` | **已存在** (RUNNING) — 跳过 |\n| 2 | `eval_pi05_l2norm_k085_long_seed42_v4` | **新建** → RUNNING (原 ID 已 DONE，用 v4) |\n| 3 | `eval_pi05_random_k07_long_seed42` | **已存在** PREPARING → 转 RUNNING |\n| 4 | `eval_openvla_attn_k05_goal_seed42_v2` | **已存在** PREPARING → 转 RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ce6c5d7a9997b1da45c6",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analyze llama hires mckp results",
+  "task_key": "worker_analyze_llama_hires_mckp_results_20260514T215502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_llama_hires_mckp_results_20260514T215502_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "262c085ad62a57754604af35abb4b1810c76974a7ca7e71e735ca997c81341fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE/negative.\n\n**摘要：**\n\n| Method | WikiText-2 PPL |\n|---|---|\n| BF16 baseline | 8.0922 |\n| Hires MCKP (k=2, max_2bit=2) | **8.5042** |\n| Uniform 4-bit | 8.4701 |\n| Std MCKP (reference) | 8.4498 |\n\n**Hires concentration=0.5749**（与预期 0.57 一致），bit 分布 253×4 + 2×2 + 1×8，2-bit heads = `(26,0)`, `(31,7)`。\n\n**关键结论：**\n1. **Hires MCKP vs Uniform = -0.0341（-9%，FAIL）**：与 standard profiling 的 +0.2% 相反，hires 选出的 2-bit heads 比 standard 更差。负面发现。\n2. **Table 1 = 8.45 无需更新**：hires MCKP PPL 8.5042 与 8.4498 差 0.054，< 0.065 seed variance（但接近阈值 84%）。建议在论文里加脚注说明 hires profiling 在 Llama 上反而劣化 MCKP allocation。\n3. **Uniform 4-bit 一致性**：8.4701 vs std 8.469（diff 0.001）→ eval pipeline 稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

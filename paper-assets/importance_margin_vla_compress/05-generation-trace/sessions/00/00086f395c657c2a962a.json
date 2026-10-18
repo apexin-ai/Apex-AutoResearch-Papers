@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "00086f395c657c2a962a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check xvla k01 seed44 result",
+  "task_key": "worker_ops_check-xvla-k01-seed44-result_20260520T193617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-xvla-k01-seed44-result_20260520T193617_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "7a8fd0a28069846e547e55af2f54d7725ad5b3afc203789a20e078257368878d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**成功完成**，但结果是全零。\n\n**结果摘要：**\n- **状态**: 正常完成（进程已退出，结果文件已写入）\n- **Success Rate**: **0.0%** (0/500)\n- **95% Wilson CI**: [0.0%, 0.8%]\n- **所有 10 个任务**: 均为 0/50 (0%)\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k01_libero_object_seed44.json`\n- **耗时**: 131.1 分钟（~7864 秒）\n- **配置**: L2 norm prune, keep_ratio=0.1, 50→5 vision tokens, seed=44\n\nk=0.1（仅保留 10% vision tokens，50→5）的剪枝过于激进，模型完全丧失了任务执行能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

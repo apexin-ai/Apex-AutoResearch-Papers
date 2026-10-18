@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6a373f2aa122471f83b0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops deploy westd38929 gpu2 spatial",
+  "task_key": "worker_ops_deploy-westd38929-gpu2-spatial_20260524T110124",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-westd38929-gpu2-spatial_20260524T110124_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "a9b8fe2d99ef968a43d31986c926890e0cd06fba125dc5e261aacbb51e1304d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中：\n- **bash 包装进程**: PID 305678 (Ss+ 状态)\n- **Python 主进程**: PID 305684 (Rl+ 状态，正在 CPU 上加载模型)\n- 已运行 ~1.5 分钟，π0.5 模型较大，CPU 加载阶段不占 GPU 显存，加载完成后会转移到 GPU 2\n\n部署完成。\n\n| 项目 | 值 |\n|------|-----|\n| 实验 ID | `eval_pi05_l2norm_k09_spatial_seed42_postfix` |\n| 服务器 | westd-38929, GPU 2 |\n| Python PID | **305684** |\n| tmux session | `l2norm_k09_spatial` |\n| 日志 | `/root/autodl-tmp/importance_margin_vla_compress/logs/l2norm_k09_spatial.log` |\n| 状态 | 模型加载中（CPU 阶段），预计几分钟后占用 GPU 2 显存 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

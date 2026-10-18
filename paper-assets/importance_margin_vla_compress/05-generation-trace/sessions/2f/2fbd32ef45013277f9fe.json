@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2fbd32ef45013277f9fe",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k085 spatial seed42 postfix v2",
+  "task_key": "worker_analysis_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050241",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050241_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "c1ba86c408dd6cf35c055bacc6abaa7326e8c26292ce3d7144313ccc360e427f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评测完成，无异常。\n\n## 结果汇总\n\n**总体 SR: 60.8% (304/500)**\n\n| Task | Description | SR |\n|------|------------|-----|\n| T0 | pick up black bowl between plate and ramekin | 84% |\n| T1 | pick up black bowl next to ramekin | 68% |\n| T2 | pick up black bowl from table center | 92% |\n| T3 | pick up black bowl on cookie box | 16% |\n| T4 | pick up black bowl in top drawer | 66% |\n| T5 | pick up black bowl on ramekin | 28% |\n| T6 | pick up black bowl next to cookie box | 44% |\n| T7 | pick up black bowl on stove | 76% |\n| T8 | pick up black bowl next to plate | 82% |\n| T9 | pick up black bowl on wooden cabinet | 52% |\n\n**异常检查**: 无 crash / NaN / 提前终止，10 tasks × 50 episodes 全部完成，耗时 ~160 min。\n\n**对比分析**: π0.5 Spatial baseline ~88%，Random k=0.85 post-fix 得到 60.8%，**降幅 27.2pp**。保留 85% token 但 random 剪枝仍造成严重性能损失，T3 (16%) 和 T5 (28%) 尤其差。\n\n**结论: negative** — Random pruning 即使在高保留率 (k=0.85) 下表现仍远低于 baseline，进一步验证了 random pruning 不是有效策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

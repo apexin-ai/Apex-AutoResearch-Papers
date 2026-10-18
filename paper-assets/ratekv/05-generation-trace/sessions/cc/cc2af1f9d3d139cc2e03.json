@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cc2af1f9d3d139cc2e03",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code kivi baseline prep",
+  "task_key": "worker_code_kivi_baseline_prep_20260515T110703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kivi_baseline_prep_20260515T110703_result.json",
+    "occurrence": 1,
+    "bytes": 16,
+    "sha256": "0431adb3f4520f05c2975c60cbf66284deb3efb7ef2cfebcd21677376f76f434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

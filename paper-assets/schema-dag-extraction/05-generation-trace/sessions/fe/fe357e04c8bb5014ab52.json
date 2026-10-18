@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fe357e04c8bb5014ab52",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research ref audit w2",
+  "task_key": "worker_research_ref-audit-w2_20260526T101511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-w2_20260526T101511_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "85fbacea46d61566174bd8a35dfc6198f4b60199c186c41c32d5232aeaf27fa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。63 条 bib entry 全部用 WebSearch 逐条验证。\n\n**结果**：60 条正确，1 条错误，2 条疑似问题，4 条未引用。\n\n需修复项：\n1. **`sclar-sensitivity-2024`** — 标题有多余逗号：\"Design, or:\" → \"Design or:\"\n2. **`baan-2023-ecological`** — key 前缀 \"baan\" 不对应任何作者（实际第一作者 Orlikowski），建议改 key\n3. **4 条 entry 未被任何 tex 引用**：`cohen-1988-statistical`、`muller2019when`、`peterson2019human`、`sclar-sensitivity-2024`，建议清理\n\n报告已写入 `artifacts/_project/report/ref_audit_worker2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c9866fd2c443be291381",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code openvla lora fallback",
+  "task_key": "worker_code_openvla_lora_fallback_20260519T172518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_openvla_lora_fallback_20260519T172518_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "3f8e8c64a4a01c69bbed4d5b4857d608697dbbc6f3ce2daa1450c2da75635229"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n| 项目 | 状态 |\n|------|------|\n| **peft** | v0.19.1 已安装 |\n| **LoRA 脚本** | `train_openvla_smart_compress_lora.py` (667行) 已部署，语法检查通过 |\n| **LoRA config** | `configs/openvla_smart_compress_m128_lora.yaml` 已部署 |\n| **batch_size 修正** | `configs/openvla_smart_compress_m128.yaml` 已从 4 → 8 |\n\nLoRA 脚本关键改动点：\n- L34: `from peft import LoraConfig, get_peft_model`\n- L474-488: `apply_lora_to_backbone()` 函数，对 LLM backbone 的 `q_proj`/`v_proj` 注入 LoRA (r=16, alpha=32)\n- L521-526: `main()` 中根据 `config.model.use_lora` 有条件应用 LoRA\n- L576-578: wandb run name 自动加 `_lora` 后缀\n\n训练方式不变：VTC compressor + LoRA adapters 可训练，其余 backbone frozen。未启动任何训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

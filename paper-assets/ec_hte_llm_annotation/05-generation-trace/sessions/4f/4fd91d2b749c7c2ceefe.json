@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4fd91d2b749c7c2ceefe",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "paper exp041 appendix update",
+  "task_key": "worker_paper_exp041-appendix-update_20260524T131222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_exp041-appendix-update_20260524T131222_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "bb676824f75dd699445408948e82a69dbb6b908260d5c2a72deafff81681615d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，0 errors，0 undefined refs，33 页。\n\n修改摘要：\n\n**appendix.tex 两处修改：**\n\n1. **L462 cherry-pick 限定**：原文 \"EC-HTE reduces |bias| ... a 4× improvement\" 前加 \"In these three selected high-disparity configurations,\"，末尾加 \"; however, this advantage does not generalize across all asymmetric settings (see below).\"\n\n2. **新增 \"Comprehensive grid evaluation\" 段落**（原 L478 后，`\\section{Supplementary Main Results}` 前）：\n   - **R² 表格** (`tab:asym_r2_grid`)：6 ratios × 4 Δπ × 2 K panels，含说明 Δπ≥0.10 时 R²>0.73，Δπ=0.05 低 R² 是因 near-zero bias 导致回归 ill-conditioned\n   - **Method comparison 表格** (`tab:asym_method_grid`)：Oracle/Naive/Global/EC-HTE 的 |Bias|/RMSE/Coverage，caption 明确写 \"EC-HTE does not outperform global correction at n_expert=250\"\n   - **解释段**：EC-HTE RMSE > Global in all 48 configs (0.125 vs 0.109)，原因是 asymmetric CM 参数量翻倍导致 variance 增大，建议 n_expert ≥ 500"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

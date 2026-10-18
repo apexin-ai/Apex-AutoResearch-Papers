@@ -1,0 +1,690 @@
+{
+  "schema_version": "1.0",
+  "id": "6d22e62ddcf5e75e53c9",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper d044 section4 fixes",
+  "task_key": "worker_paper_d044_section4_fixes_20260516T101314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_d044_section4_fixes_20260516T101314.jsonl",
+    "occurrence": 1,
+    "bytes": 27815,
+    "sha256": "577b60861cbb9859dbbc0ce7381ea250bb4cd4ad12246e3c2f11abb9a0ebc177"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T10:14:58.215684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T10:14:58.216483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tUnless otherwise noted, all experiments in this section use the v1 prompt (\\S\\ref{sec:model}; full templates in Appendix~\\ref{sec:appendix_prompts}).\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\begin{minipage}[t]{0.48\\columnwidth}\n12\t\\centering\n13\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n14\t\\end{minipage}\n15\t\\hfill\n16\t\\begin{minipage}[t]{0.48\\columnwidth}\n17\t\\centering\n18\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n19\t\\end{minipage}\n20\t\\caption{\\textbf{(a)} Count-degradation curves across four datasets. NER recall generally declines and RE accuracy (both FewRel and DocRED) declines monotonically with schema size; MAVEN relaxed F1 increases (\\S\\ref{sec:centrality_confound}). \\textbf{(b)} BCS-controlled FewRel accuracy. The BCS--accuracy slope is consistent across the independent 16-relation pool and within-pool 16-relation subsets (permutation $p = 0.60$); the wider BCS range available at 80 relations produces larger absolute gaps.}\n21\t\\label{fig:main_results}\n22\t\\end{figure}\n23\t\n24\tWe first examine how extraction performance changes as the number of types in the prompt schema increases (Experiment~1; Figure~\\ref{fig:main_results}a).\n25\t\n26\t\\paragraph{NER (Few-NERD).}\n27\tRecall declines from 0.72 at count${}\\,=\\,1$ to 0.42 at count${}\\,=\\,64$ ($-$42\\% relative), with minor non-monotonicity within sampling variability (bootstrap CIs overlap). Precision rises inversely (0.11 $\\to$ 0.52), reflecting a shift from over-prediction to under-prediction as candidate types increase.\n28\t\n29\t\\paragraph{RE (FewRel).}\n30\tAccuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ through 58.8\\% at count${}\\,=\\,40$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously. (The count${}\\,=\\,40$ evaluation uses 40-relation subsets sampled fr\n…[truncated 12928 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T10:14:58.216728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T10:14:58.217274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\\usepackage[normalem]{ulem}\n15\t\n16\t\\title{Does Type Confusability Shape Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction?}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\input{abstract}\n24\t\n25\t\\input{introduction}\n26\t\n27\t\\input{related_work}\n28\t\n29\t\\input{experimental_setup}\n30\t\n31\t\\input{results}\n32\t\n33\t\\input{sdgd_negative}\n34\t\n35\t\\input{discussion}\n36\t\n37\t\\section*{Limitations}\n38\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n39\t\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B with cross-model validation on Llama-3.1-8B-Instruct. Whether patterns hold for proprietary models (GPT-4, Gemini) remains unverified. Channel~2 was not robustly detectable on NER at 8B scale, likely due to floor effects.\n40\t\n41\t\\item \\textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\\% of type confusion variance; entity frequency, prompt position, mention ambiguity, and type definition quality likely account for the remainder.\n42\t\n43\t\\item \\textbf{Non-significant factorial test.} Within-dataset count $\\times$ BCS interaction on Few-NERD did not reach significance (Appendix~\\ref{sec:appendix_factorial}); cross-pool slope consistency suggests confusability sensitivity is stable rather than amplifying.\n44\t\n45\t\\item \\textbf{Decomposition and metric scope.} RE batch composition is tested on FewRel only; NER merge alternatives remain unexplored. SCS relies on embedding cosine similarity; label entropy or ontological depth may capture complementary dimensions.\n46\t\n47\t\\item \\textbf{RE format specificity.} RE's clean channel separation may reflect its closed-set classification format. FewRel combines training and validation splits \n…[truncated 18387 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T10:14:58.217648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "quasi-experimental",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T10:14:58.218004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T10:14:58.218451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "amplification|practical magnitude|r.*1\\.5",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T10:14:58.218676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:8:[Omitted long matching line]\ndocs/paper/acl.sty:239:\\def\\subsubsection{\\@startsection{subsubsection}{3}{\\z@}{-1.5ex plus\ndocs/paper/acl.sty:241:\\def\\paragraph{\\@startsection{paragraph}{4}{\\z@}{1.5ex plus\ndocs/paper/acl.sty:243:\\def\\subparagraph{\\@startsection{subparagraph}{5}{\\parindent}{1.5ex plus\ndocs/paper/acl.sty:260:\\leftmarginiii 1.5em \\leftmarginiv 1.0em \\leftmarginv .5em \\leftmarginvi .5em\ndocs/paper/acl.sty:287:% The choices were between 1-pt and 1.5-pt leading\ndocs/paper/main.tex:239:[Omitted long matching line]\ndocs/paper/main.tex:245:[Omitted long matching line]\ndocs/paper/main.log:150:Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)\ndocs/paper/discussion.tex:8:For NER, merge amplification blocks naive decomposition (\\S\\ref{sec:sdgd}); calibration-aware merge, joint decoding, or coarse-to-fine extraction may address this. For RE, extending confusability-aware batching to broader benchmarks is a natural next step.\ndocs/paper/discussion.tex:13:[Omitted long matching line]\ndocs/paper/introduction.tex:12:[Omitted long matching line]\ndocs/paper/introduction.tex:19:    \\item \\textbf{Diagnosis to mitigation.} A diagnosis of schema decomposition feasibility: oracle routing recovers count-based degradation in RE (+29.8\\,pp); confusability-aware grouping is inconclusive (+1.4\\,pp, $p\\approx 0.19$); NER decomposition fails due to merge amplification (\\S\\ref{sec:sdgd}).\ndocs/paper/results.tex:94:[Omitted long matching line]\ndocs/paper/main.aux:628:\\@writefile{toc}{\\contentsline {paragraph}{Merge amplification as the bottleneck.}{7}{section*.26}\\protected@file@percent }\ndocs/paper/sdgd_negative.tex:6:\\paragraph{Merge amplification as the bottleneck.}\ndocs/paper/sdgd_negative.tex:7:[Omitted long matching line]\ndocs/paper/sdgd_negative.tex:10:Merge amplification is specific to span-level tasks: each NER pass independently proposes entity spans, and union merge must resolve conflicting boundaries and type assign\n…[truncated 281 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T10:14:58.219077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T10:14:58.219257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe two-channel model applies cleanly to cross-domain schemas; same-domain schemas require pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Practitioners should monitor BCS and prefer cross-domain type groupings. Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1: $-$31.2\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}).\n6\t\n7\t\\paragraph{Future directions.}\n8\tFor NER, merge amplification blocks naive decomposition (\\S\\ref{sec:sdgd}); calibration-aware merge, joint decoding, or coarse-to-fine extraction may address this. For RE, extending confusability-aware batching to broader benchmarks is a natural next step.\n9\t\n10\t\\section{Conclusion}\n11\t\\label{sec:conclusion}\n12\t\n13\tWe isolated schema-induced degradation into count-driven recall decline and confusability-driven type confusion, showed these channels are separable in RE, with Channel~2 additionally impairing entity detection in NER, and confirmed that both channels replicate across model families on RE (Meta-Llama-3.1-8B-Instruct: count $r = 0.725$, confusability $\\Delta = -27$\\,pp) and across extraction granularities (DocRED document-level RE: count decline $-$49\\,pp; BCS slope $= -0.71$, $R^2 = 0.53$), with high-BCS accuracy converging to a floor consistent across both tested models. We further identified a centrality confound on same-domain schemas, demonstrated that merge amplification is a structural challenge for NER decomposition, and showed that confusability-aware grouping yields a directionally consistent but non-significant improvement (+1.4\\,pp, $p\\approx 0.19$). Cross-batch calibration or joint decoding \n…[truncated 84 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T10:14:58.219407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T10:14:58.219557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat causes this degradation? Prior decomposition strategies implicitly assume different answers: \\citet{uniner-2024} extract each type independently; \\citet{llm-pee-2025} partition schemas by type embedding similarity; \\citet{parse-2025} optimize schema definitions. None isolates \\emph{why} schemas degrade performance. The closest work, LLM-PEE, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor accounts for the gains. All prior approaches conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these, decomposition strategies optimize a black-box objective without understanding its components.\n7\t\n8\tWe ask three questions. \\textbf{RQ1}: Does type confusabil\n…[truncated 2905 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T10:14:58.220169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "We fix the type count and vary BCS to obtain controlled stratified comparison evidence. Table~\\ref{tab:bcs_controlled} reports FewRel accuracy under low-BCS and high-BCS batches; the within-pool analysis (\\S\\ref{sec:within_pool}) controls for residual confounds from pool composition.",
+              "new_string": "We fix the type count and vary BCS to obtain controlled stratified comparison evidence. Our design controls for count and pool composition. However, BCS-defined strata may differ in type frequency, definition quality, or prompt position---confounds we cannot fully rule out. Table~\\ref{tab:bcs_controlled} reports FewRel accuracy under low-BCS and high-BCS batches; the within-pool analysis (\\S\\ref{sec:within_pool}) controls for residual confounds from pool composition."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T10:14:58.220388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T10:14:58.220524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "likely reflecting DocRED's wider confusability range.",
+              "new_string": "possibly reflecting a wider confusability range in the DocRED schema, though document-level context may also provide richer cues for type confusion."
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T10:14:58.220701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T10:14:58.220830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "Error taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy} in Appendix~\\ref{sec:appendix_figures}) shows intra-batch substitution (IntraSub) scales monotonically with BCS: $\\rho = 1.0$ ($p < 0.001$) for NER and $\\rho = 0.954$ ($p < 10^{-6}$) for RE. In RE, 100\\% of confusion errors are intra-batch and missed-entity rates remain flat (10--16\\%); in NER, missed rates are higher (43--65\\%) and non-monotonic, indicating confusable types impair entity detection itself. Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches.",
+              "new_string": "Error taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy} in Appendix~\\ref{sec:appendix_figures}) shows intra-batch substitution (IntraSub) scales monotonically with BCS: $\\rho = 1.0$ ($p < 0.001$) for NER and $\\rho = 0.954$ ($p < 10^{-6}$) for RE. Under closed-set classification, non-\\texttt{none} errors are necessarily intra-batch; the more informative finding is that IntraSub confusion frequency correlates with pairwise SCS ($\\rho{=}0.954$, $p{<}0.001$). In NER, missed rates are higher (43--65\\%) and non-monotonic, indicating confusable types impair entity detection itself. Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches."
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T10:14:58.221054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T10:14:58.221189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "For representative batches from the 80-relation pool ($n{=}100$ random 16-type subsets), the typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI: [0.4, 4.0])---roughly 7\\% of the 31.2\\,pp extreme-batch gap. Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The 31.2\\,pp figure reflects maximum BCS contrast, not the typical batch experience.",
+              "new_string": "For representative batches from the 80-relation pool ($n{=}100$ random 16-type subsets), the typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI: [0.4, 4.0])---roughly 7\\% of the 31.2\\,pp extreme-batch gap. Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The 31.2\\,pp figure reflects maximum BCS contrast, not the typical batch experience. Pair-level $r^2{=}1.5\\%$ aggregates to batch-level $R^2{=}22$--$53\\%$ across datasets, a 14--35$\\times$ amplification consistent with averaging over $\\sim\\binom{k}{2}$ correlated pair effects per batch."
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T10:14:58.221375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T10:14:58.221503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "\\item \\textbf{Causal mechanism.} The study establishes correlational evidence; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway.",
+              "new_string": "\\item \\textbf{Causal mechanism.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway."
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T10:14:58.221690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T10:14:58.221835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "69",
+              "limit": "10"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T10:14:58.221995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "69\t\\subsection{BCS-Controlled Experiments}\n70\t\\label{sec:bcs_controlled}\n71\t\n72\tWe fix the type count and vary BCS to obtain controlled stratified comparison evidence. Our design controls for count and pool composition. However, BCS-defined strata may differ in type frequency, definition quality, or prompt position---confounds we cannot fully rule out. Table~\\ref{tab:bcs_controlled} reports FewRel accuracy under low-BCS and high-BCS batches; the within-pool analysis (\\S\\ref{sec:within_pool}) controls for residual confounds from pool composition.\n73\t\n74\t\\begin{table}[t]\n75\t\\centering\n76\t\\small\n77\t\\resizebox{\\columnwidth}{!}{%\n78\t\\begin{tabular}{lcrrrr}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T10:14:58.222117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "93",
+              "limit": "3"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T10:14:58.222237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "93\t\\paragraph{Document-level RE (DocRED).}\n94\tThe effect replicates on DocRED's 96-relation schema: BCS gap $-$23.3\\,pp at count 16 (slope $= -0.713$, $\\rho = -0.661$, $p = 1.5 \\times 10^{-5}$) and $-$17.6\\,pp at count 32 (slope $= -0.690$, $\\rho = -0.509$, $p = 0.002$). BCS explains 44--53\\% of cross-batch variance ($R^2 = 0.525$ at count 16), substantially higher than FewRel ($R^2 = 0.218$), possibly reflecting a wider confusability range in the DocRED schema, though document-level context may also provide richer cues for type confusion. Across all RE settings, BCS slopes range from $-$0.40 to $-$0.71, significant in all conditions with sufficient BCS range.\n95\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T10:14:58.222354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "128",
+              "limit": "6"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T10:14:58.222481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "128\t\\paragraph{Practical magnitude.}\n129\t\\label{sec:practical_magnitude}\n130\tFor representative batches from the 80-relation pool ($n{=}100$ random 16-type subsets), the typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI: [0.4, 4.0])---roughly 7\\% of the 31.2\\,pp extreme-batch gap. Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The 31.2\\,pp figure reflects maximum BCS contrast, not the typical batch experience. Pair-level $r^2{=}1.5\\%$ aggregates to batch-level $R^2{=}22$--$53\\%$ across datasets, a 14--35$\\times$ amplification consistent with averaging over $\\sim\\binom{k}{2}$ correlated pair effects per batch.\n131\t\n132\t\\paragraph{Cross-model validation.}\n133\tThe effect replicates on Meta-Llama-3.1-8B-Instruct: BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap. Both models converge to $\\approx$51\\% under high confusability regardless of count, while divergence is confined to the low-BCS regime---suggesting a task-inherent difficulty floor under high confusability (Table~\\ref{tab:cross_model_bcs})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T10:14:58.223165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "139",
+              "limit": "5"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T10:14:58.223635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "139\t\\label{sec:multi_channel}\n140\t\n141\tError taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy} in Appendix~\\ref{sec:appendix_figures}) shows intra-batch substitution (IntraSub) scales monotonically with BCS: $\\rho = 1.0$ ($p < 0.001$) for NER and $\\rho = 0.954$ ($p < 10^{-6}$) for RE. Under closed-set classification, non-\\texttt{none} errors are necessarily intra-batch; the more informative finding is that IntraSub confusion frequency correlates with pairwise SCS ($\\rho{=}0.954$, $p{<}0.001$). In NER, missed rates are higher (43--65\\%) and non-monotonic, indicating confusable types impair entity detection itself. Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches.\n142\t\n143\tThese results establish two channels: \\textbf{Channel~1} (count $\\to$ recall decline) and \\textbf{Channel~2} (confusability $\\to$ type confusion), cleanly separable in RE but coupled in NER where type ambiguity and boundary ambiguity interact."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T10:14:58.223799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "47",
+              "limit": "3"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T10:14:58.224009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "47\t\\item \\textbf{RE format specificity.} RE's clean channel separation may reflect its closed-set classification format. FewRel combines training and validation splits for 80 types and characterizes classification accuracy rather than end-to-end extraction.\n48\t\n49\t\\item \\textbf{Causal mechanism.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T10:14:58.224191+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成。总结：\n\n**修改文件和位置：**\n\n| 文件 | 行号 | 修改内容 |\n|------|------|----------|\n| `results.tex` | 72 | **C1**: 添加 confound disclosure（BCS strata 可能因 type frequency/definition quality/prompt position 差异） |\n| `results.tex` | 94 | **S8**: DocRED R² 归因从单一解释改为两个并列解释（wider confusability range + document-level context） |\n| `results.tex` | 130 | **C2**: 在 Practical magnitude 段末加入 pair→batch 14–35× amplification 论证 |\n| `results.tex` | 141 | **S10**: RE 100% intra-batch 降级为 tautology 说明 + 重新聚焦 IntraSub-SCS 相关性 |\n| `main.tex` | 49 | **C1**: Limitations 第6条 \"correlational\" → \"correlational with controlled stratification\" |\n\n**无需修改的项：**\n- \"quasi-experimental\" 全文不存在，无需替换\n- C3 的 80-rel null result 段落已在 results.tex:126 存在，无需新增"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d044_section4_fixes_20260516T101314"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ]
+}

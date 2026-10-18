@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "877db74c72f9c11db7ca",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval openvla random pruning sweep",
+  "task_key": "worker_eval_openvla_random_pruning_sweep_20260519T212747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_openvla_random_pruning_sweep_20260519T212747_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "c04b89e1142f40c512bc818c5f9af8a9644ab5b487ba5a7654569ef4e315fbf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有数据点已存在，无需重跑。**\n\n主服务器 (westd-27271) 上已有完整的 OpenVLA random pruning eval 结果，全部 n=500, seed=7（互相一致）：\n\n| k_ratio | SR | successes/total | seed | timestamp |\n|---------|------|-----------------|------|-----------|\n| 0.95 | **69.4%** | 347/500 | 7 | 2026-05-19 08:26 |\n| 0.90 | **62.0%** | 310/500 | 7 | 2026-05-19 08:33 |\n| 0.70 | **49.0%** | 245/500 | 7 | 2026-05-18 12:26 |\n| 0.50 | **37.4%** | 187/500 | 7 | 2026-05-18 07:57 |\n| 0.30 | **20.6%** | 103/500 | 7 | 2026-05-18 18:19 |\n\n加上 baseline k=1.0 (74%)，6-point 曲线数据齐全。所有点 seed 一致（seed=7），n_episodes 均为 500。k=0.90 和 k=0.95 刚于今天在 westd-27271 上跑完。\n\n结果路径：`/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k{ratio}_object.json`（在 westd-27271 上）。\n\n不需要在 westd-41074 上启动新的 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

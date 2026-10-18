@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "473be60adf0d506c406a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra register baseline v4",
+  "task_key": "worker_infra_register-baseline-v4_20260515T152810",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_register-baseline-v4_20260515T152810_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "8e8622c5993f540a6e80c03b7fb74279d18311e2423d8591de88e9cdf1ecfdb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### Baseline 训练 ✅ 正常运行\n\n| 项目 | 值 |\n|------|-----|\n| **主进程 PID** | **30745** (`python3 train.py --config configs/baseline.yaml --gpu 0 --seed 42`) |\n| tmux session PID | 30738 |\n| 数据加载 worker PIDs | 31027, 31028, 31029, 31030 |\n| GPU 0 | 48% 利用率, 4114 MiB / 97887 MiB |\n| 当前进度 | **step 600/30000**, loss=0.0286, lr=6.01e-05, sps=4.0 |\n| wandb | offline 模式, run id `7dikql04` |\n\nLoss 从 step 0 的 3.4066 快速下降到 step 600 的 0.0286，训练正常收敛。\n\n---\n\n### IMM Anchor ❌ 已崩溃\n\n没有找到 IMM anchor 的运行进程。日志显示启动时报错：\n\n```\nOSError: Can't load the configuration of 'HuggingFaceTB/SmolVLM2-500M-Video-Instruct'\n```\n\n模型配置加载失败，可能是模型未下载完成或缓存路径问题。GPU 1 空闲（0% 利用率，3 MiB 显存），确认 IMM anchor 未在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

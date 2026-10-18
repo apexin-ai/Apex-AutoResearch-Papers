@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f8d91bca880033c6ec8d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "fix llama hires check",
+  "task_key": "worker_fix_llama_hires_check_20260514T214522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama_hires_check_20260514T214522_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "9f1e3179e6e8e7fb0a99ffbbb52868e78a7937fdc8a2f21f7c278cdb29295626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**实验结果汇总（Llama-3.1-8B hires bf16 2-bit only）：**\n\n- **状态**：成功，256/256 heads 全部完成，耗时 59 min\n- **top5_concentration = 0.5749**（12 heads 占 top-5%）\n- **baseline_ppl = 6.5055**\n- **t1/t5 = 59.05**（极端离群：L2H5 delta=15.26，远超第二名 L3H1 的 0.44）\n- **CV = 7.7663**，L0 dominance = 0.67x\n\n注意 L2H5 的 delta 是异常高的离群值（15.26 vs 均值 0.12），这意味着该头对 2-bit 量化极度敏感，是 MCKP 分配的首要保护目标。Table 3 的 Llama 行可以用这些数据替换 $^\\ddagger$ 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

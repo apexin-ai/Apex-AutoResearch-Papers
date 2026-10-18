@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "095d99dd1eaf54f13431",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code coral ordinal 9cell phase1",
+  "task_key": "worker_code_coral_ordinal_9cell_phase1_20260519T102830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_coral_ordinal_9cell_phase1_20260519T102830_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "a42aa926313e013b15231b3726c26066a4bb8713fd09224815f635e0461f7bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个产出已注册：\n\n| Artifact ID | Name | Type |\n|---|---|---|\n| `art_20260519_b1ee14` | CORAL 9-Cell Results JSON | data |\n| `art_20260519_955eff` | CORAL vs RF Comparison Report | report |\n| `art_20260519_7bfc72` | CORAL Ordinal Eval Script | intermediate |\n\nCORAL 9-cell 评估任务全部完成。核心结论：CORAL 在序数指标上系统性胜出（QWK +0.0081, MAE -0.0024, OC +0.0052），RF 仅在分类准确率上有微弱优势（-0.0064），排除 gpt2xl_topk50 异常值后准确率差距缩小至 -0.0023。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

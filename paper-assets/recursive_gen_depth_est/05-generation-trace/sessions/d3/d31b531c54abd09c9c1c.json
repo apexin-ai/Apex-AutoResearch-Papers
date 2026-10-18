@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "d31b531c54abd09c9c1c",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh dcol v4 lora clean restart",
+  "task_key": "worker_ssh_dcol_v4_lora_clean_restart_20260515T022544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dcol_v4_lora_clean_restart_20260515T022544.log",
+    "occurrence": 1,
+    "bytes": 609443,
+    "sha256": "910bd08e0ac8de080fe5dcc6a46e297fe995c99ca8fdd82644e0f54790e610ea"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 1,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "d31b531c54abd09c9c1c-part-0001.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 146,
+      "chunks": [
+        {
+          "path": "d31b531c54abd09c9c1c-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "d31b531c54abd09c9c1c-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9459d7a4e59514b79c8b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis gee interaction",
+  "task_key": "worker_analysis_gee-interaction_20260522T045522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gee-interaction_20260522T045522_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "8f63738f64830b31199f8b16793e20238c75cd4575fe335b9e7f967298fa3600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GEE Interaction Analysis 结果\n\n### Interaction term (style × originality): OR [95% CI], p-value\n\n| Judge | Axis | N | Interaction OR | 95% CI | p |\n|---|---|---|---|---|---|\n| GPT-4o | Formality | 88 | 0.661 | [0.183, 2.383] | 0.527 |\n| GPT-4o | Verbosity | 86 | 1.269 | [0.371, 4.344] | 0.705 |\n| GPT-4o | Register | 94 | 2.601 | [0.740, 9.148] | 0.136 |\n| Qwen3-32B | Formality | 88 | 0.518 | [0.142, 1.891] | 0.320 |\n| Qwen3-32B | Verbosity | 86 | 0.450 | [0.125, 1.616] | 0.221 |\n| Qwen3-32B | Register | 94 | 0.555 | [0.148, 2.084] | 0.383 |\n| Llama-70B | Formality | 88 | 0.968 | [0.248, 3.780] | 0.963 |\n| Llama-70B | Verbosity | 86 | 1.103 | [0.340, 3.577] | 0.870 |\n\n### 结论\n\n**0/8 个 interaction term 达到显著**（所有 p > 0.13）。CI 全部宽且跨越 1.0，最接近显著的是 GPT-4o Register（OR=2.60, p=0.136）。Additive model（style + originality 无交互项）是充分的——style 和 originality 的效应独立叠加，不存在 style × originality 的调节效应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e48d34f841f6cd2eef11",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh dcol cleanup and verify",
+  "task_key": "worker_ssh_dcol_cleanup_and_verify_20260514T193350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dcol_cleanup_and_verify_20260514T193350_result.json",
+    "occurrence": 1,
+    "bytes": 1911,
+    "sha256": "ca1c70a3a26c5db867e615f9683100c327ea2e1bb045ce6e285305f0854c2db0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告如下：\n\n---\n\n### 1. Rename 状态\n\n`scripts/dcol_train.py` → `dcol_train_standalone_deprecated.py` 在服务器和本地**均已完成**（之前已重命名过）。\n\n注意：服务器 `src/dcol_train.py` 仍存在——这是**另一个版本**（feature-based MLP，非 DeBERTa），与正式的 `src/dcol_trainer.py` 不同，可能也需要清理。\n\n### 2. `scripts/run_dcol_training.sh` 完整训练命令\n\n```bash\npython src/dcol_trainer.py \\\n    --data_dir \"$DATA_DIR\" \\\n    --model_path \"$MODEL_PATH\" \\            # 默认 /root/autodl-tmp/models/deberta-v3-large\n    --output_dir \"$OUTPUT_DIR\" \\            # 默认 checkpoints/dcol/\n    --log_dir \"$LOG_DIR\" \\\n    --batch_size 32 \\\n    --epochs 10 \\\n    --lr 2e-5 \\\n    --margin_lr 1e-3 \\\n    --cl_weight 0.5 \\\n    --max_length 512 \\\n    --gpu 0 \\\n    --seed 42\n```\n\n训练完成后自动调用 `src/dcol_eval.py` 评估。模型路径默认指向 `/root/autodl-tmp/models/deberta-v3-large`，一致。\n\n### 3. `src/dcol_trainer.py` 架构\n\n| 组件 | 实现 |\n|------|------|\n| Backbone | DeBERTa-v3-large |\n| Pooling | **[CLS] token**（`last_hidden_state[:, 0, :]`） |\n| Contrastive head | [CLS](1024d) concat 19-dim feature projection(64d) → 256 → **128d L2-normalized** |\n| Similarity | **Cosine**（embeddings 已 L2-normalize，直接 matmul） |\n| Loss | CE + multi-margin contrastive ordinal loss（learnable margins via softplus） |\n| Margins | 可学习，初始化自 MVP AUC: [0.50, 0.25, 0.20]，支持 per-strategy |\n\n### 4. Pythia topk50 进度\n\n**仍在运行**（`.done` 文件不存在）。当前进度：Step 4 Generate depth-2，正在加载 pythia-1.4b 模型。\n\n### 5. 待确认\n\n`src/dcol_train.py`（MLP-based feature-only 版本）是否也需要 rename 为 deprecated？它和 `dcol_trainer.py` 是两套独立架构。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

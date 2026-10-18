@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "fca053addc40a8fe3a5c",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "code step3 5 pipeline prep",
+  "task_key": "worker_code_step3-5-pipeline-prep_20260522T145553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_step3-5-pipeline-prep_20260522T145553.log",
+    "occurrence": 1,
+    "bytes": 637145,
+    "sha256": "e3c96bb2da01e7ab15688713e58e5c32d15b6b964c9c086e5c630876b2bd3826"
+  },
+  "statistics": {
+    "messages": 92,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 33,
+      "tool_result": 33,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "fca053addc40a8fe3a5c-part-0001.json",
+          "message_count": 75
+        },
+        {
+          "path": "fca053addc40a8fe3a5c-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0dcfee7c6722785e00ae",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis accum edd",
+  "task_key": "worker_analysis_accum_edd_20260522T021351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_accum_edd_20260522T021351_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "d3a575e1a0d59e77d79fb69473f42ebf8f1e733e3dea0b8ba2b6bb9b5b6e6b50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Cell | Type | d0v1 AUC | d1v2 AUC | d2v3 AUC | EDD_0.70 |\n|------|------|----------|----------|----------|----------|\n| GPT-2 XL nucleus | full-rep | 0.9941 | 0.9131 | 0.8829 | 3 |\n| GPT-2 XL nucleus | accum25 | 0.9995 | 0.8168 | 0.7258 | 3 |\n| OLMo temp09 | full-rep | 0.9960 | 0.9010 | 0.8214 | 3 |\n| OLMo temp09 | accum25 | 1.0000 | 0.8481 | 0.7585 | 3 |\n| Pythia nucleus | full-rep | 0.9975 | 0.8607 | 0.8005 | 3 |\n| Pythia nucleus | accum25 | 0.9998 | 0.8090 | 0.7486 | 3 |\n\n所有 6 个 cell 的 EDD_0.70 均为 3（所有 adjacent pair AUC 都 >= 0.70）。\n\nAccumulation mix25 相比 full-replacement 的 AUC 下降幅度：\n- **d0v1**: 几乎无变化（accum 反而略高，因为 d0 特征极易区分）\n- **d1v2**: 下降 ~0.05–0.10（GPT-2 XL 降幅最大 0.096，OLMo 最小 0.053）\n- **d2v3**: 下降 ~0.05–0.16（GPT-2 XL 降幅最大 0.157，OLMo 最小 0.063）\n\n结果已保存到 `results/accumulation_edd/edd_comparison.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

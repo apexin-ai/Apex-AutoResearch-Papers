@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0c93bc37bd80914638b1",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis bootstrap ci decoupling",
+  "task_key": "worker_analysis_bootstrap-ci-decoupling_20260520T011928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci-decoupling_20260520T011928_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "688f350ab5462850e7abb39e01fde8ff28de304bad55eb931840f1fe0980a72e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### σ (architecture std) — 95% Bootstrap CI\n\n| Ratio | Point | 95% CI |\n|-------|-------|--------|\n| pure | 0.02431 | [0.01930, 0.02955] |\n| h24-1 | 0.01647 | [0.01162, 0.02172] |\n| h12-1 | 0.01462 | [0.00969, 0.02019] |\n| h6-1 | 0.00643 | [0.00240, 0.01165] |\n| h3-1 | 0.00537 | [0.00180, 0.01057] |\n\n### J_helped (mean pairwise Jaccard) — 95% CI\n\n| Ratio | Point | 95% CI |\n|-------|-------|--------|\n| h24-1 | 0.0945 | [0.0826, 0.1066] |\n| h12-1 | 0.0954 | [0.0834, 0.1075] |\n| h6-1 | 0.0904 | [0.0790, 0.1023] |\n| h3-1 | 0.0964 | [0.0844, 0.1088] |\n\n### J_hurt (mean pairwise Jaccard) — 95% CI\n\n| Ratio | Point | 95% CI |\n|-------|-------|--------|\n| h24-1 | 0.0860 | [0.0745, 0.0978] |\n| h12-1 | 0.0775 | [0.0667, 0.0891] |\n| h6-1 | 0.0980 | [0.0857, 0.1105] |\n| h3-1 | 0.0932 | [0.0814, 0.1057] |\n\n### Key Finding\n\n**σ CIs non-overlapping between pure and h3-1** (pure lower bound 0.01930 > h3-1 upper bound 0.01057) **→ 显著下降**。同时 **J CIs 在所有 ratio 间完全重叠 → Jaccard 保持 flat**。\n\n统计证据支持 decoupling：attention 增加时 accuracy variance 显著收敛，但 example-level 帮助/伤害的架构间 overlap 模式不变。\n\n结果已保存到 `/root/entrainment_gated_ft/bootstrap_ci_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

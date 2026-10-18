@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "5676da4fed9d503647dc",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh gemini flash local run",
+  "task_key": "worker_ssh_gemini_flash_local_run_20260517T154108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gemini_flash_local_run_20260517T154108.log",
+    "occurrence": 1,
+    "bytes": 2279293,
+    "sha256": "9cf580b0362985b013048777a41136d8824bb7378222201294d02127b9032990"
+  },
+  "statistics": {
+    "messages": 639,
+    "user_turns": 2,
+    "tool_calls": 237,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "assistant": 154,
+      "tool_call": 237,
+      "tool_result": 237,
+      "record": 1,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 362,
+      "chunks": [
+        {
+          "path": "5676da4fed9d503647dc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5676da4fed9d503647dc-part-0002.json",
+          "message_count": 174
+        },
+        {
+          "path": "5676da4fed9d503647dc-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "5676da4fed9d503647dc-part-0003.json",
+          "message_count": 85
+        },
+        {
+          "path": "5676da4fed9d503647dc-part-0004.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "5676da4fed9d503647dc-part-0004.json",
+          "message_count": 133
+        },
+        {
+          "path": "5676da4fed9d503647dc-part-0005.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ]
+}

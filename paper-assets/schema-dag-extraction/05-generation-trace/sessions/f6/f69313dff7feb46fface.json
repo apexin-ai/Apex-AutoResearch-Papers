@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f69313dff7feb46fface",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "experiment d051 batch2 count curves 25",
+  "task_key": "worker_experiment_d051_batch2_count_curves_25_20260516T184749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_d051_batch2_count_curves_25_20260516T184749_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "a97a5e4f2abf9a19211ebab626e66dd08848a14c2cc4e590647a175b1eb2bb8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并在运行。汇总：\n\n---\n\n**实验状态：RUNNING**\n\n| 项目 | 详情 |\n|------|------|\n| tmux session | `d051_batch2` |\n| 服务器 | cqa1-38874 |\n| 当前进度 | Part A: RE count_16 推理中（192 samples/batch × 25 batches） |\n\n**实验结构：**\n\n| Part | 任务 | 数据集 | Batches | Seeds | 预估时间 |\n|------|------|--------|---------|-------|----------|\n| A | R6-W3 Count Curves | FewRel | 175 (7 levels × 25) | 42 | ~2h |\n| A | R6-W3 Count Curves | Few-NERD | 150 (6 levels × 25) | 42 | ~3h |\n| B | R8-W2 3-Seed | FewRel | 175 × 2 seeds | 123, 456 | ~4h |\n| B | R8-W2 3-Seed | Few-NERD (key levels) | 75 × 2 seeds | 123, 456 | ~2h |\n\n**预估总运行时间：8-12 小时**\n\n**产出路径：**\n- `artifacts/d051_fewrel_n25_s{42,123,456}/count_curve_summary.json`\n- `artifacts/d051_fewnerd_n25_s{42,123,456}/count_curve_summary.json`\n\n**脚本路径：**\n- `/root/schema-dag-extraction/scripts/run_d051_count_curves_25.py`\n- `/root/schema-dag-extraction/run_d051_batch2.sh`\n\n**检查进度：**\n```bash\nssh connect.cqa1.seetacloud.com 'tail -5 /root/schema-dag-extraction/artifacts/d051_batch2.log'\nssh connect.cqa1.seetacloud.com 'ls /root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/results_count_*.jsonl'\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

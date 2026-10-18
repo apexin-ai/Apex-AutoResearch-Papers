@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "534c26660c9d2a06911a",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis kappa diversity regime transition",
+  "task_key": "worker_analysis_kappa-diversity-regime-transition_20260524T031621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kappa-diversity-regime-transition_20260524T031621.log",
+    "occurrence": 1,
+    "bytes": 866505,
+    "sha256": "818cfb0e70fa5dba82a710fd8e8e600c7e49f65bc92ff9a97933178138d89cff"
+  },
+  "statistics": {
+    "messages": 480,
+    "user_turns": 2,
+    "tool_calls": 185,
+    "roles": {
+      "log": 1,
+      "system": 51,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 185,
+      "user": 2,
+      "tool_result": 185,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "534c26660c9d2a06911a-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "534c26660c9d2a06911a-part-0001.json",
+          "message_count": 145
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "534c26660c9d2a06911a-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "534c26660c9d2a06911a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "534c26660c9d2a06911a-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ]
+}

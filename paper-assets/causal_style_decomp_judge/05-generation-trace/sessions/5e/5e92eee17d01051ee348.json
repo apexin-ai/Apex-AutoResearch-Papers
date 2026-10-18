@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e92eee17d01051ee348",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "dryrun judge scoring v2",
+  "task_key": "worker_dryrun_judge_scoring_v2_20260520T121704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_dryrun_judge_scoring_v2_20260520T121704_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "7c2608c3fb2fd88a4435b02668bc2e203ee1a031a284201f7786c44f440490bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry run 完成，结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| API 连通性 | **通过** — `http://47.94.22.126/v1` 可达，`gpt-4o` 在模型列表中 |\n| 认证 | **通过** — API key 有效，9 次请求全部 200 OK |\n| 评分解析 | **通过** — 所有评分均为 1-10 整数 |\n| identity transform 一致性 | **基本符合预期** — mvp_0000 (5/5/5) 和 mvp_0001 (9/9/9) 三个评分完全一致；mvp_0002 orig=6, cf=6, dr=5 有 1 分偏差 |\n| 延迟 | 每次 API 调用约 8-10 秒（endpoint 响应较慢） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

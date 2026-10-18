@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b49f67411b95d9e225e1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "write d037 abstract intro disc edits",
+  "task_key": "worker_write_d037_abstract_intro_disc_edits_20260516T034203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_d037_abstract_intro_disc_edits_20260516T034203_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "dc3ae1040c4253ee16d8a8b2df63ff6f5b5658cb10c14a2b8d71579eaa767476"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No LaTeX errors. The PDF compiled successfully (16 pages, 380KB). The previous `grep -c` was matching comment lines in the log, not actual errors.\n\nAll changes applied:\n\n- **C2**: `9.1pp` → bootstrapped `Δ=-7.4pp, CI [-9.4, -5.5]` (abstract + main.tex limitations)\n- **C3**: `31.2pp` gets \"(extreme-batch comparison)\" caveat; slope consistency is now the main narrative (abstract + main.tex)\n- **W1**: `framework` → `pattern`/`decomposition` (intro contribution + discussion)\n- **W7**: MAVEN reversal sentence added to abstract\n- **W12**: `model-invariant` → `consistent across both tested models` (abstract, discussion conclusion, main.tex limitations)\n- **W11**: 51% floor changed to hypothetical language in discussion\n- **W6**: RE channel separation caveat added to discussion + limitations\n- **W10**: FewRel train+val scope added to limitations"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94e9d9c8c68e5260677e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose westd27271 process gone",
+  "task_key": "worker_diagnose_westd27271_process_gone_20260525T165943",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_westd27271_process_gone_20260525T165943_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "cde616cd57db27cb349f6c1834747f7f0396ca5131dec308378789de27aa06ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新。汇总：\n\n| exp_id | conclusion | overall_sr | baseline | 退化幅度 |\n|--------|-----------|-----------|----------|---------|\n| eval_openvla_random_k05_spatial_seed42 | success | **50.0%** (250/500) | 80.0% | -30.0pp |\n| eval_openvla_random_k05_goal_seed42 | success | **52.2%** (261/500) | 74.8% | -22.6pp |\n\n两个 Random k=0.5 实验均成功完成，50% 随机裁剪在两个 suite 上都造成了显著退化（Spatial -30pp, Goal -22.6pp），符合退化曲线中间点预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

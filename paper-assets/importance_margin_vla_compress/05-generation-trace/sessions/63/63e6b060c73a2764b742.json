@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "63e6b060c73a2764b742",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit claim coverage 0527",
+  "task_key": "worker_audit_claim_coverage_0527_20260527T010732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_claim_coverage_0527_20260527T010732_result.json",
+    "occurrence": 1,
+    "bytes": 1632,
+    "sha256": "3790e01962f0259cdd5cc6d3b47a5e04092b9259e1e2058f9feee9de534467dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Claim 覆盖度审计 Checklist\n\n### Core Claims — 全部 ✅ 有数据支撑\n| Claim | 状态 | 说明 |\n|-------|------|------|\n| C1: 2-Axis Framework (connector × task) | ✅ | 5 models, CV spectrum, X-VLA cross-suite 全齐 |\n| C2: Pixel Shuffle Irreversible | ✅ | dual-seed + official checkpoint + 4 suites |\n| C3a: Linear Pipeline Dependency | ✅ | π0 immune + X-VLA 8-point + random reversal |\n| C3b: MLP Graded Degradation | ✅ | OpenVLA 6-point + OFT entropy + method independence |\n| C4: VTR Learned Re-Encoding | ✅ | M-sweep + flat curve + arch independence + cross-suite |\n| C5: CV Predicts Strategy | ✅ | k=0.5 & k=0.7 monotonic trend + multi-seed |\n\n### Cliff Curves — 54/72 (75%) 完成\n| Curve | 完成 | 在跑 | 缺失 |\n|-------|------|------|------|\n| OpenVLA Object | 15/18 | 3 | 0 |\n| OpenVLA Goal | 13/18 | 2 | 3 |\n| OpenVLA Long | 10/18 | 6 | 2 |\n| π0.5 Long | 16/18 | 2 | 0 |\n\n### 关键缺口（4 个未部署 k=0.95 实验）\n1. ❌ Goal k=0.95 Attn — 需 Blackwell GPU\n2. ❌ Goal k=0.95 Random — 需 Blackwell GPU\n3. ❌ Long k=0.95 L2norm — 需 Blackwell GPU\n4. ❌ Long k=0.95 Attn — 需 Blackwell GPU\n\n**当前 0 张 Blackwell GPU 空闲**，需等 running 实验完成后立即部署（每个约 4h，deadline 还有 ~28h，可以赶上）。\n\n### 结论\n**所有 5 条 core claims 的核心证据已完备，论文写作不受阻。** 唯一风险是 4 个 k=0.95 cliff curve 顶端数据点未部署，需在 GPU 释放后立即行动。即使这些实验未完成，cliff curve 可从 k=0.9 起画，不影响 claim 成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

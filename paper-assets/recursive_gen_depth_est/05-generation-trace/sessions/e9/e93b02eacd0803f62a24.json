@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e93b02eacd0803f62a24",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code dcol training prep",
+  "task_key": "worker_code_dcol_training_prep_20260514T160308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_training_prep_20260514T160308_result.json",
+    "occurrence": 1,
+    "bytes": 1520,
+    "sha256": "7b5b35ad766a6b7f0b1b2d18205410b067a65bb716d0d9828814bbabdfac041a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出文件总结：\n\n**产出 (1199 行代码)**\n\n| 文件 | 行数 | 功能 |\n|------|------|------|\n| `src/dcol_dataset.py` | 239 | 多 model/strategy 数据加载、19维特征 log1p 预处理、stratified split、ContrastiveBatchSampler（每 batch 各深度等量采样） |\n| `src/dcol_trainer.py` | 526 | DCOLModel (DeBERTa + BatchNorm feature projector + ordinal contrastive head)、累积和 margin 矩阵构建、strategy-aware learnable margins、multi-margin contrastive ordinal loss + CE loss、AdamW 三组 LR (backbone 2e-5 / head 2e-4 / margins 1e-3)、cosine warmup、early stopping |\n| `src/dcol_eval.py` | 293 | pairwise AUC、per-model/per-strategy 分组评估、confusion matrix 可视化、RF baseline 对比 |\n| `scripts/run_dcol_training.sh` | 141 | 端到端 pipeline（环境检测 → 模型下载 → 训练 → 评估），支持 `--dry_run` 和全部超参数覆写 |\n\n**调试过程中修复的 3 个问题**\n\n1. **fp16 overflow** — 特征值极端（var_ppl ~ 1e11）导致 autocast fp16 溢出 → 加 `log1p` 变换 + `BatchNorm1d`\n2. **GradScaler 不兼容** — 移除 GradScaler，改用 autocast forward + fp32 loss 计算\n3. **AdamW NaN** — 默认 `eps=1e-8` 在 DeBERTa multi-group optimizer 下产生 NaN → 改为 `eps=1e-6`\n\n**Dry-run 验证通过**：200 样本 × 1 epoch，loss 数值稳定 (1.65)，margins 正常学习。DeBERTa-v3-large 未缓存，正式训练时需下载（脚本已内置自动下载逻辑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

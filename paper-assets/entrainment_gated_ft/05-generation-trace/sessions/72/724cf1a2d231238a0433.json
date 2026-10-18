@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "724cf1a2d231238a0433",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code fix convergence pvalues",
+  "task_key": "worker_code_fix_convergence_pvalues_20260519T053517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_convergence_pvalues_20260519T053517_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "74c2dc9df8a0cede6228660ce837321bb9b444cf36011cc6ea372254900c9fbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**p 值修复**：1.3B lambada rho=-1.0 的 p 值从渐近的 ~1.4e-24 修正为精确排列检验的 **0.0167**（5!=120 种排列）。这是唯一 p<0.05 的组合。\n\n**非单调模式**：\n- 340M: lambada (min at attn=4), hellaswag (min at attn=0), winogrande (min at attn=1) 均有反弹\n- 1.3B: hellaswag (min at attn=1), arc_challenge (min at attn=2) 有反弹；lambada/arc_easy/mmlu 单调收敛\n\nCSV 已更新，包含 `min_std_attn`, `min_std`, `reduction_pct`, `rebound_pct` 列。PDF/PNG 图表已重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

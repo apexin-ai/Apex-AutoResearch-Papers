@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4ec655725a1e00ee9c6f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code dcol feature based",
+  "task_key": "worker_code_dcol_feature_based_20260514T161727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_feature_based_20260514T161727_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "048c2bba6523a6f9c4433ef31f5384c524e0e3e9d7af484a8ebed7933d818eeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，全部通过：\n\n- 数据加载正常：20000 样本（4×5000），train=16000, test=4000\n- Loss 数值合理：epoch 1 总 loss=1.53（attract=0.27, repulse=0.51, ce=0.76），无 NaN/Inf\n- Loss 下降正常：epoch 2 降到 1.25\n- 2 个 epoch 已达 73.9% accuracy（对比 RF baseline 78.2%，训练充分后应可超越）\n- 所有评估指标输出正常：4-class acc + CI、3-class acc、per-class recall、pairwise AUC、confusion matrix\n- 可视化生成正常：t-SNE、PCA、confusion matrix PNG 均成功保存\n- Checkpoint 保存正常（含 scaler 参数、feature names）\n\n文件位置：`/root/autodl-tmp/recursive_gen_depth_est/src/dcol_train.py`（服务器上已就绪），本地副本在 `artifacts/dcol_train.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

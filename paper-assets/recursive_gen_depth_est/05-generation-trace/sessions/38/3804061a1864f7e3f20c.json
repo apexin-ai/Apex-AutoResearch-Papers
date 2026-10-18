@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3804061a1864f7e3f20c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops 14b training progress",
+  "task_key": "worker_ops_14b_training_progress_20260519T053429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b_training_progress_20260519T053429_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "672c93d475ae9ba69522ac019a0600dbc77d365135f7c2d102cedba575ccdabd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都活着，正在 d0 generation 阶段。汇报如下：\n\n---\n\n## 14B 实验进度报告（~13:36 CST）\n\n### 进程状态\n| PID | GPU | VRAM | 状态 |\n|-----|-----|------|------|\n| 776616 | GPU-0 | 32,304 MiB | **alive** (temp09) |\n| 787051 | GPU-1 | 32,302 MiB | **alive** (topk50) |\n\n### temp09（τ=0.9）\n- **当前阶段**: d0 generation — **1,766 / 5,000** samples (35.3%)\n- **已运行**: ~2h36m（11:00 CST 启动）\n- **d0 生成速率**: ~11.3 samples/min\n- **d0 剩余**: ~4.8h\n- **全流程预估**: d0 generation 单阶段约 7.4h；4 个 depth 的 generation 约 28-30h，加上 4 轮 training + feature extraction + RF eval，总计预估 **~35-40h**，剩余 **~32-37h**\n\n### topk50（k=50）\n- **当前阶段**: d0 generation — **674 / 5,000** samples (13.5%)\n- **已运行**: ~37min（12:59 CST 启动）\n- **d0 生成速率**: ~18.2 samples/min\n- **d0 剩余**: ~4.0h\n- **全流程预估**: d0 generation 单阶段约 4.6h；4 depth generation 约 18-20h，加上 training + eval，总计预估 **~24-28h**，剩余 **~23-27h**\n\n### 备注\n- topk50 速率（18.2 samples/min）比 temp09（11.3 samples/min）快约 60%，可能因为 top-k 截断使采样更高效\n- 日志文件未增长（log 只记录到 model loading），实际进度需通过 `wc -l depth_*.jsonl` 查看\n- 两个实验均为单 GPU 运行，互不干扰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

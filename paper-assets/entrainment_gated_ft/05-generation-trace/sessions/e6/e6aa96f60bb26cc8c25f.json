@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6aa96f60bb26cc8c25f",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check xstorycloze completion",
+  "task_key": "worker_check_xstorycloze-completion_20260519T163109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_xstorycloze-completion_20260519T163109_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "b1ed8c2200b53c69edcf2b9c0858f7df975bb17bab02027ece69da25c520c5c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## xstorycloze_en 批量评估报告\n\n**状态：16/16 全部完成** ✓\n\n| 架构 | 模型 | 完成时间 |\n|------|------|----------|\n| GatedDeltaNet | pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1 | 00:18–00:21 |\n| RetNet | pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1 | 00:22–00:25 |\n| HGRN2 | pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1 | 00:26–00:29 |\n| Transformer | 1.3B baseline | 00:30 |\n\n**最后完成模型 (transformer_1.3B_baseline)**：acc = **0.6737** (stderr = 0.0121)\n\n**GPU**：已空闲（0% 利用率，0MiB 显存）\n\n**Registry**：exp-011-xstorycloze → DONE (success)\n\n**Cron**：该 cron job 已不存在（可能之前已删除或未在当前 session 创建）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

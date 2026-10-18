@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "5ba691b48af36ecfa6df",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code 1 3b remaining eval",
+  "task_key": "worker_code_1_3b_remaining_eval_20260518T151747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b_remaining_eval_20260518T151747.log",
+    "occurrence": 1,
+    "bytes": 661950,
+    "sha256": "07841c3689426008ac5e847ef8e38f979c4f58464af33fb141dff818a016edcb"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "5ba691b48af36ecfa6df-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "5ba691b48af36ecfa6df-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ]
+}

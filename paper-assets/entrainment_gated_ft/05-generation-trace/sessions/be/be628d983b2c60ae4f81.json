@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "be628d983b2c60ae4f81",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "fix hellaswag acc norm",
+  "task_key": "worker_fix_hellaswag-acc-norm_20260521T101458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_hellaswag-acc-norm_20260521T101458.log",
+    "occurrence": 1,
+    "bytes": 678117,
+    "sha256": "97e05214959079cdb48c76d03536d4adceb893062e4731a8e8afd0ee7697529f"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "be628d983b2c60ae4f81-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "be628d983b2c60ae4f81-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ]
+}

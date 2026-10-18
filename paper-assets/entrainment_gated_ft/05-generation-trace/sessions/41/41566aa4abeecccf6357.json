@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "41566aa4abeecccf6357",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis a2 confidence prediction",
+  "task_key": "worker_analysis_a2_confidence_prediction_20260522T081521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a2_confidence_prediction_20260522T081521_result.json",
+    "occurrence": 1,
+    "bytes": 1306,
+    "sha256": "1ec20761c9b756a3c9bf578bf05d91921601f3c0ab3205ec95f419dddc7e36d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A2 完成。结果概要：\n\n**Within-arch 5-fold CV AUC（单特征 logistic regression，特征 = pure model 的 |target loglikelihood|）：**\n\n| Benchmark | Helped AUC | Hurt AUC |\n|-----------|-----------|----------|\n| LAMBADA | **0.75-0.76** | **0.73-0.75** |\n| ARC-Easy | 0.66-0.71 | 0.54-0.60 |\n| HellaSwag | 0.54-0.56 | 0.51-0.52 |\n| PIQA | 0.56-0.60 | 0.45-0.47 |\n\n**Cross-arch transfer AUC ≈ Within-arch AUC**（specificity delta: helped = -0.001, hurt = -0.010）\n\n**核心发现：**\n1. **LAMBADA 预测能力强**：仅用 pure model confidence 单一特征，AUC 达 0.75，远超 random baseline（0.50）\n2. **Helped 比 Hurt 更可预测**：across all benchmarks，helped AUC consistently > hurt AUC\n3. **零架构特异性**：transfer AUC 与 within-arch AUC 几乎相同（delta ≈ 0），说明 confidence margin 是**完全 architecture-general** 的信号——在 GDN 上训练的预测器直接迁移到 RetNet/HGRN2 不损失性能\n4. **HellaSwag/PIQA 信号弱**：可能因为 acc_norm 的 length normalization 削弱了 raw loglikelihood 的预测力；PIQA hurt AUC < 0.50 说明此 benchmark 的 hurt 例子无法由 confidence margin 预测\n\n输出文件在 `westb-48145:/root/entrainment_gated_ft/results/a2_prediction_framework/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

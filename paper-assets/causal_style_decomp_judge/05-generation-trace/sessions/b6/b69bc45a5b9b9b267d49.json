@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "b69bc45a5b9b9b267d49",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "ops register pilot",
+  "task_key": "worker_ops_register_pilot_20260520T233206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_register_pilot_20260520T233206.log",
+    "occurrence": 1,
+    "bytes": 826730,
+    "sha256": "def46ed7f5ca4c902c41ef874310b57a8dcf1856abb4f9e0daba621768cc89d9"
+  },
+  "statistics": {
+    "messages": 608,
+    "user_turns": 1,
+    "tool_calls": 264,
+    "roles": {
+      "record": 3,
+      "system": 4,
+      "assistant": 71,
+      "tool_call": 264,
+      "tool_result": 264,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 551,
+      "chunks": [
+        {
+          "path": "b69bc45a5b9b9b267d49-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b69bc45a5b9b9b267d49-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b69bc45a5b9b9b267d49-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b69bc45a5b9b9b267d49-part-0004.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "b69bc45a5b9b9b267d49-part-0004.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ]
+}

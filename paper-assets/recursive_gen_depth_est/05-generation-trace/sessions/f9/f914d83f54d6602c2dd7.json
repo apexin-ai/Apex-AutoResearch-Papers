@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f914d83f54d6602c2dd7",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_10_1778893701.md",
+  "task_key": "loop_10_1778893701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778893701.md",
+    "occurrence": 1,
+    "bytes": 3845,
+    "sha256": "545279f4814f8a610dca3380e7206c28f1810ee8d603b5e7d20b11ad2b3432dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T00:29:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（config 白名单）\n- DDL: EMNLP ARR May 25, 2026 — 从今天起剩 9 天\n- Plan A framing 已锁定（D011）：Atlas/EDD primary, DCOL non-blocking。不可自行切换 framing\n- DCOL 已死（6 个版本全失败），不要再尝试 DeBERTa/RoBERTa contrastive loss 实验\n- Downstream curation 实验结论是 negative（oracle ≤ unfiltered），不能 claim \"RF approximates oracle\"，只能 claim \"data efficiency\"\n- EDD 叙事已定（D024/D027）：连续 AUC 衰减曲线 + d3v4 borderline 透明报告，不用硬阈值判定\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，工作目录 /root/autodl-tmp/recursive_gen_depth_est\n- GPU：2× RTX 6000 Pro (cuda:0, cuda:1)\n- Python 环境：未确认具体路径（上次用的 conda base），连接时需 detect_image 确认\n- 模型：GPT-2 base (124M) 做 reference model 提特征，RF classifiers 做分类\n- W&B：项目内实验有 wandb 记录\n- 已消耗 ~36 GPU·h，剩余预算 ~480 GPU·h (10天×2卡×24h)\n- 活跃 Worker：worker_code_wild_data_calibration_002_20260516T002255（running，准备提交代码）\n- 活跃 Cron：无（reconcile 返回 0）\n\n### 3. 📊 当前状态\nPhase 1 全部完成（37 success / 4 negative / 6 failed / 61 total），已进入 Phase 2 写作 + 审稿修改阶段。\n\n**活跃实验：**\n- `wild_data_calibration_002`：ALLOCATED，Worker 正在写代码。测 RedPajama-v2 + Dolma 各 5000 passages 上 RF 分类器的 FPR（验证 wild text → d0 校准）\n- `wild_data_redpajama_dolma_001`：QUEUED，等 GPU（可能是 calibration_002 的另一个名字或后续，需确认是否重复）\n\n**审稿修改待办（Phase 2 核心）：**\n- Critical open: R1-N1 EDD 公式定义、R2-N2 文献补充\n- Warning 待 Paper Agent 处理: W3 LoRA 引用、W5 无条件生成论文文本、W6 per-class recall 纳入、R2-W2 术语、R2-W4 Limitations 位置、R2-W6 orphan bib\n- 需 patch 到论文: N2 dual backbone 结果 (DeBERTa 58.3%/RoBERTa 59.5% << RF 78.2%) + feature overlap (Spearman ρ=-0.484)\n\n### 4. 📋 待办（条件触发式）\n- Worker wild_data_calibration_002 完成 → 提交到 gpu-6000pro-2 (submit_training_job) → 等结果 → 若 FPR<5% 则 claim 成立，纳入论文 robustness section\n- wild_data_calibration_002 实验结果回调 → 更新 registry → 若 success 且 redpajama_dolma_001 是后续则提交它\n- GPU 两卡空闲时 → 可跑补充实验（reviewer W2 domain bias / W4 zero-shot 样本量 / R2-W3 multi-τ），但优先服务写作\n- Paper Agent 启动条件满足（所有数据实验完成）→ spawn writer workers 处理审稿修改\n- Phase 2 写作全部完成 → Phase 3 最终 polish + bibliography audit + 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心结论链：**\n- D011: Plan A — Atlas/EDD primary（DCOL 放弃后的 pivot）\n- D024/D027: EDD 从硬阈值转向连续 AUC 衰减曲线叙事。三模型 d3v4 AUC ~0.75, d4v5 <0.70\n- D021/D028: Cross-strategy z-score normalization 无法修复 d1v2 boundary → \"distributional shift\" not \"scale artifact\"\n- D029: Domain bias 叙事从\"无偏差\"改为\"depth dominates, residual exists\"\n\n**易错点：**\n- wild_data_redpajama_dolma_001 和 wild_data_calibration_002 看起来高度重叠（同是 RedPajama+Dolma 校准）——先确认是否重复再提交，避免浪费 GPU\n- 审稿修改涉及多个 section 联动（EDD 公式改了 → method/experiments/discussion 都要同步），禁止分章节滚动调整\n- Downstream curation 是 negative（D012），论文中只在 Discussion 提概念，不做实验 claim\n- Feature overlap Spearman ρ=-0.484 是 DeBERTa vs RF；RoBERTa 的 overlap 分析还在 ROADMAP 待办中\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

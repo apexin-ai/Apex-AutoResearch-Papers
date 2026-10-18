@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "48d78f391e4a56c64ba2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis n2 roberta finetune 001",
+  "task_key": "worker_analysis_n2_roberta_finetune_001_20260515T132412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n2_roberta_finetune_001_20260515T132412_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "311ced96866f638df040206dc658f7d05552a9c45d4c8097b1ef97e0ce92711e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果摘要：\n\n## n2_roberta_finetune_001 结果\n\n| 指标 | RoBERTa | DeBERTa | RF baseline |\n|------|---------|---------|-------------|\n| **Accuracy** | **59.5% ± 3.2%** | 58.3% ± 4.7% | **78.2%** |\n| d1v2 AUC | 0.752 | 0.733 | — |\n| d2v3 AUC | 0.735 | 0.755 | — |\n\n**Per-class F1**: d0=0.958, d1=0.416, d2=0.261, d3=0.647\n\n**关键发现**:\n1. RoBERTa 与 DeBERTa 结果几乎相同（差值在 noise 范围），双 backbone 均低于 RF **~19pp**，排除模型选择偏差\n2. d0 (原始文本) 近乎完美可分；d1/d2 几乎不可区分 (d2 F1 仅 0.261)\n3. 模型倾向将 d1/d2 预测为 d3 (d3 recall=0.931 但 precision=0.496)\n4. 轻微过拟合：部分 fold val_acc 随 epoch 递减\n5. 结果目录无 feature analysis 产出\n\n**N2 结论**: End-to-end PLM finetune 无法匹配 hand-crafted features 的性能，hand-crafted features 捕获了 PLM raw text representation 未能学到的递归生成深度信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

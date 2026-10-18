@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ca5e72e1195a2fa0dacf",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "experiment d051 batch2 count curves 25",
+  "task_key": "worker_experiment_d051_batch2_count_curves_25_20260516T184749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_d051_batch2_count_curves_25_20260516T184749.log",
+    "occurrence": 1,
+    "bytes": 892337,
+    "sha256": "dc23ce7fdfdf89015cdb7c84430e75a92fa6457e109455dca2d1ea4506cfaadc"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "ca5e72e1195a2fa0dacf-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "ca5e72e1195a2fa0dacf-part-0002.json",
+          "message_count": 173
+        }
+      ]
+    }
+  ]
+}

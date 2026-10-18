@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "70a199ad45896fd15f23",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops detailed progress check",
+  "task_key": "worker_ops_detailed-progress-check_20260521T205356",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_detailed-progress-check_20260521T205356_result.json",
+    "occurrence": 1,
+    "bytes": 1730,
+    "sha256": "4e5912c3cf0d9e63a2a14a802bd7ff07abdd3bc1cf76b1ab3564b775e68dbe91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n---\n\n```\n[westd-41074] GPU0 | random k=0.95 v2        | PID 627788 | 170/500 eps (T4 ep20) | ~50 min left\n[westd-41074] GPU1 | fixed-mask k=0.9 v2     | PID 629619 | 160/500 eps (T3 ep10) | ~78 min left\n[westd-41074] GPU2 | VTC M96 train            | PID 68539  | 72450/100K steps      | ~15.3h left (0.5 sps)\n[westd-41074] GPU3 | VTC M64 v6 train         | PID 59671  | 23650/100K steps      | ~35.4h left (0.6 sps)\n\n[westd-38929] GPU0 | Baseline Spatial          |           | ✅ DONE  SR=97.2%\n[westd-38929] GPU1 | L2norm k=0.5 Spatial     | PID 590423 | 470/500 eps (T9 ep20) | ~9 min left\n[westd-38929] GPU2 | Random k=0.5 Spatial      |           | ✅ DONE  SR=71.6%\n[westd-38929] GPU3 | L2norm k=0.3 Spatial     | PID 590816 | 470/500 eps (T9 ep20) | ~9 min left\n\n[westd-27271] GPU0 | OpenVLA L2norm k=0.9 obj | PID 306593 | 380/500 eps (T7 ep30) | ~57 min left (2.1 eps/min)\n[westd-27271] GPU1 | VTC M32 train            | PID 921279 | 74050/100K steps      | ~14.4h left (0.5 sps)\n\n[cqa1-33015] GPU0  | SmolVLA random k=0.3 obj | PID 579179 | running ~54 min       | 进度不可见(无日志文件)\n[cqa1-33015] GPU1  | SmolVLA sweep (GPU1脚本)  | PID 74648  | 第4/4实验 random k=0.3, T8 ep3/50 (403/500) | ~21 min left\n[cqa1-33015] GPU1  | SmolVLA baseline obj      |           | ✅ DONE  SR=55.2% avg\n```\n\n关键发现：\n- **即将完成**（<1h）：westd-38929 的两个 Spatial eval，westd-41074 的两个 Object eval，westd-27271 的 OpenVLA eval，cqa1 sweep\n- **长训练**：M96 剩~15h，M64v6 剩~35h，M32 剩~14h\n- **已完成**：Baseline Spatial 97.2%，Random k=0.5 Spatial 71.6%，SmolVLA baseline object ~55%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb7cac23d4db33ff8ca",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code 8b freeform diagnostic",
+  "task_key": "worker_code_8b-freeform-diagnostic_20260515T164805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b-freeform-diagnostic_20260515T164805_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "65247e146172838766d65a4884e377633bb83121ab6706504244b676932058e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 现有 exp012 脚本分析\n- 脚本路径: `/root/schema-dag-extraction/scripts/run_exp012_llama_8b.sh` → 调用 `src/run_experiment.py` → `src/run_extraction.py`\n- prompt 格式: v2（text+type only，无 start/end offset）— 列出类型定义，给 input text，要求输出 `[{\"text\": \"...\", \"type\": \"...\"}]`\n- structured output 方式: `vllm.sampling_params.StructuredOutputsParams(json=batch_schema)`，schema 用 enum 约束 type 字段\n\n## 新诊断脚本\n- 路径: `/root/schema-dag-extraction/scripts/diagnose_llama8b_freeform.py`\n- 模型路径: `/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- 数据路径: `/root/schema-dag-extraction/data/parquet/test.parquet`\n- 运行命令:\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python scripts/diagnose_llama8b_freeform.py\n```\n- syntax check: **PASS**\n- `--help`: **PASS**\n- 预计运行时间: ~2 min（5 samples + model load）\n\n### 脚本要点\n- 复用 exp012 完全相同的 `build_prompt_v2`\n- **去掉** `StructuredOutputsParams`，只用 `SamplingParams(temperature=0, max_tokens=2048)`\n- 固定 6 个诊断类型（person-athlete, organization-company, location-GPE, event-sportsevent, product-car, other-award）\n- 打印每个样本的 raw output，不做 JSON 解析\n- 结果保存到 `artifacts/llama8b_freeform_diagnostic.json`"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "text": "...",
+              "type": "..."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

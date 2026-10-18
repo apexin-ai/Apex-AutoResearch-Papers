@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "677c741a398b10951776",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "paper r3 writing fixes",
+  "task_key": "worker_paper_r3-writing-fixes_20260515T191626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r3-writing-fixes_20260515T191626.log",
+    "occurrence": 1,
+    "bytes": 904441,
+    "sha256": "ee489a1c61c8481d4811b9703d61fe5ce27b5d48771078210619e90a85a563db"
+  },
+  "statistics": {
+    "messages": 237,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 91,
+      "tool_result": 91,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "677c741a398b10951776-part-0001.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "677c741a398b10951776-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "677c741a398b10951776-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ]
+}

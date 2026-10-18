@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be39be2fb36d13723954",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh dcol verify fix",
+  "task_key": "worker_ssh_dcol_verify_fix_20260514T163519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dcol_verify_fix_20260514T163519_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "5ab8ac6b73f642fa8ad98b9b7d9ef4eeba595efe4d45317f18ff3a8eb0d03df5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练完成。验证结果：\n\n## 6 项验证清单\n\n| # | 验证项 | 结果 | 详情 |\n|---|--------|------|------|\n| 1 | train/val/test 三组数据量 | **通过** | train=14000, val=3000, test=3000（总 20000，比例 70/15/15） |\n| 2 | 训练只打印 train/val loss | **通过** | 每 epoch 输出 Train loss + Val loss，无 test loss |\n| 3 | Early stopping 基于 val loss | **通过** | `Best model saved (val_loss=...)` 均基于 val_loss |\n| 4 | 独立 Test Set Evaluation | **通过** | 训练后有 `Test Set Evaluation (held-out)` 区块 |\n| 5 | Test acc ≠ Val acc | **通过** | Val acc=0.7607, Test acc=0.7513（差 0.94pp） |\n| 6 | Loss 合理、逐 epoch 下降 | **通过** | 无 NaN/Inf，train loss 1.5601→1.2397→1.2008，val loss 1.1969→1.1085→1.0949 |\n\n## 具体数字\n\n**Split**: train 14000 / val 3000 / test 3000（各 depth 均 5000 样本，4 类均衡）\n\n**Epoch 训练过程**:\n| Epoch | Train Loss | Train Acc | Val Loss | Val Acc |\n|-------|-----------|-----------|----------|---------|\n| 1 | 1.5601 | 0.6493 | 1.1969 | 0.7410 |\n| 2 | 1.2397 | 0.7233 | 1.1085 | 0.7577 |\n| 3 | 1.2008 | 0.7317 | 1.0949 | 0.7607 |\n\n**最终评估**: Val acc=0.7607, Test acc=0.7513 (4-class), Test 3-class acc=0.6698\n\n3-way split 修复验证全部通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

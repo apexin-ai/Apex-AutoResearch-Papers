@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a1b9a94cbf5ff0fcf0e3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops kill westd41074 lora cleanup",
+  "task_key": "worker_ops_kill_westd41074_lora_cleanup_20260519T184913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_westd41074_lora_cleanup_20260519T184913_result.json",
+    "occurrence": 1,
+    "bytes": 220,
+    "sha256": "cccb6d852a7ab97ff8b55c2bdca5c49af8305432f3da3285d41bdc63ccaf0679"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- **子进程 29854、29242、29249** 已全部终止，`ps` 无残留匹配\n- **GPU 1**：无任何进程占用\n- **GPU 0**：PID 26118 正常运行，占用 30108 MiB，未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

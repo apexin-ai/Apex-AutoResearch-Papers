@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "68fda812d79afc71a64f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 cliff zone batch",
+  "task_key": "worker_deploy_westd38929_cliff_zone_batch_20260525T143531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_cliff_zone_batch_20260525T143531_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "0184433ba134cdfa628bf4d44f0b3daa65a5cc712d959619118ecbf83bf0ee66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部部署成功，正在运行中。\n\n**部署总结：**\n\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | `eval_openvla_attn_k07_long_seed42` (Attn k=0.7) | 214259 | RUNNING |\n| 1 | `eval_openvla_l2norm_k07_long_seed42` (L2norm k=0.7) | 214794 | RUNNING |\n| 2 | `eval_openvla_random_k07_long_seed42` (Random k=0.7) | 215328 | RUNNING |\n| 3 | `eval_openvla_l2norm_k085_long_seed42` (L2norm k=0.85) | 215964 | RUNNING |\n\n**修正了原始命令的两个问题：**\n1. `--gpu 0` 参数不被脚本支持，已去掉（`CUDA_VISIBLE_DEVICES` 足够）\n2. `--unnorm_key libero_10_no_noops` → `libero_10`（模型 norm_stats 中只有 `libero_10`）\n\n日志路径：`/tmp/eval_openvla_<method>_<k>_long_seed42.log`，每张 GPU 占用 ~16GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

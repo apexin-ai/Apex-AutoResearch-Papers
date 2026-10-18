@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d64d1132e97e117df753",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code qwen25 14b multistrategy prep",
+  "task_key": "worker_code_qwen25_14b_multistrategy_prep_20260519T025659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen25_14b_multistrategy_prep_20260519T025659_result.json",
+    "occurrence": 1,
+    "bytes": 1881,
+    "sha256": "4c2781265304e7ce08f590d92c1978d2df7c93a167fb69d7cb2a2ba415872610"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "topk50 中无 top_p 残留，确认干净。\n\n---\n\n## 报告\n\n### 1. 原 scale_002 脚本关键参数\n\n| 类别 | 参数 |\n|------|------|\n| **Generation** | `do_sample=True, top_p=0.95, temperature=1.0, max_new_tokens=512` |\n| **LoRA** | `r=16, lora_alpha=32, target_modules=[q_proj, k_proj, v_proj], dropout=0.05` |\n| **Training** | `epochs=3, bs=4, grad_accum=4, lr=2e-4, bf16=True, gradient_checkpointing=True` |\n| **Data** | `NUM_SAMPLES=5000, MAX_DEPTH=3 (d0-d3), NUM_FOLDS=5` |\n\n### 2. 新脚本路径\n\n| 脚本 | Shell | Python |\n|------|-------|--------|\n| **temp09** | `scripts/run_qwen25_14b_temp09.sh` | `scripts/qwen25_14b_temp09.py` |\n| **topk50** | `scripts/run_qwen25_14b_topk50.sh` | `scripts/qwen25_14b_topk50.py` |\n\n### 3. 修改内容\n\n**temp09**:\n- `top_p=0.95` → `top_p=1.0`（禁用 nucleus）\n- `temperature=1.0` → `temperature=0.9`\n- 数据/检查点/结果目录后缀 `_temp09`\n\n**topk50**:\n- `top_p=0.95` → `top_k=50`（替换为 top-k 采样）\n- `temperature=1.0` 保持不变\n- 数据/检查点/结果目录后缀 `_topk50`\n\n两个脚本的 LoRA 配置、训练参数、样本数完全不变。\n\n### 4. 语法检查\n\n- `bash -n` shell 脚本：**2/2 通过**\n- `py_compile` Python 脚本：**2/2 通过**\n\n### 5. 模型权重状态\n\n8/8 shards 完整存在于 `/root/autodl-tmp/models/qwen25_14b/`，无需重新下载。\n\n### 6. 启动命令\n\n**temp09:**\n```bash\nbash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_temp09.sh\"\n```\n\n**topk50:**\n```bash\nbash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_topk50.sh\"\n```\n\n注意：两个实验都需要完整 GPU 显存（14B FP16），不能同时跑，需要串行提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

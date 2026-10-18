@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "081140f824e9b3930e67",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops random soft control",
+  "task_key": "worker_ops_random_soft_control_20260515T235714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_random_soft_control_20260515T235714_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "0f46578c522321cb19ed488b9e80ea71ddb7cecc73971d905f51a5ceb6edd32a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 已更新为 DONE。结果汇总：\n\n| | mean PPL | std |\n|---|---|---|\n| **random_soft** (随机 4422) | 16.0615 | ± 0.0794 |\n| **rf_soft** (深度筛选 4422) | 15.7334 | ± 0.0420 |\n\n- **Δ PPL = 0.3281**（rf_soft 更低 = 更好）\n- **Paired t-test**: t = 17.98, **p = 5.6 × 10⁻⁵**\n- **Cohen's d = 8.04**（极大效应量）\n- **显著：是 (p < 0.001)**\n\n5 个 seed 全部一致：rf_soft 优于 random_soft（逐 seed Δ 范围 0.277–0.381），排除了\"rf_soft 优势仅因样本量减少\"的混淆解释，确认深度感知筛选是性能提升的原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

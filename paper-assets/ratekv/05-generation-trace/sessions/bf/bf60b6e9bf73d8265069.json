@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "bf60b6e9bf73d8265069",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "fix kill gemma2 duplicate",
+  "task_key": "worker_fix_kill_gemma2_duplicate_20260514T221022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_kill_gemma2_duplicate_20260514T221022.jsonl",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "80bbfc092410b75de198a4f7fa9606a38156ef90973e7723c8c3a961965f8f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:10:31.639872+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_kill_gemma2_duplicate_20260514T221022"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a943427aeff58bd05b94",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research lora mode collapse fix",
+  "task_key": "worker_research_lora-mode-collapse-fix_20260516T111218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_lora-mode-collapse-fix_20260516T111218_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "f49ce14e79c0de74d076b5f71659e5ce0600898fdd0b6e182352a92461f81c2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/research_lora_mode_collapse_fix.md`。\n\n核心发现：\n\n1. **alpha/rank=2.0 是直接原因**——diffusion/flow matching 社区推荐 0.5x，当前 2.0x 过于激进，velocity field 被 LoRA 更新淹没\n2. **MSE loss 天然平均多模态 velocity**（Cocos, arXiv:2505.11123），加上 LoRA 有限容量→全部 noise 映射到同一均值\n3. **无正则化约束**——没有 KL/W2 penalty 防止偏离 pretrained model\n\n最优先尝试的两件事：\n- **P0-a**: alpha 64→16（1 个参数改动，立即重训）\n- **P0-b**: inference 时在 ODE 积分中加微量噪声 σ=0.01~0.05（不需重训，改 `sample_actions()` 即可验证假设）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

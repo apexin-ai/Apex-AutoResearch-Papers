@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b4b60a748edf8c967b8a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh kill vllm release gpu",
+  "task_key": "worker_ssh_kill_vllm_release_gpu_20260517T164816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_vllm_release_gpu_20260517T164816_result.json",
+    "occurrence": 1,
+    "bytes": 95,
+    "sha256": "1485d03c21131a7f7f04a5a42b26a3f8fc5d70a5d2236e76656c258c40a43627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 显存已完全释放。当前状态：0MiB / 97887MiB，无运行进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

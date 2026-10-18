@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "06c66cf4082e7b268497",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent kill two processes",
+  "task_key": "worker_urgent_kill_two_processes_20260528T070008",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_kill_two_processes_20260528T070008_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "0436e6ea9bc27268eece8b623145782ae666d2c102a5ffb9ff5e8a3d5d546503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[w41 cuda:1 kill result]\n744884, 10695 MiB\n\n[w38 cuda:1 kill result]\n253691, 10743 MiB\n261885, 10861 MiB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

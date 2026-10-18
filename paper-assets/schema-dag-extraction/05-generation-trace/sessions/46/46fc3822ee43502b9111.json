@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "46fc3822ee43502b9111",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel qwen3 embeddings",
+  "task_key": "worker_ssh_fewrel-qwen3-embeddings_20260515T113947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-qwen3-embeddings_20260515T113947_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "0d787b06ef6d7aef815880d636b81634da27e3d431c58c073ac29d68a4dc54ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果\n\n| 项目 | 值 |\n|------|-----|\n| Relation 数量 | 80 |\n| 嵌入维度 | 5120 (bfloat16) |\n| SimMatrix | 80×80 |\n| BCS mean | 0.8790 |\n| BCS std | 0.0723 |\n| BCS min | 0.4542 |\n| BCS max | 0.9789 |\n\n产出文件：\n- `artifacts/fewrel_qwen3_embeddings.pt` (843KB)\n- `artifacts/fewrel_qwen3_sim_matrix.pt` (30KB)\n\nGPU 已完全释放，无进程占用，可以立即启动 FewRel formal 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

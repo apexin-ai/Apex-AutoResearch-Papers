@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "43e82bdb61c846e6e769",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops d168 westd27271 xvla v2",
+  "task_key": "worker_ops_d168_westd27271_xvla_v2_20260522T141008",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_d168_westd27271_xvla_v2_20260522T141008_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "b0e07f2c13258eda277567acccda4e94934d44bcb4dbdbfb528414a5204ff773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 实际状态\n\n| GPU | Session | 当前任务 | 进度 |\n|-----|---------|----------|------|\n| 0 | `xvla_spatial` | Baseline (k=1.0), task 3/10 运行中 | 3/10 tasks done, 后面还有 3 个 pruning 配置 |\n| 1 | `xvla_goal` | Baseline (k=1.0), task 4/10 刚开始 | 4/10 tasks done, 后面还有 3 个 pruning 配置 |\n\n**每个 suite 有 10 个 task × 50 episodes = 500 episodes/config，每个 config ~30 min，4 configs 共 ~2 小时。**\n\n### 已完成的 Spatial baseline 结果（部分）\n- Task 0: 98.0%\n- Task 1: 100.0%\n- Task 2: 100.0%\n\n### 已完成的 Goal baseline 结果（部分）\n- Task 0: 100.0%\n- Task 1: 100.0%\n- Task 2: 96.0%\n- Task 3: 98.0%\n\n### 新部署的实验\n\n| tmux session | GPU | 内容 | 状态 |\n|---|---|---|---|\n| `xvla_long` | 0 | Long suite (baseline + l2_norm k=0.95/0.9/0.7)，max_steps=900 | 等待 `xvla_spatial` 完成后自动启动 |\n| `xvla_random` | 1 | Random pruning 对照 (Object/Spatial/Goal/Long × k=0.95/0.9/0.7 = 12 runs) | 等待 `xvla_goal` 完成后自动启动 |\n\n两个新 session 使用 `pgrep` 轮询等待，前序实验进程退出后自动接力启动。预计 Long ~2h 后开始，Random 也类似。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2770324d4be8104ebc37",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check w38 w27 status",
+  "task_key": "worker_check_w38-w27-status_20260527T185655",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_w38-w27-status_20260527T185655_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "a677f501e9bcd7d8791a52c13d6713dc76ba9341c30dd332b885d6d7662cf33c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修复为 RUNNING。汇总：\n\n### 实验状态\n\n| 实验 | 服务器 | 进度 | 当前数据 |\n|------|--------|------|----------|\n| **Attn k=0.5 s43** (w38) | westd-38929 GPU:3 | T0 ep=40/50 | 27/40=68% |\n| **Attn k=0.85 s43 v2** (w27) | westd-27271 GPU:0 | T1 完成，进入 T2 | T0: 26%, T1: 56%, 累计 41/100=41% |\n| **Attn k=0.75 s43 v2** (w27) | westd-27271 GPU:1 | T2 ep=20/50 | T0: 58%, T1: 68%, T2 当前 70%, 累计 63/100=63% |\n\n- w38 实验刚启动约 17 分钟，registry 已从 PREPARING 修复到 RUNNING\n- w27 两个实验都正常推进，k=0.75 比 k=0.85 快（GPU 共享影响不同）且成功率明显更高\n- k=0.85 的 T0 只有 26% 异常低，值得关注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

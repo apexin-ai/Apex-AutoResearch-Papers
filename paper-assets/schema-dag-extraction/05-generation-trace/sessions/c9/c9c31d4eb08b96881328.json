@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c31d4eb08b96881328",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d048 text modifications",
+  "task_key": "worker_paper_d048_text_modifications_20260516T143117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d048_text_modifications_20260516T143117_result.json",
+    "occurrence": 1,
+    "bytes": 1797,
+    "sha256": "f1092b25d69de0a87bb2347f8a42582dc16001e4b1090e4a2cb1e0e282bef923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 报告\n\n### 1. 编译状态\n编译成功，无错误 (`^!` = 0)，无 undefined 引用。\n\n### 2. 正文页数\n**8 页**（Conclusion 在第 8 页，Limitations/Checklist/References 在 9-12 页，Appendix 从第 13 页开始）。\n\n### 3. \"31.2\" grep 结果\n- **正文 4 处**（符合要求）：abstract.tex:4, introduction.tex:12, results.tex:56, results.tex:67\n- **表格数据 4 处**（数值不可改）：main.tex:93, 94, 265, 266\n- **附录 1 处**：main.tex:219（prompt sensitivity 对比，引用表格数值）\n\n### 4. \"two-channel model\" grep 结果\n**0 次**，全部替换为 \"two-channel decomposition\"。\n\n### 各任务完成清单\n\n| 任务 | 状态 | 修改文件 |\n|------|------|----------|\n| B1: 31.2pp 削减 | ✓ 5处替换 + 2处附录/caption | results.tex, discussion.tex, main.tex |\n| B2: Contribution #1 + model→decomposition | ✓ | introduction.tex, discussion.tex (2处) |\n| B3: \"first\" 限定 | ✓ abstract + introduction | abstract.tex, introduction.tex |\n| B4: Few-NERD pairwise coverage | ✓ | experimental_setup.tex |\n| B5: Seeds | ✓ 已有 seed=42，跳过 | — |\n| B6: r² defense | ✓ 段末加句 | discussion.tex |\n| B7: Multiple comparisons | ✓ Limitations 末尾加段 | main.tex |\n| B8.1: Channel labels | ✓ \"(hereafter Channel~1 and Channel~2)\" | introduction.tex |\n| B8.2: training-free 脚注 | ✓ | introduction.tex |\n| B8.3: SDGD designation | ✓ \"adopted abbreviation\" | sdgd_negative.tex |\n| B8.4: DocRED/Llama citations | ✓ | checklist.tex |\n| B8.5: Bootstrap B=10,000 | ✓ 统一为 B=10,000 | experimental_setup.tex, results.tex, checklist.tex |\n| B8.6: NER metric detail | ✓ 加 lowercasing/whitespace/partial | experimental_setup.tex |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

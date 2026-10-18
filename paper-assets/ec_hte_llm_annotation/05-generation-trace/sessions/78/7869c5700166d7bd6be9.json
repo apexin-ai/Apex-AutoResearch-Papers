@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7869c5700166d7bd6be9",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 007 double correction fix",
+  "task_key": "worker_code_exp-007-double-correction-fix_20260520T223135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-double-correction-fix_20260520T223135_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "3e1d43167ae9bbb05930c82cc939420bc877ff21b12b9aff6f535f68dff78155"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results look correct:\n\n- **DGP A** (covariate-only): `ec_hte_ppci` = `ec_hte` exactly (rectifier ≈ 0, no double correction)\n- **DGP C** (both errors): `ec_hte_ppci` substantially improves over `ec_hte` by correcting the remaining outcome error\n\nChanges made:\n1. **`method_ec_hte_ppci`** (line 420-446): Rectifier now uses `gold_bool` (true Z grouping) for both `tau_gold` and `tau_hat_gold_true_z`, so it only captures outcome error. Previously it used Z_hat grouping for `tau_hat_gold`, causing double correction of covariate error.\n2. **`method_ppci` docstring** (line 325-338): Clarified that the PPCI rectifier captures all systematic error (covariate + outcome), complementary to EC-HTE's structured covariate-only correction.\n3. **File header** (line 7-10): Documented the fix."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

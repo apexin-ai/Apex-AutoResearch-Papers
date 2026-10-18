@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0a51b67dd1595b4e76bd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code plan 022 text length",
+  "task_key": "worker_code_plan_022_text_length_20260517T124748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_022_text_length_20260517T124748_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "e819bd5a5345de5555edf1611791750db88915f5488a6bb55da9da32fd35047e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running at ~1.3s/sample. Estimated completion in ~38 minutes. I'll check back in 20 minutes to capture results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

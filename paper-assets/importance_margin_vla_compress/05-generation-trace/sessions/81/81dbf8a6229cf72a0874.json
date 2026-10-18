@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "81dbf8a6229cf72a0874",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd 41074 pi05 k0925 20260524",
+  "task_key": "worker_deploy_westd-41074-pi05-k0925-20260524_20260524T053508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-41074-pi05-k0925-20260524_20260524T053508_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "9f89271a8ee333f24f50928de71d8d022f4b233f16c79e93ee375f630fb48397"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 张 GPU 都被占用，无法部署新实验。\n\n```\nGPU Status:\n- GPU 0: OCCUPIED — eval_pi05_l2norm_k0925_goal_seed42_v3 (L2norm k=0.925 Goal, PID 664277, started 13:14)\n- GPU 1: OCCUPIED — eval_pi05_random_k03_long_seed43_v2 (Random k=0.3 Long seed43, PID 515300, started 10:58)\n- GPU 2: OCCUPIED — eval_pi05_random_k085_spatial_seed42_v3 (Random k=0.85 Spatial, PID 664353, started 13:14)\n- GPU 3: OCCUPIED — eval_pi05_l2norm_k085_spatial_seed42_v3 (L2norm k=0.85 Spatial, PID 664491, started 13:14)\n\n已部署: 无（所有 GPU 被占用）\n\n待部署队列:\n1. eval_pi05_random_k0925_object_seed42_postfix → 等 GPU 释放\n2. eval_pi05_random_k095_spatial_seed42_postfix_v2 → 等 GPU 释放\n3. eval_pi05_l2norm_k085_spatial_seed42_v4 → 注意 GPU 3 已在跑 v3 版本（同实验）\n```\n\n注意事项：\n- GPU 0/2/3 上的实验都是今天 13:14 启动的，预计还需数小时才能完成\n- GPU 3 的 L2norm k=0.85 Spatial v3 就是任务中要部署的 v4 的前一版本，如果 v3 成功则 v4 无需重跑\n- 需要等当前实验完成后再部署 3 个待定实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

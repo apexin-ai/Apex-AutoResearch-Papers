@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf83910ab12de2b7baa",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag gpu status all servers 0527",
+  "task_key": "worker_diag_gpu_status_all_servers_0527_20260526T233240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_gpu_status_all_servers_0527_20260526T233240_result.json",
+    "occurrence": 1,
+    "bytes": 1633,
+    "sha256": "8dbab6f12fc728fa8fffe93fe2faf20372f12d27c0c453dad293f9d2dd897483"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 诊断结果 (2026-05-27 07:33 UTC)\n\n### cqa1-33015 (4× RTX 4090 D 24GB)\n| GPU | Status | Experiment |\n|-----|--------|-----------|\n| **0** | **IDLE** | — |\n| **1** | **IDLE** | — |\n| 2 | Running 44% | π0.5 attn k=0.5 Long s42 |\n| 3 | Running 16% | π0.5 random k=0.7 Long s42 |\n\neval_pi05_attn_k095_long_seed42 已完成 (**SR=77.0%**, 04:20 UTC)，已更新 registry → DONE。\n\n### westd-38929 (4× RTX PRO 6000 98GB)\n| GPU | Status | Experiment |\n|-----|--------|-----------|\n| 0 | Running 43% | OV L2norm k=0.5 Long s42 |\n| 1 | Running 70% | OV Random k=0.85 Long s42 v3 |\n| 2 | Running 48% | OV L2norm k=0.75 Long s42 |\n| 3 | Running 89% | OV Random k=0.75 Goal s42 (不在 registry) |\n\n### westd-41074 (4× RTX PRO 6000 98GB)\n| GPU | Status | Experiment |\n|-----|--------|-----------|\n| 0 | Running 0%* | OV Random k=0.75 Object s42 (不在 registry; 进程活跃，瞬时0%) |\n| 1 | Running 82% | OV Random k=0.75 Long s42 |\n| 2 | Running 84% | OV Random k=0.95 Object s42 (不在 registry) |\n| 3 | Running 80% | OV Attn k=0.75 Long s42 |\n\n### westd-27271 (2× RTX PRO 6000 98GB)\n| GPU | Status | Experiment |\n|-----|--------|-----------|\n| 0 | Running 70% | OV Attn k=0.75 Goal s42 |\n| 1 | Running 74% | OV Attn k=0.5 Long s42 |\n\n### 汇总\n- **12/14 GPU 在跑，2 张空闲** (cqa1 GPU 0 + GPU 1, RTX 4090D 24GB)\n- Cron 悬疑已解决：L2norm k=0.5 在 westd-38929 GPU 0，Attn k=0.5 在 westd-27271 GPU 1\n- 5 个实验在跑但不在 registry 中（3个 OV Random 系列 + 2个 π0.5）\n- eval_pi05_attn_k095_long_seed42 已完成，registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

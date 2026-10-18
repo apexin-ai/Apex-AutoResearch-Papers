@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "82399525cabf38ec7d2c",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "prep anonymous github patch",
+  "task_key": "worker_prep_anonymous-github-patch_20260517T013001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_anonymous-github-patch_20260517T013001.log",
+    "occurrence": 1,
+    "bytes": 715985,
+    "sha256": "f9a8fcc1385de2bc79bb30ee097474168336780327e50b9d41374134d5ba1048"
+  },
+  "statistics": {
+    "messages": 116,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 41,
+      "tool_result": 41
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "82399525cabf38ec7d2c-part-0001.json",
+          "message_count": 106
+        },
+        {
+          "path": "82399525cabf38ec7d2c-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ]
+}

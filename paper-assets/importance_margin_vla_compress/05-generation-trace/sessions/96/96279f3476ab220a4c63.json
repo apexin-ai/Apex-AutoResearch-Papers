@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "96279f3476ab220a4c63",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k085 goal seed42 postfix v3",
+  "task_key": "worker_analysis_eval_pi05_random_k085_goal_seed42_postfix_v3_20260525T095349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k085_goal_seed42_postfix_v3_20260525T095349_result.json",
+    "occurrence": 1,
+    "bytes": 1451,
+    "sha256": "d2ef655d433798ccd9749ea2342f235ff5affc7093cb44ba13297372baaf8144"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (success)。\n\n## 结果报告\n\n### Overall\n**SR = 53.0% (265/500)** | Δ baseline = **-43.4pp** (vs 96.4%) | 耗时 139.3 min\n\n### Per-task Breakdown\n\n| Task | Description | SR | Successes |\n|------|------------|-----|-----------|\n| T0 | open the middle drawer of the cabinet | 84% | 42/50 |\n| T1 | put the bowl on the stove | 2% | 1/50 |\n| T2 | put the wine bottle on top of the cabinet | 18% | 9/50 |\n| T3 | open the top drawer and put the bowl in | 34% | 17/50 |\n| T4 | put the bowl on top of the cabinet | 54% | 27/50 |\n| T5 | push the plate to the front of the stove | 76% | 38/50 |\n| T6 | put the cream cheese in the bowl | 82% | 41/50 |\n| T7 | turn on the stove | 88% | 44/50 |\n| T8 | put the bowl on the plate | 84% | 42/50 |\n| T9 | put the wine bottle on the rack | 8% | 4/50 |\n\n### 历史一致性对比\n\n| Run | SR | Successes |\n|-----|-----|-----------|\n| random k=0.85 Goal postfix (original) | 52.8% | 264/500 |\n| random k=0.85 Goal v3 (non-postfix) | 52.4% | 262/500 |\n| random k=0.85 Goal v4 | 52.4% | 262/500 |\n| random k=0.85 Goal seed43 postfix | 53.4% | 267/500 |\n| **本次 (v3 postfix)** | **53.0%** | **265/500** |\n\n### Conclusion: **SUCCESS**\n\n本次 53.0% 落在历史 5 次运行的 [52.4%, 53.4%] 区间内，方差极小 (σ ≈ 0.4pp)，确认 random k=0.85 Goal 性能稳定在 ~52-53%。无异常或错误，进程正常退出 (EXIT_CODE=0)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

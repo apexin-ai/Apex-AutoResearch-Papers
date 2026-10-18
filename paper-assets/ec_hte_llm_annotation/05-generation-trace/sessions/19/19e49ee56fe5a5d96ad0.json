@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "19e49ee56fe5a5d96ad0",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 027 cf oracle coverage",
+  "task_key": "worker_code_exp-027-cf-oracle-coverage_20260522T140148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-027-cf-oracle-coverage_20260522T140148_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "4ab08ae3fd7704d75da512570e86f8f1393e90d8c585d31c00b519efb2e6b688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment completed in 161s. Results saved to `results/exp_cf_oracle_coverage.csv`.\n\nKey findings:\n\n| Method | Coverage | |Bias| | RMSE |\n|---|---|---|---|\n| Oracle (true Z) | **94.5%** | 0.0056 | 0.078 |\n| EC-HTE true CM | **92.5%** | 0.0078 | 0.114 |\n| EC-HTE estimated CM | **93.1%** | 0.0148 | 0.121 |\n| Global true CM | 91.3% | 0.0371 | 0.110 |\n| Global estimated CM | 91.1% | 0.0379 | 0.111 |\n| Naive | 88.3% | 0.0447 | 0.095 |\n\n**Interpretation:**\n- **Oracle at 94.5%**: CF SE is well-calibrated on its own (close to nominal 95%)\n- **EC-HTE true CM (92.5%) ≈ estimated CM (93.1%)**: CM estimation error is NOT the source of the gap — the ~2pp difference is negligible\n- The ~2pp drop from Oracle to EC-HTE true CM comes from M^{-1} SE propagation amplifying uncertainty through the correction, not from CM estimation noise\n- Naive at 88.3% confirms misclassification without correction degrades coverage, especially in high-pi subgroups (sub 3: 76-84%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

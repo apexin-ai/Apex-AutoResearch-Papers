@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb9c388e49b8b5238ac",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code cross strategy dann",
+  "task_key": "worker_code_cross_strategy_dann_20260519T104344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_strategy_dann_20260519T104344_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "51f1baa3ee788d391c90511504d47ae5e791629110bdf6c1f625eab37525425b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are saved. Here's the summary of all results:\n\n## All 3 Models Complete\n\n**LOSO Average (cross-model):**\n\n| Method | Accuracy | MAE | Weighted Kappa |\n|--------|----------|-----|----------------|\n| RF | 0.5918 | 0.4969 | 0.7164 |\n| DNN | 0.5939 | 0.4985 | 0.7137 |\n| **DANN** | **0.6040** | **0.4755** | **0.7315** |\n\nDANN wins on all aggregate metrics across all 3 models. The largest gains are on the hardest fold (hold-out top-k), where domain shift is greatest. Naive DNN barely improves over RF, confirming that the gains come from the gradient reversal domain adaptation rather than from the neural architecture itself.\n\n**Files saved:**\n- `artifacts/cross_strategy_da/dann_results.json` (all 3 models, per-fold + averages)\n- `artifacts/cross_strategy_da/dann_vs_baseline_comparison.md` (full comparison with tables and analysis)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

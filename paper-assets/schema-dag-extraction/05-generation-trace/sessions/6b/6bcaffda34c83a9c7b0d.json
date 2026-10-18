@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6bcaffda34c83a9c7b0d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis m2 ecological fallacy",
+  "task_key": "worker_analysis_m2_ecological_fallacy_20260522T091157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m2_ecological_fallacy_20260522T091157_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "afa2ca2d18f7afbe8c4a5c2097cd2b21f9f2568993577ad76c6139792a7b27d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Ecological fallacy 结构上不适用。** BCS 是 contextual variable（Level-2），每个 batch 内所有 instance 共享同一个 BCS 值，within-batch BCS 方差恰好为零。经典 ecological fallacy 要求 X 是 individual-level 变量的聚合（如个人收入→地区平均收入），但 BCS 不是——它是不可分解的 batch-level 构念。\n\n关键数据：\n\n| 指标 | 值 |\n|------|-----|\n| ICC（type-level, Qwen3） | 0.146 |\n| ICC（instance-level, Gemini Flash） | 0.035 |\n| Batch-level semipartial R²(BCS\\|count) | 0.138 |\n| Type-level semipartial R²(BCS\\|count) | 0.012 |\n| Type-level β(BCS), cluster-robust | −0.485, p < .001 |\n| Within-batch BCS variance | 0.000 |\n| Effect direction reversal? | 无 |\n\n低 ICC 是预期中的——binary correctness 的 instance-level 变异主要由实例本身难度决定，而非 batch 组成。BCS 的 claim 本身就是 batch-level 的（\"batch composition affects batch performance\"），batch-level 分析就是正确的分析粒度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

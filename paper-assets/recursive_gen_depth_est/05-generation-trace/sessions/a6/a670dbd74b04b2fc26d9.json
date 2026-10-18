@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "id": "a670dbd74b04b2fc26d9",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp feature ablation 9cell",
+  "task_key": "worker_exp_feature_ablation_9cell_20260515T171759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_feature_ablation_9cell_20260515T171759.log",
+    "occurrence": 1,
+    "bytes": 2347689,
+    "sha256": "6474e6a0e9d0e193a9730aaef5f6ecfdf52c3ea499e77862483fa8ebc86bee87"
+  },
+  "statistics": {
+    "messages": 2121,
+    "user_turns": 2,
+    "tool_calls": 994,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 9,
+      "assistant": 113,
+      "tool_call": 994,
+      "tool_result": 994,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 734,
+      "chunks": [
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1369,
+      "chunks": [
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0005.json",
+          "message_count": 165
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0012.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "a670dbd74b04b2fc26d9-part-0012.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ]
+}

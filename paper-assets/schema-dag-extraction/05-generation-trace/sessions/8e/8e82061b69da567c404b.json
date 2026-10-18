@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8e82061b69da567c404b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper ref update arxiv",
+  "task_key": "worker_paper_ref_update_arxiv_20260522T073013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref_update_arxiv_20260522T073013_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "b1ffcdb6cf53271eb89725f20bc577dc67b03db2660e356ecb2c70a595cc056e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个条目均未找到正式发表记录，保持不变。\n\n| 条目 | 状态 |\n|------|------|\n| **instructuie-2023** (Wang et al., arXiv:2304.08085) | 仍为 arXiv preprint，未在 ACL Anthology 或 Semantic Scholar 找到正式 proceedings 版本 |\n| **promptner-2023** (Ashok & Lipton, arXiv:2305.15444) | 仍为 arXiv preprint，未在任何会议正式发表。注意 ACL 2023 有另一篇同名但不同作者的 \"PromptNER\"（Shen et al.），与本条目无关 |\n\nbib 文件无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,1506 @@
+{
+  "schema_version": "1.0",
+  "id": "6f70a7e6ce0281622c78",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "analysis llama heuristic k2 exit",
+  "task_key": "worker_analysis_llama_heuristic_k2_exit_20260514T120541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_heuristic_k2_exit_20260514T120541.log",
+    "occurrence": 1,
+    "bytes": 71297,
+    "sha256": "ca3256f9b65ca363e7cf64413b303323eb35e530e4af800aa3064341361a4c27"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__delete_cron",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bf925cd4-62c9-4696-9fc7-319c70e0141d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1778922000,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.88,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "eacde211-08eb-4b07-95e5-b8f1492eb52a",
+                "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the experiment results on the server.",
+              "signature": "Eu0BClkIDRgCKkBisCwOq8j/ajTQsdSFZUfywvkntcIjOpl+trgRVCvVQNSXfQEacHI5JuqQ9Th2BhybFnh8smHFyt4jm+hrAkCzMg9jbGF1ZGUtb3B1cy00LTY4ABIM2NNf42n+lGDJfvl8GgxAv0YWXS4fqTHB/0UiMHfDj4wtF6Qe/V0TUtQb/gKMrCT+w2ptSI//HxzC66KKmFM4+IcGbegikCrftS6X1CpCq2fAL7kQQcBocCJnXzr6kPQINYGy+BkG08U1h0mzicdePNmKGwNmL3sapGjQ6TPeCIZA7CjXNOQcOuV9ivLwFChxGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "7fbaeeb4-9233-47ef-b313-e06c55f44746",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MaA1Nk69rVTiq12bjUDQBr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12023,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12023
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查 llama_heuristic_k2 实验结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "2ff13d50-dedc-4d40-8565-bf43d1bff360",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MaA1Nk69rVTiq12bjUDQBr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12023,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12023
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JQJj81QUC4g8CgsfLQKAzj",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "b07e0246-efa7-4cc4-a032-b4683a17ea03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MaA1Nk69rVTiq12bjUDQBr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12023,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12023
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T12:05:53.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JQJj81QUC4g8CgsfLQKAzj",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__delete_cron"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "5dfc6d53-d2d9-45a3-b810-fe40036e55ce",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__delete_cron"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mgd7XwPjMmdYSUSeS7kw1s",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "tail -100 /root/ratekv/d041_llama_heuristic_k2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "f304ccfe-3938-49cc-863f-86889d5d49ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ERyRFVkihk4SEFBy8Vap7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 23864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 999
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T12:05:58.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mgd7XwPjMmdYSUSeS7kw1s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  chunk 400/564, running ppl=8.71\\\\n  chunk 450/564, running ppl=8.57\\\\n  chunk 500/564, running ppl=8.55\\\\n  chunk 550/564, running ppl=8.53\\\\n>>> L0-random seed=0 PPL: 8.5479\\\\n  2-bit heads: [(13, 2), (28, 0)]\\\\n\\\\nEval: L0-random seed=1...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.61\\\\n  chunk 100/564, running ppl=9.24\\\\n  chunk 150/564, running ppl=8.70\\\\n  chunk 200/564, running ppl=8.99\\\\n  chunk 250/564, running ppl=8.77\\\\n  chunk 300/564, running ppl=8.59\\\\n  chunk 350/564, running ppl=8.61\\\\n  chunk 400/564, running ppl=8.93\\\\n  chunk 450/564, running ppl=8.79\\\\n  chunk 500/564, running ppl=8.76\\\\n  chunk 550/564, running ppl=8.74\\\\n>>> L0-random seed=1 PPL: 8.7595\\\\n  2-bit heads: [(5, 2), (19, 1)]\\\\n\\\\nEval: L0-random seed=2...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.50\\\\n  chunk 100/564, running ppl=9.11\\\\n  chunk 150/564, running ppl=8.57\\\\n  chunk 200/564, running ppl=8.84\\\\n  chunk 250/564, running ppl=8.61\\\\n  chunk 300/564, running ppl=8.45\\\\n  chunk 350/564, running ppl=8.47\\\\n  chunk 400/564, running ppl=8.78\\\\n  chunk 450/564, running ppl=8.65\\\\n  chunk 500/564, running ppl=8.62\\\\n  chunk 550/564, running ppl=8.61\\\\n>>> L0-random seed=2 PPL: 8.6240\\\\n  2-bit heads: [(28, 4), (31, 4)]\\\\n\\\\nEval: L0-random seed=3...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.44\\\\n  chunk 100/564, running ppl=9.01\\\\n  chunk 150/564, running ppl=8.51\\\\n  chunk 200/564, running ppl=8.78\\\\n  chunk 250/564, running ppl=8.56\\\\n  chunk 300/564, running ppl=8.39\\\\n  chunk 350/564, running ppl=8.42\\\\n  chunk 400/564, running ppl=8.73\\\\n  chunk 450/564, running ppl=8.60\\\\n  chunk 500/564, running ppl=8.57\\\\n  chunk 550/564, running ppl=8.55\\\\n>>> L0-random seed=3 PPL: 8.5721\\\\n  2-bit heads: [(8, 4), (19, 7)]\\\\n\\\\nEval: L0-random seed=4...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.46\\\\n  chunk 100/564, running ppl=9.06\\\\n  chunk 150/564, running ppl=8.55\\\\n  chunk 200/564, running ppl=8.83\\\\n  chunk 250/564, running ppl=8.61\\\\n  chunk 300/564, running ppl=8.44\\\\n  chunk 350/564, running ppl=8.47\\\\n  chunk 400/564, running ppl=8.78\\\\n  chunk 450/564, running ppl=8.64\\\\n  chunk 500/564, running ppl=8.62\\\\n  chunk 550/564, running ppl=8.60\\\\n>>> L0-random seed=4 PPL: 8.6192\\\\n  2-bit heads: [(8, 4), (10, 5)]\\\\n\\\\nEval: Naive positional (deepest 2 heads @2-bit)...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.43\\\\n  chunk 100/564, running ppl=9.04\\\\n  chunk 150/564, running ppl=8.53\\\\n  chunk 200/564, running ppl=8.80\\\\n  chunk 250/564, running ppl=8.58\\\\n  chunk 300/564, running ppl=8.41\\\\n  chunk 350/564, running ppl=8.43\\\\n  chunk 400/564, running ppl=8.75\\\\n  chunk 450/564, running ppl=8.61\\\\n  chunk 500/564, running ppl=8.58\\\\n  chunk 550/564, running ppl=8.56\\\\n>>> Naive positional (deepest 2 heads @2-bit) PPL: 8.5781\\\\n\\\\n============================================================\\\\nLlama-3.1-8B k=2 Heuristic Results (budget=0.25)\\\\n============================================================\\\\n  Baseline bf16:     8.0918\\\\n  Uniform 4-bit:     8.4690\\\\n  MCKP (k=2):        8.4498\\\\n  L0-random mean:    8.6245 +/- 0.0733\\\\n  L0-random median:  8.6192\\\\n  Naive positional:  8.5781\\\\n  MCKP vs L0-random: 0.1747\\\\n  MCKP vs Naive:     0.1283\\\\n\\\\nSaved to /root/ratekv/d041_llama_heuristic_k2_results.json\\\\nTotal time: 253.9s (4.2min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "c0c4b6e8-1d91-49d9-893a-c3bfd0f097cd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  chunk 400/564, running ppl=8.71\\\\n  chunk 450/564, running ppl=8.57\\\\n  chunk 500/564, running ppl=8.55\\\\n  chunk 550/564, running ppl=8.53\\\\n>>> L0-random seed=0 PPL: 8.5479\\\\n  2-bit heads: [(13, 2), (28, 0)]\\\\n\\\\nEval: L0-random seed=1...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.61\\\\n  chunk 100/564, running ppl=9.24\\\\n  chunk 150/564, running ppl=8.70\\\\n  chunk 200/564, running ppl=8.99\\\\n  chunk 250/564, running ppl=8.77\\\\n  chunk 300/564, running ppl=8.59\\\\n  chunk 350/564, running ppl=8.61\\\\n  chunk 400/564, running ppl=8.93\\\\n  chunk 450/564, running ppl=8.79\\\\n  chunk 500/564, running ppl=8.76\\\\n  chunk 550/564, running ppl=8.74\\\\n>>> L0-random seed=1 PPL: 8.7595\\\\n  2-bit heads: [(5, 2), (19, 1)]\\\\n\\\\nEval: L0-random seed=2...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.50\\\\n  chunk 100/564, running ppl=9.11\\\\n  chunk 150/564, running ppl=8.57\\\\n  chunk 200/564, running ppl=8.84\\\\n  chunk 250/564, running ppl=8.61\\\\n  chunk 300/564, running ppl=8.45\\\\n  chunk 350/564, running ppl=8.47\\\\n  chunk 400/564, running ppl=8.78\\\\n  chunk 450/564, running ppl=8.65\\\\n  chunk 500/564, running ppl=8.62\\\\n  chunk 550/564, running ppl=8.61\\\\n>>> L0-random seed=2 PPL: 8.6240\\\\n  2-bit heads: [(28, 4), (31, 4)]\\\\n\\\\nEval: L0-random seed=3...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.44\\\\n  chunk 100/564, running ppl=9.01\\\\n  chunk 150/564, running ppl=8.51\\\\n  chunk 200/564, running ppl=8.78\\\\n  chunk 250/564, running ppl=8.56\\\\n  chunk 300/564, running ppl=8.39\\\\n  chunk 350/564, running ppl=8.42\\\\n  chunk 400/564, running ppl=8.73\\\\n  chunk 450/564, running ppl=8.60\\\\n  chunk 500/564, running ppl=8.57\\\\n  chunk 550/564, running ppl=8.55\\\\n>>> L0-random seed=3 PPL: 8.5721\\\\n  2-bit heads: [(8, 4), (19, 7)]\\\\n\\\\nEval: L0-random seed=4...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.46\\\\n  chunk 100/564, running ppl=9.06\\\\n  chunk 150/564, running ppl=8.55\\\\n  chunk 200/564, running ppl=8.83\\\\n  chunk 250/564, running ppl=8.61\\\\n  chunk 300/564, running ppl=8.44\\\\n  chunk 350/564, running ppl=8.47\\\\n  chunk 400/564, running ppl=8.78\\\\n  chunk 450/564, running ppl=8.64\\\\n  chunk 500/564, running ppl=8.62\\\\n  chunk 550/564, running ppl=8.60\\\\n>>> L0-random seed=4 PPL: 8.6192\\\\n  2-bit heads: [(8, 4), (10, 5)]\\\\n\\\\nEval: Naive positional (deepest 2 heads @2-bit)...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.43\\\\n  chunk 100/564, running ppl=9.04\\\\n  chunk 150/564, running ppl=8.53\\\\n  chunk 200/564, running ppl=8.80\\\\n  chunk 250/564, running ppl=8.58\\\\n  chunk 300/564, running ppl=8.41\\\\n  chunk 350/564, running ppl=8.43\\\\n  chunk 400/564, running ppl=8.75\\\\n  chunk 450/564, running ppl=8.61\\\\n  chunk 500/564, running ppl=8.58\\\\n  chunk 550/564, running ppl=8.56\\\\n>>> Naive positional (deepest 2 heads @2-bit) PPL: 8.5781\\\\n\\\\n============================================================\\\\nLlama-3.1-8B k=2 Heuristic Results (budget=0.25)\\\\n============================================================\\\\n  Baseline bf16:     8.0918\\\\n  Uniform 4-bit:     8.4690\\\\n  MCKP (k=2):        8.4498\\\\n  L0-random mean:    8.6245 +/- 0.0733\\\\n  L0-random median:  8.6192\\\\n  Naive positional:  8.5781\\\\n  MCKP vs L0-random: 0.1747\\\\n  MCKP vs Naive:     0.1283\\\\n\\\\nSaved to /root/ratekv/d041_llama_heuristic_k2_results.json\\\\nTotal time: 253.9s (4.2min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  chunk 400/564, running ppl=8.71\\n  chunk 450/564, running ppl=8.57\\n  chunk 500/564, running ppl=8.55\\n  chunk 550/564, running ppl=8.53\\n>>> L0-random seed=0 PPL: 8.5479\\n  2-bit heads: [(13, 2), (28, 0)]\\n\\nEval: L0-random seed=1...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.61\\n  chunk 100/564, running ppl=9.24\\n  chunk 150/564, running ppl=8.70\\n  chunk 200/564, running ppl=8.99\\n  chunk 250/564, running ppl=8.77\\n  chunk 300/564, running ppl=8.59\\n  chunk 350/564, running ppl=8.61\\n  chunk 400/564, running ppl=8.93\\n  chunk 450/564, running ppl=8.79\\n  chunk 500/564, running ppl=8.76\\n  chunk 550/564, running ppl=8.74\\n>>> L0-random seed=1 PPL: 8.7595\\n  2-bit heads: [(5, 2), (19, 1)]\\n\\nEval: L0-random seed=2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.50\\n  chunk 100/564, running ppl=9.11\\n  chunk 150/564, running ppl=8.57\\n  chunk 200/564, running ppl=8.84\\n  chunk 250/564, running ppl=8.61\\n  chunk 300/564, running ppl=8.45\\n  chunk 350/564, running ppl=8.47\\n  chunk 400/564, running ppl=8.78\\n  chunk 450/564, running ppl=8.65\\n  chunk 500/564, running ppl=8.62\\n  chunk 550/564, running ppl=8.61\\n>>> L0-random seed=2 PPL: 8.6240\\n  2-bit heads: [(28, 4), (31, 4)]\\n\\nEval: L0-random seed=3...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.44\\n  chunk 100/564, running ppl=9.01\\n  chunk 150/564, running ppl=8.51\\n  chunk 200/564, running ppl=8.78\\n  chunk 250/564, running ppl=8.56\\n  chunk 300/564, running ppl=8.39\\n  chunk 350/564, running ppl=8.42\\n  chunk 400/564, running ppl=8.73\\n  chunk 450/564, running ppl=8.60\\n  chunk 500/564, running ppl=8.57\\n  chunk 550/564, running ppl=8.55\\n>>> L0-random seed=3 PPL: 8.5721\\n  2-bit heads: [(8, 4), (19, 7)]\\n\\nEval: L0-random seed=4...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.46\\n  chunk 100/564, running ppl=9.06\\n  chunk 150/564, running ppl=8.55\\n  chunk 200/564, running ppl=8.83\\n  chunk 250/564, running ppl=8.61\\n  chunk 300/564, running ppl=8.44\\n  chunk 350/564, running ppl=8.47\\n  chunk 400/564, running ppl=8.78\\n  chunk 450/564, running ppl=8.64\\n  chunk 500/564, running ppl=8.62\\n  chunk 550/564, running ppl=8.60\\n>>> L0-random seed=4 PPL: 8.6192\\n  2-bit heads: [(8, 4), (10, 5)]\\n\\nEval: Naive positional (deepest 2 heads @2-bit)...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.43\\n  chunk 100/564, running ppl=9.04\\n  chunk 150/564, running ppl=8.53\\n  chunk 200/564, running ppl=8.80\\n  chunk 250/564, running ppl=8.58\\n  chunk 300/564, running ppl=8.41\\n  chunk 350/564, running ppl=8.43\\n  chunk 400/564, running ppl=8.75\\n  chunk 450/564, running ppl=8.61\\n  chunk 500/564, running ppl=8.58\\n  chunk 550/564, running ppl=8.56\\n>>> Naive positional (deepest 2 heads @2-bit) PPL: 8.5781\\n\\n============================================================\\nLlama-3.1-8B k=2 Heuristic Results (budget=0.25)\\n============================================================\\n  Baseline bf16:     8.0918\\n  Uniform 4-bit:     8.4690\\n  MCKP (k=2):        8.4498\\n  L0-random mean:    8.6245 +/- 0.0733\\n  L0-random median:  8.6192\\n  Naive positional:  8.5781\\n  MCKP vs L0-random: 0.1747\\n  MCKP vs Naive:     0.1283\\n\\nSaved to /root/ratekv/d041_llama_heuristic_k2_results.json\\nTotal time: 253.9s (4.2min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HxQ7fgTccRHprpyctSALi6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "ls -la /root/ratekv/*llama*heuristic*k2* /root/ratekv/*d041*llama*",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "dbc37c31-ae64-4e35-af5a-c7191a23db73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ERyRFVkihk4SEFBy8Vap7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 23864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 999
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T12:05:58.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HxQ7fgTccRHprpyctSALi6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 8399 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2.log\\\\n-rw-r--r-- 1 root root 8399 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2.log\\\\n-rw-r--r-- 1 root root 1034 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2_results.json\\\\n-rw-r--r-- 1 root root 1034 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2_results.json\\\\n-rw-r--r-- 1 root root 6166 May 14 19:59 /root/ratekv/run_llama_heuristic_k2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "9e4089b9-5e78-4142-81b2-ba48e120f357",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 8399 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2.log\\\\n-rw-r--r-- 1 root root 8399 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2.log\\\\n-rw-r--r-- 1 root root 1034 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2_results.json\\\\n-rw-r--r-- 1 root root 1034 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2_results.json\\\\n-rw-r--r-- 1 root root 6166 May 14 19:59 /root/ratekv/run_llama_heuristic_k2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 8399 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2.log\\n-rw-r--r-- 1 root root 8399 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2.log\\n-rw-r--r-- 1 root root 1034 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2_results.json\\n-rw-r--r-- 1 root root 1034 May 14 20:03 /root/ratekv/d041_llama_heuristic_k2_results.json\\n-rw-r--r-- 1 root root 6166 May 14 19:59 /root/ratekv/run_llama_heuristic_k2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment completed successfully. Let me read the JSON results file for the complete data.",
+              "signature": "EpoCClkIDRgCKkBPqGzeBvR48xMFdsIcWI9TWBPGAdmwoLAl7XQs7MWJmBRyPr+gaVJTy2yMXhCL220NWfQBbOHXyGpYba8j510fMg9jbGF1ZGUtb3B1cy00LTY4ABIMsbj3m7aaNhKyy8MOGgxBDRFJfpmCry0s/9siMBf+CAqKcOP7+16FN3kTh0ISnPvCyFwNTSksZCOSbpI6SSLTqDZjs6aJ7WB1iM7Ssypv21EZgeMxS1K5ki/lUVY5p7Kn43bXGMvdfgbwbQfM3SR+ve/OJ4FTFompr5vmRcmTYFwnH0auJkCY9L6eX32ISIaueXInz3e4vNo9pqU84BnIQqfpfVTHIYBk/j3seI7Osq7RyK2iV/bfIjoukL/qGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "d4c5c10a-a501-42e8-91e9-b7f737c67dfc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MdCKosmH8eZ4SudCTSRrij",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 24863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2284
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成。读取结果 JSON。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "543d8437-ae99-4c71-a65c-17ed5bbebb3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MdCKosmH8eZ4SudCTSRrij",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 24863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2284
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BtW6QU3rW5nJZDT9naNP43",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/ratekv/d041_llama_heuristic_k2_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "0fc83353-8be3-4a14-a01e-5f1787dd1217",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MdCKosmH8eZ4SudCTSRrij",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 24863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2284
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T12:06:04.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BtW6QU3rW5nJZDT9naNP43",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"d041_llama_heuristic_k2\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Llama-3.1-8B heuristic baselines with k=2 at budget=0.25\\\\\\\",\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Budget matched: 1 L0 head (0,0) @8-bit, 7 L0 heads @4-bit\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"k\\\\\\\": 2,\\\\n    \\\\\\\"n_8bit_l0\\\\\\\": 1,\\\\n    \\\\\\\"budget\\\\\\\": 0.25,\\\\n    \\\\\\\"n_total_heads\\\\\\\": 256,\\\\n    \\\\\\\"baseline_bf16_ppl\\\\\\\": 8.091773534194576,\\\\n    \\\\\\\"uniform_4bit_ppl\\\\\\\": 8.469013874970067,\\\\n    \\\\\\\"l0_random\\\\\\\": {\\\\n      \\\\\\\"seed_0\\\\\\\": 8.547850823710965,\\\\n      \\\\\\\"seed_1\\\\\\\": 8.759461318370246,\\\\n      \\\\\\\"seed_2\\\\\\\": 8.623951902213461,\\\\n      \\\\\\\"seed_3\\\\\\\": 8.572072745935312,\\\\n      \\\\\\\"seed_4\\\\\\\": 8.619168325504113,\\\\n      \\\\\\\"mean\\\\\\\": 8.62450102314682,\\\\n      \\\\\\\"std\\\\\\\": 0.07330347578343786,\\\\n      \\\\\\\"median\\\\\\\": 8.619168325504113\\\\n    },\\\\n    \\\\\\\"naive_heuristic_ppl\\\\\\\": 8.578079450126339,\\\\n    \\\\\\\"naive_2bit_heads\\\\\\\": [\\\\n      [\\\\n        31,\\\\n        0\\\\n      ],\\\\n      [\\\\n        31,\\\\n        1\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"mckp_ppl_ref\\\\\\\": 8.4498\\\\n  },\\\\n  \\\\\\\"total_time_seconds\\\\\\\": 253.8544397354126,\\\\n  \\\\\\\"device\\\\\\\": \\\\\\\"cuda:0\\\\\\\",\\\\n  \\\\\\\"eval_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    0,\\\\n    1,\\\\n    2,\\\\n    3,\\\\n    4\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "56a29d18-0bdb-4721-9d28-c15ca6e0d4d6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"d041_llama_heuristic_k2\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Llama-3.1-8B heuristic baselines with k=2 at budget=0.25\\\\\\\",\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Budget matched: 1 L0 head (0,0) @8-bit, 7 L0 heads @4-bit\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"k\\\\\\\": 2,\\\\n    \\\\\\\"n_8bit_l0\\\\\\\": 1,\\\\n    \\\\\\\"budget\\\\\\\": 0.25,\\\\n    \\\\\\\"n_total_heads\\\\\\\": 256,\\\\n    \\\\\\\"baseline_bf16_ppl\\\\\\\": 8.091773534194576,\\\\n    \\\\\\\"uniform_4bit_ppl\\\\\\\": 8.469013874970067,\\\\n    \\\\\\\"l0_random\\\\\\\": {\\\\n      \\\\\\\"seed_0\\\\\\\": 8.547850823710965,\\\\n      \\\\\\\"seed_1\\\\\\\": 8.759461318370246,\\\\n      \\\\\\\"seed_2\\\\\\\": 8.623951902213461,\\\\n      \\\\\\\"seed_3\\\\\\\": 8.572072745935312,\\\\n      \\\\\\\"seed_4\\\\\\\": 8.619168325504113,\\\\n      \\\\\\\"mean\\\\\\\": 8.62450102314682,\\\\n      \\\\\\\"std\\\\\\\": 0.07330347578343786,\\\\n      \\\\\\\"median\\\\\\\": 8.619168325504113\\\\n    },\\\\n    \\\\\\\"naive_heuristic_ppl\\\\\\\": 8.578079450126339,\\\\n    \\\\\\\"naive_2bit_heads\\\\\\\": [\\\\n      [\\\\n        31,\\\\n        0\\\\n      ],\\\\n      [\\\\n        31,\\\\n        1\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"mckp_ppl_ref\\\\\\\": 8.4498\\\\n  },\\\\n  \\\\\\\"total_time_seconds\\\\\\\": 253.8544397354126,\\\\n  \\\\\\\"device\\\\\\\": \\\\\\\"cuda:0\\\\\\\",\\\\n  \\\\\\\"eval_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    0,\\\\n    1,\\\\n    2,\\\\n    3,\\\\n    4\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"d041_llama_heuristic_k2\\\",\\n  \\\"description\\\": \\\"Llama-3.1-8B heuristic baselines with k=2 at budget=0.25\\\",\\n  \\\"note\\\": \\\"Budget matched: 1 L0 head (0,0) @8-bit, 7 L0 heads @4-bit\\\",\\n  \\\"model\\\": \\\"Llama-3.1-8B\\\",\\n  \\\"results\\\": {\\n    \\\"k\\\": 2,\\n    \\\"n_8bit_l0\\\": 1,\\n    \\\"budget\\\": 0.25,\\n    \\\"n_total_heads\\\": 256,\\n    \\\"baseline_bf16_ppl\\\": 8.091773534194576,\\n    \\\"uniform_4bit_ppl\\\": 8.469013874970067,\\n    \\\"l0_random\\\": {\\n      \\\"seed_0\\\": 8.547850823710965,\\n      \\\"seed_1\\\": 8.759461318370246,\\n      \\\"seed_2\\\": 8.623951902213461,\\n      \\\"seed_3\\\": 8.572072745935312,\\n      \\\"seed_4\\\": 8.619168325504113,\\n      \\\"mean\\\": 8.62450102314682,\\n      \\\"std\\\": 0.07330347578343786,\\n      \\\"median\\\": 8.619168325504113\\n    },\\n    \\\"naive_heuristic_ppl\\\": 8.578079450126339,\\n    \\\"naive_2bit_heads\\\": [\\n      [\\n        31,\\n        0\\n      ],\\n      [\\n        31,\\n        1\\n      ]\\n    ],\\n    \\\"mckp_ppl_ref\\\": 8.4498\\n  },\\n  \\\"total_time_seconds\\\": 253.8544397354126,\\n  \\\"device\\\": \\\"cuda:0\\\",\\n  \\\"eval_dtype\\\": \\\"bfloat16\\\",\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All results are in. Let me summarize and update the registry.\n\nKey results:\n- L0-random seeds: [8.5479, 8.7595, 8.6240, 8.5721, 8.6192]\n- L0-random mean: 8.6245 ± 0.0733\n- L0-random median: 8.6192\n- Naive positional: 8.5781\n- MCKP (k=2): 8.4498\n- Uniform 4-bit: 8.4690\n\n\n- Baseline bf16: 8.0918\n\nNow comparing against the k=16 results from before—the k=2 configuration performs much better with only a 0.1747 gap between MCKP and L0-random, whereas k=16 had a gap around 2.03, which makes sense since degrading just 2 heads causes far less damage than degrading 16.\n\nThe naive positional heuristic shows a similar pattern: with k=2 the gap shrinks to 0.1283 compared to roughly 1.49 with k=16. This is exactly what I'd expect—at smaller k values, the heuristics get much closer to MCKP's performance while MCKP still maintains its edge, which confirms the approach is working as intended. Time to update the registry with these results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "f1fca4a5-7cc7-44fd-9df6-3958a261b330",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014PNh2vrVH42yWnZ75jcAVx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 906,
+                "cache_read_input_tokens": 27147,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 906
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功。更新 registry 并清除 cron。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "2dbc060f-b5db-4029-95cb-9bd798fac6b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014PNh2vrVH42yWnZ75jcAVx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 906,
+                "cache_read_input_tokens": 27147,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 906
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LXX6ErK4u6r71kiGmEHQZw",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "status",
+                "value": "DONE",
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "45e4f1b6-29d3-41d8-a557-2803ab6427c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014PNh2vrVH42yWnZ75jcAVx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 906,
+                "cache_read_input_tokens": 27147,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 906
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T12:06:17.128Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LXX6ErK4u6r71kiGmEHQZw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.227}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "e1852baf-654c-4cd3-a371-b30185b77c3f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.227}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.227}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K6PRUS8m4Fe8mgc37WGVe2",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "conclusion",
+                "value": "success",
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "093287e5-c0ad-4100-b8b3-5bfde31f656f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NLQt4178kD2oYCu3m2pg5G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 601,
+                "cache_read_input_tokens": 28053,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 601
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T12:06:20.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K6PRUS8m4Fe8mgc37WGVe2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:19.868Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4373}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "83101ca9-ee1c-4511-a720-d62043e99e03",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:19.868Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4373}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_heuristic_k2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:54:18.622Z\", \"updated_at\": \"2026-05-14T12:06:19.868Z\", \"spec\": {\"hypothesis\": \"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\", \"plan_id\": \"plan_015\", \"claim\": [2], \"model_name\": \"Llama-3.1-8B\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\", \"data_count\": \"hires 64x2048\", \"seed\": \"0,1,2,3,4\", \"parent\": \"l0_heuristic_corrected\", \"command\": \"python /root/ratekv/run_llama_heuristic_k2.py\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/ratekv/d041_llama_heuristic_k2.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4373}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JH5iCPzQstXKUrKjdCuRFz",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "status",
+                "value": "DONE",
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "64e52f68-b8b9-4bab-8348-74a8a99f989a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkJefhosBGbkjz4mQt3ceW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 28654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T12:06:23.433Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JH5iCPzQstXKUrKjdCuRFz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3259}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "51dd50c8-e7f3-4337-87de-b60d984e08db",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3259}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.3259}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BBdX8cZqdcPw5YaCjW2k4b",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "metrics",
+                "value": {
+                  "l0_random_seeds": [
+                    8.5479,
+                    8.7595,
+                    8.624,
+                    8.5721,
+                    8.6192
+                  ],
+                  "l0_random_mean": 8.6245,
+                  "l0_random_std": 0.0733,
+                  "l0_random_median": 8.6192,
+                  "naive_positional_ppl": 8.5781,
+                  "mckp_ppl": 8.4498,
+                  "uniform_ppl": 8.469,
+                  "baseline_ppl": 8.0918,
+                  "mckp_vs_l0_random_gap": 0.1747,
+                  "mckp_vs_naive_gap": 0.1283
+                },
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "90d21e65-21b8-438e-8550-5ce0a75362c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkJefhosBGbkjz4mQt3ceW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 28654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T12:06:26.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BBdX8cZqdcPw5YaCjW2k4b",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:26.144Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2024}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "afe631d1-e054-4f63-8dad-e51157fdd193",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:26.144Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2024}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_heuristic_k2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:54:18.622Z\", \"updated_at\": \"2026-05-14T12:06:26.144Z\", \"spec\": {\"hypothesis\": \"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\", \"plan_id\": \"plan_015\", \"claim\": [2], \"model_name\": \"Llama-3.1-8B\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\", \"data_count\": \"hires 64x2048\", \"seed\": \"0,1,2,3,4\", \"parent\": \"l0_heuristic_corrected\", \"command\": \"python /root/ratekv/run_llama_heuristic_k2.py\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/ratekv/d041_llama_heuristic_k2.log\"}, \"conclusion\": \"success\", \"metrics\": {\"l0_random_seeds\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \"l0_random_mean\": 8.6245, \"l0_random_std\": 0.0733, \"l0_random_median\": 8.6192, \"naive_positional_ppl\": 8.5781, \"mckp_ppl\": 8.4498, \"uniform_ppl\": 8.469, \"baseline_ppl\": 8.0918, \"mckp_vs_l0_random_gap\": 0.1747, \"mckp_vs_naive_gap\": 0.1283}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2024}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019rqqVqyFtwuHFu1KHsUbcR",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "checkpoint_path",
+                "value": "/root/ratekv/d041_llama_heuristic_k2_results.json",
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "51a13c20-b59c-4962-83d2-8e57d6cc9c7f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BWpYYKtuZ34RDWMDmviJLP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1278,
+                "cache_read_input_tokens": 29237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1278
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T12:06:29.364Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019rqqVqyFtwuHFu1KHsUbcR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:29.279Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}, \\\"checkpoint_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2_results.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2031}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "ac80bf9c-f835-4152-848a-eaa8af6b0e1d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:29.279Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}, \\\"checkpoint_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2_results.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2031}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_heuristic_k2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:54:18.622Z\", \"updated_at\": \"2026-05-14T12:06:29.279Z\", \"spec\": {\"hypothesis\": \"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\", \"plan_id\": \"plan_015\", \"claim\": [2], \"model_name\": \"Llama-3.1-8B\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\", \"data_count\": \"hires 64x2048\", \"seed\": \"0,1,2,3,4\", \"parent\": \"l0_heuristic_corrected\", \"command\": \"python /root/ratekv/run_llama_heuristic_k2.py\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/ratekv/d041_llama_heuristic_k2.log\"}, \"conclusion\": \"success\", \"metrics\": {\"l0_random_seeds\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \"l0_random_mean\": 8.6245, \"l0_random_std\": 0.0733, \"l0_random_median\": 8.6192, \"naive_positional_ppl\": 8.5781, \"mckp_ppl\": 8.4498, \"uniform_ppl\": 8.469, \"baseline_ppl\": 8.0918, \"mckp_vs_l0_random_gap\": 0.1747, \"mckp_vs_naive_gap\": 0.1283}, \"checkpoint_path\": \"/root/ratekv/d041_llama_heuristic_k2_results.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2031}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018mg8aQJiWu3Fvitd1M5Tn6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "status",
+                "value": "DONE",
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "e0988bc3-334b-436b-8092-2b826d2ed223",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bo6RWwJoxy7bZJZxkjqLH5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 822,
+                "cache_read_input_tokens": 30515,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 822
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T12:06:35.618Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018mg8aQJiWu3Fvitd1M5Tn6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:35.360Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}, \\\"checkpoint_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2_results.json\\\", \\\"completed_at\\\": \\\"2026-05-14T12:06:35.360Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3828}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "b15f1543-fbd5-4dc2-b385-3cae4e34c22a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:35.360Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}, \\\"checkpoint_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2_results.json\\\", \\\"completed_at\\\": \\\"2026-05-14T12:06:35.360Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3828}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_heuristic_k2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:54:18.622Z\", \"updated_at\": \"2026-05-14T12:06:35.360Z\", \"spec\": {\"hypothesis\": \"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\", \"plan_id\": \"plan_015\", \"claim\": [2], \"model_name\": \"Llama-3.1-8B\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\", \"data_count\": \"hires 64x2048\", \"seed\": \"0,1,2,3,4\", \"parent\": \"l0_heuristic_corrected\", \"command\": \"python /root/ratekv/run_llama_heuristic_k2.py\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/ratekv/d041_llama_heuristic_k2.log\"}, \"conclusion\": \"success\", \"metrics\": {\"l0_random_seeds\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \"l0_random_mean\": 8.6245, \"l0_random_std\": 0.0733, \"l0_random_median\": 8.6192, \"naive_positional_ppl\": 8.5781, \"mckp_ppl\": 8.4498, \"uniform_ppl\": 8.469, \"baseline_ppl\": 8.0918, \"mckp_vs_l0_random_gap\": 0.1747, \"mckp_vs_naive_gap\": 0.1283}, \"checkpoint_path\": \"/root/ratekv/d041_llama_heuristic_k2_results.json\", \"completed_at\": \"2026-05-14T12:06:35.360Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3828}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QHnrELnw7h27Fitzi5rrTT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "llama_heuristic_k2",
+                "field": "notes",
+                "value": "k=2 vs k=16 对比: L0-random gap 从 2.03 降至 0.17, Naive gap 从 1.49 降至 0.13。k=2 时 heuristic 方差大幅缩小 (0.073 vs 1.033)。MCKP 仍优于所有 heuristic，但差距缩小到 ~0.13-0.17 PPL。结论：k=2 是更公平的比较，MCKP 优势缩小但仍显著存在，验证了 per-head optimization 的价值。",
+                "project": "ratekv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "f567aaa2-a917-4b8b-abc1-3e5e0b0aaceb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfahxzopJi5R9gzs7nWeCv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 31337,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PDYWMoWbsgTsQ9QKQ57NMg",
+              "name": "mcp__agent-ml-research__delete_cron",
+              "input": {
+                "exp_id": "llama_heuristic_k2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "8e523930-8f6a-4f88-87f3-d7a7553534cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfahxzopJi5R9gzs7nWeCv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 31337,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T12:06:42.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QHnrELnw7h27Fitzi5rrTT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:42.659Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}, \\\"checkpoint_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2_results.json\\\", \\\"completed_at\\\": \\\"2026-05-14T12:06:35.360Z\\\", \\\"notes\\\": \\\"k=2 vs k=16 对比: L0-random gap 从 2.03 降至 0.17, Naive gap 从 1.49 降至 0.13。k=2 时 heuristic 方差大幅缩小 (0.073 vs 1.033)。MCKP 仍优于所有 heuristic，但差距缩小到 ~0.13-0.17 PPL。结论：k=2 是更公平的比较，MCKP 优势缩小但仍显著存在，验证了 per-head optimization 的价值。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1889}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "f1083e75-8acd-400f-9b90-1280bdc45536",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_heuristic_k2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:54:18.622Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:06:42.659Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\\\", \\\"plan_id\\\": \\\"plan_015\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\\\", \\\"data_count\\\": \\\"hires 64x2048\\\", \\\"seed\\\": \\\"0,1,2,3,4\\\", \\\"parent\\\": \\\"l0_heuristic_corrected\\\", \\\"command\\\": \\\"python /root/ratekv/run_llama_heuristic_k2.py\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"l0_random_seeds\\\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \\\"l0_random_mean\\\": 8.6245, \\\"l0_random_std\\\": 0.0733, \\\"l0_random_median\\\": 8.6192, \\\"naive_positional_ppl\\\": 8.5781, \\\"mckp_ppl\\\": 8.4498, \\\"uniform_ppl\\\": 8.469, \\\"baseline_ppl\\\": 8.0918, \\\"mckp_vs_l0_random_gap\\\": 0.1747, \\\"mckp_vs_naive_gap\\\": 0.1283}, \\\"checkpoint_path\\\": \\\"/root/ratekv/d041_llama_heuristic_k2_results.json\\\", \\\"completed_at\\\": \\\"2026-05-14T12:06:35.360Z\\\", \\\"notes\\\": \\\"k=2 vs k=16 对比: L0-random gap 从 2.03 降至 0.17, Naive gap 从 1.49 降至 0.13。k=2 时 heuristic 方差大幅缩小 (0.073 vs 1.033)。MCKP 仍优于所有 heuristic，但差距缩小到 ~0.13-0.17 PPL。结论：k=2 是更公平的比较，MCKP 优势缩小但仍显著存在，验证了 per-head optimization 的价值。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1889}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_heuristic_k2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:54:18.622Z\", \"updated_at\": \"2026-05-14T12:06:42.659Z\", \"spec\": {\"hypothesis\": \"D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。\", \"plan_id\": \"plan_015\", \"claim\": [2], \"model_name\": \"Llama-3.1-8B\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-103-raw-v1 train + wikitext-2-raw-v1 test\", \"data_count\": \"hires 64x2048\", \"seed\": \"0,1,2,3,4\", \"parent\": \"l0_heuristic_corrected\", \"command\": \"python /root/ratekv/run_llama_heuristic_k2.py\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/ratekv/d041_llama_heuristic_k2.log\"}, \"conclusion\": \"success\", \"metrics\": {\"l0_random_seeds\": [8.5479, 8.7595, 8.624, 8.5721, 8.6192], \"l0_random_mean\": 8.6245, \"l0_random_std\": 0.0733, \"l0_random_median\": 8.6192, \"naive_positional_ppl\": 8.5781, \"mckp_ppl\": 8.4498, \"uniform_ppl\": 8.469, \"baseline_ppl\": 8.0918, \"mckp_vs_l0_random_gap\": 0.1747, \"mckp_vs_naive_gap\": 0.1283}, \"checkpoint_path\": \"/root/ratekv/d041_llama_heuristic_k2_results.json\", \"completed_at\": \"2026-05-14T12:06:35.360Z\", \"notes\": \"k=2 vs k=16 对比: L0-random gap 从 2.03 降至 0.17, Naive gap 从 1.49 降至 0.13。k=2 时 heuristic 方差大幅缩小 (0.073 vs 1.033)。MCKP 仍优于所有 heuristic，但差距缩小到 ~0.13-0.17 PPL。结论：k=2 是更公平的比较，MCKP 优势缩小但仍显著存在，验证了 per-head optimization 的价值。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1889}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T12:06:42.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PDYWMoWbsgTsQ9QKQ57NMg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"llama_heuristic_k2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "4515275f-e05e-423e-b09c-ebea5a32c47c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"llama_heuristic_k2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"deleted\": \"llama_heuristic_k2\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **llama_heuristic_k2** 完成，registry 已更新，cron 已清除。\n\n### 结果摘要\n\n| Method | PPL (k=2) | PPL (k=16 旧) |\n|--------|-----------|---------------|\n| Baseline bf16 | 8.0918 | 8.0918 |\n| MCKP | 8.4498 | 8.4498 |\n| Uniform 4-bit | 8.4690 | 8.4690 |\n| L0-random (mean±std) | 8.625±0.073 | 10.479±1.033 |\n| Naive Positional | 8.578 | 9.941 |\n\n### 关键发现\n\n- **MCKP vs L0-random gap**: 0.17 (k=2) vs 2.03 (k=16) — 缩小 12 倍\n- **MCKP vs Naive gap**: 0.13 (k=2) vs 1.49 (k=16) — 缩小 11 倍\n- **L0-random 方差**: 0.073 (k=2) vs 1.033 (k=16) — 稳定 14 倍\n- k=2 是更公平的比较（只有 2 个 2-bit heads），MCKP 优势缩小但仍显著存在，验证 per-head optimization 的价值"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "uuid": "2e65141e-1ebc-4e9e-bff5-7b62dc254045",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJgMQbFinZs2QPvfMbguY3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1319,
+                "cache_read_input_tokens": 32193,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1319
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **llama_heuristic_k2** 完成，registry 已更新，cron 已清除。\n\n### 结果摘要\n\n| Method | PPL (k=2) | PPL (k=16 旧) |\n|--------|-----------|---------------|\n| Baseline bf16 | 8.0918 | 8.0918 |\n| MCKP | 8.4498 | 8.4498 |\n| Uniform 4-bit | 8.4690 | 8.4690 |\n| L0-random (mean±std) | 8.625±0.073 | 10.479±1.033 |\n| Naive Positional | 8.578 | 9.941 |\n\n### 关键发现\n\n- **MCKP vs L0-random gap**: 0.17 (k=2) vs 2.03 (k=16) — 缩小 12 倍\n- **MCKP vs Naive gap**: 0.13 (k=2) vs 1.49 (k=16) — 缩小 11 倍\n- **L0-random 方差**: 0.073 (k=2) vs 1.033 (k=16) — 稳定 14 倍\n- k=2 是更公平的比较（只有 2 个 2-bit heads），MCKP 优势缩小但仍显著存在，验证 per-head optimization 的价值"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61166,
+            "duration_api_ms": 59730,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "31c0fb7e-84f6-4a9f-acee-f06b09d6c84a",
+            "total_cost_usd": 0.33672075,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 21671,
+              "cache_read_input_tokens": 267704,
+              "output_tokens": 2633,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21671,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 383,
+                  "cache_read_input_tokens": 32193,
+                  "cache_creation_input_tokens": 1319,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1319
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1435,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0015300000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 2633,
+                "cacheReadInputTokens": 267704,
+                "cacheCreationInputTokens": 21671,
+                "webSearchRequests": 0,
+                "costUSD": 0.33519075,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "357d71d4-392c-494a-b930-d7307e543884"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ]
+}

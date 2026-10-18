@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f64e30abc257562c1bbd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "debug check v7 2 eval code version",
+  "task_key": "worker_debug_check-v7_2-eval-code-version_20260515T221625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_check-v7_2-eval-code-version_20260515T221625_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "233e0b0b9a1f45a3c4421cc49a9fdc303371df33d664e275f66b4d9a5850d746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fix 未生效，eval 需要重跑。**\n\n证据：`eps0.0_pruneFalse` 的 action_loss = **0.0275**，接近修复前膨胀值 0.03，远高于修复后合理值 0.01。其他已完成 condition 同样偏高：\n- `eps0.0_pruneTrue`: 0.0291\n- `eps0.01_pruneFalse`: 0.0274\n\nEval 目前仍在运行（正在跑 `eps0.01_pruneTrue`），JSON 结果文件尚未生成。但已有数据足以判定——eval 进程使用的是 bug fix 之前的代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

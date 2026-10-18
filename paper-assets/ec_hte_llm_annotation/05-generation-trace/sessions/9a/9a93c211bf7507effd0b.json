@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "9a93c211bf7507effd0b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research lalonde dataset screening",
+  "task_key": "worker_research_lalonde-dataset-screening_20260524T123858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_lalonde-dataset-screening_20260524T123858.log",
+    "occurrence": 1,
+    "bytes": 620307,
+    "sha256": "10a7cafcd5185e70c029b02c9d29e8d1db0f672a89ec9c71da2176d06c5f41de"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "9a93c211bf7507effd0b-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "9a93c211bf7507effd0b-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ]
+}

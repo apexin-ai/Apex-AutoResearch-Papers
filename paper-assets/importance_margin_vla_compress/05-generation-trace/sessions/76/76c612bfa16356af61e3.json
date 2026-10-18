@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "76c612bfa16356af61e3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "knowledge update experiment plan",
+  "task_key": "worker_knowledge_update_experiment_plan_20260519T200252",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_update_experiment_plan_20260519T200252_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "1459f724145c108d7039a3a853720ab8323cf11c83dbc5e907e227568d552801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`experiment_plan.yaml` 已重写为 C1-C5 结构。\n\n覆盖情况：\n- **C1** (complete): 6 experiments — 跨架构对比的关键证据，从 C2/C3 交叉引用\n- **C2** (complete): 26 experiments — 10 primary + 9 ablation + 7 supporting\n- **C3** (complete): 7 experiments — 5-point 退化曲线 + entropy 分析\n- **C4** (in_progress): 21 experiments — M-sweep 5点 × 多seed + MLP adapter 3-seed + controls；3 个训练 RUNNING\n- **C4_ext** (in_progress): 0 evidence，3 个训练 RUNNING\n- **C5** (planned): 尚无实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

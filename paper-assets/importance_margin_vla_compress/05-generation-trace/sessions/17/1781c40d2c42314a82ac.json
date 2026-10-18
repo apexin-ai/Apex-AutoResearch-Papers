@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1781c40d2c42314a82ac",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag eval openvla attn k085 long seed42 v3",
+  "task_key": "worker_diag_eval_openvla_attn_k085_long_seed42_v3_20260525T133130",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval_openvla_attn_k085_long_seed42_v3_20260525T133130_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "34ddd8e0e518caaae288213974abf1b46016fcbb14f2b3291ba049c9fba12e1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n- **失败原因: 实验并未失败，已正常完成**\n- **错误类型: 非错误（误报）**\n- **错误详情:**\n  - 实验于 `2026-05-25 21:20` 正常结束，耗时 511.2 分钟\n  - Overall SR: **0.4580** (229/500)，10 个 task 全部跑完，每个 50 episodes\n  - 结果已保存至 `/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k085_10.json`\n  - **无 W&B metrics 的原因**: 脚本未集成 W&B logging，只保存了本地 JSON\n- **GPU 状态:**\n  - GPU 0: 15938/97887 MiB (69%) — attn_k09 运行中\n  - GPU 1: 1/97887 MiB (0%) — attn_k085 已完成，空闲\n  - GPU 2: 15938/97887 MiB (67%) — random_k09 运行中\n  - GPU 3: 15938/97887 MiB (84%) — l2norm_k09 运行中\n- **磁盘状态:** `/root/autodl-tmp` **99% 已满**（247G/250G，仅剩 3.2G）⚠️ 风险\n- **其他 3 个 Long v3 实验**: 全部正常运行中，均在 Task 10/10 的后半段\n\n### 发现两个 Bug：\n\n1. **结果文件命名错误**: mode 是 `attention_prune`，但文件名保存为 `openvla_l2norm_prune_k085_10.json`（硬编码了 `l2norm_prune`）\n2. **k_ratio 未记录**: JSON 中 `\"k_ratio\": null`，实际应为 0.85\n\n### 建议修复：\n\n1. 不需要重跑实验——结果有效，手动修正 JSON 文件名和 k_ratio 字段即可\n2. **紧急**: 磁盘仅剩 3.2G，其他 3 个实验完成后保存结果可能失败。建议清理旧日志或不需要的文件\n3. 修复 `eval_openvla_l2norm_libero.py` 中结果文件命名逻辑，使其使用实际 mode 而非硬编码 `l2norm_prune`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

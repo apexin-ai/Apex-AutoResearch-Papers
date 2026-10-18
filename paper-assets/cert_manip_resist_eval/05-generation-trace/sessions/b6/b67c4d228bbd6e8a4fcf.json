@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b67c4d228bbd6e8a4fcf",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 status check",
+  "task_key": "worker_ops_fp16-status-check_20260524T194956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-status-check_20260524T194956_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "2d18e15482edf3d6ddcdfc1948e5f9db549835a7208752d69822c01cd22397e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## FP16 Baseline V3 状态：运行中（模型下载重试）\n\n**结果文件** (`fp16_baseline.json`) 已存在但**不完整**：\n\n| 模型 | 指标 | AWQ | FP16 |\n|------|------|-----|------|\n| Qwen2.5-14B-Instruct | MMLU | 0.71 | **null** |\n| Qwen2.5-14B-Instruct | ARC | 0.84 | **null** |\n\nFP16 评测失败，原因：`\"4 file(s) failed to download out of 13.\"`\n\n**当前状态**：正在重新下载 FP16 模型权重，进度约 18-27%，速度 ~1.3 MB/s，各分片（3.2-3.7GB）预计还需 30-40 分钟。\n\n- 日志创建时间：02:33（已运行约 1h17m）\n- 日志最后更新：03:50（仍在活跃写入）\n\n下载速度很慢（AutoDL 从 HuggingFace 下载的典型问题）。如需加速，可考虑切换到 ModelScope 源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

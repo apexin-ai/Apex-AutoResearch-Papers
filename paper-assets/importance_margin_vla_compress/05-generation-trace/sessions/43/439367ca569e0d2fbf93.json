@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "439367ca569e0d2fbf93",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "debug pi05 random k09 bug",
+  "task_key": "worker_debug_pi05-random-k09-bug_20260521T172606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_pi05-random-k09-bug_20260521T172606_result.json",
+    "occurrence": 1,
+    "bytes": 4214,
+    "sha256": "73329f1e631585a6e2fbd6f4d9bb97e3d9f896ca7b77486556183dae26574d24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've completed a thorough investigation. Let me compile the diagnosis report.\n\n---\n\n## Diagnosis Report: π0.5 random k=0.9 = 12.0% SR\n\n### 1. Code Analysis — No `1-k` Bug Found\n\nBoth pruning functions use identical `n_keep` computation:\n\n```python\n# Line 57 (random)\nn_keep = max(1, int(n_tokens * keep_ratio))\nindices = torch.randperm(n_tokens, device=img_emb.device)[:n_keep].sort().values\n\n# Line 64 (l2norm)\nn_keep = max(1, int(n_tokens * keep_ratio))\n_, topk_idx = torch.topk(norms, n_keep)\n```\n\nBoth are called with the same `args.keep_ratio` at line 126. The JSON config confirms `n_keep_per_image: 230`, which is `int(256 * 0.9)`. **No reversal bug exists.**\n\n`embed_prefix` is called **once** per `sample_actions()` (line 806), then cached as KV values for all 10 denoising steps. So random pruning does NOT create per-denoising-step inconsistency.\n\n### 2. Results Summary\n\n| k | Random SR | L2norm SR | Random seed |\n|---|-----------|-----------|-------------|\n| 0.3 | 36.4% | 51.0% | 42 |\n| 0.5 | 68.4% | 33.4% | 43 |\n| 0.7 | 77.2% | 55.0% | 42 |\n| 0.9 | **12.0%** | **98.2%** | 42 |\n| 1.0 (baseline) | 98.2% | 98.2% | 42 |\n\nBoth methods violate monotonicity. L2norm at k=0.5 (33.4%) < k=0.3 (51.0%). Random k=0.9 (12%) << k=0.7 (77.2%).\n\n### 3. Token Importance Analysis\n\nπ0.5 post-projector L2 norms: **CV = 0.0547**, normalized entropy = **0.9997**. Token norms are nearly perfectly uniform. L2norm pruning is essentially arbitrary selection — functionally close to random. Yet L2norm k=0.9 = 98.2% vs random k=0.9 = 12.0%. This is physically contradictory.\n\n### 4. Key Observations\n\n- **No dedicated π0.5 log for k=0.9**: The log file `eval_random_k09_seed42.log` is from an **OpenVLA** run (line 1: \"Loading OpenVLA from...\"), not π0.5. The actual π0.5 k=0.9 run has no preserved log.\n- **Script modified at 19:26 on May 21**: Filename format changed to include seed. k=0.9 run (finished May 22 01:18) used the post-modification script. Without version control, we can't diff what else changed.\n- **Timing consistent with 12% SR**: 111.4 min for 500 episodes = most episodes running to max_steps, consistent with real failures.\n- **Missing `torch.manual_seed`**: Only `np.random.seed(42)` is set. `torch.randperm` uses uncontrolled PyTorch CUDA RNG. Not a bug per se, but means the exact random state is unreproducible.\n- **Missing embed_image scaling**: The pruning script omits `features * hidden_size**0.5` that the old script includes. But this affects ALL runs equally (L2norm k=0.9 works fine with same script).\n\n### 5. Root Cause Assessment\n\n**No code bug found.** The pruning functions are correct, the monkey-patching is correct, and the `embed_prefix` caching is correct.\n\nThe 12% result **violates information-theoretic monotonicity** (keeping 90% of tokens cannot be worse than keeping 70% with the same method). This points to one of:\n\n1. **Transient runtime issue** during the specific k=0.9 run (most likely) — e.g., GPU numerical error, model loading issue, or a race condition. The absence of a log file makes this impossible to diagnose.\n2. **Script had a different version** when k=0.9 ran. Without version control, we can't verify.\n3. **Uncontrolled torch RNG** interacting with flow matching noise — unlikely but untestable without reproducing.\n\n### 6. Recommended Actions\n\n1. **Rerun random k=0.9** with explicit `torch.manual_seed(42)` and verbose logging:\n   ```python\n   # Add at script start, after np.random.seed\n   torch.manual_seed(args.seed)\n   torch.cuda.manual_seed_all(args.seed)\n   ```\n   Also add a per-step print: `log.info(f\"[Pruning] n_keep={n_keep}, indices_sample={indices[:5].tolist()}\")` in `prune_tokens_random` for the first replan of each episode.\n\n2. **Run k=0.9 and k=0.1 back-to-back** in the same process to confirm monotonicity.\n\n3. **Put the script under git** to track future modifications.\n\n### 7. Affected Experiments\n\nOnly `pi05_random_k0.90_libero_object_seed42.json` is suspect. All other results show plausible (if noisy) patterns. The L2norm non-monotonicity (k=0.5 < k=0.3) is a separate issue worth investigating but less extreme."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

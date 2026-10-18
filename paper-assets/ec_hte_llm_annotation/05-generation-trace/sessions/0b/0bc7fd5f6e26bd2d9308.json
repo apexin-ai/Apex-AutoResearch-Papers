@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "0bc7fd5f6e26bd2d9308",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research real llm cm validation",
+  "task_key": "worker_research_real-llm-cm-validation_20260523T071518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_real-llm-cm-validation_20260523T071518.log",
+    "occurrence": 1,
+    "bytes": 1064867,
+    "sha256": "6fa03ed363b80ede9f0fd239612e55649ffdedf7027acf1eb44d5e5c38b98822"
+  },
+  "statistics": {
+    "messages": 712,
+    "user_turns": 1,
+    "tool_calls": 276,
+    "roles": {
+      "log": 1,
+      "system": 40,
+      "record": 3,
+      "assistant": 110,
+      "tool_call": 276,
+      "tool_result": 276,
+      "user": 1,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 619,
+      "chunks": [
+        {
+          "path": "0bc7fd5f6e26bd2d9308-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "0bc7fd5f6e26bd2d9308-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0bc7fd5f6e26bd2d9308-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0bc7fd5f6e26bd2d9308-part-0004.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "0bc7fd5f6e26bd2d9308-part-0004.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ]
+}

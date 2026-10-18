@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "30cd9ddcc27490c0b2b9",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 005 gla pure results",
+  "task_key": "worker_analysis_exp-005-gla-pure-results_20260522T164258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-gla-pure-results_20260522T164258_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "2cb178b2f45c5ae8ebae202ae152f4b1379e0fa864fe1aa11e9a4c26405834a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## exp-005-gla-pure 结果\n\n| Task | Metric | GLA pure | GLA h3-1 | Δ |\n|------|--------|----------|----------|---|\n| lambada_openai | acc | 0.3392 | 0.3819 | -4.27pp |\n| lambada_openai | ppl | 32.006 | 23.965 | +8.04 |\n| arc_easy | acc | 0.5829 | 0.5673 | +1.56pp |\n| arc_easy | acc_norm | 0.5114 | 0.5038 | +0.76pp |\n\n- per-example log_samples: 有（两个 .jsonl），可用于后续 Jaccard 分析\n- GLA 与其他三架构（GDN/RetNet/HGRN2）pattern 一致：attention 层选择性提升 LAMBADA（上下文预测），对 ARC-Easy 无正向效果甚至略负\n- Registry 已更新为 DONE (success)，memory.md 已追加结果段落"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c93ea945bc0fb31c6a0b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig4 per model asr restyle",
+  "task_key": "worker_ops_fig4-per-model-asr-restyle_20260525T195326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig4-per-model-asr-restyle_20260525T195326_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "60a8e8d168d9a54f67dc20557514b2e185ceeb535674f557d75a69f505f0a0a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n修改内容：\n- **图例字体**：增大到 10pt\n- **坐标轴标签**（\"Individual ASR (%)\"）：增大到 11pt\n- **刻度文字**（模型名、百分比数值）：增大到 9pt\n- **子图标题**（(a) MMLU, (b) ARC-Challenge）：11pt bold\n\nfigsize (10, 7)、配色方案、布局、API/Local 分隔线、模型顺序均保持不变。\n\n文件已保存到：\n- 服务器：`/root/cert_manip_resist_eval/figures/fig_per_model_asr.pdf` + `.png`\n- 本地：`/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_per_model_asr.pdf` + `.png`\n\n生成脚本：`/root/cert_manip_resist_eval/scripts/gen_fig_per_model_asr.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

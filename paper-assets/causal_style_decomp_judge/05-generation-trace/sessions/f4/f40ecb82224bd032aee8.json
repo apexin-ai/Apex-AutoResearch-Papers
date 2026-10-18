@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f40ecb82224bd032aee8",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "audit ref check B",
+  "task_key": "worker_audit_ref_check_B_20260526T110655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref_check_B_20260526T110655_result.json",
+    "occurrence": 1,
+    "bytes": 8374,
+    "sha256": "6e67c8dd4e7d4ea2753935dfbf9b8746c3a12b97450b42caee74fe62ad13e189"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All searches complete. Now compiling results.\n\n---\n\n## 20. dubois2023alpacafarm\n- 真实性：✓ 存在\n- 作者：✓ 正确\n- 年份：✓ 正确 (2023)\n- 标题：✓ 正确\n- Venue：✓ 正确 (NeurIPS 2023)\n- 正文引用上下文：✓ 正确 — related_work.tex: BT model underpins AlpacaFarm; method.tex: AlpacaEval 来自此论文。均准确。\n\n## 21. bradley1952rank\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确 (1952)\n- 标题：✓ 正确\n- Venue：✓ 正确 (Biometrika)\n- 正文引用上下文：✓ 正确 — Bradley-Terry 模型引用\n\n## 22. feinstein1990kappa\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确 (1990)\n- 标题：✓ 正确\n- Venue：✓ 正确 (J Clinical Epidemiology)\n- 正文引用上下文：✓ 正确 — appendix.tex: Cohen's kappa prevalence paradox，正是此论文讨论的核心问题\n\n## 23. wang2023faireval\n- 真实性：✓ 存在\n- 作者：✓ 正确\n- 年份：✓ 正确（bib 中 year=2024，key 名 2023 是 arXiv 年份）\n- 标题：✓ 正确\n- Venue：✓ 正确 (ACL 2024 Long)\n- 正文引用上下文：⚠️ **未在任何 .tex 文件中被引用**，仅存在于 references.bib（孤立引用）\n- 注意：bib key 年份 2023 ≠ 发表年份 2024\n\n## 24. li2024calibraeval\n- 真实性：✓ 存在\n- 作者：✓ 正确\n- 年份：✓ 正确（bib 中 year=2025，key 名 2024 是 arXiv 年份）\n- 标题：✓ 正确\n- Venue：✓ 正确 (ACL 2025 Long)\n- 正文引用上下文：⚠️ **未在任何 .tex 文件中被引用**，仅存在于 references.bib（孤立引用）\n- 注意：bib key 年份 2024 ≠ 发表年份 2025\n\n## 25. hoenig2001abuse\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确 (2001)\n- 标题：✓ 正确\n- Venue：✓ 正确 (The American Statistician)\n- 正文引用上下文：✓ 正确 — experiments.tex: \"not post-hoc power; cf. Hoenig 2001\"，引用上下文恰当（该论文批评事后功效计算的谬误）\n\n## 26. zeng2023llmbar\n- 真实性：✓ 存在\n- 作者：✓ 正确\n- 年份：✓ 正确（bib 中 year=2024，key 名 2023 是 arXiv 年份）\n- 标题：✓ 正确\n- Venue：✓ 正确 (ICLR 2024)\n- 正文引用上下文：✓ 正确 — method.tex: LLMBar 作为主评估基准；appendix.tex: 描述数据集。内容准确。\n- 注意：bib key 年份 2023 ≠ 发表年份 2024\n\n## 27. veitch2020adapting\n- 真实性：✓ 存在\n- 作者：✓ 正确 (Veitch, Sridhar, Blei)\n- 年份：✓ 正确 (2020)\n- 标题：✓ 正确\n- Venue：✓ 正确 (UAI 2020, PMLR vol 124)\n- 正文引用上下文：✓ 正确 — method.tex: \"filtering-based confounder control\"; introduction.tex: \"interventional text analysis\"。该论文确实提出因果文本嵌入方法用于混淆控制。\n\n## 28. tan2025judgebench\n- 真实性：✓ 存在\n- 作者：✓ 正确（bib 用 \"and others\" 截断，完整作者列表为 Tan, Zhuang, Montgomery, Tang, Cuadron, Wang, Popa, Stoica）\n- 年份：✓ 正确 (2025)\n- 标题：✓ 正确\n- Venue：✓ 正确 (ICLR 2025)\n- 正文引用上下文：⚠️ **未在任何 .tex 文件中被引用**，仅存在于 references.bib（孤立引用）\n\n## 29. chiang2024chatbot\n- 真实性：✓ 存在\n- 作者：✓ 正确\n- 年份：✓ 正确 (2024)\n- 标题：✓ 正确\n- Venue：✓ 正确 (ICML 2024)\n- 正文引用上下文：✓ 正确 — related_work.tex: \"Chatbot Arena \\citep{chiang2024chatbot}\"，BT model 在其中的应用。准确。\n\n## 30. hunter2004mm\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确 (2004)\n- 标题：✓ 正确\n- Venue：✓ 正确 (Annals of Statistics)\n- 正文引用上下文：✓ 正确 — experiments.tex & appendix.tex: minorization-maximization 估计 BT 参数，正是 Hunter 2004 提出的算法\n\n## 31. ye2024justice\n- 真实性：✓ 存在\n- 作者：✓ 正确\n- 年份：✓ 正确（bib 中 year=2025，key 名 2024 是 arXiv 年份）\n- 标题：✓ 正确\n- Venue：✓ 正确 (ICLR 2025)\n- 正文引用上下文：✓ 正确 — related_work.tex: \"quantify 12 bias types\"。该论文 CALM 框架确实量化了 12 种 bias。\n- 注意：bib key 年份 2024 ≠ 发表年份 2025\n\n## 32. feder2021causalm\n- 真实性：✓ 存在\n- 作者：✓ 正确 (Feder, Oved, Shalit, Reichart)\n- 年份：✓ 正确 (2021)\n- 标题：✓ 正确\n- Venue：✓ 正确 (Computational Linguistics, vol 47, no 2)\n- 正文引用上下文：✓ 正确 — related_work.tex: \"Text-based interventional methods have a growing methodological foundation\"。CausaLM 确实是 counterfactual 语言模型的代表性工作。\n\n## 33. wu2021polyjuice\n- 真实性：✓ 存在\n- 作者：✓ 正确 (Wu, Ribeiro, Heer, Weld)\n- 年份：✓ 正确 (2021)\n- 标题：✓ 正确\n- Venue：✓ 正确 (ACL-IJCNLP 2021 Long)\n- 正文引用上下文：✓ 正确 — related_work.tex: 与 CausaLM、Feder 2022 并列为 interventional methods。Polyjuice 确实是 counterfactual 生成工具。\n\n## 34. amidei2019likert\n- 真实性：✓ 存在\n- 作者：✓ 正确 (Amidei, Piwek, Willis)\n- 年份：✓ 正确 (2019)\n- 标题：✓ 正确（bib 中含完整副标题 \": A Review and Some Recommendations\"）\n- Venue：✓ 正确 (INLG 2019)\n- 正文引用上下文：✓ 正确 — related_work.tex: \"review Likert scales in NLG evaluation\"。该论文确实是对 NLG 评估中 Likert 量表使用的综述。\n\n## 35. wu2023style\n- 真实性：✓ 存在\n- 作者：✓ 正确 (Wu, Minghao; Aji, Alham Fikri)\n- 年份：✓ 正确（bib 中 year=2025，COLING 2025）\n- 标题：✓ 正确\n- Venue：✓ 正确 (COLING 2025, 31st International Conference on Computational Linguistics)\n- 正文引用上下文：✓ 正确 — related_work.tex: style bias 作为独立来源；method.tex: 选择 formality/verbosity 作为主轴的依据。该论文确实研究 LLM 评估中的 style bias。\n- 注意：bib key 年份 2023 ≠ 发表年份 2025（arXiv 2023.07）\n\n## 36. feder2022causal\n- 真实性：✓ 存在\n- 作者：✓ 正确（13 位作者，bib 完整列出）\n- 年份：✓ 正确 (2022)\n- 标题：✓ 正确\n- Venue：✓ 正确 (TACL, vol 10)\n- 正文引用上下文：✓ 正确 — related_work.tex: interventional methods 基础文献。该论文是 NLP 因果推断的权威综述。\n\n## 37. koo2024cobbler\n- 真实性：✓ 存在\n- 作者：✓ 正确 (Koo, Lee, Raheja, Park, Kim, Kang)\n- 年份：✓ 正确 (2024)\n- 标题：✓ 正确\n- Venue：✓ 正确 (Findings of ACL 2024)\n- 正文引用上下文：⚠️ **未在任何 .tex 文件中被引用**，仅存在于 references.bib（孤立引用）\n\n## 38. liang1986gee\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确 (1986)\n- 标题：✓ 正确\n- Venue：✓ 正确 (Biometrika)\n- 正文引用上下文：✓ 正确 — experiments.tex: GEE conditional decomposition。该论文正是 GEE 方法的奠基论文。\n\n---\n\n## 汇总\n\n**总共 19 条，✓ 19 条元数据正确，✗ 0 条 hallucinated 或信息错误。**\n\n### 需要注意的问题\n\n**1. 4 条孤立引用（定义在 bib 中但未在正文 .tex 中引用）：**\n- `wang2023faireval` — Large Language Models are not Fair Evaluators\n- `li2024calibraeval` — CalibraEval\n- `tan2025judgebench` — JudgeBench\n- `koo2024cobbler` — Benchmarking Cognitive Biases (CoBBLEr)\n\n这些可能是写作过程中删减的引用，建议清理或补回正文。\n\n**2. 5 条 bib key 年份与实际发表年份不一致（不影响编译，但可能造成混淆）：**\n\n| cite key | key 年份 | 实际发表年份 | 原因 |\n|----------|---------|------------|------|\n| wang2023faireval | 2023 | 2024 (ACL) | arXiv 2023 → ACL 2024 |\n| li2024calibraeval | 2024 | 2025 (ACL) | arXiv 2024 → ACL 2025 |\n| zeng2023llmbar | 2023 | 2024 (ICLR) | arXiv 2023 → ICLR 2024 |\n| ye2024justice | 2024 | 2025 (ICLR) | arXiv 2024 → ICLR 2025 |\n| wu2023style | 2023 | 2025 (COLING) | arXiv 2023 → COLING 2025 |\n\nbib 中的 `year={}` 字段均已使用正确的发表年份，仅 key 名沿用了 arXiv 年份，不影响论文输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

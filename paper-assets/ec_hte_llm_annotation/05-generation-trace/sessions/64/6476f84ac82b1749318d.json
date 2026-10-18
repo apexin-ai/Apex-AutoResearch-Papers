@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6476f84ac82b1749318d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code agnews mc simulation",
+  "task_key": "worker_code_agnews-mc-simulation_20260524T153816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_agnews-mc-simulation_20260524T153816_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "ab0f80d75576e259e6b527aafbb668a265f32a7abb8be413e683094a3433496b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Here's the summary:\n\n**Files produced:**\n- `artifacts/exp-agnews/data/run_agnews_hetero_tau.py` — script\n- `artifacts/exp-agnews/data/agnews_raw.csv` — 9600 rows\n- `artifacts/exp-agnews/data/agnews_summary.csv` — 12 rows\n- `artifacts/exp-agnews/data/agnews_analysis.md` — full analysis\n\n**Key results (N=5000, 100 MC, AG News Business vs non-Business):**\n\n| n_expert | |Bias| Global | |Bias| EC-HTE | Winner |\n|----------|-------------|-------------|--------|\n| 250 | 0.0515 | 0.0531 | Global |\n| 500 | 0.0524 | 0.0323 | **EC-HTE** |\n| 1000 | 0.0528 | 0.0166 | **EC-HTE** |\n\n- EC-HTE wins on |Bias| at 2/3 budget levels (n_expert ≥ 500)\n- Global wins RMSE at all levels (EC-HTE has higher variance with stratified estimation)\n- Sign reversal rates near zero across all methods (all true CATEs are positive)\n- Bias identity R² = -1.3156: the symmetric π_s=(FPR+FNR)/2 approximation doesn't hold well here because FPR and FNR are highly asymmetric (e.g., long_complex: 0.25 vs 0.38), though Global's bias still clearly scales with Δτ across subgroups\n- π̄ = 0.1950, Δπ = 0.2150"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

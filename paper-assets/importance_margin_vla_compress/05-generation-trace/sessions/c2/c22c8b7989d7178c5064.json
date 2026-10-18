@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c22c8b7989d7178c5064",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 westd38929 quick status",
+  "task_key": "worker_ops_cqa1-westd38929-quick-status_20260521T033320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-westd38929-quick-status_20260521T033320_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "bcd30cb7ad6964b801fb6bf26ec32d8d77385e8aa1c775e9136b8198292f0e2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1-33015\n- **random k=0.8 (cuda:1): 已完成 10/10** — Overall SR: **89.4%** [86.4%, 91.8%]\n  - Per-task: 96, 88, 100, 92, 94, 96, 50, 94, 84, 100%\n\n- **random k=0.5 (cuda:2): Task 3 Ep 11/50 运行中** — 已完成 3 tasks\n  - Task 0: 96%, Task 1: 46%, Task 2: 98%\n\n- **random k=0.85 (cuda:3): Task 7 Ep 30/50 运行中** — 已完成 7 tasks\n  - Task 0: 100%, Task 1: 10%, Task 2: 100%, Task 3: 94%, Task 4: 24%, Task 5: 92%, Task 6: 0%\n\n## westd-38929\n- **SmolVLA Spatial baseline: 已完成** — Overall SR: **8.0%** [5.9%, 10.7%]\n  - Per-task: 24, 8, 4, 24, 0, 2, 2, 2, 14, 0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

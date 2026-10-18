@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "79ada7f729e604134467",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "code plan001 step4 5 regression sim",
+  "task_key": "worker_code_plan001-step4-5-regression-sim_20260522T075710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-step4-5-regression-sim_20260522T075710.log",
+    "occurrence": 1,
+    "bytes": 668928,
+    "sha256": "74aba62f4c98fc0ce5aa66db5d8e15553cc95b0b853300bf003063e3595834b0"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 67,
+      "user": 1,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "79ada7f729e604134467-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "79ada7f729e604134467-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "79ada7f729e604134467-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ]
+}

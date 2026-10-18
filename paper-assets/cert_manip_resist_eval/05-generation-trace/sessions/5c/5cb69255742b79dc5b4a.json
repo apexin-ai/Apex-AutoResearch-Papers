@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb69255742b79dc5b4a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 parallel v3 throttled",
+  "task_key": "worker_code_plan001-parallel-v3-throttled_20260522T100712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-parallel-v3-throttled_20260522T100712_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "effa6307373ae6a74b08c210d3311332da686a67239f08772070eb2c0388dcc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本于 18:26:40 启动，运行中。当前状态：\n- **6 个偶发 503** warning（全部 retry 1/5，可恢复）\n- **23/126** checkpoint 已有（之前跑的）\n- **103** remaining conditions\n- **进程稳定**，无崩溃\n\n预计首个新 checkpoint 在 **~19:00-19:10** 出现（10 并发共享 8 模型需约 30-40 分钟完成 300 样本的单个 condition）。\n\n关键改进点（vs 之前崩溃的版本）：\n1. **Semaphore 在 retry 间释放**：失败的模型不再阻塞其他模型\n2. **全局 10 并发上限 + 15 RPS 限速**：防止 proxy 过载\n3. **指数退避 retry**（2/4/8/16/32s），最多 5 次\n\n需要我过一会儿再检查进展吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,611 @@
+{
+  "schema_version": "1.0",
+  "id": "f80a362d873214cf2785",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "fix wang differentiation stats",
+  "task_key": "worker_fix_wang_differentiation_stats_20260519T133238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_wang_differentiation_stats_20260519T133238.jsonl",
+    "occurrence": 1,
+    "bytes": 18594,
+    "sha256": "e53358370b2878147aad4031746d7c56aa7caf4377e761ace88554571411b25b"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:33:46.445273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:33:46.445594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:33:46.445785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:33:46.446039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Wang et al. (2025) vs Our Work: Differentiation Analysis\\\\n\\\\n## Paper Information\\\\n\\\\n- **Title**: A Systematic Analysis of Hybrid Linear Attention\\\\n- **Authors**: Dustin Wang, Rui-Jie Zhu, Steven Abreu, Yong Shan, Taylor Kergan, Yuqi Pan, Yuhong Chou, Zheng Li, Ge Zhang, Wenhao Huang, Jason Eshraghian\\\\n- **arXiv**: 2507.06457\\\\n- **Date**: July 8, 2025\\\\n- **Scope**: Trains 72 models (6 linear attention variants × 5 hybridization ratios × 2 scales) to answer \\\\\\\"which linear attention + what ratio is best for hybrid architectures\\\\\\\"\\\\n\\\\n## Summary\\\\n\\\\nWang et al. is a **practitioner's architecture selection guide** — it systematically benchmarks 72 hybrid models to answer \\\\\\\"which linear attention + what ratio is best.\\\\\\\" Our work asks a fundamentally different question: **\\\\\\\"why do different architectures become more similar when attention is added, and through what per-example mechanism?\\\\\\\"** They observe that rankings change after hybridization; we quantify the convergence, decompose it by task type and scale, and reveal the paradox that aggregate similarity arises from architecture-specific per-example effects.\\\\n\\\\n---\\\\n\\\\n## Verbatim Extractions from Wang et al.\\\\n\\\\n### On Rankings Changing After Hybridization\\\\n- **Section 4.1**: \\\\\\\"The relative performance of different architectures changes substantially when linear and full attention mechanisms are combined, making standalone scores unreliable predictors of hybrid performance.\\\\\\\"\\\\n- **Section 4.1**: \\\\\\\"GatedDeltaNet achieves the highest standalone accuracy. However, when hybridized, HGRN2 at a 6:1 linear-to-full attention ratio outperforms it, exceeding both the Transformer baseline and the standalone leader by 1.2 percentage points.\\\\\\\"\\\\n- **Section 4.1** (1.3B): \\\\\\\"The same pattern emerges at 1.3B parameters: GatedDeltaNet leads in standalone evaluation but becomes comparable with HGRN2 after hybridization.\\\\\\\"\\\\n- **Section 4.5\n…[truncated 6558 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:33:46.446248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"4/6\\|four of six\\|four out of six\\|4 of 6\\|4 out of 6\\|majority\\|most benchmarks\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:33:46.446390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:33:46.446526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"4/6\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:33:46.446671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:33:46.446800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"four\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:33:46.446929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"171:All four differentiation dimensions are **fully novel** — none are incremental extensions of Wang et al.'s analysis. The relationship is complementary:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:33:46.447055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"majority\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:33:46.447176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:33:46.447292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"most benchmarks\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:33:46.447441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:33:46.447566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"7B\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:33:46.447710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:33:46.447836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"three-point\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:33:46.447954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"89%\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:33:46.448070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:33:46.448183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n -i \"significant\" /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:33:46.448298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:33:46.448421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"142:**Wang et al.**: Make a coarse-grained distinction: LM performance \\\\\\\"remains largely flat across ratios\\\\\\\" vs. recall \\\\\\\"significantly improves with increased full attention layers\\\\\\\" (Section 4.2). Their RULER subtask analysis (Table 6) shows \\\\\\\"Single-Key, Multi-key, and QA sub tasks are noticeably affected by a changing ratio... Common Word Extraction and Frequent Word Extraction does not seem to correlate with the hybrid ratio\\\\\\\" (Section 4.2). This is a **ratio-sensitivity** analysis (which tasks benefit from more attention), not a **convergence-pattern** analysis (do architectures become more similar on different tasks at different rates).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T13:33:46.448578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "wc -l /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:33:46.448724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178 /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T13:33:46.448851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -90 /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:33:46.448970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -n +91 /root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T13:33:46.449182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Wang et al. (2025) vs Our Work: Differentiation Analysis\\\\n\\\\n## Paper Information\\\\n\\\\n- **Title**: A Systematic Analysis of Hybrid Linear Attention\\\\n- **Authors**: Dustin Wang, Rui-Jie Zhu, Steven Abreu, Yong Shan, Taylor Kergan, Yuqi Pan, Yuhong Chou, Zheng Li, Ge Zhang, Wenhao Huang, Jason Eshraghian\\\\n- **arXiv**: 2507.06457\\\\n- **Date**: July 8, 2025\\\\n- **Scope**: Trains 72 models (6 linear attention variants × 5 hybridization ratios × 2 scales) to answer \\\\\\\"which linear attention + what ratio is best for hybrid architectures\\\\\\\"\\\\n\\\\n## Summary\\\\n\\\\nWang et al. is a **practitioner's architecture selection guide** — it systematically benchmarks 72 hybrid models to answer \\\\\\\"which linear attention + what ratio is best.\\\\\\\" Our work asks a fundamentally different question: **\\\\\\\"why do different architectures become more similar when attention is added, and through what per-example mechanism?\\\\\\\"** They observe that rankings change after hybridization; we quantify the convergence, decompose it by task type and scale, and reveal the paradox that aggregate similarity arises from architecture-specific per-example effects.\\\\n\\\\n---\\\\n\\\\n## Verbatim Extractions from Wang et al.\\\\n\\\\n### On Rankings Changing After Hybridization\\\\n- **Section 4.1**: \\\\\\\"The relative performance of different architectures changes substantially when linear and full attention mechanisms are combined, making standalone scores unreliable predictors of hybrid performance.\\\\\\\"\\\\n- **Section 4.1**: \\\\\\\"GatedDeltaNet achieves the highest standalone accuracy. However, when hybridized, HGRN2 at a 6:1 linear-to-full attention ratio outperforms it, exceeding both the Transformer baseline and the standalone leader by 1.2 percentage points.\\\\\\\"\\\\n- **Section 4.1** (1.3B): \\\\\\\"The same pattern emerges at 1.3B parameters: GatedDeltaNet leads in standalone evaluation but becomes comparable with HGRN2 after hybridization.\\\\\\\"\\\\n- **Section 4.5\n…[truncated 5224 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T13:33:46.449431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"### Statistical Methods Used\\\\n\\\\n**None.** Wang et al. report point estimates only — no p-values, no confidence intervals, no significance tests, no error bars. All evaluation is zero-shot without task-specific fine-tuning.\\\\n\\\\n### Analysis Granularity\\\\n\\\\n**Aggregate metrics only.** No per-example analysis, no error analysis, no sample-level decomposition.\\\\n\\\\n---\\\\n\\\\n## 4-Point Differentiation Table (Detailed)\\\\n\\\\n### 1. Cross-Architecture Convergence Quantification\\\\n\\\\n**Wang et al.**: Observe qualitatively that \\\\\\\"the relative performance of different architectures changes substantially when linear and full attention mechanisms are combined\\\\\\\" (Section 4.1) and that LM performance \\\\\\\"remains largely flat\\\\\\\" with architectures clustering around 0.55–0.57 (Section 4.2). Their Table 4 shows LM performance averaged across both scales (range ~0.468–0.494 across architectures at any ratio), and Figure 3 shows individual architecture curves. However, they **never compute any cross-architecture variance metric**. They do not quantify the *spread* between architectures or how it changes with attention ratio. The word \\\\\\\"convergence\\\\\\\" appears only once, in the Related Work section referring to industry adoption of the 6–7:1 ratio, not performance convergence.\\\\n\\\\n**Our work**: We compute cross-architecture standard deviation at each attention ratio across all benchmarks, then test monotonic decrease with Spearman rank correlation + exact permutation test (n=5 ratio levels). For LAMBADA at 1.3B: ρ = −1.0, p = 0.0083; std decreases monotonically from 0.024 (pure) to 0.005 (h3-1), a 79% reduction. ARC-Easy and MMLU show suggestive convergence (ρ = −0.7, p = 0.117 each — underpowered at n=5). HellaSwag, ARC-Challenge, and Winogrande show no convergence (ρ ≥ 0.1).\\\\n\\\\n**Gap**: Wang et al. make a qualitative observation (\\\\\\\"rankings change\\\\\\\"). We provide a **quantitative convergence framework** with Spea\n…[truncated 6478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T13:33:46.449676+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已审查完毕。**未发现任何需要修正的错误**：\n\n**错误 1 (\"4/6 benchmarks\")**: 文件中不存在 \"4/6\"、\"four of six\"、\"majority\"、\"most benchmarks\" 等表述。文件已正确记录：\n- LAMBADA: ρ=-1.0, p=0.0083（显著）\n- ARC-Easy, MMLU: ρ=-0.7, p=0.117（suggestive, underpowered）\n- HellaSwag: ρ=+0.3, p=0.742（无收敛）\n- ARC-Challenge: ρ=+0.6, p=0.883（无收敛）\n- Winogrande: ρ=+0.1, p=0.608（无收敛）\n\n这些数值与你提供的\"实际数据\"完全一致，出现在文件的至少 3 处（Section 1 详述、Section 4 task-specificity、Summary Table）。\n\n**错误 2 (\"7B 计划\")**: 文件中不存在 \"7B\"、\"three-point\"、\"89%\"。唯一的 scale 讨论是 340M vs 1.3B 对比，与实际情况一致。\n\n**结论**: `wang_et_al_differentiation.md` 的统计 claims 已经是正确的，无需修改。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_wang_differentiation_stats_20260519T133238"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ]
+}

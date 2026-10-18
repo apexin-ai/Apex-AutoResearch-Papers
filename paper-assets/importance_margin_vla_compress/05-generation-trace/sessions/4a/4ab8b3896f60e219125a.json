@@ -1,0 +1,2099 @@
+{
+  "schema_version": "1.0",
+  "id": "4ab8b3896f60e219125a",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "verify libero 4gpu status",
+  "task_key": "worker_verify_libero_4gpu_status_20260516T155758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_libero_4gpu_status_20260516T155758.log",
+    "occurrence": 1,
+    "bytes": 146937,
+    "sha256": "29bf35b85dc91e294317b37765f517110f066fa7451084444b7a17f480429420"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 17,
+      "tool_result": 17,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+                "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "930761ea-1966-404b-81ea-681aa04d43f3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778962800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0bc7ce82-9f8f-410f-a9f6-65f89b8fa1b4",
+                "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the GPU utilization and training status on the cqa1-33015 server.",
+              "signature": "EokCClkIDRgCKkAylqOzPwbofkKpasPTN9E1Bd0dsZYwXWq5D05T+X3Vc5+yUFkGQfzOGEu7e8MuMCrDgHCaoubK59u9DMNirub8Mg9jbGF1ZGUtb3B1cy00LTY4ABIMmDz+MmYJWp/djNz1GgwrtEKOqmCifIcJ3xciMNjXvMBejiDJVypwd0CG4bkAOfnFz4wdLXLBXNzHfLMeujI9LOK/Yv6ULqa5fzhkXSpewS+EyU+Denw5T/ntZVj51UBGT3vUyAT9HO/I9tFQiCW/k8uhOszlqb2o66QvAQS7ZKVSxYkPcVTWj50PCjBasz0XzoyA/5R6t5D+3/4XD+qOCkAqP0C+mpLwtDFqFxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "badd7434-c518-4b99-a22a-b5ea64b97ded",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QeP4YrmHpodFgwgeWR7VFP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12026,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12026
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q9fEQ4cuHC3m9Y3nQTF9Yh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "7075a018-3455-4296-9612-e3d9de4d5de6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QeP4YrmHpodFgwgeWR7VFP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12026,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12026
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T15:58:11.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Q9fEQ4cuHC3m9Y3nQTF9Yh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "aab8ef49-4550-4bcc-a92e-6edf82d2be8f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the GPU utilization and training status on the cqa1-33015 server.",
+              "signature": "EokCClkIDRgCKkAylqOzPwbofkKpasPTN9E1Bd0dsZYwXWq5D05T+X3Vc5+yUFkGQfzOGEu7e8MuMCrDgHCaoubK59u9DMNirub8Mg9jbGF1ZGUtb3B1cy00LTY4ABIMrbur/oiqMDajM2pvGgzgHkBDyRCNVRC5gJ0iMKGkVhZL0AkYMiIuBRwON9hPR+rBLFL805SH3skvqb76vf5xTtYxuUHsHa6+WqwpfSpePrT7MZ2Q/TGxGGzYjT4kisK2vJ1Rog3HWyBAqF9kYIOoqipoSbpvvB0Jzqcyog17IYkIvWA7MkXe9tPB4sSa1SY/mknxCxGPC1BUxF39iSKhi/a0sxplMnMl6sWUfBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "92e084d3-8fde-4464-9b5e-52b1688f8aca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KJ5pn89RwqdmZ2oaw2FMkP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1666,
+                "cache_read_input_tokens": 23867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1666
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Fuof1SEQ8vxt18h66kg3t",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "1965a0e3-b8e2-40cb-86c2-a28d14b51973",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KJ5pn89RwqdmZ2oaw2FMkP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1666,
+                "cache_read_input_tokens": 23867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1666
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RNwBLQvQgDCaFiJU8cC2Eg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "tmux ls",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "b3de1d6e-2bcd-4329-9046-a9c7c4d74f48",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KJ5pn89RwqdmZ2oaw2FMkP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1666,
+                "cache_read_input_tokens": 23867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1666
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VjRsXXH9WzoGpAaFD3xS2o",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "importance_margin_vla_compress",
+                "limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "47513323-05e5-4541-83c9-9d0a4f989234",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KJ5pn89RwqdmZ2oaw2FMkP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1666,
+                "cache_read_input_tokens": 23867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1666
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T15:58:17.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Fuof1SEQ8vxt18h66kg3t",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090 D, 16 %, 2729 MiB, 24564 MiB\\\\n1, NVIDIA GeForce RTX 4090 D, 6 %, 2097 MiB, 24564 MiB\\\\n2, NVIDIA GeForce RTX 4090 D, 38 %, 2097 MiB, 24564 MiB\\\\n3, NVIDIA GeForce RTX 4090 D, 27 %, 2749 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "ee3bf7f7-dc9a-42f5-bd84-1495bd1e9b7c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090 D, 16 %, 2729 MiB, 24564 MiB\\\\n1, NVIDIA GeForce RTX 4090 D, 6 %, 2097 MiB, 24564 MiB\\\\n2, NVIDIA GeForce RTX 4090 D, 38 %, 2097 MiB, 24564 MiB\\\\n3, NVIDIA GeForce RTX 4090 D, 27 %, 2749 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090 D, 16 %, 2729 MiB, 24564 MiB\\n1, NVIDIA GeForce RTX 4090 D, 6 %, 2097 MiB, 24564 MiB\\n2, NVIDIA GeForce RTX 4090 D, 38 %, 2097 MiB, 24564 MiB\\n3, NVIDIA GeForce RTX 4090 D, 27 %, 2749 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T15:58:17.357Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RNwBLQvQgDCaFiJU8cC2Eg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "06e1d46d-9937-49be-9bdc-92768d921128",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T15:58:17.441Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VjRsXXH9WzoGpAaFD3xS2o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_005_formal_bound_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T15:33:16.146Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:37:18.626Z\\\", \\\"hypothesis\\\": \\\"Formal bound 实证验证: 多 ε 水平 (0.005-0.1) 下测量 top-k stability，绘制 theoretical vs empirical bound 对比图 (v2 fix AttributeError)\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"libero_full_ft_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:17.482Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:42.222Z\\\", \\\"hypothesis\\\": \\\"SmolVLA full expert FT (train_expert_only=True, 99.9M params) on LIBERO, 验证 flow matching 推理 pipeline 正确，目标复现 >50% SR\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1987, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.193, 0.192, 0.203, 0.193, 0.213]}}}, \\\"libero_lora_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:19.278Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:41.117Z\\\", \\\"hypothesis\\\": \\\"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1736, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.166, 0.177, 0.154, 0.198, 0.174]}}}, \\\"plan_008_pruning_sweep_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T15:20:12.616Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:34:25.735Z\\\", \\\"hypothesis\\\": \\\"ACIS pruning 在不同 k_ratio (0.3-0.9) 下的 G3 曲线，验证 denoising effect 和 optimal compression point (v2 fix KeyError preprocess_batch)\\\"}, \\\"plan_008_pruning_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T14:49:22.988Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:11:43.356Z\\\", \\\"hypothesis\\\": \\\"ACIS pruning 在不同 k_ratio 下的 G3 曲线，验证 denoising effect 和 optimal compression point\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_005_formal_bound\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T14:31:39.407Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:49:41.303Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"脚本在加载模型后崩溃: AttributeError: 'IMMSmolVLAWrapper' object has no attribute 'model'。get_tokenizer_from_policy() 访问 policy.model 失败。需要修正属性访问路径。脚本由前一轮 worker 绕过审批直接提交（未走 submit_training_job），无 cron 监控。\\\"}, \\\"baseline_v6_alpha16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T08:40:58.566Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:04:21.593Z\\\", \\\"hypothesis\\\": \\\"降低 LoRA alpha (64→16, scale 2.0→0.5) 避免 flow matching velocity field mode collapse，恢复 sample_actions() diversity\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"mode_collapse_test\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"cross_obs_std\\\": 0.096329, \\\"noise_diversity_std\\\": 0.007352, \\\"pretrained_noise_std\\\": null, \\\"checkpoint\\\": \\\"checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\\\", \\\"threshold_fail\\\": 0.01, \\\"threshold_pass\\\": 0.05, \\\"comparison_alpha64\\\": \\\"alpha64 std=0.006, alpha16 std=0.007 — no meaningful improvement\\\"}}, \\\"notes\\\": \\\"Mode collapse 未修复。alpha=16 (scale=0.5) noise diversity std=0.007352 < 0.01 阈值，与 alpha=64 的 std=0.006 几乎无改善。Cross-obs std=0.096 尚可（不同 obs 产生不同 action），但 same-obs noise diversity 极低，说明 ODE 仍然 collapse 到固定点。问题根源不在 LoRA scale 大小，可能在 flow matching + LoRA 的根本兼容性上。未执行 success rate 评估（mode collapse 导致 0% success rate 是确定的）。\\\"}, \\\"mvp_imm_v8c_annealing\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T07:07:51.506Z\\\", \\\"updated_at\\\": \\\"2026-05-16T10:59:18.563Z\\\", \\\"hypothesis\\\": \\\"Mask ratio annealing (k_ratio 0.9→0.5 线性退火) + gradient isolation (λ=0.5)。渐进引入 pruning 避免 backbone co-adaptation with sudden sparse input，目标 G3-deploy ≤ 1.10\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"G1_margin_ratio\\\": 108.15, \\\"G2_preservation_diff\\\": 60.92, \\\"G3_deploy\\\": 2.04, \\\"G4_LED\\\": 0.1046, \\\"action_loss_acis_prune\\\": null, \\\"action_loss_baseline\\\": null, \\\"final_train_loss\\\": 0.0492, \\\"final_action_loss\\\": 0.0023, \\\"final_margin_loss\\\": 0.0938}}, \\\"eval_sim_success_rate\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T08:37:18.063Z\\\", \\\"updated_at\\\": \\\"2026-05-16T08:37:18.063Z\\\", \\\"notes\\\": \\\"诊断结论：LoRA fine-tuning (alpha=64, rank=32, scale=2.0) 导致 flow matching ODE 推理 mode collapse。预训练 action std=0.104 → LoRA模型 std=0.006。forward() 因 GT noise mixing 能算正确 loss，但 sample_actions() 从纯 noise 出发所有轨迹收敛到同一输入无关的固定点。三组模型（baseline/acis_prune/bypass）均 0% success rate。问题出在 LoRA 训练本身，非 ACIS/pruning 相关。次要 bug：max_episode_steps=300 但训练数据 episode=400 步。\\\"}, \\\"mvp_imm_v8b_twostage\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T04:17:57.529Z\\\", \\\"updated_at\\\": \\\"2026-05-16T07:56:33.588Z\\\", \\\"hypothesis\\\": \\\"Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v8\\\", \\\"notes\\\": \\\"训练正常完成（Stage1 10K + Stage2 20K = 30K steps）。500-batch eval ALL GATES PASS: G1=93.23x, G2=+56.01pp, G3-deploy=0.8679 (ACIS+Prune50% 优于 baseline 13%), G4=0.1354。核心发现：two-stage 完全解耦 ACIS 和 backbone 训练后，ACIS pruning 不仅不损害性能，反而提升——50% token pruning 起正则化作用。ACIS+Prune loss=0.003538 < baseline 0.004063。这是首个通过全部 MVP gate 的实验。Stage 设计: Stage1 (0-10K) freeze backbone+LoRA 只训 ACIS (λ=1.0), Stage2 (10K-30K) freeze ACIS 只训 LoRA (三层防护)。基于 baseline_v5 checkpoint。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sim_success_rate\\\": {\\\"baseline\\\": 0, \\\"acis_prune\\\": 0, \\\"bypass\\\": 0, \\\"n_episodes\\\": 50, \\\"wilson_ci_95_upper\\\": 0.0714, \\\"baseline_mean_reward\\\": 0.16, \\\"acis_prune_mean_reward\\\": 0, \\\"bypass_mean_reward\\\": 0}}}, \\\"mvp_imm_anchor_v8_1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T03:02:09.076Z\\\", \\\"updated_at\\\": \\\"2026-05-16T06:32:15.146Z\\\", \\\"hypothesis\\\": \\\"gradient isolation + 降低 λ_margin (0.2 vs v8 的 0.5)，减轻 ACIS selection overhead 对 G3 的影响，目标 G3-deploy ≤ 1.10\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v8\\\", \\\"notes\\\": \\\"训练完成 30K steps。500-batch eval (fixed evaluate.py): G1=86.5x PASS, G2=+59.2pp PASS, G3-deploy=2.53x FAIL (目标≤1.10), G4=0.084 PASS → Overall FAIL。降低 λ (0.2 vs v8 的 0.5) 反而恶化 G3 (2.53x vs 1.344x)。机理：低 λ=0.2 → ACIS 收敛慢 → 训练早期 routing 信号不稳定 → backbone 学到劣质表征且无法恢复。v8 (λ=0.5) ACIS 收敛快 → routing 早期稳定 → backbone 表征质量更好（虽然仍 co-adapted）。bypass≈pruneFalse (9.32x vs 9.17x) 排除 ACIS 存在本身的开销，但 pruneTrue 2.53x 远优于 full tokens 说明 backbone 已严重 co-adapt 到 sparse input。结论：gradient isolation + 低 λ 不是解法。\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"imm_two_stage_v9\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T04:24:22.574Z\\\", \\\"updated_at\\\": \\\"2026-05-16T05:16:08.231Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"前轮残留实验，未实际运行。已由 mvp_imm_v8b_twostage 替代。Director 指令清理。\\\"}, \\\"mvp_imm_anchor_v8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T23:07:33.075Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:09:35.392Z\\\", \\\"hypothesis\\\": \\\"gradient isolation (dual detach) 消除 backbone 权重损伤 (G3a≤1.10)，同时 ACIS 仍能学到有效 importance scoring (G1≥2x, G2≥10pp)\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v7_2\\\", \\\"notes\\\": \\\"训练完成 (step 30K)。D028 fix re-eval (500-batch, fixed evaluate.py with 5 fixes): G1=50.2x PASS, G2=+58.8pp PASS, G3=1.344x FAIL (target ≤1.10), G4=0.087 PASS → Overall FAIL。Fixed eval 结果与 buggy eval 一致在 ~5% 内：standard_clean 0.00546 (was 0.00530), bypass_clean 0.02895 (was 0.03019), margin_median 0.5034 (was 0.505)。关键发现：(1) G4 LED 从 0.169 降至 0.087，修复显著影响了 LED 计算；(2) G3 从 1.30x 升至 1.34x；(3) bypass/baseline=7.12x 源于 backbone co-adaptation with token selection（训练时 backbone 适应了 soft mask 加权的 ~50% token 子集，移除 ACIS 后 input distribution shift 导致性能下降，非梯度泄漏）。证据：random 50% pruning (0.0172) 优于 full token (0.0290)，说明 backbone 已内化 sparse token 偏好。结论：gradient isolation 有效防止梯度泄漏，但 backbone-ACIS co-adaptation 仍导致 G3=1.344x 超标。\\\", \\\"metrics\\\": {\\\"checkpoint_trajectory\\\": {\\\"step_2000\\\": {\\\"standard\\\": 0.03787, \\\"acis_prune\\\": 0.0357, \\\"bypass\\\": 0.05842, \\\"random_prune\\\": 0.0425, \\\"acis_advantage\\\": 0.0068}, \\\"step_29999\\\": {\\\"standard\\\": 0.00659, \\\"acis_prune\\\": 0.0033, \\\"bypass\\\": 0.0323, \\\"random_prune\\\": 0.01576, \\\"acis_advantage\\\": 0.01246}}, \\\"eval_500batch_fixed\\\": {\\\"source\\\": \\\"eval_results/eval_imm_v8_fixed.json\\\", \\\"eval_tag\\\": \\\"D028_fix_reeval\\\", \\\"standard_clean_action_loss\\\": 0.005462, \\\"bypass_clean_action_loss\\\": 0.028948, \\\"pruneTrue_clean_action_loss\\\": 0.005462, \\\"pruneFalse_clean_action_loss\\\": 0.029996, \\\"margin_median\\\": 0.5034, \\\"margin_mean\\\": 0.7696, \\\"margin_std\\\": 0.8133, \\\"eps001_preservation\\\": 0.923, \\\"eps002_preservation\\\": 0.8367, \\\"eps005_preservation\\\": 0.6613, \\\"eps001_kendall_tau\\\": 0.8393, \\\"eps001_led_median\\\": 0.0852, \\\"eps002_led_median\\\": 0.1714, \\\"eps005_led_median\\\": 0.4429, \\\"lipschitz_empirical\\\": 0.1364, \\\"lipschitz_spectral\\\": 1.0672}, \\\"eval_500batch_bypass_fixed\\\": {\\\"source\\\": \\\"eval_results/eval_imm_v8_bypass_fixed.json\\\", \\\"bypass_clean_action_loss\\\": 0.028948, \\\"bypass_pruned_action_loss\\\": 0.017215, \\\"eps001_action_loss_noprune\\\": 0.027873, \\\"eps001_action_loss_prune\\\": 0.016572, \\\"eps005_action_loss_noprune\\\": 0.039901, \\\"eps005_action_loss_prune\\\": 0.02627}, \\\"baseline_v5_fixed\\\": {\\\"source\\\": \\\"eval_results/eval_baseline_v5_fixed.json\\\", \\\"clean_action_loss\\\": 0.004063, \\\"margin_median\\\": 0.010022, \\\"eps001_preservation\\\": 0.3352}, \\\"gate_analysis_fixed\\\": {\\\"eval_tag\\\": \\\"D028_fix_reeval\\\", \\\"G1_margin_ratio\\\": 50.2, \\\"G1_pass\\\": true, \\\"G2_preservation_diff_pp\\\": 58.78, \\\"G2_pass\\\": true, \\\"G3_clean_loss_ratio\\\": 1.344, \\\"G3_target\\\": 1.1, \\\"G3_pass\\\": false, \\\"G3_deploy_ratio\\\": 1.344, \\\"G3_deploy_pass\\\": false, \\\"G4_led_median\\\": 0.0865, \\\"G4_pass\\\": true, \\\"overall_pass\\\": false, \\\"bypass_backbone_ratio\\\": 7.12, \\\"notes\\\": \\\"Fixed eval (5 bugs: eps0 pruning flag, hard binary mask, per-condition RNG, eval mode, preloaded batches). Results consistent with old buggy eval within ~5%. G3 still fails at 1.344x.\\\"}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_imm_anchor_v7_2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T19:18:02.766Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:05:32.357Z\\\", \\\"hypothesis\\\": \\\"v7.1 重跑 (metrics.py eval mode leak 修复后): lambda_margin=0.2, grad_clip=30.0\\\", \\\"parent\\\": null, \\\"notes\\\": \\\"v7.2 final eval (fixed soft forward + temperature): G1 PASS 64.25x, G2 PASS +47.46pp, G3 FAIL 3.19x (vs v7's 3.28x — barely better despite lambda 0.5→0.2), G4 PASS 0.323. Bypass-ACIS diagnostic: G3=1.91x >> 1.10 → 权重受损确认，不是 selection mechanism overhead。IMM 梯度回传通过 LoRA 污染了 VLM backbone。附注: pruneTrue 条件下 v7.2 远优于 baseline (0.24x ratio)，说明 IMM 训练确实提升了 token importance 鲁棒性，但代价是 clean performance。\\\", \\\"metrics\\\": {\\\"eval_500batch_soft\\\": {\\\"clean_action_loss\\\": 0.013, \\\"clean_margin_median\\\": 0.6627, \\\"clean_preservation\\\": 1, \\\"eps001_preservation\\\": 0.9253, \\\"eps002_preservation\\\": 0.8482, \\\"eps005_preservation\\\": 0.6597, \\\"eps001_led_median\\\": 0.162, \\\"eps002_led_median\\\": 0.3232, \\\"eps005_led_median\\\": 0.7656, \\\"lipschitz_empirical\\\": 0.3393, \\\"lipschitz_spectral\\\": 1.0672}, \\\"bypass_acis\\\": {\\\"clean_action_loss\\\": 0.0078, \\\"g3_ratio\\\": 1.91, \\\"conclusion\\\": \\\"weights_damaged\\\"}, \\\"gate_v7_2\\\": {\\\"G1_margin_ratio\\\": 64.25, \\\"G1_pass\\\": true, \\\"G2_preservation_diff_pp\\\": 47.46, \\\"G2_pass\\\": true, \\\"G3_action_loss_ratio\\\": 3.19, \\\"G3_pass\\\": false, \\\"G4_led_median\\\": 0.323, \\\"G4_pass\\\": true, \\\"overall\\\": \\\"FAIL\\\"}, \\\"source\\\": \\\"eval_results/eval_imm_v7_2_final.json + eval_results/eval_imm_v7_2_bypass_acis.json\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_baseline_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:36:06.963Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:21:59.760Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion (baseline_forward fix, v5 clean env)\\\", \\\"notes\\\": \\\"Original eval (100 batches, pre-D011): clean=0.00422. D011 re-eval (50 batches, fixed baseline_forward+pruning): clean=0.00264, pruneTrue=0.11159. D011 fix changed baseline_forward sig + preprocess_batch + connector name, so clean path value changed too. D014 protocol: redo with 500 batches after v7 completes.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_500batch\\\": {\\\"clean_action_loss\\\": 0.004077, \\\"clean_margin_median\\\": 0.010022, \\\"eps001_preservation\\\": 0.3352, \\\"eps002_preservation\\\": 0.3362, \\\"eps005_preservation\\\": 0.3381}, \\\"mid_checkpoints\\\": {\\\"step005000\\\": {\\\"clean_action_loss\\\": 0.01891, \\\"clean_margin_median\\\": 0.01002, \\\"clean_margin_mean\\\": 0.01608, \\\"clean_pruned_action_loss\\\": 0.08304, \\\"eps001_action_loss\\\": 0.02234, \\\"eps001_preservation\\\": 0.3359, \\\"eps001_kendall_tau\\\": -0.2315, \\\"eps002_action_loss\\\": 0.02057, \\\"eps002_preservation\\\": 0.3369, \\\"eps005_action_loss\\\": 0.03377, \\\"eps005_preservation\\\": 0.34, \\\"eps001_pruned_action_loss\\\": 0.08645, \\\"eps002_pruned_action_loss\\\": 0.0882, \\\"eps005_pruned_action_loss\\\": 0.0912, \\\"lipschitz_empirical\\\": 0, \\\"lipschitz_spectral\\\": 0, \\\"source\\\": \\\"eval_results/eval_baseline_v5_step5000.json\\\"}, \\\"step010000\\\": {\\\"clean_action_loss\\\": 0.00974, \\\"clean_margin_median\\\": 0.01002, \\\"clean_margin_mean\\\": 0.01608, \\\"clean_pruned_action_loss\\\": 0.09434, \\\"eps001_action_loss\\\": 0.01243, \\\"eps001_preservation\\\": 0.3359, \\\"eps001_kendall_tau\\\": -0.2315, \\\"eps002_action_loss\\\": 0.01092, \\\"eps002_preservation\\\": 0.3369, \\\"eps005_action_loss\\\": 0.02565, \\\"eps005_preservation\\\": 0.34, \\\"eps001_pruned_action_loss\\\": 0.09473, \\\"eps002_pruned_action_loss\\\": 0.10085, \\\"eps005_pruned_action_loss\\\": 0.10132, \\\"lipschitz_empirical\\\": 0, \\\"lipschitz_spectral\\\": 0, \\\"source\\\": \\\"eval_results/eval_baseline_v5_step10000.json\\\"}}, \\\"source\\\": \\\"eval_results/eval_baseline_v5_final.json\\\"}}, \\\"mvp_imm_anchor_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T17:07:33.984Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:33:15.301Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) with eval disabled (D008) - same config as v6, skip in-training eval to avoid RoPE crash\\\", \\\"parent\\\": null, \\\"notes\\\": \\\"G3 FAIL: clean action_loss 3.28x baseline (需≤1.10)。G1/G2/G4 PASS (margin 55x, preservation +44pp, LED 0.27<1.0)。lambda=0.5 过于激进。Source: eval_imm_v7_final.json, eval_baseline_v5_final.json, gate_report.json.\\\", \\\"metrics\\\": {\\\"eval_500batch\\\": {\\\"clean_action_loss\\\": 0.0134, \\\"clean_margin_median\\\": 0.5743, \\\"clean_preservation\\\": 1, \\\"eps001_preservation\\\": 0.9124, \\\"eps002_preservation\\\": 0.8172, \\\"eps005_preservation\\\": 0.6079, \\\"eps001_led_median\\\": 0.1341, \\\"eps002_led_median\\\": 0.2726, \\\"eps005_led_median\\\": 0.69, \\\"lipschitz_empirical\\\": 0.2493, \\\"lipschitz_spectral\\\": 1.0672}, \\\"source\\\": \\\"eval_results/eval_imm_v7_final.json\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v7_1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T18:19:52.057Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:18:02.335Z\\\", \\\"hypothesis\\\": \\\"降低 lambda_margin (0.2 vs 0.5) 可以在保持 margin 增长的同时抑制 Lipschitz 爆炸\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v7\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:30:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:01:43.153Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) - fixed token_selection squeeze bug\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v5\\\", \\\"notes\\\": \\\"v5 crashed at step 2000 during eval due to token_selection.py squeeze bug (threshold_low.squeeze(-1) shape mismatch). v6 = fresh start with squeeze fix. Same config: imm_anchor.yaml (delta=0.3, lambda=0.5, k_ratio=0.5). batch_size=4 + FP32 to match baseline v5 for fair comparison.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:30:48.331Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:30:56.416Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) increases importance margin without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:28:19.155Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:32:16.908Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison (fixed action_is_pad bug)\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_imm_anchor_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:00:15.534Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:29:41.858Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:55:28.972Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:57:00.161Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:47:42.413Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:56:58.869Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:47:41.949Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:55:25.052Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:27:58.507Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:43:21.554Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) significantly increases Δ_k margin and top-k preservation without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:50:53.011Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:43:17.783Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on LIBERO-Object establishes action loss reference for IMM comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 26, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0705}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "8d6e1293-0377-428b-a38f-dd97f5f54677",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_005_formal_bound_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T15:33:16.146Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:37:18.626Z\\\", \\\"hypothesis\\\": \\\"Formal bound 实证验证: 多 ε 水平 (0.005-0.1) 下测量 top-k stability，绘制 theoretical vs empirical bound 对比图 (v2 fix AttributeError)\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"libero_full_ft_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:17.482Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:42.222Z\\\", \\\"hypothesis\\\": \\\"SmolVLA full expert FT (train_expert_only=True, 99.9M params) on LIBERO, 验证 flow matching 推理 pipeline 正确，目标复现 >50% SR\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1987, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.193, 0.192, 0.203, 0.193, 0.213]}}}, \\\"libero_lora_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:19.278Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:41.117Z\\\", \\\"hypothesis\\\": \\\"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1736, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.166, 0.177, 0.154, 0.198, 0.174]}}}, \\\"plan_008_pruning_sweep_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T15:20:12.616Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:34:25.735Z\\\", \\\"hypothesis\\\": \\\"ACIS pruning 在不同 k_ratio (0.3-0.9) 下的 G3 曲线，验证 denoising effect 和 optimal compression point (v2 fix KeyError preprocess_batch)\\\"}, \\\"plan_008_pruning_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T14:49:22.988Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:11:43.356Z\\\", \\\"hypothesis\\\": \\\"ACIS pruning 在不同 k_ratio 下的 G3 曲线，验证 denoising effect 和 optimal compression point\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_005_formal_bound\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T14:31:39.407Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:49:41.303Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"脚本在加载模型后崩溃: AttributeError: 'IMMSmolVLAWrapper' object has no attribute 'model'。get_tokenizer_from_policy() 访问 policy.model 失败。需要修正属性访问路径。脚本由前一轮 worker 绕过审批直接提交（未走 submit_training_job），无 cron 监控。\\\"}, \\\"baseline_v6_alpha16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T08:40:58.566Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:04:21.593Z\\\", \\\"hypothesis\\\": \\\"降低 LoRA alpha (64→16, scale 2.0→0.5) 避免 flow matching velocity field mode collapse，恢复 sample_actions() diversity\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"mode_collapse_test\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"cross_obs_std\\\": 0.096329, \\\"noise_diversity_std\\\": 0.007352, \\\"pretrained_noise_std\\\": null, \\\"checkpoint\\\": \\\"checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\\\", \\\"threshold_fail\\\": 0.01, \\\"threshold_pass\\\": 0.05, \\\"comparison_alpha64\\\": \\\"alpha64 std=0.006, alpha16 std=0.007 — no meaningful improvement\\\"}}, \\\"notes\\\": \\\"Mode collapse 未修复。alpha=16 (scale=0.5) noise diversity std=0.007352 < 0.01 阈值，与 alpha=64 的 std=0.006 几乎无改善。Cross-obs std=0.096 尚可（不同 obs 产生不同 action），但 same-obs noise diversity 极低，说明 ODE 仍然 collapse 到固定点。问题根源不在 LoRA scale 大小，可能在 flow matching + LoRA 的根本兼容性上。未执行 success rate 评估（mode collapse 导致 0% success rate 是确定的）。\\\"}, \\\"mvp_imm_v8c_annealing\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T07:07:51.506Z\\\", \\\"updated_at\\\": \\\"2026-05-16T10:59:18.563Z\\\", \\\"hypothesis\\\": \\\"Mask ratio annealing (k_ratio 0.9→0.5 线性退火) + gradient isolation (λ=0.5)。渐进引入 pruning 避免 backbone co-adaptation with sudden sparse input，目标 G3-deploy ≤ 1.10\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"G1_margin_ratio\\\": 108.15, \\\"G2_preservation_diff\\\": 60.92, \\\"G3_deploy\\\": 2.04, \\\"G4_LED\\\": 0.1046, \\\"action_loss_acis_prune\\\": null, \\\"action_loss_baseline\\\": null, \\\"final_train_loss\\\": 0.0492, \\\"final_action_loss\\\": 0.0023, \\\"final_margin_loss\\\": 0.0938}}, \\\"eval_sim_success_rate\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T08:37:18.063Z\\\", \\\"updated_at\\\": \\\"2026-05-16T08:37:18.063Z\\\", \\\"notes\\\": \\\"诊断结论：LoRA fine-tuning (alpha=64, rank=32, scale=2.0) 导致 flow matching ODE 推理 mode collapse。预训练 action std=0.104 → LoRA模型 std=0.006。forward() 因 GT noise mixing 能算正确 loss，但 sample_actions() 从纯 noise 出发所有轨迹收敛到同一输入无关的固定点。三组模型（baseline/acis_prune/bypass）均 0% success rate。问题出在 LoRA 训练本身，非 ACIS/pruning 相关。次要 bug：max_episode_steps=300 但训练数据 episode=400 步。\\\"}, \\\"mvp_imm_v8b_twostage\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T04:17:57.529Z\\\", \\\"updated_at\\\": \\\"2026-05-16T07:56:33.588Z\\\", \\\"hypothesis\\\": \\\"Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v8\\\", \\\"notes\\\": \\\"训练正常完成（Stage1 10K + Stage2 20K = 30K steps）。500-batch eval ALL GATES PASS: G1=93.23x, G2=+56.01pp, G3-deploy=0.8679 (ACIS+Prune50% 优于 baseline 13%), G4=0.1354。核心发现：two-stage 完全解耦 ACIS 和 backbone 训练后，ACIS pruning 不仅不损害性能，反而提升——50% token pruning 起正则化作用。ACIS+Prune loss=0.003538 < baseline 0.004063。这是首个通过全部 MVP gate 的实验。Stage 设计: Stage1 (0-10K) freeze backbone+LoRA 只训 ACIS (λ=1.0), Stage2 (10K-30K) freeze ACIS 只训 LoRA (三层防护)。基于 baseline_v5 checkpoint。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sim_success_rate\\\": {\\\"baseline\\\": 0, \\\"acis_prune\\\": 0, \\\"bypass\\\": 0, \\\"n_episodes\\\": 50, \\\"wilson_ci_95_upper\\\": 0.0714, \\\"baseline_mean_reward\\\": 0.16, \\\"acis_prune_mean_reward\\\": 0, \\\"bypass_mean_reward\\\": 0}}}, \\\"mvp_imm_anchor_v8_1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T03:02:09.076Z\\\", \\\"updated_at\\\": \\\"2026-05-16T06:32:15.146Z\\\", \\\"hypothesis\\\": \\\"gradient isolation + 降低 λ_margin (0.2 vs v8 的 0.5)，减轻 ACIS selection overhead 对 G3 的影响，目标 G3-deploy ≤ 1.10\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v8\\\", \\\"notes\\\": \\\"训练完成 30K steps。500-batch eval (fixed evaluate.py): G1=86.5x PASS, G2=+59.2pp PASS, G3-deploy=2.53x FAIL (目标≤1.10), G4=0.084 PASS → Overall FAIL。降低 λ (0.2 vs v8 的 0.5) 反而恶化 G3 (2.53x vs 1.344x)。机理：低 λ=0.2 → ACIS 收敛慢 → 训练早期 routing 信号不稳定 → backbone 学到劣质表征且无法恢复。v8 (λ=0.5) ACIS 收敛快 → routing 早期稳定 → backbone 表征质量更好（虽然仍 co-adapted）。bypass≈pruneFalse (9.32x vs 9.17x) 排除 ACIS 存在本身的开销，但 pruneTrue 2.53x 远优于 full tokens 说明 backbone 已严重 co-adapt 到 sparse input。结论：gradient isolation + 低 λ 不是解法。\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"imm_two_stage_v9\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T04:24:22.574Z\\\", \\\"updated_at\\\": \\\"2026-05-16T05:16:08.231Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"前轮残留实验，未实际运行。已由 mvp_imm_v8b_twostage 替代。Director 指令清理。\\\"}, \\\"mvp_imm_anchor_v8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T23:07:33.075Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:09:35.392Z\\\", \\\"hypothesis\\\": \\\"gradient isolation (dual detach) 消除 backbone 权重损伤 (G3a≤1.10)，同时 ACIS 仍能学到有效 importance scoring (G1≥2x, G2≥10pp)\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v7_2\\\", \\\"notes\\\": \\\"训练完成 (step 30K)。D028 fix re-eval (500-batch, fixed evaluate.py with 5 fixes): G1=50.2x PASS, G2=+58.8pp PASS, G3=1.344x FAIL (target ≤1.10), G4=0.087 PASS → Overall FAIL。Fixed eval 结果与 buggy eval 一致在 ~5% 内：standard_clean 0.00546 (was 0.00530), bypass_clean 0.02895 (was 0.03019), margin_median 0.5034 (was 0.505)。关键发现：(1) G4 LED 从 0.169 降至 0.087，修复显著影响了 LED 计算；(2) G3 从 1.30x 升至 1.34x；(3) bypass/baseline=7.12x 源于 backbone co-adaptation with token selection（训练时 backbone 适应了 soft mask 加权的 ~50% token 子集，移除 ACIS 后 input distribution shift 导致性能下降，非梯度泄漏）。证据：random 50% pruning (0.0172) 优于 full token (0.0290)，说明 backbone 已内化 sparse token 偏好。结论：gradient isolation 有效防止梯度泄漏，但 backbone-ACIS co-adaptation 仍导致 G3=1.344x 超标。\\\", \\\"metrics\\\": {\\\"checkpoint_trajectory\\\": {\\\"step_2000\\\": {\\\"standard\\\": 0.03787, \\\"acis_prune\\\": 0.0357, \\\"bypass\\\": 0.05842, \\\"random_prune\\\": 0.0425, \\\"acis_advantage\\\": 0.0068}, \\\"step_29999\\\": {\\\"standard\\\": 0.00659, \\\"acis_prune\\\": 0.0033, \\\"bypass\\\": 0.0323, \\\"random_prune\\\": 0.01576, \\\"acis_advantage\\\": 0.01246}}, \\\"eval_500batch_fixed\\\": {\\\"source\\\": \\\"eval_results/eval_imm_v8_fixed.json\\\", \\\"eval_tag\\\": \\\"D028_fix_reeval\\\", \\\"standard_clean_action_loss\\\": 0.005462, \\\"bypass_clean_action_loss\\\": 0.028948, \\\"pruneTrue_clean_action_loss\\\": 0.005462, \\\"pruneFalse_clean_action_loss\\\": 0.029996, \\\"margin_median\\\": 0.5034, \\\"margin_mean\\\": 0.7696, \\\"margin_std\\\": 0.8133, \\\"eps001_preservation\\\": 0.923, \\\"eps002_preservation\\\": 0.8367, \\\"eps005_preservation\\\": 0.6613, \\\"eps001_kendall_tau\\\": 0.8393, \\\"eps001_led_median\\\": 0.0852, \\\"eps002_led_median\\\": 0.1714, \\\"eps005_led_median\\\": 0.4429, \\\"lipschitz_empirical\\\": 0.1364, \\\"lipschitz_spectral\\\": 1.0672}, \\\"eval_500batch_bypass_fixed\\\": {\\\"source\\\": \\\"eval_results/eval_imm_v8_bypass_fixed.json\\\", \\\"bypass_clean_action_loss\\\": 0.028948, \\\"bypass_pruned_action_loss\\\": 0.017215, \\\"eps001_action_loss_noprune\\\": 0.027873, \\\"eps001_action_loss_prune\\\": 0.016572, \\\"eps005_action_loss_noprune\\\": 0.039901, \\\"eps005_action_loss_prune\\\": 0.02627}, \\\"baseline_v5_fixed\\\": {\\\"source\\\": \\\"eval_results/eval_baseline_v5_fixed.json\\\", \\\"clean_action_loss\\\": 0.004063, \\\"margin_median\\\": 0.010022, \\\"eps001_preservation\\\": 0.3352}, \\\"gate_analysis_fixed\\\": {\\\"eval_tag\\\": \\\"D028_fix_reeval\\\", \\\"G1_margin_ratio\\\": 50.2, \\\"G1_pass\\\": true, \\\"G2_preservation_diff_pp\\\": 58.78, \\\"G2_pass\\\": true, \\\"G3_clean_loss_ratio\\\": 1.344, \\\"G3_target\\\": 1.1, \\\"G3_pass\\\": false, \\\"G3_deploy_ratio\\\": 1.344, \\\"G3_deploy_pass\\\": false, \\\"G4_led_median\\\": 0.0865, \\\"G4_pass\\\": true, \\\"overall_pass\\\": false, \\\"bypass_backbone_ratio\\\": 7.12, \\\"notes\\\": \\\"Fixed eval (5 bugs: eps0 pruning flag, hard binary mask, per-condition RNG, eval mode, preloaded batches). Results consistent with old buggy eval within ~5%. G3 still fails at 1.344x.\\\"}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_imm_anchor_v7_2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T19:18:02.766Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:05:32.357Z\\\", \\\"hypothesis\\\": \\\"v7.1 重跑 (metrics.py eval mode leak 修复后): lambda_margin=0.2, grad_clip=30.0\\\", \\\"parent\\\": null, \\\"notes\\\": \\\"v7.2 final eval (fixed soft forward + temperature): G1 PASS 64.25x, G2 PASS +47.46pp, G3 FAIL 3.19x (vs v7's 3.28x — barely better despite lambda 0.5→0.2), G4 PASS 0.323. Bypass-ACIS diagnostic: G3=1.91x >> 1.10 → 权重受损确认，不是 selection mechanism overhead。IMM 梯度回传通过 LoRA 污染了 VLM backbone。附注: pruneTrue 条件下 v7.2 远优于 baseline (0.24x ratio)，说明 IMM 训练确实提升了 token importance 鲁棒性，但代价是 clean performance。\\\", \\\"metrics\\\": {\\\"eval_500batch_soft\\\": {\\\"clean_action_loss\\\": 0.013, \\\"clean_margin_median\\\": 0.6627, \\\"clean_preservation\\\": 1, \\\"eps001_preservation\\\": 0.9253, \\\"eps002_preservation\\\": 0.8482, \\\"eps005_preservation\\\": 0.6597, \\\"eps001_led_median\\\": 0.162, \\\"eps002_led_median\\\": 0.3232, \\\"eps005_led_median\\\": 0.7656, \\\"lipschitz_empirical\\\": 0.3393, \\\"lipschitz_spectral\\\": 1.0672}, \\\"bypass_acis\\\": {\\\"clean_action_loss\\\": 0.0078, \\\"g3_ratio\\\": 1.91, \\\"conclusion\\\": \\\"weights_damaged\\\"}, \\\"gate_v7_2\\\": {\\\"G1_margin_ratio\\\": 64.25, \\\"G1_pass\\\": true, \\\"G2_preservation_diff_pp\\\": 47.46, \\\"G2_pass\\\": true, \\\"G3_action_loss_ratio\\\": 3.19, \\\"G3_pass\\\": false, \\\"G4_led_median\\\": 0.323, \\\"G4_pass\\\": true, \\\"overall\\\": \\\"FAIL\\\"}, \\\"source\\\": \\\"eval_results/eval_imm_v7_2_final.json + eval_results/eval_imm_v7_2_bypass_acis.json\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_baseline_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:36:06.963Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:21:59.760Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion (baseline_forward fix, v5 clean env)\\\", \\\"notes\\\": \\\"Original eval (100 batches, pre-D011): clean=0.00422. D011 re-eval (50 batches, fixed baseline_forward+pruning): clean=0.00264, pruneTrue=0.11159. D011 fix changed baseline_forward sig + preprocess_batch + connector name, so clean path value changed too. D014 protocol: redo with 500 batches after v7 completes.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_500batch\\\": {\\\"clean_action_loss\\\": 0.004077, \\\"clean_margin_median\\\": 0.010022, \\\"eps001_preservation\\\": 0.3352, \\\"eps002_preservation\\\": 0.3362, \\\"eps005_preservation\\\": 0.3381}, \\\"mid_checkpoints\\\": {\\\"step005000\\\": {\\\"clean_action_loss\\\": 0.01891, \\\"clean_margin_median\\\": 0.01002, \\\"clean_margin_mean\\\": 0.01608, \\\"clean_pruned_action_loss\\\": 0.08304, \\\"eps001_action_loss\\\": 0.02234, \\\"eps001_preservation\\\": 0.3359, \\\"eps001_kendall_tau\\\": -0.2315, \\\"eps002_action_loss\\\": 0.02057, \\\"eps002_preservation\\\": 0.3369, \\\"eps005_action_loss\\\": 0.03377, \\\"eps005_preservation\\\": 0.34, \\\"eps001_pruned_action_loss\\\": 0.08645, \\\"eps002_pruned_action_loss\\\": 0.0882, \\\"eps005_pruned_action_loss\\\": 0.0912, \\\"lipschitz_empirical\\\": 0, \\\"lipschitz_spectral\\\": 0, \\\"source\\\": \\\"eval_results/eval_baseline_v5_step5000.json\\\"}, \\\"step010000\\\": {\\\"clean_action_loss\\\": 0.00974, \\\"clean_margin_median\\\": 0.01002, \\\"clean_margin_mean\\\": 0.01608, \\\"clean_pruned_action_loss\\\": 0.09434, \\\"eps001_action_loss\\\": 0.01243, \\\"eps001_preservation\\\": 0.3359, \\\"eps001_kendall_tau\\\": -0.2315, \\\"eps002_action_loss\\\": 0.01092, \\\"eps002_preservation\\\": 0.3369, \\\"eps005_action_loss\\\": 0.02565, \\\"eps005_preservation\\\": 0.34, \\\"eps001_pruned_action_loss\\\": 0.09473, \\\"eps002_pruned_action_loss\\\": 0.10085, \\\"eps005_pruned_action_loss\\\": 0.10132, \\\"lipschitz_empirical\\\": 0, \\\"lipschitz_spectral\\\": 0, \\\"source\\\": \\\"eval_results/eval_baseline_v5_step10000.json\\\"}}, \\\"source\\\": \\\"eval_results/eval_baseline_v5_final.json\\\"}}, \\\"mvp_imm_anchor_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T17:07:33.984Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:33:15.301Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) with eval disabled (D008) - same config as v6, skip in-training eval to avoid RoPE crash\\\", \\\"parent\\\": null, \\\"notes\\\": \\\"G3 FAIL: clean action_loss 3.28x baseline (需≤1.10)。G1/G2/G4 PASS (margin 55x, preservation +44pp, LED 0.27<1.0)。lambda=0.5 过于激进。Source: eval_imm_v7_final.json, eval_baseline_v5_final.json, gate_report.json.\\\", \\\"metrics\\\": {\\\"eval_500batch\\\": {\\\"clean_action_loss\\\": 0.0134, \\\"clean_margin_median\\\": 0.5743, \\\"clean_preservation\\\": 1, \\\"eps001_preservation\\\": 0.9124, \\\"eps002_preservation\\\": 0.8172, \\\"eps005_preservation\\\": 0.6079, \\\"eps001_led_median\\\": 0.1341, \\\"eps002_led_median\\\": 0.2726, \\\"eps005_led_median\\\": 0.69, \\\"lipschitz_empirical\\\": 0.2493, \\\"lipschitz_spectral\\\": 1.0672}, \\\"source\\\": \\\"eval_results/eval_imm_v7_final.json\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v7_1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T18:19:52.057Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:18:02.335Z\\\", \\\"hypothesis\\\": \\\"降低 lambda_margin (0.2 vs 0.5) 可以在保持 margin 增长的同时抑制 Lipschitz 爆炸\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v7\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:30:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:01:43.153Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) - fixed token_selection squeeze bug\\\", \\\"parent\\\": \\\"mvp_imm_anchor_v5\\\", \\\"notes\\\": \\\"v5 crashed at step 2000 during eval due to token_selection.py squeeze bug (threshold_low.squeeze(-1) shape mismatch). v6 = fresh start with squeeze fix. Same config: imm_anchor.yaml (delta=0.3, lambda=0.5, k_ratio=0.5). batch_size=4 + FP32 to match baseline v5 for fair comparison.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:30:48.331Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:30:56.416Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) increases importance margin without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:28:19.155Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:32:16.908Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison (fixed action_is_pad bug)\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_imm_anchor_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:00:15.534Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:29:41.858Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:55:28.972Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:57:00.161Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:47:42.413Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:56:58.869Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:47:41.949Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:55:25.052Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_imm_anchor\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:27:58.507Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:43:21.554Z\\\", \\\"hypothesis\\\": \\\"IMM training (delta=0.3, lambda=0.5) significantly increases Δ_k margin and top-k preservation without degrading action loss\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:50:53.011Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:43:17.783Z\\\", \\\"hypothesis\\\": \\\"SmolVLA+LoRA baseline on LIBERO-Object establishes action loss reference for IMM comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 26, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0705}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan_005_formal_bound_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T15:33:16.146Z\", \"updated_at\": \"2026-05-16T15:37:18.626Z\", \"hypothesis\": \"Formal bound 实证验证: 多 ε 水平 (0.005-0.1) 下测量 top-k stability，绘制 theoretical vs empirical bound 对比图 (v2 fix AttributeError)\", \"conclusion\": \"success\"}, \"libero_full_ft_baseline\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T14:20:17.482Z\", \"updated_at\": \"2026-05-16T15:35:42.222Z\", \"hypothesis\": \"SmolVLA full expert FT (train_expert_only=True, 99.9M params) on LIBERO, 验证 flow matching 推理 pipeline 正确，目标复现 >50% SR\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1987, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.193, 0.192, 0.203, 0.193, 0.213]}}}, \"libero_lora_baseline\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T14:20:19.278Z\", \"updated_at\": \"2026-05-16T15:35:41.117Z\", \"hypothesis\": \"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1736, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.166, 0.177, 0.154, 0.198, 0.174]}}}, \"plan_008_pruning_sweep_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:20:12.616Z\", \"updated_at\": \"2026-05-16T15:34:25.735Z\", \"hypothesis\": \"ACIS pruning 在不同 k_ratio (0.3-0.9) 下的 G3 曲线，验证 denoising effect 和 optimal compression point (v2 fix KeyError preprocess_batch)\"}, \"plan_008_pruning_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T14:49:22.988Z\", \"updated_at\": \"2026-05-16T15:11:43.356Z\", \"hypothesis\": \"ACIS pruning 在不同 k_ratio 下的 G3 曲线，验证 denoising effect 和 optimal compression point\", \"conclusion\": \"failed\"}, \"plan_005_formal_bound\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T14:31:39.407Z\", \"updated_at\": \"2026-05-16T14:49:41.303Z\", \"conclusion\": \"failed\", \"notes\": \"脚本在加载模型后崩溃: AttributeError: 'IMMSmolVLAWrapper' object has no attribute 'model'。get_tokenizer_from_policy() 访问 policy.model 失败。需要修正属性访问路径。脚本由前一轮 worker 绕过审批直接提交（未走 submit_training_job），无 cron 监控。\"}, \"baseline_v6_alpha16\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:40:58.566Z\", \"updated_at\": \"2026-05-16T11:04:21.593Z\", \"hypothesis\": \"降低 LoRA alpha (64→16, scale 2.0→0.5) 避免 flow matching velocity field mode collapse，恢复 sample_actions() diversity\", \"conclusion\": \"negative\", \"metrics\": {\"mode_collapse_test\": {\"verdict\": \"FAIL\", \"cross_obs_std\": 0.096329, \"noise_diversity_std\": 0.007352, \"pretrained_noise_std\": null, \"checkpoint\": \"checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\", \"threshold_fail\": 0.01, \"threshold_pass\": 0.05, \"comparison_alpha64\": \"alpha64 std=0.006, alpha16 std=0.007 — no meaningful improvement\"}}, \"notes\": \"Mode collapse 未修复。alpha=16 (scale=0.5) noise diversity std=0.007352 < 0.01 阈值，与 alpha=64 的 std=0.006 几乎无改善。Cross-obs std=0.096 尚可（不同 obs 产生不同 action），但 same-obs noise diversity 极低，说明 ODE 仍然 collapse 到固定点。问题根源不在 LoRA scale 大小，可能在 flow matching + LoRA 的根本兼容性上。未执行 success rate 评估（mode collapse 导致 0% success rate 是确定的）。\"}, \"mvp_imm_v8c_annealing\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T07:07:51.506Z\", \"updated_at\": \"2026-05-16T10:59:18.563Z\", \"hypothesis\": \"Mask ratio annealing (k_ratio 0.9→0.5 线性退火) + gradient isolation (λ=0.5)。渐进引入 pruning 避免 backbone co-adaptation with sudden sparse input，目标 G3-deploy ≤ 1.10\", \"conclusion\": \"negative\", \"metrics\": {\"G1_margin_ratio\": 108.15, \"G2_preservation_diff\": 60.92, \"G3_deploy\": 2.04, \"G4_LED\": 0.1046, \"action_loss_acis_prune\": null, \"action_loss_baseline\": null, \"final_train_loss\": 0.0492, \"final_action_loss\": 0.0023, \"final_margin_loss\": 0.0938}}, \"eval_sim_success_rate\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T08:37:18.063Z\", \"updated_at\": \"2026-05-16T08:37:18.063Z\", \"notes\": \"诊断结论：LoRA fine-tuning (alpha=64, rank=32, scale=2.0) 导致 flow matching ODE 推理 mode collapse。预训练 action std=0.104 → LoRA模型 std=0.006。forward() 因 GT noise mixing 能算正确 loss，但 sample_actions() 从纯 noise 出发所有轨迹收敛到同一输入无关的固定点。三组模型（baseline/acis_prune/bypass）均 0% success rate。问题出在 LoRA 训练本身，非 ACIS/pruning 相关。次要 bug：max_episode_steps=300 但训练数据 episode=400 步。\"}, \"mvp_imm_v8b_twostage\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:17:57.529Z\", \"updated_at\": \"2026-05-16T07:56:33.588Z\", \"hypothesis\": \"Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10\", \"parent\": \"mvp_imm_anchor_v8\", \"notes\": \"训练正常完成（Stage1 10K + Stage2 20K = 30K steps）。500-batch eval ALL GATES PASS: G1=93.23x, G2=+56.01pp, G3-deploy=0.8679 (ACIS+Prune50% 优于 baseline 13%), G4=0.1354。核心发现：two-stage 完全解耦 ACIS 和 backbone 训练后，ACIS pruning 不仅不损害性能，反而提升——50% token pruning 起正则化作用。ACIS+Prune loss=0.003538 < baseline 0.004063。这是首个通过全部 MVP gate 的实验。Stage 设计: Stage1 (0-10K) freeze backbone+LoRA 只训 ACIS (λ=1.0), Stage2 (10K-30K) freeze ACIS 只训 LoRA (三层防护)。基于 baseline_v5 checkpoint。\", \"conclusion\": \"success\", \"metrics\": {\"sim_success_rate\": {\"baseline\": 0, \"acis_prune\": 0, \"bypass\": 0, \"n_episodes\": 50, \"wilson_ci_95_upper\": 0.0714, \"baseline_mean_reward\": 0.16, \"acis_prune_mean_reward\": 0, \"bypass_mean_reward\": 0}}}, \"mvp_imm_anchor_v8_1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T03:02:09.076Z\", \"updated_at\": \"2026-05-16T06:32:15.146Z\", \"hypothesis\": \"gradient isolation + 降低 λ_margin (0.2 vs v8 的 0.5)，减轻 ACIS selection overhead 对 G3 的影响，目标 G3-deploy ≤ 1.10\", \"parent\": \"mvp_imm_anchor_v8\", \"notes\": \"训练完成 30K steps。500-batch eval (fixed evaluate.py): G1=86.5x PASS, G2=+59.2pp PASS, G3-deploy=2.53x FAIL (目标≤1.10), G4=0.084 PASS → Overall FAIL。降低 λ (0.2 vs v8 的 0.5) 反而恶化 G3 (2.53x vs 1.344x)。机理：低 λ=0.2 → ACIS 收敛慢 → 训练早期 routing 信号不稳定 → backbone 学到劣质表征且无法恢复。v8 (λ=0.5) ACIS 收敛快 → routing 早期稳定 → backbone 表征质量更好（虽然仍 co-adapted）。bypass≈pruneFalse (9.32x vs 9.17x) 排除 ACIS 存在本身的开销，但 pruneTrue 2.53x 远优于 full tokens 说明 backbone 已严重 co-adapt 到 sparse input。结论：gradient isolation + 低 λ 不是解法。\", \"conclusion\": \"negative\"}, \"imm_two_stage_v9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T04:24:22.574Z\", \"updated_at\": \"2026-05-16T05:16:08.231Z\", \"conclusion\": \"killed\", \"notes\": \"前轮残留实验，未实际运行。已由 mvp_imm_v8b_twostage 替代。Director 指令清理。\"}, \"mvp_imm_anchor_v8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T23:07:33.075Z\", \"updated_at\": \"2026-05-16T04:09:35.392Z\", \"hypothesis\": \"gradient isolation (dual detach) 消除 backbone 权重损伤 (G3a≤1.10)，同时 ACIS 仍能学到有效 importance scoring (G1≥2x, G2≥10pp)\", \"parent\": \"mvp_imm_anchor_v7_2\", \"notes\": \"训练完成 (step 30K)。D028 fix re-eval (500-batch, fixed evaluate.py with 5 fixes): G1=50.2x PASS, G2=+58.8pp PASS, G3=1.344x FAIL (target ≤1.10), G4=0.087 PASS → Overall FAIL。Fixed eval 结果与 buggy eval 一致在 ~5% 内：standard_clean 0.00546 (was 0.00530), bypass_clean 0.02895 (was 0.03019), margin_median 0.5034 (was 0.505)。关键发现：(1) G4 LED 从 0.169 降至 0.087，修复显著影响了 LED 计算；(2) G3 从 1.30x 升至 1.34x；(3) bypass/baseline=7.12x 源于 backbone co-adaptation with token selection（训练时 backbone 适应了 soft mask 加权的 ~50% token 子集，移除 ACIS 后 input distribution shift 导致性能下降，非梯度泄漏）。证据：random 50% pruning (0.0172) 优于 full token (0.0290)，说明 backbone 已内化 sparse token 偏好。结论：gradient isolation 有效防止梯度泄漏，但 backbone-ACIS co-adaptation 仍导致 G3=1.344x 超标。\", \"metrics\": {\"checkpoint_trajectory\": {\"step_2000\": {\"standard\": 0.03787, \"acis_prune\": 0.0357, \"bypass\": 0.05842, \"random_prune\": 0.0425, \"acis_advantage\": 0.0068}, \"step_29999\": {\"standard\": 0.00659, \"acis_prune\": 0.0033, \"bypass\": 0.0323, \"random_prune\": 0.01576, \"acis_advantage\": 0.01246}}, \"eval_500batch_fixed\": {\"source\": \"eval_results/eval_imm_v8_fixed.json\", \"eval_tag\": \"D028_fix_reeval\", \"standard_clean_action_loss\": 0.005462, \"bypass_clean_action_loss\": 0.028948, \"pruneTrue_clean_action_loss\": 0.005462, \"pruneFalse_clean_action_loss\": 0.029996, \"margin_median\": 0.5034, \"margin_mean\": 0.7696, \"margin_std\": 0.8133, \"eps001_preservation\": 0.923, \"eps002_preservation\": 0.8367, \"eps005_preservation\": 0.6613, \"eps001_kendall_tau\": 0.8393, \"eps001_led_median\": 0.0852, \"eps002_led_median\": 0.1714, \"eps005_led_median\": 0.4429, \"lipschitz_empirical\": 0.1364, \"lipschitz_spectral\": 1.0672}, \"eval_500batch_bypass_fixed\": {\"source\": \"eval_results/eval_imm_v8_bypass_fixed.json\", \"bypass_clean_action_loss\": 0.028948, \"bypass_pruned_action_loss\": 0.017215, \"eps001_action_loss_noprune\": 0.027873, \"eps001_action_loss_prune\": 0.016572, \"eps005_action_loss_noprune\": 0.039901, \"eps005_action_loss_prune\": 0.02627}, \"baseline_v5_fixed\": {\"source\": \"eval_results/eval_baseline_v5_fixed.json\", \"clean_action_loss\": 0.004063, \"margin_median\": 0.010022, \"eps001_preservation\": 0.3352}, \"gate_analysis_fixed\": {\"eval_tag\": \"D028_fix_reeval\", \"G1_margin_ratio\": 50.2, \"G1_pass\": true, \"G2_preservation_diff_pp\": 58.78, \"G2_pass\": true, \"G3_clean_loss_ratio\": 1.344, \"G3_target\": 1.1, \"G3_pass\": false, \"G3_deploy_ratio\": 1.344, \"G3_deploy_pass\": false, \"G4_led_median\": 0.0865, \"G4_pass\": true, \"overall_pass\": false, \"bypass_backbone_ratio\": 7.12, \"notes\": \"Fixed eval (5 bugs: eps0 pruning flag, hard binary mask, per-condition RNG, eval mode, preloaded batches). Results consistent with old buggy eval within ~5%. G3 still fails at 1.344x.\"}}, \"conclusion\": \"negative\"}, \"mvp_imm_anchor_v7_2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:18:02.766Z\", \"updated_at\": \"2026-05-15T23:05:32.357Z\", \"hypothesis\": \"v7.1 重跑 (metrics.py eval mode leak 修复后): lambda_margin=0.2, grad_clip=30.0\", \"parent\": null, \"notes\": \"v7.2 final eval (fixed soft forward + temperature): G1 PASS 64.25x, G2 PASS +47.46pp, G3 FAIL 3.19x (vs v7's 3.28x — barely better despite lambda 0.5→0.2), G4 PASS 0.323. Bypass-ACIS diagnostic: G3=1.91x >> 1.10 → 权重受损确认，不是 selection mechanism overhead。IMM 梯度回传通过 LoRA 污染了 VLM backbone。附注: pruneTrue 条件下 v7.2 远优于 baseline (0.24x ratio)，说明 IMM 训练确实提升了 token importance 鲁棒性，但代价是 clean performance。\", \"metrics\": {\"eval_500batch_soft\": {\"clean_action_loss\": 0.013, \"clean_margin_median\": 0.6627, \"clean_preservation\": 1, \"eps001_preservation\": 0.9253, \"eps002_preservation\": 0.8482, \"eps005_preservation\": 0.6597, \"eps001_led_median\": 0.162, \"eps002_led_median\": 0.3232, \"eps005_led_median\": 0.7656, \"lipschitz_empirical\": 0.3393, \"lipschitz_spectral\": 1.0672}, \"bypass_acis\": {\"clean_action_loss\": 0.0078, \"g3_ratio\": 1.91, \"conclusion\": \"weights_damaged\"}, \"gate_v7_2\": {\"G1_margin_ratio\": 64.25, \"G1_pass\": true, \"G2_preservation_diff_pp\": 47.46, \"G2_pass\": true, \"G3_action_loss_ratio\": 3.19, \"G3_pass\": false, \"G4_led_median\": 0.323, \"G4_pass\": true, \"overall\": \"FAIL\"}, \"source\": \"eval_results/eval_imm_v7_2_final.json + eval_results/eval_imm_v7_2_bypass_acis.json\"}, \"conclusion\": \"negative\"}, \"mvp_baseline_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:36:06.963Z\", \"updated_at\": \"2026-05-15T22:21:59.760Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion (baseline_forward fix, v5 clean env)\", \"notes\": \"Original eval (100 batches, pre-D011): clean=0.00422. D011 re-eval (50 batches, fixed baseline_forward+pruning): clean=0.00264, pruneTrue=0.11159. D011 fix changed baseline_forward sig + preprocess_batch + connector name, so clean path value changed too. D014 protocol: redo with 500 batches after v7 completes.\", \"conclusion\": \"success\", \"metrics\": {\"eval_500batch\": {\"clean_action_loss\": 0.004077, \"clean_margin_median\": 0.010022, \"eps001_preservation\": 0.3352, \"eps002_preservation\": 0.3362, \"eps005_preservation\": 0.3381}, \"mid_checkpoints\": {\"step005000\": {\"clean_action_loss\": 0.01891, \"clean_margin_median\": 0.01002, \"clean_margin_mean\": 0.01608, \"clean_pruned_action_loss\": 0.08304, \"eps001_action_loss\": 0.02234, \"eps001_preservation\": 0.3359, \"eps001_kendall_tau\": -0.2315, \"eps002_action_loss\": 0.02057, \"eps002_preservation\": 0.3369, \"eps005_action_loss\": 0.03377, \"eps005_preservation\": 0.34, \"eps001_pruned_action_loss\": 0.08645, \"eps002_pruned_action_loss\": 0.0882, \"eps005_pruned_action_loss\": 0.0912, \"lipschitz_empirical\": 0, \"lipschitz_spectral\": 0, \"source\": \"eval_results/eval_baseline_v5_step5000.json\"}, \"step010000\": {\"clean_action_loss\": 0.00974, \"clean_margin_median\": 0.01002, \"clean_margin_mean\": 0.01608, \"clean_pruned_action_loss\": 0.09434, \"eps001_action_loss\": 0.01243, \"eps001_preservation\": 0.3359, \"eps001_kendall_tau\": -0.2315, \"eps002_action_loss\": 0.01092, \"eps002_preservation\": 0.3369, \"eps005_action_loss\": 0.02565, \"eps005_preservation\": 0.34, \"eps001_pruned_action_loss\": 0.09473, \"eps002_pruned_action_loss\": 0.10085, \"eps005_pruned_action_loss\": 0.10132, \"lipschitz_empirical\": 0, \"lipschitz_spectral\": 0, \"source\": \"eval_results/eval_baseline_v5_step10000.json\"}}, \"source\": \"eval_results/eval_baseline_v5_final.json\"}}, \"mvp_imm_anchor_v7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:07:33.984Z\", \"updated_at\": \"2026-05-15T21:33:15.301Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) with eval disabled (D008) - same config as v6, skip in-training eval to avoid RoPE crash\", \"parent\": null, \"notes\": \"G3 FAIL: clean action_loss 3.28x baseline (需≤1.10)。G1/G2/G4 PASS (margin 55x, preservation +44pp, LED 0.27<1.0)。lambda=0.5 过于激进。Source: eval_imm_v7_final.json, eval_baseline_v5_final.json, gate_report.json.\", \"metrics\": {\"eval_500batch\": {\"clean_action_loss\": 0.0134, \"clean_margin_median\": 0.5743, \"clean_preservation\": 1, \"eps001_preservation\": 0.9124, \"eps002_preservation\": 0.8172, \"eps005_preservation\": 0.6079, \"eps001_led_median\": 0.1341, \"eps002_led_median\": 0.2726, \"eps005_led_median\": 0.69, \"lipschitz_empirical\": 0.2493, \"lipschitz_spectral\": 1.0672}, \"source\": \"eval_results/eval_imm_v7_final.json\"}, \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v7_1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T18:19:52.057Z\", \"updated_at\": \"2026-05-15T19:18:02.335Z\", \"hypothesis\": \"降低 lambda_margin (0.2 vs 0.5) 可以在保持 margin 增长的同时抑制 Lipschitz 爆炸\", \"parent\": \"mvp_imm_anchor_v7\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:30:47.843Z\", \"updated_at\": \"2026-05-15T17:01:43.153Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) - fixed token_selection squeeze bug\", \"parent\": \"mvp_imm_anchor_v5\", \"notes\": \"v5 crashed at step 2000 during eval due to token_selection.py squeeze bug (threshold_low.squeeze(-1) shape mismatch). v6 = fresh start with squeeze fix. Same config: imm_anchor.yaml (delta=0.3, lambda=0.5, k_ratio=0.5). batch_size=4 + FP32 to match baseline v5 for fair comparison.\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:30:48.331Z\", \"updated_at\": \"2026-05-15T16:30:56.416Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) increases importance margin without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:28:19.155Z\", \"updated_at\": \"2026-05-15T15:32:16.908Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison (fixed action_is_pad bug)\", \"conclusion\": \"killed\"}, \"mvp_imm_anchor_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:00:15.534Z\", \"updated_at\": \"2026-05-15T15:29:41.858Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:55:28.972Z\", \"updated_at\": \"2026-05-15T14:57:00.161Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:47:42.413Z\", \"updated_at\": \"2026-05-15T14:56:58.869Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:47:41.949Z\", \"updated_at\": \"2026-05-15T14:55:25.052Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:27:58.507Z\", \"updated_at\": \"2026-05-15T14:43:21.554Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) significantly increases Δ_k margin and top-k preservation without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:50:53.011Z\", \"updated_at\": \"2026-05-15T14:43:17.783Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on LIBERO-Object establishes action loss reference for IMM comparison\", \"conclusion\": \"failed\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0705}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The GPU utilization shows all 4 cards are active (16%, 6%, 38%, 27%) with memory allocated (~2GB each). But the memory usage is quite low (only ~2GB out of 24GB). This seems suspicious - training usually uses much more GPU memory. Let me check the processes and logs more carefully.\n\nLet me check the tmux sessions and training processes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "1f71ceaa-91df-403d-bdcd-e4d14f680c18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KyeM5ucube3zzeb32VD1qK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8672,
+                "cache_read_input_tokens": 25533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8672
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 都有负载但显存偏低（~2GB/24GB），需要进一步确认。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "26163cca-552a-4290-bc5e-a27826d0dee9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KyeM5ucube3zzeb32VD1qK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8672,
+                "cache_read_input_tokens": 25533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8672
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W8YkihM5ayeH1RGNekH8cP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "ps aux | grep \"python.*train\" | grep -v grep",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "5c94391e-29f3-4dfa-8f7a-1ee5d7de0703",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KyeM5ucube3zzeb32VD1qK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8672,
+                "cache_read_input_tokens": 25533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8672
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015XmctESLKAhMGicmTVnKY3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "tmux ls",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "a91484c7-220c-48c4-bcca-32d770dada25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KyeM5ucube3zzeb32VD1qK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8672,
+                "cache_read_input_tokens": 25533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8672
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T15:58:27.082Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W8YkihM5ayeH1RGNekH8cP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root       8984  0.0  0.0   6116  3916 ?        Ss   22:20   0:00 tmux new-session -d -s libero_full_ft_baseline rm -f /tmp/agent-ml-exit/libero_full_ft_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/libero_full_ft_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log 2>&1\\\\nroot       8985  0.0  0.0   4496  3512 pts/0    Ss+  22:20   0:00 bash -c rm -f /tmp/agent-ml-exit/libero_full_ft_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/libero_full_ft_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log 2>&1\\\\nroot       8989  0.0  0.0   2800  1052 pts/0    S    22:20   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\\\\\"\\\\nroot       8990 81.3  0.2 111276864 2617308 pts/0 Rl 22:20  79:52 python train.py --config configs/libero_full_ft.yaml\\\\nroot       9062  0.0  0.0   4496  3568 pts/1    Ss+  22:20   0:00 bash -c rm -f /tmp/agent-ml-exit/libero_lora_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/libero_lora_baseline.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/libero_lora_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_baseline.yaml\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/li\\\\n\\\\n... [截断: 输出过长，省略 782 字符] ...\\\\n\\\\non train.py --config configs/libero_full_ft.yaml\\\\nroot      10218 98.4  3.1 73604108 33064296 pts/0 Rl 22:21  95:43 python train.py --config configs/libero_full_ft.yaml\\\\nroot      10219 99.0  3.1 73604120 33171288 pts/0 Rl 22:21  96:22 python train.py --config configs/libero_full_ft.yaml\\\\nroot      10220 98.9  3.1 73604132 33077076 pts/0 Rl 22:21  96:13 python train.py --config configs/libero_full_ft.yaml\\\\nroot      10525 99.2  3.1 73974344 33186784 pts/1 Rl 22:21  96:22 python train.py --config configs/libero_baseline.yaml\\\\nroot      10526 99.1  3.1 73974356 33101776 pts/1 Rl 22:21  96:21 python train.py --config configs/libero_baseline.yaml\\\\nroot      10527 98.7  3.1 73974368 33114732 pts/1 Rl 22:21  95:58 python train.py --config configs/libero_baseline.yaml\\\\nroot      10528 98.2  3.1 73974380 33173212 pts/1 Rl 22:21  95:27 python train.py --config configs/libero_baseline.yaml\\\\nroot      21383  0.0  0.0   4364  3308 pts/2    Ss+  23:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0 > /root/runs/importance_margin_vla_compress/libero_lora_seed0.log 2>&1\\\\nroot      21389  112  0.2 112402124 2788644 pts/2 Rl+ 23:42  18:10 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      21455  0.0  0.0   4364  3216 pts/3    Ss+  23:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0 > /root/runs/importance_margin_vla_compress/libero_fullft_seed0.log 2>&1\\\\nroot      21461  104  0.2 113405944 2751656 pts/3 Rl+ 23:42  16:43 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      22740 99.6  1.5 76154532 16560888 pts/2 Rl+ 23:43  15:02 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      22741 99.5  1.5 76154544 16519480 pts/2 Rl+ 23:43  15:01 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      22742 99.9  1.5 76154556 16398728 pts/2 Rl+ 23:43  15:05 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      22743 98.8  1.5 76154568 16680984 pts/2 Rl+ 23:43  14:55 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      23034 96.1  1.4 75849712 15519604 pts/3 Rl+ 23:43  14:29 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      23036 95.7  1.4 75849724 15474256 pts/3 Rl+ 23:43  14:25 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      23037 99.0  1.4 75849736 15455744 pts/3 Rl+ 23:43  14:55 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      23038 98.8  1.4 75849748 15564264 pts/3 Rl+ 23:43  14:53 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "9e5fb476-bf08-473d-a90b-e98e62ff8ee4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root       8984  0.0  0.0   6116  3916 ?        Ss   22:20   0:00 tmux new-session -d -s libero_full_ft_baseline rm -f /tmp/agent-ml-exit/libero_full_ft_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/libero_full_ft_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log 2>&1\\\\nroot       8985  0.0  0.0   4496  3512 pts/0    Ss+  22:20   0:00 bash -c rm -f /tmp/agent-ml-exit/libero_full_ft_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/libero_full_ft_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log 2>&1\\\\nroot       8989  0.0  0.0   2800  1052 pts/0    S    22:20   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\\\\\"\\\\nroot       8990 81.3  0.2 111276864 2617308 pts/0 Rl 22:20  79:52 python train.py --config configs/libero_full_ft.yaml\\\\nroot       9062  0.0  0.0   4496  3568 pts/1    Ss+  22:20   0:00 bash -c rm -f /tmp/agent-ml-exit/libero_lora_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/libero_lora_baseline.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/libero_lora_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_baseline.yaml\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/li\\\\n\\\\n... [截断: 输出过长，省略 782 字符] ...\\\\n\\\\non train.py --config configs/libero_full_ft.yaml\\\\nroot      10218 98.4  3.1 73604108 33064296 pts/0 Rl 22:21  95:43 python train.py --config configs/libero_full_ft.yaml\\\\nroot      10219 99.0  3.1 73604120 33171288 pts/0 Rl 22:21  96:22 python train.py --config configs/libero_full_ft.yaml\\\\nroot      10220 98.9  3.1 73604132 33077076 pts/0 Rl 22:21  96:13 python train.py --config configs/libero_full_ft.yaml\\\\nroot      10525 99.2  3.1 73974344 33186784 pts/1 Rl 22:21  96:22 python train.py --config configs/libero_baseline.yaml\\\\nroot      10526 99.1  3.1 73974356 33101776 pts/1 Rl 22:21  96:21 python train.py --config configs/libero_baseline.yaml\\\\nroot      10527 98.7  3.1 73974368 33114732 pts/1 Rl 22:21  95:58 python train.py --config configs/libero_baseline.yaml\\\\nroot      10528 98.2  3.1 73974380 33173212 pts/1 Rl 22:21  95:27 python train.py --config configs/libero_baseline.yaml\\\\nroot      21383  0.0  0.0   4364  3308 pts/2    Ss+  23:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0 > /root/runs/importance_margin_vla_compress/libero_lora_seed0.log 2>&1\\\\nroot      21389  112  0.2 112402124 2788644 pts/2 Rl+ 23:42  18:10 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      21455  0.0  0.0   4364  3216 pts/3    Ss+  23:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0 > /root/runs/importance_margin_vla_compress/libero_fullft_seed0.log 2>&1\\\\nroot      21461  104  0.2 113405944 2751656 pts/3 Rl+ 23:42  16:43 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      22740 99.6  1.5 76154532 16560888 pts/2 Rl+ 23:43  15:02 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      22741 99.5  1.5 76154544 16519480 pts/2 Rl+ 23:43  15:01 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      22742 99.9  1.5 76154556 16398728 pts/2 Rl+ 23:43  15:05 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      22743 98.8  1.5 76154568 16680984 pts/2 Rl+ 23:43  14:55 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\\nroot      23034 96.1  1.4 75849712 15519604 pts/3 Rl+ 23:43  14:29 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      23036 95.7  1.4 75849724 15474256 pts/3 Rl+ 23:43  14:25 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      23037 99.0  1.4 75849736 15455744 pts/3 Rl+ 23:43  14:55 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\nroot      23038 98.8  1.4 75849748 15564264 pts/3 Rl+ 23:43  14:53 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root       8984  0.0  0.0   6116  3916 ?        Ss   22:20   0:00 tmux new-session -d -s libero_full_ft_baseline rm -f /tmp/agent-ml-exit/libero_full_ft_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/libero_full_ft_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\"'; } > ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log 2>&1\\nroot       8985  0.0  0.0   4496  3512 pts/0    Ss+  22:20   0:00 bash -c rm -f /tmp/agent-ml-exit/libero_full_ft_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/libero_full_ft_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\"'; } > ~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log 2>&1\\nroot       8989  0.0  0.0   2800  1052 pts/0    S    22:20   0:00 timeout 86400 env bash -c bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_full_ft.yaml\\\"\\nroot       8990 81.3  0.2 111276864 2617308 pts/0 Rl 22:20  79:52 python train.py --config configs/libero_full_ft.yaml\\nroot       9062  0.0  0.0   4496  3568 pts/1    Ss+  22:20   0:00 bash -c rm -f /tmp/agent-ml-exit/libero_lora_baseline.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/importance_margin_vla_compress/libero_lora_baseline.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/libero_lora_baseline.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train.py --config configs/libero_baseline.yaml\\\"'; } > ~/runs/importance_margin_vla_compress/li\\n\\n... [截断: 输出过长，省略 782 字符] ...\\n\\non train.py --config configs/libero_full_ft.yaml\\nroot      10218 98.4  3.1 73604108 33064296 pts/0 Rl 22:21  95:43 python train.py --config configs/libero_full_ft.yaml\\nroot      10219 99.0  3.1 73604120 33171288 pts/0 Rl 22:21  96:22 python train.py --config configs/libero_full_ft.yaml\\nroot      10220 98.9  3.1 73604132 33077076 pts/0 Rl 22:21  96:13 python train.py --config configs/libero_full_ft.yaml\\nroot      10525 99.2  3.1 73974344 33186784 pts/1 Rl 22:21  96:22 python train.py --config configs/libero_baseline.yaml\\nroot      10526 99.1  3.1 73974356 33101776 pts/1 Rl 22:21  96:21 python train.py --config configs/libero_baseline.yaml\\nroot      10527 98.7  3.1 73974368 33114732 pts/1 Rl 22:21  95:58 python train.py --config configs/libero_baseline.yaml\\nroot      10528 98.2  3.1 73974380 33173212 pts/1 Rl 22:21  95:27 python train.py --config configs/libero_baseline.yaml\\nroot      21383  0.0  0.0   4364  3308 pts/2    Ss+  23:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0 > /root/runs/importance_margin_vla_compress/libero_lora_seed0.log 2>&1\\nroot      21389  112  0.2 112402124 2788644 pts/2 Rl+ 23:42  18:10 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\nroot      21455  0.0  0.0   4364  3216 pts/3    Ss+  23:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export HF_HUB_DISABLE_XET=1 && export MUJOCO_GL=egl && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0 > /root/runs/importance_margin_vla_compress/libero_fullft_seed0.log 2>&1\\nroot      21461  104  0.2 113405944 2751656 pts/3 Rl+ 23:42  16:43 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\nroot      22740 99.6  1.5 76154532 16560888 pts/2 Rl+ 23:43  15:02 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\nroot      22741 99.5  1.5 76154544 16519480 pts/2 Rl+ 23:43  15:01 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\nroot      22742 99.9  1.5 76154556 16398728 pts/2 Rl+ 23:43  15:05 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\nroot      22743 98.8  1.5 76154568 16680984 pts/2 Rl+ 23:43  14:55 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\nroot      23034 96.1  1.4 75849712 15519604 pts/3 Rl+ 23:43  14:29 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\nroot      23036 95.7  1.4 75849724 15474256 pts/3 Rl+ 23:43  14:25 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\nroot      23037 99.0  1.4 75849736 15455744 pts/3 Rl+ 23:43  14:55 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\nroot      23038 98.8  1.4 75849748 15564264 pts/3 Rl+ 23:43  14:53 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T15:58:27.582Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015XmctESLKAhMGicmTVnKY3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"libero_full_ft_baseline: 1 windows (created Sat May 16 22:20:17 2026)\\\\nlibero_fullft_seed0: 1 windows (created Sat May 16 23:42:23 2026)\\\\nlibero_lora_baseline: 1 windows (created Sat May 16 22:20:18 2026)\\\\nlibero_lora_seed0: 1 windows (created Sat May 16 23:42:20 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "c531c51d-5a95-43aa-b657-7e4257f74bc0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"libero_full_ft_baseline: 1 windows (created Sat May 16 22:20:17 2026)\\\\nlibero_fullft_seed0: 1 windows (created Sat May 16 23:42:23 2026)\\\\nlibero_lora_baseline: 1 windows (created Sat May 16 22:20:18 2026)\\\\nlibero_lora_seed0: 1 windows (created Sat May 16 23:42:20 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"libero_full_ft_baseline: 1 windows (created Sat May 16 22:20:17 2026)\\nlibero_fullft_seed0: 1 windows (created Sat May 16 23:42:23 2026)\\nlibero_lora_baseline: 1 windows (created Sat May 16 22:20:18 2026)\\nlibero_lora_seed0: 1 windows (created Sat May 16 23:42:20 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 4 tmux sessions are running:\n- libero_full_ft_baseline (cuda:0) - started 22:20\n- libero_lora_baseline (cuda:1) - started 22:20\n- libero_lora_seed0 (cuda:2) - started 23:42\n- libero_fullft_seed0 (cuda:3) - started 23:42\n\nEach has multiple worker processes (4 data loader workers each). GPU memory seems low at ~2.7GB but that might be because nvidia-smi query shows different things. Let me check the actual GPU memory usage with a better query and the logs.\n\n\nThe GPU memory is only around 2GB per device, but the processes are consuming ~33GB of system RAM. The data loading workers are maxing out CPU at 99% while GPU utilization is still low at 6-38%, which suggests the models haven't been loaded onto the GPUs yet or we're still in the initial data loading phase. Since the seed0 sessions just started at 23:42, they're probably still in the process of loading models and data—let me check the logs to see what's actually happening.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "f5fc470d-9561-4816-bba1-b6f6f21f5779",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012c7dLpqnGs1kTQA37NRAi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4114,
+                "cache_read_input_tokens": 34205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 tmux sessions 全部在跑。查看日志进度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "cbcbf566-2b30-401a-ad8a-a51db901f708",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012c7dLpqnGs1kTQA37NRAi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4114,
+                "cache_read_input_tokens": 34205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MvAQomzEV6JzoiAcQ7ffYf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "tail -5 /root/runs/importance_margin_vla_compress/libero_full_ft_baseline.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "521c6297-d568-44c9-b411-1c239a1dd520",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012c7dLpqnGs1kTQA37NRAi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4114,
+                "cache_read_input_tokens": 34205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cyrd8wdzD6YQhueJHgyBEg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "tail -5 /root/runs/importance_margin_vla_compress/libero_lora_baseline.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "287ce9dd-d4f3-4e50-a34f-c8b3c7131c2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012c7dLpqnGs1kTQA37NRAi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4114,
+                "cache_read_input_tokens": 34205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T15:58:41.203Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MvAQomzEV6JzoiAcQ7ffYf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:43 [INFO] step=23850/100000  loss=0.1145  lr=8.77e-05  grad=1.55  sps=4.1\\\\n2026-05-16 23:57:56 [INFO] step=23900/100000  loss=0.1256  lr=8.77e-05  grad=1.95  sps=4.1\\\\n2026-05-16 23:58:08 [INFO] step=23950/100000  loss=0.0648  lr=8.76e-05  grad=1.34  sps=4.1\\\\n2026-05-16 23:58:20 [INFO] step=24000/100000  loss=0.0969  lr=8.76e-05  grad=1.51  sps=4.1\\\\n2026-05-16 23:58:32 [INFO] step=24050/100000  loss=0.0629  lr=8.75e-05  grad=1.54  sps=4.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "e0bdc713-ab36-454f-82bd-54a22b7896dc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:43 [INFO] step=23850/100000  loss=0.1145  lr=8.77e-05  grad=1.55  sps=4.1\\\\n2026-05-16 23:57:56 [INFO] step=23900/100000  loss=0.1256  lr=8.77e-05  grad=1.95  sps=4.1\\\\n2026-05-16 23:58:08 [INFO] step=23950/100000  loss=0.0648  lr=8.76e-05  grad=1.34  sps=4.1\\\\n2026-05-16 23:58:20 [INFO] step=24000/100000  loss=0.0969  lr=8.76e-05  grad=1.51  sps=4.1\\\\n2026-05-16 23:58:32 [INFO] step=24050/100000  loss=0.0629  lr=8.75e-05  grad=1.54  sps=4.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 23:57:43 [INFO] step=23850/100000  loss=0.1145  lr=8.77e-05  grad=1.55  sps=4.1\\n2026-05-16 23:57:56 [INFO] step=23900/100000  loss=0.1256  lr=8.77e-05  grad=1.95  sps=4.1\\n2026-05-16 23:58:08 [INFO] step=23950/100000  loss=0.0648  lr=8.76e-05  grad=1.34  sps=4.1\\n2026-05-16 23:58:20 [INFO] step=24000/100000  loss=0.0969  lr=8.76e-05  grad=1.51  sps=4.1\\n2026-05-16 23:58:32 [INFO] step=24050/100000  loss=0.0629  lr=8.75e-05  grad=1.54  sps=4.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T15:58:41.691Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cyrd8wdzD6YQhueJHgyBEg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:44 [INFO] step=24050/100000  loss=0.1229  lr=8.75e-05  grad=0.66  sps=4.2\\\\n2026-05-16 23:57:56 [INFO] step=24100/100000  loss=0.1009  lr=8.75e-05  grad=0.54  sps=4.2\\\\n2026-05-16 23:58:09 [INFO] step=24150/100000  loss=0.1127  lr=8.74e-05  grad=0.56  sps=4.2\\\\n2026-05-16 23:58:22 [INFO] step=24200/100000  loss=0.0893  lr=8.74e-05  grad=0.55  sps=4.2\\\\n2026-05-16 23:58:38 [INFO] step=24250/100000  loss=0.1200  lr=8.73e-05  grad=0.68  sps=4.2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "a5674412-7e5a-439a-9880-c2d9569a01bc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:44 [INFO] step=24050/100000  loss=0.1229  lr=8.75e-05  grad=0.66  sps=4.2\\\\n2026-05-16 23:57:56 [INFO] step=24100/100000  loss=0.1009  lr=8.75e-05  grad=0.54  sps=4.2\\\\n2026-05-16 23:58:09 [INFO] step=24150/100000  loss=0.1127  lr=8.74e-05  grad=0.56  sps=4.2\\\\n2026-05-16 23:58:22 [INFO] step=24200/100000  loss=0.0893  lr=8.74e-05  grad=0.55  sps=4.2\\\\n2026-05-16 23:58:38 [INFO] step=24250/100000  loss=0.1200  lr=8.73e-05  grad=0.68  sps=4.2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 23:57:44 [INFO] step=24050/100000  loss=0.1229  lr=8.75e-05  grad=0.66  sps=4.2\\n2026-05-16 23:57:56 [INFO] step=24100/100000  loss=0.1009  lr=8.75e-05  grad=0.54  sps=4.2\\n2026-05-16 23:58:09 [INFO] step=24150/100000  loss=0.1127  lr=8.74e-05  grad=0.56  sps=4.2\\n2026-05-16 23:58:22 [INFO] step=24200/100000  loss=0.0893  lr=8.74e-05  grad=0.55  sps=4.2\\n2026-05-16 23:58:38 [INFO] step=24250/100000  loss=0.1200  lr=8.73e-05  grad=0.68  sps=4.2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MRvoVwNwVSQhC36tcA5TWa",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "tail -5 /root/runs/importance_margin_vla_compress/libero_lora_seed0.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "f728ded5-4da0-4a82-a8b1-ef06e82412eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012c7dLpqnGs1kTQA37NRAi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4114,
+                "cache_read_input_tokens": 34205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UE9NqbxzSRZc6Xv49Sj1x9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "tail -5 /root/runs/importance_margin_vla_compress/libero_fullft_seed0.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "61a10bf8-0997-4021-92cc-9599dff62927",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012c7dLpqnGs1kTQA37NRAi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4114,
+                "cache_read_input_tokens": 34205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T15:58:42.441Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MRvoVwNwVSQhC36tcA5TWa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:49 [INFO] step=3650/100000  loss=0.1914  lr=9.98e-05  grad=0.54  sps=4.2\\\\n2026-05-16 23:58:00 [INFO] step=3700/100000  loss=0.1942  lr=9.98e-05  grad=0.73  sps=4.2\\\\n2026-05-16 23:58:12 [INFO] step=3750/100000  loss=0.1632  lr=9.98e-05  grad=0.46  sps=4.2\\\\n2026-05-16 23:58:23 [INFO] step=3800/100000  loss=0.1838  lr=9.98e-05  grad=0.76  sps=4.2\\\\n2026-05-16 23:58:35 [INFO] step=3850/100000  loss=0.1188  lr=9.98e-05  grad=0.45  sps=4.2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "f49f9161-f50c-4bd3-aaa1-dfe21b69818c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:49 [INFO] step=3650/100000  loss=0.1914  lr=9.98e-05  grad=0.54  sps=4.2\\\\n2026-05-16 23:58:00 [INFO] step=3700/100000  loss=0.1942  lr=9.98e-05  grad=0.73  sps=4.2\\\\n2026-05-16 23:58:12 [INFO] step=3750/100000  loss=0.1632  lr=9.98e-05  grad=0.46  sps=4.2\\\\n2026-05-16 23:58:23 [INFO] step=3800/100000  loss=0.1838  lr=9.98e-05  grad=0.76  sps=4.2\\\\n2026-05-16 23:58:35 [INFO] step=3850/100000  loss=0.1188  lr=9.98e-05  grad=0.45  sps=4.2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 23:57:49 [INFO] step=3650/100000  loss=0.1914  lr=9.98e-05  grad=0.54  sps=4.2\\n2026-05-16 23:58:00 [INFO] step=3700/100000  loss=0.1942  lr=9.98e-05  grad=0.73  sps=4.2\\n2026-05-16 23:58:12 [INFO] step=3750/100000  loss=0.1632  lr=9.98e-05  grad=0.46  sps=4.2\\n2026-05-16 23:58:23 [INFO] step=3800/100000  loss=0.1838  lr=9.98e-05  grad=0.76  sps=4.2\\n2026-05-16 23:58:35 [INFO] step=3850/100000  loss=0.1188  lr=9.98e-05  grad=0.45  sps=4.2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T15:58:42.955Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UE9NqbxzSRZc6Xv49Sj1x9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:43 [INFO] step=3300/100000  loss=0.1448  lr=9.99e-05  grad=2.27  sps=3.8\\\\n2026-05-16 23:57:55 [INFO] step=3350/100000  loss=0.0711  lr=9.99e-05  grad=1.67  sps=3.8\\\\n2026-05-16 23:58:07 [INFO] step=3400/100000  loss=0.0808  lr=9.99e-05  grad=2.90  sps=3.8\\\\n2026-05-16 23:58:19 [INFO] step=3450/100000  loss=0.0954  lr=9.99e-05  grad=2.39  sps=3.9\\\\n2026-05-16 23:58:32 [INFO] step=3500/100000  loss=0.3546  lr=9.98e-05  grad=1.80  sps=3.9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "9e43b27e-8f91-4a3d-ace6-eee538e17d64",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:43 [INFO] step=3300/100000  loss=0.1448  lr=9.99e-05  grad=2.27  sps=3.8\\\\n2026-05-16 23:57:55 [INFO] step=3350/100000  loss=0.0711  lr=9.99e-05  grad=1.67  sps=3.8\\\\n2026-05-16 23:58:07 [INFO] step=3400/100000  loss=0.0808  lr=9.99e-05  grad=2.90  sps=3.8\\\\n2026-05-16 23:58:19 [INFO] step=3450/100000  loss=0.0954  lr=9.99e-05  grad=2.39  sps=3.9\\\\n2026-05-16 23:58:32 [INFO] step=3500/100000  loss=0.3546  lr=9.98e-05  grad=1.80  sps=3.9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 23:57:43 [INFO] step=3300/100000  loss=0.1448  lr=9.99e-05  grad=2.27  sps=3.8\\n2026-05-16 23:57:55 [INFO] step=3350/100000  loss=0.0711  lr=9.99e-05  grad=1.67  sps=3.8\\n2026-05-16 23:58:07 [INFO] step=3400/100000  loss=0.0808  lr=9.99e-05  grad=2.90  sps=3.8\\n2026-05-16 23:58:19 [INFO] step=3450/100000  loss=0.0954  lr=9.99e-05  grad=2.39  sps=3.9\\n2026-05-16 23:58:32 [INFO] step=3500/100000  loss=0.3546  lr=9.98e-05  grad=1.80  sps=3.9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 4 training jobs are running well. Let me get a more accurate GPU view. The earlier nvidia-smi showed low memory (~2GB), but the processes show ~33GB RSS. Maybe the nvidia-smi was sampled at a low point. Let me get a fresh reading with more detail.\n\nActually, looking again at the nvidia-smi output:\n- GPU 0: 16%, 2729 MiB\n- GPU 1: 6%, 2097 MiB\n- GPU 2: 38%, 2097 MiB\n- GPU 3: 27%, 2749 MiB\n\n\nThe low GPU memory makes sense given that SmolVLA is a small model and with LoRA fine-tuning on 4090s, 2-3GB per GPU is reasonable, especially with DataLoader workers running as separate CPU processes. Each training job is pinned to its own GPU, so the memory distribution tracks with the utilization levels I'm seeing.\n\nNow I need to register the seed0 experiments in the registry since libero_lora_seed0 and libero_fullft_seed0 aren't there yet. I have the training commands for both the LoRA and full fine-tuning variants with their respective GPU assignments and config files, so I'll use the registry update function to add them.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "6390d839-e23b-43e5-89d1-68976a0d3949",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQ7vfsyemuenSdZuoeXnEf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2382,
+                "cache_read_input_tokens": 38319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2382
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个训练都在正常跑。现在注册 seed=0 实验。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "a7d88600-0761-4ec5-b7d3-03193cef40bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQ7vfsyemuenSdZuoeXnEf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2382,
+                "cache_read_input_tokens": 38319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2382
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RgUYuoAr89uRGuZWkVNuoc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "b32f0fb7-92fd-45d2-8be8-0b42f25f9a05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FQ7vfsyemuenSdZuoeXnEf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2382,
+                "cache_read_input_tokens": 38319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2382
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T15:58:59.347Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RgUYuoAr89uRGuZWkVNuoc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "b020f9fe-44df-4ef0-9fec-dc02c5f976a0",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q9FmsUxiMqBBEu8ehPYpMz",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "libero_lora_seed0",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "importance_margin_vla_compress",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0",
+                  "server": "cqa1-33015",
+                  "gpu_ids": [
+                    "cuda:2"
+                  ],
+                  "hypothesis": "SmolVLA LoRA (r=32, alpha=16) on LIBERO seed=0, 多 seed 验证 plan_004",
+                  "seed": 0,
+                  "model_name": "SmolVLA-LoRA",
+                  "data_path": "LIBERO",
+                  "data_count": null,
+                  "log_path": "/root/runs/importance_margin_vla_compress/libero_lora_seed0.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "51dddb8b-de74-4460-bf00-bb5f7b485d5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AbVaJnYiRmSgPJUbyfggfn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1120,
+                "cache_read_input_tokens": 40701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1120
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T15:59:06.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q9FmsUxiMqBBEu8ehPYpMz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0624}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "412dbfda-d6a8-4fbd-a825-74040177864d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0624}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0624}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Aw6GeYA7dRCkzBWNy6r1s",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "libero_fullft_seed0",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "importance_margin_vla_compress",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0",
+                  "server": "cqa1-33015",
+                  "gpu_ids": [
+                    "cuda:3"
+                  ],
+                  "hypothesis": "SmolVLA full expert FT on LIBERO seed=0, 多 seed 验证 plan_004",
+                  "seed": 0,
+                  "model_name": "SmolVLA-FullFT",
+                  "data_path": "LIBERO",
+                  "data_count": null,
+                  "log_path": "/root/runs/importance_margin_vla_compress/libero_fullft_seed0.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "d13acf89-017f-445d-9cd4-4574c725ad07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AbVaJnYiRmSgPJUbyfggfn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1120,
+                "cache_read_input_tokens": 40701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1120
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T15:59:08.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Aw6GeYA7dRCkzBWNy6r1s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0627}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "b459f590-d756-42b0-9ea5-8f8d890e6031",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0627}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0627}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiments already exist in PREPARING status. I need to transition them through the valid states: PREPARING → PENDING → QUEUED → RUNNING. Let me check current status and transition appropriately. Actually, wait - the error says \"PREPARING → RUNNING\" is invalid, allowed are ['PENDING', 'QUEUED']. So from PREPARING state, you can go to PENDING or QUEUED. Then from there to RUNNING.\n\nLet me try PREPARING → QUEUED → RUNNING, or maybe just PREPARING → PENDING first. Actually, looking at allowed transitions from PREPARING, it says allowed are PENDING and QUEUED. Let me try transitioning to QUEUED first, then to RUNNING.\n\n\nActually, I need to double-check the registry - looking back at the output, I don't see libero_lora_seed0 or libero_fullft_seed0 listed, only the baseline versions. So the update_registry call must have created them with default PREPARING status. Now I'll transition them through PREPARING → QUEUED → RUNNING.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "8c47bb36-2a8b-453d-9b74-2cadd2a868eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rNDncGsSPcinaPhtrZN85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 41821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要按状态机走。先转到 QUEUED 再到 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "74f2b427-3378-46a6-bd10-fc121d7bbe15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rNDncGsSPcinaPhtrZN85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 41821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KzyhA8RhN3wmz5TSAMHoRe",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "libero_lora_seed0",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "importance_margin_vla_compress"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "37240ae8-6f1d-46cb-b438-864ad3da304c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rNDncGsSPcinaPhtrZN85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 41821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T15:59:19.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KzyhA8RhN3wmz5TSAMHoRe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_lora_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:19.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:19.644Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2019}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "cad70ee4-0b79-45bc-bf32-a4ab04848635",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_lora_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:19.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:19.644Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2019}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"libero_lora_seed0\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:59:19.643Z\", \"updated_at\": \"2026-05-16T15:59:19.644Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2019}}"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LSZdFdBQmbzxs3ZKvmTJiV",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "libero_fullft_seed0",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "importance_margin_vla_compress"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "6d0af172-eb0d-4dae-90ea-70c4c61bac16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rNDncGsSPcinaPhtrZN85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 41821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T15:59:20.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LSZdFdBQmbzxs3ZKvmTJiV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_fullft_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:20.198Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:20.198Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1785}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "a1cd3c17-46e7-40de-bd00-69b0ebb342f4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_fullft_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:20.198Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:20.198Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1785}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"libero_fullft_seed0\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:59:20.198Z\", \"updated_at\": \"2026-05-16T15:59:20.198Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1785}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ELtE4ZraoJh81ZYadFmRNR",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "libero_lora_seed0",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "importance_margin_vla_compress",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0",
+                  "server": "cqa1-33015",
+                  "gpu_ids": [
+                    "cuda:2"
+                  ],
+                  "hypothesis": "SmolVLA LoRA (r=32, alpha=16) on LIBERO seed=0, 多 seed 验证 plan_004",
+                  "seed": 0,
+                  "model_name": "SmolVLA-LoRA",
+                  "data_path": "LIBERO",
+                  "data_count": null,
+                  "log_path": "/root/runs/importance_margin_vla_compress/libero_lora_seed0.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "2dfd2fc7-796b-4352-9a6c-ca1da1fb55c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KZ262re6FW29XL7igK8S1n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 42689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T15:59:26.020Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ELtE4ZraoJh81ZYadFmRNR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_lora_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:19.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:25.886Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"hypothesis\\\": \\\"SmolVLA LoRA (r=32, alpha=16) on LIBERO seed=0, 多 seed 验证 plan_004\\\", \\\"seed\\\": 0, \\\"model_name\\\": \\\"SmolVLA-LoRA\\\", \\\"data_path\\\": \\\"LIBERO\\\", \\\"data_count\\\": null, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/libero_lora_seed0.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1997}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "7dc6a9aa-2a64-4b6d-a8e1-c886456464db",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_lora_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:19.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:25.886Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"hypothesis\\\": \\\"SmolVLA LoRA (r=32, alpha=16) on LIBERO seed=0, 多 seed 验证 plan_004\\\", \\\"seed\\\": 0, \\\"model_name\\\": \\\"SmolVLA-LoRA\\\", \\\"data_path\\\": \\\"LIBERO\\\", \\\"data_count\\\": null, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/libero_lora_seed0.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1997}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"libero_lora_seed0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:59:19.643Z\", \"updated_at\": \"2026-05-16T15:59:25.886Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python train.py --config configs/libero_baseline_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_lora_seed0\", \"server\": \"cqa1-33015\", \"gpu_ids\": [\"cuda:2\"], \"hypothesis\": \"SmolVLA LoRA (r=32, alpha=16) on LIBERO seed=0, 多 seed 验证 plan_004\", \"seed\": 0, \"model_name\": \"SmolVLA-LoRA\", \"data_path\": \"LIBERO\", \"data_count\": null, \"log_path\": \"/root/runs/importance_margin_vla_compress/libero_lora_seed0.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1997}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019DjqJm6QeC2QXsc7fG3ULZ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "libero_fullft_seed0",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "importance_margin_vla_compress",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0",
+                  "server": "cqa1-33015",
+                  "gpu_ids": [
+                    "cuda:3"
+                  ],
+                  "hypothesis": "SmolVLA full expert FT on LIBERO seed=0, 多 seed 验证 plan_004",
+                  "seed": 0,
+                  "model_name": "SmolVLA-FullFT",
+                  "data_path": "LIBERO",
+                  "data_count": null,
+                  "log_path": "/root/runs/importance_margin_vla_compress/libero_fullft_seed0.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "b4e5e453-6431-4665-bb51-3f229da0bf57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KZ262re6FW29XL7igK8S1n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 42689,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T15:59:28.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019DjqJm6QeC2QXsc7fG3ULZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_fullft_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:20.198Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:27.996Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"hypothesis\\\": \\\"SmolVLA full expert FT on LIBERO seed=0, 多 seed 验证 plan_004\\\", \\\"seed\\\": 0, \\\"model_name\\\": \\\"SmolVLA-FullFT\\\", \\\"data_path\\\": \\\"LIBERO\\\", \\\"data_count\\\": null, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/libero_fullft_seed0.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2074}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "c55b512b-e6e5-4e7f-ad17-012079152937",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"libero_fullft_seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:59:20.198Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:27.996Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"hypothesis\\\": \\\"SmolVLA full expert FT on LIBERO seed=0, 多 seed 验证 plan_004\\\", \\\"seed\\\": 0, \\\"model_name\\\": \\\"SmolVLA-FullFT\\\", \\\"data_path\\\": \\\"LIBERO\\\", \\\"data_count\\\": null, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/libero_fullft_seed0.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2074}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"libero_fullft_seed0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:59:20.198Z\", \"updated_at\": \"2026-05-16T15:59:27.996Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python train.py --config configs/libero_full_ft_seed0.yaml --gpu 0 --seed 0 --wandb_run libero_fullft_seed0\", \"server\": \"cqa1-33015\", \"gpu_ids\": [\"cuda:3\"], \"hypothesis\": \"SmolVLA full expert FT on LIBERO seed=0, 多 seed 验证 plan_004\", \"seed\": 0, \"model_name\": \"SmolVLA-FullFT\", \"data_path\": \"LIBERO\", \"data_count\": null, \"log_path\": \"/root/runs/importance_margin_vla_compress/libero_fullft_seed0.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2074}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 利用率:\n  cuda:0: 16% / 2.7GB — libero_full_ft_baseline (seed=42) step 24050/100K\n  cuda:1:  6% / 2.1GB — libero_lora_baseline (seed=42) step 24250/100K\n  cuda:2: 38% / 2.1GB — libero_lora_seed0 (seed=0) step 3850/100K\n  cuda:3: 27% / 2.7GB — libero_fullft_seed0 (seed=0) step 3500/100K\n\nRegistry 注册: 已完成 (libero_lora_seed0, libero_fullft_seed0 → RUNNING)\n```\n\n4 张卡全部在训练。Baseline 对（seed=42）已跑到 ~24K steps，seed=0 对刚启动约 16 分钟（~3.5K steps），速度 ~4 sps，预计各需 ~6.5 小时完成 100K steps。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "uuid": "4438c640-711c-4047-bb0c-26b0d783658b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0167NzFkcFeyyrNrjaryt1yH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 43589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1406
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 利用率:\n  cuda:0: 16% / 2.7GB — libero_full_ft_baseline (seed=42) step 24050/100K\n  cuda:1:  6% / 2.1GB — libero_lora_baseline (seed=42) step 24250/100K\n  cuda:2: 38% / 2.1GB — libero_lora_seed0 (seed=0) step 3850/100K\n  cuda:3: 27% / 2.7GB — libero_fullft_seed0 (seed=0) step 3500/100K\n\nRegistry 注册: 已完成 (libero_lora_seed0, libero_fullft_seed0 → RUNNING)\n```\n\n4 张卡全部在训练。Baseline 对（seed=42）已跑到 ~24K steps，seed=0 对刚启动约 16 分钟（~3.5K steps），速度 ~4 sps，预计各需 ~6.5 小时完成 100K steps。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 90301,
+            "duration_api_ms": 89848,
+            "num_turns": 18,
+            "stop_reason": "end_turn",
+            "session_id": "0b1810c7-d8a9-46bd-a4fa-72e63e9f0d33",
+            "total_cost_usd": 0.472152,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 33154,
+              "cache_read_input_tokens": 302565,
+              "output_tokens": 4467,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 33154,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 275,
+                  "cache_read_input_tokens": 43589,
+                  "cache_creation_input_tokens": 1406,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1406
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1817,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001912,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 4467,
+                "cacheReadInputTokens": 302565,
+                "cacheCreationInputTokens": 33154,
+                "webSearchRequests": 0,
+                "costUSD": 0.47024,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ac903937-cc66-4a4f-9ae7-8d6061eece2d"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ]
+}

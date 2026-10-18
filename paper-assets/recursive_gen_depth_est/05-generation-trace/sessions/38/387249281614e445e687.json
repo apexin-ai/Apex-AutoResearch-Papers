@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "387249281614e445e687",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp xgb lgbm 3cell consistent",
+  "task_key": "worker_exp_xgb_lgbm_3cell_consistent_20260515T194731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_xgb_lgbm_3cell_consistent_20260515T194731_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "f25a7c874850937d03fe885250c5fbde9cf197ad020530a3494576293f701e60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**实验 `xgboost_lgbm_3cell_001`** — 3 cell × 3 classifier 统一评估\n\n| Cell | RF | XGBoost | LightGBM | d1v2 AUC | d2v3 AUC |\n|------|-----|---------|----------|----------|----------|\n| **gpt2xl_temp09** | 85.8% | **86.2%** | 86.2% | 0.980 | 0.886 |\n| **pythia_nucleus095** | 78.8% | **79.0%** | 78.9% | 0.931 | 0.816 |\n| **pythia_topk50** | 68.9% | **68.9%** | 68.7% | 0.841 | 0.689 |\n\n核心结论：\n1. **评估协议一致性已修复** — 旧 RF d0v1 AUC=0.861 是评估 bug，统一后 RF d0v1=0.9996，与 XGBoost 0.9999 一致\n2. **三种分类器每个 cell 内差距 ≤0.5pp** — 信号天花板在 19 维特征，非分类器选择\n3. **d2 recall 持续最低**（43-73%），跨所有 cell 和分类器一致，是特征层面的限制\n4. 脚本：`src/xgb_lgbm_3cell.py`，结果：`results/xgb_lgbm_3cell/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

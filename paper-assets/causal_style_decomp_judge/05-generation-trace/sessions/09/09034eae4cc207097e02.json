@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "09034eae4cc207097e02",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp013 direction bias",
+  "task_key": "worker_ops_exp013_direction_bias_20260521T010913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp013_direction_bias_20260521T010913_result.json",
+    "occurrence": 1,
+    "bytes": 1697,
+    "sha256": "cd7edbf8d30ef96e5d418a68641329303aaabd66fbc0b4a54dc8a3085630efad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 方向分布\n\n| 子集 | formal→casual | casual→formal | f2c 比例 |\n|------|:---:|:---:|:---:|\n| **总体** (N=100) | 59 | 41 | 59.0% |\n| **NLI-pass** (N=88) | 50 | 38 | 56.8% |\n| **NLI-fail** (N=12) | 9 | 3 | 75.0% |\n| **FN** (NLI-fail + LLM=YES, N=8) | 6 | 2 | 75.0% |\n| **TN** (NLI-fail + LLM=NO, N=4) | 3 | 1 | 75.0% |\n\n### 8 个 FN 的具体方向\n\n| ID | original_formality | Direction |\n|---|---|---|\n| mvp_0014 | formal | formal→casual |\n| mvp_0032 | formal | formal→casual |\n| mvp_0043 | formal | formal→casual |\n| mvp_0050 | formal | formal→casual |\n| mvp_0059 | formal | formal→casual |\n| mvp_0066 | formal | formal→casual |\n| mvp_0029 | casual | casual→formal |\n| mvp_0055 | casual | casual→formal |\n\n### 统计检验\n\n| 检验 | 统计量 | p-value | 显著? |\n|------|--------|---------|:-----:|\n| **Fisher exact**: Direction × NLI result | OR = 0.44 | p = 0.350 (two-sided) | No |\n| **Fisher exact**: Direction × FN vs TN | OR = 1.00 | p = 1.000 | No |\n| **Binomial**: FN f2c (6/8) vs overall 0.59 | — | p = 0.295 (one-sided) | No |\n| **Binomial**: All-fail f2c (9/12) vs overall 0.59 | — | p = 0.205 (one-sided) | No |\n\n### 结论\n\n**方向偏差不显著。** 75% vs 59% 的差异方向上一致（formal→casual 在 NLI-fail 中偏多），但样本量太小（N=8/12），所有检验 p > 0.20。注意 FN 和 TN 子集的 f2c 比例完全相同（都是 75%），说明方向偏差不是 FN 特有的——它存在于整个 NLI-fail 群体，且 FN/TN 内部无差异 (Fisher p=1.0)。以 n=8 做 binomial test，需要 ≥7/8（87.5%）才能在 p<0.05 下拒绝 H0=0.59。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

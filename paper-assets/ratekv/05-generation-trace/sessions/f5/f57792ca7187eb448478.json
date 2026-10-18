@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f57792ca7187eb448478",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp llama downstream eval",
+  "task_key": "worker_exp_llama_downstream_eval_20260515T171016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_llama_downstream_eval_20260515T171016_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "2a91d730ed3107a0628e6fd6010025a5ea4a7aa196e46c4d1daed4e1b3dc6ce9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果已注册。\n\n## 结果汇总\n\n**Llama-3.1-8B Downstream Eval (0-shot, k=2, budget=0.25)**\n\nMCKP allocation: 253×4bit + 1×8bit + 2×2bit\n\n| Task | Baseline | Uniform 4-bit | MCKP k=2 | MCKP−Uni (pts) |\n|------|----------|---------------|----------|----------------|\n| ARC-C | 51.88 | 52.56 | 51.79 | **−0.77** |\n| HellaSwag | 60.73 | 60.24 | 60.21 | **−0.03** |\n| PIQA | 79.22 | 78.73 | 78.67 | **−0.06** |\n| WinoGrande | 73.88 | 72.61 | 73.09 | **+0.48** |\n\n**对比已有论文数据 (k=8)**：\n\n| Task | k=8 delta | k=2 delta |\n|------|-----------|-----------|\n| ARC-C | −2.7 | −0.77 |\n| HellaSwag | −0.1 | −0.03 |\n| PIQA | −0.7 | −0.06 |\n| WinoGrande | −0.2 | +0.48 |\n\nk=2 对 downstream task 的退化显著小于 k=8，WinoGrande 甚至优于 uniform baseline。这符合预期——k=2 只允许 2 个 2-bit head，allocation 更保守（253/256 heads 仍为 4-bit），因此对 task accuracy 影响更小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

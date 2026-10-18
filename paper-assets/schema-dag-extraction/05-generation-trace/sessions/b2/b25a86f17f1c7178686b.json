@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b25a86f17f1c7178686b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r11 q5 freq dispersion",
+  "task_key": "worker_analysis_r11-q5-freq-dispersion_20260517T100043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r11-q5-freq-dispersion_20260517T100043_result.json",
+    "occurrence": 1,
+    "bytes": 2019,
+    "sha256": "c619750f150d9473ecfc98569c25e4bb97d567f0cbdce79288226ebbcb5000cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n---\n\n## 结果\n\n**FewRel type frequency: 完全 balanced（700 instances/type, SD=0）**\n→ Type frequency dispersion 对所有 batch 恒为 0，不是有效 predictor。\n→ 改用 **type difficulty dispersion**（per-type accuracy 的 std）。\n\n### 主要结果（fewrel_16rel_bootstrap, n=100 batches, 8 types from 16-rel pool）\n\n| Model | R² | Key coeff (p) |\n|-------|------|------|\n| accuracy ~ BCS | 0.406 | -0.449 (p=1.0e-12) |\n| accuracy ~ mean_type_difficulty | 0.445 | 1.072 (p=3.5e-14) |\n| accuracy ~ BCS + mean_diff | **0.704** | BCS: -0.367 (p=6.8e-15), mean: 0.897 (p=2.4e-16) |\n\n### Variance Decomposition (BCS + mean_type_difficulty)\n\n| Component | R² | % of explained |\n|-----------|-----|------|\n| Unique to BCS | 0.259 | 36.8% |\n| Unique to composition | 0.298 | 42.3% |\n| Shared (BCS ∩ composition) | 0.147 | 20.9% |\n| **Total** | **0.704** | 100% |\n\n- **Partial R² of BCS** (controlling composition): **0.467**\n- r(BCS, mean_type_difficulty) = -0.21, VIF = 1.06\n\n### Robustness (independent difficulty estimates from separate experiment)\n\nWith difficulty estimated from a different 10-type-batch experiment:\n- BCS unique: **0.326 (75.9%)**\n- Composition unique: 0.023 (5.4%)\n- Shared: 0.080 (18.7%)\n\n### Pair vs Batch R²\n\n| Level | R² | n |\n|-------|------|------|\n| Batch | 0.406 | 100 |\n| Pair | 0.0072 | 49,600 |\n| Ratio | 56.4x | — |\n\n### 回答审稿人\n\n1. FewRel 完全 balanced → type frequency dispersion 恒为零，**无法解释任何 batch R² variance**。\n2. 用 type difficulty（composition effect）作为替代 confound：BCS 的 63.7% R² 是 unique 的（独立估计时升至 75.9%），composition 贡献了 shared 的 20.9%（独立估计时仅 18.7%）。\n3. BCS 在控制 composition 后 partial R²=0.467，仍高度显著（p=6.8e-15）。\n4. Batch/pair R² gap（56.4x）来自 aggregation（within-batch noise averaging），不是 composition artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

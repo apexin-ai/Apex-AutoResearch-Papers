@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a62f521aa61c0f31e341",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis kappa diversity regime transition",
+  "task_key": "worker_analysis_kappa-diversity-regime-transition_20260524T031621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kappa-diversity-regime-transition_20260524T031621_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "dac1cca04445a849ac37a58baa973086a84e3dd9d3d2a29d16f29d70244ff443"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 输出完整。汇报结果。\n\n## κ-diversity vs K_eff 的 Regime Transition 对比\n\n| K | η_max (K_eff模型) | K_eff | η_max (κ-div模型) | κ-diversity |\n|---|-------------------|-------|-------------------|-------------|\n| 3 | 3/12 | **4/12** | 1/12 | **8/12** |\n| 5 | 0/12 | **10/12** | 4/12 | **7/12** |\n| 7 | 0/12 | **9/12** | 1/12 | **6/12** |\n\n**相关性**：κ-diversity 与 K_eff 的 Pearson r = 0.9796, Spearman ρ = 0.9733。\n\n### 关键发现\n\n**Predictor shift pattern 不同**：\n\n- **K_eff**：存在明确的 regime transition — K=3 时两个 predictor 都温和显著，K≥5 时 K_eff 压倒性主导（10-9/12），η_max 完全消失（0/12）。\n- **κ-diversity**：**从 K=3 起就是主导 predictor**（8/12），随 K 增大略有下降（7→6/12），无明显 transition。η_max 在 κ-diversity 模型中的表现不稳定（1/4/1）。\n\n### 原因\n\n尽管两个 metric 高度相关（r≈0.98），但 wild cluster bootstrap 测试的是 predictor 在不同 cluster 结构下的鲁棒性。κ-diversity 直接衡量 label 一致性（与投票机制直接相关），K=3 时已能有效预测攻击抵抗力。K_eff 基于 MI 的信息论度量，需要更大 panel（K≥5）才能展现 \"effective independent judges\" 效应。\n\n**结论**：regime transition 是 K_eff（MI-based）的特有属性，不是所有 diversity metric 的共性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

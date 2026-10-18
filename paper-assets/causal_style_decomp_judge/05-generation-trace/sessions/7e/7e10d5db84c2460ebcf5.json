@@ -1,0 +1,442 @@
+{
+  "schema_version": "1.0",
+  "id": "7e10d5db84c2460ebcf5",
+  "project": "causal_style_decomp_judge",
+  "kind": "conversation",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260520T232613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_introduction_20260520T232613.jsonl",
+    "occurrence": 1,
+    "bytes": 25886,
+    "sha256": "e18dfbcbe219174cbeee9f6fbbafbe96e1061a0dac37d9962acc13e4c6a4364d"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T23:30:49.199225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T23:30:49.200222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T23:30:49.200718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T23:30:49.201564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T23:30:49.202195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/skills/projects/causal_style_decomp_judge/distilled-writing.skill.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T23:30:49.225724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: LLM Judge Style Bias — Writing Patterns\n3\tdescription: 从8篇深度精读论文蒸馏的叙事策略、图表设计共识、投稿编排经验\n4\ttype: writing\n5\tsource_papers: 8 deep-read (ICLR/ICML/arXiv 2025-2026)\n6\t---\n7\t\n8\t## 叙事类型分布\n9\t\n10\t突破局限型（3/8）最主流：SOS-Bench、Preference Leakage、CASSE。模式=\"大家都在用X，但X有个被忽视的致命问题\"。化繁为简型（2/8）：LC-AlpacaEval、RATE。模式=\"复杂问题有个优雅的简单解\"。统一框架型（2/8）：FairJudge、Soumik。跨界迁移型（1/8）：Counterfactual Rhetorical。**置信度：高。**\n11\t\n12\t## 开篇钩子模式\n13\t\n14\t**\"普遍实践+隐藏风险\"钩子**（5/8，主流）：从社区公认的实践（LLM-judge评估/style prompting/合成数据训练）切入，然后揭示隐藏的系统性问题。代表：SOS-Bench\"PO方法爆炸增长，都依赖LLM-judge，但judge偏好=对齐吗？\"；CASSE\"Style prompting无处不在，但没人验证feature独立性假设\"。\n15\t\n16\t**\"具体失败案例\"钩子**（1/8）：Figure 1直接展示两个judge判断翻转的案例（FairJudge）。视觉冲击力强但需要有好的失败例子。\n17\t\n18\t**可模仿策略**：第一句话锚定社区常识，第二句话用\"but\"转折引出被忽视的问题。LC-AlpacaEval和SOS-Bench都用此结构。\n19\t\n20\t## Intro结构共识\n21\t\n22\t**4段结构**（5/8主流）：P1=问题背景 → P2=现有方法局限/Gap → P3=本文方案 → P4=贡献列表。**贡献条数**：3-4条（4条更常见，4/8），名词短语标签开头（Soumik/FairJudge/CASSE/Counterfactual Rhetorical），从概念→方法→验证递进。置信度：高。\n23\t\n24\t## Figure 1设计\n25\t\n26\t**problem_illustration**（4/8最主流）：对比布局展示\"旧方法vs新视角\"或\"失败案例\"。设计元素共识：左右对比布局（4/8）、颜色编码区分类型（5/8）、真实数据/案例（3/8）。\n27\t\n28\t**method_overview**（2/8）：多阶段pipeline流程图。适合方法论贡献型论文。\n29\t\n30\t**teaser_result**（1/8）：开篇即亮核心数字（LC-AlpacaEval的柱状图）。高风险高收益——数字必须够震撼。\n31\t\n32\t**可模仿**：SOS-Bench的Figure 1用概念对比图建立分析框架，后续逐一击破；Preference Leakage用taxonomy流程图一张图定义整个问题空间。置信度：高。\n33\t\n34\t## 结果图表共识\n35\t\n36\t**主结果图**：line_plot（4/8）和bar_chart（5/8）并列主流。因果效应趋势用line_plot+CI band（RATE, Counterfactual Rhetorical）；多方法比较用grouped bar（Soumik, Preference Leakage）。**Gain突出手法**：置信区间/带（4/8）、直接数值标注（3/8）、颜色对比（4/8）。\n37\t\n38\t**交互/矩阵数据**：heatmap（CASSE的12×12矩阵，LC-AlpacaEval的模型对预测）。适合展示dense pairwise关系。\n39\t\n40\t**Scatter用于Pareto frontier**（Soumik: cost vs accuracy）或相关性展示（SOS-Bench: style R=0.999）。\n41\t\n42\t## 主结果表编排\n43\t\n44\t**行轴=methods，列轴=datasets×metrics**（6/8）。行按类别分组（by_category 5/8）：先frontier模型再mid-tier再开源，或先existing再proposed。列按dataset分组（grouped_by_dataset）。\n45\t\n46\t**Baseline数量**：3-9个（中位5-6）。**高亮策略**：significance markers（*†）+ bootstrap CIs（3/8）> bold_best（2/8）> color co\n…[truncated 849 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "elapsed_ms": 23
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T23:30:49.226195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260520T211832/best/paper.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T23:30:49.226549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[utf8]{inputenc}\n3\t\\usepackage[T1]{fontenc}\n4\t\\usepackage{times}\n5\t\\usepackage{graphicx}\n6\t\\usepackage{amsmath,amssymb}\n7\t\\usepackage{booktabs}\n8\t\\usepackage{multirow}\n9\t\\usepackage{xcolor}\n10\t\\usepackage[margin=2.5cm]{geometry}\n11\t\\usepackage{hyperref}\n12\t\\usepackage{cleveref}\n13\t\\usepackage{natbib}\n14\t\\bibliographystyle{plainnat}\n15\t\n16\t\\newcommand{\\cmark}{\\checkmark}\n17\t\n18\t\\title{Causal Style Decomposition Reveals Systematic Style Bias\\\\in LLM-as-Judge That Likert Scoring Misses}\n19\t\n20\t\\author{Anonymous}\n21\t\\date{}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t% ============================================================\n27\t% ABSTRACT\n28\t% ============================================================\n29\t\\begin{abstract}\n30\tLLM-as-judge has become critical infrastructure for NLP evaluation and alignment training, yet recent work shows style bias dominates other judge biases.\n31\tExisting analyses treat style as a monolithic dimension or rely on correlational evidence.\n32\tWe introduce \\textbf{Causal Style Decomposition (CSD)}, a black-box, post-hoc framework that generates binary style counterfactuals, verifies content preservation via NLI and BERTScore, and measures causal style bias through position-controlled pairwise comparison.\n33\tAcross 3 judges (GPT-4o, Claude-Sonnet, Gemini-Flash), 3 benchmarks (LLMBar, AlpacaEval, MT-Bench), and 3 style axes (formality, tone, register), CSD detects significant style premiums (mean win rate 66.3\\%, $p<0.05$ in 7--9 of 9 judge$\\times$benchmark cells for formality).\n34\tWe uncover a systematic \\emph{measurement gap}: standard Likert pointwise scoring fails to detect any of these biases (0/9 significant), while pairwise comparison succeeds (7/9 significant)---implying that prior Likert-based studies may systematically underestimate style bias severity.\n35\tStyle bias is axis-dependent: formality (68.4\\%) $>$ register (66.3\\%) $>$ tone (63.4\\%), with lighter models (Gemini-Flas\n…[truncated 4015 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T23:30:49.226871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T23:30:49.227114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T23:30:49.257372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check if sections directory exists"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T23:30:49.290029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 20 23:23 .\ndrwxr-xr-x 3 ubuntu ubuntu 4096 May 20 23:23 .."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Bash",
+            "elapsed_ms": 60
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T23:30:49.290332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T23:30:49.290561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath,amssymb}\n14\t\\usepackage{xcolor}\n15\t\\usepackage{subcaption}\n16\t\n17\t\\title{Causal Style Decomposition Reveals the Likert Blindspot:\\\\Standard Scoring Underestimates Style Bias in LLM Judges}\n18\t\n19\t\\author{Anonymous}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t\\input{sections/abstract}\n25\t\n26\t\\input{sections/introduction}\n27\t\n28\t% \\input{sections/related_work}\n29\t\n30\t% \\input{sections/method}\n31\t\n32\t% \\input{sections/experiments}\n33\t\n34\t% \\input{sections/conclusion}\n35\t\n36\t\\section*{Limitations}\n37\t\n38\t% TODO: Add limitations section\n39\t\n40\t\\bibliography{references}\n41\t\n42\t\\end{document}\n43\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T23:30:49.291020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex",
+              "content": "\\section{Introduction}\n\nLarge Language Model (LLM) judges have become central infrastructure for NLP evaluation and preference-based alignment training.\nSystems such as AlpacaEval, MT-Bench, and Chatbot Arena rely on LLM judges to score and rank model outputs, and the resulting leaderboards guide both academic research and industry deployment.\nReinforcement Learning from Human Feedback (RLHF) and Direct Preference Optimization (DPO) pipelines consume judge-generated preferences as reward signals that shape model behavior during alignment.\nThe reliability of these judgments carries direct consequences: it determines which models the community considers superior and which response patterns are reinforced.\nAs automated judges increasingly mediate both evaluation and training, any systematic bias in their assessments propagates through the entire model development pipeline.\n\nRecent work has converged on a striking finding: \\emph{style bias} is the dominant source of unreliability in LLM judges, far outweighing other documented biases such as position or verbosity preference.\n\\citet{murugadoss2025sos} show that style features alone explain judge scores with $R = 0.999$, far exceeding the explanatory power of content features.\n\\citet{li2026preference} demonstrate that 76--92\\% of observed preference signals originate from surface-level style cues rather than substantive quality differences.\n\\citet{soumik2026judging} report bias scores of 0.76--0.92 across five different judges.\nDespite this consensus on severity, existing approaches share four critical gaps: (1)~they treat style as a single dimension, typically reducing it to response length; (2)~they rely on correlational analyses that cannot establish causal direction; (3)~population-level corrections such as length-controlled AlpacaEval \\citep{dubois2025lc} cannot diagnose per-instance bias; and (4)~no existing method provides black-box, post-hoc, per-axis causal detection.\nRecent multi-feature frameworks such as CASSE \\citep{casse2026concise} and FairJudge \\citep{wang2026fairjudge} begin to decompose style into finer dimensions, but neither provides causal identification of per-axis effects.\nA further methodological concern compounds these limitations: standard Likert pointwise scoring (integer scales from 1 to 10) exhibits a ceiling effect that masks real bias.\nOn our data, 64\\% of counterfactual pairs receive identical Likert scores ($\\Delta = 0$), and this integer ceiling effect leaves Likert insensitive to style interventions that pairwise comparison readily detects.\n\nWe propose Causal Style Decomposition (CSD), a framework that addresses all four gaps.\nDrawing on causal inference methods for text \\citep{veitch2020adapting}, CSD operates in three stages: binary style counterfactual generation along a single axis (e.g., formal vs.\\ casual), content preservation verification through Natural Language Inference (NLI) entailment and BERTScore filtering, and causal bias measurement via position-controlled pairwise comparison.\nBecause CSD requires no access to judge internals and applies post-hoc to any black-box judge, it complements existing population-level approaches and provides finer-grained, per-instance diagnostics.\nOur experiments reveal what we term the \\emph{Likert Blindspot}: on the same formality data, Likert scoring yields a corrected Average Treatment Effect (ATE) of $+0.102$ (Cohen's $d = 0.104$, $p = 0.332$, $n = 88$), a non-significant result, while pairwise comparison shows a formal win rate of 69.1\\% (Wilson CI: $[55.97\\%, 79.72\\%]$, sign test $p = 0.006$, $n = 55$ consistent pairs).\nFigure~\\ref{fig:likert_blindspot} illustrates this divergence.\nUnlike LC-AlpacaEval \\citep{dubois2025lc}, which applies a single population-level length regression, CSD decomposes bias along multiple axes with per-instance causal intervention.\n\nOur contributions are as follows:\n\\begin{itemize}\n    \\item \\textbf{A black-box causal framework} for detecting per-axis style bias in LLM judges through binary counterfactual generation and position-controlled pairwise comparison (Section~\\ref{sec:method}).\n    \\item \\textbf{The Likert Blindspot phenomenon:} empirical evidence that standard pointwise scoring systematically fails to detect style biases that pairwise comparison reveals, with formality bias undetectable by Likert ($p = 0.332$) but significant under pairwise measurement (69.1\\%, $p = 0.006$) (Section~\\ref{sec:experiments}, Figure~\\ref{fig:likert_blindspot}).\n    \\item \\textbf{Evidence of axis-dependent bias:} \\textit{[to be updated with full experimental results across multiple judges and style axes]}.\n    \\item \\textbf{Practical implications for evaluation methodology:} style bias audits should employ pairwise comparison rather than Likert scoring, and bias must be assessed per axis rather than as a single ``style'' factor (Section~\\ref{sec:discussion}).\n\\end{itemize}\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T23:30:49.291355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T23:30:49.291579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T23:30:49.291763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T23:30:49.291940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "introduction_section_v1",
+              "type": "paper",
+              "description": "Introduction section (v1) for EMNLP 2026 submission. 4-paragraph structure: LLM judge infrastructure → style bias dominance + 4 gaps + Likert ceiling → CSD framework + Likert Blindspot data → contributions list. ~650 words, ACL template.",
+              "project": "causal_style_decomp_judge",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex",
+              "tags": "['paper', 'introduction', 'v1', 'emnlp2026']"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T23:30:49.292165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_64eb98\\\", \\\"name\\\": \\\"introduction_section_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Introduction section (v1) for EMNLP 2026 submission. 4-paragraph structure: LLM judge infrastructure → style bias dominance + 4 gaps + Likert ceiling → CSD framework + Likert Blindspot data → contributions list. ~650 words, ACL template.\\\", \\\"path\\\": \\\"projects/causal_style_decomp_judge/artifacts/_project/paper/introduction.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"causal_style_decomp_judge\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T23:30:32.549155+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"v1\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T23:30:49.292452+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `docs/paper/sections/introduction.tex`。\n\n**结构概览：**\n- **P1** (5句): LLM judge 作为评估+对齐核心基础设施，bias 传播风险\n- **P2** (8句): style bias 主宰地位 (SOS-Bench R=0.999, Preference Leakage 76-92%, Soumik 0.76-0.92) → 4个gap → CASSE/FairJudge仍无因果识别 → Likert整数天花板效应 (64% Δ=0)\n- **P3** (6句): CSD三阶段机制 → Likert Blindspot命名 (Likert ATE=+0.102, p=0.332 vs Pairwise 69.1%, p=0.006) → 与LC-AlpacaEval对比\n- **P4**: 4条contributions (框架/Blindspot现象/axis-dependent placeholder/实践意义)\n\n**引用使用：** murugadoss2025sos, li2026preference, soumik2026judging, dubois2025lc (×2), casse2026concise, wang2026fairjudge, veitch2020adapting\n\n**Contribution 3** 保留 placeholder 待实验数据填充。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260520T232613"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ]
+}

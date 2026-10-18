@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "40a47b7d8d27f6d6c0aa",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 disk cleanup",
+  "task_key": "worker_ops_cqa1_disk_cleanup_20260519T162057",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1_disk_cleanup_20260519T162057_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "7abef463cdbaa90a2ae8c232a1186765a500e005437c1e455fe6f9f92608813f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理内容**：\n| 目标 | 大小 | 原因 |\n|------|------|------|\n| `datasets/parquet/default-9082321d09ccfd80` | ~33G (实际释放 ~101G，含 hardlink) | 旧 parquet cache，无进程引用 |\n| `datasets/parquet/default-134874f6610e1406` | 4.8G | 旧 parquet cache，无进程引用 |\n| `checkpoints/smart_compress_m16_seed44` | 218M | failed 实验，部分文件 |\n| `checkpoints/libero_acis_stage1only_k03` | 1.8G | failed 实验 |\n\n**磁盘状态**：250G 中已用 140G，可用 **111G (56%)**，从 4MB → 111G。\n\n**运行中训练状态**：两个任务均正常运行中\n- `m128_seed43`: step 14850/100000, loss=0.097, 4.0 sps\n- `m16_seed43`: step 14750/100000, loss=0.136, 4.0 sps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

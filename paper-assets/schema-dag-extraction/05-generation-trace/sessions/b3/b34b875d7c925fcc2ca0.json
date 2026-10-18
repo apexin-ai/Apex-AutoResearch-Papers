@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "b34b875d7c925fcc2ca0",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper r10 batch1 text changes",
+  "task_key": "worker_paper_r10-batch1-text-changes_20260517T075849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r10-batch1-text-changes_20260517T075849.log",
+    "occurrence": 1,
+    "bytes": 2070558,
+    "sha256": "1529347b0753ece23ba4ed6b2b982d6d737cd7a2e0f1c58cc60514e3b0a3d9de"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 128,
+      "tool_result": 128,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "b34b875d7c925fcc2ca0-part-0001.json",
+          "message_count": 98
+        },
+        {
+          "path": "b34b875d7c925fcc2ca0-part-0002.json",
+          "message_count": 60
+        },
+        {
+          "path": "b34b875d7c925fcc2ca0-part-0003.json",
+          "message_count": 71
+        },
+        {
+          "path": "b34b875d7c925fcc2ca0-part-0004.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ]
+}

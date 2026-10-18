@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c89d092be6ac7c3c74e1",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "analysis pi05 spatial crosstab",
+  "task_key": "worker_analysis_pi05_spatial_crosstab_20260521T205726",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05_spatial_crosstab_20260521T205726.log",
+    "occurrence": 1,
+    "bytes": 767396,
+    "sha256": "2bf4f84323bc436f0a1cbc2a91aafca2c2d5f35d1ba6e7325be659452f59221e"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 15,
+      "tool_call": 23,
+      "tool_result": 23,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "c89d092be6ac7c3c74e1-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "c89d092be6ac7c3c74e1-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ]
+}

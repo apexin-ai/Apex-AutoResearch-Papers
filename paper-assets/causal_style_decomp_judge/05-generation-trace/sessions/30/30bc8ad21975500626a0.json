@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "30bc8ad21975500626a0",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code placebo bt fix",
+  "task_key": "worker_code_placebo_bt_fix_20260521T140025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_placebo_bt_fix_20260521T140025_result.json",
+    "occurrence": 1,
+    "bytes": 1298,
+    "sha256": "89c383c821dd874ec43203cfaecca3ed4a4eecb9dbce7caf092b9d74513c8c74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## Placebo BT Re-analysis（所有 pairs，含 inconsistent）\n\n| Judge | Axis | BT P(original) | 95% CI | p-value | Sign Test Rate | Sign Test p |\n|-------|------|:---:|:---:|:---:|:---:|:---:|\n| **Qwen3-32B** | formality | **0.3766** | [0.3025, 0.4506] | 0.0006 | 0.2727 (12/44) | 0.0037 |\n| **Qwen3-32B** | verbosity | **0.0816** | [0.0351, 0.1397] | 0.0000 | 0.0000 (0/36) | 0.0000 |\n| **GPT-4o** | formality | **0.4177** | [0.3418, 0.5000] | 0.0368 | 0.3488 (15/43) | 0.0660 |\n| **GPT-4o** | verbosity | **0.1668** | [0.0835, 0.2620] | 0.0000 | 0.0625 (2/32) | 0.0000 |\n\n关键发现：\n- **BT 和 sign test 方向一致**，但 BT 使用了全部 pairs（含 inconsistent），所以估计值更高（更接近 0.5）\n- GPT-4o formality sign test p=0.066 不显著，但 BT p=0.037 显著——因为 BT 利用了更多数据（inconsistent pairs 也贡献信息）\n- Verbosity 两个 judge 都 strongly biased toward DR（BT < 0.17），placebo 严重失败\n- Formality 偏差较小但仍显著（BT 0.38-0.42）\n\n产出文件：\n- `data/placebo_bt_reanalysis.json` — 汇总结果\n- `data/placebo_raw_{judge}_{axis}.json` — 每个 pair 的 raw trial results（可复现）\n- `csd_pipeline/placebo_bt_reanalysis.py` — 脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b02adc041b49cbf39f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest random k095 object westd41074",
+  "task_key": "worker_harvest_random_k095_object_westd41074_20260527T022117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_random_k095_object_westd41074_20260527T022117_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "19da412f60b6ff56d712b646f707722c732c206070d3c63ce34dff290b860853"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果汇总：\n\n**Random k=0.95 Object (seed42) — Overall SR: 67.4%** (337/500)\n\n| Task | SR | Successes |\n|------|-----|-----------|\n| orange juice | 88% | 44/50 |\n| ketchup | 78% | 39/50 |\n| tomato sauce | 78% | 39/50 |\n| alphabet soup | 76% | 38/50 |\n| salad dressing | 74% | 37/50 |\n| chocolate pudding | 74% | 37/50 |\n| milk | 66% | 33/50 |\n| bbq sauce | 48% | 24/50 |\n| butter | 48% | 24/50 |\n| cream cheese | 44% | 22/50 |\n\n10/10 tasks 完成，JSON 文件已存在（进程在死前已写出结果）。对比 L2norm k=0.95 = 70.6%，Random k=0.95 = 67.4%，差距 3.2pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

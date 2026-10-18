@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17b4330a7975d9ee227e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "probe westd 41074 pids",
+  "task_key": "worker_probe_westd-41074-pids_20260521T225904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_probe_westd-41074-pids_20260521T225904_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "834b8f87bce5aa72a0c0376d15013c55534e77cb68ebcc6b0cd887ff9d0e69ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 实验 | PID | GPU | 显存占用 | GPU 利用率 |\n|------|-----|-----|---------|-----------|\n| `eval_pi05_random_k0925_object_seed42` (keep_ratio=0.925, seed=42) | **715307** | GPU 0 | 10052 MiB | 9% |\n| `eval_pi05_random_k095_object_seed43` (keep_ratio=0.95, seed=43) | **730309** | GPU 1 | 10545 MiB | 36% |\n\nGPU 2/3 上还有其他进程（PID 68539 占 28546 MiB，PID 59671 占 27526 MiB），不属于这两个 eval 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

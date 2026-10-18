@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "9ede4833420e573ea236",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis openvla oft westd38929",
+  "task_key": "worker_analysis_openvla-oft-westd38929_20260520T055650",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_openvla-oft-westd38929_20260520T055650_result.json",
+    "occurrence": 1,
+    "bytes": 2255891,
+    "sha256": "18485276eb85caebc617db2bca167b93f39eac2ebce1a968d2f0f658478de12c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "9ede4833420e573ea236-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

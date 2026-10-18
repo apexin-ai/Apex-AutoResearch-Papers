@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f00381d1f1a06e8407f3",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis w3 winogrande piqa multiplicity",
+  "task_key": "worker_analysis_w3-winogrande-piqa-multiplicity_20260521T093002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w3-winogrande-piqa-multiplicity_20260521T093002_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "a697c002038833045f29b95c84ec3e07c9e57227a6699e9039ddb463c07ac9df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 artifact 全部注册完成。关键发现：\n\n**WinoGrande** (2-choice, 1267 samples)\n- **α ≈ 0.46** (pure) — 与 BoolQ (α≈0.49) 极为接近，远高于 4-choice benchmarks。这强烈支持 **format confound**：2-choice 任务天然有更高的 ambiguity，不论 task type\n- Convergence σ 无显著趋势 (Spearman ρ=−0.20, p=0.78)\n- Jaccard helped sets: RetNet-HGRN2 对在多个 ratio 显著 (p<0.01)，GDN-RetNet 混合；hurt sets 也有显著重叠\n\n**PIQA** (2-choice, 1838 samples)\n- **α ≈ 0.14** (pure) — 远低于 BoolQ 和 WinoGrande，反而接近 HellaSwag (α≈0.10)。这**打破了** pure format confound 假设——同为 2-choice，PIQA 的 ambiguity 却接近 4-choice MC\n- Convergence σ 也不显著 (ρ=−0.50, p=0.45)\n- Jaccard: PIQA 几乎所有 helped/hurt 对都 p<0.01（因为绝对 set size 小，重叠更容易显著）\n\n**对比框架结论**：α 并非纯粹由 format (n_choices) 决定。WinoGrande≈BoolQ 但 PIQA≈HellaSwag，说明 task difficulty/ambiguity 本身是主要驱动因素，format 只是 partial confound。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

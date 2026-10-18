@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad6e36835fe4d6a1f6c4",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix hellaswag acc norm",
+  "task_key": "worker_fix_hellaswag-acc-norm_20260521T101458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_hellaswag-acc-norm_20260521T101458_result.json",
+    "occurrence": 1,
+    "bytes": 2922,
+    "sha256": "a808c1b77c9a2e0f5e630a102c181939ba288d3552ba6a58716192c3f5e78ae7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是新旧值对比汇报。\n\n---\n\n## 修复汇报：HellaSwag acc → acc_norm\n\n### 修改的脚本\n| 脚本 | 修改位置 | 改动 |\n|------|---------|------|\n| `analyze_boolq_hellaswag.py` | L31-32 `load_accs()` | `d[\"acc\"]` → `d[\"acc_norm\"]` (仅 hellaswag) |\n| `analyze_confidence_margin_mc.py` | L101-103 分类逻辑 | `ps[\"acc\"]`/`hs[\"acc\"]` → `ps[acc_field]`/`hs[acc_field]` |\n\n### 核心指标对比：mean_acc (convergence_sigma)\n\n| Config | GDN old→new | RetNet old→new | HGRN2 old→new | σ old→new |\n|--------|-------------|----------------|---------------|-----------|\n| pure | 0.4641→**0.6076** | 0.4421→**0.5798** | 0.4563→**0.5990** | 0.0091→0.0117 |\n| h24-1 | 0.4600→**0.5974** | 0.4446→**0.5824** | 0.4579→**0.6020** | 0.0068→0.0084 |\n| h12-1 | 0.4627→**0.6101** | 0.4475→**0.5882** | 0.4635→**0.6066** | 0.0073→0.0096 |\n| h6-1 | 0.4633→**0.6056** | 0.4520→**0.5849** | 0.4607→**0.6062** | 0.0048→0.0099 |\n| h3-1 | 0.4584→**0.6032** | 0.4454→**0.5777** | 0.4600→**0.6040** | 0.0065→0.0122 |\n\n**差异 ~14pp**，与预期一致。\n\n### Spearman ρ_convergence\n\n| | 旧 (acc) | 新 (acc_norm) |\n|--|---------|--------------|\n| ρ | **-0.8** | **0.4** |\n| p_exact | 0.1333 | 0.5167 |\n\n方向反转且不显著——acc_norm 下 σ 不再随 attention ratio 递减。\n\n### Ambiguity α\n\n| Config | 旧 α | 新 α |\n|--------|------|------|\n| pure | 0.1006 | **0.1482** |\n| h24-1 | 0.1031 | **0.1505** |\n| h12-1 | 0.1003 | **0.1482** |\n| h6-1 | 0.0908 | **0.1463** |\n| h3-1 | 0.0962 | **0.1505** |\n| mean | 0.0982 | **0.1487** |\n| range | 0.0123 | **0.0042** |\n\nα 升高 ~5pp（更多样本在 acc_norm 下产生 disagreement），但 within-benchmark variation 更小（0.004 < 0.03），α 稳定性更强。\n\n### Confidence Margin (HellaSwag 部分)\n\n| Arch | C1 (hurt vs stayed-right) | | C2 (helped vs stayed-wrong) | |\n|------|---|----|---|----|\n| | 旧 d / p | 新 d / p | 旧 d / p | 新 d / p |\n| GDN | 0.0899 / 0.109 | **0.0092 / 0.999** | -0.5175 / 1.3e-20 | **-0.1657 / 6.1e-4** |\n| RetNet | 0.2064 / 1.5e-3 | **-0.035 / 0.453** | -0.4818 / 2.5e-17 | **-0.1322 / 0.014** |\n| HGRN2 | 0.2807 / 2.5e-5 | **-0.0622 / 0.274** | -0.5145 / 6.3e-18 | **-0.1638 / 1.4e-3** |\n\n**C1**：acc_norm 下 hurt vs stayed-right 差异消失（3/3 不显著），假说不成立。\n**C2**：helped 仍然 margin 更低（3/3 p<0.05），但 effect size 大幅缩小（d 从 ~0.5 降到 ~0.15）。RetNet/HGRN2 的 C1 方向甚至反转（`hypothesis_supported: false`）。\n\n### 更新的 Artifacts（4 个）\n1. `hellaswag_per_example.json` — art_20260521_db901c\n2. `hellaswag_jaccard_analysis.json` — art_20260521_8cde16\n3. `hellaswag_alpha_by_ratio.json` — art_20260521_672592\n4. `cross_benchmark_confidence_margin.json` — art_20260521_e8bcdb"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

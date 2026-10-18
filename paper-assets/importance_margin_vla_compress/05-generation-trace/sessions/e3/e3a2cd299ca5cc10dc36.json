@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e3a2cd299ca5cc10dc36",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "verify attn k05 goal and w41074 gpu2",
+  "task_key": "worker_verify_attn_k05_goal_and_w41074_gpu2_20260526T160706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_attn_k05_goal_and_w41074_gpu2_20260526T160706_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "6171f6ab9ba923dd93ac42eb605efd76957fbc953a98625a73d422608efead86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已验证。\n\n```\nATTN_K05_GOAL_VERIFY:\n  VALID: yes\n  SR: 44.2% (221/500)\n  TOTAL_EPISODES: 500\n  MODE: attention_prune, k_ratio=0.5, suite=libero_goal\n  SEED: 42\n  RESULT_FILE: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attention_prune_k05_goal_seed42.json\n  TIMESTAMP: 2026-05-24 19:11:55\n  ELAPSED: 264.5 min\n  PER_TASK:\n    open the middle drawer of the cabinet:        14% (7/50)\n    put the bowl on the stove:                    56% (28/50)\n    put the wine bottle on top of the cabinet:    70% (35/50)\n    open the top drawer and put the bowl inside:  10% (5/50)\n    put the bowl on top of the cabinet:           62% (31/50)\n    push the plate to the front of the stove:     66% (33/50)\n    put the cream cheese in the bowl:             38% (19/50)\n    turn on the stove:                            80% (40/50)\n    put the bowl on the plate:                    32% (16/50)\n    put the wine bottle on the rack:              14% (7/50)\n\nWESTD-41074:\n  GPU0: BUSY (15980/97887 MiB, 71%, PID 682346)\n  GPU1: BUSY (15980/97887 MiB, 63%, PID 652888)\n  GPU2: IDLE (1/97887 MiB, 0%, no process)\n  GPU3: BUSY (15984/97887 MiB, 71%, PID 642262)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

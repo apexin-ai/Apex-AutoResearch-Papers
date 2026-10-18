@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4a6d1f0ed820aaa0731c",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ops compile check",
+  "task_key": "worker_ops_compile_check_20260516T102253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_compile_check_20260516T102253.log",
+    "occurrence": 1,
+    "bytes": 587514,
+    "sha256": "583d7fdf768dcc9d1982a94cca575b292663ae777e48d5bfc7a39b9c2e3061ad"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 0,
+    "tool_calls": 83,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 83,
+      "tool_result": 83,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 247,
+      "chunks": [
+        {
+          "path": "4a6d1f0ed820aaa0731c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a6d1f0ed820aaa0731c-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ]
+}

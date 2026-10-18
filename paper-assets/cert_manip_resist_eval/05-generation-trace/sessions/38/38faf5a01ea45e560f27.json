@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "38faf5a01ea45e560f27",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "fix table1 k3 ols corrected",
+  "task_key": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_table1-k3-ols-corrected_20260523T175018_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "b5016b51fa7d383acc7519ecfd8892997a065c4c4cbd8714f4ffb3305b872d45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results summary:\n\n**Error impact**: 1221/63000 scores invalid (1.94%), concentrated in Gemini models (gemini-3.5-flash: 742, gemini-3.1-pro-preview: 335). The bug `.get(\"winner\", \"tie\")` treated these as ties, inflating η_max (high-error models = high-η models) and suppressing K_eff.\n\n**5 of 12 conditions changed significance/dominance:**\n\n| Condition | Old dom | New dom | Key change |\n|---|---|---|---|\n| MMLU × Score manip | η | **K** | η collapses 0.60→0.08, K rises 0.03→0.58 |\n| MMLU × Position bias | η | **Co** | K gains sig, 0.10→0.38 |\n| MMLU × Authority bias | η | **Co** | K gains sig, 0.01→0.50, R² doubles |\n| ARC × Sycophancy | Co (K-) | **Co (K+)** | K sign flips −0.19→+0.26 |\n| ARC × Verbosity | η | **Co** | K gains sig, 0.15→0.39 |\n\n**Aggregate shift:**\n- η sig: 11/12 → 10/12\n- K sig: 8/12 → **12/12** (all conditions!)\n- All K_eff betas now positive (was 1 negative)\n- Dominance: {Co:7, η:4, K:1} → {**Co:10**, K:2, η:0}\n- No pure η-dominant conditions remain\n\nThe corrected script is at `scripts/run_aggregation_loglog_corrected.py` on the server, corrected JSON saved to `artifacts/results/plan001/aggregation_regression_15model_loglog_corrected.json`, and the comparison at `docs/paper/data/table1_corrected.json` locally."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

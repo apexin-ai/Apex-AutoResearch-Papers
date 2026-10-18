@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e27a83c5fd728ac51841",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops launch xvla spatial pruning cqa1",
+  "task_key": "worker_ops_launch-xvla-spatial-pruning-cqa1_20260520T231855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_launch-xvla-spatial-pruning-cqa1_20260520T231855_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "92d97ca92686a652e643ac4272789de3f8116ed942ab099a0bdba9cfb08d61be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已启动并注册为 RUNNING。\n\n**汇总：**\n\n| 实验 | tmux session | GPU | 显存占用 | 状态 |\n|------|-------------|-----|---------|------|\n| X-VLA k=0.9 Spatial | `eval_xvla_spatial_k09` | GPU 1 | ~4601 MiB | RUNNING, Ep 1 SUCCESS |\n| X-VLA k=0.5 Spatial | `eval_xvla_spatial_k05` | GPU 2 | ~4597 MiB | RUNNING, Ep 1 SUCCESS |\n\n**日志确认：**\n- k=0.9: `Suite: libero_spatial | keep_ratio=0.90 | Vision tokens: 50 total, keeping 45 (90%)`\n- k=0.5: `Suite: libero_spatial | keep_ratio=0.50 | Vision tokens: 50 total, keeping 25 (50%)`\n- 两个实验 Task 0 Ep 1 均已 SUCCESS（steps=78-79）\n\n日志路径：\n- `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_spatial_k09_seed42.log`\n- `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_spatial_k05_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

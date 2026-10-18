@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "22432abd7e4684d646ba",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "analysis smolvla entropy perlayer",
+  "task_key": "worker_analysis_smolvla_entropy_perlayer_20260518T063522",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_smolvla_entropy_perlayer_20260518T063522.log",
+    "occurrence": 1,
+    "bytes": 701973,
+    "sha256": "877f99ad26793df64270df8f9618eec3253d9bf4127005465dd1a91795fd0a86"
+  },
+  "statistics": {
+    "messages": 241,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "22432abd7e4684d646ba-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "22432abd7e4684d646ba-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ]
+}

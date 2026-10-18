@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f362c180e5b78dbed87a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research p0b kappa analysis",
+  "task_key": "worker_research_p0b-kappa-analysis_20260523T135842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_p0b-kappa-analysis_20260523T135842_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "6e8af3ec4ebafe3e83cee49fc4a8a3f51e52b5eb2bcd4ccbe481cc7b00cb6c0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/kappa_stratified_analysis.md`.\n\nKey findings:\n\n1. **520 synthetic configs**: All fall in bins 2–3 (κ ∈ [1.43, 2.22]). Bins 1, 4, 5 are empty because π̄=0.15 sets a floor of κ=1.43.\n\n2. **EC-HTE is analytically unbiased** for all κ. In bin 3, global correction hurts at least one subgroup in 100% of configs.\n\n3. **13 real LLM combinations**: 4 in bin 2 (κ ∈ [1.88, 1.96]), 9 in bin 3 (κ ∈ [2.21, 2.99]). None passes κ ≤ 1.25.\n\n4. **Performance tradeoff**: At n_expert=500, EC-HTE matches global in bin 2 (RMSE ratio 1.01) but has 22% higher RMSE in bin 3 due to variance from estimating per-subgroup CMs with asymmetric K=4 errors. In the symmetric K=2 synthetic case, EC-HTE dominates at n_expert ≥ 100.\n\n5. **Data limitation**: No per-config multi-method MC data exists for the 520 configs — only 3 regime-level comparisons available."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

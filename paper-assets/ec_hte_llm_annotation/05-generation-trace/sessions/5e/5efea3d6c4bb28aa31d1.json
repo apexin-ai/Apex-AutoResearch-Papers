@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5efea3d6c4bb28aa31d1",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "paper appendix forward refs and tables",
+  "task_key": "worker_paper_appendix-forward-refs-and-tables_20260524T051427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-forward-refs-and-tables_20260524T051427_result.json",
+    "occurrence": 1,
+    "bytes": 1966,
+    "sha256": "5bed9c03d9f044dc225e3043811f210dbd7ba84047452efefe86b9d17dc378d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits look correct. Here's the summary:\n\n---\n\n## 产出汇总\n\n### Part A: Forward references (6 个)\n\n| # | Label | 文件:行 | 插入内容 |\n|---|-------|---------|----------|\n| 1 | `app:stance` | experiments.tex:10 | `stance detection (Appendix~\\ref{app:stance})` 加入 robustness validation 列表 |\n| 2 | `app:semireal` | experiments.tex:11 | `Appendix~\\ref{app:semireal}` 加在 16 model-dataset combinations 后 |\n| 3 | `app:roc` | experiments.tex:72 | `Figure~\\ref{fig:roc} in Appendix~\\ref{app:roc}` 替换原来只引 Figure |\n| 4 | `app:realcm_bias` | experiments.tex:77 | `Appendix~\\ref{app:realcm_bias}` 加在 $R^2=0.975$ 后 |\n| 5 | `app:robustness` | experiments.tex:83 | 新增句子 \"EC-HTE is robust to noisy subgroup labels ($p_{\\text{flip}} \\leq 0.50$; Appendix~\\ref{app:robustness}).\" |\n| 6 | `app:mcmc` | method.tex:16 | `full MCMC specification in Appendix~\\ref{app:mcmc}` 加在 convergence diagnostics 引用前 |\n\n### Part B: 表格迁移\n\n**表 1 (γ_T sweep)**:  未创建新表——数据与现有 `tab:treatment_dep`（appendix.tex L1298-1311）完全一致。在 theory.tex:98 添加了 forward ref `(full sensitivity in Table~\\ref{tab:treatment_dep}, Appendix~\\ref{app:treatment_dep})`。`results/` 下无 CSV 文件，无 Global 值数据源。\n\n**表 2 (hyperprior sweep)**: 在 appendix.tex 的 MCMC 节新建 `\\subsection{Hyperprior Sensitivity}` (`app:hyperprior`)，含 `tab:hyperprior_sweep` 摘要表（6 行，registry 数据）。在 method.tex:12 添加 forward ref `Table~\\ref{tab:hyperprior_sweep}, Appendix~\\ref{app:hyperprior}`。无 `exp001_hyperprior_sensitivity.csv`，无法建完整 (a₀, b₀) 网格表，用摘要表替代。\n\n### 编译结果\n- 32 页（+1 页来自新表），主文 ≤ 8 页\n- 0 个新 error（3 个预存 `\\makecell` undefined 来自 appendix_stance.tex）\n- 0 个 undefined reference（第二遍编译后全部解析）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

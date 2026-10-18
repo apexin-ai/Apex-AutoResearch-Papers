@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ebda827b82089823b1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis verify r3 tex changes",
+  "task_key": "worker_analysis_verify-r3-tex-changes_20260516T012501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify-r3-tex-changes_20260516T012501_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "7ee56b52319cb4174b515cb11e6f9f68af8c6ac6abbaf533c8314541edde3aac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 项 R3 修改已确认写入 `docs/paper/*.tex`：\n\n- **R3-N2** — ablation 文字在 `atlas.tex` 和 `method.tex`，含 top-2/top-5 定量结果和按类别分解\n- **R3-N3** — SHAP 出现 15+ 次，TreeExplainer + 三方一致性(W=0.90)完整报告，无残留 attention-based 分析\n- **R3-N4** — intro 贡献列表首条明确 \"Task formalization\"，method 节显式声明 scope 限制\n- **R3-W1** — abstract 已加 \"excluding d0\" 的数字，conclusion 有专段 \"d0 inflation of headline metrics\"\n- **R3-W2** — discussion 扩展至 7 段 47 行，含 curation PoC、provenance toolkit、adversarial robustness 等\n- **R3-W4** — 零 raw exp ID 残留\n\n报告已注册为 `art_20260516_cb9503`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

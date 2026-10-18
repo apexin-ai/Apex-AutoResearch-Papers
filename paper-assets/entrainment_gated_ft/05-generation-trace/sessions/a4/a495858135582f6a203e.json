@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a495858135582f6a203e",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code fix gdn shard",
+  "task_key": "worker_code_fix-gdn-shard_20260518T114249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-gdn-shard_20260518T114249_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "65e76dd4ed6ea9ed5b10388ebd492c8fdcf13d4607d0ad076bfd9750ff45b7b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GatedDeltaNet-pure shard 2 下载完成。**\n\n- `model-00001-of-00002.safetensors` — 4.7G\n- `model-00002-of-00002.safetensors` — 839M\n- 目录总计 5.7G，完整\n\n**整体模型下载进度：**\n\n| 模型 | 大小 | 状态 |\n|---|---|---|\n| GatedDeltaNet-pure | 5.7G | ✓ 完整 |\n| GatedDeltaNet-hybrid-3-1 | 5.3G | ✓ 完整 |\n| RetNet-pure | 4.9G | ✓ 完整 |\n| transformer_1.3B_baseline | 4.3G | ✓ 完整 |\n| GatedDeltaNet-hybrid-24-1 | 530M | 下载中（批量脚本在跑） |\n| GatedDeltaNet-hybrid-12-1 | 0 | 未开始 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

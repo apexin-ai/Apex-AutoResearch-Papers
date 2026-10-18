@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1effbcf8864cb62be63b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "monitor exp012 progress",
+  "task_key": "worker_monitor_exp012_progress_20260515T191405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp012_progress_20260515T191405_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "69c8cc3cf7e2dfd039a3859becfc21beb000a411b2b3f43f20981ed23eb5e962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp012_llama_8b_r2 状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 存活，已运行 ~36 分钟 |\n| **PID 315801** | wrapper bash, 3.5 MB RSS |\n| **PID 316128** | VLLM::EngineCore, 2.2 GB RSS |\n| **GPU** | 84.7 / 97.9 GB (86%), 利用率 71% |\n| **进度** | **69 / 94 batches 完成 (~73%)** |\n| **当前阶段** | count_6/random/0 正在运行（已完成 count_1 全部 64 批 + count_2 全部 5 批） |\n| **每批输出** | 1000 outputs，模型生成正常的结构化 JSON（实体抽取结果） |\n| **JSON 解析失败** | 47 条 / ~69,000 总输出 (0.07%，可忽略) |\n| **gen_tokens** | 日志未记录此指标，但从输出内容看模型生成了完整的实体 JSON（非空输出），**不是之前 gen_tokens=2 的空输出问题** |\n| **结果目录** | 尚未创建，预计实验结束后写入 |\n| **预估剩余** | 剩 25 批，平均 ~0.5 min/批，**预计 ~13 分钟后完成** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

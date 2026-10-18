@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "34c8fd0fe3f368f4d7b1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 cuda2 goal random",
+  "task_key": "worker_deploy_westd38929_cuda2_goal_random_20260522T184557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_cuda2_goal_random_20260522T184557_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "c252df256fc1138984494bab5b30752dfad40bb1a62c36188b0a017c6cc44b24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n## 汇报\n\n### cuda:2 部署结果\n- **实验**: `eval_pi05_random_k085_goal_seed42_v3` — π0.5 Random k=0.85 LIBERO-Goal\n- **PID**: 960809，VRAM 已升至 ~7.9 GB（模型加载中）\n- **Registry**: RUNNING\n\n### 四卡身份表\n\n| GPU | VRAM | PID | 实验 |\n|-----|------|-----|------|\n| cuda:0 | 10506 MiB | 781071 | π0.5 L2Norm k=0.85 libero_10 (LONG) |\n| cuda:1 | 10005 MiB | 892027 | π0.5 L2Norm k=0.7 libero_10 |\n| cuda:2 | 3167→加载中 | 960809 | **π0.5 Random k=0.85 libero_goal** ← 刚部署 |\n| cuda:3 | 10364 MiB | 781144 | π0.5 Random k=0.95 libero_10 (LONG) |\n\n### 需确认\n- cuda:1 的 `eval_pi05_l2norm_k070_long_seed42` 是否已在 Registry 中注册？（PID 892027, l2norm k=0.7 libero_10）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "67eb3ce088d329d05fa9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure architecture v2 paperbanana",
+  "task_key": "worker_paper_figure_architecture_v2_paperbanana_20260528T130129",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_architecture_v2_paperbanana_20260528T130129_result.json",
+    "occurrence": 1,
+    "bytes": 2117658,
+    "sha256": "64937290a803a059bff648c722c98a17bb98ebb3aa474190afb42cadc84b57f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "67eb3ce088d329d05fa9-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

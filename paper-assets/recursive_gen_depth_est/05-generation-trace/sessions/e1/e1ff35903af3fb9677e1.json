@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e1ff35903af3fb9677e1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra westd 48862 status check",
+  "task_key": "worker_infra_westd-48862-status-check_20260519T174333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-48862-status-check_20260519T174333_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "f5efa54b94da4d8cc910703aca972cc2f2d9945535404e869e3996720d3dd702"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | GPU-Util |\n|-----|------|---------|----------|\n| 0 | RTX PRO 6000 (96GB) | 5,683 / 97,887 MiB | 70% |\n| 1 | RTX PRO 6000 (96GB) | 18,911 / 97,887 MiB | 49% |\n\n---\n\n### 1. binoculars_ordinal_baseline_001\n- **状态**: **RUNNING**\n- **PID 336524**: 存活，elapsed 10:16\n- **GPU**: cuda:0, 5.7GB VRAM, 70% util\n- **进度**: Cell 1/9 (`pythia_nucleus`), 1122/2500 batches (45%), ~6.3 it/s\n- **ETA**: 当前 cell 剩余 ~3.6 min；总计 9 cells，假设每 cell 类似速度，**总剩余约 40-50 min**\n\n### 2. detectgpt_ordinal_baseline_003\n- **状态**: **RUNNING** (初始化阶段)\n- **PID 336944**: 存活，elapsed 5:21\n- **GPU**: cuda:1, 18.9GB VRAM, 49% util\n- **进度**: 日志仅 3 行（T5 tokenizer 加载 + torch_dtype 警告），尚未开始 scoring 输出。模型加载中或开始首轮 perturbation 生成\n- **ETA**: DetectGPT 需要生成扰动文本，比 binoculars 慢很多，预计 **2-4 小时**（取决于 perturbation 数量和 cell 数）\n\n### 3. DeBERTa pilot 残留\n- **PID 329839** (deberta gpt2xl): **DEAD** — 已清理\n- **PID 329980** (deberta pythia): **DEAD** — 已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7bc0bca10f1ebbaf3e8c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops locate sdgd v2 script",
+  "task_key": "worker_ops_locate_sdgd_v2_script_20260515T134131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_locate_sdgd_v2_script_20260515T134131_result.json",
+    "occurrence": 1,
+    "bytes": 3492,
+    "sha256": "62b10da847303b78f5fdc32bf35b27bce3e44806330d18d2e3d150af82398807"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### GPU 状态\n| GPU | 显存占用 | 总显存 | 利用率 |\n|-----|---------|--------|--------|\n| NVIDIA RTX PRO 6000 Blackwell Server Edition | 0 MiB | 97887 MiB | 0% |\n\nGPU 空闲，无任务运行。\n\n---\n\n### `scripts/run_sdgd_v2_fewnerd.sh`\n\n```bash\n#!/bin/bash\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\ncd /root/schema-dag-extraction\n\nTYPES_FILE=configs/few_nerd_types.json\nSIM_MATRIX=artifacts/sim_matrix.pt\nMODEL_PATH=/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\nOUTPUT_DIR=artifacts/exp008_v2\nMAX_SAMPLES=1000\nTASK=ner\nMIN_BATCH_SIZE=8\nMERGE_STRATEGY=confidence\nCONFIDENCE_THRESHOLD=-1.0\n\nmkdir -p ${OUTPUT_DIR}\n\n# Stage 1: CPU Decomposition — 4 modes: sdgd_zero, single_pass, random_batch, per_type\nfor MODE in sdgd_zero single_pass random_batch per_type; do\n  EXTRA_ARGS=\"\"\n  if [ \"${MODE}\" = \"sdgd_zero\" ]; then\n    EXTRA_ARGS=\"--min_batch_size ${MIN_BATCH_SIZE}\"\n  fi\n  python3 src/sdgd_decompose_cpu.py \\\n    --mode ${MODE} \\\n    --types_file ${TYPES_FILE} \\\n    --sim_matrix_path ${SIM_MATRIX} \\\n    --output ${OUTPUT_DIR}/decomposition_${MODE}.json \\\n    ${EXTRA_ARGS}\ndone\n\n# Stage 2: GPU Extraction (confidence merge) — 所有 decomposition 一起送入\npython3 src/sdgd_extract_gpu.py \\\n  --decompositions \\\n    ${OUTPUT_DIR}/decomposition_sdgd_zero.json \\\n    ${OUTPUT_DIR}/decomposition_single_pass.json \\\n    ${OUTPUT_DIR}/decomposition_random_batch.json \\\n    ${OUTPUT_DIR}/decomposition_per_type.json \\\n  --model_path ${MODEL_PATH} \\\n  --types_file ${TYPES_FILE} \\\n  --dataset fewnerd \\\n  --prompt_version v2 \\\n  --max_samples ${MAX_SAMPLES} \\\n  --output_dir ${OUTPUT_DIR} \\\n  --max_model_len 4096 \\\n  --task ${TASK} \\\n  --merge_strategy ${MERGE_STRATEGY} \\\n  --confidence_threshold ${CONFIDENCE_THRESHOLD}\n```\n\n---\n\n### `scripts/run_sdgd_v2_maven_minilm.sh`\n\n同结构，差异点：\n- `TYPES_FILE=configs/maven_event_types.json`\n- `SIM_MATRIX=artifacts/maven_minilm_sim_matrix.pt`\n- `OUTPUT_DIR=artifacts/exp008_v2_maven_minilm`\n- `TASK=event`\n- `--dataset maven`\n\n---\n\n### `scripts/run_exp012_llama.sh`\n\n```bash\n#!/bin/bash\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\ncd /root/schema-dag-extraction\n\nMODEL=/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/\nMODEL_NAME=llama-3.3-70b-fp8\nCOMMON=\"--dataset fewnerd --prompt_version v2 --types_file configs/few_nerd_types.json \\\n  --embeddings_path artifacts/type_embeddings.pt --sim_matrix_path artifacts/sim_matrix.pt \\\n  --model_path $MODEL --model_name $MODEL_NAME --max_samples 1000 --max_model_len 4096 \\\n  --gpu_memory_utilization 0.90 --output_dir artifacts/exp012\"\n\nmkdir -p artifacts/exp012\n\n# exp1: Count Baseline\npython3 src/run_experiment.py --mode exp1 $COMMON\n\n# exp2: Confusability Controlled\npython3 src/run_experiment.py --mode exp2 $COMMON\n```\n\n### `scripts/submit_exp012.sh`（启动器）\n\n```bash\n#!/bin/bash\nnohup bash /root/schema-dag-extraction/scripts/run_exp012_llama.sh \\\n  > /root/schema-dag-extraction/logs/exp012_llama.log 2>&1 &\necho \"exp-012 launched, PID=$!\"\n```\n\n---\n\n**关键对比**：\n- SDGD v2 用 **Qwen3-32B-FP8**，两阶段（CPU decompose → GPU extract），4 种 decomposition mode 对比\n- exp-012 用 **LLaMA-3.3-70B-FP8**，统一 `run_experiment.py` 入口，跑 exp1 (count baseline) 和 exp2 (confusability controlled)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

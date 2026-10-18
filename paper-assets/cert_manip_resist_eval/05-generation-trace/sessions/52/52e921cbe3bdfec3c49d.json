@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "52e921cbe3bdfec3c49d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig per model asr",
+  "task_key": "worker_ops_fig-per-model-asr_20260525T154002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-per-model-asr_20260525T154002_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "585939716356c61236a2816a795173e7ff374e8334f6b881fff51183e0631855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are in place:\n- `docs/paper/figures/fig_per_model_asr.pdf`\n- `docs/paper/figures/fig_per_model_asr.png`\n\n**结果**：15 个模型按 MMLU accuracy 降序排列，两面板 (a) MMLU (b) ARC-Challenge，每个模型 6 色 bar 对应 6 种攻击。API 模型（蓝标签）ASR 普遍 <11%（Haiku 除外，Prompt Inj. 达 82%），本地模型（橙标签）ASR 集中在 40-70%，API/Local 分界处有虚线标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

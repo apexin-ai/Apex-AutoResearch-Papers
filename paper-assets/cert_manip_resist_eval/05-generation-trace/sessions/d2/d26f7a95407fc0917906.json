@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d26f7a95407fc0917906",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "check iv exclusion restriction",
+  "task_key": "worker_check_iv-exclusion-restriction_20260523T082512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_iv-exclusion-restriction_20260523T082512_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "e03097d1a6461ccb754d2de346b1111e23fa1244bbd7608c4cf42ab9411fbe2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n=== IV Exclusion Restriction Check ===\nModels found: 9\n\nModel                        | MMLU acc |  ARC acc | MMLU rank | ARC rank\n------------------------------------------------------------------------------\nclaude-3-haiku               |   0.7667 |   0.4500 |       2.0 |      1.0\nclaude-opus-4-6              |   0.8900 |   0.9867 |       6.0 |      8.0\nclaude-sonnet-4-6            |   0.8100 |   0.9533 |       4.0 |      3.0\ngemini-3.1-pro-preview       |   0.9547 |   0.9865 |       7.0 |      7.0\ngemini-3.5-flash             |   0.9683 |   1.0000 |       9.0 |      9.0\ngpt-4.1-mini                 |   0.8000 |   0.9633 |       3.0 |      4.0\ngpt-4.1-nano                 |   0.6333 |   0.8533 |       1.0 |      2.0\ngpt-4.1                      |   0.8367 |   0.9667 |       5.0 |      5.0\ngpt-5.5                      |   0.9567 |   0.9832 |       8.0 |      6.0\n\nSpearman rank correlation: r = 0.9000, p = 0.0009\n```\n\n**Verdict: r = 0.900 > 0.8 → IV INVALID，只能用 reduced-form。**\n\nMMLU 和 ARC 的 clean accuracy rank 高度相关（ρ = 0.90, p < 0.001），排除性限制（exclusion restriction）不成立——一个 benchmark 上的 capability 几乎完全预测另一个 benchmark 上的 capability，无法将其作为有效工具变量。\n\n注意：数据中只有 9 个模型（非预期的 15 个），但 9 个模型已足够得出明确结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

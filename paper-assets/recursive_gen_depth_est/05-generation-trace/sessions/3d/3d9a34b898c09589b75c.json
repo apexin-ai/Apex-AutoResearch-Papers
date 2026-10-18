@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3d9a34b898c09589b75c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "deploy baseline scripts and extract mink",
+  "task_key": "worker_deploy_baseline-scripts-and-extract-mink_20260519T140337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_baseline-scripts-and-extract-mink_20260519T140337_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "d1d51616fa2b981282051732c1d6c7958bc5b6947fa039a250e53afac889be8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。\n\n**任务 1 — Min-K% 结果提取**\n- 9/9 cells 完成，结果保存到本地 `artifacts/mink_ordinal_baseline/mink_prob_results.json`\n- Registry `mink_ordinal_baseline_002` 已更新：metrics + notes + conclusion=success\n- 关键发现：methodA/C 在 chance level (~25%)，methodB 最好也仅 29-33%，确认 Min-K% 无法做 ordinal depth 分类\n\n**任务 2 — DetectGPT 结果提取**\n- 8/9 cells 完成（缺 pythia_nucleus），结果保存到本地 `artifacts/detectgpt_ordinal_baseline/detectgpt_results.json`\n- Registry `detectgpt_ordinal_baseline_002` 已更新：metrics + notes\n- 关键发现：mean 4class_acc=29.1%，接近 chance (25%)\n\n**任务 3 — 脚本部署**\n- `binoculars_ordinal_eval.py` → 远程 `scripts/binoculars_ordinal_eval.py` ✓\n- `detectgpt_baseline.py` → 远程 `scripts/detectgpt_baseline.py` ✓\n- 两个脚本 py_compile 验证通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

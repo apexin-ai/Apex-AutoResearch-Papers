@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "414f47dc40e0c9dc2d76",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops pi05 baseline object westd41074",
+  "task_key": "worker_ops_pi05-baseline-object-westd41074_20260521T023759",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_pi05-baseline-object-westd41074_20260521T023759_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "ef2945cfe2d8b0310089f02f16450c9a9bc516c3456dd6af84f43c504a20e07d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。模型正在加载中：\n- **exp_id**: `eval_pi05_baseline_object_seed42`\n- **GPU**: cuda:1\n- **配置**: suite=libero_object, prune=none, keep=1.0, episodes=50, seed=42\n- **日志**: `~/runs/importance_margin_vla_compress/eval_pi05_baseline_object_seed42.log`\n\n模型加载 ~7GB，加载完成后会开始跑 50 个 episode 的 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

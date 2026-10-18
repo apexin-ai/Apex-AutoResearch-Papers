@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f688ff30773c62162deb",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 cuda2 harvest 20260522",
+  "task_key": "worker_deploy_cqa1_cuda2_harvest_20260522_20260522T215037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_cuda2_harvest_20260522_20260522T215037_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "d8b75b2caf7dfa477c3b4c1ff9a16ff5af56a34cc14f16756a9559f6f472d196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session 存活，模型加载中。\n\n## 执行总结\n\n### GPU 状态 (cqa1-33015)\n| GPU | 显存 | 任务 | 状态 |\n|-----|------|------|------|\n| cuda:0 | 10.2GB | π0.5 L2norm k=0.7 Goal s42 | RUNNING (T3, 74%) |\n| cuda:1 | 10.3GB | π0.5 Random k=0.95 Goal s42 | RUNNING (T3, 83.3%) |\n| cuda:2 | 加载中 | **π0.5 Random k=0.3 Goal s43** | 刚部署，模型加载中 |\n| cuda:3 | 10.7GB | pi05_long chain | RUNNING |\n\n### 收割\n- **eval_pi05_random_k03_goal_seed42**: SR=**51.8%** (259/500, 140min) → Registry DONE\n\n### 部署\n- **eval_pi05_random_k03_goal_seed43**: cuda:2, tmux `eval_random_k03_goal_s43` → Registry RUNNING\n\n### Registry 修复\n- **eval_pi05_random_k03_goal_seed42**: 新建 → DONE (success, SR=51.8%)\n- **eval_pi05_l2norm_k07_goal_seed42**: 新建 → RUNNING (实际在 cuda:0 上跑，T3/10 进度 74%)\n- ~~DEPLOYED→RUNNING 问题~~：实验原本不在 registry，已新建并设为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

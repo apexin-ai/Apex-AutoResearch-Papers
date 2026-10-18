@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "d0a8a3ac8a16f2b2c858",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "sync degradation curve latest",
+  "task_key": "worker_sync_degradation_curve_latest_20260518T183047",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_sync_degradation_curve_latest_20260518T183047.log",
+    "occurrence": 1,
+    "bytes": 1112841,
+    "sha256": "79bee5cc06019f2b29d97e5f5907db3aaa3ace259278addc86c4d91b1879319c"
+  },
+  "statistics": {
+    "messages": 493,
+    "user_turns": 2,
+    "tool_calls": 166,
+    "roles": {
+      "log": 1,
+      "system": 112,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 166,
+      "tool_result": 165,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "d0a8a3ac8a16f2b2c858-part-0001.json",
+          "message_count": 140
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "d0a8a3ac8a16f2b2c858-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "d0a8a3ac8a16f2b2c858-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 322,
+      "chunks": [
+        {
+          "path": "d0a8a3ac8a16f2b2c858-part-0002.json",
+          "message_count": 159
+        },
+        {
+          "path": "d0a8a3ac8a16f2b2c858-part-0003.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ]
+}

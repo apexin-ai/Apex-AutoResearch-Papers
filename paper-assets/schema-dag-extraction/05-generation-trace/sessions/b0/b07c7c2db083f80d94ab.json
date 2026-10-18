@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b07c7c2db083f80d94ab",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure fig sdgd pipeline",
+  "task_key": "worker_figure_fig_sdgd_pipeline_20260523T123008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig_sdgd_pipeline_20260523T123008_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "94885749e99e0ff9f92b974288a229944a6c18efdc40ddee923f049d0356c103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n- 脚本: `scripts/gen_fig_sdgd_pipeline.py`\n- PDF: `figures/paper/fig_sdgd_pipeline.pdf` (37KB)\n- PNG: `figures/paper/fig_sdgd_pipeline.png` (96KB)\n\n流程图从左到右展示 Full Schema → Decompose → Sub-schemas → Route & Extract → Merge → Final Predictions，上方红框标注 Routing Failure（RE 73% none-rate, Oracle 0.80 vs Practical 0.50），下方红框标注 Merge Amplification（NER/ED union 产生 false positives, F1 drops −19pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

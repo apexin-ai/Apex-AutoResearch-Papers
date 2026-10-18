@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad423ce46a58f4a15570",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code qwen budget sweep",
+  "task_key": "worker_code_qwen-budget-sweep_20260521T215055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen-budget-sweep_20260521T215055_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "6086da0b2a6bc6fdbe27326c525bbb1f9a6fd1d1d9355cf70fc1dc822239eb06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 outputs generated successfully:\n\n1. **`qwen_cm_profile.md`** — Per-subgroup CM tables for K=4 and K=2, with Δπ and Proposition 2 checks\n2. **`qwen_budget_sweep_k4.csv`** — 8000 rows (4 subgroups × 2 z_levels × 4 methods × 5 budgets × 50 seeds)\n3. **`qwen_budget_sweep_k2.csv`** — 4000 rows (2 subgroups × 2 z_levels × 4 methods × 5 budgets × 50 seeds)\n4. **`qwen_sweep_analysis.md`** — Full summary tables + crossover analysis\n\nKey findings:\n\n**K=4**: EC-HTE beats Naive on |Bias| at all budgets (crossover at n=100), but RMSE never crosses — high variance from estimating 4 separate CMs dominates. Δ_FPR=0.24, Δ_FNR=0.15 show substantial CM heterogeneity.\n\n**K=2**: EC-HTE beats Naive on |Bias| at all budgets, **and RMSE crosses at n=1000** — fewer subgroups means less variance penalty. Δ_FPR=0.02, Δ_FNR=0.05 are smaller but still nonzero.\n\n**K=4 vs K=2**: K=2 achieves lower |Bias| than K=4 across all budgets (e.g., 0.014 vs 0.070 at n=100) because fewer groups means more data per CM estimate. K=2 also achieves the RMSE crossover that K=4 cannot."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

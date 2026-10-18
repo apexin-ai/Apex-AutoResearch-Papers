@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c7926df17d42ee518c3c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code verbosity gee decomposition",
+  "task_key": "worker_code_verbosity_gee_decomposition_20260521T050306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verbosity_gee_decomposition_20260521T050306_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "92a5c2147bd00dba5e36c42fd39685440e6fc14df99c432f8e4fa4f75cdc4867"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Effect | OR | 95% CI | p |\n|--------|-----|--------|---|\n| **Verbose style** | **13.10** | [5.62, 30.55] | 2.60e-09 *** |\n| **Originality** | **0.49** | [0.21, 1.14] | 0.096 ns |\n\n符合预期：verbose OR = 13.10（极显著），originality OR = 0.49（不显著，p = 0.096）。Verbosity bias 完全由 style effect 驱动，originality 无显著贡献。\n\n脚本已保存在 `csd_pipeline/verbosity_gee.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

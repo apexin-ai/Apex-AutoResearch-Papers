@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dc34c3fd144e7baf5b01",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops feat ablation v1 triage",
+  "task_key": "worker_ops_feat_ablation_v1_triage_20260515T193355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feat_ablation_v1_triage_20260515T193355_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "aa647048634e2060ff7eb63573490159641e730c6364fcea4bc3372f96aaaab3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**feat_ablation_v1 — 成功完成。** Registry 已更新为 DONE/success，cron 已清除。\n\n关键结果：\n- 全部 9 cell（pythia/gpt2xl/olmo × nucleus095/temp09/topk50）forward selection 完成\n- Top-2 特征 71.5% acc → Top-5 76.8% → Full-19 78.5%，~5 个特征即达 95% 性能\n- **Perplexity 类特征全面主导**（76.7% mean acc），远超 surprisal（73.3%）、lexical diversity（46.2%）等\n- Forward selection 首选特征：Pythia 选 `var_surprisal`，GPT2-XL 和 OLMo 选 `p90_ppl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

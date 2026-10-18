@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "13da244c2f18e75fd572",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code 1 3b lmeval benchmarks",
+  "task_key": "worker_code_1_3b-lmeval-benchmarks_20260518T095147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b-lmeval-benchmarks_20260518T095147.log",
+    "occurrence": 1,
+    "bytes": 993394,
+    "sha256": "c4e20d12b26bbc4c0047878cbdaf8f24dd6d111e66305d94750089a34b9cc550"
+  },
+  "statistics": {
+    "messages": 440,
+    "user_turns": 0,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 159,
+      "tool_result": 159
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 440,
+      "chunks": [
+        {
+          "path": "13da244c2f18e75fd572-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "13da244c2f18e75fd572-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "13da244c2f18e75fd572-part-0003.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "265448565ebbc5d4053b",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp sdgd zero maven",
+  "task_key": "worker_code_exp_sdgd_zero_maven_20260519T114328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_sdgd_zero_maven_20260519T114328.log",
+    "occurrence": 1,
+    "bytes": 732048,
+    "sha256": "2c61330472053c9aba3c89e7779ccc3ec7f9b1ec83aa49c72d27e3aa1be9c37f"
+  },
+  "statistics": {
+    "messages": 276,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "265448565ebbc5d4053b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "265448565ebbc5d4053b-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ]
+}

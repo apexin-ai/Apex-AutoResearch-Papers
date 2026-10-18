@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "43029a953b0603381cea",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd27271 gpu 20260526c",
+  "task_key": "worker_audit_westd27271-gpu-20260526c_20260526T200726",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd27271-gpu-20260526c_20260526T200726_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "a592d32f132739b3517a4ab86053dda83122c48581db3f0744fe07c80e732f05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: BUSY  PID=414927  L2norm k=0.75 Goal seed42 v2  VRAM=15964MiB  Util=69%\n  — Task 10/10 Ep 40/50, 即将完成\n\nGPU 1: BUSY  PID=397225  Attn k=0.5 Long (libero_10) seed42  VRAM=16358MiB  Util=68%\n  — Task 5/10 Ep 20/50, 约一半进度\n\n已完成实验：\n- eval_attn_k09_goal_s43: SR=73.20% (366/500), 来源=log ✓\n\n异常：\n- eval_spatial_baseline_s42: 停在 Task 8/10，无 Overall SR，日志停更于 May 26 17:12，无对应进程 — 疑似 crash\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

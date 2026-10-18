@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c2d4ff0e12dd4090eae",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu mistral download monitor",
+  "task_key": "worker_gpu_mistral_download_monitor_20260514T212840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_mistral_download_monitor_20260514T212840_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "0278831e83845ec8562b605f822f4f7ae4f30c2da8309ec3e2c43eec18b7e431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**报告：**\n\n| 项目 | 状态 |\n|------|------|\n| 下载进程 | PID 262493 运行中，3 shard 各 ~50%（2.4-2.6G / ~4.9G） |\n| 监控脚本 | PID 263305，后台轮询等待下载结束后自动执行 4 项验证 |\n| 验证结果 | 完成后写入 `/tmp/mistral_verify_result.txt` |\n| 清理 | 已删除 `mistral-7b-v0.3/`（12G 不完整）和 `AI-ModelScope/`（空壳），释放 ~12GB |\n| 预计完成 | 下载约 5-10 分钟，验证约 1-2 分钟 |\n\n查看结果：`cat /tmp/mistral_verify_result.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "90d6544cbd7ba69967e6",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "run ate final 20260520",
+  "task_key": "worker_run_ate_final_20260520_20260520T144044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_ate_final_20260520_20260520T144044_result.json",
+    "occurrence": 1,
+    "bytes": 1912,
+    "sha256": "83629e41e93510fda87dd29f0c221dd1f56b7c1a8db4ae2f6fc574b927da3483"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Scoring 状态\n- 总条数: 100\n- Null scores: 0\n- 重复 ID: 0\n\n## ATE Analysis 完整输出\n```\nLoaded 100 scored records\n\n============================================================\n  Overall ATE Analysis (formality axis)\n============================================================\n  N = 100\n  Raw ATE          = -0.0800  (SE=0.1161)\n  Raw 95% CI       = [-0.3103, +0.1503]\n  Raw p-value      = 0.492260\n  Raw Cohen's d    = -0.0689\n  Rewrite bias     = -0.2000\n  Corrected ATE    = +0.1200  (SE=0.1028)\n  Corrected 95% CI = [-0.0839, +0.3239]\n  Corrected p      = 0.245749\n  Corrected d      = +0.1168\n\n============================================================\n  Directional Analysis\n============================================================\n\n  formal→casual  (n=62)\n    Corrected ATE = +0.0645, p = 0.567930, d = +0.0729\n\n  casual→formal  (n=38)\n    Corrected ATE = +0.2105, p = 0.299657, d = +0.1706\n\n============================================================\n  Stratified Analysis\n============================================================\n  primary: nli_cf≥0.90 (n=95): ATE=+0.1263, p=0.245852, d=+0.1198\n  secondary: bertscore_cf≥0.85 (n=76): ATE=+0.1184, p=0.348828, d=+0.1081\n  secondary: bertscore_cf≥0.88 (n=57): ATE=+0.1228, p=0.441571, d=+0.1027\n  secondary: bertscore_cf≥0.90 (n=48): ATE=+0.1250, p=0.485292, d=+0.1015\n  secondary: bertscore_cf≥0.92 (n=37): ATE=+0.0541, p=0.796895, d=+0.0426\n  tertiary: all (n=100): ATE=+0.1200, p=0.245749, d=+0.1168\n\nSaved summary to data/ate_summary.csv\nSaved plots to data//\n```\n\n## RATE Ratio\n- Raw ATE: -0.0800\n- Corrected ATE: +0.1200\n- RATE ratio: -1.5000\n\n## 输出文件\n```\n-rw-r--r-- 1 root root 38820 May 20 22:42 ate_bar.png\n-rw-r--r-- 1 root root  2729 May 20 22:42 ate_summary.csv\n-rw-r--r-- 1 root root 69883 May 20 22:42 score_violin.png\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

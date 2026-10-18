@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2dc29aeeab7e1b2cbed8",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "research spike vs spread literature",
+  "task_key": "worker_research_spike-vs-spread-literature_20260514T185634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_spike-vs-spread-literature_20260514T185634_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "2d5c7db8e84c6dee6a82abd996940b8c248ededcff1171cf33bfa91ee36b26e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成。产出文件：`artifacts/spike_vs_spread_literature.md`\n\n**核心结论**：\n\n**Spike vs spread 分析具有 novelty。** 已有工作（RateQuant, HeadKV, AdaKV 等）均确认 head-level heterogeneity 存在且可利用，但无一分析异质性的**分布形状**如何决定分配效果。\n\n**最近的竞争者是 RateQuant（arXiv:2605.06675, 2026年5月）**——同样做 per-head bit allocation，提出 AM/GM ratio 作为标量异质性度量。但 AM/GM 只捕捉异质性大小，不区分 spike vs spread。我们的 Yi-1.5-9B case（高 AM/GM 但 spike pattern → 负收益）正是 RateQuant 无法解释的 failure mode。\n\n**我们的独特贡献**：\n1. 分布形状分析（spike/spread 分类法），超越标量度量\n2. GQA ratio ≠ heterogeneity proxy 的实证反例\n3. MCKP 分配器的 failure mode 刻画（spike 集中在单一 head 时无法差异化）\n4. 跨 5 个模型的 shape taxonomy 与 MCKP 效果的预测关系"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

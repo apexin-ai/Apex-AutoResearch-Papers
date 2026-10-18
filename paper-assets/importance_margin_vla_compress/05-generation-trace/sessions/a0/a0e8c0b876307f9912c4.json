@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a0e8c0b876307f9912c4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops xvla k07 final",
+  "task_key": "worker_ops_xvla-k07-final_20260520T104742",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_xvla-k07-final_20260520T104742_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "331b052a05273089bd3a80bd5f561e8ca709f13a7911909b4ac4b5f6327a3f1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nBatch 1 最终结果 (全部完成):\n  k=1.0: SR=99.2% (50/50 tokens, 496/500)\n  k=0.95: SR=99.0% (47/50 tokens, 495/500)\n  k=0.9: SR=97.6% (45/50 tokens, 488/500)\n  k=0.7: SR=56.2% (35/50 tokens, 281/500)  ← 断崖式下降\n    per-task:\n      T0 alphabet_soup: 94%\n      T1 cream_cheese:   2%  ← 崩溃\n      T2 salad_dressing: 100%\n      T3 bbq_sauce:      80%\n      T4 ketchup:        28% ← 崩溃\n      T5 tomato_sauce:   92%\n      T6 butter:         12% ← 崩溃\n      T7 milk:           66%\n      T8 choco_pudding:   0% ← 完全失败\n      T9 orange_juice:   88%\n\nBatch 2: 已启动 (18:19 启动，4 个 k 值各占 1 张 GPU 并行跑)\n  k=0.5 (25 tokens): Task 4/10 ep 10/50 → ~210/500 ≈ 42%\n    已完成: T0=58%, T1=2%, T2=74%, T3=78%\n  k=0.3 (15 tokens): Task 3/10 ep 8/50 → ~158/500 ≈ 32%\n    已完成: T0=30%, T1=0%, T2=32%\n  k=0.2 (10 tokens): Task 2/10 ep 39/50 → ~139/500 ≈ 28%\n    已完成: T0=6%, T1=0%（几乎全 FAIL，每 ep 800 步跑满）\n  k=0.1 (5 tokens):  Task 2/10 ep 41/50 → ~141/500 ≈ 28%\n    已完成: T0=0%, T1=0%（全 FAIL）\n\nGPU 占用: 4 卡均有进程，各 ~4.4-4.9 GB / 97.9 GB，利用率 1%（推理间歇）\n\n预估: Batch 2 低 k 值几乎全 FAIL（每 ep 必跑满 800 步），比 Batch 1 慢很多。\n已运行 ~29 min，完成 ~30%，预计还需 ~50-70 min 全部完成。\n```\n\n关键发现：k=0.9→0.7 存在**断崖**（97.6% → 56.2%），k≤0.3 的 SR 预计趋近 0。X-VLA 对 vision token 裁剪非常敏感，保留比例的 \"安全区\" 在 90% 以上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

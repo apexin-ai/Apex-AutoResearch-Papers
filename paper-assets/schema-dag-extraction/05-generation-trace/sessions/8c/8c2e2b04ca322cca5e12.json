@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c2e2b04ca322cca5e12",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code fewrel 40rel",
+  "task_key": "worker_code_fewrel_40rel_20260515T160555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fewrel_40rel_20260515T160555_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "fea505ec30385e04445a15ae3e4f8361ed931ffbda73bcb9ca003b629899a3f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已开始！第一个 batch `count_1_random_0` 正在处理（12 samples, BCS=0.0000），速度正常。\n\n实验成功运行。总结：\n\n- **脚本**: `src/run_fewrel_40rel.py`（从 `run_fewrel_formal.py` 复制，`EXP1_COUNTS` 改为 `[1, 4, 8, 16, 32, 40]`）\n- **启动脚本**: `scripts/run_fewrel_40rel.sh`（加了 `FLASHINFER_DISABLE_VERSION_CHECK=1` 绕过版本不匹配）\n- **Registry**: `exp_fewrel_40rel` → RUNNING\n- **配置**: 80 active relations, 960 samples (12/rel), 105 batches, 6960 inferences\n- **预计时长**: ~174 min（~3 小时）\n- **日志**: `/tmp/fewrel_40rel.log`\n- **tmux session**: `fewrel_40rel`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

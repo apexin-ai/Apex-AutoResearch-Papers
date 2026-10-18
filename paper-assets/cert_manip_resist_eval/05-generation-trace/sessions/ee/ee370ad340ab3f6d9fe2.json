@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ee370ad340ab3f6d9fe2",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops d047 r2 figures final",
+  "task_key": "worker_ops_d047-r2-figures-final_20260525T220524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-r2-figures-final_20260525T220524_result.json",
+    "occurrence": 1,
+    "bytes": 2467,
+    "sha256": "fe4b09c6cdbb924d6cf6792752ce604e910e977eee1351eeeb471d64c1f70cb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完成报告\n\n### 1. 修改的文件和位置\n\n| 文件 | 位置 | 旧值 → 新值 |\n|------|------|-------------|\n| `abstract.tex` L3 | abstract | threshold 0.83, Bayesian 0.09 → 0.75, 0.14 |\n| `main.tex` L30 | abstract (mirror) | threshold 0.83, Bayesian 0.09 → 0.75, 0.14 |\n| `introduction.tex` L20 | contribution 3 | threshold 0.83, Bayesian 0.09 → 0.75, 0.14; (9/12) → (8/12) |\n| `analysis.tex` L11 | Aggregation para | 0.83 → 0.745 |\n| `results.tex` L74 | aggregation table | Majority R² 0.327 → 0.349 |\n| `threat_model.tex` L57 | heatmap caption | R²=0.83 → 0.745 |\n| `appendix.tex` L334 | Threshold voting para | R²=0.829 → 0.745 |\n| `appendix.tex` L340 | Bayesian calibration para | R²=0.087 → 0.136 |\n| `appendix.tex` L382 | gradient figure caption | R²=0.087 → 0.136 |\n| `appendix.tex` L386 | aggregation discussion | R²=0.087→0.136, (9/12)→(8/12), R²=0.829→0.745 |\n| `appendix.tex` L436 | comparison figure caption | R²=0.829→0.745, R²=0.087→0.136 |\n| `appendix.tex` L1179 | practitioner guidelines | R²=0.829 → 0.745 |\n| `appendix.tex` L1194 | aggregation rule selection | R²=0.087→0.136, R²=0.327→0.349, R²=0.829→0.745 |\n\n### 2. Figure 重画\n\n- **fig_aggregation_r2_heatmap.pdf/png** — 新建脚本 `gen_fig_aggregation_r2_heatmap.py`，使用完整 R² 矩阵 (4 methods × 3 K values)，已生成并 SCP 回本地\n- **fig_aggregation_comparison.pdf/png** — 新建脚本 `gen_fig_aggregation_comparison.py`，通过 `unified_data_loader` 加载 post-fix 数据，已生成并 SCP 回本地\n\n### 3. 编译结果\n\n- **0 new errors** (14 pre-existing missing figure errors,均与本次修改无关)\n- Abstract: ~157 words (< 200 limit)\n- 45 pages total (main + appendix)\n- No TBD strings\n\n### 4. 一致性检查结果\n\n| 检查项 | 结果 |\n|--------|------|\n| `0.264` (旧 η_max K=3) | 无残留 |\n| `0.829` / `0.83` (旧 Threshold R²) | 无残留 |\n| `0.087` / `0.09` (旧 Bayesian R²) | 无残留 |\n| `0.327` (旧 Majority R²) | 仅 1 处 appendix L158 — 是 ARC×prompt_injection 在 K=5 的 per-condition R²，非 Majority 均值，保留正确 |\n| `TBD` | 无残留 |\n| `12/12` in K_eff direction context | 无误用，所有 12/12 均为 OLS significance 或 κ-diversity |\n\n### 5. Majority R² 最终确认值\n\n**0.349**（来自 `aggregation_reanalysis_postfix.json` majority_vote summary: mean_r2 = 0.3494）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

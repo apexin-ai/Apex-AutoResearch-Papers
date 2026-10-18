@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd14715e75192a5f390d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "exec 32b counterfactual gen",
+  "task_key": "worker_exec_32b_counterfactual_gen_20260520T160958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_32b_counterfactual_gen_20260520T160958_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "cdac1518ac749e050ebc3b38926cbd1c83ecac07bb0fa77b0516413bd3b83e7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常，无任何错误。\n\n**汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 42674 |\n| 当前进度 | 10/100 条（mvp_0010 刚完成） |\n| 质量 | 前 3 条抽检正常，无 think tag 泄露，counterfactual 改写方向正确 |\n| 错误/警告 | 无 |\n| 速率 | 首条 ~54s（预热），后续 ~20-30s/条 |\n| 预估完成时间 | 约 **36 分钟后**（~00:50 UTC），即从启动算约 40 分钟 |\n\n进程在后台稳定运行，日志在 `/tmp/counterfactual_32b.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

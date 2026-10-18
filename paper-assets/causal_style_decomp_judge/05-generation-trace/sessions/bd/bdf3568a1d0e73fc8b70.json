@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bdf3568a1d0e73fc8b70",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code originality minimal subset",
+  "task_key": "worker_code_originality_minimal_subset_20260521T114355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_originality_minimal_subset_20260521T114355_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "3e8b8549290826b1c7b44c631f14e36647984cb6e02f338da84f6f9c9ec15d02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整。总结：\n\n**Formality (n=88)**\n| Subset | n | BT | 95% CI |\n|--------|---|-----|--------|\n| Full | 88 | .630 | [.558, .703] |\n| Likert-balanced (|Δ|=0) | 55 | .627 | [.536, .718] |\n| Consistent-only | 46 | .739 | [.609, .869] |\n| Anti-originality | 13 | .769 | [.538, .999] |\n| OC=1 (degenerate) | 40 | .500 | [.500, .500] |\n\nΔ(Likert subset − full) = −0.003, CI=[−0.121, +0.114] — 包含0，无显著差异。\n\n**Verbosity (n=86)**\n| Subset | n | BT | 95% CI |\n|--------|---|-----|--------|\n| Full | 86 | .773 | [.703, .843] |\n| Likert-balanced (|Δ|=0) | 50 | .760 | [.660, .850] |\n| Consistent-only | 63 | .873 | [.794, .952] |\n| Anti-originality | 36 | .861 | [.750, .972] |\n| OC=1 (degenerate) | 23 | .500 | [.500, .500] |\n\nΔ(Likert subset − full) = −0.013, CI=[−0.133, +0.103] — 包含0，无显著差异。\n\n**关键发现：**\n1. Originality count=1 方法不可用——这些 pair 的两次 trial 恰好各选一个 style，BT 必然=50%（construction artifact）\n2. Likert-balanced subset（original 和 counterfactual 同分的 pair）上 BT 与全集无显著差异（Δ CI 含0），style effect 稳定\n3. Anti-originality subset（style 偏好压过了 originality）上 BT 更强，进一步说明 style effect 不依赖 originality\n\n脚本在 `csd_pipeline/originality_minimal_subset.py`，JSON 在 `data/originality_minimal_subset.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "718cbcc86e202e6e225f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis betastd trajectory",
+  "task_key": "worker_analysis_betastd-trajectory_20260524T192235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_betastd-trajectory_20260524T192235_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "f3286fb9bd5ce9108d588e5403901a791ae073807ce5842e6e2ec896d4a3a045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**输出文件：**\n- `betastd_trajectory.json` — 完整 β_std 数据 + p-values + shift evidence\n- `fig_betastd_trajectory.pdf` — 轨迹图（mean ± SD + 散点）\n- `fig_betastd_pvalue_dist.pdf` — Bootstrap p-value violin 图（按 K 分面）\n\n**核心结果：**\n\n| K | β_std(K_eff) | β_std(η_max) | K_eff sig | η_max sig |\n|---|---|---|---|---|\n| 3 | 0.349 ± 0.183 | 0.266 ± 0.179 | 7/12 | 5/12 |\n| 5 | 0.437 ± 0.293 | 0.101 ± 0.327 | 8/12 | 5/12 |\n| 7 | 0.401 ± 0.222 | 0.084 ± 0.284 | 9/12 | 3/12 |\n\nPredictor shift 得到连续 effect size 证据支持：β_std(K_eff) 从 0.35 上升到 ~0.40，β_std(η_max) 从 0.27 下降到 0.08，且 K_eff 显著条件数从 7→8→9/12 递增，η_max 从 5→5→3/12 递减。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

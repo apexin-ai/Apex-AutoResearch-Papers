@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bde337acaed11c3ae622",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig4 per model asr restyle v2",
+  "task_key": "worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "6ad188a8c6a05f20fabc37c5eb7f923470ca76c2d53a2be505bc395643bfe385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**根因**：`apply_position_attack` 只对 gt=A 的 pairs 做 swap（使 gt winner 始终在 position B），gt=B 的 pairs 不做 swap。原脚本对所有 position_bias scores 做 A↔B inversion，导致 gt=B（未 swap）的 cases 被错误反转，ASR 虚高到 ~50%。\n\n**修复**：移除 `_invert()` 调用，改为在 `compute_individual_asr` 中对 position_bias 直接比较 `attacked_winner != \"B\"`（因为 swapped_gt 恒为 B）。\n\n**修复后 Position Bias ASR**：\n- 顶级 API 模型：0-3%（之前 43-55%）\n- GPT-4.1-Mini：11%，GPT-4.1-Nano：17%（较弱模型有一定 position bias）\n- Haiku Prompt Injection：81.7% 不变\n\n图已保存到 `docs/paper/figures/fig_per_model_asr.pdf` 和 `.png`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec72f166dce6718a3d00",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 xvla filename fix urgent",
+  "task_key": "worker_ops_cqa1-xvla-filename-fix-urgent_20260521T090310",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-xvla-filename-fix-urgent_20260521T090310_result.json",
+    "occurrence": 1,
+    "bytes": 2233,
+    "sha256": "721b0ba849c6536f3f1cd4b7737d45b1773b909804f8eace9a8e8d5784d3bb0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 产出\n\n### 1. 备份文件\n4 个风险文件已备份（`_backup_20260521_170516` 后缀）：\n- `xvla_prune_k0.3_libero_object.json` (random seed42)\n- `xvla_prune_k0.5_libero_object.json` (random seed43)\n- `xvla_prune_k0.7_libero_object.json` (random seed43，已覆写了 l2norm)\n- `xvla_prune_k0.5_libero_spatial.json`\n\n### 2. 各实验输出路径\n所有 4 个进程都**未传 `--output`**，使用默认路径（旧格式）：\n- GPU 0: `eval_xvla_random_k07_seed43_v2` → **已完成**，写入 `xvla_prune_k0.7_libero_object.json`\n- GPU 1: `eval_xvla_l2norm_k05_seed42` → 将写入 `xvla_prune_k0.5_libero_object.json`\n- GPU 2: `eval_xvla_l2norm_k03_seed42` → 将写入 `xvla_prune_k0.3_libero_object.json`\n- GPU 3: `eval_xvla_random_k05_seed44` → 将写入 `xvla_prune_k0.5_libero_object.json` ← **与 GPU 1 冲突！**\n\n### 3. 脚本修改\n第 302-303 行，默认文件名从：\n```\nxvla_prune_k{keep_ratio}_{suite}.json\n```\n改为：\n```\nxvla_{mode}_k{keep_ratio}_{suite}_seed{seed}.json\n```\n**注意**：修改不影响已运行进程（它们在启动时已加载旧代码）。\n\n### 4. 已覆写数据恢复\n- `xvla_prune_k0.7_libero_object.json` 被 random k=0.7 seed43 覆写了 l2norm k=0.7 seed42 的结果\n- 从日志恢复，写入 `xvla_l2_norm_k0.7_libero_object_seed42.json`（l2norm, SR=58.2%, 291/500）\n- 同时将现有 random 数据复制到正确命名文件：`xvla_random_k{ratio}_*_seed{seed}_v2.json`\n\n### 5. GPU 状态与进度\n| GPU | 显存 | 利用率 | 实验 | 进度 |\n|-----|------|--------|------|------|\n| 0 | 1 MiB | 0% | **已完成** (random k=0.7 seed43) | done |\n| 1 | 4537 MiB | 9% | l2norm k=0.5 seed42 | Task 9, ep ~11/50 |\n| 2 | 4537 MiB | 75% | l2norm k=0.3 seed42 | Task 约5-6, ep ~23/50 |\n| 3 | 4537 MiB | 1% | random k=0.5 seed44 | Task 8, ep ~11/50 |\n\n### 6. 剩余覆写风险\n**GPU 1 和 GPU 3 仍会写同一文件** `xvla_prune_k0.5_libero_object.json`。先完成的会被后完成的覆写。两者进度接近（都在 Task 8-9），需要在第一个完成后立即备份，或等两个都完成后从日志重建。当前备份已保护了原始 random seed43 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d70a0b7e1fde0965f1f9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d050 batch2 monte carlo",
+  "task_key": "worker_paper_d050_batch2_monte_carlo_20260516T170244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d050_batch2_monte_carlo_20260516T170244_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "545b9ba8b4970be57528f299f4c39eb39689aaeccfe16daa2022d00076723468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 errors, 0 undefined references. Compilation clean.\n\n**Results:**\n\n- **Unconditional simulation data**: Used existing pairwise correlation data from Table 1 (Few-NERD Pearson r²=0.013). With the unconditional model (EF=1, pairs treated as exchangeable), analytical batch R²=0.013≈0.01. MC confirms (median=0.013).\n- **Actual values**: unconditional pair r²=0.013, simulated batch R²≈0.01, observed batch R²=0.218, gap ~17-20×\n- **Edits completed**:\n  1. `main.tex:353` — \"We verify\" → \"We examine whether\"\n  2. `main.tex:358-363` — Added \"Unconditional baseline\" paragraph to Appendix M\n  3. `results.tex:67` — Added \"conditional vs. unconditional simulation comparison\" reference to existing Appendix M citation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

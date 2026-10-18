@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20949011ec9bcfa740f7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research related work literature check",
+  "task_key": "worker_research_related_work_literature_check_20260522T015503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_literature_check_20260522T015503_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "302b1fb8f673e35b01c2769547588af56d69575210da9ffd3b27a68836704210"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/related_work_literature_check.md`。\n\n核心发现：**4 篇潜在遗漏**，优先级排序：\n\n1. **Golde et al. (NAACL 2025)** — \"Familiarity\" 指标用 entity type 间的语义相似度预测 zero-shot NER 难度，与我们的 type confusability 概念高度重合，最可能被 reviewer 指出遗漏\n2. **Swarup et al. (COLING 2025)** — 2100+ 实验证明 LLM 对 RE 中的复杂数据特征不 robust\n3. **Nolano et al. (LREC-COLING 2024)** — 语义相似的对抗替换导致 RE 模型 F1 下降 48.5%，从互补角度支持 confusability 假设\n4. **GLiREL (NAACL 2025)** — borderline，关于 relation type 数量带来的 scalability 瓶颈"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

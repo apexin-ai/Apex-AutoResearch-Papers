@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0a25b85fbe1a802f7b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra dl qwen32b",
+  "task_key": "worker_infra_dl-qwen32b_20260521T182508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dl-qwen32b_20260521T182508_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "70cdc758a649334d7ed6dc8246f91ff3ab6bf7d181e83a555c6f4464010ea214"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，验证通过。\n\n**产出汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 下载方法 | ModelScope（HF CLI `huggingface-cli` 不存在，`hf download` 不支持 `--resume-download`） |\n| PID | 7600 |\n| 日志路径 | `/tmp/dl_qwen32b.log` |\n| 下载状态 | **完成** ✓ |\n| safetensors 数量 | **5/5** |\n| 文件大小 | model-00001: 5.2G, model-00002: 3.8G, model-00003: 4.6G, model-00004: 3.9G, model-00005: 3.3G |\n| 总大小 | **22GB**（含配置文件，safetensors 合计 ~20.8GB，> 14GB 阈值） |\n| 耗时 | ~86 分钟 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

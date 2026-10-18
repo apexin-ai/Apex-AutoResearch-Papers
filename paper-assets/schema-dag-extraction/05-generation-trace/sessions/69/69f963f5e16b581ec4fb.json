@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "69f963f5e16b581ec4fb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research maven data prep",
+  "task_key": "worker_research_maven_data_prep_20260515T050740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maven_data_prep_20260515T050740_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "8d6011f7fc51999f40e4d635e0439918626932a1195e4f3c334a6afddf215493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n## exp-004 MAVEN 数据准备 + BCS 计算 — 完成\n\n### 产出文件��cqa1-38874）\n| 文件 | 说明 |\n|------|------|\n| `data/maven_scs_matrix.json` | 168×168 SCS 完整矩阵 + 统计 + top-20 pairs |\n| `data/maven_sim_matrix.pt` | PyTorch 格式，兼容 `compute_bcs.py` |\n| `configs/maven_event_types.json` | 168 个事件类型名列表 |\n| `src/compute_maven_scs.py` | 可复现的计算脚本 |\n\n### 核心结果\n\n**MAVEN SCS 分布** (all-MiniLM-L6-v2, type-name-only):\n- mean=0.216, std=0.103, max=0.837\n- 119 pairs (0.8%) 超过 SCS 0.5\n\n**Top-5 confusable pairs**:\n1. Commerce_buy ↔ Commerce_sell (0.84)\n2. Choosing ↔ Deciding (0.82)\n3. Motion ↔ Self_motion (0.79)\n4. Death ↔ Killing (0.74)\n5. Motion ↔ Motion_directional (0.73)\n\n**与 Few-NERD 对比**（同模型公平对比）:\n- MAVEN confusability 更稀疏（0.8% vs 5.3% pairs > 0.5）\n- 但绝对数量相当（119 vs 114 pairs），因为 type space 大 6.5 倍\n- 两者 max SCS 接近（0.84 vs 0.86），说明 confusability 机制可跨任务泛化\n\n**实验设计适配性**：MAVEN 的稀疏 SCS + 明确 confusable 簇（Commerce/Motion/Crime）为 extreme batch 构造提供了理想条件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

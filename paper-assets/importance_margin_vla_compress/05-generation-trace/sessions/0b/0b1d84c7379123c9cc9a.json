@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b1d84c7379123c9cc9a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy w38 cuda0 attn k085 s45 verify",
+  "task_key": "worker_deploy_w38_cuda0_attn_k085_s45_verify_20260528T005910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_w38_cuda0_attn_k085_s45_verify_20260528T005910_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "33b1f0dc9d76dcf5645012cc2cc16752dfb4d7e7c6536bd7b3ab929dd093e460"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### w38 (westd-38929) GPU 全景\n\n| GPU | 显存 | 利用率 | 进程 | 实验 |\n|-----|------|--------|------|------|\n| cuda:0 | 1→加载中 | 0%→启动中 | PID 899580 (新部署) | **Attn k=0.85 s45** — 模型加载中 |\n| cuda:1 | 10894 MiB | 51% | PID 893108 | **Attn k=0.9 s45** — 运行中 ✓ |\n| cuda:2 | 10686 MiB | 32% | PID 773760 | L2Norm k=0.85 s44 |\n| cuda:3 | 10904 MiB | 19% | PID 774388 | Attn k=0.5 s44 |\n\n### w41 (westd-41074) GPU 全景\n\n| GPU | 显存 | 利用率 | 进程 | 实验 |\n|-----|------|--------|------|------|\n| cuda:0 | 10762 MiB | 52% | PID 453203 | OpenVLA random k=0.5 object s42 |\n| cuda:1 | 11056 MiB | 21% | PID 374814 | Attn k=0.7 s44 |\n| cuda:2 | 1 MiB | 0% | — | 空闲 |\n| cuda:3 | 10888 MiB | 48% | PID 459974 | **Attn k=0.75 s45** — 运行中 ✓ |\n\n### 结论\n\n1. **w38:cuda:0 部署完成** — Attn k=0.85 s45, PID 899580, 模型正在加载\n2. **w38:cuda:1 Attn k=0.9 s45** — 运行中（PID 893108 是 893099 的 python 子进程，GPU 51% 利用率）\n3. **w41:cuda:3 Attn k=0.75 s45** — 运行中（PID 459974 是 459963 的 python 子进程，GPU 48% 利用率）\n\nReviewer 报告的\"空闲\"是误判，两个实验都在正常跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

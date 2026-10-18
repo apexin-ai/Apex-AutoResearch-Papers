@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "8395fe4a4393560b41c6",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "writing warning review fixes",
+  "task_key": "worker_writing_warning-review-fixes_20260515T200308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_warning-review-fixes_20260515T200308.log",
+    "occurrence": 1,
+    "bytes": 804313,
+    "sha256": "d4a3c2ce677d27868037a168d4c180510e258b141bea4ccca193ca9edb9abc15"
+  },
+  "statistics": {
+    "messages": 216,
+    "user_turns": 2,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 47,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 74,
+      "tool_result": 74,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "8395fe4a4393560b41c6-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "8395fe4a4393560b41c6-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "8395fe4a4393560b41c6-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "8395fe4a4393560b41c6-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ]
+}

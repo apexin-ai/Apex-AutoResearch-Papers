@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36abb3ff04d0079496bd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops seed43 harvest gpu audit v1",
+  "task_key": "worker_ops_seed43_harvest_gpu_audit_v1_20260522T085151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_seed43_harvest_gpu_audit_v1_20260522T085151_result.json",
+    "occurrence": 1,
+    "bytes": 2658,
+    "sha256": "b4e4802189f83d76505d8862b23b2e1df8a610b2560e615bb798d65a11e8ef74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-27271\n\n| GPU | PID | 实验 | 状态 | SR / 进度 | 运行时间 |\n|-----|-----|------|------|-----------|---------|\n| 0 | — | — | **空闲** | — | — |\n| 1 | 212585 | l2norm_k095_object_seed43 | 运行中 | T6 ep10, 累计 97.3% (292/300) | 45min |\n| 1 | 213482 | l2norm_k095_object_seed43 (**重复**) | 运行中 | 同上 | 44min |\n| — | ~~119111~~ | random_k07_spatial_seed43 | **已完成** | **SR=73.8%** (369/500) | — |\n| — | ~~119449~~ | l2norm_k07_spatial_seed43 | **已完成** | **SR=68.4%** (342/500) | — |\n\n空闲 GPU: **GPU 0**\n\n> ⚠️ PID 213482 是 212585 的重复进程（同参数），两个都跑在 GPU 1 上，各占 ~10.5GB。建议 kill 一个。\n\n---\n\n## westd-38929\n\n| GPU | PID | 实验 | 状态 | SR / 进度 | 运行时间 |\n|-----|-----|------|------|-----------|---------|\n| 0 | 708992 | l2norm_k05_spatial_seed43 | 运行中 | T5 ep50完, 累计 59.7% (179/300) | 1h10m |\n| 1 | 709233 | random_k03_spatial_seed43 | 运行中 | T5 ep30, 累计 ~52% (131/250) | 1h10m |\n| 2 | 709369 | l2norm_k03_spatial_seed43 | 运行中 | T5 ep30, 累计 ~49% (123/250) | 1h10m |\n| 3 | 808099 | random_k03_object_seed43 | 运行中 | T1 ep10, 刚启动 | 12min |\n\n空闲 GPU: 无\n\n---\n\n## cqa1-33015\n\n可达。4x RTX 4090D (24GB)\n\n| GPU | PID | 实验 | 状态 | 进度 | 运行时间 |\n|-----|-----|------|------|------|---------|\n| 0 | 249598 | l2norm_k095_object_seed43 | 运行中 | T0 ep40, 98% | 12min |\n| 1 | 249668 | l2norm_k09_object_seed43 | 运行中 | T0 ep40, 100% | 12min |\n| 2 | 249746 | l2norm_k0925_spatial_seed43 | 运行中 | T1 ep10, T0=100% | 12min |\n| 3 | 249887 | random_k05_spatial_seed43 | 运行中 | T1 starting, T0=94% | 12min |\n\n空闲 GPU: 无\n\n---\n\n## 已完成需收割的实验\n\n| 实验 | SR | 服务器 | 结果文件 |\n|------|-----|--------|---------|\n| random_k07_spatial_seed43 | **73.8%** | westd-27271 | `eval_results/pi05_random_k0.70_libero_spatial_seed43.json` |\n| l2norm_k07_spatial_seed43 | **68.4%** | westd-27271 | `eval_results/pi05_l2norm_k0.70_libero_spatial_seed43.json` |\n\n另外 westd-27271 上还有两个 **OpenVLA** seed43 已完成（非 pi05）：\n- openvla_l2norm_k07_object_seed43: SR=74.0%\n- openvla_l2norm_k05_object_seed43: SR=39.2%\n\n---\n\n**需关注**:\n1. westd-27271 GPU 1 上有重复进程 (PID 213482)，浪费显存\n2. westd-27271 GPU 0 完全空闲，可部署新实验\n3. westd-38929 的 `eval_pi05_l2norm_k085_spatial_seed42.log` 尾部显示网络错误崩溃（tokenizer 下载 `[Errno 101] Network is unreachable`），这是 seed42 实验非当前 seed43 批次"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

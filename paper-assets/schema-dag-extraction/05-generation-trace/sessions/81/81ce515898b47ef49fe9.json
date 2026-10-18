@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "81ce515898b47ef49fe9",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh gemini flash run v2",
+  "task_key": "worker_ssh_gemini_flash_run_v2_20260517T162939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gemini_flash_run_v2_20260517T162939.log",
+    "occurrence": 1,
+    "bytes": 1159473,
+    "sha256": "22c4dc080a0ccda28e93e99b63c9cdce06954c3d4664774ddfffe79170605bdc"
+  },
+  "statistics": {
+    "messages": 352,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 110,
+      "tool_result": 110,
+      "user": 1,
+      "result": 14
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 185,
+      "chunks": [
+        {
+          "path": "81ce515898b47ef49fe9-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "81ce515898b47ef49fe9-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "81ce515898b47ef49fe9-part-0002.json",
+          "message_count": 118
+        },
+        {
+          "path": "81ce515898b47ef49fe9-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ]
+}

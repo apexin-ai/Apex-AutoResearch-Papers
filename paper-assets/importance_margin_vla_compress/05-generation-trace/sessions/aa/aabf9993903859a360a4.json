@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aabf9993903859a360a4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit cqa1 gpu status 20260526b",
+  "task_key": "worker_audit_cqa1-gpu-status-20260526b_20260526T182543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_cqa1-gpu-status-20260526b_20260526T182543_result.json",
+    "occurrence": 1,
+    "bytes": 1572,
+    "sha256": "8c46813aa46c0b09878a9e49473fd11dc7b0e926e05a85ebabcc92e79b23750a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n```\nGPU 0: [空闲] PID 199389 已死亡（/proc 不存在）\n       实验=eval_pi05_l2norm_k075_long_seed42_v3\n       状态：日志停在 Task 5 开始 (09:08 May 26)，无 RESULT 行，无 exit file\n       → 已崩溃或被杀\n\nGPU 1: [空闲] eval_pi05_attention_k07_long_seed42 启动失败\n       EXIT_CODE=127: \"python: command not found\"\n       原因：job 脚本用了 bare `python` 而非 `/root/miniconda3/bin/python`\n       → 需要修复后重新提交\n\nGPU 2: [运行中] PID=582964, 显存 10225/24564 MiB, GPU利用率 31%\n       实验=attention k=0.5 libero_10 seed42（第二次运行）\n       第一次运行已完成：SR=49.8% (22:37 May 26)\n       当前进程 01:36 May 27 启动，在同一 tmux session 中\n       → 注意：这是重复运行，第一次结果已保存\n\nGPU 3: [运行中] PID=546287, 显存 10409/24564 MiB, GPU利用率 59%\n       实验=eval_pi05_attn_k095_long_seed42（attention k=0.95 libero_10 seed42）\n       进度：Task 5 进行中，当前累计 SR≈90.4% (226/250)\n       ⚠️ 注意：这不是 l2norm_k05_spatial_seed42_postfix，而是 attention k=0.95\n```\n\n**关键发现**：\n1. **GPU 1 失败**：`python` 命令找不到，需用 `/root/miniconda3/bin/python` 重新提交\n2. **GPU 0 已死**：l2norm k=0.75 v3 在 Task 5 处中断，无最终结果\n3. **GPU 2 重复跑**：attn k=0.5 第一次已完成 (SR=49.8%)，当前是第二次运行\n4. **GPU 3 实际实验与预期不符**：跑的是 attn k=0.95 而非 l2norm k=0.5 spatial"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

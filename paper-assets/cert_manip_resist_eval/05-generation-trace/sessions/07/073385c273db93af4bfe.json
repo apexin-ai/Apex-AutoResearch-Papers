@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "073385c273db93af4bfe",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 aggregation code history",
+  "task_key": "worker_analysis_k5-aggregation-code-history_20260524T070914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-aggregation-code-history_20260524T070914_result.json",
+    "occurrence": 1,
+    "bytes": 2729,
+    "sha256": "ad355da9ee6b8e4688ab62ee69ca733c7cbd21a38fa33cda25e197252e0c10c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有完整的证据链了。\n\n---\n\n## 步骤 1: Git log (May 20-25)\n服务器上**没有 `.git` 目录**，本地项目也不是 git 仓库。无 git 历史可查。\n\n## 步骤 2: 代码版本比对（替代 git blame）\n通过提取 May 23 worker log（`worker_analysis_k5-aggregation-bootstrap_20260523T061722.log` 第32行）中实际写入的脚本内容，与当前（May 24 运行时）的脚本对比：\n\n| | May 23 运行 | May 24 运行 |\n|---|---|---|\n| 脚本长度 | 19814 chars | 20685 bytes |\n| `_is_valid_score` | **不存在** | **有，做 error/format_error/winner 过滤** |\n| imports | `compute_clean_accuracy` from unified_data_loader | `_is_valid_score` from unified_data_loader |\n| `compute_individual_asr` | `.get(\"winner\", \"tie\")` 无效分数当 \"tie\" | `_is_valid_score` 过滤后直接用 `[\"winner\"]` |\n| `compute_panel_asr_all_methods` | 无有效性检查，`.get(\"winner\", \"tie\")` | 两层 `_is_valid_score` 过滤，跳过无效样本 |\n\n**结论：May 23 和 May 24 运行的代码不同。** May 24 版本增加了 `_is_valid_score` 过滤（跳过 error、format_error、非 A/B/tie 的 winner），这是核心差异。\n\n## 步骤 3: 随机种子\n固定种子：**是**，SEED = 42（两个版本均如此）\n\n但种子相同不意味着结果相同——因为 `_is_valid_score` 过滤改变了参与回归的样本集，导致回归系数和 bootstrap p-values 不同。\n\n## 步骤 4: 元信息与结果对比\n\n| 字段 | May 23 | May 24 | 一致? |\n|---|---|---|---|\n| panel_size | 5 | 5 | ✓ |\n| n_bootstrap | 9999 | 9999 | ✓ |\n| seed | 42 | 42 | ✓ |\n| n_total_panels | 3003 | 3003 | ✓ |\n| fdr_alpha | 0.05 | 0.05 | ✓ |\n| elapsed_seconds | 444s | 501s | ✗ (不同硬件) |\n\n**聚合方法结果差异：**\n\n| Method | May 23 keff_fdr_sig | May 24 keff_fdr_sig | May 23 eta_fdr_sig | May 24 eta_fdr_sig |\n|---|---|---|---|---|\n| majority_vote | 7/12 | 7/12 | 0/12 | 2/12 |\n| weighted_vote | **9/12** | **7/12** | 1/12 | 2/12 |\n| threshold_supermajority | **10/12** | **7/12** | **6/12** | **3/12** |\n| bayesian | **0/12** | **7/12** | 1/12 | 2/12 |\n\nbayesian 的 keff_fdr_sig 从 0/12 变为 7/12 是最大的变化。May 24 所有方法 keff 统一为 7/12，May 23 各方法差异较大(0/7/9/10)。\n\n## 总结\n\n**May 23 和 May 24 运行的代码不同。** 关键变更是引入了 `_is_valid_score` 有效性过滤。May 23 把无效评分（error/format_error/非法winner）默认当作 \"tie\" 参与计算；May 24 直接跳过这些样本。这改变了面板 ASR 的计算基数和回归输入，导致 bootstrap p-values 系统性变化。输入数据文件和随机种子均未变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

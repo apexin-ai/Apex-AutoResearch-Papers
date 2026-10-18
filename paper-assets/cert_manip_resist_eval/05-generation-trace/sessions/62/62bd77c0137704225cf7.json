@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62bd77c0137704225cf7",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis partial knowledge clustered se",
+  "task_key": "worker_analysis_partial-knowledge-clustered-se_20260523T012338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_partial-knowledge-clustered-se_20260523T012338_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "34144521da9cab20e9c7c16bd2dd073690c5c98db83509a758ef27b307644301"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。四方对比表：\n\n| Method | η_max FDR sig | K_eff FDR sig | η_β mean | K_β mean |\n|---|---|---|---|---|\n| Oracle OLS | 11/12 | 8/12 | 0.387 | 0.164 |\n| Oracle Clustered SE | 8/12 | 0/12 | — | — |\n| **Partial OLS** | 12/12 | 5/12 | 0.589 | -0.011 |\n| **Partial Clustered SE** | **12/12** | **0/12** | **0.589** | **-0.011** |\n\nPartial-knowledge + clustered SE 结果：η_max **12/12** 全部显著（甚至比 oracle clustered SE 的 8/12 更强），K_eff **0/12**。η_max 平均 β=0.589，SE inflation 均值 2.55x。\n\n核心结论：η_max 在最保守的双重条件下（不完整信息 + clustered SE 推断）仍是唯一显著预测因子，partial knowledge 下的 averaging 平滑了噪声反而增强了 η_max 的信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

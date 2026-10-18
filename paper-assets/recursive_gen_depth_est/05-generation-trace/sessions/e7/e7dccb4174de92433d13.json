@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e7dccb4174de92433d13",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research rf training data check",
+  "task_key": "worker_research_rf_training_data_check_20260517T185217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rf_training_data_check_20260517T185217_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "ea4f43b58730315f2d1ee2dcb3897b61ba2c499a8942cb99a8a39b0bb100f42a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部确认。\n\n## 结论\n\n### RF Baseline (66.4%)\n- **训练脚本**: `src/cross_model_loo.py`\n- **数据**: 9 cells × 20,000 = 180,000 总样本 (4-class: d0/d1/d2/d3, 每类 5,000/cell)\n- **评估**: Leave-one-model-out, 每折训练 6 cells = **120,000 samples**, 测试 3 cells = 60,000\n- **Per-model accuracy**: Pythia=62.4%, OLMo=69.2%, GPT2-XL=67.6%\n- **Mean = 66.4%**\n- RF 参数: `n_estimators=200, random_state=42`\n\n### Learned Estimator (Plan 025: XGBoost/OrdinalMLP/Prototypical)\n- **训练脚本**: `scripts/learned_estimator_train.py`\n- **数据**: 同样的 9 cells, 同样的 `load_cross_model_split`\n- **每折训练**: **120,000 samples** (sweep_summary.json 中所有结果确认)\n- `--max_samples` 默认 = 0 (全量), `run_learned_estimator_all.sh` 未指定该参数\n- **Best mean accuracy**: XGBoost = 67.2%\n\n### Apple-to-apple?\n**是。** 两者使用完全相同的:\n- 9 个 feature 文件 (每个 20,000 行, 无 depth>3 数据)\n- 相同的 leave-one-model-out split (120k train / 60k test)\n- 相同的 19 个 statistical features\n\n唯一差异是模型本身 (RF n=200 vs XGBoost n=500 / MLP / ProtoNet)。数据量完全一致，可直接对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

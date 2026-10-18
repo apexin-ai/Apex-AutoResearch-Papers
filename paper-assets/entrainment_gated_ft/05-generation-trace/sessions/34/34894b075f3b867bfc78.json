@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "34894b075f3b867bfc78",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis decoupling data pipeline verify",
+  "task_key": "worker_analysis_decoupling-data-pipeline-verify_20260520T010609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_decoupling-data-pipeline-verify_20260520T010609_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "412b7b60cd9b818f12086e542a34ebc01f8cf8c2ec8918304c8d59c60766ba00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/paper_data/decoupling_pipeline_audit.md`。\n\n**核心结论：**\n\n1. **管道一致**：decoupling_data.csv 中所有数据（σ 和 Jaccard）均来自 lm-eval `--log_samples`，没有混入 `results_1.3b/logprob/` 自定义管道。\n\n2. **轻微差异**：GDN 的 h24-1/h6-1/h3-1 存在两次 lm-eval 运行 — 第一次无 `--log_samples`（产出 root `_results.json`，用于 `summary_all_1.3b.csv` → `cross_arch_std`），第二次带 `--log_samples`（产出 JSONL，用于 Jaccard 计算）。最大差异 7/5153 = 0.14%（h6-1），对结论无影响。\n\n3. **§4.4 可靠性**：σ trajectory 和 Jaccard trajectory 引用的数据来源一致，定性结论不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

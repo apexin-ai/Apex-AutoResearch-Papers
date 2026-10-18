@@ -1,0 +1,3518 @@
+{
+  "schema_version": "1.0",
+  "session_id": "050b1b98b8a34aabf109",
+  "rounds": [
+    {
+      "number": 42,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-22T15:09:58.578803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-22T15:09:59.084886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-22T15:09:59.988407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-22T15:10:03.654521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5075
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-22T15:10:06.968933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 22 20:50 .\\\\ndrwxr-xr-x 21 root root 4096 May 22 22:50 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7884
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-22T15:10:10.182385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 10193
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-22T15:10:14.824139+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态与之前一致：DeltaNet model.safetensors 仍未复制到目标目录，HGRN 仍为空，无评估输出。diagnose worker 未能修复问题。无需更新——此前的审查结论仍然成立。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000727"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "messages": [
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-22T15:39:05.451103+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:exp-005-gla-eval]:\n实验 exp-005-gla-eval complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-22T15:39:12.729797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-005-gla-eval'}",
+              "project": "entrainment_gated_ft",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-22T15:39:12.830508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0884}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-22T15:39:16.593413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -40 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log"
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-22T15:39:23.719973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\\\\\", line 14, in <module>\\\\n    cli_evaluate()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\\\\\", line 10, in cli_evaluate\\\\n    parser.execute(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\\\\\", line 60, in execute\\\\n    args.func(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/run.py\\\\\\\", line 391, in _execute\\\\n    results = simple_evaluate(\\\\n              ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/utils.py\\\\\\\", line 575, in _wrapper\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/evaluator.py\\\\\\\", line 242, in simple_evaluate\\\\n    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/api/model.py\\\\\\\", line 169, in create_from_arg_obj\\\\n    return cls(**arg_dict, **additional_config)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\\\\\", line 318, in __init__\\\\n    self._get_config(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\\\\\", line 739, in _get_config\\\\n    self._config = transformers.AutoConfig.from_pretrained(\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\\\\\\\", line 374, in from_pretrained\\\\n    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\\\\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\n…[truncated 1257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7126
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-22T15:39:31.165487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"results*\" -type f"
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-22T15:39:40.051554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 8886
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-22T15:39:52.139118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] exp-005-gla-eval 虚假完成——评估实际失败\n\ncron 报告 complete 但实际是假阳性。日志显示 lm_eval 崩溃：\n\n```\nOSError: Repo id must use alphanumeric chars... ''.\nGLA EVAL DONE\nEXIT_CODE=0\n```\n\n**根因**：脚本将空字符串传给 `--model_args pretrained=`，lm_eval 无法加载模型。脚本不含 `set -e`，错误后继续执行到 echo \"GLA EVAL DONE\"，EXIT_CODE=0 导致 cron 误判为成功。\n\n**结果**：无评估输出（results 目录为空）。GLA h3-1 模型文件存在且完整（1.33GB），但评估脚本的模型路径变量为空。\n\n**exp-005 整体状态**：\n- GLA h3-1: 模型完整，评估失败（空路径 bug）\n- DeltaNet h3-1: model.safetensors 未从 ModelScope cache 复制到目标目录\n- HGRN h3-1: 空目录，未下载\n\n已经是第 4-5 次失败。建议 Director 评估是否值得继续投入——距 deadline ~48h，3 个新架构 0 个完成评估。如果推进，需要一个 worker 从头写一个简洁正确的脚本（直接用 models 目录中已有的 GLA h3-1 路径运行 lm_eval，5 行命令即可），而不是继续修补有问题的脚本。",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-22T15:39:55.652766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3513
+          },
+          "id": "event-000736"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "messages": [
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-22T15:42:01.202335+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_exp-005-gla-eval_20260522T154011]:\nWorker worker_analysis_exp-005-gla-eval_20260522T154011 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-22T15:42:08.784686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-005-gla-eval'}",
+              "project": "entrainment_gated_ft",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-22T15:42:08.935577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0821}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 150
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-22T15:42:12.451800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -newer /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_all.log -type f"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-22T15:42:16.568018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/priority1_v3.log\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/run_p1_v4.sh\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/priority1_v4.log\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/run_eval_p1.sh\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/gla_eval.log\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_gla_hardcode.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4116
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-22T15:42:21.286811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -50 /root/entrainment_gated_ft/results/exp005_zoo_expansion/gla_eval.log"
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-22T15:42:22.592394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    hf_hub_download(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 84, in _inner_fn\\\\n    validate_repo_id(arg_value)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 138, in validate_repo_id\\\\n    raise HFValidationError(\\\\nhuggingface_hub.errors.HFValidationError: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: ''.\\\\n\\\\nThe above exception was the direct cause of the following exception:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<frozen runpy>\\\\\\\", line 198, in _run_module_as_main\\\\n  File \\\\\\\"<frozen runpy>\\\\\\\", line 88, in _run_code\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\\\\\", line 14, in <module>\\\\n    cli_evaluate()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\\\\\", line 10, in cli_evaluate\\\\n    parser.execute(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\\\\\", line 60, in execute\\\\n    args.func(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/run.py\\\\\\\", line 391, in _execute\\\\n    results = simple_evaluate(\\\\n              ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/utils.py\\\\\\\", line 575, in _wrapper\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/evaluator.py\\\\\\\", line 242, in simple_evaluate\\\\n    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/api/model.py\\\\\\\", line 169, in create_from_arg_obj\\\\n    return cls(**arg_dict, **additional_config)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n…[truncated 1981 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1305
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-22T15:42:26.154534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -20 /root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_gla_hardcode.sh"
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-22T15:42:27.960065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -eo pipefail\\\\nsource /etc/network_turbo\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\necho \\\\\\\"=== GLA EVAL START $(date) ===\\\\\\\"\\\\n\\\\nls /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/config.json || { echo \\\\\\\"ERROR: model not found\\\\\\\"; exit 1; }\\\\nls /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/model.safetensors || { echo \\\\\\\"ERROR: model weights not found\\\\\\\"; exit 1; }\\\\n\\\\npython -m lm_eval \\\\\\\\\\\\n  --model hf \\\\\\\\\\\\n  --model_args pretrained=/root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1,trust_remote_code=True \\\\\\\\\\\\n  --tasks lambada_openai,arc_easy \\\\\\\\\\\\n  --device cuda:0 \\\\\\\\\\\\n  --batch_size auto \\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1805
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-22T15:42:35.703580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ps aux -w --no-headers --sort=-start_time"
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-22T15:42:37.420940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     875366  0.0  0.0   7064  1588 ?        Rs   23:42   0:00 ps aux -w --no-headers --sort=-start_time\\\\nsshd     875365  1.0  0.0  15444  5576 ?        S    23:42   0:00 sshd: unknown [net]\\\\nroot     875364  1.0  0.0  16432  9956 ?        Ss   23:42   0:00 sshd: unknown [priv]\\\\nsshd     875362  3.0  0.0  15444  5544 ?        S    23:42   0:00 sshd: [net]\\\\nroot     875361  0.0  0.0  15444  8576 ?        Ss   23:42   0:00 sshd: [accepted]\\\\nroot     875317  0.4  0.0  16692 10800 ?        Ss   23:42   0:00 sshd: root@notty\\\\nroot     875037  0.1  0.0  16692 10812 ?        Ss   23:41   0:00 sshd: root@notty\\\\nroot     872730  0.2  0.0  12844  9112 ?        S    23:15   0:03 wget --timeout=120 --tries=5 --continue https://huggingface.co/m-a-p/340M-20B-HGRN-hybrid-3-1/resolve/main/model.safetensors -O model.safetensors\\\\nroot     872714  0.0  0.0  16692 10972 ?        Ss   23:15   0:00 sshd: root@notty\\\\nroot     872662  0.0  0.0   4364  3212 ?        S    23:15   0:00 bash /tmp/download_hgrn.sh\\\\nroot     872660  0.0  0.0   4364  1600 ?        S    23:15   0:00 bash -c cat > /tmp/download_hgrn.sh << 'SCRIPT' #!/bin/bash source /etc/network_turbo DIR=\\\\\\\"/root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1\\\\\\\" cd \\\\\\\"$DIR\\\\\\\" REPO=\\\\\\\"https://huggingface.co/m-a-p/340M-20B-HGRN-hybrid-3-1/resolve/main\\\\\\\" echo \\\\\\\"HGRN small files start $(date)\\\\\\\" for f in config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json .gitattributes; do   wget -q --timeout=60 \\\\\\\"$REPO/$f\\\\\\\" -O \\\\\\\"$f\\\\\\\"   echo \\\\\\\"  $f done\\\\\\\" done echo \\\\\\\"HGRN small files done $(date)\\\\\\\" echo \\\\\\\"HGRN model.safetensors start $(date)\\\\\\\" wget --timeout=120 --tries=5 --continue \\\\\\\"$REPO/model.safetensors\\\\\\\" -O model.safetensors echo \\\\\\\"HGRN model.safetensors done $(date)\\\\\\\" SCRIPT chmod +x /tmp/download_hgrn.sh && nohup bash /tmp/download_hgrn.sh > /tmp/wget_hgrn.log 2>&1 & echo \\\\\\\"HGRN_PID=$!\n…[truncated 2023 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1717
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-22T15:42:44.796706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-22T15:42:46.001852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 659457679 May 22 23:42 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors\\\\n-rw-r--r-- 1 root root 231601028 May 22 23:42 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-22T15:42:51.758242+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进行中（DeltaNet 53%, HGRN 19%）。方向正确，等待完成后的评估结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000750"
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "messages": [
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-22T15:43:12.704103+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:exp-005-gla-eval]:\n实验 exp-005-gla-eval failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-22T15:43:20.013804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -20 /root/entrainment_gated_ft/results/exp005_zoo_expansion/gla_eval.log"
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-22T15:43:20.565616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -o -name \"results*.json\" -type f"
+            }
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-22T15:43:26.286177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\\\\\", line 318, in __init__\\\\n    self._get_config(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\\\\\", line 739, in _get_config\\\\n    self._config = transformers.AutoConfig.from_pretrained(\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\\\\\\\", line 374, in from_pretrained\\\\n    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\\\\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\\\\\", line 682, in get_config_dict\\\\n    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\\\\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\\\\\", line 737, in _get_config_dict\\\\n    resolved_config_file = cached_file(\\\\n                           ^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 278, in cached_file\\\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 473, in cached_files\\\\n    raise OSError(f\\\\\\\"{e}\\\\\\\") from e\\\\nOSError: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: ''.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elaps\n…[truncated 22 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6272
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-22T15:43:29.347481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 8781
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-22T15:43:35.150879+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同一个失败的旧日志，cron 重复触发。gla_eval.log 未更新，无新评估输出。已在之前的报告中覆盖此问题（空路径 bug + 缺少 `set -e`）。不再重复报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000756"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "messages": [
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-22T15:54:03.094581+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_fix_exp-005-gla-eval-hardcode_20260522T154045]:\nWorker worker_fix_exp-005-gla-eval-hardcode_20260522T154045 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-22T15:54:10.855303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-22T15:54:11.356983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -maxdepth 2 -type d"
+            }
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-22T15:54:14.775485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3920
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-22T15:54:16.231677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4874
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-22T15:54:23.963234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "wc -l /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl"
+            }
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-22T15:54:25.267923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -1 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl"
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-22T15:54:26.020721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    5153 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n    2376 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n    7529 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2057
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-22T15:54:26.171432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-22T15:54:27.174979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" signs\\\\\\\", \\\\\\\"arguments\\\\\\\": {\\\\\\\"gen_args_0\\\\\\\": {\\\\\\\"arg_0\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\\\\\", \\\\\\\"arg_1\\\\\\\": \\\\\\\" signs\\\\\\\"}}, \\\\\\\"resps\\\\\\\": [[[\\\\\\\"-6.97496223449707\\\\\\\", \\\\\\\"False\\\\\\\"]]], \\\\\\\"filtered_resps\\\\\\\": [[\\\\\\\"-6.97496223449707\\\\\\\", \\\\\\\"False\\\\\\\"]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\\\\\", \\\\\\\"perplexity\\\\\\\": -6.97496223449707, \\\\\\\"acc\\\\\\\": 0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1907
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-22T15:54:29.133469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1.2G May 22 23:54 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors\\\\n-rw-r--r-- 1 root root 269M May 22 23:54 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2962
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-22T15:54:39.582989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] exp-005 进展审查——GLA 评估成功，DeltaNet/HGRN 下载中\n\n**GLA h3-1 评估完成 ✅**\n- LAMBADA: 5,153 samples ✅（与主实验样本数一致）\n- ARC-Easy: 2,376 samples ✅\n- log_samples jsonl 格式正确，含 per-example acc/perplexity\n\n**DeltaNet h3-1 下载进行中**\n- model.safetensors: 1.2GB / 预期 ~1.24GB（接近完成）\n- wget 进程仍在运行\n\n**HGRN h3-1 下载进行中**\n- model.safetensors: 269MB（仍在下载中）\n- wget 进程仍在运行\n\n**注意**：当前只有 h3-1 ratio 的 3 个新架构。如果目标是 Appendix 中的 robustness check，仅 h3-1 与对应 pure baseline 的对比即可进行 per-example 分析。但 pure baseline 模型尚未下载（还需 3 个 pure 模型）。请 Director 确认是否需要 pure baseline，否则无法做 helped/hurt 分解。",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-22T15:54:43.046535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3463
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-22T15:54:45.346106+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GLA h3-1 评估成功完成——lambada_openai 和 arc_easy 的 log_samples jsonl 文件已生成。DeltaNet 和 HGRN 的结果目录已创建但尚空（等待模型下载完成后评估）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000770"
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "messages": [
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-22T16:18:07.426885+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530]:\nWorker worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-22T16:18:21.478360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-22T16:18:27.400981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5922
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-22T16:18:32.523834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "wc -l /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl"
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-22T16:18:32.926006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-22T16:18:34.230476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    5153 /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n    2376 /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n    7529 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1706
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-22T16:18:35.685292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 3.8M May 23 00:18 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2759
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-22T16:18:42.081328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -20 /tmp/wget_hgrn.log"
+            }
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-22T16:18:42.735000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -5 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-22T16:18:43.738958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"282400K .......... .......... .......... .......... .......... 21% 69.2K 2h28m\\\\n282450K .......... .......... .......... .......... .......... 21% 79.3K 2h28m\\\\n282500K .......... .......... .......... .......... .......... 21% 81.8K 2h28m\\\\n282550K .......... .......... .......... .......... .......... 21% 93.2K 2h28m\\\\n282600K .......... .......... .......... .......... .......... 21%  141K 2h28m\\\\n282650K .......... .......... .......... .......... .......... 21%  105K 2h28m\\\\n282700K .......... .......... .......... .......... .......... 21%  119K 2h28m\\\\n282750K .......... .......... .......... .......... .......... 21% 90.5K 2h28m\\\\n282800K .......... .......... .......... .......... .......... 21% 90.7K 2h28m\\\\n282850K .......... .......... .......... .......... .......... 21%  473K 2h28m\\\\n282900K .......... .......... .......... .......... .......... 21% 84.6K 2h28m\\\\n282950K .......... .......... .......... .......... .......... 21%  675K 2h28m\\\\n283000K .......... .......... .......... .......... .......... 21%  119K 2h28m\\\\n283050K .......... .......... .......... .......... .......... 21%  134K 2h28m\\\\n283100K .......... .......... .......... .......... .......... 21% 78.0K 2h28m\\\\n283150K .......... .......... .......... .......... .......... 21%  108K 2h28m\\\\n283200K .......... .......... .......... .......... .......... 21%  130K 2h28m\\\\n283250K .......... .......... .......... .......... .......... 21% 89.1K 2h28m\\\\n283300K .......... .......... .......... .......... .......... 21%  182K 2h28m\\\\n283350K .......\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1657
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-22T16:18:45.848373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"�c\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000{\\\\\\\"__metadata__\\\\\\\":{\\\\\\\"format\\\\\\\":\\\\\\\"pt\\\\\\\"},\\\\\\\"model.embeddings.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[32000,1024],\\\\\\\"data_offsets\\\\\\\":[0,131072000]},\\\\\\\"model.layers.0.attn.f_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024,1024],\\\\\\\"data_offsets\\\\\\\":[131072000,135266304]},\\\\\\\"model.layers.0.attn.g_norm.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024],\\\\\\\"data_offsets\\\\\\\":[135266304,135270400]},\\\\\\\"model.layers.0.attn.g_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024,1024],\\\\\\\"data_offsets\\\\\\\":[135270400,139464704]},\\\\\\\"model.layers.0.attn.i_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024,1024],\\\\\\\"data_offsets\\\\\\\":[139464704,143659008]},\\\\\\\"model.layers.0.attn.o_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024,1024],\\\\\\\"data_offsets\\\\\\\":[143659008,147853312]},\\\\\\\"model.layers.0.attn_norm.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024],\\\\\\\"data_offsets\\\\\\\":[147853312,147857408]},\\\\\\\"model.layers.0.mlp.down_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024,2816],\\\\\\\"data_offsets\\\\\\\":[147857408,159391744]},\\\\\\\"model.layers.0.mlp.gate_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[2816,1024],\\\\\\\"data_offsets\\\\\\\":[159391744,170926080]},\\\\\\\"model.layers.0.mlp.up_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[2816,1024],\\\\\\\"data_offsets\\\\\\\":[170926080,182460416]},\\\\\\\"model.layers.0.mlp_norm.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024],\\\\\\\"data_offsets\\\\\\\":[182460416,182464512]},\\\\\\\"model.layers.1.attn.f_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024,1024],\\\\\\\"data_offsets\\\\\\\":[182464512,186658816]},\\\\\\\"model.layers.1.attn.g_norm.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\":[1024],\\\\\\\"data_offsets\\\\\\\":[186658816,186662912]},\\\\\\\"model.layers.1.attn.g_proj.weight\\\\\\\":{\\\\\\\"dtype\\\\\\\":\\\\\\\"F32\\\\\\\",\\\\\\\"shape\\\\\\\n…[truncated 8909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3113
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-22T16:19:06.817743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] exp-005 进展更新——2/3 新架构评估完成\n\n**完成 ✅**：\n- GLA h3-1: LAMBADA 5,153 + ARC-Easy 2,376 samples\n- DeltaNet h3-1: LAMBADA 5,153 + ARC-Easy 2,376 samples\n\n**进行中**：\n- HGRN h3-1: model.safetensors 下载中（wget 日志显示 21%，速度 ~80-100KB/s，预计还需 ~2.5h）\n\n**注意事项**：\n1. 当前只有 h3-1 hybrid 模型。要做 per-example helped/hurt 分析，必须有对应的 pure baseline 模型。请确认 Agent 是否计划下载 GLA/DeltaNet/HGRN 的 pure-baseline 模型。\n2. 如果只做 h3-1 之间的 cross-architecture accuracy 对比（不做 per-example 分解），现有的 GLA + DeltaNet 数据已可开始初步分析（如跨 6 架构的 accuracy σ）。",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-22T16:19:10.384715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3566
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-22T16:19:13.133493+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GLA 和 DeltaNet 评估完成。HGRN 模型文件异常——只有 3.8MB（预期 ~1.2GB）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000784"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "messages": [
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-22T16:20:37.810039+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_exp-005-hgrn-eval-watch_20260522T161920]:\nWorker worker_exp_exp-005-hgrn-eval-watch_20260522T161920 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-22T16:20:46.690272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-22T16:20:47.605320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-22T16:20:56.690412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 10000
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-22T16:20:59.200849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4.7M May 23 00:20 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 11595
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-22T16:21:03.568423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ps aux --no-headers -w"
+            }
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-22T16:21:07.439944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  2884 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\\\nroot       1183  1.7  0.0 724384 22168 ?        Sl   May18 110:37 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1202  0.3  0.0 6895316 104224 ?      Sl   May18  20:17 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1203  0.0  0.0  15444  4704 ?        S    May18   0:34 sshd: /usr/sbin/sshd -D [listener] 1 of 10-100 startups\\\\nroot       1206  0.0  0.0 3831864 17856 ?       Sl   May18   2:48 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1209  0.0  0.0 4422232 20092 ?       Sl   May18   5:31 proxy -c /init/proxy/proxy.ini\\\\nroot     356198  0.0  0.0 198956 108892 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot     797898  0.0  0.0  16692  9660 ?        Ss   May22   0:04 sshd: root@notty\\\\nroot     872300  0.0  0.0  16692 10728 ?        Ss   May22   0:00 sshd: root@notty\\\\nroot     872552  0.0  0.0  16692 10584 ?        Ss   May22   0:00 sshd: root@notty\\\\nroot     872643  0.0  0.0  16692 10420 ?        Ss   May22   0:00 sshd: root@notty\\\\nroot     872714  0.0  0.0  16692 10972 ?        Ss   May22   0:00 sshd: root@notty\\\\nroot     882351  0.0  0.0  16692 10780 ?        Ss   May22   0:00 sshd: root@notty\\\\nroot     882484  0.0  0.0   4364  2160 ?        S    May22   0:00 bash -c source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && nohup aria2c -x 16 -s 16 --timeout=120 --max-tries=10 --file-allocation=none 'https://huggingface.co/m-a-p/340M-20B-HGRN-hybrid-3-1/resolve/main/model.safetensors' -d /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/ -o model.safetensors > /tmp/aria2c_hgrn\n…[truncated 6333 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3871
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-22T16:21:18.649967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -30 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log"
+            }
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-22T16:21:19.039415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -5 /tmp/aria2c_hgrn.log"
+            }
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-22T16:21:20.295210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    hf_hub_download(  # type: ignore\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 976, in hf_hub_download\\\\n    return _hf_hub_download_to_local_dir(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1427, in _hf_hub_download_to_local_dir\\\\n    _download_to_tmp_and_move(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1858, in _download_to_tmp_and_move\\\\n    http_get(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 421, in http_get\\\\n    for chunk in response.iter_bytes(chunk_size=constants.DOWNLOAD_CHUNK_SIZE):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_models.py\\\\\\\", line 831, in iter_bytes\\\\n    for raw_bytes in self.iter_raw():\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_models.py\\\\\\\", line 885, in iter_raw\\\\n    for raw_stream_bytes in self.stream:\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 127, in __iter__\\\\n    for chunk in self._stream:\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\\\\\", line 115, in __iter__\\\\n    with map_httpcore_exceptions():\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/contextlib.py\\\\\\\", line 158, in __exit__\\\\n    self.gen.throw(value)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\\\\\", \n…[truncated 337 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1645
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-22T16:21:26.617961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:8.5KiB ETA:1h56m28s]\\\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:7.1KiB ETA:2h19m10s]\\\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:8.0KiB ETA:2h3m48s]\\\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:7.1KiB ETA:2h18m44s]\\\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:8.1KiB ETA:2h2m59s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7578
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-22T16:21:41.138381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -30 /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_wget_eval_pure.sh"
+            }
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-22T16:21:41.340887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -5 /root/entrainment_gated_ft/results/exp005_zoo_expansion/pure_wget_eval.log"
+            }
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-22T16:21:46.617412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -eo pipefail\\\\nsource /etc/network_turbo\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nMODELS=\\\\\\\"/root/entrainment_gated_ft/models\\\\\\\"\\\\nRESULTS=\\\\\\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion\\\\\\\"\\\\nLOG=\\\\\\\"$RESULTS/pure_wget_eval.log\\\\\\\"\\\\nFILES=\\\\\\\"config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json model.safetensors\\\\\\\"\\\\n\\\\necho \\\\\\\"=== PURE WGET+EVAL START $(date) ===\\\\\\\" | tee \\\\\\\"$LOG\\\\\\\"\\\\n\\\\n# ---- DOWNLOAD via wget ----\\\\ndeclare -A REPOS\\\\nREPOS[GLA]=\\\\\\\"340M-20B-GLA-pure-baseline\\\\\\\"\\\\nREPOS[DeltaNet]=\\\\\\\"340M-20B-DeltaNet-pure\\\\\\\"\\\\nREPOS[HGRN]=\\\\\\\"340M-20B-HGRN-pure-baseline\\\\\\\"\\\\n\\\\nfor ARCH in GLA DeltaNet HGRN; do\\\\n  REPO_NAME=\\\\\\\"${REPOS[$ARCH]}\\\\\\\"\\\\n  LOCAL=\\\\\\\"$MODELS/$REPO_NAME\\\\\\\"\\\\n  \\\\n  if [ -f \\\\\\\"$LOCAL/model.safetensors\\\\\\\" ]; then\\\\n    SIZE=$(stat -c%s \\\\\\\"$LOCAL/model.safetensors\\\\\\\")\\\\n    if [ \\\\\\\"$SIZE\\\\\\\" -gt 100000000 ]; then\\\\n      echo \\\\\\\"$ARCH: already exists ($SIZE bytes), skip\\\\\\\" | tee -a \\\\\\\"$LOG\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5479
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-22T16:21:51.587678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Redirecting output to 'wget-log.4'.\\\\n  Downloading special_tokens_map.json...\\\\n\\\\nRedirecting output to 'wget-log.5'.\\\\n  Downloading model.safetensors...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 10246
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-22T16:22:01.022633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-22T16:22:01.424445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/models/ -maxdepth 1 -type d -name \"*pure*\" -o -name \"*baseline*\""
+            }
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-22T16:22:04.034804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3012
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-22T16:22:07.429836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline\\\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline\\\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-pure\\\\n/root/entrainment_gated_ft/models/transformer_340M_baseline\\\\n/root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline\\\\n/root/entrainment_gated_ft/models/340M-20B-DeltaNet-pure\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6005
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-22T16:22:18.465979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline/model.safetensors /root/entrainment_gated_ft/models/340M-20B-DeltaNet-pure/model.safetensors"
+            }
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-22T16:22:22.315857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4.4M May 23 00:22 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-pure/model.safetensors\\\\n-rw-r--r-- 1 root root 1.3G May 23 00:19 /root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3849
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-22T16:22:33.290541+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 正确推进了 pure baseline 下载和评估。当前状态：\n\n**h3-1 hybrid**：GLA ✅ DeltaNet ✅ HGRN 下载 95%（aria2c，极慢 ~8KB/s）\n**Pure baseline**：GLA 1.3GB ✅（评估中，torch compile workers 活跃），DeltaNet 下载中（4.4MB/~1.2GB），HGRN 未开始\n\n进展正常，无需干预。Agent 已按正确顺序处理：下载 → 评估 → 下一个架构。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000806"
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "messages": [
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-22T16:26:08.709369+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_exp-005-hgrn-eval-submit_20260522T162135]:\nWorker worker_exp_exp-005-hgrn-eval-submit_20260522T162135 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-22T16:26:16.067811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -5 /tmp/aria2c_hgrn.log"
+            }
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-22T16:26:16.519819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-22T16:26:23.198115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Status Legend:\\\\n(ERR):error occurred.\\\\n\\\\naria2 will resume download if the transfer is restarted.\\\\nIf there are any errors, then see the log file. See '-l' option in help/man page for details.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7130
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-22T16:26:28.802466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1.3G May 23 00:26 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 12282
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-22T16:26:33.870042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/ -type f"
+            }
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-22T16:26:34.573830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -10 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log"
+            }
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-22T16:26:36.480864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2610
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-22T16:26:41.103404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 127, in __iter__\\\\n    for chunk in self._stream:\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\\\\\", line 115, in __iter__\\\\n    with map_httpcore_exceptions():\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/contextlib.py\\\\\\\", line 158, in __exit__\\\\n    self.gen.throw(value)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\\\\\", line 89, in map_httpcore_exceptions\\\\n    raise mapped_exc(message) from exc\\\\nhttpx.RemoteProtocolError: peer closed connection without sending complete message body (received 200869700 bytes, expected 1366868064)\\\\nEXIT_CODE=129\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6529
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-22T16:26:48.741262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-22T16:26:49.293558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-22T16:26:51.953211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3211
+          },
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-22T16:26:54.411886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5118
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-22T16:27:07.546910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] exp-005 状态——GPU 空闲，多个任务待执行\n\n**已完成的评估**（h3-1 hybrid）：\n- GLA h3-1: ✅ LAMBADA + ARC-Easy\n- DeltaNet h3-1: ✅ LAMBADA + ARC-Easy\n- HGRN h3-1: 模型下载完成（1.3GB） ❌ **评估未启动**\n\n**Pure baseline 状态**：\n- GLA pure: 模型完整（1.3GB）✅，**评估未运行**\n- DeltaNet pure: model.safetensors 只有 4.4MB（下载中断）❌\n- HGRN pure: 目录不存在 ❌\n\n**失败原因**：`run_wget_eval_pure.sh` 在 DeltaNet pure 下载时因 `httpx.RemoteProtocolError: peer closed connection` 崩溃（EXIT_CODE=129，set -eo pipefail 导致整个脚本退出）。\n\n**GPU 空闲**：0% utilization, 0 MiB memory，无计算进程。\n\n**立即可做**（无需下载）：\n1. HGRN h3-1 eval（模型已完整）\n2. GLA pure eval（模型已完整）\n\n这两个评估加起来约 20-30 分钟。Agent 应立即启动。\n\n**需要重试下载**：\n3. DeltaNet pure（重新 wget）\n4. HGRN pure（新下载）\n\n完成后即可对 GLA 做完整 per-example 分析（pure vs h3-1），这已经是有价值的 robustness evidence。",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-22T16:27:11.920887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4373
+          },
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-22T16:27:14.215811+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 空闲（0% utilization, 0 MiB used）。Pure eval 脚本已死，HGRN h3-1 eval 未启动，没有任何进程在使用 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000822"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-22T16:28:09.085601+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_exp-005-hgrn-chain_20260522T162706]:\nWorker worker_exp_exp-005-hgrn-chain_20260522T162706 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-22T16:28:14.881812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-22T16:28:21.454795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6572
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-22T16:28:24.805356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-22T16:28:25.608557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -10 /root/runs/entrainment_gated_ft/exp-005-hgrn-gla-pure.log"
+            }
+          },
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-22T16:28:43.551414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 18.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 18746
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-22T16:28:46.329306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/entrainment_gated_ft/exp-005-hgrn-gla-pure.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 20720
+          },
+          "id": "event-000829"
+        },
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-22T16:28:49.764937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lt /root/runs/entrainment_gated_ft/exp-005*.log"
+            }
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-22T16:28:51.272131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root    187 May 23 00:27 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log\\\\n-rw-r--r-- 1 root root  38644 May 23 00:22 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v5.log\\\\n-rw-r--r-- 1 root root   6914 May 23 00:20 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log\\\\n-rw-r--r-- 1 root root   3233 May 23 00:16 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v4.log\\\\n-rw-r--r-- 1 root root  21682 May 23 00:09 /root/runs/entrainment_gated_ft/exp-005-dn-eval.log\\\\n-rw-r--r-- 1 root root   2535 May 23 00:07 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v3.log\\\\n-rw-r--r-- 1 root root    527 May 23 00:06 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v2.log\\\\n-rw-r--r-- 1 root root   1694 May 23 00:01 /root/runs/entrainment_gated_ft/exp-005-p1-eval.log\\\\n-rw-r--r-- 1 root root   3479 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-deltanet.log\\\\n-rw-r--r-- 1 root root  22398 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-gla.log\\\\n-rw-r--r-- 1 root root   3577 May 22 23:42 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log\\\\n-rw-r--r-- 1 root root   6374 May 22 23:17 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\\\\n-rw-r--r-- 1 root root 291423 May 22 22:48 /root/runs/entrainment_gated_ft/exp-005.log\\\\n-rw-r--r-- 1 root root    346 May 22 22:22 /root/runs/entrainment_gated_ft/exp-005-eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1507
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-22T16:28:54.447843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -20 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log"
+            }
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-22T16:28:58.015113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n=== HGRN CHAIN START Sat May 23 00:27:46 CST 2026 ===\\\\nWaiting for HGRN download...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3567
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-22T16:29:04.990493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "stat -c%s /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-22T16:29:05.391914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "stat -c%s /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/model.safetensors"
+            }
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-22T16:29:06.948346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1331213216\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1957
+          },
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-22T16:29:09.725742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1332498184\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4333
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-22T16:29:20.598209+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "HGRN h3-1 模型已完整（1.33GB，与 GLA 的 1.33GB 一致），但 chain 脚本卡在 \"Waiting for HGRN download...\" 循环中——可能在检查 aria2c 进程而非文件完整性。GPU 仍然空闲。\n\n不再单独上报——这是 exp-005 执行过程中的持续性脚本质量问题，Agent 团队正在迭代修复中。待有评估结果产出时再审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000838"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "messages": [
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-22T16:31:09.713679+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_exp-005-eval-and-download_20260522T162822]:\nWorker worker_exp_exp-005-eval-and-download_20260522T162822 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-22T16:31:16.925274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-22T16:31:21.599607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4674
+          },
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-22T16:31:24.861279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-22T16:31:25.263127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lt /root/runs/entrainment_gated_ft/exp-005*.log"
+            }
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-22T16:31:26.568032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1706
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-22T16:31:28.978180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root   3935 May 23 00:30 /root/runs/entrainment_gated_ft/exp-005-batch.log\\\\n-rw-r--r-- 1 root root    187 May 23 00:27 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log\\\\n-rw-r--r-- 1 root root  38644 May 23 00:22 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v5.log\\\\n-rw-r--r-- 1 root root   6914 May 23 00:20 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log\\\\n-rw-r--r-- 1 root root   3233 May 23 00:16 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v4.log\\\\n-rw-r--r-- 1 root root  21682 May 23 00:09 /root/runs/entrainment_gated_ft/exp-005-dn-eval.log\\\\n-rw-r--r-- 1 root root   2535 May 23 00:07 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v3.log\\\\n-rw-r--r-- 1 root root    527 May 23 00:06 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v2.log\\\\n-rw-r--r-- 1 root root   1694 May 23 00:01 /root/runs/entrainment_gated_ft/exp-005-p1-eval.log\\\\n-rw-r--r-- 1 root root   3479 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-deltanet.log\\\\n-rw-r--r-- 1 root root  22398 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-gla.log\\\\n-rw-r--r-- 1 root root   3577 May 22 23:42 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log\\\\n-rw-r--r-- 1 root root   6374 May 22 23:17 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\\\\n-rw-r--r-- 1 root root 291423 May 22 22:48 /root/runs/entrainment_gated_ft/exp-005.log\\\\n-rw-r--r-- 1 root root    346 May 22 22:22 /root/runs/entrainment_gated_ft/exp-005-eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3715
+          },
+          "id": "event-000845"
+        },
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-22T16:31:32.345049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -30 /root/runs/entrainment_gated_ft/exp-005-batch.log"
+            }
+          },
+          "id": "event-000846"
+        },
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-22T16:31:34.502648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\\\\\", line 60, in execute\\\\n    args.func(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/run.py\\\\\\\", line 391, in _execute\\\\n    results = simple_evaluate(\\\\n              ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/utils.py\\\\\\\", line 575, in _wrapper\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/evaluator.py\\\\\\\", line 242, in simple_evaluate\\\\n    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/api/model.py\\\\\\\", line 169, in create_from_arg_obj\\\\n    return cls(**arg_dict, **additional_config)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\\\\\", line 365, in __init__\\\\n    self._create_model(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\\\\\", line 813, in _create_model\\\\n    self._model = self.AUTO_MODEL_CLASS.from_pretrained(\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py\\\\\\\", line 405, in from_pretrained\\\\n    return model_class.from_pretrained(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\\\\\", line 4245, in from_pretrained\\\\n    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)\\\\n                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.1\n…[truncated 469 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2157
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-22T16:31:42.070911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -30 /root/runs/entrainment_gated_ft/exp-005-batch.log"
+            }
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-22T16:31:43.676680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n=== START Sat May 23 00:30:39 CST 2026 ===\\\\nBG: Downloading DeltaNet pure... Sat May 23 00:30:39 CST 2026\\\\nEVAL HGRN h3-1 START Sat May 23 00:30:39 CST 2026\\\\n\\\\rFetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\\rFetching 7 files:  14%|█▍        | 1/7 [00:01<00:10,  1.80s/it]\\\\rFetching 7 files:  43%|████▎     | 3/7 [00:02<00:03,  1.31it/s]2026-05-23:00:30:51 INFO     [_cli.run:388] Selected Tasks: ['lambada_openai', 'arc_easy']\\\\n2026-05-23:00:30:51 INFO     [evaluator:214] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234\\\\n2026-05-23:00:30:51 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1', 'trust_remote_code': True}\\\\n2026-05-23:00:30:51 INFO     [models.huggingface:286] Using device 'cuda:0'\\\\n2026-05-23:00:30:51 INFO     [models.huggingface:719] Model type cannot be determined. Using default model type 'causal'\\\\n2026-05-23:00:30:51 INFO     [models.huggingface:578] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/tmp/eval_with_patch.py\\\\\\\", line 2, in <module>\\\\n    exec(open(os.environ.get(\\\\\\\"FLA_PATCH\\\\\\\", \\\\\\\"/root/entrainment_gated_ft/scripts/patch_fla_eval.py\\\\\\\")).read())\\\\n  File \\\\\\\"<string>\\\\\\\", line 36, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\\\\\", line 10, in cli_evaluate\\\\n    parser.execute(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\\\\\", line 60, in execute\\\\n    args.func(args)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packag\n…[truncated 763 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1605
+          },
+          "id": "event-000849"
+        },
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-22T16:32:06.158440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] exp-005 HGRN h3-1 模型损坏，GPU 再次空闲\n\n**失败原因**：HGRN h3-1 model.safetensors 被 aria2c 下载不完整（95% 时出错）。文件大小 1.33GB 但 safetensors 内部校验失败：`SafetensorError: incomplete metadata, file not fully covered`。\n\nexp-005-batch.log 确认：尝试加载 HGRN h3-1 时崩溃，EXIT_CODE=1。\n\n**当前总览**：\n| 模型 | 下载 | 评估 |\n|------|------|------|\n| GLA h3-1 | ✅ 1.33GB | ✅ LAMBADA+ARC-Easy |\n| DeltaNet h3-1 | ✅ 1.24GB | ✅ LAMBADA+ARC-Easy |\n| HGRN h3-1 | ❌ 损坏 | ❌ |\n| GLA pure | ✅ 1.3GB | ❌ 未运行 |\n| DeltaNet pure | ❌ 4.4MB | ❌ |\n| HGRN pure | ❌ 不存在 | ❌ |\n\n**GPU 空闲，无进程运行。**\n\n**建议优先级**（距 deadline ~44h）：\n1. **立即**：运行 GLA pure eval（模型已完整，~10min）→ 可与 GLA h3-1 配对做 per-example 分析\n2. **重新下载 HGRN h3-1**（需删除损坏文件，用 wget --continue 不行，需 clean download）\n3. **DeltaNet pure 重新下载**\n\n**最小可交付成果**：仅 GLA pure + h3-1 就能产出 1 个新架构的 Jaccard 分析。如果 GLA 的 pairwise J 与 GDN/RetNet/HGRN2 类似（≤0.10），这已是有意义的 robustness evidence，值得放 Appendix。不需要等全部 6 个模型。",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000850"
+        },
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-22T16:32:09.847876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3689
+          },
+          "id": "event-000851"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 852,
+          "timestamp": "2026-05-22T16:32:13.138786+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:exp-005-batch]:\n实验 exp-005-batch failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000852"
+        },
+        {
+          "source_line": 853,
+          "timestamp": "2026-05-22T16:32:22.167913+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上条审查中覆盖——HGRN h3-1 model.safetensors 损坏导致 exp-005-batch 失败。无新信息。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000853"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 854,
+          "timestamp": "2026-05-22T16:36:40.892869+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_exp-005-batch_20260522T163242]:\nWorker worker_diagnose_exp-005-batch_20260522T163242 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000854"
+        },
+        {
+          "source_line": 855,
+          "timestamp": "2026-05-22T16:36:49.107279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000855"
+        },
+        {
+          "source_line": 856,
+          "timestamp": "2026-05-22T16:36:49.408660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000856"
+        },
+        {
+          "source_line": 857,
+          "timestamp": "2026-05-22T16:36:53.522491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4415
+          },
+          "id": "event-000857"
+        },
+        {
+          "source_line": 858,
+          "timestamp": "2026-05-22T16:36:57.046496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7637
+          },
+          "id": "event-000858"
+        },
+        {
+          "source_line": 859,
+          "timestamp": "2026-05-22T16:37:00.492858+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No new eval outputs. GPU still idle. Same state as my last report — diagnose worker confirmed the HGRN h3-1 corruption but no new evals were launched."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000859"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 860,
+          "timestamp": "2026-05-22T16:40:41.563034+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_exp-005-gla-pure-now_20260522T163259]:\nWorker worker_exp_exp-005-gla-pure-now_20260522T163259 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000860"
+        },
+        {
+          "source_line": 861,
+          "timestamp": "2026-05-22T16:40:49.493868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000861"
+        },
+        {
+          "source_line": 862,
+          "timestamp": "2026-05-22T16:40:56.526956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7033
+          },
+          "id": "event-000862"
+        },
+        {
+          "source_line": 863,
+          "timestamp": "2026-05-22T16:40:59.595174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -lt /root/runs/entrainment_gated_ft/exp-005*.log"
+            }
+          },
+          "id": "event-000863"
+        },
+        {
+          "source_line": 864,
+          "timestamp": "2026-05-22T16:41:01.653217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  21443 May 23 00:40 /root/runs/entrainment_gated_ft/exp-005-gla-pure.log\\\\n-rw-r--r-- 1 root root    305 May 23 00:37 /root/runs/entrainment_gated_ft/exp-005-pure-v5.log\\\\n-rw-r--r-- 1 root root    458 May 23 00:35 /root/runs/entrainment_gated_ft/exp-005-pure-v4.log\\\\n-rw-r--r-- 1 root root   3842 May 23 00:32 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log\\\\n-rw-r--r-- 1 root root    626 May 23 00:32 /root/runs/entrainment_gated_ft/exp-005-pure-v3.log\\\\n-rw-r--r-- 1 root root   3935 May 23 00:30 /root/runs/entrainment_gated_ft/exp-005-batch.log\\\\n-rw-r--r-- 1 root root  38644 May 23 00:22 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v5.log\\\\n-rw-r--r-- 1 root root   6914 May 23 00:20 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log\\\\n-rw-r--r-- 1 root root   3233 May 23 00:16 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v4.log\\\\n-rw-r--r-- 1 root root  21682 May 23 00:09 /root/runs/entrainment_gated_ft/exp-005-dn-eval.log\\\\n-rw-r--r-- 1 root root   2535 May 23 00:07 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v3.log\\\\n-rw-r--r-- 1 root root    527 May 23 00:06 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v2.log\\\\n-rw-r--r-- 1 root root   1694 May 23 00:01 /root/runs/entrainment_gated_ft/exp-005-p1-eval.log\\\\n-rw-r--r-- 1 root root   3479 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-deltanet.log\\\\n-rw-r--r-- 1 root root  22398 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-gla.log\\\\n-rw-r--r-- 1 root root   3577 May 22 23:42 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log\\\\n-rw-r--r-- 1 root root   6374 May 22 23:17 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\\\\n-rw-r--r-- 1 root root 291423 May 22 22:48 /root/runs/entrainment_gated_ft/exp-005.log\\\\n-rw-r--r-- 1 root root    346 May 22 22:22 /root/runs/entrainment_gated_ft/exp-005-eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.06\n…[truncated 4 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2058
+          },
+          "id": "event-000864"
+        },
+        {
+          "source_line": 865,
+          "timestamp": "2026-05-22T16:41:04.714792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -15 /root/runs/entrainment_gated_ft/exp-005-gla-pure.log"
+            }
+          },
+          "id": "event-000865"
+        },
+        {
+          "source_line": 866,
+          "timestamp": "2026-05-22T16:41:08.130117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23:00:40:28 INFO     [evaluator_utils:446] Selected tasks:\\\\n2026-05-23:00:40:28 INFO     [evaluator_utils:480] Task: arc_easy (arc/arc_easy.yaml)\\\\n2026-05-23:00:40:28 INFO     [evaluator_utils:480] Task: lambada_openai (lambada/lambada_openai.yaml)\\\\n2026-05-23:00:40:28 INFO     [api.task:312] Building contexts for lambada_openai on rank 0...\\\\n\\\\r  0%|          | 0/5153 [00:00<?, ?it/s]\\\\r  1%|          | 60/5153 [00:00<00:08, 591.16it/s]\\\\r  2%|▏         | 121/5153 [00:00<00:08, 598.72it/s]\\\\r  4%|▎         | 182/5153 [00:00<00:08, 602.71it/s]\\\\r  5%|▍         | 244/5153 [00:00<00:08, 606.20it/s]\\\\r  6%|▌         | 305/5153 [00:00<00:08, 604.94it/s]\\\\r  7%|▋         | 367/5153 [00:00<00:07, 607.78it/s]\\\\r  8%|▊         | 428/5153 [00:00<00:08, 571.93it/s]\\\\r  9%|▉         | 486/5153 [00:00<00:09, 515.93it/s]\\\\r 11%|█         | 548/5153 [00:00<00:08, 544.10it/s]\\\\r 12%|█▏        | 610/5153 [00:01<00:08, 563.60it/s]\\\\r 13%|█▎        | 672/5153 [00:01<00:07, 578.91it/s]\\\\r 14%|█▍        | 734/5153 [00:01<00:07, 589.14it/s]\\\\r 15%|█▌        | 795/5153 [00:01<00:07, 594.77it/s]\\\\r 17%|█▋        | 856/5153 [00:01<00:07, 598.82it/s]\\\\r 18%|█▊        | 917/5153 [00:01<00:07, 600.81it/s]\\\\r 19%|█▉        | 978/5153 [00:01<00:06, 603.45it/s]\\\\r 20%|██        | 1039/5153 [00:01<00:06, 605.34it/s]\\\\r 21%|██▏       | 1101/5153 [00:01<00:06, 606.79it/s]\\\\r 23%|██▎       | 1163/5153 [00:01<00:06, 608.09it/s]\\\\r 24%|██▍       | 1225/5153 [00:02<00:06, 609.14it/s]\\\\r 25%|██▍       | 1286/5153 [00:02<00:06, 576.68it/s]\\\\r 26%|██▌       | 1347/5153 [00:02<00:06, 586.21it/s]\\\\r 27%|██▋       | 1409/5153 [00:02<00:06, 594.12it/s]\\\\r 29%|██▊       | 1471/5153 [00:02<00:06, 599.90it/s]\\\\r 30%|██▉       | 1532/5153 [00:02<00:06, 599.11it/s]\\\\r 31%|███       | 1594/5153 [00:02<00:05, 603.21it/s]\\\\r 32%|███▏      | 1656/5153 [00:02<00:05, 605.80it/s]\\\\r 33%|███▎      | 1717/5153 [00:02<00:05, 606.74it/s]\\\\r 35%|███▍      | 1\n…[truncated 6445 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3415
+          },
+          "id": "event-000866"
+        },
+        {
+          "source_line": 867,
+          "timestamp": "2026-05-22T16:41:14.074337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000867"
+        },
+        {
+          "source_line": 868,
+          "timestamp": "2026-05-22T16:41:17.687406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3613
+          },
+          "id": "event-000868"
+        },
+        {
+          "source_line": 869,
+          "timestamp": "2026-05-22T16:41:20.536465+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000869"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 870,
+          "timestamp": "2026-05-22T16:41:32.915628+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:exp-005-gla-pure]:\n实验 exp-005-gla-pure complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000870"
+        },
+        {
+          "source_line": 871,
+          "timestamp": "2026-05-22T16:41:40.910926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
+            }
+          },
+          "id": "event-000871"
+        },
+        {
+          "source_line": 872,
+          "timestamp": "2026-05-22T16:41:45.229989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4319
+          },
+          "id": "event-000872"
+        },
+        {
+          "source_line": 873,
+          "timestamp": "2026-05-22T16:41:49.800697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "wc -l /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl"
+            }
+          },
+          "id": "event-000873"
+        },
+        {
+          "source_line": 874,
+          "timestamp": "2026-05-22T16:41:50.002812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -5 /root/runs/entrainment_gated_ft/exp-005-gla-pure.log"
+            }
+          },
+          "id": "event-000874"
+        },
+        {
+          "source_line": 875,
+          "timestamp": "2026-05-22T16:41:52.410791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    5153 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\\\\n    2376 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\\\\n    7529 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2610
+          },
+          "id": "event-000875"
+        },
+        {
+          "source_line": 876,
+          "timestamp": "2026-05-22T16:41:55.171211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"|lambada_openai|      1|none  |     0|acc       |↑  | 0.3392|±  |0.0066|\\\\n|              |       |none  |     0|perplexity|↓  |32.0061|±  |1.1929|\\\\n\\\\nGLA_PURE_EVAL_DONE\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5168
+          },
+          "id": "event-000876"
+        },
+        {
+          "source_line": 877,
+          "timestamp": "2026-05-22T16:42:10.289590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] exp-005 GLA pure eval 完成——可做 per-example 分析\n\n**GLA 配对完成 ✅**：\n- GLA pure: LAMBADA acc=0.3392, 5153 samples ✅\n- GLA h3-1: 已有评估数据 ✅\n\nGLA 现在可以与原 3 架构（GDN/RetNet/HGRN2）做 pairwise Jaccard 分析。这是 340M scale 上第 4 个有完整 pure+hybrid 数据的架构。\n\n**关键验证点**：GLA 的 cross-architecture Jaccard 是否也 ≤ 0.10？如果是，则从 3 架构扩展到 4 架构后 per-example 非重叠仍然成立，是直接可用的 robustness evidence。\n\n**注意**：GLA pure acc=0.3392 vs 主实验的 GDN/RetNet/HGRN2 在 340M 上 LAMBADA acc ≈ 0.40-0.55。GLA 较低但在合理范围内。\n\n**剩余状态**：DeltaNet h3-1 ✅ 但 pure ❌（下载中断）；HGRN h3-1 ❌（模型损坏）pure ❌。Agent 应优先安排 GLA 的 per-example 分析脚本，不需要等其他两个。",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000877"
+        },
+        {
+          "source_line": 878,
+          "timestamp": "2026-05-22T16:42:13.801418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3511
+          },
+          "id": "event-000878"
+        },
+        {
+          "source_line": 879,
+          "timestamp": "2026-05-22T16:42:16.239833+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GLA pure eval 成功完成。LAMBADA 5,153 + ARC-Easy 2,376 samples，GLA pure LAMBADA acc = 0.3392。\n\n现在 GLA 有完整的 pure + h3-1 配对，可以做 per-example helped/hurt 分析。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000879"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 880,
+          "timestamp": "2026-05-22T16:47:12.616059+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_exp-005-gla-pure-results_20260522T164258]:\nWorker worker_analysis_exp-005-gla-pure-results_20260522T164258 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000880"
+        },
+        {
+          "source_line": 881,
+          "timestamp": "2026-05-22T16:47:20.145672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-005'}",
+              "project": "entrainment_gated_ft",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000881"
+        },
+        {
+          "source_line": 882,
+          "timestamp": "2026-05-22T16:47:20.296685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1298}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000882"
+        },
+        {
+          "source_line": 883,
+          "timestamp": "2026-05-22T16:47:23.813800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "limit": "3",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000883"
+        },
+        {
+          "source_line": 884,
+          "timestamp": "2026-05-22T16:47:24.115443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-005-gla-pure\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:33:56.971Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:46:53.504Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python patch_fla_eval.py --tasks lambada_openai,arc_easy\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"904591\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:39:54.061Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"EleutherAI/lambada_openai + allenai/ai2_arc\\\", \\\"data_count\\\": 7529, \\\"model_name\\\": \\\"340M-20B-GLA-pure-baseline\\\", \\\"seed\\\": 0, \\\"wall_clock_seconds\\\": 419.4, \\\"gpu_hours\\\": 0.12}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:41:30.660Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:41:32.936910+00:00\\\"}]}, \\\"metrics\\\": {\\\"lambada_openai\\\": {\\\"acc\\\": 0.3392, \\\"acc_stderr\\\": 0.0066, \\\"perplexity\\\": 32.006, \\\"perplexity_stderr\\\": 1.193}, \\\"arc_easy\\\": {\\\"acc\\\": 0.5829, \\\"acc_stderr\\\": 0.0101, \\\"acc_norm\\\": 0.5114, \\\"acc_norm_stderr\\\": 0.0103}, \\\"log_samples\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\\\", \\\"hypothesis\\\": \\\"GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\\\", \\\"completed_at\\\": \\\"2026-05-22T16:46:53.504Z\\\"}, \\\"exp-005-pure-v5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:37:28.872Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:37:28.872Z\\\", \\\"spec\\\": {\\\n…[truncated 1064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-000884"
+        },
+        {
+          "source_line": 885,
+          "timestamp": "2026-05-22T16:47:29.133406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*analysis*\" -o -name \"*jaccard*\" -o -name \"*per_example*\""
+            }
+          },
+          "id": "event-000885"
+        },
+        {
+          "source_line": 886,
+          "timestamp": "2026-05-22T16:47:30.387716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp005*analysis*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
+            }
+          },
+          "id": "event-000886"
+        },
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-22T16:47:39.724832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 10591
+          },
+          "id": "event-000887"
+        },
+        {
+          "source_line": 888,
+          "timestamp": "2026-05-22T16:47:39.725301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 9337
+          },
+          "id": "event-000888"
+        },
+        {
+          "source_line": 889,
+          "timestamp": "2026-05-22T16:47:42.914564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp005*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
+            }
+          },
+          "id": "event-000889"
+        },
+        {
+          "source_line": 890,
+          "timestamp": "2026-05-22T16:47:42.965158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000890"
+        },
+        {
+          "source_line": 891,
+          "timestamp": "2026-05-22T16:47:48.818112+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 记录正确（GLA pure DONE, acc=0.3392, arc_easy acc=0.5829），但尚无 per-example Jaccard 分析产出。Worker 可能只是记录了评估结果而未运行分析脚本。分析需要对比 GLA pure vs h3-1 的逐样本 acc 差异，再与 GDN/RetNet/HGRN2 的 helped/hurt sets 计算 pairwise Jaccard。\n\n当前无需 action——等 Agent 运行分析脚本或 Director 指示下一步。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
+          },
+          "id": "event-000891"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 892,
+          "timestamp": "2026-05-22T17:10:46.517148+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_exp-005-gla-jaccard_20260522T164331]:\nWorker worker_analysis_exp-005-gla-jaccard_20260522T164331 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "source": "system"
+          },
+          "id": "event-000892"
+        },
+        {
+          "source_line": 893,
+          "timestamp": "2026-05-22T17:10:53.992872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "limit": "2",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-22T17:10:54.245285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-005-pure-v10\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T17:08:41.299Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:08:41.299Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.sh 2>&1 | tee /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"918435\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-005-pure-v10.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T17:08:41.209Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-005-pure-v9\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T17:03:18.395Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:03:18.395Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v9.sh 2>&1 | tee /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v9.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"915618\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-005-pure-v9.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T17:03:18.304Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 45, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2166}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000894"
+        },
+        {
+          "source_line": 895,
+          "timestamp": "2026-05-22T17:10:58.865839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gla*jaccard*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
+            }
+          },
+          "id": "event-000895"
+        },
+        {
+          "source_line": 896,
+          "timestamp": "2026-05-22T17:10:59.418122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 552
+          },
+          "id": "event-000896"
+        },
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-22T17:10:59.819765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/ -name \"*gla*jaccard*\" -o -name \"*4arch*\" -o -name \"*6arch*\""
+            }
+          },
+          "id": "event-000897"
+        },
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-22T17:11:04.438707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4618
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-22T17:11:07.901280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json"
+            }
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-22T17:11:09.962331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-005\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-23\\\\\\\",\\\\n  \\\\\\\"scale\\\\\\\": \\\\\\\"340M-20B\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"4-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\\\\\",\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 2376,\\\\n      \\\\\\\"architectures\\\\\\\": [\\\\n        \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"RetNet\\\\\\\",\\\\n        \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"GLA\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"per_arch\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 253,\\\\n          \\\\\\\"hurt\\\\\\\": 248,\\\\n          \\\\\\\"net\\\\\\\": 5,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.566919,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.569024\\\\n        },\\\\n        \\\\\\\"RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 190,\\\\n          \\\\\\\"hurt\\\\\\\": 223,\\\\n          \\\\\\\"net\\\\\\\": -33,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.604377,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.590488\\\\n        },\\\\n        \\\\\\\"HGRN2\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 199,\\\\n          \\\\\\\"hurt\\\\\\\": 205,\\\\n          \\\\\\\"net\\\\\\\": -6,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.611111,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.608586\\\\n        },\\\\n        \\\\\\\"GLA\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 206,\\\\n          \\\\\\\"hurt\\\\\\\": 243,\\\\n          \\\\\\\"net\\\\\\\": -37,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.582912,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.56734\\\\n        }\\\\n      },\\\\n      \\\\\\\"pairwise\\\\\\\": {\\\\n        \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.088452,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.113475,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 253,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 190,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 248,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 223,\\\\n          \\\\\\\"|helped_intersection|\\\\\\\": 36,\\\\n          \\\\\\\"|hurt_intersection|\\\\\\\": 48\\\\n        },\\\\n        \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.121588,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.104878,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 253,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 199,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 248,\\\\n          \\\\\\\"\n…[truncated 8435 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2061
+          },
+          "id": "event-000900"
+        }
+      ]
+    }
+  ]
+}

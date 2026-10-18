@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed2fe04cc8c4c2d545f8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit cqa1 gpu harvest deploy",
+  "task_key": "worker_audit_cqa1_gpu_harvest_deploy_20260527T073348",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_cqa1_gpu_harvest_deploy_20260527T073348_result.json",
+    "occurrence": 1,
+    "bytes": 2833,
+    "sha256": "780c1ff2d331eff41b1ceb68b34ef984b9dd362d4b15bd02dcb61643a416d24d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete audit report.\n\n---\n\n## cqa1-33015 GPU Status (all 4 active)\n\n| GPU | PID | VRAM | Experiment | Progress | ETA |\n|-----|------|------|-----------|----------|-----|\n| 0 | 896333 | 15.3 GB | eval_openvla_attn_k095_goal_seed42_v2 | T4/10, ep 20/50 | ~4-5h |\n| 1 | 11249 | 15.3 GB | eval_openvla_random_k095_goal_seed42_v2 | T10/10, ep 20/50 | **~15 min** |\n| 2 | 938642 | 10.0 GB | pi05_attn_k095_long (2nd run, redundant) | T8/10, ep 30/50 | ~45 min |\n| 3 | 897100 | 15.3 GB | eval_openvla_attn_k05_goal_seed42_v3 | T7/10, ep 30/50 | ~2.5h |\n\n## Harvested\n\n**eval_pi05_attn_k095_long_seed42_strict** → DONE, **SR=77.0%** (strict confirmed: code uses `if done:` only, no reward check)\n\n| Task | SR |\n|------|----|\n| T0 alphabet_soup+tomato | 88% |\n| T1 cream_cheese+butter | 98% |\n| T2 stove+moka_pot | 84% |\n| T3 bowl_bottom_drawer | 98% |\n| T4 white_mug+yellow_mug | 84% |\n| T5 book_caddy | 96% |\n| T6 mug_plate_pudding | 14% |\n| T7 soup+cream_cheese | 80% |\n| T8 two_moka_pots | 30% |\n| T9 mug_microwave | 98% |\n\nNote: strict SR=77.0% equals the original non-strict value. The code on cqa1 was already using `if done:` (no `reward > 0.5` anywhere in eval_pi05_pruning_libero.py).\n\n## Failed experiments\n\n- **eval_pi05_random_k07_long_seed42_strict**: OOM at 07:13 UTC — GPU 1 occupied by PID 11249 (OpenVLA random goal)\n- **eval_pi05_random_k05_long_seed42_strict**: OOM at 07:13 UTC — GPU 0 occupied by PID 896333 (OpenVLA attn goal)\n- **eval_pi05_baseline_goal_seed42_strict**: tmux pane empty, log stalled at T3/10 ep 20/50 — likely OOM'd sharing GPU 0\n\nNeither k07/k05 strict runs are in the registry (never registered).\n\n## Anomalies\n\n- **eval_openvla_l2norm_k095_object_seed42**: Registry says RUNNING on cqa1 but **no process found**. Previous run succeeded with SR=70.6% (500 eps). Retry never materialized.\n- **eval_pi05_random_k075_long_seed42_strict**: Registry says RUNNING but failure_reason=SIGTERM. Should be FAILED.\n- **GPU 2 (PID 938642)**: Completed pi05 attn k=0.95 at 04:20 UTC, then tmux restarted a 2nd identical run (redundant since we already have SR=77.0%).\n\n## Deployment plan\n\nNo GPUs free right now. Two options:\n\n1. **Wait ~15 min**: GPU 1 frees when random goal finishes → deploy **eval_pi05_random_k07_long_seed42_strict** there. Then wait ~45 min for GPU 2 (redundant 2nd run finishes) → deploy **k05 strict**.\n\n2. **Kill redundant GPU 2 run now**: We already have the pi05 attn k=0.95 strict result (77.0%). The 2nd run is wasted compute. Kill it → deploy k05 strict immediately, and k07 on GPU 1 in 15 min.\n\nBoth experiments (~3.5h each) finish well before the May 28 12:00 UTC deadline.\n\n**Which option do you prefer?** Or should I wait for GPU 1 and deploy k07 first, then handle GPU 2 after?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

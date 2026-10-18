@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "eb41db608920ac58f29a",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code model download",
+  "task_key": "worker_code_model-download_20260518T055446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_model-download_20260518T055446.log",
+    "occurrence": 1,
+    "bytes": 1164521,
+    "sha256": "9cdae97a3b6380043925bbe8765bf75fc620bd83158953288fde1a8059aa46ed"
+  },
+  "statistics": {
+    "messages": 924,
+    "user_turns": 1,
+    "tool_calls": 383,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 150,
+      "tool_call": 383,
+      "tool_result": 383,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 757,
+      "chunks": [
+        {
+          "path": "eb41db608920ac58f29a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb41db608920ac58f29a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb41db608920ac58f29a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb41db608920ac58f29a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb41db608920ac58f29a-part-0005.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "eb41db608920ac58f29a-part-0005.json",
+          "message_count": 143
+        },
+        {
+          "path": "eb41db608920ac58f29a-part-0006.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ]
+}

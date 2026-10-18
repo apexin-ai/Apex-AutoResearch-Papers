@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5bbced727a3ba3573db4",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "check mvp status 20260520",
+  "task_key": "worker_check_mvp_status_20260520_20260520T143642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mvp_status_20260520_20260520T143642_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "687a2c83ae66ab4ad68dff42af2703822672fb15e5858c56ac4b4bf93bfea2ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## MVP Pipeline 状态汇总\n\n### 1. Judge Scoring (data/scored.jsonl)\n- **84/100 条已完成**，进程 PID 36140 仍在运行（已运行约 7 分钟）\n- 0 条 null scores，0 条重复 ID — 数据质量良好\n- 最新 scored：mvp_0053 (3/3/3), mvp_0049 (6/6/6)\n- 预计几分钟内完成全部 100 条\n\n### 2. ATE Analysis\n- **未运行** — `output/` 目录不存在，ate_summary.csv / ate_bar.png 均无\n- 需等 scoring 完成后执行\n- **注意路径**：pipeline 实际输出在 `data/` 而非 `output/`，运行 ate_analysis 时 `--input-file data/scored.jsonl`\n\n### 3. Content Verification (H1 Pass Rate)\n- **NLI ≥ 0.90 pass rate: 95/100 (95.0%)**\n- NLI mean: 0.9422, min: 0.0002, max: 0.9990\n- BERTScore ≥ 0.92: 37/100, ≥ 0.88: 57/100\n- BERTScore mean: 0.8932\n\n### 4. Qwen3-32B 下载\n- 已下载 **62GB**，modelscope download 进程 (PID 12163) 仍在运行\n- 已运行约 4.5 小时\n\n### 下一步\nscoring 完成（100 条）后需执行 ate_analysis。路径应改为 `--input-file data/scored.jsonl --output-dir data/`（或先创建 output/ 目录）。是否需要我轮询等 scoring 完成后自动触发 ate_analysis？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

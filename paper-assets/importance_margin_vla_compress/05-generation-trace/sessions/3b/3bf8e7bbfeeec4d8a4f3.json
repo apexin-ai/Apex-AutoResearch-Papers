@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3bf8e7bbfeeec4d8a4f3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval xvla l2norm k05 object seed43",
+  "task_key": "worker_harvest_eval_xvla_l2norm_k05_object_seed43_20260523T230742",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_xvla_l2norm_k05_object_seed43_20260523T230742_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "7ef1c88bed214d0ac306d8543da7aaef4ad01cbe052765b4aff56dbd372656eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n**eval_xvla_l2norm_k05_object_seed43** — DONE (negative)\n\n| 指标 | 值 |\n|------|-----|\n| Overall SR | **43.0%** (215/500) |\n| 95% Wilson CI | [38.7%, 47.4%] |\n| 耗时 | 76.3 min |\n\n**Per-task SR:**\n| Task | SR |\n|------|-----|\n| T0 alphabet soup | 52% |\n| T1 cream cheese | 6% |\n| T2 salad dressing | 76% |\n| T3 bbq sauce | 70% |\n| T4 ketchup | 52% |\n| T5 tomato sauce | 56% |\n| T6 butter | 2% |\n| T7 milk | 38% |\n| T8 chocolate pudding | 16% |\n| T9 orange juice | 62% |\n\n**vs Random k=0.5 Object seed43:** L2norm 43.0% vs Random 71.0% → **-28pp**，L2norm 在 Object suite 上灾难性地差于 random。\n\n**Seed42 对比:** 无 seed42 Object 数据可供 CV 对比。\n\n**GPU 状态:** westd-38929 GPU 1 已空闲（1 MiB used, 0% util），可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

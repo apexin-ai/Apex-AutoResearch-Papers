@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb1ef93ce45ec4431a37",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ssh check orphaned experiments",
+  "task_key": "worker_ssh_check_orphaned_experiments_20260517T013104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_orphaned_experiments_20260517T013104_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "68075a0536e656d6dae947d8a918a586c856cf247743133c314f808366141c76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n| GPU | 实验 | 状态 | 详情 |\n|-----|------|------|------|\n| **0** | libero_fullft_seed1 | **运行中** | PID 45551, 启动 05:34, step 59200/100000, loss~0.08, sps=4.2. 剩余 40800 步 ≈ 2.7h 后完成 (~12:12) |\n| **1** | fullft_batch64 | **运行中** | PID 124908 (已确认), 2727MiB |\n| **2** | libero_imm_fullft_seed0 | **已死** | GPU 显存 0MiB, 无进程, 无 tmux session |\n| **3** | libero_imm_fullft_k07 | **运行中** | PID 117885, 启动 07:17, stage2 step 17700/20000, loss~0.23, sps=3.1. 剩余 2300 步 ≈ 12min 后完成 (~09:43) |\n\n关键发现：\n- GPU 2 的 `libero_imm_fullft_seed0` 确实已死（无进程、无 tmux、无显存占用），reconciliation 标记正确\n- GPU 0 和 GPU 3 的实验仍在正常运行，reconciliation 误判为 failed，需要恢复其跟踪状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

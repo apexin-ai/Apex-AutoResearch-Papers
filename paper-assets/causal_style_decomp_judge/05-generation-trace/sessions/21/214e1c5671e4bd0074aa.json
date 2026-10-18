@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "214e1c5671e4bd0074aa",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "research ref verification r10",
+  "task_key": "worker_research_ref-verification-r10_20260522T094209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-verification-r10_20260522T094209_result.json",
+    "occurrence": 1,
+    "bytes": 5834,
+    "sha256": "72fc2c74d58f87f9f88144efec5e15ef903e8adf39f3a156d2ea4aa76437d741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有搜索完成，以下是验证结果。\n\n---\n\n## Reference 1: Simms, Zelazny, Williams & Bernstein (2019)\n- **状态**: 存在 ✓\n- **完整标题**: Does the Number of Response Options Matter? Psychometric Perspectives Using Personality Questionnaire Data\n- **作者**: Leonard J. Simms, Kerry Zelazny, Thomas F. Williams, Lauren Bernstein\n- **Venue/Journal**: *Psychological Assessment*, Vol. 31, No. 4, pp. 557–566\n- **DOI**: 10.1037/pas0000648\n- **PMID**: 30869956\n- **BibTeX**:\n```bibtex\n@article{simms2019response,\n  title={Does the Number of Response Options Matter? {Psychometric} Perspectives Using Personality Questionnaire Data},\n  author={Simms, Leonard J. and Zelazny, Kerry and Williams, Thomas F. and Bernstein, Lauren},\n  journal={Psychological Assessment},\n  volume={31},\n  number={4},\n  pages={557--566},\n  year={2019},\n  doi={10.1037/pas0000648}\n}\n```\n- **与本文关联**: 该论文发现 2–5 个选项的量表 psychometric precision 下降，偶数选项优于奇数选项。直接支持 C2 (Likert Blindspot)——5-point Likert 的 tie rate 高可能与 scale granularity 不足有关，偶数量表消除中间选项可能改善 discriminability。\n- **建议引用位置**: Discussion 或 Limitations，讨论 Likert scale design 对 judge 评分行为的影响。\n\n---\n\n## Reference 2: Polo et al. (2024) — tinyBenchmarks\n- **状态**: 存在 ✓\n- **完整标题**: tinyBenchmarks: Evaluating LLMs with Fewer Examples\n- **作者**: Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, Mikhail Yurochkin\n- **Venue/Journal**: ICML 2024 (Proceedings of the 41st International Conference on Machine Learning)\n- **链接**: [PMLR](https://proceedings.mlr.press/v235/maia-polo24a.html), [arXiv:2402.14992](https://arxiv.org/abs/2402.14992)\n- **BibTeX**:\n```bibtex\n@inproceedings{polo2024tinybenchmarks,\n  title={tinyBenchmarks: Evaluating {LLMs} with Fewer Examples},\n  author={Maia Polo, Felipe and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},\n  year={2024},\n  url={https://arxiv.org/abs/2402.14992}\n}\n```\n- **与本文关联**: 使用 IRT (Item Response Theory) 来评估 LLM 能力，与本文使用 BT model 类似的 psychometric approach。展示了 psychometric modeling 在 LLM evaluation 中的可行性。\n- **建议引用位置**: Related Work — evaluation methodology 部分，与 BT model 的 psychometric 方法并列讨论。\n\n---\n\n## Reference 3: Kocmi & Federmann (2023)\n- **状态**: 存在，但需注意适用性 ⚠️\n- **完整标题**: Large Language Models Are State-of-the-Art Evaluators of Translation Quality\n- **作者**: Tom Kocmi, Christian Federmann\n- **Venue/Journal**: EAMT 2023 (Proceedings of the 24th Annual Conference of the European Association for Machine Translation)\n- **链接**: [ACL Anthology](https://aclanthology.org/2023.eamt-1.19/), [arXiv:2302.14520](https://arxiv.org/abs/2302.14520)\n- **BibTeX**:\n```bibtex\n@inproceedings{kocmi2023large,\n  title={Large Language Models Are State-of-the-Art Evaluators of Translation Quality},\n  author={Kocmi, Tom and Federmann, Christian},\n  booktitle={Proceedings of the 24th Annual Conference of the European Association for Machine Translation (EAMT)},\n  pages={193--203},\n  year={2023},\n  url={https://aclanthology.org/2023.eamt-1.19/}\n}\n```\n- **与本文关联**: 该论文的核心贡献是 GEMBA（用 GPT 做 MT 评估），涉及 pairwise 和 pointwise 两种 prompt 模式。但其关注点是**机器翻译质量评估**，而非通用 LLM judge bias across evaluation formats。论文中确实比较了不同 prompt 格式，但 bias 分析不是主要内容。\n- **风险提示**: 如果引用意图是 \"LLM judge 在不同评估 format 下表现出不同 bias\"，这篇的支撑力偏弱。bib 中已有的 `tripathi2025pairwise`（Pairwise or Pointwise? COLM 2025）和 `jeong2025comparative`（The Comparative Trap, BlackboxNLP 2025）更直接相关。建议**降低优先级或替换**。\n- **建议引用位置**: 如果保留，放 Related Work 中 LLM-as-evaluator 的早期工作综述位置。\n\n---\n\n## Reference 4: Stureborg et al. (2024)\n- **状态**: bib 中已存在 ✓（`references.bib:403-409`）\n- **完整标题**: Large Language Models are Inconsistent and Biased Evaluators\n- **作者**: Rickard Stureborg, Dimitris Alikaniotis, Yoshi Suhara\n- **Venue**: arXiv preprint arXiv:2405.01724\n- **条目完整性**: author ✓, title ✓, year ✓, url ✓。缺 venue（仅为 arXiv preprint，未发表于正式会议）——当前写法 `journal={arXiv preprint arXiv:2405.01724}` 是标准做法，无需修改。\n\n---\n\n**总结**: Ref 1、2、4 均确认真实且相关。Ref 3 (Kocmi & Federmann) 真实存在但其内容偏 MT 评估，对 \"LLM judge bias across evaluation formats\" 的直接支撑有限——bib 中已有的 Tripathi et al. (2025) 和 Jeong et al. (2025) 更切题，建议考虑替换或仅作为早期 LLM-as-evaluator 工作引用。\n\nSources:\n- [Simms et al. 2019 - PubMed](https://pubmed.ncbi.nlm.nih.gov/30869956/)\n- [Simms et al. 2019 - ResearchGate](https://www.researchgate.net/publication/331765650_Does_the_Number_of_Response_Options_Matter_Psychometric_Perspectives_Using_Personality_Questionnaire_Data)\n- [Polo et al. 2024 - ICML Proceedings](https://proceedings.mlr.press/v235/maia-polo24a.html)\n- [Polo et al. 2024 - arXiv](https://arxiv.org/abs/2402.14992)\n- [Kocmi & Federmann 2023 - ACL Anthology](https://aclanthology.org/2023.eamt-1.19/)\n- [Kocmi & Federmann 2023 - arXiv](https://arxiv.org/abs/2302.14520)\n- [Stureborg et al. 2024 - arXiv](https://arxiv.org/abs/2405.01724)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

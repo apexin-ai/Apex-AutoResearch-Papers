@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8decde9debcf8450ee96",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "paper provenance and notify 0527",
+  "task_key": "worker_paper_provenance_and_notify_0527_20260527T004638",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_provenance_and_notify_0527_20260527T004638.log",
+    "occurrence": 1,
+    "bytes": 1070886,
+    "sha256": "7253d29ef49ea028777563a4132de6a69bdd6e2bb9466af84e55e2338e6115a7"
+  },
+  "statistics": {
+    "messages": 127,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 42,
+      "tool_result": 42,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "8decde9debcf8450ee96-part-0001.json",
+          "message_count": 65
+        },
+        {
+          "path": "8decde9debcf8450ee96-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ]
+}

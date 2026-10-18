@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c4b92399c64bb3436274",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 001 mcmc fix",
+  "task_key": "worker_code_exp-001-mcmc-fix_20260520T220148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-001-mcmc-fix_20260520T220148_result.json",
+    "occurrence": 1,
+    "bytes": 1519,
+    "sha256": "b705c441f6860e7ced677a5889e1d66229655a641ca66d558aa806c1434ebeda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results verified: `exp001_hb_results_v2.csv` has 588 data rows (540 original + 48 new), original file unchanged at 565 lines.\n\n---\n\n## Results Summary\n\n### MCMC Diagnostic Comparison (2-chain → 4-chain)\n\n| Config | R̂\\_max (2ch) | R̂\\_max (4ch) | ESS\\_min (2ch) | ESS\\_min (4ch) |\n|---|---|---|---|---|\n| K=4/extreme/n=50 | 1.0053 | 1.0023 | 381 | 1695 |\n| K=4/extreme/n=100 | 1.0036 | 1.0019 | 396 | 1888 |\n| K=4/moderate/n=50 | 1.0053 | 1.0023 | 381 | 1695 |\n| K=4/moderate/n=100 | 1.0014 | 1.0028 | 422 | 1618 |\n| K=4/homogeneous/n=50 | 1.0011 | 1.0034 | 480 | 1730 |\n| K=4/homogeneous/n=100 | 1.0031 | 1.0012 | 483 | 2119 |\n\nESS improved ~4x across all configs. R̂ consistently below 1.01.\n\n### Singularity Guard Triggers\n\nOnly `extreme/n=50` triggered guards (2 HB, 3 MLE out of 100 runs) and `extreme/n=100` (1 each). All other configs: zero triggers.\n\n### RMSE: Key Findings\n\nThe regularization dramatically fixed the HB blowups in extreme regime:\n- **K=4/extreme/n=50/B**: HB RMSE\\_z0 dropped from **509.93 → 0.27** (guard + better MCMC)\n- **K=4/extreme/n=50/A**: HB RMSE\\_z0 dropped from **3.14 → 0.99**\n- **K=4/extreme/n=100/A**: HB RMSE\\_z0 dropped from **11.57 → 0.29**\n\nFor moderate/homogeneous cells, RMSE was already stable — regularized values essentially match originals (no regressions).\n\nOutput files:\n- `results/exp001_hb_results_v2.csv` — 540 original + 48 new rows\n- `results/exp001_reg_v2_run.log` — full run log"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

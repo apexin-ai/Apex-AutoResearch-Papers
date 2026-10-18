@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5791d202684af80d6293",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 007 skeleton",
+  "task_key": "worker_code_exp-007-skeleton_20260520T212851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-skeleton_20260520T212851_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "c594d10f7b360dfa4c0521f14c549b24fb8ce4c3850ae23f53eb59649d4cbd1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run passed. Let me verify the two key properties.\n\n**DSL vs Global-corrected produce different results** — confirmed. For example in extreme regime, k=2, subgroup 0, n_expert=50:\n- DSL: bias_z0 = -0.1179, bias_z1 = 0.1345\n- Global: bias_z0 = -0.0093, bias_z1 = -0.0591\n\n**EC-HTE = DSL (placeholder)** — confirmed. Every row shows `dsl` and `ec_hte` have identical values (e.g. both -0.1179 / 0.1345 above), as expected since the HB estimator falls back to MLE.\n\nFile created at `exp007_ppci_dsl.py`. All 5 methods (oracle, naive, global_corrected, dsl, ec_hte) run across 3 regimes x 2 k-values x 4 expert budgets. PPCI returns NaN (placeholder). EC-HTE matches DSL until exp-001 HB code is integrated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,1734 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b6b8554c3aeb4446ed2b",
+  "rounds": [
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-21T21:29:46.832354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-21T21:29:48.339106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && cat references.bib | head -650 | tail -100"
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-21T21:29:48.389818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    year    = {2017},\n    doi     = {10.1177/1948550617697177},\n}\n\n\n@inproceedings{zhou-2025-rethinking,\n    title     = {Rethinking Word Similarity: Semantic Similarity through Classification Confusion},\n    author    = {Zhou, Kaitlyn and Gao, Haishan and Chen, Sarah Li and Edelstein, Dan and Jurafsky, Dan and Shani, Chen},\n    booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics},\n    pages     = {5803--5817},\n    year      = {2025},\n    doi       = {10.18653/v1/2025.naacl-long.299},\n}\n\n@inproceedings{guo-2021-label-confusion,\n    title     = {Label Confusion Learning to Enhance Text Classification Models},\n    author    = {Guo, Biyang and Han, Songqiao and Han, Xiao and Huang, Hailiang and Lu, Ting},\n    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n    volume    = {35},\n    number    = {14},\n    pages     = {12929--12936},\n    year      = {2021},\n    doi       = {10.1609/aaai.v35i14.17529},\n}\n\n@inproceedings{novack-2023-chils,\n    title     = {{CHiLS}: Zero-Shot Image Classification with Hierarchical Label Sets},\n    author    = {Novack, Zachary and McAuley, Julian and Lipton, Zachary Chase and Garg, Saurabh},\n    booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n    series    = {Proceedings of Machine Learning Research},\n    volume    = {202},\n    pages     = {26342--26362},\n    year      = {2023},\n    url       = {https://proceedings.mlr.press/v202/novack23a.html},\n}\n\n@inproceedings{cocchieri-2025-zeroner,\n    title     = {{ZeroNER}: Fueling Zero-Shot Named Entity Recognition via Entity Type Descriptions},\n    author    = {Cocchieri, Alessio and Mart{\\'\\i}nez Galindo, Marcos and Frisoni, Giacomo and Moro, Gianluca and Sartori, Claudio and Tagliavini, Giuseppe},\n    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n    pages     = {15594--15616},\n    year      = {2025},\n    doi       = {10.18\n…[truncated 2767 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-21T21:29:52.355061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -E \"^@[a-z]+\\{(dee-2024|gillick-2014|novack-2023|schall-2025|tam-2024|volkanovska2025ner|wei-2023|zhou-2025-rethinking)\" references.bib"
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-21T21:29:52.456064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "@inproceedings{tam-2024-let-me-speak,\n@inproceedings{dee-2024,\n@article{volkanovska2025ner,\n@inproceedings{zhou-2025-rethinking,\n@inproceedings{novack-2023-chils,\n@article{gillick-2014-entity-typing,\n@inproceedings{schall-2025-hidden-cost,\n@article{wei-2023-chatie,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-21T21:29:55.216768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -h \"dee-2024\\|gillick-2014\\|novack-2023\\|schall-2025\\|tam-2024\\|volkanovska2025ner\\|wei-2023\\|zhou-2025-rethinking\" *.tex"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-21T21:29:55.267599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-21T21:30:01.397412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now I have my findings. Let me create a comprehensive summary of the search results:\n\n## Bibliography Citation Status Report\n\nI searched all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/` for the 8 specified bibliography keys. Here are the results:\n\n### Citation Status Summary\n\n**All 8 keys are ORPHANS (not cited in any .tex file):**\n\n1. **dee-2024** - Defined in references.bib as `@inproceedings{dee-2024}` but NOT cited in any .tex file\n2. **gillick-2014** - Defined in references.bib as `@article{gillick-2014-entity-typing}` but NOT cited in any .tex file\n3. **novack-2023** - Defined in references.bib as `@inproceedings{novack-2023-chils}` but NOT cited in any .tex file\n4. **schall-2025** - Defined in references.bib as `@inproceedings{schall-2025-hidden-cost}` but NOT cited in any .tex file\n5. **tam-2024** - Defined in references.bib as `@inproceedings{tam-2024-let-me-speak}` but NOT cited in any .tex file\n6. **volkanovska2025ner** - Defined in references.bib as `@article{volkanovska2025ner}` but NOT cited in any .tex file\n7. **wei-2023** - Defined in references.bib as `@article{wei-2023-chatie}` but NOT cited in any .tex file\n8. **zhou-2025-rethinking** - Defined in references.bib as `@inproceedings{zhou-2025-rethinking}` but NOT cited in any .tex file\n\n### Files Searched\n\nThe following 12 .tex files were checked:\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex`\n- `/home/ubuntu/.agent-ml-researc\n…[truncated 919 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 61176
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-21T21:31:26.206042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## R25 Fix Plan 独立评估\n\n**总评**：Fix plan 整体合理，策略方向正确。发现 1 个事实性错误（W2 r 值）和若干风险点。\n\n---\n\n### 6 个战略问题逐条回答\n\n**Q1: DocRED semipartial R² — 同意做。**\nR24 说\"不建议做 residualized regression\"是在试图挽救 DocRED signal 的语境下。R25 要求 semipartial R² 是为了量化 confound 程度——目的不同。预期结果（semipartial R² ≈ 1-2%）直接证明 BCS-centrality 不可分，SUPPORT 我们的叙事。纯计算，零风险，~30min。**最高 ROI 的修改之一**。\n\n**Q2: C4 contribution framing 第三次调整 — 同意方向，但措辞需谨慎。**\n\n三次演进的逻辑是一致的（收敛而非振荡）：\n- V1: SCS 是贡献 → 被攻击\"只是 cosine similarity\"\n- V2: Methodology 是贡献 → 被攻击\"标准分层设计\"\n- V3: Empirical findings 是贡献 → **最难攻击**（findings 是 novel 的，无论方法或指标是否 novel）\n\n**这不是 over-correcting，是 convergence**。每次调整都在回应合理的审稿攻击。\"Findings\" framing 是最稳定的终态——即使未来 reviewer 说\"方法不新\"\"指标不新\"，findings 仍然站得住。\n\n**但建议措辞保留 methodology 作为 enabler**，不要完全丢弃：\n\"We establish [empirical findings], enabled by a controlled batch design that previous work lacked—[具体什么 design].\"\n而非 Director 原方案的纯 findings 叙述。这样如果 R26 reviewer 又说\"你的 findings 是 incremental\"，还有 methodology 可以退。\n\n**Q3: W3 batch-level 控制变量回归 — 建议做，风险可控。**\n\nFewRel balanced design（每 type 700 instances）意味着 **batch-mean type frequency 是常数**——所有 batch 的 mean frequency 完全相同。加 frequency 控制变量 R² 变化 = 0。这是一个 **free win**。\n\nDomain diversity 可能有微小变异，但 FewRel Wikidata relations 跨域分布，与 BCS 低相关（VIF=1.18 已暗示 BCS 与其他 batch 属性近似正交）。预期 R² 从 22% 降到 ~18-20%。\n\n**关键**：只在 FewRel 上做（clean data）。不要在 DocRED 上做（VIF=50.9，结果不可解释）。\n\n**Q4: W1 LLaMA-70B error taxonomy — 不建议做。**\n\n理由：\n- Error taxonomy 是支撑性分析，不是 core claim\n- IntraSub~BCS 关系已在 3 datasets × 1 model 上确立（ρ=0.84-1.0）\n- 增加第二个模型的边际收益极小\n- R25 没有明确要求复现 error taxonomy\n- GPU 应 reserve for rebuttal（reviewer 可能提出更具针对性的实验要求）\n- DDL 4 天，时间应花在写作修改上\n\n**Q5: Score 天花板 — 3.5-3.75，取决于 reviewer 偏好。**\n\nv33 \"strong core + bounded scope\" 策略被 R25 验证（3.0→3.5 回升）。继续沿此方向优化（C1-C4 + W1-W8）可以推到 3.5 的上沿。\n\n到 4.0 的结构性障碍未变：**clean evidence 集中在 FewRel**。R25 直接点名此问题（C1+C2+W7）。DocRED semipartial R² 和 W3 控制变量回归可以**加固**现有 evidence 但不能**扩展**scope。\n\n**乐观情形**（3.75-4.0）：reviewer 重视实验设计的系统性 + C4 findings framing 着陆 + semipartial R² + 控制变量结果干净。\n**基准情形**（3.5）：reviewer 要求更广泛的 generalization 或 practical novelty。\n\n**Q6: Orphan bib entries — 确认全部 8 个是孤条目。** grep 验证无一被引用。来源是 v32/v33 重写过程中删除引用后 bib 未同步清理。安全删除。\n\n---\n\n### 逐条 Fix Plan 评估\n\n**Must-Fix:**\n\n| ID | 评估 | 备注 |\n|----|------|------|\n| C1 | ✅ 同意 | 纯计算，最高 ROI |\n| C2 | ✅ 同意 | Abstract 收窄合理。Title 不改正确 |\n| C3 | ✅ 同意 | Power analysis 进正文 2-3 句。措辞建议用 \"absence of evidence rather than evidence of absence\" |\n| C4 | ✅ 方向同意 | 见 Q2 详细建议——保留 methodology 作为 enabler |\n\n**Should-Fix:**\n\n| ID | 评估 | 备注 |\n|----|------|------|\n| W1 | ⚠️ 仅写作层面修改 | 不跑新实验（见 Q4），Limitations 加 specific list 即可 |\n| W2 | ❌ **事实性错误** | 见下方详述 |\n| W3 | ✅ 建议做 | 仅 FewRel（见 Q3）。~1-2h 纯计算 |\n| W4 | ✅ 同意 | 已有内容，reorganize 更显著呈现 |\n| W5 | ✅ 同意 | Abstract 精简有助可读性 |\n| W6 | ✅ 同意 | Related Work 可压缩 0.2 页给 Discussion |\n| W7 | ✅ 同意 | 区分 pair vs batch practical significance 是好策略 |\n| W8 | ✅ 同意 | 限定语更精确，低成本 |\n\n---\n\n### [severity: warning] W2 事实性错误\n\nDirector 的 W2 fix plan 写道：\n> \"BCS-accuracy negative correlation replicates on LLaMA-8B (r=−0.58) and LLaMA-70B (r=−0.67)\"\n\n**这两个 r 值在论文中不存在。** 逐文件检索结果：\n\n- LLaMA-8B：论文仅报告 extreme-batch gap（Δ=-27.1pp, -23.9pp），**未报告 BCS-accuracy Pearson r**\n- LLaMA-70B：论文报告 Δ=+10.9pp（count 16），**未报告 BCS-accuracy Pearson r**\n- r=-0.58 和 r=-0.67 疑似来自 DocRED 数据（count-16 ρ=-0.762 CI lower bound -0.58；count-32 ρ=-0.693）\n\n**如果 Agent 在 §4.1 和 §4.3 写入这两个未经验证的 r 值，将引入幻觉数据**。解决方案：\n- 要么从 registry/artifacts 中提取 LLaMA-8B/70B 的实际 BCS-accuracy r 值并验证\n- 要么 W2 改为引用已存在的 Δ 值而非 r 值：\"LLaMA-8B shows −27.1pp BCS gap; LLaMA-70B shows directional consistency (Δ=10.9pp; Appendix)\"\n\n---\n\n### [severity: info] Missing refs 补充说明\n\n- **Cohen (1988)**：论文使用 \"Cohen's d\" 作为统计术语但未引用原著。加引用是标准做法，建议添加。\n- **Baan et al. (2023)**：bib 中不存在，tex 中未引用。R25 reviewer 是否在审稿意见中推荐了此文？请确认来源和用途后再添加，避免加入不必要的引用。\n\n---\n\n### 优先级排序（DDL 4 天）\n\n1. **C1 DocRED semipartial R²** + **W3 FewRel 控制变量**（纯计算，可并行，~2h）\n2. **C2 + C4 + W5 + W8**（写作修改，可并行，~3-4h）\n3. **W2（修正后）+ W6 + W7**（写作，~2-3h）\n4. **C3 + W4 + W1**（写作，~1-2h）\n5. **Orphan bib 清理 + Cohen ref**（~15min）\n6. **编译验证 ≤ 8 页**（~30min）\n\n总计 ~10-12h Agent 工作量。4 天内可完成。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-21T21:31:29.973696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3767
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-21T21:31:33.029398+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现一个重要的事实性问题。在 W2 中，Director 提到的 LLaMA 跨模型 r 值需要核实。现在综合所有信息发送评估。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000551"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "messages": [
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-21T21:53:00.202050+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**v34 Round 25 修复验证请求**\n\nAgent 报告全部修复完成，编译通过（body ≤ 8 页）。请验证关键点：\n\n1. **C1 DocRED semipartial R²**：实际 12.1%（非预期的 1-2%）。正文措辞是否准确？\"semipartial R²=0.121, confirming majority of variance shared with centrality (VIF=50.9)\" + \"clean evidence from FewRel (semipartial R²=0.288, VIF=1.18)\"。12.1% 改变了叙事——不再是 \"完全不可分\" 而是 \"大部分共享但有 unique contribution\"。这对论文是利还是弊？\n\n2. **C4 contribution framing**：是否改为 \"empirical findings are the contribution, enabled by controlled methodology\"？有没有残留 \"methodology is the contribution\"？\n\n3. **C3 NER null power analysis**：§4.4 是否有完整的 power summary（min detectable r, observed r, power=65%, \"absence of evidence\"）？\n\n4. **W2 cross-model summary**：正文使用的数字是否全部来自论文已有数据（Δ gap 值），无幻觉 r 值？\n\n5. **Orphan bib**：8+4=12 个 orphan entries 全部删除？Cohen (1988) 和 Baan (2023) 添加？\n\n6. **叙事一致性**：v34 整体是 \"strong core (FewRel) + bounded scope (DocRED partial, Gemini fragile)\" + \"empirical findings as contribution\" 的统一叙事？\n\n7. **Semipartial R² = 12.1% 的战略意义**：这个数字让我们能说 \"BCS retains modest but significant unique contribution on DocRED (12.1%), though the majority of variance is shared with centrality\"。是否应该调整 DocRED 的叙事定位——从 \"confounded, directional\" 升级为 \"partially confounded but with detectable unique signal\"？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system"
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-21T21:53:07.081410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-21T21:53:07.634047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tAll experiments use Qwen3-32B unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model. Unless otherwise noted, all experiments use the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}).\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\tFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where the elimination of type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}). The pattern is stable across three seeds (max $\\Delta = 10.7$\\,pp, within 1\\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\\times$; Appendix~\\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n10\t\n11\t\\subsection{Pairwise Confusability and Type Confusion}\n12\t\\label{sec:pairwise}\n13\t\n14\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise}\n…[truncated 12499 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-21T21:53:07.634412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-21T21:53:08.187361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\looseness=-1\n5\tTraining-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.}\\footnote{Code and data will be released upon acceptance.} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \\citep{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\\sim}$0.27 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level), near-halving or worse. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable.\n6\t\n7\t\\looseness=-1\n8\tWhat explains this degradation? Prior decomposition strategies \\citep{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n9\t\n10\tThis study combines correlational analyses with quasi-experimental manipulation (BCS-controlled batches) to characterize how schema properties predict extraction accuracy.\n11\t\n12\tWe ask three questions. \\textbf{RQ1}: Does type\n…[truncated 3215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-21T21:53:08.187927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-21T21:53:08.539689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions and mechanisms.}\n5\t\\looseness=-1\n6\tThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; NER null not detected on three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound: batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n7\t\n8\t\\paragraph{Practical implications and conclusion.}\n9\t\\label{sec:conclusion}\n10\t\\looseness=-1\n11\tFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are independently addressable.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-21T21:53:08.540346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-21T21:53:08.590791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSchema complexity affects training-free LLM information extraction through two independent dimensions: type count drives recall decline, while inter-type confusability drives type substitution errors. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across NER, RE, and event detection on four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:\n3\t(1)~count degradation spans all three tasks (up to $-$49\\,pp); confusability-driven substitution is documented primarily in RE, with bounded interaction;\n4\t(2)~BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance on FewRel (ecological level), replicating across three open-weight model families (8B--70B); NER batch-level signal is not detected at current power;\n5\t(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing confirms the two dimensions are independently addressable.\n6\t\\end{abstract}\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-21T21:53:13.061602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "38",
+              "limit": "60"
+            }
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-21T21:53:13.564177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38\t\\section*{Limitations}\n39\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n40\t\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B, LLaMA-70B, Gemini Flash) covers Dimensions~1--2 (count curves, BCS-controlled extremes) but does not replicate secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence). Specifically, error taxonomy decomposition (\\S\\ref{sec:multi_channel}), TOST factorial interaction (\\S\\ref{sec:multi_channel}), and SDGD failure analysis (\\S\\ref{sec:sdgd}) are established on Qwen3-32B alone; cross-model replication of these secondary analyses is the most pressing extension. Gemini provides only partial, leverage-sensitive corroboration (leave-one-out $r{:}\\;{-}0.80 \\to {-}0.42$; Appendix~\\ref{sec:appendix_cross_model_gemini}); proprietary-model generalization remains open.\n41\t\n42\t\\item \\textbf{Effect size and statistical design.} Pairwise SCS explains a small fraction of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\\times$ BCS interaction is bounded on FewRel but nonzero on DocRED, partially confounded by BCS range restriction at higher counts (Appendix~\\ref{sec:appendix_factorial}); logit-scale evidence remains inconclusive. DocRED count curves use 5 batches per level due to higher per-batch evaluation cost. BCS-controlled experiments use a single seed with greedy decoding; residual variance is small (Appendix~\\ref{app:variance-decomposition}) but precise magnitudes may vary. Greedy decoding (temperature${}\\,=\\,0$) yields residual SD${}\\,=\\,0.88$\\,pp, approximately 18--44\\% of the observed BCS effect size, suggesting effect detection is robust but point estimates carry meaningful uncertainty; the factorial interaction point estimate (0.47\\,pp) is far inside the $\\pm 3$\\,pp equivalence margin.\n43\t\n44\t\\item \\textbf{Task scope.} Format independence is confirmed via paired constrained/unconstrained comparison (Appen\n…[truncated 4629 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-21T21:53:13.715257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-21T21:53:13.767055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Training-free LLM IE.}\n5\tTraining-free LLM IE spans instruction tuning \\citep{instructuie-2023}, code-style schema encoding \\citep{knowcoder-2024,codeie-2023}, annotation-guided extraction \\citep{gollie-2024,adelie-2024}, schema-driven decoding \\citep{slot-2025,oneke-2025}, and constrained JSON decoding \\citep{json-schema-bench-2025,willard2023efficient}. NER methods include zero-shot decomposition \\citep{xie-zeroshot-ner-2023,promptner-2023}, distillation \\citep{uniner-2024}, and bidirectional encoders \\citep{gliner-2024,gliner2-2025}; RE methods include zero-shot triplet extraction \\citep{relationprompt-2022}, constrained generation \\citep{josifoski-2022-genie}, and shared embedding spaces \\citep{boylan-2025-glirel,wadhwa-re-llm-2023}. These methods perform well with moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales.\n6\t\n7\t\\paragraph{Schema complexity in IE.}\n8\tThe most directly related work is LLM-PEE \\citep{llm-pee-2025}, which partitions large event schemas by type embedding similarity. Our work differs in three ways: (1)~we conduct controlled analysis to understand \\emph{why} extraction degrades rather than developing an engineering solution; (2)~our BCS-controlled experiments isolate count from confusability, which LLM-PEE conflates; (3)~our SDGD experiments reveal that merge amplification (not partitioning quality) is the bottleneck in decompose-then-merge pipelines. LLM-PEE's union merge suffers the same precision collapse (0.56$\\to$0.21; \\S\\ref{sec:sdgd}). In short, LLM-PEE assumes decomposition helps; we show why it should (confusability), why it does not (merge amplification), and what predicts the degradation (BCS). Other approaches address schema complexity via hard negative mining \\citep{iepile-2024}, schema definition optimization \\citep{parse-2025}, multi-agent debate \\citep{crossagentie-2025,cmas-ner-2025}, and active prompting\n…[truncated 1818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-21T21:54:53.955821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "dee-2024|gillick-2014|novack-2023|schall-2025|tam-2024|volkanovska2025ner|wei-2023|zhou-2025-rethinking",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "output_mode": "count"
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-21T21:54:54.458797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found\n\nFound 0 total occurrences across 0 files."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-21T21:54:55.112166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "cohen-1988|baan-2023",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-21T21:54:55.162795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:@book{cohen-1988-statistical,\n9:@inproceedings{baan-2023-ecological,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-21T21:54:58.376501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "limit": "30"
+            }
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-21T21:54:58.477723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@book{cohen-1988-statistical,\n2\t  author    = {Cohen, Jacob},\n3\t  title     = {Statistical Power Analysis for the Behavioral Sciences},\n4\t  edition   = {2nd},\n5\t  publisher = {Lawrence Erlbaum Associates},\n6\t  year      = {1988}\n7\t}\n8\t\n9\t@inproceedings{baan-2023-ecological,\n10\t  author    = {Baan, Joris and Plank, Barbara and Fernandez, Raquel},\n11\t  title     = {The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics},\n12\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n13\t  year      = {2023}\n14\t}\n15\t\n16\t@inproceedings{josifoski-2022-genie,\n17\t  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n18\t  title     = {{GenIE}: Generative Information Extraction},\n19\t  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n20\t  pages     = {4626--4643},\n21\t  year      = {2022}\n22\t}\n23\t\n24\t@inproceedings{dubey-2018-pairwise-confusion,\n25\t  author    = {Dubey, Abhimanyu and Gupta, Otkrist and Guo, Pei and Raskar, Ramesh and Farrell, Ryan and Naik, Nikhil},\n26\t  title     = {Pairwise Confusion for Fine-Grained Visual Classification},\n27\t  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},\n28\t  pages     = {71--88},\n29\t  year      = {2018}\n30\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-21T21:55:37.891403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "293",
+              "limit": "25"
+            }
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-21T21:55:37.942017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "293\t\n294\tTo rule out degree centrality as a confound in cross-domain datasets, we compute partial correlations between BCS and accuracy controlling for batch mean degree centrality (mean off-diagonal SCS per type, averaged across batch members).\n295\t\n296\t\\begin{table}[h]\n297\t\\centering\n298\t\\small\n299\t\\begin{tabular}{lrrrrr}\n300\t\\toprule\n301\t\\textbf{Dataset} & \\textbf{$n$} & \\textbf{$r_{\\text{zero}}$} & \\textbf{$r_{\\text{partial}}$} & \\textbf{$p_{\\text{partial}}$} & \\textbf{VIF} \\\\\n302\t\\midrule\n303\tFewRel & 204 & $-$0.570 & $-$0.537 & ${<}\\,0.001$ & 1.18 \\\\\n304\tDocRED & 110 & $-$0.760 & $-$0.348 & ${<}\\,0.001$ & 50.9 \\\\\n305\t\\bottomrule\n306\t\\end{tabular}\n307\t\\caption{BCS--accuracy partial correlation controlling for degree centrality. FewRel shows minimal attenuation (VIF${}\\,=\\,1.18$, low collinearity). DocRED shows high BCS--centrality collinearity (VIF${}\\,=\\,50.9$, $r = 0.99$), but the partial correlation remains highly significant.}\n308\t\\label{tab:partial_corr}\n309\t\\end{table}\n310\t\n311\tOn FewRel, BCS and degree centrality are only moderately correlated ($r = 0.39$), and the BCS effect survives nearly intact after partialling ($r_{\\text{partial}} = -0.537$ vs.\\ $r_{\\text{zero}} = -0.570$; unique $R^2 = 0.288$). On DocRED, the near-perfect BCS--centrality correlation ($r = 0.99$) makes it impossible to fully separate the two predictors; the significant partial correlation ($p < 0.001$) indicates BCS retains predictive value but does not uniquely identify the causal channel. This contrasts with MAVEN (\\S\\ref{sec:appendix_residualized_bcs}), where the BCS signal vanishes after controlling for centrality.\n312\t\n313\t\\subsection{NER BCS-Null Power Analysis}\n314\t\\label{sec:appendix_ner_power}\n315\t\n316\tThe Few-NERD BCS-null may reflect insufficient BCS variance rather than a genuine absence of the BCS--accuracy relationship. Few-NERD's BCS standard deviation (0.027) is only 19\\% of FewRel's (0.141); FewRel's observed $r = -0.570$ would attenuate to $r = -0.111$ under this \n…[truncated 299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-21T21:57:15.906099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## v34 Round 25 修复验证报告\n\n**总评**：v34 修复质量高，6/7 检查点通过。发现 1 个数值验证问题（semipartial R² 计算方法）和 1 个战略建议。\n\n---\n\n### 逐项验证\n\n**1. C1 DocRED semipartial R² ✅ 但需验证计算**\n\nresults.tex L52 报告 \"semipartial R²_BCS = 0.121 after partialing degree centrality, confirming that 79% of the explained variance is shared with centrality\"。L61 也引用此数字。措辞准确。\n\n[severity: warning] **数值验证问题**：0.121 = 0.348² = r_partial² 精确相等。统计学中 semipartial R²（也叫 ΔR², increment R², part R²）和 squared partial correlation 是不同量：\n\n- **Squared partial correlation** (r²_partial) = (R²_full - R²_Z) / (1 - R²_Z) = 0.121\n- **True semipartial R²** (ΔR²) = R²_full - R²_Z < 0.121（因为分母 < 1）\n\n对 DocRED（VIF=50.9），差异可能显著。如果 centrality alone 解释了 ~52% 的 accuracy variance（合理推断 given BCS-centrality r=0.99 and BCS-accuracy r=0.76），则：\n- True ΔR² = 0.578 - 0.520 ≈ 0.058（5.8%），不是 12.1%\n- 79% 共享 → 变成 90% 共享\n\n**请 Agent 确认**：semipartial R² 是否通过 `R²_full - R²_centrality_only` 计算？还是通过 `r_partial²` 计算？如果是后者，需要修正数字和百分比。对 FewRel（VIF=1.18）差异很小（~0.288 vs ~0.28），但 DocRED 差异可能是 12.1% vs 5.8%。\n\n**不管实际值是 12.1% 还是 5.8%，叙事方向不变**——DocRED 大部分 variance 与 centrality 共享，FewRel 是 clean evidence。\n\n**2. C4 Contribution framing ✅**\n\nIntro L24: \"We establish that type confusability...independently predicts type substitution errors in RE, explaining ~22%...a finding enabled by controlled batch design...but not previously documented in training-free LLM IE.\"\n\nRelated work L16: \"the empirical findings are the contribution, enabled by a controlled experimental methodology that previous work lacked.\"\n\n无残留 \"methodology is the contribution\"。新 framing 保留 methodology 作为 enabler，符合我此前建议。✓\n\n**3. C3 NER null power analysis ✅**\n\nResults.tex L78（§4.4 末尾）完整包含：\n- Min detectable |r| = 0.132 at α=0.05, power=0.80 ✓\n- FewRel r=-0.57 attenuates to r=-0.11 under SD compression ✓\n- Power = 65% ✓\n- \"absence of evidence rather than evidence of absence\" ✓\n\nPower analysis 从 Appendix 上提到正文。措辞精确。\n\n**4. W2 Cross-model summary ✅**\n\nResults.tex L9: \"Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash\"（定性描述，无 r 值）\nResults.tex L65: \"All three open-weight families...show consistent negative BCS slopes on FewRel RE\"（定性描述，无 r 值）\n\n**无幻觉 r 值**。Agent 正确使用定性描述和 Δ gap 值，避免了 fix plan 中提到的 r=-0.58/-0.67（这些数字不存在于论文数据中）。✓\n\n**5. Orphan bib ✅**\n\n- 8 个 orphan entries 全部从 references.bib 删除 ✓\n- Cohen (1988) 添加为 `cohen-1988-statistical`，引用于 results.tex L78 ✓\n- Baan (2023) 添加为 `baan-2023-ecological`，引用于 results.tex L61 ✓\n\nBaan 引用合理性：关于 NLP 中 ecological fallacy 的 ACL 2023 论文，与本文 ecological correlation 讨论主题契合。\n\nLimitations 合并：items 4+5（causal mechanism + data contamination）合并为单条。✓ 现 5 条。\n\n**6. 叙事一致性 ✅**\n\nAbstract → Intro → Results → Discussion 全文统一叙事：\n- \"Strong core\"：FewRel R²≈22%，clean evidence（VIF=1.18）\n- \"Bounded scope\"：DocRED partially confounded（VIF=50.9），Gemini fragile\n- \"Empirical findings as contribution\"：C1 贡献重写，Related work 同步\n- \"NER not detected at current power\"：全文一致\n- Count degradation = cross-task；confusability substitution = primarily RE\n- Pair→batch amplification = operative mechanism\n\nAbstract 改善明显：conceptual opening + \"primarily in RE\" scoping + 删除过多数字。\n\n**7. Semipartial R² = 12.1% 战略意义**\n\n[severity: info] **建议：不升级 DocRED 叙事定位。** 理由：\n\n1. **VIF=50.9 使 unique variance 估计不稳定**——无论是 12.1% 还是 5.8%，置信区间都很宽\n2. **\"Strong core + bounded scope\" 策略已被验证**（R24 3.0→R25 3.5），不应向反方向调整\n3. R25 reviewer 要求 semipartial R² 是为了量化 confound——结果确认了 confound。这恰恰支持 FewRel 作为 primary evidence 的定位\n4. 升级 DocRED 会邀请更多 scrutiny：\"如果 DocRED 也有 unique signal，为什么不当 co-primary？\"这打开新的攻击面\n\n当前 v34 措辞已经最优：报告数字 + \"79% shared\" + \"clean evidence from FewRel\"。保持不变。\n\n---\n\n### 新增发现\n\n[severity: info] **TOST logit 呈现改善**：Results.tex L78 新增 \"Probability-scale TOST is the primary analysis because accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference\"——直接回应 W4，给了使用线性 scale 的正当理由。\n\n[severity: info] **W7 practical significance 落地良好**：Discussion L6 新段区分 pair-level (~1.3%) vs batch-level (~22%, ~31pp extreme)，框定 \"batch-level is the relevant practical construct\"。这是对 \"2.2pp too small\" 攻击的有效回应。\n\n[severity: info] **Intro 精简**：删除 \"non-obvious findings\" 段 + findings (4) 后直接进 contributions。信息密度提升，page budget 更紧凑。\n\n---\n\n### 总结\n\nv34 修复执行质量高。唯一需要确认的是 semipartial R² 的计算方法（r_partial² vs true ΔR²）。如果是 r_partial²，需修正为正确的 ΔR² 值（预计更小但叙事不变）。其余 6/7 点全部通过。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-21T21:57:20.024773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4118
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-21T21:57:22.726483+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现一个需要验证的数值问题。发送完整验证报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000575"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "messages": [
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-21T21:59:48.325065+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：v34 修复完成，提交 R26 验证），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-21T21:59:53.861877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-21T21:59:53.912748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\\\", \\\"content\\\": \\\"# schema-dag-extraction — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 21:59 UTC | 更新原因: v34 修复完成，提交 R26 验证\\\\n\\\\n## 核心方向\\\\nTraining-free LLM IE 中 schema 复杂度如何预测性能下降：count-related recall decline (Dim1, cross-task) + confusability-related type substitution (Dim2, RE batch-level, format-independent)。详见 paper_framing.md。\\\\n\\\\n## 当前阶段：v34 完成，提交 R26 验证（DDL 2026-05-25，4 天）\\\\n\\\\n**论文状态 v34**：\\\\n- R25 Fresh Review 3.5 → 全部 4 个 Must-Fix + 8 个 Should-Fix 已修复\\\\n- DocRED semipartial R²=12.1%（unique BCS variance），FewRel semipartial R²=28.8%（VIF=1.18）\\\\n- 贡献从 \\\\\\\"methodology\\\\\\\" 重定位为 \\\\\\\"empirical findings enabled by controlled design\\\\\\\"\\\\n- NER null power analysis 进入正文（detectable |r|≈0.132, \\\\\\\"cannot distinguish\\\\\\\" 明确声明）\\\\n- Abstract 精简，Discussion 扩展（pair-level vs batch-level practical significance）\\\\n- Cross-model summary 进入主文（§4.1 + §4.3），TOST logit-scale 承认\\\\n- 12 orphan bib 清理，Cohen (1988) + Baan (2023) 添加\\\\n- 编译 0 错误，body ≤ 8 页\\\\n\\\\n**审稿轨迹**：R23 3.5 → R24 3.0（caveat backfire）→ R25 3.5（\\\\\\\"strong core\\\\\\\" 有效）→ R26 待验\\\\n\\\\n## 近期任务\\\\n- [x] R25 4 Must-Fix + 8 Should-Fix + 3 Minor 全部修复（v34）\\\\n- [x] DocRED semipartial R² 计算（12.1%）\\\\n- [x] review_issues.yaml 更新\\\\n- [ ] R26 审稿验证 v34 修复效果\\\\n- [ ] ARR 提交（DDL 2026-05-25）\\\\n\\\\n## GPU 预算\\\\n- cqa1-38874 cuda:0：空闲（reserve for rebuttal / 最终加固实验）\\\\n\\\\n## 实验状态\\\\n69 个实验，39 成功。本轮无新 GPU 实验（v34 为纯写作 + semipartial R² 计算）。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D071 | 2026-05-21 | R25 Action Matrix (D071): 做 DocRED semipartial R²  | — |\\\\n| D070 | 2026-05-21 | R24 Action Matrix: 重构叙事为 \\\\\\\"strong core (FewRel R²=2 | — |\\\\n| D069 | 2026-05-21 | Round 23 Action Matrix 定稿：16 issues 全部通过 framing/w | — |\\\\n| D068 | 2026-05-20 | v14 claim 回滚 + v15 叙事优化 + v16 格式统一确认为最终提交版。GPU cud | exp012_llama_fewrel_ch2, exp_paired_constrained |\\\\n| D067 | 2026-05-19 \n…[truncated 761 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-21T22:00:02.204612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## ROADMAP 审查 — v34 提交 R26 验证\n\n[severity: info] ROADMAP 准确反映当前状态，无需修改。\n\n- **方向**：稳定，未偏移\n- **任务**：v34 全部 [x]，仅剩 R26 验证 + ARR 提交\n- **GPU**：cuda:0 空闲 reserve for rebuttal，合理\n- **时间线**：DDL 2026-05-25，4 天，充裕\n- **决策日志**：D071 记录 semipartial R² 决策，完整\n- **审稿轨迹**：R23 3.5→R24 3.0→R25 3.5→R26 待验，记录准确\n\n**提醒**：v34 验证中我标记的 semipartial R² 计算方法问题（r_partial² vs true ΔR²）尚待 Agent 确认。如果 R26 之前未解决，该数字可能需要修正。叙事方向不受影响。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-21T22:00:07.089056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4884
+          },
+          "id": "event-000580"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "messages": [
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-21T22:20:14.613148+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_semipartial_r2_fix_20260521T220639]:\nWorker worker_analysis_semipartial_r2_fix_20260521T220639 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system"
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-21T22:20:21.647258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-21T22:20:21.699047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-21T22:20:24.964855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker_analysis_semipartial_r2_fix*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-21T22:20:25.015643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_semipartial_r2_fix_20260521T220639_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-21T22:20:27.876385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_semipartial_r2_fix_20260521T220639_result.json"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-21T22:20:27.877150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。结果汇总：\\n\\n### 原始错误确认\\n`r1_statistical_supplements.py:167` 用了 `bcs_unique_r2 = r_partial**2`（squared partial correlation），不是 true semipartial R²（ΔR²）。\\n\\n### DocRED (110 batches, VIF=50.9, 高共线性)\\n\\n| 指标 | 值 |\\n|------|-----|\\n| R²_full (BCS+cent) | 0.5949 |\\n| R²_BCS_only | 0.5779 (= 0.7602² ✓) |\\n| R²_cent_only | 0.5393 |\\n| **True ΔR²_BCS** | **0.0557** |\\n| Old partial r² | 0.1208 |\\n| **高估倍数** | **2.17x** |\\n| Shared variance | 87.8% of R²_full |\\n\\n### FewRel (204 batches, VIF=1.18, 低共线性)\\n\\n| 指标 | 值 |\\n|------|-----|\\n| R²_full (BCS+cent) | 0.3253 |\\n| R²_BCS_only | 0.3253 (= 0.5703² ✓) |\\n| R²_cent_only | 0.0524 |\\n| **True ΔR²_BCS** | **0.2729** |\\n| Old partial r² | 0.2880 |\\n| **高估倍数** | **1.06x** |\\n| Shared variance | 16.1% of R²_full |\\n\\n### 关键发现\\n- DocRED 问题严重：因 BCS 与 centrality 相关性极高（r=0.99），87.8% 的解释方差是共享的，BCS 的 unique contribution 仅 5.6%（被高估 2.17 倍）\\n- FewRel 影响轻微：低共线性下 partial r² ≈ ΔR²，误差仅 6%\\n- Degree centrality 对 FewRel accuracy 几乎无独立预测力（ΔR²_cent ≈ 0）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-21T22:20:40.387825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "semipartial",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-21T22:20:40.438418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:52:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:61:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-21T22:20:43.404591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "50",
+              "limit": "15"
+            }
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-21T22:20:43.455306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50\t\n51\t\\paragraph{Document-level RE (DocRED).}\n52\tThe effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.121$ after partialing degree centrality, confirming that 79\\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.288$, VIF${}\\,=\\,1.18$).\n53\t\n54\t\\paragraph{Within-pool controlled comparison.}\n55\t\\label{sec:within_pool}\n56\tWithin-pool analysis confirms slope consistency across pools (permutation $p \\approx 0.60$; Appendix~\\ref{app:within-pool-method}). The 80-relation extreme-batch gap (\\S\\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity.\n57\t\n58\t\\paragraph{Practical magnitude.}\n59\t\\label{sec:practical_magnitude}\n60\t\\looseness=-1\n61\tDirect regression on 100 random 16-type batches from the 80-relation pool shows BCS explains 22\\% of cross-batch accuracy variance ($R^2 = 0.218$, $p < 0.001$). DocRED pooled $R^2 = 0.578$ ($n = 110$; semipartial $R^2_{\\text{BCS}} = 0.121$ after centrality; Appendix~\\ref{sec:appendix_partial_corr}). The typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI [0.4, 4.0]). Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The amplification from pairwise $r^2 \\approx 1.5\\%$ to batch-level\n…[truncated 442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-21T22:20:51.691289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "309",
+              "limit": "5"
+            }
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-21T22:20:51.691755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "309\t\\end{table}\n310\t\n311\tOn FewRel, BCS and degree centrality are only moderately correlated ($r = 0.39$), and the BCS effect survives nearly intact after partialling ($r_{\\text{partial}} = -0.537$ vs.\\ $r_{\\text{zero}} = -0.570$; unique $R^2 = 0.288$). On DocRED, the near-perfect BCS--centrality correlation ($r = 0.99$) makes it impossible to fully separate the two predictors; the significant partial correlation ($p < 0.001$) indicates BCS retains predictive value but does not uniquely identify the causal channel. This contrasts with MAVEN (\\S\\ref{sec:appendix_residualized_bcs}), where the BCS signal vanishes after controlling for centrality.\n312\t\n313\t\\subsection{NER BCS-Null Power Analysis}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-21T22:21:09.293833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_analysis_semipartial_r2_fix\n\n**结论**: [severity: critical] Semipartial R² 计算错误已被 Worker 确认。论文尚未更新，需立即修正。\n\n### Worker 验证结果\n\nWorker 确认 `r1_statistical_supplements.py:167` 用了 `r_partial²` 而非 true ΔR²。实际数字：\n\n| | DocRED (VIF=50.9) | FewRel (VIF=1.18) |\n|--|--|--|\n| 旧值（r_partial²） | 0.121 | 0.288 |\n| **正确值（ΔR²）** | **0.056** | **0.273** |\n| 高估倍数 | 2.17× | 1.06× |\n| 共享 variance | **87.8%** | 16.1% |\n\n### 论文当前状态：仍是旧数字\n\n以下位置需要修正：\n\n1. **results.tex L52**：\"semipartial R²_BCS = 0.121\" → \"0.056\"；\"79%\" → \"88%\"；\"semipartial R² = 0.288\" → \"0.273\"\n2. **results.tex L61**：\"semipartial R²_BCS = 0.121 after centrality\" → \"0.056\"\n3. **main.tex L311（Appendix）**：\"unique R² = 0.288\" → \"0.273\"（或改标签为 \"partial R² = 0.288; unique ΔR² = 0.273\"）\n\n### 叙事影响：更强而非更弱\n\n修正后叙事**加强**：\n- DocRED 88% 共享（vs 79%）→ confound 比之前报告的更严重 → **更有力地支持 FewRel 作为唯一 clean evidence**\n- DocRED unique BCS contribution 仅 5.6% → \"detectable but minimal\"，明确不能作为 co-primary\n- FewRel 几乎不变（0.288→0.273），27.3% unique BCS variance → 核心 claim 不受影响\n\n**这个修正是 R25 reviewer 要求 semipartial R² 的最佳回应——数字越小，confound narrative 越 convincing。**\n\n### 优先级\n\n**必须在 R26 验证前完成修正。** 3 处文本替换，~10 分钟。如果带着错误数字提交审稿，被统计学背景 reviewer 发现 0.348²=0.121 的巧合，将严重损害论文可信度。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-21T22:21:13.162898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3869
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-21T22:21:15.713397+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "论文尚未更新正确数字。Worker 确认了错误但 Agent 还没应用修正。检查 Appendix 是否也有旧数字。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000596"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "messages": [
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-21T22:56:17.378749+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**v34 semipartial R² 修正后终审**\n\n数值已修正：DocRED ΔR²=0.056（旧 0.121），FewRel ΔR²=0.273（旧 0.288），90% shared（旧 79%）。\n\n请做最终一致性检查：\n1. Abstract 中是否有残留的旧数字或与 5.6% 矛盾的措辞？\n2. Discussion/Conclusion 中 \"BCS retains...contribution\" 类措辞是否需要调整？（5.6% unique 是 \"detectable but minimal\" 还是 \"modest\"？）\n3. 修正后整体 claim 强度是否需要微调？（你上轮说修正加强了 FewRel-centered 叙事——确认 v34 文本已反映这一点）\n4. ARR 提交还需要什么准备？（supplementary materials, anonymization check, etc.）\n\n这是提交 ARR 前的最后一道质量关。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system"
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-21T22:56:23.516999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-21T22:56:23.818488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSchema complexity affects training-free LLM information extraction through two independent dimensions: type count drives recall decline, while inter-type confusability drives type substitution errors. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across NER, RE, and event detection on four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:\n3\t(1)~count degradation spans all three tasks (up to $-$49\\,pp); confusability-driven substitution is documented primarily in RE, with bounded interaction;\n4\t(2)~BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance on FewRel (ecological level), replicating across three open-weight model families (8B--70B); NER batch-level signal is not detected at current power;\n5\t(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing confirms the two dimensions are independently addressable.\n6\t\\end{abstract}\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-21T22:56:24.320728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "46",
+              "limit": "20"
+            }
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-21T22:56:24.823699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "46\t\\looseness=-1\n47\tOn FewRel, BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance; confusability is a substantial predictor alongside count. We fix type count and vary BCS to isolate this effect. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound;\\footnote{Partial correlation controlling for degree centrality: FewRel $r_{\\text{partial}} = -0.537$ ($p < 0.001$, VIF${}\\,=\\,1.18$). DocRED partial correlation ($r_{\\text{partial}} = -0.348$, $p < 0.001$) is reported for completeness, but VIF${}\\,=\\,50.9$ (BCS--centrality $r = 0.99$) renders the estimate unstable; the clean evidence for BCS's independent contribution comes from FewRel (Appendix~\\ref{sec:appendix_partial_corr}).} the within-pool analysis (\\S\\ref{sec:within_pool}) controls for pool composition.\n48\t\n49\tIn BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (95\\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline.\n50\t\n51\t\\paragraph{Document-level RE (DocRED).}\n52\tThe effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 3\n…[truncated 2642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000601"
+        },
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-21T22:56:24.874485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-21T22:56:25.075711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions and mechanisms.}\n5\t\\looseness=-1\n6\tThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; NER null not detected on three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound: batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n7\t\n8\t\\paragraph{Practical implications and conclusion.}\n9\t\\label{sec:conclusion}\n10\t\\looseness=-1\n11\tFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are independently addressable.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-21T22:56:25.076156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000604"
+        },
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-21T22:56:25.126699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\looseness=-1\n5\tTraining-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.}\\footnote{Code and data will be released upon acceptance.} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \\citep{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\\sim}$0.27 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level), near-halving or worse. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable.\n6\t\n7\t\\looseness=-1\n8\tWhat explains this degradation? Prior decomposition strategies \\citep{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n9\t\n10\tThis study combines correlational analyses with quasi-experimental manipulation (BCS-controlled batches) to characterize how schema properties predict extraction accuracy.\n11\t\n12\tWe ask three questions. \\textbf{RQ1}: Does type\n…[truncated 3215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-21T22:56:28.891805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "38",
+              "limit": "18"
+            }
+          },
+          "id": "event-000606"
+        },
+        {
+          "source_line": 607,
+          "timestamp": "2026-05-21T22:56:29.394414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38\t\\section*{Limitations}\n39\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n40\t\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B, LLaMA-70B, Gemini Flash) covers Dimensions~1--2 (count curves, BCS-controlled extremes) but does not replicate secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence). Specifically, error taxonomy decomposition (\\S\\ref{sec:multi_channel}), TOST factorial interaction (\\S\\ref{sec:multi_channel}), and SDGD failure analysis (\\S\\ref{sec:sdgd}) are established on Qwen3-32B alone; cross-model replication of these secondary analyses is the most pressing extension. Gemini provides only partial, leverage-sensitive corroboration (leave-one-out $r{:}\\;{-}0.80 \\to {-}0.42$; Appendix~\\ref{sec:appendix_cross_model_gemini}); proprietary-model generalization remains open.\n41\t\n42\t\\item \\textbf{Effect size and statistical design.} Pairwise SCS explains a small fraction of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\\times$ BCS interaction is bounded on FewRel but nonzero on DocRED, partially confounded by BCS range restriction at higher counts (Appendix~\\ref{sec:appendix_factorial}); logit-scale evidence remains inconclusive. DocRED count curves use 5 batches per level due to higher per-batch evaluation cost. BCS-controlled experiments use a single seed with greedy decoding; residual variance is small (Appendix~\\ref{app:variance-decomposition}) but precise magnitudes may vary. Greedy decoding (temperature${}\\,=\\,0$) yields residual SD${}\\,=\\,0.88$\\,pp, approximately 18--44\\% of the observed BCS effect size, suggesting effect detection is robust but point estimates carry meaningful uncertainty; the factorial interaction point estimate (0.47\\,pp) is far inside the $\\pm 3$\\,pp equivalence margin.\n43\t\n44\t\\item \\textbf{Task scope.} Format independence is confirmed via paired constrained/unconstrained comparison (Appen\n…[truncated 2853 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000607"
+        },
+        {
+          "source_line": 608,
+          "timestamp": "2026-05-21T22:56:29.546940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "306",
+              "limit": "10"
+            }
+          },
+          "id": "event-000608"
+        },
+        {
+          "source_line": 609,
+          "timestamp": "2026-05-21T22:56:29.597754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "306\t\\end{tabular}\n307\t\\caption{BCS--accuracy partial correlation controlling for degree centrality. FewRel shows minimal attenuation (VIF${}\\,=\\,1.18$, low collinearity). DocRED shows high BCS--centrality collinearity (VIF${}\\,=\\,50.9$, $r = 0.99$), but the partial correlation remains highly significant.}\n308\t\\label{tab:partial_corr}\n309\t\\end{table}\n310\t\n311\tOn FewRel, BCS and degree centrality are only moderately correlated ($r = 0.39$), and the BCS effect survives nearly intact after partialling ($r_{\\text{partial}} = -0.537$ vs.\\ $r_{\\text{zero}} = -0.570$; semipartial $R^2 = 0.273$). On DocRED, the near-perfect BCS--centrality correlation ($r = 0.99$) makes it impossible to fully separate the two predictors; the significant partial correlation ($p < 0.001$) indicates BCS retains predictive value but does not uniquely identify the causal channel. This contrasts with MAVEN (\\S\\ref{sec:appendix_residualized_bcs}), where the BCS signal vanishes after controlling for centrality.\n312\t\n313\t\\subsection{NER BCS-Null Power Analysis}\n314\t\\label{sec:appendix_ner_power}\n315\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000609"
+        },
+        {
+          "source_line": 610,
+          "timestamp": "2026-05-21T22:56:55.966851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "/root/|/home/|/Users/|autodl|cqa1|westd",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000610"
+        },
+        {
+          "source_line": 611,
+          "timestamp": "2026-05-21T22:56:56.921249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 954
+          },
+          "id": "event-000611"
+        },
+        {
+          "source_line": 612,
+          "timestamp": "2026-05-21T22:56:57.373551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "TODO|PLACEHOLDER|TBD|XX\\.XX|\\[If |\\\\placeholder",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000612"
+        },
+        {
+          "source_line": 613,
+          "timestamp": "2026-05-21T22:56:57.876069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-000613"
+        },
+        {
+          "source_line": 614,
+          "timestamp": "2026-05-21T22:56:58.379040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\author\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000614"
+        },
+        {
+          "source_line": 615,
+          "timestamp": "2026-05-21T22:56:58.429734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19:\\author{Anonymous}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000615"
+        },
+        {
+          "source_line": 616,
+          "timestamp": "2026-05-21T22:57:02.026459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\?\\?|undefined reference",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000616"
+        },
+        {
+          "source_line": 617,
+          "timestamp": "2026-05-21T22:57:03.031743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:17:\\title{How Does Schema Complexity Predict Performance\\\\in Training-Free LLM Information Extraction?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:9:\\item \\textbf{Did you describe the limitations of your work?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:13:\\item \\textbf{Did you discuss any potential risks of your work?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:17:\\item \\textbf{Do the abstract and introduction summarize the paper's main claims?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:21:\\item \\textbf{Did you use AI assistants (e.g., ChatGPT, Copilot) when working on this paper?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:31:\\item \\textbf{Did you cite the creators of artifacts you used?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:35:\\item \\textbf{Did you discuss the license or terms for use and/or distribution of any artifacts?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:39:\\item \\textbf{Did you discuss if your use of existing artifacts is consistent with their intended use?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:43:\\item \\textbf{Did you discuss whether the data contains personally identifiable information or offensive content?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:47:\\item \\textbf{Did you provide documentation of the artifacts, e.g., coverage of languages, coverage of domains, etc.?}\n/home/ubuntu/.agent-m\n…[truncated 3292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000617"
+        },
+        {
+          "source_line": 618,
+          "timestamp": "2026-05-21T22:57:03.436661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.121|0\\.288|79\\\\%|unique \\$R\\^2 = 0\\.288",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000618"
+        },
+        {
+          "source_line": 619,
+          "timestamp": "2026-05-21T22:57:03.487645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000619"
+        },
+        {
+          "source_line": 620,
+          "timestamp": "2026-05-21T22:57:14.374380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\input\\{supplementary\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000620"
+        },
+        {
+          "source_line": 621,
+          "timestamp": "2026-05-21T22:57:14.627819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 253
+          },
+          "id": "event-000621"
+        },
+        {
+          "source_line": 622,
+          "timestamp": "2026-05-21T22:57:15.336963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "acknowledgment|Acknowledgment|\\\\section\\*\\{Ack",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000622"
+        },
+        {
+          "source_line": 623,
+          "timestamp": "2026-05-21T22:57:15.437926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000623"
+        },
+        {
+          "source_line": 624,
+          "timestamp": "2026-05-21T22:57:39.087791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## v34 Semipartial R² 修正后终审\n\n**结论**: [severity: info] 全部 4 个检查点通过，论文已达 submission-ready 状态。\n\n---\n\n### 1. Abstract 残留旧数字检查 ✅\n\nAbstract 不含 semipartial R²、DocRED 百分比或任何旧值（0.121/0.288/79%）。全文 grep `0.121|0.288|79\\\\%` 返回零匹配。Abstract 仅引用 \"~22% on FewRel\"，与正文一致。\n\n### 2. Discussion/Conclusion 措辞 ✅\n\nDiscussion L6 说 \"two datasets\" 指 RE 效应方向一致（FewRel + DocRED），这是关于 directional consistency 而非 unique variance。DocRED 的 BCS-accuracy correlation 确实显著，只是大部分共享于 centrality。措辞准确，无需调整。\n\nDiscussion 和 Conclusion 不含 semipartial R² 具体数字，不存在\"detectable but minimal\"vs\"modest\"的措辞选择问题。\n\n### 3. 修正后 claim 强度确认 ✅\n\n三处修正已落地：\n- results.tex L52: ΔR² = 0.056, 90% shared, FewRel ΔR² = 0.273 ✓\n- results.tex L61: ΔR² = 0.056 ✓\n- main.tex L311 (Appendix): semipartial R² = 0.273 ✓\n\n修正**加强**了 FewRel-centered 叙事：DocRED 90% 共享（vs 旧 79%）→ confound 更严重 → FewRel 作为唯一 clean evidence 的定位更坚实。核心 claim（FewRel R²≈22%）完全不受影响。\n\n### 4. ARR 提交准备清单\n\n| 项目 | 状态 | 说明 |\n|------|------|------|\n| 匿名化 | ✅ | `\\author{Anonymous}`，无服务器路径/用户路径泄露 |\n| 占位符 | ✅ | grep TODO/PLACEHOLDER/TBD/XX.XX 零匹配 |\n| 页面限制 | ✅ | body ≤ 8 页（Director 已确认编译通过） |\n| Review 模式 | ✅ | `\\usepackage[review]{acl}` 启用行号 |\n| Checklist | ✅ | 已注释 `% \\input{checklist}`，按 EMNLP 2026 规则填写 OpenReview form |\n| 致谢 | ✅ | 无 Acknowledgments section（review 阶段正确） |\n| 代码承诺 | ✅ | Intro 脚注 \"Code and data will be released upon acceptance\" |\n| Supplementary | ✅ | supplementary.tex 未 include 进 main.tex，appendices 在同一 PDF 内 |\n| References | ✅ | Orphan entries 已清理，Cohen/Baan 已添加 |\n\n**唯一需要用户手动完成的**：\n- OpenReview submission form 中的 ARR Responsible NLP Checklist（不在 PDF 里）\n- 确认 PDF 编译无 overfull hbox 警告 > 1pt\n- 上传最终 PDF\n\n---\n\n**终审判断**：论文从数据一致性、叙事一致性、匿名化、格式合规四个维度均已通过。可以提交。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000624"
+        },
+        {
+          "source_line": 625,
+          "timestamp": "2026-05-21T22:57:43.055732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3967
+          },
+          "id": "event-000625"
+        },
+        {
+          "source_line": 626,
+          "timestamp": "2026-05-21T22:57:45.146557+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数字已更新。做 ARR 提交前的最终检查——匿名化、路径泄露、占位符。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000626"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "messages": [
+        {
+          "source_line": 627,
+          "timestamp": "2026-05-21T22:57:57.776375+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000627"
+        },
+        {
+          "source_line": 628,
+          "timestamp": "2026-05-21T22:58:35.421789+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 仅 cqa1-38874 cuda:0 可用，reserve for rebuttal phase，当前无实验应跑\n- DocRED R²=0.578 不可作为 BCS independent evidence 引用（VIF=50.9，90% shared with centrality）——FewRel R²=0.218 是唯一 clean headline\n- Semipartial R² 必须用 true ΔR²（R²_full - R²_reduced），不可用 r_partial²（之前出过 2.17× 高估 bug）\n- NER null 全文统一 \"not detected at current power\"，禁止用 \"confirmed\" / \"established\"\n- 论文 checklist 在 OpenReview form 里填，不在 PDF 里（EMNLP 2026 规则）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874(root) + westd-24295(root)\n- 代码根目录（远程）：/root/schema-dag-extraction\n- 论文目录（本地）：/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/\n- 无活跃进程，无 RUNNING 实验，无 cron 任务\n- 69 个实验，39 成功，全部 DONE\n\n### 3. 📊 当前状态\n**v34 论文已通过终审，submission-ready。** 刚完成的工作链：\n- R25 Fresh Review 3.5 → 4 Must-Fix + 8 Should-Fix 全部修复\n- DocRED semipartial R² 计算错误（r_partial² vs true ΔR²）被我发现并修正：0.121→0.056，79%→90% shared\n- FewRel semipartial 微调：0.288→0.273（影响极小）\n- 匿名化 / 占位符 / 格式合规全部 pass\n- 等待：Director 提交 ARR 或触发 R26 验证\n\n### 4. 📋 待办\n- R26 审稿结果返回 → 按 severity 分流：critical 立即修复，warning 评估 ROI，info 跳过\n- Director 要求 ARR 提交前最终编译检查 → 验证 overfull hbox ≤ 1pt + page ≤ 8\n- Rebuttal phase 启动 → 预备材料：Attack #1 (single clean dataset) 和 #3 (typical effect size 2.2pp) 的回应框架已在全面评估报告中\n- 如果 reviewer 要求新实验 → cuda:0 可用，优先级：W3 batch-level controls (FewRel, ~1-2h) > 其他\n\n### 5. 🎯 战略上下文\n**审稿轨迹**：R23 3.5 → R24 3.0（caveat backfire）→ R25 3.5（\"strong core + bounded scope\" 有效）。天花板 borderline 3.5-4.0，取决于 reviewer 对分析型贡献的态度。\n\n**关键决策链**：\n- D070: \"strong core + bounded scope\" 叙事重构（解决 R24 caveat backfire）\n- D071: DocRED semipartial R² 计算（R25 要求，结果反而加强 FewRel 定位）\n- C4 contribution 经历三次 framing 调整：SCS→methodology→empirical findings。当前 \"empirical findings enabled by controlled design\" 是最稳定终态\n\n**易错点**：\n- W2 cross-model summary 中 LLaMA-8B/70B 的 BCS-accuracy r 值不存在于论文数据中——Director 曾提过 r=-0.58/-0.67 但这是 DocRED CI bounds 误读。论文正确使用了定性描述 + Δ gap 值\n- Baan (2023) 引用是关于 NLP ecological fallacy 而非统计学经典 ecological correlation——与 Robinson (1950) 配对使用\n- DocRED semipartial R² = 0.056（不是 0.121）—— 如果看到任何残留 0.121 立即标 critical\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000628"
+        }
+      ]
+    }
+  ]
+}

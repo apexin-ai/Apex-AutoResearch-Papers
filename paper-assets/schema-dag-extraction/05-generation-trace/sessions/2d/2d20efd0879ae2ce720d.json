@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d20efd0879ae2ce720d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp scs name def ablation",
+  "task_key": "worker_exp_scs_name_def_ablation_20260516T114937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_scs_name_def_ablation_20260516T114937_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "40ed7acac82432859a9f360011479b257e60576cf2a88cdf6b1fea95cdbd7932"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## SCS Name vs Name+Definition Ablation 结果\n\n| Dataset | SCS_name r | SCS_def r | Δr | Sim矩阵相关 | name p | def p |\n|---------|-----------|----------|------|------------|--------|-------|\n| **Few-NERD** | 0.172 | 0.149 | **-0.023** | 0.894 | 2.0e-14 | 4.0e-11 |\n| MAVEN | 0.129 | 0.164 | +0.035 | 0.656 | 3.1e-42 | 1.1e-67 |\n| FewRel | 0.178 | 0.193 | +0.015 | 0.848 | 8.6e-24 | 9.3e-28 |\n\n**关键结论（可用于 Reviewer W-C1 response）：**\n\n1. **Few-NERD**（唯一在 prompt 中包含 type definitions 的数据集）：加入 definitions 后 SCS 反而略降（Δ=-0.023），两者均高度显著（p<1e-10）。Name-only 和 name+def 相似度矩阵相关 r=0.894，说明 type name 已捕获主要语义结构。\n\n2. **MAVEN/FewRel**：这两个数据集的 prompt **不包含 type definitions**（MAVEN 的 config 只有 name→name，FewRel 的 relation labels 本身就是描述性短语），因此 SCS_name 已经完全匹配 prompt 中给 LLM 的内容。\n\n3. **Delta 方向不一致**：Few-NERD 为负，MAVEN/FewRel 为正，表明加入 definitions 对 SCS-confusion 相关性无系统性影响。\n\n结果保存在 `/root/schema-dag-extraction/artifacts/scs_name_def_ablation/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

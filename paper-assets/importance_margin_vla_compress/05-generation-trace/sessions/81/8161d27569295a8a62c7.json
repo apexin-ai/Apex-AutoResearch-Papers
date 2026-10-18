@@ -1,0 +1,1319 @@
+{
+  "schema_version": "1.0",
+  "id": "8161d27569295a8a62c7",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "fix westd38929 registry v3",
+  "task_key": "worker_fix_westd38929_registry_v3_20260525T053412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_fix_westd38929_registry_v3_20260525T053412.jsonl",
+    "occurrence": 1,
+    "bytes": 38318,
+    "sha256": "b390ff025777e5ad77ea896e11430f81a8a656580595522c26ff61cc1f527b71"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T05:37:49.750195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T05:37:49.750569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T05:37:49.750765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ps -p 2508,2583,2763,2944 -o pid,stat,etime,args --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T05:37:49.750902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T05:37:49.751044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  2508 Rl+        45:20 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n  2583 Rl+        45:17 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n  2763 Rl+        45:14 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n  2944 Rl+        45:12 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T05:37:49.751428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T05:37:49.751609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T05:37:49.751745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2508, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa\\\\n2583, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4\\\\n2763, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516\\\\n2944, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T05:37:49.751870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T05:37:49.751994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 82 %, 16188 MiB, 97887 MiB\\\\n1, 62 %, 16188 MiB, 97887 MiB\\\\n2, 73 %, 16188 MiB, 97887 MiB\\\\n3, 66 %, 16188 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T05:37:49.752130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -5 /root/autodl-tmp/logs/eval_openvla_attn_k09_long_seed42_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T05:37:49.752336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Attn Pruning] 256 -> 230 vision tokens (k=0.9), importance range=[0.7189, 1.6595]\\\\n  Ep 10/50 task_sr=7/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=13/20 (1.0 eps/min)\\\\n  Ep 30/50 task_sr=16/30 (1.0 eps/min)\\\\n  Ep 40/50 task_sr=22/40 (1.0 eps/min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T05:37:49.752466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -5 /root/autodl-tmp/logs/eval_openvla_attn_k085_long_seed42_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T05:37:49.752621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Attn Pruning] 256 -> 217 vision tokens (k=0.85), importance range=[0.7189, 1.6595]\\\\n  Ep 10/50 task_sr=5/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=13/20 (1.0 eps/min)\\\\n  Ep 30/50 task_sr=21/30 (1.1 eps/min)\\\\n  Ep 40/50 task_sr=26/40 (1.0 eps/min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T05:37:49.753031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -5 /root/autodl-tmp/logs/eval_openvla_random_k09_long_seed42_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T05:37:49.753446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -5 /root/autodl-tmp/logs/eval_openvla_l2norm_k09_long_seed42_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T05:37:49.753587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Pruning] 256 -> 230 vision tokens (k=0.9)\\\\n  Ep 10/50 task_sr=7/10 (1.1 eps/min)\\\\n  Ep 20/50 task_sr=13/20 (1.1 eps/min)\\\\n  Ep 30/50 task_sr=19/30 (1.1 eps/min)\\\\n  Ep 40/50 task_sr=26/40 (1.0 eps/min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T05:37:49.753715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[L2 Pruning] 256 -> 230 vision tokens (k=0.9)\\\\n  Ep 10/50 task_sr=7/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=15/20 (1.0 eps/min)\\\\n  Ep 30/50 task_sr=22/30 (1.0 eps/min)\\\\n  Ep 40/50 task_sr=29/40 (1.0 eps/min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T05:37:49.753890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "nvidia-smi --query-gpu=index,gpu_uuid --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T05:37:49.754025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa\\\\n1, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4\\\\n2, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516\\\\n3, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T05:37:49.754275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T05:37:49.754671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k085_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T05:37:49.754818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T05:37:49.754952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2148}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T05:37:49.755078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T05:37:49.755254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.354}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-25T05:37:49.755386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.4259}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T05:37:49.755518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.721}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-25T05:37:49.755935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k09_long_seed42_v3",
+              "field": "conclusion",
+              "value": "",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T05:37:49.756084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5195}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-25T05:37:49.756431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k09_long_seed42_v3",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T05:37:49.756599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k085_long_seed42_v3",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-25T05:37:49.756729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k09_long_seed42_v3",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T05:37:49.756855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-25T05:37:49.756995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:07.734Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:35:49.740Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.9 Long v3 — crossover 表 Long 行 Attention 数据点，验证 entangling connector 的 attention-based scoring 在 Long 复杂任务上的保持能力\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:14.621Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5434}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-25T05:37:49.757255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k085_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:10.585Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:35:55.318Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.85 Long v3 — cliff zone Long 行 Attention 数据点\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:24.981Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4217}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T05:37:49.757462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:13.743Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:36:00.648Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Random k=0.9 Long v3 — crossover 表 Long 行 Random baseline\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:35.238Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6092}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-25T05:37:49.757613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_l2norm_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:16.600Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:36:06.855Z\\\", \\\"hypothesis\\\": \\\"OpenVLA L2norm k=0.9 Long v3 — crossover 表 Long 行 L2norm 数据点\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:45.587Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.9588}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-25T05:37:49.757764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-25T05:37:49.757906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3267}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-25T05:37:49.758033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k085_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-25T05:37:49.758198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7568}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-25T05:37:49.758334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-25T05:37:49.758470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8057}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-25T05:37:49.758592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-25T05:37:49.758723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7733}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-25T05:37:49.758874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k09_long_seed42_v3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-25T05:37:49.758993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k085_long_seed42_v3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-25T05:37:49.759117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k09_long_seed42_v3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-25T05:37:49.759260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-25T05:37:49.759395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:07.734Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:36:35.956Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.9 Long v3 — crossover 表 Long 行 Attention 数据点，验证 entangling connector 的 attention-based scoring 在 Long 复杂任务上的保持能力\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:14.621Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5525}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-25T05:37:49.759534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k085_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:10.585Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:36:41.540Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.85 Long v3 — cliff zone Long 行 Attention 数据点\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:24.981Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3116}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-25T05:37:49.759669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:13.743Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:36:46.835Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Random k=0.9 Long v3 — crossover 表 Long 行 Random baseline\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:35.238Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3363}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-25T05:37:49.759803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_l2norm_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:16.600Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:36:52.259Z\\\", \\\"hypothesis\\\": \\\"OpenVLA L2norm k=0.9 Long v3 — crossover 表 Long 行 L2norm 数据点\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:45.587Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2989}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-25T05:37:49.759953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-25T05:37:49.760090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_attn_k085_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-25T05:37:49.760392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-25T05:37:49.760602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:07.734Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:14.793Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.9 Long v3 — crossover 表 Long 行 Attention 数据点，验证 entangling connector 的 attention-based scoring 在 Long 复杂任务上的保持能力\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:14.621Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10_long\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3059}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-25T05:37:49.760767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-38929', 'data_path': '/root/autodl-tmp/models/openvla-7b-finetuned-libero-10', 'data_count': 50, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': 'openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10_long'}"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-25T05:37:49.760927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k085_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:10.585Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:20.185Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.85 Long v3 — cliff zone Long 行 Attention 数据点\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:24.981Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10_long\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3652}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-25T05:37:49.761081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:13.743Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:25.460Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Random k=0.9 Long v3 — crossover 表 Long 行 Random baseline\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:35.238Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10_long\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6976}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-25T05:37:49.761259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_l2norm_k09_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T04:50:16.600Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:37:32.329Z\\\", \\\"hypothesis\\\": \\\"OpenVLA L2norm k=0.9 Long v3 — crossover 表 Long 行 L2norm 数据点\\\", \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-25T05:08:45.587Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10_long\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.4026}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-25T05:37:49.761440+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部修复完成。汇总：\n\n## Registry 修复结果\n\n| 实验 ID | PID | GPU | 利用率 | 进度 | Registry |\n|---------|-----|-----|--------|------|----------|\n| `eval_openvla_attn_k09_long_seed42_v3` | 2508 | cuda:0 | 82% | 40/50 ep, sr=22/40 (55%) | ✅ RUNNING |\n| `eval_openvla_attn_k085_long_seed42_v3` | 2583 | cuda:1 | 62% | 40/50 ep, sr=26/40 (65%) | ✅ RUNNING |\n| `eval_openvla_random_k09_long_seed42_v3` | 2763 | cuda:2 | 73% | 40/50 ep, sr=26/40 (65%) | ✅ RUNNING |\n| `eval_openvla_l2norm_k09_long_seed42_v3` | 2944 | cuda:3 | 66% | 40/50 ep, sr=29/40 (72.5%) | ✅ RUNNING |\n\n- 4 个 PID 全部存活，状态 `Rl+`（运行中），约 ~1.0 eps/min\n- 4 张卡均在使用，GPU 利用率 62-82%，每张卡占用 ~16GB 显存\n- 日志显示全部在正常推进（40/50 episodes），无 hang\n- Registry 通过 DONE→PREPARING→QUEUED→RUNNING 三步转换成功恢复\n- 预计剩余 ~10 分钟完成（10 episodes × ~1 ep/min）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_westd38929_registry_v3_20260525T053412"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 63
+    }
+  ]
+}

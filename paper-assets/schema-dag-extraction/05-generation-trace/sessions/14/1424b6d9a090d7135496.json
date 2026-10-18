@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1424b6d9a090d7135496",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper case study appendix",
+  "task_key": "worker_paper_case_study_appendix_20260518T194133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_case_study_appendix_20260518T194133_result.json",
+    "occurrence": 1,
+    "bytes": 1423,
+    "sha256": "ebace0d3ea779881ee2d35f319041c6f787cbea6d9592bad6bccb7bfc2abec66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。汇报：\n\n**完成的工作：**\n\n1. **远程数据提取**（cqa1 上 `/root/schema-dag-extraction/artifacts/case_study/case_study_data.json`）：\n   - FewRel 80-rel: 从 3 seeds × 25 batches 的 72K 预测中统计 25,075 次 type confusion，272 个 unique pair\n   - Few-NERD: 从 66-type 全 schema 提取 3,398 次 confusion，820 个 unique pair\n   - 5 个高 SCS 错误实例（SCS > 0.90）\n\n2. **LaTeX appendix**（`main.tex` 新增 Section \"Qualitative Error Analysis\", label `app:error-analysis`）：\n   - Table 1 (RE): FewRel top-10 confused pairs，最高 confusion pair 是 *instance of*/*taxon rank*（N=875, SCS=0.53），最高 SCS pair 是 *followed by*/*follows*（SCS=0.90, N=400）\n   - Table 2 (NER): Few-NERD top-10 confused pairs，最高是 *person-other*/*person-politician*（N=121, SCS=0.93）\n   - Table 3: 3 个具体错误实例，展示 argument directionality reversal (participant/participant of)、containment inversion (contains/located in)、meronymy-membership conflation (part of/member of)\n\n3. **正文引用**（`results.tex` §4.2 末尾添加一句指向 `Appendix~\\ref{app:error-analysis}`）\n\n**选择错误实例的理由**：3 个实例分别代表三种 high-SCS confusion 模式（方向反转、逆关系、上下位混淆），且 SCS 均 > 0.90，与 §4.2 的 pairwise SCS-confusion correlation 论述直接对应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

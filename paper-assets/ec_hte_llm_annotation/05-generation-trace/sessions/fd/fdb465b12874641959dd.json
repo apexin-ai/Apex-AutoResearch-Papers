@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fdb465b12874641959dd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 019 pz1 sweep",
+  "task_key": "worker_code_exp-019-pz1-sweep_20260521T153115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-019-pz1-sweep_20260521T153115_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "ba11faf96df4da8e4b46f687ed61205b08675bf261e02fcc111945d457ba299d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-019 complete. Key results:\n\n**Theorem 1 R²**: 0.976–0.998 across all (P(Z=1), K) settings — bias decomposition holds universally, not just at P(Z=1)=0.5. This directly addresses M2.\n\n**RMSE ratio (HB/Global)**:\n- **K=2**: HB wins everywhere (ratio 0.76–0.92), best advantage at P(Z=1)=0.2\n- **K=4**: HB loses everywhere (ratio 1.06–1.68) — with 250 experts split across 4 subgroups, per-subgroup CM estimates are too noisy (especially the minority Z class at low P(Z=1)), and variance amplification from matrix inversion overwhelms the bias correction benefit\n\n**Coverage**: HB maintains near-nominal 95% coverage (0.92–0.94) across all settings, while naive (0.65–0.79) and global_corrected (0.79–0.90) undercover substantially.\n\n**Outputs**:\n- Script: `exp019_pz1_sweep.py`\n- CSV: `results/exp019_pz1_sweep_results.csv` (30k rows)\n- Analysis: `results/exp019_pz1_sweep_analysis.md`\n- Figures: `artifacts/pz1_sweep/` (4 plots)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

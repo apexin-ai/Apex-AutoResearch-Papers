@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4e16cfcae5b4d63ccc8b",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code dcol roberta v6 prep",
+  "task_key": "worker_code_dcol_roberta_v6_prep_20260515T040134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_roberta_v6_prep_20260515T040134.log",
+    "occurrence": 1,
+    "bytes": 582460,
+    "sha256": "12fd7156ab931b94b609c29c19e6ff2d8af731d0cd3ba4f655b1ba1314ef8296"
+  },
+  "statistics": {
+    "messages": 207,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "4e16cfcae5b4d63ccc8b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e16cfcae5b4d63ccc8b-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "de6697f4723464be55ad",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest westd38929",
+  "task_key": "worker_ops_harvest-westd38929_20260524T081656",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-westd38929_20260524T081656_result.json",
+    "occurrence": 1,
+    "bytes": 2243,
+    "sha256": "55a1584288fe86a4b84522987f9cee6faf79027639a3f75bcc2be115a1709e2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 运行状态\n\n与预期不同，**GPU 0/1 并非空闲**，3 个 GPU 都在运行 π0.5 实验：\n\n| GPU | 实验 | Status | 当前进度 | 累计 SR |\n|-----|------|--------|----------|---------|\n| **0** | eval_pi05_random_k09_goal_seed42_postfix | **RUNNING** | Task 5/10 开始 (T4=90%) | 137/250 = 54.8% |\n| **1** | eval_pi05_random_k085_goal_seed42_postfix | **RUNNING** | Task 4/10 开始 (T3=30%) | 61/200 = 30.5% |\n| **2** | eval_pi05_random_k07_goal_seed42_postfix | **RUNNING** | Task 5/10 开始 (T4=96%) | 195/250 = 78.0% |\n| **3** | — | **IDLE** | — | — |\n\n3 个 π0.5 实验都在 15:32 启动，运行约 45 分钟，预计还需 ~45-60 分钟完成全部 10 个 task。\n\n---\n\n### GPU 3 已完成实验\n\n**1. eval_xvla_l2norm_k03_goal_seed42 (X-VLA L2norm k=0.3 Goal)**\n- 完成时间: 15:53\n- 结果: `eval_results/xvla_prune_k0.3_libero_goal.json`\n- **SR = 0.2%** (1/500), 几乎完全失败，只有 Task 7 \"turn on the stove\" 成功 1 次\n- 500 episodes, seed=42\n\n**2. eval_xvla_random_k05_spatial_seed43 (X-VLA Random k=0.5 Spatial)**\n- 完成时间: 07:29\n- 结果: `eval_results/eval_xvla_random_k05_spatial_seed43.json`\n- **SR = 72.6%** (363/500), 95% CI [68.5%, 76.3%]\n- 500 episodes, seed=43\n- Per-task: 100%, 38%, 88%, 92%, 88%, 0%, 94%, 68%, 92%, 66%\n\n**3. 两个 k=0.3 Long 实验 — 已终止/失败**\n- `eval_xvla_l2norm_k03_long_seed42` — 日志停在 15:31, Task 0 Ep 22, 全部 FAIL\n- `eval_xvla_random_k03_long_seed42` — 日志停在 15:31, Task 0 Ep 29, 全部 FAIL\n- 无结果 JSON，疑似被手动 kill\n\n---\n\n### 今日已完成的全部 X-VLA 结果汇总\n\n**L2norm 模式:**\n\n| k | Goal | Spatial | Object | Long (10) |\n|---|------|---------|--------|-----------|\n| 0.30 | **0.2%** | 31.2% | — | stalled |\n| 0.50 | 59.0% | 58.8% | 43.0% | 44.6% |\n| 0.70 | 51.8% | 72.8% | — | — |\n\n**Random 模式 (k=0.85):**\n\n| Suite | SR |\n|-------|----|\n| Goal | 60.4% |\n| Spatial | 68.2% |\n| Object | 65.0% |\n| Long (10) | 35.0% |\n\n**Random k=0.5 seed43:** Spatial = 72.6%\n\n**Attention-based (已有结果):** attention_last/mean/rollout 在 k=0.3-0.5 普遍 SR > 90%，远优于 L2norm/Random。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

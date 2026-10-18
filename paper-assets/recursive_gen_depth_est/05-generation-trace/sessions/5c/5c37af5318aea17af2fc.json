@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5c37af5318aea17af2fc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260515T222746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260515T222746_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "59ccb892f3474efdb716d73c13d61fcb1aa54b6177c6539028a887c054874141"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### PID 364466 — 存活\n父 shell 进程存活，实际训练进程是 PID 364471（`curation_poc.py --phase finetune`），CPU 160%，正在运行。\n\n### GPU 状态\n\n| GPU | 型号 | 利用率 | 显存占用 |\n|-----|------|--------|----------|\n| GPU 0 | RTX PRO 6000 Blackwell | **61%** | 10,334 / 97,887 MiB |\n| GPU 1 | RTX PRO 6000 Blackwell | **0%** | 3 / 97,887 MiB（空闲） |\n\n### plan_013 finetune 进度\n- 已完成 **2/40 runs**（`unfiltered/seed_42`, `unfiltered/seed_123` 含 adapter + PPL 结果）\n- 当前正在跑第 3 个 run：`unfiltered/seed_456`，步数 37/939（~4%），速度 ~3.6 it/s\n- 训练 loss 稳定在 ~1.65，PPL 结果 seed_123 = 15.83，正常\n- 每个 run 约 262s（~4.5 min），40 个 run 预计总耗时 ~3 小时，已过 ~9 min\n\n### plan_015 进程\n- PID 365317：`plan_015_c4_supplement.py --gpu 0 --batch_size 16 --n_passages 5000`，CPU 175%，占用 ~19GB 内存，运行在 GPU 0 上\n\n### 注意\nGPU 0 同时跑着 plan_013 finetune 和 plan_015 c4_supplement 两个进程，目前显存占用 10.3GB / 97.9GB 尚有余量。GPU 1 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "35448f554b33975f464c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "debug westd38929 mujoco egl",
+  "task_key": "worker_debug_westd38929-mujoco-egl_20260520T092712",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_westd38929-mujoco-egl_20260520T092712_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "9dc0c87083ccf8deca7044cbe072b56cd0fc5282e55779a0b1b17fdc4b223015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 4 个 eval 都在正常运行，没有崩溃。**\n\n## 诊断结论\n\n**westd-38929 上没有 MuJoCo/EGL 崩溃问题。** 当前状态：\n\n| GPU | 任务 | 进度 | 状态 |\n|-----|------|------|------|\n| 0 | `eval_xvla_pruning_libero.py --keep_ratio 1.0` | ~29/50 ep (Task 0) | 正常，全 SUCCESS |\n| 1 | `eval_xvla_pruning_libero.py --keep_ratio 0.95` | ~29/50 ep (Task 0) | 正常，全 SUCCESS |\n| 2 | `eval_xvla_pruning_libero.py --keep_ratio 0.9` | ~15/50 ep (Task 0) | 正常，全 SUCCESS |\n| 3 | `eval_xvla_pruning_libero.py --keep_ratio 0.7` | ~49/50 ep (Task 0) | 运行中（部分 FAIL，max_steps=800） |\n\n**关于之前的 segfault：** log 文件 `eval_openvla_sc_m128_vtconly_20k_seed42.log`（17:00 启动）只有 17 行，在 Task 0 开始后就断了——这个进程确实崩溃了。但那个用的是 `eval_openvla_smart_compress.py`（OpenVLA 7B 模型），不是当前运行的 `eval_xvla_pruning_libero.py`。之后的 xvla 评估（17:16 启动）已经正常跑起来了。\n\n可能的解释：\n1. 之前的 OpenVLA eval 崩溃是因为 OpenVLA 7B 模型加载后 GPU 内存不足（虽然 96GB 应该够），或者是代码 bug\n2. 当前的 xvla pruning eval 用了不同的代码路径，不存在这个问题\n3. MuJoCo/EGL 本身没有问题——我的测试全部通过（单环境、50 并发环境都正常）\n\n如果需要排查 OpenVLA eval 的崩溃，需要重新运行 `eval_openvla_smart_compress.py` 并捕获 core dump 或 faulthandler 输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

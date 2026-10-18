@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6d9474b644d60a19e12e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross model gpt2xl 001",
+  "task_key": "worker_analysis_cross_model_gpt2xl_001_20260514T182022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_model_gpt2xl_001_20260514T182022_result.json",
+    "occurrence": 1,
+    "bytes": 1454,
+    "sha256": "b6b8747521ce15a04d1dfe34e33e9082b99e47e8171ce835b26b20a839143f79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是分析汇总：\n\n---\n\n## cross_model_gpt2xl_001 实验分析\n\n### Pipeline 状态：生成完成，分类未执行\n\n`run_pipeline_gpt2xl.sh` 只包含 3x finetune + 3x generate（共 6 步），**未调用** `filter_code.py` / `extract_features.py` / `train_classifier.py`。\n\n### 训练 Loss\n\n| Depth | Final Loss | Runtime |\n|-------|-----------|---------|\n| 0 | 2.5498 | 707s |\n| 1 | 1.7146 | 688s |\n| 2 | 1.3415 | 692s |\n\nLoss 递减趋势（2.55 → 1.72 → 1.34）与 Pythia baseline 一致，\"loss 收敛加速\"效应跨模型存在。\n\n### 生成数据\n4 个 depth 各 5000 条，共 20000 条，文件大小正常（10.5-12MB）。\n\n### 数据质量\n- **depth_1**: 自然语言，质量良好\n- **depth_2**: 轻微退化，出现技术类内容（AJAX-CSS 文章）和重复联系信息\n- **depth_3**: 明显退化，出现极端重复循环（样本 0），hallucinated facts\n\n### 无法判定 Conclusion\n\n没有分类结果，**无法按标准（4-class acc > 40%, d1v2 AUC > 0.6）判定 success/negative**。实验保持 ANALYZING 状态。\n\n### 需要执行的下一步\n1. `python scripts/filter_code.py` — 代码污染检查\n2. `python scripts/extract_features.py` — 统计特征提取（对 `data/gpt2xl/depth_{0,1,2,3}.jsonl`）\n3. `python scripts/train_classifier.py` — 分类评估\n4. 拿到 4-class acc 和 pairwise AUC 后更新 conclusion"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

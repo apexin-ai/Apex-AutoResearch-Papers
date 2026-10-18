@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6194d71725841b0830e4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis m1 gemini leverage",
+  "task_key": "worker_analysis_m1_gemini_leverage_20260522T091146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m1_gemini_leverage_20260522T091146_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "d2719587314ffeb79bf6394614e8da4efc8aafabf10a0d195c8105606fe30ad2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**count_8 (n=50)** — 完全稳健。去掉 2 个 leverage points 后 r 从 -0.887 **增强**到 -0.913（p=1.7e-19）。两个 leverage points 都是 accuracy 异常值，不是 BCS 异常值。\n\n**count_16 (n=10)** — 确认单点驱动。high_4 (BCS=0.97) 在 BCS 维度上是 11.2σ 离群点，h_ii=0.93 占据 93% 的 x-leverage。移除后 r 降至 -0.42 (n.s.)。其余 9 个 batch 的 BCS 范围仅 [0.50, 0.62]，不足以检测相关性。\n\n**对论文的影响**：cross-model generalization claim 稳健。论文对 count_16 的披露（Appendix T）已经充分，count_8 作为主要 Gemini Dim2 证据无需额外 caveat。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c0164c88753273b151d9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit westd27271 v2",
+  "task_key": "worker_ops_audit_westd27271_v2_20260522T054035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit_westd27271_v2_20260522T054035_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "2f7e776e3f4e8f473f2982d6b0c6b15df9e2e66a145d618d3017c54f6f95d596"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### GPU 状态\n\n| GPU | PID | 实验 | 显存占用 | GPU 利用率 |\n|-----|-----|------|----------|-----------|\n| 0 | 9470 | `random k=0.95 spatial seed43` | 10,630 / 97,887 MiB | 31% |\n| 1 | 9613 | `l2norm k=0.85 spatial seed43` | 10,614 / 97,887 MiB | 28% |\n\n两张 GPU 均被已知实验占用，**无异常进程**。\n\n### 实验进度\n\nlibero_spatial 共 10 个 task（T0-T9），每个 50 episodes。\n\n**random k=0.95**（GPU 0）— 7/10 tasks 完成，正在跑 T7 (ep 10/50)，约 **72%**\n- 已完成 task 分数：T2=100%, T3=60%, T4=36%, T5=76%, T6=90%\n- 累计：278/350 = **79.4%**\n\n**l2norm k=0.85**（GPU 1）— 8/10 tasks 完成，正在跑 T8 (ep 20/50)，约 **82%**\n- 已完成 task 分数：T3=78%, T4=62%, T5=84%, T6=96%, T7=90%\n- 累计：351/400 = **87.8%**\n\n### 结论\n\n- 两张 GPU 都在正常跑上一轮部署的实验，状态健康\n- 预计 random 还需 ~25 min，l2norm 还需 ~15 min 完成\n- **空闲 GPU：0 张**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

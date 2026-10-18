@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5aa330293e5ce03aef96",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 final 500batch",
+  "task_key": "worker_eval_v8_final_500batch_20260516T020807",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8_final_500batch_20260516T020807_result.json",
+    "occurrence": 1,
+    "bytes": 2062,
+    "sha256": "7f77a0bca85968179ac389ae4b8d94cb0213833f55b4555dbbcc7ff5c26f4f9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v8 30K Final Eval — MVP Gate Report\n\n- **Checkpoint:** `checkpoints/imm_anchor_v8/step_029999`\n- **Batches:** 500, seed=42\n- **Server:** westd-27271, GPU 0\n\n### Standard Eval (ACIS enabled)\n\n| 条件 | action_loss | margin_median | preservation | kendall_tau | LED_median |\n|------|-------------|---------------|--------------|-------------|------------|\n| Clean | 0.00530 | 0.5051 | 1.0000 | 1.0000 | 0.0863 |\n| Clean+Prune50% | 0.00594 | 0.4923 | 1.0000 | 1.0000 | 0.0884 |\n| eps=0.01 | 0.00466 | 0.5028 | 0.9248 | 0.8413 | 0.0865 |\n| eps=0.01+Prune | 0.00557 | 0.5148 | 0.9247 | 0.8418 | 0.0844 |\n| eps=0.02 | 0.00682 | 0.5159 | 0.8369 | 0.6549 | 0.1687 |\n| eps=0.02+Prune | 0.00837 | 0.5041 | 0.8364 | 0.6569 | 0.1721 |\n| eps=0.05 | 0.01925 | 0.5185 | 0.6596 | 0.3599 | 0.4200 |\n| eps=0.05+Prune | 0.01933 | 0.5183 | 0.6595 | 0.3619 | 0.4204 |\n\n### Bypass-ACIS Eval\n\n| 条件 | action_loss |\n|------|-------------|\n| Clean | 0.03019 |\n| Clean+Prune50% | 0.01681 |\n| eps=0.01 | 0.02664 |\n| eps=0.01+Prune | 0.01731 |\n| eps=0.02 | 0.02978 |\n| eps=0.02+Prune | 0.01899 |\n| eps=0.05 | 0.04195 |\n| eps=0.05+Prune | 0.02959 |\n\n### Gate Criteria (baseline v5 = 0.00408)\n\n| Gate | 指标 | 值 | 阈值 | 结果 |\n|------|------|-----|------|------|\n| G1 | Δ_k median ratio | **48.20x** | ≥ 2.0x | **PASS** |\n| G2 | preservation delta | **+47.06pp** | ≥ +10pp | **PASS** |\n| G3-deploy | ACIS+Prune loss ratio | **1.4548x** | ≤ 1.10x | **FAIL** |\n| G4 | LED median | **0.1687** | < 1.0 | **PASS** |\n\n### Reference (non-blocking)\n\n| Metric | Value |\n|--------|-------|\n| G3-standard | 1.2993x |\n| G3a-bypass | 7.4047x |\n| Lipschitz(empirical) | 0.1364 |\n| Lipschitz(spectral) | 1.0672 |\n\n### 总判定: **FAIL**\n\nG3-deploy（1.4548x）远超 1.10x 阈值，ACIS+50% pruning 下 action_loss (0.00594) 比 baseline v5 (0.00408) 高 45.5%。理论指标 G1/G2/G4 全部大幅通过，但部署实用性指标 G3 不达标。\n\n结果已保存至 `eval_results/eval_imm_v8_final_30k.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

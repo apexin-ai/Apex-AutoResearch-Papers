@@ -1,0 +1,1601 @@
+{
+  "schema_version": "1.0",
+  "id": "ecbaf1d6454a2f5994e5",
+  "project": "causal_style_decomp_judge",
+  "kind": "conversation",
+  "title": "audit ref check A",
+  "task_key": "worker_audit_ref_check_A_20260526T104718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_ref_check_A_20260526T104718.jsonl",
+    "occurrence": 1,
+    "bytes": 95726,
+    "sha256": "9bd9359b7dc574319f86f0db392130ef334d045b0435f406fdd1550005b40dcd"
+  },
+  "statistics": {
+    "messages": 81,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "tool_call": 40,
+      "tool_result": 40,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T10:52:07.731201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read all tex files for citation contexts",
+              "subagent_type": "Explore",
+              "prompt": "Read the following tex files and find ALL occurrences of these citation keys. For each key, extract the surrounding sentence/paragraph so we can verify the citation context is correct.\n\nCitation keys to find:\ncohen1988statistical, pearl2009causality, tripathi2025pairwise, murugadoss2025sos, li2026preference, wang2026fairjudge, dubois2025lc, casse2026concise, counterfactual2025rhetorical, soumik2026judging, reber2025rate, kiritchenko2017bws, novikova2018rankme, stevens1946theory, nemes2009bias, david1988method, thurstone1927law, decoster2011median, zheng2023judging\n\nFiles to read:\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex\n\nAlso look for a .bib file in /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/ directory to get the actual bib entries.\n\nFor each citation key, report:\n1. The exact bib entry (if found in .bib file)\n2. Every location where it's cited in the tex files, with the surrounding text (2-3 sentences of context)\n\nBe very thorough - search breadth \"very thorough\"."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T10:52:07.731681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T10:52:07.731889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T10:52:07.732050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper -name \"*.bib\" 2>/dev/null"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T10:52:07.732191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T10:52:07.732387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T10:52:07.732634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@book{cohen1988statistical,\n2\t  title={Statistical Power Analysis for the Behavioral Sciences},\n3\t  author={Cohen, Jacob},\n4\t  edition={2nd},\n5\t  year={1988},\n6\t  publisher={Lawrence Erlbaum Associates}\n7\t}\n8\t\n9\t@book{pearl2009causality,\n10\t  title={Causality: Models, Reasoning, and Inference},\n11\t  author={Pearl, Judea},\n12\t  edition={2nd},\n13\t  year={2009},\n14\t  publisher={Cambridge University Press}\n15\t}\n16\t\n17\t@inproceedings{tripathi2025pairwise,\n18\t  title={Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in {LLM}-Based Evaluation},\n19\t  author={Tripathi, Tuhina and Wadhwa, Manya and Durrett, Greg and Niekum, Scott},\n20\t  booktitle={Proceedings of the 2nd Conference on Language Modeling (COLM)},\n21\t  year={2025},\n22\t  url={https://arxiv.org/abs/2504.14716}\n23\t}\n24\t\n25\t@inproceedings{murugadoss2025sos,\n26\t  title={Style Outweighs Substance: Failure Modes of {LLM} Judges in Alignment Benchmarking},\n27\t  author={Murugadoss, Aakanksha and others},\n28\t  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n29\t  year={2025},\n30\t  url={https://arxiv.org/abs/2409.15268}\n31\t}\n32\t\n33\t@inproceedings{li2026preference,\n34\t  title={Preference Leakage: A Contamination Problem in {LLM}-as-a-Judge},\n35\t  author={Li, Dawei and others},\n36\t  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n37\t  year={2026},\n38\t  url={https://arxiv.org/abs/2502.01534}\n39\t}\n40\t\n41\t@article{wang2026fairjudge,\n42\t  title={{FairJudge}: An Adaptive, Debiased, and Consistent {LLM}-as-a-Judge},\n43\t  author={Yang, Bo and Feng, Lanfei and Chen, Yunkui and Zhang, Yu and Xu, Xiao and Li, Shijian},\n44\t  journal={arXiv preprint arXiv:2602.06625},\n45\t  year={2026},\n46\t  url={https://arxiv.org/abs/2602.06625}\n47\t}\n48\t\n49\t\n50\t@inproceedings{dubois2025lc,\n51\t  title={Length-Controlled {AlpacaEval}: A Simple Way to Debias Automatic Evaluators},\n52\t  author={Dubois, Yann and others},\n53\t  booktitle={Proceedings of the Int\n…[truncated 19891 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T10:52:07.732839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T10:52:07.733001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath,amssymb}\n14\t\\usepackage{xcolor}\n15\t\\usepackage{subcaption}\n16\t\\usepackage{tikz}\n17\t\\usetikzlibrary{arrows.meta,positioning}\n18\t\n19\t\\title{The Likert Blindspot: Measurement-Mode Divergence\\\\in LLM Judge Style Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\input{sections/abstract}\n27\t\n28\t\\input{sections/introduction}\n29\t\n30\t\\input{sections/related_work}\n31\t\n32\t\\input{sections/method}\n33\t\n34\t\\input{sections/experiments}\n35\t\n36\t\\input{sections/conclusion}\n37\t\n38\t\\section*{Limitations}\n39\t\\label{sec:limitations}\n40\t\n41\t\\noindent\\textbf{Residual confounding.}\n42\tThe NLI gate blocks content changes but cannot block quality perception shifts mediated by style itself; residual confounding is not fully eliminated despite logistic adjustment.\n43\t\n44\t\\noindent\\textbf{Detection vs.\\ amplification.}\n45\tThe Blindspot may partly reflect pairwise format amplification \\citep{jeong2025comparative} rather than pure detection; six controls bound this risk (\\S\\ref{sec:amplification}), but we cannot precisely quantify the amplification factor.\n46\t\n47\t\\noindent\\textbf{Scope.}\n48\tCSD applies only to surface-level axes whose rewrites preserve semantic content. Primary analyses use LLMBar ($n = 100$) with five judges; generalization to additional axes, benchmarks, and judges remains open.\n49\t\n50\t\\section*{Ethical Considerations}\n51\t\n52\tThis work studies biases in automated evaluation systems and does not involve generating harmful content. Human annotation (100 pairs, two annotators) was conducted by compensated research collaborators; no crowdsourcing platforms were used. All data are drawn from publicly available benchmarks.\n53\t\n54\t\\bibliography{references}\n55\t\n56\t\\i\n…[truncated 49 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T10:52:07.733180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T10:52:07.733367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLikert and pairwise scoring yield divergent style-sensitivity profiles in LLM judges.\n3\tWe define the \\emph{Likert Blindspot}: statistically significant pairwise sensitivity absent from Likert scoring on the same data.\n4\tWe introduce Controlled Style Decomposition (CSD), a black-box diagnostic combining natural language inference gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n5\tAcross four target judges and two axes (formality, verbosity), pairwise reaches significance ($p < 0.001$) where Likert does not ($p > 0.28$) in all eight primary cells, replicated across three benchmarks and confirmed by seven statistical methods.\n6\tScaled replication shows this divergence is structural: Likert effect sizes collapse toward zero at larger sample sizes while pairwise remains stable, revealing a three- to four-fold efficiency gap rather than absolute failure.\n7\tGeneralized estimating equation decomposition further reveals that the confound structure differs by axis: verbosity bias is style-dominated, while formality reflects joint style--quality confounding---a distinction invisible to aggregate metrics.\n8\tLikert-only audits risk missing style preferences that propagate through pairwise-based alignment pipelines\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/causal_style_decomp_judge-5EBE/}.}.\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T10:52:07.733541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T10:52:07.733690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\emph{``What is the average height for a male?''} In our experiments, given a formal and a casual answer with verified identical content (natural language inference [NLI] entailment $= 0.993$), GPT-4o rates the casual variant \\emph{higher} on a 1--10 Likert scale (8 vs.\\ 5), yet consistently selects the formal variant in pairwise comparison.\n4\tSame judge, same texts, opposite conclusions---and both answers say the same thing.\n5\tThis is not an isolated quirk.\n6\tSurface-level style features alone explain most of the variance in judge scores \\citep{murugadoss2025sos}, with 76--92\\% of preferences originating from style cues \\citep{li2026preference,soumik2026judging}.\n7\tWe term this pattern the \\emph{Likert Blindspot}: the measurement-mode divergence where pairwise comparison detects statistically significant style sensitivity that Likert scoring misses on the same data.\n8\tThe divergence admits multiple non-exclusive explanations---measurement attenuation, format amplification \\citep{jeong2025comparative}, or construct-level differences---which our controlled design bounds but cannot definitively resolve (\\S\\ref{sec:likert_pairwise}).\n9\t\n10\tLLM judges are central infrastructure for evaluation and alignment training, where judge preferences serve as reward signals in reinforcement learning from human feedback (RLHF) and direct preference optimization (DPO).\n11\tAny systematic bias therefore propagates through both evaluation leaderboards and model development pipelines.\n12\tExisting approaches address individual requirements---multi-dimensional style analysis \\citep{casse2026concise,wang2026fairjudge}, interventional design \\citep{reber2025rate}, population-level correction \\citep{dubois2025lc}---but no single framework integrates per-axis decomposition, interventional identification, confound-structure analysis, and black-box applicability.\n13\tClassical psychometrics establishes that pairwise comparison yields higher discriminability than abs\n…[truncated 2496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T10:52:07.733865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T10:52:07.734016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Interventional Approaches to Judge Bias}\n5\tText-based interventional methods have a growing methodological foundation \\citep{feder2021causalm,wu2021polyjuice,feder2022causal}.\n6\t\\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert average treatment effect (ATE); however, our experiments show 60\\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.\n7\tCSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.\n8\t\\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.\n9\t\n10\t\\paragraph{Style Bias in LLM Judges}\n11\tThe foundational LLM-as-judge framework \\citep{zheng2023judging} documented position bias; \\citet{shi2024judging} study it across 15 judges, and \\citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.\n12\tStyle bias as a separate source has received recent attention \\citep{wu2023style,murugadoss2025sos,saito2023verbosity,li2026preference,soumik2026judging}; \\citet{li2026preference} show that style-mediated \\emph{preference leakage} propagates through evaluation pipelines.\n13\tMulti-feature frameworks such as CASSE \\citep{casse2026concise} and FairJudge \\citep{wang2026fairjudge} decompose style into finer dimensions but rely on correlational analyses that cannot distinguish causal style effects from content quality confounds.\n14\t\\citet{jeong2025comparative} identify the Comparative Trap (pairwise comparison may amplify style biases), which we address in \\S\\ref{sec:amplification}.\n15\tUnlike human evaluators, LLM judges acquire format-specific biases through RLHF training: pairwise comparison serves as the reward signa\n…[truncated 987 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T10:52:07.734252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T10:52:07.734482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Style-Controlled Rewriting}\n5\t\\label{sec:rewriting}\n6\t\n7\tWe isolate the effect of individual style attributes on judge scores by generating text pairs that differ along exactly one style axis while holding content fixed, a single-axis intervention design that enables per-axis causal attribution rather than aggregate style sensitivity measurement.\n8\tFor each text, an instruction-tuned LLM (Qwen3-32B) classifies its current style along the target axis (e.g., formal vs.\\ casual via binary classification).\n9\tIt then rewrites the text toward the opposite pole (temperature 0.7, selected to balance diversity with coherence in pilot experiments) according to an axis-specific prompt (Appendix~\\ref{app:rewriting_prompts}).\n10\tThis produces a dataset balanced across both directions at the dataset level: texts detected as formal are rewritten to casual, and vice versa.\n11\tEach operation approximates a binary intervention on a single style variable while all other axes remain fixed (Section~\\ref{sec:causal_framework}; Appendix~\\ref{app:cross_axis_contamination}).\n12\tTo control for rewriting artifact bias (the possibility that the judge prefers original text over any rewrite regardless of style), we also generate a same-style double-rewrite for each text (e.g., formal $\\to$ formal) to form an original-vs-double-rewrite control pair, following the RATE bias correction protocol \\citep{reber2025rate}.\n13\t\n14\t\\subsection{Content Preservation Verification}\n15\t\\label{sec:nli_gate}\n16\t\n17\tStyle-controlled rewriting risks altering semantic content, which would confound the style effect with a content quality effect (the $R \\to Q$ path in Figure~\\ref{fig:dag}).\n18\tTo block this path, we apply a natural language inference (NLI) gate using DeBERTa-v3-large fine-tuned on Multi-Genre NLI (MNLI; \\citealp{williams2018broad}) with an entailment threshold of 0.90, selected as the threshold above which NLI performance plateaus (Appendix~\\ref\n…[truncated 5675 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T10:52:07.734661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T10:52:07.734861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\n5\t\\subsection{Statistical Framework}\n6\t\\label{sec:stat_framework}\n7\t\n8\tThe primary family comprises six tests (three target judges $\\times$ two axes), corrected via Holm-Bonferroni at $\\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from family-wise error rate control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\\ref{app:holm8}).\n9\tTable~\\ref{tab:main_results} reports both raw and adjusted $p$-values.\n10\tAnalyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\n11\tExploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\\alpha = 0.05$ without additional correction.\n12\tBradley-Terry parameters \\citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm}, using the \\texttt{choix} Python library's default L2 regularization ($\\alpha = 10^{-6}$).\n13\tIn binary-choice BT models, independence of irrelevant alternatives is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than a violation of this assumption.\n14\tAll bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42; we verify bootstrap stability by confirming that halving the resample count changes interval widths by $<$1pp.\n15\tGEE models use exchangeable working correlation with sandwich standard errors that are robust to correlation misspecification (Appendix~\\ref{app:gee_diagnostics}).\n16\tA prospective power analysis (Appendix~\\ref{app:power_analysis}) confirms that our sample sizes ($n = 86$--$88$ \n…[truncated 19294 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T10:52:07.735034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T10:52:07.735171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\tCSD yields two findings: the Likert Blindspot (8/8 primary cells, $d \\!\\to\\! 0$ at $n{=}355$; concordance $p < .001$ favors attenuation) and per-axis confound structures via GEE (verbosity style-dominated, formality conditional).\n4\tPractically, Likert-only audits risk false negatives at benchmark sizes $n < 200$; per-axis decomposition reveals that verbosity preferences are predominantly style-driven while formality partially reflects quality differences---a distinction invisible to aggregate metrics and consequential for RLHF pipelines where pairwise judgments serve as reward signals.\n5\tCSD extends to any surface-level axis with content-preserving rewrites; deeper axes remain for future work.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T10:52:07.735360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T10:52:07.735699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\noindent\\emph{Organization: design rationale and confound structure (A--B), consistency and GEE diagnostics (C--D), rewriter independence and gate validation (E--G), equivalence testing (H), BT analysis and statistical details (I--L), sensitivity analyses (M--N), Likert scale and ablation controls (O--Q), implementation and multiplicity (R--S), cross-axis contamination and FK analysis (T--U), annotation agreement (V), cross-benchmark replication (W--X), rewriting prompts (Y), non-tie concordance (Z).}\n4\t\n5\t\\section{Design Rationale}\n6\t\\label{app:design_rationale}\n7\t\n8\tThree variables govern the observed judge score $Y$: the style attribute $S$ (e.g., formality), the original content quality $Q$, and the judge's internal scoring function.\n9\tBoth $S$ and $Q$ causally influence $Y$; the goal of CSD is to approximate the effect $S \\to Y$ while blocking confounding through $Q$.\n10\tStyle-controlled rewriting generates a text pair that differs along a single style axis, but any rewriting operation risks inadvertently altering content quality ($R \\to Q$).\n11\tThe NLI gate (\\S\\ref{sec:nli_gate}) blocks this path, yielding a controlled estimate of the $S \\to Y$ effect.\n12\tOur approach provides interventional rather than formal causal evidence: we do not claim that the directed acyclic graph (DAG) in Figure~\\ref{fig:dag} is a complete structural causal model, nor do we invoke SUTVA or consistency assumptions from the potential outcomes framework.\n13\t``Controlled'' in this context refers to experimentally controlled rewriting conditions, not formal causal identification in the potential-outcomes sense.\n14\tOur identification rests on three operational assumptions: (i)~the NLI gate approximates content preservation, blocking the $R \\to Q$ path; (ii)~position swapping controls for presentation-order effects; and (iii)~the style rewrite introduces no systematic differences beyond the target axis.\n15\t\n16\t\\section{Direction Asymmetry and Quality Confounding}\n17\t\\labe\n…[truncated 51486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T10:52:07.735900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite(t|p)?\\{(cohen1988statistical|pearl2009causality|tripathi2025pairwise|murugadoss2025sos|li2026preference|wang2026fairjudge|dubois2025lc|casse2026concise|counterfactual2025rhetorical|soumik2026judging|reber2025rate|kiritchenko2017bws|novikova2018rankme|stevens1946theory|nemes2009bias|david1988method|thurstone1927law|decoster2011median|zheng2023judging)\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T10:52:07.736100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-4-\\paragraph{Interventional Approaches to Judge Bias}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-5-Text-based interventional methods have a growing methodological foundation \\citep{feder2021causalm,wu2021polyjuice,feder2022causal}.\ndocs/paper/sections/related_work.tex:6:\\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert average treatment effect (ATE); however, our experiments show 60\\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-7-CSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.\ndocs/paper/sections/related_work.tex:8:\\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-9-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-10-\\paragraph{Style Bias in LLM Judges}\ndocs/paper/sections/related_work.tex:11:The foundational LLM-as-judge framework \\citep{zheng2023judging} documented position bias; \\citet{shi2024judging} study it across 15 judges, and \\citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.\ndocs/paper/sections/related_work.tex:12:Style bia\n…[truncated 16845 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T10:52:07.736281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite(t|p)?\\{(cohen1988statistical|pearl2009causality|tripathi2025pairwise|murugadoss2025sos|li2026preference|wang2026fairjudge|dubois2025lc|casse2026concise|counterfactual2025rhetorical|soumik2026judging|reber2025rate|kiritchenko2017bws|novikova2018rankme|stevens1946theory|nemes2009bias|david1988method|thurstone1927law|decoster2011median|zheng2023judging)\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T10:52:07.736486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-4-\\paragraph{Interventional Approaches to Judge Bias}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-5-Text-based interventional methods have a growing methodological foundation \\citep{feder2021causalm,wu2021polyjuice,feder2022causal}.\ndocs/paper/sections/related_work.tex:6:\\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert average treatment effect (ATE); however, our experiments show 60\\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-7-CSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.\ndocs/paper/sections/related_work.tex:8:\\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-9-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex-10-\\paragraph{Style Bias in LLM Judges}\ndocs/paper/sections/related_work.tex:11:The foundational LLM-as-judge framework \\citep{zheng2023judging} documented position bias; \\citet{shi2024judging} study it across 15 judges, and \\citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.\ndocs/paper/sections/related_work.tex:12:Style bias as a separate source has received recent attention \\citep{wu2023style,murugadoss2025sos,saito2023verbosity,li2026preferen\n…[truncated 13588 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T10:52:07.736668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite(t|p)?\\{.*pearl2009causality.*\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T10:52:07.736806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T10:52:07.736943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "pearl2009causality",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T10:52:07.737090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.bbl-188-  Technologies (Volume 2: Short Papers)}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.bbl-189-\ndocs/paper/main.bbl:190:\\bibitem[{Pearl(2009)}]{pearl2009causality}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.bbl-191-Judea Pearl. 2009.\ndocs/paper/main.bbl-192-\\newblock \\emph{Causality: Models, Reasoning, and Inference}, 2nd edition.\n--\ndocs/paper/sections/experiments.tex-169-Both rewriting directions favor verbose responses (90.7\\%/80.6\\%); length-controlled Style OR is unchanged ($<$2\\%), and an independent GPT-4o rewriter bounds evaluator-producer overlap to a 22\\% reduction (Appendix~\\ref{app:rewriter_indep}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex-170-Length-controlled regression confirms that 60\\% of the Flesch-Kincaid grade cross-axis effect is mediated by sentence length (Sobel $z = 2.15$, $p = .031$).\ndocs/paper/sections/experiments.tex:171:Under the assumed causal structure (Figure~\\ref{fig:dag}), Flesch-Kincaid grade acts as a plausible mediator ($S \\to \\text{FK} \\to Y$; \\citealp{pearl2009causality}), yielding a direct-effect Style OR of $2.15$ for GPT-4o (total OR $= 2.70$; Appendix~\\ref{app:fk_length}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex-172-\ndocs/paper/sections/experiments.tex-173-These per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.0\\%, Style OR $= 7.64$) is strong enough for Likert detection ($\\ddagger$ rows), confirming the severity spectrum.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib-7-}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/caus\n…[truncated 2129 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T10:52:07.737265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "(tripathi2025pairwise|kiritchenko2017bws|decoster2011median|stevens1946theory)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T10:52:07.737438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.bbl-246-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.bbl-247-\\bibitem[{Tripathi et~al.(2025)Tripathi, Wadhwa, Durrett, and\ndocs/paper/main.bbl:248:  Niekum}]{tripathi2025pairwise}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.bbl-249-Tuhina Tripathi, Manya Wadhwa, Greg Durrett, and Scott Niekum. 2025.\ndocs/paper/main.bbl-250-\\newblock \\href {https://arxiv.org/abs/2504.14716} {Pairwise or pointwise?\n--\ndocs/paper/sections/experiments.tex-87-Under format equivalence, observing 8/8 primary cells as Blindspot has binomial probability $p = 0.004$; non-tie concordance (76.6\\%, $p < .001$; \\S\\ref{sec:likert_pairwise}) provides a complementary formal test of format divergence.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex-88-\\paragraph{Interpreting the divergence.}\ndocs/paper/sections/experiments.tex:89:[Omitted long matching line]\ndocs/paper/sections/experiments.tex-90-Six experimental controls (\\S\\ref{sec:amplification}) bound the amplification factor but cannot eliminate it.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex-91-The attenuation evidence ($d \\to 0$ at $n = 355$) is consistent with Likert signal loss, but does not by itself rule out concurrent amplification or construct divergence.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib-15-}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib-16-\ndocs/paper/references.bib:17:@inproceedings{tripathi2025pairwise,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib-18-  title={Pairwise or Pointwise? Ev\n…[truncated 3600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-26T10:52:07.737597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "tripathi2025pairwise|construct divergence",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T10:52:07.737746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/experiments.tex-86-Figure~\\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\\ \\citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \\leq 100$.\ndocs/paper/sections/experiments.tex-87-Under format equivalence, observing 8/8 primary cells as Blindspot has binomial probability $p = 0.004$; non-tie concordance (76.6\\%, $p < .001$; \\S\\ref{sec:likert_pairwise}) provides a complementary formal test of format divergence.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex-88-\\paragraph{Interpreting the divergence.}\ndocs/paper/sections/experiments.tex:89:[Omitted long matching line]\ndocs/paper/sections/experiments.tex-90-Six experimental controls (\\S\\ref{sec:amplification}) bound the amplification factor but cannot eliminate it.\ndocs/paper/sections/experiments.tex:91:The attenuation evidence ($d \\to 0$ at $n = 355$) is consistent with Likert signal loss, but does not by itself rule out concurrent amplification or construct divergence.\ndocs/paper/sections/experiments.tex-92-Non-tie concordance analysis partially adjudicates: among 201 Likert non-tie pairs (pooled across judges and axes), 76.6\\% agree with pairwise direction [70.3\\%, 81.9\\%], $p < 0.001$.\ndocs/paper/sections/experiments.tex:93:Point-biserial correlations are uniformly positive ($r = 0.20$--$0.45$, 7/9 significant; Appendix~\\ref{app:concordance}), evidence more consistent with measurement attenuation than construct divergence, though partial construct divergence remains at weaker effect sizes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex-94-Claude's benchmark-dependent profile illustrates why aggregate BT is insufficient for bias attribution.\ndocs\n…[truncated 4759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T10:52:07.737912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex",
+              "offset": "85",
+              "limit": "20"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T10:52:07.738057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "85\t\n86\tFigure~\\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\\ \\citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \\leq 100$.\n87\tUnder format equivalence, observing 8/8 primary cells as Blindspot has binomial probability $p = 0.004$; non-tie concordance (76.6\\%, $p < .001$; \\S\\ref{sec:likert_pairwise}) provides a complementary formal test of format divergence.\n88\t\\paragraph{Interpreting the divergence.}\n89\tThe measurement-mode divergence admits three non-exclusive interpretations: (a)~\\emph{Likert attenuation}, where tie inflation and residual signal loss reduce Likert sensitivity below detection thresholds; (b)~\\emph{pairwise amplification}, where forced-choice comparison inflates micro-preferences into apparent biases \\citep{jeong2025comparative}; (c)~\\emph{construct divergence}, where the two formats measure different constructs (absolute quality vs.\\ ordinal preference; \\citealt{tripathi2025pairwise}).\n90\tSix experimental controls (\\S\\ref{sec:amplification}) bound the amplification factor but cannot eliminate it.\n91\tThe attenuation evidence ($d \\to 0$ at $n = 355$) is consistent with Likert signal loss, but does not by itself rule out concurrent amplification or construct divergence.\n92\tNon-tie concordance analysis partially adjudicates: among 201 Likert non-tie pairs (pooled across judges and axes), 76.6\\% agree with pairwise direction [70.3\\%, 81.9\\%], $p < 0.001$.\n93\tPoint-biserial correlations are uniformly positive ($r = 0.20$--$0.45$, 7/9 significant; Appendix~\\ref{app:concordance}), evidence more consistent with measurement attenuation than construct divergence, though partial construct divergence remains at weaker effect sizes.\n94\tClaude's benchmark-dependent profile illustrates why aggregate BT is insufficient for bias attribution.\n95\tOn LLM\n…[truncated 1287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-26T10:52:07.738263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper && grep -r \"cohen1988statistical\\|pearl2009causality\\|tripathi2025pairwise\\|murugadoss2025sos\\|li2026preference\\|wang2026fairjudge\\|dubois2025lc\\|casse2026concise\\|counterfactual2025rhetorical\\|soumik2026judging\\|reber2025rate\\|kiritchenko2017bws\\|novikova2018rankme\\|stevens1946theory\\|nemes2009bias\\|david1988method\\|thurstone1927law\\|decoster2011median\\|zheng2023judging\" sections/*.tex | cut -d: -f1,2,3 | sort | uniq"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T10:52:07.738451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sections/appendix.tex:AlpacaEval \\citep{dubois2025lc}: 100 sampled pairs.\nsections/appendix.tex:GEE conditional decomposition at $n = 330$ confirms substantial shrinkage from $n = 88$ estimates, consistent with more extreme initial estimates producing larger corrections \\citep{nemes2009bias}: Qwen3 $13.10 \\to 3.83$ ($-71\\%$), Llama $8.21 \\to 4.01$ ($-51\\%$), Gemini $8.98 \\to 2.52$ ($-72\\%$).\nsections/appendix.tex:MT-Bench \\citep{zheng2023judging}: 80 multi-turn pairs.\nsections/appendix.tex:\\caption{Cross-axis contamination: effect of rewriting along one style axis on surface proxies of the other axis. Cohen's $d$\nsections/experiments.tex:Applying RATE's Likert ATE methodology \\citep{reber2025rate} to our formality style-transformed pairs yields Cohen's $d = {-}0.04$, $p = 0.91$ (non-significant, $n = 88$); pairwise comparison on identical data reveals a 63.0\\% formal preference ($p = 0.0004$, Bradley-Terry on all 173 comparisons), confirmed by a consistency-filtered sign test (73.9\\%, $p = 0.006$, $n = 46$ consistent pairs).\nsections/experiments.tex:At $n = 355$, the Qwen3-32B formality Style OR drops from $4.20$ to $2.15$ ($-49\\%$), consistent with small-sample upward bias \\citep{nemes2009bias}; the regime classification remains stable (both effects significant; Orig OR $4.70 \\to 4.99$).\nsections/experiments.tex:The measurement-mode divergence admits three non-exclusive interpretations: (a)~\\emph{Likert attenuation}, where tie inflation and residual signal loss reduce Likert sensitivity below detection thresholds; (b)~\\emph{pairwise amplification}, where forced-choice comparison inflates micro-preferences into apparent biases \\citep{jeong2025comparative}; (c)~\\emph{construct divergence}, where the two formats measure different constructs (absolute quality vs.\\ ordinal preference; \\citealt{tripathi2025pairwise}).\nsections/experiments.tex:Under the assumed causal structure (Figure~\\ref{fig:dag}), Flesch-Kincaid grade acts as a plausible mediator ($S \\to \\text{FK} \\to\n…[truncated 3817 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T10:52:07.738739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me compile a comprehensive report with all the findings. Let me create a summary of all citations found:\n\nBased on my thorough search of the tex files and references.bib, here is a comprehensive report of all citation keys and their occurrences:\n\n## COMPLETE CITATION VERIFICATION REPORT\n\n### BIB FILE ENTRIES (from `/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib`)\n\nAll 19 requested citation keys were found in the bibliography file:\n\n**1. cohen1988statistical**\n```bibtex\n@book{cohen1988statistical,\n  title={Statistical Power Analysis for the Behavioral Sciences},\n  author={Cohen, Jacob},\n  edition={2nd},\n  year={1988},\n  publisher={Lawrence Erlbaum Associates}\n}\n```\n\n**2. pearl2009causality**\n```bibtex\n@book{pearl2009causality,\n  title={Causality: Models, Reasoning, and Inference},\n  author={Pearl, Judea},\n  edition={2nd},\n  year={2009},\n  publisher={Cambridge University Press}\n}\n```\n\n**3. tripathi2025pairwise**\n```bibtex\n@inproceedings{tripathi2025pairwise,\n  title={Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in {LLM}-Based Evaluation},\n  author={Tripathi, Tuhina and Wadhwa, Manya and Durrett, Greg and Niekum, Scott},\n  booktitle={Proceedings of the 2nd Conference on Language Modeling (COLM)},\n  year={2025},\n  url={https://arxiv.org/abs/2504.14716}\n}\n```\n\n**4. murugadoss2025sos**\n```bibtex\n@inproceedings{murugadoss2025sos,\n  title={Style Outweighs Substance: Failure Modes of {LLM} Judges in Alignment Benchmarking},\n  author={Murugadoss, Aakanksha and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2409.15268}\n}\n```\n\n**5. li2026preference**\n```bibtex\n@inproceedings{li2026preference,\n  title={Preference Leakage: A Contamination Problem in {LLM}-as-a-Judge},\n  author={Li, Dawei and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (IC\n…[truncated 17438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "Agent",
+            "elapsed_ms": 7
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T10:52:07.738968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\" Tripathi 2025"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-26T10:52:07.739115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Style Outweighs Substance: Failure Modes of LLM Judges\" Murugadoss arXiv 2409.15268"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-26T10:52:07.739251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Preference Leakage: A Contamination Problem in LLM-as-a-Judge\" Li Dawei arXiv 2502.01534"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-26T10:52:07.739408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge\" arXiv 2602.06625"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T10:52:07.739540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators\" Dubois arXiv 2404.04475"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-26T10:52:07.739668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features\" arXiv 2601.10809"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-26T10:52:07.739796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Counterfactual LLM-based Framework for Measuring Rhetorical Style\" arXiv 2512.19908"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T10:52:07.739922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge\" Soumik arXiv 2604.23178"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-26T10:52:07.740048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\" Reber arXiv 2410.11348"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-26T10:52:07.740174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Best-Worst Scaling More Reliable than Rating Scales\" Kiritchenko Mohammad 2017 ACL"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-26T10:52:07.740364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Preference Leakage: A Contamination Problem in LLM-as-a-Judge\" Li Dawei arXiv 2502.01534\"\n\nLinks: [{\"title\":\"[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge\",\"url\":\"https://arxiv.org/abs/2502.01534\"},{\"title\":\"Preference Leakage: A Contamination Problem in LLM-as-a-judge\",\"url\":\"https://arxiv.org/html/2502.01534v3\"},{\"title\":\"(PDF) Preference Leakage: A Contamination Problem in LLM-as-a-judge\",\"url\":\"https://www.researchgate.net/publication/388685541_Preference_Leakage_A_Contamination_Problem_in_LLM-as-a-judge\"},{\"title\":\"Preference Leakage: A Contamination Problem in LLM-as- ...\",\"url\":\"https://arxiv.org/pdf/2502.01534\"},{\"title\":\"[2502.01534v1] Preference Leakage: A Contamination Problem in LLM-as-a-judge\",\"url\":\"https://arxiv.org/abs/2502.01534v1\"},{\"title\":\"Preference Leakage: A Contamination Problem in LLM-as-a-judge\",\"url\":\"https://howiehwong.github.io/preference_leakage.pdf\"},{\"title\":\"LLM-as-a-judge\",\"url\":\"https://llm-as-a-judge.github.io/\"},{\"title\":\"Preference Leakage: A Contamination Problem in LLM-as-a-judge | Pap…\",\"url\":\"https://www.opentrain.ai/papers/preference-leakage-a-contamination-problem-in-llm-as-a-judge--arxiv-2502.01534/\"},{\"title\":\"[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes\",\"url\":\"https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/\"}]\n\nI found the paper you're looking for. Here's what I found:\n\n**\"Preference Leakage: A Contamination Problem in LLM-as-a-Judge\"** exposes preference leakage, a contamination problem in LLM-as-a-judge caused by the relatedness between the synthetic data generators and LLM-based evaluators.\n\n**Paper Details:**\n- **arXiv ID:** 2502.01534\n- **Authors:** Dawei Li, Renliang Sun, Yue Huang, Ming Zhong, Bohan Jiang, Jiawei Han, Xiangliang Zhang, Wei Wang, and Huan Liu\n- **Conference:** ICLR 2026\n\n**Key Findings:**\n\nThe authors define three common rela\n…[truncated 518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-26T10:52:07.740556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"RankME: Reliable Human Ratings for Natural Language Generation\" Novikova 2018 NAACL"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-26T10:52:07.740694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\" Zheng 2023 NeurIPS arXiv 2306.05685"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-26T10:52:07.740824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Bias in odds ratios by logistic regression modelling and sample size\" Nemes 2009 BMC"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-26T10:52:07.740980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Style Outweighs Substance: Failure Modes of LLM Judges\" Murugadoss arXiv 2409.15268\"\n\nLinks: [{\"title\":\"[2409.15268] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\",\"url\":\"https://arxiv.org/abs/2409.15268\"},{\"title\":\"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\",\"url\":\"https://arxiv.org/html/2409.15268\"},{\"title\":\"[Literature Review] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\",\"url\":\"https://www.themoonlight.io/en/review/style-outweighs-substance-failure-modes-of-llm-judges-in-alignment-benchmarking\"},{\"title\":\"Paper page - Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking\",\"url\":\"https://huggingface.co/papers/2409.15268\"},{\"title\":\"(PDF) Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking\",\"url\":\"https://www.researchgate.net/publication/384288829_Style_over_Substance_Failure_Modes_of_LLM_Judges_in_Alignment_Benchmarking\"},{\"title\":\"[PDF] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Style-Outweighs-Substance:-Failure-Modes-of-LLM-in-Feuer-Goldblum/50ee11e0d057defe6c449099e01b12cf3cb74446\"},{\"title\":\"Mathematical Proof as a Litmus Test: Revealing Failure Modes of Advanced Large Reasoning Models\",\"url\":\"https://arxiv.org/html/2506.17114v1\"},{\"title\":\"When Judgment Becomes Noise: How Design Failures in LLM Judge Benchmarks Silently Undermine Validity\",\"url\":\"https://arxiv.org/html/2509.20293v1\"}]\n\nI found the paper successfully. Here's information about it:\n\n## \"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\"\n\nThe paper was written by Benjamin Feuer et al. and presented at the International Conference on Learning Representations (ICLR) in 2025.\n\n**Key Research Questions:**\n\nThe work attempts to answer whether LLM-judge preferences translate to progre\n…[truncated 1029 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-26T10:52:07.741163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge\" arXiv 2602.06625\"\n\nLinks: [{\"title\":\"[2602.06625] FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge\",\"url\":\"https://arxiv.org/abs/2602.06625\"},{\"title\":\"FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2602.06625\"},{\"title\":\"LLM-as-a-Judge: Why Frontier Models Fail 50%+ Bias Tests | Adaline\",\"url\":\"https://www.adaline.ai/blog/llm-as-a-judge-reliability-bias\"},{\"title\":\"Who can we trust? LLM-as-a-jury for Comparative Assessment\",\"url\":\"https://arxiv.org/html/2602.16610v1\"},{\"title\":\"[2602.00521] Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://arxiv.org/abs/2602.00521\"},{\"title\":\"Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation\",\"url\":\"https://arxiv.org/html/2603.05485\"},{\"title\":\"Evaluating Scoring Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2506.22316v3\"}]\n\nBased on the search results, here's information about the paper \"FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge\" (arXiv 2602.06625):\n\n## Overview\n\nFairJudge is an adaptive, debiased, and consistent LLM-as-a-Judge. The paper was published in February 2026 by Bo Yang and colleagues.\n\n## Problem Statement\n\nExisting LLM-as-a-Judge systems suffer from three fundamental limitations: limited adaptivity to task- and domain-specific evaluation criteria, systematic biases driven by non-semantic cues such as position, length, format, and model provenance, and evaluation inconsistency that leads to contradictory judgments across different evaluation modes (e.g., pointwise versus pairwise).\n\n## Key Approach\n\nUnlike prior approaches that treat the judge as a static evaluator, FairJudge models judging behavior itself as a learnable and regularized policy. \n\nFrom a data-centric perspective, the authors construct a high-information-density judging dataset that explicitly injects supervision signa\n…[truncated 499 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-26T10:52:07.741358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Best Practices for Using Median Splits Artificial Categorization\" DeCoster 2011 Journal Experimental Psychopathology"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-26T10:52:07.741521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\" Tripathi 2025\"\n\nLinks: [{\"title\":\"[2504.14716] Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\",\"url\":\"https://arxiv.org/abs/2504.14716\"},{\"title\":\"Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\",\"url\":\"https://www.emergentmind.com/papers/2504.14716\"},{\"title\":\"[2504.14716v2] Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\",\"url\":\"https://arxiv.org/abs/2504.14716v2\"},{\"title\":\"[2504.14716v1] Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\",\"url\":\"https://arxiv.org/abs/2504.14716v1\"},{\"title\":\"[Literature Review] Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\",\"url\":\"https://www.themoonlight.io/en/review/pairwise-or-pointwise-evaluating-feedback-protocols-for-bias-in-llm-based-evaluation\"},{\"title\":\"Am I More Pointwise or Pairwise? Revealing Position Bias in Rubric-Based LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2602.02219\"},{\"title\":\"Pairwise or Pointwise? Evaluating Feedback Protocols for ...\",\"url\":\"https://arxiv.org/pdf/2504.14716\"},{\"title\":\"CodeRankEval: Benchmarking and Analyzing LLM Performance for Code Ranking\",\"url\":\"https://www.researchgate.net/publication/397827093_CodeRankEval_Benchmarking_and_Analyzing_LLM_Performance_for_Code_Ranking\"}]\n\nI found the paper you're looking for. Here's what I found:\n\n**Paper Details:**\n\"Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\" is by Tuhina Tripathi and 3 other authors. The co-authors are Manya Wadhwa, Greg Durrett, and Scott Niekum from University of Massachusetts Amherst and The University of Texas at Austin.\n\n**Main Findings:**\nThe choice of feedback protocol for evaluation (absolute scores versus relative preferences) can significantly affect evaluation reliability \n…[truncated 826 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-26T10:52:07.741708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Counterfactual LLM-based Framework for Measuring Rhetorical Style\" arXiv 2512.19908\"\n\nLinks: [{\"title\":\"[2512.19908] Counterfactual LLM-based Framework for Measuring Rhetorical Style\",\"url\":\"https://arxiv.org/abs/2512.19908\"},{\"title\":\"Counterfactual LLM-based Framework for Measuring Rhetorical Style\",\"url\":\"https://arxiv.org/html/2512.19908v1\"},{\"title\":\"Counterfactual LLM-based Framework for Measuring Rhetorical Style\",\"url\":\"https://www.researchgate.net/publication/399026376_Counterfactual_LLM-based_Framework_for_Measuring_Rhetorical_Style\"},{\"title\":\"Counterfactual LLM-based Framework for Measuring Rhetorical Style | OpenReview\",\"url\":\"https://openreview.net/forum?id=fiohEI16sf\"},{\"title\":\"[Literature Review] Counterfactual LLM-based Framework for Measuring Rhetorical Style\",\"url\":\"https://www.themoonlight.io/en/review/counterfactual-llm-based-framework-for-measuring-rhetorical-style\"},{\"title\":\"COUNTERFACTUAL LLM-BASED FRAMEWORK FOR ...\",\"url\":\"https://openreview.net/pdf/e194fe1dda6ea2aff401bf0f16650a9c7d414fd9.pdf\"},{\"title\":\"Rhetorical Questions in LLM Representations: A Linear Probing Study\",\"url\":\"https://arxiv.org/html/2604.14128\"},{\"title\":\"Jingyi Qiu (@JingyiQiu4) / Posts / X\",\"url\":\"https://x.com/JingyiQiu4\"}]\n\nBased on the search results, here's what I found about this paper:\n\n## Overview\n\nThe paper introduces a counterfactual, LLM-based framework where multiple LLM rhetorical personas generate counterfactual writings from the same substantive content, an LLM judge compares them through pairwise evaluations, and outcomes are aggregated using a Bradley-Terry model.\n\n## Problem Statement\n\nThe rise of AI has fueled growing concerns about \"hype\" in machine learning papers, yet a reliable way to quantify rhetorical style independently of substantive content has remained elusive.\n\n## Methodology\n\nThe framework asks how the perception and evaluation of a paper would change if the rhetorical style were altered while the underlyi\n…[truncated 629 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-26T10:52:07.741914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators\" Dubois arXiv 2404.04475\"\n\nLinks: [{\"title\":\"[2404.04475] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators\",\"url\":\"https://arxiv.org/abs/2404.04475\"},{\"title\":\"Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators\",\"url\":\"https://arxiv.org/html/2404.04475v1\"},{\"title\":\"[PDF] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Length-Controlled-AlpacaEval:-A-Simple-Way-to-Dubois-Galambosi/eb375712bd37250c350ecd3f559e1879e87eb3e5\"},{\"title\":\"GitHub - tatsu-lab/alpaca_eval: An automatic evaluator for instruction-following language models. Human-validated, high-quality, cheap, and fast. · GitHub\",\"url\":\"https://github.com/tatsu-lab/alpaca_eval\"},{\"title\":\"Debiasing AlpacaEval via Length Control\",\"url\":\"https://www.emergentmind.com/papers/2404.04475\"},{\"title\":\"Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Eval…\",\"url\":\"https://www.opentrain.ai/papers/length-controlled-alpacaeval-a-simple-way-to-debias-automatic-evaluators--arxiv-2404.04475/\"},{\"title\":\"[Literature Review] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators\",\"url\":\"https://www.themoonlight.io/en/review/length-controlled-alpacaeval-a-simple-way-to-debias-automatic-evaluators\"},{\"title\":\"Length Controlled Generation for Black-box LLMs\",\"url\":\"https://aclanthology.org/2025.acl-long.825.pdf\"},{\"title\":\"Rethinking LLM-based Preference Evaluation\",\"url\":\"https://arxiv.org/html/2407.01085v2\"}]\n\nI found the paper you're looking for! Here's what I found:\n\n## Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators\n\n**Authors:** Yann Dubois, Balázs Galambosi, Percy Liang, and Tatsunori B. Hashimoto\n\n**arXiv ID:** 2404.04475\n\n**Submission Date:** April 6, 2024 (v1), last revised March 10, 2025 (v2)\n\n**Affiliations:** Stanford \n…[truncated 1307 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-26T10:52:07.742112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Best-Worst Scaling More Reliable than Rating Scales\" Kiritchenko Mohammad 2017 ACL\"\n\nLinks: [{\"title\":\"Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation - ACL Anthology\",\"url\":\"https://aclanthology.org/P17-2074/\"},{\"title\":\"[1712.01765] Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation\",\"url\":\"https://arxiv.org/abs/1712.01765\"},{\"title\":\"(PDF) Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation\",\"url\":\"https://www.researchgate.net/publication/318741851_Best-Worst_Scaling_More_Reliable_than_Rating_Scales_A_Case_Study_on_Sentiment_Intensity_Annotation\"},{\"title\":\"[PDF] Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Best-Worst-Scaling-More-Reliable-than-Rating-A-Case-Kiritchenko-Mohammad/524fd6d2bd91bc9fc6ff7f4ee19e52f652718644\"},{\"title\":\"Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2017arXiv171201765K/abstract\"},{\"title\":\"When is best-worst best? A comparison of best-worst scaling, numeric estimation, and rating scales for collection of semantic norms | Behavior Research Methods | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.3758/s13428-017-1009-0\"},{\"title\":\"Best-worst scaling more reliable than rating scales\",\"url\":\"https://nrc-publications.canada.ca/eng/view/accepted/?id=b132b0af-2ae0-4964-ac3a-493e7292a37a\"},{\"title\":\"(PDF) Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation\",\"url\":\"https://www.academia.edu/67783414/Best_Worst_Scaling_More_Reliable_than_Rating_Scales_A_Case_Study_on_Sentiment_Intensity_Annotation\"},{\"title\":\"“You are an expert annotator”: Automatic Best–Worst-Scaling Annotations for Em\n…[truncated 1230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-26T10:52:07.742364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\" Reber arXiv 2410.11348\"\n\nLinks: [{\"title\":\"[2410.11348] RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\",\"url\":\"https://arxiv.org/abs/2410.11348\"},{\"title\":\"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\",\"url\":\"https://arxiv.org/html/2410.11348v3\"},{\"title\":\"ICML Poster RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\",\"url\":\"https://icml.cc/virtual/2025/poster/43898\"},{\"title\":\"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals | OpenReview\",\"url\":\"https://openreview.net/forum?id=rL3uxe5a0c\"},{\"title\":\"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\",\"url\":\"https://proceedings.mlr.press/v267/reber25a.html\"},{\"title\":\"[2410.11348v1] RATE: Score Reward Models with Imperfect Rewrites of Rewrites\",\"url\":\"https://arxiv.org/abs/2410.11348v1\"},{\"title\":\"CAUSAL PROXIMAL POLICY OPTIMIZATION\",\"url\":\"https://openreview.net/pdf?id=kJ2X6wZVlD\"},{\"title\":\"CARP: CAUSAL ALIGNMENT OF REWARD MODELS\",\"url\":\"https://openreview.net/pdf/95856110713620760525308a38513f5a1d10a7f7.pdf\"}]\n\nI found the paper you're looking for! Here's what I found about \"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals\":\n\n## Overview\n\nThe paper is by David Reber and 4 other authors (Sean M. Richardson, Todd Nief, Cristina Garbacea, and Victor Veitch), with arXiv ID 2410.11348.\n\n## Key Contributions\n\nRATE (Rewrite-based Attribute Treatment Estimator) is a method for measuring the sensitivity of a reward model to high-level attributes of responses, such as sentiment, helpfulness, or complexity. \n\nRATE measures the causal effect of an attribute on the reward and uses LLMs to rewrite responses to produce imperfect counterfactuals examples that can be used to measure causal effects.\n\n## Main Challenge\n\nA key challenge is that these rewrites are \n…[truncated 474 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-26T10:52:07.742574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"RankME: Reliable Human Ratings for Natural Language Generation\" Novikova 2018 NAACL\"\n\nLinks: [{\"title\":\"RankME: Reliable Human Ratings for Natural Language Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/N18-2012/\"},{\"title\":\"GitHub - jeknov/RankME: The dataset and code released with the submission of NAACL 2018 paper \\\"RankME: Reliable Human Ratings for Natural Language Generation\\\"\",\"url\":\"https://github.com/jeknov/RankME\"},{\"title\":\"[1803.05928] RankME: Reliable Human Ratings for Natural Language Generation\",\"url\":\"https://arxiv.org/abs/1803.05928\"},{\"title\":\"(PDF) RankME: Reliable Human Ratings for Natural Language Generation\",\"url\":\"https://www.researchgate.net/publication/323846192_RankME_Reliable_Human_Ratings_for_Natural_Language_Generation\"},{\"title\":\"RankME: Reliable Human Ratings for Natural Language Generation - Heriot-Watt Research Portal\",\"url\":\"https://researchportal.hw.ac.uk/en/publications/rankme-reliable-human-ratings-for-natural-language-generation\"},{\"title\":\"RankME: Reliable Human Ratings for Natural Language Generation - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2018arXiv180305928N/abstract\"},{\"title\":\"[PDF] RankME: Reliable Human Ratings for Natural Language Generation | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/RankME:-Reliable-Human-Ratings-for-Natural-Language-Novikova-Dusek/f4c8a3f4fb932ef0bdb43f905cc5b9c9031e9af0\"},{\"title\":\"metaeval/rankme-nlg-acceptability · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/metaeval/rankme-nlg-acceptability\"},{\"title\":\"Jekaterina Novikova - ACL Anthology\",\"url\":\"https://aclweb.org/anthology/people/j/jekaterina-novikova\"},{\"title\":\"RankME: Reliable Human Ratings for Natural Language ...\",\"url\":\"https://aclanthology.org/N18-2012.pdf\"}]\n\nI've successfully found the paper you're looking for! Here's what I found:\n\n**Paper Details:**\n\nRankME: Reliable Human Ratings for Natural Language Generation was published by Novikova, Duš\n…[truncated 1145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-26T10:52:07.742772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Bias in odds ratios by logistic regression modelling and sample size\" Nemes 2009 BMC\"\n\nLinks: [{\"title\":\"Bias in odds ratios by logistic regression modelling and sample size | BMC Medical Research Methodology | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1186/1471-2288-9-56\"},{\"title\":\"Bias in odds ratios by logistic regression modelling and sample size - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/19635144/\"},{\"title\":\"Bias in odds ratios by logistic regression modelling and sample size - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC2724427/\"},{\"title\":\"(PDF) Bias in odds ratios by logistic regression modeling and sample size\",\"url\":\"https://www.researchgate.net/publication/26698179_Bias_in_odds_ratios_by_logistic_regression_modeling_and_sample_size\"},{\"title\":\"Bias in odds ratios by logistic regression modelling and sample size | BMC Medical Research Methodology | Full Text\",\"url\":\"https://bmcmedresmethodol-biomedcentral-com.translate.goog/articles/10.1186/1471-2288-9-56?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc\"},{\"title\":\"Peer review reports | Bias in odds ratios by logistic regression modelling and sample size | BMC Medical Research Methodology | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1186/1471-2288-9-56/peer-review\"},{\"title\":\"Sample Size Issues for Categorical Analyses and Logistic ...\",\"url\":\"https://web.pdx.edu/~newsomj/cdaclass/ho_sample%20size.pdf\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=Bias+in+odds+ratios+by+logistic+regression+modelling+and+sample+size&amp=&author=S+Nemes&amp=&author=JM+Jonasson&amp=&author=A+Genell&amp=&author=G+Steineck&amp=&publication_year=2009&amp=&journal=BMC+Med+Res+Methodol&amp=&volume=9&amp=&pages=56\"},{\"title\":\"Bias in odds ratios by logistic re ... | Article | H1 Connect\",\"url\":\"https://archive.connect.h1.co/article/1164488/\"}]\n\nI found the study you're looking for. Here's information a\n…[truncated 1265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-26T10:52:07.742966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge\" Soumik arXiv 2604.23178\"\n\nLinks: [{\"title\":\"[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines\",\"url\":\"https://arxiv.org/abs/2604.23178\"},{\"title\":\"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines\",\"url\":\"https://arxiv.org/html/2604.23178\"},{\"title\":\"(PDF) Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines\",\"url\":\"https://www.researchgate.net/publication/404249222_Judging_the_Judges_A_Systematic_Evaluation_of_Bias_Mitigation_Strategies_in_LLM-as-a-Judge_Pipelines\"},{\"title\":\"Judging the Judges: A Systematic Evaluation of Bias Miti-\",\"url\":\"https://arxiv.org/pdf/2604.23178\"},{\"title\":\"Judging the Judges: A Systematic Evaluation of Bi… - arXiv\",\"url\":\"https://arxiv-troller.com/paper/3154455/\"},{\"title\":\"Judging the Judges: A Systematic Study of Position Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2406.07791v9\"},{\"title\":\"Judging the Judges: A Systematic Evaluation of Bias Miti- gation Strategies in LLM-as-a-Judge Pipelines | OpenReview\",\"url\":\"https://openreview.net/forum?id=QF4lAmG4zc\"},{\"title\":\"Juding the Judges: A Systematic Investigation of Position Bias in Pairwise Comparative LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2406.07791v5\"},{\"title\":\"[2406.07791] Judging the Judges: A Systematic Study of Position Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/abs/2406.07791\"}]\n\nI found the paper you're looking for. Here's a summary of the key information:\n\nThe paper \"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines\" by Sadman Kabir Soumik addresses how LLM judges exhibit systematic biases that compromise evaluation reliability.\n\nThe study presents a comprehensive empirical study comparing nine debiasing strategies \n…[truncated 825 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-26T10:52:07.743164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\" Zheng 2023 NeurIPS arXiv 2306.05685\"\n\nLinks: [{\"title\":\"[2306.05685] Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\",\"url\":\"https://arxiv.org/abs/2306.05685\"},{\"title\":\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena | OpenReview\",\"url\":\"https://openreview.net/forum?id=uccHPGDlao\"},{\"title\":\"Judging LLM-as-a-judge with MT-bench and Chatbot Arena | Proceedings of the 37th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3668142\"},{\"title\":\"NeurIPS Poster Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\",\"url\":\"https://neurips.cc/virtual/2023/poster/73434\"},{\"title\":\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\",\"url\":\"https://arxiv.org/html/2306.05685v4\"},{\"title\":\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena | Request PDF\",\"url\":\"https://www.researchgate.net/publication/401443885_Judging_LLM-as-a-Judge_with_MT-Bench_and_Chatbot_Arena\"},{\"title\":\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\",\"url\":\"https://papers.nips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html\"},{\"title\":\"[Paper Note] Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena, Lianmin Zheng+, NeurIPS'23, 2023.06 · Issue #903 · AkihikoWatanabe/paper_notes\",\"url\":\"https://github.com/AkihikoWatanabe/paper_notes/issues/903\"},{\"title\":\"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena - United Arab Emirates - Ministry of Health and Prevention\",\"url\":\"https://nchr.elsevierpure.com/en/publications/judging-llm-as-a-judge-with-mt-bench-and-chatbot-arena/\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Title:** Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\n\n**Authors:** Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin, Zhuohan Li, Dacheng Li, Eric Xing, Hao Zhang, Joseph Gonza\n…[truncated 824 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-26T10:52:07.743380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Best Practices for Using Median Splits Artificial Categorization\" DeCoster 2011 Journal Experimental Psychopathology\"\n\nLinks: [{\"title\":\"Best Practices for Using Median Splits, Artificial Categorization, and their Continuous Alternatives - Jamie DeCoster, Marcello Gallucci, Anne-Marie R. Iselin, 2011\",\"url\":\"https://journals.sagepub.com/doi/10.5127/jep.008310\"},{\"title\":\"(PDF) Best Practices for Using Median Splits, Artificial Categorization, and their Continuous Alternatives\",\"url\":\"https://www.researchgate.net/publication/274433320_Best_Practices_for_Using_Median_Splits_Artificial_Categorization_and_their_Continuous_Alternatives\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=Best+practices+for+using+median+splits,+artificial+categorization,+and+their+continuous+alternatives&amp=&author=J.+DeCoster&amp=&author=M.+Gallucci&amp=&author=A.+M.+R.+Iselin&amp=&publication_year=2011&amp=&journal=Journal+of+Experimental+Psychopathology&amp=&pages=197-209&amp=&doi=10.5127/jep.008310\"},{\"title\":\"Best Practices for Using Median Splits, Artificial Categorization, and their Continuous Alternatives | 10.5127/jep.008310-Sci_hub\",\"url\":\"https://www.wellesu.com/10.5127/jep.008310\"},{\"title\":\"Best Practices for Using Median Splits, Artificial ...\",\"url\":\"https://journals.sagepub.com/doi/pdf/10.5127/jep.008310\"},{\"title\":\"JCP2015MedianSplitNuanced.pdf\",\"url\":\"https://cdn.vanderbilt.edu/vu-web/owen/files/publications/JCP2015MedianSplitNuanced.pdf\"},{\"title\":\"A Researcher’s Guide to Regression, Discretization, and Median Splits of Continuous Variables | Request PDF\",\"url\":\"https://www.researchgate.net/publication/276075439_A_Researcher's_Guide_to_Regression_Discretization_and_Median_Splits_of_Continuous_Variables\"}]\n\nI found the article you're looking for! Jamie DeCoster, Marcello Gallucci, and Anne-Marie R. Iselin published \"Best Practices for Using Median Splits, Artificial Categorization, and their Continuous Altern\n…[truncated 1089 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-26T10:52:07.743576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features\" arXiv 2601.10809\"\n\nLinks: [{\"title\":\"[2601.10809] A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents\",\"url\":\"https://arxiv.org/abs/2601.10809\"},{\"title\":\"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents\",\"url\":\"https://arxiv.org/html/2601.10809\"},{\"title\":\"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents\",\"url\":\"https://www.catalyzex.com/paper/a-concise-agent-is-less-expert-revealing-side\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/pastweek?skip=235&show=1000\"},{\"title\":\"PenForge: On-the-Fly Expert Agent Construction for ...\",\"url\":\"https://www.arxiv.org/pdf/2601.06910\"},{\"title\":\"Agents Are Not Enough | Hacker News\",\"url\":\"https://news.ycombinator.com/item?id=42611099\"},{\"title\":\"Artificial Intelligence May 2025\",\"url\":\"https://arxiv.org/list/cs.AI/2025-05?skip=3575&show=1000\"},{\"title\":\"Machine Learning Jun 2024\",\"url\":\"https://web3.arxiv.org/list/cs.LG/2024-06?skip=1900&show=2000\"},{\"title\":\"Machine Learning Apr 2025\",\"url\":\"https://www.arxiv.org/list/cs.LG/2025-04?skip=200&show=2000\"},{\"title\":\"Computer Science Jun 2025\",\"url\":\"https://arxiv.org/list/cs/2025-06?skip=9425&show=2000\"}]\n\nI found the paper! Here are the key details about arXiv 2601.10809:\n\n**Title:** \"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents\"\n\n**Overview:** The paper studies style features such as friendly, helpful, or concise used in prompts to steer the behavior of Large Language Model conversational agents, and their unintended side effects.\n\n**Research Approach:** The authors conducted a comprehensive survey of 127 conversational agent papers from ACL Anthology to identify 12 frequently used style features, then used controlled, synthetic dialog\n…[truncated 840 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-26T10:52:07.743806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2409.15268",
+              "prompt": "What is the exact title of this paper? Who are ALL the authors listed? What venue was it published at (if any)?"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-26T10:52:07.743953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2604.23178",
+              "prompt": "What is the exact title of this paper? Who are ALL the authors listed? What is the first author's full name?"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-26T10:52:07.744099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2601.10809",
+              "prompt": "What is the exact title? Who are ALL the authors listed? What is the first author's full name?"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-26T10:52:07.744234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2502.01534",
+              "prompt": "Who are ALL the authors listed? Is the first author \"Dawei Li\"?"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-26T10:52:07.744393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Title:** \"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\"\n\n**Authors:** Benjamin Feuer, Micah Goldblum, Teresa Datta, Sanjana Nambiar, Raz Besaleli, Samuel Dooley, Max Cembalest, and John P. Dickerson\n\n**Venue:** ICLR 2025"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-26T10:52:07.744528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Details\n\n**Exact Title:** \"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents\"\n\n**All Authors Listed:**\n1. Young-Min Cho\n2. Yuan Yuan\n3. Sharath Chandra Guntuku\n4. Lyle Ungar\n\n**First Author's Full Name:** Young-Min Cho"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-26T10:52:07.744657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2602.06625",
+              "prompt": "Who are ALL the authors listed? What is the first author's full name?"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-26T10:52:07.744787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Details\n\n**Exact Title:** \"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines\"\n\n**Authors Listed:** Only one author is identified on this arXiv submission.\n\n**First Author's Full Name:** Sadman Kabir Soumik\n\nThe webpage shows this paper was submitted on April 25, 2026, and is currently under review at TMLR (Transactions on Machine Learning Research)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-26T10:52:07.744917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2512.19908",
+              "prompt": "Who are ALL the authors listed? What are their exact names?"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-26T10:52:07.745044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Authors of the Paper\n\nYes, the first author is \"Dawei Li\". The complete list of all authors is:\n\n\"Dawei Li, Renliang Sun, Yue Huang, Ming Zhong, Bohan Jiang, Jiawei Han, Xiangliang Zhang, Wei Wang, Huan Liu\"\n\nThere are nine authors total on this arXiv paper about preference leakage in LLM-based evaluation systems."
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-26T10:52:07.745180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Authors of FairJudge Paper\n\nThe paper lists six authors in total:\n\n1. **Bo Yang** (first author)\n2. Lanfei Feng\n3. Yunkui Chen\n4. Yu Zhang\n5. Xiao Xu\n6. Shijian Li\n\nThe first author's full name is \"Bo Yang\" as shown in the arXiv submission metadata."
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-26T10:52:07.745326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the content provided, the three authors listed for this paper are:\n\n1. Jingyi Qiu\n2. Hong Chen\n3. Zongyi Li\n\nThe paper header states: \"Authors: [Jingyi Qiu](https://arxiv.org/search/cs?searchtype=author&query=Qiu,+J), [Hong Chen](https://arxiv.org/search/cs?searchtype=author&query=Chen,+H), [Zongyi Li](https://arxiv.org/search/cs?searchtype=author&query=Li,+Z)\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-26T10:52:07.745601+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。以下是完整核查报告。\n\n---\n\n## [1]. cohen1988statistical\n- 真实性：✓ 存在（经典教材）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（书籍）\n- 正文引用上下文：✓ 正确（appendix 表格注释中定义 Cohen's d 阈值，引用此书作为出处）\n\n## [2]. pearl2009causality\n- 真实性：✓ 存在（经典教材）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（书籍，Cambridge University Press）\n- 正文引用上下文：✓ 正确（experiments.tex 讨论因果中介分析框架时引用）\n\n## [3]. tripathi2025pairwise\n- 真实性：✓ 存在\n- 作者：✓ 正确（Tuhina Tripathi, Manya Wadhwa, Greg Durrett, Scott Niekum）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（COLM 2025 = 2nd Conference on Language Modeling）\n- 正文引用上下文：✓ 正确（experiments.tex 讨论 pairwise vs Likert 的 construct divergence 时引用）\n\n## [4]. murugadoss2025sos\n- 真实性：✓ 存在（arXiv:2409.15268）\n- 作者：✗ **错误** — bib 中写 `Murugadoss, Aakanksha and others`，实际第一作者是 **Benjamin Feuer**，完整作者列表为 Benjamin Feuer, Micah Goldblum, Teresa Datta, Sanjana Nambiar, Raz Besaleli, Samuel Dooley, Max Cembalest, John P. Dickerson。\"Murugadoss\" 不在作者列表中。\n- 年份：✓ 正确（2025）\n- 标题：✓ 正确（\"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\"）\n- Venue：✓ 正确（ICLR 2025）\n- 正文引用上下文：✓ 正确（introduction 说 \"Surface-level style features alone explain most of the variance in judge scores\"，与该论文发现一致）\n- **注意**：bib key `murugadoss2025sos` 与实际第一作者 Feuer 不匹配，应改为 `feuer2025style` 或类似命名，并修正作者字段\n\n## [5]. li2026preference\n- 真实性：✓ 存在（arXiv:2502.01534）\n- 作者：✓ 正确（Dawei Li 为第一作者，共 9 位作者）\n- 年份：✓ 正确（2026）\n- 标题：✓ 正确\n- Venue：✓ 正确（ICLR 2026）\n- 正文引用上下文：✓ 正确（introduction 和 related_work 中引用，related_work 说 \"preference leakage propagates through evaluation pipelines\" 与论文内容一致）\n\n## [6]. wang2026fairjudge\n- 真实性：✓ 存在（arXiv:2602.06625）\n- 作者：✓ 正确（Bo Yang, Lanfei Feng, Yunkui Chen, Yu Zhang, Xiao Xu, Shijian Li）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint）\n- 正文引用上下文：✓ 正确（introduction 和 related_work 中引用，related_work 说 FairJudge 分解 style 为更细维度但依赖相关性分析，与论文方法一致）\n- **注意**：bib key `wang2026fairjudge` 但第一作者姓 Yang，非 Wang。key 命名与作者不匹配。\n\n## [7]. dubois2025lc\n- 真实性：✓ 存在（arXiv:2404.04475）\n- 作者：✓ 正确（Yann Dubois 为第一作者）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（ICLR 2025）\n- 正文引用上下文：✓ 正确（introduction 引用为 population-level correction 方法；appendix 引用为 AlpacaEval 基准）\n\n## [8]. casse2026concise\n- 真实性：✓ 存在（arXiv:2601.10809）\n- 作者：✓ 正确（Cho, Young-Min; Yuan, Yuan; Guntuku, Sharath Chandra; Ungar, Lyle）\n- 年份：✓ 正确（2026）\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint）\n- 正文引用上下文：✓ 正确（related_work 引用 CASSE 框架为多特征分析方法）\n- **注意**：bib key `casse2026concise` 以框架名 CASSE 命名而非第一作者 Cho，命名不符常规但不影响正确性\n\n## [9]. counterfactual2025rhetorical\n- 真实性：✓ 存在（arXiv:2512.19908）\n- 作者：✓ 正确（Qiu, Jingyi; Chen, Hong; Li, Zongyi）\n- 年份：✓ 正确（2025）\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint）\n- 正文引用上下文：✓ 正确（related_work 说 \"adopt a similar design at persona-level granularity\"，该论文确实使用 LLM rhetorical personas 生成反事实写作）\n\n## [10]. soumik2026judging\n- 真实性：✓ 存在（arXiv:2604.23178）\n- 作者：✗ **错误** — bib 中写 `Soumik, Mohammad and others`，实际作者全名为 **Sadman Kabir Soumik**（单一作者，无 \"others\"）。名字 \"Mohammad\" 错误，应为 \"Sadman Kabir\"。\n- 年份：✓ 正确（2026）\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint，currently under review at TMLR）\n- 正文引用上下文：✓ 正确（introduction 中 \"76–92% of preferences originating from style cues\" 对应该论文发现 style bias 0.76–0.92）\n\n## [11]. reber2025rate\n- 真实性：✓ 存在（arXiv:2410.11348）\n- 作者：✓ 正确（David Reber, Sean Richardson, Todd Nief, Cristina Garbacea, Victor Veitch）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（ICML 2025）\n- 正文引用上下文：✓ 正确（method.tex 引用 RATE bias correction protocol；related_work 描述其方法为 rewrite + Likert ATE，与论文方法一致）\n\n## [12]. kiritchenko2017bws\n- 真实性：✓ 存在\n- 作者：✓ 正确（Svetlana Kiritchenko, Saif Mohammad）\n- 年份：✓ 正确（2017）\n- 标题：✓ 正确（完整标题含副标题 \"A Case Study on Sentiment Intensity Annotation\"）\n- Venue：✓ 正确（ACL 2017 Short Papers）\n- 正文引用上下文：**N/A — 未在正文中被引用（orphan bib entry）**\n\n## [13]. novikova2018rankme\n- 真实性：✓ 存在\n- 作者：✓ 正确（Jekaterina Novikova, Ondřej Dušek, Verena Rieser）\n- 年份：✓ 正确（2018）\n- 标题：✓ 正确\n- Venue：✓ 正确（NAACL 2018 Short Papers）\n- 正文引用上下文：✓ 正确（related_work 说 \"forced-choice methods detect quality differences that rating scales miss\"，与论文发现一致）\n\n## [14]. stevens1946theory\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（Science）\n- 正文引用上下文：**N/A — 未在正文中被引用（orphan bib entry）**\n\n## [15]. nemes2009bias\n- 真实性：✓ 存在\n- 作者：✓ 正确（Nemes, Szilard; Jonasson, Jörgen M; Genell, Anna; Steineck, Gunnar）\n- 年份：✓ 正确（2009）\n- 标题：✓ 正确\n- Venue：✓ 正确（BMC Medical Research Methodology, vol 9, 56）\n- 正文引用上下文：✓ 正确（experiments.tex 两处引用，说明小样本 odds ratio 存在向上偏差，与论文核心发现一致）\n\n## [16]. david1988method\n- 真实性：✓ 存在（经典教材）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（书籍，Oxford University Press）\n- 正文引用上下文：✓ 正确（introduction 说 pairwise comparison yields higher discriminability than absolute rating，该书正是配对比较方法的经典参考）\n\n## [17]. thurstone1927law\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（Psychological Review）\n- 正文引用上下文：✓ 正确（introduction 和 related_work 中引用，作为 pairwise comparison 优越性的经典基础）\n\n## [18]. decoster2011median\n- 真实性：✓ 存在\n- 作者：✓ 正确（DeCoster, Jamie; Gallucci, Marcello; Iselin, Anne-Marie R.）\n- 年份：✓ 正确（2011）\n- 标题：✓ 正确\n- Venue：✓ 正确（Journal of Experimental Psychopathology, vol 2(2), pp 197-209）\n- 正文引用上下文：**N/A — 未在正文中被引用（orphan bib entry）**\n\n## [19]. zheng2023judging\n- 真实性：✓ 存在（arXiv:2306.05685）\n- 作者：✓ 正确（Lianmin Zheng 为第一作者，共 13 位作者）\n- 年份：✓ 正确（2023）\n- 标题：✓ 正确\n- Venue：✓ 正确（NeurIPS 2023）\n- 正文引用上下文：✓ 正确（method.tex 引用 MT-Bench；related_work 引用为 LLM-as-judge 基础框架并指出其发现了 position bias；appendix 引用为 MT-Bench 基准说明）\n\n---\n\n## 汇总\n\n**总共 19 条，✓ 14 条完全正确，✗ 2 条有错误，⚠ 3 条 orphan 引用**\n\n### 错误（必须修正）\n\n| # | cite key | 问题 | 修正 |\n|---|----------|------|------|\n| 4 | `murugadoss2025sos` | 作者错误：写了 `Murugadoss, Aakanksha`，实际第一作者是 `Feuer, Benjamin`，Murugadoss 不在作者列表中 | 改为 `author={Feuer, Benjamin and Goldblum, Micah and Datta, Teresa and Nambiar, Sanjana and Besaleli, Raz and Dooley, Samuel and Cembalest, Max and Dickerson, John P.}`，并考虑将 key 改为 `feuer2025style` |\n| 10 | `soumik2026judging` | 作者名错误：写了 `Soumik, Mohammad and others`，实际为单一作者 `Soumik, Sadman Kabir`（无 others） | 改为 `author={Soumik, Sadman Kabir}` |\n\n### 命名不规范（建议修正）\n\n| # | cite key | 问题 |\n|---|----------|------|\n| 6 | `wang2026fairjudge` | key 前缀 `wang` 但第一作者姓 Yang |\n| 8 | `casse2026concise` | key 前缀 `casse` 是框架名，第一作者姓 Cho |\n\n### Orphan 引用（在 bib 中但未在正文引用）\n\n| # | cite key |\n|---|----------|\n| 12 | `kiritchenko2017bws` |\n| 14 | `stevens1946theory` |\n| 18 | `decoster2011median` |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_A_20260526T104718"
+          },
+          "id": "event-000081"
+        }
+      ],
+      "message_count": 81
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "schema_version": "1.0",
+  "id": "5ced38d6d247ff9c7139",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "paper writing generalization",
+  "task_key": "worker_paper_writing_generalization_20260515T084812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_generalization_20260515T084812.jsonl",
+    "occurrence": 1,
+    "bytes": 17732,
+    "sha256": "8d9fbcbe4b6b52b80f7a7000903cd41e2ae096cdda1c57c49e96f2676b7c5d38"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T08:50:42.823636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T08:50:42.824264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T08:50:42.824451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T08:50:42.824589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/atlas.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T08:50:42.824745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T08:50:42.824902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n2\t% Target: EMNLP 2026 (ARR May cycle)\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[hyperref]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{amsmath}\n10\t\\usepackage{amssymb}\n11\t\\usepackage{multirow}\n12\t\\usepackage{xcolor}\n13\t\\usepackage{subcaption}\n14\t\\usepackage[T1]{fontenc}\n15\t\\usepackage[utf8]{inputenc}\n16\t\\usepackage{microtype}\n17\t\n18\t\\aclfinalcopy\n19\t\n20\t\\title{How Deep Is Your Data? Estimating Recursive Generation Depth\\\\via Statistical Fingerprints}\n21\t\n22\t\\author{Anonymous}\n23\t\n24\t\\begin{document}\n25\t\\maketitle\n26\t\n27\t\\input{abstract}\n28\t\n29\t\\input{introduction}\n30\t\n31\t\\input{related_work}\n32\t\n33\t\\input{method}\n34\t\n35\t\\input{atlas}\n36\t\n37\t\\input{generalization}\n38\t\n39\t\\input{discussion}\n40\t\n41\t\\input{conclusion}\n42\t\n43\t\\bibliography{references}\n44\t\\bibliographystyle{acl_natbib}\n45\t\n46\t\\appendix\n47\t\\input{section_appendix}\n48\t\n49\t\\end{document}\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T08:50:42.825038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T08:50:42.825216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Depth Degradation Atlas}\n2\t\\label{sec:atlas}\n3\t\n4\tWe systematically characterize how recursive generation reshapes the statistical profile of text across a grid of 3 model families $\\times$ 3 decoding strategies $\\times$ 4 generation depths (d0--d3), yielding 9 experimental configurations each spanning 4 depths.\n5\tFor each cell we train a Random Forest (RF) classifier on the 19 statistical features defined in \\S\\ref{sec:method} and examine (i)~in-distribution depth classification accuracy, (ii)~which features carry depth signal, (iii)~how far into the recursion chain depth remains discriminable, and (iv)~how decoding strategy modulates the degradation trajectory.\n6\t\n7\t\\subsection{In-Distribution Performance}\n8\t\\label{sec:atlas:indist}\n9\t\n10\tTable~\\ref{tab:main_matrix} reports 4-class depth estimation accuracy under 5-fold cross-validation.\n11\tAll 9 cells exceed chance (25\\%) by a wide margin, with accuracy ranging from 69.6\\% to 85.4\\%.\n12\tThe model-family effect dominates the strategy effect: GPT-2~XL achieves the highest accuracy under every decoding strategy, followed by OLMo-1B and Pythia-1.4B.\n13\tAmong strategies, temperature sampling ($\\tau{=}0.9$) yields the best accuracy in 2 of 3 model families, while top-$k$ ($k{=}50$) trails by 6--9 percentage points.\n14\t\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\caption{In-distribution 4-class depth estimation accuracy (\\%) across 3 model families $\\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV. Chance = 25\\%.}\n19\t\\label{tab:main_matrix}\n20\t\\begin{tabular}{lccc}\n21\t\\toprule\n22\tModel & Nucleus & Temp & Top-$k$ \\\\\n23\t & $p{=}0.95$ & $\\tau{=}0.9$ & $k{=}50$ \\\\\n24\t\\midrule\n25\tPythia-1.4B & 78.2 & 76.3 & 69.6 \\\\\n26\tOLMo-1B & 78.8 & 82.0 & 74.2 \\\\\n27\tGPT-2 XL & 83.3 & \\textbf{85.4} & 76.6 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table}\n31\t\n32\tBecause the human-written seed text (d0) is often trivially separable from any machine-generated depth, we also evaluate 3-cla\n…[truncated 7703 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T08:50:42.825491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_generalization.tex",
+              "content": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nThe atlas (\\S\\ref{sec:atlas}) established in-distribution accuracy of 69.6--85.4\\%.\nWe now test whether these results reflect genuine statistical regularities or artifacts of specific training conditions, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learned representations (\\S\\ref{sec:gen:dcol}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\nThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve near-identical accuracy (78.1--78.2\\%).\nA cross-entropy MLP and logistic regression trail by $\\sim$3 percentage points.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features. Chance = 25\\%.}\n\\label{tab:baselines}\n\\begin{tabular}{lc}\n\\toprule\nMethod & 4-class Acc (\\%) \\\\\n\\midrule\nRF (19 features) & \\textbf{78.2} \\\\\nCORAL & 78.1 \\\\\nDivEye & 78.2 \\\\\nCE-MLP & 74.9 \\\\\nLR & 75.0 \\\\\nDeepSeek V3.2 (zero-shot) & 44.3 \\\\\nppl-regression (single feature) & 25.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe convergence of RF, CORAL, and DivEye indicates that the discriminative signal resides in the features, not the classifier.\nAcross all 9 atlas cells, RF $\\geq$ CORAL $>$ DivEye $>$ LR, with a maximum gap of $\\sim$4 percentage points.\nA zero-shot LLM baseline (DeepSeek V3.2) achieves 44.3\\% on 200 samples---above chance but 34 points below feature-based methods, suggesting that depth estimation from raw text requires explicit statistical computation rather than general language understanding.\n\nFigure~\\ref{fig:confusion_matrix} shows confusion matrices for the best and worst atlas cells.\nIn both cases, d0 (human text) is near-perfectly identified, while errors concentrate at the d1--d2 boundary---a pattern we revisit in \\S\\ref{sec:gen:crossstrategy}.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and worst (Pythia-1.4B, top-$k$ $k{=}50$, 69.6\\%) in-distribution settings. d0 recall exceeds 98\\% in both; errors concentrate at the d1/d2 boundary.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nTo test whether depth fingerprints generalize across architectures, we perform leave-one-model-family-out evaluation: train on two model families (nucleus sampling only) and test on the held-out third.\nTable~\\ref{tab:cross_model} reports results.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy reaches 66.4\\%, well above chance (2.7$\\times$) and the 45\\% transfer gate.\nThe per-class breakdown reveals that d0 recall ($>$98\\%) inflates headline accuracy; the real challenge lies in distinguishing machine-generated depths from each other.\nd2 recall drops as low as 26.8\\% when Pythia is held out, making it the most confusable depth class.\nPythia is the hardest holdout overall (62.4\\%), while OLMo is the easiest (69.2\\%)---a 6.8 percentage point spread across model families.\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe next train on two decoding strategies and test on the held-out third.\nTable~\\ref{tab:cross_strategy} reports per-model results.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7 points below cross-model transfer (66.4\\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.\n\n\\paragraph{Temperature-induced boundary inversion.}\nThe most striking finding emerges from the d1-vs-d2 binary AUC when temperature sampling is held out.\nTraining on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the classifier's d1/d2 decision boundary \\emph{inverts} under temperature sampling.\nOnly Pythia retains a degraded but non-inverted AUC of 0.576.\n\nThis inversion is predicted by the trajectory analysis in \\S\\ref{sec:atlas}: temperature sampling accelerates convergence toward the low-entropy attractor, shifting feature values at depth $d$ to resemble depth $d{+}1$ under nucleus or top-$k$.\nA classifier trained on the latter two strategies therefore learns a d1/d2 boundary that, when applied to temperature-sampled text, falls on the wrong side of the shifted distributions---samples the classifier labels as d1 are actually d2 and vice versa.\n\n\\paragraph{Z-score normalization does not resolve the inversion.}\nA natural hypothesis is that per-feature z-score normalization might correct this covariate shift \\cite{sugiyama2007}.\nWe test this and find that z-normalization leaves RF accuracy essentially unchanged (59.1\\% $\\to$ 59.2\\%) and does not improve d1v2 AUC ($\\Delta < 0.02$).\nThis null result is expected: RF splits depend on feature rank order, not scale, making them invariant to monotonic transforms.\nA separate experiment with logistic regression reveals that z-normalization \\emph{does} recover d1v2 AUC from 0.13 to 0.68, confirming a two-layer structure in the distribution shift: (1)~a scale component correctable by linear normalization that helps parametric classifiers, and (2)~a feature-space geometry component that is tree-invariant and that z-normalization cannot address.\nThe temperature covariate shift is therefore not merely a calibration problem but a structural rearrangement of the feature space.\n\n\\subsection{End-to-End Learning: A Negative Result}\n\\label{sec:gen:dcol}\n\nGiven the success of hand-crafted features, we investigate whether end-to-end learning can bypass feature engineering.\nWe implement Deep Contrastive Ordinal Learning (DCOL) with a RoBERTa-large encoder and ordinal contrastive loss, training directly on raw text passages.\n\nAcross six configurations (v1--v6), DCOL fails to match feature-based methods.\nVersions v1--v3 suffer embedding collapse; v4 triggers out-of-memory errors; v5 produces NaN losses.\nThe best run (v6) reaches test accuracy of 64.5\\%---13.7 points below RF (78.2\\%)---with severe overfitting: training accuracy reaches 75\\% versus validation accuracy of 64.4\\% at the best epoch (epoch 1), and early stopping triggers by epoch 4.\n\nThis negative result suggests that the 19-dimensional statistical summary defined in \\S\\ref{sec:method} captures depth-relevant information that a transformer encoder struggles to extract from raw token sequences.\nThe features encode explicit tail behavior (percentile perplexities) and distributional shape (surprisal variance, entropy)---second-order statistics of the token distribution that may require substantially more data for a neural network to learn implicitly.\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T08:50:42.825726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_generalization.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T08:50:42.825909+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section written. Note: `main.tex:37` uses `\\input{generalization}` but the task specified the filename `section_generalization.tex` — you may need to either rename the file or update the `\\input` line."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_generalization_20260515T084812"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ]
+}

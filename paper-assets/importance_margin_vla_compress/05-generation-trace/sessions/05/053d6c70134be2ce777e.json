@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "053d6c70134be2ce777e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops kill invalid eval",
+  "task_key": "worker_ops_kill_invalid_eval_20260518T011337",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_invalid_eval_20260518T011337_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "cc312e08d296f440b85c3cb3e6cf6600b4c226051882957f9490e4f2e397dcc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- PID 363261, 364260 已不存在\n- GPU 0: 6112 MiB used, 2% util（已释放）\n- GPU 1: 3494 MiB used, 1% util（已释放）\n\n两张卡可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

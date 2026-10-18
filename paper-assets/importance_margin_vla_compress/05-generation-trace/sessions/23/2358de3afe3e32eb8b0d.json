@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2358de3afe3e32eb8b0d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd41074 refresh 20260522T2",
+  "task_key": "worker_audit_westd41074_refresh_20260522T2_20260522T203133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd41074_refresh_20260522T2_20260522T203133_result.json",
+    "occurrence": 1,
+    "bytes": 1698,
+    "sha256": "884a0de0086a35e52fc84e6934aadcfb6bb23fb32d2e0aaa21d5d6217d59c723"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41074 审计报告\n\n### 四卡状态\n\n| GPU | 显存 | 利用率 | 进程 | 实验 | 进度 |\n|-----|------|--------|------|------|------|\n| cuda:0 | 10.9/97.9 GB | 24% | PID 3789 (1h21m) | π0.5 Random k=0.85 Long seed42 | Task 4/10 (T4 ep30, 当前56.0%) |\n| cuda:1 | 10.5/97.9 GB | 49% | PID 3863 (1h21m) | π0.5 Random k=0.7 Long seed42 | Task 5/10 (T5 ep20, 当前76.0%) |\n| cuda:2 | 10.6/97.9 GB | 12% | PID 57623 (24m) | π0.5 Random k=0.5 Long seed42 | Task 1/10 (T1 ep20, 72.0%) |\n| cuda:3 | 27.5/97.9 GB | 0% | PID 59671 (1d11h) | OpenVLA SC M64 v6 训练 | **Step 73750/100000 (73.8%)** |\n\n**全部 GPU 占满，无法部署新实验。**\n\n### 收割结果\n\n新完成 1 个实验，已注册：\n\n| 实验 | Suite | SR | 备注 |\n|------|-------|-----|------|\n| **L2Norm k=0.9 Long seed42** | libero_10 | **81.0%** | T6=10% 拖后腿，其余 task 84-100% |\n\n### M64 v6 训练进度\n\n- Step 73750/100000 (73.8%), loss ~2.5-2.9, lr=1.85e-05, sps=0.6\n- 每 50 step ≈ 1.4min → 剩余 ~26250 步 ≈ **12.3 小时**完成（约明天 16:45）\n- 训练稳定，无异常\n\n### Tmux Sessions\n\n- `eval_pi05_random_k085_long_seed42` — 活跃 (cuda:0)\n- `eval_pi05_random_k07_long_seed42` — 活跃 (cuda:1)\n- `smolvla_spatial` — **空闲**（已完成）\n- `xvla_long` — **空闲**（已完成）\n- `train_m64v6` — 活跃 (cuda:3)\n\nPID 57623 (Random k=0.5 Long) 是通过 nohup 启动的，没有对应 tmux session。\n\n### 待部署队列\n\nGPU 释放后（预计各 Long eval 还需 ~1.5-2h）按优先级部署：\n1. π0.5 Long Random k=0.3 seed42\n2. π0.5 Long L2norm k=0.7 seed42\n3. π0.5 Long L2norm k=0.5 seed42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

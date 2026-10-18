@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ee309a7408399f2b822",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "exp r15 mf2 claude tost pool",
+  "task_key": "worker_exp_r15-mf2-claude-tost-pool_20260523T065139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r15-mf2-claude-tost-pool_20260523T065139_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "cd3f3f80066b6cad4ddc3da07dc4a8f470f6ee9341c683cc80cad86359372977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存。核心结果：\n\n**LLMBar 池化（formality + verbosity 合并）**\n- n=174 pairs, BT%=55.17%, SE=0.0377\n- **Power at Δ=10pp = 84%** — 超过 80% 阈值，不需要新 API 调用\n- 80% power 只需 n=155，现有 174 已充足\n\n**TOST 等价性检验（LLMBar pooled）**\n| Margin | p-value | Significant |\n|--------|---------|-------------|\n| Δ=5pp  | 0.518   | No          |\n| Δ=10pp | 0.100   | No          |\n| **Δ=12pp** | **0.035** | **Yes** |\n| Δ=15pp | 0.005   | Yes         |\n| Δ=20pp | <0.001  | Yes         |\n\n**关键发现**：虽然 power 充足（84%），但 TOST 在 Δ=10pp 仍然 p=0.10 未显著——原因是观测到的 BT%=55.2%（偏离 50% 约 5pp），在 10pp 等价区间边界附近。等价性在 **Δ=12pp 处首次确认**（p=0.035）。\n\n跨 benchmark 池化（含 AlpacaEval/MT-Bench）对 TOST 无意义，因为这些 benchmark 存在真实的风格偏差（formality pooled BT%=66%, verbosity pooled BT%=61%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

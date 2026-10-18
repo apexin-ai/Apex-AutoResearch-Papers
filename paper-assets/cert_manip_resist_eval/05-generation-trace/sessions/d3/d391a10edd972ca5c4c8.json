@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "d391a10edd972ca5c4c8",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops anon repo v1 residual fix",
+  "task_key": "worker_ops_anon-repo-v1-residual-fix_20260523T203119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-v1-residual-fix_20260523T203119.log",
+    "occurrence": 1,
+    "bytes": 1624246,
+    "sha256": "8d0375f8959836aa92cc57006dac7e4adcac84d3f425648d0ff70cd3b45cf7f0"
+  },
+  "statistics": {
+    "messages": 340,
+    "user_turns": 1,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "assistant": 63,
+      "tool_call": 128,
+      "record": 1,
+      "tool_result": 128,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 73,
+      "chunks": [
+        {
+          "path": "d391a10edd972ca5c4c8-part-0001.json",
+          "message_count": 73
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 267,
+      "chunks": [
+        {
+          "path": "d391a10edd972ca5c4c8-part-0001.json",
+          "message_count": 76
+        },
+        {
+          "path": "d391a10edd972ca5c4c8-part-0002.json",
+          "message_count": 63
+        },
+        {
+          "path": "d391a10edd972ca5c4c8-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ]
+}

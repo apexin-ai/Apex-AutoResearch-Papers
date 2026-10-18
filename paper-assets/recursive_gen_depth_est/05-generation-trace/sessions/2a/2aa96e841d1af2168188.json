@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa96e841d1af2168188",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ops sync compile paper v3",
+  "task_key": "worker_ops_sync_compile_paper_v3_20260519T001053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_compile_paper_v3_20260519T001053.log",
+    "occurrence": 1,
+    "bytes": 1278080,
+    "sha256": "2f495bf7ff74d1bdc6f59c7a28b4b3cfb2f636fce8c29f985339e7c985528e28"
+  },
+  "statistics": {
+    "messages": 358,
+    "user_turns": 2,
+    "tool_calls": 124,
+    "roles": {
+      "log": 1,
+      "system": 63,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 124,
+      "tool_result": 124,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "2aa96e841d1af2168188-part-0001.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "2aa96e841d1af2168188-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "2aa96e841d1af2168188-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "2aa96e841d1af2168188-part-0002.json",
+          "message_count": 23
+        },
+        {
+          "path": "2aa96e841d1af2168188-part-0003.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ]
+}

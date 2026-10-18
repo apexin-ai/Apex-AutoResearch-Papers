@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a335af575f76e448a085",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing r26 text fixes and consistency",
+  "task_key": "worker_writing_r26-text-fixes-and-consistency_20260515T232957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r26-text-fixes-and-consistency_20260515T232957_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "5ed1e29a20e0b4cb4e61bfd7ddfeda800bdc42463e926c6e298be5e25dcc1bff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Summary:\n\n### Priority 1 — Already fixed (no changes needed)\n1. **Forward selection count** (atlas.tex:58): Already `p90_ppl 6/9, var_surprisal 3/9` ✓\n2. **SHAP-permutation ρ** (generalization.tex:119): Already `0.830`, no `0.839` anywhere ✓\n3. **\"other categories\"** (atlas.tex:56): Already `${\\leq}$47\\%` ✓\n\n### Priority 2 — Changes made\n\n**4. Abstract/atlas var_surprisal 8/9 consistency:**\n- `atlas.tex:47` — Changed `7/9 (8/9 under SHAP)` → `8/9 under SHAP (7/9 under Gini)` — now SHAP-primary, matching abstract (8/9) and discussion (8/9 under SHAP)\n- `atlas.tex:67` (Table 3 caption) — Same change\n\n**5. \"Feature Universality\" stale references:**\n- Only in `main.aux` (auto-generated LaTeX auxiliary file), no .tex source references. Will resolve on next compile. No fix needed.\n\n**6. SHAP ρ cross-file consistency:**\n- `generalization.tex:119` — Changed SHAP–Gini from `0.931` → `0.93` to match `section_appendix.tex:18` (`0.93`)\n- SHAP–permutation: `0.830` in generalization.tex, `0.83` in appendix — consistent (precision difference only)\n- Gini–permutation: `0.76` only in appendix — no conflict\n- All three pairs now consistent across both files: SHAP-Gini 0.93, SHAP-permutation 0.830/0.83, Gini-permutation 0.76 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

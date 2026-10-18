@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bf81620f8a25b6d94b40",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure fig architecture",
+  "task_key": "worker_paper_figure_fig_architecture_20260519T212606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_architecture_20260519T212606_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "79ccf8893cd351c577742b8edf4b9085cc84aa0b84c387b0a61f3649ac06d1c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`fig_architecture.pdf` (41 KB) saved to `docs/paper/figures/paper/`. Layout: left panel shows pixel-shuffle 4×4→1 token entanglement in warm colors, right panel shows MLP 1:1 independent mapping in cool colors, VTR cross-attention pooling as dashed optional module at the bottom, both pipelines flowing into their respective LLMs."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

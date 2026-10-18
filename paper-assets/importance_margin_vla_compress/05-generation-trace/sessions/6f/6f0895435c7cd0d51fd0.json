@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0895435c7cd0d51fd0",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code xvla libero pruning eval",
+  "task_key": "worker_code_xvla-libero-pruning-eval_20260520T051640",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_xvla-libero-pruning-eval_20260520T051640.log",
+    "occurrence": 1,
+    "bytes": 3067772,
+    "sha256": "f46507b862cf26c79b8fa6fb59b561931b01858ddbc39bdc5a789546e598b373"
+  },
+  "statistics": {
+    "messages": 1385,
+    "user_turns": 3,
+    "tool_calls": 508,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 3,
+      "assistant": 351,
+      "tool_call": 508,
+      "tool_result": 508,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 459,
+      "chunks": [
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0003.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 369,
+      "chunks": [
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0003.json",
+          "message_count": 80
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0005.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 534,
+      "chunks": [
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0005.json",
+          "message_count": 71
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0008.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "6f0895435c7cd0d51fd0-part-0008.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ]
+}

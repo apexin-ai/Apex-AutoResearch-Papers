@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28a221c2dc817d82aa8a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "audit appendix",
+  "task_key": "worker_audit_appendix_20260525T194500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_appendix_20260525T194500_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "d78b80c2f5df96dd34f29a77a643340fda880aacc1d39bd326ab6d09133a5b59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/audit_appendix.md` 并注册。\n\n**核心发现**：~220 个数值中 ~180 个与 registry 匹配，发现 7 处不一致：\n\n**需优先处理（2 项）**：\n- **Pythia seed42 baseline**：论文 78.70% vs registry 78.2%，导致 Δ 从 +0.14pp 变为 +0.64pp\n- **Min-K% d1-d3 BalAcc**：论文 40.4% vs registry 37.24%，差 3.16pp\n\n**需确认（3 项）**：\n- GPT-2 XL seed42 CI 边界偏移 0.11pp\n- RF d2 recall 附录内部矛盾（.596 vs 59.2%）\n- Pythia self-ref 四舍五入偏差（78.6% vs 78.54%）\n\n**非错误但需注意（1 项）**：\n- Curation PoC 表 dz vs d 系统性差异——论文正确标注 dz，registry 存的是 d，两者是不同指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

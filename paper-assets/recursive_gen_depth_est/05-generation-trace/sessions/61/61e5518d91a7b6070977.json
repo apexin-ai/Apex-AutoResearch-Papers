@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "61e5518d91a7b6070977",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp feature ablation r3n2",
+  "task_key": "worker_exp_feature_ablation_r3n2_20260515T170333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_feature_ablation_r3n2_20260515T170333.log",
+    "occurrence": 1,
+    "bytes": 2061931,
+    "sha256": "af5bed494bcf61685c73c129a2ebc403b3f3251852aa4636ad8ccfb799e85e9d"
+  },
+  "statistics": {
+    "messages": 1524,
+    "user_turns": 1,
+    "tool_calls": 683,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 7,
+      "assistant": 145,
+      "tool_call": 683,
+      "tool_result": 683,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 756,
+      "chunks": [
+        {
+          "path": "61e5518d91a7b6070977-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0005.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 768,
+      "chunks": [
+        {
+          "path": "61e5518d91a7b6070977-part-0005.json",
+          "message_count": 144
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "61e5518d91a7b6070977-part-0009.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ]
+}

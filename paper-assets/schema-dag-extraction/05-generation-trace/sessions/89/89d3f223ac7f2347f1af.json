@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "89d3f223ac7f2347f1af",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp012 llama prep",
+  "task_key": "worker_ssh_exp012-llama-prep_20260515T082428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp012-llama-prep_20260515T082428_result.json",
+    "occurrence": 1,
+    "bytes": 4052,
+    "sha256": "f796b2bd5f26d9335feadc0633220017b17360dd6f067fec629615bb695b940e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No `.incomplete` files — download was interrupted, not active. Here's the full report:\n\n---\n\n## exp-012 兼容性报告\n\n### 1. LLaMA 下载状态：**不完整**\n- 已下载：13/15 safetensors 分片\n- **缺失**：`model-00007-of-00015.safetensors`、`model-00015-of-00015.safetensors`\n- config.json / tokenizer.json / tokenizer_config.json / hf_quant_config.json 均已就位\n- 无活跃下载进程，需手动恢复\n\n### 2. 代码兼容性：**完全兼容，无需改代码**\n\n| 检查项 | 结果 |\n|--------|------|\n| model_path 传递 | `run_experiment.py` → `run_extraction()` → `vLLM LLM(model=...)` — 纯参数传递，无 hardcode |\n| Qwen3-specific 逻辑 | 无。\"Qwen3\" 仅出现在注释和 help text 中，无条件分支 |\n| vLLM 初始化 | `LLM(model=..., dtype=\"bfloat16\", gpu_memory_utilization=0.95, enforce_eager=True, max_model_len=4096, trust_remote_code=True)` — 模型无关 |\n| FP8 量化 | `hf_quant_config.json` 使用 nvidia modelopt FP8 格式，vLLM 0.20.2 自动检测，无需额外 `--quantization` 参数 |\n| tensor_parallel | 代码默认 tp=1。FP8 70B ≈ 70GB，98GB GPU 可 fit（剩余 ~28GB 给 KV cache） |\n| chat template | 代码用 `llm.generate(prompts)` 传原始文本，不走 chat template。LLaMA 和 Qwen3 行为一致 |\n| prompt 格式 | 纯英文指令文本，无模型特定标记 |\n| 输出解析 | `guided_json` 约束解码，模型无关 |\n| compute_type_embeddings.py | 使用 `AutoModelForCausalLM` + `AutoTokenizer`，完全模型无关 |\n\n### 3. Decision Point：BCS embeddings\n\n根据 D010 发现，extraction model 的 embeddings 与 BCS-F1 相关性更强。两个选项：\n\n- **Option A（快速）**：复用 Qwen3 embeddings (`artifacts/type_embeddings.pt` + `artifacts/sim_matrix.pt`)。BCS 值不反映 LLaMA 的类型混淆模式，但可以先跑 exp1 验证 pipeline，BCS correlation 分析后补。\n- **Option B（严谨）**：先用 LLaMA 计算 Few-NERD embeddings。需要 GPU（当前被 exp-008 占用）。\n\n**建议**：先用 Option A 跑 exp1+exp2，同时生成 LLaMA embeddings，之后再做 BCS reanalysis。exp1 的 count baseline 不依赖 BCS 分组，exp2 的 low/high BCS 分组虽基于 Qwen3 embeddings，但结果仍有 cross-model 对比价值。\n\n### 4. 恢复下载命令\n\n```bash\n# 先恢复下载缺失分片\nsource /etc/network_turbo\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nhuggingface-cli download neuralmagic/Llama-3.3-70B-Instruct-FP8-dynamic \\\n  --local-dir /root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/ \\\n  --resume-download\n```\n\n### 5. Launch 命令草案\n\n```bash\n#!/bin/bash\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\ncd /root/schema-dag-extraction\n\nMODEL=/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/\nCOMMON=\"--dataset fewnerd --prompt_version v2 --types_file configs/few_nerd_types.json --embeddings_path artifacts/type_embeddings.pt --sim_matrix_path artifacts/sim_matrix.pt --model_path $MODEL --max_samples 1000 --max_model_len 4096 --output_dir artifacts/exp012\"\n\n# exp1: Count Baseline\necho \"===== [$(date)] exp-012 exp1 =====\"\npython3 src/run_experiment.py --mode exp1 $COMMON\n\n# exp2: Confusability Controlled\necho \"===== [$(date)] exp-012 exp2 =====\"\npython3 src/run_experiment.py --mode exp2 $COMMON\n\necho \"===== [$(date)] exp-012 done =====\"\n```\n\n### 6. 需要 GPU 后执行（LLaMA embeddings）\n\n```bash\npython3 src/compute_type_embeddings.py \\\n  --model_path /root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/ \\\n  --types_file configs/few_nerd_types.json \\\n  --output_path artifacts/llama70b_fewnerd_embeddings.pt\n```\n\n### 下一步\n1. 恢复 LLaMA 下载（缺 2 个分片）\n2. 等 exp-008 释放 GPU\n3. 可选：先算 LLaMA embeddings，再跑 exp-012；或用 Qwen3 embeddings 先跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

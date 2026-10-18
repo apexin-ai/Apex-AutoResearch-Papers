@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fd8a2cadee77b25777aa",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论已明确。\n\n## 结论\n\n**实际使用的模型：Qwen3-32B-FP8**（路径 `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`）\n\n| 项目 | 值 |\n|------|-----|\n| **模型** | Qwen3-32B-FP8 (`AutoModelForCausalLM`) |\n| **Embedding 维度** | 5120（= Qwen3-32B 的 hidden_size） |\n| **计算方法** | Mean pooling last hidden states（attention mask 加权） |\n| **dtype** | bfloat16 |\n\n### 证据链\n\n1. **`type_embeddings.pt`**（Few-NERD）：66 个 type，每个 shape `[5120]` — 与 Qwen3-32B hidden_size 一致\n2. **`maven_type_embeddings_qwen3.pt`**（MAVEN）：168 个 type，每个 shape `[5120]` — 同上\n3. **`src/compute_type_embeddings.py`**：使用 `AutoModelForCausalLM` + mean pooling hidden states，接受 `--model_path` 参数\n4. **`scripts/compute_maven_qwen3_embeddings.py`**：硬编码 `model_path = \"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\"`，同样用 `AutoModelForCausalLM` + mean pooling\n5. **`scripts/run_exp008.sh`**：`--model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n\n### Metadata 错误\n\n**`artifacts/maven_minilm_pertype_analysis.json`** 第 985 行标注了 `\"qwen3_model\": \"Qwen3-Embedding-0.6B\"`，这是错误的。实际用的是 Qwen3-32B mean-pooled hidden states，不是 Qwen3-Embedding-0.6B（后者是专用 embedding 模型，hidden_size=1024，从未在项目中出现）。\n\n### 需要修正\n\n- `artifacts/maven_minilm_pertype_analysis.json`：将 `\"Qwen3-Embedding-0.6B\"` 改为 `\"Qwen3-32B-FP8 (mean-pooled hidden states)\"`\n- 论文/报告中如有引用 \"Qwen3-Embedding-0.6B\" 的地方，统一改为 \"Qwen3-32B mean-pooled\""
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5aa1b6a-5750-45df-b880-a69389c91396",
+            "uuid": "27237b94-3d51-4a13-b4b2-f24a15ee548c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FSirtGbTFPo8NxedxhVcw2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 923,
+                "cache_read_input_tokens": 39300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 923
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778854200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "07d1ca30-61ce-4084-8a92-83ee04e326eb",
+                "session_id": "e5aa1b6a-5750-45df-b880-a69389c91396"
+              }
+            }
+          ],
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论已明确。\n\n## 结论\n\n**实际使用的模型：Qwen3-32B-FP8**（路径 `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`）\n\n| 项目 | 值 |\n|------|-----|\n| **模型** | Qwen3-32B-FP8 (`AutoModelForCausalLM`) |\n| **Embedding 维度** | 5120（= Qwen3-32B 的 hidden_size） |\n| **计算方法** | Mean pooling last hidden states（attention mask 加权） |\n| **dtype** | bfloat16 |\n\n### 证据链\n\n1. **`type_embeddings.pt`**（Few-NERD）：66 个 type，每个 shape `[5120]` — 与 Qwen3-32B hidden_size 一致\n2. **`maven_type_embeddings_qwen3.pt`**（MAVEN）：168 个 type，每个 shape `[5120]` — 同上\n3. **`src/compute_type_embeddings.py`**：使用 `AutoModelForCausalLM` + mean pooling hidden states，接受 `--model_path` 参数\n4. **`scripts/compute_maven_qwen3_embeddings.py`**：硬编码 `model_path = \"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\"`，同样用 `AutoModelForCausalLM` + mean pooling\n5. **`scripts/run_exp008.sh`**：`--model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n\n### Metadata 错误\n\n**`artifacts/maven_minilm_pertype_analysis.json`** 第 985 行标注了 `\"qwen3_model\": \"Qwen3-Embedding-0.6B\"`，这是错误的。实际用的是 Qwen3-32B mean-pooled hidden states，不是 Qwen3-Embedding-0.6B（后者是专用 embedding 模型，hidden_size=1024，从未在项目中出现）。\n\n### 需要修正\n\n- `artifacts/maven_minilm_pertype_analysis.json`：将 `\"Qwen3-Embedding-0.6B\"` 改为 `\"Qwen3-32B-FP8 (mean-pooled hidden states)\"`\n- 论文/报告中如有引用 \"Qwen3-Embedding-0.6B\" 的地方，统一改为 \"Qwen3-32B mean-pooled\""
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 173840,
+            "duration_api_ms": 93458,
+            "num_turns": 32,
+            "stop_reason": "end_turn",
+            "session_id": "e5aa1b6a-5750-45df-b880-a69389c91396",
+            "total_cost_usd": 0.5256635,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 28382,
+              "cache_read_input_tokens": 336684,
+              "output_tokens": 7117,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28382,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 703,
+                  "cache_read_input_tokens": 39300,
+                  "cache_creation_input_tokens": 923,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 923
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1819,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019340000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 7117,
+                "cacheReadInputTokens": 336684,
+                "cacheCreationInputTokens": 28382,
+                "webSearchRequests": 0,
+                "costUSD": 0.5237295,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "31014c47-a796-4014-a672-9f927049454e"
+          },
+          "id": "event-000079"
+        }
+      ]
+    }
+  ]
+}

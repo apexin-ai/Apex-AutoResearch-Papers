@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "716906bf135161d0a4c9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 smolvla sweep",
+  "task_key": "worker_deploy_cqa1-smolvla-sweep_20260521T191518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-smolvla-sweep_20260521T191518_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "d8b00d224632177d8e5936a7936bacefaade08bb186a7064869963413a0e176f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n**第一批 4 个实验（已启动，4 GPU 并行）：**\n\n| 实验 | GPU | tmux 会话 | 状态 |\n|------|-----|-----------|------|\n| random_k030_object_seed42 | 0 | random_k030 | 运行中，加载完成 |\n| random_k070_object_seed42 | 1 | random_k070 | 运行中，已产出首个 episode (FAIL) |\n| l2norm_k030_object_seed42 | 2 | l2norm_k030 | 运行中，加载完成 |\n| l2norm_k070_object_seed42 | 3 | l2norm_k070 | 运行中，加载完成 |\n\n**修复问题：** 首次启动因缺少 `HF_HOME=/root/autodl-tmp/.hf_cache` 导致找不到 SmolVLM2 基础模型缓存，已加上并重启成功。\n\n**第二批 2 个实验（random_k090, random_k050）：** 等第一批空出 GPU 后自动部署，已设 cron 每小时 :37 监控。\n\n**预计时长：** 每个实验 ~4-5 小时，第一批预计 ~07:30 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b32aa78d351d06f71ef",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code gdn h24 extract",
+  "task_key": "worker_code_gdn_h24_extract_20260519T043545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gdn_h24_extract_20260519T043545_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "e417b3932a601f15e9ce583628317ba9aef10f79d99e242a94522a5ec63cedef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 GDN 340M 的 lambada_openai 结果，全部模型都有完整 6-benchmark（lambada, hellaswag, winogrande, arc_easy, arc_challenge, mmlu）：\n\n| Model | lambada acc | lambada ppl |\n|---|---|---|\n| **GDN-New-hybrid-24-1** | **0.3507** | **38.43** |\n| GDN-hybrid-12-1 | 0.3252 | 42.98 |\n| GDN-hybrid-3-1 | 0.3268 | 47.96 |\n| GDN-hybrid-6-1 | 0.3513 | 39.10 |\n| GDN-pure-baseline | 0.3753 | 34.81 |\n\nGDN-New-hybrid-24-1 的 lambada acc=0.3507, ppl=38.43。pure baseline 仍是 lambada 最优（acc=0.3753, ppl=34.81）。hybrid-6-1 和 New-hybrid-24-1 接近，但都不及 pure。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

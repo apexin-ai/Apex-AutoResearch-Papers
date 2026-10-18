@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed5104d49abc5a4b5108",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra kill rogue gpu process",
+  "task_key": "worker_infra_kill-rogue-gpu-process_20260514T145519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-rogue-gpu-process_20260514T145519_result.json",
+    "occurrence": 1,
+    "bytes": 2626,
+    "sha256": "6d7a721a7ad029ac7547e7d5ff9b4dcaa944549e3c05b96cbd3baabe8ce56883"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 执行结果\n\n### 1. Step 1 — nvidia-smi（kill 前）\n```\nThu May 14 22:55:46 2026\n+-----------------------------------------------------------------------------------------+\n| GPU  Name                 Persistence-M | Memory-Usage         | GPU-Util |\n|   0  NVIDIA RTX PRO 6000 Blac...    On  | 11623MiB / 97887MiB  |   96%   |\n|   1  NVIDIA RTX PRO 6000 Blac...    On  | 15641MiB / 97887MiB  |   64%   |\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                  |\n|  GPU    PID   Type   Process name                        GPU Memory Usage   |\n|    0  125083    C    python                                11614MiB          |\n|    1  126022    C    python                                15632MiB          |\n+-----------------------------------------------------------------------------------------+\n```\n\n### 2. Step 2 — 进程确认\n- **PID 122428/122434（rogue GPT-2 XL）：已不存在**，无需 kill\n- **PID 123665（原 cross_model_gpt2xl_001）：已结束**，但其 pipeline 子进程继续运行\n\n当前进程：\n- **cuda:0 PID 125083**: `python scripts/lora_finetune.py ... --model_name /root/autodl-tmp/models/pythia-1.4b --gpu 0` — Pythia temp09 finetuning\n- **cuda:1 PID 126022**: `python scripts/generate_next_depth.py --adapter_dir checkpoints/gpt2xl/lora_depth_0 ... --model_name /root/autodl-tmp/models/gpt2-xl --gpu 0` — GPT-2 XL 正常 pipeline（cross_model_gpt2xl_001 的子进程，父 PID 123660）\n\n### 3. Kill 结果\n**无需执行** — rogue 进程 122428/122434 已自行退出或被其他方式终止。\n\n### 4. Step 4 — nvidia-smi（同 Step 1，无 kill 操作）\n同上。cuda:0 现在被 Pythia temp09 占用，cuda:1 被 GPT-2 XL 正常 pipeline 占用。\n\n### 5. Checkpoint 污染检查\n**无污染。**\n- `checkpoints/gpt2xl/` 仅含 `lora_depth_0/`\n- `lora_depth_0/` 内文件时间戳 22:42-22:54，与 cuda:1 注册任务（14:42 UTC = 22:42 UTC+8）一致\n- `lora_depth_1/`、`lora_depth_2/` 不存在\n- 当前 PID 126022 正在生成 `depth_1.jsonl`，训练正常推进\n\n### 6. OLMo 脚本修复\n- `MODEL_PATH`: `olmo-1b` → `olmo-1b-hf` ✓\n- `TARGET_MODULES`: `q_proj,v_proj` → `q_proj,k_proj,v_proj` ✓\n- 语法检查：**SYNTAX_OK** ✓\n\n### 7. Pythia temp09 (PID 125067) 状态\n**存活。** PID 125067 是 pipeline wrapper（bash），其子进程 PID 125083 正在 cuda:0 上执行 `lora_finetune.py`，显存 11614 MiB，GPU 利用率 96%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

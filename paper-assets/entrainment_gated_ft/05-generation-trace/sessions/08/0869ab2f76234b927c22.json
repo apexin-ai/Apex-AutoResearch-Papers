@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0869ab2f76234b927c22",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research wang differentiation",
+  "task_key": "worker_research_wang_differentiation_20260519T130431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_wang_differentiation_20260519T130431_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "1360972a5f4000498d4ea6ff32a8eac609c2d91615e0656a3a841a8af9ea67d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md`（95行）。\n\n核心结论：4个差异维度全部为 **Fully new**，与 Wang et al. 零重叠：\n\n| 维度 | Wang et al. | 我们 |\n|------|-------------|------|\n| Convergence 量化 | 定性观察（\"rankings change\"） | Spearman ρ + permutation test + std trajectory |\n| Scale dependency | 二元声明（\"两个scale同pattern\"） | 1.3B效果2倍于340M，340M rebound机制 |\n| Per-example mechanism | 未涉及 | Jaccard ~0.04-0.07，architecture-specific feature profiles |\n| Task-specificity | Ratio-sensitivity（哪些任务受ratio影响） | Convergence-strength by task type（retrieval ρ=-0.94 vs reasoning ρ=-0.55） |\n\nWang et al. 论文中最接近我们工作的表述是 Section 4.1 的 \"rankings change\" 和 \"becomes comparable\"——但这些是为架构推荐服务的事实陈述，不是被当作需要解释的现象。他们从未计算过 cross-architecture variance，未做 per-example 分析，未比较 scale 间 convergence 强度差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

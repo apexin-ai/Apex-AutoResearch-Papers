@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2442962a656a993810dc",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "prep code release final",
+  "task_key": "worker_prep_code-release-final_20260523T164502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_code-release-final_20260523T164502_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "aaf046b1bca5edce457e915adaaa17f07cebe7bf50af506090b3b095edd10754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **code_release.zip** 已从 westb-48145 下载到本地 artifacts 目录\n- 1.1MB, 129 files, MD5: `72f56c2da0bfc2816f84658177e62698`\n- 包含：分析脚本（analysis/*.py）、评估脚本（scripts/）、结果数据（results/ 下的 JSON/CSV/tex）、根目录分析脚本和 JSON、README.md\n- 排除：模型 checkpoint、PNG/PDF 图表（a3_complementarity 的图除外）、日志、.bak 文件\n- 已注册 artifact: `art_20260523_a98526`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

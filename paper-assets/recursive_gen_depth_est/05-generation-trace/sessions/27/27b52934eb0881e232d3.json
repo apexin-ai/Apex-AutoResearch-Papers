@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "27b52934eb0881e232d3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260517T224924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260517T224924_result.json",
+    "occurrence": 1,
+    "bytes": 1558,
+    "sha256": "7c8759ab81f9754593fe8041364cc0c85acab3f31b5540abdb5e858bd35b5ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 状态\n\n| GPU | 型号 | 利用率 | 显存占用 | 温度 |\n|-----|------|--------|----------|------|\n| cuda:0 | RTX PRO 6000 Black | **89%** | 32,385 / 97,887 MiB (33%) | 47°C |\n| cuda:1 | RTX PRO 6000 Black | **0%** | 0 / 97,887 MiB | 29°C |\n\n### 进程状态\n\n| PID | 状态 | 说明 |\n|-----|------|------|\n| **806751** | **存活** ✓ | `python scripts/qwen25_14b_scale_validation.py`，运行 ~5.7h，占 cuda:0 32GB，CPU 105% |\n| **813673** | **已死** ✗ | instruct 实验进程不存在 |\n| **813535** | **已死** ✗ | instruct 实验进程不存在 |\n| **695547** | **已死** ✗ | prompted_gen_gpt2xl_001 旧进程不存在 |\n\n### 14B 模型下载\n\n**未找到 Qwen2.5-14B 模型文件。** HF cache 中没有 `models--Qwen--Qwen2.5-14B` 目录。PID 806751 当前运行的是 `qwen25_14b_scale_validation.py`，可能模型以其他方式加载（已在 GPU 显存中），或缓存路径不同。\n\nHF cache 中已有模型：Qwen3-8B, Qwen2.5-1.5B-Instruct, OLMo-1B, roberta-base, pythia-410m\n\n### 磁盘空间\n\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| / (overlay) | 30G | 11G | 20G | 35% |\n\n### 总结\n\n- PID 806751 正在正常运行 14B scale validation 实验，GPU 利用率 89%，状态健康\n- 813673/813535/695547 三个进程均已结束\n- 14B 模型不在标准 HF cache 路径，可能在 autodl-tmp 或通过自定义 cache_dir 加载（已在显存中使用）\n- 磁盘充裕（65% 空闲）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

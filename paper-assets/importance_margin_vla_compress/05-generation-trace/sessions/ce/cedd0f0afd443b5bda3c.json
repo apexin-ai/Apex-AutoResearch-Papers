@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cedd0f0afd443b5bda3c",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_15_1779976891.md",
+  "task_key": "loop_15_1779976891",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_15_1779976891.md",
+    "occurrence": 1,
+    "bytes": 4999,
+    "sha256": "e811bd6fe0a0e08f291e9a55396f327ccdbeeb223e8811592843fc74f70084de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-28T13:49:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-27271 (cuda:0,1), westd-38929 (cuda:0,1,2,3), westd-41074 (cuda:0,1,2,3), cqa1-33015 (cuda:0,1,2,3)，共 14 张\n- westd-38929 上 GPU 编号从 0 开始（框架自动映射物理 GPU）\n- 实验硬截止：**May 28 20:00 BJT**，CoRL 2026 Paper 截止 May 29\n- metrics 格式不一致（比例 vs 百分比），最终收割时必须统一清洗\n- OV Attn k=0.75 用 v3=34.2%（不是旧版）；Random k=0.85 s43 per-task 数据混入错误，用 server log 真值\n- w41 上同时跑着 `eval_pi05_attn_k05_long_seed43_strict_w41` 作为 backup——如果 w38 版本分析成功，w41 backup 可以 kill 释放 GPU\n\n### 2. 🖥️ 基础设施快照\n- **westd-27271**: 2 GPU，L2norm k=0.75 s44 (cuda:0, pid=247822) + L2norm k=0.7 s44 (cuda:1, pid=248082)\n- **westd-38929**: 4 GPU，GPU0+GPU1 空闲（待部署 Attn k=0.85 s44 + Random k=0.7 s44），GPU2=L2norm k=0.5 s44 (pid=557449)，GPU3=刚完成的 Attn k=0.5 s43 (已 ANALYZING)\n- **westd-41074**: 4 GPU，Random k=0.85 s44 (cuda:0, pid=178679), Random k=0.75 s44 (cuda:1, pid=185640), Random k=0.9 s44 (cuda:2, pid=68640), Attn k=0.5 s43 backup (cuda:3, pid=62928)\n- **cqa1-33015**: 4 GPU，L2norm k=0.5 s43 (cuda:0, pid=572418), L2norm k=0.9 s44 (cuda:1, pid=628418), Attn k=0.9 s44 (cuda:2, pid=695388), Attn k=0.75 s43 (cuda:3, pid=588702)\n- 工作目录统一：`~/runs/importance_margin_vla_compress/`\n- 磁盘：w38 系统盘 593G/879G 可用(29% used)，autodl-pub 5.3T/7.3T 可用\n\n### 3. 📊 当前状态\n**刚做完**：收到 `eval_pi05_attn_k05_long_seed43_strict_w38` 的 cron 回调（进程正常退出，ANALYZING）。已派 Worker `worker_analyze_eval_pi05_attn_k05_long_seed43_strict_w38_20260527T214736` 去 SSH 读日志提取 metrics，**Worker 尚未回调**。\n\n**RUNNING 实验** (11 个)：\n| exp_id | server | 说明 |\n|--------|--------|------|\n| eval_pi05_l2norm_k05_long_seed43_strict_cqa1 | cqa1 cuda:0 | L2norm k=0.5 s43 |\n| eval_pi05_attn_k075_long_seed43_strict_cqa1 | cqa1 cuda:3 | Attn k=0.75 s43 |\n| eval_pi05_attn_k05_long_seed43_strict_w41 | w41 cuda:3 | Attn k=0.5 s43 backup |\n| eval_pi05_l2norm_k09_long_seed44_strict_cqa1 | cqa1 cuda:1 | L2norm k=0.9 s44 |\n| eval_pi05_random_k09_long_seed44_strict_w41 | w41 cuda:2 | Random k=0.9 s44 |\n| eval_pi05_attn_k09_long_seed44_strict_w38 | cqa1 cuda:2 | Attn k=0.9 s44 |\n| eval_pi05_random_k085_long_seed44_strict_w41 | w41 cuda:0 | Random k=0.85 s44 |\n| eval_pi05_random_k075_long_seed44_strict_w41 | w41 cuda:1 | Random k=0.75 s44 |\n| eval_pi05_l2norm_k05_long_seed44_strict_w38 | w38 cuda:2 | L2norm k=0.5 s44 |\n| eval_pi05_l2norm_k075_long_seed44_strict_w27 | w27 cuda:0 | L2norm k=0.75 s44 |\n| eval_pi05_l2norm_k07_long_seed44_strict_w27 | w27 cuda:1 | L2norm k=0.7 s44 |\n\n**ANALYZING** (1 个)：eval_pi05_attn_k05_long_seed43_strict_w38（Worker 正在分析）\n\n**等待中**：\n- Worker 回调：`worker_analyze_eval_pi05_attn_k05_long_seed43_strict_w38_20260527T214736`\n- w38 GPU0+GPU1 空闲，ROADMAP 说已批准部署 Attn k=0.85 s44 + Random k=0.7 s44，但尚未提交\n- 还有 ~94 个 PREPARING 实验排队\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析回调到达 → update registry (DONE) + 更新 ROADMAP Attn k=0.5 error bar + 汇报 Director（含 seed42=52.0% 对比）\n- w38 分析结果 success → kill w41 backup (eval_pi05_attn_k05_long_seed43_strict_w41)，释放 w41 cuda:3\n- **w38 GPU0+GPU1 空闲** → 立即部署 Attn k=0.85 s44 + Random k=0.7 s44（ROADMAP 已批准）\n- 各 s44 实验陆续完成（预计 22:00-23:30 UTC）→ 逐个收割分析 + 更新 Importance Margin Profile 表\n- L2norm k=0.5 s43 (cqa1) + s44 (w38) 都完成 → 闭合 Importance Margin Profile 最后一行（k=0.5）\n- **全部 error bar 闭合** → 通知 Director \"实验全部完成，可以进入 metrics 清洗 + Paper Agent 更新 figures\"\n- 实验硬截止 May 28 20:00 BJT 前必须完成所有 s44 收割\n\n### 5. 🎯 战略上下文\n- **核心发现**：Importance Margin（L2norm SR - Random SR）呈 inverted-U 形状。peak 在 k=0.9 (+46.0pp)，crossover 在 k=0.7 (-0.9pp)。这是论文的核心 claim。\n- **当前冲刺**：第三个种子 (s44) 的 error bar 实验。s42+s43 已基本闭合（5/6 k 值），s44 是加固 error bar 的第三个数据点。\n- **Attn cliff curve**：Attn 在 k=0.85→0.75 有断崖式下降（51.2%→49.4%），与 L2norm 的 graceful degradation 形成对比——这是 paper 的 narrative 支柱。\n- **OpenVLA Long Curve 已完成** (18/18)，π0.5 Cliff Curve 已完成 (18/18)，现在只差 error bar 收尾。\n- **易错点**：\n  - metrics 有比例(0.xx)和百分比(xx%)混用，收割时必须统一为百分比\n  - cqa1 上 transformers 版本曾出过问题（缺 qwen2_5_vl 模块），已升级但要注意\n  - ROADMAP 中 Attn k=0.9 s44 标注在 cqa1 cuda:2 但 registry 里 server 是 w38——以 registry 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb91f992624fdad20bfc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest pi05 l2norm k0925 goal seed43",
+  "task_key": "worker_harvest_pi05_l2norm_k0925_goal_seed43_20260523T192705",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_pi05_l2norm_k0925_goal_seed43_20260523T192705_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "6bc21e05b979f9898c8ea59c1d27d6d40951edbdde11f09784089f309242cce1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry already had conclusion=success set. Metrics now recorded.\n\n**Results summary:**\n\n| Task | SR |\n|---|---|\n| T0 open middle drawer | 92% |\n| T1 put bowl on stove | 98% |\n| T2 wine bottle on cabinet | 100% |\n| T3 open drawer, put bowl in | 92% |\n| T4 bowl on top of cabinet | 98% |\n| T5 push plate to front | 100% |\n| T6 cream cheese in bowl | 92% |\n| T7 turn on stove | 98% |\n| T8 bowl on plate | 96% |\n| T9 wine bottle on rack | 42% |\n| **Overall** | **90.8%** |\n\nSeed42 = 89.0%, Seed43 = 90.8% → delta +1.8pp. Seed stability confirmed. T9 (wine bottle on rack) remains the hardest task across both seeds."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

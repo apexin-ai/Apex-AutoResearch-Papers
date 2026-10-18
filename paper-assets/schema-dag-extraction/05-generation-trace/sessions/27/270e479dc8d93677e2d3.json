@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "270e479dc8d93677e2d3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis jt trend test",
+  "task_key": "worker_analysis_jt-trend-test_20260517T042500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_jt-trend-test_20260517T042500_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "c425ec92af49865cea484a376273748b22a5430a9f1ad6a9016683b3e0289310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nSeed  42: J = 12227.5, z = 14.8007, p < 1e-48\nSeed 123: J = 12144.0, z = 14.5847, p < 1e-48\nSeed 456: J = 12138.5, z = 14.5701, p < 1e-48\nPooled:   J = 109707.0, z = 25.4964, p < 1e-48\n```\n\n所有 p-value 远小于 0.001（scipy 报告为 0.00e+00，即超出 float64 精度下限）。单调递减趋势极其显著。\n\n建议论文句子：\n\n> \"Formal trend analysis confirms monotonic decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$, pooled across three seeds).\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

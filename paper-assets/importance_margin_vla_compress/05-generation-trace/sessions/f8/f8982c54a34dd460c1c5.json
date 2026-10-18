@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f8982c54a34dd460c1c5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code geometric prior pruning",
+  "task_key": "worker_code_geometric_prior_pruning_20260517T154301",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_geometric_prior_pruning_20260517T154301_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "cb6536f5ee4eefb63fd4417030f68707fcb7c9ad207850528e314e1c8da25328"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。总结：\n\n**产出文件**\n1. `geometric_prior_pruning.py` (259 行) — Sobel edge detection + token pruning hook\n2. `test_geometric_pruning.py` (221 行) — dry-run 验证脚本\n\n**Dry-run 结果** (k_ratio=0.5, task 0: \"pick up the alphabet soup and place it in the basket\")\n- 4 次 re-plan 全部成功，模型未 crash\n- 每次 kept=64/128 (50%)，action shape=(50, 7) 正确\n- Sobel importance 非 trivial：cam0 mean≈0.21, cam1 mean≈0.25，std≈0.19-0.25\n- 合成图像测试通过（白色方块有边缘 → importance max=1.0）\n\n**SigLIP patch-to-token 映射**\n| 层 | 尺寸 |\n|---|---|\n| 原始观测 | 256×256 |\n| SigLIP 输入 (resize) | 512×512 |\n| SigLIP patches (16×16) | 32×32 = 1024 tokens |\n| Connector pixel_shuffle (sf=4) | 8×8 = 64 tokens/camera |\n| LIBERO 2 cameras | 128 total tokens |\n| 每个 token 覆盖 | 32×32 pixels (原始 256×256 图) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

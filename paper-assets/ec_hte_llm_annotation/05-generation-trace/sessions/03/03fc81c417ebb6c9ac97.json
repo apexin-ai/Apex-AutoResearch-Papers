@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "03fc81c417ebb6c9ac97",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code asymmetric auc improvement",
+  "task_key": "worker_code_asymmetric-auc-improvement_20260525T050424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_asymmetric-auc-improvement_20260525T050424.log",
+    "occurrence": 1,
+    "bytes": 1209750,
+    "sha256": "155f2f5487a53aab461d0c9e1afdc29a8aef94b0d730598effb75914ae7bf4ee"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 3,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 89,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 109,
+      "user": 3,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "03fc81c417ebb6c9ac97-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "03fc81c417ebb6c9ac97-part-0001.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "03fc81c417ebb6c9ac97-part-0001.json",
+          "message_count": 97
+        },
+        {
+          "path": "03fc81c417ebb6c9ac97-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "03fc81c417ebb6c9ac97-part-0002.json",
+          "message_count": 105
+        },
+        {
+          "path": "03fc81c417ebb6c9ac97-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ]
+}

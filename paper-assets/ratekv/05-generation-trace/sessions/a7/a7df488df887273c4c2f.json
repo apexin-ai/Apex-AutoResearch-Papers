@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a7df488df887273c4c2f",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code c4 cross dataset eval",
+  "task_key": "worker_code_c4_cross_dataset_eval_20260514T011833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c4_cross_dataset_eval_20260514T011833_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "48ebd4680ffdb819ebabcfba487542447ade9c3fb22df055cbae68b455f0365d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "C4 Cross-Dataset Evaluation 完成。结果汇总：\n\n| Metric | WikiText-2 cal | C4 cal |\n|--------|---------------|--------|\n| MCKP PPL (WikiText-2 eval) | 11.2312 | 11.3285 |\n| Uniform 4-bit PPL | 15.4454 | 15.4454 |\n| Delta (uniform - MCKP) | +4.2142 | +4.1170 |\n| Bit distribution | {8:4, 4:100, 2:8} | {8:4, 4:100, 2:8} |\n\n**跨数据集一致性：**\n- **Allocation agreement: 98.2%** (110/112 heads 完全一致)\n- 仅 2 处差异：L3H0 (WT2:4bit↔C4:2bit) 和 L4H2 (WT2:2bit↔C4:4bit) — 本质是两个 head 互换了 2/4 bit 分配\n- Bit distribution 宏观完全一致\n- PPL 改善幅度差距仅 0.097（4.21 vs 4.12）\n\n结论：MCKP 分配方案对校准数据集高度稳定，跨 WikiText-2/C4 的一致性极强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

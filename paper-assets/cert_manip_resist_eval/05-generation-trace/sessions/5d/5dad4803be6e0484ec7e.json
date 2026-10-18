@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5dad4803be6e0484ec7e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper writing analysis",
+  "task_key": "worker_paper_writing_analysis_20260522T192641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_analysis_20260522T192641_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "8c48538074d013174ebaa9ab8fc4cdcb93b1d79486789badf3b0d6e2ce97b542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "611 words (within target 600-700), no em-dashes, no -ing phrase endings. The section is written with 4 subsections matching the specified structure:\n\n- **§6.1**: BFT reversal confirmed empirically, regime-dependent pattern explained\n- **§6.2**: Structural diversity-capability tradeoff, causal limits acknowledged, family labels non-significant\n- **§6.3**: Bayesian reverses K_eff channel, threshold amplifies, dual-channel defense recommendation\n- **§6.4**: Oracle adversary as upper bound, partial-knowledge attenuation, structural vulnerability persists\n\nAll numbers consistent with Results (11/12, 7/12, 1/12, 4/12, r=0.70, R²=0.890, p=0.179/0.385, 12/12 for min(η_max)). Causal language uses \"is associated with\" throughout. References point to Tables and prior sections via `\\ref` labels."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

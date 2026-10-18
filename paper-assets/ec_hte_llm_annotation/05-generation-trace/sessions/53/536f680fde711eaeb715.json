@@ -1,0 +1,436 @@
+{
+  "schema_version": "1.0",
+  "id": "536f680fde711eaeb715",
+  "project": "ec_hte_llm_annotation",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260521T050131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_method_20260521T050131.jsonl",
+    "occurrence": 1,
+    "bytes": 29704,
+    "sha256": "507a6e31f8cd7b7e899e8de533fe26a6eafd3d40a882a55918f319c51da2e50e"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T05:05:29.748254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T05:05:29.748827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T05:05:29.749034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T05:05:29.749382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T05:05:29.749575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find existing paper .tex files",
+              "prompt": "Find all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/ and list them. Then read theory.tex and experiments.tex (or whatever the experiment section file is called) to extract: (1) all notation definitions (δ_s, Δτ, π̄, C_s, M_s, etc.), (2) all \\label{} definitions, (3) proposition/corollary names and labels, (4) method name conventions used (e.g. \"HB EC-HTE\", \"Strat. MLE\", etc.), (5) any assumptions labeled (A1)-(A4). Report all of these in a structured format."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T05:05:29.749745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/**/*.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T05:05:29.749891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/theory.tex\ndocs/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T05:05:29.750015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T05:05:29.750157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Requires preamble: \\usepackage{amsthm,amsmath,amssymb}\n2\t% and: \\newtheorem{proposition}{Proposition}\n3\t\n4\t\\section{Bias Decomposition: When Debiasing Hurts}\n5\t\\label{sec:theory}\n6\t\n7\tWe formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.\n8\tConsider estimating the conditional average treatment effect (CATE) $\\tau(z) = \\mathbb{E}[Y(1) - Y(0) \\mid Z = z]$, where $Z \\in \\{0, 1\\}$ is a binary effect modifier observed only through a noisy annotation $\\hat{Z}$.\n9\tThe population consists of $K$ subgroups $S \\in \\{1, \\ldots, K\\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \\times 2$ confusion matrix $C_s$ with symmetric error rate $\\pi_s = P(\\hat{Z} \\neq Z \\mid S{=}s)$.\n10\tStandard practice estimates a single confusion matrix $\\bar{C} = \\sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\n11\tWe show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.\n12\t\n13\tWe state four assumptions maintained throughout.\n14\t%\n15\t\\begin{itemize}\n16\t\\item[\\textbf{(A1)}] \\textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.\n17\t\\item[\\textbf{(A2)}] \\textit{Symmetric misclassification:} $P(\\hat{Z}{=}1 \\mid Z{=}0, S{=}s) = P(\\hat{Z}{=}0 \\mid Z{=}1, S{=}s) = \\pi_s$ for all $s$.\n18\t\\item[\\textbf{(A3)}] \\textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.\n19\t\\item[\\textbf{(A4)}] \\textit{Non-degeneracy:} $\\pi_s \\neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.\n20\t\\end{itemize}\n21\t\n22\tUnder (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\\hat{z}, z] = P(Z{=}z \\mid \\hat{Z}{=}\\hat{z}, S{=}s)$) coincides with $C_s$.\n23\tThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n24\t\n\n…[truncated 5860 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T05:05:29.750303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T05:05:29.750465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\t\\subsection{Experimental Setup and Data Generation}\n4\t\n5\t\\subsubsection{Synthetic DGP}\n6\t\n7\tWe generate data from a controlled data-generating process (DGP) that separates the effect of subgroup-level misclassification heterogeneity from other confounders.\n8\tFor each observation $i$, the potential outcome under treatment $t$ is\n9\t\\begin{equation}\n10\tY_i(t) = \\alpha + \\tau(Z_i) \\cdot t + \\beta X_i + \\varepsilon_i, \\quad \\varepsilon_i \\sim \\mathcal{N}(0,1),\n11\t\\end{equation}\n12\twhere $T_i \\sim \\text{Bernoulli}(0.5)$ simulates a randomized controlled trial, and $Z_i \\in \\{0, \\ldots, K{-}1\\}$ is the true effect modifier with $K \\in \\{2, 4\\}$ subgroups.\n13\tThe conditional average treatment effect (CATE) $\\tau(Z{=}z)$ varies across subgroups with controlled heterogeneity $\\Delta\\tau = \\max_z \\tau(z) - \\min_z \\tau(z)$.\n14\tMisclassification is injected through subgroup-specific symmetric confusion matrices $C_s$: the observed label $\\hat{Z}_i$ is drawn as $\\hat{Z}_i \\sim \\text{Multinomial}(C_{S_i})$, where each subgroup $s$ has error rate $\\pi_s$ and $\\Delta\\pi = \\max_s \\pi_s - \\min_s \\pi_s$ controls heterogeneity.\n15\tWe fix $N{=}5000$ observations and vary $n_{\\text{expert}} \\in \\{50, 100, 250, 500, 1000, 2000\\}$ (the number of expert-labeled observations used to estimate confusion matrices).\n16\tEach configuration is repeated for 100 Monte Carlo runs.\n17\t\n18\t\\subsubsection{Semi-synthetic DGP (TweetEval)}\n19\t\n20\tTo test EC-HTE under realistic conditions, we construct a semi-synthetic DGP from the TweetEval sentiment corpus~\\cite{barbieri2020tweeteval}, sampling $N{=}5000$ tweets per run from a pool of 57{,}899.\n21\tFour subgroups are defined by crossing two binary text features: presence of hashtags (\\texttt{has\\_hashtag}) and text length relative to the median (\\texttt{text\\_length\\_bin}).\n22\tThis yields unbalanced subgroup proportions (S0: 39\\%, S1: 38\\%, S2: 12\\%, S3: 11\\%).\n23\tThe effect modifier is $Z{=}1$ if the true sentiment is positive (\n…[truncated 13263 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T05:05:29.750696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have extracted all the requested information from the theory.tex and experiments.tex files. Let me compile a comprehensive structured report.\n\n## .tex Files Found\n\nThe paper directory contains:\n- `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex`\n\n---\n\n## STRUCTURED EXTRACTION REPORT\n\n### 1. NOTATION DEFINITIONS\n\n| Symbol | Definition | First Appearance | Context |\n|--------|------------|------------------|---------|\n| τ(z) | Conditional average treatment effect (CATE) | Line 8 | Core effect measure |\n| Z | Binary effect modifier (Z ∈ {0,1}) | Line 8 | True label |\n| Ẑ | Noisy annotation of Z | Line 8 | Observed/corrupted label |\n| S | Subgroup indicator (S ∈ {1,...,K}) | Line 9 | Population subgroups |\n| w_s | Weight of subgroup s: P(S=s) | Line 9 | Subgroup proportions |\n| C_s | 2×2 confusion matrix for subgroup s | Line 9 | Misclassification structure |\n| π_s | Symmetric error rate P(Ẑ ≠ Z \\| S=s) | Line 9 | Per-subgroup error rate |\n| C̄ | Pooled confusion matrix: Σ_s w_s C_s | Line 10 | Global aggregated matrix |\n| π̄ | Pooled error rate: Σ_s w_s π_s | Line 10 | Average error rate |\n| δ_s | Subgroup deviation: π_s - π̄ | Line 32 | Relative error heterogeneity |\n| Δτ | CATE heterogeneity: τ(1) - τ(0) | Line 32 | Treatment effect variation |\n| M_s | Bayesian mixing matrix for subgroup s | Line 22 | Posterior probability structure |\n| M_global | Global mixing matrix: Σ_s w_s M_s | Line 23 | Pooled posterior structure |\n| n_expert | Number of expert-labeled observations | Line 15 | Sample size for confusion matrix estimation |\n| Δπ | Misclassification heterogeneity: max_s π_s - min_s π_s | Line 14 | Range of error rates |\n| K | Number of subgroups | Line 12 | Population partition size |\n| Y_i(t) | Potential outcome under treatment t | Line 10 (Exp.) | Counterfactual outcome |\n| T_i | Treatment indic\n…[truncated 5427 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T05:05:29.750916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T05:05:29.751101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Requires preamble: \\usepackage{amsthm,amsmath,amssymb}\n2\t% and: \\newtheorem{proposition}{Proposition}\n3\t\n4\t\\section{Bias Decomposition: When Debiasing Hurts}\n5\t\\label{sec:theory}\n6\t\n7\tWe formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.\n8\tConsider estimating the conditional average treatment effect (CATE) $\\tau(z) = \\mathbb{E}[Y(1) - Y(0) \\mid Z = z]$, where $Z \\in \\{0, 1\\}$ is a binary effect modifier observed only through a noisy annotation $\\hat{Z}$.\n9\tThe population consists of $K$ subgroups $S \\in \\{1, \\ldots, K\\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \\times 2$ confusion matrix $C_s$ with symmetric error rate $\\pi_s = P(\\hat{Z} \\neq Z \\mid S{=}s)$.\n10\tStandard practice estimates a single confusion matrix $\\bar{C} = \\sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\n11\tWe show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.\n12\t\n13\tWe state four assumptions maintained throughout.\n14\t%\n15\t\\begin{itemize}\n16\t\\item[\\textbf{(A1)}] \\textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.\n17\t\\item[\\textbf{(A2)}] \\textit{Symmetric misclassification:} $P(\\hat{Z}{=}1 \\mid Z{=}0, S{=}s) = P(\\hat{Z}{=}0 \\mid Z{=}1, S{=}s) = \\pi_s$ for all $s$.\n18\t\\item[\\textbf{(A3)}] \\textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.\n19\t\\item[\\textbf{(A4)}] \\textit{Non-degeneracy:} $\\pi_s \\neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.\n20\t\\end{itemize}\n21\t\n22\tUnder (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\\hat{z}, z] = P(Z{=}z \\mid \\hat{Z}{=}\\hat{z}, S{=}s)$) coincides with $C_s$.\n23\tThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n24\t\n\n…[truncated 5860 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T05:05:29.751243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T05:05:29.751455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\t\\subsection{Experimental Setup and Data Generation}\n4\t\n5\t\\subsubsection{Synthetic DGP}\n6\t\n7\tWe generate data from a controlled data-generating process (DGP) that separates the effect of subgroup-level misclassification heterogeneity from other confounders.\n8\tFor each observation $i$, the potential outcome under treatment $t$ is\n9\t\\begin{equation}\n10\tY_i(t) = \\alpha + \\tau(Z_i) \\cdot t + \\beta X_i + \\varepsilon_i, \\quad \\varepsilon_i \\sim \\mathcal{N}(0,1),\n11\t\\end{equation}\n12\twhere $T_i \\sim \\text{Bernoulli}(0.5)$ simulates a randomized controlled trial, and $Z_i \\in \\{0, \\ldots, K{-}1\\}$ is the true effect modifier with $K \\in \\{2, 4\\}$ subgroups.\n13\tThe conditional average treatment effect (CATE) $\\tau(Z{=}z)$ varies across subgroups with controlled heterogeneity $\\Delta\\tau = \\max_z \\tau(z) - \\min_z \\tau(z)$.\n14\tMisclassification is injected through subgroup-specific symmetric confusion matrices $C_s$: the observed label $\\hat{Z}_i$ is drawn as $\\hat{Z}_i \\sim \\text{Multinomial}(C_{S_i})$, where each subgroup $s$ has error rate $\\pi_s$ and $\\Delta\\pi = \\max_s \\pi_s - \\min_s \\pi_s$ controls heterogeneity.\n15\tWe fix $N{=}5000$ observations and vary $n_{\\text{expert}} \\in \\{50, 100, 250, 500, 1000, 2000\\}$ (the number of expert-labeled observations used to estimate confusion matrices).\n16\tEach configuration is repeated for 100 Monte Carlo runs.\n17\t\n18\t\\subsubsection{Semi-synthetic DGP (TweetEval)}\n19\t\n20\tTo test EC-HTE under realistic conditions, we construct a semi-synthetic DGP from the TweetEval sentiment corpus~\\cite{barbieri2020tweeteval}, sampling $N{=}5000$ tweets per run from a pool of 57{,}899.\n21\tFour subgroups are defined by crossing two binary text features: presence of hashtags (\\texttt{has\\_hashtag}) and text length relative to the median (\\texttt{text\\_length\\_bin}).\n22\tThis yields unbalanced subgroup proportions (S0: 39\\%, S1: 38\\%, S2: 12\\%, S3: 11\\%).\n23\tThe effect modifier is $Z{=}1$ if the true sentiment is positive (\n…[truncated 13263 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T05:05:29.751689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/",
+              "description": "List paper directory contents"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T05:05:29.751847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex\ntheory.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T05:05:29.752000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex",
+              "content": "\\section{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}\n\\label{sec:method}\n\nEC-HTE corrects subgroup-level misclassification bias in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.\n\n\\subsection{Hierarchical Bayes Confusion Matrix Estimation}\n\nWe place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\\{C_s\\}_{s=1}^K$.\nFor each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior $\\text{Dir}(\\alpha_0 \\cdot \\mathbf{e}_j)$, where $\\mathbf{e}_j$ is the $j$-th standard basis vector and $\\alpha_0 > 0$ is a shared concentration parameter.\nA $\\text{Gamma}(2, 1)$ hyperprior on $\\alpha_0$ controls the strength of partial pooling across subgroups: large $\\alpha_0$ pulls subgroup estimates toward the identity matrix (low error), while small $\\alpha_0$ allows subgroup-specific rates to dominate.\nThis partial pooling implements a James-Stein shrinkage effect, borrowing strength across subgroups to reduce variance for small subgroups while preserving heterogeneity where the data support it.\n\nPosterior inference uses a Gibbs sampler with 4 chains, 4000 iterations (2000 warmup).\nWe require convergence diagnostics $\\hat{R} < 1.01$ and effective sample size $\\text{ESS} > 845$ for all parameters before accepting estimates.\nIn practice, all runs achieve $\\hat{R} < 1.0034$ and $\\text{ESS} > 1618$, well within these thresholds.\nHB estimation outperforms stratified MLE in 91.7\\% of configurations across the experimental grid (Section~\\ref{sec:ec_hte_eval}), with the largest gains when $n_{\\text{expert}} / K < 100$.\nThe advantage requires at least $n_{\\text{expert}} / K \\geq 25$ per subgroup; below this threshold, stratified MLE is preferred because the hierarchical model lacks sufficient observations for stable shrinkage.\nAt $n_{\\text{expert}} \\geq 1000$, HB and stratified MLE converge to within 0.5\\% on all metrics.\nSensitivity analysis shows $<$5\\% RMSE variation under 2$\\times$ hyperprior perturbation, confirming that results are not driven by prior specification.\n\n\\subsection{Subgroup-Stratified Correction}\n\nGiven posterior mean confusion matrices $\\hat{C}_s$, we correct observed outcome moments per subgroup by matrix inversion:\n\\begin{equation}\n\\tilde{\\boldsymbol{\\mu}}_s = \\hat{C}_s^{-1} \\cdot \\hat{\\boldsymbol{\\mu}}_s,\n\\end{equation}\nwhere $\\hat{\\boldsymbol{\\mu}}_s = [\\hat{\\tau}_{\\text{obs}}(0, s),\\, \\hat{\\tau}_{\\text{obs}}(1, s)]^\\top$ collects the observed conditional outcome moments in subgroup $s$.\nThis requires $\\det(\\hat{C}_s) \\neq 0$ for all $s$, which holds under assumption~(A4) ($\\pi_s \\neq 0.5$) but may fail in finite samples when error rates approach degeneracy.\nWe impose a singularity guard: if the condition number $\\kappa(\\hat{C}_s) > 100$, subgroup $s$ falls back to global correction $\\bar{C}^{-1}$ rather than risk numerical instability from near-singular inversion.\n\nThe contrast with global correction is direct.\nGlobal correction applies $\\bar{C}^{-1}$ uniformly to all subgroups, introducing the $\\delta_s \\cdot \\Delta\\tau$ bias identified in Proposition~\\ref{prop:bias_identity}.\nSubgroup-stratified correction eliminates this bias by matching each subgroup's correction to its own misclassification structure, at the cost of higher variance from estimating $K$ separate confusion matrices (Section~\\ref{sec:budget}).\n\n\\subsection{Variance-Adjusted CausalForest}\n\nFor heterogeneous treatment effect estimation, we feed corrected covariates into CausalForestDML~\\cite{wager2018causal} with honest splitting.\nThe forest produces per-observation standard error estimates $\\text{se}_i$.\nTo account for confusion matrix correction, we propagate uncertainty through the inverse mapping:\n\\begin{equation}\n\\text{se}_{\\text{corrected},i} = \\sqrt{\\text{diag}\\!\\left(\\hat{C}_{S_i}^{-1}\\, \\text{diag}(\\text{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top}\\right)}.\n\\end{equation}\nThis is a plug-in approach: the standard errors reflect outcome variance conditional on $\\hat{C}_s$ but do not propagate uncertainty from the confusion matrix estimation itself.\nAt $n_{\\text{expert}} \\geq 100$, the plug-in approximation is reasonable because confusion matrix estimation variance is small relative to outcome variance.\nBelow this threshold, the standard errors may understate total uncertainty; this limitation is discussed further in the Limitations section.\n\n\\paragraph{Diagnostic criterion.}\nAs a practical corollary of Proposition~\\ref{prop:bias_identity}, the product $|\\Delta\\pi \\times \\Delta\\tau|$ serves as a computable diagnostic for whether global correction will harm specific subgroups.\nThe bias decomposition identity predicts that bias is proportional to this product, and both quantities can be estimated from a small pilot sample ($n_{\\text{expert}} \\geq 50$ suffices).\nA threshold calibrated via leave-one-out cross-validation achieves AUC~=~0.833 at the subgroup level (Section~\\ref{sec:diagnostic}).\nThe recommended workflow is: compute the diagnostic from pilot data; if any subgroup shows a large product, apply EC-HTE; if the product is uniformly small, global correction suffices.\n\n\\paragraph{Composition with PPCI.}\nEC-HTE corrects structured covariate misclassification through $\\hat{C}_s^{-1}$ inversion but cannot address outcome-level measurement error.\nPPCI~\\cite{sui2026ppci} corrects residual outcome bias using a debiasing estimator but assumes correct covariate labels.\nThe two methods are complementary: apply EC-HTE first to correct covariate labels, then PPCI to correct outcome predictions.\nNeither is redundant with the other: EC-HTE alone cannot fix outcome error, while PPCI alone incurs higher variance for covariate error.\nUnder both error types simultaneously, the composition reduces $|\\text{bias}|$ from 0.179 to below 0.01 (Section~\\ref{sec:ppci}).\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T05:05:29.752185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T05:05:29.752348+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `docs/paper/method.tex`. The section covers all five content blocks within ~700 words:\n\n- **Stage 1** (~200w): Dirichlet-Multinomial HB model with Gamma(2,1) hyperprior, Gibbs sampler specs, convergence diagnostics, and the n_expert/K ≥ 25 boundary condition\n- **Stage 2** (~150w): Per-subgroup CM inversion with explicit invertibility assumption, κ > 100 singularity guard with global fallback, and contrast to global correction via Proposition 1\n- **Stage 3** (~130w): CausalForestDML with honest splitting, plug-in SE propagation formula, and explicit statement that CM estimation uncertainty is not propagated (valid at n_expert ≥ 100)\n- **Diagnostic** (~80w): Δπ×Δτ product as practical corollary, pilot sample requirements, AUC = 0.833\n- **Composition** (~90w): EC-HTE + PPCI complementarity, bias reduction from 0.179 to <0.01\n\nAll three boundary conditions are stated. Notation matches theory.tex (δ_s, Δτ, π̄, C_s, κ, n_expert). No em-dashes, no -ing phrase endings, no AI style markers."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260521T050131"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ]
+}

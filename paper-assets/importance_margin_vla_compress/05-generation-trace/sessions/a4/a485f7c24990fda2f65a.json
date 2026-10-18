@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a485f7c24990fda2f65a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "progress remaining 6 experiments",
+  "task_key": "worker_progress_remaining_6_experiments_20260528T080247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_progress_remaining_6_experiments_20260528T080247_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "1c878496da044c9a05bfb9814f64bcca785721e0ae2491f0d70a6997296b5a50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| # | 实验 | 服务器 | 进度 | 累计 SR | 预估完成 (UTC) |\n|---|------|--------|------|---------|---------------|\n| 1 | Attn k=0.7 s45 | westd-41074 | **已完成** 10/10 | **53.8%** | ✅ 已结束 (EXIT_CODE=0) |\n| 2 | Random k=0.85 s46 | westd-41074 | T7 ep30/50 (7.6/10) | 44.9% (T0-6) | ~16:38 UTC |\n| 3 | L2norm k=0.75 s46 | westd-41074 | T8 完成，进入 T9 (9/10) | 71.3% (T0-8) | ~16:16 UTC |\n| 4 | Attn k=0.85 s46 | westd-38929 | T7 ep30/50 (7.6/10) | 50.0% (T0-6) | ~16:37 UTC |\n\n预估逻辑：各实验平均 ~15-17min/task，根据当前进度和已用时间外推。三个在跑的实验都预计在 **16:40 UTC 前完成**，距离 C002 截止线 (08:00 UTC 已过) 无关，但都在 12:00 UTC 论文截止前的数据可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

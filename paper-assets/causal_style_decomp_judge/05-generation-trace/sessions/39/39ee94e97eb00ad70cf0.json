@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "39ee94e97eb00ad70cf0",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis r15 sf4 fk length control",
+  "task_key": "worker_analysis_r15-sf4-fk-length-control_20260523T061120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15-sf4-fk-length-control_20260523T061120_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "8fa30219da045aaad549cef4b62bcc3adbdc0d4c451bd4e2f336a9bf77e15eed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存并注册。核心发现：\n\n**描述性统计**：\n- Verbosity rewrites: ΔFK = +2.26 (d=0.50), Δsentence_length = +3.40 words/sent (d=0.35)\n- Formality rewrites: ΔFK = −0.30 (d=−0.08), Δsentence_length = −0.11 (d=−0.04) — 几乎无变化\n\n**回归分析**：\n- Model 1 (无控制): `style_axis` β=2.56, p<0.001, R²=0.09\n- Model 2 (控制句长): `style_axis` β=1.04, p=0.013; `delta_sentlen` β=0.43, p<0.001; R²=0.59\n- 系数缩减 **59.3%**，R² 从 0.09 跳到 0.59\n\n**Mediation 分析**：\n- Sobel z=3.36, p<0.001，59.3% 的 FK 效应通过句长中介\n- 相关系数: verbosity 轴内 Δsentlen↔ΔFK r=0.88\n\n**结论**：FK cross-axis contamination 的主要成因是句长变化（59% mediated），但仍有残余直接效应显著 (p=0.013)——可能来自 verbose 改写引入的多音节填充词。这支持论文中\"FK 依赖句子长度\"的归因，同时也应承认存在约 41% 的非句长因素。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

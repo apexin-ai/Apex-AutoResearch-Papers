@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cc2692c029a24a357086",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code fewrel data prep",
+  "task_key": "worker_code_fewrel-data-prep_20260515T043437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fewrel-data-prep_20260515T043437_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "6f1d700f91f36fd61c22ff78ef60f589d5ec8b8e687f6ebc7017f62363ef4d6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已就绪：\n\n| 产出 | 路径 |\n|------|------|\n| FewRel 原始数据 | `data/fewrel/train_wiki.json` (44800 样本, 64 relations) + `val_wiki.json` (11200 样本, 16 relations) |\n| relation types 配置 | `configs/fewrel_relation_types.json` (80 relations, PID→name) |\n| RE prompt 模板 | `src/build_re_prompt.py` (支持单条/批量, 可选 type descriptions) |\n| 预处理 parquet | `data/fewrel_parquet/{train,val}.parquet` |\n\n数据说明：FewRel 实际是 80 relations（非 100），每 relation 700 samples。RE prompt 模板设计为给定 text + head/tail entity → 输出 relation type name，与 BCS pilot 的 confusion 分析对齐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

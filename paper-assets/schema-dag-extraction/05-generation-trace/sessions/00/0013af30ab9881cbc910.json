@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0013af30ab9881cbc910",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "verify exp fewrel formal 80rel gpu",
+  "task_key": "worker_verify_exp_fewrel_formal_80rel_gpu_20260515T130529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp_fewrel_formal_80rel_gpu_20260515T130529_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "64ccd8059416734c04de0d21b567d4922f07680dab9f0720351e7b6ab3d3a618"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，状态正常：\n\n| 项目 | 状态 |\n|------|------|\n| **GPU VRAM** | 94,212 MiB / 97,887 MiB (96%) — Qwen3-32B-FP8 已加载 |\n| **GPU 利用率** | 100%，正在推理 |\n| **进程 PID 269256** | 存活，运行 47 秒，状态 `Ss+` |\n| **vLLM 引擎** | PID 267737，`VLLM::EngineCore` 已启动 |\n| **实验配置** | 80 relations, 960 samples (12/rel), 13,200 inferences, 110 batches |\n| **预估时间** | ~330 分钟 (~5.5 小时) |\n| **当前阶段** | 已完成 experiment plan，进入 `extract subprocess (vLLM-first)` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

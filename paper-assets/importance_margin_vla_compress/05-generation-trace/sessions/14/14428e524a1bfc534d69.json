@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "14428e524a1bfc534d69",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 long batch v2",
+  "task_key": "worker_deploy_westd38929_long_batch_v2_20260522T163448",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_long_batch_v2_20260522T163448_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "75f856e21e51fc84f667a5489483fe358211a00e7aba682988372a335ae9ea04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Python 进程都在运行（各占 ~9GB 内存正在加载模型）。模型加载到 GPU 前会先在 CPU 内存中加载。\n\n## 部署结果\n\n| 实验 | exp_id | GPU | 状态 |\n|------|--------|-----|------|\n| π0.5 L2norm k=0.85 Long | `eval_pi05_l2norm_k085_long_seed42` | cuda:0 | RUNNING，模型加载中 |\n| π0.5 Random k=0.95 Long | `eval_pi05_random_k095_long_seed42` | cuda:3 | RUNNING，模型加载中 |\n\n## 四卡 GPU 状态\n\n| GPU | VRAM 占用 | 状态 |\n|-----|----------|------|\n| cuda:0 | 4 MiB（CPU 加载中，即将上 GPU） | 新实验 - L2norm k=0.85 |\n| cuda:1 | 2776 MiB | 已有任务，未动 |\n| cuda:2 | 2510 MiB | 已有任务，未动 |\n| cuda:3 | 3 MiB（CPU 加载中，即将上 GPU） | 新实验 - Random k=0.95 |\n\n两个进程 PID 分别为 781071（cuda:0）和 781144（cuda:3），CPU 内存各占 ~9GB，正在将 π0.5 模型加载到 GPU。Registry 已注册为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

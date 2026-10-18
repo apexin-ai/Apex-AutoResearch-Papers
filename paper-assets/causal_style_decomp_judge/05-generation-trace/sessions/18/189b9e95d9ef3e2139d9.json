@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "189b9e95d9ef3e2139d9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code formality scaled n300",
+  "task_key": "worker_code_formality_scaled_n300_20260524T062322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_formality_scaled_n300_20260524T062322_result.json",
+    "occurrence": 1,
+    "bytes": 1337,
+    "sha256": "fb17d16bfababa76d9fa88c119660d6d08a59d4d95826feeacf8128e633245a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. Here's the final report:\n\n---\n\n## Llama-3.3-70B × Formality (n=355 NLI-verified pairs)\n\n### Pairwise (BT)\n- **P(formal) = 88.1%** [83.7%, 92.1%], p = 0.0001\n- 202/355 consistent pairs (56.9% consistency rate)\n\n### Likert\n- Cohen's d = 0.048, ATE = 0.088\n- Wilcoxon p = 0.026, t-test p = 0.077\n- Tie rate = 71.5%\n\n### GEE Decomposition\n- **Style OR = 27.85** [10.72, 72.38], p < 0.0001\n- **Orig OR = 13.48** [5.19, 35.03], p < 0.0001\n\n### Blindspot: **No** (both BT and Likert significant)\n\n### Cross-Judge Comparison\n\n| Metric | Qwen3-32B | Llama-70B | Ratio |\n|--------|-----------|-----------|-------|\n| BT P(formal) | 67.5% | 88.1% | 1.3× |\n| Style OR | 2.15 | 27.85 | 13× |\n| Orig OR | 4.99 | 13.48 | 2.7× |\n\n**Key takeaway**: Llama-70B exhibits dramatically stronger formality bias than Qwen3-32B across all metrics. The Style OR difference is particularly striking (27.85 vs 2.15, ~13× larger) — Llama-70B is far more sensitive to formal vs casual style when judging response quality. The Orig OR is also much higher (13.48 vs 4.99), indicating stronger position/originality bias as well. Despite the massive pairwise bias, the Likert effect is tiny (d=0.048) with 71.5% ties, illustrating how Likert scoring masks bias that pairwise comparison reveals."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

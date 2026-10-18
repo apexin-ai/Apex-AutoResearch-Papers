@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8cc380e901e881b82773",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis d23 edd bootstrap",
+  "task_key": "worker_analysis_d23_edd_bootstrap_20260515T114730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d23_edd_bootstrap_20260515T114730_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "da0d9b0270ada29b5626fbaaae0263e6eaffb488c6bef78f1036922d3ecd1be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。结果总结：\n\n## D023 Bootstrap 单尾检验结果\n\n| 模型 | d3v4 AUC | Bootstrap Mean | 95% CI | p-value (H0: AUC ≤ 0.75) |\n|------|----------|---------------|--------|---------------------------|\n| **Pythia-1.4B** | 0.784 | 0.784 | [0.765, 0.802] | **0.001** |\n| **GPT-2 XL** | 0.750 | 0.750 | [0.728, 0.771] | 0.505 |\n| **OLMo-1B** | 0.765 | 0.765 | [0.744, 0.785] | 0.091 |\n\n**解读**：\n- **Pythia**: p=0.001, 强显著，AUC 显著 > 0.75，支持 EDD=4 的声称\n- **GPT-2 XL**: p=0.505, AUC 恰好在阈值上，无法拒绝 H0。论文需诚实报告\n- **OLMo**: p=0.091, 边际显著（α=0.10 水平），95% CI 下界 0.744 < 0.75\n\n**产出**：\n- 脚本：`src/d23_edd_bootstrap.py`\n- 结果：`results/d23_edd_bootstrap.json`\n\n**注意**：Pythia 使用了原始 pipeline 的特征数据（`data/features_all.jsonl` + `data/features_depth_4.jsonl`），因为 `pythia_depth_extension/features_6class.jsonl` 是不同 pipeline 产生的特征，AUC 仅 0.724。GPT-2 XL 和 OLMo 使用各自的 `features_6class.jsonl`，与原始 binary pairwise 评估完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "053794a5f90e1ed88c44",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check gemini part2 final",
+  "task_key": "worker_check_gemini_part2_final_20260519T222709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gemini_part2_final_20260519T222709_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "6c8ecbf1bc53c280f2b196236be7ec1812828423ac74b7245bf03c19b51cecb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemini Dim2 BCS-controlled 实验结果\n\n**状态**: 已完成。6720 samples, 60 batches。\n\n### 按 count level\n\n| Count Level | Batches | Low BCS Acc | High BCS Acc | Gap | Pearson r | Spearman ρ |\n|-------------|---------|-------------|--------------|-----|-----------|------------|\n| count_8 | 50 (25+25) | 0.9050 | 0.7292 | **+17.58pp** | -0.8873 | -0.7428 |\n| count_16 | 10 (5+5) | 0.8146 | 0.7281 | **+8.65pp** | -0.8043 | -0.4012 |\n\n### 全局汇总\n\n- **Pooled Pearson r = -0.8690**\n- **Pooled Spearman ρ = -0.8046**\n- BCS 越高 → accuracy 越低，负相关非常强\n\n### 要点\n\n1. **count_8 效果最显著**：low-high gap 达 17.58pp，Pearson r=-0.89，BCS 对 schema 复杂度的预测力在小 schema 上最强\n2. **count_16 gap 收窄到 8.65pp**：Spearman 仅 -0.40，可能因为只有 5 batches/group，统计功效不足\n3. **count_16_high_4 是极端异常点**：BCS=0.9706（远超其他 high batch 的 0.58-0.62），acc 仅 0.5990，拉大了 Pearson 但可能扭曲 Spearman\n4. count_8 的 low group 中多个 batch acc > 0.95（最高 0.9792），说明低 BCS schema 对 Gemini 几乎无难度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

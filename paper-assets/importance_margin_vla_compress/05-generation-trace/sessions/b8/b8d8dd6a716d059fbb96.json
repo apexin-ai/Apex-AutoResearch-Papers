@@ -1,0 +1,1134 @@
+{
+  "schema_version": "1.0",
+  "id": "b8d8dd6a716d059fbb96",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "harvest ov random k095 long",
+  "task_key": "worker_harvest_ov_random_k095_long_20260527T084933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_ov_random_k095_long_20260527T084933.jsonl",
+    "occurrence": 1,
+    "bytes": 42839,
+    "sha256": "b3a6d2561cccd96d61507a2e49bfa5181c069a887af0921bbf4cf2ab6cf6ba3d"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T08:52:06.934278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T08:52:06.934616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T08:52:06.934801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "find /root/runs /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*random*k095*long*\" -type f 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T08:52:06.934948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T08:52:06.935076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ps -p 335081 -o pid,cmd= 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T08:52:06.935349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T08:52:06.935505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ps -p 335312 -o pid,cmd= 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T08:52:06.935632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T08:52:06.935752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ps -p 112587 -o pid,cmd= 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T08:52:06.935869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T08:52:06.935986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "find /root/runs /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*random*k095*long*\" -type f 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T08:52:06.936116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T08:52:06.936315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "find /root/runs /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*random*k095*long*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T08:52:06.936441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ps -p 335081 -o pid,cmd=",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T08:52:06.936635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log\\\\n/root/runs/importance_margin_vla_compress/eval_pi05_random_k095_long_seed42_strict.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_long.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T08:52:06.936769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ps -p 335312 -o pid,cmd=",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T08:52:06.936900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID \\\\n335081 bash -c rm -f /tmp/agent-ml-exit/eval_pi05_attn_k095_long_seed42_strict_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed42_strict_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_pi05_attn_k095_long_seed42_strict_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed42_strict_v3.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T08:52:06.937026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ps -p 112587 -o pid,cmd=",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T08:52:06.937249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID \\\\n335312 bash -c rm -f /tmp/agent-ml-exit/eval_openvla_attn_k075_long_seed42_v2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v2.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_openvla_attn_k075_long_seed42_v2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v2.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-27T08:52:06.937414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "find /root/runs /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*random*k095*long*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-27T08:52:06.937544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID \\\\n112587 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-27T08:52:06.937669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_backup.log\\\\n/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_v2.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_random_k095_long_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-27T08:52:06.937816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -80 /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-27T08:52:06.937991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Auto-mapping suite=libero_10 -> model_path=/root/autodl-tmp/openvla-7b-finetuned-libero-10, unnorm_key=libero_10\\\\n[*] Loading OpenVLA from: /root/autodl-tmp/openvla-7b-finetuned-libero-10\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  8.52it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 12.43it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.50it/s]\\\\n[*] Model loaded, GPU: 15.1 GB\\\\n[*] Vision tokens: 256, dim: 4096\\\\n[*] Random pruning: k=0.95\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[*] libero_10: 10 tasks x 50 episodes = 500 total\\\\n\\\\n[Task 1/10] put both the alphabet soup and the tomato sauce in the basket\\\\n[Pruning] 256 -> 243 vision tokens (k=0.95)\\\\n  Ep 10/50 task_sr=6/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=10/20 (1.0 eps/min)\\\\n  Ep 30/50 task_sr=16/30 (1.0 eps/min)\\\\n  Ep 40/50 task_sr=22/40 (1.0 eps/min)\\\\n  Ep 50/50 task_sr=27/50 (1.0 eps/min)\\\\n  => Task SR: 0.540 (27/50)\\\\n\\\\n[Task 2/10] put both the cream cheese box and the butter in the basket\\\\n  Ep 10/50 task_sr=7/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=12/20 (0.8 eps/min)\\\\n  Ep 30/50 task_sr=17/30 (0.7 eps/min)\\\\n  Ep 40/50 task_sr=23/40 (0.8 eps/min)\\\\n  Ep 50/50 task_sr=30/50 (0.8 eps/min)\\\\n  => Task SR: 0.600 (30/50)\\\\n\\\\n[Task 3/10] turn on the stove and put the moka pot on it\\\\n  Ep 10/50 task_sr=6/10 (0.8 eps/min)\\\\n  Ep 20/50 task_sr=11/20 (0.8 eps/min)\\\\n  Ep 30/50 task_sr=18/30 (0.8 eps/min)\\\\n  Ep 40/50 task_sr=22/40 (0.8 eps/min)\\\\n  Ep 50/50 task_sr=27/50 (0.8 eps/min)\\\\n  => Task SR: 0.540 (27/\n…[truncated 1800 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-27T08:52:06.938169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -40 /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_backup.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T08:52:06.938328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\\\nI0000 00:00:1779862757.610458  112253 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\\\nI0000 00:00:1779862757.649470  112253 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\\\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\\\nI0000 00:00:1779862758.637095  112253 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\\\nusage: eval_openvla_l2norm_libero.py [-h]\\\\n                                     [--mode {baseline,random_prune,l2norm_prune,attention_prune}]\\\\n                                     [--k_ratio K_RATIO] [--suite SUITE]\\\\n                                     [--num_episodes NUM_EPISODES]\\\\n                                     [--seed SEED] [--output OUTPUT]\\\\n                                     [--center_crop]\\\\n                                     [--num_steps_wait NUM_STEPS_WAIT]\\\\n                                     [--model_path MODEL_PATH]\\\\n                                     [--unnorm_key UNNORM_KEY]\\\\neval_openvla_l2norm_libero.py: error: unrecognized arguments: --gpu 0\\\\nEXIT_CODE=2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T08:52:06.938473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -40 /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T08:52:06.938636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"I0000 00:00:1779862804.121361  112587 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\\\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\\\nI0000 00:00:1779862804.985878  112587 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\\\n[*] Loading OpenVLA from: /root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.92it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.30it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  6.02it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  6.54it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.97it/s]\\\\n[*] Model loaded, GPU: 15.1 GB\\\\n[*] Vision tokens: 256, dim: 4096\\\\n[*] Random pruning: k=0.95\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at\n…[truncated 1198 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T08:52:06.938836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -30 /root/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed42_strict_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-27T08:52:06.939008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -30 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-27T08:52:06.939201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-27 16:47:00,690 Config: suite=libero_10, prune=attention, keep=0.95, eps=50, gpu=0\\\\n2026-05-27 16:47:00,691 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-27 16:49:19,807 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-27 16:49:24,749 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-27 16:49:24,749 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-27 16:49:29,394 Patched embed_image\\\\n2026-05-27 16:49:29,411 Model: 4143.4M params\\\\n2026-05-27 16:49:29,411 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-27 16:49:29,411 Baseline mode (no pruning), embed_prefix fixed\\\\n2026-05-27 16:49:29,411 Pruning: attention, keep 243/256 tokens/image (729 total, 2-layer probe)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-27T08:52:06.939394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[*] Loading OpenVLA from: /root/autodl-tmp/openvla-7b-finetuned-libero-10\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.56it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  6.03it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.58it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.83it/s]\\\\n[*] Model loaded, GPU: 15.1 GB\\\\n[*] Vision tokens: 256, dim: 4096\\\\n[*] Attention pruning: k=0.75\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[*] libero_10: 10 tasks x 50 episodes = 500 total\\\\n\\\\n[Task 1/10] put both the alphabet soup and the tomato sauce in the basket\\\\n[Attn Pruning] 256 -> 192 vision tokens (k=0.75), importance range=[0.7189, 1.6595]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-27T08:52:06.939576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "grep -E \"Task 9|Ep.*task_sr|=> Task SR\" /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-27T08:52:06.939708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-27T08:52:06.939836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-27T08:52:06.939987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Ep 10/50 task_sr=7/10 (1.1 eps/min)\\\\n  Ep 20/50 task_sr=16/20 (1.2 eps/min)\\\\n  Ep 30/50 task_sr=23/30 (1.1 eps/min)\\\\n  Ep 40/50 task_sr=30/40 (1.0 eps/min)\\\\n  Ep 50/50 task_sr=36/50 (1.0 eps/min)\\\\n  => Task SR: 0.720 (36/50)\\\\n\\\\n[Task 2/10] put both the cream cheese box and the butter in the basket\\\\n  Ep 10/50 task_sr=5/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=13/20 (1.0 eps/min)\\\\n  Ep 30/50 task_sr=19/30 (1.0 eps/min)\\\\n  Ep 40/50 task_sr=28/40 (1.0 eps/min)\\\\n  Ep 50/50 task_sr=35/50 (1.0 eps/min)\\\\n  => Task SR: 0.700 (35/50)\\\\n\\\\n[Task 3/10] turn on the stove and put the moka pot on it\\\\n  Ep 10/50 task_sr=7/10 (1.0 eps/min)\\\\n  Ep 20/50 task_sr=13/20 (1.0 eps/min)\\\\n  Ep 30/50 task_sr=17/30 (1.0 eps/min)\\\\n  Ep 40/50 task_sr=19/40 (1.0 eps/min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-27T08:52:06.940183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "grep \"=> Task SR\" /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-27T08:52:06.940326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-27T08:52:06.940465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "grep \"Task SR\" /root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-27T08:52:06.940605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  => Task SR: 0.540 (27/50)\\\\n  => Task SR: 0.600 (30/50)\\\\n  => Task SR: 0.540 (27/50)\\\\n  => Task SR: 0.400 (20/50)\\\\n  => Task SR: 0.200 (10/50)\\\\n  => Task SR: 0.740 (37/50)\\\\n  => Task SR: 0.320 (16/50)\\\\n  => Task SR: 0.620 (31/50)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-27T08:52:06.940763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-27T08:52:06.940891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-27T08:52:06.941008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-27T08:52:06.941217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_openvla_attn_k075_long_seed42_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T08:46:26.776Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:48:59.725Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn k=0.75 Long v2 — 前版 (eval_openvla_attn_k075_long_seed42) 因 timeout 仅完成 8/10 tasks (partial SR=39.75%)。重跑获取完整 10/10 tasks 的 clean result，确定 Attn 在 k=0.75 Long 的真实 SR\\\", \\\"parent\\\": \\\"eval_openvla_attn_k075_long_seed42\\\"}, \\\"eval_pi05_attn_k095_long_seed42_strict_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T08:46:21.329Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:48:53.816Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.95 Long strict v3 — 前两版在 cqa1 因 httpx.ConnectError 崩溃（cqa1 无外网）。迁移到 westd-41074（有网络）重跑。Attn k=0.95 是 cliff curve 最关键端点：lenient=77.0%，strict 值决定 Attn 方法在近无损压缩下的真实性能\\\", \\\"parent\\\": \\\"eval_pi05_attn_k095_long_seed42_strict\\\"}, \\\"eval_pi05_l2norm_k095_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T07:31:47.216Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:29:34.350Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.95 Long strict — 原值 87.0% 需 strict 条件确认。k=0.95 是 L2norm cliff curve 顶端，接近 baseline 的关键端点\\\"}, \\\"eval_pi05_random_k095_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T07:31:37.223Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:29:25.936Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.95 Long strict — cqa1 宽松条件值 63.2% 是否被污染。strict 重跑获取真实值。k=0.95 是 cliff curve 顶端最接近 baseline 的点\\\"}, \\\"eval_pi05_random_k07_long_seed42_strict_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T08:20:54.349Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:21:43.727Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.7 Long strict v2 — 前版 EXIT_CODE=1 失败(网络问题导致tokenizer初始化失败)，诊断修复后重跑。cqa1 宽松条件值 62.4% 被污染，strict 重跑获取真实值\\\", \\\"parent\\\": \\\"eval_pi05_random_k07_long_seed42_strict\\\"}, \\\"eval_pi05_l2norm_k085_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T07:54:32.476Z\\\", \\\"updated_at\\\": \\\"2026-05-27T07:55:07\n…[truncated 2936 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-27T08:52:06.941392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_openvla_random_k095_long_seed42'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-27T08:52:06.941524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.6585}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-27T08:52:06.941684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k095_long_seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42', 'server': 'westd-41074', 'data_path': 'libero_10', 'data_count': 500, 'model_name': 'openvla-7b-finetuned-libero-10', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/openvla-7b-finetuned-libero-10', 'eval_data': 'libero_10', 'checkpoint_path': '/root/autodl-tmp/openvla-7b-finetuned-libero-10', 'log_path': '/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log'}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-27T08:52:06.941849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k095_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T00:29:13.098Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:51:27.387Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Random k=0.95 Long seed42 — Long curve 顶端三方法都缺。Random k=0.9=46.8%。k=0.95 补全 Long cliff curve 起始段\\\", \\\"spec\\\": {\\\"command\\\": \\\"MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu_id\\\": 0, \\\"pid\\\": 112587, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-10\\\"}, \\\"gpu\\\": \\\"cuda:0\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-27T08:26:16.752Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.1624}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-27T08:52:06.941986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k095_long_seed42",
+              "field": "conclusion",
+              "value": "timeout_partial",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-27T08:52:06.942113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'timeout_partial'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0543}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-27T08:52:06.942266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k095_long_seed42",
+              "field": "metrics",
+              "value": "{'partial_8of10': True, 'exit_code': 124, 'tasks_completed': 8, 'tasks_total': 10, 'partial_overall_sr': 0.495, 'per_task_sr': {'task1_soup_tomato_basket': 0.54, 'task2_cream_butter_basket': 0.6, 'task3_stove_moka': 0.54, 'task4_bowl_drawer': 0.4, 'task5_mugs_plates': 0.2, 'task6_book_caddy': 0.74, 'task7_mug_pudding': 0.32, 'task8_soup_cream_basket': 0.62, 'task9_moka_pots_stove': 'TIMEOUT', 'task10': 'NOT_REACHED'}, 'note': 'Timed out during Task 9. Backup running on westd-38929 (eval_openvla_random_k095_long_seed42_backup) will provide complete results'}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-27T08:52:06.942455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k095_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T00:29:13.098Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:51:42.094Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Random k=0.95 Long seed42 — Long curve 顶端三方法都缺。Random k=0.9=46.8%。k=0.95 补全 Long cliff curve 起始段\\\", \\\"spec\\\": {\\\"command\\\": \\\"MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu_id\\\": 0, \\\"pid\\\": 112587, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-10\\\"}, \\\"gpu\\\": \\\"cuda:0\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-27T08:26:16.752Z\\\", \\\"metrics\\\": {\\\"partial_8of10\\\": true, \\\"exit_code\\\": 124, \\\"tasks_completed\\\": 8, \\\"tasks_total\\\": 10, \\\"partial_overall_sr\\\": 0.495, \\\"per_task_sr\\\": {\\\"task1_soup_tomato_basket\\\": 0.54, \\\"task2_cream_butter_basket\\\": 0.6, \\\"task3_stove_moka\\\": 0.54, \\\"task4_bowl_drawer\\\": 0.4, \\\"task5_mugs_plates\\\": 0.2, \\\"task6_book_caddy\\\": 0.74, \\\"task7_mug_pudding\\\": 0.32, \\\"task8_soup_cream_basket\\\": 0.62, \\\"task9_moka_pots_stove\\\": \\\"TIMEOUT\\\", \\\"task10\\\": \\\"NOT_REACHED\\\"}, \\\"note\\\": \\\"Timed out during Task 9. Backup running on westd-38929 (eval_openvla_random_k095_long_seed42_backup) will provide complete results\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2834}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-27T08:52:06.942600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_openvla_random_k095_long_seed42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-27T08:52:06.942758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k095_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T00:29:13.098Z\\\", \\\"updated_at\\\": \\\"2026-05-27T08:51:50.655Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Random k=0.95 Long seed42 — Long curve 顶端三方法都缺。Random k=0.9=46.8%。k=0.95 补全 Long cliff curve 起始段\\\", \\\"spec\\\": {\\\"command\\\": \\\"MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu_id\\\": 0, \\\"pid\\\": 112587, \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-10\\\"}, \\\"gpu\\\": \\\"cuda:0\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-27T08:26:16.752Z\\\", \\\"metrics\\\": {\\\"partial_8of10\\\": true, \\\"exit_code\\\": 124, \\\"tasks_completed\\\": 8, \\\"tasks_total\\\": 10, \\\"partial_overall_sr\\\": 0.495, \\\"per_task_sr\\\": {\\\"task1_soup_tomato_basket\\\": 0.54, \\\"task2_cream_butter_basket\\\": 0.6, \\\"task3_stove_moka\\\": 0.54, \\\"task4_bowl_drawer\\\": 0.4, \\\"task5_mugs_plates\\\": 0.2, \\\"task6_book_caddy\\\": 0.74, \\\"task7_mug_pudding\\\": 0.32, \\\"task8_soup_cream_basket\\\": 0.62, \\\"task9_moka_pots_stove\\\": \\\"TIMEOUT\\\", \\\"task10\\\": \\\"NOT_REACHED\\\"}, \\\"note\\\": \\\"Timed out during Task 9. Backup running on westd-38929 (eval_openvla_random_k095_long_seed42_backup) will provide complete results\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.2254}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-27T08:52:06.942949+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## OV Random k=0.95 Long — westd-41074 (主实验)\n\n**Timed out (EXIT_CODE=124)**，只完成 8/10 tasks。\n\n| Task | Description | SR |\n|------|------------|-----|\n| 1 | soup + tomato → basket | 54.0% (27/50) |\n| 2 | cream + butter → basket | 60.0% (30/50) |\n| 3 | stove + moka pot | 54.0% (27/50) |\n| 4 | bowl → drawer | 40.0% (20/50) |\n| 5 | mugs → plates | 20.0% (10/50) |\n| 6 | book → caddy | 74.0% (37/50) |\n| 7 | mug + pudding | 32.0% (16/50) |\n| 8 | soup + cream → basket | 62.0% (31/50) |\n| 9 | moka pots → stove | **TIMEOUT** |\n| 10 | — | **NOT REACHED** |\n\n**Partial SR (8/10 tasks): 49.5%** (198/400)\n\n## Backup — westd-38929\n\n- PID 112587 仍在运行，当前进度：Task 3 Ep 40/50\n- 已完成 Task 1: 72.0%, Task 2: 70.0%\n- 预计还需 ~6h 完成全部 10 tasks\n- 注意：backup 的 Task 1-2 SR 明显高于主实验（72% vs 54%, 70% vs 60%），随机种子相同但随机剪枝每步不同，方差较大\n\n## 新实验状态 — westd-41074\n\n- **PI0.5 Attn k=0.95 Long strict v3** (PID 335081, GPU0): 已启动，模型加载完毕，开始评估\n- **OV Attn k=0.75 Long v2** (PID 335312, GPU1): 已启动，Task 1 进行中 (256→192 tokens)\n\n完整的 OV Random k=0.95 Long 结果需等 westd-38929 backup 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_ov_random_k095_long_20260527T084933"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ]
+}

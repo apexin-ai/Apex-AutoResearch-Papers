@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "273aa2cd84ad5face473",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis accum olmo temp mix50",
+  "task_key": "worker_analysis_accum_olmo_temp_mix50_20260522T050620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_accum_olmo_temp_mix50_20260522T050620_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "ddab39d1b79568502bae0deb85bbc614073b63209144965c6cabe252e902e87e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程 PID 722400 仍在运行，实验尚未完成。**\n\n当前状态：\n- 进程运行了约 11 分钟，正在执行 `accumulation_pipeline_olmo_temp09.py --mix_ratio 0.5 --seed 42`\n- 已完成：mixed_d1_train.jsonl (5000 条) + accum_depth_1.jsonl (1069 条，还在生成中)\n- 未完成：depth 2/3 生成、feature extraction、RF 分类\n- 参考 mix25 完整运行耗时 1.81 小时，预计 mix50 还需 ~1.5 小时\n\nmix25 参考结果已确认与任务描述一致：\n- overall_accuracy = 73.47%, d1d3_balanced_acc = 64.72%\n- per-class recall: d0=99.72%, d1=75.68%, d2=48.16%, d3=70.32%\n- 5-fold CV range: [72.10%, 74.85%]\n\n**建议**：等进程跑完后再分析。预计完成时间约 2026-05-22 14:30 左右。需要我稍后再来检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

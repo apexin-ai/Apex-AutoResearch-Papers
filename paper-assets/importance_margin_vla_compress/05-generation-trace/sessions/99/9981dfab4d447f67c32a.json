@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "9981dfab4d447f67c32a",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops urgent full scan deploy 11gpu",
+  "task_key": "worker_ops_urgent_full_scan_deploy_11gpu_20260523T012919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_urgent_full_scan_deploy_11gpu_20260523T012919.log",
+    "occurrence": 1,
+    "bytes": 697268,
+    "sha256": "b4b1b680b30c30d41008c54f32f710bbbeff6764bbb50e052d6e4ab968a38d65"
+  },
+  "statistics": {
+    "messages": 249,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "9981dfab4d447f67c32a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9981dfab4d447f67c32a-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ]
+}

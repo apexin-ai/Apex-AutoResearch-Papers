@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "10167647d449892159ca",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh gpt2xl classification",
+  "task_key": "worker_ssh_gpt2xl_classification_20260514T182506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpt2xl_classification_20260514T182506_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "9b05444a9255abf60631dfdc51efd103faf50d482fc51747f7d5864eb223a79f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成，cron 不存在（无需删除）。\n\n## GPT-2 XL 分类评估结果\n\n### 4-class (RF, best)\n| 指标 | GPT-2 XL | Pythia | OLMo |\n|------|----------|--------|------|\n| Accuracy | **83.3%** [82.3, 84.5] | 78.2% | 78.8% |\n| AUC d1v2 | **0.9131** | 0.8607 | 0.8673 |\n| AUC d2v3 | **0.8829** | 0.8005 | 0.8124 |\n| AUC d0v1 | 0.9941 | — | — |\n| AUC d1v3 | 0.9857 | — | — |\n\n### 3-class (d1-d3 only, RF)\n- Accuracy: **79.3%** [77.8, 80.6]\n- AUC d1v2: 0.9109, d1v3: 0.9890, d2v3: 0.8885\n\n### Top features\n1. p90_ppl (0.208), 2. var_surprisal (0.208), 3. p75_ppl (0.103)\n\n### Code contamination (broad)\nd0: 0.5%, d1: 0.5%, d2: 1.3%, d3: 0.7% — 极低\n\nGPT-2 XL 在所有指标上显著优于 Pythia (+5.1pp) 和 OLMo (+4.5pp)，可能因为跨模型 surprisal（用 Pythia 参考模型评估 GPT-2 XL 生成文本）放大了递归退化信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

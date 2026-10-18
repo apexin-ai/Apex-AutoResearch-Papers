@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "06b7100ba007a7f7b57f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra cuda1 parallel tasks",
+  "task_key": "worker_infra_cuda1-parallel-tasks_20260514T125138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cuda1-parallel-tasks_20260514T125138_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "0e0b62baaefab3b3eb4a7d6b7b5b8e384f8a9d11e45954f44e50188e72fc6bd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ModelScope 正在下载中（rust_model.ot 2%, tf_model.h5 4%，~600-900KB/s）。下载会在后台继续。\n\n---\n\n## 产出汇报\n\n### 1. Pipeline 当前进度\n- **Step 4: Generate depth-2** — depth-1 LoRA 训练已完成 (loss=1.389, 3 epochs)，正在生成 depth-2 数据\n- 已生成文件:\n  - `depth_0.jsonl` — 11MB (seed data)\n  - `depth_1.jsonl` — 9.2MB (完成)\n  - `depth_2.jsonl` — 1.9MB (生成中)\n\n### 2. depth_0 特征提取结果\n- **5000 行**，每行 **19 个特征**\n- 特征包括: perplexity 统计量 (mean/var/skew/kurtosis/percentiles)、surprisal 统计量、词汇多样性指标 (TTR/hapax/n-gram entropy/repetition)\n- 耗时: ~43 秒 (313 batches × batch_size=16, ~7.3 batch/s)\n- 截断长度: 498 tokens (depth_0 median)\n- 输出: `data/depth_0_features.jsonl`\n\n### 3. DeBERTa 下载状态\n- HF CLI 下载卡住 → 已切换 ModelScope\n- ModelScope 正在下载中 (~600-900 KB/s)，预计 10-15 分钟完成\n- 下载目标: `/root/autodl-tmp/models/deberta-v3-base-ms/`\n\n### 4. GPU 利用率\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 61% | 13759 MiB (pipeline) |\n| cuda:1 | 0% | 0 MiB (特征提取已完成) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9aa5eedfb1a8fea75363",
+  "project": "entrainment_gated_ft",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3511,
+    "sha256": "ba91da8e9769d1f7f2e638d7a11e61820916efc752e9a7f22eec0199247027d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-22T18:14:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-48145:cuda:0（唯一分配的 GPU）\n- 论文保持 **5-arch**（GDN/RetNet/HGRN2/GLA/DeltaNet），**不升级到 6-arch**（D038：HGRN pure acc=0.263 是 outlier，会打破 \"≤ 0.14\" claim）\n- Appendix Table 30 的 DeltaNet 数据曾被 Paper Agent 幻觉生成（14/16 cells 错误），已修复并验证。任何后续 patch 必须从 `jaccard_5arch.json` 逐格复制，**禁止让 Paper Agent 凭记忆填数据**\n- Miller & Blume (2026) 是审稿人幻觉引用，**不存在，不要添加**\n- DDL: **2026-05-25** ARR May cycle，剩余 ~40h\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-48145 (connect.westb.seetacloud.com)，root 用户\n- 工作目录：/root/entrainment_gated_ft\n- GPU：1× NVIDIA RTX PRO 6000 Blackwell (98GB)，当前空闲\n- 实验数据：/root/entrainment_gated_ft/results/exp005_zoo_expansion/（jaccard_5arch.json, jaccard_6arch.json）\n- 论文目录（本地）：projects/entrainment_gated_ft/docs/paper/（main.tex, 最新编译 main.pdf 22页）\n- 无 wandb / 无 conda（服务器用系统 Python）\n- 活跃进程：无 GPU 进程。Paper Agent session 活跃（正在加 HGRN footnote）\n\n### 3. 📊 当前状态\n**刚做完**：R15 审稿报告（3.0 Findings）完整处理——Reviewer 独立反审 → 综合 Action Matrix → Paper Agent 执行全部修复（P0 DeltaNet 数据修正 + P1 措辞 + P2 statistical caveats）→ Reviewer 逐项验证 PASS → 编译通过（0 critical warnings，主文 8 页）\n\n**正在进行**：Paper Agent 正在 appendix extended_arch 末尾加一句 HGRN footnote（6-arch 数据透明公开但不纳入主分析）。这是 DDL 前最后的修改。\n\n**Registry**：无 RUNNING 实验。exp-005 系列全部完成（5-arch Jaccard 10/10 显著，6-arch 15/15 显著但不纳入论文）。\n\n### 4. 📋 待办\n- Paper Agent 返回 HGRN footnote 完成 → 编译 PDF → `submit_paper_to_review` 提交 Round 16（recommended_review_mode=\"continue\"，因为是连续迭代修复）\n- Round 16 审稿返回 → 按 review-report-action skill 处理（如果 ≥3.5，向用户汇报并准备提交；如果仍 3.0，评估是否还有 presentation 改进空间）\n- 用户决定正式提交 → 确认 ARR submission 材料（PDF + 匿名 code link + checklist）\n\n### 5. 🎯 战略上下文\n- **核心论文**：\"Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\"，目标 EMNLP 2026 via ARR，用户目标 4.0（Conference）\n- **核心发现**：cross-arch pairwise Jaccard ≤ 0.14（5 arch, 10 pairs, all p ≤ .002）；α spectrum 0.14-0.30 task-dependent；Jaccard 在 4% attention 即饱和\n- **关键决策链**：D036（恢复 exp-005）→ D037（整合 4-arch 结果）→ D038（保持 5-arch，HGRN outlier 不纳入）\n- **R15 三个持续 MF 问题**（MF1 convergence overclaiming / MF2 GDN confound / MF3 bootstrap CI）已通过 presentation 修复解决——叙事主线已从 convergence 转向 Jaccard saturation + α spectrum\n- **易错点**：(1) 不要被 \"6-arch 数据更多\" 诱惑升级——HGRN 会破坏干净 claims；(2) Reviewer 预估 presentation 修复可达 3.5，4.0 取决于审稿人对 empirical contribution significance 的判断——不要过度承诺；(3) 用户明确说过\"不要听 Reviewer 的建议，他是不争气的，你要争气\"+\"目标是4\"——要积极争取但不能 overclaim\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

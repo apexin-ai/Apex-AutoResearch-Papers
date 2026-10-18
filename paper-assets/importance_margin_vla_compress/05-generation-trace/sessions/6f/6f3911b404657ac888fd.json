@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6f3911b404657ac888fd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code libero rollout verify",
+  "task_key": "worker_code_libero_rollout_verify_20260516T192250",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_libero_rollout_verify_20260516T192250_result.json",
+    "occurrence": 1,
+    "bytes": 1807,
+    "sha256": "2763443b52d1369f97d6cbf65e64a1a6cc4deab1f7a202a7d57dfc019fa08c8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pipeline 验证完毕，完全 ready。**\n\n## 结果总结\n\n### 状态：✅ READY\n\nDry-run 成功完成（50K baseline checkpoint，1 episode，~25s 总耗时）：\n- 模型加载正常（14s，LoRA rank=32）\n- LIBERO sim 环境初始化正常（EGL headless rendering）\n- Action prediction → env.step → success detection 全链路通畅\n- 结果自动保存到 `eval_results/libero_libero_object.json`\n\n### Rollout 命令模板\n\n100K checkpoint 到了后直接用：\n\n```bash\n# Baseline 评估（全 4 个 suite）\ncd /root/autodl-tmp/importance_margin_vla_compress\nMUJOCO_GL=egl python3 eval_success_rate_libero.py \\\n    --checkpoint checkpoints/<NEW_CKPT_DIR>/checkpoint.pt \\\n    --config configs/libero_baseline.yaml \\\n    --suite libero_object \\\n    --num_episodes 10 \\\n    --gpu 0\n\n# IMM two-stage 评估\nMUJOCO_GL=egl python3 eval_success_rate_libero.py \\\n    --checkpoint checkpoints/<IMM_CKPT_DIR>/checkpoint.pt \\\n    --config configs/libero_imm_twostage.yaml \\\n    --suite libero_object \\\n    --num_episodes 10 \\\n    --mode acis_prune \\\n    --gpu 0\n```\n\nSuites: `libero_spatial`, `libero_object`, `libero_goal`, `libero_10`（每个 10 tasks × 10 eps = 100 episodes）。\n\n### cqa1 → westd SCP 路径\n\n```bash\nscp connect.cqa1.seetacloud.com:/root/autodl-tmp/importance_margin_vla_compress/checkpoints/<DIR>/checkpoint.pt \\\n    /root/autodl-tmp/importance_margin_vla_compress/checkpoints/<DIR>/checkpoint.pt\n```\n\n### 注意事项\n- 50K checkpoint 的单 episode FAIL 属正常（只跑了 1 个 episode，且 50K 还没训够）\n- 整套评估（4 suites × 10 tasks × 10 eps = 400 episodes）预计耗时 ~3-4 小时\n- 如需加速可分 GPU 或只跑重点 suite（libero_object 是论文主要报告的）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

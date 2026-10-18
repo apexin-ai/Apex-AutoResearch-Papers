@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "991fe1037e9ff5127945",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d050 batch1 text fixes",
+  "task_key": "worker_paper_d050_batch1_text_fixes_20260516T170225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d050_batch1_text_fixes_20260516T170225_result.json",
+    "occurrence": 1,
+    "bytes": 2393,
+    "sha256": "eedbf80d7eca5f85888b11f2cd9249cb3fdde876dbf5f27a8723cd68f2bf77f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成报告\n\n### 修改状态\n\n| 项目 | 状态 | 位置 |\n|------|------|------|\n| **W1** Asymmetric channel magnitudes | ✅ | discussion.tex §6 新段落 |\n| **W2a** Intro finding (1) asymmetric framing | ✅ | introduction.tex |\n| **W2b** Abstract asymmetric framing | ✅ | abstract.tex |\n| **W2c** Contribution 3 DocRED R² range | ✅ | introduction.tex |\n| **W3a** Abstract separability language | ✅ | abstract.tex |\n| **W3b** Conclusion separability language | ✅ | discussion.tex |\n| **W3c** Pre-specification rationale | ✅ | results.tex §4.4 |\n| **W4** Contribution #4 rewrite | ✅ | introduction.tex |\n| **W6** References (7 papers) | ✅ | references.bib + related_work.tex + main.tex |\n| **W7** Single-seed defense | ✅ | experimental_setup.tex §3.5 |\n| **W8** 5 batches defense | ✅ | results.tex §4.1 |\n| **W9** Embedding defense (MiniLM) | ✅ | results.tex §4.2 |\n| **W10** Contamination defense (BCS slope) | ✅ | main.tex Limitations item 7 |\n| **W11** Lakens TOST | ✅ | main.tex Appendix + references.bib |\n| **Minor-1** FewRel r=0.187 | ✅ | 已在 Table 2 caption 中 (body 中未重复以控制页数) |\n| **Minor-2** Perneger citation | ✅ | main.tex Limitations \"Multiple comparisons\" |\n| **Minor-3** Citation verification | ✅ | `sclar-sensitivity-2024` 改为 ICLR 2024 |\n\n### 引用核实结果\n\n| 引用 | 存在？ | 备注 |\n|------|--------|------|\n| Lakens (2017) | ✅ | SPPS（非 Collabra） |\n| Perneger (1998) | ✅ | BMJ |\n| Simmons et al. (2011) | ✅ | 可选，未引用 |\n| Zhou et al. (NAACL 2025) | ✅ | 已加入 §2 |\n| Guo et al. (AAAI 2021) | ✅ | 已加入 §2 |\n| Novack et al. (ICML 2023) CHiLS | ✅ | 已加入 §2 |\n| ZeroNER (ACL 2025 Findings) | ✅ | 已加入 §2，非直接竞争者 |\n| gliner2-2025 | ✅ | 标题为 paraphrase，可选修正 |\n| sclar-sensitivity-2024 | ✅ | **已修正：TACL → ICLR 2024** |\n| json-schema-bench-2025 | ✅ | 标题为 v1，已更名为 JSONSchemaBench |\n| li2023evaluating | ✅ | 正确 |\n\n无直接竞争者 → \"first controlled study\" 表述不需加 \"To our knowledge\" 对冲。\n\n### 编译结果\n\n- 0 errors, 0 undefined citations/references\n- 正文 (Introduction → Conclusion) 在 page 8 内结束\n- 总页数 19 页\n- 为控制页数，对 Discussion 各段和 Conclusion 做了精简"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

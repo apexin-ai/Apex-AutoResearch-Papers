@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6253c056910d4d321fad",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 l2norm k03 goal seed42",
+  "task_key": "worker_harvest_eval_pi05_l2norm_k03_goal_seed42_20260523T223606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_l2norm_k03_goal_seed42_20260523T223606_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "db11539266e590706a48ea35dd13520a2a438107bc6b2b84fdd7ea08e9fd6428"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，可能已在之前的 session 中删除或过期。\n\n---\n\n## 结果报告\n\n**实验**: eval_pi05_l2norm_k03_goal_seed42\n**状态**: DONE (negative)\n\n| 指标 | 值 |\n|------|-----|\n| Overall SR | **54.2%** (271/500) |\n| v2 run SR | 50.6% (253/500) |\n| Random k=0.3 Goal | 51.8% (259/500) |\n| **L2norm vs Random delta** | **+2.4pp (negligible)** |\n\n**Per-task SR**: turn on stove 96% | wine bottle on cabinet 82% | bowl on plate 72% | open drawer 70% | bowl on cabinet 60% | plate to stove 48% | drawer+bowl 40% | wine bottle on rack 28% | cream cheese in bowl 26% | bowl on stove 20%\n\n**Conclusion**: Negative — 极端剪枝 (k=0.3) 下 L2norm 与 Random 几乎无差异 (+2.4pp)，importance margin 在高压缩率下消失。\n\n**Log**: `logs/eval_pi05_l2norm_k03_goal_seed42.log`\n**Results JSON**: `eval_results/pi05_l2norm_k0.30_libero_goal_seed42.json`\n\n---\n\nGPU 2 已空闲，可部署 eval_pi05_random_k07_object_seed42_v2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

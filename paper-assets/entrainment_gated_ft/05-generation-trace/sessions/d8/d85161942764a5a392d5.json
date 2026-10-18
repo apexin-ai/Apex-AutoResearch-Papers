@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d85161942764a5a392d5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code config restore hgrn2",
+  "task_key": "worker_code_config_restore_hgrn2_20260518T142334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_config_restore_hgrn2_20260518T142334_result.json",
+    "occurrence": 1,
+    "bytes": 2293,
+    "sha256": "cd1050f931aa21851d19c8441c70cf5a3075444f8ab52273b7d7fec563367ba3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. 被恢复的 config.json（5 个）\n\n| 模型 | 状态 |\n|---|---|\n| 1.3B-100B-GatedDeltaNet-hybrid-12-1 | ✓ 已恢复 |\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1 | ✓ 已恢复 |\n| 1.3B-100B-GatedDeltaNet-hybrid-3-1 | ✓ 已恢复 |\n| 1.3B-100B-GatedDeltaNet-hybrid-6-1 | ✓ 已恢复 |\n| 1.3B-100B-GatedDeltaNet-pure | ✓ 已恢复 |\n\n验证通过：grep 无 `allow_neg_eigval` 残留。\n\n### 2. HGRN2 weight tying 检查结果\n\n**HGRN2 存在与 GDN 完全相同的 `_tied_weights_keys` 问题。** 所有 5 个 HGRN2 模型都有 `tie_word_embeddings: True`，且 fla 库的 `modeling_hgrn2.py:270` 定义了 `_tied_weights_keys = [\"lm_head.weight\"]`（list 类型），新版 transformers 期望 dict，导致 `AttributeError: 'list' object has no attribute 'keys'`。评测时需要同样的运行时修复（手动 tie weights）。\n\n### 3. 所有 1.3B 模型目录清单\n\n| 模型目录 | model_type | tie_word_embeddings |\n|---|---|---|\n| 1.3B-100B-GatedDeltaNet-hybrid-12-1 | gated_deltanet | False |\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1 | gated_deltanet | False |\n| 1.3B-100B-GatedDeltaNet-hybrid-3-1 | gated_deltanet | False |\n| 1.3B-100B-GatedDeltaNet-hybrid-6-1 | gated_deltanet | False |\n| 1.3B-100B-GatedDeltaNet-pure | gated_deltanet | False |\n| 1.3B-100B-HGRN2-hybrid-12-1 | hgrn2 | True |\n| 1.3B-100B-HGRN2-hybrid-24-1 | hgrn2 | True |\n| 1.3B-100B-HGRN2-hybrid-3-1 | hgrn2 | True |\n| 1.3B-100B-HGRN2-hybrid-6-1 | hgrn2 | True |\n| 1.3B-100B-HGRN2-pure | hgrn2 | True |\n| 1.3B-100B-RetNet-hybrid-12-1 | retnet | True |\n| 1.3B-100B-RetNet-hybrid-24-1 | retnet | True |\n| 1.3B-100B-RetNet-pure | retnet | True |\n| retnet_ms_cache | (无 config) | - |\n| transformer_1.3B_baseline | transformer | True |\n\n340M 模型目录为空。\n\n### 4. 评测完成情况\n\n**已完成（5 个）：**\n- GatedDeltaNet-hybrid-24-1（完整 benchmarks）\n- GatedDeltaNet-hybrid-3-1（完整 benchmarks）\n- GatedDeltaNet-hybrid-6-1（完整 benchmarks）\n- GatedDeltaNet-pure（仅 lambada_openai）\n- RetNet-pure（完整 benchmarks）\n\n**未评测（10 个）：**\n- GatedDeltaNet-hybrid-12-1\n- 全部 5 个 HGRN2 模型\n- RetNet-hybrid-12-1, RetNet-hybrid-24-1\n- transformer_1.3B_baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

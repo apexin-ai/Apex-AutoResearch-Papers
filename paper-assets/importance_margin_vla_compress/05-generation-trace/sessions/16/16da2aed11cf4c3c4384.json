@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16da2aed11cf4c3c4384",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval openvla l2norm k075 goal seed42 v2",
+  "task_key": "worker_analysis_eval_openvla_l2norm_k075_goal_seed42_v2_20260526T201559",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_openvla_l2norm_k075_goal_seed42_v2_20260526T201559_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "efe2f0fb245c72f4b199218e214b2880d1a46ccbdeea3864bf6a04cd735980af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果摘要：\n\n## eval_openvla_l2norm_k075_goal_seed42_v2 结果\n\n**Overall SR: 70.2% (351/500)**\n\n### Per-task SR\n\n| Task | SR |\n|---|---|\n| open the middle drawer of the cabinet | 54.0% |\n| put the bowl on the stove | 80.0% |\n| put the wine bottle on top of the cabinet | 86.0% |\n| open the top drawer and put the bowl inside | 22.0% |\n| put the bowl on top of the cabinet | 88.0% |\n| push the plate to the front of the stove | 70.0% |\n| put the cream cheese in the bowl | 68.0% |\n| turn on the stove | 98.0% |\n| put the bowl on the plate | 82.0% |\n| put the wine bottle on the rack | 54.0% |\n\n### Cliff Curve 对比 (LIBERO Goal, L2norm)\n\n| k | 保留 tokens | SR | Δ vs 上一点 |\n|---|---|---|---|\n| 0.90 | 230 | 74.8% | — |\n| 0.85 | 218 | 75.4% | +0.6pp |\n| **0.75** | **192** | **70.2%** | **-5.2pp** |\n| 0.70 | 179 | 68.4% | -1.8pp |\n\nk=0.75 (70.2%) 符合预期，落在 k=0.85 和 k=0.7 之间。下降斜率主要集中在 k=0.85→0.75 段（-5.2pp），说明性能 cliff 起点约在 k≈0.8 附近。k=0.75→0.7 段下降仅 1.8pp，曲线趋缓。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

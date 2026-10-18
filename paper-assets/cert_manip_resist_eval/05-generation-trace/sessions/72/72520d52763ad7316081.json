@@ -1,0 +1,632 @@
+{
+  "schema_version": "1.0",
+  "id": "72520d52763ad7316081",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260522T150758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_20260522T150758.jsonl",
+    "occurrence": 1,
+    "bytes": 27682,
+    "sha256": "045618b1888b3e413823970e9d3f502465fdc25e94f3231335146925fd584e5d"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:11:13.143479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T15:11:13.144186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T15:11:13.144372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T15:11:13.144508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/introduction.tex\ndocs/paper/related_work.tex\ndocs/paper/threat_model.tex\ndocs/paper/methodology.tex\ndocs/paper/results.tex\ndocs/paper/analysis.tex\ndocs/paper/conclusion.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T15:11:13.144632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ 2>/dev/null || echo \"DIR_NOT_EXISTS\""
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T15:11:13.144807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "acl.sty\nacl_natbib.bst\nanalysis.tex\nconclusion.tex\nintroduction.tex\nmain.aux\nmain.bbl\nmain.blg\nmain.fdb_latexmk\nmain.fls\nmain.log\nmain.out\nmain.pdf\nmain.tex\nmethodology.tex\nreferences.bib\nrelated_work.tex\nresults.tex\nthreat_model.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T15:11:13.144998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T15:11:13.145150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t% [PLACEHOLDER — to be written by Worker]\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T15:11:13.145277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T15:11:13.145512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Bibliography for cert_manip_resist_eval\n2\t% All entries verified via WebSearch on 2026-05-22\n3\t% ============================================================\n4\t\n5\t% ============================================================\n6\t% Part A: Papers from literature_map.yaml (12 papers)\n7\t% ============================================================\n8\t\n9\t@article{robertson2025stepwise,\n10\t  author    = {Robertson, Zachary and Koyejo, Sanmi},\n11\t  title     = {Let's Measure Information Step-by-Step: {LLM}-Based Evaluation Beyond Vibes},\n12\t  journal   = {arXiv preprint arXiv:2508.05469},\n13\t  year      = {2025},\n14\t  url       = {https://arxiv.org/abs/2508.05469},\n15\t  note      = {arXiv:2508.05469}\n16\t}\n17\t\n18\t@inproceedings{yang2026diversity,\n19\t  author    = {Yang, Yingxuan and Qu, Chengrui and Wen, Muning and Shi, Laixi and Wen, Ying and Zhang, Weinan and Wierman, Adam and Gu, Shangding},\n20\t  title     = {Understanding Agent Scaling in {LLM}-Based Multi-Agent Systems via Diversity},\n21\t  booktitle = {ICLR 2026 Workshop on AIMS},\n22\t  year      = {2026},\n23\t  url       = {https://arxiv.org/abs/2602.03794},\n24\t  note      = {arXiv:2602.03794}\n25\t}\n26\t\n27\t@article{turkmen2026ensemble,\n28\t  author    = {Turkmen, Yigit and Buyukates, Baturalp and Bastopcu, Melih},\n29\t  title     = {Don't Always Pick the Highest-Performing Model: An Information Theoretic View of {LLM} Ensemble Selection},\n30\t  journal   = {arXiv preprint arXiv:2602.08003},\n31\t  year      = {2026},\n32\t  url       = {https://arxiv.org/abs/2602.08003},\n33\t  note      = {arXiv:2602.08003}\n34\t}\n35\t\n36\t@inproceedings{kaneko2025bits,\n37\t  author    = {Kaneko, Masahiro and Baldwin, Timothy},\n38\t  title     = {Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against {LLMs}},\n39\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n40\t  year      = {2025},\n41\t  url       = {https://arxiv.org/abs/2510.17000},\n42\t  note      = {arXiv:2510.17000. Spotlight}\n43\t}\n44\t\n\n…[truncated 12184 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T15:11:13.145698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T15:11:13.145844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t% [PLACEHOLDER — waiting for plan\\_001 results]\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T15:11:13.145993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T15:11:13.146117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Methodology}\n2\t% [PLACEHOLDER — to be written by Worker]\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T15:11:13.146237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T15:11:13.146373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath,amssymb,amsthm}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{multirow}\n12\t\\usepackage{xcolor}\n13\t\\usepackage{subcaption}\n14\t\n15\t\\newtheorem{theorem}{Theorem}\n16\t\\newtheorem{definition}{Definition}\n17\t\\newtheorem{proposition}{Proposition}\n18\t\n19\t\\title{The Weakest Link: Why Judge Diversity Fails Under\\\\Adaptive Adversaries in Multi-LLM Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\begin{abstract}\n27\t% [PLACEHOLDER — waiting for plan_001 results]\n28\t\\end{abstract}\n29\t\n30\t% Section files managed by write_paper_section\n31\t\\input{introduction}    % [PLACEHOLDER — waiting for plan_001 results]\n32\t\\input{related_work}\n33\t\\input{threat_model}\n34\t\\input{methodology}\n35\t\\input{results}          % [PLACEHOLDER — waiting for plan_001 results]\n36\t\\input{analysis}         % [PLACEHOLDER — waiting for plan_001 results]\n37\t\\input{conclusion}       % [PLACEHOLDER — waiting for plan_001 results]\n38\t\n39\t\\section*{Limitations}\n40\t% [PLACEHOLDER — short paragraph, ~3 points per EMNLP rules]\n41\t\n42\t\\bibliography{references}\n43\t\\bibliographystyle{acl_natbib}\n44\t\n45\t\\end{document}\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T15:11:13.146529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T15:11:13.146674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Threat Model and Problem Formulation}\n2\t% [PLACEHOLDER — to be written by Worker]\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T15:11:13.146861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T15:11:13.146987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T15:11:13.147103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cert_manip_resist_eval",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T15:11:13.147319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — cert_manip_resist_eval (v3: Post-Dream Revision)\\\\n\\\\n> Last updated: 2026-05-22 | Reason: Dream review (2.5 all tiers) exposed structural issues; reframe novelty, fix theorem, add experiments\\\\n\\\\n## Target\\\\nEMNLP 2026 (via ARR)\\\\n\\\\n## Title Candidates\\\\n1. \\\\\\\"The Diversity Trap: Why Adding More Judges Doesn't Make LLM Evaluation Safer\\\\\\\"\\\\n2. \\\\\\\"The Weakest Link: Individual Robustness Dominates Diversity in Multi-Judge LLM Evaluation Security\\\\\\\"\\\\n3. \\\\\\\"Against the Diversity Assumption: Adaptive Adversaries Break Multi-Judge LLM Evaluation Panels at the Weakest Link\\\\\\\"\\\\n\\\\n## Core Insight\\\\nMulti-judge LLM evaluation panels are widely assumed to benefit from judge diversity, analogous to Byzantine Fault Tolerance (BFT) where redundancy protects against faults. We provide the first systematic empirical characterization showing this analogy breaks under adaptive adversaries: BFT assumes random faults, but LLM adversaries target the weakest judge. We quantify this via regime analysis — diversity's protective effect depends on individual judge robustness level and attack transferability — and expose structural barriers (diversity-capability tradeoff, Gaussian copula failure) that prior work has not measured.\\\\n\\\\n## Hook\\\\n\\\\\\\"Adding more diverse judges to an evaluation panel doesn't make it safer — it can make it worse.\\\\\\\"\\\\nWe empirically validate and quantify a predicted but unmeasured phenomenon in the LLM judge domain: the failure of diversity-based defenses under adaptive adversaries.\\\\n\\\\n## Novelty Positioning (Dream D4 fix)\\\\nWe do NOT claim to discover that weakest-link effects exist under adaptive adversaries — this is established in security (Schneier 2000) and adversarial ML (Tramèr et al. 2018). Our contributions are:\\\\n1. **First systematic empirical quantific\n…[truncated 10648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T15:11:13.147470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cert_manip_resist_eval",
+              "file": "literature_map.yaml",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T15:11:13.147743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/literature_map.yaml\\\", \\\"content\\\": \\\"papers:\\\\n  robertson2025tvdmi:\\\\n    title: \\\\\\\"Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes\\\\\\\"\\\\n    authors: [\\\\\\\"Robertson\\\\\\\", \\\\\\\"Koyejo\\\\\\\"]\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv (under TMLR review)\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2508.05469\\\\\\\"\\\\n    category: \\\\\\\"evaluation_framework\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    relevance: \\\\\\\"Foundational TVD-MI theory for LLM evaluation. Theorem 3.3 proves bounded f-divergences (TVD) maintain polynomial certification under mode-collapse attacks while unbounded (KL) fail. We extend from pairwise to N-agent multi-judge settings.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-21\\\\\\\"\\\\n\\\\n  yang2026diversity_scaling:\\\\n    title: \\\\\\\"Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity\\\\\\\"\\\\n    authors: [\\\\\\\"Yang et al.\\\\\\\"]\\\\n    year: 2026\\\\n    venue: \\\\\\\"ICLR 2026 Workshop AIMS\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2602.03794\\\\\\\"\\\\n    category: \\\\\\\"multi_agent_scaling\\\\\\\"\\\\n    role: \\\\\\\"foundation\\\\\\\"\\\\n    relevance: \\\\\\\"Information-theoretic diversity-scaling framework: K* = 2^{H(ρ)}, residual uncertainty (1-α_c)^{K*} geometric contraction (Theorem 4.3). We provide the adversarial dual — while their K* governs performance improvement rate, the same correlation structure governs manipulation cost increase rate. Core duality insight.\\\\\\\"\\\\n    verified: false\\\\n    added_by: \\\\\\\"director\\\\\\\"\\\\n    added_at: \\\\\\\"2026-05-21\\\\\\\"\\\\n\\\\n  turkmen2026copula:\\\\n    title: \\\\\\\"Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection\\\\\\\"\\\\n    authors: [\\\\\\\"Turkmen et al.\\\\\\\"]\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    url: \\\\\\\"https://arxiv.org/abs/2602.08003\\\\\\\"\\\\n    category: \\\\\\\"ensembl\n…[truncated 6978 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T15:11:13.148036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\n\\paragraph{LLM-as-Judge and Evaluation Biases.}\nThe use of large language models as automatic evaluators gained traction after \\citet{zheng2023judging} introduced MT-Bench and Chatbot Arena, establishing LLM judges as scalable alternatives to human annotation. Subsequent work documented systematic failure modes: \\citet{wang2023fair} showed that individual LLM judges exhibit position bias, verbosity preferences, and sycophancy, all of which compromise evaluation reliability. Multi-judge panels have been proposed to mitigate these biases by aggregating decisions across diverse models. A recent systematization of knowledge on LLM-judge security \\cite{almasoud2026security} reports that 7-model committees reduce attack success rates to 10--19\\%, down from 50--68\\% for individual open-source judges. However, this empirical observation lacks a causal explanation: it does not disentangle whether the reduction stems from judge diversity per se or from the inclusion of individually robust models. We address precisely this gap, providing the first controlled analysis that separates the contributions of panel diversity and individual judge robustness under adaptive attack.\n\n\\paragraph{Adversarial Robustness and Transferability.}\nAdversarial vulnerability in neural networks was formalized by \\citet{goodfellow2015adversarial}, who showed that imperceptible input perturbations can cause misclassification. A key property of such adversarial examples is transferability: \\citet{papernot2016transferability} demonstrated that adversarial inputs crafted for one model frequently fool others, and \\citet{papernot2017practical} exploited this for black-box attacks via substitute models. \\citet{tramer2018ensemble} showed that ensemble adversarial training improves robustness but does not eliminate cross-model vulnerability, because transferred perturbations remain effective across architectures. In the LLM domain, prompt injection attacks \\cite{greshake2023not} and adversarial prompt crafting \\cite{schulhoff2023hackaprompt} exploit analogous transferability: manipulative prompts designed for one judge model frequently succeed against others from the same capability tier. This cross-model attack transferability enables adaptive adversaries to concentrate effort on the weakest panel member, and it forms the empirical basis for the weakest-link effect we quantify.\n\n\\paragraph{Ensemble Diversity and Multi-Agent Scaling.}\nThe theoretical foundations of ensemble diversity trace to \\citet{krogh1995neural}, who proved that ensemble error decomposes into average member error minus a diversity term that measures disagreement among members. For LLM-based multi-agent systems, \\citet{yang2026diversity} formalize this through an information-theoretic framework, defining an effective channel count $K^* = 2^{H(\\rho)}$ that governs performance scaling as a function of the correlation structure. \\citet{turkmen2026ensemble} develop a Gaussian copula model for ensemble selection, deriving error floor bounds that depend on pairwise mutual information rather than individual accuracy alone. On the empirical side, \\citet{kim2025correlated} find that LLM errors are substantially correlated: when two models both err, they agree on the wrong answer 60\\% of the time, with same-company pairs exhibiting 6.6\\% higher agreement. \\citet{kuai2026independent} audit behavioral entanglement across 18 models and find that cross-family entanglement is 40--60\\% lower than within-family entanglement but remains far from zero. \\citet{keppo2026fragility} show that increasing agent count from 2 to 5 disrupts collusive dynamics in cooperative settings. These works study how diversity improves performance under benign conditions. We provide the adversarial security dual: the same correlation structures that govern performance scaling also determine an attacker's ability to simultaneously compromise multiple judges.\n\n\\paragraph{Byzantine Fault Tolerance and Security Analogies.}\nMulti-judge evaluation panels implicitly invoke a Byzantine Fault Tolerance (BFT) analogy: if each judge fails independently, majority voting among $n$ judges tolerates up to $f < n/3$ faulty members \\cite{lamport1982byzantine,castro1999practical}. This classical guarantee assumes that faults are random or arbitrarily chosen but not strategically targeted at system structure. \\citet{schneier2000secrets} articulated the weakest-link principle for security systems: an attacker need only find and exploit the single most vulnerable component, and aggregate redundancy becomes irrelevant. The distinction between random faults and adaptive attacks is well-established in systems security, yet the LLM evaluation community continues to treat judge diversity as if the BFT preconditions hold. We make this implicit analogy explicit and test it empirically: adaptive adversaries violate the independence assumption underlying BFT, and panel security collapses to the robustness of the weakest individual judge.\n\n\\paragraph{Information-Theoretic Approaches to Evaluation.}\nSeveral recent works apply information-theoretic tools to LLM evaluation. \\citet{robertson2025stepwise} propose a TVD-MI framework for stepwise evaluation, proving that bounded divergences maintain polynomial certification under mode-collapse attacks. \\citet{kaneko2025bits} derive tight single-model attack cost bounds via Fano's inequality, establishing that an adversary requires at least $\\log_2(1/\\varepsilon) / I_{\\max}$ queries to reduce detection probability below $\\varepsilon$. For imperfect but honest judges, \\citet{feng2026noisy} develop statistical hypothesis tests with finite-sample Type-I error control despite calibration uncertainty. On the incentive design side, \\citet{chen2025incentivizing} and \\citet{qiu2026truthfulness} apply peer prediction mechanisms to elicit truthful judgments from LLMs under conditional independence assumptions. These lines of work address complementary concerns: statistical validity under noise, single-model attack costs, and truthfulness incentives. Our study fills the remaining gap by examining how adversarial manipulation interacts with multi-judge composition, a setting where neither honest-noise nor single-model assumptions hold.\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T15:11:13.148272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T15:11:13.148426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && wc -w related_work.tex && echo \"---\" && grep -n \"—\" related_work.tex && echo \"NO_EM_DASH\" && grep -n \" – \" related_work.tex && echo \"NO_EN_DASH\" && grep -cE \"ing[,.]\" related_work.tex && echo \"---\" && grep -inE \"it is worth noting|notably|plays a crucial role|delve|leverage|utilize|facilitate|a myriad|a plethora|in this paper|paradigm shift\" related_work.tex && echo \"NO_BANNED_PHRASES\"",
+              "description": "Style check on related_work.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T15:11:13.148557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n756 related_work.tex\n---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T15:11:13.148702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper && echo \"=== EM-DASH ===\" && grep -n \"—\" related_work.tex || echo \"NONE\" && echo \"=== EN-DASH ===\" && grep -n \" – \" related_work.tex || echo \"NONE\" && echo \"=== -ing endings ===\" && grep -noE \"[a-z]ing[,.]\" related_work.tex || echo \"NONE\" && echo \"=== BANNED ===\" && grep -inE \"it is worth noting|notably|plays a crucial role|delve|leverage|utilize|facilitate|a myriad|a plethora|in this paper|paradigm shift\" related_work.tex || echo \"NONE\"",
+              "description": "Style check for AI writing patterns"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T15:11:13.148835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== EM-DASH ===\nNONE\n=== EN-DASH ===\nNONE\n=== -ing endings ===\n9:ling.\n=== BANNED ===\nNONE"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T15:11:13.148991+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The \"ling.\" match is from \"scaling.\" (a noun, not a participial phrase). All style checks pass. 756 words, within the target range.\n\nWritten to `docs/paper/related_work.tex`. Five `\\paragraph{}` blocks covering LLM-as-Judge biases, adversarial transferability, ensemble diversity theory, BFT analogies, and information-theoretic evaluation. Each paragraph ends with explicit positioning against our work. 23 citations total, all keys verified against `references.bib`."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260522T150758"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ]
+}

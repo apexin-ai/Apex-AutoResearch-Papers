@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "e187946b73df4f4e1c19",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "analysis exp 005 gla jaccard",
+  "task_key": "worker_analysis_exp-005-gla-jaccard_20260522T164331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-gla-jaccard_20260522T164331.log",
+    "occurrence": 1,
+    "bytes": 964356,
+    "sha256": "d83f5e1479990b95de33bfebfc0ec2e1dcc3ae16fc8a6e4c5c9bb050b71e97b1"
+  },
+  "statistics": {
+    "messages": 484,
+    "user_turns": 0,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 199,
+      "tool_result": 199,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "e187946b73df4f4e1c19-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e187946b73df4f4e1c19-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e187946b73df4f4e1c19-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ]
+}

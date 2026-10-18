@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "74480a77f1d42c4ec0a1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis stats w2 w3 w4",
+  "task_key": "worker_analysis_stats_w2_w3_w4_20260516T032244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stats_w2_w3_w4_20260516T032244_result.json",
+    "occurrence": 1,
+    "bytes": 2012,
+    "sha256": "e9a9d66381db82131576f3cbad6eabd471d0b37961395f5aff1fb06cde2a444f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析全部完成。结果保存在 `/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json`。\n\n---\n\n## 结果汇总\n\n### W3: Type-level Cluster Bootstrap\n\n| Dataset | r (paper) | Naive CI | Cluster CI (B=10000) | Significant |\n|---------|-----------|----------|---------------------|-------------|\n| Few-NERD | 0.112 | [0.076, 0.156] | **[0.069, 0.219]** | **Yes** |\n| MAVEN | 0.129 | [0.104, 0.156] | **[0.081, 0.185]** | **Yes** |\n\nCluster CI 如预期更宽（有效样本从 pair 数降到 type 数），但两个 CI 均不含 0 → **cluster-robust inference 确认相关性显著**。\n\n### W4: count=22 vs count=44 Recall CI\n\n| Count | Pooled Recall | 95% Bootstrap CI |\n|-------|--------------|------------------|\n| 22 | 0.527 | [0.484, 0.569] |\n| 44 | 0.551 | [0.525, 0.570] |\n\n两个 CI **大幅重叠** → delta=+0.024pp 在 sampling variability 范围内，non-monotonicity **不显著**。每个 count 仅 5 batches，CI 宽度合理。\n\n### W2: Realistic Practical Effect\n\n| Setting | Slope | BCS IQR | Typical Gap (Q1→Q3) | 1-SD Gap | Extreme |\n|---------|-------|---------|---------------------|----------|---------|\n| 16-rel pool | -0.449 | 0.110 | **4.9pp** | **3.0pp** | 31.2pp |\n| 80-pool 16-sub | -0.401 | 0.066 | **2.6pp** | **1.8pp** | — |\n\n31.2pp 是极端 batch 对比。典型用户体验中 BCS 变动对应 **2.6–4.9pp accuracy gap**（IQR 范围）或 **1.8–3.0pp**（1-SD）。\n\n### 推荐叙事\n\n- **W3**: \"Cluster-robust CIs (resampling types rather than pairs) are wider as expected but still exclude zero for both datasets, confirming significance.\"\n- **W4**: \"Bootstrap CIs overlap substantially; the +2.4pp non-monotonicity is within sampling variability (5 batches per level).\"\n- **W2**: \"The 31.2pp gap is for extreme batches. For typical batch compositions (IQR), the predicted gap is ~5pp (16-rel) or ~2.6pp (80-pool), representing a meaningful but not dramatic practical effect.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

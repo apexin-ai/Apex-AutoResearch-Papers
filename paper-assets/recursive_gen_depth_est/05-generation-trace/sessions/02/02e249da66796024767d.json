@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "02e249da66796024767d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops fix d2 recall audit",
+  "task_key": "worker_ops_fix-d2-recall-audit_20260525T203931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-d2-recall-audit_20260525T203931_result.json",
+    "occurrence": 1,
+    "bytes": 2321,
+    "sha256": "9f37339b1b34bdc1f0cd8adf39ae5d70cd39e8284e87d497c1b21195512b021b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n### 1. B.6 per-class recall 的数据源\n\n**来源文件：`results/table2_rerun_5foldcv.json`**\n\nd1/d2/d3 recall 全部 9 cell 完美匹配（四舍五入到 1 位小数）：\n\n| Cell | table2_rerun d1 | table2_rerun d2 | table2_rerun d3 | B.6 d1 | B.6 d2 | B.6 d3 |\n|------|------|------|------|------|------|------|\n| pythia_nucleus | 0.8194→81.9 | **0.5918→59.2** | 0.7436→74.4 | 81.9 | 59.2 | 74.4 |\n| pythia_temp09 | 0.799→79.9 | 0.56→56.0 | 0.721→72.1 | 79.9 | 56.0 | 72.1 |\n| pythia_topk50 | 0.7162→71.6 | 0.4418→44.2 | 0.6086→60.9 | 71.6 | 44.2 | 60.9 |\n| olmo_nucleus | 0.821→82.1 | 0.6058→60.6 | 0.7526→75.3 | 82.1 | 60.6 | 75.3 |\n| olmo_temp09 | 0.8706→87.1 | 0.656→65.6 | 0.7714→77.1 | 87.1 | 65.6 | 77.1 |\n| olmo_topk50 | 0.8088→80.9 | 0.504→50.4 | 0.6716→67.2 | 80.9 | 50.4 | 67.2 |\n| gpt2xl_nucleus | 0.8736→87.4 | 0.7284→72.8 | 0.7846→78.5 | 87.4 | 72.8 | 78.5 |\n| gpt2xl_temp09 | 0.9112→91.1 | 0.7304→73.0 | 0.8046→80.5 | 91.1 | 73.0 | 80.5 |\n| gpt2xl_topk50 | 0.813→81.3 | 0.5476→54.8 | 0.6836→68.4 | 81.3 | 54.8 | 68.4 |\n\n**d0 列不在此文件中**（文件只存了 d1/d2/d3），d0 值（99.3 等）来源不明，可能同一 rerun 计算但未保存。\n\n### 2. 为什么 59.2% 在之前找不到\n\n`table2_rerun_5foldcv.json` 存的是 0.5918 而非 0.592。`grep -r \"0.592\"` 搜不到，因为原始值是 0.5918（59.18% 四舍五入→59.2%）。\n\n### 3. 与 `all_results.json`（baseline_battery_9cell）的差异\n\n`all_results.json` 和 `table2_rerun_5foldcv.json` 是两次不同的 5-fold CV 运行，数值有差异：\n\n**Pythia nucleus RF per-class recall 对比：**\n\n| 来源 | d0 | d1 | d2 | d3 |\n|------|----|----|----|----|\n| `all_results.json` (RF) | 99.73 | 81.87 | 58.67 | 72.27 |\n| `table2_rerun_5foldcv.json` | 无 | 81.94 | 59.18 | 74.36 |\n| `all_results.json` (DivEye) | 99.73 | 81.47 | 59.60 | 71.87 |\n| `all_results.json` (CORAL) | 99.60 | 78.53 | 66.13 | 68.00 |\n| `all_results.json` (LR) | 99.73 | 74.00 | 50.27 | 75.87 |\n\nB.6 用的是 `table2_rerun_5foldcv.json` 的 RF 重跑值，不是 `all_results.json` 的值。两者差异最大的是 d3（72.27 vs 74.36，差 2.1 pp），说明重跑使用了不同的 fold 划分或随机种子。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

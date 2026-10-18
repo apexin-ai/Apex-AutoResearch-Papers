@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "93063f79b89d6b0f9114",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research literature map init",
+  "task_key": "worker_research_literature-map-init_20260515T115042",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_literature-map-init_20260515T115042_result.json",
+    "occurrence": 1,
+    "bytes": 50,
+    "sha256": "2be7899174ae9d79cafae00f47bc6e5c19b2dd20f4d3c2f2a12b2543c4583a6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

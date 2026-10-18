@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "97db137ce973349d49ff",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "train openvla vtc only westd27271",
+  "task_key": "worker_train_openvla_vtc_only_westd27271_20260519T182443",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_openvla_vtc_only_westd27271_20260519T182443.log",
+    "occurrence": 1,
+    "bytes": 607543,
+    "sha256": "eaf7afd2dbe0bff5aa5524587ea7c7e9e6106b6148a89c5424636081094b0998"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "97db137ce973349d49ff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "97db137ce973349d49ff-part-0002.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be0c77041c3d332efd6b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k07 goal seed43 v2",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k07_goal_seed43_v2_20260524T025455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k07_goal_seed43_v2_20260524T025455_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "eba69acca421480656a70855b0a413778f24835a9e6b6135c2d21f61b84fea83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n**Overall SR: 72.2%** (361/500), 耗时 71.3 min, 无错误。\n\n### Per-task SR\n\n| Task | SR |\n|---|---|\n| T0 open middle drawer | 78% |\n| T1 put bowl on stove | 76% |\n| T2 wine bottle on cabinet | 68% |\n| T3 open drawer put bowl | 48% |\n| T4 bowl on cabinet | 90% |\n| T5 push plate front stove | 80% |\n| T6 cream cheese in bowl | 66% |\n| T7 turn on stove | **98%** |\n| T8 bowl on plate | 68% |\n| T9 wine bottle on rack | 50% |\n\n### 双种子对比\n\n| Seed | SR |\n|---|---|\n| seed42 | 71.8% |\n| seed43 | 72.2% |\n| **Δ** | **+0.4pp** |\n\n差距仅 0.4pp，L2norm k=0.7 在 Goal suite 上表现高度稳定。Conclusion: **success**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

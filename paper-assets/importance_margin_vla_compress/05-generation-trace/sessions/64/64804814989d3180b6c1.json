@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "64804814989d3180b6c1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla attn k09 object seed42 v3",
+  "task_key": "worker_diagnose_eval_openvla_attn_k09_object_seed42_v3_20260524T224910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_attn_k09_object_seed42_v3_20260524T224910_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "77417197514cb576c34921447e6fda1f9c0b575126eaf02dfd4d72f068c06eff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `eval_openvla_attn_k09_object_seed42_v3` 完成，registry 已更新为 DONE/success，cron 已清除。\n\n**结果汇总：**\n- **Overall SR: 61.4%** (307/500)\n- Attention pruning 256→230 vision tokens (k=0.9)\n- Per-task SR: salad_dressing/ketchup/orange_juice 76% | alphabet_soup/tomato_sauce/chocolate_pudding 74% | milk 52% | cream_cheese 46% | bbq_sauce 38% | butter 28%\n- 耗时 260.6 min\n\n注意：结果 JSON 中 `k_ratio` 字段为 null（logging bug），但日志确认 pruning 已生效：`[Attn Pruning] 256 -> 230 vision tokens (k=0.9)`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

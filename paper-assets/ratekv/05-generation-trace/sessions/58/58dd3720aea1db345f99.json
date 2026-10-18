@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "58dd3720aea1db345f99",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis gemma2 hires extract",
+  "task_key": "worker_analysis_gemma2_hires_extract_20260514T221401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_hires_extract_20260514T221401_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "731ee5f9a967b51e5855e688fc45140c0a3d97e9f0a6d81c14a37ac8f60d7581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：实验尚未完成，无法提取最终指标。**\n\n- 进程 PID 268242 仍在 cuda:0 运行（31/336 heads, 9%，ETA ~107min）\n- profiles JSON 不存在\n- baseline PPL=7.32，逐 head 推进无报错\n- 已更新 registry notes，未改 status（仍 ANALYZING，但实际应视为 RUNNING）\n- 建议 ~2h 后（00:00 UTC / 08:00 CST 之后）再来提取结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

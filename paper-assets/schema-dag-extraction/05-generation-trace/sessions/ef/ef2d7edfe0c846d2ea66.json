@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ef2d7edfe0c846d2ea66",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp sdgd routing strategies",
+  "task_key": "worker_code_exp_sdgd_routing_strategies_20260517T055751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_sdgd_routing_strategies_20260517T055751_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "7b7c0d6b673e2002c9ca6ac1c28c0d8be299e4f6a0a75eee865f44faabb4220b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n## SDGD Routing Strategies 实验结果\n\n| Strategy | Accuracy | vs Single-Pass | Recovery |\n|----------|----------|----------------|----------|\n| single_pass (baseline) | 50.4% | — | 0% |\n| random | 14.7% | -35.7pp | -162% |\n| max_conf_all | 27.7% | -22.7pp | -103% |\n| **max_conf_positive** | **36.5%** | **-14.0pp** | **-64%** |\n| **none_aware** | **36.5%** | **-14.0pp** | **-64%** |\n| margin_positive | 35.9% | -14.5pp | -66% |\n| oracle (上界) | 72.4% | +22.0pp | 100% |\n\n**核心发现：所有 practical routing 策略都比 single-pass 更差。** Recovery 全部为负值。\n\n**根本原因**：模型的 \"none\" 检测能力太弱。分布如下：\n- 73.4% 的 instances 有 3-5 个组同时做出 positive prediction\n- 仅 7% 的 instances 恰好只有 1 个组做 positive prediction（exclusive positive 精度也只有 42%）\n- 各组对 out-of-group instances 的 none-rate 只有 20-40%\n\n**结论**：在 structured decoding + enum constraint 下，模型被迫从候选集中选一个答案，即使正确答案不在候选集中也会给出自信的错误预测。这使得 confidence-based routing 和 none-aware routing 均失效。Oracle routing 的 +22pp 增益不可通过 post-hoc 策略恢复——schema decomposition 在没有可靠路由的情况下反而有害。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

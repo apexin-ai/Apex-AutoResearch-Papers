@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b79bcda245a53d0d4a9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops gemini data locate",
+  "task_key": "worker_ops_gemini_data_locate_20260518T070414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gemini_data_locate_20260518T070414_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "f3ce7bba1e1bde533ab84c7cd1438756940c23c06508e228ff96f22040d4db5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete picture:\n\n## Gemini Flash Cross-Model Experiment: No Real Data Exists\n\n**`/root/schema-dag-extraction/artifacts/exp_gemini_flash/`** contains only one file:\n- `run.log` (89 lines, 9KB) — a **failed dry run** from 2026-05-17 23:12–23:20\n- Every API call hit connection errors to `https://api.openai.com/v1` (TUM proxy)\n- Result: **0/5 correct**, all predictions returned `none`\n- No `part1/` or `part2/` subdirectories were ever created\n\n**What doesn't exist on disk:**\n- No `exp_gemini_flash_cross_model/` directory anywhere\n- No Gemini result JSONs, no summary files\n- The specific registry metrics (0.8267, 0.8725, etc.) **don't appear in any file on the server**\n- No active tmux sessions or gemini processes running\n- No backup/alternative locations with gemini data\n\n**Conclusion:** The registry entry `exp_gemini_flash_cross_model` with DONE/success status is **phantom** — the metrics have no backing data. The experiment script exists and is well-written (`scripts/run_gemini_flash_fewrel.py`), but it was never successfully executed because the TUM proxy API endpoint was unreachable from this server.\n\n**For reference, Llama 70B cross-model data does exist** at `d051_llama-3.1-70b-fp8_fewrel_n25_s42/` with complete results (count_8/16/32/64/80, all 25 batches each):\n| count | Llama 70B acc |\n|-------|--------------|\n| 8 | 0.757 |\n| 16 | 0.685 |\n| 32 | 0.601 |\n| 64 | 0.504 |\n| 80 | 0.450 |\n\nTo actually run the Gemini experiment, the API connectivity issue needs to be resolved first (either fix the TUM proxy access from this server or use an alternative Gemini API endpoint)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

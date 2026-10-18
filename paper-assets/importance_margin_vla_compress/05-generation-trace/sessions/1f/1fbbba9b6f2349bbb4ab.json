@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1fbbba9b6f2349bbb4ab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval pi05 l2norm k085 long seed42 v3",
+  "task_key": "worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T140201",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T140201_result.json",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "9b4a00ec4f4379c9493f1aced6df0686bae92a35e911508445e9a5a26756d556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nDEPLOYED: yes\nSERVER: cqa1-33015\nGPU: cuda:1\nPID: 416018\nEXP_ID: eval_pi05_l2norm_k085_long_seed42_v3\nMODEL_PATH: /root/autodl-tmp/pi05_libero_finetuned/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a56d28c27f49643cec7e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh westd 24295 env setup r2",
+  "task_key": "worker_ssh_westd-24295-env-setup-r2_20260517T073227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-24295-env-setup-r2_20260517T073227_result.json",
+    "occurrence": 1,
+    "bytes": 1823,
+    "sha256": "d65c606f483cfa1df51f4f0e86078946bc3a322345e2df6120fa55e6d43b744a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## westd-24295 环境部署完成\n\n### GPU 规格\n| 项目 | 值 |\n|------|------|\n| GPU | 2× NVIDIA RTX PRO 6000 Blackwell Server Edition |\n| 显存 | 97,887 MiB (≈96 GB) × 2 |\n| 架构 | SM 12.0 (Blackwell) |\n| 驱动 | 595.58.03 |\n\n### 软件版本\n| 组件 | 版本 |\n|------|------|\n| PyTorch | 2.11.0+cu130 |\n| CUDA (torch) | 13.0 |\n| nvcc (JIT) | 13.0, V13.0.88 |\n| vLLM | 0.21.0 |\n| flashinfer | 0.6.11.post3 (JIT cached for SM 120) |\n\n### 模型\n- 路径: `/root/autodl-tmp/models/llama-3.1-70b-instruct-fp8`\n- 大小: 68 GB\n- 加载显存: 33.87 GiB (TP=2 分布到两张卡)\n\n### 代码同步\n4 个脚本已从 cqa1-38874 同步到 westd-24295:\n- `scripts/run_d051_count_curves_llama70b.py` (18.8 KB)\n- `scripts/run_bcs_controlled_llama70b.py` (14.3 KB)\n- `scripts/run_llama70b_cross_model.sh` (3.0 KB)\n- `scripts/exp_sdgd_routing.py` (18.8 KB)\n\n### vLLM 验证结果\n**PASSED** — 模型加载并成功生成文本。首次运行 233.7s（含 flashinfer/Triton JIT 编译），后续运行使用缓存将快很多。\n\n### 磁盘空间\n| 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|--------|\n| 350G | 68G | 283G | 20% |\n\n### 环境配置要点\n- `CUDA_HOME=/usr/local/cuda-13.0`（解决 flashinfer SM 12.0 JIT 编译需要 nvcc ≥12.9 的问题）\n- `FLASHINFER_DISABLE_VERSION_CHECK=1`（所有脚本已设置）\n- `enforce_eager=True`（避免 Blackwell 上 torch.compile 兼容问题）\n- 额外安装了 `cuda-nvcc-13-0`、`libcublas-dev-13-0`、`libcurand-dev-13-0`、`cuda-cudart-dev-13-0` 提供 JIT 编译所需头文件\n\n### 运行方式\n```bash\nexport LLAMA70B_MODEL_PATH=/root/autodl-tmp/models/llama-3.1-70b-instruct-fp8\nexport CUDA_HOME=/usr/local/cuda-13.0\nbash scripts/run_llama70b_cross_model.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

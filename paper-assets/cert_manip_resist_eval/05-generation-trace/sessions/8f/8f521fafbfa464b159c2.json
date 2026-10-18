@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8f521fafbfa464b159c2",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis partial knowledge adversary",
+  "task_key": "worker_analysis_partial-knowledge-adversary_20260523T004625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_partial-knowledge-adversary_20260523T004625_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "4ac78cb3dfbf78c3800d70c4f2c80ca5872a9768160d6a79b7adce4ba8ff7ad6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n**Partial-Knowledge Adversary Ablation (2/3 vs 3/3 judges known)**\n\n| Metric | Oracle | Partial-Knowledge |\n|--------|--------|-------------------|\n| η_max β_std (mean) | 0.387 | 0.589 (+52.2%) |\n| η_max FDR sig | 11/12 | **12/12** |\n| K_eff β_std (mean) | 0.164 | -0.011 |\n| K_eff FDR sig | 8/12 | 5/12 |\n\n核心发现：partial-knowledge adversary 下 η_max dominance 不仅没有减弱，反而**增强**了。η_max 标准化 β 增加 52%，FDR 显著条件从 11/12 增到 12/12。K_eff 预测力大幅下降（β 接近零）。\n\n论文 narrative：oracle adversary assumption 不是 η_max dominance 的必要条件——即使 adversary 只知道 2/3 judges，weakest-link 效应仍然主导 panel 脆弱性。\n\n产出：\n- 脚本：`/root/cert_manip_resist_eval/scripts/run_partial_knowledge_adversary.py`\n- 结果：`artifacts/results/plan001/partial_knowledge_adversary.json`（服务器+本地）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

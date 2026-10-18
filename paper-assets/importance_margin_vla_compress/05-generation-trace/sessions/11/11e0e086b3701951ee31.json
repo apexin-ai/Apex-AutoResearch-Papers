@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "11e0e086b3701951ee31",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu0 gap",
+  "task_key": "worker_deploy_westd38929_gpu0_gap_20260527T061440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_gpu0_gap_20260527T061440_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "bb0f211d7061623e07efa2d15f6998fb2284a688b90ab7d1297e48718cec8d6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU0 running at 86% utilization, 16188 MiB. Task 1/10 started, pruning 256→243 tokens (k=0.95).\n\n**Summary:**\n1. **Collected result**: OV Attn k=0.95 Goal = **76.8%** (384/500) — registered in registry\n2. **Deployed**: OV Random k=0.95 Long backup on westd-38929 GPU0 — model loaded, Task 1 running\n3. **All 4 GPUs active**: westd-38929 now 4/4 GPUs utilized"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

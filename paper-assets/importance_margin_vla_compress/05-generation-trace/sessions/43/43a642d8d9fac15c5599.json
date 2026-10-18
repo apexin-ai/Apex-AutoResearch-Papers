@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "43a642d8d9fac15c5599",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval xvla l2norm k05 goal seed43",
+  "task_key": "worker_harvest_eval_xvla_l2norm_k05_goal_seed43_20260523T225441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_xvla_l2norm_k05_goal_seed43_20260523T225441_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "a7d1abba18dbc29a125ce313411c4dc4c129a458e4bebdef7f1a2cfc33eba0f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 收割完成\n\n**X-VLA L2norm k=0.5 Goal seed43 结果：**\n\n| | seed42 | seed43 | Δ |\n|---|---|---|---|\n| SR | 59.0% | 60.2% | +1.2pp |\n| 95% CI | — | [55.8%, 64.4%] | — |\n\n**CV 结论**：两 seed 高度一致，L2norm k=0.5 Goal ≈ 59-60%。对比 Random k=0.5 Goal = 67.2%，L2norm 低 ~7-8pp，**确认 L2 在 X-VLA Goal 上的 anti-informativeness 可复现**。conclusion = negative。\n\n**GPU 状态**：westd-38929 GPU 0 已空闲（0% utilization, 1 MiB）。无 QUEUED 实验排队。GPU 0 可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

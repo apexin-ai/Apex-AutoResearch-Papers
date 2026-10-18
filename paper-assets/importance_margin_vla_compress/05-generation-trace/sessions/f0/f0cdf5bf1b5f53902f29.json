@@ -1,0 +1,619 @@
+{
+  "schema_version": "1.0",
+  "id": "f0cdf5bf1b5f53902f29",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "check w38 w27 status",
+  "task_key": "worker_check_w38-w27-status_20260527T185655",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_w38-w27-status_20260527T185655.jsonl",
+    "occurrence": 1,
+    "bytes": 28188,
+    "sha256": "08c208b0e2ccff0ddb573fa650070ad292307b0c841e63230ffd5cf3fde12c39"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T18:59:08.950707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T18:59:08.951078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T18:59:08.951314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ps -p 541240 -o pid,stat,etime,args",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T18:59:08.951457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-27271",
+              "command": "ps aux | grep 'eval_pi05_pruning_libero.*attention.*seed 43' | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T18:59:08.951601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED COMMAND\\\\n541240 Ss+        17:00 bash -c rm -f /tmp/agent-ml-exit/eval_pi05_attn_k05_long_seed43_strict_w38.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_pi05_attn_k05_long_seed43_strict_w38.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"'; } > ~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T18:59:08.951737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T18:59:08.951875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T18:59:08.952016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 02:42:00,132 Baseline mode (no pruning), embed_prefix fixed\\\\n2026-05-28 02:42:00,132 Pruning: attention, keep 128/256 tokens/image (384 total, 2-layer probe)\\\\n2026-05-28 02:42:00,928 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-28 02:42:00,964 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-28 02:42:00,964 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-28 02:42:00,964 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-28 02:42:00,995 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-28 02:42:01,430 Suite: libero_10, 10 tasks, max_steps=520\\\\n[PRUNE-DIAG] attention: n_keep=128/256, score_range=[0.000001, 0.003879], first_indices=[1, 2, 5, 6, 7]\\\\n2026-05-28 02:45:26,493   T0 [put both the alphabet soup and the tomat] ep=10: 7/10=70%\\\\n2026-05-28 02:48:59,502   T0 [put both the alphabet soup and the tomat] ep=20: 15/20=75%\\\\n2026-05-28 02:52:40,219   T0 [put both the alphabet soup and the tomat] ep=30: 20/30=67%\\\\n2026-05-28 02:56:08,629   T0 [put both the alphabet soup and the tomat] ep=40: 27/40=68%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T18:59:08.952182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-27271",
+              "command": "grep -c eval_pi05_pruning_libero /proc/*/cmdline 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T18:59:08.952320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T18:59:08.952440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-27271",
+              "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T18:59:08.952578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-27271",
+              "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T18:59:08.952723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-28 02:16:24,167 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-28 02:16:24,168 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-28 02:16:24,333 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-28 02:16:24,537 Suite: libero_10, 10 tasks, max_steps=520\\\\n[PRUNE-DIAG] attention: n_keep=217/256, score_range=[0.000001, 0.003879], first_indices=[0, 1, 2, 3, 4]\\\\n2026-05-28 02:20:44,123   T0 [put both the alphabet soup and the tomat] ep=10: 3/10=30%\\\\n2026-05-28 02:24:54,864   T0 [put both the alphabet soup and the tomat] ep=20: 6/20=30%\\\\n2026-05-28 02:29:25,593   T0 [put both the alphabet soup and the tomat] ep=30: 8/30=27%\\\\n2026-05-28 02:33:48,331   T0 [put both the alphabet soup and the tomat] ep=40: 11/40=28%\\\\n2026-05-28 02:38:17,881   T0 [put both the alphabet soup and the tomat] ep=50: 13/50=26%\\\\n2026-05-28 02:38:17,881 Task 0: SR=26.0% | Total: 13/50=26.0% | Time: 21.9min\\\\n2026-05-28 02:41:22,498   T1 [put both the cream cheese box and the bu] ep=10: 8/10=80%\\\\n2026-05-28 02:45:15,782   T1 [put both the cream cheese box and the bu] ep=20: 12/20=60%\\\\n2026-05-28 02:49:01,166   T1 [put both the cream cheese box and the bu] ep=30: 17/30=57%\\\\n2026-05-28 02:52:32,411   T1 [put both the cream cheese box and the bu] ep=40: 23/40=57%\\\\n2026-05-28 02:56:17,761   T1 [put both the cream cheese box and the bu] ep=50: 28/50=56%\\\\n2026-05-28 02:56:17,761 Task 1: SR=56.0% | Total: 41/100=41.0% | Time: 39.9min\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T18:59:08.952882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-28 02:16:24,607 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-28 02:16:24,748 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-28 02:16:24,949 Suite: libero_10, 10 tasks, max_steps=520\\\\n[PRUNE-DIAG] attention: n_keep=192/256, score_range=[0.000001, 0.003879], first_indices=[0, 1, 2, 4, 5]\\\\n2026-05-28 02:20:23,327   T0 [put both the alphabet soup and the tomat] ep=10: 4/10=40%\\\\n2026-05-28 02:24:00,297   T0 [put both the alphabet soup and the tomat] ep=20: 10/20=50%\\\\n2026-05-28 02:27:39,545   T0 [put both the alphabet soup and the tomat] ep=30: 16/30=53%\\\\n2026-05-28 02:31:10,808   T0 [put both the alphabet soup and the tomat] ep=40: 23/40=57%\\\\n2026-05-28 02:34:45,843   T0 [put both the alphabet soup and the tomat] ep=50: 29/50=58%\\\\n2026-05-28 02:34:45,843 Task 0: SR=58.0% | Total: 29/50=58.0% | Time: 18.3min\\\\n2026-05-28 02:37:53,814   T1 [put both the cream cheese box and the bu] ep=10: 8/10=80%\\\\n2026-05-28 02:40:49,837   T1 [put both the cream cheese box and the bu] ep=20: 16/20=80%\\\\n2026-05-28 02:43:54,408   T1 [put both the cream cheese box and the bu] ep=30: 24/30=80%\\\\n2026-05-28 02:47:06,917   T1 [put both the cream cheese box and the bu] ep=40: 31/40=78%\\\\n2026-05-28 02:51:04,387   T1 [put both the cream cheese box and the bu] ep=50: 34/50=68%\\\\n2026-05-28 02:51:04,387 Task 1: SR=68.0% | Total: 63/100=63.0% | Time: 34.7min\\\\n2026-05-28 02:53:44,194   T2 [turn on the stove and put the moka pot o] ep=10: 8/10=80%\\\\n2026-05-28 02:56:48,013   T2 [turn on the stove and put the moka pot o] ep=20: 14/20=70%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": \n…[truncated 8 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T18:59:08.953067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "server",
+              "value": "westd-38929",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T18:59:08.953287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "gpu",
+              "value": "cuda:3",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T18:59:08.953434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "pid",
+              "value": "541240",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T18:59:08.953558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "log_path",
+              "value": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T18:59:08.953707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:57:35.133Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-38929\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.8042}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-27T18:59:08.953863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:57:45.357Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.889}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-27T18:59:08.954024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:57:57.789Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 541240}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.7622}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-27T18:59:08.954212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:58:08.758Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 541240, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.3074}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-27T18:59:08.954392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-27T18:59:08.954548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:58:19.606Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 541240, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.4998}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-27T18:59:08.954683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T18:59:08.954832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:58:31.650Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 541240, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.4693}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T18:59:08.954979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"', 'server': 'westd-38929', 'data_path': 'libero_10', 'data_count': 500, 'model_name': 'pi0.5', 'seed': 43, 'checkpoint_source': 'pi0.5 pretrained', 'eval_data': 'libero_10 (Long)'}"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T18:59:08.955166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:58:51.306Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 541240, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.4991}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T18:59:08.955354+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修复为 RUNNING。汇总：\n\n### 实验状态\n\n| 实验 | 服务器 | 进度 | 当前数据 |\n|------|--------|------|----------|\n| **Attn k=0.5 s43** (w38) | westd-38929 GPU:3 | T0 ep=40/50 | 27/40=68% |\n| **Attn k=0.85 s43 v2** (w27) | westd-27271 GPU:0 | T1 完成，进入 T2 | T0: 26%, T1: 56%, 累计 41/100=41% |\n| **Attn k=0.75 s43 v2** (w27) | westd-27271 GPU:1 | T2 ep=20/50 | T0: 58%, T1: 68%, T2 当前 70%, 累计 63/100=63% |\n\n- w38 实验刚启动约 17 分钟，registry 已从 PREPARING 修复到 RUNNING\n- w27 两个实验都正常推进，k=0.75 比 k=0.85 快（GPU 共享影响不同）且成功率明显更高\n- k=0.85 的 T0 只有 26% 异常低，值得关注"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_w38-w27-status_20260527T185655"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ]
+}

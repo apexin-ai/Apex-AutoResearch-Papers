@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "77630986b4f1d6f2f1ad",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 eval 1 3b",
+  "task_key": "worker_code_hgrn2_eval_1_3b_20260518T154512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_eval_1_3b_20260518T154512_result.json",
+    "occurrence": 1,
+    "bytes": 98,
+    "sha256": "5d76df63f14aefb431bfaa232d76380354aa2851080ae371fba866236dff67d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HGRN2-hybrid-12-1 评测已在后台运行 (PID 351217)。90 秒后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

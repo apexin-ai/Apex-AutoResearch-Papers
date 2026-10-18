@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "21ad0d4fc6431eeac9b3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code eval dryrun",
+  "task_key": "worker_code_eval-dryrun_20260515T161034",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_eval-dryrun_20260515T161034_result.json",
+    "occurrence": 1,
+    "bytes": 2575,
+    "sha256": "a60de30b4f65e4ad126399ef13072d2080a3c73525f8809bc482529b014ecded"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 评估结果汇总\n\n### 1. evaluate.py 部署状态: **已部署，有 Bug**\n\n文件存在 (`12KB`)，结构完整，但 **dry-run 失败**:\n\n```\nKeyError: 'observation.language.tokens'\n```\n\n**根因**: evaluate.py 没有调用 `preprocess_batch()` 来向 batch 添加 `observation.language.tokens` 和 `observation.language.attention_mask`。train.py 的 `preprocess_batch` (line 248) 从 `task` 字段 tokenize 或填充 dummy tokens，但 evaluate.py 的 eval 循环直接把 raw batch 喂给模型。\n\n**影响范围**: baseline 路径和 IMM 路径都受影响:\n- Baseline: `model(batch)` at line 195 → SmolVLA forward 访问 `batch[\"observation.language.tokens\"]` 崩溃\n- IMM: `model(batch, step=0)` at lines 207/210 → IMM wrapper forward 同样访问 `batch[OBS_LANGUAGE_TOKENS]` 崩溃\n- IMM 的 `compute_importance_scores()` 不需要 language tokens，不受影响\n\n### 2. Checkpoint 状态\n- **Baseline**: `checkpoints/baseline/step_005000/checkpoint.pt` ✅ (训练当前在 step ~8700, 下一个 save 在 step 10000)\n- **IMM**: **不存在** ❌ — `checkpoints/` 下没有 `imm_anchor/` 目录，GPU 1 完全空闲，IMM 训练未启动\n\n### 3. Dry-run 结果\n在 GPU 1 上跑了 baseline step-5000 的 dry-run (max_batches=5)，模型加载成功但 eval 循环首个 batch 就 crash。\n\n### 4. 功能覆盖（gate criteria）\n\nevaluate.py 已实现的 metric 计算 **全部覆盖**:\n| Gate Criterion | 对应代码 | 状态 |\n|---|---|---|\n| Δ_k median ≥2x | `compute_margin` + margin_median | ✅ |\n| Top-k preservation ≥10pp | `topk_preservation_rate` @ eps=0.01/0.02/0.05 | ✅ |\n| Clean success ≤-5pp | `action_loss` per condition | ✅ |\n| L·ε/Δ_k ≤-30% | `l_eps_delta_ratio` + empirical Lipschitz | ✅ |\n\n### 5. 需修复的问题\n\n**Bug（必须修复才能运行）**:\n- evaluate.py 的 `main()` 或 `evaluate_full()` 需要在 eval 循环前调用 `preprocess_batch(batch, tokenizer, device=device)` （从 train.py import）\n- 需要用 `get_tokenizer_from_policy(policy)` 获取 tokenizer\n\n**建议改进（非阻塞）**:\n- baseline 路径用 `baseline_forward(policy, batch)` 替代 `model(batch)` 以保持与 train.py 一致\n- 缺少 baseline vs IMM 的自动对比脚本（当前需手动比较两个 JSON）\n\n### 6. 评估 Pipeline 就绪状态: **NEEDS_FIX**\n\n- evaluate.py 有一个阻塞性 bug（缺少 `preprocess_batch`）\n- IMM 训练未启动（GPU 1 空闲），无 IMM checkpoint\n- 修复 bug + 启动 IMM 训练后才能做完整评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

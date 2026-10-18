@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "26bb2d38d4f898c6f0db",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code number consistency check",
+  "task_key": "worker_code_number-consistency-check_20260522T000249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_number-consistency-check_20260522T000249_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "e2f21910a6db15cc62b7babfa12f862d7babdb7902b0433a811af67f080b5716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/home/ubuntu/ec_hte_llm_annotation/artifacts/number_consistency_check.md`。\n\n核心发现：\n\n**28项一致，7项不一致，8项无源数据。**\n\n主要不一致：\n1. **Table 1 四处边界取整偏差** — HB EC-HTE 的 |Bias| 和 RMSE/Coverage 有 1 个单位的末位偏差（如源数据 0.0104 论文写 0.011，标准四舍五入应为 0.010）\n2. **Llama HB Coverage 0.950 vs 源 0.940** — appendix table 中 Llama K=2 n=1000 的 HB coverage 源数据为 0.940，论文写 0.950，影响 \"22.7pp\" 主张（修正后为 22.5pp）\n3. **Subgroup AUC 0.87 vs 源 0.8646** — 标准四舍五入应为 0.86\n\n建议优先核实 Llama coverage 值（可能来自不同 seed batch），并统一 Table 1 的取整方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

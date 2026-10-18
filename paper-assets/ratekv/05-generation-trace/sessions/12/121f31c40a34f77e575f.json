@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "121f31c40a34f77e575f",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "investigate gemma2 results",
+  "task_key": "worker_investigate_gemma2_results_20260514T154602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_gemma2_results_20260514T154602_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "db61ae7374d3745bf13de465806ecd010704cc809981276431550fa701e8ffc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 rerun 产出的新结果文件。结论明确：\n\n---\n\n## Gemma-2-9B 数据质量报告\n\n### 1. 真实 bf16 baseline PPL\n**未知（需要重跑）**。当前文件里的 711.38 是 BOS bug 产生的错误值。rerun 中校准数据的 baseline PPL 从 1077 降到 9.38（~115x），按此比例 wikitext2 baseline 应在 **~6-7** 左右，与 D044 提到的 \"PPL 7\" 一致。\n\n### 2. 711.38 的来源\nwikitext2 bf16 baseline，由 **未修复 BOS bug 的代码** 计算。Gemma 2 要求每个 chunk 以 BOS token 开头，缺少 BOS 导致模型推理时上下文错乱，PPL 膨胀约 100 倍。\n\n### 3. BOS fix 状态\n- 修复代码 **已存在** 于 `run_gemma2_full_pipeline.py`：\n  - 校准数据：L159-164，给每条序列前置 `bos_id`\n  - wikitext2 评估：L244-263，检测并补 BOS，排除 BOS logit\n- 但 `gemma2_full_results.json`（May 14 23:15）是修复 **之前** 产生的\n- rerun（May 14 23:46）使用了修复后的代码（calibration baseline=9.38），但 **只完成了 47% 的 Phase 1 profiling 就中断了**，没有产出新的结果文件\n\n### 4. 结论\n**需要重跑。** 当前 `gemma2_full_results.json` 中的所有数值（baseline、MCKP、uniform、k ablation）全部无效——它们都基于错误的 profiling 数据（BOS bug 使校准 baseline 为 1077 而非 9.38，profiling delta 严重失真）。registry 中的 711.38 应标记为 invalid。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

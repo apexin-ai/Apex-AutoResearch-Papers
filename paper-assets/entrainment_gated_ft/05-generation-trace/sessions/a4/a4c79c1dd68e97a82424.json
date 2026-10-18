@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "a4c79c1dd68e97a82424",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code retnet download fix",
+  "task_key": "worker_code_retnet_download_fix_20260518T145025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retnet_download_fix_20260518T145025.log",
+    "occurrence": 1,
+    "bytes": 1052500,
+    "sha256": "438704a4070fb4ea0add14ed2003d097eb7d7756b72f7698eb18fcf4428bcc25"
+  },
+  "statistics": {
+    "messages": 478,
+    "user_turns": 1,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 178,
+      "tool_call": 146,
+      "tool_result": 146,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 462,
+      "chunks": [
+        {
+          "path": "a4c79c1dd68e97a82424-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a4c79c1dd68e97a82424-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a4c79c1dd68e97a82424-part-0003.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "a4c79c1dd68e97a82424-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "8e668a38c128b446e26d",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "deploy cqa1 pi05 experiments",
+  "task_key": "worker_deploy_cqa1-pi05-experiments_20260521T212812",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-pi05-experiments_20260521T212812.log",
+    "occurrence": 1,
+    "bytes": 716162,
+    "sha256": "fefd2582908c1eee14ad45002cf82581175b3ebab92a30e5ff223fccecb3a821"
+  },
+  "statistics": {
+    "messages": 421,
+    "user_turns": 0,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 96,
+      "tool_call": 160,
+      "tool_result": 160,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 421,
+      "chunks": [
+        {
+          "path": "8e668a38c128b446e26d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e668a38c128b446e26d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e668a38c128b446e26d-part-0003.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ]
+}

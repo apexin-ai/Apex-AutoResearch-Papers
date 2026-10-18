@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5ce476b2e9800bff12d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis alt diversity metrics",
+  "task_key": "worker_analysis_alt-diversity-metrics_20260522T193159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alt-diversity-metrics_20260522T193159_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "691563fc586d873ddb02c94df58ea7ca09adf178c19b6bcde837f68a8b234fa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果：\n\n### Part A: Alternative Diversity Metrics\n\n| Metric | η_max FDR sig | D FDR sig | D方向 | r(K_eff) | ρ(K_eff) |\n|--------|-------------|-----------|-------|----------|----------|\n| Q-statistic (1-Q) | **12/12** | 2/12 | 1+/1- | 0.674 | 0.708 |\n| Disagreement rate | **11/12** | 8/12 | 7+/1- | 0.861 | 0.860 |\n| κ-diversity (1-κ) | **11/12** | 7/12 | 7+/0- | 0.942 | 0.947 |\n\nη_max 在所有 3 种 diversity metrics 下都稳定显著（11-12/12），diversity 的独立效应则较弱且不稳定（2-8/12）。与 K_eff 的相关性从 0.674 (Q) 到 0.942 (κ)，κ-diversity 与 MI-based K_eff 高度重合。\n\n### Part B: Effect Sizes\n\n- **Canonical OLS std β**: η_max = 0.387 ± 0.179, K_eff = 0.164 ± 0.182（η_max 效应约为 K_eff 的 2.4 倍）\n- **Practical Δ_ASR (IQR)**: mean = 0.0133 ± 0.0164（K_eff 从 25th 到 75th 分位对应约 1.3pp ASR 变化）\n- **Clustered SE 95% CI**: K_eff 在 **11/12** conditions 包含 0，η_max 仅 4/12 包含 0\n\n结论与 canonical K_eff 分析一致：weakest-link dominance 在所有 diversity operationalization 下都成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

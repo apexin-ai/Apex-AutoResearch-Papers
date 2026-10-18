@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6b9bc5f880d877a8d7a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops urgent full scan deploy 11gpu",
+  "task_key": "worker_ops_urgent_full_scan_deploy_11gpu_20260523T012919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_urgent_full_scan_deploy_11gpu_20260523T012919_result.json",
+    "occurrence": 1,
+    "bytes": 3193,
+    "sha256": "07b5b191496252b3a608e23cfaeddb2a55beed895c97f166ff8f83e9880415ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 扫描结果\n\n| 服务器 | GPU | 状态 | 实验/备注 |\n|--------|-----|------|----------|\n| westd-38929 | 0 | **空闲** | Random k=0.9 Long s43 刚完成 (SR=30.8%) |\n| westd-38929 | 1 | 🏃 10.9GB | L2norm k=0.7 Long s43 v2 — Task 3 |\n| westd-38929 | 2 | 🏃 10.8GB | Random k=0.3 Long s43 v3 — Task 2 |\n| westd-38929 | 3 | 🏃 10.0GB | L2norm k=0.85 Long s43 v2 — Task 4 |\n| westd-27271 | 0 | **空闲** | L2norm k=0.3 Long s42 已完成 (SR=39.0%) |\n| westd-27271 | 1 | **空闲** | L2norm k=0.5 Long s43 已完成 (SR=54.0%) |\n| cqa1-33015 | 0 | **空闲** | — |\n| cqa1-33015 | 1 | **空闲** | — |\n| cqa1-33015 | 2 | 🏃 10.3GB | Random k=0.85 Goal s43 — Task 5 |\n| cqa1-33015 | 3 | 🏃 10.5GB | L2norm k=0.85 Long s42 — Task 4 |\n| westd-41074 | 0 | 🏃 10.5GB | Random k=0.85 Long s43 / Random k=0.5 Long s43 v2 |\n| westd-41074 | 1 | 🏃 **新部署** 10.0GB | Random k=0.5 Spatial s43 v2 (PID 308908) |\n| westd-41074 | 2 | 🏃 10.4GB | 进行中实验 |\n| westd-41074 | 3 | 🏃 27.5GB | M64 训练 (train_openvla_sc_m64_v6_seed42) |\n\n## 收割结果\n\n| 实验 | SR | 状态 |\n|------|-----|------|\n| L2norm k=0.3 Long **seed42** | **39.0%** | ✅ DONE |\n| L2norm k=0.3 Long **seed43** | **35.2%** | ✅ DONE |\n| L2norm k=0.5 Long seed43 | **54.0%** | ✅ DONE |\n| Random k=0.9 Long seed43 | **30.8%** | ✅ DONE (刚完成) |\n| Random k=0.95 Goal seed42 | **84.0%** | ✅ DONE |\n| L2norm k=0.85 Long seed43 v1 | failed | ✅ DONE (v2 已在跑) |\n| Random k=0.3 Long seed43 v1 | failed | ✅ DONE (v3 已在跑) |\n| L2norm k=0.7 Long seed43 v1 | failed | ✅ DONE (v2 已在跑) |\n\n**cqa1-33015 上额外发现的已完成实验（未在 RUNNING registry）：**\n- L2norm k=0.9 Long s42: **80.2%** | L2norm k=0.95 Long s42: **86.8%** | Baseline Long s42: **91.6%**\n- Random k=0.3 Goal s42: **51.8%** | Random k=0.5 Goal s42: **74.4%** | Random k=0.7 Goal s42: **80.6%**\n- L2norm k=0.7 Goal s42: **71.8%** | L2norm k=0.95 Goal s42: **89.4%**\n- Random k=0.3 Goal s43: **52.0%** | L2norm k=0.7 Goal s43: **72.2%** | Random k=0.95 Goal s43: **83.2%**\n\n## 部署结果\n\n| GPU | 部署 | 状态 |\n|-----|------|------|\n| westd-41074:1 | Random k=0.5 Spatial s43 v2 | ✅ PID 308908, 9952 MiB |\n| westd-27271:0 | ~~Random k=0.85 Goal s43~~ | ❌ 重复(cqa1已在跑)，已杀 |\n| westd-27271:1 | ~~L2norm k=0.95 Spatial s43~~ | ❌ 已有DONE结果(98.0%)，已杀 |\n| cqa1-33015:0 | ~~L2norm k=0.85 Spatial s43~~ | ❌ 已有DONE结果(88.0%)，已杀 |\n| cqa1-33015:1 | ~~Random k=0.85 Spatial s43~~ | ❌ 已有DONE结果(57.6%)，已杀 |\n\n## 异常\n\n**用户列出的所有实验均已完成或正在运行：**\n- Goal seed43: random k=0.85 🏃(cqa1), random k=0.95 ✅(83.2%), l2norm k=0.7 ✅(72.2%)\n- Object seed43: random k=0.3 v3 ✅(32.2%), l2norm k=0.95 ✅(98.4%), l2norm k=0.85 ✅(98.4%)\n- Spatial seed43: 全部 ✅ 或 🏃(random k=0.5 v2 重跑中)\n\n**5 张空闲卡无实验可部署，需要新的实验列表：**\n- westd-38929:0\n- westd-27271:0, westd-27271:1\n- cqa1-33015:0, cqa1-33015:1\n\n## GPU 利用率\n\n**9/14 GPU 在跑**（5 张空闲等待新任务）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

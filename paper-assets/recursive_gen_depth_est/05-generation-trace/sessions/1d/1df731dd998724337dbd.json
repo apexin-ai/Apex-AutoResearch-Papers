@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1df731dd998724337dbd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper missing refs and bib fixes",
+  "task_key": "worker_paper_missing_refs_and_bib_fixes_20260520T070535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_missing_refs_and_bib_fixes_20260520T070535_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "514836f7f2f820f5fa806caa96de56855dffa73b210088bc0fa7f05e6b0f0cb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied. Summary:\n\n**Part 1 — 5 new bib entries added:**\n- `wang2023_seqxgpt` — EMNLP 2023, sentence-level detection\n- `bevendorff2026_pan` — PAN 2026 shared tasks overview (arXiv:2602.09147)\n- `zhu2025_trove` — ACL 2025 (not NAACL as originally expected), text provenance\n- `kazdan2025_collapse_or_thrive` — ICML 2025, synthetic data workflow comparison\n- `suresh2025_rate_collapse` — AISTATS 2025, collapse rate theory\n\n**Part 2 — bib fixes:**\n- `he2021_deberta_v3`: year 2023 → 2021\n- `alemohammad2024_mad`: first author already correct (Alemohammad, Sina) — no change\n- `guo2024_biscope`: first author already correct (Guo, Hanxi) — no change\n- `gerstgrasser2024_accumulate`: `@misc` → `@inproceedings` at COLM 2024\n- `briesch2024selfconsuming`: no conference acceptance found, kept as `@misc`\n\n**Part 3 — related_work.tex citations inserted:**\n- SeqXGPT → line 14, AI Text Detection paragraph\n- PAN 2026 → line 15, alongside M4-SemEval/RAID/MAGE\n- TROVE → line 21, Membership Inference paragraph\n- Collapse or Thrive + Rate of Model Collapse → line 8, Model Collapse Theory paragraph"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

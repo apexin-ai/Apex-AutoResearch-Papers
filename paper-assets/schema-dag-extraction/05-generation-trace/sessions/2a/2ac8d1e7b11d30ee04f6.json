@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "2ac8d1e7b11d30ee04f6",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "exp v2 re extreme batch n25",
+  "task_key": "worker_exp_v2-re-extreme-batch-n25_20260516T051154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_v2-re-extreme-batch-n25_20260516T051154.log",
+    "occurrence": 1,
+    "bytes": 894336,
+    "sha256": "5f920440daeab6600bf2531e7b17d619464b2e0b21a65b8ef478190254bc9a8b"
+  },
+  "statistics": {
+    "messages": 361,
+    "user_turns": 0,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 142,
+      "tool_result": 142,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 361,
+      "chunks": [
+        {
+          "path": "2ac8d1e7b11d30ee04f6-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "2ac8d1e7b11d30ee04f6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ac8d1e7b11d30ee04f6-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ]
+}

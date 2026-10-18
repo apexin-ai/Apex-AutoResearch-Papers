@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "208cad122005e588288d",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "paper page count surgery",
+  "task_key": "worker_paper_page_count_surgery_20260528T182642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_page_count_surgery_20260528T182642.log",
+    "occurrence": 1,
+    "bytes": 727461,
+    "sha256": "aa5210fa3facb53f5f56b69d7dc0e6e140f152fa6edd576b1ac6e4775664cb8b"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "208cad122005e588288d-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "208cad122005e588288d-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ]
+}

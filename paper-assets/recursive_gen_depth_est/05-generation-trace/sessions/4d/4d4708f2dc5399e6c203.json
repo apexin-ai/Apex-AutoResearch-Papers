@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d4708f2dc5399e6c203",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops feat ablation v1 check",
+  "task_key": "worker_ops_feat_ablation_v1_check_20260515T193449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feat_ablation_v1_check_20260515T193449_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "2df371f6b66e1a2898b0ccdaa04f623ed86d8027a9009292c4c9bba170c18b79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已清理）。\n\n---\n\n## feat_ablation_v1 结果汇报\n\n**状态：成功完成，9/9 cells 全部跑完**，总耗时 7822s (~2.2h)。\n\n### 关键 Metrics\n\n| 指标 | 值 |\n|------|-----|\n| Full 19 features mean acc | **0.7847** ± 0.0494 |\n| Top-5 features mean acc | **0.7678** ± 0.0527 (97.8% of full) |\n| Top-2 features mean acc | **0.7152** ± 0.0581 (91.1% of full) |\n| 达到 95% full acc 所需特征数 | mean **4.2**, max **5** |\n\n### Forward Selection 首选特征\n\n- **p90_ppl**: 6/9 cells（gpt2xl 全部 + olmo 全部）\n- **var_surprisal**: 3/9 cells（pythia 全部）\n\n### 特征类别排名（单类别 accuracy）\n\n1. **perplexity**: 0.767 — 全部 9/9 cells 的最佳单类别\n2. **surprisal**: 0.733\n3. **lexical_diversity**: 0.462\n4. **repetition**: 0.437\n5. **ngram_entropy**: 0.395\n\n### 核心发现\n\n- Perplexity 类特征主导，单类别就能达到 ~98% of full accuracy\n- 只需 ~4 个特征即可达到 full 的 95%，19 个特征中大量冗余（VIF>10 的有 14-16 个）\n- Registry 已更新为 DONE/success，metrics 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

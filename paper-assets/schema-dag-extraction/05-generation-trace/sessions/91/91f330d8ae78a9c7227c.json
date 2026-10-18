@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "91f330d8ae78a9c7227c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper c1 c2 scope vif",
+  "task_key": "worker_paper_c1_c2_scope_vif_20260522T095459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_c1_c2_scope_vif_20260522T095459_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "9a844f4484787f87242032c6ec29a44f0ee06a7887cd9115ad122bf3e739c298"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Body 通过 page 8 结束（main text），page 9 开始 Discussion/Limitations（EMNLP 不计入 8 页限制），page 10+ 是 references/appendix。Body ≤ 8 pages。\n\n---\n\n## 产出报告\n\n### C1: Title/Abstract Scope 收紧\n\n- **Title**：保留 \"Information Extraction\"，未修改\n- **Abstract**：\n  - 第 2 句改为 `---focusing on relation extraction as the primary testbed, with NER and event detection as boundary conditions---across four datasets`，明确 RE 为主要 testbed\n  - 第 (2) 点 NER 改为 `the NER batch-level null serves as a boundary condition (dispersed error modes, BCS range compression)`，从\"未检测到\"改为\"boundary condition\"框架\n- **Introduction contribution 2**：从 \"task asymmetry\" 改为 \"task-dependent boundary\"，NER null 明确标注为 `reported as a boundary condition rather than a negative result`\n\n### C2: DocRED VIF=50.9 强化\n\n- **§4.3 DocRED 段**：删除 R²=0.578 的 CI 和 per-count 分解（R²=0.653/0.614），改为直接声明 `uninterpretable as BCS-specific evidence`，VIF 通胀和 semipartial R²=0.056 紧跟其后。保留 ridge regularization 方向性证据和 FewRel 作为 clean evidence 的结论\n- **Practical magnitude 段**：DocRED R² 提及加注 `inflated by multicollinearity (VIF=50.9)`\n\n### 编译结果\n\n- 0 errors, 0 undefined refs, 0 rerun warnings\n- 26 pages total, body ≤ 8 pages（page 9 开始 Discussion/Limitations）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

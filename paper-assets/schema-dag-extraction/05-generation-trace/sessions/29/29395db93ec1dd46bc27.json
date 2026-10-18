@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "29395db93ec1dd46bc27",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r26 sdgd compress",
+  "task_key": "worker_paper_r26_sdgd_compress_20260522T050238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_sdgd_compress_20260522T050238_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "bed255cfbb92778562ab18d4183b373819f1ecd7bbea08572d9b456d5b05d5a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix content is intact with matching label `sec:appendix_sdgd`.\n\n**Summary:**\n\n- **Executed**: 方案 1 (SDGD §5 移入 Appendix) + 方案 3 (Discussion 精简)\n- **SDGD section**: 原 13 行内容（2 段 + section header）压缩为 4 行摘要 + Appendix 引用。完整内容已在 Appendix B (`\\ref{sec:appendix_sdgd}`)\n- **Discussion**: \"Boundary conditions\" 段从 ~5 行压缩为 ~3 行（去除已在 Results 中覆盖的 cross-model replication 描述）；\"Practical implications\" 段压缩约 25%（去除冗余数值重复）\n- **压缩前**: 正文溢出到 page 9（sec:conclusion 在 page 9）\n- **压缩后**: §5、§6 全部��� page 8；Limitations 在 page 8；bibliography 从 page 9 开始\n- **编译结果**: 0 errors, 0 undefined references\n- **最终正文**: ≤ 8 页 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

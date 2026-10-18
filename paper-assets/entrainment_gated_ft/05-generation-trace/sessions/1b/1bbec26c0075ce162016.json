@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "1bbec26c0075ce162016",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "fix e4 pythia restart",
+  "task_key": "worker_fix_e4-pythia-restart_20260522T102601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_e4-pythia-restart_20260522T102601.log",
+    "occurrence": 1,
+    "bytes": 1938512,
+    "sha256": "77dfe711df884c0c57e226b6d01b62f93589d08f1dc28d7e4f8c2f43191affe3"
+  },
+  "statistics": {
+    "messages": 1078,
+    "user_turns": 2,
+    "tool_calls": 358,
+    "roles": {
+      "log": 1,
+      "system": 37,
+      "record": 1,
+      "assistant": 320,
+      "tool_call": 358,
+      "tool_result": 358,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 569,
+      "chunks": [
+        {
+          "path": "1bbec26c0075ce162016-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bbec26c0075ce162016-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bbec26c0075ce162016-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bbec26c0075ce162016-part-0004.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 485,
+      "chunks": [
+        {
+          "path": "1bbec26c0075ce162016-part-0004.json",
+          "message_count": 151
+        },
+        {
+          "path": "1bbec26c0075ce162016-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bbec26c0075ce162016-part-0006.json",
+          "message_count": 154
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "1bbec26c0075ce162016-part-0006.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ]
+}

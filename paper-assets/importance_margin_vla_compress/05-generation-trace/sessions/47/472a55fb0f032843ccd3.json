@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "472a55fb0f032843ccd3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper writing analysis",
+  "task_key": "worker_paper_writing_analysis_20260517T131956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_analysis_20260517T131956_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "1ae17b25205eed5aae36d8f3399954e630b00468ca55cbb66a9f124844644bfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Word count is ~1480 (including captions and table content), which is close to the ~1400 target. The body prose is within the expected range.\n\nSection written to `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex`. Structure:\n\n- **5.1 Uniform Attention Distribution**: Near-uniform entropy (0.98 ratio), SigLIP spatial-patch architecture, contrast with ViT classifiers, fig_attention_heatmap with \"(illustrative)\" noted for panel (b)\n- **5.2 Instantaneous Action Disruption**: Single-step L2 = 1.391 (3.4x), 111.5% relative error, gripper inversion 1.02, onset at step 0, fig_action_divergence\n- **5.3 Offline Metric Disconnect**: G1 = 93x, G3 = 0.87, Spearman = 0.41 all look positive, but actual pruning is catastrophic; Table 2 (tab_offline_vs_closedloop) with 6-row comparison\n- **5.4 Why ViT Pruning Works but VLA Pruning Fails**: Unified explanation tying 5.1-5.3, classification (concentrated attention, discrete output, graceful degradation) vs. control (uniform attention, continuous output, binary collapse)\n\nAll writing norms enforced: zero em-dashes, zero blacklisted words, no -ing phrase endings, no consecutive transition words, ACIS defined on first use in section, all exp_ids in provenance header."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

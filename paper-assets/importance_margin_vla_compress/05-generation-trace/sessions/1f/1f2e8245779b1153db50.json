@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f2e8245779b1153db50",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "transfer imm 100k rsync and eval",
+  "task_key": "worker_transfer_imm_100k_rsync_and_eval_20260517T003847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_transfer_imm_100k_rsync_and_eval_20260517T003847_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "caecce4ea29eb725cba146060415e6b87153944859126eb0c7cf4a89eba31082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇报：\n\n```\n=== IMM 100K CHECKPOINT ===\nPath (cqa1): /root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt\nSize: 879MB\nRsync to westd: SUCCESS (08:41)\n\n=== COMPLETED EVAL RESULTS ===\nIMM twostage fullft 100K — libero_object (acis_prune): SR = 15.4% (77/500)\nFull FT 100K seed42   — libero_object (baseline):    SR = 44.8%\nFull FT 100K seed0    — libero_object (baseline):    SR = 51.0%\nFull FT 100K seed0    — libero_spatial (baseline):   SR = 51.8%\n\n=== IMM 100K EVAL RUNNING ===\ncuda:0 — libero_spatial, acis_prune, 50eps/task (tmux: imm_100k_eval_spatial)\ncuda:1 — libero_goal, acis_prune, 50eps/task (tmux: imm_100k_eval_goal)\n```\n\n注意：IMM libero_object 15.4% 大幅低于 baseline (44.8-51%)。spatial 和 goal 正在跑（~每 task 5-7 min × 10 tasks ≈ 50-70 min 完成）。\n\n另外：westd 上 `expert_only_ft` 仍在跑 (step 8950/100000)，但只占 ~3.3GB/GPU，不影响 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

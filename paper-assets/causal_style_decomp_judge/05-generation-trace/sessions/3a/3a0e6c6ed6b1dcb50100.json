@@ -1,0 +1,1490 @@
+{
+  "schema_version": "1.0",
+  "id": "3a0e6c6ed6b1dcb50100",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "ops 32b prep and vllm start",
+  "task_key": "worker_ops_32b_prep_and_vllm_start_20260520T151042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_32b_prep_and_vllm_start_20260520T151042.log",
+    "occurrence": 1,
+    "bytes": 86157,
+    "sha256": "042dc637d39995c4018222f8fd3dd962f43271cdf6c0f4e99f0bad2c22ed385c"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge",
+                "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7bfc0e47-2d1b-4450-b6a3-8101dc6f2ede",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779328800,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.91,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "f5f7d344-24da-4a8e-b4a6-3f9192d5df54",
+                "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the download status of Qwen3-32B on the server.",
+              "signature": "Eo0CCmMIDRgCKkCUZ93t1+LDwPO3cYGNa6L8BU9LPJVn63HplJr8d5bdKTxvL4iFyu98Uqqkk1l9pS7a1YCKKAYbu9dTTSLF9oZJMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDKnKJ/HUfuBkoxbWNhoMejofs8xAGtu44fZlIjDiIX6Lc1QzN7+v8seTUJcR6MjdWrnK9pWlALWUQL50lSv4K1XmDPic6JN/CIstSaEqWDiKRcEiD2zzrDKTPKY8NYvlB4tewjVC5RxK7SIAKDVJAqcXa+5C3lBoQPLAKd+8XEzHUcJvMtFNNzLDgnQifJsixGCiB8MCC3IfOZqYCbeyAHq4pLac6koYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "f22513d4-0dca-41e0-957a-1761becbff87",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018vBT5AWTZiaq8v4JPKAN9n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13792,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13792
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先检查 32B 下载状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "e5036ee2-fb84-429e-be1d-0987deb75708",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018vBT5AWTZiaq8v4JPKAN9n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13792,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13792
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dvz5vNGHmekXmFq6bHzMbk",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "0f4acb7c-1e80-4db9-ad0b-6603833b0419",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018vBT5AWTZiaq8v4JPKAN9n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13792,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13792
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T15:10:55.382Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Dvz5vNGHmekXmFq6bHzMbk",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "7ee8747b-0cce-4cf1-99db-0868184c8661",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JLVC7qoGVNw5Wzu9ThissF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "ls /root/autodl-tmp/models/Qwen3-32B/._____temp/ 2>/dev/null && echo \"TEMP_EXISTS\" || echo \"TEMP_GONE\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "5fb14ae3-6867-461b-9d9e-152d09d60434",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BAwBDtMSzak37DyeJmQCV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 919,
+                "cache_read_input_tokens": 25239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 919
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T15:10:58.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JLVC7qoGVNw5Wzu9ThissF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "03badda9-63ce-4dcd-9698-b86862d87b79",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TWLzTNKDDAdKbieNxEWQ4R",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "ls /root/autodl-tmp/models/Qwen3-32B/*.safetensors 2>/dev/null | wc -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "d0ba6243-8502-4711-9b5a-8bcb1b4d31c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BAwBDtMSzak37DyeJmQCV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 919,
+                "cache_read_input_tokens": 25239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 919
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T15:10:59.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TWLzTNKDDAdKbieNxEWQ4R",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "7f8cc09f-116f-43c1-b39a-c51c1524ce2c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D9YN4AcyG6ZQQ9U5ntKsMu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "du -sh /root/autodl-tmp/models/Qwen3-32B/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "79173309-1ce1-49e1-a3eb-1383a4a4a0d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BAwBDtMSzak37DyeJmQCV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 919,
+                "cache_read_input_tokens": 25239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 919
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJvxNGVhhPzHAKQQMzYkPx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "ps -p 12163 -o pid= 2>/dev/null && echo \"DOWNLOAD_RUNNING\" || echo \"DOWNLOAD_DONE\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "9e232e5a-b76c-4703-9672-4b3eb3ea86ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BAwBDtMSzak37DyeJmQCV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 919,
+                "cache_read_input_tokens": 25239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 919
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T15:11:02.990Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D9YN4AcyG6ZQQ9U5ntKsMu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"62G\\\\t/root/autodl-tmp/models/Qwen3-32B/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "77ae7900-1744-434f-a7f1-6053c48dfcbb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"62G\\\\t/root/autodl-tmp/models/Qwen3-32B/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.13}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"62G\\t/root/autodl-tmp/models/Qwen3-32B/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.13}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T15:11:03.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJvxNGVhhPzHAKQQMzYkPx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "395123f6-4d79-4bb0-bd61-bf74a62a7788",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The read_only tool blocks shell metacharacters like `&&`, `|`, `||`. I need to use simpler commands without pipes or chaining. Let me adjust.",
+              "signature": "EtMCCmMIDRgCKkD12lPimwU9C5mFy3ihdJpQalOmN190uZzQIPfDa+eJhSab/FlNLyVTd1NXbuBkND5up2wV5QcPH46h3V4HZNqOMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDAWOSYgeb1koJjdO7RoM8jlaHkwQyHA4u6OLIjDlS2unAocl+2uGHRA/VUIqx3w0n41fBquv+L65aJJEYnNrVyirdU/8sBSZuSdwm0AqnQEk7xe/g6rQletVrpye5nC6daekV/OYnV4a/Z35KtYYF1VhJeNHfmwqH3iFLL/ovpbHwWz+WvWq6crDvTp+zejJQlsS22MiXXVRg0970p8lj4ifh6qttF6vfklZ3q0yM48VSEoXyuSz3nDEI0JUtc/vU7/OO6awXA0te/T8F/+YTZQeDi3ZZBH40Aqpfe8frdsbt137bnoD8TcfYL64GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "d1ab74b6-2cc3-4568-a0c6-c67acc80ff95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Y4LTqhwzztdBCKEUAYNMQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 26158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要拆分命令，read_only 不允许 shell 元字符。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "2887431b-524e-4999-8965-140ab7356e22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Y4LTqhwzztdBCKEUAYNMQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 26158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TesLJ6mVYzB4qM1noQVC4F",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "ls /root/autodl-tmp/models/Qwen3-32B/._____temp/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "e8d1ef27-49c1-4550-b0d9-eef0e1143e85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Y4LTqhwzztdBCKEUAYNMQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 26158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WvBUdrG3eJLRZv2La5gp9b",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "ls /root/autodl-tmp/models/Qwen3-32B/*.safetensors",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "42729c11-2719-43dc-bc7f-a954dc1c7f45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Y4LTqhwzztdBCKEUAYNMQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 26158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T15:11:09.173Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TesLJ6mVYzB4qM1noQVC4F",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model-00014-of-00017.safetensors\\\\nmodel-00015-of-00017.safetensors\\\\nmodel-00017-of-00017.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "a50de56c-974e-4d9a-891c-4e5ef1193aab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model-00014-of-00017.safetensors\\\\nmodel-00015-of-00017.safetensors\\\\nmodel-00017-of-00017.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"model-00014-of-00017.safetensors\\nmodel-00015-of-00017.safetensors\\nmodel-00017-of-00017.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WwFhEL2fdC7UV5f5j1cZFg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-29275",
+                "command": "ps -p 12163 -o pid=",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "3eb2eb51-b67d-47c9-a980-d699a583ed72",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Y4LTqhwzztdBCKEUAYNMQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 26158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T15:11:10.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WvBUdrG3eJLRZv2La5gp9b",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen3-32B/model-00001-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00002-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00003-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00004-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00005-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00006-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00007-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00008-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00009-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00010-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00011-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00012-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00013-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00016-of-00017.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "e202c7c0-f39a-403a-b6cb-f29a6eb9a2cc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen3-32B/model-00001-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00002-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00003-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00004-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00005-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00006-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00007-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00008-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00009-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00010-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00011-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00012-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00013-of-00017.safetensors\\\\n/root/autodl-tmp/models/Qwen3-32B/model-00016-of-00017.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/Qwen3-32B/model-00001-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00002-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00003-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00004-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00005-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00006-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00007-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00008-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00009-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00010-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00011-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00012-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00013-of-00017.safetensors\\n/root/autodl-tmp/models/Qwen3-32B/model-00016-of-00017.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T15:11:13.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WwFhEL2fdC7UV5f5j1cZFg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 12163\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "a2859713-cf4a-4f98-9f6e-2eff5b8220fa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 12163\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \" 12163\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.47}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Status:\n- Temp directory still has 3 files: model-00014, model-00015, model-00017 (still downloading)\n- 14 safetensors completed (1-13, 16)\n- Total size: 62GB\n- PID 12163 still running\n\nSo the download is still in progress. 3 shards remaining in temp. I need to keep polling. Let me wait ~30 seconds and check again. I'll use the ScheduleWakeup tool.\n\nActually, let me re-read the instructions: \"持续轮询直到确认完成，不要退出等下次。\n\n\" - I should keep polling in this session rather than exiting. Let me schedule a wakeup to check the status again.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "9ea80596-ca69-48a4-b2c5-4175d781e197",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GGnWYafdEwKuaYtXgRjjcN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1338,
+                "cache_read_input_tokens": 27135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1338
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载仍在进行中：14/17 shards 已完成，3 个（14, 15, 17）在临时目录中，PID 12163 运行中，总大小 62GB。30 秒后再检查。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "357eac33-91fd-4eb1-b8c8-3e27a529bf45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GGnWYafdEwKuaYtXgRjjcN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1338,
+                "cache_read_input_tokens": 27135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1338
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QdPBAnkKH7jJXMFWtHUF3s",
+              "name": "ScheduleWakeup",
+              "input": {
+                "delaySeconds": 60,
+                "reason": "轮询 Qwen3-32B 下载进度，3 shards 剩余",
+                "prompt": "## 任务：等待 32B 下载完成 → 同步代码 → 启动 vLLM 32B\n\n### 背景\nQwen3-32B 下载进程 PID 12163 正在运行，14/17 shards 已完成，3 个在临时目录中。预计很快完成。\n需要在下载完成后：同步修复后的 Python 文件到服务器，启动 vLLM serve 32B。\n\n### Step 1: 轮询 32B 下载完成（ssh_read_only，每 30 秒检查）\n```bash\nls /root/autodl-tmp/models/Qwen3-32B/._____temp/ 2>/dev/null && echo \"TEMP_EXISTS\" || echo \"TEMP_GONE\"\nls /root/autodl-tmp/models/Qwen3-32B/*.safetensors | wc -l\ndu -sh /root/autodl-tmp/models/Qwen3-32B/\nps -p 12163 -o pid= 2>/dev/null && echo \"DOWNLOAD_RUNNING\" || echo \"DOWNLOAD_DONE\"\n```\n下载完成标志：temp 目录消失或为空，且 safetensors 文件数 >= 15（Qwen3-32B 约 15-17 shards），总大小 > 60GB。\n**持续轮询直到确认完成，不要退出等下次。**\n\n### Step 2: 验证模型完整性（ssh_read_only）\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 -c \"\nfrom transformers import AutoConfig, AutoTokenizer\nconfig = AutoConfig.from_pretrained('/root/autodl-tmp/models/Qwen3-32B/')\nprint(f'Model: {config.model_type}, hidden={config.hidden_size}, layers={config.num_hidden_layers}')\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/Qwen3-32B/')\nprint(f'Tokenizer vocab: {tok.vocab_size}')\nprint('MODEL VALIDATION OK')\n\"\n```\n\n### Step 3: 同步修复后的代码到服务器\n你需要把本地修改过的两个文件同步到服务器。\n\n**文件 1: counterfactual_gen.py**（RATE corruption fix）\n用 Read 工具读取本地文件：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/counterfactual_gen.py`\n\n然后用 ssh_execute 写到服务器：\n```bash\ncat > /root/causal_style_decomp_judge/artifacts/csd_pipeline/counterfactual_gen.py << 'ENDOFFILE'\n（粘贴完整文件内容）\nENDOFFILE\n```\n\n**文件 2: ate_analysis.py**（sensitivity analysis 新增）\n用 Read 工具读取本地文件：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/ate_analysis.py`\n\n同样用 ssh_execute 写到服务器：\n```bash\ncat > /root/causal_style_decomp_judge/artifacts/csd_pipeline/ate_analysis.py << 'ENDOFFILE'\n（粘贴完整文件内容）\nENDOFFILE\n```\n\n**验证同步**（ssh_read_only）：\n```bash\nhead -30 /root/causal_style_decomp_judge/artifacts/csd_pipeline/counterfactual_gen.py\ngrep \"instruction\" /root/causal_style_decomp_judge/artifacts/csd_pipeline/counterfactual_gen.py | head -5\ngrep \"sensitivity\" /root/causal_style_decomp_judge/artifacts/csd_pipeline/ate_analysis.py | head -5\n```\n\n### Step 4: 启动 vLLM 32B（ssh_execute）\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH\nexport VLLM_USE_FLASHINFER_SAMPLER=0\n\n# 在 tmux 中启动 vLLM，避开 GPU 3\ntmux new-session -d -s vllm32b \"CUDA_VISIBLE_DEVICES=0 LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:\\$LD_LIBRARY_PATH VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-32B/ --served-model-name Qwen3-32B --tensor-parallel-size 1 --max-model-len 4096 --gpu-memory-utilization 0.85 --port 8000 --trust-remote-code 2>&1 | tee /root/causal_style_decomp_judge/logs/vllm_32b.log\"\n```\n\n### Step 5: 等待 vLLM 就绪（ssh_read_only，轮询）\n每 15 秒检查一次，直到 vLLM 响应：\n```bash\ncurl -s http://localhost:8000/health 2>/dev/null && echo \"VLLM_READY\" || echo \"VLLM_NOT_READY\"\n```\n如果 3 分钟内没就绪，检查日志：\n```bash\ntail -30 /root/causal_style_decomp_judge/logs/vllm_32b.log\n```\n32B 加载可能需要 3-5 分钟，耐心等待。**持续轮询直到 VLLM_READY。**\n\n如果出现 OOM 或其他错误，报告日志内容，不要尝试修复。\n\n### Step 6: vLLM 就绪后快速验证（ssh_read_only）\n```bash\ncurl -s http://localhost:8000/v1/models | python3 -c \"import sys,json; print(json.load(sys.stdin))\"\n```\n\n### 产出\n1. 32B 下载完成确认（文件数、总大小）\n2. 模型验证结果\n3. 代码同步验证\n4. vLLM 启动状态（READY / 错误信息）\n5. GPU 显存使用情况\n\n### 环境\n- SSH 别名: causal_style_decomp_judge\n- conda base\n- 本地代码路径: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/\n- 服务器代码路径: /root/causal_style_decomp_judge/artifacts/csd_pipeline/\n- 服务器日志路径: /root/causal_style_decomp_judge/logs/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "8a064a9d-dadb-451f-8859-25c4e5063941",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GGnWYafdEwKuaYtXgRjjcN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1338,
+                "cache_read_input_tokens": 27135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1338
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T15:11:43.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QdPBAnkKH7jJXMFWtHUF3s",
+              "type": "tool_result",
+              "content": "Next wakeup scheduled for 15:13:00 (in 76s)."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "86df4554-f49e-445a-958a-b1b83d46e919",
+            "tool_use_result": {
+              "scheduledFor": 1779289980000,
+              "clampedDelaySeconds": 60,
+              "wasClamped": false
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同时先读取需要同步的两个本地文件，等下载完成后可以立即同步。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "43fbee1a-fe41-48f3-9486-959d9ceb301a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01862oWjv8nZhydZCqcaW3S3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2307,
+                "cache_read_input_tokens": 28473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2307
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QFubPnG3GkZMN2dnJ2ryai",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/counterfactual_gen.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "0d9ca594-d7ef-4572-b329-f3ef0ea7ef52",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01862oWjv8nZhydZCqcaW3S3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2307,
+                "cache_read_input_tokens": 28473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2307
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T15:11:48.335Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QFubPnG3GkZMN2dnJ2ryai",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Style counterfactual generation via RATE double-rewrite protocol.\n2\t\n3\tInput:  mvp_samples.jsonl (id, instruction, response, source)\n4\tOutput: counterfactuals.jsonl — adds original_text, counterfactual_text, double_rewrite_text, original_formality\n5\tDeps:   openai (used for both vLLM-serve and remote API endpoints)\n6\t\"\"\"\n7\t\n8\timport argparse\n9\timport json\n10\timport logging\n11\timport os\n12\timport re\n13\timport time\n14\t\n15\tlogger = logging.getLogger(__name__)\n16\t\n17\tSYSTEM_PROMPT = (\n18\t    \"You are a writing style editor. Your task is to rewrite the given text to change \"\n19\t    \"ONLY its formality level while preserving ALL factual content, arguments, and meaning.\\n\\n\"\n20\t    \"Rules:\\n\"\n21\t    \"- Do NOT add, remove, or alter any facts, claims, or reasoning.\\n\"\n22\t    \"- Do NOT change the length substantially (±20% words is acceptable).\\n\"\n23\t    \"- Change ONLY the register/formality: vocabulary, sentence structure, tone.\\n\"\n24\t    \"- Do NOT change formatting: no adding/removing bold, markdown, lists, headers, or any visual structure changes.\\n\"\n25\t    \"- Keep the EXACT same formatting as the original text.\\n\"\n26\t    \"- Do NOT modify any text that is quoted from or directly references the original instruction/question. \"\n27\t    \"Only modify the style of the response's own content.\\n\"\n28\t    \"- Output ONLY the rewritten text, nothing else.\"\n29\t)\n30\t\n31\tDETECT_PROMPT = (\n32\t    \"Analyze the formality level of the following text. \"\n33\t    \"Consider vocabulary (technical/colloquial), sentence structure (complex/simple), \"\n34\t    \"tone (professional/conversational), and register (academic/informal).\\n\"\n35\t    \"Output ONLY one word: formal or casual.\\n\\n\"\n36\t    \"Text:\\n{text}\"\n37\t)\n38\t\n39\tFEW_SHOT_EXAMPLES = [\n40\t    {\n41\t        \"direction\": \"formal_to_casual\",\n42\t        \"original\": (\n43\t            \"The implementation of robust error-handling mechanisms is essential for maintaining \"\n44\t            \"system reliability. One should consider employing try-catch blocks with specific \"\n45\t            \"exception types rather than generic catch-all handlers.\"\n46\t        ),\n47\t        \"rewritten\": (\n48\t            \"You really need good error handling to keep things running smoothly. Use try-catch \"\n49\t            \"with specific exception types instead of just catching everything — trust me, it \"\n50\t            \"makes debugging way easier.\"\n51\t        ),\n52\t    },\n53\t    {\n54\t        \"direction\": \"casual_to_formal\",\n55\t        \"original\": (\n56\t            \"Yeah so basically the model's overfitting like crazy. Just throw in some dropout \"\n57\t            \"and maybe try early stopping, that usually does the trick.\"\n58\t        ),\n59\t        \"rewritten\": (\n60\t            \"The model exhibits significant overfitting. Incorporating dropout regularization \"\n61\t            \"and implementing early stopping are recommended strategies to mitigate this issue.\"\n62\t        ),\n63\t    },\n64\t]\n65\t\n66\t\n67\tdef _build_rewrite_prompt(text: str, target_formality: str, instruction: str = \"\") -> list[dict]:\n68\t    direction = \"casual\" if target_formality == \"casual\" else \"formal\"\n69\t    opposite = \"formal\" if direction == \"casual\" else \"casual\"\n70\t\n71\t    example = next(e for e in FEW_SHOT_EXAMPLES if e[\"direction\"] == f\"{opposite}_to_{direction}\")\n72\t\n73\t    instruction_note = \"\"\n74\t    if instruction:\n75\t        instruction_note = (\n76\t            f\"\\n\\nOriginal instruction (DO NOT modify any part of the response that \"\n77\t            f\"quotes or paraphrases this instruction):\\n\\\"{instruction}\\\"\\n\"\n78\t        )\n79\t\n80\t    messages = [\n81\t        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n82\t        {\n83\t            \"role\": \"user\",\n84\t            \"content\": (\n85\t                f\"Rewrite the following text to be more {direction}.\\n\\n\"\n86\t                f\"Example:\\nOriginal ({opposite}): {example['original']}\\n\"\n87\t                f\"Rewritten ({direction}): {example['rewritten']}\\n\"\n88\t                f\"{instruction_note}\\n\"\n89\t                f\"Now rewrite this text to be more {direction}:\\n\\n{text}\"\n90\t            ),\n91\t        },\n92\t    ]\n93\t    return messages\n94\t\n95\t\n96\tdef _call_llm(client, model: str, messages: list[dict], max_retries: int = 3) -> str:\n97\t    for attempt in range(max_retries):\n98\t        try:\n99\t            resp = client.chat.completions.create(\n100\t                model=model,\n101\t                messages=messages,\n102\t                temperature=0.7,\n103\t                max_tokens=2048,\n104\t                extra_body={\"chat_template_kwargs\": {\"enable_thinking\": False}},\n105\t            )\n106\t            text = resp.choices[0].message.content.strip()\n107\t            text = re.sub(r\"<think>.*?</think>\\s*\", \"\", text, flags=re.DOTALL)\n108\t            return text.strip()\n109\t        except Exception as e:\n110\t            logger.warning(\"LLM call failed (attempt %d/%d): %s\", attempt + 1, max_retries, e)\n111\t            if attempt < max_retries - 1:\n112\t                time.sleep(2 ** attempt)\n113\t            else:\n114\t                raise\n115\t\n116\t\n117\tdef detect_formality(client, model: str, text: str) -> str:\n118\t    messages = [\n119\t        {\"role\": \"user\", \"content\": DETECT_PROMPT.format(text=text[:1000])},\n120\t    ]\n121\t    result = _call_llm(client, model, messages).lower().strip().rstrip(\".\")\n122\t    if \"formal\" in result and \"casual\" not in result:\n123\t        return \"formal\"\n124\t    return \"casual\"\n125\t\n126\t\n127\tdef generate_counterfactual(client, model: str, text: str, original_formality: str, instruction: str = \"\") -> tuple[str, str]:\n128\t    \"\"\"Returns (counterfactual_text, double_rewrite_text).\"\"\"\n129\t    target = \"casual\" if original_formality == \"formal\" else \"formal\"\n130\t\n131\t    # Step 1: flip\n132\t    msgs_flip = _build_rewrite_prompt(text, target, instruction)\n133\t    counterfactual = _call_llm(client, model, msgs_flip)\n134\t\n135\t    # Step 2: flip back\n136\t    msgs_flipback = _build_rewrite_prompt(counterfactual, original_formality, instruction)\n137\t    double_rewrite = _call_llm(client, model, msgs_flipback)\n138\t\n139\t    return counterfactual, double_rewrite\n140\t\n141\t\n142\tdef load_processed_ids(output_file: str) -> set[str]:\n143\t    ids = set()\n144\t    if os.path.exists(output_file):\n145\t        with open(output_file) as f:\n146\t            for line in f:\n147\t                if line.strip():\n148\t                    ids.add(json.loads(line)[\"id\"])\n149\t    return ids\n150\t\n151\t\n152\tdef main():\n153\t    parser = argparse.ArgumentParser(description=\"Generate style counterfactuals via RATE double-rewrite\")\n154\t    parser.add_argument(\"--input-file\", required=True, help=\"Input jsonl from data_prep\")\n155\t    parser.add_argument(\"--output-file\", required=True, help=\"Output jsonl with counterfactuals\")\n156\t    parser.add_argument(\"--model-path\", default=None, help=\"Model name/path for the LLM\")\n157\t    parser.add_argument(\"--api-url\", default=\"http://localhost:8000/v1\", help=\"OpenAI-compatible API base URL\")\n158\t    parser.add_argument(\"--api-key\", default=None, help=\"API key (or set OPENAI_API_KEY env var)\")\n159\t    parser.add_argument(\"--max-retries\", type=int, default=3)\n160\t    args = parser.parse_args()\n161\t\n162\t    logging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n163\t\n164\t    from openai import OpenAI\n165\t\n166\t    api_key = [REDACTED] or os.environ.get(\"OPENAI_API_KEY\", \"EMPTY\")\n167\t    client = OpenAI(base_url=args.api_url, api_key=[REDACTED]\n168\t    model = args.model_path or \"default\"\n169\t\n170\t    with open(args.input_file) as f:\n171\t        records = [json.loads(line) for line in f if line.strip()]\n172\t\n173\t    processed_ids = load_processed_ids(args.output_file)\n174\t    logger.info(\"Total records: %d, already processed: %d\", len(records), len(processed_ids))\n175\t\n176\t    os.makedirs(os.path.dirname(args.output_file) or \".\", exist_ok=True)\n177\t\n178\t    with open(args.output_file, \"a\") as fout:\n179\t        for rec in records:\n180\t            if rec[\"id\"] in processed_ids:\n181\t                logger.info(\"Skipping %s (already processed)\", rec[\"id\"])\n182\t                continue\n183\t\n184\t            text = rec[\"response\"]\n185\t            instruction = rec.get(\"instruction\", \"\")\n186\t            try:\n187\t                formality = detect_formality(client, model, text)\n188\t                counterfactual, double_rewrite = generate_counterfactual(client, model, text, formality, instruction)\n189\t\n190\t                out = {\n191\t                    **rec,\n192\t                    \"original_text\": text,\n193\t                    \"counterfactual_text\": counterfactual,\n194\t                    \"double_rewrite_text\": double_rewrite,\n195\t                    \"original_formality\": formality,\n196\t                }\n197\t                fout.write(json.dumps(out, ensure_ascii=False) + \"\\n\")\n198\t                fout.flush()\n199\t                logger.info(\"Processed %s (formality=%s)\", rec[\"id\"], formality)\n200\t            except Exception:\n201\t                logger.exception(\"Failed to process %s\", rec[\"id\"])\n202\t\n203\t\n204\tif __name__ == \"__main__\":\n205\t    main()\n206\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "1b07a29a-56a1-4381-8f41-22a0e278bd78",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/counterfactual_gen.py",
+                "content": "\"\"\"Style counterfactual generation via RATE double-rewrite protocol.\n\nInput:  mvp_samples.jsonl (id, instruction, response, source)\nOutput: counterfactuals.jsonl — adds original_text, counterfactual_text, double_rewrite_text, original_formality\nDeps:   openai (used for both vLLM-serve and remote API endpoints)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport re\nimport time\n\nlogger = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a writing style editor. Your task is to rewrite the given text to change \"\n    \"ONLY its formality level while preserving ALL factual content, arguments, and meaning.\\n\\n\"\n    \"Rules:\\n\"\n    \"- Do NOT add, remove, or alter any facts, claims, or reasoning.\\n\"\n    \"- Do NOT change the length substantially (±20% words is acceptable).\\n\"\n    \"- Change ONLY the register/formality: vocabulary, sentence structure, tone.\\n\"\n    \"- Do NOT change formatting: no adding/removing bold, markdown, lists, headers, or any visual structure changes.\\n\"\n    \"- Keep the EXACT same formatting as the original text.\\n\"\n    \"- Do NOT modify any text that is quoted from or directly references the original instruction/question. \"\n    \"Only modify the style of the response's own content.\\n\"\n    \"- Output ONLY the rewritten text, nothing else.\"\n)\n\nDETECT_PROMPT = (\n    \"Analyze the formality level of the following text. \"\n    \"Consider vocabulary (technical/colloquial), sentence structure (complex/simple), \"\n    \"tone (professional/conversational), and register (academic/informal).\\n\"\n    \"Output ONLY one word: formal or casual.\\n\\n\"\n    \"Text:\\n{text}\"\n)\n\nFEW_SHOT_EXAMPLES = [\n    {\n        \"direction\": \"formal_to_casual\",\n        \"original\": (\n            \"The implementation of robust error-handling mechanisms is essential for maintaining \"\n            \"system reliability. One should consider employing try-catch blocks with specific \"\n            \"exception types rather than generic catch-all handlers.\"\n        ),\n        \"rewritten\": (\n            \"You really need good error handling to keep things running smoothly. Use try-catch \"\n            \"with specific exception types instead of just catching everything — trust me, it \"\n            \"makes debugging way easier.\"\n        ),\n    },\n    {\n        \"direction\": \"casual_to_formal\",\n        \"original\": (\n            \"Yeah so basically the model's overfitting like crazy. Just throw in some dropout \"\n            \"and maybe try early stopping, that usually does the trick.\"\n        ),\n        \"rewritten\": (\n            \"The model exhibits significant overfitting. Incorporating dropout regularization \"\n            \"and implementing early stopping are recommended strategies to mitigate this issue.\"\n        ),\n    },\n]\n\n\ndef _build_rewrite_prompt(text: str, target_formality: str, instruction: str = \"\") -> list[dict]:\n    direction = \"casual\" if target_formality == \"casual\" else \"formal\"\n    opposite = \"formal\" if direction == \"casual\" else \"casual\"\n\n    example = next(e for e in FEW_SHOT_EXAMPLES if e[\"direction\"] == f\"{opposite}_to_{direction}\")\n\n    instruction_note = \"\"\n    if instruction:\n        instruction_note = (\n            f\"\\n\\nOriginal instruction (DO NOT modify any part of the response that \"\n            f\"quotes or paraphrases this instruction):\\n\\\"{instruction}\\\"\\n\"\n        )\n\n    messages = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\n            \"role\": \"user\",\n            \"content\": (\n                f\"Rewrite the following text to be more {direction}.\\n\\n\"\n                f\"Example:\\nOriginal ({opposite}): {example['original']}\\n\"\n                f\"Rewritten ({direction}): {example['rewritten']}\\n\"\n                f\"{instruction_note}\\n\"\n                f\"Now rewrite this text to be more {direction}:\\n\\n{text}\"\n            ),\n        },\n    ]\n    return messages\n\n\ndef _call_llm(client, model: str, messages: list[dict], max_retries: int = 3) -> str:\n    for attempt in range(max_retries):\n        try:\n            resp = client.chat.completions.create(\n                model=model,\n                messages=messages,\n                temperature=0.7,\n                max_tokens=2048,\n                extra_body={\"chat_template_kwargs\": {\"enable_thinking\": False}},\n            )\n            text = resp.choices[0].message.content.strip()\n            text = re.sub(r\"<think>.*?</think>\\s*\", \"\", text, flags=re.DOTALL)\n            return text.strip()\n        except Exception as e:\n            logger.warning(\"LLM call failed (attempt %d/%d): %s\", attempt + 1, max_retries, e)\n            if attempt < max_retries - 1:\n                time.sleep(2 ** attempt)\n            else:\n                raise\n\n\ndef detect_formality(client, model: str, text: str) -> str:\n    messages = [\n        {\"role\": \"user\", \"content\": DETECT_PROMPT.format(text=text[:1000])},\n    ]\n    result = _call_llm(client, model, messages).lower().strip().rstrip(\".\")\n    if \"formal\" in result and \"casual\" not in result:\n        return \"formal\"\n    return \"casual\"\n\n\ndef generate_counterfactual(client, model: str, text: str, original_formality: str, instruction: str = \"\") -> tuple[str, str]:\n    \"\"\"Returns (counterfactual_text, double_rewrite_text).\"\"\"\n    target = \"casual\" if original_formality == \"formal\" else \"formal\"\n\n    # Step 1: flip\n    msgs_flip = _build_rewrite_prompt(text, target, instruction)\n    counterfactual = _call_llm(client, model, msgs_flip)\n\n    # Step 2: flip back\n    msgs_flipback = _build_rewrite_prompt(counterfactual, original_formality, instruction)\n    double_rewrite = _call_llm(client, model, msgs_flipback)\n\n    return counterfactual, double_rewrite\n\n\ndef load_processed_ids(output_file: str) -> set[str]:\n    ids = set()\n    if os.path.exists(output_file):\n        with open(output_file) as f:\n            for line in f:\n                if line.strip():\n                    ids.add(json.loads(line)[\"id\"])\n    return ids\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Generate style counterfactuals via RATE double-rewrite\")\n    parser.add_argument(\"--input-file\", required=True, help=\"Input jsonl from data_prep\")\n    parser.add_argument(\"--output-file\", required=True, help=\"Output jsonl with counterfactuals\")\n    parser.add_argument(\"--model-path\", default=None, help=\"Model name/path for the LLM\")\n    parser.add_argument(\"--api-url\", default=\"http://localhost:8000/v1\", help=\"OpenAI-compatible API base URL\")\n    parser.add_argument(\"--api-key\", default=None, help=\"API key (or set OPENAI_API_KEY env var)\")\n    parser.add_argument(\"--max-retries\", type=int, default=3)\n    args = parser.parse_args()\n\n    logging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n\n    from openai import OpenAI\n\n    api_key = [REDACTED] or os.environ.get(\"OPENAI_API_KEY\", \"EMPTY\")\n    client = OpenAI(base_url=args.api_url, api_key=[REDACTED]\n    model = args.model_path or \"default\"\n\n    with open(args.input_file) as f:\n        records = [json.loads(line) for line in f if line.strip()]\n\n    processed_ids = load_processed_ids(args.output_file)\n    logger.info(\"Total records: %d, already processed: %d\", len(records), len(processed_ids))\n\n    os.makedirs(os.path.dirname(args.output_file) or \".\", exist_ok=True)\n\n    with open(args.output_file, \"a\") as fout:\n        for rec in records:\n            if rec[\"id\"] in processed_ids:\n                logger.info(\"Skipping %s (already processed)\", rec[\"id\"])\n                continue\n\n            text = rec[\"response\"]\n            instruction = rec.get(\"instruction\", \"\")\n            try:\n                formality = detect_formality(client, model, text)\n                counterfactual, double_rewrite = generate_counterfactual(client, model, text, formality, instruction)\n\n                out = {\n                    **rec,\n                    \"original_text\": text,\n                    \"counterfactual_text\": counterfactual,\n                    \"double_rewrite_text\": double_rewrite,\n                    \"original_formality\": formality,\n                }\n                fout.write(json.dumps(out, ensure_ascii=False) + \"\\n\")\n                fout.flush()\n                logger.info(\"Processed %s (formality=%s)\", rec[\"id\"], formality)\n            except Exception:\n                logger.exception(\"Failed to process %s\", rec[\"id\"])\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 206,
+                "startLine": 1,
+                "totalLines": 206
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bxxg7n5GRhYTeapcL6mSxG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/ate_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "e00c866f-4aa3-47b8-96bc-02beb605c768",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01862oWjv8nZhydZCqcaW3S3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2307,
+                "cache_read_input_tokens": 28473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2307
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T15:11:48.494Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bxxg7n5GRhYTeapcL6mSxG",
+              "type": "tool_result",
+              "content": "1\tfrom __future__ import annotations\n2\t\"\"\"ATE (Average Treatment Effect) analysis for style bias quantification.\n3\t\n4\tInput:  scored.jsonl (with score_original, score_counterfactual, score_double_rewrite)\n5\tOutput: CSV summary + visualizations (ATE bar chart, score violin plot)\n6\tDeps:   scipy, pandas, numpy, matplotlib, seaborn\n7\t\"\"\"\n8\t\n9\timport argparse\n10\timport json\n11\timport os\n12\t\n13\t\n14\tdef load_scored(path: str) -> pd.DataFrame:\n15\t    records = []\n16\t    with open(path) as f:\n17\t        for line in f:\n18\t            if line.strip():\n19\t                records.append(json.loads(line))\n20\t    df = pd.DataFrame(records)\n21\t    # Drop rows with missing scores\n22\t    for col in [\"score_original\", \"score_counterfactual\", \"score_double_rewrite\"]:\n23\t        df = df[df[col].notna()]\n24\t    df[\"score_original\"] = df[\"score_original\"].astype(float)\n25\t    df[\"score_counterfactual\"] = df[\"score_counterfactual\"].astype(float)\n26\t    df[\"score_double_rewrite\"] = df[\"score_double_rewrite\"].astype(float)\n27\t    return df\n28\t\n29\t\n30\tdef compute_ate(df: pd.DataFrame, alpha: float = 0.05) -> dict:\n31\t    \"\"\"ATE as formality premium: score(formal_version) - score(casual_version).\"\"\"\n32\t    is_casual = (df[\"original_formality\"] == \"casual\").values\n33\t\n34\t    score_formal = np.where(is_casual, df[\"score_counterfactual\"].values, df[\"score_original\"].values)\n35\t    score_casual = np.where(is_casual, df[\"score_original\"].values, df[\"score_counterfactual\"].values)\n36\t    diff = pd.Series(score_formal - score_casual, index=df.index)\n37\t\n38\t    n = len(diff)\n39\t    raw_ate = diff.mean()\n40\t    raw_se = diff.std(ddof=1) / np.sqrt(n)\n41\t    t_crit = stats.t.ppf(1 - alpha / 2, df=n - 1)\n42\t    raw_ci = (raw_ate - t_crit * raw_se, raw_ate + t_crit * raw_se)\n43\t    _, p_val = stats.ttest_1samp(diff, 0)\n44\t    cohens_d = raw_ate / diff.std(ddof=1) if diff.std(ddof=1) > 0 else 0.0\n45\t\n46\t    # RATE correction: flip rewrite bias for formal originals so direction matches\n47\t    raw_rewrite_bias = (df[\"score_double_rewrite\"] - df[\"score_original\"]).values\n48\t    rewrite_bias_vec = pd.Series(np.where(is_casual, raw_rewrite_bias, -raw_rewrite_bias), index=df.index)\n49\t    rewrite_bias = rewrite_bias_vec.mean()\n50\t    corrected_ate = raw_ate - rewrite_bias\n51\t\n52\t    corrected_diff = diff - rewrite_bias_vec\n53\t    corrected_se = corrected_diff.std(ddof=1) / np.sqrt(n)\n54\t    corrected_ci = (corrected_ate - t_crit * corrected_se, corrected_ate + t_crit * corrected_se)\n55\t    _, p_corr = stats.ttest_1samp(corrected_diff, 0)\n56\t    cohens_d_corr = corrected_ate / corrected_diff.std(ddof=1) if corrected_diff.std(ddof=1) > 0 else 0.0\n57\t\n58\t    return {\n59\t        \"n\": n,\n60\t        \"raw_ate\": raw_ate,\n61\t        \"raw_se\": raw_se,\n62\t        \"raw_ci_lo\": raw_ci[0],\n63\t        \"raw_ci_hi\": raw_ci[1],\n64\t        \"raw_p\": p_val,\n65\t        \"raw_cohens_d\": cohens_d,\n66\t        \"rewrite_bias\": rewrite_bias,\n67\t        \"corrected_ate\": corrected_ate,\n68\t        \"corrected_se\": corrected_se,\n69\t        \"corrected_ci_lo\": corrected_ci[0],\n70\t        \"corrected_ci_hi\": corrected_ci[1],\n71\t        \"corrected_p\": p_corr,\n72\t        \"corrected_cohens_d\": cohens_d_corr,\n73\t    }\n74\t\n75\t\n76\tdef directional_analysis(df: pd.DataFrame, alpha: float) -> pd.DataFrame:\n77\t    rows = []\n78\t    for direction in [\"formal\", \"casual\"]:\n79\t        sub = df[df[\"original_formality\"] == direction]\n80\t        if len(sub) < 2:\n81\t            continue\n82\t        result = compute_ate(sub, alpha)\n83\t        result[\"direction\"] = f\"{direction}→{'casual' if direction == 'formal' else 'formal'}\"\n84\t        rows.append(result)\n85\t    return pd.DataFrame(rows)\n86\t\n87\t\n88\tdef plot_ate_bar(results: dict, dir_df: pd.DataFrame, output_dir: str):\n89\t    fig, ax = plt.subplots(figsize=(8, 5))\n90\t\n91\t    labels = [\"Overall (raw)\", \"Overall (corrected)\"]\n92\t    ates = [results[\"raw_ate\"], results[\"corrected_ate\"]]\n93\t    errors = [\n94\t        [results[\"raw_ate\"] - results[\"raw_ci_lo\"]],\n95\t        [results[\"corrected_ate\"] - results[\"corrected_ci_lo\"]],\n96\t    ]\n97\t    errors_hi = [\n98\t        [results[\"raw_ci_hi\"] - results[\"raw_ate\"]],\n99\t        [results[\"corrected_ci_hi\"] - results[\"corrected_ate\"]],\n100\t    ]\n101\t\n102\t    for _, row in dir_df.iterrows():\n103\t        labels.append(row[\"direction\"])\n104\t        ates.append(row[\"corrected_ate\"])\n105\t        errors.append([row[\"corrected_ate\"] - row[\"corrected_ci_lo\"]])\n106\t        errors_hi.append([row[\"corrected_ci_hi\"] - row[\"corrected_ate\"]])\n107\t\n108\t    err_lo = [e[0] for e in errors]\n109\t    err_hi = [e[0] for e in errors_hi]\n110\t\n111\t    x = np.arange(len(labels))\n112\t    colors = [\"#4C72B0\", \"#DD8452\"] + [\"#55A868\"] * len(dir_df)\n113\t    ax.barh(x, ates, xerr=[err_lo, err_hi], color=colors[:len(labels)], capsize=4, height=0.6)\n114\t    ax.axvline(0, color=\"black\", linewidth=0.8, linestyle=\"--\")\n115\t    ax.set_yticks(x)\n116\t    ax.set_yticklabels(labels)\n117\t    ax.set_xlabel(\"ATE (score difference)\")\n118\t    ax.set_title(\"Style Bias: Average Treatment Effect\")\n119\t    plt.tight_layout()\n120\t    fig.savefig(os.path.join(output_dir, \"ate_bar.png\"), dpi=150)\n121\t    plt.close(fig)\n122\t\n123\t\n124\tdef plot_score_violin(df: pd.DataFrame, output_dir: str):\n125\t    fig, ax = plt.subplots(figsize=(8, 5))\n126\t\n127\t    plot_data = pd.DataFrame({\n128\t        \"Score\": pd.concat([df[\"score_original\"], df[\"score_counterfactual\"]], ignore_index=True),\n129\t        \"Version\": [\"Original\"] * len(df) + [\"Counterfactual\"] * len(df),\n130\t    })\n131\t\n132\t    sns.violinplot(data=plot_data, x=\"Version\", y=\"Score\", ax=ax, inner=\"box\", palette=\"Set2\")\n133\t    ax.set_title(\"Score Distribution: Original vs Counterfactual\")\n134\t    ax.set_ylim(0.5, 10.5)\n135\t    plt.tight_layout()\n136\t    fig.savefig(os.path.join(output_dir, \"score_violin.png\"), dpi=150)\n137\t    plt.close(fig)\n138\t\n139\t\n140\tdef run_analysis(df: pd.DataFrame, alpha: float, output_dir: str, prefix: str = \"ate\"):\n141\t    \"\"\"Run full ATE analysis pipeline on a dataframe and save results.\"\"\"\n142\t    os.makedirs(output_dir, exist_ok=True)\n143\t\n144\t    results = compute_ate(df, alpha)\n145\t\n146\t    print(f\"\\n{'='*60}\")\n147\t    print(f\"  Overall ATE Analysis — {prefix}\")\n148\t    print(f\"{'='*60}\")\n149\t    print(f\"  N = {results['n']}\")\n150\t    print(f\"  Raw ATE          = {results['raw_ate']:+.4f}  (SE={results['raw_se']:.4f})\")\n151\t    print(f\"  Raw 95% CI       = [{results['raw_ci_lo']:+.4f}, {results['raw_ci_hi']:+.4f}]\")\n152\t    print(f\"  Raw p-value      = {results['raw_p']:.6f}\")\n153\t    print(f\"  Raw Cohen's d    = {results['raw_cohens_d']:+.4f}\")\n154\t    print(f\"  Rewrite bias     = {results['rewrite_bias']:+.4f}\")\n155\t    print(f\"  Corrected ATE    = {results['corrected_ate']:+.4f}  (SE={results['corrected_se']:.4f})\")\n156\t    print(f\"  Corrected 95% CI = [{results['corrected_ci_lo']:+.4f}, {results['corrected_ci_hi']:+.4f}]\")\n157\t    print(f\"  Corrected p      = {results['corrected_p']:.6f}\")\n158\t    print(f\"  Corrected d      = {results['corrected_cohens_d']:+.4f}\")\n159\t\n160\t    dir_df = directional_analysis(df, alpha)\n161\t    if not dir_df.empty:\n162\t        print(f\"\\n{'='*60}\")\n163\t        print(\"  Directional Analysis\")\n164\t        print(f\"{'='*60}\")\n165\t        for _, row in dir_df.iterrows():\n166\t            print(f\"\\n  {row['direction']}  (n={row['n']})\")\n167\t            print(f\"    Corrected ATE = {row['corrected_ate']:+.4f}, p = {row['corrected_p']:.6f}, d = {row['corrected_cohens_d']:+.4f}\")\n168\t\n169\t    strat_rows = []\n170\t    if \"nli_cf\" in df.columns:\n171\t        nli_sub = df[df[\"nli_cf\"] >= 0.90]\n172\t        label = \"primary: nli_cf≥0.90 (n={})\".format(len(nli_sub))\n173\t        if len(nli_sub) >= 3:\n174\t            nli_result = compute_ate(nli_sub, alpha)\n175\t            nli_result[\"group\"] = label\n176\t            strat_rows.append(nli_result)\n177\t\n178\t    if \"bertscore_cf\" in df.columns:\n179\t        for bs_thresh in [0.85, 0.88, 0.90, 0.92]:\n180\t            sub = df[df[\"bertscore_cf\"] >= bs_thresh]\n181\t            label = \"secondary: bertscore_cf≥{:.2f} (n={})\".format(bs_thresh, len(sub))\n182\t            if len(sub) >= 3:\n183\t                bs_result = compute_ate(sub, alpha)\n184\t                bs_result[\"group\"] = label\n185\t                strat_rows.append(bs_result)\n186\t\n187\t    all_label = \"tertiary: all (n={})\".format(len(df))\n188\t    all_result = compute_ate(df, alpha)\n189\t    all_result[\"group\"] = all_label\n190\t    strat_rows.append(all_result)\n191\t\n192\t    print(f\"\\n{'='*60}\")\n193\t    print(\"  Stratified Analysis\")\n194\t    print(f\"{'='*60}\")\n195\t    for row in strat_rows:\n196\t        print(f\"  {row['group']}: ATE={row['corrected_ate']:+.4f}, p={row['corrected_p']:.6f}, d={row['corrected_cohens_d']:+.4f}\")\n197\t\n198\t    summary_rows = [{\"group\": \"overall\", **results}]\n199\t    for _, row in dir_df.iterrows():\n200\t        summary_rows.append({\"group\": row[\"direction\"], **row.to_dict()})\n201\t    for row in strat_rows:\n202\t        summary_rows.append(row)\n203\t    summary_df = pd.DataFrame(summary_rows)\n204\t    csv_path = os.path.join(output_dir, f\"{prefix}_summary.csv\")\n205\t    summary_df.to_csv(csv_path, index=False)\n206\t    print(f\"\\nSaved summary to {csv_path}\")\n207\t\n208\t    plot_ate_bar(results, dir_df, output_dir)\n209\t    plot_score_violin(df, output_dir)\n210\t    print(f\"Saved plots to {output_dir}/\")\n211\t\n212\t    return results, dir_df, strat_rows\n213\t\n214\t\n215\tdef winsorize_score_diff(df: pd.DataFrame, sigma: float = 3.0) -> pd.DataFrame:\n216\t    \"\"\"Winsorize the formal-casual score difference at ±sigma standard deviations.\"\"\"\n217\t    df = df.copy()\n218\t    is_casual = (df[\"original_formality\"] == \"casual\").values\n219\t    score_formal = np.where(is_casual, df[\"score_counterfactual\"].values, df[\"score_original\"].values)\n220\t    score_casual = np.where(is_casual, df[\"score_original\"].values, df[\"score_counterfactual\"].values)\n221\t    diff = score_formal - score_casual\n222\t\n223\t    mu, sd = diff.mean(), diff.std(ddof=1)\n224\t    lo, hi = mu - sigma * sd, mu + sigma * sd\n225\t    clipped = np.clip(diff, lo, hi)\n226\t    n_clipped = int(np.sum((diff < lo) | (diff > hi)))\n227\t    print(f\"  Winsorize at {sigma}σ: bounds=[{lo:+.2f}, {hi:+.2f}], clipped {n_clipped} values\")\n228\t\n229\t    # Write clipped scores back: adjust the \"treatment\" score to match clipped diff\n230\t    new_formal = score_casual + clipped\n231\t    df.loc[is_casual, \"score_counterfactual\"] = new_formal[is_casual]\n232\t    df.loc[~is_casual, \"score_original\"] = new_formal[~is_casual]\n233\t\n234\t    # Also winsorize double_rewrite diff\n235\t    dr_diff = df[\"score_double_rewrite\"].values - df[\"score_original\"].values\n236\t    dr_mu, dr_sd = dr_diff.mean(), dr_diff.std(ddof=1)\n237\t    dr_lo, dr_hi = dr_mu - sigma * dr_sd, dr_mu + sigma * dr_sd\n238\t    dr_clipped = np.clip(dr_diff, dr_lo, dr_hi)\n239\t    df[\"score_double_rewrite\"] = df[\"score_original\"].values + dr_clipped\n240\t\n241\t    return df\n242\t\n243\t\n244\tdef main():\n245\t    parser = argparse.ArgumentParser(description=\"ATE analysis for style bias\")\n246\t    parser.add_argument(\"--input-file\", required=True)\n247\t    parser.add_argument(\"--output-dir\", required=True)\n248\t    parser.add_argument(\"--alpha\", type=float, default=0.05)\n249\t    parser.add_argument(\"--sensitivity\", action=\"store_true\",\n250\t                        help=\"Run pre-registered sensitivity analyses (primary + sens1 + sens2)\")\n251\t    args = parser.parse_args()\n252\t\n253\t    import matplotlib\n254\t    matplotlib.use(\"Agg\")\n255\t    import matplotlib.pyplot as plt\n256\t    import numpy as np\n257\t    import pandas as pd\n258\t    import seaborn as sns\n259\t    from scipy import stats\n260\t\n261\t    for name, obj in [(\"pd\", pd), (\"np\", np), (\"stats\", stats), (\"plt\", plt), (\"sns\", sns)]:\n262\t        globals()[name] = obj\n263\t\n264\t    os.makedirs(args.output_dir, exist_ok=True)\n265\t\n266\t    df = load_scored(args.input_file)\n267\t    print(f\"Loaded {len(df)} scored records\")\n268\t\n269\t    if not args.sensitivity:\n270\t        run_analysis(df, args.alpha, args.output_dir, prefix=\"ate\")\n271\t    else:\n272\t        # Pre-registered exclusion protocol: 3 analysis sets\n273\t        # Primary: NLI ≥ 0.90, no exclusion\n274\t        if \"nli_cf\" in df.columns:\n275\t            df_primary = df[df[\"nli_cf\"] >= 0.90].copy()\n276\t        else:\n277\t            df_primary = df.copy()\n278\t        print(f\"\\n{'#'*60}\")\n279\t        print(f\"  PRIMARY ANALYSIS (NLI≥0.90, n={len(df_primary)})\")\n280\t        print(f\"{'#'*60}\")\n281\t        run_analysis(df_primary, args.alpha, args.output_dir, prefix=\"ate_primary\")\n282\t\n283\t        # Sensitivity 1: primary + exclude NLI < 0.50\n284\t        if \"nli_cf\" in df.columns:\n285\t            df_sens1 = df[(df[\"nli_cf\"] >= 0.90) & (df[\"nli_cf\"] >= 0.50)].copy()\n286\t        else:\n287\t            df_sens1 = df_primary.copy()\n288\t        print(f\"\\n{'#'*60}\")\n289\t        print(f\"  SENSITIVITY 1: exclude NLI<0.50 (n={len(df_sens1)})\")\n290\t        print(f\"{'#'*60}\")\n291\t        run_analysis(df_sens1, args.alpha, args.output_dir, prefix=\"ate_sens1\")\n292\t\n293\t        # Sensitivity 2: primary + winsorize score_diff at 3σ\n294\t        df_sens2 = winsorize_score_diff(df_primary, sigma=3.0)\n295\t        print(f\"\\n{'#'*60}\")\n296\t        print(f\"  SENSITIVITY 2: winsorize at 3σ (n={len(df_sens2)})\")\n297\t        print(f\"{'#'*60}\")\n298\t        run_analysis(df_sens2, args.alpha, args.output_dir, prefix=\"ate_sens2\")\n299\t\n300\t        # Also run on ALL records for reference\n301\t        print(f\"\\n{'#'*60}\")\n302\t        print(f\"  REFERENCE: all records (n={len(df)})\")\n303\t        print(f\"{'#'*60}\")\n304\t        run_analysis(df, args.alpha, args.output_dir, prefix=\"ate_all\")\n305\t\n306\t\n307\tif __name__ == \"__main__\":\n308\t    main()\n309\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "20020ba4-a260-402f-8be2-7488802fc8dc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/ate_analysis.py",
+                "content": "from __future__ import annotations\n\"\"\"ATE (Average Treatment Effect) analysis for style bias quantification.\n\nInput:  scored.jsonl (with score_original, score_counterfactual, score_double_rewrite)\nOutput: CSV summary + visualizations (ATE bar chart, score violin plot)\nDeps:   scipy, pandas, numpy, matplotlib, seaborn\n\"\"\"\n\nimport argparse\nimport json\nimport os\n\n\ndef load_scored(path: str) -> pd.DataFrame:\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    df = pd.DataFrame(records)\n    # Drop rows with missing scores\n    for col in [\"score_original\", \"score_counterfactual\", \"score_double_rewrite\"]:\n        df = df[df[col].notna()]\n    df[\"score_original\"] = df[\"score_original\"].astype(float)\n    df[\"score_counterfactual\"] = df[\"score_counterfactual\"].astype(float)\n    df[\"score_double_rewrite\"] = df[\"score_double_rewrite\"].astype(float)\n    return df\n\n\ndef compute_ate(df: pd.DataFrame, alpha: float = 0.05) -> dict:\n    \"\"\"ATE as formality premium: score(formal_version) - score(casual_version).\"\"\"\n    is_casual = (df[\"original_formality\"] == \"casual\").values\n\n    score_formal = np.where(is_casual, df[\"score_counterfactual\"].values, df[\"score_original\"].values)\n    score_casual = np.where(is_casual, df[\"score_original\"].values, df[\"score_counterfactual\"].values)\n    diff = pd.Series(score_formal - score_casual, index=df.index)\n\n    n = len(diff)\n    raw_ate = diff.mean()\n    raw_se = diff.std(ddof=1) / np.sqrt(n)\n    t_crit = stats.t.ppf(1 - alpha / 2, df=n - 1)\n    raw_ci = (raw_ate - t_crit * raw_se, raw_ate + t_crit * raw_se)\n    _, p_val = stats.ttest_1samp(diff, 0)\n    cohens_d = raw_ate / diff.std(ddof=1) if diff.std(ddof=1) > 0 else 0.0\n\n    # RATE correction: flip rewrite bias for formal originals so direction matches\n    raw_rewrite_bias = (df[\"score_double_rewrite\"] - df[\"score_original\"]).values\n    rewrite_bias_vec = pd.Series(np.where(is_casual, raw_rewrite_bias, -raw_rewrite_bias), index=df.index)\n    rewrite_bias = rewrite_bias_vec.mean()\n    corrected_ate = raw_ate - rewrite_bias\n\n    corrected_diff = diff - rewrite_bias_vec\n    corrected_se = corrected_diff.std(ddof=1) / np.sqrt(n)\n    corrected_ci = (corrected_ate - t_crit * corrected_se, corrected_ate + t_crit * corrected_se)\n    _, p_corr = stats.ttest_1samp(corrected_diff, 0)\n    cohens_d_corr = corrected_ate / corrected_diff.std(ddof=1) if corrected_diff.std(ddof=1) > 0 else 0.0\n\n    return {\n        \"n\": n,\n        \"raw_ate\": raw_ate,\n        \"raw_se\": raw_se,\n        \"raw_ci_lo\": raw_ci[0],\n        \"raw_ci_hi\": raw_ci[1],\n        \"raw_p\": p_val,\n        \"raw_cohens_d\": cohens_d,\n        \"rewrite_bias\": rewrite_bias,\n        \"corrected_ate\": corrected_ate,\n        \"corrected_se\": corrected_se,\n        \"corrected_ci_lo\": corrected_ci[0],\n        \"corrected_ci_hi\": corrected_ci[1],\n        \"corrected_p\": p_corr,\n        \"corrected_cohens_d\": cohens_d_corr,\n    }\n\n\ndef directional_analysis(df: pd.DataFrame, alpha: float) -> pd.DataFrame:\n    rows = []\n    for direction in [\"formal\", \"casual\"]:\n        sub = df[df[\"original_formality\"] == direction]\n        if len(sub) < 2:\n            continue\n        result = compute_ate(sub, alpha)\n        result[\"direction\"] = f\"{direction}→{'casual' if direction == 'formal' else 'formal'}\"\n        rows.append(result)\n    return pd.DataFrame(rows)\n\n\ndef plot_ate_bar(results: dict, dir_df: pd.DataFrame, output_dir: str):\n    fig, ax = plt.subplots(figsize=(8, 5))\n\n    labels = [\"Overall (raw)\", \"Overall (corrected)\"]\n    ates = [results[\"raw_ate\"], results[\"corrected_ate\"]]\n    errors = [\n        [results[\"raw_ate\"] - results[\"raw_ci_lo\"]],\n        [results[\"corrected_ate\"] - results[\"corrected_ci_lo\"]],\n    ]\n    errors_hi = [\n        [results[\"raw_ci_hi\"] - results[\"raw_ate\"]],\n        [results[\"corrected_ci_hi\"] - results[\"corrected_ate\"]],\n    ]\n\n    for _, row in dir_df.iterrows():\n        labels.append(row[\"direction\"])\n        ates.append(row[\"corrected_ate\"])\n        errors.append([row[\"corrected_ate\"] - row[\"corrected_ci_lo\"]])\n        errors_hi.append([row[\"corrected_ci_hi\"] - row[\"corrected_ate\"]])\n\n    err_lo = [e[0] for e in errors]\n    err_hi = [e[0] for e in errors_hi]\n\n    x = np.arange(len(labels))\n    colors = [\"#4C72B0\", \"#DD8452\"] + [\"#55A868\"] * len(dir_df)\n    ax.barh(x, ates, xerr=[err_lo, err_hi], color=colors[:len(labels)], capsize=4, height=0.6)\n    ax.axvline(0, color=\"black\", linewidth=0.8, linestyle=\"--\")\n    ax.set_yticks(x)\n    ax.set_yticklabels(labels)\n    ax.set_xlabel(\"ATE (score difference)\")\n    ax.set_title(\"Style Bias: Average Treatment Effect\")\n    plt.tight_layout()\n    fig.savefig(os.path.join(output_dir, \"ate_bar.png\"), dpi=150)\n    plt.close(fig)\n\n\ndef plot_score_violin(df: pd.DataFrame, output_dir: str):\n    fig, ax = plt.subplots(figsize=(8, 5))\n\n    plot_data = pd.DataFrame({\n        \"Score\": pd.concat([df[\"score_original\"], df[\"score_counterfactual\"]], ignore_index=True),\n        \"Version\": [\"Original\"] * len(df) + [\"Counterfactual\"] * len(df),\n    })\n\n    sns.violinplot(data=plot_data, x=\"Version\", y=\"Score\", ax=ax, inner=\"box\", palette=\"Set2\")\n    ax.set_title(\"Score Distribution: Original vs Counterfactual\")\n    ax.set_ylim(0.5, 10.5)\n    plt.tight_layout()\n    fig.savefig(os.path.join(output_dir, \"score_violin.png\"), dpi=150)\n    plt.close(fig)\n\n\ndef run_analysis(df: pd.DataFrame, alpha: float, output_dir: str, prefix: str = \"ate\"):\n    \"\"\"Run full ATE analysis pipeline on a dataframe and save results.\"\"\"\n    os.makedirs(output_dir, exist_ok=True)\n\n    results = compute_ate(df, alpha)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"  Overall ATE Analysis — {prefix}\")\n    print(f\"{'='*60}\")\n    print(f\"  N = {results['n']}\")\n    print(f\"  Raw ATE          = {results['raw_ate']:+.4f}  (SE={results['raw_se']:.4f})\")\n    print(f\"  Raw 95% CI       = [{results['raw_ci_lo']:+.4f}, {results['raw_ci_hi']:+.4f}]\")\n    print(f\"  Raw p-value      = {results['raw_p']:.6f}\")\n    print(f\"  Raw Cohen's d    = {results['raw_cohens_d']:+.4f}\")\n    print(f\"  Rewrite bias     = {results['rewrite_bias']:+.4f}\")\n    print(f\"  Corrected ATE    = {results['corrected_ate']:+.4f}  (SE={results['corrected_se']:.4f})\")\n    print(f\"  Corrected 95% CI = [{results['corrected_ci_lo']:+.4f}, {results['corrected_ci_hi']:+.4f}]\")\n    print(f\"  Corrected p      = {results['corrected_p']:.6f}\")\n    print(f\"  Corrected d      = {results['corrected_cohens_d']:+.4f}\")\n\n    dir_df = directional_analysis(df, alpha)\n    if not dir_df.empty:\n        print(f\"\\n{'='*60}\")\n        print(\"  Directional Analysis\")\n        print(f\"{'='*60}\")\n        for _, row in dir_df.iterrows():\n            print(f\"\\n  {row['direction']}  (n={row['n']})\")\n            print(f\"    Corrected ATE = {row['corrected_ate']:+.4f}, p = {row['corrected_p']:.6f}, d = {row['corrected_cohens_d']:+.4f}\")\n\n    strat_rows = []\n    if \"nli_cf\" in df.columns:\n        nli_sub = df[df[\"nli_cf\"] >= 0.90]\n        label = \"primary: nli_cf≥0.90 (n={})\".format(len(nli_sub))\n        if len(nli_sub) >= 3:\n            nli_result = compute_ate(nli_sub, alpha)\n            nli_result[\"group\"] = label\n            strat_rows.append(nli_result)\n\n    if \"bertscore_cf\" in df.columns:\n        for bs_thresh in [0.85, 0.88, 0.90, 0.92]:\n            sub = df[df[\"bertscore_cf\"] >= bs_thresh]\n            label = \"secondary: bertscore_cf≥{:.2f} (n={})\".format(bs_thresh, len(sub))\n            if len(sub) >= 3:\n                bs_result = compute_ate(sub, alpha)\n                bs_result[\"group\"] = label\n                strat_rows.append(bs_result)\n\n    all_label = \"tertiary: all (n={})\".format(len(df))\n    all_result = compute_ate(df, alpha)\n    all_result[\"group\"] = all_label\n    strat_rows.append(all_result)\n\n    print(f\"\\n{'='*60}\")\n    print(\"  Stratified Analysis\")\n    print(f\"{'='*60}\")\n    for row in strat_rows:\n        print(f\"  {row['group']}: ATE={row['corrected_ate']:+.4f}, p={row['corrected_p']:.6f}, d={row['corrected_cohens_d']:+.4f}\")\n\n    summary_rows = [{\"group\": \"overall\", **results}]\n    for _, row in dir_df.iterrows():\n        summary_rows.append({\"group\": row[\"direction\"], **row.to_dict()})\n    for row in strat_rows:\n        summary_rows.append(row)\n    summary_df = pd.DataFrame(summary_rows)\n    csv_path = os.path.join(output_dir, f\"{prefix}_summary.csv\")\n    summary_df.to_csv(csv_path, index=False)\n    print(f\"\\nSaved summary to {csv_path}\")\n\n    plot_ate_bar(results, dir_df, output_dir)\n    plot_score_violin(df, output_dir)\n    print(f\"Saved plots to {output_dir}/\")\n\n    return results, dir_df, strat_rows\n\n\ndef winsorize_score_diff(df: pd.DataFrame, sigma: float = 3.0) -> pd.DataFrame:\n    \"\"\"Winsorize the formal-casual score difference at ±sigma standard deviations.\"\"\"\n    df = df.copy()\n    is_casual = (df[\"original_formality\"] == \"casual\").values\n    score_formal = np.where(is_casual, df[\"score_counterfactual\"].values, df[\"score_original\"].values)\n    score_casual = np.where(is_casual, df[\"score_original\"].values, df[\"score_counterfactual\"].values)\n    diff = score_formal - score_casual\n\n    mu, sd = diff.mean(), diff.std(ddof=1)\n    lo, hi = mu - sigma * sd, mu + sigma * sd\n    clipped = np.clip(diff, lo, hi)\n    n_clipped = int(np.sum((diff < lo) | (diff > hi)))\n    print(f\"  Winsorize at {sigma}σ: bounds=[{lo:+.2f}, {hi:+.2f}], clipped {n_clipped} values\")\n\n    # Write clipped scores back: adjust the \"treatment\" score to match clipped diff\n    new_formal = score_casual + clipped\n    df.loc[is_casual, \"score_counterfactual\"] = new_formal[is_casual]\n    df.loc[~is_casual, \"score_original\"] = new_formal[~is_casual]\n\n    # Also winsorize double_rewrite diff\n    dr_diff = df[\"score_double_rewrite\"].values - df[\"score_original\"].values\n    dr_mu, dr_sd = dr_diff.mean(), dr_diff.std(ddof=1)\n    dr_lo, dr_hi = dr_mu - sigma * dr_sd, dr_mu + sigma * dr_sd\n    dr_clipped = np.clip(dr_diff, dr_lo, dr_hi)\n    df[\"score_double_rewrite\"] = df[\"score_original\"].values + dr_clipped\n\n    return df\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"ATE analysis for style bias\")\n    parser.add_argument(\"--input-file\", required=True)\n    parser.add_argument(\"--output-dir\", required=True)\n    parser.add_argument(\"--alpha\", type=float, default=0.05)\n    parser.add_argument(\"--sensitivity\", action=\"store_true\",\n                        help=\"Run pre-registered sensitivity analyses (primary + sens1 + sens2)\")\n    args = parser.parse_args()\n\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n    import numpy as np\n    import pandas as pd\n    import seaborn as sns\n    from scipy import stats\n\n    for name, obj in [(\"pd\", pd), (\"np\", np), (\"stats\", stats), (\"plt\", plt), (\"sns\", sns)]:\n        globals()[name] = obj\n\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    df = load_scored(args.input_file)\n    print(f\"Loaded {len(df)} scored records\")\n\n    if not args.sensitivity:\n        run_analysis(df, args.alpha, args.output_dir, prefix=\"ate\")\n    else:\n        # Pre-registered exclusion protocol: 3 analysis sets\n        # Primary: NLI ≥ 0.90, no exclusion\n        if \"nli_cf\" in df.columns:\n            df_primary = df[df[\"nli_cf\"] >= 0.90].copy()\n        else:\n            df_primary = df.copy()\n        print(f\"\\n{'#'*60}\")\n        print(f\"  PRIMARY ANALYSIS (NLI≥0.90, n={len(df_primary)})\")\n        print(f\"{'#'*60}\")\n        run_analysis(df_primary, args.alpha, args.output_dir, prefix=\"ate_primary\")\n\n        # Sensitivity 1: primary + exclude NLI < 0.50\n        if \"nli_cf\" in df.columns:\n            df_sens1 = df[(df[\"nli_cf\"] >= 0.90) & (df[\"nli_cf\"] >= 0.50)].copy()\n        else:\n            df_sens1 = df_primary.copy()\n        print(f\"\\n{'#'*60}\")\n        print(f\"  SENSITIVITY 1: exclude NLI<0.50 (n={len(df_sens1)})\")\n        print(f\"{'#'*60}\")\n        run_analysis(df_sens1, args.alpha, args.output_dir, prefix=\"ate_sens1\")\n\n        # Sensitivity 2: primary + winsorize score_diff at 3σ\n        df_sens2 = winsorize_score_diff(df_primary, sigma=3.0)\n        print(f\"\\n{'#'*60}\")\n        print(f\"  SENSITIVITY 2: winsorize at 3σ (n={len(df_sens2)})\")\n        print(f\"{'#'*60}\")\n        run_analysis(df_sens2, args.alpha, args.output_dir, prefix=\"ate_sens2\")\n\n        # Also run on ALL records for reference\n        print(f\"\\n{'#'*60}\")\n        print(f\"  REFERENCE: all records (n={len(df)})\")\n        print(f\"{'#'*60}\")\n        run_analysis(df, args.alpha, args.output_dir, prefix=\"ate_all\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 309,
+                "startLine": 1,
+                "totalLines": 309
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I've read both files. Now I'll wait for the wakeup to check the download status again.\n\nLet me note the key content:\n1. `counterfactual_gen.py` - 205 lines, includes the `instruction` parameter fix\n2. `ate_analysis.py` - 308 lines, includes sensitivity analysis\n\nI have both file contents cached. When the download completes, I'll sync them to the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "b433a802-8fc9-45dc-8239-0f9fd877108f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013P8pKcmDqoo43e5VPusGv2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8283,
+                "cache_read_input_tokens": 30780,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个本地文件已读取缓存。等待下载完成后立即同步。\n\n当前状态：\n- 下载进行中：14/17 shards 完成，3 个在 temp（14, 15, 17），62GB，PID 12163 运行中\n- 本地文件已准备好：`counterfactual_gen.py`（205行）、`ate_analysis.py`（308行）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "uuid": "65490518-4460-4505-b0ce-bc1a7683a477",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013P8pKcmDqoo43e5VPusGv2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8283,
+                "cache_read_input_tokens": 30780,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个本地文件已读取缓存。等待下载完成后立即同步。\n\n当前状态：\n- 下载进行中：14/17 shards 完成，3 个在 temp（14, 15, 17），62GB，PID 12163 运行中\n- 本地文件已准备好：`counterfactual_gen.py`（205行）、`ate_analysis.py`（308行）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 66189,
+            "duration_api_ms": 61829,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "f7099efa-68dc-4459-aa1a-4f22f6712123",
+            "total_cost_usd": 0.344174,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 27616,
+              "cache_read_input_tokens": 149232,
+              "output_tokens": 3771,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27616,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 232,
+                  "cache_read_input_tokens": 30780,
+                  "cache_creation_input_tokens": 8283,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 8283
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2538,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0026379999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 3771,
+                "cacheReadInputTokens": 149232,
+                "cacheCreationInputTokens": 27616,
+                "webSearchRequests": 0,
+                "costUSD": 0.34153599999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6351ca3f-e517-45ab-8f1a-0ca478d34091"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ]
+}

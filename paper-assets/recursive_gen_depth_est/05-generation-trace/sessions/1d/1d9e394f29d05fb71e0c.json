@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1d9e394f29d05fb71e0c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis n3 fold std bootstrap",
+  "task_key": "worker_analysis_n3_fold_std_bootstrap_20260515T110542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n3_fold_std_bootstrap_20260515T110542_result.json",
+    "occurrence": 1,
+    "bytes": 1656,
+    "sha256": "74139bf71618b9161442bbb4ead6f6b6e6225ff13fbb68e6941c49f2e23d93dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part A: 9-cell RF 5-fold CV (mean_acc ± std)\n\n| Cell | Accuracy | d0v1 AUC | d1v2 AUC | d2v3 AUC |\n|------|----------|----------|----------|----------|\n| pythia_nucleus095 | 78.68 ± 0.64 | 0.9965 ± 0.0010 | 0.8714 ± 0.0059 | 0.8117 ± 0.0089 |\n| pythia_temp09 | 76.74 ± 0.87 | 0.9953 ± 0.0012 | 0.8421 ± 0.0107 | 0.7951 ± 0.0095 |\n| pythia_topk50 | 68.84 ± 0.36 | 0.9904 ± 0.0021 | 0.7552 ± 0.0104 | 0.6913 ± 0.0113 |\n| gpt2xl_nucleus095 | 84.11 ± 0.40 | 0.9930 ± 0.0016 | 0.9153 ± 0.0048 | 0.8890 ± 0.0047 |\n| gpt2xl_temp09 | **85.86 ± 0.20** | 0.9965 ± 0.0005 | 0.9413 ± 0.0052 | 0.8855 ± 0.0062 |\n| gpt2xl_topk50 | 75.93 ± 0.81 | 0.9903 ± 0.0021 | 0.8402 ± 0.0114 | 0.7612 ± 0.0150 |\n| olmo_nucleus095 | 78.92 ± 0.39 | 0.9838 ± 0.0018 | 0.8712 ± 0.0099 | 0.8181 ± 0.0072 |\n| olmo_temp09 | 82.12 ± 0.77 | 0.9954 ± 0.0016 | 0.8986 ± 0.0085 | 0.8347 ± 0.0087 |\n| olmo_topk50 | 74.49 ± 0.71 | 0.9940 ± 0.0020 | 0.8226 ± 0.0088 | 0.7372 ± 0.0116 |\n\nFold-level std 范围 0.20%–0.87%，非常稳定。\n\n### Part B: Bootstrap significance (Pythia nucleus, 1000 iterations)\n\n| Comparison | Diff | 95% CI | p-value | Sig |\n|------------|------|--------|---------|-----|\n| RF vs CORAL | +0.60pp | [+0.01, +1.16] | 0.048 | * |\n| RF vs DivEye | +0.50pp | [−0.09, +1.06] | 0.096 | ns |\n| RF vs CE-MLP | +3.77pp | [+3.18, +4.33] | <0.001 | *** |\n\nRF 显著优于 CE-MLP (p<0.001)，边际显著优于 CORAL (p=0.048)，与 DivEye 无显著差异 (p=0.096)。\n\n产出文件已保存：\n- `results/n3_fold_metrics.json`\n- `results/n3_bootstrap_significance.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

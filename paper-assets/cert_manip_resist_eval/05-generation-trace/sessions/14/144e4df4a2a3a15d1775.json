@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "144e4df4a2a3a15d1775",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 download check",
+  "task_key": "worker_ops_fp16-download-check_20260525T125212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-download-check_20260525T125212_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "7987137c011d1e3360f6dbedd5687a638549bfc70073f0eae04d77816cb1bfec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 模型 | PID | 进程状态 | Shards | 完整 |\n|------|-----|---------|--------|------|\n| Qwen2.5-14B FP16 | 75403 | DONE | **6/8** | ❌ 缺 shard 1, 2 |\n| Qwen2.5-32B FP16 | 10163 | DONE | **15/17** | ❌ 缺 shard 15, 16 |\n| Llama-3.1-8B AWQ | 81922 | DONE | 2/2 | ✅ |\n\n**全部完成: NO** — 两个 FP16 模型进程已退出但 shard 不全，下载可能中途失败，需要重新触发。\n\n**磁盘可用: 111 GB** (250G 中已用 140G, 56%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,1161 @@
+{
+  "schema_version": "1.0",
+  "id": "9f380f2134777629a8dd",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "code qwen25 14b restart",
+  "task_key": "worker_code_qwen25_14b_restart_20260517T130946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_qwen25_14b_restart_20260517T130946.jsonl",
+    "occurrence": 1,
+    "bytes": 44715,
+    "sha256": "f9dd975a61f4b12c9863d5052ae95551e984e9a700f02ea897bec715822c5751"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T13:13:38.686689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T13:13:38.687076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T13:13:38.687287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'qwen25_14b_scale_001'}",
+              "project": "recursive_gen_depth_est",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T13:13:38.687435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3702}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T13:13:38.687560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T13:13:38.687680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/models/ -maxdepth 1 -type d -name \"*Qwen*\""
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T13:13:38.687795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/.cache/huggingface/hub/ -maxdepth 1 -type d -name \"*Qwen*14B*\""
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T13:13:38.688055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nadd_seed_id.py\\\\natlas_analysis.py\\\\natlas_v2_analysis.py\\\\natlas_v2_complete.py\\\\natlas_v2_heavy_plots.py\\\\natlas_v2_plots.py\\\\nbaseline_ce_classification.py\\\\nbaseline_coral.py\\\\nbaseline_diveye_ordinal.py\\\\nbaseline_ppl_regression.py\\\\nbaseline_utils.py\\\\nbaseline_zeroshot_llm.py\\\\nbatch_feature_extraction.sh\\\\ncross_seed_transfer.py\\\\ncross_strategy_pipeline.py\\\\ndcol_train_standalone_deprecated.py\\\\ndcol_trainer_v4.py\\\\ndetection_baselines.py\\\\ndownload_qwen25_14b.sh\\\\neval_d1d3.py\\\\neval_lora_rank_ablation.py\\\\neval_second_seed.py\\\\nextract_features.py\\\\nfeature_ablation.py\\\\nfilter_code.py\\\\nfilter_features_d1d3.py\\\\ngen_length_ablation.py\\\\ngenerate_next_depth.py\\\\ngpt2xl_c4_calibration.py\\\\nllama3_eval.py\\\\nlora_finetune.py\\\\nlr_cross_strategy_zscore.py\\\\nmixed_depth_corpus_eval.py\\\\nmlp_baseline.py\\\\nmulti_tau_eval.py\\\\nplan_015_wild_data.py\\\\nprepare_arxiv_seeds.py\\\\nprepare_seed_data.py\\\\nprompted_generation_eval.py\\\\nqwen25_14b_scale_validation.py\\\\nqwen7b_eval.py\\\\nqwen7b_generate.py\\\\nqwen7b_lora_finetune.py\\\\nref_model_ablation.py\\\\nreference_free_baseline.py\\\\nresume_olmo_step5.sh\\\\nrun_atlas_analysis.sh\\\\nrun_cross_model_chain.sh\\\\nrun_dcol_training.sh\\\\nrun_depth_extension.sh\\\\nrun_depth_extension_gpt2xl.sh\\\\nrun_depth_extension_olmo.sh\\\\nrun_domain_extension_arxiv.sh\\\\nrun_eval_gpt2xl_temp09.sh\\\\nrun_eval_gpt2xl_topk50.sh\\\\nrun_eval_olmo_topk50.sh\\\\nrun_eval_pythia_topk50.sh\\\\nrun_evaluation.sh\\\\nrun_gen_length_ablation.sh\\\\nrun_llama3_8b_pipeline.sh\\\\nrun_llama3_8b_pipeline_002.sh\\\\nrun_llama3_8b_pipeline_003.sh\\\\nrun_llama3_base_pipeline.sh\\\\nrun_lora_rank_ablation.sh\\\\nrun_multi_tau_pipeline.sh\\\\nrun_pipeline.sh\\\\nrun_pipeline_base.sh\\\\nrun_pipeline_gpt2xl.sh\\\\nrun_pipeline_gpt2xl_temp09.sh\\\\nrun_pipeline_gpt2xl_topk50.sh\\\\nrun_pipeline_olmo.sh\\\\nrun_pipeline_olmo_temp09.sh\\\\nrun_pipeline_olmo_topk50.sh\\\\nrun_pipeline_pythia_temp07.sh\\\\nrun_pipeline_pythia_temp09.sh\\\\nrun_pi\n…[truncated 585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T13:13:38.688370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen\\\\n/root/autodl-tmp/models/Qwen3-8B\\\\n/root/autodl-tmp/models/Qwen2.5-1.5B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T13:13:38.688526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T13:13:38.688669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/run_qwen25_14b_scale_validation.sh"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T13:13:38.688828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Qwen2.5-14B FP16 scale validation: recursive gen depth estimation\\\\n# FP16 (no quantization), nucleus p=0.95, d0-d3, 5000 samples/depth\\\\n# Self-reference feature extraction, RF/LR 5-fold CV\\\\n# GPU: cuda:0\\\\n\\\\nset -e\\\\n\\\\nif [ -n \\\\\\\"${AML_EXP_ID:-}\\\\\\\" ]; then\\\\n    _aml_exit_handler() { local ec=$?; mkdir -p /tmp/agent-ml-exit; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$ec\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > \\\\\\\"/tmp/agent-ml-exit/${AML_EXP_ID}.exit\\\\\\\"; }\\\\n    trap _aml_exit_handler EXIT\\\\nfi\\\\n\\\\nPROJECT_DIR=\\\\\\\"/root/autodl-tmp/recursive_gen_depth_est\\\\\\\"\\\\ncd $PROJECT_DIR\\\\n\\\\n#source /etc/network_turbo 2>/dev/null || true\\\\nexport HF_ENDPOINT=https://hf-mirror.com\\\\nunset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\n\\\\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then\\\\n    source /root/miniconda3/etc/profile.d/conda.sh\\\\n    conda activate base\\\\nfi\\\\n\\\\nmkdir -p logs\\\\n\\\\nLOG_FILE=\\\\\\\"logs/qwen25_14b_scale_validation.log\\\\\\\"\\\\nexec > >(tee -a \\\\\\\"$LOG_FILE\\\\\\\") 2>&1\\\\n\\\\necho \\\\\\\"=== Qwen2.5-14B FP16 Scale Validation ===\\\\\\\"\\\\necho \\\\\\\"=== Started at $(date) ===\\\\\\\"\\\\necho \\\\\\\"=== CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES ===\\\\\\\"\\\\n\\\\n# Download model if needed\\\\nMODEL_DIR=\\\\\\\"/root/autodl-tmp/models/qwen25_14b\\\\\\\"\\\\nif [ -z \\\\\\\"$(ls $MODEL_DIR/*.safetensors 2>/dev/null)\\\\\\\" ]; then\\\\n    echo \\\\\\\"[$(date)] Downloading Qwen/Qwen2.5-14B via aria2c...\\\\\\\"\\\\n    bash scripts/download_qwen25_14b.sh\\\\n    echo \\\\\\\"[$(date)] Download complete.\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"[$(date)] Model exists at $MODEL_DIR\\\\\\\"\\\\nfi\\\\n\\\\npython scripts/qwen25_14b_scale_validation.py\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"[$(date)] === Pipeline complete ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"r\n…[truncated 79 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T13:13:38.689008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/download_qwen25_14b.sh"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T13:13:38.689131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import torch; print(torch.cuda.get_device_name(0)); print(torch.cuda.mem_get_info(0))\""
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T13:13:38.689271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\nunset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY\\\\n\\\\nMODEL_DIR=\\\\\\\"/root/autodl-tmp/models/qwen25_14b\\\\\\\"\\\\nMIRROR=\\\\\\\"https://hf-mirror.com\\\\\\\"\\\\nREPO=\\\\\\\"Qwen/Qwen2.5-14B\\\\\\\"\\\\nBRANCH=\\\\\\\"main\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$MODEL_DIR\\\\\\\"\\\\n\\\\nFILES=(\\\\n    model-00001-of-00008.safetensors\\\\n    model-00002-of-00008.safetensors\\\\n    model-00003-of-00008.safetensors\\\\n    model-00004-of-00008.safetensors\\\\n    model-00005-of-00008.safetensors\\\\n    model-00006-of-00008.safetensors\\\\n    model-00007-of-00008.safetensors\\\\n    model-00008-of-00008.safetensors\\\\n)\\\\n\\\\nfor f in \\\\\\\"${FILES[@]}\\\\\\\"; do\\\\n    if [ -f \\\\\\\"$MODEL_DIR/$f\\\\\\\" ]; then\\\\n        echo \\\\\\\"[$(date)] $f already exists, skipping\\\\\\\"\\\\n        continue\\\\n    fi\\\\n    URL=\\\\\\\"${MIRROR}/${REPO}/resolve/${BRANCH}/${f}\\\\\\\"\\\\n    echo \\\\\\\"[$(date)] Downloading $f ...\\\\\\\"\\\\n    aria2c -x 16 -s 16 -k 10M --file-allocation=none \\\\\\\\\\\\n        -d \\\\\\\"$MODEL_DIR\\\\\\\" -o \\\\\\\"$f\\\\\\\" \\\\\\\\\\\\n        --max-tries=10 --retry-wait=5 --timeout=60 \\\\\\\\\\\\n        --allow-overwrite=true \\\\\\\\\\\\n        \\\\\\\"$URL\\\\\\\"\\\\n    echo \\\\\\\"[$(date)] $f done\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"[$(date)] All safetensors downloaded.\\\\\\\"\\\\nls -lh \\\\\\\"$MODEL_DIR\\\\\\\"/*.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T13:13:38.689399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T13:13:38.689532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/models/qwen25_14b/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T13:13:38.689646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/qwen25_14b_scale_validation.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T13:13:38.689774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nconfig.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel-00001-of-00008.safetensors\\\\nmodel-00002-of-00008.safetensors\\\\nmodel-00003-of-00008.safetensors\\\\nmodel-00003-of-00008.safetensors.aria2\\\\nmodel.safetensors.index.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T13:13:38.689954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Qwen2.5-14B FP16 scale validation pipeline.\\\\nRecursive generation d0-d3, 19 statistical features (self-reference), RF/LR 5-fold CV.\\\\nNo quantization: clean FP16 to verify depth signal persists at 14B scale.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.stats import skew, kurtosis, entropy\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import accuracy_score, roc_auc_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom sklearn.preprocessing import StandardScaler\\\\nfrom tqdm import tqdm\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoTokenizer,\\\\n    DataCollatorForLanguageModeling,\\\\n    Trainer,\\\\n    TrainingArguments,\\\\n)\\\\nfrom peft import LoraConfig, PeftModel, get_peft_model\\\\n\\\\nSEED = 42\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/qwen25_14b\\\\\\\"\\\\nPROJECT_DIR = \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est\\\\\\\"\\\\nDATA_DIR = os.path.join(PROJECT_DIR, \\\\\\\"data/qwen25_14b\\\\\\\")\\\\nCKPT_DIR = os.path.join(PROJECT_DIR, \\\\\\\"checkpoints/qwen25_14b\\\\\\\")\\\\nRESULTS_DIR = os.path.join(PROJECT_DIR, \\\\\\\"results/qwen25_14b_scale\\\\\\\")\\\\nNUM_SAMPLES = 5000\\\\nMAX_DEPTH = 3\\\\nNUM_FOLDS = 5\\\\n\\\\n\\\\ndef cleanup_gpu():\\\\n    gc.collect()\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.empty_cache()\\\\n        torch.cuda.synchronize()\\\\n\\\\n\\\\ndef load_model_fp16():\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_PATH,\\\\n        torch_dtype=torch.float16,\\\\n        trust_remote_code=True,\\\\n        device_map=\\\\\\\"auto\\\\\\\",\\\\n    )\\\\n    return model, tokenizer\\\\n\\\\n\\\\n# ===============\n…[truncated 1641 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T13:13:38.690176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -lh /root/autodl-tmp/models/qwen25_14b/*.safetensors"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T13:13:38.690355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "which aria2c"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T13:13:38.690493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 3.7G May 17 20:18 /root/autodl-tmp/models/qwen25_14b/model-00001-of-00008.safetensors\\\\n-rw-r--r-- 1 root root 3.8G May 17 21:01 /root/autodl-tmp/models/qwen25_14b/model-00002-of-00008.safetensors\\\\n-rw-r--r-- 1 root root 3.6G May 17 21:10 /root/autodl-tmp/models/qwen25_14b/model-00003-of-00008.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T13:13:38.690622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/aria2c\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T13:13:38.690782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/models/qwen25_14b/model.safetensors.index.json"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T13:13:38.691092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"total_size\\\\\\\": 29540067328\\\\n  },\\\\n  \\\\\\\"weight_map\\\\\\\": {\\\\n    \\\\\\\"lm_head.weight\\\\\\\": \\\\\\\"model-00008-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.embed_tokens.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.input_layernorm.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.mlp.down_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.mlp.gate_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.mlp.up_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.post_attention_layernorm.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.k_proj.bias\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.k_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.o_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.q_proj.bias\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.q_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.v_proj.bias\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.0.self_attn.v_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.1.input_layernorm.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.1.mlp.down_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.1.mlp.gate_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.1.mlp.up_proj.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.1.post_attention_layernorm.weight\\\\\\\": \\\\\\\"model-00001-of-00008.safetensors\\\\\\\",\\\\n    \\\\\\\"model.layers.1.self_attn.k_proj.bias\\\\\\\": \\\\\\\"model-00001-of-000\n…[truncated 7609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T13:13:38.691306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "rm -f /root/autodl-tmp/models/qwen25_14b/model-00003-of-00008.safetensors /root/autodl-tmp/models/qwen25_14b/model-00003-of-00008.safetensors.aria2"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T13:13:38.691449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T13:13:38.691599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T13:13:38.691734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross_model_chain\\\\ncuration_poc\\\\ndepth_0.jsonl\\\\ndepth_0_features.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\ndepth_4.jsonl\\\\ndepth_5.jsonl\\\\ndomain_extension\\\\nfeatures_3class.jsonl\\\\nfeatures_all.jsonl\\\\nfeatures_d4d5.jsonl\\\\nfeatures_depth_4.jsonl\\\\nfeatures_depth_5.jsonl\\\\nfeatures_filtered.jsonl\\\\ngpt2xl\\\\ngpt2xl_temp09\\\\ngpt2xl_topk50\\\\nllama3_8b_nucleus\\\\nllama3_base_nucleus\\\\nolmo\\\\nolmo_temp09\\\\nolmo_topk50\\\\nprompted_gen\\\\npythia_temp05\\\\npythia_temp07\\\\npythia_temp09\\\\npythia_temp11\\\\npythia_topk50\\\\nqwen7b_nucleus\\\\nredpajama_en_head.json.gz\\\\nreverse_chain\\\\nwikitext103_test.txt\\\\nwild_data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T13:13:38.691859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "bash -c \"source /root/miniconda3/bin/activate && python -c 'import torch, transformers, peft, sklearn; print(\\\"torch:\\\", torch.__version__); print(\\\"transformers:\\\", transformers.__version__); print(\\\"peft:\\\", peft.__version__); print(\\\"CUDA:\\\", torch.cuda.is_available()); print(\\\"GPU0:\\\", torch.cuda.get_device_name(0))'\""
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T13:13:38.692032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"torch: 2.10.0+cu128\\\\ntransformers: 5.8.1\\\\npeft: 0.7.1\\\\nCUDA: True\\\\nGPU0: NVIDIA RTX PRO 6000 Blackwell Server Edition\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T13:13:38.692195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "gpu_ids": "['cuda:0']",
+              "exp_id": "qwen25_14b_scale_002",
+              "project": "recursive_gen_depth_est",
+              "plan_id": "plan_014",
+              "timeout_hours": "24",
+              "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T13:13:38.692333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"714775\\\", \\\"log_file\\\": \\\"~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"qwen25_14b_scale_002\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T13:13:38.692487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "qwen25_14b_scale_002",
+              "field": "hypothesis",
+              "value": "Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T13:13:38.692628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen25_14b_scale_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:12:02.367Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:12:11.749Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"714775\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:12:02.050Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5148}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T13:13:38.692753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "qwen25_14b_scale_002",
+              "field": "parent",
+              "value": "mvp_pipeline_pythia_002",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T13:13:38.692903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen25_14b_scale_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:12:02.367Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:12:13.015Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"714775\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:12:02.050Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.\\\", \\\"parent\\\": \\\"mvp_pipeline_pythia_002\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5608}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T13:13:38.693042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "qwen25_14b_scale_002",
+              "field": "notes",
+              "value": "plan_014 retry. Previous qwen25_14b_scale_001 failed during model download (session recovery). Qwen2.5-14B FP16 + LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. Gradient checkpointing. Self-reference features. 5000 samples/depth d0-d3.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T13:13:38.693180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen25_14b_scale_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:12:02.367Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:12:15.820Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"714775\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:12:02.050Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.\\\", \\\"parent\\\": \\\"mvp_pipeline_pythia_002\\\", \\\"notes\\\": \\\"plan_014 retry. Previous qwen25_14b_scale_001 failed during model download (session recovery). Qwen2.5-14B FP16 + LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. Gradient checkpointing. Self-reference features. 5000 samples/depth d0-d3.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5286}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T13:13:38.693324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -20 /root/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T13:13:38.693464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/qwen25_14b_scale_validation.py\\\\\\\", line 697, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/qwen25_14b_scale_validation.py\\\\\\\", line 667, in main\\\\n    generate_d0()\\\\n  File \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/qwen25_14b_scale_validation.py\\\\\\\", line 75, in generate_d0\\\\n    model, tokenizer = load_model_fp16()\\\\n                       ^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/qwen25_14b_scale_validation.py\\\\\\\", line 53, in load_model_fp16\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py\\\\\\\", line 405, in from_pretrained\\\\n    return model_class.from_pretrained(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\\\\\", line 4245, in from_pretrained\\\\n    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)\\\\n                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\\\\\", line 4363, in _load_pretrained_model\\\\n    file_pointer = safe_open(file, framework=\\\\\\\"pt\\\\\\\", device=\\\\\\\"cpu\\\\\\\")\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nFileNotFoundError: No such file or directory: /root/autodl-tmp/models/qwen25_14b/model-00003-of-00008.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T13:13:38.693664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "sed -i 's|if \\[ -z \"\\$(ls \\$MODEL_DIR/\\*.safetensors 2>/dev/null)\" \\]; then|EXPECTED_SHARDS=8; ACTUAL_SHARDS=$(ls $MODEL_DIR/model-*.safetensors 2>/dev/null | wc -l); if [ \"$ACTUAL_SHARDS\" -lt \"$EXPECTED_SHARDS\" ]; then|' /root/autodl-tmp/recursive_gen_depth_est/scripts/run_qwen25_14b_scale_validation.sh"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T13:13:38.693807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T13:13:38.694758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"EXPECTED_SHARDS\\|safetensors\\|Model exists\\|Download\" /root/autodl-tmp/recursive_gen_depth_est/scripts/run_qwen25_14b_scale_validation.sh"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T13:13:38.694936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T13:13:38.695101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/run_qwen25_14b_scale_validation.sh"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T13:13:38.695265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Qwen2.5-14B FP16 scale validation: recursive gen depth estimation\\\\n# FP16 (no quantization), nucleus p=0.95, d0-d3, 5000 samples/depth\\\\n# Self-reference feature extraction, RF/LR 5-fold CV\\\\n# GPU: cuda:0\\\\n\\\\nset -e\\\\n\\\\nif [ -n \\\\\\\"${AML_EXP_ID:-}\\\\\\\" ]; then\\\\n    _aml_exit_handler() { local ec=$?; mkdir -p /tmp/agent-ml-exit; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$ec\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > \\\\\\\"/tmp/agent-ml-exit/${AML_EXP_ID}.exit\\\\\\\"; }\\\\n    trap _aml_exit_handler EXIT\\\\nfi\\\\n\\\\nPROJECT_DIR=\\\\\\\"/root/autodl-tmp/recursive_gen_depth_est\\\\\\\"\\\\ncd $PROJECT_DIR\\\\n\\\\n#source /etc/network_turbo 2>/dev/null || true\\\\nexport HF_ENDPOINT=https://hf-mirror.com\\\\nunset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\n\\\\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then\\\\n    source /root/miniconda3/etc/profile.d/conda.sh\\\\n    conda activate base\\\\nfi\\\\n\\\\nmkdir -p logs\\\\n\\\\nLOG_FILE=\\\\\\\"logs/qwen25_14b_scale_validation.log\\\\\\\"\\\\nexec > >(tee -a \\\\\\\"$LOG_FILE\\\\\\\") 2>&1\\\\n\\\\necho \\\\\\\"=== Qwen2.5-14B FP16 Scale Validation ===\\\\\\\"\\\\necho \\\\\\\"=== Started at $(date) ===\\\\\\\"\\\\necho \\\\\\\"=== CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES ===\\\\\\\"\\\\n\\\\n# Download model if needed\\\\nMODEL_DIR=\\\\\\\"/root/autodl-tmp/models/qwen25_14b\\\\\\\"\\\\nEXPECTED_SHARDS=8; ACTUAL_SHARDS=$(ls $MODEL_DIR/model-*.safetensors 2>/dev/null \\\\n    echo \\\\\\\"[$(date)] Downloading Qwen/Qwen2.5-14B via aria2c...\\\\\\\"\\\\n    bash scripts/download_qwen25_14b.sh\\\\n    echo \\\\\\\"[$(date)] Download complete.\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"[$(date)] Model exists at $MODEL_DIR\\\\\\\"\\\\nfi\\\\n\\\\npython scripts/qwen25_14b_scale_validation.py\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"[$(date)] === Pipeline complete ===\\\\\\\"\\\\n\\\", \\\"stde\n…[truncated 94 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T13:13:38.695456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/scripts/run_qwen25_14b_scale_validation.sh << 'SCRIPT'\n#!/bin/bash\n# Qwen2.5-14B FP16 scale validation: recursive gen depth estimation\n# FP16 (no quantization), nucleus p=0.95, d0-d3, 5000 samples/depth\n# Self-reference feature extraction, RF/LR 5-fold CV\n# GPU: cuda:0\n\nset -e\n\nif [ -n \"${AML_EXP_ID:-}\" ]; then\n    _aml_exit_handler() { local ec=$?; mkdir -p /tmp/agent-ml-exit; printf \"%s|%s\\n\" \"$ec\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > \"/tmp/agent-ml-exit/${AML_EXP_ID}.exit\"; }\n    trap _aml_exit_handler EXIT\nfi\n\nPROJECT_DIR=\"/root/autodl-tmp/recursive_gen_depth_est\"\ncd $PROJECT_DIR\n\n#source /etc/network_turbo 2>/dev/null || true\nexport HF_ENDPOINT=https://hf-mirror.com\nunset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nexport CUDA_VISIBLE_DEVICES=0\n\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then\n    source /root/miniconda3/etc/profile.d/conda.sh\n    conda activate base\nfi\n\nmkdir -p logs\n\nLOG_FILE=\"logs/qwen25_14b_scale_validation.log\"\nexec > >(tee -a \"$LOG_FILE\") 2>&1\n\necho \"=== Qwen2.5-14B FP16 Scale Validation ===\"\necho \"=== Started at $(date) ===\"\necho \"=== CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES ===\"\n\n# Download model if needed (check all 8 shards exist)\nMODEL_DIR=\"/root/autodl-tmp/models/qwen25_14b\"\nEXPECTED_SHARDS=8\nACTUAL_SHARDS=$(ls \"$MODEL_DIR\"/model-*.safetensors 2>/dev/null | wc -l)\nif [ \"$ACTUAL_SHARDS\" -lt \"$EXPECTED_SHARDS\" ]; then\n    echo \"[$(date)] Model incomplete ($ACTUAL_SHARDS/$EXPECTED_SHARDS shards). Downloading...\"\n    bash scripts/download_qwen25_14b.sh\n    echo \"[$(date)] Download complete.\"\nelse\n    echo \"[$(date)] Model exists at $MODEL_DIR ($ACTUAL_SHARDS shards)\"\nfi\n\npython scripts/qwen25_14b_scale_validation.py\n\necho \"\"\necho \"[$(date)] === Pipeline complete ===\"\nSCRIPT"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T13:13:38.695605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T13:13:38.695740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tmux kill-session -t qwen25_14b_scale_002 2>/dev/null; echo \"killed\""
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T13:13:38.695862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T13:13:38.696005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "gpu_ids": "['cuda:0']",
+              "exp_id": "qwen25_14b_scale_002",
+              "project": "recursive_gen_depth_est",
+              "plan_id": "plan_014",
+              "timeout_hours": "24",
+              "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\""
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T13:13:38.696155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"714992\\\", \\\"log_file\\\": \\\"~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"qwen25_14b_scale_002\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T13:13:38.696312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "sleep 10 && tail -30 /root/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T13:13:38.696505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"05/17 21:13:21 [\\\\u001b[1;32mNOTICE\\\\u001b[0m] CUID#10 - Redirecting to https://cas-bridge.xethub.hf.co/xet-bridge-us/66e6d08a5c06b7719cebd8ec/59626d271934367d7583c7ff9890567243502b41f82280489d46e87f5de5de07?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=[REDACTED] 21:13:21 [\\\\u001b[1;32mNOTICE\\\\u001b[0m] CUID#13 - Redirecting to https://cas-bridge.xethub.hf.co/xet-bridge-us/66e6d08a5c06b7719cebd8ec/59626d271934367d7583c7ff9890567243502b41f82280489d46e87f5de5de07?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=[REDACTED]\n…[truncated 6281 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T13:13:38.696709+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中 — aria2c 正在用16连接下载分片3。任务运行正常。\n\n**总结：**\n- `qwen25_14b_scale_002` 已提交到 gpu-6000pro-2 cuda:0\n- 修复了脚本中模型完整性检查的 bug（原来只要有任一 safetensors 就跳过下载）\n- 当前正在下载分片 3-8（约 22GB），下载完成后自动进入 pipeline\n- tmux session: `qwen25_14b_scale_002`, PID: 714992\n- 日志: `~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log`\n- Registry 已更新 hypothesis/parent/notes\n- 24h timeout，下载+pipeline 应可在此内完成"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_qwen25_14b_restart_20260517T130946"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "63a7cb4cc3746880d51c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "fix batch64 num workers",
+  "task_key": "worker_fix_batch64_num_workers_20260517T080846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_batch64_num_workers_20260517T080846.log",
+    "occurrence": 1,
+    "bytes": 785063,
+    "sha256": "88946a94ce6d292d4c98a8637454a0ce5ccfa64d98dbc20cc4a84b582a3c2eb0"
+  },
+  "statistics": {
+    "messages": 568,
+    "user_turns": 0,
+    "tool_calls": 241,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 82,
+      "tool_call": 241,
+      "tool_result": 241,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 568,
+      "chunks": [
+        {
+          "path": "63a7cb4cc3746880d51c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "63a7cb4cc3746880d51c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "63a7cb4cc3746880d51c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "63a7cb4cc3746880d51c-part-0004.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ]
+}

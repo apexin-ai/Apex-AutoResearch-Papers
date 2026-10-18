@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ad45e1ce1c5c33fe095",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh vllm log analysis",
+  "task_key": "worker_ssh_vllm-log-analysis_20260515T164947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_vllm-log-analysis_20260515T164947_result.json",
+    "occurrence": 1,
+    "bytes": 3260,
+    "sha256": "0a9cbd7ff5bbb48df4c2237792bc3b3eb319a98735d136a950fdc71f15f880b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整诊断报告。\n\n---\n\n## vLLM 版本\n- version: **0.20.2** (V1 engine)\n\n## 日志分析\n- **JSON schema 相关 warning**: 无。没有任何 JSON schema/structured output 相关的错误或警告\n- **零预测相关信息**: exp1 和 exp2 所有 batch 的 `gen_tokens=2`，`predictions=[]`，F1 全部 0.0000。没有一条 JSON 解析失败（说明模型输出的 `[]` 是合法 JSON，不是乱码）\n- **其他异常**: `WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9`（GPU 计算能力警告，不影响推理正确性）\n\n## StructuredOutputsParams 配置\n```python\n# run_extraction.py\nbatch_schema = schema_fn(batch_types)  # v2: {\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"type\":\"string\",\"enum\":[...]}},\"required\":[\"text\",\"type\"]}}\nstructured_params = StructuredOutputsParams(json=batch_schema)\nsampling_params = SamplingParams(\n    max_tokens=1024,\n    temperature=0.0,\n    structured_outputs=structured_params,\n)\noutputs = llm.generate(prompts, sampling_params)  # <--- 关键：裸文本 generate\n```\n\n## 预测文件内容\n- **文件列表**: `predictions_fewnerd_exp1_llama-3.1-8b-instruct.json` (49MB), `predictions_fewnerd_exp2_llama-3.1-8b-instruct.json` (29MB)\n- **样本输出**: 100% 的样本均为 `\"predictions\": [], \"gen_tokens\": 2`\n\n## 根因判断\n\n**最可能原因: B — prompt 格式不适配（缺少 chat template）**\n\n### 证据链\n\n1. **`llm.generate(prompts, ...)` 用裸文本调用 instruct 模型**：`run_extraction.py` 将 prompt 作为纯字符串传入 `llm.generate()`，没有调用 `tokenizer.apply_chat_template()` 或 `llm.chat()`。LLaMA-3.1-8B-Instruct 需要 `<|begin_of_text|><|start_header_id|>user<|end_header_id|>...<|eot_id|><|start_header_id|>assistant<|end_header_id|>` 格式才能理解指令。\n\n2. **Qwen3 同样用裸文本但能工作**：`sdgd_extract_gpu.py` 也用 `llm.generate(prompts, ...)` 裸文本调用 Qwen3-32B-FP8（exp008），但 Qwen3 对非模板化输入更鲁棒。LLaMA-3.1-Instruct 对 chat template 的依赖极强。\n\n3. **`gen_tokens=2` = `[]`**：JSON schema 约束 `type: array`，合法最小输出是 `[]`（2 个 token）。模型不理解指令时，在 constrained decoding 下走阻力最小路径，直接输出空数组。\n\n4. **零 JSON 解析失败**：日志中没有 `\"Failed to parse JSON\"` 警告，说明模型始终输出合法 JSON，只是每次都是 `[]`。\n\n5. **v2 prompt 中的措辞助推了空输出**：prompt 显式写了 `\"If no entities of these types exist in the text, output an empty list []\"`，这在模型不理解上下文时进一步强化了 `[]` 作为\"安全\"输出。\n\n### 修复方案\n\n在 `run_extraction.py` 中用 chat template 包装 prompt：\n\n```python\ntokenizer = llm.get_tokenizer()\nformatted_prompts = [\n    tokenizer.apply_chat_template(\n        [{\"role\": \"user\", \"content\": p}],\n        tokenize=False,\n        add_generation_prompt=True,\n    )\n    for p in prompts\n]\noutputs = llm.generate(formatted_prompts, sampling_params)\n```\n\n或改用 `llm.chat()` API（vLLM ≥0.20 支持）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

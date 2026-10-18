@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b1519b3f4c67ee62663",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "write figures generation",
+  "task_key": "worker_write_figures_generation_20260515T162403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_figures_generation_20260515T162403_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "ff967faca4b61d0a9236ac116e7c187c0f39acb11d68edffcf8fd2eab92fa718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张图全部完成，已注册 artifacts。\n\n**生成结果汇总：**\n\n| 图 | 文件 | PDF | PNG |\n|---|---|---|---|\n| Fig 1: AUC Decay | `fig_auc_decay` | 20KB | 143KB |\n| Fig 2: Feature Trajectory | `fig_feature_trajectory` | 26KB | 187KB |\n| Fig 3: Confusion Matrix | `fig_confusion_matrix` | 29KB | 144KB |\n| Fig 4: Atlas Heatmap | `fig_atlas_heatmap` | 28KB | 107KB |\n\n**关键数据来源：**\n- Fig 1: 硬编码深度扩展实验 AUC 值，三模型均在 d4v5 跌破 τ=0.75\n- Fig 2: 从 `features_all.jsonl`（20000 条 Pythia nucleus 样本）实时计算，含 SEM error bars\n- Fig 3: 左 panel 在 20000 样本上训练 RF(n=200) 做 5-fold CV；右 panel 用 `cross_model_loo_detailed.json` holdout_pythia 混淆矩阵\n- Fig 4: 从 `summary_9cell.json` 读取 RF 4-class accuracy（GPT-2 XL temp09 最高 85.3%，Pythia topk50 最低 68.7%）\n\n所有文件位于远程 `gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

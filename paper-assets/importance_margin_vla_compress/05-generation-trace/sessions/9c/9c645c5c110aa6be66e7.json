@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9c645c5c110aa6be66e7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent westd41074 verify registry",
+  "task_key": "worker_urgent_westd41074_verify_registry_20260525T040159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_westd41074_verify_registry_20260525T040159_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "ec1f524ec887d7b125e33933181db610d091736e69d44aeef7f90affbd3aa05c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 v2 实验全部注册完成。\n\n**汇总**：\n\n| 实验 | GPU | PID | 进度 | Registry |\n|------|-----|-----|------|----------|\n| eval_openvla_attn_k09_long_seed42_v2 | 0 | 123777 | Task 3/10, Ep 20/50 | RUNNING ✓ |\n| eval_openvla_attn_k085_long_seed42_v2 | 1 | 123850 | Task 3/10, Ep 20/50 | RUNNING ✓ |\n| eval_openvla_random_k09_long_seed42_v2 | 2 | 123925 | Task 3/10, Ep 20/50 | RUNNING ✓ |\n| eval_openvla_l2norm_k09_long_seed42_v2 | 3 | 124210 | Task 3/10, Ep 20/50 | RUNNING ✓ |\n\n全部使用正确的 `openvla-7b-finetuned-libero-10` 模型，4 GPU 利用率 70-88%，速度 ~0.8 eps/min。\n\n注意：registry 中旧版非 v2 实验（`eval_openvla_l2norm_k09_long_seed42`、`eval_openvla_random_k09_long_seed42`）仍标记为 RUNNING 且 model_name 为错误的 `openvla-7b-finetuned-libero-object`，这些已被 v2 取代，需要标记为失败/废弃吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

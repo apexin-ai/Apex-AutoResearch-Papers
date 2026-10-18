@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "2cade4c1984963e09c67",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops deploy e3 xvla openvla westd27271",
+  "task_key": "worker_ops_deploy_e3_xvla_openvla_westd27271_20260523T073129",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy_e3_xvla_openvla_westd27271_20260523T073129.log",
+    "occurrence": 1,
+    "bytes": 1025910,
+    "sha256": "60b1b663a1584908ed352c68d1747892536df115bde4c0a073e4df5a6add6552"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 1,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 102,
+      "tool_result": 102,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "2cade4c1984963e09c67-part-0001.json",
+          "message_count": 143
+        },
+        {
+          "path": "2cade4c1984963e09c67-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "2cade4c1984963e09c67-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ]
+}

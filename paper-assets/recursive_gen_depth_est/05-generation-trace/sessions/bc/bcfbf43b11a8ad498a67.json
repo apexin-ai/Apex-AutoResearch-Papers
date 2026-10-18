@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bcfbf43b11a8ad498a67",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp plan 015 wild data design",
+  "task_key": "worker_exp_plan_015_wild_data_design_20260515T193645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_015_wild_data_design_20260515T193645_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "9abd99101e072a9302cda335cb0aeba2f9f95fc35540b3b69c4c7cddc27904e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_015 设计完成。脚本 `src/wild_data_calibration.py` 已写入，支持 `--mode download|extract|evaluate|all` 四种运行模式。核心设计：10K RedPajama (排除 Wikipedia) 作为 wild d0，三个测试 (FPR / 混合准确率 / KS+MMD 分布偏移)，覆盖 9 cells，预估 ~2 GPU·h。待审批。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

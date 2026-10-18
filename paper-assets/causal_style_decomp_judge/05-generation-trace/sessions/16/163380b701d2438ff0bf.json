@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "163380b701d2438ff0bf",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp resume scoring and ate",
+  "task_key": "worker_mvp_resume_scoring_and_ate_20260520T142937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_resume_scoring_and_ate_20260520T142937_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "06211e53c5ac16ead4dfdfb6b8141d7ed7a44dcfcf56b7c770c1520b2a6fcc2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n- judge_scoring PID 36140 已启动，resume 从第 37 条继续\n- scored.jsonl: 41/100（从 36 恢复后已评分 5 条新数据）\n- 无错误，API 调用正常（HTTP 200）\n- 3 分钟后自动轮询进度，完成后立即运行 ate_analysis"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

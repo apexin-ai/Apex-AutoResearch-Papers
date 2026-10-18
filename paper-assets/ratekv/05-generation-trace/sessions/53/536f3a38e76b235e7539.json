@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "536f3a38e76b235e7539",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code restart exp e and prep llama phase23",
+  "task_key": "worker_code_restart_exp_e_and_prep_llama_phase23_20260514T015725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_restart_exp_e_and_prep_llama_phase23_20260514T015725_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "7824a840b71497cc6c7ec90b4ef0df4fe87c7038c23ebb13fe35fc9620a6cd5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**exp_e Phase 2+3** 已在 cuda:1 上运行（tmux session `exp_e_phase23`）：\n- Phase 2 solver 已完成：bit dist `{8: 4, 2: 8, 4: 100}`，memory ratio 0.2500\n- Phase 3 模型已加载，正在跑 WikiText-2 PPL eval（baseline → MCKP → uniform 三组）\n- 日志：`/root/ratekv/exp_e_phase23.log`\n- 结果将保存到 `exp_e_hires_results.json`\n\n**run_llama_phase23.py** 已写好部署到服务器，未启动。等 Llama profiling 完成后用：\n```bash\ntmux new-session -d -s llama_phase23 \"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 python run_llama_phase23.py 2>&1 | tee llama_phase23.log\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

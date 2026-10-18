@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "edb01700a12c69a44be0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp single feature p90ppl",
+  "task_key": "worker_exp_single_feature_p90ppl_20260517T224525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_single_feature_p90ppl_20260517T224525_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "a33b38dc96e0fa9500b84698c5b7416dc0cb474ac9a6c5a2112071a3b362ff51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### Single-feature RF (p90_ppl only) — Leave-one-model-out CV\n\n| Holdout | 4-class Acc | d0 recall | d1 recall | d2 recall | d3 recall |\n|---------|------------|-----------|-----------|-----------|-----------|\n| Pythia  | 0.5669     | 0.951     | 0.324     | 0.358     | 0.634     |\n| OLMo    | 0.5917     | 0.910     | 0.688     | 0.368     | 0.401     |\n| GPT-2 XL| 0.5894     | 0.958     | 0.696     | 0.357     | 0.346     |\n| **Mean**| **0.5827** |           |           |           |           |\n\nStd: 0.0112\n\n仅用 p90_ppl 一个特征就达到 58.3% 的 4-class accuracy（随机基线 25%）。d0 recall 在所有 fold 上都很高（>91%），d2 一致最弱（~36%），d1 和 d3 的区分能力在不同 holdout 模型间波动较大。对比全 19 特征的 cross-model LOO（Pythia fold 62.4%），单特征损失约 4-6 个点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

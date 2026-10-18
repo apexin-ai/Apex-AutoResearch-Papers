@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d7ceb46c63c638507cd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops combined status p1p3p4",
+  "task_key": "worker_ops_combined-status-p1p3p4_20260520T075057",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_combined-status-p1p3p4_20260520T075057_result.json",
+    "occurrence": 1,
+    "bytes": 2323,
+    "sha256": "866c1a473655da09cd496fe70039af03a971a4400bbc60e23cc2a671207eafdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## P1 — C4-ext 20K eval (westd-27271:0)\n**状态: ALIVE，刚启动**\n- Suite: libero_object, 50 eps/task, 10 tasks\n- 当前: Task 0, Ep 1/50（15:38 开始）\n- 预计完成：每 task ~8min × 10 = ~80min → 约 16:58\n\n## P3 — X-VLA LIBERO eval (westd-41074:1)\n**状态: 未运行。** 服务器上无任何 xvla 日志或进程。\n\nwestd-41074 当前在跑 **训练**（非 eval）：\n- `m96_seed42`: step 7,300/100,000 (7.3%), loss=2.78, 0.5 sps\n- `m64_seed42`: step 9,050/100,000 (9.1%), loss=3.26, 0.6 sps\n\n## P4 — cqa1 evals (cqa1-33015)\n全部 libero_object, 500 eps/task, 10 tasks\n\n### m128_seed43 — ALIVE, Task 9 接近完成 (ep 454/500)\n| Task | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n| SR% | 64.6 | 32.2 | 61.4 | 43.2 | 34.8 | 44.2 | 71.6 | 60.4 | 81.8 | ~running |\n\nTasks 0-8 均值: **54.9%** → 预计几分钟内完成\n\n### m16_seed43 — ALIVE, Task 9 接近完成 (ep 475/500)\n| Task | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n| SR% | 42.8 | 47.4 | 66.2 | 48.4 | 74.2 | 40.0 | 79.2 | 69.8 | 76.6 | ~running |\n\nTasks 0-8 均值: **60.5%** → 预计几分钟内完成\n\n### m16_seed44 — ALIVE, Task 8 进行中 (ep 219/500)\n| Task | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n| SR% | 38.0 | 70.0 | 55.2 | 42.0 | 64.8 | 32.8 | 73.2 | 63.8 | running | — |\n\nTasks 0-7 均值: **55.0%** → 还需 ~90min（Task 8 剩余 + 整个 Task 9）\n\n---\n\n## GPU 占用一览\n\n| 服务器 | GPU | 显存占用 | 状态 |\n|--------|-----|----------|------|\n| **westd-27271** | 0 | 36/98 GB | P1 eval |\n| | 1 | 26/98 GB | 占用（非本项目?） |\n| **westd-41074** | 0 | 30/98 GB | m96 训练 |\n| | **1** | **0/98 GB** | **空闲** |\n| | 2 | 29/98 GB | m64 训练 |\n| | 3 | 28/98 GB | 占用 |\n| **cqa1-33015** | 0 | 3/25 GB | m128_seed43 eval |\n| | 1 | 3.5/25 GB | m16_seed43 eval |\n| | 2 | 3.5/25 GB | m16_seed44 eval |\n| | **3** | **0/25 GB** | **空闲** |\n\n**空闲 GPU**: westd-41074:1 (98GB), cqa1-33015:3 (25GB)\n\n**关键发现**: P3 X-VLA eval 未启动——westd-41074:1 完全空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e374ae05f86db753ab1c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "eval arc easy recovery",
+  "task_key": "worker_eval_arc-easy-recovery_20260520T092339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_arc-easy-recovery_20260520T092339_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "904abfc9d1c2cf027a7c080f18ccc72b79d2f4f96250cacdc51787fe64cfab6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已完成模型：15/15**\n缺失模型列表：无\n恢复操作：无需恢复（服务器重启前已全部跑完）\n\n结果汇总（acc / acc_norm）：\n\n| 模型 | acc | acc_norm |\n|------|-----|----------|\n| **GatedDeltaNet-pure** | 0.7121 | 0.6414 |\n| GatedDeltaNet-h24-1 | 0.7092 | 0.6305 |\n| GatedDeltaNet-h12-1 | 0.6995 | 0.6292 |\n| GatedDeltaNet-h6-1 | 0.7176 | 0.6574 |\n| GatedDeltaNet-h3-1 | 0.7083 | 0.6486 |\n| **RetNet-pure** | 0.7130 | 0.6486 |\n| RetNet-h24-1 | 0.7088 | 0.6431 |\n| RetNet-h12-1 | 0.7201 | 0.6553 |\n| RetNet-h6-1 | 0.7180 | 0.6582 |\n| RetNet-h3-1 | 0.6961 | 0.6444 |\n| **HGRN2-pure** | 0.7130 | 0.6646 |\n| HGRN2-h24-1 | 0.7302 | 0.6785 |\n| HGRN2-h12-1 | 0.7332 | 0.6688 |\n| **HGRN2-h6-1** | **0.7412** | 0.6696 |\n| HGRN2-h3-1 | 0.7205 | 0.6435 |\n\n结果路径：`/root/entrainment_gated_ft/lm_eval_clean/arc_easy/`（每个模型目录含 `.json` 结果和 `samples/arc_easy.jsonl`）。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

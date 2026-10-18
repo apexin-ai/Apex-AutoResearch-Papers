@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "78878762fd8033819ffa",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp kivi baseline qwen7b",
+  "task_key": "worker_exp_kivi_baseline_qwen7b_20260515T143618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_kivi_baseline_qwen7b_20260515T143618_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "6f824d651a18103c0502467d765950efc658fd8d036cb02092595f8f608535d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 和 artifact 已更新。\n\n**结果汇总**：\n\n| 方法 | PPL (WikiText-2) |\n|------|-----------------|\n| BF16 baseline | 9.81 |\n| **KIVI-4bit** (per-channel K + per-token V, g32, r128) | **9.90** |\n| Constrained MCKP (per-head, 4× compression) | 10.91 |\n| Uniform 4-bit (per-head) | 15.45 |\n\nKIVI-4bit PPL=9.90，几乎无损（vs BF16 9.81），显著优于 uniform 4-bit (15.45) 和 constrained MCKP (10.91)。这说明 per-channel/per-token 粒度的量化在 4× 压缩下非常有效——但代价是需要更细粒度的 scale/zero-point 存储，且与我们的 per-head MCKP 方法正交（后者优势在于 mixed-precision bit allocation）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

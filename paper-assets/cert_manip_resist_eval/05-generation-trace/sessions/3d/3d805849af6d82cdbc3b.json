@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "3d805849af6d82cdbc3b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment r6 fp16 v4 clean",
+  "task_key": "worker_experiment_r6-fp16-v4-clean_20260525T091700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r6-fp16-v4-clean_20260525T091700_result.json",
+    "occurrence": 1,
+    "bytes": 2418975,
+    "sha256": "26d10eaa8987f7f9ed42e4521ad8e4e5ff1c463dbf0412333c9d0ec159445d82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "3d805849af6d82cdbc3b-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

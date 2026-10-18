@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "304f624d5e70d79a7dc6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval openvla libero spatial check",
+  "task_key": "worker_eval_openvla_libero_spatial_check_20260519T104713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_openvla_libero_spatial_check_20260519T104713_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "42de3d09447c4e7d1f0b5fe951766ba118c373e1a295a088999e631204d773d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**基础设施全部就绪，eval 已启动。**\n\n| 项目 | 状态 |\n|------|------|\n| OpenVLA checkpoint | `/root/autodl-tmp/openvla-libero-object/` (7B, Object 微调) |\n| LIBERO-Spatial 环境 | 可用（10 tasks） |\n| Eval 脚本 | `eval_openvla_libero.py`，已修复 CUDA_VISIBLE_DEVICES 硬编码 |\n| GPU | cuda:1，占用 16GB/98GB |\n\n**运行配置**:\n- 模型：openvla-7b-libero-object（cross-suite eval，用 Object 微调模型跑 Spatial）\n- 规模：10 tasks × 50 episodes = 500 total\n- Seed: 42（注意 Object baseline 用的是 seed=7）\n- PID: 552445\n- 日志：`eval_results/eval_openvla_baseline_spatial.log`\n- 输出：`eval_results/eval_openvla_baseline_spatial.json`\n\n**注意**：这是 cross-suite eval（Object 模型 → Spatial 任务），unnorm stats 用的是 `libero_object`。如果需要 Spatial 原生 baseline（Spatial 微调模型 → Spatial 任务），需要额外下载 `openvla-libero-spatial` checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

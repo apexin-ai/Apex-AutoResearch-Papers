@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "992a0357cd3b5371198b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper fix response template",
+  "task_key": "worker_paper_fix_response_template_20260522T082121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_response_template_20260522T082121_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "731fbd953f7ace2fbfa0034395c7b84fdc79c559f5f18d0a65ac5cae64d6b534"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Summary:\n\n**Q5 语气修复** — 末尾已从 \"would welcome the reviewer identifying any prior study\" 替换为 \"We are not aware of such a study but would appreciate any references we may have overlooked.\"\n\n**编号对照表**（template 引用 → PDF 实际）：\n\n| Template 引用 | PDF 实际编号 | 内容 | 状态 |\n|---|---|---|---|\n| §1, §2, §4.3, §4.4 | 1, 2, 4.3, 4.4 | Introduction, Related Work, BCS-Controlled, Multi-Dim | ✓ 一致 |\n| Table 2 | Table 2 | Pairwise SCS–confusion correlation | ✓ 一致 |\n| Table 5 | Table 5 | NER batch-level BCS–F1 across models | ✓ 一致 |\n| Figure 2 | Figure 2 | Error taxonomy decomposition | ✓ 一致 |\n| Appendix C | Appendix C | Factorial Analysis and Separability Test | ✓ 一致 |\n| Appendix E.1 | Appendix E.1 | Partial Correlation / Ridge regression | ✓ 一致 |\n| ~~Appendix D.4~~ → **Appendix E.2** | E.2 | NER BCS-Null Power Analysis | **已修正** (Q1, Q4) |\n| ~~Appendix D.3~~ → **Appendix Y** | Y | Relaxed Matching Evaluation (NER) | **已修正** (Q1, Q4) |\n| ~~Table 7~~ → **Table 10** | Table 10 | TOST sensitivity analysis | **已修正** (Q3) |\n\n3 处编号不一致，均已就地修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

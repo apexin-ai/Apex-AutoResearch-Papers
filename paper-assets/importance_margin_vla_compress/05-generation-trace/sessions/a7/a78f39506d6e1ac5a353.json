@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "a78f39506d6e1ac5a353",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval acis k05 supplement 200eps",
+  "task_key": "worker_eval_acis_k05_supplement_200eps_20260518T132147",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_acis_k05_supplement_200eps_20260518T132147.log",
+    "occurrence": 1,
+    "bytes": 1049667,
+    "sha256": "0737189384df580a47f73799f48832ebc35bbb0e99374d03206198ca61562cfe"
+  },
+  "statistics": {
+    "messages": 621,
+    "user_turns": 0,
+    "tool_calls": 264,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 264,
+      "tool_result": 264,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 621,
+      "chunks": [
+        {
+          "path": "a78f39506d6e1ac5a353-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a78f39506d6e1ac5a353-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a78f39506d6e1ac5a353-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a78f39506d6e1ac5a353-part-0004.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ]
+}

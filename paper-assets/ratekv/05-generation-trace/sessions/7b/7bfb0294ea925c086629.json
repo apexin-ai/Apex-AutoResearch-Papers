@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfb0294ea925c086629",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_7_1778819736.md",
+  "task_key": "loop_7_1778819736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778819736.md",
+    "occurrence": 1,
+    "bytes": 4308,
+    "sha256": "308b2f60349712951dab0a32723b7da225b338c778168db715b8acddd26808ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-15T04:35:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-37397 cuda:0, cuda:1（仅此两张，不可用其他）\n- Mistral-7B-v0.3 模型路径必须用 `/root/autodl-tmp/models/Mistral-7B-v0.3`（v1-v3 三次失败都是模型文件问题，v4 才从 HF 重新下载成功）\n- gemma2_hires_bf16_2bitonly 被 cron 误判为 ANALYZING，实际进程 PID 268242 仍在跑（~336 heads, ETA ~00:00 UTC）。**不要对它做 DONE/重跑操作**，等它自然完成\n- Qwen concentration 全文统一用 0.61（D051 决策），不要用 0.59-0.66 range\n- 论文 ARR May 25 deadline 距今 11 天，所有实验服务于 paper revision\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，2× RTX PRO 6000 96GB\n- 工作目录：`/root/ratekv/`（代码）、`/root/runs/ratekv/`（日志）\n- Python：`/root/miniconda3/bin/python`（conda base，不用 venv）\n- 模型路径：Qwen `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B`、Gemma-2 `/root/autodl-tmp/.hf_cache/google/gemma-2-9b`、Mistral `/root/autodl-tmp/models/Mistral-7B-v0.3`、Llama `/root/autodl-tmp/models/Llama-3.1-8B`、Yi-1.5 `/root/autodl-tmp/models/Yi-1.5-9B`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：gemma2_hires PID 268242 (cuda:0, tmux 管理)；mistral v4 刚退出 (cuda:1)\n- Calibration 数据：`/root/ratekv/calibration_hires.json`（64seq×2048tok）\n\n### 3. 📊 当前状态\n**刚做完**：收到 mistral_hires_bf16_2bitonly_v4 的 CRON 完成回调（进程正常退出）。已 spawn Worker `worker_analyze_mistral_hires_bf16_2bitonly_v4_20260514T223456` 去 SSH 读日志提取 metrics 并更新 registry。\n\n**ANALYZING 实验**：\n- `mistral_hires_bf16_2bitonly_v4`：真正完成，Worker 正在分析\n- `gemma2_hires_bf16_2bitonly`：cron 误判，PID 268242 实际仍在跑（22:15 UTC 时 31/336 heads，ETA ~00:00 UTC）\n\n**等待中**：\n- Worker 回调：mistral 分析 Worker 完成后会触发 [WORKER DONE]\n- Gemma2 完成后会有新的 CRON 回调\n- Director 决策：P0 patches 值替换方案（0.61 vs 0.59-0.66）——已由 D051 决定用 0.61\n\n**尚未向 Director 汇报本轮 mistral v4 结果**——等 Worker 拿到 metrics 后再汇报。\n\n### 4. 📋 待办\n- Worker [WORKER DONE] 回调到达 → 读 Worker 产出，确认 registry 已更新，向 Director 汇报 Mistral hires concentration + shape 判定 + 5 模型全景图完成度\n- Mistral concentration 确认后 → 更新 ROADMAP 5-Model Evidence 表中 Mistral hires 数据（替换 standard 0.22）\n- gemma2 CRON 回调到达 → spawn Worker 分析 Gemma-2 hires 结果，同样流程\n- 5 模型 hires 全部完成 → 汇报 Director：hires 全景图定稿，Table 3 ddagger 标注可移除；触发 heatmap 重生成（用 hires 数据替换 standard）\n- cuda:1 现在空闲 → 评估是否有待跑实验可以利用（当前 ROADMAP 没有新实验排队，可能需要等 Director 指示）\n- Group C 审稿报告回传 → 处理审稿意见\n\n### 5. 🎯 战略上下文\n**核心结论**：cardinality constraint 是方法贡献（greedy=MCKP, Δ=0.0000）；heterogeneity distribution shape（spike vs spread vs flat）决定 non-uniform 是否值得，GQA ratio 不是可靠 proxy（Yi-1.5 8:1 却 FAIL，反证）。\n\n**5 模型 hires 全景图**（这是当前最后的实验批次）：\n| Model | Hires Conc. | Shape | MCKP vs Uniform | Status |\n|-------|------------|-------|-----------------|--------|\n| Qwen | 0.61 | Spread | +27.3% ✅ | Done |\n| Yi-1.5 | 0.71 | Spike | ≈0% ❌ | Done |\n| Llama | 0.57 | Spike | ≈0% | Done |\n| Mistral | ? (std=0.22) | Flat? | -0.4% ❌ | **← 分析中** |\n| Gemma-2 | ? (std=0.23) | Flat? | -0.3% ❌ | **← 仍在跑** |\n\n**易错点**：\n- Gemma-2 的 cron 会再次误报完成——必须检查 profiles JSON 是否真正生成，不要盲信 cron 状态\n- Mistral 之前 standard concentration=0.22 极低，hires 大概率仍 flat（<0.30）。如果 hires 确认 flat，Mistral 是 \"genuine flat\" 模型，强化 Claim 3 的 0.50 threshold 叙事\n- 论文中 Mistral hires t1/t5 值已在上一轮 commit 中更新（concentration=0.24, t1/t5=0.41），但这些值来自 standard profiling 的 hires 重跑——如果 v4 产出不同数字需要再次更新 .tex\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

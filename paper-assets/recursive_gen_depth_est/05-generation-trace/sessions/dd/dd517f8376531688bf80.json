@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd517f8376531688bf80",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "diagnose n2 deberta finetune 001",
+  "task_key": "worker_diagnose_n2_deberta_finetune_001_20260515T131545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_n2_deberta_finetune_001_20260515T131545_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "b358c3c69032794e16e08253dcd9e498280e833d450d980fb5c60fd425184af0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因：非失败 — 实验已正常完成\n\nEXIT_CODE=129 (SIGHUP) **不是训练中途崩溃**。日志显示 5/5 folds 全部跑完，结果已保存到 `results.json` 和 `fold_predictions.npz`。SIGHUP 发生在训练结束之后，最可能的原因是：启动训练的 SSH session/tmux 在脚本完成后断开，bash wrapper 收到 SIGHUP 信号，导致 exit code 被覆盖为 129。**训练本身成功完成。**\n\n### 训练进度：全部完成\n\n- 5 个 fold × 3 epochs × 1000 steps = 全部跑完\n- 总耗时 3727 秒（~62 分钟）\n\n### 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 0.5831 ± 0.0467 |\n| **Per-class F1** | d0=0.947, d1=0.378, d2=0.247, d3=0.656 |\n| **Pairwise AUC** | d0v1=0.981, d1v2=0.733, d2v3=0.755 |\n\n### 产出文件\n\n- `results/n2_deberta_finetune/results.json` (2.8KB)\n- `results/n2_deberta_finetune/fold_predictions.npz` (1MB)\n\n### 服务器状态\n\n- GPU 0 空闲（0MiB），GPU 1 被另一进程(PID 243827)使用\n- 磁盘充足：根分区 25% 使用，数据盘 40% 使用\n\n### 重跑建议\n\n不需要重跑 — 实验已完成。可直接使用 `results.json` 中的结果。注意 depth 1 和 depth 2 的分类表现较弱（F1 < 0.4），如果需要改进，可以考虑增加 epochs、调整类别权重、或使用更大的模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

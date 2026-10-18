@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a9dcd244e1d7435c5181",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval baseline v6 mode collapse and sr",
+  "task_key": "worker_eval_baseline_v6_mode_collapse_and_sr_20260516T105955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_baseline_v6_mode_collapse_and_sr_20260516T105955_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "b63e9436085cfb1555e1eada43b6224259bb843e6dde4c886f787e53f48eb79d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE / negative。\n\n## 总结\n\n**Task B (Mode Collapse 验证): FAIL**\n- Noise diversity std = **0.007352** (阈值 < 0.01 = FAIL)\n- alpha=64 时 std=0.006，alpha=16 时 std=0.007 — 几乎无改善\n- Cross-obs std = 0.096（不同 obs 可以产生不同 action），但 same-obs 不同 noise seed 仍收敛到同一 action\n\n**Task C (Success Rate): 未执行** — mode collapse 未修复，success rate 必定 0%\n\n**结论**: LoRA scale 不是 mode collapse 的根因。alpha 从 64 降到 16（scale 从 2.0 降到 0.5）对 ODE noise diversity 无实质改善。问题可能在 flow matching ODE + LoRA fine-tuning 的根本兼容性上 — LoRA 修改的参数子空间导致 velocity field 在推理时（从纯 noise 出发）无法正确积分，无论 scale 大小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

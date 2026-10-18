@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08d9146ca52a26f272cc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla sc m128 vtconly 20k seed42",
+  "task_key": "worker_diagnose_eval_openvla_sc_m128_vtconly_20k_seed42_20260520T075058",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_sc_m128_vtconly_20k_seed42_20260520T075058_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "207893dc78267a8e7fe79c184922da62f636808329caf1a99cb998220c93b26f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**根因：Cron 监控的 session name 格式校验 bug，进程本身正在正常运行。**\n\n关键事实：\n- **PID 909497 活着**，CPU 153%，已运行 ~14 分钟\n- tmux session `eval_openvla_sc_m128_20k` 存在且进程在其中运行\n- 日志最后更新 15:46:23，当前正在执行 Task 0 Ep 2/50（Ep 1 FAIL，280 steps，耗时 ~8 分钟）\n- Checkpoint 存在（19.9GB）\n- GPU 0 占用 36GB 显存\n\n**Cron 报错原因**：监控系统将 `tmux:eval_openvla_sc_m128_20k` 整串作为 session name 校验，冒号 `:` 不匹配 `[a-zA-Z0-9_-]+` 正则，导致连续 5 次检查失败报 failure。这是 cron 监控侧的 bug，不影响实际进程。\n\n**不需要重试**。进程正常运行中，等它跑完即可。10 tasks × 50 episodes，每个 episode 最多 280 steps（~8 分钟），预计总耗时较长（成功的 episode 会更快结束）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "6f3e4497ed4c3e33102b",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "exp verbosity 32b full pipeline",
+  "task_key": "worker_exp_verbosity_32b_full_pipeline_20260520T182251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_verbosity_32b_full_pipeline_20260520T182251.log",
+    "occurrence": 1,
+    "bytes": 662501,
+    "sha256": "d765c30f0490d8f90b929b9ec54ea34eb595f98e9ede0fe5ce73d710221180d6"
+  },
+  "statistics": {
+    "messages": 295,
+    "user_turns": 2,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 53,
+      "tool_call": 114,
+      "tool_result": 114,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "6f3e4497ed4c3e33102b-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "6f3e4497ed4c3e33102b-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "6f3e4497ed4c3e33102b-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "6f3e4497ed4c3e33102b-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ]
+}

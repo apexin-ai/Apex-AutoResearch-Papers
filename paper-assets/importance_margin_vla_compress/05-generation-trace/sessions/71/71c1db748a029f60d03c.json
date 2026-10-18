@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "71c1db748a029f60d03c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops fix smart compress eval episodes",
+  "task_key": "worker_ops_fix_smart_compress_eval_episodes_20260518T013319",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix_smart_compress_eval_episodes_20260518T013319_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "2855f7b925dd3fb2dcd380235a439693c6d9d60447d04afe6f3e017b75249467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 进程正常运行：\n\n| 配置 | PID | GPU | 状态 |\n|------|-----|-----|------|\n| M=32 | 541184 | GPU 0 | 运行中，已到 Ep 8/50 |\n| M=64 | 542036 | GPU 1 | 运行中，已到 Ep 3/50 |\n\n**修正内容：**\n- 旧进程 420909/426524 已不存在（之前已结束或被 kill）\n- `--num_episodes 500` → `--num_episodes 50`（每 task 50 eps）\n- 参数名修正：`--n_queries`（非 `--num_queries`）\n- 加了 `--seed 42`\n- 加了 `HF_HOME=/root/autodl-tmp/.hf_cache`（原脚本漏了这个环境变量，导致首次重启失败）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

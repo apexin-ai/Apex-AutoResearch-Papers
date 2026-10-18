@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe0f338b2d67273580c",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "analysis exp 005 extended jaccard",
+  "task_key": "worker_analysis_exp-005-extended-jaccard_20260523T020824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-extended-jaccard_20260523T020824.log",
+    "occurrence": 1,
+    "bytes": 993568,
+    "sha256": "5f93035043e0a390f1416e73281b67052dedfd9111990329ee34a8f2782f5be6"
+  },
+  "statistics": {
+    "messages": 677,
+    "user_turns": 0,
+    "tool_calls": 303,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 303,
+      "tool_result": 303,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 677,
+      "chunks": [
+        {
+          "path": "ffe0f338b2d67273580c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ffe0f338b2d67273580c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ffe0f338b2d67273580c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ffe0f338b2d67273580c-part-0004.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ]
+}

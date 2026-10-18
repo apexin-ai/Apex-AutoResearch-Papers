@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aa7170f6e663617092de",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix westd41074 pi05 random k075 strict crash",
+  "task_key": "worker_fix_westd41074_pi05_random_k075_strict_crash_20260527T053318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_westd41074_pi05_random_k075_strict_crash_20260527T053318_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "bb9b1360d6da2d5bd306c8cb5be5f4492a288e4b374acd0b3b27cf0af768a8dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Model loaded successfully and running on GPU1 (10.4GB VRAM). No tokenizer errors — preprocessor/postprocessor loaded fine. The eval is starting: `Suite: libero_10, 10 tasks, max_steps=520`.\n\nSummary:\n- Killed stale processes, freed GPU1\n- Root cause of original crash: `google/paligemma-3b-pt-224` tokenizer not cached when first strict runs launched. It's now cached in HF cache.\n- Resubmitted job with `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` for safety\n- **PID 177597 on GPU1, 10.4GB VRAM, evaluating libero_10 (random k=0.75, 50 episodes, seed 42)**\n- Note: the previous run we killed had already completed Task 0 (84%), so this restart will redo that work (~15 min per task, ~2.5h total for all 10 tasks)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

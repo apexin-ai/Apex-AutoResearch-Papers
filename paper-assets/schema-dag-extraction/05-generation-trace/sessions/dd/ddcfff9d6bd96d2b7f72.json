@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ddcfff9d6bd96d2b7f72",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp docred bcs expanded",
+  "task_key": "worker_diagnose_exp_docred_bcs_expanded_20260519T124512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_docred_bcs_expanded_20260519T124512_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "f3a72d0e8dfaffdc5501b1dec9a82d09ddee3f11f5e82e998465099bce817b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**进度**: 完成 6/40 新 batches（batch 7 正在推理时被 kill）。日志显示 batch 1-6 的 accuracy 在 0.42-0.47 之间。\n\n**无法 resume**: \n- 脚本**不支持断点恢复**——没有 resume/checkpoint 逻辑\n- `run_incremental_inference` 将所有新 batch 结果累积在内存中的 `all_results` 列表，只在全部 40 个 batch 跑完后一次性写入 `all_predictions.json`\n- 输出目录只有 `preprocess_config.json`（686KB）和 `run.log`（23KB），没有中间结果文件\n- 已完成的 6 个 batch 的推理结果**全部丢失**\n\n**可复用的部分**: \n- `preprocess_config.json` 仍在，包含 batch 配置和样本数据，preprocess 阶段不需要重跑\n- 旧实验 `exp_docred_confusability` 的 predictions 仍可复用（脚本设计就是增量的，从那里加载已有 BCS predictions）\n\n**GPU 状态**: RTX PRO 6000 (98GB), 0% 利用率，完全空闲可用。\n\n**建议**: 直接用 `--stage infer` 重跑推理阶段（跳过 preprocess），40 个 batch 全部重跑。每个 batch 约 3-4 秒推理，加上模型加载 ~40 秒，总计约 3-4 分钟。或者，可以先给脚本加 per-batch checkpoint 逻辑再跑，避免下次中断又白跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

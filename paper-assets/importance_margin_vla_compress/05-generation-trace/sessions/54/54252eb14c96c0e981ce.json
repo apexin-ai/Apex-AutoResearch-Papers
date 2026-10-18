@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "54252eb14c96c0e981ce",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent westd38929 harvest deploy",
+  "task_key": "worker_urgent_westd38929-harvest-deploy_20260524T021321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_westd38929-harvest-deploy_20260524T021321_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "704a916150f2e6b7b05e244af8794646f0aac4ce14656d1abd15399702ee72ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## Phase 1 收割\n\n| 实验 | 状态 | SR | 说明 |\n|------|------|-----|------|\n| eval_xvla_random_k085_object_seed42 | **DONE** | 65.0% (325/500) | Registry 已更新 |\n| eval_xvla_random_k085_goal_seed42 | RUNNING (GPU 2) | 进行中 ~task 6-7 | PID 674830 |\n| eval_xvla_random_k085_spatial_seed42 | RUNNING (GPU 3) | 进行中 task 8 | PID 674970，预计 30min 内完成 |\n\n## Phase 2 部署\n\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | eval_xvla_l2norm_k05_goal_seed42_v2 | 950541 | 已启动，正在出结果 |\n| 1 | eval_xvla_l2norm_k05_spatial_seed42_v2 | 951171 | 已启动，正在出结果 |\n\n4 GPU 满载。GPU 2/3 的 k085 实验完成后可部署 l2norm k07 goal/spatial（如需 Table 2 数据）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

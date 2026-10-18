@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2caa48d12fa187ccd6d3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code plan 024 downstream benchmark",
+  "task_key": "worker_code_plan_024_downstream_benchmark_20260517T155538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_024_downstream_benchmark_20260517T155538_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "5acaf8e7b32c5e538d7256ad35b3820ac9fe1b2fc7a86f6b4a580bfb71316dc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。5 个脚本已写入服务器 `/root/autodl-tmp/recursive_gen_depth_est/scripts/`：\n\n| 脚本 | 功能 | 依赖 |\n|------|------|------|\n| `downstream_score_data.py` | RF 训练 + C4 depth 打分 | CPU only |\n| `downstream_filter.py` | 按 depth 过滤 4 种条件 | CPU only |\n| `downstream_finetune.py` | Pythia-410M LoRA fine-tune | GPU |\n| `downstream_eval.sh` | lm-eval-harness 评估 3 benchmarks | GPU |\n| `run_downstream_full.sh` | 端到端串联 | — |\n\n验证结果：\n- `--help` 全部正常\n- Dry-run scoring: RF 在 20K labeled data 上 val acc = **77.4%**，C4 数据成功打分\n- Dry-run filter: 4 种条件文件正常输出\n- `lm-eval` 0.4.11 和 `peft` 0.7.1 已安装\n\n代码 ready to run，等 GPU 分配后执行 `bash scripts/run_downstream_full.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

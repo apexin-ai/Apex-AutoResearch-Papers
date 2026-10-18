@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "54cbf08f3e901a386213",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_14_1779848156.md",
+  "task_key": "loop_14_1779848156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1779848156.md",
+    "occurrence": 1,
+    "bytes": 4803,
+    "sha256": "7bea2e4ecaa8dbd5320f1436b40e89d26dae8778e523eef9dc444680c4160ae7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-27T01:23:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-3，4台服务器共14张（westd-27271 可能只有 GPU 0+1，需 nvidia-smi 确认）\n- OpenVLA mode 名：`--mode l2norm_prune`（不是 `l2norm`）、`--mode random_prune`（不是 `random`）、`--mode attention_prune`\n- X-VLA L2norm mode 是 `--mode l2_norm`（有下划线），与 OpenVLA 不同\n- 部署 OpenVLA 实验必须显式传 `--model_path` 和 `--unnorm_key`，不要依赖脚本默认路径（默认会静默加载 Object 模型）\n- π0.5 实验必须带 `MUJOCO_GL=egl TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1`\n- cqa1 transformers=5.5.3 不兼容 OpenVLA，cqa1 仅跑 π0.5 实验\n- eval_openvla_random_k05_goal_seed42 的 cron 会反复触发 on_failed 回调（过期回调），实际成功 SR=52.2%——忽略后续同 exp_id 回调\n\n### 2. 🖥️ 基础设施快照\n- **westd-27271**: `/root/autodl-tmp/importance_margin_vla_compress`, conda base (`/root/miniconda3`), 模型直接在 `/root/autodl-tmp/openvla-7b-finetuned-libero-{goal,object}`，Spatial 模型存在性 ❓\n- **westd-38929**: 同路径, 模型在 `/root/autodl-tmp/models/`（有 models/ 前缀！）: openvla-libero-object, openvla-7b-finetuned-libero-10, X-VLA-Libero\n- **westd-41074**: 同路径, `/root/autodl-tmp/openvla-libero-object`, `/root/autodl-tmp/openvla-7b-finetuned-libero-10`(rsync), π0.5 模型 `/root/autodl-tmp/pi05_libero_finetuned`\n- **cqa1-33015**: 同路径, π0.5 模型 `/root/autodl-tmp/pi05_libero_finetuned`, OpenVLA Goal 模型 `/root/autodl-tmp/openvla-libero-goal`\n- HF cache: 所有服务器 `/root/autodl-tmp/.hf_cache`\n- 活跃 Workers: worker_ops_cqa1_gpu01_redeploy (turn 13, 部署 L2n+Attn k=0.75 Long), worker_deploy_westd27271_goal_cliff (刚启动), worker_deploy_westd38929_gpu3_long (刚启动)\n\n### 3. 📊 当前状态\nSession 14 刚启动，完成了 session-start 初始化：reconcile crons（7个活跃，全部进程存活），killed eval_openvla_baseline_spatial_seed42_v4（D235 决定 baseline 80% 有效），已向 Director 汇报。\n\n**RUNNING 实验 (10)：**\n| 服务器 | GPU | exp_id 关键词 | 说明 |\n|--------|-----|--------------|------|\n| westd-38929 | 0 | random_k085_object_v2 (pid=285940) | cliff curve |\n| westd-38929 | 1 | random_k05_long_v2 (pid=279274) | extreme |\n| westd-38929 | 2 | attn_k085_goal_v3 (pid=412621) | cliff curve |\n| westd-41074 | 0 | random_k085_long_v3 (pid=415537) | cliff curve |\n| westd-41074 | 1 | l2norm_k085_object (tmux=eval_k085_obj) | cliff curve |\n| westd-41074 | 2 | attn_k07_object (pid=415737) | cliff curve |\n| westd-41074 | 3 | l2norm_k095_object (tmux=eval_k095_obj) | near-baseline |\n| westd-27271 | 1 | attn_k09_goal_seed43_v4 (pid=112477) | cross-seed |\n| cqa1 | 2 | pi05_l2norm_k05_long_v4 (pid=77661) | 重跑 |\n| cqa1 | 3 | pi05_random_k05_long_v3 (pid=77832) | 重跑 |\n\n**等待回调：** 3 个 Worker（westd-27271 Goal cliff deploy, westd-38929 GPU3 deploy, cqa1 GPU0-1 redeploy）\n\n### 4. 📋 待办\n- westd-27271 Worker 回调 → 确认实际部署了几个实验（如服务器仅 2 GPU 则只有 1 个 Goal 实验）\n- westd-38929 Worker 回调 → 确认 GPU3 L2norm k=0.5 Long 已启动\n- cqa1 Worker 回调 → 确认 GPU0-1 π0.5 L2n k=0.75 + Attn k=0.75 已启动\n- 任一 Object cliff curve 实验完成（L2norm k=0.85/k=0.95, Attn k=0.7, Random k=0.85）→ 更新 cliff curve 数据表，检查是否可以开始生成 fig_pruning_overview\n- ROADMAP 标记 \"补注册 Goal seed43（L2norm=75.2%, Random=80.4%）\"→ 需 Worker 查服务器日志找到这两个数据并注册到 registry\n- 全部 cliff curve 数据齐全 → fig_crosssuite.pdf 重新生成 + Cliff model refit\n- CoRL Paper 截止 5/29（3 天）\n\n### 5. 🎯 战略上下文\n- **CoRL 2026**: Abstract 5/26 已定稿，Paper 5/29 截止\n- **核心叙事**: Architecture-dependent importance scoring validity — connector 类型决定哪种 scoring 有效。Crossover table 16/16 完成。L2norm Long 完美单调（D237）升级为 position-aware pruning narrative\n- **2×2 Crossover**: Entangling(X-VLA) Attn✅/L2❌, MLP(OpenVLA) L2✅/Attn❌(Object), Linear(π0.5) Random cliff peak confirmed\n- **当前批次目标**: 填充 cliff curves 中间数据点（k=0.85, k=0.7, k=0.5），用于论文 figures\n- **易错点**: (1) westd-27271 GPU 数量不确定，可能只有 2 张——部署前必须 nvidia-smi (2) westd-38929 模型在 `/root/autodl-tmp/models/` 子目录（有 models/ 前缀），其他服务器直接在 `/root/autodl-tmp/` (3) eval_openvla_l2norm_k09_goal_seed43_v2 显示 \"failed\" 但 ROADMAP 写 L2norm=75.2%——数据来源不明，不要直接引用未验证数字 (4) D235 已撤销 D232，Spatial baseline 80.0% 有效，不需要重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

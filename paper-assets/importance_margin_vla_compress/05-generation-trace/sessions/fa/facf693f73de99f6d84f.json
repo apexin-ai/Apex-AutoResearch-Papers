@@ -1,0 +1,734 @@
+{
+  "schema_version": "1.0",
+  "id": "facf693f73de99f6d84f",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "analysis eval smart compress m16",
+  "task_key": "worker_analysis_eval_smart_compress_m16_20260518T050918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_smart_compress_m16_20260518T050918.log",
+    "occurrence": 1,
+    "bytes": 50000,
+    "sha256": "4ffe171b7c9157f86988dde733a38f0cc946922c0a896935ddd71a84408e391a"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+                "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9116543e-73e2-473c-9f6c-90c8da801d4b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779085200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "cae92f23-e042-45d3-9d1a-9fbdaa9460a8",
+                "session_id": "1ee3f0f2-5989-495f-8292-be424c098453"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me SSH to cqa1-33015 to read the evaluation log file.",
+              "signature": "EvQBClkIDRgCKkC1PlU10FLEE6sSouktz8jiFeoySlLiAGCBG8/9BOBSxj3LW1lUGnEaFWRKIR6csEXCHuuKu19fjwviFLgpQWSdMg9jbGF1ZGUtb3B1cy00LTY4ABIM28rwWMk2V90KbBPXGgyn+iYhD092IA2hguUiMOQ8VZCPzTrL5CoFoTPEh75HeqPRLmaPioJV23xo0O+mPUgUlANs7/iZiJi/yQYZLCpJADVsJZCeyjQUhgFRh2RH+b2ec3PXga9e+9ISQ7JSv4CmCyTuPWw/qrIpdxLUw+qakjH9s0bR/qtA9otio22mYXIW/0lyJQOehRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "f3e2d691-c6e6-4351-bad3-32bc26499542",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L8KJxUGkTGQS1L6V3TPMnc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12716,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12716
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WPxEfghNydaLUuhnTm7hoc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "42d42016-6768-4316-b61f-73447a01205c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L8KJxUGkTGQS1L6V3TPMnc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12716,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12716
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T05:09:27.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WPxEfghNydaLUuhnTm7hoc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "c0dfe909-86ca-491e-b4e5-52f0d09a45a7",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N4LNwNVuD5tVc7XxdtpdXK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-33015",
+                "command": "cat ~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "8c551f86-f98a-4615-a0ea-4e6be69b2633",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KdVvPBRGAZicFuaD3zMsUU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 24557,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T05:09:32.588Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N4LNwNVuD5tVc7XxdtpdXK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 12:11:02 [INFO] Suite: libero_object | Device: cuda:0 | M=16 | Episodes/task: 50 | Max steps: 280\\\\n2026-05-18 12:11:02 [INFO] Loading model from checkpoints/smart_compress_m16/checkpoint.pt ...\\\\n2026-05-18 12:11:02 [INFO] JAX version 0.10.0 available.\\\\nYou have video processor config saved in `preprocessor.json` file which is deprecated. Video processor configs should be saved in their own `video_preprocessor.json` file. You can rename the file or load and save the processor back which renames it automatically. Loading from `preprocessor.json` will be removed in v5.0.\\\\n2026-05-18 12:11:15 [INFO] Checkpoint loaded with strict match (no missing/unexpected keys)\\\\n2026-05-18 12:11:15 [INFO] SmartCompressWrapper loaded: M=16, compressor params=22164480\\\\n2026-05-18 12:11:15 [INFO] Model loaded in 13.5s\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-18 12:11:16 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-18 12:11:16 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-18 12:11:16 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-18 12:11:16 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n2026-05-18 12:11:17 [INFO] Suite 'libero_object' has 10 tasks, evaluating 10: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-18 12:11:17 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\\\n2026-05-18 12:11:27 [INFO]   Ep 1/50 | SUCCESS | steps=147\\\\n2026-05-18 12:11:33 [INFO]   Ep 2/50 | SUCCESS | steps=117\\\\n2026-05-18 12:11:41 [INFO]   Ep 3/50 | FAIL | steps=280\\\\n2026-05-18 12:11:48 [INFO]   Ep 4/50 | FAIL | steps=280\\\\n2026-05-18 12:11:55 [INFO]   Ep 5/50 | FAIL | steps=280\\\\n2026-05-18 12:12:02 [INFO]   Ep 6/50 | FAIL | steps=280\\\\n2026-05-18 12:12:08 [INFO]   Ep 7/50 | SUCCESS | steps=124\\\\n2026-05-18 12:12:15 [INFO]   Ep 8/50 | SUCCESS | steps=141\\\\n2026-05-18 12:12:21 [INFO]   Ep 9/50 | FAIL | steps=280\\\\n2026-05-18 12:12:27 [INFO]   Ep 10/50 | SUCCESS | steps=128\\\\n2026-05-18 12:12:33 [INFO]   Ep 11/50 | FAIL | steps=280\\\\n2026-05-18 12:12:39 [INFO]   Ep 12/50 | SUCCESS | steps=121\\\\n2026-05-18 12:12:45 [INFO]   Ep 13/50 | SUCCESS | steps=143\\\\n2026-05-18 12:12:51 [INFO]   Ep 14/50 | SUCCESS | steps=134\\\\n2026-05-18 12:12:58 [INFO]   Ep 15/50 | FAIL | steps=280\\\\n2026-05-18 12:13:04 [INFO]   Ep 16/50 | SUCCESS | steps=120\\\\n2026-05-18 12:13:10 [INFO]   Ep 17/50 | SUCCESS | steps=125\\\\n2026-05-18 12:13:17 [INFO]   Ep 18/50 | FAIL | steps=280\\\\n2026-05-18 12:13:23 [INFO]   Ep 19/50 | SUCCESS | steps=115\\\\n2026-05-18 12:13:29 [INFO]   Ep 20/50 | SUCCESS | steps=129\\\\n2026-05-18 12:13:36 [INFO]   Ep 21/50 | SUCCESS | steps=141\\\\n2026-05-18 12:13:42 [INFO]   Ep 22/50 | SUCCESS | steps=125\\\\n2026-05-18 12:13:48 [INFO]   Ep 23/50 | SUCCESS | steps=134\\\\n2026-05-18 12:13:55 [INFO]   Ep 24/50 | FAIL | steps=280\\\\n2026-05-18 12:14:03 [INFO]   Ep 25/50 | FAIL | steps=280\\\\n2026-05-18 12:14:10 [INFO]   Ep 26/50 | FAIL | steps=280\\\\n2026-05-18 12:14:17 [INFO]   Ep 27/50 | FAIL | steps=280\\\\n2026-05-18 12:14:24 [INFO]   Ep 28/50 | FAIL | steps=280\\\\n2026-05-18 12:14:31 [INFO]   Ep 29/50 | FAIL | steps=280\\\\n2026-05-18 12:14:39 [INFO]   Ep 30/50 | FAIL | steps=280\\\\n2026-05-18 12:14:45 [INFO]   Ep 31/50 | FAIL | steps=280\\\\n2026-05-18 12:14:50 [INFO]   Ep 32/50 | SUCCESS | steps=120\\\\n2026-05-18 12:14:57 [INFO]   Ep 33/50 | SUCCESS | steps=133\\\\n2026-05-18 12:15:02 [INFO]   Ep 34/50 | SUCCESS | steps=124\\\\n2026-05-18 12:15:09 [INFO]   Ep 35/50 | SUCCESS | steps=130\\\\n2026-05-18 12:15:16 [INFO]   Ep 36/50 | FAIL | steps=280\\\\n2026-05-18 12:15:22 [INFO]   Ep 37/50 | FAIL | steps=280\\\\n2026-05-18 12:15:27 [INFO]   Ep 38/50 | SUCCESS | steps=123\\\\n2026-05-18 12:15:34 [INFO]   Ep 39/50 | SUCCESS | steps=138\\\\n2026-05-18 12:15:42 [INFO]   Ep 40/50 | FAIL | steps=280\\\\n\\\\n\\\\n... [截断: 输出过长，省略 26083 字符] ...\\\\n\\\\np 13/50 | SUCCESS | steps=99\\\\n2026-05-18 13:02:02 [INFO]   Ep 14/50 | FAIL | steps=280\\\\n2026-05-18 13:02:08 [INFO]   Ep 15/50 | SUCCESS | steps=114\\\\n2026-05-18 13:02:16 [INFO]   Ep 16/50 | FAIL | steps=280\\\\n2026-05-18 13:02:24 [INFO]   Ep 17/50 | FAIL | steps=280\\\\n2026-05-18 13:02:32 [INFO]   Ep 18/50 | FAIL | steps=280\\\\n2026-05-18 13:02:38 [INFO]   Ep 19/50 | SUCCESS | steps=114\\\\n2026-05-18 13:02:44 [INFO]   Ep 20/50 | FAIL | steps=280\\\\n2026-05-18 13:02:51 [INFO]   Ep 21/50 | FAIL | steps=280\\\\n2026-05-18 13:02:58 [INFO]   Ep 22/50 | FAIL | steps=280\\\\n2026-05-18 13:03:04 [INFO]   Ep 23/50 | FAIL | steps=280\\\\n2026-05-18 13:03:11 [INFO]   Ep 24/50 | FAIL | steps=280\\\\n2026-05-18 13:03:18 [INFO]   Ep 25/50 | FAIL | steps=280\\\\n2026-05-18 13:03:25 [INFO]   Ep 26/50 | FAIL | steps=280\\\\n2026-05-18 13:03:32 [INFO]   Ep 27/50 | FAIL | steps=280\\\\n2026-05-18 13:03:39 [INFO]   Ep 28/50 | FAIL | steps=280\\\\n2026-05-18 13:03:44 [INFO]   Ep 29/50 | FAIL | steps=280\\\\n2026-05-18 13:03:50 [INFO]   Ep 30/50 | SUCCESS | steps=105\\\\n2026-05-18 13:03:57 [INFO]   Ep 31/50 | FAIL | steps=280\\\\n2026-05-18 13:04:05 [INFO]   Ep 32/50 | FAIL | steps=280\\\\n2026-05-18 13:04:13 [INFO]   Ep 33/50 | FAIL | steps=280\\\\n2026-05-18 13:04:20 [INFO]   Ep 34/50 | FAIL | steps=280\\\\n2026-05-18 13:04:27 [INFO]   Ep 35/50 | FAIL | steps=280\\\\n2026-05-18 13:04:33 [INFO]   Ep 36/50 | SUCCESS | steps=111\\\\n2026-05-18 13:04:40 [INFO]   Ep 37/50 | FAIL | steps=280\\\\n2026-05-18 13:04:46 [INFO]   Ep 38/50 | FAIL | steps=280\\\\n2026-05-18 13:04:52 [INFO]   Ep 39/50 | FAIL | steps=280\\\\n2026-05-18 13:04:58 [INFO]   Ep 40/50 | FAIL | steps=280\\\\n2026-05-18 13:05:05 [INFO]   Ep 41/50 | FAIL | steps=280\\\\n2026-05-18 13:05:12 [INFO]   Ep 42/50 | FAIL | steps=280\\\\n2026-05-18 13:05:19 [INFO]   Ep 43/50 | FAIL | steps=280\\\\n2026-05-18 13:05:25 [INFO]   Ep 44/50 | FAIL | steps=280\\\\n2026-05-18 13:05:33 [INFO]   Ep 45/50 | FAIL | steps=280\\\\n2026-05-18 13:05:39 [INFO]   Ep 46/50 | SUCCESS | steps=111\\\\n2026-05-18 13:05:46 [INFO]   Ep 47/50 | FAIL | steps=280\\\\n2026-05-18 13:05:53 [INFO]   Ep 48/50 | FAIL | steps=280\\\\n2026-05-18 13:06:01 [INFO]   Ep 49/50 | FAIL | steps=280\\\\n2026-05-18 13:06:08 [INFO]   Ep 50/50 | FAIL | steps=280\\\\n2026-05-18 13:06:08 [INFO]   Task 9 SR: 10/50 (20.0%)\\\\n2026-05-18 13:06:08 [INFO] ============================================================\\\\n2026-05-18 13:06:08 [INFO] SUITE: libero_object | M=16\\\\n2026-05-18 13:06:08 [INFO] Overall SR: 279/500 (55.8%)\\\\n2026-05-18 13:06:08 [INFO] 95% Wilson CI: [51.4%, 60.1%]\\\\n2026-05-18 13:06:08 [INFO]   Task 0: 56% (28/50) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 1: 44% (22/50) -- pick up the cream cheese and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 2: 72% (36/50) -- pick up the salad dressing and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 3: 56% (28/50) -- pick up the bbq sauce and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 4: 62% (31/50) -- pick up the ketchup and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 5: 40% (20/50) -- pick up the tomato sauce and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 6: 78% (39/50) -- pick up the butter and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 7: 54% (27/50) -- pick up the milk and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 8: 76% (38/50) -- pick up the chocolate pudding and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 9: 20% (10/50) -- pick up the orange juice and place it in the basket\\\\n2026-05-18 13:06:08 [INFO] ============================================================\\\\n2026-05-18 13:06:08 [INFO] Results saved to eval_results/smart_compress_m16_libero_object.json\\\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "7a2ab932-4f97-442d-8649-84b178817196",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 12:11:02 [INFO] Suite: libero_object | Device: cuda:0 | M=16 | Episodes/task: 50 | Max steps: 280\\\\n2026-05-18 12:11:02 [INFO] Loading model from checkpoints/smart_compress_m16/checkpoint.pt ...\\\\n2026-05-18 12:11:02 [INFO] JAX version 0.10.0 available.\\\\nYou have video processor config saved in `preprocessor.json` file which is deprecated. Video processor configs should be saved in their own `video_preprocessor.json` file. You can rename the file or load and save the processor back which renames it automatically. Loading from `preprocessor.json` will be removed in v5.0.\\\\n2026-05-18 12:11:15 [INFO] Checkpoint loaded with strict match (no missing/unexpected keys)\\\\n2026-05-18 12:11:15 [INFO] SmartCompressWrapper loaded: M=16, compressor params=22164480\\\\n2026-05-18 12:11:15 [INFO] Model loaded in 13.5s\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-18 12:11:16 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-18 12:11:16 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-18 12:11:16 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-18 12:11:16 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n2026-05-18 12:11:17 [INFO] Suite 'libero_object' has 10 tasks, evaluating 10: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-18 12:11:17 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\\\n2026-05-18 12:11:27 [INFO]   Ep 1/50 | SUCCESS | steps=147\\\\n2026-05-18 12:11:33 [INFO]   Ep 2/50 | SUCCESS | steps=117\\\\n2026-05-18 12:11:41 [INFO]   Ep 3/50 | FAIL | steps=280\\\\n2026-05-18 12:11:48 [INFO]   Ep 4/50 | FAIL | steps=280\\\\n2026-05-18 12:11:55 [INFO]   Ep 5/50 | FAIL | steps=280\\\\n2026-05-18 12:12:02 [INFO]   Ep 6/50 | FAIL | steps=280\\\\n2026-05-18 12:12:08 [INFO]   Ep 7/50 | SUCCESS | steps=124\\\\n2026-05-18 12:12:15 [INFO]   Ep 8/50 | SUCCESS | steps=141\\\\n2026-05-18 12:12:21 [INFO]   Ep 9/50 | FAIL | steps=280\\\\n2026-05-18 12:12:27 [INFO]   Ep 10/50 | SUCCESS | steps=128\\\\n2026-05-18 12:12:33 [INFO]   Ep 11/50 | FAIL | steps=280\\\\n2026-05-18 12:12:39 [INFO]   Ep 12/50 | SUCCESS | steps=121\\\\n2026-05-18 12:12:45 [INFO]   Ep 13/50 | SUCCESS | steps=143\\\\n2026-05-18 12:12:51 [INFO]   Ep 14/50 | SUCCESS | steps=134\\\\n2026-05-18 12:12:58 [INFO]   Ep 15/50 | FAIL | steps=280\\\\n2026-05-18 12:13:04 [INFO]   Ep 16/50 | SUCCESS | steps=120\\\\n2026-05-18 12:13:10 [INFO]   Ep 17/50 | SUCCESS | steps=125\\\\n2026-05-18 12:13:17 [INFO]   Ep 18/50 | FAIL | steps=280\\\\n2026-05-18 12:13:23 [INFO]   Ep 19/50 | SUCCESS | steps=115\\\\n2026-05-18 12:13:29 [INFO]   Ep 20/50 | SUCCESS | steps=129\\\\n2026-05-18 12:13:36 [INFO]   Ep 21/50 | SUCCESS | steps=141\\\\n2026-05-18 12:13:42 [INFO]   Ep 22/50 | SUCCESS | steps=125\\\\n2026-05-18 12:13:48 [INFO]   Ep 23/50 | SUCCESS | steps=134\\\\n2026-05-18 12:13:55 [INFO]   Ep 24/50 | FAIL | steps=280\\\\n2026-05-18 12:14:03 [INFO]   Ep 25/50 | FAIL | steps=280\\\\n2026-05-18 12:14:10 [INFO]   Ep 26/50 | FAIL | steps=280\\\\n2026-05-18 12:14:17 [INFO]   Ep 27/50 | FAIL | steps=280\\\\n2026-05-18 12:14:24 [INFO]   Ep 28/50 | FAIL | steps=280\\\\n2026-05-18 12:14:31 [INFO]   Ep 29/50 | FAIL | steps=280\\\\n2026-05-18 12:14:39 [INFO]   Ep 30/50 | FAIL | steps=280\\\\n2026-05-18 12:14:45 [INFO]   Ep 31/50 | FAIL | steps=280\\\\n2026-05-18 12:14:50 [INFO]   Ep 32/50 | SUCCESS | steps=120\\\\n2026-05-18 12:14:57 [INFO]   Ep 33/50 | SUCCESS | steps=133\\\\n2026-05-18 12:15:02 [INFO]   Ep 34/50 | SUCCESS | steps=124\\\\n2026-05-18 12:15:09 [INFO]   Ep 35/50 | SUCCESS | steps=130\\\\n2026-05-18 12:15:16 [INFO]   Ep 36/50 | FAIL | steps=280\\\\n2026-05-18 12:15:22 [INFO]   Ep 37/50 | FAIL | steps=280\\\\n2026-05-18 12:15:27 [INFO]   Ep 38/50 | SUCCESS | steps=123\\\\n2026-05-18 12:15:34 [INFO]   Ep 39/50 | SUCCESS | steps=138\\\\n2026-05-18 12:15:42 [INFO]   Ep 40/50 | FAIL | steps=280\\\\n\\\\n\\\\n... [截断: 输出过长，省略 26083 字符] ...\\\\n\\\\np 13/50 | SUCCESS | steps=99\\\\n2026-05-18 13:02:02 [INFO]   Ep 14/50 | FAIL | steps=280\\\\n2026-05-18 13:02:08 [INFO]   Ep 15/50 | SUCCESS | steps=114\\\\n2026-05-18 13:02:16 [INFO]   Ep 16/50 | FAIL | steps=280\\\\n2026-05-18 13:02:24 [INFO]   Ep 17/50 | FAIL | steps=280\\\\n2026-05-18 13:02:32 [INFO]   Ep 18/50 | FAIL | steps=280\\\\n2026-05-18 13:02:38 [INFO]   Ep 19/50 | SUCCESS | steps=114\\\\n2026-05-18 13:02:44 [INFO]   Ep 20/50 | FAIL | steps=280\\\\n2026-05-18 13:02:51 [INFO]   Ep 21/50 | FAIL | steps=280\\\\n2026-05-18 13:02:58 [INFO]   Ep 22/50 | FAIL | steps=280\\\\n2026-05-18 13:03:04 [INFO]   Ep 23/50 | FAIL | steps=280\\\\n2026-05-18 13:03:11 [INFO]   Ep 24/50 | FAIL | steps=280\\\\n2026-05-18 13:03:18 [INFO]   Ep 25/50 | FAIL | steps=280\\\\n2026-05-18 13:03:25 [INFO]   Ep 26/50 | FAIL | steps=280\\\\n2026-05-18 13:03:32 [INFO]   Ep 27/50 | FAIL | steps=280\\\\n2026-05-18 13:03:39 [INFO]   Ep 28/50 | FAIL | steps=280\\\\n2026-05-18 13:03:44 [INFO]   Ep 29/50 | FAIL | steps=280\\\\n2026-05-18 13:03:50 [INFO]   Ep 30/50 | SUCCESS | steps=105\\\\n2026-05-18 13:03:57 [INFO]   Ep 31/50 | FAIL | steps=280\\\\n2026-05-18 13:04:05 [INFO]   Ep 32/50 | FAIL | steps=280\\\\n2026-05-18 13:04:13 [INFO]   Ep 33/50 | FAIL | steps=280\\\\n2026-05-18 13:04:20 [INFO]   Ep 34/50 | FAIL | steps=280\\\\n2026-05-18 13:04:27 [INFO]   Ep 35/50 | FAIL | steps=280\\\\n2026-05-18 13:04:33 [INFO]   Ep 36/50 | SUCCESS | steps=111\\\\n2026-05-18 13:04:40 [INFO]   Ep 37/50 | FAIL | steps=280\\\\n2026-05-18 13:04:46 [INFO]   Ep 38/50 | FAIL | steps=280\\\\n2026-05-18 13:04:52 [INFO]   Ep 39/50 | FAIL | steps=280\\\\n2026-05-18 13:04:58 [INFO]   Ep 40/50 | FAIL | steps=280\\\\n2026-05-18 13:05:05 [INFO]   Ep 41/50 | FAIL | steps=280\\\\n2026-05-18 13:05:12 [INFO]   Ep 42/50 | FAIL | steps=280\\\\n2026-05-18 13:05:19 [INFO]   Ep 43/50 | FAIL | steps=280\\\\n2026-05-18 13:05:25 [INFO]   Ep 44/50 | FAIL | steps=280\\\\n2026-05-18 13:05:33 [INFO]   Ep 45/50 | FAIL | steps=280\\\\n2026-05-18 13:05:39 [INFO]   Ep 46/50 | SUCCESS | steps=111\\\\n2026-05-18 13:05:46 [INFO]   Ep 47/50 | FAIL | steps=280\\\\n2026-05-18 13:05:53 [INFO]   Ep 48/50 | FAIL | steps=280\\\\n2026-05-18 13:06:01 [INFO]   Ep 49/50 | FAIL | steps=280\\\\n2026-05-18 13:06:08 [INFO]   Ep 50/50 | FAIL | steps=280\\\\n2026-05-18 13:06:08 [INFO]   Task 9 SR: 10/50 (20.0%)\\\\n2026-05-18 13:06:08 [INFO] ============================================================\\\\n2026-05-18 13:06:08 [INFO] SUITE: libero_object | M=16\\\\n2026-05-18 13:06:08 [INFO] Overall SR: 279/500 (55.8%)\\\\n2026-05-18 13:06:08 [INFO] 95% Wilson CI: [51.4%, 60.1%]\\\\n2026-05-18 13:06:08 [INFO]   Task 0: 56% (28/50) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 1: 44% (22/50) -- pick up the cream cheese and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 2: 72% (36/50) -- pick up the salad dressing and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 3: 56% (28/50) -- pick up the bbq sauce and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 4: 62% (31/50) -- pick up the ketchup and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 5: 40% (20/50) -- pick up the tomato sauce and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 6: 78% (39/50) -- pick up the butter and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 7: 54% (27/50) -- pick up the milk and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 8: 76% (38/50) -- pick up the chocolate pudding and place it in the basket\\\\n2026-05-18 13:06:08 [INFO]   Task 9: 20% (10/50) -- pick up the orange juice and place it in the basket\\\\n2026-05-18 13:06:08 [INFO] ============================================================\\\\n2026-05-18 13:06:08 [INFO] Results saved to eval_results/smart_compress_m16_libero_object.json\\\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 12:11:02 [INFO] Suite: libero_object | Device: cuda:0 | M=16 | Episodes/task: 50 | Max steps: 280\\n2026-05-18 12:11:02 [INFO] Loading model from checkpoints/smart_compress_m16/checkpoint.pt ...\\n2026-05-18 12:11:02 [INFO] JAX version 0.10.0 available.\\nYou have video processor config saved in `preprocessor.json` file which is deprecated. Video processor configs should be saved in their own `video_preprocessor.json` file. You can rename the file or load and save the processor back which renames it automatically. Loading from `preprocessor.json` will be removed in v5.0.\\n2026-05-18 12:11:15 [INFO] Checkpoint loaded with strict match (no missing/unexpected keys)\\n2026-05-18 12:11:15 [INFO] SmartCompressWrapper loaded: M=16, compressor params=22164480\\n2026-05-18 12:11:15 [INFO] Model loaded in 13.5s\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-18 12:11:16 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-18 12:11:16 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-18 12:11:16 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-18 12:11:16 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n2026-05-18 12:11:17 [INFO] Suite 'libero_object' has 10 tasks, evaluating 10: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-18 12:11:17 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\n2026-05-18 12:11:27 [INFO]   Ep 1/50 | SUCCESS | steps=147\\n2026-05-18 12:11:33 [INFO]   Ep 2/50 | SUCCESS | steps=117\\n2026-05-18 12:11:41 [INFO]   Ep 3/50 | FAIL | steps=280\\n2026-05-18 12:11:48 [INFO]   Ep 4/50 | FAIL | steps=280\\n2026-05-18 12:11:55 [INFO]   Ep 5/50 | FAIL | steps=280\\n2026-05-18 12:12:02 [INFO]   Ep 6/50 | FAIL | steps=280\\n2026-05-18 12:12:08 [INFO]   Ep 7/50 | SUCCESS | steps=124\\n2026-05-18 12:12:15 [INFO]   Ep 8/50 | SUCCESS | steps=141\\n2026-05-18 12:12:21 [INFO]   Ep 9/50 | FAIL | steps=280\\n2026-05-18 12:12:27 [INFO]   Ep 10/50 | SUCCESS | steps=128\\n2026-05-18 12:12:33 [INFO]   Ep 11/50 | FAIL | steps=280\\n2026-05-18 12:12:39 [INFO]   Ep 12/50 | SUCCESS | steps=121\\n2026-05-18 12:12:45 [INFO]   Ep 13/50 | SUCCESS | steps=143\\n2026-05-18 12:12:51 [INFO]   Ep 14/50 | SUCCESS | steps=134\\n2026-05-18 12:12:58 [INFO]   Ep 15/50 | FAIL | steps=280\\n2026-05-18 12:13:04 [INFO]   Ep 16/50 | SUCCESS | steps=120\\n2026-05-18 12:13:10 [INFO]   Ep 17/50 | SUCCESS | steps=125\\n2026-05-18 12:13:17 [INFO]   Ep 18/50 | FAIL | steps=280\\n2026-05-18 12:13:23 [INFO]   Ep 19/50 | SUCCESS | steps=115\\n2026-05-18 12:13:29 [INFO]   Ep 20/50 | SUCCESS | steps=129\\n2026-05-18 12:13:36 [INFO]   Ep 21/50 | SUCCESS | steps=141\\n2026-05-18 12:13:42 [INFO]   Ep 22/50 | SUCCESS | steps=125\\n2026-05-18 12:13:48 [INFO]   Ep 23/50 | SUCCESS | steps=134\\n2026-05-18 12:13:55 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-18 12:14:03 [INFO]   Ep 25/50 | FAIL | steps=280\\n2026-05-18 12:14:10 [INFO]   Ep 26/50 | FAIL | steps=280\\n2026-05-18 12:14:17 [INFO]   Ep 27/50 | FAIL | steps=280\\n2026-05-18 12:14:24 [INFO]   Ep 28/50 | FAIL | steps=280\\n2026-05-18 12:14:31 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-18 12:14:39 [INFO]   Ep 30/50 | FAIL | steps=280\\n2026-05-18 12:14:45 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-18 12:14:50 [INFO]   Ep 32/50 | SUCCESS | steps=120\\n2026-05-18 12:14:57 [INFO]   Ep 33/50 | SUCCESS | steps=133\\n2026-05-18 12:15:02 [INFO]   Ep 34/50 | SUCCESS | steps=124\\n2026-05-18 12:15:09 [INFO]   Ep 35/50 | SUCCESS | steps=130\\n2026-05-18 12:15:16 [INFO]   Ep 36/50 | FAIL | steps=280\\n2026-05-18 12:15:22 [INFO]   Ep 37/50 | FAIL | steps=280\\n2026-05-18 12:15:27 [INFO]   Ep 38/50 | SUCCESS | steps=123\\n2026-05-18 12:15:34 [INFO]   Ep 39/50 | SUCCESS | steps=138\\n2026-05-18 12:15:42 [INFO]   Ep 40/50 | FAIL | steps=280\\n\\n\\n... [截断: 输出过长，省略 26083 字符] ...\\n\\np 13/50 | SUCCESS | steps=99\\n2026-05-18 13:02:02 [INFO]   Ep 14/50 | FAIL | steps=280\\n2026-05-18 13:02:08 [INFO]   Ep 15/50 | SUCCESS | steps=114\\n2026-05-18 13:02:16 [INFO]   Ep 16/50 | FAIL | steps=280\\n2026-05-18 13:02:24 [INFO]   Ep 17/50 | FAIL | steps=280\\n2026-05-18 13:02:32 [INFO]   Ep 18/50 | FAIL | steps=280\\n2026-05-18 13:02:38 [INFO]   Ep 19/50 | SUCCESS | steps=114\\n2026-05-18 13:02:44 [INFO]   Ep 20/50 | FAIL | steps=280\\n2026-05-18 13:02:51 [INFO]   Ep 21/50 | FAIL | steps=280\\n2026-05-18 13:02:58 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-18 13:03:04 [INFO]   Ep 23/50 | FAIL | steps=280\\n2026-05-18 13:03:11 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-18 13:03:18 [INFO]   Ep 25/50 | FAIL | steps=280\\n2026-05-18 13:03:25 [INFO]   Ep 26/50 | FAIL | steps=280\\n2026-05-18 13:03:32 [INFO]   Ep 27/50 | FAIL | steps=280\\n2026-05-18 13:03:39 [INFO]   Ep 28/50 | FAIL | steps=280\\n2026-05-18 13:03:44 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-18 13:03:50 [INFO]   Ep 30/50 | SUCCESS | steps=105\\n2026-05-18 13:03:57 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-18 13:04:05 [INFO]   Ep 32/50 | FAIL | steps=280\\n2026-05-18 13:04:13 [INFO]   Ep 33/50 | FAIL | steps=280\\n2026-05-18 13:04:20 [INFO]   Ep 34/50 | FAIL | steps=280\\n2026-05-18 13:04:27 [INFO]   Ep 35/50 | FAIL | steps=280\\n2026-05-18 13:04:33 [INFO]   Ep 36/50 | SUCCESS | steps=111\\n2026-05-18 13:04:40 [INFO]   Ep 37/50 | FAIL | steps=280\\n2026-05-18 13:04:46 [INFO]   Ep 38/50 | FAIL | steps=280\\n2026-05-18 13:04:52 [INFO]   Ep 39/50 | FAIL | steps=280\\n2026-05-18 13:04:58 [INFO]   Ep 40/50 | FAIL | steps=280\\n2026-05-18 13:05:05 [INFO]   Ep 41/50 | FAIL | steps=280\\n2026-05-18 13:05:12 [INFO]   Ep 42/50 | FAIL | steps=280\\n2026-05-18 13:05:19 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-18 13:05:25 [INFO]   Ep 44/50 | FAIL | steps=280\\n2026-05-18 13:05:33 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-18 13:05:39 [INFO]   Ep 46/50 | SUCCESS | steps=111\\n2026-05-18 13:05:46 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-18 13:05:53 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-18 13:06:01 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-05-18 13:06:08 [INFO]   Ep 50/50 | FAIL | steps=280\\n2026-05-18 13:06:08 [INFO]   Task 9 SR: 10/50 (20.0%)\\n2026-05-18 13:06:08 [INFO] ============================================================\\n2026-05-18 13:06:08 [INFO] SUITE: libero_object | M=16\\n2026-05-18 13:06:08 [INFO] Overall SR: 279/500 (55.8%)\\n2026-05-18 13:06:08 [INFO] 95% Wilson CI: [51.4%, 60.1%]\\n2026-05-18 13:06:08 [INFO]   Task 0: 56% (28/50) -- pick up the alphabet soup and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 1: 44% (22/50) -- pick up the cream cheese and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 2: 72% (36/50) -- pick up the salad dressing and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 3: 56% (28/50) -- pick up the bbq sauce and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 4: 62% (31/50) -- pick up the ketchup and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 5: 40% (20/50) -- pick up the tomato sauce and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 6: 78% (39/50) -- pick up the butter and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 7: 54% (27/50) -- pick up the milk and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 8: 76% (38/50) -- pick up the chocolate pudding and place it in the basket\\n2026-05-18 13:06:08 [INFO]   Task 9: 20% (10/50) -- pick up the orange juice and place it in the basket\\n2026-05-18 13:06:08 [INFO] ============================================================\\n2026-05-18 13:06:08 [INFO] Results saved to eval_results/smart_compress_m16_libero_object.json\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have all the data. Let me extract the key metrics:\n\n**Overall SR**: 279/500 (55.8%)\n**95% Wilson CI**: [51.4%, 60.1%]\n\n**Per-task SR**:\n- Task 0: 56% (28/50) -- pick up the alphabet soup and place it in the basket\n- Task 1: 44% (22/50) -- pick up the cream cheese and place it in the basket\n- Task 2: 72% (36/50) -- pick up the salad dressing and place it in the basket\n\n\n- Task 3: 56% (28/50) -- pick up the bbq sauce and place it in the basket\n- Task 4: 62% (31/50) -- pick up the ketchup and place it in the basket\n- Task 5: 40% (20/50) -- pick up the tomato sauce and place it in the basket\n- Task 6: 78% (39/50) -- pick up the butter and place it in the basket\n- Task 7: 54% (27/50) -- pick up the milk and place it in the basket\n- Task 8: 76% (38/50) -- pick up the chocolate pudding and place it in the basket\n- Task 9: 20% (10/50) -- pick up the orange juice and place it in the basket\n\nLooking at the performance across all tasks, there's quite a bit of variation—the butter and chocolate pudding tasks are performing strongest at 78% and 76%, while the orange juice task is struggling significantly at just 20%. The tomato sauce task also underperforms at 40%, suggesting these particular items might be causing issues for the model.\n\nThe evaluation ran for about 55 minutes across 500 episodes with 279 total successes, giving us an overall success rate of 55.8%. This is notably lower than the M=32 and M=64 configurations which both hit 61.6%, which aligns with what we'd expect—the extreme compression is showing degradation. That said, it's still performing better than the SmolVLA baseline at 44.8%, so there's still value here. The run completed cleanly with no real errors, just some benign warnings, so I'll mark this as a success in the registry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "f7323cb2-77b9-4e43-8de1-3040c54f6df5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016yUqddLX1qXUi6zkQLQ4FF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4167,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评测正常完成。提取结果后更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "185f500f-27f1-4122-a733-c13486ba8aa1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016yUqddLX1qXUi6zkQLQ4FF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4167,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TTNHLLnKD22HVTMJYUfvhN",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_smart_compress_m16",
+                "field": "metrics",
+                "value": {
+                  "overall_sr": 55.8,
+                  "overall_sr_ci95": [
+                    51.4,
+                    60.1
+                  ],
+                  "total_episodes": 500,
+                  "total_successes": 279,
+                  "per_task_sr": {
+                    "task_0_alphabet_soup": 56,
+                    "task_1_cream_cheese": 44,
+                    "task_2_salad_dressing": 72,
+                    "task_3_bbq_sauce": 56,
+                    "task_4_ketchup": 62,
+                    "task_5_tomato_sauce": 40,
+                    "task_6_butter": 78,
+                    "task_7_milk": 54,
+                    "task_8_chocolate_pudding": 76,
+                    "task_9_orange_juice": 20
+                  },
+                  "runtime_minutes": 55
+                },
+                "project": "importance_margin_vla_compress"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "cba79a43-6524-4838-b77d-6123cb1aeb58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016yUqddLX1qXUi6zkQLQ4FF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4167,
+                "cache_read_input_tokens": 25508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T05:09:47.829Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TTNHLLnKD22HVTMJYUfvhN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_smart_compress_m16\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:10:44.382Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:09:47.652Z\\\", \\\"hypothesis\\\": \\\"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\\\", \\\"parent\\\": \\\"smart_compress_m16\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m16/checkpoint.pt --n_queries 16 --num_episodes 50 --suite libero_object --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 689536, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:11:00.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA-SmartCompress-M16\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/smart_compress_m16/checkpoint.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"checkpoints/smart_compress_m16/checkpoint.pt\\\", \\\"wall_clock_seconds\\\": 3525.9, \\\"gpu_hours\\\": 0.98}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T05:08:08.647Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T05:08:13.758917+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.8, \\\"overall_sr_ci95\\\": [51.4, 60.1], \\\"total_episodes\\\": 500, \\\"total_successes\\\": 279, \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 56, \\\"task_1_cream_cheese\\\": 44, \\\"task_2_salad_dressing\\\": 72, \\\"task_3_bbq_sauce\\\": 56, \\\"task_4_ketchup\\\": 62, \\\"task_5_tomato_sauce\\\": 40, \\\"task_6_butter\\\": 78, \\\"task_7_milk\\\": 54, \\\"task_8_chocolate_pudding\\\": 76, \\\"task_9_orange_juice\\\": 20}, \\\"runtime_minutes\\\": 55}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T05:09:46.379Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4794}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "5934bce6-7cd2-457c-8515-a191d2be17aa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_smart_compress_m16\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:10:44.382Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:09:47.652Z\\\", \\\"hypothesis\\\": \\\"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\\\", \\\"parent\\\": \\\"smart_compress_m16\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m16/checkpoint.pt --n_queries 16 --num_episodes 50 --suite libero_object --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 689536, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:11:00.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA-SmartCompress-M16\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/smart_compress_m16/checkpoint.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"checkpoints/smart_compress_m16/checkpoint.pt\\\", \\\"wall_clock_seconds\\\": 3525.9, \\\"gpu_hours\\\": 0.98}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T05:08:08.647Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T05:08:13.758917+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.8, \\\"overall_sr_ci95\\\": [51.4, 60.1], \\\"total_episodes\\\": 500, \\\"total_successes\\\": 279, \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 56, \\\"task_1_cream_cheese\\\": 44, \\\"task_2_salad_dressing\\\": 72, \\\"task_3_bbq_sauce\\\": 56, \\\"task_4_ketchup\\\": 62, \\\"task_5_tomato_sauce\\\": 40, \\\"task_6_butter\\\": 78, \\\"task_7_milk\\\": 54, \\\"task_8_chocolate_pudding\\\": 76, \\\"task_9_orange_juice\\\": 20}, \\\"runtime_minutes\\\": 55}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T05:09:46.379Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4794}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_smart_compress_m16\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T04:10:44.382Z\", \"updated_at\": \"2026-05-18T05:09:47.652Z\", \"hypothesis\": \"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\", \"parent\": \"smart_compress_m16\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m16/checkpoint.pt --n_queries 16 --num_episodes 50 --suite libero_object --seed 42\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:2\", \"pid\": 689536, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log\", \"submitted_at\": \"2026-05-18T04:11:00.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA-SmartCompress-M16\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m16/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/smart_compress_m16/checkpoint.pt\", \"wall_clock_seconds\": 3525.9, \"gpu_hours\": 0.98}, \"reproduce\": {\"finished_at\": \"2026-05-18T05:08:08.647Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:08:13.758917+00:00\"}]}, \"metrics\": {\"overall_sr\": 55.8, \"overall_sr_ci95\": [51.4, 60.1], \"total_episodes\": 500, \"total_successes\": 279, \"per_task_sr\": {\"task_0_alphabet_soup\": 56, \"task_1_cream_cheese\": 44, \"task_2_salad_dressing\": 72, \"task_3_bbq_sauce\": 56, \"task_4_ketchup\": 62, \"task_5_tomato_sauce\": 40, \"task_6_butter\": 78, \"task_7_milk\": 54, \"task_8_chocolate_pudding\": 76, \"task_9_orange_juice\": 20}, \"runtime_minutes\": 55}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T05:09:46.379Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4794}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry already has status=DONE, conclusion=success, checkpoint_path, and log_path set. Let me verify the fields are all set correctly. Looking at the response, it shows:\n- status: DONE\n- conclusion: success\n- metrics: all set correctly\n- checkpoint_path and log_path are in spec\n\nEverything looks good. Let me summarize the results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "e05437f3-783e-4b7e-9cf9-89d55c506fb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L8pu4NbojiKq2tLC2DUyyE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1743,
+                "cache_read_input_tokens": 29675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1743
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n**Overall SR: 55.8% (279/500)**, 95% CI: [51.4%, 60.1%]\n\n**Per-task SR:**\n\n| Task | Object | SR |\n|------|--------|-----|\n| 0 | alphabet soup | 56% (28/50) |\n| 1 | cream cheese | 44% (22/50) |\n| 2 | salad dressing | 72% (36/50) |\n| 3 | bbq sauce | 56% (28/50) |\n| 4 | ketchup | 62% (31/50) |\n| 5 | tomato sauce | 40% (20/50) |\n| 6 | butter | 78% (39/50) |\n| 7 | milk | 54% (27/50) |\n| 8 | chocolate pudding | 76% (38/50) |\n| 9 | orange juice | 20% (10/50) |\n\n**运行时间:** ~55 分钟, EXIT_CODE=0, 无实质性错误（仅 robosuite macros 和 OpenGL 的 benign warnings）\n\n**Conclusion: success**\n\n**Compression curve 对比：**\n| Config | Tokens | Compression | Overall SR |\n|--------|--------|-------------|------------|\n| SmolVLA baseline | 128 | 0% | 44.8% |\n| M=64 | 64 | 50% | 61.6% |\n| M=32 | 32 | 75% | 61.6% |\n| **M=16** | **16** | **87.5%** | **55.8%** |\n| OpenVLA | - | - | 74.0% |\n\nM=16 相比 M=32/M=64 下降了 5.8 个百分点，符合 hypothesis 预期：87.5% 极端压缩开始出现退化，建立了 compression curve 的下界。但仍显著高于 SmolVLA baseline（+11.0pp），说明即使在极端压缩下 smart compression 仍然有效。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "uuid": "582a2657-21b0-4d48-b885-423c872408cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L8pu4NbojiKq2tLC2DUyyE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1743,
+                "cache_read_input_tokens": 29675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1743
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n**Overall SR: 55.8% (279/500)**, 95% CI: [51.4%, 60.1%]\n\n**Per-task SR:**\n\n| Task | Object | SR |\n|------|--------|-----|\n| 0 | alphabet soup | 56% (28/50) |\n| 1 | cream cheese | 44% (22/50) |\n| 2 | salad dressing | 72% (36/50) |\n| 3 | bbq sauce | 56% (28/50) |\n| 4 | ketchup | 62% (31/50) |\n| 5 | tomato sauce | 40% (20/50) |\n| 6 | butter | 78% (39/50) |\n| 7 | milk | 54% (27/50) |\n| 8 | chocolate pudding | 76% (38/50) |\n| 9 | orange juice | 20% (10/50) |\n\n**运行时间:** ~55 分钟, EXIT_CODE=0, 无实质性错误（仅 robosuite macros 和 OpenGL 的 benign warnings）\n\n**Conclusion: success**\n\n**Compression curve 对比：**\n| Config | Tokens | Compression | Overall SR |\n|--------|--------|-------------|------------|\n| SmolVLA baseline | 128 | 0% | 44.8% |\n| M=64 | 64 | 50% | 61.6% |\n| M=32 | 32 | 75% | 61.6% |\n| **M=16** | **16** | **87.5%** | **55.8%** |\n| OpenVLA | - | - | 74.0% |\n\nM=16 相比 M=32/M=64 下降了 5.8 个百分点，符合 hypothesis 预期：87.5% 极端压缩开始出现退化，建立了 compression curve 的下界。但仍显著高于 SmolVLA baseline（+11.0pp），说明即使在极端压缩下 smart compression 仍然有效。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 40981,
+            "duration_api_ms": 41284,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "1ee3f0f2-5989-495f-8292-be424c098453",
+            "total_cost_usd": 0.21442675,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 19577,
+              "cache_read_input_tokens": 91581,
+              "output_tokens": 1796,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19577,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 652,
+                  "cache_read_input_tokens": 29675,
+                  "cache_creation_input_tokens": 1743,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1743
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1250,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00134,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1796,
+                "cacheReadInputTokens": 91581,
+                "cacheCreationInputTokens": 19577,
+                "webSearchRequests": 0,
+                "costUSD": 0.21308675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b627eb20-6d68-4985-a107-79dd2381dd71"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ]
+}

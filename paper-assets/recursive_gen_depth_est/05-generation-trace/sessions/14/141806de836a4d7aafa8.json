@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "141806de836a4d7aafa8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis wild data threshold calibration",
+  "task_key": "worker_analysis_wild_data_threshold_calibration_20260518T182225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wild_data_threshold_calibration_20260518T182225_result.json",
+    "occurrence": 1,
+    "bytes": 1790,
+    "sha256": "6b2b8b4da79d1f9bca12de453fb061171d81e875808dabca1a5f4e544e389ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有产出已保存。总结结果：\n\n## 校准分析结果\n\n**核心发现：wild-data FPR 是 decision-threshold 问题，不是概率校准问题。**\n\n### 1. Platt/Isotonic 校准无效\n| Model | C4 FPR | FW FPR | Wiki FPR | BalAcc | ECE |\n|-------|--------|--------|----------|--------|-----|\n| Uncalibrated | 33.41% | 16.90% | 0% | 0.780 | 0.052 |\n| Platt | 36.51% | 19.48% | 0% | 0.781 | 0.051 |\n| Isotonic | 38.62% | 21.05% | 0% | 0.776 | 0.051 |\n\nECE 已经很低（~0.05），RF 在 in-dist 上概率校准良好。Platt/Isotonic 反而略微增加 FPR。\n\n### 2. P(d0) 分布是双峰的\n- C4: ~33% 样本 P(d0) 集中在 0.15-0.30（moderate uncertainty），~67% 在 P(d0)>0.95\n- 0.15-0.20 之间有 sharp transition（FPR 从 2.78% 跳到 19.63%）\n\n### 3. 低阈值可有效缓解 FPR\n| Threshold | C4 FPR | FW FPR | d0 recall | d1+ recall | BalAcc |\n|-----------|--------|--------|-----------|------------|--------|\n| argmax (default) | 33.41% | 16.90% | 0.996 | 0.998 | 0.780 |\n| **0.15** | **2.78%** | **0.71%** | 0.999 | 0.990 | 0.777 |\n| 0.10 | 0.69% | 0.15% | 0.999 | 0.986 | 0.775 |\n\n**推荐操作点：P(d0) < 0.15 才标记为 d1+**。C4 FPR 从 33% 降到 2.78%，BalAcc 仅降 0.3%。\n\n### 4. 对论文叙事的意义\n- 回应审稿人\"FPR without calibration mitigation\"：可以说明 simple threshold adjustment 即可将 FPR 控制在 <3%\n- 但需要注意 C004 约束：这不改变 C4 d1+ 预测是 OOD 假阳性的本质，只是展示 mitigation 方案\n\n### 产出文件\n`/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_calibration/`:\n- `threshold_calibration_results.json` (完整数据)\n- 8 张分析图（reliability diagram, FPR curves, P(d0) distributions, PR curve, tradeoff plot）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

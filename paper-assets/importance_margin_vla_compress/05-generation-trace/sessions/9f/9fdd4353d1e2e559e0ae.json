@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9fdd4353d1e2e559e0ae",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure fig architecture",
+  "task_key": "worker_paper_figure_fig_architecture_20260517T114323",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_architecture_20260517T114323_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "0c1a89ea2954d8858de17e917b2cb94768f19de1385c88297bed1dcc2eceec18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n输出文件：\n- PDF: `figures/paper/fig_architecture.pdf` (34K)\n- PNG: `figures/paper/fig_architecture.png` (185K)\n- 生成脚本: `figures/paper/gen_fig_architecture.py`\n\n图中内容：左到右流程 Camera 1/2 → SigLIP Vision Encoder (128 tokens) → MLP Connector → **Token Reduction** (红色虚线框，标注三种机制：Zero-mask, True removal, Merge) → Qwen2 1.5B LLM → Flow Matching Action Head → 7-DoF Action。Language instruction 通过底部路径直连 LLM。左上角附 SigLIP 非重叠 spatial patch 示意图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d8d0025a0f83659e4eb",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_12_1778908666.md",
+  "task_key": "loop_12_1778908666",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778908666.md",
+    "occurrence": 1,
+    "bytes": 4794,
+    "sha256": "2c536e8e2327f137df67c7f8692d22965d8d891ff12c82ce7bbea91057ac1248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:59:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **gpu-6000pro-2 cuda:0, cuda:1**（config 白名单）。cross_scale_qwen7b_001 正占 cuda:0。\n- DDL: **EMNLP ARR May 25**（剩 9 天），所有实验和论文修改必须在此前完成。\n- EDD 声明需分层报告统计强度：Pythia 显著 (p=0.001)、OLMo 边际 (p=0.0x)、GPT-2 XL 不显著（D026/D027）。不得 claim \"三模型均 EDD=4 且均显著\"。\n- Curation PoC (plan_013) 结论是 **negative**——RF 不优于 unfiltered。论文只能 claim \"data efficiency\"（44% data ≈ full PPL），不能 claim \"RF approximates oracle\"。\n- AutoDL 代理下 `load_dataset(\"allenai/c4\")` 会静默挂死，必须用 FineWeb 或 hf-mirror.com 预下载 parquet。\n- `submit_training_job` 不支持 shell builtin（source/conda activate），命令需用绝对路径或 `bash -c`。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2（2× RTX 6000 Pro）\n- **工作目录**: `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF_HOME**: `/root/autodl-tmp/.hf_cache`\n- **模型**: Qwen2.5-7B 下载到 `/root/autodl-tmp/.hf_cache`（cross_scale 实验用）\n- **数据**: 各模型数据在 `/root/autodl-tmp/recursive_gen_depth_est/data/` 下（pythia_nucleus095, pythia_temp09, pythia_topk50, olmo_*, gpt2xl_* 等）\n- **活跃进程**: cross_scale_qwen7b_001（tmux=cross_scale_qwen7b, cuda:0），cron 在监控\n- **Cron**: 1 个活跃——cross_scale_qwen7b_001 job monitoring\n\n### 3. 📊 当前状态\n**Registry**: 67 DONE / 1 RUNNING（cross_scale_qwen7b_001）。总计成功 41 / 负向 4 / 失败 7 / killed 多个。\n\n**正在跑的实验**: `cross_scale_qwen7b_001`（plan_014 7B cross-scale probe）在 cuda:0 上。Qwen2.5-7B nucleus p=0.95, d0-d5, 500 samples/depth。验证 depth signal 和 EDD 在 7B scale 上是否与 1-1.5B 一致。成功标准：4-class acc ≥ 60%。\n\n**5 个 Worker 正在运行**:\n1. `worker_exp_r3n5_strategy_classify` — R3-N5 cross-strategy curation 实验（审稿 open issue）\n2. `worker_writing_r3_final_text_updates` — R3 论文文本修改\n3. `worker_code_plan_015_wild_data_prep` — plan_015 wild-data calibration 代码准备\n4. `worker_code_wild_data_calibration_005` — wild_data_calibration_005 执行\n5. `worker_writing_r3_paper_fixes` — R3 论文修复\n\n**等待中**:\n- 5 个 Worker 回调\n- cross_scale_qwen7b_001 cron 完成回调\n- cuda:1 当前空闲，可接新任务\n\n### 4. 📋 待办（条件触发式）\n- **cross_scale_qwen7b_001 完成** → 按 on-experiment-done 分析；success 则更新 Atlas claim（跨 scale 一致性证据），negative 则走 red-section framing 提案\n- **worker_exp_r3n5_strategy_classify 完成** → 结果更新到 R3-N5 审稿 issue，resolve 后更新 ROADMAP\n- **worker_writing_r3_final_text_updates + r3_paper_fixes 完成** → 合并文本修改，准备 Reviewer 对抗迭代\n- **worker_code_plan_015_wild_data_prep 完成** → 如 cuda:1 空闲则提交 plan_015 wild-data calibration 实验\n- **wild_data_calibration_005 完成** → 验证 FineWeb 替代 C4 的跨数据集一致性（FPR ~20% web-crawl vs 0% editorial）\n- **R3 全部 resolve 后** → bibliography audit + 最终 polish → 提交 ARR\n- **Rebuttal open issues**: W4 zero-shot 样本量、R2-W3 multi-τ（multi_tau_ablation_001 已 DONE，数据就绪需写入论文）\n\n### 5. 🎯 战略上下文\n**核心结论**: 递归生成深度可用 19 维统计特征（以 p90_ppl、var_surprisal 为主导）估计，3×3 矩阵全 9 格 70-85% acc。EDD=4 三模型一致但统计强度分层。DCOL 全线失败已放弃，Plan A (Atlas/EDD primary) 激活。\n\n**关键决策链**: D011 Plan A 激活 → D020 取消 DCOL ablation → D024 EDD 连续 AUC 衰减叙事 → D026/D027 EDD 统计强度分层 → D028 cross-strategy normalization 降级 → D029 域偏差叙事调整\n\n**易错点**:\n- cross_scale_qwen7b_001 是 **7B 模型**，用的是 cuda:0 单卡。如果 OOM 或极慢，考虑量化或减少 samples。\n- multi-τ ablation 结果已在 memory.md 但论文 R2-W3 部分可能还没写完——Worker 回调后确认。\n- plan_015 (wild-data calibration on RedPajama/Dolma) 还是 planned 状态，wild_data_calibration_002 之前因 C4 streaming 挂死 failed，替代方案是 FineWeb（已验证可行）。\n- 不要把 cross-strategy LOO 的 temp09 d1v2 AUC 反转（0.13/0.25）当 bug——这是 strategy-dependent feature trajectory reversal 的核心发现（D024）。\n- Cohen's d 配对设计用 d_z（差值 SD 做分母），之前算错过。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

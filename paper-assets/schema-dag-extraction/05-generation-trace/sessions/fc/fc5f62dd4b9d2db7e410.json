@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fc5f62dd4b9d2db7e410",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh r11 count level verify",
+  "task_key": "worker_ssh_r11-count-level-verify_20260517T100424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_r11-count-level-verify_20260517T100424_result.json",
+    "occurrence": 1,
+    "bytes": 2843,
+    "sha256": "30bfe6738a2146e18b6769abd7d18c0b6d3e597f3f2721869f95ab42fce209b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据对比完成。以下是汇总：\n\n---\n\n## 对比结果\n\n### 1. FewRel 实际 count levels\n**d051 batch config**: `[4, 8, 16, 32, 40, 64, 80]` — 7 levels, 每个 25 batches (3 seeds: s42, s123, s456)\n\n**论文写的**: `{1, 4, 8, 16, 32, 64, 80}`\n\n**不一致**: \n- 实际有 **count_40**，论文没写\n- 论文写了 **count_1**，但 d051 batch config 中没有\n\n### 2. Few-NERD 实际 count levels\n**d051 batch config**: `[2, 6, 12, 22, 44, 66]` — 6 levels, 每个 25 batches (3 seeds)\n\n**论文写的**: `{1, 2, 6, 12, 22, 44, 64}`\n\n**不一致**:\n- 实际 full schema 是 **count_66**，论文写了 **64** (错误！Few-NERD 有 66 个 fine-grained types)\n- 论文写了 **count_1**，但 d051 中没有\n\n### 3. DocRED 实际 count levels\n**exp_docred_confusability/count_curve_results.json**: `[1, 4, 8, 16, 32, 64, 96]` — 7 levels, 每个 **5** batches\n\n**论文写的**: `{1, 4, 8, 16, 32, 64, 96}` — **一致**\n\n### 4. MAVEN 实际 count levels\n**服务器上没有找到 MAVEN count curve 实验数据**。只有 `exp_maven_minilm/` 下的 decomposition 文件（per_type, random_batch, sdgd_zero, single_pass），不是 count curve 格式。\n\n**论文写的**: `{1, 6, 12, 22, 44, 64}`\n\n### 5. 每个 count level 的 batch 数量\n| 数据集 | 实际 batches/level | 论文写的 |\n|--------|-------------------|---------|\n| FewRel | **25** | 5 |\n| Few-NERD | **25** | 5 |\n| DocRED | **5** | 5 |\n| MAVEN | 无数据 | 5 |\n\n**论文说 \"5 random type batches\"，但 FewRel/Few-NERD 实际跑了 25 batches per level。**\n\n### 6. count=1 (solo baseline)\n- **DocRED**: 包含在 count_curve_results.json 中 (curve_count_1, 5 batches, bcs=0.0)\n- **FewRel**: d051 batch config 中 **不包含** count_1\n- **Few-NERD**: d051 batch config 中 **不包含** count_1\n- **MAVEN**: 无数据\n\n### 7. Full schema count 确认\n\n| 数据集 | 论文 Table 1 | 论文 §3.3 count list | 实际 (batch config max) | 代码常量 |\n|--------|-------------|---------------------|------------------------|---------|\n| Few-NERD | 66 | 64 | **66** | `NER_COUNTS = [2, 6, 12, 22, 44, 66]` |\n| FewRel | 80 | 80 | **80** | `RE_COUNTS = [4, 8, 16, 32, 40, 64, 80]` |\n| DocRED | 96 | 96 | **96** | 结果中有 curve_count_96 |\n| MAVEN | 168 | 64 (max listed) | 无数据 | — |\n\n### 关键问题总结\n\n1. **Few-NERD §3.3 count list 把 66 写成了 64** — Table 1 正确写了 66，但 count list 里的 full-schema level 错了\n2. **FewRel count_40 存在但论文未提及** — 实际实验包含 count_40，论文 count list 漏掉了\n3. **论文说 5 batches，FewRel/Few-NERD 实际是 25 batches**\n4. **count_1 在 FewRel/Few-NERD d051 中不存在**，但论文声称所有数据集都有 count=1\n5. **MAVEN count curve 实验数据未找到**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "56e2bb9de378c7a44da7",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code task e centered eb upgrade",
+  "task_key": "worker_code_task-e-centered-eb-upgrade_20260523T080928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_task-e-centered-eb-upgrade_20260523T080928.log",
+    "occurrence": 1,
+    "bytes": 1152439,
+    "sha256": "299647ceb27e37a0cfc2a87a0abb5c6a44c401644a4d7708f5494be89d6b90b2"
+  },
+  "statistics": {
+    "messages": 317,
+    "user_turns": 1,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 2,
+      "assistant": 78,
+      "tool_call": 114,
+      "tool_result": 114,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "56e2bb9de378c7a44da7-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "56e2bb9de378c7a44da7-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "56e2bb9de378c7a44da7-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "72673e096448c5c830ed",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd41074 gpu1 pi05 l2norm k07 seed43 and collect",
+  "task_key": "worker_ops_westd41074-gpu1-pi05-l2norm-k07-seed43-and-collect_20260521T125933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd41074-gpu1-pi05-l2norm-k07-seed43-and-collect_20260521T125933_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "37a17ed28c7acfa2e83cc8876518d58d1a36c0b812ad46a456bb8870543e53c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## π0.5 L2norm V-shape 验证数据\n\n| keep_ratio | seed42 | seed43 |\n|------------|--------|--------|\n| k=0.7 | 55.0% | **57.8%** |\n| k=0.5 | 33.4% | 运行中（PID 206999, GPU0） |\n| k=0.3 | 51.0% | **55.4%** |\n\n**k=0.7 seed43 = 57.8%**，在 50-60% 范围内，与 seed42 的 55.0% 一致。V-shape 两端（k=0.7, k=0.3）在两个 seed 下均表现稳定（55-58%）。\n\n等 k=0.5 seed43 完成后，如果也在 30-35% 范围（valley），V-shape 确认为系统性现象。\n\n### k=0.7 seed43 per-task\n| Task | SR |\n|------|-----|\n| alphabet_soup | 46% |\n| cream_cheese | 96% |\n| salad_dressing | 80% |\n| bbq_sauce | 80% |\n| ketchup | 26% |\n| tomato_sauce | 100% |\n| butter | 30% |\n| milk | 4% |\n| chocolate_pudding | 70% |\n| orange_juice | 46% |\n\nk=0.5 seed43（PID 206999）仍在 GPU0 运行，已运行 ~1.5h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

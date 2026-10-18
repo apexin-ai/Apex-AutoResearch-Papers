@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d265666f655829c4f685",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "data cross benchmark iv extract",
+  "task_key": "worker_data_cross-benchmark-iv-extract_20260523T161234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_cross-benchmark-iv-extract_20260523T161234_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "7596fced31ead193ac1973d29a3a6a23c76a79373179d1f9323204f17dcda355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提取并保存到 `docs/paper/data/cross_benchmark_iv.json`。\n\n关键数据：\n- **Cross-benchmark K_eff 相关性**: K3=0.784, K5=0.762, K7=0.763（注意：实际值低于之前 Worker 报告的 0.900）\n- **Reduced-form**: 34/36 conditions 显著，K_eff 跨 benchmark 预测力强\n- **2SLS**: 一阶段 F 统计量极强（820-9232），但二阶段未计算——排除限制违反（K_eff 由 panel composition 结构性决定）\n- **结论**: Reduced-form 可作为 robustness evidence，2SLS causal interpretation 无效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

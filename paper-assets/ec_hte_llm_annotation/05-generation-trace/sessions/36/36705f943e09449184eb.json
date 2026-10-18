@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36705f943e09449184eb",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "figure fig2 heatmap",
+  "task_key": "worker_figure_fig2-heatmap_20260521T052638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig2-heatmap_20260521T052638_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "4a90eb42bae559b601d08a04064015fd870e83222ee90aafa7b4f8194afdaebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure is clean and paper-ready.\n\n**Output**: `artifacts/figures/fig2_heatmap.pdf` + `.png`\n\nKey visual elements:\n- **(a)** Subgroup A stays entirely blue (ratio < 1) — global debiasing always helps the low-error subgroup\n- **(b)** Subgroup B crosses ratio=1 at Δπ ≈ 0.12, with hatching marking where debiasing actively hurts; the ratio escalates rapidly to 5+ at high Δπ\n- Dashed contour at ratio=1.0 with label, diverging RdBu_r colormap centered at 1.0, shared colorbar"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

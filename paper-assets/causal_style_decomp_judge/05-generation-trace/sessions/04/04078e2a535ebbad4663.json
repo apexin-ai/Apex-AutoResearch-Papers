@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "04078e2a535ebbad4663",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code batch1 scoring v3",
+  "task_key": "worker_code_batch1_scoring_v3_20260521T023405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch1_scoring_v3_20260521T023405_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "218ea9413ea95598fc3716363e9099a0905399fc9143fc4ac3f16f493fe1d7fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**阻塞问题：** API key `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8` 在 `http://47.94.22.126/v1` 上返回 **402 Insufficient balance**，所有模型（GPT-4o、Claude）均如此。\n\n所有 7 个 scoring task 依赖此 API，无法继续。需要：\n1. 充值该 API key 的余额，或\n2. 提供一个有余额的新 API key/base URL。\n\n准备工作已完成：\n- `register` axis 已加入 `pairwise_scoring.py`\n- NLI≥0.90 过滤文件已生成：verbosity 86条、register 94条、alpacaeval 86条、mtbench 73条\n- rate_control 数据 88条可直接使用\n\n等你更新 API 信息后立即恢复执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba4336a6dfa452fbd4b7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k07 long seed43 strict w38",
+  "task_key": "worker_analyze_eval_pi05_random_k07_long_seed43_strict_w38_20260527T185335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k07_long_seed43_strict_w38_20260527T185335_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "b55acfde756f9534e1247b2fa3f297b9e9b17f544e0d01e5bed9318e494ad566"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\noverall_sr: 64.4%\nper_task: [t0=88%, t1=66%, t2=66%, t3=80%, t4=84%, t5=50%, t6=60%, t7=70%, t8=8%, t9=72%]\ntotal_episodes: 500 (10 × 50 ✓)\nwandb_run: 无\nerrors: 无 (EXIT_CODE=0)\n```\n\n对比 seed42=66.0%，seed43=64.4%，差 1.6pp。两个 seed 均值 = 65.2%，标准差 ≈ 1.1pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2c53bef4b08e7ece4fae",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code mvp pipeline",
+  "task_key": "worker_code_mvp_pipeline_20260520T071204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_pipeline_20260520T071204_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "69cedc24b17e7ae59ae10a284409c2d64f40eaeda0c50756b382c823a3c78b5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 项验证通过。\n\n**创建完成，文件清单：**\n\n| 文件 | 功能 |\n|------|------|\n| `csd_pipeline/__init__.py` | 包声明 |\n| `csd_pipeline/data_prep.py` | 下载 LLMBar 数据 + 采样 100 条 |\n| `csd_pipeline/counterfactual_gen.py` | RATE double-rewrite 生成三元组（支持 vLLM/API） |\n| `csd_pipeline/content_verification.py` | BERTScore + NLI 内容保留验证 |\n| `csd_pipeline/judge_scoring.py` | GPT-4o 异步评分（rate-limited + 断点续传） |\n| `csd_pipeline/ate_analysis.py` | ATE 统计检验 + RATE 校正 + 可视化 |\n| `requirements.txt` | 依赖列表 |\n| `run_mvp.sh` | 串联 5 步管线的入口脚本 |\n\n需要 GPU 环境的模块（content_verification 依赖 torch/transformers/bert-score，counterfactual_gen 和 judge_scoring 依赖 openai）在本地无依赖环境下 `--help` 均正常工作，实际运行需在配好依赖的 GPU 服务器上执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

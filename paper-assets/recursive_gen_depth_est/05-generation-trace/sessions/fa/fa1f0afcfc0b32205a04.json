@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa1f0afcfc0b32205a04",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper figure fig auc decay v2",
+  "task_key": "worker_paper_figure_fig_auc_decay_v2_20260515T072227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_auc_decay_v2_20260515T072227_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "ba408c65bc56d66ba6bc4974d5d04f20a4022278a2a50a2efe3dc1bc76bd443c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表确认正确：\n\n- Binary pairwise RF 带 95% CI shaded band（蓝色半透明区域）\n- d3→d4 CI 下界 (0.765) 明显高于 T=0.75 线，视觉上支持 EDD=4\n- 4-class 只画了前 3 个点，6-class 全 5 个点\n- EDD=4 红色竖线和浅红背景区域已标注\n- 阈值标签在右侧，无标题，spines 已移除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac9d76ef8ccd1de0fd05",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra model download",
+  "task_key": "worker_infra_model_download_20260520T082227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_download_20260520T082227_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "cf44717fb78e5402029ce4b7a726195f78a46afa64859858c653a277a2824640"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地没有可用于该服务器的 SSH 密钥。SeetaCloud 服务器通常使用密码认证。\n\n需要你提供服务器的 SSH 密码（SeetaCloud 控制台中可以查看），或者：\n1. 在 SeetaCloud 控制台将 `~/.ssh/github_deploy.pub` 的公钥添加到服务器的 `authorized_keys`\n2. 提供密码让我配置密钥认证\n\n请提供服务器密码或告诉我如何认证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

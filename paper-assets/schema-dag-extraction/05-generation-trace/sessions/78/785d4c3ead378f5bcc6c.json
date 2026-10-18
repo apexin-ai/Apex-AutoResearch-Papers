@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "785d4c3ead378f5bcc6c",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper d051 batch1 round9 text",
+  "task_key": "worker_paper_d051_batch1_round9_text_20260516T183703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d051_batch1_round9_text_20260516T183703.log",
+    "occurrence": 1,
+    "bytes": 799248,
+    "sha256": "19936abf444c13f784190afd0e51b884f7b32760c3cbbd3845fdf98452c2c924"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "785d4c3ead378f5bcc6c-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "785d4c3ead378f5bcc6c-part-0002.json",
+          "message_count": 102
+        }
+      ]
+    }
+  ]
+}

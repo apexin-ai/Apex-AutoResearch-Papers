@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "e8b250d6a39858d17cc7",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh check olmo 002 completion",
+  "task_key": "worker_ssh_check_olmo_002_completion_20260514T181102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_olmo_002_completion_20260514T181102.log",
+    "occurrence": 1,
+    "bytes": 909887,
+    "sha256": "6dad75a3e0a52975d688b0fa7ec0e82807db1f5adc1ef89cea138d6630ffb9de"
+  },
+  "statistics": {
+    "messages": 196,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "e8b250d6a39858d17cc7-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "e8b250d6a39858d17cc7-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ]
+}

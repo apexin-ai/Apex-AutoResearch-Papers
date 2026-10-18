@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e4f499865e29d50c425b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra proxy restore and test",
+  "task_key": "worker_infra_proxy-restore-and-test_20260522T130206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_proxy-restore-and-test_20260522T130206_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "34162d449f2b9bc0e016b98bc9427f2a195cc139af5032fd893a742c6beaa3da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 旧 API key\n找到了：`tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8`（多个旧脚本中一致）\n\n### 2. 脚本回滚\n完成。修改内容：\n- `API_KEY` → 硬编码旧 key（原为 `os.environ[\"OPENROUTER_API_KEY\"]`）\n- `API_BASE` → `http://47.94.22.126/v1`（原为 `https://openrouter.ai/api/v1`）\n- 三个 BATCHES 的 `max_workers` → 1，`max_rps` → 1.0（原为 3 / 3.0）\n- `api_judge_service.py` 未改动（脚本传参覆盖）\n\n### 3. 代理测试结果\n\n| Provider | Model | HTTP Code | Latency |\n|----------|-------|-----------|---------|\n| Claude | claude-3-haiku | 200 | 11.7s |\n| OpenAI | gpt-4o-mini | 200 | 18.4s |\n| Gemini | gemini-2.5-flash | 200 | 16.1s |\n\n**PROXY RECOVERED，可以启动 scoring。**\n\n注意：代理延迟偏高（11-18s），实际 scoring 中 timeout=120s 应该足够，但 max_workers=1 + max_rps=1.0 意味着吞吐量很低，300 samples × 7 conditions × 9 models 会比较耗时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

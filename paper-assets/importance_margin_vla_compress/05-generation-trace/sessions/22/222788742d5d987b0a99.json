@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "222788742d5d987b0a99",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix exp a baseline control",
+  "task_key": "worker_fix_exp_a_baseline_control_20260518T123634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp_a_baseline_control_20260518T123634_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "d0b96660336d2a7aa20626ff6bea90fc99aa616c76594d018a1d405633c50afc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动，正在运行。\n\n**总结：**\n\n| 项目 | 内容 |\n|---|---|\n| **失败原因** | `wandb.init()` 尝试在线登录但服务器没有配置 WANDB API key，抛出 `UsageError: No API key configured` |\n| **修复** | 命令中添加 `WANDB_MODE=offline` 环境变量，跳过登录 |\n| **exp_id** | `train_baseline_control_100k_v2` |\n| **状态** | 已启动，step=50 正常训练中，loss=0.0481，sps=2.9 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

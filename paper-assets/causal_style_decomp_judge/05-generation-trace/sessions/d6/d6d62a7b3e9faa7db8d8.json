@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d6d62a7b3e9faa7db8d8",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code mtbench qwen32b scoring",
+  "task_key": "worker_code_mtbench_qwen32b_scoring_20260521T080440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mtbench_qwen32b_scoring_20260521T080440_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "5430edbd33b1c1fe91080936ba09bc1140b3b2aacef6d19a324d946d2b983ece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\n## MT-Bench × Qwen3-32B\nPairs: 73 (NLI>=0.9)\nConsistency: 49/73 (67.1%)\nBT: P(formal)=71.2% [63.0%, 78.8%], p=0.0001\nLikert: ATE=0.301, p=0.0068, d=0.149, tie_rate=60.3%\n  mean(formal)=8.38, mean(casual)=8.08\nBlindspot: Yes\nGEE: Style OR=2.96 [0.90, 9.78] p=0.0753, Orig OR=4.51 [1.34, 15.11] p=0.0147\n```\n\n产出文件：\n- `data/pairwise_results_mtbench_qwen32b.jsonl` (80 records)\n- `data/scored_mtbench_qwen32b.jsonl` (80 records)\n- `csd_pipeline/mtbench_qwen32b_scoring.py`\n\n要点：BT 显著偏好 formal（71.2%, p=0.0001），Likert ATE 也显著（+0.30, p=0.007），效应量小（d=0.149）。GEE 中 Style OR=2.96 边际显著（p=0.075），Originality OR=4.51 显著（p=0.015）——说明 Qwen3-32B 在 MT-Bench 上存在 formality blindspot，且对 originality 的偏好比 style 更强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

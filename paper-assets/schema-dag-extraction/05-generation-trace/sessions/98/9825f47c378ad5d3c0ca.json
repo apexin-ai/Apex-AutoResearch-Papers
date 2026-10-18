@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9825f47c378ad5d3c0ca",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel calibrate bugfix",
+  "task_key": "worker_ssh_fewrel-calibrate-bugfix_20260515T104553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-calibrate-bugfix_20260515T104553_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "d1f5b228f9ad51df394f1d01f708e57bc017f683d1c5e19b5933815a1812c409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n- `import torch` 仅在 `stage_preprocess` (line 196) 中\n- `from vllm` 仅在 `run_re_extraction` (line 85-86) 中\n- `stage_extract` → `run_re_extraction` → vLLM first，无 torch\n- `--stage all` 模式：preprocess 在主进程（含 torch），extract 通过 subprocess 启动（干净进程，vLLM first）\n\n## 修复总结\n\n**Bug 1** — `run_fewrel_formal.py:335`: `--model_path` 默认值改为 `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n\n**Bug 2** — `run_fewrel_formal.py` 拆分为两阶段：\n- `stage_preprocess()` (line 153): CPU 工作（数据加载、BCS、batch 分组），`import torch` 仅在此阶段\n- `stage_extract()` (line 299): 读取 preprocess JSON，调用 `run_re_extraction()`（vLLM first）\n- `--stage all`（默认）: preprocess 在主进程执行，extract 通过 `subprocess.run()` 在独立进程执行，避免 torch/vLLM fork 死锁\n\n**Bug 3** — `calibrate.py` RE 任务两端修复：\n- `build_confusion_matrix()`: 新增 `task` 参数。RE 模式直接比较 `gold[\"relation_type\"]` vs `pred[\"relation\"]`，不走 text overlap\n- `run_calibration()` prediction parsing: RE 用 `preds.get(\"relation\", \"\")`（而非 `preds.get(\"entities\", [])`）\n- `run_calibration()` gold labels: RE 用 `[{\"relation_type\": ...}]`（而非 `{\"text\": \"\", \"type\": ...}`）\n- 传递 `task=task` 给 `build_confusion_matrix`\n\n所有测试通过（RE confusion matrix、NER confusion matrix、import check）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

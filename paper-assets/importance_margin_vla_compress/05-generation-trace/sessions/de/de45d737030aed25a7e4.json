@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "de45d737030aed25a7e4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 gpu0 goal attn k05",
+  "task_key": "worker_deploy_cqa1_gpu0_goal_attn_k05_20260526T235227",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_gpu0_goal_attn_k05_20260526T235227_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "95ca2d1b36aa4c7d2d64dbe82131913eb2999859ae2be94bb4f50bde83ae08af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常启动，模型正在加载中。\n\n**部署完成：**\n- **PID**: 834185\n- **服务器**: cqa1-33015 GPU 0\n- **exp_id**: `eval_openvla_attn_k05_goal_seed42_v2`\n- **状态**: 正常启动，模型加载中（`Loading OpenVLA from: /root/autodl-tmp/openvla-libero-goal`）\n- **命令**: `eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.5 --suite libero_goal --num_episodes 50 --seed 42`\n\n注：初始提交用了错误脚本（`eval_openvla_pruning_libero.py`），已 kill 后用正确脚本 `eval_openvla_l2norm_libero.py` 重新提交。GPU 1 的 Object Attn k=0.95 (PID 832015) 未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

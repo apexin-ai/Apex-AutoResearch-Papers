@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b5b532ed609035ca50e8",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code check smoke results",
+  "task_key": "worker_code_check-smoke-results_20260518T112500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-smoke-results_20260518T112500_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "1c789de8764507c99712755629c91f43b1e69795c8fd7bc98a5683ceffcbf5b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Smoke Test 结果汇总\n\n### 进程状态\n- 无 `run_lmeval` 进程运行中\n\n### GPU\n- **0% utilization, 0 MiB memory** — GPU 空闲\n\n### Smoke Test: 1.3B baseline on lambada_openai\n- **acc = 0.0000** (零准确率)\n- **perplexity = 16,274,872.83** (极高，基本是随机)\n- 模型: `/root/autodl-tmp/models_1.3b/transformer_1.3B_baseline` (1.21B params, bfloat16)\n- 警告: `lm_head.weight` **MISSING** — 模型加载时 lm_head 被随机初始化，这是 acc=0 的直接原因\n- 耗时 60s，batch_size=16，5153 samples\n\n### 7B Results (Qwen2.5-7B-Instruct, func_comp)\n\n| Depth | Direct | CoT |\n|-------|--------|-----|\n| 1 | 89.0% | 96.6% |\n| 2 | 19.4% | 89.4% |\n| 3 | 14.0% | 71.2% |\n| 4 | 11.0% | 53.4% |\n| 5 | 14.4% | 38.0% |\n\n### Models 1.3B 磁盘\n- `/root/autodl-tmp/models_1.3b/` 总计 19G\n\n### 关键问题\n**1.3B baseline 的 `lm_head.weight` 缺失**，导致模型输出完全随机。这个 checkpoint 的 LM head 没有保存或文件名不匹配，需要检查 checkpoint 内容。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

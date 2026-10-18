@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "336b7a6c4b0a534556c1",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "writing final 5 fixes compile",
+  "task_key": "worker_writing_final_5_fixes_compile_20260517T064221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_final_5_fixes_compile_20260517T064221.log",
+    "occurrence": 1,
+    "bytes": 1161575,
+    "sha256": "411d3fac4e04d22598d2f1bbf83f882c899a517dceed946fdf91e511a1a77451"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "336b7a6c4b0a534556c1-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "336b7a6c4b0a534556c1-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fceea6c29911bb8dfedf",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu llama hires constrained mckp",
+  "task_key": "worker_gpu_llama_hires_constrained_mckp_20260514T214744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_llama_hires_constrained_mckp_20260514T214744_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "4f998088d94661c3d98292b6aa0f9a885c39ddf2618dcaf80fcfae7c201c05f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已 RUNNING。\n\n**摘要**:\n- 脚本: `/root/ratekv/run_llama_hires_constrained.py` (基于 yi15 版本改造，处理 llama 标准 profile 的 `profiles` 包装层)\n- 配置: cuda:0, bf16, budget=0.25, max_2bit=2, l0_exclude_2bit=True\n- PID 266155，tmux session: `llama_hires_constrained_mckp`，log: `~/runs/ratekv/llama_hires_constrained_mckp.log`\n- 模型已加载到 cuda:0 (17.1GB)，cuda:1 上的 Mistral v4 未受影响 (18.0GB)\n- MCKP allocation 已完成: `{4: 253, 8: 1, 2: 2}`；2-bit heads: `[26,0, 31,7]`；8-bit head: `[12,3]`；distortion=0.7015\n- 当前正在 WikiText-2 评估三个 PPL (baseline / MCKP / uniform 4-bit)\n\nDone."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

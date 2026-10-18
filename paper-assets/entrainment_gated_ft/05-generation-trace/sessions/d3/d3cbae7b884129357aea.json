@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3cbae7b884129357aea",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix wang paradox boolq taxonomy cleanup",
+  "task_key": "worker_fix_wang-paradox-boolq-taxonomy-cleanup_20260519T170231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_wang-paradox-boolq-taxonomy-cleanup_20260519T170231_result.json",
+    "occurrence": 1,
+    "bytes": 1961,
+    "sha256": "b74945621c760d89d7e2922a2c10cb276da56880ca2e95bb48e84238f6c2e99e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n### 修复 1: wang_et_al_differentiation.md (服务器)\n- **5 处 \"paradox\"** 全部替换：→ \"divergence\"/\"decoupling\"/\"aggregate-individual decoupling\" 等 D008 批准叙事\n- **6 个旧 scipy p 值** 替换为 exact permutation p 值并标注方法：\n  - LAMBADA: 0.0083 → 0.0167; table: 0.008 → 0.017\n  - ARC-Easy/MMLU: 0.117 → 0.2333\n  - HellaSwag: 0.742 → 0.6833\n  - ARC-Challenge: 0.883 → 0.35\n  - WinoGrande: 0.608 → 0.95\n- 所有统计声明添加 \"(exact permutation test, two-tailed, n=5)\"\n- 验证：0 paradox, 0 co-evolution 残留\n\n### 修复 2: convergence_table.csv\n- BoolQ taxonomy: \"retrieval\" → \"comprehension\"\n\n### 修复 3: \"paradox\" 残留审计\n\n**活跃文件 — 无需修改：**\n| 文件 | 行号 | 内容 | 判定 |\n|------|------|------|------|\n| paper_framing.md:3 | \"drop 'paradox' narrative\" | meta-reference（描述决策），OK |\n| paper_framing.md:39 | \"Do NOT frame as 'co-evolution'\" | 禁令声明，OK |\n| paper_framing.md:51 | \"Simpson's paradox / ecological fallacy\" | 外部概念引用，OK（允许） |\n| ROADMAP.md:32 | 任务项 | 已标记完成 |\n| ROADMAP.md:54,56 | D008/D006 决策记录 | 历史决策日志，OK |\n| memory.md:27 | 禁用词列表 | 禁令本身，OK |\n\n**Dream reports (artifacts/dream_reports/)**: ~30+ 处 \"paradox\"/\"co-evolution\"，全部在 archived review reports 中。这些是历史评审记录，不应修改。\n\n**结论**: 活跃文档中无违规 \"paradox\"/\"co-evolution\" 残留。\n\n### 任务 4: Paper Agent 材料清单\n写入 `artifacts/paper_agent_inputs.md`，包含 6 个部分：framing 摘要、数据文件位置（5 个 paper_data 文件 + 服务器端数据）、待产出（exp-004-r2、exp-007）、Related Work 需求（8 个 topic areas）、写作约束（EMNLP 8p + D008/D009/W3 限制）、投稿信息（ARR June ~June 15）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

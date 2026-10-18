@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8a0c4a01a576b58d621c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code retnet download fix",
+  "task_key": "worker_code_retnet_download_fix_20260518T145025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retnet_download_fix_20260518T145025_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "bc5fd4896a368bf1303deb83913ddc3da2f5f5d3d6974c74e097ae13ca1f1045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果汇总：\n\n---\n\n### 1. RetNet-pure 下载/修复状态\nshard-1 (5.00GB) 和 shard-2 (0.20GB) 均完整存在，无需修复。之前报告的\"shard-1 被删除\"是误报。\n\n### 2. RetNet-pure 模型加载验证\n加载成功，1.30B 参数，weight tying 已正确应用 (`lm_head.weight = model.embeddings.weight`)。\n\n### 3. RetNet-pure lambada 结果\n- **acc** = 0.5166\n- **perplexity** = 10.0067\n\n### 4. RetNet-pure 6-task 完整结果\n\n| Task | Metric | Score |\n|------|--------|-------|\n| lambada_openai | acc | 0.5166 |\n| lambada_openai | ppl | 10.0067 |\n| hellaswag | acc | 0.4419 |\n| hellaswag | acc_norm | 0.5799 |\n| winogrande | acc | 0.6038 |\n| arc_easy | acc | 0.7121 |\n| arc_easy | acc_norm | 0.6477 |\n| arc_challenge | acc | 0.3729 |\n| arc_challenge | acc_norm | 0.3771 |\n| mmlu | acc | 0.2452 |\n\n结果已保存至 `/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json`\n\n### 5. RetNet-hybrid-12-1 完整性\n两个 shard 均存在，模型完整。\n\n### 6. fix_downloads.py 状态\nPID 316964 仍在运行（已运行 37 分钟），当前正在下载 **HGRN2-pure shard-1** (4.65GB)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8047e3a5c98744e4cba6",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper yi15 table3 fix",
+  "task_key": "worker_paper_yi15_table3_fix_20260514T211702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_yi15_table3_fix_20260514T211702_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "57405df8a628421ba8de322353bb3fd34a4c92239880b045a7d2db9a3bec4679"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clean:\n\n- `1.3\\%` in experiments.tex L64 refers to Qwen seed std, not Yi-1.5 — correct, keep.\n- `counterproductive` in analysis.tex L72 refers to Mistral/Gemma-2 (Flat pattern) — correct, keep.\n- `counterproductive` in experiments.tex L149 refers to Mistral low heterogeneity — correct, keep.\n\nNo stale Yi-1.5 values (0.30, 7.31, 1.3% degradation) remain anywhere.\n\n**Summary of changes across 5 files:**\n\n| File | Change |\n|------|--------|\n| `analysis.tex` L17 | \"counterproductive (+0.30 vs +0.20)\" → \"matches uniform (+0.20 vs +0.20)\" |\n| `analysis.tex` L41 (Table 3) | ΔPPL Ours: +0.30 → +0.20 |\n| `analysis.tex` L71 | \"counterproductive or marginal\" → \"no benefit or marginal\" |\n| `experiments.tex` L53 (Table 2) | Yi-1.5-9B → Yi-1.5-9B†, Ours: 7.31 → 7.22 |\n| `experiments.tex` L73-74 | \"7.31 PPL vs uniform 7.22—a 1.3% degradation\" → \"7.22 PPL, essentially identical to uniform 7.22 (<0.01%)\" + spike explanation |\n| `introduction.tex` L35 | \"degrades PPL by 1.3% (7.31 vs 7.22)\" → \"provides no benefit (7.22 vs 7.22 uniform)\" |\n| `introduction.tex` L53 | \"makes MCKP counterproductive\" → \"means MCKP provides no benefit over uniform\" |\n| `abstract.tex` L6 | \"is counterproductive\" → \"provides no benefit\" |\n| `abstract.tex` L7 | \"yet degrades under\" → \"yet gains nothing from\" |\n| `conclusion.tex` L7 | \"are counterproductive\" → \"show no benefit\" |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

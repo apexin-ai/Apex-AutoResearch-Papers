@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "14f16a6e416154b74a01",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest attn k07 l2norm k05 s47",
+  "task_key": "worker_harvest_attn_k07_l2norm_k05_s47_20260529T024940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_attn_k07_l2norm_k05_s47_20260529T024940_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "277c7e2f07f8d3f952647f58304a9cb87ab8917b2118f8594bf2d3fa7bf49ede"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n| 实验 | SR | 5-seed mean | seed47 偏差 |\n|------|-----|-------------|------------|\n| pi05_attn_k07_long_seed47 | **54.4%** | 53.0±1.1pp | +1.4pp |\n| pi05_l2norm_k05_long_seed47 | **50.0%** | 51.7±1.5pp | -1.7pp |\n\n两个实验均正常完成（EXIT_CODE=0），seed47 结果在各自 5-seed 分布的合理范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

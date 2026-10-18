@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "a1d55bf58e2778bd4f3b",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code temp07 pilot pythia 001",
+  "task_key": "worker_code_temp07_pilot_pythia_001_20260515T155152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_temp07_pilot_pythia_001_20260515T155152.log",
+    "occurrence": 1,
+    "bytes": 1140106,
+    "sha256": "fbccd2d3d4b25f368655824627bd460bc0c2345d16543e17a80ce358aad9e9a9"
+  },
+  "statistics": {
+    "messages": 658,
+    "user_turns": 1,
+    "tool_calls": 285,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 285,
+      "tool_result": 285,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 628,
+      "chunks": [
+        {
+          "path": "a1d55bf58e2778bd4f3b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1d55bf58e2778bd4f3b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1d55bf58e2778bd4f3b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1d55bf58e2778bd4f3b-part-0004.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "a1d55bf58e2778bd4f3b-part-0004.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ]
+}

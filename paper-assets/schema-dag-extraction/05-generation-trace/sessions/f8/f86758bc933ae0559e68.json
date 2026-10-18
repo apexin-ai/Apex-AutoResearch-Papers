@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f86758bc933ae0559e68",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper final consistency check",
+  "task_key": "worker_paper_final_consistency_check_20260522T120807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_consistency_check_20260522T120807_result.json",
+    "occurrence": 1,
+    "bytes": 2723,
+    "sha256": "b99b266a673d387e7db9615dd1465d12752caaeabc0ba0376f15bdfe29d6f96d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## 端到端一致性检查报告\n\n### 1. R²=0.218 残留: **PASS**\n\n2 处匹配，均为 **Spearman ρ = 0.218**（SCS-confusion pairwise correlation），非 semipartial R²：\n- `main.tex:590` — \"SCS--confusion Spearman correlation ... ($\\rho = 0.218$, $p < 0.001$, $n = 3{,}160$ pairs)\"\n- `main.tex:630` — 表格中 \"FewRel & SCS (embedding) & **0.218** & $< 0.001$\"\n\n两处均为合法的 pairwise Spearman ρ，与 semipartial R² = 0.273 是不同指标。无残留错误。\n\n### 2. 数字一致性: **PASS**\n\n| 数字 | 出现次数 | 一致性 |\n|------|---------|--------|\n| semipartial R²=0.273 | abstract×1, intro×1, results×3, main(appendix)×7 | 全部一致，上下文正确 |\n| 80pool R²≈0.05 | results×1 | 仅 1 处，搭配 r=-0.22, p=0.027，上下文正确 |\n| VIF=50.9 | main×4, results×3 | 全部一致，均指 DocRED multicollinearity |\n| VIF=1.18 | abstract×2, intro×1, main×2, results×2 | 全部一致，均指 FewRel low collinearity |\n| TOST p=0.003 | main×2, results×1 | 全部指 ±3pp TOST（main:909 的 0.003 是 relaxed-span 表格，不同指标） |\n| TOST p=0.209 | main×1, results×1 | 全部指 logit-scale TOST inconclusive |\n| TOST p=0.047 | main×4, results×1 | ±2pp TOST 和 logit interaction p，上下文均正确 |\n| partial r=-0.537 | main×2, results×1 | 全部一致，FewRel partial correlation |\n| 80pool r=-0.22 | results×1（r=-0.22），main×3（-0.221） | 精度不同但一致（results 取两位小数，表格取三位） |\n| p=0.027 | main×4, results×1 | 全部指 80pool within-pool regression p 值；另 main:337 的 SD=0.027 是 Few-NERD BCS SD，不同指标 |\n\n### 3. 交叉引用: **PASS**\n\n- undefined references: **0**\n- multiply defined labels: **0**\n\n### 4. 编译: **PASS**\n\n- LaTeX errors (`^!`): **0**\n- BibTeX warnings: 1（`guo-2021-label-confusion` volume/number 冲突，不影响输出）\n- 输出: 27 pages, 476127 bytes\n\n### 5. 页数: **PASS**\n\n- Sections 1–6 (Discussion and Conclusion) 结束于 **page 8**\n- Limitations 从 page 8 底部开始（不计入 8 页限制）\n- References 从 page 9 开始（无限制）\n- 正文 ≤ 8 页 ✓\n\n### 6. Anonymization: **PASS**\n\n- `\\author{Anonymous}` ✓\n- 无大学/机构名泄露（grep 匹配均为 `\\label{}` 命令和通用学术用语的误匹配）\n- 无服务器路径/IP 泄露\n- 无致谢/基金信息\n- 无 GitHub/HuggingFace 链接\n\n---\n\n**总结: 6/6 PASS。** BibTeX 的 volume/number warning 建议修复（在 `references.bib` 中 `guo-2021-label-confusion` 条目删除 `number` 字段），但不影响论文内容。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

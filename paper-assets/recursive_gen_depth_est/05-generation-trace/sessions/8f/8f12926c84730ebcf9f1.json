@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8f12926c84730ebcf9f1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh check experiment progress",
+  "task_key": "worker_ssh_check_experiment_progress_20260514T194229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_experiment_progress_20260514T194229_result.json",
+    "occurrence": 1,
+    "bytes": 1338,
+    "sha256": "3ec6f3606054d03ffdb23dbe74f185e4d454f05d60cf7f322700843f566233cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验ID | 当前阶段 | 进度 | 预估剩余时间 | GPU利用率 |\n|--------|---------|------|-------------|----------|\n| pythia_topk50_001 | Step 6: Generate depth-3 | depth_3.jsonl 908K/~9M (~10%) | ~50-60 min | GPU 0: 67%, 13.7GB, 52°C |\n| gpt2xl_temp09_001 | Step 2: Generate depth-1 | depth_1.jsonl 8.9M (接近完成或刚完成) | ~3-3.5 hr | GPU 1: 53%, 15.7GB, 47°C |\n\n**详细状态：**\n\n**pythia_topk50_001** — 进展顺利，已完成 5/9 步：\n- ✅ finetune d0 → generate d1 (8.9M) → finetune d1 (loss 1.44) → generate d2 (9.4M) → finetune d2 (loss 1.44)\n- 🔄 generate d3 — 模型已加载，正在生成，当前 908K\n- ⬜ feature extraction → classification → eval\n- 参考：每层生成约 30 min，finetune 约 6 min\n- 注意：原 PID 165810 已退出，当前由子进程 PID 184981 (ppid=165799) 驱动\n\n**gpt2xl_temp09_001** — 进度较慢（GPT-2 XL 推理速度 ~1.33 it/s vs Pythia ~3.52 it/s）：\n- ✅ finetune d0 (loss 2.55, 耗时 705s — Pythia 的 2 倍)\n- 🔄 generate d1 — depth_1.jsonl 已达 8.9M，可能即将完成\n- ⬜ finetune d1 → generate d2 → finetune d2 → generate d3 → feature extraction → classification → eval\n- GPT-2 XL 每层生成约 70-80 min，finetune 约 12 min\n- PID 168793 存活（运行 1h15m）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

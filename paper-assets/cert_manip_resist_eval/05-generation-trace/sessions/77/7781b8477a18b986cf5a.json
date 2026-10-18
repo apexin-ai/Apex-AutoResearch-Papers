@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7781b8477a18b986cf5a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 step0 api adapter",
+  "task_key": "worker_code_plan001-step0-api-adapter_20260522T071153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-step0-api-adapter_20260522T071153_result.json",
+    "occurrence": 1,
+    "bytes": 1533,
+    "sha256": "63bac35ef193903bd8fc35f2648d1013b2a0b6935e0fe70136c83c861830aefb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n**9/9 API 模型全部验证通过。**\n\n### 产出文件\n1. **`/root/cert_manip_resist_eval/src/api_judge_service.py`** — 完整的 API adapter\n2. **`/root/cert_manip_resist_eval/artifacts/results/api_adapter_validation.json`** — 验证结果\n\n### 实现要点\n- 复用 `judge_service.py` 的 prompt templates 和 `_parse_judge_output`\n- Rate limiting（5 RPS）+ retry（3 次 exponential backoff）\n- `batch_score` 使用 `ThreadPoolExecutor(max_workers=5)` 并发\n- 记录每个请求的 latency / input_tokens / output_tokens\n\n### 修复的兼容性问题\n- **gpt-5.5**: 不支持 `temperature=0`，通过 `_NO_TEMP_ZERO` 集合跳过该参数\n- **gemini-2.5-pro**: 输出极长（~1020 tokens），JSON 被截断。添加 `_parse_judge_output_robust` 用正则提取截断 JSON 中的 winner/score_a/score_b 字段\n\n### 验证结果摘要\n\n| Model | Latency | Tokens (in+out) | Winner |\n|-------|---------|-----------------|--------|\n| claude-opus-4 | 14.5s | 290+134 | A |\n| gpt-5.5 | 5.1s | 262+195 | A |\n| gemini-2.5-pro | 11.6s | 263+1020 (repaired) | A |\n| gpt-4.1 | 3.2s | 263+101 | A |\n| claude-sonnet-4 | 4.3s | 290+106 | A |\n| gpt-4o | 2.6s | 263+78 | A |\n| gemini-2.5-flash | 3.6s | 263+88 | tie |\n| gpt-4o-mini | 2.9s | 263+60 | B |\n| claude-3-haiku | 2.4s | 290+109 | A |\n\n### 成本估算\n- 37,800 calls × avg 272 input + 210 output tokens ≈ **$126**（粗算，gemini-2.5-pro 的长输出拉高了平均值；排除它后实际约 $50-70）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

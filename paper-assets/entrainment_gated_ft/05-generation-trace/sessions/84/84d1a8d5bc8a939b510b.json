@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84d1a8d5bc8a939b510b",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code matched dose comparison",
+  "task_key": "worker_code_matched_dose_comparison_20260519T055535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_matched_dose_comparison_20260519T055535_result.json",
+    "occurrence": 1,
+    "bytes": 1852,
+    "sha256": "feea37e291c19f7817d72bff9ef427183186c2a8df402d96d693043417c12cbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成。下面是完整分析结果：\n\n## 核心发现（匹配剂量 h3-1，8层 attention）\n\n### 1. Overall Accuracy\n| Model | Acc |\n|---|---|\n| GDN-pure | 54.30% (2798) |\n| GDN-h3-1 | 51.33% (2645) |\n| HGRN2-pure | 48.42% (2495) |\n| HGRN2-h3-1 | 51.39% (2648) |\n\n### 2. Attention Effect（关键发现：方向相反）\n\n**GDN h3-1**: attention **伤害**了模型\n- Helped: 462 (9.0%), Hurt: 615 (11.9%), **Net: -153**\n\n**HGRN2 h3-1**: attention **帮助**了模型\n- Helped: 548 (10.6%), Hurt: 395 (7.7%), **Net: +153**\n\n这和之前用 h12-1 的结论完全不同。GDN 加 8 层 attention（h3-1 配置）反而降低了 LAMBADA accuracy，而 HGRN2 加同样比例的 attention 则受益。\n\n### 3. Jaccard Overlap（极低）\n- **Helped overlap**: J = 0.100 (intersection=92, union=918)\n- **Hurt overlap**: J = 0.088 (intersection=82, union=928)\n\n两架构的 attention 影响几乎作用在**不同的样本**上。\n\n### 4. Cross-table\n```\n                    HGRN2-hurt  HGRN2-unch  HGRN2-helped\nGDN-hurt               82       428       105\nGDN-unchanged         257      3468       351\nGDN-helped             56       314        92\n```\n\n注意 GDN-hurt & HGRN2-helped = 105，GDN-helped & HGRN2-hurt = 56，说明有一批样本上两架构的 attention 产生了相反效果。\n\n### 5. Length Analysis\n所有长度 bin 上 GDN 的 net effect 都是负的，HGRN2 都是正的。效果与长度方向一致但不特别突出。\n\n### 6. Logprob Shifts\n- GDN: 整体 mean delta = -0.21（attention 降低了 logprob）\n- HGRN2: 整体 mean delta = +0.14（attention 提升了 logprob）\n\n产出文件：\n- 图表: `analysis/lambada_matched_comparison.png` / `.pdf`\n- CSV: `analysis/lambada_matched_per_example.csv`\n- 脚本: `analysis/lambada_matched_comparison.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

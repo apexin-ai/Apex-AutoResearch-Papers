@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3441afd004472982e961",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops a6 direct read",
+  "task_key": "worker_ops_a6-direct-read_20260524T125134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a6-direct-read_20260524T125134_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "632cb4cae0fb664ad3ad6132d47e801edf8f80b6fa6c082499cc27a6a8b82e35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A6 结果文件已存在，运行耗时 2175.2 秒（~36 分钟）。关键结果：\n\n### predictor_shift（Shannon MI entropy 作为 DBEI 多样性指标）\n\n| K | diversity_sig | eta_sig |\n|---|--------------|---------|\n| 3 | **4/12** | **12/12** |\n| 5 | **4/12** | **11/12** |\n| 7 | **0/12** | **0/12** |\n\n### keff_comparison（DBEI vs k_eff 对比）\n\n| K | keff_sig | diversity_sig |\n|---|----------|--------------|\n| 3 | 6/12 | 4/12 |\n| 5 | **8/12** | 4/12 |\n| 7 | 2/12 | 0/12 |\n\n### correlation_dbei_keff\n- K3: **-0.625**, K5: **-0.735**, K7: **-0.759**\n\n`shift_pattern_matches_keff`: **false**\n\n### K7 FDR summary\n- shannon_fdr_sig: 0/12, keff_fdr_sig: 2/12, eta_in_shannon: 0/12, eta_in_keff: 1/12\n\n**核心发现**：\n1. **η（操纵强度）在 K3/K5 几乎全显著**（12/12, 11/12），但 DBEI diversity 本身只有 4/12 显著——说明操纵强度是主要预测因子，面板多样性的独立解释力有限\n2. **K7 全面崩塌**（0/12）——面板过大时信号完全消失\n3. **DBEI 与 k_eff 强负相关**（-0.63 ~ -0.76），但显著性 pattern 不匹配——k_eff 在 K5 有 8/12 显著，优于 DBEI 的 4/12\n4. k_eff 整体表现略优于 Shannon MI entropy 作为多样性度量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

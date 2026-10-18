@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "00edec0095d84e76e98f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "verify openvla model path default",
+  "task_key": "worker_verify_openvla_model_path_default_20260525T003454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_openvla_model_path_default_20260525T003454_result.json",
+    "occurrence": 1,
+    "bytes": 1251,
+    "sha256": "2fc1241a1be6bb9128db30ed5475f38d860bdbc27c37fb955be2a7a4c66bf4d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认：这 4 个实验全部用错了模型。**\n\n日志铁证——所有实验都打印了：\n```\n[*] Loading OpenVLA from: /root/autodl-tmp/openvla-libero-object\n```\n\n具体情况：\n\n| 实验 | --suite | 加载的模型 | 应该用的模型 |\n|------|---------|-----------|------------|\n| attn_k085_goal_seed42 | libero_goal | `openvla-libero-object` ❌ | `openvla-7b-finetuned-libero-goal` |\n| attn_k085_spatial_seed42 | libero_spatial | `openvla-libero-object` ❌ | `openvla-7b-finetuned-libero-spatial` |\n| random_k09_goal_seed42 | libero_goal | `openvla-libero-object` ❌ | `openvla-7b-finetuned-libero-goal` |\n| random_k09_spatial_seed42 | libero_spatial | `openvla-libero-object` ❌ | `openvla-7b-finetuned-libero-spatial` |\n\n**根因**：`eval_openvla_l2norm_libero.py` 中 `CHECKPOINT_PATH` 和 `UNNORM_KEY` 是模块级常量，硬编码为 `libero_object`。`parse_args()` 没有 `--model_path`/`--unnorm_key` 参数，也没有 suite→model 的映射逻辑。不管 `--suite` 传什么，永远加载 object 模型。\n\n**结论**：westd-38929 上这 4 个 goal/spatial 实验的结果无效，需要 kill 后修改脚本重跑。另一台服务器上如果也有类似实验，同样无效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

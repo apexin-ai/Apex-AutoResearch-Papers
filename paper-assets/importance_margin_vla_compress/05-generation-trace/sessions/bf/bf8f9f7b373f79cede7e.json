@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bf8f9f7b373f79cede7e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest random k075 seed44 w41",
+  "task_key": "worker_harvest_random_k075_seed44_w41_20260528T003912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_random_k075_seed44_w41_20260528T003912_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "969d4ebd0c0ae9c411e473ae6525a2f3f466e2fed822012bfb1bc60e3d91d187"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在，无需删除。所有信息已收集完毕。\n\n## 结果\n\n**eval_pi05_random_k075_long_seed44_strict_w41** — 成功完成\n\n**Overall SR: 64.6%** (323/500)\n\n### Per-task breakdown\n| Task | SR |\n|---|---|\n| T0 alphabet_soup_tomato | 90% |\n| T1 cream_cheese_butter | 72% |\n| T2 stove_moka_pot | 72% |\n| T3 black_bowl_drawer | 76% |\n| T4 white_mug_plate | 68% |\n| T5 book_back_shelf | 42% |\n| T6 white_mug_plate_2 | 74% |\n| T7 alphabet_soup_cream | 66% |\n| T8 moka_pots_stove | **14%** |\n| T9 yellow_white_mug_microwave | 72% |\n\n### 3-seed 汇总 (Random k=0.75 Long)\n\nROADMAP 2-seed: mean=61.8%±1.2 → seed42≈60.6%, seed43≈63.0%\n\n| Seed | SR |\n|---|---|\n| seed42 | ~60.6% |\n| seed43 | ~63.0% |\n| seed44 | **64.6%** |\n| **3-seed mean** | **≈62.7%±2.0** |\n\nRegistry 已为 DONE/success 状态，metrics 已填充。Margin vs L2norm k=0.75 (72.0%): **+9.3pp**，与 2-seed margin (+10.2pp) 基本一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

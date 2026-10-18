@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1419d3ab08b068ffd33",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 hotfix deploy",
+  "task_key": "worker_ops_fp16-hotfix-deploy_20260524T184110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-hotfix-deploy_20260524T184110_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "0a0e47322f197bfb210b0684a63fff538defe246b334cc2ecc5f67035953f73c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已生效，结果正常：\n\n- **Qwen2.5-14B-Instruct-AWQ**: MMLU=0.710, ARC=0.840\n\n当前正在下载下一个模型（看进度条是 FP16 或下一个 AWQ）。Job 在 tmux session `r1w2-fp16-baseline` 中正常运行。\n\n状态总结：\n- Bug 已修复（`gold = chr(65 + s[\"answer\"])`）\n- 旧进程（46045/47861）已 kill\n- 新 job（PID 50564）已在运行，AWQ 评估通过（accuracy 非零），正在下载下一个模型\n- PID 18494（Monte Carlo）未受影响\n- N_SAMPLES = 100，无需改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

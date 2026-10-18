@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c50f9b5127e293d855dc",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code llama echte analysis",
+  "task_key": "worker_code_llama-echte-analysis_20260521T203818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-echte-analysis_20260521T203818_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "5730ed4fc63024f7d7f2f432c3457c13011bb7ee4f1f367ba70780111bc4eefe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n**Key Results — Llama-3.1-8B EC-HTE Analysis:**\n\n| Metric | Llama-3.1-8B | Gemini (pilot) |\n|--------|-------------|----------------|\n| N | 500 | 500 |\n| Overall accuracy | 0.754 | 0.780 |\n| **Δπ** | **0.137** | **0.132** |\n| max κ | 2.26 | 2.40 |\n| Prop2 triggered | 1/4 subgroups | 3/4 subgroups |\n\n**Δπ = 0.137 > 0.05** — confirms C1: Llama-3.1-8B exhibits subgroup-heterogeneous misclassification across hashtag × text-length subgroups. The `True_short` subgroup has the lowest error (π=0.140) while `False_medium` has the highest (π=0.277). Prop 2 diagnostic triggers for `True_short` (ratio=1.300), indicating asymmetric misclassification that would bias CATE.\n\n**Output files:**\n- `artifacts/c1_multi_llm/llama_analysis.md` — full report\n- `artifacts/c1_multi_llm/llama_metrics.csv` — summary metrics (both Llama + Gemini pilot)\n- `artifacts/c1_multi_llm/analyze_llama.py` — analysis script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

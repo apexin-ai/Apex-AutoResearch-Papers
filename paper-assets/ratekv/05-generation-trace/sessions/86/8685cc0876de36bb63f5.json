@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8685cc0876de36bb63f5",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp kivi llama and r0",
+  "task_key": "worker_exp_kivi_llama_and_r0_20260515T114602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_kivi_llama_and_r0_20260515T114602_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "6d977f7167f8a9e22e60f45ee8fc1e05d5acc92003768a89da8feaff6584fb02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个 KIVI eval 完成，artifact 已注册。汇总：\n\n### KIVI Baseline PPL (WikiText-2)\n\n| Model | Bits | r128 (原始) | r0 (公平对比) | Δ |\n|-------|------|------------|-------------|---|\n| **Qwen2.5-7B** | 2-bit | 12.83 | 13.34 | +0.51 |\n| **Qwen2.5-7B** | 4-bit | 9.90 | 9.91 | +0.01 |\n| **Llama-3.1-8B** | 2-bit | 9.84 | 10.08 | +0.24 |\n| **Llama-3.1-8B** | 4-bit | 8.14 | 8.14 | +0.005 |\n\n**关键发现**：\n- **4-bit 几乎不受 residual_length 影响**（Δ < 0.02），r128 的 25% fp16 residual 对 4-bit 没实质帮助\n- **2-bit 受影响明显**：Qwen +0.51, Llama +0.24。说明 reviewer 的 concern 有道理——r128 在 2-bit 下确实给了 KIVI 不公平的优势\n- r0 结果可直接用于论文中的 strict-budget fair comparison\n\n服务器产出文件：\n- `artifacts/kivi_qwen25_7b.json` (r128)\n- `artifacts/kivi_llama31_8b_r128.json`\n- `artifacts/kivi_qwen25_7b_r0.json`\n- `artifacts/kivi_llama31_8b_r0.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

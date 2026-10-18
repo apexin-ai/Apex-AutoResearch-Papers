@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eb29d649ebfb66771e0f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "exp plan001 step1 api scoring",
+  "task_key": "worker_exp_plan001-step1-api-scoring_20260522T072241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan001-step1-api-scoring_20260522T072241_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "2bf4cad844ed6cd0f54617aac6fcdd33c44fd585f747c9387eead98bf8bea76a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running stably. Here's the status summary:\n\n**Plan 001 Step 1 — Running on `seetacloud-rtx6000`**\n\n| Item | Status |\n|------|--------|\n| Progress | 1/126 conditions done |\n| Last completed | claude-3-haiku / mmlu / clean — acc=0.767, 0 errors, 237s |\n| Currently scoring | claude-3-haiku / mmlu / prompt_injection (~3 min in) |\n| Process | PID 87042, healthy, 6:47 elapsed |\n| 502 retries | 2 observed, handled by exponential backoff |\n| Estimated total | ~9 hours (126 conditions × ~4 min avg) |\n| Timeout | 14h — plenty of headroom |\n\nThe job is running fine with checkpointing. Each completed condition writes a JSON file immediately to `artifacts/results/plan001/individual_scores/`, so progress is crash-safe. You can monitor with:\n\n```bash\n# Checkpoint count\nls /root/cert_manip_resist_eval/artifacts/results/plan001/individual_scores/ | wc -l\n\n# Latest log\ntail -10 /root/runs/cert_manip_resist_eval/plan001_step1_full_v4.log\n```\n\nWant me to check back periodically, or wait until you ask?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

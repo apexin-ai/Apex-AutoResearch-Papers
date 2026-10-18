@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec6fa486306ea4ca1dbc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis detectgpt 004 results",
+  "task_key": "worker_analysis_detectgpt-004-results_20260519T180715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detectgpt-004-results_20260519T180715_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "71ff55f705845b58d6e46529757e49df422175250047bd5aa3797dbce097e837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：detectgpt_ordinal_baseline_004\n\n**状态：成功完成，EXIT_CODE=0**\n\n### pythia_nucleus 结果（每深度 200 样本，5 perturbations）\n\n| Calibration | 4-class Accuracy | d1-d3 Balanced Acc |\n|-------------|------------------|--------------------|\n| methodA | 0.2538 ± 0.0050 | 0.3383 ± 0.0067 |\n| methodB | 0.2512 ± 0.0225 | 0.3350 ± 0.0300 |\n| methodC | 0.2900 ± 0.0249 | 0.1200 ± 0.0272 |\n| **Mean** | **0.2650** | **0.2644** |\n\n- Scoring model: gpt2-large, perturbation model: t5-large\n- 4-class random baseline = 0.25, d1-d3 random baseline = 0.333\n- **结论：DetectGPT 在 ordinal depth estimation 上基本等于随机猜测。** methodA/B 的 4-class acc 刚过 0.25，d1-d3 bal_acc 在 0.333 附近；methodC 的 4-class 略高但 d1-d3 反而远低于随机（0.12），说明其\"准确率\"来自偏向某一类而非真正区分深度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

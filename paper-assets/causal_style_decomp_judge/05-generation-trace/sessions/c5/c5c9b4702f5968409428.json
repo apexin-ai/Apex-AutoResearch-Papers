@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c5c9b4702f5968409428",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code claude judge lmbar scoring",
+  "task_key": "worker_code_claude_judge_lmbar_scoring_20260521T082556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_claude_judge_lmbar_scoring_20260521T082556_result.json",
+    "occurrence": 1,
+    "bytes": 1300,
+    "sha256": "5560b96a7b2bae09a2ef8f608c8767c3cbbd5c9d50b2c429d894e2ebb814d7bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline complete. Here are the results:\n\n---\n\n## Claude Sonnet 4 x Formality (LLMBar)\nPairs: 88\nBT: P(formal)=56.2% [48.9%, 63.6%], p=0.0912\nLikert: ATE=-0.045, p=0.7207, d=-0.021, tie_rate=68.2%\nBlindspot: No\nGEE: Style OR=1.47 p=0.2757, Orig OR=6.66 p=< 0.0001\n\n## Claude Sonnet 4 x Verbosity (LLMBar)\nPairs: 86\nBT: P(verbose)=54.1% [45.9%, 61.6%], p=0.2840\nLikert: ATE=-0.081, p=0.7427, d=-0.039, tie_rate=67.4%\nBlindspot: No\nGEE: Style OR=1.52 p=0.2858, Orig OR=0.80 p=0.5626\n\n---\n\nKey takeaways:\n- **No significant style blindspot** on either axis — Claude Sonnet 4 shows no statistically significant preference for formal or verbose responses (both BT p > 0.05)\n- **Formality**: slight lean toward formal (56.2%) but not significant; very high Likert tie rate (68.2%); **very strong originality bias** (Orig OR=6.66, p < 0.0001) — Claude strongly prefers whichever response is the original\n- **Verbosity**: even weaker lean toward verbose (54.1%); high tie rate (67.4%); no significant originality bias (Orig OR=0.80, p=0.56)\n\nScript saved at `csd_pipeline/claude_judge_scoring.py`. Output files: `pairwise_results_claude_formality.jsonl`, `pairwise_results_claude_verbosity.jsonl`, `scored_claude_formality.jsonl`, `scored_claude_verbosity.jsonl`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

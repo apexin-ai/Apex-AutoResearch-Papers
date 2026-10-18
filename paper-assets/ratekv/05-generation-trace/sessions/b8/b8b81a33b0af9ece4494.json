@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8b81a33b0af9ece4494",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis llama heuristic k2 exit",
+  "task_key": "worker_analysis_llama_heuristic_k2_exit_20260514T120541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_heuristic_k2_exit_20260514T120541_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "7c2122d6d3aa779558c255210766232b713691225401515150a02778416fcda4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **llama_heuristic_k2** 完成，registry 已更新，cron 已清除。\n\n### 结果摘要\n\n| Method | PPL (k=2) | PPL (k=16 旧) |\n|--------|-----------|---------------|\n| Baseline bf16 | 8.0918 | 8.0918 |\n| MCKP | 8.4498 | 8.4498 |\n| Uniform 4-bit | 8.4690 | 8.4690 |\n| L0-random (mean±std) | 8.625±0.073 | 10.479±1.033 |\n| Naive Positional | 8.578 | 9.941 |\n\n### 关键发现\n\n- **MCKP vs L0-random gap**: 0.17 (k=2) vs 2.03 (k=16) — 缩小 12 倍\n- **MCKP vs Naive gap**: 0.13 (k=2) vs 1.49 (k=16) — 缩小 11 倍\n- **L0-random 方差**: 0.073 (k=2) vs 1.033 (k=16) — 稳定 14 倍\n- k=2 是更公平的比较（只有 2 个 2-bit heads），MCKP 优势缩小但仍显著存在，验证 per-head optimization 的价值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

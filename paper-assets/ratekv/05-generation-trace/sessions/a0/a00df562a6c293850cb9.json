@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a00df562a6c293850cb9",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code hires mckp reeval",
+  "task_key": "worker_code_hires_mckp_reeval_20260514T064307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hires_mckp_reeval_20260514T064307_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "59fe832469353a2d39ef67b13464089d7d164db41231b9de2b9fbf86bece4055"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 和 artifact 已更新。\n\n## 结果汇总\n\n```\n=== Hires MCKP Re-evaluation (current eval_ppl.py, bf16) ===\n                            新值        旧值         备注\nBaseline bf16 PPL:         9.8106      8.819       旧 eval 版本偏低 ~1.0\nConstrained MCKP bf16 PPL: 10.9131     9.569       旧 eval 版本偏低 ~1.3\nUniform 4-bit bf16 PPL:   15.4454     15.45(fp16)  几乎一致\nDelta (MCKP vs baseline):  +1.1025     +0.750\nDelta (MCKP vs uniform):   -4.5323\nToken count:               298938\n```\n\n**论文 headline 数字**（全部基于当前 eval_ppl.py, bf16, WikiText-2 test, stride=512）：\n- MCKP allocation（budget=0.25, {8:4, 4:100, 2:8}）比 baseline 仅增加 **+1.10 PPL**\n- 比 uniform 4-bit 改善 **4.53 PPL**（10.91 vs 15.45）\n- Baseline 9.8106 与其他实验完全一致，数字可比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8e141cc6e0e3514988d6",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "exp gemini flash scoring",
+  "task_key": "worker_exp_gemini_flash_scoring_20260521T221654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemini_flash_scoring_20260521T221654_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "ce577f4ca6b7830f2f392b489cd3b8f7db477bc68a7b64a5743d618ace16c405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本正在运行，formality pairwise 打分进行中，API 响应速度很快（~1-2秒/请求）。2分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

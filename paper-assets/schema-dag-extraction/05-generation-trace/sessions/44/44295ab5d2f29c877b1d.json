@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "44295ab5d2f29c877b1d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis fewrel domain distribution",
+  "task_key": "worker_analysis_fewrel_domain_distribution_20260522T045738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fewrel_domain_distribution_20260522T045738_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "e910167774e4f5f6c723f5b3ac2b4761a53e7c03ad49ed5537c23fc7d886d9ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Domain 分布显著不同** (χ²=230.74, p<0.001, df=5)，但这不是传统 confound：\n\n| 指标 | Low-BCS (25 batches) | High-BCS (25 batches) |\n|------|---------------------|----------------------|\n| BCS 范围 | 0.356–0.367 | 0.791–0.811 |\n| 主导 domain | geography (45.5%), creative_work (25.5%) | science_taxonomy (49.5%), event_temporal (26.0%) |\n| 归一化 entropy | 0.79 | 0.67 |\n| Unique types | 22 | 14 |\n| 类型重叠 | 仅 1 个 type |\n\n**关键解读**：High-BCS batches 集中在 taxonomic/structural 关系（follows/followed_by, part_of/has_part, member_of, instance_of）——这些 type 本身语义特征高度重叠，cosine similarity 自然高。Domain 集中是 BCS 的 **预期机制**（mediator），不是独立的 confounding variable。\n\nLaTeX 段落已写入 `fewrel_domain_distribution.json` 的 `latex_appendix` 字段，可直接插入 Appendix。两个 artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

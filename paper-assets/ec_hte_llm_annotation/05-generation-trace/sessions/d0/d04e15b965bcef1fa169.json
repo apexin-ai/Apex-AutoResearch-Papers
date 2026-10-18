@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d04e15b965bcef1fa169",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research fl comparison data conflict",
+  "task_key": "worker_research_fl-comparison-data-conflict_20260525T095915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_fl-comparison-data-conflict_20260525T095915_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "77cce7a361731ac5ad89664f4e26a0d4a0e00224c0d4c62ae83ed957bfb14187"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/fl_comparison_investigation.md`。\n\n核心结论：\n\n1. **0.064 不是 bug** — 远程服务器 CSV 验证：Global 0.06432, HB EC-HTE 0.06427，三位小数均为 0.064\n2. **\"+0.006, +0.001\" 也不是 bug** — 对应 `mean_bias`（有符号），z=0 和 z=1 的偏差方向相反，在 subgroup 内抵消；表格的 `|Bias|` 是 `mean_abs_bias`（无符号），不会抵消\n3. **0.064 vs 0.008 是不同 DGP** — FL comparison 用 τ(0)=0, τ(1)=0.3（小效应），Table 1 用 τ̄=0.5, Δτ≈1.0（大效应），处理效应越大 EC-HTE 改善越显著\n4. **本地无生成脚本**，CSV 仅存于远程 `results/exp_fl_comparison*.csv`\n\n修复：仅需改 appendix.tex 3 处文字——区分 signed/unsigned bias 口径、标注 DGP 差异、在 caption 注明 Oracle floor。无需重跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

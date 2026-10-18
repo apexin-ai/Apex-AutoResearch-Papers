@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4ce3e59ac9e9605f055a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis scs baseline comparison",
+  "task_key": "worker_analysis_scs_baseline_comparison_20260518T084456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scs_baseline_comparison_20260518T084456_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "1008acff24deadc5f7bcf2d3d4039f1612dc0c216603c44602980a9b688b2d7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**FewRel (80 types, 3160 pairs)**\n| Metric | Spearman ρ | p-value | Sig |\n|---|---|---|---|\n| **SCS** | **0.218** | 2.2e-35 | *** |\n| Same-parent (WordNet) | 0.097 | 5.4e-08 | *** |\n| WordNet WuP | 0.073 | 4.3e-05 | *** |\n| Levenshtein | 0.016 | 0.363 | ns |\n\n**Few-NERD (63 types, 1953 pairs)**\n| Metric | Spearman ρ | p-value | Sig |\n|---|---|---|---|\n| **SCS** | **0.166** | 1.5e-13 | *** |\n| Levenshtein | 0.152 | 1.4e-11 | *** |\n| Same-parent (prefix) | 0.146 | 7.8e-11 | *** |\n| WordNet WuP | 0.054 | 0.070 | ns (42% pairs missing) |\n\n核心发现：\n- SCS 在两个数据集上都是最强预测指标\n- FewRel 上 SCS (ρ=0.218) 远超所有 baseline，次优 same-parent 仅 0.097\n- Few-NERD 上 SCS (ρ=0.166) 略优于 Levenshtein (0.152) 和 same-parent (0.146)，但差距较小，因为 Few-NERD 的层级命名结构（如 art-film, art-music）让字符串相似度和前缀匹配也有一定预测力\n- WordNet WuP 在 Few-NERD 上效果差（ns），因为 42% 的复合类型名无法映射到 WordNet synset"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "393cc6f6b86c3bb4c35e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu0 ov random k095 long",
+  "task_key": "worker_deploy_westd38929_gpu0_ov_random_k095_long_20260527T122512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_gpu0_ov_random_k095_long_20260527T122512_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "6cfbd6e33ea1c10a32ccca0f631b85f569d47b1df497c58a6999b57f29f4cf50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n- **服务器**: westd-38929 GPU0\n- **PID**: 272022\n- **tmux session**: `ov_rnd_k095_long`\n- **timeout**: 43200s (12h)，前次 8h 不够\n- **日志**: `eval_openvla_random_k095_long_seed42_v3.log`\n- **Registry**: `eval_openvla_random_k095_long_seed42_v3` → RUNNING\n\n注意：初始部署时 tmux 内 `python` 不在 PATH，已修复为先 `conda activate base` 再运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

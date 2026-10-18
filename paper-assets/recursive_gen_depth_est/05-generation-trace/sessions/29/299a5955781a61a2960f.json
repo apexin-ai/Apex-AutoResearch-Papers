@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "299a5955781a61a2960f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code n2 deberta finetune",
+  "task_key": "worker_code_n2_deberta_finetune_20260515T112648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n2_deberta_finetune_20260515T112648_result.json",
+    "occurrence": 1,
+    "bytes": 2071,
+    "sha256": "f02fe52ee50123e9f2e2d62e37320784855b65296adc3a89caea9a3d91a5e784"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "52M/499M，有进展了。让它继续后台下载。现在提供报告。\n\n---\n\n## 报告\n\n### 脚本路径\n- 本地：`src/n2_deberta_finetune.py`\n- 服务器：`/root/autodl-tmp/recursive_gen_depth_est/src/n2_deberta_finetune.py`\n\n### 数据路径确认\n- `data/depth_{0,1,2,3}.jsonl` — 每个 5000 行，包含 `text` 和 `depth` 字段\n- 总计 20000 samples，4 classes 均衡\n\n### 模型缓存\n- **deberta-v3-base**: `/root/autodl-tmp/models/deberta-v3-base/` (371MB, fp16 权重，已验证无 NaN)\n- **roberta-base**: 正在后台下载到 HF cache (52M/499M)，PID=124867\n\n### Dry-run 结果\n- DeBERTa-v3-base dry-run **通过** — loss=1.5 (正常 4-class CE)，pipeline 端到端无错误，耗时 3s\n- 本地 checkpoint 是 fp16，脚本强制 `dtype=torch.float32` 加载避免 NaN\n\n### 提交命令\n\n**DeBERTa-v3-base：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/deberta-v3-base --output_dir results/n2_deberta_finetune --gpu 0\n```\n\n**RoBERTa-base（需等模型下载完成）：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/roberta-base --output_dir results/n2_roberta_finetune --gpu 0\n```\n\n### 预估运行时间\n- 每 fold：16000 train / 16 batch = 1000 steps/epoch × 3 epochs = 3000 steps\n- DeBERTa-v3-base max_len=512, batch=16 on RTX PRO 6000：约 ~3-4 min/epoch → ~10-12 min/fold\n- 5-fold 总计：**~50-60 分钟**（每个模型）\n- RoBERTa-base 速度类似\n\n### 注意事项\n- roberta-base 模型还在下载（后台 PID=124867），提交前需确认 `/root/autodl-tmp/models/roberta-base/` 下有 `model.safetensors` 或 `pytorch_model.bin`\n- 如果 roberta-base 下载失败，可直接用 HF cache：`--model_name roberta-base`（需 network_turbo 代理）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

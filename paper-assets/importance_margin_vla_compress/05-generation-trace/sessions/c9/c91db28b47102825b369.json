@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c91db28b47102825b369",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "submit openvla random k09 long",
+  "task_key": "worker_submit_openvla_random_k09_long_20260525T001822",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_openvla_random_k09_long_20260525T001822_result.json",
+    "occurrence": 1,
+    "bytes": 241,
+    "sha256": "8177dbfb9b136ea3a179e7b53bd90b79d37bb8e0b87ddfb4ef32f9e864468a26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动，模型加载完成（15.1 GB on GPU2）。\n\nwestd-41074 当前 4 GPU 全部在跑 OpenVLA Long eval：\n- GPU0: Attn k=0.9\n- GPU1: Attn k=0.85\n- **GPU2: Random k=0.9** ← 刚提交\n- GPU3: L2norm k=0.9"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

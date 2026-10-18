@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d367481727f0a88cbc13",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper compile",
+  "task_key": "worker_paper_compile_20260525T205733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_20260525T205733_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "a6ed430bd5df7cfc86cbf10755fd346c78b73c812c6ef84fd5d473ca7aa255dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：**成功**，0 errors，11 warnings，26 页，PDF 大小 ~4MB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

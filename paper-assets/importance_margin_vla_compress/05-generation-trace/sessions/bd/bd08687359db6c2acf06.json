@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bd08687359db6c2acf06",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "bugfix eval pruning audit",
+  "task_key": "worker_bugfix_eval_pruning_audit_20260517T071259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_eval_pruning_audit_20260517T071259_result.json",
+    "occurrence": 1,
+    "bytes": 1355,
+    "sha256": "c4789f575eceb74e3e8a20842115f4a78f7a11149d61aaee91d02d86819930de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full eval submitted (50 episodes × 10 tasks on `libero_object`).\n\n## Summary\n\n### Root Cause\n`eval_success_rate_libero.py:221` — the hook guard `tokens.shape[1] != mask.shape[1]` always failed because:\n- The connector is called **per-camera** inside `embed_image()`, producing `(B, 64, D)` per call\n- The mask was computed for **all cameras concatenated**: `(B, 128)`\n- `64 != 128` → hook returned original output unchanged → pruning never applied\n- All modes (baseline, acis_prune, random_prune) produced identical results\n\n### Fix\nReplaced the dimension-match guard with an **offset-tracking approach**:\n- The hook closure tracks a cumulative `offset` across per-camera connector calls\n- Each call slices `mask[:, offset:offset+n]` to get the correct per-camera mask segment\n- Offset advances by `n` tokens after each call\n- Since a new hook closure is created per `predict_actions` call, offset resets automatically\n\n### Files Fixed\n- `eval_success_rate_libero.py` (primary)\n- `eval_success_rate.py` (same bug)\n- `eval_sim.py` (same bug)\n\n### Sanity Check\nConfirmed via AUDIT prints: hook fires twice per step (2 cameras), keeping ~64/128 total tokens (k_ratio=0.5). Per-camera splits vary (e.g. 38/64 + 26/64 = 64/128).\n\n### Eval Status\n`eval_stage1only_object_v2_fixed` running on GPU 0 (PID 140050)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

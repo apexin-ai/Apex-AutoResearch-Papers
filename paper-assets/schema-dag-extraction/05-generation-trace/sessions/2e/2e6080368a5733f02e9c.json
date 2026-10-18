@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2e6080368a5733f02e9c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops prompt test then exp006",
+  "task_key": "worker_ops_prompt_test_then_exp006_20260515T173948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prompt_test_then_exp006_20260515T173948_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "739b116ca92d41753f4c02813ab610c94473be5bd2121b0b4869f3a4a8145794"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen3-32B-FP8 开始加载到 GPU（2.5GB，正在加载权重中）。exp-006 确认正常运行。\n\n---\n\n## 总结\n\n### 任务 1: exp012 Prompt 诊断测试\n\n```\n=== PROMPT TEST RESULTS ===\nVariant 1 (v2 exact + structured):      10 entities, format OK (gen_tokens=160)\nVariant 2 (v2 no empty-list + structured): 13 entities, format OK (gen_tokens=207)\nVariant 3 (simplified + structured):     13 entities, format OK (gen_tokens=272)\nVariant 4 (v2 exact + free gen):         9 entities, format OK (gen_tokens=142)\nVERDICT: Plan A SUCCESS (all 4 variants)\n```\n\n关键发现：**即使是原始 v2 prompt + StructuredOutputsParams（Variant 1），LLaMA-8B 也正确提取了 10 个实体。** exp012 中 148K 全空输出的问题不是 prompt 本身导致的，而是批量推理场景下的其他因素（可能与批量数据组合、vLLM 批处理、或特定输入文本有关）。\n\n### 任务 2: exp-006 提交\n\n- 已通过 `submit_training_job` 提交，tmux session: `exp006_interaction_2x2`\n- Qwen3-32B-FP8 正在加载（PID 312411, VLLM::EngineCore）\n- 40 batches × 1000 samples = 40000 extractions，timeout 3h\n- 日志: `~/runs/schema-dag-extraction/exp006_interaction_2x2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

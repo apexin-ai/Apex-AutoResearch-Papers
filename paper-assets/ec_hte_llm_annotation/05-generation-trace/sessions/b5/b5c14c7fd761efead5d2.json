@@ -1,0 +1,1736 @@
+{
+  "schema_version": "1.0",
+  "id": "b5c14c7fd761efead5d2",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "figure fig3 budget",
+  "task_key": "worker_figure_fig3-budget_20260521T052656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-budget_20260521T052656.log",
+    "occurrence": 1,
+    "bytes": 123144,
+    "sha256": "5b0d1dc40d78f25239b9a224cc1bcda6a66be83e8ec70a7a2ceae35b8f2a3eb8"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+                "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b583a3d3-25d6-4986-b8ef-085dbd13e762",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu-ec-hte-llm-annotation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779342000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "40790ed3-164f-4332-95fc-f71569732f83",
+                "session_id": "a1690dad-223f-4609-b636-7b67d46a039b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the skill files for drawing paper figures, then look at the data sources to understand the structure before writing the plotting script.",
+              "signature": "EuYCCmMIDRgCKkB/LkpSoD5udGfdfDShQbkvIeLUyaYYiqJ9Ta2TGoMGtAiAZ1ICNKxC1MtqGRp1VAu9jNbaP0lAB4Kq01VqC8+RMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDHaRQQuGAWeCYeMbShoM30nN5owJC7bXFjoXIjBp5vqnZCHEXPaWf0W8MOF6tpIdK9t3rywN0JKSAAAkWyrYs8awIhG6llZCaY784JwqsAEH6eBRhzNaxROv2x/Z92SZACYmJjasmK+oZ6H18vZ6sjGJQWAEg9tkoSx4owX8hawk79uwFNMGm/npd8vOxTVA9Pqcp5SAvZnivRCp8Lui9BUpzXwso6Yrpxq6d8ljORxNcYZ/DjZ6r3dqS5rwA3gc9mZ61R379wUgSb4N27ZcnmLV7RhhoFTkRhFGHrpO9FaK0Sh7v1sKqheUisa8YOQlTCYvVl7ac7n9Qs0rs3hJlhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "9a5a9716-6e68-43b8-8a56-c160d0223d6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AA8n4Txt9RVeG3AYCuDf2U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6433,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6433
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MF22JPr6Msp6qpnepNrwdY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "4c801b53-7f58-432e-9c1b-a980c7a6ce82",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AA8n4Txt9RVeG3AYCuDf2U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6433,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6433
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T05:27:06.863Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MF22JPr6Msp6qpnepNrwdY",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 2\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成（Worker 执行）\n16\t\n17\tWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n18\t\n19\t本 skill 提供：\n20\t- 通用样式（rcParams + 色板）\n21\t- 三个常用图表的起点模板（reliability/heatmap/scatter）\n22\t- NeurIPS 经验提炼的 pattern 实现示例\n23\t\n24\t## 输入字段（从 Paper Agent 传入）\n25\t\n26\t- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n27\t- **`narrative_intent`**：一句话，这张图要让读者相信什么\n28\t- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n29\t\n30\t## 画图工作流\n31\t\n32\t1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n33\t2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n34\t3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n35\t4. 提交前过本 skill §checklist\n36\t\n37\t## 通用样式标准（所有图表必须遵守）\n38\t\n39\t```python\n40\timport matplotlib\n41\tmatplotlib.use('Agg')\n42\timport matplotlib.pyplot as plt\n43\timport matplotlib.patches as mpatches\n44\timport numpy as np\n45\t\n46\t# 字体和全局样式\n47\tplt.rcParams.update({\n48\t    'font.family': 'DejaVu Sans',\n49\t    'font.size': 11,\n50\t    'axes.titlesize': 13,\n51\t    'axes.labelsize': 12,\n52\t    'xtick.labelsize': 10,\n53\t    'ytick.labelsize': 10,\n54\t    'legend.fontsize': 10,\n55\t    'figure.dpi': 300,\n56\t    'savefig.dpi': 300,\n57\t    'savefig.bbox': 'tight',\n58\t    'savefig.pad_inches': 0.05,\n59\t    'axes.spines.top': False,\n60\t    'axes.spines.right': False,\n61\t    'lines.linewidth': 1.8,\n62\t})\n63\t\n64\t# 色盲友好配色（Okabe-Ito）\n65\tCOLORS = {\n66\t    'fp16':   '#E69F00',  # 橙黄\n67\t    'nf4':    '#56B4E9',  # 天蓝\n68\t    'int8':   '#009E73',  # 绿\n69\t    'gptq':   '#F0E442',  # 黄\n70\t    'awq':    '#CC79A7',  # 粉紫\n71\t    'llama':  '#0072B2',  # 深蓝\n72\t    'qwen3':  '#D55E00',  # 橙红\n73\t    'gemma':  '#009E73',  # 绿\n74\t    'mistral':'#CC79A7',  # 粉紫\n75\t    'phi3':   '#F0E442',  # 黄\n76\t}\n77\t\n78\t# 方法标签\n79\tMETHOD_LABELS = {\n80\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n81\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n82\t}\n83\t```\n84\t\n85\t---\n86\t\n87\t## 1. Reliability Diagram（校准图）\n88\t\n89\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n90\t\n91\t```python\n92\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n93\t                              label='', color='#0072B2',\n94\t                              title='Reliability Diagram',\n95\t                              outpath='reliability.pdf'):\n96\t    \"\"\"\n97\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n98\t    \"\"\"\n99\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n100\t    bin_accs, bin_confs, bin_counts = [], [], []\n101\t\n102\t    for i in range(n_bins):\n103\t        lo, hi = bin_edges[i], bin_edges[i+1]\n104\t        mask = (confidences >= lo) & (confidences < hi)\n105\t        if mask.sum() > 0:\n106\t            bin_accs.append(accuracies[mask].mean())\n107\t            bin_confs.append(confidences[mask].mean())\n108\t            bin_counts.append(mask.sum())\n109\t        else:\n110\t            bin_accs.append(float('nan'))\n111\t            bin_confs.append((lo + hi) / 2)\n112\t            bin_counts.append(0)\n113\t\n114\t    bin_accs = np.array(bin_accs)\n115\t    bin_confs = np.array(bin_confs)\n116\t\n117\t    fig, (ax_main, ax_hist) = plt.subplots(\n118\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n119\t        sharex=True\n120\t    )\n121\t\n122\t    # 主图：gaps\n123\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n124\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n125\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n126\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n127\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n128\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n129\t    ax_main.set_ylabel('Accuracy')\n130\t    ax_main.set_title(title)\n131\t    ax_main.legend(loc='upper left', fontsize=9)\n132\t    ax_main.grid(True, alpha=0.3, zorder=1)\n133\t\n134\t    # ECE annotation\n135\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n136\t                    np.abs(bin_accs - bin_confs))\n137\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n138\t                 ha='right', va='bottom', fontsize=9,\n139\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n140\t\n141\t    # 直方图（样本密度）\n142\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n143\t                color=color, alpha=0.5)\n144\t    ax_hist.set_ylabel('Count', fontsize=9)\n145\t    ax_hist.set_xlabel('Confidence')\n146\t\n147\t    plt.tight_layout()\n148\t    plt.savefig(outpath)\n149\t    plt.close()\n150\t    print(f'Saved: {outpath}')\n151\t```\n152\t\n153\t### 批量生成 6 张对比图（EMNLP 论文用）\n154\t\n155\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n156\t\n157\t```python\n158\t# 在 A6000 服务器上执行\n159\tFIGURE_PLAN = [\n160\t    # (dataset, model, quant, regime, title)\n161\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n162\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n163\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n164\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n165\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n166\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n167\t]\n168\t```\n169\t\n170\t---\n171\t\n172\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n173\t\n174\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n175\t\n176\t```python\n177\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n178\t                     title='ΔECE Heatmap (vs FP16)',\n179\t                     outpath='ece_heatmap.pdf'):\n180\t    \"\"\"\n181\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n182\t    \"\"\"\n183\t    import matplotlib.colors as mcolors\n184\t\n185\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n186\t\n187\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n188\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n189\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n190\t    cmap = plt.cm.RdBu_r\n191\t\n192\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n193\t\n194\t    # 数值标注\n195\t    for i in range(len(methods)):\n196\t        for j in range(len(datasets)):\n197\t            val = delta_ece_matrix[i, j]\n198\t            if not np.isnan(val):\n199\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n200\t                sign = '+' if val > 0 else ''\n201\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n202\t                        fontsize=9, color=color, fontweight='bold')\n203\t\n204\t    ax.set_xticks(range(len(datasets)))\n205\t    ax.set_yticks(range(len(methods)))\n206\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n207\t    ax.set_yticklabels(methods)\n208\t    ax.set_title(title)\n209\t\n210\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n211\t    cbar.set_label('ΔECE (quantized − FP16)')\n212\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n213\t\n214\t    plt.tight_layout()\n215\t    plt.savefig(outpath)\n216\t    plt.close()\n217\t    print(f'Saved: {outpath}')\n218\t```\n219\t\n220\t---\n221\t\n222\t## 3. T* Scatter Plot（任务 Regime 可视化）\n223\t\n224\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n225\t\n226\t```python\n227\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n228\t    \"\"\"\n229\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n230\t    \"\"\"\n231\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n232\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n233\t    REGIME_BANDS = [\n234\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n235\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n236\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n237\t    ]\n238\t\n239\t    fig, ax = plt.subplots(figsize=(8, 4))\n240\t\n241\t    # 背景色区\n242\t    for lo, hi, color, label in REGIME_BANDS:\n243\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n244\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n245\t                color='gray', zorder=1)\n246\t\n247\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n248\t\n249\t    x = np.arange(len(DATASETS))\n250\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n251\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n252\t        ax.plot(x, y, 'o-', color=color, label=model,\n253\t                markersize=7, alpha=0.85, zorder=2)\n254\t\n255\t    ax.set_xticks(x)\n256\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n257\t    ax.set_ylabel('T* (FP16)')\n258\t    ax.set_ylim(0, 10.5)\n259\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n260\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n261\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n262\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n263\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n264\t\n265\t    plt.tight_layout()\n266\t    plt.savefig(outpath)\n267\t    plt.close()\n268\t    print(f'Saved: {outpath}')\n269\t```\n270\t\n271\t---\n272\t\n273\t## 4. 生成流程（SSH 执行）\n274\t\n275\t```python\n276\t# Step 1: 写脚本到服务器\n277\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n278\t# ... 粘贴上方代码 + 调用逻辑 ...\n279\tPYEOF\"\"\")\n280\t\n281\t# Step 2: 安装依赖（如有）\n282\tssh_execute(\"pip install matplotlib numpy -q\")\n283\t\n284\t# Step 3: 执行\n285\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n286\t\n287\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n288\tssh_execute(\"\"\"\n289\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n290\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n291\t    python3 -c \"\n292\timport matplotlib.pyplot as plt\n293\timport matplotlib.image as mpimg\n294\timg = mpimg.imread('$f')\n295\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n296\tax = fig.add_axes([0,0,1,1])\n297\tax.imshow(img); ax.axis('off')\n298\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n299\tplt.close()\"\n300\tdone\n301\t\"\"\")\n302\t\n303\t# Step 5: 验证\n304\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n305\t```\n306\t\n307\t---\n308\t\n309\t## 5. Pattern 实现（按 design_notes 选用）\n310\t\n311\t完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n312\t\n313\t### Pattern A：Regime Background Bands\n314\t\n315\t```python\n316\timport matplotlib.patheffects as pe\n317\t# 横向 regime bands\n318\tREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n319\t                (1, 5, '#EAFAF1', 'Regime B'),\n320\t                (5, 10.5, '#FDF2F8', 'Regime C')]\n321\tfor lo, hi, color, label in REGIME_BANDS:\n322\t    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n323\t    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n324\t            fontsize=9, color='gray', zorder=1)\n325\t\n326\t# 单一 collapse zone\n327\tax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\n328\tax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n329\t        color='#ccaaaa', fontstyle='italic', va='center')\n330\t```\n331\t\n332\t### Pattern B：发散面积 fill_between\n333\t\n334\t```python\n335\t# alpha 极低（0.06）：不抢眼但有面积\n336\tax.fill_between(x_range, curve_upper, curve_lower,\n337\t                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n338\t```\n339\t\n340\t### Pattern C：参考线锚定真实值\n341\t\n342\t```python\n343\tax.axhline(y=actual_value, color=color, linestyle=':',\n344\t           linewidth=0.8, alpha=0.3, zorder=1)\n345\tt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n346\t            fontsize=7, color=color, alpha=0.5, ha='center')\n347\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n348\t```\n349\t\n350\t### Pattern D：信息层级 marker（hollow vs solid by sample size）\n351\t\n352\t```python\n353\t# 实心 = n >= 50, 空心带 n 标注 = n < 50\n354\tsolid_mask = [n >= 50 for n in n_vals]\n355\tfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n356\t    if solid:\n357\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n358\t                markerfacecolor=color, markeredgewidth=0)\n359\t    else:\n360\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n361\t                markerfacecolor='white', markeredgecolor=color,\n362\t                markeredgewidth=1.2, zorder=4)\n363\t        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n364\t                    xytext=(0, 7), fontsize=5, color=color,\n365\t                    ha='center', fontstyle='italic')\n366\t```\n367\t\n368\t### Pattern E：Wilson Binomial CI\n369\t\n370\t```python\n371\tdef wilson_ci(p, n, z=1.96):\n372\t    if n == 0: return 0, 0\n373\t    denom = 1 + z**2 / n\n374\t    center = (p + z**2 / (2*n)) / denom\n375\t    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n376\t    return max(0, center - half), min(1, center + half)\n377\t\n378\t# 用法\n379\tlo, hi = wilson_ci(accuracy, n)\n380\tax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n381\t            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n382\t            markeredgecolor='white', markeredgewidth=1.0)\n383\t```\n384\t\n385\t### Pattern F：Per-label offset dict（防标注重叠）\n386\t\n387\t```python\n388\tlabel_offsets = {\n389\t    'Qwen3-8B':  (6, -12),\n390\t    'Qwen3-4B':  (-55, 4),\n391\t    'Llama-8B':  (6, 6),\n392\t}\n393\tfor name, (x, y) in data.items():\n394\t    ox, oy = label_offsets.get(name, (6, 6))\n395\t    ax.annotate(name, (x, y), xytext=(ox, oy),\n396\t                textcoords='offset points', fontsize=7,\n397\t                arrowprops=dict(arrowstyle='-', color='gray',\n398\t                                lw=0.4) if abs(ox) > 20 else None)\n399\t```\n400\t\n401\t### Pattern G：Hatching 加分类维度\n402\t\n403\t```python\n404\tfrom matplotlib.patches import Patch\n405\tfor is_collapse, bar in zip(collapse_flags, bars):\n406\t    if is_collapse:\n407\t        bar.set_hatch('///')\n408\t        bar.set_alpha(0.7)\n409\t# Legend 加 hatching 说明\n410\tlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\n411\tax.legend(handles=[legend_patch], loc='lower right')\n412\t```\n413\t\n414\t### Pattern H：Multi-panel 非对称布局\n415\t\n416\t```python\n417\tfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n418\t                          gridspec_kw={'width_ratios': [1.4, 1]})\n419\t# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n420\t# 给每个 panel 写 insight subtitle\n421\taxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\n422\taxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n423\t```\n424\t\n425\t### Pattern I：Broken axis（异常值或对数 0）\n426\t\n427\t```python\n428\td = 0.012  # 斜线长度\n429\tkwargs = dict(transform=ax.transAxes, color='black',\n430\t              clip_on=False, linewidth=0.6)\n431\tax.plot((1-d, 1+d), (-d, +d), **kwargs)\n432\tax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n433\t```\n434\t\n435\t### Pattern J：Path-effect 文字描边\n436\t\n437\t```python\n438\timport matplotlib.patheffects as pe\n439\tt = ax.text(x, y, 'label', fontsize=8, color='red')\n440\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n441\t```\n442\t\n443\t### Pattern K：Concept curve（合成轨迹建立直觉）\n444\t\n445\t```python\n446\t# 完全不基于实验数据的概念曲线\n447\tx = np.linspace(0, 1, 100)\n448\ttrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\n449\tax.plot(x, trajectory, color='#0072B2', linewidth=2,\n450\t        solid_capstyle='round', label='Theoretical trajectory')\n451\t\n452\t# 关键节点用 insight 标注\n453\tax.annotate('gap eliminated', xy=(1.0, final_y),\n454\t            xytext=(0.7, final_y - 5), color='#388E3C',\n455\t            fontstyle='italic', fontsize=9,\n456\t            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n457\t```\n458\t\n459\t### Pattern L：Forest Plot（meta-analysis 风格）\n460\t\n461\t```python\n462\t# 3-column GridSpec: label | CI plot | inline stats\n463\tfig = plt.figure(figsize=(7, 3.5))\n464\tgs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\n465\tax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\n466\tax_main = fig.add_subplot(gs[1])\n467\tax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n468\t\n469\t# 等价带（半透明 axvspan）\n470\tax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n471\t\n472\t# 每行：dot + horizontal CI line\n473\tfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n474\t    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n475\t    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n476\t    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n477\t    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n478\t                 fontsize=8, va='center', ha='center', family='monospace')\n479\t\n480\tax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\n481\tax_main.invert_yaxis()\n482\t```\n483\t\n484\t---\n485\t\n486\t## 6. 图表 Checklist（提交前）\n487\t\n488\t### L1 防丑（底线）\n489\t- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n490\t- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n491\t- [ ] 所有轴有 label + 单位\n492\t- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n493\t- [ ] 无 dual y-axis、无 3D、无 pie\n494\t- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n495\t- [ ] 文字水平不旋转\n496\t\n497\t### L2 叙事（说服力）\n498\t- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n499\t- [ ] `design_notes` 中的 pattern 都已实现\n500\t- [ ] Subtitle / panel label 是 insight 不是描述\n501\t- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n502\t- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n503\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "e55b267a-1f46-424b-84c7-56ed3b0f9c73",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 2\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术图表生成（Worker 执行）\n\nWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n\n本 skill 提供：\n- 通用样式（rcParams + 色板）\n- 三个常用图表的起点模板（reliability/heatmap/scatter）\n- NeurIPS 经验提炼的 pattern 实现示例\n\n## 输入字段（从 Paper Agent 传入）\n\n- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n- **`narrative_intent`**：一句话，这张图要让读者相信什么\n- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n\n## 画图工作流\n\n1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n4. 提交前过本 skill §checklist\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色（Okabe-Ito）\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. Pattern 实现（按 design_notes 选用）\n\n完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n\n### Pattern A：Regime Background Bands\n\n```python\nimport matplotlib.patheffects as pe\n# 横向 regime bands\nREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n                (1, 5, '#EAFAF1', 'Regime B'),\n                (5, 10.5, '#FDF2F8', 'Regime C')]\nfor lo, hi, color, label in REGIME_BANDS:\n    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n            fontsize=9, color='gray', zorder=1)\n\n# 单一 collapse zone\nax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\nax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n        color='#ccaaaa', fontstyle='italic', va='center')\n```\n\n### Pattern B：发散面积 fill_between\n\n```python\n# alpha 极低（0.06）：不抢眼但有面积\nax.fill_between(x_range, curve_upper, curve_lower,\n                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n```\n\n### Pattern C：参考线锚定真实值\n\n```python\nax.axhline(y=actual_value, color=color, linestyle=':',\n           linewidth=0.8, alpha=0.3, zorder=1)\nt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n            fontsize=7, color=color, alpha=0.5, ha='center')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern D：信息层级 marker（hollow vs solid by sample size）\n\n```python\n# 实心 = n >= 50, 空心带 n 标注 = n < 50\nsolid_mask = [n >= 50 for n in n_vals]\nfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n    if solid:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor=color, markeredgewidth=0)\n    else:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor='white', markeredgecolor=color,\n                markeredgewidth=1.2, zorder=4)\n        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n                    xytext=(0, 7), fontsize=5, color=color,\n                    ha='center', fontstyle='italic')\n```\n\n### Pattern E：Wilson Binomial CI\n\n```python\ndef wilson_ci(p, n, z=1.96):\n    if n == 0: return 0, 0\n    denom = 1 + z**2 / n\n    center = (p + z**2 / (2*n)) / denom\n    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n    return max(0, center - half), min(1, center + half)\n\n# 用法\nlo, hi = wilson_ci(accuracy, n)\nax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n            markeredgecolor='white', markeredgewidth=1.0)\n```\n\n### Pattern F：Per-label offset dict（防标注重叠）\n\n```python\nlabel_offsets = {\n    'Qwen3-8B':  (6, -12),\n    'Qwen3-4B':  (-55, 4),\n    'Llama-8B':  (6, 6),\n}\nfor name, (x, y) in data.items():\n    ox, oy = label_offsets.get(name, (6, 6))\n    ax.annotate(name, (x, y), xytext=(ox, oy),\n                textcoords='offset points', fontsize=7,\n                arrowprops=dict(arrowstyle='-', color='gray',\n                                lw=0.4) if abs(ox) > 20 else None)\n```\n\n### Pattern G：Hatching 加分类维度\n\n```python\nfrom matplotlib.patches import Patch\nfor is_collapse, bar in zip(collapse_flags, bars):\n    if is_collapse:\n        bar.set_hatch('///')\n        bar.set_alpha(0.7)\n# Legend 加 hatching 说明\nlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\nax.legend(handles=[legend_patch], loc='lower right')\n```\n\n### Pattern H：Multi-panel 非对称布局\n\n```python\nfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n                          gridspec_kw={'width_ratios': [1.4, 1]})\n# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n# 给每个 panel 写 insight subtitle\naxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\naxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n```\n\n### Pattern I：Broken axis（异常值或对数 0）\n\n```python\nd = 0.012  # 斜线长度\nkwargs = dict(transform=ax.transAxes, color='black',\n              clip_on=False, linewidth=0.6)\nax.plot((1-d, 1+d), (-d, +d), **kwargs)\nax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n```\n\n### Pattern J：Path-effect 文字描边\n\n```python\nimport matplotlib.patheffects as pe\nt = ax.text(x, y, 'label', fontsize=8, color='red')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern K：Concept curve（合成轨迹建立直觉）\n\n```python\n# 完全不基于实验数据的概念曲线\nx = np.linspace(0, 1, 100)\ntrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\nax.plot(x, trajectory, color='#0072B2', linewidth=2,\n        solid_capstyle='round', label='Theoretical trajectory')\n\n# 关键节点用 insight 标注\nax.annotate('gap eliminated', xy=(1.0, final_y),\n            xytext=(0.7, final_y - 5), color='#388E3C',\n            fontstyle='italic', fontsize=9,\n            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n```\n\n### Pattern L：Forest Plot（meta-analysis 风格）\n\n```python\n# 3-column GridSpec: label | CI plot | inline stats\nfig = plt.figure(figsize=(7, 3.5))\ngs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\nax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\nax_main = fig.add_subplot(gs[1])\nax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n\n# 等价带（半透明 axvspan）\nax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n\n# 每行：dot + horizontal CI line\nfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n                 fontsize=8, va='center', ha='center', family='monospace')\n\nax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\nax_main.invert_yaxis()\n```\n\n---\n\n## 6. 图表 Checklist（提交前）\n\n### L1 防丑（底线）\n- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n- [ ] 所有轴有 label + 单位\n- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n- [ ] 无 dual y-axis、无 3D、无 pie\n- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n- [ ] 文字水平不旋转\n\n### L2 叙事（说服力）\n- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n- [ ] `design_notes` 中的 pattern 都已实现\n- [ ] Subtitle / panel label 是 insight 不是描述\n- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n",
+                "numLines": 503,
+                "startLine": 1,
+                "totalLines": 503
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KxqzCVyxfJXkYkwRXAa7x3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "0c233f76-952b-4203-81b6-ad1b996acc63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AA8n4Txt9RVeG3AYCuDf2U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6433,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6433
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T05:27:06.966Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KxqzCVyxfJXkYkwRXAa7x3",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\n3\tname: paper-visualization\n4\tscope: global\n5\ttags:\n6\t- research\n7\t- visualization\n8\t- paper\n9\t- matplotlib\n10\t- paperbanana\n11\tversion: 5\n12\troles:\n13\t- agent\n14\t- paper_agent\n15\t---\n16\t\n17\t# Paper Visualization — 学术图表设计与生成\n18\t\n19\t> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n20\t\n21\t本 skill 分五层：\n22\t\n23\t- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n24\t- **L1 防丑原则** — 底线，所有图必须遵守\n25\t- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n26\t- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n27\t- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n28\t\n29\t---\n30\t\n31\t## L0 学习同行（设计前的功课）\n32\t\n33\t你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n34\t\n35\t### 为什么这一步是重要的\n36\t\n37\t- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n38\t- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n39\t- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n40\t- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n41\t\n42\t### 什么时候值得投入\n43\t\n44\t判断权交给你。一些可参考的信号：\n45\t\n46\t- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n47\t- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n48\t- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n49\t\n50\t### 怎么看\n51\t\n52\t工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n53\t\n54\t看的时候问自己（不是机械检查清单，是真的去理解）：\n55\t\n56\t- 这张图回答了什么问题？读者一眼能 get 到吗？\n57\t- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n58\t- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n59\t- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n60\t- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n61\t\n62\t### 怎么把学到的传下去\n63\t\n64\t把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n65\t\n66\t```yaml\n67\tdesign_notes:\n68\t  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n69\t  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n70\t  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n71\t```\n72\t\n73\tWorker 拿到这种 design_notes 就知道既要参考 GPTQ 的 layout 又要用 Pattern A，能直接落实成代码。\n74\t\n75\t### 边界\n76\t\n77\t- 不要复刻，要消化。直接抄一张图既没用（数据不一样）也有风险（与他们的 claim 强绑定）\n78\t- 不要看太多。3 张就够，多了 Paper Agent 会陷入\"该听谁的\"\n79\t- 看不到原图（提取失败 / arXiv 无 source）就跳过，不要在这里卡住流程\n80\t\n81\t---\n82\t\n83\t## L1 防丑原则（底线，不可违反）\n84\t\n85\t来自 Tufte 和 Luís Cruz 16 条公认规范。Agent 默认遵守，无需逐条思考。\n86\t\n87\t1. **Self-explanatory** — 不看正文就能看懂：title/caption + 所有轴有 label + 单位\n88\t2. **去 chartjunk** — 不要 3D、不要背景框、不要无意义网格、不要 dual y-axis、不要 pie/donut chart\n89\t3. **直接标注 > Legend** — 能直接标在曲线/柱旁就不用 legend；legend 必要时不遮数据\n90\t4. **颜色/形状/纹理只用于 data variation** — 不用颜色装饰，不用相同颜色表示不同数据\n91\t5. **Meaningful baseline** — bar chart 必须从 0 起；scatter 可以非 0\n92\t6. **文字水平** — label 不要旋转/垂直；类别名太长 → 用 horizontal bar chart\n93\t7. **Sort for comparison** — 柱状图按数值排序，便于对比（除非有自然顺序如时间）\n94\t8. **字号一致** — 用 mm 计算 figsize（`ONE_MM = 1/25.4`），不在 LaTeX 里 `\\includegraphics[scale=...]` resize\n95\t9. **色盲友好** — 默认 Okabe-Ito；红/绿区分时变 saturation；考虑 grayscale 打印\n96\t10. **Bold 只用于强调** — 不要全图加粗；highlight 留给 takeaway\n97\t11. **Line plot 只用于有序数据** — 类别变量用 bar\n98\t12. **单 x 单 y 轴** — 必须双轴时改成 multi-panel\n99\t13. **300 DPI、PDF 矢量、savefig.bbox=tight、去掉 top/right spines**\n100\t\n101\t---\n102\t\n103\t## L2 叙事原则（让图变成论证）\n104\t\n105\tL1 让图\"不丑\"，L2 让图\"有说服力\"。这一层是 Agent 自主画图时最容易缺失的。\n106\t\n107\t### 原则 1：每张图回答一个明确问题\n108\t\n109\t动笔前用一句话写下：\"This figure shows that ___.\"\n110\t\n111\t如果写不出来，就不要画。如果写出来的 takeaway 不是论文的 claim，就要重新设计。\n112\t\n113\t**反例**：`\"Accuracy across methods\"` — 这只是个标题，不是问题\n114\t**正例**：`\"FP16 baseline 在小模型上比量化版高 5pp，但 70B 模型上差距消失\"` — 这是一张图要说服读者相信的事\n115\t\n116\t`visualization_plan.{fig_id}.narrative_intent` 字段写这一句。\n117\t\n118\t### 原则 2：颜色绑定语义而非数据顺序\n119\t\n120\t错的做法：`colors = ['blue', 'orange', 'green', 'red']` 按数据顺序分配。\n121\t对的做法：`BN → 蓝色（始终）`、`non-BN → 橙色（始终）`、`collapse/danger → vermillion (#D55E00)`、`safe/baseline → blue (#0072B2)`。\n122\t\n123\t整篇论文 6 张图，BN 永远蓝、collapse 永远红——零认知负担，读者一眼建立映射。\n124\t\n125\t### 原则 3：信息层级用 visual variable 表达\n126\t\n127\t数据的\"质量\"和\"分类\"应该可见，不应该藏在 caption 里：\n128\t\n129\t| 信息 | Visual 表达 |\n130\t|------|------------|\n131\t| n < 50 低置信度点 | hollow marker + 标注 `n=` |\n132\t| Out-of-sample / pending 数据 | hollow + 不同 marker shape（如 diamond）+ \"OOS\" label |\n133\t| Collapse / 异常类别 | hatching（斜线填充）|\n134\t| 主结果 vs 次要结果 | 主用饱和色，次要用 muted 色或 alpha |\n135\t\n136\t### 原则 4：加叙事层，不只画数据\n137\t\n138\t数据是图的基础，叙事层是让读者\"读懂\"的关键。常见叙事层：\n139\t\n140\t- **Background bands** — `axhspan/axvspan` 标定性区域（\"collapse zone\"、\"safe zone\"、\"Regime A/B/C\"）\n141\t- **Fill_between** — 显示两条曲线发散区域（alpha 极低如 0.06，不抢眼但有面积）\n142\t- **Reference lines** — 锚定真实值（如 dashed line 标\"actual W3A16 accuracy\"）\n143\t- **Equivalence band** — `axvspan` gradient fade 标 +/-1pp 等价区间\n144\t- **Concept curve** — 完全合成的曲线（如 cosine trajectory）建立理论直觉\n145\t\n146\t这些都不来自数据，但帮读者\"看到\"数据想说什么。\n147\t\n148\t### 原则 5：Subtitle / panel label 写 insight 不写描述\n149\t\n150\t错：`\"Layer 6 comparison across three models\"`"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "c2043c9d-34c2-49c4-82dd-a2b8ba8fd1bb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md",
+                "content": "---\ndescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\nname: paper-visualization\nscope: global\ntags:\n- research\n- visualization\n- paper\n- matplotlib\n- paperbanana\nversion: 5\nroles:\n- agent\n- paper_agent\n---\n\n# Paper Visualization — 学术图表设计与生成\n\n> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n\n本 skill 分五层：\n\n- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n- **L1 防丑原则** — 底线，所有图必须遵守\n- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n\n---\n\n## L0 学习同行（设计前的功课）\n\n你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n\n### 为什么这一步是重要的\n\n- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n\n### 什么时候值得投入\n\n判断权交给你。一些可参考的信号：\n\n- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n\n### 怎么看\n\n工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n\n看的时候问自己（不是机械检查清单，是真的去理解）：\n\n- 这张图回答了什么问题？读者一眼能 get 到吗？\n- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n\n### 怎么把学到的传下去\n\n把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n\n```yaml\ndesign_notes:\n  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n```\n\nWorker 拿到这种 design_notes 就知道既要参考 GPTQ 的 layout 又要用 Pattern A，能直接落实成代码。\n\n### 边界\n\n- 不要复刻，要消化。直接抄一张图既没用（数据不一样）也有风险（与他们的 claim 强绑定）\n- 不要看太多。3 张就够，多了 Paper Agent 会陷入\"该听谁的\"\n- 看不到原图（提取失败 / arXiv 无 source）就跳过，不要在这里卡住流程\n\n---\n\n## L1 防丑原则（底线，不可违反）\n\n来自 Tufte 和 Luís Cruz 16 条公认规范。Agent 默认遵守，无需逐条思考。\n\n1. **Self-explanatory** — 不看正文就能看懂：title/caption + 所有轴有 label + 单位\n2. **去 chartjunk** — 不要 3D、不要背景框、不要无意义网格、不要 dual y-axis、不要 pie/donut chart\n3. **直接标注 > Legend** — 能直接标在曲线/柱旁就不用 legend；legend 必要时不遮数据\n4. **颜色/形状/纹理只用于 data variation** — 不用颜色装饰，不用相同颜色表示不同数据\n5. **Meaningful baseline** — bar chart 必须从 0 起；scatter 可以非 0\n6. **文字水平** — label 不要旋转/垂直；类别名太长 → 用 horizontal bar chart\n7. **Sort for comparison** — 柱状图按数值排序，便于对比（除非有自然顺序如时间）\n8. **字号一致** — 用 mm 计算 figsize（`ONE_MM = 1/25.4`），不在 LaTeX 里 `\\includegraphics[scale=...]` resize\n9. **色盲友好** — 默认 Okabe-Ito；红/绿区分时变 saturation；考虑 grayscale 打印\n10. **Bold 只用于强调** — 不要全图加粗；highlight 留给 takeaway\n11. **Line plot 只用于有序数据** — 类别变量用 bar\n12. **单 x 单 y 轴** — 必须双轴时改成 multi-panel\n13. **300 DPI、PDF 矢量、savefig.bbox=tight、去掉 top/right spines**\n\n---\n\n## L2 叙事原则（让图变成论证）\n\nL1 让图\"不丑\"，L2 让图\"有说服力\"。这一层是 Agent 自主画图时最容易缺失的。\n\n### 原则 1：每张图回答一个明确问题\n\n动笔前用一句话写下：\"This figure shows that ___.\"\n\n如果写不出来，就不要画。如果写出来的 takeaway 不是论文的 claim，就要重新设计。\n\n**反例**：`\"Accuracy across methods\"` — 这只是个标题，不是问题\n**正例**：`\"FP16 baseline 在小模型上比量化版高 5pp，但 70B 模型上差距消失\"` — 这是一张图要说服读者相信的事\n\n`visualization_plan.{fig_id}.narrative_intent` 字段写这一句。\n\n### 原则 2：颜色绑定语义而非数据顺序\n\n错的做法：`colors = ['blue', 'orange', 'green', 'red']` 按数据顺序分配。\n对的做法：`BN → 蓝色（始终）`、`non-BN → 橙色（始终）`、`collapse/danger → vermillion (#D55E00)`、`safe/baseline → blue (#0072B2)`。\n\n整篇论文 6 张图，BN 永远蓝、collapse 永远红——零认知负担，读者一眼建立映射。\n\n### 原则 3：信息层级用 visual variable 表达\n\n数据的\"质量\"和\"分类\"应该可见，不应该藏在 caption 里：\n\n| 信息 | Visual 表达 |\n|------|------------|\n| n < 50 低置信度点 | hollow marker + 标注 `n=` |\n| Out-of-sample / pending 数据 | hollow + 不同 marker shape（如 diamond）+ \"OOS\" label |\n| Collapse / 异常类别 | hatching（斜线填充）|\n| 主结果 vs 次要结果 | 主用饱和色，次要用 muted 色或 alpha |\n\n### 原则 4：加叙事层，不只画数据\n\n数据是图的基础，叙事层是让读者\"读懂\"的关键。常见叙事层：\n\n- **Background bands** — `axhspan/axvspan` 标定性区域（\"collapse zone\"、\"safe zone\"、\"Regime A/B/C\"）\n- **Fill_between** — 显示两条曲线发散区域（alpha 极低如 0.06，不抢眼但有面积）\n- **Reference lines** — 锚定真实值（如 dashed line 标\"actual W3A16 accuracy\"）\n- **Equivalence band** — `axvspan` gradient fade 标 +/-1pp 等价区间\n- **Concept curve** — 完全合成的曲线（如 cosine trajectory）建立理论直觉\n\n这些都不来自数据，但帮读者\"看到\"数据想说什么。\n\n### 原则 5：Subtitle / panel label 写 insight 不写描述\n\n错：`\"Layer 6 comparison across three models\"`",
+                "numLines": 150,
+                "startLine": 1,
+                "totalLines": 419
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the data files and the crossover data."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "98e68bca-d8ee-4eb8-9aa3-bdd3577509a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DausnefinN26VSsPL2bhSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11424,
+                "cache_read_input_tokens": 18274,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199DTV2MKLaJri1RX7m6Txq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/exp006_budget_sensitivity.csv",
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "a1d315f8-a8e6-4508-828c-9651f8667ae1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DausnefinN26VSsPL2bhSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11424,
+                "cache_read_input_tokens": 18274,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T05:27:11.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199DTV2MKLaJri1RX7m6Txq",
+              "type": "tool_result",
+              "content": "1\tregime,n_expert,k_subgroups,subgroup,method,n_mc,bias_z0,rmse_z0,coverage_z0,bias_z1,rmse_z1,coverage_z1\n2\textreme,50,2,A,global_corrected,100,-0.05593399540107714,0.09642881542700184,0.9,0.05233216183794422,0.10281670627525899,0.88\n3\textreme,50,2,A,hb_ec_hte,100,-0.02199139408793982,0.08010113376662514,0.93,0.020246871108211762,0.08209304773809258,0.92\n4\textreme,50,2,A,naive,100,0.0212587034332004,0.06400582130163279,0.95,-0.024516702743257276,0.07156599625866575,0.89\n5\textreme,50,2,A,stratified_mle,100,-0.03012631421200282,0.08328355371625114,0.91,0.027963645642495195,0.08470554659495286,0.91\n6\textreme,50,2,B,global_corrected,100,0.03470370080863135,0.0884424565463015,0.95,-0.0545315482602607,0.11244588430694462,0.83\n7\textreme,50,2,B,hb_ec_hte,100,-0.12917140821964987,0.36940408049312695,0.79,0.10857647522075708,0.4037755124001681,0.72\n8\textreme,50,2,B,naive,100,0.14378814842622806,0.15475809923153747,0.41,-0.16173325232289282,0.17436245899056663,0.32\n9\textreme,50,2,B,stratified_mle,100,-0.14292048762513146,0.3493894006952627,0.77,0.12235494442328317,0.38128899299247426,0.76\n10\textreme,50,4,A,global_corrected,100,-0.0818907737434336,0.16364535274270928,0.89,0.07271578812374027,0.1656049547317647,0.9\n11\textreme,50,4,A,hb_ec_hte,100,-0.03991725746439473,0.1292987911688694,0.95,0.029940137705033294,0.12574396336852733,0.93\n12\textreme,50,4,A,naive,100,0.012849627347382068,0.0897618875157316,0.95,-0.020520248867162506,0.0963666694765312,0.92\n13\textreme,50,4,A,stratified_mle,100,-0.044636577835939564,0.1323191593902297,0.93,0.03500633905082904,0.12803140654487327,0.92\n14\textreme,50,4,B,global_corrected,100,-0.0707713021724841,0.16030105469952569,0.93,0.07259360702226897,0.15071836799462418,0.96\n15\textreme,50,4,B,hb_ec_hte,100,-0.08465030414210391,0.2286740377399912,0.9,0.08487164982237123,0.21068348367409184,0.95\n16\textreme,50,4,B,naive,100,0.05620441161533089,0.1061006101005304,0.88,-0.05482557017403694,0.10321059565654138,0.9\n17\textreme,50,4,B,stratified_mle,100,-0.09471455973050513,0.23154722481092138,0.91,0.09454890655634507,0.21557254649734556,0.93\n18\textreme,50,4,C,global_corrected,100,0.024432987273618353,0.13275374091777128,0.96,-0.04759690920409114,0.16014791259125216,0.89\n19\textreme,50,4,C,hb_ec_hte,100,-0.23798571588152467,1.523165113460345,0.84,0.21205697879201998,1.5051733623347279,0.82\n20\textreme,50,4,C,naive,100,0.15765836562063062,0.17789828964139953,0.59,-0.1815041989267724,0.20652354043212887,0.5\n21\textreme,50,4,C,stratified_mle,100,-0.46255601316914813,1.9882333081499532,0.86,0.43812042775850524,1.9876788662762759,0.83\n22\textreme,50,4,D,global_corrected,100,0.2854750275144828,0.30936305402945785,0.44,-0.29315297189271977,0.3228107449383032,0.37\n23\textreme,50,4,D,hb_ec_hte,100,0.1778630980457368,1.299212422548024,0.72,-0.18271962877418116,1.2827981005421867,0.69\n24\textreme,50,4,D,naive,100,0.37470079811995516,0.3820142464011146,0.0,-0.3813880648106796,0.39021970026393393,0.02\n25\textreme,50,4,D,stratified_mle,100,0.25125237124604416,1.403379031750499,0.75,-0.25609840169627274,1.386984981683662,0.72\n26\textreme,100,2,A,global_corrected,100,-0.046198484133015603,0.0891012611469412,0.9,0.04165559831819016,0.0923560665398253,0.91\n27\textreme,100,2,A,hb_ec_hte,100,-0.008655415431601926,0.07194716262559094,0.94,0.006006860270308627,0.07367195305460912,0.94\n28\textreme,100,2,A,naive,100,0.0212587034332004,0.06400582130163279,0.95,-0.024516702743257276,0.07156599625866575,0.89\n29\textreme,100,2,A,stratified_mle,100,-0.012559184906613514,0.07251741895269585,0.95,0.00976039217986527,0.07465523118857965,0.94\n30\textreme,100,2,B,global_corrected,100,0.0482485742871429,0.09097595306558379,0.93,-0.06859673829521584,0.1141899974247784,0.81"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "38566ecb-8fa5-4dd5-8437-38f0a2d27c17",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/results/exp006_budget_sensitivity.csv",
+                "content": "regime,n_expert,k_subgroups,subgroup,method,n_mc,bias_z0,rmse_z0,coverage_z0,bias_z1,rmse_z1,coverage_z1\nextreme,50,2,A,global_corrected,100,-0.05593399540107714,0.09642881542700184,0.9,0.05233216183794422,0.10281670627525899,0.88\nextreme,50,2,A,hb_ec_hte,100,-0.02199139408793982,0.08010113376662514,0.93,0.020246871108211762,0.08209304773809258,0.92\nextreme,50,2,A,naive,100,0.0212587034332004,0.06400582130163279,0.95,-0.024516702743257276,0.07156599625866575,0.89\nextreme,50,2,A,stratified_mle,100,-0.03012631421200282,0.08328355371625114,0.91,0.027963645642495195,0.08470554659495286,0.91\nextreme,50,2,B,global_corrected,100,0.03470370080863135,0.0884424565463015,0.95,-0.0545315482602607,0.11244588430694462,0.83\nextreme,50,2,B,hb_ec_hte,100,-0.12917140821964987,0.36940408049312695,0.79,0.10857647522075708,0.4037755124001681,0.72\nextreme,50,2,B,naive,100,0.14378814842622806,0.15475809923153747,0.41,-0.16173325232289282,0.17436245899056663,0.32\nextreme,50,2,B,stratified_mle,100,-0.14292048762513146,0.3493894006952627,0.77,0.12235494442328317,0.38128899299247426,0.76\nextreme,50,4,A,global_corrected,100,-0.0818907737434336,0.16364535274270928,0.89,0.07271578812374027,0.1656049547317647,0.9\nextreme,50,4,A,hb_ec_hte,100,-0.03991725746439473,0.1292987911688694,0.95,0.029940137705033294,0.12574396336852733,0.93\nextreme,50,4,A,naive,100,0.012849627347382068,0.0897618875157316,0.95,-0.020520248867162506,0.0963666694765312,0.92\nextreme,50,4,A,stratified_mle,100,-0.044636577835939564,0.1323191593902297,0.93,0.03500633905082904,0.12803140654487327,0.92\nextreme,50,4,B,global_corrected,100,-0.0707713021724841,0.16030105469952569,0.93,0.07259360702226897,0.15071836799462418,0.96\nextreme,50,4,B,hb_ec_hte,100,-0.08465030414210391,0.2286740377399912,0.9,0.08487164982237123,0.21068348367409184,0.95\nextreme,50,4,B,naive,100,0.05620441161533089,0.1061006101005304,0.88,-0.05482557017403694,0.10321059565654138,0.9\nextreme,50,4,B,stratified_mle,100,-0.09471455973050513,0.23154722481092138,0.91,0.09454890655634507,0.21557254649734556,0.93\nextreme,50,4,C,global_corrected,100,0.024432987273618353,0.13275374091777128,0.96,-0.04759690920409114,0.16014791259125216,0.89\nextreme,50,4,C,hb_ec_hte,100,-0.23798571588152467,1.523165113460345,0.84,0.21205697879201998,1.5051733623347279,0.82\nextreme,50,4,C,naive,100,0.15765836562063062,0.17789828964139953,0.59,-0.1815041989267724,0.20652354043212887,0.5\nextreme,50,4,C,stratified_mle,100,-0.46255601316914813,1.9882333081499532,0.86,0.43812042775850524,1.9876788662762759,0.83\nextreme,50,4,D,global_corrected,100,0.2854750275144828,0.30936305402945785,0.44,-0.29315297189271977,0.3228107449383032,0.37\nextreme,50,4,D,hb_ec_hte,100,0.1778630980457368,1.299212422548024,0.72,-0.18271962877418116,1.2827981005421867,0.69\nextreme,50,4,D,naive,100,0.37470079811995516,0.3820142464011146,0.0,-0.3813880648106796,0.39021970026393393,0.02\nextreme,50,4,D,stratified_mle,100,0.25125237124604416,1.403379031750499,0.75,-0.25609840169627274,1.386984981683662,0.72\nextreme,100,2,A,global_corrected,100,-0.046198484133015603,0.0891012611469412,0.9,0.04165559831819016,0.0923560665398253,0.91\nextreme,100,2,A,hb_ec_hte,100,-0.008655415431601926,0.07194716262559094,0.94,0.006006860270308627,0.07367195305460912,0.94\nextreme,100,2,A,naive,100,0.0212587034332004,0.06400582130163279,0.95,-0.024516702743257276,0.07156599625866575,0.89\nextreme,100,2,A,stratified_mle,100,-0.012559184906613514,0.07251741895269585,0.95,0.00976039217986527,0.07465523118857965,0.94\nextreme,100,2,B,global_corrected,100,0.0482485742871429,0.09097595306558379,0.93,-0.06859673829521584,0.1141899974247784,0.81",
+                "numLines": 30,
+                "startLine": 1,
+                "totalLines": 290
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V7QfM5fegVGddbXtomUEKp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/exp006_crossover.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "4005a81e-c532-4a42-90e8-2d0da13a01d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DausnefinN26VSsPL2bhSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11424,
+                "cache_read_input_tokens": 18274,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T05:27:11.827Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V7QfM5fegVGddbXtomUEKp",
+              "type": "tool_result",
+              "content": "1\tk_subgroups,regime,n_expert,rmse_naive,rmse_global,rmse_mle,rmse_hb,hb_beats_global,hb_beats_mle\n2\t2,extreme,50,0.1782845665838568,0.14201397211447694,0.37521022736525145,0.3953792478220237,False,False\n3\t2,extreme,100,0.1782845665838568,0.13744936760994253,0.1642543922465004,0.16174163435305233,False,True\n4\t2,extreme,250,0.1782845665838568,0.1345010629062753,0.12638590027714627,0.1254421751431956,True,True\n5\t2,extreme,500,0.1782845665838568,0.1329064558133152,0.11637524470646411,0.11604774562605195,True,True\n6\t2,extreme,1000,0.1782845665838568,0.13293038234974142,0.1173477705050139,0.11717416390563608,True,True\n7\t2,extreme,2000,0.1782845665838568,0.13187955243715013,0.11360234514691489,0.11350115534487179,True,True\n8\t2,moderate,50,0.14949105694901996,0.1308513358504516,0.24953523436679048,0.24541386071547708,False,True\n9\t2,moderate,100,0.14949105694901996,0.11709791465149495,0.15281089526874456,0.1521367631726693,False,True\n10\t2,moderate,250,0.14949105694901996,0.10921712785346113,0.11846141043459495,0.11810930735036729,False,True\n11\t2,moderate,500,0.14949105694901996,0.10653726210238602,0.11095594796391409,0.11076618565112678,False,True\n12\t2,moderate,1000,0.14949105694901996,0.10634780637218617,0.10876592283442386,0.10867997101072126,False,True\n13\t2,moderate,2000,0.14949105694901996,0.1053815467668496,0.10627036595973634,0.10621536083363195,False,True\n14\t4,extreme,50,0.32084247345594347,0.2940239968845198,1.7270730333700302,1.4184773321023818,False,True\n15\t4,extreme,100,0.32084247345594347,0.28979235428283606,1.337458978116237,1.151013138475582,False,True\n16\t4,extreme,250,0.32084247345594347,0.2883582693285409,0.8829515287671513,0.889420266924534,False,False\n17\t4,extreme,500,0.32084247345594347,0.2872244010540263,0.3941842716569214,0.40005468856057175,False,False\n18\t4,extreme,1000,0.32084247345594347,0.28652835408603466,0.27121767083965365,0.27103121127675434,True,True\n19\t4,extreme,2000,0.32084247345594347,0.2859199442388482,0.2569383457169566,0.2568625201720119,True,True\n20\t4,moderate,50,0.19388784183807858,0.17539237492813897,1.3080842740524024,0.8747166260149898,False,True\n21\t4,moderate,100,0.19388784183807858,0.1647293052314422,0.3080478683184136,0.30231686868336033,False,True\n22\t4,moderate,250,0.19388784183807858,0.15929597908589663,0.19039736943568075,0.1879095753966958,False,True\n23\t4,moderate,500,0.19388784183807858,0.1576828121518185,0.16610989375176907,0.16542432798000117,False,True\n24\t4,moderate,1000,0.19388784183807858,0.15760964655783952,0.1597846609414286,0.15951242528848794,False,True\n25\t4,moderate,2000,0.19388784183807858,0.15689776312322817,0.15452007698557668,0.1544012131968291,True,True\n26\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "94042439-9b30-46af-8fc1-d407bf7a079e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/results/exp006_crossover.csv",
+                "content": "k_subgroups,regime,n_expert,rmse_naive,rmse_global,rmse_mle,rmse_hb,hb_beats_global,hb_beats_mle\n2,extreme,50,0.1782845665838568,0.14201397211447694,0.37521022736525145,0.3953792478220237,False,False\n2,extreme,100,0.1782845665838568,0.13744936760994253,0.1642543922465004,0.16174163435305233,False,True\n2,extreme,250,0.1782845665838568,0.1345010629062753,0.12638590027714627,0.1254421751431956,True,True\n2,extreme,500,0.1782845665838568,0.1329064558133152,0.11637524470646411,0.11604774562605195,True,True\n2,extreme,1000,0.1782845665838568,0.13293038234974142,0.1173477705050139,0.11717416390563608,True,True\n2,extreme,2000,0.1782845665838568,0.13187955243715013,0.11360234514691489,0.11350115534487179,True,True\n2,moderate,50,0.14949105694901996,0.1308513358504516,0.24953523436679048,0.24541386071547708,False,True\n2,moderate,100,0.14949105694901996,0.11709791465149495,0.15281089526874456,0.1521367631726693,False,True\n2,moderate,250,0.14949105694901996,0.10921712785346113,0.11846141043459495,0.11810930735036729,False,True\n2,moderate,500,0.14949105694901996,0.10653726210238602,0.11095594796391409,0.11076618565112678,False,True\n2,moderate,1000,0.14949105694901996,0.10634780637218617,0.10876592283442386,0.10867997101072126,False,True\n2,moderate,2000,0.14949105694901996,0.1053815467668496,0.10627036595973634,0.10621536083363195,False,True\n4,extreme,50,0.32084247345594347,0.2940239968845198,1.7270730333700302,1.4184773321023818,False,True\n4,extreme,100,0.32084247345594347,0.28979235428283606,1.337458978116237,1.151013138475582,False,True\n4,extreme,250,0.32084247345594347,0.2883582693285409,0.8829515287671513,0.889420266924534,False,False\n4,extreme,500,0.32084247345594347,0.2872244010540263,0.3941842716569214,0.40005468856057175,False,False\n4,extreme,1000,0.32084247345594347,0.28652835408603466,0.27121767083965365,0.27103121127675434,True,True\n4,extreme,2000,0.32084247345594347,0.2859199442388482,0.2569383457169566,0.2568625201720119,True,True\n4,moderate,50,0.19388784183807858,0.17539237492813897,1.3080842740524024,0.8747166260149898,False,True\n4,moderate,100,0.19388784183807858,0.1647293052314422,0.3080478683184136,0.30231686868336033,False,True\n4,moderate,250,0.19388784183807858,0.15929597908589663,0.19039736943568075,0.1879095753966958,False,True\n4,moderate,500,0.19388784183807858,0.1576828121518185,0.16610989375176907,0.16542432798000117,False,True\n4,moderate,1000,0.19388784183807858,0.15760964655783952,0.1597846609414286,0.15951242528848794,False,True\n4,moderate,2000,0.19388784183807858,0.15689776312322817,0.15452007698557668,0.1544012131968291,True,True\n",
+                "numLines": 26,
+                "startLine": 1,
+                "totalLines": 26
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the data. Let me analyze the crossover data:\n\nFor K=2, extreme: crossover at n=250 (hb_beats_global becomes True)\nFor K=2, moderate: NO crossover (hb_beats_global is always False)\nFor K=4, extreme: crossover at n=1000 (hb_beats_global becomes True)\nFor K=4, moderate: crossover at n=2000 (hb_beats_global becomes True)\n\nNow let me write the plotting script. I need to:\n1. Create 2×2 panels: rows = K (2, 4), cols = regime (extreme, moderate)\n\n\n2. Set up log-scale x-axis for n_expert and y-axis for average RMSE\n3. Plot three lines for each panel showing global_corrected, hb_ec_hte, and stratified_mle performance\n4. Overlay the crossover points where hb_beats_global transitions to True\n5. Add a special annotation for the K=2/moderate case where no crossover occurs\n\nWriting the plotting script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "78d00511-e3ec-48a7-af42-d0c12d6f51f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018dvZHbVzQUi2erQePVmHtY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3262,
+                "cache_read_input_tokens": 29698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3262
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have the data and skill specs. Let me write the plotting script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "2a4addb1-e841-4221-b9e5-0dd51c8b1a25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018dvZHbVzQUi2erQePVmHtY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3262,
+                "cache_read_input_tokens": 29698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3262
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJEFsiireaBRjVXrmM3mVB",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/ec_hte_llm_annotation/artifacts/figures",
+                "description": "Create output directory for figures"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "7d8d261f-1265-4f8f-b833-6ae18da56d30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018dvZHbVzQUi2erQePVmHtY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3262,
+                "cache_read_input_tokens": 29698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3262
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T05:27:25.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJEFsiireaBRjVXrmM3mVB",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "835e7ca4-45b9-489b-a026-5f270924d4a4",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017SG57MGMQCAcKRJLtd77cT",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/draw_fig3.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport pandas as pd\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# Colors (Okabe-Ito based)\nCOLORS = {\n    'global_corrected': '#0072B2',\n    'hb_ec_hte': '#E69F00',\n    'stratified_mle': '#009E73',\n}\nLINESTYLES = {\n    'global_corrected': '-',\n    'hb_ec_hte': '-',\n    'stratified_mle': '--',\n}\nLABELS = {\n    'global_corrected': 'Global Corrected',\n    'hb_ec_hte': 'HB EC-HTE',\n    'stratified_mle': 'Stratified MLE',\n}\n\n# Load data\ndf = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp006_budget_sensitivity.csv')\ncrossover_df = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp006_crossover.csv')\n\n# Filter to methods of interest\nmethods = ['global_corrected', 'hb_ec_hte', 'stratified_mle']\ndf = df[df['method'].isin(methods)].copy()\n\n# Compute average RMSE: mean of rmse_z0 and rmse_z1, then average across subgroups\ndf['avg_rmse'] = (df['rmse_z0'] + df['rmse_z1']) / 2.0\n\nagg = df.groupby(['regime', 'n_expert', 'k_subgroups', 'method']).agg(\n    mean_rmse=('avg_rmse', 'mean'),\n    std_rmse=('avg_rmse', 'std'),\n).reset_index()\n\n# Panel layout: rows=K(2,4), cols=regime(extreme, moderate)\nfig, axes = plt.subplots(2, 2, figsize=(7, 3), sharex=True)\n\npanel_configs = [\n    (0, 0, 2, 'extreme'),\n    (0, 1, 2, 'moderate'),\n    (1, 0, 4, 'extreme'),\n    (1, 1, 4, 'moderate'),\n]\n\npanel_titles = {\n    (2, 'extreme'): 'K=2, Extreme',\n    (2, 'moderate'): 'K=2, Moderate',\n    (4, 'extreme'): 'K=4, Extreme',\n    (4, 'moderate'): 'K=4, Moderate',\n}\n\nfor row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        ax.plot(\n            mdata['n_expert'], mdata['mean_rmse'],\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            mdata['n_expert'],\n            mdata['mean_rmse'] - mdata['std_rmse'],\n            mdata['mean_rmse'] + mdata['std_rmse'],\n            color=COLORS[method], alpha=0.08,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    # Find crossover from crossover_df\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    # Crossover = first n_expert where hb_beats_global is True\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        ymin, ymax = ax.get_ylim()\n        t = ax.text(\n            crossover_n * 1.15, ax.get_ylim()[1] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        # No crossover\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')\n\n# Single legend at top\nhandles, labels = axes[0, 0].get_legend_handles_labels()\nfig.legend(handles, labels, loc='upper center', ncol=3, bbox_to_anchor=(0.5, 1.06), frameon=False)\n\nplt.tight_layout(h_pad=0.8, w_pad=0.6)\n\noutdir = '/home/ubuntu/ec_hte_llm_annotation/artifacts/figures'\nfig.savefig(f'{outdir}/fig3_budget.pdf', bbox_inches='tight')\nfig.savefig(f'{outdir}/fig3_budget.png', bbox_inches='tight')\nplt.close()\nprint(f'Saved: {outdir}/fig3_budget.pdf')\nprint(f'Saved: {outdir}/fig3_budget.png')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "61c41518-8449-42cc-88e0-1704e12ba7d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0122SHFB62n1bcmHuLRCTdNz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 32960,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 390
+                },
+                "output_tokens": 49,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T05:27:51.182Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017SG57MGMQCAcKRJLtd77cT",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/draw_fig3.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "3896aee8-0208-4c79-b695-06a38aaaad4f",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/draw_fig3.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport pandas as pd\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# Colors (Okabe-Ito based)\nCOLORS = {\n    'global_corrected': '#0072B2',\n    'hb_ec_hte': '#E69F00',\n    'stratified_mle': '#009E73',\n}\nLINESTYLES = {\n    'global_corrected': '-',\n    'hb_ec_hte': '-',\n    'stratified_mle': '--',\n}\nLABELS = {\n    'global_corrected': 'Global Corrected',\n    'hb_ec_hte': 'HB EC-HTE',\n    'stratified_mle': 'Stratified MLE',\n}\n\n# Load data\ndf = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp006_budget_sensitivity.csv')\ncrossover_df = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp006_crossover.csv')\n\n# Filter to methods of interest\nmethods = ['global_corrected', 'hb_ec_hte', 'stratified_mle']\ndf = df[df['method'].isin(methods)].copy()\n\n# Compute average RMSE: mean of rmse_z0 and rmse_z1, then average across subgroups\ndf['avg_rmse'] = (df['rmse_z0'] + df['rmse_z1']) / 2.0\n\nagg = df.groupby(['regime', 'n_expert', 'k_subgroups', 'method']).agg(\n    mean_rmse=('avg_rmse', 'mean'),\n    std_rmse=('avg_rmse', 'std'),\n).reset_index()\n\n# Panel layout: rows=K(2,4), cols=regime(extreme, moderate)\nfig, axes = plt.subplots(2, 2, figsize=(7, 3), sharex=True)\n\npanel_configs = [\n    (0, 0, 2, 'extreme'),\n    (0, 1, 2, 'moderate'),\n    (1, 0, 4, 'extreme'),\n    (1, 1, 4, 'moderate'),\n]\n\npanel_titles = {\n    (2, 'extreme'): 'K=2, Extreme',\n    (2, 'moderate'): 'K=2, Moderate',\n    (4, 'extreme'): 'K=4, Extreme',\n    (4, 'moderate'): 'K=4, Moderate',\n}\n\nfor row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        ax.plot(\n            mdata['n_expert'], mdata['mean_rmse'],\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            mdata['n_expert'],\n            mdata['mean_rmse'] - mdata['std_rmse'],\n            mdata['mean_rmse'] + mdata['std_rmse'],\n            color=COLORS[method], alpha=0.08,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    # Find crossover from crossover_df\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    # Crossover = first n_expert where hb_beats_global is True\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        ymin, ymax = ax.get_ylim()\n        t = ax.text(\n            crossover_n * 1.15, ax.get_ylim()[1] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        # No crossover\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')\n\n# Single legend at top\nhandles, labels = axes[0, 0].get_legend_handles_labels()\nfig.legend(handles, labels, loc='upper center', ncol=3, bbox_to_anchor=(0.5, 1.06), frameon=False)\n\nplt.tight_layout(h_pad=0.8, w_pad=0.6)\n\noutdir = '/home/ubuntu/ec_hte_llm_annotation/artifacts/figures'\nfig.savefig(f'{outdir}/fig3_budget.pdf', bbox_inches='tight')\nfig.savefig(f'{outdir}/fig3_budget.png', bbox_inches='tight')\nplt.close()\nprint(f'Saved: {outdir}/fig3_budget.pdf')\nprint(f'Saved: {outdir}/fig3_budget.png')\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CSkun1uYhVo6eKoHBjyJNy",
+              "name": "Bash",
+              "input": {
+                "command": "python draw_fig3.py",
+                "description": "Generate fig3 budget crossover figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "f3f457d2-0e81-4166-830a-9a6c16acdd21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RUhvbUPAMvVBZ3kA3Q8CLR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1915,
+                "cache_read_input_tokens": 33350,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1915
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T05:27:54.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01CSkun1uYhVo6eKoHBjyJNy"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "b5ef3b0d-0a53-46f9-a2cb-d2875a4c8628",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LN6fx7RxPzyKvjCF5769LA",
+              "name": "Bash",
+              "input": {
+                "command": "python3 draw_fig3.py",
+                "description": "Generate fig3 budget crossover figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "502dd969-d5aa-41c5-a76a-af04c5bad2cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEZrfr7mZyX5qtJAj7WvsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 121,
+                "cache_read_input_tokens": 35265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 121
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bzgxwtalj",
+                "tool_use_id": "toolu_01LN6fx7RxPzyKvjCF5769LA",
+                "description": "Generate fig3 budget crossover figure",
+                "task_type": "local_bash",
+                "uuid": "6cf44cb1-9263-482a-9c8f-46c84ee34cd2",
+                "session_id": "a1690dad-223f-4609-b636-7b67d46a039b"
+              }
+            }
+          ],
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bzgxwtalj",
+                "tool_use_id": "toolu_01LN6fx7RxPzyKvjCF5769LA",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Generate fig3 budget crossover figure",
+                "uuid": "e507d917-cb85-4a20-b989-51d845047477",
+                "session_id": "a1690dad-223f-4609-b636-7b67d46a039b"
+              }
+            }
+          ],
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T05:28:00.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LN6fx7RxPzyKvjCF5769LA",
+              "type": "tool_result",
+              "content": "Saved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf\nSaved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "5172e099-49c1-403d-9106-19715ce41a79",
+            "tool_use_result": {
+              "stdout": "Saved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf\nSaved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the output visually."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "4f50600c-45e1-4647-ab18-6ddd39f55d7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013gRRL8BYN5bE11TiU5nCNs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 35386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JsTrScWkL6tN8vw2EzzZhp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "4ca2f756-335c-48c0-b61d-7968b16a1089",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013gRRL8BYN5bE11TiU5nCNs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 35386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T05:28:04.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JsTrScWkL6tN8vw2EzzZhp",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "5a07e57d-0114-4bf8-aaaa-e1331d7726fc",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 205438
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure looks good overall, but I notice a few things:\n\n1. The crossover points are marked correctly: n=250 for K=2/extreme, n=1000 for K=4/extreme, n=2000 for K=4/moderate, and \"No crossover\" for K=2/moderate.\n\n2. The error bands for K=4 are very wide (especially stratified_mle and hb_ec_hte at small n), which makes sense given those methods have high variance with few experts and many subgroups.\n\n3. The y-axis ranges differ a lot between panels. The K=4 panels have much higher RMSE values at low n_expert. This is expected but makes the curves at high n_expert hard to see.\n\n\nI'm torn on whether to adjust the y-axis scaling—the wide bands at low n for K=4 actually tell an important part of the story about variance costs, but they do make it harder to see what's happening at larger sample sizes. The raw RMSE values at n=50 for K=4/extreme are quite extreme, with stratified_mle reaching around 1.99 and hb_ec_hte near 1, which dominates the visual space.\n\nA log scale would help show both the high variance at low n and the convergence pattern, though the user didn't explicitly ask for that. I think the current figure is actually readable enough and conveys the key narrative—the crossover points are visible and the annotations are clear. The wide error bands serve a purpose. I'll leave it as is rather than over-engineer it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "a4de45e1-5704-4d19-a484-d27fb8ea5ca9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDye4idySZyMjmmqZ1Cnz8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 283,
+                "cache_read_input_tokens": 35642,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The figure works but the K=4 panels are dominated by the high-variance RMSE at low n. Let me refine with capped y-axes to make the crossover region more readable."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "50e42607-b61b-4e3d-9ffd-4c813b6117e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDye4idySZyMjmmqZ1Cnz8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 283,
+                "cache_read_input_tokens": 35642,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011PMbm7VYaAmQ3Hp4v9eyvR",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/draw_fig3.py",
+                "old_string": "for row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        ax.plot(\n            mdata['n_expert'], mdata['mean_rmse'],\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            mdata['n_expert'],\n            mdata['mean_rmse'] - mdata['std_rmse'],\n            mdata['mean_rmse'] + mdata['std_rmse'],\n            color=COLORS[method], alpha=0.08,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    # Find crossover from crossover_df\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    # Crossover = first n_expert where hb_beats_global is True\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        ymin, ymax = ax.get_ylim()\n        t = ax.text(\n            crossover_n * 1.15, ax.get_ylim()[1] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        # No crossover\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')",
+                "new_string": "ylim_caps = {2: 0.45, 4: 0.55}\n\nfor row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        rmse_vals = mdata['mean_rmse'].values\n        std_vals = mdata['std_rmse'].values\n        n_vals = mdata['n_expert'].values\n\n        ax.plot(\n            n_vals, rmse_vals,\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            n_vals,\n            np.clip(rmse_vals - std_vals, 0, None),\n            rmse_vals + std_vals,\n            color=COLORS[method], alpha=0.10,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_ylim(0, ylim_caps[k])\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        t = ax.text(\n            crossover_n * 1.15, ylim_caps[k] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "37516425-2c7f-4bf0-972f-63d7b0884d9e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDye4idySZyMjmmqZ1Cnz8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 283,
+                "cache_read_input_tokens": 35642,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 283
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T05:28:40.908Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011PMbm7VYaAmQ3Hp4v9eyvR",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/ec_hte_llm_annotation/draw_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "8eee21db-6540-4ae2-b93c-1f2ec98f3127",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/draw_fig3.py",
+              "oldString": "for row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        ax.plot(\n            mdata['n_expert'], mdata['mean_rmse'],\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            mdata['n_expert'],\n            mdata['mean_rmse'] - mdata['std_rmse'],\n            mdata['mean_rmse'] + mdata['std_rmse'],\n            color=COLORS[method], alpha=0.08,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    # Find crossover from crossover_df\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    # Crossover = first n_expert where hb_beats_global is True\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        ymin, ymax = ax.get_ylim()\n        t = ax.text(\n            crossover_n * 1.15, ax.get_ylim()[1] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        # No crossover\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')",
+              "newString": "ylim_caps = {2: 0.45, 4: 0.55}\n\nfor row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        rmse_vals = mdata['mean_rmse'].values\n        std_vals = mdata['std_rmse'].values\n        n_vals = mdata['n_expert'].values\n\n        ax.plot(\n            n_vals, rmse_vals,\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            n_vals,\n            np.clip(rmse_vals - std_vals, 0, None),\n            rmse_vals + std_vals,\n            color=COLORS[method], alpha=0.10,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_ylim(0, ylim_caps[k])\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        t = ax.text(\n            crossover_n * 1.15, ylim_caps[k] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')",
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport pandas as pd\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# Colors (Okabe-Ito based)\nCOLORS = {\n    'global_corrected': '#0072B2',\n    'hb_ec_hte': '#E69F00',\n    'stratified_mle': '#009E73',\n}\nLINESTYLES = {\n    'global_corrected': '-',\n    'hb_ec_hte': '-',\n    'stratified_mle': '--',\n}\nLABELS = {\n    'global_corrected': 'Global Corrected',\n    'hb_ec_hte': 'HB EC-HTE',\n    'stratified_mle': 'Stratified MLE',\n}\n\n# Load data\ndf = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp006_budget_sensitivity.csv')\ncrossover_df = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp006_crossover.csv')\n\n# Filter to methods of interest\nmethods = ['global_corrected', 'hb_ec_hte', 'stratified_mle']\ndf = df[df['method'].isin(methods)].copy()\n\n# Compute average RMSE: mean of rmse_z0 and rmse_z1, then average across subgroups\ndf['avg_rmse'] = (df['rmse_z0'] + df['rmse_z1']) / 2.0\n\nagg = df.groupby(['regime', 'n_expert', 'k_subgroups', 'method']).agg(\n    mean_rmse=('avg_rmse', 'mean'),\n    std_rmse=('avg_rmse', 'std'),\n).reset_index()\n\n# Panel layout: rows=K(2,4), cols=regime(extreme, moderate)\nfig, axes = plt.subplots(2, 2, figsize=(7, 3), sharex=True)\n\npanel_configs = [\n    (0, 0, 2, 'extreme'),\n    (0, 1, 2, 'moderate'),\n    (1, 0, 4, 'extreme'),\n    (1, 1, 4, 'moderate'),\n]\n\npanel_titles = {\n    (2, 'extreme'): 'K=2, Extreme',\n    (2, 'moderate'): 'K=2, Moderate',\n    (4, 'extreme'): 'K=4, Extreme',\n    (4, 'moderate'): 'K=4, Moderate',\n}\n\nfor row, col, k, regime in panel_configs:\n    ax = axes[row, col]\n    subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]\n\n    for method in methods:\n        mdata = subset[subset['method'] == method].sort_values('n_expert')\n        ax.plot(\n            mdata['n_expert'], mdata['mean_rmse'],\n            color=COLORS[method], linestyle=LINESTYLES[method],\n            label=LABELS[method], marker='o', markersize=4,\n        )\n        ax.fill_between(\n            mdata['n_expert'],\n            mdata['mean_rmse'] - mdata['std_rmse'],\n            mdata['mean_rmse'] + mdata['std_rmse'],\n            color=COLORS[method], alpha=0.08,\n        )\n\n    ax.set_xscale('log')\n    ax.set_xticks([50, 100, 250, 500, 1000, 2000])\n    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())\n    ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)\n\n    # Find crossover from crossover_df\n    cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]\n    # Crossover = first n_expert where hb_beats_global is True\n    cross_points = cross_row[cross_row['hb_beats_global'] == True]\n\n    if len(cross_points) > 0:\n        crossover_n = cross_points['n_expert'].min()\n        ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)\n        ymin, ymax = ax.get_ylim()\n        t = ax.text(\n            crossover_n * 1.15, ax.get_ylim()[1] * 0.92,\n            f'n={crossover_n}', fontsize=7.5, color='#555555',\n            ha='left', va='top',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n    else:\n        # No crossover\n        t = ax.text(\n            0.97, 0.95, 'No crossover\\n(Global always lower)',\n            transform=ax.transAxes, fontsize=7, color='#555555',\n            ha='right', va='top', fontstyle='italic',\n        )\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    if row == 1:\n        ax.set_xlabel('Expert budget ($n$)')\n    if col == 0:\n        ax.set_ylabel('Avg RMSE')\n\n# Single legend at top\nhandles, labels = axes[0, 0].get_legend_handles_labels()\nfig.legend(handles, labels, loc='upper center', ncol=3, bbox_to_anchor=(0.5, 1.06), frameon=False)\n\nplt.tight_layout(h_pad=0.8, w_pad=0.6)\n\noutdir = '/home/ubuntu/ec_hte_llm_annotation/artifacts/figures'\nfig.savefig(f'{outdir}/fig3_budget.pdf', bbox_inches='tight')\nfig.savefig(f'{outdir}/fig3_budget.png', bbox_inches='tight')\nplt.close()\nprint(f'Saved: {outdir}/fig3_budget.pdf')\nprint(f'Saved: {outdir}/fig3_budget.png')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 72,
+                  "oldLines": 46,
+                  "newStart": 72,
+                  "newLines": 49,
+                  "lines": [
+                    "     (4, 'moderate'): 'K=4, Moderate',",
+                    " }",
+                    " ",
+                    "+ylim_caps = {2: 0.45, 4: 0.55}",
+                    "+",
+                    " for row, col, k, regime in panel_configs:",
+                    "     ax = axes[row, col]",
+                    "     subset = agg[(agg['k_subgroups'] == k) & (agg['regime'] == regime)]",
+                    " ",
+                    "     for method in methods:",
+                    "         mdata = subset[subset['method'] == method].sort_values('n_expert')",
+                    "+        rmse_vals = mdata['mean_rmse'].values",
+                    "+        std_vals = mdata['std_rmse'].values",
+                    "+        n_vals = mdata['n_expert'].values",
+                    "+",
+                    "         ax.plot(",
+                    "-            mdata['n_expert'], mdata['mean_rmse'],",
+                    "+            n_vals, rmse_vals,",
+                    "             color=COLORS[method], linestyle=LINESTYLES[method],",
+                    "             label=LABELS[method], marker='o', markersize=4,",
+                    "         )",
+                    "         ax.fill_between(",
+                    "-            mdata['n_expert'],",
+                    "-            mdata['mean_rmse'] - mdata['std_rmse'],",
+                    "-            mdata['mean_rmse'] + mdata['std_rmse'],",
+                    "-            color=COLORS[method], alpha=0.08,",
+                    "+            n_vals,",
+                    "+            np.clip(rmse_vals - std_vals, 0, None),",
+                    "+            rmse_vals + std_vals,",
+                    "+            color=COLORS[method], alpha=0.10,",
+                    "         )",
+                    " ",
+                    "     ax.set_xscale('log')",
+                    "     ax.set_xticks([50, 100, 250, 500, 1000, 2000])",
+                    "     ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())",
+                    "+    ax.set_ylim(0, ylim_caps[k])",
+                    "     ax.set_title(panel_titles[(k, regime)], fontsize=10, pad=4)",
+                    " ",
+                    "-    # Find crossover from crossover_df",
+                    "     cross_row = crossover_df[(crossover_df['k_subgroups'] == k) & (crossover_df['regime'] == regime)]",
+                    "-    # Crossover = first n_expert where hb_beats_global is True",
+                    "     cross_points = cross_row[cross_row['hb_beats_global'] == True]",
+                    " ",
+                    "     if len(cross_points) > 0:",
+                    "         crossover_n = cross_points['n_expert'].min()",
+                    "         ax.axvline(crossover_n, color='#555555', linestyle=':', linewidth=1.0, alpha=0.7)",
+                    "-        ymin, ymax = ax.get_ylim()",
+                    "         t = ax.text(",
+                    "-            crossover_n * 1.15, ax.get_ylim()[1] * 0.92,",
+                    "+            crossover_n * 1.15, ylim_caps[k] * 0.92,",
+                    "             f'n={crossover_n}', fontsize=7.5, color='#555555',",
+                    "             ha='left', va='top',",
+                    "         )",
+                    "         t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])",
+                    "     else:",
+                    "-        # No crossover",
+                    "         t = ax.text(",
+                    "             0.97, 0.95, 'No crossover\\n(Global always lower)',",
+                    "             transform=ax.transAxes, fontsize=7, color='#555555',"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011iAJ8CSiH3mtC4M3m1Dqnw",
+              "name": "Bash",
+              "input": {
+                "command": "python3 draw_fig3.py",
+                "description": "Regenerate fig3 with capped y-axes"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "c0a5106c-e18c-4cf6-9eab-0e1554827f36",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011srj9XiR89cn5KwBcY9xxj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2272,
+                "cache_read_input_tokens": 35925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2272
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bz9sy5tpk",
+                "tool_use_id": "toolu_011iAJ8CSiH3mtC4M3m1Dqnw",
+                "description": "Regenerate fig3 with capped y-axes",
+                "task_type": "local_bash",
+                "uuid": "4bb06ee2-02c6-460b-8577-61cc3717cad2",
+                "session_id": "a1690dad-223f-4609-b636-7b67d46a039b"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bz9sy5tpk",
+                "tool_use_id": "toolu_011iAJ8CSiH3mtC4M3m1Dqnw",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Regenerate fig3 with capped y-axes",
+                "uuid": "c30e615d-9442-491e-8cec-8500a60da38e",
+                "session_id": "a1690dad-223f-4609-b636-7b67d46a039b"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T05:28:47.330Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011iAJ8CSiH3mtC4M3m1Dqnw",
+              "type": "tool_result",
+              "content": "Saved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf\nSaved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "3fb3e09c-b228-4a54-b71c-65c3f35b9349",
+            "tool_use_result": {
+              "stdout": "Saved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf\nSaved: /home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gm1PgjsMEsotmvDXcEokoC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "d288e005-0ef3-4e05-94cc-42473a4b7a1d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Me5dgghEthNFL5AyokYR13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 157,
+                "cache_read_input_tokens": 38197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 157
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T05:28:51.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gm1PgjsMEsotmvDXcEokoC",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "9140fa6b-7f94-4295-9b6d-b6a3d3d30f8a",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 203059
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure looks much better now. The crossover points are clearly visible:\n\n- K=2, Extreme: n=250 crossover (HB EC-HTE starts beating Global Corrected)\n- K=2, Moderate: No crossover (Global always lower)\n- K=4, Extreme: n=1000 crossover\n- K=4, Moderate: n=2000 crossover\n\nThe shaded bands show the cross-subgroup variability clearly. The clipping at reasonable y-axis limits makes the convergence behavior readable.\n\nThe figure tells the narrative: EC-HTE's advantage depends on expert budget, with crossover happening later for more subgroups (K=4 needs more experts than K=2) and for moderate vs extreme regimes. \n\nBelow these thresholds, the variance cost of stratification exceeds the bias reduction. The figure is clean and communicates the key message well. I'm checking the label positioning in the K=4/Moderate panel where the n=2000 crossover sits at the edge of the plot.\n\nUpon closer inspection, the annotation is visible and reads clearly. The figure matches the specification with the 7x3 inch dimensions and 2x2 panel layout, so it's ready.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "a917de99-0890-4723-b6cf-8542e8c878b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C93cMsxfm4Az7b5xTUkTRb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 274,
+                "cache_read_input_tokens": 38354,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 274
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated. The 2×2 panels clearly show the budget crossover behavior:\n\n- **K=2, Extreme**: crossover at n=250\n- **K=2, Moderate**: no crossover (Global always lower RMSE)\n- **K=4, Extreme**: crossover at n=1000\n- **K=4, Moderate**: crossover at n=2000\n\nOutput files:\n- `/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf`\n- `/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "uuid": "44861529-7815-4d90-b357-a115308404e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C93cMsxfm4Az7b5xTUkTRb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 274,
+                "cache_read_input_tokens": 38354,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 274
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated. The 2×2 panels clearly show the budget crossover behavior:\n\n- **K=2, Extreme**: crossover at n=250\n- **K=2, Moderate**: no crossover (Global always lower RMSE)\n- **K=4, Extreme**: crossover at n=1000\n- **K=4, Moderate**: crossover at n=2000\n\nOutput files:\n- `/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf`\n- `/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 124601,
+            "duration_api_ms": 118091,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "a1690dad-223f-4609-b636-7b67d46a039b",
+            "total_cost_usd": 0.48789175,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 26787,
+              "cache_read_input_tokens": 344892,
+              "output_tokens": 5856,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26787,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 582,
+                  "cache_read_input_tokens": 38354,
+                  "cache_creation_input_tokens": 274,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 274
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1477,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001562,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 5856,
+                "cacheReadInputTokens": 344892,
+                "cacheCreationInputTokens": 26787,
+                "webSearchRequests": 0,
+                "costUSD": 0.48632975,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1dc28721-7ef0-4d56-b67e-e2a66b222a73"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ]
+}

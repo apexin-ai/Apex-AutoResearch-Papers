@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "04f9fcf1c4f9491dc649",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis wild bootstrap fix",
+  "task_key": "worker_analysis_wild-bootstrap-fix_20260522T195622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wild-bootstrap-fix_20260522T195622_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "a77d350316c89cbe21307e5560ab4bacae1ab5e248256d8eef62b0fb1129c85d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap v2 completed. Results:\n\n**Validation**: `arc_challengexsycophancy` K_eff std_β = **-0.1917** (expected -0.192) ✓\n\n**Summary (B=9999, 3-position clustering, max p-value)**:\n- **K_eff FDR sig: 1/12** (1 positive, 0 negative) — only `mmlu×prompt_injection` survives\n- **η_max FDR sig: 5/12** — `mmlu×{prompt_injection, sycophancy, verbosity_bias, position_bias}` + `arc×sycophancy`\n\nCompared to the old (buggy) v1:\n| Method | η_max FDR sig | K_eff FDR sig |\n|---|---|---|\n| Canonical OLS | 11/12 | 8/12 |\n| Clustered SE | 8/12 | 0/12 |\n| Wild Bootstrap v1 (buggy) | 10/12 | 9/12 |\n| **Wild Bootstrap v2 (fixed)** | **5/12** | **1/12** |\n\nThe fixed bootstrap is much more conservative — K_eff drops from 9/12 to 1/12, η_max from 10/12 to 5/12. This is expected: the old v1 used a wrong K_eff formula (inflating the signal) and a single weaker clustering."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

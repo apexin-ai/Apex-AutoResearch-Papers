@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "id": "55bc7127a595624e9639",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code 13b scale validation",
+  "task_key": "worker_code_13b_scale_validation_20260517T084540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_13b_scale_validation_20260517T084540.log",
+    "occurrence": 1,
+    "bytes": 585060,
+    "sha256": "968066a5ebf41628c13e3655034cc27165a3bac2bae189fb862d376a17b80870"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "55bc7127a595624e9639-part-0001.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ]
+}

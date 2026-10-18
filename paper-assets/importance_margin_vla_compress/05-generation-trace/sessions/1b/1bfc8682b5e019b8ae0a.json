@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1bfc8682b5e019b8ae0a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 smolvla sweep batch2",
+  "task_key": "worker_deploy_cqa1-smolvla-sweep-batch2_20260521T212019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-smolvla-sweep-batch2_20260521T212019_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "c47eae8d2c70f710de73caf0225401868fe9ae87f6f43b10f3f2629e377b5a5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n| 实验 | GPU | tmux session | 状态 |\n|------|-----|-------------|------|\n| **A**: `eval_smolvla_official_random_k090_object_seed42` (random k=0.9) | GPU 0 | `eval_random_k090` | RUNNING, Task 0 开始 |\n| **B**: `eval_smolvla_official_random_k050_object_seed42` (random k=0.5) | GPU 1 | `eval_random_k050` | RUNNING, Task 0 开始 |\n| **C**: `eval_smolvla_official_l2norm_k050_object_seed42` (l2norm k=0.5) | — | — | 已完成 (SR=0%) |\n\n修正了两个问题：`--mode random` → `random_prune`，补充了 `--pretrained_dir` 和 `source /etc/network_turbo`（VLM backbone 加载需要网络或本地缓存匹配）。GPU 2/3 空闲可用于后续实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

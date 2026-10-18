@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0a4b01d6e91998bcb6ad",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd27271 cuda0 check and fill",
+  "task_key": "worker_ops_westd27271-cuda0-check-and-fill_20260521T025625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd27271-cuda0-check-and-fill_20260521T025625_result.json",
+    "occurrence": 1,
+    "bytes": 3759,
+    "sha256": "31d487b6ac1af70870db8b54fd3dec40b83adc686f0086a4c3c2cd9f4899f6ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n## westd-27271 GPU 探查结果\n\n### GPU 状态\n| GPU | 型号 | 显存 | 状态 |\n|-----|------|------|------|\n| cuda:0 | RTX PRO 6000 Blackwell | 96GB | **空闲** (0MiB) |\n| cuda:1 | RTX PRO 6000 Blackwell | 96GB | 占用 (42GB) — 正在训练 `train_openvla_smart_compress.py --config openvla_smart_compress_m32.yaml --resume openvla_sc_m32_seed42` |\n\n### 磁盘\n250GB 总量，已用 192GB，剩余 **59GB** (77%)。\n\n### LIBERO 数据\n`/root/autodl-tmp/libero_data/datasets/` 存在（具体 suite 文件在子目录中）。\n\n### Eval 脚本（12个）\n| 脚本 | 用途 |\n|------|------|\n| `eval_openvla_libero.py` | OpenVLA baseline eval |\n| `eval_openvla_l2norm_libero.py` | OpenVLA baseline / random prune / L2-norm prune |\n| `eval_openvla_smart_compress.py` | OpenVLA Smart Compress (VisionTokenCompressor) |\n| `eval_smart_compress_libero.py` | SmolVLA Smart Compress |\n| `eval_official_libero.py` | Official LIBERO eval |\n| `eval_success_rate_libero.py` | Success rate (general) |\n| `eval_sim.py` / `eval_success_rate.py` | Simulation eval |\n| `eval_token_importance.py` | Token importance analysis |\n| `eval_pruning_sweep.py` | Pruning sweep |\n| `eval_acis_overhead.py` | ACIS overhead measurement |\n| `eval_formal_bound.py` | Formal bound eval |\n\n### Checkpoints\n**OpenVLA Smart Compress:**\n- `openvla_sc_m128_seed42/checkpoint.pt` — m=128, seed42\n- `openvla_sc_m32_seed42/checkpoint.pt` + `checkpoint_step30000.pt` — m=32, seed42\n- `openvla_sc_m128/checkpoint_step20000.pt` — m=128, step20k\n\n**SmolVLA Smart Compress:**\n- `smart_compress_m128_seed44/checkpoint.pt`\n- `smart_compress_m16_seed44/checkpoint.pt`\n\n**Baselines / Full-FT:**\n- `libero_full_ft_50k`, `libero_full_ft_100k`, `libero_full_ft_seed0_100k`, `libero_lora_50k`\n- `mlp_adapter_control`\n- `baseline`\n\n**IMM variants:** baseline_v6_alpha16, imm_anchor, imm_anchor_v7_1, v8, v8_1, v8b_twostage, v8c_annealing, etc.\n\n### 已完成的关键 OpenVLA Object Eval\n| 实验 | SR | seed |\n|------|-----|------|\n| OpenVLA baseline | **74.0%** | 7 |\n| Random prune k=0.3 | — | 7 |\n| Random prune k=0.5 | — | 7 |\n| Random prune k=0.7 | **49.0%** | 7 |\n| Random prune k=0.9 | — | 7/43 |\n| Random prune k=0.95 | — | 7 |\n| L2-norm prune k=0.7 | **49.8%** | 42 |\n| L2-norm prune k=0.7 seed43 | **49.8%** | 43 |\n| L2-norm k07 seed43 v2 | **49.8%** | 43 |\n| SmolVLA Smart Compress m128 seed44 | **60.2%** | 44 |\n| MLP adapter control | — | 42/43/44 |\n\n### **尚未完成 / 可立即运行的实验**\n\n1. **OpenVLA Smart Compress m128 eval (seed42)** — checkpoint 已有 (`openvla_sc_m128_seed42/checkpoint.pt`)，无对应 eval 结果。最高优先级，直接对比 baseline 74% 和 random prune。\n   ```bash\n   CUDA_VISIBLE_DEVICES=0 python eval_openvla_smart_compress.py \\\n     --n_queries 128 --checkpoint_path checkpoints/openvla_sc_m128_seed42/checkpoint.pt \\\n     --suite libero_object --num_episodes 50 --gpu 0\n   ```\n\n2. **OpenVLA Smart Compress m32 eval (seed42, step30k)** — checkpoint 已有，验证更激进压缩 (m=32) 的效果。\n\n3. **OpenVLA L2-norm prune 其他 k 值 (k=0.5, k=0.3)** — sweep 日志显示 k=0.5/0.3 跑过但结果文件缺失或不完整。\n\n4. **OpenVLA baseline 多 seed 验证** — 当前 baseline 只有 seed=7，可跑 seed=42/43 建立 CI。\n\n5. **OpenVLA Spatial suite eval** — `eval_openvla_baseline_spatial.json` 存在但只有 1 个结果文件，Smart Compress / L2-norm 在 spatial 上尚未评估。\n\n**建议优先跑 #1（OpenVLA SC m128 eval）**，这是当前最缺的数据点——有训练好的 checkpoint 但没有 eval 结果，且与 cuda:1 上正在训练的 m32 形成对照。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

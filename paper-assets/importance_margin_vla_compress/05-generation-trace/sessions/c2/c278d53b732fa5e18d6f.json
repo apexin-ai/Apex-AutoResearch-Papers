@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c278d53b732fa5e18d6f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train libero imm twostage start",
+  "task_key": "worker_train_libero_imm_twostage_start_20260516T183748",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_libero_imm_twostage_start_20260516T183748_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "285c189de5f7f6ce7a299b292b251fc66dbab8451619e3f8b78c60a44cb07646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并运行。\n\n**状态总结：**\n\n| 项目 | 状态 |\n|------|------|\n| exp_id | `libero_imm_twostage_v1` |\n| PID | 221824 (westd-27271, GPU 0) |\n| GPU 占用 | 2728 MiB / 97887 MiB |\n| 阶段 | 数据集加载中（LIBERO 383 parquet, 已处理 ~1.26GB） |\n| 基线 checkpoint | `step_040000/checkpoint.pt` |\n| 训练配置 | Stage1: 10K steps (ACIS only), Stage2: 20K steps (LoRA only) |\n| Registry | RUNNING |\n| 日志 | `/tmp/libero_imm_twostage_v1.log` |\n\n**踩坑修复：** 首次启动未加 `source /etc/network_turbo` 导致 HF 连接挂死。Kill 后用正确环境（network_turbo + `HF_HUB_DISABLE_XET=1` + SSL certs + `python -u`）重启，进展正常。\n\n训练 step 日志会在数据加载完成后开始输出（LIBERO 视频数据集较大，预计还需几分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

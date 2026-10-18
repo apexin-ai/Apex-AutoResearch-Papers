@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f70192286a648d6c2fc",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis nli selection bias",
+  "task_key": "worker_analysis_nli-selection-bias_20260522T200539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nli-selection-bias_20260522T200539_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "b6d91d8f89b4958de5025f3851cc7e6a7bc4a42b75c586cb8a9176886fcc47e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 字段列表\n`instruction, response, source, label, id, original_text, counterfactual_text, double_rewrite_text, original_formality, bertscore_cf, bertscore_dr, nli_cf, nli_dr, passed_cf, passed_dr`\n\n**无 `instruction_type` 或 `category` 字段**，改用 `source`、`original_formality`、`label` 做 selection bias 分析。\n\n### NLI Selection Bias 分析（N=100）\n\n**NLI_CF ≥ 0.90 划分**（Pass=88, Reject=12）：\n\n| 维度 | χ² | p-value | 结论 |\n|------|-----|---------|------|\n| source | 1.30 | 0.730 | 不显著 |\n| original_formality | 0.79 | 0.374 | 不显著 |\n| label | 0.00 | 1.000 | 不显著 |\n\n**NLI_DR ≥ 0.90 划分**（Pass=81, Reject=19）：\n\n| 维度 | χ² | p-value | 结论 |\n|------|-----|---------|------|\n| source | 1.28 | 0.733 | 不显著 |\n| original_formality | 0.79 | 0.375 | 不显著 |\n| label | 0.29 | 0.591 | 不显著 |\n\n**Combined Pass (passed_cf AND passed_dr)**（Pass=15, Reject=85）：\n\n| 维度 | χ² | p-value | 结论 |\n|------|-----|---------|------|\n| source | 1.01 | 0.798 | 不显著 |\n| original_formality | 3.64 | **0.056** | 边缘不显著 |\n\n唯一接近显著的是 combined pass 下的 formality 分布（p=0.056）：通过样本中 casual 占 66.7%，而拒绝组中只占 36.5%——casual 文本更容易同时通过 CF 和 DR 验证。但在 0.05 水平下仍不显著。\n\n结果已保存到 `artifacts/r13_fixes/nli_selection_bias.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

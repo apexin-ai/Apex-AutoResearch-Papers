@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2e230dc068d5f8984a26",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "dryrun ate analysis",
+  "task_key": "worker_dryrun_ate_analysis_20260520T112515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_dryrun_ate_analysis_20260520T112515_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "0d499bbc9d3cbefdb391e5f3c08080fa58c310da6d2db32e471679398b1b0b92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry run 完成，结果汇总：\n\n| 指标 | 数值 | 预期 | 状态 |\n|------|------|------|------|\n| **Raw ATE** | **+1.5000** | +1.5 | 精确匹配 |\n| **Raw p-value** | ≈ 0 (3.99e-295) | p << 0.05 | 通过 |\n| **Raw Cohen's d** | 2.78e+15（爆炸） | > 1.0 | 见下方说明 |\n| **Rewrite bias** | +0.005 | ≈ 0 | 通过 |\n| **Corrected ATE** | +1.4950 | ≈ 1.5 | 通过 |\n| **Corrected p** | 1.17e-23 | p << 0.05 | 通过 |\n| **Corrected Cohen's d** | +14.31 | > 1.0 | 通过 |\n| **ate_bar.png** | 38K | 生成 | 通过 |\n| **score_violin.png** | 61K | 生成 | 通过 |\n\n**一个问题**：Raw Cohen's d 爆炸到 2.78e+15。原因是合成数据中 `score_formal - score_casual` 的 diff 恒为 1.5（零方差），`std(ddof=1)` ≈ 0 导致除法溢出。这是合成数据的特性（所有样本的 formal_bonus 完全相同），不是代码 bug。Corrected Cohen's d = 14.31 正常，因为 rewrite bias 引入了少量方差。\n\n**修复记录**：ate_analysis.py 缺少 `from __future__ import annotations`，导致模块加载时 `pd.DataFrame` 类型注解触发 `NameError`。已在服务器和本地 artifacts 同步修复。\n\n**有一个 warning**：seaborn 的 `palette` 参数在 v0.14 后需配合 `hue` 使用，不影响功能但可以后续修。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

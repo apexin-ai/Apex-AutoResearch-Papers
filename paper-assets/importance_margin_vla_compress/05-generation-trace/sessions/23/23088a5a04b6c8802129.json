@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23088a5a04b6c8802129",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train openvla vtc lora westd41074",
+  "task_key": "worker_train_openvla_vtc_lora_westd41074_20260519T182506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_openvla_vtc_lora_westd41074_20260519T182506_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "9a046a86014fb6355654608c2e8d29a6195d6ef8a1d36bbdf70473f756a4daef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task complete. Training `train_openvla_sc_m128_lora_seed42` verified running on westd-41074:cuda:1.\n\n**Status summary:**\n\n| Check | Result |\n|-------|--------|\n| PID 30737 alive | Yes |\n| GPU 1 utilization | 95%, 31.6GB VRAM |\n| Log errors | None |\n| Step 0 | loss=18.09, grad=887 |\n| Step 50 | loss=4.98, grad=35.7, sps=0.6 |\n| Registry | RUNNING, retry_count=1 |\n\nAt sps=0.6, 100K steps ≈ 46 hours. Both experiments (VTC-only on cuda:0, VTC+LoRA on cuda:1) running in parallel on westd-41074 with no resource contention issues."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

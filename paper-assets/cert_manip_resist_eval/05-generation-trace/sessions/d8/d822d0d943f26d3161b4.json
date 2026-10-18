@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d822d0d943f26d3161b4",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis claim6 panel design 15model",
+  "task_key": "worker_analysis_claim6-panel-design-15model_20260522T182255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_claim6-panel-design-15model_20260522T182255_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "61d081c3a489001c32317b00c8f7b2135bb2b74815891ee310fda630dbf7d1f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清晰：\n\n**min(η_max) 在所有 12/12 conditions 上都 dominate max(K_eff)**，且对所有 K 值（10, 20, 50）稳健。\n\n| 指标 | 值 |\n|---|---|\n| min_η_max dominates | **12/12** |\n| max_K_eff dominates | 0/12 |\n| tie | 0/12 |\n\n关键发现：\n- **零失效条件** — min_eta_max 在每个 condition 下都产生更低的 panel ASR\n- η_max advantage 范围从 +0.038（arc_challenge×sycophancy）到 +0.511（arc_challenge×prompt_injection）\n- prompt_injection 和 position_bias 条件下优势最大\n- K 值稳健性完美：K=10/20/50 结果一致\n- 相比 6-model 时 5/6 dominance，15-model 扩展到 12/12 完全 dominance\n\nJSON 已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/claim6_panel_design_15model.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

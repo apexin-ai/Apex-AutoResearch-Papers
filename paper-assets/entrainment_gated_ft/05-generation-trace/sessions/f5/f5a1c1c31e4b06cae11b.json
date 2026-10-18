@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "f5a1c1c31e4b06cae11b",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "eval exp 004 attention extraction",
+  "task_key": "worker_eval_exp-004-attention-extraction_20260519T163328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-004-attention-extraction_20260519T163328.log",
+    "occurrence": 1,
+    "bytes": 557363,
+    "sha256": "34d2a9ce87fbbd1e2b4526aebdd5e895d9bdc2001c89aa576af1e1de147dda9a"
+  },
+  "statistics": {
+    "messages": 272,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 272,
+      "chunks": [
+        {
+          "path": "f5a1c1c31e4b06cae11b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5a1c1c31e4b06cae11b-part-0002.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ]
+}

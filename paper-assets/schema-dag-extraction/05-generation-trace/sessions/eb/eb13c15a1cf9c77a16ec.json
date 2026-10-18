@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eb13c15a1cf9c77a16ec",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp004 code prep",
+  "task_key": "worker_ssh_exp004-code-prep_20260515T055256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp004-code-prep_20260515T055256_result.json",
+    "occurrence": 1,
+    "bytes": 1594,
+    "sha256": "29bb3984df428e5697cf108f142b60f7d2a85faa0dad37effcca8ac8f9b95d6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 修改/新增文件\n1. **`src/maven_utils.py`** — MAVEN parquet 数据加载器（`load_maven()`, `get_all_types()`）\n2. **`configs/maven_event_types.json`** — 从 list 转为 dict（168 types, `{type_name: human_readable}`）\n3. **`src/run_extraction.py`** — 新增 `build_prompt_v2_event()` / `build_prompt_v1_event()` event detection prompts；`run_extraction()` 新增 `task` 参数\n4. **`src/run_experiment.py`** — 新增 `--dataset maven`、`--data_path`、`--sim_matrix_path`；dataset-aware 数据加载、BCS matrix key 兼容（`similarity_matrix` / `sim_matrix`）；输出文件名含 dataset tag\n\n### Dry-run 结果\n```\n100 samples, 76 active types, 3 batches (low/high/random at count=6)\ncount_6_low_bcs:  text_match_F1=0.1159, BCS=0.9464\ncount_6_high_bcs: text_match_F1=0.1176, BCS=0.9603\ncount_6_random_0: text_match_F1=0.0741, BCS=0.9205\nTotal extraction: 118.8s\n```\n\n### 完整实验命令（exp2）\n\n```bash\ncd /root/schema-dag-extraction && python3 src/run_experiment.py \\\n  --mode exp2 \\\n  --dataset maven \\\n  --prompt_version v2 \\\n  --eval_mode text_match \\\n  --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ \\\n  --types_file configs/maven_event_types.json \\\n  --data_path data/maven_parquet/valid.parquet \\\n  --embeddings_path artifacts/maven_type_embeddings_qwen3.pt \\\n  --sim_matrix_path artifacts/maven_bcs_matrix_qwen3.pt \\\n  --max_model_len 4096\n```\n\nexp2 配置：count=6 和 count=12，每个 count 含 25 random + 1 low-BCS + 1 high-BCS = 54 batches × 8042 samples。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "25eb3c95edf250b09071",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code feature extraction pythia",
+  "task_key": "worker_code_feature-extraction-pythia_20260514T120845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_feature-extraction-pythia_20260514T120845_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "4f0bcd7cf7e55635a6c8e07b4762d3dfdb3afe6b26def2655085c0ac2ce929e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总：\n\n**1. 脚本路径和行数**\n\n| 脚本 | 路径 | 行数 |\n|------|------|------|\n| extract_features.py | `scripts/extract_features.py` | 278 |\n| train_classifier.py | `scripts/train_classifier.py` | 255 |\n| run_evaluation.sh | `scripts/run_evaluation.sh` | 38 |\n\n**2. dry-run 验证结果**\n- `extract_features.py --help` ✅ \n- `train_classifier.py --help` ✅\n\n**3. 依赖检查**\n- scipy 1.17.1 ✅\n- scikit-learn 1.8.0 ✅\n- matplotlib 3.10.5 ✅\n- tqdm 4.67.3 ✅\n\n全部已预装，无需额外安装。\n\n**4. 特征维度：19 维**\n\n| 类别 | 特征 | 数量 |\n|------|------|------|\n| Perplexity 统计 | mean/var/skewness/kurtosis_ppl, p10/p25/p50/p75/p90_ppl | 9 |\n| Surprisal | mean/var_surprisal, entropy_of_surprisal | 3 |\n| Vocabulary diversity | type_token_ratio, hapax_ratio, bigram_entropy, trigram_entropy | 4 |\n| Repetition | rep_2gram, rep_3gram, rep_4gram | 3 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a85d58151ac2ec25c089",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval smolvla official baseline spatial",
+  "task_key": "worker_eval_smolvla_official_baseline_spatial_20260519T123436",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smolvla_official_baseline_spatial_20260519T123436_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "8efb91452a3d83890a9592c812e47164e5d52265ff830ec3753cde66d7cade57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval launched and monitoring set up.\n\n**Summary:**\n- **Experiment:** `eval_smolvla_official_baseline_spatial` → RUNNING\n- **Server:** cqa1-33015, GPU 1 (cuda:1)\n- **Checkpoint:** Official SmolVLA (`/root/autodl-tmp/.hf_cache/smolvla_libero_official`)\n- **Suite:** libero_spatial, 10 tasks × 50 episodes = 500 total, seed=42\n- **Tmux session:** `eval_official_spatial`\n- **Log:** `~/runs/importance_margin_vla_compress/eval_smolvla_official_baseline_spatial.log`\n- **Cron monitoring:** every 8 min (job `7c4e7c55`)\n\nNote: `eval_official_libero.py` was copied from westd-27271 (MD5 verified). A symlink was created at `/root/autodl-tmp/.hf_cache/smolvla_libero_official` pointing to the HF cache snapshot on cqa1-33015."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

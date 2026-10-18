@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6467d76a3d01c3dcbb3d",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_5_1778806694.md",
+  "task_key": "loop_5_1778806694",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778806694.md",
+    "occurrence": 1,
+    "bytes": 4562,
+    "sha256": "26e9987f5de84f16a87e7238581f5f57bdc3e00f4ca0e9f9b8051986f1d6b277"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-15T00:53:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-37397 上只有 cuda:0 和 cuda:1，无其他可用\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 映射，脚本内必须用 `cuda:0`（不是物理 GPU 编号）\n- Mistral 模型路径是 `/root/autodl-tmp/models/Mistral-7B-v0.3`（不是 ModelScope 的 `___` 路径），已在 `run_mistral_c4_cross_dataset.py` 和 hires 脚本中修复\n- Gemma-2 registry 状态卡在 ANALYZING（cron 误判），状态机不允许回退到 RUNNING，完成后只能 ANALYZING→DONE\n- Worker rate limit 到 May 16 9am UTC，在此之前所有操作必须自己 SSH 执行\n- 论文值来源：Qwen concentration=0.61 (float32 verified, commit bfaea4e)，Mistral concentration=0.24/t1t5=0.41 (hires, commit e52fb0e)\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，2× RTX PRO 6000 96GB\n- 工作目录：服务器 `/root/ratekv/`，本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：\n  - Qwen: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B`\n  - Llama: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B`（symlink → Meta-Llama-3___1-8B）\n  - Mistral: `/root/autodl-tmp/models/Mistral-7B-v0.3`\n  - Gemma-2: `/root/autodl-tmp/.hf_cache/google/gemma-2-9b`\n  - Yi-1.5: `/root/autodl-tmp/models/01ai/Yi-1___5-9B`\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 活跃进程：\n  - **gemma2_hires_bf16_2bitonly**: PID 268242, cuda:0, ~164/336 heads, ETA ~23:40 UTC, cron 已注册\n  - **mistral_c4_hires_crossdataset**: PID 273407, cuda:1, tmux=mistral_c4_hires_crossdataset, C4 profiling 中 (768 points), cron 由 submit_training_job 自动注册\n\n### 3. 📊 当前状态\n**刚做完**：\n- P0 patches：Qwen concentration 全文统一 0.61（commit bfaea4e）\n- Mistral hires Table 3 + analysis.tex 4 处修改（commit e52fb0e）\n- Flat 分类 Reviewer warning 补充说明（commit 9a64932）\n- Llama C4 hires cross-dataset：DONE/negative，C4 MCKP=uniform=7.5351 (delta=0.000)，FAIL 跨数据集确认\n- Scatter 脚本 Mistral concentration 0.231→0.241 已修复（服务器端）\n- Heatmap Mistral 数据源路径已修复（服务器端）\n- mistral_hires_bf16_2bitonly_v3 标注 SUPERSEDED\n\n**正在跑**：\n- `gemma2_hires_bf16_2bitonly`（ANALYZING/实际 RUNNING）：5 模型 hires 全景最后一块\n- `mistral_c4_hires_crossdataset`（RUNNING）：补全 Table 3 跨数据集验证\n\n**等待中**：\n- Gemma-2 hires 完成 cron 回调（PID 268242）\n- Mistral C4 完成 cron 回调（PID 273407）\n- Worker rate limit 恢复（May 16 9am UTC）\n\n### 4. 📋 待办（条件触发式）\n- **Gemma-2 hires cron 回调 →** SSH 提取 concentration/shape/top heads → update_registry(DONE) → 向 Director 汇报 5-model 全景终版\n- **Mistral C4 cron 回调 →** SSH 提取 MCKP vs uniform 结果 → update_registry(DONE, 预期 negative) → 向 Director 汇报\n- **Worker 恢复 (May 16) →** 并行 spawn 4 Workers：(1) Gemma-2 hires Table 3 patch (.tex)，(2) 5 模型 hires heatmap 统一重生成，(3) scatter 图重生成（服务器端值已修好，需重跑脚本出图），(4) auto_build_provenance 同步\n- **5 模型 hires 全齐 + C4 验证完成 →** 向 Director 汇报完整 evidence table，等 Group C 审稿报告回传\n- **Gemma-2 hires 分析如果 concentration 显著偏离 standard 0.23 →** 更新 paper narrative + Flat 分类讨论\n\n### 5. 🎯 战略上下文\n- **核心贡献**：cardinality constraint 让 greedy=MCKP（Δ=0.0000），distribution shape（spike vs spread vs flat）决定 non-uniform 是否有效\n- **5-model evidence table**：Qwen PASS (spread, 0.61), 其余 4 个 FAIL（Yi spike 0.71, Llama spike 0.57, Mistral flat 0.24, Gemma-2 flat 0.23）。诊断条件：concentration ≥0.50 AND t1/t5 ≤0.70 → 5/5 正确分类\n- **投稿目标**：EMNLP 2026 Main, ARR May 25（距今 10 天）\n- **易错点**：\n  - Gemma-2 registry 是 ANALYZING 不是 RUNNING，完成后直接 ANALYZING→DONE，不要尝试改回 RUNNING\n  - 脚本里 device 必须写 `cuda:0`，submit_training_job 的 CUDA_VISIBLE_DEVICES 做物理映射\n  - Mistral C4 脚本用的是 standard profiles（非 hires），k=4，与 Llama C4 hires 脚本设计不同——这是 OK 的，Director 批准用已有脚本\n  - 服务器端 scatter/heatmap 脚本的值已修好但未重新跑出新图，需要 Worker 恢复后执行\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

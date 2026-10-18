@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "930205af85936e0f0b45",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig aggregation comparison",
+  "task_key": "worker_ops_fig-aggregation-comparison_20260525T150752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-aggregation-comparison_20260525T150752_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "bf3d0cdcae8613355b4136bebbdac42710fe424b17afc22aa46d9a3ef690bd3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n- `docs/paper/figures/fig_aggregation_comparison.pdf` (23KB)\n- `docs/paper/figures/fig_aggregation_comparison.png` (132KB)\n\n数据来源：\n- **K=3** (OLS, from `k5_aggregation_analysis.json`): Majority=8, Weighted=9, Threshold=11, Bayesian=7\n- **K=5** (WCB, from `k5_aggregation_bootstrap.json`): 全部=7/12\n- **K=7** (WCB, from `k7_aggregation_bootstrap.json`): Majority=8, Weighted=6, Threshold=10, **Bayesian=0**\n- **R²** (K=5 OLS mean): Majority=0.26, Weighted=0.25, Threshold=0.51, Bayesian=0.08\n\n关键视觉对比：Bayesian 在 K=7 归零（红色 X + \"0/12\"），而 Threshold Supermajority 在 K=7 反而增至 10/12 且 R²最高（0.51）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

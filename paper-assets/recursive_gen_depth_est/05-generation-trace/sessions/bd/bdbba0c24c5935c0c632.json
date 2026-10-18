@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "bdbba0c24c5935c0c632",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis d1d3 inconsistency audit v2",
+  "task_key": "worker_analysis_d1d3_inconsistency_audit_v2_20260518T162720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d1d3_inconsistency_audit_v2_20260518T162720.log",
+    "occurrence": 1,
+    "bytes": 911463,
+    "sha256": "cc159c39e04b2a238a930c6cc6b95888c1a691ecd0dd408b98a3c7fe2a99369d"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 0,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 114,
+      "tool_result": 114,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 288,
+      "chunks": [
+        {
+          "path": "bdbba0c24c5935c0c632-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "bdbba0c24c5935c0c632-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ]
+}

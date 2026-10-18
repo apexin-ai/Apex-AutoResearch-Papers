@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9adaeb333fb2403e570d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis ner v2 bcs correlation",
+  "task_key": "worker_analysis_ner_v2_bcs_correlation_20260516T034616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ner_v2_bcs_correlation_20260516T034616_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "d28fd91a3e7a130772f072b4be097f6d96738b3439dfdba041ead55c3cfdd49d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已保存。结果摘要：\n\n**v2 BCS-F1 相关性**（NER prompt v2, text+type only）：\n| | Pearson r | p | Bootstrap 95% CI |\n|---|---|---|---|\n| count_6 (n=27) | +0.27 | 0.176 | [-0.19, 0.64] |\n| count_12 (n=27) | **+0.58** | **0.002** | [0.19, 0.81] |\n| pooled (n=54) | +0.25 | 0.064 | [-0.07, 0.55] |\n\n**v1 vs v2 对比**（count_12）：\n- v1: r=+0.50 (p=0.008) — 来自 D005 决策记录\n- v2: r=+0.58 (p=0.002)\n- **方向一致**，均为正相关（高 BCS → 高 F1）\n\n**关键判断**：无风险。v1 和 v2 方向一致，但注意这个正相关方向本身与朴素 confusability 假设相反。D008 已确认这是 type frequency confound（高 BCS batch 恰好包含高频类型），不影响论文叙事——论文主要证据是 pairwise SCS→confusion 分析（Channel 1），不依赖 batch-level BCS-F1。\n\n**注意**：v1 原始 per-batch 数据被 v2 运行覆盖（服务器无 git），v1 统计量来自 D005 决策记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

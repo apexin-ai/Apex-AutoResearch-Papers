@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17d4506e8990d9d6a272",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops verify exp012",
+  "task_key": "worker_ops_verify_exp012_20260515T140828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_exp012_20260515T140828_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "592e96df0685ea6cf1e00d415d1b97ef7bbe747f3f60c6cbfb71ced4e9570731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 检查项 | 状态 |\n|--------|------|\n| **tmux** | `tmux` 不在 read_only 白名单，无法查 |\n| **PID 273161** | **已死**（exit code 1，无输出） |\n| **GPU** | NVIDIA RTX PRO 6000 Blackwell (98GB)，显存 0 MiB / 利用率 0% — 空闲 |\n| **日志尾部** | **exp-012 崩溃退出**，exit code 1 |\n\n**崩溃原因**：vLLM engine core 初始化失败 — `RuntimeError: Engine core initialization failed` ，traceback 指向 `vllm/v1/engine/utils.py:1178` 的 `wait_for_engine_startup`。日志显示 `Failed core proc(s): {}`，说明 engine core 子进程启动后立即挂掉，未返回具体错误。\n\n需要查看日志中更早的部分（root cause 在 traceback 上方）来定位具体原因。是否继续排查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

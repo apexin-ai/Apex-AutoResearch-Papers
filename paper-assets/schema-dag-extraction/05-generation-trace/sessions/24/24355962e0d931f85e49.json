@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "24355962e0d931f85e49",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp aggregation monte carlo",
+  "task_key": "worker_exp_aggregation_monte_carlo_20260516T114958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_aggregation_monte_carlo_20260516T114958_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "dc502041788faa7250806f4d13cf145b8d9428543f9e787f2d142333dab31ff5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 结果总结\n\n**Simulation 确认 pair→batch aggregation 解释了 R² 放大。**\n\n| 指标 | 值 |\n|------|-----|\n| Pair-level R² (nonzero pairs, ρ=0.272) | 0.074 |\n| Simulated batch R² (MC 10K iter) | **0.219** [0.092, 0.361] |\n| Observed batch R² (computed BCS) | **0.218** |\n| Amplification factor | ~3× |\n| Effective Factor (EF) | 3.35 |\n\n**机制**：8 types 构成的 batch 中 28 个 pair 的 SCS 值正相关（共享 type 的 pair 间 ρ_SCS=0.35），平均后 signal variance 仅降至 1/EF ≈ 1/3.35（而非 1/28），noise 独立故降至 1/28。信噪比放大 → R² 从 0.074 升至 0.219。\n\n**公式**：`R²_batch = SNR × EF / (SNR × EF + 1)`，其中 SNR = R²_pair/(1-R²_pair)\n\n**论文影响**：\n- \"14-35× amplification\" 这个说法需要修正。实际 R²-to-R² 放大倍数是 **~3×**（0.074→0.22）。原文的 14-35× 是 pair-r² (0.015) vs batch-R² (0.22-0.53) 的比值，混用了不同的 pair-level 度量。\n- 建议改写为：「The ~3× amplification from pair-level R²=0.074 to batch-level R²=0.22 is consistent with the analytical aggregation formula (EF≈3.4), where signal correlation within batches preserves variance while noise averages out.」"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

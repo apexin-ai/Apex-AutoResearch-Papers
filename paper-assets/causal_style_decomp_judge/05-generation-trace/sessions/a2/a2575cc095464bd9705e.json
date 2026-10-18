@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a2575cc095464bd9705e",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "exp gemini flash resume",
+  "task_key": "worker_exp_gemini_flash_resume_20260521T222909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemini_flash_resume_20260521T222909_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "ed932cb6df5caaba4e14e2b6d53cd4eb4c04a8589635a913336ca90847346805"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。实际使用模型为 `google/gemini-2.5-flash`。\n\n---\n\n```\nGemini Flash (google/gemini-2.5-flash)\n\nFormality (n=88 pairs):\n  BT: P(formal) = 57.4% [50.0, 64.2] p=0.0306\n  Likert: ATE=-0.239 d=-0.082 p=0.309\n  GEE: Style OR=1.64 [0.91, 2.98] p=0.1008, Orig OR=2.51 [1.39, 4.54] p=0.0024\n  Blindspot: Yes\n  Regime: Orig-Dominated\n\nVerbosity (n=86 pairs):\n  BT: P(verbose) = 70.8% [63.7, 77.2] p=0.0000\n  Likert: ATE=0.151 d=0.051 p=0.370\n  GEE: Style OR=8.98 [3.68, 21.94] p=0.0000, Orig OR=0.46 [0.20, 1.04] p=0.0614\n  Blindspot: Yes\n  Regime: Pure Style\n```\n\n**备注**：\n- Verbosity 有 1 个缺失 trial（mvp_0041 trial2=None），共 171 comparisons（非 172）\n- 两轴均确认 blindspot：BT 显著而 Likert 不显著\n- Formality 的 pairwise 偏好由 position bias（Orig OR=2.51）驱动而非 style；Verbosity 则是纯 style 效应（OR=8.98）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

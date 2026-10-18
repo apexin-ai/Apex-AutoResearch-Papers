@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "6453efe0d30cd1000012",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper provenance update",
+  "task_key": "worker_paper_provenance_update_20260522T104704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_provenance_update_20260522T104704.log",
+    "occurrence": 1,
+    "bytes": 905301,
+    "sha256": "06daf4f8d53feb60be490f6782ef43cd57e0853fdf94bada32fe4ff5e29a9afc"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 2,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 58,
+      "tool_result": 58,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "6453efe0d30cd1000012-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "6453efe0d30cd1000012-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "6453efe0d30cd1000012-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "6453efe0d30cd1000012-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c79b382a80c2426b783",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra dl qwen72b",
+  "task_key": "worker_infra_dl-qwen72b_20260521T182458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dl-qwen72b_20260521T182458_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "6939c948c6a05e94a03beff5ec4b798fc8c8cd6a993ad42938a517434cc69bed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中，无需重启。当前状态：\n\n**下载方法**：ModelScope（PID 5039）\n**日志路径**：`/tmp/download_qwen72b.log`\n**下载状态**：进行中，8 个分片并行下载\n\n当前各分片进度（每个分片 ~3.65-3.72GB）：\n\n| 分片 | 进度 | 速度 |\n|------|------|------|\n| model-00001 | ~15% | - |\n| model-00002 | 26% | 781 kB/s |\n| model-00003 | ~26% | - |\n| model-00004 | 67% | 978 kB/s |\n| model-00005 | 26% | 974 kB/s |\n| model-00006 | 41% | 89 kB/s |\n| model-00007 | 25% | 848 kB/s |\n| model-00008 | 76% | 933 kB/s |\n| model-00009~11 | 未开始 | - |\n\n**已下载**：~8.6GB / ~37GB（`._____temp` 中为部分下载的临时文件）\n**预计剩余**：约 60-100 分钟（聚合速度 ~5-8 MB/s，剩余 ~29GB）\n\n下载进程稳定运行中，无需干预。需要我定期轮询进度直到完成吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

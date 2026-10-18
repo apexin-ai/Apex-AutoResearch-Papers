@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "22077b28b18dc1e92b34",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops deprecate regime transition",
+  "task_key": "worker_ops_deprecate-regime-transition_20260524T073727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deprecate-regime-transition_20260524T073727_result.json",
+    "occurrence": 1,
+    "bytes": 211,
+    "sha256": "e9dfc86be67c2906987614d5b5144ba24c3f74fdf578d4dfca1ecb370b3b3fcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。原文件已不存在，重命名后的文件确认存在：\n\n- `/root/cert_manip_resist_eval/artifacts/server_backup/results/regime_transition_corrected.json.DEPRECATED_NO_PROVENANCE`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

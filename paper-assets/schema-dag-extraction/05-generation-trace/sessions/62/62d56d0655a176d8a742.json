@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62d56d0655a176d8a742",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis three way comparison d035",
+  "task_key": "worker_analysis_three_way_comparison_d035_20260516T021431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_three_way_comparison_d035_20260516T021431_result.json",
+    "occurrence": 1,
+    "bytes": 1769,
+    "sha256": "72c44dca5e7bcfc89d6a69a8b713db7a4fb7445e58fe469bd2373631b068b410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总结果\n\n### 任务 A：三方比较\n\n| Metric | 16-rel independent | 80-pool → 16-sub | 80-rel full |\n|---|---|---|---|\n| N batches | 100 | 100 | 25 |\n| BCS range | [0.653, 0.900] | [0.458, 0.684] | [0.646, 0.823] |\n| Slope | -0.449 | -0.401 | -0.151 |\n| Slope 95% CI | [-0.549, -0.345] | [-0.694, -0.057] | [-0.930, 0.657] |\n| Pearson r | -0.637 | -0.221 | -0.082 |\n| Δ(Q4-Q1) pp | -7.42 | -3.92 | +0.35 |\n| Δ CI 95% | [-9.45, -4.49] | [-8.62, -0.16] | [-9.38, 7.55] |\n\n**Permutation tests** (slope difference): 三组两两对比均无显著差异 (p = 0.44, 0.15, 0.33)。斜率方向一致（均为负），但 80-rel full 只有 25 个 random batch，统计功效不足。\n\n### 任务 B：D035 极端批次重算\n\n| Metric | 16-rel (D033) | 80pool-16sub | 80-rel (reference) |\n|---|---|---|---|\n| Method | bottom/top 5 of 100 | bottom/top 5 of 100 | 1 greedy low vs 1 greedy high |\n| **Δ_extreme (pp)** | **-11.65** | **-9.79** | **-31.25** |\n| 95% CI | [-14.76, -5.16] | [-17.71, -1.45] | N/A (single batch) |\n| Low BCS range | [0.653, 0.712] | [0.458, 0.478] | 0.472 |\n| High BCS range | [0.900, 0.900] | [0.629, 0.684] | 0.971 |\n| Low group mean acc | 0.9222 | 0.8562 | 0.8229 |\n| High group mean acc | 0.8056 | 0.7583 | 0.5104 |\n\n关键发现：\n- 16-rel 极端批次 Δ = -11.65pp，比四分位法的 -7.42pp 更大（符合预期，极端值更极端）\n- 80-pool-16sub 极端批次 Δ = -9.79pp，也显著（CI 不跨零），四分位法的 -3.92pp CI 曾跨零\n- 80-rel 的 -31.25pp 远大于前两者，因其 BCS span 极宽（0.47 → 0.97），且用贪心构造的单批次\n\n产出文件均保存在服务器 `artifacts/three_way_comparison/` 和 `artifacts/d035_extreme_batch/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4852cc38ad4be4070300",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd 27271 cuda0 random k07 goal",
+  "task_key": "worker_deploy_westd-27271-cuda0-random-k07-goal_20260525T213142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-27271-cuda0-random-k07-goal_20260525T213142_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "466340b66807cdedeba16388595c06a7f40ad33812eb7da8aff47c9ef1bf4267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **exp_id**: `eval_openvla_random_k07_goal_seed42`\n- **状态**: RUNNING on westd-27271 GPU0\n- **tmux session**: `eval_random_k07_goal`\n- **pruning 确认**: 256 → 179 vision tokens (k=0.7, 30% 剪裁)\n- **日志**: `~/runs/importance_margin_vla_compress/eval_openvla_random_k07_goal_seed42.log`\n- **10 tasks × 50 episodes = 500 total**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a726d4ef2cbe29c8218a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 016 semi real better cm",
+  "task_key": "worker_code_exp-016-semi-real-better-cm_20260521T132011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-016-semi-real-better-cm_20260521T132011_result.json",
+    "occurrence": 1,
+    "bytes": 1609,
+    "sha256": "fa4d3910f363df3287b8dce4273ffcd408c9731777f430fb994a587bd37d8150"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs verified:\n- CSV: 9601 lines (9600 data + 1 header) = 100 × 3 × 4 × 2 × 4 = 9600 rows\n- Analysis MD written\n\n## Results Summary\n\n**Model selected**: gpt-3.5-turbo (worst-subgroup FNR=0.211). Higher FPR (0.14–0.39) than GPT-4.1 (0.05–0.19) but much lower FNR (0.15–0.21 vs 0.22–0.53).\n\n**Key findings — despite lower FNR, results are worse than exp-015**:\n\n| n_expert | Method | exp-016 RMSE | exp-015 RMSE | exp-016 Cov | exp-015 Cov |\n|---|---|---|---|---|---|\n| 100 | naive | 0.1274 | 0.1230 | 0.784 | 0.879 |\n| 100 | global_corrected | 0.2652 | 0.2631 | 0.893 | 0.885 |\n| 100 | hb_ec_hte | **0.9295** | **0.7842** | 0.769 | 0.744 |\n| 500 | global_corrected | 0.1991 | 0.1963 | 0.939 | 0.922 |\n| 500 | hb_ec_hte | **0.3222** | **0.2599** | 0.894 | 0.890 |\n\n- **HB EC-HTE is consistently worse than global_corrected** at all n_expert levels (same pattern as exp-015)\n- **Naive coverage drops** to 0.784 (from 0.879 in exp-015), because higher FPR creates more misclassification bias in the z=1 stratum despite lower FNR\n- **Global corrected outperforms HB** because the higher FPR variation across subgroups (0.14–0.39) makes subgroup-level CM estimation harder with limited expert data — the HB sampler struggles more with this asymmetry\n- **Bright spot for HB**: at n_expert=500, S0/z=1, HB actually beats global (|bias| 0.19 vs 0.25) — the one case where subgroup-specific correction helps\n\nThe experiment confirms that lower FNR alone doesn't help; the higher FPR variance across subgroups makes the correction problem harder overall."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

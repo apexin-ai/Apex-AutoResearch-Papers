@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "52cc85d81a80afa3299c",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research second dataset v2",
+  "task_key": "worker_research_second-dataset-v2_20260522T044026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_second-dataset-v2_20260522T044026_result.json",
+    "occurrence": 1,
+    "bytes": 1677,
+    "sha256": "ff346a03631421857a1abdd2f8a28ec640c7e4777246dbff6409c0062a5c5ebc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's the summary:\n\n---\n\n## exp-023 Civil Comments Validation — Complete\n\n### Deliverables produced:\n\n1. **LLM Annotations**: 800–900 annotations per model (gpt-4o, gpt-4o-mini, gpt-3.5-turbo) on 3000 Civil Comments samples. Run2 still extending to 3000/model in background.\n\n2. **Confusion Matrices** (`exp023_confusion_matrices.json`): Per-subgroup (K=4) FPR/FNR for all 3 models. **Δπ > 0.05 confirmed** for all models (0.113–0.160).\n\n3. **Semi-synthetic results** — three experiment variants:\n   - Asymmetric CMs (`exp023_semisynthetic_*.csv`): Real LLM CMs, uniform CATE\n   - Symmetric (`exp023_symmetric_*.csv`): Observed rates as symmetric flip probs, per-subgroup CATE\n   - V2 controlled (`exp023_semisynthetic_v2_*.csv`): 5 regimes including oracle_corrected ceiling\n\n4. **Analysis report** (`exp023_civil_comments_analysis.md`): Comprehensive findings\n\n5. **Script** (`exp023_civil_comments_symmetric.py`): Saved as proper file\n\n### Key findings:\n\n| Finding | Status |\n|---------|--------|\n| Δπ > 0.05 across LLMs on 2nd dataset | **Confirmed** |\n| EC-HTE outperforms Naive/Global in RMSE | **Not reproduced** (same on TweetEval) |\n| Oracle-corrected also worse RMSE than naive | **New finding** — RMSE penalty is structural |\n| EC-HTE restores calibrated coverage | **Confirmed** (naive 0.63–0.84 → corrected 0.90–0.97) |\n\nThe honest conclusion: EC-HTE's value proposition on Civil Comments (and TweetEval) is **coverage calibration**, not RMSE reduction. The RMSE penalty from matrix inversion is inherent — even perfect CM knowledge doesn't overcome it at these sample sizes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

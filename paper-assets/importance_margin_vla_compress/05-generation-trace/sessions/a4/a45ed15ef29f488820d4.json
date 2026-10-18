@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a45ed15ef29f488820d4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train smart compress m16 seed44 v2",
+  "task_key": "worker_train_smart_compress_m16_seed44_v2_20260519T152259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_smart_compress_m16_seed44_v2_20260519T152259_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "d6b77fe0f03a8120d0b9b1197ab88933961fd3b5c0bcb17ef5ee1021c80936ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **训练已启动**: cqa1-33015 cuda:3, PID=650986, tmux session=`train_smart_compress_m16_seed44_v2`\n- **配置**: SmolVLA base + VisionTokenCompressor(M=16), seed=44, 从头训练\n- **日志**: 模型加载中（SmolVLM2-500M-Video-Instruct → 16 layers），正常运行\n- **Registry**: `train_smart_compress_m16_seed44_v2` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

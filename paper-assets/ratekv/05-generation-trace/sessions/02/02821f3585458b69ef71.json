@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "02821f3585458b69ef71",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260515T163433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260515T163433_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "f91257cc5aca2636754065430fef50e53263279fadae388c23204c13829c3985"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell (98GB) | **0%** | 0 / 97887 MiB |\n| 1 | RTX PRO 6000 Blackwell (98GB) | **84%** | 14903 / 97887 MiB |\n\n### GPU 上的 Python 进程\n- PID **350602** 在 GPU 1 上，占用 14894 MiB — 这是 **Mistral k_ablation sweep**\n\n### Llama compounding sweep\n**已完成。** 结果保存在 `/root/ratekv/artifacts/llama_compounding_sweep_results.json`\n\nk ablation 结果 (budget=0.25):\n| k | PPL | mem ratio |\n|---|-----|-----------|\n| 0 | 8.0922 | 1.0000 |\n| 2 | 8.1243 | 0.9932 |\n| 4 | 8.1803 | 0.9863 |\n| 8 | 8.2259 | 0.9727 |\n| 16 | 8.4378 | 0.9453 |\n| 32 | 9.0506 | 0.8906 |\n| 64 | 11.9910 | 0.7812 |\n| 128 | 40.2067 | 0.5625 |\n| 256 | 1519.19 | 0.2480 |\n\nBest k=0 (PPL=8.0922)\n\n### 当前运行中的任务\n1. **tmux session**: `gemma2_9b_full_pipeline`（session 存在但 bash 空闲，无活跃 GPU 进程）\n2. **PID 350602**: `run_k_ablation.py` — **Mistral** compounding sweep 正在 GPU 1 上运行（刚启动约 30 秒，CPU 174%）\n\n### k_ablation 状态\n- **Llama sweep**: 已完成\n- **Mistral sweep**: 正在运行（GPU 1, 14.9GB 显存）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

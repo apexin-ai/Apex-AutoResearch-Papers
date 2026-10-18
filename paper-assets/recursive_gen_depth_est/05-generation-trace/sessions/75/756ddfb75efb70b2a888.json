@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "756ddfb75efb70b2a888",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops 14b status westd48862",
+  "task_key": "worker_ops_14b-status-westd48862_20260518T034420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-status-westd48862_20260518T034420_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "0653be249ec0d4cea75d8e43bdbcb3f67444c3009e177951700df28f909b6aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态: 运行中\n\n| 项目 | 状态 |\n|---|---|\n| PID | 20700 活跃，GPU 0 占用 32GB，利用率 92% |\n| 当前阶段 | **Phase 3.1b: 生成 d1** |\n\n### 已完成\n- d0 生成: **5000/5000** (7.1MB)\n- d0 LoRA 微调: 完成，loss=0.5451，adapter 已保存\n- d1 生成: **2523/5000** (4.3MB，进行中)\n\n### 待完成\n- d1 生成剩余 ~2477 samples\n- d1 LoRA 微调\n- d2 生成 + LoRA 微调\n- d3 生成\n- RF 训练 + 评估\n\n### ETA 估算\nd0 生成 5000 samples 用了约 4 小时（03:10→07:56）。d1 已完成 ~50%，开始于 ~08:38，当前 11:44 已跑 ~3 小时。按此速度：\n- d1 生成剩余: ~3h\n- d1 LoRA 微调: ~40min\n- d2 生成+微调: ~5h\n- d3 生成: ~4h\n- RF 训练: ~10min\n\n**预计总剩余 ~13h，完成时间约明天凌晨。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

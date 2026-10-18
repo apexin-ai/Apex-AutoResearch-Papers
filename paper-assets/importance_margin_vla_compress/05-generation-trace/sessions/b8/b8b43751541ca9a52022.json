@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8b43751541ca9a52022",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval mlp adapter seed43 done",
+  "task_key": "worker_diagnose_eval_mlp_adapter_seed43_done_20260519T134657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_mlp_adapter_seed43_done_20260519T134657_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "3555b3369b1f1b14f3da19ddbfe8466abcc564c37ac64c98541502f16cc74bb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 报告\n\n**eval_mlp_adapter_seed43** — 已完成，状态正常退出。\n\n| 指标 | 值 |\n|------|-----|\n| Overall SR | **64.6%** (323/500) |\n| Wilson 95% CI | [60.3%, 68.7%] |\n\n**Per-task SR:**\n\n| Task | SR |\n|------|-----|\n| T0 alphabet_soup | 74% |\n| T1 cream_cheese | 74% |\n| T2 salad_dressing | 66% |\n| T3 bbq_sauce | 44% |\n| T4 ketchup | 56% |\n| T5 tomato_sauce | 64% |\n| T6 butter | **86%** |\n| T7 milk | 58% |\n| T8 chocolate_pudding | 72% |\n| T9 orange_juice | 52% |\n\n**Conclusion: negative** — 原假设\"MLP显著低于cross-attention\"再次被拒。Seed 43 (64.6%) 与 seed 42 (65.2%) 高度一致（差 0.6pp），且两者 CI 几乎完全重叠，MLP adapter 结果稳健。\n\n对比 cross-attention M=32 三seed均值 61.2±1.4%，MLP adapter 两seed均值 64.9% 甚至略高，进一步说明在 LIBERO-Object 上 cross-attention 机制相比 MLP+avg-pool 无显著优势。\n\n**Registry 已更新**: metrics、conclusion=negative、status=DONE。westd-27271 cuda:0 现已释放，可用于 eval_mlp_adapter_seed44。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

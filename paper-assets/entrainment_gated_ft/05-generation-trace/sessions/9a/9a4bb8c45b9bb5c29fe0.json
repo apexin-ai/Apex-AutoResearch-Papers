@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4bb8c45b9bb5c29fe0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "eval xstorycloze en 16models",
+  "task_key": "worker_eval_xstorycloze-en-16models_20260519T161556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_xstorycloze-en-16models_20260519T161556_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "a443f9fd30439968da7ce149c8e2363f965d91c1d94e7143965dc8bcc1711b1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务运行正常。第一个模型（GatedDeltaNet-pure）正在评估中，xstorycloze_en 数据集已成功下载并缓存。loglikelihood 请求已完成约 49%。\n\n批量评估已在后台启动（PID 497694），16 个模型将依次评估，结果输出到 `/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/`。预计总耗时约 1.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

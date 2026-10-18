@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "80ec1b0749abe3438aa4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra olmo pipeline launch",
+  "task_key": "worker_infra_olmo-pipeline-launch_20260514T141126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_olmo-pipeline-launch_20260514T141126_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "370c1dc39d573fb2aefab06595f9fad341a9a654df13bb13c118dbaa6775be4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。汇总产出：\n\n---\n\n**OLMo-1B 模型信息**\n| 项目 | 值 |\n|---|---|\n| Model type | `olmo` (native transformers) |\n| 参数量 | 1.18B |\n| 架构 | 16 layers, 16 heads, d=2048, SwiGLU, RoPE |\n| Vocab | 50280 (EOS=50279, PAD=1, BOS=None) |\n| LoRA target_modules | `q_proj,k_proj,v_proj` |\n| 来源 | `allenai/OLMo-1B-hf` via ModelScope |\n| 本地路径 | `/root/autodl-tmp/models/olmo-1b-hf/` |\n\n**脚本修改清单**\n- 新建 `scripts/run_pipeline_olmo.sh`（基于 run_pipeline.sh，使用 OLMo 路径和 target_modules）\n- 新建 `data/olmo/depth_0.jsonl`（从 data/depth_0.jsonl 复制，5000 条）\n- 新建目录 `data/olmo/`, `checkpoints/olmo/`\n- 现有脚本无需修改（已支持 --target_modules、--model_name 参数，pad_token/bos_token 兜底已有）\n\n**Pipeline 启动证据**\n- experiment_id: `cross_model_olmo_001`\n- tmux session: `cross_model_olmo_001`\n- PID: 120957\n- GPU 0 利用率: 94%, 12.3GB VRAM\n- 训练速度: ~4.38 it/s, 939 steps/epoch × 3 epochs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "893359ecd4f37462d18c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code dcol readiness check",
+  "task_key": "worker_code_dcol_readiness_check_20260514T193655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_readiness_check_20260514T193655_result.json",
+    "occurrence": 1,
+    "bytes": 1926,
+    "sha256": "917ee13304c240000f5eb1337d75041b496aed9fd66cbe4fec0e41e5cc3d6b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全通过。\n\n## 汇报\n\n### 代码完成度：100%\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| `src/dcol_trainer.py` | 526 | ✅ 完整：模型定义 + loss + 训练循环 + argparse + dry_run |\n| `src/dcol_dataset.py` | ~200 | ✅ 完整：数据加载 + DCOLDataset + ContrastiveBatchSampler |\n| `src/dcol_eval.py` | ~200 | ✅ 完整：pairwise AUC + confusion matrix + per-model/strategy |\n| `scripts/run_dcol_training.sh` | ~100 | ✅ 完整：环境设置 + 参数传递 + 训练后自动 eval |\n\n### 核心组件\n- **模型**: `DCOLModel` = DeBERTa-v3-large backbone + `OrdinalContrastiveHead`（CLS + 19-dim features → L2-normalized 128-d embedding）+ linear classifier\n- **Loss**: `contrastive_ordinal_loss` — 完整 N-pair formulation，`L = CE + λ·CL`，CL 用 margin matrix 实现 attractive + repulsive\n- **Learnable margins**: `LearnableOrdinalMargins` — K-1 个 softplus 参数，cumsum 构建 effective margin matrix，支持 per-strategy margins（3 个策略：default/temp09/topk50）\n- **初始化**: 从 MVP RF AUC 反推，softplus(raw) ≈ [0.50, 0.25, 0.20]\n\n### Dry-run 结果\n- `python src/dcol_trainer.py --dry_run --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --gpu 1` ✅\n- 数据加载正常：118,519 条（7 个模型×策略组合，depth 0-3）\n- 模型加载正常：434M 参数，全部可训练\n- 前向传播 + 反向传播正常，margins 在训练中有梯度更新\n- 1 epoch × 200 samples 耗时 ~6s\n\n### 数据与模型\n- `/root/autodl-tmp/models/deberta-v3-large/` ✅\n- `data/depth_{0..3}.jsonl` ✅（45k/28.5k/25k/20k）\n- `data/features_all.jsonl` ✅\n\n### 启动命令\n```bash\ncd /root/autodl-tmp/recursive_gen_depth_est\nbash scripts/run_dcol_training.sh --gpu <0或1>\n```\n\n### 无 bug，无缺失组件。GPU 释放后可直接启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

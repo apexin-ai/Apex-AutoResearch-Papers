@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "61da61908a0cb71dfeed",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code serial benchmark",
+  "task_key": "worker_code_serial-benchmark_20260518T114449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_serial-benchmark_20260518T114449.log",
+    "occurrence": 1,
+    "bytes": 936335,
+    "sha256": "2aa5643092937adb66c71f9844bafe66186c794176c3d6f9143e27639b44498c"
+  },
+  "statistics": {
+    "messages": 696,
+    "user_turns": 0,
+    "tool_calls": 318,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 318,
+      "tool_result": 318,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 696,
+      "chunks": [
+        {
+          "path": "61da61908a0cb71dfeed-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "61da61908a0cb71dfeed-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "61da61908a0cb71dfeed-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "61da61908a0cb71dfeed-part-0004.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ]
+}

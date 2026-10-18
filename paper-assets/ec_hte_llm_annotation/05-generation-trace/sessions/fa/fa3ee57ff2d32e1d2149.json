@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa3ee57ff2d32e1d2149",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research exp 004 data design",
+  "task_key": "worker_research_exp-004-data-design_20260521T072602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp-004-data-design_20260521T072602_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "f1b4a908e008ab7ad8e4e328e22d9fbb2b174820895b213963f25af25877dc0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All background tasks are complete. No further action needed — the design document is ready for review."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

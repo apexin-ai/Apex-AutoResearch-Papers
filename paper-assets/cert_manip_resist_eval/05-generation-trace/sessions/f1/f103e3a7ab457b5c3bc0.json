@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0",
+  "id": "f103e3a7ab457b5c3bc0",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "analysis vif partial corr",
+  "task_key": "worker_analysis_vif-partial-corr_20260522T233637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_vif-partial-corr_20260522T233637.jsonl",
+    "occurrence": 1,
+    "bytes": 27920,
+    "sha256": "a6e07cb2cf9c54dbd14f37f300a51039a7e0954a2d28f28a6216c4a72037dc45"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T23:38:37.684946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find K_eff calculation",
+              "prompt": "Find and read the file `run_condition_dominance.py` in `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/` or any subdirectory. I need to understand exactly how K_eff is computed — what formula, what data is used, and how log transforms are applied. Also find and read `src/unified_data_loader.py` to understand the data loading functions (load_all_scores, load_mi_data, ALL_MODELS, DATASETS, ATTACKS). Report the full relevant code sections."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T23:38:37.685285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/**/run_condition_dominance.py"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T23:38:37.685456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scripts/run_condition_dominance.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T23:38:37.685592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/**/unified_data_loader.py"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T23:38:37.685739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/unified_data_loader.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T23:38:37.685867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_condition_dominance.py"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T23:38:37.686078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Condition-Dependent Dominance Analysis.\n3\t\n4\tFor each of 12 conditions (2 datasets x 6 attacks), determines whether\n5\tK_eff_resid or η_max dominates panel ASR via standardized β comparison\n6\tand FDR-corrected significance testing.\n7\t\n8\tOutput:\n9\t  - artifacts/results/plan001/condition_dominance_15model.json\n10\t\"\"\"\n11\t\n12\timport os\n13\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n14\t\n15\timport sys\n16\tsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n17\t\n18\timport json\n19\timport itertools\n20\timport numpy as np\n21\timport statsmodels.api as sm\n22\tfrom pathlib import Path\n23\tfrom scipy import stats\n24\tfrom statsmodels.stats.multitest import multipletests\n25\tfrom statsmodels.stats.outliers_influence import variance_inflation_factor\n26\t\n27\tfrom src.utils import setup_logging\n28\tfrom src.unified_data_loader import (\n29\t    ALL_MODELS, DATASETS, ATTACKS,\n30\t    load_all_scores, load_pairs, load_mi_data,\n31\t)\n32\t\n33\tlogger = setup_logging(\"condition_dominance\")\n34\t\n35\tEPS = 1e-6\n36\tFDR_ALPHA = 0.05\n37\t\n38\tMODEL_FAMILIES = {\n39\t    \"qwen2.5-72b\": \"qwen\", \"qwen2.5-32b\": \"qwen\", \"qwen2.5-14b\": \"qwen\",\n40\t    \"llama3.1-70b\": \"meta\", \"llama3.1-8b\": \"meta\",\n41\t    \"mistral-large\": \"mistral\",\n42\t    \"claude-opus-4\": \"anthropic\", \"claude-sonnet-4\": \"anthropic\",\n43\t    \"claude-3-haiku\": \"anthropic\",\n44\t    \"gpt-5.5\": \"openai\", \"gpt-4.1\": \"openai\",\n45\t    \"gpt-4o\": \"openai\", \"gpt-4o-mini\": \"openai\",\n46\t    \"gemini-2.5-pro\": \"google\", \"gemini-2.5-flash\": \"google\",\n47\t}\n48\t\n49\t\n50\tdef _json_default(obj):\n51\t    if isinstance(obj, np.floating):\n52\t        v = float(obj)\n53\t        return None if (np.isnan(v) or np.isinf(v)) else v\n54\t    if isinstance(obj, np.integer):\n55\t        return int(obj)\n56\t    if isinstance(obj, np.ndarray):\n57\t        return obj.tolist()\n58\t    if isinstance(obj, np.bool_):\n59\t        return bool(obj)\n60\t    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n61\t\n62\t\n63\tdef majority_vote(votes):\n64\t    counts = {\"A\": 0, \"\n…[truncated 16615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T23:38:37.686247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/src/unified_data_loader.py"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T23:38:37.686418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\n3\t\n4\tHandles two data formats:\n5\t  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\n6\t  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\n7\t\"\"\"\n8\t\n9\timport json\n10\timport logging\n11\tfrom pathlib import Path\n12\t\n13\tlogger = logging.getLogger(__name__)\n14\t\n15\t# ── Model lists ──────────────────────────────────────────────────────\n16\tLOCAL_MODELS = [\n17\t    \"qwen2.5-72b\", \"llama3.1-70b\", \"mistral-large\",\n18\t    \"qwen2.5-32b\", \"qwen2.5-14b\", \"llama3.1-8b\",\n19\t]\n20\tAPI_MODELS = [\n21\t    \"claude-opus-4\", \"gpt-5.5\", \"gemini-2.5-pro\", \"gpt-4.1\",\n22\t    \"claude-sonnet-4\", \"gpt-4o\", \"gemini-2.5-flash\",\n23\t    \"gpt-4o-mini\", \"claude-3-haiku\",\n24\t]\n25\tALL_MODELS = LOCAL_MODELS + API_MODELS\n26\tDATASETS = [\"mmlu\", \"arc_challenge\"]\n27\tATTACKS = [\n28\t    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n29\t    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n30\t]\n31\t\n32\t# ── Default paths ────────────────────────────────────────────────────\n33\tRESULTS_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/results\")\n34\tPLAN001_DIR = RESULTS_DIR / \"plan001\"\n35\tSCORES_DIR = PLAN001_DIR / \"individual_scores\"\n36\tMI_PATH = PLAN001_DIR / \"mi_matrix\" / \"mi_matrix_15models.json\"\n37\tCKPT_FILES = [\n38\t    RESULTS_DIR / \"_taxonomy_checkpoint.json\",\n39\t    RESULTS_DIR / \"_step2v3_checkpoint.json\",\n40\t]\n41\tOUTPUT_DIR = PLAN001_DIR / \"panel_regression\"\n42\t\n43\t\n44\tdef _invert_winners(scores):\n45\t    swap = {\"A\": \"B\", \"B\": \"A\", \"tie\": \"tie\"}\n46\t    return [{**s, \"winner\": swap.get(s.get(\"winner\", \"tie\"), \"tie\")} for s in scores]\n47\t\n48\t\n49\tdef load_all_scores(\n50\t    checkpoint_files=None,\n51\t    individual_dir=None,\n52\t    datasets=None,\n53\t    attacks=None,\n54\t    all_models=None,\n55\t):\n56\t    \"\"\"Load sample-level clean + attacked scores for all 15 models.\n57\t\n58\t    Returns:\n59\t        clean:    {ds: {model_id: [score_dicts]}}\n60\t   \n…[truncated 7107 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T23:38:37.686634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have both files. Let me now provide you with a comprehensive report on the key sections you requested.\n\n## Summary of K_eff Computation and Data Loading\n\n### K_eff Computation (run_condition_dominance.py)\n\n**Location:** Lines 183-207 in `run_condition_dominance.py`\n\nThe K_eff computation uses a **standardized regression approach in log-space**:\n\n```python\n# Log transformation of variables\nlog_keff = np.log(p_keffs)\nlog_eta = np.log(p_etas + EPS)\ny = np.log(p_asrs + EPS)\n\n# Full OLS regression in log space\nX = np.column_stack([log_keff, log_eta])\nXc = sm.add_constant(X)\nfit_full = sm.OLS(y, Xc).fit()\n\n# Extract standardized beta coefficients\n# Standardized β = raw_β × SD(x) / SD(y)\nsd_y = np.std(y)\nkeff_std_beta = float(fit_full.params[1] * np.std(log_keff) / sd_y)\neta_std_beta = float(fit_full.params[2] * np.std(log_eta) / sd_y)\n```\n\n**Key details:**\n- **Data sources:** For each panel (3-model combination) on a given (dataset, attack) condition:\n  - `p_asrs`: Panel Attack Success Rate (computed via majority-vote across 3 models)\n  - `p_keffs`: K_eff value from MI matrix (loaded from `mi_data[\"keff_per_panel\"]`)\n  - `p_etas`: η_max (maximum individual ASR across the 3 models in the panel)\n  \n- **Log transforms applied:**\n  - All three variables log-transformed: `log(ASR + eps)`, `log(K_eff)`, `log(η_max + eps)`\n  - EPS = 1e-6 (constant to avoid log(0))\n\n- **Standardized regression:**\n  - Raw β coefficients from OLS\n  - Standardized β = raw_β × SD(log_x) / SD(log_y)\n  - This makes coefficients comparable across variables with different scales\n\n- **Residualization check (Line 203-205):**\n  ```python\n  keff_resid = sm.OLS(log_keff, sm.add_constant(log_eta)).fit().resid\n  fit_resid = sm.OLS(y, sm.add_constant(keff_resid)).fit()\n  kresid_p_check = float(fit_resid.pvalues[1])\n  ```\n  Computes K_eff residualized against η_max as a verification metric.\n\n- **Dominance determination (Lines 281-289):**\n  - Uses FDR-corrected p-values (Benjamini-Hochberg, α=0.05)\n  - \n…[truncated 2467 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T23:38:37.686848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_condition_dominance.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T23:38:37.687125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Condition-Dependent Dominance Analysis.\n3\t\n4\tFor each of 12 conditions (2 datasets x 6 attacks), determines whether\n5\tK_eff_resid or η_max dominates panel ASR via standardized β comparison\n6\tand FDR-corrected significance testing.\n7\t\n8\tOutput:\n9\t  - artifacts/results/plan001/condition_dominance_15model.json\n10\t\"\"\"\n11\t\n12\timport os\n13\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n14\t\n15\timport sys\n16\tsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n17\t\n18\timport json\n19\timport itertools\n20\timport numpy as np\n21\timport statsmodels.api as sm\n22\tfrom pathlib import Path\n23\tfrom scipy import stats\n24\tfrom statsmodels.stats.multitest import multipletests\n25\tfrom statsmodels.stats.outliers_influence import variance_inflation_factor\n26\t\n27\tfrom src.utils import setup_logging\n28\tfrom src.unified_data_loader import (\n29\t    ALL_MODELS, DATASETS, ATTACKS,\n30\t    load_all_scores, load_pairs, load_mi_data,\n31\t)\n32\t\n33\tlogger = setup_logging(\"condition_dominance\")\n34\t\n35\tEPS = 1e-6\n36\tFDR_ALPHA = 0.05\n37\t\n38\tMODEL_FAMILIES = {\n39\t    \"qwen2.5-72b\": \"qwen\", \"qwen2.5-32b\": \"qwen\", \"qwen2.5-14b\": \"qwen\",\n40\t    \"llama3.1-70b\": \"meta\", \"llama3.1-8b\": \"meta\",\n41\t    \"mistral-large\": \"mistral\",\n42\t    \"claude-opus-4\": \"anthropic\", \"claude-sonnet-4\": \"anthropic\",\n43\t    \"claude-3-haiku\": \"anthropic\",\n44\t    \"gpt-5.5\": \"openai\", \"gpt-4.1\": \"openai\",\n45\t    \"gpt-4o\": \"openai\", \"gpt-4o-mini\": \"openai\",\n46\t    \"gemini-2.5-pro\": \"google\", \"gemini-2.5-flash\": \"google\",\n47\t}\n48\t\n49\t\n50\tdef _json_default(obj):\n51\t    if isinstance(obj, np.floating):\n52\t        v = float(obj)\n53\t        return None if (np.isnan(v) or np.isinf(v)) else v\n54\t    if isinstance(obj, np.integer):\n55\t        return int(obj)\n56\t    if isinstance(obj, np.ndarray):\n57\t        return obj.tolist()\n58\t    if isinstance(obj, np.bool_):\n59\t        return bool(obj)\n60\t    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n61\t\n62\t\n63\tdef majority_vote(votes):\n64\t    counts = {\"A\": 0, \"\n…[truncated 16615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T23:38:37.687323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T23:38:37.687453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T23:38:37.687717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-rtx6000",
+              "command": "cat > /root/cert_manip_resist_eval/scripts/run_vif_partial_corr.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"VIF + Partial Correlation analysis for K_eff and η_max.\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy import stats\n\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS,\n    load_all_scores, load_pairs, load_mi_data,\n)\n\nEPS = 1e-6\n\nMODEL_FAMILIES = {\n    \"qwen2.5-72b\": \"qwen\", \"qwen2.5-32b\": \"qwen\", \"qwen2.5-14b\": \"qwen\",\n    \"llama3.1-70b\": \"meta\", \"llama3.1-8b\": \"meta\",\n    \"mistral-large\": \"mistral\",\n    \"claude-opus-4\": \"anthropic\", \"claude-sonnet-4\": \"anthropic\",\n    \"claude-3-haiku\": \"anthropic\",\n    \"gpt-5.5\": \"openai\", \"gpt-4.1\": \"openai\",\n    \"gpt-4o\": \"openai\", \"gpt-4o-mini\": \"openai\",\n    \"gemini-2.5-pro\": \"google\", \"gemini-2.5-flash\": \"google\",\n}\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef majority_vote(votes):\n    counts = {\"A\": 0, \"B\": 0, \"tie\": 0}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    mc = max(counts.values())\n    winners = [k for k, c in counts.items() if c == mc]\n    if len(winners) == 1:\n        return winners[0]\n    for w in winners:\n        if w != \"tie\":\n            return w\n    return \"tie\"\n\n\ndef compute_individual_asr(clean_list, attacked_list, pairs):\n    n = min(len(clean_list), len(attacked_list), len(pairs))\n    n_flips = n_correct = 0\n    for i in range(n):\n        gt = pairs[i][\"ground_truth_winner\"]\n        if clean_list[i].get(\"winner\", \"tie\") == gt:\n            n_correct += 1\n            if attacked_list[i].get(\"winner\", \"tie\") != gt:\n                n_flips += 1\n    return n_flips / max(n_correct, 1)\n\n\ndef compute_panel_asr(jids, clean, attacked, pairs):\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\n            *(len(attacked[j]) for j in jids))\n    n_flips = n_correct = 0\n    for i in range(n):\n        gt = pairs[i][\"ground_truth_winner\"]\n        cv = majority_vote([clean[j][i].get(\"winner\", \"tie\") for j in jids])\n        if cv != gt:\n            continue\n        n_correct += 1\n        av = majority_vote([attacked[j][i].get(\"winner\", \"tie\") for j in jids])\n        if av != gt:\n            n_flips += 1\n    return n_flips / max(n_correct, 1)\n\n\ndef partial_corr(x, y, z):\n    \"\"\"Partial correlation r(x, y | z) via residualization.\"\"\"\n    resid_x = sm.OLS(x, sm.add_constant(z)).fit().resid\n    resid_y = sm.OLS(y, sm.add_constant(z)).fit().resid\n    r, p = stats.pearsonr(resid_x, resid_y)\n    return float(r), float(p)\n\n\ndef compute_vif_two_predictors(x1, x2):\n    \"\"\"VIF for two predictors = 1/(1-R^2) where R^2 from regressing x1 on x2.\"\"\"\n    fit = sm.OLS(x1, sm.add_constant(x2)).fit()\n    return 1.0 / (1.0 - fit.rsquared)\n\n\ndef main():\n    print(\"Loading data...\")\n    mi_data = load_mi_data()\n    pairs = load_pairs()\n    clean, attacked = load_all_scores()\n\n    # Individual ASR\n    ind_asr = {}\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            for mid in ALL_MODELS:\n                if mid in clean[ds] and mid in attacked[ds][atk]:\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\n                    )\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\n\n    vif_per_condition = {}\n    partial_per_condition = {}\n\n    for ds in DATASETS:\n        keff_data = mi_data[\"keff_per_panel\"].get(ds, {})\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n\n            p_asrs, p_keffs, p_etas = [], [], []\n            for combo in all_combos:\n                jids = [ALL_MODELS[i] for i in combo]\n                if not all((ds, atk, j) in ind_asr for j in jids):\n                    continue\n                pk = \"|\".join(jids)\n                if pk not in keff_data:\n                    continue\n\n                keff = keff_data[pk][\"keff\"]\n                etas = [ind_asr[(ds, atk, j)] for j in jids]\n                eta_max = max(etas)\n\n                cs = {j: clean[ds][j] for j in jids}\n                ats = {j: attacked[ds][atk][j] for j in jids}\n                p_asr = compute_panel_asr(jids, cs, ats, pairs[ds])\n\n                p_asrs.append(p_asr)\n                p_keffs.append(keff)\n                p_etas.append(eta_max)\n\n            n_panels = len(p_asrs)\n            if n_panels < 10:\n                continue\n\n            p_asrs = np.array(p_asrs)\n            p_keffs = np.array(p_keffs)\n            p_etas = np.array(p_etas)\n\n            if np.std(p_asrs) < 1e-10:\n                continue\n\n            log_keff = np.log(p_keffs)\n            log_eta = np.log(p_etas + EPS)\n            log_asr = np.log(p_asrs + EPS)\n\n            # VIF between the two predictors\n            vif = compute_vif_two_predictors(log_keff, log_eta)\n            vif_per_condition[cond] = round(vif, 4)\n\n            # Partial correlations\n            r_eta_given_keff, p_eta_given_keff = partial_corr(log_eta, log_asr, log_keff)\n            r_keff_given_eta, p_keff_given_eta = partial_corr(log_keff, log_asr, log_eta)\n\n            partial_per_condition[cond] = {\n                \"eta_given_keff\": {\"r\": round(r_eta_given_keff, 4), \"p\": float(f\"{p_eta_given_keff:.6e}\")},\n                \"keff_given_eta\": {\"r\": round(r_keff_given_eta, 4), \"p\": float(f\"{p_keff_given_eta:.6e}\")},\n            }\n\n            print(f\"{cond}: VIF={vif:.4f}  \"\n                  f\"r(η|K)={r_eta_given_keff:+.4f} p={p_eta_given_keff:.2e}  \"\n                  f\"r(K|η)={r_keff_given_eta:+.4f} p={p_keff_given_eta:.2e}\")\n\n    # Summary\n    vif_vals = list(vif_per_condition.values())\n    vif_summary = {\n        \"mean\": round(float(np.mean(vif_vals)), 4),\n        \"min\": round(float(np.min(vif_vals)), 4),\n        \"max\": round(float(np.max(vif_vals)), 4),\n    }\n\n    eta_rs = [v[\"eta_given_keff\"][\"r\"] for v in partial_per_condition.values()]\n    keff_rs = [v[\"keff_given_eta\"][\"r\"] for v in partial_per_condition.values()]\n    eta_ps = [v[\"eta_given_keff\"][\"p\"] for v in partial_per_condition.values()]\n    keff_ps = [v[\"keff_given_eta\"][\"p\"] for v in partial_per_condition.values()]\n\n    eta_sig = sum(1 for p in eta_ps if p < 0.05)\n    keff_sig = sum(1 for p in keff_ps if p < 0.05)\n\n    partial_summary = {\n        \"eta_given_keff_mean_r\": round(float(np.mean(eta_rs)), 4),\n        \"keff_given_eta_mean_r\": round(float(np.mean(keff_rs)), 4),\n        \"eta_sig_count\": f\"{eta_sig}/{len(eta_rs)}\",\n        \"keff_sig_count\": f\"{keff_sig}/{len(keff_rs)}\",\n    }\n\n    output = {\n        \"vif\": {\n            \"per_condition\": vif_per_condition,\n            **vif_summary,\n        },\n        \"partial_correlation\": {\n            \"per_condition\": partial_per_condition,\n            \"summary\": partial_summary,\n        },\n    }\n\n    out_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/vif_partial_corr.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n\n    print(f\"\\nVIF: mean={vif_summary['mean']}, min={vif_summary['min']}, max={vif_summary['max']}\")\n    print(f\"Partial r(η|K): mean={partial_summary['eta_given_keff_mean_r']}, sig={partial_summary['eta_sig_count']}\")\n    print(f\"Partial r(K|η): mean={partial_summary['keff_given_eta_mean_r']}, sig={partial_summary['keff_sig_count']}\")\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T23:38:37.687964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T23:38:37.688094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-rtx6000",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_vif_partial_corr.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T23:38:37.688237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nmmluxprompt_injection: VIF=1.9923  r(η|K)=+0.6006 p=5.95e-46  r(K|η)=+0.2943 p=1.53e-10\\\\nmmluxsycophancy: VIF=1.2349  r(η|K)=+0.4727 p=1.05e-26  r(K|η)=+0.1797 p=1.16e-04\\\\nmmluxscore_manipulation: VIF=3.0201  r(η|K)=+0.4031 p=3.31e-19  r(K|η)=+0.0242 p=6.07e-01\\\\nmmluxverbosity_bias: VIF=1.2456  r(η|K)=+0.5679 p=3.25e-40  r(K|η)=+0.1045 p=2.58e-02\\\\nmmluxposition_bias: VIF=1.7790  r(η|K)=+0.3390 p=1.07e-13  r(K|η)=+0.0893 p=5.71e-02\\\\nmmluxauthority_bias: VIF=1.6270  r(η|K)=+0.3046 p=3.20e-11  r(K|η)=+0.0088 p=8.52e-01\\\\narc_challengexprompt_injection: VIF=3.3828  r(η|K)=+0.1569 p=7.86e-04  r(K|η)=+0.2100 p=6.27e-06\\\\narc_challengexsycophancy: VIF=2.5402  r(η|K)=+0.3148 p=6.35e-12  r(K|η)=-0.1280 p=6.24e-03\\\\narc_challengexscore_manipulation: VIF=7.0271  r(η|K)=+0.0952 p=4.23e-02  r(K|η)=+0.1070 p=2.24e-02\\\\narc_challengexverbosity_bias: VIF=3.2007  r(η|K)=+0.2125 p=4.83e-06  r(K|η)=+0.0918 p=5.03e-02\\\\narc_challengexposition_bias: VIF=6.5318  r(η|K)=-0.0054 p=9.09e-01  r(K|η)=+0.2688 p=5.67e-09\\\\narc_challengexauthority_bias: VIF=2.1595  r(η|K)=+0.1927 p=3.49e-05  r(K|η)=+0.1447 p=1.97e-03\\\\n\\\\nVIF: mean=2.9784, min=1.2349, max=7.0271\\\\nPartial r(η|K): mean=0.3046, sig=11/12\\\\nPartial r(K|η): mean=0.1163, sig=8/12\\\\n\\\\nSaved: /root/cert_manip_resist_eval/artifacts/results/plan001/vif_partial_corr.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T23:38:37.688387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-rtx6000",
+              "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/vif_partial_corr.json"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T23:38:37.688587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"vif\\\\\\\": {\\\\n    \\\\\\\"per_condition\\\\\\\": {\\\\n      \\\\\\\"mmluxprompt_injection\\\\\\\": 1.9923,\\\\n      \\\\\\\"mmluxsycophancy\\\\\\\": 1.2349,\\\\n      \\\\\\\"mmluxscore_manipulation\\\\\\\": 3.0201,\\\\n      \\\\\\\"mmluxverbosity_bias\\\\\\\": 1.2456,\\\\n      \\\\\\\"mmluxposition_bias\\\\\\\": 1.779,\\\\n      \\\\\\\"mmluxauthority_bias\\\\\\\": 1.627,\\\\n      \\\\\\\"arc_challengexprompt_injection\\\\\\\": 3.3828,\\\\n      \\\\\\\"arc_challengexsycophancy\\\\\\\": 2.5402,\\\\n      \\\\\\\"arc_challengexscore_manipulation\\\\\\\": 7.0271,\\\\n      \\\\\\\"arc_challengexverbosity_bias\\\\\\\": 3.2007,\\\\n      \\\\\\\"arc_challengexposition_bias\\\\\\\": 6.5318,\\\\n      \\\\\\\"arc_challengexauthority_bias\\\\\\\": 2.1595\\\\n    },\\\\n    \\\\\\\"mean\\\\\\\": 2.9784,\\\\n    \\\\\\\"min\\\\\\\": 1.2349,\\\\n    \\\\\\\"max\\\\\\\": 7.0271\\\\n  },\\\\n  \\\\\\\"partial_correlation\\\\\\\": {\\\\n    \\\\\\\"per_condition\\\\\\\": {\\\\n      \\\\\\\"mmluxprompt_injection\\\\\\\": {\\\\n        \\\\\\\"eta_given_keff\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.6006,\\\\n          \\\\\\\"p\\\\\\\": 5.948303e-46\\\\n        },\\\\n        \\\\\\\"keff_given_eta\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.2943,\\\\n          \\\\\\\"p\\\\\\\": 1.533901e-10\\\\n        }\\\\n      },\\\\n      \\\\\\\"mmluxsycophancy\\\\\\\": {\\\\n        \\\\\\\"eta_given_keff\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.4727,\\\\n          \\\\\\\"p\\\\\\\": 1.050395e-26\\\\n        },\\\\n        \\\\\\\"keff_given_eta\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.1797,\\\\n          \\\\\\\"p\\\\\\\": 0.0001164105\\\\n        }\\\\n      },\\\\n      \\\\\\\"mmluxscore_manipulation\\\\\\\": {\\\\n        \\\\\\\"eta_given_keff\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.4031,\\\\n          \\\\\\\"p\\\\\\\": 3.313542e-19\\\\n        },\\\\n        \\\\\\\"keff_given_eta\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.0242,\\\\n          \\\\\\\"p\\\\\\\": 0.606678\\\\n        }\\\\n      },\\\\n      \\\\\\\"mmluxverbosity_bias\\\\\\\": {\\\\n        \\\\\\\"eta_given_keff\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.5679,\\\\n          \\\\\\\"p\\\\\\\": 3.251142e-40\\\\n        },\\\\n        \\\\\\\"keff_given_eta\\\\\\\": {\\\\n          \\\\\\\"r\\\\\\\": 0.1045,\\\\n          \\\\\\\"p\\\\\\\": 0.02582004\\\\n        }\\\\n      },\\\\n      \\\\\\\"mmlu\n…[truncated 2606 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T23:38:37.688800+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/vif_partial_corr.json`。\n\n**VIF 结果：**\n- Mean = 2.98, Min = 1.23 (mmlu×sycophancy), Max = 7.03 (arc_challenge×score_manipulation)\n- 高于预期的 ~1.96，arc_challenge 上几个条件 VIF 较高（score_manipulation 7.03, position_bias 6.53），说明这些条件下 log(K_eff) 和 log(η_max) 共线性较强\n\n**Partial Correlation 结果：**\n- η_max → ASR | K_eff: mean r = 0.305, 11/12 conditions 显著 (p < 0.05)\n- K_eff → ASR | η_max: mean r = 0.116, 8/12 conditions 显著 (p < 0.05)\n- η_max 控制 K_eff 后仍有较强独立解释力；K_eff 控制 η_max 后效应较弱但多数条件仍显著"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_vif-partial-corr_20260522T233637"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ]
+}

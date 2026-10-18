@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "492ccc7461d89fa9d9ec",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper curation poc writeup and bib",
+  "task_key": "worker_paper_curation_poc_writeup_and_bib_20260515T235442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_curation_poc_writeup_and_bib_20260515T235442_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "cf6c988805b4feaee07261fe250b3f7c1363ad200fda9fdde8b4f57d50d21e1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出报告：\n\n---\n\n### 1. Discussion 段落修改\n\n**修改前**（核心句）：\n> \"The 70–85% in-distribution accuracy and EDD₀.₇₅=4 suggest depth-graduated filtering is feasible… The downstream effect on training quality remains to be validated empirically.\"\n\n**修改后**（核心新增）：\n- 新增 PoC 实验描述：Pythia-410M LoRA (r=16), 3 epochs, 8 conditions, 5 seeds\n- RF vs random 显著性：strict 25% Δ=0.43 PPL p=0.002; moderate 50% Δ=0.24 p=0.02\n- Data efficiency：rf_soft 用 44% 数据达到与 unfiltered 不可区分的 PPL (p=0.41)\n- Oracle 悖论：oracle-strict 不优于 unfiltered (p=0.22)，classifier imprecision 保留了数据多样性\n- 引用 Appendix Table (`\\ref{app:curation_poc}`)\n- 未 claim RF improves over unfiltered，未用 \"significantly\" 描述 RF vs unfiltered\n\n### 2. Appendix 新增内容\n\n`section_appendix.tex` 中 Extended Discussion 之前插入 `\\subsection{Downstream Curation PoC}` (`\\label{app:curation_poc}`)：\n- **Table 1** (`tab:curation_poc`)：8 条件完整表（Mean PPL / Std / n / Δ / p / Cohen's d）\n- **Table 2** (`tab:curation_comparisons`)：3 组 pairwise 对比（rf vs random strict/moderate, rf_soft vs unfiltered）\n\n### 3. dohmatob bib 修正\n\n确认 arXiv 2410.04840 发表于 **ICLR 2025**（非 2024）。修改：\n- `references.bib`：key `dohmatob2024_strong_collapse` → `dohmatob2025_strong_collapse`，year 2024 → 2025\n- `related_work.tex`：`\\citet{dohmatob2024_strong_collapse}` → `\\citet{dohmatob2025_strong_collapse}`\n- `literature_map.yaml`：key 和 year 同步更新\n\n### 4. artifacts bib 同步\n\n`artifacts/_project/paper/references.bib` 已用 `docs/paper/references.bib` 覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "81e5351478d33476744f",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh env setup",
+  "task_key": "worker_ssh_env-setup_20260514T161431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_env-setup_20260514T161431.log",
+    "occurrence": 1,
+    "bytes": 834629,
+    "sha256": "e031de82329891837c95d8998ba1b057ab9f6af981c7492b5a059360e78dc10f"
+  },
+  "statistics": {
+    "messages": 491,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 491,
+      "chunks": [
+        {
+          "path": "81e5351478d33476744f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "81e5351478d33476744f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "81e5351478d33476744f-part-0003.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ]
+}

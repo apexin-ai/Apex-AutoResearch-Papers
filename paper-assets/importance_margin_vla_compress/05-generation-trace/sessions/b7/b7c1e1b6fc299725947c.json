@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "b7c1e1b6fc299725947c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "registry cleanup phantom running",
+  "task_key": "worker_registry_cleanup_phantom_running_20260522T200606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_registry_cleanup_phantom_running_20260522T200606.log",
+    "occurrence": 1,
+    "bytes": 671403,
+    "sha256": "8543c079bed15d942aa13256575c6905151efbd30ff8a232c073af828bb209d4"
+  },
+  "statistics": {
+    "messages": 268,
+    "user_turns": 0,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 123,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "b7c1e1b6fc299725947c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7c1e1b6fc299725947c-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ]
+}

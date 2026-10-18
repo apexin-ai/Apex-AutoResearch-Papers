@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "56532bbc3f3cbb0a17c1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper arr precheck suppl checklist",
+  "task_key": "worker_paper_arr_precheck_suppl_checklist_20260522T072522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_arr_precheck_suppl_checklist_20260522T072522_result.json",
+    "occurrence": 1,
+    "bytes": 1763,
+    "sha256": "6b41c310f4cd928074b0227d015b8b5927a32c12f06fb7652d736eb889059453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 2. Supplementary Material\n\n**a) Appendix sections**: 25 个 section（A–Y），全部在 main.pdf 内。覆盖：cross-model validation（8B/70B/Gemini）、SDGD 协议、factorial analysis/TOST、centrality confound 控制、prompt sensitivity（4 变体）、BCS aggregation、format independence、SCS ablation、Monte Carlo 模拟、error taxonomy、renaming experiment、relaxed matching 等。\n\n**b) Independent supplementary**: **需要操作** — `artifacts/anonymous_github/` 已准备好（42 scripts + 24 auxiliary + data + requirements.txt），但尚未上传到 anonymous.4open.science。论文中仅写 \"Code and data will be released upon acceptance\"（introduction 脚注 + checklist C4），无匿名 URL。\n\n**c) Data/code citations**: **PASS** — 4 个数据集（Few-NERD, FewRel, DocRED, MAVEN）+ 4 个模型 + vLLM + MiniLM 均有正确 citation。\n\n### 3. ARR Checklist\n\n所有项目均已正确填写：\n- **A1–A4**: YES（Limitations 6 项 + 2 段，risks 已讨论，AI 使用已声明）\n- **B1–B6**: YES/N-A（全部 artifact 已 cite，license 已讨论）\n- **C1–C4**: YES（72 GPU-hours，seed=42，vLLM v0.20.2，bootstrap CIs）\n- **D1–D5**: N/A\n- **E1**: YES\n\n### 需要修复的项\n\n| 优先级 | 项目 | 建议 |\n|--------|------|------|\n| 🔴 | Anonymous GitHub 未上传 | 上传 `artifacts/anonymous_github/` 到 anonymous.4open.science，链接填入 OpenReview supplementary 字段 |\n| 🟡 | 上传前检查路径泄露 | `grep -r '/root/' artifacts/anonymous_github/` |\n| 🟢 | Gemini API cost 未量化 | C1 中补充 API 费用或标注 \"API cost not reported\" |\n| 🟢 | OpenReview form 填写 | 按 `arr_checklist_final.md` 逐项填入 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c1d6e802f37e635273b6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval westd collect and imm v2 eval",
+  "task_key": "worker_eval_westd_collect_and_imm_v2_eval_20260516T233249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_westd_collect_and_imm_v2_eval_20260516T233249_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "30a78a66d07c3b90dfcbaf7f51a4de6d0bf173010aaf6fe71812d16a7d44a6dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。结果汇总：\n\n```\n=== WESTD STATUS ===\ncuda:0: IMM v2 eval 已启动 (PID 455965, 3539 MiB) — libero_object, acis_prune\ncuda:1: Full FT seed=0 100K eval 运行中 (PID 452461, 3684 MiB) — libero_spatial\n\n=== COLLECTED EVAL RESULTS ===\n[1] Full FT 100K seed=42 libero_object (formal, 50eps/task): SR=44.8% [CI: 40.5%-49.2%]\n[2] Full FT seed=0 100K libero_object (50eps/task):          SR=51.0% [CI: 46.6%-55.4%]\n[3] Full FT 50K libero_spatial (10eps/task):                  SR=34.0% [CI: 25.5%-43.7%]\n[4] Full FT 50K libero_goal (10eps/task):                     SR=42.0% [CI: 32.8%-51.8%]\n[5] LoRA 50K libero_object (5eps/task):                       SR=0.0%  (完全失败)\n\n=== IMM v2 EVAL ===\nCheckpoint: checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt\n  (stage2 训练到 step 18000, 有 final checkpoint)\nConfig: configs/libero_imm_twostage_fullft.yaml\nEval started: YES — libero_object, 50 eps/task, cuda:0, mode=acis_prune\nOutput: eval_results/imm_v2_fullft_libero_object.json\ntmux session: imm_v2_eval\n\n=== PENDING EVALS ===\n- [cuda:0] IMM v2 fullft libero_object (刚启动)\n- [cuda:1] Full FT seed=0 100K libero_spatial (运行中，已跑~2分钟)\n```\n\n**关键发现：**\n- Full FT 100K seed=0 (51.0%) 显著优于 seed=42 (44.8%)，说明 seed 间方差较大\n- LoRA 50K 完全失败 (0%)，与 Full FT 差距极大\n- Full FT 50K 在 spatial/goal 上只有 34%/42%（仅 10 eps/task，CI 很宽）\n- seed=0 的 spatial eval 正在跑，完成后可以对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

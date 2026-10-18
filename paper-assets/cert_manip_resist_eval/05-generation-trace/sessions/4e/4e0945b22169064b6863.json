@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4e0945b22169064b6863",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig2 scatter k5 restore",
+  "task_key": "worker_ops_fig2-scatter-k5-restore_20260525T200712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig2-scatter-k5-restore_20260525T200712_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "7cdb7ffbac4936835e4e23a7345520138732a927cd5e58c8683927c2778c56bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。散点图已生成并 SCP 回本地。\n\n注意：脚本中 POOL_A 的模型名与数据不匹配（原脚本用了 `claude-sonnet-4-6`、`gpt-4.1-mini`、`gemini-3.5-flash`、`gpt-4.1-nano` 这些不存在的名称），已修正为实际的 9 个 API 模型：`claude-opus-4, gpt-5.5, gemini-2.5-pro, gpt-4.1, claude-sonnet-4, gpt-4o, gemini-2.5-flash, gpt-4o-mini, claude-3-haiku`。\n\n结果数值：\n- C(15,5) = 3003 panels, Pool A = 126\n- K_eff ∈ [2.163, 4.296]\n- r_full = 0.81, r_poolA = 0.85\n\n文件已保存至 `docs/paper/figures/fig_keff_eta_scatter.{pdf,png}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

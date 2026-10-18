@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "63d90b78b478ad3f165f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval openvla attn k075 object seed42",
+  "task_key": "worker_analyze_eval_openvla_attn_k075_object_seed42_20260526T211624",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_openvla_attn_k075_object_seed42_20260526T211624_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "b421cb8a78049d9517002595030fe411c4daf45a00d6f923dcb725225cd393de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。结论：\n\n**Attn k=0.75 Object SR = 53.2%**，conclusion = success。\n\nCliff curve 完整图谱：\n\n| k | SR | Δ (vs 上一点) |\n|---|---|---|\n| 0.90 | 61.4% | — |\n| 0.85 | 55.0% | -6.4pp |\n| **0.75** | **53.2%** | **-1.8pp** |\n| 0.70 | 43.8% | -9.4pp |\n\n关键发现：k=0.85→0.75 退化非常平缓（仅 -1.8pp），而 k=0.75→0.70 出现断崖式下降（-9.4pp）。**Cliff 位置精确定位在 k=0.70~0.75 之间**，k=0.75 仍是安全的压缩点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

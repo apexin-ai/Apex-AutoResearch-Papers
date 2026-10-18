@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fed4125b32b59d514a82",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "deploy mink to gpu6000pro2",
+  "task_key": "worker_deploy_mink-to-gpu6000pro2_20260519T140015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_mink-to-gpu6000pro2_20260519T140015_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "03c447809db1a5400a4266a8ac87d8c35ffd2e00cda3143d7df5f85bb52f5f18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**修改汇总：**\n\n| 行号 | 原内容 | 新内容 |\n|------|--------|--------|\n| L25 | `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"` | `# CUDA_VISIBLE_DEVICES controlled externally` |\n| L264 | `print(\"Loading GPT-2 Large...\")` | `print(\"Loading GPT-2 XL...\")` |\n| L265 | `GPT2TokenizerFast.from_pretrained(\"gpt2-large\")` | `GPT2TokenizerFast.from_pretrained(\"/root/autodl-tmp/models/gpt2-xl\")` |\n| L267 | `GPT2LMHeadModel.from_pretrained(\"gpt2-large\")` | `GPT2LMHeadModel.from_pretrained(\"/root/autodl-tmp/models/gpt2-xl\")` |\n\n**服务器路径：** `/root/autodl-tmp/recursive_gen_depth_est/scripts/mink_prob_baseline.py`\n**语法验证：** SYNTAX OK"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

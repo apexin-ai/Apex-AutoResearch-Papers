@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b76f581c6e8892175738",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attention k07 long seed42 v2",
+  "task_key": "worker_analyze_eval_pi05_attention_k07_long_seed42_v2_20260526T231330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attention_k07_long_seed42_v2_20260526T231330_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "b7f308724dc26ff466208e3210d1a0b039d125b07ff63f9f12f84d731ba3f1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**π0.5 Attention k=0.7 Long (libero_10) seed42: Overall SR = 50.8%**\n\nPer-task breakdown:\n\n| Task | SR |\n|------|-----|\n| T0 alphabet soup & tomato | 72% |\n| T1 cream cheese & butter | 70% |\n| T2 stove & moka pot | 58% |\n| T3 black bowl drawer | 46% |\n| T4 white mug & plate | 36% |\n| T5 book placement | 32% |\n| T6 mug & plate & yellow | 58% |\n| T7 alphabet soup & cream | 48% |\n| T8 moka pots stove | 6% |\n| T9 yellow mug microwave | 82% |\n\n### 更新后的 Attn Long cliff curve\n\n| k | SR | Δ vs Full |\n|---|-----|-----------|\n| 0.95 | 77.0% | - |\n| 0.90 | 63.8% | -13.2pp |\n| 0.85 | 51.6% | -12.2pp |\n| **0.75** | **51.8%** | +0.2pp |\n| **0.70** | **50.8%** | -1.0pp |\n| 0.50 | 49.4% | -1.4pp |\n\n**关键发现**: k=0.7 (50.8%) 完美符合预期，确认 Attention pruning 在 k=0.85 以下进入平台期。从 k=0.85 到 k=0.5，SR 仅从 51.6% 缓降至 49.4%（仅 -2.2pp），cliff 明确在 k=0.9→0.85 区间（-12.2pp）。k=0.7 补全了曲线中间点，plateau 趋势清晰。\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

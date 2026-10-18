@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1a4ac8a8409ca0b7d6e8",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research gateddeltanet new check",
+  "task_key": "worker_research_gateddeltanet-new-check_20260518T051249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_gateddeltanet-new-check_20260518T051249_result.json",
+    "occurrence": 1,
+    "bytes": 2184,
+    "sha256": "65bc3c285e11bcaa35eb1d2d6d7f88d4da89998c5c5259dcac46ac48eb0c5828"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：GatedDeltaNet-New 24:1 与标准 GatedDeltaNet 架构完全一致\n\n\"New\" 仅是命名差异，不代表架构变化。可以直接作为 GatedDeltaNet 系列的 24:1 使用。\n\n### 全系列 config 关键字段对比\n\n| 字段 | pure | 3:1 | 6:1 | 12:1 | **24:1 (New)** |\n|------|------|-----|-----|------|----------------|\n| `model_type` | `gated_deltanet` | `gated_deltanet` | `gated_deltanet` | `gated_deltanet` | `gated_deltanet` |\n| `architectures` | `GatedDeltaNetForCausalLM` | 同左 | 同左 | 同左 | 同左 |\n| `hidden_size` | 1024 | 1024 | 1024 | 1024 | 1024 |\n| `num_hidden_layers` | 24 | 24 | 24 | 24 | 24 |\n| `num_heads` (linear attn) | 4 | 4 | 4 | 4 | 4 |\n| `head_dim` | 256 | 256 | 256 | 256 | 256 |\n| `hidden_ratio` | 4 | 4 | 4 | 4 | 4 |\n| `attn.layers` | null | 8层 | 4层 | 2层 | **1层 [23]** |\n| `attn.num_heads` | - | **16** | 32 | 32 | 32 |\n| `attn.num_kv_heads` | - | 8 | 8 | 8 | 8 |\n| `use_gate` | true | true | true | true | true |\n| `use_beta` | true | true | true | true | true |\n| `tie_word_embeddings` | false | false | false | false | false |\n| `qk_activation` | silu | silu | silu | silu | silu |\n| `qk_norm` | l2 | l2 | l2 | l2 | l2 |\n\n### 分析\n\n1. **架构完全一致**：`model_type`、`architectures`、所有核心超参（hidden_size, num_hidden_layers, num_heads, head_dim 等）在 New 24:1 和标准版之间完全相同。\n\n2. **唯一变化是 ratio 本身**：`attn.layers` 从 8 层（3:1）递减到 1 层（24:1），符合 ratio 定义。\n\n3. **`attn.num_heads` 差异不是 New 的问题**：3:1 用 16，而 6:1、12:1、24:1 统一用 32。3:1 才是异类，24:1 (New) 反而与 6:1 和 12:1 一致。这个差异仅影响 softmax attention 层的 head 数，不影响 linear attention 层。\n\n4. **DeltaNet 24:1 不可替代**：它是完全不同的架构（`model_type=delta_net`，`use_gate=false`，`num_heads=8`，`tie_word_embeddings=true`，无 `head_dim` 字段）。\n\n### 结论\n\n**直接使用 `m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1` 作为 GatedDeltaNet 系列的 24:1 变体**，无需任何额外处理。不要用 DeltaNet 24:1 替代。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

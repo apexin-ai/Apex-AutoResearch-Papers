@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e03a0607e5f08bfd38b5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose westd41074 gpu check",
+  "task_key": "worker_diagnose_westd41074_gpu_check_20260525T084609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_westd41074_gpu_check_20260525T084609_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "fdaf43a451a14f88d4bbe00030d499ef888c9dfde7bfcabd50551b59c28229fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments are still running on both servers. The alert was a false alarm.\n\n## westd-41074 诊断结果\n\n| GPU | exp_id | 状态 | GPU利用率 | 显存 | 运行时间 |\n|-----|--------|------|-----------|------|----------|\n| 0 | eval_openvla_random_k09_goal_seed42 | **running** | 68% | 16.0/95.6 GB | 2h59m |\n| 1 | eval_openvla_random_k09_spatial_seed42 | **running** | 36% | 15.7/95.6 GB | 2h59m |\n| 2 | eval_openvla_l2norm_k05_object_seed42_v4 | **running** | 80% | 15.6/95.6 GB | 2h54m |\n| 3 | eval_openvla_prune_random_k03_seed42 | **running** | 61% | 15.7/95.6 GB | 2h54m |\n\ncuda:1 (36%) 和 cuda:2 (80%) 利用率正常，0% 报告是瞬时波动导致的误报。LIBERO 评估在 episode 间隔时 GPU 利用率会短暂降至 0%（环境 reset、渲染等），超过 5 分钟窗口刚好被捕获。\n\n所有 4 个 PID 存活，registry 状态均为 RUNNING，无需任何操作。\n\n## westd-38929 诊断结果\n\n| GPU | exp_id | 状态 | GPU利用率 | 运行时间 |\n|-----|--------|------|-----------|----------|\n| 0 | eval_openvla_attn_k09_long_seed42_v3 | **running** | 68% | 4h16m |\n| 1 | eval_openvla_attn_k085_long_seed42_v3 | **running** | 65% | 4h16m |\n| 2 | eval_openvla_random_k09_long_seed42_v3 | **running** | 68% | 4h16m |\n| 3 | eval_openvla_l2norm_k09_long_seed42_v3 | **running** | 91% | 4h16m |\n\nRegistry 已有全部 4 个实验，状态正确，无需修复。\n\n**空闲 GPU：无。** 两台服务器 8 张卡全部在跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

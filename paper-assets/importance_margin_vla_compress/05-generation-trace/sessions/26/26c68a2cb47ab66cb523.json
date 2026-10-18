@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "26c68a2cb47ab66cb523",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix cqa1 kill openvla deploy pi05",
+  "task_key": "worker_fix_cqa1_kill_openvla_deploy_pi05_20260526T052450",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cqa1_kill_openvla_deploy_pi05_20260526T052450_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "e629c72340ea35af40c71d50a3952f9e27c593e0d0c2bfc1f97cb2b7960897d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常加载模型，无报错。\n\n**汇总：**\n\n| 步骤 | 状态 |\n|------|------|\n| Kill OpenVLA (PID 29974, 4365) | KILLED_OK，GPU2/3 已释放 |\n| Registry 标记 failed | `eval_openvla_attn_k09_goal_seed43_v3` 和 `eval_openvla_random_k05_object_seed42_v2` → DONE/failed |\n| GPU2: π0.5 L2norm k=0.5 Long | PID 77656，tmux `eval_pi05_l2norm_k05_long_seed42`，模型加载中 |\n| GPU3: π0.5 Random k=0.5 Long | PID 77827，tmux `eval_pi05_random_k05_long_seed42`，模型加载中 |\n\ncqa1-33015 当前 4 GPU 全部在用：GPU0 random k=0.75, GPU1 attention k=0.75, GPU2 l2norm k=0.5 (new), GPU3 random k=0.5 (new)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e1927a6501f306b240b1",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code prep long context eval",
+  "task_key": "worker_code_prep_long_context_eval_20260516T023901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_long_context_eval_20260516T023901_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "138efc6cf68e69e2849050da64a15a23bb0231f3946eebc5a25b063c01762444"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已写好：\n\n- **`run_llama_8k_eval.py`** — Llama-3.1-8B, Spike 分布, 模型路径 `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B`, 输出 `artifacts/llama_8k_eval_results.json`\n- **`run_mistral_8k_eval.py`** — Mistral-7B-v0.3, Flat 分布, 模型路径 `/root/autodl-tmp/models/Mistral-7B-v0.3`, 输出 `artifacts/mistral_8k_eval_results.json`\n\n两个脚本共同特点：\n- 支持 `--gpu N` 参数（默认 0）\n- 使用 merged profiles（hires 2-bit + standard 4/8-bit）\n- 评估三个条件：BF16 baseline / constrained MCKP (k=2) / uniform 4-bit，stride=8192\n- 包含 concentration 分析和 2K reference 数据\n- 输出格式与现有 Qwen 8K spotcheck 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

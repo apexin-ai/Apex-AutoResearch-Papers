@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1517547c164ba672bf0c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code ensemble reference",
+  "task_key": "worker_code_ensemble_reference_20260517T045532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ensemble_reference_20260517T045532_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "f0bb3dd25e0dd434157a7bdf483c1b4293aae3bccb4ff161e73bf8ad28d2c268"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果总结：\n\n## ensemble_reference_001 — Negative Result\n\n| Model | 4-class Acc |\n|-------|------------|\n| Pythia-1.4B (best single) | **78.57%** |\n| OLMo-1B | 74.25% |\n| Ensemble (3-model avg) | 73.65% |\n| GPT-2 XL | 70.05% |\n\n**Hypothesis FAIL**: Ensemble 仅比 GPT-2 XL 高 +3.6pp（未达 +5pp 阈值），且比最优单模型 Pythia 低 4.9pp。\n\n**原因分析**: 简单平均将最优模型（Pythia）的判别信号与两个较弱模型混合，结果被拉低。Ensemble 取平均不适合此场景——各 ref model 的 surprisal 分布质量差异过大（Pythia >> OLMo > GPT-2 XL），averaging 相当于给弱信号等权重，稀释了强信号。\n\n如需进一步探索 ensemble 方向，可考虑：加权平均（按单模型性能加权）或 stacking（用各模型 surprisal 作为独立特征输入，让 RF 自行学习最优组合权重）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

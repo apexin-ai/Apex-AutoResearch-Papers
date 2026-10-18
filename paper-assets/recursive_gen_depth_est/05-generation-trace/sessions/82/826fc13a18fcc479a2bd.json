@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "826fc13a18fcc479a2bd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh gpu status check",
+  "task_key": "worker_ssh_gpu_status_check_20260515T040004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_status_check_20260515T040004_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "7f9c1039f04f1b7083e54a3a19286830aca04fc8f39b8a6fb1e2ffe1d7b92ccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### 1. nvidia-smi\n\n```\nGPU 0: NVIDIA RTX PRO 6000 Blackwell | 0MiB / 97887MiB | 0% util | 31°C | P8 36W/600W\nGPU 1: NVIDIA RTX PRO 6000 Blackwell | 0MiB / 97887MiB | 0% util | 32°C | P8 36W/600W\nDriver: 595.58.03 | CUDA: 13.2\nNo running GPU processes.\n```\n\n### 2. GPU 计算进程\n\n无。\n\n### 3. Python 进程\n\n| PID | CPU% | 命令 | 备注 |\n|-----|------|------|------|\n| 297806 | 4759% | `python3 run_9cell_battery.py` | 启动于 11:57，`CUDA_VISIBLE_DEVICES=\"\"`（纯 CPU），RSS ~950MB |\n| 914 | 0.0% | jupyter-lab | 系统服务 |\n| 912 | 0.0% | tensorboard (port 6007) | 系统服务 |\n| 916 | 0.2% | autopanel serve | 系统服务 |\n\n### 4. tmux sessions\n\n`tmux` 命令被 read-only 白名单拦截，无法执行。\n\n### 5. 磁盘\n\n| 挂载点 | 大小 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| `/` | 30G | 7.5G | 23G | 25% |\n| `/root/autodl-tmp` | 250G | 86G | 165G | 35% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

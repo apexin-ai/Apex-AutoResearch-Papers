@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "eb48ef1a537c3611c858",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp conditional pi 002",
+  "task_key": "worker_exp_conditional_pi_002_20260522T021207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_conditional_pi_002_20260522T021207.log",
+    "occurrence": 1,
+    "bytes": 1274046,
+    "sha256": "5a28d71a33f23e10270d2232c29f435eddd28451b8b4670c17f067ff06c8f051"
+  },
+  "statistics": {
+    "messages": 662,
+    "user_turns": 1,
+    "tool_calls": 243,
+    "roles": {
+      "log": 1,
+      "system": 52,
+      "record": 1,
+      "assistant": 110,
+      "tool_call": 243,
+      "tool_result": 243,
+      "result": 11,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 595,
+      "chunks": [
+        {
+          "path": "eb48ef1a537c3611c858-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb48ef1a537c3611c858-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb48ef1a537c3611c858-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb48ef1a537c3611c858-part-0004.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "eb48ef1a537c3611c858-part-0004.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ]
+}

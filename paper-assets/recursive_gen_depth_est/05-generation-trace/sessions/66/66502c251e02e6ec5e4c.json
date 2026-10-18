@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "66502c251e02e6ec5e4c",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh collect gpt2xl temp09 results",
+  "task_key": "worker_ssh_collect_gpt2xl_temp09_results_20260514T222516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_gpt2xl_temp09_results_20260514T222516.log",
+    "occurrence": 1,
+    "bytes": 723891,
+    "sha256": "98308238950d2fd0172edc868f52e9dcb2c77ab06b549d9b2e0e061d3b3c676f"
+  },
+  "statistics": {
+    "messages": 521,
+    "user_turns": 0,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 230,
+      "tool_result": 230,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 521,
+      "chunks": [
+        {
+          "path": "66502c251e02e6ec5e4c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "66502c251e02e6ec5e4c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "66502c251e02e6ec5e4c-part-0003.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5ce6126429d01c1e7713",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops format check",
+  "task_key": "worker_ops_format-check_20260518T081444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_format-check_20260518T081444_result.json",
+    "occurrence": 1,
+    "bytes": 4715,
+    "sha256": "d1382e0644a0aae2b6f9cc9154267df71fc6880ccd52a162cc48ea3e35b036b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成，以下是逐项报告。\n\n---\n\n## 1. `\\documentclass` 选项\n\n`main.tex:3-4`:\n```latex\n\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n```\n**无问题。** `review` 选项已正确设置，符合 ARR review 版要求。\n\n---\n\n## 2. `references.bib` 格式一致性\n\n### 两个副本一致性\n`diff` 输出为空，**两个副本完全一致。**\n\n### 年份字段\n所有 entry 均有 `year` 字段。**无问题。**\n\n### 重复 entry\n未发现重复。**无问题。**\n\n### Venue 名称不一致\n\n**Findings 系列写法不统一：**\n- `references.bib:246` `bevendorff2025_two_paradigms`: `Findings of the Association for Computational Linguistics: ACL 2025`（全称）\n- `references.bib:96` `synthetic_eggs2026`: `Findings of ACL`（缩写）\n- `references.bib:559` `guo2024curious`: `Findings of NAACL`（缩写）\n- `references.bib:122` `drayson2025_detection_prevents_collapse`: `Findings of EMNLP`（缩写）\n\n注：`bevendorff2025_two_paradigms` 实际未被引用（见下），但如将来引用会造成格式不一致。\n\n**Spotlight 标注位置不当：**\n- `references.bib:270` `loki2025`: `booktitle = {Proceedings of ICLR (Spotlight)}` — `(Spotlight)` 应放在 `note` 字段而非 `booktitle`。\n- `references.bib:107` `shi2025_closer_look`: `note = {Spotlight}` — 这个处理方式是正确的。同一个 bib 文件内两种做法不一致。\n\n**arXiv preprint 格式不统一：**\n- `references.bib:432` `liu2019_roberta`: `@article` + `journal = {arXiv preprint arXiv:1907.11692}`\n- `references.bib:504` `schaeffer2025`: `@article` + `journal = {arXiv preprint arXiv:2503.03150}`\n- 其余 arXiv preprints 用 `@misc` + `howpublished = {arXiv:XXXX.XXXXX}`\n\n### Title 大小写保护\n\n- `references.bib:525` `mccullagh1980_ordinal`: `title={Regression Models for Ordinal Data}` — 单层花括号，BibTeX sentence-case style 会将 \"Ordinal Data\" 小写化。应改为 `title={{Regression Models for Ordinal Data}}`。\n- 其余 entry 均使用 `{{...}}` 双花括号保护，**无问题。**\n\n### 未被引用的 bib entry（6 个）\n\n| Key | 行号 |\n|---|---|\n| `bevendorff2025_two_paradigms` | 243 |\n| `llama3` | 489 |\n| `pareek2024understanding` | 589 |\n| `penedo2024_fineweb` | 459 |\n| `qwen2.5` | 481 |\n| `shi2025_closer_look` | 102 |\n\n其中 `llama3`、`qwen2.5`、`penedo2024_fineweb` 在正文中提到了对应模型/数据集（Llama-3.1-8B、Qwen2.5-7B、FineWeb）但未加 `\\cite`，大概率是遗漏引用。\n\n### key 与 year 不匹配\n- `references.bib:278` `tulchinskii2024_intrinsic_dim`: key 写 2024，实际 `year = {2023}`（NeurIPS 2023）。\n\n---\n\n## 3. Undefined References\n\n### `\\ref` vs `\\label`\n**所有 `\\ref{...}` 均有对应 `\\label{...}`，无 undefined reference。**\n\n### 未被 `\\ref` 引用的 `\\label`（24 个）\n\n大部分是结构性 label（`sec:intro`, `sec:method` 等），hyperref 自动使用。以下几个 appendix label 值得注意——如果正文从未引用，可能是遗漏或多余：\n\n| Label | 文件:行号 | 说明 |\n|---|---|---|\n| `app:calibration` | section_appendix.tex:216 | 正文 Limitations 提到 C4 FPR 数据但未用 `Appendix~\\ref{app:calibration}` 引用 |\n| `app:downstream` | section_appendix.tex:531 | 下游 fine-tuning probe，正文未引用 |\n| `app:mixed_depth` | section_appendix.tex:485 | 混合深度语料实验，正文未引用 |\n| `app:compute` | section_appendix.tex:669 | 计算资源，正文未引用 |\n| `app:cross_scale_confounds` | section_appendix.tex:393 | 跨规模 confounds，正文未引用 |\n| `tab:downstream` | section_appendix.tex:539 | 配套表格，正文未引用 |\n| `tab:ref_ablation` | section_appendix.tex:301 | 正文引用的是 `app:ref_ablation` 而非 `tab:ref_ablation` |\n\n---\n\n## 额外发现的格式问题\n\n### 标点错误（`, ;`）\n- `conclusion.tex:43`: `...85.9\\%), ; the overlap...` — 逗号后多余分号\n- `conclusion.tex:50`: `...within-seed avg), ; depth signal...` — 同上\n\n### RF 树数量前后矛盾\n- `method.tex:103`: `Random Forest (200 trees, unconstrained depth...)`\n- `section_appendix.tex:681`: `scikit-learn defaults (100 trees, Gini criterion, no max depth)`\n\n两处描述的是同一个 primary classifier，但树数量不一致（200 vs 100）。\n\n### `\\textsc` vs `\\texttt` 混用\n- `abstract.tex:4` 和 `section_appendix.tex:9,16,155-156`: 使用 `\\textsc{p90\\_ppl}`, `\\textsc{var\\_surprisal}`（小写大写字母）\n- `method.tex`, `atlas.tex`, `generalization.tex`: 使用 `\\texttt{p90\\_ppl}`（等宽字体）\n\n同一特征名在不同位置格式不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

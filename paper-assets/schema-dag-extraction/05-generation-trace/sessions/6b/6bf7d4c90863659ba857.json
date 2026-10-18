@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6bf7d4c90863659ba857",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp012 llama 8b r2 exp2",
+  "task_key": "worker_diagnose_exp012_llama_8b_r2_exp2_20260515T200434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp012_llama_8b_r2_exp2_20260515T200434_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "557180533bb41f7fc69979b1a3e181ef4f96603fd482430ecc15b5c7fcf56711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：进程正常运行中。**\n\n关键信息：\n- **PID 321037 存活**，子进程 321407 (VLLM::EngineCore) 占用 ~78GB GPU 显存\n- **进度 ~48%**：总 44 batches，已完成 21 个，当前在 count_6/random/19，预计再 10-15 分钟完成\n- **日志持续产出**，vLLM 推理速度正常（~400K toks/s input）\n- **磁盘 85%**，暂无风险\n\n异常点：etime 仅 9 分钟，与\"2 小时前提交\"不符——可能是脚本前置阶段耗时或实际启动延迟。Registry 状态应从 PREPARING 更新为 RUNNING。\n\n报告已写入 `artifacts/exp012_exp2_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

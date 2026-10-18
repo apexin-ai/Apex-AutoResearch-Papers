@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "43110b360fef9190b510",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper d050 batch1 text fixes",
+  "task_key": "worker_paper_d050_batch1_text_fixes_20260516T170225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d050_batch1_text_fixes_20260516T170225.log",
+    "occurrence": 1,
+    "bytes": 847043,
+    "sha256": "43393619984ad2d18e834effbae36159dd39d4428c446ee801e590835fb63101"
+  },
+  "statistics": {
+    "messages": 239,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "43110b360fef9190b510-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "43110b360fef9190b510-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ]
+}

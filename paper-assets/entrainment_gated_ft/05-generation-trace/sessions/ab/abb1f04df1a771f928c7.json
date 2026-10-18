@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "abb1f04df1a771f928c7",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code lmeval clean v2",
+  "task_key": "worker_code_lmeval_clean_v2_20260518T125954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lmeval_clean_v2_20260518T125954_result.json",
+    "occurrence": 1,
+    "bytes": 2275887,
+    "sha256": "049e046a1b4212c6d214a047a428d66b3057b140510eef0b17ca0f796d2a11e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "abb1f04df1a771f928c7-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e8009aa1dc457a962da8",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh check llama 3seed ci",
+  "task_key": "worker_ssh_check_llama_3seed_ci_20260515T230241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_llama_3seed_ci_20260515T230241_result.json",
+    "occurrence": 1,
+    "bytes": 1066,
+    "sha256": "6ade3a93379e2fe311268f11223cbe4484f4577d537acc57b49e7d41c81a3122"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告：llama_3seed_downstream_ci\n\n**进程状态**：已完成（耗时 1935s ≈ 32 分钟）\n**GPU 占用**：2× H800 均空闲（0 MiB, 0% utilization）\n\n### 结果\n\n| Task | BF16 | Uniform 4-bit | MCKP (mean±std) | Delta (MCKP−Uniform) |\n|------|------|---------------|-----------------|---------------------|\n| arc_challenge | 0.5188 | 0.5256 | 0.5179 ± 0.0 | **−0.0077** |\n| hellaswag | 0.6073 | 0.6024 | 0.6021 ± 0.0 | −0.0003 |\n| winogrande | 0.7388 | 0.7261 | 0.7309 ± 0.0 | **+0.0048** |\n| piqa | 0.7922 | 0.7873 | 0.7867 ± 0.0 | −0.0006 |\n\n**注意**：3 个 seed 结果完全相同（std=0.0），因为用的是 single profile + same MCKP allocation，variance 只来自 lm_eval，而 lm_eval 在 0-shot greedy decoding 下是确定性的。\n\n**汇总**：Llama-3.1-8B 的 MCKP vs Uniform delta 为 near-neutral，mean delta = −0.0010。符合 Spike 模型的预期——profiling 差异不大，MCKP 没有显著优势，arc_challenge 略负（−0.77pp），winogrande 略正（+0.48pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

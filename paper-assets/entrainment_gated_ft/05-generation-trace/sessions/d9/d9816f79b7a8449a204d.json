@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "d9816f79b7a8449a204d",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "exp exp 005 deltanet eval hgrn fix",
+  "task_key": "worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530.log",
+    "occurrence": 1,
+    "bytes": 552860,
+    "sha256": "12b07cc296a7b18189067d7101db864bca5be2241219231c33c31250db813012"
+  },
+  "statistics": {
+    "messages": 363,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 93,
+      "tool_call": 133,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 363,
+      "chunks": [
+        {
+          "path": "d9816f79b7a8449a204d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9816f79b7a8449a204d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9816f79b7a8449a204d-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ]
+}

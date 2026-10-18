@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "29f9cac06da9cb30ee86",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra restart qwen base pipeline",
+  "task_key": "worker_infra_restart-qwen-base-pipeline_20260514T114711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_restart-qwen-base-pipeline_20260514T114711_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "c5e3d1a3ded3909366c208fa4a1b646bf4b9469f02828cecb65f898b524b832e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 启动成功，确认：\n\n- **GPU 0**: 98% 利用率, 21995 MiB 显存占用\n- **模型正确**: `--model_name /root/autodl-tmp/models/Qwen2.5-1.5B --target_modules q_proj,v_proj`\n- **训练进行中**: `lora_finetune.py` depth-0 训练，67/939 steps (~7%)，速度 ~2.9 it/s\n- 预计 depth-0 微调约 5 分钟完成\n\n---\n\n**产出报告**：\n\n| 项目 | 状态 |\n|------|------|\n| Pythia pipeline 杀掉 | 已杀（tmux session + PID 99867） |\n| Pythia 数据清理 | depth_1.jsonl + checkpoints 已删除，Pythia 模型文件保留 |\n| Qwen base 模型验证 | 1543.7M params，加载正常 |\n| Pipeline 脚本修正 | MODEL_PATH → Qwen2.5-1.5B, TARGET_MODULES → q_proj,v_proj |\n| Pipeline 启动 | `mvp_pipeline_qwen_base_004`, GPU 0 98%, 正在跑 depth-0 LoRA 微调 |\n\ndepth-1 域一致性检查需要等 depth-0 微调（~5min）+ depth-1 生成（~10-15min）完成后执行。要现在等还是后续再查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

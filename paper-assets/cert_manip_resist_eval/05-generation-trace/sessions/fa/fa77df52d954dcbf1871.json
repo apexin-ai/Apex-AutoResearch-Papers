@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa77df52d954dcbf1871",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops a6 wait loop",
+  "task_key": "worker_ops_a6-wait-loop_20260524T124609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a6-wait-loop_20260524T124609_result.json",
+    "occurrence": 1,
+    "bytes": 155,
+    "sha256": "53f8af05b963dbead6a062f855c3dbfd393e733148e8c4028c2e3407cd39de6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Check #1 完成：文件不存在，进程运行 32 分 30 秒，状态 STILL_RUNNING。已设置 3 分钟后自动进行第 2 次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

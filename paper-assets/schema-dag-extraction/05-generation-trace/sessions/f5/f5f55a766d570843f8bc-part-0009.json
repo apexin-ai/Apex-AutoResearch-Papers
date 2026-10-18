@@ -1,0 +1,3633 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f5f55a766d570843f8bc",
+  "rounds": [
+    {
+      "number": 64,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-18T03:28:33.856728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t% References for Schema-DAG-Extraction\n1\t% Generated: 2026-05-15\n2\t% Sources: literature_map.yaml + references_survey.md\n3\t\n4\t@article{gemini-team-2024,\n5\t  title     = {Gemini 1.5: Unlocking Multimodal Understanding Across Millions of Tokens of Context},\n6\t  author    = {{Gemini Team} and Georgiev, Petko and Lei, Ving Ian and Burnell, Ryan and Bai, Libin and Gulati, Anmol and Tanzer, Garrett and Vincent, Damien and Pan, Zhufeng and Wang, Shibo and others},\n7\t  journal   = {arXiv preprint arXiv:2403.05530},\n8\t  year      = {2024},\n9\t  url       = {https://arxiv.org/abs/2403.05530}\n10\t}\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-18T03:28:34.208881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "snell|muller|müller|peterson|jagannatha",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "-i": "True",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-18T03:28:34.259575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-18T03:29:21.730585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
+              "old_string": "@article{gemini-team-2024,\n  title     = {Gemini 1.5: Unlocking Multimodal Understanding Across Millions of Tokens of Context},\n  author    = {{Gemini Team} and Georgiev, Petko and Lei, Ving Ian and Burnell, Ryan and Bai, Libin and Gulati, Anmol and Tanzer, Garrett and Vincent, Damien and Pan, Zhufeng and Wang, Shibo and others},\n  journal   = {arXiv preprint arXiv:2403.05530},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2403.05530}\n}",
+              "new_string": "@article{gemini-2025,\n  title     = {Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, and Long Context},\n  author    = {Comanici, Gheorghe and others},\n  journal   = {arXiv preprint arXiv:2507.06261},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2507.06261}\n}\n\n@inproceedings{snell2017prototypical,\n  title     = {Prototypical Networks for Few-shot Learning},\n  author    = {Snell, Jake and Swersky, Kevin and Zemel, Richard},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {30},\n  year      = {2017}\n}\n\n@inproceedings{muller2019when,\n  title     = {When Does Label Smoothing Help?},\n  author    = {M{\\\"u}ller, Rafael and Kornblith, Simon and Hinton, Geoffrey E.},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {32},\n  year      = {2019}\n}\n\n@inproceedings{peterson2019human,\n  title     = {Human Uncertainty Makes Classification More Robust},\n  author    = {Peterson, Joshua C. and Battleday, Ruairidh M. and Griffiths, Thomas L. and Russakovsky, Olga},\n  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  pages     = {9617--9626},\n  year      = {2019}\n}\n\n@inproceedings{jagannatha2020calibrating,\n  title     = {Calibrating Structured Output Predictors for Natural Language Processing},\n  author    = {Jagannatha, Abhyuday and Yu, Hong},\n  booktitle = {Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages     = {2078--2092},\n  year      = {2020}\n}"
+            }
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-18T03:29:22.132662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-18T03:29:22.635087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "Gemini 2.5 Flash \\citep{gemini-team-2024}",
+              "new_string": "Gemini 2.5 Flash \\citep{gemini-2025}"
+            }
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-18T03:29:23.088051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-18T03:29:24.045235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "old_string": "The dataset spans diverse domains, making it suitable for cross-domain evaluation.",
+              "new_string": "The dataset spans diverse domains and is suitable for cross-domain evaluation."
+            }
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-18T03:29:24.497526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-18T03:29:26.405683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "old_string": "FewRel's balanced design (700 instances per relation type) eliminates type frequency as a potential confound, making it the primary dataset for BCS analysis.",
+              "new_string": "FewRel's balanced design (700 instances per relation type) eliminates type frequency as a potential confound; this balance makes it the primary dataset for BCS analysis."
+            }
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-18T03:29:26.858369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-18T03:29:28.180545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "old_string": "MAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology, making it a same-domain schema.",
+              "new_string": "MAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology. As a same-domain schema, it"
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-18T03:29:28.231240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-18T03:29:31.849353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "offset": "18",
+              "limit": "3"
+            }
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-18T03:29:31.900072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "18\t\\paragraph{MAVEN (ED).}\n19\tMAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology. As a same-domain schema, it We use the validation set (8{,}042 sentences containing 18{,}904 event mentions) for evaluation, as test set labels are not publicly available. The task requires both trigger identification and event type classification.\n20\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-18T03:29:36.370060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "old_string": "MAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology. As a same-domain schema, it We use the validation set",
+              "new_string": "MAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology; all types belong to a single ontology (FrameNet), so this is a same-domain schema. We use the validation set"
+            }
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-18T03:29:36.421015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-18T03:29:41.996447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "old_string": "SCS measures embedding-space similarity rather than task-grounded confusion, making it a pre-hoc proxy computable without running extraction experiments.",
+              "new_string": "SCS measures embedding-space similarity rather than task-grounded confusion; it is thus a pre-hoc proxy computable without running extraction experiments."
+            }
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-18T03:29:42.398765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-18T03:29:45.762570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "old_string": "Oracle routing achieves 0.802 accuracy versus 0.504 single-pass on FewRel 80-relation RE (+29.8\\,pp; Table~\\ref{tab:batch_composition}), confirming that type separation recovers performance absent merge amplification.",
+              "new_string": "Oracle routing achieves 0.802 accuracy versus 0.504 single-pass on FewRel 80-relation RE (+29.8\\,pp; Table~\\ref{tab:batch_composition}); type separation thus recovers performance absent merge amplification."
+            }
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-18T03:29:46.214604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-18T03:29:47.671072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "In NER, missed rates are higher (43--65\\%) and non-monotonic, indicating confusable types impair entity detection itself.",
+              "new_string": "In NER, missed rates are higher (43--65\\%) and non-monotonic; confusable types impair entity detection itself."
+            }
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-18T03:29:47.671637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-18T03:29:53.348646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "For Few-NERD, SCS is computed from the extraction model's own embeddings (Qwen3), creating a shared-representation dependency.",
+              "new_string": "For Few-NERD, SCS is computed from the extraction model's own embeddings (Qwen3), which creates a shared-representation dependency."
+            }
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-18T03:29:53.801349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-18T03:29:56.212663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "A post-hoc schema label renaming experiment was inconclusive due to label unfamiliarity confounds, suggesting that confusability may require addressing at the schema design stage rather than through surface-level relabeling.",
+              "new_string": "A post-hoc schema label renaming experiment was inconclusive due to label unfamiliarity confounds; confusability may require addressing at the schema design stage rather than through surface-level relabeling."
+            }
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-18T03:29:56.615231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-18T03:29:58.491057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "yielding lower F1 in both modes (sdgd\\_zero: 0.251$\\to$0.241; random\\_batch: 0.320$\\to$0.301).",
+              "new_string": "and both modes produce lower F1 (sdgd\\_zero: 0.251$\\to$0.241; random\\_batch: 0.320$\\to$0.301)."
+            }
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-18T03:29:58.944503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 453
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-18T03:30:00.427269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "Frequent types have more training signal and are extracted more reliably, producing the positive BCS--F1 association.",
+              "new_string": "Frequent types have more training signal and are extracted more reliably, which produces the positive BCS--F1 association."
+            }
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-18T03:30:00.838987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 411
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-18T03:30:02.807610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "Under joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders.",
+              "new_string": "Under joint control, both embeddings yield $p > 0.2$; the raw positive BCS--F1 correlation on MAVEN is thus fully attributable to centrality-related confounders."
+            }
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-18T03:30:03.316424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 508
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-18T03:30:04.324694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "An alternative definition takes the \\emph{maximum} pairwise SCS within each batch, capturing the single most confusable pair.",
+              "new_string": "An alternative definition takes the \\emph{maximum} pairwise SCS within each batch to capture the single most confusable pair."
+            }
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-18T03:30:04.376211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-18T03:30:09.404105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "for MAVEN and FewRel, prompts use type names alone, making name-only SCS a direct match to model input.",
+              "new_string": "for MAVEN and FewRel, prompts use type names alone, so name-only SCS directly matches model input."
+            }
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-18T03:30:10.007331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 603
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-18T03:30:11.212890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "The ratio ranges from 0.40 to 1.00 (mean 0.80, reflecting the 64/80 base rate).",
+              "new_string": "The ratio ranges from 0.40 to 1.00 (mean 0.80, consistent with the 64/80 base rate)."
+            }
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-18T03:30:11.665827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-18T03:30:14.983193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "Pairwise SCS distributions do not differ significantly between train-origin (64 types, mean\\,=\\,0.880) and val-origin (16 types, mean\\,=\\,0.874) subsets (Mann-Whitney $p = 0.754$, Cohen's $d = 0.081$), confirming that the train/val split does not introduce systematic confusability bias.",
+              "new_string": "Pairwise SCS distributions do not differ significantly between train-origin (64 types, mean\\,=\\,0.880) and val-origin (16 types, mean\\,=\\,0.874) subsets (Mann-Whitney $p = 0.754$, Cohen's $d = 0.081$); the train/val split does not introduce systematic confusability bias."
+            }
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-18T03:30:15.437423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 454
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-18T03:30:17.749392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "Intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability.",
+              "new_string": "Intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$); random batch composition is the primary source of performance variability."
+            }
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-18T03:30:18.202219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-18T03:30:19.660566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "The confidence interval excludes zero, confirming the confusability effect at the 70B scale.",
+              "new_string": "The confidence interval excludes zero; the confusability effect is thus confirmed at the 70B scale."
+            }
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-18T03:30:20.113044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-18T03:30:22.325950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "with the gap widening at higher counts (0.3\\,pp at count 4 vs.\\ 8.7\\,pp at count 32), suggesting that Gemini is more robust to schema scaling but not immune.",
+              "new_string": "with the gap widening at higher counts (0.3\\,pp at count 4 vs.\\ 8.7\\,pp at count 32); Gemini appears more robust to schema scaling but not immune."
+            }
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-18T03:30:22.376950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-18T03:30:30.434031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+              "old_string": "The relationship between label similarity and classification confusion has precedent in traditional ML: hierarchical classification suffers sibling confusion proportional to inter-class proximity \\citep{deng-2010-imagenet}, label confusion matrices improve text classification \\citep{guo-2021-label-confusion}, and classification confusion captures semantic similarity \\citep{zhou-2025-rethinking}.",
+              "new_string": "The relationship between label similarity and classification confusion has precedent in traditional ML: hierarchical classification suffers sibling confusion proportional to inter-class proximity \\citep{deng-2010-imagenet}, label confusion matrices improve text classification \\citep{guo-2021-label-confusion}, classification confusion captures semantic similarity \\citep{zhou-2025-rethinking}, label smoothing exploits inter-class similarity structure \\citep{muller2019when}, and human label uncertainty mirrors model confusion patterns \\citep{peterson2019human}."
+            }
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-18T03:30:30.484821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001489"
+        },
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-18T03:30:34.710713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+              "old_string": "SCS shares its formal definition (pairwise cosine similarity of type name embeddings) with the partitioning criterion used in LLM-PEE~\\cite{llm-pee-2025} for schema decomposition. Our contribution is not the metric itself but the controlled experimental framework",
+              "new_string": "SCS shares its formal definition (pairwise cosine similarity of type name embeddings) with the partitioning criterion used in LLM-PEE~\\cite{llm-pee-2025} for schema decomposition. The use of embedding distance for type discrimination has parallels in metric learning \\citep{snell2017prototypical}. Our contribution is not the metric itself but the controlled experimental framework"
+            }
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-18T03:30:35.214506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 503
+          },
+          "id": "event-001491"
+        },
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-18T03:30:36.972218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+              "old_string": "(3)~calibrated generation to recover confidence signals eliminated by constrained decoding.",
+              "new_string": "(3)~calibrated generation \\citep{jagannatha2020calibrating} to recover confidence signals eliminated by constrained decoding."
+            }
+          },
+          "id": "event-001492"
+        },
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-18T03:30:37.073035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: (3)~calibrated generation to recover confidence signals eliminated by constrained decoding.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-18T03:30:40.845940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "calibrated generation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-18T03:30:40.897029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex:13:Three avenues may address these bottlenecks: (1)~coarse-to-fine pipelines that screen with the full schema then refine with targeted sub-schemas; (2)~retrieval-based routing using document retrieval rather than LLM confidence for sub-schema assignment; (3)~calibrated generation to recover confidence signals eliminated by constrained decoding."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-001495"
+        },
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-18T03:30:44.362691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "old_string": "(3)~calibrated generation to recover confidence signals eliminated by constrained decoding.",
+              "new_string": "(3)~calibrated generation \\citep{jagannatha2020calibrating} to recover confidence signals eliminated by constrained decoding."
+            }
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-18T03:30:44.413479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001497"
+        },
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-18T03:30:48.035167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "40",
+              "limit": "8"
+            }
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-18T03:30:48.491727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\tMAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}\\,0.001$ \\\\\n41\t\\bottomrule\n42\t\\end{tabular}}\n43\t\\caption{Pairwise SCS--confusion correlation. $r^2$ indicates the fraction of variance in type confusion explained by embedding similarity. Both correlations are modest in magnitude but robust across datasets and embedding models (both $p \\ll 0.001$). Confusion rate for each ordered pair $(t_i, t_j)$ is computed as the total bidirectional confusion count $C(t_i{\\to}t_j) + C(t_j{\\to}t_i)$ divided by the sum of gold frequencies, aggregated over all count conditions; CIs are pair-level percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \\S\\ref{sec:scs-validation}) is excluded as RE's per-instance format precludes direct comparison of confusion rates. Type-level cluster bootstrap CIs: Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]; both exclude zero, confirming robustness to within-type correlation.}\n44\t\\label{tab:pairwise}\n45\t\\end{table}\n46\t\n47\tThe correlations are statistically significant but modest: $r^2 \\approx 1.3\\text{--}1.7\\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Both datasets show significant positive correlations between pairwise SCS and type confusion rates. Spearman correlations corroborate: $\\rho = 0.144\\text{--}0.227$ across all pairs, strengthening to $\\rho = 0.27\\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 456
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-18T03:30:48.644177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "53",
+              "limit": "8"
+            }
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-18T03:30:48.694808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "53\t\n54\tWe fix type count and vary BCS. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound; the within-pool analysis (\\S\\ref{sec:within_pool}) controls for pool composition.\n55\t\n56\tIn BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (CI: [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16), confirming monotonic decline.\n57\t\n58\t\\paragraph{Document-level RE (DocRED).}\n59\tThe effect replicates on DocRED's 96-relation schema: BCS gap $-$23.3\\,pp at count 16 (slope $= -0.713$, $\\rho = -0.661$, $p < 0.001$) and $-$17.6\\,pp at count 32 (slope $= -0.690$, $\\rho = -0.509$, $p = 0.002$). BCS explains 44--53\\% of cross-batch variance ($R^2 = 0.525$ at count 16), substantially higher than FewRel ($R^2 = 0.218$), possibly reflecting a wider confusability range in the DocRED schema, though document-level context may also provide richer cues for type confusion. Across all RE settings, BCS slopes range from $-$0.40 to $-$0.71, significant in all conditions with sufficient BCS range.\n60\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001501"
+        },
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-18T03:30:53.519109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "both exclude zero, confirming robustness to within-type correlation.}",
+              "new_string": "both exclude zero and confirm robustness to within-type correlation.}"
+            }
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-18T03:30:53.971507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001503"
+        },
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-18T03:30:54.925975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16), confirming monotonic decline.",
+              "new_string": "yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline."
+            }
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-18T03:30:55.027516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001505"
+        },
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-18T03:30:59.816335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -30",
+              "description": "Compile LaTeX paper after T0 edits",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-18T03:31:07.459553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (24 pages, 465596 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 7643
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-18T03:31:12.189091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -c \"Warning\" main.log | head -1 && grep \"undefined\" main.log | head -10 && grep \"multiply\" main.log | head -5",
+              "description": "Check for LaTeX warnings"
+            }
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-18T03:31:12.490699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-18T03:31:12.692142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"Output written\" main.log && grep -c \"^!\" main.log",
+              "description": "Check page count and errors"
+            }
+          },
+          "id": "event-001510"
+        },
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-18T03:31:12.793029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (24 pages, 465596 bytes).\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001511"
+        },
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-18T03:31:19.727227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"Warning\" main.log",
+              "description": "Show all LaTeX warnings"
+            }
+          },
+          "id": "event-001512"
+        },
+        {
+          "source_line": 1513,
+          "timestamp": "2026-05-18T03:31:19.878818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-001513"
+        },
+        {
+          "source_line": 1514,
+          "timestamp": "2026-05-18T03:31:24.502190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -c \"snell2017\\|muller2019\\|peterson2019\\|jagannatha2020\\|gemini-2025\" main.bbl",
+              "description": "Check if new citations appear in bibliography"
+            }
+          },
+          "id": "event-001514"
+        },
+        {
+          "source_line": 1515,
+          "timestamp": "2026-05-18T03:31:25.757768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 1255
+          },
+          "id": "event-001515"
+        },
+        {
+          "source_line": 1516,
+          "timestamp": "2026-05-18T03:31:25.810057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"snell\\|Snell\\|muller\\|Müller\\|Peterson\\|Jagannatha\\|Gemini 2.5\" main.bbl | head -10",
+              "description": "Verify new bib entries resolved"
+            }
+          },
+          "id": "event-001516"
+        },
+        {
+          "source_line": 1517,
+          "timestamp": "2026-05-18T03:31:25.860782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\newblock \\href {https://arxiv.org/abs/2507.06261} {Gemini 2.5: Pushing the\n\\bibitem[{Jagannatha and Yu(2020)}]{jagannatha2020calibrating}\nAbhyuday Jagannatha and Hong Yu. 2020.\n  Hinton}]{muller2019when}\n\\bibitem[{Peterson et~al.(2019)Peterson, Battleday, Griffiths, and\nJoshua~C. Peterson, Ruairidh~M. Battleday, Thomas~L. Griffiths, and Olga\n\\bibitem[{Snell et~al.(2017)Snell, Swersky, and Zemel}]{snell2017prototypical}\nJake Snell, Kevin Swersky, and Richard Zemel. 2017.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001517"
+        },
+        {
+          "source_line": 1518,
+          "timestamp": "2026-05-18T03:31:33.046002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\x0c')\nfor i, page in enumerate(pages[:10], 1):\n    first_line = page.strip().split('\\n')[0] if page.strip() else '(empty)'\n    print(f'Page {i}: {first_line[:80]}')\n\"",
+              "description": "Check page boundaries to verify body is 8 pages"
+            }
+          },
+          "id": "event-001518"
+        },
+        {
+          "source_line": 1519,
+          "timestamp": "2026-05-18T03:31:33.347455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 1: How Does Schema Complexity Predict Performance\nPage 2: 079\nPage 3: 179\nPage 4: Dataset\nPage 5: 3.4\nPage 6: Dataset\nPage 7: 80\nPage 8: Condition\nPage 9: 706\nPage 10: tion curve (85.7%→50.4%) cannot be explained\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-001519"
+        },
+        {
+          "source_line": 1520,
+          "timestamp": "2026-05-18T03:31:38.976258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\x0c')\nfor i, page in enumerate(pages, 1):\n    if 'References' in page and i <= 12:\n        lines = page.split('\\n')\n        for j, line in enumerate(lines):\n            if 'References' in line:\n                print(f'Page {i}, line: {line.strip()}')\n                break\n    if 'Limitations' in page and i <= 12:\n        lines = page.split('\\n')\n        for j, line in enumerate(lines):\n            if 'Limitations' in line:\n                print(f'Page {i}, line: {line.strip()}')\n                break\n\"",
+              "description": "Find where References and Limitations appear"
+            }
+          },
+          "id": "event-001520"
+        },
+        {
+          "source_line": 1521,
+          "timestamp": "2026-05-18T03:31:39.328539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 7, line: floor effects on 8B NER (Limitations, item 1).\nPage 9, line: Limitations\nPage 10, line: Yes. The Limitations section (after §7) discusses single-model reliance, modest pairwise\nPage 11, line: References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 352
+          },
+          "id": "event-001521"
+        },
+        {
+          "source_line": 1522,
+          "timestamp": "2026-05-18T03:31:52.761832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "We introduce the Schema Confusability",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-001522"
+        },
+        {
+          "source_line": 1523,
+          "timestamp": "2026-05-18T03:31:53.115639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:44:We introduce the Schema Confusability Score to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\\text{name}(t)$, an embedding function $\\text{embed}(\\cdot)$ maps the type name to a vector representation. The \\textbf{pairwise SCS} between types $t_i$ and $t_j$ is:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 353
+          },
+          "id": "event-001523"
+        },
+        {
+          "source_line": 1524,
+          "timestamp": "2026-05-18T03:31:53.116452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\\\.59",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-001524"
+        },
+        {
+          "source_line": 1525,
+          "timestamp": "2026-05-18T03:31:53.518683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 402
+          },
+          "id": "event-001525"
+        },
+        {
+          "source_line": 1526,
+          "timestamp": "2026-05-18T03:31:53.971378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "offset": "14",
+              "limit": "14"
+            }
+          },
+          "id": "event-001526"
+        },
+        {
+          "source_line": 1527,
+          "timestamp": "2026-05-18T03:31:54.423677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14\tOur experiments yield four findings:\n15\t(1)~Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) and confusability-related type substitution (typical-batch gap ${\\approx}\\,2.2$\\,pp), with count as the dominant factor. The two dimensions exhibit bounded association in RE (Two One-Sided Tests [TOST] equivalence, $p = 0.003$ at $\\pm 3$\\,pp) but are coupled in NER.\n16\t(2)~Pairwise SCS predicts type confusion across NER, RE, and ED ($r = 0.112$--$0.129$); at batch level, BCS predicts accuracy in RE ($R^2 = 0.22$--$0.53$) but not in NER (batch-level $r \\approx 0$, n.s.); per-type aggregation is confounded by centrality on homogeneous schemas (\\S\\ref{sec:centrality_confound}).\n17\t(3)~Effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: $R^2 = 0.53$) and directionally consistent across prompt designs.\n18\t(4)~Schema decomposition fails due to merge amplification in NER; RE confusability-aware grouping yields no significant improvement over random (+1.4\\,pp, $p \\approx 0.19$, n.s.) despite oracle routing that recovers +29.8\\,pp.\n19\t\n20\tOur contributions are:\n21\t\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n22\t    \\item We conduct the first controlled study that isolates count and confusability effects on training-free LLM IE performance across four datasets and three tasks (\\S\\ref{sec:count_curves}, \\S\\ref{sec:bcs_controlled}).\n23\t    \\item We validate that embedding-based confusability scores predict type substitution errors and establish an empirical link between schema similarity and extraction accuracy in RE (\\S\\ref{sec:scs-validation}).\n24\t    \\item We identify task-dependent boundaries of batch-level confusability metrics: BCS predicts type substitution errors in RE but shows no batch-level signal in NER, which underscores the need for task-specific validation (\\S\\ref{sec:bcs_controlled}, \\S\\ref{sec:multi_channel}).\n25\t    \\item We report a negative result: sc\n…[truncated 194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001527"
+        },
+        {
+          "source_line": 1528,
+          "timestamp": "2026-05-18T03:31:54.524603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "74",
+              "limit": "18"
+            }
+          },
+          "id": "event-001528"
+        },
+        {
+          "source_line": 1529,
+          "timestamp": "2026-05-18T03:31:54.625412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "74\t\n75\t\\subsection{Multi-Dimensional Degradation}\n76\t\\label{sec:multi_channel}\n77\t\n78\t\\begin{figure}[t]\n79\t\\centering\n80\t\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_error_taxonomy.pdf}\n81\t\\caption{Error taxonomy decomposition. IntraSub scales monotonically with BCS in both tasks. RE missed rates remain flat (10--16\\%), but NER missed rates are substantially higher (43--65\\%) and non-monotonic.}\n82\t\\label{fig:error_taxonomy}\n83\t\\end{figure}\n84\t\n85\tError taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS: $\\rho = 1.0$ ($p < 0.001$) for NER and $\\rho = 0.954$ ($p < 0.001$) for RE. Under closed-set classification, non-\\texttt{none} errors are necessarily intra-batch; the more informative finding is that IntraSub confusion frequency correlates with pairwise SCS ($\\rho{=}0.954$, $p{<}0.001$). In NER, missed rates are higher (43--65\\%) and non-monotonic; confusable types impair entity detection itself. Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches.\n86\t\n87\tThese results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion), consistent with bounded association in RE, under the primary linear-scale specification ($\\pm 3$\\,pp, $p = 0.003$); logit-scale and factorial robustness checks remain inconclusive (Appendix~\\ref{sec:appendix_factorial}). In NER, the dimensions are coupled, as type ambiguity and boundary ambiguity interact. The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. Two One-Sided Tests (TOST) equivalence testing \\citep{lakens-2017-equivalence} with a $\\pm 3$\\,pp margin ($p_{\\text{TOST}} = 0.003$) confirms bounded association; sensitivity analysis at $\\pm 2$\\,pp and on the logit scale is reported in A\n…[truncated 139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001529"
+        },
+        {
+          "source_line": 1530,
+          "timestamp": "2026-05-18T03:32:11.121779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.59|threshold",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001530"
+        },
+        {
+          "source_line": 1531,
+          "timestamp": "2026-05-18T03:32:11.122236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-001531"
+        },
+        {
+          "source_line": 1532,
+          "timestamp": "2026-05-18T03:32:11.173361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-001532"
+        },
+        {
+          "source_line": 1533,
+          "timestamp": "2026-05-18T03:32:11.173765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling. RE's separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}). Cross-scale evidence (32B vs.\\ 8B) shows Dimension~1 replicates fully while Dimension~2 attenuates on smaller models and drops to near-zero $R^2$ for NER on Llama-3.1-8B (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Count-related degradation may partly reflect prompt length (per-type recall 0.586 vs.\\ single-pass 0.368, consistent with lost-in-middle effects; \\citealt{lost-in-middle-2024}; \\citealt{levy-2024-same-task}).\n6\t\n7\t\\paragraph{Why does embedding similarity predict LLM confusion?}\n8\tSCS captures semantic proximity in LLMs' type-resolution space. The unconditional pairwise $R^2$ is modest (1.3\\% on Few-NERD, $r = 0.112$) because ${\\sim}89\\%$ of type pairs never produce mutual confusion; among the 11\\% with nonzero confusion, conditional $R^2$ rises to 7\\%. Correlated pair-level signals then aggregate at the batch level: a Monte Carlo simulation ($\\rho_{\\mathrm{SCS}} = 0.35$; Appendix~\\ref{app:aggregation-sim}) predicts batch $R^2$ of 18--25\\%, consistent with the observed 22--53\\% in RE. SCS is thus a weak pair-level predictor but a practically useful batch-level screen. We hypothesize that the NER U-shape (\\S\\ref{sec:count_curves}) reflects a dual-task burden absent in RE: partial schemas require simultaneous span detection and type-membership filtering; at full-schema, filtering becomes vacuous and recall recovers. This confirms task-specific pathways.\n9\t\n10\t\\para\n…[truncated 2915 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001533"
+        },
+        {
+          "source_line": 1534,
+          "timestamp": "2026-05-18T03:32:49.243422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\begin\\{abstract\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-001534"
+        },
+        {
+          "source_line": 1535,
+          "timestamp": "2026-05-18T03:32:49.294188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:1:\\begin{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001535"
+        },
+        {
+          "source_line": 1536,
+          "timestamp": "2026-05-18T03:32:52.011342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-001536"
+        },
+        {
+          "source_line": 1537,
+          "timestamp": "2026-05-18T03:32:52.062023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tTraining-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: having more types (count) and having semantically similar types (confusability). We present the first controlled study isolating these factors in zero-shot LLM IE, spanning NER, RE, and event detection across four datasets, and operationalize confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS, the mean pairwise embedding similarity within a type batch). Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) dominates confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches); at batch level, BCS explains 22--53\\% of cross-batch accuracy variance in RE but not in NER, where the signal is absent despite significant pairwise effects. Schema decomposition fails in both tasks due to merge amplification (NER) and routing failure (RE), which points to structural barriers to confusability-aware extraction.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001537"
+        },
+        {
+          "source_line": 1538,
+          "timestamp": "2026-05-18T03:33:14.300157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+              "old_string": "We introduce the Schema Confusability Score to quantify semantic overlap between types in a schema.",
+              "new_string": "We define the Schema Confusability Score (SCS) to quantify semantic overlap between types in a schema."
+            }
+          },
+          "id": "event-001538"
+        },
+        {
+          "source_line": 1539,
+          "timestamp": "2026-05-18T03:33:14.802570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-001539"
+        },
+        {
+          "source_line": 1540,
+          "timestamp": "2026-05-18T03:33:20.080658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "old_string": "    \\item We validate that embedding-based confusability scores predict type substitution errors and establish an empirical link between schema similarity and extraction accuracy in RE (\\S\\ref{sec:scs-validation}).\n    \\item We identify task-dependent boundaries of batch-level confusability metrics: BCS predicts type substitution errors in RE but shows no batch-level signal in NER, which underscores the need for task-specific validation (\\S\\ref{sec:bcs_controlled}, \\S\\ref{sec:multi_channel}).",
+              "new_string": "    \\item We validate that pairwise embedding similarity predicts type confusion ($r = 0.11$--$0.19$) and show that weak pair-level signals amplify to batch-level predictive power ($R^2 = 0.22$--$0.53$) through correlated aggregation (\\S\\ref{sec:scs-validation}, \\S\\ref{sec:bcs_controlled}).\n    \\item We discover a task asymmetry: BCS explains 22--53\\% of cross-batch accuracy variance in RE through type substitution, yet shows no batch-level signal in NER ($r \\approx 0$) despite significant pairwise effects, because NER errors are dominated by missed entities rather than type confusion (\\S\\ref{sec:bcs_controlled}, \\S\\ref{sec:multi_channel})."
+            }
+          },
+          "id": "event-001540"
+        },
+        {
+          "source_line": 1541,
+          "timestamp": "2026-05-18T03:33:20.131473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001541"
+        },
+        {
+          "source_line": 1542,
+          "timestamp": "2026-05-18T03:33:21.843005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "For RE, BCS provides a pre-hoc screen: threshold $> 0.59$ identifies confusable pairs with expected accuracy differences of 3--5\\,pp.",
+              "new_string": "For RE, BCS provides a pre-hoc screen: type pairs in the upper quartile of pairwise SCS are associated with accuracy differences of 3--5\\,pp at the batch level."
+            }
+          },
+          "id": "event-001542"
+        },
+        {
+          "source_line": 1543,
+          "timestamp": "2026-05-18T03:33:22.345605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-001543"
+        },
+        {
+          "source_line": 1544,
+          "timestamp": "2026-05-18T03:33:24.153724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "This task dependence has practical implications: BCS is a useful pre-hoc screening tool for RE schema design but not for NER, where count reduction is the primary lever.",
+              "new_string": "This task dependence has practical implications: BCS is a useful pre-hoc screening tool for RE schema design but not for NER, where count reduction is the primary lever. MAVEN batch-level analysis is excluded because centrality confounding (\\S\\ref{sec:centrality_confound}) renders per-type BCS unreliable on same-domain schemas; the pairwise signal remains intact."
+            }
+          },
+          "id": "event-001544"
+        },
+        {
+          "source_line": 1545,
+          "timestamp": "2026-05-18T03:33:24.706942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 553
+          },
+          "id": "event-001545"
+        },
+        {
+          "source_line": 1546,
+          "timestamp": "2026-05-18T03:33:25.912883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "logit-scale and factorial robustness checks remain inconclusive (Appendix~\\ref{sec:appendix_factorial}).",
+              "new_string": "the logit-scale TOST is inconclusive ($p_{\\text{TOST}} = 0.209$), though the back-transformed interaction (2.78\\,pp) remains within the $\\pm 3$\\,pp margin (the wider CI reflects limited power rather than a large effect; Appendix~\\ref{sec:appendix_factorial})."
+            }
+          },
+          "id": "event-001546"
+        },
+        {
+          "source_line": 1547,
+          "timestamp": "2026-05-18T03:33:25.963726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001547"
+        },
+        {
+          "source_line": 1548,
+          "timestamp": "2026-05-18T03:33:29.600461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -10",
+              "description": "Compile after T1 edits",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-001548"
+        },
+        {
+          "source_line": 1549,
+          "timestamp": "2026-05-18T03:33:33.113935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Latexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 3513
+          },
+          "id": "event-001549"
+        },
+        {
+          "source_line": 1550,
+          "timestamp": "2026-05-18T03:33:37.231313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"Output written\" main.log && grep -c \"^!\" main.log && grep \"undefined\" main.log | head -5 && grep \"multiply\" main.log | head -5",
+              "description": "Check compilation results"
+            }
+          },
+          "id": "event-001550"
+        },
+        {
+          "source_line": 1551,
+          "timestamp": "2026-05-18T03:33:37.332206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nOutput written on main.pdf (24 pages, 465848 bytes).\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001551"
+        },
+        {
+          "source_line": 1552,
+          "timestamp": "2026-05-18T03:33:42.710907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nfor i, page in enumerate(pages[:12], 1):\n    for line in page.split('\\n'):\n        if any(k in line for k in ['Limitations', 'References', 'Conclusion']):\n            print(f'Page {i}: {line.strip()[:80]}')\n            break\n\"",
+              "description": "Check body page boundaries"
+            }
+          },
+          "id": "event-001552"
+        },
+        {
+          "source_line": 1553,
+          "timestamp": "2026-05-18T03:33:43.012544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 7: floor effects on 8B NER (Limitations, item 1).\nPage 9: Limitations\nPage 10: Yes. The Limitations section (after §7) discusses single-model reliance, modest \nPage 11: References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-001553"
+        },
+        {
+          "source_line": 1554,
+          "timestamp": "2026-05-18T03:33:47.433755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "offset": "15",
+              "limit": "10"
+            }
+          },
+          "id": "event-001554"
+        },
+        {
+          "source_line": 1555,
+          "timestamp": "2026-05-18T03:33:47.936441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15\t\n16\t\\section{Conclusion}\n17\t\\label{sec:conclusion}\n18\t\n19\tSchema-induced degradation in training-free LLM extraction operates along two dimensions (count-related recall decline, confusability-related type confusion) with bounded association in RE but coupling in NER. Dimension~1 replicates across model scales (8B, 32B, 70B) and architecture families, including the proprietary Gemini 2.5 Flash; Dimension~2 attenuates on smaller models but remains significant at 70B scale for RE. Even few-shot demonstrations do not reduce the confusability gap; the BCS penalty widens under 5-shot prompting (+4.3\\,pp, $p = 0.014$); type confusion is a structural property of the schema rather than a prompting deficit. Schema decomposition fails due to merge amplification (NER) and routing failure (RE); BCS enables pre-hoc screening but only for RE at batch level, and schema redesign remains the primary recourse for high-confusability schemas. These findings suggest that training-based approaches, which can learn type boundaries from data, may be necessary when confusability is inherent and cannot be resolved through schema restructuring.\n20\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-001555"
+        },
+        {
+          "source_line": 1556,
+          "timestamp": "2026-05-18T03:33:47.936808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-001556"
+        },
+        {
+          "source_line": 1557,
+          "timestamp": "2026-05-18T03:33:48.490921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tTraining-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: having more types (count) and having semantically similar types (confusability). We present the first controlled study isolating these factors in zero-shot LLM IE, spanning NER, RE, and event detection across four datasets, and operationalize confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS, the mean pairwise embedding similarity within a type batch). Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) dominates confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches); at batch level, BCS explains 22--53\\% of cross-batch accuracy variance in RE but not in NER, where the signal is absent despite significant pairwise effects. Schema decomposition fails in both tasks due to merge amplification (NER) and routing failure (RE), which points to structural barriers to confusability-aware extraction.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 554
+          },
+          "id": "event-001557"
+        },
+        {
+          "source_line": 1558,
+          "timestamp": "2026-05-18T03:33:48.491274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-001558"
+        },
+        {
+          "source_line": 1559,
+          "timestamp": "2026-05-18T03:33:48.541780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.}\\footnote{Code and data will be released upon acceptance. Anonymous review materials: \\url{https://anonymous.4open.science/r/schema-dag-extraction}} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\\sim}$0.27 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\\% with one relation to 49.5\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level), near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat explains this degradation? Prior decomposition strategies \\cite{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n7\t\n8\tThis study combines correlational analyses with quasi-experimental manipulation (BCS-controlled batches) to characterize how schema properties predict extraction accur\n…[truncated 3252 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001559"
+        },
+        {
+          "source_line": 1560,
+          "timestamp": "2026-05-18T03:34:04.172571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "514",
+              "limit": "30"
+            }
+          },
+          "id": "event-001560"
+        },
+        {
+          "source_line": 1561,
+          "timestamp": "2026-05-18T03:34:04.224148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "514\t\\section{Cross-Model Validation with Gemini 2.5 Flash (API)}\n515\t\\label{sec:appendix_cross_model_gemini}\n516\t\n517\tWe further validate Dimension~1 on a proprietary model, Gemini 2.5 Flash \\citep{gemini-2025}, accessed via API. This extends the cross-model evidence from open-weight families (Qwen, LLaMA) to a proprietary architecture with unknown training details. We replicate the FewRel count-curve experiment using the same 960 balanced samples, batch compositions, and evaluation protocol as Qwen3-32B.\n518\t\n519\t\\begin{table}[h]\n520\t\\centering\n521\t\\small\n522\t\\begin{tabular}{lrr}\n523\t\\toprule\n524\t\\textbf{Count} & \\textbf{Gemini Flash} & \\textbf{Qwen3-32B} \\\\\n525\t\\midrule\n526\t1  & 0.827 & --- \\\\\n527\t4  & 0.873 & 0.870 \\\\\n528\t8  & 0.820 & 0.805 \\\\\n529\t16 & 0.787 & 0.719 \\\\\n530\t32 & 0.739 & 0.652 \\\\\n531\t\\bottomrule\n532\t\\end{tabular}\n533\t\\caption{Cross-model count curves for Gemini 2.5 Flash (API) and Qwen3-32B on FewRel RE (classification accuracy). 25 batches per count level, same samples and batch compositions (seed 42). Gemini's count-1 result is included for completeness; Qwen3 count-1 was not collected. Both models show monotonic decline from count 4 onward ($\\rho = -1.0$ for both on counts 4--32).}\n534\t\\label{tab:cross_model_gemini}\n535\t\\end{table}\n536\t\n537\tTable~\\ref{tab:cross_model_gemini} confirms that the count-related accuracy decline replicates on Gemini 2.5 Flash. From count 4 to count 32, both models show perfectly monotonic decline (Spearman $\\rho = -1.0$). Including count 1, the Gemini count curve yields $\\rho = -0.900$ ($p = 0.037$). The decline magnitude is smaller for Gemini ($-$13.3\\,pp from count 4 to 32) than for Qwen3 ($-$21.8\\,pp), consistent with Gemini's higher absolute accuracy providing more headroom before degradation saturates. At each count level, Gemini matches or exceeds Qwen3, with the gap widening at higher counts (0.3\\,pp at count 4 vs.\\ 8.7\\,pp at count 32); Gemini appears more robust to schema scaling but not immune. Dimension~2 (\n…[truncated 740 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001561"
+        },
+        {
+          "source_line": 1562,
+          "timestamp": "2026-05-18T03:34:11.808119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && python3 -c \"\nimport json\ndata = {}\nwith open('artifacts/exp_gemini_flash/part1/results_incremental.jsonl') as f:\n    for line in f:\n        r = json.loads(line)\n        cond = r.get('condition', '')\n        if cond not in data:\n            data[cond] = {'correct': 0, 'total': 0, 'batches': set()}\n        data[cond]['correct'] += r.get('correct', 0)\n        data[cond]['total'] += r.get('total', 0)\n        data[cond]['batches'].add(r.get('batch_id', ''))\nfor cond in sorted(data.keys()):\n    d = data[cond]\n    acc = d['correct']/d['total'] if d['total'] else 0\n    print(f'{cond}: {len(d[\\\"batches\\\"])} batches, acc={acc:.3f}, n={d[\\\"total\\\"]}')\n\" 2>/dev/null",
+              "description": "Check Gemini Flash experiment data for all count levels"
+            }
+          },
+          "id": "event-001562"
+        },
+        {
+          "source_line": 1563,
+          "timestamp": "2026-05-18T03:34:12.310258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ": 138 batches, acc=0.000, n=0\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-001563"
+        },
+        {
+          "source_line": 1564,
+          "timestamp": "2026-05-18T03:34:16.229399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && head -3 artifacts/exp_gemini_flash/part1/results_incremental.jsonl | python3 -c \"import sys,json; [print(json.dumps(json.loads(l), indent=2)) for l in sys.stdin]\" 2>/dev/null | head -30",
+              "description": "Inspect JSONL format"
+            }
+          },
+          "id": "event-001564"
+        },
+        {
+          "source_line": 1565,
+          "timestamp": "2026-05-18T03:34:16.330294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"sample_id\": 168,\n  \"batch_id\": \"count_1_random_0\",\n  \"count_key\": \"count_1\",\n  \"batch_types\": [\n    \"director\"\n  ],\n  \"batch_bcs\": 0.0,\n  \"prediction\": \"director\",\n  \"ground_truth\": \"director\",\n  \"head_entity\": \"making a murderer\",\n  \"tail_entity\": \"moira demos\"\n}\n{\n  \"sample_id\": 169,\n  \"batch_id\": \"count_1_random_0\",\n  \"count_key\": \"count_1\",\n  \"batch_types\": [\n    \"director\"\n  ],\n  \"batch_bcs\": 0.0,\n  \"prediction\": \"director\",\n  \"ground_truth\": \"director\",\n  \"head_entity\": \"flowing\",\n  \"tail_entity\": \"mikio naruse\"\n}\n{\n  \"sample_id\": 170,\n  \"batch_id\": \"count_1_random_0\",\n  \"count_key\": \"count_1\",\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001565"
+        },
+        {
+          "source_line": 1566,
+          "timestamp": "2026-05-18T03:34:21.816112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && python3 -c \"\nimport json\nfrom collections import defaultdict\ndata = defaultdict(lambda: {'correct': 0, 'total': 0, 'batches': set()})\nwith open('artifacts/exp_gemini_flash/part1/results_incremental.jsonl') as f:\n    for line in f:\n        r = json.loads(line)\n        ck = r.get('count_key', '')\n        if not ck: continue\n        correct = 1 if r.get('prediction','') == r.get('ground_truth','') else 0\n        data[ck]['correct'] += correct\n        data[ck]['total'] += 1\n        data[ck]['batches'].add(r.get('batch_id', ''))\nfor ck in sorted(data.keys(), key=lambda x: int(x.split('_')[1]) if '_' in x else 0):\n    d = data[ck]\n    acc = d['correct']/d['total'] if d['total'] else 0\n    print(f'{ck}: {len(d[\\\"batches\\\"])}/25 batches, acc={acc:.3f}, n={d[\\\"total\\\"]}')\n\"",
+              "description": "Check Gemini Flash results by count level"
+            }
+          },
+          "id": "event-001566"
+        },
+        {
+          "source_line": 1567,
+          "timestamp": "2026-05-18T03:34:22.468782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "count_1: 25/25 batches, acc=0.827, n=300\ncount_4: 25/25 batches, acc=0.877, n=2256\ncount_8: 25/25 batches, acc=0.820, n=4800\ncount_16: 25/25 batches, acc=0.787, n=9600\ncount_32: 25/25 batches, acc=0.739, n=19200\ncount_64: 13/25 batches, acc=0.637, n=16128\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 652
+          },
+          "id": "event-001567"
+        },
+        {
+          "source_line": 1568,
+          "timestamp": "2026-05-18T03:34:28.229631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tmux list-sessions 2>/dev/null && tmux capture-pane -t gemini_flash -p 2>/dev/null | tail -5",
+              "description": "Check if Gemini experiment is still running"
+            }
+          },
+          "id": "event-001568"
+        },
+        {
+          "source_line": 1569,
+          "timestamp": "2026-05-18T03:34:28.332296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "gemini_flash: 1 windows (created Mon May 18 02:44:19 2026)\n2026-05-18 03:34:25,320 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/ch\nat/completions \"HTTP/1.1 200 OK\"\n2026-05-18 03:34:27,860 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/ch\nat/completions \"HTTP/1.1 200 OK\""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-001569"
+        },
+        {
+          "source_line": 1570,
+          "timestamp": "2026-05-18T03:34:49.444744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nSchema-induced degradation in training-free LLM extraction operates along two dimensions (count-related recall decline, confusability-related type confusion) with bounded association in RE but coupling in NER. Dimension~1 replicates across model scales (8B, 32B, 70B) and architecture families, including the proprietary Gemini 2.5 Flash; Dimension~2 attenuates on smaller models but remains significant at 70B scale for RE. Even few-shot demonstrations do not reduce the confusability gap; the BCS penalty widens under 5-shot prompting (+4.3\\,pp, $p = 0.014$); type confusion is a structural property of the schema rather than a prompting deficit. Schema decomposition fails due to merge amplification (NER) and routing failure (RE); BCS enables pre-hoc screening but only for RE at batch level, and schema redesign remains the primary recourse for high-confusability schemas. These findings suggest that training-based approaches, which can learn type boundaries from data, may be necessary when confusability is inherent and cannot be resolved through schema restructuring.",
+              "new_string": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nSchema-induced degradation in training-free LLM extraction operates along two dimensions: count-related recall decline (up to $-$49\\,pp) and confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches, up to $-$31\\,pp under extreme construction). The two dimensions exhibit bounded association in RE (TOST $p = 0.003$ at $\\pm 3$\\,pp) but are coupled in NER, where type ambiguity and boundary detection interact. These patterns replicate across model scales (8B, 32B, 70B) and architecture families, including the proprietary Gemini 2.5 Flash for Dimension~1; Dimension~2 attenuates on smaller models but remains significant at 70B scale for RE.\n\nThe confusability effect is a structural property of the schema rather than a prompting deficit. Few-shot demonstrations do not reduce the gap; the BCS penalty widens under 5-shot prompting (+4.3\\,pp, $p = 0.014$; Appendix~\\ref{sec:appendix_fewshot_bcs}). Schema decomposition fails due to merge amplification in NER and routing failure in RE. BCS enables pre-hoc screening for RE schema design, but batch-level confusability does not predict NER performance; for NER, count reduction remains the primary lever.\n\nThese findings have two implications. First, practitioners deploying training-free extraction on schemas with $>$20 types should expect substantial accuracy loss; confusability-aware type pair screening can flag problematic RE schemas before deployment. Second, when confusability is inherent to the domain and cannot be resolved through schema restructuring, training-based approaches that learn type boundaries from data may be necessary."
+            }
+          },
+          "id": "event-001570"
+        },
+        {
+          "source_line": 1571,
+          "timestamp": "2026-05-18T03:34:49.445415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001571"
+        },
+        {
+          "source_line": 1572,
+          "timestamp": "2026-05-18T03:35:06.908942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+              "old_string": "\\begin{abstract}\nTraining-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: having more types (count) and having semantically similar types (confusability). We present the first controlled study isolating these factors in zero-shot LLM IE, spanning NER, RE, and event detection across four datasets, and operationalize confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS, the mean pairwise embedding similarity within a type batch). Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) dominates confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches); at batch level, BCS explains 22--53\\% of cross-batch accuracy variance in RE but not in NER, where the signal is absent despite significant pairwise effects. Schema decomposition fails in both tasks due to merge amplification (NER) and routing failure (RE), which points to structural barriers to confusability-aware extraction.\n\\end{abstract}",
+              "new_string": "\\begin{abstract}\nTraining-free LLM information extraction (IE) enables rapid deployment without labeled data, but performance degrades sharply as prompt schema complexity grows. Real-world ontologies routinely define 50--200+ types, placing them in the regime where extraction becomes unreliable. Prior decomposition strategies conflate two factors: having more types (count) and having semantically similar types (confusability). We present the first controlled study isolating these factors in zero-shot LLM IE, spanning named entity recognition (NER), relation extraction (RE), and event detection across four datasets using Qwen3-32B, with cross-model validation on LLaMA-3.1 (8B, 70B) and Gemini 2.5 Flash. We operationalize confusability via the Schema Confusability Score (SCS, pairwise embedding cosine similarity) and its batch-level aggregation (BCS). Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) dominates confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches); at batch level, BCS explains 22--53\\% of cross-batch accuracy variance in RE but not in NER, where boundary detection failures overwhelm the type confusion signal. Even few-shot demonstrations do not reduce the confusability gap (+4.3\\,pp penalty under 5-shot). Schema decomposition fails in both tasks due to merge amplification (NER) and routing failure (RE), pointing to structural barriers rather than engineering gaps.\n\\end{abstract}"
+            }
+          },
+          "id": "event-001572"
+        },
+        {
+          "source_line": 1573,
+          "timestamp": "2026-05-18T03:35:07.009925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-001573"
+        },
+        {
+          "source_line": 1574,
+          "timestamp": "2026-05-18T03:35:23.192515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "old_string": "Our experiments yield four findings:\n(1)~Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) and confusability-related type substitution (typical-batch gap ${\\approx}\\,2.2$\\,pp), with count as the dominant factor. The two dimensions exhibit bounded association in RE (Two One-Sided Tests [TOST] equivalence, $p = 0.003$ at $\\pm 3$\\,pp) but are coupled in NER.\n(2)~Pairwise SCS predicts type confusion across NER, RE, and ED ($r = 0.112$--$0.129$); at batch level, BCS predicts accuracy in RE ($R^2 = 0.22$--$0.53$) but not in NER (batch-level $r \\approx 0$, n.s.); per-type aggregation is confounded by centrality on homogeneous schemas (\\S\\ref{sec:centrality_confound}).\n(3)~Effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: $R^2 = 0.53$) and directionally consistent across prompt designs.\n(4)~Schema decomposition fails due to merge amplification in NER; RE confusability-aware grouping yields no significant improvement over random (+1.4\\,pp, $p \\approx 0.19$, n.s.) despite oracle routing that recovers +29.8\\,pp.",
+              "new_string": "Our experiments yield four findings:\n(1)~Degradation operates along two dimensions: count-related recall decline (up to $-$49\\,pp for document-level RE) and confusability-related type substitution (typical-batch gap ${\\approx}\\,2.2$\\,pp), with count as the dominant factor (\\S\\ref{sec:count_curves}, \\S\\ref{sec:multi_channel}). The two dimensions exhibit bounded association in RE (Two One-Sided Tests [TOST] equivalence, $p = 0.003$ at $\\pm 3$\\,pp) but are coupled in NER.\n(2)~Pairwise SCS predicts type confusion across NER, RE, and ED ($r = 0.112$--$0.129$; \\S\\ref{sec:pairwise}); at batch level, BCS predicts accuracy in RE ($R^2 = 0.22$--$0.53$; \\S\\ref{sec:bcs_controlled}) but not in NER (batch-level $r \\approx 0$, n.s.); per-type aggregation is confounded by centrality on homogeneous schemas (\\S\\ref{sec:centrality_confound}).\n(3)~Effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: $R^2 = 0.53$) and directionally consistent across prompt designs and model families (\\S\\ref{sec:bcs_controlled}).\n(4)~Schema decomposition fails due to merge amplification in NER; RE confusability-aware grouping yields no significant improvement over random (+1.4\\,pp, $p \\approx 0.19$, n.s.) despite oracle routing that recovers +29.8\\,pp (\\S\\ref{sec:sdgd})."
+            }
+          },
+          "id": "event-001574"
+        },
+        {
+          "source_line": 1575,
+          "timestamp": "2026-05-18T03:35:23.243412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001575"
+        },
+        {
+          "source_line": 1576,
+          "timestamp": "2026-05-18T03:35:32.410022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "32 & 0.739 & 0.652 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model count curves for Gemini 2.5 Flash (API) and Qwen3-32B on FewRel RE (classification accuracy). 25 batches per count level, same samples and batch compositions (seed 42). Gemini's count-1 result is included for completeness; Qwen3 count-1 was not collected. Both models show monotonic decline from count 4 onward ($\\rho = -1.0$ for both on counts 4--32).}",
+              "new_string": "32 & 0.739 & 0.652 \\\\\n64$^\\dagger$ & 0.637 & 0.539 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model count curves for Gemini 2.5 Flash (API) and Qwen3-32B on FewRel RE (classification accuracy). 25 batches per count level, same samples and batch compositions (seed 42). Gemini's count-1 result is included for completeness; Qwen3 count-1 was not collected. Both models show monotonic decline from count 4 onward ($\\rho = -1.0$ for both on counts 4--32). $^\\dagger$Count 64: Gemini based on 13/25 batches (partial).}"
+            }
+          },
+          "id": "event-001576"
+        },
+        {
+          "source_line": 1577,
+          "timestamp": "2026-05-18T03:35:32.460968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001577"
+        },
+        {
+          "source_line": 1578,
+          "timestamp": "2026-05-18T03:35:45.271897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "Table~\\ref{tab:cross_model_gemini} confirms that the count-related accuracy decline replicates on Gemini 2.5 Flash. From count 4 to count 32, both models show perfectly monotonic decline (Spearman $\\rho = -1.0$). Including count 1, the Gemini count curve yields $\\rho = -0.900$ ($p = 0.037$). The decline magnitude is smaller for Gemini ($-$13.3\\,pp from count 4 to 32) than for Qwen3 ($-$21.8\\,pp), consistent with Gemini's higher absolute accuracy providing more headroom before degradation saturates. At each count level, Gemini matches or exceeds Qwen3, with the gap widening at higher counts (0.3\\,pp at count 4 vs.\\ 8.7\\,pp at count 32); Gemini appears more robust to schema scaling but not immune. Dimension~2 (BCS-controlled confusability) has been verified only on open-weight models; proprietary-model validation remains for future work.",
+              "new_string": "Table~\\ref{tab:cross_model_gemini} confirms that the count-related accuracy decline replicates on Gemini 2.5 Flash. From count 4 to count 32, both models show perfectly monotonic decline (Spearman $\\rho = -1.0$). Including count 1, the Gemini count curve yields $\\rho = -0.900$ ($p = 0.037$); including partial count-64 data (13/25 batches), $\\rho = -0.943$ ($p = 0.005$). The decline magnitude is smaller for Gemini ($-$13.3\\,pp from count 4 to 32) than for Qwen3 ($-$21.8\\,pp), consistent with Gemini's higher absolute accuracy providing more headroom before degradation saturates. At each count level, Gemini matches or exceeds Qwen3, with the gap widening at higher counts (0.3\\,pp at count 4 vs.\\ 8.7\\,pp at count 32, 9.8\\,pp at partial count 64); Gemini appears more robust to schema scaling but not immune. Dimension~2 (BCS-controlled confusability) has not been tested on proprietary models; cross-architecture Dimension~2 validation remains for future work."
+            }
+          },
+          "id": "event-001578"
+        },
+        {
+          "source_line": 1579,
+          "timestamp": "2026-05-18T03:35:45.272754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001579"
+        },
+        {
+          "source_line": 1580,
+          "timestamp": "2026-05-18T03:35:50.752030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "offset": "6",
+              "limit": "9"
+            }
+          },
+          "id": "event-001580"
+        },
+        {
+          "source_line": 1581,
+          "timestamp": "2026-05-18T03:35:50.853084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6\t\n7\t\\paragraph{Why does embedding similarity predict LLM confusion?}\n8\tSCS captures semantic proximity in LLMs' type-resolution space. The unconditional pairwise $R^2$ is modest (1.3\\% on Few-NERD, $r = 0.112$) because ${\\sim}89\\%$ of type pairs never produce mutual confusion; among the 11\\% with nonzero confusion, conditional $R^2$ rises to 7\\%. Correlated pair-level signals then aggregate at the batch level: a Monte Carlo simulation ($\\rho_{\\mathrm{SCS}} = 0.35$; Appendix~\\ref{app:aggregation-sim}) predicts batch $R^2$ of 18--25\\%, consistent with the observed 22--53\\% in RE. SCS is thus a weak pair-level predictor but a practically useful batch-level screen. We hypothesize that the NER U-shape (\\S\\ref{sec:count_curves}) reflects a dual-task burden absent in RE: partial schemas require simultaneous span detection and type-membership filtering; at full-schema, filtering becomes vacuous and recall recovers. This confirms task-specific pathways.\n9\t\n10\t\\paragraph{Task-dependent batch-level effects.}\n11\tWhile pairwise SCS predicts type confusion in both NER and RE, the batch-level BCS--performance relationship is RE-specific: BCS explains 22--53\\% of cross-batch accuracy variance in RE but shows no significant correlation with NER F1 ($r \\approx 0$, $n = 450$). We hypothesize this reflects the different error structures: RE errors are dominated by type substitution (IntraSub scales with BCS; \\S\\ref{sec:multi_channel}), so batch-level confusability directly predicts accuracy. NER errors are dominated by missed entities (43--65\\% of errors), which correlate with count rather than confusability; pairwise SCS captures individual type confusion but this signal is diluted at the batch level by the overwhelming contribution of boundary detection failures. This task dependence has practical implications: BCS is a useful pre-hoc screening tool for RE schema design but not for NER, where count reduction is the primary lever. MAVEN batch-level analysis is excluded because centra\n…[truncated 967 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001581"
+        },
+        {
+          "source_line": 1582,
+          "timestamp": "2026-05-18T03:36:10.078295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling.",
+              "new_string": "High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling. At count 80, the full-schema composition is fixed, so within-count BCS variance vanishes and confusability becomes a constant rather than a predictor; the observed decline at this scale is driven entirely by count."
+            }
+          },
+          "id": "event-001582"
+        },
+        {
+          "source_line": 1583,
+          "timestamp": "2026-05-18T03:36:10.129116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001583"
+        },
+        {
+          "source_line": 1584,
+          "timestamp": "2026-05-18T03:36:14.014056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -8",
+              "description": "Compile after T2 edits",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-001584"
+        },
+        {
+          "source_line": 1585,
+          "timestamp": "2026-05-18T03:36:17.843442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Latexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 3829
+          },
+          "id": "event-001585"
+        },
+        {
+          "source_line": 1586,
+          "timestamp": "2026-05-18T03:36:28.921451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"Output written\" main.log && grep -c \"^!\" main.log && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nfor i, page in enumerate(pages[:12], 1):\n    for line in page.split('\\n'):\n        if any(k in line for k in ['Limitations', 'References']):\n            print(f'Page {i}: {line.strip()[:80]}')\n            break\n\"",
+              "description": "Verify page count and structure"
+            }
+          },
+          "id": "event-001586"
+        },
+        {
+          "source_line": 1587,
+          "timestamp": "2026-05-18T03:36:29.023719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nOutput written on main.pdf (24 pages, 468418 bytes).\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-001587"
+        },
+        {
+          "source_line": 1588,
+          "timestamp": "2026-05-18T03:36:33.296942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nfor i, page in enumerate(pages[:12], 1):\n    for line in page.split('\\n'):\n        if any(k in line for k in ['Limitations', 'References', 'Conclusion']):\n            print(f'Page {i}: {line.strip()[:80]}')\n            break\n\"",
+              "description": "Find section boundaries"
+            }
+          },
+          "id": "event-001588"
+        },
+        {
+          "source_line": 1589,
+          "timestamp": "2026-05-18T03:36:33.703029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 7: floor effects on 8B NER (Limitations, item 1).\nPage 9: Conclusion\nPage 10: Yes. The Limitations section (after §7) discusses single-model reliance, modest \nPage 12: References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 406
+          },
+          "id": "event-001589"
+        },
+        {
+          "source_line": 1590,
+          "timestamp": "2026-05-18T03:36:48.816193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\n# Check page 8 and 9\nfor i in [8, 9]:\n    lines = pages[i-1].strip().split('\\n')\n    print(f'=== Page {i} last 10 lines ===')\n    for l in lines[-10:]:\n        print(l)\n    print()\n\"",
+              "description": "Check page 8-9 boundary"
+            }
+          },
+          "id": "event-001590"
+        },
+        {
+          "source_line": 1591,
+          "timestamp": "2026-05-18T03:36:49.117762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 8 last 10 lines ===\n693\n694\n695\n696\n697\n698\n699\n700\n701\n702\n\n=== Page 9 last 10 lines ===\n792\n793\n794\n\n796\n797\n798\n799\n800\n801\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-001591"
+        },
+        {
+          "source_line": 1592,
+          "timestamp": "2026-05-18T03:36:53.537076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\n# Check page 8 content and page 9 beginning\np8_lines = pages[7].strip().split('\\n')\np9_lines = pages[8].strip().split('\\n')\nprint('=== Page 8 first 5 lines ===')\nfor l in p8_lines[:5]:\n    print(repr(l))\nprint()\nprint('=== Page 9 first 15 lines ===')\nfor l in p9_lines[:15]:\n    print(repr(l))\n\"",
+              "description": "Check page 9 start content"
+            }
+          },
+          "id": "event-001592"
+        },
+        {
+          "source_line": 1593,
+          "timestamp": "2026-05-18T03:36:53.838768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 8 first 5 lines ===\n'Condition'\n'Single-pass (80 types)'\n'Random batching (15 seeds)†'\n'Confus.-aware (graph coloring)'\n''\n\n=== Page 9 first 15 lines ===\n'703'\n'704'\n'705'\n'706'\n'707'\n'708'\n'709'\n'710'\n'711'\n'712'\n''\n'confusion but this signal is diluted at the batch'\n'level by the overwhelming contribution of boundary detection failures. This task dependence has'\n'practical implications: BCS is a useful pre-hoc'\n'screening tool for RE schema design but not for'\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-001593"
+        },
+        {
+          "source_line": 1594,
+          "timestamp": "2026-05-18T03:36:59.917231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-001594"
+        },
+        {
+          "source_line": 1595,
+          "timestamp": "2026-05-18T03:36:59.968092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling. At count 80, the full-schema composition is fixed, so within-count BCS variance vanishes and confusability becomes a constant rather than a predictor; the observed decline at this scale is driven entirely by count. RE's separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}). Cross-scale evidence (32B vs.\\ 8B) shows Dimension~1 replicates fully while Dimension~2 attenuates on smaller models and drops to near-zero $R^2$ for NER on Llama-3.1-8B (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Count-related degradation may partly reflect prompt length (per-type recall 0.586 vs.\\ single-pass 0.368, consistent with lost-in-middle effects; \\citealt{lost-in-middle-2024}; \\citealt{levy-2024-same-task}).\n6\t\n7\t\\paragraph{Why does embedding similarity predict LLM confusion?}\n8\tSCS captures semantic proximity in LLMs' type-resolution space. The unconditional pairwise $R^2$ is modest (1.3\\% on Few-NERD, $r = 0.112$) because ${\\sim}89\\%$ of type pairs never produce mutual confusion; among the 11\\% with nonzero confusion, conditional $R^2$ rises to 7\\%. Correlated pair-level signals then aggregate at the batch level: a Monte Carlo simulation ($\\rho_{\\mathrm{SCS}} = 0.35$; Appendix~\\ref{app:aggregation-sim}) predicts batch $R^2$ of 18--25\\%, consistent with the observed 22--53\\% in RE. SCS is thus a weak pair-level predictor but a practically useful batch-level screen. We hypothesize that the NER U-shape (\\S\\ref{sec:count_curves}) reflects a dual-task b\n…[truncated 3909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001595"
+        },
+        {
+          "source_line": 1596,
+          "timestamp": "2026-05-18T03:37:13.936089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "Schema-induced degradation in training-free LLM extraction operates along two dimensions: count-related recall decline (up to $-$49\\,pp) and confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches, up to $-$31\\,pp under extreme construction). The two dimensions exhibit bounded association in RE (TOST $p = 0.003$ at $\\pm 3$\\,pp) but are coupled in NER, where type ambiguity and boundary detection interact. These patterns replicate across model scales (8B, 32B, 70B) and architecture families, including the proprietary Gemini 2.5 Flash for Dimension~1; Dimension~2 attenuates on smaller models but remains significant at 70B scale for RE.\n\nThe confusability effect is a structural property of the schema rather than a prompting deficit. Few-shot demonstrations do not reduce the gap; the BCS penalty widens under 5-shot prompting (+4.3\\,pp, $p = 0.014$; Appendix~\\ref{sec:appendix_fewshot_bcs}). Schema decomposition fails due to merge amplification in NER and routing failure in RE. BCS enables pre-hoc screening for RE schema design, but batch-level confusability does not predict NER performance; for NER, count reduction remains the primary lever.\n\nThese findings have two implications. First, practitioners deploying training-free extraction on schemas with $>$20 types should expect substantial accuracy loss; confusability-aware type pair screening can flag problematic RE schemas before deployment. Second, when confusability is inherent to the domain and cannot be resolved through schema restructuring, training-based approaches that learn type boundaries from data may be necessary.",
+              "new_string": "Schema-induced degradation in training-free LLM extraction operates along two dimensions: count-related recall decline (up to $-$49\\,pp) and confusability-related type substitution (${\\approx}\\,2.2$\\,pp in typical batches, up to $-$31\\,pp under extreme construction). The two dimensions exhibit bounded association in RE (TOST $p = 0.003$) but are coupled in NER. These patterns replicate across model scales (8B, 32B, 70B) and architecture families, including the proprietary Gemini 2.5 Flash; few-shot demonstrations do not reduce the confusability gap (+4.3\\,pp under 5-shot, $p = 0.014$). Schema decomposition fails due to merge amplification (NER) and routing failure (RE); BCS enables pre-hoc screening for RE but not NER.\n\nThese findings have practical and methodological implications. Practitioners deploying training-free extraction on schemas with $>$20 types should expect substantial accuracy loss; confusability-aware screening can flag problematic RE schemas before deployment. When confusability is inherent to the domain and cannot be resolved through schema restructuring, training-based approaches that learn type boundaries from data may be necessary."
+            }
+          },
+          "id": "event-001596"
+        },
+        {
+          "source_line": 1597,
+          "timestamp": "2026-05-18T03:37:13.986876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001597"
+        },
+        {
+          "source_line": 1598,
+          "timestamp": "2026-05-18T03:37:19.166275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling. At count 80, the full-schema composition is fixed, so within-count BCS variance vanishes and confusability becomes a constant rather than a predictor; the observed decline at this scale is driven entirely by count.",
+              "new_string": "High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling; at count 80, the full-schema BCS is fixed, so confusability ceases to be a predictor."
+            }
+          },
+          "id": "event-001598"
+        },
+        {
+          "source_line": 1599,
+          "timestamp": "2026-05-18T03:37:19.166902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001599"
+        },
+        {
+          "source_line": 1600,
+          "timestamp": "2026-05-18T03:37:22.987631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "description": "Compile after trimming",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-001600"
+        },
+        {
+          "source_line": 1601,
+          "timestamp": "2026-05-18T03:37:26.201521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 3213
+          },
+          "id": "event-001601"
+        },
+        {
+          "source_line": 1602,
+          "timestamp": "2026-05-18T03:37:34.043340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"Output written\" main.log && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nfor i, page in enumerate(pages[:12], 1):\n    for line in page.split('\\n'):\n        if any(k in line for k in ['Limitations', 'References', 'Conclusion']):\n            print(f'Page {i}: {line.strip()[:80]}')\n            break\n\"",
+              "description": "Check body page count"
+            }
+          },
+          "id": "event-001602"
+        },
+        {
+          "source_line": 1603,
+          "timestamp": "2026-05-18T03:37:34.294832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (24 pages, 467348 bytes).\nPage 7: floor effects on 8B NER (Limitations, item 1).\nPage 9: Conclusion\nPage 10: Yes. The Limitations section (after §7) discusses single-model reliance, modest \nPage 12: References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-001603"
+        },
+        {
+          "source_line": 1604,
+          "timestamp": "2026-05-18T03:37:40.677730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7].strip().split('\\n')\np9 = pages[8].strip().split('\\n')\nprint('=== Page 8 last 15 lines ===')\nfor l in p8[-15:]:\n    if l.strip(): print(l)\nprint()\nprint('=== Page 9 first 20 lines ===')\nfor l in p9[:20]:\n    if l.strip(): print(l)\n\"",
+              "description": "Check where Discussion/Conclusion boundary falls"
+            }
+          },
+          "id": "event-001604"
+        },
+        {
+          "source_line": 1605,
+          "timestamp": "2026-05-18T03:37:41.029597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 8 last 15 lines ===\n688\n689\n690\n691\n692\n693\n694\n695\n696\n697\n698\n699\n700\n701\n702\n\n=== Page 9 first 20 lines ===\n703\n704\n705\n706\n707\n708\n709\npractical implications: BCS is a useful pre-hoc\nscreening tool for RE schema design but not for\nNER, where count reduction is the primary lever.\nMAVEN batch-level analysis is excluded because\ncentrality confounding (§4.5) renders per-type BCS\nunreliable on same-domain schemas; the pairwise\nsignal remains intact.\n726\nPractical\nimplications. The\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-001605"
+        },
+        {
+          "source_line": 1606,
+          "timestamp": "2026-05-18T03:37:52.637056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "This task dependence has practical implications: BCS is a useful pre-hoc screening tool for RE schema design but not for NER, where count reduction is the primary lever. MAVEN batch-level analysis is excluded because centrality confounding (\\S\\ref{sec:centrality_confound}) renders per-type BCS unreliable on same-domain schemas; the pairwise signal remains intact.",
+              "new_string": "BCS is thus a useful pre-hoc screening tool for RE schema design but not for NER, where count reduction is the primary lever."
+            }
+          },
+          "id": "event-001606"
+        },
+        {
+          "source_line": 1607,
+          "timestamp": "2026-05-18T03:37:52.637616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001607"
+        },
+        {
+          "source_line": 1608,
+          "timestamp": "2026-05-18T03:37:59.429081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "The bounded count$\\times$confusability interaction (0.47\\,pp, TOST $p = 0.003$) means practitioners scaling schema size need not worry about confusability amplification. For RE, BCS provides a pre-hoc screen: type pairs in the upper quartile of pairwise SCS are associated with accuracy differences of 3--5\\,pp at the batch level. For NER, count is the dominant predictor; reducing schema size per prompt is the primary lever. Few-shot demonstrations do not mitigate the confusability gap: under 5-shot prompting, the BCS penalty widens (+4.3\\,pp, $p = 0.014$; Appendix~\\ref{sec:appendix_fewshot_bcs}); confusability is a structural schema property. These results apply to the training-free setting; fine-tuned models may learn type boundaries that reduce confusability effects.",
+              "new_string": "The bounded count$\\times$confusability interaction (0.47\\,pp, TOST $p = 0.003$) means practitioners need not worry about confusability amplification at scale. For RE, type pairs in the upper SCS quartile are associated with 3--5\\,pp accuracy differences at batch level. Few-shot demonstrations do not mitigate confusability: the BCS penalty widens under 5-shot prompting (+4.3\\,pp, $p = 0.014$; Appendix~\\ref{sec:appendix_fewshot_bcs}). These results apply to the training-free setting; fine-tuned models may learn type boundaries that reduce confusability effects."
+            }
+          },
+          "id": "event-001608"
+        },
+        {
+          "source_line": 1609,
+          "timestamp": "2026-05-18T03:37:59.480314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001609"
+        },
+        {
+          "source_line": 1610,
+          "timestamp": "2026-05-18T03:38:03.399599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "description": "Compile after trimming Discussion",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-001610"
+        },
+        {
+          "source_line": 1611,
+          "timestamp": "2026-05-18T03:38:07.368921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 3969
+          },
+          "id": "event-001611"
+        },
+        {
+          "source_line": 1612,
+          "timestamp": "2026-05-18T03:38:11.990441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nfor i, page in enumerate(pages[:12], 1):\n    for line in page.split('\\n'):\n        if any(k in line for k in ['Limitations', 'References', '7 Conclusion', '8 Conclusion']):\n            print(f'Page {i}: {line.strip()[:80]}')\n            break\n# Also check if Conclusion is on page 8\np8 = pages[7]\nif 'Conclusion' in p8:\n    print('Conclusion is on page 8')\np9 = pages[8]\nif 'Conclusion' in p9:\n    print('Conclusion is on page 9')\n\"",
+              "description": "Verify body page count"
+            }
+          },
+          "id": "event-001612"
+        },
+        {
+          "source_line": 1613,
+          "timestamp": "2026-05-18T03:38:12.242946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 7: floor effects on 8B NER (Limitations, item 1).\nPage 9: Limitations\nPage 10: Yes. The Limitations section (after §7) discusses single-model reliance, modest \nPage 11: References\nConclusion is on page 9\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-001613"
+        },
+        {
+          "source_line": 1614,
+          "timestamp": "2026-05-18T03:38:25.810323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\np9 = pages[8]\nprint('=== Page 8 content (last 20 lines) ===')\nlines8 = [l for l in p8.split('\\n') if l.strip()]\nfor l in lines8[-20:]:\n    print(l)\nprint()\nprint('=== Page 9 content (first 25 lines) ===')\nlines9 = [l for l in p9.split('\\n') if l.strip()]\nfor l in lines9[:25]:\n    print(l)\n\"",
+              "description": "Detailed page 8-9 content check"
+            }
+          },
+          "id": "event-001614"
+        },
+        {
+          "source_line": 1615,
+          "timestamp": "2026-05-18T03:38:26.216219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 8 content (last 20 lines) ===\n683\n684\n685\n686\n687\n688\n689\n690\n691\n692\n693\n694\n695\n696\n697\n698\n699\n700\n701\n702\n\n=== Page 9 content (first 25 lines) ===\n703\n704\nscreening tool for RE schema design but not for\nNER, where count reduction is the primary lever.\n716\nPractical\nimplications. The\nbounded\ncount×confusability interaction (0.47 pp, TOST\np = 0.003) means practitioners need not worry\nabout confusability amplification at scale. For RE,\ntype pairs in the upper SCS quartile are associated\nwith 3–5 pp accuracy differences at batch level.\nFew-shot demonstrations do not mitigate confusability: the BCS penalty widens under 5-shot\nprompting (+4.3 pp, p = 0.014; Appendix T).\nThese results apply to the training-free setting;\nfine-tuned models may learn type boundaries that\nreduce confusability effects.\n717\n7\n718\n742\nSchema-induced degradation in training-free\nLLM extraction operates along two dimensions:\ncount-related recall decline (up to −49 pp) and\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 405
+          },
+          "id": "event-001615"
+        },
+        {
+          "source_line": 1616,
+          "timestamp": "2026-05-18T03:38:48.297761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Boundary conditions.}\nThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across models, which suggests a task-inherent difficulty ceiling; at count 80, the full-schema BCS is fixed, so confusability ceases to be a predictor. RE's separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}). Cross-scale evidence (32B vs.\\ 8B) shows Dimension~1 replicates fully while Dimension~2 attenuates on smaller models and drops to near-zero $R^2$ for NER on Llama-3.1-8B (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Count-related degradation may partly reflect prompt length (per-type recall 0.586 vs.\\ single-pass 0.368, consistent with lost-in-middle effects; \\citealt{lost-in-middle-2024}; \\citealt{levy-2024-same-task}).",
+              "new_string": "\\paragraph{Boundary conditions.}\nThe two-dimensional decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across models (a task-inherent ceiling); at count 80, BCS is fixed and ceases to be a predictor. The effect generalizes to document-level RE (DocRED slope $-$0.71) and persists across prompt designs (v2 gap: $-$25.5\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}). Dimension~1 replicates across scales (8B--70B); Dimension~2 attenuates on smaller models (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs})."
+            }
+          },
+          "id": "event-001616"
+        },
+        {
+          "source_line": 1617,
+          "timestamp": "2026-05-18T03:38:48.350124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 52
+          },
+          "id": "event-001617"
+        },
+        {
+          "source_line": 1618,
+          "timestamp": "2026-05-18T03:39:02.371594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "SCS captures semantic proximity in LLMs' type-resolution space. The unconditional pairwise $R^2$ is modest (1.3\\% on Few-NERD, $r = 0.112$) because ${\\sim}89\\%$ of type pairs never produce mutual confusion; among the 11\\% with nonzero confusion, conditional $R^2$ rises to 7\\%. Correlated pair-level signals then aggregate at the batch level: a Monte Carlo simulation ($\\rho_{\\mathrm{SCS}} = 0.35$; Appendix~\\ref{app:aggregation-sim}) predicts batch $R^2$ of 18--25\\%, consistent with the observed 22--53\\% in RE. SCS is thus a weak pair-level predictor but a practically useful batch-level screen. We hypothesize that the NER U-shape (\\S\\ref{sec:count_curves}) reflects a dual-task burden absent in RE: partial schemas require simultaneous span detection and type-membership filtering; at full-schema, filtering becomes vacuous and recall recovers. This confirms task-specific pathways.",
+              "new_string": "SCS captures semantic proximity in LLMs' type-resolution space. The unconditional pairwise $R^2$ is modest (1.3\\%) because ${\\sim}89\\%$ of type pairs never confuse; among the 11\\% with nonzero confusion, conditional $R^2$ rises to 7\\%. Correlated pair-level signals aggregate at batch level: a Monte Carlo simulation (Appendix~\\ref{app:aggregation-sim}) predicts batch $R^2$ of 18--25\\%, consistent with the observed 22--53\\% in RE. SCS is thus a weak pair-level predictor but a useful batch-level screen. The NER U-shape (\\S\\ref{sec:count_curves}) likely reflects a dual-task burden absent in RE: partial schemas require simultaneous span detection and type-membership filtering; at full-schema, filtering becomes vacuous and recall recovers."
+            }
+          },
+          "id": "event-001618"
+        },
+        {
+          "source_line": 1619,
+          "timestamp": "2026-05-18T03:39:02.473042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001619"
+        },
+        {
+          "source_line": 1620,
+          "timestamp": "2026-05-18T03:39:05.794737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "description": "Compile after further trimming",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-001620"
+        }
+      ]
+    }
+  ]
+}

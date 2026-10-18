@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "5c23d3c47c6cf765c1f5",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "monitor openvla ready",
+  "task_key": "worker_monitor_openvla-ready_20260523T132038",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_monitor_openvla-ready_20260523T132038.jsonl",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "a09729a15db63cb1634bfde68ca10b6ff8a7719da6a3aaa576b24af2ad9d6374"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T13:20:49.357563+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 7pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_openvla-ready_20260523T132038"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

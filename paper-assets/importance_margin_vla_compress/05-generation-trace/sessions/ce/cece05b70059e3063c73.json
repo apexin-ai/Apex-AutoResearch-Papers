@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cece05b70059e3063c73",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops kill deploy westd38929 cqa1 v4",
+  "task_key": "worker_ops_kill_deploy_westd38929_cqa1_v4_20260522T080627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_deploy_westd38929_cqa1_v4_20260522T080627_result.json",
+    "occurrence": 1,
+    "bytes": 1709,
+    "sha256": "d2e8a22395941e157553050e2e000e9a6c1989f0a02dce7bafe888fb9e64c44a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 eval 实验部署验证完成。汇总报告：\n\n---\n\n## westd-38929\n\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | l2norm k0.5 spatial seed43 | 708992 | RUNNING (旧) |\n| 1 | random k0.3 spatial seed43 | 709233 | RUNNING (旧) |\n| 2 | l2norm k0.3 spatial seed43 | 709369 | RUNNING (旧) |\n| 3 | **random k0.9 object seed43** | 766525 | **RUNNING** ✓ (n_keep=230/256) |\n\n- PID 709985 kill 成功，但实际占 GPU 的 python 子进程是 709608（bash wrapper vs python child），已二次 force kill\n- 注意：用户给的 PID 都是 bash wrapper，实际 GPU 进程 PID 整体偏移了一位\n\n## cqa1-33015\n\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | (旧) l2norm k0.5 + random k0.5 spatial | 209336/209728 | RUNNING, 占 20.5GB |\n| 1 | **l2norm k0.95 object seed43** | 212714 | **RUNNING** ✓ (n_keep=243/256) |\n| 2 | **random k0.925 object seed43** | 213453 | **RUNNING** ✓ (n_keep=236/256) |\n| 3 | **l2norm k0.9 object seed43** | 216142 | **加载中** ⏳ (CPU→GPU transfer) |\n\n- cqa1 GPU 0 **不是空的**（有 2 个旧 spatial 实验），l2norm k0.9 原计划部署 GPU 0 → OOM，改部署到 GPU 3\n- l2norm k0.9 的 python 进程 33GB RSS 正在 CPU 加载模型，预计很快 transfer 到 GPU 3\n\n## Spatial Heatmap 可视化（P1）\n\n**未执行**，原因：\n1. cqa1 GPU 3 被 l2norm k0.9 占用（因 GPU 0 OOM 挪过来的）\n2. `scripts/visualize_token_importance.py` 是硬编码脚本（固定 v8 checkpoint，无 `--suite`/`--seed`/`--output` argparse），不支持用户给的 CLI 参数\n3. 建议等某个 eval 完成后空出 GPU，同时改造脚本支持 CLI 参数再跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

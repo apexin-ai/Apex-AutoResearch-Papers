@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed3053256c5d0bd3757e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops c4ext 10k gate check",
+  "task_key": "worker_ops_c4ext_10k_gate_check_20260519T231700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_c4ext_10k_gate_check_20260519T231700_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "8cc2bb36308f3b91c656296ca76416118a26a53ac22c9ba418768cf263d8f3b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nC4-ext 10K Gate 数据\n====================\n当前 step: 9900 / 100000\n当前 loss: 3.1055\nLR: 9.81e-05\nSPS: 0.6\n\n最近 100 步统计 (step 4950-9900, 每步=50 iter):\n- 平均 loss: 3.0245\n- 趋势: 微弱下降 (前50步均值 3.0473 → 后50步均值 3.0016, Δ=-0.046)\n- 后50步内部: 前半 2.9809 → 后半 3.0223 (近期略有回升但在噪声范围内)\n- 范围: [2.2867, 3.5496]\n- NaN/OOM: 无 (grep 0 匹配)\n\nEval checkpoint:\n- step 5000 eval/action_loss: 3.1565\n\n健康检查:\n- 进程: 活 (PID 26118, uptime 4:43:54, CPU 428%, RSS 5.2GB)\n- GPU: NVIDIA RTX PRO 6000 Black, 39°C, 159W/600W\n- GPU 显存: 30.1GB / 97.9GB (30.8%)\n- SPS 稳定: 是 (全程恒定 0.6)\n\nETA 10K: ~07:21 UTC (距最新日志 ~2.7 min)\n\nGate 建议数据:\n- 平均 loss 3.02, 处于 > 3.0 区间 → 建议调查\n- 但趋势缓慢下降, 且从 warmup 后 (step 1000, loss ~3.6) 持续降至 3.0 附近\n- 方差较大 (2.29-3.55), 单步 loss 波动明显\n- 无任何异常 (无 NaN/OOM/error, SPS 稳定, GPU 健康)\n- 综合判断: 处于 3.0 边界, 仍在缓慢收敛中, 建议继续训练但密切监控\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "82a52942ca6f8ac96236",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag gpu status all servers",
+  "task_key": "worker_diag_gpu-status-all-servers_20260523T180627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_gpu-status-all-servers_20260523T180627_result.json",
+    "occurrence": 1,
+    "bytes": 1703,
+    "sha256": "8806f161f2433c74f5d90118e22fd48b535642afaa5fedebb7849b97651f3b08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-38929\n- GPU 0: 空闲 (0%, 0/98GB)\n- GPU 1: 空闲 (0%, 0/98GB)\n- GPU 2: 空闲 (0%, 0/98GB)\n- GPU 3: 空闲 (0%, 0/98GB)\n- 无 tmux session，仅 tensorboard/jupyter 后台\n- **空闲 GPU: [0,1,2,3]**\n\n## westd-27271\n- GPU 0: **占用** (70%, 16GB/98GB) — `eval_openvla_baseline_goal_seed42_v3` (baseline, libero_goal, seed42)\n- GPU 1: **占用** (69%, 16GB/98GB) — `eval_openvla_baseline_long_seed42` (baseline, libero_10, seed42)\n- 注意：nvidia-smi 仅返回 2 张卡（可能仅配置了 2 GPU）\n- **空闲 GPU: 无**\n\n## westd-41074\n- GPU 0: 空闲 (0%, 1MB/98GB)\n- GPU 1: **占用** (2%, 10GB/98GB) — `eval_pi05_random_k0925_goal_seed42_v2` (random, k=0.925, libero_goal)\n- GPU 2: **占用** (46%, 10.6GB/98GB) — `eval_pi05_random_k085_spatial_seed42_v2` (random, k=0.85, libero_spatial)\n- GPU 3: **占用** (32%, 10.6GB/98GB) — `eval_pi05_l2norm_k085_spatial_seed42_v2` (l2norm, k=0.85, libero_spatial)\n- 另有 `smolvla_spatial`、`xvla_long`、`diag_read_goal_results` tmux session 存在但已停止\n- **空闲 GPU: [0]**\n\n## cqa1-33015\n- GPU 0: 空闲 (0%, 0/24GB)\n- GPU 1: 空闲 (0%, 0/24GB)\n- GPU 2: 空闲 (0%, 0/24GB)\n- GPU 3: 空闲 (0%, 0/24GB)\n- 无 tmux session，仅 tensorboard/jupyter 后台\n- **空闲 GPU: [0,1,2,3]**\n\n---\n\n**汇总：共 16 张 GPU，11 张空闲，5 张在跑实验。**\n\n| 服务器 | 总GPU | 空闲 | 在跑实验 |\n|--------|-------|------|----------|\n| westd-38929 | 4×H800 | **4** | 无 |\n| westd-27271 | 2×H800 | **0** | 2 个 OpenVLA baseline eval |\n| westd-41074 | 4×H800 | **1** (GPU0) | 3 个 π0.5 pruning eval (spatial+goal) |\n| cqa1-33015 | 4×4090 | **4** | 无 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

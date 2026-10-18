@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "71fb1fd55fac664f4c01",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k085 long seed43 strict w41",
+  "task_key": "worker_analyze_eval_pi05_attn_k085_long_seed43_strict_w41_20260527T204830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k085_long_seed43_strict_w41_20260527T204830_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "c30a4b5763b40c9a893e2565412eae2f723fb88df4744527bd34b1e6b8f72afd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp_id: eval_pi05_attn_k085_long_seed43_strict_w41\noverall_SR: 52.4%\ntotal_episodes: 500\nper_task: [T0=26%, T1=56%, T2=38%, T3=68%, T4=46%, T5=70%, T6=72%, T7=54%, T8=4%, T9=90%]\nsource: server_log\nanomalies: 无（EXIT_CODE=0，全部 10 tasks 完成，500 episodes）\n```\n\nseed42=50.0% vs seed43=52.4%，差异 +2.4pp，Attn k=0.85 Long 结果在 seeds 间稳定，无 step-function 降级。T8（put both moka pots on the stove）两个 seed 都极低（seed42 也应类似），是该 task 本身难度问题而非压缩导致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

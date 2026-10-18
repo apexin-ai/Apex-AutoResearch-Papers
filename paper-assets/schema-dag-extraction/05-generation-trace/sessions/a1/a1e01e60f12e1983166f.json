@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "a1e01e60f12e1983166f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research maven dataset study",
+  "task_key": "worker_research_maven-dataset-study_20260515T030839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maven-dataset-study_20260515T030839_result.json",
+    "occurrence": 1,
+    "bytes": 2116566,
+    "sha256": "2e81648872c1c4e0b96363f5bf50dd6b82c6318ae7b51afd5b509b51b4dc7976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "a1e01e60f12e1983166f-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

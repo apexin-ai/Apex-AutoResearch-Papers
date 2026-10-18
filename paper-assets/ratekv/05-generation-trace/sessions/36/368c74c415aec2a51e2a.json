@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "368c74c415aec2a51e2a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu gemma2 hires bf16 2bitonly",
+  "task_key": "worker_gpu_gemma2_hires_bf16_2bitonly_20260514T220044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma2_hires_bf16_2bitonly_20260514T220044_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "30a793bfa9150dda10ab3c42643cc4e3e79d5ea80d94827a12c71f76e7bd3598"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Profiling 已正常启动：\n\n- **模型**: Gemma-2-9B bf16, 18.5GB GPU mem on cuda:0\n- **Calibration**: 64 seqs x 2048 tokens (BOS-prepended, D044 修复生效)\n- **Baseline PPL**: 7.3200\n- **进度**: [1/336] L0H0 @2bit: delta=0.004034\n- **预估时间**: ~1.3min/head × 336 heads ≈ **7.3h**（比预期的 1.9h 慢，因为 64seq×2048tok 数据量大，batch_size=2 需要 32 次 forward pass）\n- **tmux session**: `gemma2_hires_bf16_2bitonly`\n- **日志**: `/root/ratekv/logs/gemma2_hires_bf16_2bitonly.log`\n- **Registry**: `gemma2_hires_bf16_2bitonly` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

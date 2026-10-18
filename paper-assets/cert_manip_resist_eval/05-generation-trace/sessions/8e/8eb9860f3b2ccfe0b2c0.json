@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8eb9860f3b2ccfe0b2c0",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops r6 collect previous results",
+  "task_key": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_r6-collect-previous-results_20260525T064822_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "7d8e228f71908ecb1ef7bab7f27857192afe9929b2911ed824bb08a510d94d32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 7 项分析结果已收集并汇总到 `r6_previous_results_summary.md`。核心发现：\n\n**MC 校准 (PID 18494)**: 已完成，耗时 9.2h。WCB 在所有 36 条件下均不 over-reject（最坏仅 1.6%，远低于 α=0.05），检验保守可信。\n\n**跨分析一致性**:\n- K_eff 效应 robust：fractional logit V2 稳定 9/9/9，crossed RE K5/K7 达 8/8\n- K=3 crossed RE 全灭 (0/12) 是 SE inflation 问题（仅 15 clusters, df=14），不是效应消失\n- β_std(K_eff) 非单调轨迹 (0.349→0.437→0.401) 已由 Bayesian posterior entropy 的双重压缩机制完整解释\n- API-only 子集效应量反而更大 (1.8x)，但 panel 数不足导致功效归零\n- quant_frac 交互项仅 K=3 有信号且 VIF 极高，不 robust\n\n**缺失**: Adaptive R² 数据未找到；crossed RE 使用了旧模型名称"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "644169f347a016365c21",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 025 positive scenario",
+  "task_key": "worker_code_exp-025-positive-scenario_20260522T124553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-025-positive-scenario_20260522T124553.log",
+    "occurrence": 1,
+    "bytes": 602684,
+    "sha256": "199709b1887b5487a63d1330035f5578686878e91ced248dbc2279d477952339"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 47,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "644169f347a016365c21-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 175,
+      "chunks": [
+        {
+          "path": "644169f347a016365c21-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "644169f347a016365c21-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ]
+}

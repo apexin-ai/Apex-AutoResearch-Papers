@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b18cc3c073e9424cb84",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis r4 a3 mi plugin vs closedform",
+  "task_key": "worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "78449e68806b5d189ab7cace0d52eae182adf2b866e8d690a34d5e15eaa84bac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/results/plan001/keff_plugin_vs_closedform.json`。\n\n**核心发现**：\n\n| 维度 | Pearson r | RMSE | Rank Spearman |\n|------|-----------|------|---------------|\n| **Overall** (2910 panels) | 0.966 | 1.009 | 0.970 |\n| K=3 | 0.866 | 0.479 | 0.861 |\n| K=5 | 0.875 | 0.927 | 0.864 |\n| K=7 | 0.874 | 1.376 | 0.860 |\n| MMLU | 0.972 | 1.035 | 0.981 |\n| ARC | 0.957 | 0.982 | 0.966 |\n\n- **排序一致性高**：within-K rank correlation ~0.86，两种方法对 panel diversity 排序基本一致\n- **系统性偏移**：closed-form K_eff 系统性偏高（mean 4.29 vs 3.38），因为 plug-in MI 的 Miller-Madow 校正增大了 MI 值 → exp(-2·MI) 更小 → K_eff 更低\n- **Overall r=0.97 偏高**：受 K 值跨度影响（K=3 vs K=7 天然拉开分布），within-K 的真实一致性在 0.86-0.87\n- element-wise |exp(-2·MI) - (1-ρ²)| 均值 0.22，Gaussian copula 近似引入了中等偏差，但不影响排序结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

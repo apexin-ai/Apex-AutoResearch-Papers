@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "217b4a12e0b46fad469b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "submit eval mlp adapter seed44",
+  "task_key": "worker_submit_eval_mlp_adapter_seed44_20260519T131430",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_eval_mlp_adapter_seed44_20260519T131430_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "1ce61c9986750e8a6a2e94b0a648ed053d1894cca18172d3bd3c804888843409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无法提交实验。原因：\n\n1. **cqa1-33015 数据盘已满**：250G 中仅剩 463MB，无法存放 1.8GB 的 `mlp_adapter_control/checkpoint.pt`\n2. **Checkpoint 缺失**：cqa1 上没有 `mlp_adapter_control` checkpoint，仅 westd-27271 上有\n\n磁盘占用大户（checkpoints 目录）：\n| 目录 | 大小 |\n|------|------|\n| libero_imm_twostage_fullft_seed0 | 17G |\n| baseline_control | 13G |\n| libero_full_ft / seed0 / seed1 | 13G × 3 |\n| libero_baseline / seed0 | 8.7G × 2 |\n\nGPU 方面，cuda:0/2/3 空闲，可以跑。\n\n**需要你决定**：是否清理 cqa1 上部分旧 checkpoint 腾出空间？至少需要释放 ~1.5GB。或者改用其他服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ced7adc7d3d48534a3c3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra baseline readiness check",
+  "task_key": "worker_infra_baseline-readiness-check_20260519T135553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_baseline-readiness-check_20260519T135553_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "fd4c36324f57e18b59d5999df23f1750ea8f05f25f0578ea0dd7195de73aa369"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/baseline_readiness_check.md`。\n\n**汇总：**\n\n| Baseline | 数据 | 脚本 | 结果 | 需要操作 |\n|----------|------|------|------|----------|\n| **Min-K%** | ✓ | ✓ | ✓ 9/9 完成 | 无 |\n| **DetectGPT** | ✓ | 部分 | 8/9（缺 pythia_nucleus） | 部署 `detectgpt_baseline.py` 补跑 1 cell |\n| **Binoculars** | ✓ | 缺失 | 0/9 | 部署 `binoculars_ordinal_eval.py` + 全量运行 |\n\n**需部署的本地 artifacts：**\n1. `artifacts/detectgpt_baseline.py` — 补 pythia_nucleus 一个 cell\n2. `artifacts/binoculars_baseline/binoculars_ordinal_eval.py` — 必须部署，全部 9 cell 待跑\n\n数据完整（9 cell 全部有 depth_0–3.jsonl），磁盘 83GB 剩余充足，环境已验证可用（mink/detectgpt 已成功运行过）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "37f6fbd5a10017a55bb5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "data exp 005 6arch extract",
+  "task_key": "worker_data_exp-005-6arch-extract_20260522T181203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_exp-005-6arch-extract_20260522T181203_result.json",
+    "occurrence": 1,
+    "bytes": 2654,
+    "sha256": "7e907b464412505996ef04ee66ad76af986072ac51eed22b0b11d4fb45eddbab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已提取完整。架构名与要求格式一致（GDN/RetNet/HGRN2/GLA/DeltaNet/HGRN）。\n\n---\n\n## ARC-Easy (n=2376)\n\n```\nGDN-RetNet:      J_h=0.088452, J_u=0.113475, z_h=3.86,  z_u=6.17\nGDN-HGRN2:       J_h=0.121588, J_u=0.104878, z_h=7.31,  z_u=5.44\nGDN-GLA:         J_h=0.114078, J_u=0.105856, z_h=6.32,  z_u=5.10\nGDN-DeltaNet:    J_h=0.084337, J_u=0.102190, z_h=3.48,  z_u=5.12\nGDN-HGRN:        J_h=0.111386, J_u=0.081206, z_h=6.01,  z_u=2.90\nRetNet-HGRN2:    J_h=0.086592, J_u=0.114583, z_h=4.22,  z_u=6.50\nRetNet-GLA:      J_h=0.112360, J_u=0.109524, z_h=6.53,  z_u=5.74\nRetNet-DeltaNet: J_h=0.138235, J_u=0.123360, z_h=9.15,  z_u=7.19\nRetNet-HGRN:     J_h=0.118841, J_u=0.097015, z_h=7.45,  z_u=4.80\nHGRN2-GLA:       J_h=0.097561, J_u=0.087379, z_h=5.12,  z_u=3.98\nHGRN2-DeltaNet:  J_h=0.109244, J_u=0.087533, z_h=6.11,  z_u=4.18\nHGRN2-HGRN:      J_h=0.115819, J_u=0.104439, z_h=6.94,  z_u=5.78\nGLA-DeltaNet:    J_h=0.128852, J_u=0.098039, z_h=8.17,  z_u=4.92\nGLA-HGRN:        J_h=0.116667, J_u=0.113527, z_h=6.79,  z_u=6.00\nDeltaNet-HGRN:   J_h=0.119658, J_u=0.104439, z_h=7.54,  z_u=5.58\n```\n\n## LAMBADA (n=5153)\n\n```\nGDN-RetNet:      J_h=0.127604, J_u=0.121212, z_h=11.79, z_u=10.64\nGDN-HGRN2:       J_h=0.122471, J_u=0.082609, z_h=10.16, z_u=6.56\nGDN-GLA:         J_h=0.124031, J_u=0.100304, z_h=10.54, z_u=9.34\nGDN-DeltaNet:    J_h=0.114773, J_u=0.100291, z_h=9.03,  z_u=8.84\nGDN-HGRN:        J_h=0.147788, J_u=0.076358, z_h=13.24, z_u=5.89\nRetNet-HGRN2:    J_h=0.108014, J_u=0.082777, z_h=9.17,  z_u=6.74\nRetNet-GLA:      J_h=0.122699, J_u=0.106742, z_h=11.65, z_u=10.26\nRetNet-DeltaNet: J_h=0.115190, J_u=0.096128, z_h=10.11, z_u=8.32\nRetNet-HGRN:     J_h=0.119738, J_u=0.066934, z_h=9.92,  z_u=4.03\nHGRN2-GLA:       J_h=0.126660, J_u=0.085570, z_h=10.47, z_u=7.76\nHGRN2-DeltaNet:  J_h=0.125263, J_u=0.089744, z_h=10.35, z_u=7.90\nHGRN2-HGRN:      J_h=0.162888, J_u=0.095159, z_h=13.62, z_u=8.73\nGLA-DeltaNet:    J_h=0.134361, J_u=0.080592, z_h=11.59, z_u=6.76\nGLA-HGRN:        J_h=0.143585, J_u=0.082051, z_h=11.55, z_u=7.10\nDeltaNet-HGRN:   J_h=0.146853, J_u=0.091803, z_h=12.59, z_u=8.73\n```\n\n---\n\n## 全局统计\n\n| Benchmark | mean J_h | mean J_u | z_h range | z_u range | 显著对 (z>1.96) |\n|-----------|----------|----------|-----------|-----------|----------------|\n| ARC-Easy  | 0.110911 | 0.103163 | 3.48–9.15 | 2.90–7.19 | 15/15 helped, 15/15 hurt |\n| LAMBADA   | 0.129461 | 0.090552 | 9.03–13.62 | 4.03–10.64 | 15/15 helped, 15/15 hurt |\n\n所有 30 对 (2×15) 的 helped 和 hurt z-score 均 > 1.96，即全部 60 个检验均显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

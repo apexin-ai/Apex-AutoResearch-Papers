@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c020c75a02252be18873",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh check topk50 and submit dcol",
+  "task_key": "worker_ssh_check_topk50_and_submit_dcol_20260514T193803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_topk50_and_submit_dcol_20260514T193803_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "39336f4a063151850a2b079ccd85ea366f71be8e7fc6ea20fe93854701ab8dd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pipeline 仍在运行，DCOL 暂不能提交。**\n\n当前状态：\n- **Sentinel**: 不存在\n- **GPU 0**: 12176 MiB 占用, 70% 利用率（活跃训练中）\n- **训练进度**: 409/939 steps (44%), epoch ~0.99, ~1.9 it/s\n- **Loss**: ~1.4-1.5, 收敛正常\n- **预估当前阶段剩余**: (939-409) / 1.9 ≈ **~4.6 分钟**\n\n注意：这是当前训练阶段的剩余时间。如果 pipeline 还有后续阶段（evaluation 等），总时间会更长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

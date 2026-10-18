@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f9965cd1eca104b4e470",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code fix reviewer critical",
+  "task_key": "worker_code_fix-reviewer-critical_20260514T163331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-reviewer-critical_20260514T163331_result.json",
+    "occurrence": 1,
+    "bytes": 1983,
+    "sha256": "415a3a9b47e2ac1324f71919df20c835000f337a1f6620c477bb9870e939cd3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改验证完毕。汇总如下：\n\n---\n\n### Fix 1 — BCS 定义：mean → max\n- **compute_bcs.py:55-62** — `compute_bcs()` 改为取 max pairwise cosine similarity（原先 `total/count` 取均值，现在遍历所有 pair 取最大值）\n- **select_type_batches.py:45-51** — `select_low_bcs()` greedy 准则从 `avg_sim` 改为 `max_sim`（选使最大相似度最小的候选）\n- **select_type_batches.py:82-88** — `select_high_bcs()` 同上，改为 `max_sim`（选使最大相似度最大的候选）\n\n### Fix 2 — Random samples 10 → 25\n- **run_experiment.py:120** — exp2 的 `select_random_batches(count, 10, ...)` → `(count, 25, ...)`\n\n### Fix 3 — Exp1 加 solo baseline (count=1)\n- **run_experiment.py:105-113** — count 列表加入 `1`，变为 `[1, 2, 6, 12, 22, 44, 66]`\n- **run_experiment.py:108-111** — count=1 时为每个 active type 单独生成一个 batch（`[{\"types\": [t], \"bcs\": 0.0}]`），不走 random sampling\n\n### Fix 4 — 分析改用 ΔF1\n- **evaluate.py:126-129,138** — `evaluate_all()` 增加 `per_type_f1` 字段（per-type exact F1 breakdown）\n- **analyze_results.py:78→solo_f1参数** — `analyze_exp2()` 新增 `solo_f1` 参数\n- **analyze_results.py:85-96** — 每个 batch 计算 `delta_f1 = mean(solo_F1[t] - batch_F1[t])`\n- **analyze_results.py:100-110** — 当 solo baseline 覆盖所有 entry 时 `use_delta=True`，用 ΔF1 做 Pearson r、t-test、Cohen's d\n- **analyze_results.py:main()** — 从 exp1 count=1 结果提取 per-type solo F1，传给 `analyze_exp2`\n- 图表 Y 轴自动切换为 \"ΔF1 (solo − batch)\"\n\n### Fix 5 — JSON schema 动态 enum\n- **run_extraction.py:16-28** — 静态 `JSON_SCHEMA` 替换为 `build_json_schema(batch_types)` 函数，type 字段加 `\"enum\": sorted(batch_types)`\n- **run_extraction.py:111-116** — `GuidedDecodingParams` 和 `SamplingParams` 移入 per-batch 循环内，每个 batch 动态生成 schema"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

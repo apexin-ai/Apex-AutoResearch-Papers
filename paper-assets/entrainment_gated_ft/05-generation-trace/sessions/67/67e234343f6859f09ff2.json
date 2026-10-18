@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "67e234343f6859f09ff2",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 gla pure now",
+  "task_key": "worker_exp_exp-005-gla-pure-now_20260522T163259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-gla-pure-now_20260522T163259_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "e6e9dcbf9cbb62beb800b52c024e6f901c96115a40f46a67ccaed67d80490b3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估正在运行，模型已成功加载。\n\n**汇报：**\n- **GLA pure 评估**：tmux session `exp-005-gla-pure`，PID `904601`，cuda:0，正在跑 lambada_openai + arc_easy\n- 使用 `patch_fla_eval.py` 解决了 GLA 架构注册和 tied_weights 兼容性问题\n- 后台下载（HGRN h3-1 + DeltaNet pure）PID `903290` 已启动\n- 残留 session `exp-005-pure-v5` 未清理（已失败，不占 GPU）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "fa92b942cfa535829757",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code gpt4o crossbenchmark scoring",
+  "task_key": "worker_code_gpt4o_crossbenchmark_scoring_20260521T082621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt4o_crossbenchmark_scoring_20260521T082621.log",
+    "occurrence": 1,
+    "bytes": 800031,
+    "sha256": "94e93f28570f832478352e7cdfffa8b96de2466ff2c84eb6ff5da2a1c289d69f"
+  },
+  "statistics": {
+    "messages": 386,
+    "user_turns": 0,
+    "tool_calls": 168,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 168,
+      "tool_result": 168,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 386,
+      "chunks": [
+        {
+          "path": "fa92b942cfa535829757-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa92b942cfa535829757-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa92b942cfa535829757-part-0003.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ]
+}

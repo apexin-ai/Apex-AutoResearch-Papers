@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "a69410caea1df9ec3f2a",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "paper figure fig1 paperbanana",
+  "task_key": "worker_paper_figure_fig1_paperbanana_20260524T182116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_paperbanana_20260524T182116.log",
+    "occurrence": 1,
+    "bytes": 661779,
+    "sha256": "0007f86bec5d9614d38943bc69d1ebd98c4b31ef6cc52e5119011fbb11fb7b22"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 183,
+      "chunks": [
+        {
+          "path": "a69410caea1df9ec3f2a-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "a69410caea1df9ec3f2a-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c96775124578cef56f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code ace05 preprocess scripts",
+  "task_key": "worker_code_ace05-preprocess-scripts_20260515T030622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ace05-preprocess-scripts_20260515T030622_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "8130e5c4a111e62e74da54662f80034d5b67aa0087c682c4f6567264fd1c607f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件全部完成，已注册到 exp-004：\n\n| 文件 | 路径 | 说明 |\n|------|------|------|\n| `ace05_entity_types.json` | `configs/` | 7 个 entity type，`{name: description}` 格式 |\n| `ace05_relation_types.json` | `configs/` | 18 个 relation subtype，含 `MAJOR:Subtype` 前缀 |\n| `preprocess_ace05.py` | `src/` | DyGIE++ / PURE → parquet，支持 `--mode ner/re` |\n| `compute_type_embeddings.py` | `src/` | 通用 type embedding 脚本，Qwen3 mean-pool，输出 `{name: tensor}` dict |\n\n关键设计决策：\n- type JSON 格式与 `few_nerd_types.json` 完全一致（`name → description` dict）\n- `compute_type_embeddings.py` 输出 dict 而非 stacked tensor，key 是 type name，兼容 Few-NERD 和 ACE05\n- `preprocess_ace05.py` 输出 parquet schema 与现有 pipeline 对齐：`text` + `entities[{text, type}]` + 可选 `relations[{head, tail, type}]`\n- 所有路径通过 argparse 参数化，LDC 数据到位后直接可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

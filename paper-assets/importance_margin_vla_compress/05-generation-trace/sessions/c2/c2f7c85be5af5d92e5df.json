@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c2f7c85be5af5d92e5df",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "inspect all servers connectivity",
+  "task_key": "worker_inspect_all_servers_connectivity_20260526T020043",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inspect_all_servers_connectivity_20260526T020043_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "3912104415e51dc1b39ecb65b89fe5662e7fff865e676055adb3fd5d9eb4486b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n```\nwestd-38929  | ✅ 连通 | GPU0: 63% 15780MiB | GPU1: 67% 15780MiB | GPU2: 75% 15938MiB | GPU3: 66% 15938MiB\ncqa1-33015   | ❌ 离线 | Unable to connect to port 33015 on 58.144.141.28\nwestd-27271  | ❌ 离线 | Unable to connect to port 27271 on 36.103.198.204\n```\n\n### westd-38929 详情\n\n4 个实验全部正常运行中，PID 与预期匹配：\n\n| GPU | 实验 | PID | CPU 时间 |\n|-----|------|-----|---------|\n| GPU0 | `attention_prune k=0.7 seed42` | 6815 | 3559 min |\n| GPU1 | `l2norm_prune k=0.7 seed42` | 7009 | (running) |\n| GPU2 | `random_prune k=0.7 seed42` | 7384 | 3721 min |\n| GPU3 | `l2norm_prune k=0.85 seed42` | 8069 | 3674 min |\n\n4 个 tmux session 均存活，均从 `02:12` 启动至今（约 7.8 小时）。\n\n### cqa1-33015 & westd-27271\n\n两台都是 **connection refused**（端口不通），AutoDL 实例可能已关机或重启后端口变更。需要去 AutoDL 控制台确认实例状态，如果已重启需更新 `~/.ssh/config` 中的端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

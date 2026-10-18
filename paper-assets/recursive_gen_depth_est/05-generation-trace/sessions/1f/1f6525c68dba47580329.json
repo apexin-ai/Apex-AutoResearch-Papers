@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f6525c68dba47580329",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_15_1779186584.md",
+  "task_key": "loop_15_1779186584",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779186584.md",
+    "occurrence": 1,
+    "bytes": 4451,
+    "sha256": "a5de92c15ed053a55811ab74b2d119e770b8b15479f9f808ce69b495c7fb886f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-17T22:49:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **gpu-6000pro-2 只能用 cuda:0 和 cuda:1**（gpu_ids 白名单），westd-48862 的 cuda:0 和 cuda:1 也在使用但不在 allocated_gpus 白名单中（实际由 cron 监控）\n- **Wild data 解读 C004**：RF 在 C4/FineWeb 上的 d1+ 预测是 OOD FPR，**禁止**说 \"contamination\" / \"AI-generated content detected\"。C4 采集于 2019，无 LLM 内容\n- **Theory section C003**：EDD 上界必须用 **Proposition**（不是 Theorem），γ=0.74 in AUC-excess space（不是 KL space），AUC 值必须是 binary pairwise means\n- **qwen25_14b_scale_002 registry 有残留 conclusion=failed**：系统不允许清空 conclusion 字段，但 status=RUNNING 且 cron 监控正常。下一个\"你\"不要因为看到 conclusion=failed 就以为实验失败了——看 status 字段\n- **Downstream benchmark 论文 framing**：exploratory/pilot only，放 Discussion/Appendix，claim 强度为 \"we observe that...\"\n\n### 2. 🖥️ 基础设施快照\n- **gpu-6000pro-2**：工作目录 `/root/autodl-tmp/recursive_gen_depth_est/`，Python `/root/miniconda3/bin/python`，`source /root/miniconda3/bin/activate`\n  - 模型缓存：Qwen2.5-14B 8 shards 已完整下载（~30GB）\n  - 活跃：qwen25_14b_scale_002 PID 806751, cuda:0, tmux session 存在, d0 生成 94%→应该已进 d1+\n  - cuda:1 空闲\n- **westd-48862**：同样工作目录 `/root/autodl-tmp/recursive_gen_depth_est/`，同样 conda 路径\n  - 活跃：qwen25_14b_scale_003 PID 20700, cuda:0, d0 生成 51%→预计还需 ~10h\n  - cuda:1 空闲\n  - 有非致命 warning：`results/qwen25_14b_scale/` 目录不存在导致 tee 日志副本写入失败，不影响数据生成\n- **本地论文文件**：`docs/paper/` 和 `artifacts/_project/paper/` 两套，references.bib 两处都要同步更新\n- **结果文件**（远程）：`results/rf_seed_robustness.json`, `results/feature_importance_ablation.json`\n\n### 3. 📊 当前状态\n刚完成 Director 的一系列 CPU 任务：\n- ✅ Registry 修正 qwen25_14b_scale_002 → RUNNING\n- ✅ Pareek bib entry (pareek2024understanding, NeurIPS 2024) 写入两个 references.bib + Discussion 引用\n- ✅ RF seed robustness: 66.48% ± 0.06%（3 seeds）\n- ✅ Feature importance ablation: perplexity-only 66.0%, entropy 63.2%, repetition 53.0%\n- ✅ Single-feature p90_ppl: 58.27%\n- ✅ 两台 14B 实验健康检查：均正常运行\n\n**Registry RUNNING**：\n- `qwen25_14b_scale_002`：gpu-6000pro-2 cuda:0, PID 806751, Qwen2.5-14B d0-d3 生成\n- `qwen25_14b_scale_003`：westd-48862 cuda:0, PID 20700, 同上（reproducibility 对照）\n\n**等待中**：\n- 两个 14B cron 回调（scale_002 预计几小时内，scale_003 预计 ~10h）\n- 无 pending Worker\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **14B scale_002 cron 回调 → 按 on-experiment-done 处理**：分析 4-class accuracy，与 1.4B baseline 对比，更新 registry+report.md，向 Director 汇报\n- **14B scale_003 cron 回调 → 同上**：额外对比 scale_002 结果确认跨硬件一致性\n- **Director 分配新 GPU 任务 → 提交到 gpu-6000pro-2 cuda:1 或 westd cuda:1**\n- **plan_026 API key 到达 → 启动 GPT-3.5-turbo fine-tuning 递归链实验**\n- **Theory section C003 re-review 结果到达 → 按 Reviewer 反馈修改**\n\n### 5. 🎯 战略上下文\n- **目标**：EMNLP 2026 Main，ARR May 25（距离 8 天）\n- **核心 claim**：递归生成产生可检测的 depth signal，19 个统计特征（以 perplexity 为主导）可区分 d0-d3，EDD=4 跨模型一致\n- **Feature bottleneck 已确认**：RF 66.5% vs XGBoost 67.2% vs Proto 66.6%，更复杂分类器无法显著超越 RF。原因：信息集中在少数 perplexity 特征（p90_ppl 单特征即 58.3%）\n- **14B 是最后一个 scale validation 数据点**：如果 14B 也显示 depth signal，则 claim 从 \"1-2B models\" 扩展到 \"1B-14B range\"\n- **易错点**：\n  - qwen25_14b_scale_002 registry 有 conclusion=failed 残留（实际在跑，看 status 不看 conclusion）\n  - references.bib 有两个副本（docs/paper/ 和 artifacts/_project/paper/），改一个必须改另一个\n  - Theory AUC 值必须是 binary pairwise means（d0v1=0.953, d1v2=0.862, d2v3=0.766, d3v4=0.683），不要用其他来源的数值\n  - Instruct 模型结论：IT 正则化 depth signal（使 AUC 单调递减），不是引入伪影\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

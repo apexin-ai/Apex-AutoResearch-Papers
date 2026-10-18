@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "346a4493cac0e65adbc2",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp3a progress check",
+  "task_key": "worker_ssh_exp3a-progress-check_20260515T032930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp3a-progress-check_20260515T032930_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "6ecc6c26c4f33e0d46acff5fbea10b6f3ae317962e316bb8ab9fbd7e8397842a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp003a 进度报告\n\n**状态**: 运行中 (PID 209542, 已运行 ~36 分钟)\n\n**当前位置**: exp1 阶段，**55/94 batches 已完成** (58.5%)，正在处理第 56 个 batch\n\n- 首个 batch 完成: 10:56:08\n- 最后完成 batch: 11:29:43 (`count_1_random_54`)\n- 平均每 batch: ~36.6 秒\n\n**ETA 预估**:\n| 阶段 | 剩余 batches | 预估耗时 |\n|------|-------------|---------|\n| exp1 | 39 | ~24 min |\n| exp2 | 54 | ~33 min |\n| **合计** | **93** | **~57 min** |\n\n预计完成时间: **约 12:28** (UTC+8)\n\n**GPU**: 94221 / 97887 MiB (96.3% VRAM), 利用率 14%。VRAM 高占用正常（Qwen3-32B-FP8）；GPU util 偏低是因为 vLLM 在 batch 间隙有 CPU 调度开销，处理中峰值会高很多。\n\n**输出文件**: 尚未生成 `predictions_exp1_v2*.json`，exp1 完成后才会写出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

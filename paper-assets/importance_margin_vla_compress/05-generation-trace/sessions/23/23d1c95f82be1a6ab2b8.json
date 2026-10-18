@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23d1c95f82be1a6ab2b8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "m103 kill westd41074",
+  "task_key": "worker_m103_kill_westd41074_20260525T011918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_m103_kill_westd41074_20260525T011918_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "55093bad406602608c3d1a4c6a350c64314ddfe77aeafad76465f2bc6d144ead"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | eval_openvla_attn_k09_long_seed42 | killed ✓ |\n| 1 | eval_openvla_attn_k085_long_seed42 | killed ✓ |\n| 2 | eval_openvla_random_k09_long_seed42 | killed ✓ |\n| 3 | eval_openvla_l2norm_k09_long_seed42 | killed ✓ |\n\nwestd-41074 全部 4 GPU 已释放（0 MiB / 97887 MiB），registry 已标记 `conclusion=killed`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

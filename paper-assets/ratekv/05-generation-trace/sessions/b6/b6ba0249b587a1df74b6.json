@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ba0249b587a1df74b6",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu yi15 9b submit",
+  "task_key": "worker_gpu_yi15_9b_submit_20260514T142318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_yi15_9b_submit_20260514T142318_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "2b4239feae7ad52de8d30120d2459f86c4c8d1b067a96a90e0b856640a0f5df1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- tmux session `yi15_9b_full_pipeline` 在 `westd-37397` cuda:1 上运行\n- 等待脚本正在轮询 `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B` 下载完成（检查 config.json 存在 + 无 .incomplete/.tmp/.lock 文件 + safetensors 文件数稳定）\n- 下载完成后自动执行 `CUDA_VISIBLE_DEVICES=1 python -u run_yi15_full_pipeline.py --model ... --gpu cuda:0`\n- 日志：`~/runs/ratekv/yi15_9b_full_pipeline.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5755bbec053d7caee5fe",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu2",
+  "task_key": "worker_deploy_westd38929_gpu2_20260524T193528",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_gpu2_20260524T193528_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "7b7b96eb7d443dc82dba26abff3afd190df466fee72f99a8f14b268fe5165294"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**已完成实验结果**（结果文件已存在，registry zombie 已修复为 DONE）：\n| 实验 | SR |\n|------|-----|\n| L2norm k=0.5 Long seed42 | **50.2%** |\n| L2norm k=0.3 Long seed42 | **40.6%** |\n| L2norm k=0.85 Long seed43 | **79.0%**（fallback，也已完成） |\n\n**GPU2 部署**：\n- 实验：`eval_pi05_l2norm_k03_long_seed43_postfix_v2` — L2norm k=0.3 Long seed43\n- PID：756339，GPU2\n- Cron 监控：每 17 分钟检查（job 9adb4eaf）\n- 选择理由：k=0.5 seed43 正在 GPU3 上跑，k=0.3 seed43 是其 extreme-pruning 配对，从未运行过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

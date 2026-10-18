@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c9dabc400dc053764407",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops experiment plan sync",
+  "task_key": "worker_ops_experiment-plan-sync_20260523T201917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_experiment-plan-sync_20260523T201917_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "97aba2b9b5287622c257e447489258e99b3e83543f14dd2e6bc8cd9598bb0842"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。汇总：\n\n**更新为 done（6 条）：**\n| Plan | Registry ID | 说明 |\n|------|-------------|------|\n| plan_001 | `plan001_step1_full_v4` | 直接匹配，15模型全流水线 |\n| plan_003 | `plan001_step1_full_v4` | 子分析 k5_rf_contrast，BFT framing confirmed |\n| plan_004 | `plan001_step1_full_v4` | 子分析 capability_matched |\n| plan_008 | `plan001_step1_full_v4` | 子分析 cross_k_bootstrap_summary (K3-K7) |\n| plan_009 | `plan001_step1_full_v4` | 子分析 VIF/fractional logit/Cinelli-Hazlett |\n| plan_010 | `plan001_step1_full_v4` | 子分析 k5_aggregation_bootstrap |\n\n**仍为 planned（6 条）：**\n| Plan | 原因 |\n|------|------|\n| plan_002 | 特定攻击类型（few-shot hijacking, persona manipulation, instruction override）未在 registry 中确认 |\n| plan_005 | 两阶段面板设计算法，无对应 registry 实验 |\n| plan_006 | Per-judge ASR 集中度分析（Gini/entropy），未完成 |\n| plan_007 | Diversity-capability tradeoff 可视化，未完成 |\n| plan_011 | Open-ended generation benchmark，未完成 |\n| plan_012 | Partial-knowledge adversary model，未完成 |\n\n同时为 3 条 MVP 条目补充了 `status: done` 字段，保持格式一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

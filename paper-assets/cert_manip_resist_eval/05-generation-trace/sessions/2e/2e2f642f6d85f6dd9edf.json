@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2e2f642f6d85f6dd9edf",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k4 wild bootstrap",
+  "task_key": "worker_analysis_k4-wild-bootstrap_20260523T063715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k4-wild-bootstrap_20260523T063715_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "67ef4786c9d4fe5d77675516adf2227cc03432e5124bb9294618c9bbeec2d6d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## K=4 Wild Cluster Bootstrap 结果\n\n**Summary**: K_eff FDR sig: **2/12**, η_max FDR sig: **1/12**\n\nK_eff 显著的 2 个 condition（均为正方向）：\n- `mmlu×prompt_injection` (std_β=+0.408, fdr_p=0.014)\n- `arc_challenge×position_bias` (std_β=+0.841, fdr_p=0.014)\n\nη_max 显著的 1 个 condition：\n- `mmlu×position_bias` (std_β=+0.560, fdr_p=0.019)\n\n**Validation**: arc×sycophancy K_eff β = -0.068（负方向，与 K=3 的 -0.192 一致）\n\n## Cross-K Comparison 更新\n\n| K | Bootstrap η_max | Bootstrap K_eff |\n|---|---|---|\n| K=3 | **5/12** | 1/12 |\n| K=4 | **1/12** | **2/12** |\n| K=5 | 0/12 | **7/12** |\n| K=7 | 0/12 | **5/12** |\n\nK=4 确认了 transition 位置：η_max 从 K=3 的 5/12 骤降到 K=4 的 1/12，K_eff 从 1/12 升到 2/12。dominance crossover 发生在 K=3→K=4 之间，K=4 已经是 η_max 不再主导的状态，但 K_eff 尚未获得强显著性（要到 K=5 才出现 7/12 的集中爆发）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0",
+  "id": "0268633b2657f383ad4c",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "analyze eval pi05 random k085 spatial seed42 postfix v2",
+  "task_key": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603.jsonl",
+    "occurrence": 1,
+    "bytes": 18322,
+    "sha256": "7400680896ee017620af185bb4a5dc0a4581d301f70a3c4d1506cf32ade2a670"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T05:08:15.378676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T05:08:15.379022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T05:08:15.379234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -100 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T05:08:15.379558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 10:17:59,096 Config: suite=libero_spatial, prune=random, keep=0.85, eps=50, gpu=0\\\\n2026-05-24 10:17:59,097 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-24 10:20:11,333 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-24 10:20:17,431 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-24 10:20:17,431 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-24 10:20:20,868 Patched embed_image\\\\n2026-05-24 10:20:20,880 Model: 4143.4M params\\\\n2026-05-24 10:20:20,880 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-24 10:20:20,880 Pruning: random, keep 217/256 tokens/image (651 total)\\\\n2026-05-24 10:20:22,621 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-24 10:20:22,663 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-24 10:20:22,663 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-24 10:20:22,663 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 10:20:22,724 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2\n…[truncated 6223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T05:08:15.379900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix_v2",
+              "field": "metrics",
+              "value": "{'overall_sr': 60.8, 'per_task_sr': {'T0_pick_up_black_bowl_between_plate': 84, 'T1_pick_up_black_bowl_next_to_ramekin': 68, 'T2_pick_up_black_bowl_from_table_center': 92, 'T3_pick_up_black_bowl_on_cookie_box': 16, 'T4_pick_up_black_bowl_in_top_drawer': 66, 'T5_pick_up_black_bowl_on_ramekin': 28, 'T6_pick_up_black_bowl_next_to_cookie': 44, 'T7_pick_up_black_bowl_on_stove': 76, 'T8_pick_up_black_bowl_next_to_plate': 82, 'T9_pick_up_black_bowl_on_wooden_cab': 52}, 'total_episodes': 500, 'total_success': 304, 'baseline_spatial_k1': 78, 'delta_vs_baseline': -17.2}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T05:08:15.380130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k085_spatial_seed42_postfix_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T02:17:26.991Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:07:05.825Z\\\", \\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"697975\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T02:17:56.270Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": 1, \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"eval_data\\\": \\\"libero_spatial (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:00:52.023Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:01:10.926339+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 60.8, \\\"per_task_sr\\\": {\\\"T0_pick_up_black_bowl_between_plate\\\": 84, \\\"T1_pick_up_black_bowl_next_to_ramekin\\\": 68, \\\"T2_pick_up_black_bowl_from_table_center\\\": 92, \\\"T3_pick_up_black_bowl_on_cookie_box\\\": 16, \\\"T4_pick_up_black_bowl_in_top_drawer\\\": 66, \\\"T5_pick_up_black_bowl_on_ramekin\\\": 28, \\\"T6_pick_up_black_bowl_next_to_cookie\\\": 44, \\\"T7_pick_up_black_bowl_on_stove\\\": 76, \\\"T8_pick_up_black_bowl_next_to_plate\\\": 82, \\\"T9_pick_up_black_bowl_on_wooden_cab\\\": 52}, \\\"total_episodes\\\": 500, \\\"total_success\\\": 304, \\\"baseline_spatial_k1\\\": 78, \\\"delta_vs_baseline\\\": -17.2}}}, \\\"error\\\": null\n…[truncated 49 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T05:08:15.380327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix_v2",
+              "field": "conclusion",
+              "value": "success — Spatial suite 无 disruption peak。Random k=0.85 SR=60.8% vs baseline k=1.0 SR=78%，降幅 17.2pp，属中度退化而非崩塌（对比 Object suite 同参数从 ~82% 崩至 5.6%）。Spatial 对 random pruning 更鲁棒，但仍有显著性能损失，尤其 T3(16%)、T5(28%) 退化严重。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T05:08:15.380477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'success — Spatial suite 无 disruption peak。Random k=0.85 SR=60.8% vs baseline k=1.0 SR=78%，降幅 17.2pp，属中度退化而非崩塌（对比 Object suite 同参数从 ~82% 崩至 5.6%）。Spatial 对 random pruning 更鲁棒，但仍有显著性能损失，尤其 T3(16%)、T5(28%) 退化严重。'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.3733}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T05:08:15.380797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix_v2",
+              "field": "conclusion",
+              "value": "success",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T05:08:15.381094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k085_spatial_seed42_postfix_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T02:17:26.991Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:07:30.698Z\\\", \\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"697975\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T02:17:56.270Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": 1, \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"eval_data\\\": \\\"libero_spatial (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:00:52.023Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:01:10.926339+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.733}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T05:08:15.381335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T05:08:15.381482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition ANALYZING → DONE(success) without metrics. Set metrics first, or use conclusion=negative/failed.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.0424}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T05:08:15.381634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix_v2",
+              "field": "metrics",
+              "value": "{'overall_sr': 60.8, 'per_task_sr': {'T0': 84, 'T1': 68, 'T2': 92, 'T3': 16, 'T4': 66, 'T5': 28, 'T6': 44, 'T7': 76, 'T8': 82, 'T9': 52}, 'total_episodes': 500, 'total_success': 304, 'baseline_spatial_k1': 78, 'delta_vs_baseline': -17.2}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T05:08:15.381820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k085_spatial_seed42_postfix_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T02:17:26.991Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:07:50.463Z\\\", \\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"697975\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T02:17:56.270Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": 1, \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"eval_data\\\": \\\"libero_spatial (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:00:52.023Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:01:10.926339+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 60.8, \\\"per_task_sr\\\": {\\\"T0\\\": 84, \\\"T1\\\": 68, \\\"T2\\\": 92, \\\"T3\\\": 16, \\\"T4\\\": 66, \\\"T5\\\": 28, \\\"T6\\\": 44, \\\"T7\\\": 76, \\\"T8\\\": 82, \\\"T9\\\": 52}, \\\"total_episodes\\\": 500, \\\"total_success\\\": 304, \\\"baseline_spatial_k1\\\": 78, \\\"delta_vs_baseline\\\": -17.2}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.5707}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T05:08:15.381969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T05:08:15.382170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k085_spatial_seed42_postfix_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T02:17:26.991Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:07:57.868Z\\\", \\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"697975\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T02:17:56.270Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": 1, \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"eval_data\\\": \\\"libero_spatial (10 tasks x 50 episodes)\\\", \\\"wall_clock_seconds\\\": 10201.6, \\\"gpu_hours\\\": 2.83}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:00:52.023Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:01:10.926339+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 60.8, \\\"per_task_sr\\\": {\\\"T0\\\": 84, \\\"T1\\\": 68, \\\"T2\\\": 92, \\\"T3\\\": 16, \\\"T4\\\": 66, \\\"T5\\\": 28, \\\"T6\\\": 44, \\\"T7\\\": 76, \\\"T8\\\": 82, \\\"T9\\\": 52}, \\\"total_episodes\\\": 500, \\\"total_success\\\": 304, \\\"baseline_spatial_k1\\\": 78, \\\"delta_vs_baseline\\\": -17.2}, \\\"completed_at\\\": \\\"2026-05-24T05:07:57.868Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.959}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T05:08:15.382486+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. \n\n```\nRESULT:\n- overall_sr: 60.8%\n- per_task: T0=84%, T1=68%, T2=92%, T3=16%, T4=66%, T5=28%, T6=44%, T7=76%, T8=82%, T9=52%\n- total_episodes: 500 (10 tasks × 50 eps, all complete)\n- anomalies: 无\n- comparison: baseline(k=1.0)=78%, this(k=0.85)=60.8%, delta=-17.2pp\n- disruption_peak_in_spatial: NO\n```\n\n**结论 (success)**：Spatial suite 无 disruption peak。Random k=0.85 从 78% 降至 60.8%（-17.2pp），属中度退化，远非 Object suite 的灾难性崩塌（82% → 5.6%，-76pp）。\n\n值得注意：T3(16%) 和 T5(28%) 退化严重，说明 random pruning 对某些需要精细空间定位的 task 仍有显著影响，但整体不构成 disruption peak 现象。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ]
+}

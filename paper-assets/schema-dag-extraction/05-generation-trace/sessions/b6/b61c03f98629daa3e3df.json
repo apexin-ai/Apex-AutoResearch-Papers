@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b61c03f98629daa3e3df",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r11 ner bcs contradiction",
+  "task_key": "worker_analysis_r11-ner-bcs-contradiction_20260517T095903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r11-ner-bcs-contradiction_20260517T095903_result.json",
+    "occurrence": 1,
+    "bytes": 3176,
+    "sha256": "740e18140b9ae86b2d2e7cb5dd4fa6e9f9c69e9c292a0b78e97334b8ffb4b84c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是完整汇报：\n\n---\n\n## 调查结论：NER BCS-F1 r=+0.50/+0.58 vs Q1 null\n\n### 1. +0.50/+0.58 的确切来源\n\n| 属性 | 值 |\n|------|------|\n| 文件 | `artifacts/eval_exp2.json` + `scripts/d037/d037_ner_v2_bcs_analysis_results.json` |\n| v1 r=0.50 | D005 决策记录（原始数据已被 v2 覆盖），n=27, count_12 |\n| v2 r=0.58 | `eval_exp2.json` 直接验证, n=27 (25 random + 2 extreme), count_12 |\n| BCS 定义 | **MAX pairwise cosine similarity（旧定义）** |\n| BCS range | [0.892, 0.973] (MAX) / [0.779, 0.833] (MEAN 重算) |\n| Batch seed | seed 42+12=54（`run_experiment.py` 的 `seed + count` 逻辑） |\n| Sim matrix | `artifacts/sim_matrix.pt`（66×66, Qwen3 embeddings） |\n\n### 2. Q1 null 的确切来源\n\n| 属性 | 值 |\n|------|------|\n| 文件 | `artifacts/d051_fewnerd_n25_s{42,123,456}/eval_results.json` |\n| 结果 | `artifacts/paper/ner_partial_correlation_results.json`: r=0.0037, p=0.937 |\n| n_batches | 75 (25 per seed × 3 seeds, count_12 only) / 450 (all counts) |\n| BCS 定义 | **MEAN pairwise cosine similarity（新定义）** |\n| BCS range | [0.763, 0.848] |\n| Seeds | 42, 123, 456 |\n| Sim matrix | 同一个 `artifacts/sim_matrix.pt` |\n\n### 3. d051 count_12 per-seed BCS-F1 相关系数\n\n| Seed | n | r(BCS, F1) | p | r(BCS, freq) |\n|------|---|-----------|---|-------------|\n| s42 | 25 | +0.189 | 0.365 | +0.219 |\n| s123 | 25 | +0.021 | 0.921 | +0.132 |\n| s456 | 25 | -0.165 | 0.432 | +0.217 |\n| **Pooled** | **75** | **+0.003** | **0.982** | **+0.173 (NS)** |\n\n### 4. 矛盾根因\n\n**主因：eval_exp2 的 batch composition 恰好产生了 BCS-frequency 的虚假关联**\n\n| 对比维度 | eval_exp2 (27 batches) | d051 (75 batches) |\n|----------|----------------------|------------------|\n| r(BCS, freq) | **0.53** (强关联!) | 0.17 (NS) |\n| r(F1, freq) | 0.59 | 0.59 |\n| r(BCS, F1) raw | 0.50-0.58 | 0.003 |\n| Partial r(BCS, F1 \\| freq) | **0.28 (p=0.16, NS)** | -0.12 (p=0.29, NS) |\n\n**因果链**：eval_exp2 的特定 25 个 random batches（seed=54）**恰好**产生了 BCS↔type_frequency 的相关（r=0.53）。由于 type frequency 是 F1 的真实预测因子（高频类型模型识别更好），这制造了虚假路径：BCS → freq → F1。\n\n控制 frequency 后，**两组数据的 partial r 都不显著**。eval_exp2 的 r=+0.50/+0.58 完全是 **confound-driven spurious correlation**。\n\n**次因**：\n- BCS 定义差异（MAX vs MEAN）不是主因 — BCS_MEAN 重算后 eval_exp2 仍 r=0.50\n- 零 batch 重叠（不同 seed）\n- 小样本 n=27 放大了随机偏差\n\n### 5. 建议\n\n1. **不应在论文中报告 r=+0.50/+0.58** — 这是受 type frequency confound 污染的虚假结果\n2. **使用 d051 的结论**（r≈0.00, NS）作为 NER batch-level BCS-F1 的最终结果\n3. 如果论文 §4.5 已写入这些数字，需要替换为 d051 结果，并可简要说明 frequency confound 的存在（作为 methodological insight）\n4. 关键教训：25-27 个 random batches 不足以产生可靠的相关性估计 — 特别是在高维 type space 中容易出现 spurious confounds"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

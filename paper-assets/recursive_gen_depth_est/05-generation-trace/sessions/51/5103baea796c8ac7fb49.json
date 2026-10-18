@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5103baea796c8ac7fb49",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code fix scripts",
+  "task_key": "worker_code_fix-scripts_20260514T100522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-scripts_20260514T100522_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "7c266dd631cbb9ba09d41803cf260b34101e23c4eb0c1e851a1cedede27068c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。修改汇总：\n\n### `scripts/generate_next_depth.py`\n| 修改点 | 行号 | 内容 |\n|--------|------|------|\n| max_new_tokens | L24 | default=256 → **default=512** |\n| seed_id 逻辑 | L96 | `seed_id = batch_start + i`（独立递增编号，不从 input_data 读取） |\n| input_data 参数 | — | **已移除**（原来 required=True，仅用于读 seed_id） |\n| load_seed_ids 函数 | — | **已删除** |\n| docstring | L1-5 | 更新说明 seed_id 不对应上一代、max_new_tokens=512 的原因 |\n\n### `scripts/run_pipeline.sh`\n| 修改点 | 行号 | 内容 |\n|--------|------|------|\n| generate 调用 | L34,40,46 | 移除 `--input_data` 参数（generate_next_depth.py 不再需要） |\n| `--input_data` | 仅保留在 lora_finetune.py 调用中（L31,37,43） |\n\n### 无需修改\n- `add_seed_id.py` — 保持原样\n- `lora_finetune.py` — 保持原样\n- 模型名 — 所有脚本已使用 `Qwen/Qwen2.5-1.5B`，无 1.8B 引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

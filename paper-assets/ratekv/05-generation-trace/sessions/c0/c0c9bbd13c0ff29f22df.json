@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c0c9bbd13c0ff29f22df",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp kivi baseline launch",
+  "task_key": "worker_exp_kivi_baseline_launch_20260515T112557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_kivi_baseline_launch_20260515T112557_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "9dfbf46bc1895f38fe6d3e843e541ddb433f0a2ccebbc23d2eece97ea079db08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验运行正常。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| Dry-run | **PASS** |\n| PID | **328260** |\n| 模型 | Qwen2.5-7B (Qwen2___5-7B) |\n| KIVI-2bit PPL | **12.8273** (已完成) |\n| KIVI-4bit | 正在运行中 |\n| 日志 | `/root/ratekv/logs/kivi_baseline_qwen.log` |\n| 输出 | `artifacts/kivi_qwen25_7b.json` |\n\nKIVI-2bit 跑完用了约 15 秒内完成 583 chunks，4bit 正在评估中。预计 4bit 完成后总耗时约 1-2 分钟。可以稍后查日志确认最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

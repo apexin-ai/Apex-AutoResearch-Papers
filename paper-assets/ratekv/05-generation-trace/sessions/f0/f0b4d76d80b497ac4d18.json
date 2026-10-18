@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "id": "f0b4d76d80b497ac4d18",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh fix internlm2 download and read llama results",
+  "task_key": "worker_ssh_fix_internlm2_download_and_read_llama_results_20260515T225451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_internlm2_download_and_read_llama_results_20260515T225451_result.json",
+    "occurrence": 1,
+    "bytes": 3972,
+    "sha256": "1a9f47cc2b1b4e20e6c268ef6e1544ea24aa548b64ebeecf19a438379a99b5f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有结果汇总如下：\n\n---\n\n## 任务 1：Llama-3.1-8B 3-seed downstream CI 结果\n\n```json\n{\n  \"model\": \"Llama-3.1-8B\",\n  \"tasks\": [\"arc_challenge\", \"hellaswag\", \"winogrande\", \"piqa\"],\n  \"num_fewshot\": 0,\n  \"budget\": 0.25,\n  \"max_2bit\": 2,\n  \"seeds\": [0, 1, 2],\n  \"note\": \"Single profile, same MCKP allocation for all seeds. Variance from lm_eval only.\",\n  \"baseline\": {\n    \"arc_challenge\": 0.5188,\n    \"hellaswag\": 0.6073,\n    \"piqa\": 0.7922,\n    \"winogrande\": 0.7388\n  },\n  \"uniform_4bit\": {\n    \"arc_challenge\": 0.5256,\n    \"hellaswag\": 0.6024,\n    \"piqa\": 0.7873,\n    \"winogrande\": 0.7261\n  },\n  \"seed_mckp\": {\n    \"0\": {\"arc_challenge\": 0.5179, \"hellaswag\": 0.6021, \"piqa\": 0.7867, \"winogrande\": 0.7309},\n    \"1\": {\"arc_challenge\": 0.5179, \"hellaswag\": 0.6021, \"piqa\": 0.7867, \"winogrande\": 0.7309},\n    \"2\": {\"arc_challenge\": 0.5179, \"hellaswag\": 0.6021, \"piqa\": 0.7867, \"winogrande\": 0.7309}\n  },\n  \"summary\": {\n    \"arc_challenge\": {\"values\": [0.5179, 0.5179, 0.5179], \"mean\": 0.5179, \"std\": 0.0},\n    \"hellaswag\": {\"values\": [0.6021, 0.6021, 0.6021], \"mean\": 0.6021, \"std\": 0.0},\n    \"winogrande\": {\"values\": [0.7309, 0.7309, 0.7309], \"mean\": 0.7309, \"std\": 0.0},\n    \"piqa\": {\"values\": [0.7867, 0.7867, 0.7867], \"mean\": 0.7867, \"std\": 0.0}\n  },\n  \"elapsed_seconds\": 1935.1\n}\n```\n\n注意：3 个 seed 结果完全相同（std=0.0），因为 MCKP allocation 是 deterministic 的，方差仅来自 lm_eval 采样，但此处也为零。\n\n---\n\n## 任务 2：InternLM2-7B 下载\n\n- 已杀掉卡住的进程 379330\n- 已清理不完整的 HF cache\n- **ModelScope 下载已启动，PID: 380895**\n- 初始进度：`pytorch_model-00001-of-00002.bin` — 0% (6MB/9.28GB)，速度 1.70 MB/s，预计 ~1.5h\n\n---\n\n## 任务 3：Phi-3-medium 下载进度\n\n- 进程 379202 仍在运行（通过 ModelScope 下载 `LLM-Research/Phi-3-medium-128k-instruct`）\n- 当前进度：**model-00005-of-00006.safetensors — 60% (2.67G/4.44G)**，速度 1.54 MB/s\n- 这是第 5/6 个 shard，前 4 个已完成。剩余：当前 shard ~20min + 最后 1 个 shard ~48min\n- **预计还需 ~1-1.5 小时完成**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "model": "Llama-3.1-8B",
+              "tasks": [
+                "arc_challenge",
+                "hellaswag",
+                "winogrande",
+                "piqa"
+              ],
+              "num_fewshot": 0,
+              "budget": 0.25,
+              "max_2bit": 2,
+              "seeds": [
+                0,
+                1,
+                2
+              ],
+              "note": "Single profile, same MCKP allocation for all seeds. Variance from lm_eval only.",
+              "baseline": {
+                "arc_challenge": 0.5188,
+                "hellaswag": 0.6073,
+                "piqa": 0.7922,
+                "winogrande": 0.7388
+              },
+              "uniform_4bit": {
+                "arc_challenge": 0.5256,
+                "hellaswag": 0.6024,
+                "piqa": 0.7873,
+                "winogrande": 0.7261
+              },
+              "seed_mckp": {
+                "0": {
+                  "arc_challenge": 0.5179,
+                  "hellaswag": 0.6021,
+                  "piqa": 0.7867,
+                  "winogrande": 0.7309
+                },
+                "1": {
+                  "arc_challenge": 0.5179,
+                  "hellaswag": 0.6021,
+                  "piqa": 0.7867,
+                  "winogrande": 0.7309
+                },
+                "2": {
+                  "arc_challenge": 0.5179,
+                  "hellaswag": 0.6021,
+                  "piqa": 0.7867,
+                  "winogrande": 0.7309
+                }
+              },
+              "summary": {
+                "arc_challenge": {
+                  "values": [
+                    0.5179,
+                    0.5179,
+                    0.5179
+                  ],
+                  "mean": 0.5179,
+                  "std": 0.0
+                },
+                "hellaswag": {
+                  "values": [
+                    0.6021,
+                    0.6021,
+                    0.6021
+                  ],
+                  "mean": 0.6021,
+                  "std": 0.0
+                },
+                "winogrande": {
+                  "values": [
+                    0.7309,
+                    0.7309,
+                    0.7309
+                  ],
+                  "mean": 0.7309,
+                  "std": 0.0
+                },
+                "piqa": {
+                  "values": [
+                    0.7867,
+                    0.7867,
+                    0.7867
+                  ],
+                  "mean": 0.7867,
+                  "std": 0.0
+                }
+              },
+              "elapsed_seconds": 1935.1
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

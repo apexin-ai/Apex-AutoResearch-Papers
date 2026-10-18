@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "4dc6546c2b4ca1823639",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh fewrel formal prep",
+  "task_key": "worker_ssh_fewrel-formal-prep_20260515T083006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-formal-prep_20260515T083006.log",
+    "occurrence": 1,
+    "bytes": 1341877,
+    "sha256": "98d707bce072551f0b70d163aa2c35efcb337ff35670083aa70a4dd626656c53"
+  },
+  "statistics": {
+    "messages": 286,
+    "user_turns": 2,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 105,
+      "tool_result": 105,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "4dc6546c2b4ca1823639-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "4dc6546c2b4ca1823639-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "4dc6546c2b4ca1823639-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "4dc6546c2b4ca1823639-part-0002.json",
+          "message_count": 69
+        },
+        {
+          "path": "4dc6546c2b4ca1823639-part-0003.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "59684da8e626c3df4514",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis a5 crossed re",
+  "task_key": "worker_analysis_a5-crossed-re_20260524T114401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a5-crossed-re_20260524T114401.log",
+    "occurrence": 1,
+    "bytes": 1170493,
+    "sha256": "a6907adb9cbe9711efa10ca4e7ddb10aa16a8482974fbabfd7f2aef0dcb634ef"
+  },
+  "statistics": {
+    "messages": 439,
+    "user_turns": 1,
+    "tool_calls": 179,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 179,
+      "tool_result": 179,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "59684da8e626c3df4514-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "59684da8e626c3df4514-part-0002.json",
+          "message_count": 168
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "59684da8e626c3df4514-part-0002.json",
+          "message_count": 12
+        },
+        {
+          "path": "59684da8e626c3df4514-part-0003.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ]
+}

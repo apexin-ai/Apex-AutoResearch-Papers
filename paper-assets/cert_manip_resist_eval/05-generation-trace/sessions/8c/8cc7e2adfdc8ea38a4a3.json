@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8cc7e2adfdc8ea38a4a3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit gam data version compare",
+  "task_key": "worker_audit_gam-data-version-compare_20260523T174455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_gam-data-version-compare_20260523T174455_result.json",
+    "occurrence": 1,
+    "bytes": 3872,
+    "sha256": "e4316092a901d407101361b31e393bc214b1f2484b0ba43fe483678f28efad7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断报告\n\n### 1. 原始 GAM 脚本\n\n**路径**: `/root/cert_manip_resist_eval/scripts/run_gam_tier_analysis.py` (May 23 03:08)\n\n**数据加载**: `load_mi_data()` → 统一 MI 矩阵 (`mi_matrix_15models.json`)\n\n**ASR 计算**: 定义自己的 `compute_individual_asr()`，用 `.get(\"winner\", \"tie\")` 处理无效分数 → error 响应被当作 \"tie\" 投票\n\n**GAM 规格**: `LinearGAM(s(0, n_splines=8) + s(1, n_splines=8))`，用 `gam.gridsearch()` 自动选 lambda\n\n**符号定义**: `pdep[-1] > pdep[0]` on `generate_X_grid(term=0, n=100)` → 与 bootstrap 完全相同\n\n### 2. Bootstrap 脚本\n\n**路径**: `/root/cert_manip_resist_eval/scripts/run_gam_bootstrap_ci_k3.py` (May 24 01:10)\n\n**数据加载**: 同一个 `load_mi_data()` → 同一个 MI 矩阵\n\n**ASR 计算**: 从 `unified_data_loader` 导入 `_is_valid_score`，**过滤掉 error/无效分数**，不计入 ASR\n\n**GAM 规格**: 完全相同的 `LinearGAM(s(0, n_splines=8))`，gridsearch 选 lambda 后固定给 bootstrap 样本\n\n### 3. K_eff 对比结果\n\n**K_eff 值完全一致** — 两个脚本使用同一个 `load_mi_data()` 读同一个 `mi_matrix_15models.json`，不存在版本差异。\n\n差异来源是 **ASR (y 变量)**，不是 K_eff (x 变量)。\n\n### 4. 根因：ASR 计算 bug + gridsearch 随机性\n\nPer-condition sign 对比：\n\n| Condition | 原始 GAM | Bootstrap | 匹配 |\n|---|---|---|---|\n| mmlu×prompt_injection | + | + | OK |\n| mmlu×score_manipulation | + | + | OK |\n| mmlu×position_bias | + | + | OK |\n| **mmlu×sycophancy** | **-** | **+** | MISMATCH |\n| **mmlu×verbosity_bias** | **-** | **+** | MISMATCH |\n| **mmlu×authority_bias** | **-** | **+** | MISMATCH |\n| arc×prompt_injection | + | + | OK |\n| arc×score_manipulation | + | + | OK |\n| arc×position_bias | + | + | OK |\n| **arc×sycophancy** | **-** | **+** | MISMATCH |\n| **arc×verbosity_bias** | **-** | **+** | MISMATCH |\n| **arc×authority_bias** | **-** | **+** | MISMATCH |\n\n6 个 MISMATCH **全部是 shared_bias 攻击**（sycophancy/verbosity_bias/authority_bias），完美对应论文中声称的 taxonomy split。\n\n**Bug 机制**：\n- gpt-5.5、gemini-3.1-pro-preview、gemini-3.5-flash 有 ~4%（MMLU）和 ~1%（ARC）的 error 分数\n- 原始脚本将 error 当 \"tie\"，产生虚假 ASR（如 gemini-3.1-pro-preview mmlu×sycophancy: 原始=0.0474, 过滤后=0.0000）\n- 对 shared_bias 攻击（真实 ASR 低），这些虚假翻转按比例影响更大\n- 膨胀的 frontier ASR 改变了 K_eff→ASR 的 GAM partial dependence 曲面形状\n- 加上 `gridsearch()` 的 lambda 随机性（我的 fresh run 用原始方法只复现 2/6 负号而非 6/6），共同产生了 6:6 split\n\n### 5. Table 1 OLS 使用的版本\n\n**脚本**: `run_plan001_step4_panel_regression.py`\n\n**导入**: `compute_corrected_asr, compute_corrected_panel_asr` → 使用 **`_is_valid_score` 过滤**（与 bootstrap 一致）\n\n**结果**: 12/12 条件 keff_beta **全部正向**，全部显著（p < 0.02）\n\nTable 1 OLS 使用的是 **正确版本** 的数据。\n\n### 5. 结论\n\n| 脚本 | ASR 方法 | K_eff sign 结果 |\n|---|---|---|\n| `run_gam_tier_analysis.py` | 旧（error→tie） | 6:6 split |\n| `run_gam_tier_analysis_corrected.py` | 旧（error→tie） | 6:6 split |\n| `run_gam_bootstrap_ci_k3.py` | 新（过滤 error） | 12/12 positive |\n| `run_plan001_step4_panel_regression.py` | 新（过滤 error） | 12/12 positive |\n\n**Canonical 数据源**: 过滤版 ASR（`_is_valid_score`），被 Table 1 OLS 和 bootstrap 使用。\n\n**6:6 split 产生者**: `run_gam_tier_analysis.py` 中的旧 ASR 计算（将 error 当 tie）+ pygam gridsearch 随机性。这是 artifact，不是 genuine pattern。论文 Section 4.4 的 taxonomy split 声明需要修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "64f9307ce3facee3ab9e",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis fractional logit v2 audit",
+  "task_key": "worker_analysis_fractional-logit-v2-audit_20260524T190248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fractional-logit-v2-audit_20260524T190248.log",
+    "occurrence": 1,
+    "bytes": 838658,
+    "sha256": "f36a5a9d827ed356fc9aba4273a67790c1c037bf7dfc8d24902b0b869ed96fbc"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "64f9307ce3facee3ab9e-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "64f9307ce3facee3ab9e-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ]
+}

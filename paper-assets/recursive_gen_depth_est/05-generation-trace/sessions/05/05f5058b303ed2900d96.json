@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "05f5058b303ed2900d96",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra gpu6000pro2 status check",
+  "task_key": "worker_infra_gpu6000pro2-status-check_20260519T174328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu6000pro2-status-check_20260519T174328_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "e064df6d3e44c2569d3635dc3033e004d704b9bf45a1527339ae3437b1f4dd2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存占用 | 温度 |\n|-----|------|--------|----------|------|\n| 0 | RTX PRO 6000 (96GB) | **88%** | 32,374 / 97,887 MiB | 51°C |\n| 1 | RTX PRO 6000 (96GB) | **86%** | 32,423 / 97,887 MiB | 51°C |\n\n### 实验详情\n\n#### 1. qwen25_14b_temp09\n- **状态**: **RUNNING**\n- **PID**: 776616 (python on GPU 0), 776596 (wrapper bash) — 均存活\n- **运行时长**: 14h43m\n- **GPU**: GPU 0, 88% util, 32.4GB VRAM\n- **已完成**: d0 finetune ✓, d1 finetune ✓ (adapter 已保存)\n- **当前阶段**: **Phase 3.2b — 正在用 LoRA(d1) 生成 d2 数据 (5000 samples)**，模型权重已加载完毕，推理进行中\n- **进度估计**: 参考同系列 qwen25_14b 实验(d0-d2 共3层)，当前约 **65-70%**，预计剩余 4-6h\n\n#### 2. qwen25_14b_topk50\n- **状态**: **RUNNING**\n- **PID**: 787051 (python on GPU 1) — 存活, CPU 104%\n- **运行时长**: 12h44m\n- **GPU**: GPU 1, 86% util, 32.4GB VRAM\n- **已完成**: d0 finetune ✓, d1 finetune ✓ (adapter 已保存)\n- **当前阶段**: **Phase 3.2b — 正在用 LoRA(d1) 生成 d2 数据 (5000 samples)**，模型权重已加载完毕，推理进行中\n- **进度估计**: 同上，约 **60-65%**（比 temp09 晚启动约 2h），预计剩余 5-7h\n\n### Checkpoints 确认\n两个实验均已产出 `lora_depth_0` 和 `lora_depth_1` adapter，尚无 `lora_depth_2`。剩余流程：d2 生成(进行中) → d2 finetune → 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

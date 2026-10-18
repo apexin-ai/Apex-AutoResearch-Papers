@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "35a3e526e44a1d32dab9",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code ppi dsl k2",
+  "task_key": "worker_code_ppi-dsl-k2_20260522T045457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ppi-dsl-k2_20260522T045457_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "f5714d0f09984fdbe0498cc6e3760ff46e783e6789c09a94c2cdac6a3a94e17b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n**EC-HTE 在 K=2 TweetEval DGP 下没有在任何 n 值胜出 Global**，与 exp-006 的预测不符。\n\n### EC-HTE vs Global 平均 RMSE\n\n| n_expert | EC-HTE | Global | Winner |\n|----------|--------|--------|--------|\n| 100 | 1.558 | 0.132 | Global |\n| 250 | 0.185 | 0.124 | Global |\n| 500 | 0.132 | 0.117 | Global |\n\n### 原因分析\n\n1. **子群大小不平衡**：TweetEval 中 hashtag 率约 25-30%，S1 远小于 S0。n=100 时 S1 只分到约 25 个 expert label，导致 per-subgroup CM 估计爆炸（S1 的 RMSE 高达 4.1）。\n\n2. **K=2 的 partial pooling 杠杆不足**：只有 2 个子群可供 HB 借力，shrinkage 效果微弱，EC-HTE ≈ Strat MLE。\n\n3. **exp-006 差异**：exp-006 用平衡 DGP（子群等大），crossover 在 n=250。TweetEval 的不平衡子群把 crossover 推到更高的 n。\n\n### 产出文件\n- `results/exp023_ppi_dsl_k2.csv`（聚合指标）\n- `results/exp023_ppi_dsl_k2_raw.csv`（3150 行原始数据）\n- 分析报告已注册到 artifacts"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

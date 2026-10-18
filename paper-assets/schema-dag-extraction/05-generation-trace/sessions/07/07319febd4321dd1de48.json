@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "07319febd4321dd1de48",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops unconstrained ablation fix rerun",
+  "task_key": "worker_ops_unconstrained_ablation_fix_rerun_20260518T103215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unconstrained_ablation_fix_rerun_20260518T103215_result.json",
+    "occurrence": 1,
+    "bytes": 73,
+    "sha256": "a053eaa074e25acfd1b159e78aec28c873f085acf089ef15a145e0cce1d7b837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "最后一个后台任务完成。所有工作已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

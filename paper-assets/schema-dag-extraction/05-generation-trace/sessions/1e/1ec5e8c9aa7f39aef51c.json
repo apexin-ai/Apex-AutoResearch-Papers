@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ec5e8c9aa7f39aef51c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops check 80pool results",
+  "task_key": "worker_ops_check_80pool_results_20260516T020233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_80pool_results_20260516T020233_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "17e142390ea5b2036357acc852a2c55930f45ecb51fdd09e0e2c344b69a59fbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在顺利运行，约 3 分钟后自动检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

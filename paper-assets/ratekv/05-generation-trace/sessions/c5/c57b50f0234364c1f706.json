@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c57b50f0234364c1f706",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_8_1778819905.md",
+  "task_key": "loop_8_1778819905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778819905.md",
+    "occurrence": 1,
+    "bytes": 3664,
+    "sha256": "fec5fb58b2dfb4ea0fe510018d8aae182618cbec17800b8dabc1ebaccf4f949f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T04:36:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-37397 cuda:0 / cuda:1**（2× RTX PRO 6000 96GB），其他设备号禁止\n- Qwen concentration 已锁定 **0.61**（float32 hires D048 验证），Mistral=0.24，Gemma-2=0.23——修改需 Director 批准 + 新实验证据\n- KV cache 敏感度计算必须 `.float()` 转 float32（D046 bf16 精度 bug 教训），评估用 bf16\n- C4 校准数据必须用 allenai/c4（D032 WikiText 污染事件已修复，勿回退）\n- ARR deadline **2026-05-25**（距今 10 天），论文改动需严格对齐 deadline\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-37397，工作目录 `/root/ratekv`\n- **Python**：`/root/miniconda3/bin/python`（aml-train 镜像 conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**：HF cache `/root/autodl-tmp/.hf_cache/`，Mistral 在 `/root/autodl-tmp/models/Mistral-7B-v0.3`\n- **数据路径**：`/root/ratekv/calibration_hires.json`（64×2048），`/root/ratekv/c4_calibration.json`（C4）\n- **日志**：`~/runs/ratekv/`\n- **活跃进程**：无。0 个 RUNNING 实验，0 个 cron，双卡均空闲\n- **产出目录**：本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/`\n\n### 3. 📊 当前状态\n67 个实验全部完成（35 success / 16 negative / 8 failed / 8 killed）。P0（8/8）和 P1（7/7）patch 全部就绪，论文各 section 已更新到最终数值。双卡空闲。\n\n**5 模型 hires profiling 全景表已完成**：\n- Qwen（conc=0.61, spread）→ MCKP +29.4% ✅\n- Yi-1.5（conc=0.71, spike）→ ≈0% ❌\n- Llama（conc=0.57, spike）→ +0.2% marginal\n- Mistral（conc=0.22, flat）→ -0.4% ❌\n- Gemma-2（conc=0.23, flat）→ -0.3% ❌\n\nJoint diagnostic（conc≥0.50 AND t₁/t₅≤0.70）5/5 分类准确。\n\n**等待中**：D051 Director 决策（Qwen concentration 用 0.61 单点 vs 0.59-0.66 区间）；Mistral v3 hires bf16 2-bit profiling 未完成（v2 模型路径错误）。\n\n### 4. 📋 待办（条件触发式）\n- Director 确认 D051 → 全文最终 value replacement → 提交前 review\n- Mistral v3 需要修复模型路径 → 重跑 hires bf16 2-bit profiling → 更新表格（当前 Mistral 用 lowres 数据兜底，不影响结论但完整性有缺）\n- Director 要求提交 → 编译 PDF + 最终 visual review + ARR 系统提交\n- 如 Director 批准 72B profiling → 需要更大磁盘的服务器（westd-37397 250GB 不够，72B=137GB）\n- 收到 reviewer 反馈 → 按 rebuttal skill 逐条回应\n\n### 5. 🎯 战略上下文\n**核心发现**：cardinality constraint（max_2bit≤k）是 THE intervention，solver 选择无关（greedy=MCKP，Δ=0.0000）。heterogeneity 由 distribution shape 决定，不由 GQA ratio 决定（Yi GQA 8:1 spike 无效 vs Qwen GQA 7:1 spread 有效）。\n\n**决策链**：D001（eviction→quantization pivot）→ D010（constraint discovery）→ D032（C4 污染修复）→ D046（float32 精度修复）→ D048（concentration=0.61 锁定）→ D051（待决：单点 vs 区间）\n\n**易错点**：\n- 不要把 Yi-1.5 的 spike pattern（单头 outlier 24× gap）和 Qwen 的 spread pattern（L0 cluster）混为一谈——两者 concentration 都 >0.5 但 MCKP 效果完全不同，区分靠 t₁/t₅ ratio\n- Flat 分类只看 concentration <0.50（D049 clarification），不看 t₁/t₅\n- 论文中 \"consistently\" 等强度词仅限有 ≥3 模型/数据集支撑的 claim\n- K/V separation 路线已证明死路（kv_separation negative），不要重新尝试\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

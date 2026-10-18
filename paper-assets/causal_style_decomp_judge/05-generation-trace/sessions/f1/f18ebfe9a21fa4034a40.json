@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f18ebfe9a21fa4034a40",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code gpt4o full statistical analysis",
+  "task_key": "worker_code_gpt4o_full_statistical_analysis_20260521T052945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt4o_full_statistical_analysis_20260521T052945_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "f34d9d8abe915c5ed2ca00c924ea1063cc329e97f8af2660754696dc418cbd3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 项分析成功完成。结果：\n\n```\n=== GPT-4o Statistical Analysis Summary ===\n\nLIKERT ATE:\n| Axis       | ATE     | p (Wilcoxon)  | Cohen d  | Tie Rate  |\n|------------|---------|---------------|----------|-----------|\n| verbosity  | +0.1163 | 0.4033        | +0.0780  | 0.5814    |\n| register   | +0.0000 | 0.7849        | +0.0000  | 0.6489    |\n\nBRADLEY-TERRY:\n| Axis       | P(style)  | CI [lo, hi]        | p-value    |\n|------------|-----------|--------------------|------------|\n| verbosity  | 0.7602    | [0.6881, 0.8283]   | 0.0001     |\n| register   | 0.5699    | [0.5000, 0.6398]   | 0.0400     |\n\nGEE DECOMPOSITION:\n| Axis       | Style OR  | Style p    | Orig OR  | Orig p     |\n|------------|-----------|------------|----------|------------|\n| verbosity  | 10.9719   | < 0.0001   | 0.4373   | 0.0514     |\n| register   | 1.8759    | 0.0285     | 2.2098   | 0.0058     |\n```\n\n脚本已写入 `csd_pipeline/gpt4o_analysis.py`。\n\n**关键发现**：\n- **Likert ATE**：两轴均不显著（verbosity ATE=+0.12, p=0.40; register ATE=0, p=0.78），高 tie rate (~58-65%)\n- **BT pairwise**：GPT-4o 强烈偏好 verbose（P=0.76, p=0.0001）；轻微偏好 academic（P=0.57, p=0.04）\n- **GEE**：verbosity style effect 极强（OR=10.97, p<0.0001），originality 边际不显著（OR=0.44, p=0.051）；register style 显著（OR=1.88, p=0.03），但 originality 效应更强（OR=2.21, p=0.006）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

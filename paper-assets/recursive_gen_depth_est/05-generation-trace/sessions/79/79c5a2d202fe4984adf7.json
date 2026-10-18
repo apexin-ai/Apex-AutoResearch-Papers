@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "79c5a2d202fe4984adf7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "verify cross strategy label mapping",
+  "task_key": "worker_verify_cross_strategy_label_mapping_20260515T041543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cross_strategy_label_mapping_20260515T041543_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "717c55915a107ce29e786a039888cde448a5bbd5cc185aab484152ac40b6374a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结论\n\n### 1. Label mapping 一致性：**Yes，完全一致**\n\n所有 9 个 cell：\n- 唯一 label 字段：`depth`\n- 取值：{0, 1, 2, 3}\n- 每类 5000 样本，完全平衡\n- 无任何 label 转换/映射逻辑（`load_features` 直接用 `rec[\"depth\"]`）\n\n### 2. In-dist d1v2 AUC（sanity check）\n\n| Cell | In-dist d1v2 AUC |\n|------|------------------|\n| gpt2xl_temp09 | **0.9792 ± 0.0013** |\n| olmo_temp09 | **0.9558 ± 0.0029** |\n\n两者均远 >0.8，in-dist 分类正常。\n\n### 3. Feature 方向一致性\n\np90_ppl、var_surprisal、type_token_ratio 在所有 6 个 cell 中方向一致（d1 > d2）。无 label 反转迹象。\n\n### 4. 结论\n\n**temp09 d1v2 reversal is a real cross-strategy transfer phenomenon, not a label bug.**\n\n代码无 bug。AUC < 0.5 说明在 nucleus+topk50 上训练的 RF 模型在 temp09 测试集上学到了反向的决策边界——这是跨策略特征分布漂移的体现，不是 label mapping 问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

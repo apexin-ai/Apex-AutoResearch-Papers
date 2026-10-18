@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28450e3c3118e9f06627",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra check m64 m96 status",
+  "task_key": "worker_infra_check-m64-m96-status_20260520T030558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_check-m64-m96-status_20260520T030558_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "f3b0f13e6c53d52a232b4a4f8d3aab2d066e495168a00bed65c60e22b18cce8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n```\nwestd-41074:\n  GPU 0: train_openvla_sc_m128_vtconly_seed42  PID=26118  启动=02:33  30119MiB  0% util\n  GPU 1: 空闲 (0MiB) — C5 RoboFlamingo 已释放 ✓\n  GPU 2: train_openvla_sc_m96_seed42   PID=63701  启动=10:47  28490MiB  51% util ← M=96\n  GPU 3: train_openvla_sc_m64_seed42   PID=63780  启动=10:47  27462MiB   0% util ← M=64\n\nwestd-27271:\n  GPU 0: train_openvla_sc_m128_seed42  PID=841334  启动=02:38  32285MiB  18% util\n  GPU 1: train_openvla_sc_m32_seed42   PID=855140  启动=08:16  25982MiB   0% util ← M=32\n\nM=96 启动状态: YES\n  PID=63701, 启动 10:47:15, 当前 step=250/100000, loss=4.29, sps=0.5\n  trainable=403177472 (5.07%), wandb=offline-64kpy4bf\n  预计 100k steps 耗时: ~55h (0.5 sps)\n\nM=64 启动状态: YES\n  PID=63780, 启动 10:47:17, 当前 step=300/100000, loss=4.09, sps=0.6\n  trainable=403046400 (5.07%), wandb=offline-h0ynctgj\n  预计 100k steps 耗时: ~46h (0.6 sps)\n```\n\n两个 M-sweep 实验均已成功启动约 20 分钟，loss 正常下降（初始 16-18 → 当前 4.0-4.3），梯度稳定收敛。M=64 因 token 数更少，sps 略快（0.6 vs 0.5）。GPU 1 已如 D095 决定释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

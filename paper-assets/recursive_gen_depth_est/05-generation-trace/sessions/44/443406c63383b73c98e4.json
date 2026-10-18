@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "443406c63383b73c98e4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research n2 analysis prep",
+  "task_key": "worker_research_n2_analysis_prep_20260515T122529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_n2_analysis_prep_20260515T122529_result.json",
+    "occurrence": 1,
+    "bytes": 2097,
+    "sha256": "12b5b37d98bab65352964859c01a886055abbbc02aa5e652c53be42655743e51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，汇总如下：\n\n## N2 End-to-End Finetune 训练进度报告\n\n### DeBERTa-v3-base (cuda:0, PID 231453)\n\n| 项目 | 状态 |\n|------|------|\n| 启动时间 | 20:12 UTC |\n| 当前进度 | Fold 2/5, epoch 1, step ~350/1000 |\n| 总进度 | ~22% (3350/15000 steps) |\n| 已耗时 | ~14 min |\n| 预估剩余 | ~49 min (ETA ~21:15 UTC) |\n\n**Fold 1 结果**: accuracy=**0.5540**, pairwise AUC: d0v1=0.9761, d1v2=0.5738, d2v3=0.7404\n\n### RoBERTa-base (cuda:1, PID 235755)\n\n| 项目 | 状态 |\n|------|------|\n| 启动时间 | 20:24 UTC |\n| 当前进度 | Fold 1/5, epoch 1, step 950/1000 |\n| Loss 趋势 | 不理想 (0.53→0.91 上升中) |\n\n### 输出格式\n\n- **结果路径**: `results/n2_{model}_finetune/results.json`\n- **预测文件**: `results/n2_{model}_finetune/fold_predictions.npz` (preds, probs, labels, fold_indices)\n- **指标**: accuracy (mean±std), per-class precision/recall/F1, pairwise AUC (d0v1, d1v2, d2v3)\n- **CV**: 5-fold stratified, 20000 samples balanced (5000/class)\n- **Config**: max_len=512, batch_size=16, lr=2e-5, epochs=3, warmup=0.1\n\n### 关键观察\n\n1. **DeBERTa Fold 1 accuracy 55.4% 远低于 RF baseline 78.2%**。仅比 random (25%) 好一倍，但远不及 RF 的 feature engineering 方案。\n2. Pairwise AUC 分化严重：d0v1=0.976（近乎完美）但 d1v2=0.574（接近随机），说明模型很容易区分\"深/浅\"文本但无法精细区分相邻深度。\n3. RoBERTa 的 loss 在 epoch 1 后段反而上升，可能学习率不合适或数据 tokenization 有问题。\n4. 当前 `results.json` 是 dry run 残留（全零），完整 5-fold 结果将在 ~21:15 UTC 覆写。\n\n### 对比基准\n\n| Method | 4-class Accuracy |\n|--------|-----------------|\n| RF (手工特征) | **78.2%** |\n| DeBERTa-v3-base (fold 1) | 55.4% |\n| Random | 25.0% |\n\n如果最终 5-fold 均值仍在 55-60% 区间，这实际上是 **有利于我们论文的结果**——证明 end-to-end transformer 在此任务上不如 interpretable feature engineering，支持我们方法的价值主张。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

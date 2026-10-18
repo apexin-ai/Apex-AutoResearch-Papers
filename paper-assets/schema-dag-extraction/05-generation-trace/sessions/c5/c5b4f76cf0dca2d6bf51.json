@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c5b4f76cf0dca2d6bf51",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp012 awq",
+  "task_key": "worker_code_exp012_awq_20260515T160358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_awq_20260515T160358_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "e810a1b8d9d15c3ec06c240675d6025537c79efbdc3b56600977d5c2b776a858"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已下载 7/9 分片 (27.85GB/37GB)。剩余 2 个分片总共约 9.2GB，下载速度约 40-70MB/min。\n\n当前状态汇总：\n\n**已完成的准备工作：**\n- 脚本已创建：`/root/schema-dag-extraction/scripts/run_exp012_llama_awq.sh`\n- Registry 已注册：`exp012_llama_awq` (status=PREPARING)\n- 自动化监控脚本已后台运行 (PID 292859)：等待下载完成后自动启动实验\n\n**下载进度：**\n- 模型：`hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4`\n- 完成：model-00002, 004, 005, 006, 007, 008, 009 (7/9)\n- 进行中：model-00001 (~2.74/4.89GB), model-00003 (~3.03/4.89GB)\n- 下载进程：PID 284997 (`huggingface-cli download`)\n- 预计完成时间：约 30-60 分钟\n\n**自动化流程：**\n下载完成 → 验证 9 个分片 → 自动执行 `run_exp012_llama_awq.sh` → 日志输出到 `/tmp/exp012_awq.log`\n\n**验证命令：**\n```bash\n# 查看下载进度\ntail -5 /tmp/exp012_awq.log\n\n# 查看实验是否已启动\nps aux | grep run_experiment\n```\n\n需要注意：`submit_training_job` 工具在当前 MCP 工具集中不可用，因此用 nohup 后台执行作为替代。如果需要等下载完成后手动提交，可以在模型就绪后再操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2cf5d612bd16bddd7244",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis null jaccard permutation",
+  "task_key": "worker_analysis_null-jaccard-permutation_20260520T011902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_null-jaccard-permutation_20260520T011902_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "cdbd7c2e1b79f030fe6930b47224f7f9dc57083811ed173852a72b4e84e3700c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**所有 6 对 Jaccard（3 对 × helped/hurt）均显著高于 null baseline（p < 0.0001, z = 5.91–8.61）。**\n\n| Category | Pair | J_obs | J_null | z | p |\n|----------|------|-------|--------|---|---|\n| **Helped** | GDN vs HGRN2 | .100 | .051 | 7.11 | <.0001 |\n| | GDN vs RetNet | .092 | .045 | 6.75 | <.0001 |\n| | HGRN2 vs RetNet | .108 | .049 | 8.61 | <.0001 |\n| **Hurt** | GDN vs HGRN2 | .088 | .049 | 5.91 | <.0001 |\n| | GDN vs RetNet | .103 | .056 | 6.85 | <.0001 |\n| | HGRN2 vs RetNet | .087 | .045 | 6.05 | <.0001 |\n\nNull baseline J̄ ≈ 0.048 (helped) / 0.050 (hurt)，观测值约为 null 的 **2 倍**。粗估验证也吻合（462×426 / 5153×~880 ≈ 0.043）。\n\n结论：overlap 虽然绝对值低（~10%），但显著高于随机预期，确认了跨架构存在系统性共享的 helped/hurt 样本。结果已保存至 `artifacts/null_jaccard_results.json` 和服务器 `/root/entrainment_gated_ft/null_jaccard_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

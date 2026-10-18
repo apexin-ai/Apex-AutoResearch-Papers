@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2223c3bb4cade18b3dd1",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "diagnose pythia14b constrained pipeline",
+  "task_key": "worker_diagnose_pythia14b_constrained_pipeline_20260515T130627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pythia14b_constrained_pipeline_20260515T130627_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "48f4bd3cefeeee751eb413087ab0839400113d3819f59871b4d1cac39950ca9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**实验结果**：Pythia-1.4B (Flat shape) constrained pipeline 成功，耗时 4 分钟。\n\n| 配置 | PPL | vs BF16 |\n|------|-----|---------|\n| BF16 baseline | 16.49 | — |\n| Uniform 4-bit | 24.29 | +7.80 |\n| Constrained MCKP | 24.45 | +7.96 |\n| Unconstrained MCKP | 31.54 | +15.05 |\n\n**结论**：假设验证通过。Flat shape 模型 constrained MCKP 与 uniform 仅差 0.16 PPL，非均匀分配无显著优势。Unconstrained 因分配了 90 个 2-bit heads 反而大幅劣化。\n\nRegistry 已更新为 DONE/success，metrics 已写入，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

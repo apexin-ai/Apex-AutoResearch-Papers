@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cf4c1afe1287aacc03b2",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "fix bootstrap ci discrepancy",
+  "task_key": "worker_fix_bootstrap_ci_discrepancy_20260516T022039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap_ci_discrepancy_20260516T022039_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "91588a7fda74e2487f3f6ef8850baaf67051af1c627d95114c956641d944aa6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are on the server only. The task is complete. Here's the summary:\n\n---\n\n## 结果\n\n### 差异原因\n`bootstrap_ci.json`（80-pool）使用**固定分位边界**（从原始数据计算一次 Q25/Q75，bootstrap 在固定 Q1/Q4 组内重采样），而 `three_way_comparison.py` 使用**重计算分位边界**（每次 bootstrap resample 重新计算 Q25/Q75，组成员随 resample 变化）。固定边界更保守，CI 更宽。\n\n### 统一后的三方 Δ CI（fixed boundary, B=10000）\n\n| Group | Δ(Q4-Q1) | 95% CI | Crosses zero? |\n|---|---|---|---|\n| 16-rel independent | −7.42pp | [−9.40, −5.54] | No |\n| 80-pool → 16-sub | −3.92pp | [−8.17, +0.38] | **Yes** |\n| 80-rel controlled | +0.35pp | [−7.11, +8.33] | Yes |\n\n### 对比原始值（re-computed boundary）\n\n| Group | Original CI | Unified CI | 变化 |\n|---|---|---|---|\n| 16-rel | [−9.45, −4.49] | [−9.40, −5.54] | 略窄，仍显著 |\n| 80-pool 16-sub | **[−8.62, −0.16]** | **[−8.17, +0.38]** | **跨零了** |\n| 80-rel | [−9.38, +7.55] | [−7.11, +8.33] | 跨零不变 |\n\n16-rel 不存在两个文件 CI 不一致的问题（两者都用 re-computed boundary，结果一致），但统一到 fixed boundary 后 CI 从 [−9.45, −4.49] 变为 [−9.40, −5.54]，差异很小，结论不变。\n\n结果已保存到 `artifacts/three_way_comparison/results_unified.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

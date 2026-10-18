@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a4545ccca3afee6cc6bb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code maven data prep",
+  "task_key": "worker_code_maven-data-prep_20260515T032102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_maven-data-prep_20260515T032102_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "48b2c6a8b5e7cdeb373220ba4d7efbd7ab3e3d0c147c45b3f70b411359119ed9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部完成并注册：\n\n| 文件 | 路径 | 说明 |\n|------|------|------|\n| `maven_event_types.json` | `artifacts/maven_code/configs/` | 168 types，`{type_name: description}` 格式，与 `few_nerd_types.json` 一致 |\n| `preprocess_maven.py` | `artifacts/maven_code/src/` | JSONL → parquet，每个文档一行，输出 `text` + `entities[{text, type}]` |\n| `download_maven.sh` | `artifacts/maven_code/src/` | 从 Google Drive 下载 train/valid/test.jsonl，带完整性验证 |\n\n关键细节：\n- 168 event types 从 [THU-KEG/MAVEN-dataset](https://github.com/THU-KEG/MAVEN-dataset) 官方 baseline 代码 `utils_ee.py` 提取，type_id 1-168 完整对应\n- 预处理脚本从 token offset 重建 trigger text（比直接用 `trigger_word` 字段更准确）\n- 支持 `--split all` 一次处理全部 split\n- Python 语法和 shell 语法均验证通过\n\nSources:\n- [THU-KEG/MAVEN-dataset](https://github.com/THU-KEG/MAVEN-dataset)\n- [DataFormat.md](https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

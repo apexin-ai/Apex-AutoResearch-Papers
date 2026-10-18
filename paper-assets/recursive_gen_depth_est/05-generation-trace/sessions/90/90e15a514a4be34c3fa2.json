@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "90e15a514a4be34c3fa2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops fix gpt2xl json metadata",
+  "task_key": "worker_ops_fix_gpt2xl_json_metadata_20260515T225200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_gpt2xl_json_metadata_20260515T225200_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "359370a183cd2142a3059de3083bcb3bae30245476a72013c8c097df9e4849d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个文件的 `feature_model` 已全部从 `\"pythia-1.4b\"` 修正为 `\"gpt2-base-124m\"`：\n\n- `gpt2xl_c4_calibration.json` ✓\n- `c4_calibration.json` ✓\n- `olmo_wild_calibration.json` ✓\n\n`calibration_table.json` 不含 `feature_model` 字段，无需处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

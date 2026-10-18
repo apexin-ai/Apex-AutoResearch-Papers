@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4a78e19a3e369d337edc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code baseline battery",
+  "task_key": "worker_code_baseline_battery_20260514T185551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_battery_20260514T185551_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "6a195ec8ab1432228284e0bf2bdf76cefd541f4c26a44db861e544d89f68b8cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All dry-runs passed. Summary:\n\n| Baseline | Status | Key output |\n|----------|--------|------------|\n| 1. DivEye OVR | Pass | Acc=0.672, d0_vs_d1 AUC=0.974 |\n| 2a. PPL Ridge | Pass | Acc=0.421 |\n| 2b. PPL Ordinal | Pass | Acc=0.698, macro-AUC=0.89 |\n| 3. CORAL DeBERTa | Pass | \"Dry run complete (2 steps). Pipeline OK.\" |\n| 4. CE DeBERTa | Pass | \"Dry run complete (2 steps). Pipeline OK.\" |\n| 5. Zero-shot LLM | Pass | Import OK (no API key needed) |\n\nAll 6 scripts written locally and synced to server at `/root/autodl-tmp/recursive_gen_depth_est/scripts/`. The `.float()` fix was applied for baselines 3-4 to handle fp16 model weights on CPU. DeBERTa model weights also downloaded to `/root/autodl-tmp/models/deberta-v3-base/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

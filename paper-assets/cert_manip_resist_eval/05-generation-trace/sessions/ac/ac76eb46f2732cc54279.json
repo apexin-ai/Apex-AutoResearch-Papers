@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac76eb46f2732cc54279",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis plan001 data completeness check",
+  "task_key": "worker_analysis_plan001-data-completeness-check_20260522T071204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan001-data-completeness-check_20260522T071204_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "0589de07d362beab04421ba3e867472c24618f030150568deeb65b64073afd9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整性检查完成。结果：\n\n**数据覆盖率：100%** — 所有 72 个条件（6 models × 6 attacks × 2 datasets）均有数据，无需补跑。\n\n### 数据分布\n\n| 来源文件 | 内容 |\n|---------|------|\n| `results_step2v3_regression_*.json` | individual_asr + regression: prompt_injection, sycophancy, score_manipulation |\n| `results_taxonomy_broadspectrum_*.json` | individual_asr + regression: verbosity_bias, position_bias, authority_bias |\n| `results_step1_full_*.json` | pairwise MI: 15 pairs × 2 datasets (clean condition) |\n| `_step2v3_checkpoint.json` | raw clean scores (6 models × 2 datasets × 300) + attacked scores (3 attacks) |\n| `_taxonomy_checkpoint.json` | raw clean scores (同上) + attacked scores (3 taxonomy attacks) |\n\n### Clean scores\n6 个模型在 2 个 dataset 上的 clean individual scores（各 300 samples）完整存在于两个 checkpoint 文件中。\n\n### 磁盘\n- `/root/`: 15GB 可用 / 30GB\n- `/root/autodl-tmp/`: 61GB 可用 / 250GB（模型占 172GB）\n\n### 已创建目录\n- `artifacts/results/plan001/`\n- `artifacts/results/plan001/individual_scores/`\n- `artifacts/results/plan001/mi_matrix/`\n- `artifacts/results/plan001/panel_regression/`\n\n报告写入 `/root/cert_manip_resist_eval/artifacts/results/plan001_data_completeness.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

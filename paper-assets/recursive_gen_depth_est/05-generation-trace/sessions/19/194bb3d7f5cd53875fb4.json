@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "194bb3d7f5cd53875fb4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops status check 3exp",
+  "task_key": "worker_ops_status_check_3exp_20260518T151203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_3exp_20260518T151203_result.json",
+    "occurrence": 1,
+    "bytes": 2597,
+    "sha256": "2e4493d9a2edf5cbab99223a9f038ba87124d834b58f252fbbe110d62ab039bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实验状态汇报\n\n### 实验 1: pythia_seed43_001 (gpu-6000pro-2 cuda:1) — **已完成**\n\n完成时间：`2026-05-18 22:48:28 CST`\n\n**summary.json 完整结果：**\n\n| 指标 | 值 |\n|---|---|\n| **4-class accuracy** | **0.7884** |\n| **95% CI** | [0.7813, 0.7952] |\n| **d1 vs d2 AUC** | 0.8759 |\n| delta vs baseline | +0.0064 (baseline 0.782) |\n\n**Per-class recall：**\n\n| d0 | d1 | d2 | d3 |\n|---|---|---|---|\n| 0.992 | 0.8248 | 0.5882 | 0.7486 |\n\n**5-fold accuracies：** 0.8015, 0.7855, 0.786, 0.7932, 0.7758\n\n**Top features：** var_surprisal, p90_ppl, mean_ppl, var_ppl, mean_surprisal\n\nGPU 1 已释放（0 MiB / 0% util）。\n\n---\n\n### 实验 2: qwen25_14b_scale_002 (gpu-6000pro-2 cuda:0) — **运行中**\n\ntmux session 名: `qwen25_14b_scale`\n\n**当前阶段：Phase 3.3b — d3 生成**（pipeline 约第 7/8 步）\n- d2 LoRA 训练已完成：train_loss=0.2223, 3 epochs, runtime=2329s\n- d3 生成进度：**2765 / 5000 samples = 55.3%**\n- 生成速率：~13.8 samples/min（从 19:53 开始）\n- **预计剩余 d3 生成时间：~2.7 小时**\n- d3 生成后还需：feature extraction + classifier training + eval\n\nGPU 0: 32385 MiB / 88% util（PID 806751）\n\n**注意：** `~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log` 内容是 5/17 的模型下载失败日志（aria2 SSL 错误），不是当前实验日志。实际进度在 tmux pane 中。\n\n---\n\n### 实验 3: qwen25_14b_scale_003 (westd-48862 cuda:0) — **运行中**\n\n**当前阶段：Phase 3.3b — d3 生成**（pipeline 约第 7/8 步）\n- d2 LoRA 训练已完成：train_loss=0.2141, 3 epochs, runtime=2422s\n- d3 生成进度：**667 / 5000 samples = 13.3%**\n- 生成速率：~13.3 samples/min（从 22:23 开始）\n- **预计剩余 d3 生成时间：~5.4 小时**\n- d3 生成后还需：feature extraction + classifier training + eval\n\nGPU 0: 32381 MiB / 92% util（PID 20700）\n\ntmux pane 输出为空白（进度条在 \\r 覆盖），但日志和文件写入均正常。\n\n---\n\n### GPU 总览\n\n| 服务器 | GPU 0 | GPU 1 |\n|---|---|---|\n| gpu-6000pro-2 | 32385 MiB / 88% (qwen_002) | **空闲** |\n| westd-48862 | 32381 MiB / 92% (qwen_003) | **空闲** |\n\n---\n\n### 总结\n\n- **pythia_seed43_001**：已完成，4-class acc = 0.7884，d2 recall 偏低 (0.5882)\n- **qwen25_14b_scale_002**：d3 生成 55%，预计 ~2.7h 后完成生成，之后还有 eval 步骤\n- **qwen25_14b_scale_003**：d3 生成 13%，预计 ~5.4h 后完成生成，比 002 晚启动约 2.5h\n- gpu-6000pro-2 的 GPU 1 空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

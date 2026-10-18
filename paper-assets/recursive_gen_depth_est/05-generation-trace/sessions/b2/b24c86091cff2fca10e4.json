@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "b24c86091cff2fca10e4",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis pythia topk50 001",
+  "task_key": "worker_analysis_pythia_topk50_001_20260514T201559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia_topk50_001_20260514T201559.log",
+    "occurrence": 1,
+    "bytes": 759870,
+    "sha256": "7c6af8aa69ff67eac8ec3610391ba596795e68d969bee960583b611831d3ef40"
+  },
+  "statistics": {
+    "messages": 409,
+    "user_turns": 0,
+    "tool_calls": 165,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 165,
+      "tool_result": 165,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 409,
+      "chunks": [
+        {
+          "path": "b24c86091cff2fca10e4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b24c86091cff2fca10e4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b24c86091cff2fca10e4-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ]
+}

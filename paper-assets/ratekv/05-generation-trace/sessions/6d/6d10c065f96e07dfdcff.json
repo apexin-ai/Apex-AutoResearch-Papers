@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6d10c065f96e07dfdcff",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "check phi3 process",
+  "task_key": "worker_check_phi3_process_20260516T023637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phi3_process_20260516T023637_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "568e1d12d5f438c8ffdaa49bd10637516ced7dee07ffa92338d7a6847bdf6a3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 1. phi3_medium_constrained_mckp — 已完成\n\n- **进程**: 无运行中进程，已正常结束\n- **耗时**: 4.3 min\n- **结果**:\n\n| Method | PPL | Delta vs bf16 |\n|---|---|---|\n| Baseline (bf16) | 5.6359 | — |\n| Constrained MCKP (k=8) | 5.8149 | +0.1790 |\n| Uniform 4-bit | 5.7987 | +0.1629 |\n| Unconstrained MCKP | 6.0730 | +0.4371 |\n| Greedy | 6.0730 | +0.4371 |\n\n- Top-5% concentration: 0.1742\n- 结果已保存到 `artifacts/phi3_medium_constrained_results.json`\n\n### 2. internlm2_hires_profiling — 运行中\n\n- **PID**: 389863（父 shell PID 389862）\n- **GPU**: GPU 0, 18841MiB / 97887MiB, 97% 利用率\n- **进度**: 197/256 heads profiled（77%），已运行 44.6 min，ETA ~13 min\n- **当前**: Layer 24, Head 4, 2-bit profiling\n\n### 3. GPU 状况\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|---|---|---|---|\n| 0 | RTX PRO 6000 Blackwell | 18841 / 97887 MiB | 97% |\n| 1 | RTX PRO 6000 Blackwell | 3 / 97887 MiB | 0% (空闲) |\n\n### 4. tmux session\n\n- `yi15_9b_full_pipeline` — 1 window（创建于 May 15），无活跃 python 进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6c567c210c4f0487a2d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research libero dataset v2",
+  "task_key": "worker_research_libero-dataset-v2_20260515T125532",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_libero-dataset-v2_20260515T125532_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "f76880f100ce4637d405853b9f0a6a7ba0ccc982f72bf48b5e9f2cb11b689283"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. LIBERO-Object 数据集 ID\n\n`lerobot/libero_object_no_noops` **不存在**。\n\n在 HF Hub 上找到的 LIBERO 数据集：\n\n| 数据集 ID | 格式 | Episodes | Tasks | 说明 |\n|-----------|------|----------|-------|------|\n| `lerobot/libero` | v3.0 | 1693 | 40 | **全部 4 个 LIBERO suite 合并** |\n| `lerobot/libero_10` | v3.0 | ~400 | 10 | 仅前 10 个任务 (LIBERO-Long) |\n\n`lerobot/libero` 的 40 个任务按 task_index 分布：\n- **0-9**: LIBERO-Long（长程多步任务）\n- **10-19**: LIBERO-Spatial（空间推理）\n- **20-29**: LIBERO-Object（不同物体，相同动作 — \"pick up X and place it in the basket\"）\n- **30-39**: LIBERO-Goal（相同物体，不同初始位置）\n\nlerobot 0.5.1 使用 v3.0 格式，完全兼容。LeRobotDatasetMetadata 加载验证通过。\n\n### 2. 配置建议\n\n将 dataset ID 改为 `lerobot/libero`，训练时通过 `task_index` 20-29 过滤 LIBERO-Object 子集。\n\nFeatures：2 个摄像头图像 (256×256 video)，8D state，7D action，10 FPS。\n\n### 3. MVP 数据集推荐\n\n- **快速验证**：`lerobot/libero_10`（更小，下载快）\n- **完整实验**：`lerobot/libero`（过滤 task_index 20-29 得到 LIBERO-Object）\n- **备选 aloha**：`lerobot/aloha_sim_transfer_cube_scripted` 或 `lerobot/aloha_sim_insertion_scripted`（不同机器人形态，但更简单、下载更快）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9434d9ee5a26c2dad3ff",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis pythia temp09 001",
+  "task_key": "worker_analysis_pythia_temp09_001_20260514T163125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia_temp09_001_20260514T163125_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "45f6d27d168eeeab8b2711ea7bd0dd90125a2a75c4883c2bb6840635d17137b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE/success. Here's the complete comparison:\n\n---\n\n## `pythia_temp09_001` — **SUCCESS**\n\n### 4-class (d0-d3)\n| Metric | Baseline (nucleus p=0.95) | Temp09 (τ=0.9) | Δ |\n|--------|--------------------------|-----------------|---|\n| RF acc | 78.15% [76.9, 79.4] | 76.25% [74.9, 77.5] | **-1.9pp** |\n| LR acc | 74.92% | 74.05% | -0.9pp |\n| AUC 0v1 | 0.9975 | 0.9968 | -0.0007 |\n| AUC 1v2 | 0.8607 | 0.8327 | **-0.028** |\n| AUC 2v3 | 0.8005 | 0.7928 | -0.008 |\n\n### 3-class (d1-d3)\n| Metric | Baseline | Temp09 |\n|--------|----------|--------|\n| Full acc | 70.8% | 69.83% [68.2, 71.5] |\n| Filtered acc | — | 72.52% [70.6, 74.3] |\n| Filtered d2v3 AUC | — | 0.8295 |\n\n### Key findings\n1. **Depth signal is decoding-robust**: Only 1.9pp accuracy drop despite switching from nucleus to temperature-only sampling. Both pass thresholds by wide margins (76.25% >> 40%, d1v2 AUC 0.8327 >> 0.6).\n2. **Feature importance ranking identical**: var_surprisal > p90_ppl > mean_ppl > mean_surprisal > p75_ppl, with near-identical weights across strategies.\n3. **Code contamination 2-3pp higher** in temp09 — temperature-only preserves more of the distribution tail. Filtered 3-class acc (72.52%) recovers ~2.7pp over unfiltered.\n4. **d2 confusion persists**: d2 recall 0.554 (3-class) is the systematic weak point in both conditions — an inherent property of depth-2 text, not a decoding artifact."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

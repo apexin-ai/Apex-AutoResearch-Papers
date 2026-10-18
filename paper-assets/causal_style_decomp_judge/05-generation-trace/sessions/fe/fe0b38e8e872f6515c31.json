@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fe0b38e8e872f6515c31",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code correction poc debiased prompt",
+  "task_key": "worker_code_correction_poc_debiased_prompt_20260521T084611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_correction_poc_debiased_prompt_20260521T084611_result.json",
+    "occurrence": 1,
+    "bytes": 1376,
+    "sha256": "0e3685f687bb2c7eeafcfa9439909d93f64371e4cb915d4c13292fab47c42534"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇报：\n\n## Correction PoC: Debiased Prompt\n\n### Qwen3-32B\n| | P(formal) | 95% CI | p-value |\n|---|---|---|---|\n| Original | 66.5% | [58.5, 73.9] | p<0.0001 |\n| Debiased | 60.8% | [53.4, 68.2] | p=0.0023 |\n| **Reduction** | **5.7pp** | | **(34.5% of bias eliminated)** |\n\n### GPT-4o\n| | P(formal) | 95% CI | p-value |\n|---|---|---|---|\n| Original | 63.0% | [55.7, 70.3] | p=0.0004 |\n| Debiased | 62.6% | [55.9, 69.3] | p<0.0001 |\n| **Reduction** | **0.4pp** | | **(3.1% of bias eliminated)** |\n\n附加观察：GPT-4o 在 debiased prompt 下有 5 个 trial 返回 \"Neither\"（拒绝选择），说明它能意识到内容等价但仍然在被迫选择时偏向 formal。\n\n### Interpretation\n**Ineffective** — debiased prompt 对两个 judge 的 formality bias 均无法消除：\n- Qwen3-32B: 偏差下降 5.7pp（从 66.5→60.8%），但仍高度显著（p=0.0023），仅消除 34.5% 的 bias\n- GPT-4o: 几乎无变化（0.4pp），bias 完全持续\n\n**结论：formality bias 比 prompt-level intervention 更深层。** 这支持论文 C4 claim — simple prompt debiasing 不足以矫正 style preference，需要更 structural 的方法（如 CSD decomposition）。\n\n输出文件：\n- `data/pairwise_results_debiased_qwen32b_formality.jsonl`\n- `data/pairwise_results_debiased_gpt4o_formality.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "daae3e06b0a431df881e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis mae qwk adjacent",
+  "task_key": "worker_analysis_mae_qwk_adjacent_20260518T142858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mae_qwk_adjacent_20260518T142858_result.json",
+    "occurrence": 1,
+    "bytes": 1664,
+    "sha256": "0d565ebf16b312ea884df2f10304a2bef5ed4ef56d2a6d38ad82cc860b0128b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部计算完成。结果已保存到 `results/reviewer_metrics/mae_qwk_analysis.json`。\n\n## 结果汇总\n\n### Within-distribution (9 cells, RF 5-fold CV OOF)\n\n| Cell | MAE | QWK | QWK(d1-d3) |\n|------|-----|-----|------------|\n| pythia_nucleus | 0.2346 | 0.8903 | 0.7304 |\n| pythia_temp09 | 0.2581 | 0.8774 | 0.6995 |\n| pythia_topk50 | 0.3589 | 0.8193 | 0.5669 |\n| gpt2xl_nucleus | 0.1684 | 0.9233 | 0.8196 |\n| gpt2xl_temp09 | 0.1447 | 0.9398 | 0.8521 |\n| gpt2xl_topk50 | 0.2554 | 0.8850 | 0.7221 |\n| olmo_nucleus | 0.2293 | 0.8941 | 0.7545 |\n| olmo_temp09 | 0.1833 | 0.9228 | 0.8082 |\n| olmo_topk50 | 0.2752 | 0.8744 | 0.6961 |\n| **Mean** | **0.2342** | **0.8918** | **0.7388** |\n\n**|Δ| 分布** (180K samples pooled): |0|=78.42%, |1|=19.80%, |2|=1.70%, |3|=0.07%\n**Adjacent accuracy** (|Δ|≤1): **98.23%**\n\n### Cross-model LOO Transfer\n\n| Holdout | MAE | QWK | QWK(d1-d3) |\n|---------|-----|-----|------------|\n| Pythia | 0.4538 | 0.7793 | 0.4331 |\n| OLMo | 0.3438 | 0.8332 | 0.5980 |\n| GPT-2 XL | 0.3701 | 0.8043 | 0.5538 |\n| **Mean** | **0.3892** | **0.8056** | **0.5283** |\n\n**|Δ| 分布** (180K samples): |0|=66.40%, |1|=28.42%, |2|=5.03%, |3|=0.15%\n**Adjacent accuracy**: **94.82%**\n\n### 要点\n\n- Within-distribution QWK 0.89 表明 ordinal agreement 很强，98.2% 预测在 ±1 depth 内\n- Cross-model transfer QWK 从 0.89 降至 0.81（降幅 ~9%），MAE 从 0.23 升至 0.39\n- d1-d3 QWK 在 transfer 设定下降幅更大（0.74→0.53），说明 d0 的高准确率撑起了整体指标\n- Part B (从已有CM) 与 Part C (重新跑RF) 数值几乎完全一致，验证了计算正确性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

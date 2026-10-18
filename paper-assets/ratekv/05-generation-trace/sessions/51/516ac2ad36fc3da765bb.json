@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "516ac2ad36fc3da765bb",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp mistral hires bf16 v3",
+  "task_key": "worker_exp_mistral_hires_bf16_v3_20260515T143158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mistral_hires_bf16_v3_20260515T143158_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "9aa9cd9f27af9a34380407788eb2e8f54d80134b1568d745a7b6da13d6a54d33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并在运行：\n\n- **tmux session**: `mistral_hires_bf16_2bitonly_v3`\n- **PID**: 340906，运行在 **cuda:0**（18GB/98GB 显存，GPU-Util 100%）\n- **Baseline PPL**: 5.8702\n- **进度**: 1/256 heads 完成，ETA ~130 分钟\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

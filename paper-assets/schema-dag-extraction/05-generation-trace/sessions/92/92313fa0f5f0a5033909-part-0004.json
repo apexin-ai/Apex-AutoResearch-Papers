@@ -1,0 +1,1302 @@
+{
+  "schema_version": "1.0",
+  "session_id": "92313fa0f5f0a5033909",
+  "rounds": [
+    {
+      "number": 29,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-16T14:22:27.905983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 25 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/review_issues.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/meta.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/writing_plan.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/meta.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/worst/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/median/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/worst/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/median/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/meta.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/worst/review_context.\n…[truncated 1538 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-16T14:22:32.926591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "3",
+              "fields": "['*']",
+              "filters": "{'conclusion': 'success'}"
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-16T14:22:33.981370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_aggregation_monte_carlo\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:33:10.336Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:33:24.395Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pair_r_squared_nonzero\\\": 0.074, \\\"simulated_batch_r_squared\\\": {\\\"mean\\\": 0.219, \\\"ci_95\\\": [0.092, 0.361]}, \\\"observed_batch_r_squared\\\": 0.218, \\\"effective_factor\\\": 3.35, \\\"amplification_actual\\\": \\\"~3x (not 14-35x)\\\", \\\"inter_pair_scs_correlation\\\": 0.35, \\\"conclusion\\\": \\\"Simulation confirms pair→batch aggregation explains R² amplification. Actual factor ~3× (pair R²=0.074 → batch R²=0.219). Paper claim of 14-35× mixes different pair-level measures and needs correction.\\\"}}, \\\"exp_scs_name_def_ablation\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:33:09.852Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:33:21.330Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"fewnerd\\\": {\\\"scs_name_r\\\": 0.172, \\\"scs_def_r\\\": 0.149, \\\"delta_r\\\": -0.023, \\\"matrix_corr\\\": 0.894, \\\"name_p\\\": 2e-14, \\\"def_p\\\": 4e-11}, \\\"maven\\\": {\\\"scs_name_r\\\": 0.129, \\\"scs_def_r\\\": 0.164, \\\"delta_r\\\": 0.035, \\\"matrix_corr\\\": 0.656, \\\"name_p\\\": 3.1e-42, \\\"def_p\\\": 1.1e-67}, \\\"fewrel\\\": {\\\"scs_name_r\\\": 0.178, \\\"scs_def_r\\\": 0.193, \\\"delta_r\\\": 0.015, \\\"matrix_corr\\\": 0.848, \\\"name_p\\\": 8.6e-24, \\\"def_p\\\": 9.3e-28}, \\\"conclusion\\\": \\\"No systematic improvement from adding definitions. Few-NERD (only dataset with definitions in prompt) shows slight decrease. Name-only captures main semantic structure (matrix corr 0.656-0.894).\\\"}}, \\\"exp_fewrel_contamination_check\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:30:38.960Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:33:11.057Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_origin_mean_acc\\\": 0.4831, \\\"val_origin_mean_acc\\\": 0.5885, \\\"delta_pp\\\": -10.55, \\\"mann_whitney_p\\\": 0.2485, \\\"welch_t_p\\\": 0.2168, \\\"cohens_d\\\": -\n…[truncated 383 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1054
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-16T14:22:33.981747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "factorial|tost|TOST|separability",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-16T14:22:34.032224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:44:\\item \\textbf{Non-significant factorial test.} Within-dataset count $\\times$ BCS interaction on Few-NERD did not reach significance (Appendix~\\ref{sec:appendix_factorial}); cross-pool slope consistency suggests confusability sensitivity is stable rather than amplifying.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:154:\\label{sec:appendix_factorial}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:156:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex:11:Yes. The Limitations section (after \\S\\ref{sec:conclusion}) discusses single-model reliance, modest pairwise effect sizes, cross-pool slope consistency, non-significant factorial results, decomposition scope, and metric scope."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-16T14:22:39.054892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "factorial|TOST|tost",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-16T14:22:39.557378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "41-\n42-\\item \\textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\\% of type confusion variance; entity frequency, prompt position, mention ambiguity, and type definition quality likely account for the remainder.\n43-\n44:\\item \\textbf{Non-significant factorial test.} Within-dataset count $\\times$ BCS interaction on Few-NERD did not reach significance (Appendix~\\ref{sec:appendix_factorial}); cross-pool slope consistency suggests confusability sensitivity is stable rather than amplifying.\n45-\n46-\\item \\textbf{Decomposition and metric scope.} RE batch composition is tested on FewRel only; NER merge alternatives remain unexplored. SCS relies on embedding cosine similarity; label entropy or ontological depth may capture complementary dimensions.\n47-\n--\n151-Our v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span. Confidence gating improves precision (sdgd\\_zero: 0.210$\\to$0.324; random\\_batch: 0.249$\\to$0.331), but at the cost of disproportionate recall loss (0.314$\\to$0.191; 0.446$\\to$0.276), yielding lower F1 in both modes (sdgd\\_zero: 0.251$\\to$0.241; random\\_batch: 0.320$\\to$0.301).\n152-\n153-\\section{Factorial Analysis}\n154:\\label{sec:appendix_factorial}\n155-\n156:[Omitted long matching line]\n157-\n158-\\section{Within-Pool CI Details}\n159-\\label{sec:appendix_within_pool}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-16T14:22:39.709405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-16T14:22:39.810408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-16T14:22:44.429409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "153",
+              "limit": "30"
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-16T14:22:44.931995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "153\t\\section{Factorial Analysis}\n154\t\\label{sec:appendix_factorial}\n155\t\n156\tWe conducted a within-dataset $2\\!\\times\\!2$ factorial analysis (count $\\times$ BCS) on Few-NERD to test whether the two degradation channels exhibit a statistical interaction. The interaction term was directionally consistent but not statistically significant ($z = -0.67$, $p = 0.50$), likely underpowered due to BCS range compression in high-count schemas. Cross-pool slope analysis on FewRel (\\S\\ref{sec:bcs_controlled}) shows consistent BCS--accuracy sensitivity across pool sizes (permutation $p \\approx 0.60$), suggesting that the per-unit confusability effect is stable rather than amplifying with schema size. A formal factorial test on FewRel was not conducted because the BCS-controlled design varies confusability within fixed count levels rather than crossing both factors.\n157\t\n158\t\\section{Within-Pool CI Details}\n159\t\\label{sec:appendix_within_pool}\n160\t\n161\tThe quartile $\\Delta$ for 80-pool 16-relation subsets ($-$3.92\\,pp, 95\\% CI [$-$8.17, $+$0.38]) crosses zero, reflecting the compressed BCS range within that pool (0.46--0.68 vs.\\ 0.48--0.71 for the independent pool). Within this narrow band, the quartile contrast lacks statistical power to detect the effect that the regression identifies. The full 80-relation condition ($n = 25$) is underpowered for both the slope (CI: [$-$1.303, $+$1.695]) and quartile analyses; we include it in Table~\\ref{tab:within_pool} for completeness but do not draw inferential conclusions from it.\n162\t\n163\t\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n164\t\\label{sec:appendix_residualized_bcs}\n165\t\n166\tSection~\\ref{sec:centrality_confound} identifies a centrality confound in MAVEN's per-type BCS--F1 correlation: both embeddings show a \\emph{positive} raw correlation, opposite to the expected direction. Here we formalize this analysis by identifying specific confounders for each embedding and testing whether the BCS--F1 relationshi\n…[truncated 1356 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-16T14:22:45.191503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/results/ 2>/dev/null"
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-16T14:22:45.243014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 51
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-16T14:22:47.955654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/results/"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-16T14:22:49.111670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2336\\\\n-rw-r--r-- 1 root root   1323 May 15 23:15 pairwise_confusion_correlation.json\\\\n-rw-r--r-- 1 root root 136135 May 15 23:15 pairwise_confusion_count12.png\\\\n-rw-r--r-- 1 root root 120110 May 15 23:15 pairwise_confusion_count6.png\\\\n-rw-r--r-- 1 root root 138141 May 15 23:14 pairwise_confusion_analysis.png\\\\n-rw-r--r-- 1 root root   4922 May 15 15:18 maven_analysis.json\\\\n-rw-r--r-- 1 root root   4027 May 15 14:29 maven_analysis_dryrun.json\\\\n-rw-r--r-- 1 root root  17627 May 15 13:56 per_type_analysis.json\\\\n-rw-r--r-- 1 root root 188811 May 15 13:56 per_type_bcs_f1_scatter.png\\\\n-rw-r--r-- 1 root root   2638 May 15 13:14 analysis_summary.json\\\\n-rw-r--r-- 1 root root 165349 May 15 13:14 exp2_analysis_recall_combined.png\\\\n-rw-r--r-- 1 root root  18645 May 15 13:13 exp2_analysis_recall_combined.pdf\\\\n-rw-r--r-- 1 root root 243519 May 15 13:13 exp2_analysis_recall.png\\\\n-rw-r--r-- 1 root root  29313 May 15 13:13 exp2_analysis_recall.pdf\\\\n-rw-r--r-- 1 root root 167924 May 15 13:13 exp2_analysis_f1_combined.png\\\\n-rw-r--r-- 1 root root  18607 May 15 13:13 exp2_analysis_f1_combined.pdf\\\\n-rw-r--r-- 1 root root 243011 May 15 13:13 exp2_analysis_f1.png\\\\n-rw-r--r-- 1 root root  28948 May 15 13:13 exp2_analysis_f1.pdf\\\\n-rw-r--r-- 1 root root  95444 May 15 13:13 fig_count_quality.png\\\\n-rw-r--r-- 1 root root  16016 May 15 13:13 fig_count_quality.pdf\\\\n-rw-r--r-- 1 root root  40130 May 15 13:13 exp2_reeval_results.json\\\\n-rw-r--r-- 1 root root   1808 May 15 13:13 exp2_reeval_summary.json\\\\n-rw-r--r-- 1 root root   6257 May 15 13:12 exp1_reeval_summary.json\\\\n-rw-r--r-- 1 root root  67846 May 15 13:12 exp1_reeval_results.json\\\\n-rw-r--r-- 1 root root  40530 May 15 13:12 exp2_reeval_results_v1.json\\\\n-rw-r--r-- 1 root root  68265 May 15 13:12 exp1_reeval_results_v1.json\\\\n-rw-r--r-- 1 root root   1814 May 15 13:12 exp2_reeval_summary_v1.json\\\\n-rw-r--r-- 1 root root   6288 May 15 13:12 exp1_reeval_summary_v\n…[truncated 900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1156
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-16T14:22:49.112248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "factorial|TOST|tost|equivalence",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+              "glob": "*.{py,json,csv,yaml,md}",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-16T14:22:49.214233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 123 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_exp_fewrel_factorial_tost_20260516T141051_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/results_d18838.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/review_reports/round_6.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/review_issues.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/review_reports/round_5.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/meta.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.venv/l\n…[truncated 15667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-16T14:22:53.382955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_exp_fewrel_factorial_tost_20260516T141051_result.json"
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-16T14:22:53.383429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"分析完成。结果总结：\\n\\n**三重分析均支持 two-channel decomposition 的可加性（empirical separability）：**\\n\\n| Analysis | N | Count effect | BCS effect | Interaction | TOST |\\n|----------|---|---|---|---|---|\\n| 1. 2×2 Factorial (40-rel, 8 vs 16) | 54 | F=10.98, p=.002** | F=1.24, p=.27 ns | F=0.60, p=.44 ns | inconclusive |\\n| 2. Regression (40-rel, count 4-40) | 69 | β=−.035, p=.008** | β=−.051, p=.0002*** | β=.005, p=.61 ns | **p=.003, EQUIVALENT** |\\n| 3. Cross-dataset (200 batches) | 200 | F=21.90, p<.001*** | F=5.90, p=.016* | F=2.76, p=.098 ns | inconclusive |\\n\\n**核心结论：**\\n- Count 和 BCS 两个 channel 各自独立且显著地影响 accuracy\\n- 三个分析中交互项均不显著 (all p > 0.05)\\n- 回归分析的 TOST 正式确认交互项在 ±3pp equivalence margin 内 (interaction = 0.47pp, SE = 0.90pp, p_TOST = 0.003)\\n- R² = 0.52 — 两个 channel 联合解释一半以上的 accuracy 变异\\n\\n结果保存于 `/root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json`。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-16T14:23:00.627779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-16T14:23:01.029904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis_1_factorial\\\\\\\": {\\\\n    \\\\\\\"design\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"2x2 ANOVA: Count(8 vs 16) x BCS(low vs high), within 40-rel pool\\\\\\\",\\\\n      \\\\\\\"count_levels\\\\\\\": [\\\\n        8,\\\\n        16\\\\n      ],\\\\n      \\\\\\\"bcs_split\\\\\\\": \\\\\\\"within-count median\\\\\\\",\\\\n      \\\\\\\"bcs_median_count8\\\\\\\": 0.7094486355781555,\\\\n      \\\\\\\"bcs_median_count16\\\\\\\": 0.7871875762939453,\\\\n      \\\\\\\"n_per_cell\\\\\\\": {\\\\n        \\\\\\\"low_count_low_bcs\\\\\\\": 14,\\\\n        \\\\\\\"low_count_high_bcs\\\\\\\": 13,\\\\n        \\\\\\\"high_count_low_bcs\\\\\\\": 14,\\\\n        \\\\\\\"high_count_high_bcs\\\\\\\": 13\\\\n      },\\\\n      \\\\\\\"total_n\\\\\\\": 54\\\\n    },\\\\n    \\\\\\\"anova\\\\\\\": {\\\\n      \\\\\\\"count_F\\\\\\\": 10.975955385881212,\\\\n      \\\\\\\"count_p\\\\\\\": 0.0017208617891512777,\\\\n      \\\\\\\"count_eta2\\\\\\\": 0.17475056208543674,\\\\n      \\\\\\\"bcs_F\\\\\\\": 1.2355509122093238,\\\\n      \\\\\\\"bcs_p\\\\\\\": 0.2716466306155154,\\\\n      \\\\\\\"bcs_eta2\\\\\\\": 0.019671473580467606,\\\\n      \\\\\\\"interaction_F\\\\\\\": 0.5977645557279102,\\\\n      \\\\\\\"interaction_p\\\\\\\": 0.4430721167384057,\\\\n      \\\\\\\"interaction_eta2\\\\\\\": 0.009517138912807001,\\\\n      \\\\\\\"df_residual\\\\\\\": 50,\\\\n      \\\\\\\"mse\\\\\\\": 0.007996759100274725\\\\n    },\\\\n    \\\\\\\"tost\\\\\\\": {\\\\n      \\\\\\\"interaction_effect_pp\\\\\\\": -3.7660256410256303,\\\\n      \\\\\\\"ci_90\\\\\\\": [\\\\n        -11.929360202142446,\\\\n        4.397308920091185\\\\n      ],\\\\n      \\\\\\\"equivalence_margin_pp\\\\\\\": 3.0,\\\\n      \\\\\\\"p_lower\\\\\\\": 0.5621643308459352,\\\\n      \\\\\\\"p_upper\\\\\\\": 0.08548795461669123,\\\\n      \\\\\\\"p_tost\\\\\\\": 0.5621643308459352,\\\\n      \\\\\\\"conclusion\\\\\\\": \\\\\\\"inconclusive\\\\\\\"\\\\n    },\\\\n    \\\\\\\"cell_means\\\\\\\": {\\\\n      \\\\\\\"low_count_low_bcs\\\\\\\": 0.7991071428571429,\\\\n      \\\\\\\"low_count_high_bcs\\\\\\\": 0.7908653846153846,\\\\n      \\\\\\\"high_count_low_bcs\\\\\\\": 0.7366071428571429,\\\\n      \\\\\\\"high_count_high_bcs\\\\\\\": 0.6907051282051282\\\\n    }\\\\n  },\\\\n  \\\\\\\"analysis_2_regression\\\\\\\": {\\\\n    \\\\\\\"design\\\\\\\": {\\\\n      \\\\\\\"desc\n…[truncated 3178 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-16T14:23:25.137397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-16T14:23:25.137861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/src -name \"*factorial*\" -o -name \"*tost*\""
+            }
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-16T14:23:25.539731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  2 root root   34 May 16 22:17 .\\\\ndrwxr-xr-x 38 root root 4096 May 16 22:17 ..\\\\n-rw-r--r--  1 root root 4150 May 16 22:21 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-16T14:23:26.042296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-16T14:23:29.757523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"*.py\" -newer /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json"
+            }
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-16T14:23:30.008887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/src/analysis/"
+            }
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-16T14:23:30.210887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-16T14:23:30.713524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema-dag-extraction/src/analysis/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-16T14:23:33.625257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/src -name \"*.py\" -type f"
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-16T14:23:34.027406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/few_nerd_utils.py\\\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\\\n/root/schema-dag-extraction/src/compute_bcs.py\\\\n/root/schema-dag-extraction/src/select_type_batches.py\\\\n/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/evaluate.py\\\\n/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/src/diagnose_eval.py\\\\n/root/schema-dag-extraction/src/text_match_reeval.py\\\\n/root/schema-dag-extraction/src/reeval_text_match.py\\\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\\\n/root/schema-dag-extraction/src/preprocess_maven.py\\\\n/root/schema-dag-extraction/src/build_re_prompt.py\\\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\\\n/root/schema-dag-extraction/src/per_type_analysis.py\\\\n/root/schema-dag-extraction/src/maven_utils.py\\\\n/root/schema-dag-extraction/src/fewrel_utils.py\\\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\\\n/root/schema-dag-extraction/src/sdgd/graph.py\\\\n/root/schema-dag-extraction/src/sdgd/merge.py\\\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\\\n/root/schema-dag-extraction/src/error_taxonomy.py\\\\\n…[truncated 976 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-16T14:24:11.456021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex 2>/dev/null | head -5",
+              "description": "Check if paper files were modified by worker"
+            }
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-16T14:24:11.908118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  6203 May 16 13:31 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex\n-rw-r--r-- 1 ubuntu ubuntu 10289 May 16 13:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex\n-rw-r--r-- 1 ubuntu ubuntu  5171 May 16 13:28 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  4391 May 16 13:27 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu 25177 May 16 13:25 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-16T14:24:12.059050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/artifacts/fewrel_40rel/"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-16T14:24:12.460921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 324\\\\n-rw-r--r-- 1 root root 274271 May 16 00:51 preprocess_exp1.json\\\\n-rw-r--r-- 1 root root  29373 May 16 00:51 relation_sim_matrix.pt\\\\n-rw-r--r-- 1 root root  24017 May 16 00:51 batch_config_exp1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-16T14:24:21.807776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts -name \"*40*\" -type f"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-16T14:24:22.410570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-16T14:24:22.411030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts -name \"*.json\" -newer /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-16T14:24:23.114115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-16T14:24:26.228467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls /root/schema-dag-extraction/artifacts/fewrel_40rel/"
+            }
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-16T14:24:26.680490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config_exp1.json\\\\npreprocess_exp1.json\\\\nrelation_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-16T14:24:26.831622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls /root/schema-dag-extraction/artifacts/fewrel_formal/"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-16T14:24:27.536310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config_exp1.json\\\\nbatch_config_exp2.json\\\\neval_exp1.json\\\\neval_exp2.json\\\\npredictions_exp1.json\\\\npredictions_exp2.json\\\\npreprocess_exp1.json\\\\npreprocess_exp2.json\\\\nrelation_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-16T14:24:33.580197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "0",
+              "fields": "['status', 'conclusion', 'metrics']",
+              "filters": "{'status': 'DONE'}"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-16T14:24:33.782905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_fewrel_partial_corr_freq\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pearson_r\\\": 0.187, \\\"pearson_p\\\": 2.56e-26, \\\"spearman_rho\\\": 0.227, \\\"spearman_p\\\": 3.63e-38, \\\"n_pairs\\\": 3160, \\\"bootstrap_ci_95\\\": [0.145, 0.231], \\\"partial_r_eval_freq\\\": 0.189, \\\"partial_r_change_pct\\\": 1.2, \\\"note\\\": \\\"FewRel is perfectly balanced (700 samples/type). Type frequency is zero-variance, cannot confound BCS-confusion relationship. Eval-level frequency partial correlation changes by only 1.2%.\\\"}}, \\\"exp_confusability_batch_composition\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"confusability_aware\\\": {\\\"accuracy\\\": 0.8021, \\\"macro_f1\\\": 0.8021, \\\"mean_batch_bcs\\\": 0.5524}, \\\"random_batch_15seeds\\\": {\\\"accuracy_mean\\\": 0.7877, \\\"accuracy_std\\\": 0.0178, \\\"macro_f1_mean\\\": 0.7877, \\\"mean_batch_bcs\\\": 0.5585, \\\"ci_95_upper\\\": 0.7967, \\\"seeds_above_aware\\\": 2, \\\"seeds_above_aware_values\\\": [0.8125, 0.8146]}, \\\"single_pass\\\": {\\\"accuracy\\\": 0.5042, \\\"macro_f1\\\": 0.5042, \\\"mean_batch_bcs\\\": 0.5572}, \\\"improvement\\\": {\\\"confusability_vs_random_pp\\\": 1.44, \\\"significant\\\": false, \\\"rank_among_random\\\": \\\"13/15\\\", \\\"p_rank\\\": 0.19, \\\"p_z\\\": 0.22, \\\"note\\\": \\\"Directional only. BCS margin 0.006 too narrow for significance at this partition granularity.\\\"}, \\\"per_type\\\": {\\\"types_improved\\\": 51, \\\"types_degraded\\\": 28, \\\"mean_delta_pp\\\": 1.44}, \\\"n_conditions\\\": 17, \\\"n_samples\\\": 960}}, \\\"exp_fewrel_16rel_bootstrap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -5.31, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49, \\\"note\\\": \\\"CI values from pre-D038 bootstrap, may need re-verification with MEAN-based BCS\\\"}, \\\"pearson_r_bcs_acc\\\": -0.467, \\\"regression_slope\\\": {\\\"slope\\\": -0.509, \\\"ci_95_lower\\\": -0.556, \\\"ci_95_upper\\\": -0.349, \\\"r_squared\\\": 0.218\n…[truncated 23263 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 202
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-16T14:24:47.313068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts -path \"*40rel*\" -name \"*.json\" -type f"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-16T14:24:47.815409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_40rel/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-16T14:24:48.016453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts -path \"*fewrel_40*\" -type d"
+            }
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-16T14:24:48.418814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_40rel\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-16T14:24:53.542275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"*factorial*\" -o -name \"*tost*\""
+            }
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-16T14:24:53.944433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_factorial_tost\\\\n/root/schema-dag-extraction/run_factorial_tost.py\\\\n/root/schema-dag-extraction/run_factorial_v2.py\\\\n/root/schema-dag-extraction/run_factorial_v3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-16T14:24:56.556909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -80 /root/schema-dag-extraction/run_factorial_v3.py"
+            }
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-16T14:24:56.958929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.formula.api import ols\\\\nimport os\\\\n\\\\n# Load all data\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp1.json') as f:\\\\n    exp1_40 = json.load(f)\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json') as f:\\\\n    exp2_40 = json.load(f)\\\\n\\\\npool16_batches = []\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/results_incremental.jsonl') as f:\\\\n    for line in f:\\\\n        pool16_batches.append(json.loads(line))\\\\n\\\\nbootstrap_batches = []\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results_incremental.jsonl') as f:\\\\n    for line in f:\\\\n        bootstrap_batches.append(json.loads(line))\\\\n\\\\n# ANALYSIS 1: 2x2 ANOVA (40-rel pool, count 8 vs 16)\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"ANALYSIS 1: 2x2 Factorial ANOVA (40-rel pool, count 8 vs 16)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\nrecords = []\\\\nfor batch_id, bd in {**exp1_40, **exp2_40}.items():\\\\n    ck = bd.get('count_key', '')\\\\n    if ck in ('count_8', 'count_16'):\\\\n        records.append({\\\\n            'batch_id': batch_id, 'accuracy': bd['accuracy'],\\\\n            'bcs': bd['bcs'], 'count': int(ck.split('_')[1]),\\\\n        })\\\\n\\\\ndf = pd.DataFrame(records)\\\\nfor count_val in df['count'].unique():\\\\n    mask = df['count'] == count_val\\\\n    med = df.loc[mask, 'bcs'].median()\\\\n    df.loc[mask, 'bcs_group'] = np.where(df.loc[mask, 'bcs'] <= med, 'low', 'high')\\\\ndf['count_group'] = np.where(df['count'] == 8, 'low', 'high')\\\\n\\\\nmodel = ols('accuracy ~ C(count_group) * C(bcs_group)', data=df).fit()\\\\nanova_table = sm.stats.anova_lm(model, typ=2)\\\\n\\\\nss_total = anova_table['sum_sq'].sum()\\\\ncount_F = float(anova_table.loc['C(count_group)', 'F'])\\\\ncount_p = float(anova_table.loc['C(count_group)', 'PR(>F)'])\\\\ncount_eta2 = flo\n…[truncated 1453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-16T14:25:01.350195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "wc -l /root/schema-dag-extraction/run_factorial_v3.py"
+            }
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-16T14:25:01.804032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"310 /root/schema-dag-extraction/run_factorial_v3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-16T14:25:04.815945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -120 /root/schema-dag-extraction/run_factorial_v3.py"
+            }
+          },
+          "id": "event-000596"
+        },
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-16T14:25:05.268382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results = {\\\\n    \\\\\\\"analysis_1_factorial\\\\\\\": {\\\\n        \\\\\\\"design\\\\\\\": {\\\\n            \\\\\\\"description\\\\\\\": \\\\\\\"2x2 ANOVA: Count(8 vs 16) x BCS(low vs high), within 40-rel pool\\\\\\\",\\\\n            \\\\\\\"count_levels\\\\\\\": [8, 16],\\\\n            \\\\\\\"bcs_split\\\\\\\": \\\\\\\"within-count median\\\\\\\",\\\\n            \\\\\\\"bcs_median_count8\\\\\\\": float(df[df['count']==8]['bcs'].median()),\\\\n            \\\\\\\"bcs_median_count16\\\\\\\": float(df[df['count']==16]['bcs'].median()),\\\\n            \\\\\\\"n_per_cell\\\\\\\": {\\\\n                \\\\\\\"low_count_low_bcs\\\\\\\": int(cell_ns[('low','low')]),\\\\n                \\\\\\\"low_count_high_bcs\\\\\\\": int(cell_ns[('low','high')]),\\\\n                \\\\\\\"high_count_low_bcs\\\\\\\": int(cell_ns[('high','low')]),\\\\n                \\\\\\\"high_count_high_bcs\\\\\\\": int(cell_ns[('high','high')])\\\\n            },\\\\n            \\\\\\\"total_n\\\\\\\": len(df)\\\\n        },\\\\n        \\\\\\\"anova\\\\\\\": {\\\\n            \\\\\\\"count_F\\\\\\\": count_F, \\\\\\\"count_p\\\\\\\": count_p, \\\\\\\"count_eta2\\\\\\\": count_eta2,\\\\n            \\\\\\\"bcs_F\\\\\\\": bcs_F, \\\\\\\"bcs_p\\\\\\\": bcs_p, \\\\\\\"bcs_eta2\\\\\\\": bcs_eta2,\\\\n            \\\\\\\"interaction_F\\\\\\\": inter_F, \\\\\\\"interaction_p\\\\\\\": inter_p, \\\\\\\"interaction_eta2\\\\\\\": inter_eta2,\\\\n            \\\\\\\"df_residual\\\\\\\": df_residual, \\\\\\\"mse\\\\\\\": mse\\\\n        },\\\\n        \\\\\\\"tost\\\\\\\": {\\\\n            \\\\\\\"interaction_effect_pp\\\\\\\": effect * 100,\\\\n            \\\\\\\"ci_90\\\\\\\": [ci_90_lower * 100, ci_90_upper * 100],\\\\n            \\\\\\\"equivalence_margin_pp\\\\\\\": 3.0,\\\\n            \\\\\\\"p_lower\\\\\\\": p_lower, \\\\\\\"p_upper\\\\\\\": p_upper, \\\\\\\"p_tost\\\\\\\": p_tost,\\\\n            \\\\\\\"conclusion\\\\\\\": conclusion\\\\n        },\\\\n        \\\\\\\"cell_means\\\\\\\": {\\\\n            \\\\\\\"low_count_low_bcs\\\\\\\": m_ll, \\\\\\\"low_count_high_bcs\\\\\\\": m_lh,\\\\n            \\\\\\\"high_count_low_bcs\\\\\\\": m_hl, \\\\\\\"high_count_high_bcs\\\\\\\": m_hh\\\\n        }\\\\n    },\\\\n    \\\\\\\"analysis_2_regression\\\\\\\": {\\\\n        \\\\\\\"design\\\\\\\": {\\\\n            \\\\\\\"description\\\\\\\n…[truncated 5180 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-16T14:25:08.935299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -190 /root/schema-dag-extraction/run_factorial_v3.py"
+            }
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-16T14:25:09.387565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.formula.api import ols\\\\nimport os\\\\n\\\\n# Load all data\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp1.json') as f:\\\\n    exp1_40 = json.load(f)\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json') as f:\\\\n    exp2_40 = json.load(f)\\\\n\\\\npool16_batches = []\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/results_incremental.jsonl') as f:\\\\n    for line in f:\\\\n        pool16_batches.append(json.loads(line))\\\\n\\\\nbootstrap_batches = []\\\\nwith open('/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results_incremental.jsonl') as f:\\\\n    for line in f:\\\\n        bootstrap_batches.append(json.loads(line))\\\\n\\\\n# ANALYSIS 1: 2x2 ANOVA (40-rel pool, count 8 vs 16)\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"ANALYSIS 1: 2x2 Factorial ANOVA (40-rel pool, count 8 vs 16)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\nrecords = []\\\\nfor batch_id, bd in {**exp1_40, **exp2_40}.items():\\\\n    ck = bd.get('count_key', '')\\\\n    if ck in ('count_8', 'count_16'):\\\\n        records.append({\\\\n            'batch_id': batch_id, 'accuracy': bd['accuracy'],\\\\n            'bcs': bd['bcs'], 'count': int(ck.split('_')[1]),\\\\n        })\\\\n\\\\ndf = pd.DataFrame(records)\\\\nfor count_val in df['count'].unique():\\\\n    mask = df['count'] == count_val\\\\n    med = df.loc[mask, 'bcs'].median()\\\\n    df.loc[mask, 'bcs_group'] = np.where(df.loc[mask, 'bcs'] <= med, 'low', 'high')\\\\ndf['count_group'] = np.where(df['count'] == 8, 'low', 'high')\\\\n\\\\nmodel = ols('accuracy ~ C(count_group) * C(bcs_group)', data=df).fit()\\\\nanova_table = sm.stats.anova_lm(model, typ=2)\\\\n\\\\nss_total = anova_table['sum_sq'].sum()\\\\ncount_F = float(anova_table.loc['C(count_group)', 'F'])\\\\ncount_p = float(anova_table.loc['C(count_group)', 'PR(>F)'])\\\\ncount_eta2 = flo\n…[truncated 6751 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-16T14:25:38.935425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-16T14:25:39.036476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000601"
+        },
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-16T14:26:09.938824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — FewRel Factorial + TOST (worker_exp_fewrel_factorial_tost)\n\n**结论**: WARNING — 核心分析（Analysis 2）可用且有力，但 Worker 总结存在 overclaim，需修正后集成论文。\n\n### 独立核实\n\n已读取远程 `/root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json`，核对脚本 `run_factorial_v3.py`（310行，使用 statsmodels OLS + scipy TOST），数据来源确认为 `fewrel_40rel_r4`（exp1+exp2）+ `fewrel_16rel_bootstrap` + `fewrel_80pool_16sub`。\n\n### 发现\n\n**1. [severity: warning] Worker overclaim：\"三重分析均支持 separability\"**\n\n实际情况：\n- **Analysis 1**（2×2 ANOVA, N=54）: BCS 主效应**不显著**（F=1.24, p=.27），TOST **inconclusive**（interaction=-3.77pp，超出±3pp margin，p=0.56）\n- **Analysis 2**（回归, N=69）: 两通道均显著（count p=.008, BCS p=.0002），交互不显著（p=.61），**TOST 确认等价**（interaction=0.47pp, p=.003）✓\n- **Analysis 3**（跨数据集, N=200）: 交互 p=.098（边缘），TOST **inconclusive**（interaction=3.05pp，恰好在±3pp 边界，p=0.51）\n\n结论：仅 1/3 分析 TOST 成立。论文应以 Analysis 2 为主体证据，Analyses 1 和 3 作为 appendix 补充并诚实报告其局限。\n\n**2. [severity: warning] Analysis 1 BCS 主效应不显著需解释**\n\n2×2 ANOVA 的 BCS 主效应 p=.27，与论文核心 claim（BCS 独立预测 accuracy）矛盾。原因是 median split 在 N=27/count 下严重丧失统计功效。如果放入论文需附解释：\"median dichotomization loses power relative to continuous regression\"。\n\n**3. [severity: warning] ±3pp 等价边界需要 justification**\n\nTOST 的 ±3pp margin 是分析核心参数但缺乏 justification。建议在论文中说明选择依据，例如\"approximately half the smallest significant BCS main effect (−5.1pp per SD)\"或\"the typical BCS quartile gap (2.2pp) sets a natural practical equivalence boundary\"。\n\n**4. [severity: info] Analysis 2 回归结果足够强，可直接回应 Round 6 审稿人**\n\nR²=0.52、交互=0.47pp（SE=0.90）、TOST p=.003——这直接回答了\"separability 缺 formal evidence\"的批评。建议 Appendix C 更新为此回归结果 + TOST，不再说\"formal factorial test on FewRel was not conducted\"。\n\n**5. [severity: warning] Appendix C 文本过时**\n\n当前 main.tex:156 写：\"A formal factorial test on FewRel was not conducted because the BCS-controlled design varies confusability within fixed count levels rather than crossing both factors.\" 这已不正确——Worker 刚刚做了这个 test。必须更新。\n\n**6. [severity: info] 论文文件未修改 + Registry 未更新**\n\nWorker 只产出了 results.json，未修改 .tex 文件，未在 registry 注册新实验。需要后续 worker 完成：(1) registry 注册 (2) Appendix C 重写 (3) Limitations item 3 更新。\n\n### 建议\n\n1. Appendix C 重写：以 Analysis 2 回归 TOST 为主体（\"Multiple regression on 69 FewRel batches: interaction = 0.47pp, TOST p = .003 within ±3pp margin, confirming additive separability\"），附 Analyses 1/3 作为 supplementary robustness checks\n2. Limitations item 3（\"Non-significant factorial test\"）更新为：\"Factorial TOST on FewRel confirms additive separability (p=.003); ANOVA-based tests remain inconclusive due to power limitations\"\n3. 论文中报告 TOST 时必须 justify ±3pp margin\n4. 不建议在 worker summary 中使用\"三重分析均支持\"表述——诚实报告为\"回归分析正式确认，ANOVA 分析功效不足无法定论\"",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-16T14:26:13.806923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3868
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-16T14:26:19.544172+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查报告已发送。核心结论：Analysis 2 回归 TOST（interaction=0.47pp, p=.003, R²=0.52）是有力证据，可直接回应 Round 6 审稿人对 separability 的质疑。但 Worker 总结 overclaim 了——3 个分析中仅 1 个 TOST conclusive，另外 2 个 inconclusive。论文集成时需以回归为主体，诚实报告 ANOVA 的功效局限，并更新 Appendix C 过时文本。等待 Director 分配后续 worker 集成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000604"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "messages": [
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-16T14:27:33.712128+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-16T14:28:20.131099+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 服务器 cqa1-38874，项目无 GPU 白名单限制（纯 CPU 分析 + vLLM 推理已全部完成）\n- 论文数字必须与 registry 交叉验证——之前发现 §5 sdgd_zero F1 混用了 v1/v2 值（0.241 vs 0.251），已修正\n- BCS 定义已统一为 MEAN pairwise SCS（D038/D039），不得回退到 MAX\n- 因果语言禁令：所有 \"drives\"/\"causes\" 已替换为 \"predicts\"/\"associated with\"，不得重新引入\n- 31.2pp 是 extreme-batch methodological upper bound，不是 typical effect——论文 headline 数字是 2.2pp（typical）和 −5.3pp（quartile）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874 (root)，工作目录 /root/schema-dag-extraction\n- Python：/root/miniconda3/bin/python（conda base）\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/\n- 论文 tex 文件：{workspace}/docs/paper/（main.tex, results.tex, sdgd_negative.tex, discussion.tex, introduction.tex, abstract.tex, experimental_setup.tex, related_work.tex, checklist.tex）\n- 关键远程 artifacts：/root/schema-dag-extraction/artifacts/（fewrel_formal/, fewrel_40rel_r4/, fewrel_16rel_bootstrap/, fewrel_80pool_16sub/, fewrel_factorial_tost/）\n- 无活跃进程，无 tmux session，无 cron 任务——全部实验已完成\n\n### 3. 📊 当前状态\n刚完成 FewRel factorial + TOST 实验审查并提交报告给 Director。核心发现：\n- Worker 跑了三重分析，仅 Analysis 2（回归 TOST, p=.003）确认 additive separability，另两个 ANOVA 功效不足 TOST inconclusive\n- Worker overclaim \"三重分析均支持\"，我已标 WARNING 并建议仅以 Analysis 2 为主体\n- 论文文件未被 worker 修改（最后修改时间均为 May 16 13:xx），registry 未注册新实验\n\nRegistry PREPARING 状态（均已有 metrics，只是未转 DONE）：exp_aggregation_monte_carlo, exp_scs_name_def_ablation, exp_fewrel_contamination_check, exp_cross_embedding_sensitivity, exp_fewrel_v2_n25, bcs_max_to_mean_fix, exp017_gpt4o_mini_fewrel (killed)\n\n等待中：Director 对 Round 6 action matrix 的后续决策（D048），特别是：\n- W2: 31.2pp 出现次数从 9→4 的编辑\n- W3: \"model\"→\"decomposition\" 术语修改\n- Appendix C 重写（集成 factorial TOST 结果）\n- Should-Fix items (W5-W10)\n\n### 4. 📋 待办\n- Director 派 worker 集成 factorial TOST → 审查 Appendix C 重写是否正确引用 Analysis 2 数据（interaction=0.47pp, TOST p=.003, R²=0.52）；检查 Limitations item 3 是否更新；确认 ±3pp margin 有 justification\n- 31.2pp 削减 worker 完成 → 核对剩余出现次数（目标 ≤4 次 main body）；确认 headline 数字仍以 2.2pp/−5.3pp 为主\n- \"model\"→\"decomposition\" worker 完成 → grep 全文确认无遗漏 overclaim\n- 任何新的 tex 修改 → 检查页数仍 ≤8 页（Conclusion 须在第 8 页内结束，之前 line 694 确认）\n- 如收到 Round 7 审稿报告 → 独立评估并提交策略建议\n\n### 5. 🎯 战略上下文\n**核心结论链**：D005 MVP PASS → D012/D013 pairwise 升主证据 → D019 SDGD 降为 negative → D031 跨模型强复现 → D043 oracle routing +1.4pp n.s. → D044 framing 全面降调 → D047 Round 5 大修 → D048 Round 6 factorial + TOST\n\n**论文定位**：分析型论文（诊断 schema-induced degradation），非方法型。两通道 separability 是核心 claim，decomposition 是 negative/inconclusive result 诚实报告。投 EMNLP 2026 ARR May 25 Main track。\n\n**易错点**：\n1. Analysis 1（2×2 ANOVA）BCS 不显著——不要把这当成\"BCS 无效\"的证据，是 power 不足。但也不能忽略它\n2. Analysis 3 interaction p=.098 是 borderline——如果审稿人追问\"cross-pool interaction\"，需要准备好回应（BCS 范围差异导致效应量不同，非真正交互）\n3. 论文中 FewRel pairwise r=0.187 在 §3.2 但不在 Table 2（D046 决定保留这个张力 + caption 交叉引用），不要试图\"修复\"\n4. MAVEN 正向 BCS-F1 相关是 centrality confound（D012），不是 Channel 2 失败——pairwise SCS 在 MAVEN 上仍显著（r=0.129）\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-000606"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "81549309f54aa29875e1",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis cross benchmark iv",
+  "task_key": "worker_analysis_cross-benchmark-iv_20260523T080346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-benchmark-iv_20260523T080346.log",
+    "occurrence": 1,
+    "bytes": 1109501,
+    "sha256": "7940f899b3d7cc52995cc7edc1ad61017fe063553cde5cf3c38faf6e9b1ef584"
+  },
+  "statistics": {
+    "messages": 742,
+    "user_turns": 1,
+    "tool_calls": 338,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 338,
+      "tool_result": 338,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 726,
+      "chunks": [
+        {
+          "path": "81549309f54aa29875e1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "81549309f54aa29875e1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "81549309f54aa29875e1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "81549309f54aa29875e1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "81549309f54aa29875e1-part-0005.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "81549309f54aa29875e1-part-0005.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ]
+}

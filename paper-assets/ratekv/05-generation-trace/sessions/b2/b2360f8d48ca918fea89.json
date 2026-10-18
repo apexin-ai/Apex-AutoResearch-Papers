@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b2360f8d48ca918fea89",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "figure heatmap mistral datasource fix",
+  "task_key": "worker_figure_heatmap-mistral-datasource-fix_20260515T010222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_heatmap-mistral-datasource-fix_20260515T010222_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "b26bcc5e5ef1dcdf16ccde38d463c8a321f34d1c51219481921fec99231af777"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 修改内容\n**无需修改**——脚本中 Mistral 的 path 已经是目标值 `mistral_hires_bf16_2bitonly_profiles.json`（可能之前已经改过）。直接重跑了脚本。\n\n### Gemma-2 hires 数据文件情况（供 Director 参考）\n**hires 版本存在**：\n- `/root/ratekv/gemma2_hires_bf16_2bitonly_profiles.json` — 28846 bytes (May 15 07:39)\n- `/root/ratekv/gemma2_hires_bf16_2bitonly_results.json` — 同批产出\n- `/root/ratekv/gemma2_profiling_results.json` — 58023 bytes (May 15 00:38, 当前脚本使用的 standard 版本)\n\n脚本中 Gemma-2 仍指向 standard `gemma2_profiling_results.json`，**未修改**。Director 可决定是否切到 hires 版。\n\n### 输出文件\n脚本输出文件名为 `fig1_head_delta_heatmap.{pdf,png}`（**不带 `_5model` 后缀**，task 描述与实际不符）：\n- `/root/ratekv/figures/fig1_head_delta_heatmap.pdf` — 66425 bytes\n- `/root/ratekv/figures/fig1_head_delta_heatmap.png` — 178864 bytes\n\n### Top heads（5 模型，新结果）\n- Gemma-2-9B (42L×8H, standard): L29H7=0.22, L0H1=0.14, L40H6=0.09\n- Llama-3.1-8B (32L×8H, hires): L2H5=15.26, L3H1=0.44, L0H0=0.33\n- Mistral-7B-v0.3 (32L×8H, hires): L2H5=0.32, L12H1=0.14, L0H7=0.14\n- Qwen2.5-7B (28L×4H, hires): L0H0=6.74, L0H2=2.12, L0H3=1.31\n- Yi-1.5-9B (48L×4H, hires): L4H3=13.12, L8H2=0.55, L2H0=0.23"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4716d3fe24f4a893642b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit step3 mi v1check",
+  "task_key": "worker_audit_step3-mi-v1check_20260523T193125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_step3-mi-v1check_20260523T193125_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "9658144ffe65aefd887c15427e088653cd405ac21c4948d17e7f11454ed32bc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**脚本路径**: `/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py`\n\n**Vote extraction 方式**: **无 V1 bug**\n\n`extract_winner_vector` 函数（第 18-26 行）：\n```python\ndef extract_winner_vector(score_list):\n    for s in score_list:\n        if isinstance(s, dict) and not s.get(\"error\"):\n            w = s.get(\"winner\")       # ← 无默认值，missing 返回 None\n            winners.append(w)\n        else:\n            winners.append(None)       # ← error 条目标记为 None\n```\n\n- 使用 `s.get(\"winner\")` 而非 `s.get(\"winner\", \"tie\")`，missing key 返回 `None`\n- error 条目也标记为 `None`\n- `compute_pairwise_mi` 中 `None` 被过滤掉，不参与 MI 计算\n\n**数据来源确认**: `main()` 中 `clean_scores, _ = load_all_scores()`，MI 矩阵仅从 clean data 计算。\n\n**附注**: `unified_data_loader.py` 的 `_invert_winners` 确实有 `.get(\"winner\", \"tie\")` 模式，但该函数仅用于 `position_bias` attacked data 的 swap，不影响 clean data MI 计算。\n\n**K_eff 不受 V1 bug 影响，r(K_eff, η_max) 无需重算。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

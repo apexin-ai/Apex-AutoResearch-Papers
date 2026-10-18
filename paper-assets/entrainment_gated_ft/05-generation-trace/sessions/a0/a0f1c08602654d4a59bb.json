@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f1c08602654d4a59bb",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check e4 pythia monitor",
+  "task_key": "worker_check_e4-pythia-monitor_20260522T103213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_e4-pythia-monitor_20260522T103213_result.json",
+    "occurrence": 1,
+    "bytes": 215,
+    "sha256": "66b6545e27d879cdbd4cf686db364e1862cb2c27407e61919c47e942f98873f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已重新启动，状态汇总：\n- **PID 827158**：seed1 评估正在运行（22.4% CPU）\n- 前 Worker 遗留的下载进程已杀掉\n- 0/9 seeds 完成\n- 4.5 分钟后自动检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

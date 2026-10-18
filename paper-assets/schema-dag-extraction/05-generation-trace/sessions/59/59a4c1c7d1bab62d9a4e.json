@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "59a4c1c7d1bab62d9a4e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper v2 narrative rewrite",
+  "task_key": "worker_paper_v2-narrative-rewrite_20260516T053203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_v2-narrative-rewrite_20260516T053203_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "983150bc9a2fac02cd2629037a7353a203dae58ca9ad739e8375c0b5f2e22c58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无 error，输出 18 页 PDF。\n\n验证总结：\n\n| 检查项 | 状态 |\n|--------|------|\n| \"7.9\" 残留 | 仅 Appendix G 中故意保留的 n=5 对比，正文已全部更新 |\n| \"does not reach significance\" | 已删除，全文无残留 |\n| \"ruling out prompt-specific confounding\" | 存在于 results.tex §4.3 和 main.tex Appendix G |\n| Appendix G 包含 n=5 + n=25 | 确认，n=25 为主结果，n=5 标注为 underpowered |\n| pdflatex 编译 | 无 error |\n\n共修改 5 处：\n1. **results.tex:135-136** — §4.3 Prompt sensitivity 段落完全重写\n2. **results.tex:69** — §4.1 括号内 \"attenuated to 7.9pp\" → \"persisting at Δ=−25.5pp, r=−0.919\"\n3. **main.tex:219-220** — Appendix G RE 段落，新增 n=25 主结果 + 保留 n=5 作为 cautionary note\n4. **main.tex:225-226** — Appendix G Interpretation 段落，更新为反映 n=25 definitive result\n5. **discussion.tex:5** — Discussion 中 \"7.9pp\" → \"25.5pp\" 并补充统计量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

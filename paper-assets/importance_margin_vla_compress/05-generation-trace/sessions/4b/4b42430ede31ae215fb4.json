@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b42430ede31ae215fb4",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_15_1779970944.md",
+  "task_key": "loop_15_1779970944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_15_1779970944.md",
+    "occurrence": 1,
+    "bytes": 5751,
+    "sha256": "460f45a0e8081263b963006858fa07e3cc9adb15778d1608c7f05f21357729bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-28T12:05:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-3，仅限 westd-27271 / cqa1-33015 / westd-41074 / westd-38929 四台服务器\n- **westd-27271 不支持 attention pruning mode**（代码未同步，仅 none/random/l2norm）。westd-38929 attention 支持也未正式确认\n- **实验硬截止 May 28 20:00 BJT (C002)**——已过 19:30 BJT 部署截止线，不再新部署实验\n- CoRL 2026 Paper deadline: **May 29**——下一个\"你\"的核心任务是收割最后 RUNNING 实验 + 确保 Paper Agent 用 `artifacts/build_5seed_tables.py` 更新最终 figures\n- 数据选择有服务器偏差：Attn k=0.75 seed42 用 w41 strict=49.8%（非 cqa1=52.4%）；Random k=0.9 seed43 用 w41 strict=35.0%（非旧版 cqa1_v2=32.4%）。详见 ROADMAP \"数据整合注意事项\" 7 条规则，**不可随意替换已定的数据源**\n- 论文 error bar 标准：sample std (n-1)，已定（D301）\n\n### 2. 🖥️ 基础设施快照\n- **服务器 × 4**：westd-27271 / cqa1-33015 / westd-41074 / westd-38929，全部 root 账户\n- **工作目录**：`/root/autodl-tmp/importance_margin_vla_compress`\n- **Python**：conda base，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不用 venv\n- **HF cache**：`/root/autodl-tmp/.hf_cache`，离线模式 (`HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`)\n- **评测脚本**：`eval_pi05_pruning_libero.py`，参数 `--prune_mode {random|l2norm|attention} --keep_ratio {k} --suite libero_10 --n_episodes 50 --seed {s} --gpu 0`\n- **磁盘**：westd-27271/41074 充裕 (5.3T 可用)；cqa1-33015 `/autodl-pub` 90% 已用 ⚠️；westd-38929 根盘 29% 已用\n- **活跃进程 (registry RUNNING)**：\n  - `eval_pi05_attn_k095_long_seed46_strict_w38`：westd-38929:cuda:3, PID 457257\n  - `eval_pi05_random_k05_long_seed46_strict_w41`：westd-41074:cuda:2, PID 899098\n  - `eval_pi05_random_k095_long_seed46_strict_w41`：westd-41074:cuda:0, PID 898746\n  - `eval_pi05_l2norm_k095_long_seed46_strict_w27`：westd-27271:cuda:1, PID 616102\n- **活跃 Cron (reconcile)**：3 个 seed47 实验 on westd-38929 (pid 589824/589899/590036)\n- **产出脚本**：`artifacts/build_5seed_tables.py`——生成最终 5-seed 汇总表\n\n### 3. 📊 当前状态\n**刚做完**：s46 第五轮 seed 推进，17/18 已完成。7 条数据整合规则全部清理完毕。5-seed 汇总表已产出（仅 L2norm k=0.7 暂为 4-seed）。ROADMAP 已更新至最新状态。\n\n**Registry 概览**：945 个实验，DONE 838 (success 540, negative 104, failed 112, killed 82)，RUNNING 4，PREPARING 96，DEPLOYED 7。\n\n**RUNNING 实验**（registry truth source，4 个）：\n| exp_id | server:gpu | 用途 |\n|--------|-----------|------|\n| eval_pi05_attn_k095_long_seed46_strict_w38 | w38:cuda:3 | s46 Attn k=0.95（ROADMAP 已记录 75.2%，可能是重跑或 registry 未更新） |\n| eval_pi05_random_k05_long_seed46_strict_w41 | w41:cuda:2 | s46 Random k=0.5（ROADMAP 已记录 50.2%，同上） |\n| eval_pi05_random_k095_long_seed46_strict_w41 | w41:cuda:0 | s46 Random k=0.95（ROADMAP 已记录 60.8%，同上） |\n| eval_pi05_l2norm_k095_long_seed46_strict_w27 | w27:cuda:1 | s46 L2norm k=0.95（ROADMAP 已记录 87.2%，同上） |\n\n**⚠️ 注意**：ROADMAP 显示这些 s46 实验已有结果，但 registry 仍标 RUNNING。可能是 cron 尚未收割或 registry 未同步。**下一个\"你\"首要任务是 reconcile 这些状态不一致**——检查这些进程是否真的还在跑，还是已完成但状态卡住了。\n\n**另有 3 个 seed47 实验**通过 cron 监控 running on westd-38929（random k=0.85 / l2norm k=0.5 / attn k=0.5）。seed47 不在 5-seed 表范围内（s42-s46），可能是额外保险 seed。\n\n**等待中**：无活跃 Worker（count=0），无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **任何 RUNNING 实验 cron 回调到达** → spawn Worker 读 log 提取 SR → update_registry(conclusion, metrics) → 刷新 report.md → 若是 L2norm k=0.7 s46 则 5-seed 表从 4s 升 5s\n- **L2norm k=0.7 s46 完成** → 最后一格补齐 → 重跑 `build_5seed_tables.py` → 更新 ROADMAP 汇总表 → 向 Director 汇报\"5-seed 表 18/18 全闭合\"\n- **4 个 registry RUNNING 与 ROADMAP 矛盾** → 第一时间 SSH 检查进程存活状态 → 若已退出则手动收割 metrics 并 update_registry\n- **所有实验收割完毕** → 向 Director 汇报最终数据状态 + 提醒 Paper Agent 用 `build_5seed_tables.py` 更新 figures → May 29 提交\n- **seed47 实验完成** → 记录 metrics 但不纳入主表（主表固定 s42-s46），可作为 supplementary robustness\n\n### 5. 🎯 战略上下文\n**核心发现**：VLA vision token importance margin 呈 inverted-U 曲线。peak 在 k=0.9（L2norm 80.4% vs Random 33.6%，margin 46.9pp）。k=0.7 是 crossover point（L2norm ≈ Random ≈ 63-65%）。Attn 展现 cliff+plateau pattern（k≥0.9 高，k≤0.85 骤降至 ~50% 平台）。\n\n**决策链**：D276 narrative 定稿 → D288 OV Long curve 完成 → D291 inverted-U 6/6 闭合 → D301 error bar 标准定为 sample std (n-1)。\n\n**最易判断错的事**：\n1. ROADMAP 说 s46 某实验\"已完成\"但 registry 标 RUNNING——**以 registry 为准**，但要 SSH 确认进程真实状态，可能是 cron 延迟收割\n2. 数据整合有 7 条清洗规则（不同服务器/版本的结果选择），已全部固化在 ROADMAP。**不要用新跑出的值覆盖已选定的值**——除非 Director 明确要求\n3. cqa1-33015 磁盘 90% 已满，不要在上面启动新实验或下载模型\n4. 96 个 PREPARING 实验是历史遗留（早期规划但未执行），不需要逐个清理，只要不误触发即可\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

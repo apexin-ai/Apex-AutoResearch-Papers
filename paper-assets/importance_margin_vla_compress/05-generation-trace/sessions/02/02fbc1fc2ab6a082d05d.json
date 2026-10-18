@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "02fbc1fc2ab6a082d05d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest xvla l2norm k07 long and redeploy",
+  "task_key": "worker_ops_harvest_xvla_l2norm_k07_long_and_redeploy_20260523T075350",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest_xvla_l2norm_k07_long_and_redeploy_20260523T075350_result.json",
+    "occurrence": 1,
+    "bytes": 1752,
+    "sha256": "3c8cbeee21f977ac2a1ed87d7fc5bb2cc488058236ee9a1beb0cb662df5ad4bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查完成，汇报结果：\n\n---\n\n### 1. eval_xvla_l2norm_k07_long_seed42 — 已完成\n\n**Overall SR: 49.4%** (247/500), 95% CI: [45.0%, 53.8%]\n\n| Task | SR | Detail |\n|------|----|--------|\n| T0 | 12% | put both alphabet soup & tomato sauce in basket |\n| T1 | 4% | put cream cheese box & butter in basket |\n| T2 | 56% | turn on stove & put moka pot |\n| T3 | 98% | put black bowl in drawer & close |\n| T4 | 68% | put white mug on left, yellow mug on right |\n| T5 | 94% | pick up book & place in caddy |\n| T6 | 78% | put white mug on plate & chocolate pudding right |\n| T7 | 76% | put alphabet soup & cream cheese in basket |\n| T8 | 0% | put both moka pots on stove |\n| T9 | 8% | put yellow mug in microwave & close |\n\nRegistry 已更新（conclusion=success, metrics 已写入）。无 cron 需要删除。\n\n### 2. eval_xvla_l2norm_k05_long_seed42 — 仍在跑\n\n进程 459651 运行中（1h33m），当前 Task 9 ep 42/50，预计几分钟内完成。\n\n### 3. GPU 状态\n\n| GPU | 显存占用 | 状态 |\n|-----|----------|------|\n| 0 | 1 MiB / 97887 MiB | 空闲 |\n| 1 | 1 MiB / 97887 MiB | 空闲 |\n| 2 | 4830 MiB / 97887 MiB | k05 eval 占用 |\n| 3 | 1 MiB / 97887 MiB | 空闲 |\n\n### 4. 新实验部署 — 无法部署\n\n- **E3 cosine similarity**: 脚本 `analyze_token_cosine_similarity.py` 不存在\n- **E4 inference latency**: `measure_inference_latency.py` 存在但**只支持 SmolVLA**（SmartCompress M=32/M=64 vs baseline 128 tokens），不支持 X-VLA，且没有 `--models` 参数\n\n需要你决定：\n1. 是否在空闲 GPU 上跑 SmolVLA 版本的 E4 latency（需确认 SmolVLA checkpoints 在这台服务器上）\n2. 是否需要为 X-VLA 编写新的 E3/E4 脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

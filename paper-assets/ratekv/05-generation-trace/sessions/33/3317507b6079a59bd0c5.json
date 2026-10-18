@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3317507b6079a59bd0c5",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_11_1778898551.md",
+  "task_key": "loop_11_1778898551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778898551.md",
+    "occurrence": 1,
+    "bytes": 5218,
+    "sha256": "319bef983b812b73531c48727875572616fdd031cf46ae76c813624cffe1b5e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:52:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0, cuda:1**（westd-37397, 2× RTX PRO 6000 96GB）。即使 Director 指定白名单外 GPU 也必须 push back\n- 论文锁定值：Qwen concentration=0.61, t1/t5=0.57; Mistral concentration=0.22/0.24, t1/t5=0.18/0.41（hires）。改这些数字需要重新跑实验\n- W2/W9 PPL 评估**必须用 WikiText-2 test set**，不用 calibration data（之前踩过 baseline 偏低的坑）\n- hellaswag metric 统一 acc,none（≈0.59），不是 acc_norm（≈0.77）\n- Gemma-2 eval 必须 prepend BOS + overlapping sliding window，否则 PPL 爆炸（PPL=711 事故）\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本内 device 写 `cuda:0`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-37397**，工作目录 `/root/ratekv`\n- Python：`/root/miniconda3/bin/python`，环境激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`（AutoDL 根分区只有 30GB）\n- 已下载模型路径：Phi-3-medium `/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct`\n- Cron 活跃：phi3_medium_hires_profiling_v2（但 reconcile 报 \"Process gone, miss 2/5\"——大概率已完成，需确认转状态）\n- 活跃 Worker：0 个（全部已结束）\n- W&B 项目：需确认具体 project name（profiling 类实验通常不用 W&B）\n\n### 3. 📊 当前状态\n\n**刚完成的关键结果**：\n- **phi3_medium_hires_profiling_v2 (RUNNING→实际已完成)**：Phi-3-medium 14B 结果已在 registry metrics 里——**Flat**（concentration=0.1742, t1/t5 未记录但 note 说 \"far below 0.50\"）。这是第 7 个模型，仍然只有 Qwen 是 Spread。Cron 报进程已退出但未自动转状态，需要 spawn worker 确认 log 后手动转 DONE\n- **codellama_hires_profiling (DONE/success)**：CodeLlama-7B 是 **Spike**（concentration=0.7975, t1/t5=0.8131, MHA 1024 heads）。验证了 memory.md 的洞察：head 数量多的 MHA 也可能 Spike（L1H1 单头 delta=23.0 占绝对主导）\n- **llama_3seed_downstream_ci (DONE/success)**：3 seed 完全一致（单 profile → 确定性分配），avg_delta=-0.1pp，近中性，符合 Spike 预期\n- **qwen_compounding_sweep_v2 (DONE/success)**：Qwen compounding 用 bf16_2bitonly profile 完成，k8 PPL=10.05, k256=98.75, max ratio=10.07×\n- **mistral_compounding_sweep_v2 (DONE/success)**：Mistral flat compounding 完成，k8=7.06, k256=45.28\n\n**QUEUED (killed)**：codellama_7b, deepseekvl, falcon7b——之前排队等 GPU，后被 kill\n**PREPARING**：internlm2_7b_hires_profiling（InternLM2-7B, GQA 4:1, 256 heads——第二 Spread 候选首选）, phi3_medium_hires_profiling_check（可废弃）\n\n**等待中**：无活跃 Worker，无活跃 cron 回调（phi3 cron 已 escalate 但进程已退出）\n\n### 4. 📋 待办（条件触发式）\n\n- **立即**：phi3_medium_hires_profiling_v2 进程已退出且 metrics 已有 → spawn worker SSH 确认 log，update_registry 转 DONE(success, conclusion=negative for Spread search)，更新 report.md\n- **phi3 转 DONE 后** → 两块 GPU 空闲 → 按 D062 优先级推进：\n  1. cuda:0: InternLM2-7B hires profiling（PREPARING→提交审批→跑）——最后一个合理的第二 Spread 候选\n  2. cuda:1: Llama compounding sweep 或 Falcon-7B profiling（视 Director 优先级）\n- **InternLM2 结果出来** → concentration ≥0.50 AND t1/t5 ≤0.70 → 🎉 第二个 Spread，立即跑 constrained MCKP 验证 + 更新论文；否则 → N=1 Spread 成定局，向 Director 汇报需决策：是否接受单一正例 framing\n- **compounding curves 3 模型数据齐** → 生成 fig_compounding_curves，集成到论文 experiments.tex（Item 9）\n- **downstream CI 数据齐**（Qwen + Llama 3-seed 已完成）→ 集成到 Table 4（Item 10）\n\n### 5. 🎯 战略上下文\n\n**核心结论链**：\n- D062：Round 2 策略——全面 claim 降级 + Spread 模型搜索（N=1→N≥2）\n- 诊断规则 concentration ≥0.50 AND t1/t5 ≤0.70 目前 **7/7 正确**（1 Spread + 6 non-Spread）\n- 问题是 N=1 positive（只有 Qwen）。审稿人会攻击 \"you only showed it works on one model\"\n- Reframing 已完成（d96d7da），claim 强度已降级，但如果能找到第二个 Spread 会极大增强说服力\n\n**最容易判断错的事**：\n1. **不要以为 CodeLlama MHA(1024 heads) 可能是 Spread**——已验证是 Spike，head 多≠concentration 高\n2. **head 数量是 concentration 稀释因子**——寻找 Spread 必须找 少 KV heads + 高 GQA ratio 的架构。InternLM2 (256 heads, GQA 4:1) 是最后合理候选\n3. **phi3_medium_hires_profiling_v2 看起来 RUNNING 但实际已完成**——cron escalation 说进程已退出，registry 里 metrics 已填充，只是状态没转\n4. **ARR deadline 2026-05-25，距今 9 天**——时间非常紧，不能再开大规模新实验，focus 在收尾：(a) 最后一个 Spread 候选 InternLM2, (b) compounding 数据集成到论文, (c) downstream CI 集成到 Table 4\n5. **Gemma-2 Table 2 数字可能受 BOS bug 影响**——memory.md 有记录但尚未验证/重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

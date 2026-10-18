@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d13459d3ef151d8ed901",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu mistral hires bf16 retry",
+  "task_key": "worker_gpu_mistral_hires_bf16_retry_20260514T210618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_mistral_hires_bf16_retry_20260514T210618_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "384a877e0f8c695775c41da93ea0ebcfff2e792c438f9dc9145f618e5296b839"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载中，3 个分片并行下载（75-83%）。2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

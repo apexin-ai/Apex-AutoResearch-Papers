@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b93259fc6822e485dcd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag full status check",
+  "task_key": "worker_diag_full_status_check_20260518T172618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_full_status_check_20260518T172618_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "98791023a4f1b0d7ade73d6d20fceb636f38829dfa5cbb43982bced35dc27bbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总览\n\n### westd-27271 (Eval)\n\n| exp_id | GPU | status | result | \n|---|---|---|---|\n| eval_official_smolvla_prune_k09 | cuda:0 | **完成** | overall SR = **0.0%** (0/500) |\n| eval_official_smolvla_prune_k095 | cuda:1 | **完成** | overall SR = **0.0%** (0/500) |\n\n两个 eval 的 10 个 task SR 全部为 0.0%，所有 episode 均跑满 280 步超时。random prune k=0.9 和 k=0.95（移除 90%/95% token）对 pretrained SmolVLA 完全致命。\n\n### cqa1-33015 (Training)\n\n| exp_id | GPU | status | step/total | loss | speed | ETA |\n|---|---|---|---|---|---|---|\n| train_baseline_control_100k_v2 | cuda:0 | running | 67700/100000 | 0.056 | 3.9 sps | ~2.3h |\n| train_smart_compress_m64_seed43 | cuda:1 | running | 8700/100000 | 0.115 | 4.1 sps | ~6.2h |\n| train_smart_compress_m96_seed43 | cuda:2 | running | 68400/100000 | 0.051 | 4.0 sps | ~2.2h |\n| train_smart_compress_m32_seed43 | cuda:3 | running | 16000/100000 | 0.060 | 4.1 sps | ~5.7h |\n\nm96 和 baseline 进度接近（~68%），预计约 2h 完成。m32 约 16%，m64 约 8.7%，这两个还需 ~6h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

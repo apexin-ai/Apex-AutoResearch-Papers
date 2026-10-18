@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0d55d33a77d784964cdc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code deploy metrics fix start v7 2",
+  "task_key": "worker_code_deploy-metrics-fix-start-v7_2_20260515T191834",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_deploy-metrics-fix-start-v7_2_20260515T191834_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "dfb01e596589975cbfb017e515d6dac4a394638f0cc7b2dc315e189fea4baaf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**metrics.py 修复**: 已在 `compute_empirical_lipschitz()` 中添加 `was_training = acis_module.training` 保存状态，函数末尾 `if was_training: acis_module.train()` 恢复。语法验证通过。\n\n**v7.1**: 已终止（原 PID 53510）。\n\n**v7.2 启动成功**:\n- 主进程 PID: **54978**（cuda:0）\n- tmux session: `mvp_imm_anchor_v7_2`\n- 配置: `configs/imm_anchor_v7_1.yaml`（lambda=0.20, delta=0.30）\n- 训练已开始: `step=0/30000, loss=0.2770, margin_loss=0.2976, grad=1.60`\n- v7（cuda:1, PID 41303）不受影响，继续运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,3522 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7324f17f1ec31c8ebedd",
+  "rounds": [
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-15T20:07:19.688533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n321037       11:36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1258
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-15T20:07:27.546996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "5",
+              "fields": "['*']",
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-15T20:07:27.850226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1812}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 303
+          },
+          "id": "event-001803"
+        },
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-15T20:07:28.001440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-15T20:07:28.202692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-15T20:07:28.405602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 404
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-15T20:07:28.908385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 03:57:07,376 INFO Running batch count_6/low_bcs (6 types, BCS=0.8709) on 1000 samples\\\\n2026-05-16 03:57:27,229 INFO Running batch count_6/high_bcs (6 types, BCS=0.9447) on 1000 samples\\\\n2026-05-16 03:57:38,459 INFO Running batch count_6/random/0 (6 types, BCS=0.9021) on 1000 samples\\\\n2026-05-16 03:58:45,474 INFO Running batch count_6/random/1 (6 types, BCS=0.8868) on 1000 samples\\\\n2026-05-16 03:59:06,289 INFO Running batch count_6/random/2 (6 types, BCS=0.8684) on 1000 samples\\\\n2026-05-16 03:59:19,689 INFO Running batch count_6/random/3 (6 types, BCS=0.9163) on 1000 samples\\\\n2026-05-16 03:59:37,978 INFO Running batch count_6/random/4 (6 types, BCS=0.8878) on 1000 samples\\\\n2026-05-16 03:59:52,132 INFO Running batch count_6/random/5 (6 types, BCS=0.8673) on 1000 samples\\\\n2026-05-16 04:00:07,865 INFO Running batch count_6/random/6 (6 types, BCS=0.8690) on 1000 samples\\\\n2026-05-16 04:00:25,318 INFO Running batch count_6/random/7 (6 types, BCS=0.8919) on 1000 samples\\\\n2026-05-16 04:00:40,651 INFO Running batch count_6/random/8 (6 types, BCS=0.8849) on 1000 samples\\\\n2026-05-16 04:00:55,032 INFO Running batch count_6/random/9 (6 types, BCS=0.9327) on 1000 samples\\\\n2026-05-16 04:02:02,029 INFO Running batch count_6/random/10 (6 types, BCS=0.8909) on 1000 samples\\\\n2026-05-16 04:02:18,160 INFO Running batch count_6/random/11 (6 types, BCS=0.8787) on 1000 samples\\\\n2026-05-16 04:02:32,020 INFO Running batch count_6/random/12 (6 types, BCS=0.9195) on 1000 samples\\\\n2026-05-16 04:02:45,129 INFO Running batch count_6/random/13 (6 types, BCS=0.9135) on 1000 samples\\\\n2026-05-16 04:02:59,442 INFO Running batch count_6/random/14 (6 types, BCS=0.8887) on 1000 samples\\\\n2026-05-16 04:03:15,181 INFO Running batch count_6/random/15 (6 types, BCS=0.9163) on 1000 samples\\\\n2026-05-16 04:03:31,176 INFO Running batch count_6/random/16 (6 types, BCS=0.8868) on 1000 samples\\\\n2026-05-16 04:03:45,471 INFO Running b\n…[truncated 874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 705
+          },
+          "id": "event-001807"
+        },
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-15T20:07:34.167433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-15T20:07:34.218217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations---near halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat causes this schema-induced degradation? Prior work has proposed decomposition strategies that implicitly assume different answers. \\citet{uniner-2024} extract each type independently, assuming types can be treated as separable. \\citet{llm-pee-2025} partition large event schemas by type embedding similarity before extraction, assuming that semantic overlap between co-presented types drives errors. \\citet{parse-2025} rewrite and optimize schema definitions, assuming that description quality is the bottleneck. Each approach improves extraction under certain conditions, but none isolates \\emph{why} schemas degrade performance in the first place. The closest work, LLM-PEE \\cite{llm-pee-2025}, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor---or what combination---accounts for the observed gains. More broadly, all prior approaches conflate two dis\n…[truncated 6428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-15T20:07:40.425258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "10",
+              "fields": "['status', 'conclusion', 'notes', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-15T20:07:40.526296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp012_llama_8b_r2_exp2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T20:07:37.597Z\\\"}, \\\"exp012_llama_8b_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T20:00:50.716Z\\\", \\\"notes\\\": \\\"部分成功：exp1（count curve）完整完成，94000 entries，recall 0.68→0.27 复现 Channel 1。exact/relaxed F1 全 0（类型标签格式不匹配，text_match_F1 0.06-0.36）。exp2 在 count_12/random/0 的 998/1000 处 vLLM 推理卡死，需重跑。exp2 重跑见 exp012_llama_8b_r2_exp2。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"exp1_llama_recall_count1\\\": 0.702, \\\"exp1_llama_recall_count64\\\": 0.273, \\\"exp1_recall_decline_pp\\\": -42.9, \\\"exp1_per_batch_recall_corr_vs_qwen\\\": 0.7249, \\\"exp1_llama_text_match_f1_range\\\": \\\"0.06-0.36\\\", \\\"exp1_exact_f1\\\": 0, \\\"exp1_note\\\": \\\"exact/relaxed F1=0 due to missing char offsets, text_match is correct metric\\\"}}, \\\"exp006_interaction_2x2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T18:37:33.919Z\\\", \\\"metrics\\\": {\\\"cell_means_f1\\\": {\\\"low_count_low_bcs\\\": 0.324, \\\"low_count_high_bcs\\\": 0.313, \\\"high_count_low_bcs\\\": 0.325, \\\"high_count_high_bcs\\\": 0.277}, \\\"main_effects\\\": {\\\"count\\\": -0.018, \\\"bcs\\\": -0.029}, \\\"interaction\\\": {\\\"estimate\\\": -0.036, \\\"z\\\": -0.667, \\\"p\\\": 0.505, \\\"bcs_effect_at_low_count\\\": -0.011, \\\"bcs_effect_at_high_count\\\": -0.048}, \\\"verdict\\\": \\\"交互方向符合 multiplicative 假设但统计不显著 (p=0.505)，未检测到显著交互效应\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"2×2 交互效应方向符合 multiplicative 假设（高 count 时 BCS 对 F1 的负效应更大：-0.048 vs -0.011），但交互项不显著（z=-0.667, p=0.505）。主效应均为小幅负值（count: -0.018, BCS: -0.029）。40 batches × 1000 samples 的统计功效不足以检测到 ~0.036 量级的交互效应。高 count 组 F1 方差更小（std 0.059-0.070 vs 0.099-0.106），可能因为更多 type 带来的平均效应。\\\"}, \\\"exp012_llama_awq\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T17:32:27.026Z\\\", \\\"notes\\\": \\\"Abandoned: AWQ download failed due to disk space (2.6GB remaining, needed 9.2GB). Superseded by exp012_llama_fewnerd_r4 (8B BF16).\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp012_llama_8b_r3\\\": {\\\"status\\\": \n…[truncated 1767 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 101
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-15T20:07:47.003691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001812"
+        },
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-15T20:07:47.556377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-15T20:07:47.757686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"INFO Running batch count_12\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-15T20:07:48.159801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:07:29,397 INFO Running batch count_12/low_bcs (12 types, BCS=0.9148) on 1000 samples\\\\n2026-05-16 04:07:47,249 INFO Running batch count_12/high_bcs (12 types, BCS=0.9447) on 1000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-15T20:08:00.561136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001816"
+        },
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-15T20:08:00.863498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001817"
+        },
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-15T20:08:01.014761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-15T20:08:01.386728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-15T20:08:01.521369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 03:57:27,228 INFO   Batch count_6/low_bcs done: 19.6s total, 1000 outputs\\\\n2026-05-16 03:57:38,459 INFO   Batch count_6/high_bcs done: 11.1s total, 1000 outputs\\\\n2026-05-16 03:58:45,474 INFO   Batch count_6/random/0 done: 66.8s total, 1000 outputs\\\\n2026-05-16 03:59:06,289 INFO   Batch count_6/random/1 done: 20.6s total, 1000 outputs\\\\n2026-05-16 03:59:19,689 INFO   Batch count_6/random/2 done: 13.2s total, 1000 outputs\\\\n2026-05-16 03:59:37,977 INFO   Batch count_6/random/3 done: 18.1s total, 1000 outputs\\\\n2026-05-16 03:59:52,132 INFO   Batch count_6/random/4 done: 14.0s total, 1000 outputs\\\\n2026-05-16 04:00:07,864 INFO   Batch count_6/random/5 done: 15.6s total, 1000 outputs\\\\n2026-05-16 04:00:25,318 INFO   Batch count_6/random/6 done: 17.3s total, 1000 outputs\\\\n2026-05-16 04:00:40,650 INFO   Batch count_6/random/7 done: 15.2s total, 1000 outputs\\\\n2026-05-16 04:00:55,032 INFO   Batch count_6/random/8 done: 14.2s total, 1000 outputs\\\\n2026-05-16 04:02:02,029 INFO   Batch count_6/random/9 done: 66.8s total, 1000 outputs\\\\n2026-05-16 04:02:18,159 INFO   Batch count_6/random/10 done: 16.0s total, 1000 outputs\\\\n2026-05-16 04:02:32,019 INFO   Batch count_6/random/11 done: 13.7s total, 1000 outputs\\\\n2026-05-16 04:02:45,128 INFO   Batch count_6/random/12 done: 12.9s total, 1000 outputs\\\\n2026-05-16 04:02:59,441 INFO   Batch count_6/random/13 done: 14.1s total, 1000 outputs\\\\n2026-05-16 04:03:15,181 INFO   Batch count_6/random/14 done: 15.6s total, 1000 outputs\\\\n2026-05-16 04:03:31,175 INFO   Batch count_6/random/15 done: 15.8s total, 1000 outputs\\\\n2026-05-16 04:03:45,471 INFO   Batch count_6/random/16 done: 14.1s total, 1000 outputs\\\\n2026-05-16 04:04:02,149 INFO   Batch count_6/random/17 done: 16.5s total, 1000 outputs\\\\n2026-05-16 04:05:08,267 INFO   Batch count_6/random/18 done: 65.9s total, 1000 outputs\\\\n2026-05-16 04:05:22,108 INFO   Batch count_6/random/19 done: 13.7s total, 1000 outputs\\\\\n…[truncated 638 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 657
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-15T20:08:01.990087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 603
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-15T20:08:02.141051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-15T20:08:02.543642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:07:47,249 INFO Running batch count_12/high_bcs (12 types, BCS=0.9447) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 134.33it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 134.40it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 134.60it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 134.45it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 134.12it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 135.03it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 134.91it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 135.50it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 133.79it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 134.22it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 134.97it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 135.30it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 134.30it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:05, 135.11it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:05, 135.14it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:05, 135.04it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 135.81it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 136.47it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:01<00:05, 136.66it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 136.28it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 136.32it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 136.12it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:04, 136.49it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:04, 136.06it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 4765 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-15T20:08:11.560942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-15T20:08:11.623102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experimental_setup}\n3\t\n4\tWe evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED).\n5\t\n6\t\\subsection{Tasks and Datasets}\n7\t\\label{sec:datasets}\n8\t\n9\t\\paragraph{Few-NERD (NER).}\n10\tFew-NERD \\cite{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains, making it suitable for cross-domain evaluation. We sample 1{,}000 test instances and evaluate with token-level text matching.\n11\t\n12\t\\paragraph{FewRel (RE).}\n13\tFewRel \\cite{fewrel-2018} contains 80 relation types sourced from Wikidata. Since the validation split covers only 16 relations, we combine the training and validation splits to obtain the full 80-relation pool required for schema-scale experiments, and sample 1{,}000 balanced instances. Each instance provides a sentence with marked head and tail entities; the task is to classify the relation.\n14\t\n15\t\\paragraph{MAVEN (ED).}\n16\tMAVEN \\cite{maven-2020} defines 168 event types derived from the FrameNet ontology, making it a same-domain schema. We use the validation set (8{,}042 sentences containing 18{,}904 event mentions) for evaluation, as test set labels are not publicly available. The task requires both trigger identification and event type classification.\n17\t\n18\tTable~\\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \\S\\ref{sec:scs}.\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\small\n23\t\\resizebox{\\columnwidth}{!}{%\n24\t\\begin{tabular}{llrrlll}\n25\t\\toprule\n26\t\\textbf{Dataset} & \\textbf{Task} & \\textbf{\\# Types} & \\textbf{\\# Eval Units} & \\textbf{Domain} & \\textbf{BCS Range} & \\textbf{Embedding} \\\\\n27\t\\midrule\n28\tFew-NERD & NER & 66 & 1{,}000 & Cross & 0.77-\n…[truncated 6368 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 62
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-15T20:08:12.618295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001826"
+        },
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-15T20:08:13.070318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001827"
+        },
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-15T20:08:16.438918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001828"
+        },
+        {
+          "source_line": 1829,
+          "timestamp": "2026-05-15T20:08:16.841279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001829"
+        },
+        {
+          "source_line": 1830,
+          "timestamp": "2026-05-15T20:08:21.414591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001830"
+        },
+        {
+          "source_line": 1831,
+          "timestamp": "2026-05-15T20:08:21.827639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:08:06,015 INFO Running batch count_12/random/0 (12 types, BCS=0.9122) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 133.34it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.71it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 133.90it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 133.87it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 134.29it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 134.48it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 134.17it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 134.86it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 133.68it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 133.79it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 134.19it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 134.43it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 134.30it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:05, 134.43it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:05, 134.46it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:05, 134.15it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 134.49it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 134.89it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:01<00:05, 134.84it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 134.22it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 133.88it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 133.87it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 131.04it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 132.28it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 4767 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 413
+          },
+          "id": "event-001831"
+        },
+        {
+          "source_line": 1832,
+          "timestamp": "2026-05-15T20:08:24.792218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001832"
+        },
+        {
+          "source_line": 1833,
+          "timestamp": "2026-05-15T20:08:25.294281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001833"
+        },
+        {
+          "source_line": 1834,
+          "timestamp": "2026-05-15T20:08:25.646086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"INFO Running batch count_12\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001834"
+        },
+        {
+          "source_line": 1835,
+          "timestamp": "2026-05-15T20:08:26.048127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:07:29,397 INFO Running batch count_12/low_bcs (12 types, BCS=0.9148) on 1000 samples\\\\n2026-05-16 04:07:47,249 INFO Running batch count_12/high_bcs (12 types, BCS=0.9447) on 1000 samples\\\\n2026-05-16 04:08:06,015 INFO Running batch count_12/random/0 (12 types, BCS=0.9122) on 1000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001835"
+        },
+        {
+          "source_line": 1836,
+          "timestamp": "2026-05-15T20:08:33.849153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001836"
+        },
+        {
+          "source_line": 1837,
+          "timestamp": "2026-05-15T20:08:34.251216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001837"
+        },
+        {
+          "source_line": 1838,
+          "timestamp": "2026-05-15T20:08:34.994006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"INFO Running batch count_12\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001838"
+        },
+        {
+          "source_line": 1839,
+          "timestamp": "2026-05-15T20:08:35.345977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:07:29,397 INFO Running batch count_12/low_bcs (12 types, BCS=0.9148) on 1000 samples\\\\n2026-05-16 04:07:47,249 INFO Running batch count_12/high_bcs (12 types, BCS=0.9447) on 1000 samples\\\\n2026-05-16 04:08:06,015 INFO Running batch count_12/random/0 (12 types, BCS=0.9122) on 1000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-001839"
+        },
+        {
+          "source_line": 1840,
+          "timestamp": "2026-05-15T20:08:40.027196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001840"
+        },
+        {
+          "source_line": 1841,
+          "timestamp": "2026-05-15T20:08:40.428966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001841"
+        },
+        {
+          "source_line": 1842,
+          "timestamp": "2026-05-15T20:08:45.047918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001842"
+        },
+        {
+          "source_line": 1843,
+          "timestamp": "2026-05-15T20:08:45.449939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rProcessed prompts:   0%|          | 0/1000 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts:  10%|█         | 104/1000 [00:00<00:00, 992.36it/s, est. speed input: 424167.34 toks/s, output: 1985.00 toks/s]\\\\rProcessed prompts:  21%|██▏       | 214/1000 [00:00<00:00, 1040.29it/s, est. speed input: 442580.44 toks/s, output: 2066.19 toks/s]\\\\rProcessed prompts:  34%|███▎      | 336/1000 [00:00<00:00, 1076.15it/s, est. speed input: 455060.72 toks/s, output: 2123.79 toks/s]\\\\rProcessed prompts:  44%|████▍     | 445/1000 [00:00<00:00, 1076.73it/s, est. speed input: 457018.67 toks/s, output: 2131.41 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 558/1000 [00:00<00:00, 1075.78it/s, est. speed input: 458532.00 toks/s, output: 2280.17 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 680/1000 [00:00<00:00, 1095.65it/s, est. speed input: 463164.16 toks/s, output: 2514.11 toks/s]\\\\rProcessed prompts:  80%|██████��█  | 800/1000 [00:00<00:00, 1098.55it/s, est. speed input: 464890.29 toks/s, output: 2774.97 toks/s]\\\\rProcessed prompts:  92%|█████████▏| 915/1000 [00:00<00:00, 1114.20it/s, est. speed input: 468889.65 toks/s, output: 3065.11 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:11<00:00, 1114.20it/s, est. speed input: 38462.58 toks/s, output: 799.99 toks/s] \\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:11<00:00, 89.24it/s, est. speed input: 38462.58 toks/s, output: 799.99 toks/s]  \\\\n2026-05-16 04:08:06,014 INFO   Batch count_12/high_bcs done: 18.6s total, 1000 outputs\\\\n2026-05-16 04:08:06,015 INFO Running batch count_12/random/0 (12 types, BCS=0.9122) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 133.34it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.71it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 133.90it/s]\\\\rRendering prompt\n…[truncated 6390 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001843"
+        },
+        {
+          "source_line": 1844,
+          "timestamp": "2026-05-15T20:08:48.198945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001844"
+        },
+        {
+          "source_line": 1845,
+          "timestamp": "2026-05-15T20:08:48.602006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001845"
+        },
+        {
+          "source_line": 1846,
+          "timestamp": "2026-05-15T20:08:52.068367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001846"
+        },
+        {
+          "source_line": 1847,
+          "timestamp": "2026-05-15T20:08:52.470243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001847"
+        },
+        {
+          "source_line": 1848,
+          "timestamp": "2026-05-15T20:08:56.016176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001848"
+        },
+        {
+          "source_line": 1849,
+          "timestamp": "2026-05-15T20:08:56.418183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001849"
+        },
+        {
+          "source_line": 1850,
+          "timestamp": "2026-05-15T20:08:58.764678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001850"
+        },
+        {
+          "source_line": 1851,
+          "timestamp": "2026-05-15T20:08:59.171956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 407
+          },
+          "id": "event-001851"
+        },
+        {
+          "source_line": 1852,
+          "timestamp": "2026-05-15T20:08:59.495023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001852"
+        },
+        {
+          "source_line": 1853,
+          "timestamp": "2026-05-15T20:08:59.897400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001853"
+        },
+        {
+          "source_line": 1854,
+          "timestamp": "2026-05-15T20:09:03.896147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 321037 -o pid,etime"
+            }
+          },
+          "id": "event-001854"
+        },
+        {
+          "source_line": 1855,
+          "timestamp": "2026-05-15T20:09:04.298076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n321037       13:20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001855"
+        },
+        {
+          "source_line": 1856,
+          "timestamp": "2026-05-15T20:09:04.298417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -5 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001856"
+        },
+        {
+          "source_line": 1857,
+          "timestamp": "2026-05-15T20:09:04.469301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 321037 -o pid,etime"
+            }
+          },
+          "id": "event-001857"
+        },
+        {
+          "source_line": 1858,
+          "timestamp": "2026-05-15T20:09:04.751432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rProcessed prompts:   0%|          | 0/1000 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts:  10%|█         | 104/1000 [00:00<00:00, 992.36it/s, est. speed input: 424167.34 toks/s, output: 1985.00 toks/s]\\\\rProcessed prompts:  21%|██▏       | 214/1000 [00:00<00:00, 1040.29it/s, est. speed input: 442580.44 toks/s, output: 2066.19 toks/s]\\\\rProcessed prompts:  34%|███▎      | 336/1000 [00:00<00:00, 1076.15it/s, est. speed input: 455060.72 toks/s, output: 2123.79 toks/s]\\\\rProcessed prompts:  44%|████▍     | 445/1000 [00:00<00:00, 1076.73it/s, est. speed input: 457018.67 toks/s, output: 2131.41 toks/s]\\\\rProcessed prompts:  56%|█████▌    | 558/1000 [00:00<00:00, 1075.78it/s, est. speed input: 458532.00 toks/s, output: 2280.17 toks/s]\\\\rProcessed prompts:  68%|██████▊   | 680/1000 [00:00<00:00, 1095.65it/s, est. speed input: 463164.16 toks/s, output: 2514.11 toks/s]\\\\rProcessed prompts:  80%|██████��█  | 800/1000 [00:00<00:00, 1098.55it/s, est. speed input: 464890.29 toks/s, output: 2774.97 toks/s]\\\\rProcessed prompts:  92%|█████████▏| 915/1000 [00:00<00:00, 1114.20it/s, est. speed input: 468889.65 toks/s, output: 3065.11 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:11<00:00, 1114.20it/s, est. speed input: 38462.58 toks/s, output: 799.99 toks/s] \\\\rProcessed prompts: 100%|██████████| 1000/1000 [00:11<00:00, 89.24it/s, est. speed input: 38462.58 toks/s, output: 799.99 toks/s]  \\\\n2026-05-16 04:08:06,014 INFO   Batch count_12/high_bcs done: 18.6s total, 1000 outputs\\\\n2026-05-16 04:08:06,015 INFO Running batch count_12/random/0 (12 types, BCS=0.9122) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 133.34it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.71it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 133.90it/s]\\\\rRendering prompt\n…[truncated 6392 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001858"
+        },
+        {
+          "source_line": 1859,
+          "timestamp": "2026-05-15T20:09:04.931878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n321037       13:21\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 462
+          },
+          "id": "event-001859"
+        },
+        {
+          "source_line": 1860,
+          "timestamp": "2026-05-15T20:09:05.049988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001860"
+        },
+        {
+          "source_line": 1861,
+          "timestamp": "2026-05-15T20:09:05.503711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:08:06,015 INFO Running batch count_12/random/0 (12 types, BCS=0.9122) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 133.34it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.71it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 133.90it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 133.87it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 134.29it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 134.48it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 134.17it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 134.86it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 133.68it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 133.79it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 134.19it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 134.43it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 134.30it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:05, 134.43it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:05, 134.46it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:05, 134.15it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 134.49it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 134.89it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:01<00:05, 134.84it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 134.22it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 133.88it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 133.87it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 131.04it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 132.28it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 5031 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001861"
+        },
+        {
+          "source_line": 1862,
+          "timestamp": "2026-05-15T20:09:19.024435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 321037 -o pid,etime"
+            }
+          },
+          "id": "event-001862"
+        },
+        {
+          "source_line": 1863,
+          "timestamp": "2026-05-15T20:09:20.130152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n321037       13:35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1105
+          },
+          "id": "event-001863"
+        },
+        {
+          "source_line": 1864,
+          "timestamp": "2026-05-15T20:09:20.180926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001864"
+        },
+        {
+          "source_line": 1865,
+          "timestamp": "2026-05-15T20:09:20.584433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:09:14,702 INFO Running batch count_12/random/1 (12 types, BCS=0.9184) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 130.87it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 131.80it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 131.78it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 131.58it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:07, 131.91it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 132.09it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 131.89it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 132.05it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 131.64it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 131.82it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 132.02it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:06, 130.31it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:06, 130.61it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:06, 129.07it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 130.09it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 130.89it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:02<00:05, 130.78it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 131.00it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 130.79it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 130.87it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 130.53it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 130.38it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 2186 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001865"
+        },
+        {
+          "source_line": 1866,
+          "timestamp": "2026-05-15T20:09:20.737875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001866"
+        },
+        {
+          "source_line": 1867,
+          "timestamp": "2026-05-15T20:09:21.190761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:09:14,702 INFO Running batch count_12/random/1 (12 types, BCS=0.9184) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 130.87it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 131.80it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 131.78it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 131.58it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:07, 131.91it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 132.09it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 131.89it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 132.05it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 131.64it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 131.82it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 132.02it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:06, 130.31it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:06, 130.61it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:06, 129.07it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 130.09it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 130.89it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:02<00:05, 130.78it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 131.00it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 130.79it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 130.87it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 130.53it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 130.38it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 2550 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001867"
+        },
+        {
+          "source_line": 1868,
+          "timestamp": "2026-05-15T20:09:30.983719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001868"
+        },
+        {
+          "source_line": 1869,
+          "timestamp": "2026-05-15T20:09:31.385608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001869"
+        },
+        {
+          "source_line": 1870,
+          "timestamp": "2026-05-15T20:09:31.787425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001870"
+        },
+        {
+          "source_line": 1871,
+          "timestamp": "2026-05-15T20:09:32.189798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001871"
+        },
+        {
+          "source_line": 1872,
+          "timestamp": "2026-05-15T20:09:34.602723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001872"
+        },
+        {
+          "source_line": 1873,
+          "timestamp": "2026-05-15T20:09:35.004394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001873"
+        },
+        {
+          "source_line": 1874,
+          "timestamp": "2026-05-15T20:09:35.405828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001874"
+        },
+        {
+          "source_line": 1875,
+          "timestamp": "2026-05-15T20:09:35.807712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001875"
+        },
+        {
+          "source_line": 1876,
+          "timestamp": "2026-05-15T20:09:39.423583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001876"
+        },
+        {
+          "source_line": 1877,
+          "timestamp": "2026-05-15T20:09:39.574927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001877"
+        },
+        {
+          "source_line": 1878,
+          "timestamp": "2026-05-15T20:09:39.825509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001878"
+        },
+        {
+          "source_line": 1879,
+          "timestamp": "2026-05-15T20:09:39.976573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001879"
+        },
+        {
+          "source_line": 1880,
+          "timestamp": "2026-05-15T20:09:43.998414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001880"
+        },
+        {
+          "source_line": 1881,
+          "timestamp": "2026-05-15T20:09:44.097479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001881"
+        },
+        {
+          "source_line": 1882,
+          "timestamp": "2026-05-15T20:09:44.401133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001882"
+        },
+        {
+          "source_line": 1883,
+          "timestamp": "2026-05-15T20:09:44.499660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:09:14,702 INFO Running batch count_12/random/1 (12 types, BCS=0.9184) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 130.87it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 131.80it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 131.78it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 131.58it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:07, 131.91it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 132.09it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 131.89it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 132.05it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 131.64it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 131.82it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 132.02it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:06, 130.31it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:06, 130.61it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:06, 129.07it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 130.09it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 130.89it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:02<00:05, 130.78it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 131.00it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 130.79it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 130.87it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 130.53it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 130.38it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 5286 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001883"
+        },
+        {
+          "source_line": 1884,
+          "timestamp": "2026-05-15T20:09:49.874934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001884"
+        },
+        {
+          "source_line": 1885,
+          "timestamp": "2026-05-15T20:09:50.277411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001885"
+        },
+        {
+          "source_line": 1886,
+          "timestamp": "2026-05-15T20:09:53.563901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001886"
+        },
+        {
+          "source_line": 1887,
+          "timestamp": "2026-05-15T20:09:53.968248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:09:14,702 INFO Running batch count_12/random/1 (12 types, BCS=0.9184) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 130.87it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 131.80it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 131.78it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 131.58it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:07, 131.91it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 132.09it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 131.89it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 132.05it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 131.64it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 131.82it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 132.02it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 131.81it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:06, 130.31it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:06, 130.61it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:06, 129.07it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 130.09it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 130.89it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:02<00:05, 130.78it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 131.00it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 130.79it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 130.87it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 130.53it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 130.38it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 5287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 404
+          },
+          "id": "event-001887"
+        },
+        {
+          "source_line": 1888,
+          "timestamp": "2026-05-15T20:09:56.018686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001888"
+        },
+        {
+          "source_line": 1889,
+          "timestamp": "2026-05-15T20:09:56.472180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001889"
+        },
+        {
+          "source_line": 1890,
+          "timestamp": "2026-05-15T20:10:01.939065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001890"
+        },
+        {
+          "source_line": 1891,
+          "timestamp": "2026-05-15T20:10:02.391255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001891"
+        },
+        {
+          "source_line": 1892,
+          "timestamp": "2026-05-15T20:10:04.357339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001892"
+        },
+        {
+          "source_line": 1893,
+          "timestamp": "2026-05-15T20:10:04.760266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001893"
+        },
+        {
+          "source_line": 1894,
+          "timestamp": "2026-05-15T20:10:06.673960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001894"
+        },
+        {
+          "source_line": 1895,
+          "timestamp": "2026-05-15T20:10:07.076257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001895"
+        },
+        {
+          "source_line": 1896,
+          "timestamp": "2026-05-15T20:10:10.008465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001896"
+        },
+        {
+          "source_line": 1897,
+          "timestamp": "2026-05-15T20:10:10.462218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001897"
+        },
+        {
+          "source_line": 1898,
+          "timestamp": "2026-05-15T20:10:11.416667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001898"
+        },
+        {
+          "source_line": 1899,
+          "timestamp": "2026-05-15T20:10:11.819377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001899"
+        },
+        {
+          "source_line": 1900,
+          "timestamp": "2026-05-15T20:10:14.384727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001900"
+        },
+        {
+          "source_line": 1901,
+          "timestamp": "2026-05-15T20:10:14.786676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001901"
+        },
+        {
+          "source_line": 1902,
+          "timestamp": "2026-05-15T20:10:17.903539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001902"
+        },
+        {
+          "source_line": 1903,
+          "timestamp": "2026-05-15T20:10:18.358956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:10:16,954 INFO Running batch count_12/random/3 (12 types, BCS=0.9100) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 135.34it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.41it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 133.04it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 134.57it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 135.48it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 135.46it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 135.33it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 136.22it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 135.80it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 136.31it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 135.53it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 455
+          },
+          "id": "event-001903"
+        },
+        {
+          "source_line": 1904,
+          "timestamp": "2026-05-15T20:10:19.566007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001904"
+        },
+        {
+          "source_line": 1905,
+          "timestamp": "2026-05-15T20:10:19.968272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001905"
+        },
+        {
+          "source_line": 1906,
+          "timestamp": "2026-05-15T20:10:22.782473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001906"
+        },
+        {
+          "source_line": 1907,
+          "timestamp": "2026-05-15T20:10:23.234410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001907"
+        },
+        {
+          "source_line": 1908,
+          "timestamp": "2026-05-15T20:10:25.995612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001908"
+        },
+        {
+          "source_line": 1909,
+          "timestamp": "2026-05-15T20:10:26.398122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001909"
+        },
+        {
+          "source_line": 1910,
+          "timestamp": "2026-05-15T20:10:29.963408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -3 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001910"
+        },
+        {
+          "source_line": 1911,
+          "timestamp": "2026-05-15T20:10:30.365938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:10:16,954 INFO Running batch count_12/random/3 (12 types, BCS=0.9100) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 135.34it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.41it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 133.04it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 134.57it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 135.48it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 135.46it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 135.33it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 136.22it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 135.80it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 136.31it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 135.53it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 133.29it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 134.66it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:05, 135.67it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:05, 135.06it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:05, 135.69it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 136.62it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 137.48it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:01<00:05, 137.28it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 137.00it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 137.11it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 137.00it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 134.12it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:05, 132.37it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 4758 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001911"
+        },
+        {
+          "source_line": 1912,
+          "timestamp": "2026-05-15T20:10:32.827771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001912"
+        },
+        {
+          "source_line": 1913,
+          "timestamp": "2026-05-15T20:10:33.279645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001913"
+        },
+        {
+          "source_line": 1914,
+          "timestamp": "2026-05-15T20:10:36.345630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001914"
+        },
+        {
+          "source_line": 1915,
+          "timestamp": "2026-05-15T20:10:36.697832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-001915"
+        },
+        {
+          "source_line": 1916,
+          "timestamp": "2026-05-15T20:10:37.351755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001916"
+        },
+        {
+          "source_line": 1917,
+          "timestamp": "2026-05-15T20:10:37.753715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001917"
+        },
+        {
+          "source_line": 1918,
+          "timestamp": "2026-05-15T20:10:40.014802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001918"
+        },
+        {
+          "source_line": 1919,
+          "timestamp": "2026-05-15T20:10:40.366550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-001919"
+        },
+        {
+          "source_line": 1920,
+          "timestamp": "2026-05-15T20:10:41.221243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001920"
+        },
+        {
+          "source_line": 1921,
+          "timestamp": "2026-05-15T20:10:41.623131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001921"
+        },
+        {
+          "source_line": 1922,
+          "timestamp": "2026-05-15T20:10:43.029358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001922"
+        },
+        {
+          "source_line": 1923,
+          "timestamp": "2026-05-15T20:10:43.433883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 404
+          },
+          "id": "event-001923"
+        },
+        {
+          "source_line": 1924,
+          "timestamp": "2026-05-15T20:10:44.636393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001924"
+        },
+        {
+          "source_line": 1925,
+          "timestamp": "2026-05-15T20:10:45.092699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-001925"
+        },
+        {
+          "source_line": 1926,
+          "timestamp": "2026-05-15T20:10:47.707453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001926"
+        },
+        {
+          "source_line": 1927,
+          "timestamp": "2026-05-15T20:10:48.110544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001927"
+        },
+        {
+          "source_line": 1928,
+          "timestamp": "2026-05-15T20:10:48.310664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001928"
+        },
+        {
+          "source_line": 1929,
+          "timestamp": "2026-05-15T20:10:48.713410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 134.50it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 135.38it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 132.71it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 133.55it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 134.41it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 135.18it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 135.10it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 134.20it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 133.88it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 134.72it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 135.10it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 128.81it/s]\\\\rRendering prompts:  18%|█▊        | 181/1000 [00:01<00:06, 128.43it/s]\\\\rRendering prompts:  20%|█▉        | 195/1000 [00:01<00:06, 130.43it/s]\\\\rRendering prompts:  21%|██        | 209/1000 [00:01<00:06, 130.59it/s]\\\\rRendering prompts:  22%|██▏       | 223/1000 [00:01<00:05, 131.44it/s]\\\\rRendering prompts:  24%|██▎       | 237/1000 [00:01<00:05, 132.69it/s]\\\\rRendering prompts:  25%|██▌       | 251/1000 [00:01<00:05, 134.21it/s]\\\\rRendering prompts:  26%|██▋       | 265/1000 [00:01<00:05, 133.58it/s]\\\\rRendering prompts:  28%|██▊       | 279/1000 [00:02<00:05, 134.11it/s]\\\\rRendering prompts:  29%|██▉       | 293/1000 [00:02<00:05, 134.59it/s]\\\\rRendering prompts:  31%|███       | 307/1000 [00:02<00:05, 134.89it/s]\\\\rRendering prompts:  32%|███▏      | 321/1000 [00:02<00:05, 134.15it/s]\\\\rRendering prompts:  34%|███▎      | 335/1000 [00:02<00:04, 135.00it/s]\\\\rRendering prompts:  35%|███▍      | 349/1000 [00:02<00:04, 135.27it/s]\\\\rRendering prompts:  36%|███▋      | 363/1000 [00:02<00:04, 13\n…[truncated 4658 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001929"
+        },
+        {
+          "source_line": 1930,
+          "timestamp": "2026-05-15T20:10:52.441798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001930"
+        },
+        {
+          "source_line": 1931,
+          "timestamp": "2026-05-15T20:10:52.843691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:10:48,875 INFO Running batch count_12/random/5 (12 types, BCS=0.9115) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 137.41it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 137.62it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 130.17it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 131.35it/s]\\\\rRendering prompts:   7%|▋         | 71/1000 [00:00<00:06, 134.60it/s]\\\\rRendering prompts:   8%|▊         | 85/1000 [00:00<00:06, 135.68it/s]\\\\rRendering prompts:  10%|▉         | 99/1000 [00:00<00:06, 136.97it/s]\\\\rRendering prompts:  11%|█▏        | 114/1000 [00:00<00:06, 138.19it/s]\\\\rRendering prompts:  13%|█▎        | 128/1000 [00:00<00:06, 137.87it/s]\\\\rRendering prompts:  14%|█▍        | 142/1000 [00:01<00:06, 138.23it/s]\\\\rRendering prompts:  16%|█▌        | 156/1000 [00:01<00:06, 133.77it/s]\\\\rRendering prompts:  17%|█▋        | 170/1000 [00:01<00:06, 133.98it/s]\\\\rRendering prompts:  18%|█▊        | 184/1000 [00:01<00:06, 135.29it/s]\\\\rRendering prompts:  20%|█▉        | 198/1000 [00:01<00:05, 136.22it/s]\\\\rRendering prompts:  21%|██        | 212/1000 [00:01<00:05, 133.80it/s]\\\\rRendering prompts:  23%|██▎       | 226/1000 [00:01<00:05, 135.10it/s]\\\\rRendering prompts:  24%|██▍       | 240/1000 [00:01<00:05, 136.48it/s]\\\\rRendering prompts:  25%|██▌       | 254/1000 [00:01<00:05, 137.10it/s]\\\\rRendering prompts:  27%|██▋       | 268/1000 [00:01<00:05, 137.44it/s]\\\\rRendering prompts:  28%|██▊       | 282/1000 [00:02<00:05, 137.96it/s]\\\\rRendering prompts:  30%|██▉       | 296/1000 [00:02<00:05, 137.73it/s]\\\\rRendering prompts:  31%|███       | 310/1000 [00:02<00:04, 138.13it/s]\\\\rRendering prompts:  32%|███▏      | 324/1000 [00:02<00:04, 138.41it/s]\\\\rRendering prompts:  34%|███▍      | 338/1000 [00:02<00:04, 138.30it/s]\\\\rRendering prompts:  35%|███▌    \n…[truncated 945 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001931"
+        },
+        {
+          "source_line": 1932,
+          "timestamp": "2026-05-15T20:10:58.222753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001932"
+        },
+        {
+          "source_line": 1933,
+          "timestamp": "2026-05-15T20:10:58.625339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001933"
+        },
+        {
+          "source_line": 1934,
+          "timestamp": "2026-05-15T20:11:01.742199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001934"
+        },
+        {
+          "source_line": 1935,
+          "timestamp": "2026-05-15T20:11:02.145098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001935"
+        },
+        {
+          "source_line": 1936,
+          "timestamp": "2026-05-15T20:11:05.208979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001936"
+        },
+        {
+          "source_line": 1937,
+          "timestamp": "2026-05-15T20:11:05.610733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001937"
+        },
+        {
+          "source_line": 1938,
+          "timestamp": "2026-05-15T20:11:07.567794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001938"
+        },
+        {
+          "source_line": 1939,
+          "timestamp": "2026-05-15T20:11:07.970014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001939"
+        },
+        {
+          "source_line": 1940,
+          "timestamp": "2026-05-15T20:11:08.773624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001940"
+        },
+        {
+          "source_line": 1941,
+          "timestamp": "2026-05-15T20:11:09.227432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001941"
+        },
+        {
+          "source_line": 1942,
+          "timestamp": "2026-05-15T20:11:11.237983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001942"
+        },
+        {
+          "source_line": 1943,
+          "timestamp": "2026-05-15T20:11:11.690087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001943"
+        },
+        {
+          "source_line": 1944,
+          "timestamp": "2026-05-15T20:11:14.257951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001944"
+        },
+        {
+          "source_line": 1945,
+          "timestamp": "2026-05-15T20:11:14.661040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001945"
+        },
+        {
+          "source_line": 1946,
+          "timestamp": "2026-05-15T20:11:14.661787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001946"
+        },
+        {
+          "source_line": 1947,
+          "timestamp": "2026-05-15T20:11:15.013728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-001947"
+        },
+        {
+          "source_line": 1948,
+          "timestamp": "2026-05-15T20:11:17.976528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001948"
+        },
+        {
+          "source_line": 1949,
+          "timestamp": "2026-05-15T20:11:18.076671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001949"
+        },
+        {
+          "source_line": 1950,
+          "timestamp": "2026-05-15T20:11:18.378593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001950"
+        },
+        {
+          "source_line": 1951,
+          "timestamp": "2026-05-15T20:11:18.478967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001951"
+        },
+        {
+          "source_line": 1952,
+          "timestamp": "2026-05-15T20:11:21.195468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001952"
+        },
+        {
+          "source_line": 1953,
+          "timestamp": "2026-05-15T20:11:21.597355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001953"
+        },
+        {
+          "source_line": 1954,
+          "timestamp": "2026-05-15T20:11:24.610970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001954"
+        },
+        {
+          "source_line": 1955,
+          "timestamp": "2026-05-15T20:11:24.661106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001955"
+        },
+        {
+          "source_line": 1956,
+          "timestamp": "2026-05-15T20:11:25.013180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 131.69it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 132.13it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 131.71it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 131.76it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:07, 132.38it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 132.93it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:07, 128.58it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 130.11it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 130.67it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 131.08it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 131.76it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 132.41it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 132.59it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:06, 133.06it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:05, 133.35it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:05, 132.95it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 133.42it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 133.86it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:02<00:05, 133.45it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 133.70it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 133.36it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 133.29it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 133.52it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:04, 133.29it/s]\\\\rRendering prompts:  35%|███▌      | 350/1000 [00:02<00:04, 133.86it/s]\\\\rRendering prompts:  36%|███▋      | 364/1000 [00:02<00:04, 13\n…[truncated 4791 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001956"
+        },
+        {
+          "source_line": 1957,
+          "timestamp": "2026-05-15T20:11:25.115087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001957"
+        },
+        {
+          "source_line": 1958,
+          "timestamp": "2026-05-15T20:11:29.235064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -2 /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001958"
+        },
+        {
+          "source_line": 1959,
+          "timestamp": "2026-05-15T20:11:29.637412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 04:11:26,899 INFO Running batch count_12/random/7 (12 types, BCS=0.9292) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 132.93it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 133.74it/s]\\\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:07, 132.35it/s]\\\\rRendering prompts:   6%|▌         | 56/1000 [00:00<00:07, 132.25it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 133.36it/s]\\\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:06, 133.38it/s]\\\\rRendering prompts:  10%|▉         | 98/1000 [00:00<00:06, 133.55it/s]\\\\rRendering prompts:  11%|█         | 112/1000 [00:00<00:06, 133.36it/s]\\\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:06, 132.43it/s]\\\\rRendering prompts:  14%|█▍        | 140/1000 [00:01<00:06, 133.34it/s]\\\\rRendering prompts:  15%|█▌        | 154/1000 [00:01<00:06, 133.77it/s]\\\\rRendering prompts:  17%|█▋        | 168/1000 [00:01<00:06, 133.54it/s]\\\\rRendering prompts:  18%|█▊        | 182/1000 [00:01<00:06, 134.06it/s]\\\\rRendering prompts:  20%|█▉        | 196/1000 [00:01<00:05, 134.36it/s]\\\\rRendering prompts:  21%|██        | 210/1000 [00:01<00:05, 134.19it/s]\\\\rRendering prompts:  22%|██▏       | 224/1000 [00:01<00:05, 134.25it/s]\\\\rRendering prompts:  24%|██▍       | 238/1000 [00:01<00:05, 131.97it/s]\\\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:05, 133.26it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:01<00:05, 133.86it/s]\\\\rRendering prompts:  28%|██▊       | 280/1000 [00:02<00:05, 133.95it/s]\\\\rRendering prompts:  29%|██▉       | 294/1000 [00:02<00:05, 134.20it/s]\\\\rRendering prompts:  31%|███       | 308/1000 [00:02<00:05, 133.99it/s]\\\\rRendering prompts:  32%|███▏      | 322/1000 [00:02<00:05, 134.53it/s]\\\\rRendering prompts:  34%|███▎      | 336/1000 [00:02<00:04, 134.98it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\n…[truncated 69 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001959"
+        },
+        {
+          "source_line": 1960,
+          "timestamp": "2026-05-15T20:11:32.000340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001960"
+        },
+        {
+          "source_line": 1961,
+          "timestamp": "2026-05-15T20:11:32.403699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001961"
+        },
+        {
+          "source_line": 1962,
+          "timestamp": "2026-05-15T20:11:36.178690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001962"
+        },
+        {
+          "source_line": 1963,
+          "timestamp": "2026-05-15T20:11:36.631468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001963"
+        },
+        {
+          "source_line": 1964,
+          "timestamp": "2026-05-15T20:11:39.595543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001964"
+        },
+        {
+          "source_line": 1965,
+          "timestamp": "2026-05-15T20:11:39.796147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001965"
+        },
+        {
+          "source_line": 1966,
+          "timestamp": "2026-05-15T20:11:40.047369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001966"
+        },
+        {
+          "source_line": 1967,
+          "timestamp": "2026-05-15T20:11:40.198887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001967"
+        },
+        {
+          "source_line": 1968,
+          "timestamp": "2026-05-15T20:11:43.264383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001968"
+        },
+        {
+          "source_line": 1969,
+          "timestamp": "2026-05-15T20:11:43.667188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001969"
+        },
+        {
+          "source_line": 1970,
+          "timestamp": "2026-05-15T20:11:46.584539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001970"
+        },
+        {
+          "source_line": 1971,
+          "timestamp": "2026-05-15T20:11:46.835146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001971"
+        },
+        {
+          "source_line": 1972,
+          "timestamp": "2026-05-15T20:11:46.986681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001972"
+        },
+        {
+          "source_line": 1973,
+          "timestamp": "2026-05-15T20:11:47.238220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001973"
+        },
+        {
+          "source_line": 1974,
+          "timestamp": "2026-05-15T20:11:49.703472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001974"
+        },
+        {
+          "source_line": 1975,
+          "timestamp": "2026-05-15T20:11:50.105730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001975"
+        },
+        {
+          "source_line": 1976,
+          "timestamp": "2026-05-15T20:11:53.632267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001976"
+        },
+        {
+          "source_line": 1977,
+          "timestamp": "2026-05-15T20:11:54.034443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"38\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001977"
+        },
+        {
+          "source_line": 1978,
+          "timestamp": "2026-05-15T20:11:54.330399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001978"
+        },
+        {
+          "source_line": 1979,
+          "timestamp": "2026-05-15T20:11:54.732355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001979"
+        },
+        {
+          "source_line": 1980,
+          "timestamp": "2026-05-15T20:11:58.156988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"INFO Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log"
+            }
+          },
+          "id": "event-001980"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1d07db756d7e288a4a44",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "figure fig3 budget",
+  "task_key": "worker_figure_fig3-budget_20260521T052656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-budget_20260521T052656_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "5b210630f61dfa6f916eecd9abae98eec3a369ba114b71837adac22ee1a54127"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated. The 2×2 panels clearly show the budget crossover behavior:\n\n- **K=2, Extreme**: crossover at n=250\n- **K=2, Moderate**: no crossover (Global always lower RMSE)\n- **K=4, Extreme**: crossover at n=1000\n- **K=4, Moderate**: crossover at n=2000\n\nOutput files:\n- `/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.pdf`\n- `/home/ubuntu/ec_hte_llm_annotation/artifacts/figures/fig3_budget.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fd1d79ed1a9c9051c67e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code wild data calibration 003",
+  "task_key": "worker_code_wild_data_calibration_003_20260516T013319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wild_data_calibration_003_20260516T013319_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "21df13a8f201880bf159c84c377334408512fc9eb9131598e6991e9b0f22c849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 和 artifact 已更新。\n\n**结果摘要：**\n\n| Dataset | N | d0% | FPR% | Source |\n|---------|--:|----:|-----:|--------|\n| WikiText-103 | 546 | 100.00 | 0.00 | v1 ref |\n| C4 | 5,000 | 79.80 | 20.20 | v1 ref |\n| **FineWeb** | **5,000** | **80.54** | **19.46** | **v3** |\n\n**关键发现：**\n- FineWeb FPR=19.46%，与 C4 FPR=20.20% 仅差 0.74pp，跨数据集高度一致\n- 所有误分类均为 d1（无 d2/d3 false positives），误分类程度温和\n- P(d0) 分布：FineWeb 0.7987 vs C4 类似\n- 确认 web-crawl 文本 ~20% FPR 是由模板/SEO 内容驱动的通用现象，非特定数据集伪影\n- 编辑质量文本（WikiText）FPR 稳定在 0%\n\n**技术要点：**\n- v2 失败原因：HF streaming 在 AutoDL 代理下挂死\n- v3 解决方案：用 `hf-mirror.com` 下载 FineWeb parquet（2GB/114s），本地离线读取\n- RedPajama 文件路径 404，仅 FineWeb 成功\n- 全流程 87 秒（含特征提取 77s on cuda:1）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

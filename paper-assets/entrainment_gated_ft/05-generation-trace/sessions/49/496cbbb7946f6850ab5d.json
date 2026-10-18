@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "496cbbb7946f6850ab5d",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code 1 3b download",
+  "task_key": "worker_code_1_3b-download_20260518T072919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b-download_20260518T072919.log",
+    "occurrence": 1,
+    "bytes": 615601,
+    "sha256": "cbf9f1dcb160ad08cf285dc6d375084d21788cc1aec83f6a9ec6aa761709f6ac"
+  },
+  "statistics": {
+    "messages": 421,
+    "user_turns": 0,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 145,
+      "tool_result": 145
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 421,
+      "chunks": [
+        {
+          "path": "496cbbb7946f6850ab5d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "496cbbb7946f6850ab5d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "496cbbb7946f6850ab5d-part-0003.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ]
+}

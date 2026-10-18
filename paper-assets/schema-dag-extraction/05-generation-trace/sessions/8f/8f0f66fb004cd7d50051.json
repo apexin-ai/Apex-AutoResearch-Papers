@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8f0f66fb004cd7d50051",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fix pass criteria",
+  "task_key": "worker_ssh_fix-pass-criteria_20260514T233645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-pass-criteria_20260514T233645_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "0e90de24f87db0f439767370be79e61bc3a80081e83dda4cf8748f5907dfd7a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，`--help` 正常运行。改动汇总：\n\n1. **新增 `pass_recall` 判据**（~行 210-212）：`|r(recall, BCS)| >= 0.3 且 p < 0.05`\n2. **`recall_vs_bcs`** 加了 `pass_fail: pass_recall, role: \"primary\"`（行 228）\n3. **`f1_vs_bcs`** 加了 `role: \"supplementary\"`（行 223）\n4. **日志输出**：recall 标记为 `[PRIMARY]`，F1 标记为 `[supplementary]`\n\n总计改动约 10 行，未触及其他逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

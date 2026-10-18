@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b5a41cc60dfa2d7e5b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "write n2 patch and discussion",
+  "task_key": "worker_write_n2_patch_and_discussion_20260515T162335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_n2_patch_and_discussion_20260515T162335_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "a81f9ff4f74d9d1b8d8ebe63547c5fdd730871efd02361b54850984c74cb6ab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n**Task A — §5.4 补丁内容：**\n- 添加 DeBERTa per-class F1 (d0=0.947, d1=0.378, d2=0.247, d3=0.656) 和 pairwise AUC (d0v1=0.981, d1v2=0.733, d2v3=0.755)\n- 修正 architecture-independence 论述：两个 backbone 均为 masked-LM，区别在 attention mechanism（disentangled vs standard multi-head），1.2pp 差距排除换 PLM 追平 RF 的可能\n- 强化 feature overlap 结论：明确\"不是选错了 PLM，而是两种方法关注文本的不同层面\"\n\n**Task B — §6 新增内容：**\n- 6.1 新增 ¶PLM and statistical features complementarity（orthogonal signals，非竞争关系）\n- 6.1 新增 ¶Strategy-dependent degradation trajectories：三档分类（nucleus stable / temperature enhancement+reversal / top-k attenuation），禁止 soft sampling 合并；z-score 对 RF 无效、对 LR temp holdout d1v2 AUC 恶化（D014/D021）\n- 6.2 新增 ¶d0 recall dominance：66.4% 被 d0≥98.5% recall 拉高，d1-d3 仅 55.4%，d2 最低 26.8%\n\n两个 artifact 已注册（`art_20260515_1d7f7e`, `art_20260515_1560ed`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

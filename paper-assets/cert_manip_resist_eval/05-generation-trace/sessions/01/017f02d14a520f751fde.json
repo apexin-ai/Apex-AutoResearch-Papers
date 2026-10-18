@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "017f02d14a520f751fde",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "check westd connection",
+  "task_key": "worker_check_westd-connection_20260523T030940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-connection_20260523T030940_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "46ac1eafbcd8b9aa91d305477493ecf2fa4efcee1eec797bf0440dd374b5e714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**连接失败。**\n\n- **错误**：`Unable to connect to port 13176 on 36.103.198.204`\n- **类型**：连接被拒绝（端口不可达），不是超时也不是认证失败\n- **耗时**：<0.5秒（说明端口直接拒绝，非防火墙丢包）\n\n可能原因：\n1. 实例已关机或已释放\n2. 实例重启后 SSH 端口已变更（AutoDL/SeetaCloud 重启会分配新端口）\n\n需要去云平台控制台确认实例状态和当前 SSH 端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

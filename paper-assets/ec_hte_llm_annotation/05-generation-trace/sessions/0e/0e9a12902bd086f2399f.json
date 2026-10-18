@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e9a12902bd086f2399f",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research ref audit worker A",
+  "task_key": "worker_research_ref-audit-worker-A_20260526T104737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-A_20260526T104737_result.json",
+    "occurrence": 1,
+    "bytes": 1066,
+    "sha256": "10f0dcd060ef4a4e208a7e1217e41a5318943e36d878024e606a05dd0e7466f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/ref-audit-worker-A.md`。\n\n核心发现：\n\n**2 个 HIGH severity 问题：**\n1. **`sui2026ppci`** — 论文实际是关于 kernel-localized 条件均值估计，与 outcome-side misclassification 完全无关，但在 4 个 tex 文件中被错误描述为\"extends PPI to outcome-side misclassification\"。可能应该引用 Cadei et al. (2025) 或其他论文。\n2. **`black2000racial`** — 论文是关于煤炭行业经济波动对残障项目参与的影响，完全不涉及 racial misclassification，但 tex 中声称该论文\"demonstrate that racial misclassification in administrative data biases disparity estimates\"。\n\n**3 个 MEDIUM severity 问题：**\n- `pangakis2023automated` — venue 虚构（实际是 arXiv preprint，不是 Findings of EMNLP 2023）\n- `mozer2026ppi` — 引用上下文将其描述为\"arm-specific PPI\"，不准确\n- `wood2018challenges` — 页码错误（应为 4586-4598 而非 5179-5186）\n\n**30 条引用从未在 tex 中被 cite**，建议投稿前清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

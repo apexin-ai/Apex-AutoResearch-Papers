@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9a6c302d22f88fddc736",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research per example data audit",
+  "task_key": "worker_research_per_example_data_audit_20260519T125609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_per_example_data_audit_20260519T125609_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "990c66a3237beaaa65ef85a2f80970f0603d831dc76aafddea9b9915518bafec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册 (`art_20260519_e33ecb`)。\n\n核心发现：\n\n**1.3B**：13/16 个模型有全 benchmark per-example 数据（嵌入在 127M JSON 中）。缺口是 GDN-h3/h6/h24 三个模型——仅有 lambada_openai 的 JSONL logsamples，其余 5 个 benchmark 无 per-example 数据。\n\n**340M**：GDN 全系列 + Transformer baseline（6 个模型）有完整 per-example 数据。RetNet 和 HGRN2 全部 10 个模型仅有 aggregate results，需要补跑 `--log_samples`。\n\n**Analysis CSV**：已有两份 lambada per-example CSV（5161 examples），分别覆盖 GDN pure/h12 vs HGRN2 pure/h3 和 GDN pure/h31 vs HGRN2 pure/h31 的对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

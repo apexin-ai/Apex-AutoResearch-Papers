@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e551566e610837bb9e85",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "write section method",
+  "task_key": "worker_write_section_method_20260515T162257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_section_method_20260515T162257_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "86d47bb5af8b0ea62e293a84b05ac011aaa5afb0c73047b6941b4c6da6f8cbaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/_project/paper/section_method.tex` 并注册 (`art_20260515_d088f8`)。\n\n相比原版的主要修改：\n\n1. **Seed corpora 修正** — \"Wikipedia subset\" → OpenWebText (Pythia) / Dolma (OLMo) / WebText (GPT-2 XL)\n2. **LoRA targets 修正** — Pythia 补入 q_proj/v_proj 组\n3. **Unconditional generation 明确声明** — 加粗 `\\emph{unconditional generation} (no prompt conditioning)` 并解释动机（reviewer W5）\n4. **Feature 表扩展** — 从分组摘要改为逐一列出 19 个特征的名称和描述（Table 1）\n5. **p90_ppl 关键洞察增强** — 加入 kurtosis > 4,900 outlier 对比、top-2 出现率 9/9 (100%) 和 var_surprisal 7/9 (78%) 具体数据\n6. **Notation 前置** — Problem Definition 末尾引入 $\\mathbf{f}(x)$ 和 $\\mathrm{EDD}_T$ 符号，建立后续引用锚点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

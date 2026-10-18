@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c6a082a4a8d209577872",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "infra model redownload",
+  "task_key": "worker_infra_model_redownload_20260520T090141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_redownload_20260520T090141.log",
+    "occurrence": 1,
+    "bytes": 725140,
+    "sha256": "2b5501410ce4bb5a140522069baf68dd9ee32a4a6fd219c861587fcec2116c10"
+  },
+  "statistics": {
+    "messages": 507,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "assistant": 209,
+      "tool_call": 143,
+      "tool_result": 143,
+      "record": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 507,
+      "chunks": [
+        {
+          "path": "c6a082a4a8d209577872-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6a082a4a8d209577872-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6a082a4a8d209577872-part-0003.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ]
+}

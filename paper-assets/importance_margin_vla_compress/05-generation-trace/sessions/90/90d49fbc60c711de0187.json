@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "90d49fbc60c711de0187",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd27271 xvla random chains",
+  "task_key": "worker_deploy_westd27271_xvla_random_chains_20260522T184535",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd27271_xvla_random_chains_20260522T184535_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "0f31357155ac1f0ecc319e393e2a3200ae1323b098289b27228a6a18cd30efac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两条链都正常运行中。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| Wait loop | 已杀掉 |\n| 链式实验 | 两条均已启动并在跑 episode |\n| X-VLA 实际参数名 | `--mode random`（非 `--prune_mode`），`--num_episodes`（非 `--n_episodes`），需额外指定 `--model_path /root/autodl-tmp/X-VLA-Libero` |\n| GPU 0 | 4778 MiB，xvla_random_goal k=0.95 正在跑（Task 0 Ep 1 SUCCESS） |\n| GPU 1 | 加载中，xvla_random_spatial k=0.95 已开始 Task 0 |\n| Registry | `eval_xvla_random_k095_goal_seed42` / `eval_xvla_random_k095_spatial_seed42` → RUNNING |\n| tmux sessions | `xvla_random_goal`、`xvla_random_spatial` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

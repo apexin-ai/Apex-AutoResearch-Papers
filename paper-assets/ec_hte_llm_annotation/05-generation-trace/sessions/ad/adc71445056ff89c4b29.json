@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "adc71445056ff89c4b29",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code mc se analysis",
+  "task_key": "worker_code_mc-se-analysis_20260521T115138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mc-se-analysis_20260521T115138_result.json",
+    "occurrence": 1,
+    "bytes": 1742,
+    "sha256": "49f1d6f5f4baa9a55a4443a6f0938ea01550c00d88d81138ab782c3feb748090"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs saved. Here's the summary:\n\n**Output files** in `artifacts/mc_se_analysis/`:\n- `mc_se_table.csv` — 5040 rows of SE data across both experiments\n- `paired_tests.csv` — 1020 paired comparisons\n- `mc_se_summary.md` — full analysis with tables\n\n**Key findings:**\n\n**exp-001 (HB synthetic):** Conservative z-tests (no per-seed data). In extreme regime, bias differences between hb and naive are highly significant (p<0.0001). hb vs global_corrected bias is significant with n=500 (p<0.001) but not always with n=100.\n\n**exp-003 (TweetEval):** Proper paired t-tests across 100 seeds. 73% of all comparisons are significant at α=0.05. hb_ec_hte vs naive: 190/240 significant. hb_ec_hte vs global_corrected: 174/240 significant.\n\n**Director's question — moderate regime small differences:**\n- At **n=50, 100**: Differences ARE significant (p<0.001 for most comparisons). Even small absolute differences are resolvable with 100 MC runs.\n- At **n=250, 500 (z0)**: CIs **DO overlap** — differences between hb_ec_hte, global_corrected, and naive are NOT significant (p=0.06–0.99). The methods converge when heterogeneity is moderate and sample size is adequate.\n- At **n=250, 500 (z1)**: hb_ec_hte vs global_corrected remains significant (p=0.002–0.04) but hb_ec_hte vs naive loses significance.\n- **exp-001 K=4, moderate, n=250**: hb vs global_corrected NOT significant (p=0.29/0.37). hb vs naive borderline (p=0.038/0.07).\n\n**Bottom line**: The small differences in the moderate regime (e.g., 0.009 vs 0.005) often have overlapping MC CIs at n≥250, confirming that methods converge when heterogeneity is mild. The main findings in extreme regimes are robust and statistically significant."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d96d044def9e47fe8ad",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis plan 020 bootstrap ci",
+  "task_key": "worker_analysis_plan_020_bootstrap_ci_20260522T093949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_020_bootstrap_ci_20260522T093949_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "2349385205a716c51d5197c514999ecd79f907ea88ab22bea67743a6f8edbbab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "B=10000 bootstrap CI 已完成，结果保存到 `results/bootstrap_ci_table1.json`。\n\n汇总对比：\n\n| Cell | Acc% | 95% CI (B=10k) | ±(B=10k) | ±(B=1k) | Δ |\n|------|------|----------------|----------|---------|---|\n| pythia_nucleus | 78.7 | [78.15, 79.21] | ±0.53 | ±0.6 | -0.07 |\n| pythia_temp09 | 76.7 | [76.20, 77.28] | ±0.54 | ±0.6 | -0.06 |\n| pythia_topk50 | 68.8 | [68.24, 69.42] | ±0.59 | ±0.6 | -0.01 |\n| olmo_nucleus | 78.9 | [78.39, 79.45] | ±0.53 | ±0.6 | -0.07 |\n| olmo_temp09 | 82.1 | [81.61, 82.62] | ±0.50 | ±0.5 | +0.00 |\n| olmo_topk50 | 74.5 | [73.95, 75.04] | ±0.54 | ±0.6 | -0.06 |\n| gpt2xl_nucleus | 84.1 | [83.61, 84.61] | ±0.50 | ±0.5 | +0.00 |\n| gpt2xl_temp09 | 85.9 | [85.40, 86.32] | ±0.46 | ±0.4 | +0.06 |\n| gpt2xl_topk50 | 75.9 | [75.39, 76.49] | ±0.55 | ±0.6 | -0.05 |\n\nB=10000 vs B=1000 的 CI half-width 差异极小（|Δ| ≤ 0.07），说明 B=1000 时 CI 已经收敛。论文中可直接更新为 B=10000 的值，CI 范围 ±0.46 ~ ±0.59。完整数据含 LR accuracy CI 和 pairwise AUC CI 在 `artifacts/bootstrap_ci_table1.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

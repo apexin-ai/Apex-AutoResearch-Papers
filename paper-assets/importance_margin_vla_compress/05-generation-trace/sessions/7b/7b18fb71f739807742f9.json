@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7b18fb71f739807742f9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code update gate d025",
+  "task_key": "worker_code_update-gate-d025_20260516T015120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_update-gate-d025_20260516T015120_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "ed3afbffd2511cd4b48f461327b5d9b9be48959015f1c8fed8a3ac3af4ddf919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。输出符合预期：\n\n- **G3-deploy** 显示 N/A（未提供 `--acis-prune`），FAIL\n- **G3-standard** 降为 `[REF]` 参考指标，不影响判定\n- **overall** = G1 AND G2 AND **G3-deploy** AND G4\n- 报告标题已更新为 `D025 GATE EVALUATION REPORT`\n\n改动总结：\n- 新增 `--acis-prune` 参数，接收 ACIS+Prune(50%) eval JSON\n- `G3_deploy_ratio`（ACIS+Prune/baseline ≤ 1.10）为主 gate，决定 pass/fail\n- `G3_standard_ratio` 和 `G3a_bypass_ratio` 标记为 `reference`，仅展示不参与 overall 判定\n- `overall_pass = G1 AND G2 AND G3-deploy AND G4`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

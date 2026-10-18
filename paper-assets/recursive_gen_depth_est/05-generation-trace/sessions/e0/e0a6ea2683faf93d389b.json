@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e0a6ea2683faf93d389b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing paper atlas results method",
+  "task_key": "worker_writing_paper-atlas-results-method_20260515T145251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-atlas-results-method_20260515T145251_result.json",
+    "occurrence": 1,
+    "bytes": 1648,
+    "sha256": "6f51a0d1b5846f31fc6a7f7fcdfb26a3cf8442c7e71d4f041389464aa2c10fb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有改动已确认正确。\n\n## 修改汇总\n\n### atlas.tex (Task 1 — D024/D027 EDD 连续衰减叙事)\n- **Cross-model EDD 段落** (L77-81): 扩展了三处\n  1. d3v4 添加 \"only Pythia achieves conventional significance, yet all three exhibit the same directional pattern\"——避免过强的 \"all significant\" 措辞\n  2. d4v5 从 \"range 0.681--0.694\" 改为逐模型报告 (Pythia 0.683, OLMo 0.694, GPT-2 XL 0.681)\n  3. 新增跨模型 EDD threshold sensitivity 句：三模型在 T=0.65/0.70/0.75/0.80 下 EDD 完全一致 (5/4/4/3)\n- EDD sensitivity table、d0-d5 AUC 衰减曲线、Pythia CI 等已有内容确认准确无误\n\n### method.tex (Task 2 — 基准构建确认)\n- **无需修改**。unconditional generation (L33)、reference model spec (L37-40，GPT-2 base 124M)、cross-model LOO circularity discussion (L39-40) 均已到位且准确\n\n### generalization.tex (Task 3 — Per-class recall + Baseline 重构 + RoBERTa overlap)\n- **Cross-strategy per-class recall** (L94, 新增): \"d0 recall ≥89.5% inflating headline; d2 recall 3.7–19%\"——补齐 W6 对 cross-strategy LOO 的 per-class disclosure\n- **RoBERTa feature overlap** (L106-107, 替换原 DeBERTa-only 句): 双架构报告 DeBERTa ρ=-0.484 + RoBERTa ρ=-0.456, top-5 overlap=0, \"architecture-independent finding\" 结论\n- **Baseline 叙事** (L9-12, L35): 确认已反映 D022/D023（RF≈CORAL≈DivEye 统计不可区分, all >> CE-MLP, 贡献在特征非分类器）——无需改动\n- **Cross-model LOO per-class recall table** (L50-67): 确认已包含 d0/d1/d2/d3 recall 列，数值与 registry 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

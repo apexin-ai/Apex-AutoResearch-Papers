@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "579fab3e932e98fdf722",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check eval mlp adapter seed43",
+  "task_key": "worker_check_eval_mlp_adapter_seed43_20260519T131414",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_eval_mlp_adapter_seed43_20260519T131414_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "605030c4310555dc51702389ad0b6a3bf612e5ea001b72fb93524caed4e00ba9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**PID 651149 存活**，已运行 6 分 8 秒。\n\n**当前状态：**\n- **Suite**: `libero_object`（10 个 task，每个 50 episodes，max 280 steps）\n- **Task 0** 已完成：SR = 74.0%（37/50）\n- **Task 1** 正在运行中：ep 36/50（log 最后一行），目前 SUCCESS 总计 64 条\n- 尚未生成 output JSON\n\n进程正常运行，GPU 1 占用 16082 MiB / 77% utilization，符合预期。按每 task ~3-4 分钟估算，10 个 task 总计约 30-40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "77409764e676ead76c1d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "run ate analysis 20260520",
+  "task_key": "worker_run_ate_analysis_20260520_20260520T143923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_ate_analysis_20260520_20260520T143923_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "3d4bac330f2edf53c8958935c9e86b73d388600af74f8b0c07fc175294840e07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scored.jsonl 当前 92/100 条，已设置 60 秒后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

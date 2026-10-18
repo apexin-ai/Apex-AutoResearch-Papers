@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "24a57e2cd7d5515922ea",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis re none evaluation check",
+  "task_key": "worker_analysis_re_none_evaluation_check_20260521T031735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_re_none_evaluation_check_20260521T031735_result.json",
+    "occurrence": 1,
+    "bytes": 1871,
+    "sha256": "ab92db63a34893443d3544d69a5851d3f7c13c0cd94463136ede8aa753947df7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part A: 代码检查\n\n**核心发现：Gold relation 始终在 candidate set 中。** 所有实验脚本在推理前过滤样本：\n\n```python\nbatch_samples = [s for s in samples if s[\"relation_type\"] in type_set]\n```\n\n这行代码出现在所有 5 个实验文件中（`run_fewrel_formal.py:118`, `run_docred.py:225`, `run_docred_phase2.py:259`, `run_d051_count_curves_25.py:169`, `run_fewrel_v2_bcs.py:283`）。\n\n具体回答：\n\n1. **FewRel/DocRED count-curve**：gold relation 不在 candidate set 时 → **样本被排除**，不参与该 batch 的推理和评测。已验证所有预测文件中 `oos_gt=0`。\n2. **Prompt 允许输出 \"none\"**：是。Prompt 明确写 `If none of the candidate relations apply, output: {\"relation\": \"none\"}`，JSON schema enum 也包含 `\"none\"`。\n3. **Accuracy 公式**：`correct/total`，其中 total 包含所有样本。模型输出 \"none\" 时必然算错（因为 gold 永远不是 \"none\"）。\n\n### Part B: In-schema-only accuracy\n\n**in_schema_accuracy ≡ original_accuracy**，因为 gold 在设计上就始终在 candidate set 中。\n\n**\"none\" 预测比例**（值得关注）：\n| Count | FewRel none% | DocRED none% |\n|-------|-------------|--------------|\n| 1     | 14.3%       | 12.0%        |\n| 4     | 6.7%        | 17.0%        |\n| 8     | 9.2%        | 16.5%        |\n| 16    | 7.3%        | 23.3%        |\n| 32    | 13.3%       | 25.1%        |\n| 64    | 14.3%       | 24.4%        |\n| 80/96 | 16.0%       | 18.3%        |\n\n**Trend 一致性判断**：两个数据集都呈现明显的 degradation trend（FewRel: 0.857→0.504, DocRED: 0.880→0.387），不严格单调（存在小幅波动），但整体趋势清晰。\n\n结果已写入 `artifacts/re_none_evaluation_analysis.json`。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "relation": "none"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

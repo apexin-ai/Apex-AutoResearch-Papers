@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5c3788d329af68ccade7",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 013 boundary",
+  "task_key": "worker_code_exp-013-boundary_20260521T072541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-013-boundary_20260521T072541_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "ca5b5fba4c5c2b6b85b2342263f9923adb39846de8abb8c4ea369eeb3bb44a9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. All three outputs saved:\n\n- **`results/exp013_boundary_condition.csv`** — 3200 rows (100 runs × 4 subgroups × 4 methods × 2 z-levels)\n- **`results/exp013_boundary_summary.csv`** — 32 rows aggregated\n- **`results/exp013_boundary_analysis.md`** — full analysis\n\nKey findings from 100 MC runs:\n\n1. **Worst degradation is subgroup A (pi=0.30), not D (pi=0.03)** — RMSE reaches 0.62 for EB. The highest-misclassification subgroup suffers most because the CM estimation noise amplifies through a nearly-singular mixing matrix inversion, not because it has fewer labels.\n\n2. **Stratified RMSE is ~2x global** on average (2.07x for z0, 2.06x for z1). Subgroup A hits 3.7–4.4x amplification.\n\n3. **n_expert/K = 12.5 < 25 threshold** — confirmed. Per-subgroup CM estimates are too noisy; global correction dominates all stratified methods.\n\n4. **EB vs MLE**: EB is ~5% worse than MLE here — the shrinkage target (pooled mean) is itself noisy with only 50 total labels, so partial pooling doesn't help. Both are far worse than global.\n\n5. **Naive beats all correction methods on average RMSE** for this boundary case — the correction signal is swamped by estimation noise in the mixing matrix."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

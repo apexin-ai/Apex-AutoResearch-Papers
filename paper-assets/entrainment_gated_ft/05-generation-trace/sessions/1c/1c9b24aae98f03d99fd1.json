@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c9b24aae98f03d99fd1",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis r16 w3 auc normality",
+  "task_key": "worker_analysis_r16-w3-auc-normality_20260523T141158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r16-w3-auc-normality_20260523T141158_result.json",
+    "occurrence": 1,
+    "bytes": 2177,
+    "sha256": "f11508c30da8cea56d0ce13194d3a16ca40277784627648318357e0324df1367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n## R16-W3 AUC Normality 验证\n\n**方法**：用 Mann-Whitney U 的 rank-biserial correlation 计算 empirical AUC（AUC_emp = (1+|r_rb|)/2，非参数），与 parametric AUC = Φ(|d|/√2) 对比。正态性用 quantile-based 指标评估（Shapiro-Wilk 需要原始数据，服务器 SSH 连接失败无法获取）。\n\n### 结果\n\n```\nArch     Task         |d|     AUC_par  AUC_emp   Bias    Status\n─────────────────────────────────────────────────────────────────\nGDN      Disruption   0.8744  0.7318   0.7420   -1.4%   parametric estimate 可信\nGDN      Rescue       0.7462  0.7011   0.7563   -7.3%   偏差适中\nRetNet   Disruption   0.8306  0.7215   0.7346   -1.8%   parametric estimate 可信\nRetNet   Rescue       0.7262  0.6962   0.7535   -7.6%   偏差适中\nHGRN2    Disruption   0.9228  0.7430   0.7477   -0.6%   parametric estimate 可信\nHGRN2    Rescue       0.7730  0.7077   0.7650   -7.5%   偏差适中\n```\n\n### 关键发现\n\n1. **Disruption 预测**（hurt vs stayed-right）：偏差 0.6–1.8%，parametric estimate 可信。hurt 组 |log p| 近似正态（Bowley skewness < 0.12, IQR/std ≈ 1.35–1.41）。\n\n2. **Rescue 预测**（helped vs stayed-wrong）：偏差 ~7.5%，但方向是**保守的**（parametric 低估真实 AUC）。stayed_wrong 组有中等右偏（Bowley 0.19–0.22, IQR/std 1.10–1.16 vs 正态理论值 1.349）。\n\n3. **所有偏差 < 10%**，无结果改变方向或跨越显著性阈值。\n\n### 建议\n\nRebuttal 可这样回应 R16：\n- Disruption AUC：parametric 估计偏差 <2%，正态假设成立\n- Rescue AUC：|log p| 有轻微右偏导致 ~7.5% 偏差，但 parametric 估计是**保守的**（实际 AUC 更高），不影响任何结论\n- 建议在修订稿中同时报告 empirical AUC 以增强透明度\n\n### 待补充\n\nShapiro-Wilk 正式检验需要原始 per-example |log p| 值（位于 `westb-48145:/root/entrainment_gated_ft/lm_eval_clean/`），当前 SSH 连接被拒。服务器恢复后可补充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

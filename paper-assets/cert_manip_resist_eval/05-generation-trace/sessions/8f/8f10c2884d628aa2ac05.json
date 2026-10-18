@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "8f10c2884d628aa2ac05",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops fix keff eta scatter",
+  "task_key": "worker_ops_fix-keff-eta-scatter_20260525T222512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-keff-eta-scatter_20260525T222512.log",
+    "occurrence": 1,
+    "bytes": 1824477,
+    "sha256": "1cab932a311f51495b581765e41db877cebab0393764bb97351cb19b8772f174"
+  },
+  "statistics": {
+    "messages": 239,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 86,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "8f10c2884d628aa2ac05-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "8f10c2884d628aa2ac05-part-0002.json",
+          "message_count": 76
+        },
+        {
+          "path": "8f10c2884d628aa2ac05-part-0003.json",
+          "message_count": 28
+        },
+        {
+          "path": "8f10c2884d628aa2ac05-part-0004.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ]
+}

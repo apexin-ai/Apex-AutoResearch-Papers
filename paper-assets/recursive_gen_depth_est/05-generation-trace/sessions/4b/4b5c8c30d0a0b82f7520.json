@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b5c8c30d0a0b82f7520",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T093527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260515T093527_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "dc7f11a97fc31d436fa5f19cffb4b89d30af33bd890f4a48e6d7b283a72c0faa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 章节已写入 `docs/paper/section_related_work.tex`，约 600 words，严格遵循 4 段结构：\n\n1. **Model Collapse Theory** — 从 Shumailov (Nature 2024) 的 tail erosion 出发，覆盖 Dohmatob scaling laws、MAD framework、accumulation/detection mitigation，以及 non-monotonic dynamics、heat death、contamination guarantees 等扩展工作。定位语：这些工作假设深度已知，我们估计深度本身。\n\n2. **AI Text Detection** — DetectGPT → Fast-DetectGPT → Binoculars → DivEye → GLTR 的方法线，加 paraphrasing limits 和 distribution shift 的局限性分析。定位语：binary classification 丢弃 ordinal depth information。\n\n3. **Adjacent Tasks** — EditLens（单次编辑程度）、attribution（哪个模型）、LOKI（benchmark）。定位语：互补维度，无一估计 recursive depth。\n\n4. **Decoding Strategy Effects** — nucleus/temperature/top-k/Mirostat 的文献基础，收束到我们的 Depth Degradation Atlas 揭示 strategy-dependent degradation trajectories。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

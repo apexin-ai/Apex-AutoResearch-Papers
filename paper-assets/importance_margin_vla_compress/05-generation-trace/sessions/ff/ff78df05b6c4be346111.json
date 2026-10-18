@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ff78df05b6c4be346111",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest l2norm k05 s45 results",
+  "task_key": "worker_harvest_l2norm_k05_s45_results_20260528T064018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_l2norm_k05_s45_results_20260528T064018_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "95bdda21239db771c62433d17a94f5f17dfd55cdfd564a75838a2eeb71a3f521"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n```\nl2norm_k05_s45: SR=52.2% (256/490), T9 timeout at ep40\n  per_task: [66, 52, 84, 50, 34, 52, 32, 54, 22, 82.5]\n  4-seed 汇总: s42=52.8%, s43=49.2%, s44=51.0%, s45=52.2% → mean≈51.3%\n\ncqa1 GPU 状态: 全部 4 卡在用\n  GPU0: 10417MiB/24564MiB (19%) — PID 168021\n  GPU1: 10643MiB/24564MiB (33%) — PID 163031\n  GPU2: 15710MiB/24564MiB (65%) — PID 147686\n  GPU3: 10635MiB/24564MiB (15%) — PID 163389\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

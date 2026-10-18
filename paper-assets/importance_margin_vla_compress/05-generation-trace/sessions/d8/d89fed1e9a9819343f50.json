@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d89fed1e9a9819343f50",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 verify and audit",
+  "task_key": "worker_ops_cqa1_verify_and_audit_20260526T093041",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1_verify_and_audit_20260526T093041_result.json",
+    "occurrence": 1,
+    "bytes": 2943,
+    "sha256": "d886b6177a6641389e88dd06c067b5b55f66fcbb64f27036ae844ac2da9c7f94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。以下是三部分汇总：\n\n---\n\n## Part 1: cqa1-33015 GPU 0+1 验证\n\n**部署确认成功。** 两个实验均在运行：\n\n| GPU | PID | 实验 | 启动时间 | CPU时间 |\n|-----|-----|------|---------|---------|\n| 0 | 212677 | π0.5 L2norm k=0.75 Long seed42 | 17:13 | 101 min |\n| 1 | 213217 | π0.5 Attention k=0.75 Long seed42 | 17:14 | 98 min |\n\nGPU 2 (PID 77661, L2norm k=0.5) 和 GPU 3 (PID 77832, Random k=0.5) 也正常运行，未动。\n\n---\n\n## Part 2: Goal seed43 Registry 注册\n\n两个结果已注册为 DONE/success：\n\n| exp_id | Mode | SR | Episodes |\n|--------|------|----|----------|\n| `eval_openvla_l2norm_k09_goal_seed43_v3` | L2norm k=0.9 | **75.2%** (376/500) | 500 |\n| `eval_openvla_random_k09_goal_seed43` | Random k=0.9 | **80.4%** (402/500) | 500 |\n\n注：还发现一个额外结果文件 `openvla_baseline_goal_seed43.json`（SR=77.6%），未在任务范围内但已存在于服务器。\n\n---\n\n## Part 3: 全 4 台服务器 nvidia-smi 审计\n\n| 服务器 | GPU | 型号 | Memory Used | Util% | 进程/实验 | 状态 |\n|--------|-----|------|-------------|-------|----------|------|\n| **cqa1-33015** | 0 | RTX 4090 D | 10483/24564 MiB | 42% | π0.5 L2norm k=0.75 Long s42 | 正常 |\n| | 1 | RTX 4090 D | 10647/24564 MiB | 43% | π0.5 Attn k=0.75 Long s42 | 正常 |\n| | 2 | RTX 4090 D | 10017/24564 MiB | 11% | π0.5 L2norm k=0.5 Long s42 | 正常 |\n| | 3 | RTX 4090 D | 10017/24564 MiB | 58% | π0.5 Random k=0.5 Long s42 | 正常 |\n| **westd-38929** | 0 | RTX PRO 6000 BW | 15980/97887 MiB | 60% | OpenVLA Random k=0.85 Object s42 v2 | 正常 |\n| | 1 | RTX PRO 6000 BW | 16358/97887 MiB | 76% | OpenVLA Random k=0.5 Long s42 v2 | 正常 |\n| | 2 | RTX PRO 6000 BW | 15964/97887 MiB | 34% | OpenVLA Attn k=0.85 Goal s42 v3 | 正常 |\n| | 3 | RTX PRO 6000 BW | 15980/97887 MiB | 54% | OpenVLA Attn k=0.85 Object s42 | 正常 |\n| **westd-41074** | 0 | RTX PRO 6000 BW | 15748/97887 MiB | 7% | OpenVLA Random k=0.85 Long s42 v3 | ⚠️ 低util |\n| | 1 | RTX PRO 6000 BW | 15980/97887 MiB | 56% | OpenVLA L2norm k=0.85 Object s42 | 正常 |\n| | 2 | RTX PRO 6000 BW | 1/97887 MiB | 0% | — | ⚠️ 空闲 |\n| | 3 | RTX PRO 6000 BW | 15980/97887 MiB | 34% | OpenVLA L2norm k=0.95 Object s42 | 正常 |\n| **westd-27271** | 0 | RTX PRO 6000 BW | 1/97887 MiB | 0% | — (L2norm goal s43 已完成) | ⚠️ 空闲 |\n| | 1 | RTX PRO 6000 BW | 15964/97887 MiB | 69% | OpenVLA Attn k=0.9 Goal s43 | 正常 |\n\n### 异常标记\n\n1. **westd-41074 GPU 2** — 完全空闲（0% util, 1 MiB），无任何进程\n2. **westd-27271 GPU 0** — 完全空闲，L2norm Goal seed43 v3 已完成退出\n3. **westd-41074 GPU 0** — 显存已占（15748 MiB）但 util 仅 7%，Random k=0.85 Long 可能接近完成或在 episode 间隙\n\n总计：**14 GPU 中 11 个正常运行，2 个空闲可调度，1 个低利用率待观察。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

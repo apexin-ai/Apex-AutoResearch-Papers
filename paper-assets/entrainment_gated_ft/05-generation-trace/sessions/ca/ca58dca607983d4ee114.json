@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ca58dca607983d4ee114",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis figure table data prep",
+  "task_key": "worker_analysis_figure-table-data-prep_20260519T164223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure-table-data-prep_20260519T164223_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "459bfe9381551bb5d107e637f81eb7ca895179246377990be3ccce2496c645c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个数据文件全部生成并注册完成。\n\n| 文件 | 行数 | 路径 |\n|------|------|------|\n| `convergence_table.csv` | 12 (header+11 benchmarks) | `artifacts/paper_data/convergence_table.csv` |\n| `per_example_table.csv` | 4 (header+3 archs) | `artifacts/paper_data/per_example_table.csv` |\n| `gdn_sensitivity_table.csv` | 7 (header+6 benchmarks) | `artifacts/paper_data/gdn_sensitivity_table.csv` |\n| `decoupling_data.csv` | 6 (header+5 ratios) | `artifacts/paper_data/decoupling_data.csv` |\n| `bca_ci_data.json` | 18 | `artifacts/paper_data/bca_ci_data.json` |\n\n数据来源：exp-001/008 registry（6 benchmarks）、exp-011/011-xstorycloze registry（5 benchmarks）、exp-003/003-p2 registry（per-example counts）、exp-010 registry + bridge CSV（decoupling + Jaccard）、exp-008 bootstrap_ci（BCa CI）。COPA 标记为 supplementary (n=100)，不参与 Bonferroni 校正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

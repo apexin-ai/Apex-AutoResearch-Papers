@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "5517aa0659a1f84f301c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval baseline bypass object",
+  "task_key": "worker_eval_baseline_bypass_object_20260517T132204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_baseline_bypass_object_20260517T132204.log",
+    "occurrence": 1,
+    "bytes": 1227637,
+    "sha256": "5a4a2eec9776214014ca9927c4ae14ac7c85cea3029dc0b65be817281b8c87c5"
+  },
+  "statistics": {
+    "messages": 853,
+    "user_turns": 1,
+    "tool_calls": 366,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 106,
+      "tool_call": 366,
+      "tool_result": 366,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 758,
+      "chunks": [
+        {
+          "path": "5517aa0659a1f84f301c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5517aa0659a1f84f301c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5517aa0659a1f84f301c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5517aa0659a1f84f301c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "5517aa0659a1f84f301c-part-0005.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 95,
+      "chunks": [
+        {
+          "path": "5517aa0659a1f84f301c-part-0005.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ]
+}

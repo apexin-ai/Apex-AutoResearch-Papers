@@ -1,0 +1,482 @@
+{
+  "schema_version": "1.0",
+  "id": "459233f80f6af5d6c3a9",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "paper figure fig degradation curve",
+  "task_key": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_figure_fig_degradation_curve_20260521T103949.jsonl",
+    "occurrence": 1,
+    "bytes": 33595,
+    "sha256": "d2656d41ccd827f557eb8bf423e1e6ee5fca648f96c8cabecf148a245a6f51bf"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T10:46:57.497679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T10:46:57.498548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 2\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成（Worker 执行）\n16\t\n17\tWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n18\t\n19\t本 skill 提供：\n20\t- 通用样式（rcParams + 色板）\n21\t- 三个常用图表的起点模板（reliability/heatmap/scatter）\n22\t- NeurIPS 经验提炼的 pattern 实现示例\n23\t\n24\t## 输入字段（从 Paper Agent 传入）\n25\t\n26\t- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n27\t- **`narrative_intent`**：一句话，这张图要让读者相信什么\n28\t- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n29\t\n30\t## 画图工作流\n31\t\n32\t1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n33\t2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n34\t3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n35\t4. 提交前过本 skill §checklist\n36\t\n37\t## 通用样式标准（所有图表必须遵守）\n38\t\n39\t```python\n40\timport matplotlib\n41\tmatplotlib.use('Agg')\n42\timport matplotlib.pyplot as plt\n43\timport matplotlib.patches as mpatches\n44\timport numpy as np\n45\t\n46\t# 字体和全局样式\n47\tplt.rcParams.update({\n48\t    'font.family': 'DejaVu Sans',\n49\t    'font.size': 11,\n50\t    'axes.titlesize': 13,\n51\t    'axes.labelsize': 12,\n52\t    'xtick.labelsize': 10,\n53\t    'ytick.labelsize': 10,\n54\t    'legend.fontsize': 10,\n55\t    'figure.dpi': 300,\n56\t    'savefig.dpi': 300,\n57\t    'savefig.bbox': 'tight',\n58\t    'savefig.pad_inches': 0.05,\n59\t    'axes.spines.top': False,\n60\t    'axes.spines.right': False,\n61\t    'lines.linewidth': 1.8,\n62\t})\n63\t\n64\t# 色盲友好配色（Okabe-Ito）\n65\tCOLORS = {\n66\t    'fp16':   '#E69F00',  # 橙黄\n67\t    'nf4':    '#56B4E9',  # 天蓝\n68\t    'int8':   '#009E73',  # 绿\n69\t    'gptq':   '#F0E442',  # 黄\n70\t    'awq':    '#CC79A7',  # 粉紫\n71\t    'llama':  '#0072B2',  # 深蓝\n72\t    'qwen3':  '#D55E00',  # 橙红\n73\t    'gemma':  '#009E73',  # 绿\n74\t    'mistral':'#CC79A7',  # \n…[truncated 15285 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T10:46:57.498752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T10:46:57.499123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\n3\tname: paper-visualization\n4\tscope: global\n5\ttags:\n6\t- research\n7\t- visualization\n8\t- paper\n9\t- matplotlib\n10\t- paperbanana\n11\tversion: 5\n12\troles:\n13\t- agent\n14\t- paper_agent\n15\t---\n16\t\n17\t# Paper Visualization — 学术图表设计与生成\n18\t\n19\t> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n20\t\n21\t本 skill 分五层：\n22\t\n23\t- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n24\t- **L1 防丑原则** — 底线，所有图必须遵守\n25\t- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n26\t- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n27\t- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n28\t\n29\t---\n30\t\n31\t## L0 学习同行（设计前的功课）\n32\t\n33\t你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n34\t\n35\t### 为什么这一步是重要的\n36\t\n37\t- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n38\t- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n39\t- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n40\t- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n41\t\n42\t### 什么时候值得投入\n43\t\n44\t判断权交给你。一些可参考的信号：\n45\t\n46\t- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n47\t- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n48\t- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n49\t\n50\t### 怎么看\n51\t\n52\t工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n53\t\n54\t看的时候问自己（不是机械检查清单，是真的去理解）：\n55\t\n56\t- 这张图回答了什么问题？读者一眼能 get 到吗？\n57\t- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n58\t- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n59\t- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n60\t- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n61\t\n62\t### 怎么把学到的传下去\n63\t\n64\t把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n65\t\n66\t```yaml\n67\tdesign_notes:\n68\t  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n69\t  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n70\t  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n71\t```\n72\t\n73\t\n…[truncated 11092 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T10:46:57.499332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/ 2>/dev/null; mkdir -p /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/ /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper/",
+              "description": "Check and create output directories"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T10:46:57.499500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_action_divergence.pdf\nfig_action_divergence.png\nfig_architecture.pdf\nfig_architecture.png\nfig_attention_heatmap.pdf\nfig_attention_heatmap.png\nfig_cliff_edge.pdf\nfig_cliff_edge.png\ngen_fig_architecture.py\ngen_fig_cliff_edge.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T10:46:57.499827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/tmp/gen_fig_degradation_curve.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport shutil\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\n# Okabe-Ito semantic colors\nC_PI05    = '#009E73'\nC_XVLA    = '#0072B2'\nC_OPENVLA = '#E69F00'\nC_SMOLVLA = '#D55E00'\n\n# ── Data ──\ncurves = [\n    dict(name='π0.5 (random)',  k=[1.0, 0.5, 0.3], sr=[98.2, 69.4, 36.4],\n         color=C_PI05, ls='-', marker='o', ms=5),\n    dict(name='π0.5 (L2norm)',  k=[1.0, 0.5, 0.3], sr=[98.2, 33.4, 51.0],\n         color=C_PI05, ls='--', marker='s', ms=5),\n    dict(name='X-VLA (L2norm)',\n         k=[1.0, 0.95, 0.9, 0.85, 0.80, 0.7, 0.5, 0.3, 0.2, 0.1],\n         sr=[99.2, 99.1, 97.8, 67.8, 88.6, 57.2, 43.4, 22.3, 4.7, 0],\n         color=C_XVLA, ls='-', marker='^', ms=5),\n    dict(name='OpenVLA (random)',\n         k=[1.0, 0.95, 0.9, 0.7, 0.5, 0.3],\n         sr=[74.0, 69.4, 62.0, 49.0, 37.4, 20.6],\n         color=C_OPENVLA, ls='-', marker='D', ms=4.5),\n    dict(name='SmolVLA',\n         k=[1.0, 0.95, 0.9, 0.5], sr=[44.8, 0, 0, 0],\n         color=C_SMOLVLA, ls='-', marker='x', ms=6),\n]\n\n# Panel (b) data\nmodels_b  = ['π0.5', 'X-VLA', 'OpenVLA']\ncvs       = [0.055, 0.151, 0.215]\nl2_sr     = [33.4, 43.4, 39.2]\nrand_sr   = [69.4, 70.3, 35.8]\ndeltas    = [36.0, 26.9, -3.4]\n\n# ── Figure ──\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7, 3.2),\n                                gridspec_kw={'width_ratios': [1.5, 1]})\n\n# ═══════════════════════════════════════\n# Panel (a): Token pruning degradation\n# ═══════════════════════════════════════\n\nfor c in curves:\n    kw = dict(color=c['color'], linestyle=c['ls'], marker=c['marker'],\n              markersize=c['ms'], zorder=3)\n    if c['marker'] == 'x':\n        kw['markeredgewidth'] = 2\n    ax1.plot(c['k'], c['sr'], **kw)\n\n# Direct curve labels at the rightmost data point (k=1.0)\n# Use per-label offsets to avoid overlap\nannotations = [\n    # (name,  k,   y,     xo,  yo,  color,       ha)\n    ('X-VLA',           1.0,  99.2,   6,   2,  C_XVLA,    'left'),\n    ('π0.5 rand.', 1.0,  98.2,   6,  -6,  C_PI05,    'left'),\n    ('π0.5 L2',    1.0,  98.2,   6, -14,  C_PI05,    'left'),\n    ('OpenVLA',         1.0,  74.0,   6,   0,  C_OPENVLA, 'left'),\n    ('SmolVLA',         1.0,  44.8,   6,   0,  C_SMOLVLA, 'left'),\n]\n\nfor name, kv, yv, xo, yo, col, ha in annotations:\n    t = ax1.annotate(name, (kv, yv), xytext=(xo, yo),\n                     textcoords='offset points', fontsize=7.5,\n                     color=col, va='center', ha=ha, clip_on=False,\n                     fontweight='medium')\n    t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\n# Gap annotation: pi0.5 random vs L2norm at k=0.5\nax1.annotate('', xy=(0.5, 34.5), xytext=(0.5, 68.3),\n             arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.0))\nt = ax1.text(0.47, 51.4, '+36pp', fontsize=8, color='#555555',\n             ha='right', fontweight='bold')\nt.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# Class labels (subtle, italic, near representative curves)\nclass_labels = [\n    (0.35, 92, 'Uniformly Critical',  '#777777'),\n    (0.15, 12, 'Threshold-graded',    '#777777'),\n    (0.40, 56, 'Smooth Graded',       '#777777'),\n    (0.80,  5, 'Catastrophic Cliff',  '#777777'),\n]\nfor xc, yc, label, col in class_labels:\n    t = ax1.text(xc, yc, label, fontsize=6.5, color=col,\n                 fontstyle='italic', alpha=0.6, ha='center')\n    t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nax1.set_xlabel('Retention ratio k')\nax1.set_ylabel('Success Rate (%)')\nax1.set_xlim(0.05, 1.05)\nax1.set_ylim(-5, 108)\nax1.set_xticks([0.1, 0.3, 0.5, 0.7, 0.9, 1.0])\nax1.grid(True, alpha=0.15, zorder=0)\nax1.text(0.02, 0.98, '(a)', transform=ax1.transAxes, fontsize=11,\n         fontweight='bold', va='top')\n\n# ═══════════════════════════════════════\n# Panel (b): CV predicts method preference\n# ═══════════════════════════════════════\n\nx = np.arange(len(models_b))\nw = 0.30\n\nbars_l2 = ax2.bar(x - w/2, l2_sr, w, color='#A1C9F4', edgecolor='#4A86C8',\n                   linewidth=0.8, label='L2norm', zorder=2)\nbars_rn = ax2.bar(x + w/2, rand_sr, w, color='#8DE5A1', edgecolor='#3DAA5E',\n                   linewidth=0.8, label='Random', zorder=2)\n\nfor i, (d, l2v, rnv) in enumerate(zip(deltas, l2_sr, rand_sr)):\n    top = max(l2v, rnv) + 2\n    sign = '+' if d > 0 else ''\n    col = '#2E7D32' if d > 0 else '#C62828'\n    ax2.annotate(f'Δ={sign}{d:.1f}', (x[i], top),\n                 fontsize=8, ha='center', va='bottom',\n                 color=col, fontweight='bold')\n\nax2.set_xticks(x)\nax2.set_xticklabels([f'{m}\\nCV={cv:.3f}' for m, cv in zip(models_b, cvs)],\n                     fontsize=9)\nax2.set_ylabel('Success Rate (%)')\nax2.set_ylim(0, 88)\nax2.legend(loc='upper left', fontsize=8, framealpha=0.9, edgecolor='#cccccc')\nax2.grid(True, alpha=0.15, axis='y', zorder=0)\nax2.text(0.02, 0.98, '(b)', transform=ax2.transAxes, fontsize=11,\n         fontweight='bold', va='top')\n\nplt.tight_layout(w_pad=2.0)\n\n# ── Save ──\nout_dir  = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper'\ndocs_dir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper'\n\nfig.savefig(f'{out_dir}/fig_degradation_curve.pdf')\nfig.savefig(f'{out_dir}/fig_degradation_curve.png')\nshutil.copy2(f'{out_dir}/fig_degradation_curve.pdf',\n             f'{docs_dir}/fig_degradation_curve.pdf')\n\nprint('Done: PDF + PNG + docs copy saved.')\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T10:46:57.500036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T10:46:57.500270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat > /tmp/gen_fig_degradation_curve.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport shutil\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\n# Okabe-Ito semantic colors\nC_PI05    = '#009E73'\nC_XVLA    = '#0072B2'\nC_OPENVLA = '#E69F00'\nC_SMOLVLA = '#D55E00'\n\n# ── Data ──\ncurves = [\n    dict(name='π0.5 (random)',  k=[1.0, 0.5, 0.3], sr=[98.2, 69.4, 36.4],\n         color=C_PI05, ls='-', marker='o', ms=5),\n    dict(name='π0.5 (L2norm)',  k=[1.0, 0.5, 0.3], sr=[98.2, 33.4, 51.0],\n         color=C_PI05, ls='--', marker='s', ms=5),\n    dict(name='X-VLA (L2norm)',\n         k=[1.0, 0.95, 0.9, 0.85, 0.80, 0.7, 0.5, 0.3, 0.2, 0.1],\n         sr=[99.2, 99.1, 97.8, 67.8, 88.6, 57.2, 43.4, 22.3, 4.7, 0],\n         color=C_XVLA, ls='-', marker='^', ms=5),\n    dict(name='OpenVLA (random)',\n         k=[1.0, 0.95, 0.9, 0.7, 0.5, 0.3],\n         sr=[74.0, 69.4, 62.0, 49.0, 37.4, 20.6],\n         color=C_OPENVLA, ls='-', marker='D', ms=4.5),\n    dict(name='SmolVLA',\n         k=[1.0, 0.95, 0.9, 0.5], sr=[44.8, 0, 0, 0],\n         color=C_SMOLVLA, ls='-', marker='x', ms=6),\n]\n\nmodels_b  = ['π0.5', 'X-VLA', 'OpenVLA']\ncvs       = [0.055, 0.151, 0.215]\nl2_sr     = [33.4, 43.4, 39.2]\nrand_sr   = [69.4, 70.3, 35.8]\ndeltas    = [36.0, 26.9, -3.4]\n\n# ── Figure ──\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7, 3.2),\n                                gridspec_kw={'width_ratios': [1.5, 1]})\n\n# ═══ Panel (a): Degradation curves ═══\n\nfor c in curves:\n    kw = dict(color=c['color'], linestyle=c['ls'], marker=c['marker'],\n              markersize=c['ms'], zorder=3)\n    if c['marker'] == 'x':\n        kw['markeredgewidth'] = 2\n    ax1.plot(c['k'], c['sr'], **kw)\n\n# Direct curve labels at k=1.0\nannots = [\n    ('X-VLA',            1.0, 99.2,   6,   4,  C_XVLA),\n    ('π0.5 rand.',  1.0, 98.2,   6,  -5,  C_PI05),\n    ('π0.5 L2',     1.0, 98.2,   6, -13,  C_PI05),\n    ('OpenVLA',          1.0, 74.0,   6,   0,  C_OPENVLA),\n    ('SmolVLA',          1.0, 44.8,   6,   0,  C_SMOLVLA),\n]\nfor name, kv, yv, xo, yo, col in annots:\n    t = ax1.annotate(name, (kv, yv), xytext=(xo, yo),\n                     textcoords='offset points', fontsize=7.5,\n                     color=col, va='center', ha='left', clip_on=False,\n                     fontweight='medium')\n    t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\n# Gap annotation at k=0.5\nax1.annotate('', xy=(0.5, 34.5), xytext=(0.5, 68.3),\n             arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.0))\nt = ax1.text(0.47, 51.4, '+36pp', fontsize=8, color='#555555',\n             ha='right', fontweight='bold')\nt.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# Subtle class labels\nclass_labels = [\n    (0.38, 95, 'Uniformly Critical',  '#888888'),\n    (0.15, 12, 'Threshold-graded',    '#888888'),\n    (0.55, 58, 'Smooth Graded',       '#888888'),\n    (0.82,  5, 'Catastrophic Cliff',  '#888888'),\n]\nfor xc, yc, label, col in class_labels:\n    t = ax1.text(xc, yc, label, fontsize=6.5, color=col,\n                 fontstyle='italic', alpha=0.55, ha='center')\n    t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nax1.set_xlabel('Retention ratio k')\nax1.set_ylabel('Success Rate (%)')\nax1.set_xlim(0.05, 1.05)\nax1.set_ylim(-5, 108)\nax1.set_xticks([0.1, 0.3, 0.5, 0.7, 0.9, 1.0])\nax1.grid(True, alpha=0.15, zorder=0)\nax1.text(0.02, 0.98, '(a)', transform=ax1.transAxes, fontsize=11,\n         fontweight='bold', va='top')\n\n# ═══ Panel (b): CV predicts method preference ═══\n\nx = np.arange(len(models_b))\nw = 0.30\n\nbars_l2 = ax2.bar(x - w/2, l2_sr, w, color='#A1C9F4', edgecolor='#4A86C8',\n                   linewidth=0.8, label='L2norm', zorder=2)\nbars_rn = ax2.bar(x + w/2, rand_sr, w, color='#8DE5A1', edgecolor='#3DAA5E',\n                   linewidth=0.8, label='Random', zorder=2)\n\nfor i, (d, l2v, rnv) in enumerate(zip(deltas, l2_sr, rand_sr)):\n    top = max(l2v, rnv) + 2\n    sign = '+' if d > 0 else ''\n    col = '#2E7D32' if d > 0 else '#C62828'\n    ax2.annotate(f'Δ={sign}{d:.1f}', (x[i], top),\n                 fontsize=8, ha='center', va='bottom',\n                 color=col, fontweight='bold')\n\nax2.set_xticks(x)\nax2.set_xticklabels([f'{m}\\nCV={cv:.3f}' for m, cv in zip(models_b, cvs)],\n                     fontsize=9)\nax2.set_ylabel('Success Rate (%)')\nax2.set_ylim(0, 88)\nax2.legend(loc='upper left', fontsize=8, framealpha=0.9, edgecolor='#cccccc')\nax2.grid(True, alpha=0.15, axis='y', zorder=0)\nax2.text(0.02, 0.98, '(b)', transform=ax2.transAxes, fontsize=11,\n         fontweight='bold', va='top')\n\nplt.tight_layout(w_pad=2.0)\n\n# ── Save ──\nout_dir  = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper'\ndocs_dir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper'\n\nfig.savefig(f'{out_dir}/fig_degradation_curve.pdf')\nfig.savefig(f'{out_dir}/fig_degradation_curve.png')\nshutil.copy2(f'{out_dir}/fig_degradation_curve.pdf',\n             f'{docs_dir}/fig_degradation_curve.pdf')\n\nprint('Done: PDF + PNG + docs copy saved.')\nPYEOF\npython3 /tmp/gen_fig_degradation_curve.py",
+              "description": "Generate fig_degradation_curve with matplotlib"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T10:46:57.500470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done: PDF + PNG + docs copy saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T10:46:57.500653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/fig_degradation_curve.png"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T10:46:57.501050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T10:46:57.501278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat > /tmp/gen_fig_degradation_curve.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport shutil\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\nC_PI05    = '#009E73'\nC_XVLA    = '#0072B2'\nC_OPENVLA = '#E69F00'\nC_SMOLVLA = '#D55E00'\n\n# ── Data ──\ncurves = [\n    dict(name='π0.5 (random)',  k=[1.0, 0.5, 0.3], sr=[98.2, 69.4, 36.4],\n         color=C_PI05, ls='-', marker='o', ms=5),\n    dict(name='π0.5 (L2norm)',  k=[1.0, 0.5, 0.3], sr=[98.2, 33.4, 51.0],\n         color=C_PI05, ls='--', marker='s', ms=5),\n    dict(name='X-VLA (L2norm)',\n         k=[1.0, 0.95, 0.9, 0.85, 0.80, 0.7, 0.5, 0.3, 0.2, 0.1],\n         sr=[99.2, 99.1, 97.8, 67.8, 88.6, 57.2, 43.4, 22.3, 4.7, 0],\n         color=C_XVLA, ls='-', marker='^', ms=5),\n    dict(name='OpenVLA (random)',\n         k=[1.0, 0.95, 0.9, 0.7, 0.5, 0.3],\n         sr=[74.0, 69.4, 62.0, 49.0, 37.4, 20.6],\n         color=C_OPENVLA, ls='-', marker='D', ms=4.5),\n    dict(name='SmolVLA',\n         k=[1.0, 0.95, 0.9, 0.5], sr=[44.8, 0, 0, 0],\n         color=C_SMOLVLA, ls='-', marker='x', ms=6),\n]\n\nmodels_b  = ['π0.5', 'X-VLA', 'OpenVLA']\ncvs       = [0.055, 0.151, 0.215]\nl2_sr     = [33.4, 43.4, 39.2]\nrand_sr   = [69.4, 70.3, 35.8]\ndeltas    = [36.0, 26.9, -3.4]\n\n# ── Figure ──\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.2),\n                                gridspec_kw={'width_ratios': [1.5, 1]})\n\n# ═══ Panel (a): Degradation curves ═══\n\nfor c in curves:\n    kw = dict(color=c['color'], linestyle=c['ls'], marker=c['marker'],\n              markersize=c['ms'], zorder=3)\n    if c['marker'] == 'x':\n        kw['markeredgewidth'] = 2\n    ax1.plot(c['k'], c['sr'], **kw)\n\n# Direct curve labels at k=1.0\nannots = [\n    ('X-VLA',        1.0, 99.2,   6,   5,  C_XVLA),\n    ('π0.5 rand.',   1.0, 98.2,   6,  -4,  C_PI05),\n    ('π0.5 L2',      1.0, 98.2,   6, -13,  C_PI05),\n    ('OpenVLA',      1.0, 74.0,   6,   0,  C_OPENVLA),\n    ('SmolVLA',      1.0, 44.8,   6,   0,  C_SMOLVLA),\n]\nfor name, kv, yv, xo, yo, col in annots:\n    t = ax1.annotate(name, (kv, yv), xytext=(xo, yo),\n                     textcoords='offset points', fontsize=7.5,\n                     color=col, va='center', ha='left', clip_on=False,\n                     fontweight='medium')\n    t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\n# Gap annotation at k=0.5\nax1.annotate('', xy=(0.5, 34.5), xytext=(0.5, 68.3),\n             arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.0))\nt = ax1.text(0.47, 51.4, '+36pp', fontsize=8, color='#555555',\n             ha='right', fontweight='bold')\nt.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# Subtle class labels near representative curves\nclass_labels = [\n    (0.70, 104, 'Uniformly Critical'),   # near pi0.5 top\n    (0.20,  15, 'Threshold-graded'),      # near X-VLA low-k\n    (0.78,  55, 'Smooth Graded'),         # near OpenVLA mid\n    (0.93,  18, 'Catastrophic Cliff'),    # near SmolVLA cliff\n]\nfor xc, yc, label in class_labels:\n    t = ax1.text(xc, yc, label, fontsize=6.5, color='#999999',\n                 fontstyle='italic', alpha=0.6, ha='center')\n    t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nax1.set_xlabel('Retention ratio k')\nax1.set_ylabel('Success Rate (%)')\nax1.set_xlim(0.05, 1.05)\nax1.set_ylim(-5, 112)\nax1.set_xticks([0.1, 0.3, 0.5, 0.7, 0.9, 1.0])\nax1.grid(True, alpha=0.15, zorder=0)\nax1.text(0.02, 0.98, '(a)', transform=ax1.transAxes, fontsize=11,\n         fontweight='bold', va='top')\n\n# ═══ Panel (b): CV predicts method preference ═══\n\nx = np.arange(len(models_b))\nw = 0.30\n\nbars_l2 = ax2.bar(x - w/2, l2_sr, w, color='#A1C9F4', edgecolor='#4A86C8',\n                   linewidth=0.8, label='L2norm', zorder=2)\nbars_rn = ax2.bar(x + w/2, rand_sr, w, color='#8DE5A1', edgecolor='#3DAA5E',\n                   linewidth=0.8, label='Random', zorder=2)\n\nfor i, (d, l2v, rnv) in enumerate(zip(deltas, l2_sr, rand_sr)):\n    top = max(l2v, rnv) + 2\n    sign = '+' if d > 0 else ''\n    col = '#2E7D32' if d > 0 else '#C62828'\n    ax2.annotate(f'Δ={sign}{d:.1f}', (x[i], top),\n                 fontsize=8, ha='center', va='bottom',\n                 color=col, fontweight='bold')\n\nax2.set_xticks(x)\nax2.set_xticklabels([f'{m}\\nCV={cv:.3f}' for m, cv in zip(models_b, cvs)],\n                     fontsize=9)\nax2.set_ylabel('Success Rate (%)')\nax2.set_ylim(0, 90)\nax2.legend(loc='upper right', fontsize=8, framealpha=0.9, edgecolor='#cccccc')\nax2.grid(True, alpha=0.15, axis='y', zorder=0)\nax2.text(0.02, 0.98, '(b)', transform=ax2.transAxes, fontsize=11,\n         fontweight='bold', va='top')\n\nplt.tight_layout(w_pad=2.0)\n\n# ── Save ──\nout_dir  = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper'\ndocs_dir = '/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper'\n\nfig.savefig(f'{out_dir}/fig_degradation_curve.pdf')\nfig.savefig(f'{out_dir}/fig_degradation_curve.png')\nshutil.copy2(f'{out_dir}/fig_degradation_curve.pdf',\n             f'{docs_dir}/fig_degradation_curve.pdf')\n\nprint('Done: PDF + PNG + docs copy saved.')\nPYEOF\npython3 /tmp/gen_fig_degradation_curve.py",
+              "description": "Regenerate figure with fixes"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T10:46:57.501474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done: PDF + PNG + docs copy saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T10:46:57.501597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/fig_degradation_curve.png"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T10:46:57.501985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T10:46:57.502195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lh /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/fig_degradation_curve.{pdf,png} /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper/fig_degradation_curve.pdf",
+              "description": "Verify output files exist and check sizes"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T10:46:57.502338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  57K May 21 10:45 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper/fig_degradation_curve.pdf\n-rw-r--r-- 1 ubuntu ubuntu  57K May 21 10:45 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/fig_degradation_curve.pdf\n-rw-r--r-- 1 ubuntu ubuntu 190K May 21 10:45 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/fig_degradation_curve.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T10:46:57.502461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T10:46:57.502578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T10:46:57.502698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_degradation_curve",
+              "type": "chart",
+              "description": "2-panel main results figure: (a) token pruning degradation curves across 4 connector classes (5 curves: π0.5 random/L2norm, X-VLA L2norm, OpenVLA random, SmolVLA), (b) CV predicts pruning method preference at k=0.5 (grouped bar chart). Okabe-Ito colors, 300 DPI PDF vector.",
+              "project": "importance_margin_vla_compress",
+              "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/figures/paper/fig_degradation_curve.pdf",
+              "tags": "['paper', 'main-result', 'degradation-curve', 'token-pruning']",
+              "skill": "draw-paper-figure"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T10:46:57.502852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_66ffbb\\\", \\\"name\\\": \\\"fig_degradation_curve\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"2-panel main results figure: (a) token pruning degradation curves across 4 connector classes (5 curves: π0.5 random/L2norm, X-VLA L2norm, OpenVLA random, SmolVLA), (b) CV predicts pruning method preference at k=0.5 (grouped bar chart). Okabe-Ito colors, 300 DPI PDF vector.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/fig_degradation_curve.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-21T10:46:49.379862+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"main-result\\\", \\\"degradation-curve\\\", \\\"token-pruning\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T10:46:57.503037+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and registered (`art_20260521_66ffbb`).\n\n**Outputs:**\n- PDF: `figures/paper/fig_degradation_curve.pdf` (57K vector)\n- PNG: `figures/paper/fig_degradation_curve.png` (190K, 300 DPI)\n- Docs copy: `docs/paper/figures/paper/fig_degradation_curve.pdf`\n\n**Panel (a)** shows 5 degradation curves with direct curve labels, +36pp gap annotation between π0.5 random vs L2norm at k=0.5, and subtle italic class labels (Uniformly Critical, Threshold-graded, Smooth Graded, Catastrophic Cliff). SmolVLA cliff and X-VLA non-monotonicity are both visible.\n\n**Panel (b)** shows grouped bars (L2norm muted blue vs Random vibrant green) for 3 models sorted by CV, with color-coded Δ annotations (green=Random wins, red=L2norm wins) showing the gap shrinking and reversing as CV increases."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_degradation_curve_20260521T103949"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ]
+}

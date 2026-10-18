@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f1ce56f1c8b8f5c2462",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy l2norm k07 s46 w41",
+  "task_key": "worker_deploy_l2norm_k07_s46_w41_20260528T091649",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_l2norm_k07_s46_w41_20260528T091649_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "158f88dbe1e8ef7d9c9a36f8e168dc9476b1af19bc5198c436683b90c25893d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**汇总：**\n- 实验 `eval_pi05_l2norm_k07_long_seed46_strict_w41` 已在 westd-41074 cuda:1 启动\n- tmux 会话：`eval_pi05_l2norm_k07_long_seed46_strict_w41`，PID 923767\n- Registry 状态：RUNNING\n- 环境变量：CUDA_VISIBLE_DEVICES=1, HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1, MUJOCO_GL=egl 均已设置\n- 日志：`/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k07_long_seed46_strict_w41.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

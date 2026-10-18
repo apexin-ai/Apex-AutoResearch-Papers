@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d7850b7eba92b9c221b2",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh merge strategy design",
+  "task_key": "worker_ssh_merge-strategy-design_20260515T120300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_merge-strategy-design_20260515T120300_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "88168109e94c47c7e34d50ba34ea1ad5e94af23b8d6cc2f96c1348f40e2043e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部语法通过。产出汇总：\n\n### 已完成\n\n| 产出 | 状态 | 文件 |\n|------|------|------|\n| **方案 C 实现** | ✅ 已完成+验证 | `src/sdgd/graph.py` (新增 `enforce_min_batch_size`) + `src/sdgd_decompose_cpu.py` (新增 `--min_batch_size` 参数) |\n| **方案 A 骨架** | ✅ 函数可用 | `src/sdgd/merge.py` (新增 `merge_with_confidence`) |\n| **方案 B+对比分析** | ✅ 文档 | `artifacts/exp008/merge_strategy_analysis.md` |\n| **Dry-run 验证** | ✅ | `artifacts/exp008/decomposition_sdgd_zero_min8.json` |\n\n### 方案 C Dry-run 关键数据\n\n| | Before | After (min_batch_size=8) |\n|---|--------|--------------------------|\n| Batches | 8 | 4 |\n| Sizes | [18,12,11,7,7,5,3,3] | [18,19,14,15] |\n| Min batch | 3 | 14 |\n\n灾难 batch 全部消除：旧 batch 6 (3 types, FP 86-90%) 和 batch 7 (3 types) 分别并入 14-type 和 15-type batch。Batch 数减半也意味着推理 cost 减半。\n\n### 方案 A 使用方式\n需要在 `sdgd_extract_gpu.py` 的 `SamplingParams` 中添加 `logprobs=1`，将 `output.outputs[0].cumulative_logprob / n_tokens` 作为 confidence 附加到每个 entity dict，然后 merge 阶段调用 `merge_with_confidence()` 替代 `merge_all_samples()`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

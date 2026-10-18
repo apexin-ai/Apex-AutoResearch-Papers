@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "022017903868d5ab812f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops cleanup and submit maven",
+  "task_key": "worker_ops_cleanup_and_submit_maven_20260519T124804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_and_submit_maven_20260519T124804_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "d809323d68bd326fe16688c18ae3ac7100e08b5f74e3497a3df25d2672ba677d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**Part 1 — exp_docred_bcs_expanded 清理:**\n- PID 604285/604367 已 kill，tmux session 已销毁\n- GPU 0 已完全释放（0MiB）\n- run.log 已删除，preprocess_config.json（686KB）保留\n- Registry 状态 → PREPARING，notes 已更新\n\n**Part 2 — exp_sdgd_zero_maven 已提交:**\n- tmux session `exp_sdgd_zero_maven` 运行中\n- vLLM 引擎已加载（PID 608246, 33742MiB / 97887MiB）\n- Registry 状态 → RUNNING\n- 预计 3-4 GPU 小时完成（168 types, 18 batches）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

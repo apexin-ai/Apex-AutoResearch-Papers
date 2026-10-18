@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bef175deef3f5442ed17",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "redeploy westd41074 gpu3 attn k085 long",
+  "task_key": "worker_redeploy_westd41074_gpu3_attn_k085_long_20260526T020117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_redeploy_westd41074_gpu3_attn_k085_long_20260526T020117_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "9074b7ba98f1277e15386f04833716ee9654b3d814431c6172f7263fbe161a42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功。\n\n**GPU3 状态：**\n- 显存：16188 MiB（模型已加载）\n- 进程正在运行，已进入 Task 1/10 评估\n- Attention pruning: 256 → 217 vision tokens (k=0.85)\n\n**完整 nvidia-smi：**\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 16188 MiB |\n| 1 | 0% | 15980 MiB |\n| 2 | 0% | 15980 MiB |\n| 3 | 0% | 16188 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

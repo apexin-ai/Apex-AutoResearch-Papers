@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "26e42f62842d60f45e0e",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops d166 westd41074 mixed",
+  "task_key": "worker_ops_d166_westd41074_mixed_20260522T131243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_d166_westd41074_mixed_20260522T131243.log",
+    "occurrence": 1,
+    "bytes": 1576609,
+    "sha256": "3a0cbd0e887da8ddd01cabd988faebc8377f4993ff327015e3eae517345e77ef"
+  },
+  "statistics": {
+    "messages": 849,
+    "user_turns": 1,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 6,
+      "assistant": 276,
+      "tool_call": 280,
+      "tool_result": 280,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 418,
+      "chunks": [
+        {
+          "path": "26e42f62842d60f45e0e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "26e42f62842d60f45e0e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "26e42f62842d60f45e0e-part-0003.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 431,
+      "chunks": [
+        {
+          "path": "26e42f62842d60f45e0e-part-0003.json",
+          "message_count": 122
+        },
+        {
+          "path": "26e42f62842d60f45e0e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "26e42f62842d60f45e0e-part-0005.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ]
+}

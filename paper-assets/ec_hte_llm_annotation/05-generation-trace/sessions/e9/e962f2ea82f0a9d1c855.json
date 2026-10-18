@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e962f2ea82f0a9d1c855",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 001 regularize",
+  "task_key": "worker_code_exp-001-regularize_20260520T213804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-001-regularize_20260520T213804_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "4212c391a93b10403a1af23a838e6070321b24d40e21edb3d39a1d4089bb360f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "564 data rows (540 original + 24 new). CSV appended correctly, original data untouched.\n\n**Summary of changes:**\n1. **`exp001_hb_synthetic.py`**: Added `safe_invert_correction` (condition number guard, threshold=100) and `invert_mixing_safe` (full wrapper with SE propagation)\n2. **`exp001_regularize.py`**: Standalone script that reruns 3 affected cells (300 MC runs) with `hb_dirichlet_reg` and `mle_laplace_reg` methods, appends 24 aggregated rows to the CSV\n3. The `cond_threshold=100` is appropriate — it catches the near-singular matrices in K=4/extreme while leaving well-conditioned cells unchanged"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

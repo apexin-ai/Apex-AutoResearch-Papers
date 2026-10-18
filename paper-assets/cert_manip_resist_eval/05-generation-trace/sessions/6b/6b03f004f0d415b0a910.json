@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6b03f004f0d415b0a910",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis r6 2a meta pooling",
+  "task_key": "worker_analysis_r6-2a-meta-pooling_20260525T074614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r6-2a-meta-pooling_20260525T074614_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "15e6d82a07c5117e5312b3d2f8f2def80c15b89e0bfd8271daf722284c2e5337"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Meta-analytic pooling 完成。结果：\n\n| K | Predictor | Pooled β_std | 95% CI | I² | Q p |\n|---|-----------|-------------|--------|-----|-----|\n| 3 | K_eff | 0.3559 | [0.2669, 0.4450] | 87.7% | <0.001 |\n| 3 | η_max | 0.2638 | [0.1584, 0.3691] | 91.3% | <0.001 |\n| 5 | K_eff | 0.4355 | [0.3184, 0.5526] | 98.9% | <0.001 |\n| 5 | η_max | 0.1020 | [-0.0549, 0.2589] | 99.4% | <0.001 |\n| 7 | K_eff | 0.4005 | [0.2981, 0.5029] | 99.4% | <0.001 |\n| 7 | η_max | 0.0842 | [-0.0828, 0.2513] | 99.8% | <0.001 |\n\n核心发现：\n- **K_eff 在所有 K 值下均显著**（CI 不含 0），pooled β_std ≈ 0.36–0.44，且随 K 增大效应保持稳定\n- **η_max 仅在 K=3 时显著**（CI 不含 0），K=5/7 时 CI 跨零，效应量从 0.26 衰减到 0.08\n- **I² 很高**（87–99%），说明条件间异质性大，random-effects 模型合理\n\n结果已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/meta_analytic_pooling.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

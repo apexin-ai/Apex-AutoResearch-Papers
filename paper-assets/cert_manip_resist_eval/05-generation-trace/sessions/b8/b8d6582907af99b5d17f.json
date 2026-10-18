@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8d6582907af99b5d17f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis plan006 cinelli hazlett v2",
+  "task_key": "worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "7f72e5e92848d1266cf48410b5269cb395e7bf84fdfb3800d649c406ce82f348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇总如下：\n\n## V2 Cinelli-Hazlett Robustness Value 结果\n\n| 指标 | V1 | V2 | 变化 |\n|------|----|----|------|\n| RV 范围 | 0.20–0.42 | 0.005–0.59 | 显著拓宽 |\n| RV > η benchmark 总计 | 8/36 (22%) | **11/36 (31%)** | +3 |\n| K=3 | 1/12 | **4/12** | +3 |\n| K=5 | 3/12 | 3/12 | 不变 |\n| K=7 | 4/12 | 4/12 | 不变 |\n\n**主要变化在 K=3**，新增 3 个 exceeds 条件（ARC×prompt_injection, ARC×sycophancy, MMLU×authority_bias）。K=5/K=7 使用的 `k5_k7_panel_analysis.json` 本身已经是 V2 数据，所以结果没变。\n\n**对论文的影响**：\n- 原论文声称 \"78% of conditions (28/36) RV ≤ η benchmark\" → V2 变为 **69% (25/36)**\n- 整体叙事方向不变（多数条件下 K_eff 不够 robust），但数字需要更新\n- RV 范围从 0.20–0.42 改为 **0.005–0.59**（更大的离散度）\n\n结果文件：`/root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

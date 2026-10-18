@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c04581f6cad9ee9af298",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code mistral aggressive diagnosis",
+  "task_key": "worker_code_mistral_aggressive_diagnosis_20260514T060920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_aggressive_diagnosis_20260514T060920_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "3034f5346a3ae157d681e4537ef8880212843ebcd29074518ff3f76b972319be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n| 压缩率 | Uniform 2-bit PPL | MCKP PPL | MCKP 优势 |\n|--------|-------------------|----------|-----------|\n| **5.3x** | 519.11 | **11.91** | **43.6×** |\n| **8x** | 519.11 | **399.90** | 1.30× |\n\n### 跨架构对比 (5.3x)\n\n| 模型 | MCKP PPL | Uniform PPL | 倍率 |\n|------|----------|-------------|------|\n| Llama-3.1-8B | 57.6 | 2643.8 | 45× |\n| Mistral-7B | 11.9 | 519.1 | **43.6×** |\n\n**结论：success。** 压缩率增大放大 MCKP 优势的规律跨架构成立——Llama 45× vs Mistral 43.6×，倍率高度一致。Mistral 绝对 PPL 更低（架构更鲁棒），但 MCKP 相对优势幅度几乎相同。8x 两者均 catastrophic，MCKP 略优但不实用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

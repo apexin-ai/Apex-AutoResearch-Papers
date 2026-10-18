@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4aa09088f369841b7d51",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "verify seed corpus factcheck",
+  "task_key": "worker_verify_seed_corpus_factcheck_20260515T173753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_seed_corpus_factcheck_20260515T173753_result.json",
+    "occurrence": 1,
+    "bytes": 1973,
+    "sha256": "bb6259fa07c0df1b6647543021bea40fdb94f30ec23b8d5e695e3fb38442544f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "事实核查完成，结论清晰。\n\n---\n\n## 种子语料事实核查结果\n\n### 1. depth-0 种子数据的实际来源\n\n**English Wikipedia (`wikimedia/wikipedia`, `20231101.en` snapshot)**\n\n证据：`scripts/prepare_seed_data.py` 第 21-22 行：\n```python\nds = load_dataset(\"wikimedia/wikipedia\", \"20231101.en\", split=\"train\", streaming=True)\nsource = \"wikipedia\"\n```\nfallback 是 `allenai/c4`（第 25 行），但实际数据文件中 5000/5000 条记录的 `\"source\"` 字段均为 `\"wikipedia\"`，说明 **C4 fallback 从未触发**。\n\n数据内容也印证了这一点——首条记录就是 Wikipedia 的 \"Anarchism\" 词条。\n\n### 2. 三个模型是否用同一份种子数据？\n\n**是，完全相同的一份 `data/depth_0.jsonl`（5000 条）。**\n\n三个 pipeline 脚本的 Step 1 都指向同一文件：\n- `run_pipeline.sh`（Pythia）：`--input_data data/depth_0.jsonl`\n- `run_pipeline_olmo.sh`：`--input_data data/depth_0.jsonl`\n- `run_pipeline_gpt2xl.sh`：`--input_data data/depth_0.jsonl`\n\ndepth-1+ 的数据各模型独立生成（输出到 `data/olmo/`、`data/gpt2xl/` 等子目录），但种子数据共享。\n\n### 3. \"Wikipedia subset\" 的说法是否准确？\n\n**准确。** 论文中写 \"Wikipedia subset\" 是正确的。数据来自 `wikimedia/wikipedia` 2023-11-01 英文快照，取前 5000 条满足 256-512 token 长度约束的文章（用 Qwen2.5-1.5B tokenizer 截断）。\n\n### 4. 正确的表述\n\n论文现有说法 **无需修改**。精确表述为：\n\n> We sample 5,000 articles from the English Wikipedia (November 2023 snapshot, `wikimedia/wikipedia` on HuggingFace), truncated to 256–512 tokens, as the shared depth-0 seed corpus for all three model families.\n\nmethod worker 改用 OpenWebText/Dolma/WebText 的说法**与代码不符**——这些是各模型的预训练数据，不是本项目的种子数据。种子数据统一是 Wikipedia。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

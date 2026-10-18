@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a64ba65fd2e70a81c59a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh prompt v2 prep",
+  "task_key": "worker_ssh_prompt-v2-prep_20260514T231959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prompt-v2-prep_20260514T231959_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "c746fe3c4e3c3fb0f524721e53a1211f47cf8430f6c7d2767f5697e4bb30f77d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改总结：\n\n### 修改的文件\n\n**`src/run_extraction.py`**\n- `build_json_schema` → 重命名为 `build_json_schema_v1`（保留别名兼容）\n- `build_prompt` → 重命名为 `build_prompt_v1`（保留别名兼容）\n- 新增 `build_json_schema_v2`：只有 `text` + `type`，无 `start`/`end`\n- 新增 `build_prompt_v2`：不要求 offset，增加空列表指令\n- `run_extraction()` 新增 `prompt_version` 参数（默认 `\"v1\"`）\n- CLI 新增 `--prompt_version` 选项\n\n**`src/evaluate.py`**\n- `_exact_match`/`_relaxed_match` 签名增加 `source_text=None`（向后兼容）\n- 新增 `_text_match`：type 匹配 + substring 文本匹配 + 源文本验证（防幻觉）\n- `compute_metrics` 传递 `source_text` 给 match 函数\n- `evaluate_all()` 新增 `eval_mode` 参数：`\"exact\"` / `\"relaxed\"` / `\"text_match\"` / `\"all\"`\n- CLI 新增 `--eval_mode` 选项\n\n**`src/run_experiment.py`**\n- CLI 新增 `--prompt_version` 和 `--eval_mode`，传递给下游函数\n- 日志输出适配三种指标\n\n### Dry-run 结果\n\n在 exp1 predictions（500 samples）上验证：\n- exact F1 ≈ 0.01（offset 噪声导致极低）\n- relaxed F1 ≈ 0.10-0.27\n- **text_match F1 ≈ 0.10-0.57**（显著高于 exact，证明模型确实能提取正确实体，只是 offset 是噪声）\n\ntext_match 模式下 count_44 的 recall 显著提升到 ~0.5+，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

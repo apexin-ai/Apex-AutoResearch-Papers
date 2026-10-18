@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "742f865bf18502a02d3f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops diagnose 6 failures and analyzing",
+  "task_key": "worker_ops_diagnose_6_failures_and_analyzing_20260523T034556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_diagnose_6_failures_and_analyzing_20260523T034556_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "6a00bbeef2103f674fc72a78c789e89b302102059ef8c46c07ed2f25f24fded4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| exp_id | server | 状态 | SR | 详情 |\n|--------|--------|------|----|------|\n| eval_pi05_random_k085_goal_seed43 | cqa1-33015 | ✅ 已完成 | 53.4% | libero_goal, random k=0.85, 500ep |\n| eval_pi05_l2norm_k085_long_seed43_v2 | westd-38929 | ✅ 已完成 | 79.0% | libero_10, l2norm k=0.85, 500ep |\n| eval_pi05_random_k03_long_seed43_v3 | westd-38929 | ✅ 已完成 | 28.4% | libero_10, random k=0.3, 500ep |\n| eval_pi05_l2norm_k07_long_seed43_v2 | westd-38929 | ✅ 已完成 | 65.8% | libero_10, l2norm k=0.7, 500ep |\n| eval_pi05_random_k085_long_seed43 | westd-41074 | ✅ 已完成 | 41.8% | libero_10, random k=0.85, 500ep |\n| eval_pi05_random_k05_long_seed43_v2 | westd-41074 | ✅ 已完成 | 51.2% | libero_10, random k=0.5, 500ep |\n| eval_pi05_random_k09_object_seed43_v3 | westd-27271 | ❌ 日志不存在 | — | 在 westd-27271 全盘搜索未找到任何匹配日志文件，实验可能从未启动 |\n\n前 6 个实验 + 1 个 ANALYZING 实验全部在服务重启前已跑完（500/500 episodes），只是被 cron monitor 误标为 failed/ANALYZING。已全部更新为 conclusion=success, status=DONE。\n\n`eval_pi05_random_k09_object_seed43_v3` 需要重新部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

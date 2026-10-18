@@ -2,6 +2,12 @@
 
 Project directory: `schema-dag-extraction`
 
+## Browse generation traces
+
+[Visual browser](../../traces/index.html?project=schema-dag-extraction) · [Offline preview](../../traces/demo.html?project=schema-dag-extraction) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
+
+Includes 1,242 source files and 131,771 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+
 ## Asset review matrix
 
 | Requirement | Status | Organized contents and evidence | Still to verify |

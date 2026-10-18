@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bb47ff2443e6cb379c35",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose train acis stage1only k03 k07",
+  "task_key": "worker_diagnose_train_acis_stage1only_k03_k07_20260517T074121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_train_acis_stage1only_k03_k07_20260517T074121_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "d6f0b2e4dfab645e4bdeccfe589ce6154caed174c9879e9c7b0b8f613a60337d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**两个实验都在正常运行，cron 误报。**\n\n**直接原因：** `WANDB_MODE=offline` 导致 W&B 数据仅保存在本地，不同步到云端。cron 监控通过检查 W&B 云端 run 和 sentinel 文件判断进程存活状态，两者都不存在，因此误判为 dead。\n\n**当前状态：**\n- k03: step ~6050/10000，GPU 3 (PID 11343)，正常训练中\n- k07: step ~6200/10000，GPU 2 (PID 11257)，正常训练中\n- 两个 tmux session 均存活，无任何错误日志\n- 每个任务有 4 个 dataloader worker 在 CPU 上运行\n\n**磁盘：** `/autodl-pub` 96% (6.7T/7.0T) 但这不是工作目录。实际工作盘 `/dev/sda2` 仅用 16G/879G (2%)，空间充足，不影响训练。\n\n**结论：** 无需重跑，实验正在正常推进。需要修复的是 cron 监控逻辑：要么让这些 run 使用 online W&B，要么让 cron 检测 sentinel 文件 / 检查进程 PID 存活而非仅依赖 W&B 云端状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

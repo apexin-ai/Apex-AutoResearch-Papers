@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "67510c4bdbe7b9cf82cf",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train smart compress m32",
+  "task_key": "worker_train_smart_compress_m32_20260517T173516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_smart_compress_m32_20260517T173516_result.json",
+    "occurrence": 1,
+    "bytes": 1300,
+    "sha256": "c513a7dd56278c3dd9d2baae001add42a765186869b3dbcc2036c327b268a181"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行。汇报如下：\n\n---\n\n## Smart Compress M=32 训练启动报告\n\n| 项目 | 值 |\n|---|---|\n| **服务器** | cqa1-33015, GPU 0 (RTX 4090 D) |\n| **PID** | 342374 (python 进程) |\n| **总 steps** | 100,000 |\n| **每 step 时间** | ~0.22s (稳定 sps ≈ 4.5) |\n| **预计训练时长** | **~6.2 小时** (100000 / 4.5 / 3600) |\n| **Checkpoint 间隔** | 每 1,000 steps（已从 10000 修改） |\n| **GPU 显存占用** | 2,866 MiB / 24,564 MiB |\n| **训练数据** | `HuggingFaceVLA/libero` (本地缓存 `/root/autodl-tmp/.hf_cache/lerobot/hub/datasets--HuggingFaceVLA--libero`) |\n| **可训练参数** | 122M / 472M (25.85%), 其中 Compressor 22M, Expert+Projection 100M |\n| **W&B** | offline 模式 |\n\n### Loss 变化（log_every=50）\n\n| Step | Loss | Grad Norm |\n|---|---|---|\n| 0 | 1.0367 | 51.78 |\n| 50 | 3.2804 | 40.22 |\n| 100 | 0.7217 | 11.42 |\n| 150 | 0.4781 | 5.79 |\n| 200 | 0.4456 | 5.45 |\n| 250 | 0.3565 | 8.10 |\n| 300 | 0.4607 | 3.46 |\n\nLoss 从 1.04 快速下降到 ~0.4 附近，grad norm 从 51.78 降至 3-8 范围，训练收敛正常。\n\n> 注：log 间隔为 50 步，无法获取逐 step 的前 10 步 loss。step 50 的 loss 异常高 (3.28) 可能是 warmup 初期学习率调整导致的正常波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

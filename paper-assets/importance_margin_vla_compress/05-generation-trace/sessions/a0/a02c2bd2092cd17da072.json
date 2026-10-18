@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a02c2bd2092cd17da072",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy openvla attn westd38929",
+  "task_key": "worker_deploy_openvla_attn_westd38929_20260524T182259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla_attn_westd38929_20260524T182259_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "ed4f4e98dcc5c8653c361379ba1a3e46b840f696c0baf52a5f466dcd6c5a7459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**状态汇总：**\n\n| GPU | 实验 | PID | k_ratio | Tokens | 状态 |\n|-----|------|-----|---------|--------|------|\n| 0 | OpenVLA Attn k=0.9 Object seed42 | 692469 | 0.9 | 256→230 | 运行中 (58% util) |\n| 1 | OpenVLA Attn k=0.85 Object seed42 | 693429 | 0.85 | 256→217 | 运行中 (84% util) |\n\n**输出文件：**\n- `eval_results/openvla_attn_prune_k09_object_seed42.json`\n- `eval_results/openvla_attn_prune_k085_object_seed42.json`\n\n已注册每小时 :23 分 cron 监控（job b0ef1bf1）。每个实验约 500 episodes（10 tasks × 50），预计 3-5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

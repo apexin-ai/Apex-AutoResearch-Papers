@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "75f481b2505cefb418f0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose prune k05 spatial v2",
+  "task_key": "worker_diagnose_prune_k05_spatial_v2_20260519T131812",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_prune_k05_spatial_v2_20260519T131812_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "0761d319bd96db7d84308907ed791dcda2438b8b8ddf2c9929788adc427a7b53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程状态：正常完成退出（非崩溃）。** Cron 检测到的\"进程消失\"是因为实验跑完了。\n\n**结果：**\n- Overall SR: **0.00%** (0/500)，Wilson 95% CI: [0.00%, 0.76%]\n- 10 个 task 全部 0/50，与预期一致（k=0.5 random pruning 移除一半视觉 token 导致完全失效）\n- 结果 JSON 已完整保存：`smolvla_random_prune_k05_spatial.json`\n\n**无需重启。** Registry 已更新为 DONE/success，metrics 已写入。cuda:2 现已空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

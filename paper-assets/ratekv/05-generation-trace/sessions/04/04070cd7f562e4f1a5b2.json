@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "04070cd7f562e4f1a5b2",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper appendix runtime",
+  "task_key": "worker_paper_appendix-runtime_20260514T193142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-runtime_20260514T193142_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "a042d62f9350bc89eee2eff5abe562f994311a2b0daae15934e8280f5babb4a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix section added at `appendix.tex:50-78`. It includes:\n\n- **Table** (`\\ref{tab:runtime}`): 3 conditions × 3 metrics with caption noting PyTorch-level simulation\n- **Analysis paragraph**: MCKP +8.5% over uniform due to mixed-precision dispatch; solver itself is 5ms; same 4x compression as uniform\n- **Caveat paragraph**: explicitly states these are not optimized CUDA kernels, production engines with fused kernels would narrow the gap, and the conclusion's \"no real-kernel latency benchmarks\" limitation still holds\n\nThe `\\label{sec:runtime}` is in place for cross-referencing from the main text."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

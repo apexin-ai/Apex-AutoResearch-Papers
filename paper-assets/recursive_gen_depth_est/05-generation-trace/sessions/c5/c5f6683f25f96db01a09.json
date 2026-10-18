@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "c5f6683f25f96db01a09",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp w2 domain bias design",
+  "task_key": "worker_exp_w2_domain_bias_design_20260515T191751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_w2_domain_bias_design_20260515T191751.log",
+    "occurrence": 1,
+    "bytes": 963422,
+    "sha256": "0b3a807153b79366b4a1b42b2ac3e9a29a2caeaadbb0fca1164bd28e8d1f0a95"
+  },
+  "statistics": {
+    "messages": 349,
+    "user_turns": 2,
+    "tool_calls": 131,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 131,
+      "tool_result": 131,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "c5f6683f25f96db01a09-part-0001.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "c5f6683f25f96db01a09-part-0001.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 254,
+      "chunks": [
+        {
+          "path": "c5f6683f25f96db01a09-part-0001.json",
+          "message_count": 66
+        },
+        {
+          "path": "c5f6683f25f96db01a09-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5f6683f25f96db01a09-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ]
+}

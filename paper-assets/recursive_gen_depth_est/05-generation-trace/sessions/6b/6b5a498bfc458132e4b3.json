@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6b5a498bfc458132e4b3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh three class eval persist",
+  "task_key": "worker_ssh_three_class_eval_persist_20260514T183740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_three_class_eval_persist_20260514T183740_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "60cf4ddf9dbd4d305c5d8ca88888670e8e47d9b9901c80085f2a3a79932b1d23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个模型的三分类评估结果均已生成并持久化：\n\n**GPT-2 XL** (`results/gpt2xl/three_class_*`)\n- RF acc: 79.27% [77.83, 80.60]\n- AUC: d1v2=0.9109, d1v3=0.989, d2v3=0.8885\n\n**OLMo** (`results/olmo/three_class_*`)\n- RF acc: 74.40% [72.83, 75.97]\n- AUC: d1v2=0.8664, d1v3=0.9852, d2v3=0.8274\n\n每个目录生成了 4 个文件：`three_class_classification_report.txt`、`three_class_pairwise_auc.json`、`three_class_feature_importance.json`、`three_class_confusion_matrix.png`。格式与四分类结果一致。脚本保存在 `scripts/run_three_class_eval.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

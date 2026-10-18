@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4241c28ccb6d5590a6cc",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code file inventory",
+  "task_key": "worker_code_file_inventory_20260518T233755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_file_inventory_20260518T233755_result.json",
+    "occurrence": 1,
+    "bytes": 3466,
+    "sha256": "f85dd0165ee2311774fa93de6a6596dbcf4ea34d1cbddd686048f8ed39e0bacd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`save_project_file` 不支持写入 `file_inventory.md`。直接输出完整清单：\n\n# 远程文件清单 (westb-48145)\n\n## /root/entrainment_gated_ft/lm_eval_clean/\n| 文件 | 大小 |\n|------|------|\n| 1.3B-100B-GatedDeltaNet-hybrid-12-1.json | 127M |\n| 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log | 265K |\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json | 14K |\n| 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json | 14K |\n| 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json | 14K |\n| 1.3B-100B-GatedDeltaNet-pure.json | 127M |\n| 1.3B-100B-GatedDeltaNet-pure.log | 5.4K |\n| 1.3B-100B-GatedDeltaNet-pure_final.log | 241K |\n| 1.3B-100B-GatedDeltaNet-pure_lambada_only.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure_results.json | 286 |\n| 1.3B-100B-HGRN2-hybrid-12-1.json | 127M |\n| 1.3B-100B-HGRN2-hybrid-24-1.json | 127M |\n| 1.3B-100B-HGRN2-hybrid-3-1.json | 127M |\n| 1.3B-100B-HGRN2-hybrid-6-1.json | 127M |\n| 1.3B-100B-HGRN2-pure.json | 127M |\n| 1.3B-100B-RetNet-hybrid-12-1.json | 127M |\n| 1.3B-100B-RetNet-hybrid-24-1.json | 127M |\n| 1.3B-100B-RetNet-hybrid-3-1.json | 127M |\n| 1.3B-100B-RetNet-hybrid-6-1.json | 127M |\n| 1.3B-100B-RetNet-pure.json | 127M |\n| 1.3B-100B-RetNet-pure_final.log | 336K |\n| 1.3B-100B-RetNet-pure_results.json | 14K |\n| eval_all.log | 997K |\n| eval_h24.log | 251K |\n| eval_remaining.log | 848K |\n| gdn_pure_validation.log | 3.2K |\n| hgrn2_debug.log | 116K |\n| hgrn2_debug_lambada.log | 2.6K |\n| remaining.log | 5.5K |\n| retnet_hybrid12_eval.log | 335K |\n| retnet_pure.log | 9.5K |\n| retnet_pure_final.log | 1.2K |\n| retnet_pure_v2.log | 3.3K |\n| retnet_redownload_eval.log | 90 |\n| retnet_reeval.log | 9.0K |\n| summary_all_1.3b.csv | 2.7K |\n| transformer_1.3B_baseline.json | 127M |\n| transformer_1.3B_baseline_final.log | 155K |\n| validation.log | 26K |\n| validation2.log | 27K |\n\n## /root/entrainment_gated_ft/lm_eval_clean/340m/\n| 文件 | 大小 |\n|------|------|\n| 340M-20B-GatedDeltaNet-New-hybrid-24-1.json | 126M |\n| 340M-20B-GatedDeltaNet-hybrid-12-1.json | 126M |\n| 340M-20B-GatedDeltaNet-hybrid-3-1.json | 126M |\n| 340M-20B-GatedDeltaNet-hybrid-6-1.json | 127M |\n| 340M-20B-GatedDeltaNet-pure-baseline.json | 127M |\n| eval_all.log | 1.3M |\n| transformer_340M_baseline.json | 127M |\n| transformer_340M_baseline_lambada.log | 15K |\n\n## /root/entrainment_gated_ft/lm_eval_clean/multiseed/\n| 文件 | 大小 |\n|------|------|\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure/seed_0/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure/seed_1/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure/seed_4/results.json | 7.6M |\n\n## /root/entrainment_gated_ft/lm_eval_clean/figures/\n| 文件 | 大小 |\n|------|------|\n| fig1_lambada_vs_attn.pdf | 17K |\n| fig1_lambada_vs_attn.png | 86K |\n| fig2_all_benchmarks.pdf | 27K |\n| fig2_all_benchmarks.png | 344K |\n| fig3_delta_heatmap.pdf | 23K |\n| fig3_delta_heatmap.png | 194K |\n\n## /root/entrainment_gated_ft/analysis/\n| 文件 | 大小 |\n|------|------|\n| convergence_analysis.pdf | 23K |\n| convergence_analysis.png | 128K |\n| convergence_analysis.py | 4.4K |\n| lambada_attention_analysis.png | 214K |\n| lambada_crossmodel_scatter.png | 178K |\n| lambada_per_example.csv | 324K |\n| logprob_analysis.py | 8.7K |\n| logprob_plots.py | 6.4K |\n\n**总文件数: 53**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

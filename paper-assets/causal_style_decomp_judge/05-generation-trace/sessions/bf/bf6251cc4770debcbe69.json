@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "bf6251cc4770debcbe69",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code mtbench qwen32b scoring",
+  "task_key": "worker_code_mtbench_qwen32b_scoring_20260521T080440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mtbench_qwen32b_scoring_20260521T080440.log",
+    "occurrence": 1,
+    "bytes": 717806,
+    "sha256": "dfcf79371fc924cabbf0d5db0b6d62169f1d77ff287914072c80d8fa3c45d2e7"
+  },
+  "statistics": {
+    "messages": 363,
+    "user_turns": 0,
+    "tool_calls": 157,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 157,
+      "tool_result": 157,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 363,
+      "chunks": [
+        {
+          "path": "bf6251cc4770debcbe69-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf6251cc4770debcbe69-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf6251cc4770debcbe69-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ]
+}

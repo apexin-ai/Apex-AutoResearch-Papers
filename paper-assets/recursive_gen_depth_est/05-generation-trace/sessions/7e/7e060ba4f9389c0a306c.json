@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "7e060ba4f9389c0a306c",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp plan 013 downstream curation poc",
+  "task_key": "worker_exp_plan_013_downstream_curation_poc_20260515T213758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_013_downstream_curation_poc_20260515T213758.log",
+    "occurrence": 1,
+    "bytes": 1355322,
+    "sha256": "461e2ddcc612bc0b77c0fe778335e7c5f17f5c680eb6f6e285af4f05fc8a9c7e"
+  },
+  "statistics": {
+    "messages": 601,
+    "user_turns": 1,
+    "tool_calls": 244,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 104,
+      "tool_call": 244,
+      "tool_result": 244,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 350,
+      "chunks": [
+        {
+          "path": "7e060ba4f9389c0a306c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e060ba4f9389c0a306c-part-0002.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 251,
+      "chunks": [
+        {
+          "path": "7e060ba4f9389c0a306c-part-0002.json",
+          "message_count": 10
+        },
+        {
+          "path": "7e060ba4f9389c0a306c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e060ba4f9389c0a306c-part-0004.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ]
+}

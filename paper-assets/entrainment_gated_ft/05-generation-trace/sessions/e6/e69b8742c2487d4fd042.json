@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "e69b8742c2487d4fd042",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "analysis exp 005 6arch jaccard",
+  "task_key": "worker_analysis_exp-005-6arch-jaccard_20260522T173937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-6arch-jaccard_20260522T173937.log",
+    "occurrence": 1,
+    "bytes": 1066364,
+    "sha256": "ddf612629b058c8506ec1d48734f7222ec21d7d685d1944aa44cb2a4790e5d9a"
+  },
+  "statistics": {
+    "messages": 421,
+    "user_turns": 1,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 148,
+      "tool_result": 148,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 399,
+      "chunks": [
+        {
+          "path": "e69b8742c2487d4fd042-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e69b8742c2487d4fd042-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e69b8742c2487d4fd042-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "e69b8742c2487d4fd042-part-0003.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ]
+}

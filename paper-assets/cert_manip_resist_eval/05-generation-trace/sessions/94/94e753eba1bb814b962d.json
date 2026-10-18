@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94e753eba1bb814b962d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis gam tier fix 3 3 9",
+  "task_key": "worker_analysis_gam-tier-fix-3-3-9_20260522T192555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gam-tier-fix-3-3-9_20260522T192555_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "6ad8a1e341d4d8ecff1d4aa725bdd27db2c8058a0e99ad42e8c05b150c276090"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存至 `/root/cert_manip_resist_eval/artifacts/results/plan001/gam_tier_analysis_corrected.json`。\n\n## 结果汇总\n\n### Panel Tier 分布（3/3/9 分类）\n- Frontier: 37 panels\n- Mid: 37 panels  \n- Lightweight: **381** panels (83.7%，符合预期)\n\n### 新旧对比（Old 4/6/5 → New 3/3/9）\n\n| Method | K_eff FDR sig | η_max FDR sig |\n|---|---|---|\n| Canonical OLS | 8/12 → **8/12** (不变) | 11/12 → **11/12** (不变) |\n| + Tier indicators | 5/12 → **5/12** (不变) | 10/12 → **11/12** (+1) |\n| GAM (nonlinear) | 12/12 → **12/12** (不变) | 12/12 → **12/12** (不变) |\n\n### Tier-indicator OLS (K_eff 5/12 sig, 4+/1−)\n- 显著的 5 个 condition: mmlu×prompt_injection (+), mmlu×verbosity_bias (+), arc×prompt_injection (+), arc×sycophancy (−), arc×position_bias (+)\n\n### GAM K_eff sign split\n6+/6− 方向 split **仍然成立**，与旧分类一致。\n\n### 关键发现\n修正 tier 分类后聚合结论完全不变——K_eff 从 canonical 8/12 降到 tier-controlled 5/12，η_max 保持 11-12/12 高度显著。tier 分类的具体选择对宏观结论不敏感。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

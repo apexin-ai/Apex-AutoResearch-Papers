@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "99de03fa63a45dad3918",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose fewrel 40rel r2",
+  "task_key": "worker_diagnose_fewrel_40rel_r2_20260515T170645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_fewrel_40rel_r2_20260515T170645_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "c89ca74a97d4b265801bc3eb14770a538c55ba63a54d1d94475482b04a38a2c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 总结\n\n### exp_fewrel_40rel_r3\n- 已结束，EXIT_CODE=0，但**只做了 exp2 预处理**\n- **无任何预测结果产出**（exp1/exp2 均无 predictions_*.json）\n\n### r2 OOM 根因\n- vLLM 参数与成功的 `run_fewrel_formal.py` **完全一致**\n- OOM 发生在模型权重加载阶段（shard 1/7），不是推理阶段\n- 最可能原因：**当时有其他 GPU 进程占用显存**\n\n### 已修复\n1. `src/run_fewrel_40rel.py` 第 90 行：`gpu_memory_utilization` 从 0.95 降到 **0.85**（增加安全裕量）\n2. `scripts/run_fewrel_40rel.sh` 已确认包含 `FLASHINFER_DISABLE_VERSION_CHECK=1`\n3. 语法检查通过 (SYNTAX_OK)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

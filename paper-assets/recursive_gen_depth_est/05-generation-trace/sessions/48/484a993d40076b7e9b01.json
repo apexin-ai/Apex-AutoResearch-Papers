@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "484a993d40076b7e9b01",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "eval binoculars 14b topk50 check",
+  "task_key": "worker_eval_binoculars_14b_topk50_check_20260520T054700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_binoculars_14b_topk50_check_20260520T054700_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "9522de14c23a9308da6bde07136093557674dee26886d30c3922ad47ed6db434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Binoculars 14B topk50 — 成功**\n\n| Feature Set | 4-class Acc | d1-d3 Bal Acc |\n|-------------|------------|---------------|\n| merged (30-feat) | **51.49%** | **46.37%** |\n| stat_only (19-feat) | 48.84% | 43.45% |\n| bino_only (11-feat) | 37.74% | 34.02% |\n| bino_single (1-feat) | 25.23% | 25.21% |\n\n**方案A 基线对齐**: merged 51.49% vs main pipeline 47.93% = **+3.56 pp**\n\n注意事项：\n- 原始 ablation 脚本因相对路径问题失败（从错误目录运行），已从项目根目录重跑成功\n- 原始 binoculars eval 日志末尾有 HF 下载报错，但 JSON 和 npz 已在之前成功生成\n- Cron job `binoculars_14b_topk50` 不存在（可能已清理），无需删除\n- Registry 已更新为 DONE/success，artifact 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

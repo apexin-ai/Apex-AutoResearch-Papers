@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2a4ad9f6bcd49c0cd691",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper ref pages batch",
+  "task_key": "worker_paper_ref_pages_batch_20260522T073024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref_pages_batch_20260522T073024_result.json",
+    "occurrence": 1,
+    "bytes": 1435,
+    "sha256": "5151211d39d371742c3b091ccf25e1da4c2eeb82ccc46b15318e186966bf4f75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 19 个编辑完成。\n\n## 报告\n\n### 补全了 19 个条目\n\n| Key | Pages | Venue |\n|-----|-------|-------|\n| `golde-2025-familiarity` | 820--834 | NAACL 2025 |\n| `baan-2023-ecological` | 1017--1029 | ACL 2023 |\n| `llm-pee-2025` | 34377--34399 | EMNLP 2025 |\n| `parse-2025` | 2749--2763 | EMNLP 2025 Industry |\n| `crossagentie-2025` | 13953--13977 | Findings ACL 2025 |\n| `gliner-2024` | 5364--5376 | NAACL 2024 |\n| `gliner2-2025` | 130--140 | EMNLP 2025 Demos |\n| `dror-2018-significance` | 1383--1392 | ACL 2018 |\n| `knowcoder-2024` | 8758--8779 | ACL 2024 |\n| `slot-2025` | 472--491 | EMNLP 2025 Industry |\n| `ethayarajh-contextual-2019` | 55--65 | EMNLP-IJCNLP 2019 |\n| `codeie-2023` | 15339--15353 | ACL 2023 |\n| `adelie-2024` | 7371--7387 | EMNLP 2024 |\n| `fewnerd-2021` | 3198--3213 | ACL 2021 |\n| `fewrel-2018` | 4803--4809 | EMNLP 2018 |\n| `maven-2020` | 1652--1671 | EMNLP 2020 |\n| `docred-2019` | 764--777 | ACL 2019 |\n| `sentence-bert-2019` | 3982--3992 | EMNLP 2019 |\n| `xie-zeroshot-ner-2023` | 7935--7956 | EMNLP 2023 |\n\n### 跳过 8 个条目\n\n**ML 会议（无 pages 惯例）— 5 个：**\n`uniner-2024` (ICLR), `gollie-2024` (ICLR), `cai-isotropy-clusters-2021` (ICLR), `minilm-2020` (NeurIPS), `sclar-sensitivity-2024` (ICLR)\n\n**其他非 ACL 会议 — 3 个：**\n`cmas-ner-2025` (ACM Web Conference), `oneke-2025` (ACM Web Conference), `vllm-2023` (SOSP)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

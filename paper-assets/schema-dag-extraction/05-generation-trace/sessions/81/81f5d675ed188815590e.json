@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "81f5d675ed188815590e",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis docred ridge",
+  "task_key": "worker_analysis_docred_ridge_20260522T045710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_ridge_20260522T045710.log",
+    "occurrence": 1,
+    "bytes": 569417,
+    "sha256": "d241d858fff94204bbd6a85fdef2ae2773d8e61e8a1d254e6dd7de09900ac0bf"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 1,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 50,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 94,
+      "tool_result": 94,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 110,
+      "chunks": [
+        {
+          "path": "81f5d675ed188815590e-part-0001.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "81f5d675ed188815590e-part-0001.json",
+          "message_count": 70
+        },
+        {
+          "path": "81f5d675ed188815590e-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ]
+}

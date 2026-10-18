@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "69e5c91c77b8ca99e080",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "debug exp fewrel 80pool 16sub bootstrap",
+  "task_key": "worker_debug_exp_fewrel_80pool_16sub_bootstrap_20260516T021106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp_fewrel_80pool_16sub_bootstrap_20260516T021106_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "6fd7e8d263ae06a87c7a405545dcbebf161391a42ddcc362c8ccc76154b807e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已完成，无需启动。** 诊断结果：\n\n- **extract 阶段**：100/100 batches 全部完成（batch_000 到 batch_099），predictions_incremental.jsonl 有 9600 行，results_incremental.jsonl 有 100 行\n- **analyze 阶段**：bootstrap_ci.json 已生成，包含完整统计结果\n- **GPU 空闲**是因为任务已跑完退出，不是从未启动\n\n关键结果摘要（bootstrap_ci.json）：\n\n| 指标 | 值 |\n|------|-----|\n| mean_accuracy | 80.77% |\n| mean_bcs | 0.557 |\n| Δ_BCS (low−high) | −3.92pp, CI [−7.79, +0.42] |\n| Pearson(BCS, acc) | −0.221, p=0.027 |\n| Regression slope | −0.401, CI [−0.684, −0.062] |\n\n注意：Δ_BCS 的 95% CI 跨越 0（上界 +0.42），说明 16-sub 条件下 BCS 对 accuracy 的影响在统计上不显著（与 C002 约束一致——BCS amplification 在小 pool 下较弱）。回归斜率 CI 不含 0，方向性趋势存在但效应量小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

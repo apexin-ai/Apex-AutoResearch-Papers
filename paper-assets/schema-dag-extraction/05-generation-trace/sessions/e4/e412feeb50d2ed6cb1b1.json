@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e412feeb50d2ed6cb1b1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops gemini tmux check",
+  "task_key": "worker_ops_gemini_tmux_check_20260518T064437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gemini_tmux_check_20260518T064437_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "50ba223f4fb5cf6c44452cc55bdced27064c56043e5339c5dbde79234c53967c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**tmux session**: 无运行中的 session，已结束。\n\n**Gemini Flash 实验 (`exp_gemini_flash/`)**: **失败 — API 连接错误**\n- dry run 阶段 5/5 样本全部因 `Connection error` 失败（所有请求都在重试后超时）\n- 0/5 correct，从未进入正式 count curve 实验\n- 只有 `run.log`，无任何结果数据\n- 根本原因：Gemini Flash 走的是 OpenAI-compatible endpoint (`https://api.openai.com/v1`)，连接完全不通\n\n**Llama-3.1-70B BCS-controlled (`bcs_controlled_llama-3.1-70b-fp8/`)**:\n- 仅有 **count_8** 和 **count_16** 数据（各 5 batches）\n- **count_64**: 无数据（missing）\n- **count_80**: 无数据（missing）\n- **part2_bcs**: 无数据（missing）\n- count_16 结果：delta = +10.94 pp (CI [3.02, 20.1])，低 BCS 组准确率更高\n- count_8 结果：delta = -4.17 pp (CI [-16.67, 7.29])，不显著\n\n**总结**: Gemini Flash 实验因 API endpoint 配置错误完全失败（用了 openai.com 而非 Google 的 endpoint）。Llama-70B BCS-controlled 缺少 count_64 和 count_80 数据。需要修复 Gemini API 配置后重跑，以及补跑 Llama 的 count_64/count_80。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

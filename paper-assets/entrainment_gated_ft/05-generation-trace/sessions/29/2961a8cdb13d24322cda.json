@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2961a8cdb13d24322cda",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp boolq hellaswag eval",
+  "task_key": "worker_analysis_exp-boolq-hellaswag-eval_20260520T124927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-boolq-hellaswag-eval_20260520T124927_result.json",
+    "occurrence": 1,
+    "bytes": 1758,
+    "sha256": "c65be2f77ab6fe52215ca048ba7652af5b1835af9b41f77b0f80f94fd276f684"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Accuracy\n\n**BoolQ** (acc):\n| | pure | h24-1 | h12-1 | h6-1 | h3-1 |\n|---|---|---|---|---|---|\n| **GDN** | 0.585 | **0.489** | 0.635 | 0.570 | 0.622 |\n| **RetNet** | 0.611 | 0.604 | 0.606 | 0.622 | 0.581 |\n| **HGRN2** | 0.574 | 0.609 | 0.609 | 0.617 | 0.636 |\n\n**HellaSwag** (acc_norm):\n| | pure | h24-1 | h12-1 | h6-1 | h3-1 |\n|---|---|---|---|---|---|\n| **GDN** | 0.608 | 0.597 | 0.610 | 0.606 | 0.603 |\n| **RetNet** | 0.580 | 0.582 | 0.588 | 0.585 | 0.578 |\n| **HGRN2** | 0.599 | 0.602 | 0.607 | 0.606 | 0.604 |\n\n### Cross-Architecture Per-Example Analysis\n\n**BoolQ** — 最高 multiplicity，无 convergence：\n- Cross-arch std 无趋势：**ρ=-0.30, p=0.62**\n- Multiplicity 极高：**44.5%-52.1%** 样本跨架构不一致\n- Mean Jaccard: 0.531-0.612\n\n**HellaSwag** — 极高 agreement，弱趋势：\n- Cross-arch std 边际趋势：**ρ=-0.80, p=0.10**\n- Agreement 极高：**89.7%-90.9%** 样本三架构完全一致\n- Multiplicity 很低：仅 **9.1%-10.3%**\n- Mean Jaccard: 0.859-0.876\n\n### 四 Benchmark 光谱（按 multiplicity 排序）\n\n| Benchmark | Multiplicity α | Aggregate ρ | p |\n|---|---|---|---|\n| HellaSwag | ~10% | -0.80 | 0.10 |\n| ARC-Easy | ~21% | -0.20 | 0.78 |\n| LAMBADA | ~30% | -1.00 | 0.017 |\n| **BoolQ** | **~50%** | -0.30 | 0.62 |\n\n**关键发现**：\n1. BoolQ 有最高 multiplicity（~50%），远超其他 benchmark，但无 aggregate convergence → 进一步强化 decoupling 叙事\n2. HellaSwag 是\"无效应\" benchmark——三架构几乎完全一致（Jaccard>0.86）\n3. Task 特性主导 multiplicity 程度，attention ratio 影响次要\n4. **GDN h24-1 BoolQ acc=0.489 异常偏低**（其余 0.57-0.64），可能需要确认"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

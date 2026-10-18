@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b218669508b01951e528",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval libero diversity check urgent",
+  "task_key": "worker_eval_libero_diversity_check_urgent_20260516T153157",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_libero_diversity_check_urgent_20260516T153157_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "6c5a542bb5e0243d8c5288286a2d66517f2cb243842866948b034af96e407844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。\n\n## Diversity Check 结果 — LIBERO 10K Checkpoints\n\n```\nFull FT 10K:  diversity_std=0.1987 [PASS]\nLoRA 10K:     diversity_std=0.1736 [PASS]\n阈值: std > 0.05 = PASS\n```\n\n**两个模型都通过**，无 mode collapse。Full FT 的 diversity 略高于 LoRA（0.199 vs 0.174），均远超 0.05 阈值。\n\n各 observation 的明细：\n\n| | Obs 0 | Obs 1 | Obs 2 | Obs 3 | Obs 4 | Avg |\n|---|---|---|---|---|---|---|\n| **Full FT** | 0.193 | 0.192 | 0.203 | 0.193 | 0.213 | **0.199** |\n| **LoRA** | 0.166 | 0.177 | 0.154 | 0.198 | 0.174 | **0.174** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

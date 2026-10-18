@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "414d805e66317dbb72bd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code hetero tau dgp",
+  "task_key": "worker_code_hetero-tau-dgp_20260521T230410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hetero-tau-dgp_20260521T230410_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "d3db343623cd760238dad3ab4ba2f3fd56b777899c400c40cd7b0e65f6a92433"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Key results:\n\n**EC-HTE vs Global under heterogeneous-τ DGP:**\n\n| n_expert | \\|Bias\\| Global | \\|Bias\\| EC-HTE | RMSE Global | RMSE EC-HTE |\n|----------|----------------|-----------------|-------------|-------------|\n| 200 | 0.0365 | **0.0248** | **0.1780** | 0.2606 |\n| 500 | 0.0314 | **0.0099** | **0.1580** | 0.1760 |\n| 1000 | 0.0286 | **0.0130** | **0.1554** | 0.1602 |\n\n- **EC-HTE wins on |Bias| at all 3 budget levels** — the bias advantage is largest at n=500 (68% reduction vs Global).\n- **Global still wins on RMSE** due to lower variance, but the gap shrinks rapidly: from 0.083 at n=200 to only 0.005 at n=1000. At n=1000, RMSE is nearly tied.\n- **True_short (Δτ=0.6)** shows the biggest EC-HTE bias improvement: Global's |Bias|≈0.10 vs EC-HTE≈0.01 at n=500, matching the theoretical prediction that Global cannot handle subgroups with very different Δτ.\n- The bias-variance decomposition confirms: EC-HTE has 10x lower Bias² than Global at n≥500, but higher variance at small budgets."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

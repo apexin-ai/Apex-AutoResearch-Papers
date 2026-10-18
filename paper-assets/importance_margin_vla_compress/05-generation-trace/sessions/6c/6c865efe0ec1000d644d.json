@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c865efe0ec1000d644d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis data consolidation precheck",
+  "task_key": "worker_analysis_data_consolidation_precheck_20260528T054526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_data_consolidation_precheck_20260528T054526_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "126db1d44ebafb2df108d106c7673b6f573cf412b8561f1c5e4a46d2c6bd4081"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "整合完成。核心结果：\n\n**覆盖率**: 10/18 格子 4-seed 完整，8/18 格子 3-seed，共 9 个缺失数据点（均为 s45 或 s44）。\n\n**Outlier 检测**: 无。最大偏差 L2norm k=0.75 s43=73.2%（+3.2pp from mean），在 5pp 阈值内。\n\n**ROADMAP 检查清单**: 6 项全部通过（1 项 N/A，1 项有 per-task 注意事项）。\n\n**数据完整性**: 18 组 s42+s43 均值与 ROADMAP 2-seed 表交叉验证，全部匹配。\n\n**需关注**:\n- Random k=0.9 s42=34.2% 来自 D273 决策记录，registry 无 strict 条目\n- Random k=0.85 s43 per-task 数据有 L2norm 混入，整体 SR=47.2% 不受影响\n- 9 个缺失 seed 中，s44 实验部分仍在 running（ROADMAP 标注 ⏳）\n\n产出已注册: `art_20260528_e8226b`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

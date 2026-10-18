@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eb893fb4b03f8bed39be",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code offline singlestep action error",
+  "task_key": "worker_code_offline_singlestep_action_error_20260517T113724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_offline_singlestep_action_error_20260517T113724_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "da4611faa43e6cdbdf0a36feac991ebb4138b7ec66baeda720519fa0b15db66a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n**ACIS k=0.5 true_removal pruning 的离线单步 action 误差分析** (200 步, LIBERO demo data)\n\n| 指标 | 值 |\n|------|------|\n| Bypass vs Pruned mean L2 | **1.284** |\n| Bypass vs GT mean L2 | 0.414 |\n| Pruned vs GT mean L2 | 1.391 |\n| 相对误差 (L2/action_norm) | **111.5%** |\n\n**Per-dimension 分解**:\n- 位置 (xyz): 0.20-0.30\n- 旋转 (xyz): 0.01-0.02 (很小)\n- **Gripper: 1.02** (主要误差来源，相当于在 [-1,1] 上直接翻转)\n\n**结论**: `large_per_step_error` — pruning 在每一步都直接破坏 action prediction，不是\"小误差 compounding 到灾难\"的情况。相对误差 >100% 意味着 pruning 引入的偏差超过了 action 本身的幅度。gripper 维度是主要贡献者，token 移除导致了离散 gripper 决策的翻转。\n\n脚本保存在 `offline_singlestep_error.py`，JSON 结果在 `eval_results/offline_singlestep_error.json`，实验已注册为 `offline_singlestep_error_k05`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eedcf9ab0edaf4ee9178",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla l2norm k075 long seed42",
+  "task_key": "worker_diagnose_eval_openvla_l2norm_k075_long_seed42_20260527T013659",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_l2norm_k075_long_seed42_20260527T013659_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "e4972de00fc894eb68122d1020539ac7e464961e81512612e08920e48a1f6dc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n### 进度\n- **完成 420/500 episodes (84%)**\n- 8 个 task 已完成 (Task 1-8)，Task 9 跑到 Ep 20/50 时被 timeout 杀掉\n- 剩余：Task 9 的 30 episodes + Task 10 的 50 episodes = 80 episodes\n\n### 原因\n**纯超时，无任何异常。** 无 OOM、无 error、无 traceback、无卡住迹象。全程稳定 0.9 eps/min。\n\n### 时间分析\n- 实验启动：01:30，被杀：09:30（北京时间），总运行 **8 小时 (480 min)**\n- 参考：同服务器 `l2norm_k05` 完成全部 500 episodes 耗时 **666.6 min (11.1h)**\n- 本实验 k=0.75（保留更多 token），速度略快（0.9 vs 0.7-0.8 eps/min）\n- 预估总耗时：420 episodes / 480 min = 0.875 eps/min → 500 episodes 需 ~571 min ≈ **9.5h**\n- **timeout 设了 8h，差约 1.5h**\n\n### 已完成 Task 的成绩（可用）\n| Task | SR |\n|------|-----|\n| 1 | 0.460 |\n| 2 | 0.480 |\n| 3 | 0.480 |\n| 4 | 0.140 |\n| 5 | 0.140 |\n| 6 | 0.680 |\n| 7 | 0.300 |\n| 8 | 0.460 |\n\n### 建议\n重新提交时 timeout 调到 **10-11h**，或只跑剩余的 Task 9-10（如果脚本支持 `--start_task` 之类的参数）。无需修复任何代码问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

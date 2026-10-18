@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "544b82ef25fa5739415a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops 14b status westd",
+  "task_key": "worker_ops_14b-status-westd_20260518T030534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-status-westd_20260518T030534_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "edbc8aa02adbcfd71a35c4a31c69c29ca1f4aa0a3f7be8acaf7a4fb138ed1d05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：正在运行\n\n| 项目 | 状态 |\n|------|------|\n| **PID** | 20700 存活，GPU 0 占用 32,372 MiB，92% util |\n| **当前阶段** | Phase 3.1b — 生成 d1（LoRA finetune on d0 已完成） |\n| **d0** | 完成 5000/5000 samples，LoRA 训练 loss=0.5451 (3 epochs, ~41min) |\n| **d1** | 正在生成，已写入 2001 行（目标 5000），文件仍在增长 |\n| **d2, d3** | 尚未开始 |\n| **结果目录** | `results/qwen25_14b_scale/` 已创建但为空，尚未到 RF 训练阶段 |\n\n### 进度估算\n\n已完成流程：d0 生成 → d0 LoRA finetune → d1 生成中 (40%)\n\n剩余流程：d1 生成剩余 → d1 LoRA finetune → d2 生成 → d2 LoRA finetune → d3 生成 → RF 训练 + 评估\n\n每个 depth 周期（生成 + finetune）约 1.5-2 小时（参考 d0 周期）。d1 生成约完成 40%，还剩 ~3 个完整周期 + d1 收尾。\n\n**预估 ETA：5-7 小时后完成**（约今天 16:00-18:00 UTC+8）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

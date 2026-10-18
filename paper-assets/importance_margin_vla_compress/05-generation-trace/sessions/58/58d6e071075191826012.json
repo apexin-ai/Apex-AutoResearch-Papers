@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "58d6e071075191826012",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest attn k095 s44 w41",
+  "task_key": "worker_harvest_attn_k095_s44_w41_20260528T002731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_attn_k095_s44_w41_20260528T002731_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "5359575c9e2bc0b1c2978c1686e776977f8990983ffa977e14d2bdc9a6c832d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。\n\n**π0.5 Attn k=0.95 Long seed44**: SR = **77.8%** (389/500)\n\n3-seed 汇总:\n| Seed | SR |\n|------|------|\n| 42 | 78.4% |\n| 43 | 77.2% |\n| 44 | 77.8% |\n| **Mean** | **77.8%** |\n\nRegistry 已更新为 DONE(success)，cron 已不存在（此前已删除）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

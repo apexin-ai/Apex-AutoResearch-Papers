@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36db1637095a9b43e413",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k05 long seed46 strict",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k05_long_seed46_strict_20260528T111456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k05_long_seed46_strict_20260528T111456_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "d2b7819b6e19d8babff987e23f1ea0340995d8514d61858319293d92c8ce6b65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1. **Success rate**: 52.6% (263/500)\n2. **异常**: 无，EXIT_CODE=0，所有 10 个 task 正常完成\n3. **Registry 更新**: 成功，status=DONE, conclusion=success, metrics 已写入\n\nL2norm k=0.5 Long 现有 seed 数据：之前 2-seed mean 51.0%±1.8pp，s46 = 52.6%，与之前结果一致，variance 应收窄。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

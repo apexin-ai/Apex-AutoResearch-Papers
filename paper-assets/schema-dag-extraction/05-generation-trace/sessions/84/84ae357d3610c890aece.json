@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84ae357d3610c890aece",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d044 revert fewrel table2",
+  "task_key": "worker_paper_d044_revert_fewrel_table2_20260516T105643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d044_revert_fewrel_table2_20260516T105643_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "688dbc50305c4035682ccd09ffedc4e6e400e32fdd6109ab230f4a47e720e46d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n- Table 2 has only Few-NERD and MAVEN rows (FewRel removed)\n- Caption says \"Both\" (not \"All three\")\n- \"We omit FewRel\" declaration restored in caption\n- Discussion paragraph updated: \"Both datasets\", r² range → 1.3--1.7%, remaining variance → ~98--99%, FewRel balanced design sentence removed from this paragraph\n- §4.3 FewRel balanced design sentence preserved (line 72)\n- Braces balanced (196/196)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f2d315c68ff6776b452a",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis a3 complementarity",
+  "task_key": "worker_analysis_a3_complementarity_20260522T081553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a3_complementarity_20260522T081553_result.json",
+    "occurrence": 1,
+    "bytes": 1400,
+    "sha256": "2a73ebe15e0dc747171ccae10ce66aaf8a0db23a1e9f7bc489fe7a9f74a9a6f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A3 完成。所有输出在 `westb-48145:/root/entrainment_gated_ft/results/a3_complementarity/`。\n\n## 核心发现\n\n### 四类分解 (所有 benchmark 通用模式)\n\n| 类别 | 含义 | 典型占比 |\n|------|------|---------|\n| **UC** (3/3 correct) | 共识正确 | 35-66% |\n| **MC** (2/3 correct) | MV 可利用 | 7-16% |\n| **mC** (1/3 correct) | 浪费的互补性 | 5-15% |\n| **UW** (0/3 correct) | 共识错误 | 18-35% |\n\n### 关键指标\n\n- **Complementarity Index (CI)**: 0.38–0.48，随 attention ratio 增加略有上升（LAMBADA 从 0.40→0.48），说明 attention 增加并未消除架构互补性，反而稍微增强\n- **MV Efficiency: 几乎全部为负值**（-0.20 到 +0.13），说明 MV 准确率通常低于最佳单一架构。这是最重要的发现——3 个架构的多数投票反而比\"挑最好的一个\"还差\n- **Wasted Complementarity**: LAMBADA 最高（~14%），PIQA 最低（~6%）。attention ratio 对这个指标影响较小\n\n### 趋势\n\n- UC/UW 在不同 attention ratio 下**基本稳定**，共识区域不随 attention 显著变化\n- MV Efficiency 负值意味着：当一个架构一致性更强时（如 ARC-Easy 上 HGRN2 持续领先），两个较弱架构会\"投票淹没\"最好的那个\n- Oracle-MV gap（即 mC 样本）= 14-15% on LAMBADA，代表\"存在正确信息但 MV 无法提取\"的上界"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

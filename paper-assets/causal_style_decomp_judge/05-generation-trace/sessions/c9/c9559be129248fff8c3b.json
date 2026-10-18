@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c9559be129248fff8c3b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code table1 likert verify",
+  "task_key": "worker_code_table1_likert_verify_20260524T051619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table1_likert_verify_20260524T051619_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "028a9b667b11491c826530359ccb019e815ea8a70defc2e8e6657b3a86e040ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果汇总：\n\n**产出文件**：\n- 脚本：`/root/causal_style_decomp_judge/analysis/compute_table1_likert.py`\n- CSV：`/root/causal_style_decomp_judge/analysis/table1_verified.csv`\n\n**关键发现**：\n- Llama-70B register 有 1 条 `score_counterfactual: null` 记录，已跳过（94→93）\n- 所有 13 个 judge×axis 组合的 Cohen's d 均非常小（|d| < 0.10），效应量可忽略\n- 所有 Wilcoxon p-value 远大于 0.05（最小 0.28），无统计显著性\n\n| Judge | Axis | N | Cohen's d | Wilcoxon p |\n|---|---|---|---|---|\n| GPT-4o | formality | 88 | -0.04 | 0.91 |\n| GPT-4o | verbosity | 86 | 0.05 | 0.40 |\n| GPT-4o | register | 94 | 0.00 | 0.78 |\n| Qwen3-32B | formality | 88 | -0.05 | 0.46 |\n| Qwen3-32B | verbosity | 86 | 0.04 | 0.39 |\n| Qwen3-32B | register | 94 | -0.07 | 0.37 |\n| Llama-70B | formality | 88 | 0.01 | 0.53 |\n| Llama-70B | verbosity | 86 | 0.02 | 0.28 |\n| Llama-70B | register | 93 | 0.02 | 0.52 |\n| Gemini-Flash | formality | 88 | -0.08 | 0.31 |\n| Gemini-Flash | verbosity | 86 | 0.05 | 0.37 |\n| Claude | formality | 88 | -0.02 | 0.72 |\n| Claude | verbosity | 86 | -0.04 | 0.74 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

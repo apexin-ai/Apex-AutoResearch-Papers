@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c5d472f24a5c7fb0800e",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "agent / loop_4_1778885525.md",
+  "task_key": "loop_4_1778885525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778885525.md",
+    "occurrence": 1,
+    "bytes": 4298,
+    "sha256": "34f59db938f96056d218a6db21b79dccc47c5888d11f17a9120a7a7d2a364a23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T21:36:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cqa1-38874:cuda:0（唯一分配的 GPU）\n- Blackwell SM120 不支持 FlashInfer FP8 JIT（nvcc 12.8 < 12.9），FP8 模型必须设 `FLASHINFER_DISABLE_VERSION_CHECK=1`\n- LLaMA-3.3-70B-FP8 在此 GPU 上无法运行（FlashInfer 内核编译失败，已连续失败 3 次，D022 决定放弃）\n- LLaMA-3.1-8B-Instruct 在 structured JSON output 约束下零输出（r4 验证），exp012 多模型验证方案需要 Director 重新决策\n- 数据盘 248/250GB 接近满，大模型下载前必须先清理 AWQ 残留（~36GB）\n- ARR May 25 硬截止，距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874，工作目录 `/root/schema-dag-extraction`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 主模型：Qwen3-32B-FP8 @ `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n- LLaMA-8B：`/root/autodl-tmp/.hf_cache/llama-3.1-8b-instruct/`（ModelScope 下载）\n- 数据：Few-NERD `/root/schema-dag-extraction/data/parquet/test.parquet`；FewRel `/root/schema-dag-extraction/data/fewrel_parquet/`；MAVEN `/root/schema-dag-extraction/data/maven_parquet/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：**无**（GPU 空闲）\n- 活跃 Worker：`worker_analysis_exp006_interaction_2x2_20260515T183441`（正在分析 exp006 结果）\n\n### 3. 📊 当前状态\n刚收到 exp006_interaction_2x2 的 CRON 完成回调（进程正常退出）。已派 Worker 分析结果，Worker 正在 SSH 读日志+提取指标+更新 registry。\n\nRegistry 状态：\n- **exp006_interaction_2x2**: ANALYZING — Count×BCS 2×2 交互效应实验，等 Worker 回调写入 metrics 和 conclusion\n- 其余 27 个实验全部 DONE（success 11, negative 3, failed 11, killed 2）\n\n等待中：\n- Worker 回调：`worker_analysis_exp006_interaction_2x2` → 收到后更新 registry、report.md、汇报 Director\n- GPU cuda:0 空闲，等 exp006 分析完后应立即推进下一个任务\n\n### 4. 📋 待办\n- Worker exp006 分析回调到达 → 按 on-experiment-done skill 处理：更新 registry + report.md + 汇报 Director（带 [资源] 行）+ 反思实验计划 + 文献联动\n- exp006 conclusion=success → 记录交互效应证据，评估是否补充 paper claims\n- exp006 conclusion=negative → 按 red-section 产出 Framing 调整提案，禁止默默跑下一个\n- GPU 空闲 → 立即推进 exp_fewrel_40rel（已失败 3 次，脚本已修好 gpu_memory_utilization 0.95→0.85 + FLASHINFER env var，待重跑）\n- exp_fewrel_40rel 完成 → 录入 scaling curve 中间点 → Patch 进论文\n- exp012 多模型验证：LLaMA-8B structured output 失败，需要 Director 决策新方案（D024 硬截止 May 18）\n- AWQ 残留清理 → 释放 ~36GB 磁盘（exp012 重试前必须做）\n- Paper Agent Full Draft 写作进行中（independent of GPU experiments）\n\n### 5. 🎯 战略上下文\n**核心结论**：type confusability (BCS) 独立于 type count 驱动 training-free LLM IE 质量下降，multi-channel degradation model（count→recall, confusability→type confusion）。Claim 1+2 证据链完整（Few-NERD + FewRel 80-rel + MAVEN），Claim 3 (SDGD) 正式放弃作为 negative result。\n\n**关键决策链**：D019 放弃 SDGD → D020 启动 Paper Agent → D022 放弃 70B AWQ 转 8B → D023 free-form generation 诊断 → D024 多模型硬截止 May 18 → D025 Table 3 数据修正\n\n**易错点**：\n- exp012 多模型验证是最大风险：70B FP8 因 Blackwell 不兼容失败，8B 因 structured output 零输出失败。如果 free-form generation 也不行，可能只能接受 single-model paper。**不要在没有 Director 决策的情况下自行降级目标**\n- exp-006（当前分析中）在 D017 被降优，但 Director 后来仍然让它跑了。结果无论如何都是补充证据，不影响 core claims\n- MAVEN 的 per-type BCS 是正向关系（centrality confound），不要拿来 claim BCS→degradation，已在 paper framing 中限定为 \"partial replication\"\n- exp_fewrel_40rel 已连续失败 3 次（OOM/脚本问题），第 4 次重跑时确保 GPU 独占 + FLASHINFER_DISABLE_VERSION_CHECK=1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

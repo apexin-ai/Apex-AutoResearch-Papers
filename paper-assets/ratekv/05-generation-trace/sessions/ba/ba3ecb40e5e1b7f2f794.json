@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba3ecb40e5e1b7f2f794",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper yi 8k longctx integration",
+  "task_key": "worker_paper_yi_8k_longctx_integration_20260516T064812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_yi_8k_longctx_integration_20260516T064812_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "a68184b383669b51298effc10d29c941d92c96570f3148439591e3bc77d047d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n- 加入 Yi-1.5-9B 8K 数据（uniform 1.05×, MCKP 1.06×）\n- 将 non-Spread 模型的总结改为 \"no benefit or slight degradation\"（替代之前对两个模型的 \"negligible difference\" / \"indistinguishable\"）\n- 修复原文 \"All three non-spread models (Llama spike, Mistral flat)\" 只列了两个的问题，现在三个模型（Llama/Mistral/Yi）均明确列出\n- 最后一句加入 Yi\n- 数字与表格一致，无 \"≈ uniform\" 残留"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

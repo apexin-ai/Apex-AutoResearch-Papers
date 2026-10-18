@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84725d95d6f5c7762097",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d047 round2 framing",
+  "task_key": "worker_paper_d047_round2_framing_20260516T130643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d047_round2_framing_20260516T130643_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "6423eba51b051c7d6f0787f4aad1a1d2dead28fe2ab8433dabfb65ed98b365ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无错误，无 undefined references。\n\n完成的修改汇总：\n\n| 任务 | 文件 | 修改内容 |\n|------|------|----------|\n| A4 | introduction.tex | 第2段从6句压缩到2句（~8行） |\n| C1 | experimental_setup.tex | SCS justification 替换为 name+definition ablation 验证 |\n| C3 | introduction.tex | Contribution #1 区分 MAVEN confound-driven reversal vs cross-domain count degradation |\n| C4a | introduction.tex | \"We introduce\" → \"We operationalize type confusability via\" |\n| C4b | related_work.tex | 新增 \"SCS novelty\" 段：metric 非原创，贡献在于 controlled framework |\n| C5a | abstract.tex | 31.2pp 加 \"(a methodological upper-bound)\" |\n| C6 | introduction.tex | Contribution #4 重写为 structural infeasibility + oracle ceiling framing |\n| D4 | related_work.tex | 新增 \"Schema complexity in dialogue and IE\" 段（4条引用） |\n| D5 | experimental_setup.tex | DocRED 加 \"1,000 instances balanced across 96 relation types (~10 per type) from the development set\" |\n| D6 | experimental_setup.tex | vLLM → vLLM v0.20.2 |\n| D9 | abstract.tex | ≈199 words，在限制内 |\n| bib | references.bib | 新增 `lee2022sgd`、`volkanovska2024ner` |\n\n编译状态：**通过**（0 errors, 0 undefined references）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

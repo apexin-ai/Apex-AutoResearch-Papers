@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "83288be7c8b975d73c01",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 aggregation v2 rerun v2",
+  "task_key": "worker_analysis_k5-aggregation-v2-rerun-v2_20260524T061646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-aggregation-v2-rerun-v2_20260524T061646_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "51223eeee604ad719e93b0b45e719339307558ac87d579a5296f3503fb62b4ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**V2 结果（B=9999, BH FDR α=0.05, 5-position max-p）：**\n\n| Aggregation | η_max sig | K_eff sig | mean R² |\n|---|---|---|---|\n| Majority | 0/12 | 7/12 | 0.285 |\n| Weighted | 1/12 | 9/12 | 0.275 |\n| Threshold | 6/12 | 10/12 | 0.408 |\n| Bayesian | 1/12 | 0/12 | 0.166 |\n\n**Bayesian**: K_eff 仍然 0/12，与 V1 一致，未发生翻转。Bayesian calibration 在 K=5 下仍然完全中和了 K_eff 预测力。\n\n**与 V1 对比变化**：R² 有变（majority 0.256→0.285, threshold 0.506→0.408, bayesian 0.081→0.166），η_max 和 K_eff sig 计数未变。\n\n上次 Worker 的脚本实际已跑完（444秒），只是 Worker 在轮询时超时了。本次直接从已有结果 JSON 提取数据并修正了 appendix.tex 中的表格和描述段落（上次 Worker 错误地将所有方法的 sig 统一填为 2/12 和 7/12）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

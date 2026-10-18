@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "e4c381890703e287b229",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops pi05 official checkpoint",
+  "task_key": "worker_ops_pi05-official-checkpoint_20260521T044154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_pi05-official-checkpoint_20260521T044154.log",
+    "occurrence": 1,
+    "bytes": 1750482,
+    "sha256": "f076a75592a901a83c2140f0c12352838eafdb08595deddb7fae3c5e7f8ebd9a"
+  },
+  "statistics": {
+    "messages": 894,
+    "user_turns": 1,
+    "tool_calls": 334,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 218,
+      "tool_call": 334,
+      "tool_result": 334,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 507,
+      "chunks": [
+        {
+          "path": "e4c381890703e287b229-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4c381890703e287b229-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4c381890703e287b229-part-0003.json",
+          "message_count": 147
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 387,
+      "chunks": [
+        {
+          "path": "e4c381890703e287b229-part-0003.json",
+          "message_count": 33
+        },
+        {
+          "path": "e4c381890703e287b229-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4c381890703e287b229-part-0005.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ]
+}

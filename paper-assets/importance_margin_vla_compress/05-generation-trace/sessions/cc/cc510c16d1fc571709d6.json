@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cc510c16d1fc571709d6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd38929 script sync and launch",
+  "task_key": "worker_ops_westd38929-script-sync-and-launch_20260520T190440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd38929-script-sync-and-launch_20260520T190440_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "3c7cc797fdde54aabad4a5d3fdafc9503113247476c67897c79e8351e75f854e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个实验正常运行，汇总：\n\n| tmux session | GPU | 实验 | Token pruning | 状态 |\n|---|---|---|---|---|\n| `eval_random_k095_s43` | GPU 0 (16GB used) | random k=0.95 seed43 | 256→243 | running, Task 1/10 |\n| `eval_random_k09_s43` | GPU 1 (16GB used) | random k=0.9 seed43 | 256→230 | running, Task 1/10 |\n| `eval_random_k03_s43` | GPU 2 (16GB used) | random k=0.3 seed43 | 256→76 | running, Task 1/10 |\n| `eval_l2norm_k09_s43` | GPU 3 (16GB used) | L2 norm k=0.9 seed43 | 256→230 | running, Task 1/10 |\n\n参数修正说明：脚本参数为 `--mode random_prune --k_ratio`（非 `--keep_ratio`），无 `--gpu` 参数。L2 norm 脚本用 `--mode l2norm_prune`。每个实验 10 tasks × 50 episodes = 500 episodes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

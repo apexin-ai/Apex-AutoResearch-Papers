@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a578c31184e51ef4d2c6",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment fp16 baseline v3 bugfix",
+  "task_key": "worker_experiment_fp16-baseline-v3-bugfix_20260524T182108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_fp16-baseline-v3-bugfix_20260524T182108_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "37b502baef78fb42b4882685584af5254c2355a6676eab3a4f410ff4aadcde64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n**Bug 根因**：`s[\"answer\"]` 是整数索引（0, 1, 2, 3），`extract_answer()` 返回字母（\"A\", \"B\", \"C\", \"D\"），`pred == gold` 永远为 False → accuracy = 0.000\n\n**修复**：`gold = chr(65 + s[\"answer\"])` 将索引转换为字母\n\n**验证结果**（Qwen2.5-14B-Instruct-AWQ，100 样本）：\n| Benchmark | 修复前 | 修复后 |\n|-----------|--------|--------|\n| MMLU | 0.000 | **0.710** |\n| ARC | 0.000 | **0.840** |\n\n**其他修复**：\n- ModelScope 下载路径兼容性（旧版脚本 `from_pretrained` 无法识别 ModelScope 返回的本地路径）\n- 添加 LLaMA-3.1-8B/70B 和 Mistral-Large-123B（用 ModelScope 国内 CDN）\n- 添加 `CLEANUP_AFTER_EVAL` 自动清理已评测模型释放磁盘空间\n- 清除旧的错误 checkpoint\n\n**当前状态**：任务 `r1w2-fp16-baseline` 在 tmux 中运行，Qwen 14B AWQ 已完成，正在下载 Qwen 14B FP16。后续依次评测 Qwen 32B、LLaMA 8B、LLaMA 70B AWQ、Mistral-Large AWQ。\n\n查看进度：`tail -f /tmp/fp16_baseline_v3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

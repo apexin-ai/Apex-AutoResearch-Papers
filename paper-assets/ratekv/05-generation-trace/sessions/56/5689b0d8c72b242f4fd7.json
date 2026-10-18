@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5689b0d8c72b242f4fd7",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "diagnose mistral distortion zero",
+  "task_key": "worker_diagnose_mistral_distortion_zero_20260515T185328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mistral_distortion_zero_20260515T185328_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "8cb666d003dc8d031e19edeb45a7eba15e2a328074e43644385a6c8cb4237d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结论\n\n### 1. Solver 选中的 2 个 2-bit heads\n- **L24,H7** → `['quant', 2]`\n- **L25,H0** → `['quant', 2]`\n\n### 2. 这些 head 在 profile 中的原始 distortion\n| Head | hires 2-bit d2 (原始) | monotonicity 后 d2 |\n|------|----------------------|-------------------|\n| L24H7 | -0.001051 | 0.0 (被 clamp) |\n| L25H0 | -0.000532 | 0.0 (被 clamp) |\n\n### 3. 根因\n\n**`mistral_profiling_results.json`（标准 profile）的 4-bit 和 8-bit distortion 全部为 0.0。** 256 个 head 无一例外。\n\n完整因果链：\n1. `run_yi_mistral_downstream_k2.py` 的 `load_merged_profiles()` 将 hires 的 2-bit 数据与 standard 的 4-bit/8-bit 数据合并\n2. Standard profile 的 4-bit = 0.0, 8-bit = 0.0 → 合并后所有 head 的 4-bit/8-bit distortion 均为 0\n3. `enforce_monotonicity` 要求 d2 >= d4 >= d8 >= 0，将负的 d2（如 L24H7 的 -0.001051）也 clamp 到 0.0\n4. Solver 将 254 head 放在 4-bit（d=0.0）+ 2 head 放在 2-bit（d=0.0）→ total_distortion = 0.0\n\n对比：`mistral_c4_profiling_results.json`（C4 校准集）的 4-bit/8-bit 全部非零（256/256），是正常的。只有 `mistral_profiling_results.json` 和 `mistral_ppl_profiles_hires.json` 的 4-bit/8-bit 全零。\n\n### 4. 修复建议\n\n**方案 A（推荐）**：重新用 WikiText 校准集对 Mistral 做 4-bit/8-bit profiling，生成正确的 `mistral_profiling_results.json`\n\n**方案 B（快速）**：在 `run_yi_mistral_downstream_k2.py` 中将 Mistral 的 standard profile 路径换成 `mistral_c4_profiling_results.json`（C4 校准集有正确数据），然后重跑 downstream eval。但需注意校准集不一致的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

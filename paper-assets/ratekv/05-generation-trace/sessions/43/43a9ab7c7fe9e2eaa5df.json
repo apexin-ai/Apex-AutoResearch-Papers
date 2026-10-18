@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "43a9ab7c7fe9e2eaa5df",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code prep yi 8k eval",
+  "task_key": "worker_code_prep_yi_8k_eval_20260516T053019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_yi_8k_eval_20260516T053019_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "97d84dda39c731b9cba108cd6fadb496783e51da96e725ca27f2a9025e355f8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n## 报告\n\n| 检查项 | 状态 |\n|--------|------|\n| 脚本存在 (`run_yi15_8k_spotcheck.py`) | **Y** |\n| Eval data = WikiText-2 test set | **Y** (`wikitext-2-raw-v1`, split=`test`) |\n| seq_len = 8192 | **Y** |\n| max_2bit = 2 | **Y** |\n| Profile 文件存在 (2bit hires + standard) | **Y** |\n| 模型文件完整 (4/4 safetensors + config.json) | **Y** |\n| 离线数据集 arrow 文件存在 | **Y** |\n| 依赖包 (eval_ppl.py, solver.py) | **Y** |\n| Import dry-run 通过 | **Y** |\n| GPU 可用 | **Y** (2x GPU, torch 2.10.0+cu128) |\n\n**脚本就绪：Y**\n\n**注意事项**：数据盘 `/root/autodl-tmp` 使用率 97%（剩余 9.4GB）。Yi-1.5-9B bf16 加载约 18GB 显存，单卡 A6000（48GB）足够。脚本硬编码 `cuda:0`，不会用到第二张卡。\n\n**推荐启动命令**：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && nohup python run_yi15_8k_spotcheck.py > /tmp/yi15_8k_spotcheck.log 2>&1 &\n```\n\n**预估运行时间**：~15-25 分钟（模型加载 ~3min + 3 次 8K stride PPL eval ~4-6min 每次 + solver 开销）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

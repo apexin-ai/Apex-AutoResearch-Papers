@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bca923038c9a2ecb26f6",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code step3 mi filter and sensitivity",
+  "task_key": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_step3-mi-filter-and-sensitivity_20260522T163508_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "190804e0e45bda76276f71afe905700107b1dce5227304224bde0cb965cd00fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个修复都已通过语法和逻辑验证。\n\n## 汇报\n\n### 修复 1：Step 3 MI 过滤\n- **`extract_winner_vector`** — 改为返回 `None`（而非 `\"tie\"`）表示 error/invalid。检查 `s.get(\"error\")` 和 `s.get(\"winner\")` 为 None 两种情况\n- **`compute_pairwise_mi`** — 新增 pairwise valid-sample intersection：过滤任一方为 None 的 pair，返回 `(mi, n_valid, warning)`；n_valid < 10 返回 MI=0；n_valid < 150 标记 warning\n- **`build_mi_matrix`** — 返回 `(mi_mat, valid_counts)` 二元组，记录每对模型 valid sample count，日志打印 error 过滤数和低样本量警告\n- **输出 JSON** — 新增 `\"valid_counts\"` 字段，per-dataset 15x15 矩阵\n\n### 修复 2：Clean ACC < 0.5 Sensitivity Analysis\n- **`flag_low_accuracy_conditions`** — 新增于 `src/unified_data_loader.py`（末尾），遍历所有 (model, dataset) 计算 clean accuracy，返回低于 threshold 的 set\n- **Step 4 sensitivity 块** — 在 main regression 后、output 写入前插入。排除含 flagged model 的 panel，重跑 OLS regression + multiple testing correction，输出 main vs sensitivity 对比表\n- **输出 JSON** — 新增 `\"sensitivity_exclude_low_acc\"` key，含 threshold、flagged pairs 列表、per-condition regression 结果\n\n### 语法验证\n- Step 3：import OK，`extract_winner_vector` 正确过滤 error 条目（5 个测试样本 → `['A', None, None, None, None]`），`compute_pairwise_mi` 正确计算 valid count\n- Step 4：import OK，`flag_low_accuracy_conditions` 正确标记低准确率模型"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

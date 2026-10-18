@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3646e54145e70e06e33c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 seed47 cqa1",
+  "task_key": "worker_analysis_eval_pi05_seed47_cqa1_20260529T075715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_seed47_cqa1_20260529T075715_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "80dae9f845437cb388f838259bb323d92c8ecea1bb9301fc4ceb7ee448b0860d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，无异常（EXIT_CODE=0），10 个 task × 50 episodes = 500 episodes 全部跑完。\n\n| 实验 | Success Rate |\n|------|-------------|\n| eval_pi05_random_k09_long_seed47_cqa1 | **30.8%** (154/500) |\n| eval_pi05_random_k085_long_seed47_cqa1 | **43.4%** (217/500) |\n\nk=0.85 反而比 k=0.9 高 12.6pp，这不符合直觉（保留更少 token 反而更好）。可能是 random pruning 的随机性导致，或 seed 恰好对 k=0.85 有利。无错误或异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

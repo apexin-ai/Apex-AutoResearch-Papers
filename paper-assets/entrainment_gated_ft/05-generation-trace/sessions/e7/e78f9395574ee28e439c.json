@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e78f9395574ee28e439c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper appendix h within arch",
+  "task_key": "worker_paper_appendix-h-within-arch_20260520T030458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-h-within-arch_20260520T030458_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "fded32043d158a0802cf3420ae0ad577058bc18fe4324e929c3b6290844bfc6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两项修改：\n\n1. **Appendix H** (`appendix.tex` L227-277): 新增 `\\section{Within-Architecture Per-Example Stability}` — 三层 Jaccard 层级说明、每架构 mean J 汇总表、完整 6-pair pairwise matrix 表、adjacent vs non-adjacent 分析。\n2. **§4.4 引用句** (`experiments.tex` L84): bootstrap CI 段落后、attention weight 段落前插入一句，引用 `Appendix~\\ref{app:within_arch_stability}`。\n\n编译验证：无 error，无 undefined reference，主文 8 页（Conclusion 在 page 8），符合限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4dd4ef8089aabb125939",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag full status harvest",
+  "task_key": "worker_diag_full-status-harvest_20260523T175203",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_full-status-harvest_20260523T175203_result.json",
+    "occurrence": 1,
+    "bytes": 2272,
+    "sha256": "ba680c79cc840a70edc0841e25f408b936fb5763ff3f23221edd06e29169966b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个实验已标 DONE。完整状态表：\n\n## 服务器状态总览\n\n| Server | GPU | Experiment | Status | SR |\n|--------|-----|-----------|--------|-----|\n| **westd-38929** | 0-3: 0%, idle | E5 attn_last k=0.5 Goal v2 | **DONE** | **98.2%** |\n| | | E5 attn_mean k=0.5 Goal v2 | **DONE** | **97.4%** |\n| | | E5 attn_rollout k=0.5 Goal v2 | **DONE** | **96.8%** |\n| | | E5 random k=0.5 Goal v2 | **DONE** | **67.2%** |\n| **westd-27271** | 0: 68%, 16GB | OpenVLA Goal baseline v3 | Running | Task 10/10 (~soon) |\n| | 1: 78%, 16GB | OpenVLA Long baseline | Running | Task 3/10 (ep 40/50) |\n| **westd-41074** | 0: 39% | π0.5 l2norm k=0.925 Goal v2 | Running | T8/10, ~94.5% avg |\n| | 1: 31% | π0.5 l2norm k=0.85 Spatial v2 | Running | T6-7/10 |\n| | 2: 11% | π0.5 random k=0.925 Goal v2 | Running | T5-6/10 |\n| | 3: ~0% | π0.5 random k=0.85 Spatial v2 | Running | T4-5/10 |\n| **cqa1-33015** | 0-2: idle | π0.5 l2norm k=0.95 Goal v2 | **DONE** | **89.4%** |\n| | | π0.5 l2norm k=0.90 Goal v2 | **DONE** | **90.6%** |\n| | | π0.5 l2norm k=0.70 Goal v2 | **DONE** | **73.6%** |\n| | 3: 11% | π0.5 l2norm k=0.30 Goal v2 | Running | T9/10 (ep 20/50) |\n\n## Registry harvest 完成\n\n| Experiment | conclusion | SR |\n|-----------|-----------|-----|\n| eval_e5_xvla_attn_last_goal_k05_v2 | success | 98.2% |\n| eval_e5_xvla_attn_mean_goal_k05_v2 | success | 97.4% |\n| eval_e5_xvla_attn_rollout_goal_k05_v2 | success | 96.8% |\n| eval_e5_xvla_random_goal_k05_v2 | negative | 67.2% |\n| eval_pi05_random_k095_goal_seed42_v2 | success | 83.8% |\n| eval_pi05_random_k09_goal_seed42_v2 | negative | 62.2% |\n| eval_pi05_random_k07_goal_seed42_v2 | negative | 78.2% |\n| eval_pi05_random_k03_goal_seed42_v2 | negative | 50.6% |\n\n## 关键发现\n\n**E5 Goal k=0.5 v2 — 论文叙事核心数据**：attention-based pruning 在 50% 极端剪枝下 Goal 套件依然保持 96.8-98.2% SR，而 random 只有 67.2%。**Importance margin = +29-31pp**，比 Object/Spatial 套件的 margin 更大，强化了论文叙事。\n\n**westd-38929 已空闲**，可部署新实验。westd-41074 和 cqa1-33015 的实验预计 1-2 小时内全部完成。westd-27271 的 OpenVLA Goal baseline 即将完成（Task 10/10），Long 还需数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "671685ea17dca7648b82",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "data organize experiment results",
+  "task_key": "worker_data_organize_experiment_results_20260517T100452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_organize_experiment_results_20260517T100452_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "6ecd78f1c781e3dd3397a33f6edd615d17390d652f7be86a0c2ecc7a2bd7bcc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成完毕。汇总如下：\n\n**输出文件** (本地 `artifacts/` + westd-27271 `artifacts/`):\n- `experiment_summary.csv` - 17 行实验数据 + header\n- `experiment_summary.json` - 含 3 个模块：sim_rollout_results, acis_margin_quality, pruning_sweep\n\n**收录的实验 (17 条 sim rollout)**:\n\n| 类别 | 数量 | 关键结果 |\n|------|------|---------|\n| Baseline (full FT) | 7 | seed0: object 51%, spatial 51.8%, goal 51.6%; seed42: object 44.8%, spatial 0% |\n| Stage1-only pruning | 4 | 全部 0% (ACIS/random, k=0.5/0.9, zero_mask/true_removal) |\n| IMM two-stage pruning | 5 | k=0.5 ACIS: 10.4%/15.4%; k=0.7 ACIS: 4.8%; bypass: 0% |\n| Merge pruning | 1 | 0% (仅 20 episodes 初步测试) |\n\n**ACIS margin quality metrics (5 个训练版本)**:\n- baseline(无 IMM): margin_mean=0.015, preservation@eps0.01=33.5%\n- v8c_annealing(最优): margin_mean=1.688, preservation@eps0.01=97.5%\n\n**Pruning sweep** (v8b, 7 个 k_ratio): sweet spot at k=0.6"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "82e6079fa5f37caec6bd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "verify lora 50k checkpoint integrity",
+  "task_key": "worker_verify_lora_50k_checkpoint_integrity_20260516T192803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_lora_50k_checkpoint_integrity_20260516T192803_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "79af594520077ecc27437397721cb59ad165bca36d50851f39eb84b94af24c68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report saved to `artifacts/checkpoint_integrity_report.md`. Here's the summary:\n\n---\n\n**=== VERDICT: No loading/transfer bug. Checkpoint is intact. ===**\n\n**Step 1 — Weight Check: PASS**\n- 74 LoRA params, all non-zero, reasonable mean/std\n- Key alignment **perfect**: 0 missing, 0 unexpected keys when loaded with `libero_baseline.yaml`\n\n**Step 2 — MD5: PASS (MATCH)**\n- westd = cqa1 = `445418230f9642acc1932d7a3098cab3`\n\n**Step 3 — Inference: PASS (REASONABLE)**\n- Actions in [-1.03, 1.00], non-zero, non-NaN, vary across inputs\n- Model is actively producing different policies for different observations\n\n---\n\n**⚠️ Critical side-finding**: Full FT and LoRA checkpoints have **ZERO overlapping keys** (different key namespaces due to PEFT wrapping). The eval uses `strict=False` which silently drops all keys on mismatch. The only saved eval result file (`libero_libero_object.json`) shows Full FT checkpoint was evaluated with LoRA config — a guaranteed 0% SR bug.\n\n**Cannot confirm** how the LoRA 50K eval was actually run (no bash_history or eval log found). If it was run with the correct config, the 0% SR is genuine. If there was a config mismatch, it's a bug. **Recommend re-running the eval with explicit missing/unexpected key logging.**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

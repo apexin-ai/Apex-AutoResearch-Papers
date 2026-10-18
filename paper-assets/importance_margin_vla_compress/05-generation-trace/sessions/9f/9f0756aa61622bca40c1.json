@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9f0756aa61622bca40c1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 all 4 evals completion",
+  "task_key": "worker_diagnose_cqa1_all_4_evals_completion_20260519T110218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1_all_4_evals_completion_20260519T110218_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "60edf475ad911ba9849e1a7d9b2b064aae0a89df054b86ae10651b0b4cea7b6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| Eval | SR | 95% CI | Registry |\n|------|-----|--------|---------|\n| M=32 official | **运行中** (task 0, ep 14/50) | - | RUNNING |\n| M=32 seed44 | **59.6%** | [55.2%, 63.8%] | updated ✓, cron deleted ✓ |\n| M=64 seed44 | **64.4%** | [60.1%, 68.5%] | updated ✓, cron deleted ✓ |\n| M=96 seed44 | **52.8%** | [48.4%, 57.1%] | updated ✓, cron deleted ✓ |\n\nM=32 official 仍在 GPU:3 上运行（刚启动约 2 小时，在 task 0 ep 14/50，预计还需数小时）。M=32 official 的 cron 保留未删。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

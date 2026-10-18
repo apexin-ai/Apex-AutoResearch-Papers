@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0fa59029b354af3ab689",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research task f adaptive routing",
+  "task_key": "worker_research_task-f-adaptive-routing_20260523T080949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_task-f-adaptive-routing_20260523T080949_result.json",
+    "occurrence": 1,
+    "bytes": 1575,
+    "sha256": "90ddc3bd60bb88aa35f6dce8679f9c04a9918c8f19d834a68697b2452934cc50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are generated. Here's a summary:\n\n## Outputs\n\n1. **`results/exp_adaptive_routing.csv`** — 48 configurations, per-config aggregate RMSE\n2. **`results/exp_adaptive_routing_subgroups.csv`** — 152 subgroup-level rows with diagnostic scores + RMSE\n3. **`results/exp_adaptive_routing_sweep.csv`** — threshold sweep (0 to 3.0, step 0.05)\n4. **`results/exp_adaptive_routing_analysis.md`** — full analysis report\n5. **`exp_adaptive_routing.py`** — reproducible analysis script\n\n## Key Findings\n\n**Adaptive routing works, especially under extreme heterogeneity:**\n- K=2 extreme: adaptive RMSE 0.083 vs Global 0.100 (**17% improvement**) — the clear win case\n- K=4 extreme: adaptive 0.125 vs Global 0.130 (4% improvement), but naive often still lower\n- Homogeneous/moderate: adaptive = Global (correctly routes nothing to EC-HTE)\n\n**Diagnostic accuracy**: 87.5% at threshold=1.0. Precision for routing to EC-HTE = 86.4%.\n\n**Oracle threshold = 2.45**, but t=1.0 is within 0.16% — the theoretical threshold is near-optimal.\n\n**Bias-variance tradeoff**: The diagnostic is a bias criterion. At small n_expert (<100), EC-HTE's estimation variance dominates, so even when the diagnostic correctly identifies global bias, routing to EC-HTE can increase RMSE. The routing is most valuable at n_expert ≥ 250.\n\n**Characteristic failures**: 19/152 (12.5%) misrouted, mostly in the moderate regime where R_sym ∈ (0.3, 0.9) — below threshold but EC-HTE is slightly better. These are low-stakes errors (RMSE differences < 0.003)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

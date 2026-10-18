@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "887573962c3ed884d5f1",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops oft download fix",
+  "task_key": "worker_ops_oft-download-fix_20260520T114944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_oft-download-fix_20260520T114944.log",
+    "occurrence": 1,
+    "bytes": 905754,
+    "sha256": "dc6a0289605088a87472b13e0caf7c98dea17ceb3b0aef91b005e058d2c524a7"
+  },
+  "statistics": {
+    "messages": 564,
+    "user_turns": 1,
+    "tool_calls": 201,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 2,
+      "assistant": 134,
+      "tool_call": 201,
+      "tool_result": 201,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 281,
+      "chunks": [
+        {
+          "path": "887573962c3ed884d5f1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "887573962c3ed884d5f1-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 283,
+      "chunks": [
+        {
+          "path": "887573962c3ed884d5f1-part-0002.json",
+          "message_count": 79
+        },
+        {
+          "path": "887573962c3ed884d5f1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "887573962c3ed884d5f1-part-0004.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ]
+}

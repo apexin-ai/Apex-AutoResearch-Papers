@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60151d8424a273fb15f9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra dataset search only",
+  "task_key": "worker_infra_dataset-search-only_20260515T134144",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_dataset-search-only_20260515T134144_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "a1578abf45e73fb9a4046a7b2e46154d5274e74614bb9aa6067f3a2262c4e571"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两次搜索都没返回结果。libero 搜索为空，lerobot author 下也没匹配到数据集。\n\nstdout/stderr 原样输出：\n\n```\n设置成功\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\n---\n```\n\nlibero 相关数据集搜索为空，lerobot 作者下的 top 20 数据集也为空。可能原因：该版本 `huggingface_hub` 的 `list_datasets` API 行为有差异，或代理环境下 API 请求未正确返回数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

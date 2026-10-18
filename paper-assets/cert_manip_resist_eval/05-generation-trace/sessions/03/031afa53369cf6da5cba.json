@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "031afa53369cf6da5cba",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops appendix citation audit",
+  "task_key": "worker_ops_appendix-citation-audit_20260525T090628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_appendix-citation-audit_20260525T090628_result.json",
+    "occurrence": 1,
+    "bytes": 6286,
+    "sha256": "b13cd036258d0377da251b011947ce385faf9e188687f7fcaff99fec04fc08d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All previously orphan labels now have main-text references:\n- `app:crossed_re` → results.tex\n- `app:diversity_capability` → analysis.tex\n- `app:aggregation_k5`, `app:aggregation_k7` → results.tex\n- `app:oracle` → analysis.tex\n- `app:panel_selection` → analysis.tex\n- `app:kappa_regime`, `app:shannon_entropy` → analysis.tex\n- `app:attacks` → methodology.tex\n- `app:extended_analysis` → results.tex\n\n---\n\n## Summary\n\n### (a) Appendix inventory\n\n**appendix.tex** — 23 sections/subsections:\n\n| # | Label | Content |\n|---|-------|---------|\n| 1 | `app:proof` | Proof of Proposition (weakest-link monotonicity) |\n| 2 | `app:robustness_methods` | Clustered SE, mixed effects, wild cluster bootstrap details |\n| 3 | `app:crossed_re` | Crossed random effects analysis + `tab:crossed_re` |\n| 4 | `app:extended_analysis` | Parent section for subsections 5–9 + `fig:dominance_heatmap` |\n| 5 | `app:bft_reversal` | BFT reversal mechanism evidence + `fig:gam_split` |\n| 6 | `app:diversity_capability` | Diversity–capability tradeoff structural analysis |\n| 7 | `app:aggregation_details` | Aggregation mechanism details + `fig:aggregation` |\n| 8 | `app:aggregation_k5` | Aggregation at K=5 + `tab:aggregation_k5` |\n| 9 | `app:aggregation_k7` | Aggregation at K=7 + `tab:aggregation_k7` |\n| 10 | `app:oracle` | Metric robustness under partial panel information |\n| 11 | `app:panel_selection` | Panel selection strategy comparison |\n| 12 | `app:forest_plot` | Clustered standard error analysis |\n| 13 | `app:robustness_checks` | Subsampling and specification robustness + `tab:robustness_checks` |\n| 14 | `app:random_subsample` | Random subsample analysis |\n| 15 | `app:attacked_keff` | Attacked K_eff stability + `tab:attacked_keff` |\n| 16 | `app:sensitivity` | Cinelli–Hazlett sensitivity + `tab:sensitivity` + `fig:sensitivity_contour` |\n| 17 | `app:cross_benchmark` | Cross-benchmark prediction robustness |\n| 18 | `app:sensitivity_poolA` | Pool A sensitivity + `tab:sensitivity_poolA` + `tab:poolA_power` |\n| 19 | `app:epsilon` | Epsilon sensitivity analysis |\n| 20 | `app:temperature` | Temperature sensitivity pilot |\n| 21 | `app:keff_dist` | K_eff distribution statistics + `tab:keff_dist` |\n| 22 | `app:power_analysis` | Power analysis + `tab:mde` |\n| 23 | `app:alt_diversity` | Alternative diversity measures + `tab:alt_diversity` |\n| 24 | `app:kappa_regime` | κ-diversity predictor shift + `tab:kappa_regime` |\n| 25 | `app:shannon_entropy` | Shannon MI entropy comparison + `tab:shannon_shift` |\n| 26 | `app:copula_gof` | Gaussian copula GoF and K_eff robustness |\n| 27 | `app:quant_dummy` | Quantization dummy regression |\n| 28 | `app:bayesian_entropy` | Bayesian posterior concentration analysis |\n| 29 | `app:monte_carlo` | Monte Carlo calibration of wild cluster bootstrap |\n\n**appendix_attacks.tex** — 3 sections:\n\n| # | Label | Content |\n|---|-------|---------|\n| 30 | `app:attacks` | Attack prompt templates + `tab:attack-templates` |\n| 31 | `app:attack_details` | Implementation details + `tab:attack-params` |\n| 32 | `app:ai-assistants` | Use of AI assistants disclosure |\n\n### (b) Previously orphan items — where references were added\n\n| Orphan | File | What was added |\n|--------|------|---------------|\n| `app:crossed_re` | results.tex:11 | \"A crossed random-effects analysis accounting for the multi-membership structure of shared judges confirms $K_{\\mathrm{eff}}$ significance at $K{\\geq}5$...\" |\n| `app:diversity_capability` | analysis.tex:15 | \"The structural mechanism---maximizing diversity forces sampling across capability tiers, systematically introducing weaker judges---is detailed in Appendix~\\ref{...}.\" |\n| `app:aggregation_k5` | results.tex:89 | \"At $K{=}5$, all four methods converge to identical $K_{\\mathrm{eff}}$ significance (7/12; Appendix~\\ref{...})...\" |\n| `app:aggregation_k7` | results.tex:89 | \"...at $K{=}7$, methods diverge again, with Bayesian neutralization returning while threshold voting strengthens (Appendix~\\ref{...}).\" |\n| `app:oracle` | analysis.tex:28 | \"...$\\eta_{\\max}$ retains predictive power even under partial panel information (Appendix~\\ref{...}).\" |\n| `app:panel_selection` | analysis.tex:28 | \"(Figure~\\ref{fig:panel_design}; full strategy comparison in Appendix~\\ref{...})\" |\n| `app:kappa_regime` | analysis.tex:31 | \"$\\kappa$-diversity decreases ($8 \\to 7 \\to 6$/12; Appendix~\\ref{...})\" |\n| `app:shannon_entropy` | analysis.tex:31 | \"Shannon MI entropy shows a third pattern ($4 \\to 4 \\to 0$; Appendix~\\ref{...})\" |\n| `app:attacks` | methodology.tex:12 | Changed `\\ref{app:attack_details}` → `\\ref{app:attacks}` (parent section covers subsection) |\n| `app:extended_analysis` | results.tex:54 | Changed bare \"Appendix\" → \"Appendix~\\ref{app:extended_analysis}\" |\n\n### (c) Appendix content suggested for deletion\n\n`app:ai-assistants` (Use of AI Assistants) — This is a standalone disclosure section. For EMNLP 2026 / ARR, AI assistant disclosures go in the OpenReview submission form, not in the paper itself. It has no main-text reference and no natural place to reference it from. **Recommend either deleting it or keeping it as-is** — it's a low-stakes item that reviewers won't penalize either way.\n\nNo other appendix content warrants deletion — all items support claims made in the main text.\n\n### (d) Existing reference quality improvements\n\nOne fix applied:\n- **results.tex:54** — Changed `\"(per-condition detail in Figure~\\ref{fig:dominance_heatmap}, Appendix)\"` (bare \"Appendix\" with no label) to `\"(per-condition breakdown in Figure~\\ref{fig:dominance_heatmap}, Appendix~\\ref{app:extended_analysis})\"`.\n\nThe existing reference `Appendix~\\ref{app:alt_diversity}` in analysis.tex was previously used as a catch-all for all alternative diversity results. Now it's repositioned as the pooled comparison, with the specific K-dependent trajectory comparisons pointing to their dedicated appendix sections (`app:kappa_regime`, `app:shannon_entropy`).\n\n`fig:sensitivity_contour` has no separate main-text reference, but it resides inside `app:sensitivity` which is well-referenced from analysis.tex with clear context. No fix needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

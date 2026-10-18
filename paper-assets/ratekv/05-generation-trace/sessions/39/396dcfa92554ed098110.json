@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "396dcfa92554ed098110",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu mistral hires bf16 2bitonly",
+  "task_key": "worker_gpu_mistral_hires_bf16_2bitonly_20260514T204003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_mistral_hires_bf16_2bitonly_20260514T204003_result.json",
+    "occurrence": 1,
+    "bytes": 1184,
+    "sha256": "9686d605690bbf365b204a10b49c45f496d957586cf3996f4a438088c6803774"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~24-26% across all shards at 7.4 min. Total ~3.3GB/13.5GB. Consistent ~7.5MB/s aggregate. ETA about 22 min. The download is proceeding normally — let me give a status summary now and you can check back later.\n\n**Status summary:**\n\n- **Script**: `run_mistral_hires_bf16_2bitonly.py` created on server and locally\n- **Model**: Mistral-7B-v0.3 downloading from ModelScope (PID=259321), 3.3GB/13.5GB at ~7.5MB/s, ETA ~22 min\n- **Architecture confirmed**: 32L × 8KV heads = 256 total, GQA 4:1, head_dim=128\n- **Registry**: `mistral_hires_bf16_2bitonly` registered as RUNNING\n- **GPU**: cuda:1 reserved (both GPUs currently idle)\n\n**Next steps** (once download completes):\n- Model path will be at `/root/autodl-tmp/models/mistral-7b-v0.3/LLM-Research/Mistral-7B-v0___3`\n- Launch profiling: `cd /root/ratekv && python run_mistral_hires_bf16_2bitonly.py --model /root/autodl-tmp/models/mistral-7b-v0.3/LLM-Research/Mistral-7B-v0___3 --gpu cuda:1`\n- 256 heads × ~30s/head ≈ 2h profiling time\n- Log: `/root/ratekv/logs/mistral_hires_bf16_2bitonly.log`\n\nDownload still in progress — want me to wait and launch the profiling automatically when it finishes?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

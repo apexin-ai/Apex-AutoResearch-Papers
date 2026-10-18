@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "761214a5330b08426397",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 001 hyperprior",
+  "task_key": "worker_code_exp-001-hyperprior_20260520T220653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-001-hyperprior_20260520T220653_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "c43b2b2fcccdd02d010289eccd31617b8f1375713a8e9cf9a40be3dcb35596ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of changes:\n\n1. **`exp001_hb_synthetic.py`** — Added `hp_a0=3.0, hp_b0=1.0` parameters to `_log_target_alpha` and `estimate_cm_hb_gibbs`. Defaults match the original Gamma(3,1) behavior, so no existing code is affected.\n\n2. **`exp001_hyperprior_sensitivity.py`** — New script that sweeps `hyperprior_scale ∈ {0.5, 1.0, 2.0}` over K=2/moderate/n=250 with 100 MC runs. Scaling uses Gamma(a₀/s, b₀/s) to keep the prior mean fixed at 3 while varying variance (s=0.5 → tighter/more shrinkage, s=2.0 → wider/closer to MLE). Each run computes both HB and MLE baseline. Outputs `results/exp001_hyperprior_sensitivity.csv` and prints a condensed summary table.\n\nDry-run (2 MC) completed successfully in ~11s. Full 100 MC run is deferred per instructions."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

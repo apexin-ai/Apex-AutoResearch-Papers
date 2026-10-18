@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "90c42645b60439c67716",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "dryrun content verification",
+  "task_key": "worker_dryrun_content_verification_20260520T110435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_dryrun_content_verification_20260520T110435.log",
+    "occurrence": 1,
+    "bytes": 544488,
+    "sha256": "cacf04ac68c5f4475d6810508e5321a5f80ae7c8b3677364826d281c224a9485"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 88,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "90c42645b60439c67716-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "90c42645b60439c67716-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ]
+}

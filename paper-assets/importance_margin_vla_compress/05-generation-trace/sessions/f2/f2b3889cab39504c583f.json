@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b3889cab39504c583f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval openvla random k085 object seed42",
+  "task_key": "worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "0bdc4237aae52e5f3a82187924a4446749d45654e494e45b5051ffe137fcb101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 被占用，无法部署。**\n\n当前 cuda:3 上正在运行的进程：\n\n| 字段 | 值 |\n|---|---|\n| PID | 642262 |\n| 已运行 | ~8 分钟 |\n| 显存占用 | 15470 MiB |\n| 命令 | `eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_object --seed 42` |\n\n这是 L2norm k=0.75 Object seed42 的评测任务。实际上 4 张卡全部被占用（每张 ~16GB）。\n\n其他已确认信息：\n- 模型路径：`/root/autodl-tmp/openvla-libero-object`（短名称，已验证存在）\n- 评测脚本：已验证存在\n\n需要等当前任务完成后再部署，或者指定其他服务器/GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e91aca86845d7801842e",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "figure 5 model heatmap",
+  "task_key": "worker_figure_5-model-heatmap_20260514T185910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_5-model-heatmap_20260514T185910_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "45eb4fdf668e00272f62f3cfd813d9194ee5238b630120a0af16d3f752c56486"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出汇总：\n\n**服务器文件** (`westd-37397:/root/ratekv/figures/`):\n- `fig1_head_delta_heatmap.pdf/png` — 5 模型 heatmap（替换原 3 模型版本）\n- `fig_concentration_scatter.pdf/png` — Top-5% concentration vs MCKP improvement 散点图\n- `generate_figures.py` 已更新，包含 5 模型 heatmap + scatter 函数\n\n**本地副本** (`projects/ratekv/figures/`):\n- `fig1_head_delta_heatmap_5model.pdf` (50KB)\n- `fig_concentration_scatter.pdf` (29KB)\n\n**Heatmap 设计**:\n- 1×5 布局，宽度按 KV head 数比例 [8,8,8,4,4]\n- LogNorm 共享色标 (0.005–15)，统一比较绝对 delta\n- 排列按 GQA ratio: Gemma-2 (2:1) → Llama (4:1) → Mistral (4:1) → Qwen (7:1) → Yi-1.5 (8:1)\n- 标注 Yi-1.5 L4H3 (Δ=5.7), Qwen L0 (Δ=6.8), Llama L2H5 (Δ=12.0)\n\n**Scatter 数据**:\n| Model | Concentration | MCKP Δ PPL |\n|---|---|---|\n| Gemma-2-9B | 0.223 | −0.024 |\n| Mistral-7B | 0.220 | −0.432 |\n| Llama-3.1-8B | 0.339 | +0.019 |\n| Yi-1.5-9B | 0.495 | −0.096 |\n| Qwen2.5-7B | 0.569 | +4.214 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

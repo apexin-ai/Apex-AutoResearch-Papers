@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2cb78b74d13968a1cc25",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis bayesian posterior entropy",
+  "task_key": "worker_analysis_bayesian-posterior-entropy_20260524T190152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T190152_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "470e236b213879800c9df77417a0c0e115312bc48f272ed6bb32460082339448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**核心发现：**\n\n| K | Entropy (mean±sd) | Effective Judges | Concentration Ratio |\n|---|---|---|---|\n| 3 | 0.975 ± 0.120 | 2.67 / 3 | 0.890 |\n| 5 | 1.470 ± 0.089 | 4.37 / 5 | 0.874 |\n| 7 | 1.800 ± 0.069 | 6.07 / 7 | 0.867 |\n\n**统计检验：** Concentration ratio 单调递减（K7/7 < K3/3, p=1.4e-45; K7/7 < K5/5, p=1.4e-27），假说获统计支持。\n\n**但效果量较小：** 比率仅从 0.89 下降到 0.87（~2.3pp）。K=7 时 effective judges 仍有 6.07/7，并非假说预测的 \"collapse to 1-2 judges\"。concentration 方向正确但幅度不足以完全解释 0/12 neutralization — 可能需要结合其他机制（如攻击选择性靶向高权重 judges、或绝对 log-odds 总量效应）。\n\n输出已保存至 `/root/cert_manip_resist_eval/artifacts/results/plan001/bayesian_posterior_entropy.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

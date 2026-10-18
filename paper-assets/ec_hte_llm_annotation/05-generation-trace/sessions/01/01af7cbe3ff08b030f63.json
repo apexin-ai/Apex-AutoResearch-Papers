@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "01af7cbe3ff08b030f63",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 001",
+  "task_key": "worker_code_exp-001_20260520T194547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-001_20260520T194547_result.json",
+    "occurrence": 1,
+    "bytes": 2877,
+    "sha256": "aae12477a391916bc96b2b063c9d92925c4c4ef56a97f45e8747727b80846066"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The SE for subgroup B's HB RMSE is ~254 (half of 510) — a few catastrophic MC runs dominate the mean. Let me produce the final summary.\n\n---\n\n## Exp-001 HB Synthetic Validation — 100 MC Results\n\n**Sweep**: 3600 runs (3 regimes × 6 n_expert × 2 K × 100 MC), 4136s (~69 min), Gibbs sampler\n\n### MCMC Diagnostics\n| Metric | Value | Target |\n|--------|-------|--------|\n| R-hat > 1.01 | 3.2% of runs | < 1.01 |\n| R-hat > 1.02 | 0.2% of runs | |\n| ESS < 200 | 0.2% of runs | > 200 |\n| Divergences | 0 | 0 |\n| Runtime median | 0.86s | |\n\nConvergence is solid overall. The 3.2% of runs above the R-hat target are at the margin (max 1.024), not pathological.\n\n### K=2 Results — Clean\nHB Dirichlet consistently matches or slightly beats MLE:\n\n| n_expert | Extreme | Moderate | Homogeneous |\n|----------|---------|----------|-------------|\n| 50 | **+8.5%** | +1.9% | +2.0% |\n| 100 | +1.0% | +0.8% | +0.8% |\n| 250 | +0.5% | +0.3% | +0.3% |\n| 500+ | ~0% | ~0% | ~0% |\n\n(Positive = HB has lower RMSE than MLE)\n\n### K=4 Results — Mixed\n- **n_expert >= 250**: HB beats MLE by 0.1-1.0% across all regimes\n- **n_expert 50-100, moderate/homogeneous**: HB beats MLE by 2.8-9.2%\n- **n_expert 50-100, extreme**: **Catastrophic blow-up** — a few MC runs produce near-singular mixing matrices after HB pooling, inflating RMSE to 360+ (subgroup B) and 3+ (subgroup A)\n\n### Root Cause of K=4 Extreme Blow-Up\nWith K=4 and n_expert=50, each subgroup gets ~12 experts. The extreme regime has misclass rates [0.30, 0.20, 0.10, 0.03]. For subgroups A (0.30) and B (0.20), the confusion matrix is already close to singular (high misclass → rows similar). The HB partial pooling occasionally pushes the posterior confusion matrix estimate toward an even more singular configuration. When `invert_mixing` inverts this nearly-singular matrix, small errors in tau_obs get amplified by 100-1000x.\n\nThe current guard (`abs(det) < 1e-10`) is too permissive. A determinant of 0.001 still produces condition numbers ~1000x.\n\n### Subgroups C and D are fine\nAt K=4 extreme n_exp=50, subgroups with lower misclass (C=0.10, D=0.03) show HB beating MLE: RMSE 0.14 vs 0.15.\n\n### Key Takeaways\n1. **HB partial pooling works** — modest but consistent improvement over MLE in the well-conditioned regime (K=2 everywhere, K=4 with enough experts)\n2. **Gains are largest at small n_expert** where the prior has most influence (8.5% at n_exp=50, K=2 extreme)\n3. **Matrix inversion is the bottleneck, not the estimator** — when the mixing matrix condition number is high, ANY correction method is unstable\n4. **Practical recommendation**: add a condition number guard to `invert_mixing` (e.g., fall back to naive when cond(M) > 50)\n\nResults saved to `results/exp001_hb_results.csv` (540 rows) and `results/exp001_hb_diagnostics.csv` (3600 rows)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

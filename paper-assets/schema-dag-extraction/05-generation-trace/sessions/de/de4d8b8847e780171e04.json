@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "de4d8b8847e780171e04",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "submit exp fewrel 16rel bootstrap",
+  "task_key": "worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228.log",
+    "occurrence": 1,
+    "bytes": 1013546,
+    "sha256": "1bd4aee9bf7b03ec204500c6661219cb35497be4c92cc873cd33264bbddad4de"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 1,
+    "tool_calls": 182,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 182,
+      "tool_result": 182,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "de4d8b8847e780171e04-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "de4d8b8847e780171e04-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "de4d8b8847e780171e04-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "de4d8b8847e780171e04-part-0003.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bf015f676ac33561ebc3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code granularity ablation rf 001",
+  "task_key": "worker_code_granularity_ablation_rf_001_20260515T091818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_granularity_ablation_rf_001_20260515T091818_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "4c4939b581743685562eecdb65e8c505c0953cbe534aa196a99118a54682703b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**已完成**:\n1. 定位全部 9 cells 特征文件 + 6-class 数据路径\n2. 编写并部署 `src/granularity_ablation.py`（221 行），复用 19 特征 + 现有代码模式\n3. Dry-run 通过（pythia_nucleus095，10.4s），结果验证了决策边界稀释效应：\n   - Accuracy: binary 99.8% → 4-class 78.1% → 6-class 62.9%\n   - d2v3 AUC: 3-class 0.796 → 6-class 0.689\n4. Registry `granularity_ablation_rf_001` 已更新\n\n**未执行**：完整 9-cell 实验，等待审批。运行命令：\n```bash\npython src/granularity_ablation.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

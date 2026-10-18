@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fdaaca2a3f1e9e72591a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops fix exp012 script",
+  "task_key": "worker_ops_fix_exp012_script_20260515T141943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_exp012_script_20260515T141943_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "43ae8dd105ff13a34b69a512c6607f43a354bd08cb9793ba1abdefec751dc42d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改正确：`export VLLM_ATTENTION_BACKEND=FLASH_ATTN` 已插入到 `set -e` 之后、`source` 之前。tmux session 已清理。\n\n**READY**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

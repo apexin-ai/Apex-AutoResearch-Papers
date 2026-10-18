@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0fe6d83ea0a4e59dd234",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis docred factorial tost",
+  "task_key": "worker_analysis_docred_factorial_tost_20260518T213650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_factorial_tost_20260518T213650_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "98ea80d6e48f284f80594150bf3c6cef74ec4f3109c0e9be46e87d332ef03a4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `artifacts/docred_factorial_tost/results.json`。\n\n## 2×2 Factorial TOST 结果\n\n**2×2 Cell Means:**\n| | low BCS | high BCS |\n|---|---|---|\n| **count_16** | 64.84% ± 5.29% (n=18) | 54.22% ± 10.26% (n=17) |\n| **count_32** | 54.26% ± 6.24% (n=17) | 49.33% ± 7.46% (n=18) |\n\n**Main Effects:**\n- Count effect: +7.96pp (count_16 > count_32)\n- BCS effect: -7.99pp (high BCS lowers accuracy)\n\n**Interaction:** +5.70pp (CI: [-1.58pp, 12.98pp])\n\nBCS 的负面效果在 count_16 时更大（10.62pp drop）比 count_32（4.93pp drop），差异 5.70pp。\n\n**TOST Results:**\n- ±3pp: p_TOST = 0.7698 → **NOT established**\n- ±2pp: p_TOST = 0.8436 → **NOT established**\n\n**Bootstrap 95% CI:** [-1.23pp, 12.43pp]\n\n**结论：** 交互效应无法在 ±3pp 或 ±2pp 边界内建立等价性。interaction estimate 为 +5.70pp，CI 跨越 0 但上界达 ~13pp，远超等价边界。BCS median split (0.5488) 将 70 batches (35×2 count levels) 分为近似等大的 4 cells。交互效应表明 confusability 对 accuracy 的影响在较小 schema count 时更严重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

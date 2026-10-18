@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f234e8122596fb78b4e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper compile confirm",
+  "task_key": "worker_paper_compile_confirm_20260522T074025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_confirm_20260522T074025_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "05d1392bfc922b904b6b9de2502d5843ddb04fb563ae870cccea3788471c0b1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **main.pdf** | 存在，477,900 bytes，刚编译 (2026-05-22 07:41 UTC) |\n| **Errors** | **0** |\n| **Undefined references** | **0** |\n| **Missing citations** | **0** |\n| **Warnings** | 15，全部是 float specifier `h` → `ht` 的自动调整，无实质影响 |\n| **BibTeX** | 1 warning: `guo-2021-label-confusion` 同时有 volume 和 number 字段（不影响输出） |\n| **页数** | **27 页** |\n| **fig_count_curves.pdf** | 正常加载，无路径问题 |\n\n**页面结构**：\n- Page 8：正文（§4.5 Centrality as a Potential Confound，含 TOST 分析）\n- Page 9：Limitations 段落（正文最后部分），References 从 page 9 底部开始\n- 正文 ≤ 8 页：**符合要求**（正文结束于 page 9 上半部 Limitations，符合 EMNLP 2026 规则——Limitations 不计入 8 页限制）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

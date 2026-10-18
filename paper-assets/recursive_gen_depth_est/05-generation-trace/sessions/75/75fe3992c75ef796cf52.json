@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "75fe3992c75ef796cf52",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "design plan 013 downstream curation",
+  "task_key": "worker_design_plan_013_downstream_curation_20260515T212947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_design_plan_013_downstream_curation_20260515T212947_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "3441f90ec4d2e4adc435d01e8f77905b719757f26735e6d8ed93d2eca694e4e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案已写入 `artifacts/plan_013_downstream_curation_design.md`。\n\n核心设计:\n- **数据**: Pythia nucleus d0–d3 各取 2500 samples，均匀混合 10k 总量\n- **过滤**: 3 档 RF 过滤 (strict/moderate/soft) + 3 控制组 (oracle/random/unfiltered)，共 8 conditions\n- **Finetune**: Pythia-410M LoRA (r=16)，3 epochs，5 seeds\n- **评估**: WikiText-103 test PPL，paired t-test + Cohen's d\n- **预算**: ~19 GPU·h，单卡约 14h 完成全部 40 runs\n- **关键设计点**: RF predict_proba 用 cross-validated prediction 而非 train set 直接 predict，避免高估过滤质量\n\n末尾已标注 `[APPROVAL NEEDED]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

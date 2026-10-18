@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "74b1b2496de7ebc3f55a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp batch composition",
+  "task_key": "worker_code_exp_batch_composition_20260516T045257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_batch_composition_20260516T045257_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "4554ddc1100f036e264ac88103e76e700f244c862c09d185066b9b094d7fff87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码完成，dry-run 验证通过。\n\n**总结：**\n\n- 代码文件：`/root/schema-dag-extraction/src/run_batch_composition.py`\n- 三种 mode 均可正常运行（dry-run 验证）\n- 分区结果对比（K=8, 80 types）：\n\n| Mode | Mean BCS | BCS Range | Batch Sizes |\n|------|----------|-----------|-------------|\n| single_pass | 0.5572 | — | [80] |\n| random_batch | 0.5621 | [0.5268, 0.6262] | 8×10 |\n| **confusability_aware** | **0.5524** | [0.4762, 0.6192] | 8×10 |\n\n- Confusability-aware 的 mean BCS (0.5524) < random (0.5621) < single_pass baseline (0.5572)\n- Graph coloring 产生 19 colors → 合并+平衡后得到 8 个均匀 batch（各 10 types）\n- 自适应 threshold = 75th percentile SCS = 0.6229，产生 790 edges\n\n运行实验时用 `--stage all --mode <mode>` 不加 `--dry_run` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

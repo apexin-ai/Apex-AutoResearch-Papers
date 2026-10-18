@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aecc4a285106d257e82a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops status check final",
+  "task_key": "worker_ops_status-check-final_20260524T194225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-final_20260524T194225_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "8322a7a20367afb417485b7569ed37c3bff7efef2bec959546f888fe0eb1d5b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 50564 是唯一的 fp16 进程，结果汇总如下：\n\n---\n\n### 1. FP16 Baseline V3 (PID 50564)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **RUNNING** — 已运行 1h08m，CPU 4.9%，命令 `python scripts/run_fp16_baseline.py` |\n| 当前阶段 | **仍在下载模型权重** — `model-00007-of-00008.safetensors`，进度 89%（3.30G/3.72G），速度 ~6-9 MB/s，ETA ~1 分钟完成该分片（之后还有 shard 8） |\n| 结果文件 | **尚未生成** — `fp16_baseline.json` 不存在 |\n\n模型下载完成后才会开始推理，产出结果文件还需要一段时间。\n\n---\n\n### 2. Monte Carlo Size Calibration (PID 18494)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **RUNNING** — 已运行 **8h23m**，CPU 1804%（多核满载） |\n| 结果文件 | **尚未生成** — `monte_carlo_size_calibration.json` 不存在 |\n\n运行超过 8 小时且仍未产出结果，CPU 占用极高（约 18 核），可能需要关注是否正常。\n\n---\n\n### 3. 清理确认\n\n| 项目 | 状态 |\n|------|------|\n| 旧 buggy 进程 (46045, 47861) | **ALL_DEAD** — 已成功 kill |\n| GPU | **NVIDIA RTX PRO 6000 Blackwell (98GB)**，已用 10.3GB / 97.9GB，利用率 0% |\n| 其他 fp16 进程 | 仅 PID 50564，无多余进程 |\n\nGPU 利用率 0% 说明 PID 50564 当前仍在 CPU 端下载模型，尚未开始 GPU 推理。PID 18494 的 Monte Carlo 任务纯 CPU 计算，未占用 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

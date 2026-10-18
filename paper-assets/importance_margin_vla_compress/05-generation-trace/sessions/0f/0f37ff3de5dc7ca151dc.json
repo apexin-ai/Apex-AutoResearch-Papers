@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0f37ff3de5dc7ca151dc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "investigate pi05 attn k09 strict crash",
+  "task_key": "worker_investigate_pi05_attn_k09_strict_crash_20260527T063806",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_pi05_attn_k09_strict_crash_20260527T063806_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "b7e5d978ef88a587379c7f8742d454e6233da2db83bc5162605f05d65a619870"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**没有崩溃，已正常完成**。\n\n日志显示全部 10 个 tasks (T0-T9) 均跑完 50 episodes，最终结果：\n\n```\nRESULT: libero_10 prune=attention keep=0.9 SR=64.0%\nSaved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.90_libero_10_seed42.json\n```\n\n各 task 成绩：\n| Task | SR |\n|------|-----|\n| T0 | 36% |\n| T1 | 92% |\n| T2 | 44% |\n| T3 | 96% |\n| T4 | 52% |\n| T5 | 88% |\n| T6 | 56% |\n| T7 | 60% |\n| T8 | 20% |\n| T9 | 96% |\n| **Total** | **64.0%** |\n\n运行时间 170.7 分钟，于 14:35 正常退出。Cron 检测到\"进程消失\"是因为实验已完成，不是崩溃。GPU2 当前空闲可用。\n\n同服务器的 attn k=0.85 strict 实验仍在运行中（T9 ep=20 at 14:38），也接近完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

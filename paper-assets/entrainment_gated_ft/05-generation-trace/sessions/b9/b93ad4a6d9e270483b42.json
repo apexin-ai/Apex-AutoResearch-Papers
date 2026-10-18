@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b93ad4a6d9e270483b42",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code exp 004 preparation",
+  "task_key": "worker_code_exp-004-preparation_20260519T160600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-004-preparation_20260519T160600_result.json",
+    "occurrence": 1,
+    "bytes": 2933,
+    "sha256": "a2681d902ee5edcc999714c49329556635050a96f9e0b2c288d6da725f1f288f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有依赖确认可用。下面输出产出报告。\n\n---\n\n## exp-004 准备报告\n\n### 1. 模型 Attention 层结构\n\n三个架构的 hybrid-3-1 模型结构完全一致：\n\n| 属性 | 值 |\n|------|-----|\n| 总层数 | 24 |\n| Attention 层索引 | **[2, 5, 8, 11, 14, 17, 20, 23]** (8层) |\n| Attention 头数 | 16 (GQA: 8 KV heads) |\n| head_dim | hidden_size / 16 |\n| Attention 类 | `fla.layers.attn.Attention` (标准 softmax + RoPE) |\n| 实现 | Flash Attention (`flash_attn_func`)，不返回 attention weights |\n\n非 attention 层的 mixer 因架构而异：\n\n| 架构 | 非 attn 层 mixer | Block 类名 |\n|------|-----------------|-----------|\n| GatedDeltaNet | `GatedDeltaNet` | GatedDeltaNetBlock |\n| RetNet | `MultiScaleRetention` | RetNetBlock |\n| HGRN2 | `HGRN2Attention` | HGRN2Block |\n\n### 2. Hook Point\n\n所有架构统一：`model.model.layers[i].attn` (i ∈ [2,5,8,11,14,17,20,23])\n\nAttention 层内部结构（三架构一致）：\n```\nattn.q_proj: Linear\nattn.k_proj: Linear\nattn.v_proj: Linear\nattn.o_proj: Linear\nattn.rotary: RotaryEmbedding\n```\n\n加载方式：\n- GDN: `from fla.models.gated_deltanet import GatedDeltaNetForCausalLM`\n- RetNet: `from fla.models.retnet import RetNetForCausalLM`\n- HGRN2: `from fla.models.hgrn2 import HGRN2ForCausalLM` + monkey-patch `_tied_weights_keys`\n\n### 3. exp-003 Sample IDs 数据\n\n**文件**: `/root/entrainment_gated_ft/analysis/sample_perplexity_results.csv`\n\n| 架构 | helped | hurt | neutral | 总计 |\n|------|--------|------|---------|------|\n| GDN | 462 | 615 | 4076 | 5153 |\n| RetNet | 426 | 495 | 4232 | 5153 |\n| HGRN2 | 548 | 395 | 4210 | 5153 |\n\n列：`doc_id, {GDN,RetNet,HGRN2}_{pure_loss,helped,hurt}` (boolean flags)\n\n注：`lambada_matched_per_example.csv` 有 h31 的 acc/logprob 但不含 RetNet 列；`sample_perplexity_results.csv` 是完整的三架构 helped/hurt 标签源。\n\n### 4. 脚本\n\n**路径**: `artifacts/exp-004/extract_attention_weights.py`\n\n**策略**: Flash Attention 不返回 attention weights，脚本通过 forward hook 截获 Q、K（经 RoPE 后），手动计算 `softmax(Q·K^T / √d)` 并处理 GQA 的 KV head 重复。仅保存最后一个 token 的 attention 分布以节省内存。\n\n**结构**:\n- `AttentionWeightExtractor` — 注册/管理 hooks，计算 last-token attention\n- `extract_attention_patterns()` — 逐样本推理 + 保存 `.pt` + 计算 entropy\n- `analyze_helped_vs_hurt()` — helped/hurt 组间 entropy 对比\n- `analyze_cross_arch_similarity()` — 跨架构同样本 attention 的 cosine similarity\n\n**运行命令**（待 exp-011 结束后）:\n```bash\npython extract_attention_weights.py --arch gdn --device cuda:0\npython extract_attention_weights.py --arch retnet --device cuda:0\npython extract_attention_weights.py --arch hgrn2 --device cuda:0\npython extract_attention_weights.py --analyze\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

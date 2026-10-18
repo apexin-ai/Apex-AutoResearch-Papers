@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "2ebea275e155ddcf5447",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis plan006 cross benchmark v2",
+  "task_key": "worker_analysis_plan006-cross-benchmark-v2_20260524T102005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-cross-benchmark-v2_20260524T102005.log",
+    "occurrence": 1,
+    "bytes": 606436,
+    "sha256": "92691bd5e6380432dd24cfc45903f42b2db5b0c581d6ab41f602db0557ded8bb"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "2ebea275e155ddcf5447-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ebea275e155ddcf5447-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ]
+}

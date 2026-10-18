@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b98c3e7d0cc641c3fdb7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp rf seed robustness",
+  "task_key": "worker_exp_rf_seed_robustness_20260517T203625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_rf_seed_robustness_20260517T203625_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "a0661944b8bb3c3164ded3473623671b26b206d8c3dddfdc7670659357a27758"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**RF 种子鲁棒性 (leave-one-model-out CV, n_estimators=200)**\n\n| Seed | Pythia-1.4B | OLMo-1B | GPT-2 XL | Mean |\n|------|-------------|---------|----------|------|\n| 42   | 0.6242      | 0.6921  | 0.6756   | 0.6640 |\n| 123  | 0.6262      | 0.6928  | 0.6758   | 0.6650 |\n| 456  | 0.6250      | 0.6937  | 0.6776   | 0.6655 |\n\n**4-class accuracy: 0.6648 ± 0.0006**\n\nStd 仅 0.06%，种子对结果几乎无影响。结果已保存至 `results/rf_seed_robustness.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

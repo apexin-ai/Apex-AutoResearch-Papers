@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa2045d8c95e71ad92b2",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code appendix stance tex",
+  "task_key": "worker_code_appendix-stance-tex_20260523T220554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_appendix-stance-tex_20260523T220554_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "2b526d911451781e2c713d066aab023faab300fa34380b13a41911894bf3fdf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax is clean — 36 lines, all braces balanced, all environments properly nested.\n\n文件已创建：`docs/paper/appendix_stance.tex`。核心内容：3 段正文 + 1 个 7 行 table，覆盖了 sign reversal 统计 (global 4/30 → EC-HTE 1/30, 75% reduction)、bias amplification (15/30, 50%)、κ 异质性 (~10× within GPT-3.5-Turbo)、operating conditions violation (FNR>0.50 导致 κ 膨胀)，并标注了 simulated profiles。未提及 RMSE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

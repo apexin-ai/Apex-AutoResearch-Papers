@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "54b85cde38fd8176b328",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure fix bcs scaling all3",
+  "task_key": "worker_figure_fix_bcs_scaling_all3_20260515T232401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix_bcs_scaling_all3_20260515T232401_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "26cf84904b9c2307c0df368bb5fc2bf34545546b1bef664064cf0aa0fd760c7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 26K，有效。\n\n**修改摘要：**\n\n| 修复 | 内容 |\n|------|------|\n| **修复 1** | 模型名 `Qwen3-32B-FP8` → `Qwen3-32B`，`LLaMA-3.1-8B-Instruct` → `LLaMA-3.1-8B` |\n| **修复 2** | Panel (a): 16-rel/80-rel 保持实心 marker + 实线；40-rel 改为空心 marker（`markerfacecolor='white'`）+ 虚线连接。Panel (b): 40-rel 柱状图加斜线填充（`hatch='///'`）区分 |\n| **修复 3** | 删除 `axhspan` 绿色阴影和 `saturation zone` italic 标注 |\n\n**数据未变**：Qwen3-32B 16-rel Δ=9.1pp, 40-rel Δ=33.3pp, 80-rel Δ=31.2pp; LLaMA-3.1-8B 80-rel Δ=27.1pp — 与脚本输出验证一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

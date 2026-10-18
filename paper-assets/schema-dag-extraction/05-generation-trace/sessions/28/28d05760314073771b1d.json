@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28d05760314073771b1d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper docred integration",
+  "task_key": "worker_paper_docred-integration_20260516T051152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_docred-integration_20260516T051152_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "d061321fb6f7939724df7e766fd036689262416495dcddc91b8ec0cf106f2422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 个错误。\n\n完成的修改：\n- **abstract.tex** — 已由其他 worker 更新为 \"four datasets\"，含 DocRED 数据，无需再改\n- **results.tex §4.1** — DocRED count-curve 段落已存在（lines 32-33）\n- **results.tex §4.3** — DocRED BCS 段落已存在（lines 95-96），新增跨数据集对比句（BCS slopes −0.40 to −0.71）\n- **discussion.tex** — 在 \"Boundary conditions\" 段落中新增 document-level generalization 句"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

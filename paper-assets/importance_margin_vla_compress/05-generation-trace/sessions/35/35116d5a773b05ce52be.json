@@ -1,0 +1,1148 @@
+{
+  "schema_version": "1.0",
+  "id": "35116d5a773b05ce52be",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "fix bib critical 3items urgent",
+  "task_key": "worker_fix_bib_critical_3items_urgent_20260528T172544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_bib_critical_3items_urgent_20260528T172544.log",
+    "occurrence": 1,
+    "bytes": 113659,
+    "sha256": "9b5860b12d7ffa223c7f4e0806c3f39fe7c70ecf8095a89c862c9584bd9e6c70"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+                "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "24ddd788-7f14-41d6-889c-5100a908db59",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1780004400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0123847f-3b23-44bd-949d-729d9a919a46",
+                "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to fix 3 issues in a bib file. Let me start by reading the bib file and doing web searches in parallel.",
+              "signature": "EsACCmMIDhgCKkBpylszdp2VheLc1GXEt7goVJ5QV8tUsmODD7JQH/pH3zDGgr6VJ/9AjO8BLz+5f+PrryfMM6bDUr+5kC3sf899Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDKGMEEhb0HdNrwvfWRoMLPLkBs/lRRHFmTIGIjAW0djMqeL7nRdw0MYP/5tKnK+7TTQP2kDZ/5hMwclcNELANlIhRlwb2PxTN93MSAAqigFrMqcKNt0xGnDK7z3ivkYDsE1WMj6yB5xgzFMIci6ALmxGjzI2NsfgE6vF7HKqw1/xbpZ3cZz+AyrU0zE6Z7wjzyiTL4M8qutHh467ILOCK6XA0JYrIGGxx4CNCnsXoiCRNd16HyZPNdEtMl+BcDE2gzxnciC96eywiXp9N5oROfBJJ6fe+M0HrfYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "bb8eeb6b-77dd-43ae-a422-fcfe83a141a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwm3LQ7nP9j5iXmupKiPNw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12693,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12693
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取 bib 文件并同时搜索三篇论文的准确信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "b4519658-a95e-4221-8fe8-cfb0487266e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwm3LQ7nP9j5iXmupKiPNw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12693,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12693
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KvLUskMTzFDRyto3VJE9ix",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "6fe81fe1-5d02-487f-9934-96272c916210",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwm3LQ7nP9j5iXmupKiPNw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12693,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12693
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T17:26:01.182Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KvLUskMTzFDRyto3VJE9ix",
+              "type": "tool_result",
+              "content": "1\t% References for: The Cliff Edge — Why Vision Token Reduction Fails\n2\t% Catastrophically in VLA Closed-Loop Control\n3\t% Auto-generated from literature_map.yaml (verified entries only)\n4\t% 2026-05-17\n5\t\n6\t% ============================================================\n7\t% Attention Analysis\n8\t% ============================================================\n9\t\n10\t@inproceedings{abnar2020quantifying,\n11\t  title={Quantifying Attention Flow in Transformers},\n12\t  author={Abnar, Samira and Zuidema, Willem},\n13\t  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n14\t  pages={4190--4197},\n15\t  year={2020},\n16\t}\n17\t\n18\t% ============================================================\n19\t% VLA Token Compression (concurrent work)\n20\t% ============================================================\n21\t\n22\t@article{gao2025compressorvla,\n23\t  title={Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation},\n24\t  author={Gao, Juntao and Ye, Feiyang and Zhang, Jing and Qian, Wenjing},\n25\t  journal={arXiv preprint arXiv:2511.18950},\n26\t  year={2025},\n27\t  eprint={2511.18950},\n28\t  archivePrefix={arXiv}\n29\t}\n30\t\n31\t@article{wang2025specprunevla,\n32\t  title={SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning},\n33\t  author={Wang, Hanzhen and Xu, Jiaming and Xiang, Yushun and Pan, Jiayi and Zhou, Yongkang and Li, Yong-Lu and Dai, Guohao},\n34\t  journal={arXiv preprint arXiv:2509.05614},\n35\t  year={2025},\n36\t  eprint={2509.05614},\n37\t  archivePrefix={arXiv}\n38\t}\n39\t\n40\t@inproceedings{jiang2026lightvla,\n41\t  title={The Better You Learn, The Smarter You Prune: Towards Efficient Vision-Language-Action Models via Differentiable Token Pruning},\n42\t  author={Jiang, Titong and Jiang, Xuefeng and Ma, Yuan and Wen, Xin and Li, Bailin and Zhan, Kun and Jia, Peng and Liu, Yahui and Sun, Sheng and Lang, Xianpeng},\n43\t  booktitle={Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)},\n44\t  year={2026},\n45\t  eprint={2509.12594},\n46\t  archivePrefix={arXiv}\n47\t}\n48\t\n49\t@inproceedings{feng2026seewhatmatters,\n50\t  title={See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model},\n51\t  author={Feng, Yixu and Zhao, Zinan and Ma, Yanxiang and Xia, Chenghao and Du, Chengbin and Wang, Yunke and Xu, Chang},\n52\t  booktitle={Proceedings of the Forty-Third International Conference on Machine Learning (ICML)},\n53\t  year={2026},\n54\t  eprint={2605.11817},\n55\t  archivePrefix={arXiv}\n56\t}\n57\t\n58\t@inproceedings{zhang2025sparsevlm,\n59\t  title={SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference},\n60\t  author={Zhang, Yuan and Fan, Chun-Kai and Ma, Junpeng and Zheng, Wenzhao and Huang, Tao and Cheng, Kuan and Gudovskiy, Denis and Okuno, Tomoyuki and Nakata, Yohei and Keutzer, Kurt and Zhang, Shanghang},\n61\t  booktitle={Proceedings of the Forty-Second International Conference on Machine Learning (ICML)},\n62\t  year={2025},\n63\t  eprint={2410.04417},\n64\t  archivePrefix={arXiv}\n65\t}\n66\t\n67\t@inproceedings{khaki2025sparsevila,\n68\t  title={SparseVILA: Decoupled Visual Sparsity for Efficient VLM Inference},\n69\t  author={Khaki, Samir and Guo, Junxian and Tang, Jiaming and Yang, Shang and Chen, Yukang and Plataniotis, Konstantinos N. and Lu, Yao and Han, Song and Liu, Zhijian},\n70\t  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n71\t  year={2025},\n72\t  eprint={2510.17777},\n73\t  archivePrefix={arXiv}\n74\t}\n75\t\n76\t@article{jabbour2025dontrun,\n77\t  title={Don't Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered},\n78\t  author={Jabbour, Jason and Kim, Dong-Ki and Smith, Max and Patrikar, Jay and Ghosal, Radhika and Wang, Youhui and Agha, Ali and Janapa Reddi, Vijay and Omidshafiei, Shayegan},\n79\t  journal={arXiv preprint arXiv:2510.08464},\n80\t  year={2025},\n81\t  eprint={2510.08464},\n82\t  archivePrefix={arXiv}\n83\t}\n84\t\n85\t@inproceedings{li2024roboflamingo,\n86\t  title={Vision-Language Foundation Models as Effective Robot Imitators},\n87\t  author={Li, Xinghang and Liu, Minghuan and Zhang, Hanbo and Yu, Cunjun and Xu, Jie and Wu, Hongtao and Cheang, Chilam and Jing, Ya and Zhang, Weinan and Liu, Huaping and Li, Hang and Kong, Tao},\n88\t  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n89\t  year={2024},\n90\t  eprint={2311.01378},\n91\t  archivePrefix={arXiv}\n92\t}\n93\t\n94\t% ============================================================\n95\t% VLA Models\n96\t% ============================================================\n97\t\n98\t@article{shukor2025smolvla,\n99\t  title={{SmolVLA}: A Vision-Language-Action Model for Affordable and Efficient Robotics},\n100\t  author={Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others},\n101\t  journal={arXiv preprint arXiv:2506.01844},\n102\t  year={2025}\n103\t}\n104\t\n105\t@inproceedings{kim2024openvla,\n106\t  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},\n107\t  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others},\n108\t  booktitle={Proceedings of the 8th Conference on Robot Learning (CoRL)},\n109\t  year={2024}\n110\t}\n111\t\n112\t@inproceedings{brohan2023rt2,\n113\t  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n114\t  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and others},\n115\t  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n116\t  year={2023}\n117\t}\n118\t\n119\t\n120\t@article{black2024pi0,\n121\t  title={$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n122\t  author={Black, Kevin and Brown, Noah and Driess, Danny and others},\n123\t  journal={arXiv preprint arXiv:2410.24164},\n124\t  year={2024}\n125\t}\n126\t\n127\t@inproceedings{black2025pi05,\n128\t  title={$\\pi_{0.5}$: a Vision-Language-Action Model with Open-World Generalization},\n129\t  author={Black, Kevin and Brown, Noah and Shafiullah, Nur Muhammad Mahi and others},\n130\t  booktitle={Proceedings of The 9th Conference on Robot Learning (CoRL)},\n131\t  series={Proceedings of Machine Learning Research},\n132\t  volume={305},\n133\t  pages={17--40},\n134\t  year={2025},\n135\t  publisher={PMLR},\n136\t  eprint={2504.16054},\n137\t  archivePrefix={arXiv}\n138\t}\n139\t\n140\t@inproceedings{ghosh2024octo,\n141\t  title={Octo: An Open-Source Generalist Robot Policy},\n142\t  author={{Octo Model Team} and Ghosh, Dibya and Walke, Homer and Pertsch, Karl and Black, Kevin and others},\n143\t  booktitle={Robotics: Science and Systems (RSS)},\n144\t  year={2024}\n145\t}\n146\t\n147\t@inproceedings{brohan2023rt1,\n148\t  title={{RT-1}: Robotics Transformer for Real-World Control at Scale},\n149\t  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and others},\n150\t  booktitle={Robotics: Science and Systems (RSS)},\n151\t  year={2023}\n152\t}\n153\t\n154\t\n155\t% ============================================================\n156\t% VLM/LLM Token Efficiency\n157\t% ============================================================\n158\t\n159\t@inproceedings{chen2024fastv,\n160\t  title={An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models},\n161\t  author={Chen, Liang and Zhao, Haozhe and Liu, Tianyu and Bai, Shuai and Lin, Junyang and Zhou, Chang and Chang, Baobao},\n162\t  booktitle={European Conference on Computer Vision (ECCV)},\n163\t  year={2024},\n164\t  eprint={2403.06764},\n165\t  archivePrefix={arXiv},\n166\t  note={Oral presentation}\n167\t}\n168\t\n169\t\n170\t@inproceedings{xu2025vlacache,\n171\t  title={{VLA-Cache}: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching},\n172\t  author={Xu, Siyu and Wang, Yunke and Xia, Chenghao and Zhu, Dihao and Huang, Tao and Xu, Chang},\n173\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n174\t  year={2025}\n175\t}\n176\t\n177\t@article{cheng2026vlaiap,\n178\t  title={{VLA-IAP}: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models},\n179\t  author={Cheng, Jintao and Wang, Haozhe and Li, Weibin and Wang, Gang and Zhang, Yipu and Tang, Xiaoyu and Wu, Jin and Chen, Xieyuanli and Liu, Yunhui and Zhang, Wei},\n180\t  journal={arXiv preprint arXiv:2603.22991},\n181\t  year={2026}\n182\t}\n183\t\n184\t% ============================================================\n185\t% ViT Token Pruning/Merging\n186\t% ============================================================\n187\t\n188\t@inproceedings{rao2021dynamicvit,\n189\t  title={{DynamicViT}: Efficient Vision Transformers with Dynamic Token Sparsification},\n190\t  author={Rao, Yongming and Zhao, Wenliang and Liu, Benlin and Lu, Jiwen and Zhou, Jie and Hsieh, Cho-Jui},\n191\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n192\t  year={2021}\n193\t}\n194\t\n195\t@inproceedings{bolya2023tome,\n196\t  title={Token Merging: Your {ViT} But Faster},\n197\t  author={Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy},\n198\t  booktitle={International Conference on Learning Representations (ICLR)},\n199\t  year={2023}\n200\t}\n201\t\n202\t@inproceedings{liang2022evit,\n203\t  title={Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations},\n204\t  author={Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao},\n205\t  booktitle={International Conference on Learning Representations (ICLR)},\n206\t  year={2022}\n207\t}\n208\t\n209\t% ============================================================\n210\t% Closed-Loop Evaluation\n211\t% ============================================================\n212\t\n213\t@inproceedings{liu2023libero,\n214\t  title={{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n215\t  author={Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n216\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n217\t  year={2023}\n218\t}\n219\t\n220\t\n221\t% ============================================================\n222\t% Negative Results & Evaluation Pitfalls\n223\t% ============================================================\n224\t\n225\t\n226\t% ============================================================\n227\t% VLA Token Efficiency (new additions)\n228\t% ============================================================\n229\t\n230\t@article{yang2025efficientvla,\n231\t  title={{EfficientVLA}: Training-Free Acceleration and Compression for Vision-Language-Action Models},\n232\t  author={Yang, Yantai and Wang, Yuhao and Wen, Zichen and others},\n233\t  journal={arXiv preprint arXiv:2506.10100},\n234\t  year={2025}\n235\t}\n236\t\n237\t@article{liu2025vlapruner,\n238\t  title={{VLA-Pruner}: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference},\n239\t  author={Liu, Ziyan and Chen, Yeqiu and Cai, Hongyi and others},\n240\t  journal={arXiv preprint arXiv:2511.16449},\n241\t  year={2025}\n242\t}\n243\t\n244\t@inproceedings{shang2024prumerge,\n245\t  title={{LLaVA-PruMerge}: Adaptive Token Reduction for Efficient Large Multimodal Models},\n246\t  author={Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan},\n247\t  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},\n248\t  year={2025}\n249\t}\n250\t\n251\t% ============================================================\n252\t% Vision Connectors\n253\t% ============================================================\n254\t\n255\t@inproceedings{alayrac2022flamingo,\n256\t  title={Flamingo: a Visual Language Model for Few-Shot Learning},\n257\t  author={Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and others},\n258\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n259\t  year={2022}\n260\t}\n261\t\n262\t@inproceedings{liu2023llava,\n263\t  title={Visual Instruction Tuning},\n264\t  author={Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae},\n265\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n266\t  year={2023}\n267\t}\n268\t\n269\t@inproceedings{shi2016subpixel,\n270\t  title={Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network},\n271\t  author={Shi, Wenzhe and Caballero, Jose and Huszar, Ferenc and Totz, Johannes and Aitken, Andrew P. and Bishop, Rob and Rueckert, Daniel and Wang, Zehan},\n272\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n273\t  year={2016}\n274\t}\n275\t\n276\t@article{chen2024internvl,\n277\t  title={How Far Are We to {GPT-4V}? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},\n278\t  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and others},\n279\t  journal={arXiv preprint arXiv:2404.16821},\n280\t  year={2024}\n281\t}\n282\t\n283\t% ============================================================\n284\t% Background / Architecture\n285\t% ============================================================\n286\t\n287\t@inproceedings{li2023blip2,\n288\t  title={{BLIP-2}: Bootstrapping Language-Image Pre-Training with Frozen Image Encoders and Large Language Models},\n289\t  author={Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven},\n290\t  booktitle={International Conference on Machine Learning (ICML)},\n291\t  year={2023}\n292\t}\n293\t\n294\t@inproceedings{jaegle2021perceiver,\n295\t  title={Perceiver: General Perception with Iterative Attention},\n296\t  author={Jaegle, Andrew and Gimeno, Felix and Brock, Andrew and Zisserman, Andrew and Vinyals, Oriol and Carreira, Joao},\n297\t  booktitle={International Conference on Machine Learning (ICML)},\n298\t  year={2021}\n299\t}\n300\t\n301\t@article{oquab2023dinov2,\n302\t  title={{DINOv2}: Learning Robust Visual Features without Supervision},\n303\t  author={Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and others},\n304\t  journal={Transactions on Machine Learning Research},\n305\t  year={2024}\n306\t}\n307\t\n308\t@inproceedings{zhai2023siglip,\n309\t  title={Sigmoid Loss for Language Image Pre-Training},\n310\t  author={Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n311\t  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},\n312\t  year={2023}\n313\t}\n314\t\n315\t@article{yang2024qwen2,\n316\t  title={Qwen2 Technical Report},\n317\t  author={Yang, An and others},\n318\t  journal={arXiv preprint arXiv:2407.10671},\n319\t  year={2024}\n320\t}\n321\t\n322\t@inproceedings{lipman2023flow,\n323\t  title={Flow Matching for Generative Modeling},\n324\t  author={Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt},\n325\t  booktitle={International Conference on Learning Representations (ICLR)},\n326\t  year={2023}\n327\t}\n328\t\n329\t% ============================================================\n330\t% Additional references (Round 3 reviewer request)\n331\t% ============================================================\n332\t\n333\t% ============================================================\n334\t% Additional VLA / VLM references\n335\t% ============================================================\n336\t\n337\t@article{li2024cogact,\n338\t  title={CogACT: A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation},\n339\t  author={Li, Qixiu and Liang, Yaobo and Wang, Zeyu and Luo, Lin and Chen, Xi and Liao, Mozheng and Wei, Fangyun and Deng, Yu and Xu, Sicheng and Zhang, Yizhong and Wang, Xiaofan and Liu, Bei and Fu, Jianlong and Bao, Jianmin and Chen, Dong and Shi, Yuanchun and Yang, Jiaolong and Guo, Baining},\n340\t  journal={arXiv preprint arXiv:2411.19650},\n341\t  year={2024},\n342\t  eprint={2411.19650},\n343\t  archivePrefix={arXiv}\n344\t}\n345\t\n346\t@article{kim2025openoft,\n347\t  title={Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success},\n348\t  author={Kim, Moo Jin and Finn, Chelsea and Liang, Percy},\n349\t  journal={arXiv preprint arXiv:2502.19645},\n350\t  year={2025},\n351\t  eprint={2502.19645},\n352\t  archivePrefix={arXiv}\n353\t}\n354\t\n355\t@article{li2024tokenpacker,\n356\t  title={TokenPacker: Efficient Visual Projector for Multimodal LLM},\n357\t  author={Li, Wentong and Yuan, Yuqian and Liu, Jian and Tang, Dongqi and Wang, Song and Qin, Jie and Zhu, Jianke and Zhang, Lei},\n358\t  journal={arXiv preprint arXiv:2407.02392},\n359\t  year={2024},\n360\t  eprint={2407.02392},\n361\t  archivePrefix={arXiv}\n362\t}\n363\t\n364\t@inproceedings{zheng2025xvla,\n365\t  title={{X-VLA}: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model},\n366\t  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},\n367\t  booktitle={International Conference on Learning Representations (ICLR)},\n368\t  year={2026},\n369\t  eprint={2510.10274},\n370\t  archivePrefix={arXiv}\n371\t}\n372\t\n373\t@article{wen2024tinyvla,\n374\t  title={TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation},\n375\t  author={Wen, Junjie and Zhu, Yichen and Li, Jinming and Zhu, Minjie and Wu, Kun and Xu, Zhiyuan and Liu, Ning and Cheng, Ran and Shen, Chaomin and Peng, Yaxin and Feng, Feifei and Tang, Jian},\n376\t  journal={arXiv preprint arXiv:2409.12514},\n377\t  year={2024},\n378\t  eprint={2409.12514},\n379\t  archivePrefix={arXiv}\n380\t}\n381\t\n382\t@inproceedings{lewis2020bart,\n383\t  title={{BART}: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension},\n384\t  author={Lewis, Mike and Liu, Yinhan and Goyal, Naman and Ghazvininejad, Marjan and Mohamed, Abdelrahman and Levy, Omer and Stoyanov, Veselin and Zettlemoyer, Luke},\n385\t  booktitle={Annual Meeting of the Association for Computational Linguistics (ACL)},\n386\t  year={2020}\n387\t}\n388\t\n389\t% ============================================================\n390\t% New additions for expanded Related Work\n391\t% ============================================================\n392\t\n393\t@inproceedings{ryoo2021tokenlearner,\n394\t  title={{TokenLearner}: Adaptive Space-Time Tokenization for Videos},\n395\t  author={Ryoo, Michael S. and Piergiovanni, AJ and Arnab, Anurag and Dehghani, Mostafa and Angelova, Anelia},\n396\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n397\t  year={2021},\n398\t  eprint={2106.11297},\n399\t  archivePrefix={arXiv}\n400\t}\n401\t\n402\t@inproceedings{yin2022avit,\n403\t  title={{A-ViT}: Adaptive Tokens for Efficient Vision Transformer},\n404\t  author={Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo},\n405\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n406\t  year={2022},\n407\t  eprint={2112.07658},\n408\t  archivePrefix={arXiv}\n409\t}\n410\t\n411\t@inproceedings{meng2022adavit,\n412\t  title={{AdaViT}: Adaptive Vision Transformers for Efficient Image Recognition},\n413\t  author={Meng, Lingchen and Li, Hengduo and Chen, Bor-Chun and Lan, Shiyi and Wu, Zuxuan and Jiang, Yu-Gang and Lim, Ser-Nam},\n414\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n415\t  year={2022},\n416\t  eprint={2111.15668},\n417\t  archivePrefix={arXiv}\n418\t}\n419\t\n420\t@inproceedings{chen2023sparsevit,\n421\t  title={{SparseViT}: Revisiting Activation Sparsity for Efficient High-Resolution Vision Transformer},\n422\t  author={Chen, Xuanyao and Liu, Zhijian and Tang, Haotian and Yi, Li and Zhao, Hang and Han, Song},\n423\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n424\t  year={2023},\n425\t  eprint={2303.17605},\n426\t  archivePrefix={arXiv}\n427\t}\n428\t\n429\t@inproceedings{ye2025fitprune,\n430\t  title={Fit and Prune: Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models},\n431\t  author={Ye, Weihao and Wu, Qiong and Lin, Wenhao and Zhou, Yiyi},\n432\t  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n433\t  year={2025},\n434\t  eprint={2409.10197},\n435\t  archivePrefix={arXiv}\n436\t}\n437\t\n438\t@inproceedings{shi2024crossget,\n439\t  title={{CrossGET}: Cross-Guided Ensemble of Tokens for Accelerating Vision-Language Transformers},\n440\t  author={Shi, Dachuan and Tao, Chaofan and Rao, Anyi and Yang, Zhendong and Yuan, Chun and Wang, Jiaqi},\n441\t  booktitle={International Conference on Machine Learning (ICML)},\n442\t  year={2024},\n443\t  eprint={2305.17455},\n444\t  archivePrefix={arXiv}\n445\t}\n446\t\n447\t@article{zhang2024fastervlm,\n448\t  title={[CLS] Attention is All You Need for Training-Free Visual Token Pruning: Make {VLM} Inference Faster},\n449\t  author={Zhang, Qizhe and Cheng, Aosong and Lu, Ming and Zhuo, Zhiyong and Wang, Minqi and Cao, Jiajun and Guo, Shaobo and She, Qi and Zhang, Shanghang},\n450\t  journal={arXiv preprint arXiv:2412.01818},\n451\t  year={2024},\n452\t  eprint={2412.01818},\n453\t  archivePrefix={arXiv}\n454\t}\n455\t\n456\t@inproceedings{liu2024llava15,\n457\t  title={Improved Baselines with Visual Instruction Tuning},\n458\t  author={Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae},\n459\t  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n460\t  year={2024},\n461\t  eprint={2310.03744},\n462\t  archivePrefix={arXiv}\n463\t}\n464\t\n465\t@article{chen2024internvl25,\n466\t  title={Expanding Performance Boundaries of Open-Source Multimodal Models with Model, Data, and Test-Time Scaling},\n467\t  author={Chen, Zhe and Wang, Weiyun and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Cui, Erfei and Zhu, Jinguo and Ye, Shenglong and Tian, Hao and others},\n468\t  journal={arXiv preprint arXiv:2412.05271},\n469\t  year={2024},\n470\t  eprint={2412.05271},\n471\t  archivePrefix={arXiv}\n472\t}\n473\t\n474\t@article{gao2024miniinternvl,\n475\t  title={{Mini-InternVL}: A Flexible-Transfer Pocket Multimodal Model with 5\\% Parameters and 90\\% Performance},\n476\t  author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},\n477\t  journal={arXiv preprint arXiv:2410.16261},\n478\t  year={2024},\n479\t  eprint={2410.16261},\n480\t  archivePrefix={arXiv}\n481\t}\n482\t\n483\t% ============================================================\n484\t% Synced from literature_map.yaml (missing entries)\n485\t% ============================================================\n486\t\n487\t% --- VLA Models ---\n488\t\n489\t@inproceedings{zitkovich2023rt2,\n490\t  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n491\t  author={Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others},\n492\t  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n493\t  year={2023},\n494\t  eprint={2307.15818},\n495\t  archivePrefix={arXiv}\n496\t}\n497\t\n498\t@inproceedings{openxembodiment2024,\n499\t  title={Open {X-Embodiment}: Robotic Learning Datasets and {RT-X} Models},\n500\t  author={{Open X-Embodiment Collaboration}},\n501\t  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n502\t  year={2024},\n503\t  eprint={2310.08864},\n504\t  archivePrefix={arXiv}\n505\t}\n506\t\n507\t% --- VLM/LLM Token Efficiency ---\n508\t\n509\t@inproceedings{zhang2023h2o,\n510\t  title={{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n511\t  author={Zhang, Zhenyu and others},\n512\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n513\t  year={2023},\n514\t  eprint={2306.14048},\n515\t  archivePrefix={arXiv}\n516\t}\n517\t\n518\t@inproceedings{xiao2024streamingllm,\n519\t  title={Efficient Streaming Language Models with Attention Sinks},\n520\t  author={Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n521\t  booktitle={International Conference on Learning Representations (ICLR)},\n522\t  year={2024},\n523\t  eprint={2309.17453},\n524\t  archivePrefix={arXiv}\n525\t}\n526\t\n527\t\n528\t% --- Closed-Loop Evaluation ---\n529\t\n530\t@article{mees2022calvin,\n531\t  title={{CALVIN}: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks},\n532\t  author={Mees, Oier and Hermann, Lukas and Rosete-Beas, Erick and Burgard, Wolfram},\n533\t  journal={IEEE Robotics and Automation Letters},\n534\t  year={2022},\n535\t  eprint={2112.03227},\n536\t  archivePrefix={arXiv}\n537\t}\n538\t\n539\t@inproceedings{chi2023diffusionpolicy,\n540\t  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n541\t  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n542\t  booktitle={Robotics: Science and Systems (RSS)},\n543\t  year={2023},\n544\t  eprint={2303.04137},\n545\t  archivePrefix={arXiv}\n546\t}\n547\t\n548\t% --- Negative Results & Evaluation Pitfalls ---\n549\t\n550\t@inproceedings{zeng2023transformers_tsf,\n551\t  title={Are Transformers Effective for Time Series Forecasting?},\n552\t  author={Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang},\n553\t  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n554\t  year={2023},\n555\t  eprint={2205.13504},\n556\t  archivePrefix={arXiv}\n557\t}\n558\t\n559\t@inproceedings{bouthillier2024negative,\n560\t  title={Position: Embracing Negative Results in Machine Learning},\n561\t  author={Bouthillier, Xavier and others},\n562\t  booktitle={International Conference on Machine Learning (ICML)},\n563\t  year={2024},\n564\t  eprint={2406.03980},\n565\t  archivePrefix={arXiv}\n566\t}\n567\t\n568\t% --- Vision Connectors & Token Compression ---\n569\t\n570\t@article{oquab2024dinov2,\n571\t  title={{DINOv2}: Learning Robust Visual Features without Supervision},\n572\t  author={Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and others},\n573\t  journal={Transactions on Machine Learning Research},\n574\t  year={2024},\n575\t  eprint={2304.07193},\n576\t  archivePrefix={arXiv}\n577\t}\n578\t\n579\t@article{su2024roformer,\n580\t  title={{RoFormer}: Enhanced Transformer with Rotary Position Embedding},\n581\t  author={Su, Jianlin and Ahmed, Murtadha and Lu, Yu and Pan, Shengfeng and Bo, Wen and Liu, Yunfeng},\n582\t  journal={Neurocomputing},\n583\t  volume={568},\n584\t  pages={127063},\n585\t  year={2024},\n586\t  publisher={Elsevier}\n587\t}\n588\t\n589\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "7321a8fb-3587-46b3-a178-9247b7a68f11",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib",
+                "content": "% References for: The Cliff Edge — Why Vision Token Reduction Fails\n% Catastrophically in VLA Closed-Loop Control\n% Auto-generated from literature_map.yaml (verified entries only)\n% 2026-05-17\n\n% ============================================================\n% Attention Analysis\n% ============================================================\n\n@inproceedings{abnar2020quantifying,\n  title={Quantifying Attention Flow in Transformers},\n  author={Abnar, Samira and Zuidema, Willem},\n  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages={4190--4197},\n  year={2020},\n}\n\n% ============================================================\n% VLA Token Compression (concurrent work)\n% ============================================================\n\n@article{gao2025compressorvla,\n  title={Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation},\n  author={Gao, Juntao and Ye, Feiyang and Zhang, Jing and Qian, Wenjing},\n  journal={arXiv preprint arXiv:2511.18950},\n  year={2025},\n  eprint={2511.18950},\n  archivePrefix={arXiv}\n}\n\n@article{wang2025specprunevla,\n  title={SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning},\n  author={Wang, Hanzhen and Xu, Jiaming and Xiang, Yushun and Pan, Jiayi and Zhou, Yongkang and Li, Yong-Lu and Dai, Guohao},\n  journal={arXiv preprint arXiv:2509.05614},\n  year={2025},\n  eprint={2509.05614},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{jiang2026lightvla,\n  title={The Better You Learn, The Smarter You Prune: Towards Efficient Vision-Language-Action Models via Differentiable Token Pruning},\n  author={Jiang, Titong and Jiang, Xuefeng and Ma, Yuan and Wen, Xin and Li, Bailin and Zhan, Kun and Jia, Peng and Liu, Yahui and Sun, Sheng and Lang, Xianpeng},\n  booktitle={Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2026},\n  eprint={2509.12594},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{feng2026seewhatmatters,\n  title={See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model},\n  author={Feng, Yixu and Zhao, Zinan and Ma, Yanxiang and Xia, Chenghao and Du, Chengbin and Wang, Yunke and Xu, Chang},\n  booktitle={Proceedings of the Forty-Third International Conference on Machine Learning (ICML)},\n  year={2026},\n  eprint={2605.11817},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{zhang2025sparsevlm,\n  title={SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference},\n  author={Zhang, Yuan and Fan, Chun-Kai and Ma, Junpeng and Zheng, Wenzhao and Huang, Tao and Cheng, Kuan and Gudovskiy, Denis and Okuno, Tomoyuki and Nakata, Yohei and Keutzer, Kurt and Zhang, Shanghang},\n  booktitle={Proceedings of the Forty-Second International Conference on Machine Learning (ICML)},\n  year={2025},\n  eprint={2410.04417},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{khaki2025sparsevila,\n  title={SparseVILA: Decoupled Visual Sparsity for Efficient VLM Inference},\n  author={Khaki, Samir and Guo, Junxian and Tang, Jiaming and Yang, Shang and Chen, Yukang and Plataniotis, Konstantinos N. and Lu, Yao and Han, Song and Liu, Zhijian},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2025},\n  eprint={2510.17777},\n  archivePrefix={arXiv}\n}\n\n@article{jabbour2025dontrun,\n  title={Don't Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered},\n  author={Jabbour, Jason and Kim, Dong-Ki and Smith, Max and Patrikar, Jay and Ghosal, Radhika and Wang, Youhui and Agha, Ali and Janapa Reddi, Vijay and Omidshafiei, Shayegan},\n  journal={arXiv preprint arXiv:2510.08464},\n  year={2025},\n  eprint={2510.08464},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{li2024roboflamingo,\n  title={Vision-Language Foundation Models as Effective Robot Imitators},\n  author={Li, Xinghang and Liu, Minghuan and Zhang, Hanbo and Yu, Cunjun and Xu, Jie and Wu, Hongtao and Cheang, Chilam and Jing, Ya and Zhang, Weinan and Liu, Huaping and Li, Hang and Kong, Tao},\n  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year={2024},\n  eprint={2311.01378},\n  archivePrefix={arXiv}\n}\n\n% ============================================================\n% VLA Models\n% ============================================================\n\n@article{shukor2025smolvla,\n  title={{SmolVLA}: A Vision-Language-Action Model for Affordable and Efficient Robotics},\n  author={Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others},\n  journal={arXiv preprint arXiv:2506.01844},\n  year={2025}\n}\n\n@inproceedings{kim2024openvla,\n  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others},\n  booktitle={Proceedings of the 8th Conference on Robot Learning (CoRL)},\n  year={2024}\n}\n\n@inproceedings{brohan2023rt2,\n  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and others},\n  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n  year={2023}\n}\n\n\n@article{black2024pi0,\n  title={$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n  author={Black, Kevin and Brown, Noah and Driess, Danny and others},\n  journal={arXiv preprint arXiv:2410.24164},\n  year={2024}\n}\n\n@inproceedings{black2025pi05,\n  title={$\\pi_{0.5}$: a Vision-Language-Action Model with Open-World Generalization},\n  author={Black, Kevin and Brown, Noah and Shafiullah, Nur Muhammad Mahi and others},\n  booktitle={Proceedings of The 9th Conference on Robot Learning (CoRL)},\n  series={Proceedings of Machine Learning Research},\n  volume={305},\n  pages={17--40},\n  year={2025},\n  publisher={PMLR},\n  eprint={2504.16054},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{ghosh2024octo,\n  title={Octo: An Open-Source Generalist Robot Policy},\n  author={{Octo Model Team} and Ghosh, Dibya and Walke, Homer and Pertsch, Karl and Black, Kevin and others},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2024}\n}\n\n@inproceedings{brohan2023rt1,\n  title={{RT-1}: Robotics Transformer for Real-World Control at Scale},\n  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and others},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023}\n}\n\n\n% ============================================================\n% VLM/LLM Token Efficiency\n% ============================================================\n\n@inproceedings{chen2024fastv,\n  title={An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models},\n  author={Chen, Liang and Zhao, Haozhe and Liu, Tianyu and Bai, Shuai and Lin, Junyang and Zhou, Chang and Chang, Baobao},\n  booktitle={European Conference on Computer Vision (ECCV)},\n  year={2024},\n  eprint={2403.06764},\n  archivePrefix={arXiv},\n  note={Oral presentation}\n}\n\n\n@inproceedings{xu2025vlacache,\n  title={{VLA-Cache}: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching},\n  author={Xu, Siyu and Wang, Yunke and Xia, Chenghao and Zhu, Dihao and Huang, Tao and Xu, Chang},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025}\n}\n\n@article{cheng2026vlaiap,\n  title={{VLA-IAP}: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models},\n  author={Cheng, Jintao and Wang, Haozhe and Li, Weibin and Wang, Gang and Zhang, Yipu and Tang, Xiaoyu and Wu, Jin and Chen, Xieyuanli and Liu, Yunhui and Zhang, Wei},\n  journal={arXiv preprint arXiv:2603.22991},\n  year={2026}\n}\n\n% ============================================================\n% ViT Token Pruning/Merging\n% ============================================================\n\n@inproceedings{rao2021dynamicvit,\n  title={{DynamicViT}: Efficient Vision Transformers with Dynamic Token Sparsification},\n  author={Rao, Yongming and Zhao, Wenliang and Liu, Benlin and Lu, Jiwen and Zhou, Jie and Hsieh, Cho-Jui},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2021}\n}\n\n@inproceedings{bolya2023tome,\n  title={Token Merging: Your {ViT} But Faster},\n  author={Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n@inproceedings{liang2022evit,\n  title={Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations},\n  author={Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2022}\n}\n\n% ============================================================\n% Closed-Loop Evaluation\n% ============================================================\n\n@inproceedings{liu2023libero,\n  title={{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author={Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n\n% ============================================================\n% Negative Results & Evaluation Pitfalls\n% ============================================================\n\n\n% ============================================================\n% VLA Token Efficiency (new additions)\n% ============================================================\n\n@article{yang2025efficientvla,\n  title={{EfficientVLA}: Training-Free Acceleration and Compression for Vision-Language-Action Models},\n  author={Yang, Yantai and Wang, Yuhao and Wen, Zichen and others},\n  journal={arXiv preprint arXiv:2506.10100},\n  year={2025}\n}\n\n@article{liu2025vlapruner,\n  title={{VLA-Pruner}: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference},\n  author={Liu, Ziyan and Chen, Yeqiu and Cai, Hongyi and others},\n  journal={arXiv preprint arXiv:2511.16449},\n  year={2025}\n}\n\n@inproceedings{shang2024prumerge,\n  title={{LLaVA-PruMerge}: Adaptive Token Reduction for Efficient Large Multimodal Models},\n  author={Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan},\n  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2025}\n}\n\n% ============================================================\n% Vision Connectors\n% ============================================================\n\n@inproceedings{alayrac2022flamingo,\n  title={Flamingo: a Visual Language Model for Few-Shot Learning},\n  author={Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and others},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2022}\n}\n\n@inproceedings{liu2023llava,\n  title={Visual Instruction Tuning},\n  author={Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{shi2016subpixel,\n  title={Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network},\n  author={Shi, Wenzhe and Caballero, Jose and Huszar, Ferenc and Totz, Johannes and Aitken, Andrew P. and Bishop, Rob and Rueckert, Daniel and Wang, Zehan},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2016}\n}\n\n@article{chen2024internvl,\n  title={How Far Are We to {GPT-4V}? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},\n  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and others},\n  journal={arXiv preprint arXiv:2404.16821},\n  year={2024}\n}\n\n% ============================================================\n% Background / Architecture\n% ============================================================\n\n@inproceedings{li2023blip2,\n  title={{BLIP-2}: Bootstrapping Language-Image Pre-Training with Frozen Image Encoders and Large Language Models},\n  author={Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2023}\n}\n\n@inproceedings{jaegle2021perceiver,\n  title={Perceiver: General Perception with Iterative Attention},\n  author={Jaegle, Andrew and Gimeno, Felix and Brock, Andrew and Zisserman, Andrew and Vinyals, Oriol and Carreira, Joao},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2021}\n}\n\n@article{oquab2023dinov2,\n  title={{DINOv2}: Learning Robust Visual Features without Supervision},\n  author={Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and others},\n  journal={Transactions on Machine Learning Research},\n  year={2024}\n}\n\n@inproceedings{zhai2023siglip,\n  title={Sigmoid Loss for Language Image Pre-Training},\n  author={Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2023}\n}\n\n@article{yang2024qwen2,\n  title={Qwen2 Technical Report},\n  author={Yang, An and others},\n  journal={arXiv preprint arXiv:2407.10671},\n  year={2024}\n}\n\n@inproceedings{lipman2023flow,\n  title={Flow Matching for Generative Modeling},\n  author={Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n% ============================================================\n% Additional references (Round 3 reviewer request)\n% ============================================================\n\n% ============================================================\n% Additional VLA / VLM references\n% ============================================================\n\n@article{li2024cogact,\n  title={CogACT: A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation},\n  author={Li, Qixiu and Liang, Yaobo and Wang, Zeyu and Luo, Lin and Chen, Xi and Liao, Mozheng and Wei, Fangyun and Deng, Yu and Xu, Sicheng and Zhang, Yizhong and Wang, Xiaofan and Liu, Bei and Fu, Jianlong and Bao, Jianmin and Chen, Dong and Shi, Yuanchun and Yang, Jiaolong and Guo, Baining},\n  journal={arXiv preprint arXiv:2411.19650},\n  year={2024},\n  eprint={2411.19650},\n  archivePrefix={arXiv}\n}\n\n@article{kim2025openoft,\n  title={Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success},\n  author={Kim, Moo Jin and Finn, Chelsea and Liang, Percy},\n  journal={arXiv preprint arXiv:2502.19645},\n  year={2025},\n  eprint={2502.19645},\n  archivePrefix={arXiv}\n}\n\n@article{li2024tokenpacker,\n  title={TokenPacker: Efficient Visual Projector for Multimodal LLM},\n  author={Li, Wentong and Yuan, Yuqian and Liu, Jian and Tang, Dongqi and Wang, Song and Qin, Jie and Zhu, Jianke and Zhang, Lei},\n  journal={arXiv preprint arXiv:2407.02392},\n  year={2024},\n  eprint={2407.02392},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{zheng2025xvla,\n  title={{X-VLA}: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model},\n  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2026},\n  eprint={2510.10274},\n  archivePrefix={arXiv}\n}\n\n@article{wen2024tinyvla,\n  title={TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation},\n  author={Wen, Junjie and Zhu, Yichen and Li, Jinming and Zhu, Minjie and Wu, Kun and Xu, Zhiyuan and Liu, Ning and Cheng, Ran and Shen, Chaomin and Peng, Yaxin and Feng, Feifei and Tang, Jian},\n  journal={arXiv preprint arXiv:2409.12514},\n  year={2024},\n  eprint={2409.12514},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{lewis2020bart,\n  title={{BART}: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension},\n  author={Lewis, Mike and Liu, Yinhan and Goyal, Naman and Ghazvininejad, Marjan and Mohamed, Abdelrahman and Levy, Omer and Stoyanov, Veselin and Zettlemoyer, Luke},\n  booktitle={Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2020}\n}\n\n% ============================================================\n% New additions for expanded Related Work\n% ============================================================\n\n@inproceedings{ryoo2021tokenlearner,\n  title={{TokenLearner}: Adaptive Space-Time Tokenization for Videos},\n  author={Ryoo, Michael S. and Piergiovanni, AJ and Arnab, Anurag and Dehghani, Mostafa and Angelova, Anelia},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2021},\n  eprint={2106.11297},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{yin2022avit,\n  title={{A-ViT}: Adaptive Tokens for Efficient Vision Transformer},\n  author={Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2022},\n  eprint={2112.07658},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{meng2022adavit,\n  title={{AdaViT}: Adaptive Vision Transformers for Efficient Image Recognition},\n  author={Meng, Lingchen and Li, Hengduo and Chen, Bor-Chun and Lan, Shiyi and Wu, Zuxuan and Jiang, Yu-Gang and Lim, Ser-Nam},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2022},\n  eprint={2111.15668},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{chen2023sparsevit,\n  title={{SparseViT}: Revisiting Activation Sparsity for Efficient High-Resolution Vision Transformer},\n  author={Chen, Xuanyao and Liu, Zhijian and Tang, Haotian and Yi, Li and Zhao, Hang and Han, Song},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2023},\n  eprint={2303.17605},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{ye2025fitprune,\n  title={Fit and Prune: Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models},\n  author={Ye, Weihao and Wu, Qiong and Lin, Wenhao and Zhou, Yiyi},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year={2025},\n  eprint={2409.10197},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{shi2024crossget,\n  title={{CrossGET}: Cross-Guided Ensemble of Tokens for Accelerating Vision-Language Transformers},\n  author={Shi, Dachuan and Tao, Chaofan and Rao, Anyi and Yang, Zhendong and Yuan, Chun and Wang, Jiaqi},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024},\n  eprint={2305.17455},\n  archivePrefix={arXiv}\n}\n\n@article{zhang2024fastervlm,\n  title={[CLS] Attention is All You Need for Training-Free Visual Token Pruning: Make {VLM} Inference Faster},\n  author={Zhang, Qizhe and Cheng, Aosong and Lu, Ming and Zhuo, Zhiyong and Wang, Minqi and Cao, Jiajun and Guo, Shaobo and She, Qi and Zhang, Shanghang},\n  journal={arXiv preprint arXiv:2412.01818},\n  year={2024},\n  eprint={2412.01818},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{liu2024llava15,\n  title={Improved Baselines with Visual Instruction Tuning},\n  author={Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2024},\n  eprint={2310.03744},\n  archivePrefix={arXiv}\n}\n\n@article{chen2024internvl25,\n  title={Expanding Performance Boundaries of Open-Source Multimodal Models with Model, Data, and Test-Time Scaling},\n  author={Chen, Zhe and Wang, Weiyun and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Cui, Erfei and Zhu, Jinguo and Ye, Shenglong and Tian, Hao and others},\n  journal={arXiv preprint arXiv:2412.05271},\n  year={2024},\n  eprint={2412.05271},\n  archivePrefix={arXiv}\n}\n\n@article{gao2024miniinternvl,\n  title={{Mini-InternVL}: A Flexible-Transfer Pocket Multimodal Model with 5\\% Parameters and 90\\% Performance},\n  author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},\n  journal={arXiv preprint arXiv:2410.16261},\n  year={2024},\n  eprint={2410.16261},\n  archivePrefix={arXiv}\n}\n\n% ============================================================\n% Synced from literature_map.yaml (missing entries)\n% ============================================================\n\n% --- VLA Models ---\n\n@inproceedings{zitkovich2023rt2,\n  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author={Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others},\n  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n  year={2023},\n  eprint={2307.15818},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{openxembodiment2024,\n  title={Open {X-Embodiment}: Robotic Learning Datasets and {RT-X} Models},\n  author={{Open X-Embodiment Collaboration}},\n  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2024},\n  eprint={2310.08864},\n  archivePrefix={arXiv}\n}\n\n% --- VLM/LLM Token Efficiency ---\n\n@inproceedings{zhang2023h2o,\n  title={{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n  author={Zhang, Zhenyu and others},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  eprint={2306.14048},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{xiao2024streamingllm,\n  title={Efficient Streaming Language Models with Attention Sinks},\n  author={Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2024},\n  eprint={2309.17453},\n  archivePrefix={arXiv}\n}\n\n\n% --- Closed-Loop Evaluation ---\n\n@article{mees2022calvin,\n  title={{CALVIN}: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks},\n  author={Mees, Oier and Hermann, Lukas and Rosete-Beas, Erick and Burgard, Wolfram},\n  journal={IEEE Robotics and Automation Letters},\n  year={2022},\n  eprint={2112.03227},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{chi2023diffusionpolicy,\n  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023},\n  eprint={2303.04137},\n  archivePrefix={arXiv}\n}\n\n% --- Negative Results & Evaluation Pitfalls ---\n\n@inproceedings{zeng2023transformers_tsf,\n  title={Are Transformers Effective for Time Series Forecasting?},\n  author={Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year={2023},\n  eprint={2205.13504},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{bouthillier2024negative,\n  title={Position: Embracing Negative Results in Machine Learning},\n  author={Bouthillier, Xavier and others},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024},\n  eprint={2406.03980},\n  archivePrefix={arXiv}\n}\n\n% --- Vision Connectors & Token Compression ---\n\n@article{oquab2024dinov2,\n  title={{DINOv2}: Learning Robust Visual Features without Supervision},\n  author={Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and others},\n  journal={Transactions on Machine Learning Research},\n  year={2024},\n  eprint={2304.07193},\n  archivePrefix={arXiv}\n}\n\n@article{su2024roformer,\n  title={{RoFormer}: Enhanced Transformer with Rotary Position Embedding},\n  author={Su, Jianlin and Ahmed, Murtadha and Lu, Yu and Pan, Shengfeng and Bo, Wen and Liu, Yunfeng},\n  journal={Neurocomputing},\n  volume={568},\n  pages={127063},\n  year={2024},\n  publisher={Elsevier}\n}\n\n",
+                "numLines": 589,
+                "startLine": 1,
+                "totalLines": 589
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016cdh8hcKUFqFFtyhPuHRTX",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "a57c18d5-9e10-4780-abdb-f7f61f16d687",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwm3LQ7nP9j5iXmupKiPNw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12693,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12693
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T17:26:01.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016cdh8hcKUFqFFtyhPuHRTX",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "370d1623-1c7a-4333-aad9-5305a089d25a",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I've read the bib file and have WebSearch available. Let me now analyze what needs to be fixed:\n\n1. `zheng2025xvla` (line 364-371) - First author is \"Zheng, Jinliang\" which actually looks correct already. Wait, the user says current first author is \"Zheng, Yifu\" but looking at the file, it says \"Zheng, Jinliang\". Let me re-read... The entry at line 366 says `author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others}`. \n\nThe first author appears to already be \"Zheng, Jinliang\", which contradicts what the user mentioned, so either the file was already corrected or the user has outdated information. I should still verify the complete author list through web searches to be thorough.\n\n2. `chen2024fastv` (line 159-167) - Currently has full authors: \"Chen, Liang and Zhao, Haozhe and Liu, Tianyu and Bai, Shuai and Lin, Junyang and Zhou, Chang and Chang, Baobao\". That's 7 authors, not \"Chen, Liang and others\", so this one also needs checking.\n\n3. `black2025pi05` (line 127-138) - The user says it's an arXiv preprint format, but it's already formatted as `@inproceedings` with CoRL venue, PMLR v305, and pages, so this also appears to be already done.\n\nLet me look more carefully at the actual content. For item 1, line 366 shows the first author as Jinliang, not Yifu as the user indicated. For item 2, line 162 shows the full author list starting with Chen, Liang. It seems like either the file has been recently updated or the user's information is outdated.\n\nI should still run web searches to verify the accuracy of what's currently in the file and make any necessary corrections.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "4a48780a-860b-44d9-9609-d2a3b1ec225e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTxhQtYkaq6k96v6WD2Tza",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10235,
+                "cache_read_input_tokens": 24538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10235
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读完 bib 文件，发现当前状态与用户描述有出入。让我搜索验证每项的准确性。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "79b422bf-388a-408b-b755-f9d97b9021ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTxhQtYkaq6k96v6WD2Tza",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10235,
+                "cache_read_input_tokens": 24538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10235
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EYSgNKvkDhHZNen5zrWgS8",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2510.10274 X-VLA authors complete list"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "89a9b116-5487-41dc-ad50-ba730b28195d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTxhQtYkaq6k96v6WD2Tza",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10235,
+                "cache_read_input_tokens": 24538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10235
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0125qJiNGqKvUPwwSPudHdvc",
+              "name": "WebSearch",
+              "input": {
+                "query": "FastV ECCV 2024 \"An Image is Worth 1/2 Tokens\" authors Chen Liang"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "2f1ccc28-a1d7-4f70-a3e3-2938c9eefbec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTxhQtYkaq6k96v6WD2Tza",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10235,
+                "cache_read_input_tokens": 24538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10235
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DMQAY8EY2WDBeuCpxSBDmU",
+              "name": "WebSearch",
+              "input": {
+                "query": "pi0.5 CoRL 2025 PMLR v305 \"Conference on Robot Learning\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "180b767c-e6bf-4c19-ab27-86f0f75a3609",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTxhQtYkaq6k96v6WD2Tza",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10235,
+                "cache_read_input_tokens": 24538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10235
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T17:26:34.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EYSgNKvkDhHZNen5zrWgS8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2510.10274 X-VLA authors complete list\"\n\nLinks: [{\"title\":\"[2510.10274] X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model\",\"url\":\"https://arxiv.org/abs/2510.10274\"},{\"title\":\"(PDF) X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model\",\"url\":\"https://www.researchgate.net/publication/396462440_X-VLA_Soft-Prompted_Transformer_as_Scalable_Cross-Embodiment_Vision-Language-Action_Model\"},{\"title\":\"2025-10-14 X-VLA: Soft-Prompted Transformer as Scalable\",\"url\":\"https://arxiv.org/pdf/2510.10274\"},{\"title\":\"2toINF/X-VLA-SoftFold · Hugging Face\",\"url\":\"https://huggingface.co/2toINF/X-VLA-SoftFold\"},{\"title\":\"2toINF/X-VLA-Pt · Hugging Face\",\"url\":\"https://huggingface.co/2toINF/X-VLA-Pt\"},{\"title\":\"X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2510.10274\"},{\"title\":\"RLinf-VLA: A Unified and Efficient Framework for Reinforcement Learning of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.06710v2\"},{\"title\":\"X-VLA\",\"url\":\"https://thu-air-dream.github.io/X-VLA/\"}]\n\nBased on the search results, the complete list of authors for arXiv paper 2510.10274 (X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model) is: Jinliang Zheng, Jianxiong Li, Zhihao Wang, Dongxiu Liu, Xirui Kang, Yuchun Feng, Yinan Zheng, Jiayin Zou, Yilun Chen, Jia Zeng, Ya-Qin Zhang, Jiangmiao Pang, Jingjing Liu, Tai Wang, and Xianyuan Zhan.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "c115712f-3dac-4c4f-b53d-5df7ec093137",
+            "tool_use_result": {
+              "query": "arXiv 2510.10274 X-VLA authors complete list",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01NuozYUmQEqADsRgLqENHKs",
+                  "content": [
+                    {
+                      "title": "[2510.10274] X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model",
+                      "url": "https://arxiv.org/abs/2510.10274"
+                    },
+                    {
+                      "title": "(PDF) X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model",
+                      "url": "https://www.researchgate.net/publication/396462440_X-VLA_Soft-Prompted_Transformer_as_Scalable_Cross-Embodiment_Vision-Language-Action_Model"
+                    },
+                    {
+                      "title": "2025-10-14 X-VLA: Soft-Prompted Transformer as Scalable",
+                      "url": "https://arxiv.org/pdf/2510.10274"
+                    },
+                    {
+                      "title": "2toINF/X-VLA-SoftFold · Hugging Face",
+                      "url": "https://huggingface.co/2toINF/X-VLA-SoftFold"
+                    },
+                    {
+                      "title": "2toINF/X-VLA-Pt · Hugging Face",
+                      "url": "https://huggingface.co/2toINF/X-VLA-Pt"
+                    },
+                    {
+                      "title": "X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model | Cool Papers - Immersive Paper Discovery",
+                      "url": "https://papers.cool/arxiv/2510.10274"
+                    },
+                    {
+                      "title": "RLinf-VLA: A Unified and Efficient Framework for Reinforcement Learning of Vision-Language-Action Models",
+                      "url": "https://arxiv.org/html/2510.06710v2"
+                    },
+                    {
+                      "title": "X-VLA",
+                      "url": "https://thu-air-dream.github.io/X-VLA/"
+                    }
+                  ]
+                },
+                "Based on the search results, the complete list of authors for arXiv paper 2510.10274 (X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model) is: Jinliang Zheng, Jianxiong Li, Zhihao Wang, Dongxiu Liu, Xirui Kang, Yuchun Feng, Yinan Zheng, Jiayin Zou, Yilun Chen, Jia Zeng, Ya-Qin Zhang, Jiangmiao Pang, Jingjing Liu, Tai Wang, and Xianyuan Zhan."
+              ],
+              "durationSeconds": 4.953150306999996
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T17:26:35.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0125qJiNGqKvUPwwSPudHdvc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FastV ECCV 2024 \"An Image is Worth 1/2 Tokens\" authors Chen Liang\"\n\nLinks: [{\"title\":\"GitHub - pkunlp-icler/FastV: [ECCV 2024 Oral] Code for paper: An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models · GitHub\",\"url\":\"https://github.com/pkunlp-icler/FastV\"},{\"title\":\"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models | Computer Vision – ECCV 2024\",\"url\":\"https://dl.acm.org/doi/10.1007/978-3-031-73004-7_2\"},{\"title\":\"GitHub - MachineLearningSystem/24ECCV-FastV: [ECCV 2024] Code for paper: An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models · GitHub\",\"url\":\"https://github.com/MachineLearningSystem/24ECCV-FastV\"},{\"title\":\"GitHub - chenllliang/FastV: Code for paper: An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models · GitHub\",\"url\":\"https://github.com/chenllliang/FastV\"},{\"title\":\"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-3-031-73004-7_2\"},{\"title\":\"[PDF] An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/An-Image-is-Worth-1-2-Tokens-After-Layer-2:-for-Chen-Zhao/3421d12d98956c36c5d39c0ef023b378b6922068\"},{\"title\":\"[2403.06764] An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\",\"url\":\"https://arxiv.org/abs/2403.06764\"},{\"title\":\"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-PLay Acceleration for VLLM Inference\",\"url\":\"https://arxiv.org/html/2403.06764v3\"},{\"title\":\"ECCV Poster An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\",\"url\":\"https://eccv.ecva.net/virtual/2024/poster/2009\"}]\n\nI found comprehensive information about this paper. Here are the search results:\n\nFastV (\"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\") was authored by Liang Chen, Haozhe Zhao, Tianyu Liu, Shuai Bai, Junyang Lin, Chang Zhou, and others, and the paper was selected as an Oral Presentation at ECCV 2024.\n\nFastV is a versatile plug-and-play method designed to optimize computational efficiency by learning adaptive attention patterns in early layers and pruning visual tokens in subsequent ones. The method demonstrates the ability to dramatically reduce computational costs (e.g., a 45% reduction in FLOPs for LLaVA-1.5-13B) without sacrificing performance in a wide range of image and video understanding tasks.\n\nYou can find the paper on arXiv (2403.06764), GitHub repositories, and the official ECCV 2024 proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "8f395860-b753-42c4-98b9-aefb6ff894bf",
+            "tool_use_result": {
+              "query": "FastV ECCV 2024 \"An Image is Worth 1/2 Tokens\" authors Chen Liang",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01C2bq53QdGRAjjMU7uCHnwF",
+                  "content": [
+                    {
+                      "title": "GitHub - pkunlp-icler/FastV: [ECCV 2024 Oral] Code for paper: An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models · GitHub",
+                      "url": "https://github.com/pkunlp-icler/FastV"
+                    },
+                    {
+                      "title": "An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models | Computer Vision – ECCV 2024",
+                      "url": "https://dl.acm.org/doi/10.1007/978-3-031-73004-7_2"
+                    },
+                    {
+                      "title": "GitHub - MachineLearningSystem/24ECCV-FastV: [ECCV 2024] Code for paper: An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models · GitHub",
+                      "url": "https://github.com/MachineLearningSystem/24ECCV-FastV"
+                    },
+                    {
+                      "title": "GitHub - chenllliang/FastV: Code for paper: An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models · GitHub",
+                      "url": "https://github.com/chenllliang/FastV"
+                    },
+                    {
+                      "title": "An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models | Springer Nature Link",
+                      "url": "https://link.springer.com/chapter/10.1007/978-3-031-73004-7_2"
+                    },
+                    {
+                      "title": "[PDF] An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/An-Image-is-Worth-1-2-Tokens-After-Layer-2:-for-Chen-Zhao/3421d12d98956c36c5d39c0ef023b378b6922068"
+                    },
+                    {
+                      "title": "[2403.06764] An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models",
+                      "url": "https://arxiv.org/abs/2403.06764"
+                    },
+                    {
+                      "title": "An Image is Worth 1/2 Tokens After Layer 2: Plug-and-PLay Acceleration for VLLM Inference",
+                      "url": "https://arxiv.org/html/2403.06764v3"
+                    },
+                    {
+                      "title": "ECCV Poster An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models",
+                      "url": "https://eccv.ecva.net/virtual/2024/poster/2009"
+                    }
+                  ]
+                },
+                "I found comprehensive information about this paper. Here are the search results:\n\nFastV (\"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\") was authored by Liang Chen, Haozhe Zhao, Tianyu Liu, Shuai Bai, Junyang Lin, Chang Zhou, and others, and the paper was selected as an Oral Presentation at ECCV 2024.\n\nFastV is a versatile plug-and-play method designed to optimize computational efficiency by learning adaptive attention patterns in early layers and pruning visual tokens in subsequent ones. The method demonstrates the ability to dramatically reduce computational costs (e.g., a 45% reduction in FLOPs for LLaVA-1.5-13B) without sacrificing performance in a wide range of image and video understanding tasks.\n\nYou can find the paper on arXiv (2403.06764), GitHub repositories, and the official ECCV 2024 proceedings."
+              ],
+              "durationSeconds": 4.888129618999999
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T17:26:38.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DMQAY8EY2WDBeuCpxSBDmU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"pi0.5 CoRL 2025 PMLR v305 \"Conference on Robot Learning\"\"\n\nLinks: [{\"title\":\"CoRL 2025\",\"url\":\"https://2025.corl.org/\"},{\"title\":\"CORL 2025 - YouTube\",\"url\":\"https://www.youtube.com/watch?v=Use5M-nfFlI\"},{\"title\":\"Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation\",\"url\":\"https://proceedings.mlr.press/v305/zhi25a.html\"},{\"title\":\"CoRL 2025 Survey - Speaker Deck\",\"url\":\"https://speakerdeck.com/harukiabe/corl-2025-survey\"},{\"title\":\"Proceedings of Machine Learning Research | Proceedings of The 9th Conference on Robot Learning Held in Seoul, Korea on 27-30 September 2025 Published as Volume 305 by the Proceedings of Machine Learning Research on 07 October 2025. Volume Edited by: Joseph Lim Shuran Song Hae-Won Park Series Editors: Neil D. Lawrence\",\"url\":\"https://proceedings.mlr.press/v305/\"},{\"title\":\"Publications · Robot Learning Lab\",\"url\":\"https://robotlearning.cs.washington.edu/publications/\"},{\"title\":\"Conference on Robot Learning (CoRL)\",\"url\":\"https://dblp.org/db/conf/corl/index.html\"},{\"title\":\"Two papers accepted at Conference on Robot Learning (CoRL) 2025 | SLMC | School of Informatics\",\"url\":\"https://informatics.ed.ac.uk/slmc/two-papers-accepted-at-conference-on-robot-learning-corl-2025\"}]\n\nI found relevant information about your search. Here are the results:\n\nThe Proceedings of The 9th Conference on Robot Learning was held in Seoul, Korea on 27-30 September 2025 and published as Volume 305 by the Proceedings of Machine Learning Research on 07 October 2025.\n\nRegarding pi0.5 specifically, π0.5 is mentioned as an example of a robot foundation model that \"learns diverse skills with a single policy.\" It was developed by Black et al.\n\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning.\n\nThe search results show that PMLR Volume 305 contains numerous papers from CoRL 2025, and pi0.5 is referenced as a notable contribution in the context of robot foundation models presented at the conference.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "bedf3d34-63ba-432d-be50-bf21f74e5bcd",
+            "tool_use_result": {
+              "query": "pi0.5 CoRL 2025 PMLR v305 \"Conference on Robot Learning\"",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019w8b4EvhzWTGfHQQorFV4E",
+                  "content": [
+                    {
+                      "title": "CoRL 2025",
+                      "url": "https://2025.corl.org/"
+                    },
+                    {
+                      "title": "CORL 2025 - YouTube",
+                      "url": "https://www.youtube.com/watch?v=Use5M-nfFlI"
+                    },
+                    {
+                      "title": "Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation",
+                      "url": "https://proceedings.mlr.press/v305/zhi25a.html"
+                    },
+                    {
+                      "title": "CoRL 2025 Survey - Speaker Deck",
+                      "url": "https://speakerdeck.com/harukiabe/corl-2025-survey"
+                    },
+                    {
+                      "title": "Proceedings of Machine Learning Research | Proceedings of The 9th Conference on Robot Learning Held in Seoul, Korea on 27-30 September 2025 Published as Volume 305 by the Proceedings of Machine Learning Research on 07 October 2025. Volume Edited by: Joseph Lim Shuran Song Hae-Won Park Series Editors: Neil D. Lawrence",
+                      "url": "https://proceedings.mlr.press/v305/"
+                    },
+                    {
+                      "title": "Publications · Robot Learning Lab",
+                      "url": "https://robotlearning.cs.washington.edu/publications/"
+                    },
+                    {
+                      "title": "Conference on Robot Learning (CoRL)",
+                      "url": "https://dblp.org/db/conf/corl/index.html"
+                    },
+                    {
+                      "title": "Two papers accepted at Conference on Robot Learning (CoRL) 2025 | SLMC | School of Informatics",
+                      "url": "https://informatics.ed.ac.uk/slmc/two-papers-accepted-at-conference-on-robot-learning-corl-2025"
+                    }
+                  ]
+                },
+                "I found relevant information about your search. Here are the results:\n\nThe Proceedings of The 9th Conference on Robot Learning was held in Seoul, Korea on 27-30 September 2025 and published as Volume 305 by the Proceedings of Machine Learning Research on 07 October 2025.\n\nRegarding pi0.5 specifically, π0.5 is mentioned as an example of a robot foundation model that \"learns diverse skills with a single policy.\" It was developed by Black et al.\n\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning.\n\nThe search results show that PMLR Volume 305 contains numerous papers from CoRL 2025, and pi0.5 is referenced as a notable contribution in the context of robot foundation models presented at the conference."
+              ],
+              "durationSeconds": 7.450192979
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me analyze the current state vs what needs to be fixed:\n\n**Item 1: `zheng2025xvla`**\nCurrent (line 364-371):\n```bibtex\n@inproceedings{zheng2025xvla,\n  title={{X-VLA}: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model},\n  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},\n\n\n```\n\nThe first author is already \"Zheng, Jinliang\" (correct). But the author list uses \"and others\" - need to expand with the complete list.\n\nComplete author list from search: Jinliang Zheng, Jianxiong Li, Zhihao Wang, Dongxiu Liu, Xirui Kang, Yuchun Feng, Yinan Zheng, Jiayin Zou, Y\n\nCompleting the bibtex entry...\n\nI need to fill in the full author list for the first entry - there are 15 authors total, so I'll write them all out in the BibTeX format rather than using \"and others.\"\n\nNow looking at the second entry, which appears to be a conference paper on vision-language model optimization. The title and author list are visible but the booktitle field is cut off mid-entry. I'm verifying the author list against the ECCV proceedings and arXiv page to confirm all seven authors are correctly included in the bibliography entry.\n\nNow moving to the next item - checking the bibtex entry for the vision-language-action model paper, which currently lists Kevin Black and others but appears to be cut off mid-entry. Now I'm replacing the \"and others\" placeholder with the full author list from the paper - that's fifteen authors total, ending with Xianyuan Zhan.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "2de1ac79-f253-42fd-b463-af4d75d82ad9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019PeSw1tHaKptHN24MUSwoK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3465,
+                "cache_read_input_tokens": 34773,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3465
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 bib 文件状态与用户描述有出入——2/3 项已修复。逐项检查：\n\n**Item 2 (`chen2024fastv`)**: 已有完整 7 位作者列表，无需修改。\n**Item 3 (`black2025pi05`)**: 已是 `@inproceedings`，含 CoRL 2025 / PMLR v305 信息，无需修改。\n**Item 1 (`zheng2025xvla`)**: 第一作者已正确为 Jinliang，但作者列表仍用 `and others`，需展开为完整 15 位作者。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "23078a55-12f1-42d6-be12-aef8a66f378e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019PeSw1tHaKptHN24MUSwoK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3465,
+                "cache_read_input_tokens": 34773,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3465
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jhf9pzevqiFWMQgbDfDyNf",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib",
+                "old_string": "  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},",
+                "new_string": "  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and Kang, Xirui and Feng, Yuchun and Zheng, Yinan and Zou, Jiayin and Chen, Yilun and Zeng, Jia and Zhang, Ya-Qin and Pang, Jiangmiao and Liu, Jingjing and Wang, Tai and Zhan, Xianyuan},"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "177cb208-5870-41f7-af50-9c7d7995b7db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019PeSw1tHaKptHN24MUSwoK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3465,
+                "cache_read_input_tokens": 34773,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3465
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T17:27:21.714Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jhf9pzevqiFWMQgbDfDyNf",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "05b9c2f9-19e3-4093-a5ca-8519f671544f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib",
+              "oldString": "  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},",
+              "newString": "  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and Kang, Xirui and Feng, Yuchun and Zheng, Yinan and Zou, Jiayin and Chen, Yilun and Zeng, Jia and Zhang, Ya-Qin and Pang, Jiangmiao and Liu, Jingjing and Wang, Tai and Zhan, Xianyuan},",
+              "originalFile": "% References for: The Cliff Edge — Why Vision Token Reduction Fails\n% Catastrophically in VLA Closed-Loop Control\n% Auto-generated from literature_map.yaml (verified entries only)\n% 2026-05-17\n\n% ============================================================\n% Attention Analysis\n% ============================================================\n\n@inproceedings{abnar2020quantifying,\n  title={Quantifying Attention Flow in Transformers},\n  author={Abnar, Samira and Zuidema, Willem},\n  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages={4190--4197},\n  year={2020},\n}\n\n% ============================================================\n% VLA Token Compression (concurrent work)\n% ============================================================\n\n@article{gao2025compressorvla,\n  title={Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation},\n  author={Gao, Juntao and Ye, Feiyang and Zhang, Jing and Qian, Wenjing},\n  journal={arXiv preprint arXiv:2511.18950},\n  year={2025},\n  eprint={2511.18950},\n  archivePrefix={arXiv}\n}\n\n@article{wang2025specprunevla,\n  title={SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning},\n  author={Wang, Hanzhen and Xu, Jiaming and Xiang, Yushun and Pan, Jiayi and Zhou, Yongkang and Li, Yong-Lu and Dai, Guohao},\n  journal={arXiv preprint arXiv:2509.05614},\n  year={2025},\n  eprint={2509.05614},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{jiang2026lightvla,\n  title={The Better You Learn, The Smarter You Prune: Towards Efficient Vision-Language-Action Models via Differentiable Token Pruning},\n  author={Jiang, Titong and Jiang, Xuefeng and Ma, Yuan and Wen, Xin and Li, Bailin and Zhan, Kun and Jia, Peng and Liu, Yahui and Sun, Sheng and Lang, Xianpeng},\n  booktitle={Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2026},\n  eprint={2509.12594},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{feng2026seewhatmatters,\n  title={See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model},\n  author={Feng, Yixu and Zhao, Zinan and Ma, Yanxiang and Xia, Chenghao and Du, Chengbin and Wang, Yunke and Xu, Chang},\n  booktitle={Proceedings of the Forty-Third International Conference on Machine Learning (ICML)},\n  year={2026},\n  eprint={2605.11817},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{zhang2025sparsevlm,\n  title={SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference},\n  author={Zhang, Yuan and Fan, Chun-Kai and Ma, Junpeng and Zheng, Wenzhao and Huang, Tao and Cheng, Kuan and Gudovskiy, Denis and Okuno, Tomoyuki and Nakata, Yohei and Keutzer, Kurt and Zhang, Shanghang},\n  booktitle={Proceedings of the Forty-Second International Conference on Machine Learning (ICML)},\n  year={2025},\n  eprint={2410.04417},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{khaki2025sparsevila,\n  title={SparseVILA: Decoupled Visual Sparsity for Efficient VLM Inference},\n  author={Khaki, Samir and Guo, Junxian and Tang, Jiaming and Yang, Shang and Chen, Yukang and Plataniotis, Konstantinos N. and Lu, Yao and Han, Song and Liu, Zhijian},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2025},\n  eprint={2510.17777},\n  archivePrefix={arXiv}\n}\n\n@article{jabbour2025dontrun,\n  title={Don't Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered},\n  author={Jabbour, Jason and Kim, Dong-Ki and Smith, Max and Patrikar, Jay and Ghosal, Radhika and Wang, Youhui and Agha, Ali and Janapa Reddi, Vijay and Omidshafiei, Shayegan},\n  journal={arXiv preprint arXiv:2510.08464},\n  year={2025},\n  eprint={2510.08464},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{li2024roboflamingo,\n  title={Vision-Language Foundation Models as Effective Robot Imitators},\n  author={Li, Xinghang and Liu, Minghuan and Zhang, Hanbo and Yu, Cunjun and Xu, Jie and Wu, Hongtao and Cheang, Chilam and Jing, Ya and Zhang, Weinan and Liu, Huaping and Li, Hang and Kong, Tao},\n  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year={2024},\n  eprint={2311.01378},\n  archivePrefix={arXiv}\n}\n\n% ============================================================\n% VLA Models\n% ============================================================\n\n@article{shukor2025smolvla,\n  title={{SmolVLA}: A Vision-Language-Action Model for Affordable and Efficient Robotics},\n  author={Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others},\n  journal={arXiv preprint arXiv:2506.01844},\n  year={2025}\n}\n\n@inproceedings{kim2024openvla,\n  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others},\n  booktitle={Proceedings of the 8th Conference on Robot Learning (CoRL)},\n  year={2024}\n}\n\n@inproceedings{brohan2023rt2,\n  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and others},\n  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n  year={2023}\n}\n\n\n@article{black2024pi0,\n  title={$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n  author={Black, Kevin and Brown, Noah and Driess, Danny and others},\n  journal={arXiv preprint arXiv:2410.24164},\n  year={2024}\n}\n\n@inproceedings{black2025pi05,\n  title={$\\pi_{0.5}$: a Vision-Language-Action Model with Open-World Generalization},\n  author={Black, Kevin and Brown, Noah and Shafiullah, Nur Muhammad Mahi and others},\n  booktitle={Proceedings of The 9th Conference on Robot Learning (CoRL)},\n  series={Proceedings of Machine Learning Research},\n  volume={305},\n  pages={17--40},\n  year={2025},\n  publisher={PMLR},\n  eprint={2504.16054},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{ghosh2024octo,\n  title={Octo: An Open-Source Generalist Robot Policy},\n  author={{Octo Model Team} and Ghosh, Dibya and Walke, Homer and Pertsch, Karl and Black, Kevin and others},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2024}\n}\n\n@inproceedings{brohan2023rt1,\n  title={{RT-1}: Robotics Transformer for Real-World Control at Scale},\n  author={Brohan, Anthony and Brown, Noah and Carbajal, Justice and others},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023}\n}\n\n\n% ============================================================\n% VLM/LLM Token Efficiency\n% ============================================================\n\n@inproceedings{chen2024fastv,\n  title={An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models},\n  author={Chen, Liang and Zhao, Haozhe and Liu, Tianyu and Bai, Shuai and Lin, Junyang and Zhou, Chang and Chang, Baobao},\n  booktitle={European Conference on Computer Vision (ECCV)},\n  year={2024},\n  eprint={2403.06764},\n  archivePrefix={arXiv},\n  note={Oral presentation}\n}\n\n\n@inproceedings{xu2025vlacache,\n  title={{VLA-Cache}: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching},\n  author={Xu, Siyu and Wang, Yunke and Xia, Chenghao and Zhu, Dihao and Huang, Tao and Xu, Chang},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025}\n}\n\n@article{cheng2026vlaiap,\n  title={{VLA-IAP}: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models},\n  author={Cheng, Jintao and Wang, Haozhe and Li, Weibin and Wang, Gang and Zhang, Yipu and Tang, Xiaoyu and Wu, Jin and Chen, Xieyuanli and Liu, Yunhui and Zhang, Wei},\n  journal={arXiv preprint arXiv:2603.22991},\n  year={2026}\n}\n\n% ============================================================\n% ViT Token Pruning/Merging\n% ============================================================\n\n@inproceedings{rao2021dynamicvit,\n  title={{DynamicViT}: Efficient Vision Transformers with Dynamic Token Sparsification},\n  author={Rao, Yongming and Zhao, Wenliang and Liu, Benlin and Lu, Jiwen and Zhou, Jie and Hsieh, Cho-Jui},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2021}\n}\n\n@inproceedings{bolya2023tome,\n  title={Token Merging: Your {ViT} But Faster},\n  author={Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n@inproceedings{liang2022evit,\n  title={Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations},\n  author={Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2022}\n}\n\n% ============================================================\n% Closed-Loop Evaluation\n% ============================================================\n\n@inproceedings{liu2023libero,\n  title={{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author={Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n\n% ============================================================\n% Negative Results & Evaluation Pitfalls\n% ============================================================\n\n\n% ============================================================\n% VLA Token Efficiency (new additions)\n% ============================================================\n\n@article{yang2025efficientvla,\n  title={{EfficientVLA}: Training-Free Acceleration and Compression for Vision-Language-Action Models},\n  author={Yang, Yantai and Wang, Yuhao and Wen, Zichen and others},\n  journal={arXiv preprint arXiv:2506.10100},\n  year={2025}\n}\n\n@article{liu2025vlapruner,\n  title={{VLA-Pruner}: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference},\n  author={Liu, Ziyan and Chen, Yeqiu and Cai, Hongyi and others},\n  journal={arXiv preprint arXiv:2511.16449},\n  year={2025}\n}\n\n@inproceedings{shang2024prumerge,\n  title={{LLaVA-PruMerge}: Adaptive Token Reduction for Efficient Large Multimodal Models},\n  author={Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan},\n  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2025}\n}\n\n% ============================================================\n% Vision Connectors\n% ============================================================\n\n@inproceedings{alayrac2022flamingo,\n  title={Flamingo: a Visual Language Model for Few-Shot Learning},\n  author={Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and others},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2022}\n}\n\n@inproceedings{liu2023llava,\n  title={Visual Instruction Tuning},\n  author={Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{shi2016subpixel,\n  title={Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network},\n  author={Shi, Wenzhe and Caballero, Jose and Huszar, Ferenc and Totz, Johannes and Aitken, Andrew P. and Bishop, Rob and Rueckert, Daniel and Wang, Zehan},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2016}\n}\n\n@article{chen2024internvl,\n  title={How Far Are We to {GPT-4V}? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},\n  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and others},\n  journal={arXiv preprint arXiv:2404.16821},\n  year={2024}\n}\n\n% ============================================================\n% Background / Architecture\n% ============================================================\n\n@inproceedings{li2023blip2,\n  title={{BLIP-2}: Bootstrapping Language-Image Pre-Training with Frozen Image Encoders and Large Language Models},\n  author={Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2023}\n}\n\n@inproceedings{jaegle2021perceiver,\n  title={Perceiver: General Perception with Iterative Attention},\n  author={Jaegle, Andrew and Gimeno, Felix and Brock, Andrew and Zisserman, Andrew and Vinyals, Oriol and Carreira, Joao},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2021}\n}\n\n@article{oquab2023dinov2,\n  title={{DINOv2}: Learning Robust Visual Features without Supervision},\n  author={Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and others},\n  journal={Transactions on Machine Learning Research},\n  year={2024}\n}\n\n@inproceedings{zhai2023siglip,\n  title={Sigmoid Loss for Language Image Pre-Training},\n  author={Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2023}\n}\n\n@article{yang2024qwen2,\n  title={Qwen2 Technical Report},\n  author={Yang, An and others},\n  journal={arXiv preprint arXiv:2407.10671},\n  year={2024}\n}\n\n@inproceedings{lipman2023flow,\n  title={Flow Matching for Generative Modeling},\n  author={Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2023}\n}\n\n% ============================================================\n% Additional references (Round 3 reviewer request)\n% ============================================================\n\n% ============================================================\n% Additional VLA / VLM references\n% ============================================================\n\n@article{li2024cogact,\n  title={CogACT: A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation},\n  author={Li, Qixiu and Liang, Yaobo and Wang, Zeyu and Luo, Lin and Chen, Xi and Liao, Mozheng and Wei, Fangyun and Deng, Yu and Xu, Sicheng and Zhang, Yizhong and Wang, Xiaofan and Liu, Bei and Fu, Jianlong and Bao, Jianmin and Chen, Dong and Shi, Yuanchun and Yang, Jiaolong and Guo, Baining},\n  journal={arXiv preprint arXiv:2411.19650},\n  year={2024},\n  eprint={2411.19650},\n  archivePrefix={arXiv}\n}\n\n@article{kim2025openoft,\n  title={Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success},\n  author={Kim, Moo Jin and Finn, Chelsea and Liang, Percy},\n  journal={arXiv preprint arXiv:2502.19645},\n  year={2025},\n  eprint={2502.19645},\n  archivePrefix={arXiv}\n}\n\n@article{li2024tokenpacker,\n  title={TokenPacker: Efficient Visual Projector for Multimodal LLM},\n  author={Li, Wentong and Yuan, Yuqian and Liu, Jian and Tang, Dongqi and Wang, Song and Qin, Jie and Zhu, Jianke and Zhang, Lei},\n  journal={arXiv preprint arXiv:2407.02392},\n  year={2024},\n  eprint={2407.02392},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{zheng2025xvla,\n  title={{X-VLA}: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model},\n  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2026},\n  eprint={2510.10274},\n  archivePrefix={arXiv}\n}\n\n@article{wen2024tinyvla,\n  title={TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation},\n  author={Wen, Junjie and Zhu, Yichen and Li, Jinming and Zhu, Minjie and Wu, Kun and Xu, Zhiyuan and Liu, Ning and Cheng, Ran and Shen, Chaomin and Peng, Yaxin and Feng, Feifei and Tang, Jian},\n  journal={arXiv preprint arXiv:2409.12514},\n  year={2024},\n  eprint={2409.12514},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{lewis2020bart,\n  title={{BART}: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension},\n  author={Lewis, Mike and Liu, Yinhan and Goyal, Naman and Ghazvininejad, Marjan and Mohamed, Abdelrahman and Levy, Omer and Stoyanov, Veselin and Zettlemoyer, Luke},\n  booktitle={Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2020}\n}\n\n% ============================================================\n% New additions for expanded Related Work\n% ============================================================\n\n@inproceedings{ryoo2021tokenlearner,\n  title={{TokenLearner}: Adaptive Space-Time Tokenization for Videos},\n  author={Ryoo, Michael S. and Piergiovanni, AJ and Arnab, Anurag and Dehghani, Mostafa and Angelova, Anelia},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2021},\n  eprint={2106.11297},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{yin2022avit,\n  title={{A-ViT}: Adaptive Tokens for Efficient Vision Transformer},\n  author={Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2022},\n  eprint={2112.07658},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{meng2022adavit,\n  title={{AdaViT}: Adaptive Vision Transformers for Efficient Image Recognition},\n  author={Meng, Lingchen and Li, Hengduo and Chen, Bor-Chun and Lan, Shiyi and Wu, Zuxuan and Jiang, Yu-Gang and Lim, Ser-Nam},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2022},\n  eprint={2111.15668},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{chen2023sparsevit,\n  title={{SparseViT}: Revisiting Activation Sparsity for Efficient High-Resolution Vision Transformer},\n  author={Chen, Xuanyao and Liu, Zhijian and Tang, Haotian and Yi, Li and Zhao, Hang and Han, Song},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2023},\n  eprint={2303.17605},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{ye2025fitprune,\n  title={Fit and Prune: Fast and Training-free Visual Token Pruning for Multi-modal Large Language Models},\n  author={Ye, Weihao and Wu, Qiong and Lin, Wenhao and Zhou, Yiyi},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year={2025},\n  eprint={2409.10197},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{shi2024crossget,\n  title={{CrossGET}: Cross-Guided Ensemble of Tokens for Accelerating Vision-Language Transformers},\n  author={Shi, Dachuan and Tao, Chaofan and Rao, Anyi and Yang, Zhendong and Yuan, Chun and Wang, Jiaqi},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024},\n  eprint={2305.17455},\n  archivePrefix={arXiv}\n}\n\n@article{zhang2024fastervlm,\n  title={[CLS] Attention is All You Need for Training-Free Visual Token Pruning: Make {VLM} Inference Faster},\n  author={Zhang, Qizhe and Cheng, Aosong and Lu, Ming and Zhuo, Zhiyong and Wang, Minqi and Cao, Jiajun and Guo, Shaobo and She, Qi and Zhang, Shanghang},\n  journal={arXiv preprint arXiv:2412.01818},\n  year={2024},\n  eprint={2412.01818},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{liu2024llava15,\n  title={Improved Baselines with Visual Instruction Tuning},\n  author={Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae},\n  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2024},\n  eprint={2310.03744},\n  archivePrefix={arXiv}\n}\n\n@article{chen2024internvl25,\n  title={Expanding Performance Boundaries of Open-Source Multimodal Models with Model, Data, and Test-Time Scaling},\n  author={Chen, Zhe and Wang, Weiyun and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Cui, Erfei and Zhu, Jinguo and Ye, Shenglong and Tian, Hao and others},\n  journal={arXiv preprint arXiv:2412.05271},\n  year={2024},\n  eprint={2412.05271},\n  archivePrefix={arXiv}\n}\n\n@article{gao2024miniinternvl,\n  title={{Mini-InternVL}: A Flexible-Transfer Pocket Multimodal Model with 5\\% Parameters and 90\\% Performance},\n  author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},\n  journal={arXiv preprint arXiv:2410.16261},\n  year={2024},\n  eprint={2410.16261},\n  archivePrefix={arXiv}\n}\n\n% ============================================================\n% Synced from literature_map.yaml (missing entries)\n% ============================================================\n\n% --- VLA Models ---\n\n@inproceedings{zitkovich2023rt2,\n  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author={Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others},\n  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n  year={2023},\n  eprint={2307.15818},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{openxembodiment2024,\n  title={Open {X-Embodiment}: Robotic Learning Datasets and {RT-X} Models},\n  author={{Open X-Embodiment Collaboration}},\n  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2024},\n  eprint={2310.08864},\n  archivePrefix={arXiv}\n}\n\n% --- VLM/LLM Token Efficiency ---\n\n@inproceedings{zhang2023h2o,\n  title={{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n  author={Zhang, Zhenyu and others},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  eprint={2306.14048},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{xiao2024streamingllm,\n  title={Efficient Streaming Language Models with Attention Sinks},\n  author={Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2024},\n  eprint={2309.17453},\n  archivePrefix={arXiv}\n}\n\n\n% --- Closed-Loop Evaluation ---\n\n@article{mees2022calvin,\n  title={{CALVIN}: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks},\n  author={Mees, Oier and Hermann, Lukas and Rosete-Beas, Erick and Burgard, Wolfram},\n  journal={IEEE Robotics and Automation Letters},\n  year={2022},\n  eprint={2112.03227},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{chi2023diffusionpolicy,\n  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},\n  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},\n  booktitle={Robotics: Science and Systems (RSS)},\n  year={2023},\n  eprint={2303.04137},\n  archivePrefix={arXiv}\n}\n\n% --- Negative Results & Evaluation Pitfalls ---\n\n@inproceedings{zeng2023transformers_tsf,\n  title={Are Transformers Effective for Time Series Forecasting?},\n  author={Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n  year={2023},\n  eprint={2205.13504},\n  archivePrefix={arXiv}\n}\n\n@inproceedings{bouthillier2024negative,\n  title={Position: Embracing Negative Results in Machine Learning},\n  author={Bouthillier, Xavier and others},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024},\n  eprint={2406.03980},\n  archivePrefix={arXiv}\n}\n\n% --- Vision Connectors & Token Compression ---\n\n@article{oquab2024dinov2,\n  title={{DINOv2}: Learning Robust Visual Features without Supervision},\n  author={Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and others},\n  journal={Transactions on Machine Learning Research},\n  year={2024},\n  eprint={2304.07193},\n  archivePrefix={arXiv}\n}\n\n@article{su2024roformer,\n  title={{RoFormer}: Enhanced Transformer with Rotary Position Embedding},\n  author={Su, Jianlin and Ahmed, Murtadha and Lu, Yu and Pan, Shengfeng and Bo, Wen and Liu, Yunfeng},\n  journal={Neurocomputing},\n  volume={568},\n  pages={127063},\n  year={2024},\n  publisher={Elsevier}\n}\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 363,
+                  "oldLines": 7,
+                  "newStart": 363,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " @inproceedings{zheng2025xvla,",
+                    "   title={{X-VLA}: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model},",
+                    "-  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others},",
+                    "+  author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and Kang, Xirui and Feng, Yuchun and Zheng, Yinan and Zou, Jiayin and Chen, Yilun and Zeng, Jia and Zhang, Ya-Qin and Pang, Jiangmiao and Liu, Jingjing and Wang, Tai and Zhan, Xianyuan},",
+                    "   booktitle={International Conference on Learning Representations (ICLR)},",
+                    "   year={2026},",
+                    "   eprint={2510.10274},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。汇总：\n\n### 1. `zheng2025xvla` — 已修复\n- **修改前**: `author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others}`\n- **修改后**: 展开为完整 15 位作者：`Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and Kang, Xirui and Feng, Yuchun and Zheng, Yinan and Zou, Jiayin and Chen, Yilun and Zeng, Jia and Zhang, Ya-Qin and Pang, Jiangmiao and Liu, Jingjing and Wang, Tai and Zhan, Xianyuan`\n- 第一作者已是 Jinliang（正确），venue 已是 ICLR 2026（正确）\n\n### 2. `chen2024fastv` — 无需修改\n- 当前已有完整 7 位作者：Chen, Liang / Zhao, Haozhe / Liu, Tianyu / Bai, Shuai / Lin, Junyang / Zhou, Chang / Chang, Baobao\n- venue 已标注 ECCV + Oral presentation\n\n### 3. `black2025pi05` — 无需修改\n- 当前已是 `@inproceedings`，含 `booktitle={Proceedings of The 9th Conference on Robot Learning (CoRL)}`、`series={Proceedings of Machine Learning Research}`、`volume={305}`、`pages={17--40}`、`publisher={PMLR}`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "uuid": "79b6f090-7eee-42ed-a11e-2e2d7a1cfb64",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017qkXT56qhR1Cb9jyv7nSbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2326,
+                "cache_read_input_tokens": 38238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2326
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。汇总：\n\n### 1. `zheng2025xvla` — 已修复\n- **修改前**: `author={Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and others}`\n- **修改后**: 展开为完整 15 位作者：`Zheng, Jinliang and Li, Jianxiong and Wang, Zhihao and Liu, Dongxiu and Kang, Xirui and Feng, Yuchun and Zheng, Yinan and Zou, Jiayin and Chen, Yilun and Zeng, Jia and Zhang, Ya-Qin and Pang, Jiangmiao and Liu, Jingjing and Wang, Tai and Zhan, Xianyuan`\n- 第一作者已是 Jinliang（正确），venue 已是 ICLR 2026（正确）\n\n### 2. `chen2024fastv` — 无需修改\n- 当前已有完整 7 位作者：Chen, Liang / Zhao, Haozhe / Liu, Tianyu / Bai, Shuai / Lin, Junyang / Zhou, Chang / Chang, Baobao\n- venue 已标注 ECCV + Oral presentation\n\n### 3. `black2025pi05` — 无需修改\n- 当前已是 `@inproceedings`，含 `booktitle={Proceedings of The 9th Conference on Robot Learning (CoRL)}`、`series={Proceedings of Machine Learning Research}`、`volume={305}`、`pages={17--40}`、`publisher={PMLR}`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 93405,
+            "duration_api_ms": 104538,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "17746824-1f4f-4a4a-ba8e-bab859b091cd",
+            "total_cost_usd": 0.40607575,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 28719,
+              "cache_read_input_tokens": 109394,
+              "output_tokens": 4075,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28719,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 435,
+                  "cache_read_input_tokens": 38238,
+                  "cache_creation_input_tokens": 2326,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2326
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 35475,
+                "outputTokens": 899,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 3,
+                "costUSD": 0.06997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 4075,
+                "cacheReadInputTokens": 109394,
+                "cacheCreationInputTokens": 28719,
+                "webSearchRequests": 0,
+                "costUSD": 0.33610575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1c5b73fb-4301-4049-8bff-715444cd9efa"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ]
+}

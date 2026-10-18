@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8bbf4cd279731010ba47",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh olmo topk50 001 submit",
+  "task_key": "worker_ssh_olmo_topk50_001_submit_20260515T001042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_olmo_topk50_001_submit_20260515T001042_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "0d84fa17669a1514c8f33848f4cdd3b2a166254b598d13650e31aa98627ef82d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交成功。\n\n- **exp_id**: `olmo_topk50_001`\n- **GPU**: cuda:1 (gpu-6000pro-2)\n- **tmux session**: `olmo_topk50_001`\n- **日志**: `~/runs/recursive_gen_depth_est/olmo_topk50_001.log`\n- **PID**: 226461\n- **plan_id**: plan_002c\n\nPipeline 流程：symlink depth-0 LoRA → 生成 depth-1 (top-k k=50) → finetune depth-1 → 生成 depth-2 → finetune depth-2 → 生成 depth-3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

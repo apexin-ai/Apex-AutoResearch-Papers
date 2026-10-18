@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0f606326a9c77cc75fe6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel formal prep",
+  "task_key": "worker_ssh_fewrel-formal-prep_20260515T083006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-formal-prep_20260515T083006_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "9ac855032847e73201e23de604d9ffed4c9c028510783738dfe15bbc130f8d63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 tasks complete. Summary of deliverables:\n\n**Scripts (deployed + dry-run validated on cqa1-38874):**\n- `src/run_fewrel_formal.py` — exp1 (count curve, 110 batches) + exp2 (BCS controlled, 54 batches), with PID→name auto-remap for Qwen3 embeddings\n- `src/analyze_fewrel_results.py` — 3-layer analysis (pairwise SCS-confusion, per-type accuracy vs BCS, batch-level accuracy vs BCS)\n\n**Bug fix applied this session:**\n- Added PID→relation name key remapping in embedding loading (lines 203-207). `compute_type_embeddings.py` outputs PID-keyed embeddings but `fewrel_utils` data uses relation names — the remap bridges this mismatch automatically.\n\n**Launch commands:** `artifacts/fewrel_formal/LAUNCH_COMMANDS.md`\n- Step 0: Qwen3 embedding computation (~2 min GPU)\n- Step 1-2: exp1/exp2 full runs with nohup\n- Step 3: analysis pipeline\n- Execution order: embeddings → dry-run → exp1 (~5.5h) → exp2 → analyze"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

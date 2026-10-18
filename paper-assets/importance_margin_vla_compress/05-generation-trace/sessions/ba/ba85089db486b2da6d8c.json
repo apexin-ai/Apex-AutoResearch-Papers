@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "ba85089db486b2da6d8c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code attention pruning impl",
+  "task_key": "worker_code_attention_pruning_impl_20260522T112311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_attention_pruning_impl_20260522T112311_result.json",
+    "occurrence": 1,
+    "bytes": 2293142,
+    "sha256": "4a1126e7c6d100e2daf7aa6a9d77025d7291e5c09803cbce10d765da3b5ac592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ba85089db486b2da6d8c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

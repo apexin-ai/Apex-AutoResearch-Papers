@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fae78bdcf93f5252b2bf",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper theory draft plan 023",
+  "task_key": "worker_paper_theory_draft_plan_023_20260517T143535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_theory_draft_plan_023_20260517T143535_result.json",
+    "occurrence": 1,
+    "bytes": 1352,
+    "sha256": "36ae72f0cba1edf15e538931e91f12ae297ca9f32277e2e4807dbe9d43f02e30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Theory section 草稿完成，已保存到 `artifacts/theory_draft.tex` 并注册为 `art_20260517_54df88`。\n\n**结构概要：**\n\n1. **\\S4.1 Distributional Dynamics** — 定义 $\\mathcal{D}_0 \\to M_1 \\to \\mathcal{D}_1 \\to \\cdots$ 迭代框架；Theorem 1 (Tail Contraction) 形式化 tail mass $T_k(\\alpha)$ 单调递减至零，引用 Shumailov (Nature 2024) 的 Gaussian collapse 结果和 Dohmatob (NeurIPS 2024) 的线性/指数 test risk 增长公式。\n\n2. **\\S4.2 Why Features Distinguish Depth** — 分别解释 `p90_ppl`（tail 消失 → 高 surprisal token 减少）和 `var_surprisal`（entropy 下降 → surprisal 分布收窄）的单调性；Proposition 1 给出形式化陈述，对照实验 $\\rho \\in [-0.89, -0.82]$。\n\n3. **\\S4.3 EDD Upper Bound** — 引入 contraction mapping 假设（引用 Alemohammad ICLR 2024），推导 $\\text{EDD}(\\tau) \\leq \\lfloor \\log(\\delta/d_0) / \\log\\gamma \\rfloor + 1$，含完整证明。对数形式解释了为什么即使初始差异大，检测深度也有限。\n\n4. **\\S4.4 Alignment with Experiments** — 三组验证：pairwise AUC 几何衰减（拟合 $\\gamma \\approx 0.80$）、三个模型一致 EDD=4、feature 单调性。\n\n**风格检查通过：** 零 em-dash，零 -ing 短语结尾，环境全部闭合，大括号平衡。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

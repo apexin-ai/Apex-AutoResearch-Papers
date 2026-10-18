@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "987173133c0b36405c9f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 gpu0 openvla or random",
+  "task_key": "worker_deploy_cqa1_gpu0_openvla_or_random_20260524T213121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_gpu0_openvla_or_random_20260524T213121_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "40753a4807b39047b3c08f701424260b23395f8735e24e12c32040e151e1f1ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型仍在加载中（π0.5 较大），进程正常运行。\n\n```\nOpenVLA 环境: 无（脚本仅支持 l2_norm/random，无 attention 模式；transformers=5.5.3 非 4.40.x）\n选择方案: B: Random k=0.85 Object s43\n部署: 成功 PID=733129\nGPU0 进程数: 模型加载中，尚未分配显存（进程存活，状态 S）\n```\n\n实验 `eval_pi05_random_k085_object_seed43_postfix` 已注册为 RUNNING，server=cqa1-33015 GPU0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

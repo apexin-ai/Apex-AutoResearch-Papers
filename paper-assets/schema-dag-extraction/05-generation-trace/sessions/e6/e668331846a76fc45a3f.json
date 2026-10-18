@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e668331846a76fc45a3f",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "reviewer / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_14.md",
+    "occurrence": 1,
+    "bytes": 3798,
+    "sha256": "866d8e5ce5ed5697aa45232bd2f7aec2405730fd1a0c5e883bb03ae628a60136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-23T19:49:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文主体 ≤8 页（EMNLP 2026 ARR），Limitations 豁免但不能塞额外内容\n- Abstract ≤200 words（当前 ~183 words）\n- ARR Checklist 在 OpenReview form 填写，不放 PDF 里（main.tex:50 已正确注释）\n- 一篇文章只能有一个 Limitations section，放正文，appendix 不能有\n- \"73% multi-match rate\"（非 \"none-rate\"）——已全文修正，不要回退\n- Appendix Table 17 caption 残留 \"format-independent\" → 应改为 \"no detected format dependence\"（上轮审查标 warning，可能尚未修复，需确认）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874 (root) + westd-24295 (root)\n- 代码根目录（远程）：/root/schema-dag-extraction\n- 论文源文件（本地）：/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/\n- 模型：Qwen3-32B-FP8（cqa1 上 vLLM serving）\n- 数据：FewRel /root/schema-dag-extraction/data/fewrel_parquet/\n- 无活跃进程：exp_fewshot_bcs_count16 已 DONE，无 RUNNING 实验\n- 无 W&B（本项目不用 wandb）\n\n### 3. 📊 当前状态\n**Loop #14 完成了全部提交前审查工作。** 论文 submission-ready。\n\n本轮完成的审查：\n- 对抗性审稿模拟：Q2 (3/5), Q7 (3.5/5), Q11 (3/5), Q13 (3/5) + 10 个 TP 批量评估\n- 叙事一致性检查（多轮，覆盖所有 framing 修改）\n- Negative results 叙事审计（9 个 NR，无 omit）\n- 两张新图质量审查（Fig 1 framework, Fig 4 SDGD pipeline）— PASS\n- Submission-readiness 整篇通读 — READY WITH CAVEATS（仅 Appendix Table 17 一处残留）\n- Related work 近期工作检查 — 无重要遗漏\n- exp_fewshot_bcs_count16 结果核实 — success，1-shot widening 复现\n- 最终 claim 强度评估 — 无 over/under-claiming，无值得跑的新实验\n\nRegistry: 全部 DONE，0 RUNNING，0 PREPARING。\n\n### 4. 📋 待办\n- Appendix Table 17 \"format-independent\" 若尚未修复 → 确认是否已改，未改则标 warning 提醒 Director\n- 论文提交后（DDL 5/25）→ 切换到 rebuttal 准备模式\n- 如果 Director 要求补实验 → 参考本轮结论：没有值得跑的低成本实验，所有核心 claim 已有充分证据\n- 如果收到审稿意见 → 加载 rebuttal skill，重点准备 Q7 additivity（kill 3.5/5，论文最薄弱点）\n\n### 5. 🎯 战略上下文\n**论文核心结论**：Schema complexity 沿两个维度降解 LLM IE——count (Dim1, 跨任务) 和 confusability (Dim2, RE batch-level, semipartial R²=0.273)。SDGD decomposition 失败（merge amplification + routing failure），但 oracle routing 证明 separability。\n\n**最容易判断错的事**：\n- 0.218 出现在 main.tex 里是 Spearman ρ（SCS-confusion, 3160 pairs），**不是** semipartial R² 的旧 bug。Loop #13 handoff 误报了这个，我已在 Loop #14 开头纠正\n- DocRED R²=0.578 是 total R²（VIF=50.9 inflate），semipartial R²_BCS 只有 0.056——论文正确地用 FewRel 0.273 作为 primary evidence\n- NER BCS null 是 boundary condition 而非 negative result——有机制解释（error mode dispersion + BCS range compression SD ratio 19%）\n- TOST additivity 只在 FewRel linear scale 通过（p=0.003），logit scale inconclusive（p=0.209）——Introduction L18 已收窄为 \"directionally consistent on DocRED after controlling for BCS range restriction\"\n\n**审稿人最可能追问的 Top-3**：\n1. Q7 Additivity 只在 FewRel 成立（kill 3.5/5）——range matching post-hoc + MDE=5.5pp underpowered\n2. Q13 No solution（kill 3/5）——建议用 \"representational challenge\" framing 翻转\n3. Q2 Effect size 小（kill 3/5）——ecological aggregation + IntraSub 单调性是防线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

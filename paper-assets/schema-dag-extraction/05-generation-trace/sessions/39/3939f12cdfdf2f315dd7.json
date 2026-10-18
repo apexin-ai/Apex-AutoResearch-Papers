@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3939f12cdfdf2f315dd7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "fix exp012 flashinfer",
+  "task_key": "worker_fix_exp012_flashinfer_20260515T145622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp012_flashinfer_20260515T145622_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "34388c92bd03397ecb7bd482f4792ee618c9642903022a806980e40f8a2a4ece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**已完成的修复：**\n1. **flashinfer 升级**: 0.6.8.post1 → 0.6.11.post2（使用 `--no-deps` 避免覆盖 torch 2.11.0+cu130）\n2. **nvidia-cuda-nvcc 安装**: 13.2.78（提供 SM120 Blackwell 架构支持的 nvcc）\n3. **脚本更新** `scripts/run_exp012_llama.sh`:\n   - 删除无效的 `export VLLM_ATTENTION_BACKEND=FLASH_ATTN`\n   - 添加 `export CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13`\n\n**未验证加载**：GPU 显存几乎占满（仅 2.42/94.97 GiB 可用），无法执行 vLLM 加载测试。待 GPU 上当前任务结束后可验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

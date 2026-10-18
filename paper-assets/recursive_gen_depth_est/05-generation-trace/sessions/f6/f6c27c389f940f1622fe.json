@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f6c27c389f940f1622fe",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper writing atlas",
+  "task_key": "worker_paper_writing_atlas_20260515T082945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_atlas_20260515T082945_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "dfcfa53e0a7b035b16a2d74b79c62fc4be2ddeeec6c7fb6169397d56793826f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~1070 words of prose plus tables/figures — within the 1200-word budget.\n\nSection written to `section_atlas.tex`. Structure:\n\n- **§4 intro**: Sets up the 3×3×4 atlas grid and the four analyses\n- **§4.1**: Table 1 with 4-class accuracy (69.6–85.4%), model effect > strategy effect, 3-class results excluding d0\n- **§4.2**: Feature universality — p90_ppl in top-2 for 9/9 cells, var_surprisal for 7/9, mean Spearman ρ = 0.868, ties to tail-erosion theory\n- **§4.3**: EDD formalization, AUC decay curve (d0–d5 extended), Table 2 with threshold sensitivity (EDD = 3–5 depending on T)\n- **§4.4**: Non-uniform inter-depth spacing (87% vs 39% drops), temperature acceleration mechanism, three-tier strategy taxonomy with forward pointers to §5 (generalization)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

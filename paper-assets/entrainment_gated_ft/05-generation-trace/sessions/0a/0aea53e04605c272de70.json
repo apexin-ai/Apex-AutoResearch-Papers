@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0aea53e04605c272de70",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 003 p2",
+  "task_key": "worker_analysis_exp-003-p2_20260519T135239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-p2_20260519T135239_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "d11c82303241ab9d43c83dc3465e7b75a88b0be4ac6cbd1284779c41783f02bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-003-p2 完成，结论：NEGATIVE。**\n\n| 架构 | helped mean | hurt mean | U | p | r_rb |\n|------|-----------|----------|-------|-------|------|\n| GDN | 3.370 | 3.338 | 148410 | 0.209 | -0.045 |\n| RetNet | 3.443 | 3.421 | 107210 | 0.659 | -0.017 |\n| HGRN2 | 3.378 | 3.354 | 112999 | 0.248 | -0.044 |\n\n三个架构均 p>0.05，效应量可忽略 (|r|<0.05)。Pure-model perplexity 无法区分 helped/hurt samples。\n\n跨架构比较中，Kruskal-Wallis 显著 (helped: p=0.020, hurt: p=0.0005)，主要由 RetNet 整体 perplexity 更高驱动，但这只反映架构差异而非 helped/hurt 区分能力。\n\n**输出文件 (westb-48145):**\n- `analysis/sample_perplexity_results.csv` — 5153 样本 per-sample loss\n- `analysis/sample_perplexity_figure.{png,pdf}` — violin plot\n- `analysis/sample_perplexity_summary.json` — 统计摘要"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

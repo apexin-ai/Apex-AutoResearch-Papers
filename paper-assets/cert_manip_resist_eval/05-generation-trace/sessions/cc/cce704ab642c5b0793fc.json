@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cce704ab642c5b0793fc",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis plan006 cross benchmark v2 reverse",
+  "task_key": "worker_analysis_plan006-cross-benchmark-v2-reverse_20260524T103516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-cross-benchmark-v2-reverse_20260524T103516_result.json",
+    "occurrence": 1,
+    "bytes": 1851,
+    "sha256": "d01e7199a2263bd324fbc03663623d35933ebc6567a1cc93f7c893575b1519e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `cross_benchmark_v2_bidirectional.json`。\n\n## 完整结果\n\n### β(K_eff) Sign Consistency: 17/18（对称，两个方向相同）\n\n| K | 一致/总数 | 不一致条件 |\n|---|----------|-----------|\n| K=3 | 5/6 | **K3×position_bias** (MMLU β=+0.084, ARC β=−0.050) |\n| K=5 | 6/6 | — |\n| K=7 | 6/6 | — |\n\n### Cross-Predict R² 双向对比\n\n| Condition | MMLU→ARC R² | ARC→MMLU R² |\n|-----------|-------------|-------------|\n| K3×prompt_injection | 0.238 | **0.362** |\n| K3×sycophancy | 0.130 | **0.156** |\n| K3×score_manipulation | 0.178 | **0.360** |\n| K3×verbosity_bias | 0.242 | **0.324** |\n| K3×position_bias | −0.842 | 0.091 |\n| K3×authority_bias | 0.096 | 0.070 |\n| K5×prompt_injection | 0.220 | **0.299** |\n| K5×sycophancy | −0.145 | −0.648 |\n| K5×score_manipulation | **0.249** | 0.194 |\n| K5×verbosity_bias | 0.120 | **0.293** |\n| K5×position_bias | −2.528 | 0.086 |\n| K5×authority_bias | −0.185 | −0.441 |\n| K7×prompt_injection | 0.147 | **0.188** |\n| K7×sycophancy | −0.469 | −1.772 |\n| K7×score_manipulation | **0.188** | 0.148 |\n| K7×verbosity_bias | −0.206 | **0.186** |\n| K7×position_bias | −3.490 | 0.097 |\n| K7×authority_bias | −0.489 | −1.014 |\n\n### 关键发现\n\n1. **Sign consistency 是对称的**：`sign(β_keff_MMLU) == sign(β_keff_ARC)` 不分方向，17/18 适用于两个方向。V1 的 14/18 和 10/18 差异应来自不同的定义或数据版本。\n\n2. **Cross-predict R² 不对称**：ARC→MMLU方向在多数条件下R²更高（尤其K3），说明用ARC系数预测MMLU比反过来更准。这可能因为ARC拟合的系数更保守，泛化性更好。\n\n3. **唯一不一致条件**：K3×position_bias（MMLU β_keff=+0.084 接近0，ARC β_keff=−0.050 不显著 p=0.43）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

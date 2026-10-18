@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db0665b92a8698923b61",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code unconstrained decoding prep",
+  "task_key": "worker_code_unconstrained_decoding_prep_20260518T095530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unconstrained_decoding_prep_20260518T095530_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "037edd74d82286d5a58ab8e1de937d242fca2797f6f2f48c02dee4db9381f0d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 脚本路径\n| 文件 | 路径 |\n|------|------|\n| 主脚本 | `/root/schema-dag-extraction/src/run_unconstrained_decoding_ablation.py` |\n| Runner | `/root/schema-dag-extraction/scripts/run_unconstrained_ablation.sh` |\n| 输出目录 | `/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/` |\n\n### 与 baseline (`run_fewrel_v2_bcs.py`) 的唯一区别\n`build_json_schema_re` 中 `\"relation\"` 字段从 `{\"type\": \"string\", \"enum\": sorted(types) + [\"none\"]}` 改为 `{\"type\": \"string\"}`。Prompt 中仍然列出 candidate relations。\n\n### Dry-run 结果 (1 batch, 10 samples, low_0, BCS=0.4715)\n- Accuracy: 9/10 = **0.9000**\n- OOV rate: 0/10 = **0.0000**\n- 模型正确输出 JSON 格式，无 parse 错误\n- 推理 5.5s / 10 samples\n\n### 评估指标\n- per-batch accuracy (exact match)\n- OOV rate (prediction 不在 candidate list 中)\n- BCS-accuracy Spearman ρ (跨全部 10 batches)\n- Bootstrap 95% CI for Δ(low-high)\n- Per-group OOV rate\n\n### 运行命令\n```bash\nbash /root/schema-dag-extraction/scripts/run_unconstrained_ablation.sh\n```\n\n### 预估时间\n- 模型加载: ~40s\n- 推理: 960 samples @ ~0.5s/sample (batched) ≈ 2-3 min\n- **总计: ~4-5 min**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

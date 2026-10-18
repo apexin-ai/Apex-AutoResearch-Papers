@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c9bbc4f3c6e12f498469",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "data alt diversity extract",
+  "task_key": "worker_data_alt-diversity-extract_20260523T131153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_alt-diversity-extract_20260523T131153_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "316b19b9500ee60d2e01e31d65e284241e82afb2d1b600c682d0ca659eccbf11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/alt_diversity_measures.txt`。\n\n关键数据：\n\n| Measure | D\\_fdr\\_sig | sig+/sig- | mean \\|β\\_std\\| | corr w/ K\\_eff (ρ) |\n|---|---|---|---|---|\n| Q-statistic | 2/12 | 1/1 | 0.080 | 0.674 / 0.708 |\n| Disagreement | 8/12 | 7/1 | 0.186 | 0.861 / 0.860 |\n| κ-diversity | 7/12 | 7/0 | 0.194 | 0.942 / 0.947 |\n\n注意：alt\\_diversity\\_effect\\_size.json 中 12 个条件是 2 benchmarks × 6 manipulations **pooled across K**，没有 K=3/K=5 拆分。K\\_eff 的 K=3/K=5 参考数据从 k5\\_aggregation\\_analysis.json 补充（majority\\_vote: K=3 keff 8/12, K=5 keff 12/12）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

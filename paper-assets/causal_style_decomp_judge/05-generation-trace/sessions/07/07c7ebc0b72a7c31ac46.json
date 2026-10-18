@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "07c7ebc0b72a7c31ac46",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code register counterfactual gen 100",
+  "task_key": "worker_code_register_counterfactual_gen_100_20260521T004113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_register_counterfactual_gen_100_20260521T004113.log",
+    "occurrence": 1,
+    "bytes": 1186567,
+    "sha256": "575ddb7eb69a13427ecee79aaedb4449f9da282800fc4eec53a629512e92d7a2"
+  },
+  "statistics": {
+    "messages": 755,
+    "user_turns": 0,
+    "tool_calls": 330,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 88,
+      "tool_call": 330,
+      "tool_result": 330,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 755,
+      "chunks": [
+        {
+          "path": "07c7ebc0b72a7c31ac46-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "07c7ebc0b72a7c31ac46-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "07c7ebc0b72a7c31ac46-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "07c7ebc0b72a7c31ac46-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "07c7ebc0b72a7c31ac46-part-0005.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ]
+}

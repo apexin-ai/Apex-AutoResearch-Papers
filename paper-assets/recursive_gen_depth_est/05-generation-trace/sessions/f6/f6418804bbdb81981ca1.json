@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f6418804bbdb81981ca1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260515T080446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260515T080446_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "b15fce1ef7a670b8a107220279b804cc18b90927ef79e01de55741b22d55cdd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "37 entries written to `docs/paper/references.bib`, 281 lines. All braces balanced. YAML header claims 35 but actually contains 37 unique entries."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

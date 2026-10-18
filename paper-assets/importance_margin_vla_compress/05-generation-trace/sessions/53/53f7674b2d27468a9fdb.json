@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "53f7674b2d27468a9fdb",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check pi05 random k05 progress",
+  "task_key": "worker_ops_check-pi05-random-k05-progress_20260521T082056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-pi05-random-k05-progress_20260521T082056_result.json",
+    "occurrence": 1,
+    "bytes": 2134,
+    "sha256": "e48a0e633648d1972520fcb86bfe0810931b703cdd73806232b12d5c43c20021"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. π0.5 Random k=0.5 (PID 912506) — **关键实验**\n\n- **状态**: 运行中，已跑 ~60min，GPU 0 占用 10.4 GB\n- **进度**: 5/10 tasks 完成 (T0–T4)，正在跑 T5\n- **Per-task SR**:\n\n| Task | SR |\n|------|-----|\n| T0 alphabet soup | **85.0%** (原文 log 显示 T0 完成时 Total=85/100 不对——回看：T0=85/50? 不，T0 sr 未单独显示，但 T1 完成时 Total=85/100=85%，说明 T0=85%) |\n\n让我重新整理——日志里 T0 的结果没在这 30 行里，只从 T1 开始。\n\n| Task | SR | 备注 |\n|------|-----|------|\n| T0 alphabet soup | **92%** (推算: T1完成时 total=85/100, T1=78%, 所以 T0=(85-39)/50=**92%**) | |\n| T1 cream cheese | **78%** | |\n| T2 salad dressing | **68%** | |\n| T3 bbq sauce | **60%** | |\n| T4 ketchup | **60%** | |\n| T5 tomato sauce | 进行中，ep=50 SR=58%（可能已完成） | |\n\n- **Running average**: 208/300 = **69.3%** (5 tasks done)\n- **预估总 SR**: ~65-70%（后半任务通常略低）\n- **预估剩余时间**: ~55min（已用 57min 跑 5/10 tasks，均速 ~11min/task）\n\n### 2. 关键发现 — **D132 crossover 初步确认**\n\n| 配置 | Object SR |\n|------|-----------|\n| π0.5 baseline | 98.2% |\n| **Random k=0.5** | **~69% (running)** |\n| L2norm k=0.5 | 33.4% (已完成) |\n\n**Random k=0.5 显著高于 L2norm k=0.5** (~69% vs 33.4%)，差距约 **2x**。这强烈支持 D132 crossover 假设：L2norm pruning 对 π0.5 有灾难性影响，而 random pruning 反而更好。\n\n### 3. 其他实验\n\n| 实验 | PID | 状态 | 进度 | Running SR |\n|------|-----|------|------|------------|\n| **Random k=0.3** (914719) | cuda:0 | 运行中 ~57min | 4/10 tasks done, 跑 T4 (ep=50) | **36.8%** (92/250) |\n| **L2norm k=0.3** (936652) | cuda:1 | 运行中 ~37min | 3/10 tasks done, 跑 T3 (ep=40) | T0=12%, T1=54%, T2=90%, T3 进行中 | \n\nL2norm k=0.3 的 per-task 方差极大（T0=12%, T2=90%），整体 running avg ~52% (78/150)。\n\n### 4. L2norm k=0.5 已完成\n\n已输出结果文件 `pi05_l2norm_k0.50_libero_object.json`，overall SR = **33.4%**，耗时 95.6min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

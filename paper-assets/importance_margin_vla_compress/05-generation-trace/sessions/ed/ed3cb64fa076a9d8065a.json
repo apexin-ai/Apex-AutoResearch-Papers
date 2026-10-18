@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed3cb64fa076a9d8065a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag westd41074 pi05 failures",
+  "task_key": "worker_diag_westd41074_pi05_failures_20260521T092406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_westd41074_pi05_failures_20260521T092406_result.json",
+    "occurrence": 1,
+    "bytes": 2038,
+    "sha256": "789a610fb19e2762801293dbde47b3c3114073491b483e79d9ee19eea560638c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**两个实验都已成功完成，不是真正的失败。** 进程正常退出，结果已保存到磁盘。被标记为 \"failed\" 是因为缺少 sentinel/W&B 上报，但评测本身跑完了全部 10 tasks × 50 episodes。\n\n### 实验 1: eval_pi05_random_k03_object_seed42\n- **状态**: 已完成\n- **结果**: `libero_object prune=random keep=0.3 SR=36.4%` (182/500)\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.30_libero_object.json`（17:12 写入）\n- **耗时**: 106.5 分钟\n\n逐任务成绩：\n| Task | SR |\n|------|----|\n| T0 alphabet soup | 62% |\n| T1 cream cheese | 18% |\n| T2 salad dressing | 48% |\n| T3 bbq sauce | 32% |\n| T4 ketchup | 24% |\n| T5 tomato sauce | 18% |\n| T6 butter | 44% |\n| T7 milk | 30% |\n| T8 chocolate pudding | 50% |\n| T9 orange juice | 38% |\n\n### 实验 2: eval_pi05_l2norm_k03_object_seed42\n- **状态**: 已完成\n- **结果**: `libero_object prune=l2norm keep=0.3 SR=51.0%` (255/500)\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_object.json`（17:16 写入）\n- **耗时**: 90.8 分钟\n\n逐任务成绩：\n| Task | SR |\n|------|----|\n| T0 alphabet soup | 12% |\n| T1 cream cheese | 54% |\n| T2 salad dressing | 90% |\n| T3 bbq sauce | 42% |\n| T4 ketchup | 38% |\n| T5 tomato sauce | 92% |\n| T6 butter | 40% |\n| T7 milk | 18% |\n| T8 chocolate pudding | 78% |\n| T9 orange juice | 46% |\n\n### 失败根因\n**误报（false positive）**。监控系统检测到进程退出（PID 死亡）且没有 sentinel/W&B 上报，自动判定为失败。实际上评测脚本 `eval_pi05_pruning_libero.py` 没有集成 W&B 上报和 sentinel 写入，结果只保存为本地 JSON 文件。\n\n### 建议\n无需修复或重跑。两个 JSON 结果文件完整可用。如需后续 eval 脚本自动上报状态，可在脚本末尾添加 sentinel 文件写入（如 `touch /tmp/eval_done_<exp_name>`）或 W&B logging。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

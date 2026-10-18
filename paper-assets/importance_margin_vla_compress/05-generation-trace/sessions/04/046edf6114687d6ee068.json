@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "046edf6114687d6ee068",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check xvla k085 seed43 result",
+  "task_key": "worker_ops_check-xvla-k085-seed43-result_20260520T220212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-xvla-k085-seed43-result_20260520T220212_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "4273d4716bb5fbe073230b0397eeabcfdf1638fd2fcd14c31be49bcbbfbeefad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## X-VLA k=0.85 seed43 结果\n\n**overall_success_rate = 67.6%** (338/500)，Wilson CI 95%: [63.4%, 71.6%]\n\n### Per-task 明细\n\n| Task | Description | Success Rate |\n|------|-------------|-------------|\n| 0 | alphabet soup → basket | **100%** |\n| 1 | cream cheese → basket | 44% |\n| 2 | salad dressing → basket | **100%** |\n| 3 | bbq sauce → basket | 88% |\n| 4 | ketchup → basket | 28% |\n| 5 | tomato sauce → basket | 90% |\n| 6 | butter → basket | **0%** |\n| 7 | milk → basket | 94% |\n| 8 | chocolate pudding → basket | 34% |\n| 9 | orange juice → basket | 98% |\n\n### 与 k=0.8 seed43 对比\n\n- **k=0.80 seed43 = 88.4%**\n- **k=0.85 seed43 = 67.6%**\n\n**确认同 seed 非单调效应：k=0.85 比 k=0.80 保留更多 token，反而性能暴跌 20.8 个百分点。** butter 任务从有一定成功率直接降到 0%，ketchup/cream cheese/chocolate pudding 也大幅退化。这说明 keep_ratio 与性能的关系不是简单的单调递增，pruning 存在非平凡的甜蜜点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

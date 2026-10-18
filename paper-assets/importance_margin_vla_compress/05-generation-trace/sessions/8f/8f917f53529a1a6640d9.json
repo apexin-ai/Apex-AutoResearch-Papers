@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "8f917f53529a1a6640d9",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "code fix openvla attention rotary",
+  "task_key": "worker_code_fix-openvla-attention-rotary_20260524T063834",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_fix-openvla-attention-rotary_20260524T063834.jsonl",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "209437baa22547820aac7ae8cceb1741cbc5564666d54aa484693a76118a21e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T06:38:45.143332+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 26, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-openvla-attention-rotary_20260524T063834"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

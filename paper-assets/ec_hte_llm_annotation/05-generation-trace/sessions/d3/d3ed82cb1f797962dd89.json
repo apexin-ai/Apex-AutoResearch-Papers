@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3ed82cb1f797962dd89",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 008 multi llm",
+  "task_key": "worker_code_exp-008-multi-llm_20260521T081233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-008-multi-llm_20260521T081233_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "1049b47d9ae706eb012e2503ccb7bad6f46484c7d692500e7ca634f5af027763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline complete. Here's the summary:\n\n**5 models analyzed** (500 tweets each, 100% valid annotations):\n\n| Model | Δπ | Worst Subgroup |\n|-------|-----|----------------|\n| gpt-3.5-turbo | **0.3478** | True_short |\n| gpt-4-turbo | **0.2240** | True_medium |\n| gpt-4o-mini | **0.2160** | True_medium |\n| gpt-4.1 | **0.2000** | True_medium |\n| gpt-4o | **0.1760** | True_medium |\n\n**Key findings:**\n- **All 5 models show Δπ > 0.05** — misclassification heterogeneity is not model-specific\n- **4/5 models agree** `True_medium` (hashtag-present, medium-length) is the hardest subgroup\n- **Spearman rank correlations ρ = 0.82–1.00** (all p < 0.05) — the same subgroups are consistently harder across all models\n- gpt-3.5-turbo has the largest Δπ (0.35), suggesting smaller models amplify the bias\n- Interesting FPR/FNR split: gpt-3.5-turbo dominates FPR errors; gpt-4o dominates FNR errors — different models make different *types* of mistakes but the *subgroup heterogeneity pattern* is consistent\n\n**Output files:**\n- `results/exp008_available_models.txt` — 118 models on proxy\n- `results/exp008_multi_llm_annotations.csv` — all annotations\n- `results/exp008_multi_llm_comparison.csv` — per-model per-subgroup metrics\n- `results/exp008_multi_llm_analysis.md` — full analysis report"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

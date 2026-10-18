@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "854e5216a430bdd3d2e9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp kill zombie and verify",
+  "task_key": "worker_mvp_kill_zombie_and_verify_20260520T142556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_kill_zombie_and_verify_20260520T142556_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "f5e60fde9b3393d4fec70a9f40be5f544298a65e192eaa706c2e5d9250370a65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| **僵尸进程 PID 35019** | 已 kill（SIGTERM 成功） |\n| **scored.jsonl** | **无污染** — 36 条记录，36 个唯一 ID，0 重复，0 null score，0 all-null 记录 |\n| **数据清理** | 不需要，数据完整干净 |\n| **PID 35186（正常进程）** | **已不存在** — 该进程也已结束 |\n\n当前服务器上无任何 judge_scoring 进程在运行。后台仅有 Qwen3-32B 模型下载（PID 12163）和 NLI/Qwen 完成监控循环（PID 7240）。\n\n如需重新启动 judge_scoring，请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

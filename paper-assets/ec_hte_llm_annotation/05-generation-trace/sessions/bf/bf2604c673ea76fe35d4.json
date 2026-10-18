@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bf2604c673ea76fe35d4",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 015 semi real cm",
+  "task_key": "worker_code_exp-015-semi-real-cm_20260521T125022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-015-semi-real-cm_20260521T125022_result.json",
+    "occurrence": 1,
+    "bytes": 1290,
+    "sha256": "8a7ce701e5ec53a891b14a9a7450a90d954117fb0b090d417dc10fb3d5c835a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 output files generated. Here's the summary:\n\n**exp-015 completed** (278s, 100 MC seeds × 3 n_expert configs = 300 runs).\n\n### Key findings\n\nThe results show an interesting pattern under **realistic asymmetric CMs**:\n\n| n_expert | Method | Avg RMSE | Avg Coverage |\n|----------|--------|----------|-------------|\n| 100 | naive | 0.1230 | 0.879 |\n| 100 | global_corrected | 0.2631 | 0.885 |\n| 100 | hb_ec_hte | 0.7842 | 0.744 |\n| 250 | global_corrected | 0.2318 | 0.909 |\n| 250 | hb_ec_hte | 0.4113 | 0.834 |\n| 500 | global_corrected | 0.1963 | 0.922 |\n| 500 | hb_ec_hte | 0.2599 | 0.890 |\n\nUnder these **highly asymmetric real CMs** (e.g., S0 has FPR=0.054 but FNR=0.526), the HB EC-HTE estimator struggles — especially at small n_expert. The strong asymmetry (FNR >> FPR) combined with low P(Z=1)=0.18 means very few Z=1 expert labels are available per subgroup, making the Gibbs sampler's per-subgroup CM estimates noisy. Global correction outperforms HB at all sample sizes. As n_expert grows to 500, HB improves substantially but still doesn't beat global correction on average.\n\n**Output files:**\n- `results/exp015_semi_real_raw.csv` (9,600 rows)\n- `results/exp015_semi_real_summary.csv` (96 rows)\n- `results/exp015_semi_real_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

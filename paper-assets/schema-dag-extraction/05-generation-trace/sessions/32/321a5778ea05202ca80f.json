@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "321a5778ea05202ca80f",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis ner v2 bcs correlation",
+  "task_key": "worker_analysis_ner_v2_bcs_correlation_20260516T034616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ner_v2_bcs_correlation_20260516T034616.log",
+    "occurrence": 1,
+    "bytes": 673248,
+    "sha256": "e3c90ca8beeed2f6754745bb21047b799c9ae541c95a6752e904ecdfea7e67c6"
+  },
+  "statistics": {
+    "messages": 139,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 36,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "321a5778ea05202ca80f-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "321a5778ea05202ca80f-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ]
+}

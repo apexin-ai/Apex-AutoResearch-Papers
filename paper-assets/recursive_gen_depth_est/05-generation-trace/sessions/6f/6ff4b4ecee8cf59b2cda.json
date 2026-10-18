@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6ff4b4ecee8cf59b2cda",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analyze cross model olmo 001",
+  "task_key": "worker_analyze_cross_model_olmo_001_20260514T144427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cross_model_olmo_001_20260514T144427_result.json",
+    "occurrence": 1,
+    "bytes": 2369,
+    "sha256": "f28a32ed1b88199a835b07d418d8c4fb84da13856faf067f4b376e93f4280656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整分析报告：\n\n---\n\n## cross_model_olmo_001 分析报告\n\n### 状态：PIPELINE_CRASHED (negative)\n\n**实验未完成。** Pipeline 脚本在 depth-0 LoRA finetune 完成后崩溃，后续步骤全部未执行。\n\n### 失败原因\n\n```\nscripts/run_pipeline_olmo.sh: line 52: unexpected EOF while looking for matching `\"'\n```\n\n运行时的脚本版本有 52+ 行，存在未闭合的引号。当前脚本已被修改（46 行，语法正确），但未重新执行。\n\n### 已完成的部分\n\n| 指标 | 值 |\n|------|-----|\n| 模型 | OLMo-1B-hf (1.18B params) |\n| LoRA trainable params | 3,145,728 (0.27%) |\n| Depth-0 final loss | **2.2686** |\n| Training steps | 939 (3 epochs) |\n| Training runtime | 283.2s |\n| Checkpoint | `checkpoints/olmo/lora_depth_0` |\n\n### 未完成的部分\n\n- Depth-1/2/3 生成（未开始）\n- Depth-1/2 LoRA finetune（未开始）\n- 特征提取（未开始）\n- 分类评估（未开始）\n- 域一致性检查（未开始）\n\n### **无分类指标可报告**\n\n所有分类指标（4-class accuracy, AUC, 3-class, stratified split）均不存在。`results/` 目录下的文件是 Pythia baseline 的结果（时间戳 21:59，早于 OLMo 的 22:36）。\n\n### 与 Pythia 对比\n\n| 指标 | Pythia MVP | OLMo |\n|------|-----------|------|\n| Depth-0 final loss | ~1.025 | **2.2686** (2.2x 更高) |\n| 4-class acc (full) | 78.2% | N/A |\n| 4-class acc (filtered) | 81.6% | N/A |\n| AUC d1v2 | 0.861 | N/A |\n| AUC d2v3 | 0.801 | N/A |\n| Top features | var_surprisal > p90_ppl > mean_ppl | N/A |\n\n### 初步观察\n\nOLMo depth-0 loss (2.27) 显著高于 Pythia (~1.03)。这符合预期——OLMo-1B (1.18B) 比 Pythia-1.4B 略小，且架构不同，在相同数据上的 finetune loss 不同是正常的。但这不影响假设验证，因为我们关注的是跨深度的统计特征差异，而非绝对 loss 值。\n\n### 结论\n\n**conclusion = negative**，原因不是假设被否定，而是实验因脚本 bug 未能完成。脚本已修复，需要重新运行。\n\n### 下一步\n\n重新执行 `bash scripts/run_pipeline_olmo.sh`，当前脚本（46行）语法正确。需要额外添加特征提取和分类步骤（当前脚本只包含 finetune + generate，缺少 `extract_features.py` 和 `classify.py` 调用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

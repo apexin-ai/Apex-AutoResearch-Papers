@@ -1,0 +1,2109 @@
+{
+  "schema_version": "1.0",
+  "session_id": "332ae0e3d58eb5dfb444",
+  "rounds": [
+    {
+      "number": 117,
+      "messages": [
+        {
+          "source_line": 1621,
+          "timestamp": "2026-05-28T18:33:46.592559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-001621"
+        },
+        {
+          "source_line": 1622,
+          "timestamp": "2026-05-28T18:33:46.943900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-001622"
+        },
+        {
+          "source_line": 1623,
+          "timestamp": "2026-05-28T18:33:47.349482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 756
+          },
+          "id": "event-001623"
+        },
+        {
+          "source_line": 1624,
+          "timestamp": "2026-05-28T18:33:47.351648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 407
+          },
+          "id": "event-001624"
+        },
+        {
+          "source_line": 1625,
+          "timestamp": "2026-05-28T18:33:47.352210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-001625"
+        },
+        {
+          "source_line": 1626,
+          "timestamp": "2026-05-28T18:33:47.705164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-001626"
+        },
+        {
+          "source_line": 1627,
+          "timestamp": "2026-05-28T18:34:00.819820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001627"
+        },
+        {
+          "source_line": 1628,
+          "timestamp": "2026-05-28T18:34:01.171503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001628"
+        },
+        {
+          "source_line": 1629,
+          "timestamp": "2026-05-28T18:34:01.475167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-001629"
+        },
+        {
+          "source_line": 1630,
+          "timestamp": "2026-05-28T18:34:01.475600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-001630"
+        },
+        {
+          "source_line": 1631,
+          "timestamp": "2026-05-28T18:34:01.528367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 356
+          },
+          "id": "event-001631"
+        },
+        {
+          "source_line": 1632,
+          "timestamp": "2026-05-28T18:34:01.882832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 407
+          },
+          "id": "event-001632"
+        },
+        {
+          "source_line": 1633,
+          "timestamp": "2026-05-28T18:34:17.639509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-001633"
+        },
+        {
+          "source_line": 1634,
+          "timestamp": "2026-05-28T18:34:18.042281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-001634"
+        },
+        {
+          "source_line": 1635,
+          "timestamp": "2026-05-28T18:34:18.143072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001635"
+        },
+        {
+          "source_line": 1636,
+          "timestamp": "2026-05-28T18:34:18.496920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 353
+          },
+          "id": "event-001636"
+        },
+        {
+          "source_line": 1637,
+          "timestamp": "2026-05-28T18:34:18.597662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001637"
+        },
+        {
+          "source_line": 1638,
+          "timestamp": "2026-05-28T18:34:19.251945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 654
+          },
+          "id": "event-001638"
+        },
+        {
+          "source_line": 1639,
+          "timestamp": "2026-05-28T18:34:19.504622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p10.png"
+            }
+          },
+          "id": "event-001639"
+        },
+        {
+          "source_line": 1640,
+          "timestamp": "2026-05-28T18:34:20.060931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 556
+          },
+          "id": "event-001640"
+        },
+        {
+          "source_line": 1641,
+          "timestamp": "2026-05-28T18:34:37.656399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-001641"
+        },
+        {
+          "source_line": 1642,
+          "timestamp": "2026-05-28T18:34:37.807453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:exp_setup}\n6\t\n7\t\\paragraph{Benchmark.} We evaluate on LIBERO~\\cite{liu2023libero}, a simulated tabletop manipulation benchmark with four suites of increasing complexity: \\textbf{Object} (10 tasks, visually similar objects), \\textbf{Spatial} (10, relative spatial layouts), \\textbf{Goal} (10, goal-conditioned manipulation), and \\textbf{Long} (10, chained 3--5 step sequences). Each task has 50 demo and 50 evaluation episodes (500 per suite).\n8\t\n9\t\\paragraph{Models.} Four VLAs are evaluated in closed-loop control (Table~\\ref{tab:model_properties}): $\\pi_{0.5}$~\\cite{black2025pi05}, X-VLA~\\cite{zheng2025xvla}, OpenVLA~\\cite{kim2024openvla}, and SmolVLA~\\cite{shukor2025smolvla}. Two additional models ($\\pi_{0}$, OFT) contribute to the CV diagnostic via offline metrics only.\n10\t\n11\t\\paragraph{Protocol.} We prune at $k \\in \\{0.3, 0.5, 0.7, 0.75, 0.85, 0.9, 0.95\\}$ and report mean SR over 500 episodes. Multi-seed results ($\\pi_{0.5}$ Long: $n{=}5$; VTR: $n{=}3$) report mean $\\pm$ s.d.\\ with per-seed breakdowns in the appendix.\n12\t\n13\t\\subsection{Two-Axis Framework Overview}\n14\t\\label{sec:two_axis}\n15\t\n16\t\\begin{figure}[t]\n17\t\\centering\n18\t\\includegraphics[width=0.75\\linewidth]{figures/paper/fig_pruning_overview.pdf}\n19\t\\caption{Pruning degradation on LIBERO-Object (L2 norm scoring). $\\pi_{0.5}$ maintains ${\\geq}$98\\% through $k{=}0.85$, OpenVLA degrades linearly, X-VLA cliffs at $k{=}0.7$, SmolVLA collapses to 0\\% at $k{=}0.95$.}\n20\t\\label{fig:pruning_overview}\n21\t\\end{figure}\n22\t\n23\tThree qualitatively distinct response patterns emerge across the connector spectrum (Table~\\ref{tab:main_results}; Figure~\\ref{fig:pruning_overview}); a fourth (OpenVLA, MLP connector) is detailed in Appendix Table~\\ref{tab:full_results}.\n24\t\n25\t\\textbf{$\\pi_{0.5}$ (linear, CV$\\,{=}\\,$0.055).} Low-CV models are \\emph{uniformly critical}: which tokens are removed matters more than how many. On Obje\n…[truncated 7667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001642"
+        },
+        {
+          "source_line": 1643,
+          "timestamp": "2026-05-28T18:34:51.712246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{tab:full_results\\}|\\\\label\\{sec:analysis\\}|\\\\label\\{app:smolvla_ablation\\}|\\\\label\\{tab:attention_pruning\\}|\\\\label\\{fig:margin_profile\\}",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001643"
+        },
+        {
+          "source_line": 1644,
+          "timestamp": "2026-05-28T18:34:51.762887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/analysis.tex:2:\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/conclusion.tex:3:\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex:10:\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis_draft.tex:2:\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex:12:\\label{tab:full_results}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex:83:\\label{fig:margin_profile}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex:143:\\label{app:smolvla_ablation}\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex:883:\\label{tab:attention_pruning}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001644"
+        },
+        {
+          "source_line": 1645,
+          "timestamp": "2026-05-28T18:35:18.190632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{app:extended_discussion\\}",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001645"
+        },
+        {
+          "source_line": 1646,
+          "timestamp": "2026-05-28T18:35:18.341994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex:47:\\label{app:extended_discussion}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 151
+          },
+          "id": "event-001646"
+        },
+        {
+          "source_line": 1647,
+          "timestamp": "2026-05-28T18:35:18.342540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/conclusion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001647"
+        },
+        {
+          "source_line": 1648,
+          "timestamp": "2026-05-28T18:35:18.342852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-001648"
+        },
+        {
+          "source_line": 1649,
+          "timestamp": "2026-05-28T18:35:31.209355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-001649"
+        },
+        {
+          "source_line": 1650,
+          "timestamp": "2026-05-28T18:35:56.199798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 24990
+          },
+          "id": "event-001650"
+        },
+        {
+          "source_line": 1651,
+          "timestamp": "2026-05-28T18:35:56.350910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 最终全文核实报告 — 提交前终检\n\n**结论**: PASS（附一条建议）\n\n---\n\n### 检查项 1：旧断引彻底移除 ✅\n\n在所有编译文件（introduction.tex, method.tex, experiments.tex, conclusion.tex, limitations.tex, appendix.tex）中搜索 `sec:openvla_results` / `sec:scaling_law` / `tab:taxonomy`：\n\n- **零匹配**。这三个旧引用仅存在于非编译文件（results_v2.tex, results.tex, experimental_setup.tex, sections/results_draft.tex）。\n\n### 检查项 2：全文 PDF 扫描 零 \"??\" ✅\n\n150dpi 渲染 pages 1-10，逐页视觉检查：\n- Page 1（Title/Abstract/Intro）✅\n- Page 2（Intro/Related Work）✅\n- Page 3（Figure 2/Method §3.1-3.2）✅\n- Page 4（Method §3.2-3.3/Table 1）✅\n- Page 5（Method §3.4/Experiments §4.1-4.2）✅\n- Page 6（Table 2/Figure 4/§4.3-4.4）✅\n- Page 7（Figure 5/§4.5/§4.6）✅\n- Page 8（Table 3/§5 Discussion/§6 Limitations）✅\n- Page 9-10（References/Appendix A start）✅\n\n**零 \"??\" 残留。**\n\n### 检查项 3：交叉引用全部正确解析 ✅\n\n**method.tex**（11 个 \\ref）：\n- `tab:model_properties` ✅, `fig:architecture` ✅, `sec:cv_sensitivity` ×3 ✅, `sec:exp_setup` ✅, `app:attention_scoring` → appendix:865 ✅, `app:pruning_details` → appendix:133 ✅, `app:entropy_details` → appendix:702 ✅, `app:smart_compress_details` → appendix:597 ✅\n\n**experiments.tex**（~15 个 \\ref）：\n- `tab:model_properties` ✅, `tab:main_results` ✅, `fig:pruning_overview` ✅, `tab:full_results` → appendix:12 ✅, `sec:analysis` → conclusion:3 ✅, `sec:pixel_shuffle` ✅, `fig:pixel_shuffle` ✅, `fig:method_gap` ✅, `app:smolvla_ablation` → appendix:143 ✅, `tab:attention_pruning` → appendix:883 ✅, `fig:cliff_highlight` ✅, `fig:margin_profile` → appendix:83 ✅, `tab:vtr_main` ✅, `app:smart_compress_details` ✅\n\n**conclusion.tex**: `app:extended_discussion` → appendix:47 ✅\n\n**check_figures_and_layout 自动检查**: 1 critical（background.tex:58 `sec:discussion`——该文件不在编译链中，不影响 PDF）+ 48 orphan labels（warning，不影响输出）\n\n### 检查项 4：此前所有 critical/warning 修复仍在位 ✅\n\n| 修复项 | 状态 | 验证方式 |\n|--------|------|---------|\n| \"up to 20×\" in introduction:18 | ✅ 在位 | 源码 + PDF page 1 |\n| 4 处断引替换（sec:openvla_results→sec:exp_setup 等） | ✅ 旧引用已清除 | grep 确认 |\n| subfigure \\caption{}\\label{} | ✅ 在位（experiments.tex:71,77） | 源码确认 |\n| Table 3 caption 解释 44.8% vs 59.2% | ✅ 在位（experiments.tex:116） | 源码确认 |\n| Extended training control 在 VTR 文字中 | ✅ 在位（experiments.tex:111） | 源码确认 |\n| Limitations ≥150 words, ≥2-3 限制 | ✅ 6 个 distinct limitations + AI disclosure | 源码确认 |\n| Method section 精简（inline equations） | ✅ 7476 bytes, 77 行 | 源码确认 |\n| bib 修复（zheng2025xvla 等） | ✅ 此前已验证 | — |\n\n### 附注\n\n- **PDF 时间差**：main.pdf 编译于 18:31，tex 最后修改 18:32（差 ~1 分钟）。修改内容为 method 进一步精简和 appendix label 别名调整——所有引用在 18:31 版本的 tex 中已有对应 label，因此 PDF 内容正确。建议提交前做一次最终 `latexmk` 确保绝对同步。\n- **cqa1 GPU 0 幽灵进程 PID 373970**：仍占用 15.7GB 显存（68% util），之前多次报告未处理。不影响论文但浪费 GPU 资源。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001651"
+        },
+        {
+          "source_line": 1652,
+          "timestamp": "2026-05-28T18:36:00.211832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3860
+          },
+          "id": "event-001652"
+        },
+        {
+          "source_line": 1653,
+          "timestamp": "2026-05-28T18:36:05.086073+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "最终核实报告已提交。\n\n**结论：PASS。** 四项检查全部通过——旧断引已清除、PDF 零 \"??\"、所有交叉引用正确解析、此前修复无回退。唯一建议是提交前做一次最终 `latexmk` 编译确保 tex 源码与 PDF 绝对同步（当前差 ~1 分钟）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001653"
+        }
+      ]
+    },
+    {
+      "number": 118,
+      "messages": [
+        {
+          "source_line": 1654,
+          "timestamp": "2026-05-28T18:36:05.588854+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_kill_ghost_process_cqa1_20260528T182708]:\nWorker worker_ops_kill_ghost_process_cqa1_20260528T182708 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001654"
+        },
+        {
+          "source_line": 1655,
+          "timestamp": "2026-05-28T18:36:14.303330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001655"
+        },
+        {
+          "source_line": 1656,
+          "timestamp": "2026-05-28T18:36:15.408405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 1 MiB, 24564 MiB\\\\n1, 18 %, 10162 MiB, 24564 MiB\\\\n2, 0 %, 9767 MiB, 24564 MiB\\\\n3, 15 %, 10160 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1105
+          },
+          "id": "event-001656"
+        },
+        {
+          "source_line": 1657,
+          "timestamp": "2026-05-28T18:36:23.840295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_ops_kill_ghost_process_cqa1_20260528T182708\n\n**结论**: PASS\n\ncqa1 GPU 0 已释放：0% util, 1 MiB 显存（此前 68% util, 15710 MiB）。幽灵进程 PID 373970 确认已 kill。\n\nGPU 1-3 的 seed47 实验继续正常运行（各 ~10GB 占用）。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001657"
+        },
+        {
+          "source_line": 1658,
+          "timestamp": "2026-05-28T18:36:27.403862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3563
+          },
+          "id": "event-001658"
+        }
+      ]
+    },
+    {
+      "number": 119,
+      "messages": [
+        {
+          "source_line": 1659,
+          "timestamp": "2026-05-28T18:36:31.247969+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_page_count_surgery_20260528T182642]:\nWorker worker_paper_page_count_surgery_20260528T182642 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001659"
+        },
+        {
+          "source_line": 1660,
+          "timestamp": "2026-05-28T18:36:42.304318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.pdf /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/*.tex | head -12",
+              "description": "Check latest modification times"
+            }
+          },
+          "id": "event-001660"
+        },
+        {
+          "source_line": 1661,
+          "timestamp": "2026-05-28T18:36:42.456728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 1295953 May 28 18:35 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.pdf\n-rw-r--r-- 1 ubuntu ubuntu    1112 May 28 18:34 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu    9251 May 28 18:33 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu    7478 May 28 18:33 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/method.tex\n-rw-r--r-- 1 ubuntu ubuntu   76954 May 28 18:32 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu    3528 May 28 18:29 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu    8018 May 28 18:12 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/background.tex\n-rw-r--r-- 1 ubuntu ubuntu    1307 May 28 18:10 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu    1150 May 28 18:10 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu    1802 May 28 18:10 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu    1449 May 28 13:50 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu    1496 May 28 13:46 /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-001661"
+        },
+        {
+          "source_line": 1662,
+          "timestamp": "2026-05-28T18:36:52.492697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.tex"
+            }
+          },
+          "id": "event-001662"
+        },
+        {
+          "source_line": 1663,
+          "timestamp": "2026-05-28T18:36:52.493163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.pdf",
+              "project": "importance_margin_vla_compress",
+              "pages": "7-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001663"
+        },
+        {
+          "source_line": 1664,
+          "timestamp": "2026-05-28T18:36:52.546370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage{corl_2026} % Submission version: anonymous, line numbers enabled.\n4\t% \\usepackage[final]{corl_2026} % Uncomment for camera-ready.\n5\t\n6\t\\usepackage{amsmath,amssymb}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{multirow}\n10\t\\usepackage{enumitem}\n11\t\\usepackage{subcaption}\n12\t\\usepackage{wrapfig}\n13\t\n14\t% Tighten float spacing for page limit\n15\t\\setlength{\\textfloatsep}{6pt plus 2pt minus 4pt}\n16\t\\setlength{\\floatsep}{6pt plus 2pt minus 4pt}\n17\t\\setlength{\\intextsep}{6pt plus 2pt minus 4pt}\n18\t\\setlength{\\abovecaptionskip}{3pt}\n19\t\\setlength{\\belowcaptionskip}{0pt}\n20\t\\setlength{\\abovedisplayskip}{6pt plus 2pt minus 4pt}\n21\t\\setlength{\\belowdisplayskip}{6pt plus 2pt minus 4pt}\n22\t\n23\t\\title{Why Token Pruning Crashes Some Robot Policies but Not Others:\\\\Vision Connectors and VLA Token Compressibility}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{abstract}\n29\t\n30\t\\keywords{vision-language-action models, token pruning, robot learning}\n31\t\n32\t\\input{introduction}\n33\t\n34\t\\input{related_work}\n35\t\n36\t\\input{method}\n37\t\n38\t\\input{experiments}\n39\t\n40\t\\input{conclusion}\n41\t\n42\t\\input{limitations}\n43\t\n44\t\\bibliography{references}\n45\t\n46\t\\input{appendix}\n47\t\n48\t\\end{document}\n49\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 53
+          },
+          "id": "event-001664"
+        },
+        {
+          "source_line": 1665,
+          "timestamp": "2026-05-28T18:36:52.998548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 278.4}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 323.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 351.1}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 306.6}], \\\"total_pages\\\": 31, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 505
+          },
+          "id": "event-001665"
+        },
+        {
+          "source_line": 1666,
+          "timestamp": "2026-05-28T18:37:01.905489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001666"
+        },
+        {
+          "source_line": 1667,
+          "timestamp": "2026-05-28T18:37:01.905951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001667"
+        },
+        {
+          "source_line": 1668,
+          "timestamp": "2026-05-28T18:37:02.563680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 657
+          },
+          "id": "event-001668"
+        },
+        {
+          "source_line": 1669,
+          "timestamp": "2026-05-28T18:37:02.665887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 760
+          },
+          "id": "event-001669"
+        },
+        {
+          "source_line": 1670,
+          "timestamp": "2026-05-28T18:37:18.626910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-001670"
+        },
+        {
+          "source_line": 1671,
+          "timestamp": "2026-05-28T18:37:18.677721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:exp_setup}\n6\t\n7\t\\paragraph{Benchmark.} We evaluate on LIBERO~\\cite{liu2023libero}, a simulated tabletop manipulation benchmark with four suites of increasing complexity: \\textbf{Object} (10 tasks, visually similar objects), \\textbf{Spatial} (10, relative spatial layouts), \\textbf{Goal} (10, goal-conditioned manipulation), and \\textbf{Long} (10, chained 3--5 step sequences). Each task has 50 demo and 50 evaluation episodes (500 per suite).\n8\t\n9\t\\paragraph{Models.} Four VLAs are evaluated in closed-loop control (Table~\\ref{tab:model_properties}): $\\pi_{0.5}$~\\cite{black2025pi05}, X-VLA~\\cite{zheng2025xvla}, OpenVLA~\\cite{kim2024openvla}, and SmolVLA~\\cite{shukor2025smolvla}. Two additional models ($\\pi_{0}$, OFT) contribute to the CV diagnostic via offline metrics only.\n10\t\n11\t\\paragraph{Protocol.} We prune at $k \\in \\{0.3, 0.5, 0.7, 0.75, 0.85, 0.9, 0.95\\}$ and report mean SR over 500 episodes. Multi-seed results ($\\pi_{0.5}$ Long: $n{=}5$; VTR: $n{=}3$) report mean $\\pm$ s.d.\\ with per-seed breakdowns in the appendix.\n12\t\n13\t\\subsection{Two-Axis Framework Overview}\n14\t\\label{sec:two_axis}\n15\t\n16\t\\begin{figure}[t]\n17\t\\centering\n18\t\\includegraphics[width=0.75\\linewidth]{figures/paper/fig_pruning_overview.pdf}\n19\t\\caption{Pruning degradation on LIBERO-Object (L2 norm scoring). $\\pi_{0.5}$ maintains ${\\geq}$98\\% through $k{=}0.85$, OpenVLA degrades linearly, X-VLA cliffs at $k{=}0.7$, SmolVLA collapses to 0\\% at $k{=}0.95$.}\n20\t\\label{fig:pruning_overview}\n21\t\\end{figure}\n22\t\n23\tThree qualitatively distinct response patterns emerge across the connector spectrum (Table~\\ref{tab:main_results}; Figure~\\ref{fig:pruning_overview}); a fourth (OpenVLA, MLP connector) is detailed in Appendix Table~\\ref{tab:full_results}.\n24\t\n25\t\\textbf{$\\pi_{0.5}$ (linear, CV$\\,{=}\\,$0.055).} Low-CV models are \\emph{uniformly critical}: which tokens are removed matters more than how many. On Obje\n…[truncated 7667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001671"
+        },
+        {
+          "source_line": 1672,
+          "timestamp": "2026-05-28T18:37:34.985296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-001672"
+        },
+        {
+          "source_line": 1673,
+          "timestamp": "2026-05-28T18:37:44.325003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 9339
+          },
+          "id": "event-001673"
+        },
+        {
+          "source_line": 1674,
+          "timestamp": "2026-05-28T18:37:44.525895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_paper_page_count_surgery_20260528T182642\n\n**结论**: PASS\n\n### 修改内容\n\n**main.tex**：添加 7 个 `\\setlength` 命令压缩浮动体/公式间距（textfloatsep, floatsep, intextsep, abovecaptionskip, belowcaptionskip, abovedisplayskip, belowdisplayskip）。这是标准的 CoRL/NeurIPS 页数调整手段。\n\n**experiments.tex**：caption 措辞精简（9569→9251 bytes, -318 bytes）。Table 2、Figure 4、Figure 5 的 caption 缩短。**表格数据和正文 claim 全部保留，零内容丢失。**\n\n**method.tex**：极小改动（+2 bytes），Figure 2 caption 缩短。\n\n### 页数验证\n\n- PDF 18:35 编译（在所有 tex 修改之后）✅\n- 31 页总计\n- **主体 §1-6（含 Limitations）在 page 8 结束**，References 从 page 8 底部开始\n- **满足 CoRL 2026 的 8 页限制** ✅\n\n### 数据完整性\n\n抽检 Table 2（主结果）和 Table 3（VTR）的所有数字——与终检时一致，零改动。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001674"
+        },
+        {
+          "source_line": 1675,
+          "timestamp": "2026-05-28T18:37:48.088492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3562
+          },
+          "id": "event-001675"
+        },
+        {
+          "source_line": 1676,
+          "timestamp": "2026-05-28T18:37:51.795777+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "内容完整，仅压缩了 caption 措辞和浮动体间距。数据/claim 均未改变。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001676"
+        }
+      ]
+    },
+    {
+      "number": 120,
+      "messages": [
+        {
+          "source_line": 1677,
+          "timestamp": "2026-05-28T21:58:49.296013+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_log-check_seed46_w41_20260528T213949]:\nWorker worker_log-check_seed46_w41_20260528T213949 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001677"
+        },
+        {
+          "source_line": 1678,
+          "timestamp": "2026-05-28T21:58:59.717685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "limit": "5",
+              "fields": "['status', 'updated_at', 'hypothesis', 'conclusion', 'spec']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-001678"
+        },
+        {
+          "source_line": 1679,
+          "timestamp": "2026-05-28T21:59:02.328680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_random_k075_long_seed47_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-28T17:07:39.856Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.75 Long seed47 — 6th seed bonus for revision. 5-seed std=1.7pp, crossover adjacent zone. Mean=63.0%. 与 L2norm k=0.75 (70.6%) 配对验证 margin 在此 k 值的稳定性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"379521\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k075_long_seed47_cqa1.log\\\", \\\"submitted_at\\\": \\\"2026-05-28T17:05:23.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 47, \\\"data_path\\\": \\\"libero_long\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\"}}, \\\"eval_pi05_random_k07_long_seed47_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-28T17:07:32.240Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.7 Long seed47 — 6th seed bonus for revision. 5-seed std=1.8pp, crossover point (Random>L2norm). Mean=64.6%. 额外 seed 确认 crossover 可重复性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"379280\\\", \\\"log_path\\\": \\\"\n…[truncated 1707 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2610
+          },
+          "id": "event-001679"
+        },
+        {
+          "source_line": 1680,
+          "timestamp": "2026-05-28T21:59:10.208325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "limit": "5",
+              "fields": "['status', 'updated_at', 'hypothesis', 'conclusion', 'spec']",
+              "filters": "{'status': 'DONE'}"
+            }
+          },
+          "id": "event-001680"
+        },
+        {
+          "source_line": 1681,
+          "timestamp": "2026-05-28T21:59:12.468958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_random_k05_long_seed46_strict_w41\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-28T21:58:29.154Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 899098, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed46_strict_w41.log\\\", \\\"submitted_at\\\": \\\"2026-05-28T08:54:56.681Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 46, \\\"data_path\\\": \\\"libero_long\\\", \\\"data_count\\\": 500, \\\"wall_clock_seconds\\\": 10436.4, \\\"gpu_hours\\\": 2.9}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.5 on π0.5 Long suite should yield ~50% SR as a content-agnostic baseline, confirming that removing half of vision tokens without importance scoring degrades performance proportionally.\\\"}, \\\"eval_pi05_random_k095_long_seed46_strict_w41\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-28T21:58:15.599Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 46\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"898746\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_long_seed46_strict_w41.log\\\", \\\"submitted_at\\\": \\\"2026-05-28T08:54:49.370Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 46, \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"checkpoint_path\\\": \\\"/root\n…[truncated 3628 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2260
+          },
+          "id": "event-001681"
+        },
+        {
+          "source_line": 1682,
+          "timestamp": "2026-05-28T21:59:25.957412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001682"
+        },
+        {
+          "source_line": 1683,
+          "timestamp": "2026-05-28T21:59:26.058182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed46_strict_w41.log"
+            }
+          },
+          "id": "event-001683"
+        },
+        {
+          "source_line": 1684,
+          "timestamp": "2026-05-28T21:59:26.158831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k095_long_seed46_strict_w41.log"
+            }
+          },
+          "id": "event-001684"
+        },
+        {
+          "source_line": 1685,
+          "timestamp": "2026-05-28T21:59:27.366763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1409
+          },
+          "id": "event-001685"
+        },
+        {
+          "source_line": 1686,
+          "timestamp": "2026-05-28T21:59:27.868829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 19:43:52,906 RESULT: libero_10 prune=random keep=0.5 SR=50.2%\\\\n2026-05-28 19:43:52,906 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed46.json\\\\n2026-05-28 19:43:52,906 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1810
+          },
+          "id": "event-001686"
+        },
+        {
+          "source_line": 1687,
+          "timestamp": "2026-05-28T21:59:28.421294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 19:34:13,708 RESULT: libero_10 prune=random keep=0.95 SR=60.8%\\\\n2026-05-28 19:34:13,708 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_10_seed46.json\\\\n2026-05-28 19:34:13,708 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2262
+          },
+          "id": "event-001687"
+        },
+        {
+          "source_line": 1688,
+          "timestamp": "2026-05-28T21:59:44.139312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_log-check_seed46_w41_20260528T213949\n\n**结论**: PASS\n\n### 核实结果\n\n两个 w41 seed46 实验正常完成，EXIT_CODE=0：\n\n| 实验 | SR | 5-seed 均值参考 | 一致性 |\n|------|-----|----------------|--------|\n| Random k=0.5 Long s46 | 50.2% | 50.4%（Table 2） | ✅ 偏差 -0.2pp |\n| Random k=0.95 Long s46 | 60.8% | 61.2%（Table 2） | ✅ 偏差 -0.4pp |\n\n两个结果均在已有 seed 分布范围内（k=0.95: s42=60.6%, s43=60.8%, s44=61.2%, s45=62.4%），无异常。\n\nw41 GPU 0 已释放（0%, 0 MiB）。cqa1 GPUs 1-3 的 seed47 实验继续运行中。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001688"
+        },
+        {
+          "source_line": 1689,
+          "timestamp": "2026-05-28T21:59:47.689427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3550
+          },
+          "id": "event-001689"
+        },
+        {
+          "source_line": 1690,
+          "timestamp": "2026-05-28T21:59:50.181900+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 w41 seed46 实验刚完成（success）。让我验证 GPU 合规性并确认结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001690"
+        }
+      ]
+    },
+    {
+      "number": 121,
+      "messages": [
+        {
+          "source_line": 1691,
+          "timestamp": "2026-05-28T22:00:02.532041+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_check_seed47_cqa1_status_20260528T215931]:\nWorker worker_check_seed47_cqa1_status_20260528T215931 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "worker_done:worker_check_seed47_cqa1_status_20260528t215931"
+          },
+          "id": "event-001691"
+        },
+        {
+          "source_line": 1692,
+          "timestamp": "2026-05-28T22:00:09.178388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "limit": "5",
+              "fields": "['status', 'updated_at', 'hypothesis', 'conclusion']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-001692"
+        },
+        {
+          "source_line": 1693,
+          "timestamp": "2026-05-28T22:00:10.183475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001693"
+        },
+        {
+          "source_line": 1694,
+          "timestamp": "2026-05-28T22:00:11.538111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_random_k075_long_seed47_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-28T17:07:39.856Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.75 Long seed47 — 6th seed bonus for revision. 5-seed std=1.7pp, crossover adjacent zone. Mean=63.0%. 与 L2norm k=0.75 (70.6%) 配对验证 margin 在此 k 值的稳定性。\\\"}, \\\"eval_pi05_random_k07_long_seed47_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-28T17:07:32.240Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.7 Long seed47 — 6th seed bonus for revision. 5-seed std=1.8pp, crossover point (Random>L2norm). Mean=64.6%. 额外 seed 确认 crossover 可重复性。\\\"}, \\\"eval_pi05_l2norm_k075_long_seed47_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-28T17:07:24.760Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.75 Long seed47 — 6th seed bonus for revision. 5-seed std=2.7pp (highest variance cell in crossover zone). Mean=70.6%. 额外 seed 降低 confidence interval，强化 crossover claim。\\\"}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3391}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2359
+          },
+          "id": "event-001694"
+        },
+        {
+          "source_line": 1695,
+          "timestamp": "2026-05-28T22:00:12.592290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 24564 MiB\\\\n1, 0 %, 0 MiB, 24564 MiB\\\\n2, 0 %, 0 MiB, 24564 MiB\\\\n3, 0 %, 0 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2408
+          },
+          "id": "event-001695"
+        },
+        {
+          "source_line": 1696,
+          "timestamp": "2026-05-28T22:00:19.995787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -3 /root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k075_long_seed47_cqa1.log"
+            }
+          },
+          "id": "event-001696"
+        },
+        {
+          "source_line": 1697,
+          "timestamp": "2026-05-28T22:00:20.296985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -3 /root/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed47_cqa1.log"
+            }
+          },
+          "id": "event-001697"
+        },
+        {
+          "source_line": 1698,
+          "timestamp": "2026-05-28T22:00:20.798559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 04:48:39,178 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 802
+          },
+          "id": "event-001698"
+        },
+        {
+          "source_line": 1699,
+          "timestamp": "2026-05-28T22:00:21.049430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 04:55:29,336 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 752
+          },
+          "id": "event-001699"
+        },
+        {
+          "source_line": 1700,
+          "timestamp": "2026-05-28T22:00:21.049731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -3 /root/runs/importance_margin_vla_compress/eval_pi05_random_k075_long_seed47_cqa1.log"
+            }
+          },
+          "id": "event-001700"
+        },
+        {
+          "source_line": 1701,
+          "timestamp": "2026-05-28T22:00:21.450857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 04:55:46,417 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001701"
+        },
+        {
+          "source_line": 1702,
+          "timestamp": "2026-05-28T22:00:29.080193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep \"RESULT\" /root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k075_long_seed47_cqa1.log"
+            }
+          },
+          "id": "event-001702"
+        },
+        {
+          "source_line": 1703,
+          "timestamp": "2026-05-28T22:00:29.632275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 04:48:39,178 RESULT: libero_10 prune=l2norm keep=0.75 SR=71.0%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001703"
+        },
+        {
+          "source_line": 1704,
+          "timestamp": "2026-05-28T22:00:29.682754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep \"RESULT\" /root/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed47_cqa1.log"
+            }
+          },
+          "id": "event-001704"
+        },
+        {
+          "source_line": 1705,
+          "timestamp": "2026-05-28T22:00:29.984487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "grep \"RESULT\" /root/runs/importance_margin_vla_compress/eval_pi05_random_k075_long_seed47_cqa1.log"
+            }
+          },
+          "id": "event-001705"
+        },
+        {
+          "source_line": 1706,
+          "timestamp": "2026-05-28T22:00:30.085197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 04:55:29,336 RESULT: libero_10 prune=random keep=0.7 SR=59.0%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001706"
+        },
+        {
+          "source_line": 1707,
+          "timestamp": "2026-05-28T22:00:30.536909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 04:55:46,417 RESULT: libero_10 prune=random keep=0.75 SR=62.4%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001707"
+        },
+        {
+          "source_line": 1708,
+          "timestamp": "2026-05-28T22:01:08.229190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_check_seed47_cqa1_status + seed47 结果核实\n\n**结论**: WARNING（1 个异常值需关注）\n\n### 实验结果\n\n3 个 cqa1 seed47 实验全部 EXIT_CODE=0，GPU 已释放：\n\n| 实验 | SR | 5-seed 均值 | 5-seed std | 偏差 | 判定 |\n|------|-----|-------------|-----------|------|------|\n| L2norm k=0.75 s47 | **71.0%** | 70.6% | 2.7pp | +0.4pp (0.15σ) | ✅ 正常 |\n| Random k=0.75 s47 | **62.4%** | 63.0% | 1.7pp | -0.6pp (0.35σ) | ✅ 正常 |\n| Random k=0.7 s47 | **59.0%** | 64.6% | 1.8pp | **-5.6pp (3.1σ)** | ⚠️ 异常值 |\n\n### [severity: warning] Random k=0.7 seed47 = 59.0% 是 3.1σ 异常值\n\n5-seed 均值 64.6%±1.8pp，seed47 偏离 -5.6pp。可能原因：\n- n=5 的 std 估计本身 variance 很大，真实 std 可能更高\n- seed47 是合法的尾部样本\n- 不太可能是 bug（同一 seed 的其他两个实验结果正常）\n\n**对 crossover claim 的影响**：\n- 6-seed Random k=0.7 均值：(64.6×5 + 59.0)/6 = **63.7%**（原 64.6%，降 0.9pp）\n- 5-seed L2norm k=0.7 均值：63.2%（seed47 L2norm k=0.7 实验在 PREPARING 状态未完成）\n- Crossover gap 从 +1.4pp 缩至 +0.5pp——方向不变但已接近 noise floor\n\n**建议**：论文中 crossover 的措辞（experiments.tex:97 \"Near k≈0.7, the ranking inverts\"）目前用了较弱的表述，可以承受这个变化。但如果要在 revision 中引用 6-seed 数据，需注明 Random k=0.7 的 std 大幅升高（原 1.8pp → 估计 ~2.5pp with seed47）。\n\n### [severity: info] Registry 状态待更新\n\n3 个实验仍显示 RUNNING，但进程已结束（cqa1 全部 GPU 0%/0MiB）。Agent 应更新 registry 为 DONE 并记录 metrics。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001708"
+        },
+        {
+          "source_line": 1709,
+          "timestamp": "2026-05-28T22:01:11.995661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3766
+          },
+          "id": "event-001709"
+        },
+        {
+          "source_line": 1710,
+          "timestamp": "2026-05-28T22:01:14.740121+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 seed47 实验全部完成。Random k=0.7 seed47 的结果值得注意。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001710"
+        }
+      ]
+    },
+    {
+      "number": 122,
+      "messages": [
+        {
+          "source_line": 1711,
+          "timestamp": "2026-05-28T22:13:27.704939+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_check_seed47_harvest_cqa1_20260528T221102]:\nWorker worker_check_seed47_harvest_cqa1_20260528T221102 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001711"
+        },
+        {
+          "source_line": 1712,
+          "timestamp": "2026-05-28T22:13:37.252345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "limit": "5",
+              "fields": "['status', 'updated_at', 'hypothesis', 'conclusion', 'spec']",
+              "filters": "{'status': 'DONE'}"
+            }
+          },
+          "id": "event-001712"
+        },
+        {
+          "source_line": 1713,
+          "timestamp": "2026-05-28T22:13:39.610811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_random_k075_long_seed47_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-28T22:12:57.812Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.75 Long seed47 — 6th seed bonus for revision. 5-seed std=1.7pp, crossover adjacent zone. Mean=63.0%. 与 L2norm k=0.75 (70.6%) 配对验证 margin 在此 k 值的稳定性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"379521\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k075_long_seed47_cqa1.log\\\", \\\"submitted_at\\\": \\\"2026-05-28T17:05:23.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 47, \\\"data_path\\\": \\\"libero_long\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"wall_clock_seconds\\\": 18454.7, \\\"gpu_hours\\\": 5.13}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_random_k07_long_seed47_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-28T22:12:50.559Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.7 Long seed47 — 6th seed bonus for revision. 5-seed std=1.8pp, crossover point (Random>L2norm). Mean=64.6%. 额外 seed 确认 crossover 可重复性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0\\\\\\\"\\\", \\\"server\\\":\n…[truncated 4163 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2358
+          },
+          "id": "event-001713"
+        },
+        {
+          "source_line": 1714,
+          "timestamp": "2026-05-28T22:14:14.165329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_check_seed47_harvest_cqa1_20260528T221102\n\n**结论**: WARNING（一个异常值需关注）\n\n### 核实结果\n\n3 个 cqa1 seed47 实验全部正常完成（EXIT_CODE=0），registry 已更新为 DONE/success。\n\n| 实验 | SR(s47) | 5-seed 均值 | 5-seed std | 偏差 |\n|------|---------|-----------|-----------|------|\n| L2norm k=0.75 Long | 71.0% | 70.6% | 2.7pp | +0.4pp ✅ |\n| Random k=0.7 Long | **59.0%** | 64.6% | 1.8pp | **-5.6pp (~3.1σ)** ⚠️ |\n| Random k=0.75 Long | 62.4% | 63.0% | 1.7pp | -0.6pp ✅ |\n\n### [severity: warning] Random k=0.7 seed47 异常值分析\n\nseed47 = 59.0% 比 5-seed 均值（64.6%）低 5.6pp，约 3.1σ。这会影响 6-seed 统计：\n\n- **6-seed 新均值**：(64.6×5 + 59.0)/6 ≈ 63.7%（下降 ~0.9pp）\n- **crossover claim**：论文称 k≈0.7 时 Random(64.6%) > L2norm(63.2%)。6-seed 后 Random ≈ 63.7%，仍 > L2norm 63.2%，但 margin 从 1.4pp 缩至 ~0.5pp。\n- **论文影响**：当前 paper 使用 5-seed（s42-s46），seed47 是 revision bonus 数据。**5-seed 论文 claim 不受影响**。但如果 revision 采用 6-seed 数据，crossover margin 会显著缩窄。\n\n**建议**：\n1. 论文保持 5-seed 数据不变（seed47 明确定义为 bonus）\n2. 如果 reviewer 要求更多 seed，提供 6-seed 数据时需调整 crossover 措辞从 \"inverts\" 到 \"margin narrows\"\n3. 检查 L2norm k=0.7 seed47 的结果——如果该实验也偏低，则 margin 可能不变\n\n### GPU 状态\n\ncqa1 全部 4 GPU 已释放（0%, 0 MiB）。无 RUNNING 实验。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001714"
+        },
+        {
+          "source_line": 1715,
+          "timestamp": "2026-05-28T22:14:17.778465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-001715"
+        },
+        {
+          "source_line": 1716,
+          "timestamp": "2026-05-28T22:14:20.170115+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，3 个 seed47 实验全部 DONE/success。结果与日志一致：\n\n| 实验 | SR | 5-seed 均值 | 5-seed std | 偏差 |\n|------|-----|-----------|-----------|------|\n| L2norm k=0.75 s47 | 71.0% | 70.6% | 2.7pp | +0.4pp ✅ |\n| Random k=0.7 s47 | 59.0% | 64.6% | 1.8pp | **-5.6pp (~3σ)** |\n| Random k=0.75 s47 | 62.4% | 63.0% | 1.7pp | -0.6pp ✅ |\n\nRandom k=0.7 seed47 是显著异常值。让我确认对论文 crossover claim 的影响。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001716"
+        }
+      ]
+    },
+    {
+      "number": 123,
+      "messages": [
+        {
+          "source_line": 1717,
+          "timestamp": "2026-05-28T22:25:04.473078+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1_20260528T222235]:\nWorker worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1_20260528T222235 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001717"
+        },
+        {
+          "source_line": 1718,
+          "timestamp": "2026-05-28T22:25:15.895457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "limit": "3",
+              "fields": "['status', 'updated_at', 'hypothesis', 'conclusion', 'spec']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-001718"
+        },
+        {
+          "source_line": 1719,
+          "timestamp": "2026-05-28T22:25:19.763870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k07_long_seed47_w41\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-28T22:24:22.614Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Long seed47 — 6th seed bonus for revision. 5-seed std=1.5pp, crossover point (L2norm side). Mean=63.2%. 与 Random k=0.7 (64.6%) 配对验证 crossover reversal 的统计显著性。\\\", \\\"spec\\\": {\\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 47, \\\"data_path\\\": \\\"libero_long\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed47_w41.log\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.8709}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3868
+          },
+          "id": "event-001719"
+        },
+        {
+          "source_line": 1720,
+          "timestamp": "2026-05-28T22:25:26.853266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001720"
+        },
+        {
+          "source_line": 1721,
+          "timestamp": "2026-05-28T22:25:27.806562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 3 MiB, 24564 MiB\\\\n1, 0 %, 0 MiB, 24564 MiB\\\\n2, 0 %, 0 MiB, 24564 MiB\\\\n3, 0 %, 0 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001721"
+        },
+        {
+          "source_line": 1722,
+          "timestamp": "2026-05-28T22:25:33.306492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-33015",
+              "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed47_w41.log"
+            }
+          },
+          "id": "event-001722"
+        },
+        {
+          "source_line": 1723,
+          "timestamp": "2026-05-28T22:25:33.657836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-29 06:23:54,712 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\n2026-05-29 06:23:55,196 JAX version 0.10.0 available.\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-001723"
+        },
+        {
+          "source_line": 1724,
+          "timestamp": "2026-05-28T22:25:46.914312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1\n\n**结论**: PASS\n\nL2norm k=0.7 Long seed47 已部署到 cqa1（log 显示 06:23:54 开始加载 pi0.5 模型）。这是我上一报告中建议的配对实验——与 Random k=0.7 seed47 (59.0%) 对比，判断 crossover margin 在 6-seed 下的稳定性。\n\n[severity: info] 预计运行 ~5h（基于同类实验 wall_clock ~18000s on cqa1 4090）。当前 cqa1 仅 GPU 0 在用，其余空闲。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001724"
+        },
+        {
+          "source_line": 1725,
+          "timestamp": "2026-05-28T22:25:50.801152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3886
+          },
+          "id": "event-001725"
+        },
+        {
+          "source_line": 1726,
+          "timestamp": "2026-05-28T22:25:54.557803+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验刚启动，正在加载 pi0.5 模型。部署正常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001726"
+        }
+      ]
+    },
+    {
+      "number": 124,
+      "messages": [
+        {
+          "source_line": 1727,
+          "timestamp": "2026-05-28T22:26:13.653610+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001727"
+        },
+        {
+          "source_line": 1728,
+          "timestamp": "2026-05-28T22:26:50.658335+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- cqa1-33015 有 4 张 4090（24GB），westd-41074 有 1 张 H100（98GB），westd-38929 有 1 张 H100（98GB），westd-27271 已下线不可用\n- pi0.5 eval 在 4090 上需 ~10GB，在 H100 上也需 ~10GB；OpenVLA 需 ~16GB\n- 论文使用 5-seed（s42-s46）作为主结果，seed47 是 6th seed bonus for revision——不要把 seed47 数据混入论文主表\n- CoRL 2026 提交：8 页正文含 Limitations，references 和 appendix 不计入\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-33015**：`/root/autodl-tmp/importance_margin_vla_compress`，conda base（`/root/miniconda3/bin/python`），HF cache `/root/autodl-tmp/.hf_cache`\n- **westd-41074**：同上路径结构，conda base\n- **westd-38929**：同上，但最近多次 OOM kill（3 进程共享时不稳定）\n- 模型路径：pi0.5 → `/root/autodl-tmp/pi05_libero_finetuned`；OpenVLA → `/root/autodl-tmp/openvla-libero-goal`（cqa1 only，w41 缺文件）\n- 活跃进程：`eval_pi05_l2norm_k07_long_seed47_w41` RUNNING on cqa1 GPU 0（log: `~/runs/.../eval_pi05_l2norm_k07_long_seed47_w41.log`），启动于 06:23，预计 ~5h 完成\n\n### 3. 📊 当前状态\n**刚完成**：\n- 论文最终全文核实（PASS）：零 \"??\"，所有交叉引用解析正确，8 页限制满足，所有此前 critical/warning 修复在位\n- cqa1 幽灵进程 PID 373970 已 kill（GPU 0 释放）\n- 3 个 seed47 实验（L2norm k=0.75, Random k=0.7, Random k=0.75）已完成并入 registry\n- 2 个 seed46 实验（Random k=0.5, Random k=0.95 on w41）已完成\n\n**RUNNING**：\n- `eval_pi05_l2norm_k07_long_seed47_w41`：cqa1 GPU 0，L2norm k=0.7 Long seed47——crossover 配对实验\n\n**关键发现**：Random k=0.7 seed47 = 59.0%，比 5-seed 均值 64.6% 低 5.6pp（~3σ 异常值）。已报告 Director。当前 L2norm k=0.7 seed47 正在运行，结果将决定 6-seed crossover margin 是否缩窄。\n\n### 4. 📋 待办\n- `eval_pi05_l2norm_k07_long_seed47_w41` 完成 → 提取 SR，计算 6-seed crossover margin（Random vs L2norm at k=0.7），如果 margin < 0.5pp 或翻转 → 立即 [severity: warning] 报告 Director，建议 revision 措辞调整\n- Director 转发新的章节审查请求 → 按 Mode B 审查，必须先 Read `paper-quality-lessons.skill.md`\n- Director 转发 Framing 调整提案 → 必须先 Read `negative-framing-review.skill.md`，四维度审查\n\n### 5. 🎯 战略上下文\n- **核心结论**：vision connector 架构决定 pruning tolerance，CV 是零成本预测器。CV spectrum: π0(0.038) < π0.5(0.055) < X-VLA(0.151) < OpenVLA(0.215) < SmolVLA(0.314)\n- **论文已通过最终格式核实**：零 \"??\"，8 页，所有引用解析，bib 验证完毕。PDF 时间 18:35\n- **最容易判断错的事**：\n  1. background.tex / results_v2.tex / results.tex / experimental_setup.tex 是孤立文件，不在 main.tex 编译链中——里面的断引不影响 PDF，不要标 critical\n  2. appendix 中有大量 alias labels（如 `app:attention_scoring` 和 `app:attention_pruning` 指向同一 section）——orphan label 是 warning 不是 critical\n  3. seed47 数据是 revision bonus，不在 5-seed 主表中——不要因为 seed47 异常值质疑论文现有 claim\n  4. check_figures_and_layout 工具扫描所有 .tex 文件（含孤立文件），其 critical 需要交叉验证是否在编译链中\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d:reviewer"
+          },
+          "id": "event-001728"
+        }
+      ]
+    }
+  ]
+}

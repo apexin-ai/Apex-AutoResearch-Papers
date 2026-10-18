@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "88e9e3f26c66913e3337",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research data integrity audit v2",
+  "task_key": "worker_research_data-integrity-audit-v2_20260523T195958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-integrity-audit-v2_20260523T195958_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "344f133864e5aa5dd6cb296124227fbc28a45db7e0622575bf9c27368487cee3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存到 `artifacts/data_integrity_audit_v2.md`。\n\n**核对结果**: 59 项中 54 项一致, 5 项存在问题:\n\n1. **Table 1 Strat. MLE Coverage**: 数据 0.9450, 论文写 0.95 (边界舍入)\n2. **R²=0.994 (K=2 synthetic)**: 数据 0.993, 论文写 0.994 (微小向上舍入)\n3. **R²=0.974 (K=4 synthetic)**: 数据 0.965, 差 0.009 — 可能与 real-CM R²=0.975 混淆, 需核实\n4. **\"10 of 11 ≥ 0.93\"**: 实为 9 of 11 (gpt-4o-mini×TweetEval R²=0.929 < 0.93)\n5. **AUC=1.0 (Δτ>0 subgroups)**: 方向一致但无法从 CSV 精确复现\n\n另外, appendix 中 \"seven LLMs\" 与主文 \"eight\" 及 Table 21 (9 models) 存在内部不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

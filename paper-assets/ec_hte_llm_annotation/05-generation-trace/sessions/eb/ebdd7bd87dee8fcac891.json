@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ebdd7bd87dee8fcac891",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research ucb demographic subgroup analysis",
+  "task_key": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ucb-demographic-subgroup-analysis_20260524T045225_result.json",
+    "occurrence": 1,
+    "bytes": 1686,
+    "sha256": "fdaa98d1b8ed24748ef7d70998bddbbf0079a8df0436a3917e988943be370b70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### Max Δπ = 0.117（race × ideology），低于 0.15 阈值\n\n**单一 demographic features 的 Δπ：**\n| Feature | Δπ |\n|---|---|\n| education | 0.084 |\n| race | 0.080 |\n| ideology | 0.077 |\n| ideology (grouped) | 0.049 |\n| income | 0.045 |\n| age_group | 0.040 |\n| gender | 0.017 |\n\n**交互特征：**\n- race × ideology: Δπ = 0.117（最高，但仍 < 0.15）\n- gender × ideology: Δπ = 0.092（排除 N=36 的 non-binary_liberal 后）\n\n### 为什么 Δπ 不够大\n\n1. **高度不对称 CM**：FPR ≈ 0.17, FNR ≈ 0.55。LLM 的主要问题是漏检 hate speech（高 FNR），这在所有 demographic 组中都很一致\n2. **Demographic 效应方向一致**：保守派 annotators 的 π 更高（~0.39），自由派更低（~0.35），但差异不够大\n3. **Annotator-level 分组 ≠ observation-level 分组**：每条评论有多个不同 demographic 的标注者，无法干净地将 comments 分配到 demographic subgroups\n\n### Semi-synthetic 验证（即使用虚高的 Δπ=0.23）\n\n用包含 outlier 的 gender×ideology 分组跑了 100 MC runs，correction 方法全部比 naive 更差：\n- Naive RMSE = 0.104\n- HB EC-HTE RMSE = 0.174–0.212\n- Global RMSE = 0.412–0.664\n\n原因：1-FPR-FNR ≈ 0.28（分母太小），correction 放大了估计噪声。\n\n### 产出文件\n- `results/ucb_demographic_delta_pi.csv` — Δπ 汇总\n- `results/ucb_demographic_delta_pi_summary.md` — 完整分析\n- `results/ucb_demographic_cm_detail.csv` — 每组 CM 细节\n- `results/ucb_demographic_echte_results.csv` — semi-synthetic 原始结果\n- `exp_ucb_demographic.py` — 完整代码"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

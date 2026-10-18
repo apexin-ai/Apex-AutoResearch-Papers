@@ -1,0 +1,2162 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e88fc6fe5992dee1ea88",
+  "rounds": [
+    {
+      "number": 28,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-26T12:12:41.476709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_ssh_hosts",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-26T12:12:42.004250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 527
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-26T12:12:44.717564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_ssh_hosts"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__list_ssh_hosts"
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-26T12:12:45.259182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"hosts\\\": [{\\\"host_alias\\\": \\\"github.com\\\", \\\"hostname\\\": \\\"github.com\\\", \\\"user\\\": \\\"git\\\", \\\"identity_file\\\": \\\"~/.ssh/github_deploy\\\", \\\"registered\\\": false}], \\\"ssh_config_path\\\": \\\"/home/ubuntu/.ssh/config\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__list_ssh_hosts",
+            "elapsed_ms": 541
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-26T12:12:51.021220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/_anonymous_repo.json"
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-26T12:12:51.582050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"repo_public\": \"https://github.com/anonymous-nlp-2026/schema-dag-extraction\",\n3\t  \"push_url\": \"https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\",\n4\t  \"github_user\": \"anonymous-nlp-2026\",\n5\t  \"repo_name\": \"schema-dag-extraction\"\n6\t}\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 560
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-26T12:12:59.937318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18 -maxdepth 3 -name \".git\" -type d 2>/dev/null",
+              "description": "Find git repos in workspace"
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-26T12:13:00.529808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 592
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-26T12:13:02.842868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu -maxdepth 4 -name \".git\" -type d 2>/dev/null | head -20",
+              "description": "Find all git repos under home directory"
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-26T12:13:02.994119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/.git"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-26T12:13:11.479659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-26T12:13:12.009780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"schema-dag-extraction\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/schema-dag-extraction\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-24295\\\"}]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_51326259fe46fbae9da26b81cf03f1f8\\\", \\\"check_references\\\": false, \\\"operational_chat_id\\\": \\\"oc_04544c3b7bc497e1d098ba47fb56a6c2\\\", \\\"review_mode\\\": \\\"fresh\\\", \\\"review_paper_path\\\": \\\"projects/schema-dag-extraction/docs/paper/main.tex\\\", \\\"review_paper_pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/review_round_32/submitted.pdf\\\", \\\"review_round\\\": 32, \\\"review_supplementary_paths\\\": \\\"\\\", \\\"submission_chat_id\\\": \\\"oc_ac7ab7270b6b5caecee04f89b11aab3e\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-14T16:07:46.825Z\\\", \\\"description\\\": \\\"Does Type Confusability Drive Schema-Induced Degradation in LLM Information Extraction? An Empirical Study and Principled Decomposition Framework\\\", \\\"name\\\": \\\"schema-dag-extraction\\\", \\\"phase\\\": \\\"research\\\", \\\"source_idea_id\\\": \\\"idea_007\\\"}, \\\"ralph_loop\\\": {\\\"enabled\\\": false}, \\\"venue\\\": \\\"emnlp-2026\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 530
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-26T12:13:22.468121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ 2>/dev/null | head -20",
+              "description": "List source code directory"
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-26T12:13:23.022599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/ 2>/dev/null | head -20",
+              "description": "List scripts directory"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-26T12:13:23.022992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "analyze_exp008_results.py\nanalyze_fewrel_results.py\nanalyze_maven_results.py\nfewrel_error_taxonomy.py\nmaven_case_study.py\nrun_batch_composition.py\nrun_confusability_batch_composition.py\nrun_docred_bcs_expanded.py\nrun_docred_phase2.py\nrun_fewrel_formal.py\nsdgd\ntext_match_reeval.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 554
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-26T12:13:23.023171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "compute_fewrel_qwen3_embeddings.sh\ncreate_fewrel_samples.py\ngen_fig_framework.py\ngen_fig_sdgd_pipeline.py\ngreedy_schema_optimizer.py\nplot_fig1a_count_curves.py\nrun_exp012_llama.sh\nrun_fewshot_bcs_experiment.py\nrun_gemini_flash_fewrel.py\nsubmit_exp012.sh\ntest_types.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-26T12:13:33.955788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**仓库状态检查结果：本项目没有本地 git 仓库**\n\n检查发现：\n1. 本地项目目录 (`projects/schema-dag-extraction/`) **不是 git 仓库**——它是 agent-ml-research 框架管理的 workspace\n2. 代码原本在远程服务器 (`cqa1-38874` / `westd-24295`) 的 `/root/schema-dag-extraction`，但这两台服务器已不在 SSH 配置中（AutoDL 实例已释放）\n3. 唯一配置的 GitHub 仓库是匿名仓库 (`anonymous-nlp-2026/schema-dag-extraction`)，你说这个你们统一处理\n\n**需要你确认**：这个项目的\"真实仓库\"在哪里？是否需要我把本地 workspace 的代码（src/、scripts/、docs/paper/ 等）初始化为 git 仓库并推送到某个 GitHub remote？"
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-26T12:13:37.231290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3275
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-26T12:13:46.064496+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向用户报告：本项目本地没有 git 仓库，远程服务器已释放，唯一的 GitHub 仓库是匿名仓库。等用户确认真实仓库位置后再操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
+          },
+          "id": "event-000559"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "messages": [
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-26T12:16:58.309991+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉]: ⚠️ 补充说明：代码仓库在本机，不要连 GPU 服务器\n\n刚才说的检查仓库代码，是指你本机（BE）上的 git 仓库，不需要连 GPU 服务器。GPU 服务器已经关了，连不上是正常的。\n\n你的项目代码就在本地，直接在本机 git status / git push 就行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-26T12:17:07.470596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu -maxdepth 5 -name \".git\" -type d 2>/dev/null",
+              "description": "Find all git repos under home"
+            }
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-26T12:17:08.290826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/.git"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 820
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-26T12:17:08.696058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu -maxdepth 6 -name \"schema-dag-extraction\" -type d 2>/dev/null | head -10",
+              "description": "Find all schema-dag-extraction directories"
+            }
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-26T12:17:08.999010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/skills/projects/schema-dag-extraction\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/secrets/schema-dag-extraction"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 302
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-26T12:17:11.916057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /root -maxdepth 3 -name \"schema-dag-extraction\" -type d 2>/dev/null; find / -maxdepth 4 -name \"schema-dag-extraction\" -type d 2>/dev/null | head -10",
+              "description": "Search broader for schema-dag-extraction repo"
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-26T12:17:12.368592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-26T12:17:15.585103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src && ls -la 2>/dev/null; echo \"---\"; find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -name \".git\" 2>/dev/null",
+              "description": "Check src dir and find .git recursively"
+            }
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-26T12:17:15.736651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 240\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 19 11:48 .\ndrwxr-xr-x 15 ubuntu ubuntu  4096 May 25 21:16 ..\n-rw-r--r--  1 ubuntu ubuntu  9876 May 15 11:16 analyze_exp008_results.py\n-rw-r--r--  1 ubuntu ubuntu 16892 May 15 08:34 analyze_fewrel_results.py\n-rw-r--r--  1 ubuntu ubuntu 23697 May 15 06:27 analyze_maven_results.py\n-rw-r--r--  1 ubuntu ubuntu  6891 May 15 15:09 fewrel_error_taxonomy.py\n-rw-r--r--  1 ubuntu ubuntu 14894 May 15 15:26 maven_case_study.py\n-rw-r--r--  1 ubuntu ubuntu 25136 May 16 04:59 run_batch_composition.py\n-rw-r--r--  1 ubuntu ubuntu 28077 May 16 06:17 run_confusability_batch_composition.py\n-rw-r--r--  1 ubuntu ubuntu 30990 May 19 11:48 run_docred_bcs_expanded.py\n-rw-r--r--  1 ubuntu ubuntu 25046 May 16 04:44 run_docred_phase2.py\n-rw-r--r--  1 ubuntu ubuntu 16401 May 15 10:54 run_fewrel_formal.py\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 15 10:55 sdgd\n-rw-r--r--  1 ubuntu ubuntu 11863 May 14 23:24 text_match_reeval.py\n---\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-26T12:17:32.181495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "本机上没有找到 `schema-dag-extraction` 的 git 仓库。\n\n搜索结果：\n- 本机唯一的 `.git` 目录在 `/home/ubuntu/agent-ml-research/`（框架本身）\n- 项目目录 `projects/schema-dag-extraction/` 下没有 `.git`，从未 `git init`\n- 全盘搜索也没有其他 `schema-dag-extraction` 的 git repo\n\n这个项目的代码一直在远程 GPU 服务器上以 git 管理，本地 workspace 只有框架管理的文件（论文、实验配置、分析脚本等）。\n\n**两个选项**：\n1. 如果你有一个已存在的 GitHub 真实仓库 URL，告诉我，我在本地 `git init` + 添加所有代码文件 + push\n2. 如果这个项目不需要独立的真实仓库（代码全部通过匿名仓库提交），那这一步可以跳过"
+            }
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-26T12:17:35.711324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3529
+          },
+          "id": "event-000570"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "messages": [
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-26T12:20:48.671556+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉]: ⚠️ 补充说明：不需要连 GPU 服务器\n\nGPU 服务器已经关了，不用去连。你在本机上也有项目的 git 仓库，请检查本机上的仓库是否有未 commit / 未 push 的改动，如果有请直接 push 到 GitHub。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-26T12:20:54.063307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu -maxdepth 6 -name \".git\" -type d 2>/dev/null",
+              "description": "Exhaustive search for all git repos"
+            }
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-26T12:20:54.619887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/.git"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 556
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-26T12:20:57.281063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/agent-ml-research && git status --short && echo \"---REMOTE---\" && git remote -v && echo \"---LOG---\" && git log --oneline -3 && echo \"---BRANCH---\" && git branch -a",
+              "description": "Check agent-ml-research repo status"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-26T12:20:57.484979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---REMOTE---\norigin\tgit@github.com:caoxiaoyuyuyuyuyu/agent-ml-research.git (fetch)\norigin\tgit@github.com:caoxiaoyuyuyuyuyu/agent-ml-research.git (push)\n---LOG---\nbe09fcd5 fix: paper-figure 命令解析重构——引号嵌套、add 无 dash、结果卡片三修\n0dffb741 test: Prod3 回归测试——N12/N13/N14 修复验证（7 个新测试）\nd37f81ea fix: max-turns 100→200 + Agent 异常退出时通知用户\n---BRANCH---\n* main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/coding-agent/iss_20260509_155147_b1f3\n  remotes/origin/coding-agent/iss_20260509_155259_1cdb\n  remotes/origin/coding-agent/iss_20260509_162400_440f\n  remotes/origin/coding-agent/iss_20260509_171212_e1d8\n  remotes/origin/coding-agent/iss_20260509_175006_7aa7\n  remotes/origin/coding-agent/iss_20260509_185429_9dc2\n  remotes/origin/coding-agent/iss_20260510_061159_670a\n  remotes/origin/coding-agent/iss_20260510_072555_60dc\n  remotes/origin/coding-agent/iss_20260511_140227_1373\n  remotes/origin/coding-agent/iss_20260512_070711_2bcb\n  remotes/origin/coding-agent/iss_20260512_095200_ace6\n  remotes/origin/coding-agent/iss_20260513_011528_9fd3\n  remotes/origin/coding-agent/iss_20260513_011538_6be2\n  remotes/origin/coding-agent/iss_20260513_011549_48f5\n  remotes/origin/coding-agent/iss_20260513_011558_e1f3\n  remotes/origin/coding-agent/iss_20260513_011607_8e30\n  remotes/origin/coding-agent/iss_20260513_011614_79cf\n  remotes/origin/coding-agent/iss_20260513_084122_9472\n  remotes/origin/coding-agent/iss_20260513_095435_83b1\n  remotes/origin/coding-agent/iss_20260514_040344_92b2\n  remotes/origin/coding-agent/iss_20260516_060426_531d\n  remotes/origin/coding-agent/iss_20260519_172046_f315\n  remotes/origin/coding-agent/iss_20260520_134544_2c83\n  remotes/origin/coding-agent/iss_20260521_111458_4a99\n  remotes/origin/exp/latex_framework\n  remotes/origin/exp/p1-gap-fixes\n  remotes/origin/exp/remove-unverified-qwen-derived\n  remotes/origin/exp/ws50_load_top_heads\n  remotes/origin/feat/batch_create_idea_gen\n  remotes/origin/feat/coding_reviewer_integration\n  remotes/origin/feat/manager_register_acco\n…[truncated 1485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 203
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-26T12:21:03.674238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find / -maxdepth 5 -name \".git\" -type d 2>/dev/null | grep -v proc | grep -v sys",
+              "description": "System-wide search for git repos"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-26T12:21:04.779578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/tmp/anon-repo-prep/.git\n/tmp/anon_repo/.git\n/home/ubuntu/agent-ml-research/.git"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 1105
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-26T12:21:09.197500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/anon-repo-prep && git remote -v && echo \"===LOG===\" && git log --oneline -3 && echo \"===STATUS===\" && git status --short | head -20",
+              "description": "Check anon-repo-prep git status"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-26T12:21:10.103664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "origin\thttps://github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\n===LOG===\ne3c8f11 Anonymous submission for EMNLP 2026\n===STATUS===\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 906
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-26T12:21:10.256333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/anon_repo && git remote -v && echo \"===LOG===\" && git log --oneline -3 && echo \"===STATUS===\" && git status --short | head -20",
+              "description": "Check anon_repo git status"
+            }
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-26T12:21:10.307045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "origin\thttps://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\n===LOG===\n8054e66 Fix SDGD oracle value: 0.80 (batch composition) -> 0.72 (routing oracle)\naca7f96 Initial release: Schema-Induced Degradation in Training-Free LLM IE\n===STATUS===\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-26T12:21:20.856295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/agent-ml-research && git log --oneline -1 && echo \"---\" && git rev-parse HEAD && echo \"---AHEAD---\" && git rev-list --count origin/main..HEAD",
+              "description": "Check if framework repo has unpushed commits"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-26T12:21:20.907011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "be09fcd5 fix: paper-figure 命令解析重构——引号嵌套、add 无 dash、结果卡片三修\n---\nbe09fcd5560e243b4220f61e0cb957264bf34a49\n---AHEAD---\n0\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-26T12:21:29.918756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**本机全盘搜索结果——共 3 个 git 仓库，全部干净：**\n\n| 仓库 | 路径 | 未提交改动 | 未推送 commits | 最新 commit |\n|------|------|-----------|---------------|------------|\n| agent-ml-research（框架） | `/home/ubuntu/agent-ml-research` | 无 | 0 | `be09fcd5` |\n| anon-repo-prep（匿名） | `/tmp/anon-repo-prep` | 无 | — | `e3c8f11` |\n| anon_repo（匿名） | `/tmp/anon_repo` | 无 | — | `8054e66` |\n\n**本机上不存在 schema-dag-extraction 的非匿名 git 仓库。** 项目目录 `projects/schema-dag-extraction/` 从未 `git init`。如果这个项目有独立的真实 GitHub 仓库，需要你提供 remote URL，我来初始化并推送。如果不需要独立仓库，这一步可以跳过。"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-26T12:21:33.145916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3227
+          },
+          "id": "event-000585"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "messages": [
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-26T12:24:00.799584+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了（标题、README、代码等）。请按以下步骤更新：\n\n1. 在本机 clone 你的 GitHub 仓库\n2. 对照论文最新版本，检查并更新仓库中需要同步的内容，尤其是：\n   - README 中的论文标题、摘要\n   - 代码中引用的论文标题\n   - 其他与论文内容不一致的地方\n3. commit + push 到 GitHub\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-26T12:24:13.613774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp && rm -rf schema-dag-update && git clone https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+              "description": "Clone the anonymous repo for updating"
+            }
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-26T12:24:15.028233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cloning into 'schema-dag-update'...\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 1414
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-26T12:24:25.237797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /tmp/schema-dag-update/",
+              "description": "List repo contents"
+            }
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-26T12:24:25.691907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 168\ndrwxr-xr-x 10 ubuntu ubuntu   580 May 26 12:24 .\ndrwxrwxrwt 41 root   root    3700 May 26 12:24 ..\ndrwxr-xr-x  7 ubuntu ubuntu   240 May 26 12:24 .git\n-rw-r--r--  1 ubuntu ubuntu   111 May 26 12:24 .gitignore\n-rw-r--r--  1 ubuntu ubuntu  2283 May 26 12:24 README.md\ndrwxr-xr-x  2 ubuntu ubuntu   320 May 26 12:24 analysis\n-rw-r--r--  1 ubuntu ubuntu  4499 May 26 12:24 analyze_ch2.py\n-rw-r--r--  1 ubuntu ubuntu 13355 May 26 12:24 compute_semipartial.py\n-rw-r--r--  1 ubuntu ubuntu 10916 May 26 12:24 compute_semipartial_v2.py\ndrwxr-xr-x  2 ubuntu ubuntu   100 May 26 12:24 configs\ndrwxr-xr-x  2 ubuntu ubuntu    80 May 26 12:24 data\ndrwxr-xr-x  3 ubuntu ubuntu    60 May 26 12:24 experiments\n-rw-r--r--  1 ubuntu ubuntu  6055 May 26 12:24 factorial_tost.py\ndrwxr-xr-x  3 ubuntu ubuntu    60 May 26 12:24 figures\n-rw-r--r--  1 ubuntu ubuntu 10047 May 26 12:24 logit_floor_analysis.py\n-rw-r--r--  1 ubuntu ubuntu   162 May 26 12:24 requirements.txt\n-rwxr-xr-x  1 ubuntu ubuntu  1180 May 26 12:24 run_d051_batch2.sh\n-rw-r--r--  1 ubuntu ubuntu 11793 May 26 12:24 run_factorial_tost.py\n-rw-r--r--  1 ubuntu ubuntu 17572 May 26 12:24 run_factorial_v2.py\n-rw-r--r--  1 ubuntu ubuntu 14672 May 26 12:24 run_factorial_v3.py\n-rw-r--r--  1 ubuntu ubuntu  6273 May 26 12:24 run_pilot_wrapper.py\ndrwxr-xr-x  3 ubuntu ubuntu  1160 May 26 12:24 scripts\ndrwxr-xr-x  3 ubuntu ubuntu  1180 May 26 12:24 src\n-rw-r--r--  1 ubuntu ubuntu  5048 May 26 12:24 test_ner_prompt.py\n-rw-r--r--  1 ubuntu ubuntu  1671 May 26 12:24 test_structured.py\n-rw-r--r--  1 ubuntu ubuntu   803 May 26 12:24 test_vllm_chat.py\n-rw-r--r--  1 ubuntu ubuntu   505 May 26 12:24 test_vllm_minimal.py\n-rw-r--r--  1 ubuntu ubuntu  1412 May 26 12:24 test_vllm_structured.py\n-rw-r--r--  1 ubuntu ubuntu 15702 May 26 12:24 tost_sensitivity.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 454
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-26T12:24:25.692385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git log --oneline",
+              "description": "Show commit history"
+            }
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-26T12:24:25.793072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "e3c8f11 Anonymous submission for EMNLP 2026\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-26T12:24:28.233748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/schema-dag-update/README.md"
+            }
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-26T12:24:28.781717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Schema Confusability in Zero-Shot LLM Information Extraction\n2\t\n3\tCode for anonymous EMNLP 2026 submission.\n4\t\n5\t## Overview\n6\t\n7\tThis repository contains the code for studying how schema confusability affects zero-shot information extraction with large language models. We introduce:\n8\t\n9\t- **BCS (Batch Confusability Score)**: A metric quantifying pairwise semantic confusability among types in a schema batch.\n10\t- **SCS (Schema Confusability Score)**: An embedding-based confusability measure.\n11\t- **SDGD (Schema DAG Decomposition)**: A graph-based decomposition method that partitions confusable schemas into less-confusable subsets.\n12\t- **Count curve experiments**: Analyzing how extraction performance degrades as schema size increases.\n13\t- **BCS-controlled experiments**: Isolating the effect of confusability from schema size.\n14\t\n15\t## Project Structure\n16\t\n17\t```\n18\tsrc/           Core source code (extraction, evaluation, BCS/SCS computation, SDGD)\n19\tscripts/       Experiment runner scripts\n20\tanalysis/      Statistical analysis scripts\n21\tconfigs/       Type definition files (FewNERD, FewRel, MAVEN)\n22\tdata/          Dataset files (not included; see below)\n23\tfigures/       Paper figure generation scripts\n24\texperiments/   Auxiliary experiments (e.g., prompt sensitivity)\n25\t```\n26\t\n27\t## Requirements\n28\t\n29\t```\n30\ttorch\n31\ttransformers\n32\tvllm\n33\tnumpy\n34\tscipy\n35\tscikit-learn\n36\tpandas\n37\tmatplotlib\n38\tseaborn\n39\ttqdm\n40\t```\n41\t\n42\tInstall dependencies:\n43\t```bash\n44\tpip install torch transformers vllm numpy scipy scikit-learn pandas matplotlib seaborn tqdm\n45\t```\n46\t\n47\t## Data\n48\t\n49\tDownload the following datasets and place them in `data/`:\n50\t- **FewNERD**: [https://ningding97.github.io/fewnerd/](https://ningding97.github.io/fewnerd/)\n51\t- **FewRel**: [https://www.zhihu.com/question/299649838](https://github.com/thunlp/FewRel)\n52\t- **MAVEN**: [https://github.com/THU-KEG/MAVEN-dataset](https://github.com/THU-KEG/MAVEN-dataset)\n53\t\n54\t## Usage\n55\t\n56\t### \n…[truncated 496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 547
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-26T12:24:31.568384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-26T12:24:31.719377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSchema complexity affects training-free large language model (LLM) information extraction (IE), yet prior work conflates two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). We present, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across four datasets, focusing on relation extraction (RE) as the primary testbed with named entity recognition (NER) and event detection as boundary conditions.\n3\tUsing embedding-based confusability metrics with controlled batch design, we find:\n4\t(1)~count degradation spans NER and RE (up to $-$49 percentage points [pp]), and inter-type confusability independently predicts RE type substitution errors, with bounded interaction confirmed by equivalence testing;\n5\t(2)~batch confusability independently explains ${\\sim}$27\\% of cross-batch RE accuracy variance on FewRel (semipartial $R^2 = 0.273$), replicating across two model families at three scales (8B--70B), while the NER null serves as a boundary condition;\n6\t(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing recovers accuracy\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/schema-dag-extraction-4C10/}.}.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-000596"
+        },
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-26T12:24:31.870309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "limit": "10"
+            }
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-26T12:24:31.920972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-26T12:24:34.939054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\title",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-26T12:24:35.507463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Grep",
+            "elapsed_ms": 568
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-26T12:24:37.868202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\title",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000601"
+        },
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-26T12:24:37.918801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/acl.sty:107:\\newlength\\titlebox\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/acl.sty:108:\\setlength\\titlebox{11\\baselineskip}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/acl.sty:109:% \\titlebox should be a multiple of \\baselineskip so that\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/acl.sty:150:\\def\\@maketitle{\\vbox to \\titlebox{\\hsize\\textwidth\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:23:\\title{How Does Schema Complexity Predict Performance\\\\in Training-Free LLM Information Extraction?}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.log:109:\\titlebox=\\skip51\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex:11:\\title{Supplementary Material for: How Does Schema Complexity Predict Performance\\\\in Training-Free LLM Information Extraction?}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-26T12:24:45.952638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && grep -r \"Schema Confusability\" --include=\"*.py\" --include=\"*.md\" --include=\"*.sh\" --include=\"*.txt\" -l 2>/dev/null",
+              "description": "Find files referencing old title"
+            }
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-26T12:24:46.945431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "README.md\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 992
+          },
+          "id": "event-000604"
+        },
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-26T12:24:47.098088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && grep -r \"SDGD\\|Schema DAG\" --include=\"*.py\" --include=\"*.md\" -l 2>/dev/null",
+              "description": "Find SDGD references"
+            }
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-26T12:24:47.902212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/sdgd_extract_gpu.py\nsrc/sdgd_decompose_cpu.py\nsrc/sdgd/merge.py\nsrc/sdgd/evaluate.py\nsrc/sdgd/decompose.py\nsrc/sdgd/calibrate.py\nsrc/sdgd/__init__.py\nsrc/run_sdgd_maven.py\nsrc/run_sdgd_experiment.py\nsrc/analyze_exp008_results.py\nscripts/exp_sdgd_routing.py\nREADME.md\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 804
+          },
+          "id": "event-000606"
+        },
+        {
+          "source_line": 607,
+          "timestamp": "2026-05-26T12:24:48.057120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && grep -r \"anonymous\\|EMNLP 2026\\|submission\" --include=\"*.py\" --include=\"*.md\" -l 2>/dev/null",
+              "description": "Find submission-related references"
+            }
+          },
+          "id": "event-000607"
+        },
+        {
+          "source_line": 608,
+          "timestamp": "2026-05-26T12:24:48.161488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "README.md\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 104
+          },
+          "id": "event-000608"
+        },
+        {
+          "source_line": 609,
+          "timestamp": "2026-05-26T12:24:51.227037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && grep -rn \"title\\|Title\\|paper\\|Paper\" --include=\"*.py\" | grep -i \"title\\|paper.*name\\|paper.*title\" | head -20",
+              "description": "Find paper title references in code"
+            }
+          },
+          "id": "event-000609"
+        },
+        {
+          "source_line": 610,
+          "timestamp": "2026-05-26T12:24:51.279087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/run_docred_phase2.py:64:                \"doc_title\": doc[\"title\"],\nsrc/run_docred_phase2.py:310:                        \"doc_title\": s[\"doc_title\"],\nsrc/run_docred_bcs_expanded.py:61:                \"doc_title\": doc[\"title\"],\nsrc/run_docred_bcs_expanded.py:335:                \"doc_title\": s[\"doc_title\"],\nsrc/run_docred.py:71:                \"doc_title\": doc[\"title\"],\nsrc/run_docred.py:265:                    \"doc_title\": s[\"doc_title\"],\nsrc/per_type_analysis.py:264:    axes[0].set_title(f\"Per-type BCS vs F1\\nr={pearson_r:.3f}, p={pearson_p:.3f}\")\nsrc/per_type_analysis.py:274:    axes[1].set_title(f\"Per-type BCS vs Mean F1\\nr={pearson_r2:.3f}, p={pearson_p2:.3f}\")\nsrc/per_type_analysis.py:286:    axes[2].set_title(f\"Partial correlation\\nr={partial_r:.3f}, p={partial_p:.3f}\")\nsrc/pairwise_confusion_analysis.py:207:    ax.set_title(f\"Pairwise BCS vs Confusion Rate [{label}]\\n{r_str}, {rho_str}\", fontsize=12)\nsrc/compute_bcs.py:100:    ax.set_title(\"Type Embedding Cosine Similarity\", fontsize=14)\nsrc/analyze_results.py:26:    \"axes.titlesize\": 13,\nsrc/analyze_results.py:107:    mode_label = eval_mode.replace(\"_\", \" \").title()\nsrc/analyze_results.py:113:    ax.set_title(\"Count–Quality Curve\")\nsrc/analyze_results.py:173:    mode_label = eval_mode.replace(\"_\", \" \").title()\nsrc/analyze_results.py:316:        ax.set_title(f\"BCS vs {y_label} (n={cn} types)\")\nsrc/analyze_results.py:345:    ax2.set_title(f\"BCS vs {y_label} (all counts)\")\nscripts/scs_name_def_ablation.py:377:        \"note\": \"Paper-reported Pearson r values for SCS name-only\"\nscripts/q3_bcs_distribution.py:132:ax.set_title('SCS Distribution by Split Origin')\nscripts/q3_bcs_distribution.py:144:ax.set_title(f'CDF Comparison (KS={ks_stat:.3f}, p={ks_p:.2e})')\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 52
+          },
+          "id": "event-000610"
+        },
+        {
+          "source_line": 611,
+          "timestamp": "2026-05-26T12:24:58.455314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && find . -name \"README*\" -o -name \"*.md\" | grep -v .git",
+              "description": "Find all markdown files"
+            }
+          },
+          "id": "event-000611"
+        },
+        {
+          "source_line": 612,
+          "timestamp": "2026-05-26T12:24:58.907734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "./README.md\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000612"
+        },
+        {
+          "source_line": 613,
+          "timestamp": "2026-05-26T12:24:59.211058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && ls data/ configs/ figures/ experiments/ analysis/",
+              "description": "List subdirectory contents"
+            }
+          },
+          "id": "event-000613"
+        },
+        {
+          "source_line": 614,
+          "timestamp": "2026-05-26T12:24:59.261704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "analysis/:\nbcs_range_matched_interaction.py\nbcs_range_matched_results.json\ndocred_error_taxonomy.json\ndocred_range_matched_power.json\nfisher_z_constrained_vs_unconstrained.json\nfisher_z_corrected.json\nfp8_count16_noise_ci.json\nfp8_count16_noise_ci_v2.json\nfp8_noise_propagated_ci.json\nr1_statistical_supplements.json\nr1_statistical_supplements.py\nr1_statistical_supplements_v2.py\nround22_corrected.py\nround22_cpu_analyses.py\n\nconfigs/:\nfew_nerd_types.json\nfewrel_relation_types.json\nmaven_event_types.json\n\ndata/:\nfew_nerd_type_stats.json\nmaven_scs_matrix.json\n\nexperiments/:\nprompt_sensitivity\n\nfigures/:\npaper\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000614"
+        },
+        {
+          "source_line": 615,
+          "timestamp": "2026-05-26T12:25:03.509454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /tmp/schema-dag-update/figures/paper/ 2>/dev/null",
+              "description": "List paper figures"
+            }
+          },
+          "id": "event-000615"
+        },
+        {
+          "source_line": 616,
+          "timestamp": "2026-05-26T12:25:03.912046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_count_curves.png\nfig_count_curves.py\nfig_error_taxonomy.py\nfig_q3_bcs_distribution.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 402
+          },
+          "id": "event-000616"
+        },
+        {
+          "source_line": 617,
+          "timestamp": "2026-05-26T12:25:03.912476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /tmp/schema-dag-update/src/ | head -30",
+              "description": "List src directory"
+            }
+          },
+          "id": "event-000617"
+        },
+        {
+          "source_line": 618,
+          "timestamp": "2026-05-26T12:25:03.962991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "analyze_exp008_results.py\nanalyze_fewrel_results.py\nanalyze_maven_results.py\nanalyze_results.py\nbootstrap_ci.py\nbuild_re_prompt.py\ncompute_bcs.py\ncompute_maven_scs.py\ncompute_type_embeddings.py\ncross_model_error_taxonomy.py\ndiagnose_eval.py\ndocred_error_taxonomy.py\nembedding_ablation_fewnerd.py\nerror_taxonomy.py\nevaluate.py\nextract_case_study.py\nfew_nerd_utils.py\nfewrel_error_taxonomy.py\nfewrel_utils.py\nlaunch_sdgd_maven.sh\nmaven_case_study.py\nmaven_utils.py\npairwise_confusion_analysis.py\nper_type_analysis.py\npreprocess_fewrel.py\npreprocess_maven.py\nreeval_text_match.py\nround2_statistical_analyses.py\nround2_w4_w2_fix.py\nrun_batch_composition.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000618"
+        },
+        {
+          "source_line": 619,
+          "timestamp": "2026-05-26T12:25:06.774571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/schema-dag-update/README.md"
+            }
+          },
+          "id": "event-000619"
+        },
+        {
+          "source_line": 620,
+          "timestamp": "2026-05-26T12:25:07.306028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Schema Confusability in Zero-Shot LLM Information Extraction\n2\t\n3\tCode for anonymous EMNLP 2026 submission.\n4\t\n5\t## Overview\n6\t\n7\tThis repository contains the code for studying how schema confusability affects zero-shot information extraction with large language models. We introduce:\n8\t\n9\t- **BCS (Batch Confusability Score)**: A metric quantifying pairwise semantic confusability among types in a schema batch.\n10\t- **SCS (Schema Confusability Score)**: An embedding-based confusability measure.\n11\t- **SDGD (Schema DAG Decomposition)**: A graph-based decomposition method that partitions confusable schemas into less-confusable subsets.\n12\t- **Count curve experiments**: Analyzing how extraction performance degrades as schema size increases.\n13\t- **BCS-controlled experiments**: Isolating the effect of confusability from schema size.\n14\t\n15\t## Project Structure\n16\t\n17\t```\n18\tsrc/           Core source code (extraction, evaluation, BCS/SCS computation, SDGD)\n19\tscripts/       Experiment runner scripts\n20\tanalysis/      Statistical analysis scripts\n21\tconfigs/       Type definition files (FewNERD, FewRel, MAVEN)\n22\tdata/          Dataset files (not included; see below)\n23\tfigures/       Paper figure generation scripts\n24\texperiments/   Auxiliary experiments (e.g., prompt sensitivity)\n25\t```\n26\t\n27\t## Requirements\n28\t\n29\t```\n30\ttorch\n31\ttransformers\n32\tvllm\n33\tnumpy\n34\tscipy\n35\tscikit-learn\n36\tpandas\n37\tmatplotlib\n38\tseaborn\n39\ttqdm\n40\t```\n41\t\n42\tInstall dependencies:\n43\t```bash\n44\tpip install torch transformers vllm numpy scipy scikit-learn pandas matplotlib seaborn tqdm\n45\t```\n46\t\n47\t## Data\n48\t\n49\tDownload the following datasets and place them in `data/`:\n50\t- **FewNERD**: [https://ningding97.github.io/fewnerd/](https://ningding97.github.io/fewnerd/)\n51\t- **FewRel**: [https://www.zhihu.com/question/299649838](https://github.com/thunlp/FewRel)\n52\t- **MAVEN**: [https://github.com/THU-KEG/MAVEN-dataset](https://github.com/THU-KEG/MAVEN-dataset)\n53\t\n54\t## Usage\n55\t\n56\t### \n…[truncated 496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 531
+          },
+          "id": "event-000620"
+        },
+        {
+          "source_line": 621,
+          "timestamp": "2026-05-26T12:25:29.267545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/tmp/schema-dag-update/README.md",
+              "content": "# How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?\n\nCode for anonymous EMNLP 2026 (ARR) submission.\n\n## Overview\n\nSchema complexity affects training-free LLM information extraction (IE), yet prior work conflates two factors: having more types to discriminate among (**count**) and having semantically similar types to confuse (**confusability**). This repository contains the code for a controlled study isolating these factors in zero-shot LLM IE across four datasets (Few-NERD, FewRel, DocRED, MAVEN).\n\nKey components:\n\n- **SCS (Schema Confusability Score)**: Pairwise embedding-based confusability measure between type pairs.\n- **BCS (Batch Confusability Score)**: Batch-level aggregation of pairwise SCS values.\n- **Count curve experiments**: Measuring extraction performance as a function of schema size.\n- **BCS-controlled experiments**: Fixing type count and varying BCS to isolate confusability from schema size.\n- **Error taxonomy**: Decomposing errors into intra-batch substitution (IntraSub) and missed categories.\n- **Schema decomposition**: Evaluating confusability-aware decomposition (negative result due to merge amplification and routing failure).\n\n## Project Structure\n\n```\nsrc/           Core source code (extraction, evaluation, BCS/SCS computation, SDGD)\nscripts/       Experiment runner scripts\nanalysis/      Statistical analysis scripts\nconfigs/       Type definition files (Few-NERD, FewRel, MAVEN)\ndata/          Dataset files (not included; see below)\nfigures/       Paper figure generation scripts\nexperiments/   Auxiliary experiments (e.g., prompt sensitivity)\n```\n\n## Requirements\n\n```\ntorch\ntransformers\nvllm\nnumpy\nscipy\nscikit-learn\npandas\nmatplotlib\nseaborn\ntqdm\n```\n\nInstall dependencies:\n```bash\npip install torch transformers vllm numpy scipy scikit-learn pandas matplotlib seaborn tqdm\n```\n\n## Data\n\nDownload the following datasets and place them in `data/`:\n- **Few-NERD**: [https://ningding97.github.io/fewnerd/](https://ningding97.github.io/fewnerd/)\n- **FewRel**: [https://github.com/thunlp/FewRel](https://github.com/thunlp/FewRel)\n- **DocRED**: [https://github.com/thunlp/DocRED](https://github.com/thunlp/DocRED)\n- **MAVEN**: [https://github.com/THU-KEG/MAVEN-dataset](https://github.com/THU-KEG/MAVEN-dataset)\n\n## Usage\n\n### Running extraction experiments\n```bash\npython src/run_experiment.py --dataset fewnerd --types_file configs/few_nerd_types.json --model_path <MODEL_PATH>\n```\n\n### Computing BCS\n```bash\npython src/compute_bcs.py --results_path <RESULTS_JSON>\n```\n\n### Running schema decomposition\n```bash\npython src/run_sdgd_experiment.py --dataset fewnerd --types_file configs/few_nerd_types.json\n```\n\n## License\n\nThis code is provided for review purposes only.\n"
+            }
+          },
+          "id": "event-000621"
+        },
+        {
+          "source_line": 622,
+          "timestamp": "2026-05-26T12:25:29.827463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /tmp/schema-dag-update/README.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Write",
+            "elapsed_ms": 559
+          },
+          "id": "event-000622"
+        },
+        {
+          "source_line": 623,
+          "timestamp": "2026-05-26T12:25:36.571721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git diff",
+              "description": "Show changes to commit"
+            }
+          },
+          "id": "event-000623"
+        },
+        {
+          "source_line": 624,
+          "timestamp": "2026-05-26T12:25:37.102417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "diff --git a/README.md b/README.md\nindex 4d773ef..dd7a0d3 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,16 +1,19 @@\n-# Schema Confusability in Zero-Shot LLM Information Extraction\n+# How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?\n \n-Code for anonymous EMNLP 2026 submission.\n+Code for anonymous EMNLP 2026 (ARR) submission.\n \n ## Overview\n \n-This repository contains the code for studying how schema confusability affects zero-shot information extraction with large language models. We introduce:\n+Schema complexity affects training-free LLM information extraction (IE), yet prior work conflates two factors: having more types to discriminate among (**count**) and having semantically similar types to confuse (**confusability**). This repository contains the code for a controlled study isolating these factors in zero-shot LLM IE across four datasets (Few-NERD, FewRel, DocRED, MAVEN).\n \n-- **BCS (Batch Confusability Score)**: A metric quantifying pairwise semantic confusability among types in a schema batch.\n-- **SCS (Schema Confusability Score)**: An embedding-based confusability measure.\n-- **SDGD (Schema DAG Decomposition)**: A graph-based decomposition method that partitions confusable schemas into less-confusable subsets.\n-- **Count curve experiments**: Analyzing how extraction performance degrades as schema size increases.\n-- **BCS-controlled experiments**: Isolating the effect of confusability from schema size.\n+Key components:\n+\n+- **SCS (Schema Confusability Score)**: Pairwise embedding-based confusability measure between type pairs.\n+- **BCS (Batch Confusability Score)**: Batch-level aggregation of pairwise SCS values.\n+- **Count curve experiments**: Measuring extraction performance as a function of schema size.\n+- **BCS-controlled experiments**: Fixing type count and varying BCS to isolate confusability from schema size.\n+- **Error taxonomy**: Decomposing errors into intra-batch substitution (IntraSub) and missed categori\n…[truncated 1942 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 530
+          },
+          "id": "event-000624"
+        },
+        {
+          "source_line": 625,
+          "timestamp": "2026-05-26T12:25:46.148258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git add README.md && git commit -m \"$(cat <<'EOF'\nUpdate README to match final paper title and framing\n\n- Title: \"Schema Confusability...\" → \"How Does Schema Complexity Predict Performance...\"\n- Overview: rewrite to reflect two-dimensional framing (count + confusability)\n- Add error taxonomy and schema decomposition (negative result) to components\n- Add DocRED to dataset list\n- Fix FewRel link (was pointing to zhihu)\n- Consistent dataset naming (FewNERD → Few-NERD)\nEOF\n)\"",
+              "description": "Commit README updates"
+            }
+          },
+          "id": "event-000625"
+        },
+        {
+          "source_line": 626,
+          "timestamp": "2026-05-26T12:25:46.249542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[main 7da0e9c] Update README to match final paper title and framing\n Committer: Ubuntu <ubuntu@ip-172-31-15-23.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 1 file changed, 16 insertions(+), 12 deletions(-)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000626"
+        },
+        {
+          "source_line": 627,
+          "timestamp": "2026-05-26T12:25:56.548775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git push origin main 2>&1",
+              "description": "Push to GitHub"
+            }
+          },
+          "id": "event-000627"
+        },
+        {
+          "source_line": 628,
+          "timestamp": "2026-05-26T12:25:58.159085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "To https://github.com/anonymous-nlp-2026/schema-dag-extraction.git\n   e3c8f11..7da0e9c  main -> main\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 1610
+          },
+          "id": "event-000628"
+        },
+        {
+          "source_line": 629,
+          "timestamp": "2026-05-26T12:26:08.171773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**GitHub 仓库已更新并推送。**\n\n更新内容（仅 README.md）：\n1. **标题**：`Schema Confusability in Zero-Shot LLM IE` → `How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?`\n2. **Overview**：重写为论文最终的二维 framing（count + confusability），不再声称\"introduce\" SDGD\n3. **新增组件**：error taxonomy（IntraSub/missed）、schema decomposition（标注为 negative result）\n4. **数据集**：新增 DocRED；修复 FewRel 链接（原来指向知乎）；FewNERD → Few-NERD\n5. **措辞统一**：zero-shot → training-free，与论文一致\n\n代码文件无需修改（无论文标题硬编码）。\n\n最新 commit: `7da0e9c` (main branch)"
+            }
+          },
+          "id": "event-000629"
+        },
+        {
+          "source_line": 630,
+          "timestamp": "2026-05-26T12:26:11.499081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3327
+          },
+          "id": "event-000630"
+        },
+        {
+          "source_line": 631,
+          "timestamp": "2026-05-26T12:26:14.079229+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diff 看起来正确。现在 commit 并 push。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
+          },
+          "id": "event-000631"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "messages": [
+        {
+          "source_line": 632,
+          "timestamp": "2026-05-26T12:36:50.028539+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新（含凭证）\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了。请在本机 clone 仓库，对照论文最新版本更新后 push。\n\n你的仓库信息：\n- 仓库地址：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n- Push URL：https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n操作步骤：\n```\ngit config --global user.name \"Anonymous\"\ngit config --global user.email \"anonymous@example.com\"\ngit clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\ncd schema-dag-extraction\n# 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容\ngit add -A && git commit -m \"sync with final paper\" && git push\n```\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容 + 最新 commit hash。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
+          },
+          "id": "event-000632"
+        },
+        {
+          "source_line": 633,
+          "timestamp": "2026-05-26T12:37:00.906771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp && rm -rf schema-dag-update && git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+              "description": "Clone repo with provided credentials"
+            }
+          },
+          "id": "event-000633"
+        },
+        {
+          "source_line": 634,
+          "timestamp": "2026-05-26T12:37:01.703055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cloning into 'schema-dag-update'...\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 796
+          },
+          "id": "event-000634"
+        },
+        {
+          "source_line": 635,
+          "timestamp": "2026-05-26T12:37:05.481815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git log --oneline -5 && echo \"---\" && git config user.name \"Anonymous\" && git config user.email \"anonymous@example.com\"",
+              "description": "Check log and set git identity"
+            }
+          },
+          "id": "event-000635"
+        },
+        {
+          "source_line": 636,
+          "timestamp": "2026-05-26T12:37:05.582727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7da0e9c Update README to match final paper title and framing\ne3c8f11 Anonymous submission for EMNLP 2026\n---\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000636"
+        },
+        {
+          "source_line": 637,
+          "timestamp": "2026-05-26T12:37:10.959044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git log --format=\"%H %an <%ae> %s\" -2",
+              "description": "Check commit author info"
+            }
+          },
+          "id": "event-000637"
+        },
+        {
+          "source_line": 638,
+          "timestamp": "2026-05-26T12:37:11.060321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7da0e9c7bfd65eaac06d6f2dfabce15624acb291 Ubuntu <ubuntu@ip-172-31-15-23.ap-northeast-1.compute.internal> Update README to match final paper title and framing\ne3c8f11573189441aa9979c75f3e02bacaebb254 Anonymous <anonymous@example.com> Anonymous submission for EMNLP 2026\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000638"
+        },
+        {
+          "source_line": 639,
+          "timestamp": "2026-05-26T12:37:28.474975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/schema-dag-update/README.md"
+            }
+          },
+          "id": "event-000639"
+        },
+        {
+          "source_line": 640,
+          "timestamp": "2026-05-26T12:37:34.093178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?\n2\t\n3\tCode for anonymous EMNLP 2026 (ARR) submission.\n4\t\n5\t## Overview\n6\t\n7\tSchema complexity affects training-free LLM information extraction (IE), yet prior work conflates two factors: having more types to discriminate among (**count**) and having semantically similar types to confuse (**confusability**). This repository contains the code for a controlled study isolating these factors in zero-shot LLM IE across four datasets (Few-NERD, FewRel, DocRED, MAVEN).\n8\t\n9\tKey components:\n10\t\n11\t- **SCS (Schema Confusability Score)**: Pairwise embedding-based confusability measure between type pairs.\n12\t- **BCS (Batch Confusability Score)**: Batch-level aggregation of pairwise SCS values.\n13\t- **Count curve experiments**: Measuring extraction performance as a function of schema size.\n14\t- **BCS-controlled experiments**: Fixing type count and varying BCS to isolate confusability from schema size.\n15\t- **Error taxonomy**: Decomposing errors into intra-batch substitution (IntraSub) and missed categories.\n16\t- **Schema decomposition**: Evaluating confusability-aware decomposition (negative result due to merge amplification and routing failure).\n17\t\n18\t## Project Structure\n19\t\n20\t```\n21\tsrc/           Core source code (extraction, evaluation, BCS/SCS computation, SDGD)\n22\tscripts/       Experiment runner scripts\n23\tanalysis/      Statistical analysis scripts\n24\tconfigs/       Type definition files (Few-NERD, FewRel, MAVEN)\n25\tdata/          Dataset files (not included; see below)\n26\tfigures/       Paper figure generation scripts\n27\texperiments/   Auxiliary experiments (e.g., prompt sensitivity)\n28\t```\n29\t\n30\t## Requirements\n31\t\n32\t```\n33\ttorch\n34\ttransformers\n35\tvllm\n36\tnumpy\n37\tscipy\n38\tscikit-learn\n39\tpandas\n40\tmatplotlib\n41\tseaborn\n42\ttqdm\n43\t```\n44\t\n45\tInstall dependencies:\n46\t```bash\n47\tpip install torch transformers vllm numpy scipy scikit-learn pandas matplotlib seaborn tqdm\n48\n…[truncated 982 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 5618
+          },
+          "id": "event-000640"
+        },
+        {
+          "source_line": 641,
+          "timestamp": "2026-05-26T12:37:34.144025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && grep -rn \"Schema Confusability in Zero-Shot\" --include=\"*.py\" --include=\"*.sh\" --include=\"*.json\" --include=\"*.md\" 2>/dev/null",
+              "description": "Find any remaining old title references"
+            }
+          },
+          "id": "event-000641"
+        },
+        {
+          "source_line": 642,
+          "timestamp": "2026-05-26T12:37:34.711027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 567
+          },
+          "id": "event-000642"
+        },
+        {
+          "source_line": 643,
+          "timestamp": "2026-05-26T12:37:39.747047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git commit --amend --reset-author --no-edit 2>&1",
+              "description": "Amend commit with Anonymous identity"
+            }
+          },
+          "id": "event-000643"
+        },
+        {
+          "source_line": 644,
+          "timestamp": "2026-05-26T12:37:39.847938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[main c072db2] Update README to match final paper title and framing\n 1 file changed, 16 insertions(+), 12 deletions(-)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000644"
+        },
+        {
+          "source_line": 645,
+          "timestamp": "2026-05-26T12:37:42.508715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git log --format=\"%H %an <%ae> %s\" -2",
+              "description": "Verify author is now Anonymous"
+            }
+          },
+          "id": "event-000645"
+        },
+        {
+          "source_line": 646,
+          "timestamp": "2026-05-26T12:37:42.559465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "c072db260c9acb659e55c65541a3c3c63b6b3bc8 Anonymous <anonymous@example.com> Update README to match final paper title and framing\ne3c8f11573189441aa9979c75f3e02bacaebb254 Anonymous <anonymous@example.com> Anonymous submission for EMNLP 2026\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000646"
+        },
+        {
+          "source_line": 647,
+          "timestamp": "2026-05-26T12:37:45.521777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/schema-dag-update && git push --force origin main 2>&1",
+              "description": "Force push to fix author identity leak"
+            }
+          },
+          "id": "event-000647"
+        },
+        {
+          "source_line": 648,
+          "timestamp": "2026-05-26T12:37:46.927010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "To https://github.com/anonymous-nlp-2026/schema-dag-extraction.git\n + 7da0e9c...c072db2 main -> main (forced update)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 1405
+          },
+          "id": "event-000648"
+        },
+        {
+          "source_line": 649,
+          "timestamp": "2026-05-26T12:37:57.912494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**GitHub 仓库已更新并推送。**\n\n**更新内容（README.md）：**\n1. 标题：`Schema Confusability in Zero-Shot LLM IE` → `How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?`\n2. Overview：重写为论文最终的二维 framing（count + confusability）\n3. 新增组件：error taxonomy（IntraSub/missed）、schema decomposition（标注为 negative result）\n4. 数据集：新增 DocRED；修复 FewRel 链接（原来指向知乎）；FewNERD → Few-NERD\n5. 措辞统一：zero-shot → training-free\n\n**额外修复：** 上一次推送的 commit author 泄露了服务器身份（`Ubuntu <ubuntu@ip-172-31-15-23...>`），已 amend 为 `Anonymous <anonymous@example.com>` 并 force push 覆盖。\n\n代码文件无论文标题硬编码，无需修改。\n\n最新 commit: `c072db2`"
+            }
+          },
+          "id": "event-000649"
+        },
+        {
+          "source_line": 650,
+          "timestamp": "2026-05-26T12:38:01.225915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3313
+          },
+          "id": "event-000650"
+        },
+        {
+          "source_line": 651,
+          "timestamp": "2026-05-26T12:38:04.710807+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Author 已修复。Force push 覆盖之前泄露身份的 commit。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
+          },
+          "id": "event-000651"
+        }
+      ]
+    }
+  ]
+}

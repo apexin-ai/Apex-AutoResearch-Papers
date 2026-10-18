@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "91a235a02ce6ed0aa349",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diagnose hellaswag metric check",
+  "task_key": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_hellaswag-metric-check_20260521T095449_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "fcdad0eae76de4718e3278f8ad751da27969b68ab1a2228c52f5d89996d819dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确了。\n\n## 结果\n\n**HellaSwag per-example correct/incorrect 基于 `acc`（非 `acc_norm`）。**\n\n### 证据\n\n1. **`analyze_boolq_hellaswag.py` 第 32 行**（生成 `hellaswag_per_example.json` 的脚本）：\n   ```python\n   accs.append((d[\"doc_id\"], int(d[\"acc\"])))\n   ```\n   用的是 `d[\"acc\"]` 字段，不是 `d[\"acc_norm\"]`。\n\n2. **per-example jsonl 样本**（`hellaswag.jsonl` 第一行）同时包含 `\"acc\": 0.0` 和 `\"acc_norm\": 0.0` 两个字段，但分析代码只读取了 `\"acc\"`。\n\n3. **Aggregate 指标**（GatedDeltaNet-pure）：\n   - **`acc` = 0.4641**\n   - **`acc_norm` = 0.6076**\n   \n   差异很大（~14pp），`acc_norm` 做了 length normalization 后显著更高。\n\n4. **注意**：`task_specificity_analysis.py` 的 aggregate 汇报用的是 `acc_norm,none`（即报告时引用 0.6076），但 per-example helped/hurt 分类用的是 `acc`（即基于 0.4641 水平的逐样本对错判断）。\n\n### 含义\n\nper-example 分析中一个样本被判\"正确\"意味着模型选了 raw log-likelihood 最高的选项恰好是 gold answer（无 length normalization）。这比 `acc_norm` 标准更严格，对应的 pure baseline 正确率只有 ~46%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c978cc7e922bb1acc2f",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code register counterfactual gen 100",
+  "task_key": "worker_code_register_counterfactual_gen_100_20260521T004113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_register_counterfactual_gen_100_20260521T004113_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "a8870b661396b0a2309fbad0f6e5413efbb1560f8e503f2dba2a4dd8dc307542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Register n=100 counterfactual generation 全部完成：\n- **100 条全部成功**，0 失败\n- 输出：`data/counterfactuals_register.jsonl`\n- 每条包含 `original_text`, `counterfactual_text`, `double_rewrite_text`, `original_register`（academic/conversational）\n- vLLM (cuda:0) 已关闭"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

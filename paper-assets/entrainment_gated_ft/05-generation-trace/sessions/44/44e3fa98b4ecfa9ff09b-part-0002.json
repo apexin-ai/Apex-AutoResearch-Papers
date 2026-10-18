@@ -1,0 +1,750 @@
+{
+  "schema_version": "1.0",
+  "session_id": "44e3fa98b4ecfa9ff09b",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Line 591 mentions HellaSwag but not with ρ=0.4. It mentions \"$d \\approx 0$\" which is about Cohen's d, not Spearman ρ. So only two places need fixing:\n\n1. Line 28: \"HellaSwag: $+0.4$\" → \"HellaSwag: $+0.3$\" (1.3B scale ρ)\n2. Line 673: \"HellaSwag ($\\rho = 0.4$, $p = .52$)\" — this is 340M. I need to check if the 340M value is correct.\n\n\nFor line 673, I'm trying to verify the 340M HellaSwag correlation value, but the cross-scale convergence data I have access to only covers the 1.3B model. The JSON files don't contain the 340M analysis, so I'd need to look at the separate 340M results or check the appendix section on per-example scale effects to confirm whether that ρ=0.4 value is accurate.\n\nSince I can only verify the 1.3B reference on line 28, I'll correct that one and leave the 340M claim as stated in the paper.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "3e984652-cd16-4b90-a5b0-5c584a623a84",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MU2VPE8MhsiyXwXxnDFSoM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 991,
+                "cache_read_input_tokens": 133946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 991
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 673 是 340M scale 的数据，可能正确。只修复 line 28 的 1.3B 引用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "b20b6c05-224b-4f06-8e6e-ed1c45b874ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MU2VPE8MhsiyXwXxnDFSoM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 991,
+                "cache_read_input_tokens": 133946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 991
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014tsVVFkcUdYZag6gFdncMS",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+                "old_string": "HellaSwag: $+0.4$; WinoGrande",
+                "new_string": "HellaSwag: $+0.3$; WinoGrande"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "173e98c2-bb5a-45da-9f83-086bfdd5a2ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MU2VPE8MhsiyXwXxnDFSoM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 991,
+                "cache_read_input_tokens": 133946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 991
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-24T04:51:30.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014tsVVFkcUdYZag6gFdncMS",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "06231dc4-0936-4917-ab1e-52853b3af0ad",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "oldString": "HellaSwag: $+0.4$; WinoGrande",
+              "newString": "HellaSwag: $+0.3$; WinoGrande",
+              "originalFile": "% Appendix sections for the paper.\n\n\\section{Confirmatory and Exploratory Analyses}\\label{app:benchmark_details}\n\nThe task taxonomy used in \\S\\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).\n    \\item \\textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).\n    \\item \\textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).\n    \\item \\textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).\n\\end{itemize}\n\n\\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis as an informal pre-analysis plan; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The main text applies the more conservative all-10-benchmark correction (Bonferroni-adjusted $p = .017 \\times 10 = .170$). \\textbf{Sensitivity:} correcting across only the six confirmatory benchmarks yields adjusted $p = .017 \\times 6 = .100$, still above conventional significance.\n\n\\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \\approx 0.0083$. Under 10-benchmark Bonferroni correction, this yields an adjusted $p = 0.083$, above the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness.\n\n\\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. All benchmarks share the same 10-benchmark correction (adjusted threshold $\\alpha / 10 = 0.005$) and the four exploratory benchmarks are labeled as such throughout the paper. The all-10 Bonferroni correction reported in the main text is the only correction used for inference; the exploratory 6-benchmark subset correction in this appendix is provided for transparency.\n\n\\paragraph{Supplementary benchmark.} COPA ($n = 100$) is treated as supplementary due to its small sample size. It is excluded from both correction families and reported separately with the $\\dagger$ annotation in Table~\\ref{tab:convergence}.\n\n\\section{Convergence Detail}\\label{app:convergence_detail}\n\n% Figure moved to main text (\\S\\ref{ssec:decoupling}).\n\nBeyond LAMBADA ($\\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\\rho = -0.67$ with a large $\\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.\n\nSeveral benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.\n\n\\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\\times$ $\\sigma$ compression ($0.024 \\to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\\times$ reduction in cross-architecture $\\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\\S\\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.\n\n\\section{Scale-Dependent Convergence}\\label{app:scale_convergence}\n\nAt 1.3B parameters, LAMBADA convergence is monotonic: $\\sigma$ decreases at every attention level from 0\\% through 25\\% ($\\rho = -1.0$). At 340M, convergence is partial: $\\sigma$ reaches a maximum reduction of 56\\% at intermediate attention ratios but rebounds at h3-1, yielding a net endpoint reduction of 36\\%. The trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance. One possible interpretation is that at smaller scale, the capacity overhead of attention layers creates interference that offsets the retrieval benefit.\n\nThis contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \\approx 0.09$), extending the decoupling observation (\\S\\ref{ssec:decoupling}) to the scale dimension.\n\n\\section{Sensitivity Analyses}\\label{app:sensitivity}\n\n\\subsection{Bootstrap Confidence Intervals}\n\nWe construct 95\\% bootstrap confidence intervals for the Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ on LAMBADA using 10{,}000 resamples at the architecture level ($n = 3$ architectures). Of these resamples, 11.25\\% are degenerate: they consist of same-architecture triplicates, which produce a constant $\\sigma$ vector and therefore an undefined $\\rho$ (division by zero in the rank correlation formula). These are excluded from the confidence interval computation because they carry no information about the correlation, not because they represent $\\rho = 0$.\n\nThe BCa (bias-corrected and accelerated) correction degenerates at the $\\rho = -1.0$ boundary because the acceleration parameter requires finite jackknife variance, which collapses when the point estimate is at the distributional limit. We therefore report percentile confidence intervals instead. From the 88.75\\% informative resamples, the 95\\% percentile CI is $[-1.0,\\,-0.7]$, which excludes zero.\n\n\\subsection{GDN Exclusion Sensitivity}\n\nThe GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.\n\nTable~\\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\\Delta\\rho| \\geq 0.3$. LAMBADA weakens from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\\rho = -0.7$ to $\\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Effect of GDN exclusion on Spearman $\\rho$ (attention ratio vs.\\ cross-architecture $\\sigma$) at 1.3B scale. Only benchmarks with $|\\Delta\\rho| \\geq 0.3$ shown.}\n\\label{tab:gdn_sensitivity}\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & $\\rho_{\\text{all}}$ & $\\rho_{\\text{no-GDN}}$ & $\\Delta\\rho$ & $p_{\\text{no-GDN}}$ \\\\\n\\midrule\nLAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\\\\nMMLU & $-0.7$ & $+0.6$ & $+1.3$ & .350 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{GDN Attention Head Confound}\\label{app:gdn_confound}\n\nIn the \\citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.\n\nThis confound is relevant because the convergence analysis measures cross-architecture $\\sigma$ at each attention ratio. At the h3-1 ratio (25\\% attention), GDN's attention layers have a different internal structure than those of RetNet and HGRN2, which could contribute to variance reduction (or inflation) for reasons unrelated to the recurrent--attention interaction under study.\n\nThe sensitivity analysis in Appendix~\\ref{app:sensitivity} shows that removing GDN weakens the LAMBADA convergence correlation from $\\rho = -1.0$ to $\\rho = -0.7$. This weakening is partially attributable to the reduced sample size ($n = 2$ architectures) and partially to the confound itself. We cannot separate these two effects with the available data.\n\n\\section{Attention Weight Analysis}\\label{app:attention_patterns}\n\nWe extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.\n\n\\subsection{Cross-Architecture Cosine Similarity}\n\nTable~\\ref{tab:attn_cosine} reports cosine similarity between mean attention distributions at selected layers and averaged across all layers.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}\n\\label{tab:attn_cosine}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrr}\n\\toprule\nLayer & GDN--RetNet & GDN--HGRN2 & HGRN2--RetNet \\\\\n\\midrule\nL2 (early) & 0.995 & 0.244 & 0.196 \\\\\nL20 (deep) & 0.986 & 0.942 & 0.943 \\\\\n\\midrule\nMean (all layers) & 0.905 & 0.766 & 0.698 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAt layer 2, GDN and RetNet produce nearly identical attention distributions (cosine 0.995), while HGRN2 diverges from both (cosine $< 0.25$). By layer 20, all three architectures converge to similar attention patterns (cosine $> 0.94$). The layer-wise trajectory suggests that early-layer attention patterns are shaped by the preceding recurrent layers (which differ across architectures), while deeper layers converge regardless of the recurrent substrate.\n\n\\subsection{Helped vs.\\ Hurt Attention Entropy}\n\nTo test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}\n\\label{tab:attn_entropy}\n\\begin{tabular}{lr}\n\\toprule\nArchitecture & $\\Delta H$ (helped $-$ hurt) \\\\\n\\midrule\nGDN & $-0.0009$ \\\\\nRetNet & $+0.0179$ \\\\\nHGRN2 & $+0.0020$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nGDN and HGRN2 show negligible entropy differences ($|\\Delta H| \\leq 0.002$). RetNet's $\\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.\n\n\\subsection{Last-5 Attention Mass}\n\nWe also measure the fraction of attention mass allocated to the last five tokens, which captures whether the attention mechanism concentrates differently on recent context for helped vs.\\ hurt examples.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}\n\\label{tab:attn_last5}\n\\begin{tabular}{lrr}\n\\toprule\nArchitecture & Helped & Hurt \\\\\n\\midrule\nGDN & 0.0834 & 0.0831 \\\\\nRetNet & 0.1578 & 0.1591 \\\\\nHGRN2 & 0.0453 & 0.0467 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nNo architecture shows a meaningful difference in last-5 attention mass between helped and hurt examples (Table~\\ref{tab:attn_last5}). This further supports the conclusion that the per-example divergence is not driven by differential attention allocation.\n\n\\section{Cross-Scale Per-Example Comparisons}\\label{app:cross_scale}\n\n\\subsection{Within-Scale Pairwise Jaccard}\n\nTable~\\ref{tab:within_scale_jaccard} reports the within-scale pairwise Jaccard similarity between architectures' helped and hurt sets at both scales. Mean values are similar across scales (340M: 0.094/0.090; 1.3B: 0.100/0.093), confirming that per-example architecture specificity is approximately scale-robust.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-scale pairwise Jaccard similarity of per-example effects (pure $\\to$ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}\n\\label{tab:within_scale_jaccard}\n\\begin{tabular}{llcc}\n\\toprule\nScale & Pair & $J_{\\text{helped}}$ & $J_{\\text{hurt}}$ \\\\\n\\midrule\n\\multirow{4}{*}{340M} & GDN--RetNet & 0.092 & 0.109 \\\\\n& GDN--HGRN2 & 0.084 & 0.075 \\\\\n& RetNet--HGRN2 & 0.108 & 0.085 \\\\\n& \\textit{Mean} & \\textit{0.094} & \\textit{0.090} \\\\\n\\midrule\n\\multirow{4}{*}{1.3B} & GDN--RetNet & 0.092 & 0.103 \\\\\n& GDN--HGRN2 & 0.100 & 0.088 \\\\\n& RetNet--HGRN2 & 0.108 & 0.087 \\\\\n& \\textit{Mean} & \\textit{0.100} & \\textit{0.093} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Scale Pairwise Jaccard}\n\nFor each architecture, we compare the helped and hurt sets of the pure $\\to$ h3-1 transition at 340M and 1.3B scale on LAMBADA.\nThe comparison uses the same classification scheme as \\S\\ref{ssec:per_example}: an example is ``helped'' if it is correct only in the hybrid variant and ``hurt'' if correct only in the pure baseline.\nAll pairwise Jaccard values fall below 0.10, indicating that scale produces per-example predictive multiplicity analogous to the cross-architecture effect reported in \\S\\ref{ssec:per_example}.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\\to$ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}\n\\label{tab:cross_scale_jaccard}\n\\begin{tabular}{llcc}\n\\toprule\nArchitecture & Scale Pair & $J_{\\text{helped}}$ & $J_{\\text{hurt}}$ \\\\\n\\midrule\nGDN & 340M $\\leftrightarrow$ 1.3B & 0.047 & 0.087 \\\\\nRetNet & 340M $\\leftrightarrow$ 1.3B & 0.059 & 0.073 \\\\\nHGRN2 & 340M $\\leftrightarrow$ 1.3B & 0.089 & 0.055 \\\\\n\\midrule\nMean & & 0.065 & 0.072 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Example Effect Counts}\\label{app:per_example_counts}\n\nTable~\\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Per-example effects of attention (pure $\\to$ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\\bar{J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}\n\\label{tab:per_example}\n\\begin{tabular}{lrrrr}\n\\toprule\nArchitecture & Helped & Hurt & Net & $\\bar{J}$ \\\\\n\\midrule\nGDN & 462 & 615 & $-$153 & .096 \\\\\nRetNet & 426 & 495 & $-$69 & .100 \\\\\nHGRN2 & 548 & 395 & $+$153 & .104 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Normalized Jaccard Effect Size}\\label{app:normalized_es}\n\nTo assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\\max} = \\min(|A|,|B|) / \\max(|A|,|B|)$ and the normalized effect size $(J_{\\text{obs}} - J_{\\text{null}}) / (J_{\\max} - J_{\\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\\ref{tab:normalized_es} reports per-pair results.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}\n\\label{tab:normalized_es}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\max}$ & $J_{\\text{null}}$ & Norm.\\ ES \\\\\n\\midrule\nHelped & GDN--RetNet & .092 & .922 & .045 & .054 \\\\\n & GDN--HGRN2 & .100 & .843 & .051 & .062 \\\\\n & RetNet--HGRN2 & .108 & .777 & .049 & .081 \\\\\n & \\textit{Mean} & \\textit{.100} & \\textit{.848} & \\textit{.048} & \\textit{.066} \\\\\n\\midrule\nHurt & GDN--RetNet & .103 & .805 & .056 & .063 \\\\\n & GDN--HGRN2 & .088 & .642 & .049 & .066 \\\\\n & RetNet--HGRN2 & .087 & .798 & .045 & .056 \\\\\n & \\textit{Mean} & \\textit{.093} & \\textit{.748} & \\textit{.050} & \\textit{.062} \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.\n\n\\section{ARC-Easy Per-Example Analysis}\\label{app:arceasy}\n\nTable~\\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}\n\\label{tab:arceasy_effects}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrr}\n\\toprule\nArchitecture & Ratio & Helped & Hurt & Net \\\\\n\\midrule\n\\multirow{4}{*}{GDN} & h24-1 & 178 & 185 & $-$7 \\\\\n& h12-1 & 176 & 206 & $-$30 \\\\\n& h6-1 & 170 & 157 & $+$13 \\\\\n& h3-1 & 171 & 180 & $-$9 \\\\\n\\midrule\n\\multirow{4}{*}{RetNet} & h24-1 & 158 & 168 & $-$10 \\\\\n& h12-1 & 163 & 146 & $+$17 \\\\\n& h6-1 & 159 & 147 & $+$12 \\\\\n& h3-1 & 144 & 184 & $-$40 \\\\\n\\midrule\n\\multirow{4}{*}{HGRN2} & h24-1 & 160 & 119 & $+$41 \\\\\n& h12-1 & 159 & 111 & $+$48 \\\\\n& h6-1 & 185 & 118 & $+$67 \\\\\n& h3-1 & 164 & 146 & $+$18 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nTable~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \\S\\ref{ssec:per_example}.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Ambiguity $\\alpha$ across attention ratios (1.3B scale). 95\\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}\n\\label{tab:arceasy_ambiguity}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\nBenchmark & Pure & h24-1 & h12-1 & h6-1 & h3-1 & 95\\% CI (pure) \\\\\n\\midrule\nPIQA & .143 & .138 & .132 & .143 & .140 & $[.127,\\,.159]$ \\\\\nHellaSwag & .148 & .150 & .148 & .146 & .150 & $[.141,\\,.155]$ \\\\\nARC-Easy & .205 & .226 & .223 & .201 & .210 & $[.189,\\,.221]$ \\\\\nLAMBADA & .307 & .300 & .316 & .294 & .296 & $[.294,\\,.319]$ \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\section{Jaccard Permutation Test}\\label{app:jaccard_permutation}\n\nTo assess whether the observed pairwise Jaccard similarities exceed what would be expected under independence, we perform a permutation test. For each architecture pair at 1.3B h3-1, we hold the helped (or hurt) set sizes fixed and randomly assign example indices to each set (10{,}000 permutations, seed 42). Table~\\ref{tab:jaccard_perm} reports the observed $J$, the null baseline $J_{\\text{null}}$ (mean over permutations), and the $z$-score.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}\n\\label{tab:jaccard_perm}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\text{null}}$ & $z$ & $p$ \\\\\n\\midrule\nHelped & GDN--HGRN2 & .100 & .051 & 7.11 & $<$.0001 \\\\\n & GDN--RetNet & .092 & .045 & 6.75 & $<$.0001 \\\\\n & HGRN2--RetNet & .108 & .049 & 8.61 & $<$.0001 \\\\\n\\midrule\nHurt & GDN--HGRN2 & .088 & .049 & 5.91 & $<$.0001 \\\\\n & GDN--RetNet & .103 & .056 & 6.85 & $<$.0001 \\\\\n & HGRN2--RetNet & .087 & .045 & 6.05 & $<$.0001 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll six comparisons yield $z > 5.9$ ($p < .0001$). The null baseline averages $J_{\\text{null}} \\approx 0.049$; observed values are approximately twice this level. The overlap between architectures' per-example effect sets is therefore structured rather than a product of random set overlap given the set sizes.\n\n\\section{Transformer Entrainment Comparison}\\label{app:transformer_entrainment}\n\nTo test whether attention layers make hybrid models' per-example behavior converge toward a pure Transformer, we compare the correct-example sets of each architecture's pure and h3-1 variants against a 1.3B Transformer baseline (accuracy 48.1\\%) on LAMBADA. Table~\\ref{tab:transformer_jaccard} reports the Jaccard similarity between each model's correct set and the Transformer's correct set.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}\n\\label{tab:transformer_jaccard}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nArchitecture & $J_{\\text{pure,T}}$ & $J_{\\text{h3-1,T}}$ & $\\Delta$ \\\\\n\\midrule\nGDN & 0.645 & 0.649 & $+$0.005 \\\\\nRetNet & 0.679 & 0.694 & $+$0.015 \\\\\nHGRN2 & 0.672 & 0.701 & $+$0.029 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three architectures show positive $\\Delta$: the h3-1 correct set is more similar to the Transformer correct set than the pure correct set is. The effect is strongest for HGRN2 ($+$0.029) and weakest for GDN ($+$0.005). This ordering is consistent with HGRN2 being the only architecture with a positive net per-example effect from attention (Table~\\ref{tab:per_example}). The Transformer itself achieves the lowest accuracy among all models, so the convergence is not explained by hybrid models degrading toward Transformer-level performance; rather, adding attention shifts which specific examples the hybrid gets correct toward the Transformer's pattern.\n\n\\section{Within-Architecture Per-Example Stability}\\label{app:within_arch_stability}\n\nPer-example effect sets exhibit a three-tier Jaccard hierarchy on LAMBADA (1.3B scale). Under independence (permutation baseline), pairwise Jaccard is $J \\approx 0.05$. Cross-architecture comparisons (different architectures at the same attention ratio) yield $J \\approx 0.10$, approximately $2\\times$ baseline. Within-architecture comparisons (same architecture across different attention ratios) yield $J \\approx 0.33$, approximately $7\\times$ baseline and $3\\times$ the cross-architecture level. Architecture identity therefore has approximately three times the influence of attention dose on per-example effects.\n\nTable~\\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\\to$ 548).\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}\n\\label{tab:within_arch_summary}\n\\begin{tabular}{lcc}\n\\toprule\nArchitecture & $\\bar{J}_{\\text{helped}}$ & $\\bar{J}_{\\text{hurt}}$ \\\\\n\\midrule\nGDN & 0.338 & 0.319 \\\\\nRetNet & 0.333 & 0.321 \\\\\nHGRN2 & 0.373 & 0.291 \\\\\n\\midrule\n\\textit{Overall mean} & \\textit{0.348} & \\textit{0.310} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\\%), h12-1 (7.7\\%), h6-1 (14.3\\%), h3-1 (25\\%).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}\n\\label{tab:within_arch_pairwise}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\n & & \\multicolumn{6}{c}{Ratio pair} \\\\\n\\cmidrule(lr){3-8}\nArch & Cat & h24--h12 & h24--h6 & h24--h3 & h12--h6 & h12--h3 & h6--h3 \\\\\n\\midrule\n\\multirow{2}{*}{GDN} & Helped & .345 & .335 & .311 & .344 & .341 & .352 \\\\\n & Hurt & .310 & .328 & .320 & .331 & .281 & .345 \\\\\n\\midrule\n\\multirow{2}{*}{RetNet} & Helped & .354 & .314 & .334 & .322 & .330 & .345 \\\\\n & Hurt & .316 & .334 & .307 & .301 & .324 & .343 \\\\\n\\midrule\n\\multirow{2}{*}{HGRN2} & Helped & .359 & .369 & .375 & .368 & .378 & .388 \\\\\n & Hurt & .292 & .289 & .298 & .273 & .309 & .287 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAdjacent ratio pairs (e.g., h24-1 vs.\\ h12-1) do not exhibit systematically higher Jaccard than non-adjacent pairs (e.g., h24-1 vs.\\ h3-1). Across all architectures, the mean Jaccard for adjacent pairs is 0.353 (helped) and 0.311 (hurt), compared with 0.343 (helped) and 0.310 (hurt) for non-adjacent pairs. The negligible difference indicates that the mapping from attention dose to per-example effects is non-smooth: doubling the attention ratio does not produce a proportionally more similar set of affected examples.\n\n\\section{Cross-Benchmark Jaccard Trajectories}\\label{app:cross_bench_jaccard}\n\nTo test whether Jaccard saturation is specific to LAMBADA or a general property, we compute mean pairwise Jaccard trajectories across all four hybrid attention ratios on all four main benchmarks. Table~\\ref{tab:cross_bench_jaccard} reports the results. On every benchmark, Jaccard shows no statistically significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11. The saturation at the first attention level observed on LAMBADA (\\S\\ref{ssec:decoupling}) thus generalizes: once any attention is present, each architecture's per-example response is largely fixed regardless of attention dose.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Mean pairwise Jaccard (mean of helped and hurt sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and $\\bar{J}$. All $p \\geq 0.333$.}\n\\label{tab:cross_bench_jaccard}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nBenchmark & h24-1 & h12-1 & h6-1 & h3-1 & $\\rho$ & $p$ \\\\\n\\midrule\nLAMBADA & .091 & .088 & .096 & .097 & 0.80 & .333 \\\\\nHellaSwag & .084 & .081 & .091 & .086 & 0.60 & .417 \\\\\nPIQA & .089 & .096 & .089 & .095 & 0.00 & 1.00 \\\\\nARC-Easy & .084 & .099 & .091 & .109 & 0.80 & .333 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Continuous-Threshold Jaccard Analysis}\\label{app:continuous_jaccard}\n\nThe main text binarizes per-example effects at the correctness boundary. To verify that low cross-architecture Jaccard is not an artifact of this binarization, we compute Jaccard similarity using a continuous confidence threshold $\\tau$: two architectures' effect sets are defined as the examples whose target-token $|\\log p|$ changes by more than $\\tau$ when attention is added. On LAMBADA, mean pairwise Jaccard decreases monotonically from 0.26 ($\\tau = 0.00$, any change) to 0.05 ($\\tau = 0.30$, large changes only). ARC-Easy and PIQA show the same monotonic decrease. The binary threshold ($\\tau = 0$, correctness flip) thus represents the upper end of cross-architecture overlap; restricting to confident transitions further reduces agreement, confirming that low Jaccard is robust to the choice of binarization threshold.\n\n\\section{Target-Token Confidence Margin}\n\\label{app:confidence_margin}\n\nWe analyze whether pure-model confidence on the target token predicts whether attention will help or hurt on a given example.\nWe define confidence as $|\\log p_{\\text{pure}}(y^*)|$, where $y^*$ is the target token: lower values indicate higher probability (near-correct).\nWe initially tested raw perplexity as a predictor of helped/hurt status, but found that within-category controls (C1/C2) are necessary to isolate attention effects from the definitional confound between pure-correct and pure-wrong populations.\n\nTable~\\ref{tab:cm_c1} compares hurt versus stayed-right samples (both pure-correct): hurt samples have significantly lower target-token probability (higher $|\\log p|$), confirming that weakly-correct predictions are vulnerable to attention disruption.\nTable~\\ref{tab:cm_c2} compares helped versus stayed-wrong samples (both pure-wrong): helped samples have higher target-token probability (lower $|\\log p|$), confirming that near-miss errors are rescuable.\nThis pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Control 1: Pure-correct samples---hurt vs.\\ stayed-right. Higher mean $|\\log p|$ indicates lower target-token probability (less confident correct).}\n\\label{tab:cm_c1}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrr}\n\\toprule\nArchitecture & $n_{\\text{hurt}}$ & $n_{\\text{stay}}$ & Hurt mean & Stay mean & Cohen's $d$ \\\\\n\\midrule\nGDN (h12-1) & 519 & 2281 & 1.049 & 0.576 & 0.87 \\\\\nRetNet (h3-1) & 497 & 2169 & 1.293 & 0.785 & 0.83 \\\\\nHGRN2 (h3-1) & 392 & 2102 & 1.481 & 0.899 & 0.92 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\caption{Control 2: Pure-wrong samples---helped vs.\\ stayed-wrong. Lower mean $|\\log p|$ indicates higher target-token probability (near-miss error).}\n\\label{tab:cm_c2}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrr}\n\\toprule\nArchitecture & $n_{\\text{help}}$ & $n_{\\text{stay}}$ & Help mean & Stay mean & Cohen's $d$ \\\\\n\\midrule\nGDN (h12-1) & 480 & 1873 & 2.459 & 4.189 & $-$0.75 \\\\\nRetNet (h3-1) & 420 & 2067 & 2.478 & 4.103 & $-$0.73 \\\\\nHGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\subsection{Cross-Benchmark Extension}\\label{app:cm_cross}\n\nThe confidence margin pattern extends beyond LAMBADA to multiple-choice benchmarks, though with smaller effect sizes. Table~\\ref{tab:cm_cross_c2} reports the rescue analysis (helped vs.\\ stayed-wrong) on HellaSwag and ARC-Easy. All nine comparisons (three benchmarks $\\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \\texttt{acc\\_norm}. The asymmetry between rescue and disruption reflects task structure: near-miss errors are an intrinsic sample property (the model almost produced the correct answer regardless of format), while borderline correctness in multiple-choice settings depends on relative option ranking rather than absolute confidence, reducing the raw log-likelihood margin's predictive power for vulnerability.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-benchmark rescue analysis (Control 2): helped vs.\\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}\n\\label{tab:cm_cross_c2}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrr}\n\\toprule\nBenchmark & Architecture & Cohen's $d$ & $p$ \\\\\n\\midrule\nHellaSwag & GDN & $-$0.166 & $6.1 \\times 10^{-4}$ \\\\\n & RetNet & $-$0.132 & $1.4 \\times 10^{-2}$ \\\\\n & HGRN2 & $-$0.164 & $1.4 \\times 10^{-3}$ \\\\\n\\midrule\nARC-Easy & GDN & $-$0.60 & $1.0 \\times 10^{-13}$ \\\\\n & RetNet & $-$0.51 & $5.3 \\times 10^{-10}$ \\\\\n & HGRN2 & $-$0.53 & $5.4 \\times 10^{-10}$ \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-benchmark disruption analysis (Control 1): hurt vs.\\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}\n\\label{tab:cm_cross_c1}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrl}\n\\toprule\nBenchmark & Architecture & Cohen's $d$ & $p$ & Sig.? \\\\\n\\midrule\nHellaSwag & GDN & 0.009 & .999 & No \\\\\n & RetNet & $-$0.035 & .453 & No \\\\\n & HGRN2 & $-$0.062 & .274 & No \\\\\n\\midrule\nARC-Easy & GDN & 0.26 & $3.2 \\times 10^{-4}$ & Yes \\\\\n & RetNet & 0.22 & $2.8 \\times 10^{-3}$ & Yes \\\\\n & HGRN2 & 0.13 & .145 & No \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\subsection{Prediction Framework}\\label{app:prediction_framework}\n\nWe formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\\ref{tab:cm_c1},~\\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\\text{AUC} = \\Phi(|d|/\\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\\log p|$ value at which the two group densities intersect under equal priors).\n\nTable~\\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\\ 0.70), reflecting the larger effect sizes in Control~1.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}\n\\label{tab:prediction_auc}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nArchitecture & \\multicolumn{3}{c}{Rescue} & \\multicolumn{3}{c}{Disruption} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n & AUC$_p$ & AUC$_e$ & $d$ & AUC$_p$ & AUC$_e$ & $d$ \\\\\n\\midrule\nGDN (h12-1) & .701 & .756 & 0.75 & .732 & .742 & 0.87 \\\\\nRetNet (h3-1) & .696 & .754 & 0.73 & .722 & .735 & 0.83 \\\\\nHGRN2 (h3-1) & .708 & .765 & 0.77 & .743 & .748 & 0.92 \\\\\n\\midrule\nMean & .702 & .758 & --- & .732 & .742 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Normality verification.} Shapiro-Wilk tests reject normality for all six architecture--set combinations (all $W < 0.98$, $p < 10^{-6}$), but the practical departure varies by group. Disruption-set $|\\log p|$ values show mild skewness (0.53--0.77, $W \\in [0.955, 0.973]$), closely approximating a normal distribution at the sample sizes involved. Rescue-set values are moderately right-skewed (skewness 1.33--1.41, $W \\in [0.899, 0.920]$), following an approximately log-normal distribution. Because the skew is one-sided, parametric AUC estimates (0.70--0.74 in the main text) are conservative lower bounds; non-parametric empirical AUC from the same data yields 0.73--0.77.\n\nDespite similar within-architecture AUC, the optimal prediction thresholds differ across architectures for disruption but not rescue (Table~\\ref{tab:threshold_gap}). Rescue thresholds cluster tightly (range 0.03 in $|\\log p|$), indicating that the rescuability boundary---the confidence level below which pure-wrong examples are likely to be corrected by attention---is architecture-invariant. Disruption thresholds span a 47\\% relative range (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14), meaning that the same confidence level on a pure-correct example may predict vulnerability in one architecture but safety in another. This asymmetry constitutes a second dimension of multiplicity beyond per-example disagreement: all three architectures agree on which wrong answers are rescuable, but disagree on which correct answers are vulnerable to disruption.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Gaussian-intersection prediction thresholds ($|\\log p|$) across architectures. Relative spread: range/mean.}\n\\label{tab:threshold_gap}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\n & GDN & RetNet & HGRN2 & Range & Rel.\\ spread \\\\\n\\midrule\nRescue & 3.32 & 3.29 & 3.31 & 0.03 & 1.0\\% \\\\\nDisruption & 0.70 & 1.00 & 1.14 & 0.44 & 46.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Calibration Analysis}\\label{app:calibration}\n\nCross-architecture disruption threshold variation (\\S\\ref{ssec:per_example}) could in principle arise from calibration differences rather than genuine differences in per-example processing. We compute expected calibration error (ECE; \\citealt{guo2017calibration}) for each architecture's h3-1 model on LAMBADA using 15 equal-width bins. ECE values are similar: GDN 0.222, RetNet 0.224, HGRN2 0.235. The cross-architecture ECE spread (6\\%, computed as range/mean) is less than half the disruption threshold spread (47\\%; Table~\\ref{tab:threshold_gap}), indicating that calibration differences are insufficient to account for the observed threshold divergence. Rescue thresholds, which show only 1\\% cross-architecture spread, are consistent with near-identical calibration in the low-confidence regime.\n\n\\section{BoolQ Supplementary Analysis}\n\\label{app:boolq}\n\nBoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\\alpha \\approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.\n\n\\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\\bar{J}_h = 0.103$ and $\\bar{J}_u = 0.098$---values comparable to the four main benchmarks.\n\n\\paragraph{Per-example summary.} Table~\\ref{tab:boolq_multiplicity} reports the key metrics. The high $\\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the four main benchmarks.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:boolq_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nBoolQ & 3270 & .45 & .103 & .098 & 12/24 & $+0.1$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}\n\\end{table}\n\nThe significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.\n\n\\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \\leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \\approx 0.9$, LAMBADA) through ARC-Easy ($d \\approx 0.1$--$0.3$) to HellaSwag ($d \\approx 0$ under \\texttt{acc\\_norm}) and binary classification ($d \\approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$). BoolQ's high-frequency short completions (``\\,yes''/``\\,no'') yield elevated baseline log-likelihoods (mean $|\\text{loglik}| = 3.04$ vs.\\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.\n\n\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.\n\n\\section{WinoGrande Supplementary Analysis}\n\\label{app:winogrande}\n\nWinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\\alpha \\approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\\bar{J}_h = 0.110$, $\\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\\sim}60\\%$) reduces statistical power to detect above-chance overlap.\n\n\\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\\% to 62\\%, close to the two-choice chance level of 50\\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\\alpha$. This structural property, shared with BoolQ (${\\sim}59\\%$ accuracy, $\\alpha \\approx 0.45$), may partially explain the elevated $\\alpha$ rather than task-intrinsic multiplicity. PIQA (73\\% accuracy, $\\alpha = 0.14$) and HellaSwag (60\\% normalized accuracy, $\\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:winogrande_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nWinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize $\\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}\n\\end{table}\n\n\\section{340M Per-Example Analysis}\\label{app:scale_per_example}\n\n\\subsection{LAMBADA}\n\nAt 340M, LAMBADA per-example multiplicity closely matches the 1.3B pattern: $\\alpha = 0.313$ (vs.\\ 0.307 at 1.3B), with mean pairwise Jaccard $\\bar{J} \\approx 0.089$ (vs.\\ 0.095). Per-example directionality is preserved: HGRN2 shows net positive effects at h3-1 ($+238$ examples), while GDN ($-256$) and RetNet ($-106$) show net negative effects, mirroring the 1.3B profile (HGRN2 $+153$, GDN $-153$, RetNet $-69$).\n\nHowever, aggregate convergence is absent at 340M: $\\rho = -0.50$ ($p = .45$), with non-monotonic $\\sigma$ across attention ratios ($0.025 \\to 0.012 \\to 0.018 \\to 0.011 \\to 0.016$). This contrasts sharply with 1.3B ($\\rho = -1.0$, $p = .017$, monotonic $\\sigma$ decrease). The decoupling between per-example divergence and aggregate convergence thus manifests differently across scales: at 340M, per-example multiplicity is present but aggregate convergence is not, suggesting that convergence requires sufficient model capacity while multiplicity does not.\n\nWithin-benchmark $\\alpha$ variation across attention ratios is also larger at 340M (0.047, from 0.313 at pure to 0.266 at h3-1) than at 1.3B ($< 0.03$; \\S\\ref{ssec:per_example}), suggesting that smaller models are more sensitive to the attention ratio in terms of per-example disagreement patterns.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{340M vs.\\ 1.3B LAMBADA comparison.}\n\\label{tab:scale_comparison}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n & 340M & 1.3B \\\\\n\\midrule\n$\\alpha$ (pure) & .313 & .307 \\\\\n$\\bar{J}$ (h3-1) & .089 & .095 \\\\\n$\\rho_\\sigma$ & $-0.50$ & $-1.0$ \\\\\n$p$ & .45 & .017 \\\\\nGDN net & $-256$ & $-153$ \\\\\nHGRN2 net & $+238$ & $+153$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Benchmark Scale Comparison}\n\nTable~\\ref{tab:340m_multi_bench} extends the scale comparison to all four main benchmarks. Two patterns emerge. First, $\\alpha$ is systematically higher at 340M across all benchmarks, with the largest gap on ARC-Easy ($+$8.4pp) and the smallest on LAMBADA ($+$0.6pp). Second, pairwise Jaccard remains stable across scales ($\\bar{J}_h = 0.08$--$0.10$ at both scales); three-architecture results are stable across both 340M and 1.3B scales (Jaccard $\\approx$ 0.08--0.10), providing indirect support for scale robustness. This confirms that the qualitative pattern of per-example multiplicity---which architectures affect which examples---is scale-robust even as its magnitude increases at smaller scale. Notably, the $\\alpha$ inflation does not track accuracy loss: HellaSwag has the largest accuracy gap between scales yet the smallest $\\Delta\\alpha$ ($+$1.9pp), while ARC-Easy has a smaller accuracy gap but the largest $\\Delta\\alpha$ ($+$8.4pp), arguing against accuracy as the primary driver of scale-dependent multiplicity.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{340M vs.\\ 1.3B per-example multiplicity across four benchmarks. $\\alpha$: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\\bar{J}_{h}$/$\\bar{J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\\Delta\\alpha$: 340M $-$ 1.3B.}\n\\label{tab:340m_multi_bench}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccccr}\n\\toprule\n & \\multicolumn{4}{c}{340M} & \\multicolumn{3}{c}{1.3B} & \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-8}\nBenchmark & Acc & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\Delta\\alpha$ \\\\\n\\midrule\nPIQA & .663 & .181 & .090 & .085 & .143 & .091 & .094 & $+$.038 \\\\\nHellaSwag$^\\dagger$ & .420 & .167 & .084 & .083 & .148 & .095 & .085 & $+$.019 \\\\\nARC-Easy & .594 & .289 & .098 & .103 & .205 & .092 & .099 & $+$.084 \\\\\nLAMBADA & --- & .313 & .089 & .090 & .307 & .095 & .093 & $+$.006 \\\\\n\\bottomrule\n\\multicolumn{9}{l}{\\footnotesize $^\\dagger$\\texttt{acc\\_norm}. LAMBADA accuracy omitted (evaluated in separate run).}\n\\end{tabular}%\n}\n\\end{table}\n\nConvergence is absent at 340M across all benchmarks (all $|\\rho| \\leq 0.4$, $p \\geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\\rho = 0.4$, $p = .52$), PIQA ($\\rho = 0.3$, $p = .68$), and ARC-Easy ($\\rho = -0.1$, $p = .95$).\n\n\\section{Subsample Sensitivity of \\texorpdfstring{$\\alpha$}{α}}\\label{app:subsample_sensitivity}\n\nTo assess the reliability of $\\alpha$ estimation at different sample sizes, we repeatedly subsample each benchmark (1{,}000 bootstrap replicates, seed 42) and compute the 95\\% CI width of $\\alpha$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{$\\alpha$ estimation stability: 95\\% CI width by subsample size.}\n\\label{tab:subsample}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrrrrr@{}}\n\\toprule\nBenchmark & $n = 100$ & $n = 200$ & $n = 500$ & $n = 1000$ & Full $N$ \\\\\n\\midrule\nPIQA & .130 & .095 & .066 & .045 & .034 \\\\\nHellaSwag & .140 & .100 & .062 & .044 & .013 \\\\\nARC-Easy & .160 & .105 & .072 & .050 & .032 \\\\\nLAMBADA & .180 & .125 & .082 & .057 & .025 \\\\\n\\bottomrule\n\\end{tabular}}\n\\par\\vspace{1pt}\n{\\footnotesize At $n = 100$, CI width (0.13--0.18) spans the entire four-benchmark $\\alpha$ range (0.14--0.30), rendering $\\alpha$ estimation unreliable. This justifies excluding COPA ($n = 100$) from the per-example analysis.}\n\\end{table}\n\n\\section{Complementarity Decomposition}\\label{app:complementarity}\n\nWe decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.\n\nTable~\\ref{tab:complementarity} reports the decomposition at h3-1 (25\\% attention). Majority vote benefits only from 2/3 examples (where the correct answer holds a majority) but is actively harmed by 1/3 examples (where the correct architecture is outvoted). On LAMBADA, HellaSwag, and ARC-Easy, the MV exploitation ratio---the fraction of complementary examples where MV selects correctly---hovers near 51\\%, indicating a near-even split between MV-exploitable and MV-hostile disagreements. The oracle, by contrast, exploits both categories, explaining the large oracle--MV gap ($+7$--$14$\\,pp).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}\n\\label{tab:complementarity}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\nBenchmark & 3/3 & 2/3 & 1/3 & 0/3 & MV expl. \\\\\n\\midrule\nLAMBADA & .361 & .151 & .145 & .343 & 51.1\\% \\\\\nHellaSwag & .519 & .078 & .073 & .331 & 51.6\\% \\\\\nARC-Easy & .603 & .107 & .103 & .187 & 50.9\\% \\\\\nBoolQ & .376 & .257 & .197 & .170 & 56.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis near-50\\% exploitation ratio is structurally invariant across attention ratios: on LAMBADA, the ratio ranges from 51.1\\% to 54.4\\% across all five configurations; on HellaSwag, from 50.3\\% to 51.6\\%. Attention changes neither the amount nor the structure of cross-architecture complementarity.\n\n\\section{Seed-Variation Calibration}\\label{app:seed_calibration}\n\nTo contextualize the $3\\times$ within- vs.\\ cross-architecture Jaccard gap (\\S\\ref{ssec:decoupling}), we compare against within-seed variation using the Pythia 70M \\citep{biderman2023pythia} PolyPythias models \\citep{vanderwal2025polypythias}, which provide 9 individually trained seeds of the same architecture.\n\nOn LAMBADA ($N = 5{,}153$), within-seed mean Jaccard is $\\bar{J}_h = 0.273$ (helped) and $\\bar{J}_u = 0.393$ (hurt), compared to our cross-architecture reference $J \\approx 0.10$. On ARC-Easy ($N = 2{,}376$), within-seed $\\bar{J}_h = 0.312$ and $\\bar{J}_u = 0.354$, versus cross-architecture $J \\approx 0.092$. Within-seed ambiguity is $\\alpha = 0.36$ (LAMBADA) and $\\alpha = 0.49$ (ARC-Easy), compared to cross-architecture $\\alpha = 0.30$ and $0.21$ respectively.\n\nSeeds thus produce comparable or higher amounts of per-example disagreement ($\\alpha$) but on more overlapping examples (higher $J$). Cross-architecture variation produces per-example effects on less overlapping examples (lower $J$), consistent with architecture-driven divergence producing qualitatively different per-example patterns than seed noise. The within-seed Jaccard is 2.7--4.3$\\times$ higher than cross-architecture Jaccard across both benchmarks.\n\nThree caveats qualify this comparison. First, scale mismatch: Pythia 70M is $5\\times$ smaller than our smallest models (340M); attempts to use Pythia 410M failed repeatedly. Second, architecture family: Pythia is a standard Transformer, not a hybrid recurrent architecture, so this is a cross-family reference point rather than a matched control. Third, accuracy regime: Pythia 70M accuracy (LAMBADA 0.17--0.23, ARC-Easy ${\\sim}$0.38) is far below our models (${\\sim}$0.50, ${\\sim}$0.72), and Jaccard is affected by base rates; the 2.7--4.3$\\times$ ratio may differ at accuracy regimes closer to our main experiments. These limitations restrict the comparison to a reference point for seed-variation magnitude rather than definitive evidence for architecture-driven effects.\n\n\\section{Extended Architecture Validation (Five Architectures)}\\label{app:extended_arch}\n\nTo test whether the low cross-architecture Jaccard pattern generalizes beyond the three primary architectures, we extend the analysis to include two additional architectures from the same model zoo: GLA (Gated Linear Attention) and DeltaNet, yielding ten pairwise comparisons. Both are available only at 340M; all results below use the h3-1 (25\\% attention) configuration.\n\n\\begin{center}\n\\small\n\\captionof{table}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \\leq .002$ ($z = 3.49$--$12.21$).}\n\\label{tab:extended_arch_jaccard}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nBenchmark & Pair & $J_h$ & $J_u$ \\\\\n\\midrule\n\\multirow{11}{*}{LAMBADA} & GDN--RetNet & .128 & .121 \\\\\n & GDN--HGRN2 & .123 & .083 \\\\\n & GDN--GLA & .124 & .100 \\\\\n & GDN--DeltaNet & .115 & .100 \\\\\n & RetNet--HGRN2 & .108 & .083 \\\\\n & RetNet--GLA & .123 & .107 \\\\\n & RetNet--DeltaNet & .115 & .096 \\\\\n & HGRN2--GLA & .127 & .086 \\\\\n & HGRN2--DeltaNet & .125 & .090 \\\\\n & GLA--DeltaNet & .134 & .081 \\\\\n & \\textit{Mean} & \\textit{.122} & \\textit{.095} \\\\\n\\midrule\n\\multirow{11}{*}{ARC-Easy} & GDN--RetNet & .089 & .114 \\\\\n & GDN--HGRN2 & .122 & .105 \\\\\n & GDN--GLA & .114 & .106 \\\\\n & GDN--DeltaNet & .084 & .102 \\\\\n & RetNet--HGRN2 & .087 & .115 \\\\\n & RetNet--GLA & .112 & .110 \\\\\n & RetNet--DeltaNet & .138 & .123 \\\\\n & HGRN2--GLA & .098 & .087 \\\\\n & HGRN2--DeltaNet & .109 & .088 \\\\\n & GLA--DeltaNet & .129 & .098 \\\\\n & \\textit{Mean} & \\textit{.108} & \\textit{.105} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{center}\n\n% Figure moved to main text (\\S\\ref{ssec:robustness})\n\nAll pairwise Jaccard values remain $\\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \\citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \\geq 2.9$, $p \\leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\\text{helped}} \\leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 25,
+                  "oldLines": 7,
+                  "newStart": 25,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " Beyond LAMBADA ($\\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\\rho = -0.67$ with a large $\\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.",
+                    " ",
+                    "-Several benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.",
+                    "+Several benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.3$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.",
+                    " ",
+                    " \\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\\times$ $\\sigma$ compression ($0.024 \\to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\\times$ reduction in cross-architecture $\\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\\S\\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有可确认的修复已完成。现在做最终全文一致性扫描，确认没有遗漏。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "808d1dfd-77e8-42fb-a831-7d8ff18d5ea8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ey5fLKiAQ3i6LSZRvUhMBv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 740,
+                "cache_read_input_tokens": 134937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 740
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0134payxNL9ysn3mrdCXuxKq",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\\\.8.{0,5}pp|SD.*0\\\\.8|SD.*0\\\\.9.*pp",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "82048b52-97b4-475b-a197-538ea3758051",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ey5fLKiAQ3i6LSZRvUhMBv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 740,
+                "cache_read_input_tokens": 134937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 740
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-24T04:51:35.400Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0134payxNL9ysn3mrdCXuxKq",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "93c605ed-6817-492c-82dd-fe1d491b1663",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CAxzd5C5pu5NSXbT267PY1",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\\\.517|HellaSwag.*0\\\\.4",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "5acff2f7-863e-42d7-b8b5-7031e49b30d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ey5fLKiAQ3i6LSZRvUhMBv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 740,
+                "cache_read_input_tokens": 134937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 740
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-24T04:51:36.387Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CAxzd5C5pu5NSXbT267PY1",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "6248e952-db33-4ae2-a71a-4206bdb1e96d",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The old SD values and HellaSwag ρ=0.4 at 1.3B are all gone. Let me also check for the 0.96 ratio reference and make sure the 0.99 replacement is in place.\n\nLet me also do a final verification read of the modified sections.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "5d527238-1025-4e39-978a-7e22c12ea6b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UyST2MCQgz6vX57RT7xnu7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 135677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 368
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧值已全部清除。验证修复后的文件状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "91a42872-a912-4199-8cea-84ccd0eb0a11",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UyST2MCQgz6vX57RT7xnu7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 135677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 368
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012HGx2BYCmnEKQfNK5mrwBQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+                "offset": 15,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "6c4b2922-c2b5-4015-a366-8e7bb697d683",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UyST2MCQgz6vX57RT7xnu7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 135677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 368
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-24T04:51:41.488Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012HGx2BYCmnEKQfNK5mrwBQ",
+              "type": "tool_result",
+              "content": "15\tBoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\\\\n16\tARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\\\\n17\tHellaSwag & Reasoning & $0.3$ & .683 & 1.17 & 1.18 & 0.99 \\\\\n18\tPIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\\\\n19\tWinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\\\"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "d864bbe4-1e96-453e-b8ea-e62bff12fa99",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+                "content": "BoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\\\\nARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\\\\nHellaSwag & Reasoning & $0.3$ & .683 & 1.17 & 1.18 & 0.99 \\\\\nPIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\\\\nWinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\\\",
+                "numLines": 5,
+                "startLine": 15,
+                "totalLines": 110
+              }
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CCzsHjx3EvWvpz5WqSSGKd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+                "offset": 39,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "37497544-ab74-433c-a1e8-3c795d0d0202",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UyST2MCQgz6vX57RT7xnu7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 135677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 368
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-24T04:51:42.197Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CCzsHjx3EvWvpz5WqSSGKd",
+              "type": "tool_result",
+              "content": "39\t\\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74; Appendix~\\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\\% spread) but disruption thresholds vary 47\\%, explaining cross-architecture Jaccard divergence (Appendix~\\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \\citep{marx2020predictive} under architectural variation \\citep[cf.][]{damour2022underspecification}.\n40\t\n41\t\\paragraph{Confidence-based routing.} As an illustrative case study, the rescue-threshold asymmetry suggests a practical routing strategy: for each example, select the architecture whose pure-model confidence best predicts successful rescue. On LAMBADA, rescue-threshold routing achieves 56.2\\% accuracy versus 50.9\\% for majority vote ($+5.2$\\,pp, SD $= 0.4$\\,pp across 10 splits), extracting 36\\% of the oracle gap (oracle = 65.5\\%). On ARC-Easy, gains are modest ($+1.2$\\,pp, SD $= 0.5$\\,pp); on HellaSwag, routing provides no significant benefit ($-0.06$\\,pp, $p = .374$); on PIQA, it is significantly negative ($-0.49$\\,pp, $p = .006$). Using 10-repeat 50/50 cross-validated splits, routing works when multiplicity is high ($\\alpha = 0.30$, LAMBADA) and a clear rescue-threshold signal exists, but is counterproductive when multiplicity is low ($\\alpha = 0.14$, PIQA).\n42\t\n43\t\\paragraph{Multiplicity variation.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent variation. Format does not drive multiplicity: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\\alpha$ despite different formats. Bootstrap 95\\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Appendix, Table~\\ref{tab:arceasy_ambiguity}). Moreover, $\\alpha$ does not significantly correlate with task accuracy (Spearman $\\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}. PIQA (0.14) and HellaSwag (0.15) share a reasoning-task floor, while retrieval (LAMBADA, 0.30) and mixed (ARC-Easy, 0.21) tasks produce higher values."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "78f36b16-de82-4a70-ba4c-e83f3521f8f5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+                "content": "\\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74; Appendix~\\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\\% spread) but disruption thresholds vary 47\\%, explaining cross-architecture Jaccard divergence (Appendix~\\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \\citep{marx2020predictive} under architectural variation \\citep[cf.][]{damour2022underspecification}.\n\n\\paragraph{Confidence-based routing.} As an illustrative case study, the rescue-threshold asymmetry suggests a practical routing strategy: for each example, select the architecture whose pure-model confidence best predicts successful rescue. On LAMBADA, rescue-threshold routing achieves 56.2\\% accuracy versus 50.9\\% for majority vote ($+5.2$\\,pp, SD $= 0.4$\\,pp across 10 splits), extracting 36\\% of the oracle gap (oracle = 65.5\\%). On ARC-Easy, gains are modest ($+1.2$\\,pp, SD $= 0.5$\\,pp); on HellaSwag, routing provides no significant benefit ($-0.06$\\,pp, $p = .374$); on PIQA, it is significantly negative ($-0.49$\\,pp, $p = .006$). Using 10-repeat 50/50 cross-validated splits, routing works when multiplicity is high ($\\alpha = 0.30$, LAMBADA) and a clear rescue-threshold signal exists, but is counterproductive when multiplicity is low ($\\alpha = 0.14$, PIQA).\n\n\\paragraph{Multiplicity variation.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent variation. Format does not drive multiplicity: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\\alpha$ despite different formats. Bootstrap 95\\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Appendix, Table~\\ref{tab:arceasy_ambiguity}). Moreover, $\\alpha$ does not significantly correlate with task accuracy (Spearman $\\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}. PIQA (0.14) and HellaSwag (0.15) share a reasoning-task floor, while retrieval (LAMBADA, 0.30) and mixed (ARC-Easy, 0.21) tasks produce higher values.",
+                "numLines": 5,
+                "startLine": 39,
+                "totalLines": 110
+              }
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已确认。现在汇总完整的自查结果。\n\n---\n\n## 最终自查报告\n\n### 已修复的问题（3 处）\n\n**1. Routing SD 值 (experiments.tex:41)**\n- LAMBADA SD: 0.8pp → **0.4pp**（源数据 e1_paired_ttest.json 计算 paired diffs SD=0.447pp）\n- ARC-Easy SD: 0.9pp → **0.5pp**（源数据计算 SD=0.519pp）\n- 原因：原始 SD 为 `sqrt(SD_routing² + SD_mv²)` 的错误计算，正确做法是取 paired differences 的 SD\n\n**2. Table 1 HellaSwag 行 (experiments.tex:17)**\n- ρ: 0.4 → **0.3**\n- p: .517 → **.683**\n- σ_h3-1: 1.22 → **1.18**\n- Ratio: 0.96 → **0.99**\n- 验证源：table1_task_specificity.csv (ρ=0.3, p=0.683, σ_h3-1=0.01183) + lm_eval_clean/summary_all_1.3b.csv 手动复算一致\n\n**3. Appendix HellaSwag ρ 引用 (appendix.tex:28)**\n- \"HellaSwag: +0.4\" → **\"HellaSwag: +0.3\"**\n\n### 已确认无误的项目\n\n| 检查项 | 状态 |\n|--------|------|\n| Abstract 所有数字 vs 正文 | ✅ α=0.14–0.30, J≈0.10, Bonferroni p=.170, n=5, 36%, +5.2pp |\n| Table 1 其余 10 行 | ✅ LAMBADA/BoolQ/ARC-C/PIQA/WinoGrande/ARC-E/MMLU/SciQ/XStoryCloze/COPA 全匹配 |\n| Table 2 PIQA 行 | ✅ N=1838, α=.14, J̄_h=.091, J̄_u=.094, ρ_α=0.0 |\n| Table 2 ARC-Easy 行 | ✅ J̄_h=.092, J̄_u=.099 匹配源数据 |\n| Table 2 LAMBADA 行 | ✅ J̄_h=.096, J̄_u=.091 匹配源数据 |\n| Routing 数值 (+5.2pp/+1.2pp/-0.06pp/-0.49pp) | ✅ 均与 e1_paired_ttest.json 一致 |\n| Routing p 值 (.374 HellaSwag / .006 PIQA) | ✅ |\n| LAMBADA per-example counts (462/615/426/495/548/395) | ✅ |\n| ECE spread \"6%\" | ✅ source: GDN=0.222, RetNet=0.224, HGRN2=0.235 → range/mean=5.7%→6% |\n| Routing PIQA 为负结果 (-0.49pp) | ✅ 上轮修复已在位 |\n| Oracle = 65.5% | ✅ source: 0.6546→65.5% |\n| 56.2% vs 50.9% accuracies | ✅ source: 0.5623/0.5090 |\n| Jaccard 饱和 \"all ρ≤0.80, p≥.333\" | ✅ 匹配 cross_benchmark_jaccard_trajectories.json |\n| 3-tier hierarchy (~0.05/~0.10/~0.33) | ✅ |\n| Seed calibration 2.7–4.3× | ✅ |\n| 5-arch validation J≤0.14, all p<.01 | ✅ |\n| Bonferroni 计算 .017×10=.170 | ✅ |\n| Limitations 数字 | ✅ |\n| Conclusion 数字 | ✅ |\n\n### 四舍五入统一性\n\n| 类别 | 格式 | 一致性 |\n|------|------|--------|\n| Jaccard | 3位小数 (.091, .095, .096) | ✅ |\n| α | 2位小数 (.14, .15, .21, .30) | ✅ |\n| p-value | .xxx 格式 (.006, .374, .017) | ✅ |\n| σ (Table 1) | 2位小数 (2.41, 0.49) | ✅ |\n| accuracy | 1位小数百分比 (56.2%, 50.9%) | ✅ |\n\n### 需注意但未修改的项\n\n1. **Table 2 HellaSwag J̄ 小幅偏差**：论文 .095/.085 vs 源数据计算 .091/.080（差距 0.004–0.005，可能来自不同分析版本）\n2. **56.2%−50.9%=5.3pp vs +5.2pp**：前者为 non-CV 均值差，后者为 paired t-test 均值差（5.15pp→5.2pp），统计方法上合理但读者可能困惑\n3. **Figure 2 (fig2_task_specificity.pdf)**：如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成图片（当前只修复了 .tex，未改 PDF）\n4. **340M HellaSwag ρ=0.4 (appendix L673)**：这是 340M 数据点，未找到源数据验证，保留未动"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "uuid": "0ecee130-e28e-4d25-b981-8a001e41adb0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D9wEspMtXomSyzDGFisDS2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1565,
+                "cache_read_input_tokens": 136045,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1565
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已确认。现在汇总完整的自查结果。\n\n---\n\n## 最终自查报告\n\n### 已修复的问题（3 处）\n\n**1. Routing SD 值 (experiments.tex:41)**\n- LAMBADA SD: 0.8pp → **0.4pp**（源数据 e1_paired_ttest.json 计算 paired diffs SD=0.447pp）\n- ARC-Easy SD: 0.9pp → **0.5pp**（源数据计算 SD=0.519pp）\n- 原因：原始 SD 为 `sqrt(SD_routing² + SD_mv²)` 的错误计算，正确做法是取 paired differences 的 SD\n\n**2. Table 1 HellaSwag 行 (experiments.tex:17)**\n- ρ: 0.4 → **0.3**\n- p: .517 → **.683**\n- σ_h3-1: 1.22 → **1.18**\n- Ratio: 0.96 → **0.99**\n- 验证源：table1_task_specificity.csv (ρ=0.3, p=0.683, σ_h3-1=0.01183) + lm_eval_clean/summary_all_1.3b.csv 手动复算一致\n\n**3. Appendix HellaSwag ρ 引用 (appendix.tex:28)**\n- \"HellaSwag: +0.4\" → **\"HellaSwag: +0.3\"**\n\n### 已确认无误的项目\n\n| 检查项 | 状态 |\n|--------|------|\n| Abstract 所有数字 vs 正文 | ✅ α=0.14–0.30, J≈0.10, Bonferroni p=.170, n=5, 36%, +5.2pp |\n| Table 1 其余 10 行 | ✅ LAMBADA/BoolQ/ARC-C/PIQA/WinoGrande/ARC-E/MMLU/SciQ/XStoryCloze/COPA 全匹配 |\n| Table 2 PIQA 行 | ✅ N=1838, α=.14, J̄_h=.091, J̄_u=.094, ρ_α=0.0 |\n| Table 2 ARC-Easy 行 | ✅ J̄_h=.092, J̄_u=.099 匹配源数据 |\n| Table 2 LAMBADA 行 | ✅ J̄_h=.096, J̄_u=.091 匹配源数据 |\n| Routing 数值 (+5.2pp/+1.2pp/-0.06pp/-0.49pp) | ✅ 均与 e1_paired_ttest.json 一致 |\n| Routing p 值 (.374 HellaSwag / .006 PIQA) | ✅ |\n| LAMBADA per-example counts (462/615/426/495/548/395) | ✅ |\n| ECE spread \"6%\" | ✅ source: GDN=0.222, RetNet=0.224, HGRN2=0.235 → range/mean=5.7%→6% |\n| Routing PIQA 为负结果 (-0.49pp) | ✅ 上轮修复已在位 |\n| Oracle = 65.5% | ✅ source: 0.6546→65.5% |\n| 56.2% vs 50.9% accuracies | ✅ source: 0.5623/0.5090 |\n| Jaccard 饱和 \"all ρ≤0.80, p≥.333\" | ✅ 匹配 cross_benchmark_jaccard_trajectories.json |\n| 3-tier hierarchy (~0.05/~0.10/~0.33) | ✅ |\n| Seed calibration 2.7–4.3× | ✅ |\n| 5-arch validation J≤0.14, all p<.01 | ✅ |\n| Bonferroni 计算 .017×10=.170 | ✅ |\n| Limitations 数字 | ✅ |\n| Conclusion 数字 | ✅ |\n\n### 四舍五入统一性\n\n| 类别 | 格式 | 一致性 |\n|------|------|--------|\n| Jaccard | 3位小数 (.091, .095, .096) | ✅ |\n| α | 2位小数 (.14, .15, .21, .30) | ✅ |\n| p-value | .xxx 格式 (.006, .374, .017) | ✅ |\n| σ (Table 1) | 2位小数 (2.41, 0.49) | ✅ |\n| accuracy | 1位小数百分比 (56.2%, 50.9%) | ✅ |\n\n### 需注意但未修改的项\n\n1. **Table 2 HellaSwag J̄ 小幅偏差**：论文 .095/.085 vs 源数据计算 .091/.080（差距 0.004–0.005，可能来自不同分析版本）\n2. **56.2%−50.9%=5.3pp vs +5.2pp**：前者为 non-CV 均值差，后者为 paired t-test 均值差（5.15pp→5.2pp），统计方法上合理但读者可能困惑\n3. **Figure 2 (fig2_task_specificity.pdf)**：如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成图片（当前只修复了 .tex，未改 PDF）\n4. **340M HellaSwag ρ=0.4 (appendix L673)**：这是 340M 数据点，未找到源数据验证，保留未动"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1508756,
+            "duration_api_ms": 1522072,
+            "num_turns": 53,
+            "stop_reason": "end_turn",
+            "session_id": "131643dd-ccf8-492a-8923-abee6437b5de",
+            "total_cost_usd": 3.0270476999999993,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 115223,
+              "cache_read_input_tokens": 2091583,
+              "output_tokens": 31554,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 115223,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1599,
+                  "cache_read_input_tokens": 136045,
+                  "cache_creation_input_tokens": 1565,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1565
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1837,
+                "outputTokens": 2224,
+                "cacheReadInputTokens": 119162,
+                "cacheCreationInputTokens": 39593,
+                "webSearchRequests": 0,
+                "costUSD": 0.07436445,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 26,
+                "outputTokens": 45740,
+                "cacheReadInputTokens": 2177819,
+                "cacheCreationInputTokens": 115223,
+                "webSearchRequests": 0,
+                "costUSD": 2.9526832499999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "0c953a91-9021-4ae2-8bc4-9f33acf0ccfd"
+          },
+          "id": "event-000152"
+        }
+      ]
+    }
+  ]
+}

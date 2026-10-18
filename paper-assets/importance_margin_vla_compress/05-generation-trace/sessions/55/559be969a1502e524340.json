@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "559be969a1502e524340",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu0 gpu3",
+  "task_key": "worker_deploy-westd38929-gpu0-gpu3_20260523T205318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd38929-gpu0-gpu3_20260523T205318_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "687d0e87c67671c21c5acba3c4eeab1e0a2f654608e6d58ca2db46324c5c83ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常运行。\n\n**部署结果汇总：**\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|------|-----|-----|-------------|------|\n| eval_xvla_random_k05_goal_seed43 | GPU 0 | 844866 | `eval_xvla_random_k05_goal_seed43` | 运行中 (14/50 ep) |\n| eval_xvla_random_k05_object_seed43 | GPU 3 | 844403 | `eval_xvla_random_k05_object_seed43` | 运行中 (15/50 ep) |\n\n**注意**：Object seed43 实验之前已在 cqa1-33015 上完成（SR=71%），registry 状态为 DONE，无法回退到 RUNNING。当前在 westd-38929 上重跑，日志会写入 `logs/eval_xvla_random_k05_object_seed43.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

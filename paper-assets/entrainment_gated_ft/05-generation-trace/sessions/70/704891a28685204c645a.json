@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "704891a28685204c645a",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "recon 340m eval prep",
+  "task_key": "worker_recon_340m-eval-prep_20260521T222040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recon_340m-eval-prep_20260521T222040_result.json",
+    "occurrence": 1,
+    "bytes": 3339,
+    "sha256": "5863a9564e5f5689876305e1cdbd1792120770499ee88426736c9a9ca65b3423"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## 340M 模型列表\n\n`/root/autodl-tmp/models/` 下共 **16 个**模型目录（15 hybrid/pure + 1 Transformer baseline）：\n\n**GatedDeltaNet (5):**\n- `340M-20B-GatedDeltaNet-pure-baseline`\n- `340M-20B-GatedDeltaNet-hybrid-3-1`\n- `340M-20B-GatedDeltaNet-hybrid-6-1`\n- `340M-20B-GatedDeltaNet-hybrid-12-1`\n- `340M-20B-GatedDeltaNet-New-hybrid-24-1` （注意 \"New\" 前缀）\n\n**RetNet (5):**\n- `340M-20B-RetNet-pure`\n- `340M-20B-RetNet-hybrid-3-1`\n- `340M-20B-RetNet-hybrid-6-1`\n- `340M-20B-RetNet-hybrid-12-1`\n- `340M-20B-RetNet-hybrid-24-1`\n\n**HGRN2 (5):**\n- `340M-20B-HGRN2-pure-baseline`\n- `340M-20B-HGRN2-hybrid-3-1`\n- `340M-20B-HGRN2-hybrid-6-1`\n- `340M-20B-HGRN2-hybrid-12-1`\n- `340M-20B-HGRN2-hybrid-24-1`\n\n**Transformer baseline (1):**\n- `transformer_340M_baseline`\n\n## Eval 脚本参数\n\n根目录的 `/root/entrainment_gated_ft/run_lmeval_clean.py`（exp007 实际使用的版本）：\n\n| 参数 | 说明 |\n|------|------|\n| `--model_path` | 必填，模型路径 |\n| `--tasks` | 逗号分隔任务名，默认 `lambada_openai,hellaswag,winogrande,piqa,arc_easy,arc_challenge,mmlu` |\n| `--output_dir` | 输出目录，默认 `/root/entrainment_gated_ft/lm_eval_clean` |\n| `--batch_size` | 默认 `auto` |\n| `--device` | 默认 `cuda:0` |\n| `--log_samples` | **支持**，`store_true` 标志。启用后将每个 task 的 samples 写入 `{output_dir}/samples/{task_name}.jsonl` |\n\n注意：`scripts/run_lmeval_clean.py` 是旧版本，**没有** `--log_samples`、`--device` 参数，也没注册 HGRN2。批处理脚本使用的是根目录版本。\n\n## 已有 log_samples 输出\n\n`/root/entrainment_gated_ft/lm_eval_clean/exp007/` 结构：\n```\nexp007/\n├── 340m/\n│   ├── GDN-pure/          (含 .json + samples/lambada_openai.jsonl)\n│   ├── GDN-h3-1/\n│   ├── GDN-h6-1/\n│   ├── GDN-h12-1/\n│   ├── GDN-h24-1/\n│   ├── RetNet-pure/\n│   ├── RetNet-h3-1/ ~ h24-1/\n│   ├── HGRN2-pure/\n│   ├── HGRN2-h3-1/ ~ h24-1/\n│   └── Transformer/\n└── 1.3b/\n```\n\n每个子目录包含 `{model_name}.json`（汇总结果）和 `samples/lambada_openai.jsonl`（逐样本 logprob）。**16 个 340M 模型全部已有 log_samples 产出。**\n\n旧的 `lm_eval_clean/340m/` 目录包含之前非 log_samples 的 eval 结果（GDN 为 .json，其余为子目录）。\n\n## 参考脚本\n\n**`run_exp007_logsamples.sh`**（exp007 批处理，实际使用的格式）：\n- 调用 `run_lmeval_clean.py`（根目录版本）\n- 参数：`--model_path ... --tasks lambada_openai --log_samples --output_dir ...`\n- 包含跳过已完成模型的逻辑（检查 samples 目录是否已有 .jsonl）\n- 覆盖 340M (16) + 1.3B (11) 模型\n\n**`run_all_340m_eval.sh`**（旧版多 task eval，无 log_samples）：\n- 调用 `scripts/run_lmeval_clean.py`（旧版本）\n- tasks: `lambada_openai,hellaswag,winogrande,arc_easy,arc_challenge,mmlu`\n- 只有 10 个模型（RetNet + HGRN2），无 GDN\n\n## 磁盘空间\n\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| `/root/autodl-tmp` | 250G | 120G | **131G** | 48% |\n| `/autodl-pub/data` | 20T | 1.6T | 18T | 9% |\n\n磁盘空间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16ba283b9e7c04b321c6",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_8_1778849832.md",
+  "task_key": "loop_8_1778849832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778849832.md",
+    "occurrence": 1,
+    "bytes": 4373,
+    "sha256": "a26d795632bb5c5fcadc5c70dc2ee841c248c56cd1902c372a849910429bd0da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T05:00:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-37397 仅 cuda:0 和 cuda:1（两张 RTX PRO 6000 96GB）\n- 论文锁定值（commit 级）：Qwen concentration=0.61 (float32, bfaea4e), Mistral concentration=0.24/t1t5=0.41 (hires, e52fb0e)\n- Flat 分类诊断条件锁定：concentration ≥0.50 AND t1/t5 ≤0.70（5/5 正确分类，不可随意改阈值）\n- D052 审稿响应新模型选择已确认：Qwen2.5-14B + Phi-3-medium + Falcon-7B。不要用原方案的 Mistral-Nemo/Llama-3.2（同家族无信息量）\n- w2_unconstrained_baselines 有 backfire 预案（D052）：若 Flat 模型 unconstrained 不 catastrophic → reframe 为 heterogeneity-dependent phenomenon，不要当 negative 处理\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本内 device 必须写 cuda:0\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，2× RTX PRO 6000 96GB\n- 工作目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/`\n- Python/conda：需 Worker SSH 探测确认（aml-train 镜像用 conda，`/root/miniconda3/bin/python`）\n- 模型路径：需确认，Qwen/Llama/Mistral/Gemma-2/Yi-1.5 此前已下载到 `/root/autodl-tmp/models/` 或 HF cache\n- 活跃进程：无。两块 GPU 均空闲。无活跃 Worker、无活跃 Cron\n\n### 3. 📊 当前状态\n**刚完成**：审稿响应准备（D052），Worker 已完成 w2/w9 代码编写（但实验尚未提交，仍 PREPARING）。Heatmap/scatter 图已更新为 hires 数据。Related work 和 method section 的 R1 修订已完成。\n\n**Registry 汇总**：67 DONE / 7 PREPARING / 0 RUNNING\n\n**PREPARING 实验清理**：\n- `w2_unconstrained_baselines`：**活跃** — 审稿 W2 CRITICAL，补 4 模型 unconstrained baselines\n- `w9_compounding_scaling`：**活跃** — 审稿 W9 WARNING，compounding effect 量化 + random-k 控制组\n- `mistral_hires_bf16_2bitonly_v3`：已被 v4 superseded，可标 DONE(killed)\n- `qwen_hires_constrained_d049`：已完成验证（bf16=float32），可标 DONE(success)\n- `qwen25-hires-profiling`：空，无 hypothesis，废弃\n- `cross_domain_calibration_v2`：D038 确认不需要，可标 DONE(killed)\n- `greedy_constrained_ablation`：已被 solver equivalence 覆盖，可标 DONE(killed)\n\n**等待中**：无 Worker 回调、无 Cron、无 Director 待决策。GPU 全部空闲。\n\n### 4. 📋 待办（条件触发式）\n- 接手后立即 → 清理 5 个废弃 PREPARING 实验（标 killed/success）\n- 接手后立即 → w2_unconstrained_baselines 和 w9_compounding_scaling 需要提交到 GPU 执行（代码已由 Worker 编写，但 Worker 被 cancelled 后重新 done，需确认代码是否 push 到服务器）\n- w2 结果出来 → 若 Flat 模型 unconstrained 不 catastrophic：按 D052 backfire 预案 reframe（不是 negative）\n- w9 结果出来 → 若 super-additive ratio 显著：写入 analysis.tex compounding effect 章节\n- Group C 审稿报告回传 → 逐条响应，可能触发新实验\n- 两块 GPU 空闲时 → 考虑 D052 新模型实验（Qwen2.5-14B/Phi-3-medium/Falcon-7B），但需 Director 审批 GPU 预算和优先级\n\n### 5. 🎯 战略上下文\n**核心结论链**：D005 eviction falsified → D007 pivot to quant-only → D009 cardinality constraint → D010 MVP PASS → D019 solver equivalence (greedy=MCKP) → D047 Yi-1.5 反证 GQA proxy → D050 升级为 concentration + shape 双条件诊断\n\n**论文 framing 三条 Claim**：\n1. Heterogeneity 由 distribution shape 决定（Spread/Spike/Flat 三分类），GQA ratio 不是可靠 proxy\n2. Cardinality constraint 是主要方法贡献（solver-agnostic，greedy=MCKP Δ=0.0000）\n3. Joint diagnostic (concentration ≳0.50 AND t1/t5 ≲0.70) 5/5 分类准确率\n\n**Deadline**：ARR May 25, 2026（距今 10 天）\n\n**易错点**：\n- 不要混用 standard profiling 和 hires profiling 数据对比（D033/D034 教训）\n- Table 1 用 per-model optimal k（Qwen k=8, Llama k=2, Mistral k=4），不是 fixed k=16（D037）\n- Mistral 无论什么 k 都是 negative case，不要试图\"救\"它——这符合 Flat 分类的预期\n- bfloat16 profiler bug 已全局修复（.float()），但新实验脚本必须确认包含修复\n- w2 实验的 unconstrained allocation 在 Qwen 上会 catastrophic (PPL 32-37)，这是预期结果不是 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

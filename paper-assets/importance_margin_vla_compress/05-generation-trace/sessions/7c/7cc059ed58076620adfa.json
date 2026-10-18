@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc059ed58076620adfa",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops sync w38 deploy attn k05 s43",
+  "task_key": "worker_ops_sync-w38-deploy-attn-k05-s43_20260527T182315",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_sync-w38-deploy-attn-k05-s43_20260527T182315.log",
+    "occurrence": 1,
+    "bytes": 688469,
+    "sha256": "b31fb3b5125e311604062460174b9dfe2e14e725a85aebbd222e8cb5084ec5ef"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 53,
+      "tool_result": 53,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "7cc059ed58076620adfa-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "7cc059ed58076620adfa-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "7cc059ed58076620adfa-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ]
+}

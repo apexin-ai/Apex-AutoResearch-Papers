@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa1ca5f6596fd0b0ab19",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper figures 3 4",
+  "task_key": "worker_paper_figures-3-4_20260522T211221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figures-3-4_20260522T211221_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "05ee9108df9984fad6e6237500b06a72025abc8d4d9167e591614ab2a2305253"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图都修复完成，验证通过：\n\n**Fig 3 — Aggregation Gradient**\n- Majority/Weighted/Threshold 的 K_eff β 以正值为主（红点），Bayesian 明显反转为负值（蓝点，1+ 6−）\n- Legend 移至右上角，不再遮挡标注\n- 每组标注 η 和 K 的 FDR 显著性计数\n\n**Fig 4 — Panel Design**\n- min(η_max) 在 10/12 conditions 下 ASR ≈ 0（簇集在底部），显著低于 Random 和 max(K_eff)\n- 2 个 position_bias 离群值（~0.47）诚实展示，但 min(η_max) 仍为最低\n- 箭头正确指向主簇而非离群值\n\n输出文件：\n- 服务器: `/root/cert_manip_resist_eval/artifacts/figures/fig{3,4}_*.{pdf,png}`\n- 本地: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

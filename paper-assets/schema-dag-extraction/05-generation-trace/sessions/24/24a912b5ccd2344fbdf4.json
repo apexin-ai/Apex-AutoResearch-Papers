@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "24a912b5ccd2344fbdf4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper cross model appendix",
+  "task_key": "worker_paper_cross_model_appendix_20260517T132345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cross_model_appendix_20260517T132345_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "26d4a850984491b1ca7b299057624d5971291d086c99e6480b63edbbb918c11b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Content verified. All checks pass:\n\n1. No em-dash (`—`) in file\n2. No explanatory en-dash (` – `) in file\n3. All numbers match the task data exactly:\n   - RE: 0.757, 0.685, 0.601, 0.504, 0.450 (70B) / 0.797, 0.719, 0.648, 0.537, 0.496 (Qwen3)\n   - NER: 0.962, 0.822, 0.666 (70B) / 0.970, 0.826, 0.674 (Qwen3)\n   - BCS: 0.708, 0.599, +10.9pp, CI [+3.0, +20.1]\n   - Declines: -30.7/-30.1pp (RE), -29.6/-29.6pp (NER)\n4. Table uses consistent `booktabs` formatting, matching existing appendix style\n5. No -ing phrase endings, no banned words, no consecutive transition words\n6. Accuracy at 3 decimal places, pp at 1 decimal place\n7. Approximately half a page\n\nThe section is at `main.tex:470-501` as `\\section{Cross-Model Validation with LLaMA-3.1-70B-Instruct (FP8)}` with label `sec:appendix_cross_model_70b`. It contains one combined table (RE + NER panels with subheadings), a paragraph on Dimension 1 results, and a paragraph on Dimension 2 (BCS-controlled) results with a two-sentence conclusion.\n\nQwen3 NER data was only available at counts 2, 12, 22 under the matching type+text metric; counts 6, 44, 66 are omitted per instruction."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

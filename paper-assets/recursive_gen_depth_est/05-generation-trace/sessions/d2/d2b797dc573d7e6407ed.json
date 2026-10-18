@@ -1,0 +1,907 @@
+{
+  "schema_version": "1.0",
+  "id": "d2b797dc573d7e6407ed",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "ops arr checklist check",
+  "task_key": "worker_ops_arr-checklist-check_20260518T075448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_arr-checklist-check_20260518T075448.jsonl",
+    "occurrence": 1,
+    "bytes": 46774,
+    "sha256": "87f975758914c6c1617c23fd01836279360a6f0a6f3b8c3d5bd9097e2059134d"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T07:57:24.915908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T07:57:24.916266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T07:57:24.916437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T07:57:24.916577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/atlas.tex\ndocs/paper/method.tex\ndocs/paper/abstract.tex\ndocs/paper/section_appendix.tex\ndocs/paper/generalization.tex\ndocs/paper/conclusion.tex\ndocs/paper/introduction.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T07:57:24.916958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T07:57:24.917370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/theory_draft.tex\nartifacts/_project/paper/theory_draft_3bd3d2.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T07:57:24.917587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review 2026 responsible NLP research checklist requirements"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T07:57:24.917720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T07:57:24.917856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n2\t% Target: EMNLP 2026 (ARR May cycle)\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{amsmath}\n10\t\\usepackage{amssymb}\n11\t\\usepackage{multirow}\n12\t\\usepackage{xcolor}\n13\t\\usepackage{subcaption}\n14\t\\usepackage[T1]{fontenc}\n15\t\\usepackage[utf8]{inputenc}\n16\t\\usepackage{microtype}\n17\t\\usepackage{amsthm}\n18\t\n19\t\\theoremstyle{definition}\n20\t\\newtheorem{definition}{Definition}\n21\t\n22\t\\title{How Deep Is Your Data? Estimating Recursive Generation Depth\\\\via Statistical Fingerprints}\n23\t\n24\t\\author{Anonymous}\n25\t\n26\t\\begin{document}\n27\t\\maketitle\n28\t\n29\t\\input{abstract}\n30\t\n31\t\\input{introduction}\n32\t\n33\t\\input{related_work}\n34\t\n35\t\\input{method}\n36\t\n37\t\\input{atlas}\n38\t\n39\t\\input{generalization}\n40\t\n41\t\\input{discussion}\n42\t\n43\t\\input{conclusion}\n44\t\n45\t\\bibliography{references}\n46\t\n47\t\\appendix\n48\t\\input{section_appendix}\n49\t\n50\t\\end{document}\n51\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T07:57:24.918008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T07:57:24.918189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\t\\paragraph{Cross-strategy deployment constraint.}\n5\tCross-strategy transfer induces a d1/d2 boundary inversion under temperature sampling.\n6\tPer-strategy z-score normalization partially corrects the inversion under logistic regression (GPT-2~XL d1v2 AUC $0.24{\\to}0.56$, OLMo $0.19{\\to}0.70$) but yields negligible improvement for the Random Forest classifier used throughout the main experiments ($\\Delta < 0.02$\\,pp), and even in the best case (logistic regression) leaves a residual gap relative to within-strategy performance (${\\sim}0.83$), indicating that a two-stage pipeline (strategy identification + strategy-conditioned classification) is needed for reliable cross-strategy deployment.\n7\t\n8\t\\paragraph{Strategy-unknown deployment.}\n9\tIn strategy-unknown settings, naive transfer on d1--d3 yields only 45.9\\%, and d1/d2 predictions may invert.\n10\tA two-stage pipeline recovers 11.5\\,pp over LOO, though per-model gains vary (GPT-2~XL $+$16.4\\,pp vs.\\ Pythia $+$8.0\\,pp).\n11\tPractical deployment requires either strategy metadata or learned routing.\n12\t\n13\t\\paragraph{d0 inflation of headline metrics.}\n14\tDepth~0 (human-written text) is near-perfectly separable (recall $>$98\\% across all nine model--strategy settings), inflating headline accuracy.\n15\tCross-model transfer accuracy of 66.4\\% is substantially driven by d0; d2 recall drops to 26.8\\% in the worst case (Pythia holdout).\n16\t\n17\t\\paragraph{Controlled vs.\\ ecological setting.}\n18\tThe primary benchmark uses Wikipedia seed text with controlled LoRA fine-tuning (1--1.5B models), isolating the depth variable but diverging from wild contamination where models train on mixed corpora with prior-generation outputs at unknown proportions.\n19\tDomain bias controls confirm depth as the dominant factor: LOGO accuracy (72.1\\%) matches standard CV (72.0\\%), seed-group prediction is at chance (10.2\\%; Appendix~\\ref{app:domain_bias}).\n20\tCross-scale experiments (7--8B, \\S\\ref{s\n…[truncated 5287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T07:57:24.918561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T07:57:24.918722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\tWe formalized recursive generation depth estimation as ordinal classification and showed that perplexity tail statistics achieve 69--86\\% four-class accuracy ($\\mathrm{EDD}_{0.75}{=}4$), with five features sufficing for 97.6\\% of full performance.\n5\tLoRA fine-tuning loss decreases monotonically with depth for all three families, supporting model collapse theory~\\cite{shumailov2024_nature,dohmatob2024_tale_of_tails}; instruction tuning regularizes this compression (\\S\\ref{sec:gen:crossscale}).\n6\tCross-strategy transfer and depth-quality entanglement (depth estimation may partially conflate recursive depth with quality degradation) remain open challenges (Limitations)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T07:57:24.918857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T07:57:24.919260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Additional Results}\n2\t\\label{app:additional}\n3\t\n4\t\\subsection{Top-$k$ Feature Trajectories}\n5\t\\label{app:topk_trajectories}\n6\t\n7\tFigure~\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\tau{=}0.9$) sampling.\n8\tTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\S\\ref{sec:atlas:strategy}.\n9\tConcretely, the d0$\\to$d1 drop in \\textsc{p90\\_ppl} under top-$k$ is 78\\% (vs.\\ 87\\% for nucleus), and the d2$\\to$d3 reduction is 31\\% (vs.\\ 39\\% for nucleus).\n10\tDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\n11\t\n12\t\\subsection{Permutation Importance}\n13\t\\label{app:permutation}\n14\t\n15\tTo verify that the Gini-based importance rankings in \\S\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\n16\tThe top-2 features are stable across measures: \\textsc{p90\\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \\textsc{var\\_surprisal} in 8/9 (vs.\\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \\textsc{p75\\_ppl} displaces \\textsc{var\\_surprisal} to rank 3).\n17\tKendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).\n18\tPairwise Spearman correlations are: SHAP--Gini $\\rho{=}0.93$, SHAP--permutation $\\rho{=}0.84$, Gini--permutation $\\rho{=}0.76$.\n19\tPer-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate l\n…[truncated 43956 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T07:57:24.919472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review 2026 responsible NLP research checklist requirements\"\n\nLinks: [{\"title\":\"ARR Responsible NLP Research checklist\",\"url\":\"http://aclrollingreview.org/responsibleNLPresearch/\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://aclrollingreview.org/static/responsibleNLPresearch.pdf\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://arxiv.org/html/2402.13374v1\"},{\"title\":\"Authors Beware: Common Submission Problems – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://openreview.net/attachment?id=yGhYSEj8ln0&name=responsible_NLP_research\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"EMNLP 2025 to include Responsible NLP Checklists as Paper Appendices – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/responsible-nlp-checklist-appendices\"}]\n\nBased on the search results, here's information about the ACL Rolling Review 2026 Responsible NLP Research Checklist requirements:\n\n## Purpose and Design\n\nThe ARR Responsible NLP Research checklist is designed to encourage best practices for responsible research, addressing issues of research ethics, societal impact and reproducibility.\n\n## Submission Requirements\n\nAuthors must comp\n…[truncated 1316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T07:57:24.919660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ARR responsible NLP research checklist full questions list 2025 2026"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T07:57:24.919790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "github\\.com|gitlab|arxiv\\.org/abs|author|@|university|institute|lab |Google|Microsoft|Meta |OpenAI|Anthropic|DeepMind",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T07:57:24.920001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (23KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/233d5be7-93f8-4222-a9bd-7f8e2e2ae5d6/tool-results/toolu_01L9UKojTsmrsBNbFSL4GzLA.txt\n\nPreview (first 2KB):\ndocs/paper/atlas.tex:23:\\begin{tabular}{@{}lccc@{}}\ndocs/paper/atlas.tex:70:\\begin{tabular}{@{}l l@{}}\ndocs/paper/atlas.tex:143:\\begin{tabular}{@{}lcccc@{}}\ndocs/paper/generalization.tex:21:\\begin{tabular}{@{}lcccc@{}}\ndocs/paper/section_appendix.tex:33:\\begin{tabular}{@{}lcccc@{}}\ndocs/paper/section_appendix.tex:61:\\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}\ndocs/paper/section_appendix.tex:120:\\begin{tabular}{@{}lcccc@{}}\ndocs/paper/section_appendix.tex:137:\\begin{tabular}{@{}lcc@{}}\ndocs/paper/section_appendix.tex:169:\\begin{tabular}{@{}lccccc@{}}\ndocs/paper/section_appendix.tex:178:\\multicolumn{6}{@{}l}{\\footnotesize $^\\dagger$Recall; shown for the depth class with the largest PLM--RF gap.}\ndocs/paper/section_appendix.tex:225:\\begin{tabular}{@{}llrccc@{}}\ndocs/paper/section_appendix.tex:261:\\begin{tabular}{@{}lcccccc@{}}\ndocs/paper/section_appendix.tex:283:\\begin{tabular}{@{}lccc@{}}\ndocs/paper/section_appendix.tex:328:\\begin{tabular}{@{}lccc@{}}\ndocs/paper/section_appendix.tex:356:\\begin{tabular}{@{}lccccc@{}}\ndocs/paper/section_appendix.tex:441:\\begin{tabular}{@{}lcc@{}}\ndocs/paper/section_appendix.tex:452:\\multicolumn{3}{@{}l}{\\footnotesize $^\\dagger$vs.\\ baseline (78.20\\%). $^\\ddagger$vs.\\ within-seed avg (78.07\\%).}\ndocs/paper/section_appendix.tex:470:\\begin{tabular}{@{}lc@{}}\ndocs/paper/section_appendix.tex:502:\\begin{tabular}{@{}lcccc@{}}\ndocs/paper/section_appendix.tex:540:\\begin{tabular}{@{}lcc@{}}\ndocs/paper/section_appendix.tex:568:\\begin{tabular}{@{}lccc@{}}\ndocs/paper/section_appendix.tex:595:\\begin{tabular}{@{}lc@{}}\ndocs/paper/section_appendix.tex:629:\\begin{tabular}{@{}lc@{}}\ndocs/paper/references.bib:5:@article{shumailov2024_nature,\ndocs/paper/references.bib:6\n…[truncated 223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T07:57:24.920154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T07:57:24.920285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tAs large language models increasingly train on web text containing their own outputs, a recursive model$\\to$data$\\to$model loop arises, yet no method estimates how many such iterations a text has undergone.\n3\tWe formalize \\emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K passages spanning 3 model families, 3 decoding strategies, and 4 generation depths.\n4\tA Random Forest over 19 perplexity-based features achieves $\\approx$69--86\\% four-class accuracy (chance = 25\\%), with perplexity tail statistics emerging as consistent depth markers; a parsimonious subset of 5 features retains 97.6\\% of full performance.\n5\tWe define the \\emph{Effective Discriminable Depth} (EDD) metric, finding $\\mathrm{EDD}_{0.75}{=}4$ for the best-characterized family, and show that cross-model transfer reaches 66.4\\% (2.7$\\times$ chance).\n6\tSystematic generalization across eight axes (e.g., cross-scale with 7B models at 70.2\\%, prompted generation at 69.5\\%, cross-domain, and LoRA-rank ablation) confirms that depth signal is robust across model families but strategy-dependent, residing in distributional statistics inaccessible from surface text (zero-shot LLMs: 30--36\\%, 43\\,pp below RF).\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T07:57:24.920420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T07:57:24.920570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:intro}\n3\t\n4\tThe text on which large language models are trained increasingly contains their own outputs.\n5\tAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\n6\tThis model$\\to$data$\\to$model cycle is no longer hypothetical; it is already occurring in the wild. Yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n7\t\n8\tExisting tools address adjacent but distinct problems.\n9\tBinary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \\geq 1$ into a single category.\n10\tWatermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.\n11\tThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\n12\tNo existing method estimates the ordinal recursive generation depth of a text passage from its content alone.\n13\t\n14\tWe find that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints are \\textbf{consistent in direction but scale-dependent in magnitude} across the three model families and three decoding strategies studied.\n15\tSpecifically, perplexity tail statistics (the 90th-percentile perplexity, \\textsc{p90\\_ppl}, and surprisal variance, \\text\n…[truncated 2713 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T07:57:24.920746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ARR responsible NLP research checklist full questions list 2025 2026\"\n\nLinks: [{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://aclrollingreview.org/static/responsibleNLPresearch.pdf\"},{\"title\":\"ARR Responsible NLP Research checklist\",\"url\":\"http://aclrollingreview.org/responsibleNLPresearch/\"},{\"title\":\"Responsible NLP Checklist\",\"url\":\"https://aclanthology.org/attachments/2025.emnlp-main.1573.checklist.pdf\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://openreview.net/attachment?id=yGhYSEj8ln0&name=responsible_NLP_research\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://arxiv.org/html/2212.10189\"},{\"title\":\"Authors Beware: Common Submission Problems\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"EMNLP 2025 to include Responsible NLP Checklists as Paper Appendices\",\"url\":\"http://aclrollingreview.org/responsible-nlp-checklist-appendices\"},{\"title\":\"Authors Guidelines\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"[2408.04675] ConfReady: A RAG based Assistant and Dataset for Conference Checklist Responses\",\"url\":\"https://arxiv.org/abs/2408.04675\"}]\n\nI found information about the ARR Responsible NLP Research Checklist. Based on the search results, I can provide you with details about the checklist:\n\n## Overview\n\nThe ARR Responsible NLP Research checklist is designed to encourage best practices for responsible research, addressing issues of research ethics, societal impact and reproducibility.\n\n## Checklist Structure\n\nThe checklist is organized into several sections:\n\n- **Section A**: Questions mandatory for all submissions, including:\n  - Did you describe the limitations of your work?\n  - Did you discuss any potential risks of your work?\n\n- **Section B**: Questions about scientific artifacts (code, datasets, models), such as:\n  - Did you cite the creators of artifacts you used?\n\n- **\n…[truncated 873 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T07:57:24.920944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T07:57:24.921080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T07:57:24.921198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/responsibleNLPresearch/",
+              "prompt": "List ALL questions in the ARR Responsible NLP Research checklist, organized by section (A, B, C, D, E, etc.). For each question, include the full text. I need every single question, not a summary."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T07:57:24.921318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\author|\\\\institute|\\\\affiliation|\\\\email|github\\.com|anonymized|our (lab|group|team|institution)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T07:57:24.921436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/acl.sty:4:%     https://github.com/acl-org/acl-style-files/\ndocs/paper/main.tex:24:\\author{Anonymous}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T07:57:24.921548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T07:57:24.921722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Definition}\n5\t\\label{sec:method:problem}\n6\t\n7\tLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\n8\tWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\n9\tDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n10\t\n11\tGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\n12\tThis is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n13\t\n14\t\\subsection{Multi-Generational Benchmark Construction}\n15\t\\label{sec:method:benchmark}\n16\t\n17\tWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n18\t\n19\t\\paragraph{Model families.}\n20\tWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\n21\tRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n22\t\n23\t\\paragraph{Decoding strategies.}\n24\tEach model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\n25\tThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\n26\tOur findings on feature importance and discriminability are limited to this grid; transfer to untested models, scales, or strategies is not established.\n27\t\n28\t\\paragraph{Depth and scale.}\n29\tThe primary benchmark cov\n…[truncated 6763 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T07:57:24.921892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T07:57:24.922175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\paragraph{Model Collapse Theory.}\n5\t\\citet{shumailov2024_nature} demonstrate that recursive training on model outputs erodes distributional tails; \\citet{dohmatob2024_tale_of_tails} formalize this via scaling laws \\cite{seddik2024synthetic}, \\citet{dohmatob2025_strong_collapse} establish strong collapse guarantees, and the MAD framework \\cite{alemohammad2024_mad} extends the analysis to self-consuming models.\n6\tSubsequent work addresses mitigation \\cite{gerstgrasser2024_accumulate,drayson2025_detection_prevents_collapse,yi2026_escaping_collapse,falahati2026_curated,wenzek2020_ccnet}, non-monotonic dynamics \\cite{bakshi2026_collapse_improvement}, convergence \\cite{marchi2024_heat_death,wang2026_contamination,knowledge_collapse2025,dohmatob2024_demystified}, and diversity decline \\cite{guo2024curious,briesch2024selfconsuming,padmakumar2024diversity,sigma2026_spectral,synthetic_eggs2026}.\n7\t\\citet{schaeffer2025} argue that ``model collapse'' conflates multiple distinct phenomena, underscoring the need for operationally precise metrics.\n8\tDohmatob et al.\\ predict that recursive training erodes distributional tails as a theoretical scaling law \\citep{dohmatob2024_tale_of_tails}; we operationalize this prediction into a deployable ordinal classifier, revealing strategy-dependent trajectories and non-monotonic 7B behavior that the theory does not predict.\n9\tAll assume depth is known a priori; we address the inverse problem of estimating depth from text alone.\n10\t\n11\t\\paragraph{AI Text Detection.}\n12\tThe detection literature \\cite{wu2025_detection_survey} spans statistical methods (DetectGPT \\cite{mitchell2023_detectgpt}, Fast-DetectGPT \\cite{fast_detectgpt2024}, Binoculars \\cite{binoculars2024}, DivEye \\cite{diveye2026}, GLTR \\cite{gehrmann2019_gltr}, Ghostbuster \\cite{verma2024_ghostbuster}, DNA-GPT \\cite{yang2024_dnagpt}), geometric approaches based on intrinsic dimensionality \\cite{tulchinskii2024_intrinsic_dim}, and \n…[truncated 2365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T07:57:24.922704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Responsible NLP Research Checklist Questions\n\n## Section A: For Every Submission\n\n**A1. Did you describe the limitations of your work?**\nFull text: \"Did you describe the _limitations_ of your work?\"\n\n**A2. Did you discuss any potential risks of your work?**\nFull text: \"Did you discuss any potential _risks_ of your work?\"\n\n## Section B: Scientific Artifacts\n\n**B1. Did you cite the creators of artifacts you used?**\nFull text: \"Did you cite the creators of artifacts you used?\"\n\n**B2. Did you discuss the license or terms for use and/or distribution of artifacts?**\nFull text: \"Did you discuss the _license or terms_ for use and / or distribution of any artifacts?\"\n\n**B3. Did you discuss if your use of existing artifacts was consistent with their intended use?**\nFull text: \"Did you discuss if your use of existing artifact(s) was consistent with their _intended use_...\"\n\n**B4. Did you discuss steps taken to check for identifying information or offensive content?**\nFull text: \"Did you discuss the steps taken to check whether the data...contains any _information that names or uniquely identifies individual people_ or _offensive content_?\"\n\n**B5. Did you provide documentation of the artifacts?**\nFull text: \"Did you provide documentation of the artifacts, e.g., coverage of domains, languages, and linguistic phenomena?\"\n\n**B6. Did you report relevant statistics for your data?**\nFull text: \"Did you report relevant statistics like the number of examples, details of train / test / dev splits?\"\n\n## Section C: Computational Experiments\n\n**C1. Did you report model parameters, computational budget, and infrastructure?**\nFull text: \"Did you report the _number of parameters_ in the models used, the _total computational budget_...and _computing infrastructure_ used?\"\n\n**C2. Did you discuss experimental setup including hyperparameter search?**\nFull text: \"Did you discuss the experimental setup, including _hyperparameter search_ and _best-found hyperparameter_ values?\"\n\n**C3. Did you \n…[truncated 1543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T07:57:24.922976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T07:57:24.923217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Generalization and Robustness}\n2\t\\label{sec:generalization}\n3\t\n4\tWe test whether atlas accuracy (68.8--85.9\\%) reflects genuine statistical regularities across seven generalization axes (four below, three in Appendix).\n5\t\n6\t\\subsection{Classifier Comparison and Surface-Text Ablation}\n7\t\\label{sec:gen:baselines}\n8\t\n9\tTable~\\ref{tab:baselines} evaluates bagging (RF) and gradient boosting (XGBoost, LightGBM) on the same 19 features; per-cell spread is $\\leq$0.4pp, establishing a feature-determined ceiling.\n10\tOn Pythia nucleus, CORAL ordinal regression \\cite{coral2020} (78.1\\%) and DivEye \\cite{diveye2026} (78.2\\%) match within-cell RF within 0.6\\,pp ($p>0.05$, Bonferroni-corrected); all feature-based methods outperform CE-MLP (74.9\\%, $p<0.001$) and logistic regression (75.0\\%).\n11\tBinary detectors repurposed for ordinal classification (Binoculars + Fast-DetectGPT combined: 74.2\\%) fall 4\\,pp below RF (Appendix~\\ref{app:detector_baselines}).\n12\t\n13\t\\paragraph{Surface-text ablation.}\n14\tSingle-feature regression on mean perplexity performs at chance (25.1\\%); zero-shot LLMs (DeepSeek V3.2, 36.2\\%; Qwen2.5-7B-Instruct, 30.4\\%) also fail (43\\,pp below RF; Appendix~\\ref{app:zeroshot_prompt}), confirming depth signal resides in distributional statistics inaccessible from surface text.\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\small\n19\t\\caption{Classifier convergence: 4-class accuracy (\\%) across three atlas cells. RF (bagging), XGBoost and LightGBM (gradient boosting) operate on the same 19 features; $\\Delta_{\\max}$: largest per-cell spread. Chance = 25\\%. RF values differ from Table~\\ref{tab:main_matrix} by $\\leq$0.2pp due to matched-fold evaluation. 5-fold cross-validation standard deviation $\\leq$ 0.9\\,pp across all settings.}\n20\t\\label{tab:baselines}\n21\t\\begin{tabular}{@{}lcccc@{}}\n22\t\\toprule\n23\tCell & RF & XGB & LGBM & $\\Delta_{\\max}$ \\\\\n24\t\\midrule\n25\tPythia, nuc. & 78.8 & 79.0 & 78.9 & 0.2 \\\\\n26\tGPT-2~XL, $\\tau$ & 85.8 & 86.2 & 86.2 & 0.4 \\\\\n27\tPythia, t\n…[truncated 5041 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T07:57:24.923381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T07:57:24.923601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Depth Degradation Atlas}\n2\t\\label{sec:atlas}\n3\t\n4\tWe present the Depth Degradation Atlas: a systematic empirical map of how statistical fingerprints evolve across recursive generation depths, models, and decoding strategies.\n5\tThe atlas spans $3 \\times 3 = 9$ model--strategy cells evaluated at depths $d \\in \\{0, 1, 2, 3\\}$, with depth extensions to $d{=}5$ for cross-model EDD validation (\\S\\ref{sec:atlas:edd}).\n6\t\n7\t%% ----------------------------------------------------------------\n8\t\\subsection{In-Distribution Performance}\n9\t\\label{sec:atlas:id}\n10\t\n11\tTable~\\ref{tab:main_matrix} reports four-class Random Forest accuracy (5-fold CV, 200 trees) across all nine cells.\n12\tAccuracy ranges from 68.8\\% (Pythia, top-$k$) to 85.9\\% (GPT-2~XL, temperature), all exceeding the 25\\% chance baseline by a wide margin.\n13\tTwo axis effects emerge.\n14\tGPT-2~XL achieves the highest accuracy under every strategy (75.9--85.9\\%), followed by OLMo (74.5--82.1\\%) and Pythia (68.8--78.7\\%).\n15\tTop-$k$ sampling yields the lowest accuracy in every model.\n16\tThe mean within-model strategy gap is 9.2~pp, comparable to the 7.2~pp mean within-strategy model gap; decoding strategy and model family contribute roughly equally to performance variance.\n17\t\n18\t\\begin{table}[t]\n19\t\\centering\n20\t\\small\n21\t\\caption{Four-class RF accuracy (\\%) with bootstrap 95\\% CI (${\\pm}$half-width; 10{,}000 resamples) across the $3 \\times 3$ atlas; d1--d3 three-class accuracy in parentheses (chance = 25\\% / 33\\%). Depth-0 recall exceeds 98\\% in all cells.}\n22\t\\label{tab:main_matrix}\n23\t\\begin{tabular}{@{}lccc@{}}\n24\t\\toprule\n25\t& Nucleus & Temp.\\ $\\tau{=}0.9$ & Top-$k$ \\\\\n26\t\\midrule\n27\tPythia-1.4B  & 78.7{\\scriptsize$\\pm$0.5}\\,(71.2) & 76.7{\\scriptsize$\\pm$0.5}\\,(70.6) & 68.8{\\scriptsize$\\pm$0.6}\\,(58.8) \\\\\n28\tOLMo-1B     & 78.9{\\scriptsize$\\pm$0.5}\\,(75.0) & 82.1{\\scriptsize$\\pm$0.5}\\,(76.3) & 74.5{\\scriptsize$\\pm$0.5}\\,(66.1) \\\\\n29\tGPT-2~XL    & \\textbf{84.1}{\\scriptsize$\\pm$0.5}\\,(79.0) & \\textbf{\n…[truncated 12863 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T07:57:24.923754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "broader impact|reproducib|checklist|acl_checklist|nlp_checklist|responsibleNLP",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T07:57:24.923906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T07:57:24.924142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+              "prompt": "List ALL submission requirements for EMNLP 2026 main conference papers. Include: page limits, required sections (limitations, ethics, broader impact, reproducibility), anonymization rules, template requirements, checklist requirements, and any other mandatory elements. Be exhaustive."
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T07:57:24.924306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "anonymous|review|linenumbers|lineno",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/acl.sty",
+              "output_mode": "content",
+              "-i": "True",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T07:57:24.924504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10:% to your LaTeX file. When submitting your paper for review, add the \"review\" option:\n12:%    \\usepackage[review]{acl}\n16:\\newif\\ifacl@linenumbers\n18:\\DeclareOption{final}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumbersfalse}\n19:\\DeclareOption{review}{\\acl@finalcopyfalse\\acl@anonymizetrue\\acl@linenumberstrue\\acl@pagenumberstrue}\n20:\\DeclareOption{preprint}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumberstrue}\n35:\\ifacl@linenumbers\n36:  % Add draft line numbering via the lineno package\n38:  \\usepackage[switch,mathlines]{lineno}\n55:  \\AtBeginDocument{\\linenumbers}\n57:  \\setlength{\\linenumbersep}{1.6cm}\n63:  % https://tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align\n66:  \\newcommand*\\linenomathpatch[1]{%\n67:    \\expandafter\\pretocmd\\csname #1\\endcsname {\\linenomath}{}{}%\n68:    \\expandafter\\pretocmd\\csname #1*\\endcsname {\\linenomath}{}{}%\n69:    \\expandafter\\apptocmd\\csname end#1\\endcsname {\\endlinenomath}{}{}%\n70:    \\expandafter\\apptocmd\\csname end#1*\\endcsname {\\endlinenomath}{}{}%\n72:  \\newcommand*\\linenomathpatchAMS[1]{%\n73:    \\expandafter\\pretocmd\\csname #1\\endcsname {\\linenomathAMS}{}{}%\n74:    \\expandafter\\pretocmd\\csname #1*\\endcsname {\\linenomathAMS}{}{}%\n75:    \\expandafter\\apptocmd\\csname end#1\\endcsname {\\endlinenomath}{}{}%\n76:    \\expandafter\\apptocmd\\csname end#1*\\endcsname {\\endlinenomath}{}{}%\n79:  %% Definition of \\linenomathAMS depends on whether the mathlines option is provided\n80:  \\expandafter\\ifx\\linenomath\\linenomathWithnumbers\n81:    \\let\\linenomathAMS\\linenomathWithnumbers\n83:    \\patchcmd\\linenomathAMS{\\advance\\postdisplaypenalty\\linenopenalty}{}{}{}\n85:    \\let\\linenomathAMS\\linenomathNonumbers\n89:    \\linenomathpatch{equation}%\n90:    \\linenomathpatchAMS{gather}%\n91:    \\linenomathpatchAMS{multline}%\n\n[Showing results with pagination = limit: 30]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T07:57:24.924666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# EMNLP 2026 Main Conference Paper Submission Requirements\n\n## Page Limits\n- **Long Papers:** 8 pages of content, with 9 pages permitted in final camera-ready version\n- **Short Papers:** 4 pages of content, with 5 pages permitted in final camera-ready version\n\n## Mandatory Sections & Elements\n\nThe document directs authors to follow \"all of the ARR submission requirements\" but does not exhaustively detail each requirement within this specific page. However, it explicitly references the following as required:\n\n1. **Limitations Section:** Authors must include a limitations discussion\n2. **Ethics Checklist:** The \"responsible NLP research checklist\" must be completed\n3. **Writing Assistance Disclosure:** Per ACL 2023 policy on AI writing tools\n4. **Publication Ethics Compliance:** Adherence to ACL's Publication Ethics Policy required\n5. **Disclosure Requirements:** Must follow ACL's Coordinated Disclosure Policy\n\n## Anonymization Rules\n- Double-blind review maintained: \"Reviewers will not see authors, nor will authors see reviewers\"\n- \"Two-way anonymized review\" instructions required (details link to ARR CFP)\n\n## Additional Mandatory Elements\n- Author registration form by May 27, 2026\n- Reviewer assignment participation (all authors expected to review)\n- At least one presenting author must register by early registration deadline\n- No author list modifications during commitment phase allowed\n\n**Note:** Specific template requirements and detailed section requirements are referenced but not fully reproduced in this document—consult ARR's complete CFP for comprehensive details."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T07:57:24.924904+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed. Here's the full report:\n\n---\n\n## ARR / EMNLP 2026 投稿检查报告\n\n### 任务 1: ARR Responsible NLP Checklist 必填项\n\nChecklist 在 OpenReview 上以表单填写，非论文内嵌。各 section 问题：\n\n| Section | 问题 | 适用性 |\n|---------|------|--------|\n| **A1** | 是否描述了工作的 limitations？ | 必填 |\n| **A2** | 是否讨论了潜在风险？ | 必填 |\n| **B1** | 是否引用了所用 artifacts 的创建者？ | 有 artifacts 则必填 |\n| **B2** | 是否讨论了 license/使用条款？ | 有 artifacts 则必填 |\n| **B3** | 是否讨论了使用方式与 intended use 的一致性？ | 有 artifacts 则必填 |\n| **B4** | 是否检查了数据中的个人信息/冒犯内容？ | 有数据则必填 |\n| **B5** | 是否提供了 artifacts 文档（domain/language 覆盖等）？ | 有 artifacts 则必填 |\n| **B6** | 是否报告了数据相关统计（样本数、train/test split 等）？ | 有数据则必填 |\n| **C1** | 是否报告了模型参数量、计算预算、基础设施？ | 有实验则必填 |\n| **C2** | 是否描述了实验设置（超参搜索、最佳超参值）？ | 有实验则必填 |\n| **C3** | 是否报告了结果的描述性统计（error bars 等）？ | 有实验则必填 |\n| **C4** | 是否报告了所用现有 package 的实现细节？ | 有外部包则必填 |\n| **D1-D5** | 人类标注/参与者相关 | 本文不涉及 |\n| **E1** | 是否披露了 AI assistant 使用情况？ | 如使用则必填 |\n\n---\n\n### 任务 2: 论文内容逐项检查\n\n#### 1. Ethics Statement\n**✅ 通过** — `conclusion.tex:57-62`，包含：使用的公开模型列表、无人类受试者、无私人数据、方法意图说明、潜在误用风险讨论、代码发布承诺。内容充实。\n\n#### 2. Broader Impact Statement\n**⚠️ 不强制但建议** — ARR/EMNLP 不单独要求 Broader Impact section（checklist A2 覆盖）。Ethics Statement 中已讨论了误用风险。Appendix `section_appendix.tex:653-667` 的 Extended Discussion 中有 \"depth-graduated curation\" 和 \"provenance toolkit\" 讨论，隐含了积极影响。满足 A2 要求。\n\n#### 3. Reproducibility Statement\n**❌ 缺失** — 无单独的 Reproducibility section。论文正文中散布了超参数（`method.tex:33`: LoRA r=16, α=32, lr 2e-4, batch 8, 3 epochs）、数据规模（180K samples）、RF 配置（200 trees）等，但未集中说明：\n- **缺少**：总计算预算（GPU hours）、使用的硬件型号（checklist C1）\n- **缺少**：超参搜索策略说明（checklist C2 要求说明是否做了 hyperparameter search）\n- **缺少**：代码框架/库版本（scikit-learn 版本、transformers 版本等，checklist C4）\n\n**建议**：在 Appendix 或 Ethics Statement 后添加简短的 Reproducibility paragraph。\n\n#### 4. Limitations Section\n**✅ 通过** — `conclusion.tex:1-56`，共 10 个 paragraph，覆盖面广：cross-strategy 约束、strategy-unknown 部署、d0 inflation、controlled vs ecological 设定、domain FPR、adversarial robustness、EDD monotonicity、reference model 依赖、single LoRA、passage length/domain shift。非常充实。\n\n#### 5. 匿名化\n**✅ 通过** — \n- `main.tex:24`: `\\author{Anonymous}`\n- `\\usepackage[review]{acl}` 自动启用匿名化\n- 全文 grep 未发现作者姓名、机构名、GitHub URL（`acl.sty` 内的 github URL 是样式文件本身，不影响）\n- `conclusion.tex:62` \"Code and data will be released upon acceptance\" — 标准匿名表述，合规\n\n#### 6. 行号\n**✅ 通过** — `main.tex:4`: `\\usepackage[review]{acl}`，`acl.sty:19` 确认 `review` 选项启用 `\\acl@linenumberstrue`，自动加载 `lineno` 包并在 `\\begin{document}` 时调用 `\\linenumbers`。\n\n#### 7. 页数\n**⚠️ 需要编译确认** — 粗略估计正文内容（Abstract → Discussion/Conclusion, 不含 Limitations/Ethics/References/Appendix）：\n\n| Section | 估计页数 |\n|---------|---------|\n| Abstract | ~0.3 |\n| Introduction | ~1.3 |\n| Related Work | ~0.8 |\n| Method (含 table, equation) | ~1.8 |\n| Atlas (含 3 tables, 3 figures) | ~2.0 |\n| Generalization (含 3 tables, 1 figure) | ~1.5 |\n| Discussion/Conclusion | ~0.3 |\n| **合计** | **~8.0** |\n\n正好卡在 8 页限制边缘。Limitations + Ethics 在 references 之后不计入页数限制。**强烈建议编译后确认实际页数**，如超 8 页需压缩。\n\n---\n\n### 汇总\n\n| 检查项 | 状态 |\n|--------|------|\n| Ethics Statement | ✅ 存在且充实 |\n| Broader Impact | ⚠️ 无单独 section，但 Ethics + Extended Discussion 覆盖 A2 |\n| Reproducibility | ❌ 缺少：计算预算、硬件、库版本、超参搜索策略 |\n| Limitations | ✅ 非常充实 |\n| 匿名化 | ✅ 无泄露 |\n| 行号 | ✅ review 模式已启用 |\n| 页数 | ⚠️ 估计 ~8 页，需编译确认 |\n| AI Assistant 披露 (E1) | ❌ 如使用了 AI 辅助写作/编码，需在 checklist 中披露 |\n\n**优先修复**：添加 Reproducibility 信息（计算资源、库版本），填写 checklist 时确保 C1/C4 有对应 section 号。\n\nSources:\n- [ARR Responsible NLP Research Checklist](https://aclrollingreview.org/responsibleNLPresearch/)\n- [Checklist PDF](https://aclrollingreview.org/static/responsibleNLPresearch.pdf)\n- [EMNLP 2026 CFP](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ARR Author Guidelines](https://aclrollingreview.org/authors)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-checklist-check_20260518T075448"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ]
+}

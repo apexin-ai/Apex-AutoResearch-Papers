@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1219b7bd21f1fb471083",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops verbosity nli only gate",
+  "task_key": "worker_ops_verbosity_nli_only_gate_20260520T214344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verbosity_nli_only_gate_20260520T214344_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "772c609a5d87505e95f0f7b3744b9022c4727e807ce463c2e3180db6e411b21b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D013 NLI-only gate content verification 完成。\n\n### 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Total** | 100 |\n| **Passed CF** | **86/100 (86.0%)** |\n| **Passed DR** | 43/100 (43.0%) |\n\n**按方向分布：**\n\n| Direction | n | Passed CF | NLI mean | BERTScore mean |\n|-----------|---|-----------|----------|----------------|\n| **forward** (compression, verbose→concise) | 46 | 44/46 (95.7%) | 0.9476 | 0.8449 |\n| **backward** (expansion, concise→verbose) | 54 | 42/54 (77.8%) | 0.8267 | 0.6732 |\n\n**产出文件：**\n- `data/verified_verbosity.jsonl` — 100 records, 369K\n- `data/verified_verbosity_filtered.jsonl` — 86 records (passed_cf=True), 320K\n\n后续 scoring 步骤可用 n=86。expansion 方向通过率偏低 (77.8%)，compression 方向几乎全通过 (95.7%)，符合预期（expansion 增加内容更易引入非蕴含信息）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "45e661d4960acb5e15ea",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "mvp launch pipeline",
+  "task_key": "worker_mvp_launch_pipeline_20260520T125507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_launch_pipeline_20260520T125507.log",
+    "occurrence": 1,
+    "bytes": 823070,
+    "sha256": "4121a47e2ce68e30b214f109598c9983cb7596f56cff0107719370aa479b8c8e"
+  },
+  "statistics": {
+    "messages": 576,
+    "user_turns": 0,
+    "tool_calls": 251,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 251,
+      "tool_result": 251,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 576,
+      "chunks": [
+        {
+          "path": "45e661d4960acb5e15ea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "45e661d4960acb5e15ea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "45e661d4960acb5e15ea-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "45e661d4960acb5e15ea-part-0004.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ]
+}

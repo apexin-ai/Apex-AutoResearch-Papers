@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1aaac9649df62bfebb7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh env setup and data",
+  "task_key": "worker_ssh_env-setup-and-data_20260514T163452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_env-setup-and-data_20260514T163452_result.json",
+    "occurrence": 1,
+    "bytes": 1643,
+    "sha256": "b119a30f6a8822804ca9dd91c6167b5bc22d204c87f4c32d4d4632b320870dea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇报\n\n### 1. GPU 状态\n- **型号**: NVIDIA RTX PRO 6000 Blackwell Server Edition (98GB)\n- **显存**: 0 MiB / 97887 MiB — 已完全释放\n\n### 2. 环境\n| 组件 | 版本 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| PyTorch | 2.10.0+cu128 |\n| CUDA | 可用, 1 GPU |\n| vLLM | 0.18.1 |\n| transformers | 4.57.6 |\n| datasets | 4.8.4 |\n| accelerate | 1.13.0 |\n| scipy/matplotlib/seaborn/wandb | 已装 |\n\n### 3. 磁盘\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| 根分区 / | 30G | 22G | 9.0G |\n| 数据盘 /root/autodl-tmp | 250G | 220G | 31G |\n\n### 4. Few-NERD 数据\n- 已下载（supervised config），test set 37648 条\n- **66 types, 96902 span-level instances**\n- **所有 type 均 >= 20 instances**（最少的 art-painting = 58）\n- Top 3: location-GPE (20409), person-other (8767), organization-other (4476)\n- 统计文件: `/root/schema-dag-extraction/data/few_nerd_type_stats.json`\n- Type definitions: `/root/schema-dag-extraction/configs/few_nerd_types.json` (66 types)\n\n### 5. 模型下载 — BLOCKER\n**Qwen3-27B 不存在**（HuggingFace 和 ModelScope 均无此模型）。\n\n可用 Qwen3 模型：\n- **Qwen3-32B** — 最接近的 dense 模型，但 ~64GB FP16，数据盘仅剩 31GB，**装不下**\n- **Qwen3-14B** — 可装下（~28GB）\n- **Qwen3-30B-A3B** — MoE，active 参数仅 3B\n- **Qwen3-8B** — 可装下\n\n另外 AutoDL 代理导致 HuggingFace API 返回 401，需要用 ModelScope 下载或清理磁盘空间后用 HF 镜像。\n\n**需要你确认用哪个模型**，以及是否需要清理磁盘空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

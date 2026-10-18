@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08bcda8777d5f1cfdc7d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check cqa1 all gpu urgent v3",
+  "task_key": "worker_check_cqa1_all_gpu_urgent_v3_20260518T235724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cqa1_all_gpu_urgent_v3_20260518T235724_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "36fbf5cf1fca883e921902c74be845670e9ed49fd17c5ebb84e764883f04b946"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval M64 启动成功，确认 `SmartCompressWrapper loaded: M=64`。汇总如下：\n\n---\n\n```\nGPU 0 (eval_baseline_prune_k05): 完成 | SR=0.0% | per-task=[0,0,0,0,0,0,0,0,0,0]%\nGPU 1 (train_m64_seed43):        完成 | step 99999/100000 | loss=0.093 | ckpt=1.59GB | eval 已启动 PID=560607\nGPU 2 (eval_m32_spatial):        运行中 | task 9/10 ep 7/50 | 已完成 task 0-8: [58,62,52,82,28,18,82,70,56]%\nGPU 3 (eval_m32_seed43):         运行中 | task 6/10 ep 35/50 | 已完成 task 0-5: [72,38,68,36,68,48]%\n```\n\n**GPU 0 详情:** baseline_control + random_prune (zero_mask) 在 libero_object 上 SR=0.0%，10 个 task 全部为 0。随机 pruning 彻底摧毁了模型能力。\n\n**GPU 1 详情:** 训练正常收敛完成 (final loss 0.093, eval/action_loss 0.058)。已用 `eval_smart_compress_libero.py` 在 GPU 1 启动 M=64 的 libero_object eval，日志确认 `SmartCompressWrapper loaded: M=64`。\n\n**GPU 2/3** 预计各约 1 小时内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

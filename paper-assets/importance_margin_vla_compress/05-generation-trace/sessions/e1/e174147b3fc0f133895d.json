@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "e174147b3fc0f133895d",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops c4ext eval migrate cqa1",
+  "task_key": "worker_ops_c4ext-eval-migrate-cqa1_20260520T081109",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_c4ext-eval-migrate-cqa1_20260520T081109.log",
+    "occurrence": 1,
+    "bytes": 1477304,
+    "sha256": "a9bc2922161ad72a18e5e9e45ee26475aa9064ae5f37c5400a566eaca64597f2"
+  },
+  "statistics": {
+    "messages": 1073,
+    "user_turns": 1,
+    "tool_calls": 416,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 233,
+      "tool_call": 416,
+      "tool_result": 416,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 735,
+      "chunks": [
+        {
+          "path": "e174147b3fc0f133895d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e174147b3fc0f133895d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e174147b3fc0f133895d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e174147b3fc0f133895d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e174147b3fc0f133895d-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "e174147b3fc0f133895d-part-0005.json",
+          "message_count": 165
+        },
+        {
+          "path": "e174147b3fc0f133895d-part-0006.json",
+          "message_count": 173
+        }
+      ]
+    }
+  ]
+}

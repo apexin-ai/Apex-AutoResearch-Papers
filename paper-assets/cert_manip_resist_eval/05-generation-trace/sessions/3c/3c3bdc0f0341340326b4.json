@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c3bdc0f0341340326b4",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis keff distribution stats",
+  "task_key": "worker_analysis_keff-distribution-stats_20260523T142835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_keff-distribution-stats_20260523T142835_result.json",
+    "occurrence": 1,
+    "bytes": 451,
+    "sha256": "c9d9ce0830121b6aea7ea606e927c87a75efefe4e5455d3dc6a4a05ce36982f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已输出到 `docs/paper/data/keff_distribution.json`。\n\n计算方法：将 mmlu 和 arc_challenge 两个 benchmark 的 15×15 MI 矩阵取平均，然后对每个 K 枚举所有 C(15,K) 个 panel，用 K_eff = K / (1 + (K-1) × mean_pairwise_MI) 计算。\n\n验证全部通过：\n- panel 数量：455 / 3003 / 6435 ✓\n- K_eff 范围均在 [1, K] 内 ✓\n- mean K_eff 随 K 递增（1.92 → 2.32 → 2.54），增速递减 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "86320d1b38aaa57665fc",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops check all gpu experiments",
+  "task_key": "worker_ops_check_all_gpu_experiments_20260516T061239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_gpu_experiments_20260516T061239_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "007845bc4842cc70a62dd563fba713454d91595244fb9a04ec0018e6d55341fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 实验状态\n\n| 实验 | GPU | 状态 | 详情 |\n|------|-----|------|------|\n| `llama_multi_seed_ppl` | GPU 0 (99%, 16.5GB) | **运行中** | Seed 42 profiling 220/256 heads |\n| `mistral_multi_seed_ppl_v2` | GPU 1 (100%, 41.3GB) | **运行中** | Seed 42 profiling 180/256 heads |\n| `yi_8k_eval` | — | **完成 ✓** | 已关闭，结果已入 registry |\n\n### Yi 8K Eval 结果 (negative — 符合预期)\n\n| Method | 8K PPL | vs BF16 |\n|--------|--------|---------|\n| BF16 baseline | 5.2619 | — |\n| Uniform 4-bit | 5.5032 | +4.6% |\n| Constrained MCKP | 5.5648 | +5.8% |\n\nMCKP 比 uniform **差** 0.0616 PPL。Spike 形状模型 (c=0.71) 在 8K 上无 MCKP 收益，符合 \"Spread-specific long-context amplification\" 假设的对照预期。\n\n### 运行中实验进度估算\n\n两个实验都刚完成 baseline + uniform eval，进入 seed 42 的 head profiling：\n- **Llama**: 220/256 heads done → seed 42 剩 ~20min profiling + ~15min eval，之后还有 seed 123/456 各 ~2.5h → **预计还需 ~5.5h**\n- **Mistral**: 180/256 heads done → seed 42 剩 ~45min + ~15min eval，之后 seed 123/456 → **预计还需 ~6.5h**\n\n### GPU 空闲情况与建议\n\n- **0 个 GPU 空闲**，两块 RTX PRO 6000 (98GB) 满载\n- Yi 8K eval 的 tmux session 已退出，不占 GPU\n- 预计今晚 ~20:00-21:00 UTC 两个实验陆续完成，届时可调度新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5aa3d7daccca326c2e7",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "infra model download retry",
+  "task_key": "worker_infra_model-download-retry_20260513T185801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model-download-retry_20260513T185801_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "0f68aa8495796f1c9fb0aa820264b0f878cbb0544cfeaa48097159c21a497c45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen2.5-7B 下载完成，验证通过。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 路径 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/` |\n| 磁盘占用 | 15G |\n| 参数量 | 7.62B |\n| layers | 28 |\n| q_heads | 28 |\n| kv_heads | 4 |\n| hidden_size | 3584 |\n| head_dim | 128 |\n| 文件状态 | 4/4 shards 完整，无 incomplete 文件 |\n| 根分区 | 30G 用了 17G，剩余 14G (55%) |\n| 数据盘 | 439G 用了 17G，剩余 400G (4%) |\n\n模型通过 ModelScope 下载（路径中的 `___` 是 ModelScope 命名规则），用 `AutoModelForCausalLM.from_pretrained('/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B')` 即可加载。项目代码中如果用 `'Qwen/Qwen2.5-7B'` 需要设 `HF_HOME=/root/autodl-tmp/.hf_cache` 或改为本地路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

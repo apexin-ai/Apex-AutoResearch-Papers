@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "74f07e228d95004ae755",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "infra deploy dryrun submit atomic",
+  "task_key": "worker_infra_deploy-dryrun-submit-atomic_20260515T134431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_deploy-dryrun-submit-atomic_20260515T134431.log",
+    "occurrence": 1,
+    "bytes": 1770962,
+    "sha256": "64dfa9b0c1c0904cfde08ec10e48162c7be559e74315c12d3ccb8c3a14cd5924"
+  },
+  "statistics": {
+    "messages": 796,
+    "user_turns": 1,
+    "tool_calls": 311,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 166,
+      "tool_call": 311,
+      "tool_result": 311,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 356,
+      "chunks": [
+        {
+          "path": "74f07e228d95004ae755-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "74f07e228d95004ae755-part-0002.json",
+          "message_count": 176
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 440,
+      "chunks": [
+        {
+          "path": "74f07e228d95004ae755-part-0002.json",
+          "message_count": 4
+        },
+        {
+          "path": "74f07e228d95004ae755-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "74f07e228d95004ae755-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "74f07e228d95004ae755-part-0005.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ]
+}

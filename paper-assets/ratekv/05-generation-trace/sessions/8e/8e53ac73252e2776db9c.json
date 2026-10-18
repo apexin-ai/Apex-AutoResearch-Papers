@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8e53ac73252e2776db9c",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp yi mistral downstream k2 continue",
+  "task_key": "worker_exp_yi_mistral_downstream_k2_continue_20260515T175013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_yi_mistral_downstream_k2_continue_20260515T175013_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "69f35e705d2f0ed192624dbe81637b9c47774a4bf9e929ce7c6e5f1370feb06c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置，270 秒后检查进度。当前状态：\n- Yi-1.5-9B: [1/3] Baseline 运行中（23%）\n- Mistral-7B: 未开始\n- 脚本 `run_yi_mistral_downstream_k2.py` 会串行完成所有 6 个 eval 并保存结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

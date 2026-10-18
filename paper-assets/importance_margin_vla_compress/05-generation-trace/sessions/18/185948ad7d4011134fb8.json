@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "185948ad7d4011134fb8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code simplerenv adapter",
+  "task_key": "worker_code_simplerenv_adapter_20260524T162508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_simplerenv_adapter_20260524T162508_result.json",
+    "occurrence": 1,
+    "bytes": 2349302,
+    "sha256": "bd72dc9287ed1fe09c350d9fe244ba0bd7a765a80a7c8d1c7000b5985f885c00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "185948ad7d4011134fb8-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

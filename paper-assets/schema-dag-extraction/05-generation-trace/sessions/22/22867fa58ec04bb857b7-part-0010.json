@@ -1,0 +1,1748 @@
+{
+  "schema_version": "1.0",
+  "session_id": "22867fa58ec04bb857b7",
+  "rounds": [
+    {
+      "number": 64,
+      "messages": [
+        {
+          "source_line": 1621,
+          "timestamp": "2026-05-17T15:19:34.891367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -70 /root/schema-dag-extraction/scripts/scs_renaming_analysis.py"
+            }
+          },
+          "id": "event-001621"
+        },
+        {
+          "source_line": 1622,
+          "timestamp": "2026-05-17T15:19:35.343984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    delta = new_scs - orig_scs\\\\n    results.append((a, b, orig_scs, r, new_scs, delta))\\\\n    \\\\n    # Also get stored SCS for comparison\\\\n    if a in name2idx and b in name2idx:\\\\n        stored_val = stored_sim[name2idx[a], name2idx[b]].item()\\\\n    else:\\\\n        stored_val = None\\\\n\\\\nfor i, (a, b, orig, r, new, d) in enumerate(results, 1):\\\\n    print(f\\\\\\\"{i:<3} {a:<48} {b:<48} {orig:<10.4f} {r:<35} {new:<10.4f} {d:<+10.4f}\\\\\\\")\\\\n\\\\nprint(\\\\\\\"=\\\\\\\" * 140)\\\\n\\\\ndeltas = [d for _, _, _, _, _, d in results]\\\\nprint(f\\\\\\\"\\\\\\\\nSummary ({len(results)} unique pairs):\\\\\\\")\\\\nprint(f\\\\\\\"  Mean Δ SCS:  {np.mean(deltas):+.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  Min  Δ SCS:  {np.min(deltas):+.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  Max  Δ SCS:  {np.max(deltas):+.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  All reduced: {sum(1 for d in deltas if d < 0)}/{len(deltas)}\\\\\\\")\\\\nprint(f\\\\\\\"  Mean orig:   {np.mean([o for _, _, o, _, _, _ in results]):.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  Mean new:    {np.mean([n for _, _, _, _, n, _ in results]):.4f}\\\\\\\")\\\\n\\\\n# Check which renamed versions still have high SCS with OTHER types\\\\nprint(\\\\\\\"\\\\\\\\n=== Cross-check: renamed types vs ALL original types ===\\\\\\\")\\\\nrename_map = {}\\\\nfor a, b, r in renamings:\\\\n    if b not in rename_map:\\\\n        rename_map[b] = r\\\\n\\\\nfor orig_name, new_name in rename_map.items():\\\\n    emb_new = text2emb[new_name]\\\\n    high_sims = []\\\\n    for other in stored_names:\\\\n        if other == orig_name:\\\\n            continue\\\\n        if other in text2emb:\\\\n            emb_other = text2emb[other]\\\\n        else:\\\\n            emb_other = model.encode([other], normalize_embeddings=True)[0]\\\\n            text2emb[other] = emb_other\\\\n        sim = float(np.dot(emb_new, emb_other))\\\\n        if sim > 0.6:\\\\n            high_sims.append((other, sim))\\\\n    \\\\n    if high_sims:\\\\n        high_sims.sort(key=lambda x: -x[1])\\\\n        top3 = high_sims[:3]\\\\n        print(f\\\\\\\"  '{orig_name}' -> '{new_name}': {len(hi\n…[truncated 1173 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001622"
+        },
+        {
+          "source_line": 1623,
+          "timestamp": "2026-05-17T15:19:55.479588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001623"
+        },
+        {
+          "source_line": 1624,
+          "timestamp": "2026-05-17T15:19:55.681267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_gemini_flash_cross_model\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:57:39.493Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:18:53.983Z\\\", \\\"hypothesis\\\": \\\"The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\\"}, \\\"prompt_sensitivity\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:45:54.306Z\\\", \\\"updated_at\\\": \\\"2026-05-17T06:45:54.306Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python3.12 /root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"453881\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/prompt_sensitivity.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:45:54.151Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"prompt_sensitivity_dry4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:43:24.714Z\\\", \\\"updated_at\\\": \\\"2026-05-17T06:43:24.714Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python3.12 /root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py --dry_run\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"453218\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/prompt_sensitivity_dry4.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:43:24.548Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"prompt_sensitivity_dry3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:40:57.853Z\\\"\n…[truncated 6777 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-001624"
+        },
+        {
+          "source_line": 1625,
+          "timestamp": "2026-05-17T15:20:04.825320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "5"
+            }
+          },
+          "id": "event-001625"
+        },
+        {
+          "source_line": 1626,
+          "timestamp": "2026-05-17T15:20:05.077229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_schema_intervention\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"created_at\\\": \\\"2026-05-17T14:57:35.343Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:18:58.985Z\\\", \\\"hypothesis\\\": \\\"If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.\\\"}, \\\"exp_gemini_flash_cross_model\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T14:57:39.493Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:18:53.983Z\\\", \\\"hypothesis\\\": \\\"The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\\"}, \\\"exp_fewshot_bcs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T13:18:15.923Z\\\", \\\"updated_at\\\": \\\"2026-05-17T14:08:59.677Z\\\", \\\"hypothesis\\\": \\\"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\\\", \\\"parent\\\": \\\"exp_fewrel_v2_n25\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"0shot_low_bcs\\\": 0.6821, \\\"0shot_high_bcs\\\": 0.4975, \\\"0sh\n…[truncated 4187 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-001626"
+        },
+        {
+          "source_line": 1627,
+          "timestamp": "2026-05-17T15:20:47.987050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_ssh_schema_intervention_design\n\n**结论**: WARNING\n\n### 设计概览\n\n14 个高 SCS 类型对（原始 SCS > 0.81），每对中 rename 一个 type 以降低 SCS。使用 MiniLM 验证 SCS 降低。Mean SCS: 0.870 → 0.668（Δ = −0.202），全部 14 对成功降低。\n\n### 发现\n\n- [severity: warning] **Embedding model 不一致**。Renaming 设计用 `all-MiniLM-L6-v2` 验证 SCS 降低，但论文核心 FewRel SCS 使用 Qwen3 embeddings。Qwen3 的 embedding 空间特征不同（BCS range 更窄，std=0.034 vs MiniLM 0.081，见 exp_cross_embedding_sensitivity）。**实验运行前必须用 Qwen3 embeddings 重新计算 renamed labels 的 SCS**，确认降低幅度在 Qwen3 空间也成立。否则 intervention 可能无效。\n\n- [severity: warning] **部分 renaming 语义存疑**。大部分 renaming 保持语义等价，但以下几个有风险：\n  - **\"follows\" → \"prior entry\"**：方向性模糊。\"follows\" 明确表示\"在后\"，\"prior entry\" 字面意思是\"前一个条目\"。在 FewRel closed-set 分类中，LLM 需理解 head 的 \"prior entry\" 是 tail——可行但增加歧义。建议改回脚本 v1 的 \"comes after\"。\n  - **\"country of origin\" → \"homeland provenance\"**：provenance 不常用，可能影响 LLM 理解\n  - **\"mother\" → \"female progenitor\"**：过于生僻\n\n  如果 renamed label 本身降低了该类型的基础准确率（不是因为减少混淆，而是因为 label 不清晰），实验结论会被混淆——无法区分\"SCS 降低带来的混淆减少\"和\"label 变差带来的额外错误\"。\n\n- [severity: info] **脚本 vs JSON 不一致**。`scs_renaming_analysis.py` 中的硬编码 renaming（如 \"comes after\"、\"component belonging to\"、\"maternal parent\"）与最终 JSON 输出（\"prior entry\"、\"integral segment of\"、\"female progenitor\"）不同。JSON 中有 `candidate_analysis` 字段，说明可能有自动候选选择过程。建议确认最终版本来源并记录在 spec 中。\n\n- [severity: info] **Cross-check 做了**。脚本包含 renamed type 与所有其他 80 types 的 SCS 交叉检查（>0.6 阈值），防止 renaming 创造新的 confusion pair。这是好的设计。\n\n### 建议\n\n1. **必做**：用 Qwen3 embeddings 重新计算所有 14 个 renamed labels 的 SCS，确认降低方向一致\n2. **建议**：修正语义存疑的 3 个 renaming（特别是 \"follows\" → \"comes after\" 而非 \"prior entry\"）\n3. **建议**：增加 sanity check——对 renamed types 单独跑 solo accuracy（1 type per batch），确认 renaming 不显著降低基线准确率（排除 label 质量混淆因素）",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001627"
+        },
+        {
+          "source_line": 1628,
+          "timestamp": "2026-05-17T15:20:51.757165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3770
+          },
+          "id": "event-001628"
+        },
+        {
+          "source_line": 1629,
+          "timestamp": "2026-05-17T15:20:56.275937+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现关键设计问题。检查 renaming 脚本细节。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-001629"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 1630,
+          "timestamp": "2026-05-17T15:27:50.143465+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_gemini_flash_cross_model_20260517T150614]:\nWorker worker_ssh_gemini_flash_cross_model_20260517T150614 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system"
+          },
+          "id": "event-001630"
+        },
+        {
+          "source_line": 1631,
+          "timestamp": "2026-05-17T15:27:59.863708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "filters": "{'exp_id': 'exp_gemini_flash_cross_model'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001631"
+        },
+        {
+          "source_line": 1632,
+          "timestamp": "2026-05-17T15:28:00.368637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2516}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-001632"
+        },
+        {
+          "source_line": 1633,
+          "timestamp": "2026-05-17T15:28:00.521031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"*gemini*\" -type f"
+            }
+          },
+          "id": "event-001633"
+        },
+        {
+          "source_line": 1634,
+          "timestamp": "2026-05-17T15:28:01.624666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1103
+          },
+          "id": "event-001634"
+        },
+        {
+          "source_line": 1635,
+          "timestamp": "2026-05-17T15:28:07.247587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "wc -l /root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py"
+            }
+          },
+          "id": "event-001635"
+        },
+        {
+          "source_line": 1636,
+          "timestamp": "2026-05-17T15:28:07.599246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -80 /root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py"
+            }
+          },
+          "id": "event-001636"
+        },
+        {
+          "source_line": 1637,
+          "timestamp": "2026-05-17T15:28:07.700077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"507 /root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001637"
+        },
+        {
+          "source_line": 1638,
+          "timestamp": "2026-05-17T15:28:08.202354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Gemini 2.5 Flash cross-model validation: FewRel RE count curve + BCS-controlled.\\\\n\\\\nProves schema degradation is model-agnostic by replicating Qwen3-32B experiments\\\\non Gemini 2.5 Flash via TUM proxy (OpenAI-compatible API).\\\\n\\\\nPart 1 (Count Curve): count={1,4,8,16,32,64,80}, 25 random batches per count\\\\nPart 2 (BCS-Controlled): count=8 + count=16, 25 low-BCS + 25 high-BCS batches each\\\\n\\\\nUsage:\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode dry_run\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode part1\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode part2\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode all\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nOUTPUT_DIR = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp_gemini_flash\\\\\\\"\\\\n\\\\n# TUM proxy config (OpenAI-compatible)\\\\nDEFAULT_API_KEY = \\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\"\\\\nDEFAULT_BASE_URL = \\\\\\\"https://api.openai.com/v1\\\\\\\"\\\\nDEFAULT_MODEL = \\\\\\\"gemini-2.5-flash\\\\\\\"\\\\n\\\\nPART1_COUNTS = [1, 4, 8, 16, 32, 64, 80]\\\\nN_BATCHES_PER_COUNT = 25\\\\nN_SAMPLES_PER_REL = 12\\\\nN_RELATIONS = 80\\\\nTOTAL_SAMPLES = N_SAMPLES_PER_REL * N_RELATIONS  # 960\\\\n\\\\n\\\\ndef build_prompt_re(sentence: str, head: str, tail: str,\\\\n                    relation_types: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build RE classification prompt (matches Qwen3 experiments exactly).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    candidates = \\\\\\\", \\\\\\\".join(sorted(relation_types))\\\\n    return (\\\\n        \\\\\\\"Given the following sentence and two entities, \\\\\\\"\\\\n        \\\\\\\"classify the relation between them.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Sen\n…[truncated 1409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 603
+          },
+          "id": "event-001638"
+        },
+        {
+          "source_line": 1639,
+          "timestamp": "2026-05-17T15:28:16.687627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -180 /root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py"
+            }
+          },
+          "id": "event-001639"
+        },
+        {
+          "source_line": 1640,
+          "timestamp": "2026-05-17T15:28:17.089678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Gemini 2.5 Flash cross-model validation: FewRel RE count curve + BCS-controlled.\\\\n\\\\nProves schema degradation is model-agnostic by replicating Qwen3-32B experiments\\\\non Gemini 2.5 Flash via TUM proxy (OpenAI-compatible API).\\\\n\\\\nPart 1 (Count Curve): count={1,4,8,16,32,64,80}, 25 random batches per count\\\\nPart 2 (BCS-Controlled): count=8 + count=16, 25 low-BCS + 25 high-BCS batches each\\\\n\\\\nUsage:\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode dry_run\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode part1\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode part2\\\\n    python3 scripts/run_gemini_flash_fewrel.py --mode all\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nOUTPUT_DIR = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp_gemini_flash\\\\\\\"\\\\n\\\\n# TUM proxy config (OpenAI-compatible)\\\\nDEFAULT_API_KEY = \\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\"\\\\nDEFAULT_BASE_URL = \\\\\\\"https://api.openai.com/v1\\\\\\\"\\\\nDEFAULT_MODEL = \\\\\\\"gemini-2.5-flash\\\\\\\"\\\\n\\\\nPART1_COUNTS = [1, 4, 8, 16, 32, 64, 80]\\\\nN_BATCHES_PER_COUNT = 25\\\\nN_SAMPLES_PER_REL = 12\\\\nN_RELATIONS = 80\\\\nTOTAL_SAMPLES = N_SAMPLES_PER_REL * N_RELATIONS  # 960\\\\n\\\\n\\\\ndef build_prompt_re(sentence: str, head: str, tail: str,\\\\n                    relation_types: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build RE classification prompt (matches Qwen3 experiments exactly).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    candidates = \\\\\\\", \\\\\\\".join(sorted(relation_types))\\\\n    return (\\\\n        \\\\\\\"Given the following sentence and two entities, \\\\\\\"\\\\n        \\\\\\\"classify the relation between them.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Sen\n…[truncated 6214 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001640"
+        },
+        {
+          "source_line": 1641,
+          "timestamp": "2026-05-17T15:28:41.319261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -120 /root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py"
+            }
+          },
+          "id": "event-001641"
+        },
+        {
+          "source_line": 1642,
+          "timestamp": "2026-05-17T15:28:41.771166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"high_std_acc\\\\\\\": float(np.std(high_accs)) if high_accs else 0,\\\\n            \\\\\\\"n_low\\\\\\\": len(low_accs),\\\\n            \\\\\\\"n_high\\\\\\\": len(high_accs),\\\\n            \\\\\\\"low_batches\\\\\\\": grouped[ck][\\\\\\\"low\\\\\\\"],\\\\n            \\\\\\\"high_batches\\\\\\\": grouped[ck][\\\\\\\"high\\\\\\\"],\\\\n        }\\\\n\\\\n        # Bootstrap CI for delta\\\\n        if low_accs and high_accs:\\\\n            result.update(bootstrap_delta_ci(low_accs, high_accs))\\\\n\\\\n        summary[ck] = result\\\\n    return summary\\\\n\\\\n\\\\ndef bootstrap_delta_ci(low_accs, high_accs, n_bootstrap=10000, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Bootstrap 95% CI for mean(low) - mean(high).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    low_arr = np.array(low_accs)\\\\n    high_arr = np.array(high_accs)\\\\n    observed_delta = float(low_arr.mean() - high_arr.mean())\\\\n\\\\n    deltas = []\\\\n    for _ in range(n_bootstrap):\\\\n        l_boot = rng.choice(low_arr, size=len(low_arr), replace=True)\\\\n        h_boot = rng.choice(high_arr, size=len(high_arr), replace=True)\\\\n        deltas.append(l_boot.mean() - h_boot.mean())\\\\n\\\\n    deltas = np.array(deltas)\\\\n    return {\\\\n        \\\\\\\"delta_pp\\\\\\\": round(observed_delta * 100, 2),\\\\n        \\\\\\\"ci_lower_pp\\\\\\\": round(float(np.percentile(deltas, 2.5)) * 100, 2),\\\\n        \\\\\\\"ci_upper_pp\\\\\\\": round(float(np.percentile(deltas, 97.5)) * 100, 2),\\\\n    }\\\\n\\\\n\\\\ndef run_dry_run(client, model: str, samples: List[Dict]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Quick validation: 1 batch, ~5 samples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"=== DRY RUN: testing API connectivity ===\\\\\\\")\\\\n\\\\n    # Pick a count_8 batch\\\\n    batch_config = load_count_curve_batches()\\\\n    test_batch = batch_config[\\\\\\\"count_8\\\\\\\"][\\\\\\\"random\\\\\\\"][0]\\\\n    batch_types = test_batch[\\\\\\\"types\\\\\\\"]\\\\n    type_set = set(batch_types)\\\\n\\\\n    test_samples = [s for s in samples if s[\\\\\\\"relation_type\\\\\\\"] in type_set][:5]\\\\n    if not test_samples:\\\\n        test_sampl\n…[truncated 3288 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001642"
+        },
+        {
+          "source_line": 1643,
+          "timestamp": "2026-05-17T15:29:15.636394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_ssh_gemini_flash_cross_model (code design)\n\n**结论**: PASS（代码设计）+ WARNING（API 可用性）\n\n### 代码审查\n\n507 行，结构清晰。设计要点：\n\n**正确的对照设计** ✓：\n- Prompt 模板与 Qwen3 实验完全一致\n- 使用相同的 batch configs（`d051_fewrel_n25_s42` count curves + `exp_v2_re_n25` extreme BCS batches）\n- 相同 960 balanced samples（12/rel × 80 rels, seed=42）\n- 相同 bootstrap CI 方法（n=10000）\n\n**合理的新增**：\n- count=1 baseline 条件（Qwen3 实验没有，有助于完整曲线）\n- BCS-controlled 同时测 count_8 和 count_16\n\n**代码质量**：temperature=0.0、json_object response format、指数退避重试（max 5 次）、dry_run 模式。\n\n### 发现\n\n- [severity: warning] **API 可用性未验证**。`DEFAULT_BASE_URL = \"https://api.openai.com/v1\"` + `tum_XXB...` API key。之前 exp017_gpt4o_mini 因 \"TUM proxy 未部署在 AutoDL 服务器\" 被 kill。**必须先跑 `--mode dry_run` 验证连通性**，否则实验可能直接失败。\n\n- [severity: info] **Count_16 BCS batches 来源**。使用的是 LLaMA-70B 实验的 `bcs_controlled_llama-3.1-70b-fp8/count_16/batch_groups.json`，与 Qwen3 的 count_16 batches 可能不同。只要 BCS 对比度足够（此前审查确认 low~0.36 vs high~0.80），结论不受影响。\n\n- [severity: info] **API 调用量估算**：Part 1 ≈ 2,100 calls + Part 2 ≈ 1,200 calls = ~3,300 calls。Gemini Flash 价格低，成本可控。\n\n### 建议\n\n1. 提交实验前必须先跑 dry_run 确认 API 连通\n2. 确认 `openai` Python 包已安装在 cqa1",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001643"
+        },
+        {
+          "source_line": 1644,
+          "timestamp": "2026-05-17T15:29:19.361150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3724
+          },
+          "id": "event-001644"
+        },
+        {
+          "source_line": 1645,
+          "timestamp": "2026-05-17T15:29:21.200809+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查 Gemini Flash 跨模型实验结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-001645"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 1646,
+          "timestamp": "2026-05-17T16:13:22.584628+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**前瞻性评估请求**：两个 D058 实验（schema intervention + Gemini Flash）正在跑。请评估：\n\n**问题**：如果两个实验都得到正向结果，论文 claim 强度能升级到什么程度？\n\n当前状态：\n- Core claim: schema complexity 通过 count (Dim 1) 和 confusability (Dim 2) 两个维度降低 LLM IE 性能\n- 已有证据: Qwen3-32B + LLaMA-70B 跨模型验证（开源）、BCS-controlled 实验、few-shot 无法解决（structural）\n- 论文 framing: observational/correlational analysis paper\n\nD058 新增证据（如果正向）：\n1. **Schema intervention**: rename high-BCS types → F1 提升 = causal evidence（从 correlational 升级到 interventional）\n2. **Gemini Flash**: closed-source API model 也展现相同 pattern = architecture-family-independent\n\n请评估：\n(a) Claim 强度上限——能否从 \"predicts\" 升级到更强的因果表述？\n(b) 论文 framing 是否需要调整（如从 analysis paper 升级到 analysis + actionable solution）？\n(c) Excitement 评分预期能提升多少（当前 2.75/5）？\n(d) 还有什么 gap 会阻止 Main conference acceptance？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system"
+          },
+          "id": "event-001646"
+        },
+        {
+          "source_line": 1647,
+          "timestamp": "2026-05-17T16:14:09.643241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-001647"
+        },
+        {
+          "source_line": 1648,
+          "timestamp": "2026-05-17T16:14:09.795184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — schema-dag-extraction\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25 cycle)\n5\t- Commitment deadline: August 2, 2026\n6\t- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\n7\t- Deadline: ARR May 25, 2026 (10 days from today)\n8\t\n9\t## Core Claims (2 claims) — Revised per D019\n10\t\n11\t1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\n12\t\n13\t2. **Multi-Channel Degradation**: Count and confusability degrade extraction through channels with bounded association -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\n14\t\n15\t~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass baseline 0.445. Merge amplification is an intrinsic challenge of schema decomposition that merge strategies (union+dedup, confidence-gated) cannot resolve. **Discussed as negative result + future work direction** — \"why naive decomposition fails\" is itself a contribution.\n16\t\n17\t## Story Spine — Revised per D012\n18\t\n19\t- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervise\n…[truncated 5514 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001648"
+        },
+        {
+          "source_line": 1649,
+          "timestamp": "2026-05-17T16:14:15.124041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md",
+              "offset": "80",
+              "limit": "60"
+            }
+          },
+          "id": "event-001649"
+        },
+        {
+          "source_line": 1650,
+          "timestamp": "2026-05-17T16:14:15.174828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t\n81\t### Tier 3: SUPPORTING — Few-NERD Per-type Analysis\n82\t\n83\tBridges pairwise and batch-level, demonstrates per-type signal in cross-domain schema:\n84\t- Spearman ρ=-0.293 (p=0.020, n=63 types, freq≥5) — Qwen3 embeddings\n85\t- Partial r=-0.200 (p=0.116) controlling for log-frequency\n86\t- Quartile comparison: high-BCS types F1=0.228 vs low-BCS F1=0.310 (Δ=-8.2pp)\n87\t- BCS-frequency uncorrelated at type level (r=0.042, p=0.74)\n88\t- MiniLM per-type: ρ≈0 (p=0.97) — extraction model alignment required for per-type signal\n89\t\n90\t### Tier 4: DISCUSSION — MAVEN Per-type Centrality Confound\n91\t\n92\tMethodological case study on when aggregated confusability measures fail:\n93\t- Qwen3 per-type: ρ=+0.189 (p=0.021) — OPPOSITE direction\n94\t- MiniLM per-type: ρ=+0.208 (p=0.011) — ALSO positive, ruling out embedding compression as sole explanation\n95\t- Both embeddings agree: positive direction on MAVEN is an intrinsic property of the type structure\n96\t- Explanation: in homogeneous schemas, mean BCS conflates confusability with type centrality (types with many semantic neighbors → common/central types → higher F1)\n97\t- This is stronger than \"domain boundary\" — it identifies the specific mechanism (aggregation confound) rather than just the boundary condition\n98\t\n99\t### Tier 5: MECHANISTIC — Error Taxonomy (Cross-Task)\n100\t\n101\tIntraSub rate monotonically increases with BCS on both NER and RE:\n102\t\n103\t**Few-NERD (NER, exp-007)**: IntraSub 0%→1.6%→10.6%→49.4%, ρ=1.0\n104\t**FewRel 80-rel (RE)**: IntraSub 0%→4.2%→13.0%→20.3%→32.3%, ρ=0.954 (p=0.0, n=154 batches)\n105\t- extra_sub=0 on both tasks — type confusion is purely intra-batch phenomenon\n106\t- Same mechanism, different absolute magnitudes — consistent with cross-task expectations\n107\t\n108\tAdditional from extreme batch design:\n109\t- Extreme batches: high-BCS 10-28x more type confusion errors vs low-BCS\n110\t- Random batches: 1.7-2.4x ratio (still significant, smaller effect)\n111\t\n112\t## Embedding Ablation (D010)\n113\t\n114\t2×3 matrix:\n…[truncated 1277 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001650"
+        },
+        {
+          "source_line": 1651,
+          "timestamp": "2026-05-17T16:15:35.771680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 前瞻性评估 — D058 双实验对论文 claim 强度的影响\n\n---\n\n### (a) Claim 强度上限\n\n**Schema intervention（如果正向）：**\n- 当前：\"SCS predicts confusion\"（correlational）\n- 可升级至：\"reducing SCS reduces confusion\"（interventional）\n- 不能升级到：\"SCS causes confusion\"（需要 attention/logit 机制分析）\n- 关键条件：solo accuracy sanity check 必须通过——如果 renamed labels 本身降低基线准确率，intervention 结论被混淆\n- 如果 sanity check 通过 + 改善仅出现在高 BCS batches（非均匀提升），可以写：\"confusability is actionable through schema label design\"\n\n**Gemini Flash（如果正向）：**\n- 当前：\"directionally consistent across architectures\"（2 个开源模型家族）\n- 可升级至：\"architecture-family-independent\"（开源 Qwen + 开源 LLaMA + 闭源 Gemini = 3 家族）\n- 限制：仍然只有 1 个闭源模型。审稿人可能要求 GPT-4/Claude\n\n**双正向的综合 claim：**\n> \"Schema confusability independently predicts extraction degradation across model families (open-weight and proprietary), and is partially addressable through schema label redesign.\"\n\nTitle \"Predict\" 可保留——\"predict\" 本身不排斥因果性，且 intervention 是辅助发现不是核心 story。\n\n### (b) Framing 调整\n\n从 \"analysis paper\" 升级为 \"analysis + actionable insight\" paper——但**不是** \"analysis + solution\" paper。\n\n理由：\n- Schema intervention 是 manual renaming，不是自动化工具，不可 scale\n- 效果可能局限于 RE（NER batch-level BCS 无信号）\n- 效果大小可能 modest（SCS 降低 0.20 不等于 confusion 消除）\n\n建议 framing：Contribution 列表中加第 5 条 \"We demonstrate that confusability is actionable: targeted schema label redesign reduces type confusion errors by X pp on high-confusability batches, confirming the interventional direction of the SCS-confusion link.\" 但保持整体定位为 empirical analysis paper with actionable diagnostic tool。\n\nSDGD negative result 获得对比点：\"naive decomposition fails due to merge amplification, but targeted label intervention succeeds, suggesting that confusability is better addressed at the schema design stage than at the inference decomposition stage.\"\n\n### (c) Excitement 预期\n\nEMNLP ARR 评分体系下的务实评估：\n\n| 场景 | Excitement 预期 | Overall 预期 |\n|------|----------------|-------------|\n| 当前（无 D058）| 2.75 | 3.0 (Findings) |\n| 只有 Gemini 正向 | 3.0 | 3.0-3.25 |\n| 只有 Intervention 正向 | 3.0-3.25 | 3.25 |\n| 双正向 + effect ≤5pp | 3.25 | 3.25-3.5 (Borderline Conference) |\n| 双正向 + effect >5pp | 3.5 | 3.5 (Borderline Conference) |\n\n**无法仅靠 D058 达到 4.0 (Conference)** 的原因：\n- Schema intervention 是 manual、non-scalable、RE-only\n- 核心发现仍然\"符合直觉\"——more types harder, similar types confusing\n- SCS 不是新指标概念\n\n**达到 4.0 还需要什么**：自动化 schema 优化算法（如 greedy label renaming minimizing BCS）+ 在真实 pipeline 中的部署效果。但这超出当前 timeline。\n\n### (d) Main conference acceptance 的剩余 gap\n\n即使双正向，以下 gap 仍然存在：\n\n1. **[最大 gap] 无自动化 solution**：Manual renaming 不 scalable。审稿人会问 \"so what should practitioners do?\" 如果答案只是 \"手动重命名 label\"，说服力有限。一个简单的 greedy algorithm（输入 schema → 输出 optimized labels）即使效果一般也会极大提升 actionability。\n\n2. **RE-specific batch-level signal**：BCS 预测 RE 准确率 (R²=22-53%) 但对 NER F1 无信号 (r≈0)。论文一半的 generalizability claim 只在 RE 上成立。\n\n3. **Modest pairwise r²**：1.3-1.7% 对 pair-level variance 的解释力。虽然 batch-level 放大到 22-53%，但审稿人可能 fixate 在低 r²。\n\n4. **Training-free niche 缩小**：随着 fine-tuning 成本下降（LoRA、QLoRA），training-free IE 的受众在缩小。论文需要更好地论证 training-free 场景的实际需求（rapid schema iteration、multilingual、low-resource domains）。\n\n5. **Intervention confound**：如果 renamed labels 导致 solo accuracy 下降，实验结论不干净。已建议 sanity check。\n\n### 总结\n\nD058 双正向将论文从 \"solid Findings\" (3.0) 推向 \"Borderline Conference\" (3.25-3.5)。这是有意义的提升，但 Main conference 接收仍然不确定。**最大的单一提升因素不在 D058 范围内**：一个简单的自动化 schema optimization 工具（哪怕只是 greedy renaming）会将 paper 从 \"characterization\" 变为 \"characterization + tool\"，这是 4.0 的门槛。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001651"
+        },
+        {
+          "source_line": 1652,
+          "timestamp": "2026-05-17T16:15:39.994315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4222
+          },
+          "id": "event-001652"
+        },
+        {
+          "source_line": 1653,
+          "timestamp": "2026-05-17T16:18:25.909974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001653"
+        },
+        {
+          "source_line": 1654,
+          "timestamp": "2026-05-17T16:18:25.960485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001654"
+        },
+        {
+          "source_line": 1655,
+          "timestamp": "2026-05-17T16:18:31.737009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001655"
+        },
+        {
+          "source_line": 1656,
+          "timestamp": "2026-05-17T16:18:32.140116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_schema_intervention\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:57:35.343Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:13:44.544Z\\\", \\\"hypothesis\\\": \\\"If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.\\\"}, \\\"exp_gemini_flash_cross_model\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:57:39.493Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:18:53.983Z\\\", \\\"hypothesis\\\": \\\"The two-dimensional degradation pattern (count-related decline + confusability-related type confusion) generalizes beyond open-weight models to proprietary API models. Gemini 2.5 Flash should show: (1) monotonic RE accuracy decline with count, and (2) significant BCS-accuracy correlation on extreme batches. If confirmed, the pattern is architecture-family-independent (open-weight Qwen/LLaMA + proprietary Gemini).\\\"}, \\\"exp_fewshot_bcs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:18:15.923Z\\\", \\\"updated_at\\\": \\\"2026-05-17T14:08:59.677Z\\\", \\\"hypothesis\\\": \\\"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\\\", \\\"parent\\\": \\\"exp_fewrel_v2_n25\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"sour\n…[truncated 12797 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 403
+          },
+          "id": "event-001656"
+        },
+        {
+          "source_line": 1657,
+          "timestamp": "2026-05-17T16:18:32.140566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/gemini_flash_fewrel/"
+            }
+          },
+          "id": "event-001657"
+        },
+        {
+          "source_line": 1658,
+          "timestamp": "2026-05-17T16:18:32.241229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'cqa1'. Available: ['cqa1-38874', 'home-1x5090', 'westd-24295']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-001658"
+        },
+        {
+          "source_line": 1659,
+          "timestamp": "2026-05-17T16:18:35.766998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/gemini_flash_fewrel/"
+            }
+          },
+          "id": "event-001659"
+        },
+        {
+          "source_line": 1660,
+          "timestamp": "2026-05-17T16:18:36.621211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/scs_renaming_intervention/"
+            }
+          },
+          "id": "event-001660"
+        },
+        {
+          "source_line": 1661,
+          "timestamp": "2026-05-17T16:18:37.173342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema-dag-extraction/artifacts/gemini_flash_fewrel/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-001661"
+        },
+        {
+          "source_line": 1662,
+          "timestamp": "2026-05-17T16:18:37.675786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema-dag-extraction/artifacts/scs_renaming_intervention/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-001662"
+        },
+        {
+          "source_line": 1663,
+          "timestamp": "2026-05-17T16:18:42.646295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/artifacts/ --group-directories-first"
+            }
+          },
+          "id": "event-001663"
+        },
+        {
+          "source_line": 1664,
+          "timestamp": "2026-05-17T16:18:43.098758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 91396\\\\ndrwxr-xr-x  2 root root     4096 May 18 00:07 exp_schema_intervention\\\\ndrwxr-xr-x  2 root root       29 May 17 23:12 exp_gemini_flash\\\\ndrwxr-xr-x  2 root root       47 May 17 23:10 q3_val_scs_confusion\\\\ndrwxr-xr-x  2 root root       99 May 17 21:51 fewshot_bcs_v2\\\\ndrwxr-xr-x  2 root root     4096 May 17 21:39 d051_llama-3.1-70b-fp8_fewnerd_n25_s42\\\\ndrwxr-xr-x  2 root root       99 May 17 21:16 fewshot_bcs_mitigation\\\\ndrwxr-xr-x  2 root root      113 May 17 20:10 fewshot_bcs\\\\ndrwxr-xr-x  4 root root       77 May 17 17:53 bcs_controlled_llama-3.1-70b-fp8\\\\ndrwxr-xr-x  2 root root     4096 May 17 17:33 d051_llama-3.1-70b-fp8_fewrel_n25_s42\\\\ndrwxr-xr-x  2 root root      134 May 17 17:20 paper\\\\ndrwxr-xr-x  2 root root     4096 May 17 13:25 d051_fewnerd_n25_s456\\\\ndrwxr-xr-x  2 root root     4096 May 17 10:47 d051_fewnerd_n25_s123\\\\ndrwxr-xr-x  2 root root     4096 May 17 08:08 d051_fewrel_n25_s456\\\\ndrwxr-xr-x  2 root root     4096 May 17 07:17 d051_fewrel_n25_s123\\\\ndrwxr-xr-x  2 root root     4096 May 17 06:19 d051_fewnerd_n25_s42\\\\ndrwxr-xr-x  2 root root     4096 May 17 03:54 d051_fewrel_n25_s42\\\\ndrwxr-xr-x  2 root root       34 May 16 22:17 fewrel_factorial_tost\\\\ndrwxr-xr-x  2 root root       34 May 16 20:11 fewrel_contamination_check\\\\ndrwxr-xr-x  2 root root       34 May 16 20:01 aggregation_simulation\\\\ndrwxr-xr-x  2 root root       34 May 16 19:57 scs_name_def_ablation\\\\ndrwxr-xr-x  2 root root       34 May 16 17:37 fewrel_partial_correlation_freq\\\\ndrwxr-xr-x 19 root root     4096 May 16 15:35 exp_confusability_batch_composition\\\\ndrwxr-xr-x  2 root root       10 May 16 14:47 exp017_gpt4o_mini_fewrel\\\\ndrwxr-xr-x  2 root root      189 May 16 13:28 exp_v2_re_n25\\\\ndrwxr-xr-x  3 root root     4096 May 16 13:01 exp_docred_confusability\\\\ndrwxr-xr-x  3 root root       41 May 16 13:01 exp_batch_composition\\\\ndrwxr-xr-x  2 root root       42 May 16 12:43 bcs_fix\\\\ndrwxr-xr-x  2 root root\n…[truncated 4417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001664"
+        },
+        {
+          "source_line": 1665,
+          "timestamp": "2026-05-17T16:18:43.601631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/scripts/ -name \"*gemini*\" -o -name \"*intervention*\" -o -name \"*renaming*\""
+            }
+          },
+          "id": "event-001665"
+        },
+        {
+          "source_line": 1666,
+          "timestamp": "2026-05-17T16:18:44.003674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/scripts/scs_renaming_analysis.py\\\\n/root/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py\\\\n/root/schema-dag-extraction/scripts/run_schema_intervention.py\\\\n/root/schema-dag-extraction/scripts/run_schema_intervention_v2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001666"
+        },
+        {
+          "source_line": 1667,
+          "timestamp": "2026-05-17T16:18:55.207217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/exp_schema_intervention/"
+            }
+          },
+          "id": "event-001667"
+        },
+        {
+          "source_line": 1668,
+          "timestamp": "2026-05-17T16:18:55.709556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/exp_gemini_flash/"
+            }
+          },
+          "id": "event-001668"
+        },
+        {
+          "source_line": 1669,
+          "timestamp": "2026-05-17T16:18:56.161671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 64\\\\ndrwxr-xr-x  2 root root  4096 May 18 00:07 .\\\\ndrwxr-xr-x 54 root root  4096 May 17 23:23 ..\\\\n-rw-r--r--  1 root root  1364 May 18 00:11 analysis.json\\\\n-rw-r--r--  1 root root  4545 May 17 23:55 qwen3_scs_verification.json\\\\n-rw-r--r--  1 root root 14099 May 18 00:11 results.json\\\\n-rw-r--r--  1 root root 11759 May 18 00:17 results_incremental.jsonl\\\\n-rw-r--r--  1 root root  7611 May 18 00:11 run_v2_final.log\\\\n-rw-r--r--  1 root root  2502 May 18 00:08 solo_sanity_check.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-001669"
+        },
+        {
+          "source_line": 1670,
+          "timestamp": "2026-05-17T16:18:56.613727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x  2 root root   29 May 17 23:12 .\\\\ndrwxr-xr-x 54 root root 4096 May 17 23:23 ..\\\\n-rw-r--r--  1 root root 9409 May 17 23:20 run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-001670"
+        },
+        {
+          "source_line": 1671,
+          "timestamp": "2026-05-17T16:18:56.614108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/runs/schema-dag-extraction/ -name \"*intervention*\" -o -name \"*gemini*\""
+            }
+          },
+          "id": "event-001671"
+        },
+        {
+          "source_line": 1672,
+          "timestamp": "2026-05-17T16:18:57.015808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001672"
+        },
+        {
+          "source_line": 1673,
+          "timestamp": "2026-05-17T16:19:01.787811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_schema_intervention/analysis.json"
+            }
+          },
+          "id": "event-001673"
+        },
+        {
+          "source_line": 1674,
+          "timestamp": "2026-05-17T16:19:02.241084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"high_bcs_group\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 25,\\\\n    \\\\\\\"mean_control_acc\\\\\\\": 0.6933,\\\\n    \\\\\\\"mean_treatment_acc\\\\\\\": 0.605,\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.0883,\\\\n    \\\\\\\"std_delta\\\\\\\": 0.0302,\\\\n    \\\\\\\"paired_ttest_t\\\\\\\": -14.6094,\\\\n    \\\\\\\"paired_ttest_p\\\\\\\": 0.0,\\\\n    \\\\\\\"cohens_d\\\\\\\": -2.9222\\\\n  },\\\\n  \\\\\\\"low_bcs_group\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 25,\\\\n    \\\\\\\"mean_control_acc\\\\\\\": 0.9008,\\\\n    \\\\\\\"mean_treatment_acc\\\\\\\": 0.8712,\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.0296,\\\\n    \\\\\\\"std_delta\\\\\\\": 0.0272,\\\\n    \\\\\\\"paired_ttest_t\\\\\\\": -5.4451,\\\\n    \\\\\\\"paired_ttest_p\\\\\\\": 1.4e-05,\\\\n    \\\\\\\"cohens_d\\\\\\\": -1.0882\\\\n  },\\\\n  \\\\\\\"interaction\\\\\\\": {\\\\n    \\\\\\\"high_mean_delta\\\\\\\": -0.0883,\\\\n    \\\\\\\"low_mean_delta\\\\\\\": -0.0296,\\\\n    \\\\\\\"difference\\\\\\\": -0.0588,\\\\n    \\\\\\\"ttest_t\\\\\\\": -7.2263,\\\\n    \\\\\\\"ttest_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"per_type_effect\\\\\\\": {\\\\n    \\\\\\\"country of citizenship\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.037,\\\\n      \\\\\\\"n_batches\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"follows\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.0883,\\\\n      \\\\\\\"n_batches\\\\\\\": 25\\\\n    },\\\\n    \\\\\\\"member of\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.089,\\\\n      \\\\\\\"n_batches\\\\\\\": 24\\\\n    },\\\\n    \\\\\\\"military rank\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.0208,\\\\n      \\\\\\\"n_batches\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"part of\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.0883,\\\\n      \\\\\\\"n_batches\\\\\\\": 25\\\\n    },\\\\n    \\\\\\\"participant of\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.0816,\\\\n      \\\\\\\"n_batches\\\\\\\": 6\\\\n    }\\\\n  },\\\\n  \\\\\\\"rename_count_correlation\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": -0.6254,\\\\n    \\\\\\\"p_value\\\\\\\": 3e-06\\\\n  },\\\\n  \\\\\\\"total_time_s\\\\\\\": 210.4,\\\\n  \\\\\\\"solo_sanity_check\\\\\\\": {\\\\n    \\\\\\\"n_pass\\\\\\\": 11,\\\\n    \\\\\\\"n_total\\\\\\\": 12,\\\\n    \\\\\\\"failed_types\\\\\\\": [\\\\n      \\\\\\\"mother\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-001674"
+        },
+        {
+          "source_line": 1675,
+          "timestamp": "2026-05-17T16:19:02.241472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_schema_intervention/qwen3_scs_verification.json"
+            }
+          },
+          "id": "event-001675"
+        },
+        {
+          "source_line": 1676,
+          "timestamp": "2026-05-17T16:19:02.693589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"embedding_model\\\\\\\": \\\\\\\"Qwen3-32B-FP8\\\\\\\",\\\\n  \\\\\\\"embedding_method\\\\\\\": \\\\\\\"last_hidden_state_mean_pooling\\\\\\\",\\\\n  \\\\\\\"prompt_template\\\\\\\": \\\\\\\"Relation type: {name}\\\\\\\",\\\\n  \\\\\\\"rename_map\\\\\\\": {\\\\n    \\\\\\\"participant of\\\\\\\": \\\\\\\"event involvement\\\\\\\",\\\\n    \\\\\\\"located in the administrative territorial entity\\\\\\\": \\\\\\\"situated within governing region\\\\\\\",\\\\n    \\\\\\\"country of origin\\\\\\\": \\\\\\\"birthplace domain\\\\\\\",\\\\n    \\\\\\\"part of\\\\\\\": \\\\\\\"integral segment of\\\\\\\",\\\\n    \\\\\\\"follows\\\\\\\": \\\\\\\"comes after\\\\\\\",\\\\n    \\\\\\\"member of\\\\\\\": \\\\\\\"affiliated with\\\\\\\",\\\\n    \\\\\\\"mother\\\\\\\": \\\\\\\"maternal parent\\\\\\\",\\\\n    \\\\\\\"position played on team\\\\\\\": \\\\\\\"athletic role on roster\\\\\\\",\\\\n    \\\\\\\"country of citizenship\\\\\\\": \\\\\\\"civic registration land\\\\\\\",\\\\n    \\\\\\\"military rank\\\\\\\": \\\\\\\"service rank designation\\\\\\\",\\\\n    \\\\\\\"father\\\\\\\": \\\\\\\"paternal figure\\\\\\\",\\\\n    \\\\\\\"winner\\\\\\\": \\\\\\\"contest victor\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pair_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"type_a\\\\\\\": \\\\\\\"participant\\\\\\\",\\\\n      \\\\\\\"type_b_original\\\\\\\": \\\\\\\"participant of\\\\\\\",\\\\n      \\\\\\\"type_b_renamed\\\\\\\": \\\\\\\"event involvement\\\\\\\",\\\\n      \\\\\\\"original_scs\\\\\\\": 0.9809,\\\\n      \\\\\\\"new_scs\\\\\\\": 0.9793,\\\\n      \\\\\\\"delta\\\\\\\": -0.0016,\\\\n      \\\\\\\"reduced\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"type_a\\\\\\\": \\\\\\\"contains administrative territorial entity\\\\\\\",\\\\n      \\\\\\\"type_b_original\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n      \\\\\\\"type_b_renamed\\\\\\\": \\\\\\\"situated within governing region\\\\\\\",\\\\n      \\\\\\\"original_scs\\\\\\\": 0.7727,\\\\n      \\\\\\\"new_scs\\\\\\\": 0.9612,\\\\n      \\\\\\\"delta\\\\\\\": 0.1885,\\\\n      \\\\\\\"reduced\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"type_a\\\\\\\": \\\\\\\"country\\\\\\\",\\\\n      \\\\\\\"type_b_original\\\\\\\": \\\\\\\"country of origin\\\\\\\",\\\\n      \\\\\\\"type_b_renamed\\\\\\\": \\\\\\\"birthplace domain\\\\\\\",\\\\n      \\\\\\\"original_scs\\\\\\\": 0.9701,\\\\n      \\\\\\\"new_scs\\\\\\\": 0.9377,\\\\n      \\\\\\\"delta\\\\\\\": -0.0324,\\\\n      \\\\\\\"\n…[truncated 4101 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001676"
+        },
+        {
+          "source_line": 1677,
+          "timestamp": "2026-05-17T16:19:03.195994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_schema_intervention/solo_sanity_check.json"
+            }
+          },
+          "id": "event-001677"
+        },
+        {
+          "source_line": 1678,
+          "timestamp": "2026-05-17T16:19:03.447377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -50 /root/schema-dag-extraction/artifacts/exp_gemini_flash/run.log"
+            }
+          },
+          "id": "event-001678"
+        },
+        {
+          "source_line": 1679,
+          "timestamp": "2026-05-17T16:19:03.599346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"country of citizenship\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"nationality\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 0.8333,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 0.8333,\\\\n    \\\\\\\"delta\\\\\\\": 0.0,\\\\n    \\\\\\\"pass\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"country of origin\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"land of origin\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 0.6667,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 0.6667,\\\\n    \\\\\\\"delta\\\\\\\": 0.0,\\\\n    \\\\\\\"pass\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"father\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"paternal figure\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 1.0,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 1.0,\\\\n    \\\\\\\"delta\\\\\\\": 0.0,\\\\n    \\\\\\\"pass\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"follows\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"comes after\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 0.8333,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 0.9167,\\\\n    \\\\\\\"delta\\\\\\\": 0.0833,\\\\n    \\\\\\\"pass\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"situated within governing region\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 1.0,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 1.0,\\\\n    \\\\\\\"delta\\\\\\\": 0.0,\\\\n    \\\\\\\"pass\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"member of\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"affiliated with\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 1.0,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 1.0,\\\\n    \\\\\\\"delta\\\\\\\": 0.0,\\\\n    \\\\\\\"pass\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"original_type\\\\\\\": \\\\\\\"military rank\\\\\\\",\\\\n    \\\\\\\"renamed_type\\\\\\\": \\\\\\\"service rank designation\\\\\\\",\\\\n    \\\\\\\"n_samples\\\\\\\": 12,\\\\n    \\\\\\\"solo_acc_original\\\\\\\": 1.0,\\\\n    \\\\\\\"solo_acc_renamed\\\\\\\": 1.0,\\\\n    \\\\\\\"delta\\\\\\\":\n…[truncated 1528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001679"
+        },
+        {
+          "source_line": 1680,
+          "timestamp": "2026-05-17T16:19:04.051431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 23:15:45,011 INFO __main__:   GT=child                               PRED=none                                93.19s MISS\\\\n2026-05-17 23:15:50,251 INFO openai._base_client: Retrying request to /chat/completions in 0.379655 seconds\\\\n2026-05-17 23:15:55,667 INFO openai._base_client: Retrying request to /chat/completions in 0.919062 seconds\\\\n2026-05-17 23:16:01,624 WARNING __main__: API error attempt 1/5: Connection error. (retry in 1s)\\\\n2026-05-17 23:16:07,673 INFO openai._base_client: Retrying request to /chat/completions in 0.469874 seconds\\\\n2026-05-17 23:16:13,180 INFO openai._base_client: Retrying request to /chat/completions in 0.892838 seconds\\\\n2026-05-17 23:16:19,111 WARNING __main__: API error attempt 2/5: Connection error. (retry in 2s)\\\\n2026-05-17 23:16:26,149 INFO openai._base_client: Retrying request to /chat/completions in 0.382960 seconds\\\\n2026-05-17 23:16:31,569 INFO openai._base_client: Retrying request to /chat/completions in 0.791001 seconds\\\\n2026-05-17 23:16:37,398 WARNING __main__: API error attempt 3/5: Connection error. (retry in 4s)\\\\n2026-05-17 23:16:46,441 INFO openai._base_client: Retrying request to /chat/completions in 0.379397 seconds\\\\n2026-05-17 23:16:51,862 INFO openai._base_client: Retrying request to /chat/completions in 0.900978 seconds\\\\n2026-05-17 23:16:57,797 WARNING __main__: API error attempt 4/5: Connection error. (retry in 8s)\\\\n2026-05-17 23:17:10,840 INFO openai._base_client: Retrying request to /chat/completions in 0.425711 seconds\\\\n2026-05-17 23:17:21,344 INFO openai._base_client: Retrying request to /chat/completions in 0.883609 seconds\\\\n2026-05-17 23:17:27,295 WARNING __main__: API error attempt 5/5: Connection error. (retry in 16s)\\\\n2026-05-17 23:17:27,296 INFO __main__:   GT=child                               PRED=none                                102.08s MISS\\\\n2026-05-17 23:17:27,590 INFO openai._base_client: Retrying request to /chat/c\n…[truncated 3568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 604
+          },
+          "id": "event-001680"
+        },
+        {
+          "source_line": 1681,
+          "timestamp": "2026-05-17T16:19:34.643256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -100 /root/schema-dag-extraction/artifacts/exp_schema_intervention/results.json"
+            }
+          },
+          "id": "event-001681"
+        },
+        {
+          "source_line": 1682,
+          "timestamp": "2026-05-17T16:19:35.095529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"low_0\\\\\\\",\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.3562733248940536,\\\\n    \\\\\\\"n_samples\\\\\\\": 96,\\\\n    \\\\\\\"n_types_renamed\\\\\\\": 1,\\\\n    \\\\\\\"renamed_types\\\\\\\": [\\\\n      \\\\\\\"country of citizenship\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"control_acc\\\\\\\": 0.9271,\\\\n    \\\\\\\"treatment_acc\\\\\\\": 0.8646,\\\\n    \\\\\\\"delta\\\\\\\": -0.0625\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"low_1\\\\\\\",\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.3576922571020467,\\\\n    \\\\\\\"n_samples\\\\\\\": 96,\\\\n    \\\\\\\"n_types_renamed\\\\\\\": 1,\\\\n    \\\\\\\"renamed_types\\\\\\\": [\\\\n      \\\\\\\"country of citizenship\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"control_acc\\\\\\\": 0.9271,\\\\n    \\\\\\\"treatment_acc\\\\\\\": 0.8958,\\\\n    \\\\\\\"delta\\\\\\\": -0.0312\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"low_2\\\\\\\",\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.3578861765563488,\\\\n    \\\\\\\"n_samples\\\\\\\": 96,\\\\n    \\\\\\\"n_types_renamed\\\\\\\": 1,\\\\n    \\\\\\\"renamed_types\\\\\\\": [\\\\n      \\\\\\\"country of citizenship\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"control_acc\\\\\\\": 0.9375,\\\\n    \\\\\\\"treatment_acc\\\\\\\": 0.8958,\\\\n    \\\\\\\"delta\\\\\\\": -0.0417\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"low_3\\\\\\\",\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.35802880621382166,\\\\n    \\\\\\\"n_samples\\\\\\\": 96,\\\\n    \\\\\\\"n_types_renamed\\\\\\\": 1,\\\\n    \\\\\\\"renamed_types\\\\\\\": [\\\\n      \\\\\\\"country of citizenship\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"control_acc\\\\\\\": 0.875,\\\\n    \\\\\\\"treatment_acc\\\\\\\": 0.8333,\\\\n    \\\\\\\"delta\\\\\\\": -0.0417\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"low_4\\\\\\\",\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.3584075351910932,\\\\n    \\\\\\\"n_samples\\\\\\\": 96,\\\\n    \\\\\\\"n_types_renamed\\\\\\\": 1,\\\\n    \\\\\\\"renamed_types\\\\\\\": [\\\\n      \\\\\\\"country of citizenship\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"control_acc\\\\\\\": 0.9688,\\\\n    \\\\\\\"treatment_acc\\\\\\\": 0.9167,\\\\n    \\\\\\\"delta\\\\\\\": -0.0521\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"low_5\\\\\\\",\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.35\n…[truncated 1001 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001682"
+        },
+        {
+          "source_line": 1683,
+          "timestamp": "2026-05-17T16:19:35.146550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_schema_intervention/run_v2_final.log"
+            }
+          },
+          "id": "event-001683"
+        },
+        {
+          "source_line": 1684,
+          "timestamp": "2026-05-17T16:19:35.850007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 00:07:39,320 INFO Using model: /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\n2026-05-18 00:08:00,201 INFO Loaded 960 balanced samples (80 relations)\\\\n2026-05-18 00:08:00,232 INFO ======================================================================\\\\n2026-05-18 00:08:00,232 INFO PHASE 2: Solo Accuracy Sanity Check\\\\n2026-05-18 00:08:00,232 INFO ======================================================================\\\\n2026-05-18 00:08:01,696 INFO   [OK] country of citizenship -> nationality: orig=0.833 renamed=0.833 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:03,003 INFO   [OK] country of origin -> land of origin: orig=0.667 renamed=0.667 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:04,161 INFO   [OK] father -> paternal figure: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:05,479 INFO   [OK] follows -> comes after: orig=0.833 renamed=0.917 (Δ=+0.083, n=12)\\\\n2026-05-18 00:08:07,021 INFO   [OK] located in the administrative territorial entity -> situated within governing region: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:08,266 INFO   [OK] member of -> affiliated with: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:09,598 INFO   [OK] military rank -> service rank designation: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:11,239 INFO   [FAIL] mother -> maternal parent: orig=0.833 renamed=0.750 (Δ=-0.083, n=12)\\\\n2026-05-18 00:08:12,510 INFO   [OK] part of -> integral segment of: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:13,657 INFO   [OK] participant of -> event involvement: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:15,325 INFO   [OK] position played on team -> athletic role on roster: orig=1.000 renamed=1.000 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:16,645 INFO   [OK] winner -> contest victor: orig=0.917 renamed=0.917 (Δ=+0.000, n=12)\\\\n2026-05-18 00:08:16,646 INFO Solo check: 11/12 passed (Δ >= -5pp)\\\\n2026-05-18 00:08:16,647\n…[truncated 5874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-001684"
+        },
+        {
+          "source_line": 1685,
+          "timestamp": "2026-05-17T16:20:10.134235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "2",
+              "fields": "['*']",
+              "filters": "{'status': 'ALLOCATED'}"
+            }
+          },
+          "id": "event-001685"
+        },
+        {
+          "source_line": 1686,
+          "timestamp": "2026-05-17T16:20:10.587106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_schema_intervention\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:57:35.343Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:13:44.544Z\\\", \\\"hypothesis\\\": \\\"If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001686"
+        },
+        {
+          "source_line": 1687,
+          "timestamp": "2026-05-17T16:20:11.144304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -80 /root/schema-dag-extraction/scripts/run_schema_intervention_v2.py"
+            }
+          },
+          "id": "event-001687"
+        },
+        {
+          "source_line": 1688,
+          "timestamp": "2026-05-17T16:20:11.546416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Schema Intervention Experiment v2: causal effect of type name renaming on RE accuracy.\\\\n\\\\nFixes from v1:\\\\n- Adds enable_thinking=False for Qwen3 (root cause of 0% accuracy in v1)\\\\n- Corrected RENAME_MAP per reviewer feedback\\\\n- Adds solo sanity check (Phase 2) before formal experiment\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport asyncio\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport re\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom openai import AsyncOpenAI, OpenAI\\\\nfrom scipy import stats\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nOUTPUT_DIR = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp_schema_intervention\\\\\\\"\\\\nBATCH_GROUPS_PATH = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp_v2_re_n25\\\\\\\" / \\\\\\\"batch_groups.json\\\\\\\"\\\\n\\\\nRENAME_MAP = {\\\\n    \\\\\\\"participant of\\\\\\\": \\\\\\\"event involvement\\\\\\\",\\\\n    \\\\\\\"located in the administrative territorial entity\\\\\\\": \\\\\\\"situated within governing region\\\\\\\",\\\\n    \\\\\\\"country of origin\\\\\\\": \\\\\\\"land of origin\\\\\\\",\\\\n    \\\\\\\"part of\\\\\\\": \\\\\\\"integral segment of\\\\\\\",\\\\n    \\\\\\\"follows\\\\\\\": \\\\\\\"comes after\\\\\\\",\\\\n    \\\\\\\"member of\\\\\\\": \\\\\\\"affiliated with\\\\\\\",\\\\n    \\\\\\\"mother\\\\\\\": \\\\\\\"maternal parent\\\\\\\",\\\\n    \\\\\\\"position played on team\\\\\\\": \\\\\\\"athletic role on roster\\\\\\\",\\\\n    \\\\\\\"country of citizenship\\\\\\\": \\\\\\\"nationality\\\\\\\",\\\\n    \\\\\\\"military rank\\\\\\\": \\\\\\\"service rank designation\\\\\\\",\\\\n    \\\\\\\"father\\\\\\\": \\\\\\\"paternal figure\\\\\\\",\\\\n    \\\\\\\"winner\\\\\\\": \\\\\\\"contest victor\\\\\\\",\\\\n}\\\\n\\\\nREVERSE_RENAME_MAP = {v: k for k, v in RENAME_MAP.items()}\\\\n\\\\nSEED = 42\\\\nN_PER_REL = 12\\\\nMAX_CONCURRENT = 32\\\\n\\\\n\\\\ndef load_balanced_samples():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 960 balanced samples (12 per relation) from FewRel val+train.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_samples = []\\\\n    for split in [\\\\\\\"val\\\\\\\", \\\\\\\"train\\\\\\\"]:\\\\n  \n…[truncated 1086 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-001688"
+        },
+        {
+          "source_line": 1689,
+          "timestamp": "2026-05-17T16:20:48.377128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"rename_map\\|RENAME_MAP\\|country_of_citizenship\\|country of citizenship\\|nationality\\|birthplace\\|land of origin\\|civic registration\" /root/schema-dag-extraction/scripts/scs_renaming_analysis.py"
+            }
+          },
+          "id": "event-001689"
+        },
+        {
+          "source_line": 1690,
+          "timestamp": "2026-05-17T16:20:48.483035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 105
+          },
+          "id": "event-001690"
+        },
+        {
+          "source_line": 1691,
+          "timestamp": "2026-05-17T16:20:52.649527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"rename_map\\|RENAME_MAP\" /root/schema-dag-extraction/scripts/scs_renaming_analysis.py"
+            }
+          },
+          "id": "event-001691"
+        },
+        {
+          "source_line": 1692,
+          "timestamp": "2026-05-17T16:20:52.750388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-001692"
+        },
+        {
+          "source_line": 1693,
+          "timestamp": "2026-05-17T16:20:55.978620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"RENAME_MAP\" /root/schema-dag-extraction/scripts/scs_renaming_analysis.py"
+            }
+          },
+          "id": "event-001693"
+        },
+        {
+          "source_line": 1694,
+          "timestamp": "2026-05-17T16:20:56.481126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001694"
+        },
+        {
+          "source_line": 1695,
+          "timestamp": "2026-05-17T16:20:56.481484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"nationality\" /root/schema-dag-extraction/scripts/run_schema_intervention_v2.py"
+            }
+          },
+          "id": "event-001695"
+        },
+        {
+          "source_line": 1696,
+          "timestamp": "2026-05-17T16:20:56.933219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"38:    \\\\\\\"country of citizenship\\\\\\\": \\\\\\\"nationality\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001696"
+        },
+        {
+          "source_line": 1697,
+          "timestamp": "2026-05-17T16:21:17.990467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001697"
+        },
+        {
+          "source_line": 1698,
+          "timestamp": "2026-05-17T16:21:18.041031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001698"
+        },
+        {
+          "source_line": 1699,
+          "timestamp": "2026-05-17T16:22:00.269487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — D058 双实验结果\n\n### 一、exp_schema_intervention：[severity: critical] 实验结论不可信，存在多重方法论缺陷\n\n**实验假设**：重命名高 SCS 类型对以降低嵌入相似度 → 高 BCS batch 准确率应提高。\n\n**实际结果**：治疗组准确率**全面下降**，方向与假设完全相反。\n- High-BCS: control 69.3% → treatment 60.5% (Δ=**-8.83pp**)\n- Low-BCS: control 90.1% → treatment 87.1% (Δ=**-2.96pp**)\n- 交互效应: -5.88pp (p≈0)\n\n**三个 critical 缺陷：**\n\n**缺陷 1：SCS 验证与实验使用不同的重命名映射**\n\n`qwen3_scs_verification.json` 中的映射（Phase 1）：\n- \"country of citizenship\" → \"civic registration land\"\n- \"country of origin\" → \"birthplace domain\"\n\n`run_schema_intervention_v2.py` 实际使用的映射（Phase 2-3）：\n- \"country of citizenship\" → \"nationality\"\n- \"country of origin\" → \"land of origin\"\n\n**两个 Phase 使用了不同的 rename map**。SCS 验证数据（mean delta = -0.0135）不能用于解释实验结果，因为验证的不是实际跑的重命名。实验缺少对 V2 重命名映射的 Qwen3 SCS 验证。\n\n**缺陷 2：重命名数量与性能下降高度共线 (r=-0.625, p=3e-6)**\n\n- Low-BCS 中有 4 个 batch 含 0 个重命名类型 → delta **恰好 = 0.000**（low_6, low_7, low_12, low_18）\n- Low-BCS 中含 1 个重命名 → delta ≈ -0.01 到 -0.09\n- High-BCS 中全部含 3-4 个重命名 → delta ≈ -0.04 到 -0.15\n\nrename_count 与 delta 的 Pearson r=-0.625 意味着：**高 BCS batch 多掉的 5.88pp 可能完全由\"更多不熟悉标签\"驱动，而非\"confusability 更高\"**。zero-rename batch 的 delta=0 是最有力的证据——证明性能下降完全来自重命名本身，不来自 batch composition。\n\n**缺陷 3：solo sanity check 统计功效不足**\n\n每个类型仅 12 样本。\"mother\"→\"maternal parent\" 以 -8.3pp 失败（pass 阈值 -5pp），但实验仍继续。更重要的是：12 样本的 power 极低，一个真实 -3pp 的 solo 退化在 12 样本中几乎不可能被检测到（p≈0.6），但在 50 batch × 96 sample 的聚合中可以累积为可观的系统性偏差。\n\n**结论：此实验不能支持任何因果方向的声明。**\n\n正确解读：实验操纵失败（Qwen3 空间中 SCS 未有效降低），且存在 rename-count 共线性混淆。既不能说\"confusability 是 causal\"也不能说\"confusability 不是 causal\"。实验是 inconclusive。\n\n**建议**：\n1. 如果要在论文中提及此实验，必须以 inconclusive/negative 定位，不能 frame 为\"renaming hurts because it introduces noise\"（这是 rationalization）\n2. 因果验证需要不同的实验设计：要么 (a) 用 Qwen3 嵌入做 SCS 优化的重命名（确保 SCS 真的降了 ≥0.1），要么 (b) 完全不重命名，而是构建 type set 不同但 SCS matched 的对照 batch\n3. 不建议在 DDL 前投入更多 GPU-hours 在此方向——实验设计需要根本性重构\n\n---\n\n### 二、exp_gemini_flash_cross_model：[severity: warning] API 不可用，dry run 失败\n\nGemini Flash 实验 dry run 于 23:15-23:20 持续 Connection error（5/5 重试全部超时），最终 0/5 正确。TUM proxy API 无法连接。\n\n实验无法执行。registry 仍为 PREPARING 状态。\n\n**建议**：此实验对论文 claim 的贡献是 cross-model 第三模型族验证（开源 Qwen + 开源 LLaMA + 商用 Gemini）。如果 API 在 DDL 前无法恢复，论文已有 Qwen3-32B + LLaMA-70B 双模型验证，足够支撑核心 claim。建议不再投入时间在此方向，除非 API 自行恢复。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001699"
+        },
+        {
+          "source_line": 1700,
+          "timestamp": "2026-05-17T16:22:01.627458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1357
+          },
+          "id": "event-001700"
+        },
+        {
+          "source_line": 1701,
+          "timestamp": "2026-05-17T16:22:11.063181+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。核心发现：\n\n1. **Schema intervention 实验 [CRITICAL]**：治疗组准确率全面下降（与假设方向相反），且存在三重方法论缺陷：SCS 验证使用了错误的 rename map、rename count 与 delta 高度共线（r=-0.625）、solo sanity check 统计功效不足。实验 inconclusive，不能支持任何因果声明。\n\n2. **Gemini Flash 实验 [WARNING]**：API 连接失败，dry run 0/5，实验无法执行。建议放弃此方向，双模型验证已足够。\n\n继续监控后续 worker 通知和论文写作进展。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-001701"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 1702,
+          "timestamp": "2026-05-17T16:23:56.083555+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_exp_schema_intervention_v2_20260517T153900]:\nWorker worker_ssh_exp_schema_intervention_v2_20260517T153900 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system"
+          },
+          "id": "event-001702"
+        },
+        {
+          "source_line": 1703,
+          "timestamp": "2026-05-17T16:24:06.463078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "1",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'exp_schema_intervention'}"
+            }
+          },
+          "id": "event-001703"
+        },
+        {
+          "source_line": 1704,
+          "timestamp": "2026-05-17T16:24:06.714455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2467}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-001704"
+        },
+        {
+          "source_line": 1705,
+          "timestamp": "2026-05-17T16:24:10.132180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "3",
+              "fields": "['status', 'conclusion', 'metrics', 'notes', 'completed_at']"
+            }
+          },
+          "id": "event-001705"
+        },
+        {
+          "source_line": 1706,
+          "timestamp": "2026-05-17T16:24:10.433944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_schema_intervention\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"exp_gemini_flash_cross_model\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_fewshot_bcs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"0shot_low_bcs\\\": 0.6821, \\\"0shot_high_bcs\\\": 0.4975, \\\"0shot_delta_pp\\\": 18.46, \\\"1shot_low_bcs\\\": 0.7538, \\\"1shot_high_bcs\\\": 0.5542, \\\"1shot_delta_pp\\\": 19.96, \\\"5shot_low_bcs\\\": 0.7154, \\\"5shot_high_bcs\\\": 0.4875, \\\"5shot_delta_pp\\\": 22.79, \\\"delta_widening_0to5shot_pp\\\": 4.33, \\\"widening_p_value\\\": 0.014}, \\\"completed_at\\\": \\\"2026-05-17T14:07:52.204Z\\\"}}, \\\"count\\\": 3, \\\"total\\\": 60, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.241}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-001706"
+        },
+        {
+          "source_line": 1707,
+          "timestamp": "2026-05-17T16:24:23.887323+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 仍为 ALLOCATED 状态，Agent 尚未更新结论。我的 critical 审查报告（三大方法论缺陷：SCS 验证/实验 rename map 不匹配、rename-count 共线性混淆、solo sanity check 功效不足）已提交给 Director。待 Agent 更新 registry 结论后，我将核实其 framing 是否与数据一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-001707"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 1708,
+          "timestamp": "2026-05-17T16:26:54.712446+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001708"
+        },
+        {
+          "source_line": 1709,
+          "timestamp": "2026-05-17T16:27:56.930156+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- exp_schema_intervention 的 Qwen3 SCS 验证（Phase 1）使用了与实验（Phase 2-3）不同的 rename map（验证用 \"civic registration land\"/\"birthplace domain\"，实验用 \"nationality\"/\"land of origin\"）。**任何基于 qwen3_scs_verification.json 的结论都不能用于解释 v2 实验结果**。\n- 论文数据必须用 unified protocol（reeval_text_match.py）的 micro 值，不能用旧 set-intersection 值（LLaMA NER 旧值 count_2=0.962 已被废弃，正确值 0.323）。\n- FewRel RE batch size 相等，micro≈macro 无实际差异；NER 有 1-1.2pp 差异，paper 用 micro。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874(root) + westd-24295(root)\n- 代码根目录：/root/schema-dag-extraction（远程）\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/\n- 论文 tex：本地 docs/paper/{main.tex, introduction.tex, discussion.tex, results.tex, ...}\n- 模型：/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/（cqa1）\n- 数据：/root/schema-dag-extraction/data/fewrel_parquet/、Few-NERD、MAVEN\n- 实验产物：/root/schema-dag-extraction/artifacts/（cqa1）\n- westd 日志已备份到 cqa1：/root/schema-dag-extraction/backup_westd/\n- 无活跃 GPU 进程（schema_intervention 已完成，gemini_flash dry run 已失败退出）\n\n### 3. 📊 当前状态\n**刚完成**：对 D058 双实验（schema intervention + Gemini Flash）的 critical 审查并已提交 Director。\n\n**Registry 状态**：\n- exp_schema_intervention: ALLOCATED（Agent 尚未更新为 DONE，但实验已产出结果到 artifacts/exp_schema_intervention/）\n- exp_gemini_flash_cross_model: PREPARING（dry run 失败，API Connection error，0/5 正确）\n- 其他近期实验全部 DONE\n\n**等待中**：\n- Director 对我的 schema_intervention critical 报告的响应/决策\n- Agent 更新 registry 中 exp_schema_intervention 的 conclusion/metrics\n- Round 12 论文写作修复（S1-S9）的实施和审查请求\n- Round 12 paper submission（submit_paper_to_review）\n\n### 4. 📋 待办\n- Agent 更新 exp_schema_intervention registry 结论 → 核查 Agent 是否将结果 frame 为 \"inconclusive\"（正确）而非 \"renaming hurts\"（rationalization）\n- Director 决定是否在论文中提及 schema intervention → 确保以 inconclusive/negative 定位，不能作为 causal evidence\n- Round 12 S1-S9 写作修复提交审查 → 逐项验证：(a) Introduction Finding(1) 拆句, (b) Conclusion 扩展到 5-8 句, (c) TOST 首次出现加 qualification, (d) main.tex L502/504/508/513/531 \"driven\" → \"related\"/\"associated\", (e) 3 个 orphan bib 条目删除, (f) missing references 添加\n- Val-only SCS-confusion 结果（ρ=0.216, p=0.018）写入论文 → 核查措辞和位置\n- Gemini Flash API 恢复 → 审查实验结果（但建议不再投入时间）\n\n### 5. 🎯 战略上下文\n- **DDL**：ARR May 25, 2026（~8 天）。论文核心 claim 已有足够实验支撑（Qwen3-32B + LLaMA-70B，4 数据集 3 任务）。\n- **schema intervention 是最大的坑**：实验结果方向完全相反（treatment 全面降低准确率），且存在三重方法论缺陷（rename map 不匹配、rename count 共线性 r=-0.625、solo check 功效不足）。**绝对不能 frame 为 causal evidence**。如果 Agent 试图包装为\"重要发现\"，这就是 rationalization（§5 negative-framing-review skill 的典型场景）。\n- **前瞻评估结论**（我已提交）：D058 实验的 realistic excitement 升级上限是 2.75→3.25-3.5。没有自动化工具/方案，很难进入 Main conference（Overall ≥4.0）。Findings 接收（Overall ≥3.0）是现实目标。\n- **容易判断错的事**：(1) 不要被 interaction effect p≈0 误导——统计显著不等于因果有效，rename count 共线性是致命混淆；(2) Qwen3 SCS 验证文件的数据是旧 rename map 的，与实验不对应；(3) 论文 NER 值要用 unified protocol micro，不要混淆 macro 来源的 count_curve_summary.json\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer"
+          },
+          "id": "event-001709"
+        }
+      ]
+    }
+  ]
+}

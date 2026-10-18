@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7a4561258f4ad292ae0f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k0925 long seed42 postfix",
+  "task_key": "worker_diagnose_eval_pi05_random_k0925_long_seed42_postfix_20260525T182215",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k0925_long_seed42_postfix_20260525T182215_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "cb9a39cfda1a16954219ae1d5e2ae2dd9ab5a0fe250fbbe8a2bfc599f66c6db0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**实验成功完成。**\n\n**关键指标：**\n- Overall SR: **38.6%** (193/500)\n- 运行时间: 257.9 min\n- 配置: random pruning, k=0.925, 236/256 tokens kept\n\n**Cliff zone 分析：**\n\n| keep ratio | SR |\n|---|---|\n| 0.95 | 61.2% |\n| **0.925** | **38.6%** |\n| 0.90 | 32.0% |\n\nk=0.95→0.925 下降了 22.6 个百分点（61.2→38.6），而 k=0.925→0.9 只下降 6.6 个百分点（38.6→32）。这说明 cliff 的主要跌落发生在 k=0.95 到 k=0.925 区间，衰退模式是**突变式**而非渐进式——仅多剪 2.5% tokens（从保留 243→236），性能就断崖式下跌。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e2c47d606b4f616233c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check exp 011 completion",
+  "task_key": "worker_check_exp-011-completion_20260519T161356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp-011-completion_20260519T161356_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "648dff0985d7a4ddb04bc4d2c30fcd0624bb6ba8f715eb5a00b5cced810fecaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或未创建），无影响。\n\n## exp-011 结果报告\n\n**状态: SUCCESS** — 16/16 模型评估全部完成\n\n**JSON 文件列表** (按完成时间):\n\n| # | 模型 | 完成时间 |\n|---|------|---------|\n| 1 | 1.3B-100B-GatedDeltaNet-pure | 22:31 |\n| 2 | 1.3B-100B-GatedDeltaNet-hybrid-24-1 | 22:42 |\n| 3 | 1.3B-100B-GatedDeltaNet-hybrid-12-1 | 22:49 |\n| 4 | 1.3B-100B-GatedDeltaNet-hybrid-6-1 | 22:56 |\n| 5 | 1.3B-100B-GatedDeltaNet-hybrid-3-1 | 23:01 |\n| 6 | 1.3B-100B-RetNet-pure | 23:07 |\n| 7 | 1.3B-100B-RetNet-hybrid-24-1 | 23:13 |\n| 8 | 1.3B-100B-RetNet-hybrid-12-1 | 23:20 |\n| 9 | 1.3B-100B-RetNet-hybrid-6-1 | 23:27 |\n| 10 | 1.3B-100B-RetNet-hybrid-3-1 | 23:33 |\n| 11 | 1.3B-100B-HGRN2-pure | 23:39 |\n| 12 | 1.3B-100B-HGRN2-hybrid-24-1 | 23:46 |\n| 13 | 1.3B-100B-HGRN2-hybrid-12-1 | 23:52 |\n| 14 | 1.3B-100B-HGRN2-hybrid-6-1 | 23:59 |\n| 15 | 1.3B-100B-HGRN2-hybrid-3-1 | 00:05 |\n| 16 | transformer_1.3B_baseline | 00:11 |\n\n**最后一个模型 (transformer baseline) 的分数**: boolq=0.6199, copa=0.7700, piqa=0.7361, sciq=0.9290\n\n**日志关键行**: `=== ALL MODELS COMPLETE at Wed May 20 00:11:42 CST 2026 ===`\n\n**Registry 已更新**: status=DONE, conclusion=success, checkpoint_path 和 log_path 已设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

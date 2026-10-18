@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe6c1e1ab11df2352b2",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis d009 paper strength assessment",
+  "task_key": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d009-paper-strength-assessment_20260519T164246_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "414750c4beeb796c1c1afe3fd34b053413447985c9882d99aa15d3191a7bbac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/d009_assessment.md`。核心结论：\n\n**模拟评分: 2.5 (Borderline Findings)**，三个 reviewer 加权后基线场景 2.7，通过 Related Work + writing 质量有 25% 概率达到 3.0。\n\n**exp-002 建议: 不做。** 三个理由：\n1. 最可能结果（non-LAMBADA 也有低 Jaccard）会**削弱** task-specificity 叙事\n2. 不解决任何 Major weakness (W1-W4)\n3. 20h GPU 更好用于 exp-007 (2h, 340M rebound) + 留 buffer\n\n**到 3.0 的最大 leverage**: Related Work (20+ refs, 0 GPU cost) > Decoupling 提升为 title-level contribution > exp-007 补 Claim 2 > writing 质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

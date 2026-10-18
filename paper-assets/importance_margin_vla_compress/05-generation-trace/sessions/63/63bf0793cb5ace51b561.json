@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "63bf0793cb5ace51b561",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "m103 check cqa1 status",
+  "task_key": "worker_m103_check_cqa1_status_20260525T011910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_m103_check_cqa1_status_20260525T011910_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "4bd4077fb8ec5eb11fbf26de4ba72ac639b8e6e7b7c5691cbdfd3663b559d57a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| # | 实验 | 状态 | GPU | 进度/结果 |\n|---|------|------|-----|-----------|\n| 1 | eval_pi05_l2norm_k085_object_seed43_postfix | **运行中** | GPU 0 (54%) | Task 5/10 完成，累计 249/250=99.6%，已跑 44.5min |\n| 2 | eval_pi05_random_k085_goal_seed43_postfix | **已完成** ✓ | — | **SR=53.4%** (267/500)，结果文件 May 23 已生成 |\n| 3 | eval_pi05_random_k085_spatial_seed43_postfix | **运行中** | GPU 1 (40%) | Task 9/10 进行中，累计 272/450=60.4%，141min |\n| 4 | eval_pi05_random_k085_long_seed43_v2 (=postfix) | **运行中** | GPU 2 (0%*) | Task 3/10，累计 70/150=46.7%，73min |\n| 5 | eval_pi05_l2norm_k085_spatial_seed43_postfix | **已完成** ✓ | — | **SR=88.2%** (441/500)，今天 08:39 结束 |\n\n**GPU 空闲：1 块**（GPU 3 完全空闲，24GB 可用）\n\n*GPU 2 显示 0% utilization 但占用 9.8GB 显存，可能处于 episode 间隙。\n\n**Registry 已更新**：实验 #2 和 #5 → status=DONE + metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

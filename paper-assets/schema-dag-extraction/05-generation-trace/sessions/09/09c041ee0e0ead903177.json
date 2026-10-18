@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "09c041ee0e0ead903177",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper figure fig count curves",
+  "task_key": "worker_paper_figure_fig_count_curves_20260515T161008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_count_curves_20260515T161008_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "43cff7106d339c4a84d887ca129790aaa4d3834b2a02eac8b60123d5ac146ec9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n- **PDF**: `figures/paper/fig_count_curves.pdf` (17.1 KB)\n- **PNG**: `figures/paper/fig_count_curves.png` (166.3 KB)\n\n三个子图均按规格绘制：(a) Few-NERD recall 从 0.72 降至 0.42，(b) FewRel accuracy 从 0.86 降至 0.50，(c) MAVEN relaxed F1 呈非单调上升至 ~0.25 后平稳。Okabe-Ito 配色、无顶部/右边框、Y 轴从 0 起始、300 DPI。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

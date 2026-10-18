@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ae0e263ebe493667403",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research citation verification",
+  "task_key": "worker_research_citation-verification_20260520T104340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verification_20260520T104340_result.json",
+    "occurrence": 1,
+    "bytes": 5606,
+    "sha256": "9a158d83e3d4dbcd345d54520674528670bb441d965f1c3c4d3c27cc3e2dc3e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 篇搜索完毕，结果如下：\n\n---\n\n## 论文 1: Cross-Model Disagreement as a Label-Free Correctness Signal\n- 存在性: ✅ 真实存在\n- 实际标题: Cross-Model Disagreement as a Label-Free Correctness Signal\n- 作者: Matt Gorbett, Suman Jana\n- Venue: arXiv preprint, March 2026\n- arXiv ID: 2603.25450\n- URL: https://arxiv.org/abs/2603.25450\n- BibTeX:\n```bibtex\n@article{gorbett2026crossmodel,\n  title={Cross-Model Disagreement as a Label-Free Correctness Signal},\n  author={Gorbett, Matt and Jana, Suman},\n  journal={arXiv preprint arXiv:2603.25450},\n  year={2026}\n}\n```\n- 与本文相关性: 提出 Cross-Model Perplexity/Entropy 作为无标签正确性信号，与 §4.3 per-example divergence 的思路有交叉但角度不同——他们聚焦 deployment monitoring/selective prediction，本文聚焦 fine-tuning gating。可以在 Related Work 中讨论。\n\n---\n\n## 论文 2: The Hidden Attention of Mamba Models\n- 存在性: ✅ 真实存在\n- 实际标题: The Hidden Attention of Mamba Models\n- 作者: Ameen Ali, Itamar Zimerman, Lior Wolf\n- Venue: ACL 2025 (Long Paper)\n- arXiv ID: 2403.01590\n- URL: https://aclanthology.org/2025.acl-long.76/\n- BibTeX:\n```bibtex\n@inproceedings{ali2025hidden,\n  title={The Hidden Attention of Mamba Models},\n  author={Ali, Ameen and Zimerman, Itamar and Wolf, Lior},\n  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2025}\n}\n```\n- 与本文相关性: 揭示 Mamba SSM 可等价为隐式 attention，与 Appendix D attention pattern analysis 方法论相关。如果 Appendix D 分析了 SSM-based 模型的 attention patterns，应当引用。\n\n---\n\n## 论文 3: Reconciling Model Multiplicity for Downstream Decision Making\n- 存在性: ✅ 真实存在\n- 实际标题: Reconciling Model Multiplicity for Downstream Decision Making\n- 作者: Ally Yalei Du, Dung Daniel Ngo, Zhiwei Steven Wu\n- Venue: ICLR 2025\n- arXiv ID: 2405.19667\n- URL: https://openreview.net/forum?id=uy4EavBEwl\n- BibTeX:\n```bibtex\n@inproceedings{du2025reconciling,\n  title={Reconciling Model Multiplicity for Downstream Decision Making},\n  author={Du, Ally Yalei and Ngo, Dung Daniel and Wu, Zhiwei Steven},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025}\n}\n```\n- 与本文相关性: 直接处理 predictive multiplicity 下的 model reconciliation，与本文 entrainment gating 框架在 multiplicity 层面有理论联系。建议引用。\n\n---\n\n## 论文 4: Resolving Predictive Multiplicity for the Rashomon Set\n- 存在性: ✅ 真实存在\n- 实际标题: Resolving Predictive Multiplicity for the Rashomon Set\n- 作者: Parian Haghighat, Hadis Anahideh, Cynthia Rudin\n- Venue: arXiv preprint, January 2026\n- arXiv ID: 2601.09071\n- URL: https://arxiv.org/abs/2601.09071\n- BibTeX:\n```bibtex\n@article{haghighat2026resolving,\n  title={Resolving Predictive Multiplicity for the Rashomon Set},\n  author={Haghighat, Parian and Anahideh, Hadis and Rudin, Cynthia},\n  journal={arXiv preprint arXiv:2601.09071},\n  year={2026}\n}\n```\n- 与本文相关性: Rashomon set 上通过 outlier correction + local patching 降低 multiplicity，是 predictive multiplicity 理论的最新进展。如果本文涉及 Rashomon set 或 multiplicity resolution，应引用。\n\n---\n\n## 论文 5: Mamba-3\n- 存在性: ✅ 真实存在\n- 实际标题: Mamba-3: Improved Sequence Modeling using State Space Principles\n- 作者: Aakash Lahoti, Kevin Y. Li, Berlin Chen, Caitlin Wang, Aviv Bick, J. Zico Kolter, Tri Dao, Albert Gu\n- Venue: ICLR 2026\n- arXiv ID: 2603.15569\n- URL: https://openreview.net/forum?id=HwCvaJOiCj\n- BibTeX:\n```bibtex\n@inproceedings{lahoti2026mamba3,\n  title={Mamba-3: Improved Sequence Modeling using State Space Principles},\n  author={Lahoti, Aakash and Li, Kevin Y. and Chen, Berlin and Wang, Caitlin and Bick, Aviv and Kolter, J. Zico and Dao, Tri and Gu, Albert},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2026}\n}\n```\n- 与本文相关性: 最新 hybrid SSM architecture，如果本文实验涉及 Mamba 系列模型或讨论 hybrid architectures，可在 Related Work 中提及作为最新进展。\n\n---\n\n## 论文 6: D'Amour et al. Underspecification 年份验证\n- 存在性: ⚠️ 存在，审稿人年份质疑不成立\n- 实际情况:\n  - arXiv 预印本: 2020 年 11 月 6 日 (arXiv:2011.03395)\n  - JMLR 正式发表: 2022 年, Volume 23, Issue 226, pp. 1–61\n- **结论: 当前 bib 引用 JMLR 2022 是正确的。** 审稿人说\"应为 2020\"是混淆了 arXiv 预印本日期和正式发表日期。学术引用应以正式发表版本为准。\n- URL: https://www.jmlr.org/papers/v23/20-1335.html\n- 当前 BibTeX 无需修改。\n\n---\n\n## 总结\n\n| # | 论文 | 存在性 | 审稿人信息准确度 |\n|---|------|--------|-----------------|\n| 1 | Cross-Model Disagreement | ✅ 真实 | arXiv ID、年份均正确 |\n| 2 | Hidden Attention of Mamba | ✅ 真实 | Venue、年份均正确 |\n| 3 | Reconciling Model Multiplicity | ✅ 真实 | Venue、年份均正确 |\n| 4 | Resolving Predictive Multiplicity | ✅ 真实 | arXiv ID、年份均正确 |\n| 5 | Mamba-3 | ✅ 真实 | Venue、年份均正确 |\n| 6 | D'Amour underspecification | ⚠️ 审稿人有误 | JMLR 2022 正确，非 2020 |\n\n**5 篇遗漏引用全部真实存在**，非 AI 幻觉。论文 6 的年份质疑不成立，当前 bib 无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

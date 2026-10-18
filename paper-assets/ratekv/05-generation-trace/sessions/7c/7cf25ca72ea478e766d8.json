@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7cf25ca72ea478e766d8",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp llama compounding sweep",
+  "task_key": "worker_exp_llama_compounding_sweep_20260515T161906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_llama_compounding_sweep_20260515T161906_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "2cca115732976c9407d8107559c322172cba047e8973b94fc1fe87717153786c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 cuda:0 上运行（17GB 显存占用），cuda:1 未受影响。\n\n- 模型已加载，256 KV heads\n- 正在用 WikiText-2 评估 9 个 k 值 (0,2,4,8,16,32,64,128,256)\n- 日志：`/root/ratekv/logs/llama_compounding_sweep.log`\n- 输出：`/root/ratekv/artifacts/llama_compounding_sweep_results.json`\n- 预计 45-90 分钟完成\n\n注册表已更新为 RUNNING 状态（exp_id: `llama_compounding_sweep`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd7fc901c2d55904c3b4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd27271 gpu0 pi05 random k085",
+  "task_key": "worker_deploy_westd27271_gpu0_pi05_random_k085_20260527T101906",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd27271_gpu0_pi05_random_k085_20260527T101906_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "db48d42785f599ebb8db1aa80ac8a86299f628f5f3bb297aece20452dd72e1b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU0 仍被 PID 830291 占用（85% 利用率，15946MiB 显存），即 OV Attn k=0.5 Goal v4 仍在运行。\n\nGPU0 仍被占用，等 OV Attn k=0.5 Goal v4 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

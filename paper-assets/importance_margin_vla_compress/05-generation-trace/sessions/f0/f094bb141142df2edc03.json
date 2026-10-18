@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f094bb141142df2edc03",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure fig degradation curve",
+  "task_key": "worker_paper_figure_fig_degradation_curve_20260520T001647",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_degradation_curve_20260520T001647_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "ca029425ec26ce7dd7a2d7a3d4f5dc11c0a4dd71975a04a9a95c8ac35c42d143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`fig_degradation_curve.pdf` 已重新生成（23,966 bytes）。两个标注均清晰可见：OpenVLA 曲线旁 \"graded degradation\"，SmolVLA 0% 区域 \"cliff-edge collapse\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

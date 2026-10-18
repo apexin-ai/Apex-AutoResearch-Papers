@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c674a25cca254c2e7ee",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis qwen25 14b topk50",
+  "task_key": "worker_analysis_qwen25_14b_topk50_20260520T053249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen25_14b_topk50_20260520T053249_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "a1990fbff49d8a47f2bf379ef2defe3ac621b3a37e736d521c72af7dfe1f4ebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果\n\n**qwen25_14b_topk50 → SUCCESS**\n\n| Metric | Value |\n|--------|-------|\n| RF 4-class acc | **47.93%** [47.26%, 48.59%] |\n| LR 4-class acc | 43.95% |\n| RF 3-class (no d0) | 51.64% |\n| d0v3 AUC | 0.9253 |\n| d1v2 AUC | 0.6868 |\n| d2v3 AUC | 0.6788 |\n\n### 14B 三策略对比\n\n| Strategy | RF 4-class |\n|----------|-----------|\n| nucleus | 54.05% |\n| temp 0.9 | 50.50% |\n| **top-k 50** | **47.93%** |\n\nTop-k 是最难的采样策略，但仍然接近 2× 随机基线（25%）。三种策略排序 nucleus > temp > topk 与 1.5B scale 一致。\n\n特征重要性有变化：top-k 下词汇多样性特征（TTR, hapax_ratio）排名上升，高于纯 perplexity 统计量，说明 top-k 的截断效应使判别信号从 perplexity 尾部转移到词汇分布。\n\nRegistry 已更新为 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

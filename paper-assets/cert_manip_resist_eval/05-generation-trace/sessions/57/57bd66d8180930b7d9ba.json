@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "57bd66d8180930b7d9ba",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis gam bootstrap ci k3",
+  "task_key": "worker_analysis_gam-bootstrap-ci-k3_20260523T163711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gam-bootstrap-ci-k3_20260523T163711_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "f1ae623f700b88629275c5a7b0627b30e6e6faa39e8ecce532fbd6c1637d906a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GAM Bootstrap CI (K=3) 完成，已保存到 `docs/paper/data/gam_bootstrap_ci_k3.json`。\n\n**关键发现：当前数据不再复现论文中的 6:6 targeted/shared-bias split。** 所有 12 个条件的 K_eff partial effect 均为正方向：\n\n| 条件 | pos_rate | 95% CI |\n|------|----------|--------|\n| mmlu×score_manipulation | 0.889 | [-8.48, 44.00] (唯一 CI 跨零) |\n| mmlu×prompt_injection | 0.988 | [3.95, 37.64] |\n| 其余 10 个条件 | ≥0.999 | 全部显著正 |\n\n`split_consistency_rate = 0.0`——shared-bias 组无一条件显示负方向，与存储在 `gam_tier_analysis_corrected.json` 中的旧 6:6 split 结果矛盾。这是因为底层 score 数据在原始分析之后发生了更新（原始 GCV≈5.81 vs 当前≈0.48）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

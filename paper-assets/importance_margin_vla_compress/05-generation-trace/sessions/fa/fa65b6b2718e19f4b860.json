@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "fa65b6b2718e19f4b860",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops deploy e3 e4 cqa1",
+  "task_key": "worker_ops_deploy_e3_e4_cqa1_20260523T070853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy_e3_e4_cqa1_20260523T070853.log",
+    "occurrence": 1,
+    "bytes": 962111,
+    "sha256": "96855ed203348f5d99d6fa1e7d13d31b8ff78a63253d494f1d42052630a2ffab"
+  },
+  "statistics": {
+    "messages": 453,
+    "user_turns": 1,
+    "tool_calls": 169,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 2,
+      "assistant": 99,
+      "tool_call": 169,
+      "tool_result": 169,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "fa65b6b2718e19f4b860-part-0001.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 340,
+      "chunks": [
+        {
+          "path": "fa65b6b2718e19f4b860-part-0001.json",
+          "message_count": 67
+        },
+        {
+          "path": "fa65b6b2718e19f4b860-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa65b6b2718e19f4b860-part-0003.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ]
+}

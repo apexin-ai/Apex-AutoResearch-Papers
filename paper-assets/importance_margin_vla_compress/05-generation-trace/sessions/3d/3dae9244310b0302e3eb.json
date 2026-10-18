@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3dae9244310b0302e3eb",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops healthcheck westd27271 v2",
+  "task_key": "worker_ops_healthcheck-westd27271-v2_20260524T093523",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_healthcheck-westd27271-v2_20260524T093523_result.json",
+    "occurrence": 1,
+    "bytes": 2036,
+    "sha256": "d896902d06514ebcb1a20f7be475691356b6241ca68547008b281aa85e51f3ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 健康检查报告 — westd-27271\n\n### GPU 状态总览\n\n| GPU | PID | 实验ID | Suite | Status | 运行时间 | 显存 | GPU-Util |\n|-----|-----|--------|-------|--------|----------|------|----------|\n| 0 | 676491 | eval_openvla_attn_k05_object_seed42_v2 | libero_object | **RUNNING** (Task 5/10) | 2h47m | 15.9/97.9 GB | 68% |\n| 1 | 675522 | eval_openvla_attn_k05_goal_seed42 | libero_goal | **RUNNING** (Task 7/10) | 2h49m | 15.9/97.9 GB | 67% |\n\n### 当前运行进度\n\n**GPU 0 — Object suite (v2 重跑)**\n- Tasks 1-4 完成，全部 0% SR（与之前 v1 结果一致）\n- Task 5/10 进行中\n- 预估剩余 ~3h（按 1.5 eps/min）\n\n**GPU 1 — Goal suite**\n- Tasks 1-6 完成：14%, 56%, 70%, 10%, 62%, 66%\n- Task 7/10 进行中（ep 20/50, 当前 9/20）\n- 预估剩余 ~1.5h\n\n### 已完成结果文件（本地已存储）\n\n| 文件 | Mode | Suite | SR | Episodes | 时间戳 |\n|------|------|-------|----|----------|--------|\n| `openvla_attention_prune_k05_object_seed42.json` | attention_prune k=0.5 | libero_object | **0.0%** | 500 | 13:45 (v1, 旧) |\n| `openvla_l2norm_prune_k05_goal_seed42.json` | l2norm_prune k=0.5 | libero_goal | **43.4%** | 500 | 12:25 |\n| `openvla_random_prune_k05_goal_seed42.json` | random_prune k=0.5 | libero_goal | **52.2%** | 500 | 12:56 |\n| `openvla_baseline_10_seed42.json` | baseline (no prune) | libero_10 | **52.8%** | 500 | 07:43 |\n\n### 未注册进程\n\n**无未注册任务。** 除了两个已注册实验进程外，只有系统级 tensorboard (PID 904) 和 jupyter-lab (PID 907)。无 tmux session。\n\nDirector 报告的\"未注册任务\"可能是之前 v1 的 object 评估（13:45 完成写入 JSON，之后 14:48 启动了 v2 重跑）——那次运行已结束并被 v2 替代。\n\n### 关键发现\n\n- Attention pruning k=0.5 在 Object suite 上完全失效（0.0%），v2 重跑中也延续相同趋势\n- Goal suite: attention (当前运行中) vs l2norm (43.4%) vs random (52.2%) — random 意外优于 l2norm"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

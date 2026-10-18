@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "392b025ec613d932453d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper research lit cluster 1 hybrid",
+  "task_key": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_lit_cluster_1_hybrid_20260519T182256_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "d916687a6dd8bcdac7d2f10415ed9f5ec8a5d9d0461a7f8382f9d620d60b752d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 格式正确，Hybrid Architectures cluster 现在有 7 篇论文（1 已有 + 6 新增）。\n\n**新增 6 篇论文摘要：**\n\n| bibtex_key | 标题 | 年份 | Venue | verified |\n|---|---|---|---|---|\n| `lieber2024jamba` | Jamba: A Hybrid Transformer-Mamba Language Model | 2024 | arXiv:2403.19887 | true |\n| `peng2024eagle` | Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence | 2024 | arXiv:2404.05892 | true |\n| `de2024griffin` | Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models | 2024 | arXiv:2402.19427 | true |\n| `dao2024mamba2` | Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality | 2024 | ICML 2024 | true |\n| `botev2024recurrentgemma` | RecurrentGemma: Moving Past Transformers for Efficient Open Language Models | 2024 | arXiv:2404.07839 | true |\n| `dong2024hymba` | Hymba: A Hybrid-head Architecture for Small Language Models | 2024 | arXiv:2411.13676 | true |\n\n4 篇 must-cite 全部确认。额外 2 篇选了 RecurrentGemma（Griffin 架构的开源权重实现，inter-layer hybrid）和 Hymba（NVIDIA 的 intra-layer head-wise hybrid，与 Jamba/Griffin 的 inter-layer 设计形成对比）。Mamba-2 是唯一确认发表在顶会（ICML 2024）的论文，其余均为 arXiv preprint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

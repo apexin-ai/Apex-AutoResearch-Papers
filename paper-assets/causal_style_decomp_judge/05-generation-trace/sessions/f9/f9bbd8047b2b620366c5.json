@@ -1,0 +1,1448 @@
+{
+  "schema_version": "1.0",
+  "id": "f9bbd8047b2b620366c5",
+  "project": "causal_style_decomp_judge",
+  "kind": "conversation",
+  "title": "code direction aware vs strict gate",
+  "task_key": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_direction_aware_vs_strict_gate_20260521T095946.jsonl",
+    "occurrence": 1,
+    "bytes": 90069,
+    "sha256": "f3bc21b4e0bb6932a44d409ccb1248bfdccc66f6e3500a4b48cce1a6f6c77da4"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "tool_call": 35,
+      "tool_result": 35,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T10:11:40.166142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T10:11:40.166518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T10:11:40.166694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "causal_style_decomp_judge",
+              "command": "find /root/causal_style_decomp_judge/data -type f -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\" -o -name \"*.tsv\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T10:11:40.166828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T10:11:40.166953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "causal_style_decomp_judge",
+              "command": "ls -la /root/causal_style_decomp_judge/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T10:11:40.167072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T10:11:40.167189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "find /root/causal_style_decomp_judge/data -type f -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\" -o -name \"*.tsv\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T10:11:40.167349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "ls -la /root/causal_style_decomp_judge/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T10:11:40.167544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/data/mvp_samples.jsonl\\\\n/root/causal_style_decomp_judge/data/dry_run_cf.jsonl\\\\n/root/causal_style_decomp_judge/data/dry_run_verified.jsonl\\\\n/root/causal_style_decomp_judge/data/dry_run_verified_gpu.jsonl\\\\n/root/causal_style_decomp_judge/data/synth_scored.jsonl\\\\n/root/causal_style_decomp_judge/data/counterfactuals.jsonl\\\\n/root/causal_style_decomp_judge/data/verified.jsonl\\\\n/root/causal_style_decomp_judge/data/scored.jsonl\\\\n/root/causal_style_decomp_judge/data/ate_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results/ate_summary.csv\\\\n/root/causal_style_decomp_judge/data/counterfactuals_32b.jsonl\\\\n/root/causal_style_decomp_judge/data/verified_32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_32b.jsonl\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_primary_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens1_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens2_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_all_summary.csv\\\\n/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv\\\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_detailed.csv\\\\n/root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/verified_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/verified_verbosity_v2.jsonl\\\\n/root/causal_style_decomp_judge/data/verified_verbosity_filtered.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/rate_control_input.jsonl\\\\n/root/causal_style_decomp_judge/data/mvp_samples_tone_pilot.jsonl\\\\n/root/causal_style_decomp_judge/data/counterfactuals_tone_pilot.jsonl\\\\n/root/causal_style_decomp_judge/data/benchmark_alpacaeval.jsonl\\\\n/root/causal_style_decomp_judge/d\n…[truncated 4716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T10:11:40.167710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 60\\\\ndrwxr-xr-x 9 root root 4096 May 21 16:45 .\\\\ndrwx------ 1 root root 4096 May 20 21:12 ..\\\\n-rw-r--r-- 1 root root 3916 May 21 08:13 analyze_register_pilot.py\\\\ndrwxr-xr-x 5 root root   83 May 21 11:27 artifacts\\\\ndrwxr-xr-x 3 root root 4096 May 21 16:48 csd_pipeline\\\\ndrwxr-xr-x 9 root root 4096 May 21 17:09 data\\\\ndrwxr-xr-x 2 root root   88 May 21 16:07 logs\\\\ndrwxr-xr-x 2 root root   10 May 20 16:45 outputs\\\\n-rw-r--r-- 1 root root  153 May 20 16:48 requirements.txt\\\\ndrwxr-xr-x 3 root root   29 May 20 19:25 results\\\\n-rw-r--r-- 1 root root 7613 May 21 16:34 run_gpt4o_rewriter_analysis.py\\\\n-rw-r--r-- 1 root root 8541 May 21 16:30 run_gpt4o_rewriter_verbosity.py\\\\n-rwxr-xr-x 1 root root 1531 May 20 18:00 run_mvp.sh\\\\n-rw-r--r-- 1 root root 3704 May 21 16:45 run_nli_only_verify.py\\\\n-rwxr-xr-x 1 root root 2032 May 21 08:44 run_register_n100.sh\\\\ndrwxr-xr-x 2 root root   40 May 21 16:35 scripts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T10:11:40.167868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -3 /root/causal_style_decomp_judge/data/verified_32b.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T10:11:40.167991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -3 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T10:11:40.168130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -3 /root/causal_style_decomp_judge/data/verified_scaled_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T10:11:40.168255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/run_nli_only_verify.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T10:11:40.168505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instruction\\\\\\\": \\\\\\\"Hey, what can you do for me?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\\\\\n\\\\\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"GPTInst\\\\\\\", \\\\\\\"label\\\\\\\": 2, \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0000\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physi\n…[truncated 6841 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T10:11:40.168763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instruction\\\\\\\": \\\\\\\"Hey, what can you do for me?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\\\\\n\\\\\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"GPTInst\\\\\\\", \\\\\\\"label\\\\\\\": 2, \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0000\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physi\n…[truncated 6613 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T10:11:40.169016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0000\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Hey, what can you do for me?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\\\\\n\\\\\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"GPTInst\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physical sensations: I \n…[truncated 6532 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T10:11:40.169231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"NLI-only verification for GPT-4o rewriter verbosity counterfactuals.\\\\nSkips BERTScore (which hangs on IDF download). Only NLI matters for filtering.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport logging\\\\nimport torch\\\\nfrom transformers import pipeline\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\nINPUT_FILE = f\\\\\\\"{DATA_DIR}/counterfactuals_gpt4o_rewriter_verbosity.jsonl\\\\\\\"\\\\nOUTPUT_FILE = f\\\\\\\"{DATA_DIR}/verified_gpt4o_rewriter_verbosity.jsonl\\\\\\\"\\\\nNLI_MODEL = \\\\\\\"/root/autodl-tmp/models/nli-deberta-v3-large/\\\\\\\"\\\\nNLI_THRESHOLD = 0.90\\\\nBATCH_SIZE = 16\\\\n\\\\n\\\\ndef compute_nli_batch(nli_pipe, texts_a, texts_b, batch_size=16, modes=None):\\\\n    if modes is None:\\\\n        modes = [\\\\\\\"both\\\\\\\"] * len(texts_a)\\\\n\\\\n    forward_inputs = [{\\\\\\\"text\\\\\\\": a, \\\\\\\"text_pair\\\\\\\": b} for a, b in zip(texts_a, texts_b)]\\\\n    backward_inputs = [{\\\\\\\"text\\\\\\\": b, \\\\\\\"text_pair\\\\\\\": a} for a, b in zip(texts_a, texts_b)]\\\\n\\\\n    def _entailment_scores(inputs):\\\\n        scores = []\\\\n        for i in range(0, len(inputs), batch_size):\\\\n            batch = inputs[i:i + batch_size]\\\\n            results = nli_pipe(batch, top_k=None,\\\\n                               tokenizer_kwargs={\\\\\\\"truncation\\\\\\\": True, \\\\\\\"padding\\\\\\\": True, \\\\\\\"max_length\\\\\\\": 512})\\\\n            for result in results:\\\\n                label_scores = {r[\\\\\\\"label\\\\\\\"].lower(): r[\\\\\\\"score\\\\\\\"] for r in result}\\\\n                scores.append(label_scores.get(\\\\\\\"entailment\\\\\\\", 0.0))\\\\n        return scores\\\\n\\\\n    fwd = _entailment_scores(forward_inputs)\\\\n    bwd = _entailment_scores(backward_inputs)\\\\n    return [\\\\n        f if m == \\\\\\\"forward\\\\\\\" else b if m == \\\\\\\"backward\\\\\\\" else min(f, b)\\\\n        for f, b, m in zip(fwd, bwd, modes)\\\\n    ]\\\\n\\\\n\\\\ndef main():\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    with\n…[truncated 2364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T10:11:40.169455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -1 /root/causal_style_decomp_judge/data/filtered_verbosity_nli90.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T10:11:40.169589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -1 /root/causal_style_decomp_judge/data/verified_verbosity_v2.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T10:11:40.169794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instruction\\\\\\\": \\\\\\\"Hey, what can you do for me?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\\\\\n\\\\\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"GPTInst\\\\\\\", \\\\\\\"label\\\\\\\": 2, \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0000\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physi\n…[truncated 5242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T10:11:40.169952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "ls /root/causal_style_decomp_judge/csd_pipeline/",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T10:11:40.170153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instruction\\\\\\\": \\\\\\\"Hey, what can you do for me?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\\\\\n\\\\\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"GPTInst\\\\\\\", \\\\\\\"label\\\\\\\": 2, \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0000\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"As an AI assistant, there are a few things I can't do for you:\\\\\\\\n\\\\\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\\\\\n\\\\\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\\\\\n\\\\\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\\\\\n\\\\\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\\\\\n\\\\\\\\n5. Physi\n…[truncated 5243 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T10:11:40.170320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rl \"nli_fwd\\|nli_bwd\\|nli_forward\\|nli_backward\" /root/causal_style_decomp_judge/data/ /root/causal_style_decomp_judge/csd_pipeline/",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T10:11:40.170469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nalpacaeval_qwen32b_scoring.py\\\\nalpacaeval_verbosity_qwen32b.py\\\\nate_analysis.py\\\\nbootstrap_10k_holm.py\\\\nclaude_judge_scoring.py\\\\ncontent_verification.py\\\\ncorrection_poc.py\\\\ncounterfactual_gen.py\\\\ndata_prep.py\\\\nexp010_binarized_likert.py\\\\nexp011_nli_sensitivity.py\\\\nexp012_consistency_bias.py\\\\nexp013_nli_validation.py\\\\nexp013_spotcheck.py\\\\nexp014_logistic_decomposition.py\\\\nexp015_clmm_analysis.py\\\\nexp016_bradley_terry.py\\\\ngee_diagnostics.py\\\\ngen_forest_plot.py\\\\ngen_pipeline_figure.py\\\\ngen_power_curve.py\\\\ngpt4o_analysis.py\\\\ngpt4o_crossbenchmark_scoring.py\\\\njudge_scoring.py\\\\nmtbench_qwen32b_scoring.py\\\\nnli_only_verify.py\\\\npairwise_scoring.py\\\\nqwen32b_analysis.py\\\\nqwen32b_register_bt.py\\\\nverbosity_gee.py\\\\nverbosity_length_confound.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T10:11:40.170602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T10:11:40.170739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rl \"nli_fwd\\|nli_bwd\\|nli_forward\\|nli_backward\" /root/causal_style_decomp_judge/data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T10:11:40.170862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T10:11:40.170978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/nli_only_verify.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T10:11:40.171095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/content_verification.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T10:11:40.171317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"NLI-only content verification for verbosity axis (skips BERTScore).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\ndef main():\\\\n    import argparse\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--input-file\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--output-file\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--nli-model\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--nli-threshold\\\\\\\", type=float, default=0.90)\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    with open(args.input_file) as f:\\\\n        records = [json.loads(line) for line in f if line.strip()]\\\\n    logger.info(\\\\\\\"Loaded %d records\\\\\\\", len(records))\\\\n\\\\n    originals = [r[\\\\\\\"original_text\\\\\\\"] for r in records]\\\\n    counterfactuals = [r[\\\\\\\"counterfactual_text\\\\\\\"] for r in records]\\\\n    double_rewrites = [r[\\\\\\\"double_rewrite_text\\\\\\\"] for r in records]\\\\n\\\\n    from transformers import pipeline\\\\n    nli_pipe = pipeline(\\\\n        \\\\\\\"text-classification\\\\\\\",\\\\n        model=args.nli_model,\\\\n        device=0 if args.device.startswith(\\\\\\\"cuda\\\\\\\") else -1,\\\\n    )\\\\n\\\\n    def entailment_scores(texts_a, texts_b):\\\\n        inputs = [{\\\\\\\"text\\\\\\\": a, \\\\\\\"text_pair\\\\\\\": b} for a, b in zip(texts_a, texts_b)]\\\\n        scores = []\\\\n        for i in range(0, len(inputs), args.batch_size):\\\\n            batch = inputs[i:i+args.batch_size]\\\\n            results = nli_pipe(batch, top_k=None, tokenizer_kwargs={\\\\\\\"truncation\\\\\\\": True, \\\\\\\"padding\\\\\\\": True, \\\\\\\"max_length\\\\\\\": 512})\\\\n            for result in results:\\\\n                label_scores = {r[\\\\\\\"label\\\\\\\"].lower(): r[\\\\\\\"score\\\\\\\"] for r in r\n…[truncated 3021 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T10:11:40.171601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Content preservation verification via BERTScore and NLI entailment.\\\\n\\\\nInput:  counterfactuals.jsonl (with original_text, counterfactual_text, double_rewrite_text)\\\\nOutput: verified.jsonl — adds bertscore_cf/dr, nli_cf/dr, passed_cf/dr fields\\\\nDeps:   bert-score, transformers, torch\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport statistics\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nNLI_THRESHOLD_MVP = 0.90\\\\nNLI_THRESHOLD_FULL = 0.95\\\\n\\\\n\\\\ndef compute_bertscore_batch(\\\\n    references: list[str], candidates: list[str], batch_size: int = 16, device: str = \\\\\\\"cuda\\\\\\\",\\\\n    model_type: str = \\\\\\\"microsoft/deberta-xlarge-mnli\\\\\\\", num_layers: int | None = None,\\\\n) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Returns F1 BERTScore for each (reference, candidate) pair.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from bert_score import score as bert_score\\\\n\\\\n    kwargs = dict(\\\\n        model_type=model_type,\\\\n        batch_size=batch_size,\\\\n        device=device,\\\\n        verbose=False,\\\\n    )\\\\n    if num_layers is not None:\\\\n        kwargs[\\\\\\\"num_layers\\\\\\\"] = num_layers\\\\n    _, _, f1 = bert_score(candidates, references, **kwargs)\\\\n    return f1.tolist()\\\\n\\\\n\\\\ndef compute_nli_batch(\\\\n    nli_pipe,\\\\n    texts_a: list[str],\\\\n    texts_b: list[str],\\\\n    batch_size: int = 16,\\\\n    modes: list[str] | None = None,\\\\n) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"NLI entailment scoring with per-record direction control.\\\\n\\\\n    modes: per-record \\\\\\\"both\\\\\\\" (bidirectional min), \\\\\\\"forward\\\\\\\" (a→b only),\\\\n           or \\\\\\\"backward\\\\\\\" (b→a only). Default: all \\\\\\\"both\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if modes is None:\\\\n        modes = [\\\\\\\"both\\\\\\\"] * len(texts_a)\\\\n\\\\n    forward_inputs = [{\\\\\\\"text\\\\\\\": a, \\\\\\\"text_pair\\\\\\\": b} for a, b in zip(texts_a, texts_b)]\\\\n    backward_inputs = [{\\\\\\\"text\\\\\\\": b, \\\\\\\"text_pair\\\\\\\": a} for a, b in zip(texts_a, texts_b)]\\\\n\\\\n    def _entailm\n…[truncated 7239 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T10:11:40.171821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T10:11:40.172043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-016: Bradley-Terry model for pairwise style preference.\\\\n\\\\nPair-level bootstrap (corrected): resamples pairs, not individual comparisons,\\\\nbecause within-pair trials (AB + BA) are correlated.\\\\n\\\\nRuns on both all-data and NLI-filtered (>=0.90) subsets.\\\\n\\\\nInput:  data/pairwise_results_32b.jsonl\\\\nOutput: console summary with BT parameters and bootstrap CI\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\n\\\\nimport choix\\\\nimport numpy as np\\\\n\\\\nDATA_PATH = \\\\\\\"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\\\\\\"\\\\nN_BOOT = 10000\\\\nFORMAL, CASUAL = 0, 1\\\\n\\\\n\\\\ndef load_data(path, nli_threshold=None):\\\\n    raw = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                raw.append(json.loads(line))\\\\n\\\\n    if nli_threshold is not None:\\\\n        raw = [d for d in raw if d.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_threshold]\\\\n\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n    t1_formal, t1_total = 0, 0\\\\n    t2_formal, t2_total = 0, 0\\\\n\\\\n    for rec in raw:\\\\n        pair_id = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            t1_total += 1\\\\n            if t1 == \\\\\\\"A\\\\\\\":\\\\n                pcomps.append((FORMAL, CASUAL))\\\\n                t1_formal += 1\\\\n            else:\\\\n                pcomps.append((CASUAL, FORMAL))\\\\n\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            t2_total += 1\\\\n            if t2 == \\\\\\\"A\\\\\\\":\\\\n                pcomps.append((CASUAL, FORMAL))\\\\n            else:\\\\n                pcomps.append((FORMAL, CASUAL))\\\\n                t2_formal += 1\\\\n\\\\n        comparisons.extend(pcomps)\\\\n        pair_groups[pair_id] = pcomps\\\\n\\\\n    total_formal = t1_formal + t2_formal\\\\n    total = t1_total + t2_total\\\\n    if t1_total:\\\\n        print(f\\\\\\\"  Trial 1: {t1_formal}/{t1_total} forma\n…[truncated 5360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T10:11:40.172227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -2 /root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T10:11:40.172375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -2 /root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T10:11:40.172534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instruction\\\\\\\": \\\\\\\"Generate a word association for the word \\\\\\\\\\\\\\\"dog\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Furry, playful, energetic, loyal, loving, obedient, friendly.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"Neighbor\\\\\\\", \\\\\\\"label\\\\\\\": 2, \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0082\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Furry, playful, energetic, loyal, loving, obedient, friendly.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Furry, playful, energetic, loyal, affectionate, compliant, amiable.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Furry, playful, full of energy, loyal, loving, easy to train, and friendly.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.9465831518173218, \\\\\\\"bertscore_dr\\\\\\\": 0.8754914999008179, \\\\\\\"nli_cf\\\\\\\": 0.9940401911735535, \\\\\\\"nli_dr\\\\\\\": 0.027162831276655197, \\\\\\\"passed_cf\\\\\\\": true, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 7, \\\\\\\"score_counterfactual\\\\\\\": 7, \\\\\\\"score_double_rewrite\\\\\\\": 7}\\\\n{\\\\\\\"instruction\\\\\\\": \\\\\\\"If I have a box of crayons and a sheet of paper, how many apples do I have?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"It is not possible to determine the answer based on the given information.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"Neighbor\\\\\\\", \\\\\\\"label\\\\\\\": 2, \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0031\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"It is not possible to determine the answer based on the given information.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"I can't figure out the answer with what's been given.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"The answer cannot be determined based on the information provided.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.8238934874534607, \\\\\\\"bertscore_dr\\\\\\\": 0.917121410369873, \\\\\\\"nli_cf\\\\\\\": 0.9987683892250061, \\\\\\\"nli_dr\\\\\\\": 0.9990264177322388, \\\\\\\"passed_cf\\\\\\\": false, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 7, \\\\\\\"score_counterfactual\\\\\\\": 7, \\\\\\\"score_double_rewrite\\\\\\\": 7}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"e\n…[truncated 26 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T10:11:40.172775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instruction\\\\\\\": \\\\\\\"What are some ways to enjoy life with children more?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"I am assuming you are talking about a situation where you are living together with children, typically family members. There is no universally correct answer to this question as enjoyment is deeply subjective but there are similarities across families from many cultures and time periods. For example, a common reason why children can make life less enjoyable for their parents is that they require a lot of care and attention which can be very stressful for the parents, especially if they also need to work or if their sleep cycle gets disrupted. Unfortunately there is no easy way to reduce this workload but you may be able to get help from others. Is your partner putting in enough effort? Maybe you have close friends or family members that can help you out.\\\\\\\\n\\\\\\\\nAnother common occurrence with children that can be stressful is if they are being uncooperative. For example, a child may refuse to eat their food. Again, there is no universal solution for this because the ways that a child can be persuaded will vary depending on their personality. Maybe they feel jealous of their younger sibling so something like \\\\\\\\\\\\\\\"Well, if you don't want to eat it I'll give it to your little brother\\\\\\\\\\\\\\\" may work to persuade a two or three year old child. You will need to understand the psychology of your child to find solutions that work for you. To get ideas you can try asking other parents.\\\\\\\\n\\\\\\\\nTry to find activities that you can do with your children or siblings that both of you enjoy. Maybe you both like sports or watching certain types of movies. Maybe your child is interested in something that you care deeply about so you can get a sense of fulfillment by teaching them about it. Maybe you like playing video games so you can give one of the controllers to your child (if they're young enough they won't notice\n…[truncated 6661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T10:11:40.172956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -2 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T10:11:40.173084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -2 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T10:11:40.173226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0030\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"the computer\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9984084963798523, \\\\\\\"bertscore_cf\\\\\\\": 0.8639068007469177, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": true, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"formal_wins\\\\\\\": true}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0014\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Write a Python function that takes two integers and returns their least common multiple.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.01673969440162182, \\\\\\\"bertscore_cf\\\\\\\": 0.805616557598114, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": false, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": false, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"formal_wins\\\\\\\": false}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T10:11:40.173378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T10:11:40.173523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0027\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Create a false fact about the planet Mars\\\\\\\", \\\\\\\"original_verbosity\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9988196492195129, \\\\\\\"bertscore_cf\\\\\\\": 0.8647546768188477, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_verbose\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial2_prefers_verbose\\\\\\\": true, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"verbose_wins\\\\\\\": true}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0011\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Create a story about a rabbit living with an adventurous squirrel in the forest.\\\\\\\", \\\\\\\"original_verbosity\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9014860391616821, \\\\\\\"bertscore_cf\\\\\\\": 0.8093522787094116, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_verbose\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial2_prefers_verbose\\\\\\\": true, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"verbose_wins\\\\\\\": true}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T10:11:40.173656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  100 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl\\\\n  100 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl\\\\n  200 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T10:11:40.173811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "wc -l /root/causal_style_decomp_judge/data/verified_32b.jsonl /root/causal_style_decomp_judge/data/verified_scaled_formality.jsonl /root/causal_style_decomp_judge/data/verified_verbosity.jsonl /root/causal_style_decomp_judge/data/verified_verbosity_v2.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T10:11:40.173942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    100 /root/causal_style_decomp_judge/data/verified_32b.jsonl\\\\n    355 /root/causal_style_decomp_judge/data/verified_scaled_formality.jsonl\\\\n    100 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl\\\\n    100 /root/causal_style_decomp_judge/data/verified_verbosity_v2.jsonl\\\\n    655 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T10:11:40.174063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T10:11:40.174253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GPT-4o formality BT 10k bootstrap + Holm-Bonferroni + Qwen register Cohen's d.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nimport choix\\\\n\\\\nDATA_PAIRWISE = \\\\\\\"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\\\\\\"\\\\nDATA_REGISTER = \\\\\\\"/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\\\\\\"\\\\nN_BOOT = 10000\\\\nFORMAL, CASUAL = 0, 1\\\\n\\\\n\\\\ndef load_pairwise(path, nli_threshold=0.90):\\\\n    raw = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                raw.append(json.loads(line))\\\\n    raw = [d for d in raw if d.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_threshold]\\\\n\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n\\\\n    for rec in raw:\\\\n        pair_id = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            if t1 == \\\\\\\"A\\\\\\\":\\\\n                pcomps.append((FORMAL, CASUAL))\\\\n            else:\\\\n                pcomps.append((CASUAL, FORMAL))\\\\n\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            if t2 == \\\\\\\"A\\\\\\\":\\\\n                pcomps.append((CASUAL, FORMAL))\\\\n            else:\\\\n                pcomps.append((FORMAL, CASUAL))\\\\n\\\\n        comparisons.extend(pcomps)\\\\n        pair_groups[pair_id] = pcomps\\\\n\\\\n    return comparisons, pair_groups\\\\n\\\\n\\\\ndef fit_bt(comparisons):\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    return params[FORMAL] - params[CASUAL]\\\\n\\\\n\\\\ndef bootstrap_pair(pair_groups, n_boot=N_BOOT, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    pair_ids = list(pair_groups.keys())\\\\n    n_pairs = len(pair_ids)\\\\n    diffs = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\\\n        boot = []\\\\n        for i in idx:\\\\n            boot.extend(pair_groups[pair_ids[i]])\\\\n        try:\\\\n \n…[truncated 4114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T10:11:40.174647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T10:11:40.174796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "alpacaeval_qwen32b_scoring.py\nbootstrap_10k_holm.py\nclaude_judge_scoring.py\ngee_diagnostics.py\ngen_forest_plot.py\ngpt4o_crossbenchmark_scoring.py\ngpt4o_rewriter_formality_scoring.py\nnli_gate_gpt4o_spotcheck.py\nqwen32b_analysis.py\nqwen32b_register_bt.py\nverbosity_gee.py\nverbosity_length_confound.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T10:11:40.174980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py",
+              "content": "\"\"\"Gate comparison: Direction-Aware vs Strict Bidirectional NLI gate for BT.\n\nRe-computes bidirectional NLI (forward + backward) for formality & verbosity\ncounterfactual pairs, then compares BT P(style) under:\n  - Strict gate:     min(NLI_fwd, NLI_bwd) >= 0.90\n  - Direction-aware: appropriate single direction >= 0.90\n    (verbosity: fwd for compression, bwd for expansion;\n     formality: max(fwd, bwd) — either direction sufficient)\n\"\"\"\n\nimport json\nimport logging\nimport sys\n\nimport choix\nimport numpy as np\nimport torch\nfrom transformers import pipeline as hf_pipeline\n\nlogger = logging.getLogger(__name__)\n\nNLI_MODEL = \"/root/autodl-tmp/models/nli-deberta-v3-large/\"\nTHRESHOLD = 0.90\nN_BOOT = 10_000\nSEED = 42\nBATCH_SIZE = 16\nDATA_DIR = \"/root/causal_style_decomp_judge/data\"\nHIGH, LOW = 0, 1\n\nAXES = {\n    \"formality\": {\n        \"verified\": f\"{DATA_DIR}/verified_32b.jsonl\",\n        \"pairwise\": f\"{DATA_DIR}/pairwise_results_qwen32b_formality.jsonl\",\n        \"style_field\": \"original_formality\",\n        \"high_style\": \"formal\",\n        \"pref_t1\": \"trial1_prefers_formal\",\n        \"pref_t2\": \"trial2_prefers_formal\",\n    },\n    \"verbosity\": {\n        \"verified\": f\"{DATA_DIR}/verified_verbosity.jsonl\",\n        \"pairwise\": f\"{DATA_DIR}/pairwise_results_qwen32b_verbosity.jsonl\",\n        \"style_field\": \"original_verbosity\",\n        \"high_style\": \"verbose\",\n        \"pref_t1\": \"trial1_prefers_verbose\",\n        \"pref_t2\": \"trial2_prefers_verbose\",\n    },\n}\n\n\n# ── Data ──────────────────────────────────────────────────────────────\n\ndef load_data(cfg):\n    \"\"\"Join verified texts with pairwise judge preferences by id.\"\"\"\n    with open(cfg[\"verified\"]) as f:\n        verified = {}\n        for line in f:\n            if line.strip():\n                r = json.loads(line)\n                verified[r[\"id\"]] = r\n    with open(cfg[\"pairwise\"]) as f:\n        pairwise = [json.loads(l) for l in f if l.strip()]\n    merged = []\n    for p in pairwise:\n        v = verified.get(p[\"id\"])\n        if v is None:\n            logger.warning(\"Pair %s not in verified data, skipping\", p[\"id\"])\n            continue\n        rec = {**v}\n        rec.update(p)\n        merged.append(rec)\n    logger.info(\"Loaded %d merged records\", len(merged))\n    return merged\n\n\n# ── NLI ───────────────────────────────────────────────────────────────\n\ndef compute_nli(nli_pipe, originals, counterfactuals, batch_size):\n    \"\"\"Return (forward, backward) NLI entailment scores for all pairs.\"\"\"\n    def _scores(a_list, b_list):\n        inputs = [{\"text\": a, \"text_pair\": b} for a, b in zip(a_list, b_list)]\n        out = []\n        for i in range(0, len(inputs), batch_size):\n            batch = inputs[i:i + batch_size]\n            res = nli_pipe(\n                batch, top_k=None,\n                tokenizer_kwargs={\"truncation\": True, \"padding\": True, \"max_length\": 512},\n            )\n            for r in res:\n                scores = {x[\"label\"].lower(): x[\"score\"] for x in r}\n                out.append(scores.get(\"entailment\", 0.0))\n        return out\n\n    logger.info(\"Forward NLI (original → counterfactual)...\")\n    fwd = _scores(originals, counterfactuals)\n    logger.info(\"Backward NLI (counterfactual → original)...\")\n    bwd = _scores(counterfactuals, originals)\n    return fwd, bwd\n\n\n# ── Gates ─────────────────────────────────────────────────────────────\n\ndef apply_gates(records, fwd, bwd, cfg):\n    \"\"\"Annotate each record with strict and direction-aware gate outcomes.\"\"\"\n    for i, rec in enumerate(records):\n        rec[\"nli_fwd\"] = fwd[i]\n        rec[\"nli_bwd\"] = bwd[i]\n\n        rec[\"nli_strict\"] = min(fwd[i], bwd[i])\n        rec[\"pass_strict\"] = rec[\"nli_strict\"] >= THRESHOLD\n\n        if cfg[\"style_field\"] == \"original_verbosity\":\n            if rec.get(\"original_verbosity\") == \"verbose\":\n                rec[\"nli_da\"] = fwd[i]\n            else:\n                rec[\"nli_da\"] = bwd[i]\n        else:\n            rec[\"nli_da\"] = max(fwd[i], bwd[i])\n\n        rec[\"pass_da\"] = rec[\"nli_da\"] >= THRESHOLD\n        rec[\"pass_extra\"] = rec[\"pass_da\"] and not rec[\"pass_strict\"]\n\n\n# ── BT ────────────────────────────────────────────────────────────────\n\ndef pair_comps(rec, cfg):\n    \"\"\"Extract BT comparisons for one pair from judge preferences.\"\"\"\n    c = []\n    if rec.get(\"trial1_choice\") in (\"A\", \"B\"):\n        c.append((HIGH, LOW) if rec.get(cfg[\"pref_t1\"]) else (LOW, HIGH))\n    if rec.get(\"trial2_choice\") in (\"A\", \"B\"):\n        c.append((HIGH, LOW) if rec.get(cfg[\"pref_t2\"]) else (LOW, HIGH))\n    return c\n\n\ndef fit_bt(comps):\n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    return params[HIGH] - params[LOW]\n\n\ndef bt_p(s):\n    return 1.0 / (1.0 + np.exp(-s))\n\n\ndef bt_analysis(recs, cfg, label):\n    \"\"\"BT fit + pair-level bootstrap CI for a filtered subset.\"\"\"\n    comps, groups = [], {}\n    for r in recs:\n        c = pair_comps(r, cfg)\n        if c:\n            comps.extend(c)\n            groups[r[\"id\"]] = c\n    if len(comps) < 2:\n        return None\n\n    prob = bt_p(fit_bt(comps))\n    rng = np.random.RandomState(SEED)\n    ids = list(groups.keys())\n    n = len(ids)\n    boot = []\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, size=n, replace=True)\n        b = []\n        for j in idx:\n            b.extend(groups[ids[j]])\n        try:\n            boot.append(bt_p(fit_bt(b)))\n        except Exception:\n            pass\n    boot = np.array(boot)\n    ci = np.percentile(boot, [2.5, 97.5])\n    n_below = int(np.sum(boot < 0.5))\n    pval = n_below / len(boot) if len(boot) else 1.0\n\n    return {\n        \"label\": label,\n        \"n_pairs\": len(groups),\n        \"n_comps\": len(comps),\n        \"bt\": round(prob, 4),\n        \"ci\": [round(ci[0], 4), round(ci[1], 4)],\n        \"pval\": pval,\n    }\n\n\ndef paired_bootstrap_delta(records, cfg):\n    \"\"\"Paired bootstrap: ΔP(style) = P_DA − P_strict per resample.\"\"\"\n    rng = np.random.RandomState(SEED)\n    n = len(records)\n    pc = [pair_comps(r, cfg) for r in records]\n    sm = [r[\"pass_strict\"] for r in records]\n    dm = [r[\"pass_da\"] for r in records]\n\n    deltas = []\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, size=n, replace=True)\n        cs, cd = [], []\n        for j in idx:\n            if sm[j]:\n                cs.extend(pc[j])\n            if dm[j]:\n                cd.extend(pc[j])\n        try:\n            if len(cs) >= 2 and len(cd) >= 2:\n                deltas.append(bt_p(fit_bt(cd)) - bt_p(fit_bt(cs)))\n        except Exception:\n            pass\n    return np.array(deltas)\n\n\n# ── Per-axis analysis ─────────────────────────────────────────────────\n\ndef run_axis(name, records, cfg, nli_pipe):\n    origs = [r[\"original_text\"] for r in records]\n    cfs = [r[\"counterfactual_text\"] for r in records]\n\n    logger.info(\"[%s] Computing bidirectional NLI (%d pairs)...\", name, len(records))\n    fwd, bwd = compute_nli(nli_pipe, origs, cfs, BATCH_SIZE)\n    apply_gates(records, fwd, bwd, cfg)\n\n    nt = len(records)\n    ns = sum(r[\"pass_strict\"] for r in records)\n    nd = sum(r[\"pass_da\"] for r in records)\n    ne = sum(r[\"pass_extra\"] for r in records)\n    high = cfg[\"high_style\"]\n\n    print(f\"\\n{'='*70}\")\n    print(f\"  {name.upper()} — Gate Comparison\")\n    print(f\"{'='*70}\")\n    print(f\"  Total pairs:          {nt}\")\n    print(f\"  Strict bidir gate:    {ns}/{nt} ({100*ns/nt:.0f}%)\")\n    print(f\"  Direction-aware gate: {nd}/{nt} ({100*nd/nt:.0f}%)\")\n    print(f\"  Extra (DA only):      {ne} ({100*ne/nt:.0f}%)\")\n\n    r_strict = bt_analysis(\n        [r for r in records if r[\"pass_strict\"]], cfg, \"Strict\",\n    )\n    r_da = bt_analysis(\n        [r for r in records if r[\"pass_da\"]], cfg, \"Direction-Aware\",\n    )\n    r_extra = bt_analysis(\n        [r for r in records if r[\"pass_extra\"]], cfg, \"Extra Only\",\n    )\n\n    for tag, res in [\n        (\"Strict Bidirectional\", r_strict),\n        (\"Direction-Aware\", r_da),\n        (\"Extra Pairs Only\", r_extra),\n    ]:\n        print(f\"\\n  ─── {tag} ───\")\n        if res is None:\n            print(f\"  Insufficient data\")\n            continue\n        print(f\"  n={res['n_pairs']} pairs, {res['n_comps']} comparisons\")\n        print(f\"  BT P({high}): {res['bt']:.4f}  CI [{res['ci'][0]:.4f}, {res['ci'][1]:.4f}]\")\n        if tag != \"Extra Pairs Only\":\n            pv = res[\"pval\"]\n            s = f\"p < {1/N_BOOT}\" if pv == 0 else f\"p = {pv:.4f}\"\n            print(f\"  {s}\")\n\n    if r_strict and r_da:\n        print(f\"\\n  ─── Difference Test (paired bootstrap, {N_BOOT} iter) ───\")\n        deltas = paired_bootstrap_delta(records, cfg)\n        obs = r_da[\"bt\"] - r_strict[\"bt\"]\n        ci_d = np.percentile(deltas, [2.5, 97.5])\n        z = ci_d[0] <= 0 <= ci_d[1]\n        print(f\"  Observed ΔP({high}): {obs:+.4f} (DA − strict)\")\n        print(f\"  Bootstrap 95% CI:  [{ci_d[0]:+.4f}, {ci_d[1]:+.4f}]\")\n        print(\n            f\"  Contains 0: \"\n            f\"{'Yes → no significant difference' if z else 'No → significant difference'}\"\n        )\n        return {\"strict\": r_strict, \"da\": r_da, \"extra\": r_extra,\n                \"delta_obs\": obs, \"delta_ci\": ci_d.tolist(), \"no_diff\": z}\n\n    return {\"strict\": r_strict, \"da\": r_da, \"extra\": r_extra}\n\n\n# ── Main ──────────────────────────────────────────────────────────────\n\ndef main():\n    logging.basicConfig(\n        level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\",\n    )\n\n    logger.info(\"Loading NLI model from %s\", NLI_MODEL)\n    nli_pipe = hf_pipeline(\"text-classification\", model=NLI_MODEL, device=0)\n\n    results = {}\n    for name, cfg in AXES.items():\n        records = load_data(cfg)\n        results[name] = run_axis(name, records, cfg, nli_pipe)\n\n    print(f\"\\n{'='*70}\")\n    print(f\"  SUMMARY\")\n    print(f\"{'='*70}\")\n    for name in AXES:\n        r = results[name]\n        high = AXES[name][\"high_style\"]\n        if r.get(\"strict\") and r.get(\"da\"):\n            s, d = r[\"strict\"], r[\"da\"]\n            delta = r.get(\"delta_obs\", 0)\n            ci = r.get(\"delta_ci\", [0, 0])\n            nd = r.get(\"no_diff\", True)\n            print(\n                f\"  {name}: strict P({high})={s['bt']:.4f} (n={s['n_pairs']}), \"\n                f\"DA P({high})={d['bt']:.4f} (n={d['n_pairs']}), \"\n                f\"Δ={delta:+.4f} CI [{ci[0]:+.4f}, {ci[1]:+.4f}] \"\n                f\"→ {'no diff' if nd else 'DIFF'}\"\n            )\n    print()\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T10:11:40.175274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T10:11:40.175488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat > /root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py << 'SCRIPT_EOF'\n\"\"\"Gate comparison: Direction-Aware vs Strict Bidirectional NLI gate for BT.\n\nRe-computes bidirectional NLI (forward + backward) for formality & verbosity\ncounterfactual pairs, then compares BT P(style) under:\n  - Strict gate:     min(NLI_fwd, NLI_bwd) >= 0.90\n  - Direction-aware: appropriate single direction >= 0.90\n    (verbosity: fwd for compression, bwd for expansion;\n     formality: max(fwd, bwd) — either direction sufficient)\n\"\"\"\n\nimport json\nimport logging\nimport sys\n\nimport choix\nimport numpy as np\nimport torch\nfrom transformers import pipeline as hf_pipeline\n\nlogger = logging.getLogger(__name__)\n\nNLI_MODEL = \"/root/autodl-tmp/models/nli-deberta-v3-large/\"\nTHRESHOLD = 0.90\nN_BOOT = 10_000\nSEED = 42\nBATCH_SIZE = 16\nDATA_DIR = \"/root/causal_style_decomp_judge/data\"\nHIGH, LOW = 0, 1\n\nAXES = {\n    \"formality\": {\n        \"verified\": f\"{DATA_DIR}/verified_32b.jsonl\",\n        \"pairwise\": f\"{DATA_DIR}/pairwise_results_qwen32b_formality.jsonl\",\n        \"style_field\": \"original_formality\",\n        \"high_style\": \"formal\",\n        \"pref_t1\": \"trial1_prefers_formal\",\n        \"pref_t2\": \"trial2_prefers_formal\",\n    },\n    \"verbosity\": {\n        \"verified\": f\"{DATA_DIR}/verified_verbosity.jsonl\",\n        \"pairwise\": f\"{DATA_DIR}/pairwise_results_qwen32b_verbosity.jsonl\",\n        \"style_field\": \"original_verbosity\",\n        \"high_style\": \"verbose\",\n        \"pref_t1\": \"trial1_prefers_verbose\",\n        \"pref_t2\": \"trial2_prefers_verbose\",\n    },\n}\n\n\n# -- Data --\n\ndef load_data(cfg):\n    \"\"\"Join verified texts with pairwise judge preferences by id.\"\"\"\n    with open(cfg[\"verified\"]) as f:\n        verified = {}\n        for line in f:\n            if line.strip():\n                r = json.loads(line)\n                verified[r[\"id\"]] = r\n    with open(cfg[\"pairwise\"]) as f:\n        pairwise = [json.loads(l) for l in f if l.strip()]\n    merged = []\n    for p in pairwise:\n        v = verified.get(p[\"id\"])\n        if v is None:\n            logger.warning(\"Pair %s not in verified data, skipping\", p[\"id\"])\n            continue\n        rec = {**v}\n        rec.update(p)\n        merged.append(rec)\n    logger.info(\"Loaded %d merged records\", len(merged))\n    return merged\n\n\n# -- NLI --\n\ndef compute_nli(nli_pipe, originals, counterfactuals, batch_size):\n    \"\"\"Return (forward, backward) NLI entailment scores for all pairs.\"\"\"\n    def _scores(a_list, b_list):\n        inputs = [{\"text\": a, \"text_pair\": b} for a, b in zip(a_list, b_list)]\n        out = []\n        for i in range(0, len(inputs), batch_size):\n            batch = inputs[i:i + batch_size]\n            res = nli_pipe(\n                batch, top_k=None,\n                tokenizer_kwargs={\"truncation\": True, \"padding\": True, \"max_length\": 512},\n            )\n            for r in res:\n                scores = {x[\"label\"].lower(): x[\"score\"] for x in r}\n                out.append(scores.get(\"entailment\", 0.0))\n        return out\n\n    logger.info(\"Forward NLI (original -> counterfactual)...\")\n    fwd = _scores(originals, counterfactuals)\n    logger.info(\"Backward NLI (counterfactual -> original)...\")\n    bwd = _scores(counterfactuals, originals)\n    return fwd, bwd\n\n\n# -- Gates --\n\ndef apply_gates(records, fwd, bwd, cfg):\n    \"\"\"Annotate each record with strict and direction-aware gate outcomes.\"\"\"\n    for i, rec in enumerate(records):\n        rec[\"nli_fwd\"] = fwd[i]\n        rec[\"nli_bwd\"] = bwd[i]\n\n        rec[\"nli_strict\"] = min(fwd[i], bwd[i])\n        rec[\"pass_strict\"] = rec[\"nli_strict\"] >= THRESHOLD\n\n        if cfg[\"style_field\"] == \"original_verbosity\":\n            if rec.get(\"original_verbosity\") == \"verbose\":\n                rec[\"nli_da\"] = fwd[i]\n            else:\n                rec[\"nli_da\"] = bwd[i]\n        else:\n            rec[\"nli_da\"] = max(fwd[i], bwd[i])\n\n        rec[\"pass_da\"] = rec[\"nli_da\"] >= THRESHOLD\n        rec[\"pass_extra\"] = rec[\"pass_da\"] and not rec[\"pass_strict\"]\n\n\n# -- BT --\n\ndef pair_comps(rec, cfg):\n    \"\"\"Extract BT comparisons for one pair from judge preferences.\"\"\"\n    c = []\n    if rec.get(\"trial1_choice\") in (\"A\", \"B\"):\n        c.append((HIGH, LOW) if rec.get(cfg[\"pref_t1\"]) else (LOW, HIGH))\n    if rec.get(\"trial2_choice\") in (\"A\", \"B\"):\n        c.append((HIGH, LOW) if rec.get(cfg[\"pref_t2\"]) else (LOW, HIGH))\n    return c\n\n\ndef fit_bt(comps):\n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    return params[HIGH] - params[LOW]\n\n\ndef bt_p(s):\n    return 1.0 / (1.0 + np.exp(-s))\n\n\ndef bt_analysis(recs, cfg, label):\n    \"\"\"BT fit + pair-level bootstrap CI for a filtered subset.\"\"\"\n    comps, groups = [], {}\n    for r in recs:\n        c = pair_comps(r, cfg)\n        if c:\n            comps.extend(c)\n            groups[r[\"id\"]] = c\n    if len(comps) < 2:\n        return None\n\n    prob = bt_p(fit_bt(comps))\n    rng = np.random.RandomState(SEED)\n    ids = list(groups.keys())\n    n = len(ids)\n    boot = []\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, size=n, replace=True)\n        b = []\n        for j in idx:\n            b.extend(groups[ids[j]])\n        try:\n            boot.append(bt_p(fit_bt(b)))\n        except Exception:\n            pass\n    boot = np.array(boot)\n    ci = np.percentile(boot, [2.5, 97.5])\n    n_below = int(np.sum(boot < 0.5))\n    pval = n_below / len(boot) if len(boot) else 1.0\n\n    return {\n        \"label\": label,\n        \"n_pairs\": len(groups),\n        \"n_comps\": len(comps),\n        \"bt\": round(prob, 4),\n        \"ci\": [round(ci[0], 4), round(ci[1], 4)],\n        \"pval\": pval,\n    }\n\n\ndef paired_bootstrap_delta(records, cfg):\n    \"\"\"Paired bootstrap: delta_P(style) = P_DA - P_strict per resample.\"\"\"\n    rng = np.random.RandomState(SEED)\n    n = len(records)\n    pc = [pair_comps(r, cfg) for r in records]\n    sm = [r[\"pass_strict\"] for r in records]\n    dm = [r[\"pass_da\"] for r in records]\n\n    deltas = []\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, size=n, replace=True)\n        cs, cd = [], []\n        for j in idx:\n            if sm[j]:\n                cs.extend(pc[j])\n            if dm[j]:\n                cd.extend(pc[j])\n        try:\n            if len(cs) >= 2 and len(cd) >= 2:\n                deltas.append(bt_p(fit_bt(cd)) - bt_p(fit_bt(cs)))\n        except Exception:\n            pass\n    return np.array(deltas)\n\n\n# -- Per-axis analysis --\n\ndef run_axis(name, records, cfg, nli_pipe):\n    origs = [r[\"original_text\"] for r in records]\n    cfs = [r[\"counterfactual_text\"] for r in records]\n\n    logger.info(\"[%s] Computing bidirectional NLI (%d pairs)...\", name, len(records))\n    fwd, bwd = compute_nli(nli_pipe, origs, cfs, BATCH_SIZE)\n    apply_gates(records, fwd, bwd, cfg)\n\n    nt = len(records)\n    ns = sum(r[\"pass_strict\"] for r in records)\n    nd = sum(r[\"pass_da\"] for r in records)\n    ne = sum(r[\"pass_extra\"] for r in records)\n    high = cfg[\"high_style\"]\n\n    print(f\"\\n{'='*70}\")\n    print(f\"  {name.upper()} -- Gate Comparison\")\n    print(f\"{'='*70}\")\n    print(f\"  Total pairs:          {nt}\")\n    print(f\"  Strict bidir gate:    {ns}/{nt} ({100*ns/nt:.0f}%)\")\n    print(f\"  Direction-aware gate: {nd}/{nt} ({100*nd/nt:.0f}%)\")\n    print(f\"  Extra (DA only):      {ne} ({100*ne/nt:.0f}%)\")\n\n    r_strict = bt_analysis(\n        [r for r in records if r[\"pass_strict\"]], cfg, \"Strict\",\n    )\n    r_da = bt_analysis(\n        [r for r in records if r[\"pass_da\"]], cfg, \"Direction-Aware\",\n    )\n    r_extra = bt_analysis(\n        [r for r in records if r[\"pass_extra\"]], cfg, \"Extra Only\",\n    )\n\n    for tag, res in [\n        (\"Strict Bidirectional\", r_strict),\n        (\"Direction-Aware\", r_da),\n        (\"Extra Pairs Only\", r_extra),\n    ]:\n        print(f\"\\n  --- {tag} ---\")\n        if res is None:\n            print(f\"  Insufficient data\")\n            continue\n        print(f\"  n={res['n_pairs']} pairs, {res['n_comps']} comparisons\")\n        print(f\"  BT P({high}): {res['bt']:.4f}  CI [{res['ci'][0]:.4f}, {res['ci'][1]:.4f}]\")\n        if tag != \"Extra Pairs Only\":\n            pv = res[\"pval\"]\n            s = f\"p < {1/N_BOOT}\" if pv == 0 else f\"p = {pv:.4f}\"\n            print(f\"  {s}\")\n\n    if r_strict and r_da:\n        print(f\"\\n  --- Difference Test (paired bootstrap, {N_BOOT} iter) ---\")\n        deltas = paired_bootstrap_delta(records, cfg)\n        obs = r_da[\"bt\"] - r_strict[\"bt\"]\n        ci_d = np.percentile(deltas, [2.5, 97.5])\n        z = ci_d[0] <= 0 <= ci_d[1]\n        print(f\"  Observed delta_P({high}): {obs:+.4f} (DA - strict)\")\n        print(f\"  Bootstrap 95% CI:  [{ci_d[0]:+.4f}, {ci_d[1]:+.4f}]\")\n        if z:\n            print(f\"  Contains 0: Yes -> no significant difference\")\n        else:\n            print(f\"  Contains 0: No -> significant difference\")\n        return {\"strict\": r_strict, \"da\": r_da, \"extra\": r_extra,\n                \"delta_obs\": obs, \"delta_ci\": ci_d.tolist(), \"no_diff\": z}\n\n    return {\"strict\": r_strict, \"da\": r_da, \"extra\": r_extra}\n\n\n# -- Main --\n\ndef main():\n    logging.basicConfig(\n        level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\",\n    )\n\n    logger.info(\"Loading NLI model from %s\", NLI_MODEL)\n    nli_pipe = hf_pipeline(\"text-classification\", model=NLI_MODEL, device=0)\n\n    results = {}\n    for name, cfg in AXES.items():\n        records = load_data(cfg)\n        results[name] = run_axis(name, records, cfg, nli_pipe)\n\n    print(f\"\\n{'='*70}\")\n    print(f\"  SUMMARY\")\n    print(f\"{'='*70}\")\n    for name in AXES:\n        r = results[name]\n        high = AXES[name][\"high_style\"]\n        if r.get(\"strict\") and r.get(\"da\"):\n            s, d = r[\"strict\"], r[\"da\"]\n            delta = r.get(\"delta_obs\", 0)\n            ci = r.get(\"delta_ci\", [0, 0])\n            nd = r.get(\"no_diff\", True)\n            print(\n                f\"  {name}: strict P({high})={s['bt']:.4f} (n={s['n_pairs']}), \"\n                f\"DA P({high})={d['bt']:.4f} (n={d['n_pairs']}), \"\n                f\"delta={delta:+.4f} CI [{ci[0]:+.4f}, {ci[1]:+.4f}] \"\n                f\"-> {'no diff' if nd else 'DIFF'}\"\n            )\n    print()\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T10:11:40.175752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T10:11:40.175903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && nohup python csd_pipeline/gate_comparison_bt.py > /tmp/gate_comparison.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T10:11:40.176035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=139232\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T10:11:40.176186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "tail -20 /tmp/gate_comparison.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T10:11:40.176343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"template<typename T>\\\\n__device__ T maximum(T a, T b) {\\\\n  return isnan(a) ? a : (a > b ? a : b);\\\\n}\\\\n\\\\ntemplate<typename T>\\\\n__device__ T minimum(T a, T b) {\\\\n  return isnan(a) ? a : (a < b ? a : b);\\\\n}\\\\n\\\\nextern \\\\\\\"C\\\\\\\" __global__\\\\nvoid fused_lt_gt___and___abs_where_div_log(long long vmid_1, long long* tv_, long long* trelative_pos_1, long long vv__, float* aten_log, long long* aten_where) {\\\\n{\\\\nif ((long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x)<5184ll ? 1 : 0) {\\\\n    long long trelative_pos_1_1 = __ldg(trelative_pos_1 + (long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x));\\\\n    aten_where[(long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x)] = (((bool)((int)((bool)(trelative_pos_1_1<vmid_1 ? 1 : 0)) & (int)((bool)(trelative_pos_1_1>vv__ ? 1 : 0)))) ? __ldg(tv_ + 0ll) : abs(trelative_pos_1_1));\\\\n    aten_log[(long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x)] = logf((float)((((bool)((int)((bool)(trelative_pos_1_1<vmid_1 ? 1 : 0)) & (int)((bool)(trelative_pos_1_1>vv__ ? 1 : 0)))) ? __ldg(tv_ + 0ll) : abs(trelative_pos_1_1))) / (float)(vmid_1));\\\\n  }}\\\\n}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T10:11:40.176506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "tail -30 /tmp/gate_comparison.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T10:11:40.176646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: nvrtc: error: failed to open libnvrtc-builtins.so.13.0.\\\\n  Make sure that libnvrtc-builtins.so.13.0 is installed correctly.\\\\nnvrtc compilation failed: \\\\n\\\\n#define NAN __int_as_float(0x7fffffff)\\\\n#define POS_INFINITY __int_as_float(0x7f800000)\\\\n#define NEG_INFINITY __int_as_float(0xff800000)\\\\n\\\\n\\\\ntemplate<typename T>\\\\n__device__ T maximum(T a, T b) {\\\\n  return isnan(a) ? a : (a > b ? a : b);\\\\n}\\\\n\\\\ntemplate<typename T>\\\\n__device__ T minimum(T a, T b) {\\\\n  return isnan(a) ? a : (a < b ? a : b);\\\\n}\\\\n\\\\nextern \\\\\\\"C\\\\\\\" __global__\\\\nvoid fused_lt_gt___and___abs_where_div_log(long long vmid_1, long long* tv_, long long* trelative_pos_1, long long vv__, float* aten_log, long long* aten_where) {\\\\n{\\\\nif ((long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x)<5184ll ? 1 : 0) {\\\\n    long long trelative_pos_1_1 = __ldg(trelative_pos_1 + (long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x));\\\\n    aten_where[(long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x)] = (((bool)((int)((bool)(trelative_pos_1_1<vmid_1 ? 1 : 0)) & (int)((bool)(trelative_pos_1_1>vv__ ? 1 : 0)))) ? __ldg(tv_ + 0ll) : abs(trelative_pos_1_1));\\\\n    aten_log[(long long)(threadIdx.x) + 512ll * (long long)(blockIdx.x)] = logf((float)((((bool)((int)((bool)(trelative_pos_1_1<vmid_1 ? 1 : 0)) & (int)((bool)(trelative_pos_1_1>vv__ ? 1 : 0)))) ? __ldg(tv_ + 0ll) : abs(trelative_pos_1_1))) / (float)(vmid_1));\\\\n  }}\\\\n}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T10:11:40.176791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -c \"ERROR\\|Traceback\\|RuntimeError\" /tmp/gate_comparison.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T10:11:40.176911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T10:11:40.177026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -30 /tmp/gate_comparison.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T10:11:40.177174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 18:09:35,335 INFO Loading NLI model from /root/autodl-tmp/models/nli-deberta-v3-large/\\\\n\\\\rLoading weights:   0%|          | 0/394 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 394/394 [00:00<00:00, 11249.61it/s]\\\\n2026-05-21 18:09:36,889 INFO Loaded 100 merged records\\\\n2026-05-21 18:09:36,889 INFO [formality] Computing bidirectional NLI (100 pairs)...\\\\n2026-05-21 18:09:36,889 INFO Forward NLI (original -> counterfactual)...\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\\\\", line 313, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\\\\", line 290, in main\\\\n    results[name] = run_axis(name, records, cfg, nli_pipe)\\\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\\\\", line 216, in run_axis\\\\n    fwd, bwd = compute_nli(nli_pipe, origs, cfs, BATCH_SIZE)\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\\\\", line 94, in compute_nli\\\\n    fwd = _scores(originals, counterfactuals)\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\\\\", line 84, in _scores\\\\n    res = nli_pipe(\\\\n          ^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/pipelines/text_classification.py\\\\\\\", line 145, in __call__\\\\n    result = super().__call__(*inputs, **kwargs)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/pipelines/base.py\\\\\\\", line 1247, in __call__\\\\n    outputs = list(final_iterator)\\\\n              ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/pipelines/pt_utils.py\\\\\\\", \n…[truncated 315 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T10:11:40.177366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTORCH_JIT=0 TORCHDYNAMO_DISABLE=1 && nohup python csd_pipeline/gate_comparison_bt.py > /tmp/gate_comparison.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T10:11:40.177507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTORCH_JIT=0 TORCHDYNAMO_DISABLE=1 && nohup python csd_pipeline/gate_comparison_bt.py > /tmp/gate_comparison.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=139441\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T10:11:40.177652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "tail -5 /tmp/gate_comparison.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T10:11:40.177778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  SUMMARY\\\\n======================================================================\\\\n  formality: strict P(formal)=0.6647 (n=88), DA P(formal)=0.6340 (n=97), delta=-0.0307 CI [-0.0651, -0.0018] -> DIFF\\\\n  verbosity: strict P(verbose)=0.7845 (n=65), DA P(verbose)=0.7732 (n=86), delta=-0.0113 CI [-0.0564, +0.0296] -> no diff\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T10:11:40.177912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /tmp/gate_comparison.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T10:11:40.178070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 18:10:15,953 INFO Loading NLI model from /root/autodl-tmp/models/nli-deberta-v3-large/\\\\n\\\\rLoading weights:   0%|          | 0/394 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 394/394 [00:00<00:00, 10687.44it/s]\\\\n2026-05-21 18:10:17,355 INFO Loaded 100 merged records\\\\n2026-05-21 18:10:17,356 INFO [formality] Computing bidirectional NLI (100 pairs)...\\\\n2026-05-21 18:10:17,356 INFO Forward NLI (original -> counterfactual)...\\\\n2026-05-21 18:10:19,617 INFO Backward NLI (counterfactual -> original)...\\\\n[transformers] You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset\\\\n2026-05-21 18:10:31,657 INFO Loaded 100 merged records\\\\n2026-05-21 18:10:31,657 INFO [verbosity] Computing bidirectional NLI (100 pairs)...\\\\n2026-05-21 18:10:31,657 INFO Forward NLI (original -> counterfactual)...\\\\n2026-05-21 18:10:33,517 INFO Backward NLI (counterfactual -> original)...\\\\n\\\\n======================================================================\\\\n  FORMALITY -- Gate Comparison\\\\n======================================================================\\\\n  Total pairs:          100\\\\n  Strict bidir gate:    88/100 (88%)\\\\n  Direction-aware gate: 97/100 (97%)\\\\n  Extra (DA only):      9 (9%)\\\\n\\\\n  --- Strict Bidirectional ---\\\\n  n=88 pairs, 176 comparisons\\\\n  BT P(formal): 0.6647  CI [0.5852, 0.7386]\\\\n  p < 0.0001\\\\n\\\\n  --- Direction-Aware ---\\\\n  n=97 pairs, 194 comparisons\\\\n  BT P(formal): 0.6340  CI [0.5567, 0.7061]\\\\n  p = 0.0001\\\\n\\\\n  --- Extra Pairs Only ---\\\\n  n=9 pairs, 18 comparisons\\\\n  BT P(formal): 0.3337  CI [0.1120, 0.6109]\\\\n\\\\n  --- Difference Test (paired bootstrap, 10000 iter) ---\\\\n  Observed delta_P(formal): -0.0307 (DA - strict)\\\\n  Bootstrap 95% CI:  [-0.0651, -0.0018]\\\\n  Contains 0: No -> significant difference\\\\n\\\\n======================================================================\\\\n  VERBOSITY -- Gate Comparison\\\\n==\n…[truncated 1296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T10:11:40.178297+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n### FORMALITY\n| Gate | n pairs | BT P(formal) | 95% CI | p |\n|------|---------|---------------|--------|---|\n| Strict bidir | 88 | 0.6647 | [0.5852, 0.7386] | < 0.0001 |\n| Direction-aware (max) | 97 | 0.6340 | [0.5567, 0.7061] | 0.0001 |\n| Extra only (9) | 9 | 0.3337 | [0.1120, 0.6109] | — |\n\n**Difference**: Δ = −0.0307, CI [−0.0651, −0.0018] → CI 不含 0，**有差异**。9 个 extra pairs 倾向 casual (P(formal)=0.33)，拉低了 DA 估计。但注意：formality 当前 pipeline 实际用的是 min(fwd,bwd)（即 strict），max(fwd,bwd) 只是假设性对比。\n\n### VERBOSITY\n| Gate | n pairs | BT P(verbose) | 95% CI | p |\n|------|---------|---------------|--------|---|\n| Strict bidir | 65 | 0.7845 | [0.7076, 0.8537] | < 0.0001 |\n| Direction-aware | 86 | 0.7732 | [0.7034, 0.8429] | < 0.0001 |\n| Extra only (21) | 21 | 0.7379 | [0.5714, 0.8806] | — |\n\n**Difference**: Δ = −0.0113, CI [−0.0564, +0.0296] → CI 含 0，**无显著差异**。21 个 extra pairs 的 BT (0.7379) 与整体方向一致。\n\n### 核心结论\n- **Verbosity**（R3-W2 关注的核心）：direction-aware gate 额外纳入的 21 pairs (21%) **不引入系统偏差**，BT 估计无显著变化\n- **Formality**：pipeline 已用 strict bidir (min)，无额外 pairs 问题。假设性 max(fwd,bwd) 对比表明 formality 确实需要 strict gate\n- 脚本: `csd_pipeline/gate_comparison_bt.py`（已部署到服务器）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_direction_aware_vs_strict_gate_20260521T095946"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 71
+    }
+  ]
+}

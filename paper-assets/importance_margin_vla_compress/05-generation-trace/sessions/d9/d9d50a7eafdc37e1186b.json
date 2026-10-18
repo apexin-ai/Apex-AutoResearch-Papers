@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d9d50a7eafdc37e1186b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 pi05 cross suite",
+  "task_key": "worker_deploy_westd38929-pi05-cross-suite_20260521T184117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929-pi05-cross-suite_20260521T184117_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "c9acf3ba0aacdfffacefebeda07b36a03b23b6aec2325beef6abfd7b224ed849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 experiments running and producing results on Task 0 (\"pick up the black bowl between the plate\"):\n\n| GPU | Experiment | Progress | Task 0 SR so far |\n|-----|-----------|----------|------------------|\n| 0 | baseline (none) | ep 40/50 | **100%** (40/40) |\n| 1 | l2norm k=0.5 | ep 20/50 | **80%** (16/20) |\n| 2 | random k=0.5 | ep 30/50 | **90%** (27/30) |\n| 3 | l2norm k=0.3 | ep 10/50 | **70%** (7/10) |\n\nEarly Task 0 numbers are already interesting — baseline at 100%, and at k=0.5 random (90%) > l2norm (80%), consistent with the Object suite pattern where low-CV linear projection makes L2norm no better than random. L2norm k=0.3 at 70% shows expected degradation at higher pruning.\n\nAll GPUs actively computing (28-45% util, 10-10.6 GB VRAM). Experiments are healthy and progressing normally."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

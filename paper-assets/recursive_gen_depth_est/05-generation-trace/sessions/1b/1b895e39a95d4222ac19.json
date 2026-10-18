@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1b895e39a95d4222ac19",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing w2 domain bias paper update",
+  "task_key": "worker_writing_w2-domain-bias-paper-update_20260516T013302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_w2-domain-bias-paper-update_20260516T013302_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "989a8cdd7bb3259eeb5a3507b33912aaee384a946a032d2639288d8e42febcab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No dedicated LOGO table. The paper already has the correct v2 numbers:\n\n**Verified matches:**\n- `section_appendix.tex:97` — LOGO mean 72.1%, range 59.5–81.6%, CV 72.0% ✓\n- `section_appendix.tex:102` — Depth pred 72.0%, seed-group 10.2% ✓  \n- `section_appendix.tex:103` — Ratio 7.1× ✓\n- `conclusion.tex:15` — LOGO 72.1%, CV 72.0%, seed-group 10.2% ✓\n\n**No stale numbers found:** No \"8pp drop\" or \"22.9% min\" anywhere in the .tex files.\n\nThe paper text already reflects the v2 corrected LOGO results. The numbers match exactly:\n- Mean LOGO = 72.1%, Mean CV = 72.0%, mean drop = -0.08pp (reported as \"within noise\")\n- Range 59.5–81.6% matches per-cell min/max from v2 table\n- Sub-C: 72.0% depth vs 10.2% seed-group (chance level)\n\nNo edits needed — the paper was already updated to v2 results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

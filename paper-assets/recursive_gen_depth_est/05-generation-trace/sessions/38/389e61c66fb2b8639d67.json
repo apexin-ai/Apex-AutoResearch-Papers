@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "389e61c66fb2b8639d67",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check n2 training status",
+  "task_key": "worker_check_n2_training_status_20260515T122935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_n2_training_status_20260515T122935_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "4a748f535b29b26a1fab0f1a9aa10f1d259ac5deb7bcd3a9a7f0d7aafe591908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### n2_deberta_finetune_001 — **Running** (cuda:0, PID 231448, 已运行 ~18h)\n\n| 指标 | 值 |\n|------|-----|\n| GPU 显存 | 21,340 MiB |\n| 当前进度 | **Fold 2/5, Epoch 2/3, Step 350/1000** |\n| Fold 1 完成 | epoch 1: val_acc=0.5437, epoch 2: val_acc=0.5258, epoch 3: val_acc=0.5540 |\n| Fold 1 test acc | **0.5540** |\n| Fold 2 当前 | epoch 1 val_acc=0.5288, epoch 2 进行中 |\n\n结果目录的 `results.json` 是之前失败运行的残留（全 0，elapsed=3.5s），会被当前运行覆盖。\n\n---\n\n### n2_roberta_finetune_001 — **Running** (cuda:1, PID 235750, 已运行 ~5.5h)\n\n| 指标 | 值 |\n|------|-----|\n| GPU 显存 | 8,132 MiB |\n| 当前进度 | **Fold 1/5, Epoch 3/3, Step 550/1000** |\n| Fold 1 epoch 1 | val_acc=0.4830 |\n| Fold 1 epoch 2 | val_acc=0.5780 |\n| Fold 1 epoch 3 | 进行中 (loss 在 0.23~0.60 区间) |\n\n结果目录为空，尚未产出。\n\n---\n\n### 整体评估\n\n- 两个进程均正常运行，GPU 占用正常\n- DeBERTa 用了 ~18h 完成 1.3/5 folds；RoBERTa 用了 ~5.5h 接近完成第 1 fold（显存仅 8GB，推理更快）\n- DeBERTa fold 1 test_acc=0.5540，RoBERTa fold 1 val_acc 已达 0.5780（epoch 2），两者目前均远低于 RF baseline 78.2%\n- 按当前速度估算：DeBERTa 大约还需 ~50h 完成全部 5 folds；RoBERTa 大约还需 ~22h\n- **val_acc 在 0.48~0.58 区间徘徊，且 DeBERTa fold 1 三个 epoch 后 val_acc 几乎没提升（0.54→0.53→0.55），可能存在学习率或特征表示问题**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

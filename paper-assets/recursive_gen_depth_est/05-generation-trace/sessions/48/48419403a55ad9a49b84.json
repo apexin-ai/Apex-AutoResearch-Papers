@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "48419403a55ad9a49b84",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "director / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_10.md",
+    "occurrence": 1,
+    "bytes": 2739,
+    "sha256": "15e5868448dbd6026361259012e07feecffbbee027c3d09ec22e97530c224b7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-22T18:16:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文禁止使用 em dash (—)，用逗号或括号替代\n- EMNLP 2026 主文严格 8 页限制，Limitations/Ethics 不计入\n- discussion.tex 中有 7B scale templates（注释块），等 qwen25_7b_selfref_001 实验结果到达后才能 swap in，不要提前取消注释\n- 用户已连续取消多轮 paper audit，除非用户主动要求，不要触发新的 audit\n\n### 2. 🖥️ 基础设施快照\n- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/`\n- 主 tex：`main.tex`，编译引擎 pdflatex\n- 实验服务器：通过 Agent 操作远程服务器，具体 SSH host 见 `list_ssh_hosts`\n- 实验 qwen25_7b_selfref_001 在 cuda:0 上运行（session 开始时约 15-20% 进度，预计已接近完成或完成）\n- 项目 GPU 分配需通过 `get_project_status` 确认\n\n### 3. 📊 当前状态\n本轮主要工作是论文一致性修复和页数调整：\n- 修复了多处数字不一致（Table 20/21 AUC 值、Table 7 CPI 数据、180K/140K 计数澄清、curation PoC 选择性报告）\n- 修复了多处交叉引用错误（`sec:gen:crossstrategy` → `app:prompted_gen`、`sec:gen:accumulation` → `app:accumulation_auc`）\n- Limitations 去掉了所有具体数字，改为定性描述\n- Discussion 新增 \"Outlook\" 段落，主文恰好填满 8 页\n- Table 1 改为 `tabular*` 全宽、atlas Table 3 特征缩写统一、intro/method/theory 多处精简\n- 源码 critical 从 3 降到 0\n- qwen25_7b_selfref_001 实验状态需检查（可能已完成）\n\n### 4. 📋 待办\n- qwen25_7b_selfref_001 完成 → 检查结果 → 根据准确率选择 discussion.tex 中 VERSION A (≥60%) 或 VERSION B (40-60%) 模板 swap in → 更新 abstract/appendix 中 scale 相关叙述\n- 用户可能继续发现一致性问题 → 逐条验证后修复\n- 如用户要求重新 audit → 跑 `paper_compile_and_check` + `submit_paper_to_review`（注意 content agent 容易超时）\n\n### 5. 🎯 战略上下文\n- 论文定位：benchmark-driven empirical study，非方法创新。核心贡献是任务形式化 (ordinal depth estimation) + EDD 度量 + Depth Degradation Atlas\n- Round 18 审稿评分 3.0 (Findings)，4 个 critical：方法无创新、full-replacement 假设、14B EDD=0、跨策略迁移弱。用户已取消该轮审稿，未做后续处理\n- DDL：2026-05-25 (ARR May cycle)，今天 05-22，还有 3 天\n- 易错点：grep LaTeX 文件时注意转义下划线（`\\_` vs `_`），之前因此漏掉了 page 23 的未定义特征名\n- 页数极其敏感：主文恰好 8 页，任何增删都需重新编译确认不超/不缺\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

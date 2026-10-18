@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b35077f1b61c07b06058",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops format compliance check",
+  "task_key": "worker_ops_format_compliance_check_20260517T074049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_format_compliance_check_20260517T074049_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "de365645f3d59c31fd54eff0a70d935df777ed7640ac012bffec5019b2eec5af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 格式合规检查结果\n\n| # | 检查项 | 结果 | 说明 |\n|---|--------|------|------|\n| 1 | `[review]` 选项 | **PASS** | `main.tex:4`: `\\usepackage[review]{acl}` |\n| 2 | 行号 | **PASS** | `[review]` 选项通过 `acl.sty:55` 的 `\\AtBeginDocument{\\linenumbers}` 自动开启行号，无 `\\nolinenumbers` 覆盖 |\n| 3 | 正文 ≤8 页 | **FAIL** | Discussion and Conclusion 从 p8 开始，但内容延续到 p9（p9 前 ~17 行仍是 Discussion 正文，Limitations 从 p9 行号 650 才开始）。正文溢出约半栏。 |\n| 4 | Appendix 双栏 | **PASS** | `section_appendix.tex` 无 `\\onecolumn`，使用 ACL 模板默认双栏 |\n| 5 | 字体嵌入 | **PASS** | 全部 29 个字体条目 `emb=yes` |\n\n**需要修复**：正文超 8 页。Discussion and Conclusion 需要压缩约半栏内容，使其完整结束在 p8 内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

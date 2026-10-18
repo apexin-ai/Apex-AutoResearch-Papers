@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d30f5cc6b66f98dd133",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code mixed depth corpus b",
+  "task_key": "worker_code_mixed_depth_corpus_b_20260517T035401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mixed_depth_corpus_b_20260517T035401_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "488ba0bad5cc6226b6648f7ebee3fff672eb8648880ede8aa98356569cd9eeb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。\n\n## 结果总结\n\n**mixed_depth_corpus_001** — Hypothesis **CONFIRMED**\n\n| 指标 | Mixed (50/30/15/5%) | Balanced (25/25/25/25%) | Δ |\n|------|-----|-----|---|\n| Overall accuracy | 0.855 | 0.781 | +7.36pp (weighting artifact) |\n| **Macro-recall** | 0.765 | 0.781 | **-1.62pp** ✓ |\n\nPer-class recall 差异（max 2.43pp on d1）来自不同 held-out 样本的抽样噪声，而非分类器行为变化。RF 是确定性 per-sample 分类器，对同一输入无论 corpus 组成如何都给出相同预测。\n\nOverall accuracy 差异的本质：mixed corpus 中 d0 占 50%，d0 recall 99%，所以 weighted accuracy 被拉高。这是指标定义问题，不是分类器问题。用 macro-recall 衡量，差异仅 -1.62pp，在 2pp 阈值内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1c36ca09f3233d853d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra fix bertscore download",
+  "task_key": "worker_infra_fix_bertscore_download_20260520T121845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_bertscore_download_20260520T121845_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "94ea3773dfa9215dfc89482ca748752a983cc41bef711f6e687957aa566f22e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "BERTScore 完全正常工作！\n\n**结果汇总**:\n- 旧下载进程已 kill\n- 通过 ModelScope CDN 下载 `microsoft/deberta-xlarge-mnli` 到 HF cache（~5.5 分钟 vs HuggingFace 代理 20+ 分钟）\n- 修复了 tokenizer_config.json 缺少 `model_max_length` 导致的 OverflowError\n- BERTScore 验证通过：P=0.9230 R=0.9496 F1=0.9361\n- 需要设置 `TRANSFORMERS_OFFLINE=1` 和 `HF_HOME=/root/autodl-tmp/.hf_cache` 才能正常使用（避免连接 HF 超时）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

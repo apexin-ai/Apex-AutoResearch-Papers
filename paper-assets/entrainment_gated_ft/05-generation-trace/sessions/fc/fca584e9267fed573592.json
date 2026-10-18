@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fca584e9267fed573592",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper fix appendix i overfull",
+  "task_key": "worker_paper_fix-appendix-i-overfull_20260520T043817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-appendix-i-overfull_20260520T043817_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "2818904a39a7c2383853af5b11eb7601b6c06ce3fe49592033cbb4b651e35b47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n- **0 overfull hbox warnings** in the entire document (both tables fixed)\n- **No undefined references**\n- **14 pages total** — main text stays within limits (appendix pages don't count toward the 8-page limit)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

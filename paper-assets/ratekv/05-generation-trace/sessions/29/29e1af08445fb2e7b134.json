@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "29e1af08445fb2e7b134",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analyze table4 update prep",
+  "task_key": "worker_analyze_table4_update_prep_20260515T181250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_table4_update_prep_20260515T181250_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "eece4549c1a38485067a2baafbb0e971942520aaa633cc80f7368130cc5064e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模板已产出并注册 (`art_20260515_ba2ca9`)。\n\n关键发现：\n\n- **Llama k=2 行已填入**：avg delta 从 -1.0 改善到 -0.1，所有 4 个 task 都大幅改善（ARC-C 改善最大，+1.9 pts）\n- **Yi/Mistral 行留占位符**（`__YI_*__`, `__MI_*__`），等实验结果到位后替换\n- **Caption 更新建议**：加注 \"each model evaluated at its profiling-derived optimal k\"\n- **Provenance 更新清单**：C168-C172 五条 claim 的具体更新动作已列出\n\n模板路径：`artifacts/table4_k2_update_template.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

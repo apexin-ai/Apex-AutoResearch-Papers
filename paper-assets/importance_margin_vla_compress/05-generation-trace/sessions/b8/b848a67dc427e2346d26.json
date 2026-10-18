@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b848a67dc427e2346d26",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research vla model survey",
+  "task_key": "worker_research_vla_model_survey_20260520T024303",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_vla_model_survey_20260520T024303_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "a1257f185fae7cba68090bd2b2aea21101ac1048a6d117bd4906bf99a2749060"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。调研了 18 个 VLA 模型，覆盖了所有候选 + 额外发现的 X-VLA、ECoT、LingBot-VLA。\n\n**核心结论**：\n\n大量模型（CogACT、LLARVA、TraceVLA、ECoT、OpenVLA-OFT）共享与 OpenVLA 相同的 2-layer MLP connector，无需重复测试。真正有新 connector 类型的模型只有几个：\n\n**Top 5 推荐**：\n1. **π0** — Linear projection connector，开源 + LIBERO 支持，与 MLP 形成最直接对比\n2. **X-VLA** — Linear projection + soft prompts，LIBERO 98%，已有权重，0.9B 最小实验成本\n3. **DeeR-VLA** — Perceiver Resampler (OpenFlamingo)，给失败的 RoboFlamingo 方案第二次机会\n4. **RoboMM** — Cross-attention (decoder-side 融合)，与所有 projection-based connector 根本不同\n5. **OpenVLA-OFT** — 同 connector 不同 action head，隔离 action generation 对压缩的影响\n\n**可新增 connector 类型**：Linear projection（π0/X-VLA）和 Cross-attention（RoboMM/DeeR-VLA），加上已有的 Pixel-shuffle 和 MLP，可达 5 种 connector 覆盖。\n\n结果已写入 `artifacts/vla_model_survey.md` 和 `memory.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

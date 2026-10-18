@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f25279a2cd34a936a9ad",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit p0 gpu collect all servers",
+  "task_key": "worker_audit_p0_gpu_collect_all_servers_20260527T042912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_p0_gpu_collect_all_servers_20260527T042912_result.json",
+    "occurrence": 1,
+    "bytes": 3391,
+    "sha256": "0aac577f396ac4fef89c8444b8b0f9f81493028fd8d4342160afb3c90978f19a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。westd-38929 GPU2 上有个残留进程 (OV Attn k=0.75 Goal, 已完成的实验) 在吃显存，拖慢了 L2norm k=0.75 Long v2。\n\n---\n\n## 全景状态报告\n\n### westd-27271 (4× RTX PRO 6000, 96GB)\n\n| GPU | 显存 | 利用率 | 实验 | 进度 | 预计剩余 |\n|-----|------|--------|------|------|---------|\n| 0 | 1 MB | 0% | **IDLE** ✅ (OV L2norm k=0.95 Goal **DONE**, SR=75.2%) | - | - |\n| 1 | 16.0 GB | 70% | OV Attn k=0.95 Object | T8/10, Ep10/50 | **~1.1h** |\n\n### westd-38929 (4× RTX PRO 6000, 96GB)\n\n| GPU | 显存 | 利用率 | 实验 | 进度 | 预计剩余 |\n|-----|------|--------|------|------|---------|\n| 0 | 16.0 GB | 59% | OV Attn k=0.95 Goal ⚠️ **未入库，与cqa1重复** | T7/10, Ep10/50 | **~2h** |\n| 1 | 15.8 GB | 55% | OV L2norm k=0.95 Long | T3/10, Ep20/50 | **~10.5h** |\n| 2 | **32.1 GB** | 92% | OV L2norm k=0.75 Long v2 + 🚨 **残留进程** (OV Attn k=0.75 Goal, PID 965423, 已DONE SR=67.4%) | T2/10, Ep10/50 | **~18h** (双进程拖慢) |\n| 3 | 15.8 GB | 57% | OV Attn k=0.95 Long | T3/10, Ep20/50 | **~10.5h** |\n\n### westd-41074 (4× RTX PRO 6000, 96GB)\n\n| GPU | 显存 | 利用率 | 实验 | 进度 | 预计剩余 |\n|-----|------|--------|------|------|---------|\n| 0 | 15.5 GB | 0% | OV Random k=0.95 Long | T4/10, Ep30/50 | **~6.7h** |\n| 1 | 15.9 GB | 28% | OV Random k=0.75 Long | T10/10, Ep20/50 | **~0.5h** 🏁 |\n| 2 | 10.5 GB | 31% | **π0.5 Attn k=0.9 strict** (PID 94308) | T2/10, Ep20/50 | **~2.2h** |\n| 3 | 10.5 GB | 29% | **π0.5 Attn k=0.85 strict** (PID 94384) | T2/10, Ep10/50 | **~2.6h** |\n\n### cqa1-33015 (4× RTX 4090D, 24GB)\n\n| GPU | 显存 | 利用率 | 实验 | 进度 | 预计剩余 |\n|-----|------|--------|------|------|---------|\n| 0 | 15.7 GB | 63% | OV Random k=0.95 Goal | T4/10, Ep20/50 | **~3.7h** |\n| 1 | 15.7 GB | 66% | OV Attn k=0.95 Goal ⚠️ **与westd-38929重复** | T4/10, Ep20/50 | **~3.9h** |\n| 2 | 10.6 GB | 17% | **π0.5 Attn k=0.95 strict** (PID 938642) | T1/10, Ep20/50 | **~4.3h** |\n| 3 | 15.7 GB | 45% | OV Attn k=0.5 Goal v3 | T3/10, Ep40/50 | **~6h** |\n\n---\n\n## P0A 结论\n\n**eval_openvla_l2norm_k095_goal_seed42**: ✅ **DONE**, SR=**75.2%** (376/500)\n- PID 609726 已结束，EXIT_CODE=0\n- Registry 已更新: status=DONE, conclusion=success, metrics.overall_sr=75.2\n- **审计确认**: Worker 报告的 SR=75.2% 与日志完全一致\n\n## P0B 结论 — 已入库实验确认\n\n| 实验 | 状态 | SR | 入库? |\n|------|------|-----|-------|\n| OV Random k=0.95 Object | DONE | 67.4% | ✅ |\n| OV Attn k=0.5 Long | DONE | 14.6% | ✅ |\n| OV Attn k=0.75 Goal | DONE | 67.4% | ✅ |\n| OV Random k=0.85 Long | DONE | 45.0% | ✅ |\n| OV Random k=0.75 Goal | DONE | 72.0% | ✅ |\n\n---\n\n## 🚨 需要立即行动\n\n1. **Kill westd-38929 GPU2 残留进程 PID 965423** — OV Attn k=0.75 Goal 已经 DONE (SR=67.4%)，占用 16GB 显存拖慢 L2norm k=0.75 Long v2 从 ~0.8 → 0.4 eps/min。Kill 后预计时间从 18h → **~9h**\n\n2. **Kill cqa1 GPU1 OV Attn k=0.95 Goal (PID 898055)** — westd-38929 版本已到 T7/10（2h完成），cqa1 版本才 T4/10（4h）。Kill cqa1 版本释放 GPU 可以跑其他实验\n\n3. **westd-27271 GPU0 空闲** — 可立即调度新实验\n\n4. **westd-41074 GPU1 约30分钟后空闲** — OV Random k=0.75 Long 即将完成\n\n是否执行 kill 操作？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

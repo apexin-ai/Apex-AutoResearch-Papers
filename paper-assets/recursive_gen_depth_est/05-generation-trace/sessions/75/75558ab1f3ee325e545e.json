@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "75558ab1f3ee325e545e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research verify neural baseline gap",
+  "task_key": "worker_research_verify_neural_baseline_gap_20260523T003147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_neural_baseline_gap_20260523T003147_result.json",
+    "occurrence": 1,
+    "bytes": 1574,
+    "sha256": "55efdcdf09b410ed9c97a5800795ab1f14b40bf7c9072ab1da6a1e76e5fff707"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。\n\n## DeBERTa \"14--32pp\" 声明验证结果\n\n### 已有 per-cell DeBERTa 数据：仅 3/9 个 cell\n\n| Cell | DeBERTa (mean) | RF (mean) | Matched Gap |\n|------|----------------|-----------|-------------|\n| Pythia nucleus | 58.31% | 78.70% | **20.4pp** |\n| GPT-2 XL temp09 | 53.14% | 85.91% | **32.8pp** |\n| Pythia temp09 | 60.57% | 76.79% | **16.2pp** |\n\nRoBERTa 仅 1 个 cell：Pythia nucleus = 59.48%，gap = 19.2pp。\n\n### 结论\n\n- **实测 gap 范围：16--33pp**，与论文声称的 \"14--32pp\" 不符。\n- 14pp 下界**不存在于任何 cell 的 mean accuracy 中**。唯一能得到 ~14pp 的方式是取 Pythia temp09 最佳单个 fold（62.4%）vs RF mean（76.79%）= 14.4pp，这混用了 best-fold 和 mean，方法学不一致。\n- 32pp 上界近似成立（GPT-2 XL temp09 实测 32.8pp）。\n- **6 个 cell 完全没有 DeBERTa 数据**（pythia_topk50, gpt2xl_nucleus, gpt2xl_topk50, olmo_nucleus, olmo_temp09, olmo_topk50），\"per cell\" 声明的覆盖率不足。\n\n**建议**：将论文中 \"14--32pp\" 修正为 \"16--33pp\"（基于 cell mean），或标注仅覆盖 3/9 cells。\n\n---\n\n### 7B 实验进度\n\n- **运行时长**：11h 42m\n- **当前 Phase**：3.3b — 正在生成 d3（5000 samples with LoRA d2），模型权重已加载完毕，生成刚启动\n- **剩余 Phases**：Phase 4（self-reference feature extraction）→ Phase 5（RF + LR classification）\n- **预计剩余时间**：d3 生成 ~30-60min + Phase 4 ~30-60min + Phase 5 ~10-30min ≈ **1--2.5 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

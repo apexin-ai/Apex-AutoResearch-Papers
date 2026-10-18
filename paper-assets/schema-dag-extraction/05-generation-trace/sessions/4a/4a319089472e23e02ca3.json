@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4a319089472e23e02ca3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp fewrel v2 bcs controlled",
+  "task_key": "worker_exp_fewrel_v2_bcs_controlled_20260516T031819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_fewrel_v2_bcs_controlled_20260516T031819_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "f6d9c589094cb8e43029f7b5827b8e4943d1265948e67eca25d097c7a9f5fdfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `exp_fewrel_v2_bcs_controlled` 全部完成，registry 已更新为 DONE，artifacts 已注册。\n\n---\n\n## C1b 实验结果摘要\n\n**设计**: FewRel 80-rel pool, count=8, v2 RE prompt, Qwen3-32B-FP8, greedy decoding (temp=0, seed=42)\n\n| Batch | BCS | Accuracy | Group |\n|-------|-----|----------|-------|\n| low_0 | 0.4715 | 83.33% | low |\n| low_1 | 0.6465 | 81.25% | low |\n| low_2 | 0.6653 | 87.50% | low |\n| low_3 | 0.6724 | 82.29% | low |\n| low_4 | 0.6742 | 67.71% | low |\n| high_0 | 0.7778 | 77.08% | high |\n| high_1 | 0.7908 | 71.88% | high |\n| high_2 | 0.8201 | 70.83% | high |\n| high_3 | 0.8226 | **92.71%** | high |\n| high_4 | 0.9706 | **50.00%** | high |\n\n**汇总**:\n- Low BCS mean: **80.42%**\n- High BCS mean: **72.50%**\n- **Δ(low−high) = +7.92pp**, 95% CI [−5.21, +21.46]pp\n\n**结论**: Channel 2 方向一致（高 BCS → 低准确率），与 v1 prompt 结果方向吻合。CI 包含 0，未达 p<0.05 显著。主要方差来源：\n- **high_3 (BCS=0.82, acc=92.7%)** — 异常高，8 种类型虽然 embedding 相近但语义上仍可区分（spouse/sibling/military rank 等），拉高了 high 组均值\n- **high_4 (BCS=0.97, acc=50.0%)** — 极端 case，类型几乎同义（participant/participant of/part of/member of/has part），准确率接近随机，强力支持 Channel 2 在尾部的效应\n\n对 reviewer 回应：可以报告\"v2 prompt 下方向一致，+7.92pp\"，同时诚实说明 CI 跨 0。high_4 的极端 case 可作为定性证据单独展示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

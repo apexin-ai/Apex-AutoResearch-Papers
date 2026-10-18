@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed743961d63e8dad0cad",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis check accum mix50",
+  "task_key": "worker_analysis_check_accum_mix50_20260522T045137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_accum_mix50_20260522T045137_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "9bb436b8b6cdeb536485a0f629de53def85f8c4d176a36e8e1e1288b136b7e61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态: 已完成 ✓\n\n进程 907272 已结束，pipeline 耗时 2.38h，exit code 0。\n\n### 关键 Metrics\n\n| 指标 | 值 |\n|------|-----|\n| Overall accuracy | 0.6865 |\n| Balanced accuracy | 0.6865 |\n| d1-d3 balanced acc | 0.5834 |\n| Full-replacement baseline | 0.8428 |\n| **Delta vs baseline** | **-0.1563** |\n\n### Per-depth Recall\n\n| Depth | Recall | 样本数 |\n|-------|--------|--------|\n| d0 | 0.996 | 5000 |\n| d1 | 0.692 | 5000 |\n| d2 | 0.417 | 5000 |\n| d3 | 0.641 | 5000 |\n\n### 观察\n\nmix50（50% human text 混入）使 overall accuracy 从 baseline 0.8428 下降到 0.6865（-15.6pp）。d0 仍几乎完美区分，但 d2 recall 最弱（0.417），大量 d2 样本被误分为 d1 或 d3。d3 recall（0.641）高于 d2，说明深层递归的特征仍有一定可分性，但中间层（d2）在混合人类文本后最易混淆。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

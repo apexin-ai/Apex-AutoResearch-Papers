@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "957af979d758fc1b2216",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra plan001 api model probe",
+  "task_key": "worker_infra_plan001-api-model-probe_20260522T070038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan001-api-model-probe_20260522T070038_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "1e5bf45c2c283a74452eca4305225226c4f3442a916718ebb2532db1aa3cc5ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**API 可用模型（13个）：**\n\n| 家族 | 可用模型 |\n|------|----------|\n| OpenAI GPT | gpt-4o-mini, gpt-4o, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano |\n| OpenAI GPT-5 | gpt-5.4-mini, gpt-5.5 |\n| OpenAI o-series | o4-mini |\n| Claude | claude-sonnet-4, claude-opus-4, claude-3-haiku |\n| Gemini | gemini-2.5-flash, gemini-2.5-pro |\n\n**不可用：** claude-3-5-sonnet 系列（需用 `claude-sonnet-4` 替代）、gemini-1.5-pro / gemini-2.0-flash（需用 `gemini-2.5-flash/pro` 替代）、DeepSeek 全系列不可用。\n\n**本地 AWQ 模型（6个）：** Qwen2.5-72B/32B/14B、Llama-3.1-70B/8B、Mistral-Large-2407，均为 AWQ 量化版。\n\n**注意：** `/v1/models` 只列出 118 个 OpenAI 模型，Claude/Gemini 通过代理路由可用但不在 catalog 中。API 需要 Bearer token 认证。\n\n结果已保存至 `artifacts/results/api_model_availability.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

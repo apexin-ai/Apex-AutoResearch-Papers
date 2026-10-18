@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ff5a1f75d27c0e731abe",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 pi05 batch2",
+  "task_key": "worker_deploy_cqa1-pi05-batch2_20260521T220116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-pi05-batch2_20260521T220116_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "d623cc4b6e6ec14060d9489443fc4ad6465146f5f8a2eff73ba0ffe155da58f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全部在工作：\n\n| GPU | 显存 | 实验 |\n|-----|------|------|\n| 0 | 10262 MiB | **实验 A**: random k=0.85 seed43 — 已在跑 episodes |\n| 1 | 9507 MiB | **实验 B**: l2norm k=0.5 seed43 — 模型已加载，开始 eval |\n| 2 | 10262 MiB | L2norm k=0.85 seed42（既有） |\n| 3 | 10134 MiB | random k=0.3 seed43（既有） |\n\n实验 A 已注册为 RUNNING (`eval_pi05_random_k085_object_seed43`)。\n\n**注意**: `eval_pi05_l2norm_k05_object_seed43` 在 registry 中已有完成记录（westd-41074 跑的，SR=33.6%）。当前在 cqa1 重新跑了一份——如果不需要可以 kill PID 720036 释放 GPU1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

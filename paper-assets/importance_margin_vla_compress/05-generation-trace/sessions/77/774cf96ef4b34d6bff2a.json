@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "774cf96ef4b34d6bff2a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k095 long seed47 cqa1",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k095_long_seed47_cqa1_20260529T102200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k095_long_seed47_cqa1_20260529T102200_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "d6409be7eafff74e7244b9972ab58d0a9e4499ec3fe9eefb567f21ff5c2297cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，EXIT_CODE=0，无错误。\n\n## 结果汇总\n\n| Task | Description | Success Rate | Successes/Episodes |\n|------|-------------|-------------|-------------------|\n| T0 | put both the alphabet soup and the tomato sauce in the basket | 90% | 45/50 |\n| T1 | put both the cream cheese box and the butter in the basket | 98% | 49/50 |\n| T2 | turn on the stove and put the moka pot on it | 96% | 48/50 |\n| T3 | put the black bowl in the bottom drawer of the cabinet and close it | 98% | 49/50 |\n| T4 | put the white mug on the left plate and put the yellow and white mug on the right plate | 98% | 49/50 |\n| T5 | pick up the book and place it in the back compartment of the caddy | 92% | 46/50 |\n| T6 | put the white mug on the plate and put the chocolate pudding to the right of the plate | 48% | 24/50 |\n| T7 | put both the alphabet soup and the cream cheese box in the basket | 90% | 45/50 |\n| T8 | put both moka pots on the stove | 46% | 23/50 |\n| T9 | put the yellow and white mug in the microwave and close it | 96% | 48/50 |\n\n- **Overall SR: 85.2%**\n- **Total: 426/500**\n- **Checkpoint: `/root/autodl-tmp/pi05_libero_finetuned`**\n- **Elapsed: 189.4 min**\n- **异常: 无** — 正常完成，无错误或警告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d451a21562f25de915e4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "data xgboost lgbm paper data",
+  "task_key": "worker_data_xgboost_lgbm_paper_data_20260515T194627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_xgboost_lgbm_paper_data_20260515T194627_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "3c462b3714be36dfdcf1d5aeaf392c91f59fd054fb87fab80049180fb0eef94c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册 (`art_20260515_e69dad`)。以下是完整提取结果：\n\n---\n\n## Table 2 新行\n\n| Method | 4-class Acc (%) | std (%) |\n|--------|:-:|:-:|\n| **XGBoost (GPU)** | **79.0** | 0.5 |\n| **LightGBM (CPU)** | **78.8** | 0.8 |\n\nXGBoost 以 79.0% 成为当前所有 baseline 中最高（RF 78.2%、CORAL 78.1%），LightGBM 78.8% 位列第二。\n\n## Per-class Recall\n\n| | d0 | d1 | d2 | d3 |\n|--|:-:|:-:|:-:|:-:|\n| XGBoost | 0.994 | 0.816 | 0.596 | 0.754 |\n| LightGBM | 0.994 | 0.815 | 0.596 | 0.747 |\n\n两者 recall 分布几乎一致，d2 仍是最难区分的类别。\n\n## Pairwise AUC\n\n| | d0v1 | d1v2 | d2v3 |\n|--|:-:|:-:|:-:|\n| XGBoost | 1.000 | 0.931 | 0.816 |\n| LightGBM | 1.000 | 0.931 | 0.814 |\n\n## 5-fold Accuracies\n\n- **XGBoost**: 78.3, 79.3, 78.9, 78.8, 79.7\n- **LightGBM**: 77.6, 79.1, 78.5, 79.0, 79.9\n\n## Feature Importance\n\n脚本未计算 XGBoost/LightGBM 的 feature importance。如需对比，需要补跑一个带 `clf.feature_importances_` 提取的版本。RF Top-5 供参考：var_surprisal (0.169) > p90_ppl (0.158) > mean_ppl (0.120) > mean_surprisal (0.088) > p75_ppl (0.067)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

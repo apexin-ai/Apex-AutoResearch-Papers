@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "32cbc7dbbd43a1553ea1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops submit msweep m64 m96",
+  "task_key": "worker_ops_submit-msweep-m64-m96_20260520T033510",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_submit-msweep-m64-m96_20260520T033510_result.json",
+    "occurrence": 1,
+    "bytes": 1454,
+    "sha256": "37b23abf2dc4b8584d14c594019298053cfa69e9b648f215eaacfecb2850b40a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments are successfully launched and verified. Here's the summary:\n\n**westd-41074 GPU allocation:**\n| GPU | Experiment | PID | Status |\n|-----|-----------|-----|--------|\n| cuda:0 | M=128 VTC-only | 26118 | Training (ongoing) |\n| cuda:2 | M=96 `train_openvla_sc_m96_seed42` | 68539 | Computing action stats (~10 min), then training starts |\n| cuda:3 | M=64 `train_openvla_sc_m64_seed42` | 68852 | Computing action stats (~10 min), then training starts |\n\n**What was done:**\n1. **Diagnosed previous failure**: The earlier M=64/M=96 runs were NOT config/path failures — they were SIGTERM'd (killed) and restarted as ad-hoc processes writing to `/tmp/`. Those ad-hoc runs had wrong output_dir naming (no `_seed42` suffix).\n2. **Fixed**: Killed ad-hoc processes, updated config output_dirs to `checkpoints/openvla_sc_m{96,64}_seed42`, relaunched with proper nohup + persistent log files.\n3. **Note**: The script doesn't accept `--output_dir` / `--seed` as CLI args — those must be set in the YAML config.\n4. **Registry**: Both updated to RUNNING with full provenance spec.\n5. **Logs**: `logs/train_openvla_sc_m96_seed42.log` and `logs/train_openvla_sc_m64_seed42.log` — no errors, model/dataset loaded correctly.\n\nTraining steps should appear in logs ~10 min after launch (after action stats computation). Previous runs at these M values showed healthy loss curves (M=64 loss ~3.4, M=96 loss ~4.0 at step 400)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

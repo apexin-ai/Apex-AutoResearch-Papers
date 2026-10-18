@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "72b653f4c75b9ba1ab49",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 pi05 strict 3gpu",
+  "task_key": "worker_deploy_cqa1_pi05_strict_3gpu_20260527T075053",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_pi05_strict_3gpu_20260527T075053_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "2b2143b0e842c73f91e9e709dc84a2b50db0ba0c3b019635816aaebdd919c14b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 部署汇总\n\n### GPU 实际状态（与预期不同）\n\n| GPU | 预期 | 实际 | 进程 |\n|-----|------|------|------|\n| 0 | 空闲 | **占用** | openvla random k=0.95 goal (PID 896333, 5.5h) |\n| 1 | 空闲 | **占用** | openvla attn k=0.95 goal (PID 11249, 2.3h) |\n| 2 | 空闲 | **空闲→已部署** | — |\n| 3 | 占用 | 占用 | openvla attn k=0.5 goal (PID 897100, 5.5h) |\n\n### 已完成\n\n1. **Stale registry 清理**：确认 PID 790017、732826 均已不存在，两条 registry 已是 DONE 状态无需额外更新\n2. **GPU2 部署成功**：`eval_pi05_l2norm_k085_long_seed42_strict`（PID 93525），模型加载中，tmux session=`eval_pi05_l2norm_k085_strict`，registry 已注册为 RUNNING\n\n### 未部署（GPU 被占用）\n\n| 实验 | 计划 GPU | 阻塞原因 |\n|------|---------|---------|\n| eval_pi05_random_k07_long_seed42_strict | GPU0 | openvla random k=0.95 goal 在跑 |\n| eval_pi05_random_k05_long_seed42_strict | GPU1 | openvla attn k=0.95 goal 在跑 |\n\nGPU0 上的实验已跑 5.5h，GPU1 上的跑了 2.3h。这些 openvla goal 实验完成后可以接着部署剩余两个 π0.5 strict 实验。需要我设置监控等 GPU 空出后自动部署吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

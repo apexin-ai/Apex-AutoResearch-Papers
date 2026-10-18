@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aef5e30e818b75342885",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k085 spatial seed42 postfix v2",
+  "task_key": "worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k085_spatial_seed42_postfix_v2_20260524T050603_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "6ce05fca18657e62b32cb8b96f0ec8361a11d1d8bc624d91978928b94eeec3b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. \n\n```\nRESULT:\n- overall_sr: 60.8%\n- per_task: T0=84%, T1=68%, T2=92%, T3=16%, T4=66%, T5=28%, T6=44%, T7=76%, T8=82%, T9=52%\n- total_episodes: 500 (10 tasks × 50 eps, all complete)\n- anomalies: 无\n- comparison: baseline(k=1.0)=78%, this(k=0.85)=60.8%, delta=-17.2pp\n- disruption_peak_in_spatial: NO\n```\n\n**结论 (success)**：Spatial suite 无 disruption peak。Random k=0.85 从 78% 降至 60.8%（-17.2pp），属中度退化，远非 Object suite 的灾难性崩塌（82% → 5.6%，-76pp）。\n\n值得注意：T3(16%) 和 T5(28%) 退化严重，说明 random pruning 对某些需要精细空间定位的 task 仍有显著影响，但整体不构成 disruption peak 现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

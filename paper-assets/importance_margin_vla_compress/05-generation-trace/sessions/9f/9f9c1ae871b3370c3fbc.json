@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9f9c1ae871b3370c3fbc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval smart compress m32 seed43 launch",
+  "task_key": "worker_eval_smart_compress_m32_seed43_launch_20260518T232236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smart_compress_m32_seed43_launch_20260518T232236_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "29132ecf5f7b7d32d13feeafcc5a599e5edfcb15eca0ceea95f76082228e060a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕：\n\n1. **训练完成**: step 99999/100000, loss=0.1019, eval_loss=0.0753\n2. **Checkpoint**: 1.59 GB (`checkpoints/smart_compress_m32_seed43/checkpoint.pt`)\n3. **Eval 已提交**: PID 470232, tmux session `eval_smart_compress_m32_seed43`\n4. **日志确认**: `SmartCompressWrapper loaded: M=32, compressor params=22179840`，Task 0 已开始运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

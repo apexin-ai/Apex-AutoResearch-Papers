@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e516c2ee633de42bce96",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis clustered se mixed effects",
+  "task_key": "worker_analysis_clustered-se-mixed-effects_20260522T185951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_clustered-se-mixed-effects_20260522T185951_result.json",
+    "occurrence": 1,
+    "bytes": 1580,
+    "sha256": "c1d1d308e924c3d8ea5a0bf4e6b792740d370ffb7d454b6a1607fea90b7d1daa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件较大（~34KB），通过分段下载。直接用完整日志中的 summary 数据即可。\n\n分析完成。结果汇总：\n\n## 汇总表格\n\n| Method | η_max FDR sig (/12) | K_eff FDR sig (/12) | K_eff sig+ | K_eff sig− |\n|---|---|---|---|---|\n| Canonical OLS | 11/12 | 8/12 | 7 | 1 |\n| **Clustered SE (max)** | **8/12** | **0/12** | 0 | 0 |\n| **Mixed Effects (max)** | **7/12** | **3/12** | 3 | 0 |\n\n## SE Inflation\n\n- K_eff SE inflation: mean=**2.54x**, range=[1.50x, 4.64x]\n- η_max SE inflation: mean=**2.62x**, range=[1.78x, 3.82x]\n\n## 关键发现\n\n1. **η_max 是 robust 的**：从 11/12 降到 8/12 (clustered) / 7/12 (mixed)，仍然多数显著。审稿人的 p-value 膨胀担忧对 η_max 影响有限。\n\n2. **K_eff 确实受非独立性影响严重**：clustered SE 下从 8/12 直接降到 0/12。Mixed effects 保留了 3/12（全部正方向，prompt_injection 和 position_bias 在 arc_challenge 上），但远弱于 OLS 结论。\n\n3. **SE 膨胀约 2.5x**：符合预期——每个 judge 出现在 91/455 panels，有效样本量约为名义值的 1/2.5。\n\n## 对论文的影响\n\nK_eff 4+/12 的门槛未达到（clustered: 0/12, mixed: 3/12）。Story 需要调整：\n- η_max（个体脆弱性）是 panel ASR 的主导因素——**robust**\n- K_eff（面板冗余度）的独立预测力在控制 judge 非独立性后大幅减弱——需要降级为 secondary/suggestive evidence\n\nJSON 已保存到服务器 `/root/cert_manip_resist_eval/artifacts/results/plan001/clustered_se_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

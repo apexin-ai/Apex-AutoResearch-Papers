@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ac2568229d2645518f3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu3 resubmit",
+  "task_key": "worker_deploy_westd38929_gpu3_resubmit_20260526T061423",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_gpu3_resubmit_20260526T061423_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "fc45b128c76887740c684ae92fe2c86b93ff53e76f77f3ee5f4fe0e064b153c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型下载中：4GB/15GB，PID 270186 运行中。3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "98f990a9020cf9b313ba",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd27271 attn k095 goal",
+  "task_key": "worker_deploy_westd27271_attn_k095_goal_20260527T055506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd27271_attn_k095_goal_20260527T055506_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "45ea8ffef14cf5ad293ccd87b2d000e1d58fd1a051e957a56b5156ffc92951a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务运行正常：\n\n- **GPU0**: 15964 MiB 已用, 78% 利用率\n- **模型**: 已加载 (`/root/autodl-tmp/openvla-7b-finetuned-libero-goal`)\n- **Attention pruning**: 256 → 243 vision tokens (k=0.95)\n- **进度**: Task 1/10 已开始，libero_goal 10 tasks × 50 episodes = 500 total\n\n注意：任务指令中模型路径为 `/root/autodl-tmp/openvla-libero-goal`（不存在），实际路径为 `/root/autodl-tmp/openvla-7b-finetuned-libero-goal`，已自动修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "b360d9470de50094c55f",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code cross strategy dann",
+  "task_key": "worker_code_cross_strategy_dann_20260519T104344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_strategy_dann_20260519T104344.log",
+    "occurrence": 1,
+    "bytes": 1388082,
+    "sha256": "2625eaa4370ff03dceedef0335aa31becc46fd9150da72124984b67fcd152a37"
+  },
+  "statistics": {
+    "messages": 661,
+    "user_turns": 1,
+    "tool_calls": 283,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 85,
+      "tool_call": 283,
+      "tool_result": 283,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 452,
+      "chunks": [
+        {
+          "path": "b360d9470de50094c55f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b360d9470de50094c55f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b360d9470de50094c55f-part-0003.json",
+          "message_count": 92
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "b360d9470de50094c55f-part-0003.json",
+          "message_count": 88
+        },
+        {
+          "path": "b360d9470de50094c55f-part-0004.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ]
+}

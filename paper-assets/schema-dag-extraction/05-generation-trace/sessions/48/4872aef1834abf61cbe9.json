@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4872aef1834abf61cbe9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis verify figure and practical mag",
+  "task_key": "worker_analysis_verify_figure_and_practical_mag_20260516T035935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_figure_and_practical_mag_20260516T035935_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "9ea3df9c10fa7ddef41cc7160463f8cb417643db9a8975c6a9076ec5d7681fda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/d037_data_consistency_check.json`。\n\n**汇总：**\n\n| 检查项 | 结果 |\n|--------|------|\n| **Figure 1a** | **MISMATCH** — 绘图脚本硬编码 pooled recall（count_22=0.527, count_44=0.551），论文正文引用 macro-avg recall（0.522, 0.549）。两组数值均来自同一 round2 JSON，分别是 `pooled_recall` 和 `mean_recall` 字段 |\n| **Cluster Bootstrap CI** | FewNERD [0.069, 0.219]，MAVEN [0.081, 0.185]，均显著排除零 |\n| **Practical Magnitude** | 论文 IQR=0.054/gap=2.2pp 与 `w2_practical_effect_results.json`（100 random 16-type subsets）的 0.0539/2.16pp 一致（四舍五入）。Director 提到的 IQR=0.066/gap=2.63pp 来自 `round2_statistical_analyses.json` 的 `80pool_16sub` 条目，对应原始 n=25 batches 分析（BCS 分布不同，但回归斜率相同 -0.401） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3bd8da69a40fb4239dc4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh check running experiments",
+  "task_key": "worker_ssh_check_running_experiments_20260514T200924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_running_experiments_20260514T200924_result.json",
+    "occurrence": 1,
+    "bytes": 1670,
+    "sha256": "fbb402404596d7591cdc45e7a34815f7eaf2a8b2fad67e4dbc50bd1ed5621d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 (pythia) | 45% | 15.4 / 97.9 GB |\n| 1 (gpt2xl) | 91% | 35.0 / 97.9 GB |\n\n---\n\n### pythia_topk50_001 (cuda:0) — Pythia-1.4B top-k k=50\n\n**Pipeline: 6 步 (3轮 finetune + 3轮 generate)**\n\n| 步骤 | 状态 |\n|------|------|\n| Step 1: LoRA finetune depth-0 | ✅ 完成 |\n| Step 2: Generate depth-1 | ✅ 完成 |\n| Step 3: LoRA finetune depth-1 | ✅ 完成 |\n| Step 4: Generate depth-2 | ✅ 完成 |\n| Step 5: LoRA finetune depth-2 | ✅ 完成 (loss=1.437, 355s) |\n| **Step 6: Generate depth-3** | **🔄 进行中 — 模型已加载，生成中** |\n\n**进度**: 5/6 步完成，~85%。最后一步（depth-3 生成）从 03:41 UTC 开始，预计还需 ~10-15 分钟。\n\n---\n\n### gpt2xl_temp09_001 (cuda:1) — GPT-2 XL temp τ=0.9\n\n**Pipeline: 同样 6 步**\n\n| 步骤 | 状态 |\n|------|------|\n| Step 1: LoRA finetune depth-0 | ✅ 完成 |\n| Step 2: Generate depth-1 | ✅ 完成 (5000 samples) |\n| **Step 3: LoRA finetune depth-1** | **🔄 进行中 — 622/939 steps (66%), ~1.15s/it** |\n| Step 4: Generate depth-2 | ⏳ 待执行 |\n| Step 5: LoRA finetune depth-2 | ⏳ 待执行 |\n| Step 6: Generate depth-3 | ⏳ 待执行 |\n\n**进度**: 2.66/6 步，~44%。当前 finetune 剩 ~6 分钟，之后还有 3 步（gen+ft+gen），预计还需 ~50-60 分钟。\n\n---\n\n### 结果文件\n`results/` 下尚无 `pythia_topk50/` 或 `gpt2xl_temp09/` 目录（两个 pipeline 只做生成链，不含 feature_extract/classify 步骤）。pipeline 完成后产出在 `data/` 和 `checkpoints/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

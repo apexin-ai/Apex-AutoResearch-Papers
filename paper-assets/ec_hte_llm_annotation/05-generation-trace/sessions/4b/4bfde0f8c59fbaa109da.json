@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4bfde0f8c59fbaa109da",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 007 ppci fix",
+  "task_key": "worker_code_exp-007-ppci-fix_20260520T221446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-ppci-fix_20260520T221446_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "bb451b75bdcc80d375154eb298ff36c55317535abad032924932123e5ab647a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All validations pass. Summary of changes to `exp007_ppci_dsl.py`:\n\n1. **Renamed `method_ppci` → `method_mi_rubin`** — the old MI + Rubin's rules implementation, now correctly labeled\n2. **New `method_ppci`** — true PPI rectifier that uses Y_true + true Z on the gold subset to compute a bias correction term (rectifier = tau_gold - tau_hat_gold)\n3. **Treatment-differential outcome error DGP** — `Y_obs = Y_true + bias_s * T + noise` instead of mean-zero noise; `OUTCOME_BIAS` config per regime/subgroup\n4. **4 DGP matrix** — A (covariate only), B (outcome only), C (both), D (no error); `dgp` column in output CSV\n5. **`method_ec_hte_ppci`** — applies M^{-1} covariate correction first, then PPI rectifier for residual outcome error\n6. **`generate_data` restructured** — `has_covariate_error`/`has_outcome_error` flags control error injection; outcome noise only applied when `has_outcome_error=True`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d1151c88f9ea3da4aeb2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 attn k095 long and gpu2 check",
+  "task_key": "worker_deploy_cqa1_attn_k095_long_and_gpu2_check_20260526T165103",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_attn_k095_long_and_gpu2_check_20260526T165103_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "5f9e232a89a0d61d6167914361b2140b96a78ef8d4becf43bc713cac22eaf48e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 任务 1 结果\n\n```\nGPU2_STATUS: alive\nGPU2_PID: 467731\nGPU2_PROCESS: eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 (不是 Attn k=0.5)\nGPU3_STATUS: idle\nGPU3_PID: none\n```\n\n**注意：** GPU 2 上运行的是 `random k=0.7`，不是 `attention k=0.5`。\n\n## 任务 2 结果\n\n已部署 `eval_pi05_attn_k095_long_seed42` 到 GPU 3：\n\n- tmux session: `eval_pi05_attn_k095_long_seed42` ✓\n- PID: 546282\n- log: `~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed42.log`\n- 日志显示模型正在加载 (`Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned`)\n- GPU 3 显存尚未上涨（CPU 加载阶段，π0.5 模型较大，属正常现象）\n\n命令：\n```\nCUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u eval_pi05_pruning_libero.py \\\n  --prune_mode attention --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

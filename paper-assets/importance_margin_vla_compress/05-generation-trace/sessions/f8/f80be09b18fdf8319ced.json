@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f80be09b18fdf8319ced",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix westd41074 gpu3 pi05 zeromask",
+  "task_key": "worker_fix_westd41074_gpu3_pi05_zeromask_20260526T015719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_westd41074_gpu3_pi05_zeromask_20260526T015719_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "2230bbdf86eec2dd58476d0fba4116773162634df7bebc890e0a794baccc7733"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 执行结果\n\n| 步骤 | 状态 |\n|------|------|\n| Kill PID 303982 (GPU3 Attn k=0.85 Long) | ✓ force killed |\n| Kill PID 300693 (GPU0 旧残留) | ✓ killed |\n| Kill PID 309197 (意外残留，占 GPU3) | ✓ force killed（额外发现的残留进程） |\n| 上传 `eval_pi05_zeromask_ablation.py` | ✓ 362 行 |\n| 部署 π0.5 zeromask random k=0.9 Object | ✓ PID 308695, tmux session `eval_pi05_zeromask_random_k09_object_v3` |\n| Registry 更新 | ✓ RUNNING |\n| 更新被 kill 实验 | ✓ conclusion=killed |\n\n### GPU 状态\n\n| GPU | PID | 实验 | 显存 |\n|-----|-----|------|------|\n| 0 | 303189 | Random k=0.85 Long（保留） | 16188 MiB |\n| 1 | 76492 | l2norm k05 Object（保留） | 15980 MiB |\n| 2 | 259181 | attn k07 Object（保留） | 15980 MiB |\n| 3 | 308695 | **π0.5 zeromask random k=0.9 Object** | 9709 MiB（torch inductor 编译中） |\n\n### 注意事项\n- 指令中的脚本名 `eval_pi05_pruning_libero.py` 不支持 `zero_mask_random` 模式，实际需要的是 `eval_pi05_zeromask_ablation.py`（已从 artifacts 上传到服务器）\n- 进程正在 torch inductor 首次编译阶段（子进程 PID 310248，32 workers），预计还需数分钟后进入评测"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

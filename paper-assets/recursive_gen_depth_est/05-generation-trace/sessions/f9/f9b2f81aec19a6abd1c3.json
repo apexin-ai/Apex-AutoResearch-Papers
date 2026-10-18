@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f9b2f81aec19a6abd1c3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code gpt2xl ref model a2",
+  "task_key": "worker_code_gpt2xl_ref_model_a2_20260516T174038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt2xl_ref_model_a2_20260516T174038_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "437865be7804031cd19ae3e0329a20a9b282f6f8a5ed7b9e4fd2fac5e75669c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册为 RUNNING。\n\n**实验 `gpt2xl_ref_ablation_001`**：\n- 脚本：`src/gpt2xl_ref_ablation.py`\n- GPU：cuda:1 on gpu-6000pro-2\n- 流程：GPT-2 XL 对 20000 条 Pythia nucleus 文本提取 surprisal features → RF 4-class 5-fold CV → 与 Pythia-as-ref baseline 对比\n- 产出：`results/gpt2xl_ref_model/summary.json`\n- 预计 20000 samples × batch_size=16 ≈ 1250 batches，约 30-60 分钟完成特征提取，加评估共 ~1h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

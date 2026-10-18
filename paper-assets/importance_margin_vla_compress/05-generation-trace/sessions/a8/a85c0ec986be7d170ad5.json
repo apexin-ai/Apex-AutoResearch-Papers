@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a85c0ec986be7d170ad5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check westd41074 k095 seed43",
+  "task_key": "worker_ops_check-westd41074-k095-seed43_20260520T223321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-westd41074-k095-seed43_20260520T223321_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "85eea83b9c876ea351112142eb7731ad2a74f064f7b223c6c9dfc7c8ba848829"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**总结**:\n- `eval_openvla_prune_random_k095_seed43` 成功完成\n- **SR = 66.8%, Wilson CI 95% = [0.626, 0.708]**\n- metadata 验证通过：mode=random_prune, k_ratio=0.95, seed=43\n- 对比 seed=7 的 69.4%，seed=43 结果 66.8% 在 CI 范围内，可复现性良好\n- GPU 0 已空闲，GPU 1 在用，GPU 2/3 有显存占用但计算空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

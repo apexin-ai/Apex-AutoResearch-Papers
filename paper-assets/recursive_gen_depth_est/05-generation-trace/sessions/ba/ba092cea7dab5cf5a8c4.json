@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "ba092cea7dab5cf5a8c4",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis mink prob ordinal baseline",
+  "task_key": "worker_analysis_mink_prob_ordinal_baseline_20260518T175930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mink_prob_ordinal_baseline_20260518T175930.log",
+    "occurrence": 1,
+    "bytes": 794218,
+    "sha256": "eea7dc7da6f7ce780cc80700ef354d0f7a9605225d5857fed46891d422346964"
+  },
+  "statistics": {
+    "messages": 568,
+    "user_turns": 1,
+    "tool_calls": 240,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 240,
+      "tool_result": 240,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 545,
+      "chunks": [
+        {
+          "path": "ba092cea7dab5cf5a8c4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba092cea7dab5cf5a8c4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba092cea7dab5cf5a8c4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba092cea7dab5cf5a8c4-part-0004.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "ba092cea7dab5cf5a8c4-part-0004.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ]
+}

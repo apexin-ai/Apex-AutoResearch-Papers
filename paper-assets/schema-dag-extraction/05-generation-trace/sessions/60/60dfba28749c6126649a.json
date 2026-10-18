@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60dfba28749c6126649a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp2 progress check",
+  "task_key": "worker_ssh_exp2-progress-check_20260515T011705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp2-progress-check_20260515T011705_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "393c8b72b72af3d11a149bbf31cd41b2b35a2e93de5b9535c4d9a65ac7a30350"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp2 进度报告\n\n| 指标 | 值 |\n|------|-----|\n| **进程** | PID 197321 存活，已运行 2h12m |\n| **GPU** | 15% 利用率，94.2 / 97.9 GiB 显存 |\n| **已完成** | **37 / 54** batches（68.5%） |\n| **当前 batch** | `count_12_random_8`（09:16:14 UTC 开始） |\n| **剩余** | 当前 + 16 个（count_12_random_9 ~ count_12_random_24） |\n\n### 耗时统计\n\n- count_6 batches（27个）：平均 ~200s，部分 batch 较快（~100s）\n- count_12 batches（10个已完成）：平均 **234s**（3.9 min）\n- 剩余全部为 count_12，按 234s/batch 估算\n\n### ETA\n\n- 剩余 ~17 batches × 234s ≈ **66 分钟**\n- 预计完成时间：**~10:25 UTC**（2026-05-15）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

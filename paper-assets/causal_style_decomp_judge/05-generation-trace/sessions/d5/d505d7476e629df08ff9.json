@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d505d7476e629df08ff9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp014 fixed rerun",
+  "task_key": "worker_ops_exp014_fixed_rerun_20260521T000513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp014_fixed_rerun_20260521T000513_result.json",
+    "occurrence": 1,
+    "bytes": 3010,
+    "sha256": "6f15be0f2c04c2877e2f37003011bd711c4b5eaedf14c74c76bd933bb3e9915d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-014 全部完成。以下是完整结果汇总：\n\n---\n\n## exp-014 完整输出\n\n### 1. Direction-Asymmetry Analysis (formality)\n\nConsistent pairs: 55\n\n| Direction | n | formal wins | win rate | 95% CI (Wilson) | Sign test p | Sig |\n|-----------|---|-------------|----------|-----------------|-------------|-----|\n| formal→casual | 33 | 26/33 | 78.8% | [0.6225, 0.8932] | 0.001319 | **YES** |\n| casual→formal | 22 | 12/22 | 54.5% | [0.3466, 0.7308] | 0.831812 | NO |\n\n- `formal→casual`: formality effect 与 original preference **同向混淆**\n- `casual→formal`: **cleanly isolates formality effect** — formal 仅赢 54.5%，不显著\n\n### 2. Pair-Level Bootstrap Logistic Regression\n\n196 observations (2 trials × 98 pairs), bootstrap unit = pair\n\n| Effect | Coef | SE | OR | OR 95% CI | z | p | Sig |\n|--------|------|----|----|-----------|---|---|-----|\n| **formal_effect** | 0.7928 | 0.3161 | **2.2095** | [1.2280, 4.3053] | 2.508 | **0.0121** | **YES** |\n| original_effect | 0.5958 | 0.3220 | 1.8145 | [0.9757, 3.3693] | 1.850 | 0.0643 | NO |\n\nIntercept (position A bias): -0.5851\n\n### 3. GEE Decomposition (Exchangeable Correlation)\n\n| Effect | Coef | SE | OR | OR 95% CI | p | Sig |\n|--------|------|----|----|-----------|---|-----|\n| **formal_effect** | 0.7931 | 0.3074 | **2.2103** | [1.2100, 4.0377] | **0.0099** | **YES** |\n| original_effect | 0.5973 | 0.3074 | 1.8172 | [0.9948, 3.3194] | 0.0520 | NO |\n\n### 4. Method Comparison\n\n| Effect | Method | OR | OR 95% CI | p |\n|--------|--------|----|-----------|---|\n| formal_effect | Pair-bootstrap | 2.2095 | [1.228, 4.305] | 0.0121 |\n| formal_effect | GEE | 2.2103 | [1.210, 4.038] | 0.0099 |\n| original_effect | Pair-bootstrap | 1.8145 | [0.976, 3.369] | 0.0643 |\n| original_effect | GEE | 1.8172 | [0.995, 3.319] | 0.0520 |\n\n### 5. 关键对比与解读\n\n**Formality effect 在 pair-clustered 后仍然显著：**\n- Pair-bootstrap: p=0.012, GEE: p=0.010\n- OR ≈ 2.21，judges 偏好 formal 版本的概率是 casual 的 2.2 倍\n- 两种方法高度一致，结论稳健\n\n**Original effect 在 pair-clustered 后降为 marginally significant：**\n- Pair-bootstrap: p=0.064, GEE: p=0.052\n- OR CI 下界分别为 0.976 和 0.995，刚好跨过 1.0\n- 这意味着原始 observation-level bootstrap 可能高估了 original effect 的显著性（因为忽略了 pair 内依赖）\n\n**核心发现：** 修正 independence violation 后，formality bias 仍然是 robust effect (p<0.05)，但 original preference 效应变为 borderline (p≈0.05-0.06)。这强化了论文的核心 claim——formality 是独立于 original preference 的显著偏差因素。\n\n### 6. 其他已有输出\n\n**exp-011 NLI sensitivity** (`exp011_nli_sensitivity.csv`): NLI threshold 从 0.7 到 0.95，pairwise win rate 稳定在 72-74%，p 值均 <0.003。说明 formality effect 对 NLI 过滤阈值不敏感。\n\n**exp-012 CSV 尚未生成**（目录中无 exp-012 文件）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

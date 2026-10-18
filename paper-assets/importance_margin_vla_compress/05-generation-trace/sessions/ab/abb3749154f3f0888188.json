@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "abb3749154f3f0888188",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_15_1780006151.md",
+  "task_key": "loop_15_1780006151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_15_1780006151.md",
+    "occurrence": 1,
+    "bytes": 3126,
+    "sha256": "f07b9fd731cba82d0da25e8499253596bf3414fce4f3dee44e5567d4d491e4a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-28T21:37:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-33015 GPU 分配：gpu_ids 需查 `get_project_status`，之前 GPU 0 有幽灵进程已清理，seed47 实验跑在 GPU 1/2/3\n- 论文正文严格 ≤ 8 页（含 Limitations），当前恰好 8 页，任何正文新增必须等量删减\n- Δ 方向全文统一为 L2−Random（不是 Random−L2），已修复过一次全文，再改会引入不一致\n- SmolVLA 参数统一 450M（不是 451.5M），已在 method/experiments/appendix 统一过\n- seed47 实验仅用于 revision bonus data，不进入当前提交版本的 paper\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-33015，3 个 seed47 实验 RUNNING\n- 论文目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/`\n- PDF：`docs/paper/main.pdf`，31 页，正文 8 页，0 undefined refs，0 \"??\"，0 LaTeX warnings\n- 编译：`cd docs/paper && latexmk -pdf main.tex`\n- w27 / w38 / w41 服务器状态未确认（seed47 部署时 w27 连接失败，w41 状态未知）\n- 活跃 cron：reconcile 返回 0（seed47 实验可能未注册 cron，需确认）\n\n### 3. 📊 当前状态\n刚完成论文提交准备全部修复：bib 作者/venue 修复、6 处 broken cross-refs、正文 10→8 页压缩、Reviewer 全部修复项通过。已向 Director 汇报\"PDF 可提交\"。\n\nRegistry RUNNING（3 个）：\n- `eval_pi05_l2norm_k075_long_seed47_cqa1` — π0.5 L2 k=0.75 Long seed47\n- `eval_pi05_random_k07_long_seed47_cqa1` — π0.5 Random k=0.7 Long seed47\n- `eval_pi05_random_k075_long_seed47_cqa1` — π0.5 Random k=0.75 Long seed47\n\n等待：seed47 cron 回调（如果已注册）；无 Worker 在跑；无 Director 待决策。\n\n### 4. 📋 待办\n- seed47 任一实验 cron 回调到达 → spawn worker 提取 metrics → update_registry → 写入 report.md（不改 paper，仅存 revision data）\n- Director 说\"提交\" → 确认 PDF 路径、检查 \\nocite{*} 未启用、anonymous mode 开启（corl_2026 不是 final）\n- Director 要求加内容 → 必须等量删减保持 8 页，优先从 appendix 移回而非新写\n- w27 连接恢复 → 部署 `eval_pi05_l2norm_k07_long_seed47_w41`（第 4 个 seed47，之前因 w27 失败未部署）\n\n### 5. 🎯 战略上下文\n- 核心发现：connector architecture 决定 pruning robustness，CV 是 zero-cost diagnostic，importance margin Δ 随 CV 单调递增\n- 论文 framing：不是\"提出新 pruning 方法\"，而是\"empirical study 揭示 connector 是 pruning 的决定因素\"\n- 页面压缩手法：method/experiments 内容移到 appendix（attention scoring methods、attention entropy diagnostic、cliff-vs-graded 分析），不是删除。appendix 新增了 3 个 subsection 承接移出内容\n- 易错点：公式编号可能因 appendix 重组而变化，改 appendix 后必须全文检查交叉引用\n- 易错点：experiments.tex 和 method.tex 被多个 Worker 并行编辑过，subfigure 的 `\\caption{}` + `\\label{}` 修复容易被覆盖，改这两个文件前先 grep 确认 label 存在\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

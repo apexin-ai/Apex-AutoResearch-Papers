@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7c6abb667ccf4bc0a6c4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check simplerenv westd27271",
+  "task_key": "worker_check_simplerenv_westd27271_20260524T193031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_simplerenv_westd27271_20260524T193031_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "ad8fe130d160683ec3f5cb9f68a633cf14521f09ca084988e4e957cccd18445b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成并更新 registry → DONE (negative)。\n\n## 结果汇总\n\n| Task | Baseline SR | L2norm k=0.9 SR |\n|------|:-----------:|:---------------:|\n| PutCarrotOnPlate | 0.0% (0/50) | 0.0% (0/50) |\n| PutSpoonOnTableCloth | 0.0% (0/50) | 0.0% (0/50) |\n| StackGreenCubeOnYellowCube | 0.0% (0/50) | 0.0% (0/50) |\n| PutEggplantInBasket | 0.0% (0/50) | 0.0% (0/50) |\n| **平均** | **0.0%** | **0.0%** |\n\n**关键发现**：Baseline 本身就是 0%，说明问题不在 pruning，而在 OpenVLA-7B + ManiSkill3 的 sim 评估流程。可能的原因：\n1. **transformers 版本不匹配** — 日志警告 expected 4.40.1 但实际 5.5.4，可能导致 inference 退化\n2. **action 接口 / unnormalization 问题** — ManiSkill3 的 action space 与 OpenVLA 输出可能不兼容\n3. **Sim-to-real gap** — OpenVLA Bridge 模型在 ManiSkill3 仿真器中表现可能本身就很差\n\n这两个实验的比较结论无效（baseline 为零时无法评估 pruning 影响）。需要先修复 baseline 才能继续 SimplerEnv 方向的实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "133aa85c3371acfdff90",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_13_1779827660.md",
+  "task_key": "loop_13_1779827660",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_13_1779827660.md",
+    "occurrence": 1,
+    "bytes": 4305,
+    "sha256": "fda20e3b0c61ffcdc84aaf22261cc0f62a35916ae1279d0a8c9bbb549dc973d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-26T19:50:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 14 张：westd-38929 cuda:0-3, westd-41074 cuda:0-3, westd-27271 cuda:0-1, cqa1-33015 cuda:0-3。白名单外的 GPU 即使 Director 指令也必须 push back\n- OpenVLA 实验必须显式传 `--model_path` 和 `--unnorm_key`，脚本默认静默加载 Object 模型不报错但产出垃圾结果（已多次踩坑）\n- 各服务器模型部署不完整（详见 memory.md §9），部署前必须确认目标服务器有对应 suite 的 finetuned 模型\n- cqa1-33015 提交命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包装\n- Paper deadline: **May 29**（3 天），Abstract deadline: **May 26**（今天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-38929**: OpenVLA Long 模型 `/root/autodl-tmp/models/openvla-7b-finetuned-libero-10`，π0.5 模型也在。磁盘 29% 用\n- **westd-41074**: OpenVLA Object 模型 ✅，Long 模型已 rsync ✅。π0.5 全 suite 可用。磁盘 3% 用\n- **westd-27271**: OpenVLA Object ✅ + Goal ✅。磁盘 2% 用。2x RTX PRO 6000 Blackwell 94GB\n- **cqa1-33015**: OpenVLA Object ✅ + Goal ✅。磁盘根分区 91% ⚠️（`/autodl-pub` 满）。conda base 环境\n- **活跃 cron 监控**：eval_openvla_attn_k07_long_seed42_v2 (westd-38929:cuda:0, pid=6806), eval_pi05_zeromask_random_k09_object_seed42_v3 (pid=315599), eval_pi05_l2norm_k075_long_seed42_v3 (pid=319659)\n- **活跃 Worker**: worker_deploy_westd38929_gpu2_l2norm_k07_object（部署中）\n\n### 3. 📊 当前状态\n刚完成 5 个 ANALYZING 实验清理：\n1. **eval_openvla_l2norm_k07_long_seed42_v2** → DONE(success) SR=31.2% — L2norm k=0.7 Long cliff curve 数据点\n2. **eval_openvla_baseline_goal_seed43** → DONE(success) SR=77.6% — cross-seed baseline（seed42=74.8%）\n3. **l2norm_k05_object_s42** → DONE(success) SR=39.2% — 退化曲线 D227\n4. **eval_pi05_random_k09_long_seed43_postfix** → DONE(killed)\n5. **eval_pi05_l2norm_k03_goal_seed42_postfix** → DONE(success) SR=51.8% — extreme compression\n\n已向 Director 发送两次汇报：(1) L2norm k=0.7 Long 结果 + cliff curve 分析 (2) 资源告警 — 14 张 GPU 仅 1 张在跑\n\n**严重问题**: 13 张 GPU 空闲，等 Director 指示部署优先级。PREPARING 中有 88 个实验候选。\n\n已更新 memory.md §10 记录 OpenVLA Long cliff curve scoring 退化速度差异。\n\n### 4. 📋 待办\n- Director 回复部署指示 → 按优先级批量 spawn worker 部署实验到空闲 GPU\n- eval_openvla_attn_k07_long_seed42_v2 cron 回调 → 分析结果，完成 Long k=0.7 三方法对比（L2norm=31.2%, Random=38.8%, Attn=?）\n- eval_pi05_zeromask_random_k09_object_seed42_v3 cron 回调 → D225 P0 实验，zeromask claim 关键证据\n- eval_pi05_l2norm_k075_long_seed42_v3 cron 回调 → π0.5 cliff curve 补充点\n- worker_deploy_westd38929_gpu2_l2norm_k07_object 完成 → 确认部署成功并注册 cron\n- 如 Director 无回复 → 主动从 PREPARING 中选高优先 cliff curve 补充点部署（eval_openvla_random_k085_long_seed42_v2 等）\n\n### 5. 🎯 战略上下文\n- **核心 narrative**: VLA vision token compressibility 是 scoring method × connector architecture × task complexity 三维交互，不存在全局最优 scoring method\n- **Crossover table 16/16 已完成** (OpenVLA k=0.9 四 suite × 三方法 + baseline)\n- **π0.5 三向对比已完成**: Long k=0.9 L2norm(81%) >> Attn(63.8%) >> Random(32%)\n- **2×2 跨架构交叉已完成**: Entangling(X-VLA) vs MLP(OpenVLA) vs Linear(π0.5) × Attention vs L2norm\n- **当前阶段**: cliff curve 数据收集（不同 k 值下各方法退化速度） + Paper 写作（abstract 定稿，intro/conclusion 级联更新中）\n- **易错点**:\n  - L2norm 在不同 connector 上表现截然相反（MLP 上无优势甚至有害，Linear 上压倒性领先），不要混淆\n  - Long suite baseline 本身只有 52.8%（最难 suite），所有方法在此 suite 上绝对值都低\n  - PREPARING 88 个实验很多是过时的 diag_* 诊断实验或已不相关的旧计划，部署前要筛选\n  - cqa1-33015 根分区 91% 满，部署前检查磁盘\n  - Zeromask claim 待 D225 P0 实验（π0.5 zeromask_random 正在跑）结果才能定论\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2a7e9f424742c7dc8243",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper research ref expansion",
+  "task_key": "worker_paper_research_ref_expansion_20260525T142836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_ref_expansion_20260525T142836_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "cbfb43ee8e3e00940f931563376d8edc7cd1cca7f2b4041083a62260d8ceeb03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 new references are cited. Summary:\n\n| Key | Title | Year | Venue | Cited in |\n|---|---|---|---|---|\n| `dersimonian1986meta` | Meta-Analysis in Clinical Trials | 1986 | Controlled Clinical Trials | results.tex |\n| `benjamini1995controlling` | Controlling the False Discovery Rate | 1995 | JRSS-B | methodology.tex |\n| `ye2024justice` | Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge | 2024 | arXiv:2410.02736 | related_work.tex |\n| `bavaresco2025llms` | LLMs instead of Human Judges? | 2025 | ACL 2025 | related_work.tex |\n| `zou2023universal` | Universal and Transferable Adversarial Attacks on Aligned LLMs | 2023 | arXiv:2307.15043 | related_work.tex |\n| `wallace2019universal` | Universal Adversarial Triggers for Attacking and Analyzing NLP | 2019 | EMNLP-IJCNLP 2019 | related_work.tex |\n| `hong2004groups` | Groups of Diverse Problem Solvers Can Outperform... | 2004 | PNAS | related_work.tex |\n\nTotal bib entries: **62** (was 55). All entries verified via WebSearch. Each citation inserted at a natural position without altering existing content meaning."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

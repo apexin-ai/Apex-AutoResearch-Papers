@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b31978689247046aafc5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh olmo topk50 001 submit",
+  "task_key": "worker_ssh_olmo_topk50_001_submit_20260514T225926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_olmo_topk50_001_submit_20260514T225926_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "b158214bbfc84645c64d2dd31266916453a1fb2564da9c121ae2de4f9fd7973d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 未空闲。PID 213402 正在运行 olmo_temp09 的 depth-2 生成（已运行 3 分钟）：\n\n```\npython scripts/generate_next_depth.py --adapter_dir checkpoints/olmo_temp09/lora_depth_1 \\\n  --output_path data/olmo_temp09/depth_2.jsonl --target_depth 2 \\\n  --model_name /root/autodl-tmp/models/olmo-1b-hf \\\n  --decoding_strategy temp_only --temperature 0.9 --gpu 0\n```\n\nolmo_temp09 pipeline 仍在 cuda:1 上活跃，尚未退出。需要等它完成或手动终止后才能提交 olmo_topk50_001。\n\n是否要等待，还是终止该进程后立即提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

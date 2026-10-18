@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "8e9e8cd4f7f0c48b140c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis libero full ft baseline 100k",
+  "task_key": "worker_analysis_libero_full_ft_baseline_100k_20260516T212904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_libero_full_ft_baseline_100k_20260516T212904_result.json",
+    "occurrence": 1,
+    "bytes": 2386601,
+    "sha256": "f5a8b91ff494caecb2b0631df9f62bd6fd5552237010a981816e617b10939ff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "8e9e8cd4f7f0c48b140c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

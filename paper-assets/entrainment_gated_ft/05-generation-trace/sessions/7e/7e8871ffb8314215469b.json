@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7e8871ffb8314215469b",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check exp 007 data availability",
+  "task_key": "worker_check_exp-007-data-availability_20260519T170212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp-007-data-availability_20260519T170212_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "2dbc19513f61cc57c1595da401a4af46a4b5ef2bd6347abb9f816c76de5763b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。结论：\n\n**exp-007 不能直接启动**，缺少 lm-eval `--log_samples` 格式的 per-example JSONL 数据：\n\n- **340M**: 全部 16 个模型都需要跑（零 logsamples 数据）。模型权重全部就位。\n- **1.3B**: 已有 5 个模型的 logsamples（GDN h3/h6/h24, RetNet pure, Transformer），还缺 11 个模型。模型权重全部就位。\n- 现有的 `analysis/lambada_per_example.csv` 只覆盖 4 个 340M 模型，且是自定义格式非 lm-eval 输出。\n- 预估补跑时间约 2-3 小时（单 GPU 串行）。\n\n报告已写入 `artifacts/exp007_data_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

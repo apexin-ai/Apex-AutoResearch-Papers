@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "943b8f4ff8ad24a9c3fe",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops westd gpu fill",
+  "task_key": "worker_ops_westd_gpu_fill_20260517T185106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_gpu_fill_20260517T185106_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "c9afdcf321bd044a3d744b283b036dd26b4114f29c6971e7434467a95cd8d599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都已利用。最终结果总结：\n\n---\n\n## Task A: cuda:0 — qwen25_14b_scale_003 ✅ 已启动\n\n- **14B 模型**：完整 (8/8 shards, `/root/autodl-tmp/models/Qwen2.5-14B/`)\n- **脚本**：从 gpu-6000pro-2 SCP 传输，MD5 校验通过\n- **状态**：模型加载中 (579 weight shards)，Phase 2 (d0 generation) 开始\n- **配置**：FP16, d0-d3, 5000 samples/depth, nucleus p=0.95, seed=42\n- **预计运行时间**：10-15 小时\n\n## Task B: Proto gpt2xl 20K subsample ✅ 完成\n\n| 指标 | 20K subsample | 全量 (60K train) | 差异 |\n|------|--------------|-----------------|------|\n| Accuracy | **67.13%** | 68.35% | -1.22% |\n| MAE | 0.3888 | — | — |\n| mean_pairwise_AUC | **0.8977** | 0.8926 | +0.0051 |\n\n20K subsample 性能损失极小，AUC 甚至略高于全量训练。结果保存在 `results/learned_estimator/prototypical_gpt2xl.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee9354eb59d9ca724d0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k075 long seed43 strict cqa1",
+  "task_key": "worker_analyze_eval_pi05_attn_k075_long_seed43_strict_cqa1_20260527T222944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k075_long_seed43_strict_cqa1_20260527T222944_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "272f2cc6288043f0de92cc02bab52b0af3dc345614e4304a93bf7c7cc5547fbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**π0.5 Attn k=0.75 Long seed43: SR = 52.0%**\n\n| Task | SR |\n|------|-----|\n| T0 alphabet_soup_tomato | 68% |\n| T1 cream_cheese_butter | 64% |\n| T2 stove_moka_pot | 64% |\n| T3 black_bowl_drawer | 40% |\n| T4 white_mug_left_plate | 36% |\n| T5 book_back_shelf | 44% |\n| T6 white_mug_plate | 82% |\n| T7 alphabet_soup_cream | 30% |\n| T8 moka_pots_stove | 10% |\n| T9 yellow_white_mug_microwave | 82% |\n\n### 与 seed42 对比\n\n| | seed42 | seed43 | mean±std |\n|--|--------|--------|----------|\n| SR | 49.8% | 52.0% | **50.9%±1.1%** |\n\nseed43 比 seed42 高 2.2pp，两个 seed 的 mean 为 50.9%±1.1%（较之前 ROADMAP 的 49.4%±0.4 上修）。error bar 很小，确认 Attn k=0.75 plateau 稳定在 ~51% 附近。无 error/warning，EXIT_CODE=0，运行时间 253.7min（~4.2h）。Registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f05c6edb389ff4d511d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp docred bcs expanded",
+  "task_key": "worker_code_exp_docred_bcs_expanded_20260519T114253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_docred_bcs_expanded_20260519T114253_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "9cf2a0806e171a53af052597a04dd7e0cd36967a29240d5ce00e98ba3d0194b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交运行 (PID=604284)。\n\n**状态汇总**:\n- 脚本: `/root/schema-dag-extraction/src/run_docred_bcs_expanded.py`\n- 输出: `/root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded/`\n- 日志: `artifacts/exp_docred_bcs_expanded/run.log`\n- Registry: `exp_docred_bcs_expanded` → RUNNING\n\n**实验设计**:\n- 110 total batches: 2 counts (16,32) x (25 random + 15 low-BCS + 15 high-BCS)\n- 70 batches 复用已有推理结果 (25 random + 5 old extreme per count)\n- 40 new batches 需要新推理 (10 new extreme per BCS group per count)\n- 分析包含: bootstrap regression, 2x2 factorial interaction CI, TOST equivalence (2pp/3pp/5pp)\n\n预计 2-3 小时完成。可以用 `tail -20 artifacts/exp_docred_bcs_expanded/run.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

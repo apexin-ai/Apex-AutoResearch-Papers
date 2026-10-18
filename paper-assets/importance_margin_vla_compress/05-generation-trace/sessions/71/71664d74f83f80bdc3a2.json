@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "71664d74f83f80bdc3a2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k09 long seed44 strict w38",
+  "task_key": "worker_analyze_eval_pi05_attn_k09_long_seed44_strict_w38_20260528T002938",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k09_long_seed44_strict_w38_20260528T002938_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "254c762a33a23a2c27a0e9eef25dde89aec8c215e82d8087fe54545c11f13422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nRESULT: eval_pi05_attn_k09_long_seed44_strict_w38\nOverall SR: 64.0%\nPer-task: [T0:48%, T1:88%, T2:46%, T3:92%, T4:60%, T5:88%, T6:62%, T7:50%, T8:16%, T9:90%]\nStatus: success (EXIT_CODE=0)\nNotes: 无异常，运行耗时 231.9min\n3-seed stats: seed42=64.0%, seed43=62.8%, seed44=64.0%, mean=63.6%±0.6pp\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

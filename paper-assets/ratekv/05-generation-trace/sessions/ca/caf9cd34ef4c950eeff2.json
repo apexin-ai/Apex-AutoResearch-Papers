@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "caf9cd34ef4c950eeff2",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code mistral aggressive compression",
+  "task_key": "worker_code_mistral_aggressive_compression_20260514T055948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_aggressive_compression_20260514T055948_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "516b905d83e77d21616675cf7cfe73147a92f774b3ae42c255241817e14dcd0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并在运行中：\n\n- **tmux session**: `mistral_aggressive` on westd-37397 cuda:0\n- **脚本**: `/root/ratekv/run_mistral_aggressive.py`\n- **日志**: `mistral_aggressive.log` / `mistral_aggressive_tmux.log`\n- **输出**: `mistral_aggressive_results.json`\n- **Registry**: `mistral_aggressive_compression` → RUNNING\n- **监控**: 每 5 分钟自动检查进度\n\n模型已加载完成 (3/3 shards)，正在跑 baseline eval。预计整体运行 15-30 分钟（baseline + uniform 4-bit + 2 个 budget 各需 solver + eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

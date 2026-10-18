@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "5858c8866daf0c0065c5",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code unconstrained decoding prep",
+  "task_key": "worker_code_unconstrained_decoding_prep_20260518T095530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unconstrained_decoding_prep_20260518T095530.log",
+    "occurrence": 1,
+    "bytes": 600325,
+    "sha256": "3879f11aae1b0bece6f11ab8a072cb1d02f5483470f3b25f09fa623fee4eb889"
+  },
+  "statistics": {
+    "messages": 192,
+    "user_turns": 0,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 62,
+      "tool_result": 62,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "5858c8866daf0c0065c5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5858c8866daf0c0065c5-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ]
+}

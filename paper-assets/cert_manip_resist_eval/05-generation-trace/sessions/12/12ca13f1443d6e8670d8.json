@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "12ca13f1443d6e8670d8",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis 15model aggregation regression",
+  "task_key": "worker_analysis_15model-aggregation-regression_20260522T181241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_15model-aggregation-regression_20260522T181241_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "2450bc09e108fa440101476bea1aa3030cb52a85a7bff02475053047ff26630c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果保存至 `/root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model.json`（944 行）。\n\n### 汇总表格\n\n| Method | η_max FDR sig (/12) | K_eff_resid FDR sig (/12) | K_eff_resid β 方向 | Mean R² |\n|---|---|---|---|---|\n| majority_vote | **12/12** | **12/12** | 全正 (0 neg) | 0.4333 |\n| weighted_vote | **12/12** | **11/12** | 全正 (0 neg) | 0.4185 |\n| threshold_vote | 10/12 | 6/12 | 3 neg | 0.1647 |\n| bayesian | **12/12** | 5/12 | 3 neg | 0.1414 |\n\n### 关键发现\n\n1. **Bayesian 未能减弱 weakest-link 效应**：η_max 在 bayesian 下仍然 12/12 FDR 显著（与 majority 相同）。这与 6-model 结果（3/12 vs 8/12）不同——扩大到 15 模型后 η_max 的主导性更加稳固。\n\n2. **Bayesian/threshold 大幅降低了 K_eff_resid 的显著性**：majority 12/12 → bayesian 5/12、threshold 6/12。说明这两种聚合削弱了 diversity 的独立预测力。\n\n3. **Dual driver pattern 变化**：majority/weighted 下 K_eff 和 η_max 都强显著（dual driver），但 bayesian/threshold 下转为 η_max 单一主导（K_eff 多数不显著），且 R² 从 ~0.43 降到 ~0.15。\n\n4. **K_eff β 方向翻转**：majority/weighted 下 K_eff_resid β 全正（diversity 增加 vulnerability），bayesian/threshold 出现 3/12 负方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

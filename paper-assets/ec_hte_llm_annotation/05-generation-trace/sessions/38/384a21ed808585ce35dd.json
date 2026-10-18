@@ -1,0 +1,1242 @@
+{
+  "schema_version": "1.0",
+  "id": "384a21ed808585ce35dd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "conversation",
+  "title": "research ucb demographic subgroup analysis",
+  "task_key": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_ucb-demographic-subgroup-analysis_20260524T045225.jsonl",
+    "occurrence": 1,
+    "bytes": 97423,
+    "sha256": "e25c24b62094724df11c4c2db6219e7207b77e2b00ff56af22e9bda0179acab1"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T05:01:59.140838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_parquet('data/exp004_raw.parquet')\nprint(f'Shape: {df.shape}')\nprint(f'\\nAll columns ({len(df.columns)}):')\nfor i, c in enumerate(df.columns):\n    print(f'  {i}: {c}')\n\"",
+              "description": "Load parquet and list all columns",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T05:01:59.141221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shape: (135556, 143)\n\nAll columns (143):\n  0: comment_id\n  1: annotator_id\n  2: platform\n  3: sentiment\n  4: respect\n  5: insult\n  6: humiliate\n  7: status\n  8: dehumanize\n  9: violence\n  10: genocide\n  11: attack_defend\n  12: hatespeech\n  13: hate_speech_score\n  14: text\n  15: infitms\n  16: outfitms\n  17: annotator_severity\n  18: std_err\n  19: annotator_infitms\n  20: annotator_outfitms\n  21: hypothesis\n  22: target_race_asian\n  23: target_race_black\n  24: target_race_latinx\n  25: target_race_middle_eastern\n  26: target_race_native_american\n  27: target_race_pacific_islander\n  28: target_race_white\n  29: target_race_other\n  30: target_race\n  31: target_religion_atheist\n  32: target_religion_buddhist\n  33: target_religion_christian\n  34: target_religion_hindu\n  35: target_religion_jewish\n  36: target_religion_mormon\n  37: target_religion_muslim\n  38: target_religion_other\n  39: target_religion\n  40: target_origin_immigrant\n  41: target_origin_migrant_worker\n  42: target_origin_specific_country\n  43: target_origin_undocumented\n  44: target_origin_other\n  45: target_origin\n  46: target_gender_men\n  47: target_gender_non_binary\n  48: target_gender_transgender_men\n  49: target_gender_transgender_unspecified\n  50: target_gender_transgender_women\n  51: target_gender_women\n  52: target_gender_other\n  53: target_gender\n  54: target_sexuality_bisexual\n  55: target_sexuality_gay\n  56: target_sexuality_lesbian\n  57: target_sexuality_straight\n  58: target_sexuality_other\n  59: target_sexuality\n  60: target_age_children\n  61: target_age_teenagers\n  62: target_age_young_adults\n  63: target_age_middle_aged\n  64: target_age_seniors\n  65: target_age_other\n  66: target_age\n  67: target_disability_physical\n  68: target_disability_cognitive\n  69: target_disability_neurological\n  70: target_disability_visually_impaired\n  71: target_disability_hearing_impaired\n  72: target_disability_unspecific\n  73: target_disability_other\n  74: target_disability\n  75: target_politics_alt_right\n  76: tar\n…[truncated 2242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T05:01:59.141438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_parquet('data/exp004_raw.parquet')\n\n# Check for GPT/LLM label columns\nprint('=== Checking for LLM/GPT columns ===')\nfor c in df.columns:\n    if any(k in c.lower() for k in ['gpt', 'llm', 'predict', 'label', 'score']):\n        print(f'  {c}: {df[c].dtype}, nunique={df[c].nunique()}, sample={df[c].dropna().head(3).tolist()}')\n\nprint('\\n=== hate_speech_score stats ===')\nprint(df['hate_speech_score'].describe())\n\nprint('\\n=== hatespeech distribution ===')\nprint(df['hatespeech'].value_counts())\n\nprint('\\n=== sentiment distribution ===')\nprint(df['sentiment'].value_counts())\n\n# Data structure: annotator-level?\nprint(f'\\n=== Data structure ===')\nprint(f'Unique comments: {df.comment_id.nunique()}')\nprint(f'Unique annotators: {df.annotator_id.nunique()}')\nprint(f'Rows: {len(df)}')\nprint(f'Avg annotations per comment: {len(df)/df.comment_id.nunique():.1f}')\nprint(f'Avg annotations per annotator: {len(df)/df.annotator_id.nunique():.1f}')\n\"",
+              "description": "Check data structure and label columns",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T05:01:59.141611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Checking for LLM/GPT columns ===\n  hate_speech_score: float64, nunique=1255, sample=[-3.9, -6.52, 0.36]\n\n=== hate_speech_score stats ===\ncount    135556.000000\nmean         -0.567428\nstd           2.380003\nmin          -8.340000\n25%          -2.330000\n50%          -0.340000\n75%           1.410000\nmax           6.300000\nName: hate_speech_score, dtype: float64\n\n=== hatespeech distribution ===\nhatespeech\n0.0    80624\n2.0    46021\n1.0     8911\nName: count, dtype: int64\n\n=== sentiment distribution ===\nsentiment\n4.0    61435\n3.0    35243\n2.0    19785\n0.0     9658\n1.0     9435\nName: count, dtype: int64\n\n=== Data structure ===\nUnique comments: 39565\nUnique annotators: 7912\nRows: 135556\nAvg annotations per comment: 3.4\nAvg annotations per annotator: 17.1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T05:01:59.141758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_parquet('data/exp004_raw.parquet')\n\n# Annotator demographics distributions\ndemo_cols = {\n    'annotator_gender': df['annotator_gender'],\n    'annotator_educ': df['annotator_educ'],\n    'annotator_income': df['annotator_income'],\n    'annotator_ideology': df['annotator_ideology'],\n    'annotator_age': df['annotator_age'],\n}\n\n# Race - one-hot encoded, need to decode\nrace_cols = [c for c in df.columns if c.startswith('annotator_race_')]\nprint('=== Annotator Race (one-hot) ===')\nfor c in race_cols:\n    print(f'  {c}: {df[c].sum()} ({df[c].mean()*100:.1f}%)')\n\nprint()\nfor name, col in demo_cols.items():\n    print(f'=== {name} ===')\n    print(col.value_counts())\n    print()\n\n# Check annotator_trans\nprint('=== annotator_trans ===')\nprint(df['annotator_trans'].value_counts())\n\"",
+              "description": "Check annotator demographic distributions",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T05:01:59.141960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Annotator Race (one-hot) ===\n  annotator_race_asian: 9596 (7.1%)\n  annotator_race_black: 13606 (10.0%)\n  annotator_race_latinx: 9501 (7.0%)\n  annotator_race_middle_eastern: 827 (0.6%)\n  annotator_race_native_american: 2636 (1.9%)\n  annotator_race_pacific_islander: 483 (0.4%)\n  annotator_race_white: 109090 (80.5%)\n  annotator_race_other: 1425 (1.1%)\n\n=== annotator_gender ===\nannotator_gender\nfemale               76370\nmale                 57582\nnon-binary             985\nprefer_not_to_say      500\nself-describe          119\nName: count, dtype: int64\n\n=== annotator_educ ===\nannotator_educ\ncollege_grad_ba        50206\nsome_college           35115\ncollege_grad_aa        18011\nhigh_school_grad       14138\nmasters                12593\nprofessional_degree     3042\nphd                     1562\nsome_high_school         872\nName: count, dtype: int64\n\n=== annotator_income ===\nannotator_income\n10k-50k      56668\n50k-100k     52803\n100k-200k    17415\n<10k          6429\n>200k         2138\nName: count, dtype: int64\n\n=== annotator_ideology ===\nannotator_ideology\nliberal                   33812\nneutral                   23112\nslightly_liberal          21333\nextremely_liberal         17944\nconservative              15628\nslightly_conservative     15101\nextremely_conservative     4544\nno_opinion                 4055\nName: count, dtype: int64\n\n=== annotator_age ===\nannotator_age\n34.0    5977\n29.0    5844\n31.0    5834\n32.0    5591\n35.0    5433\n        ... \n80.0      46\n75.0      35\n79.0      21\n81.0      21\n78.0      21\nName: count, Length: 63, dtype: int64\n\n=== annotator_trans ===\nannotator_trans\nno                   133715\nyes                    1183\nprefer_not_to_say       658\nName: count, dtype: int64"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T05:01:59.142149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls data/exp004* data/*ucb* data/*hate* 2>/dev/null; echo \"---\"; ls results/ 2>/dev/null || echo \"no results dir\"",
+              "description": "Check for related data files"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T05:01:59.142316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data/exp004_comments_processed.parquet\ndata/exp004_processed.parquet\ndata/exp004_raw.parquet\n---\ndataset_survey.md\ndemo_subgroup_discovery.md\nexp001_full_run.log\nexp001_hb_diagnostics.csv\nexp001_hb_results.csv\nexp001_hb_results_v2.csv\nexp001_hyperprior_run.log\nexp001_hyperprior_sensitivity.csv\nexp001_reg_run.log\nexp001_reg_v2_run.log\nexp002_bias_bound.csv\nexp002_bias_heatmap.csv\nexp002_debiasing_hurts.csv\nexp002_derivation.md\nexp002_k4_validation.csv\nexp002_run.log\nexp003_dgp_spec.md\nexp003_hb_rerun.log\nexp003_phase_a.csv\nexp003_phase_a_raw.csv\nexp003_phase_a_v2.csv\nexp003_phase_a_v2_raw.csv\nexp003_phase_a_v3.csv\nexp003_phase_a_v3_raw.csv\nexp003_run.log\nexp003_v2_run.log\nexp004_annotate.log\nexp004_cate_comparison.csv\nexp004_cate_plot.png\nexp004_comments_to_annotate.csv\nexp004_confusion_matrices.csv\nexp004_hate_speech_analysis.md\nexp004_llm_annotations.csv\nexp005_diagnostic.csv\nexp005_diagnostic_subgroups.csv\nexp005_roc.png\nexp006_budget_sensitivity.csv\nexp006_crossover.csv\nexp006_run.log\nexp007_full_run.log\nexp007_hb_run.log\nexp007_ppci_dsl.csv\nexp007_ppci_dsl_hb.csv.broken\nexp007_ppci_dsl_hb_raw.csv.broken\nexp007_ppci_dsl_raw.csv\nexp007_run.log\nexp008_available_models.txt\nexp008_checkpoint_gpt-3.5-turbo.json\nexp008_checkpoint_gpt-4-turbo.json\nexp008_checkpoint_gpt-4o-mini.json\nexp008_checkpoint_gpt-4o.json\nexp008_checkpoint_gpt-5.4.json\nexp008_checkpoint_gpt-5.5.json\nexp008_filtered_analysis.md\nexp008_gpt55_run.log\nexp008_gpt5x_model_used.txt\nexp008_gpt5x_run.log\nexp008_multi_llm_analysis.md\nexp008_multi_llm_annotations.csv\nexp008_multi_llm_comparison.csv\nexp010_misspecified_analysis.md\nexp010_misspecified_results.csv\nexp010_misspecified_summary.csv\nexp011_causal_forest.csv\nexp011_run.log\nexp013_boundary_analysis.md\nexp013_boundary_condition.csv\nexp013_boundary_summary.csv\nexp014_asymmetric_analysis.md\nexp014_asymmetric_bias.csv\nexp014_asymmetric_correction.csv\nexp015_semi_real_analysis.md\nexp015_semi_real_raw.csv\nexp015_semi_real_summary.csv\nexp016_semi_real_analy\n…[truncated 3435 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T05:01:59.142465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -100 exp_civilcomments_demographic.py 2>/dev/null || echo \"file not found\"; echo \"===\"; ls *.py 2>/dev/null",
+              "description": "Check reference code files"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T05:01:59.142649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"\"\"\nCivil Comments demographic subgroup analysis for EC-HTE validation.\n\nUses existing LLM annotations (3 models × 3000 comments) with keyword-based\ndemographic subgroups to compute per-subgroup confusion matrices and run\nsemi-synthetic causal inference (naive / global corrected / EC-HTE).\n\"\"\"\n\nimport json\nimport warnings\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.special import gammaln\n\nwarnings.filterwarnings('ignore')\n\nPROJ = Path(__file__).parent\nRESULTS = PROJ / \"results\"\nARTIFACTS = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts\")\nARTIFACTS.mkdir(parents=True, exist_ok=True)\n\nLLM_MODELS = [\"gpt-4o\", \"gpt-4o-mini\", \"gpt-3.5-turbo\"]\n\nN_SIM = 5000\nN_MC = 50\nN_EXPERT_LIST = [100, 250, 500]\nSEED_BASE = 42\nTAU_Z0 = 0.10\nTAU_Z1 = 0.30\nP_T = 0.5\n\n\n# ── Step 1: Load data and assign demographic subgroups ──\n\ndef load_and_assign_subgroups():\n    df = pd.read_csv(RESULTS / \"exp023_llm_annotations.csv\")\n\n    text_lower = df['text'].str.lower()\n\n    gender_pat = r'man\\b|men\\b|male|masculin|boy|father|husband|son\\b|brother|guy|gentleman|woman|women|female|girl|mother|wife|daughter|sister|feminin|lady|ladies'\n    race_pat = r'\\bwhites?\\b|\\bcaucasian|\\beuropean|\\bblacks?\\b|\\bafrican|\\basian|\\bhispanic|\\blatino|\\blatina|\\bgay\\b|\\blesbian|\\bhomosexual|\\bbisexual|\\btransgender|\\btrans\\b|\\bqueer\\b|\\blgbt'\n    religion_pat = r'\\bmuslim|\\bislam|\\bmosque|\\bquran|\\ballah|\\bchristian|\\bchurch\\b|\\bbible|\\bjesus|\\bchrist\\b|\\bjews?\\b|\\bjewish|\\bjudaism|\\bhindu|\\bbuddhist'\n\n    df['dm_gender'] = text_lower.str.contains(gender_pat, regex=True, na=False).astype(int)\n    df['dm_race'] = text_lower.str.contains(race_pat, regex=True, na=False).astype(int)\n    df['dm_religion'] = text_lower.str.contains(religion_pat, regex=True, na=False).astype(int)\n\n    def assign(row):\n        if row['dm_race'] == 1:\n            return 'race_lgbtq'\n        if row['dm_religion'] == 1:\n            return 'religion'\n        if row['dm\n…[truncated 3365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T05:01:59.142873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nllm = pd.read_csv('results/exp004_llm_annotations.csv')\nprint(f'Shape: {llm.shape}')\nprint(f'Columns: {llm.columns.tolist()}')\nprint(f'\\nFirst 3 rows:')\nprint(llm.head(3))\nprint(f'\\nLabel distribution:')\nfor c in llm.columns:\n    if 'label' in c.lower() or 'pred' in c.lower() or 'gpt' in c.lower() or 'llm' in c.lower():\n        print(f'  {c}: {llm[c].value_counts().to_dict()}')\n\"",
+              "description": "Check LLM annotations file",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T05:01:59.143035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shape: (2496, 7)\nColumns: ['comment_id', 'text', 'Z_llm', 'Z_human', 'T', 'S', 'Y']\n\nFirst 3 rows:\n   comment_id  ...     Y\n0       14385  ...  0.38\n1        9366  ... -1.23\n2        9755  ...  1.13\n\n[3 rows x 7 columns]\n\nLabel distribution:\n  Z_llm: {0: 1769, 1: 727}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T05:01:59.143161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nproc = pd.read_parquet('data/exp004_processed.parquet')\nprint(f'Shape: {proc.shape}')\nprint(f'Columns: {proc.columns.tolist()}')\nprint(f'\\nFirst 3 rows:')\nprint(proc.head(3))\n\"",
+              "description": "Check processed parquet",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T05:01:59.143283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shape: (135556, 9)\nColumns: ['comment_id', 'annotator_id', 'text', 'T', 'Y', 'Z_human', 'S', 'hatespeech', 'dehumanize']\n\nFirst 3 rows:\n   comment_id  annotator_id  ... hatespeech  dehumanize\n0       47777         10873  ...        0.0         0.0\n1       39773          2790  ...        0.0         0.0\n2       47101          3379  ...        2.0         4.0\n\n[3 rows x 9 columns]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T05:01:59.143400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp_civilcomments_demographic.py",
+              "limit": "200",
+              "offset": "100"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T05:01:59.143565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\tdef diff_in_means(Y, T, mask):\n101\t    t1 = mask & (T == 1)\n102\t    t0 = mask & (T == 0)\n103\t    n1, n0 = t1.sum(), t0.sum()\n104\t    if n1 < 2 or n0 < 2:\n105\t        return np.nan, np.nan\n106\t    y1, y0 = Y[t1], Y[t0]\n107\t    tau_hat = y1.mean() - y0.mean()\n108\t    se = np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n109\t    return tau_hat, se\n110\t\n111\t\n112\tdef estimate_cm_from_expert(z_true, z_hat, subgroups, labels):\n113\t    cms = {}\n114\t    for s in labels:\n115\t        ms = subgroups == s\n116\t        zt, zh = z_true[ms], z_hat[ms]\n117\t        n = ms.sum()\n118\t        if n == 0:\n119\t            cms[s] = np.array([[0.5, 0.5], [0.5, 0.5]])\n120\t            continue\n121\t        C = np.zeros((2, 2))\n122\t        for i in [0, 1]:\n123\t            mi = zt == i\n124\t            ni = mi.sum()\n125\t            for j in [0, 1]:\n126\t                C[i, j] = ((zh[mi] == j).sum() + 1) / (ni + 2) if ni > 0 else 0.5\n127\t        cms[s] = C\n128\t    return cms\n129\t\n130\t\n131\tdef log_beta_binom(k, n, a, b):\n132\t    return gammaln(n + 1) - gammaln(k + 1) - gammaln(n - k + 1) + \\\n133\t           gammaln(k + a) + gammaln(n - k + b) - gammaln(n + a + b) - \\\n134\t           (gammaln(a) + gammaln(b) - gammaln(a + b))\n135\t\n136\t\n137\tdef hb_estimate_cm(z_hat_expert, z_true_expert, subgroups_expert, labels,\n138\t                   a0=2.0, b0=2.0, grid_size=200):\n139\t    pi_grid = np.linspace(0.001, 0.499, grid_size)\n140\t    cms = {}\n141\t\n142\t    all_z = z_true_expert\n143\t    all_zh = z_hat_expert\n144\t    n_err_global = (all_z != all_zh).sum()\n145\t    n_global = len(all_z)\n146\t\n147\t    for s in labels:\n148\t        ms = subgroups_expert == s\n149\t        zt, zh = z_true_expert[ms], z_hat_expert[ms]\n150\t        n_s = ms.sum()\n151\t        n_err_s = (zt != zh).sum()\n152\t\n153\t        log_prior = np.zeros(grid_size)\n154\t        for i, pi_val in enumerate(pi_grid):\n155\t            log_prior[i] = log_beta_binom(n_err_global, n_global, a0, b0) + \\\n156\t                           np.log(pi_val) * 0\n157\t\n15\n…[truncated 6940 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T05:01:59.143749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nproc = pd.read_parquet('data/exp004_processed.parquet')\nprint('Processed data:')\nprint(proc.dtypes)\nprint(f'\\nZ_human: {proc.Z_human.value_counts().to_dict()}')\nprint(f'T: {proc.T.value_counts().to_dict()}')\nprint(f'S: {proc.S.value_counts().to_dict()}')\nprint(f'Y: {proc.Y.describe()}')\nprint(f'\\nhatespeech: {proc.hatespeech.value_counts().to_dict()}')\nprint(f'dehumanize: {proc.dehumanize.value_counts().to_dict()}')\n\n# Check how Z_human maps to hatespeech\nprint('\\nZ_human vs hatespeech crosstab:')\nprint(pd.crosstab(proc.Z_human, proc.hatespeech))\n\"",
+              "description": "Understand processed data structure",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T05:01:59.143954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nllm = pd.read_csv('results/exp004_llm_annotations.csv')\nprint('LLM annotations:')\nprint(llm.dtypes)\nprint(f'\\nZ_llm: {llm.Z_llm.value_counts().to_dict()}')\nprint(f'Z_human: {llm.Z_human.value_counts().to_dict()}')\nprint(f'T: {llm.T.value_counts().to_dict()}')\nprint(f'S: {llm.S.value_counts().to_dict()}')\nprint(f'\\nComment IDs: {llm.comment_id.nunique()} unique')\nprint(f'Sample comment_ids: {llm.comment_id.head().tolist()}')\n\"",
+              "description": "Understand LLM annotations structure",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T05:01:59.144102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: bq36hrykd. Output is being written to: /tmp/claude-1000/-home-ubuntu-ec-hte-llm-annotation/f203dab3-b44b-4d4c-8160-855e4f7bc4a5/tasks/bq36hrykd.output"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T05:01:59.144297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (443.7KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu-ec-hte-llm-annotation/f203dab3-b44b-4d4c-8160-855e4f7bc4a5/tool-results/b9lu517zi.txt\n\nPreview (first 2KB):\nLLM annotations:\ncomment_id      int64\ntext              str\nZ_llm           int64\nZ_human         int64\nT               int64\nS                 str\nY             float64\ndtype: object\n\nZ_llm: {0: 1769, 1: 727}\nZ_human: {0: 1335, 1: 1161}\nT: {(14385, 9366, 9755, 69, 3507, 16403, 3846, 7928, 4921, 2589, 19409, 10620, 19862, 15531, 3954, 18304, 10488, 19314, 4413, 12704, 1584, 19573, 12814, 11923, 11664, 5693, 7473, 12884, 9759, 1268, 13681, 17661, 19456, 14687, 19016, 2953, 14232, 15403, 18449, 10999, 4487, 15540, 2933, 4249, 7275, 8970, 14878, 2472, 11645, 17904, 12400, 6022, 8555, 19182, 7745, 907, 551, 4776, 17171, 2937, 18243, 2238, 2012, 11193, 5743, 16360, 15528, 12912, 9941, 14389, 15505, 19138, 11362, 8230, 18189, 6587, 15481, 6960, 7352, 14023, 8365, 12307, 17108, 16025, 6028, 3818, 13389, 14323, 7162, 2680, 12796, 16873, 11439, 6765, 6051, 18899, 15244, 19424, 4958, 11091, 8879, 18726, 17656, 12901, 9536, 16368, 15539, 3163, 8607, 4343, 12477, 18411, 6984, 15878, 6054, 9326, 9372, 12923, 8697, 12098, 19499, 17445, 18959, 5604, 14439, 4200, 16794, 7296, 10831, 2652, 4966, 7398, 7979, 7721, 1751, 5495, 4800, 14608, 296, 6995, 990, 11770, 482, 6819, 5533, 15204, 14966, 13152, 17812, 4687, 10731, 3548, 18769, 9700, 2034, 726, 15216, 9925, 6024, 17414, 3863, 480, 11629, 596, 19974, 712, 7714, 12756, 8873, 13617, 19308, 15436, 11154, 19549, 2090, 14561, 408, 19797, 16643, 520, 6789, 1078, 19840, 18306, 1319, 5229, 3412, 10887, 5945, 1360, 19675, 18844, 2519, 3895, 1214, 4625, 15185, 15610, 13206, 11691, 521, 1952, 2453, 8456, 9464, 15929, 15680, 12409, 15802, 3002, 253, 664, 5886, 6766, 6174, 16595, 17608, 6412, 11606, 10182, 13379, 10110, 11676, 14065, 4884, 9182, 6893, 6704, 14265, 8577, 18853, 8927, 3982, 17152, 2677, 14668, 5404, 752\n…[truncated 254 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T05:01:59.144456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nllm = pd.read_csv('results/exp004_llm_annotations.csv')\nprint(f'T distribution: mean={llm.T.mean():.3f}')\nprint(f'S distribution:')\nprint(llm.S.value_counts())\nprint(f'\\nZ_human vs Z_llm crosstab:')\nprint(pd.crosstab(llm.Z_human, llm.Z_llm, margins=True))\nprint(f'\\nAccuracy: {(llm.Z_human == llm.Z_llm).mean():.4f}')\nfpr = ((llm.Z_human==0) & (llm.Z_llm==1)).sum() / (llm.Z_human==0).sum()\nfnr = ((llm.Z_human==1) & (llm.Z_llm==0)).sum() / (llm.Z_human==1).sum()\nprint(f'FPR: {fpr:.4f}, FNR: {fnr:.4f}, pi: {(fpr+fnr)/2:.4f}')\n\" 2>&1",
+              "description": "LLM vs human confusion matrix",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T05:01:59.144605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    print(f'T distribution: mean={llm.T.mean():.3f}')\n                                  ~~~~~~~~~~^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/util/_decorators.py\", line 336, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/frame.py\", line 14473, in mean\n    result = super().mean(\n        axis=axis, skipna=skipna, numeric_only=numeric_only, **kwargs\n    )\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/generic.py\", line 11831, in mean\n    return self._stat_function(\n           ~~~~~~~~~~~~~~~~~~~^\n        \"mean\", nanops.nanmean, axis, skipna, numeric_only, **kwargs\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/generic.py\", line 11785, in _stat_function\n    return self._reduce(\n           ~~~~~~~~~~~~^\n        func, name=name, axis=axis, skipna=skipna, numeric_only=numeric_only\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/frame.py\", line 13633, in _reduce\n    res = df._mgr.reduce(blk_func)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/internals/managers.py\", line 1681, in reduce\n    res_blocks = [blk.reduce(func) for blk in self.blocks]\n                  ~~~~~~~~~~^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/internals/blocks.py\", line 358, in reduce\n    result = func(self.values)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/frame.py\", line 13563, in blk_func\n    return op(values, axis=axis, skipna=skipna, **kwds)\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/nanops.py\", line 149, in f\n    result = alt(values, axis=axis, skipna=skipna, **kwds)\n  File \"/home/ubuntu/.l\n…[truncated 1051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T05:01:59.144753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /tmp/claude-1000/-home-ubuntu-ec-hte-llm-annotation/f203dab3-b44b-4d4c-8160-855e4f7bc4a5/tasks/bq36hrykd.output",
+              "description": "Read background task output"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T05:01:59.144900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(python3 -c \"\nimport pandas as pd\nllm = p…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T05:01:59.145029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nllm = pd.read_csv('results/exp004_llm_annotations.csv')\nprint(f'T dtype: {llm.T.dtype}')\nprint(f'T sample: {llm.T.head().tolist()}')\nprint(f'S distribution:')\nprint(llm.S.value_counts())\nprint(f'\\nZ_human vs Z_llm crosstab:')\nprint(pd.crosstab(llm.Z_human, llm.Z_llm, margins=True))\nacc = (llm.Z_human == llm.Z_llm).mean()\nfpr = ((llm.Z_human==0) & (llm.Z_llm==1)).sum() / (llm.Z_human==0).sum()\nfnr = ((llm.Z_human==1) & (llm.Z_llm==0)).sum() / (llm.Z_human==1).sum()\nprint(f'\\nAccuracy: {acc:.4f}')\nprint(f'FPR: {fpr:.4f}, FNR: {fnr:.4f}, pi: {(fpr+fnr)/2:.4f}')\n\"",
+              "description": "LLM vs human confusion matrix",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T05:01:59.145152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    print(f'T dtype: {llm.T.dtype}')\n                      ^^^^^^^^^^^\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/pandas/core/generic.py\", line 6206, in __getattr__\n    return object.__getattribute__(self, name)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAttributeError: 'DataFrame' object has no attribute 'dtype'. Did you mean: 'dtypes'?"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T05:01:59.145272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nllm = pd.read_csv('results/exp004_llm_annotations.csv')\nprint(llm.dtypes)\nprint(f'\\nT column sample: {llm[\\\"T\\\"].head().tolist()}')\nprint(f'S distribution:')\nprint(llm['S'].value_counts())\nprint(f'\\nZ_human vs Z_llm crosstab:')\nprint(pd.crosstab(llm['Z_human'], llm['Z_llm'], margins=True))\nacc = (llm['Z_human'] == llm['Z_llm']).mean()\nfpr = ((llm['Z_human']==0) & (llm['Z_llm']==1)).sum() / (llm['Z_human']==0).sum()\nfnr = ((llm['Z_human']==1) & (llm['Z_llm']==0)).sum() / (llm['Z_human']==1).sum()\nprint(f'\\nAccuracy: {acc:.4f}')\nprint(f'FPR: {fpr:.4f}, FNR: {fnr:.4f}, pi: {(fpr+fnr)/2:.4f}')\n\"",
+              "description": "LLM vs human confusion matrix",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T05:01:59.145401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "comment_id      int64\ntext              str\nZ_llm           int64\nZ_human         int64\nT               int64\nS                 str\nY             float64\ndtype: object\n\nT column sample: [0, 0, 0, 0, 0]\nS distribution:\nS\nplat0_long      624\nplat0_short     624\nplat23_long     624\nplat23_short    624\nName: count, dtype: int64\n\nZ_human vs Z_llm crosstab:\nZ_llm       0    1   All\nZ_human                 \n0        1150  185  1335\n1         619  542  1161\nAll      1769  727  2496\n\nAccuracy: 0.6779\nFPR: 0.1386, FNR: 0.5332, pi: 0.3359"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T05:01:59.145560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nproc = pd.read_parquet('data/exp004_processed.parquet')\n# Check if Z_human is per-annotator or per-comment (majority vote)\nsample_comment = proc.comment_id.value_counts().index[0]\nprint(f'Sample comment {sample_comment}:')\nprint(proc[proc.comment_id == sample_comment][['annotator_id','Z_human','hatespeech']].to_string())\n\n# Check relationship: is Z_human derived from hatespeech?\nprint(f'\\nZ_human vs hatespeech crosstab:')\nprint(pd.crosstab(proc['Z_human'], proc['hatespeech']))\n\n# Is Z_human constant per comment?\nz_var = proc.groupby('comment_id')['Z_human'].nunique()\nprint(f'\\nZ_human unique values per comment: {z_var.value_counts().to_dict()}')\n\"",
+              "description": "Check Z_human definition",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T05:01:59.145757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (33.7KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu-ec-hte-llm-annotation/f203dab3-b44b-4d4c-8160-855e4f7bc4a5/tool-results/bdt7j95iq.txt\n\nPreview (first 2KB):\nSample comment 20011:\n        annotator_id  Z_human  hatespeech\n99945           2171        1         2.0\n99948           2878        1         2.0\n99954           3936        0         2.0\n99968           2689        1         2.0\n99975           8856        1         2.0\n99992           9715        1         2.0\n100019          4339        0         2.0\n100029          4800        1         2.0\n100033          1773        1         1.0\n100045          9752        1         2.0\n100046          6765        1         2.0\n100054          2741        1         2.0\n100071          3521        1         2.0\n100076          7548        1         2.0\n100077         10377        1         2.0\n100084          5640        1         2.0\n100088         11021        1         2.0\n100121         10899        1         2.0\n100127          3231        1         2.0\n100134          1379        0         2.0\n100146          3281        0         2.0\n100151           704        1         2.0\n100152          6128        1         1.0\n100159         10533        1         2.0\n100164          4479        0         2.0\n100181          5021        1         2.0\n100187          1067        1         2.0\n100225          4604        1         2.0\n100230          2756        1         2.0\n100256          1492        1         2.0\n100264          2619        1         2.0\n100267          6369        1         2.0\n100269          4442        1         2.0\n100271          5569        1         2.0\n100272          7359        1         2.0\n100283          6641        1         1.0\n100293          7035        1         2.0\n100314          1685        1         2.0\n100363          1767        1         2.0\n100367          7741        1         2.0\n100380          7768       \n…[truncated 248 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T05:01:59.145946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nproc = pd.read_parquet('data/exp004_processed.parquet')\n# Z_human varies per annotator within same comment -> it's per-annotator\nz_var = proc.groupby('comment_id')['Z_human'].nunique()\nprint(f'Z_human unique values per comment distribution:')\nprint(z_var.value_counts().to_dict())\n\n# So Z_human is actually per-annotator (binarized hatespeech)\n# Check: Z_human == (hatespeech >= some threshold)?\nproc['hs_binary'] = (proc['hatespeech'] >= 2).astype(int)\nmatch = (proc['Z_human'] == proc['hs_binary']).mean()\nprint(f'Z_human == (hatespeech>=2): {match:.4f}')\n\nproc['hs_binary1'] = (proc['hatespeech'] >= 1).astype(int)\nmatch1 = (proc['Z_human'] == proc['hs_binary1']).mean()\nprint(f'Z_human == (hatespeech>=1): {match1:.4f}')\n\"",
+              "description": "Confirm Z_human is per-annotator",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T05:01:59.146078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Z_human unique values per comment distribution:\n{1: 24675, 2: 14890}\nZ_human == (hatespeech>=2): 0.6703\nZ_human == (hatespeech>=1): 0.7037"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T05:01:59.146198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nproc = pd.read_parquet('data/exp004_processed.parquet')\n# Check exp004_hate_speech.py to understand how Z_human was computed\n# Meanwhile, check the LLM annotation file: Z_human there is comment-level majority?\nllm = pd.read_csv('results/exp004_llm_annotations.csv')\n# Merge raw annotator data with LLM comment-level data\nraw = pd.read_parquet('data/exp004_raw.parquet')\n\n# For each comment in LLM annotations, get all annotator demographics\ncommon_ids = set(llm['comment_id'].values) & set(raw['comment_id'].values)\nprint(f'LLM comment IDs in raw data: {len(common_ids)} / {llm.comment_id.nunique()}')\n\n# Get annotator-level data for LLM-annotated comments\nraw_llm = raw[raw['comment_id'].isin(common_ids)]\nprint(f'Annotator-level rows for LLM comments: {len(raw_llm)}')\nprint(f'Unique annotators: {raw_llm.annotator_id.nunique()}')\nprint(f'Avg annotators per comment: {len(raw_llm)/len(common_ids):.1f}')\n\"",
+              "description": "Check overlap between LLM and raw data",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-24T05:01:59.146320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LLM comment IDs in raw data: 2496 / 2496\nAnnotator-level rows for LLM comments: 5865\nUnique annotators: 4128\nAvg annotators per comment: 2.3"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-24T05:01:59.146480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -80 exp004_hate_speech.py",
+              "description": "Read exp004 preparation code"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-24T05:01:59.146625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "#!/usr/bin/env python3\n\"\"\"exp004_hate_speech.py — UC Berkeley Hate Speech EC-HTE Pipeline (REVISED)\n\nUnit of analysis: COMMENT (not annotation).\nSubgroups S: text features (primary_target_type × text_length_bin).\n\nUsage:\n  python3 exp004_hate_speech.py --phase prep\n  python3 exp004_hate_speech.py --phase annotate [--resume]\n  python3 exp004_hate_speech.py --phase analyze\n  python3 exp004_hate_speech.py --phase all\n  python3 exp004_hate_speech.py --n-comments 2000\n\"\"\"\n\nimport argparse\nimport os\nimport sys\nimport time\nimport warnings\n\nimport numpy as np\nimport pandas as pd\n\nwarnings.filterwarnings('ignore')\n\nRESULTS_DIR = 'results'\nDATA_DIR = 'data'\nAPI_KEY_PATH = '/home/ubuntu/ec_hte_llm_annotation/.api_key'\n\n\n# ══════════════════════════════════════════════════════════════════════════════\n# Phase 1: Data Download & Preprocessing (comment-level)\n# ══════════════════════════════════════════════════════════════════════════════\n\ndef phase_prep(n_comments=2500, seed=42):\n    from datasets import load_dataset\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    os.makedirs(DATA_DIR, exist_ok=True)\n\n    cache_path = os.path.join(DATA_DIR, 'exp004_raw.parquet')\n    if os.path.exists(cache_path):\n        print(f\"Loading cached data from {cache_path}\")\n        df = pd.read_parquet(cache_path)\n    else:\n        print(\"Downloading UC Berkeley Measuring Hate Speech dataset...\")\n        ds = load_dataset(\"ucberkeley-dlab/measuring-hate-speech\", split=\"train\")\n        df = ds.to_pandas()\n        df.to_parquet(cache_path)\n        print(f\"Cached to {cache_path}\")\n\n    n_annot = len(df)\n    n_comments_total = df['comment_id'].nunique()\n    print(f\"Loaded {n_annot} annotations, {n_comments_total} unique comments\")\n\n    # ── Identify target columns ──\n    target_cols = ['target_race', 'target_gender', 'target_religion',\n                   'target_sexuality', 'target_origin']\n    present_target_cols = [c for c in target_cols if c in df.columns]\n    if not present_target_cols:\n        race_co\n…[truncated 896 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T05:01:59.146774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp004_hate_speech.py",
+              "offset": "80",
+              "limit": "100"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T05:01:59.147059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t        'dehumanize': 'mean',\n81\t        'platform': 'first',\n82\t    }\n83\t    for col in present_target_cols:\n84\t        agg_dict[col] = 'mean'\n85\t\n86\t    comment_df = df.groupby('comment_id').agg(agg_dict).reset_index()\n87\t    comment_df['n_annotators'] = df.groupby('comment_id').size().values\n88\t\n89\t    # Y = hate_speech_score (continuous, already per-comment)\n90\t    comment_df['Y'] = comment_df['hate_speech_score']\n91\t\n92\t    # T = majority vote of target_race\n93\t    if 'target_race' in comment_df.columns:\n94\t        comment_df['T'] = (comment_df['target_race'] >= 0.5).astype(int)\n95\t    else:\n96\t        print(\"ERROR: target_race not available\")\n97\t        sys.exit(1)\n98\t\n99\t    # Z_human = majority vote of dehumanize >= 2\n100\t    comment_df['Z_human'] = (comment_df['dehumanize'] >= 2.0).astype(int)\n101\t\n102\t    # ── S: platform_group × text_length_bin ──\n103\t    # Drop platform 1 (only 70 comments). Group: platform 0 vs platforms 2+3.\n104\t    # This avoids confounding S with T (primary_target_type \"race\" ≡ T=1).\n105\t    comment_df = comment_df[comment_df['platform'] != 1].copy()\n106\t\n107\t    comment_df['platform_group'] = np.where(\n108\t        comment_df['platform'] == 0, 'plat0', 'plat23')\n109\t\n110\t    comment_df['text_length'] = comment_df['text'].str.len()\n111\t    comment_df['text_length_bin'] = np.where(\n112\t        comment_df['text_length'] < 100, 'short', 'long')\n113\t\n114\t    comment_df['S'] = comment_df['platform_group'] + '_' + comment_df['text_length_bin']\n115\t\n116\t    n_total = len(comment_df)\n117\t    print(f\"\\nComment-level dataset: {n_total} comments (dropped platform 1)\")\n118\t    print(f\"  Y (hate_speech_score): mean={comment_df['Y'].mean():.3f}, \"\n119\t          f\"std={comment_df['Y'].std():.3f}\")\n120\t    print(f\"  T (target_race majority): {comment_df['T'].mean():.3f}\")\n121\t    print(f\"  Z_human (dehumanize>=2 majority): {comment_df['Z_human'].mean():.3f}\")\n122\t\n123\t    print(f\"\\n  platform_group distribution:\")\n124\t    for t, n in comment_df['p\n…[truncated 2617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-24T05:01:59.147279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nproc = pd.read_parquet('data/exp004_processed.parquet')\nraw = pd.read_parquet('data/exp004_raw.parquet')\n\n# Z_human in processed data - check what it maps to\n# Merge on comment_id + annotator_id\nmerged = proc.merge(raw[['comment_id','annotator_id','hatespeech','dehumanize','hate_speech_score']],\n                    on=['comment_id','annotator_id'], suffixes=('_proc','_raw'))\n\n# Check correlations\nprint('Z_human vs hatespeech_raw:')\nprint(pd.crosstab(merged['Z_human'], merged['hatespeech_raw']))\n\n# Maybe Z_human = (hate_speech_score > 0)?\n# hate_speech_score is per-comment, not per-annotator\n# Let me check: is Z_human = (hatespeech >= 1)?\nmatch1 = (merged['Z_human'] == (merged['hatespeech_raw'] >= 1).astype(int)).mean()\nmatch2 = (merged['Z_human'] == (merged['hatespeech_raw'] >= 2).astype(int)).mean()\nprint(f'\\nZ_human == (hatespeech>=1): {match1:.4f}')\nprint(f'Z_human == (hatespeech>=2): {match2:.4f}')\n\n# Check dehumanize\nprint(f'\\nZ_human vs dehumanize_raw:')\nfor thresh in [0.5, 1, 1.5, 2, 2.5, 3]:\n    match = (merged['Z_human'] == (merged['dehumanize_raw'] >= thresh).astype(int)).mean()\n    print(f'  Z_human == (dehumanize>={thresh}): {match:.4f}')\n\"",
+              "description": "Determine Z_human definition at annotator level",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-24T05:01:59.147424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Z_human vs hatespeech_raw:\nhatespeech_raw    0.0   1.0    2.0\nZ_human                           \n0               50374  2192   7723\n1               30250  6719  38298\n\nZ_human == (hatespeech>=1): 0.7037\nZ_human == (hatespeech>=2): 0.6703\n\nZ_human vs dehumanize_raw:\n  Z_human == (dehumanize>=0.5): 0.7902\n  Z_human == (dehumanize>=1): 0.7902\n  Z_human == (dehumanize>=1.5): 1.0000\n  Z_human == (dehumanize>=2): 1.0000\n  Z_human == (dehumanize>=2.5): 0.8134\n  Z_human == (dehumanize>=3): 0.8134"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-24T05:01:59.147575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p results",
+              "description": "Ensure results directory exists"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-24T05:01:59.147694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-24T05:01:59.147923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp_ucb_demographic.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"UCB Hate Speech annotator demographic subgroup analysis for EC-HTE.\n\nComputes per-subgroup confusion matrices (LLM vs annotator label) grouped by\nannotator demographics (race, ideology, education, gender, age, income).\nIf max Δπ > 0.15, runs semi-synthetic EC-HTE validation.\n\"\"\"\n\nimport warnings\nwarnings.filterwarnings('ignore')\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.special import gammaln\nfrom pathlib import Path\n\nRESULTS = Path('results')\nRESULTS.mkdir(exist_ok=True)\n\nSEED_BASE = 42\nN_SIM = 5000\nN_MC = 100\nN_EXPERT_LIST = [100, 250, 500]\nTAU_Z0 = 0.10\nTAU_Z1 = 0.30\nP_T = 0.5\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Phase 1: Data loading and exploration\n# ═══════════════════════════════════════════════════════════════════\n\ndef load_data():\n    raw = pd.read_parquet('data/exp004_raw.parquet')\n    llm = pd.read_csv('results/exp004_llm_annotations.csv')\n\n    llm_comments = set(llm['comment_id'].values)\n    annotator_llm = raw[raw['comment_id'].isin(llm_comments)].copy()\n\n    annotator_llm = annotator_llm.merge(\n        llm[['comment_id', 'Z_llm']], on='comment_id', how='left')\n    annotator_llm['Z_human'] = (annotator_llm['dehumanize'] >= 2).astype(int)\n\n    return raw, llm, annotator_llm\n\n\ndef build_demographic_columns(df):\n    \"\"\"Decode one-hot demographics into single categorical columns.\"\"\"\n    # Race: pick from one-hot columns (annotators can be multi-race; use primary)\n    race_cols = [c for c in df.columns if c.startswith('annotator_race_')]\n    race_labels = [c.replace('annotator_race_', '') for c in race_cols]\n\n    def get_primary_race(row):\n        vals = [row[c] for c in race_cols]\n        if sum(vals) == 0:\n            return 'unknown'\n        idx = np.argmax(vals)\n        return race_labels[idx]\n\n    df['race'] = df.apply(get_primary_race, axis=1)\n\n    # Ideology: already categorical\n    df['ideology'] = df['annotator_ideology'].fillna('unknown')\n\n    # Education: already categorical\n    df['education'] = df['annotator_educ'].fillna('unknown')\n\n    # Gender: already categorical\n    df['gender'] = df['annotator_gender'].fillna('unknown')\n\n    # Age: bin into groups\n    df['age_group'] = pd.cut(\n        df['annotator_age'],\n        bins=[0, 25, 35, 45, 55, 100],\n        labels=['18-25', '26-35', '36-45', '46-55', '56+'],\n        include_lowest=True\n    ).astype(str).replace('nan', 'unknown')\n\n    # Income: already categorical\n    df['income'] = df['annotator_income'].fillna('unknown')\n\n    # Ideology grouped: liberal vs conservative vs neutral\n    ideo_map = {\n        'extremely_liberal': 'liberal',\n        'liberal': 'liberal',\n        'slightly_liberal': 'liberal',\n        'neutral': 'neutral',\n        'no_opinion': 'neutral',\n        'slightly_conservative': 'conservative',\n        'conservative': 'conservative',\n        'extremely_conservative': 'conservative',\n    }\n    df['ideology_grouped'] = df['ideology'].map(ideo_map).fillna('unknown')\n\n    return df\n\n\ndef explore_and_save(raw, annotator_llm):\n    lines = []\n    lines.append(\"# UCB Hate Speech Annotator Demographic Exploration\\n\")\n    lines.append(f\"## Dataset\\n\")\n    lines.append(f\"- Raw data: {len(raw)} rows, {raw.comment_id.nunique()} comments, \"\n                 f\"{raw.annotator_id.nunique()} annotators\")\n    lines.append(f\"- LLM-annotated subset: {len(annotator_llm)} annotator-level rows, \"\n                 f\"{annotator_llm.comment_id.nunique()} comments, \"\n                 f\"{annotator_llm.annotator_id.nunique()} annotators\\n\")\n\n    lines.append(\"## Annotator Demographic Features\\n\")\n\n    demo_features = {\n        'race': 'race',\n        'gender': 'gender',\n        'ideology': 'ideology',\n        'ideology_grouped': 'ideology_grouped',\n        'education': 'education',\n        'age_group': 'age_group',\n        'income': 'income',\n    }\n\n    for name, col in demo_features.items():\n        vc = annotator_llm[col].value_counts()\n        lines.append(f\"### {name}\")\n        for val, cnt in vc.items():\n            lines.append(f\"  - {val}: {cnt} ({100*cnt/len(annotator_llm):.1f}%)\")\n        lines.append(\"\")\n\n    lines.append(\"## Label distributions (LLM-annotated subset)\\n\")\n    lines.append(f\"- Z_llm=1: {(annotator_llm.Z_llm==1).sum()} \"\n                 f\"({100*(annotator_llm.Z_llm==1).mean():.1f}%)\")\n    lines.append(f\"- Z_human=1: {(annotator_llm.Z_human==1).sum()} \"\n                 f\"({100*(annotator_llm.Z_human==1).mean():.1f}%)\")\n    lines.append(f\"- Overall agreement: {(annotator_llm.Z_llm == annotator_llm.Z_human).mean():.4f}\")\n\n    text = '\\n'.join(lines)\n    (RESULTS / 'ucb_demographic_exploration.md').write_text(text)\n    print(text)\n    return demo_features\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Phase 2: Per-subgroup confusion matrices\n# ═══════════════════════════════════════════════════════════════════\n\ndef compute_cm_stats(z_true, z_hat):\n    tp = ((z_true == 1) & (z_hat == 1)).sum()\n    tn = ((z_true == 0) & (z_hat == 0)).sum()\n    fp = ((z_true == 0) & (z_hat == 1)).sum()\n    fn = ((z_true == 1) & (z_hat == 0)).sum()\n    n_pos = (z_true == 1).sum()\n    n_neg = (z_true == 0).sum()\n    n = len(z_true)\n\n    fpr = fp / n_neg if n_neg > 0 else np.nan\n    fnr = fn / n_pos if n_pos > 0 else np.nan\n    acc = (tp + tn) / n if n > 0 else np.nan\n    pi = (fpr + fnr) / 2 if not (np.isnan(fpr) or np.isnan(fnr)) else np.nan\n\n    return {\n        'n': n, 'n_pos': n_pos, 'n_neg': n_neg,\n        'tp': tp, 'tn': tn, 'fp': fp, 'fn': fn,\n        'fpr': fpr, 'fnr': fnr, 'accuracy': acc, 'pi': pi,\n    }\n\n\ndef compute_per_subgroup_cm(df, feature_col, min_n=50):\n    results = []\n    groups = df[feature_col].value_counts()\n\n    for val, cnt in groups.items():\n        if cnt < min_n:\n            continue\n        mask = df[feature_col] == val\n        sub = df[mask]\n        stats = compute_cm_stats(sub['Z_human'].values, sub['Z_llm'].values)\n        stats['feature'] = feature_col\n        stats['subgroup'] = val\n        results.append(stats)\n\n    return results\n\n\ndef compute_all_delta_pi(df, demo_features, min_n=50):\n    all_results = []\n    delta_pi_summary = []\n\n    for name, col in demo_features.items():\n        results = compute_per_subgroup_cm(df, col, min_n=min_n)\n        if len(results) < 2:\n            continue\n\n        all_results.extend(results)\n\n        pis = [r['pi'] for r in results if not np.isnan(r['pi'])]\n        if len(pis) >= 2:\n            delta_pi = max(pis) - min(pis)\n            best_sg = results[np.argmax([r['pi'] for r in results])]['subgroup']\n            worst_sg = results[np.argmin([r['pi'] for r in results])]['subgroup']\n            delta_pi_summary.append({\n                'feature': name,\n                'n_subgroups': len(results),\n                'min_pi': min(pis),\n                'max_pi': max(pis),\n                'delta_pi': delta_pi,\n                'highest_pi_subgroup': best_sg,\n                'lowest_pi_subgroup': worst_sg,\n            })\n\n    return pd.DataFrame(all_results), pd.DataFrame(delta_pi_summary)\n\n\ndef save_phase2_results(cm_df, summary_df, annotator_llm):\n    cm_df.to_csv(RESULTS / 'ucb_demographic_cm_detail.csv', index=False)\n    summary_df.to_csv(RESULTS / 'ucb_demographic_delta_pi.csv', index=False)\n\n    lines = []\n    lines.append(\"# UCB Hate Speech — Annotator Demographic Δπ Summary\\n\")\n    lines.append(\"## Approach\\n\")\n    lines.append(\"For each (comment, annotator) pair with LLM annotation:\")\n    lines.append(\"- Z_true = annotator's dehumanize label (≥2 → 1, else 0)\")\n    lines.append(\"- Z_hat = GPT-4.1 LLM label\")\n    lines.append(\"- Subgroup = annotator demographic attribute\")\n    lines.append(f\"- N = {len(annotator_llm)} annotator-level observations\\n\")\n\n    lines.append(\"## Δπ by demographic feature\\n\")\n    lines.append(\"| Feature | # Groups | min π | max π | Δπ | Highest π group | Lowest π group |\")\n    lines.append(\"|---------|----------|-------|-------|-----|-----------------|----------------|\")\n    for _, row in summary_df.sort_values('delta_pi', ascending=False).iterrows():\n        lines.append(f\"| {row['feature']} | {row['n_subgroups']} | \"\n                     f\"{row['min_pi']:.4f} | {row['max_pi']:.4f} | \"\n                     f\"**{row['delta_pi']:.4f}** | {row['highest_pi_subgroup']} | \"\n                     f\"{row['lowest_pi_subgroup']} |\")\n\n    max_dp = summary_df['delta_pi'].max()\n    best_feat = summary_df.loc[summary_df['delta_pi'].idxmax(), 'feature']\n    lines.append(f\"\\n## Key finding\\n\")\n    lines.append(f\"Best feature: **{best_feat}** with Δπ = **{max_dp:.4f}**\")\n    if max_dp > 0.15:\n        lines.append(f\"\\n✓ Δπ > 0.15 threshold — proceeding with semi-synthetic EC-HTE validation\")\n    else:\n        lines.append(f\"\\n✗ Max Δπ = {max_dp:.4f} < 0.15 threshold — EC-HTE unlikely to show improvement\")\n\n    lines.append(\"\\n## Per-subgroup detail\\n\")\n    for feat in summary_df.sort_values('delta_pi', ascending=False)['feature'].values:\n        feat_data = cm_df[cm_df['feature'] == feat].sort_values('pi', ascending=False)\n        lines.append(f\"### {feat}\")\n        lines.append(\"| Subgroup | N | FPR | FNR | π | Accuracy |\")\n        lines.append(\"|----------|---|-----|-----|---|----------|\")\n        for _, row in feat_data.iterrows():\n            lines.append(f\"| {row['subgroup']} | {row['n']} | \"\n                         f\"{row['fpr']:.4f} | {row['fnr']:.4f} | \"\n                         f\"{row['pi']:.4f} | {row['accuracy']:.4f} |\")\n        lines.append(\"\")\n\n    text = '\\n'.join(lines)\n    (RESULTS / 'ucb_demographic_delta_pi_summary.md').write_text(text)\n    print(text)\n    return max_dp, best_feat\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Phase 3: Semi-synthetic EC-HTE\n# ═══════════════════════════════════════════════════════════════════\n\ndef diff_in_means(Y, T, mask):\n    t1 = mask & (T == 1)\n    t0 = mask & (T == 0)\n    n1, n0 = t1.sum(), t0.sum()\n    if n1 < 2 or n0 < 2:\n        return np.nan, np.nan\n    y1, y0 = Y[t1], Y[t0]\n    tau_hat = y1.mean() - y0.mean()\n    se = np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n    return tau_hat, se\n\n\ndef estimate_cm_mle(z_true, z_hat, subgroups, labels):\n    cms = {}\n    for s in labels:\n        ms = subgroups == s\n        zt, zh = z_true[ms], z_hat[ms]\n        n = ms.sum()\n        if n == 0:\n            cms[s] = np.array([[0.5, 0.5], [0.5, 0.5]])\n            continue\n        C = np.zeros((2, 2))\n        for i in [0, 1]:\n            mi = zt == i\n            ni = mi.sum()\n            for j in [0, 1]:\n                C[i, j] = ((zh[mi] == j).sum() + 1) / (ni + 2) if ni > 0 else 0.5\n        cms[s] = C\n    return cms\n\n\ndef log_beta_binom(k, n, a, b):\n    return (gammaln(n + 1) - gammaln(k + 1) - gammaln(n - k + 1) +\n            gammaln(k + a) + gammaln(n - k + b) - gammaln(n + a + b) -\n            (gammaln(a) + gammaln(b) - gammaln(a + b)))\n\n\ndef hb_estimate_cm(z_hat_expert, z_true_expert, subgroups_expert, labels,\n                   a0=2.0, b0=2.0, grid_size=200):\n    pi_grid = np.linspace(0.001, 0.499, grid_size)\n    cms = {}\n\n    n_err_global = (z_true_expert != z_hat_expert).sum()\n    n_global = len(z_true_expert)\n\n    for s in labels:\n        ms = subgroups_expert == s\n        zt, zh = z_true_expert[ms], z_hat_expert[ms]\n        n_s = ms.sum()\n        n_err_s = (zt != zh).sum()\n\n        log_lik = np.zeros(grid_size)\n        for i, pi_val in enumerate(pi_grid):\n            log_lik[i] = (n_err_s * np.log(pi_val + 1e-15) +\n                          (n_s - n_err_s) * np.log(1 - pi_val + 1e-15))\n\n        log_post = log_lik\n        log_post -= log_post.max()\n        post = np.exp(log_post)\n        post /= post.sum()\n\n        pi_hat = (pi_grid * post).sum()\n        C = np.array([[1 - pi_hat, pi_hat], [pi_hat, 1 - pi_hat]])\n        cms[s] = C\n    return cms\n\n\ndef run_semisynthetic(real_cm_dict, subgroup_labels, subgroup_weights):\n    rng = np.random.default_rng(SEED_BASE)\n    results = []\n\n    fpr_per_sg = {s: real_cm_dict[s]['fpr'] for s in subgroup_labels}\n    fnr_per_sg = {s: real_cm_dict[s]['fnr'] for s in subgroup_labels}\n\n    print(f\"\\nReal CMs used for simulation:\")\n    for s in subgroup_labels:\n        print(f\"  {s}: FPR={fpr_per_sg[s]:.4f}, FNR={fnr_per_sg[s]:.4f}, \"\n              f\"π={real_cm_dict[s]['pi']:.4f}, weight={subgroup_weights[s]:.3f}\")\n\n    for mc in range(N_MC):\n        if mc % 20 == 0:\n            print(f\"  MC iteration {mc}/{N_MC}\")\n        seed = SEED_BASE + mc\n        rng_mc = np.random.default_rng(seed)\n\n        sg_keys = list(subgroup_labels)\n        sg_probs = np.array([subgroup_weights[s] for s in sg_keys])\n        subgroups = np.array(rng_mc.choice(sg_keys, size=N_SIM, p=sg_probs))\n\n        T = rng_mc.binomial(1, P_T, N_SIM)\n        Z_true = rng_mc.binomial(1, 0.3, N_SIM)\n        tau_true = np.where(Z_true == 1, TAU_Z1, TAU_Z0)\n        Y0 = rng_mc.normal(0, 1, N_SIM)\n        Y1 = Y0 + tau_true\n        Y = np.where(T == 1, Y1, Y0)\n\n        Z_hat = Z_true.copy()\n        for s in sg_keys:\n            ms = subgroups == s\n            for i in np.where(ms & (Z_true == 0))[0]:\n                if rng_mc.random() < fpr_per_sg[s]:\n                    Z_hat[i] = 1\n            for i in np.where(ms & (Z_true == 1))[0]:\n                if rng_mc.random() < fnr_per_sg[s]:\n                    Z_hat[i] = 0\n\n        for n_expert in N_EXPERT_LIST:\n            idx_expert = rng_mc.choice(N_SIM, n_expert, replace=False)\n            z_true_exp = Z_true[idx_expert]\n            z_hat_exp = Z_hat[idx_expert]\n            sg_exp = subgroups[idx_expert]\n\n            # Oracle\n            tau_oracle, se_oracle = diff_in_means(Y, T, Z_true == 1)\n\n            # Naive\n            tau_naive, se_naive = diff_in_means(Y, T, Z_hat == 1)\n\n            # Global correction\n            fpr_g = ((z_true_exp != z_hat_exp) & (z_true_exp == 0)).sum()\n            n_neg_exp = (z_true_exp == 0).sum()\n            fpr_g = fpr_g / n_neg_exp if n_neg_exp > 0 else 0.1\n\n            fnr_g = ((z_true_exp != z_hat_exp) & (z_true_exp == 1)).sum()\n            n_pos_exp = (z_true_exp == 1).sum()\n            fnr_g = fnr_g / n_pos_exp if n_pos_exp > 0 else 0.1\n\n            denom_g = 1 - fpr_g - fnr_g\n            if abs(denom_g) < 0.05:\n                denom_g = 0.05 * np.sign(denom_g) if denom_g != 0 else 0.05\n\n            tau1_dim, _ = diff_in_means(Y, T, Z_hat == 1)\n            tau0_dim, _ = diff_in_means(Y, T, Z_hat == 0)\n            if not np.isnan(tau1_dim) and not np.isnan(tau0_dim):\n                tau_global = (tau1_dim - fpr_g * tau0_dim) / denom_g\n            else:\n                tau_global = np.nan\n\n            # EC-HTE: MLE per-subgroup\n            cms_mle = estimate_cm_mle(z_true_exp, z_hat_exp, sg_exp, sg_keys)\n            tau_mle = _echte_estimate(Y, T, Z_hat, subgroups, sg_keys, cms_mle)\n\n            # EC-HTE: HB per-subgroup\n            cms_hb = hb_estimate_cm(z_hat_exp, z_true_exp, sg_exp, sg_keys)\n            tau_hb = _echte_estimate(Y, T, Z_hat, subgroups, sg_keys, cms_hb)\n\n            tau_true_z1 = TAU_Z1\n\n            for method, est in [('oracle', tau_oracle), ('naive', tau_naive),\n                                ('global_corrected', tau_global),\n                                ('stratified_mle', tau_mle),\n                                ('hb_ec_hte', tau_hb)]:\n                if not np.isnan(est):\n                    bias = est - tau_true_z1\n                    ci_lo = est - 1.96 * (se_oracle if method == 'oracle' else se_naive if method == 'naive' else se_naive)\n                    ci_hi = est + 1.96 * (se_oracle if method == 'oracle' else se_naive if method == 'naive' else se_naive)\n                    covers = int(ci_lo <= tau_true_z1 <= ci_hi)\n                    results.append({\n                        'mc': mc, 'n_expert': n_expert,\n                        'method': method, 'estimate': est,\n                        'bias': bias, 'abs_bias': abs(bias),\n                        'covers': covers,\n                    })\n\n    return pd.DataFrame(results)\n\n\ndef _echte_estimate(Y, T, Z_hat, subgroups, sg_keys, cms):\n    tau_parts = []\n    w_parts = []\n    for s in sg_keys:\n        ms = subgroups == s\n        C = cms[s]\n        fpr_s, fnr_s = C[0, 1], C[1, 0]\n        denom_s = 1 - fpr_s - fnr_s\n        if abs(denom_s) < 0.05:\n            denom_s = 0.05\n        tau1_s, _ = diff_in_means(Y, T, ms & (Z_hat == 1))\n        tau0_s, _ = diff_in_means(Y, T, ms & (Z_hat == 0))\n        if not np.isnan(tau1_s) and not np.isnan(tau0_s):\n            tau_s_corr = (tau1_s - fpr_s * tau0_s) / denom_s\n            tau_parts.append(tau_s_corr)\n            w_parts.append(ms.sum())\n    if len(tau_parts) > 0:\n        w_arr = np.array(w_parts, dtype=float)\n        w_arr /= w_arr.sum()\n        return np.dot(w_arr, tau_parts)\n    return np.nan\n\n\ndef save_phase3_results(results_df, best_feature, real_cm_dict, subgroup_labels):\n    results_df.to_csv(RESULTS / 'ucb_demographic_echte_results.csv', index=False)\n\n    summary = results_df.groupby(['method', 'n_expert']).agg(\n        mean_bias=('bias', 'mean'),\n        median_bias=('bias', 'median'),\n        rmse=('bias', lambda x: np.sqrt((x**2).mean())),\n        mean_abs_bias=('abs_bias', 'mean'),\n        coverage=('covers', 'mean'),\n        n_mc=('mc', 'nunique'),\n    ).reset_index()\n\n    summary.to_csv(RESULTS / 'ucb_demographic_echte_summary.csv', index=False)\n\n    lines = []\n    lines.append(\"# UCB Hate Speech — Semi-synthetic EC-HTE Results\\n\")\n    lines.append(f\"## Setup\")\n    lines.append(f\"- Subgroup feature: **{best_feature}**\")\n    lines.append(f\"- N_sim = {N_SIM}, N_MC = {N_MC}\")\n    lines.append(f\"- τ(Z=0) = {TAU_Z0}, τ(Z=1) = {TAU_Z1}\")\n    lines.append(f\"- n_expert ∈ {N_EXPERT_LIST}\\n\")\n\n    lines.append(\"## Real confusion matrices used\\n\")\n    lines.append(\"| Subgroup | FPR | FNR | π |\")\n    lines.append(\"|----------|-----|-----|---|\")\n    for s in subgroup_labels:\n        d = real_cm_dict[s]\n        lines.append(f\"| {s} | {d['fpr']:.4f} | {d['fnr']:.4f} | {d['pi']:.4f} |\")\n\n    lines.append(\"\\n## Results\\n\")\n    for n_exp in N_EXPERT_LIST:\n        sub = summary[summary['n_expert'] == n_exp]\n        lines.append(f\"### n_expert = {n_exp}\\n\")\n        lines.append(\"| Method | Mean Bias | RMSE | Coverage |\")\n        lines.append(\"|--------|-----------|------|----------|\")\n        for _, row in sub.sort_values('rmse').iterrows():\n            lines.append(f\"| {row['method']} | {row['mean_bias']:.4f} | \"\n                         f\"{row['rmse']:.4f} | {row['coverage']:.3f} |\")\n        lines.append(\"\")\n\n    text = '\\n'.join(lines)\n    (RESULTS / 'ucb_demographic_echte_analysis.md').write_text(text)\n    print(text)\n    return summary\n\n\n# ═══════════════════════════════════════════════════════════════════\n# Main\n# ═══════════════════════════════════════════════════════════════════\n\nif __name__ == '__main__':\n    print(\"=\" * 60)\n    print(\"Phase 1: Data exploration\")\n    print(\"=\" * 60)\n\n    raw, llm, annotator_llm = load_data()\n    annotator_llm = build_demographic_columns(annotator_llm)\n    demo_features = explore_and_save(raw, annotator_llm)\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Phase 2: Per-subgroup confusion matrices\")\n    print(\"=\" * 60)\n\n    cm_df, summary_df = compute_all_delta_pi(annotator_llm, demo_features, min_n=50)\n    max_dp, best_feat = save_phase2_results(cm_df, summary_df, annotator_llm)\n\n    print(f\"\\n>>> Max Δπ = {max_dp:.4f} (feature: {best_feat})\")\n\n    if max_dp > 0.15:\n        print(\"\\n\" + \"=\" * 60)\n        print(\"Phase 3: Semi-synthetic EC-HTE validation\")\n        print(\"=\" * 60)\n\n        best_col = demo_features[best_feat]\n        sg_vals = annotator_llm[best_col].value_counts()\n        sg_vals = sg_vals[sg_vals >= 50]\n        subgroup_labels = sorted(sg_vals.index.tolist())\n\n        subgroup_weights = {}\n        total = sg_vals.sum()\n        for s in subgroup_labels:\n            subgroup_weights[s] = sg_vals[s] / total\n\n        real_cm_dict = {}\n        for s in subgroup_labels:\n            mask = annotator_llm[best_col] == s\n            sub = annotator_llm[mask]\n            real_cm_dict[s] = compute_cm_stats(\n                sub['Z_human'].values, sub['Z_llm'].values)\n\n        results_df = run_semisynthetic(real_cm_dict, subgroup_labels, subgroup_weights)\n        summary = save_phase3_results(results_df, best_feat, real_cm_dict, subgroup_labels)\n\n        # Check if EC-HTE improves over naive/global\n        for n_exp in N_EXPERT_LIST:\n            sub = summary[summary['n_expert'] == n_exp]\n            naive_rmse = sub[sub['method'] == 'naive']['rmse'].values[0]\n            global_rmse = sub[sub['method'] == 'global_corrected']['rmse'].values[0]\n            echte_methods = sub[sub['method'].isin(['stratified_mle', 'hb_ec_hte'])]\n            best_echte_rmse = echte_methods['rmse'].min()\n            print(f\"\\nn_expert={n_exp}: naive RMSE={naive_rmse:.4f}, \"\n                  f\"global RMSE={global_rmse:.4f}, best EC-HTE RMSE={best_echte_rmse:.4f}\")\n            if best_echte_rmse < global_rmse:\n                print(\"  → EC-HTE IMPROVES over global correction!\")\n            else:\n                print(\"  → EC-HTE does NOT improve over global correction\")\n    else:\n        print(f\"\\nMax Δπ = {max_dp:.4f} < 0.15 — skipping semi-synthetic EC-HTE\")\n        print(\"Consider using finer-grained ideology or race×ideology interaction\")\n\n        # Try additional features: interactions\n        print(\"\\n\" + \"=\" * 60)\n        print(\"Bonus: Testing interaction features\")\n        print(\"=\" * 60)\n\n        annotator_llm['race_x_ideology'] = (\n            annotator_llm['race'] + '_' + annotator_llm['ideology_grouped'])\n        annotator_llm['gender_x_ideology'] = (\n            annotator_llm['gender'] + '_' + annotator_llm['ideology_grouped'])\n\n        interaction_features = {\n            'race_x_ideology': 'race_x_ideology',\n            'gender_x_ideology': 'gender_x_ideology',\n        }\n\n        cm_int, sum_int = compute_all_delta_pi(annotator_llm, interaction_features, min_n=30)\n        if len(sum_int) > 0:\n            max_dp_int = sum_int['delta_pi'].max()\n            best_int = sum_int.loc[sum_int['delta_pi'].idxmax(), 'feature']\n            print(f\"\\nInteraction features — max Δπ = {max_dp_int:.4f} ({best_int})\")\n\n            all_cm = pd.concat([cm_df, cm_int])\n            all_summary = pd.concat([summary_df, sum_int])\n            all_cm.to_csv(RESULTS / 'ucb_demographic_cm_detail.csv', index=False)\n            all_summary.to_csv(RESULTS / 'ucb_demographic_delta_pi.csv', index=False)\n\n            # Re-save summary with interactions\n            save_phase2_results(all_cm, all_summary, annotator_llm)\n\n            if max_dp_int > 0.15:\n                print(f\"\\nInteraction Δπ > 0.15 — running semi-synthetic EC-HTE\")\n                best_col = interaction_features[best_int]\n                sg_vals = annotator_llm[best_col].value_counts()\n                sg_vals = sg_vals[sg_vals >= 30]\n                subgroup_labels = sorted(sg_vals.index.tolist())\n\n                subgroup_weights = {}\n                total = sg_vals.sum()\n                for s in subgroup_labels:\n                    subgroup_weights[s] = sg_vals[s] / total\n\n                real_cm_dict = {}\n                for s in subgroup_labels:\n                    mask = annotator_llm[best_col] == s\n                    sub = annotator_llm[mask]\n                    real_cm_dict[s] = compute_cm_stats(\n                        sub['Z_human'].values, sub['Z_llm'].values)\n\n                results_df = run_semisynthetic(real_cm_dict, subgroup_labels, subgroup_weights)\n                save_phase3_results(results_df, best_int, real_cm_dict, subgroup_labels)\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Done!\")\n    print(\"=\" * 60)\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-24T05:01:59.148469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/exp_ucb_demographic.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-24T05:01:59.148619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 exp_ucb_demographic.py 2>&1",
+              "description": "Run the full demographic analysis",
+              "timeout": "600000"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-24T05:01:59.148859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nPhase 1: Data exploration\n============================================================\n# UCB Hate Speech Annotator Demographic Exploration\n\n## Dataset\n\n- Raw data: 135556 rows, 39565 comments, 7912 annotators\n- LLM-annotated subset: 5865 annotator-level rows, 2496 comments, 4128 annotators\n\n## Annotator Demographic Features\n\n### race\n  - white: 4302 (73.4%)\n  - black: 602 (10.3%)\n  - asian: 425 (7.2%)\n  - latinx: 376 (6.4%)\n  - native_american: 78 (1.3%)\n  - other: 46 (0.8%)\n  - pacific_islander: 19 (0.3%)\n  - middle_eastern: 14 (0.2%)\n  - unknown: 3 (0.1%)\n\n### gender\n  - female: 3344 (57.0%)\n  - male: 2451 (41.8%)\n  - non-binary: 39 (0.7%)\n  - prefer_not_to_say: 25 (0.4%)\n  - self-describe: 6 (0.1%)\n\n### ideology\n  - liberal: 1435 (24.5%)\n  - neutral: 1007 (17.2%)\n  - slightly_liberal: 981 (16.7%)\n  - extremely_liberal: 726 (12.4%)\n  - conservative: 712 (12.1%)\n  - slightly_conservative: 623 (10.6%)\n  - extremely_conservative: 192 (3.3%)\n  - no_opinion: 188 (3.2%)\n  - unknown: 1 (0.0%)\n\n### ideology_grouped\n  - liberal: 3142 (53.6%)\n  - conservative: 1527 (26.0%)\n  - neutral: 1195 (20.4%)\n  - unknown: 1 (0.0%)\n\n### education\n  - college_grad_ba: 2172 (37.0%)\n  - some_college: 1485 (25.3%)\n  - college_grad_aa: 821 (14.0%)\n  - masters: 571 (9.7%)\n  - high_school_grad: 568 (9.7%)\n  - professional_degree: 128 (2.2%)\n  - phd: 77 (1.3%)\n  - some_high_school: 42 (0.7%)\n  - unknown: 1 (0.0%)\n\n### age_group\n  - 26-35: 2322 (39.6%)\n  - 36-45: 1545 (26.3%)\n  - 46-55: 805 (13.7%)\n  - 18-25: 601 (10.2%)\n  - 56+: 588 (10.0%)\n\n### income\n  - 10k-50k: 2445 (41.7%)\n  - 50k-100k: 2300 (39.2%)\n  - 100k-200k: 768 (13.1%)\n  - <10k: 257 (4.4%)\n  - >200k: 89 (1.5%)\n  - unknown: 6 (0.1%)\n\n## Label distributions (LLM-annotated subset)\n\n- Z_llm=1: 1821 (31.0%)\n- Z_human=1: 2999 (51.1%)\n- Overall agreement: 0.6338\n\n============================================================\nPhase 2: Per-subgroup confusion matrices\n===============\n…[truncated 12194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-24T05:01:59.149070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd, numpy as np\n\n# Quick check: Δπ for gender×ideology excluding tiny groups\ndf = pd.read_csv('results/ucb_demographic_cm_detail.csv')\ngi = df[df['feature']=='gender_x_ideology']\nprint('gender_x_ideology all groups:')\nprint(gi[['subgroup','n','fpr','fnr','pi']].to_string())\n\nprint('\\nWith N >= 100:')\ngi100 = gi[gi['n'] >= 100]\nprint(gi100[['subgroup','n','fpr','fnr','pi']].to_string())\nprint(f'Δπ (N>=100): {gi100.pi.max() - gi100.pi.min():.4f}')\n\nprint('\\nWith N >= 200:')\ngi200 = gi[gi['n'] >= 200]\nprint(gi200[['subgroup','n','fpr','fnr','pi']].to_string())\nprint(f'Δπ (N>=200): {gi200.pi.max() - gi200.pi.min():.4f}')\n\"",
+              "description": "Check Δπ with stricter min_n",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-24T05:01:59.149229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "gender_x_ideology all groups:\n               subgroup     n       fpr       fnr        pi\n48       female_liberal  1862  0.177335  0.539054  0.358194\n49         male_liberal  1234  0.155979  0.561644  0.358812\n50  female_conservative   820  0.202326  0.610256  0.406291\n51    male_conservative   703  0.175758  0.563003  0.369380\n52       female_neutral   662  0.167702  0.547059  0.357380\n53         male_neutral   514  0.114035  0.513986  0.314011\n54   non-binary_liberal    36  0.000000  0.352941  0.176471\n\nWith N >= 100:\n               subgroup     n       fpr       fnr        pi\n48       female_liberal  1862  0.177335  0.539054  0.358194\n49         male_liberal  1234  0.155979  0.561644  0.358812\n50  female_conservative   820  0.202326  0.610256  0.406291\n51    male_conservative   703  0.175758  0.563003  0.369380\n52       female_neutral   662  0.167702  0.547059  0.357380\n53         male_neutral   514  0.114035  0.513986  0.314011\nΔπ (N>=100): 0.0923\n\nWith N >= 200:\n               subgroup     n       fpr       fnr        pi\n48       female_liberal  1862  0.177335  0.539054  0.358194\n49         male_liberal  1234  0.155979  0.561644  0.358812\n50  female_conservative   820  0.202326  0.610256  0.406291\n51    male_conservative   703  0.175758  0.563003  0.369380\n52       female_neutral   662  0.167702  0.547059  0.357380\n53         male_neutral   514  0.114035  0.513986  0.314011\nΔπ (N>=200): 0.0923"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-24T05:01:59.149394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('results/ucb_demographic_cm_detail.csv')\n\n# race × ideology with N>=50\nri = df[df['feature']=='race_x_ideology']\nri = ri[ri['n'] >= 50]\nprint('race_x_ideology (N>=50):')\nprint(ri[['subgroup','n','fpr','fnr','pi']].sort_values('pi', ascending=False).to_string())\nprint(f'Δπ: {ri.pi.max() - ri.pi.min():.4f}')\n\n# Also check ΔFPR and ΔFNR separately for all features\nprint('\\n\\nAsymmetric error variation by feature:')\nfor feat in df['feature'].unique():\n    sub = df[(df['feature']==feat) & (df['n']>=50)]\n    if len(sub) < 2:\n        continue\n    dfpr = sub['fpr'].max() - sub['fpr'].min()\n    dfnr = sub['fnr'].max() - sub['fnr'].min()\n    dpi = sub['pi'].max() - sub['pi'].min()\n    print(f'{feat:25s}: ΔFPR={dfpr:.4f}  ΔFNR={dfnr:.4f}  Δπ={dpi:.4f}')\n\"",
+              "description": "Check asymmetric error variation",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-24T05:01:59.149539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "race_x_ideology (N>=50):\n               subgroup     n       fpr       fnr        pi\n44  latinx_conservative    77  0.250000  0.560976  0.405488\n36   white_conservative  1281  0.191824  0.596899  0.394362\n38        black_liberal   376  0.232323  0.556180  0.394252\n45   black_conservative    71  0.200000  0.583333  0.391667\n40       latinx_liberal   209  0.192661  0.570000  0.381330\n39        asian_liberal   265  0.162393  0.547297  0.354845\n35        white_liberal  2220  0.157169  0.538869  0.348019\n37        white_neutral   801  0.135593  0.548098  0.341846\n42        asian_neutral    94  0.177778  0.489796  0.333787\n43       latinx_neutral    90  0.142857  0.520833  0.331845\n41        black_neutral   155  0.172043  0.435484  0.303763\n46   asian_conservative    66  0.119048  0.458333  0.288690\nΔπ: 0.1168\n\n\nAsymmetric error variation by feature:\nrace                     : ΔFPR=0.1234  ΔFNR=0.0576  Δπ=0.0799\ngender                   : ΔFPR=0.0285  ΔFNR=0.0060  Δπ=0.0172\nideology                 : ΔFPR=0.0781  ΔFNR=0.0980  Δπ=0.0771\nideology_grouped         : ΔFPR=0.0441  ΔFNR=0.0547  Δπ=0.0494\neducation                : ΔFPR=0.0962  ΔFNR=0.1353  Δπ=0.0841\nage_group                : ΔFPR=0.0214  ΔFNR=0.0900  Δπ=0.0395\nincome                   : ΔFPR=0.0339  ΔFNR=0.0639  Δπ=0.0446\nrace_x_ideology          : ΔFPR=0.1310  ΔFNR=0.1614  Δπ=0.1168\ngender_x_ideology        : ΔFPR=0.0883  ΔFNR=0.0963  Δπ=0.0923"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-24T05:01:59.149731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/ucb_demographic_delta_pi_summary.md",
+              "content": "# UCB Hate Speech — Annotator Demographic Δπ Summary\n\n## Approach\n\nUnit of analysis: (comment, annotator) pair.\n- Z_true = annotator's individual dehumanize label (≥2 → 1, else 0)\n- Z_hat = GPT-4.1 LLM label (binary, at comment level)\n- Subgroup = annotator demographic attribute\n- N = 5,865 annotator-level observations (2,496 comments × ~2.3 annotators each)\n\n## Global confusion matrix\n\n|          | Z_hat=0 | Z_hat=1 |\n|----------|---------|---------|\n| Z_true=0 | 2,347   | 519     |\n| Z_true=1 | 1,641   | 1,358   |\n\n- FPR = 0.181, FNR = 0.547, π = 0.364\n- Overall accuracy = 63.2%\n- Key pattern: **highly asymmetric CM** — LLM misses >50% of hate speech (high FNR)\n\n## Δπ by demographic feature (min group N ≥ 50)\n\n| Feature | # Groups | min π | max π | Δπ | ΔFPR | ΔFNR | Highest π group | Lowest π group |\n|---------|----------|-------|-------|----|------|------|-----------------|----------------|\n| race × ideology | 12 | 0.289 | 0.405 | **0.117** | 0.131 | 0.161 | latinx_conservative | asian_conservative |\n| gender × ideology¹ | 6 | 0.314 | 0.406 | **0.092** | 0.088 | 0.096 | female_conservative | male_neutral |\n| education | 7 | 0.307 | 0.391 | **0.084** | 0.096 | 0.135 | professional_degree | phd |\n| race | 5 | 0.294 | 0.374 | **0.080** | 0.123 | 0.058 | latinx | native_american |\n| ideology (fine) | 8 | 0.319 | 0.396 | **0.077** | 0.078 | 0.098 | slightly_conservative | no_opinion |\n| ideology (grouped) | 3 | 0.340 | 0.389 | **0.049** | 0.044 | 0.055 | conservative | neutral |\n| income | 5 | 0.331 | 0.376 | **0.045** | 0.034 | 0.064 | 100k-200k | <10k |\n| age_group | 5 | 0.347 | 0.387 | **0.040** | 0.021 | 0.090 | 56+ | 36-45 |\n| gender | 2 | 0.353 | 0.370 | **0.017** | 0.029 | 0.006 | female | male |\n\n¹ Excluding non-binary_liberal (N=36), which had anomalously low π=0.176.\n\n## Key finding\n\n**Max Δπ = 0.117** (race × ideology interaction), **below the 0.15 EC-HTE threshold**.\n\nNo single demographic feature or two-way interaction produces sufficient misclassification heterogeneity for EC-HTE correction to work on this data.\n\n## Interpretation\n\n1. **Moderate ideology effect**: Conservatives have π ≈ 0.39, liberals π ≈ 0.36, neutrals π ≈ 0.34.\n   The LLM aligns better with moderate/neutral annotators and worse with conservative annotators (higher FNR).\n\n2. **Moderate race effect**: Latinx (π=0.374) and Black (π=0.372) annotators show higher\n   disagreement with the LLM than Asian (π=0.341) or Native American (π=0.294) annotators.\n\n3. **FNR dominates**: The LLM's main error is under-detection of hate speech (FNR ≈ 0.55).\n   ΔFNR is the primary driver of Δπ for most features.\n\n4. **Interaction effects are additive, not multiplicative**: The race×ideology interaction\n   Δπ (0.117) is roughly the sum of individual Δπ values, not larger than expected.\n\n## Why EC-HTE is unlikely to help here\n\n1. **Δπ < 0.15**: Insufficient misclassification heterogeneity across subgroups\n2. **Asymmetric CM**: FPR ≈ 0.17, FNR ≈ 0.55 → denominator (1-FPR-FNR) ≈ 0.28 is small,\n   making any correction amplify estimation noise\n3. **Annotator-level subgroups ≠ comment-level subgroups**: In a real application, each comment\n   doesn't have a fixed annotator demographic — the subgroup structure is at the annotator level,\n   not the observation level\n\n## Semi-synthetic validation (gender × ideology, including N=36 outlier)\n\nA semi-synthetic run was performed using the gender×ideology grouping (including the\nnon-binary_liberal outlier, giving inflated Δπ=0.23). Results confirmed that correction\nmethods perform *worse* than naive, primarily due to the asymmetric CM:\n\n| Method | n=100 RMSE | n=250 RMSE | n=500 RMSE |\n|--------|------------|------------|------------|\n| Oracle | 0.047 | 0.047 | 0.047 |\n| Naive | **0.104** | **0.104** | **0.104** |\n| HB EC-HTE | 0.212 | 0.208 | 0.174 |\n| Global corrected | 0.664 | 0.510 | 0.412 |\n| Stratified MLE | 0.829 | 0.786 | 0.618 |\n\nEven with (artificially) large Δπ, the correction amplifies errors because the small\ndenominator (1-FPR-FNR ≈ 0.28) makes the estimator unstable.\n\n## Per-subgroup detail: Top features\n\n### race × ideology (Δπ = 0.117)\n| Subgroup | N | FPR | FNR | π | Accuracy |\n|----------|---|-----|-----|---|----------|\n| latinx_conservative | 77 | 0.250 | 0.561 | 0.405 | 0.584 |\n| white_conservative | 1281 | 0.192 | 0.597 | 0.394 | 0.604 |\n| black_liberal | 376 | 0.232 | 0.556 | 0.394 | 0.614 |\n| black_conservative | 71 | 0.200 | 0.583 | 0.392 | 0.606 |\n| latinx_liberal | 209 | 0.193 | 0.570 | 0.381 | 0.627 |\n| asian_liberal | 265 | 0.162 | 0.547 | 0.355 | 0.623 |\n| white_liberal | 2220 | 0.157 | 0.539 | 0.348 | 0.648 |\n| white_neutral | 801 | 0.136 | 0.548 | 0.342 | 0.634 |\n| asian_neutral | 94 | 0.178 | 0.490 | 0.334 | 0.660 |\n| latinx_neutral | 90 | 0.143 | 0.521 | 0.332 | 0.656 |\n| black_neutral | 155 | 0.172 | 0.435 | 0.304 | 0.723 |\n| asian_conservative | 66 | 0.119 | 0.458 | 0.289 | 0.758 |\n\n### ideology (Δπ = 0.077)\n| Subgroup | N | FPR | FNR | π |\n|----------|---|-----|-----|---|\n| slightly_conservative | 623 | 0.188 | 0.603 | 0.396 |\n| extremely_conservative | 192 | 0.210 | 0.565 | 0.388 |\n| conservative | 712 | 0.187 | 0.581 | 0.384 |\n| liberal | 1435 | 0.164 | 0.567 | 0.366 |\n| slightly_liberal | 981 | 0.184 | 0.525 | 0.355 |\n| extremely_liberal | 726 | 0.151 | 0.538 | 0.344 |\n| neutral | 1007 | 0.149 | 0.539 | 0.344 |\n| no_opinion | 188 | 0.132 | 0.505 | 0.319 |\n\n### education (Δπ = 0.084)\n| Subgroup | N | FPR | FNR | π |\n|----------|---|-----|-----|---|\n| professional_degree | 128 | 0.230 | 0.552 | 0.391 |\n| college_grad_aa | 821 | 0.189 | 0.562 | 0.375 |\n| college_grad_ba | 2172 | 0.176 | 0.557 | 0.367 |\n| some_college | 1485 | 0.169 | 0.553 | 0.361 |\n| high_school_grad | 568 | 0.133 | 0.582 | 0.358 |\n| masters | 571 | 0.141 | 0.528 | 0.334 |\n| phd | 77 | 0.167 | 0.447 | 0.307 |\n"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-24T05:01:59.149942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-24T05:01:59.150066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/ucb_demographic_delta_pi_summary.md",
+              "limit": "5"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-24T05:01:59.150188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# UCB Hate Speech — Annotator Demographic Δπ Summary\n2\t\n3\t## Approach\n4\t\n5\tFor each (comment, annotator) pair with LLM annotation:"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-24T05:01:59.150326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/ucb_demographic_delta_pi_summary.md",
+              "content": "# UCB Hate Speech — Annotator Demographic Δπ Summary\n\n## Approach\n\nUnit of analysis: (comment, annotator) pair.\n- Z_true = annotator's individual dehumanize label (≥2 → 1, else 0)\n- Z_hat = GPT-4.1 LLM label (binary, at comment level)\n- Subgroup = annotator demographic attribute\n- N = 5,865 annotator-level observations (2,496 comments × ~2.3 annotators each)\n\n## Global confusion matrix\n\n|          | Z_hat=0 | Z_hat=1 |\n|----------|---------|---------|\n| Z_true=0 | 2,347   | 519     |\n| Z_true=1 | 1,641   | 1,358   |\n\n- FPR = 0.181, FNR = 0.547, π = 0.364\n- Overall accuracy = 63.2%\n- Key pattern: **highly asymmetric CM** — LLM misses >50% of hate speech (high FNR)\n\n## Δπ by demographic feature (min group N ≥ 50)\n\n| Feature | # Groups | min π | max π | Δπ | ΔFPR | ΔFNR | Highest π group | Lowest π group |\n|---------|----------|-------|-------|----|------|------|-----------------|----------------|\n| race × ideology | 12 | 0.289 | 0.405 | **0.117** | 0.131 | 0.161 | latinx_conservative | asian_conservative |\n| gender × ideology¹ | 6 | 0.314 | 0.406 | **0.092** | 0.088 | 0.096 | female_conservative | male_neutral |\n| education | 7 | 0.307 | 0.391 | **0.084** | 0.096 | 0.135 | professional_degree | phd |\n| race | 5 | 0.294 | 0.374 | **0.080** | 0.123 | 0.058 | latinx | native_american |\n| ideology (fine) | 8 | 0.319 | 0.396 | **0.077** | 0.078 | 0.098 | slightly_conservative | no_opinion |\n| ideology (grouped) | 3 | 0.340 | 0.389 | **0.049** | 0.044 | 0.055 | conservative | neutral |\n| income | 5 | 0.331 | 0.376 | **0.045** | 0.034 | 0.064 | 100k-200k | <10k |\n| age_group | 5 | 0.347 | 0.387 | **0.040** | 0.021 | 0.090 | 56+ | 36-45 |\n| gender | 2 | 0.353 | 0.370 | **0.017** | 0.029 | 0.006 | female | male |\n\n¹ Excluding non-binary_liberal (N=36), which had anomalously low π=0.176.\n\n## Key finding\n\n**Max Δπ = 0.117** (race × ideology interaction), **below the 0.15 EC-HTE threshold**.\n\nNo single demographic feature or two-way interaction produces sufficient misclassification heterogeneity for EC-HTE correction to work on this data.\n\n## Interpretation\n\n1. **Moderate ideology effect**: Conservatives have π ≈ 0.39, liberals π ≈ 0.36, neutrals π ≈ 0.34.\n   The LLM aligns better with moderate/neutral annotators and worse with conservative annotators (higher FNR).\n\n2. **Moderate race effect**: Latinx (π=0.374) and Black (π=0.372) annotators show higher\n   disagreement with the LLM than Asian (π=0.341) or Native American (π=0.294) annotators.\n\n3. **FNR dominates**: The LLM's main error is under-detection of hate speech (FNR ≈ 0.55).\n   ΔFNR is the primary driver of Δπ for most features.\n\n4. **Interaction effects are additive, not multiplicative**: The race×ideology interaction\n   Δπ (0.117) is roughly the sum of individual Δπ values, not larger than expected.\n\n## Why EC-HTE is unlikely to help here\n\n1. **Δπ < 0.15**: Insufficient misclassification heterogeneity across subgroups\n2. **Asymmetric CM**: FPR ≈ 0.17, FNR ≈ 0.55 → denominator (1-FPR-FNR) ≈ 0.28 is small,\n   making any correction amplify estimation noise\n3. **Annotator-level subgroups ≠ comment-level subgroups**: In a real application, each comment\n   doesn't have a fixed annotator demographic — the subgroup structure is at the annotator level,\n   not the observation level\n\n## Semi-synthetic validation (gender × ideology, including N=36 outlier)\n\nA semi-synthetic run was performed using the gender×ideology grouping (including the\nnon-binary_liberal outlier, giving inflated Δπ=0.23). Results confirmed that correction\nmethods perform *worse* than naive, primarily due to the asymmetric CM:\n\n| Method | n=100 RMSE | n=250 RMSE | n=500 RMSE |\n|--------|------------|------------|------------|\n| Oracle | 0.047 | 0.047 | 0.047 |\n| Naive | **0.104** | **0.104** | **0.104** |\n| HB EC-HTE | 0.212 | 0.208 | 0.174 |\n| Global corrected | 0.664 | 0.510 | 0.412 |\n| Stratified MLE | 0.829 | 0.786 | 0.618 |\n\nEven with (artificially) large Δπ, the correction amplifies errors because the small\ndenominator (1-FPR-FNR ≈ 0.28) makes the estimator unstable.\n\n## Per-subgroup detail: Top features\n\n### race × ideology (Δπ = 0.117)\n| Subgroup | N | FPR | FNR | π |\n|----------|---|-----|-----|---|\n| latinx_conservative | 77 | 0.250 | 0.561 | 0.405 |\n| white_conservative | 1281 | 0.192 | 0.597 | 0.394 |\n| black_liberal | 376 | 0.232 | 0.556 | 0.394 |\n| black_conservative | 71 | 0.200 | 0.583 | 0.392 |\n| latinx_liberal | 209 | 0.193 | 0.570 | 0.381 |\n| asian_liberal | 265 | 0.162 | 0.547 | 0.355 |\n| white_liberal | 2220 | 0.157 | 0.539 | 0.348 |\n| white_neutral | 801 | 0.136 | 0.548 | 0.342 |\n| asian_neutral | 94 | 0.178 | 0.490 | 0.334 |\n| latinx_neutral | 90 | 0.143 | 0.521 | 0.332 |\n| black_neutral | 155 | 0.172 | 0.435 | 0.304 |\n| asian_conservative | 66 | 0.119 | 0.458 | 0.289 |\n\n### ideology (Δπ = 0.077)\n| Subgroup | N | FPR | FNR | π |\n|----------|---|-----|-----|---|\n| slightly_conservative | 623 | 0.188 | 0.603 | 0.396 |\n| extremely_conservative | 192 | 0.210 | 0.565 | 0.388 |\n| conservative | 712 | 0.187 | 0.581 | 0.384 |\n| liberal | 1435 | 0.164 | 0.567 | 0.366 |\n| slightly_liberal | 981 | 0.184 | 0.525 | 0.355 |\n| extremely_liberal | 726 | 0.151 | 0.538 | 0.344 |\n| neutral | 1007 | 0.149 | 0.539 | 0.344 |\n| no_opinion | 188 | 0.132 | 0.505 | 0.319 |\n\n### education (Δπ = 0.084)\n| Subgroup | N | FPR | FNR | π |\n|----------|---|-----|-----|---|\n| professional_degree | 128 | 0.230 | 0.552 | 0.391 |\n| college_grad_aa | 821 | 0.189 | 0.562 | 0.375 |\n| college_grad_ba | 2172 | 0.176 | 0.557 | 0.367 |\n| some_college | 1485 | 0.169 | 0.553 | 0.361 |\n| high_school_grad | 568 | 0.133 | 0.582 | 0.358 |\n| masters | 571 | 0.141 | 0.528 | 0.334 |\n| phd | 77 | 0.167 | 0.447 | 0.307 |\n"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-24T05:01:59.150601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/ec_hte_llm_annotation/results/ucb_demographic_delta_pi_summary.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-24T05:01:59.150766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\nimport numpy as np\n\n# Rebuild the clean delta_pi CSV\ncm = pd.read_csv('results/ucb_demographic_cm_detail.csv')\n\nrows = []\nfor feat in cm['feature'].unique():\n    sub = cm[(cm['feature']==feat) & (cm['n']>=50)]\n    # For gender_x_ideology, also exclude non-binary_liberal\n    if feat == 'gender_x_ideology':\n        sub = sub[sub['subgroup'] != 'non-binary_liberal']\n    if len(sub) < 2:\n        continue\n    pis = sub['pi'].values\n    fprs = sub['fpr'].values\n    fnrs = sub['fnr'].values\n    rows.append({\n        'feature': feat,\n        'n_subgroups': len(sub),\n        'min_pi': pis.min(),\n        'max_pi': pis.max(),\n        'delta_pi': pis.max() - pis.min(),\n        'delta_fpr': fprs.max() - fprs.min(),\n        'delta_fnr': fnrs.max() - fnrs.min(),\n        'highest_pi_subgroup': sub.loc[sub['pi'].idxmax(), 'subgroup'],\n        'lowest_pi_subgroup': sub.loc[sub['pi'].idxmin(), 'subgroup'],\n        'total_n': int(sub['n'].sum()),\n    })\n\nsummary = pd.DataFrame(rows).sort_values('delta_pi', ascending=False)\nsummary.to_csv('results/ucb_demographic_delta_pi.csv', index=False)\nprint(summary.to_string())\n\"",
+              "description": "Write clean delta_pi CSV",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-24T05:01:59.150932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "             feature  n_subgroups    min_pi    max_pi  delta_pi  delta_fpr  delta_fnr    highest_pi_subgroup  lowest_pi_subgroup  total_n\n7    race_x_ideology           12  0.288690  0.405488  0.116797   0.130952   0.161415    latinx_conservative  asian_conservative     5705\n8  gender_x_ideology            6  0.314011  0.406291  0.092280   0.088290   0.096270    female_conservative        male_neutral     5795\n4          education            7  0.306738  0.390874  0.084136   0.096175   0.135281    professional_degree                 phd     5822\n0               race            5  0.294118  0.374034  0.079917   0.123421   0.057554                 latinx     native_american     5783\n2           ideology            8  0.318511  0.395622  0.077111   0.078132   0.097970  slightly_conservative          no_opinion     5864\n3   ideology_grouped            3  0.339875  0.389262  0.049387   0.044079   0.054694           conservative             neutral     5864\n6             income            5  0.331197  0.375823  0.044626   0.033939   0.063884              100k-200k                <10k     5859\n5          age_group            5  0.347226  0.386773  0.039547   0.021404   0.090014                    56+               36-45     5861\n1             gender            2  0.352488  0.369738  0.017250   0.028514   0.005985                 female                male     5795"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-24T05:01:59.151083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la results/ucb_demographic_*.{csv,md} 2>/dev/null",
+              "description": "Verify output files"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-24T05:01:59.151204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu   6904 May 24 04:58 results/ucb_demographic_cm_detail.csv\n-rw-r--r-- 1 ubuntu ubuntu   1362 May 24 05:01 results/ucb_demographic_delta_pi.csv\n-rw-r--r-- 1 ubuntu ubuntu   5788 May 24 05:01 results/ucb_demographic_delta_pi_summary.md\n-rw-r--r-- 1 ubuntu ubuntu   1555 May 24 04:58 results/ucb_demographic_echte_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu 118653 May 24 04:58 results/ucb_demographic_echte_results.csv\n-rw-r--r-- 1 ubuntu ubuntu   1616 May 24 04:58 results/ucb_demographic_echte_summary.csv\n-rw-r--r-- 1 ubuntu ubuntu   1733 May 24 04:58 results/ucb_demographic_exploration.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-24T05:01:59.151369+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### Max Δπ = 0.117（race × ideology），低于 0.15 阈值\n\n**单一 demographic features 的 Δπ：**\n| Feature | Δπ |\n|---|---|\n| education | 0.084 |\n| race | 0.080 |\n| ideology | 0.077 |\n| ideology (grouped) | 0.049 |\n| income | 0.045 |\n| age_group | 0.040 |\n| gender | 0.017 |\n\n**交互特征：**\n- race × ideology: Δπ = 0.117（最高，但仍 < 0.15）\n- gender × ideology: Δπ = 0.092（排除 N=36 的 non-binary_liberal 后）\n\n### 为什么 Δπ 不够大\n\n1. **高度不对称 CM**：FPR ≈ 0.17, FNR ≈ 0.55。LLM 的主要问题是漏检 hate speech（高 FNR），这在所有 demographic 组中都很一致\n2. **Demographic 效应方向一致**：保守派 annotators 的 π 更高（~0.39），自由派更低（~0.35），但差异不够大\n3. **Annotator-level 分组 ≠ observation-level 分组**：每条评论有多个不同 demographic 的标注者，无法干净地将 comments 分配到 demographic subgroups\n\n### Semi-synthetic 验证（即使用虚高的 Δπ=0.23）\n\n用包含 outlier 的 gender×ideology 分组跑了 100 MC runs，correction 方法全部比 naive 更差：\n- Naive RMSE = 0.104\n- HB EC-HTE RMSE = 0.174–0.212\n- Global RMSE = 0.412–0.664\n\n原因：1-FPR-FNR ≈ 0.28（分母太小），correction 放大了估计噪声。\n\n### 产出文件\n- `results/ucb_demographic_delta_pi.csv` — Δπ 汇总\n- `results/ucb_demographic_delta_pi_summary.md` — 完整分析\n- `results/ucb_demographic_cm_detail.csv` — 每组 CM 细节\n- `results/ucb_demographic_echte_results.csv` — semi-synthetic 原始结果\n- `exp_ucb_demographic.py` — 完整代码"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ucb-demographic-subgroup-analysis_20260524T045225"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ]
+}

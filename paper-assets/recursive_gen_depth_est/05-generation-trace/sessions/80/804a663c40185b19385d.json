@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "804a663c40185b19385d",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh collect pythia topk50 results",
+  "task_key": "worker_ssh_collect_pythia_topk50_results_20260514T201806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_pythia_topk50_results_20260514T201806.log",
+    "occurrence": 1,
+    "bytes": 582298,
+    "sha256": "c9afb82b7bf8d738a65597ab2ecf64d9fdb62c7ccb78cefa589dcc606b3d8e01"
+  },
+  "statistics": {
+    "messages": 254,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 254,
+      "chunks": [
+        {
+          "path": "804a663c40185b19385d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "804a663c40185b19385d-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ]
+}

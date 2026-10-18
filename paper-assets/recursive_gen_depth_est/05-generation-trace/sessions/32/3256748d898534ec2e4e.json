@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3256748d898534ec2e4e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix matrix analysis warnings",
+  "task_key": "worker_fix_matrix_analysis_warnings_20260515T021640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_matrix_analysis_warnings_20260515T021640_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "84b2332c4ffc36de7cd5583d4e192028aa9ec77438b3281d26206da7122bebd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项修复全部完成。验证总结：\n\n**Fix 1** — Feature importance 声明修正：\n- 无 \"top-3 Jaccard=1.0\" 声明（`grep -n \"top-3\"` 只出现在偏差注释中）\n- Section 5.1 改为 \"consistently rank in top-5\"\n- 添加了 Pythia mean_ppl 和 GPT-2 XL temp09 var_surprisal 的偏差说明\n\n**Fix 2** — EDD 矩阵：\n- Section 4 包含完整 EDD 分析：8-cell 矩阵（threshold=0.80）、top-k 降低 EDD 的解释、4 档 threshold sensitivity 全表\n\n**Fix 3** — atlas_v2_data.json 同步：\n- `olmo_topk50` 无 placeholder（原本就已有完整分类指标）\n- 补充了 `acc_3class_filtered`、`d1v2_auc`、`finetune_loss`、`code_contamination_narrow` 四个字段\n- `atlas_v2_complete.py` 已重跑，派生文件（edd_sensitivity.json, cross_model_rank, atlas_v2_results.json）均已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

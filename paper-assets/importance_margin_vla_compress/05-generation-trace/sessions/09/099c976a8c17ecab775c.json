@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "099c976a8c17ecab775c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops m96 train check",
+  "task_key": "worker_ops_m96_train_check_20260522T121832",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_m96_train_check_20260522T121832_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "d63f9042645b5b38faaf989a00744954fe15d6f3210c45aa21b8c4e4e573c47b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需清除。\n\n---\n\n**总结：`train_openvla_sc_m96_seed42` 训练成功完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | DONE (success) |\n| 总步数 | 99,999 / 100,000 |\n| 最终 train loss | 2.4509 |\n| 最终 eval loss | 2.6575 |\n| Checkpoint | `/root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_m96_seed42/checkpoint_step99999.pt` (18.6 GB) |\n| 服务器 | westd-41074 |\n\n**westd-41074 GPU 2 现在空闲**，可安排下一个实验或部署 M96 的 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

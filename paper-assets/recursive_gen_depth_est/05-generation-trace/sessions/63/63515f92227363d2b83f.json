@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "63515f92227363d2b83f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp plan 021 instruct model",
+  "task_key": "worker_exp_plan_021_instruct_model_20260517T145549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_021_instruct_model_20260517T145549_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "41e07b7694258a087ff03589da565a2f4f52a3ce57d36ec24b35dd16975ced01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并配置完毕。\n\n**状态总结：**\n- **exp_id**: `qwen25-1p5b-instruct-001`\n- **GPU**: cuda:1 on gpu-6000pro-2\n- **tmux session**: `qwen25-1p5b-instruct-001` (pid 788285)\n- **当前状态**: 等待 aria2c 下载 model.safetensors (2.8GB, ~1MB/s, ETA ~40min)\n- **下载完成后自动执行**: d0 生成 → LoRA finetune d0 → d1 生成 → ... → d3 生成 → 特征提取 → RF/LR 分类\n- **Cron 监控**: 已注册，每 5 分钟检查\n- **预计总时长**: 下载 ~40min + pipeline ~3-4h = ~4-5h\n\nPipeline 脚本:\n- `/root/autodl-tmp/recursive_gen_depth_est/scripts/run_qwen25_1.5b_instruct_pipeline.sh`\n- `/root/autodl-tmp/recursive_gen_depth_est/scripts/qwen25_1.5b_instruct_pipeline.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

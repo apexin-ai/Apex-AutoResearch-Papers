@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d1c57b9cd60ea4e30a37",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit v1v2 final check",
+  "task_key": "worker_audit_v1v2-final-check_20260523T185223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_v1v2-final-check_20260523T185223_result.json",
+    "occurrence": 1,
+    "bytes": 1838,
+    "sha256": "b23ef52018d981f2b82b7973a3e09cfe6a4cab46621ce7274de5e50dd7009404"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部追踪完毕。结果如下：\n\n```\n文件                             | 脚本                               | 版本       | 是否需要重跑\nsensitivity_analysis_poolA.json | run_sensitivity_analysis_poolA.py  | V1(上游)   | 是\ncross_benchmark_iv.json         | run_cross_benchmark_iv.py          | V1         | 是\nkeff_stability_split.json       | 无明确生产脚本                      | V1(推测)   | 是\n```\n\n### 详细说明\n\n**1. `sensitivity_analysis_poolA.json`** — V1（上游），影响：**高**\n- 脚本本身不处理原始 judge 响应，从 `capability_matched_subsample.json` 读取预计算的回归结果\n- 上游 `run_capability_matched.py` 使用 `.get(\"winner\", \"tie\")`（V1），第 76/78/89/93 行\n- 回归系数（t_stat、RV）基于 V1 ASR 数据，error 响应被当作 \"tie\" 投票，污染回归输入\n\n**2. `cross_benchmark_iv.json`** — V1，影响：**高**\n- `run_cross_benchmark_iv.py` 直接使用 `.get(\"winner\", \"tie\")`，第 73/75/86/90 行\n- IV 回归的工具变量和结果变量都基于 V1 ASR，两阶段均受污染\n\n**3. `keff_stability_split.json`** — V1（推测），影响：**中**\n- 项目内无任何脚本/模块引用 `keff_stability_split` 字符串，文件可能由已删除脚本或手动整理生成\n- 文件内容为 \"wild cluster bootstrap significance by Spearman rho tier\" 聚合摘要\n- `run_wild_cluster_bootstrap.py` 和 `run_wild_cluster_bootstrap_v2.py` 均为 V1（`.get(\"winner\", \"tie\")`）\n- 注意：`run_attacked_keff.py`（输出 `attacked_keff.json`，非本文件）使用 `.get(\"winner\")` 无默认值 + None 过滤，更接近 V2 思路，相对稳健\n- 影响为中：K_eff 稳定性基于 MI 互信息，但 bootstrap 显著性检验中的 ASR 计算仍受 V1 误差影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

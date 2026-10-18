@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "19faa2fb57b655bf212e",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code geometric prior pruning",
+  "task_key": "worker_code_geometric_prior_pruning_20260517T154301",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_geometric_prior_pruning_20260517T154301.log",
+    "occurrence": 1,
+    "bytes": 992824,
+    "sha256": "48ebc7f307cfb58ffb2d60f146c46d161bf27da47379712276d8bb2b040b85e0"
+  },
+  "statistics": {
+    "messages": 289,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 110,
+      "user": 1,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "19faa2fb57b655bf212e-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "19faa2fb57b655bf212e-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "19faa2fb57b655bf212e-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ]
+}

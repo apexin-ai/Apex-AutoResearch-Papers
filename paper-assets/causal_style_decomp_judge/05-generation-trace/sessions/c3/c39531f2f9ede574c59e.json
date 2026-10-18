@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c39531f2f9ede574c59e",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "viz forest plot v2",
+  "task_key": "worker_viz_forest_plot_v2_20260521T224208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_forest_plot_v2_20260521T224208_result.json",
+    "occurrence": 1,
+    "bytes": 230,
+    "sha256": "90f567893ac070c212d9868a6079309147a2148a7c6913d3820b6cf00fdb2be6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`forest_plot.pdf` 和 `forest_plot.png` 已生成并同步到本地 `artifacts/figures/paper/`。4 judges × 3 axes 全部到位，Gemini Register 留空标 \"—\"，Qwen3-32B Register 为唯一 NS 点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b46ecf9fe0306b719d77",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu yi15 hires constrained mckp",
+  "task_key": "worker_gpu_yi15_hires_constrained_mckp_20260514T201826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_yi15_hires_constrained_mckp_20260514T201826_result.json",
+    "occurrence": 1,
+    "bytes": 1261,
+    "sha256": "d1257e68d36658cc2128d9ab609a71a2d2a9c9c0fb3ea8bcb12af2a642ab15c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报：\n\n---\n\n## Yi-1.5-9B Hires Constrained MCKP — 结果\n\n| Method | PPL | Delta vs uniform |\n|---|---|---|\n| Baseline (bf16) | 7.0157 | — |\n| **Hires MCKP (k=2)** | **7.2181** | **-0.0009** |\n| Uniform 4-bit | 7.2171 | — |\n| Std MCKP (k=2, ref) | 7.2209 | -0.0038 |\n| Std MCKP (k=8, ref) | 7.3129 | -0.0958 |\n\n**Verdict: FAIL**\n\n**Bit distribution:** 4-bit=189, 8-bit=1, 2-bit=2\n- 2-bit heads: L22H1, L24H3（最不敏感的 heads）\n- 8-bit heads: L6H2\n- **L4H3 保持 4-bit**（未升到 8-bit）\n\n**Concentration:** hires=0.7139 vs standard=0.4934\n\n**对比 standard profiling：** Hires 数据将 k=2 的 gap 从 -0.0038 缩窄到 -0.0009，但仍然无法翻盘。\n\n**根因分析：** L4H3 的 outlier 极端集中在 2-bit 层级（delta=13.12），但其 4-bit delta=0.0048、8-bit delta=0.0040 几乎为零。这意味着：\n1. Solver 已经通过避免将 L4H3 降到 2-bit 来规避了最大损失\n2. 将 L4H3 从 4-bit 升到 8-bit 几乎无收益（delta 差仅 0.0008）\n3. Yi-1.5-9B 的 heterogeneity 是 **spike pattern**（单点极端但窄带），不是 **spread pattern**（多 head 在多 bitwidth 下有差异），solver 在 4-bit/8-bit 层级没有优化空间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

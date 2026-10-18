@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "acb459f8176da765966a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis d037 figure data audit",
+  "task_key": "worker_analysis_d037_figure_data_audit_20260516T040010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d037_figure_data_audit_20260516T040010_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "f09f5c086ee7aac9d322f5f31f4c82a571fda358e7d4048085289069bc3d8813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计结果：\n\n### Task 1: Figure 1a 用的是 micro recall (pooled)\n- 数据**硬编码**在 `gen_fig_count_curves.py` 里，不读任何外部文件\n- count_22=0.527, count_44=0.551，与 round2 JSON 的 `pooled_recall`（0.5268, 0.5512）吻合\n- 排除 macro recall（batch mean 是 0.5222, 0.5491）\n\n### Task 2: round2_statistical_analyses.json 已获取\n- 路径：`/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json`\n- Cluster bootstrap CI 均显著：FewNERD r=0.137 CI [0.069, 0.219], MAVEN r=0.129 CI [0.081, 0.185]\n- W4 count_22/44 的 pooled CI 重叠，delta=0.024 不显著\n\n### Task 3: Practical Magnitude 差异根源\n存在**两个不同的数据源**，slope 相同（-0.401）但 BCS 分布不同：\n\n| 来源 | BCS IQR | Gap (pp) | Q1 → Q3 |\n|------|---------|----------|----------|\n| 本地 W2 JSON (100 batches) | 0.0539 | 2.16 | 0.528 → 0.582 |\n| 服务器 round2 JSON `80pool_16sub` | 0.0655 | 2.63 | 0.504 → 0.569 |\n| 论文当前文字 | ~0.054 | ~2.2 | (rounded from 本地 W2) |\n\n**根因**：两次运行产生了不同的 100-batch BCS 分布（不同随机种子或采样策略），导致 IQR 差异 0.012、gap 差异 0.47pp。论文当前数字是本地 W2 的四舍五入。需确认哪个运行是权威版本。\n\n输出已写入 `figure_data_audit.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

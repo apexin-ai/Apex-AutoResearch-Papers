@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "76025a988d23ebb88bd3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh westd 70b verify fix",
+  "task_key": "worker_ssh_westd-70b-verify-fix_20260517T082725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-70b-verify-fix_20260517T082725_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "76cd7a630328e6b458428d90e306337684e70bf24fafe7b733308ee2bb7866f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注释修复完成。汇总结果：\n\n---\n\n## 实验状态：未启动 / 已崩溃\n\n### 核心问题\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | 不存在（`no server running`） |\n| Python/vLLM 进程 | 无 |\n| GPU 利用率 | 0%，0 MiB |\n| 实验日志 | 不存在（`llama70b_cross_model.log` 两个路径均 404） |\n\n### 根因分析（3 个阻塞项）\n\n1. **只有 1 张 GPU**：`nvidia-smi -L` 只报出 1× RTX PRO 6000 Blackwell（`/dev/nvidia5`），但脚本需要 `TP_SIZE=2`。这台 cqa1-38874 不满足 2-GPU 要求。\n\n2. **模型路径不匹配**：\n   - 脚本 `MODEL_PATH` 默认值：`neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8`（预期路径 `/root/autodl-tmp/models/llama-3.1-70b-instruct-fp8`，该目录不存在）\n   - 实际已下载：`nvidia/Llama-3.3-70B-Instruct-FP8` → `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`（68GB，15 个 shard 全部完整）\n\n3. **vLLM Blackwell 兼容性问题**：8B 模型测试（`/tmp/vllm_test.log`）显示 vLLM 0.20.2 加载权重成功但 engine core 初始化失败（`RuntimeError: Engine core initialization failed`），伴有 `SM 12.x requires CUDA >= 12.9` 警告。\n\n### 已完成的修复\n\n- 脚本注释 `48GB each` → `96GB each` ✅\n\n### 下一步建议\n\n要在这台机器上运行 70B 实验，需要：\n1. 将 `TP_SIZE` 改为 1（单 GPU 96GB 可以装 FP8 70B，约 68GB 权重）\n2. 修正 `MODEL_PATH` 指向实际下载路径 `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`\n3. 解决 vLLM engine core 初始化问题（可能需要升级 CUDA 或换 vLLM 版本）\n\n或者：在真正有 2 张 GPU 的 westd-24295 上运行（如果那是另一台机器）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

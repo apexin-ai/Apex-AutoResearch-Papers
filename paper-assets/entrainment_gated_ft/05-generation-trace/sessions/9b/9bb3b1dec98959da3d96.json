@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "9bb3b1dec98959da3d96",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code retnet kill fix reeval",
+  "task_key": "worker_code_retnet_kill_fix_reeval_20260518T144900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retnet_kill_fix_reeval_20260518T144900.log",
+    "occurrence": 1,
+    "bytes": 1004506,
+    "sha256": "ac64fcd9cc670f0a05d85bfff69280e1c72fc4fab9882b0fe0da69d284077de2"
+  },
+  "statistics": {
+    "messages": 668,
+    "user_turns": 1,
+    "tool_calls": 268,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 124,
+      "tool_call": 268,
+      "tool_result": 268,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 651,
+      "chunks": [
+        {
+          "path": "9bb3b1dec98959da3d96-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9bb3b1dec98959da3d96-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9bb3b1dec98959da3d96-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9bb3b1dec98959da3d96-part-0004.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "9bb3b1dec98959da3d96-part-0004.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

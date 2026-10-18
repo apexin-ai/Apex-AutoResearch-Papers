@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "86e45677b5acac4f3117",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper research vit pruning gap",
+  "task_key": "worker_paper_research_vit_pruning_gap_20260522T230243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_vit_pruning_gap_20260522T230243_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "0d7df94dfc33dca997872e1e687dcde9a2927c207b2770d29aaa979e188fa763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Entry added and verified. Here's the summary:\n\n**Added:** `yin2022avit` — *A-ViT: Adaptive Tokens for Efficient Vision Transformer*, CVPR 2022 (Oral)\n\n**Why it complements the existing 3:**\n\n| Paper | Mechanism |\n|-------|-----------|\n| DynamicViT | Learned binary pruning predictor at **fixed layers** |\n| EViT | CLS-attention reorganization at **fixed layers** |\n| ToMe | Training-free bipartite **merging** at every layer |\n| **A-ViT** | Per-token **adaptive depth** via ACT halting — tokens exit at **different layers** |\n\nA-ViT introduces a fundamentally different axis: instead of deciding *which tokens to remove at a given layer*, it asks *how deep should each token be processed*. This is directly relevant to our VLA token pruning analysis because it highlights that token importance varies across transformer depth — connecting to our investigation of how pruning at different stages of the VLA pipeline produces different failure modes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

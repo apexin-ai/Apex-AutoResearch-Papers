@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5608b1428b69799bb2c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "knowledge memory signal degradation",
+  "task_key": "worker_knowledge_memory_signal_degradation_20260514T203401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_memory_signal_degradation_20260514T203401_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "abd23dd6d44d484e0073379a341996236d257089e38d87a602d53e31fffa20ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加到 memory.md。新增的「解码策略对深度信号强度的影响」section 在文件末尾，原有内容完整保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

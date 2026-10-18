@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "70a629e317690d46b39e",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code zeroshot llm 500 001",
+  "task_key": "worker_code_zeroshot_llm_500_001_20260515T163627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_zeroshot_llm_500_001_20260515T163627.log",
+    "occurrence": 1,
+    "bytes": 1180323,
+    "sha256": "023aa72e6f6581708e2b94b712800377b978499134dbae58dbd31285f17ee735"
+  },
+  "statistics": {
+    "messages": 892,
+    "user_turns": 1,
+    "tool_calls": 364,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 4,
+      "assistant": 119,
+      "tool_call": 364,
+      "tool_result": 364,
+      "user": 1,
+      "result": 7
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 777,
+      "chunks": [
+        {
+          "path": "70a629e317690d46b39e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a629e317690d46b39e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a629e317690d46b39e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a629e317690d46b39e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a629e317690d46b39e-part-0005.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "70a629e317690d46b39e-part-0005.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ]
+}

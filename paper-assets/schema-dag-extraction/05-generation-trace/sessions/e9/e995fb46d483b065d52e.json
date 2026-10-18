@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e995fb46d483b065d52e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh d051 exit diagnosis",
+  "task_key": "worker_ssh_d051-exit-diagnosis_20260517T052923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d051-exit-diagnosis_20260517T052923_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "9f4a7eaf405594d7e9c6b5e30ff729435e3f89053edd5eb545e792b748c0f545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**进程已正常完成**，tmux session 保留但脚本已退出到 shell prompt。\n\n### 1. 退出原因\n正常完成。日志最后显示 `Done. Output: .../d051_fewnerd_n25_s456` 并回到 shell。\n\n### 2. Few-NERD s456 最终状态\n所有 6 个 count levels 全部完成（count_2, count_6, count_12, count_22, count_44, count_66），每个 25 batches。\n\n### 3. Few-NERD s456 完整 metrics\n\n| Count Level | Mean Recall | Std |\n|---|---|---|\n| count_2 | 0.5528 | 0.1402 |\n| count_6 | 0.4092 | 0.1197 |\n| count_12 | 0.3051 | 0.1050 |\n| count_22 | 0.2577 | 0.0922 |\n| count_44 | 0.2898 | 0.1366 |\n| count_66 | 0.4067 | 0.0016 |\n\n### 4. Conclusion: **success**\n\n所有 6 个 dataset×seed 组合（fewrel×{s42,s123,s456} + fewnerd×{s42,s123,s456}）均有 `count_curve_summary.json`，实验完整结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

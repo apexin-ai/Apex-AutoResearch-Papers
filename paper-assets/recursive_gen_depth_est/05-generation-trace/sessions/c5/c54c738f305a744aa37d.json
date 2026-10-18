@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c54c738f305a744aa37d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh download deberta v3 large",
+  "task_key": "worker_ssh_download_deberta_v3_large_20260514T161918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_download_deberta_v3_large_20260514T161918_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "076440bcf480b957de1d390e8f6322f91ea1933fff866e561cdbb3c8f70543cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DeBERTa-v3-large 下载完成，已验证可用。\n\n- 路径：`/root/autodl-tmp/models/deberta-v3-large/`\n- 文件：`config.json`, `model.safetensors` (828M), `tokenizer.json`, `tokenizer_config.json`\n- 验证：`deberta-v2`, 434.0M 参数，加载成功"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

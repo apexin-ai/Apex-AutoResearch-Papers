@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7ca3295b99af4724f23e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest attn k07 s42 cqa1",
+  "task_key": "worker_ops_harvest-attn-k07-s42-cqa1_20260527T180004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-attn-k07-s42-cqa1_20260527T180004_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "0e5133625ed73c17dbfc0ff77a017e053c003d8e4f72fc54a5b57380d26df9a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新至 DONE。\n\n## 结果汇总\n\n**Attn k=0.7 Long seed42 (cqa1 副本): Overall SR = 50.8%**\n\n| Task | cqa1 | w41 |\n|------|------|-----|\n| T0 | 72% | 72% |\n| T1 | 70% | 70% |\n| T2 | 58% | 70% |\n| T3 | 46% | 36% |\n| T4 | 36% | 46% |\n| T5 | 32% | 26% |\n| T6 | 58% | 80% |\n| T7 | 48% | 56% |\n| T8 | 6% | 8% |\n| T9 | 82% | 76% |\n| **Overall** | **50.8%** | **53.6%** |\n\ncqa1 版本比 w41 低 2.8pp。Per-task 差异较大（T6 差 22pp，T3/T4 互换趋势），体现了 Long suite 固有的 seed/环境方差。两个副本均值为 **52.2%**。\n\n注意：实际日志文件名为 `eval_pi05_attention_k07_long_seed42.log`（非预期的 `_strict_cqa1` 后缀）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

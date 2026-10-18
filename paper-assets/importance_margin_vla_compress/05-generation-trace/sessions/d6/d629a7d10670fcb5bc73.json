@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d629a7d10670fcb5bc73",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v7 progress checkpoint verify",
+  "task_key": "worker_eval_v7-progress-checkpoint-verify_20260515T200421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v7-progress-checkpoint-verify_20260515T200421_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "ef53598bd3f9a42901c3d54d97790a5e8d2796c571c28fa9b85d508ae4844f61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### v7 训练进度\n- **当前 step**: 27950 / 30000 (93.2%)\n- **速度**: 3.2 steps/s，每 50 步约 16 秒\n- **剩余**: 2050 steps ≈ **~10.7 分钟**（预计 ~04:15 UTC 完成）\n- **Loss**: 正常波动，0.001~0.08 范围，无异常\n\n### v7.2 训练进度\n- **当前 step**: 8350 / 30000 (27.8%)\n- **速度**: 3.2 steps/s\n- **剩余**: 21650 steps ≈ **~113 分钟（约 1 小时 53 分）**\n- 已保存 checkpoint 到 step_008000\n\n### D014 eval checkpoint 验证\n\n| Checkpoint | 路径 | 状态 |\n|---|---|---|\n| baseline final | `baseline/step_029999/` | **存在** (1.16GB checkpoint.pt) |\n| baseline mid 5K | `baseline/step_005000/` | **存在** (注意是 step_005000 不是 step_004999) |\n| baseline mid 10K | `baseline/step_010000/` | **存在** (同上，step_010000) |\n| v7 IMM checkpoints | `imm_anchor/` | 已有 step_002000 ~ step_026000 (每 2000 步)，**v7 final (step_028000/step_029999) 尚未生成**，约 10 分钟后可用 |\n\n### 注意事项\n- Baseline checkpoint 命名是 step_005000 / step_010000（不是 off-by-one 的 step_004999/step_009999），D014 eval 配置中路径需对应\n- v7 训练即将完成，final checkpoint 很快可用；v7.2 还需约 2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

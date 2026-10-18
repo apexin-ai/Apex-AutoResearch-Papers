@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "692e88344afb6201444d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 deltanet eval hgrn fix",
+  "task_key": "worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "9aab762cb9d1abb464d626685a5adc2845353abf132ba500f05e10bbea4759da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HGRN 下载在 93%，CDN 限流严重（59 KiB/s）。aria2c 会自动重试，让它在后台继续。\n\n当前状态汇总：\n\n**Task A - DeltaNet 评估：已完成**\n- 模型：340M-20B-DeltaNet-hybrid-3-1\n- lambada_openai: acc=0.3536, ppl=30.45\n- arc_easy: acc=0.6010, acc_norm=0.5198\n- 结果已保存到 `/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/`\n- Registry 已更新（exp-005-dn-eval）\n- 注意：修复了 fla 0.5.0 与 transformers 5.8.1 的兼容性问题（`_tied_weights_keys` list→dict），创建了 `scripts/patch_fla_eval.py`，后续 fla 模型评估都应通过此脚本运行\n\n**Task B - HGRN 下载加速：进行中**\n- aria2c 多线程下载从原来的 ~80 KB/s 加速到峰值 3.1 MiB/s（~40 倍）\n- 当前 93% 完成（1.1GiB/1.2GiB），CDN 限流后降至 ~60-130 KiB/s\n- 预计还需 10-20 分钟完成\n- 下载完成后需验证文件完整性并删除 `.aria2` 控制文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

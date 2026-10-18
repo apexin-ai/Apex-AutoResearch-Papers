@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "aa2e9372696e35b15e2b",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis sub b logo fix",
+  "task_key": "worker_analysis_sub-b-logo-fix_20260516T011436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sub-b-logo-fix_20260516T011436.log",
+    "occurrence": 1,
+    "bytes": 580753,
+    "sha256": "a5f71a1103ed1f897c27918f21106bdf75b6bab0eaf89bcb7c1dc36cab95f100"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "aa2e9372696e35b15e2b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aa2e9372696e35b15e2b-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9f6e229f16fe02085c82",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "verify final maintext audit",
+  "task_key": "worker_verify_final-maintext-audit_20260524T042705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_final-maintext-audit_20260524T042705_result.json",
+    "occurrence": 1,
+    "bytes": 3188,
+    "sha256": "a2f75f5a15c7c390ddb5bab8cf21783c67217784f7f9a65428571bdca448ac37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已确认。现在汇总完整的自查结果。\n\n---\n\n## 最终自查报告\n\n### 已修复的问题（3 处）\n\n**1. Routing SD 值 (experiments.tex:41)**\n- LAMBADA SD: 0.8pp → **0.4pp**（源数据 e1_paired_ttest.json 计算 paired diffs SD=0.447pp）\n- ARC-Easy SD: 0.9pp → **0.5pp**（源数据计算 SD=0.519pp）\n- 原因：原始 SD 为 `sqrt(SD_routing² + SD_mv²)` 的错误计算，正确做法是取 paired differences 的 SD\n\n**2. Table 1 HellaSwag 行 (experiments.tex:17)**\n- ρ: 0.4 → **0.3**\n- p: .517 → **.683**\n- σ_h3-1: 1.22 → **1.18**\n- Ratio: 0.96 → **0.99**\n- 验证源：table1_task_specificity.csv (ρ=0.3, p=0.683, σ_h3-1=0.01183) + lm_eval_clean/summary_all_1.3b.csv 手动复算一致\n\n**3. Appendix HellaSwag ρ 引用 (appendix.tex:28)**\n- \"HellaSwag: +0.4\" → **\"HellaSwag: +0.3\"**\n\n### 已确认无误的项目\n\n| 检查项 | 状态 |\n|--------|------|\n| Abstract 所有数字 vs 正文 | ✅ α=0.14–0.30, J≈0.10, Bonferroni p=.170, n=5, 36%, +5.2pp |\n| Table 1 其余 10 行 | ✅ LAMBADA/BoolQ/ARC-C/PIQA/WinoGrande/ARC-E/MMLU/SciQ/XStoryCloze/COPA 全匹配 |\n| Table 2 PIQA 行 | ✅ N=1838, α=.14, J̄_h=.091, J̄_u=.094, ρ_α=0.0 |\n| Table 2 ARC-Easy 行 | ✅ J̄_h=.092, J̄_u=.099 匹配源数据 |\n| Table 2 LAMBADA 行 | ✅ J̄_h=.096, J̄_u=.091 匹配源数据 |\n| Routing 数值 (+5.2pp/+1.2pp/-0.06pp/-0.49pp) | ✅ 均与 e1_paired_ttest.json 一致 |\n| Routing p 值 (.374 HellaSwag / .006 PIQA) | ✅ |\n| LAMBADA per-example counts (462/615/426/495/548/395) | ✅ |\n| ECE spread \"6%\" | ✅ source: GDN=0.222, RetNet=0.224, HGRN2=0.235 → range/mean=5.7%→6% |\n| Routing PIQA 为负结果 (-0.49pp) | ✅ 上轮修复已在位 |\n| Oracle = 65.5% | ✅ source: 0.6546→65.5% |\n| 56.2% vs 50.9% accuracies | ✅ source: 0.5623/0.5090 |\n| Jaccard 饱和 \"all ρ≤0.80, p≥.333\" | ✅ 匹配 cross_benchmark_jaccard_trajectories.json |\n| 3-tier hierarchy (~0.05/~0.10/~0.33) | ✅ |\n| Seed calibration 2.7–4.3× | ✅ |\n| 5-arch validation J≤0.14, all p<.01 | ✅ |\n| Bonferroni 计算 .017×10=.170 | ✅ |\n| Limitations 数字 | ✅ |\n| Conclusion 数字 | ✅ |\n\n### 四舍五入统一性\n\n| 类别 | 格式 | 一致性 |\n|------|------|--------|\n| Jaccard | 3位小数 (.091, .095, .096) | ✅ |\n| α | 2位小数 (.14, .15, .21, .30) | ✅ |\n| p-value | .xxx 格式 (.006, .374, .017) | ✅ |\n| σ (Table 1) | 2位小数 (2.41, 0.49) | ✅ |\n| accuracy | 1位小数百分比 (56.2%, 50.9%) | ✅ |\n\n### 需注意但未修改的项\n\n1. **Table 2 HellaSwag J̄ 小幅偏差**：论文 .095/.085 vs 源数据计算 .091/.080（差距 0.004–0.005，可能来自不同分析版本）\n2. **56.2%−50.9%=5.3pp vs +5.2pp**：前者为 non-CV 均值差，后者为 paired t-test 均值差（5.15pp→5.2pp），统计方法上合理但读者可能困惑\n3. **Figure 2 (fig2_task_specificity.pdf)**：如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成图片（当前只修复了 .tex，未改 PDF）\n4. **340M HellaSwag ρ=0.4 (appendix L673)**：这是 340M 数据点，未找到源数据验证，保留未动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

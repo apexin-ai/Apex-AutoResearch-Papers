@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "e81430b99bdc44389dab",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "diagnose llama c4 hires crossdataset",
+  "task_key": "worker_diagnose_llama_c4_hires_crossdataset_20260514T224056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_llama_c4_hires_crossdataset_20260514T224056.jsonl",
+    "occurrence": 1,
+    "bytes": 192,
+    "sha256": "c399ab76e4a780f79a8b76151f33fe5e9270358aa9f7ab281037164dc00f0324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:41:04.318814+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_llama_c4_hires_crossdataset_20260514T224056"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

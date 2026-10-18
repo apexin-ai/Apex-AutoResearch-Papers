@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "fc08cecad87d3f112cbf",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "infra gpt2xl pipeline launch",
+  "task_key": "worker_infra_gpt2xl-pipeline-launch_20260514T141146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpt2xl-pipeline-launch_20260514T141146.log",
+    "occurrence": 1,
+    "bytes": 984935,
+    "sha256": "e32ed64239aa23c63f0be182aa038ed9b34df84df35aacc1d5fa7348136f867b"
+  },
+  "statistics": {
+    "messages": 661,
+    "user_turns": 0,
+    "tool_calls": 264,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 264,
+      "tool_result": 264,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 661,
+      "chunks": [
+        {
+          "path": "fc08cecad87d3f112cbf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc08cecad87d3f112cbf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc08cecad87d3f112cbf-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc08cecad87d3f112cbf-part-0004.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ]
+}

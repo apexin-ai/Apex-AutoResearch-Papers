@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94bf0a5b26afce05d2a3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 force kill",
+  "task_key": "worker_ops_fp16-force-kill_20260525T105309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-force-kill_20260525T105309_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "a42df5c575d2c50a8e033da43ded5b90a2bc0bb2cad6926e64b6de0a3ba71607"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 强杀结果\n5 个目标 PID (80811, 80914, 81028, 81180, 9804) 全部已消失，无残留非论文进程。\n\n## 清理结果\n7 项全部清理成功。磁盘可用: **80GB** (250GB 用了 69%)\n\n## 论文模型状态\n\n| 模型 | FP16 | AWQ | 下载中? |\n|------|------|-----|--------|\n| Qwen2.5-14B | 6/8 shards | ✅ 3/3 完整 | PID 75403, 80517 |\n| Qwen2.5-32B | 15/17 shards | ✅ 5/5 完整 | PID 10163, 72654, 73012, 80611 |\n| Llama-3.1-8B | ✅ 4/4 完整 | 1/2 shards | PID 78663, 78822, 79148, 80704 |\n\n⚠️ 注意：每个下载中的模型都有多个重复下载进程（32B FP16 有 4 个，8B AWQ 有 4 个，14B FP16 有 2 个）。这些重复进程会互相竞争带宽，需要的话可以杀掉多余的只保留各一个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "daed04577c8ccf847d3d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra status check",
+  "task_key": "worker_infra_status_check_20260520T100855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_status_check_20260520T100855_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "3164b72233c068200d8dae00462dd0d15ecdae0212997c817de15e79c63fdb83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **Qwen3-8B** | 🔄 下载中 | 1.7G / ~17G，shard 1/5 进度 8%（289M/3.72G），PID 12091，~559kB/s |\n| **Qwen3-32B** | 🔄 下载中 | 3.2G / ~62G，shard 2/17 9% + shard 7/17 6% 并行下载，PID 12163，~400-590kB/s |\n| **NLI** | ✅ 完成 | 1.7G，model.safetensors 存在，GPU 加载验证通过（entailment=0.992） |\n| **代码同步** | ✅ 已就绪 | content_verification.py 含 nli_model + nli-model 参数 |\n| **数据** | ✅ | mvp_samples.jsonl 100 行 |\n| **磁盘** | ✅ | 250G 总量，已用 6.6G，剩余 244G（3%） |\n| **vLLM** | 🔄 安装中 | 正在下载 vllm-0.21.0（248MB），PID 9275 |\n\n两个 Qwen 模型下载进程都存活，速度偏慢（~500kB/s）但在推进。磁盘空间充足，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3f837f81cd2a95816a2b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code register nli only gating",
+  "task_key": "worker_code_register_nli_only_gating_20260521T002132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_register_nli_only_gating_20260521T002132_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "f8d36f92d709a2ad6e2d75539f48226a331310ba527b773936998908dff88e64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果：\n\n**修改 diff:**\n- Line 173: `if args.axis == \"verbosity\":` → `if args.axis in (\"verbosity\", \"register\"):`\n- NLI-only gating（不检查 BERTScore）对 register axis 生效\n\n**运行结果:**\n- **Counterfactual pass rate: 19/20 (95.0%)** — 确认与预期一致\n- NLI mean: 0.9404, BERTScore mean: 0.8458\n- 使用了 NLI-only gating（passed 只看 NLI ≥ 0.9，不看 BERTScore）\n- Double-rewrite pass rate: 15/20 (75.0%)\n\n**注意事项:** 运行时需要设置以下环境变量避免卡住：\n- `HF_HOME=/root/autodl-tmp/.hf_cache`\n- `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1`（避免 HF Hub 网络请求挂起）\n- `LD_LIBRARY_PATH` 加入 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`（Blackwell GPU CUDA JIT 需要）\n- NLI 模型使用本地路径 `--nli-model /root/autodl-tmp/models/nli-deberta-v3-large`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

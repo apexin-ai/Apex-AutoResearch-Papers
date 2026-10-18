@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b7dc9d5a5b9f9f737dd3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis oft importance cv",
+  "task_key": "worker_analysis_oft-importance-cv_20260520T202730",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_oft-importance-cv_20260520T202730_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "858e14d8c403e6c389488e87fc0da56958656667baf837f88a0a9907ee63f731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diagnostic 表格 5/5 模型全部完成。OFT CV = 0.2185，per-task CV 在 0.211–0.225 之间非常稳定，与 OpenVLA (0.215) 高度一致——符合预期，因为两者共享相同的 MLP projector 架构，LoRA fine-tuning 未改变 vision token importance 分布。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

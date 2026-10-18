@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fe92bd3657271199d7fd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "kill cqa1 zombie 537176",
+  "task_key": "worker_kill_cqa1-zombie-537176_20260525T181403",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_kill_cqa1-zombie-537176_20260525T181403_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "620b6786bb20154bef93fe1769cc072f50fcfa2c045ae50fd9169386d6c77ab1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- PID 537176 已成功 kill，GPU0 已释放（原本该进程跑在 GPU0 上）\n\n**当前 GPU 占用状态：**\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 1 MiB | 0% | **空闲可用** |\n| 1 | 10279 MiB | 45% | 占用（PID 431242） |\n| 2 | 1 MiB | 0% | **空闲可用** |\n| 3 | 10591 MiB | 35% | 占用（PID 537521） |\n\nGPU0 和 GPU2 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

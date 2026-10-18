@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "431155f1172b91a96464",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp006 vllm restart cfgen",
+  "task_key": "worker_ops_exp006_vllm_restart_cfgen_20260521T055327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp006_vllm_restart_cfgen_20260521T055327_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "521ecc1e7297c5fbd879aa792f4e04b965892f272eb8a1070c74891aa107c4fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "稳定增长中（230/400）。\n\n**产出汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| vLLM PID | **114900** (cuda:2, port 8002) |\n| CF gen PID | **115974** |\n| CF gen 进度 | **230/400** (剩余 170 条，预计 ~5-6 分钟完成) |\n| 输入文件 | `data/scaled_formality_input.jsonl` (400 条) |\n| 输出文件 | `data/counterfactuals_scaled_formality.jsonl` |\n\n脚本内置 resume 逻辑（`load_processed_ids`），自动跳过已处理的 224 条，从断点恢复。当前正常推进中，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

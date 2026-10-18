@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d56c421da060c4de6477",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 kill and redeploy",
+  "task_key": "worker_deploy_westd41074_kill_and_redeploy_20260522T190942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd41074_kill_and_redeploy_20260522T190942_result.json",
+    "occurrence": 1,
+    "bytes": 43,
+    "sha256": "4afc6973c6d825d1df69098a0546f4e770f42ffa7e5991befb0cba796e22a4e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

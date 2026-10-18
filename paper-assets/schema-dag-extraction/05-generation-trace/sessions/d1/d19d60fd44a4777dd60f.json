@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "id": "d19d60fd44a4777dd60f",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "analysis ner variance decomposition",
+  "task_key": "worker_analysis_ner-variance-decomposition_20260517T053347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_ner-variance-decomposition_20260517T053347.jsonl",
+    "occurrence": 1,
+    "bytes": 13446,
+    "sha256": "1b167f74b6e855144d55bbe40584e7599fd83054c09c13bfb57dabe2698532b1"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T05:35:31.210529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\n\ndata = {\n    2:  {'means': [0.5267, 0.4460, 0.5528], 'stds': [0.1905, 0.1984, 0.1402]},\n    6:  {'means': [0.3899, 0.4217, 0.4092], 'stds': [0.1153, 0.1341, 0.1197]},\n    12: {'means': [0.3057, 0.3568, 0.3051], 'stds': [0.1017, 0.1119, 0.1050]},\n    22: {'means': [0.2684, 0.2768, 0.2577], 'stds': [0.1029, 0.0905, 0.0922]},\n    44: {'means': [0.3007, 0.2724, 0.2898], 'stds': [0.1116, 0.1146, 0.1366]},\n    66: {'means': [0.4071, 0.4067, 0.4067], 'stds': [0.0017, 0.0014, 0.0016]},\n}\n\nprint(f'{'Count':>5} {'Batch SD':>10} {'Seed SD':>10} {'Ratio':>8}')\nprint('-' * 38)\nratios = []\nfor count, d in sorted(data.items()):\n    stds = np.array(d['stds'])\n    means = np.array(d['means'])\n    batch_var = np.mean(stds**2)\n    batch_sd = np.sqrt(batch_var)\n    seed_sd = np.std(means, ddof=1)\n    seed_var = seed_sd**2\n    ratio = batch_var / seed_var if seed_var > 0 else float('inf')\n    ratios.append(ratio)\n    print(f'{count:>5} {batch_sd:>10.4f} {seed_sd:>10.4f} {ratio:>8.1f}')\n\nprint()\nprint(f'Mean ratio: {np.mean(ratios):.1f}')\nprint(f'Range: {min(ratios):.1f} -- {max(ratios):.1f}')\n# Excluding count 66\nratios_no66 = ratios[:-1]\nprint(f'Mean ratio (excl. 66): {np.mean(ratios_no66):.1f}')\nprint(f'Range (excl. 66): {min(ratios_no66):.1f} -- {max(ratios_no66):.1f}')\n\"\n",
+              "description": "Compute Few-NERD variance decomposition"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T05:35:31.211373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Count   Batch SD    Seed SD    Ratio\n--------------------------------------\n    2     0.1782     0.0557     10.2\n    6     0.1233     0.0160     59.2\n   12     0.1063     0.0297     12.8\n   22     0.0954     0.0096     99.2\n   44     0.1214     0.0143     72.4\n   66     0.0016     0.0002     46.3\n\nMean ratio: 50.0\nRange: 10.2 -- 99.2\nMean ratio (excl. 66): 50.8\nRange (excl. 66): 10.2 -- 99.2"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T05:35:31.211729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+              "limit": "100",
+              "offset": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T05:35:31.212105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\\documentclass[11pt]{article}\n1\t\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{times}\n5\t\\usepackage{latexsym}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage[utf8]{inputenc}\n8\t\\usepackage{microtype}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{enumitem}\n13\t\\usepackage[normalem]{ulem}\n14\t\\usepackage{listings}\n15\t\n16\t\\title{Supplementary Material for: Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\appendix\n24\t\n25\t\\section{Additional Figures}\n26\t\\label{sec:appendix_figures}\n27\t\n28\t\\begin{table}[h]\n29\t\\centering\n30\t\\small\n31\t\\begin{tabular}{lrr}\n32\t\\toprule\n33\t\\textbf{Count} & \\textbf{Llama-3.1-8B} & \\textbf{Qwen3-32B} \\\\\n34\t\\midrule\n35\t1 & 0.702 & 0.640 \\\\\n36\t64 & 0.273 & 0.304 \\\\\n37\t\\midrule\n38\tDecline & $-$43\\,pp & $-$34\\,pp \\\\\n39\t\\bottomrule\n40\t\\end{tabular}\n41\t\\caption{Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\\S\\ref{sec:model}) for fair cross-model comparison; the count-curve results in \\S\\ref{sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\\ 0.64 at count${}\\,=\\,1$) due to over-prediction under v1.}\n42\t\\label{tab:cross_model}\n43\t\\end{table}\n44\t\n45\t\\begin{table}[h]\n46\t\\centering\n47\t\\small\n48\t\\resizebox{\\columnwidth}{!}{%\n49\t\\begin{tabular}{crrrrrr}\n50\t\\toprule\n51\t& \\multicolumn{3}{c}{\\textbf{Llama-3.1-8B}} & \\multicolumn{3}{c}{\\textbf{Qwen3-32B}} \\\\\n52\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n53\t\\textbf{Count} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} \\\\\n54\t\\midrule\n55\t8 & 78.1\\% & 51.0\\% & $-$27.1 & 82.3\\% & 51.0\\% & $-$31.2 \\\\\n56\t16 & 75.5\\% & 51.6\\% & $-$23.9 & 82.8\\% & 51.6\\% & $-$31.2 \\\\\n57\t\\bottomrule\n58\t\\end{tabular}}\n59\t\\caption{Cross-model BCS-controlled FewRel accuracy.  \n…[truncated 2675 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T05:35:31.212495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "variance.decomposition|Cross-Seed Variance",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-C": "3"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:35:31.212946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "341-\\section{Additional Experimental Details}\n342-\\label{sec:appendix_additional_details}\n343-\n344:\\subsection{Cross-Seed Variance Decomposition}\n345:\\label{app:variance-decomposition}\n346-\n347-To quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n348-\n--\n363-\\bottomrule\n364-\\end{tabular}\n365-\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n366:\\label{tab:variance_decomposition}\n367-\\end{table}\n368-\n369-[Omitted long context line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:35:31.213292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+              "offset": "344",
+              "limit": "40"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:35:31.213529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "344\t\\subsection{Cross-Seed Variance Decomposition}\n345\t\\label{app:variance-decomposition}\n346\t\n347\tTo quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n348\t\n349\t\\begin{table}[h]\n350\t\\centering\n351\t\\small\n352\t\\begin{tabular}{rrrr}\n353\t\\toprule\n354\t\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n355\t\\midrule\n356\t4 & 0.0889 & 0.0122 & 53.5 \\\\\n357\t8 & 0.0820 & 0.0098 & 70.0 \\\\\n358\t16 & 0.0626 & 0.0270 & 5.4 \\\\\n359\t32 & 0.0462 & 0.0091 & 26.0 \\\\\n360\t40 & 0.0421 & 0.0019 & 474.4 \\\\\n361\t64 & 0.0245 & 0.0022 & 119.8 \\\\\n362\t80 & 0.0001 & 0.0088 & $<$0.1 \\\\\n363\t\\bottomrule\n364\t\\end{tabular}\n365\t\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n366\t\\label{tab:variance_decomposition}\n367\t\\end{table}\n368\t\n369\tIntra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).\n370\t\n371\t\\subsection{Per-Count-Level Statistics}\n372\t\\labe\n…[truncated 358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:35:31.213750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+              "old_string": "Intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).",
+              "new_string": "\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrrr}\n\\toprule\n\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n\\midrule\n2 & 0.1782 & 0.0557 & 10.2 \\\\\n6 & 0.1233 & 0.0160 & 59.2 \\\\\n12 & 0.1063 & 0.0297 & 12.8 \\\\\n22 & 0.0954 & 0.0096 & 99.2 \\\\\n44 & 0.1214 & 0.0143 & 72.4 \\\\\n66 & 0.0016 & 0.0002 & 46.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Variance decomposition on Few-NERD (3 seeds $\\times$ 25 batches per count level). Batch SD: root-mean intra-seed standard deviation averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 66 (full schema), only one composition exists, so both components collapse to near-zero.}\n\\label{tab:variance_decomposition_ner}\n\\end{table}\n\nIntra-batch variance dominates inter-seed variance by 5--474$\\times$ on FewRel (mean 125$\\times$, counts 4--64) and 10--99$\\times$ on Few-NERD (mean 51$\\times$, counts 2--44), confirming that random batch composition is the primary source of performance variability on both tasks, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ on FewRel at count 16, 10.2$\\times$ on Few-NERD at count 2) indicates batch composition contributes the majority of observed variance. At count 80 (FewRel) and count 66 (Few-NERD), the full schema admits only one batch composition, collapsing batch variance by construction."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T05:35:31.214166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:35:31.214402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode -g supplementary.tex 2>&1 | tail -5",
+              "description": "Compile supplementary.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:35:31.214606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  Reference `sec:centrality_confound' on page 2 undefined on input line 153\n  Reference `tab:pairwise' on page 3 undefined on input line 189\n And 15 more --- see log file 'supplementary.log'\nLatexmk: All targets (supplementary.pdf) are up-to-date"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:35:31.214868+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功（warnings 仅为跨文件 reference，正常）。\n\n**Few-NERD Variance Decomposition:**\n\n| Count | Batch SD | Seed SD | Ratio |\n|------:|--------:|--------:|------:|\n| 2 | 0.1782 | 0.0557 | 10.2 |\n| 6 | 0.1233 | 0.0160 | 59.2 |\n| 12 | 0.1063 | 0.0297 | 12.8 |\n| 22 | 0.0954 | 0.0096 | 99.2 |\n| 44 | 0.1214 | 0.0143 | 72.4 |\n| 66 | 0.0016 | 0.0002 | 46.3 |\n\n**Mean ratio (counts 2--44):** 50.8x  \n**Range:** 10.2--99.2x  \n**编译:** 成功，PDF 已生成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_ner-variance-decomposition_20260517T053347"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ]
+}

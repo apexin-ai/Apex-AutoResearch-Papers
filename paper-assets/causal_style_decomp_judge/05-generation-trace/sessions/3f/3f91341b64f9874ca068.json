@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3f91341b64f9874ca068",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "pipeline claude expanded v2",
+  "task_key": "worker_pipeline_claude-expanded-v2_20260522T233108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_claude-expanded-v2_20260522T233108_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "72d7efc37055bfcc9f06d559fab960960e1b312dde3073f58ee48bd63285c225"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**API 返回 402 — Insufficient balance。**\n\n```\nopenai.APIStatusError: Error code: 402 - {'detail': 'Insufficient balance'}\n```\n\n余额仍不足，无法执行 scoring。按你的指示立即停止，不再重试。请确认充值是否到账后再继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

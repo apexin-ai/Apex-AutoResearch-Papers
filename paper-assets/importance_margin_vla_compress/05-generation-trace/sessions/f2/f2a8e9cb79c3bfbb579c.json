@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a8e9cb79c3bfbb579c",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16_1780008396.md",
+  "task_key": "loop_16_1780008396",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1780008396.md",
+    "occurrence": 1,
+    "bytes": 4491,
+    "sha256": "fcb724d4f88451573d0596be9753a25218decd364cff3ba8d8def0df424d6533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-28T22:37:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- gpu_ids 白名单: cuda:0/1/2/3，4 台服务器各 4 张，共 14 张（w27 只有 2 张可用）\n- w27 (westd-27271) **不支持 attention scoring**（缺 flash-attn），只能跑 l2norm/random\n- **实验硬截止 May 28 20:00 BJT (C002)**，之后不再提交新实验，全面收割\n- Attn k=0.75 seed43 统一用 cqa1=52.0%（不用 w27 的值），Random k=0.9 seed43 用 v2=35.0%\n- D301: 论文 error bar 统一用 sample std (n-1)，不用 half-range\n- metrics 格式不一致（比例 vs 百分比），最终收割统一转百分比\n\n### 2. 🖥️ 基础设施快照\n- **westd-38929 (w38)**: /root/autodl-tmp/importance_margin_vla_compress, conda base (/root/miniconda3), 4 GPU\n- **westd-41074 (w41)**: 同上路径, 4 GPU\n- **cqa1-33015 (cqa1)**: 同上路径, 4 GPU (account: root)\n- **westd-27271 (w27)**: 同上路径, 2 GPU 可用, **无 flash-attn**\n- HF cache: /root/autodl-tmp/.hf_cache (所有服务器)\n- 模型: pi0.5 pretrained (eval only, 无 finetune checkpoint)\n- 评测脚本: `eval_pi05_pruning_libero.py --prune_mode {l2norm|random|attention} --keep_ratio {k} --suite libero_10 --n_episodes 50 --seed {s} --gpu 0`\n- 活跃 Worker: worker_ops_server_audit_and_deploy_20260528T062149 (正在部署新实验到释放的 GPU)\n- 活跃 Worker: worker_diag_openvla_random_k095_w41_20260528T063539 (调查 w41 进程消失)\n\n### 3. 📊 当前状态\n**刚完成:**\n- eval_pi05_l2norm_k095_long_seed45_strict_w38 → DONE, SR=87.8% (L2norm k=0.95 s45, 4-seed mean=86.65%±0.87pp)\n- eval_pi05_random_k085_long_seed44_strict_w41 → DONE, SR=44.2% (Random k=0.85 s44, 3-seed mean=45.13%±1.79pp)\n- 已向 Director 汇报\n\n**RUNNING 实验 (10 个):**\n| exp_id | server | 内容 |\n|--------|--------|------|\n| eval_pi05_random_k095_long_seed45_strict_w38 | w38 | s45 Random k=0.95 |\n| eval_pi05_random_k07_long_seed45_strict_w38 | w38 | s45 Random k=0.7 crossover |\n| eval_pi05_attn_k085_long_seed46_strict_w38 | w38 | s46 Attn k=0.85 高 variance |\n| eval_pi05_attn_k07_long_seed45_strict_w41 | w41 | s45 Attn k=0.7 plateau |\n| eval_pi05_random_k085_long_seed46_strict_w41 | w41 | s46 Random k=0.85 高 variance |\n| eval_pi05_l2norm_k075_long_seed46_strict_w41 | w41 | s46 L2norm k=0.75 高 variance |\n| eval_pi05_l2norm_k05_long_seed45_strict_cqa1 | cqa1 | s45 L2norm k=0.5 底端 |\n| eval_openvla_random_k095_goal_seed42_v4 | cqa1 | OV Random Goal |\n| eval_openvla_l2norm_k095_long_seed43_w27 | w27 | OV L2norm s43 |\n| eval_openvla_random_k095_long_seed43_w41 | w41 | ⚠️ 进程消失 miss 2/5, Worker 正在调查 |\n\n**等待回调:**\n- ops Worker 正在部署新实验到释放的 GPU (w38 cuda:1 等)\n- diag Worker 调查 openvla w41 进程消失\n- 所有 RUNNING 实验有 cron 监控，完成时自动回调\n\n### 4. 📋 待办（条件触发式）\n- s45/s46 实验 cron 完成回调 → 收割 metrics → update_registry DONE → 更新 mean/std → 汇报 Director\n- diag Worker 返回 openvla w41 结果 → 如果正常完成则收割 metrics；如果失败则在空闲 GPU 上重启（注意 w27 不支持 attention）\n- ops Worker 返回 → 确认新实验已部署，更新 ROADMAP\n- **May 28 19:30 BJT (截止前 30min)** → 停止新部署，全面收割所有完成实验，整合数据\n- 全部 s45+s46 闭合 → 更新 Importance Margin Profile 表（4/5-seed mean±std），通知 Director 可以更新论文 figures\n- OV 实验完成 → 整合 OpenVLA 跨 seed 数据\n\n### 5. 🎯 战略上下文\n**项目核心:** VLA vision token 压缩的 scoring method × keep_ratio 交互。核心发现是 Importance Margin (L2norm - Random) 的 inverted-U 曲线，peak 在 k=0.9 (+46pp)，crossover 在 k=0.7 附近。Attention scoring 表现为 cliff+plateau 模式。\n\n**当前阶段:** 论文实验基本完成 (551 success / 110 negative / 115 failed)。s44 全闭合，s45 收割中 (14/18 done)，s46 加固 3 个高 variance 点。May 29 CoRL 提交。\n\n**易错点:**\n- metrics 格式混乱：早期实验用 0.862 (比例)，后期用 86.2 (百分比)，收割时务必统一\n- Attn k=0.75 seed43 有两个数据源 (w27=49.0% vs cqa1=52.0%)，**必须用 cqa1 的**\n- Random k=0.9 seed43 有旧值 32.4% 和新值 35.0%，**必须用 v2=35.0% (D292)**\n- w27 不支持 attention scoring，不要在 w27 上提交 attention 实验\n- eval 每轮约 2-3h，deadline 前最多再跑 1-2 轮，不要冒险提交来不及完成的实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

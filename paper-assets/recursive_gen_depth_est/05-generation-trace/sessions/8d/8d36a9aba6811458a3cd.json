@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "8d36a9aba6811458a3cd",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp plan 015 dolma supplement",
+  "task_key": "worker_exp_plan_015_dolma_supplement_20260515T214713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_015_dolma_supplement_20260515T214713.log",
+    "occurrence": 1,
+    "bytes": 1336077,
+    "sha256": "571b144b5afad6ec4e98416c666d08607facefdeb9c1e1d47976996dbdef07cd"
+  },
+  "statistics": {
+    "messages": 541,
+    "user_turns": 3,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 2,
+      "assistant": 118,
+      "tool_call": 187,
+      "user": 3,
+      "tool_result": 187,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "8d36a9aba6811458a3cd-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 247,
+      "chunks": [
+        {
+          "path": "8d36a9aba6811458a3cd-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "8d36a9aba6811458a3cd-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "8d36a9aba6811458a3cd-part-0002.json",
+          "message_count": 106
+        },
+        {
+          "path": "8d36a9aba6811458a3cd-part-0003.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "8d36a9aba6811458a3cd-part-0003.json",
+          "message_count": 43
+        },
+        {
+          "path": "8d36a9aba6811458a3cd-part-0004.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

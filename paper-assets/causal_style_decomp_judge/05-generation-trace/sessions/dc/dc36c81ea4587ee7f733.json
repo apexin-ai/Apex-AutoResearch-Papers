@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dc36c81ea4587ee7f733",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260521T025540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260521T025540_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "6a074c0e7530b8e562cf55a48115cb1dbd3ec3e234f1181280a232c2fbd3ec28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已插入 §3.1 Style-Controlled Rewriting、§3.2 Content Preservation Verification、§3.3 Measurement Protocol。§3.4 Causal Framework 保持不变。所有技术细节（Qwen3-32B、NLI 0.90 双向阈值、BERTScore 仅监控、双模式评估、position swap、consistency filter vs Bradley-Terry 分流）均已覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

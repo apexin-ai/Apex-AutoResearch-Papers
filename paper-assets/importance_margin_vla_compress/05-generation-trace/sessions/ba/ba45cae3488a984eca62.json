@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba45cae3488a984eca62",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 gpu123 attention",
+  "task_key": "worker_deploy-westd41074-gpu123-attention_20260523T214642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd41074-gpu123-attention_20260523T214642_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "9d6c36df5a0eabb8bfc98e13713640a123fd5ae5b8a3871f3e9b526e37527bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。4 张 GPU 均有进程运行，GPU 分配正确。\n\n**部署汇总：**\n\n| GPU | 实验 | PID | 显存 | tmux session |\n|-----|------|-----|------|-------------|\n| 0 | eval_pi05_attention_k05_goal_seed43 (已有) | 65843 | 10638 MiB | eval_pi05_attention_k05_goal_seed43 |\n| 1 | eval_pi05_attention_k05_object_seed42 | 70037 | 10653 MiB | eval_pi05_attention_k05_object_seed42 |\n| 2 | eval_pi05_attention_k05_spatial_seed42 | 70113 | 10720 MiB | eval_pi05_attention_k05_spatial_seed42 |\n| 3 | eval_pi05_attention_k05_long_seed42 | 70252 | 10861 MiB | eval_pi05_attention_k05_long_seed42 |\n\n3 个实验已部署、registry 已更新为 RUNNING，日志分别在 `/tmp/eval_pi05_attention_k05_{object,spatial,long}_seed42.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

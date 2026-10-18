@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "8e67b40e3e0e4d27fcfd",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "deploy cqa1 strict attn k095 long",
+  "task_key": "worker_deploy_cqa1_strict_attn_k095_long_20260527T031120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_strict_attn_k095_long_20260527T031120.log",
+    "occurrence": 1,
+    "bytes": 1017151,
+    "sha256": "49205b9ad31bcd31fdff9d7bfc40d8bee1dfa646a1680a5bb6c12ea5f415a08d"
+  },
+  "statistics": {
+    "messages": 486,
+    "user_turns": 1,
+    "tool_calls": 166,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 146,
+      "tool_call": 166,
+      "tool_result": 166,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "8e67b40e3e0e4d27fcfd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e67b40e3e0e4d27fcfd-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "8e67b40e3e0e4d27fcfd-part-0002.json",
+          "message_count": 117
+        },
+        {
+          "path": "8e67b40e3e0e4d27fcfd-part-0003.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ]
+}

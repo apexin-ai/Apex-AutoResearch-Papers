@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6bd5a3195fd8c31699ff",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla l2norm k05 goal seed42 v2",
+  "task_key": "worker_diagnose_eval_openvla_l2norm_k05_goal_seed42_v2_20260523T190107",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_l2norm_k05_goal_seed42_v2_20260523T190107_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "a5074da426d37be8ddc05b96ee9365d47d3532781f0513d438f87f66e4278ddc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因**: `--mode l2norm` 不是合法选项。脚本的 argparse 只接受 `baseline`, `random_prune`, `l2norm_prune`, `attention_prune`。\n\n日志明确显示:\n```\nerror: argument --mode: invalid choice: 'l2norm' (choose from 'baseline', 'random_prune', 'l2norm_prune', 'attention_prune')\nEXIT_CODE=2\n```\n\n**修复**: 将命令中的 `--mode l2norm` 改为 `--mode l2norm_prune`。\n\n环境和文件都没问题——脚本存在、模型权重完整（4个 safetensors 分片）、conda 环境正常（v1 的 python not found 已解决）。纯粹是 CLI 参数名写错了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4746ff5b16dbcfcfaade",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260522T185827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260522T185827_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "1bd14f0a9d5c949eff82598a9069a960ea56580d9ae57b70f8c63d2f093365e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No style violations. The \"confounding\" match is a noun, not a trailing participial phrase.\n\nNumbers consistency check against Introduction and Methodology:\n- $K_\\text{eff}$ significant: 7 positive + 1 negative = 8/12 total (matches aggregation table's Majority row: 8/12)\n- $\\eta_\\text{max}$ significant: 11/12 (matches both Introduction and aggregation table)\n- Dominance split: 4/7/1 (matches Introduction exactly)\n- arc $\\times$ sycophancy: $\\hat{\\beta}_\\text{std} = -0.192$ (unique to this section, consistent with \"significantly negative in 1\")\n\nFile written to `docs/paper/results_main.tex`. ~400 words of prose plus a compact 12-row Table 2 (`tab:dominance`) showing significance directions and dominance classification for all conditions. Follows the 5-point narrative arc: $\\eta_\\text{max}$ consistency, $K_\\text{eff}$ predominantly harmful, sycophancy exception as mechanism boundary, dominance analysis, confound resolution."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

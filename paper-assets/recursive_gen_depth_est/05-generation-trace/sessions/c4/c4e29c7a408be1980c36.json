@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c4e29c7a408be1980c36",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra kill instruct download base restart",
+  "task_key": "worker_infra_kill-instruct-download-base-restart_20260514T110510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-instruct-download-base-restart_20260514T110510_result.json",
+    "occurrence": 1,
+    "bytes": 1580,
+    "sha256": "ef7c02a24e29c308df64847ede6150b1a2d4187c6e9546d65179c51be86f081e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**depth-1 域一致性结果**（95 条已生成，还在继续）：\n- **自然语言: 82.1%** (78/95)\n- **代码: 17.9%** (17/95)\n- **垃圾: 0%**\n\n对比 Instruct 版本（几乎 100% 代码/HTML），base 模型大幅改善。17.9% 的代码内容可能来自 depth_0 种子数据本身含有的代码样本。\n\n---\n\n## 产出报告\n\n### 1. Instruct pipeline 杀掉确认\n- tmux session `mvp_pipeline_004` 已杀（kill_job 成功）\n- GPU 利用率 0%，显存 0 MiB（确认释放）\n- 旧数据 depth_1/2/3.jsonl + checkpoints/lora_depth_0 已删除\n\n### 2. Base 模型下载\n- 路径: `/root/autodl-tmp/models/Qwen2.5-1.5B/`\n- 大小: 2.9GB model.safetensors + config/tokenizer 全套\n- 方案: ModelScope CDN wget（3 分 16 秒，平均 15 MB/s）\n- 验证: 模型加载成功 1543.7M params，生成自然语言（AI 历史文本），code_ratio=0.000\n\n### 3. Pipeline 启动\n- 实验 ID: `mvp_pipeline_base_003`（tmux session 同名）\n- GPU0 100% 利用率，训练 3 epoch 完成\n- Loss: 2.163 → 2.061（稳定下降）\n- LoRA adapter 保存: `checkpoints/lora_depth_0/adapter_model.safetensors` (4.2MB)\n\n### 4. depth-1 域一致性\n- **82.1% 自然语言**，17.9% 代码\n- 比 Instruct 版本（~100% 代码/HTML）大幅改善\n- 代码污染可能来自种子数据，后续可通过数据过滤优化\n\n### 5. 错误\n- `transformers` 4.37.2 与 `accelerate` 1.13.0 不兼容（`dispatch_batches` 参数），已升级 transformers 到 5.8.1 修复\n- Pipeline 正常运行中，后续 depth 2/3 会自动生成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

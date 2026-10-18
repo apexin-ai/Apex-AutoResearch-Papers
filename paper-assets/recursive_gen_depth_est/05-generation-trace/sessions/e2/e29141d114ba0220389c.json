@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "e29141d114ba0220389c",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "fix roberta download modelscope",
+  "task_key": "worker_fix_roberta_download_modelscope_20260515T121342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_roberta_download_modelscope_20260515T121342.log",
+    "occurrence": 1,
+    "bytes": 496342,
+    "sha256": "8a27e4933f48b06643c422dd1916a34636323441741a5be4bdc4ad58ec7aa262"
+  },
+  "statistics": {
+    "messages": 357,
+    "user_turns": 0,
+    "tool_calls": 135,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 135,
+      "tool_result": 135,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 357,
+      "chunks": [
+        {
+          "path": "e29141d114ba0220389c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e29141d114ba0220389c-part-0002.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ]
+}

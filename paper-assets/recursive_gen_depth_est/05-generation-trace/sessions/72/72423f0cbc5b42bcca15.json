@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "72423f0cbc5b42bcca15",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ops sync compile paper final",
+  "task_key": "worker_ops_sync_compile_paper_final_20260519T004827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_compile_paper_final_20260519T004827.log",
+    "occurrence": 1,
+    "bytes": 702088,
+    "sha256": "5f83bf0c1a97fb42b7b7271d10fd62f435aff75f4aa92bf42850bc5dc5f2bab8"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 49,
+      "tool_result": 49,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "72423f0cbc5b42bcca15-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "72423f0cbc5b42bcca15-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "72423f0cbc5b42bcca15-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ]
+}

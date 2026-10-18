@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f4f50158b98738c95627",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis binoculars ordinal baseline 001",
+  "task_key": "worker_analysis_binoculars_ordinal_baseline_001_20260519T183847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_binoculars_ordinal_baseline_001_20260519T183847_result.json",
+    "occurrence": 1,
+    "bytes": 1883,
+    "sha256": "2c552e58d691316c36f13aa5364b86331159beffa88f36a37c113fd38f59fcb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 memory 均已更新。以下是完整分析结果：\n\n---\n\n## binoculars_ordinal_baseline_001 结果分析\n\n### Conclusion: **NEGATIVE**（假设被证伪）\n\nBinoculars cross-perplexity 包含强 ordinal depth 信号，远非 \"near-chance\"。\n\n### Per-cell 4-class Accuracy (RF_multi, 最佳方法)\n\n| Cell | RF_multi | equal_width |\n|------|----------|-------------|\n| gpt2xl_nucleus | **85.2%** | 50.6% |\n| gpt2xl_temp09 | 82.9% | 62.1% |\n| gpt2xl_topk50 | 73.5% | 47.5% |\n| olmo_nucleus | 81.8% | 53.3% |\n| olmo_temp09 | 81.0% | 58.8% |\n| olmo_topk50 | 70.5% | 39.7% |\n| pythia_nucleus | 80.4% | 37.5% |\n| pythia_temp09 | 79.5% | 49.5% |\n| pythia_topk50 | **68.1%** (worst) | 40.4% |\n\n### 9-cell 平均（5 种 calibration 方法）\n\n| Method | 4-class Acc | d1-d3 BalAcc |\n|--------|------------|-------------|\n| equal_width | 48.8% | 41.7% |\n| CORAL | 38.1% | 50.8% |\n| threshold | 69.8% | 60.2% |\n| RF_single | 63.7% | 53.4% |\n| **RF_multi** | **78.1%** | **71.2%** |\n\n### Baseline 对比\n\n| Method | 9-cell Avg 4-class |\n|--------|-------------------|\n| Chance | 25.0% |\n| DetectGPT | 29.1% |\n| Min-K% | 33.2% |\n| **Binoculars (equal_width)** | **48.8%** |\n| **Binoculars (RF_multi)** | **78.1%** |\n| Our RF-19 | 78.4% |\n\n### 关键发现\n\n- 即使最简单的 equal-width binning（48.8%）也是 chance 的 ~2x，远超 DetectGPT/Min-K%\n- RF_multi (78.1%) 几乎追平我们的 RF-19 (78.4%)，但它用了 11 个 Binoculars-derived perplexity 特征\n- topk50 cells 一致最弱（68-74%），可能因 top-k 截断损失了 perplexity ratio 信息\n- **论文叙事需要调整**：不能 claim \"binary methods can't do ordinal\"，Binoculars 是 strongest baseline，需如实对比。差异化论点应聚焦于：我们的方法 model-agnostic（不需要 observer/performer model pair）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

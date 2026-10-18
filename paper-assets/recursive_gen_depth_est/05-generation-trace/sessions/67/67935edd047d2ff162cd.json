@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "67935edd047d2ff162cd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis dcol roberta v6 001",
+  "task_key": "worker_analysis_dcol_roberta_v6_001_20260515T055751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dcol_roberta_v6_001_20260515T055751_result.json",
+    "occurrence": 1,
+    "bytes": 1719,
+    "sha256": "b19d76b7aa91108bb311bcd4719470f60d61f042f62493763d0755a9340e71b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## dcol_roberta_v6_001 分析结果\n\n### 训练状态：正常完成\n- 无 NaN、无 collapse（collapse guard 在 step 500 通过，acc=0.35 ≥ 0.3）\n- Early stopping 在 epoch 4 触发（patience=3，best epoch=1）\n- EXIT_CODE=0\n\n### Epoch 级指标\n\n| Epoch | Train Loss | Train Acc | Val Loss | Val Acc | Val MAE |\n|-------|-----------|-----------|----------|---------|---------|\n| 1 | 1.1341 | 60.3% | 0.7406 | **64.4%** | 0.4037 |\n| 2 | 0.7257 | 70.8% | 1.0421 | 54.5% | 0.5335 |\n| 3 | 0.6398 | 73.5% | 0.9285 | 60.2% | 0.4454 |\n| 4 | 0.5942 | 75.0% | 1.0114 | 58.4% | 0.4713 |\n\n### 最终测试指标（best checkpoint, epoch 1）\n\n| 指标 | 值 |\n|------|-----|\n| **Test Accuracy** | **64.48%** |\n| Test MAE | 0.4052 |\n| Best Val Accuracy | 64.36% |\n\n### 结论判定：**NEGATIVE**\n\n- Test acc = 64.5% < RF baseline = 78.2%，**delta = -13.7pp**\n- 严重过拟合：train acc 从 60% 涨到 75%，val acc 在 epoch 1 之后持续下降\n- RoBERTa-large 解决了 DeBERTa 的数值稳定性问题（无 NaN/collapse），但准确率远低于 baseline\n\n### 文件路径\n- Checkpoint: `/root/autodl-tmp/recursive_gen_depth_est/checkpoints/dcol_roberta_v6/best_model.pt` (1.3GB)\n- Results: `checkpoints/dcol_roberta_v6/results.json`\n- Log: `~/runs/recursive_gen_depth_est/dcol_roberta_v6_001.log`\n\n### 总结\nDCOL 系列 v1-v6 全部失败。v6 用 RoBERTa-large 终于解决了稳定性问题，但 DCOL 方法本身在此任务上无法超越 RF baseline（78.2%）。模型在 epoch 1 即达到最佳 val acc（64.4%），之后严重过拟合，说明 DCOL loss 对这个 4-class depth estimation 任务的表达能力不足。建议放弃 DCOL 方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

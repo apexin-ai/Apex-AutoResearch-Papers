@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9db9e5365ea15d2c7fa0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code submit olmo temp09",
+  "task_key": "worker_code_submit_olmo_temp09_20260514T182428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_olmo_temp09_20260514T182428_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "c42996f48aa37826b9b9da2ad61dcb9bd96672e9595e5cb1b8df94579ca8e93f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 被 Pythia topk50 占用，无法提交 OLMo temp09。**\n\n当前状态：\n- **cuda:0**: PID 165810, 11614 MiB, tmux session `pythia_topk50_001`（Pythia topk50 实验正在运行）\n- **cuda:1**: PID 166612, 7872 MiB，也被占用\n\n其他先决条件均已就绪：\n- 脚本 `run_pipeline_olmo_temp09.sh` 存在\n- 数据 `depth_0.jsonl` 5000 条\n- nucleus adapter (`olmo/lora_depth_0/`) 就绪\n- Registry 中尚无 `olmo_temp09_001`，提交时需先创建\n\n等 Pythia topk50 跑完释放 cuda:0 后即可提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

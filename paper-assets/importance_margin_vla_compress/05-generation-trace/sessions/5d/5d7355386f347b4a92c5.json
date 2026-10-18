@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5d7355386f347b4a92c5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k09 long seed46 strict w27",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k09_long_seed46_strict_w27_20260528T084839",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k09_long_seed46_strict_w27_20260528T084839_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "fddbda40a3b05c6d61cd4d99aabb7d87d31c45021663ecd7fb29c13d27ee1d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**结果汇总：**\n\n| Metric | Value |\n|--------|-------|\n| **Overall SR** | **80.6%** (403/500) |\n| T0 | 96% |\n| T1 | 96% |\n| T2 | 94% |\n| T3 | 98% |\n| T4 | 88% |\n| T5 | 94% |\n| T6 | 8% |\n| T7 | 90% |\n| T8 | 52% |\n| T9 | 90% |\n\n**5-seed 汇总（L2norm k=0.9 Long）：** s42=80.0%, s43=81.2%, s44=80.4%, s45=80.4%, s46=80.6% → **均值 80.52%, 标准差 ±0.44%**。非常稳定，error bar 极小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

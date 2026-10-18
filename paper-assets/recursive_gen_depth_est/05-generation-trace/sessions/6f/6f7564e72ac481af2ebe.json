@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6f7564e72ac481af2ebe",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check temp09 nan analysis",
+  "task_key": "worker_check_temp09_nan_analysis_20260520T042400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_temp09_nan_analysis_20260520T042400_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "0858218c7749c9743229c9fe1427ee68a0dd65c281c24e9959167a14d30f90d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **Total**: 20,000 samples\n- **NaN**: 仅 1 个样本（Line 7160, depth=1），skew_ppl 和 kurt_ppl 同时为 NaN\n- **Inf**: 无\n- **影响**: 0.005%，可忽略。catastrophic cancellation 仅因该样本 token-level PPL 方差极小导致高阶矩计算不稳定，不影响整体实验结论\n\n已追加到 `qwen25_14b_temp09_analysis.md` 的 Notes 部分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

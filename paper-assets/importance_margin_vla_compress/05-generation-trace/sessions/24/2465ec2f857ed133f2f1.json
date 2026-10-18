@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2465ec2f857ed133f2f1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops deploy westd27271 gpu1 urgent",
+  "task_key": "worker_ops_deploy-westd27271-gpu1-urgent_20260524T124758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-westd27271-gpu1-urgent_20260524T124758_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "d9786bef1af73d58ceba23668457cd554ddf46509f220bfcd5e5103ff28a638b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n**部署汇报：**\n\n| 项目 | 详情 |\n|------|------|\n| **实验** | eval_openvla_baseline_goal_seed42_v2 |\n| **内容** | OpenVLA baseline Goal evaluation, 50 episodes, seed 42 |\n| **GPU** | westd-27271 GPU 1（CUDA_VISIBLE_DEVICES=1），已占用 4241 MiB |\n| **tmux session** | `eval_openvla_baseline_goal_v2` |\n| **日志** | `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_baseline_goal_seed42_v2.log` |\n| **模型** | `/root/autodl-tmp/openvla-7b-finetuned-libero-goal` |\n\nGPU 0 当前空闲（0 MiB），之前的 Attention k=0.5 Object 实验已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

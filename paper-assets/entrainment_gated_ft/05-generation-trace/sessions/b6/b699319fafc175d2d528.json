@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "b699319fafc175d2d528",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "eval boolq hellaswag probe",
+  "task_key": "worker_eval_boolq-hellaswag-probe_20260520T113034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_boolq-hellaswag-probe_20260520T113034.log",
+    "occurrence": 1,
+    "bytes": 702964,
+    "sha256": "594e8ad98920279830aaf784529b11c1fc329c1f57afc6e66aaf18eab6a65b3f"
+  },
+  "statistics": {
+    "messages": 455,
+    "user_turns": 0,
+    "tool_calls": 196,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 196,
+      "tool_result": 196,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 455,
+      "chunks": [
+        {
+          "path": "b699319fafc175d2d528-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b699319fafc175d2d528-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b699319fafc175d2d528-part-0003.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ]
+}

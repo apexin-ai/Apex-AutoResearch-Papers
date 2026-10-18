@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7891989ff3719a27eef3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "write prompt appendix c1a",
+  "task_key": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_prompt_appendix_c1a_20260516T031758_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "9820543c027b63c6dc1f7091d51734080270b5a556acceba631bb0d265309e16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无错误。\n\n产出：\n- **`prompt_appendix.tex`** — Appendix F，包含 NER (v1/v2)、ED (v1/v2)、RE 的完整 prompt template + constrained-decoding JSON schema + v1→v2 差异标注\n- **`main.tex`** — 添加了 `\\usepackage[normalem]{ulem}`（strikethrough 支持）和 `\\input{prompt_appendix}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

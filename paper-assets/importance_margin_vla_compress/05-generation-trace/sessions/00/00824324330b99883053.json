@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "00824324330b99883053",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "train imm fullft 100k cqa1",
+  "task_key": "worker_train_imm_fullft_100k_cqa1_20260516T215247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_imm_fullft_100k_cqa1_20260516T215247.log",
+    "occurrence": 1,
+    "bytes": 570238,
+    "sha256": "60f7318a3bc83a505aeec8171e9fffb2b8924f031ce524d1099cbcb6ba87b513"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "00824324330b99883053-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "00824324330b99883053-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ]
+}

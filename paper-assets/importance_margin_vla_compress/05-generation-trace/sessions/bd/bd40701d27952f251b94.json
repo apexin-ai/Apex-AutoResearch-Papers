@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "bd40701d27952f251b94",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 step2k early",
+  "task_key": "worker_eval_v8-step2k-early_20260515T232645",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8-step2k-early_20260515T232645_result.json",
+    "occurrence": 1,
+    "bytes": 2383325,
+    "sha256": "25f65db458f7988fc16857e91d2513e24a6b39d69a7c1e9ac6835572e0a81c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "bd40701d27952f251b94-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

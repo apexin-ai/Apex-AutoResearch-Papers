@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "52b2b45f56f86c5f722b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp006 gpu status check",
+  "task_key": "worker_ops_exp006_gpu_status_check_20260521T070349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp006_gpu_status_check_20260521T070349_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "6e41b8a6ba4071f2a98eec1db40d79405864f2692191179943cb3846b606e207"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. GPU 状态\n| GPU | Memory Used | Memory Total | Util |\n|-----|------------|-------------|------|\n| 0 | 0 MiB | 97887 MiB | 0% |\n| 1 | 0 MiB | 97887 MiB | 0% |\n| 2 | 88359 MiB | 97887 MiB | 0% |\n| 3 | 0 MiB | 97887 MiB | 0% |\n\nGPU 2 被 vLLM 占用（~90GB），其余 3 张空闲。\n\n### 2. vLLM\n**运行中** — PID 114905, Qwen3-32B on port 8002, 已运行 1h10m。当前 **空闲**（Running: 0 reqs），最后一批请求在 14:42:18 结束，之后吞吐量降至 0。\n\n### 3. CF Gen\n**已完成** — PID 115974 已退出。`counterfactuals_scaled_formality.jsonl` 有 **400/400 行**，全部生成完毕。\n\n所有 CF 文件汇总：\n| 文件 | 行数 |\n|------|------|\n| counterfactuals_32b.jsonl | 100 |\n| counterfactuals_alpacaeval.jsonl | 100 |\n| counterfactuals_mtbench.jsonl | 80 |\n| counterfactuals_register.jsonl | 100 |\n| counterfactuals_register_pilot.jsonl | 20 |\n| counterfactuals_scaled_formality.jsonl | **400** |\n| counterfactuals_tone_pilot.jsonl | 20 |\n| counterfactuals_verbosity.jsonl | 100 |\n\n### 4. Tmux Sessions\n无法检查（`tmux` 被 ssh_read_only 阻止）。\n\n### 5. 磁盘\n| 分区 | 已用 | 总量 | 使用率 |\n|------|------|------|--------|\n| / (root) | 17G | 30G | **54%** |\n| /root/autodl-tmp | 98G | 250G | **39%** |\n\n**结论：exp-006 CF 生成已完成（400/400），vLLM 仍在运行但空闲，可以释放 GPU 2。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

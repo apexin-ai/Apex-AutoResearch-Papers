@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b675b7e06f448865f50d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 017 rlearner",
+  "task_key": "worker_code_exp-017-rlearner_20260521T134257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-017-rlearner_20260521T134257_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "4ea6849c1c0a45fcd9c0aa670ebff78243314cfbc63e93717915d874d49e89a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-017 complete. Registry updated to DONE/success.\n\n**Results summary** — R-learner and CausalForest show near-identical patterns:\n\n| Estimator | Method | Avg |Bias| | RMSE | Coverage |\n|-----------|--------|---------|------|----------|\n| CausalForest | naive | 0.1245 | 0.1432 | 0.46 |\n| CausalForest | global | 0.1036 | 0.1287 | 0.65 |\n| CausalForest | ec_hte | 0.0078 | 0.0817 | 0.91 |\n| R-learner | naive | 0.1210 | 0.1390 | 0.47 |\n| R-learner | global | 0.0979 | 0.1234 | 0.71 |\n| R-learner | ec_hte | 0.0128 | 0.0800 | 0.92 |\n| R-learner | oracle | 0.0063 | 0.0559 | 0.94 |\n\nEC-HTE correction generalizes across CATE estimators — ec_hte_rlearner achieves bias 0.013 (vs naive 0.121), closely matching CausalForest's 0.008, with 92% coverage."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

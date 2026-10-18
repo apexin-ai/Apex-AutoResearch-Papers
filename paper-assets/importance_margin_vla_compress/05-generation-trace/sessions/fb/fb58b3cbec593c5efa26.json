@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb58b3cbec593c5efa26",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code c4ext deploy westd27271",
+  "task_key": "worker_code_c4ext_deploy_westd27271_20260519T174754",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_c4ext_deploy_westd27271_20260519T174754_result.json",
+    "occurrence": 1,
+    "bytes": 325,
+    "sha256": "f335782c08ae78b690aa33f3b547f3524730a6770f9c33d196cc9b1e22951212"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy (https://www.anthropic.com/legal/aup). Try rephrasing the request or attempting a different approach. If you are seeing this refusal repeatedly, try running /model claude-sonnet-4-20250514 to switch models."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

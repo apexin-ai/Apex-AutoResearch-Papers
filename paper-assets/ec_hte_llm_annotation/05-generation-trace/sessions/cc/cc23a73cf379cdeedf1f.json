@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cc23a73cf379cdeedf1f",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code c1 integration template",
+  "task_key": "worker_code_c1-integration-template_20260521T184547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c1-integration-template_20260521T184547_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "46f248f965143a5cc07790063804473a32133183f5348c4218ab5c1460b87bd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建：`/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_integration_template.tex`\n\n包含三部分：\n1. **主文 subsection**（插入 experiments.tex 的 PPCI 之后）— 叙述框架 + 摘要表 `tab:multi_llm`\n2. **Appendix 详细表** — per-subgroup 混淆矩阵指标 `tab:multi_llm_detail` + per-model 完整校正结果 `tab:multi_llm_correction`\n3. **Diagnostic paragraph** — Prop 2 条件的占位框架\n\n风格已对齐现有论文：booktabs、`\\small`、`$K{=}$` 记法、`\\textbf` 标注最优值、caption 含方法论说明。所有待填数字标记为 `[TBD]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

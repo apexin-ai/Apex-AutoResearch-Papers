@@ -1,0 +1,1058 @@
+{
+  "schema_version": "1.0",
+  "id": "a72ee3e7ceefc564d200",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "audit paper section status",
+  "task_key": "worker_audit_paper_section_status_20260527T042940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_audit_paper_section_status_20260527T042940.jsonl",
+    "occurrence": 1,
+    "bytes": 58294,
+    "sha256": "b33a8e05bc363e8b514e589c0bbb226198393d549c921442b158a488daef1449"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "tool_call": 26,
+      "tool_result": 26,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T04:33:50.646483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper/ 2>/dev/null; echo \"---\"; find /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper/ -name \"*.tex\" -o -name \"*.md\" 2>/dev/null | sort",
+              "description": "List paper directory structure"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T04:33:50.646958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T04:33:50.647226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T04:33:50.647473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/corl_template/corl_2026_template_submission/example.tex\nartifacts/corl_template/__MACOSX/corl_2026_template_submission/._example.tex\nartifacts/dream_reports/dream_20260516T075046/best/paper.tex\nartifacts/dream_reports/dream_20260516T075046/median/paper.tex\nartifacts/dream_reports/dream_20260516T075046/worst/paper.tex\ndocs/paper/sections/analysis.tex\ndocs/paper/sections/background.tex\ndocs/paper/sections/experimental_setup.tex\nartifacts/_project/paper/results_draft.tex\ndocs/paper/sections/results_draft.tex\ndocs/paper/sections/analysis_draft.tex\ndocs/paper/experiments_deprecated.tex\ndocs/paper/sections/experiments.tex\ndocs/paper/sections/related_work_draft.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/background.tex\nartifacts/dream_reports/dream_20260520T155932/best/paper.tex\nartifacts/dream_reports/dream_20260520T155932/median/paper.tex\nartifacts/dream_reports/dream_20260520T155932/worst/paper.tex\ndocs/paper/results_v2.tex\ndocs/paper/experimental_setup.tex\ndocs/paper/results.tex\nartifacts/_project/paper/experiments.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/abstract.tex\ndocs/paper/discussion.tex\ndocs/paper/related_work.tex\ndocs/paper/method.tex\nartifacts/dream_reports/dream_20260525T050917/best/paper.tex\nartifacts/dream_reports/dream_20260525T050917/median/paper.tex\nartifacts/dream_reports/dream_20260525T050917/worst/paper.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/abstract.tex\nartifacts/_project/paper/tab_model_properties_56d5eb.tex\nartifacts/_project/paper/tab_model_properties.tex\nartifacts/tab_model_properties.tex\nartifacts/_project/paper/tab_main_results_8f3985.tex\nartifacts/_project/paper/tab_main_results.tex\nartifacts/tab_main_results.tex\ndocs/paper/experiments.tex\ndocs/paper/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T04:33:50.647702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T04:33:50.647955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/.venv/lib/python3.14/site-packages/torchgen/packaged/autograd/README.md\nartifacts/architecture_report.md\ntask_context/history/reviewer/loop_1.md\ntask_context/history/director/loop_1.md\ntask_context/history/agent/loop_1.md\ntask_context/history/agent/loop_1_1778878965.md\ntask_context/history/director/loop_2.md\ntask_context/history/agent/loop_2.md\ntask_context/history/director/loop_3.md\ntask_context/history/reviewer/loop_2.md\ntask_context/history/agent/loop_2_1778890120.md\ntask_context/history/agent/loop_3.md\ntask_context/history/agent/loop_3_1778900113.md\n.claude/sessions/agent_175a0fc4/CLAUDE.md\n.claude/sessions/agent_175a0fc4/AGENTS.md\ntask_context/history/agent/loop_2_1778903096.md\ntask_context/history/agent/loop_4.md\n.claude/sessions/agent_567a8628/CLAUDE.md\n.claude/sessions/agent_567a8628/AGENTS.md\ntask_context/history/reviewer/loop_3.md\ntask_context/history/director/loop_4.md\ntask_context/history/agent/loop_4_1778929745.md\n.claude/sessions/agent_117c0105/CLAUDE.md\n.claude/sessions/agent_117c0105/AGENTS.md\nartifacts/mvp_imm_v8b_twostage/diagnosis.md\ndocs/IDEA_BRIEF.md\nartifacts/dream_reports/dream_20260516T075046/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/worst/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/median/review_report.md\nartifacts/dream_reports/dream_20260516T075046/best/review_report.md\nartifacts/dream_reports/dream_20260516T075046/worst/review_report.md\ntask_context/history/reviewer/loop_4.md\ntask_context/history/director/loop_5.md\ntask_context/history/agent/loop_5.md\nartifacts/research_lora_mode_collapse_fix.md\ntask_context/history/reviewer/loop_5.md\ntask_context/history/agent/loop_5_1778944487.md\ntask_context/history/agent/loop_6.md\ntask_context/history/director/loop_6.md\nartifacts/_project/chart/paper_figures_v1.md\ntask_context/history/reviewer/loop_6.md\ntask_context/history/agent/loop_7.md\n.claude/sessions/agent_a95c4df4/CLAUDE.\n…[truncated 2548 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T04:33:50.648272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T04:33:50.648597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage{corl_2026} % Submission version: anonymous, line numbers enabled.\n4\t% \\usepackage[final]{corl_2026} % Uncomment for camera-ready.\n5\t\n6\t\\usepackage{amsmath,amssymb}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{multirow}\n10\t\\usepackage{enumitem}\n11\t\\usepackage{subcaption}\n12\t\n13\t\\title{Why Token Pruning Crashes Some Robot Policies but Not Others:\\\\Vision Connectors and VLA Token Compressibility}\n14\t\n15\t\\begin{document}\n16\t\\maketitle\n17\t\n18\t\\input{abstract}\n19\t\n20\t\\keywords{vision-language-action models, token pruning, robot learning}\n21\t\n22\t\\input{introduction}\n23\t\n24\t\\input{related_work}\n25\t\n26\t\\input{method}\n27\t\n28\t\\input{experiments}\n29\t\n30\t\\input{analysis}\n31\t\n32\t\\input{conclusion}\n33\t\n34\t\\bibliography{references}\n35\t\n36\t\\input{appendix}\n37\t\n38\t\\end{document}\n39\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T04:33:50.648813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T04:33:50.649040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tVision-Language-Action (VLA) models encode observations as hundreds of vision tokens, creating a computational bottleneck for real-time robotic control. Token pruning offers a training-free remedy, yet its effect varies dramatically across architectures: at retention ratio $k{=}0.95$, $\\pi_{0.5}$ preserves 98\\% task success while SmolVLA collapses to 0\\%---why?\n3\t\n4\tWe identify the vision-language connector as the primary architectural factor governing pruning tolerance. The coefficient of variation (CV) of post-connector token norms, computable in a single forward pass, predicts compressibility across the full architecture spectrum: from CV$\\,{=}\\,$0.038 (near-immune linear projection) to CV$\\,{=}\\,$0.314 (catastrophic pixel-shuffle collapse). Across five VLA architectures (450\\,M--7\\,B parameters) and four LIBERO manipulation suites, token-independent connectors degrade gracefully, while token-entangling connectors exhibit abrupt cliffs: SmolVLA collapses when just 6 of 128 tokens are removed.\n5\t\n6\tImportance-based selection is not universally beneficial---it can be actively harmful. At moderate compression, L2 norm selection preserves 98\\% success on $\\pi_{0.5}$ where random yields 5\\% (93\\,pp gap); at aggressive ratios, random outperforms L2 by up to 36\\,pp. Attention-based scoring exhibits within-model reversals across task suites. No scoring method is universally safe: task complexity amplifies connector-dependent patterns, with multi-step tasks magnifying entangling-connector losses by up to $20{\\times}$. A zero-mask ablation isolates the mechanism: on $\\pi_{0.5}$, zeroing 10\\% of tokens preserves 98.0\\% SR while physical removal collapses to 9.0\\%---the 89\\,pp gap is entirely attributable to position disruption, not information loss. For architectures where all deletion strategies fail, a lightweight re-encoding module (${\\sim}$5\\% extra parameters) recovers $>$60\\% success at 75\\% compression.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T04:33:50.649296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T04:33:50.649554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{figures/paper/fig_hero_overview.pdf}\n7\t\\caption{Overview of VLA token compressibility.\n8\t\\textbf{(a)}~The same robot observation produces qualitatively different token importance patterns through different vision connectors, quantified by the coefficient of variation (CV) of post-connector token norms.\n9\t\\textbf{(b)}~Connector architecture determines pruning tolerance: independent connectors degrade gracefully, entangling connectors exhibit cliffs; task complexity amplifies the divergence.\n10\t\\textbf{(c)}~A single forward pass CV diagnostic routes each architecture to an appropriate compression strategy: uniform pruning, importance-based scoring, or learned re-encoding.}\n11\t\\label{fig:teaser}\n12\t\\end{figure*}\n13\t\n14\tRemove 5\\% of vision tokens from SmolVLA and its success rate collapses from 59.2\\% to near-zero (${\\leq}$6.6\\%) across all task suites and pruning methods. Apply the same 5\\% reduction to $\\pi_{0.5}$ and it retains 98.2\\% under L2 norm selection. Both are Vision-Language-Action (VLA) models built on a Vision Transformer (ViT) encoder feeding tokens through a connector into a language model backbone; the critical difference is not model scale (450M vs.\\ 4B parameters) but the connector architecture. Token pruning is well-established for ViTs~\\cite{rao2021dynamicvit,bolya2023tome,liang2022evit} and a growing body of work extends it to VLAs~\\cite{cheng2026vlaiap,xu2025vlacache,yang2025efficientvla,liu2025vlapruner}, but each method validates on a single architecture.\n15\t\n16\tThese methods implicitly assume that pruning transfers across VLA designs. Yet current VLAs employ fundamentally different vision connectors: linear projections~\\cite{black2024pi0}, MLP projectors~\\cite{kim2024openvla}, pixel-shuffle folding~\\cite{shukor2025smolvla}, and learned encoders with cross-token self-attention~\\cite{zheng2025xvla}. Each imposes distinct \n…[truncated 3133 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T04:33:50.649785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T04:33:50.650017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{ViT token pruning.}\n5\tDynamicViT~\\cite{rao2021dynamicvit}, EViT~\\cite{liang2022evit}, A-ViT~\\cite{yin2022avit}, and Token Merging~\\cite{bolya2023tome} remove 50--66\\% of tokens with under 0.5\\,pp ImageNet accuracy loss. Their success rests on classification's insensitivity to spatial layout; robotic manipulation inverts this assumption, as grasping depends on spatial arrangement. None has been evaluated in closed-loop VLA control.\n6\t\n7\t\\paragraph{Token efficiency in VLMs and VLAs.}\n8\tFastV~\\cite{chen2024fastv} and PruMerge~\\cite{shang2024prumerge} reduce vision tokens in VLMs using language-backbone attention signals. ``Don't Run with Scissors''~\\cite{jabbour2025dontrun} analyzes VLM token pruning for visual question answering; our work targets closed-loop robotic manipulation, where pruning failures directly impact physical task execution rather than text generation quality. VLA-specific methods have emerged in parallel: VLA-IAP~\\cite{cheng2026vlaiap} aligns pruning with action-prediction importance, VLA-Cache~\\cite{xu2025vlacache} compresses at the KV-cache level, EfficientVLA~\\cite{yang2025efficientvla} combines pruning with merging, and VLA-Pruner~\\cite{liu2025vlapruner} learns a pruning policy jointly with the action head. LightVLA~\\cite{jiang2026lightvla} introduces differentiable pruning and Compressor-VLA~\\cite{gao2025compressorvla} applies instruction-guided compression, both targeting individual architectures; our work instead asks how architectural choices determine which compression approaches succeed or fail, finding that scoring validity is architecture-dependent; L2 norm selection is anti-informative on entangling connectors while attention scoring recovers near-baseline performance.\n9\t\n10\t\\paragraph{Vision connectors.}\n11\tThe connector between ViT and language backbone governs how spatial information distributes across tokens. LLaVA~\\cite{liu2023llava} projects patches independently \n…[truncated 747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T04:33:50.650271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T04:33:50.650553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Models and Connectors}\n5\t\\label{sec:models}\n6\t\n7\tWe evaluate token pruning across six VLA architectures spanning three vision connector families (Table~\\ref{tab:model_properties}; Figure~\\ref{fig:architecture}). These connectors differ in whether they process ViT patches independently or create cross-token dependencies, a distinction we formalize as \\emph{coupling}.\n8\t\n9\t\\textbf{Linear projection} applies a single matrix multiplication per patch. $\\pi_{0}$~\\cite{black2024pi0} projects 256 patches through a linear layer; $\\pi_{0.5}$~\\cite{black2025pi05} uses a $\\times\\!\\sqrt{d}$-scaled linear projection across 768 tokens from three cameras (CV$\\,{<}\\,$0.06).\n10\t\n11\t\\textbf{MLP projector} maps each patch independently through a multi-layer perceptron. OpenVLA~\\cite{kim2024openvla} uses a three-layer MLP (256 tokens; CV$\\,{=}\\,$0.215); OFT~\\cite{kim2025openoft}, an OpenVLA fine-tuning variant evaluated offline, shares the same connector (512 tokens; CV$\\,{=}\\,$0.219).\n12\t\n13\t\\textbf{Token-entangling connectors} introduce cross-token dependencies. X-VLA~\\cite{zheng2025xvla} feeds linearly projected tokens through a 12-layer BART encoder~\\cite{lewis2020bart} (50 tokens). SmolVLA~\\cite{shukor2025smolvla} applies pixel-shuffle $4{\\times}4$ folding, concatenating 16 contiguous patches into each output token's channel dimension (128 tokens).\n14\t\n15\tWe classify coupling as \\emph{independent} when each output token depends on a single input patch, and \\emph{entangling} when output tokens encode information from multiple patches. Four models ($\\pi_{0.5}$, X-VLA, OpenVLA, SmolVLA) are evaluated in closed-loop control on LIBERO~\\cite{liu2023libero}; $\\pi_{0}$ and OFT are analyzed via offline metrics only.\n16\t\n17\t\\begin{figure*}[t]\n18\t\\centering\n19\t\\includegraphics[width=\\textwidth]{figures/paper/fig_architecture_v2.pdf}\n20\t\\caption{Vision connector architectures across four closed-loop VLAs, ordered by increasing compressib\n…[truncated 4986 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T04:33:50.650795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T04:33:50.651241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:exp_setup}\n6\t\n7\tWe evaluate vision token pruning across six VLA architectures spanning three connector families on the LIBERO benchmark~\\cite{liu2023libero}. LIBERO provides four task suites of increasing complexity: Object (object manipulation), Spatial (spatial reasoning), Goal (goal-conditioned tasks), and Long (long-horizon multi-step tasks). Each suite contains 10 tasks evaluated over 50 episodes, yielding 500 episodes per condition.\n8\t\n9\tFour models are evaluated in closed-loop robotic control: $\\pi_{0.5}$~\\cite{black2025pi05} (4B parameters, linear projection with $\\times\\!\\sqrt{d}$ scaling, 768 tokens from three cameras, CV$\\,{=}\\,$0.055), X-VLA~\\cite{zheng2025xvla} (880M, linear projection followed by a 12-layer BART encoder~\\cite{lewis2020bart}, 50 tokens, CV$\\,{=}\\,$0.151), OpenVLA~\\cite{kim2024openvla} (7B, three-layer MLP projector, 256 tokens, CV$\\,{=}\\,$0.215), and SmolVLA~\\cite{shukor2025smolvla} (450M, pixel-shuffle $4{\\times}4$ folding, 128 tokens, CV$\\,{=}\\,$0.314). Two additional models are analyzed via offline metrics only: $\\pi_{0}$~\\cite{black2024pi0} (3.3B, linear projection, 256 tokens, CV$\\,{=}\\,$0.038) and OFT~\\cite{kim2025openoft} (7B, three-layer MLP, 512 tokens, CV$\\,{=}\\,$0.219). All six architectures contribute to the CV diagnostic (Section~\\ref{sec:cv_sensitivity}). Table~\\ref{tab:model_properties} summarizes model properties and connector details.\n10\t\n11\tWe follow the pruning protocol of Section~\\ref{sec:pruning_protocol} at retention ratios $k \\in \\{0.3, 0.5, 0.7, 0.85, 0.9, 0.95\\}$, reporting mean success rate (SR) over 500 episodes with Wilson 95\\% confidence intervals.\n12\t\n13\t\\subsection{Two-Axis Framework Overview}\n14\t\\label{sec:two_axis}\n15\t\n16\tThe pruning response depends on token independence imposed by the connector and task complexity (Figure~\\ref{fig:teaser}). Token-independent connectors degrade gracefully; token-entanglin\n…[truncated 22149 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T04:33:50.651502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-27T04:33:50.651775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Re-encoding and CV diagnostics.}\n5\tBoth cross-attention and MLP modules achieve comparable recovery ($p = 0.15$); the stable M-curve ($M{=}16 \\approx M{=}128$) confirms token count is secondary once entanglement is broken (Appendix~\\ref{app:reencoding_analysis}). CV captures effective pipeline complexity beyond connector labels, differentiating X-VLA's threshold-graded behavior (CV$\\,{=}\\,$0.151) from $\\pi_0$'s uniformly critical profile (CV$\\,{=}\\,$0.038); the interaction reverses at $k{=}0.3$ (Appendices~\\ref{app:cv_strategy_interaction},~\\ref{app:cv_extended}). For extended mechanistic analysis of how connector architecture creates the observed token independence structure, see Appendices~\\ref{app:connector_analysis} and~\\ref{app:reencoding_analysis}.\n6\t\n7\t\\paragraph{Task complexity compresses the importance margin.}\n8\tThe CV diagnostic correctly identifies connector-level compressibility, but practitioners must additionally consider task complexity. On LIBERO-Object (single-step manipulation), L2 norm selection outperforms random on OpenVLA at $k{=}0.9$ ($+$7.8\\,pp: L2 70.6\\% vs.\\ Random 62.8\\%). However, this advantage is not robust to deeper compression: at $k{=}0.85$, the importance margin flips to $-$5.2\\,pp (Random 60.4\\% $>$ L2 55.2\\% $\\approx$ Attention 55.0\\%). The three methods exhibit distinct cliff locations: L2 cliffs earliest ($k{=}0.9{\\to}0.85$, $-$15.4\\,pp), random next ($k{=}0.85{\\to}0.7$, $-$16\\,pp), and attention latest ($k{=}0.75{\\to}0.7$, $-$9.4\\,pp), with attention maintaining a plateau from $k{=}0.85$ to $k{=}0.75$ ($-$1.8\\,pp). This staggered cliff onset defines an effective compression window for each scoring method (Figure~\\ref{fig:openvla_sweep}). At $k{=}0.5$, all three methods converge within 4.8\\,pp (L2: 39.2\\%, Random: 35.8\\%, Attention: 40.6\\%), and scoring choice ceases to matter. On LIBERO-Goal, degradation is smooth with no cliff: all three methods converge within 2\\,\n…[truncated 4707 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-27T04:33:50.652017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-27T04:33:50.652258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tConnector architecture is the primary factor governing VLA token compressibility. Across five architectures and four LIBERO suites, token-independent connectors degrade gracefully; entangling connectors exhibit catastrophic cliffs amplified by task complexity ($20{\\times}$ from Object to Goal). While confounders prevent causal isolation (Appendix~\\ref{app:confounders}), connector design is the most consistent structural predictor. CV partitions models into uniform, graded, and catastrophic classes in a single forward pass. Under sufficient compression, scoring effectiveness becomes connector- and k-dependent: L2 norm aids independent connectors at moderate ratios but reverses at aggressive compression; attention shows the converse on entangling connectors. In the cliff zone ($k{=}0.85$--$0.95$), scoring method alone determines success or failure: at $k{=}0.925$ on $\\pi_{0.5}$ Long, L2 preserves 83\\% while random collapses to 39\\% (44.6\\,pp gap). Method differentiation requires pruning stress---at $k{=}0.9$ on OpenVLA, all three scoring methods converge within 3\\,pp on Long. A zero-mask ablation confirms the mechanism: on $\\pi_{0.5}$, zeroing 10\\% of tokens retains 98.0\\% SR while physical removal collapses to 9.0\\%, proving position disruption---not information loss---drives the failure. Where all deletion fails, VTR recovers over 60\\% SR at 75\\% compression.\n5\t\n6\tTwo directions remain open: real-robot validation and adaptive per-task pruning schedules. Code and evaluation data will be released upon acceptance. \\textbf{AI disclosure:} This work used AI tools (Claude) for code development and manuscript drafting; all scientific claims are the authors' own."
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-27T04:33:50.652489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-27T04:33:50.652712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Discussion section moved to Appendix (§\\ref{app:discussion}) for space.\n2\t% Three-sentence limitations retained at end of Experiments section.\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-27T04:33:50.652913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T04:33:50.653754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Extended Discussion}\n4\t\\label{app:discussion}\n5\t\n6\t\\paragraph{Limitations (extended).}\n7\tAll closed-loop evaluations use the LIBERO simulation benchmark; real-robot validation is absent. The six architectures differ in backbone capacity, vision encoder, and fusion strategy beyond the connector, so the connector effect cannot be causally isolated. $\\pi_{0}$ and OFT are evaluated through offline metrics only, without closed-loop verification. The CV diagnostic spans six architectures across all three connector families; closed-loop validation covers four models ($\\pi_{0.5}$, X-VLA, OpenVLA, SmolVLA). SmolVLA baselines (59.2\\% official, 44.8\\% LoRA reproduction) are substantially weaker than those of the other models; whether VTR recovery generalizes to stronger baselines is unknown.\n8\t\n9\t\\paragraph{Non-monotonicity as structural property.}\n10\tX-VLA on Goal exhibits non-monotonic degradation: $k{=}0.95$ drops to 53.8\\% (L2) and 54.0\\% (random), while $k{=}0.9$ recovers to 70.2\\% under L2 selection (Table~\\ref{tab:main_results}). The 0.2\\,pp method gap at $k{=}0.95$ confirms that the anomaly is independent of the token scoring criterion. This pattern is consistent with position sensitivity in the 12-layer BART encoder~\\cite{lewis2020bart}, where specific token positions carry disproportionate structural importance regardless of content.\n11\t\n12\t\\paragraph{$\\pi_{0.5}$ random subsampling anomaly and RoPE amplification.}\n13\tRandom selection on $\\pi_{0.5}$ Object collapses from 74.0\\% at $k{=}0.95$ to 9.0\\% at $k{=}0.9$, then recovers to 74.0\\% at $k{=}0.7$ (Table~\\ref{tab:main_results}). The re-indexing step of our pruning protocol (Section~\\ref{sec:pruning_protocol}) contributes to this non-monotonicity. $\\pi_{0.5}$'s linear connector preserves a one-to-one mapping between spatial patches and token positions; when random removal shifts surviving tokens to new positions, the backbone's Rotary Position Embeddings (RoPE)~\\cite{su2024roformer} encode \n…[truncated 66303 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T04:33:50.654069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find paper_framing.md",
+              "subagent_type": "Explore",
+              "prompt": "Find any file named paper_framing.md in /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/. Also search for any files containing \"paper_framing\" in the docs/ or artifacts/ directories. Report the full paths found."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T04:33:50.654333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/experimental_setup.tex"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T04:33:50.654602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% experimental_setup.tex -- Section 3: Experimental Setup\n2\t\n3\t\\section{Experimental Setup}\n4\t\\label{sec:experimental_setup}\n5\t\n6\tWe design a controlled ablation study to test whether vision token reduction can preserve closed-loop VLA performance under any configuration. The study varies three independent axes (scoring function, retention ratio, pruning mechanism) around a shared baseline, using a lightweight learned scorer whose training does not alter the pretrained VLA weights. This section describes the scorer, the ablation design, and the evaluation protocol.\n7\t\n8\t\\subsection{ACIS Importance Scorer}\n9\t\\label{sec:acis_scorer}\n10\t\n11\tTo select which vision tokens to prune, we train an Attention-weighted Cumulative Importance Score (ACIS) module that predicts a scalar importance score for each of the 256 projected vision tokens (Section~\\ref{sec:smolvla_arch}). The ACIS scorer is a lightweight MLP with 3.46M parameters, constituting 0.77\\% of SmolVLA's 451.5M total. At inference time, the scorer adds 0.24\\% FLOPs overhead and 0.63\\% wall-clock latency overhead relative to the unmodified forward pass.\n12\t\n13\tTraining follows a Stage-1-only protocol: the ACIS scorer parameters are optimized while all VLA expert weights (vision encoder, MLP connector, LLM backbone, and action head) remain frozen. This separation is deliberate. Fine-tuning the full model during scorer training would conflate two effects: the model could learn to compensate for missing tokens rather than learning to score token importance. By freezing the expert, we ensure that the scorer must identify genuinely important tokens under the original model's representation, and that any subsequent failure cannot be attributed to training-induced degradation of action prediction.\n14\t\n15\tThe scorer is trained with an importance margin loss that encourages a clear separation between the scores of retained tokens and those of pruned tokens. Given a retention ratio $k$, the loss penalizes configurations whe\n…[truncated 3646 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-27T04:33:50.654836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/results_draft.tex"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-27T04:33:50.655122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe evaluate token pruning across two VLA architectures on the LIBERO-Object benchmark~\\cite{liu2023libero}, comprising 10 tasks with 50 episodes each (500 total). All success rates are reported with Wilson score 95\\% confidence intervals.\n5\t\n6\t\\subsection{SmolVLA: Cliff-Edge Under All Pruning Methods}\n7\t\\label{sec:smolvla_results}\n8\t\n9\tSmolVLA~\\cite{shukor2025smolvla} uses a pixel-shuffle vision connector that spatially rearranges patch embeddings before projecting them into the language model's embedding space. This operation creates inter-token spatial dependencies: each output token encodes information from a local grid of input patches. We hypothesize that this coupling makes the token sequence fragile under any form of pruning, since removing or masking a single token disrupts the spatial structure that downstream layers expect.\n10\t\n11\t\\paragraph{Setup.}\n12\tWe use a SmolVLA checkpoint fine-tuned on LIBERO-Object with the ACIS (Adaptive Contextual Importance Scoring) module attached but pruning disabled during training. The baseline (bypass mode) achieves 44.8\\% SR (224/500, CI [40.5\\%, 49.2\\%]).\\footnote{The official SmolVLA result on LIBERO is 87.3\\% SR, trained with batch size 64 on 8 GPUs. Our reproduction uses a smaller batch size due to compute constraints, yielding a lower baseline. The relevant comparison is the relative change under pruning, not the absolute SR.} We then activate pruning under six configurations that vary three axes: scoring function (learned ACIS vs.\\ random), retention ratio $k \\in \\{0.5, 0.7, 0.9\\}$, and pruning mechanism (zero-masking, true token removal, token merging via ToMe~\\cite{bolya2023tome}).\n13\t\n14\t\\paragraph{All configurations collapse to 0\\% SR.}\n15\tTable~\\ref{tab:smolvla_ablation} reports the full ablation. Every pruning configuration produces 0\\% success rate (Wilson CI upper bounds $\\leq$1.26\\%; see Table~\\ref{tab:smolvla_ablation} for per-condition episode counts). Three \n…[truncated 6743 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-27T04:33:50.655404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper_framing.md",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-27T04:33:50.655605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260516T075046/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/worst/paper_framing.md\nartifacts/dream_reports/dream_20260520T155932/best/paper_framing.md\nartifacts/dream_reports/dream_20260520T155932/median/paper_framing.md\nartifacts/dream_reports/dream_20260520T155932/worst/paper_framing.md\nartifacts/dream_reports/dream_20260525T050917/best/paper_framing.md\nartifacts/dream_reports/dream_20260525T050917/median/paper_framing.md\nartifacts/dream_reports/dream_20260525T050917/worst/paper_framing.md\npaper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-27T04:33:50.655818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/docs/**/*paper_framing*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-27T04:33:50.656027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**/*paper_framing*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-27T04:33:50.656238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-27T04:33:50.656418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260516T075046/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T075046/worst/paper_framing.md\nartifacts/dream_reports/dream_20260520T155932/best/paper_framing.md\nartifacts/dream_reports/dream_20260520T155932/median/paper_framing.md\nartifacts/dream_reports/dream_20260520T155932/worst/paper_framing.md\nartifacts/dream_reports/dream_20260525T050917/best/paper_framing.md\nartifacts/dream_reports/dream_20260525T050917/median/paper_framing.md\nartifacts/dream_reports/dream_20260525T050917/worst/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-27T04:33:50.656671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I found multiple paper_framing.md files in the project directory. Here are the full paths:\n\n**Root level:**\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md`\n\n**In artifacts/dream_reports:**\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260516T075046/best/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260516T075046/median/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260516T075046/worst/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260520T155932/best/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260520T155932/median/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260520T155932/worst/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260525T050917/best/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260525T050917/median/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260525T050917/worst/paper_framing.md`\n\n**No matching files found in docs/ directory.**\n\nThere are 10 total paper_framing.md files found: 1 at the root level and 9 within the artifacts/dream_reports directory structure across three dated dream report folders (best, median, and worst subdirectories for each)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Agent",
+            "elapsed_ms": 2
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-27T04:33:50.656948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-27T04:33:50.657748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — importance_margin_vla_compress\n2\t\n3\t## Target Venue\n4\t- Primary: **CoRL 2026** (Austin, Nov 9-12; abstract May 26, paper May 29)\n5\t- Timeline: 4 days to abstract, 7 days to paper (as of 2026-05-22)\n6\t\n7\t## Title (working)\n8\t\"Why Token Pruning Crashes Some Robot Policies but Not Others: The Role of Vision Connectors in VLA Token Compressibility\"\n9\t\n10\t## Core Insight\n11\t\n12\t**⚠️ D171 (2026-05-22): Restructured from 4-class taxonomy to 2-axis framework.** Cross-suite data broke the original per-model classification — X-VLA \"threshold-graded\" on Object becomes catastrophic on Goal (-27.8pp at k=0.9) and Long (-45pp at k=0.95). The same connector produces drastically different pruning outcomes depending on task complexity. Pruning sensitivity is the product of two independent axes:\n13\t\n14\t**Axis 1 — Token Coupling (connector architecture):**\n15\t| Type | Connectors | CV Range | Mechanism |\n16\t|------|-----------|----------|-----------|\n17\t| **Token-independent** | Pure linear (π0, π0.5), MLP (OpenVLA, OFT) | 0.038–0.219 | Tokens retain individual spatial meaning; pruning damage is local |\n18\t| **Token-entangling** | BART post-proc (X-VLA), Pixel-shuffle (SmolVLA) | 0.151–0.314 | Cross-token dependencies; pruning damage cascades |\n19\t\n20\t**Axis 2 — Task Complexity:**\n21\t| Level | Suites | Characteristics |\n22\t|-------|--------|----------------|\n23\t| **Simple** | Object, Spatial | Single-step, pruning impact contained |\n24\t| **Complex** | Goal, Long | Multi-step reasoning, token loss cascades through action sequence |\n25\t\n26\t**Key interaction (D169):** Token-entangling connectors are dramatically more sensitive to task complexity:\n27\t- X-VLA Object k=0.9: 97.6% → X-VLA Goal k=0.9: 70.2% (-27.8pp, same model/method/k, only task differs)\n28\t- X-VLA Long k=0.95: ~53% (-45pp from baseline) — removing 3 of 50 tokens collapses performance\n29\t- SmolVLA: 0% on Object already → floor effect, task complexity cannot worsen\n30\t- Token-independent (π0.5 Goal/Long): \n…[truncated 52058 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-27T04:33:50.658071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/figures/paper/*.pdf",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-27T04:33:50.658309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/figures/paper/fig_attention_heatmap.pdf\ndocs/paper/figures/paper/fig_action_divergence.pdf\ndocs/paper/figures/paper/fig_token_heatmap.pdf\ndocs/paper/figures/paper/fig_entropy_layers.pdf\ndocs/paper/figures/paper/fig_pixel_shuffle.pdf\ndocs/paper/figures/paper/fig_crosssuite.pdf\ndocs/paper/figures/paper/fig_cliff_model.pdf\ndocs/paper/figures/paper/fig_degradation_curve.pdf\ndocs/paper/figures/paper/fig_cliff_edge.pdf\ndocs/paper/figures/paper/fig_compression_curve.pdf\ndocs/paper/figures/paper/fig_architecture.pdf\ndocs/paper/figures/paper/fig_architecture_v2.pdf\ndocs/paper/figures/paper/fig_method_gap.pdf\ndocs/paper/figures/paper/fig_hero_overview.pdf\ndocs/paper/figures/paper/fig_scoring_crossover.pdf\ndocs/paper/figures/paper/fig_pruning_overview.pdf\ndocs/paper/figures/paper/fig_teaser.pdf\ndocs/paper/figures/paper/fig_openvla_sweep.pdf\ndocs/paper/figures/paper/fig_cliff_highlight.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-27T04:33:50.658532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/references.*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-27T04:33:50.658724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib.prev\ndocs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-27T04:33:50.658913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper/ 2>/dev/null | head -30; echo \"---\"; ls -la /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib 2>/dev/null || echo \"NO_REFERENCES_BIB\"",
+              "description": "Check figures and references files"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-27T04:33:50.659149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 9384\ndrwxr-xr-x 6 ubuntu ubuntu    4096 May 27 00:27 .\ndrwxr-xr-x 3 ubuntu ubuntu    4096 May 20 12:35 ..\n-rw-r--r-- 1 ubuntu ubuntu   38360 May 18 18:12 fig_action_divergence.pdf\n-rw-r--r-- 1 ubuntu ubuntu   57833 May 22 14:21 fig_architecture.pdf\n-rw-r--r-- 1 ubuntu ubuntu   57833 May 22 14:21 fig_architecture_v2.pdf\n-rw-r--r-- 1 ubuntu ubuntu  266752 May 22 14:21 fig_architecture_v2.png\n-rw-r--r-- 1 ubuntu ubuntu   34161 May 18 18:12 fig_attention_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu   34985 May 22 14:18 fig_cliff_edge.pdf\n-rw-r--r-- 1 ubuntu ubuntu   33320 May 27 00:27 fig_cliff_highlight.pdf\n-rw-r--r-- 1 ubuntu ubuntu  154046 May 27 00:27 fig_cliff_highlight.png\n-rw-r--r-- 1 ubuntu ubuntu   37441 May 22 14:14 fig_cliff_model.pdf\n-rw-r--r-- 1 ubuntu ubuntu   26360 May 22 14:18 fig_compression_curve.pdf\n-rw-r--r-- 1 ubuntu ubuntu   31132 May 22 14:14 fig_crosssuite.pdf\n-rw-r--r-- 1 ubuntu ubuntu  197642 May 22 14:14 fig_crosssuite.png\n-rw-r--r-- 1 ubuntu ubuntu   57361 May 22 14:18 fig_degradation_curve.pdf\n-rw-r--r-- 1 ubuntu ubuntu  336496 May 22 14:18 fig_degradation_curve.png\n-rw-r--r-- 1 ubuntu ubuntu  175091 May 22 13:34 fig_degradation_overview.png\n-rw-r--r-- 1 ubuntu ubuntu   30759 May 22 14:14 fig_entropy_layers.pdf\n-rw-r--r-- 1 ubuntu ubuntu  151216 May 22 14:14 fig_entropy_layers.png\n-rw-r--r-- 1 ubuntu ubuntu  311633 May 24 08:26 fig_hero_overview.pdf\n-rw-r--r-- 1 ubuntu ubuntu 2126046 May 24 08:26 fig_hero_overview.png\n-rw-r--r-- 1 ubuntu ubuntu 3768870 May 24 08:26 fig_hero_overview_real.png\n-rw-r--r-- 1 ubuntu ubuntu   22092 May 24 02:11 fig_method_gap.pdf\n-rw-r--r-- 1 ubuntu ubuntu  100579 May 24 02:11 fig_method_gap.png\n-rw-r--r-- 1 ubuntu ubuntu   29272 May 26 21:33 fig_openvla_sweep.pdf\n-rw-r--r-- 1 ubuntu ubuntu  226567 May 26 21:33 fig_openvla_sweep.png\n-rw-r--r-- 1 ubuntu ubuntu   23434 May 22 14:14 fig_pixel_shuffle.pdf\n-rw-r--r-- 1 ubuntu ubuntu   35105 May 25 20:08 fig_pruning_overview.pdf\n-rw-r--r-- 1 ubuntu ubuntu  128828 May 25\n…[truncated 198 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-27T04:33:50.659535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-27T04:33:50.659744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-27T04:33:50.660001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/paper_section_audit.md",
+              "content": "# Paper Section Audit — CoRL 2026 Submission\n\n**Audit date**: 2026-05-27  \n**Deadline**: ~5h remaining  \n**Paper location**: `docs/paper/` (main.tex + section files)  \n**Main structure**: Abstract → Introduction → Related Work → Method → Experiments → Discussion → Conclusion → Appendix\n\n---\n\n## Section Status Summary\n\n| Section | 文件 | 状态 | 具体问题 | 优先级 |\n|---------|------|------|----------|--------|\n| Abstract | `abstract.tex` | **定稿** | \"five VLA architectures\" vs Method \"six\" — 需统一 | P2 |\n| Introduction | `introduction.tex` | **定稿** | 与 paper_framing 2-axis framework 对齐，claims 一致 | — |\n| Related Work | `related_work.tex` | **定稿** | 完整，覆盖 6 篇 concurrent work | — |\n| Method | `method.tex` | **定稿** | 6 模型 Table 1 完整，CV 公式、VTR 描述清晰 | — |\n| Experiments | `experiments.tex` | **待数据/待修改** | 3 个关键问题，见下 | **P0/P1** |\n| Discussion | `analysis.tex` | **定稿** | OpenVLA sweep 分析完整，limitations 在位 | — |\n| Conclusion | `conclusion.tex` | **定稿** | 5 claims 总结，AI disclosure 已加 | — |\n| Appendix | `appendix.tex` | **基本定稿** | ~820 行，SmolVLA baseline 不一致需修 | P1 |\n| References | `references.bib` | **存在** | 未做编译验证 | P3 |\n| Figures | `figures/paper/` | **完整** | 19 个 PDF 全在位，所有 \\includegraphics 有对应文件 | — |\n\n---\n\n## Critical Issues (P0)\n\n### 1. π0.5 Goal/Long 数据污染 (D248)\n\ncqa1 上的 π0.5 实验使用宽松 success 条件 (`done|reward>0.5`)，导致 SR 可能虚高。\n\n**受影响的 Table 2 单元格**:\n| Suite | 受影响列 | 当前值 | 可信度 |\n|-------|----------|--------|--------|\n| Goal | baseline | 96.4% | **不可信** — 可能虚高 |\n| Goal | k=0.95 (89.4/84.0) | 全部 | **不可信** |\n| Goal | k=0.9 (90.6/62.2) | 全部 | **不可信** |\n| Goal | k=0.7 (71.2/78.2) | 全部 | **不可信** |\n| Goal | k=0.5 (59.2/73.6) | 全部 | **不可信** |\n| Long | k=0.7 (63.2/64.6) | 全部 | **不可信** (k≤0.85) |\n| Long | k=0.5 (50.2/50.2) | 全部 | **不可信** (k≤0.85) |\n| Long | baseline (91.6%) | — | **待确认** — 来源需查 |\n| Long | k=0.95 (86.8/61.2) | — | **可信** (k≥0.9) |\n| Long | k=0.9 (81.0/31.8) | — | **可信** (k≥0.9) |\n\n**受影响的论文 claims**:\n- Abstract: \"task complexity amplifies connector-dependent patterns, with multi-step tasks magnifying entangling-connector losses by up to 20×\" — 20× 来自 X-VLA（不受影响），但 π0.5 Goal/Long 数据支撑同一论点\n- Sec 5.5 (Experiments): importance margin gradient \"Object +93pp > Goal +35.2pp > Long +28.6pp\" — Goal 和 Long 的 margin 值依赖污染数据\n- Sec 5.7 (cliff highlight): π0.5 Long k=0.85 random=49.4% 对比 — k=0.85 处于 k≤0.85 污染区间\n- Discussion: OpenVLA 的 task complexity 分析不受影响（独立数据源）\n\n**Strict 重跑进度**: k=0.95/0.9/0.85 Attn Long 正在进行中。\n\n**建议处理方案**:\n- **方案 A (保守)**: 从 Table 2 移除所有不可信 π0.5 Goal 数据，标注 \"—\"，仅保留 Object/Spatial/Long k≥0.9。Task complexity 论点仅用 X-VLA 数据（不受污染）\n- **方案 B (折中)**: 保留数据但加脚注 \"π0.5 Goal and Long (k≤0.85) results use a lenient success criterion; strict re-evaluation in progress. X-VLA cross-suite patterns (unaffected) provide independent support for the task complexity claim.\"\n- **方案 C**: 如果 strict 重跑在截止前完成，替换数据\n\n### 2. Table 2 数据缺口 (\"--\" 单元格)\n\n共 19+ 个 \"--\" 单元格：\n\n| 模型 | 缺失 | 影响 |\n|------|------|------|\n| X-VLA Spatial | k=0.7 L2 | 文中未引用 |\n| X-VLA Long | k=0.7 L2/R | 文中未引用 |\n| OpenVLA Object | k=0.95 R, k=0.7 L2/R | k=0.95 R 缺失稍影响叙事 |\n| OpenVLA Goal | k=0.95, k=0.7, k=0.5 全缺 | 仅有 k=0.9 三方法对比 |\n| OpenVLA Spatial | k=0.95, k=0.7, k=0.5 全缺 | 仅有 k=0.9 三方法对比 |\n| OpenVLA Long | k=0.95, k=0.7, k=0.5 全缺 | 仅有 k=0.9 三方法对比 |\n\n**评估**: 论文叙事主要围绕 k=0.9 和 k=0.5 展开。OpenVLA 的 k=0.9 三方法对比数据完整（含 attention†），支撑 scoring crossover 论点。X-VLA 的 attention 对比在 k=0.5 完整（Table 8）。**缺口不阻塞核心 claims，但 Table 2 视觉上稀疏。**\n\n**建议**: 接受现状，或将 OpenVLA 改为仅展示 k=0.9 和 k=0.5 两列（去掉 k=0.95/k=0.7 空列）。\n\n---\n\n## High Priority Issues (P1)\n\n### 3. SmolVLA 跨 suite baselines 不一致\n\n| Suite | Table 2 (main) | VTR cross-suite table (App) | paper_framing |\n|-------|----------------|---------------------------|---------------|\n| Object | 59.2% (official) | 44.8% (LoRA) | 59.2% official |\n| Spatial | 44.6% | 51.8% | 43.8% or 44.6% |\n| Goal | 60.8% | 63.0% | 60.8% |\n\n- Table 2 用 official checkpoint baseline；VTR appendix 用 LoRA checkpoint baseline\n- Spatial 有三个不同值 (43.8% / 44.6% / 51.8%)\n- 论文 appendix 文本已做 caveat 处理，但数字混乱容易让 reviewer 质疑\n\n**建议**: 在 VTR cross-suite table (Tab 10) 加脚注明确说明 \"baselines from LoRA-trained checkpoint (batch size 4); main table baselines from official checkpoint\"。统一 Spatial 基线值。\n\n### 4. \"Five\" vs \"Six\" architectures 不一致\n\n- Abstract line 4: \"five VLA architectures (450M--7B parameters)\"\n- Method Sec 3.1 line 7: \"six VLA architectures spanning three vision connector families\"\n- Table 1 列出 6 行（含 OFT）\n\n**建议**: 统一为 \"six VLA architectures\" 或在 abstract 说 \"five VLA architectures (with a sixth offline variant)\"。最简单是改 abstract 为 \"six\"。\n\n### 5. X-VLA baseline 小幅偏差\n\n| Suite | Table 2 | paper_framing |\n|-------|---------|---------------|\n| Spatial | 93.0% | 91.6% |\n| Goal | 98.4% | 98.0% |\n\n可能来自不同 eval seed 或不同 checkpoint。Table 2 是论文定稿数据，paper_framing 是早期记录。**如果 Table 2 数据可信，以 Table 2 为准。** 但需确认 93.0% 和 98.4% 来源无误。\n\n---\n\n## Medium Priority Issues (P2)\n\n### 6. discussion.tex 是空 stub\n\n文件内容仅为注释：\"Discussion section moved to Appendix\"。实际 Discussion 内容在 `analysis.tex`（标题为 `\\section{Discussion}`，label 为 `sec:analysis`）。main.tex include 的是 `\\input{analysis}`。功能正常但维护混乱。\n\n### 7. sections/ 目录残留旧稿\n\n`docs/paper/sections/` 下有 `results_draft.tex`, `analysis_draft.tex`, `related_work_draft.tex` 等旧版文件，不被 main.tex include。不影响编译但增加困惑。\n\n### 8. Constraint C001 合规性\n\nC001 要求 \"Spatial suite 对比禁止用 LoRA baseline (6.2%)\"。检查结果：\n- VTR cross-suite table 中 Spatial baseline=51.8%，VTR=53.2%（差值仅 1.4pp）\n- 文本明确说 \"we therefore do not treat the Spatial comparison as evidence that re-encoding improves over the uncompressed official baseline\"\n- **合规** — 未使用 LoRA 6.2% baseline 做对比\n\n---\n\n## Low Priority Issues (P3)\n\n### 9. LaTeX 编译未验证\n\nreferences.bib 存在（23KB），所有 figure PDF 在位。未实际运行 `pdflatex` 验证编译。建议在提交前做一次完整编译。\n\n### 10. Appendix 长度\n\nAppendix 约 820 行 LaTeX，包含 18 个 tables/figures。CoRL 通常不限 appendix 页数，但过长可能影响 reviewer 体验。当前内容信息密度高，无明显冗余。\n\n---\n\n## Claim-Framing 一致性检查\n\n| Core Claim (paper_framing) | 论文中对应 | 一致性 |\n|---------------------------|-----------|--------|\n| Claim 1: 2-Axis Framework | Sec 4.2 + Fig 1 teaser | **一致** — connector × task complexity |\n| Claim 2: Pixel-shuffle entanglement | Sec 4.3 + Fig 5 | **一致** — 0% at k=0.95, official+LoRA 双 checkpoint |\n| Claim 3: Connector determines tolerance | Sec 3.1 Table 1 + Sec 4.2-4.5 | **一致** — CV spectrum 0.038→0.314 |\n| Claim 4: VTR recovery | Sec 4.6 + Table 4 | **一致** — 60.1±1.3% at M=32, MLP adapter control |\n| Claim 5: CV predicts optimal strategy | Sec 4.5 + Table 6 (appendix) | **一致** — monotonic Δ(R-L2) trend |\n\n**额外 claims 在论文但不在 framing**:\n- Zero-mask ablation (Sec 4.4): 89pp gap，position disruption — 论文中新增的重要发现\n- Per-task reversal within L2-dominant regimes (Sec 4.5 末段): Task 6 reversal — 细粒度分析\n\n---\n\n## 优先行动建议 (按时间紧迫度)\n\n1. **[P0, 30min]** 决定 π0.5 Goal/Long 污染数据处理方案 (A/B/C)，如选 B 则写脚注\n2. **[P1, 10min]** 统一 abstract \"five\"→\"six\" architectures\n3. **[P1, 15min]** 确认 X-VLA Spatial=93.0% 和 Goal=98.4% 数据来源\n4. **[P1, 15min]** 统一 SmolVLA Spatial baseline (44.6% vs 51.8% vs 43.8%)，加 VTR table 脚注\n5. **[P2, 5min]** 确认 Table 2 \"--\" 缺口可接受\n6. **[P3, 10min]** 运行一次完整 LaTeX 编译\n"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-27T04:33:50.660399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/paper_section_audit.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-27T04:33:50.660665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper_section_audit",
+              "type": "report",
+              "description": "CoRL 2026 论文各 section 定稿状态盘点：逐节审计状态、数据污染影响、baseline 不一致、claim 对齐检查",
+              "project": "importance_margin_vla_compress",
+              "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/paper_section_audit.md",
+              "tags": "['paper', 'audit', 'corl2026']"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-27T04:33:50.660917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260527_67ccde\\\", \\\"name\\\": \\\"paper_section_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"CoRL 2026 论文各 section 定稿状态盘点：逐节审计状态、数据污染影响、baseline 不一致、claim 对齐检查\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/report/paper_section_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-27T04:33:39.633720+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"audit\\\", \\\"corl2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-27T04:33:50.661213+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "盘点完成。核心发现：\n\n**论文整体成熟度高** — Abstract/Intro/Related Work/Method/Discussion/Conclusion 均已定稿，figures 全在位，claims 与 paper_framing 一致。\n\n**3 个需立即处理的问题**：\n\n1. **[P0] π0.5 Goal/Long 数据污染** — cqa1 宽松 success 条件影响 Table 2 整行 π0.5 Goal 数据和 Long k≤0.85 数据。建议加脚注说明，并用 X-VLA（不受影响）独立支撑 task complexity claim\n2. **[P1] \"Five\" vs \"six\" architectures** — Abstract 说 five，Method 说 six，需统一\n3. **[P1] SmolVLA Spatial baseline 三个不同值** (43.8%/44.6%/51.8%) — VTR cross-suite table 需加脚注区分 checkpoint 来源\n\nTable 2 有 19+ \"--\" 缺口，但核心叙事围绕 k=0.9 展开，数据完整，缺口不阻塞。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper_section_status_20260527T042940"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ]
+}

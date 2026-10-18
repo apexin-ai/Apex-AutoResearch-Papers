@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9722cf67a7c27ce2c41a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check roberta download status",
+  "task_key": "worker_check_roberta_download_status_20260515T121100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_roberta_download_status_20260515T121100_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "23f10c2f6bbdfe766d16680f95af3bc77f2f5a53b9d4b0276cc198825de76c95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**roberta-base 下载未完成，疑似卡住。**\n\n| 项目 | 状态 |\n|------|------|\n| 下载进程 PID 124867 | 仍在运行 |\n| Tokenizer + Config | ✅ 已下载到 `/root/autodl-tmp/models/roberta-base/` |\n| 模型权重 (safetensors) | ❌ 下载中断/卡住 |\n\n详细情况：\n- HF cache 中权重文件 `.incomplete`，大小 230MB，最后修改时间 20:11，多次检查文件大小未增长\n- roberta-base 完整权重约 499MB，当前仅下载了约 46%\n- 日志停在 `\"Downloading model...\"` 无后续输出\n- 可能原因：AutoDL 代理下载 HuggingFace 大文件速度极慢或连接超时\n\n**需要 kill 当前进程并改用 ModelScope 重新下载。** 是否继续？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

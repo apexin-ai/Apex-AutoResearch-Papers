@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c14b80077f4cb3b7135",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "monitor v8 early loss",
+  "task_key": "worker_monitor_v8-early-loss_20260515T232326",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_v8-early-loss_20260515T232326_result.json",
+    "occurrence": 1,
+    "bytes": 53,
+    "sha256": "3217b2605f45aa1cffedd2997b8f5d1984c27734b1c43ab98f133e5e48ac6112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等 90 秒后继续查训练日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

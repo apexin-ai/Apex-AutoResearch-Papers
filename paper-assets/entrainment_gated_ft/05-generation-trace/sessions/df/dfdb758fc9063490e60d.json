@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "dfdb758fc9063490e60d",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code 340m eval",
+  "task_key": "worker_code_340m_eval_20260518T142903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_340m_eval_20260518T142903.log",
+    "occurrence": 1,
+    "bytes": 1445933,
+    "sha256": "5581e872b19abd39bb979f01a975059486f456cd871e9bdeb122aae2a8d695cb"
+  },
+  "statistics": {
+    "messages": 1047,
+    "user_turns": 1,
+    "tool_calls": 458,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 122,
+      "tool_call": 458,
+      "tool_result": 458,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 724,
+      "chunks": [
+        {
+          "path": "dfdb758fc9063490e60d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dfdb758fc9063490e60d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dfdb758fc9063490e60d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "dfdb758fc9063490e60d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "dfdb758fc9063490e60d-part-0005.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 323,
+      "chunks": [
+        {
+          "path": "dfdb758fc9063490e60d-part-0005.json",
+          "message_count": 176
+        },
+        {
+          "path": "dfdb758fc9063490e60d-part-0006.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ]
+}

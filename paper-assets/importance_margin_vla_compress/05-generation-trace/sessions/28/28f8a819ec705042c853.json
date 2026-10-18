@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28f8a819ec705042c853",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis attention visualization v2",
+  "task_key": "worker_analysis_attention_visualization_v2_20260517T125037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_attention_visualization_v2_20260517T125037_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "b80dea0210f01a3e273d6460ff1be4724148346b1b572413dddfe04f0f84ef01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是关键发现：\n\n## Attention Analysis 结果\n\n| 指标 | 值 | 含义 |\n|------|------|------|\n| Entropy | 6.86 / 7.00 | **98.0% of max uniform** |\n| Top-50% token attention share | 67.3% | 接近均匀（完美均匀=50%） |\n| Gini coefficient | 0.246 | 低不平等 |\n| Min/max attention ratio | 0.155 | 最少关注 token 仍获 15.5% of max |\n| Camera balance | 53.8% / 46.2% | 双相机均贡献 |\n| Per-task consistency | 6.844~6.846 | 跨任务几乎相同 |\n\n**结论：Vision tokens 被近乎均匀地 attend（entropy = 98% of max）。** 这直接解释了为什么 token pruning 灾难性失败：模型对所有 128 个 visual tokens 均匀依赖，不存在\"可安全移除\"的 token 子集。任何 pruning 策略（ACIS k=0.5 移除 50% tokens）都在删除携带非冗余信息的 token。\n\n输出文件：\n- `eval_results/attention_analysis.json` — 完整统计\n- `eval_results/attention_heatmap.png` — 可视化\n- `artifacts/attention_distribution.png` — attention 分布图\n- `artifacts/attention_per_task.png` — 跨任务对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

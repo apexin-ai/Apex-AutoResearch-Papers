@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7489c87a204cd2eb455e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh baseline coral diveye fix",
+  "task_key": "worker_ssh_baseline_coral_diveye_fix_20260514T231457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_baseline_coral_diveye_fix_20260514T231457_result.json",
+    "occurrence": 1,
+    "bytes": 1913,
+    "sha256": "5caceaeaf312ecbea4a91b405b65e773b6a707c80601dbd6f072b69d3b2ee934"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下。\n\n---\n\n## 修复 1: CORAL 训练不足 — 已确认并修复\n\n**根因**: 之前 CORAL 用 `--epochs 5 --patience 3` 跑的（代码默认值实际是 100/10），导致严重训练不足。\n\n**无需修改 `src/baselines.py`** — 代码默认 `epochs=100, patience=10` 已足够。问题在于之前的 CLI 参数。\n\n### CORAL 新旧指标对比\n\n| 指标 | 旧 (epochs=5, p=3) | 中 (epochs=15, p=5) | 新 (epochs=100, p=10) |\n|------|:---:|:---:|:---:|\n| 4-class acc | 0.5367 | 0.6780 | **0.7807** |\n| 3-class acc | 0.3822 | 0.5716 | **0.7089** |\n| MAE | 0.544 | 0.3447 | **0.2273** |\n| d1v2 AUC | 0.3416 | 0.5024 | **0.8179** |\n| d0v1 AUC | 0.998 | 0.9972 | 0.9983 |\n| d2v3 AUC | 0.7357 | 0.7573 | 0.7848 |\n\n**结论**: CORAL 在充分训练后（100 epochs）性能接近 CE-MLP（0.7807 vs 0.7897），d1v2 AUC 从 0.34 飙升至 0.82。之前的 \"CORAL 不适合此任务\" 的结论是错误的，需要在论文中修正。15 epochs 不够（d1v2 AUC 仅 0.50），建议使用默认的 100 epochs。\n\n---\n\n## 修复 2: DivEye 标签不一致 — 无需修复\n\n- **代码** (`baselines.py:548-554`): `DivEyeBaseline.fit()` 使用 `XGBClassifier(n_estimators=200, max_depth=6, ...)`\n- **结果 JSON**: 标签为 `\"DivEye (XGBoost)\"`\n- **结论**: 代码和标签一致，实际跑的就是 XGBoost，无需修改。\n\n### DivEye 最终指标\n\n| 指标 | 值 |\n|------|:---:|\n| 分类器 | XGBoost (n_estimators=200, max_depth=6) |\n| 4-class acc | 0.7817 |\n| 3-class acc | 0.7098 |\n| MAE | 0.2363 |\n| d1v2 AUC | 0.8654 |\n\n---\n\n## 代码改动\n\n**无**。`src/baselines.py` 未修改。代码默认参数 (`epochs=100, patience=10`) 本身是正确的，问题出在之前的运行命令使用了过小的参数。已用默认参数重跑全部 feature baselines 并更新 `results/baselines/baseline_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

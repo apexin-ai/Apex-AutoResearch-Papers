@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7f59db71f60f9770c5c8",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis jaccard upper bound",
+  "task_key": "worker_analysis_jaccard-upper-bound_20260520T045417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_jaccard-upper-bound_20260520T045417_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "6b25a84f087c349ec1445355bc3085a41d301396ee766b42c506f73fb77c06f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n| 指标 | Helped | Hurt |\n|------|--------|------|\n| **J_obs 范围** | 0.086–0.108 | 0.070–0.116 |\n| **J_max 范围** | 0.777–0.988 | 0.642–0.930 |\n| **J_null 范围** | 0.042–0.050 | 0.043–0.056 |\n| **Normalized ES 范围** | [0.047, 0.081] | [0.031, 0.077] |\n| **Mean J_obs/J_max** | — | 11.1% |\n\n**Saturation trend**（mean norm_ES by ratio）:\n- Helped: 0.0518 → 0.0573 → 0.0596 → 0.0658（单调递增，CV=0.086）\n- Hurt: 0.0512 → 0.0406 → 0.0680 → 0.0617（非单调，CV=0.188）\n\n**J_null 验证**：analytical 与 10k permutation 差异 < 0.0001，验证通过。\n\n**关键论点**：J_obs ~0.09 看似低，但 J_max 受集合大小不对称约束（平均仅 ~0.85），J_null ~0.05。Normalized ES 在所有 ratio 上一致高于 chance，helped set 的 norm_ES 随 attention ratio 单调上升——floor effect 是几何天花板的产物，非信号缺失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

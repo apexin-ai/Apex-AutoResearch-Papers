@@ -2,6 +2,12 @@
 
 Project directory: `cert_manip_resist_eval`
 
+## Browse generation traces
+
+[Visual browser](../../traces/index.html?project=cert_manip_resist_eval) · [Offline preview](../../traces/demo.html?project=cert_manip_resist_eval) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
+
+Includes 880 source files and 97,735 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+
 ## Asset review matrix
 
 | Requirement | Status | Organized contents and evidence | Still to verify |

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "389f34fd450c7b010702",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp d4 depth extension pythia",
+  "task_key": "worker_exp_d4_depth_extension_pythia_20260518T185442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d4_depth_extension_pythia_20260518T185442_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "31ef2219a5fcb153c20bd1b4676178e20cc0dec6e22d9c571c33dbf3d4f856ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Pythia-1.4B nucleus d4 extension 结果：\n\n| 指标 | Pythia-1.4B | GPT-2 XL (对比) |\n|------|------------|-----------------|\n| **d3v4 AUC** | 0.7887 | 0.7273 |\n| **5-class acc** | 71.33% [70.88, 71.73] | 74.03% [73.90, 74.17] |\n\n**Per-class recall**: d0=99.38%, d1=81.48%, d2=58.62%, d3=49.02%, d4=68.14%\n\n**Feature trends** (均单调递减，符合预期):\n- p90_ppl: 483.74 → 61.38 → 29.68 → 18.15 → **12.49**\n- var_surprisal: 6.50 → 2.49 → 1.86 → 1.51 → **1.29**\n- mean_ppl: d4=31877.82 (非单调，与 GPT-2 XL 类似的异常)\n\n**Pairwise AUCs**: d0v1=0.9955, d1v2=0.8507, d2v3=0.7435, **d3v4=0.7887**\n\n产出已保存到 `results/d4_extension_pythia/`:\n- `depth_4.jsonl`\n- `features_d4.jsonl`\n- `d4_extension_results.json`\n\nPythia 的 d3v4 AUC (0.7887) 高于 GPT-2 XL (0.7273)，说明 Pythia d3→d4 的区分度更大。5-class accuracy 略低 (71.33% vs 74.03%)，主要因为 d2/d3 混淆更严重（d2 recall 仅 58.62%，d3 仅 49.02%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

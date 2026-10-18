@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c54b0f81f2a5eb3b74ab",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_11_1778909183.md",
+  "task_key": "loop_11_1778909183",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778909183.md",
+    "occurrence": 1,
+    "bytes": 5073,
+    "sha256": "be88de083f0850ebccb7e81e8c17febcdbb5fc530acf0704f1923eba9926aee1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:34:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0 和 cuda:1**（westd-37397 两张 RTX PRO 6000 96GB）。禁止用其他 GPU，即使 Director 指令也要 push back\n- 论文锁定值：Qwen concentration=0.61 (float32, commit bfaea4e)，Mistral concentration=0.24/t1t5=0.41 (hires, commit e52fb0e)\n- **Diagnostic rule 分类条件**：concentration ≥0.50 AND t1/t5 ≤0.70 → Spread。当前准确率 **9/9**，任何新模型结果必须先验证是否影响此准确率\n- **W2/W9 PPL 评估必须用 WikiText-2 test set**，不能用 calibration data\n- Table 4 error bar 规则：只有 Qwen 行报 ±std，其他模型只报 mean delta（原因：非 Qwen 模型 MCKP allocation 是 deterministic，±std 仅反映 eval 噪声）\n- ARR May 25 deadline = **距今 9 天**，所有实验和写作改动必须服务于此 deadline\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-37397，2× RTX PRO 6000 96GB (cuda:0, cuda:1)\n- **工作目录**：/root/ratekv\n- **Python**：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **模型缓存**：/root/autodl-tmp/.hf_cache\n- **InternLM2-7B 模型路径**：/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\n- **Phi-3-medium profiles**：artifacts/phi3_medium_profiles_hires.json\n- **活跃进程**：\n  - internlm2_7b_hires_profiling: PID 389862, cuda:0（无 cron 监控——reconcile 返回 0）\n  - phi3_medium_constrained_mckp: cuda:1（无 PID/cron 信息记录在 registry spec 中）\n- **无活跃 cron**（reconcile_crons 返回 reconciled=0）\n- **无活跃 Worker**（list_workers running=0）\n\n### 3. 📊 当前状态\n**刚接手 session，尚未执行任何操作**——这是 WRITE HANDOFF 触发的新 session。\n\n**RUNNING (2)**:\n- `internlm2_7b_hires_profiling` (cuda:0)：InternLM2-7B hires profiling，GQA 4:1, 256 KV heads。**这是寻找第二个 Spread 模型的最高优先级实验**。若 concentration ≥0.50 AND t1/t5 ≤0.70 → N=2 Spread，论文从 N=1 升级为 N=2\n- `phi3_medium_constrained_mckp` (cuda:1)：Phi-3-medium-14B constrained MCKP + unconstrained + greedy + uniform 4-bit eval。补充 Table 1/2 数据\n\n**PENDING (1)**:\n- `falcon7b_hires_profiling_v2`：等待 Director 审批。MQA 架构（1 KV head/layer, 32 total）。极端 test case\n\n**等待中**：\n- 两个 RUNNING 实验均无 cron 监控——下一个 session 应立即 **检查进程是否存活** 并补注册 cron\n- Compounding curves (Llama + Mistral sweep) 在 ROADMAP 中标为\"启动中\"但 registry 中无对应 RUNNING 实验——可能已被 kill 或未实际启动，需确认\n- Downstream CI (Qwen + Llama 3-seed) 排队中\n\n### 4. 📋 待办（条件触发式）\n- **立即**：SSH 检查 PID 389862 (internlm2) 和 phi3_medium_constrained_mckp 进程是否存活 → 存活则注册 cron 监控；已死则分析日志判断 success/fail\n- internlm2_7b_hires_profiling 完成 → 计算 concentration + t1/t5 → 若 Spread：**立刻派 Worker 跑 constrained MCKP pipeline**（复制 Qwen 流程）+ 汇报 Director \"N=2 达成\"；若非 Spread：更新 diagnostic rule 准确率 → 汇报 Director\n- phi3_medium_constrained_mckp 完成 → 提取 Table 1/2 数据 → update_registry + 更新 paper 数据\n- falcon7b_hires_profiling_v2 审批通过 → 等 GPU 空闲后 submit\n- **Compounding curves 状态确认**：检查 llama_compounding_sweep / mistral_compounding_sweep 在 registry 中的状态。若 killed/failed → 需重新规划提交（这是 Round 2 reviewer 要求的关键实验）\n- 所有 profiling + constrained 实验完成 → 集成数据到论文 → 派 Paper Worker 更新 experiments.tex / tables\n\n### 5. 🎯 战略上下文\n- **项目核心**：Per-KV-head 非均匀 bit-width 在 {2,4,8,16} 硬件对齐位宽上，2-bit compounding 导致所有 unconstrained solver 失败。Cardinality constraint 是 universal fix。Non-uniform 仅对 Spread 模型有效（当前 1/9 = Qwen-7B only）\n- **Round 2 审稿核心问题**：claim 强度超过 evidence（SYSTEMIC_ISSUE）。已完成全面 reframing (d96d7da)，降级 claim 强度。但审稿人还要求：(1) 更多 Spread 模型证据 (N>1)，(2) compounding curves 可视化，(3) downstream CI error bars\n- **最容易判断错的事**：\n  - InternLM2 结果出来后，不要急于宣称 Spread——必须同时满足 concentration ≥0.50 **AND** t1/t5 ≤0.70。CodeLlama 教训：concentration=0.80 但 t1/t5=0.81 → Spike 不是 Spread\n  - head 数量是 concentration 的稀释因子：多 head 的模型 concentration 天然低（Qwen-14B 384 heads → 0.33 Flat）\n  - Compounding curves 和 downstream CI 可能还没开始或已 killed——ROADMAP 说\"启动中\"但 registry 可能不一致，务必核实\n  - 两个 RUNNING 实验无 cron 监控 = 如果进程崩了没人知道，这是第一优先级要修的\n- **决策链关键节点**：D062（Round 2 策略）→ D063（Table 4 optimal k）→ D066/D067（Mistral/Qwen compounding sweep 重跑）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

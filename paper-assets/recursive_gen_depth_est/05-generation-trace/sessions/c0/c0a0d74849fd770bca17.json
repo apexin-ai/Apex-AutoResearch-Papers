@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c0a0d74849fd770bca17",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code prepare olmo temp09 submission",
+  "task_key": "worker_code_prepare_olmo_temp09_submission_20260514T203347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_olmo_temp09_submission_20260514T203347_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "fab97cba5c0221b663ada74012cf02554d4e852fd5a3c4fae0a3bf640788cba0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总如下：\n\n---\n\n**Registry entry: `olmo_temp09_001`** — PREPARING\n- hypothesis: OLMo-1B temp-only τ=0.9 递归深度信号与 nucleus p=0.95 一致\n- parent: `cross_model_olmo_002`\n- plan_id: `plan_002b`\n\n**脚本确认: `scripts/run_pipeline_olmo_temp09.sh`**\n- 模型: `/root/autodl-tmp/models/olmo-1b-hf`\n- 解码: `temp_only`, temperature=0.9\n- 数据: `data/olmo_temp09/depth_{1,2,3}.jsonl`\n- Checkpoint: `checkpoints/olmo_temp09/lora_depth_{0,1,2}`\n- depth-0 adapter 复用 nucleus 版本 (symlink)\n- LoRA target: `q_proj,k_proj,v_proj`\n\n**启动命令:**\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_olmo_temp09.sh\"\n```\n\n**`allocate_and_submit` 参数:**\n| 参数 | 值 |\n|------|-----|\n| exp_id | `olmo_temp09_001` |\n| server | `gpu-6000pro-2` |\n| gpu | `1` (待 gpt2xl_temp09_001 完成释放 cuda:1) |\n| command | 上述启动命令 |\n| data_path | `data/olmo_temp09/` |\n| model_name | `olmo-1b-hf` |\n| seed | 42 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

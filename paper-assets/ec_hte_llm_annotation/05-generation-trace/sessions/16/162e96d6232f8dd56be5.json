@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "162e96d6232f8dd56be5",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp w8 a5 violation",
+  "task_key": "worker_code_exp-w8-a5-violation_20260522T101532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-w8-a5-violation_20260522T101532_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "53f6449f4f33410739107e907280f5f561a78da7dc88568ddb4d5a6448fe4577"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 W8 完成。核心发现：\n\n**Aligned（正相关：high-error × large-Δτ）**\n- Naive 在 S₁ 上 coverage 仅 25%，RMSE 0.184 — bias 被 δ×Δτ 乘积放大\n- Global corrected 改善有限（S₁ coverage 78%），因为全局 CM 无法捕捉子群差异\n- **EC-HTE (EB) 在两个子群都达到 95%+ coverage**，RMSE 降至 0.100 (S₁) / 0.069 (S₀)\n\n**Adversarial（负相关：high-error × small-Δτ）**\n- Naive bias 被削弱但仍显著（S₁ coverage 78%）\n- Global corrected 在 S₀ 反而变差（coverage 78%），因为全局校正对 low-error 子群过度校正\n- **EC-HTE (EB) 同样保持 93-98% coverage**\n\n**结论**：EC-HTE 在两种相关结构下都维持近 nominal coverage，不依赖 A5 假设。\n\n产出文件：\n- 代码：`exp_w8_a5_violation.py`\n- 聚合结果：`results/exp_w8_a5_violation.csv`\n- 原始数据：`results/exp_w8_a5_violation_raw.csv`\n- LaTeX 段落已在脚本输出末尾生成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

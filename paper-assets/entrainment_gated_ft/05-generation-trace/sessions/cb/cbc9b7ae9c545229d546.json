@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cbc9b7ae9c545229d546",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code model download",
+  "task_key": "worker_code_model-download_20260518T055446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_model-download_20260518T055446_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "166abfdd98947a7982591901bb22149850c788a59190dd4916ce436f5ab2c2a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n## 下载结果：16/16 OK\n\n| 模型 | config.json | model.safetensors | 大小 |\n|------|:-----------:|:-----------------:|------|\n| GatedDeltaNet-pure-baseline | ✓ | ✓ | 1.5G |\n| GatedDeltaNet-New-hybrid-24-1 | ✓ | ✓ | 1.5G |\n| GatedDeltaNet-hybrid-12-1 | ✓ | ✓ | 1.5G |\n| GatedDeltaNet-hybrid-6-1 | ✓ | ✓ | 1.5G |\n| GatedDeltaNet-hybrid-3-1 | ✓ | ✓ | 1.5G |\n| HGRN2-pure-baseline | ✓ | ✓ | 1.3G |\n| HGRN2-hybrid-24-1 | ✓ | ✓ | 1.3G |\n| HGRN2-hybrid-12-1 | ✓ | ✓ | 1.3G |\n| HGRN2-hybrid-6-1 | ✓ | ✓ | 1.3G |\n| HGRN2-hybrid-3-1 | ✓ | ✓ | 1.3G |\n| RetNet-pure | ✓ | ✓ | 1.3G |\n| RetNet-hybrid-24-1 | ✓ | ✓ | 1.3G |\n| RetNet-hybrid-12-1 | ✓ | ✓ | 1.3G |\n| RetNet-hybrid-6-1 | ✓ | ✓ | 1.3G |\n| RetNet-hybrid-3-1 | ✓ | ✓ | 1.3G |\n| transformer_340M_baseline | ✓ | ✓ | 1.3G |\n\n## 磁盘用量\n- 模型总计：**22G**\n- `/root/autodl-tmp` 分区：250G 总量，22G 已用，229G 可用（9%）\n\n## Symlink\n`/root/entrainment_gated_ft/models -> /root/autodl-tmp/models` ✓（已修复为直接符号链接）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

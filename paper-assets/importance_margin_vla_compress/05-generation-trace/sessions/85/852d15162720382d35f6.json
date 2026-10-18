@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "852d15162720382d35f6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k095 object seed42",
+  "task_key": "worker_diagnose_eval_pi05_random_k095_object_seed42_20260521T200615",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k095_object_seed42_20260521T200615_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "544b986961c55741f028856e0229b7f835431931efce1767a70fa6d32eb7b406"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败根因**：服务器无外网访问，`AutoTokenizer.from_pretrained(\"google/paligemma-3b-pt-224\")` 调用 HuggingFace Hub API 时触发 `[Errno 101] Network is unreachable`。\n\n**关键事实**：\n- 模型加载成功（4143.4M params，pruning 配置正确：random, keep 243/256），9 分钟主要花在模型加载 + 网络重试\n- 崩溃在 evaluation 开始前，**无任何 episode 结果**\n- GPU 0 已释放，可立即重跑\n\n**修复**：重跑前先 `source /etc/network_turbo` 启用网络代理，或预缓存 tokenizer 到本地路径。诊断报告已写入 `worker_outputs/diagnose_eval_pi05_random_k095.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

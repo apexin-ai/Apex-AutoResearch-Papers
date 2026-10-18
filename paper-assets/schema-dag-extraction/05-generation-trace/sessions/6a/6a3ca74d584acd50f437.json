@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6a3ca74d584acd50f437",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d045 appendix verbatim fix",
+  "task_key": "worker_paper_d045_appendix_verbatim_fix_20260516T111554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d045_appendix_verbatim_fix_20260516T111554_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "3df3ab1e6365257f55ca45f73a83aa2a390c5d7c1d4e908ad536378cf4218fa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "prompt_appendix.tex 中无 overfull hbox。三项修改已完成：\n\n1. `main.tex` preamble 添加了 `\\usepackage{listings}`\n2. `prompt_appendix.tex` 头部添加了 `\\lstset` 配置（breaklines + fullflexible columns）\n3. 所有 `verbatim` 环境替换为 `lstlisting`（共 14 处）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

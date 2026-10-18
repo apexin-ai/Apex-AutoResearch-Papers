@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a0fb3c662904d938a99e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k03 long seed43 postfix v2",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k03_long_seed43_postfix_v2_20260524T205300",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k03_long_seed43_postfix_v2_20260524T205300_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "89e7a52d718ff6e5e121ccb7e66a942afd4b36a52d0f68b4ad36d47d2cff2928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果如下：\n\n## L2norm k=0.3 Long seed43 结果：**39.2%**\n\n### Per-task breakdown\n\n| Task | SR |\n|------|-----|\n| T0: put alphabet soup + tomato sauce in basket | 26% |\n| T1: put cream cheese + butter in basket | 24% |\n| T2: turn on stove + put moka pot | 90% |\n| T3: put black bowl in drawer + close | 92% |\n| T4: put white mug left + yellow mug right | 26% |\n| T5: pick up book + place in caddy | 20% |\n| T6: put white mug on plate + chocolate pudding | 8% |\n| T7: put alphabet soup + cream cheese in basket | 62% |\n| T8: put both moka pots on stove | 6% |\n| T9: put yellow mug in microwave + close | 38% |\n\n**总体**: 196/500 = 39.2%, 耗时 223.3 min, 无错误。\n\n### Dual-seed 汇总\n\n| 指标 | L2norm k=0.3 | Random k=0.3 |\n|------|-------------|--------------|\n| seed42 | 40.6% | 29.6% |\n| seed43 | 39.2% | 28.0% |\n| **Mean ± Std** | **39.9% ± 0.7pp** | **28.8% ± 0.8pp** |\n| **Margin (L2norm − Random)** | | |\n| seed42 | +11.0pp | |\n| seed43 | +11.2pp | |\n| **Mean margin** | **+11.1pp ± 0.1pp** | |\n\nDual-seed 验证结果非常一致：两个 seed 的 margin 几乎相同（+11.0 vs +11.2pp），L2norm 的 seed 间方差极小（±0.7pp）。L2norm 在极端 pruning (70% token 删除) 下相比 Random 有稳定的 ~11pp 优势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

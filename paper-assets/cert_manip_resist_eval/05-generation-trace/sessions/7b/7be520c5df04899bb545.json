@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "7be520c5df04899bb545",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis appendix v2 rerun",
+  "task_key": "worker_analysis_appendix-v2-rerun_20260523T191113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_appendix-v2-rerun_20260523T191113.log",
+    "occurrence": 1,
+    "bytes": 1077558,
+    "sha256": "10f8d648bdaa7aef6b224ca0876154d49ebaebbf8160941e7b14c8dbe9d340da"
+  },
+  "statistics": {
+    "messages": 553,
+    "user_turns": 1,
+    "tool_calls": 217,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 108,
+      "tool_call": 217,
+      "tool_result": 217,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 477,
+      "chunks": [
+        {
+          "path": "7be520c5df04899bb545-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7be520c5df04899bb545-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7be520c5df04899bb545-part-0003.json",
+          "message_count": 117
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 76,
+      "chunks": [
+        {
+          "path": "7be520c5df04899bb545-part-0003.json",
+          "message_count": 63
+        },
+        {
+          "path": "7be520c5df04899bb545-part-0004.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ]
+}

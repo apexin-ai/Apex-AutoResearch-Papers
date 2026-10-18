@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c17c26d1b0a42c799930",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 fix condition keys",
+  "task_key": "worker_code_plan001-fix-condition-keys_20260522T082358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-fix-condition-keys_20260522T082358_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "401e2e2592f9777521b9c4bbc87f6aa22ee29fdb21b8a4aacfdeabd482e2a5b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。修改汇总：\n\n| 脚本 | 行号 | 旧格式 | 新格式 |\n|------|------|--------|--------|\n| `step4_panel_regression.py` | 398 | `f\"{ds}×{atk}\"` | `f\"{ds}__{atk}\"` |\n| `step5_random_fault.py` | 302 | `f\"{ds}x{atk}\"` | `f\"{ds}__{atk}\"` |\n| `confound_diagnosis.py` | 229, 395 | `f\"{ds}×{attack}\"` | `f\"{ds}__{attack}\"` |\n| `step3_mi_matrix.py` | — | 无 condition key | 无需改 |\n\n4 个脚本 syntax check 全部 OK。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

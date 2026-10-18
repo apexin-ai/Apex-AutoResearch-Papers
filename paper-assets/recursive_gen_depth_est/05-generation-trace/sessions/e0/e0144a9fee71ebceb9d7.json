@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "e0144a9fee71ebceb9d7",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code baseline battery",
+  "task_key": "worker_code_baseline_battery_20260514T185551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_battery_20260514T185551.log",
+    "occurrence": 1,
+    "bytes": 823359,
+    "sha256": "8fb034e3a7ca34557fc43fdfb6e72460bcf25af106753d0c133bf94475558b10"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 1,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 60,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "e0144a9fee71ebceb9d7-part-0001.json",
+          "message_count": 135
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "e0144a9fee71ebceb9d7-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "e0144a9fee71ebceb9d7-part-0002.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d660fe8afe6515efad7d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code multi tau ablation 001",
+  "task_key": "worker_code_multi_tau_ablation_001_20260516T015650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi_tau_ablation_001_20260516T015650_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "32d4afc3284916b952a087338b905b0df7fa7fc975944308c712cfa1e8d69787"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline ~70% 完成。τ=1.1 d2 正在生成，后续还有 d3 生成、feature extraction、evaluation。约 10-15 分钟后完成，已设定自动检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "769f0e620207683da6d3",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16_1780035361.md",
+  "task_key": "loop_16_1780035361",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1780035361.md",
+    "occurrence": 1,
+    "bytes": 2929,
+    "sha256": "51e5fa3f981d5756d11541a9de3e7f79b7b38ef32521971f048798578e7ff9d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-29T05:57:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-27271 (cuda:0,1), westd-38929 (cuda:0,1,2,3), westd-41074 (cuda:0,1,2,3), cqa1-33015 (cuda:0,1,2,3)，共 14 张\n- 实验硬截止 May 28 20:00 BJT 已过，不再新部署评估实验\n- CoRL 2026 Paper 截止 May 29——当前处于论文最终整合阶段\n- metrics 格式已统一为百分比，但 Paper Agent 更新 figures 时仍需验证（历史上有比例 0.xx vs 百分比 xx% 混用）\n- 5-seed 表数据来源：s42-s43 硬编码验证值 + s44-s46 registry 提取，脚本 `artifacts/build_5seed_tables.py`\n\n### 2. 🖥️ 基础设施快照\n- 4 台服务器，工作目录统一：`~/runs/importance_margin_vla_compress/`\n- 无活跃进程/tmux/cron（全部实验已完成，14 GPU 空闲）\n- w27 代码未同步 attention mode（仅支持 none/random/l2norm），但已无影响（实验全部完成）\n- w38 磁盘：系统盘 593G/879G 可用(29% used)，autodl-pub 5.3T/7.3T 可用\n- 产出目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/`\n\n### 3. 📊 当前状态\nSession #16 启动时发现所有 90/90 实验 cells 已完成（5 seeds × 3 methods × 6 k-values），0 RUNNING，0 ANALYZING，0 Workers。已向 Director 汇报完整 5-seed 最终表并请求指示启动 Paper Agent 更新 figures。**等待 Director 回复。**\n\nRegistry 总计：成功 575 / 负向 110 / 失败 118 / 共 890。无 RUNNING/PREPARING 需要关注的实验。\n\n### 4. 📋 待办（条件触发式）\n- Director 回复\"启动 Paper Agent\" → spawn worker 运行 `build_5seed_tables.py` 生成最终 figures，然后派 Paper Agent 更新论文中的表格和图表\n- Director 要求额外实验（如 s47 bonus）→ 在空闲 GPU 上部署，但需确认是否仍在截止线约束内\n- Director 要求释放 GPU → 汇报 14 张全空闲，可全部释放\n- 任何 figure/table 更新完成 → 注册 artifact + 通知 Director 准备最终提交\n\n### 5. 🎯 战略上下文\n- **核心发现**：Importance Margin（L2norm SR - Random SR）呈 inverted-U。peak +46.9pp @ k=0.9，crossover -1.4pp @ k=0.7。5-seed error bars 统计稳健（std ≤ 2.7pp，大部分 ≤ 1.5pp）。\n- **Attn cliff curve**：77.3% → 64.2% → 50.8%（k=0.95→0.9→0.85），之后 plateau ~50-53%。与 L2norm graceful degradation 形成对比——论文 narrative 支柱。\n- **易错点**：\n  - Attn k=0.75 有跨服务器差异（w27=49.0% vs cqa1=52.0%），最终选用 cqa1 数据\n  - Random k=0.85 s43 用 server log 真值 47.2%（非 per-task 数据）\n  - Attn k=0.7 s44 曾有量化异常（D298），经溯源确认 keep=179/256 是 k=0.7，SR=52.2%\n  - OV Attn k=0.75 用 v3=34.2%（不是旧版）\n- **当前位置**：实验全部完成，纯论文写作/整合阶段。下一步完全取决于 Director 指示。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

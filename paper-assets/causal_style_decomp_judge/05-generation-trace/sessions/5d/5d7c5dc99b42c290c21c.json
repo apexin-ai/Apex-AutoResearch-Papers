@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5d7c5dc99b42c290c21c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops cleanup deploy vllm alpacaeval",
+  "task_key": "worker_ops_cleanup_deploy_vllm_alpacaeval_20260521T072358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_deploy_vllm_alpacaeval_20260521T072358_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "6f554ffb780a337cfa86be6666eeae66d231c41001c354f6e5db28b1f86ef417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。汇报：\n\n**1. 清理残余进程**\n- 杀掉了 GPU 2 上的 vLLM 进程（PID 114905, 114900, 115174），原为 Qwen3-32B tp=1 on port 8002\n- jupyter-lab (1233) 和 tensorboard (1235) 保留未动\n- 清理后 4 张 GPU 全部空闲（0 MiB）\n\n**2. exp-006 CF gen 完成确认**\n- 文件路径：`/root/causal_style_decomp_judge/data/counterfactuals_scaled_formality.jsonl`\n- 行数：**400/400** ✓\n- 注：文件名是 `counterfactuals_scaled_formality.jsonl`，不是 `counterfactuals_formality_*.jsonl`\n\n**3. vLLM Qwen3-32B 部署**\n- PID：121776（API server pid 121781）\n- GPU：cuda:0,1，tp=2\n- 端口：8000\n- 状态：**已就绪**（\"Application startup complete\"）\n- 模型 ID：`/root/autodl-tmp/models/Qwen3-32B/`\n- max_model_len：8192"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

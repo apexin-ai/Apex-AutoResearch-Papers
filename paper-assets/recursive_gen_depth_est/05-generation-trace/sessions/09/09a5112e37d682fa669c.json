@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "09a5112e37d682fa669c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis atlas v2 update",
+  "task_key": "worker_analysis_atlas_v2_update_20260515T020132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_atlas_v2_update_20260515T020132_result.json",
+    "occurrence": 1,
+    "bytes": 1311,
+    "sha256": "378234b53d40f6ece37505e1a1d241c17ea8297bb34c238dd8bc45a66d26e378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。`artifacts/atlas_v2/` 下 29 个文件。\n\n## 产出总结\n\n**`artifacts/atlas_v2/`** 包含：\n\n### 数据文件\n| 文件 | 内容 |\n|------|------|\n| `atlas_v2_data.json` | 8/9 cells 完整数据（含 olmo_topk50） |\n| `atlas_v2_results.json` | 全量分析结果 |\n| `edd_sensitivity.json` | 4 threshold × 8 cell EDD 矩阵 |\n| `monotonicity_scores.json` | 19 features × 8 cells 单调性 |\n| `atlas_summary.json` | feature-level 分析 |\n\n### 图表（PDF+PNG）\nsignal_strength_heatmap, edd_barchart, edd_sensitivity_heatmap, feature_evolution, feature_evolution_normalized, monotonicity_heatmap, universal_feature_ranking, cross_model_rank_correlation, feature_clustering_pca, feature_clustering_t-sne, consistency_heatmap\n\n### 关键发现\n\n**EDD Threshold Sensitivity**:\n| Threshold | Mean EDD | 掉档 cells |\n|-----------|----------|------------|\n| τ=0.65 | 3.0 | 无 |\n| τ=0.70 | 2.88 | pythia_topk50→2 |\n| τ=0.75 | 2.75 | +olmo_topk50→2 |\n| τ=0.80 | 2.50 | +pythia_temp09→2, pythia_topk50→1 |\n\n- **Top-k 解码最脆弱**：pythia_topk50 是唯一一个 EDD 降到 1 的 cell\n- **GPT-2 XL 最稳健**：全 threshold 下均保持 EDD=3\n- Universal top-5 features：p90_ppl, var_surprisal, p75_ppl, mean_surprisal, mean_ppl"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

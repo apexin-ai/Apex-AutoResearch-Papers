@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "efb06e4cc74a68256984",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval cqa1 xvla k095 seed42",
+  "task_key": "worker_eval_cqa1-xvla-k095-seed42_20260520T193227",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_cqa1-xvla-k095-seed42_20260520T193227_result.json",
+    "occurrence": 1,
+    "bytes": 220,
+    "sha256": "2c2caee151492300b53577431db1d2549ca3574c2b208e4ab3e9104bfe47c32f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动。\n\n- **tmux session**: `eval_xvla_k095_s42`\n- **PID**: 948547\n- **GPU 2 显存占用**: 4051 MiB\n- **参数**: X-VLA random pruning, k=0.95, seed=42, libero_object, 50 episodes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

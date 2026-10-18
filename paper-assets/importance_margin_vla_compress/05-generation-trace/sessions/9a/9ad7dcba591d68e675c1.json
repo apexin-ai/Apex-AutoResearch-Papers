@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9ad7dcba591d68e675c1",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3525,
+    "sha256": "8897309d559bf51e1968ed9a81eea110b58cf69ad3a681ace078a41f96de9914"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-16T04:10:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-27271 只有 2 张 GPU（index 0, 1）。v8.1 训练占 GPU 0（PID 121326, tmux=mvp_imm_anchor_v8_1）。GPU 1 当前空闲可用于 eval。\n- 项目代码根目录在远程 `/root/autodl-tmp/importance_margin_vla_compress`，本地 workspace 在 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/`。论文/decisions/registry 在本地，训练代码/checkpoint/log 在远程——审\"未改\"类结论前必须双边核对。\n- evaluate.py 已于 2026-05-16 修复 5 个 bug（D028），所有旧 eval 数据（eval_imm_v8_final.json 等）均为 buggy 版本产出，不可引用。只引用 `*_fixed.json` 后缀的结果。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-27271(root)，conda base 环境（`/root/miniconda3/bin/python`）\n- 代码：`/root/autodl-tmp/importance_margin_vla_compress`\n- Checkpoints：`checkpoints/imm_anchor_v8/step_029999`（v8 已训完），`checkpoints/baseline/step_029999`（baseline v5）\n- Fixed eval 结果：`eval_results/eval_imm_v8_fixed.json`、`eval_imm_v8_bypass_fixed.json`、`eval_baseline_v5_fixed.json`\n- 活跃进程：v8.1 训练 PID 121326, tmux=mvp_imm_anchor_v8_1, GPU 0, CUDA_VISIBLE_DEVICES=0\n- 训练 log：`logs/v8_1_train.log`\n- W&B：offline mode\n\n### 3. 📊 当前状态\n**刚完成**：v8 D028 fix re-eval 审查（全部 3 组 eval：standard / bypass / baseline），gate 数字独立核对 PASS，已 post 审查报告给 Director。\n\n**Registry**：\n- `mvp_imm_anchor_v8`: ANALYZING — G3=1.344x FAIL，等 Director 最终结论\n- `mvp_imm_anchor_v8_1`: RUNNING — step ~9950/30000 (33%), λ=0.2, sps=3.1, 预计 ~1.8h 完成（约 13:50-14:00 服务器时间）\n- 其他 13 个实验均 DONE\n\n**等待中**：v8.1 训练完成 → Agent 应自动触发 eval → 需要审查\n\n### 4. 📋 待办\n- v8.1 训练完成通知 → 审查 Agent 的 eval 流程是否用修复后的 evaluate.py + model.eval() + hard top-k + CUDA_VISIBLE_DEVICES 合规\n- v8.1 eval 结果出来 → 独立核对 G3，与 v8 的 1.344x 对比。若 G3 仍 >1.20x → 建议 Director 考虑 two-stage training / mask ratio annealing / distillation 方向\n- Agent 若更新 registry notes → 检查是否将 \"backbone 受损\" 修正为 \"backbone co-adaptation\"\n- Director 若发来 paper framing 提案审查 → 立即 Read negative-framing-review skill，四维度审\n\n### 5. 🎯 战略上下文\n**核心结论链**：v7 G3=3.28x → v7.2 bypass 确认权重损伤 → v8 gradient isolation G3=1.30x(buggy)/1.34x(fixed) → v8.1 降 λ 进行中\n\n**关键洞察**（我在审查报告中已提出）：G3 FAIL 的根因不是 ACIS 梯度泄漏（gradient isolation 已验证正确），而是 **backbone co-adaptation with token selection**——训练时 backbone 只看到 soft mask 加权的 ~50% token，eval 时给全量 token 反而退化。证据：v8 random 50% 选择 (0.017) 优于全量 (0.030)。\n\n**最容易判断错的事**：\n1. 不要把 bypass pruneFalse (0.029) 当成 \"gradient isolation 失败导致的 backbone 损伤\"——梯度隔离是有效的，问题是 input distribution shift\n2. 不要用旧 `*_final.json`（无 `_fixed` 后缀）的数据——那些是 D028 之前 buggy eval 的产物\n3. v8.1 的 λ=0.2 可能改善 G3 但大概率无法解决 co-adaptation 根因——真正的解是改训练策略（two-stage / annealing / distillation），不是调超参\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d10068a4fe89c6bdf5a2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross model reverse chain 001",
+  "task_key": "worker_analysis_cross_model_reverse_chain_001_20260516T142302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_model_reverse_chain_001_20260516T142302_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "79d80e7587d899acfb6296dafc624148da539fcbebf982a27dbdd1c963038114"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n**cross_model_reverse_chain_001 → SUCCESS**\n\n| | LR | RF |\n|---|---|---|\n| 4-class acc | **86.75%** [83.3, 89.8] | **85.75%** [82.0, 89.3] |\n\n关键发现：\n\n- **远超阈值**：86.8% vs 55% 成功标准，vs 25% 随机基线\n- **超越同架构单模型**：reverse chain 86.8% > GPT2-XL 单模型 83.3%（5000 samples） > OLMo 78.8%，且本实验仅用 500 samples/depth\n- **超越 LOO cross-model**：86.8% vs cross_model_loo_001 的 66.4%\n- **AUC 模式一致**：d1v2 仍是最难 pair（0.886），d0 vs 任意 depth 近乎完美（≥0.988）\n- **特征不变**：var_surprisal + p90_ppl 主导，与所有先前实验一致\n\n**N4 结论**：Depth signal 在 reverse chain（GPT2-XL→OLMo→Pythia）中跨架构传递，且信号强度不弱于单模型。强力支持 cross-model generalization claim。\n\nRegistry 已更新为 DONE/success，分析报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

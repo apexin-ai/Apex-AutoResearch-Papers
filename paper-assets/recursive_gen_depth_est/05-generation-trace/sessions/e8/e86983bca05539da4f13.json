@@ -1,0 +1,1180 @@
+{
+  "schema_version": "1.0",
+  "id": "e86983bca05539da4f13",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "code dcol feature based",
+  "task_key": "worker_code_dcol_feature_based_20260514T161727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_dcol_feature_based_20260514T161727.jsonl",
+    "occurrence": 1,
+    "bytes": 92481,
+    "sha256": "39ba115d6e737c465d5adbf0da201147f0f90d08388a70f82734a1c1c73b3fa7"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 0,
+    "tool_calls": 29,
+    "roles": {
+      "tool_call": 29,
+      "tool_result": 29,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T16:23:43.992582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T16:23:43.992976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T16:23:43.993169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "westb-52439"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T16:23:43.993310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: Unknown server 'westb-52439'. Available: ['autodl-rtx6000', 'gpu-6000pro-2']\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T16:23:43.993489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "autodl-rtx6000"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T16:23:43.993630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T16:23:43.993750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T16:23:43.993867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/src/ 2>/dev/null"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T16:23:43.994075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_0_features.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\nfeatures_3class.jsonl\\\\nfeatures_all.jsonl\\\\nfeatures_filtered.jsonl\\\\ngpt2xl\\\\nolmo\\\\npythia_temp09\\\\npythia_topk50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T16:23:43.994199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T16:23:43.994316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "head -5 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T16:23:43.994431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/src"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T16:23:43.994620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 0, \\\\\\\"mean_ppl\\\\\\\": 1607.154718291221, \\\\\\\"var_ppl\\\\\\\": 158779688.72304317, \\\\\\\"skewness_ppl\\\\\\\": 10.406051089379453, \\\\\\\"kurtosis_ppl\\\\\\\": 114.01617768762445, \\\\\\\"p10_ppl\\\\\\\": 1.0253935757537525, \\\\\\\"p25_ppl\\\\\\\": 1.4685526791140988, \\\\\\\"p50_ppl\\\\\\\": 4.352294272371119, \\\\\\\"p75_ppl\\\\\\\": 39.40245503911115, \\\\\\\"p90_ppl\\\\\\\": 369.16657551683574, \\\\\\\"mean_surprisal\\\\\\\": 2.372938156607645, \\\\\\\"var_surprisal\\\\\\\": 6.239684146274182, \\\\\\\"entropy_of_surprisal\\\\\\\": 3.1822611603270903, \\\\\\\"type_token_ratio\\\\\\\": 0.570281124497992, \\\\\\\"hapax_ratio\\\\\\\": 0.7922535211267606, \\\\\\\"bigram_entropy\\\\\\\": 6.013228236535451, \\\\\\\"trigram_entropy\\\\\\\": 6.165336778855558, \\\\\\\"rep_2gram\\\\\\\": 0.11066398390342047, \\\\\\\"rep_3gram\\\\\\\": 0.028225806451612878, \\\\\\\"rep_4gram\\\\\\\": 0.014141414141414121}\\\\n{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 1, \\\\\\\"mean_ppl\\\\\\\": 54002.03770697733, \\\\\\\"var_ppl\\\\\\\": 1413175348996.3547, \\\\\\\"skewness_ppl\\\\\\\": 22.22576987428103, \\\\\\\"kurtosis_ppl\\\\\\\": 491.99058066317076, \\\\\\\"p10_ppl\\\\\\\": 1.0160609078135314, \\\\\\\"p25_ppl\\\\\\\": 1.3728577706965877, \\\\\\\"p50_ppl\\\\\\\": 4.021285238082237, \\\\\\\"p75_ppl\\\\\\\": 27.293282919182133, \\\\\\\"p90_ppl\\\\\\\": 357.73944974520754, \\\\\\\"mean_surprisal\\\\\\\": 2.2523334503653545, \\\\\\\"var_surprisal\\\\\\\": 6.201062234123705, \\\\\\\"entropy_of_surprisal\\\\\\\": 2.7942398797704473, \\\\\\\"type_token_ratio\\\\\\\": 0.46987951807228917, \\\\\\\"hapax_ratio\\\\\\\": 0.6965811965811965, \\\\\\\"bigram_entropy\\\\\\\": 5.875689416994851, \\\\\\\"trigram_entropy\\\\\\\": 6.089798063352047, \\\\\\\"rep_2gram\\\\\\\": 0.17907444668008043, \\\\\\\"rep_3gram\\\\\\\": 0.06451612903225812, \\\\\\\"rep_4gram\\\\\\\": 0.02020202020202022}\\\\n{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 2, \\\\\\\"mean_ppl\\\\\\\": 1231.937376189517, \\\\\\\"var_ppl\\\\\\\": 103276797.70463558, \\\\\\\"skewness_ppl\\\\\\\": 11.808569952051542, \\\\\\\"kurtosis_ppl\\\\\\\": 153.99156162606673, \\\\\\\"p10_ppl\\\\\\\": 1.1139743181210084, \\\\\\\"p25_ppl\\\\\\\": 1.8428773456351897, \\\\\\\"p50_ppl\\\\\\\": 5.280720253169033, \\\\\\\"p7\n…[truncated 2222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T16:23:43.994765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/ -name \"*.csv\""
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T16:23:43.994921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\natlas_analysis.py\\\\natlas_plots.py\\\\ndcol_dataset.py\\\\ndcol_eval.py\\\\ndcol_trainer.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T16:23:43.995086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T16:23:43.995257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_dataset.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T16:23:43.995379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_eval.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T16:23:43.995493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T16:23:43.995753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Dataset: data loading and contrastive batch sampling for depth estimation.\\\\n\\\\nInput:  data/depth_{0..3}.jsonl (root = Pythia default) + data/{subdir}/depth_{k}.jsonl\\\\nOutput: DCOLDataset yielding (input_ids, attention_mask, depth, model, strategy, features)\\\\n\\\\nEach JSONL line: {\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"depth\\\\\\\": N, \\\\\\\"seed_id\\\\\\\": M, \\\\\\\"token_count\\\\\\\": K}\\\\nModel/strategy inferred from directory name. 19-dim features optionally loaded from features_all.jsonl.\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import Dataset, Sampler\\\\nfrom collections import defaultdict\\\\nfrom sklearn.model_selection import train_test_split\\\\n\\\\nFEATURE_NAMES = [\\\\n    \\\\\\\"mean_ppl\\\\\\\", \\\\\\\"var_ppl\\\\\\\", \\\\\\\"skewness_ppl\\\\\\\", \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n    \\\\\\\"p10_ppl\\\\\\\", \\\\\\\"p25_ppl\\\\\\\", \\\\\\\"p50_ppl\\\\\\\", \\\\\\\"p75_ppl\\\\\\\", \\\\\\\"p90_ppl\\\\\\\",\\\\n    \\\\\\\"mean_surprisal\\\\\\\", \\\\\\\"var_surprisal\\\\\\\", \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n    \\\\\\\"type_token_ratio\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"bigram_entropy\\\\\\\", \\\\\\\"trigram_entropy\\\\\\\",\\\\n    \\\\\\\"rep_2gram\\\\\\\", \\\\\\\"rep_3gram\\\\\\\", \\\\\\\"rep_4gram\\\\\\\",\\\\n]\\\\nNUM_FEATURES = len(FEATURE_NAMES)\\\\n\\\\n\\\\ndef parse_model_strategy(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Infer model and decoding strategy from subdirectory name.\\\\n    \\\\\\\"gpt2xl\\\\\\\" -> (gpt2xl, default), \\\\\\\"pythia_temp09\\\\\\\" -> (pythia, temp09)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if dirname.startswith(\\\\\\\"pythia_\\\\\\\"):\\\\n        return \\\\\\\"pythia\\\\\\\", dirname[len(\\\\\\\"pythia_\\\\\\\"):]\\\\n    return dirname, \\\\\\\"default\\\\\\\"\\\\n\\\\n\\\\ndef load_features(features_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed 19-dim features from JSONL. Returns list aligned with extraction order.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    features = []\\\\n    with open(features_path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if not line:\n…[truncated 7239 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T16:23:43.996105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Evaluation: comprehensive metrics for depth classification.\\\\n\\\\nComputes: 4-class accuracy, MAE, per-adjacent-pair AUC, confusion matrix,\\\\nleave-one-model-out generalization, leave-one-strategy-out generalization.\\\\n\\\\nUsage:\\\\n  python src/dcol_eval.py --checkpoint checkpoints/dcol/best_model.pt --data_dir data/\\\\n  python src/dcol_eval.py --checkpoint checkpoints/dcol/best_model.pt --eval_mode per_model\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast\\\\nfrom torch.utils.data import DataLoader\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, classification_report, roc_auc_score,\\\\n)\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    NUM_FEATURES, DCOLDataset, collate_fn, load_all_data, split_data,\\\\n)\\\\nfrom dcol_trainer import DCOLModel\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef pairwise_auc(labels, probs, d1, d2, label_list):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"AUC for binary distinction between depth d1 and d2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = np.isin(labels, [d1, d2])\\\\n    if mask.sum() < 2:\\\\n        return None\\\\n    yt = (labels[mask] == d2).astype(int)\\\\n    if len(np.unique(yt)) < 2:\\\\n        return None\\\\n    d2_idx = list(label_list).index(d2)\\\\n    yp = probs[mask, d2_idx]\\\\n    return float(roc_auc_score(yt, yp))\\\\n\\\\n\\\\ndef compute_all_pairwise_auc(labels, probs, depths=(0, 1, 2, 3)):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute AUC for every depth pair.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = {}\\\\n    for i, d1 in enumerate(depths):\\\\n        for d2 in depths[i + 1:]:\\\\n            auc = pairwise_auc(labels, probs, d1, d2, depths)\\\\n            result[f\\\\\\\"d{d1}_vs_d{d2}\\\\\\\"] = round(auc, 4) if auc is not None else None\\\\n    return\n…[truncated 7189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T16:23:43.996396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Trainer: Deep Contrastive Ordinal Learning for recursive generation depth estimation.\\\\n\\\\nArchitecture: DeBERTa-v3-large + 19-dim feature projector + contrastive ordinal head\\\\nLoss: CE classification + multi-margin contrastive ordinal loss with LEARNABLE margins.\\\\n\\\\nThree text-specific modifications over vanilla CLOC:\\\\n  1. Strategy-aware margins  — separate learnable margins per decoding strategy\\\\n  2. Surprisal-augmented anchors — 19-dim statistical features concat to [CLS] embedding\\\\n  3. Non-uniform learned margins — initialized from MVP AUC difficulty ratios\\\\n\\\\nUsage:\\\\n  python src/dcol_trainer.py --data_dir data/ --output_dir checkpoints/dcol/\\\\n  python src/dcol_trainer.py --dry_run   # quick sanity check\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast, GradScaler\\\\nfrom torch.utils.data import DataLoader\\\\nfrom transformers import AutoModel, AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    FEATURE_NAMES,\\\\n    NUM_FEATURES,\\\\n    ContrastiveBatchSampler,\\\\n    DCOLDataset,\\\\n    collate_fn,\\\\n    load_all_data,\\\\n    split_data,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model components\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass OrdinalContrastiveHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Projects [CLS] + 19-dim features into L2-normalized contrastive embedding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size, feature_dim=19, embed_dim=128):\\\\n        super().__init__()\\\\n        self.feature_proj = n\n…[truncated 7002 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T16:23:43.996640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/ -name \"features*\" -type f"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T16:23:43.996816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T16:23:43.996998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_filtered.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_3class.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T16:23:43.997195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20000 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T16:23:43.997331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "python3 -c \"import json; data=[json.loads(l) for l in open('/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl')]; depths=[d['depth'] for d in data]; print({d: depths.count(d) for d in sorted(set(depths))})\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T16:23:43.997481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T16:23:43.997606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "python3 -c \"import torch; print(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}')\""
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T16:23:43.997725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T16:23:43.997849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "python3 -c \"import json, collections; data=[json.loads(l) for l in open('/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl')]; print(collections.Counter(d['depth'] for d in data))\""
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T16:23:43.998031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T16:23:43.998151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "grep -c \"depth.: 0\" /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T16:23:43.998266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "grep -c \"depth.: 1\" /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T16:23:43.998381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T16:23:43.998490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "grep -c \"depth.: 2\" /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T16:23:43.998600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "grep -c \"depth.: 3\" /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T16:23:43.998713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T16:23:43.998822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T16:23:43.998954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T16:23:43.999194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dcol_train.py",
+              "content": "\"\"\"\nFeature-based DCOL (Depth Contrastive Ordinal Learning) training framework.\n\nInput:  JSONL/CSV files with 19-dim statistical features + depth label (0-3)\nOutput: Trained MLP checkpoint, evaluation metrics, embedding visualizations\n\nArchitecture:\n  Encoder:     MLP  19 -> hidden_dim(128) -> 64,  ReLU + BatchNorm + Dropout\n  Proj head:   64 -> proj_dim(32),  L2-normalized (contrastive space)\n  Class head:  64 -> 4  (depth classification)\n\nLoss (Eq.1 — Dream D002 hard constraint):\n  L_DCOL = L_attractive + L_repulsive + lambda * L_CE\n\nDependencies: torch, sklearn, numpy, pandas, matplotlib\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom torch.utils.data import Dataset, DataLoader, Sampler\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import (\n    accuracy_score, confusion_matrix, classification_report, roc_auc_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nlogger = logging.getLogger(__name__)\n\n# ── Feature schema (matches features_all.jsonl from MVP extraction) ──────────\nFEATURE_NAMES = [\n    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n    \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n]\nNUM_FEATURES = len(FEATURE_NAMES)  # 19\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Data loading\n# ═══════════════════════════════════════════════════════════════════════════════\n\ndef load_features_file(path: str) -> pd.DataFrame:\n    \"\"\"Load a single features file (JSONL or CSV). Returns DataFrame with feature columns + 'depth'.\"\"\"\n    path = str(path)\n    if path.endswith(\".csv\"):\n        df = pd.read_csv(path)\n    else:\n        records = []\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if line:\n                    records.append(json.loads(line))\n        df = pd.DataFrame(records)\n\n    required = set(FEATURE_NAMES) | {\"depth\"}\n    missing = required - set(df.columns)\n    if missing:\n        raise ValueError(f\"Missing columns in {path}: {missing}\")\n    return df[FEATURE_NAMES + [\"depth\"]]\n\n\ndef load_data(data_dirs: list[str]) -> pd.DataFrame:\n    \"\"\"Load and concatenate feature files from multiple paths.\"\"\"\n    frames = []\n    for p in data_dirs:\n        df = load_features_file(p)\n        logger.info(f\"  Loaded {len(df)} samples from {p}\")\n        frames.append(df)\n    combined = pd.concat(frames, ignore_index=True)\n    logger.info(f\"Total: {len(combined)} samples, depth distribution: \"\n                f\"{dict(combined['depth'].value_counts().sort_index())}\")\n    return combined\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Dataset & Sampler\n# ═══════════════════════════════════════════════════════════════════════════════\n\nclass FeatureDataset(Dataset):\n    def __init__(self, features: np.ndarray, labels: np.ndarray):\n        self.features = torch.tensor(features, dtype=torch.float32)\n        self.labels = torch.tensor(labels, dtype=torch.long)\n        self.depth_to_indices = defaultdict(list)\n        for i, y in enumerate(labels):\n            self.depth_to_indices[int(y)].append(i)\n\n    def __len__(self):\n        return len(self.labels)\n\n    def __getitem__(self, idx):\n        return self.features[idx], self.labels[idx]\n\n\nclass BalancedDepthSampler(Sampler):\n    \"\"\"Each batch has equal samples per depth for valid contrastive pairs.\"\"\"\n\n    def __init__(self, dataset: FeatureDataset, batch_size: int):\n        self.dataset = dataset\n        self.num_depths = len(dataset.depth_to_indices)\n        self.per_depth = max(1, batch_size // self.num_depths)\n        self.batch_size = self.per_depth * self.num_depths\n\n    def __iter__(self):\n        depth_indices = {\n            d: np.random.permutation(idx).tolist()\n            for d, idx in self.dataset.depth_to_indices.items()\n        }\n        n_batches = min(len(v) // self.per_depth for v in depth_indices.values())\n        for b in range(n_batches):\n            batch = []\n            for d in sorted(depth_indices):\n                batch.extend(depth_indices[d][b * self.per_depth:(b + 1) * self.per_depth])\n            yield batch\n\n    def __len__(self):\n        return min(len(v) // self.per_depth for v in self.dataset.depth_to_indices.values())\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Model\n# ═══════════════════════════════════════════════════════════════════════════════\n\nclass DCOLFeatureModel(nn.Module):\n    \"\"\"\n    Feature-based DCOL model.\n\n    Forward pass:\n      x (B, 19) -> encoder -> h (B, 64) -> proj_head -> z (B, proj_dim)  [contrastive]\n                                          -> cls_head  -> logits (B, 4)   [classification]\n\n    Training uses both z (contrastive loss) and logits (CE loss).\n    Inference uses only logits.\n    \"\"\"\n\n    def __init__(self, input_dim=19, hidden_dim=128, embed_dim=64, proj_dim=32, num_classes=4, dropout=0.3):\n        super().__init__()\n        self.encoder = nn.Sequential(\n            nn.Linear(input_dim, hidden_dim),\n            nn.BatchNorm1d(hidden_dim),\n            nn.ReLU(),\n            nn.Dropout(dropout),\n            nn.Linear(hidden_dim, embed_dim),\n            nn.BatchNorm1d(embed_dim),\n            nn.ReLU(),\n            nn.Dropout(dropout),\n        )\n        self.proj_head = nn.Sequential(\n            nn.Linear(embed_dim, proj_dim),\n        )\n        self.cls_head = nn.Linear(embed_dim, num_classes)\n\n    def forward(self, x):\n        h = self.encoder(x)\n        z = F.normalize(self.proj_head(h), p=2, dim=-1)\n        logits = self.cls_head(h)\n        return z, logits\n\n    def predict(self, x):\n        h = self.encoder(x)\n        return self.cls_head(h)\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Loss: Multi-margin N-pair Contrastive Ordinal Loss (Eq.1)\n# ═══════════════════════════════════════════════════════════════════════════════\n\nclass DCOLLoss(nn.Module):\n    \"\"\"\n    Multi-margin N-pair contrastive ordinal loss with cross-entropy.\n\n    ┌──────────────────────────────────────────────────────────────────────────┐\n    │ Eq.1  L_DCOL = L_attractive + L_repulsive + λ · L_CE                   │\n    │                                                                          │\n    │ Let f(x) = projection head output (L2-normalized),                       │\n    │     y_i   = depth label of sample i,                                     │\n    │     d_ij  = |y_i - y_j| (ordinal distance between depths).              │\n    │                                                                          │\n    │ Positive pairs P = {(i,j) : y_i = y_j}                                  │\n    │ Negative pairs N = {(i,j) : y_i ≠ y_j}                                  │\n    │                                                                          │\n    │ Margin functions (linear in ordinal distance):                           │\n    │   m_pos(d) = α · d    (for same-depth pairs, d=0 → margin=0)            │\n    │   m_neg(d) = β · d    (depth gap ↑ → required separation ↑)             │\n    │                                                                          │\n    │ L_attractive = (1/|P|) Σ_{(i,j)∈P} max(0, ‖f(x_i)-f(x_j)‖² - m_pos)  │\n    │             = (1/|P|) Σ_{(i,j)∈P} max(0, ‖f(x_i)-f(x_j)‖²)           │\n    │             [since d=0 for positive pairs, m_pos(0)=0]                   │\n    │                                                                          │\n    │ L_repulsive = (1/|N|) Σ_{(i,j)∈N} max(0, β·d_ij - ‖f(x_i)-f(x_j)‖²) │\n    │             [push apart: penalty if distance < required margin]          │\n    │                                                                          │\n    │ L_CE = standard cross-entropy on classification logits                   │\n    │                                                                          │\n    │ Key insight: ordinal structure is encoded through β·d — pairs with       │\n    │ larger depth difference must be pushed further apart. This makes the     │\n    │ embedding space preserve ordinal topology, not just class boundaries.    │\n    └──────────────────────────────────────────────────────────────────────────┘\n\n    Args:\n        alpha: positive pair margin scale (default 0.1, but m_pos(0)=0 always)\n        beta:  negative pair margin scale (default 1.0)\n        lambda_ce: weight for CE loss component\n    \"\"\"\n\n    def __init__(self, alpha=0.1, beta=1.0, lambda_ce=1.0):\n        super().__init__()\n        self.alpha = alpha\n        self.beta = beta\n        self.lambda_ce = lambda_ce\n        self.ce = nn.CrossEntropyLoss()\n\n    def forward(self, z, logits, labels):\n        \"\"\"\n        Args:\n            z:      (B, proj_dim) L2-normalized projection embeddings\n            logits: (B, 4)        classification logits\n            labels: (B,)          depth labels in {0,1,2,3}\n        Returns:\n            total_loss, dict with component losses\n        \"\"\"\n        B = z.size(0)\n\n        # Pairwise squared Euclidean distances: ‖f(x_i) - f(x_j)‖²\n        # For L2-normalized vectors: ‖a-b‖² = 2 - 2·a·b\n        dist_sq = 2.0 - 2.0 * torch.mm(z, z.t())  # (B, B)\n\n        # Ordinal distance matrix: d_ij = |y_i - y_j|\n        labels_float = labels.float()\n        ord_dist = torch.abs(labels_float.unsqueeze(1) - labels_float.unsqueeze(0))  # (B, B)\n\n        # Masks (exclude self-pairs via diagonal mask)\n        diag_mask = ~torch.eye(B, dtype=torch.bool, device=z.device)\n        pos_mask = (ord_dist == 0) & diag_mask   # same depth, different sample\n        neg_mask = (ord_dist > 0) & diag_mask     # different depth\n\n        # L_attractive: same-depth pairs should be close\n        # m_pos(d=0) = alpha * 0 = 0, so: max(0, ‖f_i - f_j‖² - 0) = ‖f_i - f_j‖²\n        # But we still use the general form for code clarity\n        m_pos = self.alpha * ord_dist  # (B, B), all zeros for pos_mask entries\n        if pos_mask.any():\n            l_attract = torch.clamp(dist_sq[pos_mask] - m_pos[pos_mask], min=0).mean()\n        else:\n            l_attract = torch.tensor(0.0, device=z.device)\n\n        # L_repulsive: different-depth pairs should be separated by at least β·d_ij\n        m_neg = self.beta * ord_dist  # (B, B)\n        if neg_mask.any():\n            l_repulse = torch.clamp(m_neg[neg_mask] - dist_sq[neg_mask], min=0).mean()\n        else:\n            l_repulse = torch.tensor(0.0, device=z.device)\n\n        l_ce = self.ce(logits, labels)\n\n        total = l_attract + l_repulse + self.lambda_ce * l_ce\n\n        return total, {\n            \"l_attract\": l_attract.item(),\n            \"l_repulse\": l_repulse.item(),\n            \"l_ce\": l_ce.item(),\n            \"total\": total.item(),\n        }\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Training loop\n# ═══════════════════════════════════════════════════════════════════════════════\n\ndef train_one_epoch(model, loader, criterion, optimizer, scheduler, device):\n    model.train()\n    total_loss, total_correct, total_n = 0.0, 0, 0\n    loss_components = defaultdict(float)\n\n    for features, labels in loader:\n        features, labels = features.to(device), labels.to(device)\n\n        z, logits = model(features)\n        loss, comps = criterion(z, logits, labels)\n\n        optimizer.zero_grad()\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)\n        optimizer.step()\n        if scheduler is not None:\n            scheduler.step()\n\n        bs = labels.size(0)\n        total_loss += loss.item() * bs\n        total_correct += (logits.argmax(1) == labels).sum().item()\n        total_n += bs\n        for k, v in comps.items():\n            loss_components[k] += v * bs\n\n    return {\n        \"loss\": total_loss / total_n,\n        \"accuracy\": total_correct / total_n,\n        **{k: v / total_n for k, v in loss_components.items()},\n    }\n\n\n@torch.no_grad()\ndef evaluate(model, loader, criterion, device):\n    model.eval()\n    total_loss, total_correct, total_n = 0.0, 0, 0\n    all_preds, all_labels, all_probs, all_embeds = [], [], [], []\n\n    for features, labels in loader:\n        features, labels = features.to(device), labels.to(device)\n        z, logits = model(features)\n        loss, _ = criterion(z, logits, labels)\n\n        bs = labels.size(0)\n        total_loss += loss.item() * bs\n        total_correct += (logits.argmax(1) == labels).sum().item()\n        total_n += bs\n\n        all_preds.append(logits.argmax(1).cpu().numpy())\n        all_labels.append(labels.cpu().numpy())\n        all_probs.append(F.softmax(logits, dim=-1).cpu().numpy())\n        all_embeds.append(z.cpu().numpy())\n\n    return {\n        \"loss\": total_loss / total_n,\n        \"accuracy\": total_correct / total_n,\n        \"preds\": np.concatenate(all_preds),\n        \"labels\": np.concatenate(all_labels),\n        \"probs\": np.concatenate(all_probs),\n        \"embeds\": np.concatenate(all_embeds),\n    }\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Evaluation metrics\n# ═══════════════════════════════════════════════════════════════════════════════\n\ndef bootstrap_accuracy(labels, preds, n_boot=1000, ci=0.95, seed=42):\n    \"\"\"4-class accuracy with bootstrap confidence interval.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(labels)\n    accs = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        accs.append(accuracy_score(labels[idx], preds[idx]))\n    accs = np.sort(accs)\n    lo = accs[int((1 - ci) / 2 * n_boot)]\n    hi = accs[int((1 + ci) / 2 * n_boot)]\n    return accuracy_score(labels, preds), lo, hi\n\n\ndef pairwise_auc(labels, probs, d1, d2):\n    \"\"\"AUC for binary distinction between depth d1 vs d2.\"\"\"\n    mask = np.isin(labels, [d1, d2])\n    if mask.sum() < 2:\n        return None\n    yt = (labels[mask] == d2).astype(int)\n    if len(np.unique(yt)) < 2:\n        return None\n    yp = probs[mask, d2]\n    return float(roc_auc_score(yt, yp))\n\n\ndef full_report(labels, preds, probs):\n    \"\"\"Comprehensive evaluation metrics.\"\"\"\n    acc_4, lo, hi = bootstrap_accuracy(labels, preds)\n    report = {\n        \"accuracy_4class\": round(acc_4, 4),\n        \"accuracy_95ci\": [round(lo, 4), round(hi, 4)],\n    }\n\n    # 3-class accuracy (d1-d3 only)\n    mask_3 = labels > 0\n    if mask_3.any():\n        report[\"accuracy_3class\"] = round(accuracy_score(labels[mask_3], preds[mask_3]), 4)\n\n    # Per-class recall\n    cm = confusion_matrix(labels, preds, labels=[0, 1, 2, 3])\n    per_class_recall = {}\n    for d in range(4):\n        row_sum = cm[d].sum()\n        per_class_recall[f\"depth_{d}\"] = round(cm[d, d] / row_sum, 4) if row_sum > 0 else 0.0\n    report[\"per_class_recall\"] = per_class_recall\n\n    # Pairwise AUC (adjacent pairs + key non-adjacent)\n    auc_pairs = {}\n    for d1, d2 in [(0, 1), (1, 2), (2, 3), (0, 2), (0, 3), (1, 3)]:\n        a = pairwise_auc(labels, probs, d1, d2)\n        auc_pairs[f\"d{d1}v{d2}\"] = round(a, 4) if a is not None else None\n    report[\"pairwise_auc\"] = auc_pairs\n\n    # Confusion matrix (raw counts)\n    report[\"confusion_matrix\"] = cm.tolist()\n\n    return report\n\n\ndef plot_embeddings(embeds, labels, output_dir, prefix=\"final\"):\n    \"\"\"t-SNE and PCA visualization of contrastive embeddings.\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n        from sklearn.manifold import TSNE\n        from sklearn.decomposition import PCA\n    except ImportError:\n        logger.warning(\"matplotlib/sklearn not available, skipping embedding plots\")\n        return\n\n    depth_colors = {0: \"#1f77b4\", 1: \"#ff7f0e\", 2: \"#2ca02c\", 3: \"#d62728\"}\n    depth_labels = {0: \"depth-0\", 1: \"depth-1\", 2: \"depth-2\", 3: \"depth-3\"}\n\n    for method_name, reducer in [(\"tsne\", TSNE(n_components=2, random_state=42, perplexity=30)),\n                                  (\"pca\", PCA(n_components=2))]:\n        coords = reducer.fit_transform(embeds)\n        fig, ax = plt.subplots(figsize=(8, 6))\n        for d in range(4):\n            mask = labels == d\n            ax.scatter(coords[mask, 0], coords[mask, 1],\n                       c=depth_colors[d], label=depth_labels[d],\n                       alpha=0.5, s=10, edgecolors=\"none\")\n        ax.legend(fontsize=10)\n        ax.set_title(f\"DCOL Embeddings ({method_name.upper()})\")\n        ax.set_xlabel(f\"{method_name.upper()} dim 1\")\n        ax.set_ylabel(f\"{method_name.upper()} dim 2\")\n        save_path = os.path.join(output_dir, f\"{prefix}_embed_{method_name}.png\")\n        plt.tight_layout()\n        plt.savefig(save_path, dpi=150)\n        plt.close()\n        logger.info(f\"Saved {method_name.upper()} plot to {save_path}\")\n\n\ndef plot_confusion_matrix(labels, preds, output_dir, prefix=\"final\"):\n    \"\"\"Save confusion matrix heatmap.\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n    except ImportError:\n        return\n\n    cm = confusion_matrix(labels, preds, labels=[0, 1, 2, 3])\n    cm_pct = cm.astype(float) / cm.sum(axis=1, keepdims=True) * 100\n\n    fig, ax = plt.subplots(figsize=(7, 6))\n    im = ax.imshow(cm_pct, cmap=\"Blues\", vmin=0, vmax=100)\n    tick_labels = [f\"depth-{d}\" for d in range(4)]\n    ax.set_xticks(range(4))\n    ax.set_yticks(range(4))\n    ax.set_xticklabels(tick_labels)\n    ax.set_yticklabels(tick_labels)\n    ax.set_xlabel(\"Predicted\")\n    ax.set_ylabel(\"True\")\n    ax.set_title(\"DCOL Feature-based Confusion Matrix\")\n\n    for i in range(4):\n        for j in range(4):\n            color = \"white\" if cm_pct[i, j] > 50 else \"black\"\n            ax.text(j, i, f\"{cm[i, j]}\\n({cm_pct[i, j]:.1f}%)\",\n                    ha=\"center\", va=\"center\", color=color, fontsize=10)\n\n    plt.colorbar(im, ax=ax)\n    plt.tight_layout()\n    save_path = os.path.join(output_dir, f\"{prefix}_confusion_matrix.png\")\n    plt.savefig(save_path, dpi=150)\n    plt.close()\n    logger.info(f\"Saved confusion matrix to {save_path}\")\n\n\n# ═══════════════════════════════════════════════════════════════════════════════\n# Main\n# ═══════════════════════════════════════════════════════════════════════════════\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Feature-based DCOL training\")\n    p.add_argument(\"--data_dirs\", nargs=\"+\", required=True,\n                   help=\"Paths to feature files (JSONL or CSV)\")\n    p.add_argument(\"--epochs\", type=int, default=100)\n    p.add_argument(\"--batch_size\", type=int, default=256)\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--weight_decay\", type=float, default=1e-4)\n    p.add_argument(\"--alpha\", type=float, default=0.1,\n                   help=\"Positive pair margin scale (Eq.1)\")\n    p.add_argument(\"--beta\", type=float, default=1.0,\n                   help=\"Negative pair margin scale (Eq.1)\")\n    p.add_argument(\"--lambda_ce\", type=float, default=1.0,\n                   help=\"CE loss weight (Eq.1)\")\n    p.add_argument(\"--hidden_dim\", type=int, default=128)\n    p.add_argument(\"--proj_dim\", type=int, default=32)\n    p.add_argument(\"--dropout\", type=float, default=0.3)\n    p.add_argument(\"--patience\", type=int, default=10)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--output_dir\", type=str, default=\"checkpoints/dcol_feature/\")\n    p.add_argument(\"--test_size\", type=float, default=0.2)\n    return p.parse_args()\n\n\ndef main():\n    args = parse_args()\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    logger.info(f\"Device: {device}\")\n\n    # ── Load data ────────────────────────────────────────────────────────────\n    df = load_data(args.data_dirs)\n    X = df[FEATURE_NAMES].values.astype(np.float32)\n    y = df[\"depth\"].values.astype(np.int64)\n\n    # Train/test split (stratified)\n    X_train, X_test, y_train, y_test = train_test_split(\n        X, y, test_size=args.test_size, stratify=y, random_state=args.seed\n    )\n    logger.info(f\"Train: {len(X_train)}, Test: {len(X_test)}\")\n\n    # Feature standardization (fit on train only)\n    scaler = StandardScaler()\n    X_train = scaler.fit_transform(X_train)\n    X_test = scaler.transform(X_test)\n\n    # ── Datasets & loaders ───────────────────────────────────────────────────\n    train_ds = FeatureDataset(X_train, y_train)\n    test_ds = FeatureDataset(X_test, y_test)\n\n    train_sampler = BalancedDepthSampler(train_ds, args.batch_size)\n    train_loader = DataLoader(train_ds, batch_sampler=train_sampler, num_workers=2, pin_memory=True)\n    test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=2, pin_memory=True)\n\n    # ── Model ────────────────────────────────────────────────────────────────\n    model = DCOLFeatureModel(\n        input_dim=NUM_FEATURES,\n        hidden_dim=args.hidden_dim,\n        embed_dim=64,\n        proj_dim=args.proj_dim,\n        num_classes=4,\n        dropout=args.dropout,\n    ).to(device)\n\n    n_params = sum(p.numel() for p in model.parameters())\n    logger.info(f\"Model parameters: {n_params:,}\")\n\n    # ── Loss, optimizer, scheduler ───────────────────────────────────────────\n    criterion = DCOLLoss(alpha=args.alpha, beta=args.beta, lambda_ce=args.lambda_ce)\n    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)\n    total_steps = len(train_loader) * args.epochs\n    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=total_steps)\n\n    # ── Training ─────────────────────────────────────────────────────────────\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    best_val_loss = float(\"inf\")\n    best_val_acc = 0.0\n    patience_cnt = 0\n\n    for epoch in range(1, args.epochs + 1):\n        t0 = time.time()\n        train_m = train_one_epoch(model, train_loader, criterion, optimizer, scheduler, device)\n        val_m = evaluate(model, test_loader, criterion, device)\n        elapsed = time.time() - t0\n\n        logger.info(\n            f\"Epoch {epoch:3d}/{args.epochs} | \"\n            f\"Train loss={train_m['loss']:.4f} acc={train_m['accuracy']:.4f} \"\n            f\"[attr={train_m.get('l_attract', 0):.4f} rep={train_m.get('l_repulse', 0):.4f} \"\n            f\"ce={train_m.get('l_ce', 0):.4f}] | \"\n            f\"Val loss={val_m['loss']:.4f} acc={val_m['accuracy']:.4f} | {elapsed:.1f}s\"\n        )\n\n        # Early stopping on val loss\n        if val_m[\"loss\"] < best_val_loss:\n            best_val_loss = val_m[\"loss\"]\n            best_val_acc = val_m[\"accuracy\"]\n            patience_cnt = 0\n            ckpt_path = os.path.join(args.output_dir, \"best_model.pt\")\n            torch.save({\n                \"epoch\": epoch,\n                \"model_state_dict\": model.state_dict(),\n                \"scaler_mean\": scaler.mean_.tolist(),\n                \"scaler_scale\": scaler.scale_.tolist(),\n                \"val_loss\": best_val_loss,\n                \"val_accuracy\": best_val_acc,\n                \"args\": vars(args),\n                \"feature_names\": FEATURE_NAMES,\n            }, ckpt_path)\n            logger.info(f\"  *** Best model saved (val_loss={best_val_loss:.4f}, val_acc={best_val_acc:.4f})\")\n        else:\n            patience_cnt += 1\n            if patience_cnt >= args.patience:\n                logger.info(f\"Early stopping at epoch {epoch} (patience={args.patience})\")\n                break\n\n    # ── Final evaluation ─────────────────────────────────────────────────────\n    logger.info(f\"\\n{'='*60}\\nFinal evaluation on test set\")\n\n    ckpt_path = os.path.join(args.output_dir, \"best_model.pt\")\n    if os.path.exists(ckpt_path):\n        ckpt = torch.load(ckpt_path, map_location=device, weights_only=True)\n        model.load_state_dict(ckpt[\"model_state_dict\"])\n        logger.info(f\"Loaded best checkpoint from epoch {ckpt['epoch']}\")\n\n    final = evaluate(model, test_loader, criterion, device)\n    report = full_report(final[\"labels\"], final[\"preds\"], final[\"probs\"])\n\n    logger.info(f\"4-class accuracy: {report['accuracy_4class']:.4f} \"\n                f\"95% CI: [{report['accuracy_95ci'][0]:.4f}, {report['accuracy_95ci'][1]:.4f}]\")\n    if \"accuracy_3class\" in report:\n        logger.info(f\"3-class accuracy (d1-d3): {report['accuracy_3class']:.4f}\")\n    logger.info(f\"Per-class recall: {report['per_class_recall']}\")\n    logger.info(f\"Pairwise AUC: {report['pairwise_auc']}\")\n\n    cr = classification_report(\n        final[\"labels\"], final[\"preds\"],\n        target_names=[f\"depth-{d}\" for d in range(4)],\n        zero_division=0,\n    )\n    logger.info(f\"\\n{cr}\")\n\n    # RF baseline comparison\n    rf_acc = 0.7815\n    delta = report[\"accuracy_4class\"] - rf_acc\n    logger.info(f\"DCOL={report['accuracy_4class']*100:.1f}% vs RF={rf_acc*100:.1f}% (delta={delta*100:+.1f}pp)\")\n\n    # Plots\n    plot_embeddings(final[\"embeds\"], final[\"labels\"], args.output_dir)\n    plot_confusion_matrix(final[\"labels\"], final[\"preds\"], args.output_dir)\n\n    # Save results\n    report[\"rf_baseline\"] = rf_acc\n    report[\"improvement_over_rf\"] = round(delta, 4)\n    report[\"best_epoch\"] = ckpt.get(\"epoch\", -1) if os.path.exists(ckpt_path) else -1\n    results_path = os.path.join(args.output_dir, \"results.json\")\n    with open(results_path, \"w\") as f:\n        json.dump(report, f, indent=2)\n    logger.info(f\"Results saved to {results_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T16:23:43.999682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dcol_train.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T16:23:43.999838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "mkdir -p /root/autodl-tmp/recursive_gen_depth_est/src"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T16:23:43.999992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T16:23:44.000111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dcol_train.py"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T16:23:44.000413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tFeature-based DCOL (Depth Contrastive Ordinal Learning) training framework.\n3\t\n4\tInput:  JSONL/CSV files with 19-dim statistical features + depth label (0-3)\n5\tOutput: Trained MLP checkpoint, evaluation metrics, embedding visualizations\n6\t\n7\tArchitecture:\n8\t  Encoder:     MLP  19 -> hidden_dim(128) -> 64,  ReLU + BatchNorm + Dropout\n9\t  Proj head:   64 -> proj_dim(32),  L2-normalized (contrastive space)\n10\t  Class head:  64 -> 4  (depth classification)\n11\t\n12\tLoss (Eq.1 — Dream D002 hard constraint):\n13\t  L_DCOL = L_attractive + L_repulsive + lambda * L_CE\n14\t\n15\tDependencies: torch, sklearn, numpy, pandas, matplotlib\n16\t\"\"\"\n17\t\n18\timport argparse\n19\timport json\n20\timport logging\n21\timport os\n22\timport sys\n23\timport time\n24\tfrom collections import defaultdict\n25\tfrom pathlib import Path\n26\t\n27\timport numpy as np\n28\timport pandas as pd\n29\timport torch\n30\timport torch.nn as nn\n31\timport torch.nn.functional as F\n32\tfrom torch.utils.data import Dataset, DataLoader, Sampler\n33\tfrom sklearn.model_selection import train_test_split\n34\tfrom sklearn.metrics import (\n35\t    accuracy_score, confusion_matrix, classification_report, roc_auc_score,\n36\t)\n37\tfrom sklearn.preprocessing import StandardScaler\n38\t\n39\tlogger = logging.getLogger(__name__)\n40\t\n41\t# ── Feature schema (matches features_all.jsonl from MVP extraction) ──────────\n42\tFEATURE_NAMES = [\n43\t    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n44\t    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n45\t    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n46\t    \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n47\t    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n48\t]\n49\tNUM_FEATURES = len(FEATURE_NAMES)  # 19\n50\t\n51\t\n52\t# ═══════════════════════════════════════════════════════════════════════════════\n53\t# Data loading\n54\t# ═══════════════════════════════════════════════════════════════════════════════\n55\t\n56\tdef load_features_file(path: str) -> pd.DataFrame:\n57\t    \"\"\"Load\n…[truncated 26251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T16:23:44.000657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/src/dcol_train.py << 'PYEOF'\n\"\"\"\nFeature-based DCOL (Depth Contrastive Ordinal Learning) training framework.\n\nInput:  JSONL/CSV files with 19-dim statistical features + depth label (0-3)\nOutput: Trained MLP checkpoint, evaluation metrics, embedding visualizations\n\nArchitecture:\n  Encoder:     MLP  19 -> hidden_dim(128) -> 64,  ReLU + BatchNorm + Dropout\n  Proj head:   64 -> proj_dim(32),  L2-normalized (contrastive space)\n  Class head:  64 -> 4  (depth classification)\n\nLoss (Eq.1 — Dream D002 hard constraint):\n  L_DCOL = L_attractive + L_repulsive + lambda * L_CE\n\nDependencies: torch, sklearn, numpy, pandas, matplotlib\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom torch.utils.data import Dataset, DataLoader, Sampler\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import (\n    accuracy_score, confusion_matrix, classification_report, roc_auc_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nlogger = logging.getLogger(__name__)\n\n# -- Feature schema (matches features_all.jsonl from MVP extraction) ----------\nFEATURE_NAMES = [\n    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n    \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n]\nNUM_FEATURES = len(FEATURE_NAMES)  # 19\n\n\n# =============================================================================\n# Data loading\n# =============================================================================\n\ndef load_features_file(path: str) -> pd.DataFrame:\n    \"\"\"Load a single features file (JSONL or CSV). Returns DataFrame with feature columns + 'depth'.\"\"\"\n    path = str(path)\n    if path.endswith(\".csv\"):\n        df = pd.read_csv(path)\n    else:\n        records = []\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if line:\n                    records.append(json.loads(line))\n        df = pd.DataFrame(records)\n\n    required = set(FEATURE_NAMES) | {\"depth\"}\n    missing = required - set(df.columns)\n    if missing:\n        raise ValueError(f\"Missing columns in {path}: {missing}\")\n    return df[FEATURE_NAMES + [\"depth\"]]\n\n\ndef load_data(data_dirs):\n    \"\"\"Load and concatenate feature files from multiple paths.\"\"\"\n    frames = []\n    for p in data_dirs:\n        df = load_features_file(p)\n        logger.info(f\"  Loaded {len(df)} samples from {p}\")\n        frames.append(df)\n    combined = pd.concat(frames, ignore_index=True)\n    logger.info(f\"Total: {len(combined)} samples, depth distribution: \"\n                f\"{dict(combined['depth'].value_counts().sort_index())}\")\n    return combined\n\n\n# =============================================================================\n# Dataset & Sampler\n# =============================================================================\n\nclass FeatureDataset(Dataset):\n    def __init__(self, features, labels):\n        self.features = torch.tensor(features, dtype=torch.float32)\n        self.labels = torch.tensor(labels, dtype=torch.long)\n        self.depth_to_indices = defaultdict(list)\n        for i, y in enumerate(labels):\n            self.depth_to_indices[int(y)].append(i)\n\n    def __len__(self):\n        return len(self.labels)\n\n    def __getitem__(self, idx):\n        return self.features[idx], self.labels[idx]\n\n\nclass BalancedDepthSampler(Sampler):\n    \"\"\"Each batch has equal samples per depth for valid contrastive pairs.\"\"\"\n\n    def __init__(self, dataset, batch_size):\n        self.dataset = dataset\n        self.num_depths = len(dataset.depth_to_indices)\n        self.per_depth = max(1, batch_size // self.num_depths)\n        self.batch_size = self.per_depth * self.num_depths\n\n    def __iter__(self):\n        depth_indices = {\n            d: np.random.permutation(idx).tolist()\n            for d, idx in self.dataset.depth_to_indices.items()\n        }\n        n_batches = min(len(v) // self.per_depth for v in depth_indices.values())\n        for b in range(n_batches):\n            batch = []\n            for d in sorted(depth_indices):\n                batch.extend(depth_indices[d][b * self.per_depth:(b + 1) * self.per_depth])\n            yield batch\n\n    def __len__(self):\n        return min(len(v) // self.per_depth for v in self.dataset.depth_to_indices.values())\n\n\n# =============================================================================\n# Model\n# =============================================================================\n\nclass DCOLFeatureModel(nn.Module):\n    \"\"\"\n    Feature-based DCOL model.\n\n    Forward pass:\n      x (B, 19) -> encoder -> h (B, 64) -> proj_head -> z (B, proj_dim)  [contrastive]\n                                          -> cls_head  -> logits (B, 4)   [classification]\n\n    Training uses both z (contrastive loss) and logits (CE loss).\n    Inference uses only logits.\n    \"\"\"\n\n    def __init__(self, input_dim=19, hidden_dim=128, embed_dim=64, proj_dim=32, num_classes=4, dropout=0.3):\n        super().__init__()\n        self.encoder = nn.Sequential(\n            nn.Linear(input_dim, hidden_dim),\n            nn.BatchNorm1d(hidden_dim),\n            nn.ReLU(),\n            nn.Dropout(dropout),\n            nn.Linear(hidden_dim, embed_dim),\n            nn.BatchNorm1d(embed_dim),\n            nn.ReLU(),\n            nn.Dropout(dropout),\n        )\n        self.proj_head = nn.Sequential(\n            nn.Linear(embed_dim, proj_dim),\n        )\n        self.cls_head = nn.Linear(embed_dim, num_classes)\n\n    def forward(self, x):\n        h = self.encoder(x)\n        z = F.normalize(self.proj_head(h), p=2, dim=-1)\n        logits = self.cls_head(h)\n        return z, logits\n\n    def predict(self, x):\n        h = self.encoder(x)\n        return self.cls_head(h)\n\n\n# =============================================================================\n# Loss: Multi-margin N-pair Contrastive Ordinal Loss (Eq.1)\n# =============================================================================\n\nclass DCOLLoss(nn.Module):\n    \"\"\"\n    Multi-margin N-pair contrastive ordinal loss with cross-entropy.\n\n    Eq.1  L_DCOL = L_attractive + L_repulsive + lambda * L_CE\n\n    Let f(x) = projection head output (L2-normalized),\n        y_i   = depth label of sample i,\n        d_ij  = |y_i - y_j| (ordinal distance between depths).\n\n    Positive pairs P = {(i,j) : y_i = y_j}\n    Negative pairs N = {(i,j) : y_i != y_j}\n\n    Margin functions (linear in ordinal distance):\n      m_pos(d) = alpha * d    (for same-depth pairs, d=0 -> margin=0)\n      m_neg(d) = beta  * d    (depth gap up -> required separation up)\n\n    L_attractive = (1/|P|) * sum_{(i,j) in P} max(0, ||f(x_i)-f(x_j)||^2 - m_pos(d_ij))\n                 = (1/|P|) * sum_{(i,j) in P} max(0, ||f(x_i)-f(x_j)||^2)\n                 [since d=0 for positive pairs, m_pos(0)=0]\n\n    L_repulsive  = (1/|N|) * sum_{(i,j) in N} max(0, m_neg(d_ij) - ||f(x_i)-f(x_j)||^2)\n                 = (1/|N|) * sum_{(i,j) in N} max(0, beta*d_ij - ||f(x_i)-f(x_j)||^2)\n                 [push apart: penalty if distance < required margin]\n\n    L_CE = standard cross-entropy on classification logits\n\n    Key insight: ordinal structure is encoded through beta*d -- pairs with\n    larger depth difference must be pushed further apart. This makes the\n    embedding space preserve ordinal topology, not just class boundaries.\n\n    Args:\n        alpha: positive pair margin scale (default 0.1, but m_pos(0)=0 always)\n        beta:  negative pair margin scale (default 1.0)\n        lambda_ce: weight for CE loss component\n    \"\"\"\n\n    def __init__(self, alpha=0.1, beta=1.0, lambda_ce=1.0):\n        super().__init__()\n        self.alpha = alpha\n        self.beta = beta\n        self.lambda_ce = lambda_ce\n        self.ce = nn.CrossEntropyLoss()\n\n    def forward(self, z, logits, labels):\n        \"\"\"\n        Args:\n            z:      (B, proj_dim) L2-normalized projection embeddings\n            logits: (B, 4)        classification logits\n            labels: (B,)          depth labels in {0,1,2,3}\n        Returns:\n            total_loss, dict with component losses\n        \"\"\"\n        B = z.size(0)\n\n        # Pairwise squared Euclidean distances: ||f(x_i) - f(x_j)||^2\n        # For L2-normalized vectors: ||a-b||^2 = 2 - 2*a*b\n        dist_sq = 2.0 - 2.0 * torch.mm(z, z.t())  # (B, B)\n\n        # Ordinal distance matrix: d_ij = |y_i - y_j|\n        labels_float = labels.float()\n        ord_dist = torch.abs(labels_float.unsqueeze(1) - labels_float.unsqueeze(0))  # (B, B)\n\n        # Masks (exclude self-pairs via diagonal mask)\n        diag_mask = ~torch.eye(B, dtype=torch.bool, device=z.device)\n        pos_mask = (ord_dist == 0) & diag_mask   # same depth, different sample\n        neg_mask = (ord_dist > 0) & diag_mask     # different depth\n\n        # L_attractive: same-depth pairs should be close\n        # m_pos(d=0) = alpha * 0 = 0, so: max(0, ||f_i - f_j||^2 - 0) = ||f_i - f_j||^2\n        m_pos = self.alpha * ord_dist  # (B, B), all zeros for pos_mask entries\n        if pos_mask.any():\n            l_attract = torch.clamp(dist_sq[pos_mask] - m_pos[pos_mask], min=0).mean()\n        else:\n            l_attract = torch.tensor(0.0, device=z.device)\n\n        # L_repulsive: different-depth pairs should be separated by at least beta*d_ij\n        m_neg = self.beta * ord_dist  # (B, B)\n        if neg_mask.any():\n            l_repulse = torch.clamp(m_neg[neg_mask] - dist_sq[neg_mask], min=0).mean()\n        else:\n            l_repulse = torch.tensor(0.0, device=z.device)\n\n        l_ce = self.ce(logits, labels)\n\n        total = l_attract + l_repulse + self.lambda_ce * l_ce\n\n        return total, {\n            \"l_attract\": l_attract.item(),\n            \"l_repulse\": l_repulse.item(),\n            \"l_ce\": l_ce.item(),\n            \"total\": total.item(),\n        }\n\n\n# =============================================================================\n# Training loop\n# =============================================================================\n\ndef train_one_epoch(model, loader, criterion, optimizer, scheduler, device):\n    model.train()\n    total_loss, total_correct, total_n = 0.0, 0, 0\n    loss_components = defaultdict(float)\n\n    for features, labels in loader:\n        features, labels = features.to(device), labels.to(device)\n\n        z, logits = model(features)\n        loss, comps = criterion(z, logits, labels)\n\n        optimizer.zero_grad()\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)\n        optimizer.step()\n        if scheduler is not None:\n            scheduler.step()\n\n        bs = labels.size(0)\n        total_loss += loss.item() * bs\n        total_correct += (logits.argmax(1) == labels).sum().item()\n        total_n += bs\n        for k, v in comps.items():\n            loss_components[k] += v * bs\n\n    return {\n        \"loss\": total_loss / total_n,\n        \"accuracy\": total_correct / total_n,\n        **{k: v / total_n for k, v in loss_components.items()},\n    }\n\n\n@torch.no_grad()\ndef evaluate(model, loader, criterion, device):\n    model.eval()\n    total_loss, total_correct, total_n = 0.0, 0, 0\n    all_preds, all_labels, all_probs, all_embeds = [], [], [], []\n\n    for features, labels in loader:\n        features, labels = features.to(device), labels.to(device)\n        z, logits = model(features)\n        loss, _ = criterion(z, logits, labels)\n\n        bs = labels.size(0)\n        total_loss += loss.item() * bs\n        total_correct += (logits.argmax(1) == labels).sum().item()\n        total_n += bs\n\n        all_preds.append(logits.argmax(1).cpu().numpy())\n        all_labels.append(labels.cpu().numpy())\n        all_probs.append(F.softmax(logits, dim=-1).cpu().numpy())\n        all_embeds.append(z.cpu().numpy())\n\n    return {\n        \"loss\": total_loss / total_n,\n        \"accuracy\": total_correct / total_n,\n        \"preds\": np.concatenate(all_preds),\n        \"labels\": np.concatenate(all_labels),\n        \"probs\": np.concatenate(all_probs),\n        \"embeds\": np.concatenate(all_embeds),\n    }\n\n\n# =============================================================================\n# Evaluation metrics\n# =============================================================================\n\ndef bootstrap_accuracy(labels, preds, n_boot=1000, ci=0.95, seed=42):\n    \"\"\"4-class accuracy with bootstrap confidence interval.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(labels)\n    accs = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        accs.append(accuracy_score(labels[idx], preds[idx]))\n    accs = np.sort(accs)\n    lo = accs[int((1 - ci) / 2 * n_boot)]\n    hi = accs[int((1 + ci) / 2 * n_boot)]\n    return accuracy_score(labels, preds), lo, hi\n\n\ndef pairwise_auc(labels, probs, d1, d2):\n    \"\"\"AUC for binary distinction between depth d1 vs d2.\"\"\"\n    mask = np.isin(labels, [d1, d2])\n    if mask.sum() < 2:\n        return None\n    yt = (labels[mask] == d2).astype(int)\n    if len(np.unique(yt)) < 2:\n        return None\n    yp = probs[mask, d2]\n    return float(roc_auc_score(yt, yp))\n\n\ndef full_report(labels, preds, probs):\n    \"\"\"Comprehensive evaluation metrics.\"\"\"\n    acc_4, lo, hi = bootstrap_accuracy(labels, preds)\n    report = {\n        \"accuracy_4class\": round(acc_4, 4),\n        \"accuracy_95ci\": [round(lo, 4), round(hi, 4)],\n    }\n\n    # 3-class accuracy (d1-d3 only)\n    mask_3 = labels > 0\n    if mask_3.any():\n        report[\"accuracy_3class\"] = round(accuracy_score(labels[mask_3], preds[mask_3]), 4)\n\n    # Per-class recall\n    cm = confusion_matrix(labels, preds, labels=[0, 1, 2, 3])\n    per_class_recall = {}\n    for d in range(4):\n        row_sum = cm[d].sum()\n        per_class_recall[f\"depth_{d}\"] = round(cm[d, d] / row_sum, 4) if row_sum > 0 else 0.0\n    report[\"per_class_recall\"] = per_class_recall\n\n    # Pairwise AUC (adjacent pairs + key non-adjacent)\n    auc_pairs = {}\n    for d1, d2 in [(0, 1), (1, 2), (2, 3), (0, 2), (0, 3), (1, 3)]:\n        a = pairwise_auc(labels, probs, d1, d2)\n        auc_pairs[f\"d{d1}v{d2}\"] = round(a, 4) if a is not None else None\n    report[\"pairwise_auc\"] = auc_pairs\n\n    # Confusion matrix (raw counts)\n    report[\"confusion_matrix\"] = cm.tolist()\n\n    return report\n\n\ndef plot_embeddings(embeds, labels, output_dir, prefix=\"final\"):\n    \"\"\"t-SNE and PCA visualization of contrastive embeddings.\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n        from sklearn.manifold import TSNE\n        from sklearn.decomposition import PCA\n    except ImportError:\n        logger.warning(\"matplotlib/sklearn not available, skipping embedding plots\")\n        return\n\n    depth_colors = {0: \"#1f77b4\", 1: \"#ff7f0e\", 2: \"#2ca02c\", 3: \"#d62728\"}\n    depth_labels_map = {0: \"depth-0\", 1: \"depth-1\", 2: \"depth-2\", 3: \"depth-3\"}\n\n    for method_name, reducer in [(\"tsne\", TSNE(n_components=2, random_state=42, perplexity=30)),\n                                  (\"pca\", PCA(n_components=2))]:\n        coords = reducer.fit_transform(embeds)\n        fig, ax = plt.subplots(figsize=(8, 6))\n        for d in range(4):\n            mask = labels == d\n            ax.scatter(coords[mask, 0], coords[mask, 1],\n                       c=depth_colors[d], label=depth_labels_map[d],\n                       alpha=0.5, s=10, edgecolors=\"none\")\n        ax.legend(fontsize=10)\n        ax.set_title(f\"DCOL Embeddings ({method_name.upper()})\")\n        ax.set_xlabel(f\"{method_name.upper()} dim 1\")\n        ax.set_ylabel(f\"{method_name.upper()} dim 2\")\n        save_path = os.path.join(output_dir, f\"{prefix}_embed_{method_name}.png\")\n        plt.tight_layout()\n        plt.savefig(save_path, dpi=150)\n        plt.close()\n        logger.info(f\"Saved {method_name.upper()} plot to {save_path}\")\n\n\ndef plot_confusion_matrix(labels, preds, output_dir, prefix=\"final\"):\n    \"\"\"Save confusion matrix heatmap.\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n    except ImportError:\n        return\n\n    cm = confusion_matrix(labels, preds, labels=[0, 1, 2, 3])\n    cm_pct = cm.astype(float) / cm.sum(axis=1, keepdims=True) * 100\n\n    fig, ax = plt.subplots(figsize=(7, 6))\n    im = ax.imshow(cm_pct, cmap=\"Blues\", vmin=0, vmax=100)\n    tick_labels = [f\"depth-{d}\" for d in range(4)]\n    ax.set_xticks(range(4))\n    ax.set_yticks(range(4))\n    ax.set_xticklabels(tick_labels)\n    ax.set_yticklabels(tick_labels)\n    ax.set_xlabel(\"Predicted\")\n    ax.set_ylabel(\"True\")\n    ax.set_title(\"DCOL Feature-based Confusion Matrix\")\n\n    for i in range(4):\n        for j in range(4):\n            color = \"white\" if cm_pct[i, j] > 50 else \"black\"\n            ax.text(j, i, f\"{cm[i, j]}\\n({cm_pct[i, j]:.1f}%)\",\n                    ha=\"center\", va=\"center\", color=color, fontsize=10)\n\n    plt.colorbar(im, ax=ax)\n    plt.tight_layout()\n    save_path = os.path.join(output_dir, f\"{prefix}_confusion_matrix.png\")\n    plt.savefig(save_path, dpi=150)\n    plt.close()\n    logger.info(f\"Saved confusion matrix to {save_path}\")\n\n\n# =============================================================================\n# Main\n# =============================================================================\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Feature-based DCOL training\")\n    p.add_argument(\"--data_dirs\", nargs=\"+\", required=True,\n                   help=\"Paths to feature files (JSONL or CSV)\")\n    p.add_argument(\"--epochs\", type=int, default=100)\n    p.add_argument(\"--batch_size\", type=int, default=256)\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--weight_decay\", type=float, default=1e-4)\n    p.add_argument(\"--alpha\", type=float, default=0.1,\n                   help=\"Positive pair margin scale (Eq.1)\")\n    p.add_argument(\"--beta\", type=float, default=1.0,\n                   help=\"Negative pair margin scale (Eq.1)\")\n    p.add_argument(\"--lambda_ce\", type=float, default=1.0,\n                   help=\"CE loss weight (Eq.1)\")\n    p.add_argument(\"--hidden_dim\", type=int, default=128)\n    p.add_argument(\"--proj_dim\", type=int, default=32)\n    p.add_argument(\"--dropout\", type=float, default=0.3)\n    p.add_argument(\"--patience\", type=int, default=10)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--output_dir\", type=str, default=\"checkpoints/dcol_feature/\")\n    p.add_argument(\"--test_size\", type=float, default=0.2)\n    return p.parse_args()\n\n\ndef main():\n    args = parse_args()\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    logger.info(f\"Device: {device}\")\n\n    # -- Load data ------------------------------------------------------------\n    df = load_data(args.data_dirs)\n    X = df[FEATURE_NAMES].values.astype(np.float32)\n    y = df[\"depth\"].values.astype(np.int64)\n\n    # Train/test split (stratified)\n    X_train, X_test, y_train, y_test = train_test_split(\n        X, y, test_size=args.test_size, stratify=y, random_state=args.seed\n    )\n    logger.info(f\"Train: {len(X_train)}, Test: {len(X_test)}\")\n\n    # Feature standardization (fit on train only)\n    scaler = StandardScaler()\n    X_train = scaler.fit_transform(X_train)\n    X_test = scaler.transform(X_test)\n\n    # -- Datasets & loaders ---------------------------------------------------\n    train_ds = FeatureDataset(X_train, y_train)\n    test_ds = FeatureDataset(X_test, y_test)\n\n    train_sampler = BalancedDepthSampler(train_ds, args.batch_size)\n    train_loader = DataLoader(train_ds, batch_sampler=train_sampler, num_workers=2, pin_memory=True)\n    test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=2, pin_memory=True)\n\n    # -- Model ----------------------------------------------------------------\n    model = DCOLFeatureModel(\n        input_dim=NUM_FEATURES,\n        hidden_dim=args.hidden_dim,\n        embed_dim=64,\n        proj_dim=args.proj_dim,\n        num_classes=4,\n        dropout=args.dropout,\n    ).to(device)\n\n    n_params = sum(p.numel() for p in model.parameters())\n    logger.info(f\"Model parameters: {n_params:,}\")\n\n    # -- Loss, optimizer, scheduler -------------------------------------------\n    criterion = DCOLLoss(alpha=args.alpha, beta=args.beta, lambda_ce=args.lambda_ce)\n    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)\n    total_steps = len(train_loader) * args.epochs\n    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=total_steps)\n\n    # -- Training -------------------------------------------------------------\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    best_val_loss = float(\"inf\")\n    best_val_acc = 0.0\n    patience_cnt = 0\n\n    for epoch in range(1, args.epochs + 1):\n        t0 = time.time()\n        train_m = train_one_epoch(model, train_loader, criterion, optimizer, scheduler, device)\n        val_m = evaluate(model, test_loader, criterion, device)\n        elapsed = time.time() - t0\n\n        logger.info(\n            f\"Epoch {epoch:3d}/{args.epochs} | \"\n            f\"Train loss={train_m['loss']:.4f} acc={train_m['accuracy']:.4f} \"\n            f\"[attr={train_m.get('l_attract', 0):.4f} rep={train_m.get('l_repulse', 0):.4f} \"\n            f\"ce={train_m.get('l_ce', 0):.4f}] | \"\n            f\"Val loss={val_m['loss']:.4f} acc={val_m['accuracy']:.4f} | {elapsed:.1f}s\"\n        )\n\n        # Early stopping on val loss\n        if val_m[\"loss\"] < best_val_loss:\n            best_val_loss = val_m[\"loss\"]\n            best_val_acc = val_m[\"accuracy\"]\n            patience_cnt = 0\n            ckpt_path = os.path.join(args.output_dir, \"best_model.pt\")\n            torch.save({\n                \"epoch\": epoch,\n                \"model_state_dict\": model.state_dict(),\n                \"scaler_mean\": scaler.mean_.tolist(),\n                \"scaler_scale\": scaler.scale_.tolist(),\n                \"val_loss\": best_val_loss,\n                \"val_accuracy\": best_val_acc,\n                \"args\": vars(args),\n                \"feature_names\": FEATURE_NAMES,\n            }, ckpt_path)\n            logger.info(f\"  *** Best model saved (val_loss={best_val_loss:.4f}, val_acc={best_val_acc:.4f})\")\n        else:\n            patience_cnt += 1\n            if patience_cnt >= args.patience:\n                logger.info(f\"Early stopping at epoch {epoch} (patience={args.patience})\")\n                break\n\n    # -- Final evaluation -----------------------------------------------------\n    logger.info(f\"\\n{'='*60}\\nFinal evaluation on test set\")\n\n    ckpt_path = os.path.join(args.output_dir, \"best_model.pt\")\n    if os.path.exists(ckpt_path):\n        ckpt = torch.load(ckpt_path, map_location=device, weights_only=True)\n        model.load_state_dict(ckpt[\"model_state_dict\"])\n        logger.info(f\"Loaded best checkpoint from epoch {ckpt['epoch']}\")\n\n    final = evaluate(model, test_loader, criterion, device)\n    report = full_report(final[\"labels\"], final[\"preds\"], final[\"probs\"])\n\n    logger.info(f\"4-class accuracy: {report['accuracy_4class']:.4f} \"\n                f\"95% CI: [{report['accuracy_95ci'][0]:.4f}, {report['accuracy_95ci'][1]:.4f}]\")\n    if \"accuracy_3class\" in report:\n        logger.info(f\"3-class accuracy (d1-d3): {report['accuracy_3class']:.4f}\")\n    logger.info(f\"Per-class recall: {report['per_class_recall']}\")\n    logger.info(f\"Pairwise AUC: {report['pairwise_auc']}\")\n\n    cr = classification_report(\n        final[\"labels\"], final[\"preds\"],\n        target_names=[f\"depth-{d}\" for d in range(4)],\n        zero_division=0,\n    )\n    logger.info(f\"\\n{cr}\")\n\n    # RF baseline comparison\n    rf_acc = 0.7815\n    delta = report[\"accuracy_4class\"] - rf_acc\n    logger.info(f\"DCOL={report['accuracy_4class']*100:.1f}% vs RF={rf_acc*100:.1f}% (delta={delta*100:+.1f}pp)\")\n\n    # Plots\n    plot_embeddings(final[\"embeds\"], final[\"labels\"], args.output_dir)\n    plot_confusion_matrix(final[\"labels\"], final[\"preds\"], args.output_dir)\n\n    # Save results\n    report[\"rf_baseline\"] = rf_acc\n    report[\"improvement_over_rf\"] = round(delta, 4)\n    report[\"best_epoch\"] = ckpt.get(\"epoch\", -1) if os.path.exists(ckpt_path) else -1\n    results_path = os.path.join(args.output_dir, \"results.json\")\n    with open(results_path, \"w\") as f:\n        json.dump(report, f, indent=2)\n    logger.info(f\"Results saved to {results_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T16:23:44.001069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T16:23:44.001222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_train.py --data_dirs data/features_all.jsonl --epochs 2 --batch_size 64 --output_dir /tmp/dcol_dryrun/ 2>&1"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T16:23:44.001359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_train.py --data_dirs data/features_all.jsonl --epochs 2 --batch_size 64 --output_dir /tmp/dcol_dryrun/ 2>&1'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T16:23:44.001523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 src/dcol_train.py --data_dirs data/features_all.jsonl --epochs 2 --batch_size 64 --output_dir /tmp/dcol_dryrun/ 2>&1"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T16:23:44.001832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && python3 src/dcol_train.py --data_dirs data/features_all.jsonl --epochs 2 --batch_size 64 --output_dir /tmp/dcol_dryrun/ 2>&1'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T16:23:44.002044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "ls /root/miniconda3/bin/python3"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T16:23:44.002171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "find /root -maxdepth 3 -name \"python3\" -type f"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T16:23:44.002292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T16:23:44.002408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T16:23:44.002536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-rtx6000",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_train.py --data_dirs data/features_all.jsonl --epochs 2 --batch_size 64 --output_dir /tmp/dcol_dryrun/ 2>&1"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T16:23:44.002676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 00:23:17,789 [INFO] Device: cuda\\\\n2026-05-15 00:23:18,019 [INFO]   Loaded 20000 samples from data/features_all.jsonl\\\\n2026-05-15 00:23:18,020 [INFO] Total: 20000 samples, depth distribution: {0: np.int64(5000), 1: np.int64(5000), 2: np.int64(5000), 3: np.int64(5000)}\\\\n2026-05-15 00:23:18,026 [INFO] Train: 16000, Test: 4000\\\\n2026-05-15 00:23:18,269 [INFO] Model parameters: 13,540\\\\n2026-05-15 00:23:23,323 [INFO] Epoch   1/2 | Train loss=1.5340 acc=0.6589 [attr=0.2663 rep=0.5086 ce=0.7591] | Val loss=1.2311 acc=0.7195 | 4.4s\\\\n2026-05-15 00:23:23,326 [INFO]   *** Best model saved (val_loss=1.2311, val_acc=0.7195)\\\\n2026-05-15 00:23:27,031 [INFO] Epoch   2/2 | Train loss=1.2514 acc=0.7201 [attr=0.2377 rep=0.3986 ce=0.6151] | Val loss=1.1688 acc=0.7395 | 3.7s\\\\n2026-05-15 00:23:27,038 [INFO]   *** Best model saved (val_loss=1.1688, val_acc=0.7395)\\\\n2026-05-15 00:23:27,038 [INFO] \\\\n============================================================\\\\nFinal evaluation on test set\\\\n2026-05-15 00:23:27,052 [INFO] Loaded best checkpoint from epoch 2\\\\n2026-05-15 00:23:28,006 [INFO] 4-class accuracy: 0.7395 95% CI: [0.7258, 0.7535]\\\\n2026-05-15 00:23:28,006 [INFO] 3-class accuracy (d1-d3): 0.6547\\\\n2026-05-15 00:23:28,006 [INFO] Per-class recall: {'depth_0': np.float64(0.994), 'depth_1': np.float64(0.784), 'depth_2': np.float64(0.465), 'depth_3': np.float64(0.715)}\\\\n2026-05-15 00:23:28,006 [INFO] Pairwise AUC: {'d0v1': 0.9942, 'd1v2': 0.8309, 'd2v3': 0.7434, 'd0v2': 0.9998, 'd0v3': 0.9998, 'd1v3': 0.9459}\\\\n2026-05-15 00:23:28,011 [INFO] \\\\n              precision    recall  f1-score   support\\\\n\\\\n     depth-0       0.99      0.99      0.99      1000\\\\n     depth-1       0.78      0.78      0.78      1000\\\\n     depth-2       0.57      0.47      0.51      1000\\\\n     depth-3       0.61      0.71      0.66      1000\\\\n\\\\n    accuracy                           0.74      4000\\\\n   macro avg       0.74      0.74\n…[truncated 619 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T16:23:44.002866+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，全部通过：\n\n- 数据加载正常：20000 样本（4×5000），train=16000, test=4000\n- Loss 数值合理：epoch 1 总 loss=1.53（attract=0.27, repulse=0.51, ce=0.76），无 NaN/Inf\n- Loss 下降正常：epoch 2 降到 1.25\n- 2 个 epoch 已达 73.9% accuracy（对比 RF baseline 78.2%，训练充分后应可超越）\n- 所有评估指标输出正常：4-class acc + CI、3-class acc、per-class recall、pairwise AUC、confusion matrix\n- 可视化生成正常：t-SNE、PCA、confusion matrix PNG 均成功保存\n- Checkpoint 保存正常（含 scaler 参数、feature names）\n\n文件位置：`/root/autodl-tmp/recursive_gen_depth_est/src/dcol_train.py`（服务器上已就绪），本地副本在 `artifacts/dcol_train.py`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_feature_based_20260514T161727"
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    }
+  ]
+}

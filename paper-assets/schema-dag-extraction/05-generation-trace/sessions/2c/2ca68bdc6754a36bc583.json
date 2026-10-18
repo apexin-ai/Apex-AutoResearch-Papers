@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ca68bdc6754a36bc583",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260515T171027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260515T171027_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "7a66793748e4989f1fcbb6e1bfdfd37e38022bf802635be61d522453cc6fa80b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43 个 BibTeX entries，来源分布：\n\n- literature_map.yaml 原有 30 条全部覆盖\n- references_survey.md 新增 13 条：`instructuie-2023`, `codeie-2023`, `adelie-2024`, `oneke-2025`, `genre-2021`, `inerd-2024`, `noisebench-2024`, `lrn-2021`, `genres-2024`, `multiconner2-2023`, `llm-calibration-survey-2024`, `far-calibration-2024`, `linkner-2024`\n\n所有 entry 均包含 title、author、year、booktitle/journal、url 必填字段。缺失作者信息已通过 arXiv/ACL Anthology 页面补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9356cc721236ef62c1e2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops verify running register crons",
+  "task_key": "worker_ops_verify-running-register-crons_20260521T223320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_verify-running-register-crons_20260521T223320_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "19a77b0c3b9dc6725bbd85d6e8e9413a3730add728ed0a2845b7f372dd063aed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 利用率\n- **westd-41074**: GPU0=0% (10GB/98GB), GPU1=52% (11GB/98GB), GPU2=0% (29GB/98GB), GPU3=0% (28GB/98GB)\n- **cqa1-33015**: GPU0=21% (10GB/25GB), GPU1=53% (10GB/25GB), GPU2=61% (10GB/25GB), GPU3=5% (10GB/25GB)\n- **westd-38929**: GPU0=34% (10GB/98GB), GPU1=17% (11GB/98GB), GPU2=0% (0GB/98GB), GPU3=27% (11GB/98GB)\n\n## 实验进程状态\n\n| exp_id | server | PID | 状态 | 操作 |\n|--------|--------|-----|------|------|\n| eval_pi05_random_k095_object_seed43 | westd-41074 | 730309 | ALIVE (GPU1) | cron 75830f33 已注册 (每小时:13) |\n| eval_pi05_random_k0925_object_seed42 | westd-41074 | 715307 | ALIVE (GPU0) | cron 2990f141 已注册 (每小时:17) |\n| eval_pi05_random_k03_object_seed43 | cqa1-33015 | 716134 | ALIVE (GPU3) | cron c3c96fc3 已注册 (每小时:21) |\n| eval_pi05_l2norm_k085_object_seed42 | cqa1-33015 | 716056 | ALIVE (GPU2) | cron ddb5cafa 已注册 (每小时:25) |\n| eval_pi05_l2norm_k07_spatial_seed42 | westd-38929 | 829120 | ALIVE (GPU1) | cron 73bc91fd 已注册 (每小时:29) |\n\n5 个实验全部存活，5 个 cron 监控已注册，每小时交错检查（:13/:17/:21/:25/:29），进程死亡后自动将 registry 状态更新为 ANALYZING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

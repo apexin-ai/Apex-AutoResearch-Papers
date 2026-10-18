@@ -1,0 +1,1274 @@
+{
+  "schema_version": "1.0",
+  "id": "41597c3228f27e832619",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "writing fix appendix duplicate",
+  "task_key": "worker_writing_fix_appendix_duplicate_20260516T184403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_fix_appendix_duplicate_20260516T184403.log",
+    "occurrence": 1,
+    "bytes": 120519,
+    "sha256": "392afad8d6ccd7dd1fb098e485cbd41991ff94f0222aff6338f4d4a807293284"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+                "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4c612d6c-1f6f-4585-be95-6dd0493f0c12",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778965200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "4b235fc6-e326-4638-9afa-b3d8548f5353",
+                "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the file on the server to confirm the exact line ranges, then make the edits.",
+              "signature": "EqACClkIDRgCKkDtNHWdWrtuB2JwNkLlAkiZGvJU5wccBYIE7iPnkrNoYm8T5CUiXC70oZNqpXaLTFXbw8CW4nZLQ5/h2XAfsrYVMg9jbGF1ZGUtb3B1cy00LTY4ABIM7PveX5PAN7G10KvNGgyshm1u96WfdwGuiBMiME1pigiScO+ZNiGDKv3Yxctgmuz6gMFuXkkql64BhnFj0Zy2DnSUF1uGVZm76bUypyp1XTO0203sHPPKLvoXbpu03qrfENZUSekgLvOtIg1SHBh3280aFCYyRVY+JexFlandz2/bpBLflXotNgPfbyIBOwN+6iVAB52l9iTvjLaQvlUa8sgEdUQOyGkTGfuC5YddRwS6QPfeGm8uhLm6WIeP3mKrpMy2GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "746baf03-0a74-4904-86ef-455b4ca0fc9c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ce55WVrj2JMXUbdYC56Zb9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11560,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11560
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R2rEkhdPPaAKcZt5z5NHF6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "e68292c0-0b15-4dc0-ba1e-d67823465c90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ce55WVrj2JMXUbdYC56Zb9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11560,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11560
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T18:44:17.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01R2rEkhdPPaAKcZt5z5NHF6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "d46d9a96-3771-41ac-a91f-b39735983ede",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VpxqkwWEWroSCczuw1R8Dg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "cat -n /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex | head -n 320 | tail -n 31"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "b8a3f7c2-d577-48b3-a808-a8c047eb90a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxX6sQbPnFhZxwKoAMB3pK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23401,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T18:44:21.697Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VpxqkwWEWroSCczuw1R8Dg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "688e7f1a-0050-47f4-9820-89cdca6e21e8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Td4UM9GoMgAixs1UsFHLYe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "grep -rn \"ref_ablation\" /root/autodl-tmp/recursive_gen_depth_est/paper/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "626847df-263d-4dcb-9a18-ef3b3e62f61a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxX6sQbPnFhZxwKoAMB3pK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23401,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T18:44:25.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Td4UM9GoMgAixs1UsFHLYe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\\\\\\\label{app:ref_ablation}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:301:\\\\\\\\label{tab:ref_ablation}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.aux:1647:\\\\\\\\newlabel{app:ref_ablation}{{A.12}{16}{Reference Model Ablation}{subsection.A.12}{}}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.aux:1649:\\\\\\\\newlabel{tab:ref_ablation}{{16}{16}{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.\\\\\\\\relax }{table.caption.60}{}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "150abfd2-8e97-4c68-9bd7-05470c94317a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\\\\\\\label{app:ref_ablation}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:301:\\\\\\\\label{tab:ref_ablation}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.aux:1647:\\\\\\\\newlabel{app:ref_ablation}{{A.12}{16}{Reference Model Ablation}{subsection.A.12}{}}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.aux:1649:\\\\\\\\newlabel{tab:ref_ablation}{{16}{16}{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.\\\\\\\\relax }{table.caption.60}{}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.98}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\\\label{app:ref_ablation}\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:301:\\\\label{tab:ref_ablation}\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.aux:1647:\\\\newlabel{app:ref_ablation}{{A.12}{16}{Reference Model Ablation}{subsection.A.12}{}}\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.aux:1649:\\\\newlabel{tab:ref_ablation}{{16}{16}{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.\\\\relax }{table.caption.60}{}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.98}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015agVLdFtZE8MfDZbio9xi9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "sed -n '290,325p' /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "5f42999a-36bf-4f51-8e58-ddbeb587c59b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015sboSJJePonEaWzVRZ83eA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 24110,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T18:44:29.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015agVLdFtZE8MfDZbio9xi9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "8f38d6b8-4755-4a23-9727-66cc5ccfcf63",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XqZiMgeiyQJceg6jFEyNXA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "grep -rn \"ref_ablation\" /root/autodl-tmp/recursive_gen_depth_est/paper/generalization.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "ae2b43d5-8432-4f93-8ede-4163f0592e86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015sboSJJePonEaWzVRZ83eA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 24110,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T18:44:31.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XqZiMgeiyQJceg6jFEyNXA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "5bd112a1-3d1a-486b-b78d-aa5dc71470d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.39}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018foQEnHgcTDgwzVXjfz6zE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "head -n 325 /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "bb47a5ba-cc0b-4180-8867-589459f3290a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KGQgYPuLy16uLPSASDgQma",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T18:44:36.065Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018foQEnHgcTDgwzVXjfz6zE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Additional Results}\\\\n\\\\\\\\label{app:additional}\\\\n\\\\n\\\\\\\\subsection{Top-$k$ Feature Trajectories}\\\\n\\\\\\\\label{app:topk_trajectories}\\\\n\\\\nFigure~\\\\\\\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\\\\\\\tau{=}0.9$) sampling.\\\\nTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\\\\\\\S\\\\\\\\ref{sec:atlas:strategy}.\\\\nConcretely, the d0$\\\\\\\\to$d1 drop in \\\\\\\\textsc{p90\\\\\\\\_ppl} under top-$k$ is 78\\\\\\\\% (vs.\\\\\\\\ 87\\\\\\\\% for nucleus), and the d2$\\\\\\\\to$d3 reduction is 31\\\\\\\\% (vs.\\\\\\\\ 39\\\\\\\\% for nucleus).\\\\nDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\\\\n\\\\n\\\\\\\\subsection{Permutation Importance}\\\\n\\\\\\\\label{app:permutation}\\\\n\\\\nTo verify that the Gini-based importance rankings in \\\\\\\\S\\\\\\\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\\\\nThe top-2 features are stable across measures: \\\\\\\\textsc{p90\\\\\\\\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \\\\\\\\textsc{var\\\\\\\\_surprisal} in 8/9 (vs.\\\\\\\\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \\\\\\\\textsc{p75\\\\\\\\_ppl} displaces \\\\\\\\textsc{var\\\\\\\\_surprisal} to rank 3).\\\\nKendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).\\\\nPairwise Spearman correlations are: SHAP--Gini $\\\\\\\\rho{=}0.93$, SHAP--permutation $\\\\\\\\rho{=}0.84$, Gini--permutation $\\\\\\\\rho{=}0.76$.\\\\nPer-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate level while per-cell rankings exhibit model-dependent variation.\\\\n\\\\n\\\\\\\\subsection{Per-Class Recall}\\\\n\\\\\\\\label{app:per_class}\\\\n\\\\nTable~\\\\\\\\ref{tab:per_class_recall} reports per-class recall across all 9 atlas cells (4-class in-distribution, 5-fold CV).\\\\nDepth~0 recall exceeds 98\\\\\\\\% uniformly.\\\\nAmong generated depths, d2 is the hardest class in every cell; the deficit is most pronounced under top-$k$ sampling (46--53\\\\\\\\%), where vocabulary truncation removes the tail tokens that carry depth-discriminative signal.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Per-class recall (\\\\\\\\%) for all 9 atlas cells. d2 is the lowest-recall class in every cell. Boldface marks the highest d2 recall.}\\\\n\\\\\\\\label{tab:per_class_recall}\\\\n\\\\\\\\begin{tabular}{@{}lcccc@{}}\\\\n\\\\\\\\toprule\\\\nCell & d0 & d1 & d2 & d3 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia, nuc.       & 99.7 & 81.9 & 58.7 & 72.3 \\\\\\\\\\\\\\\\\\\\nPythia, $\\\\\\\\tau$     & 99.7 & 81.3 & 53.9 & 72.1 \\\\\\\\\\\\\\\\\\\\nPythia, top-$k$    & 99.5 & 72.3 & 45.6 & 57.5 \\\\\\\\\\\\\\\\\\\\nOLMo, nuc.         & 98.8 & 80.5 & 61.5 & 74.3 \\\\\\\\\\\\\\\\\\\\nOLMo, $\\\\\\\\tau$       & 99.7 & 87.7 & 66.1 & 77.2 \\\\\\\\\\\\\\\\\\\\nOLMo, top-$k$      & 99.5 & 78.5 & 51.2 & 65.6 \\\\\\\\\\\\\\\\\\\\nGPT-2~XL, nuc.     & 99.2 & 85.9 & \\\\\\\\textbf{73.3} & 77.5 \\\\\\\\\\\\\\\\\\\\nGPT-2~XL, $\\\\\\\\tau$   & 99.5 & 90.9 & 68.8 & 81.9 \\\\\\\\\\\\\\\\\\\\nGPT-2~XL, top-$k$  & 98.5 & 79.5 & 52.5 & 71.1 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{DCOL Iteration Details}\\\\n\\\\\\\\label{app:dcol_iterations}\\\\n\\\\nTable~\\\\\\\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\\\\nDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\\\\\\\\%.}\\\\n\\\\\\\\label{tab:dcol_iterations}\\\\n\\\\\\\\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}\\\\n\\\\\\\\toprule\\\\nVer. & Backbone & Config & Outcome \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nv1 & DeBERTa & FT, m\\\\\\\\_lr $10^{-3}$ & Embed.\\\\\\\\ collapse (31.5\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\nv2 & DeBERTa & FT, m\\\\\\\\_lr $10^{-4}$ & OOM \\\\\\\\\\\\\\\\\\\\nv3 & DeBERTa & FT, m\\\\\\\\_lr $10^{-4}$ & Forgetting + OOM \\\\\\\\\\\\\\\\\\\\nv4 & DeBERTa & LoRA, m\\\\\\\\_\\\\n\\\\n... [截断: 输出过长，省略 13073 字符] ...\\\\n\\\\nr maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.\\\\n\\\\n\\\\\\\\subsection{Downstream Curation PoC}\\\\n\\\\\\\\label{app:curation_poc}\\\\n\\\\nTo validate that depth estimation translates to actionable data curation, we conduct a proof-of-concept downstream evaluation.\\\\nWe fine-tune Pythia-410M with LoRA ($r{=}16$, $\\\\\\\\alpha{=}32$) for 3 epochs on 8 data conditions derived from the Pythia nucleus depth-estimation corpus, repeating each condition over 5 random seeds.\\\\nConditions vary the selection mechanism (RF-predicted depth, oracle depth, random subsampling) and stringency (strict $\\\\\\\\approx$25\\\\\\\\%, moderate $\\\\\\\\approx$50\\\\\\\\%, soft threshold).\\\\nTable~\\\\\\\\ref{tab:curation_poc} reports per-condition perplexity; Table~\\\\\\\\ref{tab:curation_comparisons} reports pairwise contrasts.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). $\\\\\\\\Delta$ is signed so that positive values indicate lower (better) perplexity than unfiltered. $^*$\\\\\\\\,: $p<0.05$ (paired $t$-test vs.\\\\\\\\ unfiltered).}\\\\n\\\\\\\\label{tab:curation_poc}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}lcccccc@{}}\\\\n\\\\\\\\toprule\\\\nCondition & Mean PPL & Std & $n$ & $\\\\\\\\Delta$ vs Unfilt. & $p$ & $d_z$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nunfiltered        & 15.776 & 0.066 & 10{,}000 & ---      & ---   & ---      \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_soft          & 15.733 & 0.038 &  4{,}422 & +0.043   & 0.407 &  0.41    \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_moderate      & 15.756 & 0.056 &  4{,}940 & +0.021   & 0.492 &  0.34    \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_strict        & 15.810 & 0.061 &  2{,}496 & $-$0.034 & 0.607 & $-$0.25  \\\\\\\\\\\\\\\\\\\\noracle\\\\\\\\_moderate  & 15.809 & 0.103 &  5{,}000 & $-$0.033 & 0.485 & $-$0.34  \\\\\\\\\\\\\\\\\\\\noracle\\\\\\\\_strict    & 15.879 & 0.128 &  2{,}500 & $-$0.103 & 0.216 & $-$0.66  \\\\\\\\\\\\\\\\\\\\nrandom\\\\\\\\_soft      & 16.062 & 0.079 &  4{,}422 & $-$0.286 & ${<}$0.001$^*$ & $-$2.77  \\\\\\\\\\\\\\\\\\\\nrandom\\\\\\\\_moderate  & 15.998 & 0.090 &  4{,}940 & $-$0.222 & 0.028$^*$ & $-$1.50  \\\\\\\\\\\\\\\\\\\\nrandom\\\\\\\\_strict    & 16.239 & 0.165 &  2{,}496 & $-$0.463 & 0.013$^*$ & $-$1.89  \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Pairwise comparisons (paired $t$-test, 5 seeds). $^*$\\\\\\\\,: $p<0.05$; $^{**}$\\\\\\\\,: $p<0.01$.}\\\\n\\\\\\\\label{tab:curation_comparisons}\\\\n\\\\\\\\begin{tabular}{@{}lccc@{}}\\\\n\\\\\\\\toprule\\\\nComparison & $\\\\\\\\Delta$ PPL & $t$ & $p$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nrf\\\\\\\\_strict vs random\\\\\\\\_strict     & 0.429 & $-$7.05 & 0.002$^{**}$ \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_moderate vs random\\\\\\\\_moderate & 0.242 & $-$3.77 & 0.020$^*$    \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_soft vs random\\\\\\\\_soft         & 0.328 & $-$17.98 & ${<}$0.001$^{**}$ \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_ablation}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\\\\n\\\\\\\\label{tab:ref_ablation}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nReference Model & Architecture & Accuracy (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\\\\\\\pm$ 0.6 \\\\\\\\\\\\\\\\\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\\\\\\\pm$ 0.7 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Scale Full Results}\\\\n\\\\\\\\label{app:cross_scale_full}\\\\n\\\\nThis section provides the full cross-scale analysis summarized in \\\\\\\\S\\\\\\\\ref{sec:gen:crossscale}.\\\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\\\\\in \\\\\\\\{0, 1, \\\\\\\\ldots, 5\\\\\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\\\n\\\\n\\\\\\\\paragraph{Scale comparison.}\\\\nTable~\\\\\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\\\\\%, depths 0--3, nucleus), $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\\\\\% bootstrap. Chance = 25\\\\\\\\%.}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "29e20e81-343b-401a-96c3-b6b544de6bba",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Additional Results}\\\\n\\\\\\\\label{app:additional}\\\\n\\\\n\\\\\\\\subsection{Top-$k$ Feature Trajectories}\\\\n\\\\\\\\label{app:topk_trajectories}\\\\n\\\\nFigure~\\\\\\\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\\\\\\\tau{=}0.9$) sampling.\\\\nTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\\\\\\\S\\\\\\\\ref{sec:atlas:strategy}.\\\\nConcretely, the d0$\\\\\\\\to$d1 drop in \\\\\\\\textsc{p90\\\\\\\\_ppl} under top-$k$ is 78\\\\\\\\% (vs.\\\\\\\\ 87\\\\\\\\% for nucleus), and the d2$\\\\\\\\to$d3 reduction is 31\\\\\\\\% (vs.\\\\\\\\ 39\\\\\\\\% for nucleus).\\\\nDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\\\\n\\\\n\\\\\\\\subsection{Permutation Importance}\\\\n\\\\\\\\label{app:permutation}\\\\n\\\\nTo verify that the Gini-based importance rankings in \\\\\\\\S\\\\\\\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\\\\nThe top-2 features are stable across measures: \\\\\\\\textsc{p90\\\\\\\\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \\\\\\\\textsc{var\\\\\\\\_surprisal} in 8/9 (vs.\\\\\\\\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \\\\\\\\textsc{p75\\\\\\\\_ppl} displaces \\\\\\\\textsc{var\\\\\\\\_surprisal} to rank 3).\\\\nKendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).\\\\nPairwise Spearman correlations are: SHAP--Gini $\\\\\\\\rho{=}0.93$, SHAP--permutation $\\\\\\\\rho{=}0.84$, Gini--permutation $\\\\\\\\rho{=}0.76$.\\\\nPer-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate level while per-cell rankings exhibit model-dependent variation.\\\\n\\\\n\\\\\\\\subsection{Per-Class Recall}\\\\n\\\\\\\\label{app:per_class}\\\\n\\\\nTable~\\\\\\\\ref{tab:per_class_recall} reports per-class recall across all 9 atlas cells (4-class in-distribution, 5-fold CV).\\\\nDepth~0 recall exceeds 98\\\\\\\\% uniformly.\\\\nAmong generated depths, d2 is the hardest class in every cell; the deficit is most pronounced under top-$k$ sampling (46--53\\\\\\\\%), where vocabulary truncation removes the tail tokens that carry depth-discriminative signal.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Per-class recall (\\\\\\\\%) for all 9 atlas cells. d2 is the lowest-recall class in every cell. Boldface marks the highest d2 recall.}\\\\n\\\\\\\\label{tab:per_class_recall}\\\\n\\\\\\\\begin{tabular}{@{}lcccc@{}}\\\\n\\\\\\\\toprule\\\\nCell & d0 & d1 & d2 & d3 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia, nuc.       & 99.7 & 81.9 & 58.7 & 72.3 \\\\\\\\\\\\\\\\\\\\nPythia, $\\\\\\\\tau$     & 99.7 & 81.3 & 53.9 & 72.1 \\\\\\\\\\\\\\\\\\\\nPythia, top-$k$    & 99.5 & 72.3 & 45.6 & 57.5 \\\\\\\\\\\\\\\\\\\\nOLMo, nuc.         & 98.8 & 80.5 & 61.5 & 74.3 \\\\\\\\\\\\\\\\\\\\nOLMo, $\\\\\\\\tau$       & 99.7 & 87.7 & 66.1 & 77.2 \\\\\\\\\\\\\\\\\\\\nOLMo, top-$k$      & 99.5 & 78.5 & 51.2 & 65.6 \\\\\\\\\\\\\\\\\\\\nGPT-2~XL, nuc.     & 99.2 & 85.9 & \\\\\\\\textbf{73.3} & 77.5 \\\\\\\\\\\\\\\\\\\\nGPT-2~XL, $\\\\\\\\tau$   & 99.5 & 90.9 & 68.8 & 81.9 \\\\\\\\\\\\\\\\\\\\nGPT-2~XL, top-$k$  & 98.5 & 79.5 & 52.5 & 71.1 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{DCOL Iteration Details}\\\\n\\\\\\\\label{app:dcol_iterations}\\\\n\\\\nTable~\\\\\\\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\\\\nDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\\\\\\\\%.}\\\\n\\\\\\\\label{tab:dcol_iterations}\\\\n\\\\\\\\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}\\\\n\\\\\\\\toprule\\\\nVer. & Backbone & Config & Outcome \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nv1 & DeBERTa & FT, m\\\\\\\\_lr $10^{-3}$ & Embed.\\\\\\\\ collapse (31.5\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\nv2 & DeBERTa & FT, m\\\\\\\\_lr $10^{-4}$ & OOM \\\\\\\\\\\\\\\\\\\\nv3 & DeBERTa & FT, m\\\\\\\\_lr $10^{-4}$ & Forgetting + OOM \\\\\\\\\\\\\\\\\\\\nv4 & DeBERTa & LoRA, m\\\\\\\\_\\\\n\\\\n... [截断: 输出过长，省略 13073 字符] ...\\\\n\\\\nr maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.\\\\n\\\\n\\\\\\\\subsection{Downstream Curation PoC}\\\\n\\\\\\\\label{app:curation_poc}\\\\n\\\\nTo validate that depth estimation translates to actionable data curation, we conduct a proof-of-concept downstream evaluation.\\\\nWe fine-tune Pythia-410M with LoRA ($r{=}16$, $\\\\\\\\alpha{=}32$) for 3 epochs on 8 data conditions derived from the Pythia nucleus depth-estimation corpus, repeating each condition over 5 random seeds.\\\\nConditions vary the selection mechanism (RF-predicted depth, oracle depth, random subsampling) and stringency (strict $\\\\\\\\approx$25\\\\\\\\%, moderate $\\\\\\\\approx$50\\\\\\\\%, soft threshold).\\\\nTable~\\\\\\\\ref{tab:curation_poc} reports per-condition perplexity; Table~\\\\\\\\ref{tab:curation_comparisons} reports pairwise contrasts.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). $\\\\\\\\Delta$ is signed so that positive values indicate lower (better) perplexity than unfiltered. $^*$\\\\\\\\,: $p<0.05$ (paired $t$-test vs.\\\\\\\\ unfiltered).}\\\\n\\\\\\\\label{tab:curation_poc}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}lcccccc@{}}\\\\n\\\\\\\\toprule\\\\nCondition & Mean PPL & Std & $n$ & $\\\\\\\\Delta$ vs Unfilt. & $p$ & $d_z$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nunfiltered        & 15.776 & 0.066 & 10{,}000 & ---      & ---   & ---      \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_soft          & 15.733 & 0.038 &  4{,}422 & +0.043   & 0.407 &  0.41    \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_moderate      & 15.756 & 0.056 &  4{,}940 & +0.021   & 0.492 &  0.34    \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_strict        & 15.810 & 0.061 &  2{,}496 & $-$0.034 & 0.607 & $-$0.25  \\\\\\\\\\\\\\\\\\\\noracle\\\\\\\\_moderate  & 15.809 & 0.103 &  5{,}000 & $-$0.033 & 0.485 & $-$0.34  \\\\\\\\\\\\\\\\\\\\noracle\\\\\\\\_strict    & 15.879 & 0.128 &  2{,}500 & $-$0.103 & 0.216 & $-$0.66  \\\\\\\\\\\\\\\\\\\\nrandom\\\\\\\\_soft      & 16.062 & 0.079 &  4{,}422 & $-$0.286 & ${<}$0.001$^*$ & $-$2.77  \\\\\\\\\\\\\\\\\\\\nrandom\\\\\\\\_moderate  & 15.998 & 0.090 &  4{,}940 & $-$0.222 & 0.028$^*$ & $-$1.50  \\\\\\\\\\\\\\\\\\\\nrandom\\\\\\\\_strict    & 16.239 & 0.165 &  2{,}496 & $-$0.463 & 0.013$^*$ & $-$1.89  \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Pairwise comparisons (paired $t$-test, 5 seeds). $^*$\\\\\\\\,: $p<0.05$; $^{**}$\\\\\\\\,: $p<0.01$.}\\\\n\\\\\\\\label{tab:curation_comparisons}\\\\n\\\\\\\\begin{tabular}{@{}lccc@{}}\\\\n\\\\\\\\toprule\\\\nComparison & $\\\\\\\\Delta$ PPL & $t$ & $p$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nrf\\\\\\\\_strict vs random\\\\\\\\_strict     & 0.429 & $-$7.05 & 0.002$^{**}$ \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_moderate vs random\\\\\\\\_moderate & 0.242 & $-$3.77 & 0.020$^*$    \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_soft vs random\\\\\\\\_soft         & 0.328 & $-$17.98 & ${<}$0.001$^{**}$ \\\\\\\\\\\\\\\\\\\\nrf\\\\\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_ablation}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\\\\n\\\\\\\\label{tab:ref_ablation}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nReference Model & Architecture & Accuracy (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\\\\\\\pm$ 0.6 \\\\\\\\\\\\\\\\\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\\\\\\\pm$ 0.7 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Scale Full Results}\\\\n\\\\\\\\label{app:cross_scale_full}\\\\n\\\\nThis section provides the full cross-scale analysis summarized in \\\\\\\\S\\\\\\\\ref{sec:gen:crossscale}.\\\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\\\\\in \\\\\\\\{0, 1, \\\\\\\\ldots, 5\\\\\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\\\n\\\\n\\\\\\\\paragraph{Scale comparison.}\\\\nTable~\\\\\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\\\\\%, depths 0--3, nucleus), $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\\\\\% bootstrap. Chance = 25\\\\\\\\%.}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Additional Results}\\n\\\\label{app:additional}\\n\\n\\\\subsection{Top-$k$ Feature Trajectories}\\n\\\\label{app:topk_trajectories}\\n\\nFigure~\\\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\\\tau{=}0.9$) sampling.\\nTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\\\S\\\\ref{sec:atlas:strategy}.\\nConcretely, the d0$\\\\to$d1 drop in \\\\textsc{p90\\\\_ppl} under top-$k$ is 78\\\\% (vs.\\\\ 87\\\\% for nucleus), and the d2$\\\\to$d3 reduction is 31\\\\% (vs.\\\\ 39\\\\% for nucleus).\\nDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\\n\\n\\\\subsection{Permutation Importance}\\n\\\\label{app:permutation}\\n\\nTo verify that the Gini-based importance rankings in \\\\S\\\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\\nThe top-2 features are stable across measures: \\\\textsc{p90\\\\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \\\\textsc{var\\\\_surprisal} in 8/9 (vs.\\\\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \\\\textsc{p75\\\\_ppl} displaces \\\\textsc{var\\\\_surprisal} to rank 3).\\nKendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).\\nPairwise Spearman correlations are: SHAP--Gini $\\\\rho{=}0.93$, SHAP--permutation $\\\\rho{=}0.84$, Gini--permutation $\\\\rho{=}0.76$.\\nPer-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate level while per-cell rankings exhibit model-dependent variation.\\n\\n\\\\subsection{Per-Class Recall}\\n\\\\label{app:per_class}\\n\\nTable~\\\\ref{tab:per_class_recall} reports per-class recall across all 9 atlas cells (4-class in-distribution, 5-fold CV).\\nDepth~0 recall exceeds 98\\\\% uniformly.\\nAmong generated depths, d2 is the hardest class in every cell; the deficit is most pronounced under top-$k$ sampling (46--53\\\\%), where vocabulary truncation removes the tail tokens that carry depth-discriminative signal.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Per-class recall (\\\\%) for all 9 atlas cells. d2 is the lowest-recall class in every cell. Boldface marks the highest d2 recall.}\\n\\\\label{tab:per_class_recall}\\n\\\\begin{tabular}{@{}lcccc@{}}\\n\\\\toprule\\nCell & d0 & d1 & d2 & d3 \\\\\\\\\\n\\\\midrule\\nPythia, nuc.       & 99.7 & 81.9 & 58.7 & 72.3 \\\\\\\\\\nPythia, $\\\\tau$     & 99.7 & 81.3 & 53.9 & 72.1 \\\\\\\\\\nPythia, top-$k$    & 99.5 & 72.3 & 45.6 & 57.5 \\\\\\\\\\nOLMo, nuc.         & 98.8 & 80.5 & 61.5 & 74.3 \\\\\\\\\\nOLMo, $\\\\tau$       & 99.7 & 87.7 & 66.1 & 77.2 \\\\\\\\\\nOLMo, top-$k$      & 99.5 & 78.5 & 51.2 & 65.6 \\\\\\\\\\nGPT-2~XL, nuc.     & 99.2 & 85.9 & \\\\textbf{73.3} & 77.5 \\\\\\\\\\nGPT-2~XL, $\\\\tau$   & 99.5 & 90.9 & 68.8 & 81.9 \\\\\\\\\\nGPT-2~XL, top-$k$  & 98.5 & 79.5 & 52.5 & 71.1 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{DCOL Iteration Details}\\n\\\\label{app:dcol_iterations}\\n\\nTable~\\\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\\nDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\\\\%.}\\n\\\\label{tab:dcol_iterations}\\n\\\\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}\\n\\\\toprule\\nVer. & Backbone & Config & Outcome \\\\\\\\\\n\\\\midrule\\nv1 & DeBERTa & FT, m\\\\_lr $10^{-3}$ & Embed.\\\\ collapse (31.5\\\\%) \\\\\\\\\\nv2 & DeBERTa & FT, m\\\\_lr $10^{-4}$ & OOM \\\\\\\\\\nv3 & DeBERTa & FT, m\\\\_lr $10^{-4}$ & Forgetting + OOM \\\\\\\\\\nv4 & DeBERTa & LoRA, m\\\\_\\n\\n... [截断: 输出过长，省略 13073 字符] ...\\n\\nr maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.\\n\\n\\\\subsection{Downstream Curation PoC}\\n\\\\label{app:curation_poc}\\n\\nTo validate that depth estimation translates to actionable data curation, we conduct a proof-of-concept downstream evaluation.\\nWe fine-tune Pythia-410M with LoRA ($r{=}16$, $\\\\alpha{=}32$) for 3 epochs on 8 data conditions derived from the Pythia nucleus depth-estimation corpus, repeating each condition over 5 random seeds.\\nConditions vary the selection mechanism (RF-predicted depth, oracle depth, random subsampling) and stringency (strict $\\\\approx$25\\\\%, moderate $\\\\approx$50\\\\%, soft threshold).\\nTable~\\\\ref{tab:curation_poc} reports per-condition perplexity; Table~\\\\ref{tab:curation_comparisons} reports pairwise contrasts.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). $\\\\Delta$ is signed so that positive values indicate lower (better) perplexity than unfiltered. $^*$\\\\,: $p<0.05$ (paired $t$-test vs.\\\\ unfiltered).}\\n\\\\label{tab:curation_poc}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}lcccccc@{}}\\n\\\\toprule\\nCondition & Mean PPL & Std & $n$ & $\\\\Delta$ vs Unfilt. & $p$ & $d_z$ \\\\\\\\\\n\\\\midrule\\nunfiltered        & 15.776 & 0.066 & 10{,}000 & ---      & ---   & ---      \\\\\\\\\\nrf\\\\_soft          & 15.733 & 0.038 &  4{,}422 & +0.043   & 0.407 &  0.41    \\\\\\\\\\nrf\\\\_moderate      & 15.756 & 0.056 &  4{,}940 & +0.021   & 0.492 &  0.34    \\\\\\\\\\nrf\\\\_strict        & 15.810 & 0.061 &  2{,}496 & $-$0.034 & 0.607 & $-$0.25  \\\\\\\\\\noracle\\\\_moderate  & 15.809 & 0.103 &  5{,}000 & $-$0.033 & 0.485 & $-$0.34  \\\\\\\\\\noracle\\\\_strict    & 15.879 & 0.128 &  2{,}500 & $-$0.103 & 0.216 & $-$0.66  \\\\\\\\\\nrandom\\\\_soft      & 16.062 & 0.079 &  4{,}422 & $-$0.286 & ${<}$0.001$^*$ & $-$2.77  \\\\\\\\\\nrandom\\\\_moderate  & 15.998 & 0.090 &  4{,}940 & $-$0.222 & 0.028$^*$ & $-$1.50  \\\\\\\\\\nrandom\\\\_strict    & 16.239 & 0.165 &  2{,}496 & $-$0.463 & 0.013$^*$ & $-$1.89  \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Pairwise comparisons (paired $t$-test, 5 seeds). $^*$\\\\,: $p<0.05$; $^{**}$\\\\,: $p<0.01$.}\\n\\\\label{tab:curation_comparisons}\\n\\\\begin{tabular}{@{}lccc@{}}\\n\\\\toprule\\nComparison & $\\\\Delta$ PPL & $t$ & $p$ \\\\\\\\\\n\\\\midrule\\nrf\\\\_strict vs random\\\\_strict     & 0.429 & $-$7.05 & 0.002$^{**}$ \\\\\\\\\\nrf\\\\_moderate vs random\\\\_moderate & 0.242 & $-$3.77 & 0.020$^*$    \\\\\\\\\\nrf\\\\_soft vs random\\\\_soft         & 0.328 & $-$17.98 & ${<}$0.001$^{**}$ \\\\\\\\\\nrf\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Reference Model Ablation}\\n\\\\label{app:ref_ablation}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\\n\\\\label{tab:ref_ablation}\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\nReference Model & Architecture & Accuracy (\\\\%) \\\\\\\\\\n\\\\midrule\\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\\\pm$ 0.6 \\\\\\\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\\\pm$ 0.7 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Cross-Scale Full Results}\\n\\\\label{app:cross_scale_full}\\n\\nThis section provides the full cross-scale analysis summarized in \\\\S\\\\ref{sec:gen:crossscale}.\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\in \\\\{0, 1, \\\\ldots, 5\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\n\\n\\\\paragraph{Scale comparison.}\\nTable~\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\%, depths 0--3, nucleus), $\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\% bootstrap. Chance = 25\\\\%.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me see the specific lines around 290-320 more clearly. The output was truncated but I can see the relevant section. Let me get the tail of the output to see lines around 290-325 specifically.\n\nActually, looking at the output, I can see the section at line 295 area. Let me look at the specific lines. The grep told me:\n- Line 296: `\\label{app:ref_ablation}`\n- Line 301: `\\label{tab:ref_ablation}`\n\nLet me read more precisely around those lines.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "df72feec-c1a4-41a6-b03d-b14383941892",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XmSJtecRygxcAqPXqtBmAv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3972,
+                "cache_read_input_tokens": 25250,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3972
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HFtLHYQqz51MKuhCS9wqLs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "tail -n +290 /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "9845e637-6cb1-4f4d-b8db-cc858de1038c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XmSJtecRygxcAqPXqtBmAv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3972,
+                "cache_read_input_tokens": 25250,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3972
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T18:44:44.611Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HFtLHYQqz51MKuhCS9wqLs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rf\\\\\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_ablation}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\\\\n\\\\\\\\label{tab:ref_ablation}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nReference Model & Architecture & Accuracy (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\\\\\\\pm$ 0.6 \\\\\\\\\\\\\\\\\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\\\\\\\pm$ 0.7 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Scale Full Results}\\\\n\\\\\\\\label{app:cross_scale_full}\\\\n\\\\nThis section provides the full cross-scale analysis summarized in \\\\\\\\S\\\\\\\\ref{sec:gen:crossscale}.\\\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\\\\\in \\\\\\\\{0, 1, \\\\\\\\ldots, 5\\\\\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\\\n\\\\n\\\\\\\\paragraph{Scale comparison.}\\\\nTable~\\\\\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\\\\\%, depths 0--3, nucleus), $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\\\\\% bootstrap. Chance = 25\\\\\\\\%.}\\\\n\\\\\\\\label{tab:cross_scale}\\\\n\\\\\\\\begin{tabular}{@{}lccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & 4-class acc & $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\\\\\\\\\\\\\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 70.2\\\\\\\\,[68.3, 72.4] & 4 & 0.949 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 60.1\\\\\\\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(1) Depth signal persists at 7--8B scale.}\\\\nBoth 7--8B models substantially exceed the 25\\\\\\\\% chance baseline: Llama-3.1-8B achieves 70.2\\\\\\\\% (95\\\\\\\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\\\\\\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\\\\\\\times$ larger than the reference model.\\\\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\\\\n\\\\n\\\\\\\\paragraph{(2) EDD at 7--8B scale.}\\\\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\\\\\\\ref{tab:cross_scale_auc}), yielding $\\\\\\\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\\\\\\\mathrm{EDD}{=}4$ observed at 1--1.5B.\\\\nLlama-3.1-8B matches the smaller models at $\\\\\\\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\\\\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\\\\\\\ 0.852 at 1--1.5B).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\\\\n\\\\\\\\label{tab:cross_scale_auc}\\\\n\\\\\\\\begin{tabular}{@{}lccccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(3) Divergent AUC trajectories and instruction-tuning effect.}\\\\nAmong instruction-tuned models, Llama-3.1-8B exhibits monotonic AUC decay consistent with the 1--1.5B pattern, while Qwen2.5-7B shows a U-shaped recovery beyond d2v3 (Table~\\\\\\\\ref{tab:cross_scale_auc}).\\\\nA base-model control (Llama-3.1-8B without instruction tuning) clarifies the causal direction: the base model achieves 59.9\\\\\\\\% four-class accuracy (95\\\\\\\\% CI [57.8, 62.15], $\\\\\\\\mathrm{EDD}_{0.70}{=}2$) with non-monotonic AUC d\\\\n\\\\n... [截断: 输出过长，省略 4692 字符] ...\\\\n\\\\n5\\\\\\\\%, [81.0, 88.25]).\\\\nIf the classifier exploited architecture fingerprints rather than depth signal, reversing the chain should invert depth predictions; the equivalent accuracy under both orderings provides empirical evidence against the architecture confound.\\\\n\\\\n\\\\\\\\paragraph{Cross-domain transfer.}\\\\nAll prior experiments use WikiText-103 as the seed corpus.\\\\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\\\\nFive-fold cross-validation yields 74.1\\\\\\\\% $\\\\\\\\pm$ 2.0\\\\\\\\% accuracy, compared to ${\\\\\\\\sim}$78\\\\\\\\% on the WikiText seed.\\\\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\\\\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\\\\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\\\\n\\\\n\\\\\\\\subsection{Extended Discussion}\\\\n\\\\\\\\label{app:extended_discussion}\\\\n\\\\n\\\\\\\\paragraph{Depth-graduated curation.}\\\\nCurrent data curation operates on a binary human-vs-machine distinction \\\\\\\\cite{dsir2023,qurating2024}.\\\\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\\\\nThe 70--85\\\\\\\\% in-distribution accuracy and $\\\\\\\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\\\\\\\S\\\\\\\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\\\\\\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\\\\nImportance weighting \\\\\\\\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\\\\n\\\\n\\\\\\\\paragraph{Toward a provenance toolkit.}\\\\nDepth estimation complements existing provenance methods along orthogonal axes.\\\\nWatermarking \\\\\\\\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\\\\nSource attribution \\\\\\\\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\\\\nDepth estimation characterizes \\\\\\\\emph{iterative reuse} regardless of generator cooperation or identity.\\\\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\\\\n\\\\n\\\\\\\\subsection{LoRA Rank Sensitivity}\\\\n\\\\\\\\label{app:lora_rank}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{LoRA rank sensitivity on Pythia-1.4B nucleus ($p$=0.95). Depth signal is robust across ranks (spread 4.65\\\\\\\\,pp).}\\\\n\\\\\\\\label{tab:lora_rank}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nRank & 4-class Acc (\\\\\\\\%) & d1v2 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n4  & 71.8 & 0.790 \\\\\\\\\\\\\\\\\\\\n16 & 76.5 & 0.843 \\\\\\\\\\\\\\\\\\\\n64 & 73.1 & 0.833 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_model}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation on Pythia-1.4B nucleus data. All configurations exceed $2.5\\\\\\\\times$ chance (25\\\\\\\\%).}\\\\n\\\\\\\\label{tab:ref_model}\\\\n\\\\\\\\begin{tabular}{lccc}\\\\n\\\\\\\\toprule\\\\nReference Model & 4-class Acc (\\\\\\\\%) & d1v2 AUC & $\\\\\\\\Delta$ vs Pythia \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (matched) & 78.5 & 0.868 & --- \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 74.5 & --- & $-$4.0\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\nGPT-2 XL (cross-arch) & 67.3 & 0.727 & $-$11.2\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "541ffb88-fcbe-4a27-8abb-9bfefacb0bbe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rf\\\\\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_ablation}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\\\\n\\\\\\\\label{tab:ref_ablation}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nReference Model & Architecture & Accuracy (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\\\\\\\pm$ 0.6 \\\\\\\\\\\\\\\\\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\\\\\\\pm$ 0.7 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Scale Full Results}\\\\n\\\\\\\\label{app:cross_scale_full}\\\\n\\\\nThis section provides the full cross-scale analysis summarized in \\\\\\\\S\\\\\\\\ref{sec:gen:crossscale}.\\\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\\\\\in \\\\\\\\{0, 1, \\\\\\\\ldots, 5\\\\\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\\\n\\\\n\\\\\\\\paragraph{Scale comparison.}\\\\nTable~\\\\\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\\\\\%, depths 0--3, nucleus), $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\\\\\% bootstrap. Chance = 25\\\\\\\\%.}\\\\n\\\\\\\\label{tab:cross_scale}\\\\n\\\\\\\\begin{tabular}{@{}lccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & 4-class acc & $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\\\\\\\\\\\\\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 70.2\\\\\\\\,[68.3, 72.4] & 4 & 0.949 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 60.1\\\\\\\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(1) Depth signal persists at 7--8B scale.}\\\\nBoth 7--8B models substantially exceed the 25\\\\\\\\% chance baseline: Llama-3.1-8B achieves 70.2\\\\\\\\% (95\\\\\\\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\\\\\\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\\\\\\\times$ larger than the reference model.\\\\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\\\\n\\\\n\\\\\\\\paragraph{(2) EDD at 7--8B scale.}\\\\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\\\\\\\ref{tab:cross_scale_auc}), yielding $\\\\\\\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\\\\\\\mathrm{EDD}{=}4$ observed at 1--1.5B.\\\\nLlama-3.1-8B matches the smaller models at $\\\\\\\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\\\\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\\\\\\\ 0.852 at 1--1.5B).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\\\\n\\\\\\\\label{tab:cross_scale_auc}\\\\n\\\\\\\\begin{tabular}{@{}lccccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(3) Divergent AUC trajectories and instruction-tuning effect.}\\\\nAmong instruction-tuned models, Llama-3.1-8B exhibits monotonic AUC decay consistent with the 1--1.5B pattern, while Qwen2.5-7B shows a U-shaped recovery beyond d2v3 (Table~\\\\\\\\ref{tab:cross_scale_auc}).\\\\nA base-model control (Llama-3.1-8B without instruction tuning) clarifies the causal direction: the base model achieves 59.9\\\\\\\\% four-class accuracy (95\\\\\\\\% CI [57.8, 62.15], $\\\\\\\\mathrm{EDD}_{0.70}{=}2$) with non-monotonic AUC d\\\\n\\\\n... [截断: 输出过长，省略 4692 字符] ...\\\\n\\\\n5\\\\\\\\%, [81.0, 88.25]).\\\\nIf the classifier exploited architecture fingerprints rather than depth signal, reversing the chain should invert depth predictions; the equivalent accuracy under both orderings provides empirical evidence against the architecture confound.\\\\n\\\\n\\\\\\\\paragraph{Cross-domain transfer.}\\\\nAll prior experiments use WikiText-103 as the seed corpus.\\\\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\\\\nFive-fold cross-validation yields 74.1\\\\\\\\% $\\\\\\\\pm$ 2.0\\\\\\\\% accuracy, compared to ${\\\\\\\\sim}$78\\\\\\\\% on the WikiText seed.\\\\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\\\\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\\\\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\\\\n\\\\n\\\\\\\\subsection{Extended Discussion}\\\\n\\\\\\\\label{app:extended_discussion}\\\\n\\\\n\\\\\\\\paragraph{Depth-graduated curation.}\\\\nCurrent data curation operates on a binary human-vs-machine distinction \\\\\\\\cite{dsir2023,qurating2024}.\\\\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\\\\nThe 70--85\\\\\\\\% in-distribution accuracy and $\\\\\\\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\\\\\\\S\\\\\\\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\\\\\\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\\\\nImportance weighting \\\\\\\\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\\\\n\\\\n\\\\\\\\paragraph{Toward a provenance toolkit.}\\\\nDepth estimation complements existing provenance methods along orthogonal axes.\\\\nWatermarking \\\\\\\\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\\\\nSource attribution \\\\\\\\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\\\\nDepth estimation characterizes \\\\\\\\emph{iterative reuse} regardless of generator cooperation or identity.\\\\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\\\\n\\\\n\\\\\\\\subsection{LoRA Rank Sensitivity}\\\\n\\\\\\\\label{app:lora_rank}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{LoRA rank sensitivity on Pythia-1.4B nucleus ($p$=0.95). Depth signal is robust across ranks (spread 4.65\\\\\\\\,pp).}\\\\n\\\\\\\\label{tab:lora_rank}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nRank & 4-class Acc (\\\\\\\\%) & d1v2 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n4  & 71.8 & 0.790 \\\\\\\\\\\\\\\\\\\\n16 & 76.5 & 0.843 \\\\\\\\\\\\\\\\\\\\n64 & 73.1 & 0.833 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_model}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation on Pythia-1.4B nucleus data. All configurations exceed $2.5\\\\\\\\times$ chance (25\\\\\\\\%).}\\\\n\\\\\\\\label{tab:ref_model}\\\\n\\\\\\\\begin{tabular}{lccc}\\\\n\\\\\\\\toprule\\\\nReference Model & 4-class Acc (\\\\\\\\%) & d1v2 AUC & $\\\\\\\\Delta$ vs Pythia \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (matched) & 78.5 & 0.868 & --- \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 74.5 & --- & $-$4.0\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\nGPT-2 XL (cross-arch) & 67.3 & 0.727 & $-$11.2\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"rf\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Reference Model Ablation}\\n\\\\label{app:ref_ablation}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\\n\\\\label{tab:ref_ablation}\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\nReference Model & Architecture & Accuracy (\\\\%) \\\\\\\\\\n\\\\midrule\\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\\\pm$ 0.6 \\\\\\\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\\\pm$ 0.7 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Cross-Scale Full Results}\\n\\\\label{app:cross_scale_full}\\n\\nThis section provides the full cross-scale analysis summarized in \\\\S\\\\ref{sec:gen:crossscale}.\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\in \\\\{0, 1, \\\\ldots, 5\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\n\\n\\\\paragraph{Scale comparison.}\\nTable~\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\%, depths 0--3, nucleus), $\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\% bootstrap. Chance = 25\\\\%.}\\n\\\\label{tab:cross_scale}\\n\\\\begin{tabular}{@{}lccc@{}}\\n\\\\toprule\\nModel & 4-class acc & $\\\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\\\\\\n\\\\midrule\\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\\\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\\\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\\\\\\n\\\\midrule\\nLlama-3.1-8B & 70.2\\\\,[68.3, 72.4] & 4 & 0.949 \\\\\\\\\\nQwen2.5-7B & 60.1\\\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\paragraph{(1) Depth signal persists at 7--8B scale.}\\nBoth 7--8B models substantially exceed the 25\\\\% chance baseline: Llama-3.1-8B achieves 70.2\\\\% (95\\\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\\\times$ larger than the reference model.\\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\\n\\n\\\\paragraph{(2) EDD at 7--8B scale.}\\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\\\ref{tab:cross_scale_auc}), yielding $\\\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\\\mathrm{EDD}{=}4$ observed at 1--1.5B.\\nLlama-3.1-8B matches the smaller models at $\\\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\\\ 0.852 at 1--1.5B).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\\n\\\\label{tab:cross_scale_auc}\\n\\\\begin{tabular}{@{}lccccc@{}}\\n\\\\toprule\\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\\\\\\n\\\\midrule\\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\\\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\paragraph{(3) Divergent AUC trajectories and instruction-tuning effect.}\\nAmong instruction-tuned models, Llama-3.1-8B exhibits monotonic AUC decay consistent with the 1--1.5B pattern, while Qwen2.5-7B shows a U-shaped recovery beyond d2v3 (Table~\\\\ref{tab:cross_scale_auc}).\\nA base-model control (Llama-3.1-8B without instruction tuning) clarifies the causal direction: the base model achieves 59.9\\\\% four-class accuracy (95\\\\% CI [57.8, 62.15], $\\\\mathrm{EDD}_{0.70}{=}2$) with non-monotonic AUC d\\n\\n... [截断: 输出过长，省略 4692 字符] ...\\n\\n5\\\\%, [81.0, 88.25]).\\nIf the classifier exploited architecture fingerprints rather than depth signal, reversing the chain should invert depth predictions; the equivalent accuracy under both orderings provides empirical evidence against the architecture confound.\\n\\n\\\\paragraph{Cross-domain transfer.}\\nAll prior experiments use WikiText-103 as the seed corpus.\\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\\nFive-fold cross-validation yields 74.1\\\\% $\\\\pm$ 2.0\\\\% accuracy, compared to ${\\\\sim}$78\\\\% on the WikiText seed.\\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\\n\\n\\\\subsection{Extended Discussion}\\n\\\\label{app:extended_discussion}\\n\\n\\\\paragraph{Depth-graduated curation.}\\nCurrent data curation operates on a binary human-vs-machine distinction \\\\cite{dsir2023,qurating2024}.\\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\\nThe 70--85\\\\% in-distribution accuracy and $\\\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\\\S\\\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\\nImportance weighting \\\\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\\n\\n\\\\paragraph{Toward a provenance toolkit.}\\nDepth estimation complements existing provenance methods along orthogonal axes.\\nWatermarking \\\\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\\nSource attribution \\\\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\\nDepth estimation characterizes \\\\emph{iterative reuse} regardless of generator cooperation or identity.\\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\\n\\n\\\\subsection{LoRA Rank Sensitivity}\\n\\\\label{app:lora_rank}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{LoRA rank sensitivity on Pythia-1.4B nucleus ($p$=0.95). Depth signal is robust across ranks (spread 4.65\\\\,pp).}\\n\\\\label{tab:lora_rank}\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\nRank & 4-class Acc (\\\\%) & d1v2 AUC \\\\\\\\\\n\\\\midrule\\n4  & 71.8 & 0.790 \\\\\\\\\\n16 & 76.5 & 0.843 \\\\\\\\\\n64 & 73.1 & 0.833 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Reference Model Ablation}\\n\\\\label{app:ref_model}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Reference model ablation on Pythia-1.4B nucleus data. All configurations exceed $2.5\\\\times$ chance (25\\\\%).}\\n\\\\label{tab:ref_model}\\n\\\\begin{tabular}{lccc}\\n\\\\toprule\\nReference Model & 4-class Acc (\\\\%) & d1v2 AUC & $\\\\Delta$ vs Pythia \\\\\\\\\\n\\\\midrule\\nPythia-1.4B (matched) & 78.5 & 0.868 & --- \\\\\\\\\\nOLMo-1B & 74.5 & --- & $-$4.0\\\\,pp \\\\\\\\\\nGPT-2 XL (cross-arch) & 67.3 & 0.727 & $-$11.2\\\\,pp \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the file clearly. Let me identify the exact lines to delete.\n\nFrom the output starting at line 290 (the `tail -n +290`), the structure is:\n\nLine 290: `rf\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\`\nLine 291: `\\bottomrule`\nLine 292: `\\end{tabular}`\nLine 293: `\\end{table}`\nLine 294: (empty line)\nLine 295: `\\subsection{Reference Model Ablation}`\nLine 296: `\\label{app:ref_ablation}`\n\n\nLine 297: (empty line)\nLine 298: `\\begin{table}[h]`\nLine 299: `\\centering`\nLine 300: `\\caption{Reference model ablation...}`\nLine 301: `\\label{tab:ref_ablation}`\nLine 302: `\\begin{tabular}{lcc}`\nLine 303: `\\toprule`\nLine 304: `Reference Model & Architecture & Accuracy (\\%) \\\\`\nLine 305: `\\midrule`\nLine 306: `Pythia-1.4B (self) & GPT-NeoX & 78.6 $\\pm$ 0.6 \\\\`\n\nSo I need to delete from line 290 through line 306, which includes the end of the first table and the beginning of the reference model ablation table.\n\nWait, let me re-examine the grep output more carefully. The grep is showing me:\n- `/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\label{app:ref_ablation}`\n\nSo line 296 has the label for the reference ablation section. Let me trace through what needs to be deleted:\n- Lines 290-295: The end of the previous section (Cross-Scale Full Results table)\n- Lines 296-311: The Reference Model Ablation section (subsection header, label, and the table with Pythia and OLMo results)\n\nActually, I need to be more careful. The user said to delete lines 295-311, which would be from `\\subsection{Reference Model Ablation}` through the empty line before `\\subsection{Cross-Scale Full Results}`. That makes sense - removing the entire Reference Model Ablation section.\n\nGenerating LaTeX table... I've identified the label locations in the file, and now I'm checking whether `app:ref_ablation` is actually referenced anywhere else in the document by searching through the tex files and auto-generated aux files.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "01e41f67-26db-490b-8597-68f9d37c3b59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01658n7WkTajhJUBMprgGHWs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3728,
+                "cache_read_input_tokens": 29222,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3728
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WW7Xjz7KyNLnPGHcdEgfuW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "grep -rn \"ref_ablation\" /root/autodl-tmp/recursive_gen_depth_est/paper/ --include=\"*.tex\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "f75ad730-cca3-464e-b602-a131cf9da0f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01658n7WkTajhJUBMprgGHWs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3728,
+                "cache_read_input_tokens": 29222,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3728
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T18:45:01.944Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WW7Xjz7KyNLnPGHcdEgfuW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\\\\\\\label{app:ref_ablation}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:301:\\\\\\\\label{tab:ref_ablation}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "65cdd94b-2d4b-4ddc-8cdb-ee316ac62a7c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\\\\\\\label{app:ref_ablation}\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:301:\\\\\\\\label{tab:ref_ablation}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:296:\\\\label{app:ref_ablation}\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex:301:\\\\label{tab:ref_ablation}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No references to `app:ref_ablation` or `tab:ref_ablation` in any other tex files. Only the label definitions themselves exist. So I just need to delete the old section (lines 295-310 or so).\n\nNow let me construct a sed command to delete the exact range. Based on the grep results:\n- Line 295: `\\subsection{Reference Model Ablation}` \n- Line 296: `\\label{app:ref_ablation}`\n\nAnd from the `tail -n +290` output, the section ends with `\\end{table}` followed by a blank line before `\\subsection{Cross-Scale Full Results}`.\n \nCounting through the tail output, I can see the subsection starts at line 295 and the table ends at line 293, with a blank line at 294. So the section I need to remove runs from line 295 through the next subsection. I'm looking at the rest of the LaTeX table structure and realizing I need to delete the entire reference ablation section from lines 295-311, which includes the table closing tags and the section label. Since line 294 is already blank and will sit between the previous table's end and the new subsection, that spacing works out naturally. I need to delete lines 295 through 311 to remove the old subsection while keeping proper spacing—that'll leave one blank line between the table and the next subsection header. Let me use sed to handle this deletion.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "779539a8-3804-4426-b704-553f0cf2f162",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163UtZuCFYiFcDwCh4pGD4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 32950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有其他 tex 文件引用 `app:ref_ablation`，只有 label 定义本身和自动生成的 aux 文件。直接删除旧 subsection 即可。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "f318fd9d-2830-4837-a9ee-3b16a824f490",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163UtZuCFYiFcDwCh4pGD4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 32950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XDtaAeUmTWcfFGmLtBcQdX",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "sed -i '295,311d' /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "803ed650-402e-4aca-8ad2-169902c46e37",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163UtZuCFYiFcDwCh4pGD4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 32950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T18:45:23.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XDtaAeUmTWcfFGmLtBcQdX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "087d0962-12d1-48ea-8ffa-544da2079110",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NsfprnPc34KdR19TtwvLkG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "tail -n +290 /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "cdd741c9-d239-4524-826a-36b002918b71",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V2EKXi3dz21nywmY4QDBbJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1415,
+                "cache_read_input_tokens": 34037,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1415
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T18:45:28.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NsfprnPc34KdR19TtwvLkG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rf\\\\\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Scale Full Results}\\\\n\\\\\\\\label{app:cross_scale_full}\\\\n\\\\nThis section provides the full cross-scale analysis summarized in \\\\\\\\S\\\\\\\\ref{sec:gen:crossscale}.\\\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\\\\\in \\\\\\\\{0, 1, \\\\\\\\ldots, 5\\\\\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\\\n\\\\n\\\\\\\\paragraph{Scale comparison.}\\\\nTable~\\\\\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\\\\\%, depths 0--3, nucleus), $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\\\\\% bootstrap. Chance = 25\\\\\\\\%.}\\\\n\\\\\\\\label{tab:cross_scale}\\\\n\\\\\\\\begin{tabular}{@{}lccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & 4-class acc & $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\\\\\\\\\\\\\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 70.2\\\\\\\\,[68.3, 72.4] & 4 & 0.949 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 60.1\\\\\\\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(1) Depth signal persists at 7--8B scale.}\\\\nBoth 7--8B models substantially exceed the 25\\\\\\\\% chance baseline: Llama-3.1-8B achieves 70.2\\\\\\\\% (95\\\\\\\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\\\\\\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\\\\\\\times$ larger than the reference model.\\\\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\\\\n\\\\n\\\\\\\\paragraph{(2) EDD at 7--8B scale.}\\\\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\\\\\\\ref{tab:cross_scale_auc}), yielding $\\\\\\\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\\\\\\\mathrm{EDD}{=}4$ observed at 1--1.5B.\\\\nLlama-3.1-8B matches the smaller models at $\\\\\\\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\\\\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\\\\\\\ 0.852 at 1--1.5B).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\\\\n\\\\\\\\label{tab:cross_scale_auc}\\\\n\\\\\\\\begin{tabular}{@{}lccccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(3) Divergent AUC trajectories and instruction-tuning effect.}\\\\nAmong instruction-tuned models, Llama-3.1-8B exhibits monotonic AUC decay consistent with the 1--1.5B pattern, while Qwen2.5-7B shows a U-shaped recovery beyond d2v3 (Table~\\\\\\\\ref{tab:cross_scale_auc}).\\\\nA base-model control (Llama-3.1-8B without instruction tuning) clarifies the causal direction: the base model achieves 59.9\\\\\\\\% four-class accuracy (95\\\\\\\\% CI [57.8, 62.15], $\\\\\\\\mathrm{EDD}_{0.70}{=}2$) with non-monotonic AUC decay (Table~\\\\\\\\ref{tab:llama3_base_auc}), while the instruction-tuned variant reaches 70.2\\\\\\\\% with strictly monotonic decay.\\\\nThe base-model control experiment suggests instruction-tuning regularizes rather than confounds the depth signal.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Pairwise AUC: Llama-3.1-8B Base vs.\\\\\\\\ Instruct.}\\\\n\\\\\\\\label{tab:llama3_base_auc}\\\\n\\\\\\\\begin{tabular}{lccccc}\\\\n\\\\\\\\toprule\\\\nVariant & $d_{0\\\\\\\\text{v}1}$ & $d_{1\\\\\\\\text{v}2}$ & $d_{2\\\\\\\\text{v}3}$ & $d_{3\\\\\\\\text{v}4}$ & $d_{4\\\\\\\\text{v}5}$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nBase & 0.9\\\\n\\\\n... [截断: 输出过长，省略 4177 字符] ...\\\\n\\\\n5\\\\\\\\%, [81.0, 88.25]).\\\\nIf the classifier exploited architecture fingerprints rather than depth signal, reversing the chain should invert depth predictions; the equivalent accuracy under both orderings provides empirical evidence against the architecture confound.\\\\n\\\\n\\\\\\\\paragraph{Cross-domain transfer.}\\\\nAll prior experiments use WikiText-103 as the seed corpus.\\\\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\\\\nFive-fold cross-validation yields 74.1\\\\\\\\% $\\\\\\\\pm$ 2.0\\\\\\\\% accuracy, compared to ${\\\\\\\\sim}$78\\\\\\\\% on the WikiText seed.\\\\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\\\\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\\\\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\\\\n\\\\n\\\\\\\\subsection{Extended Discussion}\\\\n\\\\\\\\label{app:extended_discussion}\\\\n\\\\n\\\\\\\\paragraph{Depth-graduated curation.}\\\\nCurrent data curation operates on a binary human-vs-machine distinction \\\\\\\\cite{dsir2023,qurating2024}.\\\\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\\\\nThe 70--85\\\\\\\\% in-distribution accuracy and $\\\\\\\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\\\\\\\S\\\\\\\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\\\\\\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\\\\nImportance weighting \\\\\\\\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\\\\n\\\\n\\\\\\\\paragraph{Toward a provenance toolkit.}\\\\nDepth estimation complements existing provenance methods along orthogonal axes.\\\\nWatermarking \\\\\\\\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\\\\nSource attribution \\\\\\\\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\\\\nDepth estimation characterizes \\\\\\\\emph{iterative reuse} regardless of generator cooperation or identity.\\\\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\\\\n\\\\n\\\\\\\\subsection{LoRA Rank Sensitivity}\\\\n\\\\\\\\label{app:lora_rank}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{LoRA rank sensitivity on Pythia-1.4B nucleus ($p$=0.95). Depth signal is robust across ranks (spread 4.65\\\\\\\\,pp).}\\\\n\\\\\\\\label{tab:lora_rank}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nRank & 4-class Acc (\\\\\\\\%) & d1v2 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n4  & 71.8 & 0.790 \\\\\\\\\\\\\\\\\\\\n16 & 76.5 & 0.843 \\\\\\\\\\\\\\\\\\\\n64 & 73.1 & 0.833 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_model}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation on Pythia-1.4B nucleus data. All configurations exceed $2.5\\\\\\\\times$ chance (25\\\\\\\\%).}\\\\n\\\\\\\\label{tab:ref_model}\\\\n\\\\\\\\begin{tabular}{lccc}\\\\n\\\\\\\\toprule\\\\nReference Model & 4-class Acc (\\\\\\\\%) & d1v2 AUC & $\\\\\\\\Delta$ vs Pythia \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (matched) & 78.5 & 0.868 & --- \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 74.5 & --- & $-$4.0\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\nGPT-2 XL (cross-arch) & 67.3 & 0.727 & $-$11.2\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "f765eeca-b6c3-4414-aee2-1c8f1c49cbe0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rf\\\\\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Scale Full Results}\\\\n\\\\\\\\label{app:cross_scale_full}\\\\n\\\\nThis section provides the full cross-scale analysis summarized in \\\\\\\\S\\\\\\\\ref{sec:gen:crossscale}.\\\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\\\\\in \\\\\\\\{0, 1, \\\\\\\\ldots, 5\\\\\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\\\n\\\\n\\\\\\\\paragraph{Scale comparison.}\\\\nTable~\\\\\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\\\\\%, depths 0--3, nucleus), $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\\\\\% bootstrap. Chance = 25\\\\\\\\%.}\\\\n\\\\\\\\label{tab:cross_scale}\\\\n\\\\\\\\begin{tabular}{@{}lccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & 4-class acc & $\\\\\\\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\\\\\\\\\\\\\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 70.2\\\\\\\\,[68.3, 72.4] & 4 & 0.949 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 60.1\\\\\\\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(1) Depth signal persists at 7--8B scale.}\\\\nBoth 7--8B models substantially exceed the 25\\\\\\\\% chance baseline: Llama-3.1-8B achieves 70.2\\\\\\\\% (95\\\\\\\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\\\\\\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\\\\\\\times$ larger than the reference model.\\\\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\\\\n\\\\n\\\\\\\\paragraph{(2) EDD at 7--8B scale.}\\\\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\\\\\\\ref{tab:cross_scale_auc}), yielding $\\\\\\\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\\\\\\\mathrm{EDD}{=}4$ observed at 1--1.5B.\\\\nLlama-3.1-8B matches the smaller models at $\\\\\\\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\\\\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\\\\\\\ 0.852 at 1--1.5B).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\\\\n\\\\\\\\label{tab:cross_scale_auc}\\\\n\\\\\\\\begin{tabular}{@{}lccccc@{}}\\\\n\\\\\\\\toprule\\\\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{(3) Divergent AUC trajectories and instruction-tuning effect.}\\\\nAmong instruction-tuned models, Llama-3.1-8B exhibits monotonic AUC decay consistent with the 1--1.5B pattern, while Qwen2.5-7B shows a U-shaped recovery beyond d2v3 (Table~\\\\\\\\ref{tab:cross_scale_auc}).\\\\nA base-model control (Llama-3.1-8B without instruction tuning) clarifies the causal direction: the base model achieves 59.9\\\\\\\\% four-class accuracy (95\\\\\\\\% CI [57.8, 62.15], $\\\\\\\\mathrm{EDD}_{0.70}{=}2$) with non-monotonic AUC decay (Table~\\\\\\\\ref{tab:llama3_base_auc}), while the instruction-tuned variant reaches 70.2\\\\\\\\% with strictly monotonic decay.\\\\nThe base-model control experiment suggests instruction-tuning regularizes rather than confounds the depth signal.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Pairwise AUC: Llama-3.1-8B Base vs.\\\\\\\\ Instruct.}\\\\n\\\\\\\\label{tab:llama3_base_auc}\\\\n\\\\\\\\begin{tabular}{lccccc}\\\\n\\\\\\\\toprule\\\\nVariant & $d_{0\\\\\\\\text{v}1}$ & $d_{1\\\\\\\\text{v}2}$ & $d_{2\\\\\\\\text{v}3}$ & $d_{3\\\\\\\\text{v}4}$ & $d_{4\\\\\\\\text{v}5}$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nBase & 0.9\\\\n\\\\n... [截断: 输出过长，省略 4177 字符] ...\\\\n\\\\n5\\\\\\\\%, [81.0, 88.25]).\\\\nIf the classifier exploited architecture fingerprints rather than depth signal, reversing the chain should invert depth predictions; the equivalent accuracy under both orderings provides empirical evidence against the architecture confound.\\\\n\\\\n\\\\\\\\paragraph{Cross-domain transfer.}\\\\nAll prior experiments use WikiText-103 as the seed corpus.\\\\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\\\\nFive-fold cross-validation yields 74.1\\\\\\\\% $\\\\\\\\pm$ 2.0\\\\\\\\% accuracy, compared to ${\\\\\\\\sim}$78\\\\\\\\% on the WikiText seed.\\\\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\\\\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\\\\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\\\\n\\\\n\\\\\\\\subsection{Extended Discussion}\\\\n\\\\\\\\label{app:extended_discussion}\\\\n\\\\n\\\\\\\\paragraph{Depth-graduated curation.}\\\\nCurrent data curation operates on a binary human-vs-machine distinction \\\\\\\\cite{dsir2023,qurating2024}.\\\\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\\\\nThe 70--85\\\\\\\\% in-distribution accuracy and $\\\\\\\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\\\\\\\S\\\\\\\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\\\\\\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\\\\nImportance weighting \\\\\\\\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\\\\n\\\\n\\\\\\\\paragraph{Toward a provenance toolkit.}\\\\nDepth estimation complements existing provenance methods along orthogonal axes.\\\\nWatermarking \\\\\\\\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\\\\nSource attribution \\\\\\\\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\\\\nDepth estimation characterizes \\\\\\\\emph{iterative reuse} regardless of generator cooperation or identity.\\\\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\\\\n\\\\n\\\\\\\\subsection{LoRA Rank Sensitivity}\\\\n\\\\\\\\label{app:lora_rank}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{LoRA rank sensitivity on Pythia-1.4B nucleus ($p$=0.95). Depth signal is robust across ranks (spread 4.65\\\\\\\\,pp).}\\\\n\\\\\\\\label{tab:lora_rank}\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\nRank & 4-class Acc (\\\\\\\\%) & d1v2 AUC \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n4  & 71.8 & 0.790 \\\\\\\\\\\\\\\\\\\\n16 & 76.5 & 0.843 \\\\\\\\\\\\\\\\\\\\n64 & 73.1 & 0.833 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Reference Model Ablation}\\\\n\\\\\\\\label{app:ref_model}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Reference model ablation on Pythia-1.4B nucleus data. All configurations exceed $2.5\\\\\\\\times$ chance (25\\\\\\\\%).}\\\\n\\\\\\\\label{tab:ref_model}\\\\n\\\\\\\\begin{tabular}{lccc}\\\\n\\\\\\\\toprule\\\\nReference Model & 4-class Acc (\\\\\\\\%) & d1v2 AUC & $\\\\\\\\Delta$ vs Pythia \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B (matched) & 78.5 & 0.868 & --- \\\\\\\\\\\\\\\\\\\\nOLMo-1B & 74.5 & --- & $-$4.0\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\nGPT-2 XL (cross-arch) & 67.3 & 0.727 & $-$11.2\\\\\\\\,pp \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"rf\\\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Cross-Scale Full Results}\\n\\\\label{app:cross_scale_full}\\n\\nThis section provides the full cross-scale analysis summarized in \\\\S\\\\ref{sec:gen:crossscale}.\\nWe extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\\\in \\\\{0, 1, \\\\ldots, 5\\\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\\n\\n\\\\paragraph{Scale comparison.}\\nTable~\\\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Cross-scale comparison: 4-class RF accuracy (\\\\%, depths 0--3, nucleus), $\\\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\\\% bootstrap. Chance = 25\\\\%.}\\n\\\\label{tab:cross_scale}\\n\\\\begin{tabular}{@{}lccc@{}}\\n\\\\toprule\\nModel & 4-class acc & $\\\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\\\\\\n\\\\midrule\\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\\\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\\\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\\\\\\n\\\\midrule\\nLlama-3.1-8B & 70.2\\\\,[68.3, 72.4] & 4 & 0.949 \\\\\\\\\\nQwen2.5-7B & 60.1\\\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\paragraph{(1) Depth signal persists at 7--8B scale.}\\nBoth 7--8B models substantially exceed the 25\\\\% chance baseline: Llama-3.1-8B achieves 70.2\\\\% (95\\\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\\\times$ larger than the reference model.\\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\\n\\n\\\\paragraph{(2) EDD at 7--8B scale.}\\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\\\ref{tab:cross_scale_auc}), yielding $\\\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\\\mathrm{EDD}{=}4$ observed at 1--1.5B.\\nLlama-3.1-8B matches the smaller models at $\\\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\\\ 0.852 at 1--1.5B).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\\n\\\\label{tab:cross_scale_auc}\\n\\\\begin{tabular}{@{}lccccc@{}}\\n\\\\toprule\\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\\\\\\n\\\\midrule\\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\\\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\paragraph{(3) Divergent AUC trajectories and instruction-tuning effect.}\\nAmong instruction-tuned models, Llama-3.1-8B exhibits monotonic AUC decay consistent with the 1--1.5B pattern, while Qwen2.5-7B shows a U-shaped recovery beyond d2v3 (Table~\\\\ref{tab:cross_scale_auc}).\\nA base-model control (Llama-3.1-8B without instruction tuning) clarifies the causal direction: the base model achieves 59.9\\\\% four-class accuracy (95\\\\% CI [57.8, 62.15], $\\\\mathrm{EDD}_{0.70}{=}2$) with non-monotonic AUC decay (Table~\\\\ref{tab:llama3_base_auc}), while the instruction-tuned variant reaches 70.2\\\\% with strictly monotonic decay.\\nThe base-model control experiment suggests instruction-tuning regularizes rather than confounds the depth signal.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Pairwise AUC: Llama-3.1-8B Base vs.\\\\ Instruct.}\\n\\\\label{tab:llama3_base_auc}\\n\\\\begin{tabular}{lccccc}\\n\\\\toprule\\nVariant & $d_{0\\\\text{v}1}$ & $d_{1\\\\text{v}2}$ & $d_{2\\\\text{v}3}$ & $d_{3\\\\text{v}4}$ & $d_{4\\\\text{v}5}$ \\\\\\\\\\n\\\\midrule\\nBase & 0.9\\n\\n... [截断: 输出过长，省略 4177 字符] ...\\n\\n5\\\\%, [81.0, 88.25]).\\nIf the classifier exploited architecture fingerprints rather than depth signal, reversing the chain should invert depth predictions; the equivalent accuracy under both orderings provides empirical evidence against the architecture confound.\\n\\n\\\\paragraph{Cross-domain transfer.}\\nAll prior experiments use WikiText-103 as the seed corpus.\\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\\nFive-fold cross-validation yields 74.1\\\\% $\\\\pm$ 2.0\\\\% accuracy, compared to ${\\\\sim}$78\\\\% on the WikiText seed.\\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\\n\\n\\\\subsection{Extended Discussion}\\n\\\\label{app:extended_discussion}\\n\\n\\\\paragraph{Depth-graduated curation.}\\nCurrent data curation operates on a binary human-vs-machine distinction \\\\cite{dsir2023,qurating2024}.\\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\\nThe 70--85\\\\% in-distribution accuracy and $\\\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\\\S\\\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\\nImportance weighting \\\\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\\n\\n\\\\paragraph{Toward a provenance toolkit.}\\nDepth estimation complements existing provenance methods along orthogonal axes.\\nWatermarking \\\\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\\nSource attribution \\\\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\\nDepth estimation characterizes \\\\emph{iterative reuse} regardless of generator cooperation or identity.\\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\\n\\n\\\\subsection{LoRA Rank Sensitivity}\\n\\\\label{app:lora_rank}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{LoRA rank sensitivity on Pythia-1.4B nucleus ($p$=0.95). Depth signal is robust across ranks (spread 4.65\\\\,pp).}\\n\\\\label{tab:lora_rank}\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\nRank & 4-class Acc (\\\\%) & d1v2 AUC \\\\\\\\\\n\\\\midrule\\n4  & 71.8 & 0.790 \\\\\\\\\\n16 & 76.5 & 0.843 \\\\\\\\\\n64 & 73.1 & 0.833 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Reference Model Ablation}\\n\\\\label{app:ref_model}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Reference model ablation on Pythia-1.4B nucleus data. All configurations exceed $2.5\\\\times$ chance (25\\\\%).}\\n\\\\label{tab:ref_model}\\n\\\\begin{tabular}{lccc}\\n\\\\toprule\\nReference Model & 4-class Acc (\\\\%) & d1v2 AUC & $\\\\Delta$ vs Pythia \\\\\\\\\\n\\\\midrule\\nPythia-1.4B (matched) & 78.5 & 0.868 & --- \\\\\\\\\\nOLMo-1B & 74.5 & --- & $-$4.0\\\\,pp \\\\\\\\\\nGPT-2 XL (cross-arch) & 67.3 & 0.727 & $-$11.2\\\\,pp \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "删除完成，文件结构正确：`\\end{table}`（curation 表）后直接接 `\\subsection{Cross-Scale Full Results}`，新版 Reference Model Ablation（`\\label{app:ref_model}`）保留在文件末尾附近。\n\n**结果：**\n- 删除了原 L295–L311（17 行）：旧的 `\\subsection{Reference Model Ablation}` + `\\label{app:ref_ablation}` + 只有 Pythia/OLMo 两行的表格\n- 无需替换引用：全 tex 文件中没有 `\\ref{app:ref_ablation}` 或 `\\ref{tab:ref_ablation}` 的引用，只有 label 定义本身和自动生成的 `.aux` 文件（下次编译会自动清理）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "uuid": "1aa1b811-720a-4ec8-ba94-83568bc84d61",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VkbWXb4t28Eohoe7Qt1pq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3586,
+                "cache_read_input_tokens": 35452,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3586
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "删除完成，文件结构正确：`\\end{table}`（curation 表）后直接接 `\\subsection{Cross-Scale Full Results}`，新版 Reference Model Ablation（`\\label{app:ref_model}`）保留在文件末尾附近。\n\n**结果：**\n- 删除了原 L295–L311（17 行）：旧的 `\\subsection{Reference Model Ablation}` + `\\label{app:ref_ablation}` + 只有 Pythia/OLMo 两行的表格\n- 无需替换引用：全 tex 文件中没有 `\\ref{app:ref_ablation}` 或 `\\ref{tab:ref_ablation}` 的引用，只有 label 定义本身和自动生成的 `.aux` 文件（下次编译会自动清理）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 86496,
+            "duration_api_ms": 75985,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "2a1df7ca-d308-4318-aabb-646b401804fd",
+            "total_cost_usd": 0.37908625000000007,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 27197,
+              "cache_read_input_tokens": 241062,
+              "output_tokens": 3480,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27197,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 233,
+                  "cache_read_input_tokens": 35452,
+                  "cache_creation_input_tokens": 3586,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3586
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1414,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001509,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 3480,
+                "cacheReadInputTokens": 241062,
+                "cacheCreationInputTokens": 27197,
+                "webSearchRequests": 0,
+                "costUSD": 0.3775772500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "faf40b0f-8058-473f-89ea-3d2ba5b9172c"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2bd4bdb7b0faf8aa0cb1",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis vif partial corr",
+  "task_key": "worker_analysis_vif-partial-corr_20260522T235642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_vif-partial-corr_20260522T235642_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "18dba51bc15df8b72974e72397b87f872bc9e86ba90b8ed404ec1c0b61af7326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/vif_partial_corr.json`。\n\n**VIF 结果**:\n- Mean VIF = 2.98，范围 [1.23, 7.03]\n- 所有 MMLU conditions VIF < 3.1（共线性低）；ARC 的 score_manipulation (7.03) 和 position_bias (6.53) 偏高但均 < 10（可接受阈值）\n\n**Partial Correlation 结果**:\n- η_max 控制 K_eff 后：mean partial r = 0.305，9/12 conditions 中 η_max 的独立贡献更大\n- K_eff 控制 η_max 后：mean partial r = 0.116\n- η_max 在 MMLU 上尤其显著（partial r 0.30–0.60），K_eff 仅在 arc_challenge×position_bias (r=0.27) 和 arc_challenge×prompt_injection (r=0.21) 中贡献更大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

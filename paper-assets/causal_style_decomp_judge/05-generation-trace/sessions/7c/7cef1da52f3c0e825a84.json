@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7cef1da52f3c0e825a84",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code formality llama rewriter",
+  "task_key": "worker_code_formality_llama_rewriter_20260524T065554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_formality_llama_rewriter_20260524T065554_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "596fa8b2fe71f569130fbbbb2ce5a3133ac88de19a73ebf4d537ae28e7e3df62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment `formality_llama_rewriter` complete. Registry updated to DONE/success.\n\n**Results summary:**\n\n| Metric | Llama-70B rewriter | Baseline (Qwen3-32B rewriter) |\n|---|---|---|\n| BT P(formal) | **71.1%** [64.3%, 77.5%] | 66.5% |\n| BT p-value | **0.0001** | — |\n| GEE Style OR | **4.44** (p=1.3e-05) | 4.20 |\n| GEE Orig OR | **5.75** | 4.70 |\n| Likert ATE | 0.02 (p=0.69, n.s.) | — |\n| Blindspot | **YES** | — |\n\nThe formality bias is rewriter-independent — switching from Qwen3-32B to Llama-70B as the counterfactual rewriter actually yields a *slightly stronger* bias (71.1% vs 66.5%, +4.6pp), with overlapping CIs confirming consistency. The blindspot pattern (pairwise detects, Likert misses) also reproduces."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

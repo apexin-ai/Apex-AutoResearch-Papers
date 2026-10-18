@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08058c49a32ca8941778",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp3a analysis pipeline",
+  "task_key": "worker_ssh_exp3a-analysis-pipeline_20260515T050851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp3a-analysis-pipeline_20260515T050851_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "af1a5b3ad178baa19d79743b4d3ffb46a7de7355e6362e5134d0254e00056d81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出已注册为 `art_20260515_799e91`。\n\n**GO。** v2 prompt 去掉 offset 要求并加入 \"Only extract entities that clearly match\" 后：\n\n- **Over-prediction 大幅下降**：P/G ratio 全线降 50-70%（count_1: 6.85→2.97）\n- **BCS-quality 相关性增强**：partial r(F1,BCS|count) 0.303→0.400 (p=0.003)；partial r(recall,BCS|count) 从不显著变显著 (p=0.043)；count_12 recall-BCS 从 FAIL 翻转为 PASS (0.222→0.524)\n- **低 count F1 提升**：count_1 +59%, count_2 +100%, count_6 +77%\n- **代价**：recall 全线降 20-45%，高 count (22-64) F1 降 16-21%\n- **Error taxonomy**：低 count 以 spurious 为主 (98%)，高 count wrong_type 升至 55%，支持 \"confusability 驱动 type substitution\" 的叙事"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

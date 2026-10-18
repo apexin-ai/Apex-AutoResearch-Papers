@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d8c5ef398da822b220",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r22 cpu analyses",
+  "task_key": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r22_cpu_analyses_20260519T181910_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "07a12a1544a593aaaecc3e39ce6afd5ab5775c80c1fd35666f0959eff1396f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个分析全部完成，结果已保存。\n\n### A1: FP8 噪声传播保守 CI\n- 数据：`bcs_controlled_llama-3.1-70b-fp8` count_8 (10 batches) × count_16 (10 batches)\n- 原始 interaction: **15.10 pp**\n- 噪声传播 95% CI (B=10000, σ=0.88pp): **[0.15, 31.63] pp**\n- CI 不含 0 → 即使考虑 FP8 量化噪声，interaction 仍然显著\n- 保存: `analysis/fp8_noise_propagated_ci.json`\n\n### A2: DocRED Range-Matched Post-Hoc Power\n- Range-matched 后: n_16=29, n_32=55, observed interaction=0.93 pp\n- 检测 ±5pp interaction 的 power: **0.2647** (严重不足)\n- 80% power 对应 MDE: **10.54 pp**\n- Power table: 3pp→0.13, 5pp→0.26, 8pp→0.57, 10pp→0.76, 15pp→0.98\n- 保存: `analysis/docred_range_matched_power.json`\n\n### A3: Fisher z-test\n- Constrained ρ=-0.919 (n=25), Unconstrained ρ=-0.139 (n=25)\n- Fisher z = **-4.78**, p = **2×10⁻⁶**\n- 两组相关性差异高度显著 → constrained decoding 下 BCS 预测力远强于 unconstrained\n- 保存: `analysis/fisher_z_constrained_vs_unconstrained.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

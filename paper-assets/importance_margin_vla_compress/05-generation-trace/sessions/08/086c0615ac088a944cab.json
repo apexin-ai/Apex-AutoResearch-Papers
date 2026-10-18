@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "086c0615ac088a944cab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code zeromask ablation prep",
+  "task_key": "worker_code_zeromask_ablation_prep_20260525T154421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_zeromask_ablation_prep_20260525T154421_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "882277fcda56d7cce3d33e2d692e6ee45e29c7a396a2b437cd81b99604a99df2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**脚本**: `/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_zeromask_libero.py` (westd-38929, 439 行)\n\n**核心改动**:\n- 新增 `--ablation_mode {hard_prune, zero_mask}`，默认 `hard_prune`（保持原行为）\n- 抽出 `_apply_selection(output, keep_indices, ablation_mode)` 共享逻辑：`hard_prune` 走 `torch.gather`（shape 缩减），`zero_mask` 走 `scatter_`+乘 mask（shape 保留，未选中位置置 0，position embedding 不变）\n- `RandomPruningHook` / `L2NormPruningHook` / `AttentionPruningHook` 均接受 `ablation_mode` 参数，三种 importance 信号 × 两种 ablation 共 6 种组合可用\n- 结果 JSON 增加 `ablation_mode` 字段；输出文件名加 `_zm`/`_hp` tag 避免覆盖\n\n**验证**（不占 GPU）:\n- `python3 -m py_compile` → 通过\n- `_apply_selection` 单元测试（torch CPU tensor）→ `hard_prune` gather 正确，`zero_mask` 选中行原值保留 + 未选中行为 0\n- argparse 4 个有效组合通过、`--ablation_mode bogus` 被正确拒绝\n\n**artifact id**: `art_20260525_4ac92d`\n\n未跑 GPU eval（westd-38929 4 卡满载 cliff zone 实验，按指令等 GPU 空出再跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

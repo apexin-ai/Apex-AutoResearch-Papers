@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "7a87033e6fcee114371b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure fig degradation curve v4",
+  "task_key": "worker_paper_figure_fig_degradation_curve_v4_20260521T124159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_degradation_curve_v4_20260521T124159_result.json",
+    "occurrence": 1,
+    "bytes": 2112569,
+    "sha256": "8ad5f4087a10c5e8a0c3df154c6941dcab1bfc3c9ce56da2c522d8e061e72779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "7a87033e6fcee114371b-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

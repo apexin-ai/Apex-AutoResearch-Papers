@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "876d1b3e45e182b9f632",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "eval exp 004 r2 attention extraction",
+  "task_key": "worker_eval_exp-004-r2-attention-extraction_20260519T165830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-004-r2-attention-extraction_20260519T165830_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "334bd8c45add71517f52d84d9755656022d72f78298a10843333437e40f483be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HGRN2 提取进行中：1% (51/5153)，GPU 10% / 3317 MiB。一切正常。\n\n按 retnet 的速度 (~10 it/s)，HGRN2 ~8 分钟完成，之后自动运行 analysis。\n\n状态汇总：\n\n| Arch | 状态 | 输出文件 |\n|------|------|----------|\n| GDN | **DONE** | `gdn_attention_patterns.pt` (126MB), `gdn_attention_entropy.csv` (59MB) |\n| RetNet | **DONE** | `retnet_attention_patterns.pt` (126MB), `retnet_attention_entropy.csv` (59MB) |\n| HGRN2 | **RUNNING** (1%, screen session exp004) | — |\n\n- Screen session: `518663.exp004` (Detached)\n- HGRN2 PID: 519463\n- Log: `/tmp/exp004.log`\n- 脚本链式运行：HGRN2 完成后自动执行 `--analyze`\n- Registry: exp-004-r2 = RUNNING\n- 已清除上次 Worker 残留的 orphan 进程 (PID 515917/519328)\n- 预计 HGRN2 ~8 min + analysis ~1 min = 全部完成约 9 分钟后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f0e4d9eed484469fb511",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "read cross benchmark iv results",
+  "task_key": "worker_read_cross-benchmark-iv-results_20260523T084727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_cross-benchmark-iv-results_20260523T084727_result.json",
+    "occurrence": 1,
+    "bytes": 1984,
+    "sha256": "837960f3cc54aa0a732ef91b49f3d9a847b20d47c09ec8720ddcaaa4e1b529cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，结果完整。下面是汇总：\n\n---\n\n## Cross-Benchmark IV 分析结果\n\n### Cross Correlations (K_eff_MMLU vs K_eff_ARC)\n\n| K | r(K_eff) | cross η | within η | cross < within | n |\n|---|----------|---------|----------|----------------|---|\n| K3 | 0.784 | 0.383 | 0.479 | ✓ | 455 |\n| K5 | 0.762 | 0.386 | 0.807 | ✓ | 3003 |\n| K7 | 0.763 | 0.349 | 0.781 | ✓ | 6435 |\n\n所有 K 值下 cross-benchmark η 都低于 within-benchmark η，说明跨 benchmark 预测力弱于 within-benchmark。\n\n### Reduced Form 显著性总结\n\n| K | Direction | keff sig | η sig |\n|---|-----------|----------|-------|\n| K3 | mmlu→arc | 5/6 | 6/6 |\n| K3 | arc→mmlu | 6/6 | 6/6 |\n| K5 | mmlu→arc | 6/6 | 6/6 |\n| K5 | arc→mmlu | 6/6 | 6/6 |\n| K7 | mmlu→arc | 6/6 | 6/6 |\n| K7 | arc→mmlu | 6/6 | 5/6 |\n\nReduced form 几乎全显著（唯一例外：K3 mmlu→arc sycophancy 的 keff 不显著 p=0.108；K7 arc→mmlu authority_bias 的 η 不显著 p=0.077）。\n\n### 2SLS（已作废，仅记录）\n\nIV exclusion restriction violated（Spearman ρ=0.90 > 0.8），2SLS 结果不可信。技术上所有 18 个 first-stage F 统计量都远超 10（K3: F=820, K5: F=4508, K7: F=9232），instrument 很强，但 exclusion restriction 失败意味着 2SLS 估计有偏。\n\n### Bootstrap 推断（cluster-robust, FDR-corrected）\n\n**K3** — 大部分 keff 和 η 的 bootstrap p-value 在 FDR 校正后仍显著（≤0.05），两个方向都稳健。\n\n**K5** — mmlu→arc 方向 keff 多数显著（5/6 FDR p<0.05），但 η 多数不显著。arc→mmlu 方向 keff 更弱（2-3/6 显著），η 也弱。\n\n**K7** — mmlu→arc 方向 keff 4/6 显著，η 仅 verbosity_bias 显著。arc→mmlu 方向 keff 仅 1-2/6 显著，η 几乎全不显著。\n\n**Bootstrap 结论**：K3 最稳健；K5 和 K7 的 OLS 显著性在 cluster-robust bootstrap 下明显衰减，尤其 arc→mmlu 方向和 η 系数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

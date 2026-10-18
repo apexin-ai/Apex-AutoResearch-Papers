@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "34c7b3f4bb95244aff9c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "debug pi05 random k09 bug",
+  "task_key": "worker_debug_pi05-random-k09-bug_20260521T172606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_pi05-random-k09-bug_20260521T172606.log",
+    "occurrence": 1,
+    "bytes": 604212,
+    "sha256": "45f3b12715624286bef6951733818ec66b007bbc8dbfdafe1701805358a96f70"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "34c7b3f4bb95244aff9c-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "34c7b3f4bb95244aff9c-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ]
+}

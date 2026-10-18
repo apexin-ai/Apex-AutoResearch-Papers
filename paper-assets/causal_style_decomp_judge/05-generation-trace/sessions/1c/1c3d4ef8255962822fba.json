@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c3d4ef8255962822fba",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code llama70b continuation",
+  "task_key": "worker_code_llama70b_continuation_20260521T135522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b_continuation_20260521T135522_result.json",
+    "occurrence": 1,
+    "bytes": 275,
+    "sha256": "26878ec355ac08bafe410c10a7d4e8276f590c82248691d6f4f2ead383463e01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **下载进度**: 42GB/135GB（31%），6/30 shard 完成\n- **脚本**: `llama70b_scoring.py` 已写好并部署到服务器\n- **预计**: 下载约 1.3 小时后完成，之后启动 vLLM + 运行评分\n\n270 秒后再次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c060cbb599559f23cb0",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops r6 1b collect synthetic",
+  "task_key": "worker_ops_r6-1b-collect-synthetic_20260525T074547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_r6-1b-collect-synthetic_20260525T074547_result.json",
+    "occurrence": 1,
+    "bytes": 369,
+    "sha256": "5602c3170fcb0d79ff5684ca7e249fe532bc26ecc9dfd8dccb4440e867896283"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `memory.md`。\n\n**总结**：合成验证脚本已完成，200 轮 MC 全部跑完。Scenario B（null）rejection rate 为 1%/0%/0%，远低于 5% 名义水平，且无 shift 模式。这确认了 WCB 检验在 null 下是保守的，**real data 中观察到的 predictor shift 是真实效应，不是统计方法的 artifact**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

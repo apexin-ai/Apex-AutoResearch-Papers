@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "97a2a64b26ebece598d7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code three way comparison prep",
+  "task_key": "worker_code_three_way_comparison_prep_20260516T020126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_three_way_comparison_prep_20260516T020126_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "622f6037f2715ca25c0d9754c67b990eb6a715c093d3dd4f78524b8d1e44deea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三组数据全部加载成功：\n\n| 数据源 | 批次数 | BCS 范围 | Acc 范围 |\n|--------|--------|----------|----------|\n| 16-rel 独立 pool | 100 | [0.653, 0.900] | [0.712, 0.952] |\n| 80-pool → 16-sub | 63 (进行中) | [0.491, 0.654] | [0.656, 0.979] |\n| 80-rel full pool | 25 | [0.646, 0.823] | [0.667, 0.938] |\n\n脚本就绪，`/root/schema-dag-extraction/scripts/three_way_comparison.py`。80-pool 16-sub 实验完成后（100 batches），直接运行：\n\n```bash\n/root/miniconda3/bin/python scripts/three_way_comparison.py\n```\n\n注意 80-rel full pool 只有 25 个 random count_8 batch（来自 `fewrel_formal_full/eval_exp2.json`），如果需要更多数据点可以追加 `fewrel_formal/eval_exp2.json` 的数据——目前脚本只读 `fewrel_formal_full` 下的两个文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

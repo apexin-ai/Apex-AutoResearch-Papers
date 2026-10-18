@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b5cea8de85420d7abb47",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp w2 unconstrained baselines",
+  "task_key": "worker_exp_w2_unconstrained_baselines_20260515T043931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_w2_unconstrained_baselines_20260515T043931_result.json",
+    "occurrence": 1,
+    "bytes": 89,
+    "sha256": "6451c1d79479882c56d3e588c8d625c697548fc08e0ae5017db217921197a2e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(All background timers done — W2 task fully complete, no pending work.)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

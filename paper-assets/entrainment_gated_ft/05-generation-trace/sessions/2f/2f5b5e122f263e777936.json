@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f5b5e122f263e777936",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis r16 w1 routing variance",
+  "task_key": "worker_analysis_r16-w1-routing-variance_20260523T135203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r16-w1-routing-variance_20260523T135203_result.json",
+    "occurrence": 1,
+    "bytes": 1641,
+    "sha256": "32633ccb0339a7198334a587802c02a8afc1220a6c203859056f3d1f133199a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Routing Variance Report\n\n**数据来源**: `artifacts/_project/data/e1_confidence_selection.json`\n**方法**: rescue_threshold routing vs majority vote, 50/50 split × 10 repeats, 3 architectures (GDN, RetNet, HGRN2), h3-1\n\n### 限制\n\n本地仅有聚合统计量（各策略跨 10 splits 的 mean/std），**无 per-split paired data**。因此 SD_gain 和 paired t-test 需要假设 splits 间 routing 与 MV accuracy 的相关系数 r。下面报告 conservative bound (r=0, 等效 unpaired Welch test)：\n\n### Conservative Report (r=0, worst case)\n\n```\nLAMBADA:   mean=+5.3pp, SD=0.77pp, 95% CI=[+4.8, +5.9], p<0.0001\nARC-Easy:  mean=+1.0pp, SD=0.92pp, 95% CI=[+0.4, +1.7], p=0.0065\nHellaSwag: mean=-0.0pp, SD=0.68pp, 95% CI=[-0.5, +0.5], p=0.9275\nPIQA:      mean=-0.6pp, SD=1.47pp, 95% CI=[-1.7, +0.4], p=0.2239\n```\n\n### 关键结论\n\n- **LAMBADA**: 即使用最保守的 unpaired 假设，p < 0.0001，gain 高度显著\n- **ARC-Easy**: p = 0.0065，显著（实际 paired test 的 p 会更小）\n- **HellaSwag**: gain ≈ 0，无显著差异\n- **PIQA**: 实际 gain = -0.6pp（论文报告为 0），无显著差异（p=0.22）\n\n### 精确计算需要的数据\n\nper-split paired data（10 组 routing acc 和 MV acc 配对值）不在本地。可能在 westb-48145 服务器上的以下路径：\n- `/root/entrainment_gated_ft/analysis/` 或 `/root/entrainment_gated_ft/results/`\n- 生成 `e1_confidence_selection.json` 的分析脚本的中间输出\n\n如果需要精确 paired t-test，需 SSH 到服务器提取 per-split 数据，或重新运行分析脚本保存 per-split 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

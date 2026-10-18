@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "282e9be2718cc70e1cb6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d045 fix overfull hbox",
+  "task_key": "worker_paper_d045_fix_overfull_hbox_20260516T110759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d045_fix_overfull_hbox_20260516T110759_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "32fda1a3660e8bcb9ca2b45d08b74dc46cfd908f9d73e206c146c3c4e598367c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The 45pt overfull is gone. The remaining overfull hboxes are:\n- **1.46pt** at line 37 of main.tex (Table 1 caption — negligible, under 5pt)\n- Everything else is in `prompt_appendix.tex` (code listings in monospace font)\n\n**正文中 > 5pt 的 overfull hbox：0 个。** \n\n修复内容：Batch Composition 表格（原 lines 209-218）——用 `@{}` 去除两侧列间距，缩短首列文字 \"Confusability-aware (graph coloring)\" → \"Confus.-aware (coloring)\"，缩短表头 \"Accuracy\" → \"Acc.\"，消除 45pt overfull。正文残留仅 1.46pt（Table 1 caption），在 5pt 阈值内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

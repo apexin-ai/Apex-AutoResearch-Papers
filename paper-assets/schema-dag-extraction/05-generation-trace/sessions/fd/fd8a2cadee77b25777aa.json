@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "fd8a2cadee77b25777aa",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh qwen3 embedding metadata check",
+  "task_key": "worker_ssh_qwen3-embedding-metadata-check_20260515T090746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen3-embedding-metadata-check_20260515T090746.log",
+    "occurrence": 1,
+    "bytes": 21889422,
+    "sha256": "e799a2e8e724db7d2f811bc7fdbabc597703d5e5a636958a715d1c71acce10a8"
+  },
+  "statistics": {
+    "messages": 79,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 12,
+      "tool_call": 31,
+      "tool_result": 31,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "fd8a2cadee77b25777aa-part-0001.json",
+          "message_count": 75
+        },
+        {
+          "path": "fd8a2cadee77b25777aa-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "fd8a2cadee77b25777aa-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ]
+}

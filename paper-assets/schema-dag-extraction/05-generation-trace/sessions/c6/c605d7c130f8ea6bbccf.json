@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c605d7c130f8ea6bbccf",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops server audit cqa1",
+  "task_key": "worker_ops_server-audit-cqa1_20260523T194902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-audit-cqa1_20260523T194902_result.json",
+    "occurrence": 1,
+    "bytes": 1645,
+    "sha256": "52d0ced18ccf914dd4951a645482a9650046ae3db723b0fea31a12d689438dfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器审计报告 — cqa1-38874\n\n### GPU\n| 项目 | 值 |\n|------|-----|\n| 型号 | NVIDIA RTX PRO 6000 Blackwell Server Edition |\n| 显存 | 97,887 MiB (~96 GB) |\n| 当前使用 | 0 MiB / 0% 利用率 |\n\n### 运行进程\n- **无 Python/vLLM/PyTorch 训练进程在跑**\n- 后台服务：supervisord、sshd、JupyterLab、HTTP server (port 18765)\n- 一个 tmux session `exp_unconstrained_decoding_ablation` 残留（bash idle）\n\n### 项目目录\n| 项目 | 值 |\n|------|-----|\n| 总大小 | **1.6 GB** |\n| artifacts/ | 67 个子目录 + 大量 JSON/PT 文件 |\n| results/ | 评估结果、分析 JSON、可视化 PNG/PDF |\n\n### 重要数据文件\n- **.pt 文件**（22 个）：embedding 矩阵、相似度矩阵（sim_matrix.pt、type_embeddings.pt、bcs_matrix 等）\n- **.json 文件**：大量实验配置、预测结果、评估结果（predictions_exp1.json 51MB、predictions_exp2.json 31MB 等）\n- **无 .safetensors 文件**\n\n### 模型缓存\n| 路径 | 大小 |\n|------|------|\n| /root/autodl-tmp/ | **213 GB** |\n| /root/autodl-tmp/.hf_cache/ | **100 GB** |\n\n缓存内容：\n- `llama-3.3-70b-instruct-fp8`\n- `qwen3-32b-fp8`\n- `sentence-transformers/all-MiniLM-L6-v2`\n- `DFKI-SLT/few-nerd` 数据集\n\n/root/autodl-tmp/models/：\n- `llama-3.1-8b-instruct`\n- `llama-3.1-8b-instruct-ms`\n\n### 磁盘使用\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30 GB | 22 GB | 8.8 GB | **71%** |\n| /root/autodl-tmp (数据盘) | 250 GB | 213 GB | 38 GB | **85%** |\n\n### vLLM 服务\n**未运行。** GPU 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

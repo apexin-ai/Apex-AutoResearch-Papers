@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eb75748b434a9171f4ab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis openvla oft cqa1 gpu3",
+  "task_key": "worker_analysis_openvla-oft-cqa1-gpu3_20260520T074953",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_openvla-oft-cqa1-gpu3_20260520T074953_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "f806f31238f205504fbf671288e0741dbf36ac84d42cf74e30c5ea09790635dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download in progress — 4.2GB of 15GB complete, ~17 min remaining. I'll poll again at the scheduled time and launch the analysis as soon as it finishes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

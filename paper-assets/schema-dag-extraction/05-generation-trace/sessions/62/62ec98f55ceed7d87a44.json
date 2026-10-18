@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62ec98f55ceed7d87a44",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis exp fewrel 40rel r4",
+  "task_key": "worker_analysis_exp_fewrel_40rel_r4_20260515T213911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_fewrel_40rel_r4_20260515T213911_result.json",
+    "occurrence": 1,
+    "bytes": 2213,
+    "sha256": "5c82ccbd682ef2a9849f71b644f4eeb3918a825fe93c59093d7fe876b951ec91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the complete analysis:\n\n---\n\n## EXP1: Count Curve (40-rel)\n\n| count | n_batches | mean_acc | std | min | max |\n|-------|-----------|----------|------|------|------|\n| 1 | 80 | 0.8573 | 0.1466 | 0.4167 | 1.0000 |\n| 4 | 5 | 0.8667 | 0.1108 | 0.6875 | 0.9583 |\n| 8 | 5 | 0.8021 | 0.0765 | 0.6875 | 0.8750 |\n| 16 | 5 | 0.6969 | 0.0798 | 0.6094 | 0.7865 |\n| 32 | 5 | 0.6578 | 0.0533 | 0.5703 | 0.7005 |\n| 40 | 5 | 0.5883 | 0.0450 | 0.5312 | 0.6396 |\n\nMonotonic degradation从 count_1 到 count_40 成立（count_4 略高于 count_1 在噪声范围内）。\n\n## EXP2: BCS Effect\n\n| condition | acc | BCS | delta_pp |\n|-----------|------|------|----------|\n| count_8_low_bcs | 0.833 | 0.47 | |\n| count_8_high_bcs | 0.500 | 0.97 | **-33.3pp** |\n| count_16_low_bcs | 0.818 | 0.57 | |\n| count_16_high_bcs | 0.500 | 0.97 | **-31.8pp** |\n\nExp2 random batches 与 exp1 一致：count_8 random=0.805 vs 0.802, count_16 random=0.719 vs 0.697，内部复现良好。\n\n## 跨尺度对比 (16-rel → 40-rel → 80-rel)\n\n| metric | 16-rel | **40-rel** | 80-rel |\n|--------|--------|-----------|--------|\n| count_1 acc | 0.904 | **0.857** | 0.857 |\n| count_max acc | 0.778 | **0.588** | 0.504 |\n| degradation (count_1→max) | -12.6pp | **-26.9pp** | -35.3pp |\n| BCS Δ (avg) | -9.1pp | **-32.5pp** | -31.2pp |\n\n## Scaling Trend 分析\n\n1. **Count curve degradation 符合预期**：count_max accuracy 单调下降 0.778→0.588→0.504，40-rel 精确落在中间\n2. **BCS effect 出现饱和**：从 16-rel (-9.1pp) 到 40-rel (-32.5pp) 有大幅跳变，但 40-rel 到 80-rel (-31.2pp) 基本持平。BCS 对 accuracy 的破坏在 ~40 relations 时就已饱和\n3. **count_1 baseline**：40-rel 和 80-rel 的 count_1 accuracy 相同 (0.857)，都低于 16-rel (0.904)，说明仅\"可选 relation 多\"这件事本身就带来 baseline 下降，但在 40→80 间已稳定\n\n## 结论：**success**\n\n40-rel 数据成功补全了 scaling curve 的关键中间点。Count curve 单调退化符合预期，BCS effect 揭示了一个重要发现：语义混淆的负面影响在 ~40 relations 时即已饱和，而非随 relation 数线性增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

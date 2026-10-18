@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f6435d01ae09e20c8369",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_14_1779947949.md",
+  "task_key": "loop_14_1779947949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1779947949.md",
+    "occurrence": 1,
+    "bytes": 4396,
+    "sha256": "e78b58195ab1803b831a8fb2d5c09c31c960a3c7f416449ddf98fdf2bcbc7e54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-27T13:02:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3`，4 台服务器各 4 卡。不得使用白名单外 GPU\n- **实验硬截止 May 28 20:00 BJT（~15h）**，之后不再提交新实验，只收割结果\n- CoRL 2026 Paper 截止 May 29——时间极紧，所有决策以\"能否在截止前闭合 cliff curve\"为唯一优先级\n- π0.5 strict 实验用的是物理移除 token（非 zero-masking），与旧版 lenient 实验机制不同（D265）。**Attn 旧版 lenient 结果不可用于 paper**，只能用 strict 重跑值\n- OV Long 实验需要 12h timeout（默认 8h 会在 Task 7-8 超时退出，EXIT_CODE=124）\n\n### 2. 🖥️ 基础设施快照\n- **westd-27271**（2 GPU 活跃）：工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，account=root\n- **westd-38929**（4 GPU 满载）：同上路径，OV 系列实验为主\n- **westd-41074**（4 GPU 满载）：π0.5 Attn strict 系列 + L2norm k=0.85 backup\n- **cqa1-33015**（4 GPU 满载）：π0.5 Attn/L2norm strict 补全\n- Python：各服务器用 `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- W&B / HF cache：`/root/autodl-tmp/.hf_cache`（AutoDL 服务器）\n- 活跃 cron：10 个实验在监控中（reconcile 已确认全部 still running）\n- 活跃 Worker：`worker_deploy_westd41074_gpu2_gpu3_seed43`（部署中）\n\n### 3. 📊 当前状态\n**14 个实验全部 RUNNING，14/14 GPU 满载。** 这是 CoRL 截止前最后一批实验。\n\n核心任务是闭合两条 cliff curve：\n\n**OpenVLA Long Cliff Curve 缺口（3 个在跑）：**\n- OV Random k=0.95 v3（w38 GPU0，12h timeout）\n- OV Attn k=0.75 v3（w38 GPU1）\n- OV L2norm k=0.75 v2（w38 GPU2，pid=968300）\n\n**π0.5 Long Strict Cliff Curve 缺口（11 个在跑）：**\n- L2norm: k=0.9(cqa1 GPU3), k=0.75(w27 GPU1), k=0.7(cqa1 GPU2), k=0.5(w38 GPU3)\n- Attn: k=0.95 v2(w41 GPU2), k=0.75(w41 GPU0 + cqa1 GPU0 双保险), k=0.7(cqa1 GPU0), k=0.5(w41 GPU1)\n- Random: k=0.85(w27 GPU0)\n- L2norm k=0.85 backup(w41 GPU3)\n\n**QUEUED（2 个，等 GPU 释放）：**\n- eval_pi05_random_k09_long_seed43_strict_w41 — valley seed43 复制，生成 error bar\n- eval_pi05_attn_k07_long_seed42_strict_cqa1 — Attn cliff 补点\n\n**等待中：** Worker `worker_deploy_westd41074_gpu2_gpu3_seed43` 正在执行部署任务。\n\n### 4. 📋 待办（条件触发式）\n- **任一 cron 回调到达** → spawn Worker 分析结果 → update registry → 如果该 GPU 释放且 QUEUED 有实验 → 立即 cascade 部署下一个\n- **w41 GPU2 (Attn k=0.95 v2) ~21:15 完成** → 收割 → 部署 QUEUED 中的 seed43 valley 复制\n- **w41 GPU3 (L2norm k=0.85 backup) ~21:00 完成** → 与 cqa1 主实验交叉验证 → GPU 释放部署下一个\n- **全部 cliff curve 闭合** → 向 Director 汇报完整数据表 → Paper Agent 更新 cliff curve figures → May 29 提交\n- **OV Random k=0.95 v3 若再次 timeout** → 这个点可能需要放弃或标注 partial data（已是 v3，12h timeout）\n\n### 5. 🎯 战略上下文\n**项目核心发现：** VLA 模型的 vision token 可压缩性取决于 scoring method × connector architecture × task complexity 的三维交互。关键证据：\n- **Importance Margin @ k=0.9**: L2norm 81% vs Random 34.2% = 46.8pp（token coupling 最强证据，D263）\n- **Random U-shape**: 49.8→66.0→63.0→?→34.2→60.6（反单调性，architectural vulnerability）\n- **OV vs π0.5 方法排序反转**: OV k=0.95 Attn>L2norm，π0.5 k=0.95 L2norm>Attn>Random（D267）\n- Crossover table 16/16 已完成，Abstract 已提交\n\n**易错点：**\n1. **不要混淆 lenient 和 strict 数据**——π0.5 的 paper 用 strict 值。Attn 旧版 lenient 是 zero-masking 实现（D265），不可用\n2. **OV 实验 timeout 是 12h 不是默认 8h**——之前多次因 8h timeout 失败（v1/v2 都是 EXIT_CODE=124）\n3. **memory.md 里的 GPU audit 是旧快照**（来自更早的 session），实际 GPU 分配以 ROADMAP.md 的 GPU 表为准\n4. **k=0.75 有多个重复实验**（w41 + cqa1 双保险策略），收割时注意用较新/完整的那个\n5. **Strict 偏差规律**：高性能区 -0.2~-0.8pp，中等区 -2.6pp，dip point 反转 +2.2pp。新结果出来时可用此规律做 sanity check\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

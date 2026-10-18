@@ -1,0 +1,1129 @@
+{
+  "schema_version": "1.0",
+  "id": "78d1f508b24996d30403",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "fetch paired constrained perbatch",
+  "task_key": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fetch_paired_constrained_perbatch_20260520T041146.jsonl",
+    "occurrence": 1,
+    "bytes": 56731,
+    "sha256": "ccaa34ec7d1cccc0688d52ebfb2bb2be776fe5a0b47b770e01a8eb699d5c075e"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T04:16:25.339668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T04:16:25.340141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T04:16:25.340336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts/exp_paired_constrained/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T04:16:25.340490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/exp_paired_constrained/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/exp_paired_constrained/batch_groups.json\\\\n/root/schema-dag-extraction/artifacts/exp_paired_constrained/results_incremental.jsonl\\\\n/root/schema-dag-extraction/artifacts/exp_paired_constrained/results.jsonl\\\\n/root/schema-dag-extraction/artifacts/exp_paired_constrained/summary.json\\\\n/root/schema-dag-extraction/artifacts/exp_paired_constrained/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T04:16:25.340623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_paired_constrained/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T04:16:25.340751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_paired_constrained/summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T04:16:25.341359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"low_0\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n    \\\\\\\"correct\\\\\\\": 80,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"bcs\\\\\\\": 0.47147512435913086,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"headquarters location\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"low_1\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8125,\\\\n    \\\\\\\"correct\\\\\\\": 78,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6464519500732422,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"work location\\\\\\\",\\\\n      \\\\\\\"instrument\\\\\\\",\\\\n      \\\\\\\"screenwriter\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"distributor\\\\\\\",\\\\n      \\\\\\\"original network\\\\\\\",\\\\n      \\\\\\\"taxon rank\\\\\\\",\\\\n      \\\\\\\"sibling\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"low_2\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.875,\\\\n    \\\\\\\"correct\\\\\\\": 84,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6652612686157227,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"publisher\\\\\\\",\\\\n      \\\\\\\"location of formation\\\\\\\",\\\\n      \\\\\\\"notable work\\\\\\\",\\\\n      \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n      \\\\\\\"platform\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"screenwriter\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"low_3\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n    \\\\\\\"correct\\\\\\\": 79,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6724083423614502,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"genre\\\\\\\",\\\\n      \\\\\\\"participant\\\\\\\",\\\\n      \\\\\\\"licensed to broa\n…[truncated 9011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T04:16:25.341623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_batches\\\\\\\": 25,\\\\n  \\\\\\\"n_low\\\\\\\": 13,\\\\n  \\\\\\\"n_high\\\\\\\": 12,\\\\n  \\\\\\\"low_mean_acc\\\\\\\": 0.8093,\\\\n  \\\\\\\"high_mean_acc\\\\\\\": 0.7795,\\\\n  \\\\\\\"delta_pp\\\\\\\": 2.98,\\\\n  \\\\\\\"ci_lower_pp\\\\\\\": -4.41,\\\\n  \\\\\\\"ci_upper_pp\\\\\\\": 10.91,\\\\n  \\\\\\\"pearson_r\\\\\\\": -0.4479,\\\\n  \\\\\\\"pearson_p\\\\\\\": 0.024742,\\\\n  \\\\\\\"spearman_rho\\\\\\\": -0.1566,\\\\n  \\\\\\\"spearman_p\\\\\\\": 0.454806,\\\\n  \\\\\\\"paired_comparison\\\\\\\": {\\\\n    \\\\\\\"n_paired_batches\\\\\\\": 25,\\\\n    \\\\\\\"unconstrained_pearson_r\\\\\\\": -0.4393,\\\\n    \\\\\\\"unconstrained_pearson_p\\\\\\\": 0.028008,\\\\n    \\\\\\\"constrained_pearson_r\\\\\\\": -0.4479,\\\\n    \\\\\\\"constrained_pearson_p\\\\\\\": 0.024742,\\\\n    \\\\\\\"unconstrained_mean_acc\\\\\\\": 0.7958,\\\\n    \\\\\\\"constrained_mean_acc\\\\\\\": 0.795,\\\\n    \\\\\\\"acc_improvement\\\\\\\": -0.0008\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T04:16:25.341777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -3 /root/schema-dag-extraction/artifacts/exp_paired_constrained/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T04:16:25.342002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_0\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"taxon rank\\\\\\\", \\\\\\\"original network\\\\\\\", \\\\\\\"platform\\\\\\\", \\\\\\\"screenwriter\\\\\\\", \\\\\\\"league\\\\\\\", \\\\\\\"genre\\\\\\\", \\\\\\\"subsidiary\\\\\\\", \\\\\\\"crosses\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.7123, \\\\\\\"accuracy\\\\\\\": 0.9167, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_1\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"voice type\\\\\\\", \\\\\\\"mountain range\\\\\\\", \\\\\\\"participant\\\\\\\", \\\\\\\"after a work by\\\\\\\", \\\\\\\"licensed to broadcast to\\\\\\\", \\\\\\\"mouth of the watercourse\\\\\\\", \\\\\\\"location of formation\\\\\\\", \\\\\\\"work location\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.7239, \\\\\\\"accuracy\\\\\\\": 0.7708, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_10\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"contains administrative territorial entity\\\\\\\", \\\\\\\"participant of\\\\\\\", \\\\\\\"spouse\\\\\\\", \\\\\\\"applies to jurisdiction\\\\\\\", \\\\\\\"military branch\\\\\\\", \\\\\\\"military rank\\\\\\\", \\\\\\\"movement\\\\\\\", \\\\\\\"sibling\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.8226, \\\\\\\"accuracy\\\\\\\": 0.9271, \\\\\\\"n_samples\\\\\\\": 96}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T04:16:25.342204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_paired_constrained/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T04:16:25.342492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_0\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"taxon rank\\\\\\\", \\\\\\\"original network\\\\\\\", \\\\\\\"platform\\\\\\\", \\\\\\\"screenwriter\\\\\\\", \\\\\\\"league\\\\\\\", \\\\\\\"genre\\\\\\\", \\\\\\\"subsidiary\\\\\\\", \\\\\\\"crosses\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.7123, \\\\\\\"accuracy\\\\\\\": 0.9167, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_1\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"voice type\\\\\\\", \\\\\\\"mountain range\\\\\\\", \\\\\\\"participant\\\\\\\", \\\\\\\"after a work by\\\\\\\", \\\\\\\"licensed to broadcast to\\\\\\\", \\\\\\\"mouth of the watercourse\\\\\\\", \\\\\\\"location of formation\\\\\\\", \\\\\\\"work location\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.7239, \\\\\\\"accuracy\\\\\\\": 0.7708, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_10\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"contains administrative territorial entity\\\\\\\", \\\\\\\"participant of\\\\\\\", \\\\\\\"spouse\\\\\\\", \\\\\\\"applies to jurisdiction\\\\\\\", \\\\\\\"military branch\\\\\\\", \\\\\\\"military rank\\\\\\\", \\\\\\\"movement\\\\\\\", \\\\\\\"sibling\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.8226, \\\\\\\"accuracy\\\\\\\": 0.9271, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_11\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"participant\\\\\\\", \\\\\\\"participant of\\\\\\\", \\\\\\\"part of\\\\\\\", \\\\\\\"member of\\\\\\\", \\\\\\\"follows\\\\\\\", \\\\\\\"followed by\\\\\\\", \\\\\\\"has part\\\\\\\", \\\\\\\"instance of\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.9706, \\\\\\\"accuracy\\\\\\\": 0.4896, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_2\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"developer\\\\\\\", \\\\\\\"member of political party\\\\\\\", \\\\\\\"position played on team\\\\\\\", \\\\\\\"place served by transport hub\\\\\\\", \\\\\\\"located on terrain feature\\\\\\\", \\\\\\\"member of\\\\\\\", \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"location\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.7348, \\\\\\\"accuracy\\\\\\\": 0.6771, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"high_3\\\\\\\", \\\\\\\"types\\\\\\\": [\\\\\\\"military rank\\\\\\\", \\\\\\\"league\\\\\\\", \\\\\\\"sports season of league or competition\\\\\\\", \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"follows\\\\\\\", \\\\\\\"movement\\\\\\\", \\\\\\\"crosses\\\\\\\", \\\\\\\"successful candidate\\\\\\\"], \\\\\\\"bcs\\\\\\\": 0.7423, \\\\\\\"accuracy\\\\\\\": 0.8646, \\\\\\\"n_samples\\\\\\\": 96}\\\\n{\\\\\\\"bat\n…[truncated 6280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T04:16:25.342652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_paired_constrained/results_incremental.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T04:16:25.343091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"batch_id\\\\\\\": \\\\\\\"low_0\\\\\\\", \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"headquarters location\\\\\\\", \\\\\\\"original language of film or TV show\\\\\\\", \\\\\\\"successful candidate\\\\\\\", \\\\\\\"sports season of league or competition\\\\\\\", \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"located in or next to body of water\\\\\\\", \\\\\\\"licensed to broadcast to\\\\\\\", \\\\\\\"mountain range\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.47147512435913086, \\\\\\\"prediction\\\\\\\": \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"art linson\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"american\\\\\\\", \\\\\\\"prompt_tokens\\\\\\\": 126, \\\\\\\"gen_tokens\\\\\\\": 9}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"low_0\\\\\\\", \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"headquarters location\\\\\\\", \\\\\\\"original language of film or TV show\\\\\\\", \\\\\\\"successful candidate\\\\\\\", \\\\\\\"sports season of league or competition\\\\\\\", \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"located in or next to body of water\\\\\\\", \\\\\\\"licensed to broadcast to\\\\\\\", \\\\\\\"mountain range\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.47147512435913086, \\\\\\\"prediction\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"david bronstein\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"the soviet union\\\\\\\", \\\\\\\"prompt_tokens\\\\\\\": 139, \\\\\\\"gen_tokens\\\\\\\": 7}\\\\n{\\\\\\\"batch_id\\\\\\\": \\\\\\\"low_0\\\\\\\", \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"headquarters location\\\\\\\", \\\\\\\"original language of film or TV show\\\\\\\", \\\\\\\"successful candidate\\\\\\\", \\\\\\\"sports season of league or competition\\\\\\\", \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"located in or next to body of water\\\\\\\", \\\\\\\"licensed to broadcast to\\\\\\\", \\\\\\\"mountain range\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.47147512435913086, \\\\\\\"prediction\\\\\\\": \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"country of citizenship\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"mirek topolanek\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"czech\\\\\\\", \\\\\\\"prompt_tokens\\\\\\\": 143, \\\\\\\"gen_to\n…[truncated 8891 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T04:16:25.343319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_paired_constrained/batch_groups.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T04:16:25.343633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"low\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"headquarters location\\\\\\\",\\\\n        \\\\\\\"original language of film or TV show\\\\\\\",\\\\n        \\\\\\\"successful candidate\\\\\\\",\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"mountain range\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.47147512435913086,\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"greedy_low\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"work location\\\\\\\",\\\\n        \\\\\\\"instrument\\\\\\\",\\\\n        \\\\\\\"screenwriter\\\\\\\",\\\\n        \\\\\\\"successful candidate\\\\\\\",\\\\n        \\\\\\\"distributor\\\\\\\",\\\\n        \\\\\\\"original network\\\\\\\",\\\\n        \\\\\\\"taxon rank\\\\\\\",\\\\n        \\\\\\\"sibling\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.6464519500732422,\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"random_5\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"publisher\\\\\\\",\\\\n        \\\\\\\"location of formation\\\\\\\",\\\\n        \\\\\\\"notable work\\\\\\\",\\\\n        \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n        \\\\\\\"platform\\\\\\\",\\\\n        \\\\\\\"mountain range\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"screenwriter\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.6652612686157227,\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"random_0\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"crosses\\\\\\\",\\\\n        \\\\\\\"genre\\\\\\\",\\\\n        \\\\\\\"participant\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"position played on team\\\\\\\",\\\\n        \\\\\\\"operator\\\\\\\",\\\\n        \\\\\\\"sibling\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.6724083423614502,\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"random_23\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"location\\\\\\\",\\\\n     \n…[truncated 8615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T04:16:25.343801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp_paired_constrained/preprocess.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T04:16:25.343998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts/ -maxdepth 1 -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T04:16:25.344391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"samples\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"The Black Stallion Returns is a 1983 film adaptation of the book of the same name by Walter Farley , and is a sequel to \\\\\\\\\\\\\\\" The Black Stallion \\\\\\\\\\\\\\\" .\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"the black stallion\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"walter farley\\\\\\\", \\\\\\\"relation_type\\\\\\\": \\\\\\\"after a work by\\\\\\\", \\\\\\\"relation_pid\\\\\\\": \\\\\\\"P1877\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"( The line is also found in the 1999 film adaptation of Graham Greene 's The End of the Affair . )\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"the end of the affair\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"graham greene\\\\\\\", \\\\\\\"relation_type\\\\\\\": \\\\\\\"after a work by\\\\\\\", \\\\\\\"relation_pid\\\\\\\": \\\\\\\"P1877\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"That same year , Killer re - teamed with director Todd Haynes on \\\\\\\\\\\\\\\" Carol \\\\\\\\\\\\\\\" , based on the 1952 romance novel , \\\\\\\\\\\\\\\" The Price of Salt \\\\\\\\\\\\\\\" , written by Patricia Highsmith .\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"carol\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"patricia highsmith\\\\\\\", \\\\\\\"relation_type\\\\\\\": \\\\\\\"after a work by\\\\\\\", \\\\\\\"relation_pid\\\\\\\": \\\\\\\"P1877\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Loomer adapted Susanna Kaysen 's memoir , \\\\\\\\\\\\\\\" Girl Interrupted \\\\\\\\\\\\\\\" , for Columbia Pictures .\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"girl interrupted\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"susanna kaysen\\\\\\\", \\\\\\\"relation_type\\\\\\\": \\\\\\\"after a work by\\\\\\\", \\\\\\\"relation_pid\\\\\\\": \\\\\\\"P1877\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\" The Prince and the Pauper \\\\\\\\\\\\\\\" ( 1977 ) was a version of the Mark Twain novel that featured Heston , Harrison and Scott in its cast .\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\\\\\"the prince and the pauper\\\\\\\", \\\\\\\"tail_entity\\\\\\\": \\\\\\\"mark twain\\\\\\\", \\\\\\\"relation_type\\\\\\\": \\\\\\\"after a work by\\\\\\\", \\\\\\\"relation_pid\\\\\\\": \\\\\\\"P1877\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\" Lawless \\\\\\\\\\\\\\\" , directed by John Hillcoat , was based on Matt Bondurant 's prohibition - era novel \\\\\\\\\\\\\\\" The Wettest County in the World \\\\\\\\\\\\\\\" .\\\\\\\", \\\\\\\"head_entity\\\\\\\": \\\n…[truncated 8561 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T04:16:25.344631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/\\\\n/root/schema-dag-extraction/artifacts/exp004\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\\\n/root/schema-dag-extraction/artifacts/exp008\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\\\n/root/schema-dag-extraction/artifacts/exp008_v2\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\\\n/root/schema-dag-extraction/artifacts/exp012\\\\n/root/schema-dag-extraction/artifacts/exp007\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\\\n/root/schema-dag-extraction/artifacts/exp006\\\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability\\\\n/root/schema-dag-extraction/artifacts/bcs_fix\\\\n/root/schema-dag-extraction/artifacts/exp_batch_composition\\\\n/root/schema-dag-extraction/artifacts/exp_v2_re_n25\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition\\\\n/root/schema-dag-extraction/artifacts/exp017_gpt4o_mini_fewrel\\\\n/root/schema-dag-extraction/artifacts/fewrel_partial_correlation_freq\\\\n/root/schema-dag-extraction/artifacts/aggregation_simulation\\\\n/root/schema-dag-ext\n…[truncated 1775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T04:16:25.344816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/ -name \"run_paired*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T04:16:25.345007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/scripts/run_paired_constrained.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T04:16:25.345159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T04:16:25.345296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/batch_groups.json\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/run.log\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/results_incremental.jsonl\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/eval_results.json\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T04:16:25.345423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T04:16:25.345543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/scripts/run_paired_constrained.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T04:16:25.345779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"low_0\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n    \\\\\\\"correct\\\\\\\": 80,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"oov_count\\\\\\\": 0,\\\\n    \\\\\\\"oov_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"bcs\\\\\\\": 0.47147512435913086,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"headquarters location\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"oov_predictions\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"low_1\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8125,\\\\n    \\\\\\\"correct\\\\\\\": 78,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"oov_count\\\\\\\": 0,\\\\n    \\\\\\\"oov_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6464519500732422,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"work location\\\\\\\",\\\\n      \\\\\\\"instrument\\\\\\\",\\\\n      \\\\\\\"screenwriter\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"distributor\\\\\\\",\\\\n      \\\\\\\"original network\\\\\\\",\\\\n      \\\\\\\"taxon rank\\\\\\\",\\\\n      \\\\\\\"sibling\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"oov_predictions\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"low_2\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.875,\\\\n    \\\\\\\"correct\\\\\\\": 84,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"oov_count\\\\\\\": 0,\\\\n    \\\\\\\"oov_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6652612686157227,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"publisher\\\\\\\",\\\\n      \\\\\\\"location of formation\\\\\\\",\\\\n      \\\\\\\"notable work\\\\\\\",\\\\n      \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n      \\\\\\\"platform\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"screenwriter\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"oov_predictions\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"low_3\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n    \\\\\\\"correct\\\\\\\": 79,\\\\n    \\\\\\\"to\n…[truncated 4094 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T04:16:25.346142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Paired Constrained Decoding on the same 25 batches as the unconstrained ablation.\\\\n\\\\nRuns constrained decoding (JSON enum constraint) on the exact same 25 batch\\\\ntype sets used in unconstrained_decoding_ablation_n25, producing paired\\\\ncomparison data for BCS-accuracy correlation analysis.\\\\n\\\\nTwo-stage execution:\\\\n    python scripts/run_paired_constrained.py --stage all\\\\n    python scripts/run_paired_constrained.py --stage extract [--resume]\\\\n    python scripts/run_paired_constrained.py --analysis_only\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport subprocess\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nOUTPUT_DIR = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp_paired_constrained\\\\\\\"\\\\nUNCONSTRAINED_DIR = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"unconstrained_decoding_ablation_n25\\\\\\\"\\\\nBATCH_GROUPS_PATH = UNCONSTRAINED_DIR / \\\\\\\"batch_groups.json\\\\\\\"\\\\nDEFAULT_N_SAMPLES = 1000\\\\n\\\\n\\\\ndef load_batch_groups():\\\\n    with open(BATCH_GROUPS_PATH) as f:\\\\n        groups = json.load(f)\\\\n    return groups[\\\\\\\"low\\\\\\\"], groups[\\\\\\\"high\\\\\\\"]\\\\n\\\\n\\\\ndef stage_preprocess(args):\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from fewrel_utils import load_fewrel, get_all_relation_types, sample_balanced\\\\n\\\\n    logger.info(\\\\\\\"Loading FewRel data (train+val for 80 relations)...\\\\\\\")\\\\n    all_samples = []\\\\n    for dp in [BASE_DIR / \\\\\\\"data/fewrel_parquet/train.parquet\\\\\\\",\\\\n               BASE_DIR / \\\\\\\"data/fewrel_parquet/val.parquet\\\\\\\"]:\\\\n        all_samples.extend(load_fewrel(data_path=str(dp)))\\\\n    all_relations = get_all_relation_types(all_samples)\\\\n    logger.info(\\\\\\\"%d samples, %d relations\\\\\\\", len(all_samples), len(all_relations))\\\n…[truncated 7378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T04:16:25.346349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T04:16:25.346496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/results_incremental.jsonl\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/batch_groups.json\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/run_extract.log\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json\\\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T04:16:25.346626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T04:16:25.347026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"low_0\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n    \\\\\\\"correct\\\\\\\": 80,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"oov_count\\\\\\\": 0,\\\\n    \\\\\\\"oov_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"bcs\\\\\\\": 0.47147512435913086,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"headquarters location\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"oov_predictions\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"low_1\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8125,\\\\n    \\\\\\\"correct\\\\\\\": 78,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"oov_count\\\\\\\": 0,\\\\n    \\\\\\\"oov_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6464519500732422,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"work location\\\\\\\",\\\\n      \\\\\\\"instrument\\\\\\\",\\\\n      \\\\\\\"screenwriter\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"distributor\\\\\\\",\\\\n      \\\\\\\"original network\\\\\\\",\\\\n      \\\\\\\"taxon rank\\\\\\\",\\\\n      \\\\\\\"sibling\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"oov_predictions\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"low_2\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.875,\\\\n    \\\\\\\"correct\\\\\\\": 84,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"oov_count\\\\\\\": 0,\\\\n    \\\\\\\"oov_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6652612686157227,\\\\n    \\\\\\\"group\\\\\\\": \\\\\\\"low\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"publisher\\\\\\\",\\\\n      \\\\\\\"location of formation\\\\\\\",\\\\n      \\\\\\\"notable work\\\\\\\",\\\\n      \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n      \\\\\\\"platform\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"screenwriter\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"oov_predictions\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"low_3\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n    \\\\\\\"correct\\\\\\\": 79,\\\\n    \\\\\\\"to\n…[truncated 8995 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T04:16:25.347261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"\nimport json\nc = json.load(open('/root/schema-dag-extraction/artifacts/exp_paired_constrained/eval_results.json'))\nu = json.load(open('/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json'))\nbatches = []\nfor bid in sorted(c.keys(), key=lambda x: c[x]['bcs']):\n    cb = c[bid]\n    ub = u.get(bid, {})\n    batches.append({'batch_id': bid, 'bcs': round(cb['bcs'],4), 'constrained_acc': round(cb['accuracy'],4), 'unconstrained_acc': round(ub.get('accuracy',0),4), 'group': cb['group']})\nfor b in batches:\n    print(json.dumps(b))\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T04:16:25.347405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T04:16:25.347531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -o '\"accuracy\": [0-9.]*' /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T04:16:25.347675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"accuracy\\\\\\\": 0.8333333333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.8125\\\\n\\\\\\\"accuracy\\\\\\\": 0.875\\\\n\\\\\\\"accuracy\\\\\\\": 0.8229166666666666\\\\n\\\\\\\"accuracy\\\\\\\": 0.6770833333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.7708333333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.71875\\\\n\\\\\\\"accuracy\\\\\\\": 0.7083333333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.9270833333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.5\\\\n\\\\\\\"accuracy\\\\\\\": 0.7291666666666666\\\\n\\\\\\\"accuracy\\\\\\\": 0.8020833333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.875\\\\n\\\\\\\"accuracy\\\\\\\": 0.7708333333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.9166666666666666\\\\n\\\\\\\"accuracy\\\\\\\": 0.875\\\\n\\\\\\\"accuracy\\\\\\\": 0.84375\\\\n\\\\\\\"accuracy\\\\\\\": 0.6875\\\\n\\\\\\\"accuracy\\\\\\\": 0.9166666666666666\\\\n\\\\\\\"accuracy\\\\\\\": 0.7708333333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.6770833333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.8645833333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.8645833333333334\\\\n\\\\\\\"accuracy\\\\\\\": 0.8229166666666666\\\\n\\\\\\\"accuracy\\\\\\\": 0.8333333333333334\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T04:16:25.347817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -E '\"(low_|high_)[0-9]+\"' /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T04:16:25.348012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T04:16:25.348141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -E '\"(low_|high_)[0-9]+\"' /root/schema-dag-extraction/artifacts/exp_paired_constrained/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T04:16:25.348264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T04:16:25.348546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -E \"low_|high_\" /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T04:16:25.348678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T04:16:25.348798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -E \"low_\" /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T04:16:25.348951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"low_0\\\\\\\": {\\\\n  \\\\\\\"low_1\\\\\\\": {\\\\n  \\\\\\\"low_2\\\\\\\": {\\\\n  \\\\\\\"low_3\\\\\\\": {\\\\n  \\\\\\\"low_4\\\\\\\": {\\\\n  \\\\\\\"low_5\\\\\\\": {\\\\n  \\\\\\\"low_6\\\\\\\": {\\\\n  \\\\\\\"low_7\\\\\\\": {\\\\n  \\\\\\\"low_8\\\\\\\": {\\\\n  \\\\\\\"low_9\\\\\\\": {\\\\n  \\\\\\\"low_10\\\\\\\": {\\\\n  \\\\\\\"low_11\\\\\\\": {\\\\n  \\\\\\\"low_12\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T04:16:25.349090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"accuracy\" /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T04:16:25.349221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"high_\" /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T04:16:25.349373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3:    \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n23:    \\\\\\\"accuracy\\\\\\\": 0.8125,\\\\n43:    \\\\\\\"accuracy\\\\\\\": 0.875,\\\\n63:    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n83:    \\\\\\\"accuracy\\\\\\\": 0.6770833333333334,\\\\n103:    \\\\\\\"accuracy\\\\\\\": 0.7708333333333334,\\\\n123:    \\\\\\\"accuracy\\\\\\\": 0.71875,\\\\n143:    \\\\\\\"accuracy\\\\\\\": 0.7083333333333334,\\\\n163:    \\\\\\\"accuracy\\\\\\\": 0.9270833333333334,\\\\n183:    \\\\\\\"accuracy\\\\\\\": 0.5,\\\\n203:    \\\\\\\"accuracy\\\\\\\": 0.7291666666666666,\\\\n223:    \\\\\\\"accuracy\\\\\\\": 0.8020833333333334,\\\\n243:    \\\\\\\"accuracy\\\\\\\": 0.875,\\\\n263:    \\\\\\\"accuracy\\\\\\\": 0.7708333333333334,\\\\n283:    \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n303:    \\\\\\\"accuracy\\\\\\\": 0.875,\\\\n323:    \\\\\\\"accuracy\\\\\\\": 0.84375,\\\\n343:    \\\\\\\"accuracy\\\\\\\": 0.6875,\\\\n363:    \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n383:    \\\\\\\"accuracy\\\\\\\": 0.7708333333333334,\\\\n405:    \\\\\\\"accuracy\\\\\\\": 0.6770833333333334,\\\\n425:    \\\\\\\"accuracy\\\\\\\": 0.8645833333333334,\\\\n445:    \\\\\\\"accuracy\\\\\\\": 0.8645833333333334,\\\\n465:    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n485:    \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T04:16:25.349511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"high_7\\\\\\\": {\\\\n  \\\\\\\"high_8\\\\\\\": {\\\\n  \\\\\\\"high_9\\\\\\\": {\\\\n  \\\\\\\"high_10\\\\\\\": {\\\\n  \\\\\\\"high_11\\\\\\\": {\\\\n  \\\\\\\"high_0\\\\\\\": {\\\\n  \\\\\\\"high_1\\\\\\\": {\\\\n  \\\\\\\"high_2\\\\\\\": {\\\\n  \\\\\\\"high_3\\\\\\\": {\\\\n  \\\\\\\"high_4\\\\\\\": {\\\\n  \\\\\\\"high_5\\\\\\\": {\\\\n  \\\\\\\"high_6\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T04:16:25.349674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T04:16:25.349827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"delta_pp\\\\\\\": 2.8,\\\\n  \\\\\\\"ci_lower_pp\\\\\\\": -4.53,\\\\n  \\\\\\\"ci_upper_pp\\\\\\\": 10.56,\\\\n  \\\\\\\"low_mean_acc\\\\\\\": 0.8093,\\\\n  \\\\\\\"high_mean_acc\\\\\\\": 0.7812,\\\\n  \\\\\\\"low_accs\\\\\\\": [\\\\n    0.8333,\\\\n    0.8125,\\\\n    0.875,\\\\n    0.8438,\\\\n    0.6875,\\\\n    0.875,\\\\n    0.8229,\\\\n    0.6771,\\\\n    0.7292,\\\\n    0.8021,\\\\n    0.875,\\\\n    0.7708,\\\\n    0.9167\\\\n  ],\\\\n  \\\\\\\"high_accs\\\\\\\": [\\\\n    0.9167,\\\\n    0.7708,\\\\n    0.9271,\\\\n    0.5,\\\\n    0.6771,\\\\n    0.8646,\\\\n    0.8646,\\\\n    0.8229,\\\\n    0.8333,\\\\n    0.7708,\\\\n    0.7188,\\\\n    0.7083\\\\n  ],\\\\n  \\\\\\\"low_bcs_values\\\\\\\": [\\\\n    0.4715,\\\\n    0.6465,\\\\n    0.6921,\\\\n    0.7092,\\\\n    0.7092,\\\\n    0.6653,\\\\n    0.6724,\\\\n    0.6742,\\\\n    0.6783,\\\\n    0.6788,\\\\n    0.6869,\\\\n    0.6916,\\\\n    0.6919\\\\n  ],\\\\n  \\\\\\\"high_bcs_values\\\\\\\": [\\\\n    0.7123,\\\\n    0.7239,\\\\n    0.8226,\\\\n    0.9706,\\\\n    0.7348,\\\\n    0.7423,\\\\n    0.7423,\\\\n    0.7469,\\\\n    0.7677,\\\\n    0.7778,\\\\n    0.7908,\\\\n    0.8201\\\\n  ],\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"spearman_rho\\\\\\\": -0.1442,\\\\n  \\\\\\\"spearman_pval\\\\\\\": 0.491539,\\\\n  \\\\\\\"total_oov\\\\\\\": 2,\\\\n  \\\\\\\"total_oov_rate\\\\\\\": 0.0008,\\\\n  \\\\\\\"low_oov_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"high_oov_rate\\\\\\\": 0.0017\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T04:16:25.350043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_paired_constrained/data",
+              "description": "Create output directory"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T04:16:25.350174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T04:16:25.350318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_paired_constrained/data/per_batch_results.json",
+              "content": "{\n  \"description\": \"Paired constrained vs unconstrained decoding on 25 identical batch type sets (FewRel, Qwen3-32B-FP8)\",\n  \"batches\": [\n    {\"batch_id\": \"low_0\",  \"group\": \"low\",  \"bcs\": 0.4715, \"constrained_acc\": 0.8333, \"unconstrained_acc\": 0.8333},\n    {\"batch_id\": \"low_1\",  \"group\": \"low\",  \"bcs\": 0.6465, \"constrained_acc\": 0.8125, \"unconstrained_acc\": 0.8125},\n    {\"batch_id\": \"low_2\",  \"group\": \"low\",  \"bcs\": 0.6653, \"constrained_acc\": 0.8750, \"unconstrained_acc\": 0.8750},\n    {\"batch_id\": \"low_3\",  \"group\": \"low\",  \"bcs\": 0.6724, \"constrained_acc\": 0.8229, \"unconstrained_acc\": 0.8229},\n    {\"batch_id\": \"low_4\",  \"group\": \"low\",  \"bcs\": 0.6742, \"constrained_acc\": 0.6771, \"unconstrained_acc\": 0.6771},\n    {\"batch_id\": \"low_5\",  \"group\": \"low\",  \"bcs\": 0.6783, \"constrained_acc\": 0.7292, \"unconstrained_acc\": 0.7292},\n    {\"batch_id\": \"low_6\",  \"group\": \"low\",  \"bcs\": 0.6788, \"constrained_acc\": 0.8021, \"unconstrained_acc\": 0.8021},\n    {\"batch_id\": \"low_7\",  \"group\": \"low\",  \"bcs\": 0.6869, \"constrained_acc\": 0.8750, \"unconstrained_acc\": 0.8750},\n    {\"batch_id\": \"low_8\",  \"group\": \"low\",  \"bcs\": 0.6916, \"constrained_acc\": 0.7708, \"unconstrained_acc\": 0.7708},\n    {\"batch_id\": \"low_9\",  \"group\": \"low\",  \"bcs\": 0.6919, \"constrained_acc\": 0.9167, \"unconstrained_acc\": 0.9167},\n    {\"batch_id\": \"low_10\", \"group\": \"low\",  \"bcs\": 0.6921, \"constrained_acc\": 0.8750, \"unconstrained_acc\": 0.8750},\n    {\"batch_id\": \"low_11\", \"group\": \"low\",  \"bcs\": 0.7092, \"constrained_acc\": 0.8438, \"unconstrained_acc\": 0.8438},\n    {\"batch_id\": \"low_12\", \"group\": \"low\",  \"bcs\": 0.7092, \"constrained_acc\": 0.6875, \"unconstrained_acc\": 0.6875},\n    {\"batch_id\": \"high_0\",  \"group\": \"high\", \"bcs\": 0.7123, \"constrained_acc\": 0.9167, \"unconstrained_acc\": 0.9167},\n    {\"batch_id\": \"high_1\",  \"group\": \"high\", \"bcs\": 0.7239, \"constrained_acc\": 0.7708, \"unconstrained_acc\": 0.7708},\n    {\"batch_id\": \"high_2\",  \"group\": \"high\", \"bcs\": 0.7348, \"constrained_acc\": 0.6771, \"unconstrained_acc\": 0.6771},\n    {\"batch_id\": \"high_3\",  \"group\": \"high\", \"bcs\": 0.7423, \"constrained_acc\": 0.8646, \"unconstrained_acc\": 0.8646},\n    {\"batch_id\": \"high_4\",  \"group\": \"high\", \"bcs\": 0.7423, \"constrained_acc\": 0.8646, \"unconstrained_acc\": 0.8646},\n    {\"batch_id\": \"high_5\",  \"group\": \"high\", \"bcs\": 0.7469, \"constrained_acc\": 0.8125, \"unconstrained_acc\": 0.8229},\n    {\"batch_id\": \"high_6\",  \"group\": \"high\", \"bcs\": 0.7677, \"constrained_acc\": 0.8333, \"unconstrained_acc\": 0.8333},\n    {\"batch_id\": \"high_7\",  \"group\": \"high\", \"bcs\": 0.7778, \"constrained_acc\": 0.7708, \"unconstrained_acc\": 0.7708},\n    {\"batch_id\": \"high_8\",  \"group\": \"high\", \"bcs\": 0.7908, \"constrained_acc\": 0.7188, \"unconstrained_acc\": 0.7188},\n    {\"batch_id\": \"high_9\",  \"group\": \"high\", \"bcs\": 0.8201, \"constrained_acc\": 0.7083, \"unconstrained_acc\": 0.7083},\n    {\"batch_id\": \"high_10\", \"group\": \"high\", \"bcs\": 0.8226, \"constrained_acc\": 0.9271, \"unconstrained_acc\": 0.9271},\n    {\"batch_id\": \"high_11\", \"group\": \"high\", \"bcs\": 0.9706, \"constrained_acc\": 0.4896, \"unconstrained_acc\": 0.5000}\n  ],\n  \"aggregate\": {\n    \"n_batches\": 25,\n    \"n_low\": 13,\n    \"n_high\": 12,\n    \"n_samples_per_batch\": 96,\n    \"constrained_mean_acc\": 0.7950,\n    \"unconstrained_mean_acc\": 0.7958,\n    \"acc_improvement\": -0.0008,\n    \"constrained_pearson_r\": -0.4479,\n    \"constrained_pearson_p\": 0.024742,\n    \"unconstrained_pearson_r\": -0.4393,\n    \"unconstrained_pearson_p\": 0.028008,\n    \"constrained_spearman_rho\": -0.1566,\n    \"constrained_spearman_p\": 0.454806,\n    \"unconstrained_spearman_rho\": -0.1442,\n    \"unconstrained_spearman_p\": 0.491539,\n    \"low_mean_acc_constrained\": 0.8093,\n    \"high_mean_acc_constrained\": 0.7795,\n    \"delta_pp\": 2.98,\n    \"ci_lower_pp\": -4.41,\n    \"ci_upper_pp\": 10.91\n  },\n  \"notes\": {\n    \"batches_with_acc_diff\": [\"high_5 (constrained 0.8125 vs unconstrained 0.8229, delta=-1/96)\", \"high_11 (constrained 0.4896 vs unconstrained 0.5000, delta=-1/96)\"],\n    \"batches_identical\": \"23 of 25 batches have identical accuracy between constrained and unconstrained decoding\",\n    \"oov_in_unconstrained\": \"2 OOV predictions in unconstrained (high_1: 'work by', high_6: 'member of'), total OOV rate 0.08%\",\n    \"data_sources\": {\n      \"constrained\": \"artifacts/exp_paired_constrained/eval_results.json + results.jsonl\",\n      \"unconstrained\": \"artifacts/unconstrained_decoding_ablation_n25/eval_results.json + bootstrap_ci.json\"\n    }\n  }\n}\n"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T04:16:25.350506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_paired_constrained/data/per_batch_results.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T04:16:25.350671+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/exp_paired_constrained/data/per_batch_results.json`。\n\n关键发现：\n- 25 个 batch 中，23 个 constrained 和 unconstrained accuracy 完全相同\n- 仅 high_5 和 high_11 各差 1 个样本（1/96 ≈ 1.04pp）\n- 整体 acc 差异仅 -0.08pp（constrained 0.7950 vs unconstrained 0.7958）\n- Pearson r 几乎一致：constrained -0.4479 vs unconstrained -0.4393（均 p<0.03）\n- Spearman rho 也一致：constrained -0.1566 vs unconstrained -0.1442（均不显著）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_paired_constrained_perbatch_20260520T041146"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ]
+}

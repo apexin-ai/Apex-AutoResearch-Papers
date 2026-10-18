@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2fa2f10e28701fafe837",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research ref audit w1",
+  "task_key": "worker_research_ref-audit-w1_20260526T101506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-w1_20260526T101506_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "e3659e815b5246ac61e51ab7abc600b0552b162f6248dff555a1133b8cec44be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。63 条引用逐条通过 WebSearch 验证，结果：\n\n**✗ 1 个错误（必须修复）：**\n- `peterson2019human`：页码 `9617--9626` 应为 `9616--9625`（差一页）\n\n**⚠ 2 个警告（建议修复）：**\n- `golde-2025-familiarity`：booktitle 用了旧名 \"North American Chapter\"，NAACL 2025 已改名 \"Nations of the Americas Chapter\"（同文件 `boylan-2025-glirel` 已用新名，不一致）\n- `baan-2023-ecological`：bib key 含 \"baan\" 但无此作者（第一作者为 Orlikowski），不影响编译但易造成混乱\n\n**无虚构论文。** 所有 63 篇引用均真实存在，作者/标题/年份/venue 信息正确。引用上下文也无错位使用。\n\n报告已写入 `artifacts/_project/report/ref_audit_worker1.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ff6325941fdc313d56d4",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4050,
+    "sha256": "c99537a9364e257cb03fac4ba616f3d247810789f4fb907a3691bcc540c80c21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T05:54:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 限 westd-37397 的 cuda:0 + cuda:1（2× RTX PRO 6000 96GB），不得使用其他设备\n- ARR May 25, 2026 deadline（距今 11 天），投稿目标 EMNLP 2026 Main\n- D015 已激活 Plan B framing：\"analysis + conditional method\"，不是 \"universal method\"。Claim 2 不得说 \"universally outperforms\"\n- RateQuant 描述不得 mischaracterize——它有 discrete greedy (Algorithm 1, Prop. 6)，不仅是 continuous waterfilling（D012 教训）\n- n=3 模型的 heterogeneity correlation 不得称 \"significant\"——只能用 \"directional evidence\" / \"consistent trend\"（p=0.10）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397 (connect.westd.seetacloud.com)，用户 root\n- 工作目录：/root/ratekv\n- Python/conda：未明确记录，Agent 连接后自动探测\n- GPU：2× RTX PRO 6000 96GB（cuda:0 + cuda:1），当前均空闲\n- 活跃进程：无（所有 27 个实验已 DONE）\n- Dream：dream_20260514T002109 已提交，状态未确认——接手后先 `get_dream_status` 检查\n\n### 3. 📊 当前状态\n**刚做完**：跨架构验证全部完成（Qwen/Llama/Mistral hires pipeline + Llama aggressive compression），D016 定论。paper_framing.md 已按 Plan B 全面重写（3 Claims + Story Spine + Differentiation + Reviewer Concerns）。\n\n**实验全景**：27 个实验全部 DONE，13 success / 7 negative / 8 failed(早期 sanity/mvp 阶段)。无 RUNNING/PREPARING。\n\n**P0 全部完成**：plan_001-008 均已执行，核心数据齐全。\n\n**待执行 P1**：\n- plan_009 Oracle comparison（brute-force 最优 vs MCKP gap）— planned\n- plan_010 Cross-domain calibration robustness — planned\n- plan_011 Head sensitivity visualization — planned（report 显示 \"preparing\"）\n- plan_014 K/V separation — planned\n- plan_012 Downstream eval (ARC-C/HellaSwag/PIQA/WinoGrande) — planned（report 显示 \"preparing\"）\n\n**P2**：plan_013 70B profiling — planned\n\n**等待中**：\n- Dream dream_20260514T002109 结果——ROADMAP 待办里写着\"等待 Dream 完成\"\n- 两张 GPU 完全空闲，必须立即派实验\n\n### 4. 📋 待办（条件触发式）\n- Dream 完成且无结构性问题 → 按 P1 优先级派实验，双卡并行（plan_011 + plan_012 可并行，plan_014 独立可并行）\n- Dream 报告结构性问题 → 先修 framing/plan 再派实验\n- GPU 空闲 > 10 min → 立即派最高优先级 P1 实验，不等 Dream\n- plan_012 downstream eval 完成 → 与 RateQuant 论文的 eval suite 对比，确认覆盖度\n- plan_014 K/V separation 完成 → 如果 K/V 分离有显著收益，更新 Claim 2 和 paper_framing.md\n- P1 完成度 ≥ 70% → 激活 Paper Agent 写初稿（`director_post_to_paper_agent`，Full Draft 模式）\n- 论文初稿完成 → `submit_paper_to_review` 提交审稿（review_chat_id 已配置）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D005: attention MSE 作为 distortion proxy 被 falsify → D007: pivot 到 quant-only MCKP\n- D009: constrained MCKP（cardinality constraint）解决 compounding effect → D010: MVP PASS (27%)\n- D013: RateQuant greedy 在 {2,4,8,16} 上 catastrophic fail (PPL 32.45 vs 11.23) → 关键 differentiation\n- D015/D016: Plan B framing 激活——MCKP 收益与 uniform 退化幅度成正比，GQA ratio 是粗略 proxy\n\n**最容易判断错的事**：\n1. **不要以为 Llama/Mistral 是失败**——它们是 Plan B framing 的核心证据（\"何时不值得做 non-uniform\"）。诚实的负面结果是论文的强项\n2. **GPUs 现在空着**——这违反硬约束（>10 min 持有空卡不动），接手后第一件事派实验\n3. **Dream 可能已经完成了**——6 小时前提交的，先 `get_dream_status` 检查，别重复提交\n4. **paper_framing.md 已经很完整**——不需要重写，只需根据后续实验结果微调\n5. **11 天 deadline**——P1 实验 + 论文写作 + 审稿迭代全部要在这个窗口内完成，必须最大化并行\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "551b08b1030537108c4b",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis a6 dbei predictor shift",
+  "task_key": "worker_analysis_a6-dbei-predictor-shift_20260524T120429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a6-dbei-predictor-shift_20260524T120429.log",
+    "occurrence": 1,
+    "bytes": 1018338,
+    "sha256": "1d49dd599a8682728fc48afb53642e0dc52b5696dbd7ccabe020a98b09af9362"
+  },
+  "statistics": {
+    "messages": 649,
+    "user_turns": 1,
+    "tool_calls": 292,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 4,
+      "assistant": 54,
+      "tool_call": 292,
+      "tool_result": 292,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 637,
+      "chunks": [
+        {
+          "path": "551b08b1030537108c4b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "551b08b1030537108c4b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "551b08b1030537108c4b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "551b08b1030537108c4b-part-0004.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "551b08b1030537108c4b-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ]
+}

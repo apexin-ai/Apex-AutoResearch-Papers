@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "232b621b9553a409888e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "sync figures to local",
+  "task_key": "worker_sync_figures_to_local_20260518T181044",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_sync_figures_to_local_20260518T181044_result.json",
+    "occurrence": 1,
+    "bytes": 1748,
+    "sha256": "a89b4e789020ee740ec8ac2994ad906e37f1970081ee5242e293c63cba9ebc92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个 figure PDF 已就位。下面是完整报告：\n\n## Figure 同步状态\n\n| .tex 引用路径 | 引用位置 | 本地状态 |\n|---|---|---|\n| `figures/paper/fig_architecture.pdf` | background.tex, experimental_setup.tex, sections/background.tex | ✅ 已有 |\n| `figures/paper/fig_degradation_curve.pdf` | results.tex:77 | ✅ 已有 |\n| `figures/paper/fig_compression_curve.pdf` | results.tex:83 | ✅ 已有 |\n| `figures/paper/fig_pixel_shuffle.pdf` | analysis.tex:11 | ✅ 已有 |\n| `figures/paper/fig_entropy_layers.pdf` | analysis.tex:20 | ✅ 已有 |\n| `figures/paper/fig_attention_heatmap.pdf` | sections/analysis.tex:41 | ✅ 已补充（从 `figures/paper/` 复制） |\n| `figures/paper/fig_action_divergence.pdf` | sections/analysis.tex:71 | ✅ 已补充（从 `figures/paper/` 复制） |\n| `figures/paper/fig_cliff_edge.pdf` | sections/experiments.tex:72 | ✅ 已补充（从 `figures/paper/` 复制） |\n\n## 注意事项\n\n1. **命名差异**：任务中提到的文件名（`degradation_curve.pdf` 等）与 .tex 实际引用的文件名（`fig_degradation_curve.pdf` 等）不同。.tex 统一使用 `fig_` 前缀。`docs/paper/figures/` 下还有一组旧命名的文件（无 `fig_` 前缀），这些不被 .tex 引用。\n\n2. **远程最新版问题**：cqa1-33015 上只有一个 `degradation_curve.pdf`（无 `fig_` 前缀），与本地 `docs/paper/figures/paper/fig_degradation_curve.pdf` 是否为同一版本需确认。如果 cqa1 上的是最新版（3 条曲线，official 4 个数据点），可能需要替换本地版本。\n\n3. **所有 `\\includegraphics` 路径现在都能在 `docs/paper/figures/paper/` 下找到对应文件**，编译应无缺失图片错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

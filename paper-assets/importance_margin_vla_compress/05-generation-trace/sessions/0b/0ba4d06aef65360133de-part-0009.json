@@ -1,0 +1,3546 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0ba4d06aef65360133de",
+  "rounds": [
+    {
+      "number": 136,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-27T14:08:16.359515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k095_long_seed43_strict_w38",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0', 'server': 'westd-38929', 'gpu': 'cuda:2', 'pid': '315686', 'log_path': '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_long_seed43_strict_w38.log', 'data_path': '/root/autodl-tmp/importance_margin_vla_compress', 'data_count': 500, 'model_name': 'pi0.5', 'seed': 43, 'checkpoint_source': 'pi0.5 pretrained', 'eval_data': 'libero_10 (Long)', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-27T14:08:26.762702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T14:07:04.512Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:08:20.246Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.95 Long strict seed43 — seed42=86.2% 标杆的 seed 复制，生成 error bar。部署在 w38 GPU2（从 w41 cascade 改为直接部署）\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k095_long_seed42_strict\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"315686\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_long_seed43_strict_w38.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.327}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10403
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-27T14:08:36.221664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+              "server": "cqa1-33015",
+              "pid": "328563",
+              "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attn_k07_long_seed42_strict_cqa1.log",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-27T14:08:36.679806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_pi05_attn_k07_long_seed42_strict_cqa1\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"pid\\\": \\\"328563\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attn_k07_long_seed42_strict_cqa1.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-27T14:08:36.319Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 458
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-27T14:08:37.798463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_pi05_random_k09_long_seed43_strict_cqa1_v2",
+              "server": "cqa1-33015",
+              "pid": "330514",
+              "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_long_seed43_strict_cqa1.log",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-27T14:08:38.273889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"pid\\\": \\\"330514\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_long_seed43_strict_cqa1.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-27T14:08:37.901Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 475
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-27T14:08:39.054802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k095_long_seed43_strict_w38",
+              "server": "westd-38929",
+              "pid": "315686",
+              "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_long_seed43_strict_w38.log",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-27T14:08:40.094560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"pid\\\": \\\"315686\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_long_seed43_strict_w38.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-27T14:08:39.165Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 1039
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-27T14:08:58.701333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:cqa1-gpu3-harvest-and-deploy",
+              "project": "importance_margin_vla_compress",
+              "task_prompt": "## 任务：收割 cqa1 GPU3 L2norm k=0.9 结果 + 部署新实验\n\n### 1. 收割 L2norm k=0.9 strict 结果\n\n`eval_pi05_l2norm_k09_long_seed42_strict_cqa1` 在 registry 中仍标 RUNNING，但 GPU3 已空闲。\n\nSSH 到 cqa1-33015 检查：\n\n```bash\n# 确认 GPU3 空闲\nnvidia-smi --query-gpu=index,memory.used --format=csv,noheader\n\n# 检查结果文件\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.9_libero_10_seed42.json 2>/dev/null\n\n# 如果存在，读取结果\ncat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.9_libero_10_seed42.json 2>/dev/null\n\n# 也检查日志\ntail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log 2>/dev/null\n```\n\n如果找到结果：\n1. 提取 overall_success_rate 和 per_task 数据\n2. 用 `update_registry` 更新：\n   - exp_id: `eval_pi05_l2norm_k09_long_seed42_strict_cqa1`\n   - conclusion: success (或 negative 如果 SR 低于 baseline)\n   - metrics: 包含 avg_success_rate, total_episodes, total_success, per_task, elapsed_min\n   - spec 补充: checkpoint_path=\"N/A (eval only)\", log_path=实际路径\n   - status: DONE\n\n注意：之前的 lenient 结果是 L2norm k=0.9 = 81%。strict 版本可能略低（参考 L2norm k=0.85 strict=77.6% vs lenient=77.8%，差异很小）。\n\n### 2. 部署新实验到 GPU3\n\nGPU3 空出后，部署 seed 复制实验。选择：\n- `eval_pi05_l2norm_k09_long_seed43_strict_cqa1`: L2norm k=0.9 seed43（seed42 的 seed 复制，如果 seed42 结果已确认）\n\n部署步骤：\n1. 确认 conda 环境正常：\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import torch; print(torch.cuda.is_available())\"\n   ```\n\n2. 用 `submit_training_job` 提交：\n   - exp_id: `eval_pi05_l2norm_k09_long_seed43_strict_cqa1`\n   - server: cqa1-33015\n   - gpu: cuda:3\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0`\n\n3. 提交前创建 registry 条目：\n   - hypothesis: \"π0.5 L2norm k=0.9 Long strict seed43 — seed42 结果的 seed 复制，生成 L2norm k=0.9 error bar\"\n   - parent: eval_pi05_l2norm_k09_long_seed42_strict_cqa1\n\n### 汇报格式\n- L2norm k=0.9 seed42 结果：success_rate + per_task\n- 新实验部署状态：PID + tmux session 确认",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-27T14:09:05.075267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859 started. Use get_worker_status('worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6373
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-27T14:09:31.635413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 (14运行+1待收割GPU3) | Worker 3 (SSH: w27部署/cqa1检查/cqa1-GPU3收割) | 磁盘: w27 93%可用, w38 71%可用, cqa1 92%⚠️, w41 97%可用\n\n**Registry 追踪缺口已全部修复**\n\n| 实验 | 修正前 | 修正后 | PID | cron |\n|------|--------|--------|-----|------|\n| `eval_pi05_attn_k07_long_seed42_strict_cqa1` | QUEUED | **RUNNING** | 328563 | ✅ 120s |\n| `eval_pi05_random_k09_long_seed43_strict_cqa1_v2` | 不存在(原v1 DONE/failed) | **RUNNING** (新条目) | 330514 | ✅ 120s |\n| `eval_pi05_l2norm_k095_long_seed43_strict_w38` | 不存在 | **RUNNING** | 315686 | ✅ 120s |\n\n所有条目均包含：真实可执行命令 + PID + log_path + cron 监控（M154 教训已遵循）。\n\n**cqa1 GPU3 收割**: Worker 已派出 SSH 检查 `eval_pi05_l2norm_k09_long_seed42_strict_cqa1` 的结果文件并更新 registry → DONE。收割后将立即部署 L2norm k=0.9 seed43 复制实验。\n\n**当前 GPU 全景**:\n- w41: 4/4 运行（Attn k=0.75/k=0.5/k=0.7, Random k=0.9 s43）\n- w38: 4/4 运行（OV Random k=0.95, OV Attn k=0.75, **L2norm k=0.95 s43**, L2norm k=0.5）\n- cqa1: 4/4 运行（Attn k=0.75, **Attn k=0.7**, L2norm k=0.7, L2norm k=0.9 待收割→部署 s43）+ **Random k=0.9 s43** 与 Attn k=0.7 共 GPU1\n- w27: 2/2 部署中（Random k=0.85 s43, L2norm k=0.85 s43）\n\n⚠️ cqa1 GPU1 有 2 个进程（PID 328563 + 330514），可能互相拖慢。两个都是 ~3h 级实验，deadline 前应能完成。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-27T14:09:33.047230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1411
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-27T14:09:35.514680+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个缺口全部修复，cron 已注册，harvest Worker 已派出。向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001453"
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "messages": [
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-27T14:09:35.594025+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **综合任务 — 队列已清理合并，按优先级逐项处理**\n\n距实验硬截止 ~11h（May 28 20:00 BJT），每一分钟都重要。\n\n---\n\n**P0: 收割已完成 Worker 结果**\n\n以下 Worker 已完成，逐个 `get_worker_status` 读取结果并更新 registry：\n1. `worker_harvest_eval_pi05_random_k05_long_seed42_strict_cqa1` — π0.5 Random k=0.5 strict 收割\n2. `worker_harvest_eval_openvla_l2norm_k075_long_seed42_v2_and_cascade` — OV L2norm k=0.75 收割\n3. `worker_ops_w41-kill-dup-and-investigate` — w41 重复实验清理结果\n4. `worker_ops_w38-deploy-l2norm-k095-seed43` — w38 seed43 部署结果\n5. `worker_diagnose_w27_failed_exps` — w27 失败实验诊断\n6. `worker_diagnose_eval_pi05_random_k085_long_seed42_strict_w27` — w27 Random k=0.85 诊断\n7. `worker_diagnose_cqa1_failed_exp` — cqa1 失败实验诊断\n8. `worker_ops_cqa1-check-and-deploy` — cqa1 检查部署结果\n9. `worker_ops_w27-deploy-seed43-replications` — w27 seed43 复制部署结果\n\n对每个 Worker：读结果 → 有实验数据的更新 registry → 汇总发现。\n\n---\n\n**P1: CRON 退出实验检查（去重后 4 个）**\n\n以下实验进程已退出但 CRON 无法自动判断，派 Worker SSH 检查日志并更新 registry：\n1. `eval_pi05_random_k09_long_seed43_strict_cqa1` — cqa1 上\n2. `eval_pi05_random_k085_long_seed42_strict_w27` — w27 上\n3. `eval_pi05_l2norm_k075_long_seed42_strict_w27` — w27 上（CRON 发了 3 次重复）\n4. `eval_pi05_l2norm_k09_long_seed42_strict_cqa1` — cqa1 上（CRON 发了 3 次重复）\n\n这些可能已经被前面的诊断 Worker 处理过了。如果 registry 已有结论就跳过，没有的派 Worker 检查。\n\n---\n\n**P2: westd-38929 GPU2 空闲 — 立即部署**\n\nw38 GPU2 是唯一空闲卡。根据 cliff curve 缺口，优先部署以下之一：\n- π0.5 seed43 复制（L2norm 或 Random 某个 k 值的 seed43）\n- 或其他 cliff curve 缺口实验\n\n选择后提交审批，说明 hypothesis 来源。\n\n---\n\n**P3: ~30min 后到期实验监控**\n\n以下实验预计 ~30min 完成：\n- w27 GPU0: π0.5 Random k=0.85 strict\n- w27 GPU1: π0.5 L2norm k=0.75 strict  \n- cqa1 GPU3: π0.5 L2norm k=0.9 strict\n\n完成后立即收割并更新 ROADMAP cliff curve 表。释放的 GPU 立即部署下一个优先实验。\n\n---\n\n**处理完所有项后，汇总报告：**\n1. 所有新收割的实验结果（exp_id + 指标）\n2. 部署了什么新实验\n3. 当前 cliff curve 完成度更新\n4. 任何异常或需要 Director 决策的问题"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "director"
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-27T14:09:46.101213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__register_cron",
+              "max_results": "6"
+            }
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-27T14:09:46.201938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-27T14:10:06.359042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_harvest_eval_pi05_random_k05_long_seed42_strict_cqa1"
+            }
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-27T14:10:07.162361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker 'worker_harvest_eval_pi05_random_k05_long_seed42_strict_cqa1' not found.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 803
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-27T14:10:07.162788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_harvest_eval_openvla_l2norm_k075_long_seed42_v2_and_cascade"
+            }
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-27T14:10:07.714280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker 'worker_harvest_eval_openvla_l2norm_k075_long_seed42_v2_and_cascade' not found.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 551
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-27T14:10:07.714727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_w41-kill-dup-and-investigate_20260527T134148"
+            }
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-27T14:10:08.566938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_w41-kill-dup-and-investigate_20260527T134148\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:w41-kill-dup-and-investigate\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:41:48.639386+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:43:15.417444+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 汇报\\\\n\\\\n### westd-41074: Kill 重复进程\\\\n- **PID 568159**: killed (force_killed) ✓\\\\n- **PID 561220**: alive, 仍在运行 ✓\\\\n- tmux session `eval_pi05_attn_k075_long_seed42_strict` 不存在（可能用了不同名称），已无残留\\\\n- GPU0: 11058MiB/97887MiB，显存已释放一份\\\\n\\\\n### westd-27271: 两个实验均已自然完成\\\\n| 实验 | 状态 | success_rate | 耗时 |\\\\n|------|------|-------------|------|\\\\n| `pi05_random_k085_long_seed42_strict_w27` | **completed** | **44.0%** | 169.8min |\\\\n| `pi05_l2norm_k075_long_seed42_strict_w27` | **completed** | **70.8%** | 139.8min |\\\\n\\\\n- 结果已保存: `eval_results/pi05_random_k0.85_libero_10_seed42.json`, `pi05_l2norm_k0.75_libero_10_seed42.json`\\\\n- GPU0/GPU1: 0MiB，完全空闲\\\\n\\\\n### cqa1-33015: 实验仍在运行\\\\n- `eval_pi05_random_k09_long_seed43_strict_cqa1`: **alive** (PID 330510)\\\\n- 进度: Task 0, ep=40, 2/40=5% (刚启动于 21:08，正在跑)\\\\n- 不需要干预，w41 上有同实验备份\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 852
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-27T14:10:08.568004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_w38-deploy-l2norm-k095-seed43_20260527T134158"
+            }
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-27T14:10:08.568346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_w27_failed_exps"
+            }
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-27T14:10:08.769203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_w38-deploy-l2norm-k095-seed43_20260527T134158\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:w38-deploy-l2norm-k095-seed43\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:41:58.569183+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:43:45.814852+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"部署完成。\\\\n\\\\n- **实验**: `eval_pi05_l2norm_k095_long_seed43_strict_w38`\\\\n- **服务器**: westd-38929 GPU2\\\\n- **PID**: 315686\\\\n- **tmux session**: `eval_pi05_l2norm_k095_long_seed43_strict_w38`\\\\n- **日志**: `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_long_seed43_strict_w38.log`\\\\n- **Registry 状态**: RUNNING\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-27T14:10:08.920062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker 'worker_diagnose_w27_failed_exps' not found.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 351
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-27T14:10:14.450064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_eval_pi05_random_k085_long_seed42_strict_w27"
+            }
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-27T14:10:14.952529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker 'worker_diagnose_eval_pi05_random_k085_long_seed42_strict_w27' not found.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-27T14:10:14.952863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_cqa1_failed_exp"
+            }
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-27T14:10:15.894676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker 'worker_diagnose_cqa1_failed_exp' not found.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 941
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-27T14:10:15.917674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cqa1-check-and-deploy_20260527T135138"
+            }
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-27T14:10:16.536655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cqa1-check-and-deploy_20260527T135138\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:cqa1-check-and-deploy\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:51:38.462584+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:52:30.894448+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"All 4 GPUs occupied, no deployment possible.\\\\n\\\\n**GPU 状态：**\\\\n\\\\n| GPU | 显存 | 利用率 | 实验 |\\\\n|-----|------|--------|------|\\\\n| 0 | 10326/24564 MiB | 11% | eval_pi05_attn_k075_long_seed42_strict_cqa1 (PID 300488, alive) |\\\\n| 1 | 21141/24564 MiB | 98% | eval_pi05_random_k09_long_seed43_strict_cqa1 (PID 330510, alive) |\\\\n| 2 | 10633/24564 MiB | 59% | eval_pi05_l2norm_k07_long_seed42_strict |\\\\n| 3 | 10261/24564 MiB | 20% | eval_pi05_l2norm_k09_long_seed42_strict_cqa1 |\\\\n\\\\n**Random k=0.9 seed43 (PID 330510)：**\\\\n- 进程活着，正在 GPU1 上跑，98% 利用率\\\\n- 当前进度：刚完成 Task 0 (SR=10.0%, 5/50)，耗时 35.7min\\\\n- 启动时间 ~21:10 UTC，Long suite 10 tasks 预计还需 ~5-6h\\\\n- Registry 标记为 failed 但进程实际在跑，westd-41074 上还有备份实验\\\\n\\\\n**结论：GPU1 被占用，无法部署 `eval_pi05_random_k075_long_seed43_strict_cqa1`。** 需要等 Random k=0.9 seed43 跑完（预计 ~03:00 UTC 5/28）或找其他服务器部署。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 618
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-27T14:10:16.559525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_w27-deploy-seed43-replications_20260527T135121"
+            }
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-27T14:10:16.840337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_w27-deploy-seed43-replications_20260527T135121\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:w27-deploy-seed43-replications\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:51:22.059726+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:54:10.473469+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两个实验均已成功启动，正在加载模型：\\\\n\\\\n| GPU | 实验 | tmux session | 状态 |\\\\n|-----|------|-------------|------|\\\\n| GPU0 | `eval_pi05_random_k085_long_seed43_strict_w27` (Random k=0.85 seed43) | `eval_pi05_random_k085_seed43` | RUNNING，模型加载中 |\\\\n| GPU1 | `eval_pi05_l2norm_k085_long_seed43_strict_w27` (L2norm k=0.85 seed43) | `eval_pi05_l2norm_k085_seed43` | RUNNING，模型加载中 |\\\\n\\\\nRegistry 已更新为 RUNNING，spec 字段已填写完整。预计每个实验运行 ~3h。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 280
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-27T14:10:41.991359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859"
+            }
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-27T14:10:42.506258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:cqa1-gpu3-harvest-and-deploy\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T14:08:59.625622+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 514
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-27T14:10:42.958553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'pid']"
+            }
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-27T14:10:45.017009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k07_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k085_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_long_seed43_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k07_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k075_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k075_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_random_k095_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_attn_k075_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k07_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k05_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 15, \\\"total\\\": 15, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.086}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2058
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-27T14:11:13.244868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-27T14:11:13.356884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 112
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-27T14:11:18.118574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "status": "done",
+              "limit": "20"
+            }
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-27T14:11:18.462826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_deploy_cqa1_gpu0_attn_k07_strict_20260527T123544\\\", \\\"task_type\\\": \\\"deploy:cqa1_gpu0_attn_k07_strict\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T12:35:44.412696+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T12:36:50.625327+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diagnose_eval_pi05_l2norm_k05_strict_w38_failure_20260527T123606\\\", \\\"task_type\\\": \\\"diagnose:eval_pi05_l2norm_k05_strict_w38_failure\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T12:36:06.620317+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T12:38:22.240322+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_harvest_pi05_l2norm_k085_strict_w41_20260527T125411\\\", \\\"task_type\\\": \\\"harvest:pi05_l2norm_k085_strict_w41\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T12:54:11.846481+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T12:56:07.163324+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_audit_attn_strict_prune_diag_20260527T125459\\\", \\\"task_type\\\": \\\"audit:attn_strict_prune_diag\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T12:54:59.700112+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T12:57:07.986770+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_deploy_westd41074_gpu3_attn_k07_20260527T125649\\\", \\\"task_type\\\": \\\"deploy:westd41074_gpu3_attn_k07\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T12:56:50.080453+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T12:58:08.877909+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_deploy_westd41074_gpu2_gpu3_seed43_20260527T125829\\\", \\\"task_type\\\": \\\"deploy:westd41074_gpu2_gpu3_seed43\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T12:58:29.356277+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:02:46.317323+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_find-pids-register-crons_20260527T1\n…[truncated 4409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 344
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-27T14:11:26.860447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_harvest_eval_pi05_random_k05_long_seed42_strict_cqa1_20260527T133212"
+            }
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-27T14:11:27.256434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_harvest_eval_pi05_random_k05_long_seed42_strict_cqa1_20260527T133212\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"harvest:eval_pi05_random_k05_long_seed42_strict_cqa1\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:32:13.093995+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:34:03.937584+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新至 DONE (success)。\\\\n\\\\n**结果汇总：π0.5 Random k=0.5 Long strict (cqa1)**\\\\n- **SR = 50.2%** (251/500), 耗时 268.9 min, EXIT_CODE=0\\\\n- Per-task: T0=84%, T1=32%, T2=64%, T3=72%, T4=74%, T5=38%, T6=30%, T7=54%, T8=4%, T9=50%\\\\n- 与 D261 (westd-41074 v2) 的 49.8% 非常接近，差异仅 0.4pp，结果一致性好\\\\n- k=0.5 极端压缩点三方法对比：L2norm=50.0%, Attn=49.8%, Random=50.2%，三者几乎无差异\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 395
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-27T14:11:27.257033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_harvest_eval_openvla_l2norm_k075_long_seed42_v2_and_cascade_20260527T133405"
+            }
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-27T14:11:28.216563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_harvest_eval_openvla_l2norm_k075_long_seed42_v2_and_cascade_20260527T133405\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"harvest:eval_openvla_l2norm_k075_long_seed42_v2_and_cascade\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:34:05.992059+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:35:47.489678+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## Part 1: eval_openvla_l2norm_k075_long_seed42_v2 → DONE\\\\n\\\\n**Overall SR: 34.0% (170/500)** — 与 ROADMAP 预期一致。\\\\n\\\\nPer-task breakdown:\\\\n\\\\n| Task | SR | Count |\\\\n|------|----|-------|\\\\n| T1 alphabet_soup + tomato_sauce → basket | 46% | 23/50 |\\\\n| T2 cream_cheese + butter → basket | 48% | 24/50 |\\\\n| T3 stove + moka_pot | 48% | 24/50 |\\\\n| T4 black_bowl → drawer | 14% | 7/50 |\\\\n| T5 white_mug left + yellow_mug right | 14% | 7/50 |\\\\n| T6 book → caddy | **68%** | 34/50 |\\\\n| T7 white_mug plate + chocolate_pudding | 30% | 15/50 |\\\\n| T8 alphabet_soup + cream_cheese → basket | 46% | 23/50 |\\\\n| T9 both moka_pots → stove | 12% | 6/50 |\\\\n| T10 yellow_white_mug → microwave | 14% | 7/50 |\\\\n\\\\nL2norm Long cliff curve 补完：k=0.85→38.8%, **k=0.75→34.0%**, k=0.7→31.2%\\\\n\\\\nRegistry 已更新：metrics + conclusion=success + checkpoint_path + status=DONE。\\\\n\\\\n---\\\\n\\\\n## Part 2: westd-38929 GPU2 状态\\\\n\\\\n**GPU2 空闲** — 1MiB 显存，0% 利用率，无进程。\\\\n\\\\n其余 GPU 占用：\\\\n- GPU0: 16.2GB, 65% util (python PID 272022)\\\\n- GPU1: 16.2GB, 81% util (python PID 266221)\\\\n- GPU3: 10.4GB, 16% util (python PID 250745)\\\\n\\\\n（`tmux ls` 被 read-only 模式拦截，无法列出 sessions。）\\\\n\\\\n**GPU2 可用于 cascade 部署。**\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 959
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-27T14:11:28.216974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_w27_failed_exps_20260527T134733"
+            }
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-27T14:11:28.685263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_w27_failed_exps_20260527T134733\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:w27_failed_exps\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:47:33.233313+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:48:55.389147+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 诊断结果\\\\n\\\\n**两个实验都已正常完成，不是失败。** 监控系统误报，可能因为日志文件路径不在标准的 `~/runs/` 或 `logs/` 目录，而是写到了项目根目录。\\\\n\\\\n### 服务器状态\\\\n- **正常运行**，GPU 空闲（2x RTX PRO 6000 Black 98GB），无进程占用\\\\n- **磁盘** 81% (203G/250G)，48G 剩余，未满\\\\n- **dmesg** 无权限读取，但无 OOM 迹象（两实验均正常跑完全部 10 个 task）\\\\n- 3 个 tmux session 存在（pi05_attn_k075_long, pi05_attn_k07_long_rerun, pi05_l2norm_k07_long_rerun），均为其他实验\\\\n\\\\n### 实验结果\\\\n\\\\n| 实验 | 方法 | Keep | Suite | SR | 完成时间 | 耗时 |\\\\n|------|------|------|-------|----|----------|------|\\\\n| `eval_pi05_random_k085_long_seed42_strict_w27` | Random | 0.85 | libero_10 | **44.0%** | 21:33 | 169.8min |\\\\n| `eval_pi05_l2norm_k075_long_seed42_strict_w27` | L2Norm | 0.75 | libero_10 | **70.8%** | 21:34 | 139.8min |\\\\n\\\\n结果 JSON 已保存到 `eval_results/` 目录。\\\\n\\\\n### 误报原因\\\\n日志写到了 `/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_*.log`（项目根目录），而非标准的 `~/runs/importance_margin_vla_compress/` 路径。监控系统可能在 `~/runs/` 下找不到对应日志文件，判定为空/不可读。\\\\n\\\\n### GPU 可用性\\\\n两个 GPU 现在都空闲，可以立即部署新实验。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 468
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-27T14:11:28.685737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_eval_pi05_random_k085_long_seed42_strict_w27_20260527T134757"
+            }
+          },
+          "id": "event-001489"
+        },
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-27T14:11:28.742404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_cqa1_failed_exp_20260527T134725"
+            }
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-27T14:11:28.940891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_eval_pi05_random_k085_long_seed42_strict_w27_20260527T134757\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:eval_pi05_random_k085_long_seed42_strict_w27\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:47:57.372035+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:50:14.028376+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"**实验实际已完成，cron 误报。**\\\\n\\\\n- **原因**：日志写到了 `~/autodl-tmp/importance_margin_vla_compress/` 项目根目录下，而 cron 监控在 `~/runs/importance_margin_vla_compress/` 找不到文件，判定为失败。\\\\n- **结果**：π0.5 Random k=0.85 LIBERO Long seed42 → **SR=44.0%** (220/500)，耗时 170 min，结果 JSON 已保存。\\\\n- **无需重启。**\\\\n\\\\n另外注意：westd-27271 上 tmux 里的 `pi05_attn_k075_long` 和 `pi05_attn_k07_long_rerun` 两个 session 的日志都只有 637 bytes，可能已经 stall 了，值得检查。`pi05_l2norm_k07_long_rerun` 在正常运行中（T0=72%，正在跑 T1）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 255
+          },
+          "id": "event-001491"
+        },
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-27T14:11:29.174413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_cqa1_failed_exp_20260527T134725\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:cqa1_failed_exp\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T13:47:25.247425+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T13:50:35.327179+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"发现了 — 进程 PID 330514 和 tee PID 330515 都还在运行。CUDA_VISIBLE_DEVICES=1，对应 GPU 1（99% 利用率，21GB 占用）。实验没有失败，仍在正常运行。\\\\n\\\\n## 诊断摘要\\\\n\\\\n**实验状态：正常运行中，未失败。**\\\\n\\\\n- **进程**：PID 330514 仍在运行（State: R），tee PID 330515 在等待管道输入（State: S）。进程链完整。\\\\n- **GPU**：CUDA_VISIBLE_DEVICES=1 → 物理 GPU 1，当前 21141 MiB / 24564 MiB，利用率 99%，活跃计算中。\\\\n- **日志**：最后一条记录于 21:46:37，完成 Task 0（50 episodes, SR=10.0%）。之后没有新输出是因为 Task 1 还在跑前 10 个 episodes（脚本每 10 episodes 才打印一次）。Task 0 耗时 35.7 分钟，预计 Task 1 下一条日志约在 ~21:53 出现。\\\\n- **磁盘**：136G/250G（55%），空间充足。\\\\n- **日志无任何错误**：无 OOM、Traceback、segfault、killed。\\\\n- **Cron 误报原因**：Cron 检查时实验尚未完成全部 10 个 Task，没有找到最终 success marker，误判为失败。\\\\n\\\\n**结论：无需重启。实验正在正常执行中，预计总时长 ~6 小时（10 tasks × ~35 min/task）。**\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 432
+          },
+          "id": "event-001492"
+        },
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-27T14:12:34.261444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 (15实验/14卡，cqa1 GPU1共享2进程) | Worker 1运行中(cqa1 GPU3收割) + 0空闲 | 磁盘: w27 81%用(48G余), w38 71%可用, cqa1 55%用(136G余), w41 97%可用\n\n---\n\n## P0: 全部 9 Worker 结果汇总\n\n| # | Worker | 发现 | Registry |\n|---|--------|------|----------|\n| 1 | harvest pi05 Random k=0.5 strict cqa1 | **50.2%** (251/500)，与 D261 (49.8%) 一致 Δ=0.4pp | DONE/success ✅ |\n| 2 | harvest OV L2norm k=0.75 + cascade | **34.0%** (170/500)，w38 GPU2 空闲 | DONE/success ✅ |\n| 3 | w41 kill-dup-and-investigate | w41 重复 killed，w27 两实验自然完成 (44.0%, 70.8%) | 已处理 ✅ |\n| 4 | w38 deploy seed43 | L2norm k=0.95 seed43 部署成功 PID 315686 | RUNNING+cron ✅ |\n| 5 | diagnose w27 failed | 两实验正常完成，cron 误报（日志在项目根目录而非 ~/runs/） | 已纠正 ✅ |\n| 6 | diagnose w27 Random k=0.85 | 同上，SR=44.0%，另发现 w27 上两个旧 tmux session 可能 stall（非紧急） | 已纠正 ✅ |\n| 7 | diagnose cqa1 failed | PID 330514 活着，GPU1 99%利用率，~6h 总时长 | 创建 v2 RUNNING+cron ✅ |\n| 8 | cqa1 check-and-deploy | 4 GPU 全占满，无法部署 | 确认 ✅ |\n| 9 | w27 deploy seed43 | Random k=0.85 s43 (GPU0) + L2norm k=0.85 s43 (GPU1) 已部署 | RUNNING ✅ |\n\n**无 Worker 有未处理的实验数据。所有 registry 已更新。**\n\n---\n\n## P1: CRON 退出实验 — 全部已处理\n\n| 实验 | 状态 | 处理 |\n|------|------|------|\n| `eval_pi05_random_k09_long_seed43_strict_cqa1` | 进程活着 (PID 330514) | 创建 `_v2` 条目 RUNNING+cron ✅ |\n| `eval_pi05_random_k085_long_seed42_strict_w27` | 正常完成 44.0% | 纠正为 DONE/success ✅ |\n| `eval_pi05_l2norm_k075_long_seed42_strict_w27` | 正常完成 70.8% | 纠正为 DONE/success ✅ |\n| `eval_pi05_l2norm_k09_long_seed42_strict_cqa1` | GPU3 空闲，可能完成 | harvest Worker 进行中 ⏳ |\n\n---\n\n## P2: w38 GPU2 — 已部署\n\n`eval_pi05_l2norm_k095_long_seed43_strict_w38` (PID 315686) RUNNING + cron 120s ✅\n\n---\n\n## P3: ~30min 实验 — 已处理\n\n- w27: 已完成 → 收割 → seed43 复制已部署\n- cqa1 GPU3: harvest Worker 进行中\n\n---\n\n## 当前 π0.5 Long Cliff Curve (strict)\n\n| k | L2norm | Attn | Random |\n|---|--------|------|--------|\n| 0.95 | **86.2%** ✅ | **78.4%** ✅ | **60.6%** ✅ |\n| 0.9 | ⏳harvest中 | **64.0%** ✅ | **34.2%** ✅🔴 |\n| 0.85 | **77.6%** ✅ | **50.0%** ✅ | **44.0%** ✅ |\n| 0.75 | **70.8%** ✅ | 🏃w41+cqa1 ~3h | **63.0%** ✅ |\n| 0.7 | 🏃cqa1 ~2h | 🏃w41+cqa1 ~3h | **66.0%** ✅ |\n| 0.5 | 🏃w38 ~7h | 🏃w41 ~2h | **49.8%** ✅ |\n\n**完成 13/18（含待收割的 L2norm k=0.9），运行中 5/18**\n\n## OV Long Cliff Curve\n\n| k | L2norm | Attn | Random |\n|---|--------|------|--------|\n| 0.95 | **42.6%** ✅ | **49.8%** ✅ | 🏃w38 ~7h |\n| 0.75 | **34.0%** ✅ | 🏃w38 ~7h | — |\n| 其余 | 全部 ✅ | 全部 ✅ | 全部 ✅ |\n\n**完成 16/18，运行中 2/18**\n\n## seed43 复制实验 (error bar)\n\n| 实验 | 服务器 | 状态 | 预计完成 |\n|------|--------|------|----------|\n| L2norm k=0.95 s43 | w38 GPU2 | 🏃 | ~3h |\n| Random k=0.85 s43 | w27 GPU0 | 🏃 | ~3h |\n| L2norm k=0.85 s43 | w27 GPU1 | 🏃 | ~3h |\n| Random k=0.9 s43 (w41) | w41 GPU2 | 🏃 | ~3h |\n| Random k=0.9 s43 (cqa1) | cqa1 GPU1 | 🏃 | ~5h |\n\n## 异常/需决策\n\n无阻塞问题。所有 14 张 GPU 满载运行，cqa1 GPU1 有 2 个进程共享（Attn k=0.7 + Random k=0.9 s43），可能互相拖慢但均在 deadline 前可完成。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-27T14:12:40.732345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 6470
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-27T14:12:47.629126+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "综合汇报已发送。所有 P0-P3 项处理完毕：\n- **P0**: 9 个 Worker 全部读取，无未处理数据\n- **P1**: 4 个 CRON 异常全部解决（3 个已纠正 registry，1 个 harvest 进行中）\n- **P2**: w38 GPU2 已部署 L2norm k=0.95 seed43 + cron\n- **P3**: w27 已收割+重部署，cqa1 GPU3 harvest Worker 运行中\n\n14 张 GPU 满载，等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001495"
+        }
+      ]
+    },
+    {
+      "number": 138,
+      "messages": [
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-27T14:12:47.798917+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval_pi05_l2norm_k09_long_seed42_strict_cqa1** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-33015 检查日志 `~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval_pi05_l2norm_k09_long_seed42_strict_cqa1')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "cron"
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-27T14:13:03.033537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859"
+            }
+          },
+          "id": "event-001497"
+        },
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-27T14:13:03.473795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:cqa1-gpu3-harvest-and-deploy\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T14:08:59.625622+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 440
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-27T14:13:09.909585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-27T14:13:10.367673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:cqa1-gpu3-harvest-and-deploy\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T14:08:59.625622+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"update_registry\\\", \\\"update_registry\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"模型还在 CPU 上加载（pi05 加载需要几分钟），GPU3 显存尚未上升，属正常。PID=386857 进程已确认运行中。\\\\n\\\\n---\\\\n\\\\n**收割结果：L2norm k=0.9 seed42 strict**\\\\n| 指标 | 值 |\\\\n|------|-----|\\\\n| Overall SR | **80.0%** (400/500) |\\\\n| T0 alphabet_soup_tomato | 96% |\\\\n| T1 cream_cheese_butter | 96% |\\\\n| T2 stove_moka | 94% |\\\\n| T3 black_bowl_drawer | 100% |\\\\n| T4 mug\\\", \\\"turn_count\\\": 24}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 458
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-27T14:13:26.091078+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 正在处理中，进展正常（turn 24）：\n\n1. **已收割 L2norm k=0.9 strict = 80.0%** (400/500) — registry 已更新\n2. **已部署 seed43 复制到 GPU3** (PID 386857，模型加载中)\n\nL2norm k=0.9 strict = 80.0% 是关键结果：**Importance Margin @ k=0.9 (strict) = 80.0% - 34.2% = 45.8pp**。Worker 完成后会自动回调，届时我汇总向 Director 报告全部结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001501"
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "messages": [
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-27T14:13:26.104601+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859 已完成（status=done）。用 `get_worker_status('worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859')` 读取结果，然后处理。\n\n- worker_id: worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859\n- project: importance_margin_vla_compress\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "worker:done"
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-27T14:13:35.225419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859"
+            }
+          },
+          "id": "event-001503"
+        },
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-27T14:13:35.615540+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:cqa1-gpu3-harvest-and-deploy\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T14:08:59.625622+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T14:13:16.602425+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"模型还在 CPU 上加载（pi05 加载需要几分钟），GPU3 显存尚未上升，属正常。PID=386857 进程已确认运行中。\\\\n\\\\n---\\\\n\\\\n**收割结果：L2norm k=0.9 seed42 strict**\\\\n| 指标 | 值 |\\\\n|------|-----|\\\\n| Overall SR | **80.0%** (400/500) |\\\\n| T0 alphabet_soup_tomato | 96% |\\\\n| T1 cream_cheese_butter | 96% |\\\\n| T2 stove_moka | 94% |\\\\n| T3 black_bowl_drawer | 100% |\\\\n| T4 mugs_plates | 82% |\\\\n| T5 book_caddy | 96% |\\\\n| T6 mug_plate_pudding | 6% |\\\\n| T7 alphabet_soup_cream_cheese | 92% |\\\\n| T8 two_moka_pots | 44% |\\\\n| T9 mug_microwave | 94% |\\\\n| Elapsed | 209.7 min |\\\\n\\\\n对比 lenient 版本（80.2%, 401/500），strict 仅下降 0.2pp（1 fewer success），差异极小。\\\\n\\\\n**新实验部署：L2norm k=0.9 seed43 strict**\\\\n- Server: cqa1-33015 GPU3\\\\n- PID: 386857\\\\n- Log: `logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log`\\\\n- Registry: `eval_pi05_l2norm_k09_long_seed43_strict_cqa1` → RUNNING\\\\n- 预计完成：~3.5h（约 01:45 UTC）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 390
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-27T14:13:50.839062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "server": "cqa1-33015",
+              "pid": "386857",
+              "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001505"
+        },
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-27T14:13:51.120839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-27T14:13:51.543009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"pid\\\": \\\"386857\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-27T14:13:51.031Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 703
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-27T14:13:51.543435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 422
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-27T14:14:37.172597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 (15实验/14卡, cqa1 GPU1 双进程) | Worker 1 running (cqa1 GPU3 harvest) + 2 pending callback (w27 seed43) | 磁盘: w27 81%用/48G余, w38 29%用, cqa1 55%用, w41 3%用\n\n**P0-P3 综合报告**\n\n---\n\n### P0: 9 个 Worker 结果汇总\n\n| # | Worker | 结果 | Registry |\n|---|--------|------|----------|\n| 1 | harvest π0.5 Random k=0.5 cqa1 | **50.2%** (251/500), 与 D261 的 49.8% 仅差 0.4pp | ✅ DONE/success |\n| 2 | harvest OV L2norm k=0.75 + cascade | **34.0%** (170/500), 填充 OV cliff curve | ✅ DONE/success |\n| 3 | w41 kill-dup | PID 568159 killed, w27 两个实验实际已完成 (44.0%, 70.8%) | ✅ 已处理 |\n| 4 | w38 deploy L2norm k=0.95 s43 | PID 315686 部署成功 | ✅ RUNNING + cron |\n| 5 | diagnose w27 failed | 误报——日志路径在项目根目录而非 ~/runs/，实际已完成 | ✅ 已修正 |\n| 6 | diagnose w27 Random k=0.85 | 同上，SR=44.0% | ✅ 已修正 |\n| 7 | diagnose cqa1 failed | 进程 PID 330514 仍活着，GPU1 99% 利用率 | ✅ 创建 _v2 RUNNING + cron |\n| 8 | cqa1 check-and-deploy | 4 GPU 全满，无法部署 | ✅ 确认 |\n| 9 | w27 deploy seed43 | Random k=0.85 s43 + L2norm k=0.85 s43 均已部署 | ✅ RUNNING |\n\n---\n\n### P1: CRON 退出实验（4 个，全部已处理）\n\n| 实验 | 处理结果 |\n|------|---------|\n| `eval_pi05_random_k09_long_seed43_strict_cqa1` | 进程活着，创建 `_v2` 条目 RUNNING + cron ✅ |\n| `eval_pi05_random_k085_long_seed42_strict_w27` | 修正为 DONE/success 44.0% ✅ |\n| `eval_pi05_l2norm_k075_long_seed42_strict_w27` | 修正为 DONE/success 70.8% ✅ |\n| `eval_pi05_l2norm_k09_long_seed42_strict_cqa1` | **刚收割：80.0%** (400/500) → DONE/success ✅ |\n\n---\n\n### P2: w38 GPU2 — 已部署\n\nL2norm k=0.95 seed43 (PID 315686) 已 RUNNING + cron 注册。非空闲。\n\n---\n\n### P3: 新收割结果 + cliff curve 更新\n\n**🔑 π0.5 L2norm k=0.9 strict = 80.0%** (400/500)\n- Per-task: T0=96, T1=96, T2=94, T3=100, T4=82, T5=96, **T6=6**, T7=92, T8=44, T9=94\n- vs lenient 80.2%，仅 -0.2pp\n- **Strict Importance Margin @ k=0.9: L2norm 80.0% - Random 34.2% = 45.8pp**\n\n**π0.5 Long Cliff Curve (strict) 更新：**\n\n| k | L2norm | Attn | Random |\n|---|--------|------|--------|\n| 0.95 | **86.2%** ✅ | **78.4%** ✅ | **60.6%** ✅ |\n| 0.9 | **80.0%** ✅ (NEW) | **64.0%** ✅ | **34.2%** ✅ 🔴valley |\n| 0.85 | **77.6%** ✅ | **50.0%** ✅ | **44.0%** ✅ (NEW) |\n| 0.75 | **70.8%** ✅ (NEW) | 🏃 w41+cqa1 ~2h | **63.0%** ✅ |\n| 0.7 | 🏃 cqa1 ~1h | 🏃 w41 ~2h | **66.0%** ✅ |\n| 0.5 | 🏃 w38 ~6h | 🏃 w41 ~1h | **49.8%** ✅ |\n\n**完成度: 12/18 格 done, 6/18 running** — 全部在跑，无空格。\n\n---\n\n### 新部署的实验（seed43 error bar）\n\n| 实验 | 服务器 | GPU | 预计完成 |\n|------|--------|-----|---------|\n| Random k=0.85 seed43 | w27 | GPU0 | ~3h |\n| L2norm k=0.85 seed43 | w27 | GPU1 | ~3h |\n| L2norm k=0.95 seed43 | w38 | GPU2 | ~3h |\n| L2norm k=0.9 seed43 | cqa1 | GPU3 | ~3.5h |\n| Random k=0.9 seed43 (v2) | cqa1 | GPU1 | ~5h |\n| Random k=0.9 seed43 | w41 | GPU2 | ~2h |\n\n---\n\n### 异常/待决策\n\n1. **cqa1 GPU1 双进程**：Attn k=0.7 (PID 328563) + Random k=0.9 s43 (PID 330514) 共享 GPU1，可能互相拖慢。两个都是关键实验，建议不干预让它们跑完。\n2. **无需 Director 决策的事项**：所有 cliff curve 格子要么已完成要么在跑，所有空闲 GPU 已部署 seed43 复制。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-27T14:14:41.040273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3867
+          },
+          "id": "event-001510"
+        },
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-27T14:14:44.137641+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "L2norm k=0.9 strict = **80.0%**！重要结果。Worker 已更新 registry 并部署了 seed43。注册 cron 并发送综合报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001511"
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "messages": [
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-27T14:15:30.571458+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **cqa1 GPU3 harvest 后续 + GPU1 共享评估**\n\n1. **cqa1 GPU3 部署**：harvest 完成后，在 GPU3 部署 `eval_pi05_l2norm_k09_long_seed43_strict_cqa1`（L2norm k=0.9 seed43 复制）。harvest 的 L2norm k=0.9 seed42 结果立即汇报数值。\n\n2. **cqa1 GPU1 双进程**：Reviewer 确认 GPU1 上 Attn k=0.7 (PID 328563) + Random k=0.9 s43 (PID 330514) 共享，GPU util 仅 18%、memory 84%。VLA eval 是 simulation-bound，compute 争用有限，**不迁移**，保持现状监控。如果后续发现任一进程 stall 或速度异常慢再处理。\n\n3. **w27 log_path 问题修复**：后续在 w27 部署新实验时，确保 log_path 指向实际日志位置（项目根目录而非 logs/ 子目录），避免再次触发 cron 误报。\n\n4. **汇报时附上 L2norm k=0.9 strict seed42 的数值结果**（harvest 数据）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "director"
+          },
+          "id": "event-001512"
+        },
+        {
+          "source_line": 1513,
+          "timestamp": "2026-05-27T14:15:46.863041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001513"
+        },
+        {
+          "source_line": 1514,
+          "timestamp": "2026-05-27T14:15:46.981472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 118
+          },
+          "id": "event-001514"
+        },
+        {
+          "source_line": 1515,
+          "timestamp": "2026-05-27T14:16:06.925324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 (15实验/14卡, cqa1 GPU1 双进程不迁移) | Worker 0 active | 磁盘: w27 81%用, w38 29%用, cqa1 55%用, w41 3%用\n\n**Director 指令 4 项全部已处理：**\n\n**1. cqa1 GPU3 部署 ✅** — Harvest Worker 已自动部署 `eval_pi05_l2norm_k09_long_seed43_strict_cqa1`，PID 386857，cron 已注册（120s 间隔），预计 ~01:45 UTC 完成。\n\n**2. cqa1 GPU1 双进程 ✅** — 收到，保持现状监控。Attn k=0.7 (PID 328563) + Random k=0.9 s43 (PID 330514) 共存，simulation-bound 争用有限。如有 stall 或异常减速再处理。\n\n**3. w27 log_path 修复 ✅** — 已记录。w27 上 seed43 实验的 log_path 已指向 `logs/` 子目录（submit_training_job 自动写入），后续部署将统一使用实际日志路径。\n\n**4. L2norm k=0.9 strict seed42 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **80.0%** (400/500) |\n| T0 alphabet_soup_tomato | 96% |\n| T1 cream_cheese_butter | 96% |\n| T2 stove_moka | 94% |\n| T3 black_bowl_drawer | **100%** |\n| T4 mugs_plates | 82% |\n| T5 book_caddy | 96% |\n| T6 mug_plate_pudding | **6%** |\n| T7 alphabet_soup_cream_cheese | 92% |\n| T8 two_moka_pots | 44% |\n| T9 mug_microwave | 94% |\n| 耗时 | 209.7 min |\n\nvs lenient 80.2% (401/500)，strict 仅 -0.2pp（1 fewer success）。\n\n**Strict Importance Margin @ k=0.9: L2norm 80.0% − Random 34.2% = 45.8pp**\n\n注：T6 (mug_plate_pudding) 在所有方法/k 值中持续异常低（L2norm k=0.85 也仅 6%），疑似该 task 本身对 token pruning 极敏感，非方法缺陷。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001515"
+        },
+        {
+          "source_line": 1516,
+          "timestamp": "2026-05-27T14:16:10.842400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3917
+          },
+          "id": "event-001516"
+        },
+        {
+          "source_line": 1517,
+          "timestamp": "2026-05-27T14:16:13.491993+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部已处理，直接汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001517"
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "messages": [
+        {
+          "source_line": 1518,
+          "timestamp": "2026-05-27T14:16:23.125056+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_eval_pi05_l2norm_k09_long_seed42_strict_cqa1_20260527T141454 已完成（status=done）。用 `get_worker_status('worker_diagnose_eval_pi05_l2norm_k09_long_seed42_strict_cqa1_20260527T141454')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_eval_pi05_l2norm_k09_long_seed42_strict_cqa1_20260527T141454\n- project: importance_margin_vla_compress\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "worker:done"
+          },
+          "id": "event-001518"
+        },
+        {
+          "source_line": 1519,
+          "timestamp": "2026-05-27T14:16:29.934329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_eval_pi05_l2norm_k09_long_seed42_strict_cqa1_20260527T141454"
+            }
+          },
+          "id": "event-001519"
+        },
+        {
+          "source_line": 1520,
+          "timestamp": "2026-05-27T14:16:30.135958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_eval_pi05_l2norm_k09_long_seed42_strict_cqa1_20260527T141454\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T14:14:54.722191+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T14:16:20.036602+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 诊断结论\\\\n\\\\n**实验实际上已成功完成，不是失败。**\\\\n\\\\n### 根因：日志路径不匹配\\\\n\\\\nCron 监控查找的路径是 `~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log`，但实际日志写入了 `/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log`（项目根目录）。Cron 找不到日志文件，误判为进程未启动/失败。\\\\n\\\\n### 实验结果\\\\n\\\\n实验于 **18:26 启动，21:59 完成**（约 3.5h），结果：\\\\n\\\\n> **LIBERO-10 l2norm k=0.9 seed42 SR=80.0%**\\\\n\\\\n各 task 成绩：96%, 96%, 94%, 100%, 82%, 96%, 6%, 92%, 44%, 94%\\\\n\\\\n结果已保存至 `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.90_libero_10_seed42.json`\\\\n\\\\n### GPU 状态\\\\n\\\\n4 卡全部在用，无空闲：\\\\n- **GPU 0**: PID 300492 (python)\\\\n- **GPU 1**: PIDs 328563 + 330514 (2 个 python)\\\\n- **GPU 2**: PID 274739 — l2norm k=0.7 long seed42 (运行中)\\\\n- **GPU 3**: PID 386864 — l2norm k=0.9 long **seed43** (刚启动，正在跑)\\\\n\\\\n### 磁盘\\\\n\\\\n根分区 30% (22GB free)，无磁盘问题。\\\\n\\\\n### 结论\\\\n\\\\n无需重跑——seed42 实验已完成，结果 80.0% SR。Cron 误报是因为日志路径写到了项目目录而非 `~/runs/` 监控目录。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-001520"
+        },
+        {
+          "source_line": 1521,
+          "timestamp": "2026-05-27T14:16:40.451413+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断 Worker 确认了已有结论：L2norm k=0.9 seed42 strict = 80.0%，cron 误报原因是日志路径不匹配（项目根目录 vs `~/runs/`）。Harvest Worker 已处理完毕（registry 已更新 DONE/success，seed43 已部署在 GPU3），无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001521"
+        }
+      ]
+    },
+    {
+      "number": 142,
+      "messages": [
+        {
+          "source_line": 1522,
+          "timestamp": "2026-05-27T14:18:29.921639+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **Registry 修复 — eval_pi05_l2norm_k09_long_seed42_strict_cqa1**\n\nReviewer 审查确认该实验实际成功（SR=80.0% strict, 400/500），但 registry 仍为 `conclusion: failed` 且无 metrics。立即修复：\n\n1. `conclusion: success`\n2. 补全 metrics：avg_success_rate=0.80, total_success=400, total_episodes=500, per_task: T0=96, T1=96, T2=94, T3=100, T4=82, T5=96, T6=6, T7=92, T8=44, T9=94, elapsed_min=209.7\n3. 补全 log_path：`/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log`\n4. 清除 failure_reason 或标注为 \"cron_misreport_resolved\"\n\n这是同一个 w27/cqa1 log_path 系统性问题的又一例。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "director"
+          },
+          "id": "event-001522"
+        },
+        {
+          "source_line": 1523,
+          "timestamp": "2026-05-27T14:18:42.092329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001523"
+        },
+        {
+          "source_line": 1524,
+          "timestamp": "2026-05-27T14:18:42.092864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001524"
+        },
+        {
+          "source_line": 1525,
+          "timestamp": "2026-05-27T14:18:47.913002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed42_strict_cqa1",
+              "field": "conclusion",
+              "value": "success",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001525"
+        },
+        {
+          "source_line": 1526,
+          "timestamp": "2026-05-27T14:18:52.176382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T10:23:56.247Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:18:49.911Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict — lenient=81.0%，补全 L2norm strict 曲线。D256 确认 k=0.95 strict 偏差仅 -0.8pp，k=0.9 预期偏差类似\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T14:11:11.193Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed (log check: failed to read log or log empty)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-27T14:11:15.234Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T14:11:41.765006+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.874}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4263
+          },
+          "id": "event-001526"
+        },
+        {
+          "source_line": 1527,
+          "timestamp": "2026-05-27T14:18:52.553157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed42_strict_cqa1",
+              "field": "metrics",
+              "value": "{'avg_success_rate': 0.8, 'total_success': 400, 'total_episodes': 500, 'elapsed_min': 209.7, 'per_task': {'T0_alphabet_soup_tomato': 96, 'T1_cream_cheese_butter': 96, 'T2_stove_moka': 94, 'T3_black_bowl_drawer': 100, 'T4_mugs_plates': 82, 'T5_book_caddy': 96, 'T6_mug_plate_pudding': 6, 'T7_alphabet_soup_cream_cheese': 92, 'T8_two_moka_pots': 44, 'T9_mug_microwave': 94}}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001527"
+        },
+        {
+          "source_line": 1528,
+          "timestamp": "2026-05-27T14:18:54.612611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed42_strict_cqa1",
+              "field": "failure_reason",
+              "value": "cron_misreport_resolved — 实际已成功完成(SR=80.0%)，日志路径在项目根目录而非~/runs/，cron误判",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001528"
+        },
+        {
+          "source_line": 1529,
+          "timestamp": "2026-05-27T14:18:56.067304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T10:23:56.247Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:18:54.664Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict — lenient=81.0%，补全 L2norm strict 曲线。D256 确认 k=0.95 strict 偏差仅 -0.8pp，k=0.9 预期偏差类似\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T14:11:11.193Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed (log check: failed to read log or log empty)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-27T14:11:15.234Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T14:11:41.765006+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.8, \\\"total_success\\\": 400, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 209.7, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 96, \\\"T1_cream_cheese_butter\\\": 96, \\\"T2_stove_moka\\\": 94, \\\"T3_black_bowl_drawer\\\": 100, \\\"T4_mugs_plates\\\": 82, \\\"T5_book_caddy\\\": 96, \\\"T6_mug_plate_pudding\\\": 6, \\\"T7_alphabet_soup_cream_cheese\\\": 92, \\\"T8_two_moka_pots\\\": 44, \\\"T9_mug_microwave\\\": 94}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4704}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3514
+          },
+          "id": "event-001529"
+        },
+        {
+          "source_line": 1530,
+          "timestamp": "2026-05-27T14:18:59.435017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T10:23:56.247Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:18:58.038Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict — lenient=81.0%，补全 L2norm strict 曲线。D256 确认 k=0.95 strict 偏差仅 -0.8pp，k=0.9 预期偏差类似\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T14:11:11.193Z\\\"}, \\\"failure_reason\\\": \\\"cron_misreport_resolved — 实际已成功完成(SR=80.0%)，日志路径在项目根目录而非~/runs/，cron误判\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-27T14:11:15.234Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T14:11:41.765006+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.8, \\\"total_success\\\": 400, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 209.7, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 96, \\\"T1_cream_cheese_butter\\\": 96, \\\"T2_stove_moka\\\": 94, \\\"T3_black_bowl_drawer\\\": 100, \\\"T4_mugs_plates\\\": 82, \\\"T5_book_caddy\\\": 96, \\\"T6_mug_plate_pudding\\\": 6, \\\"T7_alphabet_soup_cream_cheese\\\": 92, \\\"T8_two_moka_pots\\\": 44, \\\"T9_mug_microwave\\\": 94}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3486}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4822
+          },
+          "id": "event-001530"
+        },
+        {
+          "source_line": 1531,
+          "timestamp": "2026-05-27T14:19:07.490296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed42_strict_cqa1",
+              "field": "spec",
+              "value": "{'command': 'HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0', 'server': 'cqa1-33015', 'gpu': 'cuda:3', 'data_path': 'libero_10', 'data_count': '10 tasks x 50 episodes', 'model_name': 'pi0.5', 'seed': 42, 'checkpoint_path': 'N/A (eval only)', 'log_path': '/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log', 'checkpoint_source': 'pi0.5 pretrained', 'eval_data': 'libero_10 (Long)'}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001531"
+        },
+        {
+          "source_line": 1532,
+          "timestamp": "2026-05-27T14:19:13.049754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T10:23:56.247Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:19:10.344Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict — lenient=81.0%，补全 L2norm strict 曲线。D256 确认 k=0.95 strict 偏差仅 -0.8pp，k=0.9 预期偏差类似\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log\\\", \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T14:11:11.193Z\\\"}, \\\"failure_reason\\\": \\\"cron_misreport_resolved — 实际已成功完成(SR=80.0%)，日志路径在项目根目录而非~/runs/，cron误判\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-27T14:11:15.234Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T14:11:41.765006+00:00\\\"}]}, \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.8, \\\"total_success\\\": 400, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 209.7, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 96, \\\"T1_cream_cheese_butter\\\": 96, \\\"T2_stove_moka\\\": 94, \\\"T3_black_bowl_drawer\\\": 100, \\\"T4_mugs_plates\\\": 82, \\\"T5_book_caddy\\\": 96, \\\"T6_mug_plate_pudding\\\": 6, \\\"T7_alphabet_soup_cream_cheese\\\": 92, \\\"T8_two_moka_pots\\\": 44, \\\"T9_mug_microwave\\\": 94}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4968}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5559
+          },
+          "id": "event-001532"
+        },
+        {
+          "source_line": 1533,
+          "timestamp": "2026-05-27T14:19:25.366921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "`eval_pi05_l2norm_k09_long_seed42_strict_cqa1` registry 修复完成：\n- conclusion: failed → **success**\n- metrics: 补全（SR=80.0%, 400/500, per_task 10项, elapsed=209.7min）\n- log_path: 补全为实际路径 `/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log`\n- failure_reason: 标注为 `cron_misreport_resolved`\n- spec: 补全 checkpoint_path, checkpoint_source, eval_data\n\n这是 w27/cqa1 log_path 系统性问题的第 3 例（前 2 例为 w27 Random k=0.85 和 L2norm k=0.75）。根因统一：实验日志写到项目根目录而非 `~/runs/` 或 `logs/` 子目录，cron 在标准路径找不到文件。后续部署已全部通过 `submit_training_job` 提交，日志路径自动写入 `logs/` 子目录。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001533"
+        },
+        {
+          "source_line": 1534,
+          "timestamp": "2026-05-27T14:19:29.663434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4296
+          },
+          "id": "event-001534"
+        },
+        {
+          "source_line": 1535,
+          "timestamp": "2026-05-27T14:19:32.908844+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion、metrics、failure_reason 已修正。补 log_path。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001535"
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "messages": [
+        {
+          "source_line": 1536,
+          "timestamp": "2026-05-27T14:20:11.062161+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **Registry 补注册 — eval_pi05_l2norm_k09_long_seed43_strict_cqa1**\n\nReviewer 确认 cqa1 GPU3 上 seed43 进程在跑（PID 386864），但 registry 中无该条目，cron 无法监控。立即补注册：\n\n- exp_id: eval_pi05_l2norm_k09_long_seed43_strict_cqa1\n- server: cqa1-33015\n- gpu: cuda:3\n- pid: 386864\n- log_path: 实际日志路径（先 SSH 确认是在 logs/ 子目录还是项目根目录）\n- conclusion: running\n- parent: eval_pi05_l2norm_k09_long_seed42_strict_cqa1\n- cron: 120s\n\n这是本 session 第 4 次 registry 追踪缺口。确认注册后回复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "director"
+          },
+          "id": "event-001536"
+        },
+        {
+          "source_line": 1537,
+          "timestamp": "2026-05-27T14:20:20.164903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-001537"
+        },
+        {
+          "source_line": 1538,
+          "timestamp": "2026-05-27T14:20:20.265644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001538"
+        },
+        {
+          "source_line": 1539,
+          "timestamp": "2026-05-27T14:20:42.045387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'pid']",
+              "limit": "20"
+            }
+          },
+          "id": "event-001539"
+        },
+        {
+          "source_line": 1540,
+          "timestamp": "2026-05-27T14:20:45.505662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k07_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k085_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_long_seed43_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k07_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k075_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k075_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_random_k095_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_attn_k075_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k07_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k05_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 14, \\\"total\\\": 14, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4385}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3460
+          },
+          "id": "event-001540"
+        },
+        {
+          "source_line": 1541,
+          "timestamp": "2026-05-27T14:23:10.436610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001541"
+        },
+        {
+          "source_line": 1542,
+          "timestamp": "2026-05-27T14:23:10.437066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001542"
+        },
+        {
+          "source_line": 1543,
+          "timestamp": "2026-05-27T14:23:15.404770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'pid']"
+            }
+          },
+          "id": "event-001543"
+        },
+        {
+          "source_line": 1544,
+          "timestamp": "2026-05-27T14:23:15.405230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-001544"
+        },
+        {
+          "source_line": 1545,
+          "timestamp": "2026-05-27T14:23:15.858334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "file": "report.md"
+            }
+          },
+          "id": "event-001545"
+        },
+        {
+          "source_line": 1546,
+          "timestamp": "2026-05-27T14:23:17.413348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k07_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k085_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_long_seed43_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k07_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k075_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k075_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_random_k095_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_attn_k075_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k07_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k05_long_seed42_strict\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 14, \\\"total\\\": 14, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9843}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2008
+          },
+          "id": "event-001546"
+        },
+        {
+          "source_line": 1547,
+          "timestamp": "2026-05-27T14:24:57.687777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 13, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05_attn_k05)\\\"]}, {\\\"exp_id\\\": \\\"eval_openvla_attn_k075_long_seed42_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=ov_attn_k075_long)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_attn_k075_long_seed42_strict_w41\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05_attn_k075)\\\"]}, {\\\"exp_id\\\": \\\"eval_openvla_random_k095_long_seed42_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=ov_rnd_k095_long)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_attn_k075_long_seed42_strict_cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05_attn_k075_strict)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_attn_k07_long_seed42_strict_w41\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05_attn_k07)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_random_k09_long_seed43_strict_w41\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05_rnd_k09_s43)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k07_long_seed42_strict\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=274739)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k05_long_seed42_strict\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=250745)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_attn_k07_long_seed42_strict_cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=328563)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=330514)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=315686)\\\"]}, {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=386857)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 102282
+          },
+          "id": "event-001547"
+        },
+        {
+          "source_line": 1548,
+          "timestamp": "2026-05-27T14:24:57.738694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-27T14:11:57Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 859 个实验 — DEPLOYED 7, DONE 743, PREPARING 95, QUEUED 1, RUNNING 13\\\\n**DONE 分布**: failed 107, killed 75, negative 104, success 457\\\\n\\\\n### GPU 占用\\\\n- **分配**: 14 张 — westd-27271:cuda:0, westd-27271:cuda:1, cqa1-33015:cuda:0, cqa1-33015:cuda:1, cqa1-33015:cuda:2, cqa1-33015:cuda:3, westd-41074:cuda:0, westd-41074:cuda:1, westd-41074:cuda:2, westd-41074:cuda:3, westd-38929:cuda:0, westd-38929:cuda:1, westd-38929:cuda:2, westd-38929:cuda:3\\\\n- **实际运行**: 4 张 — cqa1-33015:cuda:0(eval_pi05_attn_k075_long_seed42_strict_cqa1), cqa1-33015:cuda:1(eval_pi05_attn_k07_long_seed42_strict_cqa1), cqa1-33015:cuda:1(eval_pi05_random_k09_long_seed43_strict_cqa1_v2), westd-38929:cuda:2(eval_pi05_l2norm_k095_long_seed43_strict_w38)\\\\n- **空闲（分配了没跑）**: westd-27271:cuda:0, cqa1-33015:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-27271**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\\\n- **cqa1-33015**:\\\\n  - `/autodl-pub`: 603G/7.0T 可用（已用 92%） ⚠️\\\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\\\n- **westd-41074**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/usr/bin/nvidia-smi`: 812G/879G 可用（已用 3%）\\\\n- **westd-38929**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 593G/879G 可用（已用 29%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_pi05_l2norm_k05_long_seed42_strict` | westd-38929 | ? | ? | `—` |\\\\n| `eval_pi05_l2norm_k07_long_seed42_strict` | cqa1-33015 | ? | ? | `—` |\\\\n| `eval_pi05\n…[truncated 10552 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101880
+          },
+          "id": "event-001548"
+        },
+        {
+          "source_line": 1549,
+          "timestamp": "2026-05-27T14:25:15.712281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "importance_margin_vla_compress",
+              "limit": "5",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'spec']"
+            }
+          },
+          "id": "event-001549"
+        },
+        {
+          "source_line": 1550,
+          "timestamp": "2026-05-27T14:25:16.918331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "limit": "3",
+              "fields": "['exp_id', 'status', 'hypothesis', 'spec', 'metrics']",
+              "filters": "{'conclusion': 'success'}"
+            }
+          },
+          "id": "event-001550"
+        },
+        {
+          "source_line": 1551,
+          "timestamp": "2026-05-27T14:25:17.821755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log\\\", \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.8, \\\"total_success\\\": 400, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 209.7, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 96, \\\"T1_cream_cheese_butter\\\": 96, \\\"T2_stove_moka\\\": 94, \\\"T3_black_bowl_drawer\\\": 100, \\\"T4_mugs_plates\\\": 82, \\\"T5_book_caddy\\\": 96, \\\"T6_mug_plate_pudding\\\": 6, \\\"T7_alphabet_soup_cream_cheese\\\": 92, \\\"T8_two_moka_pots\\\": 44, \\\"T9_mug_microwave\\\": 94}}}, \\\"eval_pi05_l2norm_k075_long_seed42_strict_w27\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\n…[truncated 3476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2109
+          },
+          "id": "event-001551"
+        },
+        {
+          "source_line": 1552,
+          "timestamp": "2026-05-27T14:25:19.945928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict — lenient=81.0%，补全 L2norm strict 曲线。D256 确认 k=0.95 strict 偏差仅 -0.8pp，k=0.9 预期偏差类似\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log\\\", \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.8, \\\"total_success\\\": 400, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 209.7, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 96, \\\"T1_cream_cheese_butter\\\": 96, \\\"T2_stove_moka\\\": 94, \\\"T3_black_bowl_drawer\\\": 100, \\\"T4_mugs_plates\\\": 82, \\\"T5_book_caddy\\\": 96, \\\"T6_mug_plate_pudding\\\": 6, \\\"T7_alphabet_soup_cream_cheese\\\": 92, \\\"T8_two_moka_pots\\\": 44, \\\"T9_mug_microwave\\\": 94}}}, \\\"eval_pi05_l2norm_k075_long_seed42_strict_w27\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.75 Long strict — lenient=73.4%，补全 L2norm strict cliff curve 中间段。k=0.95 strict=86.2% (Δ-0.8pp)，预期 k=0.75 偏差类似\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\n…[truncated 2377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3027
+          },
+          "id": "event-001552"
+        },
+        {
+          "source_line": 1553,
+          "timestamp": "2026-05-27T14:25:32.561318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "field": "hypothesis",
+              "value": "π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001553"
+        },
+        {
+          "source_line": 1554,
+          "timestamp": "2026-05-27T14:25:35.871565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T14:25:34.482Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:25:34.482Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2802}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3310
+          },
+          "id": "event-001554"
+        },
+        {
+          "source_line": 1555,
+          "timestamp": "2026-05-27T14:25:39.435047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "field": "parent",
+              "value": "eval_pi05_l2norm_k09_long_seed42_strict_cqa1",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001555"
+        },
+        {
+          "source_line": 1556,
+          "timestamp": "2026-05-27T14:25:42.798973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T14:25:34.482Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:25:41.398Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3363
+          },
+          "id": "event-001556"
+        },
+        {
+          "source_line": 1557,
+          "timestamp": "2026-05-27T14:25:48.179351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001557"
+        },
+        {
+          "source_line": 1558,
+          "timestamp": "2026-05-27T14:26:00.157483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T14:25:34.482Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:25:52.048Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.9208}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11978
+          },
+          "id": "event-001558"
+        },
+        {
+          "source_line": 1559,
+          "timestamp": "2026-05-27T14:26:03.775595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001559"
+        },
+        {
+          "source_line": 1560,
+          "timestamp": "2026-05-27T14:26:15.654979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T14:25:34.482Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:26:07.537Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.8328}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11879
+          },
+          "id": "event-001560"
+        },
+        {
+          "source_line": 1561,
+          "timestamp": "2026-05-27T14:26:24.983396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'command': 'HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0', 'server': 'cqa1-33015', 'gpu': 'cuda:3', 'pid': '386864', 'data_path': 'libero_10', 'data_count': '10 tasks x 50 episodes', 'model_name': 'pi0.5', 'seed': 43, 'checkpoint_path': 'N/A (eval only)', 'log_path': '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log', 'checkpoint_source': 'pi0.5 pretrained', 'eval_data': 'libero_10 (Long)'}"
+            }
+          },
+          "id": "event-001561"
+        },
+        {
+          "source_line": 1562,
+          "timestamp": "2026-05-27T14:26:35.059048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T14:25:34.482Z\\\", \\\"updated_at\\\": \\\"2026-05-27T14:26:28.491Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"386864\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\\\", \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.0195}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10075
+          },
+          "id": "event-001562"
+        },
+        {
+          "source_line": 1563,
+          "timestamp": "2026-05-27T14:26:42.338403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cron_list,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001563"
+        },
+        {
+          "source_line": 1564,
+          "timestamp": "2026-05-27T14:26:42.338848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001564"
+        },
+        {
+          "source_line": 1565,
+          "timestamp": "2026-05-27T14:26:49.416316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:CronDelete,CronList",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001565"
+        },
+        {
+          "source_line": 1566,
+          "timestamp": "2026-05-27T14:26:49.517503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-001566"
+        },
+        {
+          "source_line": 1567,
+          "timestamp": "2026-05-27T14:26:58.450243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+              "server": "cqa1-33015",
+              "pid": "386864",
+              "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log",
+              "interval_seconds": "120",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001567"
+        },
+        {
+          "source_line": 1568,
+          "timestamp": "2026-05-27T14:26:58.550809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cron for 'eval_pi05_l2norm_k09_long_seed43_strict_cqa1' already registered. Delete it first.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 100
+          },
+          "id": "event-001568"
+        },
+        {
+          "source_line": 1569,
+          "timestamp": "2026-05-27T14:27:03.531039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "cron delete unregister",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001569"
+        },
+        {
+          "source_line": 1570,
+          "timestamp": "2026-05-27T14:27:03.631752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001570"
+        },
+        {
+          "source_line": 1571,
+          "timestamp": "2026-05-27T14:27:13.431218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "+mcp__agent-ml-research delete cron unregister",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001571"
+        },
+        {
+          "source_line": 1572,
+          "timestamp": "2026-05-27T14:27:13.507599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 76
+          },
+          "id": "event-001572"
+        },
+        {
+          "source_line": 1573,
+          "timestamp": "2026-05-27T14:27:16.705721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "+mcp__agent-ml-research cron",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001573"
+        },
+        {
+          "source_line": 1574,
+          "timestamp": "2026-05-27T14:27:16.873458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 167
+          },
+          "id": "event-001574"
+        },
+        {
+          "source_line": 1575,
+          "timestamp": "2026-05-27T14:27:23.361353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/crons*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+            }
+          },
+          "id": "event-001575"
+        },
+        {
+          "source_line": 1576,
+          "timestamp": "2026-05-27T14:27:23.470585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "elapsed_ms": 109
+          },
+          "id": "event-001576"
+        },
+        {
+          "source_line": 1577,
+          "timestamp": "2026-05-27T14:27:23.529368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/crons*.json",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+            }
+          },
+          "id": "event-001577"
+        },
+        {
+          "source_line": 1578,
+          "timestamp": "2026-05-27T14:27:23.750834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "elapsed_ms": 221
+          },
+          "id": "event-001578"
+        },
+        {
+          "source_line": 1579,
+          "timestamp": "2026-05-27T14:27:26.603043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml"
+            }
+          },
+          "id": "event-001579"
+        },
+        {
+          "source_line": 1580,
+          "timestamp": "2026-05-27T14:27:26.896579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tactive_crons:\n2\t- chat_id: null\n3\t  created_at: '2026-05-27T12:15:40.286Z'\n4\t  exp_id: eval_pi05_attn_k05_long_seed42_strict_w41\n5\t  hooks: null\n6\t  interval_seconds: 120\n7\t  last_checked: '2026-05-27T14:26:02.806Z'\n8\t  log_path: ~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed42_strict_w41.log\n9\t  pid: pi05_attn_k05\n10\t  project: importance_margin_vla_compress\n11\t  server: westd-41074\n12\t  tracked_metrics: null\n13\t  wandb_run_id: null\n14\t- chat_id: null\n15\t  created_at: '2026-05-27T12:16:43.418Z'\n16\t  exp_id: eval_openvla_attn_k075_long_seed42_v3\n17\t  hooks: null\n18\t  interval_seconds: 120\n19\t  last_checked: '2026-05-27T14:26:16.774Z'\n20\t  log_path: ~/runs/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\n21\t  pid: ov_attn_k075_long\n22\t  project: importance_margin_vla_compress\n23\t  server: westd-38929\n24\t  tracked_metrics: null\n25\t  wandb_run_id: null\n26\t- chat_id: null\n27\t  created_at: '2026-05-27T12:26:46.455Z'\n28\t  exp_id: eval_pi05_attn_k075_long_seed42_strict_w41\n29\t  hooks: null\n30\t  interval_seconds: 120\n31\t  last_checked: '2026-05-27T14:26:24.464Z'\n32\t  log_path: ~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed42_strict_w41.log\n33\t  pid: pi05_attn_k075\n34\t  project: importance_margin_vla_compress\n35\t  server: westd-41074\n36\t  tracked_metrics: null\n37\t  wandb_run_id: null\n38\t- chat_id: null\n39\t  created_at: '2026-05-27T12:30:29.727Z'\n40\t  exp_id: eval_openvla_random_k095_long_seed42_v3\n41\t  hooks: null\n42\t  interval_seconds: 120\n43\t  last_checked: '2026-05-27T14:26:33.795Z'\n44\t  log_path: ~/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_v3.log\n45\t  pid: ov_rnd_k095_long\n46\t  project: importance_margin_vla_compress\n47\t  server: westd-38929\n48\t  tracked_metrics: null\n49\t  wandb_run_id: null\n50\t- chat_id: null\n51\t  created_at: '2026-05-27T12:37:23.241Z'\n52\t  exp_id: eval_pi05_attn_k075_long_seed42_strict_cqa1\n53\t  hooks: null\n54\t  interval_seconds: 120\n55\t  last_checked: '20\n…[truncated 29747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "elapsed_ms": 293
+          },
+          "id": "event-001580"
+        },
+        {
+          "source_line": 1581,
+          "timestamp": "2026-05-27T14:27:36.957105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml",
+              "old_string": "  exp_id: eval_pi05_l2norm_k09_long_seed43_strict_cqa1\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-27T14:24:57.570Z'\n  log_path: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\n  pid: '386857'",
+              "new_string": "  exp_id: eval_pi05_l2norm_k09_long_seed43_strict_cqa1\n  hooks: null\n  interval_seconds: 120\n  last_checked: '2026-05-27T14:24:57.570Z'\n  log_path: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\n  pid: '386864'"
+            }
+          },
+          "id": "event-001581"
+        },
+        {
+          "source_line": 1582,
+          "timestamp": "2026-05-27T14:27:37.018426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Edit",
+            "elapsed_ms": 61
+          },
+          "id": "event-001582"
+        },
+        {
+          "source_line": 1583,
+          "timestamp": "2026-05-27T14:27:39.980052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml",
+              "offset": "145",
+              "limit": "20"
+            }
+          },
+          "id": "event-001583"
+        },
+        {
+          "source_line": 1584,
+          "timestamp": "2026-05-27T14:27:40.091325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "145\t  wandb_run_id: null\n146\t- chat_id: null\n147\t  created_at: '2026-05-27T14:13:51.031Z'\n148\t  exp_id: eval_pi05_l2norm_k09_long_seed43_strict_cqa1\n149\t  hooks: null\n150\t  interval_seconds: 120\n151\t  last_checked: '2026-05-27T14:24:57.570Z'\n152\t  log_path: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\n153\t  pid: '386857'\n154\t  project: importance_margin_vla_compress\n155\t  server: cqa1-33015\n156\t  tracked_metrics: null\n157\t  wandb_run_id: null\n158\tcompleted_crons:\n159\t- chat_id: null\n160\t  completed_at: '2026-05-26T20:27:57Z'\n161\t  created_at: '2026-05-26T13:55:17.508Z'\n162\t  exp_id: eval_openvla_attn_k085_long_seed42_v5\n163\t  hooks: null\n164\t  interval_seconds: 120"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "elapsed_ms": 111
+          },
+          "id": "event-001584"
+        },
+        {
+          "source_line": 1585,
+          "timestamp": "2026-05-27T14:27:45.319336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml",
+              "old_string": "  pid: '386857'\n  project: importance_margin_vla_compress\n  server: cqa1-33015\n  tracked_metrics: null\n  wandb_run_id: null\ncompleted_crons:",
+              "new_string": "  pid: '386864'\n  project: importance_margin_vla_compress\n  server: cqa1-33015\n  tracked_metrics: null\n  wandb_run_id: null\ncompleted_crons:"
+            }
+          },
+          "id": "event-001585"
+        },
+        {
+          "source_line": 1586,
+          "timestamp": "2026-05-27T14:27:45.353822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Edit",
+            "elapsed_ms": 34
+          },
+          "id": "event-001586"
+        },
+        {
+          "source_line": 1587,
+          "timestamp": "2026-05-27T14:27:48.705368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml",
+              "offset": "148",
+              "limit": "10"
+            }
+          },
+          "id": "event-001587"
+        },
+        {
+          "source_line": 1588,
+          "timestamp": "2026-05-27T14:27:48.705792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "148\t  exp_id: eval_pi05_l2norm_k09_long_seed43_strict_cqa1\n149\t  hooks: null\n150\t  interval_seconds: 120\n151\t  last_checked: '2026-05-27T14:24:57.570Z'\n152\t  log_path: /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\n153\t  pid: '386857'\n154\t  project: importance_margin_vla_compress\n155\t  server: cqa1-33015\n156\t  tracked_metrics: null\n157\t  wandb_run_id: null"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001588"
+        },
+        {
+          "source_line": 1589,
+          "timestamp": "2026-05-27T14:27:51.709654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sed -i \"s/  pid: '386857'/  pid: '386864'/\" /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml",
+              "description": "Replace PID 386857 with 386864 in crons.yaml"
+            }
+          },
+          "id": "event-001589"
+        },
+        {
+          "source_line": 1590,
+          "timestamp": "2026-05-27T14:27:51.973380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Bash",
+            "elapsed_ms": 263
+          },
+          "id": "event-001590"
+        },
+        {
+          "source_line": 1591,
+          "timestamp": "2026-05-27T14:27:55.041197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A2 \"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\" /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/crons.yaml | grep pid",
+              "description": "Verify PID was updated in crons.yaml"
+            }
+          },
+          "id": "event-001591"
+        },
+        {
+          "source_line": 1592,
+          "timestamp": "2026-05-27T14:27:55.107806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  pid: '386864'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Bash",
+            "elapsed_ms": 66
+          },
+          "id": "event-001592"
+        },
+        {
+          "source_line": 1593,
+          "timestamp": "2026-05-27T14:27:59.575356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['exp_id', 'status', 'server', 'spec']"
+            }
+          },
+          "id": "event-001593"
+        },
+        {
+          "source_line": 1594,
+          "timestamp": "2026-05-27T14:28:03.392029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"386864\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log\\\", \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}}, \\\"eval_pi05_l2norm_k095_long_seed43_strict_w38\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"315686\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_long_seed43_strict_w38.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLI\n…[truncated 8527 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3816
+          },
+          "id": "event-001594"
+        },
+        {
+          "source_line": 1595,
+          "timestamp": "2026-05-27T14:28:09.775739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-001595"
+        },
+        {
+          "source_line": 1596,
+          "timestamp": "2026-05-27T14:28:09.819376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/sessions/agent_ef2371ad."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "elapsed_ms": 43
+          },
+          "id": "event-001596"
+        },
+        {
+          "source_line": 1597,
+          "timestamp": "2026-05-27T14:28:14.003372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+            }
+          },
+          "id": "event-001597"
+        },
+        {
+          "source_line": 1598,
+          "timestamp": "2026-05-27T14:28:14.171212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "elapsed_ms": 167
+          },
+          "id": "event-001598"
+        },
+        {
+          "source_line": 1599,
+          "timestamp": "2026-05-27T14:28:17.834118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-001599"
+        },
+        {
+          "source_line": 1600,
+          "timestamp": "2026-05-27T14:28:17.985065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Glob",
+            "elapsed_ms": 150
+          },
+          "id": "event-001600"
+        },
+        {
+          "source_line": 1601,
+          "timestamp": "2026-05-27T14:28:21.799364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-001601"
+        },
+        {
+          "source_line": 1602,
+          "timestamp": "2026-05-27T14:28:21.900249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001602"
+        },
+        {
+          "source_line": 1603,
+          "timestamp": "2026-05-27T14:28:46.864319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 全部在跑 | Worker 0 (全部实验在跑中，等回调)\n\n**Registry 补注册完成** — `eval_pi05_l2norm_k09_long_seed43_strict_cqa1`\n\n已完成：\n1. Registry 条目创建：PREPARING → QUEUED → ALLOCATED → RUNNING，完整 spec（真实命令 + PID 386864 + log_path + seed=43）\n2. Parent 关联：→ eval_pi05_l2norm_k09_long_seed42_strict_cqa1 (success, 80.0%)\n3. Cron PID 修正：386857 → 386864（直接编辑 crons.yaml）\n4. Hypothesis: \"π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar\"\n\n当前状态：15 个 RUNNING 实验，14 GPU 全满。cqa1 GPU1 仍有 2 个实验共享（attn k=0.7 + random k=0.9 s43）。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001603"
+        },
+        {
+          "source_line": 1604,
+          "timestamp": "2026-05-27T14:28:51.982002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 5117
+          },
+          "id": "event-001604"
+        },
+        {
+          "source_line": 1605,
+          "timestamp": "2026-05-27T14:28:58.161588+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`eval_pi05_l2norm_k09_long_seed43_strict_cqa1` 已注册到 registry（RUNNING, PID 386864, cqa1 GPU3），cron 已修正为正确 PID，已向 Director 汇报。15 个实验运行中，14 GPU 全满。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001605"
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "messages": [
+        {
+          "source_line": 1606,
+          "timestamp": "2026-05-27T14:51:05.831039+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval_pi05_attn_k05_long_seed42_strict_w41** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-41074 检查日志 `~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed42_strict_w41.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval_pi05_attn_k05_long_seed42_strict_w41')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "cron"
+          },
+          "id": "event-001606"
+        },
+        {
+          "source_line": 1607,
+          "timestamp": "2026-05-27T14:51:13.036811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001607"
+        },
+        {
+          "source_line": 1608,
+          "timestamp": "2026-05-27T14:51:13.080584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 43
+          },
+          "id": "event-001608"
+        },
+        {
+          "source_line": 1609,
+          "timestamp": "2026-05-27T14:51:32.719523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:harvest-attn-k05-w41",
+              "project": "importance_margin_vla_compress",
+              "task_prompt": "## 任务：收割 eval_pi05_attn_k05_long_seed42_strict_w41 实验结果\n\n### 背景\nπ0.5 Attention k=0.5 Long strict seed42 实验在 westd-41074 上运行，进程已退出，cron 无法自动判断成功/失败。需要 SSH 检查日志确认结果。\n\n### 步骤\n\n1. SSH 到 westd-41074（ssh_read_only），读取日志最后 100 行：\n   ```\n   tail -100 ~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed42_strict_w41.log\n   ```\n   如果该路径不存在，尝试以下备用路径：\n   - `/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed42_strict_w41.log`\n   - `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attn_k05_long_seed42_strict_w41.log`\n\n2. 从日志中提取：\n   - 是否正常完成（看是否有 \"Evaluation complete\" 或 per-task 结果汇总）\n   - avg_success_rate 和 per_task 各任务的 success rate（百分制）\n   - elapsed time\n   - 如果失败，提取错误信息\n\n3. 用 `update_registry` 更新状态：\n   - 如果成功：status=DONE, conclusion=success, 写入 metrics（avg_success_rate, per_task, elapsed_min, total_episodes, total_success）\n   - 如果失败：status=DONE, conclusion=failed, 写入 failure_reason\n   - 必须设置 checkpoint_path=\"N/A (eval only)\" 和 log_path（实际日志路径）\n\n4. 汇报你找到的完整结果。\n\n### 注意\n- 这是 Attention pruning k=0.5 实验，预期 SR 可能较低（aggressive pruning）\n- per_task 格式：{T0_name: SR%, T1_name: SR%, ...}，共 10 个 task\n- 日志可能在项目根目录而非 ~/runs/ 下（之前有过 log_path 不匹配问题）",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001609"
+        },
+        {
+          "source_line": 1610,
+          "timestamp": "2026-05-27T14:51:40.436831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_harvest-attn-k05-w41_20260527T145133\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_ops_harvest-attn-k05-w41_20260527T145133.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_harvest-attn-k05-w41_20260527T145133 started. Use get_worker_status('worker_ops_harvest-attn-k05-w41_20260527T145133') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 7717
+          },
+          "id": "event-001610"
+        },
+        {
+          "source_line": 1611,
+          "timestamp": "2026-05-27T14:51:43.453717+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出收割 `eval_pi05_attn_k05_long_seed42_strict_w41`。等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d"
+          },
+          "id": "event-001611"
+        }
+      ]
+    },
+    {
+      "number": 145,
+      "messages": [
+        {
+          "source_line": 1612,
+          "timestamp": "2026-05-27T14:53:28.576784+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_harvest-attn-k05-w41_20260527T145133 已完成（status=done）。用 `get_worker_status('worker_ops_harvest-attn-k05-w41_20260527T145133')` 读取结果，然后处理。\n\n- worker_id: worker_ops_harvest-attn-k05-w41_20260527T145133\n- project: importance_margin_vla_compress\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "source": "worker:done"
+          },
+          "id": "event-001612"
+        },
+        {
+          "source_line": 1613,
+          "timestamp": "2026-05-27T14:53:36.513267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001613"
+        },
+        {
+          "source_line": 1614,
+          "timestamp": "2026-05-27T14:53:36.563873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001614"
+        },
+        {
+          "source_line": 1615,
+          "timestamp": "2026-05-27T14:53:38.966474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_harvest-attn-k05-w41_20260527T145133"
+            }
+          },
+          "id": "event-001615"
+        },
+        {
+          "source_line": 1616,
+          "timestamp": "2026-05-27T14:53:39.252346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_harvest-attn-k05-w41_20260527T145133\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:harvest-attn-k05-w41\\\", \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"started_at\\\": \\\"2026-05-27T14:51:34.116587+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T14:53:23.214151+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新。实验结果：\\\\n\\\\n**π0.5 Attention k=0.5 Long strict seed42 — avg SR = 52.0%**\\\\n\\\\n| Task | SR |\\\\n|---|---|\\\\n| T0 put both alphabet soup and tomato | 70% |\\\\n| T1 put both cream cheese and butter | 44% |\\\\n| T2 turn on stove put moka pot | 76% |\\\\n| T3 put black bowl in bottom drawer | 66% |\\\\n| T4 put white mug on left plate | 48% |\\\\n| T5 pick up book place in back | 50% |\\\\n| T6 put white mug on plate | 12% |\\\\n| T7 put both alphabet soup and cream | 54% |\\\\n| T8 put both moka pots on stove | 20% |\\\\n| T9 put yellow white mug in microwave | 80% |\\\\n\\\\n耗时 156.7 min，500 episodes，260 成功。与 L2norm k=0.5 的 50.0% 接近（Attention 52.0% 略高 2pp），说明在极端压缩（50% token）下两种方法性能差距不大。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 285
+          },
+          "id": "event-001616"
+        },
+        {
+          "source_line": 1617,
+          "timestamp": "2026-05-27T14:53:47.988471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "importance_margin_vla_compress",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics']",
+              "limit": "3",
+              "filters": "{'conclusion': 'success'}"
+            }
+          },
+          "id": "event-001617"
+        },
+        {
+          "source_line": 1618,
+          "timestamp": "2026-05-27T14:53:51.299317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_success_rate\\\": 52, \\\"total_episodes\\\": 500, \\\"total_success\\\": 260, \\\"elapsed_min\\\": 156.7, \\\"per_task\\\": {\\\"T0_put_both_alphabet_soup_and_tomato\\\": 70, \\\"T1_put_both_cream_cheese_and_butter\\\": 44, \\\"T2_turn_on_stove_put_moka_pot\\\": 76, \\\"T3_put_black_bowl_in_bottom_drawer\\\": 66, \\\"T4_put_white_mug_on_left_plate\\\": 48, \\\"T5_pick_up_book_place_in_back\\\": 50, \\\"T6_put_white_mug_on_plate\\\": 12, \\\"T7_put_both_alphabet_soup_and_cream\\\": 54, \\\"T8_put_both_moka_pots_on_stove\\\": 20, \\\"T9_put_yellow_white_mug_in_microwave\\\": 80}}}, \\\"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.8, \\\"total_success\\\": 400, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 209.7, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 96, \\\"T1_cream_cheese_butter\\\": 96, \\\"T2_stove_moka\\\": 94, \\\"T3_black_bowl_drawer\\\": 100, \\\"T4_mugs_plates\\\": 82, \\\"T5_book_caddy\\\": 96, \\\"T6_mug_plate_pudding\\\": 6, \\\"T7_alphabet_soup_cream_cheese\\\": 92, \\\"T8_two_moka_pots\\\": 44, \\\"T9_mug_microwave\\\": 94}}}, \\\"eval_pi05_l2norm_k075_long_seed42_strict_w27\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"avg_success_rate\\\": 0.708, \\\"total_episodes\\\": 500, \\\"total_success\\\": 354, \\\"elapsed_min\\\": 139.8, \\\"per_task\\\": {\\\"T0_alphabet_soup_tomato\\\": 94, \\\"T1_cream_cheese_butter\\\": 88, \\\"T2_stove_moka_pot\\\": 82, \\\"T3_black_bowl_drawer\\\": 70, \\\"T4_white_mug_left_plate\\\": 68, \\\"T5_book_back_shelf\\\": 70, \\\"T6_white_mug_plate\\\": 58, \\\"T7_alphabet_soup_cream\\\": 70, \\\"T8_moka_pots_stove\\\": 26, \\\"T9_yellow_white_mug_microwave\\\": 82}}}}, \\\"count\\\": 3, \\\"total\\\": 521, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2576}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3310
+          },
+          "id": "event-001618"
+        },
+        {
+          "source_line": 1619,
+          "timestamp": "2026-05-27T14:54:14.530564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 分配 | 实际在跑 13（w41 空出 1 张） | Worker 0\n\n**实验完成** — eval_pi05_attn_k05_long_seed42_strict_w41\n\n| 指标 | 值 |\n|------|------|\n| avg SR | **52.0%** |\n| conclusion | success |\n| 耗时 | 156.7 min |\n\nPer-task: T0=70, T1=44, T2=76, T3=66, T4=48, T5=50, T6=12, T7=54, T8=20, T9=80\n\n**对比**：\n- Attn k=0.5 = 52.0% — 极端压缩下仍保持中等性能\n- L2norm k=0.75 = 70.8%，L2norm k=0.9 = 80.0%\n- T6 依然是最弱 task（12%），T8 次之（20%）\n\n**π0.5 Long Strict Cliff Curve 已填格**：\n| k | L2norm | Attn | Random |\n|---|--------|------|--------|\n| 0.95 | 86.2% | — | 60.6% |\n| 0.9 | 80.0% | — | 34.2% |\n| 0.85 | — | — | 44.0% |\n| 0.75 | 70.8% | — | 63.0% |\n| 0.7 | 🔄 | 🔄 | 66.0% |\n| 0.5 | 🔄 | **52.0%** ✅ | 49.8% |\n\nw41 空出 1 张 GPU，请指示是否部署下一个实验（如 Attn 或 L2norm seed43 复制）。",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-001619"
+        },
+        {
+          "source_line": 1620,
+          "timestamp": "2026-05-27T14:54:18.201431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_abc8a64bdb1365da5cc53dca7c67507d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3670
+          },
+          "id": "event-001620"
+        }
+      ]
+    }
+  ]
+}

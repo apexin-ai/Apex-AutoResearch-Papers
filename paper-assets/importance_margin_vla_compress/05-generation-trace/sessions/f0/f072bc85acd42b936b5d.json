@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f072bc85acd42b936b5d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 l2norm k0925 object seed42",
+  "task_key": "worker_analysis_eval_pi05_l2norm_k0925_object_seed42_20260522T000608",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_l2norm_k0925_object_seed42_20260522T000608_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "322e7e928a6c233295b057cc57e613793b19d4ee48c84e999217e3e646bd02d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## eval_pi05_l2norm_k0925_object_seed42 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **99.2%** (496/500) |\n| Total episodes | 500 (10 tasks × 50 eps) |\n| 耗时 | 57.1 min |\n| 异常 | 无（EXIT_CODE=0，无 error/warning） |\n\n**Per-task SR:**\n\n| Task | SR |\n|------|-----|\n| T0 alphabet soup | 98% |\n| T1 cream cheese | 98% |\n| T2 salad dressing | 96% |\n| T3 bbq sauce | 100% |\n| T4 ketchup | 100% |\n| T5 tomato sauce | 100% |\n| T6 butter | 100% |\n| T7 milk | 100% |\n| T8 chocolate pudding | 100% |\n| T9 orange juice | 100% |\n\n## Hypothesis 验证\n\n对比矩阵（LIBERO-Object, k=0.925）：\n\n| Method | SR |\n|--------|-----|\n| **L2norm k=0.925** | **99.2%** |\n| L2norm k=0.9 | 98.2% |\n| Random k=0.925 | 27.6% |\n\n**Conclusion: success.** L2norm k=0.925 = 99.2%（甚至高于 k=0.9 的 98.2%，符合 monotonic degradation 模式），而 random k=0.925 = 27.6% 崩溃。Cliff 是 random-specific，L2norm 在 0.9→0.925 区间保持平稳，random 在同一区间已经崩了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

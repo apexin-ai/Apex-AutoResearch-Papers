@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b4dc1d9d62ed53af4e0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh zeroshot cleanup",
+  "task_key": "worker_ssh_zeroshot_cleanup_20260515T023844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_zeroshot_cleanup_20260515T023844_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "b40dd80a101368f0dcf076b26c83a5e8202c434f3b0354a426a66650915ec093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇报：\n\n## 结果\n\n### 发现的进程\n\n| PID | 命令 | 启动时间 | 状态 |\n|-----|------|----------|------|\n| 262081 | `run_zeroshot3.py` | 10:16 | **已 kill** |\n| 263404 | `run_zeroshot4.py` | 10:20 | **已 kill** |\n| 263866 | `run_zeroshot4.py` | 10:21 | **已 kill** |\n| 264832 | `run_zeroshot4.py` | 10:24 | **已 kill** |\n| 266089 | `run_zeroshot5.py` | 10:27 | 保留 |\n| 267657+267659 | `run_loop.sh` → `run_batch.py` | 10:31 | 保留（活跃） |\n\n### 已 kill 废弃进程\n- 1 个 v3 + 3 个 v4，共 4 个，全部 SIGTERM 正常退出\n\n### 保留的活跃进程\n- **PID 266089**: `run_zeroshot5.py`（v5 独立进程）\n- **PID 267657→275187**: loop 脚本正在跑 `run_batch.py`（批量评估）\n\n### Zero-shot baseline 当前状态\n- **进度**: 98/200 样本已完成（Round 4 进行中）\n- **当前准确率**: 43.9%（4-class）\n- 模型: `deepseek/deepseek-v3.2`\n- `baseline_results.json` 中有早期小样本结果（acc=60%，仅 10 样本，不可靠）\n- 批量评估仍在继续，预计还需几轮完成剩余 102 个样本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

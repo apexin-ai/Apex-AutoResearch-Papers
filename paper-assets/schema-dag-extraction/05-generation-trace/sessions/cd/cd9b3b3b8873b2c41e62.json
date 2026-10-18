@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cd9b3b3b8873b2c41e62",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh rollback and run all",
+  "task_key": "worker_ssh_rollback-and-run-all_20260514T184153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rollback-and-run-all_20260514T184153_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "0693614f877662046a89f3e46711e9cfb0bc91fd6012eedd4d0105f4dcda2247"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 of 94 batches completed so far. Experiment is running healthy. To check progress later:\n- `grep -c \"Running batch\" /root/schema-dag-extraction/logs/exp1.log` → shows batch count (target: 94)\n- `grep \"SUMMARY\" /root/schema-dag-extraction/logs/exp1.log` → appears when done\n\nShall I continue monitoring periodically, or would you prefer to check back when Exp 1 finishes? I can also set up a notification check."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "444490219cd0c88a830b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "figure fig2 final three curves",
+  "task_key": "worker_figure_fig2_final_three_curves_20260518T141047",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig2_final_three_curves_20260518T141047_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "9929a9d222df78ce7401410209f91f9662cf22af97be16fb86028b4a8007235a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **`degradation_curve.pdf`** 已在 `cqa1-33015:/root/autodl-tmp/importance_margin_vla_compress/docs/paper/figures/` 生成（30KB）\n- **三条曲线**：\n  - **OpenVLA (MLP proj., 7B)** — 蓝色实线 + 方块，4 个数据点，渐进下降 74→20.6%\n  - **SmolVLA (official, 0.5B)** — 橙色虚线 + 三角，2 个数据点，59.2% → 0%\n  - **SmolVLA (ours, 0.5B)** — 红色实线 + 圆点，6 个数据点，44.8% → 0%（仅移除 5% token 即崩溃）\n- 本地 `gen_figures.py` 也已同步更新，添加了 `ORANGE` 颜色和第三条曲线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

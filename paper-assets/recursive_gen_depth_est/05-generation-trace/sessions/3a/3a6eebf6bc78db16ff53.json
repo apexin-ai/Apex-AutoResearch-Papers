@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3a6eebf6bc78db16ff53",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing bibliography audit",
+  "task_key": "worker_writing_bibliography_audit_20260516T050307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_bibliography_audit_20260516T050307_result.json",
+    "occurrence": 1,
+    "bytes": 1681,
+    "sha256": "b6fbcd88d4f9ccc3ba6b0fd507284074f399c6b95e3c7a38e049830d94b530dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Bibliography Audit 结果\n\n### 1. 引用计数\n**47 条目** — 远超 25 的硬约束 ✅\n\n### 2. Orphan / Missing 检查\n| 检查项 | 结果 |\n|--------|------|\n| Orphan（bib 有但 tex 未引用） | **0** ✅ |\n| Missing（tex 引用但 bib 不存在） | **0** ✅ |\n\n所有 47 个 bib 条目在 tex 文件中均有引用，完全一一对应。\n\n### 3. 格式问题（已修复）\n| 条目 | 问题 | 修复 |\n|------|------|------|\n| `shi2025_closer_look` | venue 写 \"Advances in Neural Information Processing Systems\"，其余 NeurIPS 条目写 \"Proceedings of NeurIPS\" | 已统一为 \"Proceedings of NeurIPS\" |\n\n### 4. 格式注意项（无需修复）\n- **`liu2019_roberta`**: `journal = {arXiv preprint arXiv:1907.11692}` — RoBERTa 未正式发表在会议/期刊，此写法可接受\n- **`he2021_deberta_v3`**: key 含 2021 但 year=2023（arXiv 2021，ICLR 2023 发表）— key 命名非格式错误，不影响编译\n\n### 5. 可疑条目标记\n| 条目 | 标记原因 |\n|------|----------|\n| `knowledge_collapse2025` | 第一作者 \"Keisha, Figarri\" 姓名格式少见，建议确认是否正确 |\n| `falahati2026_curated` | arXiv:2605.07724，2026 年 5 月上传，极新但在合理范围内 |\n\n无明确伪造/幻觉迹象。所有条目均有合理的 arXiv ID 或 venue。\n\n### 6. 完整性检查\n- 所有条目均含 author, title, year ✅\n- 年份范围 2007–2026，无未来年份异常 ✅\n- venue/journal 使用一致（修复后） ✅\n\n### 结论\n**全部硬约束通过。** 唯一修复：NeurIPS venue 名称统一。无 orphan、无 missing、无 fake citation 证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

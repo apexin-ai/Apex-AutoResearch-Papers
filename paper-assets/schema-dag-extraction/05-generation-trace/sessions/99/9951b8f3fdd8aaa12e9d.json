@@ -1,0 +1,902 @@
+{
+  "schema_version": "1.0",
+  "id": "9951b8f3fdd8aaa12e9d",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis d033 regression slope",
+  "task_key": "worker_analysis_d033_regression_slope_20260516T015657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d033_regression_slope_20260516T015657.log",
+    "occurrence": 1,
+    "bytes": 34160,
+    "sha256": "513ce71564eebc0570cb76cfc042379b499ce38ccbe4df4d0e2658257ea4901f"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f88715d0-d81d-437a-9b55-d2b01e7039f9",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778908800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "988cacf0-fa90-4247-95c4-eff9518444b2",
+                "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by SSH-ing to the server to find the D033 results file and understand its data structure.",
+              "signature": "EqECClkIDRgCKkA2neqF5oNZLNKMnMhns4ak5NDW6WgOQYvnr7Y3EL9a2ZLLOssaMkNmJuN/clmbH6RyeHxGK3Xlu1t//u69wPx4Mg9jbGF1ZGUtb3B1cy00LTY4ABIMTfDd+zKoqj+r5GN9GgwP6k6yOfvjI5RV6OsiMG6So9RLZT+TH3exNBT6YuG+0GJq83X97e1Jxtsz+F/hqgyN3K0rIUIP5Q869s5pUyp2Jw246gK7aJEyQmjEDc1RjH8GoYzFwaiqtvTq3iu2TJTpwZuR6OrMosJXVIIx6XJvg9RkxICSGBIN2gsPn+PmCjbKq2rHh4w3ncQ6aNyaQOH2Vuf4P9BpklL/pUdMvEGmdv4zQ6M7FtmXhcrQpwQy1LELijb7xhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "0b4219cf-c827-44b4-8552-d9e0af8ee7c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CWNXobd9VRDUatkvYfTb7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12182,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12182
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先查看 D033 结果文件结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "cb44a468-f285-4316-9a94-053f5d92ee86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CWNXobd9VRDUatkvYfTb7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12182,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12182
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FdvWSTFUJVcdsPDUJxx4vX",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "af782864-5bf8-4c38-bb6a-969e88ffdb2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CWNXobd9VRDUatkvYfTb7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12182,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12182
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:57:07.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01FdvWSTFUJVcdsPDUJxx4vX",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "2e6a084c-ee80-4431-94d7-3e056b90e01c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PVY4MEu95wGmsCazQSEyZr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "ls -la /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "9c24aaf6-262b-4469-9b9b-59b8e8604e08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EFARHNd4K8xT4th8D2T4DA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 479,
+                "cache_read_input_tokens": 24023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 479
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:57:11.624Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PVY4MEu95wGmsCazQSEyZr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7552\\\\ndrwxr-xr-x  2 root root    4096 May 16 09:40 .\\\\ndrwxr-xr-x 24 root root    4096 May 16 09:47 ..\\\\n-rw-r--r--  1 root root   27393 May 16 09:22 batch_config.json\\\\n-rw-r--r--  1 root root     670 May 16 09:40 bootstrap_ci.json\\\\n-rw-r--r--  1 root root 6958846 May 16 09:40 predictions_incremental.jsonl\\\\n-rw-r--r--  1 root root  288445 May 16 09:22 preprocess.json\\\\n-rw-r--r--  1 root root   29373 May 16 09:22 relation_sim_matrix.pt\\\\n-rw-r--r--  1 root root   36981 May 16 09:40 results.json\\\\n-rw-r--r--  1 root root   28079 May 16 09:40 results_incremental.jsonl\\\\n-rw-r--r--  1 root root  336235 May 16 09:40 run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "81dc12f7-0fa9-45e0-a7e0-812d4ebdf5f1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7552\\\\ndrwxr-xr-x  2 root root    4096 May 16 09:40 .\\\\ndrwxr-xr-x 24 root root    4096 May 16 09:47 ..\\\\n-rw-r--r--  1 root root   27393 May 16 09:22 batch_config.json\\\\n-rw-r--r--  1 root root     670 May 16 09:40 bootstrap_ci.json\\\\n-rw-r--r--  1 root root 6958846 May 16 09:40 predictions_incremental.jsonl\\\\n-rw-r--r--  1 root root  288445 May 16 09:22 preprocess.json\\\\n-rw-r--r--  1 root root   29373 May 16 09:22 relation_sim_matrix.pt\\\\n-rw-r--r--  1 root root   36981 May 16 09:40 results.json\\\\n-rw-r--r--  1 root root   28079 May 16 09:40 results_incremental.jsonl\\\\n-rw-r--r--  1 root root  336235 May 16 09:40 run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7552\\ndrwxr-xr-x  2 root root    4096 May 16 09:40 .\\ndrwxr-xr-x 24 root root    4096 May 16 09:47 ..\\n-rw-r--r--  1 root root   27393 May 16 09:22 batch_config.json\\n-rw-r--r--  1 root root     670 May 16 09:40 bootstrap_ci.json\\n-rw-r--r--  1 root root 6958846 May 16 09:40 predictions_incremental.jsonl\\n-rw-r--r--  1 root root  288445 May 16 09:22 preprocess.json\\n-rw-r--r--  1 root root   29373 May 16 09:22 relation_sim_matrix.pt\\n-rw-r--r--  1 root root   36981 May 16 09:40 results.json\\n-rw-r--r--  1 root root   28079 May 16 09:40 results_incremental.jsonl\\n-rw-r--r--  1 root root  336235 May 16 09:40 run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件是 `results.json`。先看数据结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "fc495a2f-2200-49f9-9784-4e37f9c6a34b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VpL1BhtNJeCcGdg52GnW1w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 522,
+                "cache_read_input_tokens": 24502,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 522
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QiAp7g7kUnDi5Xk5RcUHCX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "head -100 /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "3d269438-0986-4d25-9617-2a341255b728",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VpL1BhtNJeCcGdg52GnW1w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 522,
+                "cache_read_input_tokens": 24502,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 522
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:57:15.089Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QiAp7g7kUnDi5Xk5RcUHCX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_000\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8919832706451416,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8266129032258065,\\\\n    \\\\\\\"correct\\\\\\\": 410,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"part of\\\\\\\",\\\\n      \\\\\\\"follows\\\\\\\",\\\\n      \\\\\\\"voice type\\\\\\\",\\\\n      \\\\\\\"sport\\\\\\\",\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"competition class\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 11.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_001\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8405265808105469,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8387096774193549,\\\\n    \\\\\\\"correct\\\\\\\": 416,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"mother\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\",\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"position played on team\\\\\\\",\\\\n      \\\\\\\"competition class\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"spouse\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 9.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_002\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8071344494819641,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8870967741935484,\\\\n    \\\\\\\"correct\\\\\\\": 440,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"military rank\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"part of\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"spouse\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\",\\\\n      \\\\\\\"sport\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 9.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_003\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8405265808105469,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8044354838709677,\\\\n    \\\\\\\"correct\\\\\\\": 399,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"spouse\\\\\\\",\\\\n      \\\\\\\"mother\\\\\\\",\\\\n      \\\\\\\"follows\\\\\\\",\\\\n      \\\\\\\"position played on team\\\\\\\",\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 7.9\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_004\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.6532139182090759,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.905241935483871,\\\\n    \\\\\\\"correct\\\\\\\": 449,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"military rank\\\\\\\",\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"position played on team\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"competition class\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 8.3\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_005\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8467146158218384,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8104838709677419,\\\\n    \\\\\\\"correct\\\\\\\": 402,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "a8f1ff83-7078-4282-a553-cc8916e4f0bd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_000\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8919832706451416,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8266129032258065,\\\\n    \\\\\\\"correct\\\\\\\": 410,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"part of\\\\\\\",\\\\n      \\\\\\\"follows\\\\\\\",\\\\n      \\\\\\\"voice type\\\\\\\",\\\\n      \\\\\\\"sport\\\\\\\",\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"competition class\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 11.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_001\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8405265808105469,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8387096774193549,\\\\n    \\\\\\\"correct\\\\\\\": 416,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"mother\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\",\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"position played on team\\\\\\\",\\\\n      \\\\\\\"competition class\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"spouse\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 9.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_002\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8071344494819641,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8870967741935484,\\\\n    \\\\\\\"correct\\\\\\\": 440,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"military rank\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"part of\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"spouse\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\",\\\\n      \\\\\\\"sport\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 9.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_003\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8405265808105469,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8044354838709677,\\\\n    \\\\\\\"correct\\\\\\\": 399,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"spouse\\\\\\\",\\\\n      \\\\\\\"mother\\\\\\\",\\\\n      \\\\\\\"follows\\\\\\\",\\\\n      \\\\\\\"position played on team\\\\\\\",\\\\n      \\\\\\\"child\\\\\\\",\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 7.9\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_004\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.6532139182090759,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.905241935483871,\\\\n    \\\\\\\"correct\\\\\\\": 449,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"military rank\\\\\\\",\\\\n      \\\\\\\"constellation\\\\\\\",\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"position played on team\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"competition class\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"main subject\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"elapsed_s\\\\\\\": 8.3\\\\n  },\\\\n  {\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"batch_005\\\\\\\",\\\\n    \\\\\\\"bcs\\\\\\\": 0.8467146158218384,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8104838709677419,\\\\n    \\\\\\\"correct\\\\\\\": 402,\\\\n    \\\\\\\"total\\\\\\\": 496,\\\\n    \\\\\\\"types\\\\\\\": [\\\\n      \\\\\\\"crosses\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"batch_id\\\": \\\"batch_000\\\",\\n    \\\"bcs\\\": 0.8919832706451416,\\n    \\\"accuracy\\\": 0.8266129032258065,\\n    \\\"correct\\\": 410,\\n    \\\"total\\\": 496,\\n    \\\"types\\\": [\\n      \\\"crosses\\\",\\n      \\\"child\\\",\\n      \\\"part of\\\",\\n      \\\"follows\\\",\\n      \\\"voice type\\\",\\n      \\\"sport\\\",\\n      \\\"constellation\\\",\\n      \\\"competition class\\\"\\n    ],\\n    \\\"elapsed_s\\\": 11.6\\n  },\\n  {\\n    \\\"batch_id\\\": \\\"batch_001\\\",\\n    \\\"bcs\\\": 0.8405265808105469,\\n    \\\"accuracy\\\": 0.8387096774193549,\\n    \\\"correct\\\": 416,\\n    \\\"total\\\": 496,\\n    \\\"types\\\": [\\n      \\\"constellation\\\",\\n      \\\"mother\\\",\\n      \\\"main subject\\\",\\n      \\\"child\\\",\\n      \\\"position played on team\\\",\\n      \\\"competition class\\\",\\n      \\\"crosses\\\",\\n      \\\"spouse\\\"\\n    ],\\n    \\\"elapsed_s\\\": 9.5\\n  },\\n  {\\n    \\\"batch_id\\\": \\\"batch_002\\\",\\n    \\\"bcs\\\": 0.8071344494819641,\\n    \\\"accuracy\\\": 0.8870967741935484,\\n    \\\"correct\\\": 440,\\n    \\\"total\\\": 496,\\n    \\\"types\\\": [\\n      \\\"child\\\",\\n      \\\"military rank\\\",\\n      \\\"crosses\\\",\\n      \\\"part of\\\",\\n      \\\"original language of film or TV show\\\",\\n      \\\"spouse\\\",\\n      \\\"main subject\\\",\\n      \\\"sport\\\"\\n    ],\\n    \\\"elapsed_s\\\": 9.2\\n  },\\n  {\\n    \\\"batch_id\\\": \\\"batch_003\\\",\\n    \\\"bcs\\\": 0.8405265808105469,\\n    \\\"accuracy\\\": 0.8044354838709677,\\n    \\\"correct\\\": 399,\\n    \\\"total\\\": 496,\\n    \\\"types\\\": [\\n      \\\"spouse\\\",\\n      \\\"mother\\\",\\n      \\\"follows\\\",\\n      \\\"position played on team\\\",\\n      \\\"child\\\",\\n      \\\"constellation\\\",\\n      \\\"main subject\\\",\\n      \\\"located in or next to body of water\\\"\\n    ],\\n    \\\"elapsed_s\\\": 7.9\\n  },\\n  {\\n    \\\"batch_id\\\": \\\"batch_004\\\",\\n    \\\"bcs\\\": 0.6532139182090759,\\n    \\\"accuracy\\\": 0.905241935483871,\\n    \\\"correct\\\": 449,\\n    \\\"total\\\": 496,\\n    \\\"types\\\": [\\n      \\\"military rank\\\",\\n      \\\"constellation\\\",\\n      \\\"crosses\\\",\\n      \\\"position played on team\\\",\\n      \\\"located in or next to body of water\\\",\\n      \\\"competition class\\\",\\n      \\\"original language of film or TV show\\\",\\n      \\\"main subject\\\"\\n    ],\\n    \\\"elapsed_s\\\": 8.3\\n  },\\n  {\\n    \\\"batch_id\\\": \\\"batch_005\\\",\\n    \\\"bcs\\\": 0.8467146158218384,\\n    \\\"accuracy\\\": 0.8104838709677419,\\n    \\\"correct\\\": 402,\\n    \\\"total\\\": 496,\\n    \\\"types\\\": [\\n      \\\"crosses\\\",\\n      \\\"located in or next to body of water\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, the data structure is clear: a JSON array of objects, each with `bcs` and `accuracy` fields. Now I need to write and execute the regression analysis script. Let me also check how many batches there are.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "4e09d4bb-8e6b-4d69-9991-b2666e69b457",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bNuY4ASZKXy4efD664PbK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1431,
+                "cache_read_input_tokens": 25024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1431
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构清楚：JSON 数组，每个元素有 `bcs` 和 `accuracy` 字段。现在写分析脚本并执行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "7542d798-c587-4c33-8ea0-bbd797d81e96",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bNuY4ASZKXy4efD664PbK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1431,
+                "cache_read_input_tokens": 25024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1431
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013RvwdgvPStnLVVBsZpHiJB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "5369831f-8a51-4e9e-9da0-a0cc6fa84577",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bNuY4ASZKXy4efD664PbK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1431,
+                "cache_read_input_tokens": 25024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1431
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:57:19.138Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013RvwdgvPStnLVVBsZpHiJB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "a1dfa5b5-8ea2-4ecd-b83f-6a521f62f703",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q92eaYenzDDJatb2VwHvEU",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cat << 'PYEOF' > /root/schema-dag-extraction/scripts/d033_regression_slope.py\nimport json, numpy as np\nfrom scipy.stats import linregress\n\nwith open('/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results.json') as f:\n    data = json.load(f)\n\nbcs_arr = np.array([b['bcs'] for b in data])\nacc_arr = np.array([b['accuracy'] for b in data])\n\nslope, intercept, r_value, p_value, stderr = linregress(bcs_arr, acc_arr)\n\nrng = np.random.default_rng(42)\nn = len(bcs_arr)\nboot_slopes = []\nfor _ in range(1000):\n    idx = rng.choice(n, n, replace=True)\n    s, _, _, _, _ = linregress(bcs_arr[idx], acc_arr[idx])\n    boot_slopes.append(s)\nci_lower, ci_upper = np.percentile(boot_slopes, [2.5, 97.5])\n\nresult = {\n    \"experiment\": \"D033 (exp_fewrel_16rel_bootstrap)\",\n    \"n_batches\": int(n),\n    \"bcs_range\": [float(bcs_arr.min()), float(bcs_arr.max())],\n    \"acc_range\": [float(acc_arr.min()), float(acc_arr.max())],\n    \"regression\": {\n        \"slope\": float(slope),\n        \"intercept\": float(intercept),\n        \"r_squared\": float(r_value**2),\n        \"r_value\": float(r_value),\n        \"p_value\": float(p_value),\n        \"stderr\": float(stderr),\n        \"bootstrap_slope_ci_95\": [float(ci_lower), float(ci_upper)]\n    },\n    \"interpretation\": f\"Each +0.1 BCS -> {slope*0.1*100:.2f}pp accuracy change\"\n}\n\nwith open('/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/regression_slope.json', 'w') as f:\n    json.dump(result, f, indent=2)\n\nprint(json.dumps(result, indent=2))\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/schema-dag-extraction/scripts/d033_regression_slope.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "8ad14580-2f3f-4ffc-8f27-9e7d42b5b0ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KHM8wTS4Lu5hanGBiroGaC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 454,
+                "cache_read_input_tokens": 26455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 454
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:57:32.605Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q92eaYenzDDJatb2VwHvEU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"D033 (exp_fewrel_16rel_bootstrap)\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 100,\\\\n  \\\\\\\"bcs_range\\\\\\\": [\\\\n    0.6532139182090759,\\\\n    0.9001670479774475\\\\n  ],\\\\n  \\\\\\\"acc_range\\\\\\\": [\\\\n    0.7116935483870968,\\\\n    0.9516129032258065\\\\n  ],\\\\n  \\\\\\\"regression\\\\\\\": {\\\\n    \\\\\\\"slope\\\\\\\": -0.4489974920328937,\\\\n    \\\\\\\"intercept\\\\\\\": 1.2223212127596628,\\\\n    \\\\\\\"r_squared\\\\\\\": 0.40612325837195273,\\\\n    \\\\\\\"r_value\\\\\\\": -0.637278007130289,\\\\n    \\\\\\\"p_value\\\\\\\": 1.0136113229745197e-12,\\\\n    \\\\\\\"stderr\\\\\\\": 0.05484664982515676,\\\\n    \\\\\\\"bootstrap_slope_ci_95\\\\\\\": [\\\\n      -0.5564038709006914,\\\\n      -0.3485078314313499\\\\n    ]\\\\n  },\\\\n  \\\\\\\"interpretation\\\\\\\": \\\\\\\"Each +0.1 BCS -> -4.49pp accuracy change\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "7eaa8dd8-80b2-4c4d-8c84-beb4fb2d5a6f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"D033 (exp_fewrel_16rel_bootstrap)\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 100,\\\\n  \\\\\\\"bcs_range\\\\\\\": [\\\\n    0.6532139182090759,\\\\n    0.9001670479774475\\\\n  ],\\\\n  \\\\\\\"acc_range\\\\\\\": [\\\\n    0.7116935483870968,\\\\n    0.9516129032258065\\\\n  ],\\\\n  \\\\\\\"regression\\\\\\\": {\\\\n    \\\\\\\"slope\\\\\\\": -0.4489974920328937,\\\\n    \\\\\\\"intercept\\\\\\\": 1.2223212127596628,\\\\n    \\\\\\\"r_squared\\\\\\\": 0.40612325837195273,\\\\n    \\\\\\\"r_value\\\\\\\": -0.637278007130289,\\\\n    \\\\\\\"p_value\\\\\\\": 1.0136113229745197e-12,\\\\n    \\\\\\\"stderr\\\\\\\": 0.05484664982515676,\\\\n    \\\\\\\"bootstrap_slope_ci_95\\\\\\\": [\\\\n      -0.5564038709006914,\\\\n      -0.3485078314313499\\\\n    ]\\\\n  },\\\\n  \\\\\\\"interpretation\\\\\\\": \\\\\\\"Each +0.1 BCS -> -4.49pp accuracy change\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.91}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"D033 (exp_fewrel_16rel_bootstrap)\\\",\\n  \\\"n_batches\\\": 100,\\n  \\\"bcs_range\\\": [\\n    0.6532139182090759,\\n    0.9001670479774475\\n  ],\\n  \\\"acc_range\\\": [\\n    0.7116935483870968,\\n    0.9516129032258065\\n  ],\\n  \\\"regression\\\": {\\n    \\\"slope\\\": -0.4489974920328937,\\n    \\\"intercept\\\": 1.2223212127596628,\\n    \\\"r_squared\\\": 0.40612325837195273,\\n    \\\"r_value\\\": -0.637278007130289,\\n    \\\"p_value\\\": 1.0136113229745197e-12,\\n    \\\"stderr\\\": 0.05484664982515676,\\n    \\\"bootstrap_slope_ci_95\\\": [\\n      -0.5564038709006914,\\n      -0.3485078314313499\\n    ]\\n  },\\n  \\\"interpretation\\\": \\\"Each +0.1 BCS -> -4.49pp accuracy change\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.91}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `regression_slope.json`。汇总：\n\n**D033 16-rel pool BCS-accuracy 回归分析 (n=100 batches)**\n\n| 指标 | 值 |\n|------|-----|\n| BCS 范围 | [0.653, 0.900] |\n| Accuracy 范围 | [0.712, 0.952] |\n| **Slope** | **-0.449** |\n| Bootstrap 95% CI | [-0.556, -0.349] |\n| R² | 0.406 |\n| r | -0.637 |\n| p-value | 1.01e-12 |\n\n**解读**：每 +0.1 BCS → **-4.49pp accuracy**。斜率显著为负（p < 1e-12），CI 不跨零。\n\n这意味着在 16-rel pool 中，BCS 越高（类型间越相似）accuracy 越低，方向与 80-pool 一致。斜率绝对值可直接与 80-pool 回归斜率做标准化比较。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "uuid": "1ac4ce88-e3bb-42e8-931c-de65bcec4337",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015usmUSHXELfka6UHqT6d3X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1142,
+                "cache_read_input_tokens": 26909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1142
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `regression_slope.json`。汇总：\n\n**D033 16-rel pool BCS-accuracy 回归分析 (n=100 batches)**\n\n| 指标 | 值 |\n|------|-----|\n| BCS 范围 | [0.653, 0.900] |\n| Accuracy 范围 | [0.712, 0.952] |\n| **Slope** | **-0.449** |\n| Bootstrap 95% CI | [-0.556, -0.349] |\n| R² | 0.406 |\n| r | -0.637 |\n| p-value | 1.01e-12 |\n\n**解读**：每 +0.1 BCS → **-4.49pp accuracy**。斜率显著为负（p < 1e-12），CI 不跨零。\n\n这意味着在 16-rel pool 中，BCS 越高（类型间越相似）accuracy 越低，方向与 80-pool 一致。斜率绝对值可直接与 80-pool 回归斜率做标准化比较。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 37609,
+            "duration_api_ms": 31192,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "a382f7f0-eba4-4841-8ff7-e34c47f90470",
+            "total_cost_usd": 0.21335549999999998,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 16210,
+              "cache_read_input_tokens": 138754,
+              "output_tokens": 1619,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16210,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 294,
+                  "cache_read_input_tokens": 26909,
+                  "cache_creation_input_tokens": 1142,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1142
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2031,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002136,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 1619,
+                "cacheReadInputTokens": 138754,
+                "cacheCreationInputTokens": 16210,
+                "webSearchRequests": 0,
+                "costUSD": 0.2112195,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bf37e17f-f54d-4178-9be9-8436df071e17"
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ]
+}

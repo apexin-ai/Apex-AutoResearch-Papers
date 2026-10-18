@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f781d7af9970f857cfe7",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "director / loop_18.md",
+  "task_key": "loop_18",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_18.md",
+    "occurrence": 1,
+    "bytes": 2857,
+    "sha256": "e73fc91002f99e41902baa21b170e5a84d8cad1db3d1f4ca802e5a96cfb5223d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: max_messages\nupdated: '2026-05-27T00:44:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 4 台服务器：cqa1-33015、westd-27271、westd-38929、westd-41074，GPU 只能用项目配置内的\n- 实验硬截止 May 28 20:00 BJT（C002），之后不再启动新实验\n- CoRL 2026 Paper 提交 May 29，只补论文 figure 必需的 cliff curve 数据点\n- k=0.95 端点审批时 approve_experiment 报 \"not found\"——可能 Agent 未正式提交 approval request，需要让新 Agent 直接部署而非走审批流\n\n### 2. 🖥️ 基础设施快照\n- 4 台 AutoDL 服务器，每台 4 GPU（共 14 GPU 分配）\n- 工作目录：`/root/autodl-tmp/importance_margin_vla_compress`\n- Python：conda base 环境（aml-train 镜像）\n- 模型/数据：在各服务器 `/root/autodl-tmp/` 下\n- 无 W&B 配置，无 Git remote\n- 活跃进程：ROADMAP GPU 表显示 14 GPU 全占用（截至 00:00 UTC），但 Agent idle 961min 说明可能多数已完成未回收\n- Paper Agent session 活跃，provenance 80/83，刚完成 k=0.7 叙事修正 patch\n\n### 3. 📊 当前状态\nAgent idle 16h，我刚重新加载状态并尝试审批 2 个 pending 实验（失败，approval 不存在）。\n\nROADMAP 显示的 RUNNING 实验（可能已完成，需诊断）：\n- OpenVLA: Attn k=0.95 Obj, Attn k=0.5 Goal/Long, L2n k=0.5/0.75 Long, Rnd k=0.75 Obj/Long/Goal, Rnd k=0.85 Long v3, Attn k=0.75 Goal/Long\n- π0.5: L2norm k=0.85 Long, Random k=0.7 Long, 某 eval\n\n关键缺口（cliff curve 顶端 k=0.95）：\n- Object: Attn k=0.95 (?running), Random k=0.95 (?running on westd-41074)\n- Goal: 三方法 k=0.95 全缺\n- Long: 三方法 k=0.95 全缺\n\n### 4. 📋 待办\n- Agent 重启后 → 立即 SSH 诊断 4 台服务器所有 GPU 进程状态（哪些实验还活着、哪些已完成）\n- 已完成实验 → 收集结果、更新 registry、释放 GPU\n- GPU 空出 → 立即部署 k=0.95 端点（优先 Long 和 Goal，Object 部分已有）\n- 全部 cliff curve 数据收齐 → 通知 Paper Agent 更新 figures + tables\n- May 28 20:00 前 → 确认 provenance 83/83，Paper Agent 完成最终版\n\n### 5. 🎯 战略上下文\n项目核心发现：VLA vision token 可压缩性取决于 scoring method × connector × task 三维交互。Position encoding sensitivity 已确认（D237）。Crossover table 16/16 完成。\n\n关键决策链：D240（只补 figure 必需点）→ D237（L2norm 单调=position encoding）→ D239（π0.5 k=0.5 三方法收敛）\n\n易错点：\n- ROADMAP GPU 表是手动维护的，实际进程状态需 SSH 确认（Agent idle 16h 说明可能大量实验已完成但未回收）\n- approve_experiment 需要 Agent 先正式 request_approval，不能凭 report.md \"等待人工审批\" 就直接 approve\n- 距 deadline <24h，不要再新增非 cliff-curve 实验，只补论文 figure 必需的数据点\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

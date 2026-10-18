@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f4aafe791279539dda74",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "audit paper internal consistency",
+  "task_key": "worker_audit_paper-internal-consistency_20260525T083230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-internal-consistency_20260525T083230_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "b9faf5b609039ca330d7d3ab5a36de639ff6c4eb1a48dd12fe17b9c1b80b9670"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。发现 **3 个 critical 不一致**，需要修复：\n\n1. **Appendix K bootstrap 的 BT 值 (66.5%) 与 Table 1 / Analysis (67.5%) 矛盾** — 同一 n=355 数据，两处报不同 BT\n2. **Appendix K bootstrap 表的 d = −0.017 与 Table 1 / Analysis 的 d = −0.025 矛盾** — n=355 行应一致\n3. **Table 2 (GEE) 脚注声称所有非 scaled 行 n=88，但 verbosity 行实际 n=86**\n\n另有 4 个 warning（abstract/analysis 中 verbosity 误标 n=88；\"8/11\" 计数不明；conclusion \"6/24\" 措辞夸大 Blindspot 范围）和 2 个 info 级精度差异。\n\n无占位符，无 undefined reference，16 组关键数字已验证一致。完整报告已写入 artifacts 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

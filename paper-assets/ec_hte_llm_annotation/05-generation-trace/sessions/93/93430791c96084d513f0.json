@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "93430791c96084d513f0",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research asymmetric diagnostic",
+  "task_key": "worker_research_asymmetric-diagnostic_20260523T071457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_asymmetric-diagnostic_20260523T071457_result.json",
+    "occurrence": 1,
+    "bytes": 1559,
+    "sha256": "9359cf6146ab24cae2fd76071916311648efc82fd717e8f3e3b35fe06518fd8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**核心发现：对 K_Z=2（二值标签），非对称诊断与对称诊断代数等价，无法改善。**\n\n### 证明\n\n对一般非对称混淆矩阵 (FPR_s ≠ FNR_s)，CATE bias 的关键量是：\n\n```\nB_s[1,1] - B_s[1,0] = -2·δ_s / (1 - 2π̄)\n```\n\n其中 δ_s = π_s - π̄，π_s = (FPR_s + FNR_s)/2。FPR 和 FNR 的不对称性在行差中完全抵消。因此：\n\n```\n|B_s[1,1] - B_s[1,0]| / (FPR_s + FNR_s) ≡ |δ_s| / ((1-2π̄)·π_s)  （恒等式）\n```\n\n### AUC 对比\n\n| 条件 | 对称 | 旧非对称 \\|B[0,1]\\| | 新比率 | 新原始值 |\n|------|------|---------------------|--------|----------|\n| 全部子组 (n=56) | 0.6571 | 0.6041 | 0.6571 | 0.6816 |\n| τ_s > 0 (n=40) | **1.0000** | 0.8857 | **1.0000** | **1.0000** |\n\n### AUC=0.63 的真正原因\n\n不是对称假设导致的。τ_s=0 的子组（两个 bias 都≈0）的 ground truth 完全由 MC 噪声决定，拉低了整体 AUC。排除这些子组后，所有诊断都达到 AUC=1.0。\n\n### 结论\n\n- 对称假设 A2 (FPR=FNR) **对 Proposition 3 的诊断不是限制**——非对称公式恒等于对称公式\n- 旧 exp028 用 |B_s[0,1]|（仅 FNR 偏差）是错误的，但正确的非对称公式也只能回到对称结果\n- 若要在论文中表述：Remark 1 的一般形式虽然对逐项 bias 更精确，但对 CATE 诊断而言，信息量与对称版完全相同\n\n输出文件：`results/exp_asym_diag_v2.csv`、`results/exp_asym_diag_v2_summary.csv`、`results/exp_asym_diag_v2_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

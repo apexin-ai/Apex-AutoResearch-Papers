@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "3106e88a29974fc65569",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "exp phi3 medium hires profiling",
+  "task_key": "worker_exp_phi3_medium_hires_profiling_20260515T154952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phi3_medium_hires_profiling_20260515T154952.log",
+    "occurrence": 1,
+    "bytes": 962148,
+    "sha256": "6594cbb1d36cb5743a703d568fd0a0a1783e197a988d3015b3b3c26c1987197a"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 1,
+    "tool_calls": 190,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 111,
+      "tool_call": 190,
+      "tool_result": 190,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 482,
+      "chunks": [
+        {
+          "path": "3106e88a29974fc65569-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3106e88a29974fc65569-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3106e88a29974fc65569-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "3106e88a29974fc65569-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

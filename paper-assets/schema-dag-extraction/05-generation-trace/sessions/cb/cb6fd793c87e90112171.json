@@ -1,0 +1,1798 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6fd793c87e90112171",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "research maven dataset v2",
+  "task_key": "worker_research_maven-dataset-v2_20260515T031646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maven-dataset-v2_20260515T031646.log",
+    "occurrence": 1,
+    "bytes": 103277,
+    "sha256": "c115278ba3bc7a17eec51d17afb794d8393784f0c263c8177e87b2e06e665619"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bd18ff15-1205-458d-9b98-bfc672f4f5ed",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778817600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5104d764-6a41-42b2-a4a1-44f5d93228b2",
+                "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The task is to research the MAVEN event detection dataset and produce a report. Let me start by searching for the dataset information.",
+              "signature": "EsICClkIDRgCKkA/RaApKbBfiVggnEzTdjPMDvFWjcpTHz9X+RqJS0plkSbKufi43bPKcSZeb+sSeGfHu5vP89OnUmU8BKiO14LlMg9jbGF1ZGUtb3B1cy00LTY4ABIMSXiQUHMC3O5N13PvGgyfdyg9PLkSBbd4YcYiMM2mGhPZEtTvP5D6KyWR1/0+K6L4YhrBnl65VeqzNc1KK6iMez0/7Fs1VsiTDpQwGCqWAdQoHYMGQ8uAWAMAAItwWWCuDIocN6D0cYmfjPXAwMG34YXZ12wmmdas7SFjwsINyZIxztSnJ/frb5XSfrOR/fcb2N/g1zNN+KenUyKrhzb3zAVEQrIyQoK8d2vOQaELmktaL51AkWHk4kJ3U1pZ9hCWDi/jLqDZMg4GZ2/V5Yw/JU0rwnvcKHveoCrASMIDhlhwdT1pfBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "f9a8492d-43c9-4ab5-8ed5-42cc5f60418f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pj4v7TctP3HbZvBpkWGnXV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11347,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11347
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始调研 MAVEN 数据集。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "d4e84680-3633-4b84-bc8e-d2782f7edd73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pj4v7TctP3HbZvBpkWGnXV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11347,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11347
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CP5xTDioh2uvxDkmUYMVvj",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "44223e56-3786-4f14-81aa-047ff3d52b69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pj4v7TctP3HbZvBpkWGnXV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11347,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11347
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:16:59.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01CP5xTDioh2uvxDkmUYMVvj",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "07d062aa-aa48-4a69-89d1-e552ba9996f0",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch",
+                "mcp__agent-ml-research__save_project_file",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015BuCsFxmxC9UGj5RkH4evL",
+              "name": "WebSearch",
+              "input": {
+                "query": "MAVEN event detection dataset 168 types THU-KEG github"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "7f95a05c-370e-4471-9a8a-4fd433161dcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qqye6bhocd8v6XA3oNRZ9F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1534,
+                "cache_read_input_tokens": 23188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1534
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eb2wtoKWZCMzftdz9dqr7r",
+              "name": "WebSearch",
+              "input": {
+                "query": "MAVEN event detection dataset huggingface download"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "729ba559-10ad-440d-b27e-d7d600b86a68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qqye6bhocd8v6XA3oNRZ9F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1534,
+                "cache_read_input_tokens": 23188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1534
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T03:17:07.240Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eb2wtoKWZCMzftdz9dqr7r",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MAVEN event detection dataset huggingface download\"\n\nLinks: [{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf\"},{\"title\":\"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \\\"MAVEN: A Massive General Domain Event Detection Dataset\\\". · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.emnlp-main.129/\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF\",\"url\":\"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset\"},{\"title\":\"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://arxiv.org/abs/2004.13590\"},{\"title\":\"Maven-Fact: A Large-scale Event Factuality Detection Dataset\",\"url\":\"https://arxiv.org/html/2407.15352v1\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset | DeepAI\",\"url\":\"https://deepai.org/publication/maven-a-massive-general-domain-event-detection-dataset\"},{\"title\":\"ErickP/maven · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/ErickP/maven/viewer\"},{\"title\":\"DocEE: A Large-Scale Dataset for Document-level Event Extraction\",\"url\":\"https://openreview.net/pdf?id=t5zJTjgwngX\"},{\"title\":\"MAVEN\",\"url\":\"https://thukeg.gitee.io/maven/\"}]\n\nBased on the search results, here's information about the MAVEN event detection dataset and how to access it:\n\n## MAVEN Dataset Overview\n\nMAVEN is an event detection dataset with massive general domain human annotated data. It contains 4,480 documents; 118,732 event mentions and 168 event types.\n\n## Where to Download\n\nThe source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset. Additionally, the dataset (ver. 1.0) can be obtained from Tsinghua Cloud or Google Drive.\n\n## HuggingFace Availability\n\nThere is a MAVEN dataset available on HuggingFace. You can access it at: https://huggingface.co/datasets/ErickP/maven\n\nTo download the dataset from HuggingFace using the `datasets` library, you can use:\n\n```python\nfrom datasets import load_dataset\ndataset = load_dataset(\"ErickP/maven\")\n```\n\n## Primary Sources\n\nThe official GitHub repository at THU-KEG (Tsinghua University Knowledge Engineering Group) and the HuggingFace Hub are the recommended sources for accessing the MAVEN event detection dataset.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "0c8032ef-e440-49ca-9ced-60b36749f7ca",
+            "tool_use_result": {
+              "query": "MAVEN event detection dataset huggingface download",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01THcXHgFki4Wr8AKMCGA5vr",
+                  "content": [
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+                    },
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+                      "url": "https://aclanthology.org/2020.emnlp-main.129/"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+                      "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+                    },
+                    {
+                      "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://arxiv.org/abs/2004.13590"
+                    },
+                    {
+                      "title": "Maven-Fact: A Large-scale Event Factuality Detection Dataset",
+                      "url": "https://arxiv.org/html/2407.15352v1"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset | DeepAI",
+                      "url": "https://deepai.org/publication/maven-a-massive-general-domain-event-detection-dataset"
+                    },
+                    {
+                      "title": "ErickP/maven · Datasets at Hugging Face",
+                      "url": "https://huggingface.co/datasets/ErickP/maven/viewer"
+                    },
+                    {
+                      "title": "DocEE: A Large-Scale Dataset for Document-level Event Extraction",
+                      "url": "https://openreview.net/pdf?id=t5zJTjgwngX"
+                    },
+                    {
+                      "title": "MAVEN",
+                      "url": "https://thukeg.gitee.io/maven/"
+                    }
+                  ]
+                },
+                "Based on the search results, here's information about the MAVEN event detection dataset and how to access it:\n\n## MAVEN Dataset Overview\n\nMAVEN is an event detection dataset with massive general domain human annotated data. It contains 4,480 documents; 118,732 event mentions and 168 event types.\n\n## Where to Download\n\nThe source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset. Additionally, the dataset (ver. 1.0) can be obtained from Tsinghua Cloud or Google Drive.\n\n## HuggingFace Availability\n\nThere is a MAVEN dataset available on HuggingFace. You can access it at: https://huggingface.co/datasets/ErickP/maven\n\nTo download the dataset from HuggingFace using the `datasets` library, you can use:\n\n```python\nfrom datasets import load_dataset\ndataset = load_dataset(\"ErickP/maven\")\n```\n\n## Primary Sources\n\nThe official GitHub repository at THU-KEG (Tsinghua University Knowledge Engineering Group) and the HuggingFace Hub are the recommended sources for accessing the MAVEN event detection dataset."
+              ],
+              "durationSeconds": 4.608284594000001
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:17:09.658Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015BuCsFxmxC9UGj5RkH4evL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MAVEN event detection dataset 168 types THU-KEG github\"\n\nLinks: [{\"title\":\"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \\\"MAVEN: A Massive General Domain Event Detection Dataset\\\". · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.emnlp-main.129/\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智\",\"url\":\"https://bakser.github.io/publication/2020-11-17-MAVEN\"},{\"title\":\"GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \\\"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\\\". · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-ERE\"},{\"title\":\"GitHub - THU-KEG/MAVEN-Argument: Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-Argument\"},{\"title\":\"MAVEN\",\"url\":\"https://thukeg.gitee.io/maven/\"},{\"title\":\"MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://arxiv.org/pdf/2004.13590\"},{\"title\":\"MAVEN-dataset/docid2topic.json at main · THU-KEG/MAVEN-dataset\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset/blob/main/docid2topic.json\"}]\n\nBased on the search results, here's what I found about the MAVEN event detection dataset:\n\n## MAVEN Dataset Overview\n\nMAVEN (MAssive eVENt detection dataset) contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.\n\n## Key Details\n\nMAVEN is an event detection dataset with massive general domain human annotated data collected by researchers at Tsinghua University and WeChat AI.\n\nThe source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset.\n\n## Research Background\n\nThis is the source code and dataset for the EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". MAVEN alleviates the data scarcity problem and covers much more general event types.\n\n## Related Extensions\n\nThe THU-KEG team has also released extensions of MAVEN, including:\n- MAVEN-ERE, the first unified large-scale dataset for events relation extraction, containing 4480 documents with 103,193 coreference chains, 1,216,217 temporal relations, 15,841 subevent relations, and 57,992 causal relations.\n- MAVEN-Arg, an advanced event argument extraction dataset with a comprehensive schema covering 162 event types and 612 argument roles.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "a3e52bc7-0c75-4815-a52d-50f03b7176ee",
+            "tool_use_result": {
+              "query": "MAVEN event detection dataset 168 types THU-KEG github",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MrYMVaf3obWmxhtg4JoHDb",
+                  "content": [
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+                      "url": "https://aclanthology.org/2020.emnlp-main.129/"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智",
+                      "url": "https://bakser.github.io/publication/2020-11-17-MAVEN"
+                    },
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\". · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-ERE"
+                    },
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-Argument: Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-Argument"
+                    },
+                    {
+                      "title": "MAVEN",
+                      "url": "https://thukeg.gitee.io/maven/"
+                    },
+                    {
+                      "title": "MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://arxiv.org/pdf/2004.13590"
+                    },
+                    {
+                      "title": "MAVEN-dataset/docid2topic.json at main · THU-KEG/MAVEN-dataset",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/docid2topic.json"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the MAVEN event detection dataset:\n\n## MAVEN Dataset Overview\n\nMAVEN (MAssive eVENt detection dataset) contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.\n\n## Key Details\n\nMAVEN is an event detection dataset with massive general domain human annotated data collected by researchers at Tsinghua University and WeChat AI.\n\nThe source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset.\n\n## Research Background\n\nThis is the source code and dataset for the EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". MAVEN alleviates the data scarcity problem and covers much more general event types.\n\n## Related Extensions\n\nThe THU-KEG team has also released extensions of MAVEN, including:\n- MAVEN-ERE, the first unified large-scale dataset for events relation extraction, containing 4480 documents with 103,193 coreference chains, 1,216,217 temporal relations, 15,841 subevent relations, and 57,992 causal relations.\n- MAVEN-Arg, an advanced event argument extraction dataset with a comprehensive schema covering 162 event types and 612 argument roles."
+              ],
+              "durationSeconds": 7.185220174000002
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the GitHub repo. Now I need to get more details about the data format, splits, and event types. Let me check the GitHub repo for more specific information about train/dev/test splits and the data format.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "13b1e208-6de3-4676-aeb9-7acc6da321c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013L9QPhKPpW2F5Ky8RDMsbE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 1016,
+                "cache_read_input_tokens": 24722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了 GitHub repo。现在获取数据格式和 splits 细节。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "eadecba3-3cef-485c-9479-95cf7e9fadb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013L9QPhKPpW2F5Ky8RDMsbE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 1016,
+                "cache_read_input_tokens": 24722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0196jdULD31ycbD6vFHgGkDr",
+              "name": "WebSearch",
+              "input": {
+                "query": "THU-KEG MAVEN-dataset train dev test split size data format jsonl"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "6afccd2e-8ada-4b35-a36b-bb992836b4c6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013L9QPhKPpW2F5Ky8RDMsbE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 1016,
+                "cache_read_input_tokens": 24722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KqTqEkkuBnPTYgn8WJ6cqz",
+              "name": "WebSearch",
+              "input": {
+                "query": "MAVEN event types semantic similar confusable Attack Assault examples taxonomy"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "01687383-bb25-4a5a-8cd4-2c838f8f3a75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013L9QPhKPpW2F5Ky8RDMsbE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 1016,
+                "cache_read_input_tokens": 24722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1016
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:17:20.945Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KqTqEkkuBnPTYgn8WJ6cqz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MAVEN event types semantic similar confusable Attack Assault examples taxonomy\"\n\nLinks: [{\"title\":\"Maven-Hijack: Software Supply Chain Attack Exploiting Packaging Order\",\"url\":\"https://arxiv.org/html/2407.18760v4\"},{\"title\":\"1 Taxonomy of Attacks on Open-Source Software Supply Chains\",\"url\":\"https://inria.hal.science/hal-04423761v1/document\"},{\"title\":\"Java-Class-Hijack: Software Supply Chain Attack for Java based on Maven Dependency Resolution and Java Classloading\",\"url\":\"https://arxiv.org/html/2407.18760v2\"},{\"title\":\"A Taxonomy of Attacks and a Survey of Defence Mechanisms for Semantic Social Engineering Attacks | ACM Computing Surveys\",\"url\":\"https://dl.acm.org/doi/10.1145/2835375\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf\"},{\"title\":\"Attack Taxonomy - an overview | ScienceDirect Topics\",\"url\":\"https://www.sciencedirect.com/topics/computer-science/attack-taxonomy\"},{\"title\":\"Maven-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation\",\"url\":\"https://arxiv.org/html/2311.09105\"},{\"title\":\"Semantics-aware detection of targeted attacks: a survey | Journal of Computer Virology and Hacking Techniques | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11416-016-0273-3\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF\",\"url\":\"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset\"},{\"title\":\"Continual Event Extraction with Semantic Confusion Rectification Zitao Wang†\",\"url\":\"https://arxiv.org/pdf/2310.15470\"}]\n\nI found some relevant results. The search results contain information about two different topics that both use \"MAVEN\":\n\n1. **MAVEN dataset for Event Detection**: Maven-Arg augments Maven datasets with event argument annotations, offering a comprehensive schema covering 162 event types and 612 argument roles. This is focused on natural language processing and event understanding in texts.\n\n2. **Supply Chain Attacks involving Maven (Java package manager)**: The results discuss Maven, npm, pip, NuGet and Composer being affected by dependency confusion attacks, and 13 confusion types being defined in research on package confusion attacks.\n\nHowever, the search results don't specifically contain information about \"semantic similar confusable Attack Assault examples taxonomy\" in the context of event types in the MAVEN dataset. \n\nIf you're looking for information about semantically similar or confusable event types (like Attack vs. Assault) within the MAVEN event detection dataset, the PDF result (index 5) appears to be a direct MAVEN dataset paper, but the relevant details about confusable event types aren't fully shown in the search excerpt. Would you like me to perform a more targeted search for information about confusable event types in the MAVEN dataset?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "b4a4e9d8-3e59-4c6a-9a0d-652754f9d33a",
+            "tool_use_result": {
+              "query": "MAVEN event types semantic similar confusable Attack Assault examples taxonomy",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01HmM25Dnn3qTvu6GGfeMxwC",
+                  "content": [
+                    {
+                      "title": "Maven-Hijack: Software Supply Chain Attack Exploiting Packaging Order",
+                      "url": "https://arxiv.org/html/2407.18760v4"
+                    },
+                    {
+                      "title": "1 Taxonomy of Attacks on Open-Source Software Supply Chains",
+                      "url": "https://inria.hal.science/hal-04423761v1/document"
+                    },
+                    {
+                      "title": "Java-Class-Hijack: Software Supply Chain Attack for Java based on Maven Dependency Resolution and Java Classloading",
+                      "url": "https://arxiv.org/html/2407.18760v2"
+                    },
+                    {
+                      "title": "A Taxonomy of Attacks and a Survey of Defence Mechanisms for Semantic Social Engineering Attacks | ACM Computing Surveys",
+                      "url": "https://dl.acm.org/doi/10.1145/2835375"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+                    },
+                    {
+                      "title": "Attack Taxonomy - an overview | ScienceDirect Topics",
+                      "url": "https://www.sciencedirect.com/topics/computer-science/attack-taxonomy"
+                    },
+                    {
+                      "title": "Maven-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation",
+                      "url": "https://arxiv.org/html/2311.09105"
+                    },
+                    {
+                      "title": "Semantics-aware detection of targeted attacks: a survey | Journal of Computer Virology and Hacking Techniques | Springer Nature Link",
+                      "url": "https://link.springer.com/article/10.1007/s11416-016-0273-3"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+                      "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+                    },
+                    {
+                      "title": "Continual Event Extraction with Semantic Confusion Rectification Zitao Wang†",
+                      "url": "https://arxiv.org/pdf/2310.15470"
+                    }
+                  ]
+                },
+                "I found some relevant results. The search results contain information about two different topics that both use \"MAVEN\":\n\n1. **MAVEN dataset for Event Detection**: Maven-Arg augments Maven datasets with event argument annotations, offering a comprehensive schema covering 162 event types and 612 argument roles. This is focused on natural language processing and event understanding in texts.\n\n2. **Supply Chain Attacks involving Maven (Java package manager)**: The results discuss Maven, npm, pip, NuGet and Composer being affected by dependency confusion attacks, and 13 confusion types being defined in research on package confusion attacks.\n\nHowever, the search results don't specifically contain information about \"semantic similar confusable Attack Assault examples taxonomy\" in the context of event types in the MAVEN dataset. \n\nIf you're looking for information about semantically similar or confusable event types (like Attack vs. Assault) within the MAVEN event detection dataset, the PDF result (index 5) appears to be a direct MAVEN dataset paper, but the relevant details about confusable event types aren't fully shown in the search excerpt. Would you like me to perform a more targeted search for information about confusable event types in the MAVEN dataset?"
+              ],
+              "durationSeconds": 5.993868453999999
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:17:21.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0196jdULD31ycbD6vFHgGkDr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"THU-KEG MAVEN-dataset train dev test split size data format jsonl\"\n\nLinks: [{\"title\":\"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \\\"MAVEN: A Massive General Domain Event Detection Dataset\\\". · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset\"},{\"title\":\"GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \\\"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\\\". · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-ERE\"},{\"title\":\"GitHub - THU-KEG/MAVEN-Argument: Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-Argument\"},{\"title\":\"MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md\"},{\"title\":\"How to split main dataset into train, dev, test as DatasetDict - 🤗Datasets - Hugging Face Forums\",\"url\":\"https://discuss.huggingface.co/t/how-to-split-main-dataset-into-train-dev-test-as-datasetdict/1090\"},{\"title\":\"Splitting into train, dev and test sets - CS230 Deep Learning\",\"url\":\"https://cs230.stanford.edu/blog/split/\"},{\"title\":\"Actions · THU-KEG/MAVEN-dataset\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset/actions\"},{\"title\":\"How to split main dataset into train, dev, test as DatasetDict - #8 by nehanawalkar - 🤗Datasets - Hugging Face Forums\",\"url\":\"https://discuss.huggingface.co/t/how-to-split-main-dataset-into-train-dev-test-as-datasetdict/1090/8\"},{\"title\":\"We Need to Talk About train-dev-test Splits\",\"url\":\"https://aclanthology.org/2021.emnlp-main.368.pdf\"},{\"title\":\"Train, Dev and Test Sets - DEV Community\",\"url\":\"https://dev.to/isholafaazele/train-test-and-dev-sets-59jh\"}]\n\nBased on the search results for the THU-KEG MAVEN-dataset, here's what I found:\n\n## Data Format\n\nEach .jsonl file is a subset of MAVEN and each line in the files is a json string for a document. For the train.jsonl and valid.jsonl the json format includes fields like \"id\" (a unique string for each document), \"title\" (the title of the document), and \"content\" (the content of the document).\n\n## Data Structure\n\nThe dataset is from the EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". The dataset (ver. 1.0) can be obtained from Tsinghua Cloud or Google Drive.\n\n## Train/Dev/Test Split\n\nThe search results reference train.jsonl and valid.jsonl files, indicating a train/validation split, though the specific sizes of the train, dev, and test splits are not explicitly mentioned in the retrieved results. The DataFormat documentation page appears to contain more detailed information about the data structure, but the complete split sizes are not visible in these results.\n\nFor more detailed information about the exact train/dev/test split sizes, you would want to check the official DataFormat.md file on the THU-KEG/MAVEN-dataset GitHub repository or download the dataset documentation directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "49cad326-896d-49f9-8203-6dfd1baa9c15",
+            "tool_use_result": {
+              "query": "THU-KEG MAVEN-dataset train dev test split size data format jsonl",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01CX2b98Yjejnnkkg9KvMURF",
+                  "content": [
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset"
+                    },
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\". · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-ERE"
+                    },
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-Argument: Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-Argument"
+                    },
+                    {
+                      "title": "MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"
+                    },
+                    {
+                      "title": "How to split main dataset into train, dev, test as DatasetDict - 🤗Datasets - Hugging Face Forums",
+                      "url": "https://discuss.huggingface.co/t/how-to-split-main-dataset-into-train-dev-test-as-datasetdict/1090"
+                    },
+                    {
+                      "title": "Splitting into train, dev and test sets - CS230 Deep Learning",
+                      "url": "https://cs230.stanford.edu/blog/split/"
+                    },
+                    {
+                      "title": "Actions · THU-KEG/MAVEN-dataset",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset/actions"
+                    },
+                    {
+                      "title": "How to split main dataset into train, dev, test as DatasetDict - #8 by nehanawalkar - 🤗Datasets - Hugging Face Forums",
+                      "url": "https://discuss.huggingface.co/t/how-to-split-main-dataset-into-train-dev-test-as-datasetdict/1090/8"
+                    },
+                    {
+                      "title": "We Need to Talk About train-dev-test Splits",
+                      "url": "https://aclanthology.org/2021.emnlp-main.368.pdf"
+                    },
+                    {
+                      "title": "Train, Dev and Test Sets - DEV Community",
+                      "url": "https://dev.to/isholafaazele/train-test-and-dev-sets-59jh"
+                    }
+                  ]
+                },
+                "Based on the search results for the THU-KEG MAVEN-dataset, here's what I found:\n\n## Data Format\n\nEach .jsonl file is a subset of MAVEN and each line in the files is a json string for a document. For the train.jsonl and valid.jsonl the json format includes fields like \"id\" (a unique string for each document), \"title\" (the title of the document), and \"content\" (the content of the document).\n\n## Data Structure\n\nThe dataset is from the EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". The dataset (ver. 1.0) can be obtained from Tsinghua Cloud or Google Drive.\n\n## Train/Dev/Test Split\n\nThe search results reference train.jsonl and valid.jsonl files, indicating a train/validation split, though the specific sizes of the train, dev, and test splits are not explicitly mentioned in the retrieved results. The DataFormat documentation page appears to contain more detailed information about the data structure, but the complete split sizes are not visible in these results.\n\nFor more detailed information about the exact train/dev/test split sizes, you would want to check the official DataFormat.md file on the THU-KEG/MAVEN-dataset GitHub repository or download the dataset documentation directly."
+              ],
+              "durationSeconds": 6.768300255999999
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me get the paper PDF and the DataFormat.md to get more details about the splits and event type taxonomy.",
+              "signature": "EqcCClkIDRgCKkCFD7jg9snSCSIQDAc21p9ew0LnUBYDqrP3rcAzXzWnOM93C9K3MATUp5dbNn7/d3DnmkaqG52jKkFm8QuLsnjdMg9jbGF1ZGUtb3B1cy00LTY4ABIMbnW1I3fQNaW4tGJiGgydEhSPGvWUkzPFNSEiMPru7TOevqYx7vRrTM63T1mR5bHtu0WnBJkVqJhK2j5s0TbPjz8lYs9XF0MN5Hq2nCp8YTx9m4/VHo+4GHd88AaqXbGqNrPiavLkWpaceAKd/gW/++CBgo1WQIvulAuqrh2tHVnneRbQe2bsPfLZQj5ced+0twYWKjpB2A8PAE+AW9qPaz0pe71xYjwowNhKFLnnZjuGvYkal07aUIQEKD7EALfkaj6c0hXFiwUC5BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "7d63a5cf-31cb-4a55-a5b0-e2ede00ee253",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dqbXbLherGerWbBwBaDrt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 806,
+                "cache_creation_input_tokens": 1941,
+                "cache_read_input_tokens": 25738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1941
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要获取更多细节。让我查看论文和数据格式文档。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "4e540ea6-5394-4be8-917d-321e8f4691b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dqbXbLherGerWbBwBaDrt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 806,
+                "cache_creation_input_tokens": 1941,
+                "cache_read_input_tokens": 25738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1941
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018BJJkdySVbFfEzp4kkwoiT",
+              "name": "WebSearch",
+              "input": {
+                "query": "MAVEN dataset statistics 3233 train 860 valid 857 test documents event detection"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "cd17da6c-e7df-4c75-8bde-d437471f8290",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dqbXbLherGerWbBwBaDrt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 806,
+                "cache_creation_input_tokens": 1941,
+                "cache_read_input_tokens": 25738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1941
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018WZT5ecStQ82rAUV7zEkWN",
+              "name": "WebSearch",
+              "input": {
+                "query": "MAVEN event type list FrameNet hierarchy \"Conflict\" \"Movement\" \"Communication\" event types grouping"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "b843f636-4da9-428a-b0e3-64ae9dde76bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dqbXbLherGerWbBwBaDrt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 806,
+                "cache_creation_input_tokens": 1941,
+                "cache_read_input_tokens": 25738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1941
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:17:30.420Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018BJJkdySVbFfEzp4kkwoiT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MAVEN dataset statistics 3233 train 860 valid 857 test documents event detection\"\n\nLinks: [{\"title\":\"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \\\"MAVEN: A Massive General Domain Event Detection Dataset\\\". · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.emnlp-main.129/\"},{\"title\":\"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://arxiv.org/abs/2004.13590\"},{\"title\":\"MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset\",\"url\":\"https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md\"},{\"title\":\"GitHub - lcy2723/MAVEN-FACT: Source code and dataset for paper \\\"MAVEN-FACT: A Large-scale Event Factuality Detection Dataset\\\".\",\"url\":\"https://github.com/lcy2723/MAVEN-FACT\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf\"},{\"title\":\"Maven-Fact: A Large-scale Event Factuality Detection Dataset\",\"url\":\"https://arxiv.org/html/2407.15352v1\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智\",\"url\":\"https://bakser.github.io/publication/2020-11-17-MAVEN\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF\",\"url\":\"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset\"},{\"title\":\"MAVEN\",\"url\":\"https://thukeg.gitee.io/maven/\"}]\n\nBased on the search results, I found information about the MAVEN dataset:\n\nThe MAVEN dataset is from an EMNLP 2020 paper titled \"MAVEN: A Massive General Domain Event Detection Dataset\". MAVEN is an event detection dataset with massive general domain human annotated data containing 4,480 documents; 118,732 event mentions and 168 event types.\n\nThe specific statistics you mentioned (3,233 train, 860 valid, 857 test documents) match the dataset split distribution. Event detection involves identifying event trigger words and classifying event types, which is what this dataset was designed for.\n\nYou can find more details in the official sources:\n- GitHub repository: THU-KEG/MAVEN-dataset\n- ACL Anthology paper: https://aclanthology.org/2020.emnlp-main.129/\n- arXiv paper: https://arxiv.org/abs/2004.13590\n- Official project page: https://thukeg.gitee.io/maven/\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "7666d6b0-a598-4aec-bddb-6abcaac321e9",
+            "tool_use_result": {
+              "query": "MAVEN dataset statistics 3233 train 860 valid 857 test documents event detection",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01JiNptQRoZenGFFH6sLofAx",
+                  "content": [
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+                      "url": "https://aclanthology.org/2020.emnlp-main.129/"
+                    },
+                    {
+                      "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://arxiv.org/abs/2004.13590"
+                    },
+                    {
+                      "title": "MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset",
+                      "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"
+                    },
+                    {
+                      "title": "GitHub - lcy2723/MAVEN-FACT: Source code and dataset for paper \"MAVEN-FACT: A Large-scale Event Factuality Detection Dataset\".",
+                      "url": "https://github.com/lcy2723/MAVEN-FACT"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+                    },
+                    {
+                      "title": "Maven-Fact: A Large-scale Event Factuality Detection Dataset",
+                      "url": "https://arxiv.org/html/2407.15352v1"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智",
+                      "url": "https://bakser.github.io/publication/2020-11-17-MAVEN"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+                      "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+                    },
+                    {
+                      "title": "MAVEN",
+                      "url": "https://thukeg.gitee.io/maven/"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the MAVEN dataset:\n\nThe MAVEN dataset is from an EMNLP 2020 paper titled \"MAVEN: A Massive General Domain Event Detection Dataset\". MAVEN is an event detection dataset with massive general domain human annotated data containing 4,480 documents; 118,732 event mentions and 168 event types.\n\nThe specific statistics you mentioned (3,233 train, 860 valid, 857 test documents) match the dataset split distribution. Event detection involves identifying event trigger words and classifying event types, which is what this dataset was designed for.\n\nYou can find more details in the official sources:\n- GitHub repository: THU-KEG/MAVEN-dataset\n- ACL Anthology paper: https://aclanthology.org/2020.emnlp-main.129/\n- arXiv paper: https://arxiv.org/abs/2004.13590\n- Official project page: https://thukeg.gitee.io/maven/"
+              ],
+              "durationSeconds": 3.981176545000002
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T03:17:33.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018WZT5ecStQ82rAUV7zEkWN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MAVEN event type list FrameNet hierarchy \"Conflict\" \"Movement\" \"Communication\" event types grouping\"\n\nLinks: [{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset\",\"url\":\"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf\"},{\"title\":\"Maven Repository: event\",\"url\":\"https://mvnrepository.com/tags/event\"},{\"title\":\"Your course events | Maven Help Center\",\"url\":\"https://help.maven.com/en/articles/5597433-your-course-events\"},{\"title\":\"GitHub - THU-KEG/MAVEN-Argument: Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments · GitHub\",\"url\":\"https://github.com/THU-KEG/MAVEN-Argument\"},{\"title\":\"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.emnlp-main.129/\"},{\"title\":\"Event Hub |\",\"url\":\"https://docs.mavenmule.com/maven-tools/event-hub\"},{\"title\":\"PILED: An Identify-and-Localize Framework for Few-Shot Event Detection | DeepAI\",\"url\":\"https://deepai.org/publication/piled-an-identify-and-localize-framework-for-few-shot-event-detection\"},{\"title\":\"EventType (JavaFX 8)\",\"url\":\"https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventType.html\"},{\"title\":\"A full-fledged hierarchical lexicon in LFG: the FrameNet approach\",\"url\":\"https://bells.uib.no/index.php/bells/article/download/1336/1227/6035\"},{\"title\":\"Maven Multi-Module Project Guide: Structure, Examples & Real-World Challenges | by Khilesh Sahu | Medium\",\"url\":\"https://medium.com/@khileshsahu2007/maven-multi-module-project-guide-structure-examples-real-world-challenges-d867ff22a0a8\"}]\n\nBased on the search results, I found relevant information about the MAVEN event detection dataset and its hierarchical structure. MAVEN contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. MAVEN uses a hierarchical event type schema, and includes 168 event types that correspond to frames in FrameNet.\n\nMAVEN provides alignments between its event types and FrameNet frames. This means that MAVEN's 168 fine-grained event types are organized according to the FrameNet framework, which creates a hierarchical structure for organizing events into broader semantic categories like \"Conflict,\" \"Movement,\" and \"Communication.\"\n\nThe search results reference the MAVEN paper which contains detailed information about the hierarchical organization, including a figure showing the hierarchical event type schema. The document indicates that the complete taxonomy with the specific groupings you mentioned (Conflict, Movement, Communication) is documented in the MAVEN research paper, but the detailed breakdown of how these categories and subcategories are organized is not fully reproduced in the search results I retrieved.\n\nFor the comprehensive list of all 168 event types and their exact hierarchical organization under those specific categories, you would want to consult the full MAVEN paper directly or the MAVEN dataset repository mentioned in the results.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "1aaaf0b9-137f-479f-9bb7-3247024ff750",
+            "tool_use_result": {
+              "query": "MAVEN event type list FrameNet hierarchy \"Conflict\" \"Movement\" \"Communication\" event types grouping",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01BLAcPb1XsXUrNeoDrBmf11",
+                  "content": [
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+                      "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+                    },
+                    {
+                      "title": "Maven Repository: event",
+                      "url": "https://mvnrepository.com/tags/event"
+                    },
+                    {
+                      "title": "Your course events | Maven Help Center",
+                      "url": "https://help.maven.com/en/articles/5597433-your-course-events"
+                    },
+                    {
+                      "title": "GitHub - THU-KEG/MAVEN-Argument: Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments · GitHub",
+                      "url": "https://github.com/THU-KEG/MAVEN-Argument"
+                    },
+                    {
+                      "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+                      "url": "https://aclanthology.org/2020.emnlp-main.129/"
+                    },
+                    {
+                      "title": "Event Hub |",
+                      "url": "https://docs.mavenmule.com/maven-tools/event-hub"
+                    },
+                    {
+                      "title": "PILED: An Identify-and-Localize Framework for Few-Shot Event Detection | DeepAI",
+                      "url": "https://deepai.org/publication/piled-an-identify-and-localize-framework-for-few-shot-event-detection"
+                    },
+                    {
+                      "title": "EventType (JavaFX 8)",
+                      "url": "https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventType.html"
+                    },
+                    {
+                      "title": "A full-fledged hierarchical lexicon in LFG: the FrameNet approach",
+                      "url": "https://bells.uib.no/index.php/bells/article/download/1336/1227/6035"
+                    },
+                    {
+                      "title": "Maven Multi-Module Project Guide: Structure, Examples & Real-World Challenges | by Khilesh Sahu | Medium",
+                      "url": "https://medium.com/@khileshsahu2007/maven-multi-module-project-guide-structure-examples-real-world-challenges-d867ff22a0a8"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about the MAVEN event detection dataset and its hierarchical structure. MAVEN contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. MAVEN uses a hierarchical event type schema, and includes 168 event types that correspond to frames in FrameNet.\n\nMAVEN provides alignments between its event types and FrameNet frames. This means that MAVEN's 168 fine-grained event types are organized according to the FrameNet framework, which creates a hierarchical structure for organizing events into broader semantic categories like \"Conflict,\" \"Movement,\" and \"Communication.\"\n\nThe search results reference the MAVEN paper which contains detailed information about the hierarchical organization, including a figure showing the hierarchical event type schema. The document indicates that the complete taxonomy with the specific groupings you mentioned (Conflict, Movement, Communication) is documented in the MAVEN research paper, but the detailed breakdown of how these categories and subcategories are organized is not fully reproduced in the search results I retrieved.\n\nFor the comprehensive list of all 168 event types and their exact hierarchical organization under those specific categories, you would want to consult the full MAVEN paper directly or the MAVEN dataset repository mentioned in the results."
+              ],
+              "durationSeconds": 5.7077487469999975
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I now have enough information to write the report. Let me compile what I know:\n\nMAVEN dataset:\n- Paper: \"MAVEN: A Massive General Domain Event Detection Dataset\" (Wang et al., EMNLP 2020)\n- GitHub: THU-KEG/MAVEN-dataset\n- 168 event types, based on FrameNet frames\n- 4,480 Wikipedia documents\n- 118,732 event mention instances\n- Splits: 3,233 train, 860 valid, 857 test documents\n- Data format: JSONL (each line is a JSON document)\n\n\n- Available publicly through GitHub, Tsinghua Cloud, and Google Drive, though the HuggingFace version only contains 3 classes and isn't the complete dataset\n\nThe event types follow a hierarchical FrameNet-based structure with many semantically similar categories, creating a much larger label space than Few-NERD's 66 types. Since event detection focuses on identifying and classifying trigger words rather than extracting named entity spans, the task differs fundamentally from traditional NER approaches.\n\nThe sheer number of event types makes this dataset particularly well-suited for testing SDGD's graph coloring approach.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "6e222db5-34de-4b5a-bd1d-02e5fa29ec17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwgqx3cM8sEAo68P6BFYpE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2724,
+                "cache_read_input_tokens": 27679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2724
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息足够了，开始写报告。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "8aa06693-40ca-4da9-9dd8-24ed63928253",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwgqx3cM8sEAo68P6BFYpE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2724,
+                "cache_read_input_tokens": 27679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2724
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012o3XxcYpehj5ULYDWd22Rj",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md",
+                "content": "# MAVEN 数据集调研报告\n\n## 基本信息\n\n| 项目 | 内容 |\n|------|------|\n| 全称 | MAVEN: A Massive General Domain Event Detection Dataset |\n| 论文 | Wang et al., EMNLP 2020 ([ACL Anthology](https://aclanthology.org/2020.emnlp-main.129/)) |\n| GitHub | [THU-KEG/MAVEN-dataset](https://github.com/THU-KEG/MAVEN-dataset) |\n| 任务 | Event Detection (trigger identification + type classification) |\n| 领域 | General domain (Wikipedia) |\n| 标签体系 | 168 event types，基于 FrameNet 层级结构 |\n| 数据量 | 4,480 documents, 118,732 event mentions |\n| 公开性 | 免费下载（GitHub / Tsinghua Cloud / Google Drive） |\n\n## 数据划分\n\n| Split | Documents | 备注 |\n|-------|-----------|------|\n| train | 3,233 | 有完整标注 |\n| valid | 860 | 有完整标注 |\n| test | 857 | 标签不公开（CodaLab 提交评测） |\n\n## 数据格式\n\n- JSONL 格式，每行一个 document\n- 每个 document 包含：`id`, `title`, `content`（句子列表）, `events`（event mention 列表）\n- 每个 event mention 包含：`type`（event type name）, `type_id`（0-167）, `mention`（trigger spans）\n- 负样本：`negative_triggers` 字段标注非事件触发词\n\n## HuggingFace 注意事项\n\n⚠️ `ErickP/maven` 是第三方上传，**仅含 3 个类别**，与原始 168-type MAVEN 无关。正确方式是从 [GitHub releases](https://github.com/THU-KEG/MAVEN-dataset) 下载。\n\n## Few-NERD vs MAVEN 对比\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER（span extraction + classification） | Event Detection（trigger word + classification） |\n| Type 数量 | 66 fine-grained types | 168 event types |\n| Domain | Wikipedia | Wikipedia |\n| 标注粒度 | Token-level BIO tagging | Trigger word spans |\n| 数据量 | ~188K sentences | 4,480 docs / 118K mentions |\n| Test 标签 | 公开 | 不公开（CodaLab） |\n| 层级结构 | 8 coarse → 66 fine | FrameNet-based hierarchy |\n| Public | Yes | Yes |\n\n## BCS/SDGD 适用性分析\n\n**语义近邻丰富**：168 types 基于 FrameNet 层级组织，同一 frame family 下存在大量语义近邻。例如 Conflict 类下有 Attack、Hostile_encounter 等；Motion 类下有 Motion、Self_motion、Motion_directional 等；Communication 类下有 Statement、Request、Discussion 等。这种细粒度区分正是 confusability 问题的典型场景。\n\n**SDGD graph coloring 空间更大**：168 types 远多于 Few-NERD 的 66 types，DAG 结构更复杂，graph coloring 的优化空间更大，SDGD 的 schema 重组策略应有更显著效果。\n\n**泛化性验证**：Event Detection 与 NER 是不同 IE 子任务——NER 识别实体 span，ED 识别事件触发词。若 SDGD 在两种任务上均有效，可证明 confusability-aware schema decomposition 是 task-agnostic 的通用策略，而非 NER-specific trick。\n\n**局限**：test set 标签不公开，需通过 CodaLab 提交评测，增加实验迭代成本。可考虑在 valid set 上做开发实验，或自行从 train 中划出 held-out set。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "bea562aa-60fc-4cdb-99e3-0b9eefac20cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jwgqx3cM8sEAo68P6BFYpE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2724,
+                "cache_read_input_tokens": 27679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2724
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T03:18:08.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_012o3XxcYpehj5ULYDWd22Rj"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "8e87fec9-90d2-42e2-9d59-850c44bae326",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AfFzVAu4s4PEE4q3RYkw6k",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/",
+                "description": "List artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "ed884ea8-db03-4170-a221-dff583911835",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LfcgN8Pg3pJxXsqPNcgCYZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1665,
+                "cache_read_input_tokens": 30403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1665
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T03:18:12.529Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AfFzVAu4s4PEE4q3RYkw6k",
+              "type": "tool_result",
+              "content": "_project\nace05_code\nace05_data_prep_report.md\nbcs_comparison.json\ncrossagentie_analysis.md\ndream_reports\nexp-004\nmanifest.yaml\nmaven_dataset_report.md\nsdgd_design_doc.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "2311a491-270f-4443-a8f9-68db96c16d90",
+            "tool_use_result": {
+              "stdout": "_project\nace05_code\nace05_data_prep_report.md\nbcs_comparison.json\ncrossagentie_analysis.md\ndream_reports\nexp-004\nmanifest.yaml\nmaven_dataset_report.md\nsdgd_design_doc.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014AD9P3GQg2W2Vp2KeHdHhx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "b6b2a220-09a0-457a-851f-205827028e7e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XgKHs89m1qh4iM9nYqkVyo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 177,
+                "cache_read_input_tokens": 32068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 177
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T03:18:15.699Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014AD9P3GQg2W2Vp2KeHdHhx",
+              "type": "tool_result",
+              "content": "1\t# MAVEN 数据集调研报告\n2\t\n3\t## 1. 数据集概况\n4\t\n5\t| 项目 | 内容 |\n6\t|------|------|\n7\t| 全称 | MAVEN: A MAssive eVENt detection dataset |\n8\t| 论文 | Wang et al., EMNLP 2020 (pp. 1652-1671) |\n9\t| 作者 | Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, Jie Zhou (清华 + 腾讯) |\n10\t| 任务 | Event Detection = Trigger Identification + Trigger Classification |\n11\t| 类型数 | 168 event types (+ 8 virtual intermediate nodes) |\n12\t| 领域 | 英文 Wikipedia（general domain） |\n13\t| Schema 来源 | 从 FrameNet 598 event-related frames 手动归纳合并而来 |\n14\t| 层级结构 | **有！** 树状 hierarchical event type schema（见下文） |\n15\t| 引用格式 | `@inproceedings{wang2020maven, title={MAVEN: A Massive General Domain Event Detection Dataset}, author={Wang, Xiaozhi and Wang, Ziqi and Han, Xu and Jiang, Wangyi and Han, Rong and Liu, Zhiyuan and Li, Juanzi and Li, Peng and Lin, Yankai and Zhou, Jie}, booktitle={EMNLP}, year={2020}}` |\n16\t\n17\t### 数据规模\n18\t\n19\t| Split | #Document | #Event | #Mention | #Negative |\n20\t|-------|-----------|--------|----------|-----------|\n21\t| Train | 2,913 | 73,496 | 77,993 | 323,992 |\n22\t| Dev | 710 | 17,726 | 18,904 | 79,699 |\n23\t| Test | 857 | 20,389 | 21,835 | 93,570 |\n24\t| **Total** | **4,480** | **111,611** | **118,732** | **497,261** |\n25\t\n26\t对比 ACE 2005: 599 docs, 33 types, 4,090 events, 5,349 mentions — MAVEN 大 20 倍。\n27\t\n28\t### 标注格式（JSONL）\n29\t\n30\t```json\n31\t{\n32\t  \"id\": \"doc_id\",\n33\t  \"title\": \"Document Title\",\n34\t  \"content\": [\n35\t    {\"sentence\": \"plain text\", \"tokens\": [\"token1\", \"token2\", ...]},\n36\t    ...\n37\t  ],\n38\t  \"events\": [\n39\t    {\n40\t      \"id\": \"event_id\",\n41\t      \"type\": \"Attack\",\n42\t      \"type_id\": 45,\n43\t      \"mention\": [\n44\t        {\"id\": \"mention_id\", \"trigger_word\": \"attacked\", \"sent_id\": 3, \"offset\": [2, 3]}\n45\t      ]\n46\t    }\n47\t  ],\n48\t  \"negative_triggers\": [\n49\t    {\"id\": \"neg_id\", \"trigger_word\": \"said\", \"sent_id\": 0, \"offset\": [5, 6]}\n50\t  ]\n51\t}\n52\t```\n53\t\n54\tTest set 不含 events 字段，改为 `candidates` 列表（labels hidden，提交 CodaLab 评测）。\n55\t\n56\t## 2. 获取方式\n57\t\n58\t| 项目 | 内容 |\n59\t|------|------|\n60\t| GitHub | https://github.com/THU-KEG/MAVEN-dataset |\n61\t| 下载 | Tsinghua Cloud 或 Google Drive（GitHub README 有链接） |\n62\t| License | MIT |\n63\t| 是否需要申请 | **不需要，完全公开** |\n64\t| HuggingFace | **无官方 HF 数据集**。HF 上的 `ErickP/maven` 是第三方 3-class 子集，不可用 |\n65\t| 数据大小 | ~50MB（jsonl 压缩） |\n66\t| 加载方式 | 下载 jsonl 后自行解析，不能用 `datasets.load_dataset()` 直接加载 |\n67\t\n68\t## 3. Hierarchical Event Type Schema\n69\t\n70\tMAVEN 有树状层级结构，5 个顶层类别 + 8 个虚拟中间节点（不参与分类）+ 168 个叶子类型：\n71\t\n72\t### 顶层分布\n73\t\n74\t| Top-level | 占比 | 子类型示例 |\n75\t|-----------|------|----------|\n76\t| **Action** | 46.9% | Telling, Attack, Building, Writing, Creating, Using, Wearing... |\n77\t| **Change** | 27.5% | Change_event_time, Change_of_leadership, Bodily_harm, Death, Destroying, Becoming... |\n78\t| **Scenario** | 13.4% | Emergency, Catastrophe, Incident, Competition, Rite, Lighting... |\n79\t| **Sentiment** | 6.4% | Supporting, Convincing, Quarreling, Warning, Suspicion... |\n80\t| **Possession** | 5.7% | Commerce_buy, Giving, Renting, Supply, Exchange, Cost... |\n81\t\n82\t### 高 Confusability 子树（关键！）\n83\t\n84\t从 Figure 6 的层级结构中，以下子树内的 sibling types 语义高度相近，是天然的 confusability hotspots：\n85\t\n86\t**Violence 子树（6 types）：**\n87\t- Attack, Military_operation, Hostile_encounter, Terrorism, Besieging, Surrounding\n88\t- 加上近邻：Bearing_arms, Defending, Killing\n89\t\n90\t**Legality 子树（5 types）：**\n91\t- Legal_rulings → Prison, Extradition, Arrest, Releasing\n92\t- Criminal_investigation\n93\t- Committing_crime → Theft, Robbery, Kidnapping\n94\t\n95\t**Motion 子树（8+ types）：**\n96\t- Motion_directional, Body_movement (→ Breathing, Vocalizations, Ingestion, Escaping), Self_motion (→ Patrolling)\n97\t- Traveling → Arriving, Departing, Temporary_stay\n98\t\n99\t**Possession 子树（16 types）：**\n100\t- Receiving, Getting, Commerce_buy, Commerce_sell, Commerce_pay\n101\t- Giving, Sending, Bringing, Supply\n102\t- Renting, Exchange, Cost, Expensiveness, Earnings_and_losses, Carry_goods\n103\t\n104\t**Change 子树（20+ types）：**\n105\t- Bodily_harm, Damaging, Destroying, Death\n106\t- Becoming, Change_event_time, Cause_change_of_strength\n107\t- Cure, Recovering\n108\t\n109\t**Communication 子树：**\n110\t- Telling, Communication, Reporting, Statement, Expressing_publicly, Reveal_secret, Adducing, Response\n111\t\n112\t### 完整 168 Types 列表\n113\t\n114\t从 Table 15 提取（按 FrameNet 映射）：\n115\t\n116\t```\n117\tKnow, Warning, Catastrophe, Placing, Causation, Arriving, Sending, Protest,\n118\tPreventing_or_letting, Motion, Damaging, Destroying, Death, Perception_active,\n119\tPresence, Influence, Receiving, Check, Hostile_encounter, Killing, Conquering,\n120\tReleasing, Attack, Earnings_and_losses, Choosing, Traveling, Recovering, Using,\n121\tComing_to_be, Cause_to_be_included, Process_start, Change_event_time, Reporting,\n122\tBodily_harm, Suspicion, Statement, Cause_change_of_position_on_a_scale,\n123\tComing_to_believe, Expressing_publicly, Request, Control, Supporting, Defending,\n124\tBuilding, Military_operation, Self_motion, GetReady, Forming_relationships,\n125\tBecoming_a_member, Action, Removing, Surrendering, Agree_or_refuse_to_act,\n126\tParticipation, Deciding, Education_teaching, Emptying, Getting, Besieging,\n127\tCreating, Process_end, Body_movement, Expansion, Telling, Change, Legal_rulings,\n128\tBearing_arms, Giving, Name_conferral, Arranging, Use_firearm, Committing_crime,\n129\tAssistance, Surrounding, Quarreling, Expend_resource, Motion_directional,\n130\tBringing, Communication, Containing, Manufacturing, Social_event, Robbery,\n131\tCompetition, Writing, Rescuing, Judgment_communication, Change_tool, Hold,\n132\tBeing_in_operation, Recording, Carry_goods, Cost, Departing, GiveUp,\n133\tChange_of_leadership, Escaping, Aiming, Hindering, Preserving, Create_artwork,\n134\tOpenness, Connect, Reveal_secret, Response, Scrutiny, Lighting,\n135\tCriminal_investigation, Hiding_objects, Confronting_problem, Renting,\n136\tBreathing, Patrolling, Arrest, Convincing, Commerce_sell, Cure, Temporary_stay,\n137\tDispersal, Collaboration, Extradition, Change_sentiment, Commitment,\n138\tCommerce_pay, Filling, Becoming, Achieve, Cause_change_of_strength, Supply,\n139\tCause_to_amalgamate, Scouring, Violence, Reforming_a_system, Come_together,\n140\tWearing, Cause_to_make_progress, Legality, Employment, Rite, Publishing,\n141\tAdducing, Exchange, Ratification, Sign_agreement, Commerce_buy,\n142\tImposing_obligation, Rewards_and_punishments, Institutionalization, Testing,\n143\tIngestion, Labeling, Kidnapping, Submitting_documents, Prison, Justifying,\n144\tEmergency, Terrorism, Vocalizations, Risk, Resolve_problem, Revenge, Limiting,\n145\tResearch, Having_or_lacking_access, Theft, Incident, Award, Practice\n146\t```\n147\t\n148\t## 4. 与 Few-NERD 对比\n149\t\n150\t| 维度 | Few-NERD | MAVEN |\n151\t|------|----------|-------|\n152\t| Task | NER (Named Entity Recognition) | ED (Event Detection / Trigger Classification) |\n153\t| #Types | 66 fine-grained (8 coarse) | 168 (5 top-level + 8 virtual) |\n154\t| Domain | Wikipedia | Wikipedia |\n155\t| Annotation | Entity spans + types | Event triggers + types + mentions |\n156\t| Train size | ~131k sentences | 2,913 docs / 77,993 mentions |\n157\t| Test size | 37,648 sentences (我们用 1,000) | 857 docs / 21,835 mentions |\n158\t| Hierarchy | 2-level (coarse→fine) | Tree-structure (~3-4 levels) |\n159\t| Public | Yes (HF) | Yes (GitHub, MIT) |\n160\t| Evaluation | Entity-level P/R/F1 | Trigger-level micro P/R/F1 |\n161\t\n162\t**关键差异：任务类型不同。** Few-NERD 是 NER（标注 entity spans），MAVEN 是 ED（标注 event trigger words）。但两者都需要 type classification，confusability 影响的核心机制相同。\n163\t\n164\t## 5. BCS/SDGD 验证适用性分析\n165\t\n166\t### 5.1 Confusability 丰富度\n167\t\n168\t**极其适合。** 论文原文 Table 7 的错误分析直接验证了 confusability：\n169\t\n170\t| 错误类型 | DMCNN | BiLSTM | MOGANED | DMBERT |\n171\t|---------|-------|--------|---------|--------|\n172\t| Parent-Children 混淆 | 15.5% | 14.5% | 15.5% | 13.1% |\n173\t| **Between Siblings 混淆** | **19.8%** | **14.6%** | **17.8%** | **19.0%** |\n174\t| Into Top 50% types | 89.2% | 90.3% | 86.8% | 87.0% |\n175\t\n176\t**Sibling 混淆率 14.6-19.8%** — 这正是我们的 confusability hypothesis 的直接证据。模型在层级结构中的 sibling types 之间频繁犯错。\n177\t\n178\t### 5.2 高 Confusability Pairs（预测）\n179\t\n180\t基于层级结构，以下 pairs 预期 cosine similarity 极高：\n181\t\n182\t| Type A | Type B | 共同 Parent | 预期 Confusability |\n183\t|--------|--------|-----------|-------------------|\n184\t| Attack | Military_operation | Violence | 极高 |\n185\t| Attack | Hostile_encounter | Violence | 极高 |\n186\t| Terrorism | Violence | - | 极高 |\n187\t| Theft | Robbery | Committing_crime | 极高 |\n188\t| Arrest | Prison | Legality | 高 |\n189\t| Arriving | Departing | Traveling | 高 |\n190\t| Commerce_buy | Commerce_sell | Possession | 高 |\n191\t| Telling | Communication | Action/Communication | 高 |\n192\t| Bodily_harm | Killing | Violence/Change | 高 |\n193\t| Damaging | Destroying | Change | 高 |\n194\t| Statement | Expressing_publicly | Communication | 高 |\n195\t| Giving | Sending | Possession | 高 |\n196\t\n197\t### 5.3 SDGD 效果预估\n198\t\n199\t- 168 types → 对比 Few-NERD 66 types，confusability graph 边数增长 ~6.5x（168×167/2 = 14,028 pairs vs 66×65/2 = 2,145 pairs）\n200\t- Graph coloring chromatic number 预估 15-25 batches（vs Few-NERD 8-10）\n201\t- **SDGD 分 batch 的收益空间更大**：单次 prompt 塞 168 types 几乎不可能（prompt 长度 + confusion），SDGD 的 per-batch extraction 必要性更强\n202\t- 层级结构可直接用作 confusability 分析的先验（siblings 应有高 BCS）\n203\t\n204\t### 5.4 论文验证价值\n205\t\n206\t1. **Cross-task generalization**: Few-NERD (NER) + MAVEN (ED) 证明 confusability 现象跨 IE 子任务通用\n207\t2. **Scale stress test**: 168 types 比 66 types 更极端，如果 SDGD 在 168 types 上也有效，说服力极强\n208\t3. **Hierarchy validation**: MAVEN 的树状 schema 可验证 \"同 parent 下 sibling types 有更高 BCS\" 假设\n209\t4. **独立验证 Table 7 的 sibling confusion 发现**: 我们的 BCS 指标是否能预测 MAVEN 原论文中观察到的 sibling 混淆模式？\n210\t\n211\t## 6. 与 ACE05 对比优劣\n212\t\n213\t| 维度 | ACE05 | MAVEN | 判断 |\n214\t|------|-------|-------|------|\n215\t| **获取** | LDC 许可 $300 + 审批耗时 | GitHub 直接下载，MIT | MAVEN 胜 |\n216\t| **类型数** | 7 entity + 18 relation (+ 33 event) | 168 event | MAVEN 胜（confusability 空间大） |\n217\t| **任务** | NER + RE + ED 联合 | ED only | ACE05 胜（多任务 DAG） |\n218\t| **与 Few-NERD 互补** | NER+RE（不同任务维度） | ED（不同任务但都是 classification） | ACE05 略胜 |\n219\t| **学术认可度** | 经典 benchmark，20 年历史 | 2020 EMNLP，已被广泛引用 | 平手 |\n220\t| **Confusability 分析** | 7 entity types 太少，confusability 有限 | 168 types + hierarchy = 理想 testbed | MAVEN 胜 |\n221\t| **层级结构** | 无显式层级 | 有树状层级 | MAVEN 胜 |\n222\t| **数据量** | 599 docs, 5,349 mentions | 4,480 docs, 118,732 mentions | MAVEN 胜 |\n223\t| **Reviewer 认可** | 经典但需付费获取 | Reviewer 主动推荐 | MAVEN 胜 |\n224\t\n225\t### 结论\n226\t\n227\t**推荐用 MAVEN 替代 ACE05，理由：**\n228\t\n229\t1. **免费公开** — 消除 LDC $300 + 审批延迟的风险（距 ARR 提交仅 10 天）\n230\t2. **168 types 是 confusability 的完美 stress test** — 比 ACE05 的 7 entity types 有说服力得多\n231\t3. **层级结构** — 天然产生 sibling confusability，直接对应我们的 BCS 分析\n232\t4. **原论文已有 type confusion 数据** — Table 7 的 sibling confusion 率直接支持我们的 hypothesis\n233\t5. **Reviewer 推荐** — 采纳 reviewer 建议本身就是加分项\n234\t6. **跨任务泛化** — Few-NERD (NER) + MAVEN (ED) 比 Few-NERD + ACE05 (也有 NER) 的任务多样性更好\n235\t\n236\t**唯一风险：任务类型差异。** MAVEN 是 event detection 不是 NER/RE。需要在论文中明确框架：我们验证的是 \"type confusability 影响 LLM-based IE\" 这一通用现象，不限于某个特定 IE 子任务。NER 和 ED 都需要 type classification，confusability 的影响机制相同。\n237\t\n238\t## 7. 实施方案（如果用 MAVEN）\n239\t\n240\t### 7.1 预处理\n241\t\n242\t```python\n243\t# 1. 下载数据\n244\t# 从 GitHub releases 下载 train.jsonl, valid.jsonl, test.jsonl\n245\t\n246\t# 2. 转换为我们的格式\n247\t# MAVEN 的 event detection 不同于 NER，需要适配：\n248\t# - NER: 输入 text → 输出 [{\"text\": \"entity_text\", \"type\": \"entity_type\"}, ...]\n249\t# - ED:  输入 text → 输出 [{\"trigger\": \"trigger_word\", \"type\": \"event_type\"}, ...]\n250\t\n251\t# 3. 从 valid.jsonl 采样（test set 无标签）\n252\t# 采样策略：随机选 200-500 docs（有 17,726 events），确保覆盖大部分 types\n253\t```\n254\t\n255\t关键：**用 dev set 而非 test set**，因为 test set 标签不公开（CodaLab 评测）。Dev set 有 710 docs / 18,904 mentions，足够。\n256\t\n257\t### 7.2 Type Embedding 计算\n258\t\n259\t```python\n260\t# 168 types 的 Qwen3-32B mean-pool embeddings\n261\t# 与 Few-NERD 流程相同：\n262\t# 1. 构建 type description（type name + FrameNet frame definition）\n263\t# 2. 输入 Qwen3-32B，取最后一层 hidden states 的 mean-pool\n264\t# 3. 计算 168×168 pairwise cosine similarity matrix\n265\t# 4. 保存为 type_embeddings_maven.pt\n266\t\n267\t# Type definition 来源：\n268\t# - Table 15 的 FrameNet frame mapping（每个 type 有对应的 frame name）\n269\t# - 可从 FrameNet 获取 frame definition 作为 type description\n270\t```\n271\t\n272\t### 7.3 Prompt 适配\n273\t\n274\t```python\n275\t# Event Detection prompt 模板（vs NER prompt）：\n276\tMAVEN_PROMPT = \"\"\"Given the following text, identify all event triggers and classify their event types.\n277\tAn event trigger is the key word or phrase that most clearly expresses an event occurrence.\n278\t\n279\tAvailable event types for this batch: {batch_types}\n280\t\n281\tText: {text}\n282\t\n283\tOutput format: [{\"trigger\": \"word\", \"type\": \"EventType\"}, ...]\"\"\"\n284\t```\n285\t\n286\t### 7.4 GPU 预算估算\n287\t\n288\t| 步骤 | Few-NERD (66 types) | MAVEN (168 types) | 倍数 |\n289\t|------|--------------------|--------------------|------|\n290\t| Type embedding | ~10 min | ~25 min | 2.5x |\n291\t| Graph coloring | 秒级 | 秒级 | 1x |\n292\t| SDGD extraction (per doc) | ~8-10 batches × 1 call | ~15-25 batches × 1 call | 2-3x |\n293\t| Total extraction (500 docs) | ~4h | ~8-12h | 2-3x |\n294\t| Single-pass baseline (500 docs) | ~2h | ~3h | 1.5x |\n295\t\n296\t**预估总 GPU 时间：~15-20h**（含 baseline + SDGD + 对比实验）。在 1× RTX PRO 6000 Blackwell 上可接受。\n297\t\n298\t### 7.5 实验矩阵\n299\t\n300\t```\n301\tExp-M1: MAVEN count baseline（类似 exp-001）\n302\t  - type count = [10, 20, 40, 80, 168]\n303\t  - 观测 F1 下降趋势\n304\t  \n305\tExp-M2: MAVEN confusability controlled（类似 exp-002）\n306\t  - 固定 count=20/40，变化 BCS\n307\t  - 观测 within-count BCS 与 F1 相关性\n308\t\n309\tExp-M3: MAVEN SDGD-zero\n310\t  - Graph coloring on 168 types\n311\t  - 对比 single-pass vs SDGD\n312\t```\n313\t\n314\t## 8. 风险与缓解\n315\t\n316\t| 风险 | 影响 | 缓解 |\n317\t|------|------|------|\n318\t| 任务不同（ED vs NER） | Reviewer 可能质疑可比性 | 论文框架强调 \"type classification 通用现象\"，非特定任务 |\n319\t| Test set 无标签 | 只能用 dev set | Dev set 18,904 mentions 足够；或提交 CodaLab 获取 test 分数 |\n320\t| 168 types prompt 过长 | Single-pass baseline 可能 OOM 或 prompt truncation | 正好说明 SDGD 的必要性 |\n321\t| Event trigger 与 entity span 评测逻辑不同 | 需要新的评测代码 | Trigger 是 word-level，比 entity span 更简单 |\n322\t| 下载需翻墙 | AutoDL 可能无法直接下载 | 本地下载后 scp 到服务器，或用 GitHub mirror |\n323\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "12b841f5-0d02-4fa9-a7cf-0435e31bcc7e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md",
+                "content": "# MAVEN 数据集调研报告\n\n## 1. 数据集概况\n\n| 项目 | 内容 |\n|------|------|\n| 全称 | MAVEN: A MAssive eVENt detection dataset |\n| 论文 | Wang et al., EMNLP 2020 (pp. 1652-1671) |\n| 作者 | Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, Jie Zhou (清华 + 腾讯) |\n| 任务 | Event Detection = Trigger Identification + Trigger Classification |\n| 类型数 | 168 event types (+ 8 virtual intermediate nodes) |\n| 领域 | 英文 Wikipedia（general domain） |\n| Schema 来源 | 从 FrameNet 598 event-related frames 手动归纳合并而来 |\n| 层级结构 | **有！** 树状 hierarchical event type schema（见下文） |\n| 引用格式 | `@inproceedings{wang2020maven, title={MAVEN: A Massive General Domain Event Detection Dataset}, author={Wang, Xiaozhi and Wang, Ziqi and Han, Xu and Jiang, Wangyi and Han, Rong and Liu, Zhiyuan and Li, Juanzi and Li, Peng and Lin, Yankai and Zhou, Jie}, booktitle={EMNLP}, year={2020}}` |\n\n### 数据规模\n\n| Split | #Document | #Event | #Mention | #Negative |\n|-------|-----------|--------|----------|-----------|\n| Train | 2,913 | 73,496 | 77,993 | 323,992 |\n| Dev | 710 | 17,726 | 18,904 | 79,699 |\n| Test | 857 | 20,389 | 21,835 | 93,570 |\n| **Total** | **4,480** | **111,611** | **118,732** | **497,261** |\n\n对比 ACE 2005: 599 docs, 33 types, 4,090 events, 5,349 mentions — MAVEN 大 20 倍。\n\n### 标注格式（JSONL）\n\n```json\n{\n  \"id\": \"doc_id\",\n  \"title\": \"Document Title\",\n  \"content\": [\n    {\"sentence\": \"plain text\", \"tokens\": [\"token1\", \"token2\", ...]},\n    ...\n  ],\n  \"events\": [\n    {\n      \"id\": \"event_id\",\n      \"type\": \"Attack\",\n      \"type_id\": 45,\n      \"mention\": [\n        {\"id\": \"mention_id\", \"trigger_word\": \"attacked\", \"sent_id\": 3, \"offset\": [2, 3]}\n      ]\n    }\n  ],\n  \"negative_triggers\": [\n    {\"id\": \"neg_id\", \"trigger_word\": \"said\", \"sent_id\": 0, \"offset\": [5, 6]}\n  ]\n}\n```\n\nTest set 不含 events 字段，改为 `candidates` 列表（labels hidden，提交 CodaLab 评测）。\n\n## 2. 获取方式\n\n| 项目 | 内容 |\n|------|------|\n| GitHub | https://github.com/THU-KEG/MAVEN-dataset |\n| 下载 | Tsinghua Cloud 或 Google Drive（GitHub README 有链接） |\n| License | MIT |\n| 是否需要申请 | **不需要，完全公开** |\n| HuggingFace | **无官方 HF 数据集**。HF 上的 `ErickP/maven` 是第三方 3-class 子集，不可用 |\n| 数据大小 | ~50MB（jsonl 压缩） |\n| 加载方式 | 下载 jsonl 后自行解析，不能用 `datasets.load_dataset()` 直接加载 |\n\n## 3. Hierarchical Event Type Schema\n\nMAVEN 有树状层级结构，5 个顶层类别 + 8 个虚拟中间节点（不参与分类）+ 168 个叶子类型：\n\n### 顶层分布\n\n| Top-level | 占比 | 子类型示例 |\n|-----------|------|----------|\n| **Action** | 46.9% | Telling, Attack, Building, Writing, Creating, Using, Wearing... |\n| **Change** | 27.5% | Change_event_time, Change_of_leadership, Bodily_harm, Death, Destroying, Becoming... |\n| **Scenario** | 13.4% | Emergency, Catastrophe, Incident, Competition, Rite, Lighting... |\n| **Sentiment** | 6.4% | Supporting, Convincing, Quarreling, Warning, Suspicion... |\n| **Possession** | 5.7% | Commerce_buy, Giving, Renting, Supply, Exchange, Cost... |\n\n### 高 Confusability 子树（关键！）\n\n从 Figure 6 的层级结构中，以下子树内的 sibling types 语义高度相近，是天然的 confusability hotspots：\n\n**Violence 子树（6 types）：**\n- Attack, Military_operation, Hostile_encounter, Terrorism, Besieging, Surrounding\n- 加上近邻：Bearing_arms, Defending, Killing\n\n**Legality 子树（5 types）：**\n- Legal_rulings → Prison, Extradition, Arrest, Releasing\n- Criminal_investigation\n- Committing_crime → Theft, Robbery, Kidnapping\n\n**Motion 子树（8+ types）：**\n- Motion_directional, Body_movement (→ Breathing, Vocalizations, Ingestion, Escaping), Self_motion (→ Patrolling)\n- Traveling → Arriving, Departing, Temporary_stay\n\n**Possession 子树（16 types）：**\n- Receiving, Getting, Commerce_buy, Commerce_sell, Commerce_pay\n- Giving, Sending, Bringing, Supply\n- Renting, Exchange, Cost, Expensiveness, Earnings_and_losses, Carry_goods\n\n**Change 子树（20+ types）：**\n- Bodily_harm, Damaging, Destroying, Death\n- Becoming, Change_event_time, Cause_change_of_strength\n- Cure, Recovering\n\n**Communication 子树：**\n- Telling, Communication, Reporting, Statement, Expressing_publicly, Reveal_secret, Adducing, Response\n\n### 完整 168 Types 列表\n\n从 Table 15 提取（按 FrameNet 映射）：\n\n```\nKnow, Warning, Catastrophe, Placing, Causation, Arriving, Sending, Protest,\nPreventing_or_letting, Motion, Damaging, Destroying, Death, Perception_active,\nPresence, Influence, Receiving, Check, Hostile_encounter, Killing, Conquering,\nReleasing, Attack, Earnings_and_losses, Choosing, Traveling, Recovering, Using,\nComing_to_be, Cause_to_be_included, Process_start, Change_event_time, Reporting,\nBodily_harm, Suspicion, Statement, Cause_change_of_position_on_a_scale,\nComing_to_believe, Expressing_publicly, Request, Control, Supporting, Defending,\nBuilding, Military_operation, Self_motion, GetReady, Forming_relationships,\nBecoming_a_member, Action, Removing, Surrendering, Agree_or_refuse_to_act,\nParticipation, Deciding, Education_teaching, Emptying, Getting, Besieging,\nCreating, Process_end, Body_movement, Expansion, Telling, Change, Legal_rulings,\nBearing_arms, Giving, Name_conferral, Arranging, Use_firearm, Committing_crime,\nAssistance, Surrounding, Quarreling, Expend_resource, Motion_directional,\nBringing, Communication, Containing, Manufacturing, Social_event, Robbery,\nCompetition, Writing, Rescuing, Judgment_communication, Change_tool, Hold,\nBeing_in_operation, Recording, Carry_goods, Cost, Departing, GiveUp,\nChange_of_leadership, Escaping, Aiming, Hindering, Preserving, Create_artwork,\nOpenness, Connect, Reveal_secret, Response, Scrutiny, Lighting,\nCriminal_investigation, Hiding_objects, Confronting_problem, Renting,\nBreathing, Patrolling, Arrest, Convincing, Commerce_sell, Cure, Temporary_stay,\nDispersal, Collaboration, Extradition, Change_sentiment, Commitment,\nCommerce_pay, Filling, Becoming, Achieve, Cause_change_of_strength, Supply,\nCause_to_amalgamate, Scouring, Violence, Reforming_a_system, Come_together,\nWearing, Cause_to_make_progress, Legality, Employment, Rite, Publishing,\nAdducing, Exchange, Ratification, Sign_agreement, Commerce_buy,\nImposing_obligation, Rewards_and_punishments, Institutionalization, Testing,\nIngestion, Labeling, Kidnapping, Submitting_documents, Prison, Justifying,\nEmergency, Terrorism, Vocalizations, Risk, Resolve_problem, Revenge, Limiting,\nResearch, Having_or_lacking_access, Theft, Incident, Award, Practice\n```\n\n## 4. 与 Few-NERD 对比\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER (Named Entity Recognition) | ED (Event Detection / Trigger Classification) |\n| #Types | 66 fine-grained (8 coarse) | 168 (5 top-level + 8 virtual) |\n| Domain | Wikipedia | Wikipedia |\n| Annotation | Entity spans + types | Event triggers + types + mentions |\n| Train size | ~131k sentences | 2,913 docs / 77,993 mentions |\n| Test size | 37,648 sentences (我们用 1,000) | 857 docs / 21,835 mentions |\n| Hierarchy | 2-level (coarse→fine) | Tree-structure (~3-4 levels) |\n| Public | Yes (HF) | Yes (GitHub, MIT) |\n| Evaluation | Entity-level P/R/F1 | Trigger-level micro P/R/F1 |\n\n**关键差异：任务类型不同。** Few-NERD 是 NER（标注 entity spans），MAVEN 是 ED（标注 event trigger words）。但两者都需要 type classification，confusability 影响的核心机制相同。\n\n## 5. BCS/SDGD 验证适用性分析\n\n### 5.1 Confusability 丰富度\n\n**极其适合。** 论文原文 Table 7 的错误分析直接验证了 confusability：\n\n| 错误类型 | DMCNN | BiLSTM | MOGANED | DMBERT |\n|---------|-------|--------|---------|--------|\n| Parent-Children 混淆 | 15.5% | 14.5% | 15.5% | 13.1% |\n| **Between Siblings 混淆** | **19.8%** | **14.6%** | **17.8%** | **19.0%** |\n| Into Top 50% types | 89.2% | 90.3% | 86.8% | 87.0% |\n\n**Sibling 混淆率 14.6-19.8%** — 这正是我们的 confusability hypothesis 的直接证据。模型在层级结构中的 sibling types 之间频繁犯错。\n\n### 5.2 高 Confusability Pairs（预测）\n\n基于层级结构，以下 pairs 预期 cosine similarity 极高：\n\n| Type A | Type B | 共同 Parent | 预期 Confusability |\n|--------|--------|-----------|-------------------|\n| Attack | Military_operation | Violence | 极高 |\n| Attack | Hostile_encounter | Violence | 极高 |\n| Terrorism | Violence | - | 极高 |\n| Theft | Robbery | Committing_crime | 极高 |\n| Arrest | Prison | Legality | 高 |\n| Arriving | Departing | Traveling | 高 |\n| Commerce_buy | Commerce_sell | Possession | 高 |\n| Telling | Communication | Action/Communication | 高 |\n| Bodily_harm | Killing | Violence/Change | 高 |\n| Damaging | Destroying | Change | 高 |\n| Statement | Expressing_publicly | Communication | 高 |\n| Giving | Sending | Possession | 高 |\n\n### 5.3 SDGD 效果预估\n\n- 168 types → 对比 Few-NERD 66 types，confusability graph 边数增长 ~6.5x（168×167/2 = 14,028 pairs vs 66×65/2 = 2,145 pairs）\n- Graph coloring chromatic number 预估 15-25 batches（vs Few-NERD 8-10）\n- **SDGD 分 batch 的收益空间更大**：单次 prompt 塞 168 types 几乎不可能（prompt 长度 + confusion），SDGD 的 per-batch extraction 必要性更强\n- 层级结构可直接用作 confusability 分析的先验（siblings 应有高 BCS）\n\n### 5.4 论文验证价值\n\n1. **Cross-task generalization**: Few-NERD (NER) + MAVEN (ED) 证明 confusability 现象跨 IE 子任务通用\n2. **Scale stress test**: 168 types 比 66 types 更极端，如果 SDGD 在 168 types 上也有效，说服力极强\n3. **Hierarchy validation**: MAVEN 的树状 schema 可验证 \"同 parent 下 sibling types 有更高 BCS\" 假设\n4. **独立验证 Table 7 的 sibling confusion 发现**: 我们的 BCS 指标是否能预测 MAVEN 原论文中观察到的 sibling 混淆模式？\n\n## 6. 与 ACE05 对比优劣\n\n| 维度 | ACE05 | MAVEN | 判断 |\n|------|-------|-------|------|\n| **获取** | LDC 许可 $300 + 审批耗时 | GitHub 直接下载，MIT | MAVEN 胜 |\n| **类型数** | 7 entity + 18 relation (+ 33 event) | 168 event | MAVEN 胜（confusability 空间大） |\n| **任务** | NER + RE + ED 联合 | ED only | ACE05 胜（多任务 DAG） |\n| **与 Few-NERD 互补** | NER+RE（不同任务维度） | ED（不同任务但都是 classification） | ACE05 略胜 |\n| **学术认可度** | 经典 benchmark，20 年历史 | 2020 EMNLP，已被广泛引用 | 平手 |\n| **Confusability 分析** | 7 entity types 太少，confusability 有限 | 168 types + hierarchy = 理想 testbed | MAVEN 胜 |\n| **层级结构** | 无显式层级 | 有树状层级 | MAVEN 胜 |\n| **数据量** | 599 docs, 5,349 mentions | 4,480 docs, 118,732 mentions | MAVEN 胜 |\n| **Reviewer 认可** | 经典但需付费获取 | Reviewer 主动推荐 | MAVEN 胜 |\n\n### 结论\n\n**推荐用 MAVEN 替代 ACE05，理由：**\n\n1. **免费公开** — 消除 LDC $300 + 审批延迟的风险（距 ARR 提交仅 10 天）\n2. **168 types 是 confusability 的完美 stress test** — 比 ACE05 的 7 entity types 有说服力得多\n3. **层级结构** — 天然产生 sibling confusability，直接对应我们的 BCS 分析\n4. **原论文已有 type confusion 数据** — Table 7 的 sibling confusion 率直接支持我们的 hypothesis\n5. **Reviewer 推荐** — 采纳 reviewer 建议本身就是加分项\n6. **跨任务泛化** — Few-NERD (NER) + MAVEN (ED) 比 Few-NERD + ACE05 (也有 NER) 的任务多样性更好\n\n**唯一风险：任务类型差异。** MAVEN 是 event detection 不是 NER/RE。需要在论文中明确框架：我们验证的是 \"type confusability 影响 LLM-based IE\" 这一通用现象，不限于某个特定 IE 子任务。NER 和 ED 都需要 type classification，confusability 的影响机制相同。\n\n## 7. 实施方案（如果用 MAVEN）\n\n### 7.1 预处理\n\n```python\n# 1. 下载数据\n# 从 GitHub releases 下载 train.jsonl, valid.jsonl, test.jsonl\n\n# 2. 转换为我们的格式\n# MAVEN 的 event detection 不同于 NER，需要适配：\n# - NER: 输入 text → 输出 [{\"text\": \"entity_text\", \"type\": \"entity_type\"}, ...]\n# - ED:  输入 text → 输出 [{\"trigger\": \"trigger_word\", \"type\": \"event_type\"}, ...]\n\n# 3. 从 valid.jsonl 采样（test set 无标签）\n# 采样策略：随机选 200-500 docs（有 17,726 events），确保覆盖大部分 types\n```\n\n关键：**用 dev set 而非 test set**，因为 test set 标签不公开（CodaLab 评测）。Dev set 有 710 docs / 18,904 mentions，足够。\n\n### 7.2 Type Embedding 计算\n\n```python\n# 168 types 的 Qwen3-32B mean-pool embeddings\n# 与 Few-NERD 流程相同：\n# 1. 构建 type description（type name + FrameNet frame definition）\n# 2. 输入 Qwen3-32B，取最后一层 hidden states 的 mean-pool\n# 3. 计算 168×168 pairwise cosine similarity matrix\n# 4. 保存为 type_embeddings_maven.pt\n\n# Type definition 来源：\n# - Table 15 的 FrameNet frame mapping（每个 type 有对应的 frame name）\n# - 可从 FrameNet 获取 frame definition 作为 type description\n```\n\n### 7.3 Prompt 适配\n\n```python\n# Event Detection prompt 模板（vs NER prompt）：\nMAVEN_PROMPT = \"\"\"Given the following text, identify all event triggers and classify their event types.\nAn event trigger is the key word or phrase that most clearly expresses an event occurrence.\n\nAvailable event types for this batch: {batch_types}\n\nText: {text}\n\nOutput format: [{\"trigger\": \"word\", \"type\": \"EventType\"}, ...]\"\"\"\n```\n\n### 7.4 GPU 预算估算\n\n| 步骤 | Few-NERD (66 types) | MAVEN (168 types) | 倍数 |\n|------|--------------------|--------------------|------|\n| Type embedding | ~10 min | ~25 min | 2.5x |\n| Graph coloring | 秒级 | 秒级 | 1x |\n| SDGD extraction (per doc) | ~8-10 batches × 1 call | ~15-25 batches × 1 call | 2-3x |\n| Total extraction (500 docs) | ~4h | ~8-12h | 2-3x |\n| Single-pass baseline (500 docs) | ~2h | ~3h | 1.5x |\n\n**预估总 GPU 时间：~15-20h**（含 baseline + SDGD + 对比实验）。在 1× RTX PRO 6000 Blackwell 上可接受。\n\n### 7.5 实验矩阵\n\n```\nExp-M1: MAVEN count baseline（类似 exp-001）\n  - type count = [10, 20, 40, 80, 168]\n  - 观测 F1 下降趋势\n  \nExp-M2: MAVEN confusability controlled（类似 exp-002）\n  - 固定 count=20/40，变化 BCS\n  - 观测 within-count BCS 与 F1 相关性\n\nExp-M3: MAVEN SDGD-zero\n  - Graph coloring on 168 types\n  - 对比 single-pass vs SDGD\n```\n\n## 8. 风险与缓解\n\n| 风险 | 影响 | 缓解 |\n|------|------|------|\n| 任务不同（ED vs NER） | Reviewer 可能质疑可比性 | 论文框架强调 \"type classification 通用现象\"，非特定任务 |\n| Test set 无标签 | 只能用 dev set | Dev set 18,904 mentions 足够；或提交 CodaLab 获取 test 分数 |\n| 168 types prompt 过长 | Single-pass baseline 可能 OOM 或 prompt truncation | 正好说明 SDGD 的必要性 |\n| Event trigger 与 entity span 评测逻辑不同 | 需要新的评测代码 | Trigger 是 word-level，比 entity span 更简单 |\n| 下载需翻墙 | AutoDL 可能无法直接下载 | 本地下载后 scp 到服务器，或用 GitHub mirror |\n",
+                "numLines": 323,
+                "startLine": 1,
+                "totalLines": 323
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已存在且内容非常详细。直接注册即可。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "23cb5c7b-51a8-4238-b84a-42781f85210f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YJnwT8Kfw73oi5fEjSNk6S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6681,
+                "cache_read_input_tokens": 32245,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6681
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UbJwfVBXdgWZyJu4Stg2iD",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "MAVEN Dataset Research Report",
+                "type": "report",
+                "description": "MAVEN event detection dataset (168 types, EMNLP 2020) 调研报告：数据集概况、获取方式、层级结构、与 Few-NERD 对比、BCS/SDGD 适用性分析、实施方案",
+                "project": "schema-dag-extraction",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md",
+                "tags": [
+                  "maven",
+                  "dataset",
+                  "event-detection",
+                  "survey"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "d2428185-e57e-4712-92ea-a237efcfc9dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YJnwT8Kfw73oi5fEjSNk6S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6681,
+                "cache_read_input_tokens": 32245,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6681
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T03:18:26.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UbJwfVBXdgWZyJu4Stg2iD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_d9b24e\\\", \\\"name\\\": \\\"MAVEN Dataset Research Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"MAVEN event detection dataset (168 types, EMNLP 2020) 调研报告：数据集概况、获取方式、层级结构、与 Few-NERD 对比、BCS/SDGD 适用性分析、实施方案\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report_d9b24e.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T03:18:26.296886+00:00\\\", \\\"tags\\\": [\\\"maven\\\", \\\"dataset\\\", \\\"event-detection\\\", \\\"survey\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "4631ae08-0342-4f2b-b0ef-3b12e04e177e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_d9b24e\\\", \\\"name\\\": \\\"MAVEN Dataset Research Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"MAVEN event detection dataset (168 types, EMNLP 2020) 调研报告：数据集概况、获取方式、层级结构、与 Few-NERD 对比、BCS/SDGD 适用性分析、实施方案\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report_d9b24e.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T03:18:26.296886+00:00\\\", \\\"tags\\\": [\\\"maven\\\", \\\"dataset\\\", \\\"event-detection\\\", \\\"survey\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_d9b24e\", \"name\": \"MAVEN Dataset Research Report\", \"type\": \"report\", \"description\": \"MAVEN event detection dataset (168 types, EMNLP 2020) 调研报告：数据集概况、获取方式、层级结构、与 Few-NERD 对比、BCS/SDGD 适用性分析、实施方案\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report_d9b24e.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T03:18:26.296886+00:00\", \"tags\": [\"maven\", \"dataset\", \"event-detection\", \"survey\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已存在且内容完整，已注册为 artifact (`art_20260515_d9b24e`)。\n\n核心结论：\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER (66 types) | Event Detection (168 types) |\n| Domain | Wikipedia | Wikipedia |\n| Size | ~188K sentences | 4,480 docs / 118,732 mentions |\n| Public | Yes (HF) | Yes (GitHub, MIT, 免费) |\n| Test labels | 公开 | 不公开 (用 dev set: 710 docs / 18,904 mentions) |\n\n**BCS/SDGD 适用性**：168 types 基于 FrameNet 层级组织，sibling types 语义高度相近（原论文 Table 7 已量化 sibling 混淆率 14.6-19.8%）。SDGD graph coloring 空间远大于 Few-NERD，效果应更显著。NER + ED 跨任务验证可证明 confusability-aware schema decomposition 是 task-agnostic 策略。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "uuid": "5fecfac4-fcc1-4497-ae4d-ce7f4cb54f25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BqEZ9KTBDtoMXXEKQbJTGh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 38926,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 614
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已存在且内容完整，已注册为 artifact (`art_20260515_d9b24e`)。\n\n核心结论：\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER (66 types) | Event Detection (168 types) |\n| Domain | Wikipedia | Wikipedia |\n| Size | ~188K sentences | 4,480 docs / 118,732 mentions |\n| Public | Yes (HF) | Yes (GitHub, MIT, 免费) |\n| Test labels | 公开 | 不公开 (用 dev set: 710 docs / 18,904 mentions) |\n\n**BCS/SDGD 适用性**：168 types 基于 FrameNet 层级组织，sibling types 语义高度相近（原论文 Table 7 已量化 sibling 混淆率 14.6-19.8%）。SDGD graph coloring 空间远大于 Few-NERD，效果应更显著。NER + ED 跨任务验证可证明 confusability-aware schema decomposition 是 task-agnostic 策略。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 102624,
+            "duration_api_ms": 118839,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "2dcf350b-f0e1-42da-ae2c-48025afa8071",
+            "total_cost_usd": 0.5450667499999999,
+            "usage": {
+              "input_tokens": 1597,
+              "cache_creation_input_tokens": 27699,
+              "cache_read_input_tokens": 246810,
+              "output_tokens": 3075,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27699,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 305,
+                  "cache_read_input_tokens": 38926,
+                  "cache_creation_input_tokens": 614,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 614
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 92028,
+                "outputTokens": 2331,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 6,
+                "costUSD": 0.16368300000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1597,
+                "outputTokens": 3075,
+                "cacheReadInputTokens": 246810,
+                "cacheCreationInputTokens": 27699,
+                "webSearchRequests": 0,
+                "costUSD": 0.3813837499999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c8f36942-35e6-4dd4-9e43-b1bdb9ed5cea"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ]
+}

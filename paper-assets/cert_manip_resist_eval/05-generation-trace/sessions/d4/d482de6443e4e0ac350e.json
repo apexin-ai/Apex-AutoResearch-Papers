@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d482de6443e4e0ac350e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "fix tiebreaking rerun k5 epsilon",
+  "task_key": "worker_fix_tiebreaking-rerun-k5-epsilon_20260523T143954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_tiebreaking-rerun-k5-epsilon_20260523T143954_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "03674da0e8cee09c44b8efe535031d00834e9773d68cd16b1df6fe0c7bbeba03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n---\n\n**方向一致性：0/72 方向变化** — 所有 12 个 condition × 3 个 ε × 2 个指标（K_eff, η_max）的系数方向全部一致（均为正），修复未改变任何结论。\n\n**Top 5 最大 Δβ_std：**\n\n| Condition | ε | metric | old_β | new_β | delta | dir_chg? |\n|---|---|---|---|---|---|---|\n| arc_challenge_authority_bias | 1e-09 | keff_beta_std | 0.1874 | 0.2857 | 0.0983 | no |\n| arc_challenge_authority_bias | 1e-06 | keff_beta_std | 0.2093 | 0.3003 | 0.0910 | no |\n| mmlu_score_manipulation | 1e-03 | keff_beta_std | 0.2755 | 0.3635 | 0.0880 | no |\n| arc_challenge_position_bias | 1e-03 | keff_beta_std | 0.4902 | 0.5701 | 0.0799 | no |\n| arc_challenge_position_bias | 1e-06 | keff_beta_std | 0.4903 | 0.5701 | 0.0799 | no |\n\n**总结：方向变化 0/12 conditions。** 最大 Δβ_std = 0.098（arc_challenge_authority_bias）。ASR=0 比例有变动（最大变化：arc_challenge_authority_bias +0.1183），但不影响回归方向。max_coefficient_change 从 keff=105.75 变为 184.5，eta 从 55.54 变为 31.07。\n\n已完成：\n1. 修复 `run_epsilon_sensitivity_k5.py` 和 `run_k4_wild_cluster_bootstrap.py` 的 `counts = {}` → `counts = {\"A\": 0, \"B\": 0, \"tie\": 0}`\n2. 重跑并生成新结果\n3. 新结果已写入本地 `docs/paper/data/epsilon_sensitivity_k5.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

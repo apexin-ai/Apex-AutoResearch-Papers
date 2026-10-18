@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4e60d30c1f6cfa2c3a4a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code plan 017 multi seed",
+  "task_key": "worker_code_plan_017_multi_seed_20260514T073854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_017_multi_seed_20260514T073854_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "07f9b42618d0ef74b0b9bdeeea76bae0f5143093977ca89a581bb518ebc3194a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在正常运行。当前状态：\n\n**已完成：**\n- Baseline PPL (no quant): **9.8106**\n- Uniform 4-bit PPL: **15.4454**\n\n**正在进行：**\n- Seed 0 profiling: **20/336** evals（每 20 步打印一次，~12s/eval）\n- Seed 0 profiling 预计剩 ~63 分钟\n\n**预估时间线：**\n- 每个 seed：profiling ~67min + solver + eval ~10min ≈ 77min\n- 3 个 seed 串行 ≈ 3.5-4 小时（含已完成的 baseline eval）\n\n**注意事项：**\n- 进程 PID 199409 在 GPU 0 运行，但不在 tmux 里（直接用 `>` 重定向到 multi_seed.log）\n- 如果需要安全起见，可以考虑进程是否会因 parent 退出而终止\n- Registry 已更新为 RUNNING\n- checkpoint 文件会在每个 seed 完成时保存到 `multi_seed_checkpoint_s{seed}.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

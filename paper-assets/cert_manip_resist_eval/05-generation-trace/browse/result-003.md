@@ -1,0 +1,64 @@
+# Task result records
+
+[Back to trace guide](../README.md)
+
+| Source record | Events | User turns | JSON |
+|---|---:|---:|---|
+| `logs/workers/worker_ops_mc-result-collect_20260525T062344_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8b/8bb641f6184d32d543b1.json) |
+| `logs/workers/worker_ops_r6-1b-collect-synthetic_20260525T074547_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3c/3c060cbb599559f23cb0.json) |
+| `logs/workers/worker_ops_r6-collect-previous-results_20260525T064822_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8e/8eb9860f3b2ccfe0b2c0.json) |
+| `logs/workers/worker_ops_r6-data-audit_20260525T064840_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7a/7ad593a286d28906db17.json) |
+| `logs/workers/worker_ops_r6-paper-corrections_20260525T080649_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9d/9de9075484216ba174f7.json) |
+| `logs/workers/worker_ops_registry-cleanup_20260523T201321_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6f/6f58da2ff48893d956a1.json) |
+| `logs/workers/worker_ops_scatter-regen-logr_20260525T225224_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0f/0f300239fc61e42e28d6.json) |
+| `logs/workers/worker_ops_server-data-backup_20260523T201307_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/35/35cdbfdd94c1a074d3dc.json) |
+| `logs/workers/worker_ops_status-check-final_20260524T194225_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ae/aecc4a285106d257e82a.json) |
+| `logs/workers/worker_ops_table1-compile-verify_20260525T234445_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/08/08c12ad757b45d0e3d25.json) |
+| `logs/workers/worker_paper_appendix-attacks_20260522T221224_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b4/b4e3a3af4285cabe3e81.json) |
+| `logs/workers/worker_paper_appendix-wording-fix_20260523T014745_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/85/8566bc7d3b67658af890.json) |
+| `logs/workers/worker_paper_availability-statement_20260522T223217_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/69/69b6f67a584843b01229.json) |
+| `logs/workers/worker_paper_compile-final-d043_20260524T085718_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/64/641390f9ad5b7b4f7767.json) |
+| `logs/workers/worker_paper_compile-verify-d043_20260524T084556_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/16/16768de4519248ff0469.json) |
+| `logs/workers/worker_paper_d044-cinelli-hazlett-v2-correction_20260524T102049_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/64/64c46efb7164caea9eb5.json) |
+| `logs/workers/worker_paper_em-dash-fix_20260523T015250_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ba/baea28983783cb2949ed.json) |
+| `logs/workers/worker_paper_figure_dominance_heatmap_20260524T180637_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/27/276bcc087d706b511473.json) |
+| `logs/workers/worker_paper_figure_fig1_paperbanana_20260524T182116_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2b/2b154127d7d75197f799.json) |
+| `logs/workers/worker_paper_figure_fig1_paperbanana_retry_20260524T184404_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/37/3793d7a2d8b35d8bc9f3.json) |
+| `logs/workers/worker_paper_figure_fig_regime_transition_20260523T194555_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a4/a44c19cc0ba9aab77b84.json) |
+| `logs/workers/worker_paper_figures-1-2_20260522T210456_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2c/2c2a94d92cc6172a181f.json) |
+| `logs/workers/worker_paper_figures-3-4_20260522T211221_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fa/fa1ca5f6596fd0b0ab19.json) |
+| `logs/workers/worker_paper_forest-plot_20260523T001753_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7b/7b407e2f292dc22a2ba3.json) |
+| `logs/workers/worker_paper_framework-figure-fix_20260523T012315_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ec/ec52777e556052f60332.json) |
+| `logs/workers/worker_paper_framework-figure_20260523T004646_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/69/69b120f6c2c4b1a8e134.json) |
+| `logs/workers/worker_paper_research_20260522T150026_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/19/194b0353559fb523c501.json) |
+| `logs/workers/worker_paper_research_ref_expansion_20260525T142836_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2a/2a7e9f424742c7dc8243.json) |
+| `logs/workers/worker_paper_writing_20260522T185827_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/47/4746ff5b16dbcfcfaade.json) |
+| `logs/workers/worker_paper_writing_20260524T051035_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f1/f17e9c16466179986932.json) |
+| `logs/workers/worker_paper_writing_abstract_20260522T195705_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fb/fb243e330d1793959e60.json) |
+| `logs/workers/worker_paper_writing_abstract_intro_rewrite_20260524T181332_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7f/7f8931758cd5910fbe23.json) |
+| `logs/workers/worker_paper_writing_analysis_20260522T192641_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5d/5dad4803be6e0484ec7e.json) |
+| `logs/workers/worker_paper_writing_analysis_r5_revision_20260524T041619_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/07/078ead0540bf542a6581.json) |
+| `logs/workers/worker_paper_writing_conclusion_20260522T193714_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/36/36dcd56db7524d4cb7ae.json) |
+| `logs/workers/worker_paper_writing_intro_abstract_r5_revision_20260524T042710_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/79/797d2f5dbf371049c6f9.json) |
+| `logs/workers/worker_paper_writing_introduction_reframe_20260523T011835_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c9/c98f981536d7f6470b8e.json) |
+| `logs/workers/worker_paper_writing_introduction_v4_20260522T174330_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6a/6ab13e478f1daca7b511.json) |
+| `logs/workers/worker_paper_writing_methodology_v4b_20260522T182359_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a5/a5234ee1bb92017f464b.json) |
+| `logs/workers/worker_paper_writing_related_work_20260522T150758_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/52/52fc9f29d6d190e94d0a.json) |
+| `logs/workers/worker_paper_writing_related_work_expansion_20260522T232439_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/cd/cd0100a5c1da6405d578.json) |
+| `logs/workers/worker_paper_writing_related_work_r5_revision_20260524T044714_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f8/f87cfe2be64f9d1d3720.json) |
+| `logs/workers/worker_paper_writing_results_reframe_20260523T013739_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b9/b9ff5b16fd8a67d7b99a.json) |
+| `logs/workers/worker_paper_writing_results_v5_20260522T202417_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/09/09dca9e0a3d05df4b3ae.json) |
+| `logs/workers/worker_paper_writing_rw_20260522T192259_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3c/3c1949bd509d8f64a39f.json) |
+| `logs/workers/worker_paper_writing_threat_model_20260522T151212_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/43/4301ae4f6e1410d58b4d.json) |
+| `logs/workers/worker_read_cross-benchmark-iv-results_20260523T084727_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f0/f0e4d9eed484469fb511.json) |
+| `logs/workers/worker_read_fractional-logit-json_20260523T074634_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fa/fabbea45105a2288cc78.json) |
+| `logs/workers/worker_read_temperature-pilot-results_20260523T091857_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d4/d42f7b40b3ea87ab5580.json) |
+| `logs/workers/worker_research_attack-prompt-templates_20260522T190027_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bd/bdaf565c3c166f102d4f.json) |
+| `logs/workers/worker_research_bib-verify-shi2024_20260523T123030_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d9/d9fc01aef076b0cac065.json) |
+| `logs/workers/worker_research_model-freshness-check_20260522T152247_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f5/f509db8e904ba03f24fd.json) |
+| `logs/workers/worker_research_plan003-theorem1-proof_20260522T111238_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/dc/dc36935f1267845893e1.json) |
+| `logs/workers/worker_research_reference-verification_20260524T033647_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/90/90bc8a23d6948fb700ff.json) |
+| `logs/workers/worker_research_theory-t1-sdpi_20260521T194207_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/df/df7f5a6bc748f0be545f.json) |
+| `logs/workers/worker_research_theory-t3-peg_20260521T194226_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/78/783a775bc9f886442bee.json) |
+| `logs/workers/worker_writing_b1-b7-revision_20260524T120505_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0d/0dd00f00d69a2ab42006.json) |
+| `logs/workers/worker_writing_latex-compile-check_20260524T121722_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/32/32ef02f99a76eff5df3b.json) |

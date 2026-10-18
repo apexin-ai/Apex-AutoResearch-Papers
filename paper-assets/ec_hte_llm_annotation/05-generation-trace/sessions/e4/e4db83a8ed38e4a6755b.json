@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "e4db83a8ed38e4a6755b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp b stance detection",
+  "task_key": "worker_code_exp-b-stance-detection_20260523T190153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-b-stance-detection_20260523T190153.log",
+    "occurrence": 1,
+    "bytes": 753156,
+    "sha256": "50f426b02f5cbdfb634735ac81204105b8c7f917e2593b650a9690ad67e733b0"
+  },
+  "statistics": {
+    "messages": 454,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 118,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 110,
+      "user": 1,
+      "tool_result": 110,
+      "result": 28
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "e4db83a8ed38e4a6755b-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 448,
+      "chunks": [
+        {
+          "path": "e4db83a8ed38e4a6755b-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "e4db83a8ed38e4a6755b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4db83a8ed38e4a6755b-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ]
+}

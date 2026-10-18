@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ab968fa80cabad9ede82",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval imm 100k object urgent",
+  "task_key": "worker_eval_imm_100k_object_urgent_20260517T010456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_imm_100k_object_urgent_20260517T010456_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "3b0f8e1f20149f9afb7ea65b29dbb01c9d660db91a75f0d9a00df939a82000a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Object eval 已成功启动。\n\n```\n=== CHECKPOINT 确认 ===\n路径: checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt\n大小: ~921 MB\n修改时间: May 17 08:42 (今天，确认是 IMM 100K)\n\n=== OBJECT EVAL 启动 ===\nGPU: cuda:1 (PID 723269, 3227MiB)\ntmux session: imm_100k_object\n状态: Task 0/10 开始 (\"pick up the alphabet soup and place it in the basket\")\n\n=== GPU 状态 ===\nGPU 0: 6658MiB/97887MiB, 56% util (Spatial eval + expert_only_ft)\nGPU 1: 6493MiB/97887MiB, 5% util (Goal eval + Object eval)\n\n=== 已完成 EVAL 结果 ===\n目前 imm_fullft_100k 系列尚无完成的结果文件（Spatial/Goal/Object 均在跑）\n已有的相关结果:\n- full_ft_seed0_100k_libero_spatial.json\n- full_ft_seed0_100k_libero_goal.json\n- full_ft_seed0_100k_libero_object.json\n- full_ft_100k_libero_object_formal.json\n- imm_v2_fullft_libero_object.json\n```\n\nObject eval 在 GPU 1 上与 Goal eval 并行运行，GPU 利用率从 1% 升到 5%，内存充裕（91.4GB 空闲），不会互相干扰。预计约 60 分钟完成（10 tasks × 50 episodes × ~7s/ep）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

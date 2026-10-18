@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "87c2d02d9172831dce3b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code anon repo check",
+  "task_key": "worker_code_anon-repo-check_20260523T145903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-check_20260523T145903_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "bee3840c87a0dbeb2eb56a621330bde673e19ea101fff94a316182a7f4f42592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：Public ✓**\n\n| 项目 | 值 |\n|------|-----|\n| 可见性 | Public |\n| 描述 | Anonymous code submission for EMNLP 2026 |\n| 最近 commit | `5b722d5` — Initial release: EC-HTE codebase for EMNLP 2026 submission (2026-05-23) |\n| Stars/Forks | 0 / 0 |\n| 默认分支 | main |\n\n仓库已公开可访问，内容为 EMNLP 2026 的匿名提交代码，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

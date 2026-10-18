@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4e66e78b370a66362306",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops westd38929 oft baseline and results",
+  "task_key": "worker_ops_westd38929-oft-baseline-and-results_20260521T022253",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd38929-oft-baseline-and-results_20260521T022253.log",
+    "occurrence": 1,
+    "bytes": 852401,
+    "sha256": "96d885b557530dff63eb5496b22e9e9ffcbe74137f19c1b27de640954909de06"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "4e66e78b370a66362306-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e66e78b370a66362306-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ]
+}

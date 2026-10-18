@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "96844f81585988573db7",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis arch extension check",
+  "task_key": "worker_analysis_arch-extension-check_20260520T010550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arch-extension-check_20260520T010550_result.json",
+    "occurrence": 1,
+    "bytes": 307,
+    "sha256": "dfbed607f99397813ef5a90add2c9de430f4d9cf9f48e8b5843951d7e677db17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/entrainment_gated_ft/arch_extension_check.txt`。\n\n**结论：Wang et al. model zoo 仅有 GatedDeltaNet / RetNet / HGRN2 三种 recurrent 架构（+ Transformer baseline），无 Mamba、RWKV、DeltaNet 等其他变体。无法从现有模型扩展 n=3 → n>3。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "750db65cbc4211dd6484",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "audit ref check A",
+  "task_key": "worker_audit_ref_check_A_20260526T104718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref_check_A_20260526T104718_result.json",
+    "occurrence": 1,
+    "bytes": 9483,
+    "sha256": "e32fa86a081809d397a7a4705f54f633f5d97fb38f3d49aef0d930ec0e012b2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。以下是完整核查报告。\n\n---\n\n## [1]. cohen1988statistical\n- 真实性：✓ 存在（经典教材）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（书籍）\n- 正文引用上下文：✓ 正确（appendix 表格注释中定义 Cohen's d 阈值，引用此书作为出处）\n\n## [2]. pearl2009causality\n- 真实性：✓ 存在（经典教材）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（书籍，Cambridge University Press）\n- 正文引用上下文：✓ 正确（experiments.tex 讨论因果中介分析框架时引用）\n\n## [3]. tripathi2025pairwise\n- 真实性：✓ 存在\n- 作者：✓ 正确（Tuhina Tripathi, Manya Wadhwa, Greg Durrett, Scott Niekum）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（COLM 2025 = 2nd Conference on Language Modeling）\n- 正文引用上下文：✓ 正确（experiments.tex 讨论 pairwise vs Likert 的 construct divergence 时引用）\n\n## [4]. murugadoss2025sos\n- 真实性：✓ 存在（arXiv:2409.15268）\n- 作者：✗ **错误** — bib 中写 `Murugadoss, Aakanksha and others`，实际第一作者是 **Benjamin Feuer**，完整作者列表为 Benjamin Feuer, Micah Goldblum, Teresa Datta, Sanjana Nambiar, Raz Besaleli, Samuel Dooley, Max Cembalest, John P. Dickerson。\"Murugadoss\" 不在作者列表中。\n- 年份：✓ 正确（2025）\n- 标题：✓ 正确（\"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\"）\n- Venue：✓ 正确（ICLR 2025）\n- 正文引用上下文：✓ 正确（introduction 说 \"Surface-level style features alone explain most of the variance in judge scores\"，与该论文发现一致）\n- **注意**：bib key `murugadoss2025sos` 与实际第一作者 Feuer 不匹配，应改为 `feuer2025style` 或类似命名，并修正作者字段\n\n## [5]. li2026preference\n- 真实性：✓ 存在（arXiv:2502.01534）\n- 作者：✓ 正确（Dawei Li 为第一作者，共 9 位作者）\n- 年份：✓ 正确（2026）\n- 标题：✓ 正确\n- Venue：✓ 正确（ICLR 2026）\n- 正文引用上下文：✓ 正确（introduction 和 related_work 中引用，related_work 说 \"preference leakage propagates through evaluation pipelines\" 与论文内容一致）\n\n## [6]. wang2026fairjudge\n- 真实性：✓ 存在（arXiv:2602.06625）\n- 作者：✓ 正确（Bo Yang, Lanfei Feng, Yunkui Chen, Yu Zhang, Xiao Xu, Shijian Li）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint）\n- 正文引用上下文：✓ 正确（introduction 和 related_work 中引用，related_work 说 FairJudge 分解 style 为更细维度但依赖相关性分析，与论文方法一致）\n- **注意**：bib key `wang2026fairjudge` 但第一作者姓 Yang，非 Wang。key 命名与作者不匹配。\n\n## [7]. dubois2025lc\n- 真实性：✓ 存在（arXiv:2404.04475）\n- 作者：✓ 正确（Yann Dubois 为第一作者）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（ICLR 2025）\n- 正文引用上下文：✓ 正确（introduction 引用为 population-level correction 方法；appendix 引用为 AlpacaEval 基准）\n\n## [8]. casse2026concise\n- 真实性：✓ 存在（arXiv:2601.10809）\n- 作者：✓ 正确（Cho, Young-Min; Yuan, Yuan; Guntuku, Sharath Chandra; Ungar, Lyle）\n- 年份：✓ 正确（2026）\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint）\n- 正文引用上下文：✓ 正确（related_work 引用 CASSE 框架为多特征分析方法）\n- **注意**：bib key `casse2026concise` 以框架名 CASSE 命名而非第一作者 Cho，命名不符常规但不影响正确性\n\n## [9]. counterfactual2025rhetorical\n- 真实性：✓ 存在（arXiv:2512.19908）\n- 作者：✓ 正确（Qiu, Jingyi; Chen, Hong; Li, Zongyi）\n- 年份：✓ 正确（2025）\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint）\n- 正文引用上下文：✓ 正确（related_work 说 \"adopt a similar design at persona-level granularity\"，该论文确实使用 LLM rhetorical personas 生成反事实写作）\n\n## [10]. soumik2026judging\n- 真实性：✓ 存在（arXiv:2604.23178）\n- 作者：✗ **错误** — bib 中写 `Soumik, Mohammad and others`，实际作者全名为 **Sadman Kabir Soumik**（单一作者，无 \"others\"）。名字 \"Mohammad\" 错误，应为 \"Sadman Kabir\"。\n- 年份：✓ 正确（2026）\n- 标题：✓ 正确\n- Venue：✓ 正确（arXiv preprint，currently under review at TMLR）\n- 正文引用上下文：✓ 正确（introduction 中 \"76–92% of preferences originating from style cues\" 对应该论文发现 style bias 0.76–0.92）\n\n## [11]. reber2025rate\n- 真实性：✓ 存在（arXiv:2410.11348）\n- 作者：✓ 正确（David Reber, Sean Richardson, Todd Nief, Cristina Garbacea, Victor Veitch）\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（ICML 2025）\n- 正文引用上下文：✓ 正确（method.tex 引用 RATE bias correction protocol；related_work 描述其方法为 rewrite + Likert ATE，与论文方法一致）\n\n## [12]. kiritchenko2017bws\n- 真实性：✓ 存在\n- 作者：✓ 正确（Svetlana Kiritchenko, Saif Mohammad）\n- 年份：✓ 正确（2017）\n- 标题：✓ 正确（完整标题含副标题 \"A Case Study on Sentiment Intensity Annotation\"）\n- Venue：✓ 正确（ACL 2017 Short Papers）\n- 正文引用上下文：**N/A — 未在正文中被引用（orphan bib entry）**\n\n## [13]. novikova2018rankme\n- 真实性：✓ 存在\n- 作者：✓ 正确（Jekaterina Novikova, Ondřej Dušek, Verena Rieser）\n- 年份：✓ 正确（2018）\n- 标题：✓ 正确\n- Venue：✓ 正确（NAACL 2018 Short Papers）\n- 正文引用上下文：✓ 正确（related_work 说 \"forced-choice methods detect quality differences that rating scales miss\"，与论文发现一致）\n\n## [14]. stevens1946theory\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（Science）\n- 正文引用上下文：**N/A — 未在正文中被引用（orphan bib entry）**\n\n## [15]. nemes2009bias\n- 真实性：✓ 存在\n- 作者：✓ 正确（Nemes, Szilard; Jonasson, Jörgen M; Genell, Anna; Steineck, Gunnar）\n- 年份：✓ 正确（2009）\n- 标题：✓ 正确\n- Venue：✓ 正确（BMC Medical Research Methodology, vol 9, 56）\n- 正文引用上下文：✓ 正确（experiments.tex 两处引用，说明小样本 odds ratio 存在向上偏差，与论文核心发现一致）\n\n## [16]. david1988method\n- 真实性：✓ 存在（经典教材）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（书籍，Oxford University Press）\n- 正文引用上下文：✓ 正确（introduction 说 pairwise comparison yields higher discriminability than absolute rating，该书正是配对比较方法的经典参考）\n\n## [17]. thurstone1927law\n- 真实性：✓ 存在（经典文献）\n- 作者：✓ 正确\n- 年份：✓ 正确\n- 标题：✓ 正确\n- Venue：✓ 正确（Psychological Review）\n- 正文引用上下文：✓ 正确（introduction 和 related_work 中引用，作为 pairwise comparison 优越性的经典基础）\n\n## [18]. decoster2011median\n- 真实性：✓ 存在\n- 作者：✓ 正确（DeCoster, Jamie; Gallucci, Marcello; Iselin, Anne-Marie R.）\n- 年份：✓ 正确（2011）\n- 标题：✓ 正确\n- Venue：✓ 正确（Journal of Experimental Psychopathology, vol 2(2), pp 197-209）\n- 正文引用上下文：**N/A — 未在正文中被引用（orphan bib entry）**\n\n## [19]. zheng2023judging\n- 真实性：✓ 存在（arXiv:2306.05685）\n- 作者：✓ 正确（Lianmin Zheng 为第一作者，共 13 位作者）\n- 年份：✓ 正确（2023）\n- 标题：✓ 正确\n- Venue：✓ 正确（NeurIPS 2023）\n- 正文引用上下文：✓ 正确（method.tex 引用 MT-Bench；related_work 引用为 LLM-as-judge 基础框架并指出其发现了 position bias；appendix 引用为 MT-Bench 基准说明）\n\n---\n\n## 汇总\n\n**总共 19 条，✓ 14 条完全正确，✗ 2 条有错误，⚠ 3 条 orphan 引用**\n\n### 错误（必须修正）\n\n| # | cite key | 问题 | 修正 |\n|---|----------|------|------|\n| 4 | `murugadoss2025sos` | 作者错误：写了 `Murugadoss, Aakanksha`，实际第一作者是 `Feuer, Benjamin`，Murugadoss 不在作者列表中 | 改为 `author={Feuer, Benjamin and Goldblum, Micah and Datta, Teresa and Nambiar, Sanjana and Besaleli, Raz and Dooley, Samuel and Cembalest, Max and Dickerson, John P.}`，并考虑将 key 改为 `feuer2025style` |\n| 10 | `soumik2026judging` | 作者名错误：写了 `Soumik, Mohammad and others`，实际为单一作者 `Soumik, Sadman Kabir`（无 others） | 改为 `author={Soumik, Sadman Kabir}` |\n\n### 命名不规范（建议修正）\n\n| # | cite key | 问题 |\n|---|----------|------|\n| 6 | `wang2026fairjudge` | key 前缀 `wang` 但第一作者姓 Yang |\n| 8 | `casse2026concise` | key 前缀 `casse` 是框架名，第一作者姓 Cho |\n\n### Orphan 引用（在 bib 中但未在正文引用）\n\n| # | cite key |\n|---|----------|\n| 12 | `kiritchenko2017bws` |\n| 14 | `stevens1946theory` |\n| 18 | `decoster2011median` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

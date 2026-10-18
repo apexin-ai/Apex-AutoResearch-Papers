@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9879e6c5301f537aa47c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh kill zombie and cleanup",
+  "task_key": "worker_ssh_kill_zombie_and_cleanup_20260514T224136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_zombie_and_cleanup_20260514T224136_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "437b0e3cf29ce4a40b5f8c6c9f6cf3ed359325f439bcdde943f5f55015b11d90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 tmux sessions 需要清理。\n\n---\n\n**清理结果汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| PID 193689 (dcol_deberta_001 子进程) | 已 kill -9，显存释放 |\n| PID 208941 (gpt2xl_temp09 extract_features) | kill 前已自行退出 |\n| PID 210106 (dcol_deberta_002) | 确认已死（OOM 崩溃） |\n| cuda:0 显存 | **0 MiB / 97887 MiB** — 完全释放 |\n| cuda:1 | 207537 (olmo_temp09) 占 9964 MiB，正常运行中 |\n| tmux sessions | 无残留 session |\n\ncuda:0 已完全可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "77eb32e85f250384fe02",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval seed44 sweep cqa1 gpu3",
+  "task_key": "worker_eval_seed44_sweep_cqa1_gpu3_20260519T200519",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_seed44_sweep_cqa1_gpu3_20260519T200519_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "9a1863c124e25f771adc23c889b71768c0f64c98aba9d76b3a4e61a9964c36b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_smart_compress_m32_seed44 已启动，4.5 分钟后检查进度。完成后自动串行提交 m64 和 m96。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

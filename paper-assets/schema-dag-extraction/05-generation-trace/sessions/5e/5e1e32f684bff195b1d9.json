@@ -1,0 +1,686 @@
+{
+  "schema_version": "1.0",
+  "id": "5e1e32f684bff195b1d9",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "writing appendix maven residualized",
+  "task_key": "worker_writing_appendix_maven_residualized_20260516T020105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_appendix_maven_residualized_20260516T020105.jsonl",
+    "occurrence": 1,
+    "bytes": 34190,
+    "sha256": "f86ea84fc19909bfd6b3e1a4bd52454ad3833ad2948a69c0e3b4783f4052d4c7"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:02:47.616343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:02:47.616691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:02:47.616910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:02:47.617177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — schema-dag-extraction\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\\\n- Commitment deadline: August 2, 2026\\\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\\\n- Deadline: ARR May 25, 2026 (10 days from today)\\\\n\\\\n## Core Claims (2 claims) — Revised per D019\\\\n\\\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\\\\n\\\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through orthogonal channels -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\\\n\\\\n~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass baseline 0.445. Merge amplification is an intrinsic challenge of schema decomposition that merge strategies (union+dedup, confidence-gated) cannot resolve. **Discussed as negative result + future work direction** — \\\\\\\"why naive decomposition fails\\\\\\\" is itself a contribu\n…[truncated 10166 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:02:47.617346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "filters": "{'experiment_id': 'exp_maven_residualized_bcs'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:02:47.617484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5029}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:02:47.617629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['experiment_id', 'title', 'status', 'metrics', 'conclusion']",
+              "limit": "30"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:02:47.618047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_fewrel_16rel_bootstrap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -7.42, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49}, \\\"pearson_r_bcs_acc\\\": -0.6373, \\\"regression_slope\\\": {\\\"slope\\\": -0.449, \\\"ci_95_lower\\\": -0.556, \\\"ci_95_upper\\\": -0.349, \\\"r_squared\\\": 0.406, \\\"p_value\\\": 1.01e-12, \\\"interpretation\\\": \\\"per +0.1 BCS → -4.49pp accuracy\\\"}, \\\"amplification_ratio\\\": {\\\"quartile_16_vs_80\\\": 4.2, \\\"ci_95_lower\\\": 3.3, \\\"ci_95_upper\\\": 6.95}, \\\"key_finding\\\": \\\"16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Regression slope=-0.449 CI[-0.556,-0.349]. Bootstrap 1000 resamples.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_maven_residualized_bcs\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"minilm\\\": {\\\"raw_rho\\\": 0.208, \\\"raw_p\\\": 0.011, \\\"confound\\\": \\\"log_freq\\\", \\\"bcs_confound_r\\\": 0.201, \\\"partial_r\\\": 0.133, \\\"partial_p\\\": 0.107}, \\\"qwen3\\\": {\\\"raw_rho\\\": 0.184, \\\"raw_p\\\": 0.025, \\\"confound\\\": \\\"degree_centrality_0.7\\\", \\\"bcs_confound_r\\\": 0.854, \\\"partial_r\\\": 0.063, \\\"partial_p\\\": 0.442}, \\\"joint_control\\\": {\\\"qwen3_p\\\": 0.439, \\\"minilm_p\\\": 0.226, \\\"note\\\": \\\"Both n.s. after controlling log_freq + degree jointly\\\"}, \\\"key_finding\\\": \\\"MAVEN BCS-F1 positive correlation is centrality artifact. MiniLM confound=frequency, Qwen3 confound=degree centrality (r=0.854). After joint control, both correlations vanish. Confirms pairwise SCS remains valid but per-type aggregation fails on homogeneous schemas.\\\"}}, \\\"exp_fewrel_16rel_100batch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp012_llama_fewrel_ch2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"exp2_bcs_controlled\\\": {\\\"count_8\\\": {\\\"low_bcs_acc\\\": 0.7812, \\\"high_bcs_acc\\\": 0.5104, \\\"delta_pp\\\": -27.1}, \\\"count_16\\\": {\\\"low_bcs\n…[truncated 13043 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:02:47.618229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:02:47.618616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260515T053106/best/paper.tex\nartifacts/dream_reports/dream_20260515T053106/median/paper.tex\nartifacts/dream_reports/dream_20260515T053106/worst/paper.tex\nartifacts/dream_reports/dream_20260515T113743/best/paper.tex\nartifacts/dream_reports/dream_20260515T113743/median/paper.tex\nartifacts/dream_reports/dream_20260515T113743/worst/paper.tex\nartifacts/dream_reports/dream_20260515T140829/best/paper.tex\nartifacts/dream_reports/dream_20260515T140829/median/paper.tex\nartifacts/dream_reports/dream_20260515T140829/worst/paper.tex\nartifacts/_project/paper/dataset_stats.tex\nartifacts/paper/tables/dataset_stats.tex\nartifacts/_project/paper/results.tex\nartifacts/_project/paper/sdgd_negative.tex\nartifacts/_project/paper/experimental_setup.tex\ndocs/paper/conclusion.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/results.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/discussion.tex\ndocs/paper/related_work.tex\ndocs/paper/experimental_setup.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:02:47.618772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/maven_residualized*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:02:47.618919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:02:47.619061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:02:47.619257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\n15\t\\title{Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction?}\n16\t\n17\t\\author{Anonymous}\n18\t\n19\t\\begin{document}\n20\t\\maketitle\n21\t\n22\t\\input{abstract}\n23\t\n24\t\\input{introduction}\n25\t\n26\t\\input{related_work}\n27\t\n28\t\\input{experimental_setup}\n29\t\n30\t\\input{results}\n31\t\n32\t\\input{sdgd_negative}\n33\t\n34\t\\input{discussion}\n35\t\n36\t\\section*{Limitations}\n37\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n38\t\\item \\textbf{Single primary model.} The primary experiments use Qwen3-32B. Channel~1 has been validated on Llama-3.1-8B-Instruct (recall decline $-$43\\,pp, $r = 0.725$). Channel~2 was validated on FewRel RE ($\\Delta = -27.1$\\,pp at count 8, $-23.9$\\,pp at count 16), with high-BCS accuracy converging to a model-invariant floor ($\\approx$0.51). On Few-NERD NER, Channel~2 was not robustly detectable at 8B scale, likely due to floor effects and the noisier text-match metric.\n39\t\n40\t\\item \\textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\\% of the variance in type confusion. Entity frequency, prompt position effects, mention ambiguity, context complexity, and type definition quality likely account for the remaining variance.\n41\t\n42\t\\item \\textbf{Amplification uncertainty.} The $3.4\\times$ amplification ($31.2 / 9.1$\\,pp) is a two-point comparison (16-rel vs.\\ 80-rel); propagating the 80-rel CI yields a range of $1.9\\text{--}4.7\\times$. An intermediate 40-relation evaluation (sampled from the 80-rel pool, not an independent schema) confirms monotonic decline.\n43\t\n44\t\\item \\textbf{Non-significant factorial test.} A within-dataset factorial analysis (count $\\times$ BCS) on Few-NERD did not reach significance (Appendix~\\ref{s\n…[truncated 7479 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:02:47.619403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/appendix*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:02:47.619587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:02:47.619774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:02:47.619998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/conclusion.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/results.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/discussion.tex\ndocs/paper/related_work.tex\ndocs/paper/experimental_setup.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:02:47.620221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:02:47.620433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe two-channel framework applies most cleanly to cross-domain schemas where types span multiple semantic clusters. For same-domain schemas (e.g., MAVEN's FrameNet-derived types), the centrality confound (\\S\\ref{sec:centrality_confound}) complicates BCS-level analysis, though the pairwise SCS signal remains intact. Practitioners should use BCS as a schema difficulty predictor for cross-domain ontologies, and pairwise SCS directly---or with centrality factored out---for same-domain schemas.\n6\t\n7\t\\paragraph{The 51\\% floor.}\n8\tHigh-BCS accuracy converges to $\\approx$51\\% on FewRel regardless of model size (8B vs.\\ 32B), well above random guessing (12.5\\% for 8-way classification). This suggests that under high confusability, models can still resolve a ``confusion subgroup'' of easily distinguishable relations but fail on the tightly clustered remainder. The floor's model-invariance indicates a task-inherent difficulty ceiling that scaling alone cannot overcome.\n9\t\n10\t\\paragraph{Merge amplification and future directions.}\n11\tOur SDGD experiments show that naive decompose-then-merge pipelines fail because union merge accumulates contradictory predictions across passes. Three directions may address this: (1)~calibration-aware merge, where cross-batch confidence scores are normalized before aggregation; (2)~joint decoding, where the model sees all types but decodes with confusability-aware constraints; and (3)~hierarchical extraction, processing coarse-grained types first and refining within clusters.\n12\t\n13\t\\paragraph{Schema design implications.}\n14\tOur results suggest concrete guidelines: monitor BCS when assembling extraction schemas---high-BCS batches are unreliable regardless of model; for large ontologies, prefer cross-domain type groupings that minimize intra-batch similarity; when decomposition is necessary, invest in cross-batch calibration rather than decomposition quality, si\n…[truncated 802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:02:47.620648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "MAVEN|centrality|confound|residual|homogeneous",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:02:47.620972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15-\\centering\n16-\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n17-\\end{minipage}\n18:\\caption{\\textbf{(a)} Count-degradation curves across three IE tasks. NER recall generally declines and RE accuracy declines monotonically with schema size; MAVEN relaxed F1 increases (\\S\\ref{sec:centrality_confound}). \\textbf{(b)} BCS-controlled FewRel accuracy. The confusability gap widens from 9.1\\,pp at 16 relations to 31.2\\,pp at 80 relations ($3.4\\times$ amplification).}\n19-\\label{fig:main_results}\n20-\\end{figure}\n21-\n--\n27-\\paragraph{RE (FewRel).}\n28-Accuracy drops monotonically from 85.7\\% at count${}\\,=\\,1$ through 58.8\\% at count${}\\,=\\,40$ to 50.4\\% at count${}\\,=\\,80$, a near-halving when the model must discriminate among all 80 relation types simultaneously. (The count${}\\,=\\,40$ evaluation uses 40-relation subsets sampled from the 80-relation pool, not an independent schema.)\n29-\n30:\\paragraph{ED (MAVEN).}\n31:[Omitted long matching line]\n32-\n33-\\paragraph{Cross-model replication.}\n34-Channel~1 replicates across model families: on Few-NERD, Meta-Llama-3.1-8B-Instruct shows a $-$43\\,pp recall decline (0.702 at count${}\\,=\\,1$ to 0.273 at count${}\\,=\\,64$), compared to $-$34\\,pp for Qwen3-32B (Table~\\ref{tab:cross_model} in the Appendix). Per-batch recall correlation between the two models is $r = 0.725$, indicating that schema configuration drives difficulty rather than model-specific factors.\n35-\n36-\\paragraph{Summary.}\n37:Schema size degrades extraction quality for NER and RE (Channel~1: count $\\to$ recall decline), but this pattern does not hold universally. MAVEN's reversed trend demonstrates that task structure and evaluation protocol mediate the count--performance relationship. Both channels replicate on Llama-3.1-8B: the count channel ($r = 0.725$) and the confusability channel on RE (\\S\\ref{sec:bcs_controlled}).\n38-\n39-\\subsection{Pairwise Confusability and Type Confusion}\n40-\\label{sec:pairwise}\n--\n50-\\textbf{Dataset} & \\textbf{Embed\n…[truncated 2459 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:02:47.621253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "100",
+              "limit": "30"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:02:47.621468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\tThese results establish two degradation channels: \\textbf{Channel~1} (count $\\to$ recall decline, \\S\\ref{sec:count_curves}) and \\textbf{Channel~2} (confusability $\\to$ type confusion). In RE, the channels are cleanly separable---confusability drives substitution errors while detection remains stable. In NER, Channel~2 additionally impairs entity detection, suggesting that for span-level extraction, type ambiguity and boundary ambiguity are coupled.\n101\t\n102\t\\subsection{Centrality Confound on Homogeneous Schemas}\n103\t\\label{sec:centrality_confound}\n104\t\n105\tPer-type analysis on MAVEN reveals an anomaly: the correlation between mean BCS and per-type error rate is \\emph{positive}---Qwen3 $\\rho = +0.189$ ($p = 0.021$) and MiniLM $\\rho = +0.208$ ($p = 0.011$)---opposite to the negative direction predicted by the confusability hypothesis.\n106\t\n107\tThis reversal traces to a property of same-domain schemas documented by \\citet{cai-isotropy-clusters-2021}: when all types derive from a single ontology (here, FrameNet), their embeddings collapse into a single cluster in representation space. In this regime, a type's mean BCS conflates two distinct properties: (i)~confusability with neighbors, which should increase errors, and (ii)~centrality within the cluster, which correlates with being a well-represented, high-frequency type that LLMs extract reliably. The centrality signal dominates, flipping the aggregate correlation.\n108\t\n109\tCritically, the pairwise SCS--confusion correlation remains intact: MAVEN MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10}$), consistent with the values in Table~\\ref{tab:pairwise}. The problem lies in the aggregation step (mean BCS per type), not in the pairwise signal itself.\n110\t\n111\tFew-NERD, whose 66 types span 8 coarse categories across diverse domains, does not exhibit this confound. Its per-type correlation is $\\rho = -0.293$ ($p = 0.02$, $n = 63$), in the expected negative direction: types with higher mean confusability ha\n…[truncated 448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:02:47.621799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "\\section{Factorial Analysis}\n\\label{sec:appendix_factorial}\n\nWe conducted a within-dataset $2\\!\\times\\!2$ factorial analysis (count $\\times$ BCS) on Few-NERD to test whether the two degradation channels exhibit a statistical interaction. The interaction term was directionally consistent but not statistically significant ($z = -0.67$, $p = 0.50$), likely underpowered due to BCS range compression in high-count schemas. The $3.4\\times$ amplification of confusability effects across FewRel schema scales (\\S\\ref{sec:bcs_controlled}) provides indirect evidence that confusability effects compound with schema size, but a formal factorial test on FewRel was not conducted because the BCS-controlled design varies confusability within fixed count levels rather than crossing both factors.\n\n\\end{document}",
+              "new_string": "\\section{Factorial Analysis}\n\\label{sec:appendix_factorial}\n\nWe conducted a within-dataset $2\\!\\times\\!2$ factorial analysis (count $\\times$ BCS) on Few-NERD to test whether the two degradation channels exhibit a statistical interaction. The interaction term was directionally consistent but not statistically significant ($z = -0.67$, $p = 0.50$), likely underpowered due to BCS range compression in high-count schemas. The $3.4\\times$ amplification of confusability effects across FewRel schema scales (\\S\\ref{sec:bcs_controlled}) provides indirect evidence that confusability effects compound with schema size, but a formal factorial test on FewRel was not conducted because the BCS-controlled design varies confusability within fixed count levels rather than crossing both factors.\n\n\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n\\label{sec:appendix_residualized_bcs}\n\nSection~\\ref{sec:centrality_confound} identifies a centrality confound in MAVEN's per-type BCS--F1 correlation: both embeddings show a \\emph{positive} raw correlation, opposite to the expected direction. Here we formalize this analysis by identifying specific confounders for each embedding and testing whether the BCS--F1 relationship survives partial correlation controlling for these confounders.\n\n\\paragraph{Confound identification.}\nFor each embedding, we computed the correlation between mean BCS and candidate confounders (type frequency, degree centrality at threshold 0.7) across MAVEN's 168 event types. The dominant confound differs by embedding:\n\\begin{itemize}[itemsep=2pt,leftmargin=*]\n\\item \\textbf{MiniLM}: BCS correlates with log type frequency ($r = 0.201$). Frequent types have more training signal and are extracted more reliably, producing the positive BCS--F1 association.\n\\item \\textbf{Qwen3}: BCS correlates strongly with degree centrality ($r = 0.854$). In the Qwen3 embedding space, high-BCS types are those with many semantic neighbors---central, well-represented types that the model extracts well.\n\\end{itemize}\n\n\\paragraph{Partial correlation results.}\nTable~\\ref{tab:residualized_bcs} reports raw Spearman $\\rho$ and partial Pearson $r$ after controlling for the identified confounders. Under single-variable control, both correlations weaken to non-significance. Under joint control (log frequency $+$ degree centrality simultaneously), neither embedding retains a significant BCS--F1 association.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Embedding} & \\textbf{Control} & \\textbf{Raw $\\rho$} & \\textbf{Raw $p$} & \\textbf{Partial $r$} & \\textbf{Partial $p$} \\\\\n\\midrule\nMiniLM & --- & $+$0.208 & 0.011 & --- & --- \\\\\nMiniLM & log freq & --- & --- & $+$0.133 & 0.107 \\\\\nMiniLM & log freq $+$ degree & --- & --- & --- & 0.226 \\\\\n\\midrule\nQwen3 & --- & $+$0.184 & 0.025 & --- & --- \\\\\nQwen3 & degree centrality & --- & --- & $+$0.063 & 0.442 \\\\\nQwen3 & log freq $+$ degree & --- & --- & --- & 0.439 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{MAVEN per-type BCS--F1 correlation before and after controlling for centrality confounders. Raw correlations are Spearman $\\rho$; partial correlations are Pearson $r$ from residualized regression. Degree centrality is computed on the SCS graph at threshold 0.7. All values from experiment \\texttt{exp\\_maven\\_residualized\\_bcs}.}\n\\label{tab:residualized_bcs}\n\\end{table}\n\n\\paragraph{Interpretation.}\nThe two embeddings encode different aspects of the same underlying confound. MiniLM, a smaller sentence encoder, produces a tighter embedding cluster for MAVEN's FrameNet-derived types; here, type frequency is the primary confounder because frequent types accumulate higher mean similarity to the dense cluster. Qwen3, with a larger representation space, differentiates types enough that frequency is not the dominant factor, but degree centrality---the count of strong semantic neighbors---becomes the confound instead. In both cases, the positive raw correlation reflects a centrality artifact: types that are semantically central are both high-BCS and easy to extract.\n\nUnder joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 10^{-10}$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\end{document}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:02:47.622203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:02:47.622419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "155"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:02:47.622678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "155\t\\label{sec:appendix_factorial}\n156\t\n157\tWe conducted a within-dataset $2\\!\\times\\!2$ factorial analysis (count $\\times$ BCS) on Few-NERD to test whether the two degradation channels exhibit a statistical interaction. The interaction term was directionally consistent but not statistically significant ($z = -0.67$, $p = 0.50$), likely underpowered due to BCS range compression in high-count schemas. The $3.4\\times$ amplification of confusability effects across FewRel schema scales (\\S\\ref{sec:bcs_controlled}) provides indirect evidence that confusability effects compound with schema size, but a formal factorial test on FewRel was not conducted because the BCS-controlled design varies confusability within fixed count levels rather than crossing both factors.\n158\t\n159\t\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n160\t\\label{sec:appendix_residualized_bcs}\n161\t\n162\tSection~\\ref{sec:centrality_confound} identifies a centrality confound in MAVEN's per-type BCS--F1 correlation: both embeddings show a \\emph{positive} raw correlation, opposite to the expected direction. Here we formalize this analysis by identifying specific confounders for each embedding and testing whether the BCS--F1 relationship survives partial correlation controlling for these confounders.\n163\t\n164\t\\paragraph{Confound identification.}\n165\tFor each embedding, we computed the correlation between mean BCS and candidate confounders (type frequency, degree centrality at threshold 0.7) across MAVEN's 168 event types. The dominant confound differs by embedding:\n166\t\\begin{itemize}[itemsep=2pt,leftmargin=*]\n167\t\\item \\textbf{MiniLM}: BCS correlates with log type frequency ($r = 0.201$). Frequent types have more training signal and are extracted more reliably, producing the positive BCS--F1 association.\n168\t\\item \\textbf{Qwen3}: BCS correlates strongly with degree centrality ($r = 0.854$). In the Qwen3 embedding space, high-BCS types are those with many semantic neighbors---central,\n…[truncated 2867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:02:47.622966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "offset": "102",
+              "limit": "12"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:02:47.623167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "102\t\\subsection{Centrality Confound on Homogeneous Schemas}\n103\t\\label{sec:centrality_confound}\n104\t\n105\tPer-type analysis on MAVEN reveals an anomaly: the correlation between mean BCS and per-type error rate is \\emph{positive}---Qwen3 $\\rho = +0.189$ ($p = 0.021$) and MiniLM $\\rho = +0.208$ ($p = 0.011$)---opposite to the negative direction predicted by the confusability hypothesis.\n106\t\n107\tThis reversal traces to a property of same-domain schemas documented by \\citet{cai-isotropy-clusters-2021}: when all types derive from a single ontology (here, FrameNet), their embeddings collapse into a single cluster in representation space. In this regime, a type's mean BCS conflates two distinct properties: (i)~confusability with neighbors, which should increase errors, and (ii)~centrality within the cluster, which correlates with being a well-represented, high-frequency type that LLMs extract reliably. The centrality signal dominates, flipping the aggregate correlation.\n108\t\n109\tCritically, the pairwise SCS--confusion correlation remains intact: MAVEN MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10}$), consistent with the values in Table~\\ref{tab:pairwise}. The problem lies in the aggregation step (mean BCS per type), not in the pairwise signal itself.\n110\t\n111\tFew-NERD, whose 66 types span 8 coarse categories across diverse domains, does not exhibit this confound. Its per-type correlation is $\\rho = -0.293$ ($p = 0.02$, $n = 63$), in the expected negative direction: types with higher mean confusability have higher error rates. The cross-domain schema spans multiple embedding clusters, breaking the centrality--confusability conflation.\n112\t\n113\tThis analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:02:47.623320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+              "old_string": "This analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation.",
+              "new_string": "This analysis carries a practical implication: mean BCS is a reliable predictor of schema difficulty only for cross-domain schemas. For same-domain schemas where types form a single semantic cluster, pairwise SCS should be used directly, or the centrality component must be factored out before aggregation. A residualized partial-correlation analysis confirming that the raw BCS--F1 correlation vanishes after controlling for frequency and degree centrality is provided in Appendix~\\ref{sec:appendix_residualized_bcs}."
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:02:47.623776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:02:47.624059+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix section written and cross-referenced. Changes:\n\n1. **`docs/paper/main.tex`** — Added new Appendix section \"Controlling for Centrality Confounds in MAVEN Per-Type Analysis\" (`\\ref{sec:appendix_residualized_bcs}`) after the Factorial Analysis section. Contains:\n   - Confound identification: MiniLM → log freq (r=0.201), Qwen3 → degree centrality (r=0.854)\n   - Table with raw ρ vs. partial r for both embeddings under single and joint controls\n   - All six numbers from `exp_maven_residualized_bcs` registry entry\n   - Interpretation linking different confound mechanisms to embedding properties\n   - Explicit statement that pairwise SCS remains valid (MiniLM r=0.129, p<10⁻¹⁰)\n\n2. **`docs/paper/results.tex`** — Added forward reference from Section 3.5 (centrality confound) to the new appendix."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_appendix_maven_residualized_20260516T020105"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ]
+}

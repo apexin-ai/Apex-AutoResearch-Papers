@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c3a23b88cda993fbc25",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3781,
+    "sha256": "6846483b751252bc0a07f8e2023e0637a78e3f387c119e912fbd339981e5f92f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T02:06:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1**（config 明确限定 gpu_ids=[0,1]）\n- 项目工作目录：`/root/autodl-tmp/recursive_gen_depth_est`（根分区 30GB 不可存大文件）\n- OLMo 模型路径必须是 `/root/autodl-tmp/models/olmo-1b-hf/`（不是 olmo-1b）\n- DCOL margin_lr ≤ 1e-4（1e-3 导致 embedding collapse，已验证两次）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，不是 venv）\n- dcol_deberta 在 cuda:0 跑时必须确保无其他进程占显存（v2/v3 均因僵尸进程 OOM 失败）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2（2× RTX PRO 6000 Blackwell 98GB）\n- **工作目录**: `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **模型路径**: `/root/autodl-tmp/models/` 下有 `pythia-1.4b/`, `gpt2-xl/`, `olmo-1b-hf/`, `deberta-v3-large`\n- **数据**: `/root/autodl-tmp/recursive_gen_depth_est/data/` (seed depth_0.jsonl 5000 samples)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**: gpt2xl_topk50_001 (PID 211326, tmux session, cuda:0) — cron 监控中\n- **cuda:1**: 空闲（olmo_topk50_001 已完成，dcol_deberta_003 已 OOM 失败）\n\n### 3. 📊 当前状态\n**刚完成的关键事件**:\n- olmo_topk50_001 SUCCESS — 3×3 矩阵 OLMo 行全部完成（7/9 done）\n- dcol_deberta_003 FAILED (OOM) — cuda:1 上跑但 GPU 0 的进程(PID 239543, 57GB) 占了显存。这是第三次 DCOL 失败\n\n**RUNNING**: gpt2xl_topk50_001 (cuda:0) — 3×3 矩阵最后一格（GPT-2 XL top-k）\n**PREPARING**: olmo_temp09_002 — 已标记 killed（无需重跑，olmo_temp09_001 已成功）\n\n**3×3 矩阵进度**: 8/9 done, 1/9 running (gpt2xl_topk50)\n- Pythia: 3/3 ✅\n- OLMo: 3/3 ✅  \n- GPT-2 XL: 2/3 ✅ + 1 running\n\n**等待中**: gpt2xl_topk50_001 cron 回调（进程仍在运行）\n\n### 4. 📋 待办（条件触发式）\n- gpt2xl_topk50_001 cron 回调(success) → 3×3 矩阵完成 9/9 → 更新 Atlas v2 → 向 Director 汇报矩阵全部完成 + 建议下一步（DCOL / paper writing）\n- gpt2xl_topk50_001 cron 回调(failed) → 查日志诊断 → 重跑\n- cuda:0 释放后 → DCOL v4 训练（必须先 `nvidia-smi` 确认无僵尸，再提交。batch_size 可能需降到 16 防 OOM）\n- cuda:1 现在空闲 → 应该立即利用：可跑 baseline battery 扩展 / EDD threshold sensitivity / 或其他非 GPU-heavy 任务\n- DCOL 再次 OOM → 考虑降 batch_size 到 16 或用 gradient accumulation；或向 Director 建议放弃 DCOL 从 paper 中移除\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D001: MVP PASS (Pythia 78.2%)\n- D002: Dream 审稿 → Atlas/EDD 为 primary contribution, DCOL 为 secondary\n- D004: 跨策略泛化降级为 \"strategy-dependent magnitude\"\n- D006: 解码策略影响是模型依赖的（GPT-2 XL/OLMo temp09 提升，Pythia 下降）\n- D009: 6/7 cells EDD=3（未饱和），Pythia topk50 EDD=1（唯一饱和点）\n\n**最容易判断错的事**:\n1. **DCOL 不是 P0** — Atlas/EDD 才是 primary contribution（D002）。DCOL 三次失败不影响核心 story，不要花太多 GPU 时间在上面\n2. **dcol OOM 的根因是其他进程** — 不是 DCOL 代码本身太大，98GB 卡跑 DeBERTa-large 绰绰有余。每次提交前必须确认 GPU 完全空闲\n3. **ROADMAP 里 olmo_temp09 还标 \"running\"** — 实际已完成(success)，ROADMAP 未更新。矩阵真实状态是 8/9 done\n4. **olmo_temp09_002 标 PREPARING** — 已 killed，不需要处理\n5. **cuda:1 空闲 = 失职** — 下一个 session 应立即安排任务上去\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "46fcfae9b64e75b65838",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "diagnose batch64 oom root cause",
+  "task_key": "worker_diagnose_batch64_oom_root_cause_20260517T083148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_batch64_oom_root_cause_20260517T083148.log",
+    "occurrence": 1,
+    "bytes": 752998,
+    "sha256": "5722c528d422e3f620bfa14214b5903f4e4d6efaa5e42497fe7d4728bef290b1"
+  },
+  "statistics": {
+    "messages": 484,
+    "user_turns": 0,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 207,
+      "tool_result": 207,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "46fcfae9b64e75b65838-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "46fcfae9b64e75b65838-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "46fcfae9b64e75b65838-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ]
+}

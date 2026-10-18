@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4800e2e29be92ef67f43",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd 38929 batch2",
+  "task_key": "worker_deploy_westd-38929-batch2_20260523T152138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-38929-batch2_20260523T152138_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "53c68bd622d9d33a5760f2314a1242f1c5458f161e9541be5bba9ae95fd7654d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-38929 方案 B 部署完成。汇总：\n\n| GPU | exp_id | 模型 | 方法 | Suite | tmux session |\n|-----|--------|------|------|-------|-------------|\n| 0 | `eval_pi05_random_k0925_goal_seed42_w38` | π0.5 | Random k=0.925 | libero_goal | 同名 |\n| 1 | `eval_pi05_l2norm_k0925_goal_seed42_w38` | π0.5 | L2norm k=0.925 | libero_goal | 同名 |\n| 2 | `eval_e5_xvla_attn_last_goal_k03` | X-VLA | attention_last k=0.3 | libero_goal | 同名 |\n| 3 | `eval_e5_xvla_attn_mean_goal_k03` | X-VLA | attention_mean k=0.3 | libero_goal | 同名 |\n\n- OpenVLA Goal/Long 模型不存在，走了方案 B\n- 4 个 tmux session 均已启动，registry 状态已更新为 RUNNING\n- X-VLA attn_last 已开始 Task 0 评估，π0.5 正在加载模型\n- 日志路径：`/root/autodl-tmp/logs/<exp_id>.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

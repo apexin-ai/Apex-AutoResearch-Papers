@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23aae1baad523fb59fc8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260515T145200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260515T145200_result.json",
+    "occurrence": 1,
+    "bytes": 1651,
+    "sha256": "febf480ea0794d5cb32408c45b987762933d73b75191296a3fef78c855cc3d5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 状态\n| GPU | Utilization | Memory |\n|-----|-------------|--------|\n| 0 | 0% | 3 MiB / 97887 MiB |\n| 1 | 0% | 3 MiB / 97887 MiB |\n\nGPU 当前空闲——因为两个训练进程仍在**模型加载阶段**，尚未将模型搬到 GPU 上。\n\n### 训练进程（均存活）\n| 实验 | PID | GPU | 启动时间 | CPU% | 状态 |\n|------|-----|-----|----------|------|------|\n| baseline (seed42) | **26017** | cuda:0 | 22:52 | 696% | 加载模型中 |\n| imm_anchor (seed42) | **26092** | cuda:1 | 22:52 | 764% | 加载模型中 |\n\n两个进程通过 tmux session 启动（`mvp_baseline` 和对应的 imm session），用 `tee` 同步写日志。\n\n### 日志内容\n两份日志都只到**模型加载阶段**，正在从 HuggingFace 拉取 SmolVLM2-500M-Video-Instruct 的配置/权重：\n\n- **baseline.log** (474 bytes): `Loading SmolVLA policy...` → HTTP HEAD 200 OK (config.json)\n- **imm_anchor.log** (873 bytes): `Loading SmolVLA policy...` → HTTP HEAD 200 OK (config.json, processor_config.json)\n\n**尚未开始 step 计数，无报错。**\n\n### Orphan PID 18717\n已消失（`PID_18717_GONE`）。\n\n### 其他后台进程\n还有几个之前的下载脚本在跑（PID 14165 download_model3.py, PID 15450 download_model_fast.py, PID 16104 download_mirror.py），以及 lerobot dataset 加载进程（PID 12397）。这些可能在模型加载完成后就没用了，后续可清理。\n\n### 结论\n两个实验刚启动约 2-3 分钟，正在加载模型权重。预计模型加载完成后（~1-5 分钟）GPU 利用率会上升并开始 step 计数。当前无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

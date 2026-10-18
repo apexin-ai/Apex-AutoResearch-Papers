@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f577c1db19481d260f6a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k09 strict v2",
+  "task_key": "worker_analysis_eval_pi05_random_k09_strict_v2_20260527T122207",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k09_strict_v2_20260527T122207_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "f8e3543515c2c67df1a3904102d0adb3c554c3c35bee3da32acc62c2ed0341dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新至 DONE。\n\n**结果摘要**：π0.5 Random k=0.9 Long strict v2 = **34.2%**（171/500），177.3 min，EXIT_CODE=0，完整完成。\n\n确认 D263 的 34.2% 来自本次 v2 实验。反单调性曲线 strict 下依然成立：k=0.75(63%)→k=0.85(45%)→**k=0.9(34.2%)**→k=0.95(60.6%)，k=0.9 确实是 dip point。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

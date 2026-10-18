@@ -1,0 +1,1340 @@
+{
+  "schema_version": "1.0",
+  "id": "b7ed2f0a3a08d574162d",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper r26 sdgd compress",
+  "task_key": "worker_paper_r26_sdgd_compress_20260522T050238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_r26_sdgd_compress_20260522T050238.jsonl",
+    "occurrence": 1,
+    "bytes": 52906,
+    "sha256": "d2dc91776e78bb6243e7ce1430470b57ed33704595d01863d24344eef6a3d9e6"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T05:08:41.460791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T05:08:41.461274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T05:08:41.461565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T05:08:41.461782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260515T053106/best/paper.tex\nartifacts/dream_reports/dream_20260515T053106/median/paper.tex\nartifacts/dream_reports/dream_20260515T053106/worst/paper.tex\nartifacts/dream_reports/dream_20260515T113743/best/paper.tex\nartifacts/dream_reports/dream_20260515T113743/median/paper.tex\nartifacts/dream_reports/dream_20260515T113743/worst/paper.tex\nartifacts/dream_reports/dream_20260515T140829/best/paper.tex\nartifacts/dream_reports/dream_20260515T140829/median/paper.tex\nartifacts/dream_reports/dream_20260515T140829/worst/paper.tex\nartifacts/_project/paper/dataset_stats.tex\nartifacts/paper/tables/dataset_stats.tex\nartifacts/_project/paper/sdgd_negative.tex\nartifacts/_project/paper/experimental_setup.tex\ndocs/paper/conclusion.tex\nartifacts/_project/paper/results.tex\nartifacts/dream_reports/dream_20260516T073533/best/paper.tex\nartifacts/dream_reports/dream_20260516T073533/median/paper.tex\nartifacts/dream_reports/dream_20260516T073533/worst/paper.tex\ndocs/paper/supplementary.tex\nartifacts/acknowledgements_draft.tex\ndocs/paper/prompt_appendix.tex\ndocs/paper/checklist.tex\ndocs/paper/experimental_setup.tex\nartifacts/error_taxonomy_cross_model_table.tex\nartifacts/permutation_equivalence_latex.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/discussion.tex\ndocs/paper/results.tex\ndocs/paper/main.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T05:08:41.462008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T05:08:41.462188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (26119 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T05:08:41.462361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T05:08:41.462631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\\usepackage[normalem]{ulem}\n15\t\\usepackage{listings}\n16\t\n17\t\\title{How Does Schema Complexity Predict Performance\\\\in Training-Free LLM Information Extraction?}\n18\t\n19\t\\author{Anonymous}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t\\input{abstract}\n25\t\n26\t\\input{introduction}\n27\t\n28\t\\input{related_work}\n29\t\n30\t\\input{experimental_setup}\n31\t\n32\t\\input{results}\n33\t\n34\t\\input{sdgd_negative}\n35\t\n36\t\\input{discussion}\n37\t\n38\t\\section*{Limitations}\n39\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n40\t\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B, LLaMA-70B, Gemini Flash) covers Dimensions~1--2 (count curves, BCS-controlled extremes) but does not replicate secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence). Specifically, TOST factorial interaction (\\S\\ref{sec:multi_channel}) and SDGD failure analysis (\\S\\ref{sec:sdgd}) are established on Qwen3-32B alone; error taxonomy replicates on two additional models (Table~\\ref{tab:cross_model_error_taxonomy}), but TOST and SDGD cross-model replication remains the most pressing extension. Gemini provides only partial, leverage-sensitive corroboration (leave-one-out $r{:}\\;{-}0.80 \\to {-}0.42$; Appendix~\\ref{sec:appendix_cross_model_gemini}); proprietary-model generalization remains open.\n41\t\n42\t\\item \\textbf{Effect size and statistical design.} Pairwise SCS explains a small fraction of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\\times$ BCS interaction is bounded on FewRel but nonzero on DocRED, partially confounded by BCS range restriction at higher counts (Appendix~\\ref{sec:appendix_factoria\n…[truncated 5658 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T05:08:41.462902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T05:08:41.463153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}\n2\t\\label{sec:sdgd}\n3\t\n4\tA natural intervention is to partition the schema so confusable types never co-occur. We test \\textbf{Schema-DAG-Guided Decomposition} (SDGD), which applies greedy graph coloring on the SCS graph to assign types to low-confusability batches.\n5\t\n6\t\\paragraph{NER and ED: merge amplification.}\n7\t\\looseness=-1\n8\tAll decomposition modes fall below the single-pass NER baseline (F1\\,=\\,0.445): SDGD obtains 0.251, random batching 0.320. The core failure is \\emph{merge amplification}: presenting text $k$ times collapses precision (0.563$\\to$0.210--0.249). MAVEN event detection replicates this (precision 0.287$\\to$0.091; Appendix~\\ref{sec:appendix_sdgd}).\n9\t\n10\t\\paragraph{RE: routing failure.}\n11\t\\looseness=-1\n12\tOracle routing recovers accuracy (0.802 vs.\\ 0.504 single-pass; Table~\\ref{tab:batch_composition}), but confusability-aware grouping yields only +1.4\\,pp over random ($p \\approx 0.19$, n.s.). All practical routing strategies fall below the single-pass baseline (Appendix~\\ref{sec:appendix_routing}); the bottleneck is routing accuracy rather than partitioning quality.\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T05:08:41.463396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "100",
+              "limit": "200"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T05:08:41.463799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\\small\n101\t\\caption{NER batch-level BCS--F1 correlation across models. $^\\dagger$Partial correlation controlling for type frequency. $^\\ddagger$LLaMA-70B count\\_12 shows $r{=}{-}0.42$ ($p{=}0.034$, uncorrected; Bonferroni $p{=}0.069$); pooled and count\\_6 are null, consistent with sampling noise at $n{=}25$. The null is observed on three models; Gemini remains untested.}\n102\t\\label{tab:cross_model_ner_null}\n103\t\\begin{tabular}{lcl}\n104\t\\toprule\n105\t\\textbf{Model} & \\textbf{NER BCS--F1 $r$} & \\textbf{Status} \\\\\n106\t\\midrule\n107\tQwen3-32B & $0.004$ ($p = 0.94$) & Null \\\\\n108\tLLaMA-3.1-8B & $-0.12$ ($p = 0.29$)\\rlap{$^\\dagger$} & Null \\\\\n109\tLLaMA-3.1-70B & $-0.13$ ($p = 0.36$)\\rlap{$^\\ddagger$} & Null \\\\\n110\tGemini 2.5 Flash & --- & Not tested \\\\\n111\t\\bottomrule\n112\t\\end{tabular}\n113\t\\end{table}\n114\t\n115\t\\begin{table}[h]\n116\t\\centering\n117\t\\small\n118\t\\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. Spearman $\\rho$ computed over $n=148$ batches (NER), $n=154$ (RE), and $n=110$ (DocRE). IntraSub scales monotonically with BCS across all three datasets. DocRE missed rates decrease with BCS, indicating high-confusability errors shift from omission to substitution.}\n119\t\\label{tab:error_taxonomy}\n120\t\\resizebox{\\columnwidth}{!}{%\n121\t\\begin{tabular}{llrrrrrrr}\n122\t\\toprule\n123\t & & \\multicolumn{5}{c}{\\textbf{BCS Bin}} & & \\\\\n124\t\\cmidrule(lr){3-7}\n125\t\\textbf{Task} & \\textbf{Error} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{V.High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n126\t\\midrule\n127\tNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & --- & 1.000 & ${<}0.001$ \\\\\n128\tRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 20.3\\% & 32.3\\% & 0.954 & ${<}\\,0.001$ \\\\\n129\tDocRE & IntraSub & --- & 4.8\\% & 22.4\\% & 37.0\\% & 41.9\\% & 0.843 & ${<}\\,0.001$ \\\\\n130\t\\midrule\n131\tNER & Missed & --- & 42.8\\% & 64.8\\% & 49.9\\% & --- & --- & --- \\\\\n132\tRE  & Missed & --- & 10.4\\% & 11.3\\% & 13.1\\% & 15.7\\% & --- & --- \\\\\n133\tDocRE & Missed & --- \n…[truncated 15362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T05:08:41.464163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T05:08:41.464422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions and mechanisms.}\n5\t\\looseness=-1\n6\tThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; no NER BCS effect detected across three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound. Batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n7\t\n8\t\\paragraph{Practical implications and conclusion.}\n9\t\\label{sec:conclusion}\n10\t\\looseness=-1\n11\tFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T05:08:41.464669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T05:08:41.465027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\tFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where eliminating type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}). The pattern is stable across three seeds (max $\\Delta = 10.7$\\,pp, within 1\\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\\times$; Appendix~\\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n10\t\n11\t\\subsection{Pairwise Confusability and Type Confusion}\n12\t\\label{sec:pairwise}\n13\t\n14\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\\n…[truncated 13353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T05:08:41.465303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T05:08:41.465657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experimental_setup}\n3\t\n4\tWe evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks and four datasets: named entity recognition (NER), sentence-level relation extraction (RE), document-level RE, and event detection (ED).\n5\t\n6\t\\subsection{Tasks and Datasets}\n7\t\\label{sec:datasets}\n8\t\n9\t\\paragraph{Few-NERD (NER).}\n10\tFew-NERD \\citep{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains and is suitable for cross-domain evaluation. We sample 1{,}000 instances uniformly from the test set; type frequency follows the natural long-tail distribution of Few-NERD. Evaluation uses token-level text matching. Pairwise analysis covers 1{,}953 type pairs with non-zero co-occurrence out of $\\binom{66}{2}=2{,}145$ possible pairs.\n11\t\n12\t\\paragraph{FewRel (RE).}\n13\tFewRel \\citep{fewrel-2018} contains 80 relation types sourced from Wikidata. Since the validation split covers only 16 relations, we combine the training and validation splits to obtain the full 80-relation pool required for schema-scale experiments, and sample 1{,}000 balanced instances (12--13 per relation type, stratified to ensure equal representation). A held-out validation confirms SCS--confusion generalization across the split boundary (Appendix~\\ref{app:scs-heldout-validation}). Each instance provides a sentence with marked head and tail entities; the task is to classify the relation. FewRel's balanced design (700 instances per relation type) eliminates type frequency as a potential confound; this balance makes it the primary dataset for BCS analysis. Contamination analysis (Appendix~\\ref{app:split-origin}) shows extraction difficulty correlates inversely with training-set prevalence, and BCS effects are unchanged when controlling for contamination.\n14\t\n15\t\\p\n…[truncated 9432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T05:08:41.466020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "tab:batch_composition",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T05:08:41.466245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex:202:We evaluate five non-oracle routing strategies on FewRel 80-relation RE using graph-coloring sub-schema decomposition (same grouping as Table~\\ref{tab:batch_composition}). Each strategy selects a single sub-schema for each test instance and returns that sub-schema's prediction.\ndocs/paper/main.tex:342:\\label{tab:batch_composition}\ndocs/paper/main.aux:1657:\\newlabel{tab:batch_composition}{{13}{17}{Batch composition on FewRel 80-relation RE with oracle routing. $^\\dagger $Mean $\\pm $ SD across 15 random seeds}{table.caption.46}{}}\ndocs/paper/sdgd_negative.tex:12:Oracle routing recovers accuracy (0.802 vs.\\ 0.504 single-pass; Table~\\ref{tab:batch_composition}), but confusability-aware grouping yields only +1.4\\,pp over random ($p \\approx 0.19$, n.s.). All practical routing strategies fall below the single-pass baseline (Appendix~\\ref{sec:appendix_routing}); the bottleneck is routing accuracy rather than partitioning quality."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T05:08:41.466477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "300",
+              "limit": "100"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T05:08:41.466799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "300\t\\end{tabular}}\n301\t\\end{table}\n302\t\n303\t\\paragraph{Interpretation.}\n304\tThe two embeddings encode different aspects of the same underlying confound. MiniLM, a smaller sentence encoder, produces a tighter embedding cluster for MAVEN's FrameNet-derived types; here, type frequency is the primary confounder because frequent types accumulate higher mean similarity to the dense cluster. Qwen3, with a larger representation space, differentiates types enough that frequency is not the dominant factor, but degree centrality (the count of strong semantic neighbors) becomes the confound instead. In both cases, the positive raw correlation reflects a centrality artifact: types that are semantically central are both high-BCS and easy to extract.\n305\t\n306\tUnder joint control, both embeddings yield $p > 0.2$; the raw positive BCS--F1 correlation on MAVEN is thus fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 0.001$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n307\t\n308\t\\subsection{Partial Correlation: Controlling for Degree Centrality}\n309\t\\label{sec:appendix_partial_corr}\n310\t\n311\tTo rule out degree centrality as a confound in cross-domain datasets, we compute partial correlations between BCS and accuracy controlling for batch mean degree centrality (mean off-diagonal SCS per type, averaged across batch members).\n312\t\n313\t\\begin{table}[h]\n314\t\\centering\n315\t\\small\n316\t\\caption{BCS--accuracy partial correlation controlling for degree centrality. FewRel shows minimal attenuation (VIF${}\\,=\\,1.18$, low collinearity). DocRED shows high BCS--centrality collinearity (VIF${}\\,=\\,50.9$, $r = 0.99$), but the partial correlatio\n…[truncated 7731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T05:08:41.467105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T05:08:41.467316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type\n1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (26 pages, 477070 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T05:08:41.467496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"\\\\\\\\section\\|\\\\\\\\subsection\\|Limitations\" main.log 2>/dev/null | head -30; echo \"---\"; grep -n \"^\\[\" main.log | head -30",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T05:08:41.467719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n490:[Loading MPS to PDF converter (version 2006.09.02).]\n614:[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\n701:[][][]\\T1/ptm/m/n/9 (+20) Partial cor-re-la-tion con-trol-ling for de-gree cen-\n710:[6]\n719:[7 <../../figures/paper/fig_error_taxonomy.pdf>]\n744:[8])\n761:[9] (./main.bbl\n763:[]\\T1/ptm/m/n/10 (+20) Dhananjay Ashok and Zachary C. Lip-ton. 2023.\n768:[]\\T1/ptm/m/n/10 (+20) Jack Boy-lan, Chris Hokamp, and Demian\n789:[]\\T1/ptm/m/n/10 (+20) Mark Col-lier, Basil Mustafa, Efi Kokiopoulou,\n792:[10] [11]\n797:[12]\n799:[]\\T1/ptm/m/n/10 (+20) Dong Zhao, Yadong Wang, Xi-ang Chen, Chenxi\n814:[]\\T1/ptm/m/n/10.95 (+20) Compute pair-wise SCS ma-trix $\\OML/cmm/m/it/10.95 S[\n820:[]\\T1/ptm/m/n/10.95 (+20) Single-pass ex-trac-tion achieves F1=0.445\n833:[13]\n839:[14]\n845:[15]\n869:[16] (./prompt_appendix.tex [17])\n890:[18]\n894:[19]\n908:[20]\n912:[21]\n923:[22]\n925:[]\\T1/ptm/m/n/10.95 (+20) Pairwise SCS dis-tri-bu-tions do not dif-\n938:[23]\n955:[24]\n962:[]\\T1/ptm/m/n/10 (+20) Table 28: |Top-10 con-fused en-tity type pairs on\n970:[25]\n975:[26] (./main.aux)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T05:08:41.467994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"section|Limitations\" main.aux | head -30",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T05:08:41.468264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\@writefile{toc}{\\contentsline {section}{\\numberline {1}Introduction}{1}{section.1}\\protected@file@percent }\n\\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}\n\\@writefile{toc}{\\contentsline {section}{\\numberline {2}Related Work}{2}{section.2}\\protected@file@percent }\n\\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}\n\\@writefile{toc}{\\contentsline {paragraph}{Training-free LLM IE.}{2}{section*.1}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {paragraph}{Schema complexity in IE.}{2}{section*.2}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {paragraph}{Schema complexity in dialogue and IE.}{3}{section*.3}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {paragraph}{SCS novelty.}{3}{section*.4}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {section}{\\numberline {3}Experimental Setup}{3}{section.3}\\protected@file@percent }\n\\newlabel{sec:experimental_setup}{{3}{3}{Experimental Setup}{section.3}{}}\n\\@writefile{toc}{\\contentsline {subsection}{\\numberline {3.1}Tasks and Datasets}{3}{subsection.3.1}\\protected@file@percent }\n\\newlabel{sec:datasets}{{3.1}{3}{Tasks and Datasets}{subsection.3.1}{}}\n\\@writefile{toc}{\\contentsline {paragraph}{Few-NERD (NER).}{3}{section*.5}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {paragraph}{FewRel (RE).}{3}{section*.6}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {paragraph}{DocRED (Document-level RE).}{3}{section*.7}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {paragraph}{MAVEN (ED).}{3}{section*.8}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {subsection}{\\numberline {3.2}Schema Confusability Score (SCS)}{3}{subsection.3.2}\\protected@file@percent }\n\\newlabel{sec:scs}{{3.2}{3}{Schema Confusability Score (SCS)}{subsection.3.2}{}}\n\\newlabel{sec:scs-validation}{{3.2}{4}{SCS as a lightweight proxy}{section*.10}{}}\n\\@writefile{toc}{\\contentsline {paragraph}{SCS as a lightweight proxy.}{4}{section*.10}\\protected@file@percent }\n\\@writefile{to\n…[truncated 963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T05:08:41.468517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"sdgd|discussion|Limitations|conclusion|appendix|Additional\" main.aux | head -20",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T05:08:41.468781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\newlabel{sec:sdgd}{{5}{8}{Schema Decomposition: Failure, Diagnosis, and Mitigation}{section.5}{}}\n\\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}\n\\newlabel{sec:conclusion}{{6}{9}{Practical implications and conclusion}{section*.24}{}}\n\\@writefile{toc}{\\contentsline {paragraph}{Practical implications and conclusion.}{9}{section*.24}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {section}{\\numberline {A}Additional Figures}{13}{appendix.A}\\protected@file@percent }\n\\newlabel{sec:appendix_figures}{{A}{13}{Additional Figures}{appendix.A}{}}\n\\@writefile{toc}{\\contentsline {section}{\\numberline {B}SDGD Full Protocol and Results}{13}{appendix.B}\\protected@file@percent }\n\\newlabel{sec:appendix_sdgd}{{B}{13}{SDGD Full Protocol and Results}{appendix.B}{}}\n\\@writefile{lot}{\\contentsline {table}{\\numberline {8}{\\ignorespaces Few-NERD extraction under decomposition modes. V1 uses union merge; v2 uses confidence-gated merge with \\texttt  {min\\_batch\\_size=8} (reducing 8$\\to $4 batches for sdgd\\_zero). All decomposition modes produce lower F1 than the single-pass baseline. All modes use the v1 prompt.}}{14}{table.caption.34}\\protected@file@percent }\n\\newlabel{tab:sdgd_results}{{8}{14}{Few-NERD extraction under decomposition modes. V1 uses union merge; v2 uses confidence-gated merge with \\texttt {min\\_batch\\_size=8} (reducing 8$\\to $4 batches for sdgd\\_zero). All decomposition modes produce lower F1 than the single-pass baseline. All modes use the v1 prompt}{table.caption.34}{}}\n\\newlabel{sec:appendix_routing}{{B.1}{14}{Practical Routing Strategies on RE}{subsection.B.1}{}}\n\\@writefile{toc}{\\contentsline {section}{\\numberline {C}Factorial Analysis and Separability Test}{14}{appendix.C}\\protected@file@percent }\n\\newlabel{sec:appendix_factorial}{{C}{14}{Factorial Analysis and Separability Test}{appendix.C}{}}\n\\@writefile{lot}{\\contentsline {table}{\\numberline {10}{\\ignorespaces TOST sensitivity analysis across equivalence margins. The interaction eff\n…[truncated 1416 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T05:08:41.469128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"Limitations\\|bibliography\\|\\\\\\\\appendix\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.aux | head -10",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T05:08:41.469356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T05:08:41.469575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"Limit\\|biblio\\|appendix\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.aux",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T05:08:41.469883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1342:\\@writefile{toc}{\\contentsline {section}{\\numberline {A}Additional Figures}{13}{appendix.A}\\protected@file@percent }\n1343:\\newlabel{sec:appendix_figures}{{A}{13}{Additional Figures}{appendix.A}{}}\n1347:\\@writefile{toc}{\\contentsline {section}{\\numberline {B}SDGD Full Protocol and Results}{13}{appendix.B}\\protected@file@percent }\n1348:\\newlabel{sec:appendix_sdgd}{{B}{13}{SDGD Full Protocol and Results}{appendix.B}{}}\n1417:\\newlabel{sec:appendix_routing}{{B.1}{14}{Practical Routing Strategies on RE}{subsection.B.1}{}}\n1428:\\@writefile{toc}{\\contentsline {section}{\\numberline {C}Factorial Analysis and Separability Test}{14}{appendix.C}\\protected@file@percent }\n1429:\\newlabel{sec:appendix_factorial}{{C}{14}{Factorial Analysis and Separability Test}{appendix.C}{}}\n1534:\\@writefile{toc}{\\contentsline {section}{\\numberline {D}Within-Pool CI Details}{15}{appendix.D}\\protected@file@percent }\n1535:\\newlabel{sec:appendix_within_pool}{{D}{15}{Within-Pool CI Details}{appendix.D}{}}\n1550:\\@writefile{toc}{\\contentsline {section}{\\numberline {E}Controlling for Centrality Confounds in MAVEN Per-Type Analysis}{16}{appendix.E}\\protected@file@percent }\n1551:\\newlabel{sec:appendix_residualized_bcs}{{E}{16}{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}{appendix.E}{}}\n1617:\\newlabel{sec:appendix_partial_corr}{{E.1}{16}{Partial Correlation: Controlling for Degree Centrality}{subsection.E.1}{}}\n1640:\\newlabel{sec:appendix_ner_power}{{E.2}{17}{NER BCS-Null Power Analysis}{subsection.E.2}{}}\n1654:\\@writefile{toc}{\\contentsline {section}{\\numberline {F}Batch Composition Results}{17}{appendix.F}\\protected@file@percent }\n1655:\\newlabel{sec:appendix_batch_composition}{{F}{17}{Batch Composition Results}{appendix.F}{}}\n1660:\\@writefile{toc}{\\contentsline {section}{\\numberline {G}Prompt Templates}{17}{appendix.G}\\protected@file@percent }\n1661:\\newlabel{sec:appendix_prompts}{{G}{17}{Prompt Templates}{appendix.G}{}}\n1824:\\newlabel{sec:appendix_type_defs}{{G.4}{18}{Type Definiti\n…[truncated 5175 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T05:08:41.470271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "content": "\\section{Schema Decomposition}\n\\label{sec:sdgd}\n\nA natural intervention is to partition the schema so confusable types never co-occur. We tested Schema-DAG-Guided Decomposition (SDGD), which applies greedy graph coloring on the SCS graph to assign types to low-confusability batches. While oracle routing recovers accuracy (0.802 vs.\\ 0.504 single-pass), all practical routing strategies fall below the single-pass baseline, and NER decomposition amplifies false positives (F1: 0.445$\\to$0.251). The bottleneck is routing accuracy rather than partitioning quality. Full protocol, results, and analysis are in Appendix~\\ref{sec:appendix_sdgd}.\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T05:08:41.470549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T05:08:41.470799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^\\[|Error|Undefined\" | head -30",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T05:08:41.471057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Loading MPS to PDF converter (version 2006.09.02).]\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\n[][][]\\T1/ptm/m/n/9 (+20) Partial cor-re-la-tion con-trol-ling for de-gree cen-\n[6]\n\\T1/ptm/m/n/10.95 (+20) Error tax-on-omy de-com-po-si-tion (Ta-ble [][]6[][] an\n[7 <../../figures/paper/fig_error_taxonomy.pdf>]\n[8]\n[9] (./main.bbl\n[]\\T1/ptm/m/n/10 (+20) Dhananjay Ashok and Zachary C. Lip-ton. 2023.\n[]\\T1/ptm/m/n/10 (+20) Jack Boy-lan, Chris Hokamp, and Demian\n[]\\T1/ptm/m/n/10 (+20) Mark Col-lier, Basil Mustafa, Efi Kokiopoulou,\n[10] [11]\n[12]\n[]\\T1/ptm/m/n/10 (+20) Dong Zhao, Yadong Wang, Xi-ang Chen, Chenxi\n[]\\T1/ptm/m/n/10.95 (+20) Compute pair-wise SCS ma-trix $\\OML/cmm/m/it/10.95 S[\n[]\\T1/ptm/m/n/10.95 (+20) Single-pass ex-trac-tion achieves F1=0.445\n[13]\n[15] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\n[16] (./prompt_appendix.tex [17])\n[18]\n[19]\n[20]\n[21]\n[22]\n[]\\T1/ptm/m/n/10.95 (+20) Pairwise SCS dis-tri-bu-tions do not dif-\n[23]\n[24]\n[]\\T1/ptm/m/n/10 (+20) Table 28: |Top-10 con-fused en-tity type pairs on\n[25]\n[26] (./main.aux)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T05:08:41.471330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"sec:sdgd|sec:discussion|sec:conclusion\" main.aux",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T05:08:41.471575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\newlabel{sec:sdgd}{{5}{8}{Schema Decomposition}{section.5}{}}\n\\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}\n\\newlabel{sec:conclusion}{{6}{9}{Practical implications and conclusion}{section*.22}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T05:08:41.471816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Boundary conditions and mechanisms.}\n\\looseness=-1\nThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; no NER BCS effect detected across three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound. Batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).",
+              "new_string": "\\paragraph{Boundary conditions.}\n\\looseness=-1\nThe confusability signal applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). Pairwise $r^2 \\approx 1.3\\%$ compounds at the batch level ($R^2 \\approx 22\\%$, ${\\sim}$31\\,pp extreme gap on FewRel) because correlated type interactions aggregate within shared prompts. The NER--RE asymmetry reflects dispersed error modes and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power})."
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T05:08:41.472056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T05:08:41.472272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Practical implications and conclusion.}\n\\label{sec:conclusion}\n\\looseness=-1\nFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale.",
+              "new_string": "\\paragraph{Practical implications and conclusion.}\n\\label{sec:conclusion}\n\\looseness=-1\nFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs); practitioners can pre-compute SCS to identify high-risk type pairs before deployment. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy, confirming that count and confusability are approximately additive on the probability scale (TOST $p = 0.003$ at $\\pm 3$\\,pp; logit-scale equivalence inconclusive, $p = 0.209$). Dimensional separability is thus supported on the linear scale but remains open on the logit scale."
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T05:08:41.472557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T05:08:41.472775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^\\[|Error|Undefined\" | head -30",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T05:08:41.473039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Loading MPS to PDF converter (version 2006.09.02).]\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\n[][][]\\T1/ptm/m/n/9 (+20) Partial cor-re-la-tion con-trol-ling for de-gree cen-\n[6]\n\\T1/ptm/m/n/10.95 (+20) Error tax-on-omy de-com-po-si-tion (Ta-ble [][]6[][] an\n[7 <../../figures/paper/fig_error_taxonomy.pdf>]\n[8]\n[9] (./main.bbl\n[]\\T1/ptm/m/n/10 (+20) Dhananjay Ashok and Zachary C. Lip-ton. 2023.\n[]\\T1/ptm/m/n/10 (+20) Jack Boy-lan, Chris Hokamp, and Demian\n[]\\T1/ptm/m/n/10 (+20) Mark Col-lier, Basil Mustafa, Efi Kokiopoulou,\n[10] [11]\n[]\\T1/ptm/m/n/10 (+20) Dong Zhao, Yadong Wang, Xi-ang Chen, Chenxi\n[12])\n[]\\T1/ptm/m/n/10.95 (+20) Compute pair-wise SCS ma-trix $\\OML/cmm/m/it/10.95 S[\n[]\\T1/ptm/m/n/10.95 (+20) Single-pass ex-trac-tion achieves F1=0.445\n[13]\n[14] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [15]\n[16] (./prompt_appendix.tex [17])\n[18]\n[20] [21]\n[]\\T1/ptm/m/n/10.95 (+20) Pairwise SCS dis-tri-bu-tions do not dif-\n[22]\n[23]\n[24]\n[]\\T1/ptm/m/n/10 (+20) Table 28: |Top-10 con-fused en-tity type pairs on\n[26] [27] (./main.aux)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T05:08:41.473279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"sec:sdgd|sec:discussion|sec:conclusion\" main.aux",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T05:08:41.473513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\newlabel{sec:sdgd}{{5}{8}{Schema Decomposition}{section.5}{}}\n\\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}\n\\newlabel{sec:conclusion}{{6}{8}{Practical implications and conclusion}{section*.22}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T05:08:41.473798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main 2>/dev/null; pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -c \"Error\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T05:08:41.474080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\nWarning--can't use both volume and number fields in guo-2021-label-confusion\n(There was 1 warning)\n1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T05:08:41.474302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -iE \"Error|Undefined\" | head -10",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T05:08:41.474526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\T1/ptm/m/n/10.95 (+20) Error tax-on-omy de-com-po-si-tion (Ta-ble [][]6[][] an\n[7 <../../figures/paper/fig_error_taxonomy.pdf>]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T05:08:41.474765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i \"undefined\\|multiply\" main.log | grep -v \"\\\\\\\\LT@\" | head -10",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T05:08:41.475020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T05:08:41.475253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"sec:sdgd|sec:discussion|sec:conclusion|appendix_sdgd|appendix_figures\" main.aux",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T05:08:41.475495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\newlabel{sec:sdgd}{{5}{8}{Schema Decomposition}{section.5}{}}\n\\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}\n\\newlabel{sec:conclusion}{{6}{8}{Practical implications and conclusion}{section*.22}{}}\n\\newlabel{sec:appendix_figures}{{A}{13}{Additional Figures}{appendix.A}{}}\n\\newlabel{sec:appendix_sdgd}{{B}{13}{SDGD Full Protocol and Results}{appendix.B}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T05:08:41.475711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"Output written\" main.log",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T05:08:41.475930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (27 pages, 475740 bytes)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T05:08:41.476173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^\\[\" main.log | head -15",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T05:08:41.476410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Loading MPS to PDF converter (version 2006.09.02).]\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\n[][][]\\T1/ptm/m/n/9 (+20) Partial cor-re-la-tion con-trol-ling for de-gree cen-\n[6]\n[7 <../../figures/paper/fig_error_taxonomy.pdf>]\n[8]\n[9] (./main.bbl\n[]\\T1/ptm/m/n/10 (+20) Dhananjay Ashok and Zachary C. Lip-ton. 2023.\n[]\\T1/ptm/m/n/10 (+20) Jack Boy-lan, Chris Hokamp, and Demian\n[]\\T1/ptm/m/n/10 (+20) Mark Col-lier, Basil Mustafa, Efi Kokiopoulou,\n[10] [11]\n[]\\T1/ptm/m/n/10 (+20) Dong Zhao, Yadong Wang, Xi-ang Chen, Chenxi\n[12])\n[]\\T1/ptm/m/n/10.95 (+20) Compute pair-wise SCS ma-trix $\\OML/cmm/m/it/10.95 S[\n[]\\T1/ptm/m/n/10.95 (+20) Single-pass ex-trac-tion achieves F1=0.445"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T05:08:41.476694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T05:08:41.476960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Schema Decomposition}\n2\t\\label{sec:sdgd}\n3\t\n4\tA natural intervention is to partition the schema so confusable types never co-occur. We tested Schema-DAG-Guided Decomposition (SDGD), which applies greedy graph coloring on the SCS graph to assign types to low-confusability batches. While oracle routing recovers accuracy (0.802 vs.\\ 0.504 single-pass), all practical routing strategies fall below the single-pass baseline, and NER decomposition amplifies false positives (F1: 0.445$\\to$0.251). The bottleneck is routing accuracy rather than partitioning quality. Full protocol, results, and analysis are in Appendix~\\ref{sec:appendix_sdgd}.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T05:08:41.477203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T05:08:41.477441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\t\\looseness=-1\n6\tThe confusability signal applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). Pairwise $r^2 \\approx 1.3\\%$ compounds at the batch level ($R^2 \\approx 22\\%$, ${\\sim}$31\\,pp extreme gap on FewRel) because correlated type interactions aggregate within shared prompts. The NER--RE asymmetry reflects dispersed error modes and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n7\t\n8\t\\paragraph{Practical implications and conclusion.}\n9\t\\label{sec:conclusion}\n10\t\\looseness=-1\n11\tFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs); practitioners can pre-compute SCS to identify high-risk type pairs before deployment. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy, confirming that count and confusability are approximately additive on the probability scale (TOST $p = 0.003$ at $\\pm 3$\\,pp; logit-scale equivalence inconclusive, $p = 0.209$). Dimensional separability is thus supported on the linear scale but remains open on the logit scale.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T05:08:41.477697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "154",
+              "limit": "10"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T05:08:41.477966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "154\t\n155\t\\section{SDGD Full Protocol and Results}\n156\t\\label{sec:appendix_sdgd}\n157\t\n158\tWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent (i.e., highly confusable) types share a color. Each color class forms one extraction batch, and predictions are merged via set union.\n159\t\n160\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n161\t\\item Compute pairwise SCS matrix $S_{ij} = \\cos(\\text{embed}(t_i), \\text{embed}(t_j))$.\n162\t\\item Construct graph $G$: add edge $(t_i, t_j)$ iff $S_{ij} > \\tau$.\n163\t\\item Apply greedy graph coloring (\\textsc{largest\\_first}) to assign each type a color $c(t)$."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T05:08:41.478263+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix content is intact with matching label `sec:appendix_sdgd`.\n\n**Summary:**\n\n- **Executed**: 方案 1 (SDGD §5 移入 Appendix) + 方案 3 (Discussion 精简)\n- **SDGD section**: 原 13 行内容（2 段 + section header）压缩为 4 行摘要 + Appendix 引用。完整内容已在 Appendix B (`\\ref{sec:appendix_sdgd}`)\n- **Discussion**: \"Boundary conditions\" 段从 ~5 行压缩为 ~3 行（去除已在 Results 中覆盖的 cross-model replication 描述）；\"Practical implications\" 段压缩约 25%（去除冗余数值重复）\n- **压缩前**: 正文溢出到 page 9（sec:conclusion 在 page 9）\n- **压缩后**: §5、§6 全部��� page 8；Limitations 在 page 8；bibliography 从 page 9 开始\n- **编译结果**: 0 errors, 0 undefined references\n- **最终正文**: ≤ 8 页 ✓"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_sdgd_compress_20260522T050238"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0b5fda99ae25559fdb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp v2 re extreme batch n25",
+  "task_key": "worker_exp_v2-re-extreme-batch-n25_20260516T051154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_v2-re-extreme-batch-n25_20260516T051154_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "9c58e3ffd309069bee0287d93672a2756ee773027c64aa6e05d71afad3ee0656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete and artifact registered. Here are the results:\n\n## FewRel v2 RE Extreme-Batch n=25 Results\n\n| Metric | Value |\n|--------|-------|\n| **n_low / n_high** | 25 / 25 |\n| **Low BCS mean acc** | 0.8521 |\n| **High BCS mean acc** | 0.5967 |\n| **Delta (low − high)** | **+25.54 pp** |\n| **95% Bootstrap CI** | **[+22.42, +28.62] pp** |\n| **Permutation p-value** | **0.0000** |\n| **Pearson r (BCS vs acc)** | **−0.919** (p ≈ 0) |\n| Low BCS range | [0.356, 0.367] |\n| High BCS range | [0.791, 0.811] |\n\n**CONFIRMED**: CI entirely above zero. The BCS → accuracy effect is massive and highly significant under the v2 anti-hallucination prompt.\n\nComparison with n=5 run:\n- n=5: delta=+7.9pp, CI=[−5.2, +21.5] — CI crossed zero, inconclusive\n- n=25: delta=+25.5pp, CI=[+22.4, +28.6] — CI excludes zero decisively\n\nThe larger effect size (25.5 vs 7.9 pp) is due to the wider BCS separation achieved by stochastic greedy batch generation (BCS gap 0.44 vs 0.21 in n=5).\n\nOutput files on server: `/root/schema-dag-extraction/artifacts/exp_v2_re_n25/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

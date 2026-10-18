@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "dd04dfec0626b92c79a7",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "infra kill instruct download base restart",
+  "task_key": "worker_infra_kill-instruct-download-base-restart_20260514T110510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-instruct-download-base-restart_20260514T110510.log",
+    "occurrence": 1,
+    "bytes": 808488,
+    "sha256": "3a715ea6d5f5600178eff78bcbb1af5190c3a53b924e61b19dc8e2793f3dd9be"
+  },
+  "statistics": {
+    "messages": 505,
+    "user_turns": 0,
+    "tool_calls": 185,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 131,
+      "tool_call": 185,
+      "tool_result": 185,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 505,
+      "chunks": [
+        {
+          "path": "dd04dfec0626b92c79a7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd04dfec0626b92c79a7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd04dfec0626b92c79a7-part-0003.json",
+          "message_count": 145
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6ebe931613a7afde9fc6",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16_1780026053.md",
+  "task_key": "loop_16_1780026053",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1780026053.md",
+    "occurrence": 1,
+    "bytes": 3847,
+    "sha256": "59beef2209a6703227ed4f172bb4541d07c4fcc6fe9f085cf3772ce8aa258e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-29T03:37:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-3（所有 4 台服务器统一）。不得用其他 GPU\n- **今天是 CoRL 2026 paper deadline (May 29)**——所有行动以 submission 为最高优先级\n- 4 台 RUNNING 实验（seed47 bonus）是 revision 备用数据，不影响 submission，不要等它们\n- cqa1-33015 曾出现 GPU OOM 冲突（同一 GPU 两个 4.1B 模型），提交前必须确认目标 GPU 无占用\n- 评估统一标准: sample std (n-1), strict mode, 百分比格式 (D301)\n- π0.5 评估 ~2.5h/run, OpenVLA ~8.3h/run (timeout_hours ≥ 9)\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-27271 / cqa1-33015 / westd-41074 / westd-38929，account=root\n- **工作目录**: `/root/autodl-tmp/importance_margin_vla_compress`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 14 张 GPU (4 servers × cuda:0-3，westd-27271 有 2 张)\n- **活跃进程 (7 cron 监控中)**:\n  - eval_pi05_attention_k050_long_seed47_w41 — westd-41074\n  - eval_pi05_attention_k085_long_seed47_w38 — westd-38929\n  - eval_pi05_attn_k09_long_seed47_cqa1 — cqa1-33015\n  - eval_pi05_random_k085_long_seed47_cqa1 — cqa1-33015\n  - eval_pi05_attn_k095_long_seed47_cqa1_v2 (PID 726668) — cqa1-33015\n  - eval_pi05_attn_k095_long_seed47_cqa1_v3 — cqa1-33015\n  - eval_pi05_random_k09_long_seed47_cqa1 — cqa1-33015\n- **westd-27271**: ⚠️ 上次检查代码未同步，仅支持 none/random/l2norm（不支持 attention pruning）\n\n### 3. 📊 当前状态\n**今天是 submission day。** 核心数据全部就绪：\n- ✅ π0.5 Cliff Curve 18/18, OpenVLA Long Curve 18/18, Crossover table 16/16\n- ✅ Importance Margin Inverted-U 6/6 全闭合\n- ✅ 5-seed 90/90 cell 零缺失，build_5seed_tables.py 交叉验证通过\n- ✅ Abstract 已提交 (May 26), Narrative 定稿 (D276), Figures 已生成\n\n**RUNNING 实验 (4)**: 全部是 seed47 bonus seeds（revision 备用），不阻塞 submission:\n- eval_pi05_random_k085_long_seed47_cqa1 (5-seed mean=44.9±1.3pp)\n- eval_pi05_attn_k09_long_seed47_cqa1 (5-seed mean=64.2±1.0pp)\n- eval_pi05_attention_k085_long_seed47_w38 (5-seed mean=50.8±1.3pp)\n- eval_pi05_attention_k050_long_seed47_w41 (5-seed mean=49.4±1.5pp)\n\n**PREPARING 实验 (98)**: 大量历史遗留，无需处理。\n\n**等待**: 无 Worker 运行中，无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent 最终 submission 准备 → 确认 paper 完整性、compile、提交（**最高优先级，今天必须完成**）\n- seed47 bonus 实验 cron 回调 → 更新 registry，结果存入 revision 备用数据，不改 paper\n- Director 要求 submission 相关操作 → 立即响应，不等 seed47\n\n### 5. 🎯 战略上下文\n- **核心结论**: VLA token compressibility 由两个独立轴决定——Token Coupling (connector architecture) × Task Complexity。CV 是 Axis-1 的 diagnostic metric\n- **关键数据**: Importance margin inverted-U peak 在 k=0.9 (46.9pp on Long)；Random cliff 在 k=0.85-0.925 是 random-specific & task-specific\n- **论文 title**: \"Why Token Pruning Crashes Some Robot Policies but Not Others: The Role of Vision Connectors in VLA Token Compressibility\"\n- **π0.5 Long 汇总表已定稿** (ROADMAP 中有完整 6×3 表格)，error bar 用 sample std (n-1)\n- **易错点**:\n  - 不要把 cqa1 和 westd 的结果直接对比（跨服务器可能有 ~2-3pp 差异，D293）\n  - 98 个 PREPARING 实验大部分是历史遗留，不要尝试批量提交\n  - paper_framing.md 很长 (~52k chars)，读取时用 max_chars=0 获取完整内容\n  - registry 极大 (~1.4M chars)，用 filters 查询，不要全量拉取\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

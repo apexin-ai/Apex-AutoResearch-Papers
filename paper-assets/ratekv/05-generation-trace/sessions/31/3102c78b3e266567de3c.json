@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3102c78b3e266567de3c",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code mistral 8k eval",
+  "task_key": "worker_code_mistral_8k_eval_20260516T032251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_8k_eval_20260516T032251_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "83ac4a2ea333c7d529fb8c4042f48b53af59346c8e4e5341632d54087689f324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。模型已加载，正在评估 BF16 baseline @ 8K。\n\n任务已完成：\n- 脚本 `run_mistral_8k_eval.py` 已写入本地（已 commit）和服务器\n- Dry-run 通过，import 无误\n- 已提交到 westd-37397 cuda:1，exp_id=`mistral_8k_eval`\n- 日志：`~/runs/ratekv/mistral_8k_eval.log`\n- 配置：Mistral-7B-v0.3, k=2, budget=0.25, 8192 stride, Flat shape (c=0.22)\n- 预计输出：`artifacts/mistral_8k_eval_results.json`（BF16/MCKP/uniform 三组 8K PPL）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "628bfc3249edd48b8982",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis a1 a2 check restart",
+  "task_key": "worker_analysis_a1-a2-check-restart_20260524T112358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1-a2-check-restart_20260524T112358_result.json",
+    "occurrence": 1,
+    "bytes": 63,
+    "sha256": "ae15a2d707827cb0736c63b43f9f4573e4a39879b601a4cdf392b7cb23ccfd83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A1 still computing. Next check in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

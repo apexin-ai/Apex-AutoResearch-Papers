@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1dc372b17f57a39b4a6d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper writing sdgd negative",
+  "task_key": "worker_paper_writing_sdgd_negative_20260515T180152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sdgd_negative_20260515T180152_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "fa7e62f437ca1e93adf3889e2e616071032d6b2b7fcf889d58c6e0fb8e3981f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `/docs/paper/sdgd_negative.tex`。\n\n结构：6 段 + 1 表。动机 → SDGD 协议 → 全模式 F1 低于 baseline → merge amplification 机制 → v2 confidence-gated 失败 → LLM-PEE 关联 → 结构性洞察。引用 `llm-pee-2025`、`uniner-2024`、`llm-calibration-survey-2024`，均来自 `references.bib`。v2 的 P/R 未提供，表中标 `---`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

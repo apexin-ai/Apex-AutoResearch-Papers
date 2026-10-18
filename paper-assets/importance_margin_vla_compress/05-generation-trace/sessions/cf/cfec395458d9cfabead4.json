@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cfec395458d9cfabead4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "investigate cqa1 gpu status",
+  "task_key": "worker_investigate_cqa1_gpu_status_20260525T051435",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_cqa1_gpu_status_20260525T051435_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "b90225af1c7d14067153849ae1d7d43133a26108587fbe8760807f997ad7f142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1-33015 状态汇报\n\n### GPU 状态\n4× RTX 4090D **全部空闲**，0MiB 显存占用，0% 利用率，无任何 GPU 进程。\n\n### 进程状态\n4 个 PID (68723, 70466, 70539, 70613) **均已不存在**，进程已终止。\n\n### 日志分析\n带 `_v2` 后缀的日志文件不存在（任务可能用了不带 `_v2` 的名字实际运行）。最近的 4 个 postfix 日志（最后修改时间 May 25 12:36-12:40）**全部以相同错误崩溃**：\n\n```\nValueError: Failed to instantiate processor step 'tokenizer_processor' with config: \n  {'tokenizer_name': 'google/paligemma-3b-pt-224'}. \n  Error: [Errno 99] Cannot assign requested address\n```\n\n**根因**：`[Errno 99] Cannot assign requested address` — 网络不可达。tokenizer 初始化时尝试从 `google/paligemma-3b-pt-224` 下载，但服务器网络（可能未 `source /etc/network_turbo`）无法连接外网，导致 4 个实验在启动阶段就全部失败。\n\n### 结论\n4 个实验均在启动初期因网络问题崩溃，未进入实际评估。4 块 GPU 当前完全空闲可用。重跑前需确保 tokenizer 已本地缓存或启用网络代理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

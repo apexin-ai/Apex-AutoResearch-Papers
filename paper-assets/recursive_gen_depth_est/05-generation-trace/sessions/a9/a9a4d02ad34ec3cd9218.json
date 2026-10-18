@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a9a4d02ad34ec3cd9218",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops paper compile and crosscheck",
+  "task_key": "worker_ops_paper_compile_and_crosscheck_20260518T212108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper_compile_and_crosscheck_20260518T212108_result.json",
+    "occurrence": 1,
+    "bytes": 3575,
+    "sha256": "eb1062cdb2fece8fdace53eed885fcf2470e2212e635393b3e6f782ca281ae19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the complete report:\n\n---\n\n## 编译状态\n- 编译结果：**PASS**\n- Error 数量：0\n- Undefined reference：0\n- 关键 Warning：\n  - `h` float specifier changed to `ht` (2 处，无害)\n  - hyperref token warnings (2 处，PDF bookmark 中数学符号，无害)\n  - 多处 Underfull hbox/vbox（排版微调，非阻塞）\n  - 1 处 Overfull hbox (99.5pt too wide, section_appendix.tex lines 454-463) — **需检查**，可能导致表格溢出页边距\n\n## 数字核对\n\n| # | 数字 | JSON 值 | 论文值 (文件:行) | 匹配 |\n|---|------|---------|----------------|------|\n| a | Table 2: Pythia nuc 4-class / d1-d3 | 78.7% / 71.8% | 78.2 / 71.2 (atlas.tex:30) | ❌ +0.5pp / +0.6pp |\n| b | 14B scale 54.05% | 54.05% (qwen25_14b_scale/summary.json) | **未出现在任何 .tex 文件中** | ❌ 缺失 |\n| c | Min-K% best (K20 CORAL avg) | 33.2% (mink_prob_results.json → \\_\\_9cell\\_average\\_\\_ K20_methodB) | **未出现在任何 .tex 文件中** | ❌ 缺失 |\n| d | DetectGPT mean 4-class | 29.1% (detectgpt_results.json → summary mean_4class_acc=0.2906) | **未出现在任何 .tex 文件中** | ❌ 缺失 |\n| e | d4 ext OLMo: 5-class / d3v4 AUC | 80.5% / 0.9747 (d4_extension_olmo) | 5-class 未报告; d3v4 AUC 论文写 0.765 (atlas.tex:122) | ❌ d3v4: 0.9747 vs 0.765 |\n\n### 详细说明\n\n**a) Table 2 全面对比（table2_rerun_5foldcv.json vs atlas.tex tab:main_matrix）：**\n\n| Cell | JSON 4-class | Paper 4-class | Δ |\n|------|-------------|--------------|---|\n| Pythia nuc | 78.7 | 78.2 | +0.5 |\n| Pythia τ | 76.8 | 76.3 | +0.5 |\n| Pythia top-k | 68.9 | 69.6 | -0.7 |\n| OLMo nuc | 78.9 | 78.8 | +0.1 |\n| OLMo τ | 82.3 | 82.0 | +0.3 |\n| OLMo top-k | 74.4 | 74.2 | +0.2 |\n| GPT-2 XL nuc | **84.3** | **83.3** | **+1.0** |\n| GPT-2 XL τ | 85.9 | 85.4 | +0.5 |\n| GPT-2 XL top-k | 75.8 | 76.6 | -0.8 |\n\nJSON \"rerun\" 值与论文系统性不一致（差异 0.1–1.0pp），**论文可能使用了旧数据，rerun 结果未回填**。\n\n**b-d)** Min-K%（33.2%）、DetectGPT（29.1%）、14B scale（54.05%）三组结果在 JSON 中存在，但**论文中完全未报告**——可能是尚未写入论文的实验。\n\n**e)** d4\\_extension\\_olmo JSON 的 d3v4 AUC=0.9747 与 atlas.tex 中报告的 OLMo d3v4=0.765 相差巨大。这可能是不同实验配置（JSON 为 4-class d0-d4 的 5-class RF，atlas.tex 为 depths 0-5 cross-model convergence 实验）。同样，d4\\_extension\\_gpt2xl JSON 的 d3v4=0.7273 vs 论文 0.750 也不一致。\n\n## 页数格式\n- 总页数：18\n- 正文页数：8（Discussion and Conclusion 结束于 page 8 区域；Limitations + Ethics Statement 在 pages 8-9，ARR 规则不计入正文页数）\n- References：pages 10-11\n- Appendix：pages 12-18\n- documentclass：`\\documentclass[11pt]{article}` + `\\usepackage[review]{acl}` ✅\n- 匿名：`\\author{Anonymous}` ✅\n- 行号：开启（`[review]` 选项自动启用 `\\linenumbers`） ✅\n- 格式合规：**PASS**\n\n---\n\n### 总结\n\n编译和格式均通过。**核心问题是数字一致性**：\n\n1. Table 2 全部 9 个 cell 的 JSON rerun 值与论文不一致（0.1–1.0pp），需确认是用旧数据还是 rerun 数据。如果 rerun 是更正确的结果，需回填论文。\n2. 三组 baseline 结果（Min-K%、DetectGPT、14B scale）有 JSON 但论文中缺失——如果计划纳入需补写。\n3. d4 extension 的 d3v4 AUC 在 JSON 与论文间差异极大（0.97 vs 0.77），需核实是否为不同实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "f2bdcaf6b991169faf1f",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code 7b task validation",
+  "task_key": "worker_code_7b-task-validation_20260518T095207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_7b-task-validation_20260518T095207.log",
+    "occurrence": 1,
+    "bytes": 697146,
+    "sha256": "60877c2c2760d043dd7842b8ff950da3b1c1ccf1ee579e2413556fd3a9d509f4"
+  },
+  "statistics": {
+    "messages": 515,
+    "user_turns": 0,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 113,
+      "tool_call": 199,
+      "tool_result": 199,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 515,
+      "chunks": [
+        {
+          "path": "f2bdcaf6b991169faf1f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2bdcaf6b991169faf1f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2bdcaf6b991169faf1f-part-0003.json",
+          "message_count": 155
+        }
+      ]
+    }
+  ]
+}

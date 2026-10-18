@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3a19f6e313a933ca3c3a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research tweeteval data",
+  "task_key": "worker_research_tweeteval-data_20260520T214120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tweeteval-data_20260520T214120_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "8d9e6b34ad1f7784c2529594282b04a061f017d837f8ca2015fb48cef15d1e88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告已写入 `/home/ubuntu/ec_hte_llm_annotation/results/tweeteval_exploration.md`。\n\n核心结论：\n\n- **首选 sentiment**（N=45,615）：样本量远超需求，子群变量丰富（hashtag 23%、mention 33%、长度三分组均匀），3类标签结构清晰\n- **次选 hate / offensive**（N=9K-12K）：样本量充足，涉及社会价值判断，LLM 可能产生有意义的 HTE\n- **Stance 子任务不推荐**：所有 5 个 stance 子任务的 N < 1,000，子群划分后每 cell 不足 100 条，统计功效不足；且子群结构贫乏（hashtag 接近 100%，无 URL/emoji）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

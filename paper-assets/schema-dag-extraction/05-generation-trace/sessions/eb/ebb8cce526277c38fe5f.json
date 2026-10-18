@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb8cce526277c38fe5f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops unconstrained ablation check",
+  "task_key": "worker_ops_unconstrained_ablation_check_20260518T103044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unconstrained_ablation_check_20260518T103044_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "3efa1e28fd88dd6b93de897d026dcaf634712a68994cac655642c02a1f57424a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**失败**，停在 extract 阶段。\n\n**根因**：flashinfer 版本不匹配。`flashinfer` 是 0.6.11.post2，但 `flashinfer-cubin` 是 0.6.8.post1，导致 vLLM 引擎初始化失败。\n\n**进度**：预处理完成（`batch_groups.json` + `preprocess.json` 已生成），extract 阶段启动 vLLM LLM 时崩溃。\n\n**修复方案**：\n```bash\npip install flashinfer-cubin==0.6.11.post2\n```\n或临时绕过：\n```bash\nexport FLASHINFER_DISABLE_VERSION_CHECK=1\n```\n\nRegistry 中无此实验记录。是否需要我修复环境并重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

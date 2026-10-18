@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1e148265edbf905ea38a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh llama download check",
+  "task_key": "worker_ssh_llama-download-check_20260515T081427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-download-check_20260515T081427_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "b92713e431fcee4b4ccca9e6e368e43e48428255dab3d3ac73b066054106942e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "hf-mirror.com 下载正常运行，速度 ~16MB/s。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **下载状态** | 进行中（需重启后已恢复） |\n| **已完成** | 12/15 分片 + tokenizer/config 等所有辅助文件 |\n| **下载中** | model-00005, 00007, 00015（各 ~4.9GB） |\n| **当前速度** | ~16MB/s（hf-mirror.com 国内镜像） |\n| **预计完成** | ~15 分钟（每分片 ~5 分钟） |\n| **模型路径** | `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/` |\n| **当前大小** | 56GB（完成后约 70GB） |\n| **磁盘空间** | 250GB 总量，65GB 可用，充足 |\n| **PID** | 244218 |\n\n**踩坑记录**：之前的下载因 `cas-bridge.xethub.hf.co`（xet 端点）在 AutoDL 代理下超时中断。直连 hf-mirror.com（不走代理，不走 xet）速度正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

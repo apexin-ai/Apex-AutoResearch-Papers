@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "d50ca19984fa85ea4d70",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis olmo topk50 001",
+  "task_key": "worker_analysis_olmo_topk50_001_20260515T014117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_olmo_topk50_001_20260515T014117.log",
+    "occurrence": 1,
+    "bytes": 762952,
+    "sha256": "0638d32a9925fd5f0ec66b102bbba26f0bc0df92e39ed8467c1a314decdbdada"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 410,
+      "chunks": [
+        {
+          "path": "d50ca19984fa85ea4d70-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d50ca19984fa85ea4d70-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d50ca19984fa85ea4d70-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ]
+}

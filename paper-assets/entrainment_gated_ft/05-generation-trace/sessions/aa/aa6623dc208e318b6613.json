@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aa6623dc208e318b6613",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 011 convergence",
+  "task_key": "worker_analysis_exp-011-convergence_20260519T161625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-011-convergence_20260519T161625_result.json",
+    "occurrence": 1,
+    "bytes": 1349,
+    "sha256": "b73256920723be6ac5e9c791f0918dc46d234d1065cf6587983df3c2bc62c76a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部输出已生成。结果摘要：\n\n**新 benchmark Spearman 结果（exact permutation test）：**\n\n| Benchmark | ρ | exact p | std(pure) | std(h3-1) | conv_ratio |\n|-----------|------|---------|-----------|-----------|------------|\n| boolq | +0.20 | 0.7833 | 0.0163 | 0.0236 | 0.69 |\n| piqa | -0.50 | 0.4500 | 0.0054 | 0.0034 | 1.59 |\n| sciq | +0.10 | 0.9500 | 0.0087 | 0.0074 | 1.19 |\n| copa (补充) | -0.67 | 0.2667 | 0.0262 | 0.0047 | 5.57 |\n\n**合并 9-benchmark Bonferroni 校正：0 个 benchmark 显著（α=0.05）。** LAMBADA 原来 raw_p=0.0167，校正后 0.1503，也不再显著。BH-FDR 同样无一显著。\n\n**核心结论：未找到第二个 significant anchor。** 即使 LAMBADA 在单独检验中是最强信号（ρ=-1.0, raw_p=0.0167），合并 9 个 benchmark 做 Bonferroni 校正后也不再通过 0.05 阈值。新增的 boolq/piqa/sciq 均无显著趋势，cross-arch std 随 attention ratio 的变化没有一致方向。\n\nCOPA 作为补充（n=100），ρ=-0.67 方向与 convergence 假说一致但 p=0.2667 不显著。\n\n输出文件：\n- CSV: `/root/entrainment_gated_ft/analysis/exp011_convergence_results.csv`\n- JSON: `/root/entrainment_gated_ft/analysis/exp011_convergence_summary.json`\n- 脚本: `/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

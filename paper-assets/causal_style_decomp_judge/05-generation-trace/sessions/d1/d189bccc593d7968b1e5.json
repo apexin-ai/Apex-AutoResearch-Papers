@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "d189bccc593d7968b1e5",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code formality rewriter independence",
+  "task_key": "worker_code_formality_rewriter_independence_20260521T095907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_formality_rewriter_independence_20260521T095907_result.json",
+    "occurrence": 1,
+    "bytes": 2409795,
+    "sha256": "cdb6073ae37af9f855c65848a38a0a970e71e2321584a4975bc404b9eb83b88e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d189bccc593d7968b1e5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

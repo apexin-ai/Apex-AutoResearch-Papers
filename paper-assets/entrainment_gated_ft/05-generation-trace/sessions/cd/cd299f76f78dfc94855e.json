@@ -1,0 +1,1603 @@
+{
+  "schema_version": "1.0",
+  "id": "cd299f76f78dfc94855e",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code fix convergence pvalues",
+  "task_key": "worker_code_fix_convergence_pvalues_20260519T053517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_convergence_pvalues_20260519T053517.log",
+    "occurrence": 1,
+    "bytes": 142532,
+    "sha256": "1e24d7a0a25b8dba133151669e95968cf17e4e9682f0144eaf0a10d44719195d"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f7475f64-d2f7-4568-ae43-4cafdab23359",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779177000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "905d61bf-6448-4a6d-b1e7-3e0e99817df9",
+                "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the current script to understand its structure.",
+              "signature": "EoICClkIDRgCKkC3RG4iZyYPeMyC1ZuoJJAMzqPciKy2blSLwWbJrKRuao3YjXLEINLM0NVKNFTtt1AePMYrNtTY9FEz2Wdh1mJaMg9jbGF1ZGUtb3B1cy00LTY4ABIMYwT4UWZbaBtcJZy1GgzUTlzPEUO1ngEYDeQiMJKa13KuLK1jKBmo1WbrXFxhmQ/8FZWvU9bLwOk+PF/ZuQ+GNxrYsvPMIAnKp5pH2ypX0AYgUA2WVFoDdW6ovf59y8i2Zr5xY9emSVWJ1uM0RGjsPiZBW4bw7YBRAPPyRPC45+LxKc6DtxRKDMyHoYnqXkQNyaI2TVVBu2JrhFuBcy+tsTGl/4NwGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "72f03c48-890a-4cb7-9b07-2bd3675fb7a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017V5JyTkLmjugqBjCNL9rdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13351,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13351
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取当前脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "3a992964-3fb7-464b-ba4f-ec7d4c50a1ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017V5JyTkLmjugqBjCNL9rdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13351,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13351
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011SzyGuxR3zPb5m6gJnABWM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "31243fdd-3254-4c60-bcf6-e95fc3159598",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017V5JyTkLmjugqBjCNL9rdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13351,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13351
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T05:35:30.045Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011SzyGuxR3zPb5m6gJnABWM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "b7d0eb82-c2fd-47c4-9cc0-50bf6ae32867",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N5ARFzruWojynooARu9WJ1",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__detect_image",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "2ffe6f9e-7723-4c56-b461-ef3fb7748e1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017V5JyTkLmjugqBjCNL9rdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13351,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13351
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T05:35:30.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01N5ARFzruWojynooARu9WJ1",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "7af738f7-9e9a-4019-8ba5-c2721fe69caf",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ay4LUg1kUhmmr2r367YQ64",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "cat /root/entrainment_gated_ft/analysis/cross_scale_convergence.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "78b5b18a-6e86-4281-a6ce-1a9aed71509a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xmTnhhu8PRJRJpnLjxgNg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1012,
+                "cache_read_input_tokens": 25192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1012
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T05:35:36.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ay4LUg1kUhmmr2r367YQ64",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import spearmanr\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nBENCHMARKS = {\\\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\\\n}\\\\n\\\\nVARIANT_TO_ATTN = {\\\\n    'pure': 0,\\\\n    'h24-1': 1,\\\\n    'h12-1': 2,\\\\n    'h6-1': 4,\\\\n    'h3-1': 8,\\\\n}\\\\n\\\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\\\n\\\\n\\\\ndef parse_340m_filename(filepath):\\\\n    basename = os.path.basename(filepath).replace('.json', '')\\\\n\\\\n    if basename == 'transformer_340M_baseline':\\\\n        return 'Transformer', 'baseline', 24\\\\n\\\\n    family = None\\\\n    variant = None\\\\n\\\\n    if 'GatedDeltaNet' in basename:\\\\n        family = 'GDN'\\\\n        if 'pure-baseline' in basename:\\\\n            variant = 'pure'\\\\n        elif 'New-hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'RetNet' in basename:\\\\n        family = 'RetNet'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'HGRN2' in basename:\\\\n        family = 'HGRN2'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n\\\\n    if family is None or variant is None:\\\\n        return None, None, None\\\\n\\\\n    attn_layers = VARIANT_TO_ATTN.get(variant)\\\\n    return family, variant, attn_layers\\\\n\\\\n\\\\ndef extract_metrics(data):\\\\n    results = data['results']\\\\n    metrics = {}\\\\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\\\\n        if task_key in results and metric_key in results[task_key]:\\\\n            metrics[bm_name] = results[task_key][metric_key]\\\\n    return metrics\\\\n\\\\n\\\\ndef load_340m_data():\\\\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\\\\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\\\\n    json_files += glob.glob(os.path.join(base, '*.json'))\\\\n    json_files = list(set(os.path.abspath(f) for f in json_files))\\\\n\\\\n    rows = []\\\\n    for jf in json_files:\\\\n        family, variant, attn_layers = parse_340m_filename(jf)\\\\n        if family is None:\\\\n            print(f\\\\\\\"  Skipping unrecognized: {os.path.basename(jf)}\\\\\\\")\\\\n            continue\\\\n\\\\n        with open(jf) as f:\\\\n            data = json.load(f)\\\\n        metrics = extract_metrics(data)\\\\n\\\\n        row = {\\\\n            'model_family': family,\\\\n            'variant': variant,\\\\n            'attn_layers': attn_layers,\\\\n            'scale': '340M',\\\\n            'file': os.path.basename(jf),\\\\n        }\\\\n        row.update(metrics)\\\\n        rows.append(row)\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef load_1_3b_data():\\\\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\\\n    df = pd.read_csv(csv_path)\\\\n    df['scale'] = '1.3B'\\\\n    df = df.rename(columns={'model_family': 'model_family'})\\\\n    return df\\\\n\\\\n\\\\ndef compute_cross_arch_stats(df, scale):\\\\n    archs = ['GDN', 'RetNet', 'HGRN2']\\\\n    df_arch = df[df['model_family'].isin(archs)].copy()\\\\n\\\\n    records = []\\\\n    for attn in sorted(df_a\\\\n\\\\n... [截断: 输出过长，省略 2088 字符] ...\\\\n\\\\nrker, markersize=5, linewidth=1.5,\\\\n                    label=scale)\\\\n\\\\n            sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                             (spearman_df['benchmark'] == bm)]\\\\n            if not sp.empty:\\\\n                rho = sp.iloc[0]['spearman_rho']\\\\n                pval = sp.iloc[0]['p_value']\\\\n                sig = '*' if pval < 0.05 else ''\\\\n                y_pos = 0.95 if scale == '1.3B' else 0.82\\\\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\\\\\\\rho$' + f'={rho:.2f}{sig}',\\\\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\\\\n                        color=color)\\\\n\\\\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\\\\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\\\\n        ax.tick_params(labelsize=7)\\\\n        if idx >= 3:\\\\n            ax.set_xlabel('Attention Layers', fontsize=8)\\\\n        ax.set_xticks([0, 1, 2, 4, 8])\\\\n        if idx == 0:\\\\n            ax.legend(fontsize=7.5, loc='upper left')\\\\n\\\\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\\\\n                 fontsize=11, fontweight='bold', y=0.98)\\\\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\\\\n\\\\n    for ext in ['pdf', 'png']:\\\\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\\\\n                    dpi=200, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n\\\\n\\\\ndef main():\\\\n    outdir = '/root/entrainment_gated_ft/analysis'\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Loading 1.3B data...\\\\\\\")\\\\n    df_1b = load_1_3b_data()\\\\n    print(f\\\\\\\"  {len(df_1b)} models loaded\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Loading 340M data...\\\\\\\")\\\\n    df_340m = load_340m_data()\\\\n    print(f\\\\\\\"  {len(df_340m)} models loaded\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"340M data summary:\\\\\\\")\\\\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\\\\n    display_cols = [c for c in cols if c in df_340m.columns]\\\\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\\\\n    print()\\\\n\\\\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\\\\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\\\\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Cross-Architecture Std/Range Table:\\\\\\\")\\\\n    print(stats_all.to_string(index=False))\\\\n    print()\\\\n\\\\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\\\\n    stats_all.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"Saved: {csv_path}\\\\\\\")\\\\n    print()\\\\n\\\\n    spearman_df = compute_spearman(stats_all)\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Spearman Correlation (arch_std vs attn_layers):\\\\\\\")\\\\n    print(spearman_df.to_string(index=False))\\\\n    print()\\\\n\\\\n    make_figure(stats_all, spearman_df, outdir)\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.pdf\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.png\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"KEY FINDINGS:\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n\\\\n    for bm in ACC_BENCHMARKS:\\\\n        for scale in ['1.3B', '340M']:\\\\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\\\\n            if sub.empty:\\\\n                continue\\\\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\\\\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\\\\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\\\\n                change = std_at_8[0] - std_at_0[0]\\\\n                direction = \\\\\\\"CONVERGE\\\\\\\" if change < 0 else \\\\\\\"DIVERGE\\\\\\\"\\\\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\\\\n                sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                                 (spearman_df['benchmark'] == bm)]\\\\n                rho_str = f\\\\\\\"rho={sp.iloc[0]['spearman_rho']:.3f}\\\\\\\" if not sp.empty else \\\\\\\"N/A\\\\\\\"\\\\n                print(f\\\\\\\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \\\\\\\"\\\\n                      f\\\\\\\"({direction}, {pct:.1f}%) {rho_str}\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"Note: MMLU at 340M is near random (0.25), high noise expected.\\\\\\\")\\\\n    print(\\\\\\\"* = p < 0.05\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "474eb9c5-4472-400f-ac06-15f3ae972f51",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import spearmanr\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nBENCHMARKS = {\\\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\\\n}\\\\n\\\\nVARIANT_TO_ATTN = {\\\\n    'pure': 0,\\\\n    'h24-1': 1,\\\\n    'h12-1': 2,\\\\n    'h6-1': 4,\\\\n    'h3-1': 8,\\\\n}\\\\n\\\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\\\n\\\\n\\\\ndef parse_340m_filename(filepath):\\\\n    basename = os.path.basename(filepath).replace('.json', '')\\\\n\\\\n    if basename == 'transformer_340M_baseline':\\\\n        return 'Transformer', 'baseline', 24\\\\n\\\\n    family = None\\\\n    variant = None\\\\n\\\\n    if 'GatedDeltaNet' in basename:\\\\n        family = 'GDN'\\\\n        if 'pure-baseline' in basename:\\\\n            variant = 'pure'\\\\n        elif 'New-hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'RetNet' in basename:\\\\n        family = 'RetNet'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'HGRN2' in basename:\\\\n        family = 'HGRN2'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n\\\\n    if family is None or variant is None:\\\\n        return None, None, None\\\\n\\\\n    attn_layers = VARIANT_TO_ATTN.get(variant)\\\\n    return family, variant, attn_layers\\\\n\\\\n\\\\ndef extract_metrics(data):\\\\n    results = data['results']\\\\n    metrics = {}\\\\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\\\\n        if task_key in results and metric_key in results[task_key]:\\\\n            metrics[bm_name] = results[task_key][metric_key]\\\\n    return metrics\\\\n\\\\n\\\\ndef load_340m_data():\\\\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\\\\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\\\\n    json_files += glob.glob(os.path.join(base, '*.json'))\\\\n    json_files = list(set(os.path.abspath(f) for f in json_files))\\\\n\\\\n    rows = []\\\\n    for jf in json_files:\\\\n        family, variant, attn_layers = parse_340m_filename(jf)\\\\n        if family is None:\\\\n            print(f\\\\\\\"  Skipping unrecognized: {os.path.basename(jf)}\\\\\\\")\\\\n            continue\\\\n\\\\n        with open(jf) as f:\\\\n            data = json.load(f)\\\\n        metrics = extract_metrics(data)\\\\n\\\\n        row = {\\\\n            'model_family': family,\\\\n            'variant': variant,\\\\n            'attn_layers': attn_layers,\\\\n            'scale': '340M',\\\\n            'file': os.path.basename(jf),\\\\n        }\\\\n        row.update(metrics)\\\\n        rows.append(row)\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef load_1_3b_data():\\\\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\\\n    df = pd.read_csv(csv_path)\\\\n    df['scale'] = '1.3B'\\\\n    df = df.rename(columns={'model_family': 'model_family'})\\\\n    return df\\\\n\\\\n\\\\ndef compute_cross_arch_stats(df, scale):\\\\n    archs = ['GDN', 'RetNet', 'HGRN2']\\\\n    df_arch = df[df['model_family'].isin(archs)].copy()\\\\n\\\\n    records = []\\\\n    for attn in sorted(df_a\\\\n\\\\n... [截断: 输出过长，省略 2088 字符] ...\\\\n\\\\nrker, markersize=5, linewidth=1.5,\\\\n                    label=scale)\\\\n\\\\n            sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                             (spearman_df['benchmark'] == bm)]\\\\n            if not sp.empty:\\\\n                rho = sp.iloc[0]['spearman_rho']\\\\n                pval = sp.iloc[0]['p_value']\\\\n                sig = '*' if pval < 0.05 else ''\\\\n                y_pos = 0.95 if scale == '1.3B' else 0.82\\\\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\\\\\\\rho$' + f'={rho:.2f}{sig}',\\\\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\\\\n                        color=color)\\\\n\\\\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\\\\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\\\\n        ax.tick_params(labelsize=7)\\\\n        if idx >= 3:\\\\n            ax.set_xlabel('Attention Layers', fontsize=8)\\\\n        ax.set_xticks([0, 1, 2, 4, 8])\\\\n        if idx == 0:\\\\n            ax.legend(fontsize=7.5, loc='upper left')\\\\n\\\\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\\\\n                 fontsize=11, fontweight='bold', y=0.98)\\\\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\\\\n\\\\n    for ext in ['pdf', 'png']:\\\\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\\\\n                    dpi=200, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n\\\\n\\\\ndef main():\\\\n    outdir = '/root/entrainment_gated_ft/analysis'\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Loading 1.3B data...\\\\\\\")\\\\n    df_1b = load_1_3b_data()\\\\n    print(f\\\\\\\"  {len(df_1b)} models loaded\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Loading 340M data...\\\\\\\")\\\\n    df_340m = load_340m_data()\\\\n    print(f\\\\\\\"  {len(df_340m)} models loaded\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"340M data summary:\\\\\\\")\\\\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\\\\n    display_cols = [c for c in cols if c in df_340m.columns]\\\\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\\\\n    print()\\\\n\\\\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\\\\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\\\\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Cross-Architecture Std/Range Table:\\\\\\\")\\\\n    print(stats_all.to_string(index=False))\\\\n    print()\\\\n\\\\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\\\\n    stats_all.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"Saved: {csv_path}\\\\\\\")\\\\n    print()\\\\n\\\\n    spearman_df = compute_spearman(stats_all)\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Spearman Correlation (arch_std vs attn_layers):\\\\\\\")\\\\n    print(spearman_df.to_string(index=False))\\\\n    print()\\\\n\\\\n    make_figure(stats_all, spearman_df, outdir)\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.pdf\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.png\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"KEY FINDINGS:\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n\\\\n    for bm in ACC_BENCHMARKS:\\\\n        for scale in ['1.3B', '340M']:\\\\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\\\\n            if sub.empty:\\\\n                continue\\\\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\\\\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\\\\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\\\\n                change = std_at_8[0] - std_at_0[0]\\\\n                direction = \\\\\\\"CONVERGE\\\\\\\" if change < 0 else \\\\\\\"DIVERGE\\\\\\\"\\\\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\\\\n                sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                                 (spearman_df['benchmark'] == bm)]\\\\n                rho_str = f\\\\\\\"rho={sp.iloc[0]['spearman_rho']:.3f}\\\\\\\" if not sp.empty else \\\\\\\"N/A\\\\\\\"\\\\n                print(f\\\\\\\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \\\\\\\"\\\\n                      f\\\\\\\"({direction}, {pct:.1f}%) {rho_str}\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"Note: MMLU at 340M is near random (0.25), high noise expected.\\\\\\\")\\\\n    print(\\\\\\\"* = p < 0.05\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport glob\\nimport os\\nimport re\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import spearmanr\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nBENCHMARKS = {\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\n}\\n\\nVARIANT_TO_ATTN = {\\n    'pure': 0,\\n    'h24-1': 1,\\n    'h12-1': 2,\\n    'h6-1': 4,\\n    'h3-1': 8,\\n}\\n\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\n\\n\\ndef parse_340m_filename(filepath):\\n    basename = os.path.basename(filepath).replace('.json', '')\\n\\n    if basename == 'transformer_340M_baseline':\\n        return 'Transformer', 'baseline', 24\\n\\n    family = None\\n    variant = None\\n\\n    if 'GatedDeltaNet' in basename:\\n        family = 'GDN'\\n        if 'pure-baseline' in basename:\\n            variant = 'pure'\\n        elif 'New-hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            variant = 'h6-1'\\n        elif 'hybrid-3-1' in basename:\\n            variant = 'h3-1'\\n    elif 'RetNet' in basename:\\n        family = 'RetNet'\\n        if 'pure' in basename:\\n            variant = 'pure'\\n        elif 'hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            variant = 'h6-1'\\n        elif 'hybrid-3-1' in basename:\\n            variant = 'h3-1'\\n    elif 'HGRN2' in basename:\\n        family = 'HGRN2'\\n        if 'pure' in basename:\\n            variant = 'pure'\\n        elif 'hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            variant = 'h6-1'\\n        elif 'hybrid-3-1' in basename:\\n            variant = 'h3-1'\\n\\n    if family is None or variant is None:\\n        return None, None, None\\n\\n    attn_layers = VARIANT_TO_ATTN.get(variant)\\n    return family, variant, attn_layers\\n\\n\\ndef extract_metrics(data):\\n    results = data['results']\\n    metrics = {}\\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\\n        if task_key in results and metric_key in results[task_key]:\\n            metrics[bm_name] = results[task_key][metric_key]\\n    return metrics\\n\\n\\ndef load_340m_data():\\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\\n    json_files += glob.glob(os.path.join(base, '*.json'))\\n    json_files = list(set(os.path.abspath(f) for f in json_files))\\n\\n    rows = []\\n    for jf in json_files:\\n        family, variant, attn_layers = parse_340m_filename(jf)\\n        if family is None:\\n            print(f\\\"  Skipping unrecognized: {os.path.basename(jf)}\\\")\\n            continue\\n\\n        with open(jf) as f:\\n            data = json.load(f)\\n        metrics = extract_metrics(data)\\n\\n        row = {\\n            'model_family': family,\\n            'variant': variant,\\n            'attn_layers': attn_layers,\\n            'scale': '340M',\\n            'file': os.path.basename(jf),\\n        }\\n        row.update(metrics)\\n        rows.append(row)\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef load_1_3b_data():\\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\n    df = pd.read_csv(csv_path)\\n    df['scale'] = '1.3B'\\n    df = df.rename(columns={'model_family': 'model_family'})\\n    return df\\n\\n\\ndef compute_cross_arch_stats(df, scale):\\n    archs = ['GDN', 'RetNet', 'HGRN2']\\n    df_arch = df[df['model_family'].isin(archs)].copy()\\n\\n    records = []\\n    for attn in sorted(df_a\\n\\n... [截断: 输出过长，省略 2088 字符] ...\\n\\nrker, markersize=5, linewidth=1.5,\\n                    label=scale)\\n\\n            sp = spearman_df[(spearman_df['scale'] == scale) &\\n                             (spearman_df['benchmark'] == bm)]\\n            if not sp.empty:\\n                rho = sp.iloc[0]['spearman_rho']\\n                pval = sp.iloc[0]['p_value']\\n                sig = '*' if pval < 0.05 else ''\\n                y_pos = 0.95 if scale == '1.3B' else 0.82\\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\\\rho$' + f'={rho:.2f}{sig}',\\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\\n                        color=color)\\n\\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\\n        ax.tick_params(labelsize=7)\\n        if idx >= 3:\\n            ax.set_xlabel('Attention Layers', fontsize=8)\\n        ax.set_xticks([0, 1, 2, 4, 8])\\n        if idx == 0:\\n            ax.legend(fontsize=7.5, loc='upper left')\\n\\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\\n                 fontsize=11, fontweight='bold', y=0.98)\\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\\n\\n    for ext in ['pdf', 'png']:\\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\\n                    dpi=200, bbox_inches='tight')\\n    plt.close(fig)\\n\\n\\ndef main():\\n    outdir = '/root/entrainment_gated_ft/analysis'\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Loading 1.3B data...\\\")\\n    df_1b = load_1_3b_data()\\n    print(f\\\"  {len(df_1b)} models loaded\\\")\\n\\n    print(\\\"Loading 340M data...\\\")\\n    df_340m = load_340m_data()\\n    print(f\\\"  {len(df_340m)} models loaded\\\")\\n    print()\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"340M data summary:\\\")\\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\\n    display_cols = [c for c in cols if c in df_340m.columns]\\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\\n    print()\\n\\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Cross-Architecture Std/Range Table:\\\")\\n    print(stats_all.to_string(index=False))\\n    print()\\n\\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\\n    stats_all.to_csv(csv_path, index=False)\\n    print(f\\\"Saved: {csv_path}\\\")\\n    print()\\n\\n    spearman_df = compute_spearman(stats_all)\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Spearman Correlation (arch_std vs attn_layers):\\\")\\n    print(spearman_df.to_string(index=False))\\n    print()\\n\\n    make_figure(stats_all, spearman_df, outdir)\\n    print(f\\\"Saved: {outdir}/cross_scale_convergence.pdf\\\")\\n    print(f\\\"Saved: {outdir}/cross_scale_convergence.png\\\")\\n    print()\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"KEY FINDINGS:\\\")\\n    print(\\\"-\\\" * 70)\\n\\n    for bm in ACC_BENCHMARKS:\\n        for scale in ['1.3B', '340M']:\\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\\n            if sub.empty:\\n                continue\\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\\n                change = std_at_8[0] - std_at_0[0]\\n                direction = \\\"CONVERGE\\\" if change < 0 else \\\"DIVERGE\\\"\\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\\n                sp = spearman_df[(spearman_df['scale'] == scale) &\\n                                 (spearman_df['benchmark'] == bm)]\\n                rho_str = f\\\"rho={sp.iloc[0]['spearman_rho']:.3f}\\\" if not sp.empty else \\\"N/A\\\"\\n                print(f\\\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \\\"\\n                      f\\\"({direction}, {pct:.1f}%) {rho_str}\\\")\\n\\n    print()\\n    print(\\\"Note: MMLU at 340M is near random (0.25), high noise expected.\\\")\\n    print(\\\"* = p < 0.05\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.44}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The output was truncated. Let me get the full file, especially the `compute_cross_arch_stats` and `compute_spearman` functions which were cut off.",
+              "signature": "Es4CClkIDRgCKkBcnufiBFc/rutDaSkZghCpxyBwhoCwqlKHqf45L6BS1Pbl35O87S3zIn9HcahyKH3bDcyjSmZktLw52OfMR+dUMg9jbGF1ZGUtb3B1cy00LTY4ABIMC4qdNY2m0xXsoWr8GgxyR4O5uVAjSY9rLG0iMOOOhAVz1gS1LGIgiUj8bOxDedSQbhHDRYdGO0uF/qAGsF7Hz9YdqvLkHWBDvtV2HSqiAf3h5EPfKc1/WmSYWHNKGGrblv1FiQj1tMsdtqDn9KxLNySjCeyERhDwWfY4cNIlwySbIrAA5cATOiVz1wRKcSOkP/U/XZ8eAhQULHb1bgnZQf/LaoBtzPwDp9fnL8mdKFVZAqGm0aSb5l2v/5ZrPLpFHSHaghnlO8hhx945ZcZSItMfDUIXg9+mxPmlMq4fG4drRsd+EHQgHV+lRO0owCBLQRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "ceace2c9-88a4-424c-a835-5d3a1c9dfa5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPxFp3ma9kjaDNAMSX3ofP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3534,
+                "cache_read_input_tokens": 26204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3534
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出被截断了，需要看中间部分。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "185b9034-ac15-4d1e-9215-29da21967aaf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPxFp3ma9kjaDNAMSX3ofP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3534,
+                "cache_read_input_tokens": 26204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3534
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P8RZUHXqpXsjVz4urzGd6V",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "wc -l /root/entrainment_gated_ft/analysis/cross_scale_convergence.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "cb364e62-6c7c-45dc-b7ba-4a5304743b0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPxFp3ma9kjaDNAMSX3ofP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3534,
+                "cache_read_input_tokens": 26204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3534
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T05:35:42.422Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P8RZUHXqpXsjVz4urzGd6V",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"302 /root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "c0e55cb0-d1d9-4717-ac3c-3f36be9a7c7a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"302 /root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"302 /root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GPTFuRf7UHWEtAVPeTTX8w",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "head -160 /root/entrainment_gated_ft/analysis/cross_scale_convergence.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "ad6bff84-8f0f-4680-93bd-680f8d15ba07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016uhRrv16PXLx24hiBXYtF7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 295,
+                "cache_read_input_tokens": 29738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 295
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T05:35:46.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GPTFuRf7UHWEtAVPeTTX8w",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import spearmanr\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nBENCHMARKS = {\\\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\\\n}\\\\n\\\\nVARIANT_TO_ATTN = {\\\\n    'pure': 0,\\\\n    'h24-1': 1,\\\\n    'h12-1': 2,\\\\n    'h6-1': 4,\\\\n    'h3-1': 8,\\\\n}\\\\n\\\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\\\n\\\\n\\\\ndef parse_340m_filename(filepath):\\\\n    basename = os.path.basename(filepath).replace('.json', '')\\\\n\\\\n    if basename == 'transformer_340M_baseline':\\\\n        return 'Transformer', 'baseline', 24\\\\n\\\\n    family = None\\\\n    variant = None\\\\n\\\\n    if 'GatedDeltaNet' in basename:\\\\n        family = 'GDN'\\\\n        if 'pure-baseline' in basename:\\\\n            variant = 'pure'\\\\n        elif 'New-hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'RetNet' in basename:\\\\n        family = 'RetNet'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'HGRN2' in basename:\\\\n        family = 'HGRN2'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n\\\\n    if family is None or variant is None:\\\\n        return None, None, None\\\\n\\\\n    attn_layers = VARIANT_TO_ATTN.get(variant)\\\\n    return family, variant, attn_layers\\\\n\\\\n\\\\ndef extract_metrics(data):\\\\n    results = data['results']\\\\n    metrics = {}\\\\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\\\\n        if task_key in results and metric_key in results[task_key]:\\\\n            metrics[bm_name] = results[task_key][metric_key]\\\\n    return metrics\\\\n\\\\n\\\\ndef load_340m_data():\\\\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\\\\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\\\\n    json_files += glob.glob(os.path.join(base, '*.json'))\\\\n    json_files = list(set(os.path.abspath(f) for f in json_files))\\\\n\\\\n    rows = []\\\\n    for jf in json_files:\\\\n        family, variant, attn_layers = parse_340m_filename(jf)\\\\n        if family is None:\\\\n            print(f\\\\\\\"  Skipping unrecognized: {os.path.basename(jf)}\\\\\\\")\\\\n            continue\\\\n\\\\n        with open(jf) as f:\\\\n            data = json.load(f)\\\\n        metrics = extract_metrics(data)\\\\n\\\\n        row = {\\\\n            'model_family': family,\\\\n            'variant': variant,\\\\n            'attn_layers': attn_layers,\\\\n            'scale': '340M',\\\\n            'file': os.path.basename(jf),\\\\n        }\\\\n        row.update(metrics)\\\\n        rows.append(row)\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef load_1_3b_data():\\\\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\\\n    df = pd.read_csv(csv_path)\\\\n    df['scale'] = '1.3B'\\\\n    df = df.rename(columns={'model_family': 'model_family'})\\\\n    return df\\\\n\\\\n\\\\ndef compute_cross_arch_stats(df, scale):\\\\n    archs = ['GDN', 'RetNet', 'HGRN2']\\\\n    df_arch = df[df['model_family'].isin(archs)].copy()\\\\n\\\\n    records = []\\\\n    for attn in sorted(df_arch['attn_layers'].unique()):\\\\n        sub = df_arch[df_arch['attn_layers'] == attn]\\\\n        for bm in ACC_BENCHMARKS:\\\\n            if bm not in sub.columns:\\\\n                continue\\\\n            vals = sub.set_index('model_family')[bm].reindex(archs).dropna()\\\\n            if len(vals) < 2:\\\\n                continue\\\\n            arch_vals_str = ','.join(f\\\\\\\"{a}={v:.4f}\\\\\\\" for a, v in vals.items())\\\\n            records.append({\\\\n                'scale': scale,\\\\n                'attn_layers': int(attn),\\\\n                'benchmark': bm,\\\\n                'arch_std': vals.std(ddof=0),\\\\n                'arch_range': vals.max() - vals.min(),\\\\n                'arch_values': arch_vals_str,\\\\n            })\\\\n    return pd.DataFrame(records)\\\\n\\\\n\\\\ndef compute_spearman(stats_df):\\\\n    records = []\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "f7e121bb-8592-487c-84b3-f8e64ae3a7fd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import spearmanr\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nBENCHMARKS = {\\\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\\\n}\\\\n\\\\nVARIANT_TO_ATTN = {\\\\n    'pure': 0,\\\\n    'h24-1': 1,\\\\n    'h12-1': 2,\\\\n    'h6-1': 4,\\\\n    'h3-1': 8,\\\\n}\\\\n\\\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\\\n\\\\n\\\\ndef parse_340m_filename(filepath):\\\\n    basename = os.path.basename(filepath).replace('.json', '')\\\\n\\\\n    if basename == 'transformer_340M_baseline':\\\\n        return 'Transformer', 'baseline', 24\\\\n\\\\n    family = None\\\\n    variant = None\\\\n\\\\n    if 'GatedDeltaNet' in basename:\\\\n        family = 'GDN'\\\\n        if 'pure-baseline' in basename:\\\\n            variant = 'pure'\\\\n        elif 'New-hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'RetNet' in basename:\\\\n        family = 'RetNet'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n    elif 'HGRN2' in basename:\\\\n        family = 'HGRN2'\\\\n        if 'pure' in basename:\\\\n            variant = 'pure'\\\\n        elif 'hybrid-24-1' in basename:\\\\n            variant = 'h24-1'\\\\n        elif 'hybrid-12-1' in basename:\\\\n            variant = 'h12-1'\\\\n        elif 'hybrid-6-1' in basename:\\\\n            variant = 'h6-1'\\\\n        elif 'hybrid-3-1' in basename:\\\\n            variant = 'h3-1'\\\\n\\\\n    if family is None or variant is None:\\\\n        return None, None, None\\\\n\\\\n    attn_layers = VARIANT_TO_ATTN.get(variant)\\\\n    return family, variant, attn_layers\\\\n\\\\n\\\\ndef extract_metrics(data):\\\\n    results = data['results']\\\\n    metrics = {}\\\\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\\\\n        if task_key in results and metric_key in results[task_key]:\\\\n            metrics[bm_name] = results[task_key][metric_key]\\\\n    return metrics\\\\n\\\\n\\\\ndef load_340m_data():\\\\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\\\\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\\\\n    json_files += glob.glob(os.path.join(base, '*.json'))\\\\n    json_files = list(set(os.path.abspath(f) for f in json_files))\\\\n\\\\n    rows = []\\\\n    for jf in json_files:\\\\n        family, variant, attn_layers = parse_340m_filename(jf)\\\\n        if family is None:\\\\n            print(f\\\\\\\"  Skipping unrecognized: {os.path.basename(jf)}\\\\\\\")\\\\n            continue\\\\n\\\\n        with open(jf) as f:\\\\n            data = json.load(f)\\\\n        metrics = extract_metrics(data)\\\\n\\\\n        row = {\\\\n            'model_family': family,\\\\n            'variant': variant,\\\\n            'attn_layers': attn_layers,\\\\n            'scale': '340M',\\\\n            'file': os.path.basename(jf),\\\\n        }\\\\n        row.update(metrics)\\\\n        rows.append(row)\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef load_1_3b_data():\\\\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\\\n    df = pd.read_csv(csv_path)\\\\n    df['scale'] = '1.3B'\\\\n    df = df.rename(columns={'model_family': 'model_family'})\\\\n    return df\\\\n\\\\n\\\\ndef compute_cross_arch_stats(df, scale):\\\\n    archs = ['GDN', 'RetNet', 'HGRN2']\\\\n    df_arch = df[df['model_family'].isin(archs)].copy()\\\\n\\\\n    records = []\\\\n    for attn in sorted(df_arch['attn_layers'].unique()):\\\\n        sub = df_arch[df_arch['attn_layers'] == attn]\\\\n        for bm in ACC_BENCHMARKS:\\\\n            if bm not in sub.columns:\\\\n                continue\\\\n            vals = sub.set_index('model_family')[bm].reindex(archs).dropna()\\\\n            if len(vals) < 2:\\\\n                continue\\\\n            arch_vals_str = ','.join(f\\\\\\\"{a}={v:.4f}\\\\\\\" for a, v in vals.items())\\\\n            records.append({\\\\n                'scale': scale,\\\\n                'attn_layers': int(attn),\\\\n                'benchmark': bm,\\\\n                'arch_std': vals.std(ddof=0),\\\\n                'arch_range': vals.max() - vals.min(),\\\\n                'arch_values': arch_vals_str,\\\\n            })\\\\n    return pd.DataFrame(records)\\\\n\\\\n\\\\ndef compute_spearman(stats_df):\\\\n    records = []\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport glob\\nimport os\\nimport re\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import spearmanr\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nBENCHMARKS = {\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\n}\\n\\nVARIANT_TO_ATTN = {\\n    'pure': 0,\\n    'h24-1': 1,\\n    'h12-1': 2,\\n    'h6-1': 4,\\n    'h3-1': 8,\\n}\\n\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\n\\n\\ndef parse_340m_filename(filepath):\\n    basename = os.path.basename(filepath).replace('.json', '')\\n\\n    if basename == 'transformer_340M_baseline':\\n        return 'Transformer', 'baseline', 24\\n\\n    family = None\\n    variant = None\\n\\n    if 'GatedDeltaNet' in basename:\\n        family = 'GDN'\\n        if 'pure-baseline' in basename:\\n            variant = 'pure'\\n        elif 'New-hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            variant = 'h6-1'\\n        elif 'hybrid-3-1' in basename:\\n            variant = 'h3-1'\\n    elif 'RetNet' in basename:\\n        family = 'RetNet'\\n        if 'pure' in basename:\\n            variant = 'pure'\\n        elif 'hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            variant = 'h6-1'\\n        elif 'hybrid-3-1' in basename:\\n            variant = 'h3-1'\\n    elif 'HGRN2' in basename:\\n        family = 'HGRN2'\\n        if 'pure' in basename:\\n            variant = 'pure'\\n        elif 'hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            variant = 'h6-1'\\n        elif 'hybrid-3-1' in basename:\\n            variant = 'h3-1'\\n\\n    if family is None or variant is None:\\n        return None, None, None\\n\\n    attn_layers = VARIANT_TO_ATTN.get(variant)\\n    return family, variant, attn_layers\\n\\n\\ndef extract_metrics(data):\\n    results = data['results']\\n    metrics = {}\\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\\n        if task_key in results and metric_key in results[task_key]:\\n            metrics[bm_name] = results[task_key][metric_key]\\n    return metrics\\n\\n\\ndef load_340m_data():\\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\\n    json_files += glob.glob(os.path.join(base, '*.json'))\\n    json_files = list(set(os.path.abspath(f) for f in json_files))\\n\\n    rows = []\\n    for jf in json_files:\\n        family, variant, attn_layers = parse_340m_filename(jf)\\n        if family is None:\\n            print(f\\\"  Skipping unrecognized: {os.path.basename(jf)}\\\")\\n            continue\\n\\n        with open(jf) as f:\\n            data = json.load(f)\\n        metrics = extract_metrics(data)\\n\\n        row = {\\n            'model_family': family,\\n            'variant': variant,\\n            'attn_layers': attn_layers,\\n            'scale': '340M',\\n            'file': os.path.basename(jf),\\n        }\\n        row.update(metrics)\\n        rows.append(row)\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef load_1_3b_data():\\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\n    df = pd.read_csv(csv_path)\\n    df['scale'] = '1.3B'\\n    df = df.rename(columns={'model_family': 'model_family'})\\n    return df\\n\\n\\ndef compute_cross_arch_stats(df, scale):\\n    archs = ['GDN', 'RetNet', 'HGRN2']\\n    df_arch = df[df['model_family'].isin(archs)].copy()\\n\\n    records = []\\n    for attn in sorted(df_arch['attn_layers'].unique()):\\n        sub = df_arch[df_arch['attn_layers'] == attn]\\n        for bm in ACC_BENCHMARKS:\\n            if bm not in sub.columns:\\n                continue\\n            vals = sub.set_index('model_family')[bm].reindex(archs).dropna()\\n            if len(vals) < 2:\\n                continue\\n            arch_vals_str = ','.join(f\\\"{a}={v:.4f}\\\" for a, v in vals.items())\\n            records.append({\\n                'scale': scale,\\n                'attn_layers': int(attn),\\n                'benchmark': bm,\\n                'arch_std': vals.std(ddof=0),\\n                'arch_range': vals.max() - vals.min(),\\n                'arch_values': arch_vals_str,\\n            })\\n    return pd.DataFrame(records)\\n\\n\\ndef compute_spearman(stats_df):\\n    records = []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HdYqHeR4p5PEf3mAgwQu4R",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "tail -n +160 /root/entrainment_gated_ft/analysis/cross_scale_convergence.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "acef97c9-d8eb-4705-9018-a19d590bf441",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017X7Kt67RsJZUb8GhqBHobJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2054,
+                "cache_read_input_tokens": 30033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2054
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T05:35:51.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HdYqHeR4p5PEf3mAgwQu4R",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    records = []\\\\n    for (scale, bm), grp in stats_df.groupby(['scale', 'benchmark']):\\\\n        if len(grp) < 4:\\\\n            continue\\\\n        rho, pval = spearmanr(grp['attn_layers'], grp['arch_std'])\\\\n        records.append({\\\\n            'scale': scale,\\\\n            'benchmark': bm,\\\\n            'spearman_rho': rho,\\\\n            'p_value': pval,\\\\n            'n_points': len(grp),\\\\n        })\\\\n    return pd.DataFrame(records)\\\\n\\\\n\\\\ndef make_figure(stats_df, spearman_df, outdir):\\\\n    bm_labels = {\\\\n        'lambada_acc': 'LAMBADA',\\\\n        'hellaswag_norm': 'HellaSwag',\\\\n        'winogrande_acc': 'WinoGrande',\\\\n        'arc_easy_norm': 'ARC-Easy',\\\\n        'arc_challenge_norm': 'ARC-Challenge',\\\\n        'mmlu_acc': 'MMLU',\\\\n    }\\\\n\\\\n    fig, axes = plt.subplots(2, 3, figsize=(12, 7), sharex=True)\\\\n    axes = axes.flatten()\\\\n\\\\n    for idx, bm in enumerate(ACC_BENCHMARKS):\\\\n        ax = axes[idx]\\\\n        for scale, color, ls, marker in [('1.3B', '#2c3e50', '-', 'o'),\\\\n                                          ('340M', '#e74c3c', '--', 's')]:\\\\n            sub = stats_df[(stats_df['scale'] == scale) & (stats_df['benchmark'] == bm)]\\\\n            sub = sub.sort_values('attn_layers')\\\\n            if sub.empty:\\\\n                continue\\\\n            ax.plot(sub['attn_layers'], sub['arch_std'], color=color,\\\\n                    linestyle=ls, marker=marker, markersize=5, linewidth=1.5,\\\\n                    label=scale)\\\\n\\\\n            sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                             (spearman_df['benchmark'] == bm)]\\\\n            if not sp.empty:\\\\n                rho = sp.iloc[0]['spearman_rho']\\\\n                pval = sp.iloc[0]['p_value']\\\\n                sig = '*' if pval < 0.05 else ''\\\\n                y_pos = 0.95 if scale == '1.3B' else 0.82\\\\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\\\\\\\rho$' + f'={rho:.2f}{sig}',\\\\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\\\\n                        color=color)\\\\n\\\\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\\\\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\\\\n        ax.tick_params(labelsize=7)\\\\n        if idx >= 3:\\\\n            ax.set_xlabel('Attention Layers', fontsize=8)\\\\n        ax.set_xticks([0, 1, 2, 4, 8])\\\\n        if idx == 0:\\\\n            ax.legend(fontsize=7.5, loc='upper left')\\\\n\\\\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\\\\n                 fontsize=11, fontweight='bold', y=0.98)\\\\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\\\\n\\\\n    for ext in ['pdf', 'png']:\\\\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\\\\n                    dpi=200, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n\\\\n\\\\ndef main():\\\\n    outdir = '/root/entrainment_gated_ft/analysis'\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Loading 1.3B data...\\\\\\\")\\\\n    df_1b = load_1_3b_data()\\\\n    print(f\\\\\\\"  {len(df_1b)} models loaded\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Loading 340M data...\\\\\\\")\\\\n    df_340m = load_340m_data()\\\\n    print(f\\\\\\\"  {len(df_340m)} models loaded\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"340M data summary:\\\\\\\")\\\\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\\\\n    display_cols = [c for c in cols if c in df_340m.columns]\\\\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\\\\n    print()\\\\n\\\\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\\\\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\\\\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Cross-Architecture Std/Range Table:\\\\\\\")\\\\n    print(stats_all.to_string(index=False))\\\\n    print()\\\\n\\\\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\\\\n    stats_all.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"Saved: {csv_path}\\\\\\\")\\\\n    print()\\\\n\\\\n    spearman_df = compute_spearman(stats_all)\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Spearman Correlation (arch_std vs attn_layers):\\\\\\\")\\\\n    print(spearman_df.to_string(index=False))\\\\n    print()\\\\n\\\\n    make_figure(stats_all, spearman_df, outdir)\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.pdf\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.png\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"KEY FINDINGS:\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n\\\\n    for bm in ACC_BENCHMARKS:\\\\n        for scale in ['1.3B', '340M']:\\\\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\\\\n            if sub.empty:\\\\n                continue\\\\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\\\\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\\\\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\\\\n                change = std_at_8[0] - std_at_0[0]\\\\n                direction = \\\\\\\"CONVERGE\\\\\\\" if change < 0 else \\\\\\\"DIVERGE\\\\\\\"\\\\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\\\\n                sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                                 (spearman_df['benchmark'] == bm)]\\\\n                rho_str = f\\\\\\\"rho={sp.iloc[0]['spearman_rho']:.3f}\\\\\\\" if not sp.empty else \\\\\\\"N/A\\\\\\\"\\\\n                print(f\\\\\\\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \\\\\\\"\\\\n                      f\\\\\\\"({direction}, {pct:.1f}%) {rho_str}\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"Note: MMLU at 340M is near random (0.25), high noise expected.\\\\\\\")\\\\n    print(\\\\\\\"* = p < 0.05\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "2ca7b605-f05c-40c1-9545-4e283e00df23",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    records = []\\\\n    for (scale, bm), grp in stats_df.groupby(['scale', 'benchmark']):\\\\n        if len(grp) < 4:\\\\n            continue\\\\n        rho, pval = spearmanr(grp['attn_layers'], grp['arch_std'])\\\\n        records.append({\\\\n            'scale': scale,\\\\n            'benchmark': bm,\\\\n            'spearman_rho': rho,\\\\n            'p_value': pval,\\\\n            'n_points': len(grp),\\\\n        })\\\\n    return pd.DataFrame(records)\\\\n\\\\n\\\\ndef make_figure(stats_df, spearman_df, outdir):\\\\n    bm_labels = {\\\\n        'lambada_acc': 'LAMBADA',\\\\n        'hellaswag_norm': 'HellaSwag',\\\\n        'winogrande_acc': 'WinoGrande',\\\\n        'arc_easy_norm': 'ARC-Easy',\\\\n        'arc_challenge_norm': 'ARC-Challenge',\\\\n        'mmlu_acc': 'MMLU',\\\\n    }\\\\n\\\\n    fig, axes = plt.subplots(2, 3, figsize=(12, 7), sharex=True)\\\\n    axes = axes.flatten()\\\\n\\\\n    for idx, bm in enumerate(ACC_BENCHMARKS):\\\\n        ax = axes[idx]\\\\n        for scale, color, ls, marker in [('1.3B', '#2c3e50', '-', 'o'),\\\\n                                          ('340M', '#e74c3c', '--', 's')]:\\\\n            sub = stats_df[(stats_df['scale'] == scale) & (stats_df['benchmark'] == bm)]\\\\n            sub = sub.sort_values('attn_layers')\\\\n            if sub.empty:\\\\n                continue\\\\n            ax.plot(sub['attn_layers'], sub['arch_std'], color=color,\\\\n                    linestyle=ls, marker=marker, markersize=5, linewidth=1.5,\\\\n                    label=scale)\\\\n\\\\n            sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                             (spearman_df['benchmark'] == bm)]\\\\n            if not sp.empty:\\\\n                rho = sp.iloc[0]['spearman_rho']\\\\n                pval = sp.iloc[0]['p_value']\\\\n                sig = '*' if pval < 0.05 else ''\\\\n                y_pos = 0.95 if scale == '1.3B' else 0.82\\\\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\\\\\\\rho$' + f'={rho:.2f}{sig}',\\\\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\\\\n                        color=color)\\\\n\\\\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\\\\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\\\\n        ax.tick_params(labelsize=7)\\\\n        if idx >= 3:\\\\n            ax.set_xlabel('Attention Layers', fontsize=8)\\\\n        ax.set_xticks([0, 1, 2, 4, 8])\\\\n        if idx == 0:\\\\n            ax.legend(fontsize=7.5, loc='upper left')\\\\n\\\\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\\\\n                 fontsize=11, fontweight='bold', y=0.98)\\\\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\\\\n\\\\n    for ext in ['pdf', 'png']:\\\\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\\\\n                    dpi=200, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n\\\\n\\\\ndef main():\\\\n    outdir = '/root/entrainment_gated_ft/analysis'\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Loading 1.3B data...\\\\\\\")\\\\n    df_1b = load_1_3b_data()\\\\n    print(f\\\\\\\"  {len(df_1b)} models loaded\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Loading 340M data...\\\\\\\")\\\\n    df_340m = load_340m_data()\\\\n    print(f\\\\\\\"  {len(df_340m)} models loaded\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"340M data summary:\\\\\\\")\\\\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\\\\n    display_cols = [c for c in cols if c in df_340m.columns]\\\\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\\\\n    print()\\\\n\\\\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\\\\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\\\\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Cross-Architecture Std/Range Table:\\\\\\\")\\\\n    print(stats_all.to_string(index=False))\\\\n    print()\\\\n\\\\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\\\\n    stats_all.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"Saved: {csv_path}\\\\\\\")\\\\n    print()\\\\n\\\\n    spearman_df = compute_spearman(stats_all)\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Spearman Correlation (arch_std vs attn_layers):\\\\\\\")\\\\n    print(spearman_df.to_string(index=False))\\\\n    print()\\\\n\\\\n    make_figure(stats_all, spearman_df, outdir)\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.pdf\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {outdir}/cross_scale_convergence.png\\\\\\\")\\\\n    print()\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"KEY FINDINGS:\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n\\\\n    for bm in ACC_BENCHMARKS:\\\\n        for scale in ['1.3B', '340M']:\\\\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\\\\n            if sub.empty:\\\\n                continue\\\\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\\\\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\\\\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\\\\n                change = std_at_8[0] - std_at_0[0]\\\\n                direction = \\\\\\\"CONVERGE\\\\\\\" if change < 0 else \\\\\\\"DIVERGE\\\\\\\"\\\\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\\\\n                sp = spearman_df[(spearman_df['scale'] == scale) &\\\\n                                 (spearman_df['benchmark'] == bm)]\\\\n                rho_str = f\\\\\\\"rho={sp.iloc[0]['spearman_rho']:.3f}\\\\\\\" if not sp.empty else \\\\\\\"N/A\\\\\\\"\\\\n                print(f\\\\\\\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \\\\\\\"\\\\n                      f\\\\\\\"({direction}, {pct:.1f}%) {rho_str}\\\\\\\")\\\\n\\\\n    print()\\\\n    print(\\\\\\\"Note: MMLU at 340M is near random (0.25), high noise expected.\\\\\\\")\\\\n    print(\\\\\\\"* = p < 0.05\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    records = []\\n    for (scale, bm), grp in stats_df.groupby(['scale', 'benchmark']):\\n        if len(grp) < 4:\\n            continue\\n        rho, pval = spearmanr(grp['attn_layers'], grp['arch_std'])\\n        records.append({\\n            'scale': scale,\\n            'benchmark': bm,\\n            'spearman_rho': rho,\\n            'p_value': pval,\\n            'n_points': len(grp),\\n        })\\n    return pd.DataFrame(records)\\n\\n\\ndef make_figure(stats_df, spearman_df, outdir):\\n    bm_labels = {\\n        'lambada_acc': 'LAMBADA',\\n        'hellaswag_norm': 'HellaSwag',\\n        'winogrande_acc': 'WinoGrande',\\n        'arc_easy_norm': 'ARC-Easy',\\n        'arc_challenge_norm': 'ARC-Challenge',\\n        'mmlu_acc': 'MMLU',\\n    }\\n\\n    fig, axes = plt.subplots(2, 3, figsize=(12, 7), sharex=True)\\n    axes = axes.flatten()\\n\\n    for idx, bm in enumerate(ACC_BENCHMARKS):\\n        ax = axes[idx]\\n        for scale, color, ls, marker in [('1.3B', '#2c3e50', '-', 'o'),\\n                                          ('340M', '#e74c3c', '--', 's')]:\\n            sub = stats_df[(stats_df['scale'] == scale) & (stats_df['benchmark'] == bm)]\\n            sub = sub.sort_values('attn_layers')\\n            if sub.empty:\\n                continue\\n            ax.plot(sub['attn_layers'], sub['arch_std'], color=color,\\n                    linestyle=ls, marker=marker, markersize=5, linewidth=1.5,\\n                    label=scale)\\n\\n            sp = spearman_df[(spearman_df['scale'] == scale) &\\n                             (spearman_df['benchmark'] == bm)]\\n            if not sp.empty:\\n                rho = sp.iloc[0]['spearman_rho']\\n                pval = sp.iloc[0]['p_value']\\n                sig = '*' if pval < 0.05 else ''\\n                y_pos = 0.95 if scale == '1.3B' else 0.82\\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\\\rho$' + f'={rho:.2f}{sig}',\\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\\n                        color=color)\\n\\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\\n        ax.tick_params(labelsize=7)\\n        if idx >= 3:\\n            ax.set_xlabel('Attention Layers', fontsize=8)\\n        ax.set_xticks([0, 1, 2, 4, 8])\\n        if idx == 0:\\n            ax.legend(fontsize=7.5, loc='upper left')\\n\\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\\n                 fontsize=11, fontweight='bold', y=0.98)\\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\\n\\n    for ext in ['pdf', 'png']:\\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\\n                    dpi=200, bbox_inches='tight')\\n    plt.close(fig)\\n\\n\\ndef main():\\n    outdir = '/root/entrainment_gated_ft/analysis'\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Loading 1.3B data...\\\")\\n    df_1b = load_1_3b_data()\\n    print(f\\\"  {len(df_1b)} models loaded\\\")\\n\\n    print(\\\"Loading 340M data...\\\")\\n    df_340m = load_340m_data()\\n    print(f\\\"  {len(df_340m)} models loaded\\\")\\n    print()\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"340M data summary:\\\")\\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\\n    display_cols = [c for c in cols if c in df_340m.columns]\\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\\n    print()\\n\\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Cross-Architecture Std/Range Table:\\\")\\n    print(stats_all.to_string(index=False))\\n    print()\\n\\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\\n    stats_all.to_csv(csv_path, index=False)\\n    print(f\\\"Saved: {csv_path}\\\")\\n    print()\\n\\n    spearman_df = compute_spearman(stats_all)\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Spearman Correlation (arch_std vs attn_layers):\\\")\\n    print(spearman_df.to_string(index=False))\\n    print()\\n\\n    make_figure(stats_all, spearman_df, outdir)\\n    print(f\\\"Saved: {outdir}/cross_scale_convergence.pdf\\\")\\n    print(f\\\"Saved: {outdir}/cross_scale_convergence.png\\\")\\n    print()\\n\\n    print(\\\"=\\\" * 70)\\n    print(\\\"KEY FINDINGS:\\\")\\n    print(\\\"-\\\" * 70)\\n\\n    for bm in ACC_BENCHMARKS:\\n        for scale in ['1.3B', '340M']:\\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\\n            if sub.empty:\\n                continue\\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\\n                change = std_at_8[0] - std_at_0[0]\\n                direction = \\\"CONVERGE\\\" if change < 0 else \\\"DIVERGE\\\"\\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\\n                sp = spearman_df[(spearman_df['scale'] == scale) &\\n                                 (spearman_df['benchmark'] == bm)]\\n                rho_str = f\\\"rho={sp.iloc[0]['spearman_rho']:.3f}\\\" if not sp.empty else \\\"N/A\\\"\\n                print(f\\\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \\\"\\n                      f\\\"({direction}, {pct:.1f}%) {rho_str}\\\")\\n\\n    print()\\n    print(\\\"Note: MMLU at 340M is near random (0.25), high noise expected.\\\")\\n    print(\\\"* = p < 0.05\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full script. Let me understand the structure:\n\n1. `compute_spearman` function at line ~160 uses `spearmanr` to get p-values - this is what needs to be replaced with exact permutation test\n2. Need to add non-monotonic pattern analysis in `main()`\n\nLet me write the modified script. The key changes:\n\n1. Add `exact_spearman_p` function\n2. Replace `spearmanr` call in `compute_spearman` with `exact_spearman_p`\n3. Add non-monotonic pattern analysis section in `main()`\n\n\n4. Include `min_std_attn` column in the output CSV\n\nNow I'll construct the updated script using a heredoc to write it out.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "b705de93-3826-48a8-9aef-4b54fc0e5d3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBfA6Kj5xSx42m27bHWf8U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2418,
+                "cache_read_input_tokens": 32087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2418
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已读完全文。现在用 `ssh_execute` 写入修改后的脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "fef7e6af-6f64-44cc-80d1-2d4d728d7252",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBfA6Kj5xSx42m27bHWf8U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2418,
+                "cache_read_input_tokens": 32087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2418
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RKKKVNxTbTkxZgqf3oYdPy",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "account": "root",
+                "command": "cat > /root/entrainment_gated_ft/analysis/cross_scale_convergence.py << 'PYEOF'\nimport json\nimport glob\nimport os\nimport re\nimport numpy as np\nimport pandas as pd\nfrom itertools import permutations\nfrom scipy.stats import spearmanr\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nBENCHMARKS = {\n    'lambada_acc': ('lambada_openai', 'acc,none'),\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\n    'winogrande_acc': ('winogrande', 'acc,none'),\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\n    'mmlu_acc': ('mmlu', 'acc,none'),\n}\n\nVARIANT_TO_ATTN = {\n    'pure': 0,\n    'h24-1': 1,\n    'h12-1': 2,\n    'h6-1': 4,\n    'h3-1': 8,\n}\n\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\n\n\ndef exact_spearman_p(x, y):\n    \"\"\"Exact permutation test for Spearman rho (n<=8, brute-force all n! permutations).\"\"\"\n    x = np.asarray(x)\n    y = np.asarray(y)\n    rho_obs = spearmanr(x, y)[0]\n    n = len(x)\n    count = sum(1 for perm in permutations(range(n))\n                if abs(spearmanr(x, y[list(perm)])[0]) >= abs(rho_obs))\n    return rho_obs, count / np.math.factorial(n)\n\n\ndef parse_340m_filename(filepath):\n    basename = os.path.basename(filepath).replace('.json', '')\n\n    if basename == 'transformer_340M_baseline':\n        return 'Transformer', 'baseline', 24\n\n    family = None\n    variant = None\n\n    if 'GatedDeltaNet' in basename:\n        family = 'GDN'\n        if 'pure-baseline' in basename:\n            variant = 'pure'\n        elif 'New-hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n    elif 'RetNet' in basename:\n        family = 'RetNet'\n        if 'pure' in basename:\n            variant = 'pure'\n        elif 'hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n    elif 'HGRN2' in basename:\n        family = 'HGRN2'\n        if 'pure' in basename:\n            variant = 'pure'\n        elif 'hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n\n    if family is None or variant is None:\n        return None, None, None\n\n    attn_layers = VARIANT_TO_ATTN.get(variant)\n    return family, variant, attn_layers\n\n\ndef extract_metrics(data):\n    results = data['results']\n    metrics = {}\n    for bm_name, (task_key, metric_key) in BENCHMARKS.items():\n        if task_key in results and metric_key in results[task_key]:\n            metrics[bm_name] = results[task_key][metric_key]\n    return metrics\n\n\ndef load_340m_data():\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\n    json_files += glob.glob(os.path.join(base, '*.json'))\n    json_files = list(set(os.path.abspath(f) for f in json_files))\n\n    rows = []\n    for jf in json_files:\n        family, variant, attn_layers = parse_340m_filename(jf)\n        if family is None:\n            print(f\"  Skipping unrecognized: {os.path.basename(jf)}\")\n            continue\n\n        with open(jf) as f:\n            data = json.load(f)\n        metrics = extract_metrics(data)\n\n        row = {\n            'model_family': family,\n            'variant': variant,\n            'attn_layers': attn_layers,\n            'scale': '340M',\n            'file': os.path.basename(jf),\n        }\n        row.update(metrics)\n        rows.append(row)\n\n    return pd.DataFrame(rows)\n\n\ndef load_1_3b_data():\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\n    df = pd.read_csv(csv_path)\n    df['scale'] = '1.3B'\n    df = df.rename(columns={'model_family': 'model_family'})\n    return df\n\n\ndef compute_cross_arch_stats(df, scale):\n    archs = ['GDN', 'RetNet', 'HGRN2']\n    df_arch = df[df['model_family'].isin(archs)].copy()\n\n    records = []\n    for attn in sorted(df_arch['attn_layers'].unique()):\n        sub = df_arch[df_arch['attn_layers'] == attn]\n        for bm in ACC_BENCHMARKS:\n            if bm not in sub.columns:\n                continue\n            vals = sub.set_index('model_family')[bm].reindex(archs).dropna()\n            if len(vals) < 2:\n                continue\n            arch_vals_str = ','.join(f\"{a}={v:.4f}\" for a, v in vals.items())\n            records.append({\n                'scale': scale,\n                'attn_layers': int(attn),\n                'benchmark': bm,\n                'arch_std': vals.std(ddof=0),\n                'arch_range': vals.max() - vals.min(),\n                'arch_values': arch_vals_str,\n            })\n    return pd.DataFrame(records)\n\n\ndef compute_spearman(stats_df):\n    records = []\n    for (scale, bm), grp in stats_df.groupby(['scale', 'benchmark']):\n        if len(grp) < 4:\n            continue\n        x = grp['attn_layers'].values\n        y = grp['arch_std'].values\n        rho, pval = exact_spearman_p(x, y)\n        records.append({\n            'scale': scale,\n            'benchmark': bm,\n            'spearman_rho': rho,\n            'p_value': pval,\n            'p_value_method': 'exact_permutation',\n            'n_points': len(grp),\n        })\n    return pd.DataFrame(records)\n\n\ndef analyze_non_monotonic(stats_all):\n    print(\"=\" * 70)\n    print(\"=== Non-Monotonic Pattern Analysis ===\")\n    print(\"-\" * 70)\n\n    nm_records = []\n    for scale in ['340M', '1.3B']:\n        for bm in ACC_BENCHMARKS:\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\n            sub = sub.sort_values('attn_layers')\n            if sub.empty or len(sub) < 2:\n                continue\n\n            std_vals = sub.set_index('attn_layers')['arch_std']\n            min_attn = std_vals.idxmin()\n            min_std = std_vals[min_attn]\n            pure_std = std_vals.get(0, np.nan)\n\n            if np.isnan(pure_std) or pure_std == 0:\n                reduction_pct = np.nan\n            else:\n                reduction_pct = (min_std - pure_std) / pure_std * 100\n\n            rebound_str = \"no rebound (monotonic)\"\n            rebound_pct = np.nan\n            if min_attn != 8 and 8 in std_vals.index:\n                std_at_8 = std_vals[8]\n                if min_std > 0:\n                    rebound_pct = (std_at_8 - min_std) / min_std * 100\n                rebound_str = f\"rebound at attn=8 (std={std_at_8:.4f}, +{rebound_pct:.1f}% from min)\"\n\n            print(f\"  {scale} {bm}: min_std at attn={min_attn} \"\n                  f\"(std={min_std:.4f}, {reduction_pct:+.1f}% from pure), {rebound_str}\")\n\n            nm_records.append({\n                'scale': scale,\n                'benchmark': bm,\n                'min_std_attn': int(min_attn),\n                'min_std': min_std,\n                'pure_std': pure_std,\n                'reduction_pct': reduction_pct,\n                'rebound_pct': rebound_pct,\n            })\n    print()\n    return pd.DataFrame(nm_records)\n\n\ndef make_figure(stats_df, spearman_df, outdir):\n    bm_labels = {\n        'lambada_acc': 'LAMBADA',\n        'hellaswag_norm': 'HellaSwag',\n        'winogrande_acc': 'WinoGrande',\n        'arc_easy_norm': 'ARC-Easy',\n        'arc_challenge_norm': 'ARC-Challenge',\n        'mmlu_acc': 'MMLU',\n    }\n\n    fig, axes = plt.subplots(2, 3, figsize=(12, 7), sharex=True)\n    axes = axes.flatten()\n\n    for idx, bm in enumerate(ACC_BENCHMARKS):\n        ax = axes[idx]\n        for scale, color, ls, marker in [('1.3B', '#2c3e50', '-', 'o'),\n                                          ('340M', '#e74c3c', '--', 's')]:\n            sub = stats_df[(stats_df['scale'] == scale) & (stats_df['benchmark'] == bm)]\n            sub = sub.sort_values('attn_layers')\n            if sub.empty:\n                continue\n            ax.plot(sub['attn_layers'], sub['arch_std'], color=color,\n                    linestyle=ls, marker=marker, markersize=5, linewidth=1.5,\n                    label=scale)\n\n            sp = spearman_df[(spearman_df['scale'] == scale) &\n                             (spearman_df['benchmark'] == bm)]\n            if not sp.empty:\n                rho = sp.iloc[0]['spearman_rho']\n                pval = sp.iloc[0]['p_value']\n                sig = '*' if pval < 0.05 else ''\n                y_pos = 0.95 if scale == '1.3B' else 0.82\n                ax.text(0.98, y_pos, f'{scale}: ' + r'$\\rho$' + f'={rho:.2f}{sig}',\n                        transform=ax.transAxes, fontsize=7.5, ha='right', va='top',\n                        color=color)\n\n        ax.set_title(bm_labels.get(bm, bm), fontsize=10, fontweight='bold')\n        ax.set_ylabel('Cross-arch Std', fontsize=8)\n        ax.tick_params(labelsize=7)\n        if idx >= 3:\n            ax.set_xlabel('Attention Layers', fontsize=8)\n        ax.set_xticks([0, 1, 2, 4, 8])\n        if idx == 0:\n            ax.legend(fontsize=7.5, loc='upper left')\n\n    plt.suptitle('Cross-Architecture Convergence: Std across GDN, RetNet, HGRN2',\n                 fontsize=11, fontweight='bold', y=0.98)\n    plt.tight_layout(rect=[0, 0, 1, 0.95])\n\n    for ext in ['pdf', 'png']:\n        fig.savefig(os.path.join(outdir, f'cross_scale_convergence.{ext}'),\n                    dpi=200, bbox_inches='tight')\n    plt.close(fig)\n\n\ndef main():\n    outdir = '/root/entrainment_gated_ft/analysis'\n\n    print(\"=\" * 70)\n    print(\"Loading 1.3B data...\")\n    df_1b = load_1_3b_data()\n    print(f\"  {len(df_1b)} models loaded\")\n\n    print(\"Loading 340M data...\")\n    df_340m = load_340m_data()\n    print(f\"  {len(df_340m)} models loaded\")\n    print()\n\n    print(\"=\" * 70)\n    print(\"340M data summary:\")\n    cols = ['model_family', 'variant', 'attn_layers'] + ACC_BENCHMARKS\n    display_cols = [c for c in cols if c in df_340m.columns]\n    print(df_340m[display_cols].sort_values(['model_family', 'attn_layers']).to_string(index=False))\n    print()\n\n    stats_1b = compute_cross_arch_stats(df_1b, '1.3B')\n    stats_340m = compute_cross_arch_stats(df_340m, '340M')\n    stats_all = pd.concat([stats_1b, stats_340m], ignore_index=True)\n\n    print(\"=\" * 70)\n    print(\"Cross-Architecture Std/Range Table:\")\n    print(stats_all.to_string(index=False))\n    print()\n\n    csv_path = os.path.join(outdir, 'cross_scale_summary.csv')\n    stats_all.to_csv(csv_path, index=False)\n    print(f\"Saved: {csv_path}\")\n    print()\n\n    spearman_df = compute_spearman(stats_all)\n    print(\"=\" * 70)\n    print(\"Spearman Correlation (arch_std vs attn_layers) [exact permutation p-values]:\")\n    print(spearman_df.to_string(index=False))\n    print()\n\n    nm_df = analyze_non_monotonic(stats_all)\n\n    # Merge min_std_attn into stats_all CSV\n    if not nm_df.empty:\n        merge_cols = nm_df[['scale', 'benchmark', 'min_std_attn', 'min_std', 'reduction_pct', 'rebound_pct']]\n        stats_merged = stats_all.merge(merge_cols, on=['scale', 'benchmark'], how='left')\n        stats_merged.to_csv(csv_path, index=False)\n        print(f\"Updated CSV with non-monotonic columns: {csv_path}\")\n        print()\n\n    make_figure(stats_all, spearman_df, outdir)\n    print(f\"Saved: {outdir}/cross_scale_convergence.pdf\")\n    print(f\"Saved: {outdir}/cross_scale_convergence.png\")\n    print()\n\n    print(\"=\" * 70)\n    print(\"KEY FINDINGS:\")\n    print(\"-\" * 70)\n\n    for bm in ACC_BENCHMARKS:\n        for scale in ['1.3B', '340M']:\n            sub = stats_all[(stats_all['scale'] == scale) & (stats_all['benchmark'] == bm)]\n            if sub.empty:\n                continue\n            std_at_0 = sub[sub['attn_layers'] == 0]['arch_std'].values\n            std_at_8 = sub[sub['attn_layers'] == 8]['arch_std'].values\n            if len(std_at_0) > 0 and len(std_at_8) > 0:\n                change = std_at_8[0] - std_at_0[0]\n                direction = \"CONVERGE\" if change < 0 else \"DIVERGE\"\n                pct = abs(change / std_at_0[0]) * 100 if std_at_0[0] > 0 else 0\n                sp = spearman_df[(spearman_df['scale'] == scale) &\n                                 (spearman_df['benchmark'] == bm)]\n                rho_str = f\"rho={sp.iloc[0]['spearman_rho']:.3f}\" if not sp.empty else \"N/A\"\n                pval_str = f\"p={sp.iloc[0]['p_value']:.4f}\" if not sp.empty else \"\"\n                print(f\"  {scale:4s} {bm:22s}: std {std_at_0[0]:.4f} -> {std_at_8[0]:.4f} \"\n                      f\"({direction}, {pct:.1f}%) {rho_str} {pval_str}\")\n\n    print()\n    print(\"Note: MMLU at 340M is near random (0.25), high noise expected.\")\n    print(\"* = p < 0.05 (exact permutation test)\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "e2126e2e-a72f-4418-873f-4c305c797edf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBfA6Kj5xSx42m27bHWf8U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2418,
+                "cache_read_input_tokens": 32087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2418
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T05:36:43.702Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RKKKVNxTbTkxZgqf3oYdPy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "d1f51e26-9064-42cb-8430-dc28fab46570",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入。运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "afb1d2fd-ac88-42c1-9e7f-d2976b426e5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdKeSXsFYWtThVhRsGaBPq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5171,
+                "cache_read_input_tokens": 34505,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5171
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ELNf5XGUuLiDWzkBNro33",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/cross_scale_convergence.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "644871d3-72dd-42ae-a822-f7fcbd97d8c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PdKeSXsFYWtThVhRsGaBPq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5171,
+                "cache_read_input_tokens": 34505,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5171
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T05:36:54.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ELNf5XGUuLiDWzkBNro33",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/cross_scale_convergence.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n 340M            4           mmlu_acc  0.008087    0.019655 GDN=0.2394,RetNet=0.2514,HGRN2=0.2317\\\\n 340M            8        lambada_acc  0.015053    0.036872 GDN=0.3268,RetNet=0.3454,HGRN2=0.3637\\\\n 340M            8     hellaswag_norm  0.013286    0.028381 GDN=0.4093,RetNet=0.4089,HGRN2=0.4373\\\\n 340M            8     winogrande_acc  0.013149    0.031571 GDN=0.5067,RetNet=0.5280,HGRN2=0.5383\\\\n 340M            8      arc_easy_norm  0.020911    0.048401 GDN=0.4870,RetNet=0.5257,HGRN2=0.5354\\\\n 340M            8 arc_challenge_norm  0.008821    0.021331 GDN=0.3055,RetNet=0.2841,HGRN2=0.2918\\\\n 340M            8           mmlu_acc  0.002518    0.005412 GDN=0.2323,RetNet=0.2376,HGRN2=0.2322\\\\n\\\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n\\\\n\\\\nStderr:\\\\n\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\\\\", line 178, in compute_spearman\\\\n    rho, pval = exact_spearman_p(x, y)\\\\n                ^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\\\\", line 43, in exact_spearman_p\\\\n    return rho_obs, count / np.math.factorial(n)\\\\n                            ^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/numpy/__init__.py\\\\\\\", line 795, in __getattr__\\\\n    raise AttributeError(f\\\\\\\"module {__name__!r} has no attribute {attr!r}\\\\\\\")\\\\nAttributeError: module 'numpy' has no attribute 'math'. Did you mean: 'emath'?\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "2c9505b3-3b35-46ee-89f5-1b2f23acb26a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/cross_scale_convergence.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n 340M            4           mmlu_acc  0.008087    0.019655 GDN=0.2394,RetNet=0.2514,HGRN2=0.2317\\\\n 340M            8        lambada_acc  0.015053    0.036872 GDN=0.3268,RetNet=0.3454,HGRN2=0.3637\\\\n 340M            8     hellaswag_norm  0.013286    0.028381 GDN=0.4093,RetNet=0.4089,HGRN2=0.4373\\\\n 340M            8     winogrande_acc  0.013149    0.031571 GDN=0.5067,RetNet=0.5280,HGRN2=0.5383\\\\n 340M            8      arc_easy_norm  0.020911    0.048401 GDN=0.4870,RetNet=0.5257,HGRN2=0.5354\\\\n 340M            8 arc_challenge_norm  0.008821    0.021331 GDN=0.3055,RetNet=0.2841,HGRN2=0.2918\\\\n 340M            8           mmlu_acc  0.002518    0.005412 GDN=0.2323,RetNet=0.2376,HGRN2=0.2322\\\\n\\\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n\\\\n\\\\nStderr:\\\\n\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\\\\", line 178, in compute_spearman\\\\n    rho, pval = exact_spearman_p(x, y)\\\\n                ^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\\\\", line 43, in exact_spearman_p\\\\n    return rho_obs, count / np.math.factorial(n)\\\\n                            ^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/numpy/__init__.py\\\\\\\", line 795, in __getattr__\\\\n    raise AttributeError(f\\\\\\\"module {__name__!r} has no attribute {attr!r}\\\\\\\")\\\\nAttributeError: module 'numpy' has no attribute 'math'. Did you mean: 'emath'?\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/cross_scale_convergence.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n 340M            4           mmlu_acc  0.008087    0.019655 GDN=0.2394,RetNet=0.2514,HGRN2=0.2317\\n 340M            8        lambada_acc  0.015053    0.036872 GDN=0.3268,RetNet=0.3454,HGRN2=0.3637\\n 340M            8     hellaswag_norm  0.013286    0.028381 GDN=0.4093,RetNet=0.4089,HGRN2=0.4373\\n 340M            8     winogrande_acc  0.013149    0.031571 GDN=0.5067,RetNet=0.5280,HGRN2=0.5383\\n 340M            8      arc_easy_norm  0.020911    0.048401 GDN=0.4870,RetNet=0.5257,HGRN2=0.5354\\n 340M            8 arc_challenge_norm  0.008821    0.021331 GDN=0.3055,RetNet=0.2841,HGRN2=0.2918\\n 340M            8           mmlu_acc  0.002518    0.005412 GDN=0.2323,RetNet=0.2376,HGRN2=0.2322\\n\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\n\\n\\nStderr:\\n\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\", line 178, in compute_spearman\\n    rho, pval = exact_spearman_p(x, y)\\n                ^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\", line 43, in exact_spearman_p\\n    return rho_obs, count / np.math.factorial(n)\\n                            ^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/numpy/__init__.py\\\", line 795, in __getattr__\\n    raise AttributeError(f\\\"module {__name__!r} has no attribute {attr!r}\\\")\\nAttributeError: module 'numpy' has no attribute 'math'. Did you mean: 'emath'?\\n\\n\", \"metadata\": {\"elapsed_seconds\": 7.12}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "numpy 2.x 移除了 `np.math`，改用 `math.factorial`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "ecf9d1dc-6899-4d60-9046-22b443a1481f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GshCE48JVEEFXSavRYQf7J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 39676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013fV87e8haPYdsxj7fmy9vy",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "account": "root",
+                "command": "sed -i 's/return rho_obs, count \\/ np.math.factorial(n)/import math; return rho_obs, count \\/ math.factorial(n)/' /root/entrainment_gated_ft/analysis/cross_scale_convergence.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "ac6f4caf-bfdc-4048-b1ea-3331b7a1b47d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GshCE48JVEEFXSavRYQf7J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 39676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T05:37:02.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013fV87e8haPYdsxj7fmy9vy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "a8d5d31e-288e-4734-a04c-3081bc6daa4e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V31cFiAYkPoRKNeTfCSkRn",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/cross_scale_convergence.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "33ab00c5-e033-4ce0-bcef-4ed42a666dd8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018J6hZNBXFhEsdc3bmPrtZ2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 262,
+                "cache_read_input_tokens": 40611,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 262
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T05:37:14.720Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V31cFiAYkPoRKNeTfCSkRn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nLoading 1.3B data...\\\\n  16 models loaded\\\\nLoading 340M data...\\\\n  16 models loaded\\\\n\\\\n======================================================================\\\\n340M data summary:\\\\nmodel_family  variant  attn_layers  lambada_acc  hellaswag_norm  winogrande_acc  arc_easy_norm  arc_challenge_norm  mmlu_acc\\\\n         GDN     pure            0     0.375315        0.414658        0.508287       0.482323            0.279010  0.247686\\\\n         GDN    h24-1            1     0.350670        0.376419        0.519337       0.480219            0.269625  0.233086\\\\n         GDN    h12-1            2     0.325247        0.417945        0.512234       0.470960            0.277304  0.233941\\\\n         GDN     h6-1            4     0.351252        0.411073        0.539858       0.473906            0.284130  0.239425\\\\n         GDN     h3-1            8     0.326800        0.409281        0.506709       0.486953            0.305461  0.232303\\\\n       HGRN2     pure            0     0.318649        0.431687        0.518548       0.558081            0.304608  0.230309\\\\n       HGRN2    h24-1            1     0.336697        0.431587        0.511444       0.542088            0.305461  0.242416\\\\n       HGRN2    h12-1            2     0.363284        0.439156        0.537490       0.561027            0.300341  0.231164\\\\n       HGRN2     h6-1            4     0.371628        0.437164        0.539069       0.538721            0.306314  0.231733\\\\n       HGRN2     h3-1            8     0.363672        0.437263        0.538279       0.535354            0.291809  0.232161\\\\n      RetNet     pure            0     0.364448        0.411970        0.511444       0.533249            0.273038  0.238356\\\\n      RetNet    h24-1            1     0.363478        0.412069        0.518548       0.519360            0.290102  0.234012\\\\n      RetNet    h12-1            2     0.360567        0.418940        0.529597       0.535774            0.274744  0.244410\\\\n      RetNet     h6-1            4     0.346788        0.417148        0.528019       0.539141            0.281570  0.251389\\\\n      RetNet     h3-1            8     0.345430        0.408883        0.528019       0.525673            0.284130  0.237573\\\\n Transformer baseline           24     0.374539        0.430392        0.542226       0.531566            0.300341  0.250107\\\\n\\\\n======================================================================\\\\nCross-Architecture Std/Range Table:\\\\nscale  attn_layers          benchmark  arch_std  arch_range                           arch_values\\\\n 1.3B            0        lambada_acc  0.024047    0.058801 GDN=0.5430,RetNet=0.5166,HGRN2=0.4842\\\\n 1.3B            0     hellaswag_norm  0.011685    0.028182 GDN=0.6080,RetNet=0.5799,HGRN2=0.5983\\\\n 1.3B            0     winogrande_acc  0.006707    0.015785 GDN=0.6077,RetNet=0.6038,HGRN2=0.5919\\\\n 1.3B            0      arc_easy_norm  0.010015    0.023569 GDN=0.6418,RetNet=0.6477,HGRN2=0.6654\\\\n 1.3B            0 arc_challenge_norm  0.009578    0.023038 GDN=0.3925,RetNet=0.3771,HGRN2=0.4002\\\\n 1.3B            0           mmlu_acc  0.009201    0.021934 GDN=0.2606,RetNet=0.2452,HGRN2=0.2387\\\\n 1.3B            1        lambada_acc  0.016238    0.039395 GDN=0.5397,RetNet=0.5152,HGRN2=0.5003\\\\n 1.3B            1     hellaswag_norm  0.008615    0.020414 GDN=0.5970,RetNet=0.5822,HGRN2=0.6026\\\\n 1.3B            1     winogrande_acc  0.021181    0.051302 GDN=0.6283,RetNet=0.5770,HGRN2=0.6093\\\\n 1.3B            1      arc_easy_norm  0.019453    0.045875 GDN=0.6305,RetNet=0.6423,HGRN2=0.6763\\\\n 1.3B            1 arc_challenge_norm  0.007705    0.018771 GDN=0.3942,RetNet=0.3831,HGRN2=0.4019\\\\n 1.3B            1           mmlu_acc  0.005256    0.011822 GDN=0.2441,RetNet=0.2322,HGRN2=0.2337\\\\n 1.3B            2        lambada_acc  0.013596    0.030662 GDN=0.5337,RetNet=0.5071,HGRN2=0.5030\\\\n 1.3B            2     hellaswag_norm  0.009469    0.022107 GDN=0.6103,RetNet=0.5882,HGRN2=0.6054\\\\n 1.3B            2     winogrande_acc  0.009652    0.02\\\\n\\\\n... [截断: 输出过长，省略 4702 字符] ...\\\\n\\\\nan_rho  p_value    p_value_method  n_points\\\\n 1.3B arc_challenge_norm           0.6 0.350000 exact_permutation         5\\\\n 1.3B      arc_easy_norm          -0.7 0.233333 exact_permutation         5\\\\n 1.3B     hellaswag_norm           0.3 0.683333 exact_permutation         5\\\\n 1.3B        lambada_acc          -1.0 0.016667 exact_permutation         5\\\\n 1.3B           mmlu_acc          -0.7 0.233333 exact_permutation         5\\\\n 1.3B     winogrande_acc           0.1 0.950000 exact_permutation         5\\\\n 340M arc_challenge_norm          -0.9 0.083333 exact_permutation         5\\\\n 340M      arc_easy_norm          -0.5 0.450000 exact_permutation         5\\\\n 340M     hellaswag_norm           0.4 0.516667 exact_permutation         5\\\\n 340M        lambada_acc          -0.5 0.450000 exact_permutation         5\\\\n 340M           mmlu_acc          -0.3 0.683333 exact_permutation         5\\\\n 340M     winogrande_acc           0.8 0.133333 exact_permutation         5\\\\n\\\\n======================================================================\\\\n=== Non-Monotonic Pattern Analysis ===\\\\n----------------------------------------------------------------------\\\\n  340M lambada_acc: min_std at attn=4 (std=0.0108, -56.0% from pure), rebound at attn=8 (std=0.0151, +39.2% from min)\\\\n  340M hellaswag_norm: min_std at attn=0 (std=0.0087, +0.0% from pure), rebound at attn=8 (std=0.0133, +52.2% from min)\\\\n  340M winogrande_acc: min_std at attn=1 (std=0.0035, -17.3% from pure), rebound at attn=8 (std=0.0131, +270.5% from min)\\\\n  340M arc_easy_norm: min_std at attn=8 (std=0.0209, -33.7% from pure), no rebound (monotonic)\\\\n  340M arc_challenge_norm: min_std at attn=8 (std=0.0088, -35.6% from pure), no rebound (monotonic)\\\\n  340M mmlu_acc: min_std at attn=8 (std=0.0025, -64.5% from pure), no rebound (monotonic)\\\\n  1.3B lambada_acc: min_std at attn=8 (std=0.0049, -79.4% from pure), no rebound (monotonic)\\\\n  1.3B hellaswag_norm: min_std at attn=1 (std=0.0086, -26.3% from pure), rebound at attn=8 (std=0.0118, +37.3% from min)\\\\n  1.3B winogrande_acc: min_std at attn=0 (std=0.0067, +0.0% from pure), rebound at attn=8 (std=0.0078, +16.9% from min)\\\\n  1.3B arc_easy_norm: min_std at attn=8 (std=0.0013, -87.0% from pure), no rebound (monotonic)\\\\n  1.3B arc_challenge_norm: min_std at attn=2 (std=0.0077, -19.9% from pure), rebound at attn=8 (std=0.0132, +72.6% from min)\\\\n  1.3B mmlu_acc: min_std at attn=8 (std=0.0040, -56.0% from pure), no rebound (monotonic)\\\\n\\\\nUpdated CSV with non-monotonic columns: /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n\\\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf\\\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_convergence.png\\\\n\\\\n======================================================================\\\\nKEY FINDINGS:\\\\n----------------------------------------------------------------------\\\\n  1.3B lambada_acc           : std 0.0240 -> 0.0049 (CONVERGE, 79.4%) rho=-1.000 p=0.0167\\\\n  340M lambada_acc           : std 0.0246 -> 0.0151 (CONVERGE, 38.7%) rho=-0.500 p=0.4500\\\\n  1.3B hellaswag_norm        : std 0.0117 -> 0.0118 (DIVERGE, 1.2%) rho=0.300 p=0.6833\\\\n  340M hellaswag_norm        : std 0.0087 -> 0.0133 (DIVERGE, 52.2%) rho=0.400 p=0.5167\\\\n  1.3B winogrande_acc        : std 0.0067 -> 0.0078 (DIVERGE, 16.9%) rho=0.100 p=0.9500\\\\n  340M winogrande_acc        : std 0.0043 -> 0.0131 (DIVERGE, 206.4%) rho=0.800 p=0.1333\\\\n  1.3B arc_easy_norm         : std 0.0100 -> 0.0013 (CONVERGE, 87.0%) rho=-0.700 p=0.2333\\\\n  340M arc_easy_norm         : std 0.0315 -> 0.0209 (CONVERGE, 33.7%) rho=-0.500 p=0.4500\\\\n  1.3B arc_challenge_norm    : std 0.0096 -> 0.0132 (DIVERGE, 38.3%) rho=0.600 p=0.3500\\\\n  340M arc_challenge_norm    : std 0.0137 -> 0.0088 (CONVERGE, 35.6%) rho=-0.900 p=0.0833\\\\n  1.3B mmlu_acc              : std 0.0092 -> 0.0040 (CONVERGE, 56.0%) rho=-0.700 p=0.2333\\\\n  340M mmlu_acc              : std 0.0071 -> 0.0025 (CONVERGE, 64.5%) rho=-0.300 p=0.6833\\\\n\\\\nNote: MMLU at 340M is near random (0.25), high noise expected.\\\\n* = p < 0.05 (exact permutation test)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "ea121115-02f9-4bf2-ab08-20f0919810d3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nLoading 1.3B data...\\\\n  16 models loaded\\\\nLoading 340M data...\\\\n  16 models loaded\\\\n\\\\n======================================================================\\\\n340M data summary:\\\\nmodel_family  variant  attn_layers  lambada_acc  hellaswag_norm  winogrande_acc  arc_easy_norm  arc_challenge_norm  mmlu_acc\\\\n         GDN     pure            0     0.375315        0.414658        0.508287       0.482323            0.279010  0.247686\\\\n         GDN    h24-1            1     0.350670        0.376419        0.519337       0.480219            0.269625  0.233086\\\\n         GDN    h12-1            2     0.325247        0.417945        0.512234       0.470960            0.277304  0.233941\\\\n         GDN     h6-1            4     0.351252        0.411073        0.539858       0.473906            0.284130  0.239425\\\\n         GDN     h3-1            8     0.326800        0.409281        0.506709       0.486953            0.305461  0.232303\\\\n       HGRN2     pure            0     0.318649        0.431687        0.518548       0.558081            0.304608  0.230309\\\\n       HGRN2    h24-1            1     0.336697        0.431587        0.511444       0.542088            0.305461  0.242416\\\\n       HGRN2    h12-1            2     0.363284        0.439156        0.537490       0.561027            0.300341  0.231164\\\\n       HGRN2     h6-1            4     0.371628        0.437164        0.539069       0.538721            0.306314  0.231733\\\\n       HGRN2     h3-1            8     0.363672        0.437263        0.538279       0.535354            0.291809  0.232161\\\\n      RetNet     pure            0     0.364448        0.411970        0.511444       0.533249            0.273038  0.238356\\\\n      RetNet    h24-1            1     0.363478        0.412069        0.518548       0.519360            0.290102  0.234012\\\\n      RetNet    h12-1            2     0.360567        0.418940        0.529597       0.535774            0.274744  0.244410\\\\n      RetNet     h6-1            4     0.346788        0.417148        0.528019       0.539141            0.281570  0.251389\\\\n      RetNet     h3-1            8     0.345430        0.408883        0.528019       0.525673            0.284130  0.237573\\\\n Transformer baseline           24     0.374539        0.430392        0.542226       0.531566            0.300341  0.250107\\\\n\\\\n======================================================================\\\\nCross-Architecture Std/Range Table:\\\\nscale  attn_layers          benchmark  arch_std  arch_range                           arch_values\\\\n 1.3B            0        lambada_acc  0.024047    0.058801 GDN=0.5430,RetNet=0.5166,HGRN2=0.4842\\\\n 1.3B            0     hellaswag_norm  0.011685    0.028182 GDN=0.6080,RetNet=0.5799,HGRN2=0.5983\\\\n 1.3B            0     winogrande_acc  0.006707    0.015785 GDN=0.6077,RetNet=0.6038,HGRN2=0.5919\\\\n 1.3B            0      arc_easy_norm  0.010015    0.023569 GDN=0.6418,RetNet=0.6477,HGRN2=0.6654\\\\n 1.3B            0 arc_challenge_norm  0.009578    0.023038 GDN=0.3925,RetNet=0.3771,HGRN2=0.4002\\\\n 1.3B            0           mmlu_acc  0.009201    0.021934 GDN=0.2606,RetNet=0.2452,HGRN2=0.2387\\\\n 1.3B            1        lambada_acc  0.016238    0.039395 GDN=0.5397,RetNet=0.5152,HGRN2=0.5003\\\\n 1.3B            1     hellaswag_norm  0.008615    0.020414 GDN=0.5970,RetNet=0.5822,HGRN2=0.6026\\\\n 1.3B            1     winogrande_acc  0.021181    0.051302 GDN=0.6283,RetNet=0.5770,HGRN2=0.6093\\\\n 1.3B            1      arc_easy_norm  0.019453    0.045875 GDN=0.6305,RetNet=0.6423,HGRN2=0.6763\\\\n 1.3B            1 arc_challenge_norm  0.007705    0.018771 GDN=0.3942,RetNet=0.3831,HGRN2=0.4019\\\\n 1.3B            1           mmlu_acc  0.005256    0.011822 GDN=0.2441,RetNet=0.2322,HGRN2=0.2337\\\\n 1.3B            2        lambada_acc  0.013596    0.030662 GDN=0.5337,RetNet=0.5071,HGRN2=0.5030\\\\n 1.3B            2     hellaswag_norm  0.009469    0.022107 GDN=0.6103,RetNet=0.5882,HGRN2=0.6054\\\\n 1.3B            2     winogrande_acc  0.009652    0.02\\\\n\\\\n... [截断: 输出过长，省略 4702 字符] ...\\\\n\\\\nan_rho  p_value    p_value_method  n_points\\\\n 1.3B arc_challenge_norm           0.6 0.350000 exact_permutation         5\\\\n 1.3B      arc_easy_norm          -0.7 0.233333 exact_permutation         5\\\\n 1.3B     hellaswag_norm           0.3 0.683333 exact_permutation         5\\\\n 1.3B        lambada_acc          -1.0 0.016667 exact_permutation         5\\\\n 1.3B           mmlu_acc          -0.7 0.233333 exact_permutation         5\\\\n 1.3B     winogrande_acc           0.1 0.950000 exact_permutation         5\\\\n 340M arc_challenge_norm          -0.9 0.083333 exact_permutation         5\\\\n 340M      arc_easy_norm          -0.5 0.450000 exact_permutation         5\\\\n 340M     hellaswag_norm           0.4 0.516667 exact_permutation         5\\\\n 340M        lambada_acc          -0.5 0.450000 exact_permutation         5\\\\n 340M           mmlu_acc          -0.3 0.683333 exact_permutation         5\\\\n 340M     winogrande_acc           0.8 0.133333 exact_permutation         5\\\\n\\\\n======================================================================\\\\n=== Non-Monotonic Pattern Analysis ===\\\\n----------------------------------------------------------------------\\\\n  340M lambada_acc: min_std at attn=4 (std=0.0108, -56.0% from pure), rebound at attn=8 (std=0.0151, +39.2% from min)\\\\n  340M hellaswag_norm: min_std at attn=0 (std=0.0087, +0.0% from pure), rebound at attn=8 (std=0.0133, +52.2% from min)\\\\n  340M winogrande_acc: min_std at attn=1 (std=0.0035, -17.3% from pure), rebound at attn=8 (std=0.0131, +270.5% from min)\\\\n  340M arc_easy_norm: min_std at attn=8 (std=0.0209, -33.7% from pure), no rebound (monotonic)\\\\n  340M arc_challenge_norm: min_std at attn=8 (std=0.0088, -35.6% from pure), no rebound (monotonic)\\\\n  340M mmlu_acc: min_std at attn=8 (std=0.0025, -64.5% from pure), no rebound (monotonic)\\\\n  1.3B lambada_acc: min_std at attn=8 (std=0.0049, -79.4% from pure), no rebound (monotonic)\\\\n  1.3B hellaswag_norm: min_std at attn=1 (std=0.0086, -26.3% from pure), rebound at attn=8 (std=0.0118, +37.3% from min)\\\\n  1.3B winogrande_acc: min_std at attn=0 (std=0.0067, +0.0% from pure), rebound at attn=8 (std=0.0078, +16.9% from min)\\\\n  1.3B arc_easy_norm: min_std at attn=8 (std=0.0013, -87.0% from pure), no rebound (monotonic)\\\\n  1.3B arc_challenge_norm: min_std at attn=2 (std=0.0077, -19.9% from pure), rebound at attn=8 (std=0.0132, +72.6% from min)\\\\n  1.3B mmlu_acc: min_std at attn=8 (std=0.0040, -56.0% from pure), no rebound (monotonic)\\\\n\\\\nUpdated CSV with non-monotonic columns: /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n\\\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf\\\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_convergence.png\\\\n\\\\n======================================================================\\\\nKEY FINDINGS:\\\\n----------------------------------------------------------------------\\\\n  1.3B lambada_acc           : std 0.0240 -> 0.0049 (CONVERGE, 79.4%) rho=-1.000 p=0.0167\\\\n  340M lambada_acc           : std 0.0246 -> 0.0151 (CONVERGE, 38.7%) rho=-0.500 p=0.4500\\\\n  1.3B hellaswag_norm        : std 0.0117 -> 0.0118 (DIVERGE, 1.2%) rho=0.300 p=0.6833\\\\n  340M hellaswag_norm        : std 0.0087 -> 0.0133 (DIVERGE, 52.2%) rho=0.400 p=0.5167\\\\n  1.3B winogrande_acc        : std 0.0067 -> 0.0078 (DIVERGE, 16.9%) rho=0.100 p=0.9500\\\\n  340M winogrande_acc        : std 0.0043 -> 0.0131 (DIVERGE, 206.4%) rho=0.800 p=0.1333\\\\n  1.3B arc_easy_norm         : std 0.0100 -> 0.0013 (CONVERGE, 87.0%) rho=-0.700 p=0.2333\\\\n  340M arc_easy_norm         : std 0.0315 -> 0.0209 (CONVERGE, 33.7%) rho=-0.500 p=0.4500\\\\n  1.3B arc_challenge_norm    : std 0.0096 -> 0.0132 (DIVERGE, 38.3%) rho=0.600 p=0.3500\\\\n  340M arc_challenge_norm    : std 0.0137 -> 0.0088 (CONVERGE, 35.6%) rho=-0.900 p=0.0833\\\\n  1.3B mmlu_acc              : std 0.0092 -> 0.0040 (CONVERGE, 56.0%) rho=-0.700 p=0.2333\\\\n  340M mmlu_acc              : std 0.0071 -> 0.0025 (CONVERGE, 64.5%) rho=-0.300 p=0.6833\\\\n\\\\nNote: MMLU at 340M is near random (0.25), high noise expected.\\\\n* = p < 0.05 (exact permutation test)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nLoading 1.3B data...\\n  16 models loaded\\nLoading 340M data...\\n  16 models loaded\\n\\n======================================================================\\n340M data summary:\\nmodel_family  variant  attn_layers  lambada_acc  hellaswag_norm  winogrande_acc  arc_easy_norm  arc_challenge_norm  mmlu_acc\\n         GDN     pure            0     0.375315        0.414658        0.508287       0.482323            0.279010  0.247686\\n         GDN    h24-1            1     0.350670        0.376419        0.519337       0.480219            0.269625  0.233086\\n         GDN    h12-1            2     0.325247        0.417945        0.512234       0.470960            0.277304  0.233941\\n         GDN     h6-1            4     0.351252        0.411073        0.539858       0.473906            0.284130  0.239425\\n         GDN     h3-1            8     0.326800        0.409281        0.506709       0.486953            0.305461  0.232303\\n       HGRN2     pure            0     0.318649        0.431687        0.518548       0.558081            0.304608  0.230309\\n       HGRN2    h24-1            1     0.336697        0.431587        0.511444       0.542088            0.305461  0.242416\\n       HGRN2    h12-1            2     0.363284        0.439156        0.537490       0.561027            0.300341  0.231164\\n       HGRN2     h6-1            4     0.371628        0.437164        0.539069       0.538721            0.306314  0.231733\\n       HGRN2     h3-1            8     0.363672        0.437263        0.538279       0.535354            0.291809  0.232161\\n      RetNet     pure            0     0.364448        0.411970        0.511444       0.533249            0.273038  0.238356\\n      RetNet    h24-1            1     0.363478        0.412069        0.518548       0.519360            0.290102  0.234012\\n      RetNet    h12-1            2     0.360567        0.418940        0.529597       0.535774            0.274744  0.244410\\n      RetNet     h6-1            4     0.346788        0.417148        0.528019       0.539141            0.281570  0.251389\\n      RetNet     h3-1            8     0.345430        0.408883        0.528019       0.525673            0.284130  0.237573\\n Transformer baseline           24     0.374539        0.430392        0.542226       0.531566            0.300341  0.250107\\n\\n======================================================================\\nCross-Architecture Std/Range Table:\\nscale  attn_layers          benchmark  arch_std  arch_range                           arch_values\\n 1.3B            0        lambada_acc  0.024047    0.058801 GDN=0.5430,RetNet=0.5166,HGRN2=0.4842\\n 1.3B            0     hellaswag_norm  0.011685    0.028182 GDN=0.6080,RetNet=0.5799,HGRN2=0.5983\\n 1.3B            0     winogrande_acc  0.006707    0.015785 GDN=0.6077,RetNet=0.6038,HGRN2=0.5919\\n 1.3B            0      arc_easy_norm  0.010015    0.023569 GDN=0.6418,RetNet=0.6477,HGRN2=0.6654\\n 1.3B            0 arc_challenge_norm  0.009578    0.023038 GDN=0.3925,RetNet=0.3771,HGRN2=0.4002\\n 1.3B            0           mmlu_acc  0.009201    0.021934 GDN=0.2606,RetNet=0.2452,HGRN2=0.2387\\n 1.3B            1        lambada_acc  0.016238    0.039395 GDN=0.5397,RetNet=0.5152,HGRN2=0.5003\\n 1.3B            1     hellaswag_norm  0.008615    0.020414 GDN=0.5970,RetNet=0.5822,HGRN2=0.6026\\n 1.3B            1     winogrande_acc  0.021181    0.051302 GDN=0.6283,RetNet=0.5770,HGRN2=0.6093\\n 1.3B            1      arc_easy_norm  0.019453    0.045875 GDN=0.6305,RetNet=0.6423,HGRN2=0.6763\\n 1.3B            1 arc_challenge_norm  0.007705    0.018771 GDN=0.3942,RetNet=0.3831,HGRN2=0.4019\\n 1.3B            1           mmlu_acc  0.005256    0.011822 GDN=0.2441,RetNet=0.2322,HGRN2=0.2337\\n 1.3B            2        lambada_acc  0.013596    0.030662 GDN=0.5337,RetNet=0.5071,HGRN2=0.5030\\n 1.3B            2     hellaswag_norm  0.009469    0.022107 GDN=0.6103,RetNet=0.5882,HGRN2=0.6054\\n 1.3B            2     winogrande_acc  0.009652    0.02\\n\\n... [截断: 输出过长，省略 4702 字符] ...\\n\\nan_rho  p_value    p_value_method  n_points\\n 1.3B arc_challenge_norm           0.6 0.350000 exact_permutation         5\\n 1.3B      arc_easy_norm          -0.7 0.233333 exact_permutation         5\\n 1.3B     hellaswag_norm           0.3 0.683333 exact_permutation         5\\n 1.3B        lambada_acc          -1.0 0.016667 exact_permutation         5\\n 1.3B           mmlu_acc          -0.7 0.233333 exact_permutation         5\\n 1.3B     winogrande_acc           0.1 0.950000 exact_permutation         5\\n 340M arc_challenge_norm          -0.9 0.083333 exact_permutation         5\\n 340M      arc_easy_norm          -0.5 0.450000 exact_permutation         5\\n 340M     hellaswag_norm           0.4 0.516667 exact_permutation         5\\n 340M        lambada_acc          -0.5 0.450000 exact_permutation         5\\n 340M           mmlu_acc          -0.3 0.683333 exact_permutation         5\\n 340M     winogrande_acc           0.8 0.133333 exact_permutation         5\\n\\n======================================================================\\n=== Non-Monotonic Pattern Analysis ===\\n----------------------------------------------------------------------\\n  340M lambada_acc: min_std at attn=4 (std=0.0108, -56.0% from pure), rebound at attn=8 (std=0.0151, +39.2% from min)\\n  340M hellaswag_norm: min_std at attn=0 (std=0.0087, +0.0% from pure), rebound at attn=8 (std=0.0133, +52.2% from min)\\n  340M winogrande_acc: min_std at attn=1 (std=0.0035, -17.3% from pure), rebound at attn=8 (std=0.0131, +270.5% from min)\\n  340M arc_easy_norm: min_std at attn=8 (std=0.0209, -33.7% from pure), no rebound (monotonic)\\n  340M arc_challenge_norm: min_std at attn=8 (std=0.0088, -35.6% from pure), no rebound (monotonic)\\n  340M mmlu_acc: min_std at attn=8 (std=0.0025, -64.5% from pure), no rebound (monotonic)\\n  1.3B lambada_acc: min_std at attn=8 (std=0.0049, -79.4% from pure), no rebound (monotonic)\\n  1.3B hellaswag_norm: min_std at attn=1 (std=0.0086, -26.3% from pure), rebound at attn=8 (std=0.0118, +37.3% from min)\\n  1.3B winogrande_acc: min_std at attn=0 (std=0.0067, +0.0% from pure), rebound at attn=8 (std=0.0078, +16.9% from min)\\n  1.3B arc_easy_norm: min_std at attn=8 (std=0.0013, -87.0% from pure), no rebound (monotonic)\\n  1.3B arc_challenge_norm: min_std at attn=2 (std=0.0077, -19.9% from pure), rebound at attn=8 (std=0.0132, +72.6% from min)\\n  1.3B mmlu_acc: min_std at attn=8 (std=0.0040, -56.0% from pure), no rebound (monotonic)\\n\\nUpdated CSV with non-monotonic columns: /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\n\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf\\nSaved: /root/entrainment_gated_ft/analysis/cross_scale_convergence.png\\n\\n======================================================================\\nKEY FINDINGS:\\n----------------------------------------------------------------------\\n  1.3B lambada_acc           : std 0.0240 -> 0.0049 (CONVERGE, 79.4%) rho=-1.000 p=0.0167\\n  340M lambada_acc           : std 0.0246 -> 0.0151 (CONVERGE, 38.7%) rho=-0.500 p=0.4500\\n  1.3B hellaswag_norm        : std 0.0117 -> 0.0118 (DIVERGE, 1.2%) rho=0.300 p=0.6833\\n  340M hellaswag_norm        : std 0.0087 -> 0.0133 (DIVERGE, 52.2%) rho=0.400 p=0.5167\\n  1.3B winogrande_acc        : std 0.0067 -> 0.0078 (DIVERGE, 16.9%) rho=0.100 p=0.9500\\n  340M winogrande_acc        : std 0.0043 -> 0.0131 (DIVERGE, 206.4%) rho=0.800 p=0.1333\\n  1.3B arc_easy_norm         : std 0.0100 -> 0.0013 (CONVERGE, 87.0%) rho=-0.700 p=0.2333\\n  340M arc_easy_norm         : std 0.0315 -> 0.0209 (CONVERGE, 33.7%) rho=-0.500 p=0.4500\\n  1.3B arc_challenge_norm    : std 0.0096 -> 0.0132 (DIVERGE, 38.3%) rho=0.600 p=0.3500\\n  340M arc_challenge_norm    : std 0.0137 -> 0.0088 (CONVERGE, 35.6%) rho=-0.900 p=0.0833\\n  1.3B mmlu_acc              : std 0.0092 -> 0.0040 (CONVERGE, 56.0%) rho=-0.700 p=0.2333\\n  340M mmlu_acc              : std 0.0071 -> 0.0025 (CONVERGE, 64.5%) rho=-0.300 p=0.6833\\n\\nNote: MMLU at 340M is near random (0.25), high noise expected.\\n* = p < 0.05 (exact permutation test)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.27}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证输出文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "b9d4cef2-1b41-45b2-bae7-c0f97179b6ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JjXxB6Z4rmVaK54sNkdpmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3593,
+                "cache_read_input_tokens": 40873,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T9Bk4PKq8rbC2UW7DL5vyg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "ls -lh /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf /root/entrainment_gated_ft/analysis/cross_scale_convergence.png /root/entrainment_gated_ft/analysis/cross_scale_summary.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "4bae35a2-53a7-4270-adde-63f7cae9126b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JjXxB6Z4rmVaK54sNkdpmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3593,
+                "cache_read_input_tokens": 40873,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T05:37:19.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T9Bk4PKq8rbC2UW7DL5vyg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  34K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf\\\\n-rw-r--r-- 1 root root 299K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_convergence.png\\\\n-rw-r--r-- 1 root root 9.1K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "300f40c1-28dc-4d92-9313-1eae564da389",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  34K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf\\\\n-rw-r--r-- 1 root root 299K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_convergence.png\\\\n-rw-r--r-- 1 root root 9.1K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  34K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_convergence.pdf\\n-rw-r--r-- 1 root root 299K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_convergence.png\\n-rw-r--r-- 1 root root 9.1K May 19 13:37 /root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UT7sKLat24XFUtfBjj2u7p",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "head -3 /root/entrainment_gated_ft/analysis/cross_scale_summary.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "df23ae37-43e6-420a-a803-5486aacc8504",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UeLjoNzaeoj52ERq1mxrW4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 396,
+                "cache_read_input_tokens": 44466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 396
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T05:37:24.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UT7sKLat24XFUtfBjj2u7p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scale,attn_layers,benchmark,arch_std,arch_range,arch_values,min_std_attn,min_std,reduction_pct,rebound_pct\\\\n1.3B,0,lambada_acc,0.02404712697705703,0.05880069862216192,\\\\\\\"GDN=0.5430,RetNet=0.5166,HGRN2=0.4842\\\\\\\",8,0.004942545182713789,-79.44642124013654,\\\\n1.3B,0,hellaswag_norm,0.011684919531365783,0.02818163712407895,\\\\\\\"GDN=0.6080,RetNet=0.5799,HGRN2=0.5983\\\\\\\",1,0.008615212910147576,-26.270669754962416,37.324833564804045\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "3f1dbf71-368f-4aaa-83e0-9484b7e1f558",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scale,attn_layers,benchmark,arch_std,arch_range,arch_values,min_std_attn,min_std,reduction_pct,rebound_pct\\\\n1.3B,0,lambada_acc,0.02404712697705703,0.05880069862216192,\\\\\\\"GDN=0.5430,RetNet=0.5166,HGRN2=0.4842\\\\\\\",8,0.004942545182713789,-79.44642124013654,\\\\n1.3B,0,hellaswag_norm,0.011684919531365783,0.02818163712407895,\\\\\\\"GDN=0.6080,RetNet=0.5799,HGRN2=0.5983\\\\\\\",1,0.008615212910147576,-26.270669754962416,37.324833564804045\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"scale,attn_layers,benchmark,arch_std,arch_range,arch_values,min_std_attn,min_std,reduction_pct,rebound_pct\\n1.3B,0,lambada_acc,0.02404712697705703,0.05880069862216192,\\\"GDN=0.5430,RetNet=0.5166,HGRN2=0.4842\\\",8,0.004942545182713789,-79.44642124013654,\\n1.3B,0,hellaswag_norm,0.011684919531365783,0.02818163712407895,\\\"GDN=0.6080,RetNet=0.5799,HGRN2=0.5983\\\",1,0.008615212910147576,-26.270669754962416,37.324833564804045\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**p 值修复**：1.3B lambada rho=-1.0 的 p 值从渐近的 ~1.4e-24 修正为精确排列检验的 **0.0167**（5!=120 种排列）。这是唯一 p<0.05 的组合。\n\n**非单调模式**：\n- 340M: lambada (min at attn=4), hellaswag (min at attn=0), winogrande (min at attn=1) 均有反弹\n- 1.3B: hellaswag (min at attn=1), arc_challenge (min at attn=2) 有反弹；lambada/arc_easy/mmlu 单调收敛\n\nCSV 已更新，包含 `min_std_attn`, `min_std`, `reduction_pct`, `rebound_pct` 列。PDF/PNG 图表已重新生成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "uuid": "00aa2179-d857-493f-bb13-ef5ae0ccb4ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DAH8yMyyZrWU1JDYac2STK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 418,
+                "cache_read_input_tokens": 44862,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 418
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**p 值修复**：1.3B lambada rho=-1.0 的 p 值从渐近的 ~1.4e-24 修正为精确排列检验的 **0.0167**（5!=120 种排列）。这是唯一 p<0.05 的组合。\n\n**非单调模式**：\n- 340M: lambada (min at attn=4), hellaswag (min at attn=0), winogrande (min at attn=1) 均有反弹\n- 1.3B: hellaswag (min at attn=1), arc_challenge (min at attn=2) 有反弹；lambada/arc_easy/mmlu 单调收敛\n\nCSV 已更新，包含 `min_std_attn`, `min_std`, `reduction_pct`, `rebound_pct` 列。PDF/PNG 图表已重新生成。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 126173,
+            "duration_api_ms": 96509,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "11b4d4ef-3754-4356-8c20-5726b49fa0e9",
+            "total_cost_usd": 0.58164475,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 33439,
+              "cache_read_input_tokens": 400088,
+              "output_tokens": 6831,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 33439,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 256,
+                  "cache_read_input_tokens": 44862,
+                  "cache_creation_input_tokens": 418,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 418
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1647,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001752,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 16,
+                "outputTokens": 6831,
+                "cacheReadInputTokens": 400088,
+                "cacheCreationInputTokens": 33439,
+                "webSearchRequests": 0,
+                "costUSD": 0.57989275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "256b1e63-ed33-4114-9939-fdfeff229c43"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ]
+}

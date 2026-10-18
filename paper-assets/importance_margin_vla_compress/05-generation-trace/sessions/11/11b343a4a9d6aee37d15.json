@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "11b343a4a9d6aee37d15",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 trajectory 22k 30k",
+  "task_key": "worker_eval_v8_trajectory_22k_30k_20260516T014714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8_trajectory_22k_30k_20260516T014714_result.json",
+    "occurrence": 1,
+    "bytes": 2415175,
+    "sha256": "eec98a10183c9f81da8a2d8a09dc4a1d62bc92fa4403e0e05584493d63316b8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "11b343a4a9d6aee37d15-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

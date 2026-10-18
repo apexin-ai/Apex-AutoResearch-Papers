@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2323dd2598096ed2598d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research diveye citation check",
+  "task_key": "worker_research_diveye_citation_check_20260514T171717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_diveye_citation_check_20260514T171717_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "8d93b21a6d8359183165ab50a28cf57a963953557f1f6fe87e364579a4800f4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：NOT fake，但 venue 错误。**\n\n- **DivEye 是真实论文**：Advik Raj Basani & Pin-Yu Chen，\"Diversity Boosts AI-Generated Text Detection\"，arXiv 2509.18880\n- **Venue 标注有误**：实际发表于 **TMLR '26**（Transactions on Machine Learning Research），不是 ICLR 2026。可能曾投稿 ICLR 2026（OpenReview 有对应 submission），但最终收录于 TMLR\n- **方法本身作为 baseline 合理**：DivEye 的 surprisal diversity 特征与 recursive generation depth estimation 任务相关\n\n**需要修正**：`src/baselines.py` 中 `(Basani & Chen, ICLR 2026)` → `(Basani & Chen, TMLR 2026)`\n\n报告已写入 `artifacts/diveye_citation_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cef8b4d5ea99b7d8976f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose dead s47 cqa1",
+  "task_key": "worker_diagnose_dead_s47_cqa1_20260529T025224",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_dead_s47_cqa1_20260529T025224_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "912412343e59164fde1bca5fb80b3e79dfdf3c0d65082e0655db8ba2be33d90c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**两个\"消失\"的实验都正常跑完了**，进程退出是因为实验结束（EXIT_CODE=0），不是崩溃：\n\n| 实验 | 状态 | SR | Episodes |\n|------|------|-----|----------|\n| Attn k=0.7 seed47 | ✅ 完成 | **54.4%** | 500/500 |\n| L2norm k=0.5 seed47 | ✅ 完成 | **50.0%** | 500/500 |\n| Attn k=0.75 seed47 | 🔄 运行中 | ~46.7% (T0-T8) | 450/500, Task 9 ep 40/50 |\n\nAttn k=0.75 还剩最后 10 个 episode，约 5 分钟内完成。cqa1 四张卡全部在跑 seed47 实验（k095_v2 在 cuda:0, k09 在 cuda:1, k075 在 cuda:2, random_k085 在 cuda:3）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

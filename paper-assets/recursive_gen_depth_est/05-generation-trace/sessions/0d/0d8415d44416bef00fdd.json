@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0d8415d44416bef00fdd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research coral ordinal literature",
+  "task_key": "worker_research_coral_ordinal_literature_20260519T103232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_coral_ordinal_literature_20260519T103232_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "212a706847c3417ce7f834915c5f37a4514ca609fca83db5d8876b07116bb38f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。产出已注册为 `art_20260519_6f34d3`。\n\n**调研结论摘要：**\n\n- **CORAL 原论文**: Cao, Mirjalili, Raschka (Pattern Recognition Letters 2020, arXiv 1901.07884)，K-1 binary subtask + weight-sharing 保证 rank consistency\n- **NLP 中的 ordinal classification**: Kasa et al. (ACL 2024 Findings) 直接比较了 ordinal vs nominal 文本分类，ordinal 方法在 MAE 上显著更优\n- **Novelty**: 目前没有论文将 ordinal regression 用于 AI-generated text detection，我们的 recursive generation depth 是新颖 framing\n- **竞品**: CORN 去掉 weight-sharing 约束但更复杂，THOR 是回归式方法不产生概率，对我们 K=4 小规模问题 CORAL 是最佳选择\n- **推荐 Related Work 必引 4 篇**: CORAL, Kasa et al. 2024, Frank & Hall 2001, Gutiérrez et al. 2016 综述"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

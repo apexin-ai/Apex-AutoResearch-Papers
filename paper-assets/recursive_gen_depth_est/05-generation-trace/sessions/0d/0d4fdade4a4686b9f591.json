@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0d4fdade4a4686b9f591",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp r3n5 strategy classify",
+  "task_key": "worker_exp_r3n5_strategy_classify_20260516T045604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r3n5_strategy_classify_20260516T045604_result.json",
+    "occurrence": 1,
+    "bytes": 1778,
+    "sha256": "9c0dafbd90d41977ba2e8be01f50425f63be52ea5b67e53cf86c8dec5d3d1201"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果\n\n### Part 1: 策略分类 Accuracy\n\n| Model | Accuracy | nucleus recall | temp09 recall | topk50 recall |\n|-------|----------|---------------|---------------|---------------|\n| Pythia-1.4B | **52.3%** | 53.3% | 41.4% | 62.2% |\n| OLMo-1B | **54.8%** | 60.8% | 47.9% | 55.8% |\n| GPT-2 XL | **65.4%** | 84.5% | 50.7% | 61.0% |\n| **Mean** | **57.5%** | | | |\n\n策略分类准确率偏低（chance=33.3%），三种策略的特征分布存在大量重叠。\n\n### Part 2 & 3: Depth Estimation Pipeline 对比\n\n| Method | Pythia | OLMo | GPT-2 XL | **Mean** |\n|--------|--------|------|----------|----------|\n| Cross-strategy LOO (ref) | 61.2% | 59.5% | 56.6% | **59.1%** |\n| **Predicted two-stage** | 69.3% | 69.5% | 73.0% | **70.6%** |\n| Naive pooled | 70.9% | 71.2% | 73.9% | **72.0%** |\n| Oracle two-stage | 74.6% | 78.5% | 82.0% | **78.4%** |\n| Within-strategy (ref) | 74.5% | 78.4% | 81.6% | **78.2%** |\n\n### 结论\n\n**Two-stage pipeline 理论上可行（oracle: 78.4%），但实际不如 naive pooling（70.6% < 72.0%）。**\n\n- Oracle two-stage（78.4%）≈ within-strategy（78.2%），验证了\"已知策略 → 用专属分类器\"的理论上限\n- Predicted two-stage（70.6%）比 cross-strategy LOO（59.1%）高 +11.5pp，但比 naive pooled（72.0%）低 1.4pp\n- 瓶颈在策略分类：仅 57.5% 准确率，错误传播导致 7.7pp 损失（oracle → predicted）\n- **Rebuttal 论点**：(1) oracle 实验证实 two-stage 架构的理论价值 (+19.3pp over LOO)；(2) 统计特征不足以区分策略，需要辅助元数据（如 generation config）才能实现；(3) 实际部署中 naive pooled 是更稳健的选择\n\n产出文件：`results/two_stage_pipeline_results.json`（服务器上）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

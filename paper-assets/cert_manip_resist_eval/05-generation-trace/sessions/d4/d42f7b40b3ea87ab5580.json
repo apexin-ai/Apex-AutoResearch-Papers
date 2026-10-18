@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d42f7b40b3ea87ab5580",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "read temperature pilot results",
+  "task_key": "worker_read_temperature-pilot-results_20260523T091857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_temperature-pilot-results_20260523T091857_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "e370c5775d68412fb617b66941d2fc06525a97aab62753d8fcaaf64f822c3a31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在运行。当前状态：\n\n**进度：7/72 clean steps 完成 (~9.7%)**\n- 当前步骤：`[8/72] gpt-4.1-nano t=0.3 mmlu r=1`\n- 已耗时：~1150 秒 (~19 分钟)\n- 每步约 150-165 秒\n\n**实验配置：**\n- 3 模型 (gpt-4.1-nano, gemini-3.5-flash, claude-3-haiku) × 4 温度 (0.0, 0.3, 0.7, 1.0) × 2 数据集 (mmlu, arc_challenge) × 3 repeats = **72 clean steps**（每步 300 pairs）\n- 之后还有 attack phase：3 模型 × 4 温度 × 2 数据集 × 6 attacks × 50 samples\n\n**已完成的 checkpoint 文件：**\n- `gpt-4.1-nano__mmlu__t0.0__clean__r0/r1/r2.json`\n- `gpt-4.1-nano__arc_challenge__t0.0__clean__r0/r1/r2.json`\n- `gpt-4.1-nano__mmlu__t0.3__clean__r0.json`\n\n**预估剩余时间：**\n- Clean phase 剩余 ~65 步 × ~160s ≈ **173 分钟**\n- Attack phase 额外 144 组 × 50 samples（时间取决于每组耗时）\n- 总计预估还需 **3-4 小时**\n\n实验远未完成，之前预估的\"~20 分钟\"严重低估了（实际是 ~28,800 API calls，非 36K，且受 rate limiting 和 HTTP 502 重试影响）。结果文件会在实验完成后生成在 `artifacts/results/plan001/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

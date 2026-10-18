@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e820bb20de4a3defd75",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code dcol roberta v6 prep",
+  "task_key": "worker_code_dcol_roberta_v6_prep_20260515T040134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_roberta_v6_prep_20260515T040134_result.json",
+    "occurrence": 1,
+    "bytes": 1850,
+    "sha256": "acf143f904c7d9635121ee4e91bb6d5151274e2b0ffdf56408ad5de79a44757c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DCOL v6 准备完毕。汇报：\n\n## DCOL v6 准备完成\n\n### C001/C002 满足\n已查阅 registry 中 dcol_deberta_001~005 全部 5 次失败记录，确认 v6 spec 不重复任何已知错误。\n\n### 代码变更（`src/dcol_trainer_v6.py`）\n基于 `dcol_trainer.py` 修改：\n1. **模型**: RoBERTa-large（默认 `roberta-large`）\n2. **LoRA target_modules**: `[\"query\", \"value\"]`（RoBERTa 层名，非 DeBERTa 的 `query_proj/key_proj/value_proj`）\n3. **lr**: 5e-5（v5 的 3e-4 的 1/6）\n4. **lora_alpha**: 16（v5 一致）\n5. **warmup_ratio**: 0.05\n6. **新增 --bf16**: bf16 混合精度（`torch.amp.autocast`）\n7. **新增 --max_grad_norm**: 梯度裁剪（默认 1.0）\n8. **新增 NaN guard**: `NaNLossError` 异常，检测到 NaN/Inf 立即终止并写 results.json\n9. **新增 Collapse guard**: step 500 时 acc<30% 触发 `CollapseGuardError` 终止\n10. **新增 --max_steps**: 控制训练步数（dry-run 用）\n11. **global_step 追踪**: 跨 epoch 全局步数计数\n\n### Dry-run 结果\n- 5 步训练成功，**无 NaN**\n- 参数：357,250,291 总 / 1,890,547 可训练（0.53%）\n- 数据集：180,000 条（比 v5 的 125k 更大）\n- max_steps 停止正确触发\n\n### 模型路径\n`/root/autodl-tmp/models/roberta-large-ms/AI-ModelScope/roberta-large`\n\n### 完整训练命令（等审批）\n```bash\nCUDA_VISIBLE_DEVICES=1 python3 src/dcol_trainer_v6.py \\\n  --data_dir data/ \\\n  --model_path /root/autodl-tmp/models/roberta-large-ms/AI-ModelScope/roberta-large \\\n  --features_path data/features_all.jsonl \\\n  --output_dir checkpoints/dcol_roberta_v6/ \\\n  --batch_size 32 --epochs 10 --lr 5e-5 --margin_lr 1e-4 \\\n  --use_lora --lora_r 16 --lora_alpha 16 \\\n  --seed 42 --bf16 --max_grad_norm 1.0 --gpu 0\n```\n\n**未提交训练**，等 Main Agent 审批。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

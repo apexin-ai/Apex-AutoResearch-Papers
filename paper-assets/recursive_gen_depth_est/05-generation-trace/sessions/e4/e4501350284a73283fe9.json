@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e4501350284a73283fe9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp feature ablation overlap and merged",
+  "task_key": "worker_exp_feature_ablation_overlap_and_merged_20260519T193520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_feature_ablation_overlap_and_merged_20260519T193520_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "0456ea28b1d0dcc89db6fccce57624d3d2cfcd562309a0d033eb4610e24d4ce2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均完成。结果汇总：\n\n## 实验 A: Overlap 6-feature RF (feature_ablation_overlap_001)\n\n仅用 6 个重叠 perplexity 特征 (mean_ppl, var_ppl, p50_ppl, p10_ppl, p90_ppl, skewness_ppl)\n\n| Cell | Accuracy |\n|------|----------|\n| pythia_nucleus | 76.71% |\n| pythia_temp09 | 73.86% |\n| pythia_topk50 | 65.27% |\n| olmo_nucleus | 76.40% |\n| olmo_temp09 | 80.96% |\n| olmo_topk50 | 72.48% |\n| gpt2xl_nucleus | 81.69% |\n| gpt2xl_temp09 | 83.98% |\n| gpt2xl_topk50 | 72.06% |\n| **9-cell Mean** | **75.93%** |\n\n## 实验 B: Merged 30-feature RF (feature_ablation_merged_001)\n\n合并 19 + 11 Binoculars 特征（含 6 个重复）\n\n| Cell | Accuracy |\n|------|----------|\n| pythia_nucleus | 83.47% |\n| pythia_temp09 | 81.53% |\n| pythia_topk50 | 71.18% |\n| olmo_nucleus | 84.20% |\n| olmo_temp09 | 88.31% |\n| olmo_topk50 | 78.36% |\n| gpt2xl_nucleus | 88.83% |\n| gpt2xl_temp09 | 88.45% |\n| gpt2xl_topk50 | 79.09% |\n| **9-cell Mean** | **82.60%** |\n\n## 与 Baseline 对比\n\n| 配置 | 9-cell Mean | vs Baseline (78.4%) |\n|------|-------------|---------------------|\n| 6 overlap features | 75.93% | -2.47 pp |\n| 19 features (baseline) | 78.40% | — |\n| 30 merged features | 82.60% | **+4.20 pp** |\n\n关键发现：\n- 6 个 overlap 特征已能达到 baseline 的 96.8%，说明 perplexity 分布统计量是核心信号\n- 合并 Binoculars 特征后提升 +4.2pp，增益主要来自 bino_score、xppl_mean/var/median 等 Binoculars 独有特征"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

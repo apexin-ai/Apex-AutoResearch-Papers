@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "b5ad38f0e23cb8f3a0f7",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis detectgpt ordinal baseline",
+  "task_key": "worker_analysis_detectgpt_ordinal_baseline_20260518T180113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detectgpt_ordinal_baseline_20260518T180113.log",
+    "occurrence": 1,
+    "bytes": 1446936,
+    "sha256": "f5f3a5e95930619a04d221de7225b4676985de35e5e21f8cb0aad658e6502427"
+  },
+  "statistics": {
+    "messages": 1084,
+    "user_turns": 1,
+    "tool_calls": 474,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 3,
+      "assistant": 113,
+      "tool_call": 474,
+      "tool_result": 474,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 804,
+      "chunks": [
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0005.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 280,
+      "chunks": [
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0005.json",
+          "message_count": 96
+        },
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5ad38f0e23cb8f3a0f7-part-0007.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ]
+}

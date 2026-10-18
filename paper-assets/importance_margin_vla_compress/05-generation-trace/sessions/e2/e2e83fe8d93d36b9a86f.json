@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e2e83fe8d93d36b9a86f",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_14_1779884236.md",
+  "task_key": "loop_14_1779884236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1779884236.md",
+    "occurrence": 1,
+    "bytes": 5167,
+    "sha256": "98baf2bf70a53f10d55b06631d753ea7f255524af62fc5bf7f0b844ce6eb8b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-27T11:41:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-3 on westd-27271, westd-38929, westd-41074, cqa1-33015。四台服务器各 4 卡，共 16 张\n- **实验硬截止 May 28 20:00 BJT (C002)**，约 24h 后不可再提交新实验\n- **CoRL 2026 提交 May 29**，Paper Agent 已有 83/83 provenance，Abstract 已提交 May 26\n- π0.5 评估必须用 strict 模式（lenient 值被 cqa1 transformers 版本污染，D250 确认偏差存在）。所有 π0.5 strict 实验名含 `_strict`\n- cqa1 服务器的 Python 环境: `/root/miniconda3/bin/python`（conda 环境，不是 venv）\n- westd 服务器也是 conda 环境（aml-train 镜像）\n\n### 2. 🖥️ 基础设施快照\n- **westd-27271**: 2× GPU。工作目录 `/root/autodl-tmp/importance_margin_vla_compress`。Python `/root/miniconda3/bin/python`\n  - GPU0: eval_pi05_random_k085_long_seed42_strict_w27 (pid=pi05_rand_k085) 🏃\n  - GPU1: eval_pi05_l2norm_k075_long_seed42_strict_w27 (pid=pi05_l2n_k075) 🏃\n- **westd-38929**: 4× GPU。同上路径\n  - GPU0: eval_openvla_random_k095_long_seed42_v2 (pid=112587) 🏃 ETA~23:30\n  - GPU1: eval_openvla_l2norm_k095_long_seed42 (pid=949438) 🏃 ETA~19:30\n  - GPU2: eval_openvla_l2norm_k075_long_seed42_v2 (pid=968300) 🏃 ETA~22:00\n  - GPU3: ⬜ 空闲待部署\n- **westd-41074**: 4× GPU。同上路径\n  - GPU0: eval_pi05_random_k09_long_seed42_strict_v2 (pid=356361) 🏃 ETA~12:40\n  - GPU1: eval_pi05_random_k05_long_seed42_strict_w41_v2 (pid=356612) 🏃 ETA~14:00\n  - GPU2: eval_pi05_attn_k095_long_seed42_strict_w41 (pid=433293) 🏃 ETA~13:00\n  - GPU3: eval_pi05_l2norm_k085_long_seed42_strict_w41 (pid=433369) 🏃 ETA~13:00\n- **cqa1-33015**: 4× GPU。同上路径\n  - GPU0: eval_pi05_random_k07_long_seed42_strict_v2 (pid=109152) 🏃 ETA~13:00\n  - GPU1: eval_pi05_random_k05_long_seed42_strict (pid=118726) 🏃\n  - GPU2: eval_pi05_l2norm_k085_long_seed42_strict (pid=93525) 🏃\n  - GPU3: eval_pi05_l2norm_k09_long_seed42_strict_cqa1 (ROADMAP 列出) 🏃\n- **Cron 监控**: 11 个 active cron 全部正常轮询中\n- **W&B**: 项目级配置见 project config\n\n### 3. 📊 当前状态\n正在同时跑 ~15 个评估实验，填充两大 cliff curve 矩阵的最后空缺：\n- **OpenVLA Long curve**: 3 个实验在 westd-38929 (L2norm k=0.95, L2norm k=0.75, Random k=0.95)，ETA 19:30-23:30 UTC\n- **π0.5 Long strict curve**: 8 个实验分布在 westd-41074 / cqa1 / westd-27271，ETA 12:40-14:00 UTC（即将完成一波）\n\n已完成里程碑：\n- Crossover table 16/16 ✅\n- Abstract 已提交 ✅\n- π0.5 Attn 全线 strict 偏差 <2pp (D251) ✅\n- π0.5 L2norm k=0.95 strict=86.2% (D256) ✅\n- π0.5 Random k=0.95 strict=60.6% (D257) — importance margin 25.6pp ✅\n- OV Attn k=0.95 Long=49.8% (D259) ✅\n- π0.5 Random 反单调性 U-shape confirmed (D254/D255) ✅\n\n等待中：\n- westd-41074 上 4 个 π0.5 strict 实验即将完成 → 需要立即 cascade 部署下一批\n- westd-38929 GPU3 空闲 → 需部署（ROADMAP 建议检查能否跑 π0.5 L2norm k=0.7 strict）\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **westd-41074 GPU0 π0.5 Random k=0.9 strict v2 完成 (ETA~12:40)** → 收割 metrics → 确认反单调性 strict 值 → 部署 π0.5 L2norm k=0.5 strict 或 k=0.7 strict\n- **westd-41074 GPU2/3 完成 (ETA~13:00)** → 收割 Attn k=0.95 strict v2 + L2norm k=0.85 strict → cascade 部署 L2norm k=0.7 strict + Random k=0.5 strict\n- **cqa1 GPU0 Random k=0.7 strict v2 完成 (ETA~13:00)** → 收割 → 部署 π0.5 Random k=0.5 strict（cqa1 副本补充验证）\n- **westd-38929 GPU3 立即可用** → 部署 π0.5 L2norm k=0.7 Long strict（如果 westd-38929 能跑 π0.5 评估）\n- **westd-38929 GPU1 OV L2norm k=0.95 Long 完成 (ETA~19:30)** → 收割 → 部署下一个 OV Long 空缺或 π0.5 strict\n- **所有 cliff curve 闭合** → 通知 Paper Agent 更新论文数据 → May 29 提交\n- **π0.5 Random k=0.9 strict v2 结果出来** → 如果确认 ~32% (U-shape 底部)，D254/D255 反单调性彻底坐实，写入论文 finding\n\n### 5. 🎯 战略上下文\n- **核心发现**: VLA vision token 的可压缩性取决于 scoring method × connector × task 三维交互。importance-aware 方法(L2norm, Attn) vs Random 的差距即 \"importance margin\"，在 k=0.95 时 π0.5 上达 25.6pp\n- **π0.5 Random 反单调性 (D254/D255)** 是关键论文 finding: k=0.75→0.85→0.9 SR 下降(63%→45%→~32%)但 k=0.95 反弹到 60.6%，形成 U-shape。这暗示 connector 设计与 token 选择的非平凡交互。strict 验证中\n- **最易判断错的事**: π0.5 的 lenient 值和 strict 值不能混用对比。所有 π0.5 新结果必须是 strict 模式。memory.md 中部分旧值是 lenient，ROADMAP 中已标注\n- **westd-38929 主要跑 OpenVLA**（非 π0.5），因为 OpenVLA eval 脚本和 π0.5 eval 脚本环境需求不同。部署前确认该服务器是否已装 π0.5 依赖\n- **时间极紧**: 实验截止 ~24h，cascade 部署要快——GPU 空出来分钟级内必须部署下一个\n- 总量: 770 实验 (476 success / 109 negative / 108 failed)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

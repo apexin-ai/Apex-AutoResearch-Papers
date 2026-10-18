@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6054b48c6fc52a25d3d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k09 fixedmask object seed42 v2",
+  "task_key": "worker_analyze_eval_pi05_random_k09_fixedmask_object_seed42_v2_20260521T221218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k09_fixedmask_object_seed42_v2_20260521T221218_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "ddb73ae8a65cb6d662f7596843bc72a6dc86f34acd5a21fb09af2c7b28c53a61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：`eval_pi05_random_k09_fixedmask_object_seed42_v2`\n\n| 指标 | 值 |\n|------|-----|\n| **overall_sr** | **17.0%** |\n| total_episodes | 500 |\n| total_successes | 85 |\n| elapsed_min | 111.1 min |\n| 完成状态 | EXIT_CODE=0，正常完成 |\n| 错误/警告 | 无实质性错误（仅 robosuite 私有宏文件警告和 DeprecationWarning） |\n\n### Per-task SR\n\n| Task | Description | SR |\n|------|------------|-----|\n| T0 | pick up the alphabet soup... | 12% |\n| T1 | (未截取名称) | 26% |\n| T2 | (未截取名称) | 16% |\n| T3 | pick up the bbq sauce... | 14% |\n| T4 | pick up the ketchup... | 12% |\n| T5 | pick up the tomato sauce... | 24% |\n| T6 | pick up the butter... | 18% |\n| T7 | pick up the milk... | 14% |\n| T8 | pick up the chocolate pudding... | 24% |\n| T9 | pick up the orange juice... | 10% |\n\n### 判断：fixed mask **没有**恢复性能\n\n- **π0.5 baseline (无 pruning)**: 98.2%\n- **random k=0.9 stochastic mask**: 12% (seed42)\n- **random k=0.9 fixed mask**: 17.0% ← 本实验\n\nFixed mask 仅从 12% → 17%，微弱提升，远未恢复到 baseline 水平。这说明 **temporal inconsistency 不是 random pruning 灾难性下降的根因**。即使每个 episode 内 mask 固定，random 丢弃 10% vision tokens 仍然导致严重性能崩溃。\n\n根因更可能是：random pruning 丢弃了关键的视觉信息 token（与物体交互相关的 patch），而非 mask 的时序不一致性问题。这强化了 importance-based pruning 的必要性——需要识别哪些 token 重要、哪些可以安全丢弃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f450e88b315dcb599ecf",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross strategy loo",
+  "task_key": "worker_analysis_cross_strategy_loo_20260515T040036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_strategy_loo_20260515T040036_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "332f2b0a6b5088823aa5ab74256b29d6726daf58b85f651762aed5211b650f6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9 个 rotation 全部完成。结果如下：\n\n| Model | Hold-out | Train | Test | 4-class acc | 95% CI | d1v2 AUC | d2v3 AUC |\n|-------|----------|-------|------|-------------|--------|----------|----------|\n| Pythia-1.4B | nucleus | 40000 | 20000 | **0.6935** | [0.687, 0.700] | 0.6903 | 0.7626 |\n| Pythia-1.4B | temp09 | 40000 | 20000 | 0.6281 | [0.621, 0.635] | 0.5760 | 0.7240 |\n| Pythia-1.4B | topk50 | 40000 | 20000 | 0.5151 | [0.508, 0.522] | 0.6393 | 0.5801 |\n| GPT-2 XL | nucleus | 40000 | 20000 | 0.5993 | [0.593, 0.606] | 0.7826 | 0.4985 |\n| GPT-2 XL | temp09 | 40000 | 20000 | 0.5609 | [0.554, 0.568] | **0.1288** | 0.6366 |\n| GPT-2 XL | topk50 | 40000 | 20000 | 0.5364 | [0.530, 0.543] | 0.8308 | 0.7222 |\n| OLMo-1B | nucleus | 40000 | 20000 | 0.6538 | [0.647, 0.660] | 0.7931 | 0.6076 |\n| OLMo-1B | temp09 | 40000 | 20000 | 0.5816 | [0.575, 0.588] | **0.2529** | 0.7015 |\n| OLMo-1B | topk50 | 40000 | 20000 | 0.5488 | [0.542, 0.556] | 0.8549 | 0.7107 |\n\n**关键发现：**\n- **所有 9 个 rotation 的 4-class accuracy 均远超 chance (0.25)**，均值 0.5908，说明深度信号跨策略可迁移\n- **Pythia 表现最稳定**（0.52–0.69），hold-out nucleus 最高\n- **d1v2 AUC 在 hold-out=temp09 时反转**（GPT-2 XL: 0.13, OLMo: 0.25），说明 temp09 的 d1→d2 过渡特征分布与 nucleus/topk50 显著不同——分类器从其他两种策略学到的 d1/d2 判别规则在 temp09 上方向反转\n- **d2v3 AUC 更稳定**（6/9 rotation > 0.6），深层递归信号跨策略一致性更强\n\n脚本位于 `src/cross_strategy_loo.py`，JSON 结果保存在服务器 `results/cross_strategy_loo.json`，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60f24c58b51dc479c70a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops fix edd bug and model name",
+  "task_key": "worker_ops_fix_edd_bug_and_model_name_20260516T163801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_edd_bug_and_model_name_20260516T163801_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "c7ceb9eae38add4429762b686b8615b16acb65a9cc7967c7fc5eadbc00b22cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 bug 已修复。\n\n### 结果\n\n**Bug 1 — EDD**：阈值从 0.55 改为 0.70。d2v3 AUC=0.6815 < 0.70，是第一个低于阈值的 consecutive pair，**EDD = 3**。\n\n**Bug 2 — Model name**：`\"Meta-Llama-3.1-8B-Instruct\"` → `\"Meta-Llama-3.1-8B\"`。\n\n### 系统性影响\n\n`scripts/llama3_eval.py` 的 EDD 阈值 0.55 是硬编码的，**会影响所有通过该脚本运行的实验**。已存在的 `results/cross_scale_llama3_8b_003/summary.json` 也可能有同样的 EDD 计算错误（如果也是该脚本生成的）。需要检查该文件是否也需要修正。\n\n同样，`src/binary_pairwise_eval.py` 中的 EDD 逻辑是另一套硬编码条件判断（基于 d3v4/d4v5 的 AUC），与 `llama3_eval.py` 的通用循环逻辑不一致，属于另一个潜在问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f44a89823303059c0d91",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper ref fix",
+  "task_key": "worker_paper_ref-fix_20260526T110727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref-fix_20260526T110727_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "e3daacaf16a0dd42c0a943eb934ef217ffb2d6735799ae732c8131964f2e3039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "ee8c81bf03dd424449f8",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code wild data calibration 003",
+  "task_key": "worker_code_wild_data_calibration_003_20260516T013319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wild_data_calibration_003_20260516T013319.log",
+    "occurrence": 1,
+    "bytes": 705786,
+    "sha256": "896d4de8ce71f8d86f23632dafb95a29a30355ccc064a9d4bd3043edb2c098fd"
+  },
+  "statistics": {
+    "messages": 395,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 395,
+      "chunks": [
+        {
+          "path": "ee8c81bf03dd424449f8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee8c81bf03dd424449f8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee8c81bf03dd424449f8-part-0003.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ]
+}

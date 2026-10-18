@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "5ab4fc863336e51d50d8",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "exp step2 keff contrast",
+  "task_key": "worker_exp_step2-keff-contrast_20260521T223000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_step2-keff-contrast_20260521T223000.log",
+    "occurrence": 1,
+    "bytes": 934028,
+    "sha256": "b9bc3b11c30fa9c43d18f9183c578299868da55f1c73c4f1106dd270e420f0b2"
+  },
+  "statistics": {
+    "messages": 607,
+    "user_turns": 0,
+    "tool_calls": 241,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 122,
+      "tool_call": 241,
+      "tool_result": 241
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 607,
+      "chunks": [
+        {
+          "path": "5ab4fc863336e51d50d8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5ab4fc863336e51d50d8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5ab4fc863336e51d50d8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5ab4fc863336e51d50d8-part-0004.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ]
+}

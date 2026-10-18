@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2be712c9067701d0caff",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp fewrel contamination check",
+  "task_key": "worker_exp_fewrel_contamination_check_20260516T122940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_fewrel_contamination_check_20260516T122940_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "1affe30653797990ffd80c7c503618680b736f97c48908148e2ef97520b93577"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n## FewRel Contamination Check 结果\n\n| 指标 | 值 |\n|------|-----|\n| Train-origin (64 rels) mean acc | **74.3%** |\n| Val-origin (16 rels) mean acc | **83.1%** |\n| Δ (train − val) | **−8.8 pp** |\n| Mann-Whitney U | 356, p=0.061 |\n| Welch's t | −2.28, p=0.030 |\n| Cohen's d | −0.54 |\n\n**结论：无 contamination 证据。** \n\n关键 defense 论点：\n1. Mann-Whitney p=0.061 > 0.05（非参数检验不显著）\n2. **方向完全反转**——val-origin types 准确率反而更高。如果 contamination 存在，train-origin 应该更高\n3. Val-origin types 更高的可能解释：FewRel val split 的 16 个 relations 本身语义更明确/可区分（如 \"position played on team\", \"military rank\", \"constellation\"）\n\n这是对 Reviewer W-W5 Q3 的强有力反驳。结果保存在 `/root/schema-dag-extraction/artifacts/fewrel_contamination_check/results.json`，基于 19 个 80-rel 实验（比之前的 2 个实验统计功效大幅提升）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3fab61b381c79ca692f3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops wild data rf classify",
+  "task_key": "worker_ops_wild_data_rf_classify_20260517T172513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wild_data_rf_classify_20260517T172513_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "916cd9f430841702bf3fd49665551c858c08bbe6b2f84014de576b1b1a555dba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n## Wild Data RF Depth 分布结果\n\n**RF 配置**: 200 棵树, 20K 训练样本 (features_all.jsonl), seed=42, balanced class weight\n\n### C4 (10K samples)\n| Depth | Count | % |\n|-------|-------|------|\n| d0 (human) | 6,598 | 65.98% |\n| d1 (1st gen) | 3,354 | 33.54% |\n| d2 | 18 | 0.18% |\n| d3 | 30 | 0.30% |\n| **FPR** | | **34.02%** |\n\n### FineWeb (10K samples)\n| Depth | Count | % |\n|-------|-------|------|\n| d0 (human) | 8,285 | 82.85% |\n| d1 (1st gen) | 1,708 | 17.08% |\n| d2 | 4 | 0.04% |\n| d3 | 3 | 0.03% |\n| **FPR** | | **17.15%** |\n\n### 关键观察\n- C4 被 RF 分类为 d1+ 的比例（34%）远高于 FineWeb（17%）\n- 几乎所有非 d0 预测集中在 d1，d2/d3 极少（<0.5%）\n- 平均概率也反映这一趋势：C4 的 mean P(d0)=0.695 vs FineWeb 的 0.835\n\n### 产出\n- `results/wild_features/depth_distribution.json` (服务器)\n- `results/wild_features/depth_comparison.png` (对比图)\n- Registry: wild_data_features_001 → DONE, metrics 已更新\n- Artifact: `art_20260517_f4eb78` 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

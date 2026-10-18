@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "e86461d8b741cd875dc8",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code gpt4o rewriter verbosity",
+  "task_key": "worker_code_gpt4o_rewriter_verbosity_20260521T082638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt4o_rewriter_verbosity_20260521T082638.log",
+    "occurrence": 1,
+    "bytes": 1560295,
+    "sha256": "151f144f2690ffb079004a387de52e363211e6dad14eba193c7e09b5d90aa222"
+  },
+  "statistics": {
+    "messages": 972,
+    "user_turns": 1,
+    "tool_calls": 424,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 115,
+      "tool_call": 424,
+      "tool_result": 424,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 802,
+      "chunks": [
+        {
+          "path": "e86461d8b741cd875dc8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e86461d8b741cd875dc8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e86461d8b741cd875dc8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e86461d8b741cd875dc8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e86461d8b741cd875dc8-part-0005.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 170,
+      "chunks": [
+        {
+          "path": "e86461d8b741cd875dc8-part-0005.json",
+          "message_count": 98
+        },
+        {
+          "path": "e86461d8b741cd875dc8-part-0006.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ]
+}

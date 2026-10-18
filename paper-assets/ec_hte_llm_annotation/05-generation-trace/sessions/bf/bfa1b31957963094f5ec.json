@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa1b31957963094f5ec",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 011 causal forest",
+  "task_key": "worker_code_exp-011-causal-forest_20260521T013156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-011-causal-forest_20260521T013156.log",
+    "occurrence": 1,
+    "bytes": 1081085,
+    "sha256": "b2b38b490799ac2e881eb50b7ea0f6db225289fe0d4cd63479f46618e9965628"
+  },
+  "statistics": {
+    "messages": 1203,
+    "user_turns": 1,
+    "tool_calls": 535,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 535,
+      "user": 1,
+      "tool_result": 535,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "bfa1b31957963094f5ec-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1197,
+      "chunks": [
+        {
+          "path": "bfa1b31957963094f5ec-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "bfa1b31957963094f5ec-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfa1b31957963094f5ec-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfa1b31957963094f5ec-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfa1b31957963094f5ec-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfa1b31957963094f5ec-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfa1b31957963094f5ec-part-0007.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ]
+}

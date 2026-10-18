@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e471d2ecacb1fe98c480",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis d033 regression slope",
+  "task_key": "worker_analysis_d033_regression_slope_20260516T015657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d033_regression_slope_20260516T015657_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "b8b612578f301695c9af9d31e1ad94daf66b987998ceadfd12a9fe6f9a921230"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `regression_slope.json`。汇总：\n\n**D033 16-rel pool BCS-accuracy 回归分析 (n=100 batches)**\n\n| 指标 | 值 |\n|------|-----|\n| BCS 范围 | [0.653, 0.900] |\n| Accuracy 范围 | [0.712, 0.952] |\n| **Slope** | **-0.449** |\n| Bootstrap 95% CI | [-0.556, -0.349] |\n| R² | 0.406 |\n| r | -0.637 |\n| p-value | 1.01e-12 |\n\n**解读**：每 +0.1 BCS → **-4.49pp accuracy**。斜率显著为负（p < 1e-12），CI 不跨零。\n\n这意味着在 16-rel pool 中，BCS 越高（类型间越相似）accuracy 越低，方向与 80-pool 一致。斜率绝对值可直接与 80-pool 回归斜率做标准化比较。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

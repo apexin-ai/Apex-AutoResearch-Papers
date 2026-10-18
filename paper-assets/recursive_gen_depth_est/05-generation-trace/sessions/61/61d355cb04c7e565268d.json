@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "61d355cb04c7e565268d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis gpt2xl temp09 001",
+  "task_key": "worker_analysis_gpt2xl_temp09_001_20260514T224201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2xl_temp09_001_20260514T224201_result.json",
+    "occurrence": 1,
+    "bytes": 1540,
+    "sha256": "3cedfc1f379386fb4a2c047524a426306f551538590c509b314f5feed93afaa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（已有 metrics/conclusion/notes，状态更新为 DONE）。\n\n## gpt2xl_temp09_001 分析结果\n\n### 核心指标\n\n| Metric | Temp τ=0.9 | Nucleus p=0.95 (baseline) | Δ |\n|--------|-----------|--------------------------|---|\n| 4-class RF acc | **85.4%** [84.3, 86.5] | 83.3% [82.3, 84.5] | **+2.1pp** |\n| 4-class LR acc | 81.6% [80.3, 82.7] | — | — |\n| 3-class RF acc | **82.0%** [80.6, 83.4] | 79.3% [77.8, 80.6] | **+2.7pp** |\n| 3-class filtered RF | 81.5% [80.0, 83.0] | — | — |\n| AUC d1v2 (RF) | **0.937** | 0.913 | +0.024 |\n| AUC d2v3 (RF) | 0.882 | 0.883 | -0.001 |\n\n### Finetune Loss\n- depth-1: 2.5498, depth-2: 1.6972, depth-3: 1.2922（逐层递减，符合预期）\n\n### Feature Importance 对比\n\n| Rank | Temp τ=0.9 | Nucleus p=0.95 |\n|------|-----------|---------------|\n| 1 | p90_ppl (0.263) | p90_ppl |\n| 2 | mean_surprisal (0.148) | var_surprisal |\n| 3 | p75_ppl (0.146) | p75_ppl |\n| 4 | var_surprisal (0.121) | mean_surprisal |\n| 5 | p50_ppl (0.057) | mean_ppl |\n\nTop-4 特征完全一致（顺序微调），PPL 分位数和 surprisal 统计量主导分类。\n\n### Code Contamination\n- Filtered vs unfiltered 差距极小（82.0% → 81.5%），contamination 影响可忽略。\n\n### 结论：**SUCCESS**\n\nTemperature-only τ=0.9 不仅与 nucleus p=0.95 一致，还略优（+2.1pp）。深度信号对解码策略鲁棒。注意这与 Pythia 结果方向相反（Pythia temp09 降 1.9pp），说明解码策略影响是模型依赖的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b6fd106273a8fa5567f8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis atlas v2 9cells",
+  "task_key": "worker_analysis_atlas_v2_9cells_20260515T024722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_atlas_v2_9cells_20260515T024722_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "32f62e2322b1bb8b1c421ce760b0d5e539ddee495e5fb13957b1586744b5de93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是 9-cell Atlas v2 分析摘要：\n\n---\n\n**3×3 矩阵 (RF accuracy)**\n\n| | nucleus | temp09 | topk50 |\n|---|:---:|:---:|:---:|\n| Pythia-1.4B | 78.2% | 76.3% | 69.6% |\n| OLMo-1B | 78.8% | 82.0% | 74.2% |\n| GPT-2 XL | 83.3% | 85.4% | 74.5% |\n\n**Director 关注的 3 个问题：**\n\n1. **GPT-2 XL top-k 敏感性**: temp09→topk50 下降 -10.97pp（OLMo 仅 -7.83pp）。原因：GPT-2 XL 的优势来自 tail token variance（var_surprisal），top-k 硬截断直接消除这一信号源。OLMo 更依赖 p90_ppl（percentile-based），受截断影响较小。\n\n2. **Feature importance 一致性**: p90_ppl 在 **9/9** cells 中均为 top-2（100%），var_surprisal 在 **7/9** cells 中为 top-2（78%）。仅 GPT-2 XL 的 2 个 cell 例外（p90_ppl 占比过高 >0.24，挤压了 var_surprisal 排名）。\n\n3. **EDD < 3 的 cells**（threshold=0.80）：4 个 — pythia_topk50 (EDD=1), pythia_temp09 (EDD=2), olmo_topk50 (EDD=2), **gpt2xl_topk50 (EDD=2, 新增)**。3/4 是 top-k，确认 top-k 导致深层递归信号早期饱和。\n\n**vs 8-cell 版本关键变化**: topk_k50 跨模型一致性从 ρ=0.736（2 models）升至 **ρ=0.811**（3 models），成为三种策略中最强的——top-k 的确定性截断使不同模型的 feature landscape 趋同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c1a8ed7359b1eea76048",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "bugfix claude bt pvalue twosided",
+  "task_key": "worker_bugfix_claude-bt-pvalue-twosided_20260523T014657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_claude-bt-pvalue-twosided_20260523T014657_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "39d101e0449ca5f0f1fcd7d7921db8c73ac53a2d81484487b75067c1dd774789"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Old vs New p-value 对比：\n\n| Config | Old p (one-sided) | New p (two-sided) | Status |\n|---|---|---|---|\n| LLMBar formality | 0.0617 | **0.1234** | NS (仍 >0.05) |\n| LLMBar verbosity | 0.1769 | **0.3538** | NS |\n| AlpacaEval formality | 0.0 | **0.0** | *** |\n| AlpacaEval verbosity | 0.0 | **0.0** | *** |\n| MT-Bench formality | 0.0 | **0.0** | *** |\n\n符合预期：LLMBar formality 从 0.0617 → 0.1234（恰好翻倍，因为偏向单侧），LLMBar verbosity 同理翻倍。三个 p=0.0 的配置不变（10000 次 bootstrap 中没有一次跨过 0.5）。所有显著性判断不受影响。\n\n代码修改：服务器 `claude_crossbench_analysis.py:121` 从 `np.mean(boots <= 0.5)` 改为 `min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0)`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

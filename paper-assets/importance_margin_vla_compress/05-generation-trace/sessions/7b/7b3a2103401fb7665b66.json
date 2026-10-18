@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "7b3a2103401fb7665b66",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code xvla libero pruning eval",
+  "task_key": "worker_code_xvla-libero-pruning-eval_20260520T051640",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_xvla-libero-pruning-eval_20260520T051640_result.json",
+    "occurrence": 1,
+    "bytes": 2350487,
+    "sha256": "77029e3a3091eed8081d0a976a7358a14a28cc94b6b70597f37a5ba9e48e0165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "7b3a2103401fb7665b66-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

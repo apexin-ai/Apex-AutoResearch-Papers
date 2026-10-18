@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ebf2d2bd50de9b247427",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diagnose exp 005 eval failure",
+  "task_key": "worker_diagnose_exp-005-eval-failure_20260522T142413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-005-eval-failure_20260522T142413_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "b6ac4e7f6cd3b7dbbadc28d5b8ca77db7908cb2c34f4135b69a0a0f7d6f23afa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/exp-005-eval/diagnosis.md`。\n\n核心结论：实验失败于**模型下载阶段**，评估从未执行。4 次下载尝试分别因 HF 超时、xet 401、ModelScope 下载中断、CLI 语法错误而失败。唯一成功的是 GLA 模型（v3 耗时 58 分钟），DeltaNet 和 HGRN 均未完成下载。\n\n建议直接关闭——父实验 exp-005 的 kill 理由（zoo 仅 3 种架构无法扩展）仍然成立，重试投入产出比不合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

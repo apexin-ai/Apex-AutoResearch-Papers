@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "dcccce7e5159f8f1e035",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "train openvla vtc lora westd41074",
+  "task_key": "worker_train_openvla_vtc_lora_westd41074_20260519T182506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_openvla_vtc_lora_westd41074_20260519T182506.log",
+    "occurrence": 1,
+    "bytes": 1204113,
+    "sha256": "da8c0330e657a33f87f6227c538b2e8a9969f54da81ebca22f34fee620be63f5"
+  },
+  "statistics": {
+    "messages": 720,
+    "user_turns": 1,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 150,
+      "tool_call": 280,
+      "tool_result": 280,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 676,
+      "chunks": [
+        {
+          "path": "dcccce7e5159f8f1e035-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dcccce7e5159f8f1e035-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dcccce7e5159f8f1e035-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "dcccce7e5159f8f1e035-part-0004.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "dcccce7e5159f8f1e035-part-0004.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ]
+}

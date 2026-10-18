@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60552715d3598d878a95",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research data audit",
+  "task_key": "worker_research_data-audit_20260523T110848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-audit_20260523T110848_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "b5d87416dc4f08e721cf671897457db5763e92b516bfc925c594283a97caa8a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/data_audit_report.md`。\n\n**核心结果**:\n- **Table 1**: 全部 33 个 cell 精确匹配 ✅\n- **主文定量声明**: 52 个数字中 40 个精确匹配 (76.9%)\n\n**需要关注的 3 个问题**:\n\n1. 🔴 **AUC = 0.86** (出现 3 次: abstract, experiments, method) — 源数据 exp-005 显示 `subgroup_level_auc = 0.833`，不是 0.86。0.86 是 `subgroup_correlation`，疑似混淆了 correlation 和 AUC。建议修正为 0.83。\n\n2. 🟡 **\"AUC decreases from 0.86 to 0.82\" (theory.tex Remark 1)** — 0.82 无法在任何 CSV 中找到来源。\n\n3. 🟡 **\"global correction degrades to 74–82%\" (theory.tex, A5 violation)** — 数据显示 global coverage = 84.5%，与 74–82% 差距较大。可能来自旧版实验或不同参数化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

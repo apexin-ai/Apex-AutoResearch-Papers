@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "acc86edd71b9cbafe7d3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code token importance heatmap",
+  "task_key": "worker_code_token_importance_heatmap_20260522T064104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_token_importance_heatmap_20260522T064104_result.json",
+    "occurrence": 1,
+    "bytes": 1680,
+    "sha256": "093b52a6b9bdb14eba2a7008fbae0f80e5917e717eb13c1566a412af3dc23361"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Here are the results:\n\n## 结果\n\n**脚本路径**: `/root/autodl-tmp/importance_margin_vla_compress/visualize_token_importance.py`\n\n**Token spatial mapping**: image=224×224, patch=14×14, grid=16×16 = 256 tokens/image, feature dim=2048\n\n**生成的 heatmap**:\n- `artifacts/token_importance_heatmaps/step000_t0000.png` (~790KB)\n- `artifacts/token_importance_heatmaps/step001_t0005.png`\n- `artifacts/token_importance_heatmaps/step002_t0010.png`\n- `artifacts/token_importance_heatmaps/summary_average.png`\n\n## 空间分布分析\n\n**Norm 统计**: range 170.95–283.95, mean=250.29, std=16.12, CV=0.065\n\n**明确的 center-high, edge-low 模式**:\n\nRow means 显示中心行 (7-9) norm 最高 (~265-267)，边缘行 (0, 14-15) 最低 (~235-236)：\n```\nRow 7:  267.5  ← 最高\nRow 8:  266.5\nRow 9:  265.1\n  ...\nRow 0:  236.3  ← 最低\nRow 14: 235.3\n```\n\nColumn means 同样：中心列 6-8 最高 (~261-265)，边缘列 1, 13 最低 (~239)。\n\n**k=0.9 时被剪掉的 26 个 token 位置**:\n- 集中在 **row 0 (上边缘)** 和 **rows 12-15 (下边缘)**\n- **50% 的被剪 token 在图像最外圈** (edge tokens 只占总量 23%，被剪概率是 2 倍)\n- 最低 norm=170.95 在 (12,1) — 图像左下角背景区域\n\n**结论**: L2norm pruning 的空间选择 pattern 是清晰的 — 保留中心区域 (机器人手臂/目标物体)、剪掉边缘 (桌面/背景)。Random 选择则均匀散布剪掉的 token，有概率丢失中心关键区域的 token。这解释了为什么 k=0.9 时 L2norm 保持 98% SR 而 random 崩到 5% — random 有概率同时删除多个关键空间位置的 token。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f8aa351c7e8dc799f9d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "verify fig count curves final",
+  "task_key": "worker_verify_fig_count_curves_final_20260515T232154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_fig_count_curves_final_20260515T232154_result.json",
+    "occurrence": 1,
+    "bytes": 1781,
+    "sha256": "e076fc9c216f992b06b6df98258df3a95ca87060f8ca4ce27e93f71d446f111c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已获取，逐点对照完成。\n\n## 数据对照表\n\n### Panel (a) Few-NERD NER Qwen3 Recall\n| count | 脚本值 | 正文值 | 一致? |\n|-------|--------|--------|-------|\n| 1     | 0.720  | 0.720  | ✓     |\n| 2     | 0.698  | 0.698  | ✓     |\n| 6     | 0.620  | 0.620  | ✓     |\n| 12    | 0.539  | 0.539  | ✓     |\n| 22    | 0.527  | 0.527  | ✓     |\n| 44    | 0.551  | 0.551  | ✓     |\n| 64    | 0.418  | 0.418  | ✓     |\n\n**7/7 一致**\n\n### Panel (b) FewRel 80-rel RE Qwen3 Accuracy\n| count | 脚本值 | 正文值 | 一致? |\n|-------|--------|--------|-------|\n| 1     | 0.8573 | 0.8573 | ✓     |\n| 4     | 0.8667 | 0.8667 | ✓     |\n| 8     | 0.8021 | 0.8021 | ✓     |\n| 16    | 0.6958 | 0.6958 | ✓     |\n| 32    | 0.6578 | 0.6578 | ✓     |\n| 40    | 0.588  | 0.5880 | ✓ (等值) |\n| 64    | 0.5424 | 0.5424 | ✓     |\n| 80    | 0.5042 | 0.5042 | ✓     |\n\n**8/8 一致**（count=40 脚本写 `0.588`，正文写 `0.5880`，数值相同）\n\n## 图表目录\n| 文件 | 存在? | 大小 | 最后修改 |\n|------|-------|------|----------|\n| fig_count_curves.pdf | ✓ | 18,497 B | May 16 07:19 |\n| fig_bcs_scaling.pdf  | ✓ | 30,052 B | May 16 07:21 |\n| fig_error_taxonomy.pdf | ✓ | 28,048 B | May 16 05:43 |\n| fig_count_curves.py  | 存在（源码副本） | 2,427 B | May 16 06:59 |\n| fig_error_taxonomy.py | 存在（源码副本） | 3,076 B | May 16 05:42 |\n\n三个主要 PDF 图表均存在，`fig_bcs_scaling.pdf` 确认存在（Paper Agent 正确）。\n\n## AWQ 清理\n`run_exp012_llama_awq.sh` 和 `auto_start_exp012_awq.sh` 均已删除（`No such file or directory`）。\n\n**结论：无需修复，全部数据一致，图表齐全，AWQ 脚本已清理。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

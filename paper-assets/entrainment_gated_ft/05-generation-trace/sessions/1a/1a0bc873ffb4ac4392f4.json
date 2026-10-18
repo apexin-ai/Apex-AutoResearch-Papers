@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1a0bc873ffb4ac4392f4",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research synthetic composition design",
+  "task_key": "worker_research_synthetic-composition-design_20260518T053347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_synthetic-composition-design_20260518T053347_result.json",
+    "occurrence": 1,
+    "bytes": 1525,
+    "sha256": "015ae7914890868e30c96f6498f88a58db890093dc3ad817fbd0564ae5ab0563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 产出\n\n### 1. Ye et al. 调研（`artifacts/synthetic_task_design.md` Section 1）\n- **L-FuncComp** 是纯理论构造：函数 z_l: [N_{l-1}] -> [N_{l-1}]，domain size 指数增长，用于 communication complexity 下界证明\n- 核心结论：(L+1)-layer full attention 可解，但 (L-1) full + 2^{3L^2} linear 不可解\n- 论文无实验 protocol，需自行设计实际评估版本\n\n### 2. 8-shot Prompt Format（Section 2）\n- **Alphabet**: digits 0-9, |Sigma|=10, 每个 digit 单 token\n- **两种 variant**:\n  - **Direct**: 只给最终答案（对齐 Ye et al. 理论，测单 forward pass 能力）\n  - **CoT**: 展示中间步骤 `f1(4)=9 f2(9)=4 f3(4)=1`\n- **Token budget**: depth 5 direct ≈ 1650 tokens, CoT ≈ 1870 tokens, 均在 2048 内\n- 每个 demo 使用不同随机函数，防止 shortcut\n\n### 3. `artifacts/eval_composition.py`\n- `generate_composition_task()` — 确定性种子生成 task instance\n- `format_prompt()` — direct / cot 两种格式\n- `evaluate_model()` — 加载 HF 模型 + batched greedy decoding + exact match\n- `run_experiment()` — 主循环，先生成 JSON dataset 再逐模型评估，输出 summary table\n- 支持 `--print-sample` 预览 prompt、`--generate-only` 仅生成数据集\n\n### 4. Pipeline 建议\n**推荐独立脚本**，不用 lm-eval-harness。核心原因：动态随机 lookup tables 不适合 lm-eval 的静态 dataset 模式，且需要精确控制 prompt format 和 batch size。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

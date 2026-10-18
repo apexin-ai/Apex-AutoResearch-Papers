@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "87602cbac378db8f699a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross scale qwen7b 001",
+  "task_key": "worker_analysis_cross_scale_qwen7b_001_20260516T054202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_scale_qwen7b_001_20260516T054202_result.json",
+    "occurrence": 1,
+    "bytes": 1525,
+    "sha256": "5327b9901e7ddf4b77fc402003ae34889886eedd172975dbd68d6e58d1aada6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## cross_scale_qwen7b_001 结果总结\n\n**结论：SUCCESS** — depth signal 在 7B scale 上可检测，支持论文 generalizability claim。\n\n### 核心指标\n\n| 指标 | Qwen2.5-7B | Pythia-1.4B | OLMo-1B | GPT-2 XL |\n|------|-----------|-------------|---------|----------|\n| 4-class acc | **60.1%** [58.0, 62.1] | ~78% | ~75% | ~74% |\n| 6-class acc | 52.1% [50.4, 53.8] | — | — | — |\n| EDD | **>5** | 4 | 4 | 4 |\n\n### Pairwise AUC 衰减趋势（consecutive binary）\n\n| Pair | AUC |\n|------|-----|\n| d0v1 | 0.969 |\n| d1v2 | 0.729 |\n| d2v3 | 0.709 |\n| d3v4 | 0.732 |\n| d4v5 | 0.772 |\n\n### 分析\n\n1. **4-class acc 60.1% 刚过 60% 门槛**，但绝对值明显低于 1-1.5B 模型（74-78%）。这符合预期——7B 模型生成质量更高，相邻 depth 之间差异更小，分类更难。\n\n2. **Pairwise AUC 衰减趋势与 1-1.5B 一致**：d0 与其他 depth 的 AUC 极高（>0.9），相邻 depth 间 AUC 在 0.7 左右，gap 越大 AUC 越高。方向完全一致。\n\n3. **EDD>5 vs 1-1.5B 的 EDD=4**：7B 模型的 depth signal 持续更深。这是一个有意义的新发现——更大的模型不仅保持了 depth signal，而且信号衰减得更慢，可能因为 7B 的生成分布更稳定，需要更多递归步才能收敛。\n\n4. **对论文的意义**：可以 claim depth signal 是跨 scale（1B-7B）的普遍现象，且 EDD 随模型规模增大而增大，增强了方法的 generalizability。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

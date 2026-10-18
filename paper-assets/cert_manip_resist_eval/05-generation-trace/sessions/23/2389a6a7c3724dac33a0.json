@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2389a6a7c3724dac33a0",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis pool a cinelli hazlett",
+  "task_key": "worker_analysis_pool-a-cinelli-hazlett_20260523T120953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pool-a-cinelli-hazlett_20260523T120953_result.json",
+    "occurrence": 1,
+    "bytes": 1414,
+    "sha256": "bc40cfad4115227c0c0890f906db1fdf041f39f2c35c4bfb600a54cce077b99e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### rv_exceeds_eta 计数\n\n| Pool | K=3 | K=5 | K=7 | Total |\n|------|-----|-----|-----|-------|\n| **Full (15 models)** | 1/12 | 3/12 | 4/12 | 8/36 |\n| **Pool A (9 models)** | 3/12 | 6/12 | — | 9/24 |\n\nPool A 比例 (37.5%) 显著高于 Full Pool (22.2%)。\n\n### K=3 对比\n\nPool A 的 RV 普遍低于 Full Pool（因为 84 vs 455 panels，dof 减少导致 RV 下降），但 **eta benchmark 也同步下降更多**，因此 rv_exceeds 反而从 1/12 升到 3/12。exceeds 的三个 ARC conditions 是 authority_bias、prompt_injection、verbosity_bias。\n\n### K=5 对比\n\nPool A K=5 是最突出的改善：6/12 exceeds vs Full Pool 3/12。ARC 侧 5/6 conditions 的 RV 均超过 eta benchmark，且 RV 绝对值普遍比 Full Pool 更高（如 verbosity_bias +0.30, score_manipulation +0.18）。这说明在低 collinearity 的 capability-matched pool 中，K_eff 的 robustness 确实更强。\n\n### 关键发现\n- Pool A 中 r(K_eff, η_max)=0.50 vs Full Pool 的 0.82，collinearity 大幅下降\n- 低 collinearity → eta benchmark (eta_partial_r2_treatment) 变小 → RV 更容易超过 benchmark\n- K=5 的 ARC 侧效果尤其显著，几乎全部 exceeds\n\n产出文件：\n- 服务器：`/root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis_poolA.json`\n- 本地：`docs/paper/data/sensitivity_analysis_poolA.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

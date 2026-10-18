@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b45808c72b5bf615500",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 cuda2 goal random k03",
+  "task_key": "worker_deploy_cqa1_cuda2_goal_random_k03_20260522T190959",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_cuda2_goal_random_k03_20260522T190959_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "ef8e07f70cf8dd38e6584f9ff675a2116d7ec4eec23ef80ba2351842f74e34ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 已上载模型（9507 MiB），评估已启动：\n\n- 模型 4143.4M 参数\n- Pruning: random, keep **76/256** tokens/image (k=0.3)\n- Suite: libero_goal, 10 tasks\n\n## 总结\n\n**收割完成的实验：**\n| 实验 | SR |\n|------|-----|\n| Goal Random k=0.7 | **80.6%** |\n| Goal Random k=0.5 | **74.4%** |\n\n**已部署：**\n- `eval_pi05_random_k03_goal_seed42` — GPU 2, 9.5GB VRAM, 正在运行\n- tmux session: `eval_pi05_random_k03_goal_seed42`\n- 日志: `logs/eval_pi05_random_k03_goal_seed42.log`\n- 预计 ~2h 完成（10 tasks × 50 episodes）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

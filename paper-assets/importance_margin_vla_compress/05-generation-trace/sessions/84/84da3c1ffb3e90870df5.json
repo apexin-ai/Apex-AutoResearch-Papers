@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84da3c1ffb3e90870df5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose k0925 seed42 completion",
+  "task_key": "worker_diagnose_k0925-seed42-completion_20260521T235144",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_k0925-seed42-completion_20260521T235144_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "01f3602e48f9ff279baf6679f5e9c9cfb1ff9b44669bf0224791dafff5c44167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 已删除。\n\n## 结果\n\n**Random k=0.925 Object seed42: SR = 27.6%** (138/500)\n\n### Cliff 定位\n\n| k | SR | 丢弃比例 |\n|---|---|----|\n| 0.95 | 69.4% | 5% tokens |\n| **0.925** | **27.6%** | 7.5% tokens |\n| 0.90 | 10.8% | 10% tokens |\n\n**Cliff 在 [0.925, 0.95] 区间**，仅多丢 2.5% tokens (从 5% → 7.5%) 就导致 SR 暴跌 41.8pp (69.4% → 27.6%)。这不是渐进退化，而是断崖式崩溃。\n\nRegistry impact analysis 还指出 D151：L2norm k=0.925 = 98.9% vs Random k=0.925 = 27.6%，cliff 是 random-specific 的，L2norm 在同一 keep ratio 完全不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

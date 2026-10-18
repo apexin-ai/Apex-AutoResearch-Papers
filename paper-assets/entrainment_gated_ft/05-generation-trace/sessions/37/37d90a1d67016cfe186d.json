@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "37d90a1d67016cfe186d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code fix tying v4",
+  "task_key": "worker_code_fix-tying-v4_20260518T112818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-tying-v4_20260518T112818_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "fdf1d7e87efd014be84fae096dba4fecc9f177d77ad3622def94c2bc42c4b0a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **Weight tying**: `OK`（使用 `model.embeddings` 属性，类型 `Embedding`）\n- **lambada_openai**:\n  - `acc` = **0.4805** (±0.0070)\n  - `perplexity` = **11.4617** (±0.3472)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3f1e6a0037c927a3b6f1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp3 70b status",
+  "task_key": "worker_check_exp3_70b_status_20260517T110309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp3_70b_status_20260517T110309_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "a161dc3bf3b3bb95ef734c39bf31c715e2f7d9c7eb45f0512e39da2f08469a6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Exp 3 (70B Few-NERD count curves) on westd-24295 — RUNNING**\n\n- **Progress:** 66/150 batches (44%)\n  - count_12: 25/25 done\n  - count_2: 25/25 done  \n  - count_22: 16/25 (in progress)\n  - count_44, count_6, count_66: pending\n- **GPUs:** 2x at 100% util, ~91.4/97.9 GB memory\n- **No errors.** ETA ~50-60 min remaining (completion ~19:55-20:05 UTC)\n\nStatus report saved to `artifacts/exp3_70b_status.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

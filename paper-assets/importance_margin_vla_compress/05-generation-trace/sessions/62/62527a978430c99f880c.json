@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62527a978430c99f880c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check seed47 cqa1 status",
+  "task_key": "worker_check_seed47_cqa1_status_20260528T215931",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_seed47_cqa1_status_20260528T215931_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "bb3fcc9293d0474095702d6e7c4feddd38136bd98b4b12b78d2d549d76e7d63f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部完成，进程已退出。\n\n```\n实验1: eval_pi05_l2norm_k075_long_seed47_cqa1\n  状态: 完成\n  进度: 10/10 tasks, 500/500 episodes (100%)\n  结果: success_rate=71.0%\n\n实验2: eval_pi05_random_k07_long_seed47_cqa1\n  状态: 完成\n  进度: 10/10 tasks, 500/500 episodes (100%)\n  结果: success_rate=59.0%\n\n实验3: eval_pi05_random_k075_long_seed47_cqa1\n  状态: 完成\n  进度: 10/10 tasks, 500/500 episodes (100%)\n  结果: success_rate=62.4%\n```\n\n全部 EXIT_CODE=0，结果已保存到 `eval_results/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

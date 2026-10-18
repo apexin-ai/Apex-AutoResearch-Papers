@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e5ce4b6e62e977f9ccd4",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu llama download monitor",
+  "task_key": "worker_gpu_llama_download_monitor_20260514T204041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_llama_download_monitor_20260514T204041_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "6aa3ad38e2d64e487d32c6d47ed75f0da173b8894c8f47daece1074559c36d76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60 秒后再查。当前状态：PID 257255 运行中，2/4 safetensors 已下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

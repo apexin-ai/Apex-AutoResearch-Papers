@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8539a22f5f0e6d078069",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval openvla attn k085 long seed42 v5",
+  "task_key": "worker_analyze_eval_openvla_attn_k085_long_seed42_v5_20260526T211628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_openvla_attn_k085_long_seed42_v5_20260526T211628_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "a9b3cbbc9529a16043497781a2501c698e9f799c709c0f9e4ae4dc94ad298adb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新。结果分析：\n\n**OpenVLA Attn k=0.85 Long Suite: 45.8%**\n\n| k值 | Long SR | 相对变化 |\n|-----|---------|----------|\n| 0.90 | 44.0% | baseline |\n| **0.85** | **45.8%** | **+1.8pp** |\n| 0.70 | 24.0% | -20.0pp |\n\nk=0.85 与 k=0.9 性能几乎持平（45.8% vs 44.0%，在噪声范围内），说明 attention pruning 在 Long suite 上的性能 plateau 至少延伸到 k=0.85（移除 15% vision tokens）。**性能悬崖发生在 k=0.85 和 k=0.7 之间**，而非 k=0.9 和 k=0.85 之间。\n\n256 → 217 vision tokens，节省 15% tokens 且无性能损失。无 W&B run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

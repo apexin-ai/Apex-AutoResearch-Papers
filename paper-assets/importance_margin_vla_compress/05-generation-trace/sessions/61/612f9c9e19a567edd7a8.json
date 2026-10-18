@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "612f9c9e19a567edd7a8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze openvla l2norm k085 object",
+  "task_key": "worker_analyze_openvla_l2norm_k085_object_20260527T122529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_openvla_l2norm_k085_object_20260527T122529_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "5b032a3cbedeb9906c0f297b372768a0830d54d1b71373b8ae328533e05d3b28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果汇总：\n\n**Overall SR: 55.2% (276/500)，耗时 254.8 min**\n\n| Task | SR |\n|---|---|\n| ketchup | 92.0% |\n| alphabet soup | 60.0% |\n| salad dressing | 60.0% |\n| milk | 58.0% |\n| orange juice | 54.0% |\n| chocolate pudding | 52.0% |\n| butter | 50.0% |\n| bbq sauce | 44.0% |\n| tomato sauce | 42.0% |\n| cream cheese | 40.0% |\n\n重跑结果与前次 55.2% **完全一致**（per-task SR 也逐项吻合），确认 k=0.85 的非单调现象是真实的：\n\n| k | Object SR |\n|---|---|\n| 0.95 | 70.6% |\n| 0.90 | 70.6% |\n| **0.85** | **55.2%** |\n| 0.75 | 57.4% |\n| 0.70 | 49.8% |\n\nk=0.85→0.75 的反弹（55.2%→57.4%）已确认不是随机波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

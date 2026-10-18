@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "642968739b04e27fae85",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code sign reversal fix tau003",
+  "task_key": "worker_code_sign-reversal-fix-tau003_20260523T151911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sign-reversal-fix-tau003_20260523T151911_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "09dbcddbadea513a78728697b9f360270060aebb759c2417e83bb78ba4edc2e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Key results:\n\n**τ(0)=0.03 Sign-Reversal Analysis:**\n\n| Metric | Value |\n|---|---|\n| Z=0 sign reversals | **163/1092 (14.9%)** |\n| Most extreme global CATE | **-0.0593** (true = +0.03, naive = +0.0425) |\n| Critical τ threshold | τ(0) < **0.0893** for sign reversal to occur |\n| EC-HTE correct sign | **100%** of cases |\n\n**τ(0) Sweep:**\n\n| τ(0) | Reversal rate (Z=0) | Most extreme global CATE |\n|---|---|---|\n| 0.01 | **31.0%** | -0.079 |\n| 0.03 | **14.9%** | -0.059 |\n| 0.05 | **6.1%** | -0.039 |\n| 0.10 | 0% | — |\n\n**Outputs:**\n- `artifacts/sign_reversal_figure.pdf` + `.png` — 3-panel figure (scatter, bar chart, τ sweep)\n- `artifacts/sign_reversal_corrected.csv` — full data with CATE estimates\n- `artifacts/sign_reversal_tau_sweep.csv` — sweep results\n\nThe corrected analysis now shows **genuine sign reversals**: the global-corrected CATE estimate flips from positive (+0.0425 naive) to negative (-0.0593), meaning global correction would lead a researcher to conclude the treatment is harmful when it's actually beneficial. EC-HTE preserves the correct sign in all cases."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7cd0f45e65d0285684",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check cqa1 seed0 registry sync",
+  "task_key": "worker_check_cqa1_seed0_registry_sync_20260516T183811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cqa1_seed0_registry_sync_20260516T183811_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "8cb6333b4ce8474120755db2adc0b28659db4bf6bc68fe58a403fcb622b02251"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常运行，registry 已更新。\n\n```\ncuda:0: libero_full_ft_baseline (seed=42) — step 63000/100K (63%)\ncuda:1: libero_lora_baseline (seed=42) — step 62900/100K (62.9%)\ncuda:2: libero_lora_seed0 (seed=0) — step 43600/100K (43.6%)\ncuda:3: libero_fullft_seed0 (seed=0) — step 42450/100K (42.5%)\n```\n\nseed=42 的两个 baseline 跑得更早，已过 60%。seed=0 的两个约 42-43%，PID 活跃，进程正常（主进程 + 4 个 dataloader worker 各自）。按 sps=4.1 估算，seed0 剩余约 ~40h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

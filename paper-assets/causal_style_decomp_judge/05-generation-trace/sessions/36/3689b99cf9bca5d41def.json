@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3689b99cf9bca5d41def",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code exp006 n400 scoring",
+  "task_key": "worker_code_exp006_n400_scoring_20260521T082405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_n400_scoring_20260521T082405_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "672310b7e5bf30828cd02131d438b1e70f1f2b4c297f99b2eb0db0ae54bd3b2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline complete. Results:\n\n---\n\n## Exp-006 Scaled Formality (n=400) × Qwen3-32B\n\n| Metric | n=400 | n=100 baseline |\n|--------|-------|----------------|\n| **NLI pass** | 355/400 (88.8%) | — |\n| **Consistency** | 232/355 (65.4%) | — |\n| **BT P(formal)** | **67.5% [63.7, 71.3]** | 66.5% [58.5, 73.9] |\n| **CI width** | **7.6 pp** | 15.4 pp |\n| **BT p-value** | 0.0001 | <0.0001 |\n\n**Likert:**\n- ATE = −0.059, p = 0.5999, Cohen's d = −0.025\n- mean(formal) = 6.58, mean(casual) = 6.64\n- tie rate = 43.4%\n\n**Blindspot:** Yes (pairwise detects bias, Likert does not)\n\n**GEE decomposition:**\n- Style OR = 2.15 [1.46, 3.16], p < 0.0001\n- Orig OR = 4.99 [3.40, 7.34], p < 0.0001\n\n---\n\nKey takeaways:\n- **BT point estimate stable**: 67.5% vs 66.5% at n=100 — scaling to 4× samples moved the estimate by only 1pp.\n- **CI halved**: 7.6pp vs 15.4pp — exactly the √4 improvement expected.\n- **Blindspot confirmed at scale**: Likert ATE near zero (−0.059, p=0.60) while BT clearly significant (p=0.0001). The pairwise/Likert divergence is robust.\n- **GEE**: Both Style (OR=2.15) and Orig (OR=4.99) effects highly significant. Original-response identity dominates, but formality style still independently doubles the odds of being preferred."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

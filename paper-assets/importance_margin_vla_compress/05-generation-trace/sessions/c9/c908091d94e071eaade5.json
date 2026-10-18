@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c908091d94e071eaade5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze pi05 random k09 strict v2 and deploy attn k075",
+  "task_key": "worker_analyze_pi05_random_k09_strict_v2_and_deploy_attn_k075_20260527T122523",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05_random_k09_strict_v2_and_deploy_attn_k075_20260527T122523_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "51f38667b588b0783dffd9b3db728f122fba7e05474e0f297deeddd2d7689861"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n## 任务 1 结果：eval_pi05_random_k09_long_seed42_strict_v2\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **34.2%** (171/500) |\n| Eval time | 177.3 min |\n| Exit code | 0 (12:16:45Z) |\n\nPer-task SR: 10%, 46%, 40%, 58%, 16%, 38%, 2%, 38%, 6%, 88%\n\n与 ROADMAP D263 记录的 34.2% **一致**。Registry 已更新 (DONE, negative)。\n\n## 任务 2：eval_pi05_attn_k075_long_seed42_strict\n\n已提交到 westd-41074 GPU0，PID 568150，RUNNING。预计 ~3h 完成（~15:30 UTC）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

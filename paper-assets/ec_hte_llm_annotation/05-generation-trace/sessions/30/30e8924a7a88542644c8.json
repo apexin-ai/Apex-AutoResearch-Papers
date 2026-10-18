@@ -1,0 +1,891 @@
+{
+  "schema_version": "1.0",
+  "id": "30e8924a7a88542644c8",
+  "project": "ec_hte_llm_annotation",
+  "kind": "conversation",
+  "title": "research ashwin dataset",
+  "task_key": "worker_research_ashwin-dataset_20260520T212716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_ashwin-dataset_20260520T212716.jsonl",
+    "occurrence": 1,
+    "bytes": 61227,
+    "sha256": "1a9f629616005b280b6e77c338b5bd4b7fcde81af8267d507a5e6ff6af80b796"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T21:30:07.218178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T21:30:07.218678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T21:30:07.219090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Ashwin 2025 refugee interview dataset LLM annotation"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T21:30:07.220505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Ashwin Rohingya data access"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T21:30:07.220853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Ashwin 2025 \"Rohingya\" interview text classification"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T21:30:07.221127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Ashwin 2025 computational social science LLM"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T21:30:07.221453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Ashwin 2025 \"Rohingya\" interview text classification\"\n\nLinks: [{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias - Julian Ashwin, Aditya Chhabra, Vijayendra Rao, 2025\",\"url\":\"https://journals.sagepub.com/doi/10.1177/00491241251338246\"},{\"title\":\"IND vs BAN 2024, 1ST Test, Day 01: Ravichandran Ashwin Interview\",\"url\":\"https://www.bcci.tv/video/5563308/ind-vs-ban-2024-1st-test-day-01-ravichandran-ashwin-interview\"},{\"title\":\"BE in Sabah 2025, Interview with Ashwin Gunasekaran ...\",\"url\":\"https://www.facebook.com/DailyExpressMalaysia/videos/be-in-sabah-2025-interview-with-ashwin-gunasekaran/1832581210616393/\"},{\"title\":\"GitHub - ryanzhumich/Contrastive-Learning-NLP-Papers: Paper List for Contrastive Learning for Natural Language Processing · GitHub\",\"url\":\"https://github.com/ryanzhumich/Contrastive-Learning-NLP-Papers\"},{\"title\":\"Accepted Findings Papers - EMNLP 2025\",\"url\":\"https://2025.emnlp.org/program/find_papers/\"},{\"title\":\"Advancements in Smart Computing & Information Security\",\"url\":\"https://ascisconf.org/conferencedata/ASCIS_BOOK_2025.pdf\"},{\"title\":\"Adarsh Institute of Technology and Research Centre, Vita\",\"url\":\"https://www.ijirset.com/upload/NCRTET-2025.pdf\"},{\"title\":\"About-Ashwin Vaswani\",\"url\":\"https://ashwinvaswani.github.io/\"},{\"title\":\"Personal Website: Ashwin Vaswani - Sign in\",\"url\":\"https://sites.google.com/view/ashwinvaswani\"}]\n\nBased on the search results, I found the relevant research:\n\nJulian Ashwin, Aditya Chhabra, and Vijayendra Rao published research in 2025 examining whether Large Language Models (LLMs) can help code and analyze large-N qualitative data from open-ended interviews, with an application to transcripts of interviews with Rohingya refugees and their Bengali hosts in Bangladesh.\n\nThe study found that using LLMs to annotate and code text can introduce bias that can lead to misleading inferences. The errors that LLMs make in coding interview transcripts are not \n…[truncated 677 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T21:30:07.221863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Ashwin Rohingya data access\"\n\nLinks: [{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias - Julian Ashwin, Aditya Chhabra, Vijayendra Rao, 2025\",\"url\":\"https://journals.sagepub.com/doi/10.1177/00491241251338246\"},{\"title\":\"UN Shared Rohingya Data Without Informed Consent | Human Rights Watch\",\"url\":\"https://www.hrw.org/news/2021/06/15/un-shared-rohingya-data-without-informed-consent\"},{\"title\":\"Rohingya refugees in India - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Rohingya_refugees_in_India\"},{\"title\":\"Power BI Desktop ROHINGYA REFUGEE RESPONSE/BANGLADESH\",\"url\":\"https://data.unhcr.org/en/documents/download/119100\"},{\"title\":\"Rohingya people - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Rohingya_people\"},{\"title\":\"© File photo, open source Rohingyas in India\",\"url\":\"https://www.ohchr.org/sites/default/files/Documents/Issues/Religion/Islamophobia-AntiMuslim/Civil%20Society%20or%20Individuals/RitumbraM1.pdf\"},{\"title\":\"Country - Bangladesh - Operational Data Portal - UNHCR\",\"url\":\"https://data.unhcr.org/en/country/bgd\"},{\"title\":\"Irresponsible data? The risks of registering the Rohingya\",\"url\":\"https://www.thenewhumanitarian.org/opinion/2017/10/23/irresponsible-data-risks-registering-rohingya\"},{\"title\":\"The Rohingya people of Myanmar: health, human rights, and identity - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0140673616006462\"},{\"title\":\"Special feature Rohingya refugees in Bangladesh\",\"url\":\"https://odihpn.org/wp-content/uploads/2018/10/HE-73_web.pdf\"}]\n\nBased on the search results, here are the key findings related to \"Ashwin Rohingya data access\":\n\n## Academic Research on Rohingya Data\n\nThe primary result relates to research by Julian Ashwin and colleagues on open-ended interviews with Rohingya refugees and their Bangladeshi hosts in Cox's Bazaar, Bangladesh, focusing on the Rohingya refugee population in the camps. The data includes transcripts of \n…[truncated 1133 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T21:30:07.222222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Ashwin 2025 refugee interview dataset LLM annotation\"\n\nLinks: [{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias - Julian Ashwin, Aditya Chhabra, Vijayendra Rao, 2025\",\"url\":\"https://journals.sagepub.com/doi/10.1177/00491241251338246\"},{\"title\":\"Improving Text Annotation through Secondary LLM Critique\",\"url\":\"https://arxiv.org/pdf/2601.09905\"},{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce   Serious Bias\",\"url\":\"https://arxiv.org/pdf/2309.17147\"},{\"title\":\"Guide to LLM Data Annotation: Best Practices 2025 | Keymakr\",\"url\":\"https://keymakr.com/blog/complete-guide-to-llm-data-annotation-best-practices-for-2025/\"},{\"title\":\"On Limitations of LLM as Annotator for Low Resource Languages\",\"url\":\"https://arxiv.org/pdf/2411.17637\"},{\"title\":\"Extracting Social Connections from Finnish Karelian Refugee Interviews   Using LLMs\",\"url\":\"https://arxiv.org/pdf/2502.13566\"},{\"title\":\"Just Put a Human in the Loop? Investigating LLM-Assisted Annotation for Subjective Tasks\",\"url\":\"https://arxiv.org/pdf/2507.15821\"}]\n\nBased on the search results, I found relevant information about your query. The Ashwin et al. 2025 work introduces a dataset of interview transcripts with a coding tree and human annotation process, then describes an approach to using LLMs for annotation, and shows that LLMs introduce bias in their annotations.\n\nThe application is based on open-ended interviews with Rohingya refugees and their Bangladeshi hosts in Cox's Bazaar, Bangladesh. The interviews focused on subjects' aspirations and ambitions for their children as well as their capacity to achieve those goals, i.e. their navigational capacity.\n\nThe paper proposes iQual as an alternative, which involves training \"small\" language models on only the specific qualitative data of interest, and shows that iQual out-performs LLMs in terms of both prediction accuracy and bias.\n\nThe key finding from Ashwin et al. (2025) is\n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T21:30:07.222586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Ashwin 2025 computational social science LLM\"\n\nLinks: [{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias - Julian Ashwin, Aditya Chhabra, Vijayendra Rao, 2025\",\"url\":\"https://journals.sagepub.com/doi/10.1177/00491241251338246\"},{\"title\":\"Large language models (LLM) in computational social science: prospects, current state, and challenges | Social Network Analysis and Mining | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s13278-025-01428-9\"},{\"title\":\"Bohan Jiang’s Homepage\",\"url\":\"https://jiangbohan.github.io/\"},{\"title\":\"GitHub - ValueByte-AI/Awesome-LLM-in-Social-Science: Awesome papers involving LLMs in Social Science. · GitHub\",\"url\":\"https://github.com/ValueByte-AI/Awesome-LLM-in-Social-Science\"},{\"title\":\"(PDF) Self-reflection in Automated Qualitative Coding: Improving Text Annotation through Secondary LLM Critique\",\"url\":\"https://www.researchgate.net/publication/399808825_Self-reflection_in_Automated_Qualitative_Coding_Improving_Text_Annotation_through_Secondary_LLM_Critique\"},{\"title\":\"Tutorial Day Overview\",\"url\":\"https://ic2s2-2025.org/tutorials/\"},{\"title\":\"Social science researchers use AI to simulate human subjects | Stanford Report\",\"url\":\"https://news.stanford.edu/stories/2025/07/ai-social-science-research-simulated-human-subjects\"},{\"title\":\"Integrating LLM in Agent-Based Social Simulation: Opportunities and Challenges∗\",\"url\":\"https://arxiv.org/pdf/2507.19364\"},{\"title\":\"[2508.08678] Exploring Large Language Model Agents for Piloting Social Experiments\",\"url\":\"https://arxiv.org/abs/2508.08678\"},{\"title\":\"(PDF) Large language models (LLM) in computational social science: prospects, current state, and challenges\",\"url\":\"https://www.researchgate.net/publication/389689729_Large_language_models_LLM_in_computational_social_science_prospects_current_state_and_challenges\"}]\n\nI found relevant research related to your query. Here are the key results:\n\n## Julian As\n…[truncated 1342 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T21:30:07.222958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Julian Ashwin \"replication data\" OR \"data repository\" OR github OR dataverse Rohingya interviews iQual"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T21:30:07.223223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Julian Ashwin World Bank researcher homepage contact"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T21:30:07.223469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CSS dataset demographic subgroup text annotation public download"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T21:30:07.223712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "NLP dataset with user demographics text classification fairness"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T21:30:07.224057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Julian Ashwin World Bank researcher homepage contact\"\n\nLinks: [{\"title\":\"Julian Ashwin | Postdoctoral Researcher, London Business School\",\"url\":\"https://blogs.worldbank.org/en/team/j/julian-ashwin\"},{\"title\":\"Julian Ashwin Curriculum Vitae Nuﬃeld College, 1 New Road Oxford, OX1 1NF\",\"url\":\"https://thedocs.worldbank.org/en/doc/6880f31ff76f9f0648f74ce9df25a982-0050072021/related/P129-s.pdf\"},{\"title\":\"Julian Ashwin\",\"url\":\"https://scholar.google.com/citations?user=-p7wgEUAAAAJ&hl=en\"},{\"title\":\"Julian Ashwin | NBER\",\"url\":\"https://www.nber.org/people/julian_ashwin\"},{\"title\":\"Julian Ashwin | Ellison Institute of Technology Oxford\",\"url\":\"https://eit.org/people/julian-ashwin\"},{\"title\":\"Julian Ashwin - Stanford Center on Longevity\",\"url\":\"https://longevity.stanford.edu/julian-ashwin/\"},{\"title\":\"Julian Ashwin\",\"url\":\"https://sites.google.com/view/julianashwin/home\"},{\"title\":\"Julian Ashwin (J.) - Julian Ashwin (J.) - Maastricht University\",\"url\":\"https://www.maastrichtuniversity.nl/j-ashwin\"},{\"title\":\"Julian Ashwin - Research\",\"url\":\"https://sites.google.com/view/julianashwin/research\"},{\"title\":\"Julian Ashwin - Maastricht University School of Business and Economics | LinkedIn\",\"url\":\"https://nl.linkedin.com/in/julian-ashwin-81411083\"}]\n\nBased on the search results, here's what I found about Julian Ashwin and his connection to the World Bank:\n\n## Overview\n\nJulian Ashwin is an Assistant Professor in Economics at Maastricht University and a Research Fellow at Ellison Institute of Technology Oxford. He was previously a post-doctoral researcher at London Business School and holds a PhD in Economics from the University of Oxford.\n\n## World Bank Connection\n\nJulian currently holds a position as an Academic Consultant at the World Bank Group. He is also an Assistant Professor of Macroeconomics at Maastricht University and an Academic Consultant at the World Bank.\n\n## Contact Information\n\nHis email is: julian.ashwin@maastrichtuniversity.nl\n\n## Ho\n…[truncated 453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T21:30:07.224425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Julian Ashwin \"replication data\" OR \"data repository\" OR github OR dataverse Rohingya interviews iQual\"\n\nLinks: [{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias - Julian Ashwin, Aditya Chhabra, Vijayendra Rao, 2025\",\"url\":\"https://journals.sagepub.com/doi/10.1177/00491241251338246\"},{\"title\":\"iQual · PyPI\",\"url\":\"https://pypi.org/project/iQual/\"},{\"title\":\"GitHub - worldbank/iQual: iQual is a package that leverages natural language processing to scale up interpretative qualitative analysis. It also provides methods to assess the bias, interpretability and efficiency of the machine-enhanced codes. iQual has been applied to analyse interviews on parents' aspirations for their children in Cox's Bazaar, Bangladesh. · GitHub\",\"url\":\"https://github.com/worldbank/iQual\"},{\"title\":\"Qualitative interviews at scale: A new method with an application to aspirations\",\"url\":\"https://voxdev.org/topic/methods-measurement/qualitative-interviews-scale-new-method-application-aspirations\"},{\"title\":\"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias - Maastricht University\",\"url\":\"https://cris.maastrichtuniversity.nl/en/publications/using-large-language-models-for-qualitative-analysis-can-introduc-2/\"},{\"title\":\"Julian Ashwin's research works | Maastricht University and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Julian-Ashwin-2243660923\"},{\"title\":\"Open Knowledge Repository\",\"url\":\"https://openknowledge.worldbank.org/entities/publication/c037118d-2b43-58de-9cf4-50dfaea6c589\"},{\"title\":\"Julian Ashwin - Maastricht University School of Business and Economics | LinkedIn\",\"url\":\"https://nl.linkedin.com/in/julian-ashwin-81411083\"},{\"title\":\"[2309.17147] Using Large Language Models for Qualitative Analysis can Introduce Serious Bias\",\"url\":\"https://arxiv.org/abs/2309.17147\"},{\"title\":\"Julian Ashwin - Research\",\"url\":\"https://sites.google.com/view/julianashwin/r\n…[truncated 1459 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T21:30:07.224764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CSS dataset demographic subgroup text annotation public download\"\n\nLinks: [{\"title\":\"When Do Annotator Demographics Matter? Measuring the Influence of   Annotator Demographics with the POPQUORN Dataset\",\"url\":\"https://arxiv.org/pdf/2306.06826\"},{\"title\":\"Auditing ImageNet: Towards a Model-driven Framework for Annotating   Demographic Attributes of Large-Scale Image Datasets\",\"url\":\"https://arxiv.org/pdf/1905.01347\"},{\"title\":\"Person-Centric Annotations of LAION-400M: Auditing Bias and Its Transfer to Models\",\"url\":\"https://arxiv.org/pdf/2510.03721\"},{\"title\":\"Uncurated Image-Text Datasets: Shedding Light on Demographic Bias\",\"url\":\"https://arxiv.org/pdf/2304.02828\"},{\"title\":\"A Framework for Generating Annotated Social Media Corpora with   Demographics, Stance, Civility, and Topicality\",\"url\":\"https://arxiv.org/pdf/2012.05444\"}]\n\nBased on the search results, here are the key datasets related to demographic subgroup text annotation that are available for public download:\n\n1. **POPQUORN Dataset**: POPQUORN (the Potato-Prolific dataset for Question-Answering, Offensiveness, text Rewriting and politeness rating with demographic Nuance) is a large dataset labeled by a US-population representative sample of annotators. The dataset contains 45,000 annotations from 1,484 participants from a representative sample regarding sex, age and race. It contains 45,000 annotations for four diverse NLP tasks: offensiveness detection (classification/regression), questions answering (span identification), politeness style transfer (language generation) and politeness rating (classification/regression).\n\n2. **ImageNet Demographic Audit**: Code and annotations are available for a demographic audit framework of ImageNet that includes demographic attribute annotations.\n\n3. **LAION-400M Person-Centric Annotations**: Person-centric annotations for the full dataset include over 276 million bounding boxes, perceived gender and race/ethnicity labels, and automatica\n…[truncated 478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T21:30:07.225136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"NLP dataset with user demographics text classification fairness\"\n\nLinks: [{\"title\":\"Perturbation Augmentation for Fairer NLP\",\"url\":\"https://arxiv.org/pdf/2205.12586\"},{\"title\":\"(PDF) On Bias and Fairness in NLP: How to have a fairer text classification?\",\"url\":\"https://www.researchgate.net/publication/370949867_On_Bias_and_Fairness_in_NLP_How_to_have_a_fairer_text_classification\"},{\"title\":\"On the Interplay between Fairness and Explainability\",\"url\":\"https://arxiv.org/pdf/2310.16607\"},{\"title\":\"Analyzing Fairness of Computer Vision and Natural Language Processing Models\",\"url\":\"https://www.mdpi.com/2078-2489/16/3/182\"},{\"title\":\"Datasets for Fairness in Language Models: An In-Depth Survey\",\"url\":\"https://arxiv.org/html/2506.23411v1\"},{\"title\":\"Bias and Fairness in Natural Language Processing | by Navid Rekabsaz | Thomson Reuters Labs | Medium\",\"url\":\"https://medium.com/tr-labs-ml-engineering-blog/bias-and-fairness-in-natural-language-processing-7663a6d33932\"},{\"title\":\"On Bias and Fairness in NLP: How to have fairer text classification?\",\"url\":\"https://arxiv.org/pdf/2305.12829v2\"},{\"title\":\"Evaluating Bias in NLP Datasets for Fairness Assurance | MoldStud\",\"url\":\"https://moldstud.com/articles/p-ensuring-fairness-evaluating-bias-in-nlp-datasets\"}]\n\nHere are the search results for NLP datasets with user demographics for text classification fairness:\n\n## Key Datasets and Approaches\n\nThe PANDA (Perturbation Augmentation NLP DAtaset) dataset consists of approximately 100K pairs of human-perturbed text snippets for training models to perturb text along three demographic axes (age, gender, race). Language models pre-trained on demographically perturbed corpora are more fair, and LMs finetuned on perturbed GLUE datasets exhibit less demographic bias on downstream tasks.\n\nThe BIOS and ECtHR datasets provide information on gender and nationality respectively, along with human-annotated rationales, for multi-class text classification tasks.\n\n## \n…[truncated 943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T21:30:07.225486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "POPQUORN dataset download demographic annotations NLP tasks"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T21:30:07.225740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "social media annotation demographic bias dataset public download sentiment stance"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T21:30:07.226039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "text classification dataset subgroup fairness hate speech demographics annotator"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T21:30:07.226286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "survey text coding LLM dataset open-ended responses demographics"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T21:30:07.226579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"POPQUORN dataset download demographic annotations NLP tasks\"\n\nLinks: [{\"title\":\"When Do Annotator Demographics Matter? Measuring the Influence of   Annotator Demographics with the POPQUORN Dataset\",\"url\":\"https://arxiv.org/pdf/2306.06826\"},{\"title\":\"When Do Annotator Demographics Matter? Measuring the Influence of Annotator Demographics with the POPQUORN Dataset – CSMR\",\"url\":\"https://csmr.umich.edu/news/when-do-annotator-demographics-matter-measuring-the-influence-of-annotator-demographics-with-the-popquorn-dataset/\"},{\"title\":\"Potato and Prolific: Key takeaways from our study on bias in AI annotations | Prolific\",\"url\":\"https://www.prolific.com/resources/key-takeaways-from-our-study-on-bias-in-ai-annotations\"},{\"title\":\"When Do Annotator Demographics Matter? Measuring the Influence of Annotator Demographics with the POPQUORN Dataset - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.law-1.25/\"},{\"title\":\"[2306.06826] When Do Annotator Demographics Matter? Measuring the Influence of Annotator Demographics with the POPQUORN Dataset\",\"url\":\"https://arxiv.org/abs/2306.06826\"},{\"title\":\"GitHub - Jiaxin-Pei/Potato-Prolific-Dataset\",\"url\":\"https://github.com/Jiaxin-Pei/Potato-Prolific-Dataset\"},{\"title\":\"Evaluating how LLM annotations represent diverse views on contentious topics\",\"url\":\"https://arxiv.org/html/2503.23243\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?doi=10.18653/v1/2023.law-1.25\"}]\n\nBased on the search results, here's what I found about the POPQUORN dataset:\n\n## Overview\n\nPOPQUORN (the Potato-Prolific dataset for Question-Answering, Offensiveness, text Rewriting and politeness rating with demographic Nuance) contains 45,000 annotations from 1,484 annotators, drawn from a representative sample regarding sex, age, and race as the US population.\n\n## NLP Tasks\n\nPOPQUORN is a large-scale NLP dataset for four NLP tasks annotated by a representative sample of the US population with respect to sex,\n…[truncated 762 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T21:30:07.226922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"social media annotation demographic bias dataset public download sentiment stance\"\n\nLinks: [{\"title\":\"A Comprehensive Approach to Bias Mitigation for Sentiment Analysis of Social Media Data | MDPI\",\"url\":\"https://www.mdpi.com/2076-3417/14/23/11471\"},{\"title\":\"A Framework for Generating Annotated Social Media Corpora with   Demographics, Stance, Civility, and Topicality\",\"url\":\"https://arxiv.org/pdf/2012.05444\"},{\"title\":\"(PDF) A Comprehensive Approach to Bias Mitigation for Sentiment Analysis of Social Media Data\",\"url\":\"https://www.researchgate.net/publication/386748863_A_Comprehensive_Approach_to_Bias_Mitigation_for_Sentiment_Analysis_of_Social_Media_Data\"},{\"title\":\"(Mis)alignment Between Stance Expressed in Social Media Data and Public   Opinion Surveys\",\"url\":\"https://arxiv.org/pdf/2109.01762\"},{\"title\":\"Assessing Sentiment of the Expressed Stance on Social Media\",\"url\":\"https://arxiv.org/pdf/1908.03181\"},{\"title\":\"A Survey of Stance Detection on Social Media: New Directions and Perspectives\",\"url\":\"https://arxiv.org/html/2409.15690v1\"}]\n\nHere are the web search results for your query:\n\n**Key Datasets Found:**\n\n1. **Jigsaw Unintended Bias in Toxicity Classification Dataset**: This dataset includes a variety of toxicity types, ranging from subtle to explicit forms, and is annotated with demographic and contextual metadata, allowing robust bias analysis. The dataset contains 1,971,916 instances of online comments.\n\n2. **Facebook Comments Dataset**: A case study of a Facebook comment corpora on student loan discussion which was annotated for gender, military affiliation, age-group, political leaning, race, stance, topicality, neoliberlistic views and civility of the comment, with three datasets released at https://github.com/socialmediaie/StudentDebtFbComments.\n\n3. **SemEval Stance Dataset**: A popular stance dataset that contains sentiment and stance labels, with additional validation through a newly constructed stance detection dat\n…[truncated 566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T21:30:07.227270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"survey text coding LLM dataset open-ended responses demographics\"\n\nLinks: [{\"title\":\"From Open-Ends to Insights: Leveraging AI in Survey Response Analysis | Center for Campaign Innovation\",\"url\":\"https://campaigninnovation.org/research/from-open-ends-to-insights\"},{\"title\":\"Do AIs know what the most important issue is? Using language models to code open-text social survey responses at scale | Request PDF\",\"url\":\"https://www.researchgate.net/publication/378164019_Do_AIs_know_what_the_most_important_issue_is_Using_language_models_to_code_open-text_social_survey_responses_at_scale\"},{\"title\":\"Scaling Open-Ended Survey Coding: An LLM Pipeline Where Definitions Do the Heavy Lifting\",\"url\":\"https://ideas.repec.org/p/osf/socarx/gjvcf_v1.html\"},{\"title\":\"Using Large Language Models for Coding Open-Ended ...\",\"url\":\"https://arxiv.org/pdf/2506.14634\"},{\"title\":\"AI in qualitative research: Using large language models to code survey responses in native languages | IFPRI\",\"url\":\"https://www.ifpri.org/blog/ai-in-qualitative-research-using-large-language-models-to-code-survey-responses-in-native-languages/\"},{\"title\":\"A Large Language Model Approach to Educational Survey Feedback Analysis | International Journal of Artificial Intelligence in Education | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s40593-024-00414-0\"},{\"title\":\"LLMs for analyzing open text in global health surveys: why children are not accessing vaccine services in DRC\",\"url\":\"https://www.medrxiv.org/content/10.1101/2024.11.14.24317253.full.pdf\"},{\"title\":\"Large language models for analyzing open text in global health surveys: why children are not accessing vaccine services in the Democratic Republic of the Congo\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12406778/\"}]\n\nI've found several relevant resources about using LLMs for text coding of open-ended survey responses. Here are the key findings:\n\n## Overview of LLM-Based Survey Coding\n\nLLMs are pr\n…[truncated 1451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T21:30:07.227598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"text classification dataset subgroup fairness hate speech demographics annotator\"\n\nLinks: [{\"title\":\"Offensive, aggressive, and hate speech analysis: From data-centric to human-centered approach - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S0306457321001333\"},{\"title\":\"Dealing with Annotator Disagreement in Hate Speech Classification\",\"url\":\"https://arxiv.org/html/2502.08266v1\"},{\"title\":\"Multilingual Twitter Corpus and Baselines for Evaluating Demographic   Bias in Hate Speech Recognition\",\"url\":\"https://arxiv.org/pdf/2002.10361\"},{\"title\":\"(PDF) HateXplain: A Benchmark Dataset for Explainable Hate Speech Detection\",\"url\":\"https://www.researchgate.net/publication/363394061_HateXplain_A_Benchmark_Dataset_for_Explainable_Hate_Speech_Detection\"},{\"title\":\"Algorithmic Fairness in NLP: Persona-Infused LLMs for Human-Centric Hate Speech Detection\",\"url\":\"https://arxiv.org/pdf/2510.19331\"},{\"title\":\"Hate Speech Dataset Catalogue | hatespeechdata\",\"url\":\"https://hatespeechdata.com/\"}]\n\nI found several relevant research papers and resources on text classification datasets for hate speech detection with considerations for subgroup fairness, demographics, and annotator perspectives. Here are the key findings:\n\n**Research on Annotator Demographics and Fairness:**\n\nResearch by Binns et al. (2017) focuses on presenting differences in model results considering the gender of annotators as a feature to split datasets into subgroups for classifier training. Additionally, Al Kuwatly et al. (2020) explores demographic bias in datasets by training and testing classifiers on specific demographic groups of annotators.\n\n**Challenges with Annotator Disagreement:**\n\nFleisig et al. (2023) demonstrated how challenging it is to accurately assess offensiveness when the targeted group is small or under-represented among annotators, indicating that majority voting can overlook important differences in how various groups perceive statemen\n…[truncated 1010 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T21:30:07.227995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Jigsaw toxicity classification dataset demographic subgroup metadata download"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T21:30:07.228260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Multilingual Twitter corpus hate speech demographic bias age country gender race download github"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T21:30:07.228507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GoEmotions dataset demographics Reddit sentiment annotation"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T21:30:07.228772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Social Bias Frames\" dataset demographic subgroup annotation download"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T21:30:07.229095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Jigsaw toxicity classification dataset demographic subgroup metadata download\"\n\nLinks: [{\"title\":\"Jigsaw Unintended Bias Toxic Comment Classification. | by Ritesh Ranjan | Analytics Vidhya | Medium\",\"url\":\"https://medium.com/analytics-vidhya/jigsaw-unintended-bias-toxic-comment-classification-fa68fe3a27c8\"},{\"title\":\"Jigsaw Unintended Bias in Toxicity Classification | by Pulkit Ratna Ganjeer | Medium\",\"url\":\"https://pulkitratnaganjeer.medium.com/jigsaw-unintended-bias-in-toxicity-classification-367ff78aba79\"},{\"title\":\"google/jigsaw_unintended_bias · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/google/jigsaw_unintended_bias\"},{\"title\":\"Jigsaw Unintended Bias in Toxicity Classification | by Shantanu Ekhande | Medium\",\"url\":\"https://medium.com/@shantanuekhande19/jigsaw-unintended-bias-in-toxicity-classification-7d147238cc18\"},{\"title\":\"Designing Toxic Content Classification for a Diversity of Perspectives\",\"url\":\"https://arxiv.org/pdf/2106.04511\"},{\"title\":\"Which One Is More Toxic? Findings from Jigsaw Rate ...\",\"url\":\"https://aclanthology.org/2022.trac-1.2.pdf\"},{\"title\":\"Reading Between the Demographic Lines: Resolving Sources of Bias in   Toxicity Classifiers\",\"url\":\"https://arxiv.org/pdf/2006.16402\"},{\"title\":\"google/jigsaw_toxicity_pred · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/google/jigsaw_toxicity_pred\"},{\"title\":\"Debiasing Personal Identities in Toxicity Classification\",\"url\":\"https://arxiv.org/pdf/1908.05757\"}]\n\nBased on the search results, here's what I found about the Jigsaw toxicity classification dataset with demographic subgroup metadata:\n\n## Dataset Overview\n\nThe Jigsaw Unintended Bias in Toxicity Classification dataset comes from the eponymous Kaggle competition. It has ~2 million samples.\n\n## Demographic Subgroup Metadata\n\nThe identity columns in the training data include: male, female, homosexual_gay_or_lesbian, Christian, Jewish, Muslim, black, white, and psychiatric_or_men\n…[truncated 900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T21:30:07.229453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Multilingual Twitter corpus hate speech demographic bias age country gender race download github\"\n\nLinks: [{\"title\":\"Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2020arXiv200210361H/abstract\"},{\"title\":\"Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition | DeepAI\",\"url\":\"https://deepai.org/publication/multilingual-twitter-corpus-and-baselines-for-evaluating-demographic-bias-in-hate-speech-recognition\"},{\"title\":\"[2002.10361] Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition\",\"url\":\"https://arxiv.org/abs/2002.10361\"},{\"title\":\"GitHub - Peekaboo-sr/Hate_Speech\",\"url\":\"https://github.com/Peekaboo-sr/Hate_Speech\"},{\"title\":\"Adobe Research » Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition\",\"url\":\"https://research.adobe.com/publication/multilingual-twitter-corpus-and-baselines-for-evaluating-demographic-bias-in-hate-speech-recognition/\"},{\"title\":\"Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.lrec-1.180/\"},{\"title\":\"Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in\",\"url\":\"https://arxiv.org/pdf/2002.10361\"},{\"title\":\"(PDF) Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition\",\"url\":\"https://www.researchgate.net/publication/339472074_Multilingual_Twitter_Corpus_and_Baselines_for_Evaluating_Demographic_Bias_in_Hate_Speech_Recognition\"},{\"title\":\"[PDF] Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Multilingual-Twitter-Corpus-and-Baselines-for-Bias-Huang-Xing/5bda340d2d348362310a921395e7b21dd2f9\n…[truncated 1834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T21:30:07.229837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GoEmotions dataset demographics Reddit sentiment annotation\"\n\nLinks: [{\"title\":\"GoEmotions: A Dataset for Fine-Grained Emotion Classification\",\"url\":\"https://research.google/blog/goemotions-a-dataset-for-fine-grained-emotion-classification/\"},{\"title\":\"GoEmotions — Grokipedia\",\"url\":\"https://grokipedia.com/page/GoEmotions\"},{\"title\":\"GoEmotions: Google AI dataset for sentiment analysis\",\"url\":\"https://neurohive.io/en/datasets/go-emotions-google-ai-dataset-for-sentiment-analysis/\"},{\"title\":\"google-research/goemotions at master · google-research/google-research\",\"url\":\"https://github.com/google-research/google-research/tree/master/goemotions\"},{\"title\":\"google-research/goemotions/README.md at master · google-research/google-research\",\"url\":\"https://github.com/google-research/google-research/blob/master/goemotions/README.md?plain=1\"},{\"title\":\"GoEmotions: A Dataset of Fine-Grained Emotions\",\"url\":\"https://arxiv.org/pdf/2005.00547\"},{\"title\":\"GoEmotions: A Dataset of Fine-Grained Emotions - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.acl-main.372/\"},{\"title\":\"google-research-datasets/go_emotions · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/google-research-datasets/go_emotions\"},{\"title\":\"GoEmotions: fine-grained emotional classification dataset\",\"url\":\"https://www.innovatiana.com/en/datasets/go-emotions\"},{\"title\":\"GoEmotions: Fine-Grained Emotion Dataset\",\"url\":\"https://www.emergentmind.com/topics/goemotions-dataset\"}]\n\nBased on the search results, here's what I found about the GoEmotions dataset:\n\n## Dataset Overview\n\nGoEmotions is a human-annotated dataset of 58k Reddit comments extracted from popular English-language subreddits and labeled with 27 emotion categories. It is the largest fully annotated English language fine-grained emotion dataset to date.\n\n## Emotion Categories\n\nThe taxonomy includes 12 positive, 11 negative, 4 ambiguous emotion categories and 1 \"neutral\", making it widely suitable for con\n…[truncated 1156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T21:30:07.230197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Social Bias Frames\" dataset demographic subgroup annotation download\"\n\nLinks: [{\"title\":\"allenai/social_bias_frames · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/allenai/social_bias_frames\"},{\"title\":\"Social Bias Frames\",\"url\":\"https://maartensap.com/social-bias-frames/\"},{\"title\":\"Social Bias Frames - HackMD\",\"url\":\"https://hackmd.io/O1NU9M7EQKCMfQSzQmfOSA\"},{\"title\":\"README.md · allenai/social_bias_frames at main\",\"url\":\"https://huggingface.co/datasets/allenai/social_bias_frames/blob/main/README.md\"},{\"title\":\"Social Bias Frames: Reasoning about Social and Power Implications of Language | Request PDF\",\"url\":\"https://www.researchgate.net/publication/337184449_Social_Bias_Frames_Reasoning_about_Social_and_Power_Implications_of_Language\"},{\"title\":\"SOCIAL BIAS FRAMES: Reasoning about Social and Power Implications of Language\",\"url\":\"https://arxiv.org/pdf/1911.03891\"},{\"title\":\"Social Bias Frames: Reasoning about Social and Power Implications of Language - ACL Anthology\",\"url\":\"https://aclanthology.org/2020.acl-main.486/\"},{\"title\":\"[1911.03891] Social Bias Frames: Reasoning about Social and Power Implications of Language\",\"url\":\"https://arxiv.org/abs/1911.03891\"},{\"title\":\"SBIC Dataset | Papers With Code\",\"url\":\"https://paperswithcode.com/dataset/sbic\"},{\"title\":\"Auditing ImageNet: Towards a Model-driven Framework for Annotating   Demographic Attributes of Large-Scale Image Datasets\",\"url\":\"https://arxiv.org/pdf/1905.01347\"}]\n\nBased on the search results, here's what I found about the Social Bias Frames dataset:\n\n## Overview\n\nSocial Bias Frames is a new way of representing the biases and offensiveness that are implied in language. The Social Bias Inference Corpus (SBIC) supports large-scale learning and evaluation of social implications with over 150k structured annotations of social media posts, spanning over 34k implications about a thousand demographic groups.\n\n## Dataset Annotation Details\n\nFor each post, Amazo\n…[truncated 871 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T21:30:07.230551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2309.17147 Ashwin data availability statement replication"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T21:30:07.230825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Measuring Hate Speech\" dataset Kennedy demographics annotator download UC Berkeley"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T21:30:07.231079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "StudentDebt Facebook comments dataset demographics stance annotation github download"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T21:30:07.231347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2309.17147 Ashwin data availability statement replication\"\n\nLinks: [{\"title\":\"[2309.17147] Using Large Language Models for Qualitative Analysis can Introduce Serious Bias\",\"url\":\"https://arxiv.org/abs/2309.17147\"},{\"title\":\"Increased data availability during replication\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11182406\"},{\"title\":\"The citation advantage of linking publications to research data\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7176083/\"},{\"title\":\"The impact on authors and editors of introducing Data Availability Statements at Nature journals\",\"url\":\"https://www.biorxiv.org/content/10.1101/264929.full.pdf\"},{\"title\":\"The Unreasonable Effectiveness of Open Science in AI: A Replication   Study\",\"url\":\"https://arxiv.org/pdf/2412.17859\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nArXiv 2309.17147 is a paper titled \"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias\" by Julian Ashwin and Aditya Chhabra, submitted on September 29, 2023.\n\nThe paper asks whether LLMs can help analyze large-N qualitative data from open-ended interviews, with an application to transcripts of interviews with Rohingya refugees in Cox's Bazaar, Bangladesh. The authors find that a great deal of caution is needed in using LLMs to annotate text as there is a risk of introducing biases, in the technical sense that the errors LLMs make in annotating interview transcripts are not random with respect to the characteristics of the interview subjects.\n\nIf you need more details about the paper, you can access it directly at https://arxiv.org/abs/2309.17147.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T21:30:07.231664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Measuring Hate Speech\" dataset Kennedy demographics annotator download UC Berkeley\"\n\nLinks: [{\"title\":\"README.md · ucberkeley-dlab/measuring-hate-speech at main\",\"url\":\"https://huggingface.co/datasets/ucberkeley-dlab/measuring-hate-speech/blob/main/README.md\"},{\"title\":\"Hate Speech Dataset Catalogue | hatespeechdata\",\"url\":\"https://hatespeechdata.com/\"},{\"title\":\"Measuring Hate Speech\",\"url\":\"https://hatespeech.berkeley.edu/\"},{\"title\":\"The Measuring Hate Speech Corpus: Leveraging Rasch Measurement Theory for Data Perspectivism | Measuring Hate Speech\",\"url\":\"https://hatespeech.berkeley.edu/publication/02_dataset/\"},{\"title\":\"Hate Speech Research\",\"url\":\"https://dlab.berkeley.edu/research/hate-speech\"},{\"title\":\"The Measuring Hate Speech Corpus: Leveraging Rasch Measurement Theory for Data Perspectivism - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.nlperspectives-1.11/\"},{\"title\":\"GitHub - wesleyacheng/hate-speech-multilabel-classification-with-bert: Hate Speech MultiLabel Classification with BERT\",\"url\":\"https://github.com/wesleyacheng/hate-speech-multilabel-classification-with-bert\"},{\"title\":\"Measuring hate speech | Chris Kennedy\",\"url\":\"https://ck37.com/project/hatespeech/\"}]\n\nBased on the search results, I found comprehensive information about the Measuring Hate Speech dataset from UC Berkeley:\n\n## Dataset Overview\n\nThe Measuring Hate Speech corpus consists of 50,070 social media comments spanning YouTube, Reddit, and Twitter, labeled by 11,143 annotators recruited from Amazon Mechanical Turk. Each observation includes 10 ordinal labels: sentiment, disrespect, insult, attacking/defending, humiliation, inferior/superior status, dehumanization, violence, genocide, and a 3-valued hate speech benchmark label.\n\n## Target Groups and Demographics\n\nThe dataset includes 8 target identity groups (race/ethnicity, religion, national origin/citizenship, gender, sexual orientation, age, disability, political ideology) and 42 target ide\n…[truncated 795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T21:30:07.232029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"StudentDebt Facebook comments dataset demographics stance annotation github download\"\n\nLinks: [{\"title\":\"A Framework for Generating Annotated Social Media Corpora with   Demographics, Stance, Civility, and Topicality\",\"url\":\"https://arxiv.org/pdf/2012.05444\"},{\"title\":\"An English-Hindi Code-Mixed Corpus: Stance Annotation and Baseline   System\",\"url\":\"https://arxiv.org/pdf/1805.11868\"},{\"title\":\"TruthStance: An Annotated Dataset of Conversations on Truth Social\",\"url\":\"https://arxiv.org/pdf/2602.14406\"},{\"title\":\"Will-They-Won't-They: A Very Large Dataset for Stance Detection on   Twitter\",\"url\":\"https://arxiv.org/pdf/2005.00388\"},{\"title\":\"Stance Detection in Web and Social Media: A Comparative Study\",\"url\":\"https://arxiv.org/pdf/2007.05976\"}]\n\nBased on the search results, I found information about the StudentDebt Facebook comments dataset you're looking for:\n\nA Facebook comment corpora on student loan discussion was annotated for gender, military affiliation, age-group, political leaning, race, stance, topicality, neoliberlistic views and civility of the comment, with three datasets of Facebook comments released for further research at: https://github.com/socialmediaie/StudentDebtFbComments.\n\nThis dataset was created as part of a framework by Shubhanshu Mishra and Daniel Collier for annotating social media text corpora for various categories. The framework includes demographic attributes to enable a socio-technical analysis of the corpora, since social media data is generated via individuals.\n\nYou can download the dataset directly from the GitHub repository at https://github.com/socialmediaie/StudentDebtFbComments.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T21:30:07.232394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/ec_hte_llm_annotation/results/ 2>/dev/null || mkdir -p /home/ubuntu/ec_hte_llm_annotation/results",
+              "description": "Ensure results directory exists"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T21:30:07.232653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp001_full_run.log\nexp001_hb_diagnostics.csv\nexp001_hb_results.csv\nexp002_bias_bound.csv\nexp002_bias_heatmap.csv\nexp002_debiasing_hurts.csv\nexp002_derivation.md\nexp002_k4_validation.csv\nexp002_run.log\nmvp_results.csv\nmvp_results_raw.csv\nmvp_results_v2.csv\nmvp_results_v2_raw.csv\nmvp_results_v3.csv\nmvp_results_v3_raw.csv\nmvp_v2_100mc_log.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T21:30:07.233009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/dataset_survey.md",
+              "content": "# Dataset Survey: EC-HTE Project Real-World Data\n\nDate: 2026-05-20\n\n---\n\n## 1. Ashwin et al. (2025) Dataset Accessibility\n\n### Paper Information\n- **Full title**: \"Using Large Language Models for Qualitative Analysis can Introduce Serious Bias\"\n- **Authors**: Julian Ashwin, Aditya Chhabra, Vijayendra Rao\n- **Venue**: *Sociological Methods & Research* (SAGE), 2025\n- **DOI**: [10.1177/00491241251338246](https://journals.sagepub.com/doi/10.1177/00491241251338246)\n- **arXiv**: [2309.17147](https://arxiv.org/abs/2309.17147)\n\n### Dataset Description\n- **Sample size**: 2,407 open-ended interviews\n- **Population**: Rohingya refugees and their Bangladeshi hosts in Cox's Bazar, Bangladesh\n- **Text type**: Interview transcripts about aspirations for eldest child and navigational capacity\n- **Annotation type**: Qualitative coding tree with human-annotated codes; LLM annotations compared against human gold standard\n- **Demographic subgroups**: Respondent characteristics (Rohingya vs. Bengali host, plus other interview-subject characteristics used to detect systematic LLM bias)\n- **Code repository**: [github.com/worldbank/iQual](https://github.com/worldbank/iQual) (Python package for qualitative analysis pipeline)\n\n### Data Availability: NOT PUBLICLY AVAILABLE\n- Interview transcripts **cannot** be made publicly available due to **privacy and IRB/ethics restrictions**\n- An **anonymised version is available upon request** from the authors\n- No public data repository link (no Dataverse, OSF, Zenodo, or GitHub data release found)\n\n### Author Contact\n- **Julian Ashwin**, Assistant Professor, Maastricht University; Academic Consultant, World Bank\n- **Email**: julian.ashwin@maastrichtuniversity.nl\n- **Homepage**: [sites.google.com/view/julianashwin](https://sites.google.com/view/julianashwin/home)\n- **NBER profile**: [nber.org/people/julian_ashwin](https://www.nber.org/people/julian_ashwin)\n\n### Conclusion\nThe Ashwin dataset is **not publicly downloadable**. Obtaining it requires emailing the author for an anonymised version. Given the sensitive refugee population, approval may involve additional conditions. This introduces timeline risk and reproducibility constraints for our project.\n\n---\n\n## 2. Alternative CSS Datasets\n\n### 2.1 UC Berkeley Measuring Hate Speech Corpus (RECOMMENDED #1)\n\n| Field | Detail |\n|-------|--------|\n| **Paper** | Kennedy et al. (2022), \"The Measuring Hate Speech Corpus\", NLPerspectives @ ACL |\n| **URL** | [huggingface.co/datasets/ucberkeley-dlab/measuring-hate-speech](https://huggingface.co/datasets/ucberkeley-dlab/measuring-hate-speech) |\n| **Project site** | [hatespeech.berkeley.edu](https://hatespeech.berkeley.edu/) |\n| **Sample size** | 50,070 social media comments (YouTube, Reddit, Twitter) |\n| **Annotators** | 11,143 AMT workers |\n| **Subgroup structure** | **8 target identity groups** (race/ethnicity, religion, national origin, gender, sexual orientation, age, disability, political ideology) with 42 subgroups; **6 annotator demographic dimensions** with 40 subgroups |\n| **Annotation type** | 10 ordinal labels (sentiment, disrespect, insult, humiliation, dehumanization, violence, genocide, etc.) + continuous Rasch-scaled hate speech score + 3-class benchmark label |\n| **Public download** | Yes, freely available on HuggingFace |\n| **Limitations** | English only; social media text (not interview/survey); annotator demographics are about the annotators, not the text authors |\n\n**Why recommended**: Richest demographic subgroup structure of any available dataset. Both target-group and annotator-group metadata enable HTE analysis along multiple axes. Large sample, validated annotation methodology (Rasch measurement theory), well-published.\n\n---\n\n### 2.2 Social Bias Inference Corpus / Social Bias Frames (RECOMMENDED #2)\n\n| Field | Detail |\n|-------|--------|\n| **Paper** | Sap et al. (2020), \"Social Bias Frames\", ACL 2020 |\n| **URL** | [huggingface.co/datasets/allenai/social_bias_frames](https://huggingface.co/datasets/allenai/social_bias_frames) |\n| **Project site** | [maartensap.com/social-bias-frames](https://maartensap.com/social-bias-frames/) |\n| **Sample size** | 150k+ structured annotations over social media posts |\n| **Annotators** | Amazon Mechanical Turk workers |\n| **Subgroup structure** | **Annotator demographics**: political leaning, race, age; **Target groups**: 1,000+ demographic groups mentioned in posts |\n| **Annotation type** | Offensiveness, intent to offend, lewdness, target group, implied stereotype, free-text implication |\n| **Public download** | Yes, freely available on HuggingFace |\n| **Limitations** | Annotator demographic metadata is coarse; annotation task is somewhat complex (implied bias reasoning); may not map cleanly to standard classification |\n\n**Why recommended**: Large scale, rich target-group taxonomy, annotator demographics available. Published at top venue. The implied-stereotype annotation adds a unique dimension for studying LLM reasoning vs. human judgment.\n\n---\n\n### 2.3 POPQUORN Dataset (RECOMMENDED #3)\n\n| Field | Detail |\n|-------|--------|\n| **Paper** | Pei et al. (2023), \"When Do Annotator Demographics Matter?\", LAW @ ACL 2023 |\n| **URL** | [github.com/Jiaxin-Pei/Potato-Prolific-Dataset](https://github.com/Jiaxin-Pei/Potato-Prolific-Dataset) |\n| **Sample size** | 45,000 annotations from 1,484 annotators |\n| **Annotators** | US-population-representative sample via Prolific |\n| **Subgroup structure** | **Sex, age, race** (representative of US population) |\n| **Annotation type** | 4 NLP tasks: offensiveness detection, question answering, politeness rating, text rewriting |\n| **Public download** | Yes, freely available on GitHub |\n| **Limitations** | Smaller sample of texts (annotations are dense per text); English only; limited to 3 demographic axes |\n\n**Why recommended**: Explicitly designed to study how annotator demographics influence labels. US-representative sampling makes demographic subgroups well-defined and balanced. Multiple task types allow cross-task HTE analysis.\n\n---\n\n### 2.4 Jigsaw Unintended Bias in Toxicity Classification\n\n| Field | Detail |\n|-------|--------|\n| **Paper** | Borkan et al. (2019), Kaggle competition dataset by Google/Jigsaw |\n| **URL** | [huggingface.co/datasets/google/jigsaw_unintended_bias](https://huggingface.co/datasets/google/jigsaw_unintended_bias) |\n| **Sample size** | ~2,000,000 comments |\n| **Subgroup structure** | 9 identity mention columns: male, female, homosexual_gay_or_lesbian, Christian, Jewish, Muslim, black, white, psychiatric_or_mental_illness |\n| **Annotation type** | Toxicity score (continuous), identity mention flags |\n| **Public download** | Yes, on HuggingFace and Kaggle |\n| **Limitations** | Identity columns indicate **mentions** in text, not author demographics; subgroups are binary flags, not metadata about the respondent |\n\n**Why less ideal**: Very large scale but subgroup structure is based on identity mentions in text rather than author/respondent demographics. This is a different kind of subgroup than what EC-HTE typically needs (demographic metadata about the person generating the text).\n\n---\n\n### 2.5 Multilingual Twitter Hate Speech Corpus\n\n| Field | Detail |\n|-------|--------|\n| **Paper** | Huang et al. (2020), \"Multilingual Twitter Corpus and Baselines for Evaluating Demographic Bias in Hate Speech Recognition\", LREC 2020 |\n| **URL** | [github.com/xiaoleihuang/Multilingual_Fairness_LREC](https://github.com/xiaoleihuang/Multilingual_Fairness_LREC) |\n| **Sample size** | Multi-language corpus (EN, IT, PL, PT, ES) |\n| **Subgroup structure** | 4 inferred **author demographics**: age, country, gender, race/ethnicity |\n| **Annotation type** | Hate speech labels |\n| **Public download** | Partially; anonymized text available by email request (xiaolei.huang@memphis.edu) |\n| **Limitations** | Demographics are **inferred** (not self-reported), requiring email request for full data; binarized demographic attributes |\n\n**Why less ideal**: Interesting multilingual angle but demographics are inferred rather than ground-truth, and data requires email request.\n\n---\n\n### 2.6 StudentDebt Facebook Comments\n\n| Field | Detail |\n|-------|--------|\n| **Paper** | Mishra & Collier (2020), \"A Framework for Generating Annotated Social Media Corpora\" |\n| **URL** | [github.com/socialmediaie/StudentDebtFbComments](https://github.com/socialmediaie/StudentDebtFbComments) |\n| **Sample size** | 3 datasets of Facebook comments on student loan discussions |\n| **Subgroup structure** | Gender, military affiliation, age-group, political leaning, race |\n| **Annotation type** | Stance, topicality, civility, neoliberal views |\n| **Public download** | Yes, on GitHub |\n| **Limitations** | Small sample size; narrow topic domain (student debt); may have limited generalizability |\n\n**Why less ideal**: Rich demographic annotation but likely small scale. Good as a supplementary validation dataset.\n\n---\n\n## 3. Recommendation Ranking\n\n| Rank | Dataset | Rationale |\n|------|---------|-----------|\n| **1** | **UC Berkeley Measuring Hate Speech** | Best combination of: large sample (50K comments, 11K annotators), rich subgroup structure on both target and annotator sides (8+6 demographic dimensions), validated continuous scale, fully public, well-published |\n| **2** | **Social Bias Frames (SBIC)** | 150K+ annotations, 1000+ target groups, annotator demographics (politics/race/age), fully public; good for studying how annotator perspective interacts with LLM annotation |\n| **3** | **POPQUORN** | Purpose-built for studying demographic influence on annotation; US-representative; 4 diverse tasks; fully public; smaller but cleanest experimental design |\n| **4** | **Ashwin et al. (request)** | Most directly relevant to EC-HTE framing (interview data, qualitative coding, explicit LLM bias finding) but requires author permission; IRB constraints may limit use |\n| **5** | **Jigsaw** | Massive scale but subgroups are text-mention-based, not respondent demographics |\n| **6** | **Multilingual Twitter** | Inferred demographics + email-gated access |\n| **7** | **StudentDebt FB** | Rich annotations but likely too small for robust HTE |\n\n### Strategic Recommendation\n\nUse **UC Berkeley Measuring Hate Speech** as the primary dataset for EC-HTE experiments: it has the richest subgroup structure, is fully public, and directly supports the project's core question (whether LLM annotation errors correlate with demographic characteristics). Supplement with **POPQUORN** for cross-task validation. In parallel, email Julian Ashwin to request the anonymised Rohingya interview data for a qualitative-coding replication that directly extends the original paper's findings.\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T21:30:07.233473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/results/dataset_survey.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T21:30:07.233792+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/home/ubuntu/ec_hte_llm_annotation/results/dataset_survey.md`.\n\n**Key findings:**\n\n1. **Ashwin dataset**: Not publicly available. Anonymised version available upon request from Julian Ashwin (julian.ashwin@maastrichtuniversity.nl). IRB/privacy restrictions on Rohingya refugee interview data.\n\n2. **Top 3 alternative datasets** (all fully public):\n   - **UC Berkeley Measuring Hate Speech** — 50K comments, 11K annotators, 8 target + 6 annotator demographic dimensions, continuous Rasch-scaled labels. Best fit for EC-HTE.\n   - **Social Bias Frames (SBIC)** — 150K+ annotations, 1000+ target groups, annotator politics/race/age metadata.\n   - **POPQUORN** — 45K annotations from 1,484 US-representative annotators (sex/age/race), 4 NLP tasks. Cleanest experimental design for studying demographic effects.\n\n**Recommended strategy**: Use UC Berkeley Measuring Hate Speech as primary dataset, POPQUORN for cross-task validation, and email Ashwin in parallel for the original data."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ashwin-dataset_20260520T212716"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ]
+}

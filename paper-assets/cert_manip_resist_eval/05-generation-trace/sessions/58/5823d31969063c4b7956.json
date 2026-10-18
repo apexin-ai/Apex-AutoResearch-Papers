@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5823d31969063c4b7956",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra download monitor",
+  "task_key": "worker_infra_download-monitor_20260521T184450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-monitor_20260521T184450_result.json",
+    "occurrence": 1,
+    "bytes": 42,
+    "sha256": "a2b5366a353e2abc8f69c833ebfe33bc0e71dc382e13855fb5e310e9ab29e847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 分钟后继续轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

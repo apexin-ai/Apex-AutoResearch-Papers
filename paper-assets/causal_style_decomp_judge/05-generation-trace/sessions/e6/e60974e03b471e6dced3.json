@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e60974e03b471e6dced3",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code power curve d031 alignment",
+  "task_key": "worker_code_power_curve_d031_alignment_20260521T033306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_power_curve_d031_alignment_20260521T033306_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "ad625d8aa378bdf96a252811300dc88910a11b383a95cded7993e33c4e2658ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 生成成功。80% power 交叉点：\n\n| 曲线 | 参数 | n (80% power) |\n|------|------|---------------|\n| Pairwise BT | p=0.630 | **114** |\n| Pairwise Sign Test | p=0.739, r=0.523 | **62** |\n| Binarized Likert | p=0.606, tie=0.625 | **462** |\n| Likert ATE | d=0.073 | **1473** (off-chart) |\n\n三个常量已更新，输出在 `artifacts/figures/paper/power_curve.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

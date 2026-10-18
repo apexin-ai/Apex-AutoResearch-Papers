@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d410bd9a29dd8880fb57",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check exp 007 progress",
+  "task_key": "worker_check_exp-007-progress_20260519T182417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp-007-progress_20260519T182417_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "408309bf8d6fcc8548eacd5d388ff369c25d7937f0eb103899f2b47fd3d75d9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-007 LAMBADA log_samples 进度报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | ALIVE（PID 530432，已运行 33 分钟） |\n| **已完成** | **17/27**（340M 全部 16 个 ✓ + 1.3B GDN-pure ✓） |\n| **当前运行** | `1.3B-100B-GatedDeltaNet-hybrid-12-1`（02:25:04 启动） |\n| **剩余** | 10 个（含当前 1 个） |\n\n**340M（16/16 ✓）：** GDN-pure, GDN-h3-1, GDN-h6-1, GDN-h12-1, GDN-h24-1, RetNet-pure, RetNet-h3-1, RetNet-h6-1, RetNet-h12-1, RetNet-h24-1, HGRN2-pure, HGRN2-h3-1, HGRN2-h6-1, HGRN2-h12-1, HGRN2-h24-1, Transformer\n\n**1.3B（1/11）：** GDN-pure ✓（131s）\n\n**预估剩余时间：** 340M 模型平均 ~126s/个，1.3B GDN-pure 用了 131s。按 ~130s/个估算，剩余 10 个 ≈ **22 分钟**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

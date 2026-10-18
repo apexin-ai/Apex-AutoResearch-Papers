@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9b22aa2cf5257291aec0",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh westd 70b exp3 fix",
+  "task_key": "worker_ssh_westd-70b-exp3-fix_20260517T102041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-70b-exp3-fix_20260517T102041_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "2923bf09bb8bf7e52815754bd12e65e9c6a0ff9cd61436681f450b1d0c957dc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exp 3 已成功重启并开始推理。\n\n**汇报：**\n- **脚本**: `scripts/run_d051_count_curves_llama70b.py --dataset fewnerd --seed 42 --model_path /root/autodl-tmp/models/llama-3.1-70b-instruct-fp8`\n- **修复**: 安装了 `datasets` 包 + 补充了 `--model_path` 本地路径（默认值指向 HuggingFace Hub，服务器网络不通）\n- **运行状态**: 正在处理 `count_12`（第一个 count），1000 samples，当前推理速度 ~2.16 it/s\n- **tmux session**: `exp3_70b`\n- **配置**: 6 个 count 点 × 25 batches × 1000 samples = 150 个推理 job\n- **预计完成时间**: 按每个 count ~8 分钟估算（1000 prompts / ~2 it/s ≈ 500s），6 个 count × ~8 min ≈ **~50 分钟**（约 19:15 UTC）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

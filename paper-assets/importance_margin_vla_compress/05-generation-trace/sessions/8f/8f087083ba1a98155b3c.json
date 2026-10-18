@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8f087083ba1a98155b3c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag exp b k095 health",
+  "task_key": "worker_diag_exp_b_k095_health_20260518T123622",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp_b_k095_health_20260518T123622_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "7b2b9975b3594d9ccd2fd86940e3e97cdc217e11c8b996288f67bfb108f0d9fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 指标 | 值 |\n|------|-----|\n| **GPU 1 利用率** | 0% (显存 3090MiB/24564MiB，P2 状态，54W) |\n| **进程 92881** | 活着，R 状态，CPU 251% |\n| **tmux session** | `eval_random_k095` 存在 |\n| **当前进度** | Task 3 Ep 11/50（已完成 161/500 episodes，**32%**） |\n| **已完成 tasks** | T0: 0% SR, T1: 0% SR, T2: 0% SR（全部 FAIL，每个 episode 跑满 280 steps） |\n\n### 关键发现：实验并非跑了 6 小时\n\n日志第一条时间戳是 `2026-05-18 20:17:15`，当前服务器时间 `20:36:41`，**实际只跑了约 19 分钟**。可能之前有一个同名实验已结束/崩溃，当前是重新启动的。\n\n### 是否卡住？\n\n**没有卡住。** 进程活跃运行中，日志持续输出。GPU 利用率 0% 是正常的，因为 robosuite 环境模拟是 CPU 密集型，GPU 只在推理时短暂使用。\n\n### 预计剩余时间\n\n- 19 分钟完成 161 episodes → ~7 秒/episode\n- 剩余 339 episodes → **约 40 分钟**\n- 预计总耗时 ~1 小时\n\n### 注意\n\n所有 episode 全部 FAIL（0% SR），k_ratio=0.95 的 random pruning 效果完全不行。如果这是预期内的 baseline 对照实验则正常，否则需要检查实验配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

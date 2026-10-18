@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0",
+  "id": "e67490849831b0acf6bb",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper r26 fix intro abstract",
+  "task_key": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_r26_fix_intro_abstract_20260522T043723.jsonl",
+    "occurrence": 1,
+    "bytes": 24609,
+    "sha256": "1efca1e0d43d810f60bbc78665a8e617a65d1f0c73c23d83ae63eeeb1f2b823e"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T04:39:13.913609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T04:39:13.914156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T04:39:13.914342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T04:39:13.914486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260515T053106/best/paper.tex\nartifacts/dream_reports/dream_20260515T053106/median/paper.tex\nartifacts/dream_reports/dream_20260515T053106/worst/paper.tex\nartifacts/dream_reports/dream_20260515T113743/best/paper.tex\nartifacts/dream_reports/dream_20260515T113743/median/paper.tex\nartifacts/dream_reports/dream_20260515T113743/worst/paper.tex\nartifacts/dream_reports/dream_20260515T140829/best/paper.tex\nartifacts/dream_reports/dream_20260515T140829/median/paper.tex\nartifacts/dream_reports/dream_20260515T140829/worst/paper.tex\nartifacts/_project/paper/dataset_stats.tex\nartifacts/paper/tables/dataset_stats.tex\nartifacts/_project/paper/sdgd_negative.tex\nartifacts/_project/paper/experimental_setup.tex\ndocs/paper/conclusion.tex\nartifacts/_project/paper/results.tex\nartifacts/dream_reports/dream_20260516T073533/best/paper.tex\nartifacts/dream_reports/dream_20260516T073533/median/paper.tex\nartifacts/dream_reports/dream_20260516T073533/worst/paper.tex\ndocs/paper/supplementary.tex\nartifacts/acknowledgements_draft.tex\ndocs/paper/prompt_appendix.tex\ndocs/paper/checklist.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/experimental_setup.tex\nartifacts/error_taxonomy_cross_model_table.tex\nartifacts/permutation_equivalence_latex.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/related_work.tex\ndocs/paper/results.tex\ndocs/paper/discussion.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T04:39:13.914636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T04:39:13.914767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSchema complexity affects training-free LLM information extraction through two independent dimensions: type count drives recall decline, while inter-type confusability drives type substitution errors. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across NER, RE, and event detection on four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:\n3\t(1)~count degradation spans all three tasks (up to $-$49\\,pp); confusability-driven substitution is documented primarily in RE, with bounded interaction;\n4\t(2)~BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance on FewRel (ecological level), replicating across three open-weight model families (8B--70B); NER batch-level signal is not detected at current power;\n5\t(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing confirms the two dimensions are independently addressable.\n6\t\\end{abstract}\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T04:39:13.915086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T04:39:13.915265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\looseness=-1\n5\tTraining-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.}\\footnote{Code and data will be released upon acceptance.} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \\citep{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\\sim}$0.27 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level), near-halving or worse. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable.\n6\t\n7\t\\looseness=-1\n8\tWhat explains this degradation? Prior decomposition strategies \\citep{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n9\t\n10\tThis study combines correlational analyses with quasi-experimental manipulation (BCS-controlled batches) to characterize how schema properties predict extraction accuracy.\n11\t\n12\tWe ask three questions. \\textbf{RQ1}: Does type\n…[truncated 3215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T04:39:13.915415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T04:39:13.915913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\tFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where eliminating type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}). The pattern is stable across three seeds (max $\\Delta = 10.7$\\,pp, within 1\\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\\times$; Appendix~\\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n10\t\n11\t\\subsection{Pairwise Confusability and Type Confusion}\n12\t\\label{sec:pairwise}\n13\t\n14\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\\n…[truncated 12725 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T04:39:13.916134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T04:39:13.916284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions and mechanisms.}\n5\t\\looseness=-1\n6\tThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; no NER BCS effect detected across three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound. Batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n7\t\n8\t\\paragraph{Practical implications and conclusion.}\n9\t\\label{sec:conclusion}\n10\t\\looseness=-1\n11\tFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are independently addressable.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T04:39:13.916450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "drives",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T04:39:13.916576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/abstract.tex:2:Schema complexity affects training-free LLM information extraction through two independent dimensions: type count drives recall decline, while inter-type confusability drives type substitution errors. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across NER, RE, and event detection on four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T04:39:13.916705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "first controlled study",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T04:39:13.916827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/abstract.tex:2:Schema complexity affects training-free LLM information extraction through two independent dimensions: type count drives recall decline, while inter-type confusability drives type substitution errors. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across NER, RE, and event detection on four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:\ndocs/paper/introduction.tex:15:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T04:39:13.917075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "drives",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T04:39:13.917209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T04:39:13.917326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "drives",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T04:39:13.917443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T04:39:13.917554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "drives",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T04:39:13.917665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T04:39:13.917787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+              "old_string": "while inter-type confusability drives type substitution errors.",
+              "new_string": "while inter-type confusability predicts type substitution errors."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T04:39:13.918041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T04:39:13.918634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+              "old_string": "confusability-driven substitution is documented primarily in RE, with bounded interaction;",
+              "new_string": "inter-type confusability (measured by BCS) predicts type substitution errors in RE ($R^2 \\approx 0.22$ on FewRel, VIF${}\\,=\\,1.18$); the batch-level BCS signal is not detected in NER at current statistical power;"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T04:39:13.918927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T04:39:13.919095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "old_string": "independently predicts type substitution errors in RE, explaining",
+              "new_string": "independently predicts type substitution errors in RE (on FewRel where confusability is not confounded with centrality, VIF${}\\,=\\,1.18$), explaining"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T04:39:13.919247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T04:39:13.919375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "old_string": "the first controlled study isolating type confusability from type count via stratified design in zero-shot LLM IE",
+              "new_string": "the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T04:39:13.919564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T04:39:13.919730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T04:39:13.920142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSchema complexity affects training-free LLM information extraction through two independent dimensions: type count drives recall decline, while inter-type confusability predicts type substitution errors. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across NER, RE, and event detection on four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:\n3\t(1)~count degradation spans all three tasks (up to $-$49\\,pp); inter-type confusability (measured by BCS) predicts type substitution errors in RE ($R^2 \\approx 0.22$ on FewRel, VIF${}\\,=\\,1.18$); the batch-level BCS signal is not detected in NER at current statistical power;\n4\t(2)~BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance on FewRel (ecological level), replicating across three open-weight model families (8B--70B); NER batch-level signal is not detected at current power;\n5\t(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing confirms the two dimensions are independently addressable.\n6\t\\end{abstract}\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T04:39:13.920340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "offset": "14",
+              "limit": "14"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T04:39:13.920494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14\t\\looseness=-1\n15\tTo our knowledge, we present the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE, spanning NER, RE, and event detection (ED). We quantify confusability using pairwise embedding similarity, the \\emph{Schema Confusability Score} (SCS), and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). We evaluate on Few-NERD \\citep{fewnerd-2021}, FewRel \\citep{fewrel-2018}, DocRED \\citep{docred-2019}, and MAVEN \\citep{maven-2020} using Qwen3-32B (\\S\\ref{sec:experimental_setup}).\n16\t\n17\tOur experiments yield four findings:\n18\t(1)~Degradation operates along two dimensions with bounded interaction: count-related recall decline (up to $-$49\\,pp) and confusability-related type substitution, confirmed on sentence- and document-level RE (\\S\\ref{sec:count_curves}, \\S\\ref{sec:multi_channel}).\n19\t(2)~Pairwise SCS predicts type confusion across NER, RE, and ED (\\S\\ref{sec:pairwise}); at batch level, BCS predicts RE accuracy independent of output format (\\S\\ref{sec:bcs_controlled}) but not NER accuracy at current statistical power; per-type aggregation is confounded by centrality on homogeneous schemas (\\S\\ref{sec:centrality_confound}).\n20\t(3)~RE effects are consistent across schema sizes, prompt designs, and three open-weight model families (8B--70B); Gemini Flash provides partial but fragile corroboration. The NER null is not detected on three models (8B--70B; \\S\\ref{sec:bcs_controlled}).\n21\t(4)~Schema decomposition fails due to merge amplification (NER, ED) and routing failure (RE), despite oracle routing recovering substantial accuracy (\\S\\ref{sec:sdgd}).\n22\tOur contributions are:\n23\t\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n24\t    \\item We establish that type confusability, quantified by embedding similarity (SCS/BCS, building on \\citealt{llm-pee-2025}), independently predicts type substitutio\n…[truncated 1109 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T04:39:13.920678+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied successfully. Here's the modification summary:\n\n| # | 文件 | 行号 | 修改前 | 修改后 | Task |\n|---|------|------|--------|--------|------|\n| 1 | `abstract.tex` | 2 | `while inter-type confusability drives type substitution errors.` | `while inter-type confusability predicts type substitution errors.` | T1 |\n| 2 | `abstract.tex` | 3 | `confusability-driven substitution is documented primarily in RE, with bounded interaction;` | `inter-type confusability (measured by BCS) predicts type substitution errors in RE ($R^2 \\approx 0.22$ on FewRel, VIF${}\\,=\\,1.18$); the batch-level BCS signal is not detected in NER at current statistical power;` | T2 |\n| 3 | `introduction.tex` | 24 | `independently predicts type substitution errors in RE, explaining` | `independently predicts type substitution errors in RE (on FewRel where confusability is not confounded with centrality, VIF${}\\,=\\,1.18$), explaining` | T2 |\n| 4 | `introduction.tex` | 15 | `the first controlled study isolating type confusability from type count via stratified design in zero-shot LLM IE` | `the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE` | T6 |\n\n说明：\n- Task 1 仅有 1 处 confusability 相关 \"drives\"（abstract.tex:2）。`related_work.tex`、`results.tex`、`discussion.tex`、`sdgd_negative.tex`、`supplementary.tex` 中无 \"drives\"。Abstract 中 \"type count drives recall decline\" 保留未动（count 有更强因果支持）。\n- Task 2 Abstract (1) 项重写为带 R²/VIF 数值的精确限定；Introduction Contribution #1 加括号限定 FewRel+VIF。\n- Task 6 Introduction \"first controlled study\" 扩展为完整限定语。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_r26_fix_intro_abstract_20260522T043723"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d10c4c3d3cd0de841bce",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper fig1a 3seed upgrade",
+  "task_key": "worker_paper_fig1a-3seed-upgrade_20260517T053329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1a-3seed-upgrade_20260517T053329_result.json",
+    "occurrence": 1,
+    "bytes": 1501,
+    "sha256": "bc1d61b0cff2159e3c5ea82dcd15a89914f18647a8b2b07f2e3e433a2414eb24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the summary:\n\n### 1. 3-Seed Grand Means\n\n**FewRel (accuracy):**\n| Count | Grand Mean | Avg Batch SD |\n|---|---|---|\n| 4 | 0.8561 | 0.0874 |\n| 8 | 0.7965 | 0.0819 |\n| 16 | 0.7186 | 0.0626 |\n| 32 | 0.6482 | 0.0461 |\n| 40 | 0.6080 | 0.0421 |\n| 64 | 0.5367 | 0.0244 |\n| 80 | 0.4955 | 0.0001 |\n\n**Few-NERD (recall):**\n| Count | Grand Mean | Avg Batch SD |\n|---|---|---|\n| 2 | 0.5085 | 0.1764 |\n| 6 | 0.4069 | 0.1230 |\n| 12 | 0.3225 | 0.1062 |\n| 22 | 0.2676 | 0.0952 |\n| 44 | 0.2876 | 0.1209 |\n| 66 | 0.4068 | 0.0016 |\n\n### 2. Max Δ Across Seeds\n- FewRel: 5.4 pp (count=16)\n- Few-NERD: 10.7 pp (count=2)\n- Overall: **10.7 pp** (all within 1 SD of batch variance)\n\n### 3. Before → After Key Numbers\n| Location | Old | New |\n|---|---|---|\n| results.tex: FewRel range | 0.87→0.50 | 0.86→0.50 |\n| results.tex: NER range | 0.53→0.27 | 0.51→0.27 |\n| results.tex: NER full-schema | (0.41) | (0.41) — unchanged |\n| results.tex: seed info | seeds (42, 123; max Δ=2.7 pp) | three seeds (42, 123, 456; max Δ=10.7 pp) |\n| results.tex: caption | 25 random type batches per count level | 3 seeds (42, 123, 456) × 25 batches per seed |\n| intro.tex: FewRel 80-rel | 50.4% | 49.5% |\n| intro.tex: NER plateau | ~0.27 — unchanged | ~0.27 — unchanged |\n\n### 4. Compilation\nPDF compiled successfully. 20 total pages. Body through Conclusion ends on page 9 (pre-existing, not changed by this edit). References start page 11."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

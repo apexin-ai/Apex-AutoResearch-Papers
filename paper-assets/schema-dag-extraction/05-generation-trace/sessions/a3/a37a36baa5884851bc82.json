@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a37a36baa5884851bc82",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260515T183015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260515T183015_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "a1bac49c89363d28d27d04b2ae3d902420c9893e7c9579f99c6cdc70361df907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `introduction.tex`。约 1200 words，覆盖全部 5 个 outline 段落。关键处理：\n\n- **Effect size 诚实**：r²≈1.3-1.7% 在 Finding 2 中 upfront 标注为 \"modest in magnitude\"，随后 argue \"first factor empirically isolated\" + bootstrap CI bounded above zero\n- **MAVEN 反向趋势**：Hook 段和 Finding 1 中 count degradation 限定为 \"NER and RE\"，未 claim universal\n- **所有数字**与 results.tex 精确一致（0.72→0.42, 85.7%→50.4%, r=0.112/0.129, 9.1pp→31.2pp, 3.4×, F1=0.445 vs 0.320）\n- **引用**全部使用 references.bib 中已有的 key"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

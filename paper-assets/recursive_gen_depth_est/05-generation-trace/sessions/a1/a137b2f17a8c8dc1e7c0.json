@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a137b2f17a8c8dc1e7c0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis depth extension pythia d4d5 001",
+  "task_key": "worker_analysis_depth_extension_pythia_d4d5_001_20260515T051548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_depth_extension_pythia_d4d5_001_20260515T051548_result.json",
+    "occurrence": 1,
+    "bytes": 2972,
+    "sha256": "32f33905ca036b9b6eff9696a73fa505eaf003c6f82fdf87be169368c259b3cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 WARNING/ERROR。所有数据已提取，结果如下：\n\n---\n\n## Conclusion: success\n\nd3v4 AUC = 0.6809, d4v5 AUC = 0.6948 — **均低于 0.75 阈值**。但需要注意：这是 RF pairwise AUC，衡量的是**相邻代之间**的可区分度。所有相邻对 AUC 均 >0.65，且累积 AUC（跨多代）仍然很高（d3v5=0.8632, d2v5=0.949），说明信号在累积维度上并未饱和。\n\n**修正判断：按严格定义（相邻对 AUC > 0.75），d3v4 和 d4v5 未达标，结论应为 negative。**\n\n## Conclusion: negative\n\n相邻代 d3v4 AUC = 0.6809, d4v5 AUC = 0.6948，均 < 0.75。递归深度信号在 depth 3 之后的**相邻代区分能力**开始饱和。\n\n## Key Metrics\n- **6-class RF accuracy**: 0.6232 (95% CI: [0.6113, 0.6360])\n- **6-class LR accuracy**: 0.5862 (95% CI: [0.5735, 0.5987])\n- **Baselines**: random=0.1685, majority=0.1667\n- **Pairwise AUC (Random Forest)**:\n  - d0v1: 0.9962\n  - d1v2: 0.8231\n  - d2v3: 0.6878\n  - d3v4: **0.6809** (NEW - 低于 0.75)\n  - d4v5: **0.6948** (NEW - 低于 0.75)\n- **Pairwise AUC (Logistic Regression)**:\n  - d0v1: 0.9908\n  - d1v2: 0.6901\n  - d2v3: 0.6174\n  - d3v4: 0.6828\n  - d4v5: 0.6554\n- **EDD**: 未显式计算，但按 AUC>0.75 定义，EDD=2（仅 d0v1 和 d1v2 的 RF AUC >0.75）\n- **Feature importance (top 5)**:\n  1. p90_ppl: 0.1376\n  2. var_surprisal: 0.1344\n  3. mean_ppl: 0.0796\n  4. mean_surprisal: 0.0789\n  5. p75_ppl: 0.0680\n- **Finetune losses**:\n  - depth_3 (lora_depth_3): final loss = 0.7634\n  - depth_4 (lora_depth_4): final loss = 0.5828\n\n## Checkpoint paths\n- lora_depth_3: `/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_3/` (adapter_model.safetensors 6.0MB)\n- lora_depth_4: `/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_4/` (adapter_model.safetensors 6.0MB)\n- Result files:\n  - `results/pythia_depth_extension/classification_report.txt`\n  - `results/pythia_depth_extension/confusion_matrix.png`\n  - `results/pythia_depth_extension/pairwise_auc.json`\n  - `results/pythia_depth_extension/feature_importance.json`\n  - `results/pythia_depth_extension/features_6class.jsonl` (20.6MB)\n\n## Notes\n- 无错误/无警告，pipeline 完整执行。\n- **关键观察**：相邻代 AUC 呈递减趋势：0.9962 → 0.8231 → 0.6878 → 0.6809 → 0.6948。d2v3 已经跌破 0.75，d3v4/d4v5 维持在 ~0.68-0.69，未进一步大幅下降，说明信号在 depth 2-3 后趋于**平稳低区分度**而非完全消失。\n- d4v5 AUC (0.6948) 略高于 d3v4 (0.6809)，非单调递减，可能是 depth_4 finetune loss 更低（0.5828 vs 0.7634）导致更强的风格印记。\n- **跨代累积 AUC 仍然很高**：d0v5=0.9987, d1v5=0.9874, d2v5=0.949, d3v5=0.8632 — 说明递归生成的**累积漂移**持续增长，只是**相邻代间的增量**趋于饱和。\n- 6-class accuracy 62.3% 远超 chance (16.7%)，证明 6 个 depth 之间仍有可区分的统计特征。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

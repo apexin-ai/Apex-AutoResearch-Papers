@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a59bdb07e3b08671e9cc",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh env setup",
+  "task_key": "worker_ssh_env-setup_20260514T161431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_env-setup_20260514T161431_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "d843992eb9ce73ff129ca1dd9e9b8675f0a7ae2d3a3cb731f95df647c7c4880a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境搭建完成。总结：\n\n**服务器**: cqa1-38874 (AutoDL), NVIDIA RTX PRO 6000 Blackwell 94GB VRAM\n\n**环境**: Python 3.12.3 (conda), torch 2.10.0+cu128, vllm 0.18.1, transformers 4.57.6\n\n**模型**: Qwen3-32B-FP8 → `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/` (32GB, 7 shards, 全部完整)\n\n**数据集**: Few-NERD supervised\n- train: 131,767 sentences | validation: 18,824 | test: 37,648\n- 66 fine-grained entity types, 8 coarse types\n- 数据在 `/root/schema-dag-extraction/data/parquet/`\n\n**Type config**: `/root/schema-dag-extraction/configs/few_nerd_types.json` (66 types + definitions)\n\n**memory.md** 已保存，包含完整环境信息、类型列表和 test set 各类型统计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

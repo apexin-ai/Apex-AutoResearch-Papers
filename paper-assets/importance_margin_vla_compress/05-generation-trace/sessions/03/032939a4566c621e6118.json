@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "032939a4566c621e6118",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag westd 27271",
+  "task_key": "worker_diag_westd-27271_20260527T012800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_westd-27271_20260527T012800_result.json",
+    "occurrence": 1,
+    "bytes": 3513,
+    "sha256": "34c9b414784bf8611b3f0f6caf9c9b589ed0a052620bf009c04a75f0fec38a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-27271 全面诊断报告\n\n### 当前 GPU 状态\n\n| GPU | 显存占用 | 利用率 | PID | 实验 | 状态 |\n|-----|---------|--------|-----|------|------|\n| 0 | 15964/97887 MiB | 78% | 609731 | L2Norm k=0.95 Goal s42 | **running** (Task 3/10) |\n| 1 | 1/97887 MiB | 0% | — | — | **idle** |\n\n### 上次已知实验对比\n\n- **PID 499267** (OV Attn k=0.75 Goal s42) → **已完成并被替换**。结果已保存，SR = **67.4%**\n- **PID 397225** (OV Attn k=0.5 Long s42) → **已完成并被替换**。结果已保存，SR = **14.6%** (libero_10)\n\n### 最近完成的 OpenVLA 实验汇总\n\n#### libero_goal (500 episodes)\n\n| Method | k_ratio | Seed | SR | 完成时间 | 日志 |\n|--------|---------|------|----|---------|------|\n| **baseline** | — | 42 | **74.8%** | May 24 | `eval_openvla_baseline_goal_seed42_v3.log` |\n| l2norm | 0.90 | 42 | 74.8% | May 25 | `eval_openvla_l2norm_k09_goal_seed42.log` |\n| l2norm | 0.90 | 43 | 75.2% | May 26 | `eval_openvla_l2norm_k09_goal_seed43_v3.log` |\n| l2norm | 0.85 | 42 | 75.4% | May 26 | `eval_openvla_l2norm_k085_goal_seed42.log` |\n| l2norm | 0.75 | 42 | 70.2% | May 27 | `eval_openvla_l2norm_k075_goal_seed42_v2.log` |\n| l2norm | 0.70 | 42 | 68.4% | May 27 | `eval_openvla_l2norm_k07_goal_seed42.log` |\n| l2norm | 0.50 | 42 | 43.4% | May 24 | `eval_openvla_l2norm_k05_goal_seed42_v3.log` |\n| attention | 0.90 | 42 | 73.2% | May 25 | JSON: `openvla_attention_prune_k09_goal_seed42.json` |\n| attention | 0.90 | 43 | 73.2% | May 26 | JSON: `openvla_attention_prune_k09_goal_seed43.json` |\n| attention | 0.75 | 42 | 67.4% | May 27 | JSON: `openvla_attention_prune_k075_goal_seed42.json` |\n| attention | 0.50 | 42 | 44.2% | May 24 | JSON: `openvla_attention_prune_k05_goal_seed42.json` |\n| random | 0.90 | 43 | 80.4% | May 26 | `eval_openvla_random_k09_goal_seed43.log` |\n| random | 0.70 | 42 | 68.4% | May 26 | `eval_openvla_random_k07_goal_seed42_v4.log` |\n| random | 0.50 | 42 | 52.2% | May 26 | JSON: `openvla_random_k05_goal_seed42.json` |\n| **l2norm** | **0.95** | **42** | **进行中** | — | `eval_openvla_l2norm_k095_goal_seed42.log` |\n\n#### libero_10 (long, 500 episodes)\n\n| Method | k_ratio | Seed | SR | 完成时间 |\n|--------|---------|------|----|---------|\n| baseline | — | 42 | 52.8% | May 24 |\n| attention | 0.50 | 42 | 14.6% | May 27 |\n\n#### libero_spatial (500 episodes)\n\n| Method | k_ratio | Seed | SR | 完成时间 |\n|--------|---------|------|----|---------|\n| l2norm | 0.90 | 42 | 75.0% | May 25 |\n\n#### libero_object (500 episodes)\n\n| Method | k_ratio | Seed | SR | 完成时间 |\n|--------|---------|------|----|---------|\n| baseline | — | 42 | 74.0% | May 25 |\n| l2norm | 0.50 | 42 | 39.2% | May 25 |\n| random | 0.70 | 43 | 51.2% | May 25 |\n\n### 失败/中断的实验\n\n| 实验 | 问题 | 详情 |\n|------|------|------|\n| `eval_openvla_l2norm_k075_goal_seed42` | exit 127 | `python: command not found`（conda 未激活），已由 v2 成功重跑 |\n| `eval_openvla_random_k05_goal_seed42` (May 26 23:59 log) | 中断 | 日志停在 Task 4/10，无 sentinel。但更早的完整结果 (SR=52.2%) 已存在 |\n\n### 关键发现\n\n1. **GPU 1 完全空闲**，可立即调度新实验\n2. 当前 GPU 0 的 L2Norm k=0.95 Goal s42 已完成 Task 1-2 (SR 58%/88%)，正在跑 Task 3，预计还需 ~2.5 小时完成\n3. L2Norm 在 goal suite 上 k=0.85-0.90 表现最好 (74.8%-75.4%)，接近 baseline (74.8%)，剪枝 10-15% token 几乎无损"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

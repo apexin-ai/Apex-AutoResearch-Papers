@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c9fb7a20b0e17860acf",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig bootstrap null",
+  "task_key": "worker_ops_fig-bootstrap-null_20260525T150527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-bootstrap-null_20260525T150527_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "701740105d6aeadbb7ae986fed428592e17e08eadfc3471d5daab922f2084656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，视觉检查通过：\n\n- 36 个点全部在 5% 线以下（最高 1.6%，K=3 组）\n- K=3 → K=5 → K=7 递减趋势清晰\n- α=5% 红色虚线标注清晰\n- 三组用竖线分隔，组标签完整\n\n输出文件：\n- `docs/paper/figures/fig_bootstrap_null.pdf`\n- `docs/paper/figures/fig_bootstrap_null.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

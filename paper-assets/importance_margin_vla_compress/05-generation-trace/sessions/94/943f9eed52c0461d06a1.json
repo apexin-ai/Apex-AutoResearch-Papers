@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "943f9eed52c0461d06a1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit check cqa1 workers 0527",
+  "task_key": "worker_audit_check_cqa1_workers_0527_20260527T021848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_check_cqa1_workers_0527_20260527T021848_result.json",
+    "occurrence": 1,
+    "bytes": 1792,
+    "sha256": "299c2b2be4d795ab7ed403b8e80a096c209bca270bdda6298be66efb9d36d930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1-33015 状态报告\n\n### GPU 状态\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 MiB | 0% |\n| 1 | 0 MiB | 0% |\n| 2 | 0 MiB | 0% |\n| 3 | 0 MiB | 0% |\n\n**全部 4 GPU 空闲，无任何 Python 进程在运行。** Worker 的实验已全部完成/停止。\n\n### 代码同步\n项目目录存在，`eval_pi05_pruning_libero.py` 最后更新 May 26 05:43。代码已同步但不一定是最新版本（主仓库可能有更新的 commit）。\n\n### 可用模型\n- **OpenVLA**: `openvla-libero-object`, `openvla-libero-spatial`, `openvla-libero-goal`, `openvla-repo`\n- **π0.5**: `pi05-libero-finetuned`, `pi05-libero-base`, `pi05_libero_finetuned`\n\n### 最近完成的实验（π0.5 Long libero_10 seed42）\n\n最新一批（今天）：\n| 方法 | keep_ratio | SR | 完成时间 |\n|------|-----------|-----|---------|\n| l2norm | 0.85 | 77.8% | 09:56 |\n| random | 0.70 | 62.4% | 08:59 |\n| attention | 0.70 | 50.8% | 06:40 |\n| attention | 0.85 | 51.6% | ~May 27 00:26 |\n\n### π0.5 Long cliff curve (seed42) 已有数据点\n\n| k | l2norm | random | attention |\n|---|--------|--------|-----------|\n| 0.30 | **缺** | ✅ | **缺** |\n| 0.50 | ✅ | ✅ | ✅ |\n| 0.70 | ✅ | ✅ | ✅ |\n| 0.75 | ✅ | ✅ | ✅ |\n| 0.85 | ✅ | ✅ | ✅ |\n| 0.90 | ✅ | **缺** | ✅ |\n| 0.93 | ✅ | ✅ | **缺** |\n| 0.95 | ✅ | **缺** | ✅ |\n\n### 缺失数据点（seed42, libero_10）\n1. **l2norm k=0.30**\n2. **random k=0.90**\n3. **random k=0.95**\n4. **attention k=0.30**\n5. **attention k=0.93**\n\n### 建议\n5 个缺失数据点，4 个空闲 GPU，每个 eval 约 3-4 小时。可以立即启动 4 个并行 eval，然后再跑第 5 个。考虑到 C002 截止时间（明天 5/28 12:00 UTC），时间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

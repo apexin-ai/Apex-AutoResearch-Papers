@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6b9e403758277e9a312d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code spread profiling scripts",
+  "task_key": "worker_code_spread_profiling_scripts_20260515T220542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_spread_profiling_scripts_20260515T220542_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "33b8766af71bd35194425e3690edf69af0dee8abbe7bc6fd488c50ca9027f734"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本语法正确。总结：\n\n**`run_falcon7b_hires_profiling.py`**\n- 架构：MQA, 32L × 1 KV head = **32 total heads**\n- 模型结构：`model.transformer.h[i].self_attention`，fused `query_key_value`，output via `dense`\n- 自定义 `patch_attention_falcon`：处理 fused QKV split、MQA broadcasting（71 query heads 共享 1 KV head）\n- 预估 profiling 时间 ~30min（仅 32 次 eval）\n- 默认模型路径：`/root/autodl-tmp/.hf_cache/tiiuae/falcon-7b`（占位符）\n\n**`run_deepseekvl_hires_profiling.py`**\n- 架构：MLA, 量化对象是 decompressed k_nope + value_states（k_pe 共享不量化）\n- 模型结构：`model.model.layers[i].self_attn`，MLA 路径 `kv_a_proj → layernorm → kv_b_proj` 解压\n- 自定义 `patch_attention_deepseek_v2`：在 kv_b_proj 解压后、RoPE 之前插入 per-head 量化\n- RoPE 使用 DeepSeek 特有的 complex `freqs_cis` 格式（非 cos/sin tuple）\n- `batch_size=1`（MLA 计算量较大）\n- 默认模型路径：`/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-V2-Lite`（占位符）\n- 实际 layers/heads 数从 config 动态读取\n\n两个脚本均支持 `--model` 和 `--gpu` 参数，输出格式与其他 profiling 脚本一致（profiles JSON + results JSON + concentration/t1/t5 诊断）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

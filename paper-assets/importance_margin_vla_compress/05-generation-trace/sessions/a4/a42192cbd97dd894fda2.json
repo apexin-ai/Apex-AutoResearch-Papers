@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a42192cbd97dd894fda2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code true token removal",
+  "task_key": "worker_code_true_token_removal_20260517T083339",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_true_token_removal_20260517T083339_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "9bbf229960057410a411ac83662250fd3660a2aa3e82846ffbb54981be536fa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full eval 已启动，运行正常。确认 log 显示 `Pruning: true_removal`。\n\n总结：\n\n1. **代码修改完成**：在 `eval_success_rate_libero.py` 中实现了 `true_removal` pruning 模式\n   - 新增 `--pruning-method` CLI 参数（默认 `zero_mask`，向后兼容）\n   - `register_acis_hook` 新增 `method` 参数：`true_removal` 模式下用 boolean indexing 直接丢弃 pruned tokens，序列真正变短\n   - Summary JSON 和日志均记录 `pruning_method`\n\n2. **架构验证**：SmolVLA 使用 `position_ids = cumsum(pad_masks)` (RoPE)，`embed_prefix` 中通过 `.shape` 动态确定 token 数。变长序列输入没有问题。\n\n3. **Sanity check 通过**：2 episodes 运行无错误，无 shape mismatch\n\n4. **全量 eval 已提交**：`eval_true_removal_k05` tmux session，GPU 1，50 episodes/task x 10 tasks，输出到 `eval_results/eval_true_removal_k05_object.json`\n\n备份文件在 `eval_success_rate_libero.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

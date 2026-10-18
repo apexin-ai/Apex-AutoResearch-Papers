@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8877dc7eaa093eba6c2e",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code verbosity 7method sensitivity",
+  "task_key": "worker_code_verbosity_7method_sensitivity_20260521T130722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verbosity_7method_sensitivity_20260521T130722_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "90ac839868b4aa7a1a05754bd58db3f60410ea147e10233efdfa58875e67f0c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| Method | Statistic | p-value | Effect Size | Sig? |\n|--------|-----------|---------|-------------|------|\n| Paired t-test | 0.5163 | 0.607 | d=0.056 | No |\n| Mann-Whitney U | 3868.0 | 0.578 | r=-0.046 | No |\n| Ordinal logistic | 0.1592 | 0.575 | OR=1.173 | No |\n| Cohen's d | — | — | 0.036 | No |\n| Binarized χ² | 1.5512 | 0.213 | OR=2.162 | No |\n| Likert ATE | 0.0581 | 0.691 | d=0.056 [-0.16, 0.27] | No |\n| Bradley-Terry | 0.7732 | 0.0 | P(v)=77.3% [70.3, 84.3] | **Yes** |\n\n结果符合预期：\n- 6/6 Likert 方法全部 NS（p 远大于 0.05，effect size 均 negligible）\n- BT 显著检出 verbosity bias（P(verbose)=77.3%, p<0.001, CI 不含 50%）\n- 86 对 NLI-filtered pairs，JSON 格式正确，已保存到 `data/verbosity_7method_sensitivity.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

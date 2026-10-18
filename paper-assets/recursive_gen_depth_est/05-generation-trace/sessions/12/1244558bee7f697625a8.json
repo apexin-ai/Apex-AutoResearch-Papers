@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1244558bee7f697625a8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp proto full rerun westd cuda1",
+  "task_key": "worker_exp_proto_full_rerun_westd_cuda1_20260517T182509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_proto_full_rerun_westd_cuda1_20260517T182509_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "b15250d41e3907bbae22d43541f3324dadadf12e344f57c65af6a0dc9acdf8d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验全部完成。汇总结果：\n\n## Prototypical Network Full Run 结果\n\n| Holdout | Accuracy | MAE | Mean Pairwise AUC |\n|---------|----------|------|-------------------|\n| gpt2xl  | 68.35%   | 0.364 | 0.8926           |\n| pythia  | 61.55%   | 0.454 | 0.8415           |\n| olmo    | 70.01%   | 0.335 | 0.9004           |\n| **Mean** | **66.64%** | **0.384** | **0.874**     |\n\n- NaN fix 有效，3 个 holdout 均正常完成，无 NaN\n- 与 RF baseline（66.4%）基本持平（66.6%），假设验证通过\n- 实验已注册为 `learned_estimator_proto_fix_001`，状态 DONE/success\n- 结果文件在 `westd-48862:/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator/prototypical_{gpt2xl,pythia,olmo}.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

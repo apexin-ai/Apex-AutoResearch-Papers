@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "02836ba8eab69a5032cc",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "harvest three done exps 0527",
+  "task_key": "worker_harvest_three_done_exps_0527_20260527T012735",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_three_done_exps_0527_20260527T012735.log",
+    "occurrence": 1,
+    "bytes": 1706535,
+    "sha256": "1c1467b7d8198ebea2d30f43734c1b8e27c979776e3ba088298c88deafb4c8e4"
+  },
+  "statistics": {
+    "messages": 90,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 31,
+      "tool_result": 31,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "02836ba8eab69a5032cc-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "02836ba8eab69a5032cc-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "02836ba8eab69a5032cc-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ]
+}

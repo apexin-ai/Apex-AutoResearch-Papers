@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8aa363ce2c5c6fcdd192",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code loocv auc",
+  "task_key": "worker_code_loocv-auc_20260521T161839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_loocv-auc_20260521T161839_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "49bb909bef67aa4dc863e5fbb3845dd3eafc20968e2e263f96cc627f125ec3c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the summary:\n\n**Key finding**: The old \"LOSO-CV AUC = 0.83\" was actually resubstitution AUC, mislabeled in `exp005_diagnostic_criterion.py` — the LOO loop only computed accuracy, not AUC.\n\n**For the three fixed-formula diagnostics, LOO-CV AUC = resubstitution AUC** because diagnostic scores don't depend on other samples. This was confirmed by showing the logistic regression combined diagnostic (which does learn parameters) has LOO-CV AUC (0.830) < resubstitution AUC (0.888).\n\n**Numbers for the paper** (49 settings, hb_wins label):\n\n| Diagnostic | Setting AUC | Subgroup AUC |\n|---|---|---|\n| Δπ-only (Prop 2) | **0.889** | **0.865** |\n| π CV | 0.968 | — |\n| Δπ×Δτ (current) | 0.889 | 0.726 |\n\nThese are valid to report as-is, with a note that for deterministic diagnostics LOO-CV is identical to resubstitution.\n\n**Output files**:\n- `artifacts/diagnostic_revision/compute_loocv_auc.py` — computation script\n- `artifacts/diagnostic_revision/loocv_auc_results.md` — full report\n- `artifacts/diagnostic_revision/loocv_auc_summary.csv` — tabular results"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

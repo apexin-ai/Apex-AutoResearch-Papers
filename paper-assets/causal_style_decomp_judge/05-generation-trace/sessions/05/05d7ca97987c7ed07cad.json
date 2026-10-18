@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "05d7ca97987c7ed07cad",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "fix r15 sf4 fk nli filter",
+  "task_key": "worker_fix_r15-sf4-fk-nli-filter_20260523T064539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_r15-sf4-fk-nli-filter_20260523T064539_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "b86f7593bb69b0d30543c909ceb47b53f41df29358aadad1ba7392637a4ea251"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。以下是 NLI-only 门控 (nli_cf >= 0.90) 的完整数值：\n\n## Descriptive\n\n| | verbosity (n=86) | formality (n=88) |\n|---|---|---|\n| delta_fk_d | 0.501 | -0.120 |\n| delta_sentlen_d | 0.399 | -0.042 |\n\n## Regression\n\n**Model 1** (delta_FK ~ style_axis):\n- style_axis: β=2.688, SE=0.615, p=2.16e-05, R²=0.100\n\n**Model 2** (delta_FK ~ style_axis + delta_sentlen):\n- style_axis: β=1.066, SE=0.456, p=0.0204\n- delta_sentlen: β=0.387, SE=0.030, p=3.12e-27\n- R²=0.546\n\n**Coefficient reduction**: 60.3%\n\n## Mediation (Baron-Kenny)\n\n- Sobel z=3.595, p=0.000324\n- Proportion mediated: 60.3%\n\n## Correlation (delta_sentlen vs delta_fk)\n\n- verbosity: r=0.850, p=4.05e-25\n- formality: r=0.432, p=2.58e-05\n- pooled: r=0.729, p=3.78e-30\n\n关键变化 vs 旧版 (passed_cf 门控)：formality 从 n=25 升至 n=88；Sobel 检验从边缘不显著 (p=0.053) 变为高度显著 (p=0.0003)；coefficient reduction 从 79% 降至 60%，但 mediation 现在有统计支持。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

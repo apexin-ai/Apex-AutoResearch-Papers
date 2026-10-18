@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "76e75a00730d9045bbc1",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "deploy westd38929 gpu3 spatial seed43",
+  "task_key": "worker_deploy-westd38929-gpu3-spatial-seed43_20260523T222059",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy-westd38929-gpu3-spatial-seed43_20260523T222059.jsonl",
+    "occurrence": 1,
+    "bytes": 193,
+    "sha256": "12dc2765588cb32c407e6a9c0d5ac7d40572de31602adc33f2338e5f3e4357ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T22:21:09.768349+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 26, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy-westd38929-gpu3-spatial-seed43_20260523T222059"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

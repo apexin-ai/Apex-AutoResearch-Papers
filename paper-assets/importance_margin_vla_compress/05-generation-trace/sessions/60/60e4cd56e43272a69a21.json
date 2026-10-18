@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60e4cd56e43272a69a21",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd41074 kill bad eval and verify checkpoint",
+  "task_key": "worker_ops_westd41074-kill-bad-eval-and-verify-checkpoint_20260521T004757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd41074-kill-bad-eval-and-verify-checkpoint_20260521T004757_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "ef982811d1104027b15f17105fb88e8557afa33741fd652256d366be4786f1e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册为 RUNNING。\n\n---\n\n## 任务完成报告\n\n### Step 1: Kill 无效 eval\n- PID 692941 **kill 成功**（graceful SIGTERM，未 force kill）\n- GPU 1 已释放（0% → 被新 eval 重新占用）\n\n### Step 2-3: Checkpoint 下载状态\n| Checkpoint | 状态 | 详情 |\n|---|---|---|\n| **Spatial** | **COMPLETE** | 4 shards (4.6G+4.7G+4.7G+251M)。aria2c 已下载完整数据但进程 stalled，手动 kill + 清理 .aria2 |\n| **Goal** | **COMPLETE** | 4 shards，无 .aria2 文件 |\n| **LIBERO-10** | **COMPLETE** | 4 shards，无 .aria2 文件 |\n\n### Step 4: Spatial 完整性验证\n- 4/4 shards 全部通过 safetensors 验证（982 tensors, 14384 MB）\n- config.json: EXISTS\n- dataset_statistics.json: EXISTS\n\n### Step 5: Eval 启动\n- **tmux session**: `eval_openvla_baseline_spatial_v2`\n- **PID**: 701587 (主进程)\n- **GPU**: 1 (16082 MiB, 84% util)\n- **Registry**: `eval_openvla_baseline_spatial_seed42_v2` → RUNNING\n- 初始日志确认：模型加载成功，k=1.0（full baseline），10 tasks × 50 episodes = 500 total，Task 1 已开始\n\n### Step 6: Goal / LIBERO-10\n两个 checkpoint 均已完整下载，可随时启动对应 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

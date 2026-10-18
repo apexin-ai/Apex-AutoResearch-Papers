@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4dfc134de2cb8a7b7a92",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix s46 preparing status",
+  "task_key": "worker_fix_s46_preparing_status_20260528T085823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_s46_preparing_status_20260528T085823_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "4aef0d1a20d7e19581f1e2f8a2ab976afb8429e329023d078e4d466b62df3316"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**实验 1** `eval_pi05_l2norm_k095_long_seed46_strict_w27` — westd-27271, PID 616102 存活，已运行 ~4min。Registry 已修复为 RUNNING。Cron 0b8e5bbb 每 12min 监控。\n\n**实验 2** `eval_pi05_random_k095_long_seed46_strict_w41` — westd-41074, PID 898746 存活，已运行 ~4min。Registry 已修复为 RUNNING。Cron 178744cd 每 12min 监控。\n\n**实验 3** `eval_pi05_l2norm_k07_long_seed46_strict_w38_v2` — **无法立即部署**。westd-38929 cuda:3 当前被 PID 457266 占用（`attention k=0.95 seed46`，运行 ~4min，刚启动的实验）。该实验预计运行 ~3h，cuda:3 短期内不会释放。\n\n需要你决定：\n- 等 cuda:3 上的 attention 实验结束后再部署（~3h 后）\n- 换一台有空闲 GPU 的服务器部署"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

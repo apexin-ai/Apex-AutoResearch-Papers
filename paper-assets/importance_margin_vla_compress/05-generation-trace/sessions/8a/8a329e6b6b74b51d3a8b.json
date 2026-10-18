@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8a329e6b6b74b51d3a8b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops launch openvla k05 seed42 westd41074",
+  "task_key": "worker_ops_launch-openvla-k05-seed42-westd41074_20260520T223642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_launch-openvla-k05-seed42-westd41074_20260520T223642_result.json",
+    "occurrence": 1,
+    "bytes": 311,
+    "sha256": "147acefe2b122e0a85865aa0650b0a0fd9df19bad060b115196d9b53a4e41ac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动。\n\n- **tmux session**: `k05_seed42`\n- **模型已加载**: GPU 15.1 GB，确认 `random pruning: k=0.5`\n- **正在运行**: libero_object 10 tasks × 50 episodes = 500 total，已开始 Task 1/10，vision tokens 256 → 128 (k=0.5)\n- **日志**: `/tmp/k05_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

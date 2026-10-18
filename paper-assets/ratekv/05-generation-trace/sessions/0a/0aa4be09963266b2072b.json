@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0aa4be09963266b2072b",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper appendix table organization",
+  "task_key": "worker_paper_appendix_table_organization_20260516T092253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_table_organization_20260516T092253_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "f7af0917e390d90b51636f1f4535d5b771b5a662b9ce8a779badd806aa8d230c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "添加了两个表格：\n\n1. **Table `\\ref{tab:compounding_sweep}`**（第 13–35 行）— Compounding sweep 全量数据，3 个模型 × 9 个 k 值，含 PPL 和相对 baseline 倍数。数据源：`generate_compounding_curves.py`，与论文 Figure 3 一致。\n\n2. **Table `\\ref{tab:cross_dataset}`**（第 119–143 行）— Cross-dataset stability 表，上半部分是 Qwen 的交叉校准 PPL（WT2↔C4），下半部分是三个模型的 bit-assignment agreement（均 >96%）。数据源：论文正文 §Cross-Dataset Stability。\n\n3. **Runtime**：已有 `\\ref{tab:runtime}`，未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ede4c7f302ae6e69563a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code baseline large and rename",
+  "task_key": "worker_code_baseline_large_and_rename_20260514T195436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_large_and_rename_20260514T195436_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "ac814aeaee4b383d7500decc5f75a32c330570cf8aaabb924884a3436ab13b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。\n\n**任务 1 — 重命名 dcol_train.py → dcol_feature_mlp.py**\n- 本地：`artifacts/dcol_train.py` → `artifacts/dcol_feature_mlp.py` ✅\n- 远程：`src/dcol_train.py` → `src/dcol_feature_mlp.py` ✅\n- 引用更新：ROADMAP.md (3处)、task_context/reviewer.md (1处) ✅\n\n**任务 2 — baseline_ce_classification.py 支持 DeBERTa-v3-large**\n- `--model_name_or_path` → 拆分为 `--model_name`（默认 `microsoft/deberta-v3-large`）+ `--model_path`（默认 `/root/autodl-tmp/models/deberta-v3-large`）\n- `hidden_size` 原本就是动态从 `encoder.config.hidden_size` 获取，无需改\n- `model_tag` 改用 `args.model_name` 判断\n\n**任务 3 — baseline_coral.py 支持 DeBERTa-v3-large**\n- 同上修改逻辑\n\n**远程验证结果**\n- 重命名：`dcol_feature_mlp.py` 存在，`dcol_train.py` 已删除 ✅\n- CE dry-run：参数解析正确，50 samples 加载正确，DeBERTa-v3-large 390 weights 加载成功 ✅\n- CORAL dry-run：同上 ✅\n- CPU 前向传播极慢未完成（435M参数模型，GPU训练时不会有此问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

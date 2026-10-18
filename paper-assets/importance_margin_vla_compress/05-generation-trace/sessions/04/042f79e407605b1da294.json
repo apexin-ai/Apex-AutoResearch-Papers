@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "042f79e407605b1da294",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops oft k10 baseline",
+  "task_key": "worker_ops_oft-k10-baseline_20260520T125047",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_oft-k10-baseline_20260520T125047_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "34f2d14aaacad90a882f247feeafe271c56f6d743d80b38e97b602bfc17c0ac7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OFT k=1.0 baseline eval 已提交并运行中。\n\n**总结：**\n- **westd-41074 GPU 0**, PID 434280\n- **exp_id**: `eval_oft_baseline_k10`\n- 10 tasks × 50 episodes = 500 total, seed=7\n- Dry-run 确认：模型加载正常，`[Pruning] 512 -> 512 vision tokens (k=1.0)` 无 dtype 错误\n- 清理了 2 个残留 dry-run 进程（430085, 431310）\n- 输出：`eval_results/eval_oft_prune_k10_baseline.json`\n- 日志：`/tmp/oft_k10_full.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a63160e0ce3a71db9d64",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper theory critical fixes v2",
+  "task_key": "worker_paper_theory_critical_fixes_v2_20260517T193930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_theory_critical_fixes_v2_20260517T193930_result.json",
+    "occurrence": 1,
+    "bytes": 2315,
+    "sha256": "5a8d0faf6c1f73e606dab12fcdab62dfa53f8428831bf79e51612ababb2985cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the summary:\n\n---\n\n## 变更日志\n\n### theory_draft.tex\n\n| 位置 | 修改内容 |\n|------|----------|\n| Line 82 | `\\begin{theorem}[EDD Upper Bound]` → `\\begin{proposition}[EDD Upper Bound (Conditional)]` |\n| Line 84 | 添加 `($\\gamma$-contraction)` 说明条件依赖 |\n| Line 90 | `\\end{theorem}` → `\\end{proposition}` |\n| Line 100 | `Theorem~\\ref{thm:edd} reveals` → `Proposition~\\ref{thm:edd}, conditional on Assumption~\\ref{asm:contraction}, reveals` |\n| Line 110 | AUC 值: 0.922→0.953, 0.802→0.862, 0.712→0.766, 0.653→0.683 |\n| Line 110 | 删除 \"γ≈0.75 in KL-divergence space\" 和 \"AUC decay ratio ≈0.87\" |\n| Line 110 | 替换为 \"geometric decay in AUC-excess (AUC - 0.5) with contraction factor γ ≈ 0.74\" |\n| Line 110 | `Theorem~\\ref{thm:edd}` → `Proposition~\\ref{thm:edd}` |\n\n### theory_section_draft.md\n\n| 位置 | 修改内容 |\n|------|----------|\n| Line 28 | AUC 值: 0.922→0.953, 0.802→0.862, 0.712→0.766 |\n| Line 49 | \"lower-bounded by their total variation distance\" → \"as KL divergence decreases, TV decreases (Pinsker: TV ≤ √(KL/2)), which in turn implies AUC approaches 0.5 (since AUC ≤ 0.5 + TV)\" |\n| Line 59 | AUC 序列: 0.922���0.953, 0.802→0.862, 0.712→0.766, 0.653→0.683 |\n| Line 59 | 删除 \"γ≈0.75 in KL-divergence space\" 和 \"AUC decay ratio ≈0.87\" |\n| Line 59 | 替换为 \"geometric decay in AUC-excess (AUC - 0.5) with contraction factor γ ≈ 0.74\" |\n\n### 验证清单结果\n1. 0.922, 0.802, 0.712, 0.653 → 全部消失 ✓\n2. 0.75.*KL → 消失 ✓\n3. 0.87 ��� 消失 ✓\n4. \"theorem\" for EDD → 已变为 Proposition（Tail Contraction theorem 保留，非修改目标） ✓\n5. \"lower-bound\" → 消失 ✓\n6. d3v4 mean 0.766 与 range [0.750, 0.784] 一致 ✓\n7. d4v5 range [0.681, 0.684] 与 mean 0.683 一致 ✓\n\n### d0v1 Mean AUC\n\n来源: `pairwise_auc.json` (random_forest classifier, depth_extension experiments)\n- Pythia: **0.9962**\n- GPT2-XL: **0.9951**\n- OLMo: **0.9946**\n- **3-model mean: 0.995**\n\n注: binary_pairwise_results.json 中未��含 d0v1 pair（可能因为近乎完美而未单独跑），数据取自同一实验框架的 pairwise_auc.json random_forest 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

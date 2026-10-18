@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "46dc65cd6e46f3a85868",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 004 hate speech v2",
+  "task_key": "worker_code_exp-004-hate-speech-v2_20260521T083333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-004-hate-speech-v2_20260521T083333.log",
+    "occurrence": 1,
+    "bytes": 613703,
+    "sha256": "dae4c6b0090a682ff388c86291ff4d58ebdc3ad70c4ae4e968fb97f8c06204b5"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 183,
+      "chunks": [
+        {
+          "path": "46dc65cd6e46f3a85868-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "46dc65cd6e46f3a85868-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ]
+}

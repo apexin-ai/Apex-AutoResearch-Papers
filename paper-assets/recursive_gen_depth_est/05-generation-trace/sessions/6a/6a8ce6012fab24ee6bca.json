@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "6a8ce6012fab24ee6bca",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "fix depth extension olmo step5 7",
+  "task_key": "worker_fix_depth_extension_olmo_step5-7_20260515T103214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_depth_extension_olmo_step5-7_20260515T103214.log",
+    "occurrence": 1,
+    "bytes": 1155035,
+    "sha256": "1053e8437b7f95e93cdea7213de3303da739cab9bd7a507622cf1247df3c5e91"
+  },
+  "statistics": {
+    "messages": 203,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 61,
+      "tool_result": 61,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "6a8ce6012fab24ee6bca-part-0001.json",
+          "message_count": 118
+        },
+        {
+          "path": "6a8ce6012fab24ee6bca-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "6a8ce6012fab24ee6bca-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ]
+}

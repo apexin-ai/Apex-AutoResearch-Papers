@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "768fd2d12d04cad42d45",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "verify paper compile consistency",
+  "task_key": "worker_verify_paper_compile_consistency_20260516T023830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_paper_compile_consistency_20260516T023830_result.json",
+    "occurrence": 1,
+    "bytes": 2270,
+    "sha256": "87f4c6bd993ee7fc7c4352201178a10727d08a44bb78778a7d3ab8030fe55371"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 1. 编译验证\n\n- **状态**: 通过\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.pdf` (13页, 370KB)\n- **错误**: 无\n- **Warnings**: 仅 overfull/underfull hbox (可忽略) 和 `h` float → `ht` (可忽略)\n- **Table within_pool 渲染**: 左侧 Regression (Slope/CI/r/p)，右侧 Quartile (Δ/CI)，底部 permutation p=0.436 脚注 — 结构正确\n- **Caption**: 明确提及 \"The full 80-rel condition (n=25) is underpowered for both metrics\"\n\n## 2. 交叉一致性检查\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| abstract 数值 vs results | 通过 | NER 0.72→0.42, RE 85.7%→50.4%, permutation p=0.44 (0.436 rounded), Δ 31.2/9.1pp, Llama r=0.725/Δ=-27pp |\n| introduction 数值 vs results | 通过 | r=0.112–0.129, permutation p=0.44, merge amplification F1=0.32 vs 0.45 |\n| main.tex limitations vs results | 通过 | Llama -43pp/r=0.725, CH2 Δ=-27.1/-23.9pp, floor≈0.51, slope -0.401, permutation p=0.436 |\n| \"3.4×\" BCS amplification | 通过 | 所有 .tex 文件中已完全清除 |\n| \"amplification\" 用法 | 通过 | 仅保留 \"merge amplification\"（SDGD 概念）和 \"stable rather than amplifying\"（否定形式） |\n| 旧 CI \"8.62\" / \"0.16\" | 通过 | 无残留 |\n| slope 数值一致性 (-0.449, -0.401, p=0.436) | 通过 | table + body text 一致 |\n| count_40 描述 (C001约束) | 通过 | 明确标注 \"40-relation subsets sampled from the 80-relation pool, not an independent schema\" |\n\n## 3. Provenance 更新\n\n已完成以下修改：\n\n- **C010**: 文本从 \"amplify with schema scale / 3.4x\" 更新为 \"robust across schema sizes, slopes consistent (permutation p=0.44)\"\n- **C013**: 文本从 \"amplify $3.4$\" 更新为 \"consistent across schema sizes (slope permutation p=0.44)\"；evidence metric 同步更新\n- **C033**: CI 从 [-0.694, -0.057] 更正为 [-0.701, -0.069]（对齐论文表格）\n- **C034**: CI 从 [-0.549, -0.345] 更正为 [-0.552, -0.346]（对齐论文表格）\n- **T006**: 新增 tab:within_pool 表条目，data source = `artifacts/three_way_comparison/results_unified.json`\n- **_completeness.tables**: 5 → 6"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

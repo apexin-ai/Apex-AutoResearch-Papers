@@ -2,6 +2,12 @@
 
 Project directory: `recursive_gen_depth_est`
 
+## Browse generation traces
+
+[Visual browser](../../traces/index.html?project=recursive_gen_depth_est) · [Offline preview](../../traces/demo.html?project=recursive_gen_depth_est) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
+
+Includes 1,779 source files and 166,550 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+
 ## Asset review matrix
 
 | Requirement | Status | Organized contents and evidence | Still to verify |

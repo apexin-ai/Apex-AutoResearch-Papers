@@ -1,0 +1,1391 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7064dea8daaab2a1f197",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-24T06:13:22.551Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DHVSpkfae4cUX91QGQNieF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "a98cef6c-880e-4b90-b62b-a7aea1f663a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\n  condition time: 43s\\n\\n--- arc_challengexauthority_bias ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EeEuf2UibTfyLuBcZxi4wb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -5 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "98040325-f14d-406f-b318-77f587324421",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Chp52sQgXsfivHyKxnXQs7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 336,
+                "cache_read_input_tokens": 118959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 336
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-24T06:13:27.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EeEuf2UibTfyLuBcZxi4wb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "2c97f565-de02-45bf-aea6-b504e4403d92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\n  condition time: 43s\\n\\n--- arc_challengexauthority_bias ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ETEoDUppfBFHLjPVgqVPnU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -5 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "1fa6ee42-4ae0-484f-bf57-729188db2ffd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01199DUeud3SeMctEfZcWkSf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 325,
+                "cache_read_input_tokens": 119295,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 325
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-24T06:13:36.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ETEoDUppfBFHLjPVgqVPnU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "8495fccf-588c-4b88-b9f1-d07d235829d0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\n  condition time: 43s\\n\\n--- arc_challengexauthority_bias ---\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015eUt8cewvaQYRJFzuZyRz3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -5 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "7945c448-d856-49c8-ad36-6dba114d8b76",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016fNq39AEh1sZMJDvvGfGtG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 323,
+                "cache_read_input_tokens": 119620,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 323
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-24T06:13:42.076Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015eUt8cewvaQYRJFzuZyRz3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "84702a3a-d384-4515-9e06-78a9d97813f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  condition time: 43s\\n\\n--- arc_challengexauthority_bias ---\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K8pnPeNCXha8dGs8UKQrdw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -8 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "64156e33-6ea8-45fc-9326-25dc6a72945d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RdjfFR1o4aXSMgPbuW5mxZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 325,
+                "cache_read_input_tokens": 119943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 325
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-24T06:13:45.699Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K8pnPeNCXha8dGs8UKQrdw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  weighted_vote: K_std_b=+0.0622 maxp=0.9786  e_std_b=+0.2016 maxp=0.7225  R2=0.0667  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "e62fd6d3-de89-4c27-8b0d-349664dc0ba4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  weighted_vote: K_std_b=+0.0622 maxp=0.9786  e_std_b=+0.2016 maxp=0.7225  R2=0.0667  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  weighted_vote: K_std_b=+0.0622 maxp=0.9786  e_std_b=+0.2016 maxp=0.7225  R2=0.0667  (3003 panels)\\n  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\n  condition time: 43s\\n\\n--- arc_challengexauthority_bias ---\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BAa5s3aVBKuTV51WSmPfR9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -5 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "2d91f53c-4f2d-4784-9736-3265df645d6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RbDW1rhK1i6TnAvWfGUkAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 508,
+                "cache_read_input_tokens": 120268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 508
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-24T06:13:49.343Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BAa5s3aVBKuTV51WSmPfR9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.1346 maxp=0.4290  e_std_b=+0.3503 maxp=0.1256  R2=0.2119  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "efa5b185-7052-438f-8622-757ea19bba15",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.1346 maxp=0.4290  e_std_b=+0.3503 maxp=0.1256  R2=0.2119  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n--- arc_challengexauthority_bias ---\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\n  threshold_supermajority: K_std_b=+0.1346 maxp=0.4290  e_std_b=+0.3503 maxp=0.1256  R2=0.2119  (3003 panels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BHTCcD8oC39aYuYTpsvkT7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -10 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "02c7b6ab-4559-470d-a0ea-06dc139d320c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012hBoFhYyV1H45YtG6F75CH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 120776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-24T06:13:53.346Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BHTCcD8oC39aYuYTpsvkT7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  majority_vote: K_std_b=+0.1394 maxp=0.9790  e_std_b=+0.1505 maxp=0.7920  R2=0.0791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.0622 maxp=0.9786  e_std_b=+0.2016 maxp=0.7225  R2=0.0667  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.1346 maxp=0.4290  e_std_b=+0.3503 maxp=0.1256  R2=0.2119  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "702058a3-d382-421b-91b6-696f66efbfe9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  majority_vote: K_std_b=+0.1394 maxp=0.9790  e_std_b=+0.1505 maxp=0.7920  R2=0.0791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.0622 maxp=0.9786  e_std_b=+0.2016 maxp=0.7225  R2=0.0667  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\\\n  condition time: 43s\\\\n\\\\n--- arc_challengexauthority_bias ---\\\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\\\n  threshold_supermajority: K_std_b=+0.1346 maxp=0.4290  e_std_b=+0.3503 maxp=0.1256  R2=0.2119  (3003 panels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  majority_vote: K_std_b=+0.1394 maxp=0.9790  e_std_b=+0.1505 maxp=0.7920  R2=0.0791  (3003 panels)\\n  weighted_vote: K_std_b=+0.0622 maxp=0.9786  e_std_b=+0.2016 maxp=0.7225  R2=0.0667  (3003 panels)\\n  threshold_supermajority: K_std_b=+0.6395 maxp=0.3895  e_std_b=-0.0165 maxp=0.9949  R2=0.3905  (3003 panels)\\n  bayesian: K_std_b=-0.2138 maxp=0.5692  e_std_b=+0.3419 maxp=0.5116  R2=0.0336  (3003 panels)\\n  condition time: 43s\\n\\n--- arc_challengexauthority_bias ---\\n  majority_vote: K_std_b=+0.2260 maxp=0.1499  e_std_b=+0.2260 maxp=0.0928  R2=0.1791  (3003 panels)\\n  weighted_vote: K_std_b=+0.2621 maxp=0.1238  e_std_b=+0.1469 maxp=0.2948  R2=0.1483  (3003 panels)\\n  threshold_supermajority: K_std_b=+0.1346 maxp=0.4290  e_std_b=+0.3503 maxp=0.1256  R2=0.2119  (3003 panels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QfmxT2ftjQ2hLtUHbjvUWk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "tail -3 /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "9e88b387-4387-4409-88db-c0718799392e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MBZgxCBaXYNAN3qFkVodj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 633,
+                "cache_read_input_tokens": 121359,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 633
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-24T06:13:57.427Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QfmxT2ftjQ2hLtUHbjvUWk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total time: 501s\\\\n\\\\nSaved: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_bootstrap.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "88f99a9f-5e69-4f68-954a-ad83980d1c93",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total time: 501s\\\\n\\\\nSaved: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_bootstrap.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Total time: 501s\\n\\nSaved: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_bootstrap.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap complete (501s). Let me now get the summary results and the full output."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "72a0ac4c-754e-4bc5-af0a-3706e7d65531",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017jcs34yNgzt3xNXTSMvw41",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 223,
+                "cache_read_input_tokens": 121992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 223
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QEMLEYHhX3QApwjtC7GV4m",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Set up server environment and sync code",
+                    "status": "completed",
+                    "activeForm": "Setting up server environment and syncing code"
+                  },
+                  {
+                    "content": "Verify V2 code (_is_valid_score) is available",
+                    "status": "completed",
+                    "activeForm": "Verifying V2 code availability"
+                  },
+                  {
+                    "content": "Run K=5 aggregation bootstrap (4 methods)",
+                    "status": "completed",
+                    "activeForm": "Running K=5 aggregation bootstrap"
+                  },
+                  {
+                    "content": "Extract results and compare V1 vs V2",
+                    "status": "in_progress",
+                    "activeForm": "Extracting and comparing results"
+                  },
+                  {
+                    "content": "Update appendix.tex with V2 values",
+                    "status": "pending",
+                    "activeForm": "Updating appendix.tex"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "baa4670d-8f6b-41c8-b35e-01869a0329e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017jcs34yNgzt3xNXTSMvw41",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 223,
+                "cache_read_input_tokens": 121992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 223
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-24T06:14:04.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QEMLEYHhX3QApwjtC7GV4m",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "d7982c7b-5a94-45fb-ba42-0bc7ba632292",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Set up server environment and sync code",
+                  "status": "completed",
+                  "activeForm": "Setting up server environment and syncing code"
+                },
+                {
+                  "content": "Verify V2 code (_is_valid_score) is available",
+                  "status": "completed",
+                  "activeForm": "Verifying V2 code availability"
+                },
+                {
+                  "content": "Run K=5 aggregation bootstrap (4 methods)",
+                  "status": "in_progress",
+                  "activeForm": "Running K=5 aggregation bootstrap"
+                },
+                {
+                  "content": "Extract results and compare V1 vs V2",
+                  "status": "pending",
+                  "activeForm": "Extracting and comparing results"
+                },
+                {
+                  "content": "Update appendix.tex with V2 values",
+                  "status": "pending",
+                  "activeForm": "Updating appendix.tex"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Set up server environment and sync code",
+                  "status": "completed",
+                  "activeForm": "Setting up server environment and syncing code"
+                },
+                {
+                  "content": "Verify V2 code (_is_valid_score) is available",
+                  "status": "completed",
+                  "activeForm": "Verifying V2 code availability"
+                },
+                {
+                  "content": "Run K=5 aggregation bootstrap (4 methods)",
+                  "status": "completed",
+                  "activeForm": "Running K=5 aggregation bootstrap"
+                },
+                {
+                  "content": "Extract results and compare V1 vs V2",
+                  "status": "in_progress",
+                  "activeForm": "Extracting and comparing results"
+                },
+                {
+                  "content": "Update appendix.tex with V2 values",
+                  "status": "pending",
+                  "activeForm": "Updating appendix.tex"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012P5MjLWKERigTdx3WQVbhL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "grep -A 20 \"AGGREGATION BOOTSTRAP SUMMARY\" /tmp/k5_agg_boot_v2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "f68fcca7-3ceb-4156-904f-a64819063d56",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017jcs34yNgzt3xNXTSMvw41",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 223,
+                "cache_read_input_tokens": 121992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 223
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-24T06:14:05.963Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012P5MjLWKERigTdx3WQVbhL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"K=5 AGGREGATION BOOTSTRAP SUMMARY (B=9999)\\\\n======================================================================\\\\n  Method                          eta_FDR      K_FDR  K_pos  K_neg\\\\n  majority_vote                      2/12       7/12      7      0\\\\n  weighted_vote                      2/12       7/12      7      0\\\\n  threshold_supermajority            3/12       7/12      7      0\\\\n  bayesian                           2/12       7/12      7      0\\\\n\\\\n  OLS vs Bootstrap:\\\\n    majority_vote                OLS K=12/12 -> Boot K=7/12  (7+/0-)\\\\n    weighted_vote                OLS K=11/12 -> Boot K=7/12  (7+/0-)\\\\n    threshold_supermajority      OLS K=11/12 -> Boot K=7/12  (7+/0-)\\\\n    bayesian                     OLS K=10/12 -> Boot K=7/12  (7+/0-)\\\\n\\\\n  Bayesian K_eff reversal under bootstrap: NO (7+/0-)\\\\n\\\\n========================================================================================================================\\\\n  Condition                 Method                        K_std_b   K_maxp    K_fdr  sig   e_std_b   e_maxp    e_fdr  sig\\\\n  mmluxprompt_injection     majority_vote                 +0.5290   0.0030   0.0108    *   +0.1505   0.0931   0.1596     \\\\n  mmluxsycophancy           majority_vote                 +0.4545   0.0030   0.0108    *   +0.1619   0.0177   0.0531     \\\\n  mmluxscore_manipulation   majority_vote                 +0.6451   0.0056   0.0134    *   -0.1098   0.4281   0.5708     \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "6518fadc-601c-447a-8208-9d15a3c12739",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"K=5 AGGREGATION BOOTSTRAP SUMMARY (B=9999)\\\\n======================================================================\\\\n  Method                          eta_FDR      K_FDR  K_pos  K_neg\\\\n  majority_vote                      2/12       7/12      7      0\\\\n  weighted_vote                      2/12       7/12      7      0\\\\n  threshold_supermajority            3/12       7/12      7      0\\\\n  bayesian                           2/12       7/12      7      0\\\\n\\\\n  OLS vs Bootstrap:\\\\n    majority_vote                OLS K=12/12 -> Boot K=7/12  (7+/0-)\\\\n    weighted_vote                OLS K=11/12 -> Boot K=7/12  (7+/0-)\\\\n    threshold_supermajority      OLS K=11/12 -> Boot K=7/12  (7+/0-)\\\\n    bayesian                     OLS K=10/12 -> Boot K=7/12  (7+/0-)\\\\n\\\\n  Bayesian K_eff reversal under bootstrap: NO (7+/0-)\\\\n\\\\n========================================================================================================================\\\\n  Condition                 Method                        K_std_b   K_maxp    K_fdr  sig   e_std_b   e_maxp    e_fdr  sig\\\\n  mmluxprompt_injection     majority_vote                 +0.5290   0.0030   0.0108    *   +0.1505   0.0931   0.1596     \\\\n  mmluxsycophancy           majority_vote                 +0.4545   0.0030   0.0108    *   +0.1619   0.0177   0.0531     \\\\n  mmluxscore_manipulation   majority_vote                 +0.6451   0.0056   0.0134    *   -0.1098   0.4281   0.5708     \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"K=5 AGGREGATION BOOTSTRAP SUMMARY (B=9999)\\n======================================================================\\n  Method                          eta_FDR      K_FDR  K_pos  K_neg\\n  majority_vote                      2/12       7/12      7      0\\n  weighted_vote                      2/12       7/12      7      0\\n  threshold_supermajority            3/12       7/12      7      0\\n  bayesian                           2/12       7/12      7      0\\n\\n  OLS vs Bootstrap:\\n    majority_vote                OLS K=12/12 -> Boot K=7/12  (7+/0-)\\n    weighted_vote                OLS K=11/12 -> Boot K=7/12  (7+/0-)\\n    threshold_supermajority      OLS K=11/12 -> Boot K=7/12  (7+/0-)\\n    bayesian                     OLS K=10/12 -> Boot K=7/12  (7+/0-)\\n\\n  Bayesian K_eff reversal under bootstrap: NO (7+/0-)\\n\\n========================================================================================================================\\n  Condition                 Method                        K_std_b   K_maxp    K_fdr  sig   e_std_b   e_maxp    e_fdr  sig\\n  mmluxprompt_injection     majority_vote                 +0.5290   0.0030   0.0108    *   +0.1505   0.0931   0.1596     \\n  mmluxsycophancy           majority_vote                 +0.4545   0.0030   0.0108    *   +0.1619   0.0177   0.0531     \\n  mmluxscore_manipulation   majority_vote                 +0.6451   0.0056   0.0134    *   -0.1098   0.4281   0.5708     \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent results! Now let me get the R² values for each method to compute mean R² for the table. Let me also get the full detail table output.",
+              "signature": "EtcCCmMIDhgCKkDEST+bNoYJDWN+GTJ4SZCucEGUSE2vEuV8+ayQiIp01q7uwJK+6NxtybVfBCB8MrL9dAdxOgP1jbNhOu2CManoMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDNTPnPVKARW+fENlhRoMfKG9n8exJF8j8wNYIjD0bjkem2hr7sKjf87t+P8p4bkt4VzKQUUP9Q4MY85FqgFF3Cyg74dLK0s8I6yD+fkqoQFZ95yzS0NHpm7LRZuJJM88gonwSMPr3ZjyXKb3j63vd8O60WfxmOvZt3i/tYXBa+7ABQlqWOv0E0WjnkTT+WyCHfV2l/sBgwtQHsdS3DVwGa1wRM7JmLEerf3YvlAzFpES93iEmX9SOm1UioD/oc6Xrf3FvATS3A1BIl7aUeSQKmawqp+Np4HBJ3Sys4h2XVt4mRDPEyHAvR3TnCLl656I2hgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "97204ad4-bb70-488e-8daf-c977a4674983",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmABnmo86M986Du73n5777",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 122215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me extract the R² values from the JSON to compute mean R² per method."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "76ddefbb-0299-4a58-8d41-c9daa94e2539",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmABnmo86M986Du73n5777",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 122215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TpSf4djBJ3qNemvaT9a2nm",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "seetacloud-rtx6000",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_bootstrap.json') as f:\n    data = json.load(f)\n\nmethods = ['majority_vote', 'weighted_vote', 'threshold_supermajority', 'bayesian']\nprint('V2 K=5 Aggregation Bootstrap Summary:')\nprint(f'  {\\\"Method\\\":<28} {\\\"eta_sig\\\":>8} {\\\"keff_sig\\\":>9} {\\\"mean_R2\\\":>8}')\nfor m in methods:\n    md = data['aggregation_methods'][m]\n    eta = md['eta_fdr_sig']\n    keff = md['keff_fdr_sig']\n    r2s = [md['per_condition'][ck]['R2'] for ck in md['per_condition']]\n    mean_r2 = sum(r2s) / len(r2s) if r2s else 0\n    print(f'  {m:<28} {eta:>8} {keff:>9} {mean_r2:>8.3f}')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "288fea7d-c69f-47a0-8ec4-ae631b4d7e4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmABnmo86M986Du73n5777",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 122215,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-24T06:14:16.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TpSf4djBJ3qNemvaT9a2nm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"V2 K=5 Aggregation Bootstrap Summary:\\\\n  Method                        eta_sig  keff_sig  mean_R2\\\\n  majority_vote                    2/12      7/12    0.285\\\\n  weighted_vote                    2/12      7/12    0.275\\\\n  threshold_supermajority          3/12      7/12    0.408\\\\n  bayesian                         2/12      7/12    0.166\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "466f0f4a-0654-4b47-910b-e79748b16c90",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"V2 K=5 Aggregation Bootstrap Summary:\\\\n  Method                        eta_sig  keff_sig  mean_R2\\\\n  majority_vote                    2/12      7/12    0.285\\\\n  weighted_vote                    2/12      7/12    0.275\\\\n  threshold_supermajority          3/12      7/12    0.408\\\\n  bayesian                         2/12      7/12    0.166\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"V2 K=5 Aggregation Bootstrap Summary:\\n  Method                        eta_sig  keff_sig  mean_R2\\n  majority_vote                    2/12      7/12    0.285\\n  weighted_vote                    2/12      7/12    0.275\\n  threshold_supermajority          3/12      7/12    0.408\\n  bayesian                         2/12      7/12    0.166\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+              }
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have both V1 and V2 results. Let me compile the comparison and update appendix.tex.\n\n**V1 vs V2 Comparison (K=5 Aggregation Bootstrap):**\n\n| Method | V1 η_max | V2 η_max | V1 K_eff | V2 K_eff | V1 R² | V2 R² |\n|--------|----------|----------|----------|----------|-------|-------|\n| Majority | 0/12 | **2/12** | 7/12 | 7/12 | 0.256 | **0.285** |\n| Weighted | 1/12 | **2/12** | 9/12 | **7/12** | 0.249 | **0.275** |\n| Threshold | 6/12 | **3/12** | 10/12 | **7/12** | 0.506 | **0.408** |\n| Bayesian | 1/12 | **2/12** | 0/12 | **7/12** | 0.081 | **0.166** |\n\n**Critical finding: Bayesian K_eff went from 0/12 to 7/12** — the \"neutralizes both predictors\" conclusion no longer holds.\n\nNow let me update appendix.tex. Let me also check what values are currently in the table (the task mentioned Majority's 10/12 might already be from V2 regime transition data)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "3d9594bd-3da3-49c6-9492-fc6cd724fff9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QN1jgF7JaCWozqKiocyFTm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 648,
+                "cache_read_input_tokens": 123216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 648
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MnZsjSA594ZL5Pd6bmp2AF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+                "offset": 66,
+                "limit": 25
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "80003e80-7e75-4136-9778-6d877cfdb13a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QN1jgF7JaCWozqKiocyFTm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 648,
+                "cache_read_input_tokens": 123216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 648
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-24T06:14:28.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MnZsjSA594ZL5Pd6bmp2AF",
+              "type": "tool_result",
+              "content": "66\t\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n67\t\\label{app:aggregation_k5}\n68\t\n69\tTable~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. Bayesian calibration neutralizes both predictors ($\\eta_{\\max}$ 1/12, $K_{\\mathrm{eff}}$ 0/12, $\\bar{R}^2{=}0.081$), contrasting with majority vote where $K_{\\mathrm{eff}}$ dominates (10/12). Threshold voting retains high predictability ($\\bar{R}^2{=}0.506$) with both predictors significant (6/12 and 10/12). The Bayesian neutralization at $K{=}5$ extends the predictability reduction observed at $K{=}3$ (Table~\\ref{tab:aggregation}): calibrated confusion matrices effectively remove both individual weakness and structural diversity as predictive channels.\n70\t\n71\t\\begin{table}[h]\n72\t\\centering\n73\t\\small\n74\t\\begin{tabular}{lccc}\n75\t\\toprule\n76\t\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n77\t\\midrule\n78\tMajority   & 0/12  & 10/12 & 0.256 \\\\\n79\tWeighted   & 1/12  & 9/12  & 0.249 \\\\\n80\tThreshold  & 6/12  & 10/12 & 0.506 \\\\\n81\tBayesian   & 1/12  & 0/12  & 0.081 \\\\\n82\t\\bottomrule\n83\t\\end{tabular}\n84\t\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). Bayesian calibration neutralizes both predictors, while majority vote preserves the $K_{\\mathrm{eff}}$-dominant predictor shift. Compare Table~\\ref{tab:aggregation} ($K{=}3$).}\n85\t\\label{tab:aggregation_k5}\n86\t\\end{table}\n87\t\n88\t\\subsection{Metric Robustness Under Partial Panel Information}\n89\t\\label{app:oracle}\n90\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "b8aede69-ee5b-4298-bbf1-b1e6a427c749",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+                "content": "\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n\\label{app:aggregation_k5}\n\nTable~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. Bayesian calibration neutralizes both predictors ($\\eta_{\\max}$ 1/12, $K_{\\mathrm{eff}}$ 0/12, $\\bar{R}^2{=}0.081$), contrasting with majority vote where $K_{\\mathrm{eff}}$ dominates (10/12). Threshold voting retains high predictability ($\\bar{R}^2{=}0.506$) with both predictors significant (6/12 and 10/12). The Bayesian neutralization at $K{=}5$ extends the predictability reduction observed at $K{=}3$ (Table~\\ref{tab:aggregation}): calibrated confusion matrices effectively remove both individual weakness and structural diversity as predictive channels.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n\\midrule\nMajority   & 0/12  & 10/12 & 0.256 \\\\\nWeighted   & 1/12  & 9/12  & 0.249 \\\\\nThreshold  & 6/12  & 10/12 & 0.506 \\\\\nBayesian   & 1/12  & 0/12  & 0.081 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). Bayesian calibration neutralizes both predictors, while majority vote preserves the $K_{\\mathrm{eff}}$-dominant predictor shift. Compare Table~\\ref{tab:aggregation} ($K{=}3$).}\n\\label{tab:aggregation_k5}\n\\end{table}\n\n\\subsection{Metric Robustness Under Partial Panel Information}\n\\label{app:oracle}\n",
+                "numLines": 25,
+                "startLine": 66,
+                "totalLines": 368
+              }
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The current table shows mixed V1/V2 values. The V1 JSON shows Majority keff=7/12, but the table shows 10/12 — this was indeed already updated by someone (probably from V2 regime transition data as the task notes). Similarly:\n- V1 JSON: Weighted keff=9/12, table shows 9/12 (same)\n- V1 JSON: Threshold keff=10/12, table shows 10/12 (same)\n\n\n- V1 JSON: Bayesian keff=0/12, table shows 0/12 (same)\n\nSo only Majority was changed from 7→10 in the table. But with V2 proper bootstrap, all four methods converge to keff=7/12, and the results are dramatically different — Threshold jumps to R²=0.408 while the others cluster around 0.17-0.28, which is a major shift from the V1 pattern.\n\nNow I need to revise the narrative since Bayesian's jump from 0 to 7/12 completely undermines the \"neutralizes both predictors\" story, and I should update the table and supporting text to reflect this convergence.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "3638ae47-08cc-481e-9a70-ed59c1246439",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzZ2McK6gF5KfZ2KRmkdau",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1192,
+                "cache_read_input_tokens": 123864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1192
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now updating appendix.tex with V2 values. The prose also needs revision since Bayesian no longer \"neutralizes both predictors.\""
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "53ad007d-5fec-434d-84d3-770bfd7c2bf5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzZ2McK6gF5KfZ2KRmkdau",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1192,
+                "cache_read_input_tokens": 123864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1192
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011XbbbpXDGYceM2TiRP26x5",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+                "old_string": "Table~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. Bayesian calibration neutralizes both predictors ($\\eta_{\\max}$ 1/12, $K_{\\mathrm{eff}}$ 0/12, $\\bar{R}^2{=}0.081$), contrasting with majority vote where $K_{\\mathrm{eff}}$ dominates (10/12). Threshold voting retains high predictability ($\\bar{R}^2{=}0.506$) with both predictors significant (6/12 and 10/12). The Bayesian neutralization at $K{=}5$ extends the predictability reduction observed at $K{=}3$ (Table~\\ref{tab:aggregation}): calibrated confusion matrices effectively remove both individual weakness and structural diversity as predictive channels.",
+                "new_string": "Table~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. All four methods converge to identical $K_{\\mathrm{eff}}$ significance (7/12), with threshold voting retaining the highest predictability ($\\bar{R}^2{=}0.408$). Bayesian calibration reduces overall $\\bar{R}^2$ (0.166 vs.\\ 0.285 for majority vote) but does not neutralize $K_{\\mathrm{eff}}$ as a predictor at this panel size, contrasting with the stronger attenuation observed at $K{=}3$ (Table~\\ref{tab:aggregation})."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "492de97a-7378-4c13-856b-d4d38baa332c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzZ2McK6gF5KfZ2KRmkdau",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1192,
+                "cache_read_input_tokens": 123864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1192
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-24T06:14:44.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011XbbbpXDGYceM2TiRP26x5",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "bfabee25-e235-4928-80c2-57cbdf2afb04",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+              "oldString": "Table~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. Bayesian calibration neutralizes both predictors ($\\eta_{\\max}$ 1/12, $K_{\\mathrm{eff}}$ 0/12, $\\bar{R}^2{=}0.081$), contrasting with majority vote where $K_{\\mathrm{eff}}$ dominates (10/12). Threshold voting retains high predictability ($\\bar{R}^2{=}0.506$) with both predictors significant (6/12 and 10/12). The Bayesian neutralization at $K{=}5$ extends the predictability reduction observed at $K{=}3$ (Table~\\ref{tab:aggregation}): calibrated confusion matrices effectively remove both individual weakness and structural diversity as predictive channels.",
+              "newString": "Table~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. All four methods converge to identical $K_{\\mathrm{eff}}$ significance (7/12), with threshold voting retaining the highest predictability ($\\bar{R}^2{=}0.408$). Bayesian calibration reduces overall $\\bar{R}^2$ (0.166 vs.\\ 0.285 for majority vote) but does not neutralize $K_{\\mathrm{eff}}$ as a predictor at this panel size, contrasting with the stronger attenuation observed at $K{=}3$ (Table~\\ref{tab:aggregation}).",
+              "originalFile": "\\appendix\n\n\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n\\label{app:proof}\n\nThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n\\begin{align}\n\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n\\end{align}\nSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n\n\\section{Robustness Correction Methods}\n\\label{app:robustness_methods}\n\nThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n\n\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n\n\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effects model with a random intercept for the judge occupying that position, estimating $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ as fixed effects. The reported $p$-value for each coefficient is the maximum across the three models.\n\n\\paragraph{Wild Cluster Bootstrap.} We perform $B{=}9{,}999$ bootstrap resamples using Rademacher weights, clustering by each of the three panel positions in turn and taking the maximum $p$-value across positions (the most conservative aggregation). This approach avoids distributional assumptions on the cluster structure.\n\n\\section{Extended Analysis}\n\\label{app:extended_analysis}\n\n\\subsection{BFT Reversal Mechanism: Detailed Evidence}\n\\label{app:bft_reversal}\n\nUnder standard OLS, the regression results (Table~\\ref{tab:dominance}) show $\\eta_{\\max}$ significant in 10 of 12 conditions and $K_{\\mathrm{eff}}$ positively associated with ASR in all 12. Non-independence correction attenuates both predictors: under wild cluster bootstrap, $\\eta_{\\max}$ retains 3/12 and $K_{\\mathrm{eff}}$ retains 4/12, with $K_{\\mathrm{eff}}$ slightly ahead. The directional pattern (all $K_{\\mathrm{eff}}$ point estimates positive) persists uniformly. The random-fault contrast (\\S\\ref{sec:rf_contrast}) sharpens this: under random faults, $K_{\\mathrm{eff}}$'s positive association with panel error survives all corrections (2/2 conditions, $R^2 = 0.73$--$0.81$), indicating a genuine relationship whose statistical confidence attenuates under adaptive attack (4/12 after correction).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_gam_keff_split.pdf}\n\\caption{GAM bootstrap $K_{\\mathrm{eff}}$ effect direction at $K{=}3$ ($B{=}9999$). All 12 conditions show positive $K_{\\mathrm{eff}}$ direction (88.9--100\\% bootstrap rate). The Kruskal--Wallis test finds no significant magnitude difference between targeted and shared-bias attacks ($p{=}0.200$).}\n\\label{fig:gam_split}\n\\end{figure}\n\nUnder corrected data (V2), all 12 $K_{\\mathrm{eff}}$ OLS coefficients are positive. The previously reported negative ARC $\\times$ sycophancy coefficient ($\\hat{\\beta}_{\\mathrm{std}} = -0.192$) was an artifact of error-as-tie handling; after correction, it becomes positive ($\\hat{\\beta}_{\\mathrm{std}} = +0.257$). GAM bootstrap confirms the uniform positive direction: 12/12 conditions at $K{=}3$ (88.9--100\\% positive rate) and 12/12 at $K{=}5$ (100\\%).\n\n\\subsection{Diversity--Capability Tradeoff}\n\\label{app:diversity_capability}\n\nThe $r = 0.70$--$0.81$ correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ ($K{=}3$ to $K{=}5$) reflects a structural feature of the current LLM ecosystem: maximizing panel diversity requires sampling across capability tiers, which systematically introduces less capable and therefore more vulnerable judges. The structural correlation is unaffected by SE correction; it is a property of the model ecosystem, not an artifact of panel overlap. However, the high confound combined with fragile independent significance means that observational regression cannot reliably disentangle diversity's causal contribution from the capability deficit that co-occurs with it.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange diamonds, $r{=}0.50$, 126 panels) shows reduced confounding.}\n\\label{fig:keff_eta_scatter}\n\\end{figure}\n\nFamily-level labels provide indirect evidence that capability proximity matters more than taxonomic grouping: family membership is not a significant predictor of panel vulnerability ($p = 0.179$ on MMLU, $p = 0.385$ on ARC), consistent with models from the same provider exhibiting heterogeneous vulnerability profiles that vary by capability tier rather than by shared architecture \\citep{kuncheva2003measures}.\n\n\\subsection{Aggregation Mechanism Details}\n\\label{app:aggregation_details}\n\nBayesian calibration attenuates $K_{\\mathrm{eff}}$ significance (5+/1$-$) and reduces overall predictability ($R^2{=}0.087$), but $\\eta_{\\max}$ persists (9/12 under OLS), providing partial defense. The mechanism is calibrated reliability weighting: by estimating each judge's confusion matrix on clean data, Bayesian aggregation downweights weak judges, reducing the diversity channel while the individual weakness channel remains active. Threshold voting amplifies both channels because any single dissenting judge vetoes the panel decision, making compositional factors highly predictive of attack success ($R^2{=}0.829$). Bayesian calibration requires a clean accuracy prior, and an adaptive attacker aware of this calibration could target the prior itself \\citep{tambe2011security}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\n\\caption{Distribution of $K_{\\mathrm{eff}}$ coefficients across aggregation methods. Majority and weighted voting show uniformly positive $K_{\\mathrm{eff}}$ direction (12+/0$-$). Bayesian calibration reduces overall predictability ($R^2{=}0.087$) with predominantly positive direction (5+/1$-$).}\n\\label{fig:aggregation}\n\\end{figure}\n\n\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n\\label{app:aggregation_k5}\n\nTable~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. Bayesian calibration neutralizes both predictors ($\\eta_{\\max}$ 1/12, $K_{\\mathrm{eff}}$ 0/12, $\\bar{R}^2{=}0.081$), contrasting with majority vote where $K_{\\mathrm{eff}}$ dominates (10/12). Threshold voting retains high predictability ($\\bar{R}^2{=}0.506$) with both predictors significant (6/12 and 10/12). The Bayesian neutralization at $K{=}5$ extends the predictability reduction observed at $K{=}3$ (Table~\\ref{tab:aggregation}): calibrated confusion matrices effectively remove both individual weakness and structural diversity as predictive channels.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n\\midrule\nMajority   & 0/12  & 10/12 & 0.256 \\\\\nWeighted   & 1/12  & 9/12  & 0.249 \\\\\nThreshold  & 6/12  & 10/12 & 0.506 \\\\\nBayesian   & 1/12  & 0/12  & 0.081 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). Bayesian calibration neutralizes both predictors, while majority vote preserves the $K_{\\mathrm{eff}}$-dominant predictor shift. Compare Table~\\ref{tab:aggregation} ($K{=}3$).}\n\\label{tab:aggregation_k5}\n\\end{table}\n\n\\subsection{Metric Robustness Under Partial Panel Information}\n\\label{app:oracle}\n\nThe main analysis computes $\\eta_{\\max}$ with full knowledge of panel composition (all three judges known). In deployment, a practitioner selecting or auditing a panel may know only a subset of the constituent judges. We test whether $\\eta_{\\max}$ retains predictive power under such partial information by recomputing it from two of the three panel members: for each panel, we cycle through all $\\binom{3}{1} = 3$ leave-one-out masks, compute $\\eta_{\\max}$ from the two known judges, and average the regression estimates across masking scenarios.\n\nUnder the most conservative inference (partial information + clustered SE), $\\eta_{\\max}$ remains the sole significant predictor with $\\hat{\\beta}_{\\mathrm{std}} = 0.589$, achieving significance in 12/12 conditions, stronger than the oracle baseline (4/12 under clustered SE). $K_{\\mathrm{eff}}$ loses all predictive power (0/12). The averaging over masking scenarios smooths estimation noise inherent in the three-judge oracle computation, strengthening the $\\eta_{\\max}$ signal. This demonstrates that $\\eta_{\\max}$ computed from partial panel information is robust to incomplete composition knowledge and retains (indeed improves) its predictive power for panel ASR.\n\n\\section{Panel Selection Strategy Comparison}\n\\label{app:panel_selection}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig4_panel_design.pdf}\n\\caption{Panel attack success rate under three selection strategies. $\\min(\\eta_{\\max})$ achieves lowest ASR in 12/12 conditions, confirming that robustness-first selection dominates diversity-maximizing strategies.}\n\\label{fig:panel_design}\n\\end{figure}\n\nFigure~\\ref{fig:panel_design} compares three panel selection strategies: $\\min(\\eta_{\\max})$ (select the panel minimizing weakest-judge vulnerability), random selection, and $\\max(K_{\\mathrm{eff}})$ (maximize diversity). The $\\min(\\eta_{\\max})$ strategy achieves the lowest ASR in all 12 conditions, consistent with the weakest-link dominance documented in \\S\\ref{sec:dominance}.\n\n\\section{Clustered Standard Error Analysis}\n\\label{app:forest_plot}\n\nUnder clustered standard errors (clustering on the $K$ judge positions), $\\eta_{\\max}$ retains significance in 4/12 conditions while $K_{\\mathrm{eff}}$ achieves significance in 0/12. This contrasts with OLS ($\\eta_{\\max}$ 10/12, $K_{\\mathrm{eff}}$ 12/12) and wild cluster bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), illustrating how the choice of inference method modulates apparent significance at $K{=}3$ while coefficient direction remains uniformly positive for $K_{\\mathrm{eff}}$ across all methods (Figure~\\ref{fig:robustness}).\n\n\\section{Robustness Checks: Subsampling and Specification}\n\\label{app:robustness_checks}\n\nTable~\\ref{tab:robustness_checks} summarizes regression results across model subsets and alternative specifications at $K{=}5$, testing whether the predictor shift is robust to collinearity reduction and specification choice.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Subset / Method} & $\\boldsymbol{r}$ & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Trans.} \\\\\n\\midrule\nFull bootstrap       & 0.81 & 0/12 & 10/12 & \\checkmark \\\\\nAPI-only (9) clust.  & 0.85 & 8/12 & 3/12 & --- \\\\\nCap-matched A (5A+4L) & 0.50 & ---  & 9/12 & \\checkmark\\checkmark \\\\\nCap-matched B (6A+3L) & 0.73 & ---  & 2/12 & --- \\\\\nFractional logit     & 0.81 & 4/12 & 11/12 & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Predictor shift robustness at $K{=}5$ across model subsets and specifications. $r$: correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$. $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ columns show FDR-significant counts out of 12 conditions. Trans.: whether $K_{\\mathrm{eff}}$ dominates $\\eta_{\\max}$. API-only models ($r{=}0.85$, VIF${=}4.4$) show partially collinear predictors; capability-matched subsamples ($r{=}0.50$) strengthen the shift. Fractional logit \\citep{papke1996econometric} confirms OLS patterns with 98.6\\% directional agreement (71/72 direction matches; the single discordance is $\\eta_{\\max}$ at $K{=}7$ for ARC $\\times$ score manipulation).}\n\\label{tab:robustness_checks}\n\\end{table}\n\nThe API-only subset ($r{=}0.85$, VIF${=}4.4$) demonstrates that elevated collinearity between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ partially inflates standard errors: both predictors achieve moderate significance but neither dominates, and the predictor shift does not replicate. Breaking collinearity through capability-matched subsampling (pool~A, $r{=}0.50$) strengthens $K_{\\mathrm{eff}}$'s emergence to 9/12, comparable to the full-pool 10/12. Pool~B ($r{=}0.73$) falls near the decorrelation threshold, and the shift weakens accordingly. Random 9-model subsampling (1{,}000 trials) confirms an inverted-U: $K_{\\mathrm{eff}}$ dominance rate peaks when the subsample includes 3--4 local models (maximizing capability spread) and drops when the pool is too homogeneous (Appendix~\\ref{app:random_subsample}).\n\n\\section{Random Subsample Analysis}\n\\label{app:random_subsample}\n\nTo test whether the predictor shift depends on model pool composition, we randomly sample 9 of 15 models (1{,}000 trials), construct all $\\binom{9}{5}$ panels, and run the bootstrap analysis at $K{=}5$. We stratify by the number of local models ($n_{\\mathrm{local}} \\in \\{0, \\ldots, 6\\}$) in each subsample.\n\nUnder clustered standard errors, $K_{\\mathrm{eff}}$ is the dominant predictor in 51.4\\% of subsamples (mean significance 1.85/12), with an inverted-U as a function of $n_{\\mathrm{local}}$: subsamples with 3--4 local models (maximizing capability range) achieve the highest $K_{\\mathrm{eff}}$ significance rate, while all-API ($n_{\\mathrm{local}}{=}0$) and heavily-local ($n_{\\mathrm{local}}{\\geq}5$) subsamples show reduced detection. Significance is attenuated relative to the full pool by smaller sample sizes (126 vs.\\ 3{,}003 panels at $K{=}5$), but the shift direction holds in the majority of subsamples. This confirms that the shift's detectability depends on capability diversity in the model pool rather than pool size per se.\n\n\\section{Attacked $K_{\\mathrm{eff}}$ Stability}\n\\label{app:attacked_keff}\n\n$K_{\\mathrm{eff}}$ is computed from clean (unattacked) pairwise MI (\\S\\ref{sec:experiments}), but used to predict vulnerability under attack. We verify this assumption by recomputing MI from judge outputs under each attack type and comparing clean vs.\\ attacked $K_{\\mathrm{eff}}$ via Spearman rank correlation across all panels.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Attack} & \\textbf{MMLU $\\rho$} & \\textbf{ARC $\\rho$} \\\\\n\\midrule\nScore manipulation & 0.98 & 0.99 \\\\\nAuthority bias     & 0.95 & 0.97 \\\\\nSycophancy         & 0.91 & 0.92 \\\\\nVerbosity bias     & 0.91 & 0.92 \\\\\nPrompt injection   & 0.63 & 0.60 \\\\\nPosition bias      & 0.60 & 0.08 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Spearman rank correlation between clean and attacked $K_{\\mathrm{eff}}$ across 455 panels ($K{=}3$). Four attack types preserve MI structure ($\\rho{\\geq}0.91$); prompt injection shows moderate perturbation ($\\rho{\\approx}0.60$--$0.63$); position bias substantially disrupts pairwise dependencies.}\n\\label{tab:attacked_keff}\n\\end{table}\n\nFour attack types (score manipulation, authority bias, sycophancy, verbosity bias) preserve MI structure with $\\rho{\\geq}0.91$ on both benchmarks, validating the use of clean $K_{\\mathrm{eff}}$ as a predictor. Prompt injection shows moderate perturbation ($\\rho{\\approx}0.60$--$0.63$), consistent with its mechanism of overriding evaluation instructions, which can alter pairwise agreement patterns. Position bias substantially disrupts MI structure ($\\rho{=}0.08$ on ARC, $p{=}0.10$), consistent with its anomalous regression behavior in Table~\\ref{tab:dominance} (sole non-significant $\\eta_{\\max}$ condition) and suggesting that positional reordering fundamentally changes inter-judge dependence rather than merely introducing noise.\n\n\\section{Cinelli--Hazlett Sensitivity Analysis}\n\\label{app:sensitivity}\n\nWe apply the Cinelli--Hazlett omitted variable bias framework to quantify how robust $K_{\\mathrm{eff}}$'s coefficient is to unobserved confounders. For each of the 36 conditions ($3K \\times 2$ benchmarks $\\times$ $6$ attacks), we compute the robustness value (RV): the minimum strength an unobserved confounder must have, in terms of partial $R^2$ with both treatment and outcome, to reduce $K_{\\mathrm{eff}}$'s coefficient to zero.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{rcllcccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Data} & \\textbf{Attack} & \\textbf{RV} & $\\boldsymbol{\\eta}$ $\\boldsymbol{R^2_{\\mathrm{tr}}}$ & $\\boldsymbol{\\eta}$ $\\boldsymbol{R^2_{\\mathrm{out}}}$ & \\textbf{Exc.} \\\\\n\\midrule\n3 & MMLU & Prompt inj.    & 0.419 & 0.587 & 0.059 & -- \\\\\n3 & MMLU & Sycophancy     & 0.412 & 0.347 & 0.098 & \\checkmark \\\\\n3 & MMLU & Score manip.   & 0.410 & 0.735 & 0.002 & -- \\\\\n3 & MMLU & Verbosity      & 0.330 & 0.342 & 0.203 & -- \\\\\n3 & MMLU & Position bias  & 0.291 & 0.446 & 0.043 & -- \\\\\n3 & MMLU & Authority bias & 0.371 & 0.493 & 0.019 & -- \\\\\n3 & ARC  & Prompt inj.    & 0.303 & 0.654 & 0.028 & -- \\\\\n3 & ARC  & Sycophancy     & 0.105 & 0.629 & 0.129 & -- \\\\\n3 & ARC  & Score manip.   & 0.273 & 0.838 & 0.003 & -- \\\\\n3 & ARC  & Verbosity      & 0.259 & 0.658 & 0.047 & -- \\\\\n3 & ARC  & Position bias  & 0.265 & 0.850 & 0.001 & -- \\\\\n3 & ARC  & Authority bias & 0.224 & 0.582 & 0.056 & -- \\\\\n\\addlinespace\n5 & MMLU & Prompt inj.    & 0.455 & 0.379 & 0.176 & \\checkmark \\\\\n5 & MMLU & Sycophancy     & 0.303 & 0.106 & 0.135 & \\checkmark \\\\\n5 & MMLU & Score manip.   & 0.321 & 0.597 & 0.003 & -- \\\\\n5 & MMLU & Verbosity      & 0.235 & 0.120 & 0.206 & \\checkmark \\\\\n5 & MMLU & Position bias  & 0.131 & 0.272 & 0.090 & -- \\\\\n5 & MMLU & Authority bias & 0.064 & 0.277 & 0.031 & -- \\\\\n5 & ARC  & Prompt inj.    & 0.318 & 0.696 & 0.001 & -- \\\\\n5 & ARC  & Sycophancy     & 0.103 & 0.555 & 0.063 & -- \\\\\n5 & ARC  & Score manip.   & 0.196 & 0.800 & ${<}0.001$ & -- \\\\\n5 & ARC  & Verbosity      & 0.135 & 0.642 & 0.034 & -- \\\\\n5 & ARC  & Position bias  & 0.400 & 0.778 & 0.040 & -- \\\\\n5 & ARC  & Authority bias & 0.181 & 0.509 & 0.012 & -- \\\\\n\\addlinespace\n7 & MMLU & Prompt inj.    & 0.522 & 0.289 & 0.126 & \\checkmark \\\\\n7 & MMLU & Sycophancy     & 0.301 & 0.077 & 0.078 & \\checkmark \\\\\n7 & MMLU & Score manip.   & 0.393 & 0.515 & 0.004 & -- \\\\\n7 & MMLU & Verbosity      & 0.205 & 0.078 & 0.195 & \\checkmark \\\\\n7 & MMLU & Position bias  & 0.207 & 0.179 & 0.073 & \\checkmark \\\\\n7 & MMLU & Authority bias & 0.005 & 0.200 & 0.011 & -- \\\\\n7 & ARC  & Prompt inj.    & 0.355 & 0.629 & 0.004 & -- \\\\\n7 & ARC  & Sycophancy     & 0.117 & 0.535 & 0.065 & -- \\\\\n7 & ARC  & Score manip.   & 0.165 & 0.717 & 0.001 & -- \\\\\n7 & ARC  & Verbosity      & 0.165 & 0.599 & 0.028 & -- \\\\\n7 & ARC  & Position bias  & 0.422 & 0.705 & 0.046 & -- \\\\\n7 & ARC  & Authority bias & 0.179 & 0.514 & 0.003 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cinelli--Hazlett sensitivity analysis for $K_{\\mathrm{eff}}$'s coefficient across 36 conditions. RV: robustness value (minimum partial $R^2$ an unobserved confounder must have with both $K_{\\mathrm{eff}}$ and ASR to nullify the coefficient). $\\eta$ $R^2_{\\mathrm{tr}}$/$R^2_{\\mathrm{out}}$: partial $R^2$ of $\\eta_{\\max}$ with $K_{\\mathrm{eff}}$ (treatment) and ASR (outcome). Exc.: \\checkmark\\ if RV exceeds $\\eta_{\\max}$'s partial $R^2$ with treatment, indicating $K_{\\mathrm{eff}}$'s coefficient is robust to the known capability confound. RV exceeds $\\eta_{\\max}$ in 8/36 conditions ($K{=}3$: 1/12, $K{=}5$: 3/12, $K{=}7$: 4/12).}\n\\label{tab:sensitivity}\n\\end{table}\n\nRV ranges from 0.005 to 0.52 across the 36 conditions (median by $K$: 0.30 at $K{=}3$, 0.22 at $K{=}5$, 0.21 at $K{=}7$), revealing heterogeneous robustness: some conditions show $K_{\\mathrm{eff}}$ coefficients robust to strong confounders (e.g., $K{=}7$ MMLU prompt injection, RV${=}0.52$), while others are fragile (e.g., $K{=}7$ MMLU authority bias, RV${=}0.005$). The known $\\eta_{\\max}$ confound exceeds RV in 28/36 conditions ($K{=}3$: 11/12, $K{=}5$: 9/12, $K{=}7$: 8/12). The fraction of conditions where $K_{\\mathrm{eff}}$ is robust to the $\\eta_{\\max}$ confound increases with panel size (1/12 $\\to$ 3/12 $\\to$ 4/12), paralleling the predictor shift documented in \\S\\ref{sec:cross_k}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_sensitivity_contour_K5.png}\n\\caption{Cinelli--Hazlett sensitivity contour plot at $K{=}5$ (representative). $x$-axis: confounder's partial $R^2$ with treatment ($K_{\\mathrm{eff}}$); $y$-axis: confounder's partial $R^2$ with outcome (ASR). Contour lines show the adjusted $K_{\\mathrm{eff}}$ coefficient under hypothetical confounders of varying strength. The diamond marks the known $\\eta_{\\max}$ confound benchmark; conditions where the benchmark falls inside the zero-contour indicate that the $\\eta_{\\max}$ confound alone could explain away $K_{\\mathrm{eff}}$'s effect.}\n\\label{fig:sensitivity_contour}\n\\end{figure}\n\n\\section{Cross-Benchmark Prediction Robustness}\n\\label{app:cross_benchmark}\n\nTo test whether the diversity--vulnerability association reflects structural panel properties rather than benchmark-specific artifacts, we use $K_{\\mathrm{eff}}$ computed from one benchmark's pairwise MI to predict panel vulnerability on the other. Under wild cluster bootstrap (FDR $\\alpha{=}0.05$), MMLU-derived $K_{\\mathrm{eff}}$ predicts ARC vulnerability in 14/18 conditions across $K \\in \\{3, 5, 7\\}$. The reverse direction (ARC$\\to$MMLU) achieves 10/18, with attenuation concentrated at $K{\\geq}5$ (4/12), consistent with ARC's binary format producing lower MI discriminability between judge pairs. Cross-benchmark $K_{\\mathrm{eff}}$ correlations are $r{\\approx}0.76$--$0.78$, indicating that $K_{\\mathrm{eff}}$ primarily captures panel-level compositional structure rather than benchmark-specific judge interactions. The asymmetry between prediction directions further suggests that MI estimated from richer response distributions (MMLU's four-way choice) yields a more transferable diversity measure.\n\n\\section{Pool A Cinelli--Hazlett Sensitivity}\n\\label{app:sensitivity_poolA}\n\nTo test whether reducing the $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ collinearity strengthens $K_{\\mathrm{eff}}$'s independent signal, we repeat the Cinelli--Hazlett analysis on the capability-matched Pool~A subsample (9 models, $r{=}0.50$, 84 panels at $K{=}3$, 126 at $K{=}5$). Table~\\ref{tab:sensitivity_poolA} compares the full-pool results with Pool~A.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Pool / $K$} & \\textbf{RV $>$ $\\eta$} & \\textbf{Median RV} & \\textbf{$K_{\\mathrm{eff}}$ sig} \\\\\n\\midrule\nFull / $K{=}3$ & 1/12 & 0.30 & 1/12 \\\\\nFull / $K{=}5$ & 3/12 & 0.22 & 10/12 \\\\\nPool A / $K{=}3$ & 2/12 & 0.25 & --- \\\\\nPool A / $K{=}5$ & 10/12 & 0.32 & 9/12 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cinelli--Hazlett sensitivity comparison: full pool vs.\\ capability-matched Pool~A. RV $>$ $\\eta$: conditions where $K_{\\mathrm{eff}}$'s robustness value exceeds the known $\\eta_{\\max}$ confound benchmark. Pool~A's reduced collinearity ($r{=}0.50$ vs.\\ $0.81$ at $K{=}5$) increases the fraction of robust conditions from 1/12 to 2/12 at $K{=}3$ and from 3/12 to 10/12 at $K{=}5$, with the largest gains at $K{=}5$ where both benchmarks improve equally (ARC 5/6, MMLU 5/6).}\n\\label{tab:sensitivity_poolA}\n\\end{table}\n\nAt $K{=}5$, Pool~A RV exceeds the $\\eta_{\\max}$ confound in 10/12 conditions (ARC 5/6, MMLU 5/6; the two failures are both sycophancy). The improvement from full-pool 3/12 to Pool~A 10/12 demonstrates that reducing collinearity substantially separates $K_{\\mathrm{eff}}$'s signal from capability variance, though full causal identification would require training-based diversity control.\n\n\\section{Epsilon Sensitivity Analysis}\n\\label{app:epsilon}\n\nThe log-log specification (Equation~\\ref{eq:regression}) uses $\\epsilon{=}10^{-6}$ to handle zero ASR values. We assess sensitivity by comparing coefficients across $\\epsilon \\in \\{10^{-3}, 10^{-6}, 10^{-9}\\}$. Zero ASR rates are low on MMLU ($<$1\\% of panels across conditions) but can reach 38--40\\% on ARC for authority bias and sycophancy at $K{=}7$. Coefficient magnitudes show moderate sensitivity to $\\epsilon$ at $K{=}3$ (maximum $\\Delta\\beta_{\\mathrm{std}} = 0.10$ between $\\epsilon{=}10^{-6}$ and $\\epsilon{=}10^{-9}$, with three conditions exhibiting $K_{\\mathrm{eff}}$ sign changes), reflecting the influence of zero-ASR panels on the log transformation. At $K{=}5$, all $K_{\\mathrm{eff}}$ coefficient directions are preserved across $\\epsilon$ values (maximum $\\Delta\\beta_{\\mathrm{std}} = 0.073$ between $\\epsilon{=}10^{-6}$ and $\\epsilon{=}10^{-9}$, all $p < 0.005$), confirming that the predictor shift finding is robust to this modeling choice. The fractional logit specification (\\S\\ref{sec:experiments}), which avoids the log+$\\epsilon$ transformation entirely, provides 98.6\\% directional concordance with the main OLS results (71/72 direction matches) (Appendix~\\ref{app:robustness_checks}).\n\n\\section{Temperature Sensitivity Pilot}\n\\label{app:temperature}\n\nWe evaluate $K_{\\mathrm{eff}}$ stability across decoding temperatures $t \\in \\{0.0, 0.3, 0.7, 1.0\\}$ using a 3-model pilot (GPT-4.1-nano, Gemini-3.5-Flash, Claude-3-Haiku; 300 clean samples per benchmark, 3 repeats). The maximum $K_{\\mathrm{eff}}$ variation across all four temperatures is $\\Delta < 0.034$ (MMLU: 0.033, ARC: 0.027), confirming that decoding randomness does not meaningfully perturb pairwise MI structure. Clean $K_{\\mathrm{eff}}$ computation is thus robust to temperature variation within the range used by standard API configurations.\n\n\\section{$K_{\\mathrm{eff}}$ Distribution Statistics}\n\\label{app:keff_dist}\n\nTable~\\ref{tab:keff_dist} summarizes the distribution of $K_{\\mathrm{eff}}$ across panel sizes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Panels} & \\textbf{Mean (SD)} & \\textbf{Range} \\\\\n\\midrule\n3 & 455     & 2.18 (0.30) & [1.47, 2.80] \\\\\n5 & 3{,}003 & 3.35 (0.42) & [2.16, 4.30] \\\\\n7 & 6{,}435 & 4.53 (0.47) & [2.97, 5.55] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{$K_{\\mathrm{eff}}$ distribution across panel sizes. Mean $K_{\\mathrm{eff}}$ increases approximately linearly with $K$ but remains below the theoretical maximum ($K_{\\mathrm{eff}} = K$ for fully independent judges), reflecting non-zero inter-judge correlations.}\n\\label{tab:keff_dist}\n\\end{table}\n\n$K_{\\mathrm{eff}}$ exhibits sufficient variance at each $K$ for regression analysis (coefficient of variation 10--14\\%), with no floor or ceiling effects that would compress the predictor range.\n\n\\section{Power Analysis Across Panel Sizes}\n\\label{app:power_analysis}\n\nTable~\\ref{tab:mde} reports minimum detectable effect sizes (MDE at 80\\% power) under wild cluster bootstrap for each $K$. The sharp decrease in MDE from $K{=}3$ to $K{=}5$ (0.144 to 0.048) reflects both increased sample size ($455 \\to 3{,}003$ panels) and more clusters per position. $K_{\\mathrm{eff}}$'s partial significance at $K{=}3$ (4/12) is consistent with moderate power at this sample size; the 10/12 significance at $K{=}5$ is not type~I error inflation, as the design can detect effects as small as 0.048 SD.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Panels} & \\textbf{MDE ($\\beta_{\\mathrm{std}}$)} & \\textbf{$K_{\\mathrm{eff}}$ sig} \\\\\n\\midrule\n3 & 455     & 0.144 & 4/12 \\\\\n5 & 3{,}003 & 0.048 & 10/12 \\\\\n7 & 6{,}435 & 0.036 & 9/12 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Minimum detectable effect size (80\\% power, 1{,}000 simulations, wild cluster bootstrap) by panel size. MDE decreases approximately as $1/\\sqrt{N}$, confirming that $K{=}5$/$K{=}7$ significance reflects genuine effects rather than inflated type~I error.}\n\\label{tab:mde}\n\\end{table}\n\n\\section{Alternative Diversity Measures}\n\\label{app:alt_diversity}\n\nWe compare $K_{\\mathrm{eff}}$ against three classical ensemble diversity measures using the same OLS specification (Equation~\\ref{eq:regression}) with FDR correction across 12 conditions pooled over $K$ values.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Measure} & \\textbf{Sig} & \\textbf{Dir.} & \\textbf{$|\\bar{\\beta}_{\\mathrm{std}}|$} & $\\boldsymbol{\\rho}$ \\textbf{w/} $\\boldsymbol{K_{\\mathrm{eff}}}$ \\\\\n\\midrule\n$Q$-statistic    & 9/12  & 6+/3$-$ & 0.251 & 0.599 \\\\\nDisagreement     & 11/12 & 11+/0$-$ & 0.481 & 0.934 \\\\\n$\\kappa$-diversity & 11/12 & 11+/0$-$ & 0.497 & 0.978 \\\\\n\\addlinespace\n$K_{\\mathrm{eff}}$ (ref.) & 12/12 & 12+/0$-$ & 0.430 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\\bar{\\beta}_{\\mathrm{std}}|$: mean absolute standardized coefficient. $\\rho$: Pearson correlation with $K_{\\mathrm{eff}}$.}\n\\label{tab:alt_diversity}\n\\end{table}\n\n$K_{\\mathrm{eff}}$ and $\\kappa$-diversity \\citep{kuncheva2003measures} are near-equivalent ($\\rho{=}0.978$), with comparable significance counts (12/12 vs.\\ 11/12) and effect sizes (0.430 vs.\\ 0.497). Disagreement rate achieves similar predictive power ($\\rho{=}0.934$, 11/12). The $Q$-statistic is the weakest predictor (9/12, $|\\bar{\\beta}_{\\mathrm{std}}|{=}0.251$), consistent with its known insensitivity to the type of error correlation that is associated with panel vulnerability \\citep{kuncheva2003measures}. $K_{\\mathrm{eff}}$'s advantage over these alternatives is not predictive power but interpretability: it quantifies the number of effective independent channels in the panel, connecting directly to the information-theoretic foundation of panel aggregation (\\S\\ref{sec:experiments}).\n\n\\section{$\\kappa$-Diversity Predictor Shift Comparison}\n\\label{app:kappa_regime}\n\nTo test whether the predictor shift (\\S\\ref{sec:cross_k}) is specific to $K_{\\mathrm{eff}}$ or a generic property of diversity measures, we repeat the wild cluster bootstrap analysis replacing $K_{\\mathrm{eff}}$ with $\\kappa$-diversity ($1 - \\bar{\\kappa}$, where $\\bar{\\kappa}$ is the mean pairwise Cohen's $\\kappa$ on clean winner labels; $\\rho{=}0.978$ with $K_{\\mathrm{eff}}$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{$K_{\\mathrm{eff}}$}} & \\multicolumn{2}{c}{\\textbf{$\\kappa$-diversity}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n$\\boldsymbol{K}$ & \\textbf{div.\\ sig} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & \\textbf{div.\\ sig} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} \\\\\n\\midrule\n3 & 4/12  & 3/12 & 8/12 & 1/12 \\\\\n5 & 10/12 & 0/12 & 7/12 & 4/12 \\\\\n7 & 9/12  & 0/12 & 6/12 & 1/12 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Predictor shift comparison: $K_{\\mathrm{eff}}$ vs.\\ $\\kappa$-diversity across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). $K_{\\mathrm{eff}}$ exhibits a clear shift ($4 \\to 10 \\to 9$); $\\kappa$-diversity significance decreases monotonically ($8 \\to 7 \\to 6$), showing no predictor shift.}\n\\label{tab:kappa_regime}\n\\end{table}\n\n$\\kappa$-diversity is a stronger predictor than $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12), consistent with its larger mean effect size ($|\\bar{\\beta}_{\\mathrm{std}}|{=}0.497$ vs.\\ 0.430; Table~\\ref{tab:alt_diversity}). However, $\\kappa$-diversity shows no predictor shift: its significance \\emph{decreases} from $K{=}3$ to $K{=}7$ ($8 \\to 7 \\to 6$), the opposite of $K_{\\mathrm{eff}}$'s pattern ($4 \\to 10 \\to 9$). Furthermore, under $\\kappa$-diversity, $\\eta_{\\max}$ retains significance at $K{=}5$ (4/12), whereas under $K_{\\mathrm{eff}}$ it drops to 0/12. The predictor shift---co-determination at $K{=}3$ transitioning to diversity dominance at $K{\\geq}5$---is thus specific to $K_{\\mathrm{eff}}$'s MI-based formulation, which captures effective judge independence rather than pairwise label agreement.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 66,
+                  "oldLines": 7,
+                  "newStart": 66,
+                  "newLines": 7,
+                  "lines": [
+                    " \\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}",
+                    " \\label{app:aggregation_k5}",
+                    " ",
+                    "-Table~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. Bayesian calibration neutralizes both predictors ($\\eta_{\\max}$ 1/12, $K_{\\mathrm{eff}}$ 0/12, $\\bar{R}^2{=}0.081$), contrasting with majority vote where $K_{\\mathrm{eff}}$ dominates (10/12). Threshold voting retains high predictability ($\\bar{R}^2{=}0.506$) with both predictors significant (6/12 and 10/12). The Bayesian neutralization at $K{=}5$ extends the predictability reduction observed at $K{=}3$ (Table~\\ref{tab:aggregation}): calibrated confusion matrices effectively remove both individual weakness and structural diversity as predictive channels.",
+                    "+Table~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. All four methods converge to identical $K_{\\mathrm{eff}}$ significance (7/12), with threshold voting retaining the highest predictability ($\\bar{R}^2{=}0.408$). Bayesian calibration reduces overall $\\bar{R}^2$ (0.166 vs.\\ 0.285 for majority vote) but does not neutralize $K_{\\mathrm{eff}}$ as a predictor at this panel size, contrasting with the stronger attenuation observed at $K{=}3$ (Table~\\ref{tab:aggregation}).",
+                    " ",
+                    " \\begin{table}[h]",
+                    " \\centering"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X2eErVPjwsou4KmD98h5SG",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+                "old_string": "Majority   & 0/12  & 10/12 & 0.256 \\\\\nWeighted   & 1/12  & 9/12  & 0.249 \\\\\nThreshold  & 6/12  & 10/12 & 0.506 \\\\\nBayesian   & 1/12  & 0/12  & 0.081 \\\\",
+                "new_string": "Majority   & 2/12  & 7/12 & 0.285 \\\\\nWeighted   & 2/12  & 7/12  & 0.275 \\\\\nThreshold  & 3/12  & 7/12 & 0.408 \\\\\nBayesian   & 2/12  & 7/12  & 0.166 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "6dfa5904-595b-4ddd-a636-239db26114a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FBcDi3reBFDGJPxaoWjqGW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1009,
+                "cache_read_input_tokens": 125056,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1009
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-24T06:14:49.525Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X2eErVPjwsou4KmD98h5SG",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd70eb47-af83-401d-9516-6468f3e955ce",
+            "uuid": "c6376aba-f311-4cb6-ad78-8b419476698f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+              "oldString": "Majority   & 0/12  & 10/12 & 0.256 \\\\\nWeighted   & 1/12  & 9/12  & 0.249 \\\\\nThreshold  & 6/12  & 10/12 & 0.506 \\\\\nBayesian   & 1/12  & 0/12  & 0.081 \\\\",
+              "newString": "Majority   & 2/12  & 7/12 & 0.285 \\\\\nWeighted   & 2/12  & 7/12  & 0.275 \\\\\nThreshold  & 3/12  & 7/12 & 0.408 \\\\\nBayesian   & 2/12  & 7/12  & 0.166 \\\\",
+              "originalFile": "\\appendix\n\n\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n\\label{app:proof}\n\nThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n\\begin{align}\n\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n\\end{align}\nSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n\n\\section{Robustness Correction Methods}\n\\label{app:robustness_methods}\n\nThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n\n\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n\n\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effects model with a random intercept for the judge occupying that position, estimating $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ as fixed effects. The reported $p$-value for each coefficient is the maximum across the three models.\n\n\\paragraph{Wild Cluster Bootstrap.} We perform $B{=}9{,}999$ bootstrap resamples using Rademacher weights, clustering by each of the three panel positions in turn and taking the maximum $p$-value across positions (the most conservative aggregation). This approach avoids distributional assumptions on the cluster structure.\n\n\\section{Extended Analysis}\n\\label{app:extended_analysis}\n\n\\subsection{BFT Reversal Mechanism: Detailed Evidence}\n\\label{app:bft_reversal}\n\nUnder standard OLS, the regression results (Table~\\ref{tab:dominance}) show $\\eta_{\\max}$ significant in 10 of 12 conditions and $K_{\\mathrm{eff}}$ positively associated with ASR in all 12. Non-independence correction attenuates both predictors: under wild cluster bootstrap, $\\eta_{\\max}$ retains 3/12 and $K_{\\mathrm{eff}}$ retains 4/12, with $K_{\\mathrm{eff}}$ slightly ahead. The directional pattern (all $K_{\\mathrm{eff}}$ point estimates positive) persists uniformly. The random-fault contrast (\\S\\ref{sec:rf_contrast}) sharpens this: under random faults, $K_{\\mathrm{eff}}$'s positive association with panel error survives all corrections (2/2 conditions, $R^2 = 0.73$--$0.81$), indicating a genuine relationship whose statistical confidence attenuates under adaptive attack (4/12 after correction).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_gam_keff_split.pdf}\n\\caption{GAM bootstrap $K_{\\mathrm{eff}}$ effect direction at $K{=}3$ ($B{=}9999$). All 12 conditions show positive $K_{\\mathrm{eff}}$ direction (88.9--100\\% bootstrap rate). The Kruskal--Wallis test finds no significant magnitude difference between targeted and shared-bias attacks ($p{=}0.200$).}\n\\label{fig:gam_split}\n\\end{figure}\n\nUnder corrected data (V2), all 12 $K_{\\mathrm{eff}}$ OLS coefficients are positive. The previously reported negative ARC $\\times$ sycophancy coefficient ($\\hat{\\beta}_{\\mathrm{std}} = -0.192$) was an artifact of error-as-tie handling; after correction, it becomes positive ($\\hat{\\beta}_{\\mathrm{std}} = +0.257$). GAM bootstrap confirms the uniform positive direction: 12/12 conditions at $K{=}3$ (88.9--100\\% positive rate) and 12/12 at $K{=}5$ (100\\%).\n\n\\subsection{Diversity--Capability Tradeoff}\n\\label{app:diversity_capability}\n\nThe $r = 0.70$--$0.81$ correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ ($K{=}3$ to $K{=}5$) reflects a structural feature of the current LLM ecosystem: maximizing panel diversity requires sampling across capability tiers, which systematically introduces less capable and therefore more vulnerable judges. The structural correlation is unaffected by SE correction; it is a property of the model ecosystem, not an artifact of panel overlap. However, the high confound combined with fragile independent significance means that observational regression cannot reliably disentangle diversity's causal contribution from the capability deficit that co-occurs with it.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange diamonds, $r{=}0.50$, 126 panels) shows reduced confounding.}\n\\label{fig:keff_eta_scatter}\n\\end{figure}\n\nFamily-level labels provide indirect evidence that capability proximity matters more than taxonomic grouping: family membership is not a significant predictor of panel vulnerability ($p = 0.179$ on MMLU, $p = 0.385$ on ARC), consistent with models from the same provider exhibiting heterogeneous vulnerability profiles that vary by capability tier rather than by shared architecture \\citep{kuncheva2003measures}.\n\n\\subsection{Aggregation Mechanism Details}\n\\label{app:aggregation_details}\n\nBayesian calibration attenuates $K_{\\mathrm{eff}}$ significance (5+/1$-$) and reduces overall predictability ($R^2{=}0.087$), but $\\eta_{\\max}$ persists (9/12 under OLS), providing partial defense. The mechanism is calibrated reliability weighting: by estimating each judge's confusion matrix on clean data, Bayesian aggregation downweights weak judges, reducing the diversity channel while the individual weakness channel remains active. Threshold voting amplifies both channels because any single dissenting judge vetoes the panel decision, making compositional factors highly predictive of attack success ($R^2{=}0.829$). Bayesian calibration requires a clean accuracy prior, and an adaptive attacker aware of this calibration could target the prior itself \\citep{tambe2011security}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\n\\caption{Distribution of $K_{\\mathrm{eff}}$ coefficients across aggregation methods. Majority and weighted voting show uniformly positive $K_{\\mathrm{eff}}$ direction (12+/0$-$). Bayesian calibration reduces overall predictability ($R^2{=}0.087$) with predominantly positive direction (5+/1$-$).}\n\\label{fig:aggregation}\n\\end{figure}\n\n\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n\\label{app:aggregation_k5}\n\nTable~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. All four methods converge to identical $K_{\\mathrm{eff}}$ significance (7/12), with threshold voting retaining the highest predictability ($\\bar{R}^2{=}0.408$). Bayesian calibration reduces overall $\\bar{R}^2$ (0.166 vs.\\ 0.285 for majority vote) but does not neutralize $K_{\\mathrm{eff}}$ as a predictor at this panel size, contrasting with the stronger attenuation observed at $K{=}3$ (Table~\\ref{tab:aggregation}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n\\midrule\nMajority   & 0/12  & 10/12 & 0.256 \\\\\nWeighted   & 1/12  & 9/12  & 0.249 \\\\\nThreshold  & 6/12  & 10/12 & 0.506 \\\\\nBayesian   & 1/12  & 0/12  & 0.081 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). Bayesian calibration neutralizes both predictors, while majority vote preserves the $K_{\\mathrm{eff}}$-dominant predictor shift. Compare Table~\\ref{tab:aggregation} ($K{=}3$).}\n\\label{tab:aggregation_k5}\n\\end{table}\n\n\\subsection{Metric Robustness Under Partial Panel Information}\n\\label{app:oracle}\n\nThe main analysis computes $\\eta_{\\max}$ with full knowledge of panel composition (all three judges known). In deployment, a practitioner selecting or auditing a panel may know only a subset of the constituent judges. We test whether $\\eta_{\\max}$ retains predictive power under such partial information by recomputing it from two of the three panel members: for each panel, we cycle through all $\\binom{3}{1} = 3$ leave-one-out masks, compute $\\eta_{\\max}$ from the two known judges, and average the regression estimates across masking scenarios.\n\nUnder the most conservative inference (partial information + clustered SE), $\\eta_{\\max}$ remains the sole significant predictor with $\\hat{\\beta}_{\\mathrm{std}} = 0.589$, achieving significance in 12/12 conditions, stronger than the oracle baseline (4/12 under clustered SE). $K_{\\mathrm{eff}}$ loses all predictive power (0/12). The averaging over masking scenarios smooths estimation noise inherent in the three-judge oracle computation, strengthening the $\\eta_{\\max}$ signal. This demonstrates that $\\eta_{\\max}$ computed from partial panel information is robust to incomplete composition knowledge and retains (indeed improves) its predictive power for panel ASR.\n\n\\section{Panel Selection Strategy Comparison}\n\\label{app:panel_selection}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig4_panel_design.pdf}\n\\caption{Panel attack success rate under three selection strategies. $\\min(\\eta_{\\max})$ achieves lowest ASR in 12/12 conditions, confirming that robustness-first selection dominates diversity-maximizing strategies.}\n\\label{fig:panel_design}\n\\end{figure}\n\nFigure~\\ref{fig:panel_design} compares three panel selection strategies: $\\min(\\eta_{\\max})$ (select the panel minimizing weakest-judge vulnerability), random selection, and $\\max(K_{\\mathrm{eff}})$ (maximize diversity). The $\\min(\\eta_{\\max})$ strategy achieves the lowest ASR in all 12 conditions, consistent with the weakest-link dominance documented in \\S\\ref{sec:dominance}.\n\n\\section{Clustered Standard Error Analysis}\n\\label{app:forest_plot}\n\nUnder clustered standard errors (clustering on the $K$ judge positions), $\\eta_{\\max}$ retains significance in 4/12 conditions while $K_{\\mathrm{eff}}$ achieves significance in 0/12. This contrasts with OLS ($\\eta_{\\max}$ 10/12, $K_{\\mathrm{eff}}$ 12/12) and wild cluster bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), illustrating how the choice of inference method modulates apparent significance at $K{=}3$ while coefficient direction remains uniformly positive for $K_{\\mathrm{eff}}$ across all methods (Figure~\\ref{fig:robustness}).\n\n\\section{Robustness Checks: Subsampling and Specification}\n\\label{app:robustness_checks}\n\nTable~\\ref{tab:robustness_checks} summarizes regression results across model subsets and alternative specifications at $K{=}5$, testing whether the predictor shift is robust to collinearity reduction and specification choice.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Subset / Method} & $\\boldsymbol{r}$ & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Trans.} \\\\\n\\midrule\nFull bootstrap       & 0.81 & 0/12 & 10/12 & \\checkmark \\\\\nAPI-only (9) clust.  & 0.85 & 8/12 & 3/12 & --- \\\\\nCap-matched A (5A+4L) & 0.50 & ---  & 9/12 & \\checkmark\\checkmark \\\\\nCap-matched B (6A+3L) & 0.73 & ---  & 2/12 & --- \\\\\nFractional logit     & 0.81 & 4/12 & 11/12 & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Predictor shift robustness at $K{=}5$ across model subsets and specifications. $r$: correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$. $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ columns show FDR-significant counts out of 12 conditions. Trans.: whether $K_{\\mathrm{eff}}$ dominates $\\eta_{\\max}$. API-only models ($r{=}0.85$, VIF${=}4.4$) show partially collinear predictors; capability-matched subsamples ($r{=}0.50$) strengthen the shift. Fractional logit \\citep{papke1996econometric} confirms OLS patterns with 98.6\\% directional agreement (71/72 direction matches; the single discordance is $\\eta_{\\max}$ at $K{=}7$ for ARC $\\times$ score manipulation).}\n\\label{tab:robustness_checks}\n\\end{table}\n\nThe API-only subset ($r{=}0.85$, VIF${=}4.4$) demonstrates that elevated collinearity between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ partially inflates standard errors: both predictors achieve moderate significance but neither dominates, and the predictor shift does not replicate. Breaking collinearity through capability-matched subsampling (pool~A, $r{=}0.50$) strengthens $K_{\\mathrm{eff}}$'s emergence to 9/12, comparable to the full-pool 10/12. Pool~B ($r{=}0.73$) falls near the decorrelation threshold, and the shift weakens accordingly. Random 9-model subsampling (1{,}000 trials) confirms an inverted-U: $K_{\\mathrm{eff}}$ dominance rate peaks when the subsample includes 3--4 local models (maximizing capability spread) and drops when the pool is too homogeneous (Appendix~\\ref{app:random_subsample}).\n\n\\section{Random Subsample Analysis}\n\\label{app:random_subsample}\n\nTo test whether the predictor shift depends on model pool composition, we randomly sample 9 of 15 models (1{,}000 trials), construct all $\\binom{9}{5}$ panels, and run the bootstrap analysis at $K{=}5$. We stratify by the number of local models ($n_{\\mathrm{local}} \\in \\{0, \\ldots, 6\\}$) in each subsample.\n\nUnder clustered standard errors, $K_{\\mathrm{eff}}$ is the dominant predictor in 51.4\\% of subsamples (mean significance 1.85/12), with an inverted-U as a function of $n_{\\mathrm{local}}$: subsamples with 3--4 local models (maximizing capability range) achieve the highest $K_{\\mathrm{eff}}$ significance rate, while all-API ($n_{\\mathrm{local}}{=}0$) and heavily-local ($n_{\\mathrm{local}}{\\geq}5$) subsamples show reduced detection. Significance is attenuated relative to the full pool by smaller sample sizes (126 vs.\\ 3{,}003 panels at $K{=}5$), but the shift direction holds in the majority of subsamples. This confirms that the shift's detectability depends on capability diversity in the model pool rather than pool size per se.\n\n\\section{Attacked $K_{\\mathrm{eff}}$ Stability}\n\\label{app:attacked_keff}\n\n$K_{\\mathrm{eff}}$ is computed from clean (unattacked) pairwise MI (\\S\\ref{sec:experiments}), but used to predict vulnerability under attack. We verify this assumption by recomputing MI from judge outputs under each attack type and comparing clean vs.\\ attacked $K_{\\mathrm{eff}}$ via Spearman rank correlation across all panels.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Attack} & \\textbf{MMLU $\\rho$} & \\textbf{ARC $\\rho$} \\\\\n\\midrule\nScore manipulation & 0.98 & 0.99 \\\\\nAuthority bias     & 0.95 & 0.97 \\\\\nSycophancy         & 0.91 & 0.92 \\\\\nVerbosity bias     & 0.91 & 0.92 \\\\\nPrompt injection   & 0.63 & 0.60 \\\\\nPosition bias      & 0.60 & 0.08 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Spearman rank correlation between clean and attacked $K_{\\mathrm{eff}}$ across 455 panels ($K{=}3$). Four attack types preserve MI structure ($\\rho{\\geq}0.91$); prompt injection shows moderate perturbation ($\\rho{\\approx}0.60$--$0.63$); position bias substantially disrupts pairwise dependencies.}\n\\label{tab:attacked_keff}\n\\end{table}\n\nFour attack types (score manipulation, authority bias, sycophancy, verbosity bias) preserve MI structure with $\\rho{\\geq}0.91$ on both benchmarks, validating the use of clean $K_{\\mathrm{eff}}$ as a predictor. Prompt injection shows moderate perturbation ($\\rho{\\approx}0.60$--$0.63$), consistent with its mechanism of overriding evaluation instructions, which can alter pairwise agreement patterns. Position bias substantially disrupts MI structure ($\\rho{=}0.08$ on ARC, $p{=}0.10$), consistent with its anomalous regression behavior in Table~\\ref{tab:dominance} (sole non-significant $\\eta_{\\max}$ condition) and suggesting that positional reordering fundamentally changes inter-judge dependence rather than merely introducing noise.\n\n\\section{Cinelli--Hazlett Sensitivity Analysis}\n\\label{app:sensitivity}\n\nWe apply the Cinelli--Hazlett omitted variable bias framework to quantify how robust $K_{\\mathrm{eff}}$'s coefficient is to unobserved confounders. For each of the 36 conditions ($3K \\times 2$ benchmarks $\\times$ $6$ attacks), we compute the robustness value (RV): the minimum strength an unobserved confounder must have, in terms of partial $R^2$ with both treatment and outcome, to reduce $K_{\\mathrm{eff}}$'s coefficient to zero.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{rcllcccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Data} & \\textbf{Attack} & \\textbf{RV} & $\\boldsymbol{\\eta}$ $\\boldsymbol{R^2_{\\mathrm{tr}}}$ & $\\boldsymbol{\\eta}$ $\\boldsymbol{R^2_{\\mathrm{out}}}$ & \\textbf{Exc.} \\\\\n\\midrule\n3 & MMLU & Prompt inj.    & 0.419 & 0.587 & 0.059 & -- \\\\\n3 & MMLU & Sycophancy     & 0.412 & 0.347 & 0.098 & \\checkmark \\\\\n3 & MMLU & Score manip.   & 0.410 & 0.735 & 0.002 & -- \\\\\n3 & MMLU & Verbosity      & 0.330 & 0.342 & 0.203 & -- \\\\\n3 & MMLU & Position bias  & 0.291 & 0.446 & 0.043 & -- \\\\\n3 & MMLU & Authority bias & 0.371 & 0.493 & 0.019 & -- \\\\\n3 & ARC  & Prompt inj.    & 0.303 & 0.654 & 0.028 & -- \\\\\n3 & ARC  & Sycophancy     & 0.105 & 0.629 & 0.129 & -- \\\\\n3 & ARC  & Score manip.   & 0.273 & 0.838 & 0.003 & -- \\\\\n3 & ARC  & Verbosity      & 0.259 & 0.658 & 0.047 & -- \\\\\n3 & ARC  & Position bias  & 0.265 & 0.850 & 0.001 & -- \\\\\n3 & ARC  & Authority bias & 0.224 & 0.582 & 0.056 & -- \\\\\n\\addlinespace\n5 & MMLU & Prompt inj.    & 0.455 & 0.379 & 0.176 & \\checkmark \\\\\n5 & MMLU & Sycophancy     & 0.303 & 0.106 & 0.135 & \\checkmark \\\\\n5 & MMLU & Score manip.   & 0.321 & 0.597 & 0.003 & -- \\\\\n5 & MMLU & Verbosity      & 0.235 & 0.120 & 0.206 & \\checkmark \\\\\n5 & MMLU & Position bias  & 0.131 & 0.272 & 0.090 & -- \\\\\n5 & MMLU & Authority bias & 0.064 & 0.277 & 0.031 & -- \\\\\n5 & ARC  & Prompt inj.    & 0.318 & 0.696 & 0.001 & -- \\\\\n5 & ARC  & Sycophancy     & 0.103 & 0.555 & 0.063 & -- \\\\\n5 & ARC  & Score manip.   & 0.196 & 0.800 & ${<}0.001$ & -- \\\\\n5 & ARC  & Verbosity      & 0.135 & 0.642 & 0.034 & -- \\\\\n5 & ARC  & Position bias  & 0.400 & 0.778 & 0.040 & -- \\\\\n5 & ARC  & Authority bias & 0.181 & 0.509 & 0.012 & -- \\\\\n\\addlinespace\n7 & MMLU & Prompt inj.    & 0.522 & 0.289 & 0.126 & \\checkmark \\\\\n7 & MMLU & Sycophancy     & 0.301 & 0.077 & 0.078 & \\checkmark \\\\\n7 & MMLU & Score manip.   & 0.393 & 0.515 & 0.004 & -- \\\\\n7 & MMLU & Verbosity      & 0.205 & 0.078 & 0.195 & \\checkmark \\\\\n7 & MMLU & Position bias  & 0.207 & 0.179 & 0.073 & \\checkmark \\\\\n7 & MMLU & Authority bias & 0.005 & 0.200 & 0.011 & -- \\\\\n7 & ARC  & Prompt inj.    & 0.355 & 0.629 & 0.004 & -- \\\\\n7 & ARC  & Sycophancy     & 0.117 & 0.535 & 0.065 & -- \\\\\n7 & ARC  & Score manip.   & 0.165 & 0.717 & 0.001 & -- \\\\\n7 & ARC  & Verbosity      & 0.165 & 0.599 & 0.028 & -- \\\\\n7 & ARC  & Position bias  & 0.422 & 0.705 & 0.046 & -- \\\\\n7 & ARC  & Authority bias & 0.179 & 0.514 & 0.003 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cinelli--Hazlett sensitivity analysis for $K_{\\mathrm{eff}}$'s coefficient across 36 conditions. RV: robustness value (minimum partial $R^2$ an unobserved confounder must have with both $K_{\\mathrm{eff}}$ and ASR to nullify the coefficient). $\\eta$ $R^2_{\\mathrm{tr}}$/$R^2_{\\mathrm{out}}$: partial $R^2$ of $\\eta_{\\max}$ with $K_{\\mathrm{eff}}$ (treatment) and ASR (outcome). Exc.: \\checkmark\\ if RV exceeds $\\eta_{\\max}$'s partial $R^2$ with treatment, indicating $K_{\\mathrm{eff}}$'s coefficient is robust to the known capability confound. RV exceeds $\\eta_{\\max}$ in 8/36 conditions ($K{=}3$: 1/12, $K{=}5$: 3/12, $K{=}7$: 4/12).}\n\\label{tab:sensitivity}\n\\end{table}\n\nRV ranges from 0.005 to 0.52 across the 36 conditions (median by $K$: 0.30 at $K{=}3$, 0.22 at $K{=}5$, 0.21 at $K{=}7$), revealing heterogeneous robustness: some conditions show $K_{\\mathrm{eff}}$ coefficients robust to strong confounders (e.g., $K{=}7$ MMLU prompt injection, RV${=}0.52$), while others are fragile (e.g., $K{=}7$ MMLU authority bias, RV${=}0.005$). The known $\\eta_{\\max}$ confound exceeds RV in 28/36 conditions ($K{=}3$: 11/12, $K{=}5$: 9/12, $K{=}7$: 8/12). The fraction of conditions where $K_{\\mathrm{eff}}$ is robust to the $\\eta_{\\max}$ confound increases with panel size (1/12 $\\to$ 3/12 $\\to$ 4/12), paralleling the predictor shift documented in \\S\\ref{sec:cross_k}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_sensitivity_contour_K5.png}\n\\caption{Cinelli--Hazlett sensitivity contour plot at $K{=}5$ (representative). $x$-axis: confounder's partial $R^2$ with treatment ($K_{\\mathrm{eff}}$); $y$-axis: confounder's partial $R^2$ with outcome (ASR). Contour lines show the adjusted $K_{\\mathrm{eff}}$ coefficient under hypothetical confounders of varying strength. The diamond marks the known $\\eta_{\\max}$ confound benchmark; conditions where the benchmark falls inside the zero-contour indicate that the $\\eta_{\\max}$ confound alone could explain away $K_{\\mathrm{eff}}$'s effect.}\n\\label{fig:sensitivity_contour}\n\\end{figure}\n\n\\section{Cross-Benchmark Prediction Robustness}\n\\label{app:cross_benchmark}\n\nTo test whether the diversity--vulnerability association reflects structural panel properties rather than benchmark-specific artifacts, we use $K_{\\mathrm{eff}}$ computed from one benchmark's pairwise MI to predict panel vulnerability on the other. Under wild cluster bootstrap (FDR $\\alpha{=}0.05$), MMLU-derived $K_{\\mathrm{eff}}$ predicts ARC vulnerability in 14/18 conditions across $K \\in \\{3, 5, 7\\}$. The reverse direction (ARC$\\to$MMLU) achieves 10/18, with attenuation concentrated at $K{\\geq}5$ (4/12), consistent with ARC's binary format producing lower MI discriminability between judge pairs. Cross-benchmark $K_{\\mathrm{eff}}$ correlations are $r{\\approx}0.76$--$0.78$, indicating that $K_{\\mathrm{eff}}$ primarily captures panel-level compositional structure rather than benchmark-specific judge interactions. The asymmetry between prediction directions further suggests that MI estimated from richer response distributions (MMLU's four-way choice) yields a more transferable diversity measure.\n\n\\section{Pool A Cinelli--Hazlett Sensitivity}\n\\label{app:sensitivity_poolA}\n\nTo test whether reducing the $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ collinearity strengthens $K_{\\mathrm{eff}}$'s independent signal, we repeat the Cinelli--Hazlett analysis on the capability-matched Pool~A subsample (9 models, $r{=}0.50$, 84 panels at $K{=}3$, 126 at $K{=}5$). Table~\\ref{tab:sensitivity_poolA} compares the full-pool results with Pool~A.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Pool / $K$} & \\textbf{RV $>$ $\\eta$} & \\textbf{Median RV} & \\textbf{$K_{\\mathrm{eff}}$ sig} \\\\\n\\midrule\nFull / $K{=}3$ & 1/12 & 0.30 & 1/12 \\\\\nFull / $K{=}5$ & 3/12 & 0.22 & 10/12 \\\\\nPool A / $K{=}3$ & 2/12 & 0.25 & --- \\\\\nPool A / $K{=}5$ & 10/12 & 0.32 & 9/12 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cinelli--Hazlett sensitivity comparison: full pool vs.\\ capability-matched Pool~A. RV $>$ $\\eta$: conditions where $K_{\\mathrm{eff}}$'s robustness value exceeds the known $\\eta_{\\max}$ confound benchmark. Pool~A's reduced collinearity ($r{=}0.50$ vs.\\ $0.81$ at $K{=}5$) increases the fraction of robust conditions from 1/12 to 2/12 at $K{=}3$ and from 3/12 to 10/12 at $K{=}5$, with the largest gains at $K{=}5$ where both benchmarks improve equally (ARC 5/6, MMLU 5/6).}\n\\label{tab:sensitivity_poolA}\n\\end{table}\n\nAt $K{=}5$, Pool~A RV exceeds the $\\eta_{\\max}$ confound in 10/12 conditions (ARC 5/6, MMLU 5/6; the two failures are both sycophancy). The improvement from full-pool 3/12 to Pool~A 10/12 demonstrates that reducing collinearity substantially separates $K_{\\mathrm{eff}}$'s signal from capability variance, though full causal identification would require training-based diversity control.\n\n\\section{Epsilon Sensitivity Analysis}\n\\label{app:epsilon}\n\nThe log-log specification (Equation~\\ref{eq:regression}) uses $\\epsilon{=}10^{-6}$ to handle zero ASR values. We assess sensitivity by comparing coefficients across $\\epsilon \\in \\{10^{-3}, 10^{-6}, 10^{-9}\\}$. Zero ASR rates are low on MMLU ($<$1\\% of panels across conditions) but can reach 38--40\\% on ARC for authority bias and sycophancy at $K{=}7$. Coefficient magnitudes show moderate sensitivity to $\\epsilon$ at $K{=}3$ (maximum $\\Delta\\beta_{\\mathrm{std}} = 0.10$ between $\\epsilon{=}10^{-6}$ and $\\epsilon{=}10^{-9}$, with three conditions exhibiting $K_{\\mathrm{eff}}$ sign changes), reflecting the influence of zero-ASR panels on the log transformation. At $K{=}5$, all $K_{\\mathrm{eff}}$ coefficient directions are preserved across $\\epsilon$ values (maximum $\\Delta\\beta_{\\mathrm{std}} = 0.073$ between $\\epsilon{=}10^{-6}$ and $\\epsilon{=}10^{-9}$, all $p < 0.005$), confirming that the predictor shift finding is robust to this modeling choice. The fractional logit specification (\\S\\ref{sec:experiments}), which avoids the log+$\\epsilon$ transformation entirely, provides 98.6\\% directional concordance with the main OLS results (71/72 direction matches) (Appendix~\\ref{app:robustness_checks}).\n\n\\section{Temperature Sensitivity Pilot}\n\\label{app:temperature}\n\nWe evaluate $K_{\\mathrm{eff}}$ stability across decoding temperatures $t \\in \\{0.0, 0.3, 0.7, 1.0\\}$ using a 3-model pilot (GPT-4.1-nano, Gemini-3.5-Flash, Claude-3-Haiku; 300 clean samples per benchmark, 3 repeats). The maximum $K_{\\mathrm{eff}}$ variation across all four temperatures is $\\Delta < 0.034$ (MMLU: 0.033, ARC: 0.027), confirming that decoding randomness does not meaningfully perturb pairwise MI structure. Clean $K_{\\mathrm{eff}}$ computation is thus robust to temperature variation within the range used by standard API configurations.\n\n\\section{$K_{\\mathrm{eff}}$ Distribution Statistics}\n\\label{app:keff_dist}\n\nTable~\\ref{tab:keff_dist} summarizes the distribution of $K_{\\mathrm{eff}}$ across panel sizes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Panels} & \\textbf{Mean (SD)} & \\textbf{Range} \\\\\n\\midrule\n3 & 455     & 2.18 (0.30) & [1.47, 2.80] \\\\\n5 & 3{,}003 & 3.35 (0.42) & [2.16, 4.30] \\\\\n7 & 6{,}435 & 4.53 (0.47) & [2.97, 5.55] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{$K_{\\mathrm{eff}}$ distribution across panel sizes. Mean $K_{\\mathrm{eff}}$ increases approximately linearly with $K$ but remains below the theoretical maximum ($K_{\\mathrm{eff}} = K$ for fully independent judges), reflecting non-zero inter-judge correlations.}\n\\label{tab:keff_dist}\n\\end{table}\n\n$K_{\\mathrm{eff}}$ exhibits sufficient variance at each $K$ for regression analysis (coefficient of variation 10--14\\%), with no floor or ceiling effects that would compress the predictor range.\n\n\\section{Power Analysis Across Panel Sizes}\n\\label{app:power_analysis}\n\nTable~\\ref{tab:mde} reports minimum detectable effect sizes (MDE at 80\\% power) under wild cluster bootstrap for each $K$. The sharp decrease in MDE from $K{=}3$ to $K{=}5$ (0.144 to 0.048) reflects both increased sample size ($455 \\to 3{,}003$ panels) and more clusters per position. $K_{\\mathrm{eff}}$'s partial significance at $K{=}3$ (4/12) is consistent with moderate power at this sample size; the 10/12 significance at $K{=}5$ is not type~I error inflation, as the design can detect effects as small as 0.048 SD.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Panels} & \\textbf{MDE ($\\beta_{\\mathrm{std}}$)} & \\textbf{$K_{\\mathrm{eff}}$ sig} \\\\\n\\midrule\n3 & 455     & 0.144 & 4/12 \\\\\n5 & 3{,}003 & 0.048 & 10/12 \\\\\n7 & 6{,}435 & 0.036 & 9/12 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Minimum detectable effect size (80\\% power, 1{,}000 simulations, wild cluster bootstrap) by panel size. MDE decreases approximately as $1/\\sqrt{N}$, confirming that $K{=}5$/$K{=}7$ significance reflects genuine effects rather than inflated type~I error.}\n\\label{tab:mde}\n\\end{table}\n\n\\section{Alternative Diversity Measures}\n\\label{app:alt_diversity}\n\nWe compare $K_{\\mathrm{eff}}$ against three classical ensemble diversity measures using the same OLS specification (Equation~\\ref{eq:regression}) with FDR correction across 12 conditions pooled over $K$ values.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Measure} & \\textbf{Sig} & \\textbf{Dir.} & \\textbf{$|\\bar{\\beta}_{\\mathrm{std}}|$} & $\\boldsymbol{\\rho}$ \\textbf{w/} $\\boldsymbol{K_{\\mathrm{eff}}}$ \\\\\n\\midrule\n$Q$-statistic    & 9/12  & 6+/3$-$ & 0.251 & 0.599 \\\\\nDisagreement     & 11/12 & 11+/0$-$ & 0.481 & 0.934 \\\\\n$\\kappa$-diversity & 11/12 & 11+/0$-$ & 0.497 & 0.978 \\\\\n\\addlinespace\n$K_{\\mathrm{eff}}$ (ref.) & 12/12 & 12+/0$-$ & 0.430 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\\bar{\\beta}_{\\mathrm{std}}|$: mean absolute standardized coefficient. $\\rho$: Pearson correlation with $K_{\\mathrm{eff}}$.}\n\\label{tab:alt_diversity}\n\\end{table}\n\n$K_{\\mathrm{eff}}$ and $\\kappa$-diversity \\citep{kuncheva2003measures} are near-equivalent ($\\rho{=}0.978$), with comparable significance counts (12/12 vs.\\ 11/12) and effect sizes (0.430 vs.\\ 0.497). Disagreement rate achieves similar predictive power ($\\rho{=}0.934$, 11/12). The $Q$-statistic is the weakest predictor (9/12, $|\\bar{\\beta}_{\\mathrm{std}}|{=}0.251$), consistent with its known insensitivity to the type of error correlation that is associated with panel vulnerability \\citep{kuncheva2003measures}. $K_{\\mathrm{eff}}$'s advantage over these alternatives is not predictive power but interpretability: it quantifies the number of effective independent channels in the panel, connecting directly to the information-theoretic foundation of panel aggregation (\\S\\ref{sec:experiments}).\n\n\\section{$\\kappa$-Diversity Predictor Shift Comparison}\n\\label{app:kappa_regime}\n\nTo test whether the predictor shift (\\S\\ref{sec:cross_k}) is specific to $K_{\\mathrm{eff}}$ or a generic property of diversity measures, we repeat the wild cluster bootstrap analysis replacing $K_{\\mathrm{eff}}$ with $\\kappa$-diversity ($1 - \\bar{\\kappa}$, where $\\bar{\\kappa}$ is the mean pairwise Cohen's $\\kappa$ on clean winner labels; $\\rho{=}0.978$ with $K_{\\mathrm{eff}}$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{$K_{\\mathrm{eff}}$}} & \\multicolumn{2}{c}{\\textbf{$\\kappa$-diversity}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n$\\boldsymbol{K}$ & \\textbf{div.\\ sig} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & \\textbf{div.\\ sig} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} \\\\\n\\midrule\n3 & 4/12  & 3/12 & 8/12 & 1/12 \\\\\n5 & 10/12 & 0/12 & 7/12 & 4/12 \\\\\n7 & 9/12  & 0/12 & 6/12 & 1/12 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Predictor shift comparison: $K_{\\mathrm{eff}}$ vs.\\ $\\kappa$-diversity across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). $K_{\\mathrm{eff}}$ exhibits a clear shift ($4 \\to 10 \\to 9$); $\\kappa$-diversity significance decreases monotonically ($8 \\to 7 \\to 6$), showing no predictor shift.}\n\\label{tab:kappa_regime}\n\\end{table}\n\n$\\kappa$-diversity is a stronger predictor than $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12), consistent with its larger mean effect size ($|\\bar{\\beta}_{\\mathrm{std}}|{=}0.497$ vs.\\ 0.430; Table~\\ref{tab:alt_diversity}). However, $\\kappa$-diversity shows no predictor shift: its significance \\emph{decreases} from $K{=}3$ to $K{=}7$ ($8 \\to 7 \\to 6$), the opposite of $K_{\\mathrm{eff}}$'s pattern ($4 \\to 10 \\to 9$). Furthermore, under $\\kappa$-diversity, $\\eta_{\\max}$ retains significance at $K{=}5$ (4/12), whereas under $K_{\\mathrm{eff}}$ it drops to 0/12. The predictor shift---co-determination at $K{=}3$ transitioning to diversity dominance at $K{\\geq}5$---is thus specific to $K_{\\mathrm{eff}}$'s MI-based formulation, which captures effective judge independence rather than pairwise label agreement.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 75,
+                  "oldLines": 10,
+                  "newStart": 75,
+                  "newLines": 10,
+                  "lines": [
+                    " \\toprule",
+                    " \\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\",
+                    " \\midrule",
+                    "-Majority   & 0/12  & 10/12 & 0.256 \\\\",
+                    "-Weighted   & 1/12  & 9/12  & 0.249 \\\\",
+                    "-Threshold  & 6/12  & 10/12 & 0.506 \\\\",
+                    "-Bayesian   & 1/12  & 0/12  & 0.081 \\\\",
+                    "+Majority   & 2/12  & 7/12 & 0.285 \\\\",
+                    "+Weighted   & 2/12  & 7/12  & 0.275 \\\\",
+                    "+Threshold  & 3/12  & 7/12 & 0.408 \\\\",
+                    "+Bayesian   & 2/12  & 7/12  & 0.166 \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    " \\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). Bayesian calibration neutralizes both predictors, while majority vote preserves the $K_{\\mathrm{eff}}$-dominant predictor shift. Compare Table~\\ref{tab:aggregation} ($K{=}3$).}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000393"
+        }
+      ]
+    }
+  ]
+}

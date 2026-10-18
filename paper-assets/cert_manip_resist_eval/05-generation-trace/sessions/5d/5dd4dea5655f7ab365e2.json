@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "5dd4dea5655f7ab365e2",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "writing b1 b7 revision",
+  "task_key": "worker_writing_b1-b7-revision_20260524T120505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_b1-b7-revision_20260524T120505.log",
+    "occurrence": 1,
+    "bytes": 954135,
+    "sha256": "e6d4ca6a8236defabfa5bbe6598e4b055b462802f6be27d67c467b926c327fac"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "5dd4dea5655f7ab365e2-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "5dd4dea5655f7ab365e2-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ]
+}

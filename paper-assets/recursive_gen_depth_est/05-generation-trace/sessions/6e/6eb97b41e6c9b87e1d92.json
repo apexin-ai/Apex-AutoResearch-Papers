@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6eb97b41e6c9b87e1d92",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp instruct bf16 fix",
+  "task_key": "worker_exp_instruct_bf16_fix_20260517T185702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_instruct_bf16_fix_20260517T185702_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "1d79c604faba66110ab3a239bf1db05ab30f59052f3335ed33b612f66d6f3e76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 4 正常运行中，~50 it/s，处理 d0 的 5000 个样本。4 个 depth × 5000 样本 ÷ ~50 it/s ≈ 400 秒 ≈ 7 分钟，加上 Phase 5 分类大约 10 分钟内完成。\n\n已完成：\n- 修复第 319 行：`.squeeze(0).cpu().numpy()` → `.squeeze(0).float().cpu().numpy()`\n- 确认只有这一处 `.cpu().numpy()` 需要修\n- 用 `importlib` wrapper 绕过文件名中 `.` 不能做模块名的问题\n- 已提交到 cuda:1，tmux session `qwen25-1p5b-instruct-001-ph45v3`，日志 `~/runs/recursive_gen_depth_est/qwen25-1p5b-instruct-001-ph45v3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

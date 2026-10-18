@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9872f5dafa42c519a48e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code sdgd v2 validation",
+  "task_key": "worker_code_sdgd-v2-validation_20260515T133921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sdgd-v2-validation_20260515T133921_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "8b76a608229a336491cbf87c39af10cb54a33fd9fb225ec4b5745412d1b4adcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。**SDGD v2 代码就绪，无 bug。**\n\n审查结果摘要：\n\n| 检查项 | 状态 |\n|--------|------|\n| 脚本存在且可执行 | ✅ |\n| Python imports 正确 | ✅ |\n| vLLM 参数 (enforce_eager, max_model_len=4096, gpu_mem=0.95) | ✅ |\n| 模型路径 | ✅ |\n| 数据路径 (test.parquet, 4.8MB) | ✅ |\n| sim_matrix.pt | ✅ |\n| min_batch_size 逻辑 | ✅ 8 batches [18,12,11,7,7,5,3,3] → 4 batches [19,18,15,14] |\n| Confidence merge (logprobs=1, cumulative_logprob/n_tokens, threshold=-1.0) | ✅ |\n| `cumulative_logprob` 属性兼容 vLLM 0.20.2 | ✅ 确认在 CompletionOutput 中 |\n| 冲突解决：同 span 不同 type → 保留最高 confidence | ✅ 有意设计，抑制 FP |\n| Stage 1 decomposition 已完成 | ✅ 4 个 JSON 已生成 |\n| 输出写入 artifacts/exp008_v2/ | ✅ |\n| Logging 充分 | ✅ |\n\n**预估运行时间**：~4 小时（single_pass 30min + sdgd_zero 45min + random_batch 45min + per_type 2h）\n\n**提交命令**：\n```bash\ncd /root/schema-dag-extraction && nohup bash scripts/run_sdgd_v2_fewnerd.sh > artifacts/exp008_v2_run.log 2>&1 &\n```\n\n验证报告已写入 `artifacts/sdgd_v2_validation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5aec7c6b842ecca59a33",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4661,
+    "sha256": "bb5a7b8f9c350202a3dd8ee1bb5326a563b6beb1cfc8044911f7df19d9538227"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T21:43:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0 和 cuda:1**（westd-37397，`execution.gpu_ids`）。绝不使用其他 GPU。\n- 论文所有 PPL 数字必须来自**统一 pipeline (bf16)**，禁止引用 exp_e pipeline 数字（baseline=8.82 是旧 pipeline，正确值=9.8106）。\n- Profile 文件 `qwen_float32_profiles.json` 是 **lowres** 数据（名字有误导），hires 数据在 `hires_profiles.json`。加载时务必验证 concentration 值。\n- Yi-1.5 hires concentration=0.71 是 **false positive**（spike pattern），不能用 0.50 阈值在 hires 下做分类。Claim 3 使用 **joint diagnostic**：concentration ≳0.50 AND t₁/t₅ ≲0.70。\n- EMNLP ARR 截稿 **2026-05-25**，距今 11 天。P0 patches 值替换方案待 Director 决策，不得自行修改论文中的 concentration 值。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-37397，2× RTX PRO 6000 96GB\n- **工作目录**: `/root/ratekv`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: `/root/autodl-tmp/models/`（Llama: `LLM-Research/Meta-Llama-3.1-8B`, Mistral: `Mistral-7B-v0.3`, Qwen: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B`）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（必须显式设 `HF_HOME`）\n- **活跃进程**:\n  - `llama_hires_bf16_2bitonly`: PID 258951, tmux session, cuda:0, cron 监控中\n  - `mistral_hires_bf16_2bitonly_v4`: PID 264489, tmux session, cuda:1, cron 监控中\n- **Cron**: 2 个 active cron 分别监控上述两个实验\n\n### 3. 📊 当前状态\n**刚完成**: D048 Qwen hires float32 验证（concentration=0.6104，Claim 3 PASS）。P1 patches 5 模型数据已写入全部 .tex 文件。Refinement round 2 已提交。\n\n**RUNNING (2)**:\n- `llama_hires_bf16_2bitonly` — Llama-3.1-8B hires bf16 2-bit only profiling (64seq×2048tok, 256 heads)。补全 5 模型 hires concentration 全景图。Standard concentration=0.34-0.59。\n- `mistral_hires_bf16_2bitonly_v4` — Mistral-7B-v0.3 hires bf16 2-bit only profiling（model 重新从 HF 下载，修复 cuda device）。64seq×2048tok, 224 heads。\n\n**等待中**:\n- 两个 cron 回调（实验完成时自动触发）\n- Director 决策：P0 patches 值替换方案（用 float32 的 0.61 还是保留 bf16 range 0.59-0.66）\n- Group C 审稿报告回传\n\n**Worker 池**: 0 个 running worker（两个实验由 cron 自动监控，无需 Worker 常驻）\n\n### 4. 📋 待办（条件触发式）\n- `llama_hires_bf16_2bitonly` cron 回调 → 提取 hires concentration + t₁/t₅ → 更新 5-model evidence table → 汇报 Director\n- `mistral_hires_bf16_2bitonly_v4` cron 回调 → 同上（预期 concentration 仍低，确认 flat pattern）\n- 两个 hires profiling 都完成 → 论文 scatter 图 concentration 值校验（确认图中用了 hires 而非 standard 数据）\n- Director 决策 P0 值替换方案 → 派 Worker 执行全文值替换\n- Group C 审稿报告到达 → 按 review 意见制定修改计划\n- Yi-1.5 hires constrained MCKP（`yi15_hires_constrained_mckp` 已 negative，但 D050 升级了诊断框架后**可能不需要**重跑——取决于 Director 是否满意 joint diagnostic 的 5/5 分类准确率）\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D046: bfloat16 精度 bug 全局修复 → D047: Yi-1.5 FAIL 反证 GQA-ratio proxy → D048: float32 验证 concentration 可靠 → D049: GQA ratio 不够，需要 distribution shape → D050: joint diagnostic (concentration + t₁/t₅) 5/5 正确分类\n\n**论文 story**: 贡献不是\"MCKP 比 uniform 好\"（只在 Qwen 上成立），而是**(1) cardinality constraint 是唯一关键干预（solver equivalence Δ=0.0000）**(2) 提供了 architecture-dependent 的诊断框架（spread/spike/flat 三分类）告诉 practitioners *何时*值得做 mixed-precision。\n\n**最容易判断错的事**:\n- 不要把 Llama/Mistral/Gemma-2/Yi-1.5 的 negative 当失败——它们是**诊断框架的验证数据**。论文 framing 已经转向\"analysis + when-to-use\"，不是\"universal improvement\"。\n- `mistral_hires_bf16_2bitonly_v4` 的 spec.command 写了 `--gpu cuda:0` 但 spec.gpu 记录的是 `cuda:1`——实际跑在 cuda:1（submit_training_job 注入的 CUDA_VISIBLE_DEVICES 覆盖了命令行参数）。不要被 command 字段误导。\n- Concentration 值在 standard vs hires profiling 下差异巨大（Yi-1.5: 0.49 → 0.71）。论文 Claim 3 的 0.50 阈值**只对 standard profiling 成立**。hires 下用 joint diagnostic。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

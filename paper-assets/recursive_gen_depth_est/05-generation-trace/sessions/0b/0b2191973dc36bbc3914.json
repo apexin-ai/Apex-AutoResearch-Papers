@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b2191973dc36bbc3914",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis matrix 3x3 synthesis",
+  "task_key": "worker_analysis_matrix_3x3_synthesis_20260515T020134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_matrix_3x3_synthesis_20260515T020134_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "aaa300a8a9cd8eb081fde26ee97971bb72dabb10f8b31c2dc8a526a0de1e43e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。产出路径：`artifacts/matrix_3x3_analysis.md` (art_20260515_16b1ce)\n\n核心结论：\n\n1. **深度信号普遍存在** — 8/8 格子均远超 chance（69.6%–85.4% vs 25%）\n2. **GPT-2 XL 全面最优** — 跨策略均值 84.4%，领先 Pythia +9.7pp、OLMo +6.1pp\n3. **top-k 系统性最弱**（−8.2pp vs nucleus），temperature ≈ nucleus（+1.1pp），策略效应与模型交互（Pythia temp09 降但 OLMo/GPT-2 XL 升）\n4. **特征稳定性极高** — p90_ppl、var_surprisal、p75_ppl 在 8/8 格为 top-3\n5. **Code contamination 是模型特异的** — Pythia d3 达 12-14%，OLMo/GPT-2 XL <2%，但与分类性能无正相关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

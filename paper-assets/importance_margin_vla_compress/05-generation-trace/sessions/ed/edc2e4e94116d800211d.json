@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "edc2e4e94116d800211d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy w41 s44 attn095 and verify w38",
+  "task_key": "worker_deploy_w41-s44-attn095-and-verify-w38_20260527T220124",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_w41-s44-attn095-and-verify-w38_20260527T220124_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "fa3e1cf007dfcb53b8d03d84535c0a10c25002c04b05f53b05719e20a0134bfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载中，还未占满 GPU 显存（加载完成后才会显示在 nvidia-smi）。日志确认已正常启动。\n\n## 汇报\n\n### Task 1: w41 cuda:3 部署 Attn k=0.95 s44\n- **已部署**，PID: **255172**\n- 日志: `~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed44_strict_w41.log`\n- 模型加载中，日志输出正常（`suite=libero_10, prune=attention, keep=0.95`）\n\n### Task 2: w38 cuda:0/1 实验状态\n- **PID 672324** (Attn k=0.85 s44, cuda:0): 运行中，已跑 **15h24m**，状态 Rl+\n- **PID 672401** (Random k=0.7 s44, cuda:1): 运行中，已跑 **15h22m**，状态 Rl+"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "d122260ae88e44da04b5",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research data integrity audit v2",
+  "task_key": "worker_research_data-integrity-audit-v2_20260523T195958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-integrity-audit-v2_20260523T195958.log",
+    "occurrence": 1,
+    "bytes": 775988,
+    "sha256": "83929547815d163040bcd7c80378f363c1dcd902075034101d98721c33ff876c"
+  },
+  "statistics": {
+    "messages": 492,
+    "user_turns": 3,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 162,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 160,
+      "user": 3,
+      "tool_result": 160,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "d122260ae88e44da04b5-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "d122260ae88e44da04b5-part-0001.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "d122260ae88e44da04b5-part-0001.json",
+          "message_count": 49
+        },
+        {
+          "path": "d122260ae88e44da04b5-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "d122260ae88e44da04b5-part-0002.json",
+          "message_count": 95
+        },
+        {
+          "path": "d122260ae88e44da04b5-part-0003.json",
+          "message_count": 132
+        }
+      ]
+    }
+  ]
+}

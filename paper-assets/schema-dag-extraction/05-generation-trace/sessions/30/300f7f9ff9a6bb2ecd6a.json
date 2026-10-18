@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "300f7f9ff9a6bb2ecd6a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops check maven status",
+  "task_key": "worker_ops_check_maven_status_20260519T134808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_maven_status_20260519T134808_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "e5c55b45431885bdf959500465907973bf08019800b4e391a3aed769cca72c15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 进程：RUNNING\nPID 610111 仍在运行，正在执行第 3 个 random_batch seed（seed44 推测），当前在 Batch 16/18，rendering prompts 阶段。\n\n### GPU：忙\nNVIDIA RTX PRO 6000 Black (98GB), 已用 94.2GB/97.9GB, VLLM::EngineCore 占用。\n\n### 实验进度：进行中（4/5+ arms 已完成）\n\n已完成的 arms 及 metrics（gold_count = 2491）：\n\n| Arm | Precision | Recall | F1 | Pred Count | Latency |\n|-----|-----------|--------|----|------------|---------|\n| **single_pass** | **0.2866** | 0.1618 | **0.2068** | 1,406 | 56s |\n| sdgd_zero (18 batches) | 0.0911 | **0.1907** | 0.1233 | 5,212 | 522s |\n| random_batch_s42 (18 batches) | 0.0898 | 0.1517 | 0.1129 | 4,208 | 538s |\n| random_batch_s43 (18 batches) | 0.0829 | 0.1975 | 0.1168 | 5,936 | 552s |\n\n### SDGD Zero 图分解统计\n- 168 nodes, 2110 edges, 18 colors\n- τ = 0.319, k = 1.0\n- Batch sizes: [39, 20, 16, 12, 12, 10, 10, 8, 8, 6, 6, 6, 5, 4, 2, 2, 1, 1]\n- Merge expansion ratio: 1.006（几乎无重复预测）\n\n### 关键发现\n**single_pass 全面优于 sdgd_zero 和 random_batch**。分解后 recall 有提升（+2.9pp），但 precision 崩溃（0.287→0.091），pred_count 膨胀 3.7 倍（1406→5212），F1 反而下降 8.4pp。random_batch 表现更差，说明不是 DAG 分解的问题，而是多批次推理本身导致 over-prediction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

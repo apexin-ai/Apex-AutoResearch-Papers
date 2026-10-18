@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "06adb37d2b377a2738a1",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit table1 table2 error handling",
+  "task_key": "worker_audit_table1-table2-error-handling_20260523T174828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table1-table2-error-handling_20260523T174828_result.json",
+    "occurrence": 1,
+    "bytes": 4985,
+    "sha256": "f960cb0be101ec2aeb26e8dcdda69ffb9a9c5b8bc3a1cee94a4c52a933876b78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整报告。\n\n---\n\n## 诊断报告：V1 Bug (`.get(\"winner\", \"tie\")`) 影响范围\n\n### 1. 统一数据加载层\n\n**`src/unified_data_loader.py`** 有两套 ASR 函数：\n- **V2 (正确)**: `compute_corrected_asr()`, `compute_corrected_panel_asr()` — 使用 `_is_valid_score()` 跳过 error 样本\n- `_is_valid_score(score)`: `score.get(\"winner\") is not None and not score.get(\"error\")` (line 232)\n- 也导出 `_is_valid_score` 供外部脚本使用\n\n**问题**: 多个脚本虽然从 unified_data_loader 导入数据加载函数，但**自己重新定义了 ASR 计算函数**，且用的是 V1 bug 版本。\n\n---\n\n### 2. 各脚本 Error Handling 逐一诊断\n\n| 脚本 | 对应论文内容 | Error Handling | 受 V1 Bug 影响？ |\n|------|------------|---------------|-----------------|\n| `run_condition_dominance.py` | Table 1 dominance | `.get(\"winner\", \"tie\")` lines 82,84,95,99 | **是 (V1)** |\n| `run_residualized_keff_15model.py` | Table 1 OLS regression | `.get(\"winner\", \"tie\")` lines 63,65,75,79,91 | **是 (V1)** |\n| `run_aggregation_loglog.py` | Table 2 (4 agg methods, log-log) | `.get(\"winner\", \"tie\")` lines 71,73,90,91 | **是 (V1)** |\n| `run_aggregation_regression_15model.py` | Table 2 (residualized) | 自定义 `_is_valid_score()` 跳过 error | **否 (V2)** |\n| `run_claim6_panel_design_15model.py` | Claim 6 panel design | 导入 `_is_valid_score` 从 unified_data_loader | **否 (V2)** |\n| `run_wild_cluster_bootstrap_v2.py` | K=3 bootstrap | `.get(\"winner\", \"tie\")` lines 67,69,80,84 | **是 (V1)** |\n| `run_k5_wild_cluster_bootstrap.py` | K=5 regime transition | `.get(\"winner\", \"tie\")` lines 69,71,82,86 | **是 (V1)** |\n| `run_k7_wild_cluster_bootstrap.py` | K=7 regime transition | `.get(\"winner\", \"tie\")` lines 69,71,82,86 | **是 (V1)** |\n| `run_plan010_aggregation.py` | 旧 6-model aggregation | 只用 6 个 local 模型 | **不受影响**（local 模型几乎无 error） |\n\n---\n\n### 3. Error 分布表\n\n**高 Error 模型**（API 模型）：\n\n| Model | Total Scores | Total Errors | Error Rate |\n|-------|-------------|-------------|-----------|\n| gemini-3.5-flash | 4200 | 742 | **17.67%** |\n| gemini-3.1-pro-preview | 4200 | 335 | **7.98%** |\n| gpt-5.5 | 4200 | 129 | **3.07%** |\n\n**按 Benchmark × Attack 细分（高 error 模型）**：\n\n| Model | Benchmark | Attack | Errors/300 | Rate |\n|-------|-----------|--------|-----------|------|\n| gemini-3.5-flash | mmlu | prompt_injection | 97 | **32.3%** |\n| gemini-3.5-flash | mmlu | sycophancy | 86 | **28.7%** |\n| gemini-3.5-flash | mmlu | verbosity_bias | 82 | **27.3%** |\n| gemini-3.5-flash | mmlu | authority_bias | 82 | **27.3%** |\n| gemini-3.5-flash | mmlu | position_bias | 81 | **27.0%** |\n| gemini-3.5-flash | mmlu | clean | 79 | **26.3%** |\n| gemini-3.5-flash | mmlu | score_manipulation | 77 | **25.7%** |\n| gemini-3.5-flash | arc | prompt_injection | 31 | 10.3% |\n| gemini-3.5-flash | arc | clean/syc/score/verb/auth | 19-23 | 6.3-7.7% |\n| gemini-3.1-pro-preview | mmlu | prompt_injection | 50 | **16.7%** |\n| gemini-3.1-pro-preview | mmlu | score_manipulation | 48 | **16.0%** |\n| gemini-3.1-pro-preview | mmlu | verbosity_bias/position/auth | 33-38 | 11-12.7% |\n| gemini-3.1-pro-preview | mmlu | clean | 35 | 11.7% |\n| gemini-3.1-pro-preview | arc | all conditions | 3-10 | 1.0-3.3% |\n| gpt-5.5 | mmlu | clean | 23 | 7.7% |\n| gpt-5.5 | mmlu | score_manipulation | 21 | 7.0% |\n| gpt-5.5 | mmlu | other attacks | 13-15 | 4.3-5.0% |\n| gpt-5.5 | arc | all conditions | 1-5 | 0.3-1.7% |\n\n**低 Error 模型**：其余 12 个模型的 error rate 均 < 0.2%（0-7 个 errors / 4200 samples）。\n\n---\n\n### 4. 判断\n\n| 分析内容 | 受 V1 Bug 影响？ | 影响程度 | 说明 |\n|---------|-----------------|---------|------|\n| **Table 1** (dominance + OLS regression) | **是** | **高** | `run_condition_dominance.py` 和 `run_residualized_keff_15model.py` 都用 V1。gemini-3.5-flash 在 mmlu 上高达 25-32% error 被当作 tie，直接影响该模型参与的所有 455 个 panel 的 ASR 计算。 |\n| **Table 2** (aggregation comparison) | **部分** | **中** | `run_aggregation_loglog.py` (log-log 版) 是 V1；`run_aggregation_regression_15model.py` (residualized 版) 是 V2。论文最终用哪个需要确认。 |\n| **Regime Transition** (K=3/5/7 bootstrap) | **是** | **高** | 全部三个脚本 (v2, k5, k7) 都是 V1。K=5 有 C(15,5)=3003 panels，K=7 有 C(15,7)=6435 panels，高 error 模型被包含在大量 panel 中，error→tie 会系统性压低 ASR（错误地让 panel 看起来更 robust）。 |\n\n**核心问题**：unified_data_loader 的 V2 corrected 函数已经写好，但大多数实际分析脚本**没有调用它们**，而是各自复制粘贴了 V1 版本的 ASR 计算函数。这是一个典型的\"修了但没修完\"的情况——数据加载层修好了，消费层没跟上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "493776cf38ec5905facf",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "pipeline crossbench gpt4o v2",
+  "task_key": "worker_pipeline_crossbench-gpt4o-v2_20260522T233119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_crossbench-gpt4o-v2_20260522T233119_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "edfc874d8de2d929f9c576e848a6ce7382e9dc810450062138d0e82af7748a73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API 仍返回 **402 Insufficient balance**。余额未生效或充值未到账。\n\n```\nopenai.APIStatusError: Error code: 402 - {'detail': 'Insufficient balance'}\n```\n\n需要确认充值状态后再重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

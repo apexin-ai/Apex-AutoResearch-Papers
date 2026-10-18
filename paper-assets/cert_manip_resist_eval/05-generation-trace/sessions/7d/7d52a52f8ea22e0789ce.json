@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d52a52f8ea22e0789ce",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis figure data prep",
+  "task_key": "worker_analysis_figure-data-prep_20260523T191154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure-data-prep_20260523T191154_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "c0589e9b6ccc5d25dbf488a58aed6be7b8374de2e7cc042cedfa221537e30e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已生成：\n\n**Figure 2** (`figure2_plot_data.json`): V2 corrected crossing lines 数据。K_eff 在 K=3 时已超过 η_max（4 vs 3），较 V1 的交叉点（K~4）提前。V2 整体 K_eff 显著条件数大幅增加（K5: 7→10, K7: 5→9）。\n\n**Figure 3** (`figure3_plot_data.json`): 12 条件 GAM bootstrap CI forest plot 数据，K=3/K=5 双 panel。K=3 有 11/12 CI 排除零（仅 MMLU×Score Manip. 包含零），K=5 全部 12/12 排除零。`normalized_slope` 已按各 panel 最大 slope 归一化（position_bias 原始量级 ~0.4-0.9，远小于其他条件 ~7-39，`scale_note` 中已标注）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

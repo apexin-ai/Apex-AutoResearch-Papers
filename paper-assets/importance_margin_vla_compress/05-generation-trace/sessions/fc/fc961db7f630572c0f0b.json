@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fc961db7f630572c0f0b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix method reviewer 5items",
+  "task_key": "worker_fix_method_reviewer_5items_20260528T180655",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_method_reviewer_5items_20260528T180655_result.json",
+    "occurrence": 1,
+    "bytes": 1992,
+    "sha256": "7917e9da99babe542d9a87106521df71b4cbbf17757fa0647d872e57326e261a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All remaining hits are either in non-compiled files (analysis.tex, results_v2.tex, results.tex) or are descriptive prose without Δ notation. Compiled files are now consistent.\n\n---\n\n**Summary of all changes:**\n\n### Fix 1: Δ direction unified to L2 − Random (4 files)\n- **method.tex:95** — `Δ(Random − L2) decreases monotonically` → `Δ(L2 − Random) increases monotonically`\n- **experiments.tex:91** — `Δ(R−L2) = +36.0, +27.2` → `Δ(L2−R) = −36.0, −27.2`\n- **appendix.tex:823-837** — Table header + caption + all 5 Δ values flipped (R−L2 → L2−R)\n- **appendix.tex:760** — Inline Δ values flipped, \"random-over-L2 advantage grows as CV decreases\" → \"L2-over-random advantage grows as CV increases\"\n\n### Fix 2: k=0.75 added + 0.85 de-duplicated\n- **method.tex:72** — Base set: `{0.30, 0.50, 0.70, 0.85, 0.90, 0.95}` → `{0.30, 0.50, 0.70, 0.75, 0.85, 0.90, 0.95}`\n- **method.tex:72** — Refined set: `{0.80, 0.85, 0.925}` → `{0.80, 0.925}` (0.85 already in base)\n- **experiments.tex:9** — Same k set updated to include 0.75\n\n### Fix 3: π0.5 cameras corrected\n- **method.tex:9** — `768 tokens from three cameras` → `768 tokens from three image slots (two active cameras in LIBERO`\n- Verified via [HuggingFace config](https://huggingface.co/lerobot/pi05_libero_base): model has 2 image inputs + 1 empty slot = 3 image processing slots = 768 tokens\n\n### Fix 4: VTR section expanded\n- **method.tex:103-109** — Added architecture paragraph (2-layer cross-attention, 12 heads, dropout 0.1), training paragraph (end-to-end joint optimization), and `Appendix~\\ref{app:smart_compress_details}` pointer\n\n### Fix 5: SmolVLA params unified to 450M\n- **appendix.tex:599** — `451.5M` → `450M`\n- **appendix.tex:859** — `451.5M` → `450M`\n- **background.tex:12** — `451.5M` → `450M`\n- 450M is the dominant convention in all active compiled files (method, experiments, introduction, appendix table)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

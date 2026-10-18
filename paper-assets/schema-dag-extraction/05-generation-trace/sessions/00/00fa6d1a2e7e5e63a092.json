@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "00fa6d1a2e7e5e63a092",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3890,
+    "sha256": "a74608742a40f1d9328dc6595cab87e1898da59590e1a5131864df7935f785dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-15T12:58:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只有 cqa1-38874 的 cuda:0（gpu_ids 白名单），不可用其他 GPU\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- run_fewrel_formal.py 必须传 `--mode exp1/exp2`，否则 argparse 报错立即退出（已踩过）\n- vLLM 脚本禁止在 vLLM 初始化前 import torch/networkx，否则 EngineCore fork 死锁（已发生两次，所有 SDGD 脚本已拆成 CPU+GPU 两阶段）\n- LLaMA 模型必须用 nvidia/ repo（不是 neuralmagic/），路径 `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`\n- FewRel 80-rel 实验必须传 `--use_all`，否则只用 val 16 relations，count curve 缺 [32,64,80]\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874 (root)，RTX PRO 6000 Blackwell 98GB\n- 工作目录：`/root/schema-dag-extraction`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（Python 3.12.3, vLLM 0.20.2, torch 2.10.0+cu128）\n- Qwen3-32B-FP8：`/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n- LLaMA-3.3-70B-FP8：`/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`（15/15 shards, 72.7GB 已验证）\n- 活跃进程：**exp_fewrel_formal_80rel** (PID 267149, tmux=exp_fewrel_formal_80rel, cuda:0, cron 监控中)\n- 无 W&B 集成，所有指标从结果 JSON 提取\n\n### 3. 📊 当前状态\n**刚完成**：SDGD-zero v2 代码集成（min_batch_size=8 + confidence-gated merge）、FewRel 16-rel sanity check (DONE/success)、exp-008 诊断分析。\n\n**RUNNING**：\n- `exp_fewrel_formal_80rel` — FewRel 80 relations, exp1 (count curve [1..80]) + exp2 (BCS controlled), PID 267149, 预估 ~5h\n\n**DONE (本 session)**：\n- `exp008_sdgd_zero_fewnerd_r2` — NEGATIVE. SDGD-zero F1=0.2514 < single_pass 0.4451. 根因：merge amplification\n- `exp_fewrel_formal` — SUCCESS (16-rel sanity). BCS effect Δ=-9.1pp confirmed\n- `fewrel_pilot` — SUCCESS. Δ=21-50pp\n\n**等待中**：exp_fewrel_formal_80rel cron 完成回调。无活跃 Worker。\n\n### 4. 📋 待办\n- **80-rel cron 回调到达** → 分析 exp1 count curve + exp2 BCS correlation → update_registry DONE → 向 Director 汇报三层分析结果\n- **80-rel 完成后** → 立即 submit exp-012 LLaMA (`bash /root/schema-dag-extraction/scripts/submit_exp012.sh` 但需通过 submit_training_job 提交，脚本: `scripts/run_exp012_llama.sh`)，预估 ~8h\n- **exp-012 完成后** → SDGD-zero v2 Few-NERD (`scripts/run_sdgd_v2_fewnerd.sh`) + SDGD-zero v2 MAVEN MiniLM (`scripts/run_sdgd_v2_maven_minilm.sh`)\n- **FewRel 80-rel 如果 negative**（BCS effect 不显著）→ 按 red-section skill 产 Framing 调整提案，禁止默默跑下一个\n- **Director 未决策**：Claim 3 (SDGD framework) framing 调整等全部实验完成后统一处理\n\n### 5. 🎯 战略上下文\n- **目标**：EMNLP 2026 ARR May 25（距今 ~10 天）\n- **核心 narrative (D013)**：pairwise confusability 是主要证据（r=0.156, p=4.6e-12），per-type 在 cross-domain 有效但 same-domain 有 centrality confound。5 层证据层级：pairwise → FewRel batch → Few-NERD per-type → MAVEN centrality (discussion) → error taxonomy\n- **SDGD Claim 3 悬而未决**：v1 失败（merge amplification），v2 已准备但未验证。诊断结论本身是独立贡献（\"小 batch over-prediction + union merge amplification 是 training-free decomposition 通用瓶颈\"）\n- **易错点**：\n  - FewRel `--use_all` 容易忘，没有它只有 16 relations，count curve 截断\n  - SDGD MAVEN 必须用 MiniLM embedding（Qwen3 pairwise 在 MAVEN 上 r=-0.007 无信号）\n  - exp-012 LLaMA 用 `run_experiment.py`（不是 run_fewrel_formal.py），无 vLLM fork 风险（已验证）\n  - Qwen3 embedding 元数据曾标错为 \"Qwen3-Embedding-0.6B\"，实际是 Qwen3-32B mean-pooled (dim=5120)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

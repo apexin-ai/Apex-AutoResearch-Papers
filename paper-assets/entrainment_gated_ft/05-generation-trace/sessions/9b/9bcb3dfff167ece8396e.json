@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9bcb3dfff167ece8396e",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code logprob analysis",
+  "task_key": "worker_code_logprob_analysis_20260518T205632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_logprob_analysis_20260518T205632_result.json",
+    "occurrence": 1,
+    "bytes": 1940,
+    "sha256": "d2e1d9fcdb20b4c1ccd67f52bc84b074ec54178ac696e63b88da2c72d465e7f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是核心发现：\n\n## 结果摘要\n\n### 整体准确率\n| 模型 | Acc |\n|------|-----|\n| GDN-pure | 54.30% |\n| GDN-h12-1 | 53.37% |\n| HGRN2-pure | 48.42% |\n| HGRN2-h3-1 | 51.39% |\n\n### Attention 效果（核心发现）\n\n**GDN (pure → h12-1, 12层attention)**: attention 整体轻微有害\n- Helped: 464 (9.0%), Hurt: 512 (9.9%), **净效果: -48 样本**\n- 被帮助的样本 logprob 平均提升 +1.38; 被伤害的样本平均下降 -1.45\n\n**HGRN2 (pure → h3-1, 3层attention)**: attention 明显有益\n- Helped: 548 (10.6%), Hurt: 395 (7.7%), **净效果: +153 样本**\n- 被帮助的样本 logprob 平均提升 +1.22; 被伤害的样本平均下降 -0.93\n\n### 跨模型对比\n- Attention 帮助/伤害的样本在两个模型间**重叠很低** (Jaccard: helped=0.118, hurt=0.089)\n- 两模型的 logprob delta 相关性较弱, 说明 attention 对不同架构的影响路径不同\n- GDN attention 伤害的 512 样本中, 仅 74 个 HGRN2 也被伤害\n\n### 长度分析\n- 中等长度(30-50词): GDN attention 有害(-29), HGRN2 有益(+31)\n- 长文本(50-100词): GDN 有害(-21), HGRN2 明显有益(+123)\n- 超长文本(100+): 样本太少(34个), 趋势不稳定\n\n### 数据缺口\n**GDN hybrid-3-1 (`_results.json`) 缺少 per-example 数据**。当前用 h12-1 替代，但 12层 vs 3层 attention 不可直接对比。如需严格对比，需用 `--log_samples` 重跑 GDN h3-1 评测 (~3min)。\n\n### 输出文件\n- `/root/entrainment_gated_ft/analysis/lambada_per_example.csv` — 全量逐样本数据\n- `/root/entrainment_gated_ft/analysis/lambada_attention_analysis.png` — 4面板分析图\n- `/root/entrainment_gated_ft/analysis/lambada_crossmodel_scatter.png` — 跨模型 logprob scatter\n- `/root/entrainment_gated_ft/analysis/logprob_analysis.py` — 分析脚本\n- `/root/entrainment_gated_ft/analysis/logprob_plots.py` — 绘图脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

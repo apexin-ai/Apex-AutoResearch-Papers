@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "592daf9feb3bbbb6b118",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis stochastic dominance",
+  "task_key": "worker_analysis_stochastic-dominance_20260523T001734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stochastic-dominance_20260523T001734_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "96d499af5d8a90889b67d3ac3b75458ce28a8e7efda509929cdf41f45f1d1a7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Scope | Dominant ordered pairs | / 210 | Proportion |\n|-------|----------------------|-------|-----------|\n| **Global (12 conditions)** | 61 | 210 | **29.0%** |\n| **MMLU (6 conditions)** | 69 | 210 | 32.9% |\n| **ARC (6 conditions)** | 74 | 210 | 35.2% |\n\n- **Unordered pairs with dominance**: 61/105 (58.1%) — 所有 61 个 ordered pairs 都是单向的（无双向 dominance）\n- **No total ordering** — 14 个相邻 pair 打破了链式排序\n- **最常被 dominate 的 judges**: gpt-5.5 (11), gemini-3.5-flash (11), gemini-3.1-pro-preview (10) — 这些是最强的 judges（ASR 最低，几乎不被攻击翻转），所以它们被更弱的 judges dominate\n- **最常 dominate 别人的 judges**: claude-3-haiku (10), qwen2.5-14b (8), llama3.1-8b (7) — 这些是最弱的 judges（ASR 最高）\n\nTheorem 1 的 pointwise stochastic dominance 在约 29% 的 ordered pairs 中成立，覆盖了 58% 的 unordered pairs。结果已保存到 `artifacts/results/plan001/stochastic_dominance.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

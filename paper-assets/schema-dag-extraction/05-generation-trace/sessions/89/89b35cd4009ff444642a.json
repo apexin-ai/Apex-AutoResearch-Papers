@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "89b35cd4009ff444642a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp012 llama fewrel ch2 status",
+  "task_key": "worker_check_exp012_llama_fewrel_ch2_status_20260515T214644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp012_llama_fewrel_ch2_status_20260515T214644_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "1b344f2d39975116693b83c9fc3f89ea553ee437134a7faa573c873f43989018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在正常运行：\n\n- **GPU 0**: 84% 利用率，79797MiB / 97887MiB 显存，PID 330872 (VLLM::EngineCore)\n- **日志**: 持续更新至 `05:47:07`（刚刚），正在处理 BCS-controlled batch\n- **当前进度**: `count_16_random_14`，BCS=0.7257，192 samples/batch，~2.2s/batch\n- **推理速度**: ~28K toks/s input, ~1.5K toks/s output\n\n无需干预，实验运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

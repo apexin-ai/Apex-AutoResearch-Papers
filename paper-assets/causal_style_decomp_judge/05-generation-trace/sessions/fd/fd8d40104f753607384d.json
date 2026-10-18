@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fd8d40104f753607384d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code bt model diagnostics",
+  "task_key": "worker_code_bt_model_diagnostics_20260521T114335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bt_model_diagnostics_20260521T114335_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "d120db3d0aa7f7b2d8febef72a2f9929eea3ad85c7bbf283cbda0c6aeaab3bae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**GoF Deviance Test** — 两个维度 BT 模型均 adequate：\n- Formality: D=52.80, df=45, **p=0.198** (n=46 consistent pairs, BT prob=0.739)\n- Verbosity: D=47.96, df=62, **p=0.905** (n=63 consistent pairs, BT prob=0.873)\n\n**Stratified BT Stability:**\n- **Formality: 显著方向差异**\n  - orig_is_formal: 88.9% [77.8%, 100%], 24/27\n  - orig_is_casual: 52.6% [31.6%, 73.7%], 10/19\n  - Fisher p=0.015, chi2 p=0.006\n- **Verbosity: 无显著方向差异**\n  - orig_is_verbose: 82.8% [69.0%, 96.6%], 24/29\n  - orig_is_concise: 91.2% [79.4%, 100%], 31/34\n  - Fisher p=0.453, chi2 p=0.317\n\nFormality 的分层差异 (Fisher p=0.015) 提示原始文本为 formal 时 judge 更倾向选择 formal，originality preference confound 显著。Verbosity 无此问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

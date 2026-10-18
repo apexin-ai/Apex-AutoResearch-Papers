@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1323a5b05c10aca50788",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check sdgd v2 status",
+  "task_key": "worker_check_sdgd_v2_status_20260515T153409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_sdgd_v2_status_20260515T153409_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "dcba9fc1b874b4aea51111f37046d5c791aa4ebe40c53146e8dde2ff9c02aa85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SDGD v2 实验状态: **RUNNING**\n\n**PID 278037** — 已运行 38 分钟，当前正在执行第 4 个 mode (`per_type`)，推理进度 ~100%，即将完成。\n\n### GPU\n| GPU利用率 | 显存使用 | 总显存 |\n|-----------|---------|--------|\n| 15% | 94,221 MiB | 97,887 MiB |\n\n### 已完成的 3 个 mode 结果\n\n| Mode | F1 | Precision | Recall | Batches | Latency |\n|------|-----|-----------|--------|---------|---------|\n| **single_pass** | **0.4451** | 0.5631 | 0.3679 | 1 (66 types) | 79s |\n| **random_batch** | 0.3007 | 0.3307 | 0.2758 | 8 | 494s |\n| **sdgd_zero** | 0.2407 | 0.3244 | 0.1913 | 4 | 261s |\n\n**待完成**: `per_type` mode（日志显示正在处理最后一批 prompts，预计几分钟内完成）。\n\n关键观察：single_pass baseline 目前 F1 最高（0.445），sdgd_zero 分解反而最低（0.241）。`per_type` 结果出来后可做完整对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

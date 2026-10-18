@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4eb7ddab22c8327a5246",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis aggregation loglog canonical",
+  "task_key": "worker_analysis_aggregation-loglog-canonical_20260522T182814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_aggregation-loglog-canonical_20260522T182814_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "fe9cf5cae731718d8d48fd5b93eab7e567d64e1a78b61770654525ca2261d429"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sanity check passed. Results:\n\n| Method | η_max FDR sig | K_eff FDR sig | K_pos | K_neg | Mean R² |\n|---|---|---|---|---|---|\n| majority_vote | 11/12 | 8/12 | 7 | 1 | 0.3760 |\n| weighted_vote | 11/12 | 11/12 | 11 | 0 | 0.3572 |\n| threshold_unanimous | 12/12 | 11/12 | 10 | 1 | 0.9017 |\n| bayesian | 9/12 | 5/12 | 1 | 4 | 0.1053 |\n\nJSON saved to `/root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json`.\n\nKey findings:\n- **Weighted vote** and **threshold unanimous** make K_eff significant in nearly all conditions (11/12), compared to 8/12 for majority vote\n- **Threshold** achieves extremely high R² (0.90) — the log-log spec fits near-perfectly when only unanimous pairs are counted\n- **Bayesian** shows the weakest K_eff signal (5/12 sig), and notably K_eff β is *negative* in 4 of 5 sig conditions — accuracy-weighted Bayesian aggregation effectively absorbs the diversity effect\n- η_max is robust across all methods (9–12/12 sig)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

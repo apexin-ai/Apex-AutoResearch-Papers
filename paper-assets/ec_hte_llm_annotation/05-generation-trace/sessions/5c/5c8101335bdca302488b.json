@@ -1,0 +1,1013 @@
+{
+  "schema_version": "1.0",
+  "id": "5c8101335bdca302488b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 027 cf oracle coverage",
+  "task_key": "worker_code_exp-027-cf-oracle-coverage_20260522T140148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-027-cf-oracle-coverage_20260522T140148.log",
+    "occurrence": 1,
+    "bytes": 120279,
+    "sha256": "a5a33ae2c6e12d7e1790409b9d95cb7731dfa71f5187c4ea232513127dbe99b5"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+                "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "57bbf905-b51a-427a-a402-0322ff5267bf",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-ec-hte-llm-annotation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779474000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "de6190d5-d2b3-48fc-b4ab-2418efd6acf0",
+                "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the two reference files to understand the DGP structure, CausalForestDML usage, and coverage calculation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "03ba33df-da11-4f82-bba7-eede86ef04dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01698mgWReq2ui2pZ6Sqqbx9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6809
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GiF6EuBV9kttcJEF7wRtcm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp011_causal_forest.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "dcf84475-3ed3-4a03-97e9-e08622deaddc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01698mgWReq2ui2pZ6Sqqbx9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6809
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:01:59.849Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GiF6EuBV9kttcJEF7wRtcm",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp011_causal_forest.py - CausalForestDML EC-HTE integration (exp-011)\n3\t\n4\tValidates EC-HTE correction with CausalForestDML as CATE estimator.\n5\tThree methods: naive_forest (Z_hat, no correction), global_forest (global M^-1),\n6\tec_hte_forest (per-subgroup M_s^-1).\n7\t\n8\tOutput: results/exp011_causal_forest.csv\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport os\n13\timport time\n14\timport warnings\n15\timport numpy as np\n16\timport pandas as pd\n17\tfrom econml.dml import CausalForestDML\n18\tfrom sklearn.linear_model import LinearRegression, LogisticRegression\n19\t\n20\twarnings.filterwarnings('ignore')\n21\t\n22\tN = 5000\n23\tTAU_TRUE = {0: 0.5, 1: 1.5}\n24\t\n25\tMISCLASS_RATES = {\n26\t    2: {'extreme': [0.05, 0.20], 'moderate': [0.10, 0.15]},\n27\t    4: {'extreme': [0.05, 0.15, 0.25, 0.40], 'moderate': [0.08, 0.12, 0.16, 0.20]},\n28\t}\n29\t\n30\tCONFIGS = [\n31\t    {'K': 2, 'regime': 'extreme', 'n_expert': 100},\n32\t    {'K': 2, 'regime': 'extreme', 'n_expert': 500},\n33\t    {'K': 2, 'regime': 'moderate', 'n_expert': 100},\n34\t    {'K': 2, 'regime': 'moderate', 'n_expert': 500},\n35\t    {'K': 4, 'regime': 'extreme', 'n_expert': 100},\n36\t    {'K': 4, 'regime': 'extreme', 'n_expert': 500},\n37\t    {'K': 4, 'regime': 'moderate', 'n_expert': 100},\n38\t    {'K': 4, 'regime': 'moderate', 'n_expert': 500},\n39\t]\n40\t\n41\t\n42\t# -- DGP ------------------------------------------------------------------\n43\t\n44\tdef generate_data(N, K, regime, n_expert, seed):\n45\t    \"\"\"Generate synthetic data with subgroup-specific misclassification.\n46\t\n47\t    Returns Y, T, Z_true, Z_hat, S, expert_mask.\n48\t    \"\"\"\n49\t    rng = np.random.RandomState(seed)\n50\t    S = rng.randint(0, K, N)\n51\t    T = rng.binomial(1, 0.5, N)\n52\t    Z_true = rng.binomial(1, 0.5, N)\n53\t\n54\t    pi_s = MISCLASS_RATES[K][regime]\n55\t    Z_hat = Z_true.copy()\n56\t    for s in range(K):\n57\t        mask_s = S == s\n58\t        flip = rng.binomial(1, pi_s[s], mask_s.sum())\n59\t        Z_hat[mask_s] = np.where(flip, 1 - Z_true[mask_s], Z_true[mask_s])\n60\t\n61\t    tau = np.where(Z_true == 1, TAU_TRUE[1], TAU_TRUE[0])\n62\t    baseline = 1.0 + 0.5 * Z_true\n63\t    Y = baseline + tau * T + rng.normal(0, 1, N)\n64\t\n65\t    expert_idx = rng.choice(N, n_expert, replace=False)\n66\t    expert_mask = np.zeros(N, dtype=bool)\n67\t    expert_mask[expert_idx] = True\n68\t\n69\t    return Y, T, Z_true, Z_hat, S, expert_mask\n70\t\n71\t\n72\t# -- Helpers ---------------------------------------------------------------\n73\t\n74\tdef compute_confusion_matrix(z_true, z_hat):\n75\t    \"\"\"2x2 confusion matrix C[z, z_hat] = P(Z_hat|Z) with Laplace smoothing.\"\"\"\n76\t    C = np.zeros((2, 2))\n77\t    for z in [0, 1]:\n78\t        mz = z_true == z\n79\t        C[z, 0] = (z_hat[mz] == 0).sum() + 1\n80\t        C[z, 1] = (z_hat[mz] == 1).sum() + 1\n81\t    return C / C.sum(axis=1, keepdims=True)\n82\t\n83\t\n84\tdef build_mixing_matrix(C):\n85\t    \"\"\"C[z, z_hat] -> M[z_hat, z] via Bayes rule (P(Z=0)=P(Z=1)=0.5).\"\"\"\n86\t    M = np.zeros((2, 2))\n87\t    for zh in [0, 1]:\n88\t        cs = C[0, zh] + C[1, zh]\n89\t        if cs > 0:\n90\t            M[zh, 0] = C[0, zh] / cs\n91\t            M[zh, 1] = C[1, zh] / cs\n92\t        else:\n93\t            M[zh, :] = 0.5\n94\t    return M\n95\t\n96\t\n97\tdef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n98\t    \"\"\"M^-1 correction with condition number guard.\"\"\"\n99\t    cond = np.linalg.cond(M)\n100\t    if cond > cond_threshold:\n101\t        return tau_obs.copy(), se_obs.copy()\n102\t    det = np.linalg.det(M)\n103\t    if abs(det) < 1e-10:\n104\t        return tau_obs.copy(), se_obs.copy()\n105\t    Mi = np.linalg.inv(M)\n106\t    tau_c = Mi @ tau_obs\n107\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n108\t    return tau_c, se_c\n109\t\n110\t\n111\t# -- Single MC Run --------------------------------------------------------\n112\t\n113\tdef run_one_mc(config, seed):\n114\t    \"\"\"Run one Monte Carlo iteration: fit forest, apply 3 correction methods.\"\"\"\n115\t    K = config['K']\n116\t    Y, T, Z_true, Z_hat, S, expert_mask = generate_data(\n117\t        N, K, config['regime'], config['n_expert'], seed)\n118\t\n119\t    X_hat = np.column_stack([Z_hat, S]).astype(float)\n120\t    cf = CausalForestDML(\n121\t        model_y=LinearRegression(),\n122\t        model_t=LogisticRegression(solver='lbfgs'),\n123\t        discrete_treatment=True,\n124\t        n_estimators=200, min_samples_leaf=20, random_state=42)\n125\t    cf.fit(Y, T, X=X_hat, W=None)\n126\t\n127\t    # Predict CATE at each unique (Z_hat, S) point\n128\t    X_eval = np.array([[z, s] for s in range(K) for z in [0, 1]], dtype=float)\n129\t    cate_vals = cf.effect(X_eval).flatten()\n130\t\n131\t    try:\n132\t        inf = cf.effect_inference(X_eval)\n133\t        se_raw = inf.stderr\n134\t        if hasattr(se_raw, 'values'):\n135\t            se_raw = se_raw.values\n136\t        se_vals = np.asarray(se_raw).flatten()\n137\t    except Exception:\n138\t        se_vals = np.full(len(X_eval), np.nan)\n139\t\n140\t    cate, cate_se = {}, {}\n141\t    idx = 0\n142\t    for s in range(K):\n143\t        for z in [0, 1]:\n144\t            cate[(z, s)] = float(cate_vals[idx])\n145\t            cate_se[(z, s)] = float(se_vals[idx])\n146\t            idx += 1\n147\t\n148\t    # Confusion matrices from expert subset\n149\t    C_global = compute_confusion_matrix(Z_true[expert_mask], Z_hat[expert_mask])\n150\t    M_global = build_mixing_matrix(C_global)\n151\t\n152\t    M_sub = {}\n153\t    for s in range(K):\n154\t        mask_s = expert_mask & (S == s)\n155\t        if mask_s.sum() >= 4:\n156\t            C_s = compute_confusion_matrix(Z_true[mask_s], Z_hat[mask_s])\n157\t        else:\n158\t            C_s = np.array([[0.5, 0.5], [0.5, 0.5]])\n159\t        M_sub[s] = build_mixing_matrix(C_s)\n160\t\n161\t    rows = []\n162\t    for s in range(K):\n163\t        tau_obs = np.array([cate[(0, s)], cate[(1, s)]])\n164\t        se_obs = np.array([cate_se[(0, s)], cate_se[(1, s)]])\n165\t\n166\t        tau_naive, se_naive = tau_obs.copy(), se_obs.copy()\n167\t        tau_global, se_global = invert_mixing_safe(M_global, tau_obs, se_obs)\n168\t        tau_ec, se_ec = invert_mixing_safe(M_sub[s], tau_obs, se_obs)\n169\t\n170\t        base = {'K': K, 'regime': config['regime'], 'n_expert': config['n_expert'],\n171\t                'subgroup': s, 'mc_run': seed}\n172\t\n173\t        for z in [0, 1]:\n174\t            for method, th, se in [\n175\t                ('naive_forest', tau_naive[z], se_naive[z]),\n176\t                ('global_forest', tau_global[z], se_global[z]),\n177\t                ('ec_hte_forest', tau_ec[z], se_ec[z]),\n178\t            ]:\n179\t                if np.isnan(se):\n180\t                    ci_lo = ci_hi = covers = np.nan\n181\t                else:\n182\t                    ci_lo = th - 1.96 * se\n183\t                    ci_hi = th + 1.96 * se\n184\t                    covers = int(ci_lo <= TAU_TRUE[z] <= ci_hi)\n185\t                rows.append({**base, 'z_level': z, 'method': method,\n186\t                             'tau_hat': th, 'se': se, 'tau_true': TAU_TRUE[z],\n187\t                             'ci_lo': ci_lo, 'ci_hi': ci_hi, 'covers': covers})\n188\t\n189\t    return rows\n190\t\n191\t\n192\t# -- Aggregation -----------------------------------------------------------\n193\t\n194\tdef aggregate_results(df):\n195\t    \"\"\"Compute bias, RMSE, coverage per config x method x subgroup x z_level.\"\"\"\n196\t    grp_cols = ['K', 'regime', 'n_expert', 'subgroup', 'z_level', 'method']\n197\t    rows = []\n198\t    for keys, g in df.groupby(grp_cols):\n199\t        K, regime, n_expert, subgroup, z_level, method = keys\n200\t        err = g['tau_hat'].values - g['tau_true'].values\n201\t        bias = err.mean()\n202\t        rmse = np.sqrt((err ** 2).mean())\n203\t        cov = g['covers'].mean()\n204\t        n_mc = len(g)\n205\t        rows.append({\n206\t            'K': int(K), 'regime': regime, 'n_expert': int(n_expert),\n207\t            'subgroup': int(subgroup), 'z_level': int(z_level), 'method': method,\n208\t            'bias': bias, 'rmse': rmse, 'coverage': cov,\n209\t            'bias_se': err.std() / np.sqrt(n_mc),\n210\t            'rmse_se': (err ** 2).std() / (2 * rmse * np.sqrt(n_mc)) if rmse > 1e-10 else np.nan,\n211\t            'n_mc': n_mc,\n212\t        })\n213\t    return pd.DataFrame(rows)\n214\t\n215\t\n216\t# -- Output ----------------------------------------------------------------\n217\t\n218\tdef print_comparison_table(df_agg):\n219\t    \"\"\"Print detailed per-subgroup comparison table.\"\"\"\n220\t    print(\"\\n\" + \"=\" * 90)\n221\t    print(\"exp-011 CausalForest EC-HTE Results\")\n222\t    print(\"=\" * 90)\n223\t\n224\t    for K in sorted(df_agg['K'].unique()):\n225\t        for regime in ['extreme', 'moderate']:\n226\t            sub = df_agg[(df_agg['K'] == K) & (df_agg['regime'] == regime)]\n227\t            if sub.empty:\n228\t                continue\n229\t            pi_s = MISCLASS_RATES[K][regime]\n230\t            pi_label = ','.join(f'{p:.2f}' for p in pi_s)\n231\t            print(f\"\\n-- K={K}, {regime} (pi=[{pi_label}]) \" + \"-\" * 50)\n232\t            for ne in sorted(sub['n_expert'].unique()):\n233\t                sub2 = sub[sub['n_expert'] == ne]\n234\t                print(f\"\\n  n_expert = {ne}\")\n235\t                print(f\"  {'method':>15s}  {'sub':>3s}  {'z':>1s}  \"\n236\t                      f\"{'bias':>8s}  {'rmse':>8s}  {'cov':>6s}\")\n237\t                print(f\"  {'-'*15}  {'-'*3}  {'-'*1}  \"\n238\t                      f\"{'-'*8}  {'-'*8}  {'-'*6}\")\n239\t                for method in ['naive_forest', 'global_forest', 'ec_hte_forest']:\n240\t                    for s_val in sorted(sub2['subgroup'].unique()):\n241\t                        for z in [0, 1]:\n242\t                            r = sub2[(sub2['method'] == method)\n243\t                                     & (sub2['subgroup'] == s_val)\n244\t                                     & (sub2['z_level'] == z)]\n245\t                            if r.empty:\n246\t                                continue\n247\t                            r = r.iloc[0]\n248\t                            print(f\"  {method:>15s}  {s_val:>3d}  {z:>1d}  \"\n249\t                                  f\"{r['bias']:8.4f}  {r['rmse']:8.4f}  \"\n250\t                                  f\"{r['coverage']:6.2f}\")\n251\t\n252\t\n253\tdef print_verification(df_agg):\n254\t    \"\"\"Check key patterns: ec_hte bias ~0, global hurts low-pi subgroups.\"\"\"\n255\t    print(\"\\n\" + \"=\" * 90)\n256\t    print(\"Verification Checks\")\n257\t    print(\"=\" * 90)\n258\t\n259\t    for K in sorted(df_agg['K'].unique()):\n260\t        for regime in ['extreme', 'moderate']:\n261\t            sub = df_agg[(df_agg['K'] == K) & (df_agg['regime'] == regime)]\n262\t            if sub.empty:\n263\t                continue\n264\t            pi_s = MISCLASS_RATES[K][regime]\n265\t            print(f\"\\n-- K={K}, {regime} (pi={pi_s}) --\")\n266\t\n267\t            for ne in sorted(sub['n_expert'].unique()):\n268\t                sub2 = sub[sub['n_expert'] == ne]\n269\t                print(f\"\\n  n_expert = {ne}\")\n270\t\n271\t                ec = sub2[sub2['method'] == 'ec_hte_forest']\n272\t                gl = sub2[sub2['method'] == 'global_forest']\n273\t                na = sub2[sub2['method'] == 'naive_forest']\n274\t\n275\t                ec_bias = ec['bias'].abs().mean()\n276\t                gl_bias = gl['bias'].abs().mean()\n277\t                na_bias = na['bias'].abs().mean()\n278\t                ec_rmse = ec['rmse'].mean()\n279\t                gl_rmse = gl['rmse'].mean()\n280\t                na_rmse = na['rmse'].mean()\n281\t\n282\t                print(f\"    Mean |bias|:  naive={na_bias:.4f}  \"\n283\t                      f\"global={gl_bias:.4f}  ec_hte={ec_bias:.4f}\")\n284\t                print(f\"    Mean RMSE:   naive={na_rmse:.4f}  \"\n285\t                      f\"global={gl_rmse:.4f}  ec_hte={ec_rmse:.4f}\")\n286\t\n287\t                for s_val in sorted(sub2['subgroup'].unique()):\n288\t                    na_s = na[na['subgroup'] == s_val]['bias'].abs().mean()\n289\t                    gl_s = gl[gl['subgroup'] == s_val]['bias'].abs().mean()\n290\t                    ec_s = ec[ec['subgroup'] == s_val]['bias'].abs().mean()\n291\t                    tag = \"\"\n292\t                    if gl_s > na_s * 1.1:\n293\t                        tag = f\"  << global HURTS (pi_s={pi_s[s_val]:.2f})\"\n294\t                    print(f\"    subgroup {s_val} (pi={pi_s[s_val]:.2f}): \"\n295\t                          f\"|bias| naive={na_s:.4f} global={gl_s:.4f} \"\n296\t                          f\"ec_hte={ec_s:.4f}{tag}\")\n297\t\n298\t    # Overall pattern consistency check\n299\t    print(\"\\n-- Pattern Consistency with exp-001 --\")\n300\t    methods = ['naive_forest', 'global_forest', 'ec_hte_forest']\n301\t    overall = {}\n302\t    for m in methods:\n303\t        ms = df_agg[df_agg['method'] == m]\n304\t        overall[m] = {'bias': ms['bias'].abs().mean(), 'rmse': ms['rmse'].mean()}\n305\t    print(f\"  Overall mean |bias|:\")\n306\t    for m in methods:\n307\t        print(f\"    {m:>15s}: {overall[m]['bias']:.4f}\")\n308\t    print(f\"  Overall mean RMSE:\")\n309\t    for m in methods:\n310\t        print(f\"    {m:>15s}: {overall[m]['rmse']:.4f}\")\n311\t\n312\t    ec_wins = (overall['ec_hte_forest']['bias'] < overall['naive_forest']['bias']\n313\t               and overall['ec_hte_forest']['bias'] < overall['global_forest']['bias'])\n314\t    print(f\"\\n  ec_hte best overall bias? {'YES' if ec_wins else 'NO'}\")\n315\t\n316\t    # Check global hurts in at least one subgroup in extreme regime\n317\t    extreme = df_agg[df_agg['regime'] == 'extreme']\n318\t    if not extreme.empty:\n319\t        n_hurts = 0\n320\t        for K in extreme['K'].unique():\n321\t            for ne in extreme['n_expert'].unique():\n322\t                s = extreme[(extreme['K'] == K) & (extreme['n_expert'] == ne)]\n323\t                for sv in s['subgroup'].unique():\n324\t                    na_b = s[(s['method'] == 'naive_forest') & (s['subgroup'] == sv)]['bias'].abs().mean()\n325\t                    gl_b = s[(s['method'] == 'global_forest') & (s['subgroup'] == sv)]['bias'].abs().mean()\n326\t                    if gl_b > na_b * 1.1:\n327\t                        n_hurts += 1\n328\t        print(f\"  Global hurts low-pi subgroups (extreme)? \"\n329\t              f\"{'YES' if n_hurts > 0 else 'NO'} ({n_hurts} cases)\")\n330\t\n331\t\n332\t# -- Main ------------------------------------------------------------------\n333\t\n334\tif __name__ == '__main__':\n335\t    parser = argparse.ArgumentParser(description='exp-011 CausalForest EC-HTE')\n336\t    parser.add_argument('--n-mc', type=int, default=100)\n337\t    parser.add_argument('--dry-run', action='store_true')\n338\t    args = parser.parse_args()\n339\t\n340\t    n_mc = 2 if args.dry_run else args.n_mc\n341\t    configs = CONFIGS[:2] if args.dry_run else CONFIGS\n342\t\n343\t    print(f\"exp-011 CausalForest EC-HTE | N={N} n_mc={n_mc}\")\n344\t    print(f\"Configs: {len(configs)} | True CATE: tau(Z=0)={TAU_TRUE[0]}, tau(Z=1)={TAU_TRUE[1]}\")\n345\t\n346\t    # Timing estimate\n347\t    print(\"\\nTiming single forest fit...\")\n348\t    t_test = time.time()\n349\t    td = generate_data(N, 2, 'moderate', 100, seed=9999)\n350\t    X_test = np.column_stack([td[3], td[4]]).astype(float)\n351\t    cf_test = CausalForestDML(\n352\t        model_y=LinearRegression(),\n353\t        model_t=LogisticRegression(solver='lbfgs'),\n354\t        discrete_treatment=True,\n355\t        n_estimators=200, min_samples_leaf=20, random_state=42)\n356\t    cf_test.fit(td[0], td[1], X=X_test, W=None)\n357\t    cf_test.effect(X_test[:4])\n358\t    t_per = time.time() - t_test\n359\t    total = len(configs) * n_mc\n360\t    print(f\"  {t_per:.2f}s/run -> estimated total: \"\n361\t          f\"{t_per * total:.0f}s ({t_per * total / 60:.1f} min)\\n\")\n362\t\n363\t    all_rows = []\n364\t    count = 0\n365\t    t0 = time.time()\n366\t\n367\t    for cfg in configs:\n368\t        cfg_label = f\"K={cfg['K']} {cfg['regime']} ne={cfg['n_expert']}\"\n369\t        for mc in range(n_mc):\n370\t            try:\n371\t                rows = run_one_mc(cfg, seed=mc)\n372\t                all_rows.extend(rows)\n373\t            except Exception as e:\n374\t                print(f\"  WARN: {cfg_label} mc={mc} failed: {e}\")\n375\t            count += 1\n376\t            if count % max(1, total // 20) == 0:\n377\t                el = time.time() - t0\n378\t                eta = el / count * (total - count) if count > 0 else 0\n379\t                print(f\"  [{count}/{total}] {el:.0f}s elapsed, \"\n380\t                      f\"ETA {eta:.0f}s | {cfg_label}\")\n381\t\n382\t    elapsed = time.time() - t0\n383\t    print(f\"\\nSweep done: {elapsed:.1f}s ({count} runs, {elapsed/count:.1f}s/run)\")\n384\t\n385\t    df_raw = pd.DataFrame(all_rows)\n386\t    df_agg = aggregate_results(df_raw)\n387\t\n388\t    os.makedirs('results', exist_ok=True)\n389\t    df_agg.to_csv('results/exp011_causal_forest.csv', index=False)\n390\t    print(f\"Saved: results/exp011_causal_forest.csv ({len(df_agg)} rows)\")\n391\t\n392\t    print_comparison_table(df_agg)\n393\t    print_verification(df_agg)\n394\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "7554a3c5-c7ed-498f-a537-cd60a6b49a32",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp011_causal_forest.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp011_causal_forest.py - CausalForestDML EC-HTE integration (exp-011)\n\nValidates EC-HTE correction with CausalForestDML as CATE estimator.\nThree methods: naive_forest (Z_hat, no correction), global_forest (global M^-1),\nec_hte_forest (per-subgroup M_s^-1).\n\nOutput: results/exp011_causal_forest.csv\n\"\"\"\n\nimport argparse\nimport os\nimport time\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom econml.dml import CausalForestDML\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\n\nwarnings.filterwarnings('ignore')\n\nN = 5000\nTAU_TRUE = {0: 0.5, 1: 1.5}\n\nMISCLASS_RATES = {\n    2: {'extreme': [0.05, 0.20], 'moderate': [0.10, 0.15]},\n    4: {'extreme': [0.05, 0.15, 0.25, 0.40], 'moderate': [0.08, 0.12, 0.16, 0.20]},\n}\n\nCONFIGS = [\n    {'K': 2, 'regime': 'extreme', 'n_expert': 100},\n    {'K': 2, 'regime': 'extreme', 'n_expert': 500},\n    {'K': 2, 'regime': 'moderate', 'n_expert': 100},\n    {'K': 2, 'regime': 'moderate', 'n_expert': 500},\n    {'K': 4, 'regime': 'extreme', 'n_expert': 100},\n    {'K': 4, 'regime': 'extreme', 'n_expert': 500},\n    {'K': 4, 'regime': 'moderate', 'n_expert': 100},\n    {'K': 4, 'regime': 'moderate', 'n_expert': 500},\n]\n\n\n# -- DGP ------------------------------------------------------------------\n\ndef generate_data(N, K, regime, n_expert, seed):\n    \"\"\"Generate synthetic data with subgroup-specific misclassification.\n\n    Returns Y, T, Z_true, Z_hat, S, expert_mask.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    S = rng.randint(0, K, N)\n    T = rng.binomial(1, 0.5, N)\n    Z_true = rng.binomial(1, 0.5, N)\n\n    pi_s = MISCLASS_RATES[K][regime]\n    Z_hat = Z_true.copy()\n    for s in range(K):\n        mask_s = S == s\n        flip = rng.binomial(1, pi_s[s], mask_s.sum())\n        Z_hat[mask_s] = np.where(flip, 1 - Z_true[mask_s], Z_true[mask_s])\n\n    tau = np.where(Z_true == 1, TAU_TRUE[1], TAU_TRUE[0])\n    baseline = 1.0 + 0.5 * Z_true\n    Y = baseline + tau * T + rng.normal(0, 1, N)\n\n    expert_idx = rng.choice(N, n_expert, replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[expert_idx] = True\n\n    return Y, T, Z_true, Z_hat, S, expert_mask\n\n\n# -- Helpers ---------------------------------------------------------------\n\ndef compute_confusion_matrix(z_true, z_hat):\n    \"\"\"2x2 confusion matrix C[z, z_hat] = P(Z_hat|Z) with Laplace smoothing.\"\"\"\n    C = np.zeros((2, 2))\n    for z in [0, 1]:\n        mz = z_true == z\n        C[z, 0] = (z_hat[mz] == 0).sum() + 1\n        C[z, 1] = (z_hat[mz] == 1).sum() + 1\n    return C / C.sum(axis=1, keepdims=True)\n\n\ndef build_mixing_matrix(C):\n    \"\"\"C[z, z_hat] -> M[z_hat, z] via Bayes rule (P(Z=0)=P(Z=1)=0.5).\"\"\"\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        if cs > 0:\n            M[zh, 0] = C[0, zh] / cs\n            M[zh, 1] = C[1, zh] / cs\n        else:\n            M[zh, :] = 0.5\n    return M\n\n\ndef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n    \"\"\"M^-1 correction with condition number guard.\"\"\"\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold:\n        return tau_obs.copy(), se_obs.copy()\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# -- Single MC Run --------------------------------------------------------\n\ndef run_one_mc(config, seed):\n    \"\"\"Run one Monte Carlo iteration: fit forest, apply 3 correction methods.\"\"\"\n    K = config['K']\n    Y, T, Z_true, Z_hat, S, expert_mask = generate_data(\n        N, K, config['regime'], config['n_expert'], seed)\n\n    X_hat = np.column_stack([Z_hat, S]).astype(float)\n    cf = CausalForestDML(\n        model_y=LinearRegression(),\n        model_t=LogisticRegression(solver='lbfgs'),\n        discrete_treatment=True,\n        n_estimators=200, min_samples_leaf=20, random_state=42)\n    cf.fit(Y, T, X=X_hat, W=None)\n\n    # Predict CATE at each unique (Z_hat, S) point\n    X_eval = np.array([[z, s] for s in range(K) for z in [0, 1]], dtype=float)\n    cate_vals = cf.effect(X_eval).flatten()\n\n    try:\n        inf = cf.effect_inference(X_eval)\n        se_raw = inf.stderr\n        if hasattr(se_raw, 'values'):\n            se_raw = se_raw.values\n        se_vals = np.asarray(se_raw).flatten()\n    except Exception:\n        se_vals = np.full(len(X_eval), np.nan)\n\n    cate, cate_se = {}, {}\n    idx = 0\n    for s in range(K):\n        for z in [0, 1]:\n            cate[(z, s)] = float(cate_vals[idx])\n            cate_se[(z, s)] = float(se_vals[idx])\n            idx += 1\n\n    # Confusion matrices from expert subset\n    C_global = compute_confusion_matrix(Z_true[expert_mask], Z_hat[expert_mask])\n    M_global = build_mixing_matrix(C_global)\n\n    M_sub = {}\n    for s in range(K):\n        mask_s = expert_mask & (S == s)\n        if mask_s.sum() >= 4:\n            C_s = compute_confusion_matrix(Z_true[mask_s], Z_hat[mask_s])\n        else:\n            C_s = np.array([[0.5, 0.5], [0.5, 0.5]])\n        M_sub[s] = build_mixing_matrix(C_s)\n\n    rows = []\n    for s in range(K):\n        tau_obs = np.array([cate[(0, s)], cate[(1, s)]])\n        se_obs = np.array([cate_se[(0, s)], cate_se[(1, s)]])\n\n        tau_naive, se_naive = tau_obs.copy(), se_obs.copy()\n        tau_global, se_global = invert_mixing_safe(M_global, tau_obs, se_obs)\n        tau_ec, se_ec = invert_mixing_safe(M_sub[s], tau_obs, se_obs)\n\n        base = {'K': K, 'regime': config['regime'], 'n_expert': config['n_expert'],\n                'subgroup': s, 'mc_run': seed}\n\n        for z in [0, 1]:\n            for method, th, se in [\n                ('naive_forest', tau_naive[z], se_naive[z]),\n                ('global_forest', tau_global[z], se_global[z]),\n                ('ec_hte_forest', tau_ec[z], se_ec[z]),\n            ]:\n                if np.isnan(se):\n                    ci_lo = ci_hi = covers = np.nan\n                else:\n                    ci_lo = th - 1.96 * se\n                    ci_hi = th + 1.96 * se\n                    covers = int(ci_lo <= TAU_TRUE[z] <= ci_hi)\n                rows.append({**base, 'z_level': z, 'method': method,\n                             'tau_hat': th, 'se': se, 'tau_true': TAU_TRUE[z],\n                             'ci_lo': ci_lo, 'ci_hi': ci_hi, 'covers': covers})\n\n    return rows\n\n\n# -- Aggregation -----------------------------------------------------------\n\ndef aggregate_results(df):\n    \"\"\"Compute bias, RMSE, coverage per config x method x subgroup x z_level.\"\"\"\n    grp_cols = ['K', 'regime', 'n_expert', 'subgroup', 'z_level', 'method']\n    rows = []\n    for keys, g in df.groupby(grp_cols):\n        K, regime, n_expert, subgroup, z_level, method = keys\n        err = g['tau_hat'].values - g['tau_true'].values\n        bias = err.mean()\n        rmse = np.sqrt((err ** 2).mean())\n        cov = g['covers'].mean()\n        n_mc = len(g)\n        rows.append({\n            'K': int(K), 'regime': regime, 'n_expert': int(n_expert),\n            'subgroup': int(subgroup), 'z_level': int(z_level), 'method': method,\n            'bias': bias, 'rmse': rmse, 'coverage': cov,\n            'bias_se': err.std() / np.sqrt(n_mc),\n            'rmse_se': (err ** 2).std() / (2 * rmse * np.sqrt(n_mc)) if rmse > 1e-10 else np.nan,\n            'n_mc': n_mc,\n        })\n    return pd.DataFrame(rows)\n\n\n# -- Output ----------------------------------------------------------------\n\ndef print_comparison_table(df_agg):\n    \"\"\"Print detailed per-subgroup comparison table.\"\"\"\n    print(\"\\n\" + \"=\" * 90)\n    print(\"exp-011 CausalForest EC-HTE Results\")\n    print(\"=\" * 90)\n\n    for K in sorted(df_agg['K'].unique()):\n        for regime in ['extreme', 'moderate']:\n            sub = df_agg[(df_agg['K'] == K) & (df_agg['regime'] == regime)]\n            if sub.empty:\n                continue\n            pi_s = MISCLASS_RATES[K][regime]\n            pi_label = ','.join(f'{p:.2f}' for p in pi_s)\n            print(f\"\\n-- K={K}, {regime} (pi=[{pi_label}]) \" + \"-\" * 50)\n            for ne in sorted(sub['n_expert'].unique()):\n                sub2 = sub[sub['n_expert'] == ne]\n                print(f\"\\n  n_expert = {ne}\")\n                print(f\"  {'method':>15s}  {'sub':>3s}  {'z':>1s}  \"\n                      f\"{'bias':>8s}  {'rmse':>8s}  {'cov':>6s}\")\n                print(f\"  {'-'*15}  {'-'*3}  {'-'*1}  \"\n                      f\"{'-'*8}  {'-'*8}  {'-'*6}\")\n                for method in ['naive_forest', 'global_forest', 'ec_hte_forest']:\n                    for s_val in sorted(sub2['subgroup'].unique()):\n                        for z in [0, 1]:\n                            r = sub2[(sub2['method'] == method)\n                                     & (sub2['subgroup'] == s_val)\n                                     & (sub2['z_level'] == z)]\n                            if r.empty:\n                                continue\n                            r = r.iloc[0]\n                            print(f\"  {method:>15s}  {s_val:>3d}  {z:>1d}  \"\n                                  f\"{r['bias']:8.4f}  {r['rmse']:8.4f}  \"\n                                  f\"{r['coverage']:6.2f}\")\n\n\ndef print_verification(df_agg):\n    \"\"\"Check key patterns: ec_hte bias ~0, global hurts low-pi subgroups.\"\"\"\n    print(\"\\n\" + \"=\" * 90)\n    print(\"Verification Checks\")\n    print(\"=\" * 90)\n\n    for K in sorted(df_agg['K'].unique()):\n        for regime in ['extreme', 'moderate']:\n            sub = df_agg[(df_agg['K'] == K) & (df_agg['regime'] == regime)]\n            if sub.empty:\n                continue\n            pi_s = MISCLASS_RATES[K][regime]\n            print(f\"\\n-- K={K}, {regime} (pi={pi_s}) --\")\n\n            for ne in sorted(sub['n_expert'].unique()):\n                sub2 = sub[sub['n_expert'] == ne]\n                print(f\"\\n  n_expert = {ne}\")\n\n                ec = sub2[sub2['method'] == 'ec_hte_forest']\n                gl = sub2[sub2['method'] == 'global_forest']\n                na = sub2[sub2['method'] == 'naive_forest']\n\n                ec_bias = ec['bias'].abs().mean()\n                gl_bias = gl['bias'].abs().mean()\n                na_bias = na['bias'].abs().mean()\n                ec_rmse = ec['rmse'].mean()\n                gl_rmse = gl['rmse'].mean()\n                na_rmse = na['rmse'].mean()\n\n                print(f\"    Mean |bias|:  naive={na_bias:.4f}  \"\n                      f\"global={gl_bias:.4f}  ec_hte={ec_bias:.4f}\")\n                print(f\"    Mean RMSE:   naive={na_rmse:.4f}  \"\n                      f\"global={gl_rmse:.4f}  ec_hte={ec_rmse:.4f}\")\n\n                for s_val in sorted(sub2['subgroup'].unique()):\n                    na_s = na[na['subgroup'] == s_val]['bias'].abs().mean()\n                    gl_s = gl[gl['subgroup'] == s_val]['bias'].abs().mean()\n                    ec_s = ec[ec['subgroup'] == s_val]['bias'].abs().mean()\n                    tag = \"\"\n                    if gl_s > na_s * 1.1:\n                        tag = f\"  << global HURTS (pi_s={pi_s[s_val]:.2f})\"\n                    print(f\"    subgroup {s_val} (pi={pi_s[s_val]:.2f}): \"\n                          f\"|bias| naive={na_s:.4f} global={gl_s:.4f} \"\n                          f\"ec_hte={ec_s:.4f}{tag}\")\n\n    # Overall pattern consistency check\n    print(\"\\n-- Pattern Consistency with exp-001 --\")\n    methods = ['naive_forest', 'global_forest', 'ec_hte_forest']\n    overall = {}\n    for m in methods:\n        ms = df_agg[df_agg['method'] == m]\n        overall[m] = {'bias': ms['bias'].abs().mean(), 'rmse': ms['rmse'].mean()}\n    print(f\"  Overall mean |bias|:\")\n    for m in methods:\n        print(f\"    {m:>15s}: {overall[m]['bias']:.4f}\")\n    print(f\"  Overall mean RMSE:\")\n    for m in methods:\n        print(f\"    {m:>15s}: {overall[m]['rmse']:.4f}\")\n\n    ec_wins = (overall['ec_hte_forest']['bias'] < overall['naive_forest']['bias']\n               and overall['ec_hte_forest']['bias'] < overall['global_forest']['bias'])\n    print(f\"\\n  ec_hte best overall bias? {'YES' if ec_wins else 'NO'}\")\n\n    # Check global hurts in at least one subgroup in extreme regime\n    extreme = df_agg[df_agg['regime'] == 'extreme']\n    if not extreme.empty:\n        n_hurts = 0\n        for K in extreme['K'].unique():\n            for ne in extreme['n_expert'].unique():\n                s = extreme[(extreme['K'] == K) & (extreme['n_expert'] == ne)]\n                for sv in s['subgroup'].unique():\n                    na_b = s[(s['method'] == 'naive_forest') & (s['subgroup'] == sv)]['bias'].abs().mean()\n                    gl_b = s[(s['method'] == 'global_forest') & (s['subgroup'] == sv)]['bias'].abs().mean()\n                    if gl_b > na_b * 1.1:\n                        n_hurts += 1\n        print(f\"  Global hurts low-pi subgroups (extreme)? \"\n              f\"{'YES' if n_hurts > 0 else 'NO'} ({n_hurts} cases)\")\n\n\n# -- Main ------------------------------------------------------------------\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser(description='exp-011 CausalForest EC-HTE')\n    parser.add_argument('--n-mc', type=int, default=100)\n    parser.add_argument('--dry-run', action='store_true')\n    args = parser.parse_args()\n\n    n_mc = 2 if args.dry_run else args.n_mc\n    configs = CONFIGS[:2] if args.dry_run else CONFIGS\n\n    print(f\"exp-011 CausalForest EC-HTE | N={N} n_mc={n_mc}\")\n    print(f\"Configs: {len(configs)} | True CATE: tau(Z=0)={TAU_TRUE[0]}, tau(Z=1)={TAU_TRUE[1]}\")\n\n    # Timing estimate\n    print(\"\\nTiming single forest fit...\")\n    t_test = time.time()\n    td = generate_data(N, 2, 'moderate', 100, seed=9999)\n    X_test = np.column_stack([td[3], td[4]]).astype(float)\n    cf_test = CausalForestDML(\n        model_y=LinearRegression(),\n        model_t=LogisticRegression(solver='lbfgs'),\n        discrete_treatment=True,\n        n_estimators=200, min_samples_leaf=20, random_state=42)\n    cf_test.fit(td[0], td[1], X=X_test, W=None)\n    cf_test.effect(X_test[:4])\n    t_per = time.time() - t_test\n    total = len(configs) * n_mc\n    print(f\"  {t_per:.2f}s/run -> estimated total: \"\n          f\"{t_per * total:.0f}s ({t_per * total / 60:.1f} min)\\n\")\n\n    all_rows = []\n    count = 0\n    t0 = time.time()\n\n    for cfg in configs:\n        cfg_label = f\"K={cfg['K']} {cfg['regime']} ne={cfg['n_expert']}\"\n        for mc in range(n_mc):\n            try:\n                rows = run_one_mc(cfg, seed=mc)\n                all_rows.extend(rows)\n            except Exception as e:\n                print(f\"  WARN: {cfg_label} mc={mc} failed: {e}\")\n            count += 1\n            if count % max(1, total // 20) == 0:\n                el = time.time() - t0\n                eta = el / count * (total - count) if count > 0 else 0\n                print(f\"  [{count}/{total}] {el:.0f}s elapsed, \"\n                      f\"ETA {eta:.0f}s | {cfg_label}\")\n\n    elapsed = time.time() - t0\n    print(f\"\\nSweep done: {elapsed:.1f}s ({count} runs, {elapsed/count:.1f}s/run)\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate_results(df_raw)\n\n    os.makedirs('results', exist_ok=True)\n    df_agg.to_csv('results/exp011_causal_forest.csv', index=False)\n    print(f\"Saved: results/exp011_causal_forest.csv ({len(df_agg)} rows)\")\n\n    print_comparison_table(df_agg)\n    print_verification(df_agg)\n",
+                "numLines": 394,
+                "startLine": 1,
+                "totalLines": 394
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HpcVMHZdqS57g4M2gDoCQN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp_mf2_cf_bootstrap_se.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "d71478a9-58fc-4e63-a439-9dbd3f47396e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01698mgWReq2ui2pZ6Sqqbx9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6809
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:02:00.327Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HpcVMHZdqS57g4M2gDoCQN",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\texp_mf2_cf_bootstrap_se.py — CausalForestDML: Bootstrap SE vs Plug-in SE Coverage (MF2)\n4\t\n5\tValidates whether CausalForestDML's plug-in SE captures confusion matrix\n6\testimation uncertainty. Compares:\n7\t  1. Plug-in SE: forest effect_inference SE propagated through M⁻¹ (delta method)\n8\t  2. CM-Bootstrap SE: resample experts → re-estimate CM → re-apply M⁻¹ → SD of corrected CATEs\n9\t  3. Combined SE: sqrt(plugin² + bootstrap²)\n10\t\n11\tDGP: K=2, π=[0.05, 0.25], τ(z=0)=0.10, τ(z=1)=0.40\n12\tN=5000, n_expert ∈ {100, 250, 500}, 50 MC runs, 100 CM-bootstrap resamples\n13\t\"\"\"\n14\t\n15\timport argparse\n16\timport os\n17\timport time\n18\timport warnings\n19\t\n20\timport numpy as np\n21\timport pandas as pd\n22\tfrom econml.dml import CausalForestDML\n23\tfrom sklearn.linear_model import LinearRegression, LogisticRegression\n24\t\n25\twarnings.filterwarnings('ignore')\n26\t\n27\tN = 5000\n28\tMISCLASS = [0.05, 0.25]\n29\tTAU_Z0 = 0.10\n30\tTAU_Z1 = 0.40\n31\tTAU_TRUE = np.array([TAU_Z0, TAU_Z1])\n32\tLABELS = ['A', 'B']\n33\t\n34\t\n35\tdef generate_data(n_expert, seed):\n36\t    rng = np.random.RandomState(seed)\n37\t    T = rng.binomial(1, 0.5, N)\n38\t    Z = rng.binomial(1, 0.5, N)\n39\t    S = rng.choice(LABELS, N, p=[0.5, 0.5])\n40\t    X = rng.randn(N, 5)\n41\t    tau = np.where(Z == 1, TAU_Z1, TAU_Z0)\n42\t    Y = 1.0 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n43\t    mc_rates = np.where(S == 'A', MISCLASS[0], MISCLASS[1])\n44\t    Z_tilde = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n45\t    idx = rng.choice(N, min(n_expert, N), replace=False)\n46\t    expert_mask = np.zeros(N, dtype=bool)\n47\t    expert_mask[idx] = True\n48\t    return dict(T=T, Z=Z, Z_tilde=Z_tilde, S=S, X=X, Y=Y, expert_mask=expert_mask)\n49\t\n50\t\n51\tdef estimate_cm(z_true, z_hat):\n52\t    C = np.zeros((2, 2))\n53\t    for z in [0, 1]:\n54\t        mask = z_true == z\n55\t        n = mask.sum()\n56\t        for zh in [0, 1]:\n57\t            C[z, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n58\t    return C\n59\t\n60\t\n61\tdef build_mixing_matrix(C):\n62\t    M = np.zeros((2, 2))\n63\t    for zh in [0, 1]:\n64\t        cs = C[0, zh] + C[1, zh]\n65\t        M[zh, 0] = C[0, zh] / cs if cs > 0 else 0.5\n66\t        M[zh, 1] = C[1, zh] / cs if cs > 0 else 0.5\n67\t    return M\n68\t\n69\t\n70\tdef invert_mixing(M, tau_obs, se_obs):\n71\t    if np.linalg.cond(M) > 100 or abs(np.linalg.det(M)) < 1e-10:\n72\t        return tau_obs.copy(), se_obs.copy(), True\n73\t    Mi = np.linalg.inv(M)\n74\t    tau_c = Mi @ tau_obs\n75\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n76\t    return tau_c, se_c, False\n77\t\n78\t\n79\tdef run_one_mc(n_expert, seed, n_bootstrap):\n80\t    data = generate_data(n_expert, seed)\n81\t    Y, T, Z, Z_tilde, S, X = (\n82\t        data['Y'], data['T'], data['Z'], data['Z_tilde'], data['S'], data['X']\n83\t    )\n84\t    em = data['expert_mask']\n85\t\n86\t    z_exp = Z[em]\n87\t    zt_exp = Z_tilde[em]\n88\t    s_exp = S[em]\n89\t    n_exp = em.sum()\n90\t\n91\t    # Per-subgroup CM from expert sample\n92\t    M_sub = {}\n93\t    for s in LABELS:\n94\t        sm = s_exp == s\n95\t        if sm.sum() >= 4:\n96\t            C_s = estimate_cm(z_exp[sm], zt_exp[sm])\n97\t        else:\n98\t            C_s = estimate_cm(z_exp, zt_exp)\n99\t        M_sub[s] = build_mixing_matrix(C_s)\n100\t\n101\t    # ── Fit CausalForestDML ──\n102\t    X_features = np.column_stack([Z_tilde, X]).astype(float)\n103\t    cf = CausalForestDML(\n104\t        model_y=LinearRegression(),\n105\t        model_t=LogisticRegression(solver='lbfgs'),\n106\t        discrete_treatment=True,\n107\t        n_estimators=200,\n108\t        min_samples_leaf=20,\n109\t        random_state=seed,\n110\t    )\n111\t    cf.fit(Y, T, X=X_features)\n112\t\n113\t    # Individual CATEs\n114\t    cate_all = cf.effect(X_features).flatten()\n115\t\n116\t    # Per-subgroup observed CATEs: mean(τ̂ᵢ | Z_tilde=z, S=s)\n117\t    sub_obs = {}\n118\t    for s in LABELS:\n119\t        sm = S == s\n120\t        vals = []\n121\t        for z in [0, 1]:\n122\t            mask = sm & (Z_tilde == z)\n123\t            if mask.sum() == 0:\n124\t                return None\n125\t            vals.append(cate_all[mask].mean())\n126\t        sub_obs[s] = np.array(vals)\n127\t\n128\t    # Plug-in SE from effect_inference at representative points\n129\t    X_mean = X.mean(axis=0)\n130\t    X_eval = np.array([\n131\t        np.concatenate([[0], X_mean]),\n132\t        np.concatenate([[1], X_mean]),\n133\t    ])\n134\t    try:\n135\t        inf = cf.effect_inference(X_eval)\n136\t        se_raw = np.asarray(inf.stderr).flatten()\n137\t        if np.any(np.isnan(se_raw)) or np.any(se_raw <= 0):\n138\t            se_raw = np.full(2, np.nan)\n139\t    except Exception:\n140\t        se_raw = np.full(2, np.nan)\n141\t\n142\t    sub_se_obs = {s: se_raw.copy() for s in LABELS}\n143\t\n144\t    # ── Plug-in: M⁻¹ corrected ──\n145\t    plugin_tau_sub, plugin_se_sub = {}, {}\n146\t    for s in LABELS:\n147\t        tau_c, se_c, _ = invert_mixing(M_sub[s], sub_obs[s], sub_se_obs[s])\n148\t        plugin_tau_sub[s] = tau_c\n149\t        plugin_se_sub[s] = se_c\n150\t\n151\t    sub_w = {s: (S == s).sum() / N for s in LABELS}\n152\t    plugin_tau = sum(sub_w[s] * plugin_tau_sub[s] for s in LABELS)\n153\t    plugin_se = np.sqrt(sum((sub_w[s] * plugin_se_sub[s]) ** 2 for s in LABELS))\n154\t\n155\t    # ── CM Bootstrap ──\n156\t    boot_taus = np.zeros((n_bootstrap, 2))\n157\t    rng_boot = np.random.RandomState(seed * 1000 + 7)\n158\t\n159\t    for b in range(n_bootstrap):\n160\t        boot_idx = rng_boot.choice(n_exp, n_exp, replace=True)\n161\t        z_b, zt_b, s_b = z_exp[boot_idx], zt_exp[boot_idx], s_exp[boot_idx]\n162\t\n163\t        b_tau = np.zeros(2)\n164\t        for s in LABELS:\n165\t            sm_b = s_b == s\n166\t            if sm_b.sum() >= 4:\n167\t                C_b = estimate_cm(z_b[sm_b], zt_b[sm_b])\n168\t            else:\n169\t                C_b = estimate_cm(z_b, zt_b)\n170\t            M_b = build_mixing_matrix(C_b)\n171\t            tau_c_b, _, _ = invert_mixing(M_b, sub_obs[s], sub_se_obs[s])\n172\t            b_tau += sub_w[s] * tau_c_b\n173\t        boot_taus[b] = b_tau\n174\t\n175\t    boot_se = np.nanstd(boot_taus, axis=0)\n176\t\n177\t    # ── Results ──\n178\t    result = {'n_expert': n_expert, 'seed': seed}\n179\t    for z in [0, 1]:\n180\t        zl = f'z{z}'\n181\t        # Plug-in CI\n182\t        pi_lo = plugin_tau[z] - 1.96 * plugin_se[z]\n183\t        pi_hi = plugin_tau[z] + 1.96 * plugin_se[z]\n184\t        result[f'plugin_covers_{zl}'] = int(pi_lo <= TAU_TRUE[z] <= pi_hi)\n185\t        result[f'plugin_se_{zl}'] = plugin_se[z]\n186\t        result[f'plugin_width_{zl}'] = pi_hi - pi_lo\n187\t        result[f'tau_hat_{zl}'] = plugin_tau[z]\n188\t\n189\t        # CM-Bootstrap CI (uses same point estimate, different SE)\n190\t        bs_lo = plugin_tau[z] - 1.96 * boot_se[z]\n191\t        bs_hi = plugin_tau[z] + 1.96 * boot_se[z]\n192\t        result[f'bootstrap_covers_{zl}'] = int(bs_lo <= TAU_TRUE[z] <= bs_hi)\n193\t        result[f'bootstrap_se_{zl}'] = boot_se[z]\n194\t        result[f'bootstrap_width_{zl}'] = bs_hi - bs_lo\n195\t\n196\t        # Combined CI\n197\t        comb_se = np.sqrt(plugin_se[z] ** 2 + boot_se[z] ** 2)\n198\t        cb_lo = plugin_tau[z] - 1.96 * comb_se\n199\t        cb_hi = plugin_tau[z] + 1.96 * comb_se\n200\t        result[f'combined_covers_{zl}'] = int(cb_lo <= TAU_TRUE[z] <= cb_hi)\n201\t        result[f'combined_se_{zl}'] = comb_se\n202\t        result[f'combined_width_{zl}'] = cb_hi - cb_lo\n203\t\n204\t    return result\n205\t\n206\t\n207\tdef aggregate(df_raw):\n208\t    rows = []\n209\t    for ne, grp in df_raw.groupby('n_expert'):\n210\t        for method, col_prefix in [\n211\t            ('plugin', 'plugin'),\n212\t            ('cm_bootstrap', 'bootstrap'),\n213\t            ('combined', 'combined'),\n214\t        ]:\n215\t            row = {'n_expert': int(ne), 'se_method': method}\n216\t            for z in [0, 1]:\n217\t                zl = f'z{z}'\n218\t                row[f'coverage_{zl}'] = grp[f'{col_prefix}_covers_{zl}'].mean()\n219\t                row[f'mean_se_{zl}'] = grp[f'{col_prefix}_se_{zl}'].mean()\n220\t                row[f'mean_width_{zl}'] = grp[f'{col_prefix}_width_{zl}'].mean()\n221\t            row['coverage_avg'] = (row['coverage_z0'] + row['coverage_z1']) / 2\n222\t            rows.append(row)\n223\t    return pd.DataFrame(rows)\n224\t\n225\t\n226\tdef main():\n227\t    parser = argparse.ArgumentParser()\n228\t    parser.add_argument('--dry-run', action='store_true')\n229\t    args = parser.parse_args()\n230\t\n231\t    n_mc = 2 if args.dry_run else 50\n232\t    n_bootstrap = 5 if args.dry_run else 100\n233\t    n_experts = [100, 250, 500]\n234\t    seeds = list(range(42, 42 + n_mc))\n235\t\n236\t    print(f\"MF2: CausalForestDML Bootstrap SE vs Plug-in SE Coverage\")\n237\t    print(f\"N={N}, n_expert={n_experts}, N_MC={n_mc}, N_boot={n_bootstrap}\")\n238\t    print(f\"DGP: K=2, pi={MISCLASS}, tau(z=0)={TAU_Z0}, tau(z=1)={TAU_Z1}\")\n239\t    if args.dry_run:\n240\t        print(\"** DRY RUN **\")\n241\t    print()\n242\t\n243\t    all_rows = []\n244\t    total = len(n_experts) * n_mc\n245\t    count = 0\n246\t    t0 = time.time()\n247\t\n248\t    for ne in n_experts:\n249\t        for seed in seeds:\n250\t            result = run_one_mc(ne, seed, n_bootstrap)\n251\t            if result is not None:\n252\t                all_rows.append(result)\n253\t            count += 1\n254\t            if count % max(1, total // 10) == 0:\n255\t                el = time.time() - t0\n256\t                eta = el / count * (total - count)\n257\t                print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s\")\n258\t\n259\t    elapsed = time.time() - t0\n260\t    print(f\"\\nDone in {elapsed:.1f}s ({len(all_rows)} successful MC runs)\\n\")\n261\t\n262\t    df_raw = pd.DataFrame(all_rows)\n263\t    df_agg = aggregate(df_raw)\n264\t\n265\t    # ── Print summary ──\n266\t    print(\"=\" * 115)\n267\t    print(\"SUMMARY: CausalForestDML SE Coverage\")\n268\t    print(\"=\" * 115)\n269\t    header = (f\"{'n_exp':>5} {'method':>14} | {'cov_z0':>7} {'cov_z1':>7} \"\n270\t              f\"{'cov_avg':>7} | {'SE_z0':>8} {'SE_z1':>8} | \"\n271\t              f\"{'width_z0':>9} {'width_z1':>9}\")\n272\t    print(header)\n273\t    print(\"-\" * len(header))\n274\t    for _, r in df_agg.iterrows():\n275\t        print(f\"{int(r['n_expert']):5d} {r['se_method']:>14s} | \"\n276\t              f\"{r['coverage_z0']:7.3f} {r['coverage_z1']:7.3f} \"\n277\t              f\"{r['coverage_avg']:7.3f} | \"\n278\t              f\"{r['mean_se_z0']:8.4f} {r['mean_se_z1']:8.4f} | \"\n279\t              f\"{r['mean_width_z0']:9.4f} {r['mean_width_z1']:9.4f}\")\n280\t\n281\t    # ── Save ──\n282\t    proj = '/home/ubuntu/ec_hte_llm_annotation'\n283\t    os.makedirs(f'{proj}/results', exist_ok=True)\n284\t    csv_path = f'{proj}/results/exp_mf2_cf_bootstrap_se.csv'\n285\t    raw_path = f'{proj}/results/exp_mf2_cf_bootstrap_se_raw.csv'\n286\t    df_agg.to_csv(csv_path, index=False)\n287\t    df_raw.to_csv(raw_path, index=False)\n288\t    print(f\"\\nSaved: {csv_path} ({len(df_agg)} rows)\")\n289\t    print(f\"Saved: {raw_path} ({len(df_raw)} rows)\")\n290\t\n291\t    artifacts_dir = os.path.expanduser(\n292\t        '~/.agent-ml-research-idea_gen_0520/projects/'\n293\t        'ec_hte_llm_annotation/artifacts/mf2/data/')\n294\t    os.makedirs(artifacts_dir, exist_ok=True)\n295\t    art_path = os.path.join(artifacts_dir, 'exp_mf2_cf_bootstrap_se.csv')\n296\t    df_agg.to_csv(art_path, index=False)\n297\t    print(f\"Saved: {art_path}\")\n298\t\n299\t    # ── Interpretation ──\n300\t    print(f\"\\n{'=' * 80}\")\n301\t    print(\"INTERPRETATION\")\n302\t    print(f\"{'=' * 80}\")\n303\t    for ne in n_experts:\n304\t        sub = df_agg[df_agg['n_expert'] == ne]\n305\t        pi_cov = sub[sub['se_method'] == 'plugin']['coverage_avg'].values[0]\n306\t        bs_cov = sub[sub['se_method'] == 'cm_bootstrap']['coverage_avg'].values[0]\n307\t        cb_cov = sub[sub['se_method'] == 'combined']['coverage_avg'].values[0]\n308\t        if pi_cov >= 0.90:\n309\t            verdict = \"plug-in SE sufficient\"\n310\t        elif bs_cov >= 0.90:\n311\t            verdict = \"plug-in insufficient, CM-bootstrap recommended\"\n312\t        else:\n313\t            verdict = \"both insufficient — possible CF SE calibration issue\"\n314\t        print(f\"  n_expert={ne:3d}: plugin={pi_cov:.2f}, bootstrap={bs_cov:.2f}, \"\n315\t              f\"combined={cb_cov:.2f} -> {verdict}\")\n316\t\n317\t\n318\tif __name__ == '__main__':\n319\t    main()\n320\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "d1cfcc92-4674-4f37-b8d2-8cccde556e15",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp_mf2_cf_bootstrap_se.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nexp_mf2_cf_bootstrap_se.py — CausalForestDML: Bootstrap SE vs Plug-in SE Coverage (MF2)\n\nValidates whether CausalForestDML's plug-in SE captures confusion matrix\nestimation uncertainty. Compares:\n  1. Plug-in SE: forest effect_inference SE propagated through M⁻¹ (delta method)\n  2. CM-Bootstrap SE: resample experts → re-estimate CM → re-apply M⁻¹ → SD of corrected CATEs\n  3. Combined SE: sqrt(plugin² + bootstrap²)\n\nDGP: K=2, π=[0.05, 0.25], τ(z=0)=0.10, τ(z=1)=0.40\nN=5000, n_expert ∈ {100, 250, 500}, 50 MC runs, 100 CM-bootstrap resamples\n\"\"\"\n\nimport argparse\nimport os\nimport time\nimport warnings\n\nimport numpy as np\nimport pandas as pd\nfrom econml.dml import CausalForestDML\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\n\nwarnings.filterwarnings('ignore')\n\nN = 5000\nMISCLASS = [0.05, 0.25]\nTAU_Z0 = 0.10\nTAU_Z1 = 0.40\nTAU_TRUE = np.array([TAU_Z0, TAU_Z1])\nLABELS = ['A', 'B']\n\n\ndef generate_data(n_expert, seed):\n    rng = np.random.RandomState(seed)\n    T = rng.binomial(1, 0.5, N)\n    Z = rng.binomial(1, 0.5, N)\n    S = rng.choice(LABELS, N, p=[0.5, 0.5])\n    X = rng.randn(N, 5)\n    tau = np.where(Z == 1, TAU_Z1, TAU_Z0)\n    Y = 1.0 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n    mc_rates = np.where(S == 'A', MISCLASS[0], MISCLASS[1])\n    Z_tilde = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n    idx = rng.choice(N, min(n_expert, N), replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[idx] = True\n    return dict(T=T, Z=Z, Z_tilde=Z_tilde, S=S, X=X, Y=Y, expert_mask=expert_mask)\n\n\ndef estimate_cm(z_true, z_hat):\n    C = np.zeros((2, 2))\n    for z in [0, 1]:\n        mask = z_true == z\n        n = mask.sum()\n        for zh in [0, 1]:\n            C[z, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n    return C\n\n\ndef build_mixing_matrix(C):\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        M[zh, 0] = C[0, zh] / cs if cs > 0 else 0.5\n        M[zh, 1] = C[1, zh] / cs if cs > 0 else 0.5\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs):\n    if np.linalg.cond(M) > 100 or abs(np.linalg.det(M)) < 1e-10:\n        return tau_obs.copy(), se_obs.copy(), True\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c, False\n\n\ndef run_one_mc(n_expert, seed, n_bootstrap):\n    data = generate_data(n_expert, seed)\n    Y, T, Z, Z_tilde, S, X = (\n        data['Y'], data['T'], data['Z'], data['Z_tilde'], data['S'], data['X']\n    )\n    em = data['expert_mask']\n\n    z_exp = Z[em]\n    zt_exp = Z_tilde[em]\n    s_exp = S[em]\n    n_exp = em.sum()\n\n    # Per-subgroup CM from expert sample\n    M_sub = {}\n    for s in LABELS:\n        sm = s_exp == s\n        if sm.sum() >= 4:\n            C_s = estimate_cm(z_exp[sm], zt_exp[sm])\n        else:\n            C_s = estimate_cm(z_exp, zt_exp)\n        M_sub[s] = build_mixing_matrix(C_s)\n\n    # ── Fit CausalForestDML ──\n    X_features = np.column_stack([Z_tilde, X]).astype(float)\n    cf = CausalForestDML(\n        model_y=LinearRegression(),\n        model_t=LogisticRegression(solver='lbfgs'),\n        discrete_treatment=True,\n        n_estimators=200,\n        min_samples_leaf=20,\n        random_state=seed,\n    )\n    cf.fit(Y, T, X=X_features)\n\n    # Individual CATEs\n    cate_all = cf.effect(X_features).flatten()\n\n    # Per-subgroup observed CATEs: mean(τ̂ᵢ | Z_tilde=z, S=s)\n    sub_obs = {}\n    for s in LABELS:\n        sm = S == s\n        vals = []\n        for z in [0, 1]:\n            mask = sm & (Z_tilde == z)\n            if mask.sum() == 0:\n                return None\n            vals.append(cate_all[mask].mean())\n        sub_obs[s] = np.array(vals)\n\n    # Plug-in SE from effect_inference at representative points\n    X_mean = X.mean(axis=0)\n    X_eval = np.array([\n        np.concatenate([[0], X_mean]),\n        np.concatenate([[1], X_mean]),\n    ])\n    try:\n        inf = cf.effect_inference(X_eval)\n        se_raw = np.asarray(inf.stderr).flatten()\n        if np.any(np.isnan(se_raw)) or np.any(se_raw <= 0):\n            se_raw = np.full(2, np.nan)\n    except Exception:\n        se_raw = np.full(2, np.nan)\n\n    sub_se_obs = {s: se_raw.copy() for s in LABELS}\n\n    # ── Plug-in: M⁻¹ corrected ──\n    plugin_tau_sub, plugin_se_sub = {}, {}\n    for s in LABELS:\n        tau_c, se_c, _ = invert_mixing(M_sub[s], sub_obs[s], sub_se_obs[s])\n        plugin_tau_sub[s] = tau_c\n        plugin_se_sub[s] = se_c\n\n    sub_w = {s: (S == s).sum() / N for s in LABELS}\n    plugin_tau = sum(sub_w[s] * plugin_tau_sub[s] for s in LABELS)\n    plugin_se = np.sqrt(sum((sub_w[s] * plugin_se_sub[s]) ** 2 for s in LABELS))\n\n    # ── CM Bootstrap ──\n    boot_taus = np.zeros((n_bootstrap, 2))\n    rng_boot = np.random.RandomState(seed * 1000 + 7)\n\n    for b in range(n_bootstrap):\n        boot_idx = rng_boot.choice(n_exp, n_exp, replace=True)\n        z_b, zt_b, s_b = z_exp[boot_idx], zt_exp[boot_idx], s_exp[boot_idx]\n\n        b_tau = np.zeros(2)\n        for s in LABELS:\n            sm_b = s_b == s\n            if sm_b.sum() >= 4:\n                C_b = estimate_cm(z_b[sm_b], zt_b[sm_b])\n            else:\n                C_b = estimate_cm(z_b, zt_b)\n            M_b = build_mixing_matrix(C_b)\n            tau_c_b, _, _ = invert_mixing(M_b, sub_obs[s], sub_se_obs[s])\n            b_tau += sub_w[s] * tau_c_b\n        boot_taus[b] = b_tau\n\n    boot_se = np.nanstd(boot_taus, axis=0)\n\n    # ── Results ──\n    result = {'n_expert': n_expert, 'seed': seed}\n    for z in [0, 1]:\n        zl = f'z{z}'\n        # Plug-in CI\n        pi_lo = plugin_tau[z] - 1.96 * plugin_se[z]\n        pi_hi = plugin_tau[z] + 1.96 * plugin_se[z]\n        result[f'plugin_covers_{zl}'] = int(pi_lo <= TAU_TRUE[z] <= pi_hi)\n        result[f'plugin_se_{zl}'] = plugin_se[z]\n        result[f'plugin_width_{zl}'] = pi_hi - pi_lo\n        result[f'tau_hat_{zl}'] = plugin_tau[z]\n\n        # CM-Bootstrap CI (uses same point estimate, different SE)\n        bs_lo = plugin_tau[z] - 1.96 * boot_se[z]\n        bs_hi = plugin_tau[z] + 1.96 * boot_se[z]\n        result[f'bootstrap_covers_{zl}'] = int(bs_lo <= TAU_TRUE[z] <= bs_hi)\n        result[f'bootstrap_se_{zl}'] = boot_se[z]\n        result[f'bootstrap_width_{zl}'] = bs_hi - bs_lo\n\n        # Combined CI\n        comb_se = np.sqrt(plugin_se[z] ** 2 + boot_se[z] ** 2)\n        cb_lo = plugin_tau[z] - 1.96 * comb_se\n        cb_hi = plugin_tau[z] + 1.96 * comb_se\n        result[f'combined_covers_{zl}'] = int(cb_lo <= TAU_TRUE[z] <= cb_hi)\n        result[f'combined_se_{zl}'] = comb_se\n        result[f'combined_width_{zl}'] = cb_hi - cb_lo\n\n    return result\n\n\ndef aggregate(df_raw):\n    rows = []\n    for ne, grp in df_raw.groupby('n_expert'):\n        for method, col_prefix in [\n            ('plugin', 'plugin'),\n            ('cm_bootstrap', 'bootstrap'),\n            ('combined', 'combined'),\n        ]:\n            row = {'n_expert': int(ne), 'se_method': method}\n            for z in [0, 1]:\n                zl = f'z{z}'\n                row[f'coverage_{zl}'] = grp[f'{col_prefix}_covers_{zl}'].mean()\n                row[f'mean_se_{zl}'] = grp[f'{col_prefix}_se_{zl}'].mean()\n                row[f'mean_width_{zl}'] = grp[f'{col_prefix}_width_{zl}'].mean()\n            row['coverage_avg'] = (row['coverage_z0'] + row['coverage_z1']) / 2\n            rows.append(row)\n    return pd.DataFrame(rows)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--dry-run', action='store_true')\n    args = parser.parse_args()\n\n    n_mc = 2 if args.dry_run else 50\n    n_bootstrap = 5 if args.dry_run else 100\n    n_experts = [100, 250, 500]\n    seeds = list(range(42, 42 + n_mc))\n\n    print(f\"MF2: CausalForestDML Bootstrap SE vs Plug-in SE Coverage\")\n    print(f\"N={N}, n_expert={n_experts}, N_MC={n_mc}, N_boot={n_bootstrap}\")\n    print(f\"DGP: K=2, pi={MISCLASS}, tau(z=0)={TAU_Z0}, tau(z=1)={TAU_Z1}\")\n    if args.dry_run:\n        print(\"** DRY RUN **\")\n    print()\n\n    all_rows = []\n    total = len(n_experts) * n_mc\n    count = 0\n    t0 = time.time()\n\n    for ne in n_experts:\n        for seed in seeds:\n            result = run_one_mc(ne, seed, n_bootstrap)\n            if result is not None:\n                all_rows.append(result)\n            count += 1\n            if count % max(1, total // 10) == 0:\n                el = time.time() - t0\n                eta = el / count * (total - count)\n                print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s\")\n\n    elapsed = time.time() - t0\n    print(f\"\\nDone in {elapsed:.1f}s ({len(all_rows)} successful MC runs)\\n\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate(df_raw)\n\n    # ── Print summary ──\n    print(\"=\" * 115)\n    print(\"SUMMARY: CausalForestDML SE Coverage\")\n    print(\"=\" * 115)\n    header = (f\"{'n_exp':>5} {'method':>14} | {'cov_z0':>7} {'cov_z1':>7} \"\n              f\"{'cov_avg':>7} | {'SE_z0':>8} {'SE_z1':>8} | \"\n              f\"{'width_z0':>9} {'width_z1':>9}\")\n    print(header)\n    print(\"-\" * len(header))\n    for _, r in df_agg.iterrows():\n        print(f\"{int(r['n_expert']):5d} {r['se_method']:>14s} | \"\n              f\"{r['coverage_z0']:7.3f} {r['coverage_z1']:7.3f} \"\n              f\"{r['coverage_avg']:7.3f} | \"\n              f\"{r['mean_se_z0']:8.4f} {r['mean_se_z1']:8.4f} | \"\n              f\"{r['mean_width_z0']:9.4f} {r['mean_width_z1']:9.4f}\")\n\n    # ── Save ──\n    proj = '/home/ubuntu/ec_hte_llm_annotation'\n    os.makedirs(f'{proj}/results', exist_ok=True)\n    csv_path = f'{proj}/results/exp_mf2_cf_bootstrap_se.csv'\n    raw_path = f'{proj}/results/exp_mf2_cf_bootstrap_se_raw.csv'\n    df_agg.to_csv(csv_path, index=False)\n    df_raw.to_csv(raw_path, index=False)\n    print(f\"\\nSaved: {csv_path} ({len(df_agg)} rows)\")\n    print(f\"Saved: {raw_path} ({len(df_raw)} rows)\")\n\n    artifacts_dir = os.path.expanduser(\n        '~/.agent-ml-research-idea_gen_0520/projects/'\n        'ec_hte_llm_annotation/artifacts/mf2/data/')\n    os.makedirs(artifacts_dir, exist_ok=True)\n    art_path = os.path.join(artifacts_dir, 'exp_mf2_cf_bootstrap_se.csv')\n    df_agg.to_csv(art_path, index=False)\n    print(f\"Saved: {art_path}\")\n\n    # ── Interpretation ──\n    print(f\"\\n{'=' * 80}\")\n    print(\"INTERPRETATION\")\n    print(f\"{'=' * 80}\")\n    for ne in n_experts:\n        sub = df_agg[df_agg['n_expert'] == ne]\n        pi_cov = sub[sub['se_method'] == 'plugin']['coverage_avg'].values[0]\n        bs_cov = sub[sub['se_method'] == 'cm_bootstrap']['coverage_avg'].values[0]\n        cb_cov = sub[sub['se_method'] == 'combined']['coverage_avg'].values[0]\n        if pi_cov >= 0.90:\n            verdict = \"plug-in SE sufficient\"\n        elif bs_cov >= 0.90:\n            verdict = \"plug-in insufficient, CM-bootstrap recommended\"\n        else:\n            verdict = \"both insufficient — possible CF SE calibration issue\"\n        print(f\"  n_expert={ne:3d}: plugin={pi_cov:.2f}, bootstrap={bs_cov:.2f}, \"\n              f\"combined={cb_cov:.2f} -> {verdict}\")\n\n\nif __name__ == '__main__':\n    main()\n",
+                "numLines": 320,
+                "startLine": 1,
+                "totalLines": 320
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear understanding of both reference files. Let me design the exp027 script.\n\nKey design decisions:\n\n1. **DGP**: K=4, extreme heterogeneity, π=[0.05, 0.10, 0.20, 0.30], N=5000, n_expert=500, Δτ=0.3 (τ(0)=0, τ(1)=0.3), P(Z=1)=0.5\n2. **6 methods** per MC run\n3. **Coverage**: proportion of MC runs where true CATE is within CI\n\n\n4. **Data structure**: S uniformly distributed across 4 subgroups, T and Z both Bernoulli(0.5), with Z_hat misclassified according to subgroup-specific error rates, and outcomes generated from a baseline plus treatment effect on true labels plus noise\n\n.\n\n5. **Confusion matrices**: For each subgroup, I'm constructing a matrix showing how often Z gets misclassified to Z_hat, then using Bayes' rule to flip it and get the probability of true labels given observed ones.\n\n6. **Marginal probabilities**: With symmetric misclassification rates and balanced priors, the marginal probabilities for Z_hat work out to 0.5 each, which simplifies the mixing matrix to equal the confusion matrix itself.\n\n7. **Matrix relationship**: The mixing matrix M relates to the confusion matrix C through a transpose relationship, so M = C^T, which means the inverse follows as M^{-1} = (C^{-1})^T.\n\n8. **Correction formula**: To get corrected estimates, I apply the inverse mixing matrix to the observed proportions, and for standard errors, I propagate uncertainty through the matrix inverse using the delta method.\n\nNow I'm checking the actual implementation in the code to verify these derivations... , `build_mixing_matrix(C)` computes the confusion matrix normalized by column to get P(Z=z | Z_hat=z_hat) with equal priors, and `invert_mixing_safe` inverts this matrix to correct the observed treatment effects back to the true treatment space.\n\nFor the true confusion matrix methods, I'm computing C_s directly from the DGP parameters as a 2×2 matrix with misclassification probability π_s, then building the mixing matrix from that. Across the six comparison methods, I'm setting up the Oracle approach using true Z as a feature with no correction needed, and the EC-HTE variant that uses the misclassified Z_hat but applies the true confusion matrix correction stratified by subgroup.\n\nFor coverage evaluation, I need to check across all Monte Carlo runs whether the true conditional average treatment effect falls within the confidence interval around each estimate, then aggregate the proportion of runs where this holds.\n\nNow I'm working through the standard error propagation—I should use the true confounding matrices rather than estimated ones, taking the raw standard errors from the causal forest and propagating them through the inverse of the confounding correction matrix.\n\nLooking at the existing code conventions, the correction uses M^{-1} where M is the mixing matrix, though the task description refers to C_s^{-1}—these likely refer to the same thing, just with different notation for the confounding or mixing matrix.\n\nFor the implementation, I'll generate data for each Monte Carlo run, fit separate CausalForestDML models using both the observed and true treatment assignments, extract their point estimates and standard errors, then apply the SE propagation formula using the inverse mixing matrix for correction. For the other methods, I'll fit the forest with Z_hat and S as features, then for each subgroup and treatment value, evaluate at those observed points and apply the appropriate correction. The coverage calculation checks whether the confidence interval contains the true treatment effect within each subgroup.\n\nNow I'm setting up the code to implement this evaluation framework.\n\nThe DGP has four subgroups with misclassification rates ranging from 5% to 30%, a sample size of 5000 with 500 expert-labeled observations, true treatment effects of 0 and 0.3 for the two treatment arms, and balanced treatment assignment and subgroup weights. For the confusion matrices, I'm computing symmetric misclassification patterns for each subgroup, then aggregating them into a global confusion matrix using the subgroup weights.\n\nSince all weights are equal at 0.25, the average misclassification rate across subgroups is 0.1625, giving me a global confusion matrix with 83.75% accuracy on the diagonal and 16.25% error rates off-diagonal.\n\nWriting the experiment code... Setting up the simulation parameters and data generation... Now I'm defining helper functions to compute a confusion matrix that captures the relationship between true and observed labels with Laplace smoothing, then building a mixing matrix that applies Bayes rule to convert those conditional probabilities.\n\nContinuing with the matrix inversion logic...\n\nNow I'm setting up a causal forest model with linear regression for outcomes and logistic regression for treatment assignment, then extracting both point estimates and standard errors at the evaluation points.\n\nContinuing with the Monte Carlo simulation...\n\nNow I'm fitting a causal forest using the misclassified Z values and comparing those predictions against the oracle results. I'm organizing the evaluation points by subgroup and expert mask, then building the true confusion matrices for each subgroup to construct the mixing matrices that will help correct for the misclassification. Building the results table... Building the results table... Formatting a summary table... Printing detailed results for each method, subgroup, and treatment assignment by filtering the aggregated dataframe and formatting the output in a table...\n\nNow I'm setting up the main execution block to estimate timing for a single Monte Carlo run, then running the full simulation across all iterations while collecting results and handling any errors that occur. Writing the results pipeline...\n\nNow I'm verifying that the output columns match what the aggregation function produces—method, subgroup, z, bias, rmse, coverage, se_mean, and mc_run_count. For the Oracle approach, since we're using the true Z values as features, the causal forest should correctly estimate zero treatment effect when Z=0 and the true effect when Z=1, with no misclassification introducing bias.\n\nFor EC-HTE with the true confusion matrix, we're using the observed Z_hat as features and then correcting the biased estimates by applying the inverse of the true mixing matrix, with standard errors propagated through that correction. Let me verify the confusion matrix construction in the data generation process is right—when we flip Z_hat with probability π_s, we get the correct conditional probabilities for the misclassification mechanism.\n\nNow I'm checking whether the global confusion matrix should be computed as a weighted average across subgroups or derived directly from the population-level misclassification rates.\n\nThe SE propagation for the corrected confusion matrix uses the same formula as the existing code, just substituting the true M matrix instead of the estimated one.\n\nI need to verify the output CSV columns match what the task specifies and finalize the implementation, including deciding how to handle the random seed for reproducibility.\n\nFor the random states, I'll follow the pattern from exp011 and use `random_state=42` consistently for both the oracle and estimated causal forests to maintain reproducibility, keeping the feature sets as `[Z_true, S]` for the oracle and `[Z_hat, S]` for the estimated version.\n\nNow I need to verify the weighting scheme in my MC simulation—specifically, when computing the true global confusion matrix, I should use the true population weights rather than sample proportions since we're working with the theoretical CM.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "4710589a-f829-47db-8d87-35cdd0425352",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9jgyiRk2u52DQdWsoxbq6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11854,
+                "cache_read_input_tokens": 18650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11854
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've read both reference files. Now I understand the DGP, CF fitting, and correction pipeline. Let me write the experiment script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "e108b796-5554-4f1d-9370-7c6e4c0c14ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9jgyiRk2u52DQdWsoxbq6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11854,
+                "cache_read_input_tokens": 18650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11854
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HYstyJiTqTSX8PcoHtxaV3",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp027_cf_oracle_coverage.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp027_cf_oracle_coverage.py — CausalForest Oracle Coverage experiment (exp-027)\n\nIsolates source of CausalForest coverage gap (83-85% vs nominal 95%):\n  CM estimation error vs CF inherent SE calibration.\n\nSix methods compared:\n  1. Oracle (true Z): CausalForestDML with Z_true, no correction\n  2. EC-HTE true CM: Z_hat forest + per-subgroup correction with true C_s\n  3. EC-HTE estimated CM: Z_hat forest + per-subgroup correction with estimated C_s (HB)\n  4. Global true CM: Z_hat forest + global correction with true C_bar\n  5. Global estimated CM: Z_hat forest + global correction with estimated C_bar\n  6. Naive: Z_hat forest, no correction\n\nDGP: K=4, pi=[0.05,0.10,0.20,0.30], tau(0)=0, tau(1)=0.3, N=5000, n_expert=500\nOutput: results/exp_cf_oracle_coverage.csv\n\"\"\"\n\nimport os\nimport time\nimport warnings\n\nimport numpy as np\nimport pandas as pd\nfrom econml.dml import CausalForestDML\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\n\nwarnings.filterwarnings('ignore')\n\nN = 5000\nK = 4\nN_EXPERT = 500\nPI = [0.05, 0.10, 0.20, 0.30]\nTAU_TRUE = {0: 0.0, 1: 0.3}\nSUB_WEIGHTS = [0.25, 0.25, 0.25, 0.25]\nN_MC = 100\nBASE_SEED = 42\n\n\ndef generate_data(seed):\n    rng = np.random.RandomState(seed)\n    S = rng.randint(0, K, N)\n    T = rng.binomial(1, 0.5, N)\n    Z_true = rng.binomial(1, 0.5, N)\n\n    Z_hat = Z_true.copy()\n    for s in range(K):\n        mask_s = S == s\n        flip = rng.binomial(1, PI[s], mask_s.sum())\n        Z_hat[mask_s] = np.where(flip, 1 - Z_true[mask_s], Z_true[mask_s])\n\n    tau = np.where(Z_true == 1, TAU_TRUE[1], TAU_TRUE[0])\n    baseline = 1.0 + 0.5 * Z_true\n    Y = baseline + tau * T + rng.normal(0, 1, N)\n\n    expert_idx = rng.choice(N, N_EXPERT, replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[expert_idx] = True\n\n    return Y, T, Z_true, Z_hat, S, expert_mask\n\n\ndef compute_confusion_matrix(z_true, z_hat):\n    C = np.zeros((2, 2))\n    for z in [0, 1]:\n        mz = z_true == z\n        C[z, 0] = (z_hat[mz] == 0).sum() + 1\n        C[z, 1] = (z_hat[mz] == 1).sum() + 1\n    return C / C.sum(axis=1, keepdims=True)\n\n\ndef build_mixing_matrix(C):\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        if cs > 0:\n            M[zh, 0] = C[0, zh] / cs\n            M[zh, 1] = C[1, zh] / cs\n        else:\n            M[zh, :] = 0.5\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs, cond_threshold=100):\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold or abs(np.linalg.det(M)) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\ndef true_confusion_matrix(pi_s):\n    return np.array([[1 - pi_s, pi_s],\n                     [pi_s, 1 - pi_s]])\n\n\ndef fit_cf_and_predict(Y, T, X_features, X_eval):\n    cf = CausalForestDML(\n        model_y=LinearRegression(),\n        model_t=LogisticRegression(solver='lbfgs'),\n        discrete_treatment=True,\n        n_estimators=200,\n        min_samples_leaf=20,\n        random_state=42,\n    )\n    cf.fit(Y, T, X=X_features, W=None)\n\n    cate_vals = cf.effect(X_eval).flatten()\n    try:\n        inf = cf.effect_inference(X_eval)\n        se_raw = inf.stderr\n        if hasattr(se_raw, 'values'):\n            se_raw = se_raw.values\n        se_vals = np.asarray(se_raw).flatten()\n    except Exception:\n        se_vals = np.full(len(X_eval), np.nan)\n\n    return cate_vals, se_vals\n\n\ndef run_one_mc(seed):\n    Y, T, Z_true, Z_hat, S, expert_mask = generate_data(seed)\n\n    X_eval = np.array([[z, s] for s in range(K) for z in [0, 1]], dtype=float)\n\n    # Oracle forest: fit with true Z\n    X_oracle = np.column_stack([Z_true, S]).astype(float)\n    oracle_cate, oracle_se = fit_cf_and_predict(Y, T, X_oracle, X_eval)\n\n    # Z_hat forest: fit with misclassified Z (shared by methods 2-6)\n    X_zhat = np.column_stack([Z_hat, S]).astype(float)\n    zhat_cate, zhat_se = fit_cf_and_predict(Y, T, X_zhat, X_eval)\n\n    # True CMs from DGP parameters\n    M_true_sub = {}\n    for s in range(K):\n        C_s_true = true_confusion_matrix(PI[s])\n        M_true_sub[s] = build_mixing_matrix(C_s_true)\n\n    C_global_true = sum(SUB_WEIGHTS[s] * true_confusion_matrix(PI[s]) for s in range(K))\n    M_global_true = build_mixing_matrix(C_global_true)\n\n    # Estimated CMs from expert labels\n    M_est_sub = {}\n    for s in range(K):\n        mask_s = expert_mask & (S == s)\n        if mask_s.sum() >= 4:\n            C_s = compute_confusion_matrix(Z_true[mask_s], Z_hat[mask_s])\n        else:\n            C_s = np.array([[0.5, 0.5], [0.5, 0.5]])\n        M_est_sub[s] = build_mixing_matrix(C_s)\n\n    C_global_est = compute_confusion_matrix(Z_true[expert_mask], Z_hat[expert_mask])\n    M_global_est = build_mixing_matrix(C_global_est)\n\n    rows = []\n    for s in range(K):\n        idx_z0 = s * 2\n        idx_z1 = s * 2 + 1\n\n        o_tau = np.array([oracle_cate[idx_z0], oracle_cate[idx_z1]])\n        o_se = np.array([oracle_se[idx_z0], oracle_se[idx_z1]])\n\n        tau_obs = np.array([zhat_cate[idx_z0], zhat_cate[idx_z1]])\n        se_obs = np.array([zhat_se[idx_z0], zhat_se[idx_z1]])\n\n        tau_ec_true, se_ec_true = invert_mixing(M_true_sub[s], tau_obs, se_obs)\n        tau_ec_est, se_ec_est = invert_mixing(M_est_sub[s], tau_obs, se_obs)\n        tau_gl_true, se_gl_true = invert_mixing(M_global_true, tau_obs, se_obs)\n        tau_gl_est, se_gl_est = invert_mixing(M_global_est, tau_obs, se_obs)\n\n        methods = [\n            ('Oracle', o_tau, o_se),\n            ('EC-HTE true CM', tau_ec_true, se_ec_true),\n            ('EC-HTE estimated CM', tau_ec_est, se_ec_est),\n            ('Global true CM', tau_gl_true, se_gl_true),\n            ('Global estimated CM', tau_gl_est, se_gl_est),\n            ('Naive', tau_obs, se_obs),\n        ]\n\n        for method_name, tau_hat, se_hat in methods:\n            for zi, z in enumerate([0, 1]):\n                th = tau_hat[zi]\n                se = se_hat[zi]\n                if np.isnan(se) or np.isnan(th):\n                    covers = np.nan\n                else:\n                    ci_lo = th - 1.96 * se\n                    ci_hi = th + 1.96 * se\n                    covers = int(ci_lo <= TAU_TRUE[z] <= ci_hi)\n                rows.append({\n                    'method': method_name,\n                    'subgroup': s,\n                    'z': z,\n                    'tau_hat': th,\n                    'se': se,\n                    'tau_true': TAU_TRUE[z],\n                    'covers': covers,\n                    'mc_run': seed,\n                })\n\n    return rows\n\n\ndef aggregate_results(df):\n    grp_cols = ['method', 'subgroup', 'z']\n    rows = []\n    for keys, g in df.groupby(grp_cols):\n        method, subgroup, z = keys\n        err = g['tau_hat'].values - g['tau_true'].values\n        bias = err.mean()\n        rmse = np.sqrt((err ** 2).mean())\n        cov = g['covers'].mean()\n        se_mean = g['se'].mean()\n        n_mc = len(g)\n        rows.append({\n            'method': method,\n            'subgroup': int(subgroup),\n            'z': int(z),\n            'bias': bias,\n            'rmse': rmse,\n            'coverage': cov,\n            'se_mean': se_mean,\n            'mc_run_count': n_mc,\n        })\n    return pd.DataFrame(rows)\n\n\ndef print_summary(df_agg):\n    method_order = [\n        'Oracle', 'EC-HTE true CM', 'EC-HTE estimated CM',\n        'Global true CM', 'Global estimated CM', 'Naive',\n    ]\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"exp-027 CausalForest Oracle Coverage\")\n    print(\"=\" * 80)\n\n    print(f\"\\n{'Method':<28s} | {'|Bias|':>7s} | {'RMSE':>7s} | {'Coverage':>8s} | {'Mean SE':>7s}\")\n    print(f\"{'-'*28}-+-{'-'*7}-+-{'-'*7}-+-{'-'*8}-+-{'-'*7}\")\n\n    for method in method_order:\n        sub = df_agg[df_agg['method'] == method]\n        abs_bias = sub['bias'].abs().mean()\n        rmse = sub['rmse'].mean()\n        cov = sub['coverage'].mean()\n        se_mean = sub['se_mean'].mean()\n        print(f\"{method:<28s} | {abs_bias:7.4f} | {rmse:7.4f} | {cov:8.4f} | {se_mean:7.4f}\")\n\n    print(f\"\\n\\nPer-subgroup detail:\")\n    print(f\"{'Method':<28s} | {'Sub':>3s} | {'z':>1s} | {'Bias':>8s} | {'RMSE':>7s} | {'Coverage':>8s} | {'Mean SE':>7s}\")\n    print(f\"{'-'*28}-+-{'-'*3}-+-{'-'*1}-+-{'-'*8}-+-{'-'*7}-+-{'-'*8}-+-{'-'*7}\")\n\n    for method in method_order:\n        for s in range(K):\n            for z in [0, 1]:\n                r = df_agg[(df_agg['method'] == method) &\n                           (df_agg['subgroup'] == s) &\n                           (df_agg['z'] == z)]\n                if r.empty:\n                    continue\n                r = r.iloc[0]\n                print(f\"{method:<28s} | {s:>3d} | {z:>1d} | {r['bias']:8.4f} | {r['rmse']:7.4f} | {r['coverage']:8.4f} | {r['se_mean']:7.4f}\")\n        print()\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"INTERPRETATION\")\n    print(\"=\" * 80)\n    oracle_cov = df_agg[df_agg['method'] == 'Oracle']['coverage'].mean()\n    ec_true_cov = df_agg[df_agg['method'] == 'EC-HTE true CM']['coverage'].mean()\n    ec_est_cov = df_agg[df_agg['method'] == 'EC-HTE estimated CM']['coverage'].mean()\n    print(f\"  Oracle coverage:           {oracle_cov:.4f}\")\n    print(f\"  EC-HTE true CM coverage:   {ec_true_cov:.4f}\")\n    print(f\"  EC-HTE estimated coverage: {ec_est_cov:.4f}\")\n    print()\n    if oracle_cov < 0.90:\n        print(\"  -> Oracle < 90%: CF SE is inherently under-calibrated\")\n    else:\n        print(\"  -> Oracle >= 90%: CF SE is reasonably calibrated\")\n    if abs(ec_true_cov - ec_est_cov) < 0.03:\n        print(\"  -> EC-HTE true CM ~ estimated CM: gap is NOT from CM estimation error\")\n        print(\"     Coverage gap comes from CF inherent SE under-calibration\")\n    elif ec_true_cov > ec_est_cov + 0.05:\n        print(\"  -> EC-HTE true CM >> estimated CM: CM estimation error contributes to gap\")\n    else:\n        print(\"  -> Mixed signal: both CF SE calibration and CM estimation may contribute\")\n\n\nif __name__ == '__main__':\n    print(f\"exp-027 CausalForest Oracle Coverage\")\n    print(f\"N={N}, K={K}, pi={PI}, tau(0)={TAU_TRUE[0]}, tau(1)={TAU_TRUE[1]}\")\n    print(f\"n_expert={N_EXPERT}, N_MC={N_MC}, seed_base={BASE_SEED}\")\n\n    print(\"\\nTiming single run...\")\n    t_test = time.time()\n    _ = run_one_mc(seed=9999)\n    t_per = time.time() - t_test\n    print(f\"  {t_per:.2f}s/run (2 forest fits per run)\")\n    print(f\"  Estimated total: {t_per * N_MC:.0f}s ({t_per * N_MC / 60:.1f} min)\\n\")\n\n    all_rows = []\n    t0 = time.time()\n\n    for mc in range(N_MC):\n        seed = BASE_SEED + mc\n        try:\n            rows = run_one_mc(seed)\n            all_rows.extend(rows)\n        except Exception as e:\n            print(f\"  WARN: mc={mc} seed={seed} failed: {e}\")\n\n        if (mc + 1) % 10 == 0:\n            el = time.time() - t0\n            eta = el / (mc + 1) * (N_MC - mc - 1)\n            print(f\"  [{mc+1}/{N_MC}] {el:.0f}s elapsed, ETA {eta:.0f}s\")\n\n    elapsed = time.time() - t0\n    print(f\"\\nDone: {elapsed:.1f}s ({N_MC} runs, {elapsed/N_MC:.1f}s/run)\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate_results(df_raw)\n\n    os.makedirs('results', exist_ok=True)\n    df_agg.to_csv('results/exp_cf_oracle_coverage.csv', index=False)\n    print(f\"Saved: results/exp_cf_oracle_coverage.csv ({len(df_agg)} rows)\")\n\n    print_summary(df_agg)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "ba2d5471-9da9-4f95-948a-15c2468db542",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9jgyiRk2u52DQdWsoxbq6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11854,
+                "cache_read_input_tokens": 18650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11854
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:05:01.021Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HYstyJiTqTSX8PcoHtxaV3",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/exp027_cf_oracle_coverage.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "9e4b733b-1c7b-4064-a597-e6589e27a895",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp027_cf_oracle_coverage.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"exp027_cf_oracle_coverage.py — CausalForest Oracle Coverage experiment (exp-027)\n\nIsolates source of CausalForest coverage gap (83-85% vs nominal 95%):\n  CM estimation error vs CF inherent SE calibration.\n\nSix methods compared:\n  1. Oracle (true Z): CausalForestDML with Z_true, no correction\n  2. EC-HTE true CM: Z_hat forest + per-subgroup correction with true C_s\n  3. EC-HTE estimated CM: Z_hat forest + per-subgroup correction with estimated C_s (HB)\n  4. Global true CM: Z_hat forest + global correction with true C_bar\n  5. Global estimated CM: Z_hat forest + global correction with estimated C_bar\n  6. Naive: Z_hat forest, no correction\n\nDGP: K=4, pi=[0.05,0.10,0.20,0.30], tau(0)=0, tau(1)=0.3, N=5000, n_expert=500\nOutput: results/exp_cf_oracle_coverage.csv\n\"\"\"\n\nimport os\nimport time\nimport warnings\n\nimport numpy as np\nimport pandas as pd\nfrom econml.dml import CausalForestDML\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\n\nwarnings.filterwarnings('ignore')\n\nN = 5000\nK = 4\nN_EXPERT = 500\nPI = [0.05, 0.10, 0.20, 0.30]\nTAU_TRUE = {0: 0.0, 1: 0.3}\nSUB_WEIGHTS = [0.25, 0.25, 0.25, 0.25]\nN_MC = 100\nBASE_SEED = 42\n\n\ndef generate_data(seed):\n    rng = np.random.RandomState(seed)\n    S = rng.randint(0, K, N)\n    T = rng.binomial(1, 0.5, N)\n    Z_true = rng.binomial(1, 0.5, N)\n\n    Z_hat = Z_true.copy()\n    for s in range(K):\n        mask_s = S == s\n        flip = rng.binomial(1, PI[s], mask_s.sum())\n        Z_hat[mask_s] = np.where(flip, 1 - Z_true[mask_s], Z_true[mask_s])\n\n    tau = np.where(Z_true == 1, TAU_TRUE[1], TAU_TRUE[0])\n    baseline = 1.0 + 0.5 * Z_true\n    Y = baseline + tau * T + rng.normal(0, 1, N)\n\n    expert_idx = rng.choice(N, N_EXPERT, replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[expert_idx] = True\n\n    return Y, T, Z_true, Z_hat, S, expert_mask\n\n\ndef compute_confusion_matrix(z_true, z_hat):\n    C = np.zeros((2, 2))\n    for z in [0, 1]:\n        mz = z_true == z\n        C[z, 0] = (z_hat[mz] == 0).sum() + 1\n        C[z, 1] = (z_hat[mz] == 1).sum() + 1\n    return C / C.sum(axis=1, keepdims=True)\n\n\ndef build_mixing_matrix(C):\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        if cs > 0:\n            M[zh, 0] = C[0, zh] / cs\n            M[zh, 1] = C[1, zh] / cs\n        else:\n            M[zh, :] = 0.5\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs, cond_threshold=100):\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold or abs(np.linalg.det(M)) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\ndef true_confusion_matrix(pi_s):\n    return np.array([[1 - pi_s, pi_s],\n                     [pi_s, 1 - pi_s]])\n\n\ndef fit_cf_and_predict(Y, T, X_features, X_eval):\n    cf = CausalForestDML(\n        model_y=LinearRegression(),\n        model_t=LogisticRegression(solver='lbfgs'),\n        discrete_treatment=True,\n        n_estimators=200,\n        min_samples_leaf=20,\n        random_state=42,\n    )\n    cf.fit(Y, T, X=X_features, W=None)\n\n    cate_vals = cf.effect(X_eval).flatten()\n    try:\n        inf = cf.effect_inference(X_eval)\n        se_raw = inf.stderr\n        if hasattr(se_raw, 'values'):\n            se_raw = se_raw.values\n        se_vals = np.asarray(se_raw).flatten()\n    except Exception:\n        se_vals = np.full(len(X_eval), np.nan)\n\n    return cate_vals, se_vals\n\n\ndef run_one_mc(seed):\n    Y, T, Z_true, Z_hat, S, expert_mask = generate_data(seed)\n\n    X_eval = np.array([[z, s] for s in range(K) for z in [0, 1]], dtype=float)\n\n    # Oracle forest: fit with true Z\n    X_oracle = np.column_stack([Z_true, S]).astype(float)\n    oracle_cate, oracle_se = fit_cf_and_predict(Y, T, X_oracle, X_eval)\n\n    # Z_hat forest: fit with misclassified Z (shared by methods 2-6)\n    X_zhat = np.column_stack([Z_hat, S]).astype(float)\n    zhat_cate, zhat_se = fit_cf_and_predict(Y, T, X_zhat, X_eval)\n\n    # True CMs from DGP parameters\n    M_true_sub = {}\n    for s in range(K):\n        C_s_true = true_confusion_matrix(PI[s])\n        M_true_sub[s] = build_mixing_matrix(C_s_true)\n\n    C_global_true = sum(SUB_WEIGHTS[s] * true_confusion_matrix(PI[s]) for s in range(K))\n    M_global_true = build_mixing_matrix(C_global_true)\n\n    # Estimated CMs from expert labels\n    M_est_sub = {}\n    for s in range(K):\n        mask_s = expert_mask & (S == s)\n        if mask_s.sum() >= 4:\n            C_s = compute_confusion_matrix(Z_true[mask_s], Z_hat[mask_s])\n        else:\n            C_s = np.array([[0.5, 0.5], [0.5, 0.5]])\n        M_est_sub[s] = build_mixing_matrix(C_s)\n\n    C_global_est = compute_confusion_matrix(Z_true[expert_mask], Z_hat[expert_mask])\n    M_global_est = build_mixing_matrix(C_global_est)\n\n    rows = []\n    for s in range(K):\n        idx_z0 = s * 2\n        idx_z1 = s * 2 + 1\n\n        o_tau = np.array([oracle_cate[idx_z0], oracle_cate[idx_z1]])\n        o_se = np.array([oracle_se[idx_z0], oracle_se[idx_z1]])\n\n        tau_obs = np.array([zhat_cate[idx_z0], zhat_cate[idx_z1]])\n        se_obs = np.array([zhat_se[idx_z0], zhat_se[idx_z1]])\n\n        tau_ec_true, se_ec_true = invert_mixing(M_true_sub[s], tau_obs, se_obs)\n        tau_ec_est, se_ec_est = invert_mixing(M_est_sub[s], tau_obs, se_obs)\n        tau_gl_true, se_gl_true = invert_mixing(M_global_true, tau_obs, se_obs)\n        tau_gl_est, se_gl_est = invert_mixing(M_global_est, tau_obs, se_obs)\n\n        methods = [\n            ('Oracle', o_tau, o_se),\n            ('EC-HTE true CM', tau_ec_true, se_ec_true),\n            ('EC-HTE estimated CM', tau_ec_est, se_ec_est),\n            ('Global true CM', tau_gl_true, se_gl_true),\n            ('Global estimated CM', tau_gl_est, se_gl_est),\n            ('Naive', tau_obs, se_obs),\n        ]\n\n        for method_name, tau_hat, se_hat in methods:\n            for zi, z in enumerate([0, 1]):\n                th = tau_hat[zi]\n                se = se_hat[zi]\n                if np.isnan(se) or np.isnan(th):\n                    covers = np.nan\n                else:\n                    ci_lo = th - 1.96 * se\n                    ci_hi = th + 1.96 * se\n                    covers = int(ci_lo <= TAU_TRUE[z] <= ci_hi)\n                rows.append({\n                    'method': method_name,\n                    'subgroup': s,\n                    'z': z,\n                    'tau_hat': th,\n                    'se': se,\n                    'tau_true': TAU_TRUE[z],\n                    'covers': covers,\n                    'mc_run': seed,\n                })\n\n    return rows\n\n\ndef aggregate_results(df):\n    grp_cols = ['method', 'subgroup', 'z']\n    rows = []\n    for keys, g in df.groupby(grp_cols):\n        method, subgroup, z = keys\n        err = g['tau_hat'].values - g['tau_true'].values\n        bias = err.mean()\n        rmse = np.sqrt((err ** 2).mean())\n        cov = g['covers'].mean()\n        se_mean = g['se'].mean()\n        n_mc = len(g)\n        rows.append({\n            'method': method,\n            'subgroup': int(subgroup),\n            'z': int(z),\n            'bias': bias,\n            'rmse': rmse,\n            'coverage': cov,\n            'se_mean': se_mean,\n            'mc_run_count': n_mc,\n        })\n    return pd.DataFrame(rows)\n\n\ndef print_summary(df_agg):\n    method_order = [\n        'Oracle', 'EC-HTE true CM', 'EC-HTE estimated CM',\n        'Global true CM', 'Global estimated CM', 'Naive',\n    ]\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"exp-027 CausalForest Oracle Coverage\")\n    print(\"=\" * 80)\n\n    print(f\"\\n{'Method':<28s} | {'|Bias|':>7s} | {'RMSE':>7s} | {'Coverage':>8s} | {'Mean SE':>7s}\")\n    print(f\"{'-'*28}-+-{'-'*7}-+-{'-'*7}-+-{'-'*8}-+-{'-'*7}\")\n\n    for method in method_order:\n        sub = df_agg[df_agg['method'] == method]\n        abs_bias = sub['bias'].abs().mean()\n        rmse = sub['rmse'].mean()\n        cov = sub['coverage'].mean()\n        se_mean = sub['se_mean'].mean()\n        print(f\"{method:<28s} | {abs_bias:7.4f} | {rmse:7.4f} | {cov:8.4f} | {se_mean:7.4f}\")\n\n    print(f\"\\n\\nPer-subgroup detail:\")\n    print(f\"{'Method':<28s} | {'Sub':>3s} | {'z':>1s} | {'Bias':>8s} | {'RMSE':>7s} | {'Coverage':>8s} | {'Mean SE':>7s}\")\n    print(f\"{'-'*28}-+-{'-'*3}-+-{'-'*1}-+-{'-'*8}-+-{'-'*7}-+-{'-'*8}-+-{'-'*7}\")\n\n    for method in method_order:\n        for s in range(K):\n            for z in [0, 1]:\n                r = df_agg[(df_agg['method'] == method) &\n                           (df_agg['subgroup'] == s) &\n                           (df_agg['z'] == z)]\n                if r.empty:\n                    continue\n                r = r.iloc[0]\n                print(f\"{method:<28s} | {s:>3d} | {z:>1d} | {r['bias']:8.4f} | {r['rmse']:7.4f} | {r['coverage']:8.4f} | {r['se_mean']:7.4f}\")\n        print()\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"INTERPRETATION\")\n    print(\"=\" * 80)\n    oracle_cov = df_agg[df_agg['method'] == 'Oracle']['coverage'].mean()\n    ec_true_cov = df_agg[df_agg['method'] == 'EC-HTE true CM']['coverage'].mean()\n    ec_est_cov = df_agg[df_agg['method'] == 'EC-HTE estimated CM']['coverage'].mean()\n    print(f\"  Oracle coverage:           {oracle_cov:.4f}\")\n    print(f\"  EC-HTE true CM coverage:   {ec_true_cov:.4f}\")\n    print(f\"  EC-HTE estimated coverage: {ec_est_cov:.4f}\")\n    print()\n    if oracle_cov < 0.90:\n        print(\"  -> Oracle < 90%: CF SE is inherently under-calibrated\")\n    else:\n        print(\"  -> Oracle >= 90%: CF SE is reasonably calibrated\")\n    if abs(ec_true_cov - ec_est_cov) < 0.03:\n        print(\"  -> EC-HTE true CM ~ estimated CM: gap is NOT from CM estimation error\")\n        print(\"     Coverage gap comes from CF inherent SE under-calibration\")\n    elif ec_true_cov > ec_est_cov + 0.05:\n        print(\"  -> EC-HTE true CM >> estimated CM: CM estimation error contributes to gap\")\n    else:\n        print(\"  -> Mixed signal: both CF SE calibration and CM estimation may contribute\")\n\n\nif __name__ == '__main__':\n    print(f\"exp-027 CausalForest Oracle Coverage\")\n    print(f\"N={N}, K={K}, pi={PI}, tau(0)={TAU_TRUE[0]}, tau(1)={TAU_TRUE[1]}\")\n    print(f\"n_expert={N_EXPERT}, N_MC={N_MC}, seed_base={BASE_SEED}\")\n\n    print(\"\\nTiming single run...\")\n    t_test = time.time()\n    _ = run_one_mc(seed=9999)\n    t_per = time.time() - t_test\n    print(f\"  {t_per:.2f}s/run (2 forest fits per run)\")\n    print(f\"  Estimated total: {t_per * N_MC:.0f}s ({t_per * N_MC / 60:.1f} min)\\n\")\n\n    all_rows = []\n    t0 = time.time()\n\n    for mc in range(N_MC):\n        seed = BASE_SEED + mc\n        try:\n            rows = run_one_mc(seed)\n            all_rows.extend(rows)\n        except Exception as e:\n            print(f\"  WARN: mc={mc} seed={seed} failed: {e}\")\n\n        if (mc + 1) % 10 == 0:\n            el = time.time() - t0\n            eta = el / (mc + 1) * (N_MC - mc - 1)\n            print(f\"  [{mc+1}/{N_MC}] {el:.0f}s elapsed, ETA {eta:.0f}s\")\n\n    elapsed = time.time() - t0\n    print(f\"\\nDone: {elapsed:.1f}s ({N_MC} runs, {elapsed/N_MC:.1f}s/run)\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate_results(df_raw)\n\n    os.makedirs('results', exist_ok=True)\n    df_agg.to_csv('results/exp_cf_oracle_coverage.csv', index=False)\n    print(f\"Saved: results/exp_cf_oracle_coverage.csv ({len(df_agg)} rows)\")\n\n    print_summary(df_agg)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Running the experiment now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "05f1bf04-8d72-4223-939f-6ceca07985f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LqH4YgKxRJDXXRRWwaKZyQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13480,
+                "cache_read_input_tokens": 30504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13480
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W4S4oB2omRhRsWaQg8WxkJ",
+              "name": "Bash",
+              "input": {
+                "command": "python exp027_cf_oracle_coverage.py 2>&1",
+                "description": "Run exp-027 CausalForest Oracle Coverage experiment",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "12d8343f-337a-42d1-b2eb-2f3cddf51853",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LqH4YgKxRJDXXRRWwaKZyQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13480,
+                "cache_read_input_tokens": 30504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13480
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T14:05:05.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01W4S4oB2omRhRsWaQg8WxkJ"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "78838d7f-8289-4c1e-ab6b-5e9147be815e",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TZDi2KFHBuJ9Xos3izutyb",
+              "name": "Bash",
+              "input": {
+                "command": "which python3 && python3 -c \"import econml; print('econml', econml.__version__)\"",
+                "description": "Check python3 and econml availability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "d8e51cf8-42b0-4880-be91-55d1981da255",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SA3j8pFECrSTEU1hH86ict",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 158,
+                "cache_read_input_tokens": 43984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 158
+                },
+                "output_tokens": 55,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T14:05:08.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TZDi2KFHBuJ9Xos3izutyb",
+              "type": "tool_result",
+              "content": "/usr/bin/python3\neconml 0.16.0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "3047ff02-bf19-46b8-a3ce-6099efc38b42",
+            "tool_use_result": {
+              "stdout": "/usr/bin/python3\neconml 0.16.0",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WjVv9GYbz1RjKQML2rAkwo",
+              "name": "Bash",
+              "input": {
+                "command": "python3 exp027_cf_oracle_coverage.py 2>&1",
+                "description": "Run exp-027 CausalForest Oracle Coverage experiment (100 MC runs)",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "d296009a-b310-479d-a130-14aa123c9f88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TvdgPjLUtvyMq18TdBqsXM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 128,
+                "cache_read_input_tokens": 44142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 128
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bfhbyyrly",
+                "tool_use_id": "toolu_01WjVv9GYbz1RjKQML2rAkwo",
+                "description": "Run exp-027 CausalForest Oracle Coverage experiment (100 MC runs)",
+                "task_type": "local_bash",
+                "uuid": "5a9bb7ae-130f-4412-a550-e63281b0d4d3",
+                "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bfhbyyrly",
+                "tool_use_id": "toolu_01WjVv9GYbz1RjKQML2rAkwo",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run exp-027 CausalForest Oracle Coverage experiment (100 MC runs)",
+                "uuid": "38f478d9-5d8c-47a5-9f48-74d15fdb5938",
+                "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf"
+              }
+            }
+          ],
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T14:07:59.075Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WjVv9GYbz1RjKQML2rAkwo",
+              "type": "tool_result",
+              "content": "exp-027 CausalForest Oracle Coverage\nN=5000, K=4, pi=[0.05, 0.1, 0.2, 0.3], tau(0)=0.0, tau(1)=0.3\nn_expert=500, N_MC=100, seed_base=42\n\nTiming single run...\n  1.72s/run (2 forest fits per run)\n  Estimated total: 172s (2.9 min)\n\n  [10/100] 16s elapsed, ETA 148s\n  [20/100] 33s elapsed, ETA 130s\n  [30/100] 48s elapsed, ETA 113s\n  [40/100] 65s elapsed, ETA 97s\n  [50/100] 81s elapsed, ETA 81s\n  [60/100] 97s elapsed, ETA 65s\n  [70/100] 113s elapsed, ETA 48s\n  [80/100] 129s elapsed, ETA 32s\n  [90/100] 145s elapsed, ETA 16s\n  [100/100] 161s elapsed, ETA 0s\n\nDone: 160.7s (100 runs, 1.6s/run)\nSaved: results/exp_cf_oracle_coverage.csv (48 rows)\n\n================================================================================\nexp-027 CausalForest Oracle Coverage\n================================================================================\n\nMethod                       |  |Bias| |    RMSE | Coverage | Mean SE\n-----------------------------+---------+---------+----------+--------\nOracle                       |  0.0056 |  0.0775 |   0.9450 |  0.0780\nEC-HTE true CM               |  0.0078 |  0.1136 |   0.9250 |  0.1092\nEC-HTE estimated CM          |  0.0148 |  0.1214 |   0.9312 |  0.1128\nGlobal true CM               |  0.0371 |  0.1097 |   0.9125 |  0.1010\nGlobal estimated CM          |  0.0379 |  0.1107 |   0.9113 |  0.1015\nNaive                        |  0.0447 |  0.0949 |   0.8825 |  0.0798\n\n\nPer-subgroup detail:\nMethod                       | Sub | z |     Bias |    RMSE | Coverage | Mean SE\n-----------------------------+-----+---+----------+---------+----------+--------\nOracle                       |   0 | 0 |  -0.0031 |  0.0783 |   0.9400 |  0.0794\nOracle                       |   0 | 1 |   0.0042 |  0.0834 |   0.9400 |  0.0789\nOracle                       |   1 | 0 |  -0.0034 |  0.0863 |   0.9300 |  0.0776\nOracle                       |   1 | 1 |   0.0062 |  0.0736 |   0.9100 |  0.0790\nOracle                       |   2 | 0 |  -0.0017 |  0.0704 |   0.9800 |  0.0771\nOracle                       |   2 | 1 |  -0.0064 |  0.0814 |   0.9400 |  0.0783\nOracle                       |   3 | 0 |   0.0120 |  0.0722 |   0.9700 |  0.0762\nOracle                       |   3 | 1 |  -0.0079 |  0.0745 |   0.9500 |  0.0778\n\nEC-HTE true CM               |   0 | 0 |  -0.0001 |  0.0797 |   0.9300 |  0.0842\nEC-HTE true CM               |   0 | 1 |   0.0001 |  0.0901 |   0.9300 |  0.0838\nEC-HTE true CM               |   1 | 0 |  -0.0062 |  0.0962 |   0.9000 |  0.0920\nEC-HTE true CM               |   1 | 1 |   0.0077 |  0.0759 |   0.9800 |  0.0910\nEC-HTE true CM               |   2 | 0 |  -0.0076 |  0.1197 |   0.9100 |  0.1095\nEC-HTE true CM               |   2 | 1 |   0.0003 |  0.1072 |   0.9400 |  0.1107\nEC-HTE true CM               |   3 | 0 |  -0.0216 |  0.1633 |   0.9100 |  0.1507\nEC-HTE true CM               |   3 | 1 |   0.0191 |  0.1770 |   0.9000 |  0.1514\n\nEC-HTE estimated CM          |   0 | 0 |  -0.0051 |  0.0825 |   0.9400 |  0.0856\nEC-HTE estimated CM          |   0 | 1 |   0.0054 |  0.0931 |   0.9400 |  0.0854\nEC-HTE estimated CM          |   1 | 0 |  -0.0107 |  0.0987 |   0.9200 |  0.0936\nEC-HTE estimated CM          |   1 | 1 |   0.0122 |  0.0782 |   0.9800 |  0.0926\nEC-HTE estimated CM          |   2 | 0 |  -0.0132 |  0.1274 |   0.9400 |  0.1128\nEC-HTE estimated CM          |   2 | 1 |   0.0074 |  0.1162 |   0.9300 |  0.1145\nEC-HTE estimated CM          |   3 | 0 |  -0.0330 |  0.1802 |   0.9000 |  0.1585\nEC-HTE estimated CM          |   3 | 1 |   0.0316 |  0.1952 |   0.9000 |  0.1594\n\nGlobal true CM               |   0 | 0 |  -0.0501 |  0.1074 |   0.9300 |  0.1008\nGlobal true CM               |   0 | 1 |   0.0501 |  0.1179 |   0.9100 |  0.1003\nGlobal true CM               |   1 | 0 |  -0.0352 |  0.1115 |   0.8800 |  0.1028\nGlobal true CM               |   1 | 1 |   0.0368 |  0.0914 |   0.9700 |  0.1017\nGlobal true CM               |   2 | 0 |   0.0095 |  0.1100 |   0.9100 |  0.1006\nGlobal true CM               |   2 | 1 |  -0.0168 |  0.0992 |   0.9500 |  0.1018\nGlobal true CM               |   3 | 0 |   0.0478 |  0.1137 |   0.9000 |  0.0996\nGlobal true CM               |   3 | 1 |  -0.0503 |  0.1264 |   0.8500 |  0.1003\n\nGlobal estimated CM          |   0 | 0 |  -0.0508 |  0.1088 |   0.9300 |  0.1010\nGlobal estimated CM          |   0 | 1 |   0.0519 |  0.1187 |   0.9000 |  0.1011\nGlobal estimated CM          |   1 | 0 |  -0.0367 |  0.1144 |   0.8800 |  0.1031\nGlobal estimated CM          |   1 | 1 |   0.0395 |  0.0942 |   0.9600 |  0.1024\nGlobal estimated CM          |   2 | 0 |   0.0098 |  0.1098 |   0.9100 |  0.1009\nGlobal estimated CM          |   2 | 1 |  -0.0160 |  0.1001 |   0.9500 |  0.1025\nGlobal estimated CM          |   3 | 0 |   0.0483 |  0.1131 |   0.8900 |  0.0999\nGlobal estimated CM          |   3 | 1 |  -0.0501 |  0.1266 |   0.8700 |  0.1009\n\nNaive                        |   0 | 0 |   0.0150 |  0.0770 |   0.9200 |  0.0797\nNaive                        |   0 | 1 |  -0.0149 |  0.0868 |   0.9200 |  0.0793\nNaive                        |   1 | 0 |   0.0252 |  0.0897 |   0.8900 |  0.0813\nNaive                        |   1 | 1 |  -0.0237 |  0.0718 |   0.9800 |  0.0803\nNaive                        |   2 | 0 |   0.0540 |  0.1012 |   0.8500 |  0.0795\nNaive                        |   2 | 1 |  -0.0613 |  0.0971 |   0.9000 |  0.0805\nNaive                        |   3 | 0 |   0.0806 |  0.1129 |   0.8400 |  0.0787\nNaive                        |   3 | 1 |  -0.0831 |  0.1226 |   0.7600 |  0.0793\n\n\n================================================================================\nINTERPRETATION\n================================================================================\n  Oracle coverage:           0.9450\n  EC-HTE true CM coverage:   0.9250\n  EC-HTE estimated coverage: 0.9312\n\n  -> Oracle >= 90%: CF SE is reasonably calibrated\n  -> EC-HTE true CM ~ estimated CM: gap is NOT from CM estimation error\n     Coverage gap comes from CF inherent SE under-calibration",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "1fb36dce-55ca-4f0c-b789-e4d22a07ae91",
+            "tool_use_result": {
+              "stdout": "exp-027 CausalForest Oracle Coverage\nN=5000, K=4, pi=[0.05, 0.1, 0.2, 0.3], tau(0)=0.0, tau(1)=0.3\nn_expert=500, N_MC=100, seed_base=42\n\nTiming single run...\n  1.72s/run (2 forest fits per run)\n  Estimated total: 172s (2.9 min)\n\n  [10/100] 16s elapsed, ETA 148s\n  [20/100] 33s elapsed, ETA 130s\n  [30/100] 48s elapsed, ETA 113s\n  [40/100] 65s elapsed, ETA 97s\n  [50/100] 81s elapsed, ETA 81s\n  [60/100] 97s elapsed, ETA 65s\n  [70/100] 113s elapsed, ETA 48s\n  [80/100] 129s elapsed, ETA 32s\n  [90/100] 145s elapsed, ETA 16s\n  [100/100] 161s elapsed, ETA 0s\n\nDone: 160.7s (100 runs, 1.6s/run)\nSaved: results/exp_cf_oracle_coverage.csv (48 rows)\n\n================================================================================\nexp-027 CausalForest Oracle Coverage\n================================================================================\n\nMethod                       |  |Bias| |    RMSE | Coverage | Mean SE\n-----------------------------+---------+---------+----------+--------\nOracle                       |  0.0056 |  0.0775 |   0.9450 |  0.0780\nEC-HTE true CM               |  0.0078 |  0.1136 |   0.9250 |  0.1092\nEC-HTE estimated CM          |  0.0148 |  0.1214 |   0.9312 |  0.1128\nGlobal true CM               |  0.0371 |  0.1097 |   0.9125 |  0.1010\nGlobal estimated CM          |  0.0379 |  0.1107 |   0.9113 |  0.1015\nNaive                        |  0.0447 |  0.0949 |   0.8825 |  0.0798\n\n\nPer-subgroup detail:\nMethod                       | Sub | z |     Bias |    RMSE | Coverage | Mean SE\n-----------------------------+-----+---+----------+---------+----------+--------\nOracle                       |   0 | 0 |  -0.0031 |  0.0783 |   0.9400 |  0.0794\nOracle                       |   0 | 1 |   0.0042 |  0.0834 |   0.9400 |  0.0789\nOracle                       |   1 | 0 |  -0.0034 |  0.0863 |   0.9300 |  0.0776\nOracle                       |   1 | 1 |   0.0062 |  0.0736 |   0.9100 |  0.0790\nOracle                       |   2 | 0 |  -0.0017 |  0.0704 |   0.9800 |  0.0771\nOracle                       |   2 | 1 |  -0.0064 |  0.0814 |   0.9400 |  0.0783\nOracle                       |   3 | 0 |   0.0120 |  0.0722 |   0.9700 |  0.0762\nOracle                       |   3 | 1 |  -0.0079 |  0.0745 |   0.9500 |  0.0778\n\nEC-HTE true CM               |   0 | 0 |  -0.0001 |  0.0797 |   0.9300 |  0.0842\nEC-HTE true CM               |   0 | 1 |   0.0001 |  0.0901 |   0.9300 |  0.0838\nEC-HTE true CM               |   1 | 0 |  -0.0062 |  0.0962 |   0.9000 |  0.0920\nEC-HTE true CM               |   1 | 1 |   0.0077 |  0.0759 |   0.9800 |  0.0910\nEC-HTE true CM               |   2 | 0 |  -0.0076 |  0.1197 |   0.9100 |  0.1095\nEC-HTE true CM               |   2 | 1 |   0.0003 |  0.1072 |   0.9400 |  0.1107\nEC-HTE true CM               |   3 | 0 |  -0.0216 |  0.1633 |   0.9100 |  0.1507\nEC-HTE true CM               |   3 | 1 |   0.0191 |  0.1770 |   0.9000 |  0.1514\n\nEC-HTE estimated CM          |   0 | 0 |  -0.0051 |  0.0825 |   0.9400 |  0.0856\nEC-HTE estimated CM          |   0 | 1 |   0.0054 |  0.0931 |   0.9400 |  0.0854\nEC-HTE estimated CM          |   1 | 0 |  -0.0107 |  0.0987 |   0.9200 |  0.0936\nEC-HTE estimated CM          |   1 | 1 |   0.0122 |  0.0782 |   0.9800 |  0.0926\nEC-HTE estimated CM          |   2 | 0 |  -0.0132 |  0.1274 |   0.9400 |  0.1128\nEC-HTE estimated CM          |   2 | 1 |   0.0074 |  0.1162 |   0.9300 |  0.1145\nEC-HTE estimated CM          |   3 | 0 |  -0.0330 |  0.1802 |   0.9000 |  0.1585\nEC-HTE estimated CM          |   3 | 1 |   0.0316 |  0.1952 |   0.9000 |  0.1594\n\nGlobal true CM               |   0 | 0 |  -0.0501 |  0.1074 |   0.9300 |  0.1008\nGlobal true CM               |   0 | 1 |   0.0501 |  0.1179 |   0.9100 |  0.1003\nGlobal true CM               |   1 | 0 |  -0.0352 |  0.1115 |   0.8800 |  0.1028\nGlobal true CM               |   1 | 1 |   0.0368 |  0.0914 |   0.9700 |  0.1017\nGlobal true CM               |   2 | 0 |   0.0095 |  0.1100 |   0.9100 |  0.1006\nGlobal true CM               |   2 | 1 |  -0.0168 |  0.0992 |   0.9500 |  0.1018\nGlobal true CM               |   3 | 0 |   0.0478 |  0.1137 |   0.9000 |  0.0996\nGlobal true CM               |   3 | 1 |  -0.0503 |  0.1264 |   0.8500 |  0.1003\n\nGlobal estimated CM          |   0 | 0 |  -0.0508 |  0.1088 |   0.9300 |  0.1010\nGlobal estimated CM          |   0 | 1 |   0.0519 |  0.1187 |   0.9000 |  0.1011\nGlobal estimated CM          |   1 | 0 |  -0.0367 |  0.1144 |   0.8800 |  0.1031\nGlobal estimated CM          |   1 | 1 |   0.0395 |  0.0942 |   0.9600 |  0.1024\nGlobal estimated CM          |   2 | 0 |   0.0098 |  0.1098 |   0.9100 |  0.1009\nGlobal estimated CM          |   2 | 1 |  -0.0160 |  0.1001 |   0.9500 |  0.1025\nGlobal estimated CM          |   3 | 0 |   0.0483 |  0.1131 |   0.8900 |  0.0999\nGlobal estimated CM          |   3 | 1 |  -0.0501 |  0.1266 |   0.8700 |  0.1009\n\nNaive                        |   0 | 0 |   0.0150 |  0.0770 |   0.9200 |  0.0797\nNaive                        |   0 | 1 |  -0.0149 |  0.0868 |   0.9200 |  0.0793\nNaive                        |   1 | 0 |   0.0252 |  0.0897 |   0.8900 |  0.0813\nNaive                        |   1 | 1 |  -0.0237 |  0.0718 |   0.9800 |  0.0803\nNaive                        |   2 | 0 |   0.0540 |  0.1012 |   0.8500 |  0.0795\nNaive                        |   2 | 1 |  -0.0613 |  0.0971 |   0.9000 |  0.0805\nNaive                        |   3 | 0 |   0.0806 |  0.1129 |   0.8400 |  0.0787\nNaive                        |   3 | 1 |  -0.0831 |  0.1226 |   0.7600 |  0.0793\n\n\n================================================================================\nINTERPRETATION\n================================================================================\n  Oracle coverage:           0.9450\n  EC-HTE true CM coverage:   0.9250\n  EC-HTE estimated coverage: 0.9312\n\n  -> Oracle >= 90%: CF SE is reasonably calibrated\n  -> EC-HTE true CM ~ estimated CM: gap is NOT from CM estimation error\n     Coverage gap comes from CF inherent SE under-calibration",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment completed successfully. Let me analyze the results:\n\nKey findings:\n\n1. **Oracle coverage: 94.5%** — CF SE is reasonably well-calibrated when there's no misclassification\n2. **EC-HTE true CM: 92.5%** — Using true confusion matrices only gets to ~92.5%\n3. **EC-HTE estimated CM: 93.1%** — Similar to true CM, confirming CM estimation error is NOT the issue\n4. **Naive: 88.25%** — Lowest, as expected\n\nThe interpretation is interesting:\n- Oracle is ~94.5%, close to nominal 95% — CF SE calibration is good\n\n\n- The 2% gap between Oracle and EC-HTE true CM comes from how the M^{-1} correction amplifies standard error differently, not from CM estimation error itself\n- Since the true and estimated CM results are nearly identical, CM estimation contributes negligibly to the overall gap\n- All corrected methods exceed 90% coverage, with Naive at 88.25% as the baseline, so the results are solid across the board",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "cd51f3e0-5c20-4c78-9af4-2b5a5f0035ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016ub8hG3i5Ke5uo3sWhx6q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2831,
+                "cache_read_input_tokens": 44270,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2831
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment completed in 161s. Results saved to `results/exp_cf_oracle_coverage.csv`.\n\nKey findings:\n\n| Method | Coverage | |Bias| | RMSE |\n|---|---|---|---|\n| Oracle (true Z) | **94.5%** | 0.0056 | 0.078 |\n| EC-HTE true CM | **92.5%** | 0.0078 | 0.114 |\n| EC-HTE estimated CM | **93.1%** | 0.0148 | 0.121 |\n| Global true CM | 91.3% | 0.0371 | 0.110 |\n| Global estimated CM | 91.1% | 0.0379 | 0.111 |\n| Naive | 88.3% | 0.0447 | 0.095 |\n\n**Interpretation:**\n- **Oracle at 94.5%**: CF SE is well-calibrated on its own (close to nominal 95%)\n- **EC-HTE true CM (92.5%) ≈ estimated CM (93.1%)**: CM estimation error is NOT the source of the gap — the ~2pp difference is negligible\n- The ~2pp drop from Oracle to EC-HTE true CM comes from M^{-1} SE propagation amplifying uncertainty through the correction, not from CM estimation noise\n- Naive at 88.3% confirms misclassification without correction degrades coverage, especially in high-pi subgroups (sub 3: 76-84%)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "uuid": "504b5abe-ab26-4a9f-8ec6-ec1ee231a31f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016ub8hG3i5Ke5uo3sWhx6q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2831,
+                "cache_read_input_tokens": 44270,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2831
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment completed in 161s. Results saved to `results/exp_cf_oracle_coverage.csv`.\n\nKey findings:\n\n| Method | Coverage | |Bias| | RMSE |\n|---|---|---|---|\n| Oracle (true Z) | **94.5%** | 0.0056 | 0.078 |\n| EC-HTE true CM | **92.5%** | 0.0078 | 0.114 |\n| EC-HTE estimated CM | **93.1%** | 0.0148 | 0.121 |\n| Global true CM | 91.3% | 0.0371 | 0.110 |\n| Global estimated CM | 91.1% | 0.0379 | 0.111 |\n| Naive | 88.3% | 0.0447 | 0.095 |\n\n**Interpretation:**\n- **Oracle at 94.5%**: CF SE is well-calibrated on its own (close to nominal 95%)\n- **EC-HTE true CM (92.5%) ≈ estimated CM (93.1%)**: CM estimation error is NOT the source of the gap — the ~2pp difference is negligible\n- The ~2pp drop from Oracle to EC-HTE true CM comes from M^{-1} SE propagation amplifying uncertainty through the correction, not from CM estimation noise\n- Naive at 88.3% confirms misclassification without correction degrades coverage, especially in high-pi subgroups (sub 3: 76-84%)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 379511,
+            "duration_api_ms": 213072,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "b1487d7f-5f1e-497b-bc68-5be19aac4daf",
+            "total_cost_usd": 0.6897755,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 35260,
+              "cache_read_input_tokens": 193391,
+              "output_tokens": 14827,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 35260,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 823,
+                  "cache_read_input_tokens": 44270,
+                  "cache_creation_input_tokens": 2831,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2831
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1905,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 14827,
+                "cacheReadInputTokens": 193391,
+                "cacheCreationInputTokens": 35260,
+                "webSearchRequests": 0,
+                "costUSD": 0.6877804999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fa382245-4ca7-4525-adaf-587a2c3e9d0b"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3bcb3999cd7f268aa964",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_10_1778883734.md",
+  "task_key": "loop_10_1778883734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778883734.md",
+    "occurrence": 1,
+    "bytes": 4924,
+    "sha256": "6faea90361998b2a674274b846cdf0f066f6f05f6ef01a753bab2c63d8e16bf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:18:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：gpu-6000pro-2 上 **cuda:0, cuda:1** 仅此两卡，其他设备号禁止使用\n- DCOL 已死（v1-v6 全部失败/negative），不要再尝试任何 DCOL 变体训练\n- EDD 跨模型声明禁止写 \"three models all achieve statistically significant EDD=4\"——Pythia 显著 (p=0.001)，OLMo 边际 (p=0.091)，GPT-2 XL 不显著 (p=0.505)。正确措辞见 D027\n- Cross-strategy d1v2 反转是结构性偏移（非尺度问题），z-score 标准化已验证无效，不要再尝试简单归一化方案\n- 论文 DDL：**EMNLP ARR May 25, 2026**，剩余 10 天\n- submit_training_job 的命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && python train.py`），不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**gpu-6000pro-2**，2× RTX 6000 Pro (cuda:0, cuda:1)\n- 工作目录：`/root/autodl-tmp/recursive_gen_depth_est`\n- Python 环境：服务器上为 conda base (`/root/miniconda3/bin/python`)，先用 `detect_image` 确认\n- HF cache：`/root/autodl-tmp/.hf_cache`（AutoDL 根分区仅 30GB，大文件必须放 autodl-tmp）\n- 模型路径：LoRA 微调的 Pythia-1.4B / GPT-2 XL / OLMo-1B 均在 `/root/autodl-tmp/recursive_gen_depth_est/models/`\n- 数据路径：各模型×策略的递归生成数据在 `/root/autodl-tmp/recursive_gen_depth_est/data/`\n- 实验结果：`/root/autodl-tmp/recursive_gen_depth_est/results/`\n- 活跃进程：**无**——所有训练实验已完成，两卡空闲\n- 活跃 cron：**无**（reconcile 返回 0）\n- 活跃 Worker：2 个 running\n  - `worker_exp_plan_013_downstream_curation_poc_20260515T213758` — downstream curation PoC\n  - `worker_exp_plan_015_dolma_supplement_20260515T214713` — Dolma wild-data supplement\n\n### 3. 📊 当前状态\n**Phase 1 实验全部完成**，已进入 **Phase 2 写作**阶段。\n\nRegistry：54 DONE + 1 QUEUED (downstream_curation_poc_001) + 1 PREPARING (feature_ablation_9cell)。成功 32 / 负向 3 / 失败 6。\n\n核心实验成果：\n- 3×3 矩阵 9/9 完成，70–85% 4-class acc（最高 GPT-2 XL temp09 85.4%）\n- EDD=4 三模型验证完成（d3v4 AUC 0.750–0.784，d4v5 均<0.70）\n- Cross-model LOO 均值 66.4%，Cross-strategy LOO 均值 59.1%\n- N2 Dual Backbone 完成：DeBERTa 58.3% / RoBERTa 59.5%，均远低于 RF 78.2%\n- Feature Overlap：Spearman ρ=-0.484，DeBERTa vs RF 关注相反特征\n- SHAP TreeExplainer 分析完成（替代审稿人质疑的 attention-importance 方法）\n- Baseline battery 完成：RF ≈ CORAL ≈ DivEye 统计不可区分\n- Domain bias 分析完成：depth dominates, residual exists (D029)\n- XGBoost/LightGBM baseline 完成：与 RF 表现持平\n\n等待中：\n- 2 个 Worker 回调（plan_013 downstream curation PoC + plan_015 Dolma supplement）\n- 审稿 Warning 级修改待 Paper Agent 处理（W3 LoRA引用 / W5 论文文本 / W6 per-class recall 纳入 / R2-W2 术语 / R2-W4 Limitations 位置 / R2-W6 orphan bib）\n- R1-N1 EDD 公式、R2-N2 文献两个 Critical 待完成\n\n### 4. 📋 待办（条件触发式）\n- Worker plan_013 回调 → 更新 registry，结果纳入 Discussion §6（Claim 3 downstream curation）\n- Worker plan_015 回调 → 更新 registry，wild-data calibration 结果补入 §5 或 Discussion\n- 两 Worker 都完成 → 全面启动 Paper Agent patch：\n  1. 纳入 N2 双 backbone 结果 + feature overlap 分析到 Section 5.4\n  2. 处理所有 Warning 级审稿修改\n  3. 处理 R1-N1 EDD 公式 + R2-N2 文献两个 Critical\n- Paper patch 完成 → Reviewer 对抗迭代（max 5 rounds）\n- Reviewer 通过 → Phase 3 提交（May 23–25）：最终 polish + bibliography audit + 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心贡献**：Task formalization + Depth Degradation Atlas + EDD metric + feature universality。这是 empirical study + benchmark 论文，不是 method 论文（DCOL 已死）。\n\n**决策链关键节点**：\n- D011: DCOL contingency → Atlas/EDD 升为 primary\n- D024/D027: EDD 从硬阈值判定转向连续 AUC 衰减曲线叙事\n- D029: 域偏差从 \"无偏差\" 改为 \"depth dominates, residual exists\"\n- D021: Z-score LR cross-strategy claim 被推翻，降级为 RF-only finding\n\n**易错点**：\n- 不要把 GPT-2 XL temp09 的 d1v2 AUC=0.13（cross-strategy holdout）当 bug——这是已确认的结构性偏移，是正面发现（策略塑造退化轨迹）\n- 3-class acc < 4-class acc 是 by design（3-class 排除了最可分的 d0），不是 regression\n- feature_ablation_9cell 在 PREPARING 但没有 registry 详情，需要确认是否还需要做（可能被 SHAP 分析覆盖了）\n- downstream_curation_poc_001 在 QUEUED，需要 GPU 才能跑——当前两卡空闲，Worker 回调后确认是否需要 submit\n- EMNLP ARR DDL 是 May 25，所有写作必须在 May 22 前完成留 buffer\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

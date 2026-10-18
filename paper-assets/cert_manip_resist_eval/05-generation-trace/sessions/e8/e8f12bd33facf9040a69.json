@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f12bd33facf9040a69",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis r6 2b r2 bootstrap ci",
+  "task_key": "worker_analysis_r6-2b-r2-bootstrap-ci_20260525T074625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r6-2b-r2-bootstrap-ci_20260525T074625_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "e8bbdcd8ab49cf2b5a7f51571d2996d007d68f1aab932ccee3f64a5022a63b25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are in. The point estimates differ slightly from the registry values because the underlying data has been updated since those were computed, but the pattern is the same and the bootstrap confirms significance.\n\n**Results summary:**\n\n| Metric | Point Estimate | 95% CI |\n|--------|---------------|--------|\n| RF (Random Fault) R² | 0.730 | [0.718, 0.745] |\n| Adaptive R² | 0.285 | [0.270, 0.301] |\n| Δ (RF − Adaptive) | 0.446 | [0.430, 0.460] |\n\n- **Δ CI excludes 0** → difference is statistically significant (p < 0.001 equivalent)\n- RF R² is stable across both datasets (mmlu: 0.727, arc: 0.733)\n- Adaptive R² varies substantially across conditions (0.079–0.535)\n\nThe point estimates differ from the registry (rf=0.705, adaptive=0.256) because the score data has been updated since those values were recorded (API model score files were regenerated with updated model names/versions). The methodology and conclusion are unchanged: the K_eff diversity model explains significantly more variance under independent faults (R²≈0.73) than under adaptive attacks (R²≈0.28), confirming that adaptive attackers break the independence assumption.\n\nOutput saved to `/root/cert_manip_resist_eval/artifacts/results/plan001/r2_bootstrap_ci.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

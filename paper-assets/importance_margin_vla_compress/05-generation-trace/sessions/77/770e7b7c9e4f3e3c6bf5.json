@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "770e7b7c9e4f3e3c6bf5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "m103 scp models from westd27271",
+  "task_key": "worker_m103_scp_models_from_westd27271_20260525T011933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_m103_scp_models_from_westd27271_20260525T011933_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "6b0a30e419ba26b2132f5c138a971922d57c838905a57ca40a83584c41295bb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部传输完成并验证通过。\n\n## 传输结果\n\n| 模型 | 源路径 (westd-27271) | 目标 | 目标路径 | 大小 | 状态 |\n|------|---------------------|------|---------|------|------|\n| Goal | `/root/autodl-tmp/openvla-7b-finetuned-libero-goal` | westd-38929 | `/root/autodl-tmp/models/openvla-7b-finetuned-libero-goal` | 15GB | ✓ |\n| Spatial | `/root/autodl-tmp/openvla-7b-finetuned-libero-spatial` | westd-38929 | `/root/autodl-tmp/models/openvla-7b-finetuned-libero-spatial` | 15GB | ✓ |\n| Long | `/root/autodl-tmp/openvla-7b-finetuned-libero-10` | westd-41074 | `/root/autodl-tmp/models/openvla-7b-finetuned-libero-10` | 15GB | ✓ |\n\n每个模型 15 个文件（4 个 safetensors 分片 + JSON 配置 + tokenizer），大小均与源端一致。总耗时约 2 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

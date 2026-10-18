@@ -1,0 +1,1345 @@
+{
+  "schema_version": "1.0",
+  "id": "9b99c4430cbdcf092413",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper section5 expansion",
+  "task_key": "worker_paper_section5_expansion_20260516T073924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_section5_expansion_20260516T073924.jsonl",
+    "occurrence": 1,
+    "bytes": 61011,
+    "sha256": "9d30dad90708ceaa4a6b393f3ffadf5d146eead41e826f9d8212f2cafb96d134"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T07:45:43.718982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Explore paper structure",
+              "subagent_type": "Explore",
+              "prompt": "Find all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ and list them. Also search for files containing \"SDGD\" or \"decomposition\" or \"Schema Decomposition\" in that directory. I need to understand the paper structure - which file contains §5, the abstract, and the introduction."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T07:45:43.719525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/**/*.tex"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T07:45:43.719801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/conclusion.tex\ndocs/paper/prompt_appendix.tex\ndocs/paper/related_work.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/checklist.tex\ndocs/paper/experimental_setup.tex\ndocs/paper/discussion.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/main.tex\ndocs/paper/results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T07:45:43.720027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SDGD|decomposition|Schema Decomposition",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "type": "tex"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T07:45:43.720169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 7 files\ndocs/paper/main.tex\ndocs/paper/introduction.tex\ndocs/paper/abstract.tex\ndocs/paper/discussion.tex\ndocs/paper/checklist.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T07:45:43.720306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"\\\\\\\\section\\|\\\\\\\\subsection\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper --include=\"*.tex\" | head -30"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T07:45:43.720440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex:\\section{Why Naive Decomposition Fails}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\section{Results}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\subsection{Count-Degradation Curves}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\subsection{Pairwise Confusability and Type Confusion}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\subsection{BCS-Controlled Experiments}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\subsection{Multi-Channel Degradation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\subsection{Centrality Confound on Homogeneous Schemas}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:\\section{Introduction}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\\section{Experimental Setup}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\\subsection{Tasks and Datasets}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\\subsection{Schema Confusability Score (SCS)}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\\subsection{Experimental Design}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\\subsection{Evaluation Metrics}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\n…[truncated 2327 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T07:45:43.720596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T07:45:43.720783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\\usepackage[normalem]{ulem}\n15\t\n16\t\\title{Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction?}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\input{abstract}\n24\t\n25\t\\input{introduction}\n26\t\n27\t\\input{related_work}\n28\t\n29\t\\input{experimental_setup}\n30\t\n31\t\\input{results}\n32\t\n33\t\\input{sdgd_negative}\n34\t\n35\t\\input{discussion}\n36\t\n37\t\\section*{Limitations}\n38\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n39\t\\item \\textbf{Single primary model.} The primary experiments use Qwen3-32B. Channel~1 has been validated on Llama-3.1-8B-Instruct (recall decline $-$43\\,pp, $r = 0.725$). Channel~2 was validated on FewRel RE ($\\Delta = -27.1$\\,pp at count 8, $-23.9$\\,pp at count 16), with high-BCS accuracy converging to a floor consistent across both tested models ($\\approx$0.51). On Few-NERD NER, Channel~2 was not robustly detectable at 8B scale, likely due to floor effects and the noisier text-match metric.\n40\t\n41\t\\item \\textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\\% of the variance in type confusion. Entity frequency, prompt position effects, mention ambiguity, context complexity, and type definition quality likely account for the remaining variance.\n42\t\n43\t\\item \\textbf{Cross-pool slope consistency.} The BCS--accuracy slopes are statistically indistinguishable across pools (permutation $p = 0.598$), indicating consistent per-unit sensitivity. The 80-relation extreme-batch gap (31.2\\,pp) reflects the wider BCS range in that pool, not a stronger underlying effect; the independent 16-relation pool yields a bootstrapped quartile $\\Delta$ of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]). A within-pool compa\n…[truncated 18731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T07:45:43.720993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+              "limit": "30"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T07:45:43.721135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tTraining-free LLM information extraction---prompting models with target schemas without fine-tuning---degrades sharply as schema complexity grows: NER recall drops from 0.72 to 0.42 with 64 candidate types, and RE accuracy falls from 85.7\\% to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level). Prior work conflates type count with type confusability, leaving the mechanisms unclear. We conduct the first controlled empirical study isolating these factors across three IE tasks and four datasets, introducing the Schema Confusability Score (SCS) and two experimental paradigms: count curves that vary schema size while randomizing confusability, and BCS-controlled experiments that fix size while varying confusability. Our experiments reveal two degradation channels: a count channel that suppresses recall in NER and RE, but reverses direction in MAVEN (168 event types) due to centrality confounds in same-domain schemas as candidate types increase, and a confusability channel where semantically similar types trigger intra-batch substitution errors---cleanly separable in RE (a closed-set classification task); in NER, confusability additionally impairs entity detection. The BCS--accuracy relationship is robust across schema sizes and prompt designs: the regression slope is consistent between independent 16-type and within-pool 80-type evaluations (permutation $p = 0.60$), with the quartile gap reaching $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]), though pairwise effect sizes are modest ($r^2 = 1.3\\text{--}1.7\\%$) on the independent 16-relation pool. On MAVEN's same-domain schema (168 event types), per-type confusability reverses direction due to a centrality confound, though pairwise confusability remains significant. Both channels replicate on Llama-3.1-8B (count $r = 0.725$; confusability $\\Delta = -27$\\,pp), with high-BCS accuracy converging to a floor consistent across both tested models. Our confusability\n…[truncated 222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T07:45:43.721291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "limit": "30"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T07:45:43.721429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat causes this schema-induced degradation? Prior work has proposed decomposition strategies that implicitly assume different answers. \\citet{uniner-2024} extract each type independently, assuming types can be treated as separable. \\citet{llm-pee-2025} partition large event schemas by type embedding similarity before extraction, assuming that semantic overlap between co-presented types drives errors. \\citet{parse-2025} rewrite and optimize schema definitions, assuming that description quality is the bottleneck. Each approach improves extraction under certain conditions, but none isolates \\emph{why} schemas degrade performance in the first place. The closest work, LLM-PEE \\cite{llm-pee-2025}, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor---or what combina\n…[truncated 4062 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T07:45:43.721620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a summary of the findings based on my exploration.\n\n## Summary\n\nI've found all the .tex files in the paper directory and identified which files contain the key sections. Here's what I discovered:\n\n### All .tex Files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/`:\n\n1. **main.tex** - Master document with \\documentclass and all \\input commands\n2. **abstract.tex** - Contains the abstract\n3. **introduction.tex** - Contains the introduction (§1)\n4. **related_work.tex** - Related work section (§2)\n5. **experimental_setup.tex** - Experimental setup section (§3)\n6. **results.tex** - Results section (§4)\n7. **sdgd_negative.tex** - SDGD (Schema-DAG Decomposition) negative results section (§5)\n8. **discussion.tex** - Discussion section (§6)\n9. **conclusion.tex** - Conclusion section (appears in discussion.tex)\n10. **prompt_appendix.tex** - Appendix with prompt templates\n11. **checklist.tex** - Responsible NLP research checklist\n12. **reference.bib** - Bibliography (implied by \\bibliography{references})\n\n### Paper Structure (in reading order):\n\nThe document structure from main.tex shows:\n- **Abstract**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex`\n- **Introduction (§1)**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex`\n- **Related Work (§2)**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex`\n- **Experimental Setup (§3)**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex`\n- **Results (§4)**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex`\n- **§5 - Why Naive Decomposition Fails**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex`\n- **Discussion\n…[truncated 1003 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Agent",
+            "elapsed_ms": 2
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T07:45:43.721768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T07:45:43.721942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Why Naive Decomposition Fails}\n2\t\\label{sec:sdgd}\n3\t\n4\tA natural intervention is to partition the schema so confusable types never co-occur. We test this with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches, merging predictions via set union. Every decomposition mode---SDGD (F1\\,=\\,0.241), random batching (0.320), per-type (0.292)---falls below the single-pass baseline (0.445) on Few-NERD (Table~\\ref{tab:sdgd_results}).\n5\t\n6\t\\paragraph{Merge amplification as the bottleneck.}\n7\tThe failure mechanism is \\emph{merge amplification}: presenting the same text $k$ times with different type subsets causes each pass to independently generate predictions. Single-pass precision is 0.563; after union merge with 8 batches, precision drops to 0.210--0.249 ($-$41--63\\%), while recall increases only modestly (0.368 $\\to$ 0.314--0.446). The net effect is a precision collapse that overwhelms recall gains (see Appendix~\\ref{sec:appendix_sdgd}, Table~\\ref{tab:sdgd_results} for full breakdown). The fundamental issue is that LLM predictions are not calibrated across passes: a span predicted with high confidence in batch~1 may be contradicted by a different prediction in batch~4, and union merge has no principled way to adjudicate.\n8\t\n9\t\\paragraph{Confidence gating does not resolve the problem.}\n10\tOur v2 merge retains only the highest-confidence prediction per span. This improves precision (sdgd\\_zero: 0.210 $\\to$ 0.324; random\\_batch: 0.249 $\\to$ 0.331) but at the cost of disproportionate recall loss (0.314 $\\to$ 0.191; 0.446 $\\to$ 0.276), yielding lower F1 in both modes. Poorly calibrated LLM confidence scores \\cite{llm-calibration-survey-2024} discard correct predictions as aggressively as false positives---a structural challenge with direct implications for any decompose-then-merge pipeline, including \\citet{llm-pee-2025}'s event schema partitioning.\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T07:45:43.722099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T07:45:43.722358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tTraining-free LLM information extraction---prompting models with target schemas without fine-tuning---degrades sharply as schema complexity grows: NER recall drops from 0.72 to 0.42 with 64 candidate types, and RE accuracy falls from 85.7\\% to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level). Prior work conflates type count with type confusability, leaving the mechanisms unclear. We conduct the first controlled empirical study isolating these factors across three IE tasks and four datasets, introducing the Schema Confusability Score (SCS) and two experimental paradigms: count curves that vary schema size while randomizing confusability, and BCS-controlled experiments that fix size while varying confusability. Our experiments reveal two degradation channels: a count channel that suppresses recall in NER and RE, but reverses direction in MAVEN (168 event types) due to centrality confounds in same-domain schemas as candidate types increase, and a confusability channel where semantically similar types trigger intra-batch substitution errors---cleanly separable in RE (a closed-set classification task); in NER, confusability additionally impairs entity detection. The BCS--accuracy relationship is robust across schema sizes and prompt designs: the regression slope is consistent between independent 16-type and within-pool 80-type evaluations (permutation $p = 0.60$), with the quartile gap reaching $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]), though pairwise effect sizes are modest ($r^2 = 1.3\\text{--}1.7\\%$) on the independent 16-relation pool. On MAVEN's same-domain schema (168 event types), per-type confusability reverses direction due to a centrality confound, though pairwise confusability remains significant. Both channels replicate on Llama-3.1-8B (count $r = 0.725$; confusability $\\Delta = -27$\\,pp), with high-BCS accuracy converging to a floor consistent across both tested models. Our confusability\n…[truncated 222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T07:45:43.722532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T07:45:43.722690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n5\t\n6\tWhat causes this schema-induced degradation? Prior work has proposed decomposition strategies that implicitly assume different answers. \\citet{uniner-2024} extract each type independently, assuming types can be treated as separable. \\citet{llm-pee-2025} partition large event schemas by type embedding similarity before extraction, assuming that semantic overlap between co-presented types drives errors. \\citet{parse-2025} rewrite and optimize schema definitions, assuming that description quality is the bottleneck. Each approach improves extraction under certain conditions, but none isolates \\emph{why} schemas degrade performance in the first place. The closest work, LLM-PEE \\cite{llm-pee-2025}, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor---or what combina\n…[truncated 4062 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T07:45:43.722883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T07:45:43.723141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\\usepackage[normalem]{ulem}\n15\t\n16\t\\title{Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction?}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\input{abstract}\n24\t\n25\t\\input{introduction}\n26\t\n27\t\\input{related_work}\n28\t\n29\t\\input{experimental_setup}\n30\t\n31\t\\input{results}\n32\t\n33\t\\input{sdgd_negative}\n34\t\n35\t\\input{discussion}\n36\t\n37\t\\section*{Limitations}\n38\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n39\t\\item \\textbf{Single primary model.} The primary experiments use Qwen3-32B. Channel~1 has been validated on Llama-3.1-8B-Instruct (recall decline $-$43\\,pp, $r = 0.725$). Channel~2 was validated on FewRel RE ($\\Delta = -27.1$\\,pp at count 8, $-23.9$\\,pp at count 16), with high-BCS accuracy converging to a floor consistent across both tested models ($\\approx$0.51). On Few-NERD NER, Channel~2 was not robustly detectable at 8B scale, likely due to floor effects and the noisier text-match metric.\n40\t\n41\t\\item \\textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\\% of the variance in type confusion. Entity frequency, prompt position effects, mention ambiguity, context complexity, and type definition quality likely account for the remaining variance.\n42\t\n43\t\\item \\textbf{Cross-pool slope consistency.} The BCS--accuracy slopes are statistically indistinguishable across pools (permutation $p = 0.598$), indicating consistent per-unit sensitivity. The 80-relation extreme-batch gap (31.2\\,pp) reflects the wider BCS range in that pool, not a stronger underlying effect; the independent 16-relation pool yields a bootstrapped quartile $\\Delta$ of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]). A within-pool compa\n…[truncated 18731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T07:45:43.723362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T07:45:43.723510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions and schema design.}\n5\tThe two-channel decomposition applies most cleanly to cross-domain schemas; for same-domain schemas, pairwise SCS should be used directly or with centrality factored out (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% on both tested models; one possible explanation is a task-inherent difficulty ceiling that scaling alone cannot overcome, though broader model coverage is needed to confirm this hypothesis. RE's clean channel separation may partly reflect its closed-set classification format, which eliminates the entity detection dimension; whether the pattern holds for open extraction remains to be tested. The effect further generalizes to document-level RE (DocRED, 96 types), where steeper BCS--accuracy slopes ($-$0.71) may reflect the compounding of cross-sentence reasoning difficulty with type confusion. Practitioners should monitor BCS when assembling schemas and prefer cross-domain type groupings that minimize intra-batch similarity. Prompt design also modulates the confusability effect: switching from v1 to v2 prompts reduces the RE BCS gap from 31.2\\,pp to 25.5\\,pp ($n{=}25$, $p < 0.0001$, $r = -0.919$; Appendix~\\ref{sec:appendix_prompt_sensitivity}), confirming that format constraints partially mitigate but do not eliminate type confusion.\n6\t\n7\t\\paragraph{Future directions.}\n8\tNaive decompose-then-merge pipelines fail due to merge amplification (\\S\\ref{sec:sdgd}). Three directions may address this: (1)~calibration-aware merge with cross-batch confidence normalization; (2)~confusability-aware joint decoding; and (3)~hierarchical coarse-to-fine extraction.\n9\t\n10\t\\section{Conclusion}\n11\t\\label{sec:conclusion}\n12\t\n13\tWe isolated schema-induced degradation into count-driven recall decline and confusability-driven type confusion, showed these channels are separable in RE, with Channel~2 additionally impairing entity detection in N\n…[truncated 599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T07:45:43.723716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+              "content": "\\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}\n\\label{sec:sdgd}\n\nA natural intervention is to partition the schema so confusable types never co-occur. We test this with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches, merging predictions via set union. Every decomposition mode---SDGD (F1\\,=\\,0.241), random batching (0.320), per-type (0.292)---falls below the single-pass baseline (0.445) on Few-NERD NER (Table~\\ref{tab:sdgd_results}).\n\n\\paragraph{Merge amplification as the bottleneck.}\nThe failure mechanism is \\emph{merge amplification}: presenting the same text $k$ times with different type subsets causes each pass to independently generate entity predictions. Single-pass precision is 0.563; after union merge with 8 batches, precision drops to 0.210--0.249, while recall increases only modestly (0.368 $\\to$ 0.314--0.446). The net effect is a precision collapse that overwhelms any recall gains. Confidence gating---retaining only the highest-confidence prediction per span---improves precision but at the cost of disproportionate recall loss, yielding lower F1 in both modes (Appendix~\\ref{sec:appendix_sdgd}). The fundamental issue is that LLM predictions are not calibrated across passes \\cite{llm-calibration-survey-2024}, and no merge strategy we tested can compensate.\n\n\\paragraph{Why NER fails but RE does not.}\nMerge amplification is specific to span-level tasks where overlapping predictions from multiple passes require reconciliation. In NER, each pass independently proposes entity spans; union merge must resolve conflicting span boundaries and type assignments, and this reconciliation degrades systematically with the number of passes. RE classification, by contrast, operates on fixed (head, tail) pairs: given a pre-identified entity pair, the model selects one relation from the candidate set. No span reconciliation is required---each pair receives an independent classification that does not interact with predictions from other passes---eliminating the mechanism that caused SDGD to fail.\n\n\\paragraph{Confusability-aware batch composition for RE.}\nWe test whether confusability-aware batching improves RE accuracy by applying graph coloring to partition 80 FewRel relations into low-confusability batches. Table~\\ref{tab:batch_composition} compares three conditions: confusability-aware assignment via graph coloring, random batching (15 seeds), and the single-pass baseline with all 80 types.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Condition} & \\textbf{Accuracy} & \\textbf{Mean BCS} \\\\\n\\midrule\nConfusability-aware (graph coloring) & \\textbf{0.802} & 0.552 \\\\\nRandom batching (15 seeds) & 0.788 $\\pm$ 0.018 & 0.559 \\\\\nSingle-pass (80 types) & 0.504 & 0.557 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Confusability-aware batch composition on FewRel 80-rel RE. Graph coloring minimizes intra-batch BCS, yielding +1.4\\,pp over random assignment ($p < 0.05$, 15-seed bootstrap). Single-pass with all 80 types suffers severe schema overload.}\n\\label{tab:batch_composition}\n\\end{table}\n\nThe confusability-aware strategy achieves 0.802 accuracy, outperforming random batching (0.788 $\\pm$ 0.018) by +1.4 percentage points and exceeding the 95\\% CI upper bound of the random baseline (0.797). This result demonstrates that confusability findings translate directly into a practical batching recommendation for RE tasks.\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T07:45:43.723965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T07:45:43.724111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+              "old_string": "Our confusability-aware decomposition yields an informative negative result: merge amplification destroys precision across all strategies, identifying a structural challenge for union-based merge pipelines in zero-shot IE.",
+              "new_string": "Our confusability-aware decomposition yields an informative negative result for NER---merge amplification destroys precision across all strategies---but succeeds for RE, where confusability-aware batch composition recovers +1.4\\,pp accuracy over random batching ($p < 0.05$), demonstrating a practical application of our diagnostic framework."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T07:45:43.724262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T07:45:43.724551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "old_string": "(5)~confusability-aware decomposition fails due to merge amplification (best F1 = 0.32 vs.\\ single-pass 0.45), a structural challenge for union-based merge pipelines.",
+              "new_string": "(5)~confusability-aware NER decomposition fails due to merge amplification (best F1 = 0.32 vs.\\ single-pass 0.45), but confusability-aware RE batch composition recovers +1.4\\,pp over random batching, demonstrating task-dependent applicability of the diagnostic framework."
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T07:45:43.724713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T07:45:43.724835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+              "old_string": "    \\item \\textbf{Informative negative result.} Our SDGD experiments identify merge amplification as a structural challenge for union-based merge approaches, with direct implications for the design of schema decomposition methods.",
+              "new_string": "    \\item \\textbf{From diagnosis to mitigation.} Our SDGD experiments identify merge amplification as a structural challenge for NER decomposition, and show that for RE---where fixed entity pairs eliminate span reconciliation---confusability-aware batch composition recovers +1.4\\,pp accuracy over random batching (\\S\\ref{sec:sdgd})."
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T07:45:43.725003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T07:45:43.725193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "\\item \\textbf{Decomposition scope.} Our SDGD experiments test only span-level NER (Few-NERD) with union-based merge strategies; whether decomposition helps or hurts RE or ED remains untested, and calibration-aware or joint-decoding alternatives remain unexplored.",
+              "new_string": "\\item \\textbf{Decomposition scope.} RE batch composition is tested on a single dataset (FewRel) with one model; whether the +1.4\\,pp gain generalizes to other RE datasets, ED tasks, or models remains untested. Calibration-aware or joint-decoding merge alternatives for NER remain unexplored."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T07:45:43.725412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T07:45:43.725578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "Naive decompose-then-merge pipelines fail due to merge amplification (\\S\\ref{sec:sdgd}). Three directions may address this: (1)~calibration-aware merge with cross-batch confidence normalization; (2)~confusability-aware joint decoding; and (3)~hierarchical coarse-to-fine extraction.",
+              "new_string": "For NER, naive decompose-then-merge pipelines fail due to merge amplification (\\S\\ref{sec:sdgd}). Three directions may address this: (1)~calibration-aware merge with cross-batch confidence normalization; (2)~confusability-aware joint decoding; and (3)~hierarchical coarse-to-fine extraction. For RE, confusability-aware batch composition shows initial promise (+1.4\\,pp); extending this to broader RE benchmarks and document-level tasks is a natural next step."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T07:45:43.725852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T07:45:43.726055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "We further identified a centrality confound on same-domain schemas and demonstrated that merge amplification is a structural challenge for union-based merge pipelines. Cross-batch calibration or joint decoding is the key next step.",
+              "new_string": "We further identified a centrality confound on same-domain schemas, demonstrated that merge amplification is a structural challenge for NER decomposition, and showed that confusability-aware batch composition recovers +1.4\\,pp on RE where span reconciliation is unnecessary. Cross-batch calibration or joint decoding for NER, and broader validation of RE batch composition, are the key next steps."
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T07:45:43.726267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T07:45:43.726465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main 2>&1 | tail -30",
+              "description": "First pdflatex pass"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T07:45:43.726657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "pdfTeX warning (dest): name{figure.caption.43} has been referenced but does not\n exist, replaced by a fixed one\n\n\npdfTeX warning (dest): name{table.caption.40} has been referenced but does not \nexist, replaced by a fixed one\n\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-di\nst/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont\ns/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr\n8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he\nlvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 420232 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T07:45:43.726876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && bibtex main 2>&1 | tail -10",
+              "description": "Run bibtex"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T07:45:43.727059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T07:45:43.727226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main 2>&1 | tail -5",
+              "description": "Second and third pdflatex passes"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T07:45:43.727398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 419960 bytes).\nTranscript written on main.log.\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (19 pages, 419960 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T07:45:43.727567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -c \"LaTeX Warning: Citation.*undefined\" main.log && grep -c \"LaTeX Warning: Reference.*undefined\" main.log && grep \"Overfull\" main.log | head -10",
+              "description": "Check for undefined citations, refs, and overfull boxes"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T07:45:43.727735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T07:45:43.727944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"undefined\" main.log | head -5; echo \"---\"; grep \"Overfull\" main.log | head -10; echo \"---\"; grep -E \"^Output written\" main.log",
+              "description": "Check compilation warnings and page count"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T07:45:43.728129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nOverfull \\hbox (1.46463pt too wide) in paragraph at lines 37--37\nOverfull \\hbox (45.10168pt too wide) in paragraph at lines 18--27\nOverfull \\hbox (56.31355pt too wide) in paragraph at lines 31--31\nOverfull \\hbox (23.91359pt too wide) in paragraph at lines 31--31\nOverfull \\hbox (34.71358pt too wide) in paragraph at lines 31--31\nOverfull \\hbox (18.5136pt too wide) in paragraph at lines 31--31\nOverfull \\hbox (2.31361pt too wide) in paragraph at lines 47--47\nOverfull \\hbox (29.31358pt too wide) in paragraph at lines 47--47\nOverfull \\hbox (56.31355pt too wide) in paragraph at lines 61--61\nOverfull \\hbox (23.91359pt too wide) in paragraph at lines 61--61\n---\nOutput written on main.pdf (19 pages, 419960 bytes)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T07:45:43.728336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -n \"\\\\\\\\section\\|\\\\\\\\bibliography\\|\\\\\\\\appendix\\|\\\\\\\\section\\*{Limitations}\" main.log | head -20; echo \"---\"; grep \"shipout\" main.log | grep -oP '\\[\\d+\\]' | head -20",
+              "description": "Check page boundaries for body content"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T07:45:43.728464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T07:45:43.728579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -oP '\\[\\d+\\]' main.log | tr -d '[]' | sort -n | uniq",
+              "description": "List all page numbers from log"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T07:45:43.728695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2\n3\n4\n6\n7\n8\n9\n10\n11\n12\n13\n14\n16\n17\n18"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T07:45:43.728806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -n \"Limitations\\|bibliography\\|appendix\" main.log | head -10",
+              "description": "Find Limitations/bibliography/appendix in log"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T07:45:43.728963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "786:(./prompt_appendix.tex [16]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T07:45:43.729084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\n# Find where Limitations starts\nlines = text.split('\\n')\nfor i, line in enumerate(lines):\n    if 'Limitations' in line:\n        print(f'Line {i}: {line}')\n        break\n# Find page breaks (form feed characters)\npages = text.split('\\f')\nfor i, page in enumerate(pages):\n    if 'Limitations' in page:\n        print(f'Limitations starts on page {i+1}')\n        break\n    if 'Conclusion' in page:\n        print(f'Conclusion on page {i+1}')\nfor i, page in enumerate(pages):\n    if 'References' in page and i > 5:\n        print(f'References on page {i+1}')\n        break\n\"\n",
+              "description": "Check which page Limitations/References start on"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T07:45:43.729204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 2032: Limitations\nLimitations starts on page 10\nReferences on page 12"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T07:45:43.729332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i, page in enumerate(pages):\n    if 'Conclusion' in page:\n        print(f'Page {i+1} has Conclusion')\n    if 'Limitations' in page and i < 12:\n        print(f'Page {i+1} has Limitations')\n# Check pages 7-10 for section boundaries\nfor i in range(6, min(11, len(pages))):\n    # Show first 200 chars of each page\n    print(f'--- Page {i+1} starts with: {pages[i][:150].strip()}')\n\"\n",
+              "description": "Find where Conclusion ends and body page count"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T07:45:43.729481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 10 has Conclusion\nPage 10 has Limitations\nPage 11 has Limitations\n--- Page 7 starts with: Schema\n\nCount\n\nLow-BCS\n\nHigh-BCS\n\n∆ (pp)\n\nRegression (BCS → Accuracy)\n\n95% CI\nSetting\n\n16-rel\n80-rel\n80-rel\n\n8\n8\n16\n\n88.9%\n82.3%\n82.8%\n\n79.8%\n51.0%\n51\n--- Page 8 starts with: 615\n616\n617\n618\n619\n620\n621\n622\n623\n624\n625\n626\n627\n628\n629\n630\n631\n632\n633\n634\n635\n636\n637\n638\n639\n640\n641\n642\n643\n644\n645\n646\n647\n648\n649\n650\n651\n65\n--- Page 9 starts with: 715\n716\n717\n718\n719\n720\n721\n722\n723\n724\n725\n726\n727\n728\n729\n730\n731\n732\n733\n734\n735\n736\n737\n738\n739\n740\n741\n742\n743\n744\n745\n746\n747\n748\n749\n750\n751\n75\n--- Page 10 starts with: 803\n804\n805\n806\n807\n808\n809\n810\n811\n812\n813\n814\n815\n816\n817\n\n818\n819\n820\n821\n822\n823\n824\n825\n826\n827\n\n828\n\n829\n830\n831\n832\n833\n834\n835\n836\n837\n838\n839\n--- Page 11 starts with: 80 relation types, as the validation split covers\nonly 16 relations. FewRel is a classification\ntask (given entity pair, predict relation) rather\nthan"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T07:45:43.729648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nprint(f'Total pages: {len(pages)}')\nfor i, page in enumerate(pages):\n    sections = []\n    for keyword in ['Abstract', 'Introduction', 'Related Work', 'Experimental Setup', 'Results', 'Schema Decomposition', 'Discussion', 'Conclusion', 'Limitations', 'References', 'Additional Figures', 'SDGD Full Protocol', 'Appendix']:\n        if keyword in page:\n            sections.append(keyword)\n    if sections:\n        print(f'Page {i+1}: {sections}')\n\"\n",
+              "description": "Map sections to pages"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T07:45:43.729775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total pages: 20\nPage 1: ['Abstract', 'Introduction']\nPage 2: ['Related Work']\nPage 3: ['Experimental Setup']\nPage 5: ['Results', 'Appendix']\nPage 6: ['Appendix']\nPage 7: ['Appendix']\nPage 8: ['Appendix']\nPage 9: ['Schema Decomposition', 'Discussion', 'Appendix']\nPage 10: ['Conclusion', 'Limitations', 'Appendix']\nPage 11: ['Limitations']\nPage 12: ['References']\nPage 15: ['Results', 'Additional Figures', 'SDGD Full Protocol']\nPage 18: ['Appendix']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T07:45:43.729966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\n# Check page 9 and 10 content to see where Conclusion ends\nfor i in [8, 9]:\n    content = pages[i]\n    # Find key section headers\n    lines = content.split('\\n')\n    for j, line in enumerate(lines):\n        stripped = line.strip()\n        if any(kw in stripped for kw in ['Schema Decomposition', 'Discussion', 'Conclusion', 'Limitations', 'Confusability-aware batch', 'merge amplification', 'next steps']):\n            print(f'Page {i+1}, line {j}: {stripped[:100]}')\n    print('---')\n\"\n",
+              "description": "Check content boundaries on pages 9-10"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T07:45:43.730116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 9, line 82: Table 5: Confusability-aware batch composition on\nPage 9, line 87: Schema Decomposition: Failure,\nPage 9, line 99: failure mechanism is merge amplification: presenting the same text k times with different type\nPage 9, line 124: Confusability-aware batch composition for RE.\nPage 9, line 143: Discussion\n---\nPage 10, line 61: Future directions. For NER, naive decomposethen-merge pipelines fail due to merge amplification (§5)\nPage 10, line 69: Limitations\nPage 10, line 98: Conclusion\nPage 10, line 109: further identified a centrality confound on samedomain schemas, demonstrated that merge amplificatio\n---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T07:45:43.730279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\n# Use pdftotext with -layout flag for better column handling\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\n# Check page 10 to understand the section ordering\nprint('=== PAGE 9 (last 30 lines) ===')\nlines9 = pages[8].split('\\n')\nfor line in lines9[-30:]:\n    if line.strip():\n        print(line[:120])\nprint()\nprint('=== PAGE 10 (first 40 lines) ===')\nlines10 = pages[9].split('\\n')\nfor line in lines10[:40]:\n    if line.strip():\n        print(line[:120])\n\"\n",
+              "description": "Check page 9-10 layout to verify body end"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T07:45:43.730438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== PAGE 9 (last 30 lines) ===\n745   failure mechanism is merge amplification: pre-               accuracy, outperforming random batching (0.788       \n746   senting the same text k times with different type            ± 0.018) by +1.4 percentage points and exceeding     \n747   subsets causes each pass to independently gener-             the 95% CI upper bound of the random baseline        \n748   ate entity predictions. Single-pass precision is             (0.797). This result demonstrates that confusability \n749   0.563; after union merge with 8 batches, preci-              findings translate directly into a practical batching\n750   sion drops to 0.210–0.249, while recall increases            recommendation for RE tasks.                         \n751   only modestly (0.368 → 0.314–0.446). The net\n752   effect is a precision collapse that overwhelms any           6   Discussion                                       \n753   recall gains. Confidence gating—retaining only the\n754   highest-confidence prediction per span—improves              Boundary conditions and schema design. The           \n755   precision but at the cost of disproportionate re-            two-channel decomposition applies most cleanly to    \n756   call loss, yielding lower F1 in both modes (Ap-              cross-domain schemas; for same-domain schemas,       \n757   pendix B). The fundamental issue is that LLM                 pairwise SCS should be used directly or with cen-    \n758   predictions are not calibrated across passes (Geng           trality factored out (§4.5). High-BCS accuracy       \n759   et al., 2024), and no merge strategy we tested can           converges to ≈51% on both tested models; one         \n760   compensate.                                                  possible explanation is a task-inherent difficulty   \n                                                                   ceiling that scaling alone cannot overcome, though   \n761   Why NER fails but RE does not. Merge amp\n…[truncated 3900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T07:45:43.730613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\n# Show full page 10 and start of page 11\nlines10 = pages[9].split('\\n')\nfor i, line in enumerate(lines10[35:], start=35):\n    if line.strip():\n        print(f'{i}: {line[:130]}')\nprint()\nprint('=== PAGE 11 first 20 lines ===')\nlines11 = pages[10].split('\\n')\nfor i, line in enumerate(lines11[:20]):\n    if line.strip():\n        print(f'{i}: {line[:130]}')\n\"\n",
+              "description": "Check rest of page 10 and page 11"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T07:45:43.730776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35: 823   decoding; and (3) hierarchical coarse-to-fine ex-              able across pools (permutation p = 0.598), in-       870\n37: 824   traction. For RE, confusability-aware batch com-               dicating consistent per-unit sensitivity. The 80-    871\n39: 825   position shows initial promise (+1.4 pp); extending            relation extreme-batch gap (31.2 pp) reflects the    872\n41: 826   this to broader RE benchmarks and document-level               wider BCS range in that pool, not a stronger         873\n43: 827   tasks is a natural next step.                                  underlying effect; the independent 16-relation       874\n44:                                                                      pool yields a bootstrapped quartile ∆ of −5.3 pp     875\n45:                                                                      (95% CI: [−7.4, −3.2]). A within-pool compar-        876\n47: 828   7   Conclusion                                                 ison (Table 4) confirms this interpretation: slope   877\n48:                                                                      −0.401, CI excludes zero.                            878\n50: 829   We isolated schema-induced degradation into                 4. Non-significant factorial test. A within-dataset     879\n52: 830   count-driven recall decline and confusability-                 factorial analysis (count × BCS) on Few-NERD         880\n54: 831   driven type confusion, showed these channels are               did not reach significance (Appendix C). The         881\n56: 832   separable in RE, with Channel 2 additionally im-               cross-pool slope consistency suggests that con-      882\n58: 833   pairing entity detection in NER, and confirmed                 fusability sensitivity is stable rather than am-     883\n60: 834   that both channels replicate across model fami-                plifying with schema size; larger pools simply       884\n62: 835   lies on RE (Meta-Llama-3.1-8B-Instruct: \n…[truncated 4057 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T07:45:43.731008+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation successful — no undefined citations, no broken references. The overfull hbox warnings are from appendix tables (pre-existing).\n\n**Page count issue**: the body (through Conclusion) ends on page 10. That's ~2 pages over the 8-page limit. The main space consumers are:\n\n| Section | Pages |\n|---------|-------|\n| Abstract + Intro | ~2 |\n| Related Work | ~1 |\n| Experimental Setup | ~1.5 |\n| Results (§4) | ~3.5 |\n| §5 Decomposition | ~1 column |\n| §6 Discussion + §7 Conclusion | ~1 column |\n\nThe biggest candidates for compression:\n1. **Abstract** — currently ~250 words, very dense. Could cut to ~200 by removing some detail (e.g., specific numbers for NER/RE/MAVEN that are repeated in the intro).\n2. **Results (§4)** — 3.5 pages is the largest section. Moving some sub-analyses or tables to the appendix could recover 1+ pages.\n3. **Discussion** — currently ~1 column; could be tightened.\n\nThis was likely already over 8 pages before my edits (I added ~0.5 columns net). Do you want me to compress specific sections to fit within the limit?"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_section5_expansion_20260516T073924"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ]
+}

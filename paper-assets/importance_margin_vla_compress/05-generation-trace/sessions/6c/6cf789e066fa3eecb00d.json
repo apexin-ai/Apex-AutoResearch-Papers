@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "6cf789e066fa3eecb00d",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "figure fig method gap",
+  "task_key": "worker_figure_fig_method_gap_20260526T074646",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig_method_gap_20260526T074646.log",
+    "occurrence": 1,
+    "bytes": 1569322,
+    "sha256": "be516201c4662d922fab9788062f6486ee2c5a34306e3177a70603cfcf4cee5d"
+  },
+  "statistics": {
+    "messages": 135,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 50,
+      "tool_result": 50,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "6cf789e066fa3eecb00d-part-0001.json",
+          "message_count": 11
+        },
+        {
+          "path": "6cf789e066fa3eecb00d-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "6cf789e066fa3eecb00d-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ]
+}

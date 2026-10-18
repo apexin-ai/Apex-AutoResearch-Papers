@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9521686c31bb5aec2688",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper phi3 flat update",
+  "task_key": "worker_paper_phi3_flat_update_20260516T023633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phi3_flat_update_20260516T023633_result.json",
+    "occurrence": 1,
+    "bytes": 2005,
+    "sha256": "fb29a186189eff6dbc28261a1d41d8bd188aeb7bb7e85575d6e4def504f06efd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All remaining \"eight\" references are either:\n- `related_work.tex`: about weight quantization, unrelated\n- `experiments.tex`: \"seven models\" for main eval set (correct, Phi-3 is profiling-only)\n- `appendix.tex`: heatmap figure showing 5 specific architectures (visual content, no change)\n- `introduction.tex` line 42: already updated to \"eight of nine\"\n\nAll edits are consistent. Here's the summary:\n\n### Files modified\n\n**abstract.tex** (lines 1, 4, 6):\n- \"eight models\" → \"nine models\", \"six architecture families\" → \"seven architecture families\"\n- \"seven of eight\" → \"eight of nine\"\n- \"remaining seven\" → \"remaining eight\"\n- \"all eight models\" → \"all nine models\", \"(8/8)\" → \"(9/9)\"\n\n**introduction.tex** (lines 31, 32, 35, 42, 44):\n- \"remaining seven models\" → \"remaining eight models\"\n- Added \"Phi-3-medium\" to flat model list\n- \"eight evaluated models (8/8)\" → \"nine evaluated models (9/9)\"\n- \"seven of eight\" → \"eight of nine\"\n- \"across eight models\" → \"across nine models\", \"(8/8)\" → \"(9/9)\"\n\n**analysis.tex** (lines 11, 39 caption, 52 new row, 28-29 new paragraph, 68 flat list, 73):\n- \"eight models\" → \"nine models\" in section text\n- Table caption: \"112--384\" → \"112--400\"\n- New table row: `Phi-3-medium-14B & 4:1 & 0.17 & 0.24 & --- & --- & Flat`\n- New paragraph after Pythia: Phi-3-medium description with concentration/t1_t5 data\n- Added \"Phi-3-medium (0.17)\" to Flat bullet in decision rule\n- \"eight evaluated models (8/8)\" → \"nine evaluated models (9/9)\"\n\n**conclusion.tex** (lines 5, 6, 12):\n- Added \"Phi-3-medium\" to flat model list\n- \"eight evaluated models (8/8)\" → \"nine evaluated models (9/9)\"\n- \"calibrated on eight models\" → \"nine models\"\n\n### Data sources\nAll numbers from registry entry `phi3_medium_hires_profiling_v2` (conclusion=success): concentration=0.17, t1/t5=0.24, GQA 4:1, 400 KV heads (40 layers × 10 heads)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

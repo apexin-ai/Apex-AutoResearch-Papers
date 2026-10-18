@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "10feebad610bb04a546e",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "analysis cliff curve data aggregation",
+  "task_key": "worker_analysis_cliff_curve_data_aggregation_20260527T102205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_cliff_curve_data_aggregation_20260527T102205.log",
+    "occurrence": 1,
+    "bytes": 1013409,
+    "sha256": "e2f87758d8005e2b6bbb7612e8c0aff2a9a653864a7aa174fc3aaf6cad071c56"
+  },
+  "statistics": {
+    "messages": 100,
+    "user_turns": 1,
+    "tool_calls": 30,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 30,
+      "tool_result": 30,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "10feebad610bb04a546e-part-0001.json",
+          "message_count": 8
+        },
+        {
+          "path": "10feebad610bb04a546e-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "10feebad610bb04a546e-part-0003.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 87,
+      "chunks": [
+        {
+          "path": "10feebad610bb04a546e-part-0003.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ]
+}

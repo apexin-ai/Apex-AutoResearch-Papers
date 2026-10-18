@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c44e21dd490fab1110ba",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh sdgd 3bug fix",
+  "task_key": "worker_ssh_sdgd-3bug-fix_20260515T070619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sdgd-3bug-fix_20260515T070619_result.json",
+    "occurrence": 1,
+    "bytes": 1681,
+    "sha256": "7573d8ab0e7b8869f7909e8f1a73c8ef06385e547fd641afac0d3502d6a31245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n## 修改总结\n\n### Bug 1: `similarity.py` key 不兼容\n**状态**: 已经修复（代码已支持 `sim_matrix` 和 `similarity_matrix` 两种 key）。验证确认 FewNERD (66x66, `sim_matrix` key) 和 MAVEN (168x168, `similarity_matrix` key) 都能正确加载。\n\n### Bug 2: prompt dispatch 硬编码 NER\n**文件**: `decompose.py` (2 处), `run_sdgd_experiment.py` (6 处)\n\n修改点：\n- `decompose.py` `sdgd_extract()`: import+dispatch 替换为 task-aware 分发（ner/event/re），prompt 构建循环增加 RE 特殊签名处理\n- `run_sdgd_experiment.py` 三个 baseline 函数 (`run_single_pass`, `run_per_type`, `run_random_batch`): 同样的 task-aware import+dispatch，以及 prompt 构建增加 RE 分支\n\n### Bug 3: 数据加载硬编码 Few-NERD\n**文件**: `run_sdgd_experiment.py` (6 处)\n\n修改点：\n- `--dataset` choices: `[\"fewnerd\", \"maven\"]` → `[\"fewnerd\", \"maven\", \"fewrel\"]`\n- `--task` choices: `[\"ner\", \"event_detection\"]` → `[\"ner\", \"event\", \"re\"]`\n- 数据加载 (2 处): 根据 dataset 分发到 `load_few_nerd` / `load_maven` / `load_fewrel`\n- Gold 提取 (2 处): fewrel 使用 `{\"relation\": s[\"relation_type\"]}` 格式，NER/Event 使用 `s[\"entities\"]`\n\n### 已知 Limitations\n- **RE 评估未实现**: fewrel 的 gold 格式和 NER span F1 不兼容，当前返回占位符 metrics。RE 需要 accuracy/micro-F1 等分类指标，留 TODO。\n- **RE prompt 签名特殊**: `build_prompt_v2_re(sentence, head, tail, relation_defs, relation_types)` 与 NER/Event 不同，已在所有 prompt 构建处添加 `if task == \"re\"` 分支处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

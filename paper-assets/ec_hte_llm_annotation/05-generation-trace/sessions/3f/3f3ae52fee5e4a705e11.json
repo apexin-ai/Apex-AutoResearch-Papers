@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3f3ae52fee5e4a705e11",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 003 phase a",
+  "task_key": "worker_code_exp-003-phase-a_20260520T220635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-phase-a_20260520T220635_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "75e1321677ce3dc4bc150ff3eed6e091363964866a0d12691461b47e4b23c0b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Completed in 31s. All 4 output files generated:\n\n- `results/exp003_phase_a_raw.csv` — 24,000 rows (100 MC × 3 regimes × 4 n_expert × 5 levels × 4 methods)\n- `results/exp003_phase_a.csv` — 240 aggregated rows (bias/RMSE/coverage)\n- `results/exp003_dgp_spec.md` — DGP documentation\n- `results/exp003_run.log` — run log\n\nKey findings from the results:\n\n1. **Naive** has clear bias on Z=1 across all regimes (~-0.05 at marginal), confirming misclassification attenuates CATE estimates.\n2. **Global-corrected** reduces naive bias but introduces its own bias at subgroup level (especially S0/S1 where misclass differs from the global average).\n3. **Stratified MLE** converges to near-oracle bias as n_expert increases (250+), but has high variance at small expert budgets (n_expert=50) — particularly in the small subgroups S2/S3 (hashtag subgroups, ~23% of data). This is the expected motivation for HB partial pooling in Phase B.\n4. The **homogeneous** regime confirms that when misclass rates are equal, global correction works well and stratified has no bias advantage — only a variance penalty from smaller per-subgroup samples."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

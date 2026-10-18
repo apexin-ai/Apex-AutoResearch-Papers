@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8ce0d4bdc07427bc516a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis taxonomy status urgent",
+  "task_key": "worker_analysis_taxonomy-status-urgent_20260522T045116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_taxonomy-status-urgent_20260522T045116_result.json",
+    "occurrence": 1,
+    "bytes": 2663,
+    "sha256": "6b5cf87725b3afe251bb00113317bfae5112952931b4c32c93b854bfc29ef855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。以下是完整结果。\n\n---\n\n## 1. Individual ASR 表格\n\n### MMLU\n\n| Model | Verbosity Bias | Position Bias | Authority Bias |\n|-------|---------------|--------------|----------------|\n| qwen2.5-72b | 0.0929 | 0.0044 | 0.0531 |\n| llama3.1-70b | 0.1230 | 0.0738 | 0.0410 |\n| mistral-large | 0.0085 | 0.0513 | 0.0684 |\n| qwen2.5-32b | 0.0396 | 0.0264 | 0.0925 |\n| qwen2.5-14b | 0.1059 | 0.0353 | 0.0706 |\n| llama3.1-8b | 0.0862 | **0.1782** | 0.1034 |\n\n### ARC Challenge\n\n| Model | Verbosity Bias | Position Bias | Authority Bias |\n|-------|---------------|--------------|----------------|\n| qwen2.5-72b | 0.0659 | 0.0078 | 0.0155 |\n| llama3.1-70b | 0.0783 | 0.0107 | 0.0249 |\n| mistral-large | 0.0000 | 0.0173 | 0.0208 |\n| qwen2.5-32b | 0.0560 | 0.0112 | 0.0373 |\n| qwen2.5-14b | **0.1632** | 0.0263 | 0.0263 |\n| llama3.1-8b | 0.0863 | 0.0406 | 0.0254 |\n\n---\n\n## 2. 回归结果表格\n\n| 条件 | B(K_eff) | p(K_eff) | B(η_max) | p(η_max) | R² | η_max CV |\n|------|----------|----------|----------|----------|----|----------|\n| MMLU × verbosity | **-0.438** | 0.612 ns | **+1.931** | **0.006** | 0.407 | 0.113 |\n| MMLU × position | +3.357 | **0.035** * | -0.016 | 0.945 ns | 0.543 | 0.483 |\n| MMLU × authority | +0.616 | 0.486 ns | +0.368 | 0.468 ns | 0.143 | 0.135 |\n| ARC × verbosity | -1.606 | 0.211 ns | **+1.117** | **0.011** | 0.333 | 0.334 |\n| ARC × position | +9.646 | 0.084 ns | -2.690 | 0.110 ns | 0.166 | 0.320 |\n| ARC × authority | +0.124 | 0.835 ns | **+1.254** | **0.003** | 0.433 | 0.181 |\n\n---\n\n## 3. 诊断判断\n\n**K_eff 是否在两个数据集上一致显著为负？** — **否。** 0/6 条件 K_eff 显著为负。唯一显著的 K_eff（MMLU × position, p=0.035）方向为**正**（+3.36），与假设完全相反——更多有效评委反而关联更高 ASR。\n\n**K_eff 仅在 η_max CV 低的条件下显著吗？** — 唯一显著的 K_eff（MMLU × position）η_max CV=0.483，是所有条件中最高的。这不是 artifact——但问题是方向错误。position bias 的 ASR 跨模型差异极大（0.004–0.178），高 CV 下 η_max 被\"稀释\"，K_eff 吸收了残差方差并呈现伪正相关。\n\n**核心结论：taxonomy 假设被否定。**\n- 即使对 broad-spectrum attacks，K_eff 也不提供额外保护\n- η_max 是 3/6 条件中唯一显著预测因子（verbosity×两数据集 + authority×ARC）\n- Panel 的安全性由**最脆弱的单个评委**决定（η_max），而非评委数量/多样性（K_eff）\n- broad-spectrum vs targeted 的 taxonomy 分类不改变 K_eff 的无效性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

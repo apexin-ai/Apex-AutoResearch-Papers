@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4df1ed124116e726e7e7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code binoculars ordinal baseline",
+  "task_key": "worker_code_binoculars_ordinal_baseline_20260519T090926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_binoculars_ordinal_baseline_20260519T090926_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "c9e082da7b7a8c51de906e0cf06127971156d58cbccbb89a718eb3ff7972e90c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本和 README 已写入：\n\n- **脚本**: `artifacts/binoculars_baseline/binoculars_ordinal_eval.py`\n- **README**: `artifacts/binoculars_baseline/README.md`\n\n关键实现细节：\n\n**Binoculars score 计算**（忠实复现 Hans et al. 原始代码）：\n- `score = PPL(performer→actual tokens) / H(observer_dist, performer_logits)`\n- PPL: shifted per-token CE（位置 t 的 performer logits 预测 token t+1）\n- H: 无 shift 的 cross-entropy（observer softmax 分布 vs performer logits，逐位置计算）\n- 与官方 `ahans30/Binoculars` 仓库的 `metrics.py` 逻辑一致\n\n**五种评估方法**：\n1. `equal_width` — 等宽分箱（自动尝试两个方向）\n2. `coral` — CORAL ordinal regression（shared linear + per-boundary biases，匹配 mink baseline）\n3. `threshold` — ROC 最优阈值（两个方向取最优）\n4. `RF_single` — 200 trees RF，单特征（Binoculars score）\n5. `RF_multi` — 200 trees RF，11 个 token-level 统计特征\n\n**与现有 baseline 一致**：\n- 5-fold StratifiedKFold（seed=42）\n- 输出格式匹配 detectgpt/mink baseline（per-cell + 9-cell average）\n- Cell 目录映射匹配 `mink_prob_baseline.py` 的 CELL_DIRS"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db7c4d270a466e14c121",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code api test and scoring",
+  "task_key": "worker_code_api_test_and_scoring_20260521T050355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_api_test_and_scoring_20260521T050355_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "3c920ed9517a3a23e70ec99b0859e5f0936b88122553df14972a795b24d98ec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## API 测试结果\n\n| Model | Status |\n|-------|--------|\n| GPT-4o | **200 OK** ✓ |\n| Claude | 不可用（代理仅支持 OpenAI 模型） |\n| Gemini | 不可用（同上） |\n\n## Scoring 产出（全部完成）\n\n### GPT-4o Verbosity Pairwise（100 条）\n- `data/pairwise_results_gpt4o_verbosity.jsonl` ✓\n- **Consistency**: 73.7%（73/99）\n- **Verbose win rate**: 86.3%（63/73），**p < 0.000001**\n- CI [76.6%, 92.4%]\n- 双向分析：verbose→concise 80.8%（p=0.002），concise→verbose 89.4%（p<0.000001）\n- NLI≥0.90 子集：86.7%（p<0.000001）\n\n### GPT-4o Register Pairwise（100 条）\n- `data/pairwise_results_gpt4o_register.jsonl` ✓\n- **Consistency**: 49.5%（49/99）— 很低\n- **Academic win rate**: 63.3%（31/49），**p = 0.085**（不显著）\n- CI [49.3%, 75.3%]\n- 方向分析：academic→conversational 78.3%（p=0.011），conversational→academic 50.0%（p=1.0）— 典型 originality bias\n- NLI≥0.90：64.4%（p=0.072）\n\n### GPT-4o Likert Scoring（各 100 条）\n- `data/scored_gpt4o_verbosity.jsonl` ✓（100 条）\n- `data/scored_gpt4o_register.jsonl` ✓（100 条）\n\n**注**：脚本中移除了 `extra_body={\"chat_template_kwargs\": {\"enable_thinking\": False}}`，该参数仅适用于 Qwen3 本地 vLLM，OpenAI API 不支持。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

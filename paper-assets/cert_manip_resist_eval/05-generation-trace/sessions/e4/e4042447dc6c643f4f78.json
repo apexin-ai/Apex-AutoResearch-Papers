@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "e4042447dc6c643f4f78",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis epsilon sensitivity mde",
+  "task_key": "worker_analysis_epsilon-sensitivity-mde_20260523T122958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_epsilon-sensitivity-mde_20260523T122958.log",
+    "occurrence": 1,
+    "bytes": 707574,
+    "sha256": "e8daa774469842b5f1a2432cbcc0930bb81b199072fc2d4490c7f447a5990034"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "e4042447dc6c643f4f78-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4042447dc6c643f4f78-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ]
+}

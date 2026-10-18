@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfbbcdd9da6718609d6",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "hotfix position bias invert bug",
+  "task_key": "worker_hotfix_position-bias-invert-bug_20260525T203938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_hotfix_position-bias-invert-bug_20260525T203938.log",
+    "occurrence": 1,
+    "bytes": 875150,
+    "sha256": "7a23a7e6773306bb5d8e10703ec84117dbd4e9fc0a141045f20298fa9037a44c"
+  },
+  "statistics": {
+    "messages": 405,
+    "user_turns": 0,
+    "tool_calls": 170,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 170,
+      "tool_result": 170,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 405,
+      "chunks": [
+        {
+          "path": "7bfbbcdd9da6718609d6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfbbcdd9da6718609d6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfbbcdd9da6718609d6-part-0003.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ]
+}

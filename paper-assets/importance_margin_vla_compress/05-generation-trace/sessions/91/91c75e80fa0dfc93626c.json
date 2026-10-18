@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "91c75e80fa0dfc93626c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "analysis final data consolidation",
+  "task_key": "worker_analysis_final-data-consolidation_20260528T113816",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_final-data-consolidation_20260528T113816.log",
+    "occurrence": 1,
+    "bytes": 1130170,
+    "sha256": "f58da6415b088903c319f0fc47adf8cd86429db3a17d1d51f196e20614bff875"
+  },
+  "statistics": {
+    "messages": 246,
+    "user_turns": 2,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 61,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "91c75e80fa0dfc93626c-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "91c75e80fa0dfc93626c-part-0001.json",
+          "message_count": 67
+        },
+        {
+          "path": "91c75e80fa0dfc93626c-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "91c75e80fa0dfc93626c-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ]
+}

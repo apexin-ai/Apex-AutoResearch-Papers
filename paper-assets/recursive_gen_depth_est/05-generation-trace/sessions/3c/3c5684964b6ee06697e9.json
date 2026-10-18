@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c5684964b6ee06697e9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh gpt2xl topk50 eval",
+  "task_key": "worker_ssh_gpt2xl_topk50_eval_20260515T022607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpt2xl_topk50_eval_20260515T022607_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "3fe3460517dbcd4d1975093a4db50361572202a4d8dc5043caf34447cdc9140c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## gpt2xl_topk50_001 结果（3×3 矩阵第 9 格）\n\n**核心指标：**\n- 4-class RF **74.45%** [73.0-75.8%], LR 71.3%\n- d1v2 AUC: RF **0.813**, LR 0.781\n- 3-class RF 69.47%, filtered RF 68.36%\n- Code contamination 极低（narrow ≤1.6%）\n- AUC 单调性 ✓: d0v1(0.991) > d1v2(0.813) > d2v3(0.753)\n\n**GPT-2 XL 跨策略对比：**\n| Config | RF 4-class | d1v2 AUC |\n|--------|-----------|----------|\n| temp09 | 85.4% | 0.937 |\n| nucleus | 83.3% | 0.913 |\n| **topk50** | **74.45%** | **0.813** |\n\nTop-k 使深度信号下降 **-8.85pp**（vs nucleus），与 Pythia 的 -8.6pp 一致。OLMo 仅降 -3.1pp，对 top-k 截断更鲁棒。\n\n**跨模型 topk50 对比：**\n| Model | RF 4-class | d1v2 AUC |\n|-------|-----------|----------|\n| GPT-2 XL | 74.45% | 0.813 |\n| OLMo-1B | 74.2% | 0.831 |\n| Pythia-1.4B | 69.6% | 0.752 |\n\n**关键结论：** 深度信号在所有 9 格（3 模型 × 3 解码策略）均显著存在（74.45% >> 25% chance），PASS。Top-k 是最弱的解码策略，但信号仍然稳健。Feature importance top-5 跨配置完全一致（p90_ppl, p75_ppl, mean_surprisal, var_surprisal）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "d8e6c9ee082c62f97910",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh zeroshot baseline dryrun",
+  "task_key": "worker_ssh_zeroshot_baseline_dryrun_20260515T015646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_zeroshot_baseline_dryrun_20260515T015646.log",
+    "occurrence": 1,
+    "bytes": 1119671,
+    "sha256": "7a422eaefa4624168b40ebc7206857d226a7002b475cafb998bf4aa5a06ce321"
+  },
+  "statistics": {
+    "messages": 766,
+    "user_turns": 1,
+    "tool_calls": 300,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 158,
+      "tool_call": 300,
+      "tool_result": 300,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 746,
+      "chunks": [
+        {
+          "path": "d8e6c9ee082c62f97910-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8e6c9ee082c62f97910-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8e6c9ee082c62f97910-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8e6c9ee082c62f97910-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8e6c9ee082c62f97910-part-0005.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "d8e6c9ee082c62f97910-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ]
+}

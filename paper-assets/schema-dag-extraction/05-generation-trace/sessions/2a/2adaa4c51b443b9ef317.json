@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2adaa4c51b443b9ef317",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d047 round3 global cleanup",
+  "task_key": "worker_paper_d047_round3_global_cleanup_20260516T131134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d047_round3_global_cleanup_20260516T131134_result.json",
+    "occurrence": 1,
+    "bytes": 1574,
+    "sha256": "b74471a326df8ad37a05c80b851fc48da1b9b9c169e9dfe19985e49a9bac1d07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改完成，编译报告：\n\n### 1. Errors\n**0** — 无 LaTeX 错误\n\n### 2. Undefined references\n**0** — 无未定义引用\n\n### 3. 正文页数（§1 → Limitations ��束）\n**9 页**（pages 1–9；checklist 从 page 10 开始）\n\n### 4. Overfull hbox > 10pt in body\n**1 处** — 10.85pt（page 7, sdgd_negative.tex 中 confidence-gating 段落，长数值链 `0.446→0.276` 导致）\n\n### 5. 总页数\n**19 页**\n\n---\n\n### 已完成的修改汇总：\n\n| 任务 | 修改 |\n|------|------|\n| **C2.1** | abstract.tex + introduction.tex: 添加 \"empirically separable\" |\n| **C2.3** | results.tex L89: `count $\\to$ recall` → `count predicts recall`; `confusability $\\to$ type confusion` → `confusability predicts type confusion` |\n| **C2.4** | introduction.tex: `drives` → `predicts`; results.tex: `drives` → `predicts`; main.tex L249: `drives` → `predicts` |\n| **C2.5** | Limitations item 6: 追加 \"The controlled stratification provides evidence consistent with a directional relationship but does not establish interventional causality.\" |\n| **C5** | introduction.tex finding(1): typical-batch gap (≈2.2pp) 移至主锚点，31.2pp 作为 extreme-batch 上界 |\n| **D1** | checklist.tex: `cross-model replication` → `cross-model consistency check`; results.tex: 添加 Channel 1/2 replication summary 句 |\n| **D7** | 全文 p-value 统一：所有 `×10^{-N}` → `< 0.001`；`p < 0.0001` → `p < 0.001`；非显著 `p=0.598/0.762` 等 → 2 位近似值；表格裸数字加 math mode |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

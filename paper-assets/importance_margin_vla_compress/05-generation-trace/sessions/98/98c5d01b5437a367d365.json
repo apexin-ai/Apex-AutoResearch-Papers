@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "98c5d01b5437a367d365",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 gpu3 attn k085 long",
+  "task_key": "worker_deploy_cqa1_gpu3_attn_k085_long_20260526T102717",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_gpu3_attn_k085_long_20260526T102717_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "e7e9b0153cf31cbf9a3dd8df84e5a1e58677fb0dfb1aa0ae4f04e14d99b45acc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **实验**: `eval_pi05_attention_k085_long_seed42`\n- **服务器**: cqa1-33015 GPU3\n- **tmux session**: `attn_k085_long_s42`\n- **日志**: `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attention_k085_long_seed42.log`\n- **Registry**: RUNNING，spec 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

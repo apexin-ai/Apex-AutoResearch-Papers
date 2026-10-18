@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c769a0eacb5c52854d3",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp sync and restart cf",
+  "task_key": "worker_mvp_sync_and_restart_cf_20260520T132118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_sync_and_restart_cf_20260520T132118_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "8642d414865b74831b8f2978ef377bbac159197a380c4c98efa57b0e6e289aa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**修复验证** — 4/4 通过:\n1. `extra_body={\"enable_thinking\": False}` → L94 ✓\n2. `re.sub(r\"<think>.*?</think>\")` → L97 ✓\n3. SYSTEM_PROMPT \"Do NOT change formatting\" → L24-25 ✓\n4. DETECT_PROMPT 多维分析 (vocabulary/sentence structure) → L23, L31 ✓\n\n**vLLM** — 重启成功，模型已加载\n\n**counterfactual_gen** — PID 30797，已运行中，当前已产出 58 条\n\n**输出验证** — 前 2 条均 CLEAN:\n- `mvp_0000`: formality=formal, think_tags=CLEAN, cf_len=847, dr_len=990\n- `mvp_0001`: formality=casual, think_tags=CLEAN, cf_len=1664, dr_len=1617\n\n无 `<think>` 标签污染，文本长度合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "af9fa5156286b9814c68",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops compile check",
+  "task_key": "worker_ops_compile_check_20260516T102253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_compile_check_20260516T102253_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "fe41e6113795a39ee5265bb41238d1297afe8aae93e83dfa496c3055a205a863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 figure 正确渲染。汇报编译结果：\n\n---\n\n## 编译结果\n\n| 项目 | 状态 |\n|------|------|\n| **编译** | 成功，0 errors |\n| **总页数** | 19 页 (465KB) |\n| **Undefined references** | 0 |\n| **Missing figures** | 0 |\n| **Figures** | 4/4 正确渲染 (atlas_heatmap, feature_trajectory, auc_decay, confusion_matrix) |\n\n### 页面分布\n\n| 内容 | 页码 | 页数 |\n|------|------|------|\n| 正文 (Intro → Discussion & Conclusion) | 1–11 | **11 页** |\n| Limitations + Ethics | 12 | 1 页 (不计入限制) |\n| References | 13–14 | 2 页 (不计入限制) |\n| Appendix | 15–19 | 5 页 (不计入限制) |\n\n### Warnings (5 个，均为良性)\n- hyperref Token warning × 2 (PDF 书签中的 Unicode)\n- `h` float specifier → `ht` × 3 (LaTeX 自动调整浮动位置)\n\n### Overfull hbox (8 个，已修复最严重的 2 个)\n- ~~108pt (atlas.tex feature importance table)~~ → 已用 `\\resizebox` 修复\n- ~~99pt (appendix curation PoC table)~~ → 已用 `\\resizebox` 修复\n- 剩余最大 36.99pt (atlas.tex EDD 方程区域)，其余均 <28pt\n\n### 修复项\n1. 添加了缺失的 `qwen2.5` 和 `llama3` bib 条目（bibtex 原有 2 个 warning，现在 0）\n2. 用 `\\resizebox{\\columnwidth}{!}{}` 修复了 2 个超宽表格\n\n### ⚠️ 页数超限\n**正文 11 页，超出 EMNLP 8 页限制 3 页。** Generalization 部分最长（pages 7–10，约 4 页），Discussion 约 2 页。需要大幅压缩才能满足投稿要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

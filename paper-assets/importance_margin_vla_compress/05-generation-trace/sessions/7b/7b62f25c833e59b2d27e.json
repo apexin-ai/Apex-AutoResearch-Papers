@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7b62f25c833e59b2d27e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval openvla random k085 object seed42 v2",
+  "task_key": "worker_deploy_eval_openvla_random_k085_object_seed42_v2_20260526T143131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_openvla_random_k085_object_seed42_v2_20260526T143131_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "0174c7da8cee649ee74bba0043923127d7c7c540212a9699ba1312b5255db5cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nDEPLOYED: yes\nSERVER: westd-41074\nGPU: cuda:0\nPID: 682346\nEXP_ID: eval_openvla_random_k085_object_seed42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

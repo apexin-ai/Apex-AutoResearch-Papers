@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d9d6a7c5eb2bc99d724",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval baseline v5",
+  "task_key": "worker_eval_baseline-v5_20260515T174330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_baseline-v5_20260515T174330_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "bf1bf87da4646a05df4872b65d022f47ae0a4d55466aa99cfc34716dc3ec2f03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Baseline v5 评估结果\n\n**Checkpoint**: `step_029999` (latest), 100 batches, seed=42\n\n| 条件 | Action Loss |\n|------|------------|\n| **Clean (eps=0.0, no prune)** | **0.00422** |\n| Clean + prune 50% | 0.00309 |\n| eps=0.01, no prune | 0.00605 |\n| eps=0.01 + prune 50% | 0.00343 |\n| eps=0.02, no prune | 0.00399 |\n| eps=0.02 + prune 50% | 0.00445 |\n| eps=0.05, no prune | 0.00495 |\n| eps=0.05 + prune 50% | 0.00497 |\n\n**Meta**: `imm_enabled=false`, `lipschitz_empirical=0.0`, `lipschitz_spectral=0.0`\n\n要点：\n- Clean loss 0.00422，与训练末期 loss 0.00187 有差距（evaluation 用 baseline_forward 避免 action_is_pad bug，计算方式不同）\n- Prune 50% 在 clean 条件下反而降低 loss (0.00309 < 0.00422)，说明 baseline 有冗余\n- Perturbation 下 loss 增加但幅度不大，eps=0.05 时 loss 约为 clean 的 1.2x\n- Registry 已更新（status 保持 ANALYZING）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

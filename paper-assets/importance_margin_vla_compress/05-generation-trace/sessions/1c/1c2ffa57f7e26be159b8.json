@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c2ffa57f7e26be159b8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research openvla attention feasibility",
+  "task_key": "worker_research_openvla-attention-feasibility_20260524T014932",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_openvla-attention-feasibility_20260524T014932_result.json",
+    "occurrence": 1,
+    "bytes": 1870,
+    "sha256": "28dd7400d9cde3d05f23c612ebf95e29967a8dbfedf2741c2d55dde0d6724a77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。\n\n## OpenVLA Attention Pruning 可行性\n\n- **当前支持的 mode 列表**: `baseline`, `random_prune`, `l2norm_prune`, `attention_prune` （在 `eval_openvla_l2norm_libero.py` 中）\n\n- **Attention mode 是否已实现**: **YES** — 完整实现，可直接运行\n\n- **实现方式**: `AttentionPruningHook` 类，挂载在 `vla.projector` 的 forward hook 上。具体做法：\n  - 取 vision token embeddings（projector 输出），送入 LLM backbone（Llama-2-7b）的**前 2 层** encoder layer\n  - 对每层做 self-attention（含 RoPE），收集 attention weights\n  - 对 2 层 attention 取平均 → 对 heads 取平均 → column-sum 得到每个 vision token 的 importance score\n  - TopK 保留，保持 spatial order\n\n- **可直接用的命令模板**:\n  ```bash\n  CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python eval_openvla_l2norm_libero.py \\\n      --mode attention_prune \\\n      --k_ratio 0.5 \\\n      --suite libero_object \\\n      --num_episodes 50 \\\n      --seed 42\n  ```\n\n- **OpenVLA vision encoder 架构**: `dinosiglip-vit-so-224px`（fused backbone），由两个 ViT 组成：\n  - `vit_large_patch14_reg4_dinov2.lvd142m` (DINOv2 ViT-L/14, 224px → 16×16=256 patches + 4 reg = 260 tokens)\n  - `vit_so400m_patch14_siglip_224` (SigLIP ViT-SO400M/14, 224px → 16×16=256 tokens)\n  - Fused 后经 projector 输出，vision token 数量可通过 `count_vision_tokens()` 确认（代码中已有该函数，会在运行时打印）\n\n- **与 X-VLA attention pruning 的区别**: X-VLA 版本（`eval_xvla_attention_pruning_libero.py`）用的是 BART encoder 的 self-attention（支持 `attention_last`/`attention_mean`/`attention_rollout` 三种模式）。OpenVLA 版本因为没有独立 encoder，用 LLM 前 2 层做 probe，只有一种模式（2-layer mean attention）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

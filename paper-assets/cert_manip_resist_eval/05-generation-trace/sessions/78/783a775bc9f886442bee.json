@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "783a775bc9f886442bee",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "research theory t3 peg",
+  "task_key": "worker_research_theory-t3-peg_20260521T194226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_theory-t3-peg_20260521T194226_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "9d9234aa9cd14d97ff668eb022974d3b57bcc735c62e4d3faca4fc7db46d7ebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "T3 理论推导已完成，写入 `artifacts/theory/t3_peg_degradation.md`。\n\n核心结果：\n\n**Theorem 1 (激励锐度退化)**：\n$$\\varepsilon_{\\text{inc}}(\\rho) = 1 - \\sqrt{1 - \\rho^2}$$\n\n**Theorem 2 (操作性退化)**：\n$$\\varepsilon_{\\text{op}}(\\rho, K) = 1 - \\left(\\frac{K_{\\text{eff}}}{K}\\right)^{\\beta}$$\n\n两者通过 $K_{\\text{eff}} = 1 + (K-1)(1-\\varepsilon_{\\text{inc}})^2$ 连接。\n\n关键发现：\n- 退化以 $\\rho^2/2$ 二次起步，小相关性仅造成轻微退化\n- Cross-family panel ($\\rho \\approx 0.45$) 保留 ~93% 操纵抗性，within-family ($\\rho \\approx 0.75$) 仅保留 ~79%\n- PEG 保持 ≥90% 激励锐度的充分条件：$\\rho < 0.44$，恰好对应 cross-family 选择的经验范围\n\n技术注意：DMI 的代数性质（$\\det(\\Pi M) = \\det(\\Pi)\\det(M)$）使 truthful reporting 在面对 truthful 对手时始终弱占优，不依赖于 $\\rho$。退化体现在激励优势的 *幅度* 缩减（使均衡对有限理性脆弱），以及评估质量因信息冗余而下降。文档中已明确标注 proof sketch 级别的假设和 caveat。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

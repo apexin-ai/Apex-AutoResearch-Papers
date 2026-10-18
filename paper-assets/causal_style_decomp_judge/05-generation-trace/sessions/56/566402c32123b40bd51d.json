@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "566402c32123b40bd51d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis verbosity bt split",
+  "task_key": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verbosity-bt-split_20260522T041523_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "557ce9266fcdb2aba0e023b6cf34e5c77a30247e3e7aa843d01647ccd410919c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### Verbosity Direction-Aware Gate BT Split（Qwen3-32B Judge）\n\n| Group | n | BT P(verbose) | 95% CI | p |\n|-------|---|---------------|--------|---|\n| Strict Bidirectional | 65 | 0.7845 | [0.7076, 0.8537] | <0.0001 |\n| Direction-Aware (all) | 86 | 0.7732 | [0.7034, 0.8429] | <0.0001 |\n| **Extra (DA-only)** | **21** | **0.7379** | **[0.5714, 0.8806]** | **0.0040** |\n\n**Delta test**: DA - Strict = -1.1pp, CI [-5.6, +3.0], contains 0 → no significant difference.\n\n**Extra group 构成**: 17 expansion + 4 compression。几乎全部 opposite-direction NLI 极低（0.001–0.096），即内容增减幅度大但单方向语义保持良好的 pairs。\n\n**结论**: Direction-aware gate 额外放入的 21 pairs 展现与 strict 组**同方向**的 verbosity bias（0.7379 vs 0.7845），且独立显著（p=0.004）。DA gate 不引入异常 bias pattern，支持使用 DA gate 而非 strict bidirectional。\n\n数据存档于 `data/verbosity_bidir_nli.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

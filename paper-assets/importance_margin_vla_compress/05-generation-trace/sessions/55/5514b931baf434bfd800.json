@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5514b931baf434bfd800",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check m64 and xvla progress",
+  "task_key": "worker_ops_check_m64_and_xvla_progress_20260523T035138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check_m64_and_xvla_progress_20260523T035138_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "ef2f96e7cac7608e8577ccba2982d0227eefa6c8ac5ab69f4c36d3d7539a3c08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M64\n**未运行。** cqa1-33015 上不存在 `train_openvla_sc_m64_v6_seed42.log`。最近的 M64 日志是 5/19 的 `train_smart_compress_m64_seed43.log`（已完成）。4 块 GPU 全部空闲。\n\n## X-VLA Long Random k=0.95 seed42 (westd-27271:0)\nPID 126840 存活，已运行 1h03m\n- Task 7 ep 11/50 进行中，总进度 **361/500 (72.2%)**\n- Task 6 SR: 18.0%\n- ETA ≈ **24 min**（~12:16 完成）\n\n## Goal seed43 (westd-41074:1)\nPID 368157 存活，已运行 24m\n- Task 3 ep 10/50 进行中，总进度 **160/500 (32.0%)**\n- T0: 80%, T1: 90%, T2: 76% | 累计 82.0%\n- ETA ≈ **51 min**（~12:40 完成）\n\n## GPU 扫描\n\n| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |\n|--------|-------|-------|-------|-------|\n| westd-27271 | **68% / 5.0GB** | 0% / idle | — | — |\n| westd-38929 | 0% / idle | 0% / idle | 0% / idle | 0% / idle |\n| westd-41074 | 0% / idle | **44% / 10.5GB** | 0% / idle | 0% / 27.5GB (loaded) |\n| cqa1-33015 | 0% / idle | 0% / idle | 0% / idle | 0% / idle |\n\n**可用资源**: westd-27271 GPU1, westd-38929 全部 4 卡, westd-41074 GPU0/2, cqa1-33015 全部 4 卡 — 共 **10 卡空闲**。westd-41074 GPU3 有 27.5GB 显存占用但 0% 利用率，可能有残留进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

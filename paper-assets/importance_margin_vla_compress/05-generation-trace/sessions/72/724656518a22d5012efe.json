@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "724656518a22d5012efe",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval openvla l2norm k05 goal seed42 v3",
+  "task_key": "worker_analyze_eval_openvla_l2norm_k05_goal_seed42_v3_20260523T231714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_openvla_l2norm_k05_goal_seed42_v3_20260523T231714_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "cf94b217fcd9ceeec11a7c0859ed1ccff42d24dae243a58fd5ca912b2411148e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果总结：\n\n## eval_openvla_l2norm_k05_goal_seed42_v3 — 结果\n\n**Overall SR: 43.4% (217/500)** — Conclusion: **negative**\n\n### 与 baseline 对比\n\n| 配置 | SR | 相对 baseline 保留率 |\n|------|-----|---------------------|\n| Goal baseline (full tokens) | 74.8% | 100% |\n| **Goal L2norm k=0.5** | **43.4%** | **58.0%** |\n| Object baseline | 96.2% | 100% |\n| Object L2norm k=0.5 | 39.2% | 40.7% |\n\nGoal suite 下 L2norm k=0.5 造成 **-31.4pp** 绝对下降（74.8% → 43.4%）。相比 Object suite 的 -57.0pp 下降，Goal suite 的绝对损失更小，但仍然严重不可接受。\n\n### Per-task 分布\n\n任务间方差极大：`turn_on_the_stove` 几乎无损 (98%)，`put_wine_bottle_on_cabinet` 也较好 (82%)，但 `open_top_drawer_put_bowl_inside` 仅 6%，多步复合任务受 token 裁剪影响最严重。\n\n### 结论\n\nL2norm k=0.5 的 naive pruning 在两个 suite 上都造成严重性能下降，不具备实用价值。简单任务（单步、空间固定）受影响小，复杂多步任务几乎完全崩溃。需要更智能的 token 选择策略或更保守的压缩比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

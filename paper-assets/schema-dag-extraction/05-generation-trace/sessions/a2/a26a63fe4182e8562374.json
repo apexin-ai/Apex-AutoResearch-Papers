@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a26a63fe4182e8562374",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp012 llama 8b r2",
+  "task_key": "worker_diagnose_exp012_llama_8b_r2_20260515T194715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp012_llama_8b_r2_20260515T194715_result.json",
+    "occurrence": 1,
+    "bytes": 2209,
+    "sha256": "f9033ddd02432b9b6cbea415e2f9b126ebe562d2a8b5d71e88f62c9b50f21d80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：exp012_llama_8b_r2\n\n### 状态：**STILL RUNNING**（cron 误报）\n\n| 指标 | 值 |\n|------|------|\n| PID 315801 | **存活** (`/proc/315801/status` 存在) |\n| vLLM 引擎 PID | 319623, State=R (running), PPid=319316, NSsid=315801 |\n| GPU 占用 | 84652 MiB (vLLM::EngineCore) |\n| 日志最新 | `2026-05-16 03:49:41` — 正在处理 count_6/random/23 |\n| 启动时间 | `2026-05-16 01:09:16` (Beijing) |\n\n### 进度\n\n- **Exp1**: 94 batches → **已完成**，结果已保存至 `artifacts/exp012/eval_fewnerd_exp1_llama-3.1-8b-instruct.json` (03:39)\n- **Exp2**: 54 batches 总计, 已完成 ~24/54 batches (count_6/random/23 正在运行)\n- **预估剩余**: ~30 batches × ~15s/batch ≈ 7-8 分钟\n\n### Exp1 关键 Metrics（已完成）\n\n**所有 94 个 batch 的 exact_F1 和 relaxed_F1 均为 0.0。** 只有 text_match 有非零值：\n\n| 分组 | text_match_F1 范围 | BCS |\n|------|-------------------|-----|\n| count_1 (64 batches) | 0.025 ~ 0.833 | 0.0 |\n| count_12 (5 batches) | 0.119 ~ 0.336 | 0.91 ~ 0.96 |\n| count_22 (5 batches) | 未在 tail 中可见 | ~0.93 |\n| count_44 (5 batches) | 未在 tail 中可见 | ~0.96 |\n| count_64 (5 batches) | ~0.347 (最后一个) | 0.97 |\n\n典型 count_64 batch: precision=0.489, recall=0.268, text_match_F1=0.347, total_pred=1455, total_gold=2652。所有 per_type_f1 = 0.0。\n\n**解读**: LLaMA-3.1-8B 能找到部分文本 span，但**完全无法正确匹配实体类型**（exact/relaxed 全 0）。与 Qwen 模型的差异很大。\n\n### 资源状态\n\n| 资源 | 使用 | 总量 | 占比 |\n|------|------|------|------|\n| GPU 显存 | 84661 MiB | 97254 MiB | 87% |\n| GPU 利用率 | 22% | | |\n| 根分区 | 17G | 30G | 54% |\n| 数据盘 | 213G | 250G | 85% |\n\n### 结论\n\n1. **进程存活**，cron miss 4/5 为误报（可能是进程检测方式与 vLLM 子进程模型不匹配）\n2. Exp1 已完成，exp2 预计 ~8 分钟内完成\n3. exact/relaxed F1 全零值得关注——可能是 LLaMA 输出格式与评估器的类型标签不匹配，而非模型真正无法做 NER。建议实验完成后检查 predictions JSON 中模型实际输出的类型标签格式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

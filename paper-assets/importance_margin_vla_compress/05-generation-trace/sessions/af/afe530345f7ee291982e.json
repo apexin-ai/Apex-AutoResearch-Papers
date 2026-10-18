@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "afe530345f7ee291982e",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval v8c annealing gates",
+  "task_key": "worker_eval_v8c_annealing_gates_20260516T103406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8c_annealing_gates_20260516T103406.log",
+    "occurrence": 1,
+    "bytes": 931534,
+    "sha256": "73c5fd3872a56cbebfca0aaf93cf67ab5180fd331989b9230575b968d21f04d4"
+  },
+  "statistics": {
+    "messages": 662,
+    "user_turns": 0,
+    "tool_calls": 291,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 291,
+      "tool_result": 291,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 662,
+      "chunks": [
+        {
+          "path": "afe530345f7ee291982e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "afe530345f7ee291982e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "afe530345f7ee291982e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "afe530345f7ee291982e-part-0004.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ]
+}

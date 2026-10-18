@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db68a4d342b07f61136b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis v2 corrected files inventory",
+  "task_key": "worker_analysis_v2-corrected-files-inventory_20260523T184456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2-corrected-files-inventory_20260523T184456_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "5ac4698530901f7f594060b3ad7edfda499a766e14fdc844bf4e11f4ac4de6b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inventory 写入完成。汇总：\n\n**17 个文件分 4 类：**\n\n| 分类 | 数量 | 文件 |\n|------|------|------|\n| V2 corrected | 5 | table1_corrected, table2_corrected, regime_transition_corrected, random_fault_contrast_corrected, keff_distribution_corrected |\n| New analysis (V2 from start) | 2 | gam_bootstrap_ci_k3, gam_bootstrap_ci_k5 |\n| Unchanged | 3 | temperature_pilot_summary, stochastic_dominance_analysis, power_analysis_all_K |\n| Superseded (仍含 V1 数据) | 7 | aggregation_bootstrap, epsilon_sensitivity (×2), cross_benchmark_iv, keff_stability_split, sensitivity_analysis_poolA, keff_distribution |\n\n**需要立即更新论文的 critical changes：**\n- Table 1: K_eff 8/12→12/12 significant，eta-dominant conditions 完全消失\n- Table 2: Bayesian 方向反转 (1+/6-→5+/1-) 是 V1 artifact\n- Table 3: K_eff significance 在所有 K 值上增加\n- GAM: 之前报告的 6:6 targeted/shared split 不再成立\n\n**6 个文件需要用 V2 数据重跑：** aggregation_bootstrap, epsilon_sensitivity (K3/K5), cross_benchmark_iv, keff_stability_split, sensitivity_analysis_poolA。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

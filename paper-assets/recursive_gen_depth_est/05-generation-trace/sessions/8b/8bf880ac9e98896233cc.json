@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf880ac9e98896233cc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code zeroshot baseline prep",
+  "task_key": "worker_code_zeroshot_baseline_prep_20260515T004650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_zeroshot_baseline_prep_20260515T004650_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "5e0dd90448fbc46c592a14771206218c0cc85edb08f45211f78ed138aee98378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。验证报告：\n\n### 已完成\n\n| 项目 | 状态 |\n|------|------|\n| openai SDK | 0.28.0 → 2.36.0，支持 `OPENAI_BASE_URL` 环境变量 |\n| `_call_openai` 代码 | **无需修改** — `openai.OpenAI()` 在 v1.0+ 自动读取 `OPENAI_BASE_URL` 和 `OPENAI_API_KEY` |\n| `--llm_model` 参数 | 已支持 |\n| `--provider openai` | 已支持 |\n| 数据文件 | `depth_0~3.jsonl` 各 5000 条，共 20000 条 |\n| `scripts/run_zeroshot_baseline.sh` | 已创建，base_url 已配置 |\n| `--help` dry-run | 通过，所有参数正常解析 |\n\n### 待完成\n\n| 项目 | 说明 |\n|------|------|\n| `OPENAI_API_KEY` | 需要设置 project secret 后注入环境变量 |\n| 模型名确认 | 脚本默认用 `gpt-4o-mini`，需确认代理实际支持的模型列表（可在有 key 后 `curl http://47.94.22.126/v1/models` 验证） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

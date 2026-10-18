@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "39af7b7df4ed65bc2696",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "diagnose pi05 code integrity 0527",
+  "task_key": "worker_diagnose_pi05_code_integrity_0527_20260527T020052",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05_code_integrity_0527_20260527T020052.log",
+    "occurrence": 1,
+    "bytes": 644852,
+    "sha256": "afc419504f998c8957b41ee6e7c68b04b3cac5d2deb2604b36031c8bc90bdbe1"
+  },
+  "statistics": {
+    "messages": 137,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "39af7b7df4ed65bc2696-part-0001.json",
+          "message_count": 128
+        },
+        {
+          "path": "39af7b7df4ed65bc2696-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ]
+}

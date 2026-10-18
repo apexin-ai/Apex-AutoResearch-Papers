@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6f9f2ae24b7ae925e3f2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "monitor w41 progress final",
+  "task_key": "worker_monitor_w41_progress_final_20260528T113200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_w41_progress_final_20260528T113200_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "a502f074dee3b1a4ef34da915a38d7f322aa2c81f4b26059af71241d7e96dd28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | 状态 | 进度 | 当前SR | 预计剩余 |\n|------|------|------|--------|----------|\n| **l2norm_k075** seed46 | **已完成** ✓ | 500/500 | **73.2%** | — |\n| **random_k095** seed46 | 运行中 (T9 ep=40) | 490/500 | 58.4% (T0-T8) | ~3 min |\n| **random_k05** seed46 | 运行中 (T9 ep=10) | 460/500 | 50.0% (T0-T8) | ~12 min |\n\n注意：\n- l2norm 实际日志名为 `l2norm_k075`（非 k07），已于 16:15 完成，EXIT_CODE=0，结果存于 `pi05_l2norm_k0.75_libero_10_seed46.json`\n- PID 923767 仍存活（463% CPU, 2h14m），可能已被复用跑其他任务\n- random_k095 和 random_k05 均接近完成，预计 ~15 分钟内全部结束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

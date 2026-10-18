@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ff7b97829af69c14bd81",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit registry 4gpu 20260526",
+  "task_key": "worker_audit_registry-__-4gpu-20260526_20260526T221210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_registry-__-4gpu-20260526_20260526T221210_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "0b91ec6187dc9134973ae1489aacbc156b267964289ed5610cba4dd873171d83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nwestd-27271:0 — [已补录] exp_id=eval_openvla_attn_k075_goal_seed42 status=RUNNING\nwestd-27271:1 — [已注册] exp_id=eval_openvla_attn_k05_long_seed42 status=RUNNING\ncqa1-33015:0 — [已注册] exp_id=eval_pi05_l2norm_k07_long_seed42 status=DEPLOYED (已完成，SR=60%，PID 617566 是re-run)\nwestd-41074:1 — [已补录] exp_id=eval_openvla_random_k075_long_seed42 status=RUNNING\n```\n\n注意：`eval_pi05_l2norm_k07_long_seed42` 已在 DEPLOYED 状态（之前完成，SR=60%）。当前 PID 617566 是同一实验的 re-run，spec 中已记录了当前 server/PID 信息。由于状态机不允许从 DEPLOYED 回退到 RUNNING，如需追踪此 re-run，需要创建一个新的 exp_id（如 `eval_pi05_l2norm_k07_long_seed42_v2`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

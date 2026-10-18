@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c80dd1738e264e80865d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla l2norm k05 long seed42",
+  "task_key": "worker_diagnose_eval_openvla_l2norm_k05_long_seed42_20260527T011451",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_l2norm_k05_long_seed42_20260527T011451_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "026d572d98a0840c5dfaba9c816837c40ed2679d21f4b96c1a8dee8e30a3585b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验未失败，是监控误报。**\n\n实验 `eval_openvla_l2norm_k05_long_seed42` 已于 2026-05-27 09:01:58 正常完成：\n\n- **Overall SR: 16.4%** (82/500, 10 tasks × 50 episodes)\n- 结果已保存: `eval_results/openvla_l2norm_prune_k05_10_seed42.json`\n\n**误报原因**: 该实验没有生成 `/tmp/agent-ml-exit/` 下的 sentinel 文件，也没有 W&B 日志，监控系统 5 次轮询未检测到存活信号后自动判定失败。\n\n**服务器现状**: GPU 0 空闲可用，GPU 1/2/3 分别在跑 l2norm k=0.95、l2norm k=0.75、attn k=0.95。磁盘 72% (72G 剩余)。\n\n诊断报告已写入 `artifacts/diagnosis_eval_openvla_l2norm_k05_long_seed42.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

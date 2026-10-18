@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36b1f192e84197ff715e",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exec c4 rerun submit",
+  "task_key": "worker_exec_c4_rerun_submit_20260514T093744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_c4_rerun_submit_20260514T093744_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "fb272f0010113badce2e00960f2efe52d0a8f5ab88d30756a2fb6ddfc92723cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n- **GPU 1**: PID 210299，已占用 67222 MiB\n- **tmux session**: `c4_rerun_d032`\n- **状态**: 模型已加载（Qwen2.5-7B），正在执行 Phase 1 calibration profiling，baseline PPL = 12.6505"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

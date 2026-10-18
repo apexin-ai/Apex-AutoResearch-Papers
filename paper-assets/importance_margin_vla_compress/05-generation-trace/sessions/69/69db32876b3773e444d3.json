@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "69db32876b3773e444d3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops kill westd38929 duplicate k095 seed43",
+  "task_key": "worker_ops_kill-westd38929-duplicate-k095-seed43_20260520T215357",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-westd38929-duplicate-k095-seed43_20260520T215357_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "22203a4c4f838557d4dde9c997c5f4da1fd11f9e8ce0a41d479ce22bccf7709b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Kill 成功。** westd-38929 当前状态：\n\n- PID 975878 已终止\n- 4× RTX PRO 6000 (98GB) 全部空闲，0MiB 显存占用\n- 无任何 `eval_openvla` 残余进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0fd041252f0a255105",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh llama download fix",
+  "task_key": "worker_ssh_llama-download-fix_20260515T083106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-download-fix_20260515T083106.log",
+    "occurrence": 1,
+    "bytes": 1193801,
+    "sha256": "1278049c3e49ed42b62f45cda55b0e8fab149cb78ae693c1cbfcd6203f540be4"
+  },
+  "statistics": {
+    "messages": 945,
+    "user_turns": 1,
+    "tool_calls": 387,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 163,
+      "tool_call": 387,
+      "tool_result": 387,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 897,
+      "chunks": [
+        {
+          "path": "7f0fd041252f0a255105-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f0fd041252f0a255105-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f0fd041252f0a255105-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f0fd041252f0a255105-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f0fd041252f0a255105-part-0005.json",
+          "message_count": 177
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "7f0fd041252f0a255105-part-0005.json",
+          "message_count": 3
+        },
+        {
+          "path": "7f0fd041252f0a255105-part-0006.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ]
+}

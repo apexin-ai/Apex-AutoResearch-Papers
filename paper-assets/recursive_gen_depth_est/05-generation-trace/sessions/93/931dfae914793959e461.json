@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "931dfae914793959e461",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research literature map check",
+  "task_key": "worker_research_literature_map_check_20260515T050221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_map_check_20260515T050221_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "8ea9d36acb86208a11a2895274bf08454cdf3ff26c8ad09e83f3a165c2076f0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已完成。总结如下：\n\n## literature_map.yaml 更新结果\n\n**从 10 → 33 条条目**，新增 23 篇论文。按类别覆盖：\n\n| 类别 | 条目数 | 状态 |\n|------|--------|------|\n| Model collapse 理论+实证 | 13 | 充分 (Shumailov, Alemohammad, Dohmatob×3, Gerstgrasser, Drayson, Marchi, +5 recent) |\n| Decoding strategies | 5 | 充分 (Holtzman, Finlayson, Garces Arias, Wiher, Basu) |\n| Binary detection | 5 | 充分 (Binoculars, Fast-DetectGPT, DivEye, LOKI, GLTR) |\n| Adjacent task | 2 | EditLens + DivEye 覆盖核心邻域 |\n| Ordinal classification | 2 | CORAL + CLOC（DCOL 基础） |\n| Watermarking | 1 | Kirchenbauer |\n| Data curation | 2 | DSIR + QuRating |\n| Attribution | 2 | Uchendu + Pu |\n| Covariate shift | 1 | Sugiyama |\n| Detection fragility | 1 | Pudasaini |\n\n**Dream D002 要求 25+ 引用 → 33 条，全部满足。** 2024-2026 论文占 67%。\n\n## 关键发现\n\n1. **无直接竞争者** — 文献扫描确认，ordinal depth estimation from text 是新任务\n2. **所有 5 篇 memory.md 指定论文均已入 map** (Garces Arias, Wiher, Holtzman, Shumailov, Basu)\n3. **新增重要发现**：Marchi et al. (ICASSP 2025) \"Heat Death\" — T≠1 导致渐近退化的理论证明，直接支撑 temp09 accelerated convergence 的解释\n\n## 产出文件\n\n- `literature_map.yaml` — 33 条完整引用，含 cite_in 标注\n- `artifacts/writing_prep_notes.md` — Related Work 骨架（4 小节）+ 每个 Claim 的支撑引用列表 + 图表 checklist + action items"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

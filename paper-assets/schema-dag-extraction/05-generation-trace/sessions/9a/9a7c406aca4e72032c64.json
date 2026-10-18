@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7c406aca4e72032c64",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh disk cleanup and model download",
+  "task_key": "worker_ssh_disk-cleanup-and-model-download_20260514T164727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_disk-cleanup-and-model-download_20260514T164727.log",
+    "occurrence": 1,
+    "bytes": 700568,
+    "sha256": "94bf149e6600b54029de29a5dc08a67fe36143d96ae9c27a721fd5eb71009a1d"
+  },
+  "statistics": {
+    "messages": 510,
+    "user_turns": 0,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 94,
+      "record": 2,
+      "assistant": 92,
+      "tool_call": 149,
+      "tool_result": 149,
+      "result": 23
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 510,
+      "chunks": [
+        {
+          "path": "9a7c406aca4e72032c64-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a7c406aca4e72032c64-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a7c406aca4e72032c64-part-0003.json",
+          "message_count": 150
+        }
+      ]
+    }
+  ]
+}

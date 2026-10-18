@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f1cf240ac32f7db03e6",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh investigate llama3seed and downloads",
+  "task_key": "worker_ssh_investigate_llama3seed_and_downloads_20260515T224824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_investigate_llama3seed_and_downloads_20260515T224824_result.json",
+    "occurrence": 1,
+    "bytes": 1644,
+    "sha256": "312cbcbbb10ffab582d2a0b0613551e393ab476fa4578501318a3af178631336"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查结果汇总：\n\n---\n\n## 问题 1：llama_3seed_downstream_ci\n\n**已完成，不是丢失。** 结果文件 `artifacts/llama_3seed_downstream_ci_results.json` 在 05:16 06:28 创建，包含完整数据（3 seeds x 4 tasks，baseline + uniform_4bit + seed_mckp）。进程已正常退出。\n\nRegistry 状态应从 RUNNING 更新为 DONE。\n\n---\n\n## 问题 2：模型下载状态\n\n| 模型 | PID | 状态 | 详情 |\n|------|-----|------|------|\n| **Phi-3-medium** (ModelScope) | 379202 | **下载中** | model-00002-of-00006.safetensors, 43% (1.97G/4.61G), ~1.8MB/s，预计还需 ~1h |\n| **InternLM2-7B** (HuggingFace) | 379330 | **卡住/重试中** | 下载 pytorch_model-00002-of-00002.bin 时 xethub 超时，正在 resume。blobs 已有 14GB |\n\nInternLM2 的 HF 下载遇到 xethub 超时问题（`HF_HUB_DISABLE_XET=1` 未生效或 HF 仍路由到 xethub）。可能需要杀掉后改用 ModelScope 重下。\n\n---\n\n## 问题 3：GPU 状态\n\n**两块 GPU 均完全空闲：**\n- GPU 0: 0MiB / 97887MiB, 0% util\n- GPU 1: 0MiB / 97887MiB, 0% util\n\n没有任何 GPU 进程运行。tmux 里只有一个 `gemma2_9b_full_pipeline` session，但其内部 bash 已处于空闲状态。\n\n---\n\n## 结论\n\n- **llama_3seed**：已完成，Registry 需标记 DONE\n- **cuda:0 和 cuda:1 均空闲**，可立即调度新实验\n- **InternLM2-7B**：已下载 14GB 但遇到超时卡住，建议杀掉改用 ModelScope\n- **Phi-3-medium**：正常下载中，~43%，预计还需约 1 小时\n- 如果 InternLM2 改用 ModelScope 重下成功，可在等待 Phi-3 期间先启动 InternLM2 profiling"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

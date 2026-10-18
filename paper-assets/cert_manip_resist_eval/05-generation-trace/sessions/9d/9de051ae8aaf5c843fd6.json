@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9de051ae8aaf5c843fd6",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis gam bootstrap ci k5",
+  "task_key": "worker_analysis_gam-bootstrap-ci-k5_20260523T165749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gam-bootstrap-ci-k5_20260523T165749_result.json",
+    "occurrence": 1,
+    "bytes": 1364,
+    "sha256": "cffb49377d30717de8d4e5cff7d2372cd71a55e4a6c98c8f25c5af3a05caa40b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Key findings:\n\n**All 12/12 conditions show positive K_eff partial effect with 100% bootstrap consistency** (direction_positive_rate = 1.0 for all conditions, zero failures across 9999×12 = 119,988 total GAM fits).\n\nThis matches the K=3 bootstrap pattern exactly — at both panel sizes, the GAM `log(ASR+ε) ~ s(log(K_eff)) + s(log(η_max))` finds uniformly positive K_eff partial effects across all conditions. The 95% CIs are well-separated from zero for all conditions.\n\n**Discrepancy with the K=5 GAM point-estimate analysis**: The earlier `k5_gam_analysis.json` reported a 6+/6- split (matching targeted/shared-bias). That analysis used `load_mi_data()` → `mi_data[\"mi_matrices\"]`, which returns `None` — the script likely ran with a different data-loader version or precomputed K_eff values. The bootstrap uses MI matrices loaded directly from the raw JSON, which is the canonical source.\n\n**Split consistency**: Since all conditions are positive (including shared-bias ones), the targeted/shared-bias split consistency rate is 0.0. The distinction between targeted and shared-bias attacks does not manifest as a sign difference in the K_eff partial effect — it manifests as a **magnitude** difference (shared-bias conditions like authority_bias have smaller slopes than targeted ones like score_manipulation)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

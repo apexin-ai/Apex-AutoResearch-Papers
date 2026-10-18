@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "31531d23810aa898fa8b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research task f adaptive routing",
+  "task_key": "worker_research_task-f-adaptive-routing_20260523T080949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_task-f-adaptive-routing_20260523T080949.log",
+    "occurrence": 1,
+    "bytes": 662143,
+    "sha256": "0a54cfd5ad4da33b250ca0c68ff67512c6ebc01f1a51039d7f274155416f5534"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 1,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 2,
+      "assistant": 23,
+      "tool_call": 54,
+      "user": 1,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "31531d23810aa898fa8b-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "31531d23810aa898fa8b-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "31531d23810aa898fa8b-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ]
+}

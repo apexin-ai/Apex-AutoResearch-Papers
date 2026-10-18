@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "6372afb4d9fdaba2a2b2",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code hgrn2 eval followup",
+  "task_key": "worker_code_hgrn2_eval_followup_20260518T154915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_eval_followup_20260518T154915.log",
+    "occurrence": 1,
+    "bytes": 1162837,
+    "sha256": "07ed80e4e193cd13ba6cec72938de1593d0754c57bb8732b12aad7685bf8bf88"
+  },
+  "statistics": {
+    "messages": 750,
+    "user_turns": 1,
+    "tool_calls": 285,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 166,
+      "tool_call": 285,
+      "tool_result": 285,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 687,
+      "chunks": [
+        {
+          "path": "6372afb4d9fdaba2a2b2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6372afb4d9fdaba2a2b2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6372afb4d9fdaba2a2b2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6372afb4d9fdaba2a2b2-part-0004.json",
+          "message_count": 147
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 63,
+      "chunks": [
+        {
+          "path": "6372afb4d9fdaba2a2b2-part-0004.json",
+          "message_count": 33
+        },
+        {
+          "path": "6372afb4d9fdaba2a2b2-part-0005.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ]
+}

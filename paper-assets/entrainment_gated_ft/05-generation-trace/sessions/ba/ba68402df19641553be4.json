@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba68402df19641553be4",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper appendix i confidence margin",
+  "task_key": "worker_paper_appendix-i-confidence-margin_20260520T043352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-i-confidence-margin_20260520T043352_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "46de23d1722395b039b42057f990121d98182a88322045f692945f6e7c8c2488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion 在第 8 页结束，主文 ≤ 8 页，符合限制。\n\n编译验证完成：\n- 主文 8 页（§1-§5 + Limitations + Ethics），符合 EMNLP 8 页限制\n- References 第 9 页起，Appendix 第 10 页起\n- 总计 14 页\n- 无 undefined reference（`app:confidence_margin`、`tab:cm_c1`、`tab:cm_c2` 均正确解析）\n- 无编译 error"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

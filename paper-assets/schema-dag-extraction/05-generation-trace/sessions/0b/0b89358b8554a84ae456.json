@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b89358b8554a84ae456",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh check exp012 status",
+  "task_key": "worker_ssh_check-exp012-status_20260515T164226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-exp012-status_20260515T164226_result.json",
+    "occurrence": 1,
+    "bytes": 1674,
+    "sha256": "2228c2a4b59936c6362223e856210a10d9b291a3cddaacfb15197ce279235a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. exp012_llama_fewnerd_r4 — 已崩溃\n\n- **原始 PID 294443 已死亡**\n- 日志 `exp012_llama_8b.log` 显示 **vLLM 启动失败**：GPU 显存不足（仅 7.01GB / 94.97GB 可用），无法分配 85.48GB\n- 错误：`ValueError: Free memory on device cuda:0 (7.01/94.97 GiB) on startup is less than desired GPU memory utilization (0.9, 85.48 GiB)`\n- **根因**：另一个 vLLM 进程（PID 297093，`VLLM::EngineCore`）占用了 89.5GB 显存，已运行 4 分 38 秒，导致 exp012 启动时没有足够显存\n\n### 2. 已生成的结果文件\n\n`artifacts/exp012/` 目录有产出（应该是之前成功的 run）：\n- `predictions_fewnerd_exp1_llama-3.1-8b-instruct.json` (46.8MB)\n- `eval_fewnerd_exp1_llama-3.1-8b-instruct.json` (80KB)\n- `batch_config` 文件 × 3（含 70b-fp8 和 8b 的配置）\n- `artifacts/exp012_dryrun/` 有 dry run 结果\n\n### 3. 磁盘使用\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30GB | 17GB | 14GB | 54% |\n| 数据盘 `/root/autodl-tmp/` | 250GB | 213GB | 38GB | **85%** |\n\n**HF cache 明细**（总 100GB）：\n- `llama-3.3-70b-instruct-fp8` — **68GB**\n- `qwen3-32b-fp8` — **32GB**\n- `few-nerd` 数据集 — 136MB\n- `sentence-transformers` — 88MB\n\n未发现 AWQ 残留。artifacts 总计 241MB。\n\n### 4. 异常\n\n- **显存冲突**：PID 297093 的 vLLM 进程（非 exp012）独占了 89.5GB 显存，直接导致 exp012 启动失败。需要先 kill 297093 才能重跑 exp012。\n- **数据盘 85%**：68GB 的 llama-3.3-70b-fp8 如果不再需要，清理后可回收大量空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

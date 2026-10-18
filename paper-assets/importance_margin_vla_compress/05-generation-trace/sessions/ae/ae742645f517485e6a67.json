@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ae742645f517485e6a67",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent cqa1 status and fill",
+  "task_key": "worker_urgent_cqa1_status_and_fill_20260525T034151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_cqa1_status_and_fill_20260525T034151_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "7e316fe7072cd57586515d5cb8407be7e3bda71317b3cf03d7c0621b33961864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已杀掉重复提交的 tmux 会话。\n\n---\n\n## 汇总\n\n### 本轮完成的 4 个实验（cqa1-33015）\n\n| 实验 | Suite | Method | k | Seed | SR | 对比 seed |\n|------|-------|--------|---|------|-----|-----------|\n| l2norm_k085_object_seed43_postfix | Object | L2norm | 0.85 | 43 | **99.0%** | seed42=98.0% |\n| random_k085_spatial_seed43_postfix | Spatial | Random | 0.85 | 43 | **59.2%** | seed42=52.6% |\n| random_k085_long_seed43_v2 | Long | Random | 0.85 | 43 | **42.0%** | 首个数据点 |\n| l2norm_k085_goal_seed43_postfix | Goal | L2norm | 0.85 | 43 | **87.0%** | seed42=87.4% |\n\n跨 seed 稳定性良好，L2norm Object/Goal 差异均 <2pp。\n\n### 新实验提交情况\n\n用户指定的 2 个实验 **已在 registry 中完成**（之前在 westd-41074 跑过），无需重跑：\n- l2norm_k085_goal_seed42_postfix: SR=87.4% ✅\n- random_k085_object_seed42_postfix: SR=5.6% ⚠️（异常低，可能需要检查）\n\n**cqa1-33015 全部 4 个 GPU 当前空闲**，可提交新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

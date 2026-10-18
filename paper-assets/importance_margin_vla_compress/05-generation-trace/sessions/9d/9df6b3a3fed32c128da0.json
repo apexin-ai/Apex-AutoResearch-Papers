@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "9df6b3a3fed32c128da0",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code fix twostage fullft support",
+  "task_key": "worker_code_fix_twostage_fullft_support_20260516T193329",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix_twostage_fullft_support_20260516T193329.log",
+    "occurrence": 1,
+    "bytes": 868268,
+    "sha256": "2f99bbce2f953efb44a47ccea6e94cb301234e4fc8036868029a6704e2cf97d1"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 1,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 93,
+      "tool_result": 93,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "9df6b3a3fed32c128da0-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "9df6b3a3fed32c128da0-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "9df6b3a3fed32c128da0-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ]
+}

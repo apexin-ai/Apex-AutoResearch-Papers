@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7236795158bcdc089819",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis r3 n3 shap",
+  "task_key": "worker_analysis_r3-n3-shap_20260515T191512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3-n3-shap_20260515T191512_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "a3357baf225ab09eca4bd398e00f70173ffc5a9f3a33b2a9be60026eaa1680f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SHAP 分析已完成，结果已注册为 artifact (`art_20260515_1ec027`)。\n\n## 核心发现\n\n**SHAP vs Permutation Importance 高度一致**: mean Spearman ρ = 0.830 (0.749–0.916), all p < 0.001\n\n**Top-2 特征在 9/9 cells 完全稳定**:\n- **p90_ppl** (mean |SHAP| = 0.0894) — 全部 9 cell 进入 top-4\n- **var_surprisal** (mean |SHAP| = 0.0803) — 全部 9 cell 进入 top-4\n- PPL/surprisal 类特征占总 importance 的 **88.8%**\n\n**SHAP Top-5 与 Gini Top-5 完全相同**（仅排序微调）: p90_ppl, var_surprisal, p75_ppl, mean_surprisal, mean_ppl → importance 排名对方法选择不敏感\n\n## 论文修改建议\n1. **删除** §5.4 attention-importance 相关分析 (ρ=-0.484)\n2. **替换为** SHAP TreeExplainer 结果 — 理论保证的 Shapley values, mean ρ=0.830 验证 importance 鲁棒性\n3. **保留** 线性探测负 R² 作为独立互补证据\n4. 新叙事：RF 依赖 perplexity tail statistics → PLM fine-tuning 无法捕获 → hand-crafted 特征工程的必要性得到双重验证（SHAP + 线性探测）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

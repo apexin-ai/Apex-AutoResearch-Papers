@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7a734d772f0ab453e340",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research theory analysis plan023",
+  "task_key": "worker_research_theory_analysis_plan023_20260517T184401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_theory_analysis_plan023_20260517T184401_result.json",
+    "occurrence": 1,
+    "bytes": 1992,
+    "sha256": "930ec4a24f38ba8d62687253e38a3332acd21dceabd8cd1b7ef9d1ef635f0be6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿完成。文件位于：\n\n`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md`\n\n**结构（2424 words）：**\n\n- **Notation and Setup**: 形式化递归生成为分布映射 $\\mathcal{T}: P_n \\to P_{n+1}$，定义 19 维特征向量 $\\phi(x)$ 为 surprisal 序列的统计量\n- **5.1 为什么 p90_ppl 和 var_surprisal 能区分 depth**: 连接 Shumailov (Nature 2024) tail erosion + Dohmatob (ICML 2024) tail narrowing ($\\beta \\to \\beta/\\tau$) vs tail cutting ($k \\asymp T_0^{1/\\beta}$)。p90_ppl 捕获尾部消失，var_surprisal 捕获分布集中，二者互补。用 concave decay 解释 Atlas 中 d0→d1 gap >> d2→d3 gap\n- **5.2 EDD 上界**: 形式化 EDD 定义，用 KL contraction + data processing inequality + Pinsker's inequality 推导 $\\text{EDD} \\leq \\lfloor \\log(\\delta_0/\\delta_{\\min}) / \\log(1/\\gamma) \\rfloor$，分解为三个可解释因子（初始散度、收缩率、特征分辨率）。与实验 EDD=4 对照。附 caveat 段落说明 $\\gamma$-contraction 是简化假设\n- **5.3 Memorization-as-prerequisite**: 训练 loss gap ($L^{(n,0)} - L^{(n,T)}$) 决定 depth signal 强度。$\\tau=1.1$ loss gap < 0.4 无信号，$\\tau=0.5$ loss gap > 2.0 强信号。连接 Marchi (ICASSP 2025) 的 $\\tau<1$ mode collapse vs $\\tau>1$ uniform convergence 二元结构，解释 $\\tau \\approx 0.9$ 为最优区间\n\n**关于 C003 门控**: EDD 推导使用了 KL chain rule 级别的工具（data processing inequality, Pinsker's inequality, geometric contraction），满足 \"mathematically rigorous\" 要求。同时诚实标注了 $\\gamma$-contraction 假设的局限性，建议后续用 Jacobian 分析补全。\n\n**写作规范检查**: 零 em-dash，零 en-dash，零 AI 用词（delve/leverage/utilize 等），无 -ing 短语结尾。引用 5 篇文献（Shumailov, Dohmatob, Alemohammad, Marchi, Shi），全部来自 literature_map.yaml。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

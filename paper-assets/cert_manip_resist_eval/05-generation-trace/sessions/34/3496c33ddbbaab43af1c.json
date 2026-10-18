@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3496c33ddbbaab43af1c",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "figure keff eta scatter",
+  "task_key": "worker_figure_keff-eta-scatter_20260523T134400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_keff-eta-scatter_20260523T134400_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "b41fcc95e72bca050a2440cf419c04c96d4ce4661b39437f1df22e56beda24d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，清楚展示了 diversity-capability confound。\n\n结果：\n- **服务器路径**: `/root/cert_manip_resist_eval/artifacts/figures/fig_keff_eta_scatter.{pdf,png}`\n- **r_full = 0.81** (全部 3003 panels，K_eff 与 η_max 高度正相关)\n- **r_poolA = 0.50** (Pool A 的 126 panels，confound 显著降低)\n- K_eff 范围: [2.16, 4.30], η_max 范围: [0.11, 0.46]\n\n注意 r_full=0.81 比预期的 0.70 更高，r_poolA=0.50 与预期一致。散点图的 banding pattern 是正常的——因为 η_max 由离散的 individual ASR 值决定，包含相同\"最弱模型\"的 panels 会有相似的 η_max。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

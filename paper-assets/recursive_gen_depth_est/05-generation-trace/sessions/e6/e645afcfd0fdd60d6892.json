@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e645afcfd0fdd60d6892",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code cross scale qwen7b 001",
+  "task_key": "worker_code_cross_scale_qwen7b_001_20260516T024649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_scale_qwen7b_001_20260516T024649_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "46ae72870b851e0b0acf16fc740eeedab8629a1090482a8a158f89d3c4df4d16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cross_scale_qwen7b_001 已提交并运行中。**\n\n**已完成：**\n- 4 个脚本写入服务器：`qwen7b_lora_finetune.py`（QLoRA 4-bit NF4）、`qwen7b_generate.py`（prefix-based generation）、`qwen7b_eval.py`（RF 5-fold CV + EDD）、`run_qwen7b_pipeline.sh`\n- Dry-run 验证通过（finetune loss=2.01, generation 产出连贯文本）\n- 全量 pipeline 在 tmux session `cross_scale_qwen7b` 中运行，GPU cuda:0\n- Registry 已更新为 RUNNING\n\n**关键设计决策：**\n- 使用 Qwen2.5-7B-Instruct（base 版不在服务器上）\n- Prefix-based generation：取上一 depth 训练数据前 32 token 做上下文，只保存续写部分。原因是 Instruct 模型从 EOS token 无法正常做无条件生成\n- QLoRA: r=16, alpha=32, target=q/k/v_proj, batch=4, grad_accum=4, 3 epochs, lr=2e-4\n- Feature extraction 使用 Pythia-1.4B（与其他实验一致）\n\n**预计时间：** 5 个 depth × (finetune ~3.5min + generate ~3min) + feature extraction ~10min + eval ~2min ≈ 45-50 min\n\n**监控：** `tail -f logs/qwen7b_pipeline.log` 或查看 tmux session `cross_scale_qwen7b`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

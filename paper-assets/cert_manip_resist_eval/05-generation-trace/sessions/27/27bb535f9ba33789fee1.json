@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "27bb535f9ba33789fee1",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "experiment r6 fp16 eval now",
+  "task_key": "worker_experiment_r6-fp16-eval-now_20260525T082101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r6-fp16-eval-now_20260525T082101.log",
+    "occurrence": 1,
+    "bytes": 2122457,
+    "sha256": "a13866d432cb1e3c45d76062e8642debaf3d667028b868696c54123c549ccd2e"
+  },
+  "statistics": {
+    "messages": 1270,
+    "user_turns": 2,
+    "tool_calls": 487,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 282,
+      "tool_call": 487,
+      "tool_result": 487,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 743,
+      "chunks": [
+        {
+          "path": "27bb535f9ba33789fee1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0005.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 493,
+      "chunks": [
+        {
+          "path": "27bb535f9ba33789fee1-part-0005.json",
+          "message_count": 157
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0007.json",
+          "message_count": 156
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "27bb535f9ba33789fee1-part-0007.json",
+          "message_count": 24
+        },
+        {
+          "path": "27bb535f9ba33789fee1-part-0008.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ead354ca4e0e4f12998",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k05 long seed46 strict w41",
+  "task_key": "worker_analysis_eval_pi05_random_k05_long_seed46_strict_w41_20260528T114733",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k05_long_seed46_strict_w41_20260528T114733_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "63d70206b947ab3af37465b8d9888107deb524099734e31ffd6c5450f73b904c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，registry 已更新为 DONE。\n\n**结果：π0.5 Random k=0.5 Long seed46 SR = 50.2%**\n\nPer-task: T0=82%, T1=38%, T2=58%, T3=82%, T4=44%, T5=40%, T6=36%, T7=52%, T8=18%, T9=52%\n\n与前几个 seed 高度一致（s42=49.8%, s43=51.4%, s44=50.2%, s46=50.2%），4-seed mean ≈ 50.4%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

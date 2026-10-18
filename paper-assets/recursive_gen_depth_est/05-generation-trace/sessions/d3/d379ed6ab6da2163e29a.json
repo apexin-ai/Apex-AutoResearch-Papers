@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d379ed6ab6da2163e29a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh collect pythia topk50 results",
+  "task_key": "worker_ssh_collect_pythia_topk50_results_20260514T201806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_pythia_topk50_results_20260514T201806_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "2f7f31d9da1677d1143fbd521c6bed8920ed126e619e8ba0452bfb8267d34ddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册。核心结论：\n\n## Pythia Top-k k=50 结果总结\n\n| 指标 | Top-k k=50 | Baseline (Nucleus) | Δ |\n|------|-----------|-------------------|---|\n| 4-class RF acc | **69.63%** | 78.2% | **-8.57pp** |\n| AUC d1v2 | 0.7518 | 0.8607 | -0.1089 |\n| AUC d2v3 | 0.6918 | 0.8005 | -0.1087 |\n| 3-class acc | 59.20% | — | — |\n| 3-class filtered acc | 61.33% | — | — |\n\n**结论: Partial Success (weaker signal)**\n\nTop-k k=50 是目前所有 5 个完成 cell 中表现最差的。深度信号仍可检测（远高于 chance），但显著弱于 nucleus 和 temp09。核心原因是 top-k 截断概率分布尾部，限制输出多样性，使递归生成文本更快趋于同质化，d2 vs d3 AUC 仅 0.6918。\n\nFeature importance 排序稳定（var_surprisal、p90_ppl、mean_ppl），code contamination 模式一致。Filtered 结果略优于 unfiltered，确认 contamination 引入噪声。\n\n3×3 矩阵 5/9 完成，GPT-2 XL temp09 正在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

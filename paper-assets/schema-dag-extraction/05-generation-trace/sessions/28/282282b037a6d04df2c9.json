@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "282282b037a6d04df2c9",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp012 r4 llama switch",
+  "task_key": "worker_code_exp012_r4_llama_switch_20260515T155808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_r4_llama_switch_20260515T155808.log",
+    "occurrence": 1,
+    "bytes": 1143083,
+    "sha256": "7e666afb1fc9138e4e796640f7698973fedba8688404ab6bbbc8fa343a0dba7a"
+  },
+  "statistics": {
+    "messages": 709,
+    "user_turns": 1,
+    "tool_calls": 296,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 296,
+      "tool_result": 296,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 691,
+      "chunks": [
+        {
+          "path": "282282b037a6d04df2c9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "282282b037a6d04df2c9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "282282b037a6d04df2c9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "282282b037a6d04df2c9-part-0004.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "282282b037a6d04df2c9-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ]
+}

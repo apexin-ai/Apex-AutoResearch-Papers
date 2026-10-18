@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba4df8f8805fbca266f5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops wild data calibration 002 check",
+  "task_key": "worker_ops_wild_data_calibration_002_check_20260516T011141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wild_data_calibration_002_check_20260516T011141_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "b463b05dd104b0b3629a68c273ef6a0517b82c6fa58fe19370e576b807e00a76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**wild_data_calibration_002: 失败**\n\n| 阶段 | 状态 |\n|------|------|\n| Steps 1-2 (Tokenizer + RF训练) | 成功 |\n| OpenWebText 加载 | 成功 (5000 passages, 23s) |\n| **C4 加载** | **挂起** — `load_dataset(\"allenai/c4\")` 调用后无任何输出 |\n| Feature extraction / Classification | 未执行（或空结果） |\n\n**根因**: `allenai/c4` HF streaming 在 AutoDL 代理环境下挂死。日志中无 error/exception/traceback — `load_dataset` 调用静默挂起，进程最终被终止。结果 JSON 存在但 `datasets` 和 `cross_model_consistency` 均为空。\n\n**修复方向**: 重试时应将 C4 替换为另一个 wild dataset（如 `HuggingFaceFW/fineweb` 或 `RedPajama`），或给 `load_dataset` 加 timeout，或预下载 C4 数据到本地。\n\n已更新 registry (status=DONE, conclusion=failed) 并删除 cron 监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

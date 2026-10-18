@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b5d19e70f2e23d8cf5a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analyze deberta pilot gpt2xl temp09",
+  "task_key": "worker_analyze_deberta_pilot_gpt2xl_temp09_20260519T172248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_deberta_pilot_gpt2xl_temp09_20260519T172248_result.json",
+    "occurrence": 1,
+    "bytes": 2565,
+    "sha256": "6679c2dffb86767044f82f8d9b3ecbb394438459dc1cd25d62fdc6a6c08a2d01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No W&B logging, no checkpoints saved. I have all the data needed. Here's the full analysis:\n\n---\n\n## DeBERTa Pilot 实验结果\n\n**Conclusion: success** — 实验正常完成（EXIT_CODE=0），hypothesis 被强烈验证。\n\n### 关键指标\n\n| Metric | Value |\n|--------|-------|\n| **4-class accuracy** | **53.14% ± 1.97%** (5-fold CV) |\n| Balanced accuracy | 53.14% |\n| **Macro-F1** | **0.484** (从 confusion matrix 计算) |\n| Total time | 7467s (~2h) |\n\n### Per-fold accuracy\n\n| Fold | Acc | Bal-Acc | Time |\n|------|-----|---------|------|\n| 1 | 0.5152 | 0.5152 | 3457s |\n| 2 | 0.5178 | 0.5177 | 766s |\n| 3 | 0.5617 | 0.5617 | 1243s |\n| 4 | 0.5142 | 0.5142 | 757s |\n| 5 | 0.5483 | 0.5483 | 1242s |\n\n### Per-class metrics（从 confusion matrix 计算）\n\n| Class | Recall | Precision | F1 |\n|-------|--------|-----------|-----|\n| d0 | 0.812 | 0.900 | 0.854 |\n| d1 | 0.288 | 0.538 | 0.375 |\n| d2 | 0.084 | 0.265 | 0.128 |\n| d3 | 0.942 | 0.419 | 0.581 |\n\n### Confusion matrix（rows=true, cols=predicted, 每类 5000 样本）\n\n```\n        d0    d1    d2    d3\nd0    4060   909     6    25\nd1     366  1439   974  2221\nd2      64   242   420  4274\nd3      22    85   183  4710\n```\n\n### 与 RF baseline 对比\n\n| | DeBERTa (LoRA) | RF + 19 features |\n|--|---|---|\n| 4-class acc | **53.1%** | **78.2%** |\n| Gap | — | **+25.1pp** |\n\n**Hypothesis 强烈成立**：DeBERTa-v3-base (LoRA) 4-class accuracy (53.1%) 远低于 RF+19-feature baseline (78.2%)，差距 25 个百分点。Hand-crafted perplexity-distribution features 对 depth signal 的捕捉远优于 neural text representations。\n\n### 失败模式分析\n\n模型严重偏向极端类：d0 和 d3 recall 高（81%/94%），但中间类 d1 (29%) 和 d2 (8%) 几乎分不出来。Confusion matrix 显示 d1→d3 (2221) 和 d2→d3 (4274) 存在大量误分类——模型倾向于将中间深度预测为 d3。这说明 DeBERTa 的文本表征无法区分中间递归深度的细微差异，而 RF 的 perplexity distribution features 可以。\n\n### 文件路径\n\n- **log_path**: `~/runs/recursive_gen_depth_est/deberta_pilot_gpt2xl_temp09.log`\n- **results_json**: `/root/autodl-tmp/recursive_gen_depth_est/results/deberta_pilot/gpt2xl_temp09/results.json`\n- **checkpoint_path**: 无（未保存 checkpoint）\n- **W&B**: 未使用\n\n### 模型配置\n\n- Model: `microsoft/deberta-v3-base`\n- LoRA: r=8, alpha=16, query_proj+value_proj\n- Trainable params: 297,988 / 184.7M (0.16%)\n- Samples: 20,000, 5-fold CV, 5 epochs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

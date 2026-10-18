@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "00f0491107b0ccb09466",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code find dataset adapt dryrun launch",
+  "task_key": "worker_code_find-dataset-adapt-dryrun-launch_20260515T132715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_find-dataset-adapt-dryrun-launch_20260515T132715.log",
+    "occurrence": 1,
+    "bytes": 1007478,
+    "sha256": "ce5c29fc59c2d0ff38f46a8633c3a80f943a45f0409cff92311f48891831990f"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 1,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 85,
+      "tool_result": 84,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "00f0491107b0ccb09466-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "00f0491107b0ccb09466-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "00f0491107b0ccb09466-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3dd7382b251ade6abcd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k085 long seed46 strict w41",
+  "task_key": "worker_analyze_eval_pi05_random_k085_long_seed46_strict_w41_20260528T084848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k085_long_seed46_strict_w41_20260528T084848_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "46f208236601d406a2a798900fef436ad13e993b955191e6cd704674109d7882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| **总体 SR** | **44.8%** (224/500) |\n| 运行时间 | 168.6 min (~2.97 GPU-h) |\n| EXIT_CODE | 0 |\n\n**Per-task SR (%):**\n\n| Task | SR |\n|------|-----|\n| T0 alphabet soup + tomato | 50% |\n| T1 cream cheese + butter | 42% |\n| T2 stove + moka pot | 46% |\n| T3 black bowl → drawer | 76% |\n| T4 white mug → left plate | 20% |\n| T5 book → back compartment | 40% |\n| T6 white mug → plate | 40% |\n| T7 alphabet soup + cream | 52% |\n| T8 both moka pots → stove | 6% |\n| T9 yellow/white mug → microwave | 76% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8bcb2193fb5053d50452",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag training check and eval v2",
+  "task_key": "worker_diag_training_check_and_eval_v2_20260518T194858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_training_check_and_eval_v2_20260518T194858_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "0ff32bbe762370f379bf50e081fd552f22cc4c28c9e9725caf95fd705f9cfb79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时（baseline 已完成，无需重新 arm）。两个 eval 都在跑，任务已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

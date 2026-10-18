@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "40effed5141ff63c914d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops codellama profiling check",
+  "task_key": "worker_ops_codellama_profiling_check_20260515T184729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_codellama_profiling_check_20260515T184729_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "3bdf9e0084730b14089e063b5c1e77bc49c97b75c206767c05a075282646d895"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**下载状态：已完成 ✓**\n\n**模型路径：** `/root/autodl-tmp/.hf_cache/AI-ModelScope/CodeLlama-7b-hf/`\n\n**完整性检查：通过 ✓**\n- `config.json` 存在 — LlamaForCausalLM, 32 layers, 32 KV heads (MHA, 非 GQA)\n- safetensors: 2/2 文件完整（9.98GB + 3.50GB）\n- pytorch_model.bin: 6/6 分片 + 2/2 合并版均存在\n- tokenizer 文件齐全\n- 无 `.incomplete` 文件\n\n**GPU 状态：两块 GPU 均空闲**\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell | 0 MiB / 97887 MiB | 0% |\n| 1 | RTX PRO 6000 Blackwell | 0 MiB / 97887 MiB | 0% |\n\n**Qwen compounding sweep 已结束**，cuda:1 已释放。\n\n**结论：** CodeLlama-7B profiling 可以立即在 cuda:1（或任一 GPU）上启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

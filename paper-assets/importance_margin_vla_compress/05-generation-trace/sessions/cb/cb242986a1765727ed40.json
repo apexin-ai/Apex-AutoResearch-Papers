@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cb242986a1765727ed40",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 strict attn k095 long",
+  "task_key": "worker_deploy_cqa1_strict_attn_k095_long_20260527T031120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_strict_attn_k095_long_20260527T031120_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "312b5e461f918a352876fbcbd5b39b4639ccad203ab1298b4ef67c2ea5fbdf3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并正在运行：\n\n- **服务器**: cqa1-33015, GPU 2 (~9.5GB VRAM)\n- **tmux session**: `eval_pi05_attn_k095_long_strict`\n- **日志**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_pi05_attn_k095_long_strict.log`\n- **注册状态**: RUNNING\n\n**修复过程总结**:\n1. lerobot 0.5.2 + transformers 4.40.1 不兼容 → 升级 transformers 到 5.5.3 并降级 lerobot 到 0.5.1（匹配 westd）\n2. huggingface_hub 1.16.4 的 `@strict` decorator 导致 groot dataclass 失败 → 降级到 1.15.0\n3. lerobot `__init__.py` 和 `factory.py` 中非必要 policy（eo1, groot 等）的 eager import 仍报错 → 用 try/except 包裹\n\n评估第一条 pruning 诊断已输出：`attention: n_keep=243/256, score_range=[0.000002, 0.003847]`，确认 attention pruning k=0.95 + strict `if done:` 条件生效。10 tasks × 50 episodes × max 520 steps，预计运行数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

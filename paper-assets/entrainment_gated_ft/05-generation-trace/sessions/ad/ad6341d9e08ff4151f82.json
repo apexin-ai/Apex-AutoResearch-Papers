@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad6341d9e08ff4151f82",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix exp 007 use clean script v3",
+  "task_key": "worker_fix_exp-007-use-clean-script-v3_20260519T174725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp-007-use-clean-script-v3_20260519T174725_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "718758056112e18b759adb14bd5e67d3893b321cc530c262c73de3b20eca0bcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n| 步骤 | 状态 |\n|------|------|\n| 清理 `lm_eval_clean/exp007/` | 已删除 |\n| 确认 `run_lmeval_clean.py` 有 `allow_neg_eigval=True` | 确认（第44-46行） |\n| 修改 `run_exp007_logsamples.sh` | 已改为调用 `run_lmeval_clean.py`，修正 skip 检查 pattern |\n| Dry-run 340M GDN-pure | **acc=0.3753** （通过） |\n| 提交批量任务 | tmux session `exp-007`, PID 530432, 日志 `~/runs/entrainment_gated_ft/exp-007.log` |\n\nDry-run 产生的 GDN-pure 输出已存在，批量脚本会自动跳过它。27个模型中 GDN-pure 340M 已完成，剩余 26 个将依次运行，预计 ~2h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

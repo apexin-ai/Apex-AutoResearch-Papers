@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f40c23defe2d7c93fe4f",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "agent / loop_3_1778872371.md",
+  "task_key": "loop_3_1778872371",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778872371.md",
+    "occurrence": 1,
+    "bytes": 4514,
+    "sha256": "808318ba28086dd26851a55f95dd2e2a6011251bf1ea11b6be7bb5779390ee8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T16:42:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只有 **cuda:0** on **cqa1-38874** 在 gpu_ids 白名单，禁止用其他卡\n- Blackwell SM120 **不支持 FP8 模型**（flashinfer JIT 需 nvcc≥12.9，已踩 3 次）。LLaMA 只能跑 8B BF16，不要再试 70B-FP8/AWQ\n- 所有新训练脚本必须包含 `export CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13`\n- `VLLM_ATTENTION_BACKEND` 在 vLLM 0.20.2 已废弃，不要设\n- 磁盘 248/250GB 极紧，清理 AWQ 残留前禁止下载新大模型\n- ARR May 25 提交，距今 10 天，一切服务于论文完成\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-38874, 1× RTX PRO 6000 Blackwell 98GB, CUDA 13.1\n- **工作目录**: `/root/schema-dag-extraction`\n- **Python**: `/root/miniconda3/bin/python` (conda base, Python 3.12.3)，**不要创建 venv**\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen3-32B-FP8 @ `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`; LLaMA-3.1-8B-Instruct @ ModelScope 下载(已在本地)\n- **LLaMA-70B-FP8 残留**: `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/` (72.7GB, 待清理释放磁盘)\n- **数据**: Few-NERD `/root/schema-dag-extraction/data/parquet/test.parquet`, FewRel `/root/schema-dag-extraction/data/fewrel_parquet/`, MAVEN `/root/schema-dag-extraction/data/maven_parquet/`\n- **活跃进程**: exp012_llama_fewnerd_r4 (PID 294443, tmux, cuda:0) — LLaMA-8B Few-NERD 推理\n- **活跃 cron**: exp012_llama_fewnerd_r4 监控中\n- **活跃 Worker**: `worker_diagnose_exp012_r4_result_20260515T164114` 正在诊断 r4 结果\n\n### 3. 📊 当前状态\n**刚做完**: SDGD v2 confirmed negative (D019), FewRel 80-rel 全量实验 success, bootstrap CI 全通过, error taxonomy NER+RE 双验证完成, exp012 从 70B-FP8→AWQ→8B-BF16 反复折腾终于跑上 r4。\n\n**Registry 关键条目**:\n- `exp012_llama_fewnerd_r4` **RUNNING** — LLaMA-3.1-8B-Instruct BF16 on Few-NERD, PID 294443, cuda:0。这是 Claim 1+2 的最后一个 P0 实验（多模型验证）\n- `exp012_llama_8b_fewnerd` 标记 RUNNING 但实际已死（PID 295200 被 r4 OOM 挤掉），**需要更新为 killed**\n- `exp_fewrel_40rel` DONE(failed) — 进程被杀且无增量保存，**需要重跑**（40-rel 中间点 scaling curve）\n\n**等待中**:\n- Worker `worker_diagnose_exp012_r4_result` 回调 — 正在检查 r4 是否正常运行\n- exp012_llama_fewnerd_r4 cron 回调 — 实验完成时触发\n- Paper Agent Full Draft 写作进行中（writing_plan.yaml 已审批）\n\n### 4. 📋 待办（条件触发式）\n- Worker diagnose 回调到达 → 确认 r4 正常运行，若异常则修复重提\n- exp012_llama_fewnerd_r4 cron 完成回调 → 分析 LLaMA-8B 结果，与 Qwen3 对比 count curve + BCS effect；success → patch 进论文 multi-model section；negative → Framing 提案\n- r4 完成释放 GPU 后 → 立即重跑 `exp_fewrel_40rel`（加增量保存），补 scaling curve 中间点\n- 40rel 完成 → 录入 registry，patch 进论文 FewRel scaling analysis\n- 清理 `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/` 释放 ~36GB 磁盘（r4 完成后执行，确认不再需要 70B）\n- `exp012_llama_8b_fewnerd` → 更新 registry 为 killed（死条目清理）\n- Paper Agent Full Draft 完成 → 进入 Reviewer 对抗循环\n- 最终: 全部结果 patch 进论文 → ARR May 25 提交\n\n### 5. 🎯 战略上下文\n**核心结论**: Type confusability (BCS) 独立于 type count 驱动 LLM IE 质量下降。两个 channel: count→recall decline, confusability→type confusion。三任务验证 (Few-NERD NER ✓, FewRel RE ✓, MAVEN ED partial ✓)。\n\n**决策链**:\n- D019: SDGD (Claim 3) 正式放弃，降为 negative result + future work\n- D020: 转 2-claim analysis paper (Claim 1: count curve, Claim 2: confusability mechanism)\n- D022: exp012 放弃 70B (FP8/AWQ 都不行)，转 LLaMA-3.1-8B-Instruct\n\n**易错点**:\n- exp012_llama_8b_fewnerd 看起来 RUNNING 实际已死，不要等它的回调\n- MAVEN per-type 方向是正的（高 BCS → 高 F1），这不是 bug 而是 centrality confound，论文作为 boundary condition 讨论\n- Few-NERD pairwise r 论文用 **0.112**（非旧值 0.156），因为 V2 prompt 覆写了 predictions 文件\n- confusion ratio 论文用 rate ratio（21.2x），非 raw FP count ratio（9.9x）\n- FewRel 40-rel 重跑必须加增量保存（上次跑完但进程被杀时结果全丢）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

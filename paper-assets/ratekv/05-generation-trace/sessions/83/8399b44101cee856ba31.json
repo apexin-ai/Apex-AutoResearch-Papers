@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8399b44101cee856ba31",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops kivi eval param audit",
+  "task_key": "worker_ops_kivi_eval_param_audit_20260515T115659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kivi_eval_param_audit_20260515T115659_result.json",
+    "occurrence": 1,
+    "bytes": 3723,
+    "sha256": "33ead9fb372ef291f137294cbe86e7ae343ee7bd4e2ef6fab3c72e125d2766de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在全部信息已收集完毕。以下是审计报告。\n\n---\n\n## 审计结果\n\n### 1. 关键发现：KIVI eval 没有 baseline 运行\n\nKIVI eval 脚本 (`run_kivi_baseline.py`) **不评估 unquantized baseline**。它只运行 KIVI-2bit 和 KIVI-4bit。日志和 JSON 结果文件中均无 baseline PPL 数字。\n\n已有的 KIVI 结果：\n| 模型 | KIVI-2bit (r128) | KIVI-4bit (r128) | KIVI-2bit (r0) | KIVI-4bit (r0) |\n|------|-----------------|-----------------|---------------|---------------|\n| Qwen2.5-7B | 12.83 | 9.90 | 13.34 | 9.91 |\n| Llama-3.1-8B | 9.84 | 8.14 | 10.08 | 8.14 |\n\n**\"KIVI baseline ≈ 9.19\" 这个数字在服务器上所有 artifacts/logs 中均未找到。** 可能来自口误或未保存的临时运行。\n\n### 2. 两个 pipeline 的 evaluate_perplexity 函数完全一致\n\n`run_kivi_baseline.py` 的 `evaluate_perplexity` 与 `eval_ppl.py` 的 `evaluate_perplexity` 是同一套代码逻辑：\n\n| 参数 | KIVI eval | Paper pipeline (eval_ppl.py) |\n|------|-----------|------------------------------|\n| **stride** | 512（默认） | 512（默认） |\n| **max_length** | 无限制（处理全文） | 无限制（处理全文） |\n| **prepend_bos** | tokenizer 默认行为 | tokenizer 默认行为 |\n| **test_set** | WikiText-2 test (HF/arrow) | WikiText-2 test (HF/arrow) |\n| **text_preprocessing** | `\"\\n\\n\".join(非空行)` | `\"\\n\\n\".join(非空行)` |\n| **tokenization** | `tokenizer(text, return_tensors=\"pt\")` | 同左 |\n| **loss_calculation** | `cross_entropy(sum)` → `exp(total/N)` | 同左 |\n| **context** | 非重叠 512-token chunks | 同左 |\n\n**baseline 评估应产生完全相同的数字。** 论文 Qwen baseline = 9.8106，如果用 KIVI eval 的 `evaluate_perplexity` 跑 unquantized Qwen，也应该得到 9.81。\n\n### 3. 真正的差异：量化方案\n\n两个 pipeline 的 **量化实现** 完全不同：\n\n| 参数 | KIVI eval | Paper pipeline (utils.py) |\n|------|-----------|---------------------------|\n| **K 量化类型** | **非对称** min-max | **对称** abs_max |\n| **V 量化类型** | **非对称** min-max | **对称** abs_max |\n| **K 分组** | 沿 token dim 分组，group_size=32 | 无分组（整列一个 scale） |\n| **V 分组** | 沿 head_dim 分组，group_size=32 | 无分组（整行一个 scale） |\n| **residual** | 最后 128 token 保持 fp16 | 无 residual 机制 |\n| **粒度** | 全层统一 bit-width | 每头独立 bit-width |\n\n### 4. 论文 baseline 数字来源确认\n\n| 模型 | 论文 baseline | 来源文件 |\n|------|-------------|---------|\n| Qwen2.5-7B | 9.81 | `qwen_hires_results.json` (`wikitext2_baseline_ppl: 9.8106`) |\n| Llama-3.1-8B | 8.09 | `w2_unconstrained_v2_results.json` (`baseline_wt2_ppl: 8.0922`) |\n| Yi-1.5-9B | 7.02 | 同上 (`baseline_wt2_ppl: 7.0157`) |\n| Mistral-7B | 7.04 | 同上 (`baseline_wt2_ppl: 7.0352`) |\n\n### 5. 结论\n\n1. **两个 pipeline 的 baseline 评估代码一致**，不应产生不同的 baseline PPL。如果有差异，问题在运行环境（模型权重路径、tokenizer 版本等），而非代码。\n2. **KIVI eval 缺少 baseline 运行** — 需要补跑一次 unquantized baseline 来验证。\n3. **量化方案差异显著**（对称 vs 非对称、有无分组、有无 residual），会导致量化后 PPL 不同。这是设计差异，不是 bug。\n4. **不需要用统一 pipeline 重跑** — 前提是确认 KIVI baseline 确实等于论文 baseline（~9.81）。建议在 KIVI 脚本中加一次 unquantized baseline eval 来验证。\n5. **补跑 baseline 估算 GPU 时间**：Qwen2.5-7B WikiText-2 eval 约 5-8 分钟（583 chunks，每 chunk 一次 forward pass）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

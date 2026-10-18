@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "657cdb7609fe64ec63d8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh gpt2xl topk50 reextract",
+  "task_key": "worker_ssh_gpt2xl_topk50_reextract_20260515T030647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpt2xl_topk50_reextract_20260515T030647_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "667b36c30fecf6172962fdefded9c213e6c7069e769c7f7758ec07f3d9c717e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. All 7 steps complete.\n\n**Summary of gpt2xl_topk50 re-run results:**\n\n| Eval | Accuracy | d1v2 AUC | Status |\n|------|----------|----------|--------|\n| 4-class | 76.6% | 0.8259 | PASS |\n| 3-class (d1d2d3) | 69.5% | 0.8392 | PASS |\n| 3-class filtered | 68.4% | 0.8314 | PASS |\n\nAll outputs verified (features.jsonl=20000 lines, features_filtered.jsonl=19885 lines, features_3class_filtered.jsonl=14885 lines). Corrupted files deleted, single-process re-extraction completed cleanly, registry updated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

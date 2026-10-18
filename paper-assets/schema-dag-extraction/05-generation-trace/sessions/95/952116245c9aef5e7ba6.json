@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "952116245c9aef5e7ba6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper provenance update",
+  "task_key": "worker_paper_provenance_update_20260522T104704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_provenance_update_20260522T104704_result.json",
+    "occurrence": 1,
+    "bytes": 2119,
+    "sha256": "88f85a7e898b2f2fcfb8a24e668668d965ae3917bc07c3f81d5ff554bc1bf84b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML valid. All claims now have evidence except C008 (background framing, tier3 by design).\n\n## 报告\n\n**v24 → v25 更新完成**\n\n| 指标 | v24 | v25 |\n|------|-----|-----|\n| Claims | 39 | 53 |\n| Traced (tier2) | 32 | 52 |\n| Untraced (tier3) | 10 | 1 |\n| Tables | 6 | 6 |\n| Figures | 3 | 3 |\n| Coverage | 32/42 (76%) | 52/54 (96%) |\n\n### 原 untraced 项处理 (C033-C039, 7 项)\n\n全部映射到 bootstrap/three-way 实验：\n- **C033-C035**: 三组回归斜率 → `exp_fewrel_80pool_16sub_bootstrap`, `exp_fewrel_16rel_bootstrap`, `exp_fewrel_formal_80rel`\n- **C036-C038**: 三组 extreme-batch Δ → 同上 + `bootstrap_ci_analysis`\n- **C039**: permutation tests → `exp_fewrel_16rel_bootstrap` + `exp_fewrel_80pool_16sub_bootstrap`\n\n### 新增 claims (C040-C053, 14 项)\n\n| ID | 内容 | 来源实验 |\n|----|------|----------|\n| C040 | DocRED count curve + BCS gap 23.3pp | exp_docred_confusability |\n| C041 | DocRED IntraSub ρ=0.843 | exp_docred_error_taxonomy |\n| C042 | DocRED ridge VIF=50.9, R²=0.594 | exp_docred_confusability (D071) |\n| C043 | LLaMA-70B decline -30.7pp, BCS +10.94pp | exp_llama70b_cross_model |\n| C044 | Gemini Flash ρ=-0.943, BCS +17.6pp | exp_gemini_flash_cross_model |\n| C045 | Few-shot BCS gap widens 18.46→22.79pp | exp_fewshot_bcs_v2 |\n| C046 | Schema intervention negative -8.83pp | exp_schema_intervention |\n| C047 | Format-independent (p=0.97) | exp_paired_constrained |\n| C048 | SDGD-zero MAVEN F1=0.123 | exp_sdgd_zero_maven |\n| C049 | BCS range matched eliminates interaction | exp_bcs_range_matched |\n| C050 | Prompt sensitivity 7/8 negative | exp_prompt_sensitivity |\n| C051 | TOST interaction p=0.285 | exp_fewrel_formal_80rel |\n| C052 | FewRel pairwise r=0.187 freq-controlled | exp_fewrel_partial_corr_freq |\n| C053 | 25-batch 3-seed replication | exp_d051_count_curves_25 |\n\n### 剩余 tier3\n\n仅 **C008**（background framing statement），无对应实验，保留 tier3。\n\n### 注意\n\nC034 的 r=-0.637 可能是 D039 MEAN 修正前的值，需对照当前论文文本确认是否已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

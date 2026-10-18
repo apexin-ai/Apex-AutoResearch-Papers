@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e0b11a9ff1c1f675dd6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval mlp adapter seed44",
+  "task_key": "worker_analyze_eval_mlp_adapter_seed44_20260519T143455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_mlp_adapter_seed44_20260519T143455_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "5fbc07cdda2cb095a9d40dcbf737ebe2a7e8606507dd41712b8e67b8c9b23a11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n## eval_mlp_adapter_seed44 结果\n\n| 指标 | 值 |\n|---|---|\n| Overall SR | **60.4%** |\n| Wilson CI 95% | [56.1%, 64.6%] |\n| Total | 302/500 |\n\n**Per-task SR:**\n\n| Task | SR |\n|---|---|\n| 0 alphabet_soup | 54% |\n| 1 cream_cheese | 68% |\n| 2 salad_dressing | 58% |\n| 3 bbq_sauce | 50% |\n| 4 ketchup | 80% |\n| 5 tomato_sauce | 58% |\n| 6 butter | 82% |\n| 7 milk | 58% |\n| 8 chocolate_pudding | 54% |\n| 9 orange_juice | 42% |\n\n## 3-seed 汇总 (MLP Adapter Control)\n\n| Seed | SR |\n|---|---|\n| 42 | 65.2% |\n| 43 | 64.6% |\n| 44 | 60.4% |\n| **Mean ± Std** | **63.4 ± 2.6%** |\n\nConclusion: **negative** — MLP adapter 3-seed mean 63.4±2.6% 与 cross-attention compressor 3-seed 61.2±1.4% 性能相当（差异在标准差范围内），不支持 re-encoding 优于 capacity matching 的 claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

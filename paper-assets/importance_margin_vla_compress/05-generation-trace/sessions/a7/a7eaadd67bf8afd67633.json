@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a7eaadd67bf8afd67633",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit gpu status all servers",
+  "task_key": "worker_audit_gpu_status_all_servers_20260526T131651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_gpu_status_all_servers_20260526T131651_result.json",
+    "occurrence": 1,
+    "bytes": 2967,
+    "sha256": "a0436517876e652f33b5d15f2752eb365a52212127f50d31bfe58cf68a220ffd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。\n\n---\n\n## GPU 进程审计报告\n\n### COMPLETED（2 个）\n\n**eval_pi05_l2norm_k075_long_seed42 | cqa1-33015:cuda:0 | COMPLETED | SR=73.4%**\n\n| Task | Description | SR |\n|------|-------------|-----|\n| T0 | open the bottom drawer... | 96.0% (48/50) |\n| T1 | put both cream cheese... | 94.0% (47/50) |\n| T2 | turn on the stove... | 82.0% (41/50) |\n| T3 | turn on the stove... (v2) | 70.0% (35/50) |\n| T4 | put the black bowl... | 68.0% (34/50) |\n| T5 | pick up the book... | 84.0% (42/50) |\n| T6 | put the white mug... | 52.0% (26/50) |\n| T7 | put both alphabet soup... | 76.0% (38/50) |\n| T8 | put both moka pots... | 28.0% (14/50) |\n| T9 | put yellow/white mug... | 84.0% (42/50) |\n| **Overall** | | **73.4% (367/500)** |\n\n**eval_openvla_attn_k085_goal_seed42_v3 | westd-38929:cuda:2 | COMPLETED | SR=74.6%**\n\n| Task | Description | SR |\n|------|-------------|-----|\n| T1 | open the middle drawer of the cabinet | 52.0% (26/50) |\n| T2 | put the bowl on the stove | 88.0% (44/50) |\n| T3 | put the wine bottle on top of the cabinet | 76.0% (38/50) |\n| T4 | open the top drawer and put the bowl inside | 44.0% (22/50) |\n| T5 | put the bowl on top of the cabinet | 98.0% (49/50) |\n| T6 | push the plate to the front of the stove | 84.0% (42/50) |\n| T7 | put the cream cheese in the bowl | 74.0% (37/50) |\n| T8 | turn on the stove | 94.0% (47/50) |\n| T9 | put the bowl on the plate | 78.0% (39/50) |\n| T10 | put the wine bottle on the rack | 58.0% (29/50) |\n| **Overall** | | **74.6% (373/500)** |\n\n---\n\n### RUNNING（6 个）\n\n```\nexp_id                                    | server:gpu         | status  | progress            | 备注\neval_pi05_attention_k075_long_seed42_v2   | cqa1-33015:cuda:1  | RUNNING | T9 ep20/50, ~49.6%  | PID 213212, 运行 4h03m\neval_pi05_attention_k05_long_seed42_v2    | cqa1-33015:cuda:2  | RUNNING | T6 ep40/50, ~58.0%  | PID 262562, 运行 2h51m\neval_pi05_attention_k085_long_seed42_v2   | cqa1-33015:cuda:3  | RUNNING | T2 ep20/50 (early)  | PID 337364, 运行 1h14m\neval_openvla_random_k085_goal_seed42      | westd-38929:cuda:0 | RUNNING | T10 ep40/50, 即将完成 | PID 467961, 运行 3h10m\neval_openvla_random_k05_long_seed42_v2    | westd-38929:cuda:1 | RUNNING | T9 ep10/50          | PID 279274, 运行 8h14m\neval_openvla_attn_k085_long_seed42_v5     | westd-38929:cuda:3 | RUNNING | T3 ep30/50 (early)  | PID 514347, 运行 2h07m\n```\n\n---\n\n### 新发现的进程（未在审计清单中）\n\n```\nPID 384775 | cqa1-33015:cuda:0 | eval_pi05_random_k085_long_seed42      | 刚启动 ~4min\nPID 601124 | westd-38929:cuda:2 | eval_openvla_attn_k07_goal_seed42     | 刚启动 ~5min\n```\n\n这两个是已完成实验腾出 GPU 后被新启动的实验。\n\n---\n\n**总结**：8 个审计目标中，2 个 COMPLETED（已提取完整 SR），6 个 RUNNING（无崩溃），0 个 CRASHED。两台服务器 8 张 GPU 全部满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

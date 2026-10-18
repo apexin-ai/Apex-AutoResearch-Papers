@@ -1,0 +1,2630 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fe1bbde7623f8449bd9a",
+  "rounds": [
+    {
+      "number": 37,
+      "messages": [
+        {
+          "source_line": 1261,
+          "timestamp": "2026-05-23T14:23:16.275696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 487.9}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 494.3}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 445.1}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 301.2}], \\\"total_pages\\\": 20, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 656
+          },
+          "id": "event-001261"
+        },
+        {
+          "source_line": 1262,
+          "timestamp": "2026-05-23T14:23:20.689475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001262"
+        },
+        {
+          "source_line": 1263,
+          "timestamp": "2026-05-23T14:23:21.442651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 753
+          },
+          "id": "event-001263"
+        },
+        {
+          "source_line": 1264,
+          "timestamp": "2026-05-23T14:23:21.643933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001264"
+        },
+        {
+          "source_line": 1265,
+          "timestamp": "2026-05-23T14:23:21.995171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001265"
+        },
+        {
+          "source_line": 1266,
+          "timestamp": "2026-05-23T14:23:22.299211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-001266"
+        },
+        {
+          "source_line": 1267,
+          "timestamp": "2026-05-23T14:23:22.299699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001267"
+        },
+        {
+          "source_line": 1268,
+          "timestamp": "2026-05-23T14:23:23.007706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1012
+          },
+          "id": "event-001268"
+        },
+        {
+          "source_line": 1269,
+          "timestamp": "2026-05-23T14:23:23.012656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 712
+          },
+          "id": "event-001269"
+        },
+        {
+          "source_line": 1270,
+          "timestamp": "2026-05-23T14:23:30.700064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form with all dimensions, their exact rating scales (1-5, etc.), and what each score level means. I need the exact fields: soundness, excitement/novelty, overall assessment, confidence, and any other dimensions."
+            }
+          },
+          "id": "event-001270"
+        },
+        {
+          "source_line": 1271,
+          "timestamp": "2026-05-23T14:23:32.662195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-001271"
+        },
+        {
+          "source_line": 1272,
+          "timestamp": "2026-05-23T14:23:32.662644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t% \\usepackage{inconsolata} % unavailable locally; re-enable for submission\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath,amssymb}\n14\t\\usepackage{xcolor}\n15\t\\usepackage{subcaption}\n16\t\\usepackage{tikz}\n17\t\\usetikzlibrary{arrows.meta,positioning}\n18\t\n19\t\\title{The Likert Blindspot: Measurement-Mode Divergence\\\\in LLM Judge Style Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\input{sections/abstract}\n27\t\n28\t\\input{sections/introduction}\n29\t\n30\t\\input{sections/related_work}\n31\t\n32\t\\input{sections/method}\n33\t\n34\t\\input{sections/experiments}\n35\t\n36\t\\input{sections/conclusion}\n37\t\n38\t\\section*{Limitations}\n39\t\\label{sec:limitations}\n40\t\n41\t\\textbf{Residual confounding.}\n42\tThe NLI gate blocks content changes but cannot block quality perception shifts mediated by style itself.\n43\tAlthough formality effects survive logistic adjustment (OR $= 2.32$, $p = 0.006$), residual confounding is not fully eliminated; definitive resolution requires human ground-truth comparison of Likert and pairwise judgments on identical pairs.\n44\t\n45\t\\textbf{Detection vs.\\ amplification.}\n46\tThe Blindspot may partly reflect pairwise format amplification \\citep{jeong2025comparative} rather than pure detection.\n47\tSix controls bound this risk (\\S\\ref{sec:amplification}), but we cannot precisely quantify the amplification factor without a ground-truth bias magnitude.\n48\t\n49\t\\textbf{Scope.}\n50\tCSD applies only to surface-level axes whose rewrites preserve semantic content; a tone pilot (assertive $\\to$ hedging) was rejected by the NLI gate.\n51\tPrimary analyses use LLMBar ($n = 100$) with five judges; generalization to additional axes, benchmarks, and judges remains open.\n52\t\n53\t\\section*{Code and Data}\n54\tCode and data will be released upon acceptan\n…[truncated 95 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001272"
+        },
+        {
+          "source_line": 1273,
+          "timestamp": "2026-05-23T14:23:38.653542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Dimensions\n\n## 1. **Reviewer Confidence**\nScale: 1-5\n- 5: \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- 4: Quite sure; unlikely but possible to miss something affecting ratings\n- 3: Pretty sure; may have missed details despite general familiarity\n- 2: Willing to defend evaluation, but fairly likely missed details or novelty assessment uncertain\n- 1: Outside expertise area or paper very difficult to understand\n\n## 2. **Soundness**\nScale: 1-5 (with .5 increments)\n- 5: \"Excellent: This study is one of the most thorough I have seen, given its type.\"\n- 4: Strong; provides sufficient support with optional extra experiments\n- 3: Acceptable; sufficient support for main claims; minor points need details\n- 2: Poor; main claims insufficiently supported; major technical problems\n- 1: \"Major Issues: This study is not yet sufficiently thorough to warrant publication\"\n\n## 3. **Excitement**\nScale: 1-5 (with .5 increments)\n- 5: \"Highly Exciting: I would recommend this paper to others and/or attend its presentation\"\n- 4: Exciting; would mention to others or attend presentation\n- 3: Interesting; might mention points or attend if time permits\n- 2: Potentially Interesting; doesn't resonate personally but may appeal to community\n- 1: \"Not Exciting: this paper does not resonate with me, and I don't think it would with others\"\n\n## 4. **Overall Assessment**\nScale: 1-5 (with .5 increments)\n- 5: Consider for Award (top 2.5% papers)\n- 4.5: Borderline Award\n- 4: Conference acceptance\n- 3.5: Borderline Conference\n- 3: Findings acceptance\n- 2.5: Borderline Findings\n- 2: Resubmit next cycle with substantial revisions\n- 1.5: Resubmit after next cycle; substantial revisions needed\n- 1: \"Do not resubmit: This paper has to be fully redone, or it is not relevant\"\n\n## 5. **Reproducibility**\nScale: 1-5\n- 5: \"They could easily reproduce the results.\"\n- 4: Mostly reproducible; minor variation possible\n- 3:\n…[truncated 251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 7953
+          },
+          "id": "event-001273"
+        },
+        {
+          "source_line": 1274,
+          "timestamp": "2026-05-23T14:23:42.720345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-001274"
+        },
+        {
+          "source_line": 1275,
+          "timestamp": "2026-05-23T14:23:43.173438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLikert and pairwise scoring produce divergent sensitivity across surface-level style axes when applied to LLM judges.\n3\tWe define this divergence---the \\emph{Likert Blindspot}---as significant pairwise sensitivity absent from Likert, admitting non-exclusive explanations including measurement attenuation, format amplification, and construct divergence.\n4\tWe introduce Controlled Style Decomposition (CSD), a black-box diagnostic quantifying this divergence via NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n5\tAcross five judges from four providers and two primary axes (formality, verbosity), pairwise reaches significance ($p < 0.001$) where Likert does not ($p > 0.17$), with signal loss exceeding 60\\%---replicated across three benchmarks and confirmed by seven statistical methods.\n6\tGEE decomposition reveals distinct per-axis confound structures: verbosity bias is style-dominated (Style OR $8$--$13$, Originality OR ${<}1$), while formality reflects joint style--quality contributions.\n7\tOne judge (Claude Sonnet~4) exhibits benchmark-dependent sensitivity, illustrating bias as a judge$\\times$benchmark interaction; non-tie concordance (76.6\\%, $p < .001$) is more consistent with attenuation than construct divergence.\n8\tLikert-only audits may thus fail to surface style-driven preferences that propagate through pairwise-based alignment pipelines.\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-001275"
+        },
+        {
+          "source_line": 1276,
+          "timestamp": "2026-05-23T14:23:43.173745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-001276"
+        },
+        {
+          "source_line": 1277,
+          "timestamp": "2026-05-23T14:23:43.224141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\emph{``What is the average height for a male?''} --- given a formal and a casual answer with verified identical content (NLI entailment $= 0.993$), GPT-4o rates the casual variant \\emph{higher} on a 1--10 Likert scale (8 vs.\\ 5), yet consistently selects the formal variant in pairwise comparison.\n4\tSame judge, same texts, opposite conclusions.\n5\tWe term this the \\emph{Likert Blindspot}---an operational descriptor for the measurement-mode divergence where pairwise comparison detects statistically significant style sensitivity that Likert scoring fails to detect on the same data, without committing to a specific causal mechanism.\n6\tThis divergence admits multiple non-exclusive explanations---Likert measurement attenuation, pairwise format amplification \\citep{jeong2025comparative}, or construct-level differences between absolute and comparative evaluation---which our controlled design bounds but cannot definitively adjudicate (\\S\\ref{sec:likert_pairwise}).\n7\tUnder construct divergence, pairwise and Likert modes may measure distinct constructs---comparative sensitivity versus absolute quality judgment---in which case the divergence reflects measurement scope rather than measurement failure, with different practical implications for audit design (\\S\\ref{sec:likert_pairwise}).\n8\tThis example reflects a consistent pattern: surface-level style features alone explain most of the variance in judge scores \\citep{murugadoss2025sos}, with 76--92\\% of preferences originating from style cues \\citep{li2026preference,soumik2026judging}.\n9\t\n10\tLLM judges are central infrastructure for NLP evaluation and alignment training (RLHF, DPO), where judge preferences serve as reward signals; any systematic bias propagates through both evaluation leaderboards and model development pipelines.\n11\tDespite this, existing approaches address individual requirements (multi-dimensional style analysis \\citep{casse2026concise,wang2026fairjudge}, interventional design \\cit\n…[truncated 3702 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001277"
+        },
+        {
+          "source_line": 1278,
+          "timestamp": "2026-05-23T14:23:48.846608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-001278"
+        },
+        {
+          "source_line": 1279,
+          "timestamp": "2026-05-23T14:23:49.147846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\tTwo lines of work motivate our approach: interventional methods for diagnosing judge bias, and measurement theory on the sensitivity of different elicitation formats.\n5\t\n6\t\\paragraph{Interventional Approaches to Judge Bias}\n7\tText-based interventional methods have a growing methodological foundation \\citep{feder2021causalm,wu2021polyjuice,feder2022causal}.\n8\t\\citet{reber2025rate} propose RATE, a framework that rewrites model outputs along style attributes using imperfect counterfactuals and measures the causal effect on reward model scores via Likert-scale Average Treatment Effect (ATE).\n9\tRATE applies a correction term to account for rewriting imperfections, but its reliance on Likert ATE as the primary metric is a vulnerability: our experiments show that Likert scoring exhibits a ceiling effect in which 60\\% of style-transformed pairs receive identical integer scores, yielding non-significant ATE estimates ($p = 0.332$) for the same interventions that pairwise comparison detects at $p = 0.006$.\n10\tWhether this format sensitivity extends to RATE's broader attribute space is an open question; our results motivate independent validation of Likert-based effect estimates alongside pairwise measures.\n11\tCSD differs from RATE in three respects: it targets individual style axes rather than general attributes, it measures bias through position-controlled pairwise comparison rather than Likert ATE, and it enforces content preservation via NLI entailment gating rather than post-hoc correction for imperfect rewrites.\n12\t\\citet{counterfactual2025rhetorical} also adopt an interventional LLM-based design, rewriting texts to measure rhetorical style effects and aggregating preferences with a Bradley-Terry model.\n13\tTheir framework operates at persona-level granularity (e.g., ``writes like a professor''), whereas CSD intervenes on specific style axes (e.g., formality, conciseness) and uses a sign test with position control r\n…[truncated 5573 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-001279"
+        },
+        {
+          "source_line": 1280,
+          "timestamp": "2026-05-23T14:23:49.198485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex"
+            }
+          },
+          "id": "event-001280"
+        },
+        {
+          "source_line": 1281,
+          "timestamp": "2026-05-23T14:23:49.249133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Style-Controlled Rewriting}\n5\t\\label{sec:rewriting}\n6\t\n7\tWe isolate the effect of individual style attributes on judge scores by generating text pairs that differ along exactly one style axis.\n8\tFor each text, an instruction-tuned LLM (Qwen3-32B) classifies its current style along the target axis (e.g., formal vs.\\ casual via binary classification).\n9\tIt then rewrites the text toward the opposite pole (temperature 0.7, selected to balance diversity with coherence in pilot experiments) according to an axis-specific prompt (e.g., ``Rewrite the following text to be more formal/casual while preserving the exact same content and meaning'').\n10\tThis produces a dataset balanced across both directions at the dataset level: texts detected as formal are rewritten to casual, and vice versa.\n11\tEach operation approximates a binary intervention on a single style variable while all other axes remain fixed (Section~\\ref{sec:causal_framework}).\n12\tTo control for rewriting artifact bias---the possibility that the judge prefers original text over any rewrite regardless of style---we additionally generate a same-style double-rewrite for each text (e.g., formal $\\to$ formal) to form an original-vs-double-rewrite control pair, following the RATE bias correction protocol \\citep{reber2025rate}.\n13\t\n14\t\\subsection{Content Preservation Verification}\n15\t\\label{sec:nli_gate}\n16\t\n17\tStyle-controlled rewriting risks altering semantic content, which would confound the style effect with a content quality effect (the $R \\to Q$ path in Figure~\\ref{fig:dag}).\n18\tTo block this path, we apply a natural language inference (NLI) gate using DeBERTa-v3-large fine-tuned on MNLI \\citep{williams2018broad} with an entailment threshold of 0.90, selected as the threshold above which NLI performance plateaus (Appendix~\\ref{app:nli_sweep}).\n19\tFor axes that preserve information density (formality, register), we apply standard bidirectional entailment: both \n…[truncated 5577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001281"
+        },
+        {
+          "source_line": 1282,
+          "timestamp": "2026-05-23T14:23:58.434479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-001282"
+        },
+        {
+          "source_line": 1283,
+          "timestamp": "2026-05-23T14:23:58.585488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\n5\t\\subsection{Statistical Framework}\n6\t\\label{sec:stat_framework}\n7\t\n8\tThe primary family comprises six tests---three target judges (GPT-4o, Qwen3-32B, Llama-3.3-70B) $\\times$ two axes (formality, verbosity)---corrected via Holm-Bonferroni at $\\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from FWER control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\\ref{app:holm8}).\n9\tTable~\\ref{tab:main_results} reports both raw and adjusted $p$-values.\n10\tAnalyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\n11\tExploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\\alpha = 0.05$ without additional correction.\n12\tBradley-Terry parameters \\citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm}, using the \\texttt{choix} Python library's default L2 regularization ($\\alpha = 10^{-6}$).\n13\tIn binary-choice BT models, IIA is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.\n14\tAll bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42.\n15\tGEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\\hat{\\alpha} \\in [-0.25, +0.11]$; Appendix~\\ref{app:gee_diagnostics}).\n16\t\n17\t\\paragraph{Model selection.}\n18\tTarget judges span four architectures: GPT-4o (2024-08-06), Qwen3-32B-Instruct (also serving as rewriter), Llama\n…[truncated 16147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001283"
+        },
+        {
+          "source_line": 1284,
+          "timestamp": "2026-05-23T14:23:58.585837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-001284"
+        },
+        {
+          "source_line": 1285,
+          "timestamp": "2026-05-23T14:23:58.636421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tCSD yields two findings.\n5\tFirst, the \\emph{Likert Blindspot}: pairwise and Likert scoring produce divergent verdicts---complete at moderate bias ($d \\to 0$ at $n = 355$), ${>}60\\%$ signal loss at stronger effects---across four judges (Gemini weaker on formality), three benchmarks, and seven methods.\n6\tSecond, GEE decomposition reveals distinct per-axis confound structures---verbosity is style-dominated, formality conditional, register judge-dependent.\n7\tNon-tie concordance (76.6\\%, $p < .001$) is more consistent with attenuation than construct divergence; single-format audits risk systematic blind spots.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001285"
+        },
+        {
+          "source_line": 1286,
+          "timestamp": "2026-05-23T14:26:16.644491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/---/ /g; s/--/ /g; s/  */ /g' | wc -w",
+              "description": "Count abstract word count roughly"
+            }
+          },
+          "id": "event-001286"
+        },
+        {
+          "source_line": 1287,
+          "timestamp": "2026-05-23T14:26:16.796809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "169"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-001287"
+        },
+        {
+          "source_line": 1288,
+          "timestamp": "2026-05-23T14:28:39.752720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 审稿意见：新颖性与完整性\n\n## 论文信息\n- **Title**: The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation\n- **Venue**: EMNLP 2026 via ACL Rolling Review (May 2026 cycle)\n\n---\n\n## Summary\n\n本文定义了 \"Likert Blindspot\"——LLM judge 的 pairwise comparison 能检测到风格敏感性而 Likert scoring 检测不到的现象。提出 Controlled Style Decomposition (CSD) 框架，整合 NLI-gated 内容控制、per-axis 风格分解和 position-controlled pairwise comparison。在 4-5 个 judge、3 个 benchmark、2-3 个风格轴上实验，结果一致显示 Likert 失灵（7 种统计方法全部确认）。GEE 条件分解揭示 per-axis confound structure：verbosity 是 style-dominated（Style OR 8–13），formality 是 quality-confounded。论文坦诚提出三种非排他解释（attenuation, amplification, construct divergence），统计工作扎实。\n\n---\n\n## 总体评分\n\n**Overall Assessment**: 3.5 / 5 — Borderline Conference\n\n**一句话总结**: 实验执行出色、统计严谨，但核心发现本质上是经典心理测量学原理（Thurstone 1927）在 LLM judge 领域的系统验证，新颖性为 moderate；per-axis confound structure 是唯一genuinely novel 的经验发现。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4 / 5 | 方法论严谨，多层控制设计（NLI gating, position swap, double-rewrite, debiased prompting），七种统计方法交叉验证，Holm-Bonferroni 校正。小样本和 rewriter-judge overlap 是次要问题。 |\n| Excitement | 3 / 5 | 对 LLM judge 审计实践有直接指导意义，GEE per-axis 分解是有用的方法贡献。但核心 insight（pairwise 比 Likert 更敏感）对熟悉测量理论的读者不新鲜。 |\n| Reproducibility | 4 / 5 | 方法描述详细，统计流程完整，承诺 code/data release。模型 API 版本明确（GPT-4o 2024-08-06 等）。 |\n| Confidence | 4 / 5 | 熟悉心理测量学文献、LLM judge 评估和因果推断方法。 |\n\n---\n\n## 主要优势\n\n**S1. 卓越的实验严谨性。** 六层控制设计（NLI gate, position swap, double-rewrite, debiased prompting, cross-rewriter validation, GEE confound decomposition）在 LLM judge bias 文献中属于最严格的方法控制之一。七种统计方法全部一致确认 Blindspot（Table 14, Appendix M），bootstrap CI、TOST equivalence testing、Bayesian equivalence testing 的组合使用展现了统计成熟度。\n\n**S2. Per-axis confound structure 是genuinely novel 的发现。** GEE decomposition 揭示 verbosity 是 style-dominated（Style OR 8–13, Originality OR < 1）而 formality 是 quality-confounded（两个 predictor 都显著），这种 per-axis 差异不是经典心理测量学能预测的，对 LLM judge 审计策略有直接实践意义——不同风格轴需要不同的审计方法。\n\n**S3. 诚实的 claim hedging。** 论文主动提出三种非排他解释（§5.1），明确承认 residual confounding 未完全消除（Limitations），用 \"complements\" 而非 \"surpasses\" 描述与经典框架的关系。这在 LLM 领域论文中属于少见的审慎态度。\n\n**S4. 跨 judge/benchmark 复制规模。** 5 judges × 3 benchmarks × 3 axes 的实验矩阵（虽然部分为 exploratory），加上 n=355 的 scaled replication，提供了远超单一实验的证据强度。Claude Sonnet 4 的 benchmark-dependent 结果（§5.3）是一个有价值的 discriminative validity 证据。\n\n**S5. 实践相关性强。** 结论直接指向 LLM alignment pipeline 的审计盲区——如果 Likert-based reward model 评估漏检了 pairwise 能发现的风格偏差，那么通过 RLHF/DPO 训练的模型可能继承未被检测的 style preferences。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 新颖性定位不够精确——核心发现是 Thurstone 1927 的 domain transfer，而非新现象\n\n- 具体位置：Title, Abstract, §1 Introduction (para 3-4), §5.1\n- 问题：论文的核心经验发现——pairwise comparison 比 Likert 更能检测 style sensitivity——本质上是 Thurstone (1927) Law of Comparative Judgment 在 LLM judge 领域的验证。论文在 §1 para 3 确实引用了 Thurstone 并说 \"quantitatively consistent\"，但 Title \"The Likert Blindspot\" 和 Abstract 的 framing 仍然暗示这是一个新发现的现象。Introduction 声称的三个 \"LLM-specific distinctions\" 中，(c) \"near-complete binary split\" 被论文自己承认 \"consistent with classical predictions when accounting for effect-size-dependent power\"——这不是一个 LLM-specific distinction，而是经典理论在该效应量下的预测结果。\n- 为什么影响接收：ARR Excitement 维度要求 novelty。如果审稿人熟悉测量理论，会认为核心 contribution 是一个 well-executed replication study 而非 discovery。这直接影响 Conference vs Findings 的定位。\n- 建议修改方向：(1) 将 Introduction 的三个 LLM-specific distinctions 缩减为两个，删除 (c) binary split 或将其降级为\"与经典理论一致的验证\"；(2) 更清晰地将 contribution 定位为 \"systematic empirical demonstration + per-axis structure discovery + practical diagnostic tool\"，而非 \"new phenomenon\"；(3) 考虑在 Title/Abstract 中添加类似 \"extends classical measurement theory to LLM evaluation\" 的表述。\n\n**N2** [critical] Scaled replication 覆盖不足——仅一个 cell 有大样本验证\n\n- 具体位置：§5.1 para 2, Table 1\n- 问题：n=355 的 scaled replication 仅覆盖 Qwen3-32B × formality 这一个 cell。这是论文最关键的论点支柱——用大样本证明 Likert 的 d→0 是结构性的而非 power 不足。但其他 11 个 primary/confirmatory cells（GPT-4o × formality/verbosity, Llama-70B × formality/verbosity, Gemini × formality/verbosity 等）都只有 n=86–88，无法排除这些 cells 的 Blindspot 仅仅是 power 问题。\n- 为什么影响接收：论文声称 \"consistent pattern rather than an isolated anomaly\"（§1 Contribution 2），但只有一个 cell 用大样本验证了这不是 power artifact。这是一个可证伪但未被充分验证的 claim。尤其 Gemini formality（BT 仅 57.4%，效应最弱）如果做 scaled replication 可能不复现 d→0 的结论。\n- 建议修改方向：(1) 对至少一个 verbosity cell 做 scaled replication（因为 verbosity 是最强效应，但 Likert d 也接近零——这可以更干净地证明结构性衰减）；(2) 如果资源限制无法做更多 replication，应在 Limitations 明确承认这一 coverage gap，并将 \"consistent pattern\" 的 claim 弱化为 \"observed pattern, with structural attenuation confirmed for one judge×axis cell\"。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Title \"The Likert Blindspot\" 暗示单一因果方向，与正文 nuanced 讨论矛盾\n\n- 具体位置：Title, §5.1 \"Interpreting the divergence\"\n- 问题：\"Blindspot\" 一词暗示 Likert 有缺陷（漏检），预设了 attenuation 解释为主导。但 §5.1 明确提出三种非排他解释，包括 pairwise amplification（可能是 pairwise 过度放大而非 Likert 漏检）和 construct divergence（两种模式测量不同构念）。如果 amplification 是主因，那么 \"Blindspot\" 的描述就不准确——Likert 没有\"盲点\"，只是 pairwise 有\"放大镜\"。\n- 建议：(1) 在 §1 更早处对 \"Blindspot\" 进行操作化定义（论文在 §1 para 2 做了，但可以更突出）；(2) 考虑在 Abstract 中加入一句明确的 hedge：e.g., \"which we term the Likert Blindspot as an operational descriptor without committing to a specific causal mechanism\"（部分已在正文中，但 Abstract 缺少）。实际上我看到 Introduction 第二段有这个 hedge，但 Abstract 和 Title 没有传达。\n\n**W2** [warning] Qwen3-32B 同时担任 rewriter 和 target judge 的循环依赖\n\n- 具体位置：§3.1, §4.1, Appendix E\n- 问题：Qwen3-32B 既是风格改写器又是被测 judge。虽然 Appendix E 展示了独立 GPT-4o rewriter 的验证（BT 从 66.5% 降至约 57%，降幅 22%），但这个 22% 的降幅本身值得关注——它说明 evaluator-producer overlap 确实 inflate 了效应量。论文报告的 Qwen3-32B 结果可能系统性偏高。\n- 建议：(1) 在 §4.1 或 Table 1 脚注中标注 Qwen3-32B 的 evaluator-producer overlap caveat；(2) 如果可能，对 Qwen3-32B 的所有主要分析使用 GPT-4o rewriter 数据作为 robustness check；(3) 考虑 Table 1 中标注 Qwen3-32B 结果可能有 ~20% 的上行偏差。\n\n**W3** [warning] Register 轴结果弱且 exploratory，但在 Abstract/Contribution 中占有隐含地位\n\n- 具体位置：Abstract (\"two primary axes\"), Table 1 (register rows), §5.3\n- 问题：Register 轴在 Table 1 中有 3 行结果（GPT-4o, Qwen3, Llama-70B），但 BT 仅 .553–.635，效应远弱于 formality (.574–.695) 和 verbosity (.708–.773)。更关键的是，register 的 GEE 结构（Table 2）显示 Originality OR 远高于 Style OR（Qwen3: 5.72 vs 1.91），说明 register 效应可能主要由 quality confounding 驱动。论文标注为 \"exploratory\"，但在 cross-benchmark heatmap (Figure 6) 和 GEE table (Table 2) 中占了相当篇幅。\n- 建议：将 register 结果完全移至 Appendix，正文只保留一句 \"an exploratory register axis yielded weaker, quality-confounded effects (Appendix X)\"。这会释放正文空间给更重要的 scaled replication 或 cross-benchmark 讨论。\n\n**W4** [warning] \"Systematic pattern\" / \"consistent\" 等措辞与例外情况的张力\n\n- 具体位置：§1 Contribution 2, §6 Conclusion\n- 问题：Contribution 2 声称 \"revealing measurement-mode divergence as a consistent pattern rather than an isolated anomaly\"。但实际数据中：(1) Claude Sonnet 4 不显示一般性 Blindspot（Table 1, BT .541–.562, n.s.）；(2) Gemini formality 效应弱（BT 57.4%, Style OR 1.64 n.s.）；(3) cross-benchmark replication 仅 6/24 cells 达到显著。论文用 \"three exceptions (‡)\" 处理例外，但 \"consistent\" 一词在有 ~30% exception rate 的情况下值得审慎使用。\n- 建议：将 \"consistent pattern\" 改为 \"predominant pattern\" 或 \"majority pattern\"；在 §6 Conclusion 中量化复制率（e.g., \"8/11 primary+confirmatory cells, 6/24 cross-benchmark cells\"）。\n\n---\n\n## Minor 问题（不影响接收）\n\n**M1.** 术语一致性：\"style bias\" 和 \"style sensitivity\" 在论文中交替使用（e.g., Abstract 用 \"sensitivity\"，§5.1 标题用 \"Blindspot\" 暗示 \"bias\"）。建议统一——鉴于论文立场是 agnostic about mechanism，\"style sensitivity\" 更准确。\n\n**M2.** Figure 5 (GEE bar chart, p.8) 的 y 轴标签 \"Odds Ratio\" 在 log scale 上可能对不熟悉 GEE 的读者造成困惑。建议添加 \"log scale\" 标注或在 caption 中明确说明。\n\n**M3.** §3.2 提到 \"DeBERTa-v3-large fine-tuned on MNLI\" 作为 NLI gate，但未说明该模型在 out-of-domain（非 MNLI distribution）文本上的性能是否经过验证。human annotation（§5.4）部分验证了这一点，但 NLI model 本身的 domain-shift robustness 未被讨论。\n\n**M4.** Table 1 的 \"Cat.\" 列标记（†, †_e, †_c, ---）需要读者频繁查阅脚注。建议直接使用文字标签如 \"Blind\", \"Expl\", \"Conf\", \"Neither\"。\n\n**M5.** §5.2 引用 Nemes et al. 2009 解释小样本上行偏差。这个引用是 meta-analysis 领域的，应用到 GEE OR 的 small-sample bias 上是否完全对应，可以补充说明。\n\n---\n\n## Questions to Authors\n\n**Q1.** §5.1 的 non-tie concordance analysis（76.6%, p < .001）是论文区分 attenuation 和 construct divergence 的关键证据。但 76.6% 的 concordance 意味着 23.4% 的 discordance——这个 discordance rate 是否足够低以排除 partial construct divergence？论文承认 \"partial construct divergence remains at weaker effect sizes\"，那么具体在哪个效应量阈值以下 construct divergence 可能成为主导解释？\n\n**Q2.** 100-point continuous Likert scale（Appendix O）仍然显示 p > 0.15。这是一个重要的 robustness check。但 Appendix O 是否控制了 judges 使用 continuous scale 时的行为变化（e.g., 是否有 evidence 表明 judges 真的利用了 continuous scale 的 granularity，而不是仍然只使用少数离散值）？\n\n**Q3.** 论文使用 Qwen3-32B 作为 style classifier（§3.1）判断文本当前风格。如果 classifier 本身有系统性偏差（e.g., 倾向于将高质量文本分类为 formal），这是否会在 data generation 阶段引入 confounding？\n\n**Q4.** GEE 的 exchangeable working correlation 假设在 paired comparison data 中是否合理？论文提到 within-pair correlations 接近零（α̂ ∈ [−0.25, +0.11]），但 −0.25 的估计值似乎不算\"接近零\"。这是否影响 sandwich standard errors 的可靠性？\n\n---\n\n## Missing References\n\n论文的 Related Work 相当全面（~40 引用），但以下方向可以加强：\n\n1. **Item Response Theory (IRT) 在 NLG evaluation 中的应用**：论文简短引用了 Embretson & Reise (2000)，但 IRT 提供了更正式的框架来量化不同 measurement mode 的信息函数差异。近期有 IRT 用于 LLM evaluation 的工作（e.g., Polo et al., 2024, \"TinyBenchmarks\"），可以补充讨论 IRT 视角下 Likert vs pairwise 的 information gain 差异。\n\n2. **Likert scale anchoring effects**：不同 LLM judge 可能以不同方式解释 1-10 scale 的锚点（e.g., 有些 judge 倾向使用中间值，有些使用极端值），这是 Likert 信号衰减的已知机制之一（Krosnick 1999 已引用，但 scale anchoring 的具体讨论较少）。\n\n3. **Pairwise comparison 在 RLHF 中的 amplification 问题**：除了 Jeong et al. (2025) Comparative Trap，还有 Munos et al. (2023) \"Nash Learning from Human Feedback\" 等讨论 pairwise preference 中的 noise amplification。\n\n---\n\n## Scoring Summary\n\n| 维度 | 分数 |\n|------|------|\n| **Soundness** | 4 / 5 |\n| **Excitement** | 3 / 5 |\n| **Overall Assessment** | 3.5 / 5 (Borderline Conference) |\n| **Reproducibility** | 4 / 5 |\n| **Confidence** | 4 / 5 |\n\n**Overall Justification**: 论文在实验设计和统计分析方面达到了很高的标准，per-axis confound structure 是一个有价值的发现，CSD 作为实用诊断工具有明确的应用价值。将其拉向 3.5 而非 3.0 的主要因素是：(1) 实验规模和控制的thoroughness 在同类工作中突出；(2) GEE per-axis 分解提供了超越 Thurstone 经典框架的 genuinely new insight；(3) 实践相关性强（directly actionable for RLHF/DPO pipeline audits）。阻止其达到 4.0 的因素是：(1) 核心现象是经典测量理论的 domain transfer，novelty ceiling 有限；(2) scaled replication 仅覆盖 1/12 cells；(3) \"consistent pattern\" 的 claim 与 ~30% exception rate 有张力。\n",
+              "reviewer_id": "2",
+              "project": "causal_style_decomp_judge"
+            }
+          },
+          "id": "event-001288"
+        },
+        {
+          "source_line": 1289,
+          "timestamp": "2026-05-23T14:28:43.316756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3564
+          },
+          "id": "event-001289"
+        },
+        {
+          "source_line": 1290,
+          "timestamp": "2026-05-23T14:28:46.235142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001290"
+        },
+        {
+          "source_line": 1291,
+          "timestamp": "2026-05-23T14:28:46.286429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001291"
+        },
+        {
+          "source_line": 1292,
+          "timestamp": "2026-05-23T14:28:50.655150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_16/_pdf_images"
+            }
+          },
+          "id": "event-001292"
+        },
+        {
+          "source_line": 1293,
+          "timestamp": "2026-05-23T14:28:50.705767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-001293"
+        },
+        {
+          "source_line": 1294,
+          "timestamp": "2026-05-23T14:29:09.141442+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n**核心判断**：Overall 3.5（Borderline Conference）。实验执行和统计严谨性达到高标准，GEE per-axis confound structure（verbosity style-dominated vs formality quality-confounded）是genuinely novel的发现。但核心现象——pairwise 比 Likert 更敏感——本质上是 Thurstone 1927 的 domain transfer，novelty ceiling 有限。\n\n**两个 Must-Fix**：\n1. 新颖性定位需要更精确——Introduction 的三个\"LLM-specific distinctions\"中第(c)个(binary split)被论文自己承认与经典理论一致，不构成独立贡献\n2. Scaled replication（n=355）仅覆盖 Qwen3-32B × formality 一个 cell，其他 11 个 cell 无法排除纯 power 问题\n\n**四个 Should-Fix**：Title 暗示单一因果方向与正文矛盾；Qwen3-32B rewriter-judge overlap（~20% inflation）；Register 轴结果弱应移至 Appendix；\"consistent pattern\" 与 ~30% exception rate 的张力。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2"
+          },
+          "id": "event-001294"
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "messages": [
+        {
+          "source_line": 1295,
+          "timestamp": "2026-05-23T14:31:28.117170+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整审稿意见，请逐条回应：对每个 Must-Fix、Should-Fix 和关键问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 完整审稿意见\n\n**Overall**: 3.5 / 5（Borderline Conference）\n\n### Must-Fix\n\n**N1** [critical] GEE 小样本膨胀严重，仅一个配置在 n=355 复制\n- Qwen3-32B formality Style OR 从 n=88 的 4.20 降至 n=355 的 2.15，shrinkage 达 49%。但只对 9 个 judge×axis 配置中的 1 个做了 n=355 复制。GPT-4o formality Style OR 在 n=88 时为 2.58 [1.41, 4.73]——如果经历类似 49% shrinkage，将降至 ~1.32，CI 将跨越 1.0（即不显著）。论文对 verbosity 的推断是外推，未经实证验证。\n\n**N2** [critical] 跨 benchmark 复制为确认偏差式选择（6/24 cells）\n- 仅测试 24 个可能的 benchmark×judge 配置中的 6 个，且明确选择标准为「targeting the strongest effects」。3 个例外（‡ 行）被 post-hoc 解释为 effect-size dependence，未被前瞻性验证。\n\n### Should-Fix\n\n**W1** [warning] Likert Blindspot 缺少正式的 divergence 检验\n- 论文分别展示「BT 显著」和「Likert 不显著」，但从未正式检验二者是否显著不同。Absence of evidence ≠ evidence of absence。\n\n**W2** [warning] Qwen3-32B 的 evaluator-producer overlap\n- 独立 rewriter 测试显示 verbosity Style OR 下降 22%（13.10 → 10.17）。22% 不是小数目。且 n=355 唯一复制恰好选用了有 overlap 的 Qwen3-32B。\n\n**W3** [warning] Claude Sonnet 4 负对照不充分\n- TOST 等价性仅在 Δ=12pp 时显著（p=.035），在 Δ=10pp 时不显著。贝叶斯因子 BF₀ < 3（inconclusive）。等价边界的选择缺乏独立于数据的先验理由。\n\n**W4** [warning] FK grade 的 mediator vs. confounder 辨识不足\n- Sobel 中介检验建立的是统计中介，不是因果中介。替代因果结构在统计上不可区分。\n\n**W5** [warning] GEE 模型潜在的遗漏变量偏差\n- GEE 仅含两个预测变量。建议报告 E-value 或 Rosenbaum bounds。\n\n### Questions\n1. n=355 复制是否使用相同 NLI gating threshold？\n2. 各 judge 的 Likert 评分分布是什么？\n3. 「76-92% of preferences originate from style cues」如何计算？\n4. 为什么 n=355 复制只选了 Qwen3-32B formality？\n\n### Missing References\n- Likert (1932) 原始文献\n- Schwarz (1999) Self-reports\n- Johnson & Goldstein (2003) defaults in choice architecture\n\n---\n\n请逐条回应每个 Must-Fix 和 Should-Fix。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001295"
+        },
+        {
+          "source_line": 1296,
+          "timestamp": "2026-05-23T14:33:29.669243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n## Must-Fix 回应\n\n### R1-N1: GEE 小样本膨胀严重，仅一个配置在 n=355 复制\n\n**[AGREE]** 同意这是论文的主要弱点之一，与我的 N2 指出的问题高度重叠。\n\n补充论证：\n- R1 的推算有说服力——GPT-4o formality Style OR 2.58 经历 49% shrinkage 后约为 1.32，CI 确实可能跨 1.0。这会从根本上动摇 GPT-4o formality 的 \"conditional style effect\" 结论。\n- 但需要区分两个 claim 的受影响程度不同：(1) **Blindspot 的存在性**（BT 显著 vs Likert 不显著）不依赖 GEE OR 的绝对值——BT win probability（Table 1）是非参数的，不受小样本 OR 膨胀影响；(2) **GEE per-axis confound structure** 的定量描述确实受影响。因此 N1 主要威胁的是 GEE 相关结论，而非 Blindspot 核心发现本身。\n- 论文在 §5.2 最后一段对 verbosity 的外推论证（\"even under ~50% shrinkage, projected 4–6.5, still ≫ Orig OR < 1\"）逻辑上成立但未经实证验证，R1 指出这一点是正确的。\n\n**结论**：应要求至少对一个 verbosity cell 做 scaled replication，或将 verbosity 的 GEE 定量结论明确标注为 \"projected, pending large-sample validation\"。\n\n---\n\n### R1-N2: 跨 benchmark 复制为确认偏差式选择（6/24 cells）\n\n**[AGREE]** 部分同意，但严重性判断略有不同。\n\n- R1 的批评——选择 \"targeting the strongest effects\" 构成确认偏差——在方法论上是正确的。如果只测试预期最强的 cells，6/24 的显著率无法代表 generalizability。\n- 但论文将 cross-benchmark 分析定位为 **exploratory**（§4.1 \"Gemini-2.5-Flash serves as confirmatory replication and is excluded from FWER control\"；Figure 6 caption 中 \"Grey ×: not tested\"），并未将其作为核心 contribution。论文的主要 claims 建立在 LLMBar 上，cross-benchmark 是补充证据。\n- 真正的问题是 §1 Contribution 2 的措辞——\"the first at this scale\"——暗示了比实际完成的更全面的 cross-benchmark 覆盖。如果改为 \"with selective cross-benchmark evidence\"，批评力度会大幅降低。\n- 3 个 ‡ exceptions 的 post-hoc \"severity spectrum\" 解释（§5.1 最后一段）确实缺乏 pre-registration，R1 的批评成立。\n\n**结论**：应将 Contribution 2 的措辞弱化，明确 cross-benchmark 的 exploratory 性质和选择标准。但这不应作为 Must-Fix，因为论文的主要 claims 不依赖于 cross-benchmark generalization。建议降级为 Should-Fix。\n\n---\n\n## Should-Fix 回应\n\n### R1-W1: Likert Blindspot 缺少正式的 divergence 检验\n\n**[AGREE]** 这是一个好的统计学观点，我的审稿遗漏了这一点。\n\n- R1 准确识别了一个逻辑缺口：论文分别展示 \"BT 显著\" 和 \"Likert 不显著\"，但从未检验两个 effect size 是否 statistically significantly different。\"Absence of evidence is not evidence of absence\" 在此完全适用。\n- 论文用 n=355 的 TOST equivalence testing（Appendix H, Δ=12pp 时 p=.035）和 bootstrap attenuation analysis（Appendix K, d 不随 n 增长而偏离零）间接回应了这一点，但正式的 measurement-mode interaction test（e.g., 将 measurement mode 作为 within-subject factor 的 mixed-effects model）确实缺失。\n- 这是可以在 revision 中补充的分析，且可能加强论文的论点。\n\n**结论**：同意应补充正式的 divergence 检验。一种方法是 bootstrap the difference in effect sizes between BT and Likert，检验该差异是否显著异于零。\n\n---\n\n### R1-W2: Qwen3-32B 的 evaluator-producer overlap\n\n**[AGREE]** 与我的 W2 一致。\n\n- 补充 R1 的论点：n=355 复制恰好选择了有 overlap 的 Qwen3-32B 这一点尤其值得警惕。如果 n=355 复制使用无 overlap 的 GPT-4o 作为 target judge（GPT-4o rewriter → GPT-4o judge 也有 overlap，但 Qwen3 rewriter → GPT-4o judge 无 overlap），结论会更 clean。\n- Appendix E 的独立 rewriter 验证（Table 6）显示 Blindspot 仍然存在（GPT-4o rewriter: Style OR = 10.17, p = 0.001; Blindspot: Yes），所以 overlap 影响的是效应量级而非现象存在性。\n\n**结论**：同意应更突出标注 overlap caveat，并建议至少一个 scaled replication 使用非 overlap 配置。\n\n---\n\n### R1-W3: Claude Sonnet 4 负对照不充分\n\n**[AGREE]** R1 的批评在技术上准确。\n\n- TOST 在 Δ=12pp 才显著（p=.035），在 Δ=10pp 时不显著——这意味着我们只能排除 ≥12pp 的效应，而 12pp 对于 BT win probability 来说是一个相当宽松的等价边界（对应约 .62 的 BT，接近某些弱 Blindspot cells 的效应量）。\n- BF₀ < 3 确实是 inconclusive by conventional Bayesian standards（Jeffreys scale 要求 BF > 3 为 moderate evidence）。\n- 等价边界 Δ=12pp 的选择在 Appendix H 中描述为 \"the smallest margin at which pooled significance is achieved\"——这是 data-driven 而非 a priori，R1 指出 \"缺乏独立于数据的先验理由\" 是正确的。\n- 但 Claude 的价值不完全取决于 equivalence testing。论文更多用 Claude 的 benchmark-dependent profile（LLMBar n.s., AEval verbosity OR = 4.76 significant）作为 discriminative validity 证据（§5.3），说明 CSD 不是 universal false positive machine。这个论证不依赖 TOST。\n\n**结论**：同意 TOST 分析的 boundary justification 不足，建议弱化 Claude 作为 \"negative control\" 的 claim，转而强调其 \"discriminative validity\" 角色——CSD 在不同 judges 上给出不同结论，这本身就说明框架不是 universal false positive。\n\n---\n\n### R1-W4: FK grade 的 mediator vs. confounder 辨识不足\n\n**[AGREE]** R1 的因果推理论点是正确的。\n\n- 论文在 §5.3 声称 \"FK lies on the causal pathway S → FK → Y: the intervention directly alters readability, making FK a mediator rather than a confounder\"。这个因果方向 claim 是 reasonable but not testable with observational data alone。\n- 替代因果结构确实存在：如果存在一个未观测的共因（e.g., text complexity）同时影响 FK grade 和 judge score，那么 FK 是 collider 而非 mediator，conditioning on it 会引入 collider bias。\n- 但从 domain knowledge 看，S → FK 的方向是 plausible 的——formality 的 rewriting 确实会改变 readability（formal text 倾向使用更复杂的句式）。这是 a priori reasonable 的因果方向，但论文应更清楚地标注这是 an assumed causal model。\n\n**结论**：同意应将 mediator claim 降级为 \"plausible under the assumed causal model\" 而非 definitive。\n\n---\n\n### R1-W5: GEE 模型潜在的遗漏变量偏差\n\n**[REBUT]** 部分反驳。\n\n- R1 建议报告 E-value 或 Rosenbaum bounds。这对于声称因果效应的观察性研究是标准做法，但论文在 Appendix A（Design Rationale）中明确声明 \"Our approach provides interventional rather than formal causal evidence\"，且 Limitations 第一条直接承认 residual confounding。\n- GEE 在论文中的角色是 **descriptive decomposition**（将 BT 效应分解为 style 和 originality 成分），而非因果推断工具。论文使用 \"conditional\" 而非 \"causal\"。在这个定位下，omitted variable bias 确实存在但不威胁论文的核心 claim——论文没有声称 GEE 给出因果效应。\n- 但 R1 的建议仍有价值：报告 E-value 不需要声称因果关系，它量化的是 \"需要多强的未观测混淆才能解释掉观测到的 association\"。对于 verbosity 的 Style OR = 8–13，E-value 会非常高（说明 extremely strong confounding 才能消除效应），这实际上会加强论文的论证。\n\n**结论**：论文定位 GEE 为 descriptive 而非 causal，omitted variable 批评的杀伤力有限。但同意报告 E-value 是一个 costless improvement，建议在 revision 中添加。\n\n---\n\n## Questions 回应\n\n### Q1: n=355 复制是否使用相同 NLI gating threshold？\n\n我在论文中未找到明确说明。§3.2 设定 threshold = 0.90，§4.2 提到 n=355 是 \"4× scaled replication\"——合理推测使用相同 threshold，但 R1 要求明确声明是正确的。Appendix F 的 NLI threshold sensitivity sweep 仅在 n=88 上做，未提及 n=355。\n\n### Q2: 各 judge 的 Likert 评分分布是什么？\n\n这是一个好的要求。论文在 §5.1 提到 \"Likert tie rates of 58–73%\"，但没有展示完整分布（e.g., histogram）。这些分布对于理解 tie inflation 机制至关重要——是 judges 倾向使用中间值（central tendency bias），还是整体集中在高分区（ceiling effect）？\n\n### Q3: 「76-92% of preferences originate from style cues」如何计算？\n\n这不是论文自己的计算，而是引用 li2026preference 和 soumik2026judging 的结论（§1 para 1）。但 R1 的问题合理——引用他人的 claim 时应注意该 claim 的 operationalization 是否与本文一致。\n\n### Q4: 为什么 n=355 复制只选了 Qwen3-32B formality？\n\n论文未解释选择理由。可能的原因：(1) Qwen3-32B 也是 rewriter，数据生成成本最低；(2) formality 是两个 primary axis 之一。但 R1 隐含的批评是正确的——这个选择引入了 evaluator-producer overlap，不是最 clean 的验证。\n\n---\n\n## Missing References 回应\n\n### Likert (1932)\n**[AGREE]** 引用 Likert 原始文献是合理的建议。论文大量讨论 Likert scale 的局限性，却未引用其原始提出者。虽然 Stevens (1946) 已被引用，但 Likert (1932) 作为 construct 的 origin 值得加入。\n\n### Schwarz (1999) Self-reports\n**[REBUT]** 边际相关。Schwarz 的 self-report 认知模型主要针对人类被试的 survey response，LLM judge 的 \"self-report\" 机制不同（不涉及 memory retrieval 或 social desirability）。可以在 Related Work 一句话提及，但非必须。\n\n### Johnson & Goldstein (2003) defaults in choice architecture\n**[REBUT]** 与论文主题距离较远。论文关注的是 measurement mode（Likert vs pairwise）的敏感性差异，不涉及 default option framing。Choice architecture 文献的相关性有限。\n\n---\n\n## 综合评估\n\nReviewer 1 的审稿意见整体质量很高，统计学功底扎实。两个 Must-Fix 中：\n- **N1（GEE 小样本膨胀）**：完全同意，但需要区分对 GEE 定量结论 vs Blindspot 存在性的影响\n- **N2（cross-benchmark 选择偏差）**：同意 concern，但建议降级为 Should-Fix（论文主 claims 不依赖 cross-benchmark）\n\n五个 Should-Fix 中，W1（缺少 formal divergence test）和 W3（Claude TOST boundary）是我审稿时遗漏的好观点。W5（GEE omitted variables）我部分反驳——论文定位 GEE 为 descriptive，omitted variable 批评的前提不完全成立，但报告 E-value 是低成本改进。\n\nR1 和我的 Overall 评分一致（3.5, Borderline Conference），且核心关切高度重叠：**scaled replication 覆盖不足**是两位 reviewer 共同识别的最大问题。\n",
+              "reviewer_id": "2",
+              "project": "causal_style_decomp_judge"
+            }
+          },
+          "id": "event-001296"
+        },
+        {
+          "source_line": 1297,
+          "timestamp": "2026-05-23T14:33:35.390439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 5721
+          },
+          "id": "event-001297"
+        },
+        {
+          "source_line": 1298,
+          "timestamp": "2026-05-23T14:33:41.055501+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成对 Reviewer 1 审稿意见的逐条回应，汇报给 Director。\n\n核心判断：\n- **N1（GEE 小样本膨胀）**：完全同意，但区分了对 GEE 定量结论 vs Blindspot 存在性的不同影响\n- **N2（cross-benchmark 选择偏差）**：同意 concern，建议降级为 Should-Fix\n- **W1（缺 formal divergence test）**：同意，这是我遗漏的好观点\n- **W3（Claude TOST）**、**W4（FK mediator）**：同意\n- **W5（GEE omitted variables）**：部分反驳——论文定位 GEE 为 descriptive 而非 causal，但同意报告 E-value 是低成本改进\n\n两位 Reviewer 的共识：**scaled replication 覆盖不足**是最大问题，Overall 评分一致（3.5, Borderline Conference）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2"
+          },
+          "id": "event-001298"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "messages": [
+        {
+          "source_line": 1299,
+          "timestamp": "2026-05-25T21:18:41.557468+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 审稿任务 — Round 1\n\n**论文**: \"The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation\"\n**目标 Venue**: EMNLP 2026 (Main Conference, Long Paper, via ARR)\n**ARR Submission Deadline**: May 25, 2026\n**Commitment Deadline**: August 2, 2026\n**格式要求**: 8 页正文 + 无限参考文献，Limitations 必须放在正文中（不计入 8 页），double-blind，ACL 模板\n**PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/submitted.pdf` (20 pages, A4)\n**LaTeX 源码**: `/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex`（各章节在 `sections/` 子目录）\n\n### 你的审查侧重：新颖性/完整性\n\n请重点审查以下方面：\n\n1. **Novelty 评估**\n   - \"Likert Blindspot\" 作为主要贡献是否具有足够的新颖性？Thurstone (1927) 以来 pairwise vs rating 的差异是心理测量学已知现象，本文在 LLM judge 领域的 domain transfer 是否构成足够的 novelty？\n   - CSD 方法论相比 RATE (Reber et al., 2025) 的增量贡献是什么？差异化论证是否清晰有力？\n   - GEE per-axis decomposition 作为贡献是否被充分强调？是否是本文真正的方法论亮点？\n   - 三个 claimed contributions 的措辞是否精确？是否过度 claim？\n\n2. **叙事逻辑与 Framing**\n   - Title \"The Likert Blindspot\" 是否预设了 Likert attenuation 解释，与正文三种非排他解释（attenuation, amplification, construct divergence）存在张力？\n   - Abstract 是否在 200 words 以内？是否准确反映了论文的贡献和限制？\n   - Introduction 的 motivating example（\"What is the average height for a male?\"）是否具有代表性和说服力？\n   - \"consistent pattern\" / \"systematic\" 等措辞是否与实际数据一致（考虑 Claude 的 null results 和 ~30% exception rate）？\n\n3. **Related Work**\n   - 对 RATE, CASSE, FairJudge, Comparative Trap 等关键工作的定位是否准确？\n   - 是否遗漏了重要的相关工作？特别是 2025-2026 年的最新进展\n   - LLM judge bias 文献覆盖是否全面？\n   - 经典心理测量文献的引用是否恰当？\n\n4. **写作质量**\n   - 正文 8 页的信息密度和可读性？\n   - Table 1 的设计——15 行 + 复杂脚注是否易于解读？\n   - 图表（pipeline, DAG, forest plot, power curve, heatmap, GEE decomposition）是否清晰有效？\n   - Appendix 组织是否合理？23 个 section 是否过于冗长？\n   - Limitations section 是否恰当？（EMNLP 2026 要求放在正文中，不计入页数）\n\n5. **完整性**\n   - 仅两个主轴（formality, verbosity）+ 一个 exploratory（register），scope 是否足以支撑 claim？\n   - 4 target judges + 1 discriminative validity，是否覆盖了主流 LLM judges？\n   - Cross-benchmark replication 策略（选择最强 effects 的 6/24 cells）是否合理？\n   - Anonymous code/data link 是否有效？\n\n请按 EMNLP 2026 ARR 的标准出具审稿意见，结构如下：\n- **Summary** (2-3 句)\n- **Strengths** (逐条)\n- **Weaknesses** (逐条，分 Must-Fix / Should-Fix / Minor)\n- **Questions** (需要作者澄清的)\n- **Missing References** (如有)\n- **Excitement**: 1-5\n- **Overall Assessment**: 使用 ARR 评分标准 (1-5)\n- **Confidence**: 1-5"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001299"
+        },
+        {
+          "source_line": 1300,
+          "timestamp": "2026-05-25T21:18:54.091680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images,WebSearch,WebFetch,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-001300"
+        },
+        {
+          "source_line": 1301,
+          "timestamp": "2026-05-25T21:18:54.092176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001301"
+        },
+        {
+          "source_line": 1302,
+          "timestamp": "2026-05-25T21:18:58.709483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/submitted.pdf",
+              "project": "causal_style_decomp_judge",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001302"
+        },
+        {
+          "source_line": 1303,
+          "timestamp": "2026-05-25T21:18:59.261773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2025 2026 reviewer guidelines review form criteria scoring"
+            }
+          },
+          "id": "event-001303"
+        },
+        {
+          "source_line": 1304,
+          "timestamp": "2026-05-25T21:19:00.366859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 465.2}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 549.4}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 714.9}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 602.4}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 528.9}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 475.6}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 490.4}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 517.3}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p9.p\n…[truncated 526 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1657
+          },
+          "id": "event-001304"
+        },
+        {
+          "source_line": 1305,
+          "timestamp": "2026-05-25T21:19:08.193835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2025 2026 reviewer guidelines review form criteria scoring\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"}]\n\nBased on the search results, here are the key ACL ARR 2025-2026 reviewer guidelines:\n\n## Review Form Criteria and Scoring\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\n**Soundness Score:**\nThe soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation, and you need to revise it.\n\n**Excitement Score:**\nYou may find the work sound, but not something that is interesting for you personally. Such preferences are more subjective and should be reflected in a separate excitement score, which is orthogonal to the assessment of the soundness of the paper.\n\n## Area Chair Metareview Scoring\n\nThe ARR metareview score has changed in February 2025 to be more aligned with reviewer scores. Like with reviews, the score should be backed up by the meta-review text. The new options include: 5 = Consider for Award (for\n…[truncated 466 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 8932
+          },
+          "id": "event-001305"
+        },
+        {
+          "source_line": 1306,
+          "timestamp": "2026-05-25T21:19:12.871450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the complete review form criteria, scoring scales (soundness, excitement, overall assessment), and detailed guidelines for each dimension. Include the specific numeric scales and what each number means."
+            }
+          },
+          "id": "event-001306"
+        },
+        {
+          "source_line": 1307,
+          "timestamp": "2026-05-25T21:19:13.324158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-001307"
+        },
+        {
+          "source_line": 1308,
+          "timestamp": "2026-05-25T21:19:13.778175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-001308"
+        },
+        {
+          "source_line": 1309,
+          "timestamp": "2026-05-25T21:19:14.432895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1108
+          },
+          "id": "event-001309"
+        },
+        {
+          "source_line": 1310,
+          "timestamp": "2026-05-25T21:19:14.433365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-001310"
+        },
+        {
+          "source_line": 1311,
+          "timestamp": "2026-05-25T21:19:14.484652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 706
+          },
+          "id": "event-001311"
+        },
+        {
+          "source_line": 1312,
+          "timestamp": "2026-05-25T21:19:15.038219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-001312"
+        },
+        {
+          "source_line": 1313,
+          "timestamp": "2026-05-25T21:19:18.551609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Review Form Criteria and Scoring Scales\n\nBased on the guidelines provided, ARR implements a **three-score review system** as of February 2025:\n\n## The Three Scoring Dimensions\n\n### 1. **Soundness**\nThis evaluates technical quality and methodological rigor. The guidelines emphasize that \"soundness scores must be justified by the text of the review.\" Low soundness ratings require explicit evidence of flaws; vague criticism without concrete problems indicates the assessment lacks faithful representation of your reasoning.\n\n### 2. **Excitement**\nThis captures subjective interest and personal engagement with the work. The document notes this score is \"orthogonal to the assessment of the soundness of the paper,\" allowing reviewers to distinguish between technically solid work they find uninteresting versus flawed work they find compelling.\n\n### 3. **Overall Assessment**\nDescribed as \"an explicit recommendation for the outcome of this paper,\" this composite score reflects soundness, excitement, novelty, and potential impact. The guidelines clarify that papers can merit main conference acceptance even if reviewers lack personal enthusiasm, particularly for high-impact contributions like resource creation or algorithmic efficiency improvements.\n\n## Specific Numeric Scales\n\nThe document does not explicitly detail the numeric scale values (e.g., 1-5, 1-10) for each dimension. However, it references a detailed description available separately at the \"review form\" post on the ARR website.\n\n## Key Evaluation Principles\n\nReviewers must ensure scores align with written justification and avoid common biases listed in the \"Heuristic\" section (H1-H17)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 5680
+          },
+          "id": "event-001313"
+        },
+        {
+          "source_line": 1314,
+          "timestamp": "2026-05-25T21:19:24.923483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-001314"
+        },
+        {
+          "source_line": 1315,
+          "timestamp": "2026-05-25T21:19:25.325234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-001315"
+        },
+        {
+          "source_line": 1316,
+          "timestamp": "2026-05-25T21:19:26.281552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1358
+          },
+          "id": "event-001316"
+        },
+        {
+          "source_line": 1317,
+          "timestamp": "2026-05-25T21:19:26.282018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-001317"
+        },
+        {
+          "source_line": 1318,
+          "timestamp": "2026-05-25T21:19:26.838813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1513
+          },
+          "id": "event-001318"
+        },
+        {
+          "source_line": 1319,
+          "timestamp": "2026-05-25T21:19:26.839268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-001319"
+        },
+        {
+          "source_line": 1320,
+          "timestamp": "2026-05-25T21:19:27.291797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-001320"
+        },
+        {
+          "source_line": 1321,
+          "timestamp": "2026-05-25T21:19:27.544677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1262
+          },
+          "id": "event-001321"
+        },
+        {
+          "source_line": 1322,
+          "timestamp": "2026-05-25T21:19:29.208521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2369
+          },
+          "id": "event-001322"
+        },
+        {
+          "source_line": 1323,
+          "timestamp": "2026-05-25T21:19:29.410858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2119
+          },
+          "id": "event-001323"
+        },
+        {
+          "source_line": 1324,
+          "timestamp": "2026-05-25T21:19:35.986049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-001324"
+        },
+        {
+          "source_line": 1325,
+          "timestamp": "2026-05-25T21:19:36.839962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 853
+          },
+          "id": "event-001325"
+        },
+        {
+          "source_line": 1326,
+          "timestamp": "2026-05-25T21:19:36.940742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-001326"
+        },
+        {
+          "source_line": 1327,
+          "timestamp": "2026-05-25T21:19:37.796948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-001327"
+        },
+        {
+          "source_line": 1328,
+          "timestamp": "2026-05-25T21:19:38.301449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/submitted.pdf",
+              "project": "causal_style_decomp_judge",
+              "pages": "11-20",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001328"
+        },
+        {
+          "source_line": 1329,
+          "timestamp": "2026-05-25T21:19:40.165565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 519.3}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 441.1}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 457.1}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 439.6}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 455.3}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 476.8}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 504.3}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 492.8}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_imag\n…[truncated 544 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1864
+          },
+          "id": "event-001329"
+        },
+        {
+          "source_line": 1330,
+          "timestamp": "2026-05-25T21:19:40.166005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete ARR review form with all scoring dimensions, their numeric scales, and what each score level means. Include soundness, excitement, overall assessment, confidence scales."
+            }
+          },
+          "id": "event-001330"
+        },
+        {
+          "source_line": 1331,
+          "timestamp": "2026-05-25T21:19:45.383746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Review Form Scoring Dimensions\n\n## Reviewer Confidence\nScale 1-5:\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- **4**: Quite sure; unlikely to have missed important details\n- **3**: Reasonably confident but may have overlooked specifics\n- **2**: Can defend evaluation but likely missed some details\n- **1**: Outside expertise area; evaluation is educated guesswork\n\n## Soundness\nScale 1-5 (with half-point increments):\n- **5**: \"Excellent: This study is one of the most thorough I have seen\"\n- **4**: Strong support for claims; minor experiments could enhance\n- **3**: Adequate support for main assertions; minor details need work\n- **2**: Main claims lack sufficient support; major technical problems\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication\"\n\n## Excitement\nScale 1-5 (with half-point increments):\n- **5**: \"Highly Exciting: I would recommend this paper to others\"\n- **4**: Would mention to colleagues; would attend presentation\n- **3**: Might mention points; would attend if time permits\n- **2**: Doesn't resonate personally but may interest others\n- **1**: Unlikely to resonate with ACL community\n\n## Overall Assessment\nScale 1-5 (with half-point increments):\n- **5**: Consider for Award (top 2.5%)\n- **4**: Conference acceptance\n- **3**: Findings track acceptance\n- **2**: Resubmit next cycle\n- **1**: Do not resubmit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 5217
+          },
+          "id": "event-001331"
+        },
+        {
+          "source_line": 1332,
+          "timestamp": "2026-05-25T21:19:49.399206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-001332"
+        },
+        {
+          "source_line": 1333,
+          "timestamp": "2026-05-25T21:19:50.358176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-001333"
+        },
+        {
+          "source_line": 1334,
+          "timestamp": "2026-05-25T21:19:50.509104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-001334"
+        },
+        {
+          "source_line": 1335,
+          "timestamp": "2026-05-25T21:19:50.912336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-001335"
+        },
+        {
+          "source_line": 1336,
+          "timestamp": "2026-05-25T21:19:51.364809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 855
+          },
+          "id": "event-001336"
+        },
+        {
+          "source_line": 1337,
+          "timestamp": "2026-05-25T21:19:51.365259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-001337"
+        },
+        {
+          "source_line": 1338,
+          "timestamp": "2026-05-25T21:19:51.971351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1059
+          },
+          "id": "event-001338"
+        },
+        {
+          "source_line": 1339,
+          "timestamp": "2026-05-25T21:19:51.971790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-001339"
+        },
+        {
+          "source_line": 1340,
+          "timestamp": "2026-05-25T21:19:53.543575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2178
+          },
+          "id": "event-001340"
+        },
+        {
+          "source_line": 1341,
+          "timestamp": "2026-05-25T21:19:54.052244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2080
+          },
+          "id": "event-001341"
+        },
+        {
+          "source_line": 1342,
+          "timestamp": "2026-05-25T21:19:59.077072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-001342"
+        },
+        {
+          "source_line": 1343,
+          "timestamp": "2026-05-25T21:19:59.429490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001343"
+        },
+        {
+          "source_line": 1344,
+          "timestamp": "2026-05-25T21:19:59.884112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 807
+          },
+          "id": "event-001344"
+        },
+        {
+          "source_line": 1345,
+          "timestamp": "2026-05-25T21:19:59.886606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001345"
+        },
+        {
+          "source_line": 1346,
+          "timestamp": "2026-05-25T21:20:00.843725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1414
+          },
+          "id": "event-001346"
+        },
+        {
+          "source_line": 1347,
+          "timestamp": "2026-05-25T21:20:00.845222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-001347"
+        },
+        {
+          "source_line": 1348,
+          "timestamp": "2026-05-25T21:20:00.845584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001348"
+        },
+        {
+          "source_line": 1349,
+          "timestamp": "2026-05-25T21:20:01.147479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001349"
+        },
+        {
+          "source_line": 1350,
+          "timestamp": "2026-05-25T21:20:01.758913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 913
+          },
+          "id": "event-001350"
+        },
+        {
+          "source_line": 1351,
+          "timestamp": "2026-05-25T21:20:01.810589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 663
+          },
+          "id": "event-001351"
+        },
+        {
+          "source_line": 1352,
+          "timestamp": "2026-05-25T21:20:10.809432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-001352"
+        },
+        {
+          "source_line": 1353,
+          "timestamp": "2026-05-25T21:20:11.110668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath,amssymb}\n14\t\\usepackage{xcolor}\n15\t\\usepackage{subcaption}\n16\t\\usepackage{tikz}\n17\t\\usetikzlibrary{arrows.meta,positioning}\n18\t\n19\t\\title{The Likert Blindspot: Measurement-Mode Divergence\\\\in LLM Judge Style Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\input{sections/abstract}\n27\t\n28\t\\input{sections/introduction}\n29\t\n30\t\\input{sections/related_work}\n31\t\n32\t\\input{sections/method}\n33\t\n34\t\\input{sections/experiments}\n35\t\n36\t\\input{sections/conclusion}\n37\t\n38\t\\section*{Limitations}\n39\t\\label{sec:limitations}\n40\t\n41\t\\noindent\\textbf{Residual confounding.}\n42\tThe NLI gate blocks content changes but cannot block quality perception shifts mediated by style itself; residual confounding is not fully eliminated despite logistic adjustment.\n43\t\n44\t\\noindent\\textbf{Detection vs.\\ amplification.}\n45\tThe Blindspot may partly reflect pairwise format amplification \\citep{jeong2025comparative} rather than pure detection; six controls bound this risk (\\S\\ref{sec:amplification}), but we cannot precisely quantify the amplification factor.\n46\t\n47\t\\noindent\\textbf{Scope.}\n48\tCSD applies only to surface-level axes whose rewrites preserve semantic content. Primary analyses use LLMBar ($n = 100$) with five judges; generalization to additional axes, benchmarks, and judges remains open.\n49\t\n50\t\\bibliography{references}\n51\t\n52\t\\input{sections/appendix}\n53\t\n54\t\\end{document}\n55\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-001353"
+        },
+        {
+          "source_line": 1354,
+          "timestamp": "2026-05-25T21:20:11.111097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper"
+            }
+          },
+          "id": "event-001354"
+        },
+        {
+          "source_line": 1355,
+          "timestamp": "2026-05-25T21:20:11.211509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-001355"
+        },
+        {
+          "source_line": 1356,
+          "timestamp": "2026-05-25T21:20:14.627952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper"
+            }
+          },
+          "id": "event-001356"
+        },
+        {
+          "source_line": 1357,
+          "timestamp": "2026-05-25T21:20:14.630580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Glob",
+            "elapsed_ms": 2
+          },
+          "id": "event-001357"
+        },
+        {
+          "source_line": 1358,
+          "timestamp": "2026-05-25T21:20:20.360843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-001358"
+        },
+        {
+          "source_line": 1359,
+          "timestamp": "2026-05-25T21:20:20.612026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLikert and pairwise scoring yield divergent style-sensitivity profiles in LLM judges.\n3\tWe define the \\emph{Likert Blindspot}: statistically significant pairwise sensitivity absent from Likert, admitting non-exclusive explanations (measurement attenuation, format amplification, construct divergence).\n4\tWe introduce Controlled Style Decomposition (CSD), a black-box diagnostic combining natural language inference (NLI) gated content control, per-axis style decomposition, and position-controlled pairwise comparison.\n5\tAcross four target judges and two axes (formality, verbosity), pairwise reaches significance ($p < 0.001$) where Likert does not ($p > 0.28$), selectively replicated across three benchmarks and confirmed by seven statistical methods; a fifth judge shows benchmark-dependent sensitivity.\n6\tAt $n = 355$, Likert effect sizes collapse toward zero while pairwise remains stable; at $n = 330$, Likert begins detecting only the strongest effects, revealing a $3$--$4\\times$ efficiency gap rather than absolute failure.\n7\tGeneralized estimating equation (GEE) decomposition shows per-axis confound structures: verbosity is style-dominated (style odds ratio [OR] $8$--$13$ at $n{=}86$--$88$), while formality reflects joint style--quality confounding.\n8\tNon-tie concordance (76.6\\%, $p < .001$) favors attenuation over construct divergence.\n9\tLikert-only audits risk missing style preferences that propagate through pairwise-based alignment pipelines\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/causal_style_decomp_judge-5EBE/}.}.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001359"
+        },
+        {
+          "source_line": 1360,
+          "timestamp": "2026-05-25T21:20:20.612425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-001360"
+        },
+        {
+          "source_line": 1361,
+          "timestamp": "2026-05-25T21:20:21.163919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\emph{``What is the average height for a male?''} In our experiments, given a formal and a casual answer with verified identical content (NLI entailment $= 0.993$), GPT-4o rates the casual variant \\emph{higher} on a 1--10 Likert scale (8 vs.\\ 5), yet consistently selects the formal variant in pairwise comparison.\n4\tSame judge, same texts, opposite conclusions.\n5\tWe term this the \\emph{Likert Blindspot}, an operational descriptor for the measurement-mode divergence where pairwise comparison detects statistically significant style sensitivity that Likert scoring fails to detect on the same data, without committing to a specific causal mechanism.\n6\tThis divergence admits multiple non-exclusive explanations (Likert measurement attenuation, pairwise format amplification \\citep{jeong2025comparative}, or construct-level differences), which our controlled design bounds but cannot definitively adjudicate (\\S\\ref{sec:likert_pairwise}).\n7\tThis example reflects a consistent pattern: surface-level style features alone explain most of the variance in judge scores \\citep{murugadoss2025sos}, with 76--92\\% of preferences originating from style cues \\citep{li2026preference,soumik2026judging}.\n8\t\n9\tLLM judges are central infrastructure for natural language processing (NLP) evaluation and alignment training (reinforcement learning from human feedback [RLHF], direct preference optimization [DPO]), where judge preferences serve as reward signals; any systematic bias propagates through both evaluation leaderboards and model development pipelines.\n10\tDespite this, existing approaches address individual requirements (multi-dimensional style analysis \\citep{casse2026concise,wang2026fairjudge}, interventional design \\citep{reber2025rate}, population-level correction \\citep{dubois2025lc}), but no single framework integrates per-axis decomposition, interventional identification, confound-structure analysis, and black-box applicability.\n11\tClassical psychometrics es\n…[truncated 2739 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 551
+          },
+          "id": "event-001361"
+        },
+        {
+          "source_line": 1362,
+          "timestamp": "2026-05-25T21:20:21.164392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-001362"
+        },
+        {
+          "source_line": 1363,
+          "timestamp": "2026-05-25T21:20:21.315066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Interventional Approaches to Judge Bias}\n5\tText-based interventional methods have a growing methodological foundation \\citep{feder2021causalm,wu2021polyjuice,feder2022causal}.\n6\t\\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert average treatment effect (ATE); however, our experiments show 60\\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.\n7\tCSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.\n8\t\\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.\n9\t\n10\t\\paragraph{Style Bias in LLM Judges}\n11\tThe foundational LLM-as-judge framework \\citep{zheng2023judging} documented position bias; \\citet{shi2024judging} study it across 15 judges, and \\citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.\n12\tStyle bias as a separate source has received recent attention \\citep{wu2023style,murugadoss2025sos,saito2023verbosity,li2026preference,soumik2026judging}; \\citet{li2026preference} show that style-mediated \\emph{preference leakage} propagates through evaluation pipelines.\n13\tMulti-feature frameworks such as CASSE \\citep{casse2026concise} and FairJudge \\citep{wang2026fairjudge} decompose style into finer dimensions but rely on correlational analyses that cannot distinguish causal style effects from content quality confounds.\n14\t\\citet{jeong2025comparative} identify the Comparative Trap (pairwise comparison may amplify style biases), which we address in \\S\\ref{sec:amplification}.\n15\tUnlike human evaluators, LLM judges acquire format-specific biases through RLHF training: pairwise comparison serves as the reward signa\n…[truncated 987 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-001363"
+        },
+        {
+          "source_line": 1364,
+          "timestamp": "2026-05-25T21:20:27.846924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-001364"
+        },
+        {
+          "source_line": 1365,
+          "timestamp": "2026-05-25T21:20:28.148776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\n5\t\\subsection{Statistical Framework}\n6\t\\label{sec:stat_framework}\n7\t\n8\tThe primary family comprises six tests (three target judges $\\times$ two axes), corrected via Holm-Bonferroni at $\\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from family-wise error rate (FWER) control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\\ref{app:holm8}).\n9\tTable~\\ref{tab:main_results} reports both raw and adjusted $p$-values.\n10\tAnalyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\n11\tExploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\\alpha = 0.05$ without additional correction.\n12\tBradley-Terry parameters \\citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm}, using the \\texttt{choix} Python library's default L2 regularization ($\\alpha = 10^{-6}$).\n13\tIn binary-choice BT models, independence of irrelevant alternatives (IIA) is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.\n14\tAll bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42; we verify bootstrap stability by confirming that halving the resample count changes interval widths by $<$1pp.\n15\tGEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\\hat{\\alpha} \\in [-0.25, +0.11]$; Appendix~\\ref{app:gee_diagnostics}).\n16\tA prospective power analysis \n…[truncated 19200 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-001365"
+        },
+        {
+          "source_line": 1366,
+          "timestamp": "2026-05-25T21:20:28.149188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-001366"
+        },
+        {
+          "source_line": 1367,
+          "timestamp": "2026-05-25T21:20:28.199641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\tCSD yields two findings: the \\emph{Likert Blindspot} (8/8 primary cells, $d \\!\\to\\! 0$ at $n{=}355$; concordance $p < .001$ favors attenuation) and per-axis confound structures via GEE (verbosity style-dominated, formality conditional).\n4\tPractically, Likert-only audits risk false negatives at benchmark sizes $n < 200$; per-axis decomposition reveals that verbosity preferences are predominantly style-driven while formality partially reflects quality differences---a distinction invisible to aggregate metrics and consequential for RLHF pipelines where pairwise judgments serve as reward signals.\n5\tCSD extends to any surface-level axis with content-preserving rewrites; deeper axes remain for future work.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001367"
+        },
+        {
+          "source_line": 1368,
+          "timestamp": "2026-05-25T21:22:28.329067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/\\\\//g' | wc -w",
+              "description": "Count abstract words roughly"
+            }
+          },
+          "id": "event-001368"
+        },
+        {
+          "source_line": 1369,
+          "timestamp": "2026-05-25T21:22:28.531793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "176"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-001369"
+        },
+        {
+          "source_line": 1370,
+          "timestamp": "2026-05-25T21:22:40.676010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LLM judge evaluation pairwise vs Likert rating measurement mode divergence 2025 2026"
+            }
+          },
+          "id": "event-001370"
+        },
+        {
+          "source_line": 1371,
+          "timestamp": "2026-05-25T21:22:41.780584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"reward model\" style bias verbosity formality RLHF pairwise evaluation 2025 2026"
+            }
+          },
+          "id": "event-001371"
+        },
+        {
+          "source_line": 1372,
+          "timestamp": "2026-05-25T21:22:51.014709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"reward model\" style bias verbosity formality RLHF pairwise evaluation 2025 2026\"\n\nLinks: [{\"title\":\"One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models\",\"url\":\"https://arxiv.org/html/2603.03291\"},{\"title\":\"Reward Modeling | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/05-reward-models\"},{\"title\":\"From Lists to Emojis: How Format Bias Affects Model Alignment\",\"url\":\"https://arxiv.org/pdf/2409.11704\"},{\"title\":\"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium\",\"url\":\"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80\"},{\"title\":\"A Unified Pairwise Framework for RLHF: Bridging\",\"url\":\"https://arxiv.org/pdf/2504.04950\"},{\"title\":\"How to Evaluate Reward Models for RLHF\",\"url\":\"https://arxiv.org/pdf/2410.14872\"},{\"title\":\"Bias Fitting to Mitigate Length Bias of Reward Model in RLHF\",\"url\":\"https://arxiv.org/html/2505.12843v1\"},{\"title\":\"Mitigating Length Bias in RLHF through a Causal Lens\",\"url\":\"https://arxiv.org/html/2511.12573\"}]\n\nBased on the search results, I found several recent papers and resources on reward models, style biases, and RLHF that are highly relevant to your query:\n\n## Key Findings on Reward Models and Biases (2025-2026)\n\n**Persistent Biases in Reward Models:**\nReward hacking during RLHF is a potential source of observed biases in language model behavior including length bias, position bias, overconfidence, and sycophantic user agreement.\n\n**Verbosity and Style Issues:**\nOne prevalent form of reward hacking is the verbosity issue, where the policy generates unnecessarily lengthy responses in an attempt to appear more helpful or comprehensive. Additionally, recent studies reveal LLM evaluators exhibit inherent biases including self-preference for their own generat\n…[truncated 990 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 9234
+          },
+          "id": "event-001372"
+        },
+        {
+          "source_line": 1373,
+          "timestamp": "2026-05-25T21:22:59.107036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LLM judge evaluation pairwise vs Likert rating measurement mode divergence 2025 2026\"\n\nLinks: [{\"title\":\"LLM-as-a-Judge Scoring\",\"url\":\"https://www.emergentmind.com/topics/llm-as-a-judge-scoring\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://www.arxiv.org/pdf/2602.00521\"},{\"title\":\"The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences   of LLM Evaluators\",\"url\":\"https://arxiv.org/pdf/2406.12319\"},{\"title\":\"Evaluating AI Agents: Can LLM‑as‑a‑Judge Evaluators Be Trusted? | Microsoft Community Hub\",\"url\":\"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/evaluating-ai-agents-can-llm%E2%80%91as%E2%80%91a%E2%80%91judge-evaluators-be-trusted/4480110\"},{\"title\":\"The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/pdf/2509.26072\"},{\"title\":\"Aligning with Human Judgement: The Role of Pairwise Preference in Large   Language Model Evaluators\",\"url\":\"https://arxiv.org/pdf/2403.16950\"},{\"title\":\"Are We on the Right Way to Assessing LLM-as-a-Judge?\",\"url\":\"https://arxiv.org/pdf/2512.16041\"},{\"title\":\"LLM-as-a-judge: a complete guide to using LLMs for evaluations\",\"url\":\"https://www.evidentlyai.com/llm-guide/llm-as-a-judge\"}]\n\nBased on the search results, I found relevant information about LLM judge evaluation modes and their divergence:\n\n## Key Findings on Pairwise vs. Likert Rating Evaluation\n\n**Reliability Differences Between Modes:**\n\nPairwise evaluation tasks enable LLMs to approximate human preferences with greater fidelity than pointwise scoring, in part due to the comparative framing. In contrast, pointwise evaluation involves each candidate being independently assigned a score or correctness label, often on a Likert or fixed numerical scale.\n\n**Measurement Mode Divergence:**\n\nRecent research from 2025-2026 reveals significant divergence between scoring approaches. Agreement tends to be higher for binary scores, with the av\n…[truncated 1045 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 18431
+          },
+          "id": "event-001373"
+        },
+        {
+          "source_line": 1374,
+          "timestamp": "2026-05-25T21:26:01.826608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 2 — Round 1 审稿意见\n\n**论文**: \"The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation\"\n**审查侧重**: 新颖性 / 完整性\n\n---\n\n### Summary\n\n本文提出 Controlled Style Decomposition (CSD)，一种 black-box 诊断框架，通过 NLI 门控内容保持、单轴风格重写和位置控制的 pairwise 比较来检测 LLM judge 的风格敏感性。核心发现是 \"Likert Blindspot\"——在相同数据上 pairwise 比较能检测到的风格偏好在 Likert 评分中消失（8/8 primary cells），并通过 GEE 条件分解揭示不同风格轴的混杂结构差异（verbosity = style-dominated, formality = quality-confounded）。实验覆盖 4 个 target judges、2 个主轴、3 个 benchmark，并用 Claude Sonnet 4 提供 discriminative validity。\n\n---\n\n### Strengths\n\n**S1. GEE per-axis 分解是真正的方法论亮点。** Table 2 和 Figure 5 展示 verbosity 的 Style OR 8–13（Orig OR < 1）vs. formality 的双重显著效应，揭示了不同风格轴具有质性不同的混杂结构。这一发现对 bias mitigation 有直接实践指导意义（§5.2 最后一段明确指出了不同的应对策略），且此前未见于 LLM judge 文献。这比 \"Likert Blindspot\" 本身更具新颖性。\n\n**S2. 实验控制极其全面。** 六项 amplification 控制（§5.4: NLI ablation、Claude discriminative validity、cross-axis variation、GEE artifact absorption、debiased prompting bounds、four-architecture replication）系统性地约束了 pairwise amplification 的解释力。这种控制密度在同类工作中罕见。\n\n**S3. 统计方法论严谨。** Holm-Bonferroni FWER 控制、exploratory vs. confirmatory 分析的清晰分类（§4.1）、prospective power analysis（Figure 4, Appendix L）、bootstrap stability 验证、GEE sandwich SE——统计框架达到了高标准。特别是 n=355 scaled replication 区分 attenuation 与 insufficient power 的设计（d → -0.025 而非 non-zero）是有说服力的。\n\n**S4. Discriminative validity 设计。** Claude Sonnet 4 在 LLMBar 上 BT ≤ 0.562 (n.s.) 的结果（Table 1）证明 CSD 不会对所有 judge 均匀膨胀偏差估计。这有效排除了\"方法论 artifact 导致所有 judge 都显示 Blindspot\"的担忧。\n\n**S5. 实践意义清晰。** 论文直接指出：典型 benchmark 规模 (n=50-200) 下 Likert-only 审计系统性遗漏风格偏好，而这些偏好通过 RLHF/DPO 的 pairwise reward signal 传播到模型训练中。这对 alignment 社区有直接警示价值。\n\n**S6. 人类标注验证。** 两名标注者评估 100 对 NLI-scored pairs（§5.4），gate pass precision 98.6%，Gwet's AC₁ = 0.96。标注者仅判断 49-66% 的 NLI-passed pairs 有可检测到的风格变化，说明观察到的效应是真实风格敏感性的稀释下界——这个发现本身具有重要含义。\n\n---\n\n### Weaknesses\n\n#### Must-Fix 问题\n\n**N1** [critical] **标题与正文的 framing 张力**\n- 具体位置：Title, Abstract (第2句), §5.1 \"Interpreting the divergence\"\n- 问题：\"The Likert Blindspot\" 作为标题强烈暗示 Likert attenuation 是主因——Likert 有\"盲点\"，pairwise 看到了真相。然而正文 §5.1 明确列出三种非排他解释（attenuation, amplification, construct divergence），并承认 \"six controls bound the amplification factor but cannot eliminate it\"。标题的修辞倾向性与正文的审慎立场之间存在不可忽视的张力。读者的自然推断（\"Likert 有问题，pairwise 更好\"）与论文的实际结论（\"两种格式测量不同的东西，具体机制无法完全确定\"）不一致。\n- 为什么影响接收：Reviewer 和读者会质疑 framing 诚实性。如果论文无法确定 attenuation 是主因，标题不应预设这一解释。\n- 建议修改方向：(1) 在 Introduction 第一段更显著地承认心理测量学先驱（Thurstone 1927 已有引用，但应更明确说明 pairwise vs. rating 差异本身不新）；(2) 考虑更中性的标题如 \"Measurement-Mode Divergence in LLM Judge Style Evaluation\"；或 (3) 如果保留 \"Likert Blindspot\"，在 abstract 第一次出现时即加入 \"without committing to a specific causal mechanism\" 的限定（目前 abstract 第2句有此限定，但 \"Blindspot\" 本身的语义已预设了方向）。\n\n**N2** [critical] **核心新颖性定位不清晰——Thurstone (1927) 以来的增量贡献**\n- 具体位置：§1 Introduction 贡献列表, §2 Related Work \"Measurement Format Sensitivity\" 段\n- 问题：Pairwise comparison 比 rating scale 有更高 discriminability 是心理测量学自 Thurstone (1927) 以来的已知结论，被 Carterette & Allan (2008) 在 IR 中确认，被 Novikova et al. (2018) 在 NLG 中确认。论文引用了这些工作（§2 第三段），但贡献声明\"the first per-axis demonstration that pairwise and Likert formats yield qualitatively divergent style sensitivity profiles\"过度强调了\"first\"——在心理测量学意义上，这种 divergence 是预期的，不是发现。\n  真正的新贡献是：(a) 在 LLM judge 特有的上下文中（RLHF training 导致的 format-specific bias），这种 divergence 有质性不同的机制含义——不是人类 satisficing (Krosnick, 1999) 而是 training-induced format specificity；(b) GEE per-axis decomposition 揭示不同轴的混杂结构差异。但这两点在贡献声明中均未被突出。\n- 为什么影响接收：Novelty 是顶会接收的核心标准。如果论文被认为是\"已知心理测量效应的 domain transfer\"而没有充分的 domain-specific insight，可能被评为 incremental。\n- 建议修改方向：(1) 重新表述第一个贡献，明确为什么 LLM judge setting 与 human rater setting 有质性差异（RLHF/DPO 中 pairwise 作为 reward signal，Likert 用于 evaluation，两种格式在训练和评估中的角色不对称——这一点在 §2 最后一句提到但太简略）；(2) 将 GEE decomposition 提升为与 Likert Blindspot 并列甚至更突出的贡献。\n\n#### Should-Fix 问题\n\n**W1** [warning] **Rewriter-judge 重叠的处理不够显著**\n- 具体位置：Table 1 脚注 b, Appendix E\n- 问题：Qwen3-32B 同时作为 primary rewriter 和四个 target judges 之一。虽然 Appendix E 的 GPT-4o rewriter independence test 显示 Blindspot 仍然存在但 Style OR 降低 22%，这不是一个可以忽略的差距。Table 1 仅在脚注中提到 \"independent GPT-4o rewriter yields 22% lower Style OR\"，一个注意力分散的读者很容易忽略。\n- 建议：在正文 §5.4 或 §4 中用 1-2 句话正式讨论 rewriter-judge overlap 及其影响范围，而不是依赖表格脚注和 appendix。\n\n**W2** [warning] **Cross-benchmark replication 的选择性策略需要更强的辩护**\n- 具体位置：§5.3 最后一段, Figure 6, Table 23 (Appendix W)\n- 问题：Cross-benchmark validation 仅覆盖 6/24 possible cells（25%），且论文承认这是 \"targeting the strongest effects\"。这本质上是一种 cherry-picking 策略——在主要分析中发现最强效应后，选择性地在其他 benchmark 上验证这些最强效应。虽然论文的透明度值得肯定（明确声明了选择标准），但这极大地限制了 generalizability claims 的说服力。特别是，4 个 exception cells (†‡) 表明 Blindspot 的可复制性取决于 effect size，但论文对这些 exceptions 的讨论主要通过\"severity spectrum\"来解释，这更像是 post-hoc rationalization。\n- 建议：(1) 更明确地承认选择性 replication 的局限性；(2) 考虑在 Limitations 中加入一句关于 cross-benchmark coverage 不足的声明。\n\n**W3** [warning] **Table 1 信息密度过高，可读性受损**\n- 具体位置：Table 1 (第5页)\n- 问题：15 行数据 + 5 个不同标记符号 (***、*、†、†_e、†_c、---) + 3 个脚注（其中一个长达 2 行描述 direction asymmetry）。读者需要来回查阅脚注和正文才能理解各行的分类标准。Gemini 作为 \"confirmatory\" 和 Claude 作为 \"discriminative validity\" 的角色区分依赖于微小的下标符号。\n- 建议：(1) 将 exploratory register 结果移到 appendix，主表保留 primary + confirmatory 结果；(2) 或将 discriminative validity (Claude) 单独列为子表。\n\n**W4** [warning] **\"Consistent pattern\" 等措辞与实际数据的匹配度**\n- 具体位置：§1 (第1页 \"reflects a consistent pattern\"), Abstract (\"selectively replicated\"), §5.1 (\"manifests in 10/14 bias-positive cells\")\n- 问题：论文报告 Blindspot 出现在 10/14 bias-positive cells 中（~71%），4 个 exceptions。Claude 在 LLMBar 上两个轴均为 null。Cross-benchmark 仅 6/24 cells 被测试。\"Consistent pattern\" 的措辞在主文中出现，但 ~29% 的 exception rate 和 Claude 的完全 null 结果（后被重新 framed 为 \"discriminative validity\"）使 \"consistent\" 这个词的准确性可商榷。论文对 Claude 的处理很巧妙——将 null 结果转化为方法论优势——但这同时意味着该 phenomenon 是 model-specific 的，这与 \"consistent\" 的含义存在张力。\n- 建议：在 Introduction 中用更精确的措辞替代 \"consistent pattern\"，如 \"predominant pattern\" 或 \"majority pattern\"，并更早地引入 model-specific variation 的概念。\n\n**W5** [warning] **风格轴覆盖范围有限**\n- 具体位置：§3.4, Limitations §3\n- 问题：仅两个 primary axes（formality, verbosity）+ 一个 exploratory（register）。风格是多维的——tone、sentiment、readability、technical jargon level、hedging 等均为已知的 LLM judge 敏感维度。论文在 Limitations 中承认 \"CSD applies only to surface-level axes\"，但正文的 claim 措辞（\"per-axis demonstration\"）暗示了比实际覆盖更广的 scope。GEE decomposition 发现 formality 和 verbosity 有质性不同的混杂结构，这恰恰说明不能从两个轴外推到其他轴。\n- 建议：在贡献声明中更明确限定 scope，例如 \"across the two most commonly reported style axes\"。\n\n#### Minor 问题\n\n**M1** Appendix 组织：20 页中有约 10 页 appendix（pages 11-20），包含 A-Z 共 23+ 个 section。虽然 thoroughness 值得肯定，但部分 appendix（如 Appendix O \"100-Point Continuous Likert Scale\"、Appendix P \"NLI Gate Ablation\"）的内容可以合并或精简。建议用 hierarchical 编号（A.1, A.2）替代 flat structure。\n\n**M2** Figure 2 (DAG) 标注为 \"Assumed data-generating process (design rationale, not a claim of perfect identification)\"——这是好的科学实践，但 \"assumed\" 这个词在图题中可能暗示比实际更弱的信心。建议在正文中保留 caveat，图题简化为描述性标题。\n\n**M3** §5.1 \"Head-to-head comparison with RATE\" 段直接对比 RATE 方法论，措辞 \"our experiments show 60% of style-transformed pairs receive identical Likert scores\" 可能被 RATE 作者解读为不公平比较，因为 RATE 的设计意图和 CSD 不同（RATE 测量 ATE，CSD 测量 BT win probability）。建议更中性地表述为方法互补而非 CSD 优于 RATE。\n\n**M4** 论文末尾 (第20页) 的 \"Use of AI Assistants\" 声明提到使用 Claude (Anthropic) 进行代码、写作和文献总结。Claude Sonnet 4 同时是 discriminative validity judge。虽然这不构成利益冲突（Claude 显示 null results，如果有偏，应该偏向对 Claude 有利的结论），但建议在 Limitations 中简要提及这一双重角色。\n\n---\n\n### Questions（需要作者澄清）\n\n**Q1.** 为什么不对所有分析使用完全独立的 rewriter？Appendix E 的 GPT-4o rewriter 测试显示 Style OR 下降 22%，这暗示 Qwen3-32B 的 rewriter-judge overlap 对 effect size 有非 trivial 的贡献。如果资源允许，使用独立 rewriter 重跑全部分析是否会改变主要结论？\n\n**Q2.** Claude Sonnet 4 在 LLMBar 上显示 null results，但在 AEval verbosity 上 Style OR = 4.76 (p < .001)（§5.1 最后一段, Appendix H）。作者如何解释这一 benchmark-dependent 差异？是 LLMBar 的样本特性（100 条 instruction-response pairs）导致 power 不足，还是 Claude 确实对不同 benchmark 有不同的风格敏感性？这一模式对 \"Likert Blindspot\" 作为 general phenomenon 的 claim 有什么影响？\n\n**Q3.** 论文使用 NLI entailment threshold 0.90 作为 gate（§3.2）。Appendix F 的 threshold sweep 显示 BT 在 11 个 threshold 下 stable (≤3pp variation)。但 NLI gate 的 precision 和 recall 之间的 tradeoff 是否被充分探索？更严格的 threshold（如 0.95）会如何影响 sample size 和 power？\n\n**Q4.** Introduction 的 motivating example（\"What is the average height for a male?\"）中，GPT-4o 在 Likert 上给 casual version 更高分 (8 vs. 5)。这与 formality Blindspot 的整体方向一致（pairwise 选择 formal，Likert 无显著偏好）。但 Likert 反向偏好（casual 更高）是单个 example 的偶然现象还是系统性模式？如果是后者，这不是 \"Blindspot\"（Likert 看不到）而是 \"Likert Reversal\"（Likert 看到反方向），应该在叙事中更明确区分。\n\n**Q5.** GEE decomposition 中 formality 的 Originality OR 显著（Table 2: GPT-4o Orig OR = 2.32, p = .006）意味着 style-controlled rewriting 未能完全控制原始偏好。这是 NLI gate 的局限还是 formality 与 quality 之间的固有关联？如果是后者，per-axis decomposition 能否真正实现 causal identification？\n\n---\n\n### Missing References\n\n1. **IRT-based LLM judge reliability**: \"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\" (arXiv:2602.00521, 2026) — 使用 Item Response Theory 分析 LLM judge reliability，与本文的 measurement methodology 讨论直接相关，提供了另一种诊断 measurement mode 差异的理论框架。\n\n2. **Length bias in RLHF reward models**: \"Mitigating Length Bias in RLHF through a Causal Lens\" (arXiv:2511.12573, 2025) 和 \"Bias Fitting to Mitigate Length Bias of Reward Model in RLHF\" (arXiv:2505.12843, 2025) — 这两篇直接用因果方法处理 RLHF 中的 length/verbosity bias，与本文的 causal framing 和 verbosity axis 发现高度相关。\n\n3. **Format bias in alignment**: \"From Lists to Emojis: How Format Bias Affects Model Alignment\" (arXiv:2409.11704, 2024) — 研究 format bias 如何影响 model alignment，与本文的 measurement-mode divergence 和 RLHF 影响讨论相关。\n\n4. **Pairwise preference in LLM evaluators**: \"Aligning with Human Judgement: The Role of Pairwise Preference in Large Language Model Evaluators\" (arXiv:2403.16950, 2024) — 直接研究 pairwise preference 在 LLM evaluator 中的角色，应在 Related Work §2 中被讨论。\n\n---\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 方法论整体严谨，统计框架达到高标准，controls 全面。但 rewriter-judge overlap 的 22% Style OR 下降表明核心 effect size 有非 trivial 的方法论敏感性；cross-benchmark replication 的选择性策略（6/24 cells）限制了 generalizability。Title/framing 与正文三种非排他解释之间的张力影响了 claim 的准确性。 |\n| **Excitement** | 3/5 | GEE per-axis decomposition 是有趣的方法论贡献，实践意义（RLHF pipeline 影响）清晰。但核心发现（pairwise > Likert in discriminability）是心理测量学已知效应的 domain transfer，novelty ceiling 受限。两个风格轴的覆盖不足以支撑更广泛的 claim。 |\n\n### Overall Assessment\n\n**3.5 — Borderline Conference**\n\n本文是一篇技术执行扎实、实验控制全面的工作。GEE per-axis decomposition 提供了 LLM judge bias 文献中未见的 insight（verbosity = style-dominated vs. formality = quality-confounded），discriminative validity 设计（Claude null results）增强了方法论可信度。统计方法论达到了顶会标准。\n\n主要顾虑集中在新颖性和 framing：(1) \"Likert Blindspot\" 的核心发现——pairwise 比 Likert 更敏感——是自 Thurstone (1927) 以来的已知心理测量效应，论文在 LLM judge domain 的 transfer 虽然有实践价值，但概念贡献有限；(2) 标题和叙事预设了 Likert attenuation 解释，与正文对三种非排他解释的审慎讨论不一致；(3) 两个 primary style axes + 选择性 cross-benchmark replication (6/24 cells) 的覆盖范围不足以支撑论文的 generalizability 暗示。\n\n如果作者能 (a) 更清晰地定位 LLM judge setting 相对于经典心理测量的质性差异（RLHF training-induced format specificity），(b) 将 GEE decomposition 提升为更显著的贡献，(c) 解决 title/framing 张力，本文有潜力达到 Conference acceptance 水平。\n\n### Confidence\n\n**4/5** — 熟悉 LLM judge evaluation、心理测量方法论和因果推断的相关文献。仔细阅读了全文 20 页及 LaTeX 源码。\n",
+              "reviewer_id": "2",
+              "project": "causal_style_decomp_judge"
+            }
+          },
+          "id": "event-001374"
+        },
+        {
+          "source_line": 1375,
+          "timestamp": "2026-05-25T21:26:06.117876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4291
+          },
+          "id": "event-001375"
+        },
+        {
+          "source_line": 1376,
+          "timestamp": "2026-05-25T21:26:14.967611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images"
+            }
+          },
+          "id": "event-001376"
+        },
+        {
+          "source_line": 1377,
+          "timestamp": "2026-05-25T21:26:14.968258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_round_17/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-001377"
+        },
+        {
+          "source_line": 1378,
+          "timestamp": "2026-05-25T21:26:26.148400+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n核心评判：**Overall 3.5（Borderline Conference）**。\n\n主要发现：\n- **两个 Must-Fix**：(1) 标题 \"Likert Blindspot\" 预设了 attenuation 解释，与正文三种非排他解释的审慎立场存在张力；(2) 核心新颖性定位不清——pairwise > Likert 是 Thurstone (1927) 以来的已知效应，论文需要更明确地阐述 LLM judge setting 的质性差异（RLHF format specificity）。\n- **GEE per-axis decomposition** 是本文真正最强的贡献（verbosity = style-dominated vs. formality = quality-confounded），但在叙事中被 \"Likert Blindspot\" 遮蔽。\n- **四个 Should-Fix**：rewriter-judge overlap 处理不够显著、cross-benchmark replication 选择性、Table 1 可读性、\"consistent pattern\" 措辞与 ~29% exception rate 的匹配。\n- 建议补充 4 篇 missing references（IRT-based reliability、causal length bias in RLHF、format bias in alignment、pairwise preference in LLM evaluators）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2"
+          },
+          "id": "event-001378"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "messages": [
+        {
+          "source_line": 1379,
+          "timestamp": "2026-05-25T21:27:35.592713+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享 — 请逐条回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1（方法严谨性侧重）的完整审稿意见。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n特别关注 Reviewer 1 提出的你可能遗漏的问题，以及你们之间可能存在的分歧。\n\n---\n\n### Reviewer 1 完整审稿意见\n\n**Summary**: 本文定义了 \"Likert Blindspot\"：在相同数据上，pairwise comparison 能检测到统计显著的风格敏感性，而 Likert 评分却无法检测。作者提出 CSD 框架，在 4 个目标 judge 和 1 个负对照 (Claude) 上验证了该现象。方法设计整体严谨，robustness 检查覆盖面广，但在统计效力分析的定位、跨基准复制的选择性、以及 evaluator-producer 重叠的处理上存在需修正的问题。\n\n**Strengths**:\n- S1: 实验设计的系统性与完备性（单轴干预 + NLI 门控 + 位置对消 + double-rewrite 控制）\n- S2: Robustness 检查覆盖面异常广泛（11 个 NLI 阈值 sweep, direction-aware gating, rewriter independence, 100-point Likert, GEE 相关结构对比, interaction test, BT 正则化）\n- S3: 统计方法选择总体恰当（BT + GEE + sandwich SE）\n- S4: 因果语言的审慎使用（§5.2 和 Appendix A 的 disclaimer）\n- S5: 负对照设计有意义（Claude TOST + Bayesian BF₁₀）\n- S6: Human annotation validation 设计合理（AC₁ = 0.96）\n\n**Must-Fix**:\n- **N1 [critical]**: Power analysis 存在 post-hoc 循环论证风险。正文称 \"prospective power analysis\" 但 effect size 来自同一批数据——Hoenig & Heisey (2001)（论文自身引用）所批评的谬误。建议改为 \"sensitivity power analysis\"。\n- **N2 [critical]**: 跨基准复制选择性构成确认偏差——仅选 24 cells 中效应最强的 6 个，未报告其余 18 cells。\n\n**Should-Fix**:\n- **W1**: GEE OR ~49% shrinkage (n=88→355) 讨论不足，Table 2 全部基于 n=88\n- **W2**: Evaluator-producer overlap (Qwen3-32B) 残留 22% 膨胀\n- **W3**: TOST 等价界 Δ=12pp 偏宽松——Blindspot 效应本身仅 ~13-18pp\n- **W4**: Section 3.1 \"per-axis causal attribution\" 与 Appendix A disclaimer 语调不一致\n- **W5**: Same-style double-rewrite 在 verbosity 轴暴露 rewriting artifact (BT P(orig)=0.082)\n\n**Minor**:\n- M1: BT 正则化参数 §4.1 (α=10⁻⁴) vs Appendix R (α=10⁻⁷) 不一致\n- M2: GEE ρ∈[−0.25,+0.11]，ρ=−0.25 非 \"near-zero\"\n- M3: Table 1 adjusted p-values 校正方法未说明\n- M4: Figure 4 y轴 \"at observed effect magnitudes\" 强化 post-hoc 印象\n\n**Questions**:\n- Q1: Power analysis effect size 有 pilot/先验来源？\n- Q2: 未测试的 18 cells 有结果可报告？\n- Q3: Verbosity same-style rewrite artifact 在 GEE Orig OR 中被吸收多少？\n- Q4: BT 正则化参数实际用的是哪个？\n- Q5: n=355 GEE 估计可否并列报告？\n\n**Scores**: Soundness 3.5/5, Excitement 3.5/5, Reproducibility 4/5, Overall 3.5 (Borderline Conference), Confidence 4/5"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001379"
+        },
+        {
+          "source_line": 1380,
+          "timestamp": "2026-05-25T21:28:45.903617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex",
+              "offset": "10",
+              "limit": "20"
+            }
+          },
+          "id": "event-001380"
+        },
+        {
+          "source_line": 1381,
+          "timestamp": "2026-05-25T21:28:46.305537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10\tAnalyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\n11\tExploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\\alpha = 0.05$ without additional correction.\n12\tBradley-Terry parameters \\citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm}, using the \\texttt{choix} Python library's default L2 regularization ($\\alpha = 10^{-6}$).\n13\tIn binary-choice BT models, independence of irrelevant alternatives (IIA) is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.\n14\tAll bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42; we verify bootstrap stability by confirming that halving the resample count changes interval widths by $<$1pp.\n15\tGEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\\hat{\\alpha} \\in [-0.25, +0.11]$; Appendix~\\ref{app:gee_diagnostics}).\n16\tA prospective power analysis (Appendix~\\ref{app:power_analysis}) confirms that our sample sizes ($n = 86$--$88$ pairs) provide $>$90\\% power to detect BT effects of the observed magnitude ($P \\geq 0.63$), whereas Likert requires $4$--$206\\times$ the sample size for equivalent power (Figure~\\ref{fig:power_curve}).\n17\t\n18\t\\paragraph{Model selection.}\n19\tTarget judges span four architectures from independent providers: GPT-4o (\\texttt{2024-08-06}; OpenAI), Qwen3-32B-Instruct (Alibaba; also serving as rewriter), Llama-3.3-70B-Instruct (Meta), and Gemini-2.5-Flash (Google).\n20\tThis \n…[truncated 924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-001381"
+        },
+        {
+          "source_line": 1382,
+          "timestamp": "2026-05-25T21:28:46.306014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-001382"
+        },
+        {
+          "source_line": 1383,
+          "timestamp": "2026-05-25T21:28:46.406929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\noindent\\emph{Organization: design rationale (A$^*$), confound analysis (A--B), model diagnostics (C), independence tests (D), gate validation (E--F), equivalence testing (G), statistical details (H--K), sensitivity analyses (L--N), artifact controls (O), implementation (P), multiplicity (Q), cross-axis contamination (R), FK length-control (R$'$), human annotation agreement (S), cross-benchmark replication (T), Claude cross-benchmark (U), rewriting prompts (V), non-tie concordance (W).}\n4\t\n5\t\\section{Design Rationale}\n6\t\\label{app:design_rationale}\n7\t\n8\tThree variables govern the observed judge score $Y$: the style attribute $S$ (e.g., formality), the original content quality $Q$, and the judge's internal scoring function.\n9\tBoth $S$ and $Q$ causally influence $Y$; the goal of CSD is to approximate the effect $S \\to Y$ while blocking confounding through $Q$.\n10\tStyle-controlled rewriting generates a text pair that differs along a single style axis, but any rewriting operation risks inadvertently altering content quality ($R \\to Q$).\n11\tThe NLI gate (\\S\\ref{sec:nli_gate}) blocks this path, yielding a controlled estimate of the $S \\to Y$ effect.\n12\tOur approach provides interventional rather than formal causal evidence: we do not claim that the DAG in Figure~\\ref{fig:dag} is a complete structural causal model, nor do we invoke SUTVA or consistency assumptions from the potential outcomes framework.\n13\t``Controlled'' in this context refers to experimentally controlled rewriting conditions, not formal causal identification in the potential-outcomes sense.\n14\tOur identification rests on three operational assumptions: (i)~the NLI gate approximates content preservation, blocking the $R \\to Q$ path; (ii)~position swapping controls for presentation-order effects; and (iii)~the style rewrite introduces no systematic differences beyond the target axis.\n15\t\n16\t\\section{Direction Asymmetry and Quality Confounding}\n17\t\\label{app:direction}\n18\t\n19\tThe formality ax\n…[truncated 5424 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001383"
+        },
+        {
+          "source_line": 1384,
+          "timestamp": "2026-05-25T21:28:55.200867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+              "offset": "80",
+              "limit": "120"
+            }
+          },
+          "id": "event-001384"
+        },
+        {
+          "source_line": 1385,
+          "timestamp": "2026-05-25T21:28:55.251716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t\\caption{GEE Style $\\times$ Originality interaction terms. None are significant ($p > 0.13$), confirming the additive model specification.}\n81\t\\label{tab:gee-interaction}\n82\t\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llccc@{}}\n83\t\\toprule\n84\tJudge & Axis & Interaction OR & 95\\% CI & $p$ \\\\\n85\t\\midrule\n86\tGPT-4o & Formality & 0.661 & [0.18, 2.38] & .527 \\\\\n87\tGPT-4o & Verbosity & 1.269 & [0.37, 4.34] & .705 \\\\\n88\tGPT-4o & Register & 2.601 & [0.74, 9.15] & .136 \\\\\n89\tQwen3-32B & Formality & 0.518 & [0.14, 1.89] & .320 \\\\\n90\tQwen3-32B & Verbosity & 0.450 & [0.13, 1.62] & .221 \\\\\n91\tQwen3-32B & Register & 0.555 & [0.15, 2.08] & .383 \\\\\n92\tLlama-70B & Formality & 0.968 & [0.25, 3.78] & .963 \\\\\n93\tLlama-70B & Verbosity & 1.103 & [0.34, 3.58] & .870 \\\\\n94\t\\bottomrule\n95\t\\end{tabular}}\n96\t\\end{table}\n97\t\n98\t\\paragraph{95\\% confidence intervals.}\n99\tTable~\\ref{tab:gee_ci} reports 95\\% CIs for all GEE odds ratios in Table~\\ref{tab:gee}.\n100\t\n101\t\\begin{table}[h]\n102\t\\centering\n103\t\\small\n104\t\\caption{95\\% CIs for GEE conditional decomposition (Table~\\ref{tab:gee}).}\n105\t\\label{tab:gee_ci}\n106\t\\begin{tabular}{@{}lcc@{}}\n107\t\\toprule\n108\tConfig & Style OR [CI] & Orig OR [CI] \\\\\n109\t\\midrule\n110\tQwen3 verb.\\ & 13.10 [5.62, 30.55] & 0.49 [0.21, 1.14] \\\\\n111\tGPT-4o verb.\\ & 11.34 [4.93, 26.10] & 0.45 [0.20, 1.04] \\\\\n112\tLlama-70B verb.\\ & 8.21 [3.62, 18.65] & 0.38 [0.17, 0.86] \\\\\n113\tGemini verb.\\ & 8.98 [3.68, 21.94] & 0.46 [0.20, 1.04] \\\\\n114\tGPT-4o form.\\ & 2.58 [1.41, 4.73] & 2.32 [1.27, 4.26] \\\\\n115\tQwen3 form.\\ & 4.20 [1.99, 8.87] & 4.70 [2.22, 9.96] \\\\\n116\tQwen3 form.$^a$ & 2.15 [1.46, 3.16] & 4.99 [3.40, 7.34] \\\\\n117\tLlama-70B form.\\ & 4.81 [2.48, 9.33] & 3.12 [1.61, 6.04] \\\\\n118\tGemini form.\\ & 1.64 [0.91, 2.98] & 2.51 [1.39, 4.54] \\\\\n119\tGPT-4o reg.\\ & 1.88 [1.08, 3.28] & 2.21 [1.26, 3.86] \\\\\n120\tQwen3 reg.\\ & 1.91 [1.01, 3.58] & 5.72 [3.02, 10.82] \\\\\n121\tLlama-70B reg.\\ & 3.33 [1.73, 6.42] & 3.07 [1.60, 5.92] \\\\\n122\t\\bottomrule\n123\t\\multicolumn{3}{l}{\\footnotesiz\n…[truncated 3634 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001385"
+        },
+        {
+          "source_line": 1386,
+          "timestamp": "2026-05-25T21:29:02.286962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+              "offset": "200",
+              "limit": "150"
+            }
+          },
+          "id": "event-001386"
+        },
+        {
+          "source_line": 1387,
+          "timestamp": "2026-05-25T21:29:02.337778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t.75 & .657 & .623 & .773 & .760 \\\\\n201\t.80 & .657 & .623 & .773 & .760 \\\\\n202\t.85 & .657 & .623 & .773 & .760 \\\\\n203\t.90 & .665 & .630 & .773 & .760 \\\\\n204\t.95 & .653 & .629 & .765 & .752 \\\\\n205\t.98 & .649 & .642 & .771 & .769 \\\\\n206\t\\bottomrule\n207\t\\end{tabular}\n208\t\\end{table}\n209\t\n210\t\\section{Direction-Aware Gate Validation}\n211\t\\label{app:gate_validation}\n212\t\n213\tFor verbosity, the direction-aware NLI gate admits 21 additional pairs (32\\%) compared to strict bidirectional verification.\n214\tThe two groups show no significant difference in BT win probability (78.5\\% bidirectional vs.\\ 73.8\\% DA-only; permutation $p = .663$; $\\Delta = {-}1.1$pp, 95\\% CI $[{-}5.6, {+}3.0]$) or Likert $d$ ($0.038$ vs.\\ $0.029$).\n215\tBoth groups exhibit the Blindspot pattern (BT significant, Likert NS), confirming that direction-aware gating recovers valid pairs without inflating the effect or introducing selection bias.\n216\tCross-judge validation on all 21 direction-aware pairs confirms this: Fisher exact tests comparing BT estimates between direction-aware and bidirectional-pass subsets are non-significant for all five judges ($p > 0.66$), indicating that the DA-gate does not differentially affect any judge's preference signal.\n217\tFor formality, strict bidirectional verification is appropriate: a relaxed (direction-aware) gate would admit 9 additional pairs with reversed preference (BT 33.4\\%), indicating content preservation failure rather than genuine style preference.\n218\tThis asymmetry empirically justifies the axis-dependent gating strategy described in Section~\\ref{sec:nli_gate}.\n219\t\n220\t\\section{Claude Sonnet 4 Equivalence Testing}\n221\t\\label{app:claude_tost}\n222\t\n223\tClaude Sonnet~4 exhibits benchmark-dependent sensitivity ($n = 88$; LLMBar BT 56.2\\%/54.1\\%, $p = 0.091$/$0.284$).\n224\tFormal equivalence testing \\citep[TOST;][]{lakens2017equivalence} yields margin-dependent conclusions (Table~\\ref{tab:tost_sensitivity}): per-axis equivalence is confirmed at $\\Delta = 1\n…[truncated 7145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001387"
+        },
+        {
+          "source_line": 1388,
+          "timestamp": "2026-05-25T21:29:08.440976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "regularization|alpha.*10",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001388"
+        },
+        {
+          "source_line": 1389,
+          "timestamp": "2026-05-25T21:29:08.971271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "555:Bradley-Terry parameters are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm} using the \\texttt{choix} Python library (default L2 regularization $\\alpha = 10^{-6}$); varying $\\alpha$ from $10^{-6}$ to $1.0$ changes all BT probabilities by ${<}0.002$."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Grep",
+            "elapsed_ms": 530
+          },
+          "id": "event-001389"
+        },
+        {
+          "source_line": 1390,
+          "timestamp": "2026-05-25T21:29:09.738532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "same.style|double.rewrite|artifact",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-001390"
+        },
+        {
+          "source_line": 1391,
+          "timestamp": "2026-05-25T21:29:09.839205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1-\\appendix\n2-\n3:\\noindent\\emph{Organization: design rationale (A$^*$), confound analysis (A--B), model diagnostics (C), independence tests (D), gate validation (E--F), equivalence testing (G), statistical details (H--K), sensitivity analyses (L--N), artifact controls (O), implementation (P), multiplicity (Q), cross-axis contamination (R), FK length-control (R$'$), human annotation agreement (S), cross-benchmark replication (T), Claude cross-benchmark (U), rewriting prompts (V), non-tie concordance (W).}\n4-\n5-\\section{Design Rationale}\n6-\\label{app:design_rationale}\n--\n277-\n278-To assess robustness to originality confounding, we restrict to pairs where the judge assigned equal Likert scores to original and counterfactual texts (eliminating detectable quality differences).\n279-Style preference persists: formality BT $= 67.3\\%$ ($n = 55$, $\\Delta = {+}0.8$pp from full sample, 95\\% CI $[{-}11.0, {+}12.6]$); verbosity BT $= 76.0\\%$ ($n = 50$, $\\Delta = {-}1.3$pp, 95\\% CI $[{-}13.3, {+}10.3]$).\n280:In the anti-originality subset (pairs where the original never wins), effects strengthen (formality $75.0\\%$, verbosity $86.1\\%$), confirming that style preference is not an artifact of originality confounding.\n281-\n282-\\section{Bradley-Terry Confidence Intervals}\n283-\\label{app:bt_ci}\n--\n513-\\end{table}\n514-\n515-\\section{Rewriting Artifact Control}\n516:\\label{app:artifact_control}\n517-\n518:Same-style double-rewrite (DR) controls quantify the rewriting artifact using BT models (consistent with all other pairwise analyses).\n519:Table~\\ref{tab:artifact} reports BT $P(\\text{original})$, the probability the judge prefers the original over its same-style DR.\n520:Both judges systematically prefer LLM-polished text across axes; for verbosity, BT $P(\\text{original}) < 0.17$ indicates that rewriting quality dominates when content is held constant, validating the GEE decomposition that separates style from artifact effects.\n521:Same-style double-rewrite controls for style-neutral polish\n…[truncated 2175 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001391"
+        },
+        {
+          "source_line": 1392,
+          "timestamp": "2026-05-25T21:29:17.878139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+              "offset": "523",
+              "limit": "30"
+            }
+          },
+          "id": "event-001392"
+        },
+        {
+          "source_line": 1393,
+          "timestamp": "2026-05-25T21:29:17.978990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "523\t\\begin{table}[h]\n524\t\\centering\n525\t\\small\n526\t\\caption{Rewriting artifact: BT $P(\\text{orig})$ vs.\\ same-style double-rewrite (bootstrap 95\\% CI, 10{,}000 resamples). Values ${<}0.5$: judges prefer LLM-polished text.}\n527\t\\label{tab:artifact}\n528\t\\begin{tabular}{@{}llcc@{}}\n529\t\\toprule\n530\tAxis & Judge & BT $P(\\text{orig})$ [CI] & $p$ \\\\\n531\t\\midrule\n532\tForm.\\ & GPT-4o & .418 [.342, .500] & .037 \\\\\n533\t & Qwen3 & .377 [.303, .451] & .0006 \\\\\n534\t\\midrule\n535\tVerb.\\ & GPT-4o & .167 [.084, .262] & ${<}.0001$ \\\\\n536\t & Qwen3 & .082 [.035, .140] & ${<}.0001$ \\\\\n537\t\\bottomrule\n538\t\\end{tabular}\n539\t\\end{table}\n540\t\n541\t\\section{Implementation Details}\n542\t\\label{app:implementation}\n543\t\n544\t\\paragraph{Models and APIs.}\n545\tStyle-controlled rewriting uses Qwen3-32B (temperature $0.7$, top-$p$ $0.9$).\n546\tTarget judges: GPT-4o (\\texttt{gpt-4o-2024-08-06}, accessed April--May 2026), Qwen3-32B (locally hosted), Llama-3.3-70B (locally hosted via vLLM).\n547\tClaude Sonnet 4 (\\texttt{claude-sonnet-4-20250514}, accessed May 2026) provides discriminative validity evidence with benchmark-dependent sensitivity.\n548\tAll judge calls use temperature $0$ and $\\texttt{max\\_tokens} = 2048$.\n549\t\n550\t\\paragraph{NLI gate.}\n551\tContent preservation is verified using DeBERTa-v3-large \\citep{he2021debertav3} fine-tuned on MNLI, with entailment threshold $\\tau = 0.90$.\n552\tBidirectional entailment is applied for formality and register; direction-aware entailment for verbosity (Section~\\ref{sec:nli_gate})."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001393"
+        },
+        {
+          "source_line": 1394,
+          "timestamp": "2026-05-25T21:31:50.432557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 2 交叉回应 — 逐条回应 Reviewer 1 审稿意见\n\n---\n\n### Strengths 回应\n\nR1 的 S1-S6 与我的评估高度一致。特别是 S2（robustness 检查覆盖面）和 S4（因果语言的审慎使用）是我也重点肯定的方面。我在 S6（人类标注验证）的基础上额外注意到标注者仅判定 49-66% 的 NLI-passed pairs 有可检测的风格变化（§5.4），这意味着观察到的效应是真实敏感性的稀释下界——R1 没有提及这一点，但我认为它增强了论文的可信度。\n\n---\n\n### Must-Fix 回应\n\n**[AGREE] R1-N1: Power analysis 的 \"prospective\" 标签存在循环论证风险**\n\n同意 R1 的核心判断。§4.1 称 \"A prospective power analysis (Appendix L) confirms that our sample sizes (n = 86–88 pairs) provide >90% power to detect BT effects of the observed magnitude (P ≥ 0.63)\"——使用同一数据集的 observed effect size 计算 power，这正是 Hoenig & Heisey (2001) 所批评的 post-hoc power fallacy。论文在 Figure 4 caption 中加了括号 disclaimer \"(not post-hoc power; cf. Hoenig & Heisey, 2001)\"，但用法与该引用的核心论点矛盾。\n\n补充：论文的实质分析（\"Likert 需要 4-206× 的样本量才能达到同等 power\"）作为 sensitivity analysis 仍有信息价值，但 \"prospective\" 标签不当。R1 建议改为 \"sensitivity power analysis\" 是准确的修改方向。Figure 4 的 y 轴标签 \"at observed effect magnitudes\" 进一步固化了 post-hoc 印象（与 R1-M4 一致）。\n\n**[AGREE] R1-N2: 跨基准复制的选择性构成确认偏差**\n\n强烈同意，这也是我的 W2。仅测试 24 cells 中效应最强的 6 个（25%），且论文明确称 \"targeting the strongest effects\"（§5.3 最后一段）。虽然透明度值得肯定，但策略本身是 cherry-picking 的一种形式。更关键的是：4 个 exception cells (‡) 的存在表明 Blindspot 的可复制性是 effect-size dependent 的，但论文用 \"severity spectrum\" 来解释这些 exceptions，这更接近 post-hoc rationalization 而非预先注册的分析框架。\n\n我额外注意到 R1 未提及的一点：未测试的 18 cells 可能包含反例（Likert 检测到而 pairwise 未检测到的情况），这将直接挑战 \"Likert Blindspot\" 的单向性叙事。R1 的 Q2（要求报告 18 cells 结果）因此尤为重要。\n\n---\n\n### Should-Fix 回应\n\n**[AGREE] R1-W1: GEE OR shrinkage 讨论不足**\n\n同意。Table 2 全部基于 n=88，而 n=355 的 scaled replication 显示 49-72% shrinkage（§5.2: Qwen3-32B formality Style OR 4.20 → 2.15）。虽然 Table 2 caption 提到了 shrinkage 范围，且 Appendix 有 n=355 数据，但主表的视觉印象仍以膨胀的 n=88 估计为主。R1 建议并列报告 n=88 和 n=355 估计（Q5）是合理的。\n\n补充：shrinkage 后 n=355 的 Style OR 仍显著（GPT-4o: 2.58, p=.002; Qwen3-32B: 2.15, p<.0001），说明核心结论不变，但 effect magnitude 的报告确实需要校正。\n\n**[AGREE] R1-W2: Evaluator-producer overlap 残留 22% 膨胀**\n\n同意，这也是我的 W1。Appendix E（Table 5-6）显示 GPT-4o 独立 rewriter 使 Style OR 从 13.10 降至 10.17（-22%），Blindspot 仍然存在但 effect size 缩减是 non-trivial 的。论文仅在 Table 1 脚注 b 中提及 \"independent GPT-4o rewriter yields 22% lower Style OR\"，正文 §5.4 未显著讨论。\n\n**[AGREE] R1-W3: TOST 等价界 Δ=12pp 偏宽松——我的审稿遗漏了这一问题**\n\n这是 R1 提出的、我完全遗漏的一个尖锐观察。Appendix H（Table 9）显示 Claude pooled TOST 在 Δ=12pp 时 p=.035，在 Δ=10pp 时 p=.100（不显著）。而 Blindspot 效应本身对最弱的 target judge（GPT-4o formality BT=63.0%）仅为 13pp。这意味着 TOST 的等价界几乎与最小的正效应重合——TOST 无法区分 \"Claude 真的无偏\" 和 \"Claude 的偏差略低于检测阈值\"。论文称 \"Δ=12pp corresponds to a small effect (Cohen's h=0.24)\"（Appendix H），但 Cohen's h 的解释在 BT probability 空间中的 substantive 含义未被讨论。\n\n建议作者：(1) 报告多个 Δ 的 TOST 结果（已做到，Table 9）；(2) 在正文中明确承认 Δ=12pp bound 的局限性，而不仅是在 appendix 中。\n\n**[AGREE] R1-W4: §3.1 \"per-axis causal attribution\" 与 Appendix A disclaimer 的语调不一致**\n\n同意。Appendix A 明确声明 \"Our approach provides interventional rather than formal causal evidence: we do not claim that the DAG in Figure 2 is a complete structural causal model\"（Appendix A, line 12），但 §3.1 的正文描述（\"a single-axis intervention design that enables per-axis causal attribution\"）使用了更强的因果语言。这种前后不一致会让 reviewer 质疑论文的 claim 边界。\n\n**[AGREE] R1-W5: Verbosity same-style double-rewrite 暴露严重 rewriting artifact——我的审稿遗漏了这一问题**\n\nR1 指出 BT P(orig)=0.082（Qwen3 verbosity，Table 19, Appendix O），意味着 judge 在 91.8% 的情况下偏好 LLM-polished 版本，即使风格没有改变。这是一个非常严重的 confound。论文声称这被 GEE 的 Originality term 吸收（§5.4: \"Same-style double-rewrite controls confirm that any residual rewriting artifact is absorbed by the GEE originality term\"），但 GEE verbosity 的 Orig OR=0.49 (n.s.) 表明吸收可能不完全——Orig OR 虽然不显著，但方向（<1，偏好 rewrite）与 same-style artifact 一致。\n\nR1 的 Q3（artifact 在 GEE Orig OR 中被吸收多少）是关键问题。如果 same-style rewrite artifact 的幅度（BT P=0.082，即强烈偏好 rewrite）远大于 GEE 能吸收的量，那么 verbosity 的 Style OR=13.10 可能仍包含未被控制的 polishing artifact。\n\n---\n\n### Minor 回应\n\n**[REBUT] R1-M1: BT 正则化参数不一致（§4.1 α=10⁻⁴ vs Appendix R α=10⁻⁷）**\n\n经核查 LaTeX 源码，§4.1（experiments.tex line 12）写的是 $\\alpha = 10^{-6}$，Appendix P Implementation Details（appendix.tex line 555）同样写的是 \"default L2 regularization α = 10⁻⁶; varying α from 10⁻⁶ to 1.0 changes all BT probabilities by <0.002\"。两处均为 10⁻⁶，不存在 R1 所述的 10⁻⁴ 与 10⁻⁷ 的不一致。R1 可能因 PDF 渲染中上标数字辨识困难而误读。此外，论文报告了 α 从 10⁻⁶ 到 1.0 的 sensitivity analysis（BT 变化 <0.002），说明正则化选择对结果无实质影响。\n\n**[AGREE] R1-M2: GEE ρ=−0.25 不是 \"near-zero\"**\n\n同意。§4.1 称 \"near-zero estimated within-pair correlations (α̂ ∈ [−0.25, +0.11])\"，但 ρ=−0.25 不符合 \"near-zero\" 的通常标准（通常 |ρ| < 0.1）。不过，Table 3（Appendix C）的 correlation structure robustness test 显示 exchangeable 与 independence 结构的 ΔQIC < 0.001，max coefficient change < 0.02，说明即使 ρ 不是 near-zero，结论对 correlation structure 的选择是 robust 的。建议将 \"near-zero\" 改为更准确的描述如 \"small in magnitude\"。\n\n**[REBUT] R1-M3: Table 1 adjusted p-values 校正方法未说明**\n\n§4.1 第1句明确写道 \"The primary family comprises six tests (three target judges × two axes), corrected via Holm-Bonferroni at α = 0.05\"（experiments.tex line 8），Table 1 脚注也标注 \"Holm-adj. for primary\"。校正方法已说明。但我同意 R1 的隐含关切：Table 1 未直接呈现 raw 和 adjusted p-values 的对照，尽管 §4.1 声称 \"Table 1 reports both raw and adjusted p-values\"。实际上 Table 1 的 BT 列只显示 significance markers (***、*)，Likert 列显示 d(p) 中的 raw p-value。adjusted p-values 的具体数值不可见。\n\n**[AGREE] R1-M4: Figure 4 y 轴 \"at observed effect magnitudes\" 强化 post-hoc 印象**\n\n同意，与 N1 一致。\n\n---\n\n### Questions 回应\n\n**R1-Q1 (Power analysis effect size 有 pilot/先验来源？)**：关键问题。如果没有独立先验，\"prospective\" 标签不成立。论文应在 revision 中明确说明。\n\n**R1-Q2 (未测试的 18 cells 有结果？)**：我认为这是最重要的问题。如果 18 cells 中有反例（Likert 检测到但 pairwise 未检测到），\"Blindspot\" 的单向性叙事将被严重削弱。\n\n**R1-Q3 (Verbosity same-style artifact 被 GEE Orig OR 吸收多少？)**：如上述 W5 分析，这是一个需要定量回答的核心问题。建议作者提供 same-style BT artifact 与 GEE Orig OR 的直接比较。\n\n**R1-Q4 (BT 正则化参数？)**：如 M1 回应所述，两处均为 10⁻⁶，不存在不一致。\n\n**R1-Q5 (n=355 GEE 估计并列报告？)**：支持。Table 2 应并列报告 n=88 和 n=355 估计以避免小样本膨胀的误导。\n\n---\n\n### 评分差异分析\n\nR1 和我的评分高度一致（Soundness 3.5, Overall 3.5），唯一显著差异在 **Excitement**（R1: 3.5, 我: 3.0）。\n\n我给 Excitement 3.0 的主要原因是：Pairwise vs. Likert discriminability 差异是自 Thurstone (1927) 以来的已知心理测量效应，本文的 domain transfer 到 LLM judge 虽然有实践价值，但概念新颖性有限。R1 未在其审稿中明确讨论这一心理测量学先驱问题，这可能是评分差异的来源。\n\n此外，我提出了两个 R1 未涉及的 Must-Fix 问题：\n1. **标题/framing 张力**（我的 N1）：\"The Likert Blindspot\" 预设了 Likert attenuation 解释，与正文三种非排他解释存在矛盾。R1 未将此标记为问题。\n2. **Novelty 定位不清晰**（我的 N2）：贡献声明 \"the first per-axis demonstration\" 的 \"first\" 在心理测量学背景下被过度强调。\n\n建议 Director 关注这两个额外的 framing/novelty 问题——它们可能在 AC 层面影响接收决定，即使技术执行扎实。\n\n---\n\n### 我遗漏的问题（感谢 R1 发现）\n\n1. **W3 (TOST Δ=12pp)**：R1 指出 TOST bound 几乎与最小正效应重合，这使 Claude discriminative validity 的说服力大打折扣。我在初审中完全遗漏了这一点。\n2. **W5 (Verbosity same-style artifact BT P(orig)=0.082)**：91.8% 的 rewrite 偏好是一个定量上非常严重的 confound。我在初审中提到了 rewriter-judge overlap 但未检查 same-style artifact 的具体幅度。\n3. **M2 (ρ=-0.25 不是 near-zero)**：有效的文本准确性问题，我遗漏了。\n",
+              "reviewer_id": "2",
+              "project": "causal_style_decomp_judge"
+            }
+          },
+          "id": "event-001394"
+        },
+        {
+          "source_line": 1395,
+          "timestamp": "2026-05-25T21:31:54.052302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3619
+          },
+          "id": "event-001395"
+        },
+        {
+          "source_line": 1396,
+          "timestamp": "2026-05-25T21:32:03.787228+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。\n\n总结：与 R1 在 12/16 个具体问题上达成一致（10 个 AGREE，2 个 REBUT）。REBUT 的两点是：(1) M1 的 BT 正则化参数不一致——经核查 LaTeX 源码两处均为 10⁻⁶，R1 可能误读 PDF；(2) M3 的校正方法确实已在 §4.1 和 Table 1 脚注中说明。R1 提出了三个我初审遗漏的问题（TOST Δ=12pp 过宽、verbosity same-style artifact BT P(orig)=0.082、GEE ρ=-0.25 非 near-zero），均已确认并纳入。我提出了两个 R1 未涉及的额外问题：标题/framing 张力和 Thurstone 以来的 novelty 定位。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f810d8d75f013ad17831ce8459f07d6d:reviewer_2"
+          },
+          "id": "event-001396"
+        }
+      ]
+    }
+  ]
+}

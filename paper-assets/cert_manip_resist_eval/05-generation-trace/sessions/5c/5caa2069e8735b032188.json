@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "id": "5caa2069e8735b032188",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "paper writing threat model",
+  "task_key": "worker_paper_writing_threat_model_20260522T151212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_threat_model_20260522T151212.jsonl",
+    "occurrence": 1,
+    "bytes": 8030,
+    "sha256": "b5645a337c4a39ce926132c123214d47a702d6d04548ee24621b52c3a96fe71c"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:13:02.027548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/_project/paper/theorem1_proof.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T15:13:02.028277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage{amsmath, amssymb, amsthm}\n4\t\\usepackage{mathtools}\n5\t\\usepackage[margin=1in]{geometry}\n6\t\\usepackage{enumitem}\n7\t\n8\t\\newtheorem{theorem}{Theorem}\n9\t\\newtheorem{lemma}[theorem]{Lemma}\n10\t\\newtheorem{proposition}[theorem]{Proposition}\n11\t\\newtheorem{corollary}[theorem]{Corollary}\n12\t\\newtheorem{definition}[theorem]{Definition}\n13\t\\newtheorem*{remark}{Remark}\n14\t\n15\t\\DeclareMathOperator*{\\argmax}{arg\\,max}\n16\t\n17\t\\title{Weakest-Link Monotonicity Theorem for\\\\Majority-Vote Panel ASR}\n18\t\\author{}\n19\t\\date{}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t%% ================================================================\n25\t\\section{Setup and Definitions}\n26\t%% ================================================================\n27\t\n28\t\\begin{definition}[Panel and Majority Vote]\n29\t\\label{def:panel}\n30\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges ($K$ odd) that independently evaluate a candidate text. The panel uses \\emph{majority-vote aggregation}: it is \\emph{compromised} if and only if at least $t = \\lceil K/2 \\rceil$ judges are individually compromised.\n31\t\\end{definition}\n32\t\n33\t\\begin{definition}[Attack Model]\n34\t\\label{def:attack}\n35\tAn \\emph{attack} $a \\in \\mathcal{A}$ is an adversarial perturbation applied to the input that all judges evaluate. Under attack $a$, the judges' failure outcomes are described by a joint distribution over binary random variables $(X_1^a, \\ldots, X_K^a) \\in \\{0,1\\}^K$, where $X_j^a = 1$ indicates that judge $J_j$ is compromised. The \\emph{individual vulnerability} of $J_j$ under attack $a$ is\n36\t\\[\n37\t    \\eta_j(a) \\;=\\; \\Pr(X_j^a = 1).\n38\t\\]\n39\tThe \\emph{panel ASR} under attack $a$ is\n40\t\\[\n41\t    \\mathrm{ASR}(\\mathcal{P}, a) \\;=\\; \\Pr\\!\\Bigl(\\textstyle\\sum_{j=1}^K X_j^a \\;\\geq\\; t\\Bigr).\n42\t\\]\n43\t\\end{definition}\n44\t\n45\t\\begin{definition}[Adaptive Adversary]\n46\t\\label{def:adversary}\n47\tAn \\emph{adaptive adversary} has full knowledge of the panel composition $\\ma\n…[truncated 20455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T15:13:02.028518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T15:13:02.028700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Threat Model and Problem Formulation}\n2\t% [PLACEHOLDER — to be written by Worker]\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T15:13:02.028919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex",
+              "content": "\\section{Threat Model and Problem Formulation}\n\nA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised independently with probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n\nTo quantify diversity, we derive the \\emph{effective independence} $K_{\\mathrm{eff}}$ from the eigenspectrum of the pairwise mutual-information matrix $\\mathbf{M}$ among judges. Let $\\lambda_1, \\ldots, \\lambda_K$ be the eigenvalues of $\\mathbf{M}$; then $K_{\\mathrm{eff}} = (\\sum_i \\lambda_i)^2 / \\sum_i \\lambda_i^2$. This quantity ranges from $K_{\\mathrm{eff}} = K$ (fully independent judges) to $K_{\\mathrm{eff}} = 1$ (perfectly correlated judges). Under the strong data-processing inequality (SDPI), the joint vulnerability satisfies $\\eta_{\\mathrm{joint}} \\leq K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$, suggesting that diversity should help---but this bound assumes non-adaptive faults.\n\n\\begin{definition}[Adaptive Adversary]\n\\label{def:adversary}\nAn \\emph{adaptive adversary} has full knowledge of the panel composition $\\mathcal{P}$, the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$, and the inter-judge correlation structure. It selects the attack $a^* = \\arg\\max_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$ to maximize the panel ASR, yielding $\\mathrm{ASR}^*(\\mathcal{P}) = \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$.\n\\end{definition}\n\nThis departs from Byzantine fault-tolerance (BFT) models~\\cite{lamport1982byzantine,castro1999practical}, which assume faults are independent and randomly distributed. An adaptive adversary instead concentrates attack effort on the weakest link~\\cite{schneier2000secrets}, rendering diversity-based defenses less effective than the SDPI bound implies.\n\n\\begin{theorem}[Weakest-Link Monotonicity]\n\\label{thm:monotonicity}\nLet $\\mathcal{P}$ and $\\mathcal{P}'$ be two panels sharing $K{-}1$ judges and differing only in the $K$-th member, where $J_K'$ is pointwise more vulnerable than $J_K$ (i.e., $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$). Then for any adversary, including an adaptive one: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$.\n\\end{theorem}\n\n\\noindent Proof in Appendix~\\ref{app:proof}. Intuitively, the replaced judge is \\emph{pivotal} exactly when $t{-}1$ of the remaining judges have already failed; in such configurations, a more vulnerable replacement can only increase the probability of tipping the majority, never decrease it. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n\nThe theorem yields a testable prediction: in a regression $\\log(\\mathrm{ASR}) \\sim \\beta_1 \\log(\\eta_{\\max}) + \\beta_2 \\log(K_{\\mathrm{eff}})$, we should observe $\\beta_1 > 0$ (significant) while $\\beta_2 \\approx 0$ (non-significant), since monotonicity is established in $\\eta_{\\max}$ but not in $K_{\\mathrm{eff}}$. Our experiments in \\S\\ref{sec:experiments} directly test this prediction across 12 conditions spanning two benchmarks and six attack types.\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T15:13:02.029143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T15:13:02.029312+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `docs/paper/threat_model.tex`。~470 词，覆盖全部 5 个段落：panel/majority-vote 设置、$K_{\\mathrm{eff}}$ 定义与 SDPI bound、adaptive adversary definition 环境（含 BFT 对比）、weakest-link monotonicity theorem（标签 `thm:monotonicity`，证明留 appendix，含 pivotal voter 直觉）、testable prediction 连接实验。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_threat_model_20260522T151212"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ]
+}

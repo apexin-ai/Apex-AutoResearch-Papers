@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "83f190e9b4334acf02f0",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_8_1779019220.md",
+  "task_key": "loop_8_1779019220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_8_1779019220.md",
+    "occurrence": 1,
+    "bytes": 3616,
+    "sha256": "226d685f872954a88ffc4360b844f9904d623940308aab956565c0a9b851722b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-17T12:00:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-27271:cuda:0, westd-27271:cuda:1, cqa1-33015:cuda:0, cqa1-33015:cuda:1, cqa1-33015:cuda:2, cqa1-33015:cuda:3\n- cqa1-33015 磁盘 /autodl-pub 已用 96%（350GB 可用），提交实验前必须先清理或确认空间\n- Stage2 训练已被证明彻底摧毁 expert weights（D058），不要再尝试任何 Stage2 实验\n- Stage1-only pruning 在 bug 修复后 SR=0%（D060），token pruning 对 SmolVLA 无效——不要再跑 pruning eval 期望正向结果\n- submit_training_job 命令必须自带 `source /root/miniconda3/bin/activate`，cqa1-33015 无 .venv\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-33015**：工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，Python `/root/miniconda3/bin/python`，4x RTX 4090\n- **westd-27271**：工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，Python `/root/miniconda3/bin/python`，2x RTX PRO 6000\n- 模型 checkpoint：`/root/autodl-tmp/importance_margin_vla_compress/checkpoints/`\n- W&B project：未确认（实验多次无 W&B metrics 退出）\n- 活跃进程：\n  - libero_fullft_batch64_v2 (PID 14927, cqa1:1, tmux)\n  - eval_stage1only_object_v2_fixed (PID 140050, westd:0, tmux)\n  - eval_stage1only_spatial (PID 65128, westd:1, tmux)\n\n### 3. 📊 当前状态\n刚收到 cron 回调：train_acis_stage1only_k03 (cqa1:3) 和 train_acis_stage1only_k07 (cqa1:2) 同时失败（进程异常退出无 metrics）。已派 Worker `worker_diagnose_train_acis_stage1only_k03_k07_20260517T074121` SSH 诊断原因（检查 log、dmesg、磁盘）。已向 Director 汇报。\n\nRegistry 状态：\n- RUNNING：libero_fullft_batch64_v2 (cqa1:1), eval_stage1only_object_v2_fixed (westd:0), eval_stage1only_spatial (westd:1)\n- PREPARING：sanity_acis_prune, eval_random_prune_baseline, eval_k07_bypass, plan_005_formal_bound, eval_sim_success_rate, imm_two_stage_v9\n- 刚失败：train_acis_stage1only_k03, train_acis_stage1only_k07\n\n等待中：\n- Worker 诊断回调（失败原因）\n- Director 对失败报告的决策（是否重跑 / 调整方向）\n- eval_stage1only_object_v2_fixed 和 eval_stage1only_spatial 的 cron 完成回调\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 根据原因决定：磁盘满则清理后重跑，OOM 则调参，代码 bug 则修复\n- eval_stage1only_object_v2_fixed 完成 → 如 SR≈0% 则确认 D060（pruning 无效）；如 SR>0% 则重新评估\n- eval_stage1only_spatial 完成 → 与 Object suite 对比，判断 Stage1-only checkpoint 泛化性\n- Director 回复失败报告 → 按指示处理 cqa1:0/2/3 三块空闲 GPU\n- libero_fullft_batch64_v2 完成 → 这是 batch=64 baseline，关键数据点，SR 直接决定 paper story\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D056→D057→D058→D059→D060。Stage2 训练摧毁 expert（D058 Story C 确认），Stage1-only trained checkpoint SR=44.8% 但那是因为 pruning 未执行的 bug（D060 修复后 SR=0%）。Token pruning 对 SmolVLA action expert 是灾难性的。\n- **当前 paper story 危机**：原始 IMM 方案（训练 importance scorer → prune tokens）全面失败。唯一活路取决于：(1) batch=64 baseline 能否接近官方 SR，(2) 是否有新 angle（如 importance scoring 本身作为分析工具而非 compression 工具）\n- **易错点**：不要被 eval_stage1_only success=44.8% 迷惑——那是 pruning bug 导致的假阳性（全 token forward），修复后 SR=0%\n- **CoRL deadline May 29**（12天），3 块 GPU 空闲是紧急问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

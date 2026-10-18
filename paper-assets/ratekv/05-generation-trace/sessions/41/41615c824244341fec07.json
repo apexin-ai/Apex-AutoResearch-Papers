@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "41615c824244341fec07",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "submit yi 8k eval",
+  "task_key": "worker_submit_yi_8k_eval_20260516T053121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_yi_8k_eval_20260516T053121_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "41b1bf30593b77063e4c1e30cd60915997f4da5d3db4f2eabc749a5693beff15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常，已开始 PPL 评估。\n\n## 汇总\n\n**服务器检查结果：**\n| 项目 | 状态 |\n|------|------|\n| 脚本 `run_yi_longcontext_8k.py` | 本地直接上传（无 git remote） |\n| Profile 文件（2-bit + 4/8-bit） | 已就绪 |\n| Yi-1.5-9B 模型 | 已缓存 |\n| WikiText-2 数据集 | 已缓存（离线可用） |\n\n**提交结果：**\n- experiment_id: `yi_8k_eval`\n- GPU: `cuda:1`（物理 GPU 1）\n- PID: `405564`\n- Log: `~/runs/ratekv/yi_8k_eval.log`\n\n**注意事项：**\n- 首次尝试 GPU 0 因 llama 任务占用 73 GB 导致 OOM，已切到 GPU 1（mistral 仅占 41 GB，余量充足）\n- GPU 1 同时跑 mistral multi-seed PPL，两个任务共享显存，若后续 mistral 内存用量增加可能出问题——建议关注日志\n- token 序列长度警告（338838 > 4096）是正常的，WikiText-2 全文拼接后用 stride=8192 滑窗评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

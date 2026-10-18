@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1dbe31a492a81a0d1f46",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "knowledge fix experiment plan schema",
+  "task_key": "worker_knowledge_fix_experiment_plan_schema_20260519T204654",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_fix_experiment_plan_schema_20260519T204654_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "5b75de96988c018b7b91ef70417463752a15a39d7fd97b5049603a9c1169e6c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 格式验证通过。6 个 plan entries，共 67 个 exp_id 关联，所有必需字段（`plan_id`, `claim`, `description`, `status`, `exp_ids`）完整。\n\n转换完成：`claims` 嵌套结构 → `experiments` 扁平列表，保留了所有实验关联信息和 claim 映射。`compute_coverage_matrix` 现在应能正确解析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

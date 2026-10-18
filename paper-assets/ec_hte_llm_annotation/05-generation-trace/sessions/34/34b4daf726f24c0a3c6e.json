@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "34b4daf726f24c0a3c6e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code llama semisynthetic rmse",
+  "task_key": "worker_code_llama-semisynthetic-rmse_20260521T204338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-semisynthetic-rmse_20260521T204338_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "251319247efe8c9e37816e5590fe84a0ba7bbdf8bc070e4df4490fab6bcfc260"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The analysis is complete and the bias-variance decomposition confirms the story clearly:\n\n- **Naive**: Bias^2=0.0079, Var=0.0087, MSE=0.0165\n- **HB EC-HTE**: Bias^2=0.0039, Var=0.0824, MSE=0.0863\n\nEC-HTE halves the systematic bias (0.0039 vs 0.0079) but inflates variance by ~10x (0.0824 vs 0.0087), so total MSE is 5x worse.\n\nAll outputs produced:\n- `artifacts/c1_multi_llm/llama_semisynthetic_results.csv` — 800 rows (20 seeds x 4 subgroups x 2 z-levels x 5 methods)\n- `artifacts/c1_multi_llm/llama_semisynthetic_analysis.md` — full analysis with summary tables, per-subgroup breakdown, bias reduction ratios, bias-variance decomposition, and interpretation\n\n**Key finding**: Under Llama's real CMs (Δπ=0.137, moderate heterogeneity) with n_expert=200, EC-HTE correction does NOT improve over Naive. The per-subgroup CM estimates (~28-77 expert labels per subgroup) are too noisy — the variance cost from inverting estimated mixing matrices exceeds the bias reduction benefit. EC-HTE would need larger expert budgets or greater CM heterogeneity to be beneficial."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

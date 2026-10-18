@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a53b96c74344a80865a9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "pipeline claude crossbench scoring",
+  "task_key": "worker_pipeline_claude-crossbench-scoring_20260523T005801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_claude-crossbench-scoring_20260523T005801_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "fc6051007cc3568b9766fd142d99e267473756b11871b130ec6ef0d3a846a1d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时了，但 scoring 和分析都已完成，结果已保存到服务器和本地。无需重新 arm。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

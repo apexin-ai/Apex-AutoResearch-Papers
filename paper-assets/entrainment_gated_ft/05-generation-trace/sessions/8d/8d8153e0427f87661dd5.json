@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d8153e0427f87661dd5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "prep code release fix",
+  "task_key": "worker_prep_code-release-fix_20260522T192431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_code-release-fix_20260522T192431_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "186d5ebb28238dfa9eb6be59bff42997b3f55fd778d2e1c1e1a1a1c37a5623c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，全部通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| 标题含 \"Linear\" | `# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures` |\n| 无 `__pycache__` | 无 |\n| 无 `.bak` | 无 |\n| 无 `.pyc` | 无 |\n| README.md 存在 | 存在 |\n| Reproducing Results 段落 | 已添加（patch_fla_eval 单模型评估、批量评估、Jaccard 分析、多 benchmark 分析） |\n| **文件数** | **21 files** |\n| **zip 大小** | 145,301 bytes (原始)，压缩后约 ~55KB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

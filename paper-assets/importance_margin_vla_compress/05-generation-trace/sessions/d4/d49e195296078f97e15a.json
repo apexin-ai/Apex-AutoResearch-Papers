@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d49e195296078f97e15a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops scan harvest m64 check",
+  "task_key": "worker_ops_scan_harvest_m64_check_20260523T031804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_scan_harvest_m64_check_20260523T031804_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "90a71411b3ac61be0bdbfcd0dc01a4ef2c70b7c04773a756c38e2729081c0039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态\n\n| 服务器:GPU | 实验 | 状态 | 进度 | SR |\n|-----------|------|------|------|-----|\n| westd-27271:GPU0 | eval_xvla_random_k095_long_seed42 | 🟢 Running | Task 3/10, ep ~43/50 (148/500 = 30%) | T0=0%, T1=46%, T2=72% |\n| westd-27271:GPU1 | eval_pi05_random_k09_object_seed43_v3 | 🟢 Running | T7 ep 30/50 (330/500 = 66%) | 累计 39/350 = 11.1% |\n| westd-41074:GPU1 | eval_pi05_random_k05_spatial_seed43_v2 | ✅ **完成** | 500/500 | **72.4%** |\n\n## M64 训练\n- **Step 88150 / 100000** (88.2%)\n- Speed: 0.6 sps (~82s per 50 steps)\n- 剩余 11850 steps ÷ 0.6 sps ≈ **5.5h**\n- **预估完成: 今天 ~16:48**\n\n## 收割\n\n**eval_pi05_random_k05_spatial_seed43_v2** → DONE (success)\n- SR = **72.4%** (362/500), 耗时 80.6 min\n- Per-task: T0=88%, T1=88%, T2=88%, T3=56%, T4=38%, T5=32%, T6=86%, T7=92%, T8=72%, T9=84%\n- Registry 已更新 (conclusion=success, metrics, log_path)\n- westd-41074 GPU 1 已空闲，可接新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

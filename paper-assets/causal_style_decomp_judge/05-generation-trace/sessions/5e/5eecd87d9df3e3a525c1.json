@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5eecd87d9df3e3a525c1",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis tost sensitivity",
+  "task_key": "worker_analysis_tost-sensitivity_20260522T183459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-sensitivity_20260522T183459_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "111ec2e4ee2bbc982ca0d660695194b663ac38dd543068db5dda5c34d73baacf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果**:\n\n| Δ (pp) | Bounds | TOST p | Sig? | Decision |\n|-------:|:------:|-------:|:----:|:---------|\n| 5 | [0.45, 0.55] | 0.6255 | NO | Inconclusive |\n| 10 | [0.40, 0.60] | 0.1555 | NO | Inconclusive |\n| **15** | **[0.35, 0.65]** | **0.0095** | **YES** | **Equivalence** |\n| 20 | [0.30, 0.70] | 0.0001 | YES | Equivalence |\n\n- BT point estimate: 0.562, 90% CI: [0.500, 0.624], n=88\n- 等价性仅在 Δ≥15pp 时成立。Δ=10pp 时 p=0.155，远未显著\n- Reviewer 的担忧有道理：Δ=15pp 是 Claude formality 能通过 TOST 的临界门槛，且 GPT-4o 的 13pp bias 几乎触及该 margin\n\n**文件**: `/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

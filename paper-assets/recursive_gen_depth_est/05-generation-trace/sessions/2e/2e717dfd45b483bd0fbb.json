@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "2e717dfd45b483bd0fbb",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis d23 edd bootstrap",
+  "task_key": "worker_analysis_d23_edd_bootstrap_20260515T114730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d23_edd_bootstrap_20260515T114730.log",
+    "occurrence": 1,
+    "bytes": 717572,
+    "sha256": "94908e206582c4c38ab86f564ca3bc44f66f5a0bbbd8eb9602282566fd8fc60a"
+  },
+  "statistics": {
+    "messages": 543,
+    "user_turns": 0,
+    "tool_calls": 225,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 225,
+      "tool_result": 225,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 543,
+      "chunks": [
+        {
+          "path": "2e717dfd45b483bd0fbb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e717dfd45b483bd0fbb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e717dfd45b483bd0fbb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e717dfd45b483bd0fbb-part-0004.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ]
+}

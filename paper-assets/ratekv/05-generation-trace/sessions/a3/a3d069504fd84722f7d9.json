@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a3d069504fd84722f7d9",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp qwen compounding sweep",
+  "task_key": "worker_exp_qwen_compounding_sweep_20260515T184057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen_compounding_sweep_20260515T184057_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "c0818352a1690b622a990b7c51bf9d00e0a54d35e8f6962bcba216c18d6f411e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**状态汇总：**\n- 实验 `qwen_compounding_sweep` 已在 westd-37397 cuda:1 上运行（PID 361571）\n- 使用 `hires_profiles.json`（bf16 精度，2/4/8 bit，与 Llama/Mistral 一致）\n- k_values: 0,2,4,8,16,32,64,128,256，budget=0.25\n- 输出：`/root/ratekv/artifacts/qwen_compounding_sweep_results.json`\n- Registry 已更新为 RUNNING\n- 日志：`~/runs/ratekv/qwen_compounding_sweep.log`\n- 预计 45-90 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

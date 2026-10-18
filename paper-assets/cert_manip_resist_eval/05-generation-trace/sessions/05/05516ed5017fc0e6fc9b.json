@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "05516ed5017fc0e6fc9b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "fix regime transition bootstrap corrected",
+  "task_key": "worker_fix_regime-transition-bootstrap-corrected_20260523T175031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_regime-transition-bootstrap-corrected_20260523T175031_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "767e127e0184d1c7cf562ff06bf8494198d14314f97340b70683eec5598a087e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总耗时约 7 分钟（K=3: 9s, K=5: 104s, K=7: 296s）。\n\n## 结果对比（Old → New）\n\n| K | η_max sig | K_eff sig | 变化 |\n|---|-----------|-----------|------|\n| K=3 | 5 → **3** | 1 → **4** | **Changed** |\n| K=5 | 0 → **0** | 7 → **10** | **Changed** |\n| K=7 | 0 → **0** | 5 → **9** | **Changed** |\n\n修正 error handling 后的影响：\n\n- **K_eff 显著性普遍增强**：K=3 从 1→4, K=5 从 7→10, K=7 从 5→9。排除 error 样本后 K_eff 的 regime transition 效应更强更一致。\n- **η_max 在 K=3 下降**：5→3。之前将 API error 当作 tie 人为膨胀了 η_max 的显著性。\n- **K=5/K=7 的 η_max 保持 0**：修正前后都不显著。\n- 1365 个无效样本被过滤（占总量 ~2%）。\n\n结果已写入 `docs/paper/data/regime_transition_corrected.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

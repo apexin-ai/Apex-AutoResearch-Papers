@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "47985da30facd732f73e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest pi05 random k07 strict v2",
+  "task_key": "worker_harvest_pi05_random_k07_strict_v2_20260527T122958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_pi05_random_k07_strict_v2_20260527T122958_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "8e433c7fb2585a022abc8d6fc8846d73202e1c3128ee63519884881a7ac5df40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**实验结果：`eval_pi05_random_k07_long_seed42_strict_v2`**\n\n| 指标 | 值 |\n|---|---|\n| Overall SR | **66.0%** (330/500) |\n| 耗时 | 245.3 min |\n\nPer-task SR:\n\n| Task | SR |\n|---|---|\n| T0 alphabet_soup_tomato_sauce | 96% |\n| T1 cream_cheese_butter | 66% |\n| T2 stove_moka_pot | 76% |\n| T3 black_bowl_drawer | 66% |\n| T4 white_mug_yellow_mug | 68% |\n| T5 book_caddy | 48% |\n| T6 white_mug_chocolate | 80% |\n| T7 alphabet_soup_cream_cheese | 66% |\n| T8 moka_pots_stove | 22% |\n| T9 yellow_mug_microwave | 72% |\n\n**cqa1 GPU 状态：**\n\n| GPU | 显存占用 | 利用率 |\n|---|---|---|\n| GPU 0 | **1 MiB / 24564 MiB** | **0% — 已释放** |\n| GPU 1 | 10013 MiB | 15% |\n| GPU 2 | 10463 MiB | 60% |\n| GPU 3 | 10533 MiB | 21% |\n\nGPU 0 已完全释放，可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

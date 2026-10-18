@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e558c833e6ef51fa097d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig radar chart",
+  "task_key": "worker_ops_fig-radar-chart_20260525T142321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-radar-chart_20260525T142321_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "646a2ffa2b79bd47b72676cb31354747efa5d7a5395c1a322f749443c5d1b7cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output files delivered:\n- **PDF**: `docs/paper/figures/fig_model_radar.pdf` (47 KB)\n- **PNG**: `docs/paper/figures/fig_model_radar.png` (463 KB)\n\nKey observations from the radar chart:\n- **API models**: 7/9 have ASR < 5% across all attacks. Claude 3 Haiku is a major outlier (prompt injection ASR = 77%), GPT-4.1 Nano is moderately vulnerable (~10-17%)\n- **Local models**: Position bias is universally the dominant attack vector (26-48% ASR). LLaMA 3.1-8B has uniformly high vulnerability across all 6 attacks (~16-48%)\n- The sqrt radial scale preserves readability for both low-ASR clusters and high-ASR outliers"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

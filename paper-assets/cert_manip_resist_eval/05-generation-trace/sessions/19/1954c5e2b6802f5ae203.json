@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1954c5e2b6802f5ae203",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis keff stability stochdom",
+  "task_key": "worker_analysis_keff-stability-stochdom_20260523T123019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_keff-stability-stochdom_20260523T123019_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "d399de37d52f14f15e2394fe1e94fa10f326c0aa08d957e33b65dc32bde397ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已 SCP 到本地 `docs/paper/data/`。\n\n---\n\n## A3: K_eff Stability Split 结果\n\n| Stability Tier | ρ 范围 | K=3 显著 | K=5 显著 |\n|---|---|---|---|\n| **Stable** (4 attacks, 8 conds) | ≥0.90 | **0/8** | **4/8** |\n| **Moderate** (1 attack, 2 conds) | ~0.60 | **1/2** | **2/2** |\n| **Unstable** (1 attack, 2 conds) | <0.10 on ARC | **0/2** | **1/2** |\n\nK=3 整体只有 1/12 显著（prompt_injection on MMLU），K=5 提升到 7/12。Moderate tier（prompt_injection）在两个 K 下表现最稳定（K5 达 2/2）。\n\n## A5: Stochastic Dominance Tier 分解\n\n61/105 (58%) dominant, 44/105 (42%) non-dominant。\n\n| Tier 组合 | 总 pairs | Non-dominant | 比例 |\n|---|---|---|---|\n| mid-mid | 15 | 11 | **73.3%** |\n| frontier-frontier | 6 | 4 | 66.7% |\n| lightweight-lightweight | 10 | 6 | 60.0% |\n| lightweight-mid | 30 | 16 | 53.3% |\n| frontier-mid | 24 | 6 | 25.0% |\n| frontier-lightweight | 20 | 1 | **5.0%** |\n\n- **Within-tier**: 21/31 non-dominant (67.7%)\n- **Cross-tier**: 23/74 non-dominant (31.1%)\n\n关键发现：non-dominance 主要集中在 **同 tier 内部**（67.7%），尤其 mid-mid（73.3%）。跨越距离越大的 tier 对（frontier-lightweight）几乎全部 dominant（95%），说明 stochastic dominance 违反主要发生在 capability 相近的 judge 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

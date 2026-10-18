@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f6c36f5eba02d6bdf919",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "writing r1 w7 related work",
+  "task_key": "worker_writing_r1_w7_related_work_20260515T044227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r1_w7_related_work_20260515T044227_result.json",
+    "occurrence": 1,
+    "bytes": 1938,
+    "sha256": "7ac081740dd0a771ac558267710398d6ca45ec7e45703850d8fe25d0751c0ba4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation clean: 14-page PDF built, no undefined-citation warnings. Summary of changes:\n\n**`references.bib`** — added 8 verified entries:\n- `dong2019hawq` (ICCV 2019), `dong2020hawqv2` (NeurIPS 2020), `wang2019haq` (CVPR 2019)\n- `su2025rotatekv` (IJCAI 2025), `sharma2025minikv` (Findings of ACL 2025), `shutova2025aquakv` (ICML 2025, \"Cache Me If You Must\")\n- `liu2025pmkvq` (arXiv preprint), `xia2025kitty` (arXiv preprint)\n- Skipped \"Don't Waste Bits!\" — not verified.\n\n**`related_work.tex`** —\n- KV Cache Quantization paragraph: added RotateKV / MiniKV / AQUA-KV at the end of the uniform-precision enumeration.\n- New **Mixed-Precision Quantization (Weights)** paragraph: HAWQ / HAWQ-V2 / HAQ, framed as the foundational weight-level mixed-precision lineage, with one transfer sentence to our per-head KV setting.\n- Mixed-Precision Rate-Distortion Allocation paragraph: expanded RateQuant differentiation with the concrete additivity argument (single-bit gap → small-perturbation regime → polymatroid), the catastrophic-failure numbers (32.45 vs uniform 15.45 vs constrained 11.23 on Qwen2.5-7B at 4×, referencing `tab:solver_equiv`), and the framing that the cardinality constraint \"restores the additive regime in which RateQuant's polymatroid argument applies.\" Also folded PM-KVQ (block-level) and Kitty (channel-level) into the granularity enumeration.\n\nSources:\n- [HAWQ (ICCV 2019)](https://arxiv.org/abs/1905.03696)\n- [HAWQ-V2 (NeurIPS 2020)](https://arxiv.org/abs/1911.03852)\n- [HAQ (CVPR 2019)](https://arxiv.org/abs/1811.08886)\n- [RotateKV (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/690)\n- [MiniKV (Findings of ACL 2025)](https://aclanthology.org/2025.findings-acl.952/)\n- [AQUA-KV / Cache Me If You Must (ICML 2025)](https://proceedings.mlr.press/v267/shutova25a.html)\n- [PM-KVQ](https://arxiv.org/abs/2505.18610)\n- [Kitty](https://arxiv.org/abs/2511.18643)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

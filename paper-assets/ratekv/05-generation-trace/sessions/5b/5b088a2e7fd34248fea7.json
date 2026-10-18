@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b088a2e7fd34248fea7",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code qwen hires f32 mckp fix",
+  "task_key": "worker_code_qwen_hires_f32_mckp_fix_20260514T200644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_hires_f32_mckp_fix_20260514T200644_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "bda2af643ff4a4665e2b050e1be23cb577a0d0ae49fe6d4ee9ca041a42d107be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Method | WikiText-2 PPL | Delta vs Uniform |\n|---|---|---|\n| Baseline (bf16) | **9.8106** | — |\n| Constrained MCKP (k=8) | **10.8921** | **+4.5563** |\n| Uniform 4-bit | **15.4484** | — |\n\n- **MCKP improvement**: +80.8% of gap recovered vs uniform 4-bit\n- **Bit distribution**: 8-bit: 4, 4-bit: 100, 2-bit: 8\n- **top5_concentration**: 0.6156（接近 D048 verified 0.6104，差异来自 `enforce_monotonicity` 调整）\n- **Baseline PPL**: 9.8106（符合预期 ~9.81）\n- **结果文件**: `westd-37397:/root/ratekv/qwen_hires_f32_constrained_results.json`\n\n值得注意：MCKP PPL=10.89 与之前用 lowres profiles 的结果几乎一致，说明 lowres 和 hires profiling 在 Qwen 上给出了非常相似的 MCKP allocation，但 uniform 4-bit PPL 从之前的值变为 15.45，使 MCKP 的相对优势更大（80.8%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

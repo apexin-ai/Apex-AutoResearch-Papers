@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8cce246c473d0a2f18",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix cqa1 gpu mapping and deploy",
+  "task_key": "worker_fix_cqa1_gpu_mapping_and_deploy_20260525T095647",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cqa1_gpu_mapping_and_deploy_20260525T095647_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "c83f2bd17c6f05fa9dc674154ea8b00cb0a5309f0e02f7a58d50384cc9727445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新实验 PID 252122 已确认加载到 **物理 GPU 1**（9743MiB），`CUDA_VISIBLE_DEVICES=1` 映射正确。\n\n## 汇总\n\n| PID | exp_id | `--gpu` 参数 | 预期 GPU | 实际 GPU | 状态 |\n|-----|--------|-------------|---------|---------|------|\n| 79848 | eval_pi05_random_k085_goal_seed42_postfix_v3 | 0 | GPU 0 | — | **已结束** |\n| 213747 | eval_pi05_l2norm_k09_long_seed43_postfix | 1 | GPU 1 | **GPU 0** ❌ | 运行中（GPU 映射错误，但已跑很久不终止） |\n| 80238 | eval_pi05_random_k085_long_seed42_postfix_v3 | 2 | GPU 2 | **GPU 2** ✅ | 运行中 |\n| 80572 | eval_pi05_l2norm_k085_long_seed42_postfix_v3 | 3 | GPU 3 | **GPU 3** ✅ | 运行中 |\n| **252122** | **eval_pi05_l2norm_k085_long_seed43_v3** | 0 (CVD=1) | **GPU 1** | **GPU 1** ✅ | **新部署，已确认** |\n\n关键发现：\n- GPU 2/3 的实验 `--gpu` 参数恰好与物理 GPU 编号一致，映射正确\n- GPU 1 的实验（PID 213747）`--gpu 1` 却跑在 GPU 0，原因是未设 `CUDA_VISIBLE_DEVICES`，脚本内部 GPU 选择逻辑可能有问题\n- 新实验通过 `CUDA_VISIBLE_DEVICES=1 --gpu 0` 已确认正确映射到物理 GPU 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

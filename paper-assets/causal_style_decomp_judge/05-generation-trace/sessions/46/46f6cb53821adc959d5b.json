@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "46f6cb53821adc959d5b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp launch pipeline",
+  "task_key": "worker_mvp_launch_pipeline_20260520T125507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_launch_pipeline_20260520T125507_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "edbba0ca59ab8b4ac91c276c0ff03e5a8c4423c24ce1e87c9588ebb0b89cdcec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MVP 流程全部运行正常。汇报：\n\n---\n\n**MVP 启动完成**\n\n| 阶段 | 状态 | 详情 |\n|------|------|------|\n| 8B 下载 | 完成 | 5/5 safetensors，总计 ~15.3 GiB |\n| 8B 验证 | 通过 | 36 layers, 4096 hidden, vocab=151643 |\n| vLLM serve | 运行中 | PID 28488，端口 8000，FlashAttn v2 |\n| counterfactual_gen | 运行中 | PID 29480，前 3 条（mvp_0000-0002）处理正常 |\n\n**修复记录**：\n- FlashInfer 不兼容 Blackwell（sm120），设 `VLLM_USE_FLASHINFER_SAMPLER=0` 绕过\n\n**处理速度**：每条约 10-15 秒（3 次 LLM 调用），100 条预计约 20-25 分钟完成。\n\n**产出文件**：`/root/causal_style_decomp_judge/data/counterfactuals.jsonl`（已有 3 条，持续追加中）\n\n**注意**：Qwen3-8B 的 `counterfactual_text` 包含了 `<think>` 标签（Qwen3 默认 thinking mode），后续管线如果需要纯文本需要做 strip。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

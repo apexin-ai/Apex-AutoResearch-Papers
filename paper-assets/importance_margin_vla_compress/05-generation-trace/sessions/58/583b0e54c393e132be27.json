@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "583b0e54c393e132be27",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis openvla oft 38929 gpu1",
+  "task_key": "worker_analysis_openvla-oft-38929-gpu1_20260520T061643",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_openvla-oft-38929-gpu1_20260520T061643_result.json",
+    "occurrence": 1,
+    "bytes": 2317392,
+    "sha256": "0b647e1c7e1c46316a2b12d639ea7f76e8a13021a998566eeece31b7257b60aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "583b0e54c393e132be27-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

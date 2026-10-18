@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "2748d128214548d239f7",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh exp008 analysis prep",
+  "task_key": "worker_ssh_exp008-analysis-prep_20260515T111102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp008-analysis-prep_20260515T111102.log",
+    "occurrence": 1,
+    "bytes": 615663,
+    "sha256": "4c678a80f977c8072b53a9d20140e2754e58a0bc88fdeb5340363653d13298aa"
+  },
+  "statistics": {
+    "messages": 292,
+    "user_turns": 1,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 53,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 105,
+      "user": 1,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "2748d128214548d239f7-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "2748d128214548d239f7-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "2748d128214548d239f7-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ]
+}

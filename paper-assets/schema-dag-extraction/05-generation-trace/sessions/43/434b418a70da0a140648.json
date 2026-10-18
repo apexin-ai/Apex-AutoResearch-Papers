@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "434b418a70da0a140648",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp008 sdgd launch",
+  "task_key": "worker_ssh_exp008-sdgd-launch_20260515T074315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp008-sdgd-launch_20260515T074315_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "7ab8333339ce0876a72294e6154e4c06d575cb94d4df9c3ab5b5881cf419c8c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-008 已启动，汇总：\n\n| 项目 | 状态 |\n|------|------|\n| GPU | RTX PRO 6000 Blackwell 98GB, cuda:0 空闲 ✓ |\n| 代码 | 所有 SDGD 模块 + runner 就绪 ✓ |\n| BCS 矩阵 | `artifacts/sim_matrix.pt` (66 types) ✓ |\n| Dry-run | tau=0.8676, 8 batches [18,12,11,7,7,5,3,3] ✓ |\n| PID | 241208, vLLM 正在加载模型 |\n| 执行顺序 | sdgd_zero → single_pass → random_batch → per_type |\n| 日志 | `artifacts/exp008_run.log` |\n| 预计耗时 | ~3-4h 总计 |\n\n查看进度：`tail -20 /root/schema-dag-extraction/artifacts/exp008_run.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

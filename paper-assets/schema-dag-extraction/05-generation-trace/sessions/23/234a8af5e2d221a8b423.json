@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "234a8af5e2d221a8b423",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh verify and run experiments",
+  "task_key": "worker_ssh_verify-and-run-experiments_20260514T180940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-and-run-experiments_20260514T180940.log",
+    "occurrence": 1,
+    "bytes": 1804961,
+    "sha256": "9f10b3c0f217c0cf81b7438935ba0018e75f2bda1c460ec8ab92b79aad2c248a"
+  },
+  "statistics": {
+    "messages": 743,
+    "user_turns": 1,
+    "tool_calls": 282,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 172,
+      "tool_call": 282,
+      "tool_result": 282,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 605,
+      "chunks": [
+        {
+          "path": "234a8af5e2d221a8b423-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "234a8af5e2d221a8b423-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "234a8af5e2d221a8b423-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "234a8af5e2d221a8b423-part-0004.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "234a8af5e2d221a8b423-part-0004.json",
+          "message_count": 79
+        },
+        {
+          "path": "234a8af5e2d221a8b423-part-0005.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ]
+}

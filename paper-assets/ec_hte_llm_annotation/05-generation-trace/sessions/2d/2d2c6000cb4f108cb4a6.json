@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d2c6000cb4f108cb4a6",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code cross llm heatmap",
+  "task_key": "worker_code_cross-llm-heatmap_20260523T144832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-llm-heatmap_20260523T144832_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "a9a862225e91039442c2ec663a8713702555c4af20399a1e3219d809023cc390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Here's the summary:\n\n**Heatmap findings:**\n- **TweetEval (9 LLMs × 4 subgroups):** GPT-3.5-turbo is the most heterogeneous (error range 0.194 across subgroups, up to 0.49 on Hash_Medium). Open-source models (Mistral, Qwen, Llama) have lower and more uniform error rates (0.12–0.28).\n- **CivilComments (3 LLMs × 4 subgroups):** GPT-4o shows the most subgroup heterogeneity (range 0.103). GPT-4o-mini has uniformly high error rates (0.35–0.43).\n\n**Rank correlation findings:**\n- **TweetEval mean ρ = 0.244**, range [−0.80, 1.00]. 61% of LLM pairs have ρ < 0.5.\n- Most dissimilar: GPT-3.5-turbo vs Gemma/Mistral (ρ = −0.80) — completely opposite error patterns.\n- Clear split: GPT-family models correlate with each other; open-source models correlate with each other; cross-family correlations are low/negative.\n- **CivilComments mean ρ = 0.200**, GPT-4o vs GPT-4o-mini ρ = −0.40.\n\n**Files produced:**\n- `cross_llm_heatmap.pdf/.png` — side-by-side error-rate heatmaps\n- `cross_llm_rank_corr_heatmap.pdf/.png` — pairwise Spearman ρ matrices\n- `cross_llm_rank_correlation.csv` — raw ρ values\n- `cross_llm_heatmap_report.txt` — full summary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

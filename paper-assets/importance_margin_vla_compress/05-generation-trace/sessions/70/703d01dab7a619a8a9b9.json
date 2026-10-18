@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "703d01dab7a619a8a9b9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code paper figures",
+  "task_key": "worker_code_paper_figures_20260525T120515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_paper_figures_20260525T120515_result.json",
+    "occurrence": 1,
+    "bytes": 2138750,
+    "sha256": "adf64789082b9c22d52d5829de4c734dfb0ee7f3e9233c16ed5e1b3a347653ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "703d01dab7a619a8a9b9-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

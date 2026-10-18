@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4cd6fa6c24a8939723c7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis atlas v2 formal",
+  "task_key": "worker_analysis_atlas_v2_formal_20260515T041305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_atlas_v2_formal_20260515T041305_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "45f1d643dd8851f6e88d79f6e5ba9669438f839b599a6083b14a86c9f9637434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Atlas v2 9-cell analysis 已全部完成。4 个 JSON artifact 均已注册，registry 状态 DONE/success。\n\n核心结果：\n- **p90_ppl** top-2 命中率 9/9 (100%)\n- **var_surprisal** top-2 命中率 7/9（gpt2xl_temp09 和 gpt2xl_topk50 被 p75_ppl 替代）\n- **EDD=3 @T=0.75**: 7/9（pythia_topk50 和 olmo_topk50 的 d2v3 AUC 分别为 0.686 和 0.734，未达阈值）\n- **跨模型 rank 相关性**: 均值 0.868，范围 [0.619, 0.954]\n- **4-class CV5 准确率**: 范围 [0.688, 0.859]\n\n如需进一步分析或可视化，随时说。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

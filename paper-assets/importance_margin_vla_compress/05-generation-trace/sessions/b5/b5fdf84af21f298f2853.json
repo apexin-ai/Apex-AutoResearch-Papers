@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b5fdf84af21f298f2853",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops xvla token count check",
+  "task_key": "worker_ops_xvla-token-count-check_20260520T045446",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_xvla-token-count-check_20260520T045446_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "763be939859a5c992da3625039289fbd3e299b540f2ca68efac5b3fcfb12ccdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n从 X-VLA 的 `preprocessor_config.json` 和 `modeling_florence2.py` 直接得到结论：\n\n### 1. 输入图像分辨率\n**224×224**（X-VLA 自己的 preprocessor 设定，不是 Florence-2-Large 默认的 768×768）\n\n### 2. Vision token 数量计算\nDaViT 总空间下采样率 = 4×2×2×2 = **32×**\n- 最终 feature map: 224/32 = 7 → **7×7 = 49 spatial tokens**\n\nFeature 聚合方式（`image_feature_source: [\"spatial_avg_pool\", \"temporal_avg_pool\"]`）：\n- `spatial_avg_pool`: 沿空间维度 pool → T 个 token（单帧 T=1 → **1 token**）\n- `temporal_avg_pool`: 沿时间维度 pool → **49 tokens**（空间维度保留）\n- 拼接后总计：**50 tokens**（与 `max_pos_embeddings: 50` 完全吻合）\n\n### 3. 结论\n**< 100 tokens（仅 ~50 个）**。VTC 在 X-VLA 上基本无意义——50 个 token 的序列压缩空间极其有限，收益可忽略不计。\n\n如果要做 VTC 实验，应选用高 token 数的 VLA（如 OpenVLA 用 SigLIP 输出 256 tokens，或用 768×768 Florence-2 原始配置的 577 tokens）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

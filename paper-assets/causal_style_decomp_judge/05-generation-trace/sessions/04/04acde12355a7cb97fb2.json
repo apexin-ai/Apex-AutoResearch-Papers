@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "04acde12355a7cb97fb2",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops forest plot data fix",
+  "task_key": "worker_ops_forest_plot_data_fix_20260521T060528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_forest_plot_data_fix_20260521T060528_result.json",
+    "occurrence": 1,
+    "bytes": 451,
+    "sha256": "d26b2bb5094cada4638eb6d0cbffce36deaed701a11795c327a333b56f509431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改 diff：**\n- 文件：`csd_pipeline/gen_forest_plot.py` 第29行\n- 旧值：`(\"Qwen3-32B × Register\", 0.593, 0.460, 0.713, \"0.220\", False)`\n- 新值：`(\"Qwen3-32B × Register\", 0.553, 0.479, 0.628, \"0.076\", False)`\n\n**PDF：** `forest_plot.pdf` 已重新生成（24,209 bytes），已同步到本地两个路径：\n- `artifacts/figures/paper/forest_plot.pdf`\n- `docs/paper/figures/forest_plot.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "24fa419f0c0af5fecd71",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis 340m multi bench",
+  "task_key": "worker_analysis_340m-multi-bench_20260522T002147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_340m-multi-bench_20260522T002147_result.json",
+    "occurrence": 1,
+    "bytes": 1847,
+    "sha256": "882d271856783f23c8f448adf8dd9f55c6cc9fbd444067b22d7236b103b3e9d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n---\n\n## 340M Multi-Benchmark Multiplicity Analysis — 结果\n\n### 340M vs 1.3B α 对比表\n\n| Benchmark | 340M α_all | 1.3B α_all | Δ | 340M α_pure | 1.3B α_pure | Δ_pure |\n|-----------|-----------|-----------|--------|------------|------------|--------|\n| HellaSwag (acc_norm) | 0.334 | 0.302 | +0.031 | 0.167 | 0.148 | +0.019 |\n| PIQA | 0.366 | 0.278 | +0.089 | 0.181 | 0.143 | +0.038 |\n| ARC-Easy | 0.564 | 0.434 | +0.130 | 0.289 | 0.205 | +0.084 |\n| **Mean** | **0.421** | **0.338** | **+0.084** | | | |\n\n### Convergence ρ (exact permutation p)\n\n| Benchmark | 340M ρ | p | 1.3B ρ | p |\n|-----------|--------|------|--------|------|\n| HellaSwag | +0.40 | 0.517 | +0.40 | 0.517 |\n| PIQA | +0.30 | 0.683 | −0.50 | 0.450 |\n| ARC-Easy | −0.10 | 0.950 | +0.30 | 0.683 |\n\n所有 p>0.45 — **无显著 convergence 趋势**（两个 scale 均如此）。\n\n### Jaccard 统计\n\n| Benchmark | 340M J_helped | 1.3B J_helped | 340M J_hurt | 1.3B J_hurt |\n|-----------|--------------|--------------|-------------|-------------|\n| HellaSwag | 0.084 | 0.095 | 0.083 | 0.085 |\n| PIQA | 0.090 | 0.091 | 0.085 | 0.094 |\n| ARC-Easy | 0.098 | 0.092 | 0.103 | 0.099 |\n\n所有 Jaccard p=0.000（显著高于 chance），但绝对值低（~0.08-0.10），说明 helped/hurt 集合 architecture-specific。\n\n### 结论\n\n**Multiplicity 是 scale-dependent in magnitude, scale-invariant in pattern:**\n1. 340M 比 1.3B 高 ~8pp 平均 α（smaller models disagree more）\n2. 但定性 pattern 一致：低 Jaccard、无 convergence、per-ratio α 稳定\n3. ARC-Easy 差距最大（+13pp），可能因为 340M 在该 benchmark 整体准确率最低（~55% vs ~70%）\n\n产出已保存: `artifacts/paper_data/340m_multi_bench_analysis.json` (artifact: `art_20260522_4c676a`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

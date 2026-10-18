@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "92e839c0a07541df125a",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis a1 cross benchmark jaccard",
+  "task_key": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1_cross_benchmark_jaccard_20260522T075546_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "f4e7adf1d52a3ddab50d428979791b23c3f72946e932b185f083c17a6ff283fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A1 分析完成。\n\n## 结果摘要\n\n### σ 轨迹（cross-architecture std of accuracy）\n| Benchmark | σ_pure | σ_h3-1 | Reduction | ρ | p |\n|-----------|--------|--------|-----------|---|---|\n| LAMBADA | 0.0240 | 0.0049 | 79.4% | **-1.00** | **0.017** |\n| HellaSwag | 0.0117 | 0.0118 | -1.2% | 0.30 | 0.683 |\n| PIQA | 0.0046 | 0.0039 | 16.2% | -0.50 | 0.450 |\n| ARC-Easy | 0.0004 | 0.0100 | -2411% | 0.30 | 0.683 |\n\n→ σ convergence 是 LAMBADA 特有的（p=0.017），其他三个 benchmark 均不显著。\n\n### Jaccard 轨迹（mean pairwise J across 3 arch pairs）\n| Benchmark | h24-1 | h12-1 | h6-1 | h3-1 | ρ | p |\n|-----------|-------|-------|------|------|---|---|\n| LAMBADA | 0.091 | 0.088 | 0.096 | 0.097 | 0.80 | 0.333 |\n| HellaSwag | 0.084 | 0.081 | 0.091 | 0.086 | 0.60 | 0.417 |\n| PIQA | 0.089 | 0.096 | 0.089 | 0.095 | 0.00 | 1.000 |\n| ARC-Easy | 0.084 | 0.099 | 0.091 | 0.109 | 0.80 | 0.333 |\n\n→ **所有 4 个 benchmark 的 Jaccard 均无显著趋势**（全部 p>0.33）。Jaccard 在 4% attention 即饱和，不随 attention 增加而变化——这是跨 benchmark 的普遍现象。\n\n### Decoupling 确认\nJaccard 饱和（平坦轨迹）vs σ（仅 LAMBADA 下降）：两个量在不同 timescale 上运作，decoupling 不仅限于 LAMBADA。\n\n### 产出文件\n- **JSON**: `/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json`\n- **Figure**: `/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf`\n- LAMBADA σ 验证通过（与 decoupling_data.csv 完全一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

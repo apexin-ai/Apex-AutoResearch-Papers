@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e24583ac3734c9a4e10c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check cqa1 k085 seed44 result",
+  "task_key": "worker_ops_check-cqa1-k085-seed44-result_20260520T231459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-cqa1-k085-seed44-result_20260520T231459_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "24d50f1ed3c9fd9b1f773ef69f3f510599c443aed875115793adc7b7f80ecbb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## seed44 结果\n\n- **success_rate: 68.2%** (341/500)\n- **Wilson CI 95%: [0.640, 0.721]**\n- GPU 2 已释放（1 MiB）\n\n## X-VLA k=0.85 完整 3-seed 汇总\n\n| seed | success_rate | successes/total | Wilson CI 95% |\n|------|-------------|-----------------|---------------|\n| 42 | 68.0% | 340/500 | [0.638, 0.719] |\n| 43 | 67.6% | 338/500 | [0.634, 0.716] |\n| 44 | 68.2% | 341/500 | [0.640, 0.721] |\n| **mean±std** | **67.9±0.25%** | | |\n\n## 完整 cliff localization 3-seed 表\n\n| k | seed42 | seed43 | seed44 | mean±std |\n|---|--------|--------|--------|----------|\n| 0.95 | 99.0% | 99.0% | 99.4% | 99.1±0.19% |\n| **0.85** | **68.0%** | **67.6%** | **68.2%** | **67.9±0.25%** |\n| 0.8 | 88.8% | 88.4% | 89.8% | 89.0±0.59% |\n\nk=0.85 三个 seed 高度一致，标准差仅 0.25pp，确认 cliff 区域在 k=0.85 附近。非单调性模式（k=0.85 < k=0.8）稳定复现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

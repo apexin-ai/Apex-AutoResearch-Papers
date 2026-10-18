@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3b75f92044c16a4befdc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp accum pythia nuc 002",
+  "task_key": "worker_exp_accum_pythia_nuc_002_20260521T114751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_accum_pythia_nuc_002_20260521T114751_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "27e4a4eee9da3ba22513d34d55f494bfec284759328b2227e586531133007bf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running successfully on cuda:0. Pythia-1.4B model loaded, LoRA adapter attached (3.1M trainable params / 0.22%), Phase 1b training started (939 steps).\n\n**Summary:**\n- `accum_pythia_nuc_002` RUNNING on `autodl-rtx6000` cuda:0\n- PID: 374010, log: `~/runs/recursive_gen_depth_est/accum_pythia_nuc_002.log`\n- Phase 1 data mixing reused from previous run, now in LoRA training (0/939 steps)\n- Registry updated to RUNNING with full spec\n- Estimated ~3h to complete; mix50 waits for this to finish"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

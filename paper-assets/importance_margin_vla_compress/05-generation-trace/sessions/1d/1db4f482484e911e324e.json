@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1db4f482484e911e324e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest attn k075 s47",
+  "task_key": "worker_harvest_attn_k075_s47_20260529T025824",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_attn_k075_s47_20260529T025824_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "caff57f60a9e0db27878cee64a3e292cd4bd345eaae4411550b0a1dd011123b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。seed47 SR=49.8%，per-task breakdown:\n\n| Task | SR |\n|---|---|\n| T1-T5 | (earlier in log) |\n| T6 | 64.0% |\n| T7 | 34.0% |\n| T8 | 8.0% |\n| T9 | 78.0% |\n| **Overall** | **49.8%** |\n\n6-seed mean (含 seed47): 之前 5-seed 51.4±1.2pp，seed47=49.8% 略低于均值但在 1σ 内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

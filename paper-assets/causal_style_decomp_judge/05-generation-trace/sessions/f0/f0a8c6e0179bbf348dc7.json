@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "f0a8c6e0179bbf348dc7",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code qwen32b bt and decomp",
+  "task_key": "worker_code_qwen32b_bt_and_decomp_20260521T042835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen32b_bt_and_decomp_20260521T042835.log",
+    "occurrence": 1,
+    "bytes": 512999,
+    "sha256": "ca2da031ef686100e737bbf430f4114328260c0189d266e81058b8254e8083c5"
+  },
+  "statistics": {
+    "messages": 334,
+    "user_turns": 3,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 94,
+      "record": 3,
+      "assistant": 12,
+      "tool_call": 110,
+      "user": 3,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "f0a8c6e0179bbf348dc7-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "f0a8c6e0179bbf348dc7-part-0001.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "f0a8c6e0179bbf348dc7-part-0001.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "f0a8c6e0179bbf348dc7-part-0001.json",
+          "message_count": 20
+        },
+        {
+          "path": "f0a8c6e0179bbf348dc7-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ]
+}

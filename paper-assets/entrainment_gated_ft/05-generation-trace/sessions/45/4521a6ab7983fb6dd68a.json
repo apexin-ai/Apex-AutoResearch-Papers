@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4521a6ab7983fb6dd68a",
+  "project": "entrainment_gated_ft",
+  "kind": "history",
+  "title": "agent / loop_1_1779413271.md",
+  "task_key": "loop_1_1779413271",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779413271.md",
+    "occurrence": 1,
+    "bytes": 4574,
+    "sha256": "2551c6460cd71463774729ed586396b8bcb7fdf11aa0a9f91fd6cdab28be5971"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-21T17:54:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-48145:cuda:0（唯一分配 GPU）\n- HellaSwag 必须用 `acc_norm` 字段（不是 `acc`）——2026-05-21 修复过，旧 artifacts 基于 acc 已全部替换\n- eval 必须用 `/root/entrainment_gated_ft/scripts/run_lmeval_clean.py`，禁止写新 wrapper（M011: 遗漏 allow_neg_eigval 导致 GDN 3.3pp 偏差）\n- Spearman p 值 n≤10 必须用 exact permutation test（M009: scipy 渐近 p 在 n=5 时给出 p=1.4e-24 荒谬结果）\n- GDN h3-1 有 16 heads vs 32 confound，confidence margin 分析中 GDN 用 h12-1 而非 h3-1\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-48145，工作目录 `/root/entrainment_gated_ft/`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-pub/entrainment_gated_ft/models/` 或 `/root/autodl-tmp/models/`（1.3B: `1.3B-100B-{arch}-{ratio}`，340M: `340M-15B-{arch}-{ratio}`）\n- Eval 结果：`/root/autodl-pub/eval_results/{model_name}/{benchmark}/`\n- 分析脚本：`/root/entrainment_gated_ft/scripts/analyze_boolq_hellaswag.py`, `analyze_confidence_margin_mc.py`, `task_specificity_analysis.py`（含 exact_spearman_p）\n- 本地 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/`\n- 磁盘：/autodl-pub 7.7T/14T 可用\n- 活跃进程：无（GPU idle）\n\n### 3. 📊 当前状态\n刚完成 3 个 CPU-only 分析任务并汇报 Director：\n1. **Bootstrap CI on α**（4 benchmarks × 5 ratios，10K resamples）→ `bootstrap_ci_alpha.json`\n2. **340M LAMBADA per-example**（α=0.313 ≈ 1.3B 的 0.307，但 convergence ρ=-0.5 不显著）→ `340m_lambada_per_example.json`\n3. **Subsample sensitivity**（n=100 时 CI width 0.13-0.18，COPA 排除合理）→ `subsample_sensitivity.json`\n\n同 session 还完成了：\n- **W3 format confound 实验**：WinoGrande(2-choice, α=0.46) + PIQA(2-choice, α=0.14) eval + multiplicity 分析。PIQA α≈HellaSwag α 是 format confound 的致命反例。registry `w3-winogrande-piqa-eval` = DONE(success)\n- **HellaSwag acc→acc_norm 修复**：α 从 0.10→0.15，convergence ρ 从 -0.8→+0.4（方向反转），C1 从 2/3→0/3 显著。4 个 artifacts 已更新，formal_multiplicity_metrics.json 两个副本已同步\n- **BoolQ confidence margin**：C1 0/3 显著，C2 2/3 显著 + 1 marginal → `boolq_confidence_margin.json`\n- **Loglik range diagnostic**：简单 \"loglik 压缩\" 假说被推翻，CV 差异才是真正机制 → `loglik_range_diagnostic.json`\n- **Q2 regression to mean 检查**：GDN↓3pp, RetNet↓1.5pp, HGRN2↑3pp — 方向与 regression-to-mean 一致但幅度（5× σ 压缩）远超 typical regression\n\nRegistry 无 RUNNING/PREPARING 需跟进。Paper Agent 独立处理论文写作。\n\n### 4. 📋 待办\n- Director 指令到达 → 按指令执行（当前无 pending 任务）\n- 如果 Paper Agent 需要数据 → 所有 artifacts 已就绪，precision p-values 已提供\n- 如果 Director 要求更新 6-benchmark α-accuracy ρ → 已计算：ρ=-0.60, p=0.24（不显著），代码在 session 中可复用\n- 如果 Round 6 reviewer 质疑 340M → `340m_lambada_per_example.json` 已有完整数据\n- `exp-boolq-hellaswag-eval` registry 状态仍为 PREPARING（conclusion=success 但 status 未推进到 DONE）——Director 可能要求清理\n\n### 5. 🎯 战略上下文\n**核心 narrative**：hybrid recurrent architectures 在加入 attention 后展现 predictive multiplicity——aggregate 趋同但 per-example 路径分化。6 benchmarks 的 α spectrum（0.14-0.51）是 task-dependent 而非 format-dependent。\n\n**6-benchmark α spectrum（最新）**：PIQA(0.14) ≈ HellaSwag(0.15) < ARC-Easy(0.21) < LAMBADA(0.31) < WinoGrande(0.46) < BoolQ(0.51)\n\n**易错点**：\n- HellaSwag 的所有旧数据（α=0.10, ρ=-0.8）都已过时，新值是 α=0.15, ρ=+0.4。如果看到 memory.md 或旧 handoff 引用旧值，以 artifacts 为准\n- `formal_multiplicity_metrics.json` 有两个副本（artifacts/ 和 _project/data/），修改必须同步两个\n- Confidence margin 汇总：C2（rescue）跨 4 benchmarks robust（≥11/12 显著），C1（disruption）较弱（LAMBADA 3/3，MC tasks 混合，BoolQ 0/3）——论文应以 C2 为主 claim\n- α-accuracy ρ=-0.60 (p=0.24) 是 moderate negative 但不显著——如果 reviewer 追问，需要 acknowledge n=6 power 不足而非声称\"完全无关\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

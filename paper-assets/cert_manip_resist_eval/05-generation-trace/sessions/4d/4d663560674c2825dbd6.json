@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "4d663560674c2825dbd6",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "infra download large models",
+  "task_key": "worker_infra_download-large-models_20260521T175959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-large-models_20260521T175959.log",
+    "occurrence": 1,
+    "bytes": 1067133,
+    "sha256": "f94e01c742d67eff829795503cb9ea9af2c6e792e254cb7f2797a79d0b2f392b"
+  },
+  "statistics": {
+    "messages": 829,
+    "user_turns": 1,
+    "tool_calls": 338,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 145,
+      "tool_call": 338,
+      "tool_result": 338,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 778,
+      "chunks": [
+        {
+          "path": "4d663560674c2825dbd6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d663560674c2825dbd6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d663560674c2825dbd6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d663560674c2825dbd6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4d663560674c2825dbd6-part-0005.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "4d663560674c2825dbd6-part-0005.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ]
+}

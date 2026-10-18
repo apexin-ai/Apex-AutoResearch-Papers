@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "16bf96d43839c7b3489a",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis scs baseline comparison",
+  "task_key": "worker_analysis_scs_baseline_comparison_20260518T084456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scs_baseline_comparison_20260518T084456.log",
+    "occurrence": 1,
+    "bytes": 1007282,
+    "sha256": "805bf0cce1995d2d9405db5dd0af8848a4867698d399369658307a36b27fee9d"
+  },
+  "statistics": {
+    "messages": 267,
+    "user_turns": 1,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 99,
+      "tool_result": 99,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "16bf96d43839c7b3489a-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "16bf96d43839c7b3489a-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "16bf96d43839c7b3489a-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ]
+}

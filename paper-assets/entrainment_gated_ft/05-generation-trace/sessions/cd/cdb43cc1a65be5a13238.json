@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb43cc1a65be5a13238",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research fla version online",
+  "task_key": "worker_research_fla-version-online_20260518T123638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_fla-version-online_20260518T123638_result.json",
+    "occurrence": 1,
+    "bytes": 2176,
+    "sha256": "6ab4699245761d8b05870f5d44fde93e2876e96b081ab9cbe840c4bf8d9be053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n### 核心结论：attn.D 是死参数，丢弃无影响\n\n**GatedDeltaNet 的 `attn.D` 在 forward() 中从未被使用。** 它是从 Mamba2 继承的残留参数，初始化为 `ones(num_heads)`，训练期间不参与计算、不接收梯度，始终保持初始值。\n\n#### 时间线\n\n| 事件 | 日期 | 详情 |\n|------|------|------|\n| GatedDeltaNet 加入 fla | 2024-12-20 | commit `4064237`，包含 `self.D`（未在 forward 中使用） |\n| self.D 被移除 | 2025-03-12 | commit `834989c`，fix #226 \"Remove redundant parameter\" |\n| fla v0.1.0 发布 | 2025-03-20 | 首个 tagged release，已无 self.D |\n| m-a-p 模型训练 | ~2025 Q1-Q2 | 使用 pre-v0.1.0 的 fla 开发版 |\n\n#### m-a-p 模型 checkpoint 验证\n\n- `1.3B-100B-GatedDeltaNet-pure` 的 safetensors 中确实包含 24 个 `attn.D` 参数\n- 这些 D 值应全为 1.0（可用加载 checkpoint 后 print 验证）\n- RetNet 模型**无此问题**，checkpoint 中不含 attn.D\n\n#### 版本信息\n\n- m-a-p 模型使用的 fla：pre-v0.1.0 开发版（commit 834989c 之前）\n- 模型 config 中 transformers_version：4.51.3（1.3B GatedDeltaNet）/ 4.49.0（RetNet、340M）\n- 论文未标注具体 fla 版本\n\n### 建议\n\n**当前 fla 0.5.0 可以安全使用**，`strict=False` 加载时 attn.D 被丢弃不影响模型输出。无需降级 fla 版本。\n\n如需二次确认，可在服务器上验证：\n```python\nfrom safetensors import safe_open\nf = safe_open(\"model-00001-of-00002.safetensors\", framework=\"pt\")\nprint(f.get_tensor(\"model.layers.0.attn.D\"))  # 应为全 1\n```\n\nSources:\n- [arXiv 2507.06457](https://arxiv.org/abs/2507.06457)\n- [fla-org/flash-linear-attention](https://github.com/fla-org/flash-linear-attention)\n- [fla releases](https://github.com/fla-org/flash-linear-attention/releases)\n- [fla issue #226](https://github.com/fla-org/flash-linear-attention/issues/226)\n- [m-a-p HuggingFace collection](https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research-686c488a63d609d2f20e2b1e)\n- [flash-linear-attention PyPI](https://pypi.org/project/flash-linear-attention/#history)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba1a5efcd5989783e5f4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check xvla random k05 long result",
+  "task_key": "worker_ops_check_xvla_random_k05_long_result_20260523T074732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check_xvla_random_k05_long_result_20260523T074732_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "555007016dd860f12b431c798486f274adf1efbf707125fa3bc6c3bb15452101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No crons in this session (they were created in a prior session).\n\n## 结果汇总\n\n### 已完成 (2/4)\n\n| 实验 | SR | Episodes | Registry |\n|---|---|---|---|\n| **eval_xvla_random_k05_long_seed42** | **61.6%** (308/500), CI [57.3%, 65.8%] | 500/500 | DONE ✓ |\n| **eval_xvla_random_k07_long_seed42** | **53.0%** (265/500), CI [48.6%, 57.3%] | 500/500 | DONE ✓ |\n\nPer-task SR:\n\n| Task | Random k=0.5 | Random k=0.7 |\n|---|---|---|\n| T0 alphabet soup + tomato sauce | 68% | 10% |\n| T1 cream cheese + butter | 0% | 8% |\n| T2 stove + moka pot | 64% | 66% |\n| T3 bowl in drawer | 94% | 98% |\n| T4 mugs on plates | 70% | 82% |\n| T5 book in caddy | 90% | 100% |\n| T6 mug + pudding | 84% | 82% |\n| T7 soup + cream cheese | 86% | 70% |\n| T8 two moka pots | 46% | 4% |\n| T9 mug in microwave | 14% | 10% |\n\n### 仍在运行 (2/4)\n\n| 实验 | 进度 | 预估剩余 |\n|---|---|---|\n| eval_xvla_l2norm_k07_long_seed42 | Task 9, ep 38/50 | ~15 min |\n| eval_xvla_l2norm_k05_long_seed42 | Task 9, ep 17/50 | ~30 min |\n\n### 观察\n\nRandom pruning 在 X-VLA Long 上呈非单调行为：k=0.95=48.2% < k=0.7=53.0% < k=0.5=61.6%。这符合随机剪枝特性——不同 keep_ratio 使用完全独立的随机 mask，无一致退化趋势。与 L2 norm 的有序退化形成对比（待 l2norm 结果确认）。\n\nCron 不在本 session 中，无法删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

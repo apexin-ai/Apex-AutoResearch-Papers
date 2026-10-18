@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "d41616b263e267d67233",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp docred pilot",
+  "task_key": "worker_code_exp_docred_pilot_20260516T040940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_docred_pilot_20260516T040940.log",
+    "occurrence": 1,
+    "bytes": 835766,
+    "sha256": "24ca0b2cc630f3e82f9d837d4800a507cc74e7bf0d2d5bd271164f08ba4e6de0"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 0,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 142,
+      "tool_result": 142,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 365,
+      "chunks": [
+        {
+          "path": "d41616b263e267d67233-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d41616b263e267d67233-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d41616b263e267d67233-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ]
+}

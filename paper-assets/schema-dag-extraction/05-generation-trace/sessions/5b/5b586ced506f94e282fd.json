@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b586ced506f94e282fd",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d048 comprehensive final",
+  "task_key": "worker_paper_d048_comprehensive_final_20260516T145121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d048_comprehensive_final_20260516T145121_result.json",
+    "occurrence": 1,
+    "bytes": 1689,
+    "sha256": "e71777407ff946c09fe9c3a4da73cef4306173ba2ebc6aeecb1bf8a34d958ce5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Let me verify the counts:\n\n**31.2 in prose**: 3 occurrences (introduction ×1, results ×2) — all in the body text where the number is contextually needed. The abstract and appendix no longer have prose \"31.2\". Table cells (main.tex lines 93-94, 265-266) don't count. ✓ ≤3\n\n**2.2 in prose**: 5 occurrences (abstract ×1, introduction ×1, results ×1, discussion ×2). ✓ ≥5\n\n**TOST/equivalence**: Present in checklist, limitations, appendix_factorial, results §4.4, and BCS aggregation caption. ✓\n\n**Compilation**: No errors, no undefined references, 18 pages output. ✓\n\n---\n\n## 修改摘要\n\n| Priority | 修改 | 文件 |\n|----------|------|------|\n| 1a | abstract 中 31.2 → \"widens substantially (Table~3)\" | abstract.tex |\n| 1b | appendix prompt sensitivity 中去掉 31.2 数字 | main.tex:219 |\n| 2a | discussion \"Schema design implications\" 段首加 2.2pp 句 | discussion.tex |\n| 2b | conclusion 中加 \"typical batches differ by ≈2.2pp\" | discussion.tex |\n| 3a | appendix_factorial 替换为含 FewRel 2×2 + TOST 的完整版 | main.tex:155–162 |\n| 3b | Limitations #3 更新为 TOST 版本 | main.tex:44 |\n| 3c | §4.4 Multi-Channel 末尾加 TOST 引用句 | results.tex:87 |\n| 4a | Few-NERD 段加采样方式说明 | experimental_setup.tex |\n| 4b | §3.4 加 \"single-seed; variance not quantified\" | experimental_setup.tex |\n| 4e | 无 haystack/needle bib entry，跳过 | — |\n| 4f | §3.4 加 bootstrap B 不一致说明 ($B$=10k pair / $B$=1k batch) | experimental_setup.tex |\n\n**自检结果**: 31.2 prose ≤3 ✓ | 2.2pp ≥5 ✓ | TOST 集成 ✓ | 编译无错误 | 18 页"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "schema_version": "1.0",
+  "session_id": "16cdb305ae33e83d7ad1",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-16T03:37:36.849Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QdiVubgg9SRaS7QM3gnZwc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "84fa55d0-c10f-41be-a392-60410d0acf52",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hw28Nt71niqj6AY4hBZyc3",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Round 2 Statistical Analyses (W2+W3+W4)",
+                "type": "data",
+                "description": "Cluster bootstrap CIs for pairwise SCS-confusion (W3), count=22/44 recall CI overlap (W4), realistic BCS practical effect (W2)",
+                "project": "schema-dag-extraction",
+                "tags": [
+                  "round2",
+                  "rebuttal",
+                  "statistics",
+                  "bootstrap"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "19427886-68e5-4127-8cab-67ab5eba8d98",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BKPZVYKndCRJkXckaucFxA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 311,
+                "cache_read_input_tokens": 118257,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 311
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-16T03:37:40.456Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hw28Nt71niqj6AY4hBZyc3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "4eda789c-8f4b-4f19-a878-9174eb0f83c7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013q2tuneAaXs3xhMCwuW8hy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "account": "root",
+                "command": "cat /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "a151507c-90ee-44fd-86d0-a049db6191f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KxVzDLKCNMM6ZFZb1imATE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 254,
+                "cache_read_input_tokens": 118568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 254
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-16T03:37:43.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013q2tuneAaXs3xhMCwuW8hy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"W3_cluster_bootstrap\\\\\\\": {\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1372302437793451,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.06929773496707424,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.2186197985169236,\\\\n      \\\\\\\"n_types\\\\\\\": 63,\\\\n      \\\\\\\"n_pairs\\\\\\\": 1953,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.14559536506023063,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.03701644340721873,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.076,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.112\\\\n    },\\\\n    \\\\\\\"maven\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1285734563090772,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.0806734385093243,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.184957155553557,\\\\n      \\\\\\\"n_types\\\\\\\": 149,\\\\n      \\\\\\\"n_pairs\\\\\\\": 11026,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.12934477309781067,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.026041657610013258,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.104,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.129\\\\n    }\\\\n  },\\\\n  \\\\\\\"W4_recall_ci\\\\\\\": {\\\\n    \\\\\\\"count_22\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5077,\\\\n        0.5961,\\\\n        0.4649,\\\\n        0.5162,\\\\n        0.5262\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        496,\\\\n        704,\\\\n        417,\\\\n        351,\\\\n        361\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        977,\\\\n        1181,\\\\n        897,\\\\n        680,\\\\n        686\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5268,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5222,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.4842,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.569,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.4874,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5624,\\\\n      \\\\\\\"std\\\\\\\": 0.0475\\\\n    },\\\\n    \\\\\\\"count_44\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5716,\\\\n        0.4958,\\\\n        0.5738,\\\\n        0.5433,\\\\n        0.5611\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        1114,\\\\n        759,\\\\n        1089,\\\\n        1185,\\\\n        1088\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        1949,\\\\n        1531,\\\\n        1898,\\\\n        2181,\\\\n        1939\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5512,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5491,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.5248,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.5209,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"std\\\\\\\": 0.0322\\\\n    },\\\\n    \\\\\\\"overlap_analysis\\\\\\\": {\\\\n      \\\\\\\"pooled_ci_22\\\\\\\": [\\\\n        0.4842,\\\\n        0.569\\\\n      ],\\\\n      \\\\\\\"pooled_ci_44\\\\\\\": [\\\\n        0.5248,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_pooled\\\\\\\": true,\\\\n      \\\\\\\"mean_ci_22\\\\\\\": [\\\\n        0.4874,\\\\n        0.5624\\\\n      ],\\\\n      \\\\\\\"mean_ci_44\\\\\\\": [\\\\n        0.5209,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_mean\\\\\\\": true,\\\\n      \\\\\\\"delta_pooled\\\\\\\": 0.0244,\\\\n      \\\\\\\"delta_mean\\\\\\\": 0.0269,\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"W2_practical_effect\\\\\\\": {\\\\n    \\\\\\\"16rel_pool\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 100,\\\\n      \\\\\\\"slope\\\\\\\": -0.449,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.5564038709006914,\\\\n        -0.3485078314313499\\\\n      ],\\\\n      \\\\\\\"r_value\\\\\\\": -0.6373,\\\\n      \\\\\\\"bcs_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8259,\\\\n        \\\\\\\"std\\\\\\\": 0.0672,\\\\n        \\\\\\\"median\\\\\\\": 0.8405,\\\\n        \\\\\\\"Q1\\\\\\\": 0.7818,\\\\n        \\\\\\\"Q3\\\\\\\": 0.892,\\\\n        \\\\\\\"IQR\\\\\\\": 0.1102,\\\\n        \\\\\\\"min\\\\\\\": 0.6532,\\\\n        \\\\\\\"max\\\\\\\": 0.9002\\\\n      },\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -4.95,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -3.02,\\\\n      \\\\\\\"extreme_gap_pp\\\\\\\": -31.2\\\\n    },\\\\n    \\\\\\\"80pool_16sub\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.401,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.684044,\\\\n        -0.062478\\\\n      ],\\\\n      \\\\\\\"bcs_Q1\\\\\\\": 0.5037,\\\\n      \\\\\\\"bcs_Q3\\\\\\\": 0.5692,\\\\n      \\\\\\\"IQR\\\\\\\": 0.0655,\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -2.63,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -1.76\\\\n    },\\\\n    \\\\\\\"narrative\\\\\\\": \\\\\\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "c3c2e1c5-5091-47df-a5fd-476c4c450ca3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"W3_cluster_bootstrap\\\\\\\": {\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1372302437793451,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.06929773496707424,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.2186197985169236,\\\\n      \\\\\\\"n_types\\\\\\\": 63,\\\\n      \\\\\\\"n_pairs\\\\\\\": 1953,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.14559536506023063,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.03701644340721873,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.076,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.112\\\\n    },\\\\n    \\\\\\\"maven\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1285734563090772,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.0806734385093243,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.184957155553557,\\\\n      \\\\\\\"n_types\\\\\\\": 149,\\\\n      \\\\\\\"n_pairs\\\\\\\": 11026,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.12934477309781067,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.026041657610013258,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.104,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.129\\\\n    }\\\\n  },\\\\n  \\\\\\\"W4_recall_ci\\\\\\\": {\\\\n    \\\\\\\"count_22\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5077,\\\\n        0.5961,\\\\n        0.4649,\\\\n        0.5162,\\\\n        0.5262\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        496,\\\\n        704,\\\\n        417,\\\\n        351,\\\\n        361\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        977,\\\\n        1181,\\\\n        897,\\\\n        680,\\\\n        686\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5268,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5222,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.4842,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.569,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.4874,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5624,\\\\n      \\\\\\\"std\\\\\\\": 0.0475\\\\n    },\\\\n    \\\\\\\"count_44\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5716,\\\\n        0.4958,\\\\n        0.5738,\\\\n        0.5433,\\\\n        0.5611\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        1114,\\\\n        759,\\\\n        1089,\\\\n        1185,\\\\n        1088\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        1949,\\\\n        1531,\\\\n        1898,\\\\n        2181,\\\\n        1939\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5512,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5491,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.5248,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.5209,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"std\\\\\\\": 0.0322\\\\n    },\\\\n    \\\\\\\"overlap_analysis\\\\\\\": {\\\\n      \\\\\\\"pooled_ci_22\\\\\\\": [\\\\n        0.4842,\\\\n        0.569\\\\n      ],\\\\n      \\\\\\\"pooled_ci_44\\\\\\\": [\\\\n        0.5248,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_pooled\\\\\\\": true,\\\\n      \\\\\\\"mean_ci_22\\\\\\\": [\\\\n        0.4874,\\\\n        0.5624\\\\n      ],\\\\n      \\\\\\\"mean_ci_44\\\\\\\": [\\\\n        0.5209,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_mean\\\\\\\": true,\\\\n      \\\\\\\"delta_pooled\\\\\\\": 0.0244,\\\\n      \\\\\\\"delta_mean\\\\\\\": 0.0269,\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"W2_practical_effect\\\\\\\": {\\\\n    \\\\\\\"16rel_pool\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 100,\\\\n      \\\\\\\"slope\\\\\\\": -0.449,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.5564038709006914,\\\\n        -0.3485078314313499\\\\n      ],\\\\n      \\\\\\\"r_value\\\\\\\": -0.6373,\\\\n      \\\\\\\"bcs_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8259,\\\\n        \\\\\\\"std\\\\\\\": 0.0672,\\\\n        \\\\\\\"median\\\\\\\": 0.8405,\\\\n        \\\\\\\"Q1\\\\\\\": 0.7818,\\\\n        \\\\\\\"Q3\\\\\\\": 0.892,\\\\n        \\\\\\\"IQR\\\\\\\": 0.1102,\\\\n        \\\\\\\"min\\\\\\\": 0.6532,\\\\n        \\\\\\\"max\\\\\\\": 0.9002\\\\n      },\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -4.95,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -3.02,\\\\n      \\\\\\\"extreme_gap_pp\\\\\\\": -31.2\\\\n    },\\\\n    \\\\\\\"80pool_16sub\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.401,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.684044,\\\\n        -0.062478\\\\n      ],\\\\n      \\\\\\\"bcs_Q1\\\\\\\": 0.5037,\\\\n      \\\\\\\"bcs_Q3\\\\\\\": 0.5692,\\\\n      \\\\\\\"IQR\\\\\\\": 0.0655,\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -2.63,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -1.76\\\\n    },\\\\n    \\\\\\\"narrative\\\\\\\": \\\\\\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"W3_cluster_bootstrap\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"point_estimate\\\": 0.1372302437793451,\\n      \\\"cluster_ci_lower\\\": 0.06929773496707424,\\n      \\\"cluster_ci_upper\\\": 0.2186197985169236,\\n      \\\"n_types\\\": 63,\\n      \\\"n_pairs\\\": 1953,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.14559536506023063,\\n      \\\"boot_std\\\": 0.03701644340721873,\\n      \\\"naive_ci\\\": [\\n        0.076,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\",\\n      \\\"original_r_paper\\\": 0.112\\n    },\\n    \\\"maven\\\": {\\n      \\\"point_estimate\\\": 0.1285734563090772,\\n      \\\"cluster_ci_lower\\\": 0.0806734385093243,\\n      \\\"cluster_ci_upper\\\": 0.184957155553557,\\n      \\\"n_types\\\": 149,\\n      \\\"n_pairs\\\": 11026,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.12934477309781067,\\n      \\\"boot_std\\\": 0.026041657610013258,\\n      \\\"naive_ci\\\": [\\n        0.104,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\",\\n      \\\"original_r_paper\\\": 0.129\\n    }\\n  },\\n  \\\"W4_recall_ci\\\": {\\n    \\\"count_22\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5077,\\n        0.5961,\\n        0.4649,\\n        0.5162,\\n        0.5262\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        496,\\n        704,\\n        417,\\n        351,\\n        361\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        977,\\n        1181,\\n        897,\\n        680,\\n        686\\n      ],\\n      \\\"pooled_recall\\\": 0.5268,\\n      \\\"mean_recall\\\": 0.5222,\\n      \\\"pooled_ci_lower\\\": 0.4842,\\n      \\\"pooled_ci_upper\\\": 0.569,\\n      \\\"mean_ci_lower\\\": 0.4874,\\n      \\\"mean_ci_upper\\\": 0.5624,\\n      \\\"std\\\": 0.0475\\n    },\\n    \\\"count_44\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5716,\\n        0.4958,\\n        0.5738,\\n        0.5433,\\n        0.5611\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        1114,\\n        759,\\n        1089,\\n        1185,\\n        1088\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        1949,\\n        1531,\\n        1898,\\n        2181,\\n        1939\\n      ],\\n      \\\"pooled_recall\\\": 0.5512,\\n      \\\"mean_recall\\\": 0.5491,\\n      \\\"pooled_ci_lower\\\": 0.5248,\\n      \\\"pooled_ci_upper\\\": 0.5699,\\n      \\\"mean_ci_lower\\\": 0.5209,\\n      \\\"mean_ci_upper\\\": 0.5699,\\n      \\\"std\\\": 0.0322\\n    },\\n    \\\"overlap_analysis\\\": {\\n      \\\"pooled_ci_22\\\": [\\n        0.4842,\\n        0.569\\n      ],\\n      \\\"pooled_ci_44\\\": [\\n        0.5248,\\n        0.5699\\n      ],\\n      \\\"overlap_pooled\\\": true,\\n      \\\"mean_ci_22\\\": [\\n        0.4874,\\n        0.5624\\n      ],\\n      \\\"mean_ci_44\\\": [\\n        0.5209,\\n        0.5699\\n      ],\\n      \\\"overlap_mean\\\": true,\\n      \\\"delta_pooled\\\": 0.0244,\\n      \\\"delta_mean\\\": 0.0269,\\n      \\\"narrative\\\": \\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\"\\n    }\\n  },\\n  \\\"W2_practical_effect\\\": {\\n    \\\"16rel_pool\\\": {\\n      \\\"n_batches\\\": 100,\\n      \\\"slope\\\": -0.449,\\n      \\\"slope_ci_95\\\": [\\n        -0.5564038709006914,\\n        -0.3485078314313499\\n      ],\\n      \\\"r_value\\\": -0.6373,\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.8259,\\n        \\\"std\\\": 0.0672,\\n        \\\"median\\\": 0.8405,\\n        \\\"Q1\\\": 0.7818,\\n        \\\"Q3\\\": 0.892,\\n        \\\"IQR\\\": 0.1102,\\n        \\\"min\\\": 0.6532,\\n        \\\"max\\\": 0.9002\\n      },\\n      \\\"typical_gap_pp\\\": -4.95,\\n      \\\"one_sd_gap_pp\\\": -3.02,\\n      \\\"extreme_gap_pp\\\": -31.2\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.401,\\n      \\\"slope_ci_95\\\": [\\n        -0.684044,\\n        -0.062478\\n      ],\\n      \\\"bcs_Q1\\\": 0.5037,\\n      \\\"bcs_Q3\\\": 0.5692,\\n      \\\"IQR\\\": 0.0655,\\n      \\\"typical_gap_pp\\\": -2.63,\\n      \\\"one_sd_gap_pp\\\": -1.76\\n    },\\n    \\\"narrative\\\": \\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JzxQXX5vD1tvd6fhRajWk4",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Round 2 Statistical Analyses (W2+W3+W4)",
+                "type": "data",
+                "description": "Cluster bootstrap CIs for pairwise SCS-confusion (W3), count=22/44 recall CI overlap (W4), realistic BCS practical effect (W2). JSON with numerical results and recommended narratives.",
+                "project": "schema-dag-extraction",
+                "content": "{see artifacts/round2_statistical_analyses.json on server}",
+                "content_filename": "round2_statistical_analyses_pointer.txt",
+                "tags": [
+                  "round2",
+                  "rebuttal",
+                  "statistics",
+                  "bootstrap"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "f66877c5-87f5-4a68-9ad7-765b891f8560",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MANWZKudYnNikWLPxCnRJF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2614,
+                "cache_read_input_tokens": 118822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2614
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-16T03:37:51.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JzxQXX5vD1tvd6fhRajWk4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_0e4a08\\\", \\\"name\\\": \\\"Round 2 Statistical Analyses (W2+W3+W4)\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Cluster bootstrap CIs for pairwise SCS-confusion (W3), count=22/44 recall CI overlap (W4), realistic BCS practical effect (W2). JSON with numerical results and recommended narratives.\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/data/round2_statistical_analyses_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:37:50.897991+00:00\\\", \\\"tags\\\": [\\\"round2\\\", \\\"rebuttal\\\", \\\"statistics\\\", \\\"bootstrap\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "ef36bfdc-3931-4f9c-96d0-68d3c661418a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_0e4a08\\\", \\\"name\\\": \\\"Round 2 Statistical Analyses (W2+W3+W4)\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Cluster bootstrap CIs for pairwise SCS-confusion (W3), count=22/44 recall CI overlap (W4), realistic BCS practical effect (W2). JSON with numerical results and recommended narratives.\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/data/round2_statistical_analyses_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:37:50.897991+00:00\\\", \\\"tags\\\": [\\\"round2\\\", \\\"rebuttal\\\", \\\"statistics\\\", \\\"bootstrap\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_0e4a08\", \"name\": \"Round 2 Statistical Analyses (W2+W3+W4)\", \"type\": \"data\", \"description\": \"Cluster bootstrap CIs for pairwise SCS-confusion (W3), count=22/44 recall CI overlap (W4), realistic BCS practical effect (W2). JSON with numerical results and recommended narratives.\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/data/round2_statistical_analyses_pointer.txt\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:37:50.897991+00:00\", \"tags\": [\"round2\", \"rebuttal\", \"statistics\", \"bootstrap\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qtzq5MtmZ6d7gWQ6BpigdC",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "W3: Type-level cluster bootstrap for Few-NERD & MAVEN pairwise SCS-confusion",
+                    "status": "completed",
+                    "activeForm": "Completed W3 cluster bootstrap"
+                  },
+                  {
+                    "content": "W4: NER count=22/44 recall CI overlap analysis",
+                    "status": "completed",
+                    "activeForm": "Completed W4 recall CI analysis"
+                  },
+                  {
+                    "content": "W2: Realistic practical effect calculation (typical BCS range)",
+                    "status": "completed",
+                    "activeForm": "Completed W2 practical effect"
+                  },
+                  {
+                    "content": "Verify results and register artifacts",
+                    "status": "completed",
+                    "activeForm": "Verified and registered"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "c0f74506-2a52-4eb0-b66f-dd057699035f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YS2JU5mHJ5wX7tMMZtTtT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 571,
+                "cache_read_input_tokens": 121436,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 571
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-16T03:37:59.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qtzq5MtmZ6d7gWQ6BpigdC",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "25b5fac6-3119-4782-831a-82fb1e0107ca",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "W3: Type-level cluster bootstrap for Few-NERD & MAVEN pairwise SCS-confusion",
+                  "status": "completed",
+                  "activeForm": "Completed W3 cluster bootstrap"
+                },
+                {
+                  "content": "W4: NER count=22/44 recall CI overlap analysis",
+                  "status": "completed",
+                  "activeForm": "Completed W4 recall CI analysis"
+                },
+                {
+                  "content": "W2: Realistic practical effect calculation (typical BCS range)",
+                  "status": "completed",
+                  "activeForm": "Completed W2 practical effect"
+                },
+                {
+                  "content": "Verify results and register artifacts",
+                  "status": "in_progress",
+                  "activeForm": "Verifying results and registering artifacts"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "W3: Type-level cluster bootstrap for Few-NERD & MAVEN pairwise SCS-confusion",
+                  "status": "completed",
+                  "activeForm": "Completed W3 cluster bootstrap"
+                },
+                {
+                  "content": "W4: NER count=22/44 recall CI overlap analysis",
+                  "status": "completed",
+                  "activeForm": "Completed W4 recall CI analysis"
+                },
+                {
+                  "content": "W2: Realistic practical effect calculation (typical BCS range)",
+                  "status": "completed",
+                  "activeForm": "Completed W2 practical effect"
+                },
+                {
+                  "content": "Verify results and register artifacts",
+                  "status": "completed",
+                  "activeForm": "Verified and registered"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析全部完成。结果保存在 `/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json`。\n\n---\n\n## 结果汇总\n\n### W3: Type-level Cluster Bootstrap\n\n| Dataset | r (paper) | Naive CI | Cluster CI (B=10000) | Significant |\n|---------|-----------|----------|---------------------|-------------|\n| Few-NERD | 0.112 | [0.076, 0.156] | **[0.069, 0.219]** | **Yes** |\n| MAVEN | 0.129 | [0.104, 0.156] | **[0.081, 0.185]** | **Yes** |\n\nCluster CI 如预期更宽（有效样本从 pair 数降到 type 数），但两个 CI 均不含 0 → **cluster-robust inference 确认相关性显著**。\n\n### W4: count=22 vs count=44 Recall CI\n\n| Count | Pooled Recall | 95% Bootstrap CI |\n|-------|--------------|------------------|\n| 22 | 0.527 | [0.484, 0.569] |\n| 44 | 0.551 | [0.525, 0.570] |\n\n两个 CI **大幅重叠** → delta=+0.024pp 在 sampling variability 范围内，non-monotonicity **不显著**。每个 count 仅 5 batches，CI 宽度合理。\n\n### W2: Realistic Practical Effect\n\n| Setting | Slope | BCS IQR | Typical Gap (Q1→Q3) | 1-SD Gap | Extreme |\n|---------|-------|---------|---------------------|----------|---------|\n| 16-rel pool | -0.449 | 0.110 | **4.9pp** | **3.0pp** | 31.2pp |\n| 80-pool 16-sub | -0.401 | 0.066 | **2.6pp** | **1.8pp** | — |\n\n31.2pp 是极端 batch 对比。典型用户体验中 BCS 变动对应 **2.6–4.9pp accuracy gap**（IQR 范围）或 **1.8–3.0pp**（1-SD）。\n\n### 推荐叙事\n\n- **W3**: \"Cluster-robust CIs (resampling types rather than pairs) are wider as expected but still exclude zero for both datasets, confirming significance.\"\n- **W4**: \"Bootstrap CIs overlap substantially; the +2.4pp non-monotonicity is within sampling variability (5 batches per level).\"\n- **W2**: \"The 31.2pp gap is for extreme batches. For typical batch compositions (IQR), the predicted gap is ~5pp (16-rel) or ~2.6pp (80-pool), representing a meaningful but not dramatic practical effect.\""
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "uuid": "2b4f106e-606e-4f05-afb2-c5b080eaad08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011J5cWCkdb4dL7CZe53nR13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 250,
+                "cache_read_input_tokens": 122007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 250
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析全部完成。结果保存在 `/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json`。\n\n---\n\n## 结果汇总\n\n### W3: Type-level Cluster Bootstrap\n\n| Dataset | r (paper) | Naive CI | Cluster CI (B=10000) | Significant |\n|---------|-----------|----------|---------------------|-------------|\n| Few-NERD | 0.112 | [0.076, 0.156] | **[0.069, 0.219]** | **Yes** |\n| MAVEN | 0.129 | [0.104, 0.156] | **[0.081, 0.185]** | **Yes** |\n\nCluster CI 如预期更宽（有效样本从 pair 数降到 type 数），但两个 CI 均不含 0 → **cluster-robust inference 确认相关性显著**。\n\n### W4: count=22 vs count=44 Recall CI\n\n| Count | Pooled Recall | 95% Bootstrap CI |\n|-------|--------------|------------------|\n| 22 | 0.527 | [0.484, 0.569] |\n| 44 | 0.551 | [0.525, 0.570] |\n\n两个 CI **大幅重叠** → delta=+0.024pp 在 sampling variability 范围内，non-monotonicity **不显著**。每个 count 仅 5 batches，CI 宽度合理。\n\n### W2: Realistic Practical Effect\n\n| Setting | Slope | BCS IQR | Typical Gap (Q1→Q3) | 1-SD Gap | Extreme |\n|---------|-------|---------|---------------------|----------|---------|\n| 16-rel pool | -0.449 | 0.110 | **4.9pp** | **3.0pp** | 31.2pp |\n| 80-pool 16-sub | -0.401 | 0.066 | **2.6pp** | **1.8pp** | — |\n\n31.2pp 是极端 batch 对比。典型用户体验中 BCS 变动对应 **2.6–4.9pp accuracy gap**（IQR 范围）或 **1.8–3.0pp**（1-SD）。\n\n### 推荐叙事\n\n- **W3**: \"Cluster-robust CIs (resampling types rather than pairs) are wider as expected but still exclude zero for both datasets, confirming significance.\"\n- **W4**: \"Bootstrap CIs overlap substantially; the +2.4pp non-monotonicity is within sampling variability (5 batches per level).\"\n- **W2**: \"The 31.2pp gap is for extreme batches. For typical batch compositions (IQR), the predicted gap is ~5pp (16-rel) or ~2.6pp (80-pool), representing a meaningful but not dramatic practical effect.\""
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 914839,
+            "duration_api_ms": 771963,
+            "num_turns": 75,
+            "stop_reason": "end_turn",
+            "session_id": "b7cece70-c312-4e36-804b-58e9658f6e55",
+            "total_cost_usd": 3.5582255000000007,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 110416,
+              "cache_read_input_tokens": 3386849,
+              "output_tokens": 46893,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 110416,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 739,
+                  "cache_read_input_tokens": 122007,
+                  "cache_creation_input_tokens": 250,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 250
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1981,
+                "outputTokens": 29,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0021260000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 50,
+                "outputTokens": 46893,
+                "cacheReadInputTokens": 3386849,
+                "cacheCreationInputTokens": 110416,
+                "webSearchRequests": 0,
+                "costUSD": 3.5560995000000006,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "be096163-ddda-4dfc-b762-60af357ab0b7"
+          },
+          "id": "event-000191"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "acf55c501247c77b667f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis bcs definition fix",
+  "task_key": "worker_analysis_bcs_definition_fix_20260516T043644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bcs_definition_fix_20260516T043644_result.json",
+    "occurrence": 1,
+    "bytes": 1701,
+    "sha256": "e92740469acefb63b6e315c1c33d99d6a004d7675514dc2560c5ed4da732ff5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## 执行结果\n\n### Step 1: 代码修复 ✓\n- `src/compute_bcs.py`: `compute_bcs` 改为 MEAN，旧版保留为 `compute_bcs_max` (deprecated)\n- `src/run_docred.py`: `compute_bcs` 改为 MEAN\n- 原文件备份为 `.bak`\n\n### Step 2: BCS 重算 ✓\n| 组 | 旧 BCS (MAX) | 新 BCS (MEAN) |\n|---|---|---|\n| 16rel (n=100) | [0.653, 0.900], mean=0.826 | [0.479, 0.705], mean=0.579 |\n| 80rel (n=25) | [0.646, 0.823], mean=0.720 | [0.509, 0.598], mean=0.548 |\n| 80pool_16sub (n=100) | 已是 MEAN ✓ | mean=0.557 |\n\n### Step 3: 统计分析（MEAN BCS）\n\n**回归：**\n| 组 | slope | 95% CI | r | p |\n|---|---|---|---|---|\n| 16rel | **-0.509** | [-0.686, -0.336] | -0.467 | 9.6e-7 |\n| 80pool_16sub | **-0.401** | [-0.701, -0.069] | -0.221 | 0.027 |\n| 80rel | +0.221 | [-1.303, +1.695] | +0.064 | 0.76 |\n\n**Permutation test (slopes):**\n- 16rel vs 80pool_16sub: p=0.598 (n.s. — slopes 方向一致)\n- 16rel vs 80rel: p=0.027 *\n\n**Quartile Δ(high−low BCS):**\n- 16rel: **-5.31pp** CI[-7.44, -3.19] (显著)\n- 80pool_16sub: -3.92pp CI[-8.17, +0.38]\n- 80rel: -1.04pp CI[-10.12, +8.04]\n\n**Practical magnitude (16-rel):** IQR=0.057, 对应 acc gap = **-2.89pp** CI[-4.30, -1.71]\n\n### Step 4: 产出 ✓\n- 服务器: `/root/schema-dag-extraction/artifacts/bcs_fix/bcs_fix_results.json`\n- 本地: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_fix/bcs_fix_results.json`\n\n核心结论不变：BCS-accuracy 负相关在 16-rel 和 80pool_16sub 中显著。修改后 |r| 有所降低（因为 MEAN 压缩了 BCS 方差），但 slope 绝对值反而增大，方向一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c46a2261ebed491be22b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp quality check and code sync",
+  "task_key": "worker_mvp_quality_check_and_code_sync_20260520T142010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_quality_check_and_code_sync_20260520T142010_result.json",
+    "occurrence": 1,
+    "bytes": 1882,
+    "sha256": "c3f9359711ffdc2decf04ddb9774853991a9806149df5c656c28c82642d30b99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n---\n\n## 任务 1: 改写质量抽样\n\n**统计**: 100 条中 36 条 passed_cf=True，64 条 failed。\n\n### 5 PASSED 样本\n\n| ID | formality | BERTScore | NLI | 观察 |\n|---|---|---|---|---|\n| mvp_0003 | casual | 0.9351 | 0.9909 | casual→formal：词汇替换（joint→cannabis, blasting→playing loudly），语义保持好 |\n| mvp_0005 | casual | 0.9648 | 0.9980 | 极小改动（\"I guess\"→\"I believe\"），BERTScore 高合理 |\n| mvp_0008 | formal | 0.9294 | 0.9847 | formal→casual：语气变口语化（\"unfortunately\"→省略，加 \"way too tight\"） |\n| mvp_0011 | casual | 1.0000 | 0.9960 | 几乎无改动（叙事类文本风格差异小），bs=1.0 |\n| mvp_0014 | formal | 1.0000 | 0.9800 | 代码内容，无风格可改，bs=1.0 |\n\n### 5 FAILED 样本\n\n| ID | formality | BERTScore | NLI | 失败原因 |\n|---|---|---|---|---|\n| mvp_0000 | formal | 0.8911 | 0.9949 | bs < 0.92（改写幅度偏大但语义保持） |\n| mvp_0001 | casual | 0.8609 | 0.9935 | bs 较低（诗歌改写词汇变化大） |\n| mvp_0002 | formal | 0.9164 | **0.0352** | NLI 极低——\"independence referendum\"→\"vote on independence\" 被 NLI 判为矛盾 |\n| mvp_0004 | formal | 0.8727 | 0.9988 | bs < 0.92（改写较多但语义完好） |\n| mvp_0006 | formal | 0.8637 | 0.9934 | bs < 0.92（长文本改写词汇差异大） |\n\n**要点**: 大部分 failed 是因为 BERTScore < 0.92（改写幅度大但语义保持），只有 mvp_0002 是 NLI 真正失败。passed 样本中有两条 bs=1.0（代码/叙事类几乎无改动），说明某些文本类型风格干预不足。\n\n---\n\n## 任务 2: 代码同步确认\n\n- `judge_scoring.py`: grep `passed_cf` 返回空（exit code 1）——已确认不含过滤逻辑\n- `ate_analysis.py`: 第 198-199 行确认含 `bertscore_cf` 分层逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

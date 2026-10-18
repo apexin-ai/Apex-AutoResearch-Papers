@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e78a53fcee7e0580deef",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper writing results",
+  "task_key": "worker_paper_writing_results_20260515T175043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_20260515T175043_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "b6d3fcf4a95dfeb0b48236935e8980b50a9242e35745af3ee104ef7eec24c595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§4 Results 已写入 `docs/paper/results.tex`。结构：\n\n- **§4.1** Count curves: NER/RE 单调下降，MAVEN 反向上升（不 claim universal degradation）\n- **§4.2** Pairwise SCS→confusion: r²=1.3–1.7%，framed as \"modest but robust, first empirically isolated\"，含 tab\\_pairwise（有 r² 列）\n- **§4.3** BCS-controlled: 9.1pp→31.2pp（3.4× amplification），含 tab\\_bcs\\_controlled（有 CI）\n- **§4.4** Multi-channel: IntraSub 与 BCS 近完美单调（ρ≥0.954），missed rate flat，两通道正交。含 tab\\_error\\_taxonomy\n- **§4.5** Centrality confound: MAVEN per-type ρ 反向（+0.189/+0.208），归因于 same-domain cluster isotropy \\cite{cai-isotropy-clusters-2021}，pairwise 信号完好，Few-NERD per-type ρ=−0.293 方向正确\n\n所有关键数字附 bootstrap CI，r² 贯穿全文，无未经检验的 \"significantly\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

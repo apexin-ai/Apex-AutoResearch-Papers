@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "eac67544611f1a2e991e",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code mvp run",
+  "task_key": "worker_code_mvp-run_20260518T063400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-run_20260518T063400.log",
+    "occurrence": 1,
+    "bytes": 1177231,
+    "sha256": "c2af66c7501347f09c0e54251fbd202ba3997380131baaa1542f1dac0d142c04"
+  },
+  "statistics": {
+    "messages": 610,
+    "user_turns": 1,
+    "tool_calls": 220,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 157,
+      "tool_call": 220,
+      "tool_result": 220,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 331,
+      "chunks": [
+        {
+          "path": "eac67544611f1a2e991e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eac67544611f1a2e991e-part-0002.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 279,
+      "chunks": [
+        {
+          "path": "eac67544611f1a2e991e-part-0002.json",
+          "message_count": 29
+        },
+        {
+          "path": "eac67544611f1a2e991e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eac67544611f1a2e991e-part-0004.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "03ff905fca6e761db3a1",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "exp step2 cron resolve",
+  "task_key": "worker_exp_step2-cron-resolve_20260522T010447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_step2-cron-resolve_20260522T010447_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "b61add136dc2c5a24bc816a8d07b079a9a381d1286a2d3b16ff54ca517de8a9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step 2 v2 最终状态：成功完成\n\n进程已结束，日志有 `Step 2 complete` 标记，结果文件已生成（20K）。\n\n### 结果汇总\n\n| Dataset | High K_eff ASR | Low K_eff ASR | Mann-Whitney p | hypothesis_holds |\n|---------|---------------|---------------|----------------|-----------------|\n| **mmlu** | 0.2457 | 0.1438 | 1.0000 | — |\n| **arc_challenge** | 0.1228 | 0.0780 | 1.0000 | false |\n\n**结论：实验成功运行完成，但假设未得到统计支持。**\n\n两个数据集的趋势方向一致——high K_eff panel 的 ASR 都高于 low K_eff panel（mmlu: 0.246 vs 0.144, arc: 0.123 vs 0.078），说明更独立的 panel 确实更容易被攻击成功。但 Mann-Whitney p=1.0 表明在仅 3 vs 3 panel 的样本量下，差异完全不显著。`hypothesis_holds=false`。\n\n结果文件：`/root/cert_manip_resist_eval/artifacts/results/results_step2_keff_contrast_20260522_010347.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

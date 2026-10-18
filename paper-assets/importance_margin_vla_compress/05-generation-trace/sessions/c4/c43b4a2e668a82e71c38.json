@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c43b4a2e668a82e71c38",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 trajectory recovery",
+  "task_key": "worker_eval_v8-trajectory-recovery_20260516T025040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8-trajectory-recovery_20260516T025040_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "ef064565ab491a4797bb059c4d3e9b24c81dfebcbc18e32dbb0cd04848efecd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有工作已由前一个 Worker 完成。汇总：\n\n## 服务器状态\n- **训练**: 完成（step_029999，latest symlink 已指向）\n- **Eval 进程**: 全部完成，无残留进程\n  - `traj_eval_补跑.log` → \"ALL TRAJECTORY EVALS COMPLETE\"（覆盖 22K-26K）\n  - `traj_eval_28k_30k.log` → \"ALL TRAJECTORY + BYPASS DONE\"（覆盖 28K-30K）\n\n## Registry 数据已完整\n`checkpoint_trajectory` 已包含 2K→29999 全部 15 个数据点。JSON 文件与 registry 值一致。\n\n### 22K-30K trajectory（registry 已有）\n\n| Step | standard | acis_prune | bypass | acis_advantage |\n|------|----------|------------|--------|----------------|\n| 22K | 0.00753 | 0.0039 | 0.0326 | 0.01222 |\n| 24K | 0.00750 | 0.00383 | 0.03241 | 0.01317 |\n| 26K | 0.00663 | 0.00341 | 0.03167 | 0.01201 |\n| 28K | 0.00673 | 0.00333 | 0.03235 | 0.01203 |\n| 30K | 0.00659 | 0.00330 | 0.03230 | 0.01246 |\n\n### 500-batch eval（也已完成）\n- Standard: clean=0.005297, acis_pruned=0.005936\n- Bypass: clean=0.03019\n- Gate: G1=48.2x PASS, G2=47.1pp PASS, **G3a=1.299 FAIL**（目标≤1.10）, G4=0.169 PASS → **Overall FAIL**\n\n### 趋势\n- standard 和 acis_prune 在 16K 后进入平台期，最终 acis_prune=0.0033 达到 baseline(0.00408) 的 81%\n- bypass 收敛极慢，稳定在 ~0.032，是 standard 的 ~5x → 确认 IMM 训练改变了权重分布\n- acis_advantage 在 20K 后稳定在 ~0.012\n\n无需额外操作，所有 trajectory eval 和 registry 更新已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

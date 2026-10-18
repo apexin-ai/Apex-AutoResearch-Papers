@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a15df0655040f818ef39",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train v8 1 launch",
+  "task_key": "worker_train_v8_1-launch_20260516T030529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_v8_1-launch_20260516T030529_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "ad1fcfaf75cf2e955f14605cf1a1c7d7c27310093fe1a9708fa1747eee8c37b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在正常运行。\n\n**验证结果：**\n- cuda:0: 2457 MiB, 65% utilization\n- 已到 step 150/30000，速度 ~3.1 sps\n- lambda=0.20 生效（margin_loss 独立显示）\n- wandb offline 模式正常\n\n所有步骤完成。Registry 状态 RUNNING，tmux session `mvp_imm_anchor_v8_1`。预计 ~2.7 小时完成（30K steps / 3.1 sps）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

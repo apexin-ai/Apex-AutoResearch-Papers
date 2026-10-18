@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4557802312a53bde0e78",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy openvla baseline spatial seed42",
+  "task_key": "worker_deploy_openvla-baseline-spatial-seed42_20260521T222156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla-baseline-spatial-seed42_20260521T222156_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "8dea911fe0ad392f3f85e57fd6ff0f82426f0de292e2d1725feb3c9168a8b0fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 前置检查结果\n\n### 1. Spatial checkpoint: **不存在**\nwestd-27271 上只有 Object checkpoint:\n- `/root/autodl-tmp/openvla-libero-object/` (15G)\n- 无任何 `*spatial*` 目录\n- 数据盘剩余 96G，空间充足\n\n### 2. 脚本参数\n`--mode baseline` 可用，但脚本有 3 处 Object 硬编码需改：\n- L31: `CHECKPOINT_PATH = \"/root/autodl-tmp/openvla-libero-object\"`\n- L32: `UNNORM_KEY = \"libero_object\"` (影响 action denormalization)\n- L276: `\"model\": \"openvla-7b-libero-object\"` (结果记录)\n\n脚本无 `--model_path` 参数，需要修改脚本或新建 Spatial 版本。\n\n### 3. env.seed: **已修复**\nL219: `env.seed(args.seed)` — 使用 `args.seed`。\n\n### 需要你决定的\n\n**Spatial checkpoint 不在 westd-27271 上。** 两个获取方案：\n\n1. **HuggingFace 下载** (`openvla/openvla-7b-finetuned-libero-spatial`)，约 15G，AutoDL 建议用 ModelScope 或开 `network_turbo` 加速\n2. **从 westd-41074 拷贝**（如果那台还活着且有 `/root/autodl-tmp/openvla-7b-finetuned-libero-spatial`）\n\n脚本修改方面，我建议**给脚本加 `--model_path` 和 `--unnorm_key` CLI 参数**（保持现有默认值不变），这样不影响已有 Object 实验，Spatial 只需命令行指定即可。\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7bb280711755319b45af",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k09 strict fail",
+  "task_key": "worker_diagnose_eval_pi05_random_k09_strict_fail_20260527T091150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k09_strict_fail_20260527T091150_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "09f4070552268d010433457bf6010aaa38a5aeece4efffc035fae396117cbf3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验是**同一根因**：网络不可达导致 tokenizer 初始化失败。\n\n## 诊断结果\n\n**失败根因**: `httpx.ConnectError: [Errno 101] Network is unreachable`\n\n调用链：`eval_pi05_pruning_libero.py:325` → `make_pre_post_processors()` → `AutoTokenizer.from_pretrained(\"google/paligemma-3b-pt-224\")` → 尝试连接 HuggingFace Hub → 网络不通。\n\n两个实验都在模型加载完成后、eval 开始前崩溃（加载 4.1B 模型花了 ~2 分钟，之后立刻触发 tokenizer 下载失败）。\n\n**Partial 结果**: **无**。两个实验都没有进入任何 task 的 eval 循环，0 个 episode 完成。\n\n## 原因分析\n\nAutoDL 实例的公网访问需要 `source /etc/network_turbo` 开启代理，但启动命令里没有这一步。之前其他实验可能已经在 shell session 里 source 过，但这次的 tmux/bash 环境没有继承。\n\n或者更根本的解决方案：tokenizer 应该从本地缓存加载（`HF_HUB_OFFLINE=1`），而不是每次都联网查询。\n\n## 重跑建议\n\n1. **快速修复**：启动命令前加 `source /etc/network_turbo`，重跑即可\n2. **更稳健的修复**：预先下载 `google/paligemma-3b-pt-224` tokenizer 到本地，设置 `HF_HUB_OFFLINE=1` 或 `TRANSFORMERS_OFFLINE=1`，避免依赖网络\n3. 这是环境问题，不是代码 bug，可以直接重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

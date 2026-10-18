@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b36c73b63a9847c15d90",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code q3 bcs distribution",
+  "task_key": "worker_code_q3-bcs-distribution_20260517T075611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_q3-bcs-distribution_20260517T075611_result.json",
+    "occurrence": 1,
+    "bytes": 1270,
+    "sha256": "2c89e3b912a8987db4c8b889735642d712a510c8e79cc6af45fce90ad951d5d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果非常清晰。\n\n## 结论\n\n**Train-origin 和 val-origin types 的 BCS 分布没有 systematic difference。**\n\n关键数据：\n\n| Group | N_pairs | Mean | Std | Median |\n|-------|---------|------|-----|--------|\n| Train-Train | 2016 | 0.8801 | 0.0693 | 0.8996 |\n| Val-Val | 120 | 0.8738 | 0.0847 | 0.9015 |\n| Cross | 1024 | 0.8774 | 0.0763 | 0.8976 |\n\n统计检验：\n- Mann-Whitney U: p = 0.754 (远不显著)\n- KS test: D = 0.088, p = 0.326 (不显著)\n- Cohen's d = 0.081 (negligible effect size, < 0.2 threshold)\n- BCS(train) = 0.880, BCS(val) = 0.874, 差异仅 0.006\n\n**解读**：两组 types 来自同一 similarity 分布，split origin 不引入 confound。Within-pool analysis 的有效性不受 train/val 来源影响。\n\n### 产出\n- 脚本：`/root/schema-dag-extraction/scripts/q3_bcs_distribution.py`\n- 图表：`/root/schema-dag-extraction/figures/paper/fig_q3_bcs_distribution.pdf`\n- LaTeX 表格片段已在上方输出中\n\n对 reviewer 的回复要点：三组 (within-train, within-val, cross) 的 pairwise SCS 分布在 mean、median、shape 上几乎相同，Mann-Whitney p=0.75，Cohen's d=0.08，说明 FewRel 的 train/val split 在 schema confusability 维度上是均匀的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

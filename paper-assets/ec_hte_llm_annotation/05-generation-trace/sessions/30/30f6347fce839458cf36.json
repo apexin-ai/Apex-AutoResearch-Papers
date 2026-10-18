@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "30f6347fce839458cf36",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research ppi dsl baseline v2",
+  "task_key": "worker_research_ppi-dsl-baseline-v2_20260522T041834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ppi-dsl-baseline-v2_20260522T041834.log",
+    "occurrence": 1,
+    "bytes": 648910,
+    "sha256": "d3d26748a13815c0ff7b1a70d32098a1c196fd1bfcb405064bfad05ef21b0579"
+  },
+  "statistics": {
+    "messages": 185,
+    "user_turns": 1,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 59,
+      "user": 1,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "30f6347fce839458cf36-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "30f6347fce839458cf36-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "30f6347fce839458cf36-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

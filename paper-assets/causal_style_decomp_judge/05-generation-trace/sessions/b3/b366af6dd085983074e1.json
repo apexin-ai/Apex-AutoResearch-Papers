@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b366af6dd085983074e1",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code table t1 t2 fix",
+  "task_key": "worker_code_table_t1_t2_fix_20260524T085536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table_t1_t2_fix_20260524T085536_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "585525158e0889ac4ae0e3db4cabc4e7c25e5c319c2eaf2855b7b1945e497c00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The verbosity paragraph doesn't mention the d value directly — it only references Style OR and Orig OR, which are unchanged. No additional prose edits needed.\n\nAll four LaTeX modifications are complete:\n\n| Table | Row | Old d (p) | New d (p) |\n|-------|-----|-----------|-----------|\n| 23 | AEval×Llama-70B×Form | 1.120 (<.001) | .212 (.012) |\n| 23 | MTB×GPT-4o×Form | .167 (.016) | .111 (.016) |\n| 24 | AEval×Claude×Verb | −.243 (.005) | .252 (.002) |\n| 24 | MTB×Claude×Form | .245 (<.001) | .233 (<.001) |\n\nVerified via `verify_table_corrections.py` using the same pooled-d formula (ddof=0) as `compute_table1_likert.py`. No prose references to these specific d values found elsewhere in the paper — only the table cells needed changing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

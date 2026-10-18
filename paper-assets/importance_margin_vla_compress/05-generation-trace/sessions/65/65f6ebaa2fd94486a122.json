@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "65f6ebaa2fd94486a122",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k075 long seed43 strict w41",
+  "task_key": "worker_analyze_eval_pi05_random_k075_long_seed43_strict_w41_20260527T184148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k075_long_seed43_strict_w41_20260527T184148_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "984c4d4ccbf279956e65d1b5329f8f0fea5e004a797e0773f2537e6f98bd67a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**汇总**：π0.5 Random k=0.75 Long seed43 = **60.6%**，seed42 = 63.0%，均值 **61.8% ± 1.2%**。\n\n| Task | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | Overall |\n|------|----|----|----|----|----|----|----|----|----|----|---------|\n| seed43 | 86 | 62 | 60 | 64 | 82 | 40 | 66 | 70 | 2 | 74 | 60.6 |\n\nT8 依然是瓶颈（2%），与 seed42 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

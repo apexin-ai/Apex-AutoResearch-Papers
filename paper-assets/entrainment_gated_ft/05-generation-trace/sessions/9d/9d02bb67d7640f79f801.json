@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d02bb67d7640f79f801",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "util scp pdf jaccard",
+  "task_key": "worker_util_scp_pdf_jaccard_20260522T211435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_scp_pdf_jaccard_20260522T211435_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "64963144ed9d944f39345434123533cbd707060040716542dbf07578504f6e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已启动（`worker_download_jaccard_heatmap_20260522T211552`），正在通过 SSH 下载文件。等待完成通知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

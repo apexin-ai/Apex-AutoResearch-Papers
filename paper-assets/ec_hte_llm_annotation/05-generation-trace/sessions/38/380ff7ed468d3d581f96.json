@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "380ff7ed468d3d581f96",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 041",
+  "task_key": "worker_code_exp-041_20260524T124830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-041_20260524T124830_result.json",
+    "occurrence": 1,
+    "bytes": 1588,
+    "sha256": "3ce863ea83e820f3cbba4fcaa407c98a6bcfd19ff67fdeadc3017460583088cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-041 完成：关键结果\n\n**实验规模**：48 configs × 100 MC runs，总耗时 40.8s。\n\n### Bias Identity R²\n\n| Δπ | Mean R² | Range |\n|----|---------|-------|\n| 0.05 | 0.570 | [0.05, 0.84] |\n| 0.10 | 0.851 | [0.73, 0.92] |\n| 0.15 | 0.922 | [0.84, 0.97] |\n| 0.20 | 0.951 | [0.89, 0.99] |\n\nR² 随 Δπ 增大而升高——小 Δπ 时 analytic bias 极小，MC 噪声主导，R² 被压低。Δπ≥0.10 时 R²>0.85，确认 product structure 在非对称误分类下成立。FNR-dominant (r<1) 方向 R² 略高于 FPR-dominant (0.879 vs 0.768)。\n\n### Diagnostic AUC\n\n- 29/48 configs 有有效 AUC（K=2 + 小 Δπ 时数据点不足导致 NaN）\n- K=4 configs 平均 AUC = **0.74**（range 0.57–0.83）\n- K=2 configs 平均 AUC = **0.44**（仅 4 个数据点，离散化严重）\n\n### Method Comparison（全 48 configs 平均）\n\n| Method | Abs Bias | RMSE | Coverage |\n|--------|----------|------|----------|\n| Oracle | 0.058 | 0.072 | 0.946 |\n| Naive | 0.080 | 0.096 | 0.830 |\n| Global Corrected | 0.088 | 0.109 | 0.931 |\n| EC-HTE (HB) | 0.098 | 0.125 | 0.920 |\n\nEC-HTE 的 RMSE 高于 Global——这在非对称场景中符合预期：n_expert=250 拆分到 K 个子群后，per-subgroup 同时估 FPR 和 FNR 的方差远大于全局估计。EC-HTE 的主要优势体现在 coverage（0.92 vs naive 的 0.83），且 K=2 时 EC-HTE 与 Global 差距很小（RMSE 0.098 vs 0.091）。\n\n**数据文件**：\n- `results/exp041_asymmetric_grid.csv`（raw）\n- `results/exp041_asymmetric_summary.csv`（summary）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

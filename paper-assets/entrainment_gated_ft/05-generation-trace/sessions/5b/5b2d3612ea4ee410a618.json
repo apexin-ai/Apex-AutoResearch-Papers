@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b2d3612ea4ee410a618",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "eval exp 004 attention extraction",
+  "task_key": "worker_eval_exp-004-attention-extraction_20260519T163328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-004-attention-extraction_20260519T163328_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "87af0f9e771c56dba02b7c4da7b40aaa49083d9008e928b7fd4ce57861ce7869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GDN 提取已进入正常运行状态：~10 it/s，5153 samples 预计 ~8-9 分钟。三个架构总计约 30 分钟。\n\n任务启动成功。总结：\n\n- **脚本已上传**到 `/root/entrainment_gated_ft/analysis/extract_attention_weights.py`\n- **修复了 2 个 bug**：\n  1. LAMBADA dataset config `\"en\"` → `\"default\"`（匹配本地缓存）\n  2. Forward hook `inputs[0]` → `with_kwargs=True` + `args[0] if args else kwargs['hidden_states']`（fla 的 Attention 用 keyword args 调用）\n- **Dry-run 验证通过**：attention shape (16, 98)，softmax sum = 1.0，entropy CSV 完整\n- **正式任务运行中**：PID 515917, nohup 后台, 日志 `/tmp/exp004.log`\n- **GDN 提取速度**：~10 samples/s，预计 ~8-9 min/arch，总计 ~30 min\n- **Registry**: exp-004 状态 RUNNING\n- **产出路径**: `/root/entrainment_gated_ft/analysis/attention_weights/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

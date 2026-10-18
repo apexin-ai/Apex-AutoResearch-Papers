@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2b2ab73fb9bb30ad8b90",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops xvla cv analysis",
+  "task_key": "worker_ops_xvla-cv-analysis_20260520T094958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_xvla-cv-analysis_20260520T094958_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "1d91e79bd155a67bac655a9654559620232fe5f67f982edeecaab49461d01616"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nX-VLA CV 数据: 无（脚本未计算 CV）\n  分析内容: attention entropy ratio + pruning curve，无 L2 norm / CV 指标\n  可从 entropy 数据计算 CV:\n    overall entropy CV = std/mean = 0.1159/0.6138 = 0.189\n    per-layer entropy CV (std/mean):\n      L0:  0.0079/0.4569 = 0.017\n      L1:  0.0167/0.3381 = 0.049\n      L2:  0.0166/0.3838 = 0.043\n      ...\n      L22: 0.0211/0.7933 = 0.027\n      L23: 0.0200/0.7125 = 0.028\n\nπ0 CV 参考: 无对应数据（服务器上只有 π0 evaluation baseline，无 importance analysis）\n  D104 提到的 π0 CV=0.038 可能是 L2 norm 基础的 CV，与此处 entropy-based CV 不可直接对比\n\n分析文件列表:\n  /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json\n  /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\n\n注意: 若需与 π0 CV=0.038 对比，需额外跑 L2 norm analysis（对 vision token hidden states 计算 per-token L2 norm 的 CV），当前 entropy-based 指标衡量的是 attention 分布均匀度，不是 token representation 的变异系数。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

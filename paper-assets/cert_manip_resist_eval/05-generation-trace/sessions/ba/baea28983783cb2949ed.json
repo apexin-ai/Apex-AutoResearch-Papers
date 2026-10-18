@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "baea28983783cb2949ed",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper em dash fix",
+  "task_key": "worker_paper_em-dash-fix_20260523T015250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_em-dash-fix_20260523T015250_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "e5471806c0d686a7032dedbf44a0773b2b07bb1025091783be783dc314fd4f61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**修复完成。**\n\n- **appendix.tex:50**：修复 2 处 em-dash\n  - `conditions---stronger` → `conditions, stronger`\n  - `retains---indeed improves---its` → `retains (indeed improves) its`\n- **未修改的 `---`**（共 3 处，均为非 em-dash 用途）：\n  - `appendix_attacks.tex:29` — 攻击模板字面量（`\\texttt` 内容）\n  - `results.tex:47` — 表格中缺失值占位符（2 处）\n\n全部 `.tex` 文件中不再有需要修复的 em-dash。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

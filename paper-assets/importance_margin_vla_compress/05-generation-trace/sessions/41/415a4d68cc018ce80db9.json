@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "415a4d68cc018ce80db9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval stage1only spatial",
+  "task_key": "worker_eval_stage1only_spatial_20260517T065126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_stage1only_spatial_20260517T065126_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "f9f8bdf707bb3e0a43bc71a3e95a7892c72dec1c9e1eaea8618dda6fa00ca342"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**状态汇总：**\n- `eval_stage1only_spatial` 已在 westd-27271 GPU 1 上启动（PID 65128, tmux session `eval_stage1only_spatial`）\n- Checkpoint: `stage1_done/checkpoint.pt`，config: `libero_imm_twostage_fullft.yaml`\n- Suite: `libero_spatial`, 10 tasks × 50 episodes = 500 rollouts\n- 日志确认模型已加载（14s），正在评估 Task 0\n- Registry 已注册为 RUNNING\n\n注意：杀掉了 GPU 1 上之前的 `eval_stage1only_k07_object` 进程（PID 3092）。如果那个实验还需要，后续需要重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

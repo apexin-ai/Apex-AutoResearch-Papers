@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4518f4da96c478e4307b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k05 goal seed42 v2",
+  "task_key": "worker_analyze_eval_pi05_random_k05_goal_seed42_v2_20260523T213121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k05_goal_seed42_v2_20260523T213121_result.json",
+    "occurrence": 1,
+    "bytes": 1550,
+    "sha256": "ed76a363d20bd4a2b5911aa71b54bc0dd1644b3724b9dc77520986100a49844b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nRESULT:\n- overall_sr: 73.6%\n- per_task:\n    T0 [open the middle drawer of the cabinet]: 78% (39/50)\n    T1 [put the bowl on the stove]: 44% (22/50)\n    T2 [put the wine bottle on top of the cabinet]: 86% (43/50)\n    T3 [open the top drawer and put the bowl inside]: 76% (38/50)\n    T4 [put the bowl on top of the cabinet]: 92% (46/50)\n    T5 [push the plate to the front of the stove]: 70% (35/50)\n    T6 [put the cream cheese in the bowl]: 62% (31/50)\n    T7 [turn on the stove]: 100% (50/50)\n    T8 [put the bowl on the plate]: 86% (43/50)\n    T9 [put the wine bottle on the rack]: 42% (21/50)\n- total_episodes: 500 (10 tasks × 50 eps)\n- elapsed: 109.7 min\n- anomalies: 无明显异常\n- comparison: v1(pre-fix)=74.4%, v2(post-fix)=73.6% (Δ=-0.8pp)\n  CPU RNG 修复对 Random pruning 几乎无影响（符合预期——random 不依赖 importance score 计算）\n- monotonicity: k=0.7=78.2%, k=0.5=73.6%, k=0.3=50.6% — 单调递减 ✓\n  随 keep_ratio 降低 SR 平稳下降，无异常跳变\n- json_path: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_goal_seed42.json\n```\n\n**关键发现**：\n1. v1→v2 仅差 0.8pp，确认 CPU RNG 修复对 random pruning 无实质影响（random 不涉及 importance 计算，符合预期）\n2. k=0.7→0.5→0.3 严格单调递减（78.2%→73.6%→50.6%），random baseline 行为符合直觉\n3. T7(turn on stove) 100%、T9(wine bottle on rack) 42% 分别是最易/最难任务，与其他 keep_ratio 实验一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cf1d9ddf0ed4e2977deb",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check attention viz status",
+  "task_key": "worker_check_attention_viz_status_20260517T111707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_attention_viz_status_20260517T111707_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "b6ca096751a656b01cf77a28a2e86329521798eb1911a6aa4fa82b703ce79cd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## attention_viz 状态：已完成\n\n**tmux session**: `attention_viz` 已退出，GPU 0 空闲 (1 MiB)。\n\n### 产出文件（全部生成于 18:34）\n\n| 文件 | 大小 |\n|------|------|\n| `attention_data.npz` | 32.6 MB |\n| `attention_heatmap.pdf` / `.png` | 137 KB / 406 KB |\n| `attention_distribution.pdf` / `.png` | 27 KB / 192 KB |\n| `attention_per_task.pdf` / `.png` | 24 KB / 51 KB |\n| `attention_metadata.json` | 500 B |\n| `attention_viz.log` | 3.2 KB |\n\n### Metadata 摘要\n\n- **Checkpoint**: `checkpoints/libero_full_ft_100k/checkpoint.pt`\n- **Suite**: `libero_object`, tasks [0, 3, 7]\n- **Attention captures**: 2400 samples, shape `[2400, 15, 128]` (15 heads, 128 tokens)\n- **Overall entropy**: 6.86 / 7.0 (uniformity ratio **0.98**) — attention 分布接近均匀\n- **Cam1 fraction**: 0.538 — 两个相机的 attention 近乎均分"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

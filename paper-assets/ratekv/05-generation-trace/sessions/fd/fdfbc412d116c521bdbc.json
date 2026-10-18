@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fdfbc412d116c521bdbc",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp mistral hires constrained eval",
+  "task_key": "worker_exp_mistral_hires_constrained_eval_20260515T144810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mistral_hires_constrained_eval_20260515T144810_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "1af52e6f2f75a47ae76dcc3e528ec37ca1ff26d3347d196eeec99b46bedbd6ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动确认：\n\n- **tmux session**: `mistral_constrained` 运行中\n- **GPU 0**: python 进程 PID 342597，占用 2796MiB，GPU-Util 11%（模型加载中）\n- **Registry**: `mistral_hires_constrained_mckp` → RUNNING\n- **日志**: `/root/ratekv/logs/mistral_hires_constrained.log`\n- **预期输出**: `artifacts/mistral_hires_constrained_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

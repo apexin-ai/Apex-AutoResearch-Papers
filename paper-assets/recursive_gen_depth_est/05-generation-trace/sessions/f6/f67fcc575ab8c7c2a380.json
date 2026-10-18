@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f67fcc575ab8c7c2a380",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops mink final results read",
+  "task_key": "worker_ops_mink_final_results_read_20260518T195028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mink_final_results_read_20260518T195028_result.json",
+    "occurrence": 1,
+    "bytes": 1187,
+    "sha256": "ccf2fc84bca92dc48eeb2c759e1104adef12c96f19f6eaf73ba8924005632f93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Min-K% Prob baseline **已全部完成**。\n\n## 状态汇总\n\n- **进程**: 无 mink 进程在跑，实验已结束\n- **GPU**: cuda:0 和 cuda:1 均空闲（0MiB / 0% util）\n- **其他 Python 进程**: 只有 tensorboard 和 jupyter-lab 常驻，无其他实验\n\n## Min-K% Prob 结果（`mink_prob_results.json`）\n\n**9-cell 平均（`__9cell_average__`）**:\n\n| 配置 | 4class_acc | d1d3_bal_acc |\n|---|---|---|\n| K10_methodA | 0.2495 | 0.1111 |\n| K10_methodB | 0.2896 | 0.3680 |\n| K10_methodC | 0.2460 | 0.3280 |\n| K20_methodA | 0.2419 | 0.1070 |\n| **K20_methodB** | **0.3323** | **0.4039** |\n| K20_methodC | 0.2459 | 0.3279 |\n| K30_methodA | 0.2226 | 0.1050 |\n| **K30_methodB** | **0.3301** | **0.4075** |\n| K30_methodC | 0.2452 | 0.3270 |\n\n**关键观察**:\n- **methodB + K20/K30** 是 Min-K% 最优配置，4class_acc ~33%，d1d3_bal_acc ~40%\n- methodA 在 d1d3_bal_acc 上几乎失效（~10%），methodC 接近随机（~33%）\n- 最佳单 cell: **gpt2xl_temp09 K20_methodB**，4class_acc=0.5064，d1d3_bal_acc=0.5110\n- 整体性能远低于 random chance 以上水平，说明 Min-K% Prob 作为 depth estimation baseline 能力有限"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

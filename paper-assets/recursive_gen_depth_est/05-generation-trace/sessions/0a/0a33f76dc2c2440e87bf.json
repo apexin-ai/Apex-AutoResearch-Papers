@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0a33f76dc2c2440e87bf",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "figures edd fix v2",
+  "task_key": "worker_figures_edd_fix_v2_20260515T042848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figures_edd_fix_v2_20260515T042848_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "bfcf30b8a507b7819206e7ecde02ae67451606b7e8cdd5c4a62eeeb8de81d8af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**EDD 值对比：**\n\n| 配置 | 修复前 (`idx`) | 修复后 (`idx+1`) |\n|------|---------------|-----------------|\n| Pythia-1.4B / topk | EDD=2 (错误) | **EDD=3** (正确) |\n| OLMo-1B / topk | EDD=2 (错误) | **EDD=3** (正确) |\n\n逻辑：d2v3 处 AUC 跌破 0.75（idx=2），EDD = 2+1 = 3，表示前 3 个 depth 可区分。与 atlas_v1_analysis 的 EDD=3 一致。底部注释 \"EDD > 3 for 7/9 configurations\" 无需修改。四张图均已重新生成至 `artifacts/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "d6de7b58562bc4894298",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "infra fix bertscore download",
+  "task_key": "worker_infra_fix_bertscore_download_20260520T121845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_bertscore_download_20260520T121845.log",
+    "occurrence": 1,
+    "bytes": 594977,
+    "sha256": "dc8f34e7a9fc2a20e550c9aab245718b474bfef1d93d5b9f500a7e96af780762"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 0,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 159,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 429,
+      "chunks": [
+        {
+          "path": "d6de7b58562bc4894298-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6de7b58562bc4894298-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6de7b58562bc4894298-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ]
+}

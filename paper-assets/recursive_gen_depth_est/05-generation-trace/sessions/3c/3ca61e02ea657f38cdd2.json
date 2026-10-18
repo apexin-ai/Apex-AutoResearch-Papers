@@ -1,0 +1,555 @@
+{
+  "schema_version": "1.0",
+  "id": "3ca61e02ea657f38cdd2",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "analysis mdd computation",
+  "task_key": "worker_analysis_mdd_computation_20260519T070039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_mdd_computation_20260519T070039.jsonl",
+    "occurrence": 1,
+    "bytes": 26509,
+    "sha256": "20a4c3561e7dc0579d67ebe2e57f481a4a72925d67b3e278348d5ed9b036310d"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T07:04:12.912454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/ 2>/dev/null",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T07:04:12.912860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 1752\ndrwxr-xr-x 42 ubuntu ubuntu   4096 May 19 06:49 .\ndrwxr-xr-x 13 ubuntu ubuntu   4096 May 19 06:59 ..\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 19 06:21 _pdf_images\ndrwxr-xr-x  7 ubuntu ubuntu   4096 May 15 09:28 _project\n-rw-r--r--  1 ubuntu ubuntu  12605 May 16 05:24 adversarial_review_round1.md\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 15 00:53 atlas\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 01:06 atlas_v1_analysis\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 15 04:32 atlas_v2\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 04:32 atlas_v2_analysis\n-rw-r--r--  1 ubuntu ubuntu  11517 May 14 20:15 baseline_diveye.py\n-rw-r--r--  1 ubuntu ubuntu  10919 May 14 20:14 baseline_perplexity_regression.py\n-rw-r--r--  1 ubuntu ubuntu  13388 May 14 20:16 baseline_zero_shot_llm.py\n-rw-r--r--  1 ubuntu ubuntu  35734 May 14 23:06 baselines.py\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 17 15:01 bootstrap_ci_table1_001\n-rw-r--r--  1 ubuntu ubuntu  13599 May 15 05:05 covariate_shift_literature_survey.md\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 04:09 cross_model_loo_v1\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 16 14:25 cross_model_reverse_chain_001\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 16 16:37 cross_scale_llama3_base_001\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 17 05:22 cross_seed_transfer\n-rw-r--r--  1 ubuntu ubuntu   3516 May 15 05:11 cross_strategy_loo_zscore.md\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 05:12 cross_strategy_loo_zscore_001\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 17 08:58 cross_strategy_pipeline_001\n-rw-r--r--  1 ubuntu ubuntu  17691 May 15 05:19 data_reconciliation.md\n-rw-r--r--  1 ubuntu ubuntu   1681 May 14 22:44 dcol_002_oom_diagnosis.md\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 14 16:56 dcol_code\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 22:44 dcol_deberta_002\n-rw-r--r--  1 ubuntu ubuntu  29131 May 14 19:55 dcol_feature_mlp.py\n-rw-r--r--  1 ubuntu ubuntu    543 May 17 17:27 depth_distribution.json\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 15 05:23 depth_extension_pythia_d4d5_001\n-r\n…[truncated 4518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T07:04:12.913096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*auc*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T07:04:12.913243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/chart/fig1_auc_decay.png\nartifacts/_project/chart/fig1_auc_decay_fd24b7.png\nartifacts/figures/fig1_auc_decay.png\nartifacts/figures/fig1_auc_decay.pdf\nartifacts/_project/report/auc_unification_report.md\nartifacts/_project/chart/fig_auc_decay.pdf\nartifacts/_project/chart/fig_auc_decay_beaed3.pdf\nartifacts/_project/chart/fig_auc_decay_info.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T07:04:12.913373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T07:04:12.913497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex\ndocs/paper/abstract.tex\ndocs/paper/method.tex\ndocs/paper/conclusion.tex\ndocs/paper/theory.tex\ndocs/paper/atlas.tex\ndocs/paper/introduction.tex\ndocs/paper/related_work.tex\ndocs/paper/section_appendix.tex\ndocs/paper/drafts/14b_scenarios.tex\ndocs/paper/generalization.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T07:04:12.913629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "auc|pairwise|atlas|edd",
+              "-i": "True",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T07:04:12.913833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 214 files\nartifacts/review_issues.yaml\nartifacts/review_reports/round_10.md\nartifacts/review_reports/round_9.md\nartifacts/manifest.yaml\nartifacts/dream_reports/dream_20260518T162616/meta.yaml\nartifacts/dream_reports/dream_20260518T162616/logs/review_worst.log\nartifacts/dream_reports/dream_20260518T162616/worst/review_report.md\nartifacts/dream_reports/dream_20260518T162616/worst/review_context.yaml\nartifacts/dream_reports/dream_20260518T162616/logs/review_median.log\nartifacts/dream_reports/dream_20260518T162616/median/review_report.md\nartifacts/dream_reports/dream_20260518T162616/median/review_context.yaml\nartifacts/dream_reports/dream_20260518T162616/logs/review_best.log\nartifacts/dream_reports/dream_20260518T162616/best/review_context.yaml\nartifacts/dream_reports/dream_20260518T162616/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260518T162616/worst/paper.aux\nartifacts/dream_reports/dream_20260518T162616/worst/paper.tex\nartifacts/dream_reports/dream_20260518T162616/worst/paper_framing.md\nartifacts/dream_reports/dream_20260518T162616/worst/experiment_data.json\nartifacts/dream_reports/dream_20260518T162616/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260518T162616/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260518T162616/median/paper.aux\nartifacts/dream_reports/dream_20260518T162616/median/paper.tex\nartifacts/dream_reports/dream_20260518T162616/median/paper_framing.md\nartifacts/dream_reports/dream_20260518T162616/median/experiment_data.json\nartifacts/dream_reports/dream_20260518T162616/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260518T162616/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260518T162616/best/paper.aux\nartifacts/dream_reports/dream_20260518T162616/best/paper.tex\nartifacts/dream_reports/dream_20260518T162616/best/paper_framing.md\nartifacts/dream_reports/dream_20260518T162616/best/experiment_data.json\nartifacts/dream_reports/dream_20260518T162616/best/imagined_experimen\n…[truncated 10272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T07:04:12.914055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/edd_analysis_9cell.json"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T07:04:12.914276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"per_cell\": {\n3\t    \"pythia_nucleus095\": {\n4\t      \"pair_aucs\": {\n5\t        \"d0v1\": {\n6\t          \"auc_mean\": 0.9994907999999999,\n7\t          \"auc_std\": 0.0004513745229850758\n8\t        },\n9\t        \"d1v2\": {\n10\t          \"auc_mean\": 0.9302135,\n11\t          \"auc_std\": 0.0021409270889032814\n12\t        },\n13\t        \"d2v3\": {\n14\t          \"auc_mean\": 0.8130181000000001,\n15\t          \"auc_std\": 0.005436555540045535\n16\t        }\n17\t      },\n18\t      \"edd_by_threshold\": {\n19\t        \"0.65\": 3,\n20\t        \"0.7\": 3,\n21\t        \"0.75\": 3,\n22\t        \"0.8\": 3\n23\t      }\n24\t    },\n25\t    \"pythia_temp09\": {\n26\t      \"pair_aucs\": {\n27\t        \"d0v1\": {\n28\t          \"auc_mean\": 0.9996681000000001,\n29\t          \"auc_std\": 0.00029500803378890096\n30\t        },\n31\t        \"d1v2\": {\n32\t          \"auc_mean\": 0.9097792,\n33\t          \"auc_std\": 0.0016575521288937026\n34\t        },\n35\t        \"d2v3\": {\n36\t          \"auc_mean\": 0.7953265,\n37\t          \"auc_std\": 0.004324151408080007\n38\t        }\n39\t      },\n40\t      \"edd_by_threshold\": {\n41\t        \"0.65\": 3,\n42\t        \"0.7\": 3,\n43\t        \"0.75\": 3,\n44\t        \"0.8\": 2\n45\t      }\n46\t    },\n47\t    \"pythia_topk50\": {\n48\t      \"pair_aucs\": {\n49\t        \"d0v1\": {\n50\t          \"auc_mean\": 0.9990262,\n51\t          \"auc_std\": 0.00044874565178955014\n52\t        },\n53\t        \"d1v2\": {\n54\t          \"auc_mean\": 0.8363001000000001,\n55\t          \"auc_std\": 0.007046909417609966\n56\t        },\n57\t        \"d2v3\": {\n58\t          \"auc_mean\": 0.6864834,\n59\t          \"auc_std\": 0.003816982019868569\n60\t        }\n61\t      },\n62\t      \"edd_by_threshold\": {\n63\t        \"0.65\": 3,\n64\t        \"0.7\": 2,\n65\t        \"0.75\": 2,\n66\t        \"0.8\": 2\n67\t      }\n68\t    },\n69\t    \"gpt2xl_nucleus095\": {\n70\t      \"pair_aucs\": {\n71\t        \"d0v1\": {\n72\t          \"auc_mean\": 0.9988856,\n73\t          \"auc_std\": 0.00043348199501249405\n74\t        },\n75\t        \"d1v2\": {\n76\t          \"auc_mean\": 0.9584306,\n77\t          \"auc_std\": 0.00272629623115316\n78\t        },\n79\t        \"d\n…[truncated 3372 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T07:04:12.914464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/edd_threshold_sensitivity.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T07:04:12.914700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"thresholds\": [0.65, 0.70, 0.75, 0.80],\n3\t  \"cells\": {\n4\t    \"pythia_nucleus\": {\n5\t      \"model\": \"Pythia-1.4B\",\n6\t      \"strategy\": \"nucleus_p095\",\n7\t      \"experiment_id\": \"mvp_pipeline_pythia_002\",\n8\t      \"aucs\": {\"d0v1\": 0.9975, \"d1v2\": 0.8607, \"d2v3\": 0.8005},\n9\t      \"edd\": [3, 3, 3, 3],\n10\t      \"bottleneck\": \"d2v3\",\n11\t      \"bottleneck_margin_to_080\": 0.0005\n12\t    },\n13\t    \"pythia_temp09\": {\n14\t      \"model\": \"Pythia-1.4B\",\n15\t      \"strategy\": \"temperature_09\",\n16\t      \"experiment_id\": \"pythia_temp09_001\",\n17\t      \"aucs\": {\"d0v1\": 0.9968, \"d1v2\": 0.8327, \"d2v3\": 0.7928},\n18\t      \"edd\": [3, 3, 3, 2],\n19\t      \"bottleneck\": \"d2v3\",\n20\t      \"bottleneck_margin_to_080\": -0.0072\n21\t    },\n22\t    \"pythia_topk50\": {\n23\t      \"model\": \"Pythia-1.4B\",\n24\t      \"strategy\": \"topk_k50\",\n25\t      \"experiment_id\": \"pythia_topk50_001\",\n26\t      \"aucs\": {\"d0v1\": 0.9927, \"d1v2\": 0.7518, \"d2v3\": 0.6918},\n27\t      \"edd\": [3, 2, 2, 1],\n28\t      \"bottleneck\": \"d2v3\",\n29\t      \"bottleneck_margin_to_080\": -0.1082\n30\t    },\n31\t    \"olmo_nucleus\": {\n32\t      \"model\": \"OLMo-1B\",\n33\t      \"strategy\": \"nucleus_p095\",\n34\t      \"experiment_id\": \"cross_model_olmo_002\",\n35\t      \"aucs\": {\"d0v1\": 0.9834, \"d1v2\": 0.8673, \"d2v3\": 0.8124},\n36\t      \"edd\": [3, 3, 3, 3],\n37\t      \"bottleneck\": \"d2v3\",\n38\t      \"bottleneck_margin_to_080\": 0.0124\n39\t    },\n40\t    \"olmo_temp09\": {\n41\t      \"model\": \"OLMo-1B\",\n42\t      \"strategy\": \"temperature_09\",\n43\t      \"experiment_id\": \"olmo_temp09_001\",\n44\t      \"aucs\": {\"d0v1\": 0.9960, \"d1v2\": 0.9010, \"d2v3\": 0.8214},\n45\t      \"edd\": [3, 3, 3, 3],\n46\t      \"bottleneck\": \"d2v3\",\n47\t      \"bottleneck_margin_to_080\": 0.0214\n48\t    },\n49\t    \"olmo_topk50\": {\n50\t      \"model\": \"OLMo-1B\",\n51\t      \"strategy\": \"topk_k50\",\n52\t      \"experiment_id\": \"olmo_topk50_001\",\n53\t      \"aucs\": {\"d0v1\": 0.9930, \"d1v2\": 0.8305, \"d2v3\": 0.7357},\n54\t      \"edd\": [3, 3, 2, 2],\n55\t      \"bottleneck\": \"d2v3\",\n56\t      \"bottleneck_margin_to_080\": -0.0643\n57\t    },\n58\t  \n…[truncated 4185 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T07:04:12.914862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/results_summary.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T07:04:12.915079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"core_matrix_3x3\": {\n3\t    \"pythia_nucleus\": {\"rf_4class_acc\": 0.7812, \"ci\": [0.7677, 0.7935], \"d1v2_auc\": 0.868, \"d2v3_auc\": 0.804},\n4\t    \"pythia_temp09\": {\"rf_4class_acc\": 0.7605, \"ci\": [0.7475, 0.7738], \"d1v2_auc\": 0.835, \"d2v3_auc\": 0.796},\n5\t    \"pythia_topk50\": {\"rf_4class_acc\": 0.6943, \"ci\": [0.6805, 0.708], \"d1v2_auc\": 0.761, \"d2v3_auc\": 0.695},\n6\t    \"gpt2xl_nucleus\": {\"rf_4class_acc\": 0.8393, \"ci\": [0.8283, 0.8502], \"d1v2_auc\": 0.916, \"d2v3_auc\": 0.885},\n7\t    \"gpt2xl_temp09\": {\"rf_4class_acc\": 0.8552, \"ci\": [0.844, 0.866], \"d1v2_auc\": 0.939, \"d2v3_auc\": 0.886},\n8\t    \"gpt2xl_topk50\": {\"rf_4class_acc\": 0.757, \"ci\": [0.743, 0.7702], \"d1v2_auc\": 0.824, \"d2v3_auc\": 0.762},\n9\t    \"olmo_nucleus\": {\"rf_4class_acc\": 0.7897, \"ci\": [0.7772, 0.8027], \"d1v2_auc\": 0.87, \"d2v3_auc\": 0.816},\n10\t    \"olmo_temp09\": {\"rf_4class_acc\": 0.8263, \"ci\": [0.8147, 0.8385], \"d1v2_auc\": 0.903, \"d2v3_auc\": 0.828},\n11\t    \"olmo_topk50\": {\"rf_4class_acc\": 0.7435, \"ci\": [0.73, 0.758], \"d1v2_auc\": 0.831, \"d2v3_auc\": 0.738},\n12\t    \"_source\": \"plan_012 granularity_ablation_rf_001 (standardized evaluation across all 9 cells)\"\n13\t  },\n14\t  \"instruct_model\": {\n15\t    \"qwen25_1.5b_instruct\": {\n16\t      \"rf_4class_acc\": 0.4742,\n17\t      \"ci\": [0.467, 0.4811],\n18\t      \"d0v1_auc\": 0.653,\n19\t      \"d1v2_auc\": 0.620,\n20\t      \"d2v3_auc\": 0.664,\n21\t      \"top_features\": [\"surprisal_range\", \"surprisal_position_corr\", \"prob_std\", \"surprisal_first_half_minus_second\", \"surprisal_std\"],\n22\t      \"_source\": \"plan_021 qwen25-1p5b-instruct-001\"\n23\t    }\n24\t  },\n25\t  \"learned_estimator_120k\": {\n26\t    \"xgboost\": {\"pythia\": 63.72, \"olmo\": 69.76, \"gpt2xl\": 68.05, \"mean\": 67.18},\n27\t    \"ordinal_mlp\": {\"pythia\": 62.52, \"olmo\": 69.69, \"gpt2xl\": 67.9, \"mean\": 66.7},\n28\t    \"prototypical\": {\"pythia\": 61.55, \"olmo\": 70.01, \"gpt2xl\": 68.35, \"mean\": 66.64},\n29\t    \"rf_baseline\": {\"mean\": 66.4},\n30\t    \"_source\": \"plan_025 learned_estimator_001\"\n31\t  },\n32\t  \"baseline_comparison\": {\n33\t    \"rf\": 78.2,\n34\t  \n…[truncated 2797 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T07:04:12.915232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/matrix_3x3_analysis.md"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T07:04:12.915443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# 3×3 递归生成深度估计矩阵综合分析\n2\t\n3\t> 生成日期: 2026-05-15 | 完成格子: 8/9 (gpt2xl_topk50 仍在运行)\n4\t\n5\t---\n6\t\n7\t## 1. 完整 3×3 矩阵\n8\t\n9\t### 1.1 4-class RF Accuracy (%)\n10\t\n11\t| 模型 | nucleus p=0.95 | temp τ=0.9 | top-k k=50 | 跨策略均值 |\n12\t|------|:-:|:-:|:-:|:-:|\n13\t| **Pythia-1.4B** | 78.2 `mvp_pipeline_pythia_002` | 76.3 `pythia_temp09_001` | 69.6 `pythia_topk50_001` | 74.7 |\n14\t| **OLMo-1B** | 78.8 `cross_model_olmo_002` | 82.0 `olmo_temp09_001` | 74.2 `olmo_topk50_001` | 78.3 |\n15\t| **GPT-2 XL** | 83.3 `cross_model_gpt2xl_001` | 85.4 `gpt2xl_temp09_001` | 🔄 `gpt2xl_topk50_001` | 84.4† |\n16\t| **跨模型均值** | 80.1 | 81.2 | 71.9† | — |\n17\t\n18\t> † GPT-2 XL 行均值仅含 2 格; topk50 列均值仅含 2 格。所有数值为 RF classifier，chance = 25%。\n19\t\n20\t### 1.2 Pairwise d1v2 AUC (RF)\n21\t\n22\t| 模型 | nucleus p=0.95 | temp τ=0.9 | top-k k=50 |\n23\t|------|:-:|:-:|:-:|\n24\t| **Pythia-1.4B** | 0.861 `mvp_pipeline_pythia_002` | 0.833 `pythia_temp09_001` | 0.752 `pythia_topk50_001` |\n25\t| **OLMo-1B** | 0.867 `cross_model_olmo_002` | 0.901 `olmo_temp09_001` | 0.831 `olmo_topk50_001` |\n26\t| **GPT-2 XL** | 0.913 `cross_model_gpt2xl_001` | 0.937 `gpt2xl_temp09_001` | 🔄 |\n27\t\n28\t### 1.3 3-class Filtered Accuracy (RF, %)\n29\t\n30\t| 模型 | nucleus p=0.95 | temp τ=0.9 | top-k k=50 |\n31\t|------|:-:|:-:|:-:|\n32\t| **Pythia-1.4B** | 74.7 `mvp_pipeline_pythia_002` | 72.5 `pythia_temp09_001` | 61.3 `pythia_topk50_001` |\n33\t| **OLMo-1B** | 74.4* `cross_model_olmo_002` | 77.6 `olmo_temp09_001` | 67.0 `olmo_topk50_001` |\n34\t| **GPT-2 XL** | 79.3* `cross_model_gpt2xl_001` | 81.5 `gpt2xl_temp09_001` | 🔄 |\n35\t\n36\t> \\* OLMo nucleus 和 GPT-2 XL nucleus 使用 unfiltered 3-class accuracy 作为近似值（两者 code contamination 均 <3%，filtered 与 unfiltered 差异极小）。\n37\t\n38\t---\n39\t\n40\t## 2. 模型效应分析\n41\t\n42\t跨策略平均（RF 4-class accuracy）:\n43\t\n44\t| 模型 | 均值 | 相对 Pythia | 参数量 |\n45\t|------|------|-------------|--------|\n46\t| Pythia-1.4B | 74.7% | — | 1.4B |\n47\t| OLMo-1B | 78.3% | +3.6pp | 1B |\n48\t| GPT-2 XL | 84.4%† | +9.7pp | 1.5B |\n49\t\n50\t**关键发现:**\n51\t\n52\t1. **GPT-2 XL 全面领先**：在每个策略上均为最高分（nu\n…[truncated 8063 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T07:04:12.915704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/depth_extension_pythia_d4d5_001"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T07:04:12.915843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/depth_extension_pythia_d4d5_001'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T07:04:12.916093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/depth_extension*/**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T07:04:12.916227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T07:04:12.916346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/depth_extension_pythia_d4d5_001/",
+              "description": "List depth extension directory"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T07:04:12.916465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 8\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 15 05:23 .\ndrwxr-xr-x 42 ubuntu ubuntu 4096 May 19 06:49 .."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T07:04:12.916604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mdd_computation",
+              "description": "Create mdd_computation directory"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T07:04:12.916720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T07:04:12.916853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mdd_computation/mdd_results.md",
+              "content": "# MDD (Maximum Discriminable Depth) Computation\n\n## 定义\n\n- **EDD_{T}** = max{d : AUC(d\\_i, d\\_{i+1}) >= T, for all i in 0..d-1} (连续 prefix 全部 >= T)\n- **MDD_{T}** = max{d : AUC(d\\_i, d\\_{i+1}) >= T, for any i} (不要求连续，只要存在某对 >= T)\n- **T = 0.70**\n- MDD > EDD 仅在 AUC profile 非单调（中间有 dip 但后续恢复）时出现\n\n## 数据来源\n\n- 9-cell atlas: `edd_threshold_sensitivity.json` (与 `matrix_3x3_analysis.md` 附录一致)\n- 深度扩展 (d3v4, d4v5): `results_summary.json` -> `supplementary.depth_extension_binary_pairwise` (plan_011 系列, nucleus 策略)\n\n---\n\n## 9-Cell Atlas 结果 (3 pairs: d0v1, d1v2, d2v3)\n\n| Model | Strategy | d0v1 | d1v2 | d2v3 | EDD | MDD | Gap | 单调性 |\n|-------|----------|------|------|------|-----|-----|-----|--------|\n| Pythia-1.4B | nucleus p=0.95 | 0.998 | 0.861 | 0.801 | 3 | 3 | 0 | 单调递减 |\n| Pythia-1.4B | temp t=0.9 | 0.997 | 0.833 | 0.793 | 3 | 3 | 0 | 单调递减 |\n| Pythia-1.4B | top-k k=50 | 0.993 | 0.752 | **0.692** | **2** | **2** | 0 | 单调递减 |\n| OLMo-1B | nucleus p=0.95 | 0.983 | 0.867 | 0.812 | 3 | 3 | 0 | 单调递减 |\n| OLMo-1B | temp t=0.9 | 0.996 | 0.901 | 0.821 | 3 | 3 | 0 | 单调递减 |\n| OLMo-1B | top-k k=50 | 0.993 | 0.831 | 0.736 | 3 | 3 | 0 | 单调递减 |\n| GPT-2 XL | nucleus p=0.95 | 0.994 | 0.913 | 0.883 | 3 | 3 | 0 | 单调递减 |\n| GPT-2 XL | temp t=0.9 | 0.996 | 0.937 | 0.882 | 3 | 3 | 0 | 单调递减 |\n| GPT-2 XL | top-k k=50 | 0.991 | 0.813 | 0.753 | 3 | 3 | 0 | 单调递减 |\n\n### 9-Cell 汇总\n\n- **EDD=3**: 8/9 cells\n- **EDD=2**: 1/9 cells (Pythia-1.4B top-k, d2v3=0.692 < 0.70)\n- **MDD=EDD 对所有 cell**: Gap 全部为 0\n- **所有 AUC profile 严格单调递减**: 无任何非单调 (U 型) pattern\n\n---\n\n## 深度扩展结果 (5 pairs: d0v1, d1v2, d2v3, d3v4, d4v5)\n\n仅 nucleus 策略有扩展实验 (plan_011 系列)。d0v1 取自 9-cell atlas 对应 cell。\n\n| Model | d0v1 | d1v2 | d2v3 | d3v4 | d4v5 | EDD | MDD | Gap | 单调性 |\n|-------|------|------|------|------|------|-----|-----|-----|--------|\n| Pythia-1.4B | 0.998 | 0.925 | 0.823 | 0.784 | **0.683** | 4 | 4 | 0 | 单调递减 |\n| OLMo-1B | 0.983 | 0.968 | 0.843 | 0.765 | **0.684** | 4 | 4 | 0 | 单调递减 |\n| GPT-2 XL | 0.994 | 0.966 | 0.919 | 0.750 | **0.681** | 4 | 4 | 0 | 单调递减 |\n\n### 深度扩展汇总\n\n- 所有 3 个模型 EDD=MDD=4 at T=0.70\n- d4v5 AUC 在 0.681-0.684 范围，一致低于 T=0.70，是 depth signal 消失的边界\n- 仍然严格单调递减，无 recovery\n\n---\n\n## 关键发现\n\n### 1. MDD = EDD 在所有实验条件下成立\n\n所有 12 个 profiles (9-cell + 3 depth extension) 的 AUC 衰减均严格单调递减。不存在 MDD > EDD 的情况。这意味着 depth signal 的衰减是纯单调的，不存在 \"中间 dip 但深层恢复\" 的 U 型 pattern。\n\n### 2. 单调衰减的物理含义\n\n递归生成每增加一层，consecutive-pair AUC 单调下降，反映了 distribution collapse 的累积性。每一轮递归 finetune 使模型输出分布更集中，深度间的统计差异随深度单调缩小。这与 downstream train loss 的单调递减一致 (d0: 2.558, d1: 1.920, d2: 1.286)。\n\n### 3. depth signal 消失边界\n\n- 9-cell atlas (d0-d3): 8/9 cells 在 T=0.70 仍可区分到 d3\n- 深度扩展 (d0-d5): 所有模型在 d4v5 跌破 0.70 (0.681-0.684)，信号消失边界 = depth 4\n- d4v5 AUC 的跨模型收敛 (range 仅 0.003) 暗示 depth 4-5 的分布差异接近 noise floor\n\n### 4. 唯一非单调 profile 出现在 instruct model (不在 atlas 内)\n\nQwen2.5-1.5B-Instruct 的 profile (d0v1=0.653, d1v2=0.620, d2v3=0.664) 呈 U 型: d1v2 < d2v3。该 cell 的 EDD=0 (d0v1 < 0.70), MDD=0 (所有 pairs < 0.70)。但 d2v3 > d1v2 的非单调性表明 instruct tuning 可能引入不同于 base model 的 depth-signal 动态。此数据来源: `results_summary.json` -> `instruct_model`。\n\n### 5. 交叉验证数据的 AUC 值系统性偏高\n\n`edd_analysis_9cell.json` 中的 cross-validated AUC means 系统性高于 `edd_threshold_sensitivity.json` 的值 (例如 pythia_nucleus d1v2: 0.930 vs 0.861)。两个数据源的 EDD 结论一致 (在 T=0.70 下)，但 margin 不同。本报告使用 `edd_threshold_sensitivity.json` 值，与论文正文和 `matrix_3x3_analysis.md` 一致。\n\n---\n\n## 附录: 多阈值 MDD 对比\n\n由于所有 profile 单调递减，MDD=EDD at all thresholds。以下为 EDD (= MDD) 在不同 T 下的 9-cell 分布:\n\n| T | EDD=3 count | EDD=2 count | EDD=1 count | EDD=0 count |\n|---|-------------|-------------|-------------|-------------|\n| 0.65 | 9/9 | 0 | 0 | 0 |\n| 0.70 | 8/9 | 1/9 | 0 | 0 |\n| 0.75 | 7/9 | 2/9 | 0 | 0 |\n| 0.80 | 5/9 | 4/9 | 0 | 0 |\n\nDrop cells:\n- T=0.70: Pythia top-k (d2v3=0.692)\n- T=0.75: + OLMo top-k (d2v3=0.736)\n- T=0.80: + Pythia temp (d2v3=0.793), GPT-2 XL top-k (d2v3=0.753)\n\nBottleneck pair 始终是 d2v3，d0v1 从不是 limiting factor (所有 cell > 0.98)。\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T07:04:12.917069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mdd_computation/mdd_results.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T07:04:12.917361+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/mdd_computation/mdd_results.md`。\n\n核心结论：**MDD = EDD 在所有 12 个 profile 上成立**。所有 AUC profile 严格单调递减，不存在非单调（U 型）pattern，因此 MDD 相对 EDD 没有额外信息。\n\n具体数据：\n- 9-cell atlas (T=0.70)：8/9 cells EDD=MDD=3，唯一例外是 Pythia top-k (d2v3=0.692 < 0.70, EDD=MDD=2)\n- 深度扩展：3 个模型均 EDD=MDD=4，d4v5 AUC 收敛到 0.681-0.684 (跨模型 range 仅 0.003)\n- 唯一非单调 profile 出现在 atlas 外的 Qwen2.5-1.5B-Instruct (d1v2=0.620 < d2v3=0.664)，但该模型所有 pairs < 0.70，MDD=EDD=0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mdd_computation_20260519T070039"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ]
+}

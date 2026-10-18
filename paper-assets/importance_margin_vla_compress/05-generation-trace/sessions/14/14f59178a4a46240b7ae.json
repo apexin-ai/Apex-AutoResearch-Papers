@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "14f59178a4a46240b7ae",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix w38 gpu23 diagnosis",
+  "task_key": "worker_fix_w38-gpu23-diagnosis_20260527T231558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_w38-gpu23-diagnosis_20260527T231558_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "306a15195d69c06ca05e64be3a2399c3529028fcb2f380af2bdadbcf1226881e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**4 GPU 全部就位。**\n\n## 诊断结果\n\n**根因**：PID 691997 (L2norm) 和 PID 677625 (Attn) 启动时**未设置 CUDA_VISIBLE_DEVICES**，导致 `--gpu 0` 映射到物理 GPU 0，三个进程挤在同一块卡上，GPU 2/3 闲置。\n\n## 修复动作\n\n1. Kill 了错误进程 PID 691997、677625\n2. 用正确的 CUDA_VISIBLE_DEVICES 重启：\n   - **GPU 2** → L2norm k=0.85 s44，新 PID **773760**，显存 10701MiB ✓\n   - **GPU 3** → Attn k=0.5 s44，新 PID **774388**，显存 10277MiB ✓\n\n## 当前 GPU 分布\n\n| GPU | 显存 | 进程 | 实验 |\n|-----|------|------|------|\n| 0 | 11045MiB | 672324 | Attn k=0.85 s44 |\n| 1 | 10719MiB | 672401 | Random k=0.7 s44 |\n| 2 | 10701MiB | 773760 | **L2norm k=0.85 s44** (新) |\n| 3 | 10277MiB | 774388 | **Attn k=0.5 s44** (新) |\n\nGPU 0 显存已从 32GB 降回 ~11GB。4 卡满载运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

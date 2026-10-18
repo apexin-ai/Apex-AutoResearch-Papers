@@ -1,0 +1,1181 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7c5d3414ddee34c771d3",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-16T16:39:48.169Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NyKnwaRNpxipkm8jtmiJvD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"latest\\\\nstep_005000\\\\nstep_010000\\\\nstep_015000\\\\nstep_020000\\\\nstep_025000\\\\nstep_029999\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "22e6018a-0c2d-4cbc-996b-7035f46e9021",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"latest\\\\nstep_005000\\\\nstep_010000\\\\nstep_015000\\\\nstep_020000\\\\nstep_025000\\\\nstep_029999\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"latest\\nstep_005000\\nstep_010000\\nstep_015000\\nstep_020000\\nstep_025000\\nstep_029999\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016YBpCEcv1THYEw7p1cvfKX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "ls /root/autodl-tmp/.hf_cache/lerobot/smolvla_base/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "135d8380-a36c-4301-88c2-baa30239bbee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DLkcgkJF2cJxEJ9KjatLgZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3014,
+                "cache_read_input_tokens": 84009,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3014
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-16T16:39:49.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016YBpCEcv1THYEw7p1cvfKX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Finetune_SmolVLA_notebook.ipynb\\\\nREADME.md\\\\ncollage_small.gif\\\\nconfig.json\\\\nconfiguration.json\\\\nmodel.safetensors\\\\npolicy_postprocessor.json\\\\npolicy_postprocessor_step_0_unnormalizer_processor.safetensors\\\\npolicy_preprocessor.json\\\\npolicy_preprocessor_step_5_normalizer_processor.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "838572cd-fa2c-431b-94e3-f1ec92c8a307",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Finetune_SmolVLA_notebook.ipynb\\\\nREADME.md\\\\ncollage_small.gif\\\\nconfig.json\\\\nconfiguration.json\\\\nmodel.safetensors\\\\npolicy_postprocessor.json\\\\npolicy_postprocessor_step_0_unnormalizer_processor.safetensors\\\\npolicy_preprocessor.json\\\\npolicy_preprocessor_step_5_normalizer_processor.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Finetune_SmolVLA_notebook.ipynb\\nREADME.md\\ncollage_small.gif\\nconfig.json\\nconfiguration.json\\nmodel.safetensors\\npolicy_postprocessor.json\\npolicy_postprocessor_step_0_unnormalizer_processor.safetensors\\npolicy_preprocessor.json\\npolicy_preprocessor_step_5_normalizer_processor.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have baseline checkpoints (aloha) available. For dry-run, I can use the aloha baseline checkpoint to test that the env interaction works correctly, even though the model will output garbage actions for LIBERO.\n\nOr I can use the pretrained smolvla_base model directly (without any finetuning checkpoint) for a dry-run to verify the pipeline works.\n\nNow let me write the eval script. Key decisions:\n\n1. Use LiberoEnv directly (from lerobot.envs.libero), creating one env per task\n2. Get quat from obs, convert to axis_angle using the same algorithm as LiberoProcessorStep\n\n\n3. Flip images with torch.flip on the spatial dimensions, matching LiberoProcessorStep's preprocessing\n4. Tokenize task descriptions using the policy's tokenizer\n5. Use sample_actions for inference with no normalization—raw inputs and outputs\n\nFor the dry-run, I'll use the pretrained smolvla_base model directly since there's no LIBERO checkpoint available, just to verify the pipeline runs without errors.\n\nNow I'm writing the script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "0f521f96-dca9-4716-ad69-e50387fed264",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mvsipf1bsJwTNbeRLekBQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 87023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 862
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed. Let me write the eval script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "521d9ec2-696c-4960-b5cb-baa1fff23e4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mvsipf1bsJwTNbeRLekBQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 87023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 862
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYMfR7nHg3uAdxzFYqANc9",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_success_rate_libero.py",
+                "content": "\"\"\"\nLIBERO Success Rate Evaluation for SmolVLA / IMM models.\n\nEvaluates per-task and overall success rate on LIBERO benchmark suites.\n\nUsage:\n    python eval_success_rate_libero.py \\\n        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\n        --config configs/libero_baseline.yaml \\\n        --suite libero_object \\\n        --num_episodes 50 \\\n        --gpu 0\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time as time_mod\nfrom pathlib import Path\n\nos.environ.setdefault(\"MUJOCO_GL\", \"egl\")\nos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\n\nimport numpy as np\nimport torch\n\nARTIFACTS_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(ARTIFACTS_DIR))\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlog = logging.getLogger(__name__)\n\nSUITE_MAX_STEPS = {\n    \"libero_spatial\": 280,\n    \"libero_object\": 280,\n    \"libero_goal\": 300,\n    \"libero_10\": 520,\n    \"libero_90\": 400,\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"LIBERO success rate evaluation\")\n    p.add_argument(\"--checkpoint\", type=str, required=True,\n                   help=\"Path to checkpoint.pt\")\n    p.add_argument(\"--config\", type=str, default=\"configs/libero_baseline.yaml\",\n                   help=\"Path to YAML config\")\n    p.add_argument(\"--suite\", type=str, default=\"libero_object\",\n                   choices=list(SUITE_MAX_STEPS.keys()),\n                   help=\"LIBERO suite name\")\n    p.add_argument(\"--num_episodes\", type=int, default=50,\n                   help=\"Episodes per task\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--action_horizon\", type=int, default=50,\n                   help=\"Actions to execute per chunk before re-planning\")\n    p.add_argument(\"--max_steps\", type=int, default=None,\n                   help=\"Override max steps per episode (default: per-suite)\")\n    p.add_argument(\"--output\", type=str, default=None,\n                   help=\"Output JSON path (default: eval_results/libero_{suite}.json)\")\n    p.add_argument(\"--mode\", choices=[\"baseline\", \"acis_prune\"], default=\"baseline\")\n    p.add_argument(\"--task_ids\", type=str, default=None,\n                   help=\"Comma-separated task IDs to evaluate (default: all)\")\n    return p.parse_args()\n\n\n# ─── Config ──────────────────────────────────────────────────────────────────\n\ndef load_config(config_path: str) -> dict:\n    import copy\n    import yaml\n    config_path = Path(config_path)\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n    if \"_base_\" in config:\n        base_path = config_path.parent / config.pop(\"_base_\")\n        base_config = load_config(str(base_path))\n        for k, v in config.items():\n            if k in base_config and isinstance(base_config[k], dict) and isinstance(v, dict):\n                base_config[k].update(v)\n            else:\n                base_config[k] = v\n        return base_config\n    return config\n\n\n# ─── Model loading ───────────────────────────────────────────────────────────\n\ndef load_model(args, device: torch.device):\n    \"\"\"Returns (policy, wrapper_or_None, config).\"\"\"\n    from train import load_smolvla_policy, wrap_with_imm\n\n    config = load_config(args.config)\n    imm_enabled = config.get(\"imm\", {}).get(\"enabled\", False)\n\n    if not imm_enabled or args.mode == \"baseline\":\n        policy = load_smolvla_policy(config, device)\n        ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n        policy.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n        policy.eval()\n        return policy, None, config\n\n    policy = load_smolvla_policy(config, device)\n    wrapper = wrap_with_imm(policy, config)\n    wrapper.to(device)\n    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n    wrapper.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n    wrapper.eval()\n    return wrapper.policy, wrapper, config\n\n\n# ─── State preprocessing ────────────────────────────────────────────────────\n\ndef quat_to_axis_angle(quat: np.ndarray) -> np.ndarray:\n    \"\"\"Convert quaternion (x,y,z,w) to axis-angle (3,).\"\"\"\n    q = quat.astype(np.float64)\n    w = np.clip(q[3], -1.0, 1.0)\n    den = np.sqrt(max(1.0 - w * w, 0.0))\n    if den > 1e-10:\n        angle = 2.0 * np.arccos(w)\n        axis = q[:3] / den\n        return (axis * angle).astype(np.float32)\n    return np.zeros(3, dtype=np.float32)\n\n\ndef extract_state(obs: dict) -> np.ndarray:\n    \"\"\"Extract 8D state: eef_pos(3) + axis_angle(3) + gripper_qpos(2).\"\"\"\n    rs = obs[\"robot_state\"]\n    eef_pos = np.asarray(rs[\"eef\"][\"pos\"], dtype=np.float32)       # (3,)\n    eef_quat = np.asarray(rs[\"eef\"][\"quat\"], dtype=np.float64)     # (4,)\n    gripper_qpos = np.asarray(rs[\"gripper\"][\"qpos\"], dtype=np.float32)  # (2,)\n    eef_aa = quat_to_axis_angle(eef_quat)                          # (3,)\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])          # (8,)\n\n\n# ─── Observation → batch conversion ─────────────────────────────────────────\n\ndef obs_to_batch(obs: dict, task_text: str, tokenizer, camera_keys: list, device: torch.device) -> dict:\n    batch = {}\n\n    for cam_key in camera_keys:\n        short_name = cam_key.split(\".\")[-1]  # \"image\" or \"image2\"\n        img = obs[\"pixels\"][short_name]       # (H, W, 3) uint8\n        img_t = torch.from_numpy(np.asarray(img)).permute(2, 0, 1).float() / 255.0\n        img_t = img_t.unsqueeze(0)  # (1, 3, H, W)\n        # 180° flip: flip both H and W dims, matching LiberoProcessorStep\n        img_t = torch.flip(img_t, dims=[2, 3])\n        batch[cam_key] = img_t.to(device)\n\n    state = extract_state(obs)\n    batch[\"observation.state\"] = torch.from_numpy(state).unsqueeze(0).to(device)  # (1, 8)\n\n    text = task_text if task_text.endswith(\"\\n\") else task_text + \"\\n\"\n    encoded = tokenizer(\n        [text], padding=\"longest\", max_length=48,\n        truncation=True, return_tensors=\"pt\",\n    )\n    batch[\"observation.language.tokens\"] = encoded[\"input_ids\"].to(device)\n    batch[\"observation.language.attention_mask\"] = encoded[\"attention_mask\"].bool().to(device)\n\n    return batch\n\n\n# ─── ACIS pruning (same as eval_sim.py) ──────────────────────────────────────\n\ndef find_connector(model):\n    for name, module in model.named_modules():\n        if name.endswith(\".connector\") or \"multi_modal_projector\" in name:\n            return module\n    return None\n\n\n@torch.no_grad()\ndef compute_acis_mask(wrapper, batch: dict, device: torch.device) -> torch.Tensor:\n    bm = wrapper.base_model\n    images, _ = wrapper.policy.prepare_images(batch)\n    vis_tokens, _ = wrapper._get_visual_tokens(images)\n\n    B = vis_tokens.shape[0]\n    noise = bm.sample_noise(\n        (B, bm.config.chunk_size, bm.config.max_action_dim), device\n    )\n    time = torch.ones(B, device=device)\n    suffix_embs, _, _ = bm.embed_suffix(noise, time)\n    scores = wrapper.acis(suffix_embs, vis_tokens)\n\n    N_vis = vis_tokens.shape[1]\n    k = max(1, int(N_vis * wrapper.k_ratio))\n    _, topk_idx = torch.topk(scores, k, dim=-1)\n    mask = torch.zeros(B, N_vis, device=device)\n    mask.scatter_(1, topk_idx, 1.0)\n    return mask\n\n\ndef register_acis_hook(connector, mask: torch.Tensor):\n    def hook_fn(module, input, output):\n        tokens = output[0] if isinstance(output, tuple) else output\n        if tokens.dim() != 3 or tokens.shape[1] != mask.shape[1]:\n            return output\n        masked = tokens * mask[:tokens.shape[0]].unsqueeze(-1)\n        if isinstance(output, tuple):\n            return (masked,) + output[1:]\n        return masked\n    return connector.register_forward_hook(hook_fn)\n\n\n# ─── Action prediction ──────────────────────────────────────────────────────\n\n@torch.no_grad()\ndef predict_actions(policy, batch: dict) -> torch.Tensor:\n    \"\"\"Returns (chunk_size, action_dim) actions for batch_size=1.\"\"\"\n    images, img_masks = policy.prepare_images(batch)\n    state = policy.prepare_state(batch)\n    lang_tokens = batch[\"observation.language.tokens\"]\n    lang_masks = batch[\"observation.language.attention_mask\"]\n\n    actions = policy.model.sample_actions(\n        images, img_masks, lang_tokens, lang_masks, state\n    )\n    original_action_dim = policy.config.action_feature.shape[0]\n    return actions[0, :, :original_action_dim]  # (chunk_size, action_dim)\n\n\n# ─── Statistics ──────────────────────────────────────────────────────────────\n\ndef wilson_ci(successes: int, total: int, z: float = 1.96):\n    if total == 0:\n        return 0.0, 0.0, 1.0\n    p = successes / total\n    denom = 1 + z ** 2 / total\n    center = (p + z ** 2 / (2 * total)) / denom\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\n    return center, max(0.0, center - spread), min(1.0, center + spread)\n\n\n# ─── Main ────────────────────────────────────────────────────────────────────\n\ndef run_evaluation(args):\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 400)\n    output_path = Path(args.output or f\"eval_results/libero_{args.suite}.json\")\n\n    log.info(\"Suite: %s | Device: %s | Mode: %s | Episodes/task: %d | Max steps: %d\",\n             args.suite, device, args.mode, args.num_episodes, max_steps)\n\n    np.random.seed(args.seed)\n    torch.manual_seed(args.seed)\n\n    # Load model\n    log.info(\"Loading model from %s ...\", args.checkpoint)\n    t0 = time_mod.time()\n    policy, wrapper, config = load_model(args, device)\n    log.info(\"Model loaded in %.1fs\", time_mod.time() - t0)\n\n    from train import get_tokenizer_from_policy\n    tokenizer = get_tokenizer_from_policy(policy)\n\n    ds_cfg = config.get(\"dataset\", {})\n    camera_keys = ds_cfg.get(\"features\", {}).get(\"cameras\", [\n        \"observation.images.image\", \"observation.images.image2\"\n    ])\n\n    connector = None\n    if args.mode == \"acis_prune\":\n        connector = find_connector(policy.model)\n        if connector is None:\n            raise RuntimeError(\"Cannot find connector for ACIS hook\")\n        log.info(\"Connector found for ACIS pruning\")\n\n    # Load LIBERO suite\n    from libero.libero import benchmark\n    from lerobot.envs.libero import get_task_init_states, LiberoEnv\n\n    bench_dict = benchmark.get_benchmark_dict()\n    if args.suite not in bench_dict:\n        raise ValueError(f\"Unknown suite '{args.suite}'. Available: {sorted(bench_dict.keys())}\")\n    task_suite = bench_dict[args.suite]()\n    n_tasks = len(task_suite.tasks)\n\n    task_ids = list(range(n_tasks))\n    if args.task_ids:\n        task_ids = [int(x) for x in args.task_ids.split(\",\")]\n\n    log.info(\"Suite '%s' has %d tasks, evaluating %d: %s\",\n             args.suite, n_tasks, len(task_ids), task_ids)\n\n    # Per-task results\n    all_task_results = {}\n    total_successes = 0\n    total_episodes = 0\n\n    for task_id in task_ids:\n        task = task_suite.get_task(task_id)\n        task_desc = task.language\n        log.info(\"─── Task %d: %s ───\", task_id, task_desc)\n\n        init_states = get_task_init_states(task_suite, task_id)\n        n_init = len(init_states)\n\n        env = LiberoEnv(\n            task_suite=task_suite,\n            task_id=task_id,\n            task_suite_name=args.suite,\n            camera_name=\"agentview_image,robot0_eye_in_hand_image\",\n            obs_type=\"pixels_agent_pos\",\n            observation_width=256,\n            observation_height=256,\n            init_states=True,\n            n_envs=args.num_episodes,\n            episode_index=0,\n            control_mode=\"relative\",\n        )\n\n        task_successes = []\n        task_lengths = []\n\n        for ep in range(args.num_episodes):\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\n            action_chunk = None\n            action_idx = 0\n            success = False\n\n            for step in range(max_steps):\n                if action_chunk is None or action_idx >= args.action_horizon:\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\n\n                    if args.mode == \"acis_prune\":\n                        mask = compute_acis_mask(wrapper, batch, device)\n                        hook_handle = register_acis_hook(connector, mask)\n                        action_chunk = predict_actions(policy, batch)\n                        hook_handle.remove()\n                    else:\n                        action_chunk = predict_actions(policy, batch)\n\n                    action_idx = 0\n\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\n                action = np.clip(action, -1.0, 1.0)\n                action_idx += 1\n\n                obs, reward, terminated, truncated, info = env.step(action)\n\n                if info.get(\"is_success\", False):\n                    success = True\n                    break\n\n                if terminated or truncated:\n                    break\n\n            ep_steps = step + 1\n            task_successes.append(success)\n            task_lengths.append(ep_steps)\n\n            log.info(\n                \"  Ep %d/%d | %s | steps=%d\",\n                ep + 1, args.num_episodes,\n                \"SUCCESS\" if success else \"FAIL\", ep_steps,\n            )\n\n        env.close()\n\n        n_succ = sum(task_successes)\n        n_total = len(task_successes)\n        sr = n_succ / n_total if n_total > 0 else 0.0\n\n        all_task_results[task_id] = {\n            \"task_id\": task_id,\n            \"task_description\": task_desc,\n            \"success_count\": n_succ,\n            \"total_episodes\": n_total,\n            \"success_rate\": round(sr, 4),\n            \"mean_steps\": round(float(np.mean(task_lengths)), 1),\n        }\n        total_successes += n_succ\n        total_episodes += n_total\n\n        log.info(\"  Task %d SR: %d/%d (%.1f%%)\", task_id, n_succ, n_total, sr * 100)\n\n    # Overall\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\n\n    log.info(\"=\" * 60)\n    log.info(\"SUITE: %s | MODE: %s\", args.suite, args.mode)\n    log.info(\"Overall SR: %d/%d (%.1f%%)\", total_successes, total_episodes, overall_sr * 100)\n    log.info(\"95%% Wilson CI: [%.1f%%, %.1f%%]\", ci_lo * 100, ci_hi * 100)\n\n    for tid, tr in sorted(all_task_results.items()):\n        log.info(\"  Task %d: %.0f%% (%d/%d) — %s\",\n                 tid, tr[\"success_rate\"] * 100, tr[\"success_count\"],\n                 tr[\"total_episodes\"], tr[\"task_description\"])\n    log.info(\"=\" * 60)\n\n    summary = {\n        \"suite\": args.suite,\n        \"mode\": args.mode,\n        \"checkpoint\": args.checkpoint,\n        \"config\": args.config,\n        \"total_episodes\": total_episodes,\n        \"total_successes\": total_successes,\n        \"overall_success_rate\": round(overall_sr, 4),\n        \"wilson_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"num_episodes_per_task\": args.num_episodes,\n        \"max_steps\": max_steps,\n        \"action_horizon\": args.action_horizon,\n        \"seed\": args.seed,\n        \"per_task\": all_task_results,\n    }\n\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    log.info(\"Results saved to %s\", output_path)\n\n    return summary\n\n\nif __name__ == \"__main__\":\n    args = parse_args()\n    run_evaluation(args)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "9a608aa4-8718-4b1d-b4a5-d3c9b48e6281",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mvsipf1bsJwTNbeRLekBQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 87023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 862
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-16T16:41:15.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYMfR7nHg3uAdxzFYqANc9",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_success_rate_libero.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "45bf855c-fe9f-40ae-9288-5b8da6dbcccc",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_success_rate_libero.py",
+              "content": "\"\"\"\nLIBERO Success Rate Evaluation for SmolVLA / IMM models.\n\nEvaluates per-task and overall success rate on LIBERO benchmark suites.\n\nUsage:\n    python eval_success_rate_libero.py \\\n        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\n        --config configs/libero_baseline.yaml \\\n        --suite libero_object \\\n        --num_episodes 50 \\\n        --gpu 0\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time as time_mod\nfrom pathlib import Path\n\nos.environ.setdefault(\"MUJOCO_GL\", \"egl\")\nos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\n\nimport numpy as np\nimport torch\n\nARTIFACTS_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(ARTIFACTS_DIR))\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlog = logging.getLogger(__name__)\n\nSUITE_MAX_STEPS = {\n    \"libero_spatial\": 280,\n    \"libero_object\": 280,\n    \"libero_goal\": 300,\n    \"libero_10\": 520,\n    \"libero_90\": 400,\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"LIBERO success rate evaluation\")\n    p.add_argument(\"--checkpoint\", type=str, required=True,\n                   help=\"Path to checkpoint.pt\")\n    p.add_argument(\"--config\", type=str, default=\"configs/libero_baseline.yaml\",\n                   help=\"Path to YAML config\")\n    p.add_argument(\"--suite\", type=str, default=\"libero_object\",\n                   choices=list(SUITE_MAX_STEPS.keys()),\n                   help=\"LIBERO suite name\")\n    p.add_argument(\"--num_episodes\", type=int, default=50,\n                   help=\"Episodes per task\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--action_horizon\", type=int, default=50,\n                   help=\"Actions to execute per chunk before re-planning\")\n    p.add_argument(\"--max_steps\", type=int, default=None,\n                   help=\"Override max steps per episode (default: per-suite)\")\n    p.add_argument(\"--output\", type=str, default=None,\n                   help=\"Output JSON path (default: eval_results/libero_{suite}.json)\")\n    p.add_argument(\"--mode\", choices=[\"baseline\", \"acis_prune\"], default=\"baseline\")\n    p.add_argument(\"--task_ids\", type=str, default=None,\n                   help=\"Comma-separated task IDs to evaluate (default: all)\")\n    return p.parse_args()\n\n\n# ─── Config ──────────────────────────────────────────────────────────────────\n\ndef load_config(config_path: str) -> dict:\n    import copy\n    import yaml\n    config_path = Path(config_path)\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n    if \"_base_\" in config:\n        base_path = config_path.parent / config.pop(\"_base_\")\n        base_config = load_config(str(base_path))\n        for k, v in config.items():\n            if k in base_config and isinstance(base_config[k], dict) and isinstance(v, dict):\n                base_config[k].update(v)\n            else:\n                base_config[k] = v\n        return base_config\n    return config\n\n\n# ─── Model loading ───────────────────────────────────────────────────────────\n\ndef load_model(args, device: torch.device):\n    \"\"\"Returns (policy, wrapper_or_None, config).\"\"\"\n    from train import load_smolvla_policy, wrap_with_imm\n\n    config = load_config(args.config)\n    imm_enabled = config.get(\"imm\", {}).get(\"enabled\", False)\n\n    if not imm_enabled or args.mode == \"baseline\":\n        policy = load_smolvla_policy(config, device)\n        ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n        policy.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n        policy.eval()\n        return policy, None, config\n\n    policy = load_smolvla_policy(config, device)\n    wrapper = wrap_with_imm(policy, config)\n    wrapper.to(device)\n    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n    wrapper.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n    wrapper.eval()\n    return wrapper.policy, wrapper, config\n\n\n# ─── State preprocessing ────────────────────────────────────────────────────\n\ndef quat_to_axis_angle(quat: np.ndarray) -> np.ndarray:\n    \"\"\"Convert quaternion (x,y,z,w) to axis-angle (3,).\"\"\"\n    q = quat.astype(np.float64)\n    w = np.clip(q[3], -1.0, 1.0)\n    den = np.sqrt(max(1.0 - w * w, 0.0))\n    if den > 1e-10:\n        angle = 2.0 * np.arccos(w)\n        axis = q[:3] / den\n        return (axis * angle).astype(np.float32)\n    return np.zeros(3, dtype=np.float32)\n\n\ndef extract_state(obs: dict) -> np.ndarray:\n    \"\"\"Extract 8D state: eef_pos(3) + axis_angle(3) + gripper_qpos(2).\"\"\"\n    rs = obs[\"robot_state\"]\n    eef_pos = np.asarray(rs[\"eef\"][\"pos\"], dtype=np.float32)       # (3,)\n    eef_quat = np.asarray(rs[\"eef\"][\"quat\"], dtype=np.float64)     # (4,)\n    gripper_qpos = np.asarray(rs[\"gripper\"][\"qpos\"], dtype=np.float32)  # (2,)\n    eef_aa = quat_to_axis_angle(eef_quat)                          # (3,)\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])          # (8,)\n\n\n# ─── Observation → batch conversion ─────────────────────────────────────────\n\ndef obs_to_batch(obs: dict, task_text: str, tokenizer, camera_keys: list, device: torch.device) -> dict:\n    batch = {}\n\n    for cam_key in camera_keys:\n        short_name = cam_key.split(\".\")[-1]  # \"image\" or \"image2\"\n        img = obs[\"pixels\"][short_name]       # (H, W, 3) uint8\n        img_t = torch.from_numpy(np.asarray(img)).permute(2, 0, 1).float() / 255.0\n        img_t = img_t.unsqueeze(0)  # (1, 3, H, W)\n        # 180° flip: flip both H and W dims, matching LiberoProcessorStep\n        img_t = torch.flip(img_t, dims=[2, 3])\n        batch[cam_key] = img_t.to(device)\n\n    state = extract_state(obs)\n    batch[\"observation.state\"] = torch.from_numpy(state).unsqueeze(0).to(device)  # (1, 8)\n\n    text = task_text if task_text.endswith(\"\\n\") else task_text + \"\\n\"\n    encoded = tokenizer(\n        [text], padding=\"longest\", max_length=48,\n        truncation=True, return_tensors=\"pt\",\n    )\n    batch[\"observation.language.tokens\"] = encoded[\"input_ids\"].to(device)\n    batch[\"observation.language.attention_mask\"] = encoded[\"attention_mask\"].bool().to(device)\n\n    return batch\n\n\n# ─── ACIS pruning (same as eval_sim.py) ──────────────────────────────────────\n\ndef find_connector(model):\n    for name, module in model.named_modules():\n        if name.endswith(\".connector\") or \"multi_modal_projector\" in name:\n            return module\n    return None\n\n\n@torch.no_grad()\ndef compute_acis_mask(wrapper, batch: dict, device: torch.device) -> torch.Tensor:\n    bm = wrapper.base_model\n    images, _ = wrapper.policy.prepare_images(batch)\n    vis_tokens, _ = wrapper._get_visual_tokens(images)\n\n    B = vis_tokens.shape[0]\n    noise = bm.sample_noise(\n        (B, bm.config.chunk_size, bm.config.max_action_dim), device\n    )\n    time = torch.ones(B, device=device)\n    suffix_embs, _, _ = bm.embed_suffix(noise, time)\n    scores = wrapper.acis(suffix_embs, vis_tokens)\n\n    N_vis = vis_tokens.shape[1]\n    k = max(1, int(N_vis * wrapper.k_ratio))\n    _, topk_idx = torch.topk(scores, k, dim=-1)\n    mask = torch.zeros(B, N_vis, device=device)\n    mask.scatter_(1, topk_idx, 1.0)\n    return mask\n\n\ndef register_acis_hook(connector, mask: torch.Tensor):\n    def hook_fn(module, input, output):\n        tokens = output[0] if isinstance(output, tuple) else output\n        if tokens.dim() != 3 or tokens.shape[1] != mask.shape[1]:\n            return output\n        masked = tokens * mask[:tokens.shape[0]].unsqueeze(-1)\n        if isinstance(output, tuple):\n            return (masked,) + output[1:]\n        return masked\n    return connector.register_forward_hook(hook_fn)\n\n\n# ─── Action prediction ──────────────────────────────────────────────────────\n\n@torch.no_grad()\ndef predict_actions(policy, batch: dict) -> torch.Tensor:\n    \"\"\"Returns (chunk_size, action_dim) actions for batch_size=1.\"\"\"\n    images, img_masks = policy.prepare_images(batch)\n    state = policy.prepare_state(batch)\n    lang_tokens = batch[\"observation.language.tokens\"]\n    lang_masks = batch[\"observation.language.attention_mask\"]\n\n    actions = policy.model.sample_actions(\n        images, img_masks, lang_tokens, lang_masks, state\n    )\n    original_action_dim = policy.config.action_feature.shape[0]\n    return actions[0, :, :original_action_dim]  # (chunk_size, action_dim)\n\n\n# ─── Statistics ──────────────────────────────────────────────────────────────\n\ndef wilson_ci(successes: int, total: int, z: float = 1.96):\n    if total == 0:\n        return 0.0, 0.0, 1.0\n    p = successes / total\n    denom = 1 + z ** 2 / total\n    center = (p + z ** 2 / (2 * total)) / denom\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\n    return center, max(0.0, center - spread), min(1.0, center + spread)\n\n\n# ─── Main ────────────────────────────────────────────────────────────────────\n\ndef run_evaluation(args):\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 400)\n    output_path = Path(args.output or f\"eval_results/libero_{args.suite}.json\")\n\n    log.info(\"Suite: %s | Device: %s | Mode: %s | Episodes/task: %d | Max steps: %d\",\n             args.suite, device, args.mode, args.num_episodes, max_steps)\n\n    np.random.seed(args.seed)\n    torch.manual_seed(args.seed)\n\n    # Load model\n    log.info(\"Loading model from %s ...\", args.checkpoint)\n    t0 = time_mod.time()\n    policy, wrapper, config = load_model(args, device)\n    log.info(\"Model loaded in %.1fs\", time_mod.time() - t0)\n\n    from train import get_tokenizer_from_policy\n    tokenizer = get_tokenizer_from_policy(policy)\n\n    ds_cfg = config.get(\"dataset\", {})\n    camera_keys = ds_cfg.get(\"features\", {}).get(\"cameras\", [\n        \"observation.images.image\", \"observation.images.image2\"\n    ])\n\n    connector = None\n    if args.mode == \"acis_prune\":\n        connector = find_connector(policy.model)\n        if connector is None:\n            raise RuntimeError(\"Cannot find connector for ACIS hook\")\n        log.info(\"Connector found for ACIS pruning\")\n\n    # Load LIBERO suite\n    from libero.libero import benchmark\n    from lerobot.envs.libero import get_task_init_states, LiberoEnv\n\n    bench_dict = benchmark.get_benchmark_dict()\n    if args.suite not in bench_dict:\n        raise ValueError(f\"Unknown suite '{args.suite}'. Available: {sorted(bench_dict.keys())}\")\n    task_suite = bench_dict[args.suite]()\n    n_tasks = len(task_suite.tasks)\n\n    task_ids = list(range(n_tasks))\n    if args.task_ids:\n        task_ids = [int(x) for x in args.task_ids.split(\",\")]\n\n    log.info(\"Suite '%s' has %d tasks, evaluating %d: %s\",\n             args.suite, n_tasks, len(task_ids), task_ids)\n\n    # Per-task results\n    all_task_results = {}\n    total_successes = 0\n    total_episodes = 0\n\n    for task_id in task_ids:\n        task = task_suite.get_task(task_id)\n        task_desc = task.language\n        log.info(\"─── Task %d: %s ───\", task_id, task_desc)\n\n        init_states = get_task_init_states(task_suite, task_id)\n        n_init = len(init_states)\n\n        env = LiberoEnv(\n            task_suite=task_suite,\n            task_id=task_id,\n            task_suite_name=args.suite,\n            camera_name=\"agentview_image,robot0_eye_in_hand_image\",\n            obs_type=\"pixels_agent_pos\",\n            observation_width=256,\n            observation_height=256,\n            init_states=True,\n            n_envs=args.num_episodes,\n            episode_index=0,\n            control_mode=\"relative\",\n        )\n\n        task_successes = []\n        task_lengths = []\n\n        for ep in range(args.num_episodes):\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\n            action_chunk = None\n            action_idx = 0\n            success = False\n\n            for step in range(max_steps):\n                if action_chunk is None or action_idx >= args.action_horizon:\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\n\n                    if args.mode == \"acis_prune\":\n                        mask = compute_acis_mask(wrapper, batch, device)\n                        hook_handle = register_acis_hook(connector, mask)\n                        action_chunk = predict_actions(policy, batch)\n                        hook_handle.remove()\n                    else:\n                        action_chunk = predict_actions(policy, batch)\n\n                    action_idx = 0\n\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\n                action = np.clip(action, -1.0, 1.0)\n                action_idx += 1\n\n                obs, reward, terminated, truncated, info = env.step(action)\n\n                if info.get(\"is_success\", False):\n                    success = True\n                    break\n\n                if terminated or truncated:\n                    break\n\n            ep_steps = step + 1\n            task_successes.append(success)\n            task_lengths.append(ep_steps)\n\n            log.info(\n                \"  Ep %d/%d | %s | steps=%d\",\n                ep + 1, args.num_episodes,\n                \"SUCCESS\" if success else \"FAIL\", ep_steps,\n            )\n\n        env.close()\n\n        n_succ = sum(task_successes)\n        n_total = len(task_successes)\n        sr = n_succ / n_total if n_total > 0 else 0.0\n\n        all_task_results[task_id] = {\n            \"task_id\": task_id,\n            \"task_description\": task_desc,\n            \"success_count\": n_succ,\n            \"total_episodes\": n_total,\n            \"success_rate\": round(sr, 4),\n            \"mean_steps\": round(float(np.mean(task_lengths)), 1),\n        }\n        total_successes += n_succ\n        total_episodes += n_total\n\n        log.info(\"  Task %d SR: %d/%d (%.1f%%)\", task_id, n_succ, n_total, sr * 100)\n\n    # Overall\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\n\n    log.info(\"=\" * 60)\n    log.info(\"SUITE: %s | MODE: %s\", args.suite, args.mode)\n    log.info(\"Overall SR: %d/%d (%.1f%%)\", total_successes, total_episodes, overall_sr * 100)\n    log.info(\"95%% Wilson CI: [%.1f%%, %.1f%%]\", ci_lo * 100, ci_hi * 100)\n\n    for tid, tr in sorted(all_task_results.items()):\n        log.info(\"  Task %d: %.0f%% (%d/%d) — %s\",\n                 tid, tr[\"success_rate\"] * 100, tr[\"success_count\"],\n                 tr[\"total_episodes\"], tr[\"task_description\"])\n    log.info(\"=\" * 60)\n\n    summary = {\n        \"suite\": args.suite,\n        \"mode\": args.mode,\n        \"checkpoint\": args.checkpoint,\n        \"config\": args.config,\n        \"total_episodes\": total_episodes,\n        \"total_successes\": total_successes,\n        \"overall_success_rate\": round(overall_sr, 4),\n        \"wilson_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"num_episodes_per_task\": args.num_episodes,\n        \"max_steps\": max_steps,\n        \"action_horizon\": args.action_horizon,\n        \"seed\": args.seed,\n        \"per_task\": all_task_results,\n    }\n\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    log.info(\"Results saved to %s\", output_path)\n\n    return summary\n\n\nif __name__ == \"__main__\":\n    args = parse_args()\n    run_evaluation(args)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script written. Now let me sync it to the server and prepare for dry-run. First check if there's a way to get a LIBERO checkpoint or use the pretrained model."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "c8a09362-3c96-4147-8b10-0684a35859d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01THDS33SRQNPFJCJgYrxP3C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5553,
+                "cache_read_input_tokens": 87885,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5553
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SUf7g5oFrwwJ6AtkvhCFVv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-27271",
+                "command": "cp /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py.bak 2>/dev/null; echo \"READY\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "834fcdec-c04f-4bdf-b097-c02ff3010368",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01THDS33SRQNPFJCJgYrxP3C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5553,
+                "cache_read_input_tokens": 87885,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5553
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-16T16:41:22.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SUf7g5oFrwwJ6AtkvhCFVv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"READY\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "000b1495-a273-4909-ad02-fe4e5669a363",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"READY\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"READY\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DNK5p3BBSpTSe8XkjiyG7F",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_success_rate_libero.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "d6d389fd-4ec7-4f1a-8319-43ea1bf4963a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tar3G1uuBBotY3mN7g7z5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 93438,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 286
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-16T16:41:27.653Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DNK5p3BBSpTSe8XkjiyG7F",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tLIBERO Success Rate Evaluation for SmolVLA / IMM models.\n3\t\n4\tEvaluates per-task and overall success rate on LIBERO benchmark suites.\n5\t\n6\tUsage:\n7\t    python eval_success_rate_libero.py \\\n8\t        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\n9\t        --config configs/libero_baseline.yaml \\\n10\t        --suite libero_object \\\n11\t        --num_episodes 50 \\\n12\t        --gpu 0\n13\t\"\"\"\n14\t\n15\tfrom __future__ import annotations\n16\t\n17\timport argparse\n18\timport json\n19\timport logging\n20\timport os\n21\timport sys\n22\timport time as time_mod\n23\tfrom pathlib import Path\n24\t\n25\tos.environ.setdefault(\"MUJOCO_GL\", \"egl\")\n26\tos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\n27\tos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\n28\t\n29\timport numpy as np\n30\timport torch\n31\t\n32\tARTIFACTS_DIR = Path(__file__).resolve().parent\n33\tsys.path.insert(0, str(ARTIFACTS_DIR))\n34\t\n35\tlogging.basicConfig(\n36\t    level=logging.INFO,\n37\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n38\t    datefmt=\"%Y-%m-%d %H:%M:%S\",\n39\t)\n40\tlog = logging.getLogger(__name__)\n41\t\n42\tSUITE_MAX_STEPS = {\n43\t    \"libero_spatial\": 280,\n44\t    \"libero_object\": 280,\n45\t    \"libero_goal\": 300,\n46\t    \"libero_10\": 520,\n47\t    \"libero_90\": 400,\n48\t}\n49\t\n50\t\n51\tdef parse_args():\n52\t    p = argparse.ArgumentParser(description=\"LIBERO success rate evaluation\")\n53\t    p.add_argument(\"--checkpoint\", type=str, required=True,\n54\t                   help=\"Path to checkpoint.pt\")\n55\t    p.add_argument(\"--config\", type=str, default=\"configs/libero_baseline.yaml\",\n56\t                   help=\"Path to YAML config\")\n57\t    p.add_argument(\"--suite\", type=str, default=\"libero_object\",\n58\t                   choices=list(SUITE_MAX_STEPS.keys()),\n59\t                   help=\"LIBERO suite name\")\n60\t    p.add_argument(\"--num_episodes\", type=int, default=50,\n61\t                   help=\"Episodes per task\")\n62\t    p.add_argument(\"--gpu\", type=int, default=0)\n63\t    p.add_argument(\"--seed\", type=int, default=42)\n64\t    p.add_argument(\"--action_horizon\", type=int, default=50,\n65\t                   help=\"Actions to execute per chunk before re-planning\")\n66\t    p.add_argument(\"--max_steps\", type=int, default=None,\n67\t                   help=\"Override max steps per episode (default: per-suite)\")\n68\t    p.add_argument(\"--output\", type=str, default=None,\n69\t                   help=\"Output JSON path (default: eval_results/libero_{suite}.json)\")\n70\t    p.add_argument(\"--mode\", choices=[\"baseline\", \"acis_prune\"], default=\"baseline\")\n71\t    p.add_argument(\"--task_ids\", type=str, default=None,\n72\t                   help=\"Comma-separated task IDs to evaluate (default: all)\")\n73\t    return p.parse_args()\n74\t\n75\t\n76\t# ─── Config ──────────────────────────────────────────────────────────────────\n77\t\n78\tdef load_config(config_path: str) -> dict:\n79\t    import copy\n80\t    import yaml\n81\t    config_path = Path(config_path)\n82\t    with open(config_path) as f:\n83\t        config = yaml.safe_load(f)\n84\t    if \"_base_\" in config:\n85\t        base_path = config_path.parent / config.pop(\"_base_\")\n86\t        base_config = load_config(str(base_path))\n87\t        for k, v in config.items():\n88\t            if k in base_config and isinstance(base_config[k], dict) and isinstance(v, dict):\n89\t                base_config[k].update(v)\n90\t            else:\n91\t                base_config[k] = v\n92\t        return base_config\n93\t    return config\n94\t\n95\t\n96\t# ─── Model loading ───────────────────────────────────────────────────────────\n97\t\n98\tdef load_model(args, device: torch.device):\n99\t    \"\"\"Returns (policy, wrapper_or_None, config).\"\"\"\n100\t    from train import load_smolvla_policy, wrap_with_imm\n101\t\n102\t    config = load_config(args.config)\n103\t    imm_enabled = config.get(\"imm\", {}).get(\"enabled\", False)\n104\t\n105\t    if not imm_enabled or args.mode == \"baseline\":\n106\t        policy = load_smolvla_policy(config, device)\n107\t        ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n108\t        policy.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n109\t        policy.eval()\n110\t        return policy, None, config\n111\t\n112\t    policy = load_smolvla_policy(config, device)\n113\t    wrapper = wrap_with_imm(policy, config)\n114\t    wrapper.to(device)\n115\t    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n116\t    wrapper.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n117\t    wrapper.eval()\n118\t    return wrapper.policy, wrapper, config\n119\t\n120\t\n121\t# ─── State preprocessing ────────────────────────────────────────────────────\n122\t\n123\tdef quat_to_axis_angle(quat: np.ndarray) -> np.ndarray:\n124\t    \"\"\"Convert quaternion (x,y,z,w) to axis-angle (3,).\"\"\"\n125\t    q = quat.astype(np.float64)\n126\t    w = np.clip(q[3], -1.0, 1.0)\n127\t    den = np.sqrt(max(1.0 - w * w, 0.0))\n128\t    if den > 1e-10:\n129\t        angle = 2.0 * np.arccos(w)\n130\t        axis = q[:3] / den\n131\t        return (axis * angle).astype(np.float32)\n132\t    return np.zeros(3, dtype=np.float32)\n133\t\n134\t\n135\tdef extract_state(obs: dict) -> np.ndarray:\n136\t    \"\"\"Extract 8D state: eef_pos(3) + axis_angle(3) + gripper_qpos(2).\"\"\"\n137\t    rs = obs[\"robot_state\"]\n138\t    eef_pos = np.asarray(rs[\"eef\"][\"pos\"], dtype=np.float32)       # (3,)\n139\t    eef_quat = np.asarray(rs[\"eef\"][\"quat\"], dtype=np.float64)     # (4,)\n140\t    gripper_qpos = np.asarray(rs[\"gripper\"][\"qpos\"], dtype=np.float32)  # (2,)\n141\t    eef_aa = quat_to_axis_angle(eef_quat)                          # (3,)\n142\t    return np.concatenate([eef_pos, eef_aa, gripper_qpos])          # (8,)\n143\t\n144\t\n145\t# ─── Observation → batch conversion ─────────────────────────────────────────\n146\t\n147\tdef obs_to_batch(obs: dict, task_text: str, tokenizer, camera_keys: list, device: torch.device) -> dict:\n148\t    batch = {}\n149\t\n150\t    for cam_key in camera_keys:\n151\t        short_name = cam_key.split(\".\")[-1]  # \"image\" or \"image2\"\n152\t        img = obs[\"pixels\"][short_name]       # (H, W, 3) uint8\n153\t        img_t = torch.from_numpy(np.asarray(img)).permute(2, 0, 1).float() / 255.0\n154\t        img_t = img_t.unsqueeze(0)  # (1, 3, H, W)\n155\t        # 180° flip: flip both H and W dims, matching LiberoProcessorStep\n156\t        img_t = torch.flip(img_t, dims=[2, 3])\n157\t        batch[cam_key] = img_t.to(device)\n158\t\n159\t    state = extract_state(obs)\n160\t    batch[\"observation.state\"] = torch.from_numpy(state).unsqueeze(0).to(device)  # (1, 8)\n161\t\n162\t    text = task_text if task_text.endswith(\"\\n\") else task_text + \"\\n\"\n163\t    encoded = tokenizer(\n164\t        [text], padding=\"longest\", max_length=48,\n165\t        truncation=True, return_tensors=\"pt\",\n166\t    )\n167\t    batch[\"observation.language.tokens\"] = encoded[\"input_ids\"].to(device)\n168\t    batch[\"observation.language.attention_mask\"] = encoded[\"attention_mask\"].bool().to(device)\n169\t\n170\t    return batch\n171\t\n172\t\n173\t# ─── ACIS pruning (same as eval_sim.py) ──────────────────────────────────────\n174\t\n175\tdef find_connector(model):\n176\t    for name, module in model.named_modules():\n177\t        if name.endswith(\".connector\") or \"multi_modal_projector\" in name:\n178\t            return module\n179\t    return None\n180\t\n181\t\n182\t@torch.no_grad()\n183\tdef compute_acis_mask(wrapper, batch: dict, device: torch.device) -> torch.Tensor:\n184\t    bm = wrapper.base_model\n185\t    images, _ = wrapper.policy.prepare_images(batch)\n186\t    vis_tokens, _ = wrapper._get_visual_tokens(images)\n187\t\n188\t    B = vis_tokens.shape[0]\n189\t    noise = bm.sample_noise(\n190\t        (B, bm.config.chunk_size, bm.config.max_action_dim), device\n191\t    )\n192\t    time = torch.ones(B, device=device)\n193\t    suffix_embs, _, _ = bm.embed_suffix(noise, time)\n194\t    scores = wrapper.acis(suffix_embs, vis_tokens)\n195\t\n196\t    N_vis = vis_tokens.shape[1]\n197\t    k = max(1, int(N_vis * wrapper.k_ratio))\n198\t    _, topk_idx = torch.topk(scores, k, dim=-1)\n199\t    mask = torch.zeros(B, N_vis, device=device)\n200\t    mask.scatter_(1, topk_idx, 1.0)\n201\t    return mask\n202\t\n203\t\n204\tdef register_acis_hook(connector, mask: torch.Tensor):\n205\t    def hook_fn(module, input, output):\n206\t        tokens = output[0] if isinstance(output, tuple) else output\n207\t        if tokens.dim() != 3 or tokens.shape[1] != mask.shape[1]:\n208\t            return output\n209\t        masked = tokens * mask[:tokens.shape[0]].unsqueeze(-1)\n210\t        if isinstance(output, tuple):\n211\t            return (masked,) + output[1:]\n212\t        return masked\n213\t    return connector.register_forward_hook(hook_fn)\n214\t\n215\t\n216\t# ─── Action prediction ──────────────────────────────────────────────────────\n217\t\n218\t@torch.no_grad()\n219\tdef predict_actions(policy, batch: dict) -> torch.Tensor:\n220\t    \"\"\"Returns (chunk_size, action_dim) actions for batch_size=1.\"\"\"\n221\t    images, img_masks = policy.prepare_images(batch)\n222\t    state = policy.prepare_state(batch)\n223\t    lang_tokens = batch[\"observation.language.tokens\"]\n224\t    lang_masks = batch[\"observation.language.attention_mask\"]\n225\t\n226\t    actions = policy.model.sample_actions(\n227\t        images, img_masks, lang_tokens, lang_masks, state\n228\t    )\n229\t    original_action_dim = policy.config.action_feature.shape[0]\n230\t    return actions[0, :, :original_action_dim]  # (chunk_size, action_dim)\n231\t\n232\t\n233\t# ─── Statistics ──────────────────────────────────────────────────────────────\n234\t\n235\tdef wilson_ci(successes: int, total: int, z: float = 1.96):\n236\t    if total == 0:\n237\t        return 0.0, 0.0, 1.0\n238\t    p = successes / total\n239\t    denom = 1 + z ** 2 / total\n240\t    center = (p + z ** 2 / (2 * total)) / denom\n241\t    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\n242\t    return center, max(0.0, center - spread), min(1.0, center + spread)\n243\t\n244\t\n245\t# ─── Main ────────────────────────────────────────────────────────────────────\n246\t\n247\tdef run_evaluation(args):\n248\t    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n249\t    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 400)\n250\t    output_path = Path(args.output or f\"eval_results/libero_{args.suite}.json\")\n251\t\n252\t    log.info(\"Suite: %s | Device: %s | Mode: %s | Episodes/task: %d | Max steps: %d\",\n253\t             args.suite, device, args.mode, args.num_episodes, max_steps)\n254\t\n255\t    np.random.seed(args.seed)\n256\t    torch.manual_seed(args.seed)\n257\t\n258\t    # Load model\n259\t    log.info(\"Loading model from %s ...\", args.checkpoint)\n260\t    t0 = time_mod.time()\n261\t    policy, wrapper, config = load_model(args, device)\n262\t    log.info(\"Model loaded in %.1fs\", time_mod.time() - t0)\n263\t\n264\t    from train import get_tokenizer_from_policy\n265\t    tokenizer = get_tokenizer_from_policy(policy)\n266\t\n267\t    ds_cfg = config.get(\"dataset\", {})\n268\t    camera_keys = ds_cfg.get(\"features\", {}).get(\"cameras\", [\n269\t        \"observation.images.image\", \"observation.images.image2\"\n270\t    ])\n271\t\n272\t    connector = None\n273\t    if args.mode == \"acis_prune\":\n274\t        connector = find_connector(policy.model)\n275\t        if connector is None:\n276\t            raise RuntimeError(\"Cannot find connector for ACIS hook\")\n277\t        log.info(\"Connector found for ACIS pruning\")\n278\t\n279\t    # Load LIBERO suite\n280\t    from libero.libero import benchmark\n281\t    from lerobot.envs.libero import get_task_init_states, LiberoEnv\n282\t\n283\t    bench_dict = benchmark.get_benchmark_dict()\n284\t    if args.suite not in bench_dict:\n285\t        raise ValueError(f\"Unknown suite '{args.suite}'. Available: {sorted(bench_dict.keys())}\")\n286\t    task_suite = bench_dict[args.suite]()\n287\t    n_tasks = len(task_suite.tasks)\n288\t\n289\t    task_ids = list(range(n_tasks))\n290\t    if args.task_ids:\n291\t        task_ids = [int(x) for x in args.task_ids.split(\",\")]\n292\t\n293\t    log.info(\"Suite '%s' has %d tasks, evaluating %d: %s\",\n294\t             args.suite, n_tasks, len(task_ids), task_ids)\n295\t\n296\t    # Per-task results\n297\t    all_task_results = {}\n298\t    total_successes = 0\n299\t    total_episodes = 0\n300\t\n301\t    for task_id in task_ids:\n302\t        task = task_suite.get_task(task_id)\n303\t        task_desc = task.language\n304\t        log.info(\"─── Task %d: %s ───\", task_id, task_desc)\n305\t\n306\t        init_states = get_task_init_states(task_suite, task_id)\n307\t        n_init = len(init_states)\n308\t\n309\t        env = LiberoEnv(\n310\t            task_suite=task_suite,\n311\t            task_id=task_id,\n312\t            task_suite_name=args.suite,\n313\t            camera_name=\"agentview_image,robot0_eye_in_hand_image\",\n314\t            obs_type=\"pixels_agent_pos\",\n315\t            observation_width=256,\n316\t            observation_height=256,\n317\t            init_states=True,\n318\t            n_envs=args.num_episodes,\n319\t            episode_index=0,\n320\t            control_mode=\"relative\",\n321\t        )\n322\t\n323\t        task_successes = []\n324\t        task_lengths = []\n325\t\n326\t        for ep in range(args.num_episodes):\n327\t            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\n328\t            action_chunk = None\n329\t            action_idx = 0\n330\t            success = False\n331\t\n332\t            for step in range(max_steps):\n333\t                if action_chunk is None or action_idx >= args.action_horizon:\n334\t                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\n335\t\n336\t                    if args.mode == \"acis_prune\":\n337\t                        mask = compute_acis_mask(wrapper, batch, device)\n338\t                        hook_handle = register_acis_hook(connector, mask)\n339\t                        action_chunk = predict_actions(policy, batch)\n340\t                        hook_handle.remove()\n341\t                    else:\n342\t                        action_chunk = predict_actions(policy, batch)\n343\t\n344\t                    action_idx = 0\n345\t\n346\t                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\n347\t                action = np.clip(action, -1.0, 1.0)\n348\t                action_idx += 1\n349\t\n350\t                obs, reward, terminated, truncated, info = env.step(action)\n351\t\n352\t                if info.get(\"is_success\", False):\n353\t                    success = True\n354\t                    break\n355\t\n356\t                if terminated or truncated:\n357\t                    break\n358\t\n359\t            ep_steps = step + 1\n360\t            task_successes.append(success)\n361\t            task_lengths.append(ep_steps)\n362\t\n363\t            log.info(\n364\t                \"  Ep %d/%d | %s | steps=%d\",\n365\t                ep + 1, args.num_episodes,\n366\t                \"SUCCESS\" if success else \"FAIL\", ep_steps,\n367\t            )\n368\t\n369\t        env.close()\n370\t\n371\t        n_succ = sum(task_successes)\n372\t        n_total = len(task_successes)\n373\t        sr = n_succ / n_total if n_total > 0 else 0.0\n374\t\n375\t        all_task_results[task_id] = {\n376\t            \"task_id\": task_id,\n377\t            \"task_description\": task_desc,\n378\t            \"success_count\": n_succ,\n379\t            \"total_episodes\": n_total,\n380\t            \"success_rate\": round(sr, 4),\n381\t            \"mean_steps\": round(float(np.mean(task_lengths)), 1),\n382\t        }\n383\t        total_successes += n_succ\n384\t        total_episodes += n_total\n385\t\n386\t        log.info(\"  Task %d SR: %d/%d (%.1f%%)\", task_id, n_succ, n_total, sr * 100)\n387\t\n388\t    # Overall\n389\t    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\n390\t    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\n391\t\n392\t    log.info(\"=\" * 60)\n393\t    log.info(\"SUITE: %s | MODE: %s\", args.suite, args.mode)\n394\t    log.info(\"Overall SR: %d/%d (%.1f%%)\", total_successes, total_episodes, overall_sr * 100)\n395\t    log.info(\"95%% Wilson CI: [%.1f%%, %.1f%%]\", ci_lo * 100, ci_hi * 100)\n396\t\n397\t    for tid, tr in sorted(all_task_results.items()):\n398\t        log.info(\"  Task %d: %.0f%% (%d/%d) — %s\",\n399\t                 tid, tr[\"success_rate\"] * 100, tr[\"success_count\"],\n400\t                 tr[\"total_episodes\"], tr[\"task_description\"])\n401\t    log.info(\"=\" * 60)\n402\t\n403\t    summary = {\n404\t        \"suite\": args.suite,\n405\t        \"mode\": args.mode,\n406\t        \"checkpoint\": args.checkpoint,\n407\t        \"config\": args.config,\n408\t        \"total_episodes\": total_episodes,\n409\t        \"total_successes\": total_successes,\n410\t        \"overall_success_rate\": round(overall_sr, 4),\n411\t        \"wilson_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n412\t        \"num_episodes_per_task\": args.num_episodes,\n413\t        \"max_steps\": max_steps,\n414\t        \"action_horizon\": args.action_horizon,\n415\t        \"seed\": args.seed,\n416\t        \"per_task\": all_task_results,\n417\t    }\n418\t\n419\t    output_path.parent.mkdir(parents=True, exist_ok=True)\n420\t    with open(output_path, \"w\") as f:\n421\t        json.dump(summary, f, indent=2)\n422\t    log.info(\"Results saved to %s\", output_path)\n423\t\n424\t    return summary\n425\t\n426\t\n427\tif __name__ == \"__main__\":\n428\t    args = parse_args()\n429\t    run_evaluation(args)\n430\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "09a5da00-a91f-4597-8678-9cf3afd25b53",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_success_rate_libero.py",
+                "content": "\"\"\"\nLIBERO Success Rate Evaluation for SmolVLA / IMM models.\n\nEvaluates per-task and overall success rate on LIBERO benchmark suites.\n\nUsage:\n    python eval_success_rate_libero.py \\\n        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\n        --config configs/libero_baseline.yaml \\\n        --suite libero_object \\\n        --num_episodes 50 \\\n        --gpu 0\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time as time_mod\nfrom pathlib import Path\n\nos.environ.setdefault(\"MUJOCO_GL\", \"egl\")\nos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\n\nimport numpy as np\nimport torch\n\nARTIFACTS_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(ARTIFACTS_DIR))\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlog = logging.getLogger(__name__)\n\nSUITE_MAX_STEPS = {\n    \"libero_spatial\": 280,\n    \"libero_object\": 280,\n    \"libero_goal\": 300,\n    \"libero_10\": 520,\n    \"libero_90\": 400,\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"LIBERO success rate evaluation\")\n    p.add_argument(\"--checkpoint\", type=str, required=True,\n                   help=\"Path to checkpoint.pt\")\n    p.add_argument(\"--config\", type=str, default=\"configs/libero_baseline.yaml\",\n                   help=\"Path to YAML config\")\n    p.add_argument(\"--suite\", type=str, default=\"libero_object\",\n                   choices=list(SUITE_MAX_STEPS.keys()),\n                   help=\"LIBERO suite name\")\n    p.add_argument(\"--num_episodes\", type=int, default=50,\n                   help=\"Episodes per task\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--action_horizon\", type=int, default=50,\n                   help=\"Actions to execute per chunk before re-planning\")\n    p.add_argument(\"--max_steps\", type=int, default=None,\n                   help=\"Override max steps per episode (default: per-suite)\")\n    p.add_argument(\"--output\", type=str, default=None,\n                   help=\"Output JSON path (default: eval_results/libero_{suite}.json)\")\n    p.add_argument(\"--mode\", choices=[\"baseline\", \"acis_prune\"], default=\"baseline\")\n    p.add_argument(\"--task_ids\", type=str, default=None,\n                   help=\"Comma-separated task IDs to evaluate (default: all)\")\n    return p.parse_args()\n\n\n# ─── Config ──────────────────────────────────────────────────────────────────\n\ndef load_config(config_path: str) -> dict:\n    import copy\n    import yaml\n    config_path = Path(config_path)\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n    if \"_base_\" in config:\n        base_path = config_path.parent / config.pop(\"_base_\")\n        base_config = load_config(str(base_path))\n        for k, v in config.items():\n            if k in base_config and isinstance(base_config[k], dict) and isinstance(v, dict):\n                base_config[k].update(v)\n            else:\n                base_config[k] = v\n        return base_config\n    return config\n\n\n# ─── Model loading ───────────────────────────────────────────────────────────\n\ndef load_model(args, device: torch.device):\n    \"\"\"Returns (policy, wrapper_or_None, config).\"\"\"\n    from train import load_smolvla_policy, wrap_with_imm\n\n    config = load_config(args.config)\n    imm_enabled = config.get(\"imm\", {}).get(\"enabled\", False)\n\n    if not imm_enabled or args.mode == \"baseline\":\n        policy = load_smolvla_policy(config, device)\n        ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n        policy.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n        policy.eval()\n        return policy, None, config\n\n    policy = load_smolvla_policy(config, device)\n    wrapper = wrap_with_imm(policy, config)\n    wrapper.to(device)\n    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n    wrapper.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n    wrapper.eval()\n    return wrapper.policy, wrapper, config\n\n\n# ─── State preprocessing ────────────────────────────────────────────────────\n\ndef quat_to_axis_angle(quat: np.ndarray) -> np.ndarray:\n    \"\"\"Convert quaternion (x,y,z,w) to axis-angle (3,).\"\"\"\n    q = quat.astype(np.float64)\n    w = np.clip(q[3], -1.0, 1.0)\n    den = np.sqrt(max(1.0 - w * w, 0.0))\n    if den > 1e-10:\n        angle = 2.0 * np.arccos(w)\n        axis = q[:3] / den\n        return (axis * angle).astype(np.float32)\n    return np.zeros(3, dtype=np.float32)\n\n\ndef extract_state(obs: dict) -> np.ndarray:\n    \"\"\"Extract 8D state: eef_pos(3) + axis_angle(3) + gripper_qpos(2).\"\"\"\n    rs = obs[\"robot_state\"]\n    eef_pos = np.asarray(rs[\"eef\"][\"pos\"], dtype=np.float32)       # (3,)\n    eef_quat = np.asarray(rs[\"eef\"][\"quat\"], dtype=np.float64)     # (4,)\n    gripper_qpos = np.asarray(rs[\"gripper\"][\"qpos\"], dtype=np.float32)  # (2,)\n    eef_aa = quat_to_axis_angle(eef_quat)                          # (3,)\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])          # (8,)\n\n\n# ─── Observation → batch conversion ─────────────────────────────────────────\n\ndef obs_to_batch(obs: dict, task_text: str, tokenizer, camera_keys: list, device: torch.device) -> dict:\n    batch = {}\n\n    for cam_key in camera_keys:\n        short_name = cam_key.split(\".\")[-1]  # \"image\" or \"image2\"\n        img = obs[\"pixels\"][short_name]       # (H, W, 3) uint8\n        img_t = torch.from_numpy(np.asarray(img)).permute(2, 0, 1).float() / 255.0\n        img_t = img_t.unsqueeze(0)  # (1, 3, H, W)\n        # 180° flip: flip both H and W dims, matching LiberoProcessorStep\n        img_t = torch.flip(img_t, dims=[2, 3])\n        batch[cam_key] = img_t.to(device)\n\n    state = extract_state(obs)\n    batch[\"observation.state\"] = torch.from_numpy(state).unsqueeze(0).to(device)  # (1, 8)\n\n    text = task_text if task_text.endswith(\"\\n\") else task_text + \"\\n\"\n    encoded = tokenizer(\n        [text], padding=\"longest\", max_length=48,\n        truncation=True, return_tensors=\"pt\",\n    )\n    batch[\"observation.language.tokens\"] = encoded[\"input_ids\"].to(device)\n    batch[\"observation.language.attention_mask\"] = encoded[\"attention_mask\"].bool().to(device)\n\n    return batch\n\n\n# ─── ACIS pruning (same as eval_sim.py) ──────────────────────────────────────\n\ndef find_connector(model):\n    for name, module in model.named_modules():\n        if name.endswith(\".connector\") or \"multi_modal_projector\" in name:\n            return module\n    return None\n\n\n@torch.no_grad()\ndef compute_acis_mask(wrapper, batch: dict, device: torch.device) -> torch.Tensor:\n    bm = wrapper.base_model\n    images, _ = wrapper.policy.prepare_images(batch)\n    vis_tokens, _ = wrapper._get_visual_tokens(images)\n\n    B = vis_tokens.shape[0]\n    noise = bm.sample_noise(\n        (B, bm.config.chunk_size, bm.config.max_action_dim), device\n    )\n    time = torch.ones(B, device=device)\n    suffix_embs, _, _ = bm.embed_suffix(noise, time)\n    scores = wrapper.acis(suffix_embs, vis_tokens)\n\n    N_vis = vis_tokens.shape[1]\n    k = max(1, int(N_vis * wrapper.k_ratio))\n    _, topk_idx = torch.topk(scores, k, dim=-1)\n    mask = torch.zeros(B, N_vis, device=device)\n    mask.scatter_(1, topk_idx, 1.0)\n    return mask\n\n\ndef register_acis_hook(connector, mask: torch.Tensor):\n    def hook_fn(module, input, output):\n        tokens = output[0] if isinstance(output, tuple) else output\n        if tokens.dim() != 3 or tokens.shape[1] != mask.shape[1]:\n            return output\n        masked = tokens * mask[:tokens.shape[0]].unsqueeze(-1)\n        if isinstance(output, tuple):\n            return (masked,) + output[1:]\n        return masked\n    return connector.register_forward_hook(hook_fn)\n\n\n# ─── Action prediction ──────────────────────────────────────────────────────\n\n@torch.no_grad()\ndef predict_actions(policy, batch: dict) -> torch.Tensor:\n    \"\"\"Returns (chunk_size, action_dim) actions for batch_size=1.\"\"\"\n    images, img_masks = policy.prepare_images(batch)\n    state = policy.prepare_state(batch)\n    lang_tokens = batch[\"observation.language.tokens\"]\n    lang_masks = batch[\"observation.language.attention_mask\"]\n\n    actions = policy.model.sample_actions(\n        images, img_masks, lang_tokens, lang_masks, state\n    )\n    original_action_dim = policy.config.action_feature.shape[0]\n    return actions[0, :, :original_action_dim]  # (chunk_size, action_dim)\n\n\n# ─── Statistics ──────────────────────────────────────────────────────────────\n\ndef wilson_ci(successes: int, total: int, z: float = 1.96):\n    if total == 0:\n        return 0.0, 0.0, 1.0\n    p = successes / total\n    denom = 1 + z ** 2 / total\n    center = (p + z ** 2 / (2 * total)) / denom\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\n    return center, max(0.0, center - spread), min(1.0, center + spread)\n\n\n# ─── Main ────────────────────────────────────────────────────────────────────\n\ndef run_evaluation(args):\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 400)\n    output_path = Path(args.output or f\"eval_results/libero_{args.suite}.json\")\n\n    log.info(\"Suite: %s | Device: %s | Mode: %s | Episodes/task: %d | Max steps: %d\",\n             args.suite, device, args.mode, args.num_episodes, max_steps)\n\n    np.random.seed(args.seed)\n    torch.manual_seed(args.seed)\n\n    # Load model\n    log.info(\"Loading model from %s ...\", args.checkpoint)\n    t0 = time_mod.time()\n    policy, wrapper, config = load_model(args, device)\n    log.info(\"Model loaded in %.1fs\", time_mod.time() - t0)\n\n    from train import get_tokenizer_from_policy\n    tokenizer = get_tokenizer_from_policy(policy)\n\n    ds_cfg = config.get(\"dataset\", {})\n    camera_keys = ds_cfg.get(\"features\", {}).get(\"cameras\", [\n        \"observation.images.image\", \"observation.images.image2\"\n    ])\n\n    connector = None\n    if args.mode == \"acis_prune\":\n        connector = find_connector(policy.model)\n        if connector is None:\n            raise RuntimeError(\"Cannot find connector for ACIS hook\")\n        log.info(\"Connector found for ACIS pruning\")\n\n    # Load LIBERO suite\n    from libero.libero import benchmark\n    from lerobot.envs.libero import get_task_init_states, LiberoEnv\n\n    bench_dict = benchmark.get_benchmark_dict()\n    if args.suite not in bench_dict:\n        raise ValueError(f\"Unknown suite '{args.suite}'. Available: {sorted(bench_dict.keys())}\")\n    task_suite = bench_dict[args.suite]()\n    n_tasks = len(task_suite.tasks)\n\n    task_ids = list(range(n_tasks))\n    if args.task_ids:\n        task_ids = [int(x) for x in args.task_ids.split(\",\")]\n\n    log.info(\"Suite '%s' has %d tasks, evaluating %d: %s\",\n             args.suite, n_tasks, len(task_ids), task_ids)\n\n    # Per-task results\n    all_task_results = {}\n    total_successes = 0\n    total_episodes = 0\n\n    for task_id in task_ids:\n        task = task_suite.get_task(task_id)\n        task_desc = task.language\n        log.info(\"─── Task %d: %s ───\", task_id, task_desc)\n\n        init_states = get_task_init_states(task_suite, task_id)\n        n_init = len(init_states)\n\n        env = LiberoEnv(\n            task_suite=task_suite,\n            task_id=task_id,\n            task_suite_name=args.suite,\n            camera_name=\"agentview_image,robot0_eye_in_hand_image\",\n            obs_type=\"pixels_agent_pos\",\n            observation_width=256,\n            observation_height=256,\n            init_states=True,\n            n_envs=args.num_episodes,\n            episode_index=0,\n            control_mode=\"relative\",\n        )\n\n        task_successes = []\n        task_lengths = []\n\n        for ep in range(args.num_episodes):\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\n            action_chunk = None\n            action_idx = 0\n            success = False\n\n            for step in range(max_steps):\n                if action_chunk is None or action_idx >= args.action_horizon:\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\n\n                    if args.mode == \"acis_prune\":\n                        mask = compute_acis_mask(wrapper, batch, device)\n                        hook_handle = register_acis_hook(connector, mask)\n                        action_chunk = predict_actions(policy, batch)\n                        hook_handle.remove()\n                    else:\n                        action_chunk = predict_actions(policy, batch)\n\n                    action_idx = 0\n\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\n                action = np.clip(action, -1.0, 1.0)\n                action_idx += 1\n\n                obs, reward, terminated, truncated, info = env.step(action)\n\n                if info.get(\"is_success\", False):\n                    success = True\n                    break\n\n                if terminated or truncated:\n                    break\n\n            ep_steps = step + 1\n            task_successes.append(success)\n            task_lengths.append(ep_steps)\n\n            log.info(\n                \"  Ep %d/%d | %s | steps=%d\",\n                ep + 1, args.num_episodes,\n                \"SUCCESS\" if success else \"FAIL\", ep_steps,\n            )\n\n        env.close()\n\n        n_succ = sum(task_successes)\n        n_total = len(task_successes)\n        sr = n_succ / n_total if n_total > 0 else 0.0\n\n        all_task_results[task_id] = {\n            \"task_id\": task_id,\n            \"task_description\": task_desc,\n            \"success_count\": n_succ,\n            \"total_episodes\": n_total,\n            \"success_rate\": round(sr, 4),\n            \"mean_steps\": round(float(np.mean(task_lengths)), 1),\n        }\n        total_successes += n_succ\n        total_episodes += n_total\n\n        log.info(\"  Task %d SR: %d/%d (%.1f%%)\", task_id, n_succ, n_total, sr * 100)\n\n    # Overall\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\n\n    log.info(\"=\" * 60)\n    log.info(\"SUITE: %s | MODE: %s\", args.suite, args.mode)\n    log.info(\"Overall SR: %d/%d (%.1f%%)\", total_successes, total_episodes, overall_sr * 100)\n    log.info(\"95%% Wilson CI: [%.1f%%, %.1f%%]\", ci_lo * 100, ci_hi * 100)\n\n    for tid, tr in sorted(all_task_results.items()):\n        log.info(\"  Task %d: %.0f%% (%d/%d) — %s\",\n                 tid, tr[\"success_rate\"] * 100, tr[\"success_count\"],\n                 tr[\"total_episodes\"], tr[\"task_description\"])\n    log.info(\"=\" * 60)\n\n    summary = {\n        \"suite\": args.suite,\n        \"mode\": args.mode,\n        \"checkpoint\": args.checkpoint,\n        \"config\": args.config,\n        \"total_episodes\": total_episodes,\n        \"total_successes\": total_successes,\n        \"overall_success_rate\": round(overall_sr, 4),\n        \"wilson_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"num_episodes_per_task\": args.num_episodes,\n        \"max_steps\": max_steps,\n        \"action_horizon\": args.action_horizon,\n        \"seed\": args.seed,\n        \"per_task\": all_task_results,\n    }\n\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    log.info(\"Results saved to %s\", output_path)\n\n    return summary\n\n\nif __name__ == \"__main__\":\n    args = parse_args()\n    run_evaluation(args)\n",
+                "numLines": 430,
+                "startLine": 1,
+                "totalLines": 430
+              }
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me upload the script to the server and run the dry-run. I'll use the aloha baseline checkpoint for the model since there's no LIBERO checkpoint yet — the model will output garbage actions but we can verify the full pipeline."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "e5955b36-20c0-4aa4-9999-30246e8f8751",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ed79pEZEHVzp5445sxNSD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6135,
+                "cache_read_input_tokens": 93724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6135
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M9ejUqfaaUS95t1Jmcp3Pu",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-27271",
+                "command": "cat > /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py << 'SCRIPT_EOF'\n\"\"\"\nLIBERO Success Rate Evaluation for SmolVLA / IMM models.\n\nEvaluates per-task and overall success rate on LIBERO benchmark suites.\n\nUsage:\n    python eval_success_rate_libero.py \\\n        --checkpoint checkpoints/libero_full_ft/step_025000/checkpoint.pt \\\n        --config configs/libero_baseline.yaml \\\n        --suite libero_object \\\n        --num_episodes 50 \\\n        --gpu 0\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time as time_mod\nfrom pathlib import Path\n\nos.environ.setdefault(\"MUJOCO_GL\", \"egl\")\nos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\n\nimport numpy as np\nimport torch\n\nARTIFACTS_DIR = Path(__file__).resolve().parent\nsys.path.insert(0, str(ARTIFACTS_DIR))\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlog = logging.getLogger(__name__)\n\nSUITE_MAX_STEPS = {\n    \"libero_spatial\": 280,\n    \"libero_object\": 280,\n    \"libero_goal\": 300,\n    \"libero_10\": 520,\n    \"libero_90\": 400,\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"LIBERO success rate evaluation\")\n    p.add_argument(\"--checkpoint\", type=str, required=True,\n                   help=\"Path to checkpoint.pt\")\n    p.add_argument(\"--config\", type=str, default=\"configs/libero_baseline.yaml\",\n                   help=\"Path to YAML config\")\n    p.add_argument(\"--suite\", type=str, default=\"libero_object\",\n                   choices=list(SUITE_MAX_STEPS.keys()),\n                   help=\"LIBERO suite name\")\n    p.add_argument(\"--num_episodes\", type=int, default=50,\n                   help=\"Episodes per task\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--action_horizon\", type=int, default=50,\n                   help=\"Actions to execute per chunk before re-planning\")\n    p.add_argument(\"--max_steps\", type=int, default=None,\n                   help=\"Override max steps per episode (default: per-suite)\")\n    p.add_argument(\"--output\", type=str, default=None,\n                   help=\"Output JSON path (default: eval_results/libero_{suite}.json)\")\n    p.add_argument(\"--mode\", choices=[\"baseline\", \"acis_prune\"], default=\"baseline\")\n    p.add_argument(\"--task_ids\", type=str, default=None,\n                   help=\"Comma-separated task IDs to evaluate (default: all)\")\n    return p.parse_args()\n\n\n# --- Config -------------------------------------------------------------------\n\ndef load_config(config_path: str) -> dict:\n    import copy\n    import yaml\n    config_path = Path(config_path)\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n    if \"_base_\" in config:\n        base_path = config_path.parent / config.pop(\"_base_\")\n        base_config = load_config(str(base_path))\n        for k, v in config.items():\n            if k in base_config and isinstance(base_config[k], dict) and isinstance(v, dict):\n                base_config[k].update(v)\n            else:\n                base_config[k] = v\n        return base_config\n    return config\n\n\n# --- Model loading ------------------------------------------------------------\n\ndef load_model(args, device: torch.device):\n    \"\"\"Returns (policy, wrapper_or_None, config).\"\"\"\n    from train import load_smolvla_policy, wrap_with_imm\n\n    config = load_config(args.config)\n    imm_enabled = config.get(\"imm\", {}).get(\"enabled\", False)\n\n    if not imm_enabled or args.mode == \"baseline\":\n        policy = load_smolvla_policy(config, device)\n        ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n        policy.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n        policy.eval()\n        return policy, None, config\n\n    policy = load_smolvla_policy(config, device)\n    wrapper = wrap_with_imm(policy, config)\n    wrapper.to(device)\n    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)\n    wrapper.load_state_dict(ckpt[\"model_state_dict\"], strict=False)\n    wrapper.eval()\n    return wrapper.policy, wrapper, config\n\n\n# --- State preprocessing -----------------------------------------------------\n\ndef quat_to_axis_angle(quat: np.ndarray) -> np.ndarray:\n    \"\"\"Convert quaternion (x,y,z,w) to axis-angle (3,).\"\"\"\n    q = quat.astype(np.float64)\n    w = np.clip(q[3], -1.0, 1.0)\n    den = np.sqrt(max(1.0 - w * w, 0.0))\n    if den > 1e-10:\n        angle = 2.0 * np.arccos(w)\n        axis = q[:3] / den\n        return (axis * angle).astype(np.float32)\n    return np.zeros(3, dtype=np.float32)\n\n\ndef extract_state(obs: dict) -> np.ndarray:\n    \"\"\"Extract 8D state: eef_pos(3) + axis_angle(3) + gripper_qpos(2).\"\"\"\n    rs = obs[\"robot_state\"]\n    eef_pos = np.asarray(rs[\"eef\"][\"pos\"], dtype=np.float32)       # (3,)\n    eef_quat = np.asarray(rs[\"eef\"][\"quat\"], dtype=np.float64)     # (4,)\n    gripper_qpos = np.asarray(rs[\"gripper\"][\"qpos\"], dtype=np.float32)  # (2,)\n    eef_aa = quat_to_axis_angle(eef_quat)                          # (3,)\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])          # (8,)\n\n\n# --- Observation -> batch conversion -----------------------------------------\n\ndef obs_to_batch(obs: dict, task_text: str, tokenizer, camera_keys: list, device: torch.device) -> dict:\n    batch = {}\n\n    for cam_key in camera_keys:\n        short_name = cam_key.split(\".\")[-1]  # \"image\" or \"image2\"\n        img = obs[\"pixels\"][short_name]       # (H, W, 3) uint8\n        img_t = torch.from_numpy(np.asarray(img)).permute(2, 0, 1).float() / 255.0\n        img_t = img_t.unsqueeze(0)  # (1, 3, H, W)\n        # 180 deg flip: flip both H and W dims, matching LiberoProcessorStep\n        img_t = torch.flip(img_t, dims=[2, 3])\n        batch[cam_key] = img_t.to(device)\n\n    state = extract_state(obs)\n    batch[\"observation.state\"] = torch.from_numpy(state).unsqueeze(0).to(device)  # (1, 8)\n\n    text = task_text if task_text.endswith(\"\\n\") else task_text + \"\\n\"\n    encoded = tokenizer(\n        [text], padding=\"longest\", max_length=48,\n        truncation=True, return_tensors=\"pt\",\n    )\n    batch[\"observation.language.tokens\"] = encoded[\"input_ids\"].to(device)\n    batch[\"observation.language.attention_mask\"] = encoded[\"attention_mask\"].bool().to(device)\n\n    return batch\n\n\n# --- ACIS pruning -------------------------------------------------------------\n\ndef find_connector(model):\n    for name, module in model.named_modules():\n        if name.endswith(\".connector\") or \"multi_modal_projector\" in name:\n            return module\n    return None\n\n\n@torch.no_grad()\ndef compute_acis_mask(wrapper, batch: dict, device: torch.device) -> torch.Tensor:\n    bm = wrapper.base_model\n    images, _ = wrapper.policy.prepare_images(batch)\n    vis_tokens, _ = wrapper._get_visual_tokens(images)\n\n    B = vis_tokens.shape[0]\n    noise = bm.sample_noise(\n        (B, bm.config.chunk_size, bm.config.max_action_dim), device\n    )\n    time = torch.ones(B, device=device)\n    suffix_embs, _, _ = bm.embed_suffix(noise, time)\n    scores = wrapper.acis(suffix_embs, vis_tokens)\n\n    N_vis = vis_tokens.shape[1]\n    k = max(1, int(N_vis * wrapper.k_ratio))\n    _, topk_idx = torch.topk(scores, k, dim=-1)\n    mask = torch.zeros(B, N_vis, device=device)\n    mask.scatter_(1, topk_idx, 1.0)\n    return mask\n\n\ndef register_acis_hook(connector, mask: torch.Tensor):\n    def hook_fn(module, input, output):\n        tokens = output[0] if isinstance(output, tuple) else output\n        if tokens.dim() != 3 or tokens.shape[1] != mask.shape[1]:\n            return output\n        masked = tokens * mask[:tokens.shape[0]].unsqueeze(-1)\n        if isinstance(output, tuple):\n            return (masked,) + output[1:]\n        return masked\n    return connector.register_forward_hook(hook_fn)\n\n\n# --- Action prediction -------------------------------------------------------\n\n@torch.no_grad()\ndef predict_actions(policy, batch: dict) -> torch.Tensor:\n    \"\"\"Returns (chunk_size, action_dim) actions for batch_size=1.\"\"\"\n    images, img_masks = policy.prepare_images(batch)\n    state = policy.prepare_state(batch)\n    lang_tokens = batch[\"observation.language.tokens\"]\n    lang_masks = batch[\"observation.language.attention_mask\"]\n\n    actions = policy.model.sample_actions(\n        images, img_masks, lang_tokens, lang_masks, state\n    )\n    original_action_dim = policy.config.action_feature.shape[0]\n    return actions[0, :, :original_action_dim]  # (chunk_size, action_dim)\n\n\n# --- Statistics ---------------------------------------------------------------\n\ndef wilson_ci(successes: int, total: int, z: float = 1.96):\n    if total == 0:\n        return 0.0, 0.0, 1.0\n    p = successes / total\n    denom = 1 + z ** 2 / total\n    center = (p + z ** 2 / (2 * total)) / denom\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\n    return center, max(0.0, center - spread), min(1.0, center + spread)\n\n\n# --- Main ---------------------------------------------------------------------\n\ndef run_evaluation(args):\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 400)\n    output_path = Path(args.output or f\"eval_results/libero_{args.suite}.json\")\n\n    log.info(\"Suite: %s | Device: %s | Mode: %s | Episodes/task: %d | Max steps: %d\",\n             args.suite, device, args.mode, args.num_episodes, max_steps)\n\n    np.random.seed(args.seed)\n    torch.manual_seed(args.seed)\n\n    # Load model\n    log.info(\"Loading model from %s ...\", args.checkpoint)\n    t0 = time_mod.time()\n    policy, wrapper, config = load_model(args, device)\n    log.info(\"Model loaded in %.1fs\", time_mod.time() - t0)\n\n    from train import get_tokenizer_from_policy\n    tokenizer = get_tokenizer_from_policy(policy)\n\n    ds_cfg = config.get(\"dataset\", {})\n    camera_keys = ds_cfg.get(\"features\", {}).get(\"cameras\", [\n        \"observation.images.image\", \"observation.images.image2\"\n    ])\n\n    connector = None\n    if args.mode == \"acis_prune\":\n        connector = find_connector(policy.model)\n        if connector is None:\n            raise RuntimeError(\"Cannot find connector for ACIS hook\")\n        log.info(\"Connector found for ACIS pruning\")\n\n    # Load LIBERO suite\n    from libero.libero import benchmark\n    from lerobot.envs.libero import get_task_init_states, LiberoEnv\n\n    bench_dict = benchmark.get_benchmark_dict()\n    if args.suite not in bench_dict:\n        raise ValueError(f\"Unknown suite '{args.suite}'. Available: {sorted(bench_dict.keys())}\")\n    task_suite = bench_dict[args.suite]()\n    n_tasks = len(task_suite.tasks)\n\n    task_ids = list(range(n_tasks))\n    if args.task_ids:\n        task_ids = [int(x) for x in args.task_ids.split(\",\")]\n\n    log.info(\"Suite '%s' has %d tasks, evaluating %d: %s\",\n             args.suite, n_tasks, len(task_ids), task_ids)\n\n    # Per-task results\n    all_task_results = {}\n    total_successes = 0\n    total_episodes = 0\n\n    for task_id in task_ids:\n        task = task_suite.get_task(task_id)\n        task_desc = task.language\n        log.info(\"--- Task %d: %s ---\", task_id, task_desc)\n\n        init_states = get_task_init_states(task_suite, task_id)\n        n_init = len(init_states)\n\n        env = LiberoEnv(\n            task_suite=task_suite,\n            task_id=task_id,\n            task_suite_name=args.suite,\n            camera_name=\"agentview_image,robot0_eye_in_hand_image\",\n            obs_type=\"pixels_agent_pos\",\n            observation_width=256,\n            observation_height=256,\n            init_states=True,\n            n_envs=args.num_episodes,\n            episode_index=0,\n            control_mode=\"relative\",\n        )\n\n        task_successes = []\n        task_lengths = []\n\n        for ep in range(args.num_episodes):\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\n            action_chunk = None\n            action_idx = 0\n            success = False\n\n            for step in range(max_steps):\n                if action_chunk is None or action_idx >= args.action_horizon:\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\n\n                    if args.mode == \"acis_prune\":\n                        mask = compute_acis_mask(wrapper, batch, device)\n                        hook_handle = register_acis_hook(connector, mask)\n                        action_chunk = predict_actions(policy, batch)\n                        hook_handle.remove()\n                    else:\n                        action_chunk = predict_actions(policy, batch)\n\n                    action_idx = 0\n\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\n                action = np.clip(action, -1.0, 1.0)\n                action_idx += 1\n\n                obs, reward, terminated, truncated, info = env.step(action)\n\n                if info.get(\"is_success\", False):\n                    success = True\n                    break\n\n                if terminated or truncated:\n                    break\n\n            ep_steps = step + 1\n            task_successes.append(success)\n            task_lengths.append(ep_steps)\n\n            log.info(\n                \"  Ep %d/%d | %s | steps=%d\",\n                ep + 1, args.num_episodes,\n                \"SUCCESS\" if success else \"FAIL\", ep_steps,\n            )\n\n        env.close()\n\n        n_succ = sum(task_successes)\n        n_total = len(task_successes)\n        sr = n_succ / n_total if n_total > 0 else 0.0\n\n        all_task_results[task_id] = {\n            \"task_id\": task_id,\n            \"task_description\": task_desc,\n            \"success_count\": n_succ,\n            \"total_episodes\": n_total,\n            \"success_rate\": round(sr, 4),\n            \"mean_steps\": round(float(np.mean(task_lengths)), 1),\n        }\n        total_successes += n_succ\n        total_episodes += n_total\n\n        log.info(\"  Task %d SR: %d/%d (%.1f%%)\", task_id, n_succ, n_total, sr * 100)\n\n    # Overall\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\n\n    log.info(\"=\" * 60)\n    log.info(\"SUITE: %s | MODE: %s\", args.suite, args.mode)\n    log.info(\"Overall SR: %d/%d (%.1f%%)\", total_successes, total_episodes, overall_sr * 100)\n    log.info(\"95%% Wilson CI: [%.1f%%, %.1f%%]\", ci_lo * 100, ci_hi * 100)\n\n    for tid, tr in sorted(all_task_results.items()):\n        log.info(\"  Task %d: %.0f%% (%d/%d) -- %s\",\n                 tid, tr[\"success_rate\"] * 100, tr[\"success_count\"],\n                 tr[\"total_episodes\"], tr[\"task_description\"])\n    log.info(\"=\" * 60)\n\n    summary = {\n        \"suite\": args.suite,\n        \"mode\": args.mode,\n        \"checkpoint\": args.checkpoint,\n        \"config\": args.config,\n        \"total_episodes\": total_episodes,\n        \"total_successes\": total_successes,\n        \"overall_success_rate\": round(overall_sr, 4),\n        \"wilson_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"num_episodes_per_task\": args.num_episodes,\n        \"max_steps\": max_steps,\n        \"action_horizon\": args.action_horizon,\n        \"seed\": args.seed,\n        \"per_task\": all_task_results,\n    }\n\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    log.info(\"Results saved to %s\", output_path)\n\n    return summary\n\n\nif __name__ == \"__main__\":\n    args = parse_args()\n    run_evaluation(args)\nSCRIPT_EOF\necho \"Script written: $(wc -l /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py) lines\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "94fc6ea4-a9c4-4b6b-b0c0-268a070adddb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ed79pEZEHVzp5445sxNSD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6135,
+                "cache_read_input_tokens": 93724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6135
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-16T16:42:47.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M9ejUqfaaUS95t1Jmcp3Pu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written: 429 /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py lines\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "334cdbed-574b-45ef-946d-1094029e5a2c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written: 429 /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py lines\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written: 429 /root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py lines\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+              }
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script uploaded. Now I need a checkpoint for the dry-run. The aloha baseline checkpoint has state_dim=14 / action_dim=14, but LIBERO needs state_dim=8 / action_dim=7. The config adapts these dimensions, so using the aloha checkpoint will cause a mismatch on `load_state_dict`. Let me check if there's a `libero_full_ft` checkpoint being trained on cqa1."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "ae0a12c0-3cfc-4f1b-a7dd-6986ba775ffc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JebtRSTD9t6QHt67uqu3RJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5293,
+                "cache_read_input_tokens": 99859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5293
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQebT4zD4yAMGy1w8TutLq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "cat /root/autodl-tmp/importance_margin_vla_compress/configs/libero_full_ft.yaml",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "1da9151e-a296-4d76-a1dd-5e26c70f6f62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JebtRSTD9t6QHt67uqu3RJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5293,
+                "cache_read_input_tokens": 99859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5293
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-16T16:42:55.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQebT4zD4yAMGy1w8TutLq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# LIBERO Full Expert FT: freeze VLM+vision, full train action expert (no LoRA)\\\\n\\\\n_base_: libero_baseline.yaml\\\\n\\\\nmodel:\\\\n  train_expert_only: true\\\\n  lora:\\\\n    rank: 0\\\\n\\\\ntraining:\\\\n  output_dir: \\\\\\\"checkpoints/libero_full_ft\\\\\\\"\\\\n  save_every: 10000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "cb7e2fef-2de0-4c8e-ae55-fe0923087e39",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# LIBERO Full Expert FT: freeze VLM+vision, full train action expert (no LoRA)\\\\n\\\\n_base_: libero_baseline.yaml\\\\n\\\\nmodel:\\\\n  train_expert_only: true\\\\n  lora:\\\\n    rank: 0\\\\n\\\\ntraining:\\\\n  output_dir: \\\\\\\"checkpoints/libero_full_ft\\\\\\\"\\\\n  save_every: 10000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# LIBERO Full Expert FT: freeze VLM+vision, full train action expert (no LoRA)\\n\\n_base_: libero_baseline.yaml\\n\\nmodel:\\n  train_expert_only: true\\n  lora:\\n    rank: 0\\n\\ntraining:\\n  output_dir: \\\"checkpoints/libero_full_ft\\\"\\n  save_every: 10000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XroiisAsHDEWyzfKz1Pavt",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "importance_margin_vla_compress",
+                "filters": {
+                  "status": "RUNNING"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "a045487e-23da-4f11-8d1d-63709a46aacc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JebtRSTD9t6QHt67uqu3RJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5293,
+                "cache_read_input_tokens": 99859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5293
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-16T16:42:55.401Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XroiisAsHDEWyzfKz1Pavt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"libero_fullft_seed0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T15:59:20.198Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:27.996Z\\\"}, \\\"libero_lora_seed0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T15:59:19.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:25.886Z\\\"}, \\\"libero_full_ft_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:17.482Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:42.222Z\\\", \\\"hypothesis\\\": \\\"SmolVLA full expert FT (train_expert_only=True, 99.9M params) on LIBERO, 验证 flow matching 推理 pipeline 正确，目标复现 >50% SR\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1987, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.193, 0.192, 0.203, 0.193, 0.213]}}}, \\\"libero_lora_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:19.278Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:41.117Z\\\", \\\"hypothesis\\\": \\\"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1736, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.166, 0.177, 0.154, 0.198, 0.174]}}}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.072}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "1aac3e44-cec3-4cb1-8517-c44353617a57",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"libero_fullft_seed0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T15:59:20.198Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:27.996Z\\\"}, \\\"libero_lora_seed0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T15:59:19.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:59:25.886Z\\\"}, \\\"libero_full_ft_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:17.482Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:42.222Z\\\", \\\"hypothesis\\\": \\\"SmolVLA full expert FT (train_expert_only=True, 99.9M params) on LIBERO, 验证 flow matching 推理 pipeline 正确，目标复现 >50% SR\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1987, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.193, 0.192, 0.203, 0.193, 0.213]}}}, \\\"libero_lora_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T14:20:19.278Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:35:41.117Z\\\", \\\"hypothesis\\\": \\\"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\\\", \\\"metrics\\\": {\\\"diversity_10k\\\": {\\\"noise_diversity_std\\\": 0.1736, \\\"pass\\\": true, \\\"threshold\\\": 0.05, \\\"per_obs\\\": [0.166, 0.177, 0.154, 0.198, 0.174]}}}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.072}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"libero_fullft_seed0\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:59:20.198Z\", \"updated_at\": \"2026-05-16T15:59:27.996Z\"}, \"libero_lora_seed0\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:59:19.643Z\", \"updated_at\": \"2026-05-16T15:59:25.886Z\"}, \"libero_full_ft_baseline\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T14:20:17.482Z\", \"updated_at\": \"2026-05-16T15:35:42.222Z\", \"hypothesis\": \"SmolVLA full expert FT (train_expert_only=True, 99.9M params) on LIBERO, 验证 flow matching 推理 pipeline 正确，目标复现 >50% SR\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1987, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.193, 0.192, 0.203, 0.193, 0.213]}}}, \"libero_lora_baseline\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T14:20:19.278Z\", \"updated_at\": \"2026-05-16T15:35:41.117Z\", \"hypothesis\": \"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1736, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.166, 0.177, 0.154, 0.198, 0.174]}}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.072}}"
+              }
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see there are 4 LIBERO experiments running. The `libero_full_ft_baseline` is the one being trained on cqa1. I need to check if there are any checkpoints saved yet. Let me also check the `libero_fullft_seed0` and `libero_lora_seed0` experiments.\n\nWait, the training started ~2h ago and runs for ~4h. Let me check if 25K checkpoint is available. But the checkpoints are on cqa1, not westd.\n\nFor the dry-run, I have two options:\n1. Try to scp a checkpoint from cqa1\n\n\n2. Use the pretrained smolvla_base model directly without loading a checkpoint\n\nLooking at the model loading code, `libero_full_ft.yaml` has `train_expert_only: true` and `lora.rank: 0`, so there's no LoRA involved. The `load_smolvla_policy` function loads from the pretrained path and adapts projections, so I can skip checkpoint loading and test the full pipeline with just the pretrained model. I'll modify the script to accept `--checkpoint none` or use a dummy path that triggers the pretrained model directly.\n\nActually, since `libero_full_ft.yaml` inherits from `libero_baseline.yaml` which points to the smolvla_base model already on westd, I can just load the pretrained model with the LIBERO config (state_dim=8, action_dim=7, 2 cameras), save a minimal checkpoint, and run eval with that. Or even simpler—modify the script to accept `--checkpoint pretrained` to skip checkpoint loading entirely and use the pretrained model as-is.\n\nThe simplest path forward is just saving the pretrained model's state as a checkpoint. But wait, I'm realizing something about the weight loading: if I use `strict=False` with an aloha checkpoint on a LIBERO-adapted model, the dimension mismatch shouldn't actually matter since the underlying projection layers stay the same shape—only the config metadata changes. The actual weights should load fine.\n\nSo I can use the aloha baseline checkpoint with the LIBERO config for a dry-run, even though the outputs will be garbage since it's trained on a different task. The tricky part is that aloha was trained with LoRA rank=32 while libero_full_ft has rank=0, so the checkpoint will have LoRA parameters that the model won't expect, but `strict=False` should just warn about the mismatched keys.\n\nThere's also a camera mismatch—aloha uses one camera while LIBERO expects two—but since the vision encoder processes each image independently, this shouldn't cause weight mismatches. Actually, I should reconsider and use `libero_baseline.yaml` instead, which has LoRA rank=32 to match the checkpoint.\n\nThough wait, the pretrained models differ between the two configs. Let me just run the dry-run with the baseline checkpoint and libero_baseline config using task_ids=0 and 3 episodes to verify the pipeline works, even if the predictions are garbage. I'm also concerned about whether `load_smolvla_policy` properly handles the `train_expert_only` flag.\n\nActually, that flag only matters during training anyway, so both configs should behave identically at eval time. Let me execute the dry-run now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "5ec82fb9-3c72-4418-8725-b1c0b2a1dbe2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MH8xMTYVorFWyNaccx2xgT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1256,
+                "cache_read_input_tokens": 105152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1256
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good - training is running on cqa1. For dry-run, I'll use the aloha baseline checkpoint with LIBERO config (strict=False will skip mismatched keys). The actions will be garbage but the pipeline test will validate env/model interaction. Let me run it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "49d00c8e-bcb0-46ae-aa6c-d2d2970e1718",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MH8xMTYVorFWyNaccx2xgT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1256,
+                "cache_read_input_tokens": 105152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1256
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FfXrNbXiE9qUtCjWKckRW6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-27271",
+                "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python eval_success_rate_libero.py --checkpoint checkpoints/baseline/latest/checkpoint.pt --config configs/libero_baseline.yaml --suite libero_object --num_episodes 3 --gpu 0 --task_ids 0 --max_steps 10 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "4a0a2d83-18dc-48a5-b22d-783a41cc18e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MH8xMTYVorFWyNaccx2xgT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1256,
+                "cache_read_input_tokens": 105152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1256
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-16T16:44:06.962Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FfXrNbXiE9qUtCjWKckRW6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 00:43:45 [INFO] Suite: libero_object | Device: cuda:0 | Mode: baseline | Episodes/task: 3 | Max steps: 10\\\\n2026-05-17 00:43:45 [INFO] Loading model from checkpoints/baseline/latest/checkpoint.pt ...\\\\n2026-05-17 00:43:58 [INFO] Updated state feature shape: (6,) -> (8,)\\\\n2026-05-17 00:43:58 [INFO] Updated action feature shape: (6,) -> (7,)\\\\n2026-05-17 00:43:58 [INFO] Updated cameras: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3'] -> ['observation.images.image', 'observation.images.image2'] (shape=(3, 256, 256))\\\\n2026-05-17 00:43:58 [INFO] LoRA applied: rank=32, alpha=16, trainable params: 1485312\\\\n2026-05-17 00:43:59 [INFO] Model loaded in 14.0s\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-17 00:43:59 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-17 00:43:59 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-17 00:43:59 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-17 00:43:59 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n2026-05-17 00:43:59 [INFO] Suite 'libero_object' has 10 tasks, evaluating 1: [0]\\\\n2026-05-17 00:43:59 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\\\n2026-05-17 00:44:03 [INFO]   Ep 1/3 | FAIL | steps=10\\\\n2026-05-17 00:44:04 [INFO]   Ep 2/3 | FAIL | steps=10\\\\n2026-05-17 00:44:05 [INFO]   Ep 3/3 | FAIL | steps=10\\\\n2026-05-17 00:44:05 [INFO]   Task 0 SR: 0/3 (0.0%)\\\\n2026-05-17 00:44:05 [INFO] ============================================================\\\\n2026-05-17 00:44:05 [INFO] SUITE: libero_object | MODE: baseline\\\\n2026-05-17 00:44:05 [INFO] Overall SR: 0/3 (0.0%)\\\\n2026-05-17 00:44:05 [INFO] 95% Wilson CI: [0.0%, 56.2%]\\\\n2026-05-17 00:44:05 [INFO]   Task 0: 0% (0/3) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-17 00:44:05 [INFO] ============================================================\\\\n2026-05-17 00:44:05 [INFO] Results saved to eval_results/libero_libero_object.json\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "cb29195d-5dd2-4086-9206-ad8e3e367f88",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 00:43:45 [INFO] Suite: libero_object | Device: cuda:0 | Mode: baseline | Episodes/task: 3 | Max steps: 10\\\\n2026-05-17 00:43:45 [INFO] Loading model from checkpoints/baseline/latest/checkpoint.pt ...\\\\n2026-05-17 00:43:58 [INFO] Updated state feature shape: (6,) -> (8,)\\\\n2026-05-17 00:43:58 [INFO] Updated action feature shape: (6,) -> (7,)\\\\n2026-05-17 00:43:58 [INFO] Updated cameras: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3'] -> ['observation.images.image', 'observation.images.image2'] (shape=(3, 256, 256))\\\\n2026-05-17 00:43:58 [INFO] LoRA applied: rank=32, alpha=16, trainable params: 1485312\\\\n2026-05-17 00:43:59 [INFO] Model loaded in 14.0s\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-17 00:43:59 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-17 00:43:59 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-17 00:43:59 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-17 00:43:59 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n2026-05-17 00:43:59 [INFO] Suite 'libero_object' has 10 tasks, evaluating 1: [0]\\\\n2026-05-17 00:43:59 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\\\n2026-05-17 00:44:03 [INFO]   Ep 1/3 | FAIL | steps=10\\\\n2026-05-17 00:44:04 [INFO]   Ep 2/3 | FAIL | steps=10\\\\n2026-05-17 00:44:05 [INFO]   Ep 3/3 | FAIL | steps=10\\\\n2026-05-17 00:44:05 [INFO]   Task 0 SR: 0/3 (0.0%)\\\\n2026-05-17 00:44:05 [INFO] ============================================================\\\\n2026-05-17 00:44:05 [INFO] SUITE: libero_object | MODE: baseline\\\\n2026-05-17 00:44:05 [INFO] Overall SR: 0/3 (0.0%)\\\\n2026-05-17 00:44:05 [INFO] 95% Wilson CI: [0.0%, 56.2%]\\\\n2026-05-17 00:44:05 [INFO]   Task 0: 0% (0/3) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-17 00:44:05 [INFO] ============================================================\\\\n2026-05-17 00:44:05 [INFO] Results saved to eval_results/libero_libero_object.json\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.65}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 00:43:45 [INFO] Suite: libero_object | Device: cuda:0 | Mode: baseline | Episodes/task: 3 | Max steps: 10\\n2026-05-17 00:43:45 [INFO] Loading model from checkpoints/baseline/latest/checkpoint.pt ...\\n2026-05-17 00:43:58 [INFO] Updated state feature shape: (6,) -> (8,)\\n2026-05-17 00:43:58 [INFO] Updated action feature shape: (6,) -> (7,)\\n2026-05-17 00:43:58 [INFO] Updated cameras: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3'] -> ['observation.images.image', 'observation.images.image2'] (shape=(3, 256, 256))\\n2026-05-17 00:43:58 [INFO] LoRA applied: rank=32, alpha=16, trainable params: 1485312\\n2026-05-17 00:43:59 [INFO] Model loaded in 14.0s\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-17 00:43:59 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-17 00:43:59 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-17 00:43:59 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-17 00:43:59 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n2026-05-17 00:43:59 [INFO] Suite 'libero_object' has 10 tasks, evaluating 1: [0]\\n2026-05-17 00:43:59 [INFO] --- Task 0: pick up the alphabet soup and place it in the basket ---\\n2026-05-17 00:44:03 [INFO]   Ep 1/3 | FAIL | steps=10\\n2026-05-17 00:44:04 [INFO]   Ep 2/3 | FAIL | steps=10\\n2026-05-17 00:44:05 [INFO]   Ep 3/3 | FAIL | steps=10\\n2026-05-17 00:44:05 [INFO]   Task 0 SR: 0/3 (0.0%)\\n2026-05-17 00:44:05 [INFO] ============================================================\\n2026-05-17 00:44:05 [INFO] SUITE: libero_object | MODE: baseline\\n2026-05-17 00:44:05 [INFO] Overall SR: 0/3 (0.0%)\\n2026-05-17 00:44:05 [INFO] 95% Wilson CI: [0.0%, 56.2%]\\n2026-05-17 00:44:05 [INFO]   Task 0: 0% (0/3) -- pick up the alphabet soup and place it in the basket\\n2026-05-17 00:44:05 [INFO] ============================================================\\n2026-05-17 00:44:05 [INFO] Results saved to eval_results/libero_libero_object.json\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.65}}"
+              }
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。所有 5 个检查点都验证成功：\n\n- **env reset 不报错** ✓\n- **model 推理不报错** ✓ (LoRA checkpoint + LIBERO config, strict=False)\n- **env.step(action) 不报错** ✓\n- **episode 正常终止** ✓ (max_steps=10 timeout)\n- **输出格式正确** ✓ (per-task SR + overall SR + JSON saved)\n\n脚本完整运行：task 0 \"pick up the alphabet soup and place it in the basket\"，3 episodes 全 FAIL（预期，因为用的是 aloha checkpoint）。\n\n让我验证一下输出的 JSON 结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "1990b267-08f1-43cd-bfdd-46614ef26afa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YHQh1JxSyyDNysMxbjCLN7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2789,
+                "cache_read_input_tokens": 106408,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2789
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QvKyq9yUwNQJktAGDZUWhH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/libero_libero_object.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "564f94f3-13a5-454e-b3e8-ad1f36e421e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YHQh1JxSyyDNysMxbjCLN7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2789,
+                "cache_read_input_tokens": 106408,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2789
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-16T16:44:27.067Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QvKyq9yUwNQJktAGDZUWhH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"baseline\\\\\\\",\\\\n  \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/baseline/latest/checkpoint.pt\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"configs/libero_baseline.yaml\\\\\\\",\\\\n  \\\\\\\"total_episodes\\\\\\\": 3,\\\\n  \\\\\\\"total_successes\\\\\\\": 0,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"wilson_ci_95\\\\\\\": [\\\\n    0.0,\\\\n    0.5615\\\\n  ],\\\\n  \\\\\\\"num_episodes_per_task\\\\\\\": 3,\\\\n  \\\\\\\"max_steps\\\\\\\": 10,\\\\n  \\\\\\\"action_horizon\\\\\\\": 50,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the alphabet soup and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 0,\\\\n      \\\\\\\"total_episodes\\\\\\\": 3,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_steps\\\\\\\": 10.0\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "815213c9-3174-47d2-b354-d51befa1130b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"suite\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"baseline\\\\\\\",\\\\n  \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/baseline/latest/checkpoint.pt\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"configs/libero_baseline.yaml\\\\\\\",\\\\n  \\\\\\\"total_episodes\\\\\\\": 3,\\\\n  \\\\\\\"total_successes\\\\\\\": 0,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"wilson_ci_95\\\\\\\": [\\\\n    0.0,\\\\n    0.5615\\\\n  ],\\\\n  \\\\\\\"num_episodes_per_task\\\\\\\": 3,\\\\n  \\\\\\\"max_steps\\\\\\\": 10,\\\\n  \\\\\\\"action_horizon\\\\\\\": 50,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"task_id\\\\\\\": 0,\\\\n      \\\\\\\"task_description\\\\\\\": \\\\\\\"pick up the alphabet soup and place it in the basket\\\\\\\",\\\\n      \\\\\\\"success_count\\\\\\\": 0,\\\\n      \\\\\\\"total_episodes\\\\\\\": 3,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_steps\\\\\\\": 10.0\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"suite\\\": \\\"libero_object\\\",\\n  \\\"mode\\\": \\\"baseline\\\",\\n  \\\"checkpoint\\\": \\\"checkpoints/baseline/latest/checkpoint.pt\\\",\\n  \\\"config\\\": \\\"configs/libero_baseline.yaml\\\",\\n  \\\"total_episodes\\\": 3,\\n  \\\"total_successes\\\": 0,\\n  \\\"overall_success_rate\\\": 0.0,\\n  \\\"wilson_ci_95\\\": [\\n    0.0,\\n    0.5615\\n  ],\\n  \\\"num_episodes_per_task\\\": 3,\\n  \\\"max_steps\\\": 10,\\n  \\\"action_horizon\\\": 50,\\n  \\\"seed\\\": 42,\\n  \\\"per_task\\\": {\\n    \\\"0\\\": {\\n      \\\"task_id\\\": 0,\\n      \\\"task_description\\\": \\\"pick up the alphabet soup and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 3,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 10.0\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全通过，JSON 输出格式正确。\n\n**总结**：\n\n`eval_success_rate_libero.py` 已完成，核心修复：\n1. **Image 180° flip** — `torch.flip(img_t, dims=[2, 3])`，与 `LiberoProcessorStep` 一致\n2. **State quat→axis_angle** — 实现 `quat_to_axis_angle()`，提取 8D state `(eef_pos + axis_angle + gripper_qpos)`\n3. **Per-suite max episode length** — `SUITE_MAX_STEPS` dict，spatial/object=280, goal=300, long=520\n4. **LIBERO benchmark init states** — 使用 `get_task_init_states()` 加载固定初始状态\n5. **Per-task language description** — 从 `task.language` 获取，自动加 `\\n` 后缀\n\n**Dry-run 结果** (task 0, 3 episodes, max_steps=10):\n- env reset/step/close 全部正常\n- 模型推理无错误（LoRA checkpoint + LIBERO config 兼容）\n- 输出 per-task + overall SR + Wilson CI + JSON\n\n脚本在 westd-27271 的 `/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py`，等 cqa1 上 LIBERO checkpoint 可用后即可正式跑评测。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "uuid": "e8c33756-ffc7-45fe-98e7-f05b507ede65",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RecrUertfG6Jg7W5h8bpXH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 779,
+                "cache_read_input_tokens": 109197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 779
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全通过，JSON 输出格式正确。\n\n**总结**：\n\n`eval_success_rate_libero.py` 已完成，核心修复：\n1. **Image 180° flip** — `torch.flip(img_t, dims=[2, 3])`，与 `LiberoProcessorStep` 一致\n2. **State quat→axis_angle** — 实现 `quat_to_axis_angle()`，提取 8D state `(eef_pos + axis_angle + gripper_qpos)`\n3. **Per-suite max episode length** — `SUITE_MAX_STEPS` dict，spatial/object=280, goal=300, long=520\n4. **LIBERO benchmark init states** — 使用 `get_task_init_states()` 加载固定初始状态\n5. **Per-task language description** — 从 `task.language` 获取，自动加 `\\n` 后缀\n\n**Dry-run 结果** (task 0, 3 episodes, max_steps=10):\n- env reset/step/close 全部正常\n- 模型推理无错误（LoRA checkpoint + LIBERO config 兼容）\n- 输出 per-task + overall SR + Wilson CI + JSON\n\n脚本在 westd-27271 的 `/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py`，等 cqa1 上 LIBERO checkpoint 可用后即可正式跑评测。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 686186,
+            "duration_api_ms": 641275,
+            "num_turns": 59,
+            "stop_reason": "end_turn",
+            "session_id": "263a88fc-f3bf-488d-8309-4d16d9c1616a",
+            "total_cost_usd": 2.4879343,
+            "usage": {
+              "input_tokens": 30,
+              "cache_creation_input_tokens": 98135,
+              "cache_read_input_tokens": 1835882,
+              "output_tokens": 21889,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 98135,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 399,
+                  "cache_read_input_tokens": 109197,
+                  "cache_creation_input_tokens": 779,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 779
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2882,
+                "outputTokens": 14793,
+                "cacheReadInputTokens": 1626088,
+                "cacheCreationInputTokens": 135855,
+                "webSearchRequests": 0,
+                "costUSD": 0.4092745500000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 30,
+                "outputTokens": 21889,
+                "cacheReadInputTokens": 1835882,
+                "cacheCreationInputTokens": 98135,
+                "webSearchRequests": 0,
+                "costUSD": 2.07865975,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "09194190-a5d1-467a-b755-929c8dc02267"
+          },
+          "id": "event-000389"
+        }
+      ]
+    }
+  ]
+}

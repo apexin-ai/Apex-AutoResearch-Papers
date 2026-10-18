@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "703b481dc0f5ee194c5d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis nli bias extended",
+  "task_key": "worker_analysis_nli-bias-extended_20260522T224735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nli-bias-extended_20260522T224735_result.json",
+    "occurrence": 1,
+    "bytes": 1597,
+    "sha256": "80a1f95e333d75f8a6990b3af33f9dcde19db9aaf889dc6bcd7a917afbb2fe67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results:\n\n## Results Summary\n\n### Formality (88 pass / 12 reject) — No Bias Detected\n\n| Dimension | Pass | Reject | Test | p-value |\n|---|---|---|---|---|\n| Topic distribution | — | — | χ²=4.06 | 0.541 |\n| Token count | 104.7±128.2 | 101.7±174.2 | KS=0.269 | 0.366 |\n| Avg sentence length | 13.1 | 13.5 | MWU | 0.614 |\n| Sentence count | 7.7 | 5.8 | MWU | 0.163 |\n| Dep tree depth | 4.59±1.71 | 5.10±2.55 | MWU | 0.637 |\n\nAll dimensions non-significant. NLI gate on formality data is unbiased across these axes.\n\n### Verbosity (86 pass / 14 reject) — Significant Bias on Length\n\n| Dimension | Pass | Reject | Test | p-value |\n|---|---|---|---|---|\n| Topic distribution | — | — | χ²=7.85 | 0.165 |\n| **Token count** | **109.5±133.8** | **72.3±134.4** | **KS=0.503** | **0.003** |\n| **Avg sentence length** | **13.8** | **9.0** | **MWU** | **0.006** |\n| Sentence count | 7.8 | 5.4 | MWU | 0.050 |\n| Dep tree depth | 4.73±1.68 | 4.21±2.58 | MWU | 0.110 |\n\nVerbosity NLI gate shows **significant selection bias**: rejected samples are systematically shorter (72 vs 110 tokens, p=0.003) with shorter sentences (9.0 vs 13.8 words, p=0.006). This is expected — concise originals undergoing verbosity expansion produce CF texts that are structurally very different, making NLI entailment harder to satisfy.\n\n### Scaled Formality (355 pass / 0 reject)\n\nAll 355 pairs pass NLI ≥ 0.90. No reject group to compare.\n\n**Output**: `/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

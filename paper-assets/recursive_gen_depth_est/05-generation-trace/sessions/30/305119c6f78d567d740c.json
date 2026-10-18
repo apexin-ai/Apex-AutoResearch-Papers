@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "305119c6f78d567d740c",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh gpt2xl topk50 eval",
+  "task_key": "worker_ssh_gpt2xl_topk50_eval_20260515T022607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpt2xl_topk50_eval_20260515T022607.log",
+    "occurrence": 1,
+    "bytes": 1045692,
+    "sha256": "cb213dd7ef9c613992365fb5dd2578855f16e9195f2272fc67bc5e196414440b"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 0,
+    "tool_calls": 229,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 84,
+      "tool_call": 229,
+      "tool_result": 229,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 547,
+      "chunks": [
+        {
+          "path": "305119c6f78d567d740c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "305119c6f78d567d740c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "305119c6f78d567d740c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "305119c6f78d567d740c-part-0004.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ]
+}

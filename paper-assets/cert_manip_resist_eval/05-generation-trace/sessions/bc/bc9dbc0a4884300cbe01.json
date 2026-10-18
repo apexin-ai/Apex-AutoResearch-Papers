@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bc9dbc0a4884300cbe01",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig1 aspect ratio",
+  "task_key": "worker_ops_fig1-aspect-ratio_20260525T123154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig1-aspect-ratio_20260525T123154_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "2e3ce049b3e8e3589ee6eb8d7c66d378b6c395b916c45154a42ee9f0670b8c49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已部署。\n\n**最终结果：**\n- 分辨率：2752×1536，宽高比 1.79:1\n- Gemini 图像模型固定输出 ~16:9，无法通过 prompt 进一步拉宽至 4:1\n- 数据值全部正确，三 panel 布局清晰，标题格式正确\n- 已覆盖 `fig_framework.pdf` 和 `fig_framework.png`\n\n如需精确控制 4:1 比例，需改用 matplotlib 手动绘制（而非 PaperBanana AI 生成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

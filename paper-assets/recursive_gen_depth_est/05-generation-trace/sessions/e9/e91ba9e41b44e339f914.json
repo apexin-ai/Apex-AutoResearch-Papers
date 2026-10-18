@@ -1,0 +1,2704 @@
+{
+  "schema_version": "1.0",
+  "id": "e91ba9e41b44e339f914",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "exp ablation pca supplement",
+  "task_key": "worker_exp_ablation_pca_supplement_20260515T173806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_ablation_pca_supplement_20260515T173806.jsonl",
+    "occurrence": 1,
+    "bytes": 77529,
+    "sha256": "f02ad2148c513e35a8297d4d85559028236eaa6c0e9dc3d2dbaef97c1caaea6f"
+  },
+  "statistics": {
+    "messages": 137,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "tool_call": 68,
+      "tool_result": 68,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:45:55.149054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T17:45:55.149472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T17:45:55.149669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/ -name \"*.npz\" -o -name \"features*\" -o -name \"*.csv\" -o -name \"*.pkl\" 2>/dev/null"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T17:45:55.149811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T17:45:55.149984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -rl \"RandomForest\" /root/autodl-tmp/recursive_gen_depth_est/src/ 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T17:45:55.150124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T17:45:55.150315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/ -name \"*.npz\" -o -name \"features*\" -o -name \"*.csv\" -o -name \"*.pkl\""
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T17:45:55.150468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -rl \"RandomForest\" /root/autodl-tmp/recursive_gen_depth_est/src/"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T17:45:55.150592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/src/"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T17:45:55.150725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_filtered.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_3class.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features_3class.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features_filtered.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_d4d5.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_depth_4.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_depth_5.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T17:45:55.150897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/src/atlas_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/__pycache__/atlas_analysis.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/__pycache__/baselines.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/baselines.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_strategy_loo.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_model_loo.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/plot_atlas_figures.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/atlas_v2_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_model_loo_detailed.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_strategy_loo_zscore.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/binary_pairwise_eval.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/granularity_ablation.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/w1_feature_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/n3_fold_std_bootstrap.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/w6_cross_strategy_per_class.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/d23_edd_bootstrap.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/shap_analysis_9cell.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/feature_ablation_9cell.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T17:45:55.151065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\natlas_analysis.py\\\\natlas_plots.py\\\\natlas_v2_analysis.py\\\\nbaselines.py\\\\nbinary_pairwise_eval.py\\\\ncross_model_loo.py\\\\ncross_model_loo_detailed.py\\\\ncross_strategy_loo.py\\\\ncross_strategy_loo_zscore.py\\\\nd23_edd_bootstrap.py\\\\ndcol_dataset.py\\\\ndcol_eval.py\\\\ndcol_feature_mlp.py\\\\ndcol_trainer.py\\\\ndcol_trainer_v6.py\\\\nfeature_ablation_9cell.py\\\\ngranularity_ablation.py\\\\nlr_zscore_cross_strategy.py\\\\nn2_deberta_finetune.py\\\\nn2_feature_overlap_analysis.py\\\\nn2_roberta_feature_overlap.py\\\\nn3_fold_std_bootstrap.py\\\\nplot_atlas_figures.py\\\\nshap_analysis_9cell.py\\\\nw1_feature_analysis.py\\\\nw6_cross_strategy_per_class.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T17:45:55.151223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/feature_ablation_9cell.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T17:45:55.151501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Feature ablation analysis across all 9 cells (3 models x 3 strategies).\\\\n# Sub-tasks: A) Top-k ablation, B) Per-category ablation, C) Forward selection, D) Correlation + VIF.\\\\n# RF params match existing pipeline: n_estimators=200, random_state=42, 5-fold stratified CV.\\\\n\\\\nimport json\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom pathlib import Path\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\", category=RuntimeWarning)\\\\n\\\\nROOT = Path(\\\\\\\"/root/autodl-tmp/recursive_gen_depth_est\\\\\\\")\\\\nOUT_DIR = ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"feature_ablation\\\\\\\"\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nFEATURES = [\\\\n    \\\\\\\"mean_ppl\\\\\\\", \\\\\\\"var_ppl\\\\\\\", \\\\\\\"skewness_ppl\\\\\\\", \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n    \\\\\\\"p10_ppl\\\\\\\", \\\\\\\"p25_ppl\\\\\\\", \\\\\\\"p50_ppl\\\\\\\", \\\\\\\"p75_ppl\\\\\\\", \\\\\\\"p90_ppl\\\\\\\",\\\\n    \\\\\\\"mean_surprisal\\\\\\\", \\\\\\\"var_surprisal\\\\\\\", \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n    \\\\\\\"type_token_ratio\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"bigram_entropy\\\\\\\", \\\\\\\"trigram_entropy\\\\\\\",\\\\n    \\\\\\\"rep_2gram\\\\\\\", \\\\\\\"rep_3gram\\\\\\\", \\\\\\\"rep_4gram\\\\\\\",\\\\n]\\\\n\\\\nCELLS = {\\\\n    \\\\\\\"pythia_nucleus095\\\\\\\": \\\\\\\"data/features_all.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia_temp09\\\\\\\": \\\\\\\"data/pythia_temp09/features.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia_topk50\\\\\\\": \\\\\\\"results/pythia_topk50/features.jsonl\\\\\\\",\\\\n    \\\\\\\"gpt2xl_nucleus095\\\\\\\": \\\\\\\"data/gpt2xl/features.jsonl\\\\\\\",\\\\n    \\\\\\\"gpt2xl_temp09\\\\\\\": \\\\\\\"results/gpt2xl_temp09/features.jsonl\\\\\\\",\\\\n    \\\\\\\"gpt2xl_topk50\\\\\\\": \\\\\\\"results/gpt2xl_topk50/features.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo_nucleus095\\\\\\\": \\\\\\\"data/olmo/features.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo_temp09\\\\\\\": \\\\\\\"results/olmo_temp09/features.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo_topk50\\\\\\\": \\\\\\\"results/olmo_topk50/features.jsonl\\\\\\\",\\\\n}\\\\n\\\\nCATEGORIES = {\\\\n    \\\\\\\"pe\n…[truncated 7312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T17:45:55.151670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T17:45:55.151799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/baselines.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T17:45:55.151958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 0, \\\\\\\"mean_ppl\\\\\\\": 1607.154718291221, \\\\\\\"var_ppl\\\\\\\": 158779688.72304317, \\\\\\\"skewness_ppl\\\\\\\": 10.406051089379453, \\\\\\\"kurtosis_ppl\\\\\\\": 114.01617768762445, \\\\\\\"p10_ppl\\\\\\\": 1.0253935757537525, \\\\\\\"p25_ppl\\\\\\\": 1.4685526791140988, \\\\\\\"p50_ppl\\\\\\\": 4.352294272371119, \\\\\\\"p75_ppl\\\\\\\": 39.40245503911115, \\\\\\\"p90_ppl\\\\\\\": 369.16657551683574, \\\\\\\"mean_surprisal\\\\\\\": 2.372938156607645, \\\\\\\"var_surprisal\\\\\\\": 6.239684146274182, \\\\\\\"entropy_of_surprisal\\\\\\\": 3.1822611603270903, \\\\\\\"type_token_ratio\\\\\\\": 0.570281124497992, \\\\\\\"hapax_ratio\\\\\\\": 0.7922535211267606, \\\\\\\"bigram_entropy\\\\\\\": 6.013228236535451, \\\\\\\"trigram_entropy\\\\\\\": 6.165336778855558, \\\\\\\"rep_2gram\\\\\\\": 0.11066398390342047, \\\\\\\"rep_3gram\\\\\\\": 0.028225806451612878, \\\\\\\"rep_4gram\\\\\\\": 0.014141414141414121}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T17:45:55.152231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBaseline battery for recursive generation depth estimation.\\\\n\\\\nBaselines (feature-based, 19-dim input):\\\\n  1. PPLRegressionBaseline  -- OLS regression on mean_ppl (single) or all 19 features (multi)\\\\n  2. CEClassificationBaseline -- MLP with cross-entropy loss (DCOL ablation, no contrastive loss)\\\\n  3. CORALBaseline -- Ordinal regression with K-1 binary classifiers (Cao et al., 2020)\\\\n  4. DivEyeBaseline -- Surprisal diversity features + XGBoost (Basani & Chen, TMLR 2026)\\\\n  5. RandomForestBaseline -- sklearn RF on 19-dim features\\\\n  6. LogisticRegressionBaseline -- sklearn LR on 19-dim features\\\\n\\\\nBaselines (text-based, raw text input):\\\\n  7. ZeroShotLLMBaseline -- Prompt an LLM (Claude/OpenAI) to classify depth directly\\\\n\\\\nUsage:\\\\n  python src/baselines.py --method ppl_reg --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method ce_mlp  --features_path data/features_all.jsonl --epochs 50\\\\n  python src/baselines.py --method coral   --features_path data/features_all.jsonl --epochs 50\\\\n  python src/baselines.py --method diveye  --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method rf      --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method lr      --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method zeroshot --data_dirs data/ --provider claude --max_eval_samples 200\\\\n  python src/baselines.py --method all     --features_path data/features_all.jsonl --epochs 50\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.optim as optim\\\\nfrom torch.utils.data import DataLoader, TensorDataset\\\\n\\\\nfrom sklearn.linear_model import LinearRegression\\\\nfrom sklearn.preprocessing import StandardScaler\\\\nfrom sklearn.model_selection import train_tes\n…[truncated 7115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T17:45:55.152424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T17:45:55.152558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"category_ablation.json\\\\ntopk_ablation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T17:45:55.152716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/src/pca_effective_dims.py\n# PCA effective dimensionality analysis across 9 cells (3 models x 3 strategies).\n# Reports number of principal components needed for 90/95/99% explained variance.\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nROOT = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\nOUT_DIR = ROOT / \"results\" / \"feature_ablation\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nFEATURES = [\n    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n    \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n]\n\nCELLS = {\n    \"pythia_nucleus095\": \"data/features_all.jsonl\",\n    \"pythia_temp09\": \"data/pythia_temp09/features.jsonl\",\n    \"pythia_topk50\": \"results/pythia_topk50/features.jsonl\",\n    \"gpt2xl_nucleus095\": \"data/gpt2xl/features.jsonl\",\n    \"gpt2xl_temp09\": \"results/gpt2xl_temp09/features.jsonl\",\n    \"gpt2xl_topk50\": \"results/gpt2xl_topk50/features.jsonl\",\n    \"olmo_nucleus095\": \"data/olmo/features.jsonl\",\n    \"olmo_temp09\": \"results/olmo_temp09/features.jsonl\",\n    \"olmo_topk50\": \"results/olmo_topk50/features.jsonl\",\n}\n\n\ndef load_cell(rel_path):\n    rows = []\n    with open(ROOT / rel_path) as f:\n        for line in f:\n            if line.strip():\n                rows.append(json.loads(line))\n    df = pd.DataFrame(rows)\n    X = df[FEATURES].values.astype(np.float64)\n    X = np.nan_to_num(X, nan=0.0, posinf=1e15, neginf=-1e15)\n    X = np.clip(X, -1e15, 1e15)\n    return X\n\n\ndef pca_analysis(X, label):\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    pca = PCA(n_components=min(19, X.shape[0]))\n    pca.fit(X_scaled)\n    evr = pca.explained_variance_ratio_\n    cumvar = np.cumsum(evr)\n\n    def n_for_threshold(threshold):\n        idx = np.searchsorted(cumvar, threshold)\n        return int(idx + 1) if idx < len(cumvar) else len(cumvar)\n\n    result = {\n        \"n_samples\": int(X.shape[0]),\n        \"n_90pct\": n_for_threshold(0.90),\n        \"n_95pct\": n_for_threshold(0.95),\n        \"n_99pct\": n_for_threshold(0.99),\n        \"explained_variance_ratio\": [round(float(v), 6) for v in evr],\n        \"cumulative_variance\": [round(float(v), 6) for v in cumvar],\n    }\n    print(f\"  {label}: 90%={result['n_90pct']}pc, 95%={result['n_95pct']}pc, 99%={result['n_99pct']}pc\")\n    return result\n\n\ndef main():\n    results = {}\n    all_X = []\n\n    for cell_name, rel_path in CELLS.items():\n        X = load_cell(rel_path)\n        all_X.append(X)\n        results[cell_name] = pca_analysis(X, cell_name)\n\n    X_merged = np.vstack(all_X)\n    results[\"merged_all\"] = pca_analysis(X_merged, \"merged_all\")\n\n    # Summary stats\n    n90s = [results[c][\"n_90pct\"] for c in CELLS]\n    n95s = [results[c][\"n_95pct\"] for c in CELLS]\n    n99s = [results[c][\"n_99pct\"] for c in CELLS]\n    results[\"summary\"] = {\n        \"n_90pct\": {\"mean\": round(np.mean(n90s), 1), \"min\": int(np.min(n90s)), \"max\": int(np.max(n90s))},\n        \"n_95pct\": {\"mean\": round(np.mean(n95s), 1), \"min\": int(np.min(n95s)), \"max\": int(np.max(n95s))},\n        \"n_99pct\": {\"mean\": round(np.mean(n99s), 1), \"min\": int(np.min(n99s)), \"max\": int(np.max(n99s))},\n    }\n\n    out_path = OUT_DIR / \"pca_effective_dims.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved {out_path}\")\n\n    # Scree plot\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n\n        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))\n\n        for cell_name in CELLS:\n            evr = results[cell_name][\"explained_variance_ratio\"]\n            ax1.plot(range(1, len(evr)+1), evr, marker=\"o\", markersize=3, alpha=0.6, label=cell_name)\n        evr_merged = results[\"merged_all\"][\"explained_variance_ratio\"]\n        ax1.plot(range(1, len(evr_merged)+1), evr_merged, \"k-\", linewidth=2, marker=\"s\", markersize=5, label=\"merged\")\n        ax1.set_xlabel(\"Principal Component\")\n        ax1.set_ylabel(\"Explained Variance Ratio\")\n        ax1.set_title(\"Individual Explained Variance\")\n        ax1.legend(fontsize=6, ncol=2)\n        ax1.grid(True, alpha=0.3)\n        ax1.set_xticks(range(1, 20, 2))\n\n        for cell_name in CELLS:\n            cumvar = results[cell_name][\"cumulative_variance\"]\n            ax2.plot(range(1, len(cumvar)+1), cumvar, marker=\"o\", markersize=3, alpha=0.6, label=cell_name)\n        cumvar_merged = results[\"merged_all\"][\"cumulative_variance\"]\n        ax2.plot(range(1, len(cumvar_merged)+1), cumvar_merged, \"k-\", linewidth=2, marker=\"s\", markersize=5, label=\"merged\")\n        for thresh in [0.90, 0.95, 0.99]:\n            ax2.axhline(y=thresh, color=\"gray\", linestyle=\"--\", alpha=0.5, linewidth=0.8)\n            ax2.text(19.2, thresh, f\"{thresh:.0%}\", fontsize=8, va=\"center\")\n        ax2.set_xlabel(\"Number of Components\")\n        ax2.set_ylabel(\"Cumulative Explained Variance\")\n        ax2.set_title(\"Cumulative Explained Variance\")\n        ax2.legend(fontsize=6, ncol=2)\n        ax2.grid(True, alpha=0.3)\n        ax2.set_xticks(range(1, 20, 2))\n        ax2.set_ylim(0, 1.05)\n\n        fig.tight_layout()\n        fig.savefig(OUT_DIR / \"pca_scree_plot.pdf\", dpi=150, bbox_inches=\"tight\")\n        fig.savefig(OUT_DIR / \"pca_scree_plot.png\", dpi=150, bbox_inches=\"tight\")\n        plt.close(fig)\n        print(f\"Saved pca_scree_plot.pdf/png\")\n    except Exception as e:\n        print(f\"Plot skipped: {e}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"pca_effective_dims.py written\""
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T17:45:55.152971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pca_effective_dims.py written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T17:45:55.153160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/src/leave_one_group_out.py\n# Leave-one-group-out feature ablation across 9 cells.\n# For each cell, removes one feature group at a time and measures accuracy drop.\n# RF params match existing pipeline: n_estimators=200, random_state=42, 5-fold stratified CV.\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\n\nROOT = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\nOUT_DIR = ROOT / \"results\" / \"feature_ablation\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nFEATURES = [\n    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n    \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n]\n\nCELLS = {\n    \"pythia_nucleus095\": \"data/features_all.jsonl\",\n    \"pythia_temp09\": \"data/pythia_temp09/features.jsonl\",\n    \"pythia_topk50\": \"results/pythia_topk50/features.jsonl\",\n    \"gpt2xl_nucleus095\": \"data/gpt2xl/features.jsonl\",\n    \"gpt2xl_temp09\": \"results/gpt2xl_temp09/features.jsonl\",\n    \"gpt2xl_topk50\": \"results/gpt2xl_topk50/features.jsonl\",\n    \"olmo_nucleus095\": \"data/olmo/features.jsonl\",\n    \"olmo_temp09\": \"results/olmo_temp09/features.jsonl\",\n    \"olmo_topk50\": \"results/olmo_topk50/features.jsonl\",\n}\n\nGROUPS = {\n    \"perplexity\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n                   \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\"],\n    \"surprisal\": [\"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"],\n    \"lexical_diversity\": [\"type_token_ratio\", \"hapax_ratio\"],\n    \"ngram_entropy\": [\"bigram_entropy\", \"trigram_entropy\"],\n    \"repetition\": [\"rep_2gram\", \"rep_3gram\", \"rep_4gram\"],\n}\n\nRF_PARAMS = dict(n_estimators=200, random_state=42, n_jobs=-1)\nSKF = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n\n\ndef load_cell(rel_path):\n    rows = []\n    with open(ROOT / rel_path) as f:\n        for line in f:\n            if line.strip():\n                rows.append(json.loads(line))\n    df = pd.DataFrame(rows)\n    X = df[FEATURES].values.astype(np.float64)\n    X = np.nan_to_num(X, nan=0.0, posinf=1e15, neginf=-1e15)\n    X = np.clip(X, -1e15, 1e15)\n    y = df[\"depth\"].values\n    return X, y\n\n\ndef cv_accuracy(X, y, feature_indices=None):\n    if feature_indices is not None:\n        X_sub = X[:, feature_indices]\n    else:\n        X_sub = X\n    if X_sub.shape[1] == 0:\n        return 0.0, 0.0\n    accs = []\n    for train_idx, test_idx in SKF.split(X_sub, y):\n        rf = RandomForestClassifier(**RF_PARAMS)\n        rf.fit(X_sub[train_idx], y[train_idx])\n        accs.append(rf.score(X_sub[test_idx], y[test_idx]))\n    return float(np.mean(accs)), float(np.std(accs))\n\n\ndef main():\n    results = {}\n\n    for cell_name, rel_path in CELLS.items():\n        print(f\"Processing {cell_name}...\", flush=True)\n        X, y = load_cell(rel_path)\n\n        full_acc, full_std = cv_accuracy(X, y)\n        cell_result = {\n            \"full_19\": {\"acc_mean\": round(full_acc, 6), \"acc_std\": round(full_std, 6)},\n        }\n\n        for group_name, group_features in GROUPS.items():\n            group_indices = [FEATURES.index(f) for f in group_features]\n            remaining_indices = [i for i in range(len(FEATURES)) if i not in group_indices]\n            remaining_features = [FEATURES[i] for i in remaining_indices]\n\n            acc_without, std_without = cv_accuracy(X, y, remaining_indices)\n            delta = acc_without - full_acc\n\n            cell_result[group_name] = {\n                \"acc_without\": round(acc_without, 6),\n                \"acc_std\": round(std_without, 6),\n                \"delta_vs_full\": round(delta, 6),\n                \"features_removed\": group_features,\n                \"n_features_removed\": len(group_features),\n                \"features_remaining\": remaining_features,\n                \"n_features_remaining\": len(remaining_features),\n            }\n            sign = \"+\" if delta >= 0 else \"\"\n            print(f\"  -{group_name} ({len(group_features)}f): {acc_without:.4f} ({sign}{delta:.4f})\", flush=True)\n\n        results[cell_name] = cell_result\n\n    # Cross-cell summary\n    summary = {\"per_group\": {}}\n    for group_name in GROUPS:\n        deltas = [results[c][group_name][\"delta_vs_full\"] for c in CELLS]\n        accs = [results[c][group_name][\"acc_without\"] for c in CELLS]\n        summary[\"per_group\"][group_name] = {\n            \"mean_delta\": round(float(np.mean(deltas)), 6),\n            \"std_delta\": round(float(np.std(deltas)), 6),\n            \"min_delta\": round(float(np.min(deltas)), 6),\n            \"max_delta\": round(float(np.max(deltas)), 6),\n            \"mean_acc_without\": round(float(np.mean(accs)), 6),\n            \"n_features\": len(GROUPS[group_name]),\n        }\n\n    ranked = sorted(summary[\"per_group\"].items(), key=lambda x: x[1][\"mean_delta\"])\n    summary[\"most_impactful_group\"] = ranked[0][0]\n    summary[\"least_impactful_group\"] = ranked[-1][0]\n    summary[\"ranking_by_impact\"] = [\n        {\"group\": g, \"mean_delta\": d[\"mean_delta\"], \"n_features\": d[\"n_features\"]}\n        for g, d in ranked\n    ]\n    results[\"summary\"] = summary\n\n    full_accs = [results[c][\"full_19\"][\"acc_mean\"] for c in CELLS]\n    results[\"summary\"][\"full_19_mean_acc\"] = round(float(np.mean(full_accs)), 6)\n\n    print(f\"\\n--- Summary (mean delta across 9 cells) ---\")\n    for item in summary[\"ranking_by_impact\"]:\n        sign = \"+\" if item[\"mean_delta\"] >= 0 else \"\"\n        print(f\"  {item['group']:20s}: {sign}{item['mean_delta']:.4f} ({item['n_features']}f removed)\")\n    print(f\"  Most impactful: {summary['most_impactful_group']}\")\n\n    out_path = OUT_DIR / \"leave_one_group_out.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"leave_one_group_out.py written\""
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T17:45:55.153347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"leave_one_group_out.py written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T17:45:55.153522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/pca_effective_dims.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T17:45:55.153666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/leave_one_group_out.py"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T17:45:55.153891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pythia_nucleus095: 90%=6pc, 95%=8pc, 99%=12pc\\\\n  pythia_temp09: 90%=6pc, 95%=8pc, 99%=12pc\\\\n  pythia_topk50: 90%=7pc, 95%=9pc, 99%=12pc\\\\n  gpt2xl_nucleus095: 90%=7pc, 95%=9pc, 99%=12pc\\\\n  gpt2xl_temp09: 90%=7pc, 95%=8pc, 99%=13pc\\\\n  gpt2xl_topk50: 90%=7pc, 95%=9pc, 99%=13pc\\\\n  olmo_nucleus095: 90%=6pc, 95%=7pc, 99%=12pc\\\\n  olmo_temp09: 90%=6pc, 95%=7pc, 99%=11pc\\\\n  olmo_topk50: 90%=6pc, 95%=8pc, 99%=13pc\\\\n  merged_all: 90%=7pc, 95%=9pc, 99%=13pc\\\\n\\\\nSaved /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json\\\\nSaved pca_scree_plot.pdf/png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T17:45:55.154105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/leave_one_group_out.py'\\\\n\\\\nStdout:\\\\n\\\\nProcessing pythia_nucleus095...\\\\n  -perplexity (9f): 0.7604 (-0.0264)\\\\n  -surprisal (3f): 0.7829 (-0.0040)\\\\n  -lexical_diversity (2f): 0.7855 (-0.0013)\\\\n  -ngram_entropy (2f): 0.7832 (-0.0037)\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T17:45:55.154341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python src/leave_one_group_out.py > /tmp/logo_ablation.log 2>&1 & echo $!"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T17:45:55.155390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python src/leave_one_group_out.py > /tmp/logo_ablation.log 2>&1 & echo $!'\\\\n\\\\nStdout:\\\\n\\\\n964662\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 1
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T17:45:55.155638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ps -p 964662 -o pid="
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T17:45:55.155833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"964662\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T17:45:55.156040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -5 /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T17:45:55.156226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  -lexical_diversity (2f): 0.7855 (-0.0013)\\\\n  -ngram_entropy (2f): 0.7832 (-0.0037)\\\\n  -repetition (3f): 0.7838 (-0.0030)\\\\nProcessing pythia_temp09...\\\\n  -perplexity (9f): 0.7545 (-0.0133)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T17:45:55.156425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -20 /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T17:45:55.156612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing pythia_nucleus095...\\\\n  -perplexity (9f): 0.7604 (-0.0264)\\\\n  -surprisal (3f): 0.7829 (-0.0040)\\\\n  -lexical_diversity (2f): 0.7855 (-0.0013)\\\\n  -ngram_entropy (2f): 0.7832 (-0.0037)\\\\n  -repetition (3f): 0.7838 (-0.0030)\\\\nProcessing pythia_temp09...\\\\n  -perplexity (9f): 0.7545 (-0.0133)\\\\n  -surprisal (3f): 0.7576 (-0.0101)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T17:45:55.156795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -30 /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T17:45:55.157006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing pythia_nucleus095...\\\\n  -perplexity (9f): 0.7604 (-0.0264)\\\\n  -surprisal (3f): 0.7829 (-0.0040)\\\\n  -lexical_diversity (2f): 0.7855 (-0.0013)\\\\n  -ngram_entropy (2f): 0.7832 (-0.0037)\\\\n  -repetition (3f): 0.7838 (-0.0030)\\\\nProcessing pythia_temp09...\\\\n  -perplexity (9f): 0.7545 (-0.0133)\\\\n  -surprisal (3f): 0.7576 (-0.0101)\\\\n  -lexical_diversity (2f): 0.7672 (-0.0005)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T17:45:55.157210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -40 /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T17:45:55.157385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing pythia_nucleus095...\\\\n  -perplexity (9f): 0.7604 (-0.0264)\\\\n  -surprisal (3f): 0.7829 (-0.0040)\\\\n  -lexical_diversity (2f): 0.7855 (-0.0013)\\\\n  -ngram_entropy (2f): 0.7832 (-0.0037)\\\\n  -repetition (3f): 0.7838 (-0.0030)\\\\nProcessing pythia_temp09...\\\\n  -perplexity (9f): 0.7545 (-0.0133)\\\\n  -surprisal (3f): 0.7576 (-0.0101)\\\\n  -lexical_diversity (2f): 0.7672 (-0.0005)\\\\n  -ngram_entropy (2f): 0.7676 (-0.0001)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T17:45:55.157573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ps -p 964662 -o pid="
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T17:45:55.157752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"964662\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T17:45:55.157943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T17:45:55.158094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T17:45:55.158215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T17:45:55.158334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T17:45:55.158456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T17:45:55.158575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T17:45:55.158685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T17:45:55.158840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing pythia_nucleus095...\\\\n  -perplexity (9f): 0.7604 (-0.0264)\\\\n  -surprisal (3f): 0.7829 (-0.0040)\\\\n  -lexical_diversity (2f): 0.7855 (-0.0013)\\\\n  -ngram_entropy (2f): 0.7832 (-0.0037)\\\\n  -repetition (3f): 0.7838 (-0.0030)\\\\nProcessing pythia_temp09...\\\\n  -perplexity (9f): 0.7545 (-0.0133)\\\\n  -surprisal (3f): 0.7576 (-0.0101)\\\\n  -lexical_diversity (2f): 0.7672 (-0.0005)\\\\n  -ngram_entropy (2f): 0.7676 (-0.0001)\\\\n  -repetition (3f): 0.7618 (-0.0060)\\\\nProcessing pythia_topk50...\\\\n  -perplexity (9f): 0.6720 (-0.0164)\\\\n  -surprisal (3f): 0.6811 (-0.0073)\\\\n  -lexical_diversity (2f): 0.6858 (-0.0026)\\\\n  -ngram_entropy (2f): 0.6865 (-0.0019)\\\\n  -repetition (3f): 0.6855 (-0.0029)\\\\nProcessing gpt2xl_nucleus095...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T17:45:55.159064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T17:45:55.159197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T17:45:55.159314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T17:45:55.159429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T17:45:55.159540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T17:45:55.159663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T17:45:55.159775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T17:45:55.159905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T17:45:55.160023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T17:45:55.160135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T17:45:55.160241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T17:45:55.160351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"26 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T17:45:55.160457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T17:45:55.160567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T17:45:55.160673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T17:45:55.160781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T17:45:55.160913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T17:45:55.161033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"28 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T17:45:55.161140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T17:45:55.161248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T17:45:55.161353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T17:45:55.161494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T17:45:55.161613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T17:45:55.161726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T17:45:55.161834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T17:45:55.161970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T17:45:55.162080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T17:45:55.162199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"31 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T17:45:55.162309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T17:45:55.162421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T17:45:55.162528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T17:45:55.162638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T17:45:55.162745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T17:45:55.162855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T17:45:55.162985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T17:45:55.163113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T17:45:55.163276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T17:45:55.163402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T17:45:55.163517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T17:45:55.163629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T17:45:55.163736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T17:45:55.163845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T17:45:55.164018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T17:45:55.164143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"38 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T17:45:55.164254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-15T17:45:55.164365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"39 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-15T17:45:55.164472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-15T17:45:55.164581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"39 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-15T17:45:55.164688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-15T17:45:55.164806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"41 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-15T17:45:55.164939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-15T17:45:55.165056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-15T17:45:55.165163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-15T17:45:55.165274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T17:45:55.165382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-15T17:45:55.165533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-15T17:45:55.165649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-15T17:45:55.165765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T17:45:55.165890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T17:45:55.166011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T17:45:55.166130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T17:45:55.166245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"45 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T17:45:55.166354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-15T17:45:55.166466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-15T17:45:55.166576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T17:45:55.166688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-15T17:45:55.166797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-15T17:45:55.166929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-15T17:45:55.167044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-15T17:45:55.167155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-15T17:45:55.167270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -15 /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-15T17:45:55.167394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  -repetition (3f): 0.7558 (-0.0046)\\\\nProcessing olmo_nucleus095...\\\\n  -perplexity (9f): 0.7462 (-0.0422)\\\\n  -surprisal (3f): 0.7885 (+0.0000)\\\\n  -lexical_diversity (2f): 0.7892 (+0.0007)\\\\n  -ngram_entropy (2f): 0.7899 (+0.0015)\\\\n  -repetition (3f): 0.7880 (-0.0005)\\\\nProcessing olmo_temp09...\\\\n  -perplexity (9f): 0.7908 (-0.0316)\\\\n  -surprisal (3f): 0.8160 (-0.0064)\\\\n  -lexical_diversity (2f): 0.8194 (-0.0031)\\\\n  -ngram_entropy (2f): 0.8216 (-0.0009)\\\\n  -repetition (3f): 0.8200 (-0.0024)\\\\nProcessing olmo_topk50...\\\\n  -perplexity (9f): 0.7126 (-0.0314)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-15T17:45:55.167528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ps -p 964662 -o pid="
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-15T17:45:55.167645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"964662\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-15T17:45:55.167757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-15T17:45:55.167890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"52 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-15T17:45:55.168010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-15T17:45:55.168125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"53 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-15T17:45:55.168233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-15T17:45:55.168344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64 /tmp/logo_ablation.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-15T17:45:55.168536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -20 /tmp/logo_ablation.log"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-15T17:45:55.168687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ps -p 964662 -o pid="
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-15T17:45:55.168818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  -surprisal (3f): 0.8160 (-0.0064)\\\\n  -lexical_diversity (2f): 0.8194 (-0.0031)\\\\n  -ngram_entropy (2f): 0.8216 (-0.0009)\\\\n  -repetition (3f): 0.8200 (-0.0024)\\\\nProcessing olmo_topk50...\\\\n  -perplexity (9f): 0.7126 (-0.0314)\\\\n  -surprisal (3f): 0.7402 (-0.0038)\\\\n  -lexical_diversity (2f): 0.7429 (-0.0011)\\\\n  -ngram_entropy (2f): 0.7448 (+0.0008)\\\\n  -repetition (3f): 0.7460 (+0.0020)\\\\n\\\\n--- Summary (mean delta across 9 cells) ---\\\\n  perplexity          : -0.0353 (9f removed)\\\\n  surprisal           : -0.0054 (3f removed)\\\\n  repetition          : -0.0022 (3f removed)\\\\n  lexical_diversity   : -0.0010 (2f removed)\\\\n  ngram_entropy       : -0.0006 (2f removed)\\\\n  Most impactful: perplexity\\\\n\\\\nSaved /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-15T17:45:55.169001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-15T17:45:55.169147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_scree_plot.pdf /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_scree_plot.png"
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-15T17:45:55.169291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  33675 May 16 01:45 /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\n-rw-r--r-- 1 root root   8009 May 16 01:40 /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json\\\\n-rw-r--r-- 1 root root  32940 May 16 01:40 /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_scree_plot.pdf\\\\n-rw-r--r-- 1 root root 182866 May 16 01:40 /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_scree_plot.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-15T17:45:55.169585+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### PCA 有效维度\n| 阈值 | 9 cell 平均 | 范围 | merged_all |\n|------|------------|------|-----------|\n| 90% | 6-7 pc | 6–7 | 7 |\n| 95% | 7-9 pc | 7–9 | 9 |\n| 99% | 11-13 pc | 11–13 | 13 |\n\n19 维特征中，**6-7 个主成分就能解释 90% 方差**，说明特征空间存在显著冗余。\n\n### Leave-one-group-out（按影响力排序，mean Δacc across 9 cells）\n| 排除组 | 特征数 | mean Δ |\n|--------|--------|--------|\n| **perplexity** | 9 | **-0.0353** |\n| surprisal | 3 | -0.0054 |\n| repetition | 3 | -0.0022 |\n| lexical_diversity | 2 | -0.0010 |\n| ngram_entropy | 2 | -0.0006 |\n\n**Perplexity 组是最关键的特征组**，排除后准确率平均下降 3.5%，远超其他组。Surprisal 次之但影响较小 (-0.54%)。Lexical diversity 和 ngram entropy 几乎不影响性能。\n\n### 产出文件\n- `results/feature_ablation/pca_effective_dims.json`\n- `results/feature_ablation/leave_one_group_out.json`\n- `results/feature_ablation/pca_scree_plot.pdf` / `.png`\n- `src/pca_effective_dims.py`\n- `src/leave_one_group_out.py`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_ablation_pca_supplement_20260515T173806"
+          },
+          "id": "event-000137"
+        }
+      ],
+      "message_count": 137
+    }
+  ]
+}

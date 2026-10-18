@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b956f3aa389b1940c660",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research maven dataset v2",
+  "task_key": "worker_research_maven-dataset-v2_20260515T031646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maven-dataset-v2_20260515T031646_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "3f0983339c633021fec2000fd0df117b26573f50dc68c4a09caf9b0eb976a384"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已存在且内容完整，已注册为 artifact (`art_20260515_d9b24e`)。\n\n核心结论：\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER (66 types) | Event Detection (168 types) |\n| Domain | Wikipedia | Wikipedia |\n| Size | ~188K sentences | 4,480 docs / 118,732 mentions |\n| Public | Yes (HF) | Yes (GitHub, MIT, 免费) |\n| Test labels | 公开 | 不公开 (用 dev set: 710 docs / 18,904 mentions) |\n\n**BCS/SDGD 适用性**：168 types 基于 FrameNet 层级组织，sibling types 语义高度相近（原论文 Table 7 已量化 sibling 混淆率 14.6-19.8%）。SDGD graph coloring 空间远大于 Few-NERD，效果应更显著。NER + ED 跨任务验证可证明 confusability-aware schema decomposition 是 task-agnostic 策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

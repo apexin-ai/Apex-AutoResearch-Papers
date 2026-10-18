@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "7697301f05192ebe2690",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code hgrn2 h3 1 repair v2",
+  "task_key": "worker_code_hgrn2_h3_1_repair_v2_20260518T162752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_h3_1_repair_v2_20260518T162752.log",
+    "occurrence": 1,
+    "bytes": 497173,
+    "sha256": "fc2993d7594fad0f1fd6f5aff8b241fc233164c57fb0863fa6870fc8b2f9ed50"
+  },
+  "statistics": {
+    "messages": 401,
+    "user_turns": 0,
+    "tool_calls": 163,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 163,
+      "tool_result": 163,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 401,
+      "chunks": [
+        {
+          "path": "7697301f05192ebe2690-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7697301f05192ebe2690-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7697301f05192ebe2690-part-0003.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ]
+}

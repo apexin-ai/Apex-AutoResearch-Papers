@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9adfc4208fdc4ed973da",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops recheck cqa1 urgent",
+  "task_key": "worker_ops_recheck-cqa1-urgent_20260520T150718",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_recheck-cqa1-urgent_20260520T150718_result.json",
+    "occurrence": 1,
+    "bytes": 1230,
+    "sha256": "e09958d6bc7cda79a80fbd7ae8c59f56dc60ba03446b666d02758dbff970ad16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n## GPU 状态\n\n| GPU | 显存 | 利用率 | 进程 | 状态 |\n|-----|------|--------|------|------|\n| **0** | 486MiB/24G | 1% | PID 132420 残留(type G) | **空闲** — k=0.7 seed44 已完成，115960 已退出 |\n| **1** | 4540MiB/24G | 26% | PID 346216 (k=0.3 seed44) | **运行中**，33min |\n| **2** | 4055MiB/24G | 0% | PID 132420 (k=0.5 seed44) | **运行中**，1h38m，进程状态 Rl |\n| **3** | 4540MiB/24G | 49% | PID 344867 (k=0.3 seed43) | **运行中**，33min |\n\n## 已完成实验\n\n**k=0.7 seed44** — SR=**56.4%** (282/500), 95% CI [52.0%, 60.7%]\n- 完成于 22:54，PID 115960 已退出，JSON 已写入\n\n## 运行中实验（均无崩溃）\n\n- **k=0.5 seed44** (GPU 2, PID 132420): 运行 1h38m，进程 Rl 状态正常。GPU util 瞬时 0% 可能是 episode 间歇。无 /tmp 日志（直接前台启动），无输出 JSON 说明尚未完成。\n- **k=0.3 seed43** (GPU 3, PID 344867): 运行 33min，日志显示当前 task 在 Ep 25/50，FAIL 较多。\n- **k=0.3 seed44** (GPU 1, PID 346216): 运行 33min，日志显示当前 task 在 Ep 24/50。\n\n## 空闲 GPU\n\n**GPU 0** — 可立即使用（仅有 PID 132420 的 473MiB 残留显存，不影响）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

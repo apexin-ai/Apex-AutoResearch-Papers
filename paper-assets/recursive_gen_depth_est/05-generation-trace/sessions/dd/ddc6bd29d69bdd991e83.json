@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ddc6bd29d69bdd991e83",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis accum v3 results",
+  "task_key": "worker_analysis_accum_v3_results_20260519T124613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_accum_v3_results_20260519T124613_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "bc89a0385c7b4f29ee3c89cad19019a127bd3525920defbc9f72a876e465ca95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/accum_v3/accum_v3_results_analysis.md`，registry 已更新为 DONE。\n\n核心结果：\n\n| 指标 | mix50 (50% human) | mix25 (25% human) | Full-replacement | Chance |\n|------|-------------------|-------------------|-----------------|--------|\n| 4-class acc | 69.1% | **70.1%** | 85.9% | 25% |\n| d1-d3 bal acc | 58.9% | **60.3%** | — | 33% |\n\n关键发现：\n1. **Accumulation 降低信号 ~16-17pp**（vs full-replacement 85.9%），但远高于 chance（+44pp），信号未被摧毁\n2. **mix25 略优于 mix50**（+1.0pp）— 反直觉。更少 human text → 更强 recursive signature → 更容易区分深度\n3. **d2 是瓶颈**（~42% recall），在 d1/d3 之间的过渡区被大量混淆\n4. **Pythia-1.4B 特征提取已确认**，bug 修复生效\n5. 对 Discussion §6：支持 \"full-replacement is upper bound\" 的 claim，但需修正 \"更多 human data → 更好信号\" 的假设"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

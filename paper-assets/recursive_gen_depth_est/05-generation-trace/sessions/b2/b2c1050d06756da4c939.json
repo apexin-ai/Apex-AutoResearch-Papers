@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b2c1050d06756da4c939",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper theory draft revisions",
+  "task_key": "worker_paper_theory_draft_revisions_20260517T155727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_theory_draft_revisions_20260517T155727_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "bee48b850dc78259d78ff83475402a9e4b98ed42f9e10cbc5de8209a03832e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- 旧 BibTeX keys 全部消除\n- 仅 Theorem 2 (EDD Upper Bound) 保留 `\\begin{theorem}`/`\\end{theorem}`，未被修改\n- 无 em-dash\n- AUC 数值：0.922, 0.802, 0.712, 0.653\n- γ ≈ 0.75，含 caveat\n- Section 标题改为 \"Theoretical Motivation\"\n- Theorem 1 → Hypothesis 1，Proposition 1 → Observation 1\n- 所有交叉引用已同步更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

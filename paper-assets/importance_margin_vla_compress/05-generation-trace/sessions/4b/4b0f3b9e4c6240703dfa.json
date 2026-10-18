@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0f3b9e4c6240703dfa",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check seed47 status",
+  "task_key": "worker_check_seed47_status_20260529T015751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_seed47_status_20260529T015751_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "af06fcd14d725c5752d7a42768e2d2309d5425d1f75cfcf6642788df20186812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部在 **cqa1-33015** 上正常运行中（包括名义上分配给 w41 的那个），GPU 0-3 各一个，每个占 ~10GB 显存。\n\n## 当前进度\n\n| 实验 | GPU | 当前 Task | 累计 SR | 运行时间 |\n|------|-----|-----------|---------|----------|\n| eval_pi05_l2norm_k07_long_seed47_w41 | 0 | T8 ep40/50 | 66.8% (T1-7) | ~210min |\n| eval_pi05_attn_k07_long_seed47_cqa1 | 1 | T8 开始 | 55.8% (T1-7) | ~198min |\n| eval_pi05_attn_k075_long_seed47_cqa1 | 2 | T7 ep40/50 | 54.0% (T1-6) | ~178min |\n| eval_pi05_l2norm_k05_long_seed47_cqa1 | 3 | T8 ep10/50 | 51.2% (T1-7) | ~198min |\n\n所有实验均在 Task 7-8/10，预计还需 1.5-2 小时完成。Registry 中 RUNNING 状态正确，无需更新。westd-41074 上无相关进程（该实验实际部署在 cqa1 GPU 0 上）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

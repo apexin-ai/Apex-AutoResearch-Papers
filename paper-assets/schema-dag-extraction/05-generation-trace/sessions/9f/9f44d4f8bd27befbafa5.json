@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "9f44d4f8bd27befbafa5",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh fewrel pilot launch",
+  "task_key": "worker_ssh_fewrel-pilot-launch_20260515T071432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-pilot-launch_20260515T071432.log",
+    "occurrence": 1,
+    "bytes": 1066089,
+    "sha256": "55efb64c8a3f656e2d146ebf7fed6844c5fa5f6c9c75380d50fb8494f61338df"
+  },
+  "statistics": {
+    "messages": 500,
+    "user_turns": 0,
+    "tool_calls": 181,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 134,
+      "tool_call": 181,
+      "tool_result": 181,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 500,
+      "chunks": [
+        {
+          "path": "9f44d4f8bd27befbafa5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f44d4f8bd27befbafa5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f44d4f8bd27befbafa5-part-0003.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ]
+}

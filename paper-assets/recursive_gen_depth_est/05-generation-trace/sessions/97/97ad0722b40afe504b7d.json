@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "97ad0722b40afe504b7d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "data feat ablation artifact",
+  "task_key": "worker_data_feat_ablation_artifact_20260515T194617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_feat_ablation_artifact_20260515T194617_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "89ab4398094c1469760a43baf70741973f1d35006dbd87b57d09d53b20272e0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册成功：`art_20260515_2649b4`\n\n数据摘要：\n\n| 数据项 | 覆盖 | 关键数字 |\n|--------|------|----------|\n| **Top-k Curve** | 9/9 cell | mean acc: top1=0.646 → top5=0.765 → top19=0.784 |\n| **Per-Category** | 9/9 cell | perplexity(0.766) > surprisal(0.732) >> lexical(0.461) > repetition(0.437) > ngram_entropy(0.395) |\n| **Forward Selection** | 7/9 cell | var_surprisal 或 p90_ppl 始终排第一 |\n| **VIF** | 7/9 cell | 16/19 特征 VIF>10，严重多重共线性 |\n| **PCA** | 9/9 cell | 95% 方差需 8.1 个 PC（范围 7-9） |\n\n注意：gpt2xl_temp09 和 gpt2xl_topk50 的 forward_selection 和 VIF 数据缺失（旧版实验未生成），其余数据从 v1/v2 两版文件合并而来。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

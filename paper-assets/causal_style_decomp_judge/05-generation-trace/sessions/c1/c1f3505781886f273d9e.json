@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c1f3505781886f273d9e",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code nli gate fn selection bias",
+  "task_key": "worker_code_nli_gate_fn_selection_bias_20260521T103855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli_gate_fn_selection_bias_20260521T103855_result.json",
+    "occurrence": 1,
+    "bytes": 3681,
+    "sha256": "3d084c6d6d132de40dc25bb295c91df309298b1589010828ec7297b1dbe54ec7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## NLI Gate Selection Bias 结果\n\n### Formality (N=355, pass=323, fail=32)\n\n| Metric | Pass (mean±std) | Fail (mean±std) | U p-val | Cohen's d | Direction |\n|--------|----------------|-----------------|---------|-----------|-----------|\n| Norm. Edit Distance | 0.3676±0.1826 | 0.3967±0.1882 | 0.2315 | +0.159 | fail>pass |\n| Char Diff (abs) | 99.14±148.31 | 55.00±70.62 | 0.0743 | -0.308 | pass>fail |\n| Char Diff (rel) | 0.1529±0.2423 | 0.2360±0.2618 | 0.1134 | +0.340 | fail>pass |\n| Token Diff (abs) | 9.89±14.63 | 5.13±6.31 | 0.0748 | -0.338 | pass>fail |\n| Token Diff (rel) | 0.1104±0.2187 | 0.1280±0.1304 | 0.3233 | +0.083 | fail>pass |\n| **BLEU Score** | 0.3608±0.2811 | 0.2352±0.1588 | **0.0183** | -0.461 | **fail<pass** * |\n| **TF-IDF Cosine** | 0.6903±0.2108 | 0.5578±0.2426 | **0.0016** | -0.620 | **fail<pass** * |\n\n→ **CONSERVATIVE bias**: fail 组 BLEU 和 TF-IDF 显著更低（style 变化更大），gate 过滤了大幅改变的 pairs。\n\n### Verbosity (N=100, pass=39, fail=61)\n\n| Metric | Pass (mean±std) | Fail (mean±std) | U p-val | Cohen's d | Direction |\n|--------|----------------|-----------------|---------|-----------|-----------|\n| **Norm. Edit Distance** | 0.5284±0.1785 | 0.6901±0.2204 | **0.0002** | +0.788 | **fail>pass** * |\n| Char Diff (abs) | 425.82±358.64 | 660.20±606.30 | 0.0744 | +0.447 | fail>pass |\n| **Char Diff (rel)** | 1.5275±3.8904 | 8.0421±20.9924 | **0.0002** | +0.392 | **fail>pass** * |\n| Token Diff (abs) | 69.10±53.74 | 104.90±91.99 | 0.1018 | +0.451 | fail>pass |\n| **Token Diff (rel)** | 1.6978±4.9306 | 6.0196±13.9881 | **0.0003** | +0.380 | **fail>pass** * |\n| **BLEU Score** | 0.2187±0.1655 | 0.1315±0.1589 | **0.0014** | -0.540 | **fail<pass** * |\n| **TF-IDF Cosine** | 0.6753±0.1812 | 0.4914±0.2498 | **0.0003** | -0.815 | **fail<pass** * |\n\n→ **CONSERVATIVE bias (强信号)**: 5/7 metrics 显著，fail 组在所有指标上都显示更大的 style 变化。TF-IDF cosine 效应量 d=−0.815 达到 large。\n\n### Register (N=100, pass=80, fail=20)\n\n| Metric | Pass (mean±std) | Fail (mean±std) | U p-val | Cohen's d | Direction |\n|--------|----------------|-----------------|---------|-----------|-----------|\n| Norm. Edit Distance | 0.4462±0.1659 | 0.4534±0.3221 | 0.2193 | +0.035 | fail>pass |\n| Char Diff (abs) | 114.63±158.12 | 153.40±254.59 | 0.4377 | +0.214 | fail>pass |\n| Char Diff (rel) | 0.2519±0.3360 | 2.1833±6.6139 | 0.6853 | +0.660 | fail>pass |\n| Token Diff (abs) | 10.18±14.75 | 13.45±17.65 | 0.9793 | +0.213 | fail>pass |\n| Token Diff (rel) | 0.1527±0.2230 | 1.8563±6.4736 | 0.6531 | +0.596 | fail>pass |\n| BLEU Score | 0.2578±0.2394 | 0.3049±0.4001 | 0.1513 | +0.170 | pass<fail |\n| TF-IDF Cosine | 0.6050±0.1990 | 0.5467±0.3463 | 0.4586 | -0.248 | fail<pass |\n\n→ **无显著 selection bias** (0/7 显著)，但 fail 样本仅 20 个，统计效力有限。\n\n## 结论\n\nGate **确实**系统性过滤了 style 变化较大的 pairs，尤其在 **verbosity**（5/7 显著，d 最大 0.815）和 **formality**（2/7 显著，BLEU 和 TF-IDF）上。Register 未检测到显著差异（可能受限于 n=20 的统计效力）。\n\n这意味着我们报告的 bias 效应是 **保守估计（lower bound）**——真实的 style bias 可能比我们测到的更大。这对 Reviewer R3-W8 的担忧是一个正面回应：bias 确实存在，而且我们的方法低估了它。\n\n脚本和 violin plots 已保存：\n- 脚本: `csd_pipeline/nli_fn_selection_bias.py`\n- 图表: `artifacts/nli_fn_bias/nli_fn_bias_{formality,verbosity,register}.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

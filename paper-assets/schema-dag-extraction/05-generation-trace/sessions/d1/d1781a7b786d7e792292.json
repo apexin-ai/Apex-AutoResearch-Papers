@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d1781a7b786d7e792292",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d044 fewrel contradiction fix",
+  "task_key": "worker_paper_d044_fewrel_contradiction_fix_20260516T105301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d044_fewrel_contradiction_fix_20260516T105301_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "79d638dc1f39214467fc14def7d15da2f0024c405a6386ef99e972c3cc78dfaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，验证通过：\n\n**Task 1 — FewRel pairwise 矛盾修复：**\n- \"We omit FewRel...\" 已删除（grep 确认无匹配）\n- Table 2 新增 FewRel 行（line 58），格式与其他行一致\n- Caption: \"Both\" → \"All three\"，\"both\" → \"all\"\n- 讨论文字：r² 范围更新为 1.3–3.5%，Spearman 范围更新为 0.144–0.227，新增三个数据集正相关总结句和 FewRel 平衡设计说明\n- 剩余方差从 ~98% 更新为 ~96–99%\n\n**Task 2 — v2 BCS range caveat：**\n- Line 137 已包含 caveat（0.36–0.80 vs 0.47–0.97 range 说明 + per-pair $r=-0.919$ 论证），此修改在我介入前已存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7eca2a4aab5abb3f81c3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops d047 aggregation rerun",
+  "task_key": "worker_ops_d047-aggregation-rerun_20260525T215005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-aggregation-rerun_20260525T215005_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "e0487afe309969c120da1699154c9be70d9347c4d40312383612daa0f0011433"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits look correct. Here's the summary:\n\n**旧值 → 新值对比：**\n\n| 方法 | 列 | 旧 | 新 | 变化原因 |\n|---|---|---|---|---|\n| Threshold | K_eff sig | 11/12 | 9/12 | position_bias 修正后3个条件 K_eff 不再FDR显著 |\n| Threshold | β dir | 11+/0− | 8+/1− | arc×position_bias 的 K_eff β 变为负值 (−0.860) |\n| Threshold | R² | 0.829 | 0.745 | position_bias 条件 R² 大幅下降 |\n| Weighted | β dir | 12+/0− | 10+/2− | 两个 position_bias 条件 β_keff 变负（与 Majority 一致） |\n| Weighted | R² | 0.328 | 0.336 | 微调 |\n| Bayesian | η_max sig | 9/12 | 8/12 | 一个条件变为非显著 |\n| Bayesian | R² | 0.087 | 0.136 | position_bias 修正后 R² 提升 |\n\n**方向变化分析：** Position bias bug 修复对 K_eff β 方向的影响在 Threshold 和 Weighted 上与 Majority 一致——两个 position_bias 条件（mmlu×position_bias, arc×position_bias）的 K_eff β 均为负值。Bayesian 的 K_eff 方向未变（仍为 5+/1−），因为其中一个 position_bias 条件的 K_eff 本就不显著。\n\n**注意事项：**\n1. Majority 行 R² (0.327) 可能也是旧值——重算结果为 0.349，但遵照指示未修改。\n2. Appendix K=5/K=7 表格使用 WCB（非 OLS FDR），也受 position bias 修正影响，但需要单独重跑 WCB 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fd8fda1e8798ed056fb1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research bib full audit",
+  "task_key": "worker_research_bib-full-audit_20260517T082424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib-full-audit_20260517T082424_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "6f35d1bb59a67d552aeddddae53c6527107c4bbc85a7bdbe8afde803aeeb031d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes applied. Final summary:\n\n## Audit Results — 57 entries total\n\n### Fixed (8 entries)\n\n| Key | Issue | Severity |\n|-----|-------|----------|\n| `oneke-2025` | **14 of 17 author names were hallucinated.** Corrected to real 13 authors (Luo, Ru, Liu, Yuan, Sun, Zhang, Liang, Zhang, Zhou, Wei, Zheng, Wang, Chen) | CRITICAL |\n| `volkanovska2024ner` → `volkanovska2025ner` | **2 co-authors fabricated** (Padó, Möller); paper is sole-authored. Title incomplete (missing \"Domain-Specific Few-Shot\"), year 2024→2025, vol 37→38, no 1→2. Cite key updated in `related_work.tex` | CRITICAL |\n| `gliner2-2025` | Title wrong → corrected to \"Schema-Driven Multi-Task Learning for Structured Information Extraction\"; URL updated to ACL Anthology | Medium |\n| `iepile-2024` | Title: \"Schema-Based\" → \"Schema-Conditioned\"; venue: ACL Short Papers (not main); added pages | Medium |\n| `json-schema-bench-2025` | Title: outdated v1 title → \"JSONSchemaBench: A Rigorous Benchmark...\" | Medium |\n| `parse-2025` | Upgraded from arXiv preprint to EMNLP 2025 Industry Track | Low |\n| `bogdanov2024nuner` | Pages 11586–11600 → 11829–11841 | Low |\n| `sclar-sensitivity-2024` | Missing subtitle — left as-is (common practice to cite main title only) | Noted |\n\n### Correct (49 entries)\nAll remaining entries verified — authors, titles, years, and venues match authoritative sources."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

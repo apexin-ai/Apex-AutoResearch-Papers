@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa0654ed40434ebebe4",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "ops submission checklist",
+  "task_key": "worker_ops_submission-checklist_20260524T065816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submission-checklist_20260524T065816_result.json",
+    "occurrence": 1,
+    "bytes": 2102547,
+    "sha256": "7cd26624095eeee120d89af2232a68ecf987fb7c8cea50e891748e884c03b07f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "bfa0654ed40434ebebe4-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad03445e6bcd3e80f452",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest xvla l2norm k05 long",
+  "task_key": "worker_ops_harvest_xvla_l2norm_k05_long_20260523T075739",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest_xvla_l2norm_k05_long_20260523T075739_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "115e795c36052a5ae6bd10f2df70c3a7c4ed826249e8c43aea960923bd34924b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 不存在（可能已被之前删除）。\n\n## 结果：X-VLA L2norm k=0.5 Long (seed42)\n\n**Overall SR: 45.0%** (225/500), 95% CI: [40.7%, 49.4%]\n\n| Task | SR | Description |\n|------|-----|-------------|\n| 0 | 26% | alphabet soup + tomato sauce → basket |\n| 1 | 0% | cream cheese + butter → basket |\n| 2 | 46% | stove + moka pot |\n| 3 | 82% | black bowl → drawer + close |\n| 4 | 42% | white mug left plate + yellow mug right plate |\n| 5 | 92% | book → caddy |\n| 6 | 54% | white mug on plate + chocolate pudding |\n| 7 | 70% | alphabet soup + cream cheese → basket |\n| 8 | 34% | both moka pots → stove |\n| 9 | 4% | mug → microwave + close |\n\n### L2norm Long degradation curve 完整数据\n\n| keep_ratio | SR |\n|-----------|-----|\n| k=0.95 | 47.0% |\n| k=0.9 | 27.5% |\n| k=0.7 | 49.4% |\n| **k=0.5** | **45.0%** |\n\n有趣的发现：k=0.5 (45.0%) 和 k=0.95 (47.0%) 接近，都优于 k=0.9 (27.5%)。k=0.9 的异常低值可能是 outlier 或该 ratio 恰好命中了某些关键 token。L2norm 在 Long suite 上的 degradation 不呈单调递减趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

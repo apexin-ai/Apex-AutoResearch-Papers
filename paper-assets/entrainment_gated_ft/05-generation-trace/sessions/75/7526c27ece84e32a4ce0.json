@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7526c27ece84e32a4ce0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix exp 005 gla eval hardcode",
+  "task_key": "worker_fix_exp-005-gla-eval-hardcode_20260522T154045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp-005-gla-eval-hardcode_20260522T154045_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "25e018c38a2fb0d14b3a8f90b991a9c3dd861eba3394ad675bde8a0943536bd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前下载状态：\n\n| 模型 | 进度 | 速度 | 预计剩余 |\n|------|------|------|----------|\n| **DeltaNet** | 80% | ~30-65 MB/s | ~9 分钟 |\n| **HGRN** | 20% | ~54-96 KB/s | **~2 小时 22 分** |\n\nDeltaNet 接近完成，HGRN 下载极慢（从 HuggingFace 直接下载被限速到 ~80 KB/s）。\n\n总结：\n- **GLA 评估已完成** — lambada_openai acc=0.3819, ppl=23.96; arc_easy acc=0.5673\n- **DeltaNet** — 还需 ~10 分钟下载完成，之后可立即评估\n- **HGRN** — 按当前速度还要 2+ 小时。建议杀掉当前 wget，改用 ModelScope 下载（跟 GLA 一样的方式，国内 CDN 快得多）\n\n是否要我把 HGRN 切换成 ModelScope 下载？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

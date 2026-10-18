@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dc36935f1267845893e1",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "research plan003 theorem1 proof",
+  "task_key": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan003-theorem1-proof_20260522T111238_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "d0f96d13859782866aa069e932ddd0e7cc054a0d873d97c0c93703f5e4b6adea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已保存到 `artifacts/theorem1_proof.tex`，6 页，编译通过。\n\n**证明结构总结**：\n\n1. **Lemma 1 (K=3, 独立)**：显式计算 ASR = η₁η₂ + η₁η₃ + η₂η₃ − 2η₁η₂η₃，对 η_max 求导得 ∂ASR/∂η_max = η₁(1−η₂) + η₂(1−η₁) ≥ 0。\n\n2. **Lemma 2 (一般 K, 独立)**：利用条件分解 ASR = P(Y≥t) + P(Y=t−1)·η_K，其中 Y 是其余 K−1 个 judge 的失败数。ASR 关于 η_K 是仿射函数，斜率 P(Y=t−1) ≥ 0（pivotal voter 概率）。\n\n3. **Theorem 1 (一般 K, 相关+自适应对手)**：核心证明。对固定攻击 a，按 s = Σx_j 分三种情况：s≥t（两个 panel 都失败）、s=t−1（pivotal，由 pointwise dominance 保证）、s≤t−2（两个都不失败）。因此 ASR(P',a) ≥ ASR(P,a) 对所有 a 成立，取 sup 后 adaptive adversary 的结果跟着。\n\n4. **Tightness**：等号条件是 pivotal 状态下两个 judge 的条件失败概率完全相等（非退化情况下单调性是严格的）。上下界：ASR = Θ(η_max^t)。\n\n5. **Corollary**：robustness-first 两阶段设计——先筛 η_max ≤ τ，再最大化 K_eff。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

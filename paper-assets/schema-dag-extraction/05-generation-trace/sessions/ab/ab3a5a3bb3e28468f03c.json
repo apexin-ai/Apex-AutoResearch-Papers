@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "ab3a5a3bb3e28468f03c",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh rollback and run all",
+  "task_key": "worker_ssh_rollback-and-run-all_20260514T184153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rollback-and-run-all_20260514T184153.log",
+    "occurrence": 1,
+    "bytes": 1972931,
+    "sha256": "62692317ca91d0a6547c43b0fc4f5ebc8f5162a2d551a98e1d984a04cc3a1917"
+  },
+  "statistics": {
+    "messages": 1155,
+    "user_turns": 1,
+    "tool_calls": 473,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 201,
+      "tool_call": 473,
+      "tool_result": 473,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 753,
+      "chunks": [
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0005.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 402,
+      "chunks": [
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0005.json",
+          "message_count": 147
+        },
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab3a5a3bb3e28468f03c-part-0007.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ]
+}

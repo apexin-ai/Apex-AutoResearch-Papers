@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c2d4ec2a0a5a85dd86ee",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra fix vlm restart training",
+  "task_key": "worker_infra_fix-vlm-restart-training_20260515T144123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_fix-vlm-restart-training_20260515T144123_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "c493f471b8bb7500c15ad38131712e36fd8acc7e7479fe271c29904b1244626c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡训练完全正常：\n\n| | Baseline (GPU 0) | IMM Anchor (GPU 1) |\n|---|---|---|\n| **当前 step** | 100/30000 | 50/30000 |\n| **Loss** | 0.0096 | 0.3148 |\n| **SPS** | 3.7 steps/s | 2.9 steps/s |\n| **GPU Util** | 46% | 79% |\n| **GPU Mem** | 2279 MiB | 2459 MiB |\n\n---\n\n**总结**：\n\n1. **load_vlm_weights patch**: hub snapshots 下的 config.json 已 patch 为 `false`（之前只 patch 了另一份）\n2. **VLM backbone**: 完整缓存在 `/root/autodl-tmp/.hf_cache/hub/models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/`\n3. **额外修复**:\n   - `pretrained` 路径改为本地绝对路径 `/root/autodl-tmp/.hf_cache/lerobot/smolvla_base`（原 HF repo ID 在 hub cache 中缺少 safetensors）\n   - `HF_HUB_OFFLINE=0` 覆盖 train.py 的 setdefault（数据集 API 需要网络）\n   - 加入 `source /etc/network_turbo` + SSL 证书（AutoDL 网络要求）\n   - `WANDB_MODE=offline`（服务器无 wandb API key）\n4. **训练状态**: 双卡稳定运行，baseline sps=3.7, IMM sps=2.9"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

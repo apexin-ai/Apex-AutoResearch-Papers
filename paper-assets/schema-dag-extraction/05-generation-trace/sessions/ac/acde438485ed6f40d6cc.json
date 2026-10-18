@@ -1,0 +1,995 @@
+{
+  "schema_version": "1.0",
+  "id": "acde438485ed6f40d6cc",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis ner variance decomposition",
+  "task_key": "worker_analysis_ner-variance-decomposition_20260517T053347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ner-variance-decomposition_20260517T053347.log",
+    "occurrence": 1,
+    "bytes": 78449,
+    "sha256": "30efe0738a20f885763e8f9c4a98f6c8bc656acfb5798e87816ee76e3318caaa"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "65dbcf6e-0e31-4c8e-a6ad-f50f68b978af",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779011400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e075c668-0f49-47f7-ba41-49fd8be74fa4",
+                "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me compute the variance decomposition for Few-NERD data, then update the supplementary.tex file.\n\n**Data:**\n| Count | s42 mean | s42 std | s123 mean | s123 std | s456 mean | s456 std |\n|---|---|---|---|---|---|---|\n| 2 | 0.5267 | 0.1905 | 0.4460 | 0.1984 | 0.5528 | 0.1402 |\n| 6 | 0.3899 | 0.1153 | 0.4217 | 0.1341 | 0.4092 | 0.1197 |\n\n\n| 12 | 0.3057 | 0.1017 | 0.3568 | 0.1119 | 0.3051 | 0.1050 |\n| 22 | 0.2684 | 0.1029 | 0.2768 | 0.0905 | 0.2577 | 0.0922 |\n| 44 | 0.3007 | 0.1116 | 0.2724 | 0.1146 | 0.2898 | 0.1366 |\n| 66 | 0.4071 | 0.0017 | 0.\n\nNow I'm compiling the full variance decomposition metrics across all sample counts.\n\nI'm working through the variance calculations for each count level, computing the batch standard deviation from the pooled variance across seeds and the seed standard deviation from the variation in means, then taking their ratio to understand the relative contribution of batch versus seed variability. ) = 0.05567, so the ratio of batch to seed standard deviation is about 10.25. Let me recalculate this more carefully with the count of 2 case. I'm squaring the standard deviations for each batch to get their variances, then averaging those to find the overall batch variance and its standard deviation of 0.17825. For the seed dimension, I have the three means across seeds, and I'm computing their variance to compare against the batch variance.\n\nNow moving to the count of 6 case and calculating the squared standard deviations... Now I'm finishing those deviation calculations and finding the seed standard deviation is about 0.016, which gives me a batch-to-seed variance ratio of roughly 59. Moving on to the count=12 case, I'm computing the standard deviations squared for each seed group. Now I'm finishing those squared deviations and calculating the seed variance with Bessel's correction, which gives me a standard deviation of about 0.03. The batch variance is roughly 12.8 times larger than the seed variance, which is a substantial ratio. Moving on to the count of 22, I'm squaring the standard deviations for each seed group and computing the batch variance from those squared values. Now I'm summing up those squared deviations and calculating the seed variance with Bessel's correction, which gives me a standard deviation of about 0.0096. When I divide the batch variance by the seed variance, I get a ratio of roughly 99, which initially seems high—but it makes sense given that the seed means cluster tightly around 0.267 while the batch standard deviations are much larger at 0.09-0.10. Now I'm calculating the batch statistics for count 44 across the three seed groups, computing their standard deviations and the overall batch SD, then looking at how the seed means vary around their average.\n\nFor count 66, I'm working through the same process with much smaller standard deviations, calculating the batch variance and continuing to examine the ratio between batch and seed variance. I'm recalculating with more precision to handle these very small numbers properly. Let me work through the squared deviations more carefully and compute the seed standard deviation. I'm noticing the batch SD is actually 0.0016 and seed SD is 0.00023, so there's still some variance even at the full schema—probably from ordering effects rather than composition. Let me run a quick verification script to confirm these calculations, then I'll compile the ratio data across all counts to see the range and identify any patterns.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "3a7363f5-411a-48d9-ae2a-a080ce969f94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpiyrTPxtRsep3mW9MDacj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14163,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14163
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Computing the variance decomposition and then updating the supplementary."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "6330ee9d-846b-4c6e-b659-695a3dd44dfb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpiyrTPxtRsep3mW9MDacj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14163,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14163
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X7tFZ6a3qSkBLo1kaaRZFd",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport numpy as np\n\ndata = {\n    2:  {'means': [0.5267, 0.4460, 0.5528], 'stds': [0.1905, 0.1984, 0.1402]},\n    6:  {'means': [0.3899, 0.4217, 0.4092], 'stds': [0.1153, 0.1341, 0.1197]},\n    12: {'means': [0.3057, 0.3568, 0.3051], 'stds': [0.1017, 0.1119, 0.1050]},\n    22: {'means': [0.2684, 0.2768, 0.2577], 'stds': [0.1029, 0.0905, 0.0922]},\n    44: {'means': [0.3007, 0.2724, 0.2898], 'stds': [0.1116, 0.1146, 0.1366]},\n    66: {'means': [0.4071, 0.4067, 0.4067], 'stds': [0.0017, 0.0014, 0.0016]},\n}\n\nprint(f'{'Count':>5} {'Batch SD':>10} {'Seed SD':>10} {'Ratio':>8}')\nprint('-' * 38)\nratios = []\nfor count, d in sorted(data.items()):\n    stds = np.array(d['stds'])\n    means = np.array(d['means'])\n    batch_var = np.mean(stds**2)\n    batch_sd = np.sqrt(batch_var)\n    seed_sd = np.std(means, ddof=1)\n    seed_var = seed_sd**2\n    ratio = batch_var / seed_var if seed_var > 0 else float('inf')\n    ratios.append(ratio)\n    print(f'{count:>5} {batch_sd:>10.4f} {seed_sd:>10.4f} {ratio:>8.1f}')\n\nprint()\nprint(f'Mean ratio: {np.mean(ratios):.1f}')\nprint(f'Range: {min(ratios):.1f} -- {max(ratios):.1f}')\n# Excluding count 66\nratios_no66 = ratios[:-1]\nprint(f'Mean ratio (excl. 66): {np.mean(ratios_no66):.1f}')\nprint(f'Range (excl. 66): {min(ratios_no66):.1f} -- {max(ratios_no66):.1f}')\n\"\n",
+                "description": "Compute Few-NERD variance decomposition"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "11c0e82b-6412-4e3d-9fd6-b0536ff27142",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpiyrTPxtRsep3mW9MDacj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14163,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14163
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:34:54.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X7tFZ6a3qSkBLo1kaaRZFd",
+              "type": "tool_result",
+              "content": "Count   Batch SD    Seed SD    Ratio\n--------------------------------------\n    2     0.1782     0.0557     10.2\n    6     0.1233     0.0160     59.2\n   12     0.1063     0.0297     12.8\n   22     0.0954     0.0096     99.2\n   44     0.1214     0.0143     72.4\n   66     0.0016     0.0002     46.3\n\nMean ratio: 50.0\nRange: 10.2 -- 99.2\nMean ratio (excl. 66): 50.8\nRange (excl. 66): 10.2 -- 99.2",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "32c19d64-624f-442a-9c61-891d3c31db95",
+            "tool_use_result": {
+              "stdout": "Count   Batch SD    Seed SD    Ratio\n--------------------------------------\n    2     0.1782     0.0557     10.2\n    6     0.1233     0.0160     59.2\n   12     0.1063     0.0297     12.8\n   22     0.0954     0.0096     99.2\n   44     0.1214     0.0143     72.4\n   66     0.0016     0.0002     46.3\n\nMean ratio: 50.0\nRange: 10.2 -- 99.2\nMean ratio (excl. 66): 50.8\nRange (excl. 66): 10.2 -- 99.2",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D2XAzupfoSc4evPWsxurBb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+                "limit": 100,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "636f8a72-e424-4939-a2ec-d9d8abeb3650",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpiyrTPxtRsep3mW9MDacj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14163,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14163
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:34:54.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D2XAzupfoSc4evPWsxurBb",
+              "type": "tool_result",
+              "content": "0\t\\documentclass[11pt]{article}\n1\t\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{times}\n5\t\\usepackage{latexsym}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage[utf8]{inputenc}\n8\t\\usepackage{microtype}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{enumitem}\n13\t\\usepackage[normalem]{ulem}\n14\t\\usepackage{listings}\n15\t\n16\t\\title{Supplementary Material for: Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\appendix\n24\t\n25\t\\section{Additional Figures}\n26\t\\label{sec:appendix_figures}\n27\t\n28\t\\begin{table}[h]\n29\t\\centering\n30\t\\small\n31\t\\begin{tabular}{lrr}\n32\t\\toprule\n33\t\\textbf{Count} & \\textbf{Llama-3.1-8B} & \\textbf{Qwen3-32B} \\\\\n34\t\\midrule\n35\t1 & 0.702 & 0.640 \\\\\n36\t64 & 0.273 & 0.304 \\\\\n37\t\\midrule\n38\tDecline & $-$43\\,pp & $-$34\\,pp \\\\\n39\t\\bottomrule\n40\t\\end{tabular}\n41\t\\caption{Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\\S\\ref{sec:model}) for fair cross-model comparison; the count-curve results in \\S\\ref{sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\\ 0.64 at count${}\\,=\\,1$) due to over-prediction under v1.}\n42\t\\label{tab:cross_model}\n43\t\\end{table}\n44\t\n45\t\\begin{table}[h]\n46\t\\centering\n47\t\\small\n48\t\\resizebox{\\columnwidth}{!}{%\n49\t\\begin{tabular}{crrrrrr}\n50\t\\toprule\n51\t& \\multicolumn{3}{c}{\\textbf{Llama-3.1-8B}} & \\multicolumn{3}{c}{\\textbf{Qwen3-32B}} \\\\\n52\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n53\t\\textbf{Count} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} \\\\\n54\t\\midrule\n55\t8 & 78.1\\% & 51.0\\% & $-$27.1 & 82.3\\% & 51.0\\% & $-$31.2 \\\\\n56\t16 & 75.5\\% & 51.6\\% & $-$23.9 & 82.8\\% & 51.6\\% & $-$31.2 \\\\\n57\t\\bottomrule\n58\t\\end{tabular}}\n59\t\\caption{Cross-model BCS-controlled FewRel accuracy.  High-BCS accuracy converges to $\\approx$51\\% regardless of model, while low-BCS accuracy reflects model capacity differences.  The confusability gap ($\\Delta$, in pp) is 77--87\\% as large on Llama-3.1-8B as on Qwen3-32B.}\n60\t\\label{tab:cross_model_bcs}\n61\t\\end{table}\n62\t\n63\t\\begin{table}[h]\n64\t\\centering\n65\t\\small\n66\t\\resizebox{\\columnwidth}{!}{%\n67\t\\begin{tabular}{llrrrrrrr}\n68\t\\toprule\n69\t & & \\multicolumn{5}{c}{\\textbf{BCS Bin}} & & \\\\\n70\t\\cmidrule(lr){3-7}\n71\t\\textbf{Task} & \\textbf{Error} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{V.High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n72\t\\midrule\n73\tNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & --- & 1.000 & ${<}0.001$ \\\\\n74\tRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 20.3\\% & 32.3\\% & 0.954 & ${<}\\,0.001$ \\\\\n75\t\\midrule\n76\tNER & Missed & --- & 42.8\\% & 64.8\\% & 49.9\\% & --- & --- & --- \\\\\n77\tRE  & Missed & --- & 10.4\\% & 11.3\\% & 13.1\\% & 15.7\\% & --- & --- \\\\\n78\t\\bottomrule\n79\t\\end{tabular}}\n80\t\\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin, with Spearman $\\rho$ computed over $n=154$ individual batches (RE) and $n=148$ batches (NER). NER has 4 BCS bins; RE has 5.}\n81\t\\label{tab:error_taxonomy}\n82\t\\end{table}\n83\t\n84\t\\section{SDGD Full Protocol and Results}\n85\t\\label{sec:appendix_sdgd}\n86\t\n87\tWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent---i.e., highly confusable---types share a color. Each color class forms one extraction batch, and predictions are merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation.\n88\t\n89\tSingle-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368). SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop. Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586). Every decomposition mode falls below the single-pass baseline (Table~\\ref{tab:sdgd_results}).\n90\t\n91\t\\begin{table}[h]\n92\t\\centering\n93\t\\small\n94\t\\resizebox{\\columnwidth}{!}{%\n95\t\\begin{tabular}{lrccc}\n96\t\\toprule\n97\t\\textbf{Mode} & \\textbf{\\# Batches} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n98\t\\midrule\n99\tsingle\\_pass & 1 & 0.563 & 0.368 & 0.445 \\\\"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "6e768db6-6cb8-4bb1-a5cf-0e8a2ff58a22",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+                "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}\n\\usepackage{listings}\n\n\\title{Supplementary Material for: Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\appendix\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Count} & \\textbf{Llama-3.1-8B} & \\textbf{Qwen3-32B} \\\\\n\\midrule\n1 & 0.702 & 0.640 \\\\\n64 & 0.273 & 0.304 \\\\\n\\midrule\nDecline & $-$43\\,pp & $-$34\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\\S\\ref{sec:model}) for fair cross-model comparison; the count-curve results in \\S\\ref{sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\\ 0.64 at count${}\\,=\\,1$) due to over-prediction under v1.}\n\\label{tab:cross_model}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{crrrrrr}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Llama-3.1-8B}} & \\multicolumn{3}{c}{\\textbf{Qwen3-32B}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Count} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} \\\\\n\\midrule\n8 & 78.1\\% & 51.0\\% & $-$27.1 & 82.3\\% & 51.0\\% & $-$31.2 \\\\\n16 & 75.5\\% & 51.6\\% & $-$23.9 & 82.8\\% & 51.6\\% & $-$31.2 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model BCS-controlled FewRel accuracy.  High-BCS accuracy converges to $\\approx$51\\% regardless of model, while low-BCS accuracy reflects model capacity differences.  The confusability gap ($\\Delta$, in pp) is 77--87\\% as large on Llama-3.1-8B as on Qwen3-32B.}\n\\label{tab:cross_model_bcs}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrrrrrr}\n\\toprule\n & & \\multicolumn{5}{c}{\\textbf{BCS Bin}} & & \\\\\n\\cmidrule(lr){3-7}\n\\textbf{Task} & \\textbf{Error} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{V.High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n\\midrule\nNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & --- & 1.000 & ${<}0.001$ \\\\\nRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 20.3\\% & 32.3\\% & 0.954 & ${<}\\,0.001$ \\\\\n\\midrule\nNER & Missed & --- & 42.8\\% & 64.8\\% & 49.9\\% & --- & --- & --- \\\\\nRE  & Missed & --- & 10.4\\% & 11.3\\% & 13.1\\% & 15.7\\% & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin, with Spearman $\\rho$ computed over $n=154$ individual batches (RE) and $n=148$ batches (NER). NER has 4 BCS bins; RE has 5.}\n\\label{tab:error_taxonomy}\n\\end{table}\n\n\\section{SDGD Full Protocol and Results}\n\\label{sec:appendix_sdgd}\n\nWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent---i.e., highly confusable---types share a color. Each color class forms one extraction batch, and predictions are merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation.\n\nSingle-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368). SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop. Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586). Every decomposition mode falls below the single-pass baseline (Table~\\ref{tab:sdgd_results}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrccc}\n\\toprule\n\\textbf{Mode} & \\textbf{\\# Batches} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 1 & 0.563 & 0.368 & 0.445 \\\\",
+                "numLines": 100,
+                "startLine": 0,
+                "totalLines": 392
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fu7ST5vXi5UC5bT4DCPajd",
+              "name": "Grep",
+              "input": {
+                "pattern": "variance.decomposition|Cross-Seed Variance",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+                "output_mode": "content",
+                "-n": true,
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "6a32bc88-32e0-4e31-b541-4840ab4c66bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CPigNVZ24Rz7yrJD2jaymA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7516,
+                "cache_read_input_tokens": 26004,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7516
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:34:59.883Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fu7ST5vXi5UC5bT4DCPajd",
+              "type": "tool_result",
+              "content": "341-\\section{Additional Experimental Details}\n342-\\label{sec:appendix_additional_details}\n343-\n344:\\subsection{Cross-Seed Variance Decomposition}\n345:\\label{app:variance-decomposition}\n346-\n347-To quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n348-\n--\n363-\\bottomrule\n364-\\end{tabular}\n365-\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n366:\\label{tab:variance_decomposition}\n367-\\end{table}\n368-\n369-[Omitted long context line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "3155b53a-65a5-4e06-ae46-30e1cedbd488",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "341-\\section{Additional Experimental Details}\n342-\\label{sec:appendix_additional_details}\n343-\n344:\\subsection{Cross-Seed Variance Decomposition}\n345:\\label{app:variance-decomposition}\n346-\n347-To quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n348-\n--\n363-\\bottomrule\n364-\\end{tabular}\n365-\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n366:\\label{tab:variance_decomposition}\n367-\\end{table}\n368-\n369-[Omitted long context line]",
+              "numLines": 16
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0197Xj6YLc6LrrUmDZzEdoQa",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+                "offset": 344,
+                "limit": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "7de7c836-88ec-4a09-b42c-e151ce8be3ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ya9NXqE5qg1My4yv76nfa1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 33520,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:35:04.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0197Xj6YLc6LrrUmDZzEdoQa",
+              "type": "tool_result",
+              "content": "344\t\\subsection{Cross-Seed Variance Decomposition}\n345\t\\label{app:variance-decomposition}\n346\t\n347\tTo quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n348\t\n349\t\\begin{table}[h]\n350\t\\centering\n351\t\\small\n352\t\\begin{tabular}{rrrr}\n353\t\\toprule\n354\t\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n355\t\\midrule\n356\t4 & 0.0889 & 0.0122 & 53.5 \\\\\n357\t8 & 0.0820 & 0.0098 & 70.0 \\\\\n358\t16 & 0.0626 & 0.0270 & 5.4 \\\\\n359\t32 & 0.0462 & 0.0091 & 26.0 \\\\\n360\t40 & 0.0421 & 0.0019 & 474.4 \\\\\n361\t64 & 0.0245 & 0.0022 & 119.8 \\\\\n362\t80 & 0.0001 & 0.0088 & $<$0.1 \\\\\n363\t\\bottomrule\n364\t\\end{tabular}\n365\t\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n366\t\\label{tab:variance_decomposition}\n367\t\\end{table}\n368\t\n369\tIntra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).\n370\t\n371\t\\subsection{Per-Count-Level Statistics}\n372\t\\label{sec:appendix_per_count_stats}\n373\t\n374\t[Placeholder: per-count-level detailed statistics to be added.]\n375\t\n376\t\\section{Full Results Tables}\n377\t\\label{sec:appendix_full_results}\n378\t\n379\t\\subsection{Count Curve Raw Data (All Seeds)}\n380\t\\label{sec:appendix_count_curve_raw}\n381\t\n382\t[Placeholder: full count-curve data across all seeds to be added.]\n383\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "f47def7f-5abf-4352-959d-31e95d50c700",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+                "content": "\\subsection{Cross-Seed Variance Decomposition}\n\\label{app:variance-decomposition}\n\nTo quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrrr}\n\\toprule\n\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n\\midrule\n4 & 0.0889 & 0.0122 & 53.5 \\\\\n8 & 0.0820 & 0.0098 & 70.0 \\\\\n16 & 0.0626 & 0.0270 & 5.4 \\\\\n32 & 0.0462 & 0.0091 & 26.0 \\\\\n40 & 0.0421 & 0.0019 & 474.4 \\\\\n64 & 0.0245 & 0.0022 & 119.8 \\\\\n80 & 0.0001 & 0.0088 & $<$0.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n\\label{tab:variance_decomposition}\n\\end{table}\n\nIntra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).\n\n\\subsection{Per-Count-Level Statistics}\n\\label{sec:appendix_per_count_stats}\n\n[Placeholder: per-count-level detailed statistics to be added.]\n\n\\section{Full Results Tables}\n\\label{sec:appendix_full_results}\n\n\\subsection{Count Curve Raw Data (All Seeds)}\n\\label{sec:appendix_count_curve_raw}\n\n[Placeholder: full count-curve data across all seeds to be added.]\n",
+                "numLines": 40,
+                "startLine": 344,
+                "totalLines": 392
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Let me add the Few-NERD table after the FewRel table and update the text paragraph."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "bde98311-d8d0-4eb8-948d-4cfa16b9a1f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019CFVaHHyiSX8QajfMUL7Z4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 33981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 952
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CR7RK3cHjhtPcgJDRthb7J",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+                "old_string": "Intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).",
+                "new_string": "\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrrr}\n\\toprule\n\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n\\midrule\n2 & 0.1782 & 0.0557 & 10.2 \\\\\n6 & 0.1233 & 0.0160 & 59.2 \\\\\n12 & 0.1063 & 0.0297 & 12.8 \\\\\n22 & 0.0954 & 0.0096 & 99.2 \\\\\n44 & 0.1214 & 0.0143 & 72.4 \\\\\n66 & 0.0016 & 0.0002 & 46.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Variance decomposition on Few-NERD (3 seeds $\\times$ 25 batches per count level). Batch SD: root-mean intra-seed standard deviation averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 66 (full schema), only one composition exists, so both components collapse to near-zero.}\n\\label{tab:variance_decomposition_ner}\n\\end{table}\n\nIntra-batch variance dominates inter-seed variance by 5--474$\\times$ on FewRel (mean 125$\\times$, counts 4--64) and 10--99$\\times$ on Few-NERD (mean 51$\\times$, counts 2--44), confirming that random batch composition is the primary source of performance variability on both tasks, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ on FewRel at count 16, 10.2$\\times$ on Few-NERD at count 2) indicates batch composition contributes the majority of observed variance. At count 80 (FewRel) and count 66 (Few-NERD), the full schema admits only one batch composition, collapsing batch variance by construction."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "5fc5466b-cf71-4b11-acd4-0711d05496cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019CFVaHHyiSX8QajfMUL7Z4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 33981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 952
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T05:35:16.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CR7RK3cHjhtPcgJDRthb7J",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "a072e0f7-7112-4163-86ea-a4cd7dd1f5c2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex",
+              "oldString": "Intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).",
+              "newString": "\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrrr}\n\\toprule\n\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n\\midrule\n2 & 0.1782 & 0.0557 & 10.2 \\\\\n6 & 0.1233 & 0.0160 & 59.2 \\\\\n12 & 0.1063 & 0.0297 & 12.8 \\\\\n22 & 0.0954 & 0.0096 & 99.2 \\\\\n44 & 0.1214 & 0.0143 & 72.4 \\\\\n66 & 0.0016 & 0.0002 & 46.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Variance decomposition on Few-NERD (3 seeds $\\times$ 25 batches per count level). Batch SD: root-mean intra-seed standard deviation averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 66 (full schema), only one composition exists, so both components collapse to near-zero.}\n\\label{tab:variance_decomposition_ner}\n\\end{table}\n\nIntra-batch variance dominates inter-seed variance by 5--474$\\times$ on FewRel (mean 125$\\times$, counts 4--64) and 10--99$\\times$ on Few-NERD (mean 51$\\times$, counts 2--44), confirming that random batch composition is the primary source of performance variability on both tasks, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ on FewRel at count 16, 10.2$\\times$ on Few-NERD at count 2) indicates batch composition contributes the majority of observed variance. At count 80 (FewRel) and count 66 (Few-NERD), the full schema admits only one batch composition, collapsing batch variance by construction.",
+              "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}\n\\usepackage{listings}\n\n\\title{Supplementary Material for: Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\appendix\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Count} & \\textbf{Llama-3.1-8B} & \\textbf{Qwen3-32B} \\\\\n\\midrule\n1 & 0.702 & 0.640 \\\\\n64 & 0.273 & 0.304 \\\\\n\\midrule\nDecline & $-$43\\,pp & $-$34\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\\S\\ref{sec:model}) for fair cross-model comparison; the count-curve results in \\S\\ref{sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\\ 0.64 at count${}\\,=\\,1$) due to over-prediction under v1.}\n\\label{tab:cross_model}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{crrrrrr}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Llama-3.1-8B}} & \\multicolumn{3}{c}{\\textbf{Qwen3-32B}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Count} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} \\\\\n\\midrule\n8 & 78.1\\% & 51.0\\% & $-$27.1 & 82.3\\% & 51.0\\% & $-$31.2 \\\\\n16 & 75.5\\% & 51.6\\% & $-$23.9 & 82.8\\% & 51.6\\% & $-$31.2 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model BCS-controlled FewRel accuracy.  High-BCS accuracy converges to $\\approx$51\\% regardless of model, while low-BCS accuracy reflects model capacity differences.  The confusability gap ($\\Delta$, in pp) is 77--87\\% as large on Llama-3.1-8B as on Qwen3-32B.}\n\\label{tab:cross_model_bcs}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrrrrrr}\n\\toprule\n & & \\multicolumn{5}{c}{\\textbf{BCS Bin}} & & \\\\\n\\cmidrule(lr){3-7}\n\\textbf{Task} & \\textbf{Error} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{V.High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n\\midrule\nNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & --- & 1.000 & ${<}0.001$ \\\\\nRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 20.3\\% & 32.3\\% & 0.954 & ${<}\\,0.001$ \\\\\n\\midrule\nNER & Missed & --- & 42.8\\% & 64.8\\% & 49.9\\% & --- & --- & --- \\\\\nRE  & Missed & --- & 10.4\\% & 11.3\\% & 13.1\\% & 15.7\\% & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin, with Spearman $\\rho$ computed over $n=154$ individual batches (RE) and $n=148$ batches (NER). NER has 4 BCS bins; RE has 5.}\n\\label{tab:error_taxonomy}\n\\end{table}\n\n\\section{SDGD Full Protocol and Results}\n\\label{sec:appendix_sdgd}\n\nWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent---i.e., highly confusable---types share a color. Each color class forms one extraction batch, and predictions are merged via set union. We compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation.\n\nSingle-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368). SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop. Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586). Every decomposition mode falls below the single-pass baseline (Table~\\ref{tab:sdgd_results}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrccc}\n\\toprule\n\\textbf{Mode} & \\textbf{\\# Batches} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 1 & 0.563 & 0.368 & 0.445 \\\\\n\\midrule\nsdgd\\_zero (v1) & 8 & 0.210 & 0.314 & 0.251 \\\\\nrandom\\_batch (v1) & 8 & 0.249 & 0.446 & 0.320 \\\\\nper\\_type & 66 & 0.194 & 0.586 & 0.292 \\\\\n\\midrule\nsdgd\\_zero (v2) & 4 & 0.324 & 0.191 & 0.241 \\\\\nrandom\\_batch (v2) & 8 & 0.331 & 0.276 & 0.301 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Few-NERD extraction under decomposition modes. V1 uses union merge; v2 uses confidence-gated merge with \\texttt{min\\_batch\\_size=8} (reducing 8$\\to$4 batches for sdgd\\_zero). All decomposition modes produce lower F1 than the single-pass baseline. All modes use the v1 prompt.}\n\\label{tab:sdgd_results}\n\\end{table}\n\nDecomposition boosts recall (per-type recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194 versus 0.563). When the same text is presented to the model $k$ times with different type subsets, each pass independently generates entity predictions. Because LLM outputs are not calibrated across passes, the union merge step accumulates overlapping and contradictory predictions, inflating false positives.\n\nOur v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span. Confidence gating improves precision (sdgd\\_zero: 0.210$\\to$0.324; random\\_batch: 0.249$\\to$0.331), but at the cost of disproportionate recall loss (0.314$\\to$0.191; 0.446$\\to$0.276), yielding lower F1 in both modes (sdgd\\_zero: 0.251$\\to$0.241; random\\_batch: 0.320$\\to$0.301).\n\n\\section{Factorial Analysis and Separability Test}\n\\label{sec:appendix_factorial}\n\nTo formally test whether count and confusability effects are additive, we fit a multiple regression (accuracy $\\sim$ $\\log_2$\\,count $+$ BCS $+$ count$\\times$BCS) across 69 batches from FewRel spanning five count levels ($k \\in \\{4, 8, 16, 32, 40\\}$). Both main effects are significant (count: $p = 0.008$; BCS: $p = 0.0002$; $R^2 = 0.52$), but the interaction term is negligible (0.47\\,pp). A TOST equivalence test with a $\\pm 3$\\,pp margin confirms that the interaction is bounded well below practical significance ($p_{\\text{TOST}} = 0.003$), supporting bounded interaction between count and confusability effects.\n\nA separate within-dataset $2 \\times 2$ factorial on FewRel (count $\\in \\{8, 16\\}$, BCS low/high; $n = 54$) did not reach equivalence ($p_{\\text{TOST}} = 0.56$), likely due to limited power from fewer count levels and narrower BCS contrast. The Few-NERD factorial (\\S\\ref{sec:multi_channel}) similarly did not reach significance ($p = 0.50$). The regression approach provides the stronger test by leveraging the full count range.\n\n\\paragraph{Equivalence margin justification.}\nWe set $\\pm 3$\\,pp as the smallest interaction that would materially alter practitioner decisions: a 3\\,pp interaction atop the 2.2\\,pp confusability main effect would represent ${>}130\\%$ amplification, fundamentally changing whether confusability warrants mitigation. At $\\pm 2$\\,pp (marginally equivalent, $p = 0.047$), interaction remains bounded below the main effect itself.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{crrl}\n\\toprule\n\\textbf{Margin (pp)} & \\textbf{$t_{\\text{upper}}$} & \\textbf{$p_{\\text{TOST}}$} & \\textbf{Conclusion} \\\\\n\\midrule\n$\\pm 1$ & $-0.59$ & $0.278$ & Inconclusive \\\\\n$\\pm 2$ & $-1.70$ & $0.047$ & Equivalent \\\\\n$\\pm 3$ & $-2.81$ & $0.003$ & Equivalent \\\\\n$\\pm 5$ & $-5.02$ & ${<}\\,0.001$ & Equivalent \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{TOST sensitivity analysis across equivalence margins. The interaction effect (0.47\\,pp, 90\\% CI [$-$1.0, 2.0]\\,pp) is bounded below 2\\,pp at marginal significance ($p = 0.047$), confirming that the $\\pm 3$\\,pp choice does not drive the equivalence conclusion. At $\\pm 1$\\,pp, equivalence is inconclusive ($p = 0.278$), meaning interaction could reach approximately half the main effect magnitude.}\n\\label{tab:tost_sensitivity}\n\\end{table}\n\n\\section{Within-Pool CI Details}\n\\label{sec:appendix_within_pool}\n\nThe quartile $\\Delta$ for 80-pool 16-relation subsets ($-$3.92\\,pp, 95\\% CI [$-$8.17, $+$0.38]) crosses zero, reflecting the compressed BCS range within that pool (0.46--0.68 vs.\\ 0.48--0.71 for the independent pool). Within this narrow band, the quartile contrast lacks statistical power to detect the effect that the regression identifies. The full 80-relation condition ($n = 25$) is underpowered for both the slope (CI: [$-$1.303, $+$1.695]) and quartile analyses; we include it in Table~\\ref{tab:within_pool} for completeness but do not draw inferential conclusions from it.\n\n\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n\\label{sec:appendix_residualized_bcs}\n\nSection~\\ref{sec:centrality_confound} identifies a centrality confound in MAVEN's per-type BCS--F1 correlation: both embeddings show a \\emph{positive} raw correlation, opposite to the expected direction. Here we formalize this analysis by identifying specific confounders for each embedding and testing whether the BCS--F1 relationship survives partial correlation controlling for these confounders.\n\n\\paragraph{Confound identification.}\nFor each embedding, we computed the correlation between mean BCS and candidate confounders (type frequency, degree centrality at threshold 0.7) across MAVEN's 149 active event types. The dominant confound differs by embedding:\n\\begin{itemize}[itemsep=2pt,leftmargin=*]\n\\item \\textbf{MiniLM}: BCS correlates with log type frequency ($r = 0.201$). Frequent types have more training signal and are extracted more reliably, producing the positive BCS--F1 association.\n\\item \\textbf{Qwen3}: BCS correlates strongly with degree centrality ($r = 0.854$). In the Qwen3 embedding space, high-BCS types are those with many semantic neighbors---central, well-represented types that the model extracts well.\n\\end{itemize}\n\n\\paragraph{Partial correlation results.}\nTable~\\ref{tab:residualized_bcs} reports raw Spearman $\\rho$ and partial Pearson $r$ after controlling for the identified confounders. Under single-variable control, both correlations weaken to non-significance. Under joint control (log frequency $+$ degree centrality simultaneously), neither embedding retains a significant BCS--F1 association.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Embedding} & \\textbf{Control} & \\textbf{Raw $\\rho$} & \\textbf{Raw $p$} & \\textbf{Partial $r$} & \\textbf{Partial $p$} \\\\\n\\midrule\nMiniLM & --- & $+$0.208 & $0.011$ & --- & --- \\\\\nMiniLM & log freq & --- & --- & $+$0.133 & $0.11$ \\\\\nMiniLM & log freq $+$ degree & --- & --- & --- & $0.23$ \\\\\n\\midrule\nQwen3 & --- & $+$0.184 & $0.025$ & --- & --- \\\\\nQwen3 & degree centrality & --- & --- & $+$0.063 & $0.44$ \\\\\nQwen3 & log freq $+$ degree & --- & --- & --- & $0.44$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{MAVEN per-type BCS--F1 correlation before and after controlling for centrality confounders. Raw correlations are Spearman $\\rho$; partial correlations are Pearson $r$ from residualized regression. Degree centrality is computed on the SCS graph at threshold 0.7. All values from experiment \\texttt{exp\\_maven\\_residualized\\_bcs}.}\n\\label{tab:residualized_bcs}\n\\end{table}\n\n\\paragraph{Interpretation.}\nThe two embeddings encode different aspects of the same underlying confound. MiniLM, a smaller sentence encoder, produces a tighter embedding cluster for MAVEN's FrameNet-derived types; here, type frequency is the primary confounder because frequent types accumulate higher mean similarity to the dense cluster. Qwen3, with a larger representation space, differentiates types enough that frequency is not the dominant factor, but degree centrality---the count of strong semantic neighbors---becomes the confound instead. In both cases, the positive raw correlation reflects a centrality artifact: types that are semantically central are both high-BCS and easy to extract.\n\nUnder joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 0.001$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\section{Batch Composition Results}\n\\label{sec:appendix_batch_composition}\n\nSee Table~\\ref{tab:batch_composition} and the accompanying discussion in \\S\\ref{sec:sdgd}.\n\n\\input{prompt_appendix}\n\n\\section{Prompt Version Sensitivity Analysis}\n\\label{sec:appendix_prompt_sensitivity}\n\nWe assess whether the confusability effects reported in \\S\\ref{sec:bcs_controlled}--\\ref{sec:multi_channel} are robust to prompt design by replicating key experiments under the v2 prompt (\\S\\ref{sec:model}; full templates in Appendix~\\ref{sec:appendix_prompts}).\n\n\\paragraph{RE (FewRel).}\nUnder the v1 prompt, the extreme-batch BCS gap (Table~\\ref{tab:bcs_controlled}) is substantial. Under v2, with $n{=}25$ batches per group and wider BCS contrast (low-BCS range [0.356, 0.367]; high-BCS range [0.791, 0.811]), the gap is $-$25.5\\,pp (low-BCS 85.2\\% vs.\\ high-BCS 59.7\\%; 95\\% CI: [22.4, 28.6]; $p < 0.001$; Pearson $r = -0.919$). The effect is significant, directionally consistent with v1, and only modestly attenuated in magnitude ($-$5.7\\,pp reduction). An earlier $n{=}5$ evaluation with narrower BCS contrast (0.21) yielded a smaller gap of $-$7.9\\,pp (CI: [$-$5.2, $+$21.5]), illustrating how limited statistical power and restricted BCS range can obscure the underlying signal---a cautionary note for small-sample prompt sensitivity studies.\n\n\\paragraph{NER (Few-NERD).}\nThe batch-level BCS--F1 correlation under v2 is consistent with v1: at count${}\\,=\\,12$, $r = +0.58$ ($p = 0.002$, 95\\% CI: [0.19, 0.81]) vs.\\ v1 $r = +0.50$ ($p = 0.008$). As discussed in \\S\\ref{sec:pairwise}, this positive direction reflects a type-frequency confound at the batch level---high-BCS batches contain high-frequency entity types that models extract more reliably---rather than evidence against the confusability hypothesis. The pairwise SCS--confusion analysis (\\S\\ref{sec:pairwise}), which is immune to this aggregation artifact, remains the primary evidence for the NER confusability channel.\n\n\\paragraph{Interpretation.}\nThe $n{=}25$ v2 result confirms that the confusability effect is directionally consistent across prompt designs, with attenuated magnitude: the gap narrows ($-$5.7\\,pp) but remains highly significant ($p < 0.001$, $r = -0.919$). The earlier $n{=}5$ non-significance reflected insufficient power and narrow BCS contrast, not absence of the effect. V2's stricter format constraints raise the baseline accuracy (low-BCS 85.2\\% vs.\\ 82.3\\%), but type confusion under high confusability persists (59.7\\% vs.\\ 51.0\\%). Prompt design modulates the practical magnitude of the confusability effect but does not eliminate it, ruling out prompt-specific confounding as the primary driver. The underlying confusability signal---pairwise SCS--confusion correlation and the directional BCS--accuracy relationship---persists across both prompt versions.\n\n\\section{BCS Aggregation Sensitivity}\n\\label{sec:appendix_bcs_sensitivity}\n\nWe define Batch Confusability Score (BCS) as the \\emph{mean} pairwise SCS across all type pairs in a batch (\\S\\ref{sec:bcs_controlled}). An alternative definition takes the \\emph{maximum} pairwise SCS within each batch, capturing the single most confusable pair. Here we compare both aggregation methods to verify that core conclusions are robust to this choice.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Aggregation} & \\textbf{Condition} & \\textbf{Slope} & \\textbf{95\\% CI} & \\textbf{$r$} & \\textbf{$p$} \\\\\n\\midrule\nMEAN (primary) & 16-rel & $-$0.509 & [$-$0.686, $-$0.336] & $-$0.467 & ${<}\\,0.001$ \\\\\nMEAN & 80-pool 16-sub & $-$0.401 & [$-$0.701, $-$0.069] & $-$0.221 & 0.027 \\\\\n\\midrule\nMAX & 16-rel & $-$0.449 & [$-$0.552, $-$0.346] & $-$0.637 & ${<}\\,0.001$ \\\\\nMAX & 80-pool 16-sub & $-$0.401 & [$-$0.701, $-$0.069] & $-$0.221 & 0.027 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{BCS--accuracy regression under mean vs.\\ max pairwise SCS aggregation (FewRel, 16-relation batches). Permutation test for slope equivalence across pools: MEAN $p \\approx 0.60$; MAX $p \\approx 0.44$. The 80-pool row is identical under both definitions because these batches were collected using mean-aggregated BCS; the MAX column reflects the same data for completeness.}\n\\label{tab:bcs_aggregation}\n\\end{table}\n\nMAX aggregation yields stronger correlations ($r = -0.637$ vs.\\ $-0.467$ for 16-rel), consistent with the hypothesis that the single most confusable pair in a batch predicts substitution errors. Both definitions produce significant negative slopes across all conditions, and the permutation tests confirm no significant difference between independent and sampled pools under either definition. We adopt MEAN as the primary definition because it better represents average pairwise difficulty across all schema combinations, while MAX may overweight a single outlier pair. The choice does not affect any paper conclusion.\n\n\\section{BCS-Controlled Detailed Results}\n\\label{app:bcs-controlled-table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrr}\n\\toprule\n\\textbf{Schema} & \\textbf{Count} & \\textbf{Low-BCS} & \\textbf{High-BCS} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n\\midrule\n16-rel & 8 & 88.9\\% & 79.8\\% & $-$9.1 & --- \\\\\n80-rel & 8 & 82.3\\% & 51.0\\% & $-$31.2 & {[}17.7, 42.7{]} \\\\\n80-rel & 16 & 82.8\\% & 51.6\\% & $-$31.2 & {[}22.9, 39.6{]} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The 80-relation extreme-batch gap reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\\ref{tab:within_pool}; see \\S\\ref{sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches.}\n\\label{tab:bcs_controlled}\n\\end{table}\n\n\\section{Within-Pool Analysis Methodology}\n\\label{app:within-pool-method}\n\nA potential confound in the cross-scale comparison is that the 16-relation and 80-relation pools contain different types, so the observed gap could reflect pool composition rather than confusability. To control for this, we draw 100 random 16-relation subsets from the 80-relation pool and evaluate under the same BCS-controlled protocol.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrrrr}\n\\toprule\n& \\multicolumn{4}{c}{\\textbf{Regression (BCS $\\to$ Accuracy)}} & \\multicolumn{2}{c}{\\textbf{Quartile $\\Delta$}} \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-7}\n\\textbf{Setting} & \\textbf{Slope} & \\textbf{95\\% CI} & \\textbf{$r$} & \\textbf{$p$} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n\\midrule\nIndependent 16-rel ($n{=}100$) & $-$0.509 & [$-$0.686, $-$0.336] & $-$0.467 & ${<}\\,0.001$ & $-$5.31 & [$-$7.44, $-$3.19] \\\\\n80-pool $\\to$ 16-sub ($n{=}100$) & $-$0.401 & [$-$0.701, $-$0.069] & $-$0.221 & $0.027$ & $-$3.92 & [$-$8.17, $+$0.38] \\\\\nFull 80-rel ($n{=}25$)$^\\dagger$ & $+$0.221 & [$-$1.303, $+$1.695] & $+$0.064 & $0.76$ & $-$1.04 & [$-$10.12, $+$8.04] \\\\\n\\midrule\n\\multicolumn{7}{l}{\\footnotesize Permutation test (16-rel vs.\\ 80-pool slopes): $p \\approx 0.60$ (5{,}000 permutations)} \\\\\n\\multicolumn{7}{l}{\\footnotesize $^\\dagger$BCS range (IQR\\,=\\,0.033) insufficient for regression; slope not interpretable.} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Three-way BCS--accuracy analysis on FewRel. Slope: OLS of batch accuracy on BCS (bootstrap CIs, $B{=}10{,}000$). $\\Delta$: accuracy gap between top- and bottom-quartile BCS batches. See Appendix~\\ref{sec:appendix_within_pool} for CI interpretation.}\n\\label{tab:within_pool}\n\\end{table}\n\nThe within-pool slope ($-$0.401, CI excludes zero) is statistically indistinguishable from the independent 16-relation pool ($-$0.509; permutation $p \\approx 0.60$). The smaller quartile gap ($-$3.92\\,pp vs.\\ $-$5.31\\,pp) reflects the narrower BCS range within the 80-relation pool (Appendix~\\ref{sec:appendix_within_pool}).\n\nIn the full 80-relation condition, natural BCS variation is insufficient (IQR${}=0.033$) to yield a detectable effect ($n=25$, slope${}=+0.221$, $p \\approx 0.76$). This does not invalidate the confusability effect---the within-pool slope is significant ($p=0.027$) when BCS is deliberately varied---but establishes that natural schema sampling at this scale does not produce sufficient BCS contrast for detection.\n\n\\section{SCS Embedding Ablation: Name-Only vs. Name+Definition}\n\\label{app:scs-ablation}\n\nTable~\\ref{tab:scs-ablation} compares predictive accuracy of name-only SCS against name+definition SCS across three datasets.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nDataset & SCS$_\\text{name}$ $r$ & SCS$_\\text{def}$ $r$ & $\\Delta r$ & Matrix corr. \\\\\n\\midrule\nFew-NERD & 0.172 & 0.149 & $-$0.023 & 0.894 \\\\\nMAVEN & 0.129 & 0.164 & +0.035 & 0.656 \\\\\nFewRel & 0.178 & 0.193 & +0.015 & 0.848 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pearson correlation between SCS and empirical confusion rate. ``Def'' concatenates type name with definition before embedding. All correlations significant ($p < 0.001$). The inconsistent direction of $\\Delta r$ indicates no systematic benefit from including definitions.}\n\\label{tab:scs-ablation}\n\\end{table}\n\nFew-NERD is the only dataset whose prompts include type definitions; for MAVEN and FewRel, prompts use type names alone, making name-only SCS a direct match to model input. The high matrix correlation (0.66--0.89) confirms that type names capture the dominant semantic structure.\n\n\\section{Pair-to-Batch Aggregation Simulation}\n\\label{app:aggregation-sim}\n\nThe following simulation provides an illustrative explanatory model for how pair-level effects aggregate to batch-level variance. It is not the evidence base for our claims---the observed batch-level $R^2 = 0.218$ (\\S\\ref{sec:practical_magnitude}) is a direct empirical measurement independent of this simulation.\n\n\\paragraph{Setup.} We examine whether the pair-level $R^2 \\approx 7\\%$ (computed over non-zero confusion pairs) can aggregate to the observed batch-level $R^2 \\approx 22\\%$ via a Monte Carlo simulation. From the FewRel 16-relation experiment, we estimate the inter-pair SCS correlation for pairs sharing a common type ($\\rho_\\text{SCS} = 0.35$). For batches of $k=8$ types ($\\binom{8}{2}=28$ pairs), we simulate 10{,}000 iterations: (1) generate 28 correlated pair-level effects with individual $R^2 = 0.074$; (2) average to obtain batch-level signals; (3) compute batch-level $R^2$.\n\n\\paragraph{Results.} Simulated batch $R^2 = 0.219$ [95\\% CI: 0.092--0.361], matching the observed value of 0.218. The effective amplification factor is $\\sim$3$\\times$, explained by signal correlation within batches preserving variance while independent noise averages out (effective degrees of freedom $\\approx 3.4$, not 28).\n\n\\paragraph{Unconditional baseline.}\nWhen the simulation uses the unconditional pairwise $r^2 = 0.013$ (computed over all type pairs including zero-confusion pairs; Table~\\ref{tab:pairwise}), the simulated batch-level $R^2$ drops to $0.044$ [95\\% CI: 0.001--0.151]---well below the observed $R^2 = 0.218$. The analytical formula confirms: $\\text{SNR} \\times \\text{EF} / (\\text{SNR} \\times \\text{EF} + 1) = 0.042$ with the same effective factor $\\text{EF} = 3.35$. This ${\\sim}5\\times$ gap reflects the dilution from zero-confusion pairs: approximately 89\\% of type pairs never exhibit mutual confusion, contributing only noise to the unconditional correlation. The conditional model ($R^2 = 0.074 \\to 0.219$) matches the observed value because it isolates the minority of semantically proximate pairs that actually compete during type resolution; BCS predicts batch accuracy through the density of \\emph{active} confusable pairs, not uniform contributions from all pairs.\n\n\\section{Split-Origin Covariate Analysis}\n\\label{app:split-origin}\n\nFewRel combines 64 train-split and 16 val-split relation types into a single 80-type pool.  Train-origin types show numerically lower accuracy ($-8.8$\\,pp, $p = 0.06$; see Limitations), raising the question of whether differential pre-training exposure confounds the BCS--accuracy relationship.  We test this by adding a per-batch \\emph{train-origin ratio} (fraction of relation types drawn from the train split) as a covariate in the BCS--accuracy regression.\n\n\\paragraph{Method.}  Across 213 multi-type batches ($k \\geq 2$) from the batch-composition experiment (\\S\\ref{sec:sdgd}) and the factorial design (\\S\\ref{sec:bcs_controlled}), we compute $\\texttt{train\\_origin\\_ratio} = n_{\\text{train}} / k$ for each batch.  The ratio ranges from 0.40 to 1.00 (mean 0.80, reflecting the 64/80 base rate).  We fit:\n\\[\n\\text{accuracy} = \\beta_0 + \\beta_{\\text{BCS}} \\cdot \\text{BCS} + \\beta_{\\text{origin}} \\cdot \\text{train\\_origin\\_ratio} + \\varepsilon\n\\]\n\n\\paragraph{Results.}  The BCS partial effect is unchanged after controlling for split-origin: $\\beta_{\\text{BCS}} = -0.416$, $p < 10^{-16}$ (vs.\\ $\\beta = -0.412$, $p < 10^{-16}$ without the covariate).  Train-origin ratio is not independently significant ($\\beta_{\\text{origin}} = -0.057$, $p = 0.245$), and $\\Delta R^2 = 0.005$.  The BCS--accuracy relationship is therefore not confounded by differential pre-training exposure at the batch level.\n\n\\section{Cross-Domain Connections}\n\\label{app:cross-domain}\n\nThe schema-induced degradation documented here is not unique to information extraction. Schema-Guided Dialogue systems (SGD/SGD-X; \\citealt{rastogi2020towards}) face an analogous challenge: as the number of intent and slot types grows, dialogue state tracking accuracy declines. \\citet{li2023evaluating} observed count-dependent degradation in ChatGPT-based IE, attributing it to prompt overload. Our two-channel decomposition offers a more refined explanation: schema size per se is not the sole driver; rather, larger schemas increase the probability of including high-SCS pairs, which contribute disproportionately to confusion. This distinction has practical implications---a schema of 80 types with low mutual confusability may outperform a 40-type schema with clustered semantics---and suggests that confusability-aware design principles may generalize to any task where an LLM must discriminate among a prompt-specified label inventory.\n\n\\section{Additional Experimental Details}\n\\label{sec:appendix_additional_details}\n\n\\subsection{Cross-Seed Variance Decomposition}\n\\label{app:variance-decomposition}\n\nTo quantify whether performance variability is driven by random batch composition or seed-dependent model inference noise, we decompose total variance into intra-seed (batch) and inter-seed components across three seeds (42, 123, 456), each evaluated on 25 random batches per count level.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{rrrr}\n\\toprule\n\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n\\midrule\n4 & 0.0889 & 0.0122 & 53.5 \\\\\n8 & 0.0820 & 0.0098 & 70.0 \\\\\n16 & 0.0626 & 0.0270 & 5.4 \\\\\n32 & 0.0462 & 0.0091 & 26.0 \\\\\n40 & 0.0421 & 0.0019 & 474.4 \\\\\n64 & 0.0245 & 0.0022 & 119.8 \\\\\n80 & 0.0001 & 0.0088 & $<$0.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Variance decomposition across count levels on FewRel. Batch SD is the root-mean intra-seed variance across 25 random type batches (averaged over 3 seeds). Seed SD is the standard deviation of the 3 per-seed means. Ratio = mean batch variance / seed variance. At count 80, only one batch composition exists (the full schema), so batch variance vanishes by construction.}\n\\label{tab:variance_decomposition}\n\\end{table}\n\nIntra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).\n\n\\subsection{Per-Count-Level Statistics}\n\\label{sec:appendix_per_count_stats}\n\n[Placeholder: per-count-level detailed statistics to be added.]\n\n\\section{Full Results Tables}\n\\label{sec:appendix_full_results}\n\n\\subsection{Count Curve Raw Data (All Seeds)}\n\\label{sec:appendix_count_curve_raw}\n\n[Placeholder: full count-curve data across all seeds to be added.]\n\n\\subsection{BCS-Controlled Raw Data}\n\\label{sec:appendix_bcs_raw}\n\n[Placeholder: BCS-controlled raw data to be added.]\n\n\\bibliography{references}\n\n\\end{document}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 366,
+                  "oldLines": 8,
+                  "newStart": 366,
+                  "newLines": 27,
+                  "lines": [
+                    " \\label{tab:variance_decomposition}",
+                    " \\end{table}",
+                    " ",
+                    "-Intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$), confirming that random batch composition is the primary source of performance variability, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ at count 16) indicates batch composition contributes the majority of observed variance. At count 80, the ratio inverts because the full schema admits only one batch composition, leaving model inference noise as the sole variance source (seed SD = 0.88\\,pp).",
+                    "+\\begin{table}[h]",
+                    "+\\centering",
+                    "+\\small",
+                    "+\\begin{tabular}{rrrr}",
+                    "+\\toprule",
+                    "+\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\",
+                    "+\\midrule",
+                    "+2 & 0.1782 & 0.0557 & 10.2 \\\\",
+                    "+6 & 0.1233 & 0.0160 & 59.2 \\\\",
+                    "+12 & 0.1063 & 0.0297 & 12.8 \\\\",
+                    "+22 & 0.0954 & 0.0096 & 99.2 \\\\",
+                    "+44 & 0.1214 & 0.0143 & 72.4 \\\\",
+                    "+66 & 0.0016 & 0.0002 & 46.3 \\\\",
+                    "+\\bottomrule",
+                    "+\\end{tabular}",
+                    "+\\caption{Variance decomposition on Few-NERD (3 seeds $\\times$ 25 batches per count level). Batch SD: root-mean intra-seed standard deviation averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 66 (full schema), only one composition exists, so both components collapse to near-zero.}",
+                    "+\\label{tab:variance_decomposition_ner}",
+                    "+\\end{table}",
+                    " ",
+                    "+Intra-batch variance dominates inter-seed variance by 5--474$\\times$ on FewRel (mean 125$\\times$, counts 4--64) and 10--99$\\times$ on Few-NERD (mean 51$\\times$, counts 2--44), confirming that random batch composition is the primary source of performance variability on both tasks, not seed-dependent randomness in model inference. The wide ratio range reflects variation in how tightly seed means cluster at each count level; even the minimum ratio (5.4$\\times$ on FewRel at count 16, 10.2$\\times$ on Few-NERD at count 2) indicates batch composition contributes the majority of observed variance. At count 80 (FewRel) and count 66 (Few-NERD), the full schema admits only one batch composition, collapsing batch variance by construction.",
+                    "+",
+                    " \\subsection{Per-Count-Level Statistics}",
+                    " \\label{sec:appendix_per_count_stats}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GSCof4zkw3Gj4P35LSpJh2",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode -g supplementary.tex 2>&1 | tail -5",
+                "description": "Compile supplementary.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "bb73c6e0-cc97-4471-bc82-ca7b0cb4d733",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QAXtzssRH1zHLP2sBsK1KY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 936,
+                "cache_read_input_tokens": 34933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 936
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T05:35:22.904Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GSCof4zkw3Gj4P35LSpJh2",
+              "type": "tool_result",
+              "content": "  Reference `sec:centrality_confound' on page 2 undefined on input line 153\n  Reference `tab:pairwise' on page 3 undefined on input line 189\n And 15 more --- see log file 'supplementary.log'\nLatexmk: All targets (supplementary.pdf) are up-to-date",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "69e3d5ee-7453-40db-b0cb-5446f69e4f10",
+            "tool_use_result": {
+              "stdout": "  Reference `sec:centrality_confound' on page 2 undefined on input line 153\n  Reference `tab:pairwise' on page 3 undefined on input line 189\n And 15 more --- see log file 'supplementary.log'\nLatexmk: All targets (supplementary.pdf) are up-to-date",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功（warnings 仅为跨文件 reference，正常）。\n\n**Few-NERD Variance Decomposition:**\n\n| Count | Batch SD | Seed SD | Ratio |\n|------:|--------:|--------:|------:|\n| 2 | 0.1782 | 0.0557 | 10.2 |\n| 6 | 0.1233 | 0.0160 | 59.2 |\n| 12 | 0.1063 | 0.0297 | 12.8 |\n| 22 | 0.0954 | 0.0096 | 99.2 |\n| 44 | 0.1214 | 0.0143 | 72.4 |\n| 66 | 0.0016 | 0.0002 | 46.3 |\n\n**Mean ratio (counts 2--44):** 50.8x  \n**Range:** 10.2--99.2x  \n**编译:** 成功，PDF 已生成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "uuid": "46e07691-d1a0-4b9a-b055-f6af17f15551",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gz5jtkDd9TSuPEFEQQrVky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 228,
+                "cache_read_input_tokens": 35869,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 228
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功（warnings 仅为跨文件 reference，正常）。\n\n**Few-NERD Variance Decomposition:**\n\n| Count | Batch SD | Seed SD | Ratio |\n|------:|--------:|--------:|------:|\n| 2 | 0.1782 | 0.0557 | 10.2 |\n| 6 | 0.1233 | 0.0160 | 59.2 |\n| 12 | 0.1063 | 0.0297 | 12.8 |\n| 22 | 0.0954 | 0.0096 | 99.2 |\n| 44 | 0.1214 | 0.0143 | 72.4 |\n| 66 | 0.0016 | 0.0002 | 46.3 |\n\n**Mean ratio (counts 2--44):** 50.8x  \n**Range:** 10.2--99.2x  \n**编译:** 成功，PDF 已生成。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 97062,
+            "duration_api_ms": 95925,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "0e4f89eb-14d6-43b9-8da6-396a96195918",
+            "total_cost_usd": 0.40888399999999997,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 24256,
+              "cache_read_input_tokens": 176148,
+              "output_tokens": 6687,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24256,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 265,
+                  "cache_read_input_tokens": 35869,
+                  "cache_creation_input_tokens": 228,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 228
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1895,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 6687,
+                "cacheReadInputTokens": 176148,
+                "cacheCreationInputTokens": 24256,
+                "webSearchRequests": 0,
+                "costUSD": 0.406889,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2d29be2a-e731-4d96-8d37-a3e7bd976ef8"
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ]
+}

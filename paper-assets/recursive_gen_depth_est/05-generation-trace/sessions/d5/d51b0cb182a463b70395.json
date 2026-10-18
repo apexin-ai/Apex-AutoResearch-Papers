@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d51b0cb182a463b70395",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra gpt2xl pipeline launch",
+  "task_key": "worker_infra_gpt2xl-pipeline-launch_20260514T141146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpt2xl-pipeline-launch_20260514T141146_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "72a6d4a29a8ee134252ae59abdb88bacb8735c00e2f5eda1249e7cf09a5d482c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 正常运行，训练速度稳定 ~1.33 it/s (43/939 steps)。\n\n---\n\n**产出汇总：**\n\n### 1. GPT-2 XL 模型信息\n| 属性 | 值 |\n|------|-----|\n| 模型类型 | gpt2 |\n| 参数量 | 1.56B |\n| 层数 | 48 (transformer.h.0-47) |\n| 隐藏维度 | 1600 |\n| Vocab | 50257 |\n| BOS/EOS | `<\\|endoftext\\|>` (50256) |\n| PAD | None → 代码兜底设为 eos_token |\n| Attention 模块 | `Conv1D`（非 nn.Linear） |\n| LoRA target_modules | `c_attn, c_proj` |\n\n### 2. 脚本修改清单\n- **新建**: `scripts/run_pipeline_gpt2xl.sh` — GPT-2 XL 专用 pipeline\n- **修改**: `scripts/lora_finetune.py` — CUDA_VISIBLE_DEVICES 仅在未预设时覆盖\n- **修改**: `scripts/generate_next_depth.py` — 同上\n- **新建**: `data/gpt2xl/depth_0.jsonl` — 种子数据副本 (5000条)\n- **新建**: `checkpoints/gpt2xl/`, `logs/` 目录\n\n### 3. Pipeline 启动证据\n- **PID**: 123650\n- **tmux session**: `cross_model_gpt2xl_001`\n- **GPU**: cuda:1, 利用率 92%, 显存 34979 MiB / 97887 MiB\n- **训练速度**: ~1.33 it/s, 939 steps/epoch × 3 epochs\n- **预计总时长**: depth-0 训练 ~35min + 生成 + depth-1 训练 + 生成 + depth-2 训练 + 生成 ≈ 4-5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

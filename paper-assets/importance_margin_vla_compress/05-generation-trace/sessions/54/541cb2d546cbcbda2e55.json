@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "541cb2d546cbcbda2e55",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze l2norm k05 object s42",
+  "task_key": "worker_analyze_l2norm_k05_object_s42_20260525T122454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_l2norm_k05_object_s42_20260525T122454_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "9de21f398836aff017f1abdf97e78b24c7b0622d00216afaec555135282a5b1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## L2norm k=0.5 Object seed42 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **39.2% (196/500)** |\n| Total episodes | 500 (10 tasks × 50 eps) |\n| 耗时 | 264.6 min |\n| Vision tokens | 256 → 128 (50% pruned) |\n\n### Per-task SR\n\n| Task | SR |\n|------|-----|\n| ketchup | 70.0% |\n| alphabet_soup | 56.0% |\n| milk | 50.0% |\n| chocolate_pudding | 44.0% |\n| orange_juice | 44.0% |\n| salad_dressing | 38.0% |\n| bbq_sauce | 32.0% |\n| tomato_sauce | 32.0% |\n| cream_cheese | 14.0% |\n| butter | 12.0% |\n\n### 退化曲线定位\n\n| k_ratio | Object SR | 相对 baseline (96.2%) |\n|---------|-----------|----------------------|\n| 0.9 | 70.6% | -26.6pp |\n| 0.7 | (已有) | — |\n| **0.5** | **39.2%** | **-57.0pp** |\n| 0.3 | (已有) | — |\n\nk=0.5 时 L2norm 退化严重（39.2%），从 k=0.9 的 70.6% 进一步下降约 31pp。无异常 task（无全 0 或全 1）。butter 和 cream_cheese 最低（12%/14%），ketchup 最高（70%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

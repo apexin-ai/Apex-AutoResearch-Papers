@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "33904578eb5a97b4d04d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp fewrel factorial tost",
+  "task_key": "worker_exp_fewrel_factorial_tost_20260516T141051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_fewrel_factorial_tost_20260516T141051_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "30525d2155203517fdac60e5a3a846e96ebd457363ed8ba20d276dadd415cb80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果总结：\n\n**三重分析均支持 two-channel decomposition 的可加性（empirical separability）：**\n\n| Analysis | N | Count effect | BCS effect | Interaction | TOST |\n|----------|---|---|---|---|---|\n| 1. 2×2 Factorial (40-rel, 8 vs 16) | 54 | F=10.98, p=.002** | F=1.24, p=.27 ns | F=0.60, p=.44 ns | inconclusive |\n| 2. Regression (40-rel, count 4-40) | 69 | β=−.035, p=.008** | β=−.051, p=.0002*** | β=.005, p=.61 ns | **p=.003, EQUIVALENT** |\n| 3. Cross-dataset (200 batches) | 200 | F=21.90, p<.001*** | F=5.90, p=.016* | F=2.76, p=.098 ns | inconclusive |\n\n**核心结论：**\n- Count 和 BCS 两个 channel 各自独立且显著地影响 accuracy\n- 三个分析中交互项均不显著 (all p > 0.05)\n- 回归分析的 TOST 正式确认交互项在 ±3pp equivalence margin 内 (interaction = 0.47pp, SE = 0.90pp, p_TOST = 0.003)\n- R² = 0.52 — 两个 channel 联合解释一半以上的 accuracy 变异\n\n结果保存于 `/root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

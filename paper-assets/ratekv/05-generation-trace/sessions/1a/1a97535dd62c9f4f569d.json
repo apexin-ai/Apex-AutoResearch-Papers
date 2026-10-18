@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1a97535dd62c9f4f569d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "investigation mistral concentration",
+  "task_key": "worker_investigation_mistral_concentration_20260514T211724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigation_mistral_concentration_20260514T211724_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "7fb380ae0230e04bd5010dff3ce27b12d9528214b3ed4099af1b36c5e4f59a98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Root cause confirmed. Here's the full finding:\n\n## Mistral Concentration 溯源结果\n\n| 数据源 | 文件 | 分辨率 | 零值头数/总头数 | Concentration |\n|--------|------|--------|----------------|---------------|\n| Standard profiling | `mistral_profiling_results.json` | 低（无记录） | 221/256 (86%) | **0.4220** |\n| Hires profiling | `mistral_ppl_profiles_hires.json` | 64 samples, 2048 seq_len | 43/256 (17%) | **0.2307** |\n| C4 cross-dataset | `mistral_c4_eval_results.json` | C4 calibration | — | 0.1363 |\n\n**0.42 是低分辨率 profiling 的伪影。** 标准 profiling 中 256 个 head 有 221 个（86%）的 2-bit delta 为 0.0，不是因为这些 head 真的不敏感，而是因为 calibration 样本太少导致测量精度不够。少数非零 head 占了总 delta 的大部分 → 虚高的 concentration。\n\nHires profiling 将零值 head 降到 43/256（17%），分辨率足以检测到大多数 head 的微小 delta，分布变得更均匀 → concentration = 0.23。\n\n**结论：**\n- **0.42**（paper_framing.md）：来自 standard profiling，**错误**，是低分辨率伪影\n- **0.22**（analysis.tex Table 3）：来自 hires profiling（实际计算值 0.2307，四舍五入），**正确**\n- paper_framing.md 应更新为 0.22–0.23\n\n需要我直接修正 paper_framing.md 中的值吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "11ab4d6cf87c95c423fc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k03 goal seed42 postfix",
+  "task_key": "worker_analyze_eval_pi05_random_k03_goal_seed42_postfix_20260524T110731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k03_goal_seed42_postfix_20260524T110731_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "78d1d0b69e997872358cacecc708a03e5abde06d88d87bd61a86ef6fbc7fd3d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已更新为 DONE/success。汇总：\n\n## π0.5 Random Goal Post-fix 结果\n\n| Task | k=0.3 | k=0.95 | Baseline |\n|------|-------|--------|----------|\n| T0 open middle drawer | 88% | 86% | — |\n| T1 put bowl on stove | 6% | 94% | — |\n| T2 wine bottle on cabinet | 72% | 84% | — |\n| T3 open drawer put bowl | 40% | 78% | — |\n| T4 bowl on cabinet | 70% | 98% | — |\n| T5 push plate front stove | 30% | 92% | — |\n| T6 cream cheese in bowl | 32% | 88% | — |\n| T7 turn on stove | 100% | 100% | — |\n| T8 bowl on plate | 68% | 96% | — |\n| T9 wine bottle on rack | 22% | 10% | — |\n| **Overall** | **52.8%** | **82.6%** | **88.4%** |\n\n关键观察：\n- **k=0.3**: 52.8%，与 pre-fix 的 50.6% 基本一致（+2.2pp），post-fix 未改变趋势，数据有效\n- **k=0.95**: 82.6%，接近 baseline 88.4%（-5.8pp），符合 near-baseline 预期。比 Object k=0.95 (74%) 和 Spatial k=0.95 (76.8%) 都更接近 baseline，Goal suite 确实对 random pruning 更鲁棒\n- **T9 (wine bottle on rack)** 在两个 k 值下都很低（22% / 10%），这个 task 本身可能就困难"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

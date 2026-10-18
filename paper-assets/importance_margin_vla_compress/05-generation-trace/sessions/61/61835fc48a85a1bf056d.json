@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "61835fc48a85a1bf056d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix xvla author order urgent",
+  "task_key": "worker_fix_xvla_author_order_urgent_20260528T172455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_xvla_author_order_urgent_20260528T172455_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "0fb899495c6a981695a5bb814abb63ea02decc3b91e3f177fc373bae0dfd289c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修正。完整正确作者列表（共15人）：\n\n1. Zheng, Jinliang\n2. **Li, Jianxiong**（原误写为 Li, Zhihao）\n3. **Wang, Zhihao**（原误写为 Wang, Shengjie）\n4. **Liu, Dongxiu**（原误写为 Wang, Jianxiong）\n5. Kang, Xirui\n6. Feng, Yuchun\n7. Zheng, Yinan\n8. Zou, Jiayin\n9. Chen, Yilun\n10. Zeng, Jia\n11. Zhang, Ya-Qin\n12. Pang, Jiangmiao\n13. Liu, Jingjing\n14. Wang, Tai\n15. Zhan, Xianyuan\n\nbib 中保留 `and others` 缩写后续作者，前四位已修正为正确姓名和顺序。\n\nSources:\n- [arXiv 2510.10274 - X-VLA](https://arxiv.org/abs/2510.10274)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

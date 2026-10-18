@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "02e832c2a5608372d684",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "exp phi3 download and profile",
+  "task_key": "worker_exp_phi3_download_and_profile_20260515T163926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phi3_download_and_profile_20260515T163926.log",
+    "occurrence": 1,
+    "bytes": 899592,
+    "sha256": "55b00a62fc1d05560129a4075acdf3249657fd3f0c94013edf7b465af7cbab81"
+  },
+  "statistics": {
+    "messages": 814,
+    "user_turns": 0,
+    "tool_calls": 357,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 95,
+      "tool_call": 357,
+      "tool_result": 357,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 814,
+      "chunks": [
+        {
+          "path": "02e832c2a5608372d684-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "02e832c2a5608372d684-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "02e832c2a5608372d684-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "02e832c2a5608372d684-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "02e832c2a5608372d684-part-0005.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ]
+}

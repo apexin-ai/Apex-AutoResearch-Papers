@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3f77de9fbf9c8b165a35",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "exp step2 status check",
+  "task_key": "worker_exp_step2-status-check_20260521T232820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_step2-status-check_20260521T232820_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "e780b039c8eb8cfca8eb1c42b4beb647ebb043377fb195242f3be5c96020596e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step 2 v2 (mvp-step2-keff-contrast) 状态汇报\n\n### 进程状态\n- **PID 48121: 存活**，已运行 36 分 34 秒\n- GPU 2 占用 91795 MiB（~90GB），利用率 100%，其余 GPU 空闲\n\n### 运行进度\nK_eff 排名阶段已完成，当前在**攻击生成阶段**，进度 **71% (212/300)**，速度约 470 toks/s input, 103 toks/s output。\n\n### 错误\n无 error/traceback/exception/OOM。\n\n### 结果文件\n尚无 `results_step2_*.json`，实验未完成。\n\n### K_eff 排名结果 (MMLU, K=3 panels)\n\n**Top-3 High K_eff:**\n\n| Rank | K_eff(MI) | K_eff(ρ) | Fam | Panel |\n|------|-----------|----------|-----|-------|\n| #1 | 2.771 | 2.949 | 3 | mistral-large, qwen2.5-14b, llama3.1-8b |\n| #2 | 2.750 | 2.954 | 2 | llama3.1-70b, qwen2.5-14b, llama3.1-8b |\n| #3 | 2.710 | 2.919 | 2 | qwen2.5-32b, qwen2.5-14b, llama3.1-8b |\n\n**Bottom-3 Low K_eff:**\n\n| Rank | K_eff(MI) | K_eff(ρ) | Fam | Panel |\n|------|-----------|----------|-----|-------|\n| #18 | 2.207 | 2.790 | 2 | qwen2.5-72b, mistral-large, qwen2.5-32b |\n| #19 | 2.193 | 2.773 | 3 | qwen2.5-72b, llama3.1-70b, mistral-large |\n| #20 | 2.140 | 2.747 | 2 | qwen2.5-72b, llama3.1-70b, qwen2.5-32b |\n\n趋势：含 llama3.1-8b 的 panel 普遍 K_eff 更高（前 10 名全含它），大模型组合（72b+70b+32b）K_eff 最低。预计还需几分钟完成攻击生成阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

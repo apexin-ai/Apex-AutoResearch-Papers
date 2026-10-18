@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "e316bdf9a2e9fe8cc686",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp012 llama 8b r2",
+  "task_key": "worker_code_exp012_llama_8b_r2_20260515T170630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_llama_8b_r2_20260515T170630.log",
+    "occurrence": 1,
+    "bytes": 1175299,
+    "sha256": "5fe53613c2305fb34d8fccefe13f89cbaed8747feeaa7addc958c1ee98bacf19"
+  },
+  "statistics": {
+    "messages": 590,
+    "user_turns": 1,
+    "tool_calls": 200,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 181,
+      "tool_call": 200,
+      "tool_result": 200,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 557,
+      "chunks": [
+        {
+          "path": "e316bdf9a2e9fe8cc686-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e316bdf9a2e9fe8cc686-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e316bdf9a2e9fe8cc686-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e316bdf9a2e9fe8cc686-part-0004.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "e316bdf9a2e9fe8cc686-part-0004.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ]
+}

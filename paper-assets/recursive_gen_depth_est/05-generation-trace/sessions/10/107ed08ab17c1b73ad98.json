@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "107ed08ab17c1b73ad98",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "eval binoculars 14b topk50 recovery",
+  "task_key": "worker_eval_binoculars_14b_topk50_recovery_20260520T054202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_binoculars_14b_topk50_recovery_20260520T054202_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "14570e85408f3f03f2960d62b4616ca3fd694724a152a8ab35cd0cb9c4379332"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载中，正常运行。预计 binoculars 特征提取需要 30-60 分钟（20k 样本，双模型推理），ablation 几分钟。\n\n已提交的 pipeline：\n1. **Binoculars 特征提取**: `binoculars_ordinal_eval.py` → `results/binoculars_14b_topk50/binoculars_14b_topk50.json` + `pythia_nucleus_bino_features.npz`\n2. **Merged ablation**: `merged_ablation_14b_topk50.py` → `results/merged_ablation_14b_topk50.json`\n\ntmux session: `bino_topk50`，日志: `/tmp/bino_topk50.log` 和 `/tmp/ablation_topk50.log`\n\n完成后需要：读取结果 → 写 artifact → register_artifact。可以稍后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

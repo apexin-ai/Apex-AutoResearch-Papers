@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c7d9ad1251fea9a8db1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 checkpoint 22k 26k",
+  "task_key": "worker_eval_v8-checkpoint-22k-26k_20260516T015101",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8-checkpoint-22k-26k_20260516T015101_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "e78dd241833055431b8025d1f336848111c2a76e17bacc7bcf7dd959d586e483"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 脚本已在 GPU 1 上运行中（`run_traj_eval_补跑.sh`），正在处理 step 22000。预计 20-30 分钟完成全部 3 个 checkpoint × 2 模式的评估。4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

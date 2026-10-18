@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a49a15dadac4305df82b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra gpu cleanup and restart",
+  "task_key": "worker_infra_gpu-cleanup-and-restart_20260522T020502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-cleanup-and-restart_20260522T020502_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "251355c8fa05433d8214120b5b6d9a130c79529dd0e00c5712f0e573c527620d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 结果报告\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 清理** | 旧 VLLM 进程 (PID 63871, 89914 MiB) 已杀掉，4 块 GPU 全部释放至 0 MiB |\n| **脚本启动** | tmux session `mvp-step2v3-retry` 运行中 |\n| **PID** | 65488, 65489, 65495 (python 进程), 65769 (VLLM::EngineCore) |\n| **GPU 0 占用** | 85182 MiB / 97887 MiB, 100% 利用率 — 模型已加载完成 |\n| **日志状态** | Qwen2.5-72B-Instruct-AWQ 模型加载完毕 (38.76 GiB, 8.9s)，正在 Capturing CUDA graphs，即将进入推理阶段 |\n\n脚本正常运行，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

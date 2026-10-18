@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "9af27efaf7337ff5b97e",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code 1 3b priority verify",
+  "task_key": "worker_code_1_3b-priority-verify_20260518T074201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b-priority-verify_20260518T074201.log",
+    "occurrence": 1,
+    "bytes": 1031804,
+    "sha256": "1a1ea2c0e4bc543023e8a4a975100f33e1a07dff00b56367fd5578324731aeef"
+  },
+  "statistics": {
+    "messages": 588,
+    "user_turns": 1,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 205,
+      "tool_call": 188,
+      "tool_result": 188,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 523,
+      "chunks": [
+        {
+          "path": "9af27efaf7337ff5b97e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9af27efaf7337ff5b97e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9af27efaf7337ff5b97e-part-0003.json",
+          "message_count": 163
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "9af27efaf7337ff5b97e-part-0003.json",
+          "message_count": 17
+        },
+        {
+          "path": "9af27efaf7337ff5b97e-part-0004.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "12625ef596969941d645",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis cross benchmark iv",
+  "task_key": "worker_analysis_cross-benchmark-iv_20260523T080346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-benchmark-iv_20260523T080346_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "c5a63f8be824fcef8eaa1a55af28719c5bf9a9696200caf0e7060dd2e9589fea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting for the remaining 5 bootstraps to complete (~10 min). Will check back automatically."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

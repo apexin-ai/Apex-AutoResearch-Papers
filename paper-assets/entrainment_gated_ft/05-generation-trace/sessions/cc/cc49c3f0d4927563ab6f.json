@@ -1,0 +1,1211 @@
+{
+  "schema_version": "1.0",
+  "id": "cc49c3f0d4927563ab6f",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "diagnose hellaswag metric check",
+  "task_key": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_hellaswag-metric-check_20260521T095449.jsonl",
+    "occurrence": 1,
+    "bytes": 42774,
+    "sha256": "bcccb3d2cd8d5ef89c8fe5a794d53ceae68290026226ba6a1758673a841d54cf"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 0,
+    "tool_calls": 29,
+    "roles": {
+      "tool_call": 29,
+      "tool_result": 29,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T09:56:51.010631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T09:56:51.011155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T09:56:51.011410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.json\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T09:56:51.011613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T09:56:51.011866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.jsonl\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T09:56:51.012056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T09:56:51.012245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T09:56:51.012428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.jsonl\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T09:56:51.012611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-pub/eval_results': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T09:56:51.012805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-pub/eval_results': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T09:56:51.012967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root -type d -name \"eval_results\" -maxdepth 4",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T09:56:51.013097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T09:56:51.013215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft -name \"*.json\" -path \"*hellaswag*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T09:56:51.013333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T09:56:51.013469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/hellaswag_per_example.json\\\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json\\\\n/root/ent\n…[truncated 172 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T09:56:51.013613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"download_7b.log\\\\ndownload_7b_ms.log\\\\ndownload_output.log\\\\nentrainment_gated_ft_backup_20260519.tar.gz\\\\nmodels\\\\nmodels_1.3b\\\\nmodels_7b\\\\nredownload.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T09:56:51.013802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T09:56:51.014115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 10042,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4640509858593906,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.004976867796583177,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.607647878908584,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.004872765504069728\\\\n    }\\\\n  },\\\\n  \\\\\\\"group_subtasks\\\\\\\": {},\\\\n  \\\\\\\"configs\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"dataset_path\\\\\\\": \\\\\\\"Rowan/hellaswag\\\\\\\",\\\\n      \\\\\\\"training_split\\\\\\\": \\\\\\\"train\\\\\\\",\\\\n      \\\\\\\"validation_split\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"process_docs\\\\\\\": \\\\\\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\\\\\n    def _process_doc(doc):\\\\\\\\n        ctx = doc[\\\\\\\\\\\\\\\"ctx_a\\\\\\\\\\\\\\\"] + \\\\\\\\\\\\\\\" \\\\\\\\\\\\\\\" + doc[\\\\\\\\\\\\\\\"ctx_b\\\\\\\\\\\\\\\"].capitalize()\\\\\\\\n        out_doc = {\\\\\\\\n            \\\\\\\\\\\\\\\"query\\\\\\\\\\\\\\\": preprocess(doc[\\\\\\\\\\\\\\\"activity_label\\\\\\\\\\\\\\\"] + \\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\" + ctx),\\\\\\\\n            \\\\\\\\\\\\\\\"choices\\\\\\\\\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\\\\\\\\\"endings\\\\\\\\\\\\\\\"]],\\\\\\\\n            \\\\\\\\\\\\\\\"gold\\\\\\\\\\\\\\\": int(doc[\\\\\\\\\\\\\\\"label\\\\\\\\\\\\\\\"]),\\\\\\\\n        }\\\\\\\\n        return out_doc\\\\\\\\n\\\\\\\\n    return dataset.map(_process_doc)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"{{query}}\\\\\\\",\\\\n      \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{label}}\\\\\\\",\\\\n      \\\\\\\"unsafe_code\\\\\\\": false,\\\\n      \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"choices\\\\\\\",\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\",\\\\n      \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"fewshot_config\\\\\\\": {\\\\n        \\\\\\\"sampler\\\\\\\": \\\\\\\"default\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": null,\\\\n        \\\\\\\"process_docs\\\\\\\": \\\\\\\"<function process_docs at 0x7f97dc406d40>\\\\\\\",\\\\n        \\\\\\\"fewshot_indices\\\\\\\": null,\\\\n        \\\\\\\"samples\\\\\\\": null,\\\\n        \\\\\\\"doc_to_text\\\\\\\": \\\\\n…[truncated 7618 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T09:56:51.014278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -3 /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T09:56:51.014405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft -name \"*.jsonl\" -path \"*hellaswag*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T09:56:51.014535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 10042,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T09:56:51.014714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T17-58-59.437801.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-04-21.775324.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-09-55.701549.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-06-58.522842.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-13-40.854538.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-24-24.830994.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-50-08.002524.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-38-22.701250.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T20-11-17.753642.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-59-18.864716.jsonl\\\\n/root/entrainment_gated_ft/results_v5/tra\n…[truncated 1818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T09:56:51.014887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T09:56:51.015050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"ind\\\\\\\": 24, \\\\\\\"activity_label\\\\\\\": \\\\\\\"Roof shingle removal\\\\\\\", \\\\\\\"ctx_a\\\\\\\": \\\\\\\"A man is sitting on a roof.\\\\\\\", \\\\\\\"ctx_b\\\\\\\": \\\\\\\"he\\\\\\\", \\\\\\\"ctx\\\\\\\": \\\\\\\"A man is sitting on a roof. he\\\\\\\", \\\\\\\"endings\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"source_id\\\\\\\": \\\\\\\"activitynet~v_-JhWjGDPHMY\\\\\\\", \\\\\\\"split\\\\\\\": \\\\\\\"val\\\\\\\", \\\\\\\"split_type\\\\\\\": \\\\\\\"indomain\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"3\\\\\\\", \\\\\\\"query\\\\\\\": \\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\"choices\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"gold\\\\\\\": 3}, \\\\\\\"target\\\\\\\": 3, \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is using wrap to wrap a pair of skis.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is ripping level tiles off.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is holding a rubik's cube.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" starts pulling up roofing on a roof.\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"acc\\\\\\\", \\\\\\\"acc_norm\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\\\\\", \\\\\\\"acc\\\\\\\": 0.0, \\\\\\\"acc_norm\\\\\\\": 0.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0},\n…[truncated 61 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T09:56:51.015204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "python3 -c \"import json; d=json.load(open('/root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json')); print(type(d)); ks=list(d.keys())[:10] if isinstance(d,dict) else None; print(ks); print(json.dumps(d[:2] if isinstance(d,list) else {k:d[k] for k in ks[:3]}, indent=2, ensure_ascii=False)[:2000])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T09:56:51.015331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T09:56:51.015465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -30 /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T09:56:51.015583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -m 5 \"correct\" /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T09:56:51.015752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 10042,\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"GDN\\\\\\\",\\\\n    \\\\\\\"RetNet\\\\\\\",\\\\n    \\\\\\\"HGRN2\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"ratios\\\\\\\": [\\\\n    \\\\\\\"pure\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"per_example_classification\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 317,\\\\n        \\\\\\\"n_hurt\\\\\\\": 358,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 4302,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 5065,\\\\n        \\\\\\\"net_effect\\\\\\\": -41,\\\\n        \\\\\\\"pct_helped\\\\\\\": 3.16,\\\\n        \\\\\\\"pct_hurt\\\\\\\": 3.57\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 346,\\\\n        \\\\\\\"n_hurt\\\\\\\": 360,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 4300,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T09:56:51.015905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T09:56:51.016056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft -name \"*.py\" -path \"*analysis*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T09:56:51.016179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft -name \"*.py\" -path \"*per_example*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T09:56:51.016320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\\\n/root/entrainment_gated_ft/transformer_baseline_analysis.py\\\\n/root/entrainment_gated_ft/per_example_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": nul\n…[truncated 47 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T09:56:51.016477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/per_example_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T09:56:51.016649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/per_example_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T09:56:51.016975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Full per-example analysis for ARC-Easy + LAMBADA (Parts A-F).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom itertools import permutations as iterperms\\\\n\\\\nnp.random.seed(42)\\\\n\\\\nARCHS = [\\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\"]\\\\nRATIOS = [\\\\\\\"pure\\\\\\\", \\\\\\\"h24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]\\\\nHYBRID_RATIOS = [\\\\\\\"h24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]\\\\nARCH_PAIRS = [(\\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\"), (\\\\\\\"GDN\\\\\\\", \\\\\\\"HGRN2\\\\\\\"), (\\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\")]\\\\nN_PERM = 10000\\\\nOUT_DIR = \\\\\\\"/root/entrainment_gated_ft\\\\\\\"\\\\n\\\\n# === Paths ===\\\\nARC_BASE = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\\\\\"\\\\nARC_ARCH_MAP = {\\\\\\\"GDN\\\\\\\": \\\\\\\"GatedDeltaNet\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}\\\\n\\\\ndef arc_path(arch, ratio):\\\\n    a = ARC_ARCH_MAP[arch]\\\\n    if ratio == \\\\\\\"pure\\\\\\\":\\\\n        return f\\\\\\\"{ARC_BASE}/1.3B-100B-{a}-pure/samples/arc_easy.jsonl\\\\\\\"\\\\n    num = ratio.split(\\\\\\\"-\\\\\\\")[0][1:]\\\\n    return f\\\\\\\"{ARC_BASE}/1.3B-100B-{a}-hybrid-{num}-1/samples/arc_easy.jsonl\\\\\\\"\\\\n\\\\nLAMB_EXP = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b\\\\\\\"\\\\nLAMB_EXTRA = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/1.3b\\\\\\\"\\\\n\\\\ndef lambada_path(arch, ratio):\\\\n    if arch == \\\\\\\"GDN\\\\\\\" and ratio in [\\\\\\\"h24-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]:\\\\n        return f\\\\\\\"{LAMB_EXTRA}/GDN-{ratio}-logsamples/samples/lambada_openai.jsonl\\\\\\\"\\\\n    name = {\\\\\\\"GDN\\\\\\\": \\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}[arch]\\\\n    return f\\\\\\\"{LAMB_EXP}/{name}-{ratio}/samples/lambada_openai.jsonl\\\\\\\"\\\\n\\\\ndef load_jsonl(path):\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            data.append(json.loads(line))\\\\n    return data\\\\n\\\\n# === Load ===\\\\nprint(\\\\\\\"Loading data...\\\\\\\")\\\\narc_data = {}\\\\nlambada_raw = {}\\\\nfor arch in ARCHS:\\\\n    for ra\n…[truncated 7471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T09:56:51.017178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rl \"hellaswag\" /root/entrainment_gated_ft/analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T09:56:51.017311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rl \"hellaswag_per_example\" /root/entrainment_gated_ft/",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T09:56:51.017442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py.bak\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T09:56:51.017580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T09:56:51.017719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rl \"hellaswag\" /root/entrainment_gated_ft/analysis/task_specificity_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T09:56:51.017838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -n \"acc\" /root/entrainment_gated_ft/analysis/task_specificity_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T09:56:51.017957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T09:56:51.018080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'arc_challenge_norm',\\\\n30:              'winogrande_acc', 'arc_easy_norm', 'mmlu_acc']\\\\n33:    'lambada_acc': 'LAMBADA',\\\\n36:    'winogrande_acc': 'WinoGrande',\\\\n38:    'mmlu_acc': 'MMLU',\\\\n42:    'lambada_acc': 'Retrieval-dependent',\\\\n45:    'winogrande_acc': 'Reasoning-dependent',\\\\n47:    'mmlu_acc': 'Mixed',\\\\n55:    'lambada_acc': ('lambada_openai', 'acc,none'),\\\\n56:    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\\\n57:    'winogrande_acc': ('winogrande', 'acc,none'),\\\\n58:    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\\\n59:    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\\\n60:    'mmlu_acc': ('mmlu', 'acc,none'),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T09:56:51.018243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft -name \"*.py\" -newer /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json -path \"*analysis*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T09:56:51.018365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rn \"hellaswag_per_example\" /root/entrainment_gated_ft/analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T09:56:51.018481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T09:56:51.018594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T09:56:51.018727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rn \"hellaswag_per_example\" /root/entrainment_gated_ft/",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T09:56:51.018845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T09:56:51.018953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/analysis_output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T09:56:51.019063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rn \"analysis_output\" /root/entrainment_gated_ft/analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T09:56:51.019242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"boolq_confidence_margin.json\\\\nboolq_jaccard_analysis.json\\\\nboolq_per_example.json\\\\ncross_benchmark_confidence_margin.json\\\\nhellaswag_jaccard_analysis.json\\\\nhellaswag_per_example.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T09:56:51.019370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T09:56:51.019485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -rn \"analysis_output\" /root/entrainment_gated_ft/*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T09:56:51.019605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analyze_boolq_hellaswag.py:9:OUTPUT_DIR = \\\\\\\"/root/entrainment_gated_ft/analysis_output\\\\\\\"\\\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:169:os.makedirs(\\\\\\\"/root/entrainment_gated_ft/analysis_output\\\\\\\", exist_ok=True)\\\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:170:out_path = \\\\\\\"/root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T09:56:51.019808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/analyze_boolq_hellaswag.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T09:56:51.020253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"BoolQ + HellaSwag per-example analysis for entrainment_gated_ft project.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os\\\\nimport numpy as np\\\\nfrom itertools import permutations\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nEVAL_BASE = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/entrainment_gated_ft/analysis_output\\\\\\\"\\\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\nARCHS = [\\\\\\\"GatedDeltaNet\\\\\\\", \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\"]\\\\nARCH_SHORT = {\\\\\\\"GatedDeltaNet\\\\\\\": \\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}\\\\nRATIOS = [\\\\\\\"pure\\\\\\\", \\\\\\\"h24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]\\\\nRATIO_DIR = {\\\\\\\"pure\\\\\\\": \\\\\\\"pure\\\\\\\", \\\\\\\"h24-1\\\\\\\": \\\\\\\"hybrid-24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\": \\\\\\\"hybrid-12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\": \\\\\\\"hybrid-6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\": \\\\\\\"hybrid-3-1\\\\\\\"}\\\\nARCH_PAIRS = [(\\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\"), (\\\\\\\"GDN\\\\\\\", \\\\\\\"HGRN2\\\\\\\"), (\\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\")]\\\\nARCH_FROM_SHORT = {\\\\\\\"GDN\\\\\\\": \\\\\\\"GatedDeltaNet\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}\\\\n\\\\nBENCHMARKS = {\\\\n    \\\\\\\"boolq\\\\\\\": {\\\\\\\"expected_n\\\\\\\": 3270},\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\\\\"expected_n\\\\\\\": 10042}\\\\n}\\\\n\\\\ndef load_accs(benchmark, arch, ratio):\\\\n    dir_name = f\\\\\\\"1.3B-100B-{arch}-{RATIO_DIR[ratio]}\\\\\\\"\\\\n    path = f\\\\\\\"{EVAL_BASE}/{benchmark}/{dir_name}/samples/{benchmark}.jsonl\\\\\\\"\\\\n    accs = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            d = json.loads(line)\\\\n            accs.append((d[\\\\\\\"doc_id\\\\\\\"], int(d[\\\\\\\"acc\\\\\\\"])))\\\\n    accs.sort(key=lambda x: x[0])\\\\n    return [a for _, a in accs]\\\\n\\\\ndef jaccard(set_a, set_b):\\\\n    if not set_a and not set_b:\\\\n        return 0.0\\\\n    union = set_a | set_b\\\\n    return len(set_a & set_b) / len(union) if union else 0.0\\\\n\\\\ndef jaccard_null(a_size, b_size, n):\\\\n    exp = a_size * b_size / n\\\\n    denom = a_size + b_size - exp\\\\n    return e\n…[truncated 7286 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T09:56:51.020559+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确了。\n\n## 结果\n\n**HellaSwag per-example correct/incorrect 基于 `acc`（非 `acc_norm`）。**\n\n### 证据\n\n1. **`analyze_boolq_hellaswag.py` 第 32 行**（生成 `hellaswag_per_example.json` 的脚本）：\n   ```python\n   accs.append((d[\"doc_id\"], int(d[\"acc\"])))\n   ```\n   用的是 `d[\"acc\"]` 字段，不是 `d[\"acc_norm\"]`。\n\n2. **per-example jsonl 样本**（`hellaswag.jsonl` 第一行）同时包含 `\"acc\": 0.0` 和 `\"acc_norm\": 0.0` 两个字段，但分析代码只读取了 `\"acc\"`。\n\n3. **Aggregate 指标**（GatedDeltaNet-pure）：\n   - **`acc` = 0.4641**\n   - **`acc_norm` = 0.6076**\n   \n   差异很大（~14pp），`acc_norm` 做了 length normalization 后显著更高。\n\n4. **注意**：`task_specificity_analysis.py` 的 aggregate 汇报用的是 `acc_norm,none`（即报告时引用 0.6076），但 per-example helped/hurt 分类用的是 `acc`（即基于 0.4641 水平的逐样本对错判断）。\n\n### 含义\n\nper-example 分析中一个样本被判\"正确\"意味着模型选了 raw log-likelihood 最高的选项恰好是 gold answer（无 length normalization）。这比 `acc_norm` 标准更严格，对应的 pure baseline 正确率只有 ~46%。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_hellaswag-metric-check_20260521T095449"
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    }
+  ]
+}

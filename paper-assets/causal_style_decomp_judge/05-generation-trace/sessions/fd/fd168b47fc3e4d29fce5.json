@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "fd168b47fc3e4d29fce5",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code cf vs dr qwen32b",
+  "task_key": "worker_code_cf_vs_dr_qwen32b_20260521T133745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cf_vs_dr_qwen32b_20260521T133745_result.json",
+    "occurrence": 1,
+    "bytes": 1885,
+    "sha256": "3031c6e15f05a95c85cd4519f248d873ed766fc22c561e66e7cbece6cf6ba266"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n```json\n{\n  \"judge\": \"Qwen3-32B\",\n  \"comparison\": \"counterfactual vs double_rewrite\",\n  \"formality\": {\n    \"n_pairs\": 81,\n    \"n_consistent\": 55,\n    \"consistency\": 0.679,\n    \"cf_win_rate\": 0.20,\n    \"ci\": [0.1094, 0.3092],\n    \"p_value\": 0.000009,\n    \"interpretation\": \"Reversed -- DR preferred even over CF, artifact dominates\"\n  },\n  \"verbosity\": {\n    \"n_pairs\": 43,\n    \"n_consistent\": 39,\n    \"consistency\": 0.907,\n    \"cf_win_rate\": 0.3333,\n    \"ci\": [0.1798, 0.4872],\n    \"p_value\": 0.053252,\n    \"interpretation\": \"Reversed -- DR preferred even over CF, artifact dominates\"\n  }\n}\n```\n\n**一句话总结**：两个轴上 DR 都被偏好于 CF（formality: CF 仅 20% win rate, p<0.00001；verbosity: 33%, p=0.053 边缘显著）。这意味着 judge 偏好 double-rewrite 的风格（即回到原始风格方向），而非 counterfactual 的风格变化方向。结合之前 placebo 实验（DR 强烈被偏好于 original），这构成了一个有趣的格局：**rewriting artifact 的影响比纯 style effect 更大**——judge 不是在偏好某种风格，而是在偏好被重写过更多次的文本。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "judge": "Qwen3-32B",
+              "comparison": "counterfactual vs double_rewrite",
+              "formality": {
+                "n_pairs": 81,
+                "n_consistent": 55,
+                "consistency": 0.679,
+                "cf_win_rate": 0.2,
+                "ci": [
+                  0.1094,
+                  0.3092
+                ],
+                "p_value": 9e-06,
+                "interpretation": "Reversed -- DR preferred even over CF, artifact dominates"
+              },
+              "verbosity": {
+                "n_pairs": 43,
+                "n_consistent": 39,
+                "consistency": 0.907,
+                "cf_win_rate": 0.3333,
+                "ci": [
+                  0.1798,
+                  0.4872
+                ],
+                "p_value": 0.053252,
+                "interpretation": "Reversed -- DR preferred even over CF, artifact dominates"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

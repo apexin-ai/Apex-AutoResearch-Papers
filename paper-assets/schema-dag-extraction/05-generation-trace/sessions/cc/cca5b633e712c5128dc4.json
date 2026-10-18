@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "cca5b633e712c5128dc4",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp fewshot bcs mitigation",
+  "task_key": "worker_code_exp_fewshot_bcs_mitigation_20260517T115312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_fewshot_bcs_mitigation_20260517T115312.log",
+    "occurrence": 1,
+    "bytes": 58559661,
+    "sha256": "fc8c704234bf8dfbf3bd089b73430b2a41577c246154e7a41d68943a537ec0dd"
+  },
+  "statistics": {
+    "messages": 133,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 53,
+      "tool_result": 53
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "cca5b633e712c5128dc4-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "cca5b633e712c5128dc4-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "cca5b633e712c5128dc4-part-0003.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ]
+}

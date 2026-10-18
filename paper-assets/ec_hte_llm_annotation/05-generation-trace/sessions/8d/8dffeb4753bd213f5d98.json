@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "8dffeb4753bd213f5d98",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research second dataset validation",
+  "task_key": "worker_research_second-dataset-validation_20260522T035753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_second-dataset-validation_20260522T035753.log",
+    "occurrence": 1,
+    "bytes": 1362559,
+    "sha256": "1baa6df31a978aa9f96559209766d6f95543558a70b4e1a3caea92723a06f3f2"
+  },
+  "statistics": {
+    "messages": 753,
+    "user_turns": 2,
+    "tool_calls": 236,
+    "roles": {
+      "system": 123,
+      "record": 1,
+      "assistant": 154,
+      "tool_call": 236,
+      "user": 2,
+      "tool_result": 236,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "8dffeb4753bd213f5d98-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 557,
+      "chunks": [
+        {
+          "path": "8dffeb4753bd213f5d98-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "8dffeb4753bd213f5d98-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8dffeb4753bd213f5d98-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8dffeb4753bd213f5d98-part-0004.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "8dffeb4753bd213f5d98-part-0004.json",
+          "message_count": 157
+        },
+        {
+          "path": "8dffeb4753bd213f5d98-part-0005.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ]
+}

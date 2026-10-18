@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "902fc2769752b59f2225",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。修复后各 condition 的 action_loss 合理：\n\n| Condition | 修复前（hard） | 修复后（soft） |\n|-----------|-------------|-------------|\n| eps0.0_pruneFalse | 0.0330 | **0.0108** |\n| eps0.0_pruneTrue | ~0.033 | **0.0074** |\n| eps0.05_pruneFalse | - | 0.0250 |\n\n---\n\n## 总结\n\n### 根因\n`MarginAwareTokenSelector` 的 `training=True` 用 soft sigmoid mask（连续权重），`training=False` 用 hard binary mask（0/1）。evaluate.py 用 `model.eval()` 触发 hard mode，而训练用 soft mode。v7.2 的 margin（0.40）远小于 v7（1.48），导致 soft mask 更模糊，soft→hard 切换影响更大。\n\n### 额外 bug\n`IMMSmolVLAWrapper.__init__` 中 `selector_temperature` 默认 1.0，而 config 的 temperature 是 0.5。selector 比 margin loss 更 soft。\n\n### 已修复\n1. **`imm/smolvla_wrapper.py` 第96行**：`selector_temperature` 默认值改为读取 config 的 `temperature`\n2. **`evaluate.py` 第351-356行**：action_loss 计算改用 train mode（soft forward）以匹配训练语义\n\n### 后续建议（未实施）\n- 考虑训练时用 Straight-Through Estimator (STE)：forward 用 hard mask，backward 用 soft gradient。彻底消除 train/eval 差异\n- 或在训练中定期报告 hard action_loss 作为监控指标，避免 soft loss 误导"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 715034,
+            "duration_api_ms": 667022,
+            "num_turns": 58,
+            "stop_reason": "end_turn",
+            "session_id": "d4fb192d-42d9-432e-9edc-70f812f87f18",
+            "total_cost_usd": 3.0690665,
+            "usage": {
+              "input_tokens": 47,
+              "cache_creation_input_tokens": 95910,
+              "cache_read_input_tokens": 3289444,
+              "output_tokens": 32870,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 95910,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 502,
+                  "cache_read_input_tokens": 104274,
+                  "cache_creation_input_tokens": 3477,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3477
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2782,
+                "outputTokens": 28,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002922,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 47,
+                "outputTokens": 32870,
+                "cacheReadInputTokens": 3289444,
+                "cacheCreationInputTokens": 95910,
+                "webSearchRequests": 0,
+                "costUSD": 3.0661445,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d45272b0-5cd8-4ec5-8d84-f0ffe7301257"
+          },
+          "id": "event-000174"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6f3460051080ce954e9",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 restart 8b awq",
+  "task_key": "worker_ops_fp16-restart-8b-awq_20260525T105636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-restart-8b-awq_20260525T105636_result.json",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "66a98b7ef74cdd0910349528ba09309ad50ace2eecdc720e9212f309c8989d66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出：\n\n```\n8B AWQ 当前 shards: 1/2 (model-00001 已有, model-00002 缺失)\n重启下载 PID: 81922\n日志: /tmp/download_llama8b_awq_restart.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

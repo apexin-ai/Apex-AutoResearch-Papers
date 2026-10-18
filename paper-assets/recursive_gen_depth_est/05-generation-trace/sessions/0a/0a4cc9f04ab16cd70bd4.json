@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0a4cc9f04ab16cd70bd4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross model loo",
+  "task_key": "worker_analysis_cross_model_loo_20260515T040026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_model_loo_20260515T040026_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "40795dd712051a43a41bf4e20f5178dc85d908e11bb70e01e356e76c430d3650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Cross-model LOO 泛化测试结果：\n\n| Rotation | Train size | Test size | 4-class acc | 95% CI | d1v2 AUC | d2v3 AUC |\n|----------|-----------|-----------|-------------|--------|----------|----------|\n| Hold-out Pythia | 120,000 | 60,000 | 0.6242 | [0.6206, 0.6282] | 0.5617 | 0.6534 |\n| Hold-out OLMo | 120,000 | 60,000 | 0.6921 | [0.6886, 0.6959] | 0.7687 | 0.6862 |\n| Hold-out GPT-2 XL | 120,000 | 60,000 | 0.6756 | [0.6719, 0.6792] | 0.8157 | 0.6639 |\n\n**Per-class recall:**\n\n| Rotation | d0 | d1 | d2 | d3 |\n|----------|------|------|------|------|\n| Hold-out Pythia | 1.000 | 0.493 | 0.268 | 0.736 |\n| Hold-out OLMo | 0.993 | 0.755 | 0.433 | 0.588 |\n| Hold-out GPT-2 XL | 0.985 | 0.747 | 0.526 | 0.445 |\n\n**Mean cross-model 4-class accuracy: 0.664** (chance = 0.25)。\n\nPythia 作为 hold-out 时泛化最差（acc=0.624, d1v2 AUC 仅 0.56），说明 Pythia 的 depth 信号模式与 OLMo/GPT-2 XL 差异较大。OLMo 和 GPT-2 XL 作为 hold-out 时表现更好（0.69/0.68）。所有 rotation 中 depth-0（原始文本）recall 接近 1.0，depth-2 recall 最低，符合中间深度最难区分的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

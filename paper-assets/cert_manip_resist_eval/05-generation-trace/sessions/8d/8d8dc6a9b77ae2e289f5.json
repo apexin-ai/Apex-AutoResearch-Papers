@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d8dc6a9b77ae2e289f5",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis power cr2 cr3",
+  "task_key": "worker_analysis_power-cr2-cr3_20260522T231641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_power-cr2-cr3_20260522T231641_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "98f97c97b8cdff3015d4dde1d39bab3ff4e84693a4c50316839f201b85963fda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇总：\n\n### Part A: Power Analysis\n\n| β_std | β_raw | Power |\n|-------|-------|-------|\n| 0.1 | 0.724 | 0.646 |\n| 0.2 | 1.449 | 0.997 |\n| 0.3 | 2.173 | 1.000 |\n| 0.5 | 3.622 | 1.000 |\n\n**MDE at 80% power: β_std = 0.144**（即标准化效应量 ~0.14 SD 就能在当前设计下被检测到）。实际观测的 K_eff 效应远小于此阈值，与 0/12 FDR 显著一致。\n\n### Part B: CR1 vs CR2 vs CR3\n\n| Method | η_max FDR sig | K_eff FDR sig |\n|--------|---------------|---------------|\n| CR1 | 8/12 | 0/12 |\n| CR2 | 8/12 | 0/12 |\n| CR3 | 4/12 | 0/12 |\n\nCR2（偏差校正）与 CR1 结果一致。CR3（jackknife）更保守，η_max 显著数从 8 降到 4，K_eff 仍然 0/12。三种方法均确认 K_eff 在当前数据中无统计显著效应。\n\n输出文件：`/root/cert_manip_resist_eval/artifacts/results/plan001/power_cr2_cr3.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

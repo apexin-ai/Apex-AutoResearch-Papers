@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0ff64ac2ccf96b50b726",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis near chance fix",
+  "task_key": "worker_analysis_near-chance-fix_20260525T094538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_near-chance-fix_20260525T094538_result.json",
+    "occurrence": 1,
+    "bytes": 2112,
+    "sha256": "a99fe7a10c5ae9d1f9ff0152327ded0525301597fb7e844199a1d09e33e713bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX syntax looks correct. Table has the right column count (8 columns for `llcccccc`), all rows have 8 entries.\n\n---\n\n## Summary\n\n### 1. Diagnosis: Fractional logit bug root cause\n`GLMResults` in statsmodels **has no `get_robustcov_results` method**. The near_chance script called `gf.get_robustcov_results(cov_type='cluster', groups=cint)` which raised `AttributeError`, silently caught by `except Exception`, appending 1.0 for every condition. The V2 script correctly uses `model.fit(cov_type='cluster', cov_kwds={'groups': groups})` to re-fit with clustered SE.\n\n### 2. Fix applied and verified\nReplaced the broken `get_robustcov_results` approach with V2's `model.fit(cov_type='cluster')` approach. Re-ran full sensitivity analysis (560s). Results:\n\n### 3. Complete K3/K5/K7 comparison\n\n**K=3:**\n| Metric | Full (455) | Filtered (286) | Δ |\n|--------|-----------|----------------|---|\n| OLS K_eff | 11/12 | 12/12 | +1 |\n| WCB K_eff | 3/12 | 4/12 | +1 |\n| Frac K_eff | 8/12 | 9/12 | +1 |\n| WCB η_max | 4/12 | 1/12 | -3 |\n| β_std | 0.349 | 0.480 | +0.131 |\n| R² | 0.340 | 0.333 | -0.007 |\n\n**K=5:**\n| Metric | Full (3003) | Filtered (1287) | Δ |\n|--------|------------|-----------------|---|\n| OLS K_eff | 12/12 | 11/12 | -1 |\n| WCB K_eff | 7/12 | 7/12 | 0 |\n| Frac K_eff | 10/12 | 11/12 | +1 |\n| WCB η_max | 2/12 | 0/12 | -2 |\n| β_std | 0.437 | 0.512 | +0.075 |\n| R² | 0.285 | 0.256 | -0.028 |\n\n**K=7:**\n| Metric | Full (6435) | Filtered (1716) | Δ |\n|--------|------------|-----------------|---|\n| OLS K_eff | 12/12 | 11/12 | -1 |\n| WCB K_eff | 8/12 | 2/12 | -6 |\n| Frac K_eff | 10/12 | 11/12 | +1 |\n| WCB η_max | 1/12 | 0/12 | -1 |\n| β_std | 0.401 | 0.385 | -0.016 |\n| R² | 0.244 | 0.203 | -0.041 |\n\n### 4. Appendix updated\n- Added \"Frac\" column to table with all 6 data points\n- Added sentence about frac logit improving after filtering at every K\n- Added η_max paragraph showing WCB η drops from 4→1, 2→0, 1→0 — near-chance models drive η_max significance\n- Revised conclusion: K_eff robust at all K, η_max is not"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

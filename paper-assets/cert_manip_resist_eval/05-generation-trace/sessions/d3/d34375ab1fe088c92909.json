@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d34375ab1fe088c92909",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra scp and pipeline",
+  "task_key": "worker_infra_scp-and-pipeline_20260522T165558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-and-pipeline_20260522T165558_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "025912e43f763d4ef6cd3ad53619d97e0bc1f187d92fd73f21eab91c54d7a1a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已完成。汇报：\n\n1. **SCP 传输**：126 个 API 模型 scoring 文件全部传输成功（9 模型 × 14 条件）\n2. **旧文件清理**：删除 9 个过时的 `gpt-4o__*.json` 文件\n3. **最终文件数**：126 个文件，覆盖 9 个 API 模型：claude-3-haiku, claude-opus-4-6, claude-sonnet-4-6, gemini-3.1-pro-preview, gemini-3.5-flash, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, gpt-5.5\n4. **Pipeline 状态**：已完成全部 4 步（Step 3 MI Matrix → Confound Diagnosis → Step 4 Panel Regression → Step 5 Random Fault）\n   - 中途修复了 pingouin 0.6.1 的列名变更（`p-val` → `p_val`），本地和远程都已同步修复\n   - 产出文件：`mi_matrix_15models.json`（352KB）、`confound_diagnosis.json`、`confound_scatter.png`、`step4_regression_results.json`（33KB）、`step5_random_fault_results.json`（17KB）\n   - K_eff 在 Random Fault 模型下 12/12 条件显著，diversity benefit 在 adaptive attack 下被削弱"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "58e4464b22d12e050c81",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis retnet hgrn2 only decoupling",
+  "task_key": "worker_analysis_retnet-hgrn2-only-decoupling_20260520T045441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retnet-hgrn2-only-decoupling_20260520T045441_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "7d70fb059a180ab54c5f1903ea9c155d6e2db48a93fa5373e0380ecc0e7b7a52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**Cross-arch σ（LAMBADA accuracy，RetNet vs HGRN2）**\n\n| Ratio | RetNet | HGRN2 | σ |\n|-------|--------|-------|---|\n| pure | 0.5166 | 0.4842 | **0.0162** |\n| h24-1 | 0.5152 | 0.5003 | 0.0075 |\n| h12-1 | 0.5071 | 0.5030 | **0.0020** |\n| h6-1 | 0.4972 | 0.5088 | 0.0058 |\n| h3-1 | 0.5032 | 0.5139 | 0.0053 |\n\nσ 非严格单调（h12-1 处达最小值 0.002 后轻微回弹），但 pure→h24-1→h12-1 前三步单调递减，且所有 hybrid σ ≤ 0.0075，较 pure 的 0.0162 至少降 54%。Spearman ρ = -0.7。\n\n**Per-example Jaccard（RetNet-HGRN2）**\n\n所有 4 个 hybrid ratio 的 helped/hurt Jaccard 均在 0.085-0.108 范围内浮动（helped range = 0.022, hurt range = 0.010），确认 saturation。\n\n**结论：`decoupling_holds_without_GDN`** — 排除 GDN 后，两个信号（σ 收敛 + Jaccard 饱和）均成立。对 MF-3（GDN confound）攻击面的最强回应：decoupling 不依赖有 16-head confound 的 GDN。\n\n唯一需注意的是 σ 非完美单调（论文中可表述为 \"converges\" 而非 \"monotonically decreases\"），但趋势清晰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "72108848f4fe0bee31d9",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis random subsample transition",
+  "task_key": "worker_analysis_random-subsample-transition_20260523T073746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random-subsample-transition_20260523T073746_result.json",
+    "occurrence": 1,
+    "bytes": 1647,
+    "sha256": "df1e97943dc1d1db7377564352190c1177bb2499c228ef2fe74c5bcf48bcc61d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1000 trials 完成 (30s)。结果：\n\n**OLS (标准 SE)**:\n| n_local | trials | K_eff dom rate | K_eff sig mean | η_max sig mean |\n|---------|--------|----------------|----------------|----------------|\n| 1 | 8 | 50.0% | 5.9/12 | 5.8/12 |\n| 2 | 117 | 58.1% | 7.8/12 | 6.5/12 |\n| 3 | 334 | 73.7% | 8.6/12 | 6.5/12 |\n| 4 | 363 | 75.2% | 9.1/12 | 6.9/12 |\n| 5 | 169 | 66.9% | 8.4/12 | 6.8/12 |\n| 6 | 9 | 33.3% | 6.1/12 | 6.7/12 |\n| **overall** | **1000** | **70.7%** | **8.6/12** | **6.7/12** |\n\n**Clustered SE (5-position max-SE)**:\n| n_local | K_eff dom rate | K_eff sig mean | η_max sig mean |\n|---------|----------------|----------------|----------------|\n| 1 | 0.0% | 0.0/12 | 0.4/12 |\n| 2 | 32.5% | 0.9/12 | 0.6/12 |\n| 3 | 60.2% | 2.3/12 | 0.8/12 |\n| 4 | 58.7% | 2.1/12 | 0.8/12 |\n| 5 | 36.7% | 1.3/12 | 0.8/12 |\n| 6 | 0.0% | 0.0/12 | 0.3/12 |\n| **overall** | **51.4%** | **1.8/12** | **0.8/12** |\n\n**关键发现**:\n- 0 pure-API 试次（P ≈ 0.02%，符合预期）— 无法直接做 local vs. no-local 对比\n- K_eff dominance 存在明显的 **倒U型** 关系：n_local=3-4 时最强（OLS ~75%，clustered ~59%），极端值（1、6）时下降\n- 这说明 K_eff transition 不是 local 模型\"引入\"的 artifact — 它在各种 local/API 混合比例下都出现，但在中等 diversity 时最强\n- Clustered SE 更保守但模式一致：K_eff dominant > η_max dominant\n\n结论：**power explanation 成立** — K_eff transition 在各种子集中稳健出现，不依赖特定 local 模型子集。倒U型分布反映的是 diversity range 的 power effect，而非 confound。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

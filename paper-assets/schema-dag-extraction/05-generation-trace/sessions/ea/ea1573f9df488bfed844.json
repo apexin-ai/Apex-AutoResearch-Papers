@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ea1573f9df488bfed844",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp paired constrained",
+  "task_key": "worker_code_exp_paired_constrained_20260519T195857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_paired_constrained_20260519T195857_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "3465f923806342bcc292e474c2bf157f53bf3f3fb3b72c080e34cac2a4a81359"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册 (`art_20260519_49cc01`)。\n\n**总结**：Constrained decoding 的 Pearson r(BCS, accuracy) = **-0.45**（p=0.025），与 unconstrained 的 **-0.44**（p=0.028）几乎一致。enum 约束既没有改善也没有恶化 BCS 对准确率的负相关效应，且整体准确率无变化（79.5% vs 79.6%）。结论：BCS 效应是由类型语义混淆性本身驱动的，与解码方式无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

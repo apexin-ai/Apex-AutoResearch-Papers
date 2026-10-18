@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6257bc446bebecea2ec0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "data 340m accuracy extract",
+  "task_key": "worker_data_340m-accuracy-extract_20260522T004140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_340m-accuracy-extract_20260522T004140_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "b92ea08d1ec4680abc66d2e57229a255dcf1f1250d5664b5dd3f8f07c9c4836c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the results:\n\n## 340M h3-1\n```\n              GDN       RetNet     HGRN2\nHellaSwag†    0.4090    0.4086     0.4358\nPIQA          0.6616    0.6725     0.6785\nARC-Easy      0.5690    0.5905     0.6086\n```\n\n## 340M pure\n```\n              GDN       RetNet     HGRN2\nHellaSwag†    0.4151    0.4120     0.4318\nPIQA          0.6567    0.6621     0.6687\nARC-Easy      0.5669    0.6044     0.6111\n```\n\n## 1.3B h3-1\n```\n              GDN       RetNet     HGRN2\nHellaSwag†    0.6032    0.5777     0.6040\nPIQA          0.7378    0.7291     0.7301\nARC-Easy      0.7083    0.6961     0.7205\n```\n\n† = acc_norm for HellaSwag; PIQA and ARC-Easy use acc."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

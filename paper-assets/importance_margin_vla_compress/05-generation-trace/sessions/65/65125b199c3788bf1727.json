@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "65125b199c3788bf1727",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit attn k07 s44 trace",
+  "task_key": "worker_audit_attn_k07_s44_trace_20260528T023617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_attn_k07_s44_trace_20260528T023617_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "7850a85696810aa169b935a7581082d2c07d14cd8285760c482b7f57d9edd5d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "溯源完成，结论如下：\n\n## 结果\n\n**(a) 实际日志路径**\n`/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attn_k07_long_seed44_strict_cqa1.log`\n\n**(b) 日志中的关键参数**\n- 配置行：`Config: suite=libero_10, prune=attention, keep=0.7, eps=50, gpu=0`\n- Pruning 行：`Pruning: attention, keep 179/256 tokens/image (537 total, 2-layer probe)`\n- PRUNE-DIAG：`n_keep=179/256`\n- 结果 JSON：`keep_ratio: 0.7`\n\n**n_keep=179/256 = 0.699，确认是 k=0.7，不是 k=0.75。**\n\n**(c) 数据有效性**\n- **数据有效。** 日志确认实际运行的是 k=0.7（179 tokens），不是 k=0.75（192 tokens）。\n- 最终 SR = **52.2%**（不是之前收割的 51.6%，差异可能是收割时的四舍五入或中间值）\n- 完整跑完 10 tasks × 50 eps = 500 episodes，261 成功\n- 结果 JSON 已保存：`pi05_attention_k0.70_libero_10_seed44.json`\n- 服务器上不存在 k=0.75 seed44 的日志文件，排除混淆可能\n\n**之前 harvest Worker 报告的 keep=192/256=0.75 是错误的——实际日志明确是 179/256=0.7。SR 应修正为 52.2%。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

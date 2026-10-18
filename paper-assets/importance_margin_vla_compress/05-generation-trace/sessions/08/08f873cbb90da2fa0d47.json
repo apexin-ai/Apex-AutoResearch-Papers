@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08f873cbb90da2fa0d47",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check westd rsync status",
+  "task_key": "worker_check_westd_rsync_status_20260516T191133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_westd_rsync_status_20260516T191133_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "88a5af57a75fd501dc0fc11244df8d7e5da0fd7930ed24129cd0dea32b03bb57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态报告 (westd-27271)\n\n### 1. LIBERO 数据 rsync\n- **进行中**，尚未完成\n- rsync 正从 `cqa1` 服务器同步到 `/root/autodl-tmp/.hf_cache/lerobot/hub/datasets--HuggingFaceVLA--libero/`\n- 当前已传输 **11GB**，进度约 `xfr#123, to-chk=650/777`（完成 123/777 个文件，约 16%）\n- 传输速度 ~16-17 MB/s\n- `/root/autodl-tmp/libero_data/` 是空目录\n\n### 2. GPU 状态\n| GPU | 型号 | 显存使用 | 总显存 | 利用率 |\n|-----|------|---------|--------|--------|\n| 0 | NVIDIA RTX PRO 6000 Blackwell | 0 MiB | 97887 MiB (~96GB) | 0% |\n| 1 | NVIDIA RTX PRO 6000 Blackwell | 0 MiB | 97887 MiB (~96GB) | 0% |\n\n两张卡完全空闲。\n\n### 3. 活跃训练进程\n**无**。仅有系统服务（tensorboard、jupyter-lab、supervisord）和 rsync 进程在运行。\n\n### 4. 磁盘空间\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 6.0G | 25G | 20% |\n| /root/autodl-tmp (数据盘) | 250G | 142G | 109G | 57% |\n\n### 5. IMM 项目代码\n`/root/autodl-tmp/importance_margin_vla_compress/` **已就绪**，包含 train.py、eval 脚本、configs、checkpoints（含 libero_baseline、libero_imm_twostage、libero_full_ft_50k、libero_lora_50k）等完整项目结构。\n\n---\n\n**总结**：rsync 仍在跑（约 16% 文件完成，预计还需较长时间），GPU 双卡空闲可随时启动训练，磁盘空间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

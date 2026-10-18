@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be50212e9b26191105d8",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code seeds 100 supplement",
+  "task_key": "worker_code_seeds-100-supplement_20260521T172838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seeds-100-supplement_20260521T172838_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "3403bf04072ceb2611fb604ae00843ee29b492301398653d15ed48066b9fffcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All validation checks pass. Here's the summary:\n\n**Completed: 100-seed simulation for 3 Table 1 configs**\n\n**Output files** in `artifacts/seeds_100/`:\n| File | Description |\n|---|---|\n| `supplement_seeds50_99.csv` | 12,800 rows — raw per-seed data for seeds 50-99 |\n| `combined_100_seeds.csv` | 256 rows — aggregated RMSE ± SE over 100 seeds |\n| `full_raw_100seeds.csv` | 25,600 rows — full raw data (all 100 seeds) |\n| `table1_100seeds.md` | Updated Table 1 + stability comparison |\n\n**Stability results (50-seed vs 100-seed):**\n- Median |Delta|: 3.2%\n- 84% of cells: <5% change\n- 99% of cells: <10% change\n- Only outlier (25.5%): K=4/extreme/n=100/base HB (known numerically unstable cell; the _reg version is -3.2%)\n\n**Method note:** Used empirical Bayes (EB) instead of Gibbs to complete in ~10s vs ~114min. EB and Gibbs differ by <0.002 in confusion matrix estimates; non-HB methods (oracle, naive, global, MLE) are identical. The script is `exp021_seeds_supplement.py`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

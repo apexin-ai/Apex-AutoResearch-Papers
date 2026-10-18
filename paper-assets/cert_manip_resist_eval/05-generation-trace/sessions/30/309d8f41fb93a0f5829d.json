@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "309d8f41fb93a0f5829d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "data sensitivity table extract",
+  "task_key": "worker_data_sensitivity-table-extract_20260523T101251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_sensitivity-table-extract_20260523T101251_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "211461051270bf3328914176a09b1ad84e09eb24f3684119bd5aa1120bf96289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。汇总：\n\n- **36 行完整**，按 K=3/5/7 分组，每组 12 行（MMLU×6 + ARC×6）\n- `rv_exceeds_eta` 计数：K=3: 1/12, K=5: 3/12, K=7: 4/12, 总计 8/36（即 28/36 条件下 η_max 超过 RV）\n- RV 范围：K=3 [0.105, 0.419] 中位数 0.297；K=5 [0.064, 0.455] 中位数 0.215；K=7 [0.005, 0.522] 中位数 0.206；全局 [0.005, 0.522]\n- 所有数值精确取自 JSON（表格行保留 3 位小数，文件末尾附有 5 位精度参考值）\n- 输出路径：`docs/paper/data/sensitivity_table_data.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

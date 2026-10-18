@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c17046b7ee36abedbd0",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code bias anatomy heatmap",
+  "task_key": "worker_code_bias-anatomy-heatmap_20260523T145856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bias-anatomy-heatmap_20260523T145856_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "d051f33f2c56efafe8535652ab1753bf61da6c8b3750e2df36860aeaa0cd71f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Outputs saved to `artifacts/bias_anatomy_heatmap.{pdf,png}`.\n\n**Results:**\n\n| Metric | Value |\n|---|---|\n| **R² (Theorem 1 vs MC simulation)** | **0.9938** (row-level), 0.9956 (aggregated) |\n| **Actual \\|bias\\| range** | [0.0009, 0.0933] |\n| **Theory \\|bias\\| range** | [0.0002, 0.0893] |\n| **Mean absolute residual** | 0.0011 |\n| **Contour–data alignment** | Excellent — contours track the MC heatmap closely |\n| **Debiasing hurts** | 52% of grid cells (ratio > 1 when δ\\_misclass ≥ 0.13) |\n\n**Panel A**: Bias magnitude increases multiplicatively toward the top-right (high δ\\_misclass × high Δτ), exactly as Theorem 1 predicts. The 5 white dashed contour lines (0.01–0.15) align tightly with the MC simulation data.\n\n**Panel B**: The bias ratio is purely a function of δ\\_misclass (vertical bands), independent of Δτ — consistent with the theory since both bias\\_global and bias\\_naive scale linearly with Δτ, so it cancels in the ratio. Global correction hurts when δ\\_misclass ≥ ~0.13."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

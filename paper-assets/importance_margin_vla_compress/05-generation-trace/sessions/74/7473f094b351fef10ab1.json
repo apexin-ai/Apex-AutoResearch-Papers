@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7473f094b351fef10ab1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 kill and deploy attn k05",
+  "task_key": "worker_deploy_cqa1_kill_and_deploy_attn_k05_20260526T173606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_kill_and_deploy_attn_k05_20260526T173606_result.json",
+    "occurrence": 1,
+    "bytes": 233,
+    "sha256": "f35c0d2d9e03e9ec9f28b0b6ae4b76d663ae8cb14ce275c8cc39d10f9996afb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 now showing 1363 MiB — model is loading onto GPU. Deployment successful.\n\n```\nKILL: success (PID 467731, force_killed)\nNEW_PID: 582959\nGPU2_MEM: 1363/24564 MiB (loading, will increase)\nDEPLOYED: yes\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

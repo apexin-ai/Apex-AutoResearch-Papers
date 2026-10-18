@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f0ec1aeb5a529994b01f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval openvla prune k09 westd",
+  "task_key": "worker_eval_openvla_prune_k09_westd_20260518T202944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_openvla_prune_k09_westd_20260518T202944_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "87e3f978a610a16eebb977e82dff849f3927bc564d6ac3369765487533a8999f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 westd-27271 cuda:0 上运行。\n\n**实验详情：**\n- **exp_id**: `eval_openvla_prune_k09`\n- **PID**: 354653\n- **配置**: OpenVLA 7B, random pruning k=0.9 (true removal), 256→230 vision tokens\n- **Suite**: libero_object, 10 tasks × 50 episodes = 500 total\n- **Seed**: 7（与之前所有 OpenVLA 实验一致）\n- **GPU**: RTX PRO 6000, ~16GB VRAM 占用\n- **预计耗时**: 4-5 小时（参考 k=0.7 耗时 ~260min）\n- **日志**: `eval_results/openvla_random_prune_k09_object_nohup.log`\n- **输出**: `eval_results/openvla_random_prune_k09_object.json`\n\n注意：任务说 seed=42，但之前所有 OpenVLA 数据点（k=1.0/0.7/0.5/0.3）都用的 seed=7，为保持一致性使用了 seed=7。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "83e6378f40ecb130fcf5",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16_1780039280.md",
+  "task_key": "loop_16_1780039280",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1780039280.md",
+    "occurrence": 1,
+    "bytes": 3203,
+    "sha256": "ad157aea20a4c4d34c3e0a5e93f896904bf89bc5902188a02e2086b663927a74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-29T07:21:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **CoRL 2026 deadline: May 29（今天）。** 一切以 submission 为最高优先级，不启动新实验。\n- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3。不得使用白名单外 GPU。\n- 论文数据已锁定：5-seed 90/90 cell 零缺失，build_5seed_tables.py 交叉验证通过。**不得修改任何已验证的 metrics 数据。**\n- Error bar 标准: sample std (n-1)，统一百分比格式 (D301)。\n- Registry 中 96 个 PREPARING 实验全是历史残留，不要尝试恢复或提交。\n- CoRL 2026 要求 Limitations section 计入 8-page 限制内。\n- paper_framing.md ~52K chars，读取时必须 max_chars=0。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-27271, cqa1-33015 (root), westd-41074 (root), westd-38929 (root)\n- **工作目录**: /root/autodl-tmp/importance_margin_vla_compress（所有服务器）\n- **GPU**: 14 张分布在 4 台服务器，cuda:0-3 为项目配额\n- **活跃进程**: 无。0 RUNNING 实验，0 active crons，0 running workers\n- **服务器能力**: cqa1 + westd-41074 支持 attention pruning；westd-27271 仅 none/random/l2norm；westd-38929 attention 未确认\n- **评估耗时**: π0.5 ~2.5h/run, OpenVLA ~8.3h/run\n\n### 3. 📊 当前状态\nLoop #16 刚完成 session-start 初始化，已向 Director 汇报 submission-ready 状态并请求 submission 指令。**尚未收到 Director 回复。**\n- Registry: 890 实验 (575 success / 110 negative / 118 failed)，0 RUNNING\n- 所有数据收集完毕：π0.5 Cliff 18/18, OV Long 18/18, Crossover 16/16, Inverted-U 6/6, Attn cliff+plateau 6/6\n- Abstract 已提交 (May 26), Narrative 定稿 (D276), Figures 已生成\n- w38 有 s47 bonus seeds（revision 备用，非 deadline 必须）\n- 无等待中的 Worker 回调 / Cron / Director 决策（除刚发的汇报）\n\n### 4. 📋 待办（条件触发式）\n- Director 指令\"开始 submission 准备\" → spawn Paper Agent worker：生成最终 LaTeX，检查 Limitations section（CoRL 硬约束），格式校验，生成 submission PDF\n- Director 要求补数据/re-run → push back：\"deadline 今天，数据已锁定，建议 revision 阶段再补\"（90/90 完整，大概率不需要）\n- w38 s47 bonus seed 完成回调 → 更新 registry，不影响 submission（revision 备用）\n- 任何新实验请求 → push back 到 revision 阶段\n\n### 5. 🎯 战略上下文\n- **核心框架**: 2-axis framework (D171) — Axis 1: Token Coupling (token-independent vs token-entangling), Axis 2: Task Complexity (simple vs complex suites)\n- **论文 title**: \"Why Token Pruning Crashes Some Robot Policies but Not Others: The Role of Vision Connectors in VLA Token Compressibility\"\n- **关键数据锚点**: π0.5 Long 表格完整 6×3；Importance margin peak 在 k=0.9 (+46.9pp)；crossover 在 k=0.7 (-1.4pp)\n- **决策链**: D276 narrative 定稿 → D291 Inverted-U 闭合 → D301 error bar 标准确定 → 数据验证通过 → submission ready\n- **易错点**: 96 个 PREPARING 实验看起来很多但都是历史垃圾——不要被它们分心。项目数据已完整，唯一任务是 submission。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

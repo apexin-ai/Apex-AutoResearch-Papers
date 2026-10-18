@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a9ead4ba376d6f351a83",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 panel selection bootstrap",
+  "task_key": "worker_analysis_k5-panel-selection-bootstrap_20260523T061740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-panel-selection-bootstrap_20260523T061740_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "2acbdea770666c390ddc1419908a06de4767c7be4f32a3ab166b886e4cdc2194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap 分析完成。结果摘要：\n\n**Pairwise 显著性（B=9999, 95% CI）：**\n| 对比 | 显著 conditions |\n|---|---|\n| min(η_max) vs random | **10/12** |\n| min(K_eff) vs random | **10/12** |\n| min(η_max) vs max(K_eff) | **11/12** |\n\n**不显著的 2 个 condition** 均为 `arc_challenge×position_bias` 和 `arc_challenge×verbosity_bias`——这两个 condition 下所有策略的 ASR 都很高（~0.47），min(η_max) 选出的 panel 也无法有效抵抗，导致策略间差异不显著。\n\n**Strategy-level bootstrap**（模拟 panel pool 不确定性）也确认 min(η_max) 策略稳定，CI 非常窄（大多数 condition 下 strategy bootstrap CI 几乎是点估计），说明该策略对 panel pool 的扰动不敏感。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

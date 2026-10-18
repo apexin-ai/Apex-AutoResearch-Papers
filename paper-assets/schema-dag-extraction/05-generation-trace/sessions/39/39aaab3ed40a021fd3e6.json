@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "39aaab3ed40a021fd3e6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh embedding ablation miniml fewnerd",
+  "task_key": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628_result.json",
+    "occurrence": 1,
+    "bytes": 1777,
+    "sha256": "57aaab3441311d2140e2def681df7a3098ffffdf8e6cc53eeaf3f115d0807c15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出文件已生成。汇报结果：\n\n---\n\n## Embedding Ablation: Qwen3 vs MiniLM on Few-NERD\n\n### BCS 分布差异\n\n| 指标 | Qwen3 | MiniLM |\n|------|-------|--------|\n| mean | 0.808 | 0.195 |\n| std | 0.060 | 0.144 |\n| range | [0.44, 0.97] | [-0.05, 0.86] |\n\nMiniLM 的 BCS 分布远比 Qwen3 分散（std 更大、均值更低）。Qwen3 embeddings 普遍高相似度（mean 0.81），MiniLM 区分度更好。\n\n### 矩阵级相关\n\n- 两个矩阵 off-diagonal 元素 Pearson r=0.355, Spearman ρ=0.335 — **弱正相关**，整体排序不一致\n- Top-10 最高 BCS pairs 仅 **2/10 重叠**（sportsleague-sportsteam, actor-director）\n\n### Per-type F1 vs mean_BCS 相关（n=63 types, freq≥5）\n\n| Embedding | Spearman ρ | p-value | Pearson r | p-value |\n|-----------|-----------|---------|-----------|---------|\n| **Qwen3** | **-0.281** | **0.026** | -0.181 | 0.157 |\n| MiniLM | 0.005 | 0.969 | -0.112 | 0.383 |\n\n- **Qwen3 的 BCS 与 per-type F1 显著负相关**（ρ=-0.281, p=0.026），符合之前的发现（ρ=-0.293）\n- **MiniLM 完全无相关**（ρ≈0, p=0.97）\n- 两种 embedding 的 mean_BCS per type 几乎不相关（r=0.188, p=0.14）\n\n### 解读\n\nEmbedding 选择**显著影响** BCS-F1 关联方向和强度。Qwen3（与抽取模型同源的 LLM embedding）能捕捉到\"语义混淆 → F1 下降\"的信号，而通用 sentence encoder MiniLM 不能。这**支持**使用 Qwen3 作为 BCS 计算模型的方法论一致性论点：extraction model 的内部语义空间才是 confusion 的真正来源。\n\n### 产出文件\n- `artifacts/fewnerd_bcs_matrix_minilm.pt` — MiniLM 66×66 similarity matrix\n- `artifacts/embedding_ablation_fewnerd.json` — 完整对比分析数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

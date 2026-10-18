@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d563d1d70bd25e1db99",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code cross strategy pipeline",
+  "task_key": "worker_code_cross_strategy_pipeline_20260517T084621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_strategy_pipeline_20260517T084621_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "2db746c4a216823af96f83eb100671deeb404b34ff6f131a29b72d049a1a1b50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `cross_strategy_pipeline_001` 完成，已注册 registry 和 artifact。\n\n**结果摘要：**\n\n| | Pipeline | Oracle | LOO Baseline | 提升 |\n|---|---|---|---|---|\n| Pythia-1.4B | 69.3% | 74.6% | 61.2% | +8.0pp |\n| OLMo-1B | 69.4% | 78.4% | 59.5% | +9.9pp |\n| GPT-2 XL | 73.0% | 81.9% | 56.6% | +16.4pp |\n| **Mean** | **70.5%** | **78.3%** | **59.1%** | **+11.5pp** |\n\n**策略分类器**：RF 57.8% / LR 52.9%（远低于 90% 假设）\n**关键发现**：即使策略分类只有 ~58%，pipeline 仍有效，因为误路由的样本在\"相邻\"策略的深度分类器上仍能获得合理预测。策略分类错误时深度准确率仍有 64-72%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e2cc806d65a0e249ebc6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "cleanup awq scripts delete",
+  "task_key": "worker_cleanup_awq_scripts_delete_20260515T225807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_awq_scripts_delete_20260515T225807_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "3ad4663e2b734203a62ea7075a60246bc2b95f14e34f03168112ba29a83ad2d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 AWQ 废弃脚本已删除：\n- `run_exp012_llama_awq.sh` ✓\n- `auto_start_exp012_awq.sh` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

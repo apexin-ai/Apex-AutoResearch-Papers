@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3563e77615b3a9ebc7aa",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper figure fig2 task specificity",
+  "task_key": "worker_paper_figure_fig2_task_specificity_20260519T174249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_task_specificity_20260519T174249_result.json",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "922ecc6cc9da1ec0a4e17a71333d9cb77aea671e69fdb5800d0daf82913bc12e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。生成了 `fig2_task_specificity` 的 PDF 和 PNG，脚本在 `figures/paper/gen_fig2.py`，artifact 已注册为 `art_20260519_66f75a`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

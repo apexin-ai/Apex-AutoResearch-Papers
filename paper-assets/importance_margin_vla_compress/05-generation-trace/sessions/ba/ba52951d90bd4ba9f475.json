@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba52951d90bd4ba9f475",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest ov attn k075 v3",
+  "task_key": "worker_ops_harvest-ov-attn-k075-v3_20260527T213317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-ov-attn-k075-v3_20260527T213317_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "6c408b9466ef26cb8b0b58befb20a03e0ff21501004ce5b23ec16bf67d25e0eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 已不存在（无需删除）。\n\n**结果汇总**: OV Attention k=0.75 Long 完整结果 **34.2%**，比 partial 估计 39.8%† 低 5.6pp。T8 (12%) 和 T9 (10%) 拖后腿严重。\n\nOV Long Attn cliff curve 更新：k=0.85→45.8%, **k=0.75→34.2%**, k=0.7→24.0%。从 k=0.85 到 k=0.75 掉了 11.6pp，k=0.75 到 k=0.7 再掉 10.2pp，cliff 斜率在这个区间比较均匀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

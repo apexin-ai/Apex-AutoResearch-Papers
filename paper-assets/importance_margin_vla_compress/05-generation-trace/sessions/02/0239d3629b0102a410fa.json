@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0239d3629b0102a410fa",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check v8 1 progress",
+  "task_key": "worker_check_v8_1-progress_20260516T034659",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_v8_1-progress_20260516T034659_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "9e0bd8c6d9e0a337eab6fbd86b5c359a7c380440f43e7b6d1dab3d791e8c5ee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v8_1 训练状态\n\n| 指标 | 值 |\n|------|------|\n| **当前 step** | 6200 / 30000 (20.7%) |\n| **最新 checkpoint** | step_006000 (1.19GB, 11:46:19 保存) |\n| **速度** | 3.1 steps/s，~16.2s per 50 steps |\n| **最新 loss** | total=0.0039, action=0.0039, margin=0.0 |\n| **Δ (margin)** | 0.679 |\n| **LR** | 9.25e-05 (衰减中) |\n| **Lip 监控** | empirical_L=0.0976, spectral_norm=1.0003 (稳定) |\n\n**GPU 利用率**:\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 87% | 2.5 / 97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | 83% | 10.4 / 97.9 GB |\n\n**预计剩余时间**: 剩余 23800 steps ÷ 3.1 sps ≈ **7677s ≈ 2小时8分钟**（约 13:55 完成）。\n\n训练正常运行，loss 收敛良好，Lipschitz 约束稳定在 ~0.1 / spectral norm ~1.0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

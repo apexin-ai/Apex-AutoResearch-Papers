@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e793903eb860893cc263",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper appendix table format",
+  "task_key": "worker_paper_appendix_table_format_20260522T024349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_table_format_20260522T024349_result.json",
+    "occurrence": 1,
+    "bytes": 1978,
+    "sha256": "c4d415fe71332ae99cecab91404bdd47e76ec808e4874ea91bf7542bdc1bb919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No `\\hline` anywhere. Here's the modification summary:\n\n---\n\n## 修改摘要\n\n### 1. Caption 位置（29 个表格全部修改）\n\n所有 29 个 appendix 表格的 `\\caption` + `\\label` 从 `\\end{tabular}` 之后移到 `\\begin{tabular}`（或 `\\resizebox`）之前。涉及表格：\n\n`tab:cross_model`, `tab:cross_model_bcs`, `tab:cross_model_ner_null`, `tab:error_taxonomy`, `tab:cross_model_error_taxonomy`, `tab:sdgd_results`, `tab:routing_strategies`, `tab:tost_sensitivity`, `tab:residualized_bcs`, `tab:partial_corr`, `tab:batch_composition`, `tab:prompt_variants`, `tab:bcs_aggregation`, `tab:bcs_controlled`, `tab:format_independence`, `tab:format_perbatch`, `tab:within_pool`, `tab:scs-ablation`, `tab:scs_baselines`, `tab:variance_decomposition`, `tab:cross_model_70b`, `tab:cross_model_gemini`, `tab:cross_model_bcs_summary`, `tab:fewshot_bcs`, `tab:top10_re`, `tab:top10_ner`, `tab:error_examples`, `tab:renaming`, `tab:relaxed_matching`\n\n### 2. 列对齐修正（3 个表格）\n\n| 表格 | 修改前 | 修改后 | 原因 |\n|------|--------|--------|------|\n| `tab:top10_re` | `{clllr}` | `{cllrr}` | SCS 列是数字，应右对齐 |\n| `tab:top10_ner` | `{clllr}` | `{cllrr}` | 同上 |\n| `tab:prompt_variants` | `{llrrrr}` (6 spec / 5 col) | `{lrrrr}` (5 spec / 5 col) | 列定义数与实际列数不匹配 |\n\n### 3. 数字格式修正（1 个表格）\n\n| 表格 | 位置 | 修改前 | 修改后 | 原因 |\n|------|------|--------|--------|------|\n| `tab:error_examples` | SCS 列 | `.97`, `.92`, `.90` | `0.97`, `0.92`, `0.90` | 其他所有表格的 SCS 值均使用 `0.xx` 格式 |\n\n### 4. Booktabs 样式\n\n已检查，所有 29 个表格均使用 `\\toprule` / `\\midrule` / `\\bottomrule`，无 `\\hline`。无需修改。\n\n### 5. 数字精度\n\n已检查所有表格内同列数字小数位数。除 `tab:error_examples` 的 SCS 前导零（已修复）外，各表内数字精度一致，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

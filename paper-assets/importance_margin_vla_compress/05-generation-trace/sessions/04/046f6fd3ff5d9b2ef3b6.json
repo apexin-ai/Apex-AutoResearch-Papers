@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "046f6fd3ff5d9b2ef3b6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd27271 kill m128 deploy pi05",
+  "task_key": "worker_ops_westd27271-kill-m128-deploy-pi05_20260521T075250",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd27271-kill-m128-deploy-pi05_20260521T075250_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "45e2da7576aca90526619b159a3f1c346783514206532f748066dd91a43e573d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**Part 1** — M128 eval v2 (PID 188254) 已 kill，registry 更新为 DONE/failed，failure_reason 已记录。\n\n**Part 2/3** — π0.5 checkpoint 和 eval 脚本在 westd-27271 上都不存在，无法在短期内就绪。\n\n**Part 4 (fallback)** — 已启动 OpenVLA L2norm k=0.3 rerun：\n- tmux session: `eval_l2norm_k03`\n- PID: 193983，GPU0 已占 15.5GB\n- exp_id: `eval_openvla_l2norm_k03_object_seed42_rerun`\n- GPU1 上 M32 VTC train (PID 921279) 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

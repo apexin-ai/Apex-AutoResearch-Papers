@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "fdfc93c282fba1579470",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research data integrity audit",
+  "task_key": "worker_research_data-integrity-audit_20260523T192201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-integrity-audit_20260523T192201_result.json",
+    "occurrence": 1,
+    "bytes": 2217178,
+    "sha256": "992756e94a8a898614289466fabc083d95b314b2dd070635d8d1e366150de79d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "fdfc93c282fba1579470-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

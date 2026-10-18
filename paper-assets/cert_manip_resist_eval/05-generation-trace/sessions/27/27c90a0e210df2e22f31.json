@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "27c90a0e210df2e22f31",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis a1 monte carlo wait",
+  "task_key": "worker_analysis_a1-monte-carlo-wait_20260524T120834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1-monte-carlo-wait_20260524T120834_result.json",
+    "occurrence": 1,
+    "bytes": 85,
+    "sha256": "568984c86b8e9cb03f004f18346446c0a7fe7f1b4cf2853f7707d0a5016cbada"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程在运行中，已设置 3 分钟后自动检查。等待中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

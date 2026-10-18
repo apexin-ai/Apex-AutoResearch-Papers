@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f364e7bb54228303a8a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train smart compress m16",
+  "task_key": "worker_train_smart_compress_m16_20260517T210644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_smart_compress_m16_20260517T210644_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "960a461117eb0b56a528156d612c84a5abe01089ee2ca78de5c891d0b6be0b7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "M=16 训练已稳定运行。\n\n**汇总：**\n- **PID**: 352025\n- **GPU**: 3（已占用 2815 MiB）\n- **Loss 趋势**: step 0 → 1.03, step 50 → 2.30 (warmup spike), step 100 → 1.03, step 150 → 0.43, step 200 → 0.46, step 250 → 0.60\n- **速度**: ~4.2 steps/s\n- **Registry**: `smart_compress_m16` 已注册为 RUNNING\n\n当前 4 张 GPU 全部在跑 smart compress 实验：\n| GPU | 实验 | Config |\n|-----|-------|--------|\n| 0 | M=32 | `smart_compress.yaml` |\n| 1 | M=64 | `smart_compress_m64.yaml` |\n| 2 | M=96 | `smart_compress_m96.yaml` |\n| 3 | M=16 | `smart_compress_m16.yaml` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

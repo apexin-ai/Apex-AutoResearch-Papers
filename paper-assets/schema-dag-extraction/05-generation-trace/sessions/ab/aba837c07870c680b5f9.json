@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aba837c07870c680b5f9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp2 log check",
+  "task_key": "worker_ssh_exp2-log-check_20260515T022358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp2-log-check_20260515T022358_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "5fdeebccca3a5f882c8d8ec4f91cdfe0bbd8847e700aa6a0a998893ad5908e31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无残留任务，无需删除。\n\n---\n\n**exp002_confusability_controlled — 成功完成**\n\n- **判定**：成功。54/54 batches 全部完成，日志无 error/traceback，进程正常退出。\n- **总耗时**：11732.5s (~3.3h)\n- **结果文件**：\n  - `artifacts/eval_exp2.json` (49KB) — 54 batches 评估指标\n  - `artifacts/predictions_exp2.json` (39MB) — 全部预测输出\n  - `artifacts/batch_config_exp2.json` (19KB) — batch 配置\n- **日志最后关键行**：\n  - 各 batch 汇总指标正常输出（exact_F1 范围 0.00~0.04，relaxed_F1 范围 0.05~0.21）\n  - `Results saved to: ../artifacts`\n- **Registry**：status → `ANALYZING`，log_path 已更新\n- **Cron**：本 session 无活跃 cron，已确认清空"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# Generation traces
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility**
+
+[Open the visual browser](../../../traces/index.html?project=importance_margin_vla_compress) · [Offline preview](../../../traces/demo.html?project=importance_margin_vla_compress) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
+
+On GitHub, use the tables below to open readable session JSON directly. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
+
+## What is included
+
+| Source | Files |
+|---|---:|
+| Conversation logs | 1,235 |
+| Worker execution logs | 2,223 |
+| Task result records | 2,107 |
+| Context and loop notes | 189 |
+
+**413,702 recorded messages/events · 11,786 recorded user-message boundaries · 163,280 tool-call records.**
+
+A user-role entry may come from another agent or the system. It is not a human-authorship label. Worker tool results wrapped in user envelopes are labelled `tool_result` and do not start a new turn. Records before any user message remain a separate unbounded sequence. Parallel source logs are never interleaved.
+
+Source text retains its recorded language. JSON is a deterministic normalized view of the already sanitized archive; it does not translate or summarize the research process. Every session includes archive member, occurrence, SHA-256, and source-line provenance. Large rounds use linked JSON chunks; no message text is shortened in the export.
+
+## Browse all source records
+
+- **Conversation logs** (1,235): [Page 1](browse/conversation-001.md) · [Page 2](browse/conversation-002.md) · [Page 3](browse/conversation-003.md) · [Page 4](browse/conversation-004.md) · [Page 5](browse/conversation-005.md) · [Page 6](browse/conversation-006.md) · [Page 7](browse/conversation-007.md) · [Page 8](browse/conversation-008.md) · [Page 9](browse/conversation-009.md)
+- **Worker execution logs** (2,223): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md) · [Page 4](browse/worker-004.md) · [Page 5](browse/worker-005.md) · [Page 6](browse/worker-006.md) · [Page 7](browse/worker-007.md) · [Page 8](browse/worker-008.md) · [Page 9](browse/worker-009.md) · [Page 10](browse/worker-010.md) · [Page 11](browse/worker-011.md) · [Page 12](browse/worker-012.md) · [Page 13](browse/worker-013.md) · [Page 14](browse/worker-014.md) · [Page 15](browse/worker-015.md)
+- **Task result records** (2,107): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md) · [Page 4](browse/result-004.md) · [Page 5](browse/result-005.md) · [Page 6](browse/result-006.md) · [Page 7](browse/result-007.md) · [Page 8](browse/result-008.md) · [Page 9](browse/result-009.md) · [Page 10](browse/result-010.md) · [Page 11](browse/result-011.md) · [Page 12](browse/result-012.md) · [Page 13](browse/result-013.md) · [Page 14](browse/result-014.md) · [Page 15](browse/result-015.md)
+- **Context and loop notes** (189): [Page 1](browse/history-001.md) · [Page 2](browse/history-002.md)
+
+See [format and reference projects](../../../traces/FORMAT.md) for definitions and design references.

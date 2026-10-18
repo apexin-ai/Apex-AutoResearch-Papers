@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5496dd02a1363c88287c",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research ref audit worker C",
+  "task_key": "worker_research_ref-audit-worker-C_20260526T104757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-C_20260526T104757_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "c8fd933eff5c473ddd236879763c3ae7552ecc199f2e2a75fd041356cf211289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written. Here's the summary:\n\n**71 entries verified. No hallucinated papers.** All are real publications.\n\n**8 issues found:**\n\n| Severity | Key | Problem |\n|----------|-----|---------|\n| **HIGH** | `black2000racial` | **Wrong paper in bib.** Bib has a paper about disability programs/coal booms, but tex cites it for \"racial misclassification in administrative data.\" Complete mismatch. |\n| **HIGH** | `dorn2022sharp` | Wrong DOI (`2064774` → should be `2069572`). Currently uncited. |\n| **MEDIUM** | `wood2018challenges` | Wrong pages (`5179--5186` → should be `4586--4598`). Currently uncited. |\n| **MEDIUM** | `patrini2017making` | Possibly wrong pages (`1944--1952`). Needs verification. Currently uncited. |\n| **MEDIUM** | `sui2026ppci` | Citation context says \"outcome-side misclassification\" but paper is about conditional inference at test points. |\n| **MEDIUM** | `mozer2026ppi` | Citation context says \"arm-specific PPI\" but paper is about PPI = difference estimator equivalence. |\n| **LOW** | `bu2023forestiv` | Key says \"bu2023\" but authors are Yang et al. and year is 2022. Content correct. |\n| **LOW** | `tornberg2024chatgpt` | Key says 2024, year field correctly says 2025. |\n\n**30 of 71 entries are not cited** in any tex file — should be cleaned up or cited.\n\nThe `black2000racial` issue is the most urgent: the tex makes a factual claim attributed to the wrong paper."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

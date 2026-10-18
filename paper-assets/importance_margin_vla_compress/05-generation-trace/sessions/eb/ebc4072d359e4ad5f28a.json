@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ebc4072d359e4ad5f28a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops launch xvla baselines spatial goal cqa1",
+  "task_key": "worker_ops_launch-xvla-baselines-spatial-goal-cqa1_20260520T225343",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_launch-xvla-baselines-spatial-goal-cqa1_20260520T225343_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "7daacf8630d8ae4884b2c68a9fb8634448fc66249fab97fc34c7979cfa85b332"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已成功启动并注册。\n\n## 汇总\n\n| 实验 | tmux session | GPU | 显存占用 | 状态 |\n|------|-------------|-----|---------|------|\n| **Spatial baseline** | `eval_xvla_baseline_spatial_seed42` | GPU 0 | 4601 MiB | RUNNING，Task 0 开始（\"pick up the black bowl...\"） |\n| **Goal baseline** | `eval_xvla_baseline_goal_seed42` | GPU 3 | 4520 MiB | RUNNING，Task 0 开始（\"open the middle drawer...\"） |\n\n- 模型加载正常：879.5M params, float32\n- Vision tokens: 50/50 (100%), no pruning applied\n- Suite 正确识别：libero_spatial / libero_goal，各 10 个 task\n- 日志路径：`/tmp/eval_xvla_baseline_spatial.log` 和 `/tmp/eval_xvla_baseline_goal.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

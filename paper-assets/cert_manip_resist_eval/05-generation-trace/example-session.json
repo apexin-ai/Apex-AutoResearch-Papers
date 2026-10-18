@@ -1,0 +1,961 @@
+{
+  "schema_version": "1.0",
+  "id": "3e4b6636b940842a1ded",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "Reviewer 1 coordination",
+  "task_key": "feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_reviewer_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_reviewer_1.jsonl",
+    "occurrence": 1,
+    "bytes": 677295,
+    "sha256": "84805dc7751dd0834e2f9f83ee7659f7c8f4dfa6c8094e4914a7a2697d42f826"
+  },
+  "paper_title": "The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 782,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 23,
+    "roles": {
+      "user": 1,
+      "tool_call": 23,
+      "tool_result": 23,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T22:50:22.255790+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## Step 1: Independent Review — R1 (Methods & Experiments)\n\nYou are R1 in a two-reviewer roundtable for EMNLP 2026 (ARR). Your focus: **methodology soundness and experimental rigor**.\n\n### Target Venue Calibration\nEMNLP 2026 ARR Overall Assessment (1–5, half-point scale):\n- 5 = Consider for Award (top 2.5%)\n- 4 = Conference (main venue accept)\n- 3 = Findings (acceptable)\n- 2 = Resubmit next cycle\n- 1 = Do not resubmit\nAccept rate: ~21% for Main. Score dimensions: Soundness (1-5), Excitement (1-5), Reproducibility (1-5).\n\n### Paper Summary\n\"Weakest Link, Not Diversity: Adversarial Vulnerability in Multi-Judge LLM Evaluation\"\n\nThe paper decomposes multi-judge LLM panel vulnerability into two structural predictors: individual judge weakness (η_max) and panel diversity (K_eff). Across 15 models, 6 families, 455 panels, 9 attack types, 3 benchmarks, it finds η_max robustly dominates (5:1 over K_eff under bootstrap). K_eff collapses from 8/12 (OLS) to 0/12 (clustered SE). GAM reveals targeted/shared-bias taxonomy (10:8). Aggregation rules modulate vulnerability (Bayesian reverses K_eff direction). Two-stage robustness-first algorithm wins 12/12 conditions.\n\n### Paper Structure (8 pages main text + 1 page references)\n- Abstract + Intro (pp.1-2): 5 contributions listed\n- Related Work (p.2): LLM-as-Judge, adversarial attacks, BFT — very brief (~15 lines)\n- Method (pp.2-3): Panel construction (15 models, C(15,3)=455 panels K=3), η_max and K_eff definitions, 9 attack types, log-log OLS regression with 4 correction methods, 5 aggregation rules\n- Experiments (pp.3-7): 11 subsections covering core results, attack expansion, RF contrast, ASR concentration, aggregation gradient, panel design algorithm, capability-matched validation, diversity-capability tradeoff, panel size sensitivity, generation extension, partial-knowledge adversary\n- Discussion (p.7): When diversity helps, practical recommendations, methodological implications\n- Conclusion (p.8)\n- Limitations (p.8): 3 points\n- References (pp.8-9): 7 references\n\n### Key Tables\n- Table 1: Correction method comparison (OLS/CL-SE/Bootstrap/Mixed) — η_max sig 5-11/12, K_eff 0-8/12\n- Table 2: Extended attack taxonomy (clustered SE) — combined 13/18 η_max, 0/18 K_eff\n- Table 3: RF vs adaptive contrast — K_eff sig 2/2 RF vs 0/12 adaptive under CL-SE\n- Table 4: ASR concentration (Gini/entropy) — targeted Gini=0.78 vs shared Gini=0.43\n- Table 5: Aggregation gradient — veto (11/12 η_max) to Bayesian (5/12 η_max, K_eff flip)\n- Table 6: Strategy comparison — two-stage (0.112 ASR) > min(η_max) (0.119) > ... > max(K_eff) (0.208)\n- Table 7: Within-tier validation — base tier K_eff 2/12 (r drops 0.70→0.35)\n- Table 8: Panel size sensitivity K=3-9 — η_max dominant at all sizes\n- Table 9: Cross-format MCQ vs generation — 12:0 combined\n- Table 10: Adversary knowledge — family-only retains 82% efficiency\n\n### Experiment Design Reference (from review_context.yaml)\nThe full experiment plan includes 12 experiments:\n1. 15-Model Scaling Expansion (DONE) — core regression results\n2. Attack Surface Expansion — 3 new attacks, 18 total conditions\n3. Random-Fault BFT Contrast — Monte Carlo 10K iterations, RF vs adaptive\n4. Capability-Matched Validation — within-tier (9 base models, 84 panels)\n5. Two-Stage Panel Design Algorithm — 7 strategies benchmarked\n6. Per-Judge ASR Concentration — Gini/entropy analysis\n7. Diversity-Capability Tradeoff Visualization — scatter + Pareto frontier\n8. Panel Size Sensitivity — K=3,5,7,9\n9. VIF + Multicollinearity Diagnostic — VIF=2.96, condition number=4.8\n10. Aggregation Gradient Under Clustered SE — 5 rules × 3 corrections\n11. Open-Ended Generation Extension — MT-Bench, 12 models, 220 panels\n12. Partial-Knowledge Adversary — full/family-only/random\n\n### Your Review Tasks\n\n**A. Methodology Soundness (detailed)**\n1. Log-log OLS specification: Is this appropriate for ASR ∈ [0,1]? The ε constant is mentioned but not specified — does this matter? Beta regression is mentioned only in the VIF section (§4.8) but not as a primary method.\n2. K_eff definition: \"effective number of independent clusters\" from MI — is this sufficiently specified for reproduction? The paper doesn't give the exact formula.\n3. Panel non-independence correction: 4 methods used (OLS, clustered SE with CR1 and 15 clusters, wild cluster bootstrap with B=9999 and Rademacher weights, mixed effects with random judge intercepts). Evaluate whether clustering by 15 individual judges is appropriate given C(15,3)=455 panels. Is 15 clusters sufficient for reliable clustered SE? Cameron-Gelbach-Miller typically recommend ≥50 clusters.\n4. The \"conditions\" are 6 attacks × 2 benchmarks = 12 (later 9 attacks × 2 benchmarks = 18, but MT-Bench adds 3 more for total). Significance counts are reported per-condition without multiple testing correction across conditions — is this a concern?\n5. Attack simulation methodology is never described — how are the 9 attack types actually implemented? This is a critical gap.\n\n**B. Experimental Coverage**\nCompare what the paper reports vs. the 12 planned experiments. Note which experiments are adequately covered, which are mentioned but underspecified, and which are missing.\n\n**C. Statistical Concerns**\n1. The confound r=0.70 between η_max and K_eff — is the paper's treatment adequate?\n2. Only 7 references — is this sufficient for a venue like EMNLP?\n3. No figures in the paper — the plan calls for many figures. Impact on readability?\n4. K_eff 0/12 under clustered SE could be a power issue (only 15 clusters) rather than a true null.\n\n**D. Reproducibility**\n1. Model identities are named (GPT, Claude, etc.) but specific versions not listed.\n2. Attack implementation details absent.\n3. No code/data release mentioned.\n\n**E. Scores**\nProvide preliminary scores: Soundness (1-5), Excitement (1-5), Reproducibility (1-5), Overall Assessment (1-5, half-point).\n\nFormat your review with clear sections for Strengths, Weaknesses, Questions for Authors, and Scores. Be calibrated to EMNLP 2026 standards (~21% accept rate for Main)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T22:50:33.391840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T22:50:33.392304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T22:50:36.252748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 reviewer guidelines review form criteria dimensions"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T22:50:37.457405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.pdf",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T22:50:37.508080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/best/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/median/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/worst/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T173833/best/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T173833/median/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T173833/worst/paper.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/fig1_robustness_comparison.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig1_robustness_comparison.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/fig2_gam_keff_split.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/chart/fig2_gam_keff_split.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig1_robustness_comparison.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig2_gam_keff_split.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/fig3_aggregation_gradient.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/plan001_step1_full_v4/char\n…[truncated 1067 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T22:50:43.781093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 reviewer guidelines review form criteria dimensions\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"}]\n\nBased on the search results, here's what I found about ACL ARR 2026 reviewer guidelines and review form criteria:\n\n## Review Form Criteria\n\nFor Findings papers, the main criteria are soundness and reproducibility, while conference recommendations may also consider novelty, impact and other factors.\n\n## Review Scoring Scale\n\nThe review form uses the following recommendation scale:\n- 5 = Consider for Award: I think this paper could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers)\n- 2 = Res\n…[truncated 834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "WebSearch",
+            "elapsed_ms": 7528
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T22:50:57.299353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T22:50:57.350069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T22:51:02.369135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form: all scoring dimensions, their scales (1-5 etc.), descriptions for each score level, and any other fields reviewers must fill. Return the full structured form."
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T22:51:03.071834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.pdf",
+              "project": "cert_manip_resist_eval",
+              "pages": "1-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T22:51:12.357887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Structure\n\n## Main Review Sections\n\n### 1. Paper Summary\nOpen-ended text field for describing paper topic and identifying potential misunderstandings.\n\n### 2. Summary of Strengths\nOpen-ended text describing reasons for publication at selective *ACL venues.\n\n### 3. Summary of Weaknesses\nNumbered concerns about correctness, impact, clarity, and other publication factors.\n\n### 4. Comments/Suggestions/Typos\nOpen-ended field for improvement suggestions and typographical corrections.\n\n---\n\n## Scoring Dimensions\n\n### Reviewer Confidence (1-5 scale)\n- **5:** \"Positive that my evaluation is correct. I read the paper very carefully\"\n- **4:** Quite sure; unlikely but conceivable to have missed important details\n- **3:** Pretty sure; good general familiarity but didn't carefully verify specifics\n- **2:** Willing to defend evaluation, but fairly likely to have missed details\n- **1:** Outside expertise area or paper extremely difficult to understand\n\n### Soundness (1-5 scale with half-points)\n- **5:** Excellent; most thorough study of its type\n- **4:** Strong; sufficient support for claims\n- **3:** Acceptable; adequate support for main claims\n- **2:** Poor; main claims lack sufficient support\n- **1:** Major Issues; insufficient thoroughness or ACL relevance\n\n### Excitement (1-5 scale with half-points)\n- **5:** Highly Exciting; would recommend to others\n- **4:** Exciting; would mention and attend presentation\n- **3:** Interesting; might mention or attend if available\n- **2:** Potentially Interesting; doesn't resonate personally\n- **1:** Not Exciting; lacks computational linguistics relevance\n\n### Overall Assessment (1-5 scale with half-points)\n- **5:** Consider for Award; top 2.5% candidate\n- **4.5:** Borderline Award\n- **4:** Conference acceptance recommended\n- **3.5:** Borderline Conference\n- **3:** Findings acceptance recommended\n- **2.5:** Borderline Findings\n- **2:** Resubmit next cycle with substantial revisions\n- **1.5:** Resubmit after \n…[truncated 1721 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 9988
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T22:51:13.566529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 462.1}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 546.2}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 555.2}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 533.5}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.2}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 443.0}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 446.4}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 544.9}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.0}], \\\"total_pages\\\": 13, \\\"rendered_pages\\\": 9, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_\n…[truncated 75 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 10494
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T22:51:19.138349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T22:51:20.092972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T22:51:20.193662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T22:51:20.244284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T22:51:21.102202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 908
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T22:51:21.303749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1059
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T22:51:25.921052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T22:51:26.725167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 804
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T22:51:26.775880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T22:51:26.977232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T22:51:27.682019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T22:51:27.883831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T22:51:33.099636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T22:51:34.104055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T22:51:34.104751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T22:51:34.306306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T22:51:35.112286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1007
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T22:51:35.516231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1209
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T22:51:41.348841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.pdf",
+              "project": "cert_manip_resist_eval",
+              "pages": "10-13",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T22:51:41.802849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 469.6}, {\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 541.4}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 452.8}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 275.2}], \\\"total_pages\\\": 13, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 454
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T22:51:44.815292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p10.png"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T22:51:45.167968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p11.png"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T22:51:46.075071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1259
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T22:51:46.077926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 909
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T22:51:46.078325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p12.png"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T22:51:46.279253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images/main_p13.png"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T22:51:46.982265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 903
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T22:51:46.983363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 704
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T22:57:57.339169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the key reviewer guidelines: what reviewers should evaluate, calibration advice, common mistakes to avoid, how to assess soundness and novelty. Focus on scoring calibration and what constitutes a strong vs weak paper."
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T22:58:06.321224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Reviewer Guidelines: Key Evaluation Framework\n\n## What Reviewers Should Evaluate\n\nReviewers assess papers across multiple dimensions:\n\n- **Soundness**: Technical correctness and methodological rigor\n- **Excitement**: Personal interest and perceived impact\n- **Overall Assessment**: Composite recommendation reflecting soundness, novelty, and potential contribution\n\nThe guidelines emphasize that \"soundness scores must be justified by the text of the review.\" Low scores without clear faults suggest unconscious bias.\n\n## Critical Calibration Advice\n\n**Read papers twice with different mindsets:**\n\nFirst, skim to understand research questions without premature judgment. Then conduct in-depth technical evaluation. This two-pass approach prevents hindsight bias and confirmation bias from distorting assessment.\n\nAdjust expectations based on paper type. Resource papers, negative results, and analyses deserve fair hearing alongside empirical studies. \"Simpler solutions are in fact preferable, as they are less brittle and easier to deploy.\"\n\n## Common Reviewer Mistakes to Avoid\n\nThe guidelines list 17 heuristics that create false weaknesses:\n\n- Dismissing findings as \"unsurprising\" despite lacking prior empirical validation\n- Rejecting papers for lacking state-of-the-art results when they contribute differently\n- Criticizing negative results when they provide valuable information\n- Demanding experiments beyond what claims require\n- Penalizing acknowledged limitations as if they invalidate work\n\nPapers tested only on non-English languages receive equal standing as English-only work.\n\n## Soundness Assessment Standards\n\nPapers must demonstrate:\n\n- Clear research questions and appropriate methodology\n- Technical correctness in proofs and experiments\n- Sufficient evidence supporting stated claims\n- Transparency about limitations and assumptions\n- Reproducible details (hyperparameters, code availability, dataset information)\n\nReviewers should flag specific methodological concern\n…[truncated 678 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 8982
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T23:00:32.444597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## R1 Independent Review: Methods & Experiments\n\n**Paper**: \"Weakest Link, Not Diversity: Adversarial Vulnerability in Multi-Judge LLM Evaluation\"\n**Venue**: EMNLP 2026 (ACL ARR)\n**Reviewer Focus**: Methodology Soundness & Experimental Rigor\n\n---\n\n## 总体评分\n\n**Overall**: 3.0 (Findings — 可被 Findings 接收)\n**一句话总结**: 研究问题新颖且有实际意义，BFT 框架下的\"最弱环节\"发现方向正确，但聚类数不足（15 clusters）导致核心发现（K_eff 在校正后归零）可能是统计功效问题而非真实零效应，加上实验范围受限（仅 K=3、仅 MCQ），主要 claim 的支撑力度不足以达到主会议水平。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 | 核心统计管线合理（4种校正方法、FDR），但 15 个 cluster 的聚类 SE 低于 Cameron-Gelbach-Miller 推荐的 ≥50 标准；log-log OLS 对 [0,1] 有界响应变量存在模型误设问题；r=0.70 的混淆未充分解决 |\n| Excitement | 3.5/5 | BFT 框架应用于 LLM 评估面板是新颖的；\"最弱环节\"发现具有明确的实践指导意义；攻击分类学（targeted vs shared-bias）揭示了非平凡的结构；但理论贡献较浅（Theorem 1 在 oracle 对手下几乎 tautological） |\n| Reproducibility | 3/5 | 模型列表提供但版本号不够精确（如\"gpt-4o\"无日期版本）；攻击模板在 Appendix E 但参数细节不足；代码承诺 upon acceptance 发布；K_eff 的精确计算公式在排版中不够清晰 |\n\n---\n\n## 前置说明：Director 提供的论文摘要与实际 PDF 内容存在重大偏差\n\n**Director 摘要称论文有 Tables 1-10、11 个实验子节、9 种攻击类型。实际 PDF（docs/paper/main.pdf，13 页）内容如下：**\n- 主正文 Tables 1-4，附录 Table 5（共 5 张表，非 10 张）\n- Results 节仅 5 个子节（§5.1-§5.5），非 11 个\n- 仅 6 种攻击类型（非 9 种）\n- 仅 2 个 benchmark（MMLU, ARC），无 MT-Bench\n- 论文包含 3 张主文 Figure（Figure 1-3）和 1 张附录 Figure（Figure 4），而非 Director 所述\"无 figure\"\n- 参考文献约 34-36 篇（横跨 pp.11-13），而非 Director 所述\"7 references\"\n\n**以下审查完全基于实际 PDF 内容。**\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] **聚类数不足导致核心发现的统计可信度存疑**\n- 具体位置：§4.6 (Robustness to Non-Independence), Table 3, Limitations §1\n- 问题：论文以 15 个个体 judge 作为聚类单元进行 clustered SE 校正。455 个 panel 中每个 judge 出现在 C(14,2)=91 个 panel 中，造成严重的非独立性。Cameron, Gelbach & Miller (2008) 推荐聚类数 ≥50，而论文仅有 15 个 cluster。论文的核心发现——K_eff 从 OLS 下 8/12 显著骤降至 clustered SE 下 0/12——完全可能是 few-cluster 导致的 type II error（统计功效不足），而非 K_eff 真的没有效应。论文承认 \"these are conservative\"（Limitations），但这恰恰是论文的中心论点：\"diversity doesn't matter\" 建立在可能是 conservative bias 的统计结果之上。\n- 为什么影响接收：这是论文 title claim (\"Not Diversity\") 的直接支撑。如果 0/12 是功效问题，整个论文的核心叙事需要重写为\"当前样本无法区分 diversity 效应\"而非\"diversity 不重要\"。\n- 建议修改方向：(1) 增加 judge 数量以获得更多 cluster；(2) 使用 multi-way clustering（如按 judge × model family 交叉聚类）；(3) 报告 clustered SE 下的 statistical power 分析，说明在 15 clusters 下能检测到多大的效应量；(4) 弱化 title/claim，改为 \"η_max dominates under current sample\" 而非绝对否定 diversity。\n\n**N2** [critical] **Log-log OLS 对有界响应变量的模型误设**\n- 具体位置：§4.5 (Statistical Framework), Equation 2\n- 问题：ASR ∈ [0,1] 是有界比例变量，论文使用 log(ASR + ε) 作为因变量的 OLS 回归（ε = 10⁻⁹）。这有三个问题：(a) OLS 预测值可能超出 [0,1] 范围；(b) ε = 10⁻⁹ 对近零 ASR 值创造了人为的地板效应，且未检验对 ε 选择的敏感性；(c) Beta regression 或 fractional logit 是处理 (0,1) 比例响应变量的标准方法，论文仅在 VIF 分析中提及 beta regression 但未作为主分析。\n- 为什么影响接收：如果模型误设导致系数估计偏差，η_max 与 K_eff 的相对重要性排序可能改变。\n- 建议修改方向：以 beta regression 作为主分析或至少作为 robustness check；报告 ε 敏感性分析（如 ε = 10⁻³, 10⁻⁶, 10⁻⁹ 下系数变化）。\n\n**N3** [critical] **实验范围不足以支撑论文的一般性 claim**\n- 具体位置：Title, Abstract, §7 Conclusion\n- 问题：论文 title 和 abstract 提出的是关于\"multi-judge LLM evaluation panel\"的一般性结论，但实验仅覆盖：(a) K=3 的固定 panel 大小；(b) 两个 MCQ benchmark（MMLU, ARC）；(c) Oracle adversary（完全知识对手）。这三个限制严重约束了发现的外部效度。\n  - **Panel 大小**：仅测试 K=3，未检验 K=5,7,9 时 η_max 是否仍然主导。随着 K 增大，majority voting 的容错能力增强，K_eff 的效应可能变得更显著。\n  - **任务类型**：MCQ 的 ASR 定义简单（答案翻转即成功），但开放式生成任务（如 MT-Bench）的攻击面和评判机制完全不同。\n  - **对手模型**：Oracle adversary（Definition 1）知晓 panel 全部信息，这使得攻击可以精准针对最弱 judge，自然导致 η_max 主导。但在现实中，对手通常不知道 panel 组成，此时 diversity 可能更重要。Appendix C.4 定性讨论了这一点但无实证数据。\n- 为什么影响接收：一般性 claim + 有限实验范围 = overclaiming，这是 reviewer 常见的 reject 理由。\n- 建议修改方向：(1) 扩展至 K=5,7,9 测试 panel 大小敏感性；(2) 加入至少一个开放式生成 benchmark（如 MT-Bench）；(3) 实现 partial-knowledge adversary（如仅知 model family）并比较结果；或者 (4) 大幅弱化 claim 为条件性结论——\"under oracle adversary with K=3 MCQ panels, ...\"\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] **η_max 与 K_eff 的 r=0.70 混淆未充分解决**\n- 具体位置：Limitations §3, Appendix C.2\n- 问题：两个核心预测变量相关性 r=0.70（VIF ≈ 2.0），共享约 49% 方差。论文使用 dominance analysis (Budescu, 1993) 声称 η_max 以 5:1 支配 K_eff，但 dominance analysis 假设线性可加分解，在高共线性下难以清晰分离各变量贡献。论文的 capability-matched validation 出现在 Appendix C.2 的定性讨论中，但没有独立的实验（如仅使用同 tier 模型构建 panel）来直接控制 capability confound。\n- 建议：增加 within-tier 实验（如仅用基础模型构建 panel），显示 r 下降后 η_max 仍占主导地位。\n\n**W2** [warning] **Related Work 过于简略**\n- 具体位置：§2 Related Work（约 20 行）\n- 问题：仅覆盖 4 个主题（LLM-as-Judge, CJT, Ensemble Diversity, Adversarial Robustness），每个仅 3-5 行。遗漏了以下重要相关工作方向：(a) multi-agent debate/evaluation frameworks; (b) LLM calibration 与 self-evaluation 文献; (c) ensemble adversarial robustness 的更广泛 ML 文献（除 Tramèr et al. 2018 外）。对于 EMNLP 投稿，Related Work 至少需要 0.5-0.75 页的深度讨论。\n- 建议：扩展 Related Work，特别是与 Verga et al. (2024), Türkmen et al. (2026) 的详细技术对比。\n\n**W3** [warning] **Theorem 1 的理论深度有限**\n- 具体位置：§3, Definition 1, Theorem 1\n- 问题：Theorem 1（Weakest-Link Monotonicity）在 oracle adversary 假设下几乎是定义性的——如果对手完全知晓 panel 组成且可以针对性攻击，用更脆弱的 judge 替换自然只会增加 ASR。证明（Appendix A）直接从 oracle 对手的优化目标推出。理论贡献的价值更多在于形式化直觉而非提供非平凡洞见。\n- 建议：要么弱化理论贡献的声称强度，要么在非完全知识条件下推导更深的理论结果（如 partial-knowledge 下的 bound）。\n\n**W4** [warning] **攻击实现细节不足以完全复现**\n- 具体位置：§4.2, Appendix E (Table 5)\n- 问题：主文对 6 种攻击各一句描述；Appendix E 的 Table 5 提供了代表性模板，但缺少关键实现参数：prompt injection 的注入位置（开头/中间/结尾）；score manipulation 的具体数值策略；position bias 的重排序机制（随机？系统性？）；每种攻击的变体数量。\n- 建议：在 appendix 中增加完整的攻击实现伪代码或参数表。\n\n**W5** [warning] **模型版本标识不够精确**\n- 具体位置：Table 1\n- 问题：Table 1 列出了 15 个模型，但部分模型标识不够精确。如\"gpt-4o\"可能对应多个时间点的不同版本（2024-05, 2024-08 等），这些版本在评估行为上可能存在差异。GPT 和 Claude 系列模型频繁更新，缺少确切版本号（snapshot date 或 model ID）会影响可复现性。\n- 建议：补充每个 API 模型的具体版本号或 API 调用时间窗口。\n\n---\n\n## 小问题（不影响接收）\n\n- §4.5 Equation 2 的 ε 常数值（10⁻⁹）虽然在文中提及，但在公式本身中仅写作 ε，容易被忽略。建议在公式中直接注明。\n- Figure 1 的 y 轴标签（\"Significance counts (FDR < 0.05) for η_max and K_eff\"）较长，可简化。\n- §5.4 GAM 分析中 \"clean 6:6 split\" 的说法——实际上从 Table 2 看，12 个条件在 targeted/shared-bias 分类上是否真的是精确的 6:6？需要更精确的计数。\n- Limitations 节跨页（pp.8-9），格式上建议确保 Conclusion 在第 8 页完整结束。\n\n---\n\n## 主要优势\n\n1. **研究问题高度相关且及时**：multi-judge LLM panel 正在被广泛采用（如 LMSYS Arena, Scale AI），其对抗脆弱性分析有直接实践价值。\n2. **BFT 框架的创新性应用**：将 Byzantine fault tolerance 的理论框架引入 LLM 评估，提供了不同于传统 ensemble learning 视角的分析工具，区分了 random fault（BFT 管辖）和 adaptive attack（超出 BFT 保证）。\n3. **多重统计校正的严谨态度**：同时使用 4 种方法（OLS, Clustered SE, Wild Cluster Bootstrap, Mixed Effects）并对比结果，虽然聚类数问题未完全解决，但这种方法论意识值得肯定。\n4. **攻击分类学的结构性发现**：§5.4 GAM 分析揭示的 targeted（diversity 有正面效应）vs shared-bias（diversity 无效或有害）的二分法，是比\"η_max 一律主导\"更精细的发现，实践指导意义更强。\n5. **可操作的 panel 设计建议**：两阶段算法（先筛 robustness，再加 diversity）简洁且可直接应用。\n\n---\n\n## B. 实验覆盖度对比（vs. Director 提供的 12 实验计划）\n\n| # | 实验 | 论文覆盖 | 评注 |\n|---|------|----------|------|\n| 1 | 15-Model Scaling Expansion | ✅ 完整 | Table 1, §4.1 |\n| 2 | Attack Surface Expansion (9 attacks) | ❌ 部分 | 仅 6 种攻击（非 9 种），12 条件（非 18） |\n| 3 | Random-Fault BFT Contrast | ✅ 完整 | §5.3，Monte Carlo 对比 |\n| 4 | Capability-Matched Validation | ❌ 缺失 | Appendix C.2 定性讨论，无独立 within-tier 实验/表格 |\n| 5 | Two-Stage Panel Design | ✅ 部分 | Appendix D + Figure 4，但 main text 仅定性讨论 |\n| 6 | Per-Judge ASR Concentration (Gini/entropy) | ❌ 缺失 | 无 Gini/entropy 分析 |\n| 7 | Diversity-Capability Tradeoff Visualization | ❌ 缺失 | Appendix C.2 文字讨论，无 scatter/Pareto 图 |\n| 8 | Panel Size Sensitivity (K=3-9) | ❌ 缺失 | 全文仅 K=3 |\n| 9 | VIF + Multicollinearity Diagnostic | ❌ 缺失 | 文中提及 VIF 但无独立表格/分析 |\n| 10 | Aggregation Gradient | ✅ 完整 | Table 4, §5.5 |\n| 11 | Open-Ended Generation (MT-Bench) | ❌ 缺失 | 全文仅 MCQ（MMLU, ARC） |\n| 12 | Partial-Knowledge Adversary | ❌ 缺失 | C.4 定性讨论，无实证数据 |\n\n**覆盖率：4-5/12 完整，7-8/12 缺失或仅定性提及。** 缺失的实验中，Panel Size Sensitivity (#8)、Open-Ended Generation (#11)、Partial-Knowledge Adversary (#12) 直接影响 claim 的一般性，是最重要的缺口。\n\n---\n\n## C. 对 Director 提出的具体统计关切的回应\n\n**C.1 r=0.70 confound 的处理**：不充分。论文在 Limitations 中承认但未提供控制方案（如 within-tier 实验或 instrumental variable）。Dominance analysis 是合理但不充分的工具。详见 W1。\n\n**C.2 参考文献数量**：Director 称\"仅 7 篇\"，这与实际不符。实际 PDF 包含约 34-36 篇参考文献（pp.11-13），覆盖 BFT、CJT、ensemble theory、adversarial robustness、LLM-as-Judge 等核心方向。参考文献数量充分。\n\n**C.3 论文是否无 figure**：Director 称\"No figures\"，这与实际不符。论文包含 Figure 1（significance count bar chart, p.6）、Figure 2（GAM K_eff split by attack type, p.7）、Figure 3（aggregation K_eff distribution, p.7）、Figure 4（panel selection comparison, Appendix D p.10）。共 4 张图，3 张在主文中。Figure 质量可接受但不突出。\n\n**C.4 K_eff 0/12 是 power issue 还是 true null**：这是本文最关键的方法论问题。以 15 个 cluster 做 clustered SE，统计功效严重不足。论文无法排除 \"K_eff 有中等效应但因 power 不足而检测不到\" 的可能。Wild cluster bootstrap 是 few-cluster 最佳校正但不能完全消除问题。论文应该报告 power analysis。详见 N1。\n\n---\n\n## 评分总结\n\n| 维度 | 分数 |\n|------|------|\n| Soundness | 3/5 |\n| Excitement | 3.5/5 |\n| Reproducibility | 3/5 |\n| **Overall Assessment** | **3.0 — Findings** |\n\n**评分理由**：论文的研究问题新颖且 BFT 框架的应用有创新性（Excitement 3.5），但核心方法论存在显著问题——15-cluster 的聚类 SE 可能将有效应的 K_eff 错误地判为不显著，直接动摇\"not diversity\"的 title claim（Soundness 3）。实验范围仅限 K=3 MCQ oracle adversary，限制了发现的一般性（N3）。如果作者能 (1) 补充 power analysis 证明 K_eff 确为弱效应而非检测不到，(2) 扩展至 K>3 和非 MCQ 任务，论文可达 3.5-4.0。当前状态适合 Findings。\n\n**Reviewer Confidence**: 4/5 — 我对统计方法论和实验设计的评估较有信心，但对 LLM-as-Judge 的前沿实践了解可能不够全面。",
+              "reviewer_id": "1",
+              "project": "cert_manip_resist_eval"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T23:00:36.437990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3993
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T23:00:41.164422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T23:00:41.164923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T23:01:00.966451+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。核心发现：\n\n1. **Director 提供的论文摘要与实际 PDF 存在重大偏差**——实际论文仅有 Tables 1-5（非 1-10）、5 个实验子节（非 11）、6 种攻击（非 9）、~35 篇参考文献（非 7）、4 张图（非 0 张）。审稿基于实际 PDF 内容。\n\n2. **评分：Overall 3.0 (Findings)**，Soundness 3/5，Excitement 3.5/5，Reproducibility 3/5。\n\n3. **三个 Must-Fix 问题**：(N1) 15-cluster 聚类 SE 导致 K_eff 零效应可能是功效不足而非真实零效应——动摇 title claim；(N2) log-log OLS 对有界 ASR 的模型误设；(N3) 实验仅覆盖 K=3/MCQ/oracle adversary，不足以支撑一般性结论。\n\n4. **实验计划覆盖率约 4-5/12**，Panel Size Sensitivity、MT-Bench Generation、Partial-Knowledge Adversary 三个缺口最影响 claim 一般性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1"
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    }
+  ]
+}

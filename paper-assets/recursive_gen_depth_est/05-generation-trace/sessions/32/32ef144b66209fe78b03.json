@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "32ef144b66209fe78b03",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code n4 reverse chain prep",
+  "task_key": "worker_code_n4_reverse_chain_prep_20260516T140408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n4_reverse_chain_prep_20260516T140408_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "27ce716f41892eeeb69f6bf7737db207a47cbd6f50057a9a33a4444cb5e8ca20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。总结：\n\n**脚本路径**: `/root/autodl-tmp/recursive_gen_depth_est/scripts/run_reverse_chain_pipeline.sh`\n\n**Dry-run 结果**: 全部通过\n- GPT-2 XL (1.5B): finetune ✓, generate ✓\n- OLMo-1B: finetune ✓, generate ✓  \n- Pythia-1.4B: finetune ✓, generate ✓\n- 数据格式正确（jsonl, 含 text/depth 字段）\n\n**模型状况**: 三个模型均已下载到 `/root/autodl-tmp/models/`，无需额外下载\n\n**运行方式**: \n```bash\n# 完整运行 (500 samples/depth, cuda:1)\nbash scripts/run_reverse_chain_pipeline.sh\n\n# 自定义样本数\nNUM_SAMPLES=100 bash scripts/run_reverse_chain_pipeline.sh\n```\n\n**预估完整运行时间** (500 samples):\n- 每个模型 finetune ~5-8 min, generate ~15-25 min\n- 3 个模型 × (finetune + generate) ≈ 60-100 min\n- 特征提取 + 分类器 ≈ 10-15 min\n- **总计约 1.5-2 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

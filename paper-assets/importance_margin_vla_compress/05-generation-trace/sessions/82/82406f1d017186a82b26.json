@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "82406f1d017186a82b26",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code heatmap dual panel v1",
+  "task_key": "worker_code_heatmap_dual_panel_v1_20260522T085136",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_heatmap_dual_panel_v1_20260522T085136_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "7a832462a0b8cf255f9735cf7ccfc708fc65a9f59a00be178d169e5da7bda33b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Layout is clean now — colorbar properly separated, no overlap. The center-high pattern is clearly visible in Object (rows 7-10, cols 4-10 bright), and Spatial shows a flatter but still present pattern. Both panels share the same color scale (171–284).\n\nPDF saved to:\n`docs/paper/figures/paper/fig_token_heatmap.pdf` (25.8 KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

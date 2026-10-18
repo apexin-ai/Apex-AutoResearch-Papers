@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ecc5cb5c8d333c7ba24",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp012 launch script",
+  "task_key": "worker_ssh_exp012-launch-script_20260515T102532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp012-launch-script_20260515T102532_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "f45876435747d0e29db5d1b52951f04b0ed8dc48a8c3782748872037660fb33c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个脚本已部署到服务器 `/root/schema-dag-extraction/scripts/`。\n\n**验证摘要：**\n\n| 检查项 | 状态 |\n|--------|------|\n| `scripts/` 目录 | 存在 |\n| `--output_dir` 参数 | 确认（run_experiment.py:26） |\n| `--max_model_len` 参数 | 确认，default=4096（run_experiment.py:35），避免 LLaMA 131K 默认值 OOM |\n| `--embeddings_path` / `--sim_matrix_path` | 确认，artifacts 均存在 |\n| LLaMA shards | 15/15 ✓ |\n| GPU | RTX PRO 6000 Blackwell 96GB — 70B FP8 单卡可载，无需 tensor_parallel |\n\n**启动方式**（exp-008 完成后）：\n```bash\nbash /root/schema-dag-extraction/scripts/submit_exp012.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

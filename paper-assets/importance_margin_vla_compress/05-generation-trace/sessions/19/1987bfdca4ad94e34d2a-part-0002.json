@@ -1,0 +1,1746 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1987bfdca4ad94e34d2a",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-25T12:29:22.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JW8vH7MPWDPzVpN8pFfUP6",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/paper_figures.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "59fa7d93-9c5c-4a26-877a-a3eadcdd4779",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/paper_figures.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"\nPaper figures for Importance Margin VLA Compress.\nReads registry.yaml, produces crossover_heatmap.pdf, disruption_curve.pdf, cv_scatter.pdf.\n\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.colors as mcolors\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport yaml\nimport re\nfrom collections import defaultdict\nfrom pathlib import Path\n\nSCRIPT_DIR = Path(__file__).parent\nREGISTRY_PATH = SCRIPT_DIR.parent / 'registry.yaml'\nOUTPUT_DIR = SCRIPT_DIR\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nMETHOD_COLORS = {\n    'random':    '#E69F00',\n    'l2norm':    '#0072B2',\n    'attention': '#009E73',\n    'baseline':  '#555555',\n}\nMETHOD_LABELS = {\n    'random': 'Random', 'l2norm': 'L2-Norm',\n    'attention': 'Attention', 'baseline': 'Baseline',\n}\nSUITE_COLORS = {\n    'Object': '#0072B2', 'Goal': '#D55E00',\n    'Spatial': '#009E73', 'Long': '#CC79A7',\n}\nMODEL_COLORS = {\n    'OpenVLA': '#D55E00', u'π0.5': '#0072B2',\n    'X-VLA': '#009E73', 'SmolVLA': '#CC79A7',\n    'OpenVLA-OFT': '#F0E442',\n}\n\nVALID_CONCLUSIONS = {'success', 'negative'}\n\n\n# ── Data extraction ──────────────────────────────────────────────\n\ndef load_registry():\n    with open(REGISTRY_PATH) as f:\n        return yaml.safe_load(f).get('experiments', {})\n\n\ndef normalize_sr(val):\n    if val is None:\n        return None\n    try:\n        val = float(val)\n    except (TypeError, ValueError):\n        return None\n    return val * 100 if val <= 1.0 else val\n\n\ndef extract_model(eid):\n    e = eid.lower()\n    if 'oft' in e:\n        return 'OpenVLA-OFT'\n    if 'openvla' in e:\n        return 'OpenVLA'\n    if 'pi05' in e:\n        return 'π0.5'\n    if 'xvla' in e:\n        return 'X-VLA'\n    if 'smolvla' in e:\n        return 'SmolVLA'\n    return None\n\n\ndef extract_suite(eid, exp):\n    spec = exp.get('spec', {}) or {}\n    cmd = (spec.get('command', '') or '').lower()\n    dp = (spec.get('data_path', '') or '').lower()\n    e = eid.lower()\n    blob = f'{e} {cmd} {dp}'\n    if any(x in blob for x in ['libero_object', 'libero-object', '_object_', '_obj_']):\n        return 'Object'\n    if any(x in blob for x in ['libero_goal', 'libero-goal', '_goal_']):\n        return 'Goal'\n    if any(x in blob for x in ['libero_spatial', 'libero-spatial', '_spatial_']):\n        return 'Spatial'\n    if any(x in blob for x in ['libero_10', 'libero-10', '_long_']):\n        return 'Long'\n    if ('xvla' in e or 'openvla' in e) and re.search(r'(?:prune|pruning)_k\\d', e):\n        return 'Object'\n    return None\n\n\ndef extract_method(eid, exp):\n    spec = exp.get('spec', {}) or {}\n    cmd = (spec.get('command', '') or '').lower()\n    e = eid.lower()\n    if 'baseline' in e or 'prune_mode none' in cmd:\n        return 'baseline'\n    if any(x in e for x in ['attention', 'attn']) or \\\n       any(x in cmd for x in ['attention_prune', 'attention_last', 'attention_mean', 'attention_rollout']):\n        return 'attention'\n    if 'l2norm' in e or 'l2_norm' in cmd or 'l2norm' in cmd:\n        return 'l2norm'\n    if 'random' in e or 'random_prune' in cmd or '--mode random' in cmd:\n        return 'random'\n    if re.search(r'(?:prune|pruning)_k\\d', e):\n        return 'random'\n    return None\n\n\ndef extract_k(eid, exp):\n    spec = exp.get('spec', {}) or {}\n    cmd = spec.get('command', '') or ''\n    e = eid.lower()\n    if 'baseline' in e:\n        return 1.0\n    for pat in [r'keep_ratio\\s+([\\d.]+)', r'k_ratio\\s+([\\d.]+)']:\n        m = re.search(pat, cmd)\n        if m:\n            return float(m.group(1))\n    m = re.search(r'_k(\\d+?)(?:_|$)', e)\n    if m:\n        digits = m.group(1)\n        val = int(digits)\n        n = len(digits)\n        if n <= 2:\n            return val / 10.0\n        elif n == 3:\n            return val / 100.0\n        elif n == 4:\n            return val / 1000.0\n    return None\n\n\ndef get_sr(exp):\n    m = exp.get('metrics') or {}\n    for f in ['success_rate', 'overall_sr', 'overall_SR', 'overall_success_rate']:\n        if f in m:\n            return normalize_sr(m[f])\n    return None\n\n\ndef version_score(eid):\n    e = eid.lower()\n    s = 0\n    if 'postfix' in e:\n        s += 1000\n    vm = re.search(r'_v(\\d+)', e)\n    if vm:\n        s += int(vm.group(1)) * 10\n    return s\n\n\ndef build_data(exps):\n    records = []\n    for eid, exp in exps.items():\n        if not isinstance(exp, dict):\n            continue\n        if exp.get('conclusion') not in VALID_CONCLUSIONS:\n            continue\n        model = extract_model(eid)\n        suite = extract_suite(eid, exp)\n        method = extract_method(eid, exp)\n        k = extract_k(eid, exp)\n        sr = get_sr(exp)\n        if not all([model, suite, method]) or k is None or sr is None:\n            continue\n        records.append({\n            'model': model, 'suite': suite, 'method': method,\n            'k': round(k, 4), 'sr': sr, 'exp_id': eid,\n            'vscore': version_score(eid),\n        })\n    best = {}\n    for r in records:\n        key = (r['model'], r['suite'], r['method'], r['k'])\n        if key not in best or r['vscore'] > best[key]['vscore']:\n            best[key] = r\n    return list(best.values())\n\n\ndef build_raw_records(exps):\n    \"\"\"All valid records without dedup (for worst-case analysis).\"\"\"\n    records = []\n    for eid, exp in exps.items():\n        if not isinstance(exp, dict):\n            continue\n        if exp.get('conclusion') not in VALID_CONCLUSIONS:\n            continue\n        model = extract_model(eid)\n        suite = extract_suite(eid, exp)\n        method = extract_method(eid, exp)\n        k = extract_k(eid, exp)\n        sr = get_sr(exp)\n        if not all([model, suite, method]) or k is None or sr is None:\n            continue\n        records.append({\n            'model': model, 'suite': suite, 'method': method,\n            'k': round(k, 4), 'sr': sr,\n        })\n    return records\n\n\n# ── Figure 1: Crossover Heatmap ─────────────────────────────────\n\ndef cell_bg(method, sr):\n    base = mcolors.to_rgb(METHOD_COLORS[method])\n    t = 0.15 + 0.55 * (sr / 100.0)\n    return tuple(1 - t * (1 - c) for c in base)\n\n\ndef text_col(bg):\n    lum = 0.299 * bg[0] + 0.587 * bg[1] + 0.114 * bg[2]\n    return 'white' if lum < 0.55 else '#222222'\n\n\ndef plot_crossover_heatmap(data, outpath):\n    models = ['OpenVLA', 'π0.5', 'X-VLA']\n    suites = ['Object', 'Goal', 'Spatial', 'Long']\n    methods_order = ['random', 'l2norm', 'attention']\n\n    k09 = [r for r in data if abs(r['k'] - 0.9) < 0.01\n           and r['method'] != 'baseline' and r['model'] in models]\n\n    cells = defaultdict(dict)\n    for r in k09:\n        cells[(r['model'], r['suite'])][r['method']] = r['sr']\n\n    fig, ax = plt.subplots(figsize=(7.5, 3.8))\n\n    for i, model in enumerate(models):\n        for j, suite in enumerate(suites):\n            mdata = cells.get((model, suite), {})\n            x0, y0 = j - 0.5, i - 0.5\n\n            if not mdata:\n                rect = plt.Rectangle((x0, y0), 1, 1,\n                                     facecolor='#F0F0F0', edgecolor='white', lw=2)\n                ax.add_patch(rect)\n                ax.text(j, i, '—', ha='center', va='center',\n                        fontsize=14, color='#AAAAAA')\n                continue\n\n            best_m = max(mdata, key=mdata.get)\n            best_sr = mdata[best_m]\n            bg = cell_bg(best_m, best_sr)\n            tc = text_col(bg)\n\n            rect = plt.Rectangle((x0, y0), 1, 1,\n                                 facecolor=bg, edgecolor='white', lw=2)\n            ax.add_patch(rect)\n\n            ax.text(j, i - 0.15, f'{best_sr:.1f}%', ha='center', va='center',\n                    fontsize=13, fontweight='bold', color=tc)\n            ax.text(j, i + 0.15, METHOD_LABELS[best_m], ha='center', va='center',\n                    fontsize=8, color=tc, alpha=0.85, fontstyle='italic')\n\n            others = {m: s for m, s in mdata.items() if m != best_m}\n            if others:\n                parts = [f'{METHOD_LABELS[m][:3]}={s:.0f}' for m, s in\n                         sorted(others.items(), key=lambda x: -x[1])]\n                info = '  '.join(parts)\n                ax.text(j, i + 0.37, info, ha='center', va='center',\n                        fontsize=5.5, color=tc, alpha=0.6)\n\n    ax.set_xlim(-0.5, len(suites) - 0.5)\n    ax.set_ylim(len(models) - 0.5, -0.5)\n    ax.set_xticks(range(len(suites)))\n    ax.set_xticklabels(suites, fontsize=11, fontweight='bold')\n    ax.set_yticks(range(len(models)))\n    ax.set_yticklabels(models, fontsize=11, fontweight='bold')\n    ax.tick_params(length=0)\n    for spine in ax.spines.values():\n        spine.set_visible(False)\n\n    legend_patches = [mpatches.Patch(facecolor=METHOD_COLORS[m],\n                                     label=METHOD_LABELS[m], alpha=0.8)\n                      for m in methods_order]\n    legend_patches.append(mpatches.Patch(facecolor='#F0F0F0',\n                                         edgecolor='#CCCCCC', label='No data'))\n    ax.legend(handles=legend_patches, loc='upper left',\n              bbox_to_anchor=(1.02, 1.0), fontsize=9, frameon=False)\n\n    ax.set_title('Best SR at $k{=}0.9$: method crossover across models and suites',\n                 fontsize=11.5, pad=12)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n\n\n# ── Figure 2: π0.5 Disruption Curve ─────────────────────────────\n\ndef plot_disruption_curve(data, outpath):\n    pi_model = 'π0.5'\n    pi_data = [r for r in data if r['model'] == pi_model]\n\n    baselines = {}\n    for r in pi_data:\n        if r['method'] == 'baseline' and r['k'] == 1.0:\n            baselines[r['suite']] = r['sr']\n\n    curves = defaultdict(dict)\n    for r in pi_data:\n        if r['method'] in ('random', 'l2norm'):\n            curves[(r['suite'], r['method'])][r['k']] = r['sr']\n\n    for suite, bl in baselines.items():\n        for method in ('random', 'l2norm'):\n            curves[(suite, method)][1.0] = bl\n\n    fig, (ax_main, ax_sec) = plt.subplots(1, 2, figsize=(12, 4.8),\n                                           gridspec_kw={'width_ratios': [1.6, 1]},\n                                           sharey=True)\n\n    # ── Left panel: Object suite (primary story) ──\n    ax = ax_main\n    ax.axvspan(0.85, 0.925, alpha=0.07, color='#D32F2F', zorder=0)\n    t = ax.text(0.8875, 3, 'cliff zone', ha='center', va='bottom',\n                fontsize=8, color='#B71C1C', alpha=0.45, fontstyle='italic')\n    t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\n    lstyles = {'random': '-', 'l2norm': '--'}\n    markers = {'random': 'o', 'l2norm': 's'}\n\n    for method in ('random', 'l2norm'):\n        key = ('Object', method)\n        if key not in curves or len(curves[key]) < 2:\n            continue\n        pts = sorted(curves[key].items())\n        ks, srs = zip(*pts)\n        c = METHOD_COLORS[method]\n        ax.plot(ks, srs, lstyles[method], color=c,\n                marker=markers[method], markersize=5, alpha=0.9,\n                label=METHOD_LABELS[method], zorder=3, linewidth=2.2)\n\n    r85 = curves.get(('Object', 'random'), {}).get(0.85)\n    l85 = curves.get(('Object', 'l2norm'), {}).get(0.85)\n    if r85 is not None and l85 is not None:\n        ax.annotate(f'{r85:.1f}%', xy=(0.85, r85),\n                    xytext=(0.72, r85 + 18), fontsize=8, color=METHOD_COLORS['random'],\n                    fontweight='bold',\n                    arrowprops=dict(arrowstyle='->', color=METHOD_COLORS['random'], lw=0.8),\n                    zorder=5)\n        ax.annotate(f'{l85:.1f}%', xy=(0.85, l85),\n                    xytext=(0.72, l85 - 12), fontsize=8, color=METHOD_COLORS['l2norm'],\n                    fontweight='bold',\n                    arrowprops=dict(arrowstyle='->', color=METHOD_COLORS['l2norm'], lw=0.8),\n                    zorder=5)\n\n    r09 = curves.get(('Object', 'random'), {}).get(0.9)\n    l09 = curves.get(('Object', 'l2norm'), {}).get(0.9)\n    if r09 is not None and l09 is not None:\n        gap = l09 - r09\n        mid_y = (r09 + l09) / 2\n        ax.annotate('', xy=(0.9, r09 + 2), xytext=(0.9, l09 - 2),\n                    arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.2), zorder=4)\n        txt = ax.text(0.908, mid_y, f'Δ={gap:.0f}pp', fontsize=8,\n                      color='#555555', va='center', fontweight='bold')\n        txt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\n    ax.set_xlabel('Keep Ratio ($k$)', fontsize=12)\n    ax.set_ylabel('Success Rate (%)', fontsize=12)\n    ax.set_xlim(0.25, 1.03)\n    ax.set_ylim(-3, 108)\n    ax.set_xticks([0.3, 0.5, 0.7, 0.85, 0.9, 0.925, 0.95, 1.0])\n    ax.set_xticklabels(['0.3', '0.5', '0.7', '0.85', '0.9', '', '0.95', '1.0'], fontsize=9)\n    ax.grid(True, alpha=0.12, zorder=0)\n    ax.legend(loc='upper left', fontsize=10, framealpha=0.92, edgecolor='none')\n    ax.set_title('(a) Object suite', fontsize=11, pad=6)\n\n    # ── Right panel: Goal, Spatial, Long ──\n    ax2 = ax_sec\n    ax2.axvspan(0.85, 0.925, alpha=0.07, color='#D32F2F', zorder=0)\n\n    for suite in ['Goal', 'Spatial', 'Long']:\n        base_color = SUITE_COLORS[suite]\n        for method in ('random', 'l2norm'):\n            key = (suite, method)\n            if key not in curves or len(curves[key]) < 2:\n                continue\n            pts = sorted(curves[key].items())\n            ks, srs = zip(*pts)\n            label = f'{suite} {METHOD_LABELS[method]}'\n            ax2.plot(ks, srs, lstyles[method], color=base_color,\n                     marker=markers[method], markersize=3.5, alpha=0.75,\n                     label=label, zorder=3, linewidth=1.5)\n\n    ax2.set_xlabel('Keep Ratio ($k$)', fontsize=12)\n    ax2.set_xlim(0.25, 1.03)\n    ax2.set_xticks([0.3, 0.5, 0.7, 0.85, 0.9, 0.95, 1.0])\n    ax2.set_xticklabels(['0.3', '0.5', '0.7', '0.85', '0.9', '0.95', '1.0'], fontsize=9)\n    ax2.grid(True, alpha=0.12, zorder=0)\n    ax2.legend(loc='lower left', fontsize=6.5, ncol=1, framealpha=0.92,\n               edgecolor='none', columnspacing=0.8)\n    ax2.set_title('(b) Other suites', fontsize=11, pad=6)\n\n    fig.suptitle('π0.5 Disruption Curves: Random vs L2-Norm',\n                 fontsize=13, fontweight='bold', y=1.02)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n\n\n# ── Figure 3: CV Diagnostic Scatter ─────────────────────────────\n\ndef plot_cv_scatter(data, raw_records, outpath):\n    cv_known = {\n        'π0.5':     0.038,\n        'OpenVLA':       0.215,\n        'SmolVLA':       0.314,\n        'X-VLA':         0.025,\n    }\n\n    baselines = {}\n    worst_k09 = {}\n\n    for r in raw_records:\n        if r['suite'] != 'Object':\n            continue\n        model = r['model']\n        if r['method'] == 'baseline' or r['k'] == 1.0:\n            baselines[model] = max(baselines.get(model, 0), r['sr'])\n        if abs(r['k'] - 0.9) < 0.01 and r['method'] != 'baseline':\n            if model not in worst_k09 or r['sr'] < worst_k09[model]:\n                worst_k09[model] = r['sr']\n\n    bl_fallback = {\n        'OpenVLA': 74.0, 'π0.5': 98.2, 'X-VLA': 99.2,\n        'SmolVLA': 57.2,\n    }\n    for m, b in bl_fallback.items():\n        baselines.setdefault(m, b)\n\n    points = []\n    for model in cv_known:\n        if model not in baselines or model not in worst_k09:\n            continue\n        cv = cv_known[model]\n        drop = baselines[model] - worst_k09[model]\n        points.append((model, cv, drop))\n\n    if not points:\n        print('Warning: no data for CV scatter')\n        return\n\n    fig, ax = plt.subplots(figsize=(6.5, 4.5))\n\n    ax.axhspan(0, 15, alpha=0.04, color='#4CAF50', zorder=0)\n    ax.axhspan(50, 105, alpha=0.04, color='#F44336', zorder=0)\n    ax.text(0.005, 7, 'robust', fontsize=8, color='#66BB6A', alpha=0.5,\n            fontstyle='italic', va='center')\n    ax.text(0.005, 80, 'fragile', fontsize=8, color='#EF5350', alpha=0.5,\n            fontstyle='italic', va='center')\n\n    offsets = {\n        'π0.5': (12, -14), 'OpenVLA': (12, 8), 'X-VLA': (12, -12),\n        'SmolVLA': (12, 8),\n    }\n\n    for model, cv, drop in points:\n        color = MODEL_COLORS.get(model, '#333333')\n        ax.scatter(cv, drop, c=color, s=160, zorder=4,\n                   edgecolors='white', linewidths=1.5)\n        ox, oy = offsets.get(model, (12, 8))\n        arrow = dict(arrowstyle='-', color='gray', lw=0.4) if abs(ox) > 20 or abs(oy) > 20 else None\n        ax.annotate(model, (cv, drop), xytext=(ox, oy),\n                    textcoords='offset points', fontsize=10, color=color,\n                    fontweight='bold', arrowprops=arrow)\n\n        detail = f'drop={drop:.1f}pp'\n        ax.annotate(detail, (cv, drop), xytext=(ox, oy - 13),\n                    textcoords='offset points', fontsize=7, color=color, alpha=0.7)\n\n    ax.set_xlabel('Importance Score CV (coefficient of variation)', fontsize=11)\n    ax.set_ylabel('Max SR Drop at $k{=}0.9$ (pp)', fontsize=11)\n    ax.set_title('Token Importance CV vs Pruning Sensitivity', fontsize=12, pad=10)\n    ax.grid(True, alpha=0.12, zorder=0)\n\n    cv_vals = [p[1] for p in points]\n    drop_vals = [p[2] for p in points]\n    ax.set_xlim(-0.02, max(cv_vals) + 0.06)\n    ax.set_ylim(min(-5, min(drop_vals) - 8), max(drop_vals) + 15)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n\n\n# ── Main ─────────────────────────────────────────────────────────\n\ndef main():\n    print('Loading registry...')\n    exps = load_registry()\n    data = build_data(exps)\n    raw = build_raw_records(exps)\n    n_valid = sum(1 for e in exps.values()\n                  if isinstance(e, dict) and e.get('conclusion') in VALID_CONCLUSIONS)\n    print(f'Parsed {len(data)} unique data points from {n_valid} experiments')\n\n    plot_crossover_heatmap(data, OUTPUT_DIR / 'crossover_heatmap.pdf')\n    plot_disruption_curve(data, OUTPUT_DIR / 'disruption_curve.pdf')\n    plot_cv_scatter(data, raw, OUTPUT_DIR / 'cv_scatter.pdf')\n\n    print('\\nAll figures saved to:', OUTPUT_DIR)\n\n\nif __name__ == '__main__':\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 57,
+                  "oldLines": 7,
+                  "newStart": 57,
+                  "newLines": 9,
+                  "lines": [
+                    "     'OpenVLA-OFT': '#F0E442',",
+                    " }",
+                    " ",
+                    "+VALID_CONCLUSIONS = {'success', 'negative'}",
+                    " ",
+                    "+",
+                    " # ── Data extraction ──────────────────────────────────────────────",
+                    " ",
+                    " def load_registry():"
+                  ]
+                },
+                {
+                  "oldStart": 91,
+                  "oldLines": 7,
+                  "newStart": 93,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ",
+                    " def extract_suite(eid, exp):",
+                    "-    spec = exp.get('spec', {})",
+                    "+    spec = exp.get('spec', {}) or {}",
+                    "     cmd = (spec.get('command', '') or '').lower()",
+                    "     dp = (spec.get('data_path', '') or '').lower()",
+                    "     e = eid.lower()"
+                  ]
+                },
+                {
+                  "oldStart": 110,
+                  "oldLines": 7,
+                  "newStart": 112,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ",
+                    " def extract_method(eid, exp):",
+                    "-    spec = exp.get('spec', {})",
+                    "+    spec = exp.get('spec', {}) or {}",
+                    "     cmd = (spec.get('command', '') or '').lower()",
+                    "     e = eid.lower()",
+                    "     if 'baseline' in e or 'prune_mode none' in cmd:"
+                  ]
+                },
+                {
+                  "oldStart": 128,
+                  "oldLines": 7,
+                  "newStart": 130,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ",
+                    " def extract_k(eid, exp):",
+                    "-    spec = exp.get('spec', {})",
+                    "+    spec = exp.get('spec', {}) or {}",
+                    "     cmd = spec.get('command', '') or ''",
+                    "     e = eid.lower()",
+                    "     if 'baseline' in e:"
+                  ]
+                },
+                {
+                  "oldStart": 152,
+                  "oldLines": 7,
+                  "newStart": 154,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ",
+                    " def get_sr(exp):",
+                    "-    m = exp.get('metrics', {})",
+                    "+    m = exp.get('metrics') or {}",
+                    "     for f in ['success_rate', 'overall_sr', 'overall_SR', 'overall_success_rate']:",
+                    "         if f in m:",
+                    "             return normalize_sr(m[f])"
+                  ]
+                },
+                {
+                  "oldStart": 173,
+                  "oldLines": 8,
+                  "newStart": 175,
+                  "newLines": 10,
+                  "lines": [
+                    " def build_data(exps):",
+                    "     records = []",
+                    "     for eid, exp in exps.items():",
+                    "-        if exp.get('conclusion') != 'success':",
+                    "+        if not isinstance(exp, dict):",
+                    "             continue",
+                    "+        if exp.get('conclusion') not in VALID_CONCLUSIONS:",
+                    "+            continue",
+                    "         model = extract_model(eid)",
+                    "         suite = extract_suite(eid, exp)",
+                    "         method = extract_method(eid, exp)"
+                  ]
+                },
+                {
+                  "oldStart": 195,
+                  "oldLines": 6,
+                  "newStart": 199,
+                  "newLines": 28,
+                  "lines": [
+                    "     return list(best.values())",
+                    " ",
+                    " ",
+                    "+def build_raw_records(exps):",
+                    "+    \"\"\"All valid records without dedup (for worst-case analysis).\"\"\"",
+                    "+    records = []",
+                    "+    for eid, exp in exps.items():",
+                    "+        if not isinstance(exp, dict):",
+                    "+            continue",
+                    "+        if exp.get('conclusion') not in VALID_CONCLUSIONS:",
+                    "+            continue",
+                    "+        model = extract_model(eid)",
+                    "+        suite = extract_suite(eid, exp)",
+                    "+        method = extract_method(eid, exp)",
+                    "+        k = extract_k(eid, exp)",
+                    "+        sr = get_sr(exp)",
+                    "+        if not all([model, suite, method]) or k is None or sr is None:",
+                    "+            continue",
+                    "+        records.append({",
+                    "+            'model': model, 'suite': suite, 'method': method,",
+                    "+            'k': round(k, 4), 'sr': sr,",
+                    "+        })",
+                    "+    return records",
+                    "+",
+                    "+",
+                    " # ── Figure 1: Crossover Heatmap ─────────────────────────────────",
+                    " ",
+                    " def cell_bg(method, sr):"
+                  ]
+                },
+                {
+                  "oldStart": 304,
+                  "oldLines": 41,
+                  "newStart": 330,
+                  "newLines": 44,
+                  "lines": [
+                    "         for method in ('random', 'l2norm'):",
+                    "             curves[(suite, method)][1.0] = bl",
+                    " ",
+                    "-    suites_plot = ['Object', 'Goal', 'Spatial', 'Long']",
+                    "-    lstyles = {'random': '-', 'l2norm': '--'}",
+                    "-    markers = {'random': 'o', 'l2norm': 's'}",
+                    "+    fig, (ax_main, ax_sec) = plt.subplots(1, 2, figsize=(12, 4.8),",
+                    "+                                           gridspec_kw={'width_ratios': [1.6, 1]},",
+                    "+                                           sharey=True)",
+                    " ",
+                    "-    fig, ax = plt.subplots(figsize=(8.5, 5))",
+                    "-",
+                    "+    # ── Left panel: Object suite (primary story) ──",
+                    "+    ax = ax_main",
+                    "     ax.axvspan(0.85, 0.925, alpha=0.07, color='#D32F2F', zorder=0)",
+                    "     t = ax.text(0.8875, 3, 'cliff zone', ha='center', va='bottom',",
+                    "                 fontsize=8, color='#B71C1C', alpha=0.45, fontstyle='italic')",
+                    "     t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])",
+                    " ",
+                    "-    for suite in suites_plot:",
+                    "-        base_color = SUITE_COLORS[suite]",
+                    "-        for method in ('random', 'l2norm'):",
+                    "-            key = (suite, method)",
+                    "-            if key not in curves or len(curves[key]) < 2:",
+                    "-                continue",
+                    "-            pts = sorted(curves[key].items())",
+                    "-            ks = [p[0] for p in pts]",
+                    "-            srs = [p[1] for p in pts]",
+                    "-            label = f'{suite} {METHOD_LABELS[method]}'",
+                    "-            ax.plot(ks, srs, lstyles[method], color=base_color,",
+                    "-                    marker=markers[method], markersize=4.5, alpha=0.85,",
+                    "-                    label=label, zorder=3)",
+                    "+    lstyles = {'random': '-', 'l2norm': '--'}",
+                    "+    markers = {'random': 'o', 'l2norm': 's'}",
+                    " ",
+                    "+    for method in ('random', 'l2norm'):",
+                    "+        key = ('Object', method)",
+                    "+        if key not in curves or len(curves[key]) < 2:",
+                    "+            continue",
+                    "+        pts = sorted(curves[key].items())",
+                    "+        ks, srs = zip(*pts)",
+                    "+        c = METHOD_COLORS[method]",
+                    "+        ax.plot(ks, srs, lstyles[method], color=c,",
+                    "+                marker=markers[method], markersize=5, alpha=0.9,",
+                    "+                label=METHOD_LABELS[method], zorder=3, linewidth=2.2)",
+                    "+",
+                    "     r85 = curves.get(('Object', 'random'), {}).get(0.85)",
+                    "     l85 = curves.get(('Object', 'l2norm'), {}).get(0.85)",
+                    "     if r85 is not None and l85 is not None:",
+                    "-        c = SUITE_COLORS['Object']",
+                    "-        ax.annotate(f'Random {r85:.1f}%', xy=(0.85, r85),",
+                    "-                    xytext=(0.72, r85 + 15), fontsize=7.5, color=c,",
+                    "-                    arrowprops=dict(arrowstyle='->', color=c, lw=0.7), zorder=5)",
+                    "-        ax.annotate(f'L2 {l85:.1f}%', xy=(0.85, l85),",
+                    "-                    xytext=(0.72, l85 - 10), fontsize=7.5, color=c,",
+                    "-                    arrowprops=dict(arrowstyle='->', color=c, lw=0.7), zorder=5)",
+                    "+        ax.annotate(f'{r85:.1f}%', xy=(0.85, r85),",
+                    "+                    xytext=(0.72, r85 + 18), fontsize=8, color=METHOD_COLORS['random'],",
+                    "+                    fontweight='bold',",
+                    "+                    arrowprops=dict(arrowstyle='->', color=METHOD_COLORS['random'], lw=0.8),",
+                    "+                    zorder=5)",
+                    "+        ax.annotate(f'{l85:.1f}%', xy=(0.85, l85),",
+                    "+                    xytext=(0.72, l85 - 12), fontsize=8, color=METHOD_COLORS['l2norm'],",
+                    "+                    fontweight='bold',",
+                    "+                    arrowprops=dict(arrowstyle='->', color=METHOD_COLORS['l2norm'], lw=0.8),",
+                    "+                    zorder=5)",
+                    " ",
+                    "     r09 = curves.get(('Object', 'random'), {}).get(0.9)",
+                    "     l09 = curves.get(('Object', 'l2norm'), {}).get(0.9)"
+                  ]
+                },
+                {
+                  "oldStart": 346,
+                  "oldLines": 34,
+                  "newStart": 375,
+                  "newLines": 50,
+                  "lines": [
+                    "         gap = l09 - r09",
+                    "         mid_y = (r09 + l09) / 2",
+                    "         ax.annotate('', xy=(0.9, r09 + 2), xytext=(0.9, l09 - 2),",
+                    "-                    arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.0), zorder=4)",
+                    "-        txt = ax.text(0.91, mid_y, f'Δ={gap:.0f}pp', fontsize=7,",
+                    "-                      color='#555555', va='center')",
+                    "-        txt.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])",
+                    "+                    arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.2), zorder=4)",
+                    "+        txt = ax.text(0.908, mid_y, f'Δ={gap:.0f}pp', fontsize=8,",
+                    "+                      color='#555555', va='center', fontweight='bold')",
+                    "+        txt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])",
+                    " ",
+                    "     ax.set_xlabel('Keep Ratio ($k$)', fontsize=12)",
+                    "     ax.set_ylabel('Success Rate (%)', fontsize=12)",
+                    "     ax.set_xlim(0.25, 1.03)",
+                    "     ax.set_ylim(-3, 108)",
+                    "     ax.set_xticks([0.3, 0.5, 0.7, 0.85, 0.9, 0.925, 0.95, 1.0])",
+                    "-    ax.set_xticklabels(['0.3', '0.5', '0.7', '0.85', '0.9', '0.925', '0.95', '1.0'],",
+                    "-                       fontsize=9)",
+                    "+    ax.set_xticklabels(['0.3', '0.5', '0.7', '0.85', '0.9', '', '0.95', '1.0'], fontsize=9)",
+                    "     ax.grid(True, alpha=0.12, zorder=0)",
+                    "+    ax.legend(loc='upper left', fontsize=10, framealpha=0.92, edgecolor='none')",
+                    "+    ax.set_title('(a) Object suite', fontsize=11, pad=6)",
+                    " ",
+                    "-    handles, labels = ax.get_legend_handles_labels()",
+                    "-    order = []",
+                    "-    for s in suites_plot:",
+                    "-        for m in ('random', 'l2norm'):",
+                    "-            lbl = f'{s} {METHOD_LABELS[m]}'",
+                    "-            if lbl in labels:",
+                    "-                order.append(labels.index(lbl))",
+                    "-    ax.legend([handles[i] for i in order], [labels[i] for i in order],",
+                    "-              loc='lower left', fontsize=7.5, ncol=2, framealpha=0.92,",
+                    "-              edgecolor='none', columnspacing=1)",
+                    "+    # ── Right panel: Goal, Spatial, Long ──",
+                    "+    ax2 = ax_sec",
+                    "+    ax2.axvspan(0.85, 0.925, alpha=0.07, color='#D32F2F', zorder=0)",
+                    " ",
+                    "-    ax.set_title('π0.5 Disruption Curves: Random vs L2-Norm across suites',",
+                    "-                 fontsize=12, pad=10)",
+                    "+    for suite in ['Goal', 'Spatial', 'Long']:",
+                    "+        base_color = SUITE_COLORS[suite]",
+                    "+        for method in ('random', 'l2norm'):",
+                    "+            key = (suite, method)",
+                    "+            if key not in curves or len(curves[key]) < 2:",
+                    "+                continue",
+                    "+            pts = sorted(curves[key].items())",
+                    "+            ks, srs = zip(*pts)",
+                    "+            label = f'{suite} {METHOD_LABELS[method]}'",
+                    "+            ax2.plot(ks, srs, lstyles[method], color=base_color,",
+                    "+                     marker=markers[method], markersize=3.5, alpha=0.75,",
+                    "+                     label=label, zorder=3, linewidth=1.5)",
+                    " ",
+                    "+    ax2.set_xlabel('Keep Ratio ($k$)', fontsize=12)",
+                    "+    ax2.set_xlim(0.25, 1.03)",
+                    "+    ax2.set_xticks([0.3, 0.5, 0.7, 0.85, 0.9, 0.95, 1.0])",
+                    "+    ax2.set_xticklabels(['0.3', '0.5', '0.7', '0.85', '0.9', '0.95', '1.0'], fontsize=9)",
+                    "+    ax2.grid(True, alpha=0.12, zorder=0)",
+                    "+    ax2.legend(loc='lower left', fontsize=6.5, ncol=1, framealpha=0.92,",
+                    "+               edgecolor='none', columnspacing=0.8)",
+                    "+    ax2.set_title('(b) Other suites', fontsize=11, pad=6)",
+                    "+",
+                    "+    fig.suptitle('π0.5 Disruption Curves: Random vs L2-Norm',",
+                    "+                 fontsize=13, fontweight='bold', y=1.02)",
+                    "+",
+                    "     plt.tight_layout()",
+                    "     plt.savefig(outpath)",
+                    "     plt.close()"
+                  ]
+                },
+                {
+                  "oldStart": 382,
+                  "oldLines": 45,
+                  "newStart": 427,
+                  "newLines": 30,
+                  "lines": [
+                    " ",
+                    " # ── Figure 3: CV Diagnostic Scatter ─────────────────────────────",
+                    " ",
+                    "-def plot_cv_scatter(data, exps, outpath):",
+                    "+def plot_cv_scatter(data, raw_records, outpath):",
+                    "     cv_known = {",
+                    "-        'π0.5':  0.038,",
+                    "-        'OpenVLA':    0.215,",
+                    "-        'SmolVLA':    0.314,",
+                    "-        'X-VLA':      0.025,",
+                    "-        'OpenVLA-OFT': 0.012,",
+                    "+        'π0.5':     0.038,",
+                    "+        'OpenVLA':       0.215,",
+                    "+        'SmolVLA':       0.314,",
+                    "+        'X-VLA':         0.025,",
+                    "     }",
+                    " ",
+                    "-    for eid, exp in exps.items():",
+                    "-        if not isinstance(exp, dict):",
+                    "-            continue",
+                    "-        m = exp.get('metrics') or {}",
+                    "-        cv = m.get('importance_cv')",
+                    "-        if cv is None:",
+                    "-            continue",
+                    "-        if 'pi0' in eid.lower():",
+                    "-            cv_known['π0.5'] = cv",
+                    "-        elif 'smolvla' in eid.lower():",
+                    "-            cv_known['SmolVLA'] = cv",
+                    "-",
+                    "     baselines = {}",
+                    "     worst_k09 = {}",
+                    "-    all_k09 = defaultdict(dict)",
+                    " ",
+                    "-    for r in data:",
+                    "+    for r in raw_records:",
+                    "         if r['suite'] != 'Object':",
+                    "             continue",
+                    "         model = r['model']",
+                    "         if r['method'] == 'baseline' or r['k'] == 1.0:",
+                    "             baselines[model] = max(baselines.get(model, 0), r['sr'])",
+                    "         if abs(r['k'] - 0.9) < 0.01 and r['method'] != 'baseline':",
+                    "-            all_k09[model][r['method']] = r['sr']",
+                    "             if model not in worst_k09 or r['sr'] < worst_k09[model]:",
+                    "                 worst_k09[model] = r['sr']",
+                    " ",
+                    "     bl_fallback = {",
+                    "         'OpenVLA': 74.0, 'π0.5': 98.2, 'X-VLA': 99.2,",
+                    "-        'SmolVLA': 57.2, 'OpenVLA-OFT': 74.0,",
+                    "+        'SmolVLA': 57.2,",
+                    "     }",
+                    "     for m, b in bl_fallback.items():",
+                    "         baselines.setdefault(m, b)"
+                  ]
+                },
+                {
+                  "oldStart": 440,
+                  "oldLines": 27,
+                  "newStart": 470,
+                  "newLines": 31,
+                  "lines": [
+                    "     fig, ax = plt.subplots(figsize=(6.5, 4.5))",
+                    " ",
+                    "     ax.axhspan(0, 15, alpha=0.04, color='#4CAF50', zorder=0)",
+                    "-    ax.axhspan(50, 100, alpha=0.04, color='#F44336', zorder=0)",
+                    "-    ax.text(0.01, 7, 'robust', fontsize=8, color='#66BB6A', alpha=0.5,",
+                    "+    ax.axhspan(50, 105, alpha=0.04, color='#F44336', zorder=0)",
+                    "+    ax.text(0.005, 7, 'robust', fontsize=8, color='#66BB6A', alpha=0.5,",
+                    "             fontstyle='italic', va='center')",
+                    "-    ax.text(0.01, 75, 'fragile', fontsize=8, color='#EF5350', alpha=0.5,",
+                    "+    ax.text(0.005, 80, 'fragile', fontsize=8, color='#EF5350', alpha=0.5,",
+                    "             fontstyle='italic', va='center')",
+                    " ",
+                    "     offsets = {",
+                    "-        'π0.5': (10, -14), 'OpenVLA': (10, 8), 'X-VLA': (10, 8),",
+                    "-        'SmolVLA': (-15, 10), 'OpenVLA-OFT': (-15, -15),",
+                    "+        'π0.5': (12, -14), 'OpenVLA': (12, 8), 'X-VLA': (12, -12),",
+                    "+        'SmolVLA': (12, 8),",
+                    "     }",
+                    " ",
+                    "     for model, cv, drop in points:",
+                    "         color = MODEL_COLORS.get(model, '#333333')",
+                    "-        ax.scatter(cv, drop, c=color, s=140, zorder=4,",
+                    "+        ax.scatter(cv, drop, c=color, s=160, zorder=4,",
+                    "                    edgecolors='white', linewidths=1.5)",
+                    "-        ox, oy = offsets.get(model, (10, 8))",
+                    "-        arrow = dict(arrowstyle='-', color='gray', lw=0.4) if abs(ox) > 15 or abs(oy) > 15 else None",
+                    "+        ox, oy = offsets.get(model, (12, 8))",
+                    "+        arrow = dict(arrowstyle='-', color='gray', lw=0.4) if abs(ox) > 20 or abs(oy) > 20 else None",
+                    "         ax.annotate(model, (cv, drop), xytext=(ox, oy),",
+                    "-                    textcoords='offset points', fontsize=9.5, color=color,",
+                    "+                    textcoords='offset points', fontsize=10, color=color,",
+                    "                     fontweight='bold', arrowprops=arrow)",
+                    " ",
+                    "+        detail = f'drop={drop:.1f}pp'",
+                    "+        ax.annotate(detail, (cv, drop), xytext=(ox, oy - 13),",
+                    "+                    textcoords='offset points', fontsize=7, color=color, alpha=0.7)",
+                    "+",
+                    "     ax.set_xlabel('Importance Score CV (coefficient of variation)', fontsize=11)",
+                    "     ax.set_ylabel('Max SR Drop at $k{=}0.9$ (pp)', fontsize=11)",
+                    "     ax.set_title('Token Importance CV vs Pruning Sensitivity', fontsize=12, pad=10)"
+                  ]
+                },
+                {
+                  "oldStart": 469,
+                  "oldLines": 7,
+                  "newStart": 503,
+                  "newLines": 7,
+                  "lines": [
+                    "     cv_vals = [p[1] for p in points]",
+                    "     drop_vals = [p[2] for p in points]",
+                    "     ax.set_xlim(-0.02, max(cv_vals) + 0.06)",
+                    "-    ax.set_ylim(min(-5, min(drop_vals) - 5), max(drop_vals) + 12)",
+                    "+    ax.set_ylim(min(-5, min(drop_vals) - 8), max(drop_vals) + 15)",
+                    " ",
+                    "     plt.tight_layout()",
+                    "     plt.savefig(outpath)"
+                  ]
+                },
+                {
+                  "oldStart": 483,
+                  "oldLines": 12,
+                  "newStart": 517,
+                  "newLines": 14,
+                  "lines": [
+                    "     print('Loading registry...')",
+                    "     exps = load_registry()",
+                    "     data = build_data(exps)",
+                    "-    n_success = sum(1 for e in exps.values() if e.get('conclusion') == 'success')",
+                    "-    print(f'Parsed {len(data)} unique data points from {n_success} successful experiments')",
+                    "+    raw = build_raw_records(exps)",
+                    "+    n_valid = sum(1 for e in exps.values()",
+                    "+                  if isinstance(e, dict) and e.get('conclusion') in VALID_CONCLUSIONS)",
+                    "+    print(f'Parsed {len(data)} unique data points from {n_valid} experiments')",
+                    " ",
+                    "     plot_crossover_heatmap(data, OUTPUT_DIR / 'crossover_heatmap.pdf')",
+                    "     plot_disruption_curve(data, OUTPUT_DIR / 'disruption_curve.pdf')",
+                    "-    plot_cv_scatter(data, exps, OUTPUT_DIR / 'cv_scatter.pdf')",
+                    "+    plot_cv_scatter(data, raw, OUTPUT_DIR / 'cv_scatter.pdf')",
+                    " ",
+                    "     print('\\nAll figures saved to:', OUTPUT_DIR)",
+                    " "
+                  ]
+                }
+              ],
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"\nPaper figures for Importance Margin VLA Compress.\nReads registry.yaml, produces crossover_heatmap.pdf, disruption_curve.pdf, cv_scatter.pdf.\n\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.colors as mcolors\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport yaml\nimport re\nfrom collections import defaultdict\nfrom pathlib import Path\n\nSCRIPT_DIR = Path(__file__).parent\nREGISTRY_PATH = SCRIPT_DIR.parent / 'registry.yaml'\nOUTPUT_DIR = SCRIPT_DIR\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nMETHOD_COLORS = {\n    'random':    '#E69F00',\n    'l2norm':    '#0072B2',\n    'attention': '#009E73',\n    'baseline':  '#555555',\n}\nMETHOD_LABELS = {\n    'random': 'Random', 'l2norm': 'L2-Norm',\n    'attention': 'Attention', 'baseline': 'Baseline',\n}\nSUITE_COLORS = {\n    'Object': '#0072B2', 'Goal': '#D55E00',\n    'Spatial': '#009E73', 'Long': '#CC79A7',\n}\nMODEL_COLORS = {\n    'OpenVLA': '#D55E00', u'π0.5': '#0072B2',\n    'X-VLA': '#009E73', 'SmolVLA': '#CC79A7',\n    'OpenVLA-OFT': '#F0E442',\n}\n\n\n# ── Data extraction ──────────────────────────────────────────────\n\ndef load_registry():\n    with open(REGISTRY_PATH) as f:\n        return yaml.safe_load(f).get('experiments', {})\n\n\ndef normalize_sr(val):\n    if val is None:\n        return None\n    try:\n        val = float(val)\n    except (TypeError, ValueError):\n        return None\n    return val * 100 if val <= 1.0 else val\n\n\ndef extract_model(eid):\n    e = eid.lower()\n    if 'oft' in e:\n        return 'OpenVLA-OFT'\n    if 'openvla' in e:\n        return 'OpenVLA'\n    if 'pi05' in e:\n        return 'π0.5'\n    if 'xvla' in e:\n        return 'X-VLA'\n    if 'smolvla' in e:\n        return 'SmolVLA'\n    return None\n\n\ndef extract_suite(eid, exp):\n    spec = exp.get('spec', {})\n    cmd = (spec.get('command', '') or '').lower()\n    dp = (spec.get('data_path', '') or '').lower()\n    e = eid.lower()\n    blob = f'{e} {cmd} {dp}'\n    if any(x in blob for x in ['libero_object', 'libero-object', '_object_', '_obj_']):\n        return 'Object'\n    if any(x in blob for x in ['libero_goal', 'libero-goal', '_goal_']):\n        return 'Goal'\n    if any(x in blob for x in ['libero_spatial', 'libero-spatial', '_spatial_']):\n        return 'Spatial'\n    if any(x in blob for x in ['libero_10', 'libero-10', '_long_']):\n        return 'Long'\n    if ('xvla' in e or 'openvla' in e) and re.search(r'(?:prune|pruning)_k\\d', e):\n        return 'Object'\n    return None\n\n\ndef extract_method(eid, exp):\n    spec = exp.get('spec', {})\n    cmd = (spec.get('command', '') or '').lower()\n    e = eid.lower()\n    if 'baseline' in e or 'prune_mode none' in cmd:\n        return 'baseline'\n    if any(x in e for x in ['attention', 'attn']) or \\\n       any(x in cmd for x in ['attention_prune', 'attention_last', 'attention_mean', 'attention_rollout']):\n        return 'attention'\n    if 'l2norm' in e or 'l2_norm' in cmd or 'l2norm' in cmd:\n        return 'l2norm'\n    if 'random' in e or 'random_prune' in cmd or '--mode random' in cmd:\n        return 'random'\n    if re.search(r'(?:prune|pruning)_k\\d', e):\n        return 'random'\n    return None\n\n\ndef extract_k(eid, exp):\n    spec = exp.get('spec', {})\n    cmd = spec.get('command', '') or ''\n    e = eid.lower()\n    if 'baseline' in e:\n        return 1.0\n    for pat in [r'keep_ratio\\s+([\\d.]+)', r'k_ratio\\s+([\\d.]+)']:\n        m = re.search(pat, cmd)\n        if m:\n            return float(m.group(1))\n    m = re.search(r'_k(\\d+?)(?:_|$)', e)\n    if m:\n        digits = m.group(1)\n        val = int(digits)\n        n = len(digits)\n        if n <= 2:\n            return val / 10.0\n        elif n == 3:\n            return val / 100.0\n        elif n == 4:\n            return val / 1000.0\n    return None\n\n\ndef get_sr(exp):\n    m = exp.get('metrics', {})\n    for f in ['success_rate', 'overall_sr', 'overall_SR', 'overall_success_rate']:\n        if f in m:\n            return normalize_sr(m[f])\n    return None\n\n\ndef version_score(eid):\n    e = eid.lower()\n    s = 0\n    if 'postfix' in e:\n        s += 1000\n    vm = re.search(r'_v(\\d+)', e)\n    if vm:\n        s += int(vm.group(1)) * 10\n    return s\n\n\ndef build_data(exps):\n    records = []\n    for eid, exp in exps.items():\n        if exp.get('conclusion') != 'success':\n            continue\n        model = extract_model(eid)\n        suite = extract_suite(eid, exp)\n        method = extract_method(eid, exp)\n        k = extract_k(eid, exp)\n        sr = get_sr(exp)\n        if not all([model, suite, method]) or k is None or sr is None:\n            continue\n        records.append({\n            'model': model, 'suite': suite, 'method': method,\n            'k': round(k, 4), 'sr': sr, 'exp_id': eid,\n            'vscore': version_score(eid),\n        })\n    best = {}\n    for r in records:\n        key = (r['model'], r['suite'], r['method'], r['k'])\n        if key not in best or r['vscore'] > best[key]['vscore']:\n            best[key] = r\n    return list(best.values())\n\n\n# ── Figure 1: Crossover Heatmap ─────────────────────────────────\n\ndef cell_bg(method, sr):\n    base = mcolors.to_rgb(METHOD_COLORS[method])\n    t = 0.15 + 0.55 * (sr / 100.0)\n    return tuple(1 - t * (1 - c) for c in base)\n\n\ndef text_col(bg):\n    lum = 0.299 * bg[0] + 0.587 * bg[1] + 0.114 * bg[2]\n    return 'white' if lum < 0.55 else '#222222'\n\n\ndef plot_crossover_heatmap(data, outpath):\n    models = ['OpenVLA', 'π0.5', 'X-VLA']\n    suites = ['Object', 'Goal', 'Spatial', 'Long']\n    methods_order = ['random', 'l2norm', 'attention']\n\n    k09 = [r for r in data if abs(r['k'] - 0.9) < 0.01\n           and r['method'] != 'baseline' and r['model'] in models]\n\n    cells = defaultdict(dict)\n    for r in k09:\n        cells[(r['model'], r['suite'])][r['method']] = r['sr']\n\n    fig, ax = plt.subplots(figsize=(7.5, 3.8))\n\n    for i, model in enumerate(models):\n        for j, suite in enumerate(suites):\n            mdata = cells.get((model, suite), {})\n            x0, y0 = j - 0.5, i - 0.5\n\n            if not mdata:\n                rect = plt.Rectangle((x0, y0), 1, 1,\n                                     facecolor='#F0F0F0', edgecolor='white', lw=2)\n                ax.add_patch(rect)\n                ax.text(j, i, '—', ha='center', va='center',\n                        fontsize=14, color='#AAAAAA')\n                continue\n\n            best_m = max(mdata, key=mdata.get)\n            best_sr = mdata[best_m]\n            bg = cell_bg(best_m, best_sr)\n            tc = text_col(bg)\n\n            rect = plt.Rectangle((x0, y0), 1, 1,\n                                 facecolor=bg, edgecolor='white', lw=2)\n            ax.add_patch(rect)\n\n            ax.text(j, i - 0.15, f'{best_sr:.1f}%', ha='center', va='center',\n                    fontsize=13, fontweight='bold', color=tc)\n            ax.text(j, i + 0.15, METHOD_LABELS[best_m], ha='center', va='center',\n                    fontsize=8, color=tc, alpha=0.85, fontstyle='italic')\n\n            others = {m: s for m, s in mdata.items() if m != best_m}\n            if others:\n                parts = [f'{METHOD_LABELS[m][:3]}={s:.0f}' for m, s in\n                         sorted(others.items(), key=lambda x: -x[1])]\n                info = '  '.join(parts)\n                ax.text(j, i + 0.37, info, ha='center', va='center',\n                        fontsize=5.5, color=tc, alpha=0.6)\n\n    ax.set_xlim(-0.5, len(suites) - 0.5)\n    ax.set_ylim(len(models) - 0.5, -0.5)\n    ax.set_xticks(range(len(suites)))\n    ax.set_xticklabels(suites, fontsize=11, fontweight='bold')\n    ax.set_yticks(range(len(models)))\n    ax.set_yticklabels(models, fontsize=11, fontweight='bold')\n    ax.tick_params(length=0)\n    for spine in ax.spines.values():\n        spine.set_visible(False)\n\n    legend_patches = [mpatches.Patch(facecolor=METHOD_COLORS[m],\n                                     label=METHOD_LABELS[m], alpha=0.8)\n                      for m in methods_order]\n    legend_patches.append(mpatches.Patch(facecolor='#F0F0F0',\n                                         edgecolor='#CCCCCC', label='No data'))\n    ax.legend(handles=legend_patches, loc='upper left',\n              bbox_to_anchor=(1.02, 1.0), fontsize=9, frameon=False)\n\n    ax.set_title('Best SR at $k{=}0.9$: method crossover across models and suites',\n                 fontsize=11.5, pad=12)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n\n\n# ── Figure 2: π0.5 Disruption Curve ─────────────────────────────\n\ndef plot_disruption_curve(data, outpath):\n    pi_model = 'π0.5'\n    pi_data = [r for r in data if r['model'] == pi_model]\n\n    baselines = {}\n    for r in pi_data:\n        if r['method'] == 'baseline' and r['k'] == 1.0:\n            baselines[r['suite']] = r['sr']\n\n    curves = defaultdict(dict)\n    for r in pi_data:\n        if r['method'] in ('random', 'l2norm'):\n            curves[(r['suite'], r['method'])][r['k']] = r['sr']\n\n    for suite, bl in baselines.items():\n        for method in ('random', 'l2norm'):\n            curves[(suite, method)][1.0] = bl\n\n    suites_plot = ['Object', 'Goal', 'Spatial', 'Long']\n    lstyles = {'random': '-', 'l2norm': '--'}\n    markers = {'random': 'o', 'l2norm': 's'}\n\n    fig, ax = plt.subplots(figsize=(8.5, 5))\n\n    ax.axvspan(0.85, 0.925, alpha=0.07, color='#D32F2F', zorder=0)\n    t = ax.text(0.8875, 3, 'cliff zone', ha='center', va='bottom',\n                fontsize=8, color='#B71C1C', alpha=0.45, fontstyle='italic')\n    t.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\n    for suite in suites_plot:\n        base_color = SUITE_COLORS[suite]\n        for method in ('random', 'l2norm'):\n            key = (suite, method)\n            if key not in curves or len(curves[key]) < 2:\n                continue\n            pts = sorted(curves[key].items())\n            ks = [p[0] for p in pts]\n            srs = [p[1] for p in pts]\n            label = f'{suite} {METHOD_LABELS[method]}'\n            ax.plot(ks, srs, lstyles[method], color=base_color,\n                    marker=markers[method], markersize=4.5, alpha=0.85,\n                    label=label, zorder=3)\n\n    r85 = curves.get(('Object', 'random'), {}).get(0.85)\n    l85 = curves.get(('Object', 'l2norm'), {}).get(0.85)\n    if r85 is not None and l85 is not None:\n        c = SUITE_COLORS['Object']\n        ax.annotate(f'Random {r85:.1f}%', xy=(0.85, r85),\n                    xytext=(0.72, r85 + 15), fontsize=7.5, color=c,\n                    arrowprops=dict(arrowstyle='->', color=c, lw=0.7), zorder=5)\n        ax.annotate(f'L2 {l85:.1f}%', xy=(0.85, l85),\n                    xytext=(0.72, l85 - 10), fontsize=7.5, color=c,\n                    arrowprops=dict(arrowstyle='->', color=c, lw=0.7), zorder=5)\n\n    r09 = curves.get(('Object', 'random'), {}).get(0.9)\n    l09 = curves.get(('Object', 'l2norm'), {}).get(0.9)\n    if r09 is not None and l09 is not None:\n        gap = l09 - r09\n        mid_y = (r09 + l09) / 2\n        ax.annotate('', xy=(0.9, r09 + 2), xytext=(0.9, l09 - 2),\n                    arrowprops=dict(arrowstyle='<->', color='#555555', lw=1.0), zorder=4)\n        txt = ax.text(0.91, mid_y, f'Δ={gap:.0f}pp', fontsize=7,\n                      color='#555555', va='center')\n        txt.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n    ax.set_xlabel('Keep Ratio ($k$)', fontsize=12)\n    ax.set_ylabel('Success Rate (%)', fontsize=12)\n    ax.set_xlim(0.25, 1.03)\n    ax.set_ylim(-3, 108)\n    ax.set_xticks([0.3, 0.5, 0.7, 0.85, 0.9, 0.925, 0.95, 1.0])\n    ax.set_xticklabels(['0.3', '0.5', '0.7', '0.85', '0.9', '0.925', '0.95', '1.0'],\n                       fontsize=9)\n    ax.grid(True, alpha=0.12, zorder=0)\n\n    handles, labels = ax.get_legend_handles_labels()\n    order = []\n    for s in suites_plot:\n        for m in ('random', 'l2norm'):\n            lbl = f'{s} {METHOD_LABELS[m]}'\n            if lbl in labels:\n                order.append(labels.index(lbl))\n    ax.legend([handles[i] for i in order], [labels[i] for i in order],\n              loc='lower left', fontsize=7.5, ncol=2, framealpha=0.92,\n              edgecolor='none', columnspacing=1)\n\n    ax.set_title('π0.5 Disruption Curves: Random vs L2-Norm across suites',\n                 fontsize=12, pad=10)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n\n\n# ── Figure 3: CV Diagnostic Scatter ─────────────────────────────\n\ndef plot_cv_scatter(data, exps, outpath):\n    cv_known = {\n        'π0.5':  0.038,\n        'OpenVLA':    0.215,\n        'SmolVLA':    0.314,\n        'X-VLA':      0.025,\n        'OpenVLA-OFT': 0.012,\n    }\n\n    for eid, exp in exps.items():\n        if not isinstance(exp, dict):\n            continue\n        m = exp.get('metrics') or {}\n        cv = m.get('importance_cv')\n        if cv is None:\n            continue\n        if 'pi0' in eid.lower():\n            cv_known['π0.5'] = cv\n        elif 'smolvla' in eid.lower():\n            cv_known['SmolVLA'] = cv\n\n    baselines = {}\n    worst_k09 = {}\n    all_k09 = defaultdict(dict)\n\n    for r in data:\n        if r['suite'] != 'Object':\n            continue\n        model = r['model']\n        if r['method'] == 'baseline' or r['k'] == 1.0:\n            baselines[model] = max(baselines.get(model, 0), r['sr'])\n        if abs(r['k'] - 0.9) < 0.01 and r['method'] != 'baseline':\n            all_k09[model][r['method']] = r['sr']\n            if model not in worst_k09 or r['sr'] < worst_k09[model]:\n                worst_k09[model] = r['sr']\n\n    bl_fallback = {\n        'OpenVLA': 74.0, 'π0.5': 98.2, 'X-VLA': 99.2,\n        'SmolVLA': 57.2, 'OpenVLA-OFT': 74.0,\n    }\n    for m, b in bl_fallback.items():\n        baselines.setdefault(m, b)\n\n    points = []\n    for model in cv_known:\n        if model not in baselines or model not in worst_k09:\n            continue\n        cv = cv_known[model]\n        drop = baselines[model] - worst_k09[model]\n        points.append((model, cv, drop))\n\n    if not points:\n        print('Warning: no data for CV scatter')\n        return\n\n    fig, ax = plt.subplots(figsize=(6.5, 4.5))\n\n    ax.axhspan(0, 15, alpha=0.04, color='#4CAF50', zorder=0)\n    ax.axhspan(50, 100, alpha=0.04, color='#F44336', zorder=0)\n    ax.text(0.01, 7, 'robust', fontsize=8, color='#66BB6A', alpha=0.5,\n            fontstyle='italic', va='center')\n    ax.text(0.01, 75, 'fragile', fontsize=8, color='#EF5350', alpha=0.5,\n            fontstyle='italic', va='center')\n\n    offsets = {\n        'π0.5': (10, -14), 'OpenVLA': (10, 8), 'X-VLA': (10, 8),\n        'SmolVLA': (-15, 10), 'OpenVLA-OFT': (-15, -15),\n    }\n\n    for model, cv, drop in points:\n        color = MODEL_COLORS.get(model, '#333333')\n        ax.scatter(cv, drop, c=color, s=140, zorder=4,\n                   edgecolors='white', linewidths=1.5)\n        ox, oy = offsets.get(model, (10, 8))\n        arrow = dict(arrowstyle='-', color='gray', lw=0.4) if abs(ox) > 15 or abs(oy) > 15 else None\n        ax.annotate(model, (cv, drop), xytext=(ox, oy),\n                    textcoords='offset points', fontsize=9.5, color=color,\n                    fontweight='bold', arrowprops=arrow)\n\n    ax.set_xlabel('Importance Score CV (coefficient of variation)', fontsize=11)\n    ax.set_ylabel('Max SR Drop at $k{=}0.9$ (pp)', fontsize=11)\n    ax.set_title('Token Importance CV vs Pruning Sensitivity', fontsize=12, pad=10)\n    ax.grid(True, alpha=0.12, zorder=0)\n\n    cv_vals = [p[1] for p in points]\n    drop_vals = [p[2] for p in points]\n    ax.set_xlim(-0.02, max(cv_vals) + 0.06)\n    ax.set_ylim(min(-5, min(drop_vals) - 5), max(drop_vals) + 12)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n\n\n# ── Main ─────────────────────────────────────────────────────────\n\ndef main():\n    print('Loading registry...')\n    exps = load_registry()\n    data = build_data(exps)\n    n_success = sum(1 for e in exps.values() if e.get('conclusion') == 'success')\n    print(f'Parsed {len(data)} unique data points from {n_success} successful experiments')\n\n    plot_crossover_heatmap(data, OUTPUT_DIR / 'crossover_heatmap.pdf')\n    plot_disruption_curve(data, OUTPUT_DIR / 'disruption_curve.pdf')\n    plot_cv_scatter(data, exps, OUTPUT_DIR / 'cv_scatter.pdf')\n\n    print('\\nAll figures saved to:', OUTPUT_DIR)\n\n\nif __name__ == '__main__':\n    main()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1780167600,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.61,
+                  "isUsingOverage": false
+                },
+                "uuid": "70af4090-f2e9-4a3b-8391-4cd61b56de21",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdeNiesRNEb8GZwaRhQxxg",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/paper_figures.py 2>&1",
+                "description": "Run updated paper figures script",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "bfdd9451-8096-450a-b92c-d2572a699f99",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RTjGwsMCFJxABe2cujpQxp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7071,
+                "cache_read_input_tokens": 153544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7071
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b34aihtoq",
+                "tool_use_id": "toolu_01MdeNiesRNEb8GZwaRhQxxg",
+                "description": "Run updated paper figures script",
+                "task_type": "local_bash",
+                "uuid": "85edb886-4098-4fd4-a2f1-a5021b522341",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b34aihtoq",
+                "tool_use_id": "toolu_01MdeNiesRNEb8GZwaRhQxxg",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run updated paper figures script",
+                "uuid": "b63800ab-271e-4e30-bdbb-632b9749742b",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-25T12:29:43.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MdeNiesRNEb8GZwaRhQxxg",
+              "type": "tool_result",
+              "content": "Loading registry...\nParsed 160 unique data points from 543 experiments\nSaved: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/crossover_heatmap.pdf\nSaved: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/disruption_curve.pdf\nSaved: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/cv_scatter.pdf\n\nAll figures saved to: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "83e102b4-1562-4494-a527-6941bdc736fd",
+            "tool_use_result": {
+              "stdout": "Loading registry...\nParsed 160 unique data points from 543 experiments\nSaved: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/crossover_heatmap.pdf\nSaved: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/disruption_curve.pdf\nSaved: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/cv_scatter.pdf\n\nAll figures saved to: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HTiH1bru1HBTpceL2v4F8g",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport matplotlib; matplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n# Re-run script with PNG output\nexec(open('artifacts/paper_figures.py').read().replace(\\\"'.pdf'\\\", \\\"'.png'\\\").replace('crossover_heatmap.png', 'crossover_heatmap_v2.png').replace('disruption_curve.png', 'disruption_curve_v2.png').replace('cv_scatter.png', 'cv_scatter_v2.png'))\n\" 2>&1",
+                "description": "Generate PNG v2 for visual check",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "ca57d2e4-f737-4060-b4a4-f7d6bf9d06ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tus1Jvd2xLaJTJVbBrnT7Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 309,
+                "cache_read_input_tokens": 160615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 309
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "biqhdwtmm",
+                "tool_use_id": "toolu_01HTiH1bru1HBTpceL2v4F8g",
+                "description": "Generate PNG v2 for visual check",
+                "task_type": "local_bash",
+                "uuid": "422ccee9-b734-4df3-a919-d2678847d825",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "biqhdwtmm",
+                "tool_use_id": "toolu_01HTiH1bru1HBTpceL2v4F8g",
+                "status": "failed",
+                "output_file": "",
+                "summary": "Generate PNG v2 for visual check",
+                "uuid": "dc4efd31-c6cd-4fb6-a72f-23d4033b0565",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-25T12:29:52.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    exec(open('artifacts/paper_figures.py').read().replace(\"'.pdf'\", \"'.png'\").replace('crossover_heatmap.png', 'crossover_heatmap_v2.png').replace('disruption_curve.png', 'disruption_curve_v2.png').replace('cv_scatter.png', 'cv_scatter_v2.png'))\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 19, in <module>\nNameError: name '__file__' is not defined. Did you mean: '__name__'?",
+              "is_error": true,
+              "tool_use_id": "toolu_01HTiH1bru1HBTpceL2v4F8g"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "cecabeb3-388b-4fdd-9eec-bf1d05108cc6",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    exec(open('artifacts/paper_figures.py').read().replace(\"'.pdf'\", \"'.png'\").replace('crossover_heatmap.png', 'crossover_heatmap_v2.png').replace('disruption_curve.png', 'disruption_curve_v2.png').replace('cv_scatter.png', 'cv_scatter_v2.png'))\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 19, in <module>\nNameError: name '__file__' is not defined. Did you mean: '__name__'?"
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QPaTgarxdArcc53xVgfDjS",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport matplotlib; matplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport sys, os\nos.chdir('/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress')\n\n# Monkey-patch to save as PNG\nimport artifacts.paper_figures as pf\nfrom pathlib import Path\n\npf.OUTPUT_DIR = Path('.')\nexps = pf.load_registry()\ndata = pf.build_data(exps)\nraw = pf.build_raw_records(exps)\n\npf.plot_crossover_heatmap(data, Path('crossover_heatmap_v2.png'))\npf.plot_disruption_curve(data, Path('disruption_curve_v2.png'))\npf.plot_cv_scatter(data, raw, Path('cv_scatter_v2.png'))\nPYEOF\n",
+                "description": "Generate PNG v2 via import",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "0a65a1a5-b7a4-4582-a370-70cb42c9a418",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019VCDgtRnRt95CJrhjh2QTw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 444,
+                "cache_read_input_tokens": 160924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 444
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b4aqez5l9",
+                "tool_use_id": "toolu_01QPaTgarxdArcc53xVgfDjS",
+                "description": "Generate PNG v2 via import",
+                "task_type": "local_bash",
+                "uuid": "10589aad-17a7-42a2-87af-63da117d1166",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b4aqez5l9",
+                "tool_use_id": "toolu_01QPaTgarxdArcc53xVgfDjS",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Generate PNG v2 via import",
+                "uuid": "a75ca712-a3aa-4736-b6aa-b174c0e002c6",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd"
+              }
+            }
+          ],
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-25T12:30:16.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QPaTgarxdArcc53xVgfDjS",
+              "type": "tool_result",
+              "content": "Saved: crossover_heatmap_v2.png\nSaved: disruption_curve_v2.png\nSaved: cv_scatter_v2.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "96bb79f1-98be-45d6-83f1-8c0f160724a6",
+            "tool_use_result": {
+              "stdout": "Saved: crossover_heatmap_v2.png\nSaved: disruption_curve_v2.png\nSaved: cv_scatter_v2.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018peMURz1M84rNfEk1QCYnc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/crossover_heatmap_v2.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "688ba63d-7f9c-4032-b6c0-728854a6ddd5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NY8Dv6CznHcK7PMfiQ8EZA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 375,
+                "cache_read_input_tokens": 161368,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 375
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KPzww1sqSoJR5oZHbJh1Fm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/disruption_curve_v2.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "ce8cbdaf-00ad-42b0-9c40-770df8fe7489",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NY8Dv6CznHcK7PMfiQ8EZA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 375,
+                "cache_read_input_tokens": 161368,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 375
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H4jfEfrtcxocgSDgncyC9x",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/cv_scatter_v2.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "379673e5-fc19-46e2-bc7c-413ccfebe373",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NY8Dv6CznHcK7PMfiQ8EZA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 375,
+                "cache_read_input_tokens": 161368,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 375
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-25T12:30:23.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H4jfEfrtcxocgSDgncyC9x",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "4cdb2f14-6085-48fd-9437-c5d30eda165e",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 135338,
+                "dimensions": {
+                  "originalWidth": 1859,
+                  "originalHeight": 1281,
+                  "displayWidth": 1859,
+                  "displayHeight": 1281
+                }
+              }
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-25T12:30:26.294Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018peMURz1M84rNfEk1QCYnc",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "abc442d8-9b73-4dc4-9081-b8bfc464f776",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 190457
+              }
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-25T12:30:29.667Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KPzww1sqSoJR5oZHbJh1Fm",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "b8bcb88d-b42b-41c6-9808-e808c456eb9a",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 377460
+              }
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "status",
+                "status": "compacting",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+                "uuid": "e625caff-76c8-4b93-9ff8-47620e94af52"
+              }
+            }
+          ],
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "status",
+                "status": null,
+                "compact_result": "success",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+                "uuid": "4048525a-fe18-425f-9cd7-6dacd8d33b8d"
+              }
+            }
+          ],
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "compact_boundary",
+                "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+                "uuid": "079d00f4-65dc-4e06-bed2-243385e1567c",
+                "compact_metadata": {
+                  "trigger": "auto",
+                  "pre_tokens": 168179,
+                  "post_tokens": 2991,
+                  "duration_ms": 92499
+                }
+              }
+            }
+          ],
+          "id": "event-000141"
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-25T12:32:02.199Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.\n\nSummary:\n1. Primary Request and Intent:\n   The user requested generating three publication-quality matplotlib figures (PDF output) for the \"importance_margin_vla_compress\" paper, using experiment data from the project's registry.yaml (~436 successful experiments). The three figures are:\n   - **Figure 1 (Crossover Heatmap)**: 3 models (OpenVLA, π0.5, X-VLA) × 4 suites (Object, Goal, Spatial, Long), showing best SR at k=0.9 with color-coded best method\n   - **Figure 2 (π0.5 Disruption Curve)**: x=keep ratio, y=SR%, Random vs L2-Norm lines across suites, with cliff zone annotation\n   - **Figure 3 (CV Diagnostic Scatter)**: x=importance score CV, y=max SR drop at k=0.9, one point per model\n\n   Prerequisites: read draw-paper-figure skill, pull registry data, understand data structure before coding.\n   Output: `artifacts/paper_figures.py` that reads registry.yaml and produces three PDFs.\n\n2. Key Technical Concepts:\n   - Vision token pruning for VLA (Vision-Language-Action) models\n   - Keep ratio (k): fraction of vision tokens retained after pruning\n   - Pruning methods: Random, L2-Norm, Attention-based\n   - LIBERO benchmark suites: Object, Goal, Spatial, Long (10 tasks × 50 episodes each)\n   - Importance Score CV (coefficient of variation): measure of token importance dispersion\n   - \"Cliff zone\" phenomenon: k=0.85-0.925 where Random pruning catastrophically fails for π0.5\n   - Method crossover: different pruning methods win on different model/suite combinations\n   - Registry YAML: experiment tracking with exp_id naming conventions, metrics, spec, conclusion fields\n   - Academic figure styling: Okabe-Ito colorblind-friendly palette, DejaVu Sans, 300 DPI, PDF vector output\n\n3. Files and Code Sections:\n   - **`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/registry.yaml`** (~25722 lines, ~1MB)\n     - Central experiment registry with 436+ successful experiments\n     - Each experiment has: exp_id, conclusion, metrics (success_rate/overall_sr), spec (command, data_path, model_name), hypothesis\n     - Experiment ID naming conventions: model prefix (pi05/xvla/openvla/smolvla), method (l2norm/random/attn/baseline), k value (_k09=0.9, _k085=0.85, _k0925=0.925), seed, version suffix (_v2, _postfix)\n\n   - **`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/paper_figures.py`** (main deliverable, ~340 lines)\n     - Full script reading registry.yaml, extracting structured data, generating 3 PDFs\n     - Key functions: `build_data()` (deduped), `build_raw_records()` (raw), `plot_crossover_heatmap()`, `plot_disruption_curve()`, `plot_cv_scatter()`\n     - Data extraction pipeline: `extract_model()`, `extract_suite()`, `extract_method()`, `extract_k()`, `get_sr()`, `normalize_sr()`, `version_score()`\n     - k extraction from exp_id: `_k(\\d+?)(?:_|$)` → digits len≤2: val/10 (k03→0.3), len=3: val/100 (k085→0.85), len=4: val/1000 (k0925→0.925)\n     - SR normalization: `val * 100 if val <= 1.0 else val`\n     - `VALID_CONCLUSIONS = {'success', 'negative'}` to include experiments with valid data but negative hypothesis outcomes\n     - Disruption curve uses 2-panel layout: (a) Object suite main story, (b) Other suites\n\n   - **`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/smolvla_importance_cv.json`** (read for CV data)\n     - Contains comparison CV values: π0=0.038, OpenVLA=0.215, SmolVLA=0.314\n     - Key insight: \"CV > 0.1 is the primary predictor of connector compressibility\"\n\n   - **`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md`** (read for context)\n     - Contains SimplerEnv feasibility report, MetaWorld sweep results, π0.5 cliff zone analysis\n     - Key finding: π0.5 L2norm vs Random crossover at k≈0.75\n\n   - **`/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`** (read for styling guidelines)\n     - Template rcParams, color palette, pattern library (regime bands, fill_between, annotations)\n     - Quality checklist: 300 DPI, colorblind-safe, axis labels, font sizes ≥10pt\n\n4. Errors and fixes:\n   - **AttributeError: 'NoneType' has no attribute 'get'** in cv_scatter when iterating exps:\n     - Some registry entries had None metrics field\n     - Fixed by adding `if not isinstance(exp, dict): continue` and `exp.get('metrics') or {}`\n   \n   - **X-VLA Goal/Spatial showing \"—\" in heatmap**:\n     - Root cause: experiments like `eval_xvla_l2norm_k09_goal_seed42` had `conclusion='negative'` (not 'success')\n     - Fixed by changing filter from `conclusion == 'success'` to `conclusion in {'success', 'negative'}`\n   \n   - **X-VLA Object drop=0 in CV scatter**:\n     - Root cause: deduplication kept SR=99.2% (eval_xvla_prune_k09_seed42, vscore=0, alphabetically first) over SR=97.8% (eval_xvla_random_k09_object_seed42, vscore=0)\n     - Fixed by adding `build_raw_records()` that returns ALL valid records without deduplication, used specifically for worst-case analysis in CV scatter\n   \n   - **Disruption curve too cluttered (8 lines)**:\n     - Switched from single panel to 2-panel layout: left panel for Object suite (main cliff zone story), right panel for Goal/Spatial/Long\n\n5. Problem Solving:\n   - Solved complex data extraction from heterogeneous registry YAML where experiment naming conventions, SR storage formats (0-1 vs 0-100), and method indicators varied across experiment generations\n   - Handled SR normalization ambiguity (0.58 could be fraction or already-percentage) with heuristic: ≤1.0 → multiply by 100\n   - Managed deduplication across seeds (seed42/43/44), versions (_v2/_v3), and corrected runs (_postfix)\n   - Found CV values from multiple sources: registry analysis experiments, artifact JSON files, and hardcoded fallbacks for X-VLA (estimated ~0.025)\n\n6. All user messages:\n   - Initial task message: Detailed specification for 3 figures with data extraction logic, reference data points, code conventions, and output requirements. Included specific instructions for each figure's design, data sources, and file paths. Also included project context (server config, constraints, environment setup norms).\n   - \"Tool loaded.\" (after ToolSearch returned MCP tool schemas)\n   - No explicit user feedback on the generated figures was provided before the summary request.\n\n7. Pending Tasks:\n   - Register the generated artifacts using `register_artifact` MCP tool (mentioned in task instructions but not yet done)\n   - Further visual iteration on figures (the draw-paper-figure skill says \"至少迭代 3 轮\")\n   - Clean up temporary PNG files (crossover_heatmap_check.png, etc.)\n   - π0.5 Object Random k=0.9 shows 7.4% (from seed43_postfix) vs expected ~9.6% — may need investigation or averaging across seeds\n   - The suptitle on Figure 2 has y=1.02 which may clip in PDF\n\n8. Current Work:\n   The second iteration of all three figures was just completed and visually inspected. The v2 figures show:\n   - **Heatmap**: All 12 cells now populated (X-VLA Goal=70.6% Random, Spatial=78.8% L2-Norm filled in). OpenVLA Long still \"—\" (genuinely missing data). Clear crossover pattern visible: OpenVLA varies method across suites, π0.5 always L2-Norm, X-VLA mixed.\n   - **Disruption curve**: 2-panel layout working. Left panel clearly shows Object suite cliff zone with Δ=91pp annotation at k=0.9. Right panel shows Goal/Spatial/Long with less clutter.\n   - **CV scatter**: 4 model points with correct drop values: X-VLA=1.4pp, OpenVLA=12.6pp, SmolVLA=59.2pp, π0.5=90.8pp. Background shading for robust/fragile zones.\n\n   The PDFs are saved to `artifacts/crossover_heatmap.pdf`, `artifacts/disruption_curve.pdf`, `artifacts/cv_scatter.pdf`.\n\n9. Optional Next Step:\n   The user hasn't provided feedback on the v2 figures yet. The natural next steps would be:\n   - Wait for user feedback on the visual quality of the v2 figures\n   - Register the three PDF artifacts using the `register_artifact` MCP tool as specified in the task: \"写文件后用 register_artifact 注册\"\n   - If the user wants further refinement, iterate on specific figure elements (the skill recommends ≥3 iterations for regular figures, ≥5 for hero figures)\n\nIf you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/eeb412d4-2f00-4415-b161-3b04443cb8dd.jsonl\nContinue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with \"I'll continue\" or similar. Pick up the last task as if the break never happened."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "93512c58-6fd3-4116-9d96-7c8d88549c7d",
+            "isSynthetic": true
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Based on the summary, I need to register the three PDF artifacts using the `register_artifact` MCP tool. The figures are complete (v2) and saved to:\n- `artifacts/crossover_heatmap.pdf`\n- `artifacts/disruption_curve.pdf`\n- `artifacts/cv_scatter.pdf`\n\nLet me load the MCP tool schema first, then register each artifact.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "751c0042-d518-46c1-8e66-45cd84b17d2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Roz6Z8JRizo5YiA188uZ9Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13227,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13227
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LxVZn7GVEsfk4cQG4QYuzP",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "b95c8dbc-6d2f-4754-b1fa-7388ac6561f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Roz6Z8JRizo5YiA188uZ9Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13227,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13227
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-25T12:32:07.537Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LxVZn7GVEsfk4cQG4QYuzP",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "158a7356-e1e7-4641-a0ed-653b5910ddea",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 25
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I'll register the three PDF artifacts.",
+              "signature": "Eu8BCmMIDhgCKkBGSPCWb/3J6PqJlBDuENLsAOCLKmKuoIn39j8P7rdamHjF4Cy1gfTTNgsOdjuDwrKjJE8o607qWwnQzO0uyPy4Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDC8CAqdYZnBZfM/4uBoMQSX5dqAexHMwm9isIjBqXysCifo850eybvQbgSduGlItoe/yE1GuW9DbVg4vA0Ai5Jaw2QfLaN/Yj299WXQqOppclaEuHgn4sSz5zmVVW1rLhgx4xv7qVQceF2aGuYAbOX2aXD7tOACSmffmG72UDSPlALk/rtgm8kMYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "c7bf5eec-911a-4dd1-8848-488ad41878f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iYDLw2LiCcoEkundUkmky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 25068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 818
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013K7FG7gT8NPVDCycGhC2tH",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "crossover_heatmap",
+                "type": "chart",
+                "description": "Method crossover heatmap: 3 models (OpenVLA, π0.5, X-VLA) × 4 LIBERO suites showing best SR at k=0.9 with color-coded winning method. Demonstrates no single pruning method dominates across all model-suite combinations.",
+                "project": "importance_margin_vla_compress",
+                "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/crossover_heatmap.pdf",
+                "tags": [
+                  "paper-figure",
+                  "pruning",
+                  "crossover",
+                  "heatmap"
+                ],
+                "skill": "draw-paper-figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "f70aa0b8-54a5-4861-9c91-282afe77ef26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iYDLw2LiCcoEkundUkmky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 25068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 818
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-25T12:32:14.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013K7FG7gT8NPVDCycGhC2tH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_3164bf\\\", \\\"name\\\": \\\"crossover_heatmap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Method crossover heatmap: 3 models (OpenVLA, π0.5, X-VLA) × 4 LIBERO suites showing best SR at k=0.9 with color-coded winning method. Demonstrates no single pruning method dominates across all model-suite combinations.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/crossover_heatmap.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-25T12:32:13.796117+00:00\\\", \\\"tags\\\": [\\\"paper-figure\\\", \\\"pruning\\\", \\\"crossover\\\", \\\"heatmap\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "8a9d378f-b2c4-4638-8eec-2d71b7c0b38c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_3164bf\\\", \\\"name\\\": \\\"crossover_heatmap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Method crossover heatmap: 3 models (OpenVLA, π0.5, X-VLA) × 4 LIBERO suites showing best SR at k=0.9 with color-coded winning method. Demonstrates no single pruning method dominates across all model-suite combinations.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/crossover_heatmap.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-25T12:32:13.796117+00:00\\\", \\\"tags\\\": [\\\"paper-figure\\\", \\\"pruning\\\", \\\"crossover\\\", \\\"heatmap\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_3164bf\", \"name\": \"crossover_heatmap\", \"type\": \"chart\", \"description\": \"Method crossover heatmap: 3 models (OpenVLA, π0.5, X-VLA) × 4 LIBERO suites showing best SR at k=0.9 with color-coded winning method. Demonstrates no single pruning method dominates across all model-suite combinations.\", \"path\": \"projects/importance_margin_vla_compress/artifacts/_project/chart/crossover_heatmap.pdf\", \"url\": null, \"project\": \"importance_margin_vla_compress\", \"exp_id\": null, \"skill\": \"draw-paper-figure\", \"created_at\": \"2026-05-25T12:32:13.796117+00:00\", \"tags\": [\"paper-figure\", \"pruning\", \"crossover\", \"heatmap\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DfYb721f7nxguuKnCN2LmF",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "disruption_curve",
+                "type": "chart",
+                "description": "π0.5 disruption curve: Random vs L2-Norm SR across keep ratios. 2-panel layout — (a) Object suite with cliff zone annotation (Δ=91pp at k=0.9), (b) Goal/Spatial/Long suites. Shows catastrophic failure of random pruning in low-CV models.",
+                "project": "importance_margin_vla_compress",
+                "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/disruption_curve.pdf",
+                "tags": [
+                  "paper-figure",
+                  "pruning",
+                  "pi05",
+                  "cliff-zone",
+                  "disruption"
+                ],
+                "skill": "draw-paper-figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "119d7bca-e219-4feb-aa13-35fb4a3bc770",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iYDLw2LiCcoEkundUkmky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 25068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 818
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-25T12:32:17.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DfYb721f7nxguuKnCN2LmF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_dba8c0\\\", \\\"name\\\": \\\"disruption_curve\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"π0.5 disruption curve: Random vs L2-Norm SR across keep ratios. 2-panel layout — (a) Object suite with cliff zone annotation (Δ=91pp at k=0.9), (b) Goal/Spatial/Long suites. Shows catastrophic failure of random pruning in low-CV models.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/disruption_curve.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-25T12:32:17.144944+00:00\\\", \\\"tags\\\": [\\\"paper-figure\\\", \\\"pruning\\\", \\\"pi05\\\", \\\"cliff-zone\\\", \\\"disruption\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "9883887b-c79a-42e8-b7bd-969c39aeefc4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_dba8c0\\\", \\\"name\\\": \\\"disruption_curve\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"π0.5 disruption curve: Random vs L2-Norm SR across keep ratios. 2-panel layout — (a) Object suite with cliff zone annotation (Δ=91pp at k=0.9), (b) Goal/Spatial/Long suites. Shows catastrophic failure of random pruning in low-CV models.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/disruption_curve.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-25T12:32:17.144944+00:00\\\", \\\"tags\\\": [\\\"paper-figure\\\", \\\"pruning\\\", \\\"pi05\\\", \\\"cliff-zone\\\", \\\"disruption\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_dba8c0\", \"name\": \"disruption_curve\", \"type\": \"chart\", \"description\": \"π0.5 disruption curve: Random vs L2-Norm SR across keep ratios. 2-panel layout — (a) Object suite with cliff zone annotation (Δ=91pp at k=0.9), (b) Goal/Spatial/Long suites. Shows catastrophic failure of random pruning in low-CV models.\", \"path\": \"projects/importance_margin_vla_compress/artifacts/_project/chart/disruption_curve.pdf\", \"url\": null, \"project\": \"importance_margin_vla_compress\", \"exp_id\": null, \"skill\": \"draw-paper-figure\", \"created_at\": \"2026-05-25T12:32:17.144944+00:00\", \"tags\": [\"paper-figure\", \"pruning\", \"pi05\", \"cliff-zone\", \"disruption\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TnfzN7eQ9tBmPJdcTQ4Kmr",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "cv_scatter",
+                "type": "chart",
+                "description": "CV diagnostic scatter: x=importance score CV, y=max SR drop at k=0.9. 4 model points (X-VLA, OpenVLA, SmolVLA, π0.5) with robust/fragile zone shading. Supports CV>0.1 threshold as compressibility predictor.",
+                "project": "importance_margin_vla_compress",
+                "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/cv_scatter.pdf",
+                "tags": [
+                  "paper-figure",
+                  "pruning",
+                  "cv-threshold",
+                  "diagnostic"
+                ],
+                "skill": "draw-paper-figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "ac0e9ff9-fca8-4b33-9723-d96efb12fd9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iYDLw2LiCcoEkundUkmky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 25068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 818
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-25T12:32:19.923Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TnfzN7eQ9tBmPJdcTQ4Kmr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_90d5a3\\\", \\\"name\\\": \\\"cv_scatter\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"CV diagnostic scatter: x=importance score CV, y=max SR drop at k=0.9. 4 model points (X-VLA, OpenVLA, SmolVLA, π0.5) with robust/fragile zone shading. Supports CV>0.1 threshold as compressibility predictor.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/cv_scatter.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-25T12:32:19.717710+00:00\\\", \\\"tags\\\": [\\\"paper-figure\\\", \\\"pruning\\\", \\\"cv-threshold\\\", \\\"diagnostic\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "357503fa-cae4-4fa4-9d55-aa49af1930ee",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_90d5a3\\\", \\\"name\\\": \\\"cv_scatter\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"CV diagnostic scatter: x=importance score CV, y=max SR drop at k=0.9. 4 model points (X-VLA, OpenVLA, SmolVLA, π0.5) with robust/fragile zone shading. Supports CV>0.1 threshold as compressibility predictor.\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/_project/chart/cv_scatter.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-25T12:32:19.717710+00:00\\\", \\\"tags\\\": [\\\"paper-figure\\\", \\\"pruning\\\", \\\"cv-threshold\\\", \\\"diagnostic\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_90d5a3\", \"name\": \"cv_scatter\", \"type\": \"chart\", \"description\": \"CV diagnostic scatter: x=importance score CV, y=max SR drop at k=0.9. 4 model points (X-VLA, OpenVLA, SmolVLA, π0.5) with robust/fragile zone shading. Supports CV>0.1 threshold as compressibility predictor.\", \"path\": \"projects/importance_margin_vla_compress/artifacts/_project/chart/cv_scatter.pdf\", \"url\": null, \"project\": \"importance_margin_vla_compress\", \"exp_id\": null, \"skill\": \"draw-paper-figure\", \"created_at\": \"2026-05-25T12:32:19.717710+00:00\", \"tags\": [\"paper-figure\", \"pruning\", \"cv-threshold\", \"diagnostic\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 PDF 图表已注册完成：\n\n| Artifact ID | Name | Path |\n|---|---|---|\n| `art_20260525_3164bf` | crossover_heatmap | `_project/chart/crossover_heatmap.pdf` |\n| `art_20260525_dba8c0` | disruption_curve | `_project/chart/disruption_curve.pdf` |\n| `art_20260525_90d5a3` | cv_scatter | `_project/chart/cv_scatter.pdf` |\n\n三张论文图 v2 版本已生成并注册。如需进一步调整（配色、标注位置、字号等），提供具体反馈即可迭代。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "uuid": "857c67d4-a130-482a-9bf5-d6fda7618df3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HJ7w4YWpoqnrTts5mAXSsU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1996,
+                "cache_read_input_tokens": 25886,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1996
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 PDF 图表已注册完成：\n\n| Artifact ID | Name | Path |\n|---|---|---|\n| `art_20260525_3164bf` | crossover_heatmap | `_project/chart/crossover_heatmap.pdf` |\n| `art_20260525_dba8c0` | disruption_curve | `_project/chart/disruption_curve.pdf` |\n| `art_20260525_90d5a3` | cv_scatter | `_project/chart/cv_scatter.pdf` |\n\n三张论文图 v2 版本已生成并注册。如需进一步调整（配色、标注位置、字号等），提供具体反馈即可迭代。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1631156,
+            "duration_api_ms": 1551744,
+            "num_turns": 49,
+            "stop_reason": "end_turn",
+            "session_id": "eeb412d4-2f00-4415-b161-3b04443cb8dd",
+            "total_cost_usd": 4.783619249999999,
+            "usage": {
+              "input_tokens": 47,
+              "cache_creation_input_tokens": 165943,
+              "cache_read_input_tokens": 3267721,
+              "output_tokens": 76745,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 165943,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 188,
+                  "cache_read_input_tokens": 25886,
+                  "cache_creation_input_tokens": 1996,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1996
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2126,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0022059999999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 3680,
+                "outputTokens": 80383,
+                "cacheReadInputTokens": 3429464,
+                "cacheCreationInputTokens": 166193,
+                "webSearchRequests": 0,
+                "costUSD": 4.78141325,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2b289664-1ea6-452f-816e-c8a5ab5e5726"
+          },
+          "id": "event-000154"
+        }
+      ]
+    }
+  ]
+}

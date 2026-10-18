@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.0",
+  "id": "5a690959c7475a9385ba",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "paper critical fixes r1n1 r1n3 d021",
+  "task_key": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738.jsonl",
+    "occurrence": 1,
+    "bytes": 36700,
+    "sha256": "c1b67bd689b4279c7591cf4c9fff72765127876148ce3fed98c74362f3d536ac"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T13:43:19.629763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T13:43:19.630111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T13:43:19.630290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T13:43:19.630538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — recursive_gen_depth_est\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\\\n- Backup: AAAI 2027 (abstract July 25, full paper August 1, 2026)\\\\n- EMNLP 2026 special theme \\\\\\\"New Missions for NLP Research\\\\\\\" explicitly calls for work on data contamination, synthetic data feedback loops, and data governance — direct venue fit\\\\n\\\\n## Core Claims (2 条 + Discussion implication)\\\\n\\\\n1. **Ordinal depth estimation is feasible and accurate**: Given text alone, recursive generation depth (d ∈ {0,1,2,...,K}) can be estimated with high accuracy using statistical features from reference-model perplexity distributions. On our 3-model × 3-strategy benchmark, Random Forest classifiers on 19 statistical features achieve 70–85% four-class accuracy (chance=25%), with the best configuration (GPT-2 XL, temp τ=0.9) reaching 85.4%. Feature-based methods (RF, CORAL, DivEye) consistently outperform single-feature baselines across all 9 settings.\\\\n\\\\n2. **Depth Degradation Atlas — systematic characterization of recursive collapse** (PRIMARY): We provide the first systematic empirical characterization of how text statistical properties evolve across recursive generation depths, revealing (a) perplexity tail statistics (p90_ppl) and surprisal variance (var_surprisal) as the dominant depth signal family — consistently occupying the top-4 features across all models and strategies, though their relative ranking is model-dependent, (b) non-uniform inter-depth distances (depth 0→1 gap >> depth 2→3 gap), (c) an Effective Discriminable Depth (EDD) boundary beyond which adjacent depths become indistinguishable, and (d) **strategy-dependent feature trajectory reversal** — temperature sampling causes the depth-1→depth-2 feature boundary to invert relative to nucleus/top-k (cross-strategy LOO d1v\n…[truncated 11471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T13:43:19.630700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:43:19.630906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Depth Degradation Atlas}\n2\t\\label{sec:atlas}\n3\t\n4\tWe systematically characterize how recursive generation reshapes the statistical profile of text across a grid of 3 model families $\\times$ 3 decoding strategies $\\times$ 4 generation depths (d0--d3), yielding 9 experimental configurations each spanning 4 depths.\n5\tFor each cell we train a Random Forest (RF) classifier on the 19 statistical features defined in \\S\\ref{sec:method} and examine (i)~in-distribution depth classification accuracy, (ii)~which features carry depth signal, (iii)~how far into the recursion chain depth remains discriminable, and (iv)~how decoding strategy modulates the degradation trajectory.\n6\t\n7\t\\subsection{In-Distribution Performance}\n8\t\\label{sec:atlas:indist}\n9\t\n10\tTable~\\ref{tab:main_matrix} reports 4-class depth estimation accuracy under 5-fold cross-validation.\n11\tAll 9 cells exceed chance (25\\%) by a wide margin, with accuracy ranging from 69.6\\% to 85.4\\%.\n12\tBoth model family and decoding strategy influence accuracy, with model ordering GPT-2~XL $>$ OLMo $>$ Pythia holding across all strategies.\n13\tTop-$k$ ($k{=}50$) trails by 6--9 percentage points, while temperature and nucleus sampling alternate for the lead depending on model family.\n14\t\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\caption{In-distribution 4-class depth estimation accuracy (\\%) across 3 model families $\\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV (std 0.2--0.9pp across all cells). Chance = 25\\%.}\n19\t\\label{tab:main_matrix}\n20\t\\begin{tabular}{lccc}\n21\t\\toprule\n22\tModel & Nucleus & Temp & Top-$k$ \\\\\n23\t & $p{=}0.95$ & $\\tau{=}0.9$ & $k{=}50$ \\\\\n24\t\\midrule\n25\tPythia-1.4B & 78.2 & 76.3 & 69.6 \\\\\n26\tOLMo-1B & 78.8 & 82.0 & 74.2 \\\\\n27\tGPT-2 XL & 83.3 & \\textbf{85.4} & 76.6 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table}\n31\t\n32\tBecause the human-written seed text (d0) is often trivially separable from any machine-generated depth, we also evaluate 3-class accurac\n…[truncated 8341 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:43:19.631071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T13:43:19.631245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Generalization and Robustness}\n2\t\\label{sec:generalization}\n3\t\n4\tThe atlas (\\S\\ref{sec:atlas}) established in-distribution accuracy of 69.6--85.4\\%.\n5\tWe now test whether these results reflect genuine statistical regularities or artifacts of specific training conditions, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learned representations (\\S\\ref{sec:gen:dcol}).\n6\t\n7\t\\subsection{Baseline Comparison}\n8\t\\label{sec:gen:baselines}\n9\t\n10\tTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\n11\tThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\n12\tThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\n13\tSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n14\t\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n19\t\\label{tab:baselines}\n20\t\\begin{tabular}{lc}\n21\t\\toprule\n22\tMethod & 4-class Acc (\\%) \\\\\n23\t\\midrule\n24\tRF (19 features) & 78.2 \\\\\n25\tCORAL & 78.1 \\\\\n26\tDivEye & 78.2 \\\\\n27\tCE-MLP & 74.9 \\\\\n28\tLR & 75.0 \\\\\n29\tDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\n30\tppl-regression (single feature) & 25.1 \\\\\n31\t\\bottomrule\n32\t\\end{tabula\n…[truncated 5924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:43:19.631394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T13:43:19.631522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Depth-graduated data curation.}\n5\tBinary synthetic-data filters discard all machine-generated text indiscriminately, yet first-generation outputs may be beneficial for training \\cite{drayson2025_detection_prevents_collapse}.\n6\tPredicted depth can serve as a continuous quality proxy for importance weighting in curation pipelines \\cite{dsir2023,qurating2024}, retaining shallow-generation text while down-weighting deeply recursive samples.\n7\t\n8\t\\paragraph{Feature evolution tracks tail erosion.}\n9\tFeature importance shifts with depth: \\textsc{var\\_surprisal} dominates at shallow recursions while \\textsc{p90\\_ppl} and kurtosis assume greater importance at deeper depths, aligning with the tail erosion theory of \\citet{shumailov2024_nature}.\n10\t\n11\t\\paragraph{Cross-strategy deployment.}\n12\tThe temperature-induced d1/d2 AUC inversion (\\S\\ref{sec:gen:crossstrategy}) means that deploying a depth estimator without knowing the target decoding strategy risks systematic prediction reversals; strategy-conditioned classifiers are needed but strategy identification from text remains open.\n13\t\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:43:19.631669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T13:43:19.631832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Task Formulation}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Definition}\n5\t\\label{sec:method:problem}\n6\t\n7\tLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\n8\tWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\n9\tDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n10\t\n11\tGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\n12\tThis is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n13\t\n14\t\\subsection{Multi-Generational Benchmark Construction}\n15\t\\label{sec:method:benchmark}\n16\t\n17\tWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n18\t\n19\t\\paragraph{Model families.}\n20\tWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\n21\tRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n22\t\n23\t\\paragraph{Decoding strategies.}\n24\tEach model is paired with three sampling methods: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\n25\tThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\n26\t\n27\t\\paragraph{Depth and scale.}\n28\tThe primary benchmark covers depths d0--d3 across all $3 \\times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).\n29\tFor depth exten\n…[truncated 5774 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T13:43:19.632038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "z.score|z-score|normalization.*recover|normalization.*restor",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "output_mode": "content",
+              "-i": "True",
+              "-n": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T13:43:19.632240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/generalization.tex:105:\\paragraph{Z-score normalization does not resolve the inversion.}\ndocs/paper/generalization.tex:106:A natural hypothesis is that per-feature z-score normalization might correct this covariate shift \\cite{sugiyama2007_importance_weighting}.\ndocs/paper/generalization.tex:108:Z-score standardization substantially improves logistic regression cross-strategy transfer for nucleus and top-$k$ holdouts (d1v2 AUC 0.61--0.89), but fails to resolve the temperature-induced inversion (d1v2 AUC remains near or below chance: Pythia 0.52, GPT-2~XL 0.24, OLMo 0.19).\ndocs/paper/abstract.tex:7:Cross-model transfer reaches 66.4\\% and cross-strategy transfer 59.1\\%, though temperature sampling induces a d1/d2 AUC inversion that z-score normalization cannot resolve.\ndocs/paper/introduction.tex:31:[Omitted long matching line]\ndocs/paper/main.aux:735:\\@writefile{toc}{\\contentsline {paragraph}{Z-score normalization does not resolve the inversion.}{8}{section*.26}\\protected@file@percent }"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T13:43:19.632477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+              "offset": "25",
+              "limit": "15"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T13:43:19.632698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "25\t\n26\t\\begin{itemize}\n27\t    \\item \\textbf{Task formalization.} We define recursive generation depth estimation as ordinal classification, distinguishing it from binary detection and single-pass editing estimation. We introduce the EDD metric, which summarizes the maximum depth at which adjacent generations remain separable above a given AUC threshold.\n28\t\n29\t    \\item \\textbf{Depth Degradation Atlas.} We construct a systematic $3 \\times 3$ map across model families and decoding strategies, revealing that \\textsc{p90\\_ppl} ranks in the top 2 in all 9 cells (100\\%) and \\textsc{var\\_surprisal} in 7/9 (78\\%), with a mean Spearman rank correlation of $\\rho{=}0.868$ across importance vectors. The extended Pythia nucleus pipeline (d0--d5) yields $\\mathrm{EDD}_{0.75}{=}4$, establishing that depth discrimination persists through four recursive steps before falling below threshold.\n30\t\n31\t    \\item \\textbf{Generalization analysis.} Cross-model leave-one-out transfer achieves 66.4\\% mean accuracy and cross-strategy transfer 59.1\\% (chance = 25\\%), demonstrating partial universality of depth fingerprints. We identify a temperature-induced d1/d2 AUC inversion (GPT-2~XL: 0.13, OLMo: 0.25) caused by accelerated convergence. Z-score normalization recovers logistic regression performance for non-temperature holdouts (d1v2 AUC 0.61--0.89) but fails to resolve the temperature-specific inversion, revealing a two-layer covariate shift structure.\n32\t\n33\t    \\item \\textbf{End-to-end learning as negative result.} Both DeBERTa-v3-base (58.3\\%) and RoBERTa-base (59.5\\%) achieve ${\\sim}$59\\% via end-to-end finetuning---19pp below feature-based classifiers (78.2\\%)---with the architecture-invariant gap ruling out model selection bias. Probing reveals a significant negative correlation ($\\rho{=}{-}0.48$) between transformer attention and RF feature importance, confirming complementary representations.\n34\t\\end{itemize}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T13:43:19.632960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T13:43:19.633179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tAs large language models increasingly train on web text containing their own outputs, a recursive model$\\to$data$\\to$model loop arises---yet no method estimates how many such iterations a text has undergone.\n3\tWe formalize \\emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K passages spanning 3 model families, 3 decoding strategies, and 4 generation depths.\n4\tFrom each passage we extract 19 statistical features---perplexity percentiles, surprisal moments, and lexical diversity measures---computed against a fixed reference model (GPT-2 base, 124M).\n5\tA Random Forest classifier achieves 70--85\\% four-class accuracy (chance = 25\\%; a zero-shot LLM baseline reaches only 40\\%), with 90th-percentile perplexity and surprisal variance emerging as universal depth markers (top-2 importance in 9/9 and 7/9 model--strategy cells, respectively; mean Spearman $\\rho{=}0.868$).\n6\tOur \\emph{Depth Degradation Atlas} reveals that decoding strategy reshapes degradation trajectories rather than merely attenuating them, and we define the \\emph{Effective Discriminable Depth} (EDD) metric, finding $\\mathrm{EDD}_{0.75}{=}4$ for extended recursion chains.\n7\tCross-model transfer reaches 66.4\\% and cross-strategy transfer 59.1\\%, though temperature sampling induces a d1/d2 AUC inversion that z-score normalization cannot resolve.\n8\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T13:43:19.633579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex",
+              "old_string": "\\subsection{Effective Discriminable Depth}\n\\label{sec:atlas:edd}\n\nAggregate accuracy masks the fact that adjacent depths become harder to distinguish as depth increases.\nWe formalize this via the \\emph{Effective Discriminable Depth} (EDD; defined in \\S\\ref{sec:method}): $\\mathrm{EDD}_T$ is the maximum depth $d^*$ such that the pairwise AUC between $d^*$ and $d^*{+}1$ exceeds a threshold $T$, using a dedicated binary RF per adjacent pair.",
+              "new_string": "\\subsection{Effective Discriminable Depth}\n\\label{sec:atlas:edd}\n\nAggregate accuracy masks the fact that adjacent depths become harder to distinguish as depth increases.\nWe quantify this via the \\emph{Effective Discriminable Depth} (EDD).\nFor each adjacent depth pair $(d, d{+}1)$, we train a dedicated binary RF (500 trees, 5-fold stratified CV) and compute $\\mathrm{AUC}(d, d{+}1)$---the ROC AUC of this pairwise classifier at separating depth-$d$ from depth-$(d{+}1)$ samples.\nGiven a discrimination threshold $T$, EDD is defined as:\n\\[\n\\mathrm{EDD}_T = \\max \\bigl\\{ d^*{+}1 : \\mathrm{AUC}(d^*, d^*{+}1) \\geq T \\bigr\\}\n\\]\nwhere $d^* \\in \\{0, 1, \\dots, K{-}1\\}$.\nIntuitively, $\\mathrm{EDD}_T$ is the deepest generation depth at which the classifier can still reliably separate it from the preceding depth; beyond this boundary, adjacent depths become statistically indistinguishable.\nWe set $T{=}0.75$ as the default threshold---the midpoint between chance AUC (0.5) and perfect discrimination (1.0)---and report sensitivity at $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$ below."
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T13:43:19.633800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T13:43:19.633996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+              "old_string": "\\subsection{End-to-End Learning}\n\\label{sec:gen:dcol}\n\nWe train DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\nBoth achieve ${\\sim}$59\\% (DeBERTa 58.3$\\pm$4.7\\%, RoBERTa 59.5$\\pm$3.2\\%), 19pp below feature-based classifiers (78.2\\%).\nBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42), precisely where \\textsc{p90\\_ppl} and \\textsc{var\\_surprisal} excel.\nThe 1.2pp inter-backbone gap rules out model selection bias.\nDCOL \\cite{cloc2025} with RoBERTa-large fared worse (best 64.5\\%, 5/6 runs unstable).\nProbing reveals a negative correlation between DeBERTa attention importance and RF permutation importance ($\\rho{=}{-}0.48$, $p{=}0.036$; top-5 Jaccard$\\,{=}\\,0$): transformers attend to lexical patterns (TTR, repeated bigrams) while RF relies on perplexity tail statistics, confirming complementary---not redundant---representations.",
+              "new_string": "\\subsection{End-to-End Learning}\n\\label{sec:gen:dcol}\n\nTo test whether pretrained language models can learn depth signals directly from raw text, we finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\nTable~\\ref{tab:e2e_baselines} summarizes the comparison.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{End-to-end baseline comparison on Pythia-1.4B nucleus. RF uses 19 hand-crafted statistical features; PLM baselines are finetuned on raw text. 5-fold CV (std where shown). Chance = 25\\%.}\n\\label{tab:e2e_baselines}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & 4-class Acc (\\%) & $\\Delta$ vs RF \\\\\n\\midrule\nRF (19 features) & 78.2 & --- \\\\\nRoBERTa-base finetune & 59.5 $\\pm$ 3.2 & $-$18.7pp \\\\\nDeBERTa-v3-base finetune & 58.3 $\\pm$ 4.7 & $-$19.9pp \\\\\nDeepSeek V3.2 (zero-shot) & 40.0 & $-$38.2pp \\\\\nChance & 25.0 & $-$53.2pp \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth PLM architectures---masked language modeling (RoBERTa) and disentangled attention (DeBERTa)---converge to ${\\sim}$59\\%, with the 1.2pp inter-backbone gap ruling out architecture selection bias.\nBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42), precisely where \\textsc{p90\\_ppl} and \\textsc{var\\_surprisal} excel.\nDCOL \\cite{cloc2025} with RoBERTa-large fared worse (best 64.5\\%, 5/6 runs unstable).\n\n\\paragraph{Feature overlap analysis.}\nProbing reveals a significant negative correlation between DeBERTa attention importance and RF permutation importance (Spearman $\\rho{=}{-}0.484$, $p{=}0.036$; top-5 Jaccard overlap$\\,{=}\\,0$).\nPLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing.\nThis confirms that hand-crafted statistical features capture depth signals that PLMs cannot learn from raw text alone, particularly the distributional tail properties that constitute the dominant depth markers (\\S\\ref{sec:atlas:features})."
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T13:43:19.634210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T13:43:19.634345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+              "old_string": "Z-score normalization recovers logistic regression performance for non-temperature holdouts (d1v2 AUC 0.61--0.89) but fails to resolve the temperature-specific inversion, revealing a two-layer covariate shift structure.",
+              "new_string": "Z-score normalization improves overall LR cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the temperature-induced d1/d2 inversion (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19), confirming a genuine geometry-level shift rather than a correctable scale difference."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T13:43:19.634495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T13:43:19.634616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+              "old_string": "Z-score standardization substantially improves logistic regression cross-strategy transfer for nucleus and top-$k$ holdouts (d1v2 AUC 0.61--0.89), but fails to resolve the temperature-induced inversion (d1v2 AUC remains near or below chance: Pythia 0.52, GPT-2~XL 0.24, OLMo 0.19).\nThis two-layer structure---scale shift addressable by normalization, plus a deeper geometric shift specific to temperature sampling---suggests that temperature decoding induces qualitatively different feature distributions that cannot be reconciled by linear rescaling.",
+              "new_string": "Z-score standardization improves overall logistic regression cross-strategy accuracy from 25\\% to 61\\%, with d1v2 AUC gains for nucleus and top-$k$ holdouts (0.61--0.89).\nHowever, it does not recover the temperature-induced d1v2 inversion---AUC worsens for two of three models (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19; Pythia 0.52), confirming that temperature decoding induces a genuine geometry-level shift in feature space rather than a correctable scale difference."
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T13:43:19.634775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T13:43:19.634952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex",
+              "offset": "57",
+              "limit": "20"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T13:43:19.635123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "57\t\\label{sec:atlas:edd}\n58\t\n59\tAggregate accuracy masks the fact that adjacent depths become harder to distinguish as depth increases.\n60\tWe quantify this via the \\emph{Effective Discriminable Depth} (EDD).\n61\tFor each adjacent depth pair $(d, d{+}1)$, we train a dedicated binary RF (500 trees, 5-fold stratified CV) and compute $\\mathrm{AUC}(d, d{+}1)$---the ROC AUC of this pairwise classifier at separating depth-$d$ from depth-$(d{+}1)$ samples.\n62\tGiven a discrimination threshold $T$, EDD is defined as:\n63\t\\[\n64\t\\mathrm{EDD}_T = \\max \\bigl\\{ d^*{+}1 : \\mathrm{AUC}(d^*, d^*{+}1) \\geq T \\bigr\\}\n65\t\\]\n66\twhere $d^* \\in \\{0, 1, \\dots, K{-}1\\}$.\n67\tIntuitively, $\\mathrm{EDD}_T$ is the deepest generation depth at which the classifier can still reliably separate it from the preceding depth; beyond this boundary, adjacent depths become statistically indistinguishable.\n68\tWe set $T{=}0.75$ as the default threshold---the midpoint between chance AUC (0.5) and perfect discrimination (1.0)---and report sensitivity at $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$ below.\n69\t\n70\tWithin the 4-class atlas (d0--d3), 7 of 9 cells achieve $\\mathrm{EDD}_{0.75}=3$; the two exceptions are Pythia and OLMo with top-$k$ sampling ($\\mathrm{EDD}_{0.75}=2$), consistent with top-$k$'s signal-attenuating effect noted in \\S\\ref{sec:atlas:indist}.\n71\t\n72\tTo probe deeper, we extend the Pythia-1.4B nucleus pipeline to 6 depths (d0--d5) and train a 500-tree binary RF for each adjacent pair (we increase from 200 to 500 trees for binary classifiers to ensure convergence on the smaller per-pair sample sizes).\n73\tFigure~\\ref{fig:auc_decay} shows the pairwise AUC decay curve.\n74\tThe d0\\,vs.\\,d1 boundary is near-perfect (AUC\\,=\\,0.998), reflecting the well-known human--machine gap.\n75\tSubsequent boundaries degrade monotonically: d1\\,vs.\\,d2 achieves 0.925 [95\\% CI: 0.914,\\,0.935], d2\\,vs.\\,d3 reaches 0.823 [0.805,\\,0.840], and d3\\,vs.\\,d4 yields 0.784 [0.765,\\,0.802]---with the confidence interval lower bound still \n…[truncated 140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T13:43:19.635295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+              "offset": "105",
+              "limit": "45"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T13:43:19.635525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "105\t\\paragraph{Z-score normalization does not resolve the inversion.}\n106\tA natural hypothesis is that per-feature z-score normalization might correct this covariate shift \\cite{sugiyama2007_importance_weighting}.\n107\tFor RF, z-normalization leaves accuracy essentially unchanged (59.1\\% $\\to$ 59.2\\%) and does not improve d1v2 AUC ($\\Delta < 0.02$), as expected since tree splits depend on feature rank order, not scale.\n108\tZ-score standardization improves overall logistic regression cross-strategy accuracy from 25\\% to 61\\%, with d1v2 AUC gains for nucleus and top-$k$ holdouts (0.61--0.89).\n109\tHowever, it does not recover the temperature-induced d1v2 inversion---AUC worsens for two of three models (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19; Pythia 0.52), confirming that temperature decoding induces a genuine geometry-level shift in feature space rather than a correctable scale difference.\n110\t\n111\t\\subsection{End-to-End Learning}\n112\t\\label{sec:gen:dcol}\n113\t\n114\tTo test whether pretrained language models can learn depth signals directly from raw text, we finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\n115\tTable~\\ref{tab:e2e_baselines} summarizes the comparison.\n116\t\n117\t\\begin{table}[t]\n118\t\\centering\n119\t\\small\n120\t\\caption{End-to-end baseline comparison on Pythia-1.4B nucleus. RF uses 19 hand-crafted statistical features; PLM baselines are finetuned on raw text. 5-fold CV (std where shown). Chance = 25\\%.}\n121\t\\label{tab:e2e_baselines}\n122\t\\begin{tabular}{lcc}\n123\t\\toprule\n124\tMethod & 4-class Acc (\\%) & $\\Delta$ vs RF \\\\\n125\t\\midrule\n126\tRF (19 features) & 78.2 & --- \\\\\n127\tRoBERTa-base finetune & 59.5 $\\pm$ 3.2 & $-$18.7pp \\\\\n128\tDeBERTa-v3-base finetune & 58.3 $\\pm$ 4.7 & $-$19.9pp \\\\\n129\tDeepSeek V3.2 (zero-shot) & 40.0 & $-$38.2pp \\\\\n130\tChance & 25.0 & $-$53.2pp \\\\\n131\t\\bottomrule\n132\t\\end{tabular}\n133\t\\end{table}\n134\t\n135\tBoth PLM architectures---masked language modeling \n…[truncated 1139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T13:43:19.635770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+              "offset": "29",
+              "limit": "5"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T13:43:19.636011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "29\t    \\item \\textbf{Depth Degradation Atlas.} We construct a systematic $3 \\times 3$ map across model families and decoding strategies, revealing that \\textsc{p90\\_ppl} ranks in the top 2 in all 9 cells (100\\%) and \\textsc{var\\_surprisal} in 7/9 (78\\%), with a mean Spearman rank correlation of $\\rho{=}0.868$ across importance vectors. The extended Pythia nucleus pipeline (d0--d5) yields $\\mathrm{EDD}_{0.75}{=}4$, establishing that depth discrimination persists through four recursive steps before falling below threshold.\n30\t\n31\t    \\item \\textbf{Generalization analysis.} Cross-model leave-one-out transfer achieves 66.4\\% mean accuracy and cross-strategy transfer 59.1\\% (chance = 25\\%), demonstrating partial universality of depth fingerprints. We identify a temperature-induced d1/d2 AUC inversion (GPT-2~XL: 0.13, OLMo: 0.25) caused by accelerated convergence. Z-score normalization improves overall LR cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the temperature-induced d1/d2 inversion (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19), confirming a genuine geometry-level shift rather than a correctable scale difference.\n32\t\n33\t    \\item \\textbf{End-to-end learning as negative result.} Both DeBERTa-v3-base (58.3\\%) and RoBERTa-base (59.5\\%) achieve ${\\sim}$59\\% via end-to-end finetuning---19pp below feature-based classifiers (78.2\\%)---with the architecture-invariant gap ruling out model selection bias. Probing reveals a significant negative correlation ($\\rho{=}{-}0.48$) between transformer attention and RF feature importance, confirming complementary representations."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T13:43:19.636249+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有改动已验证正确。\n\n### 修改汇总\n\n**atlas.tex** — Issue 1 (R1-N1 EDD 正式定义)\n- `sec:atlas:edd` 子节：原来一句话引用 method section，改为完整的 EDD 定义段落\n- 添加了正式数学公式 `EDD_T = max{d*+1 : AUC(d*, d*+1) ≥ T}`\n- 说明了 AUC(d, d+1) 是 binary pairwise classifier 的 ROC AUC\n- 说明了 T=0.75 默认阈值及其选择理由\n- 添加了直觉含义：超过此深度后相邻深度变得统计不可区分\n\n**generalization.tex** — Issue 2 (R1-N3 end-to-end baseline 对比表)\n- `sec:gen:dcol` 子节：添加了 `tab:e2e_baselines` 表格（RF 78.2% / RoBERTa 59.5±3.2% / DeBERTa 58.3±4.7% / DeepSeek 40.0% / Chance 25.0%，含 Δ vs RF 列）\n- 说明 MLM vs disentangled attention 两种架构一致结论（1.2pp gap），排除 architecture bias\n- 新增 \"Feature overlap analysis\" 段落：Spearman ρ=-0.484 (p=0.036)，PLM 擅长 TTR (R²=0.85) 但 var_surprisal/p90_ppl R² 为负，结论：hand-crafted features 捕获 PLM 无法学到的深度信号\n\n**generalization.tex** — Issue 3 (D021 z-score claim 修正)\n- z-score 段落：删除 \"substantially improves...for nucleus and top-k holdouts\" 的 recovery 措辞\n- 改为：overall LR accuracy 25%→61%，但 temp d1v2 AUC 恶化（GPT-2 XL 0.50→0.24, OLMo 0.50→0.19）\n- 结论改为 \"genuine geometry-level shift in feature space rather than a correctable scale difference\"\n\n**introduction.tex** — Issue 3 (D021 z-score claim 修正)\n- 贡献列表第 3 条：删除 \"recovers logistic regression performance for non-temperature holdouts\"\n- 改为：overall LR accuracy 25%→61% + 不恢复 temperature d1v2 inversion + 确认 geometry-level shift"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_critical-fixes-r1n1-r1n3-d021_20260515T133738"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ]
+}

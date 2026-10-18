@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5082f8b4193c3be42124",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k05 long seed43 postfix",
+  "task_key": "worker_diagnose_eval_pi05_random_k05_long_seed43_postfix_20260524T230053",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k05_long_seed43_postfix_20260524T230053_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "7da8686166401a100ff168cc1700dc5894475f44887ea65e1ab551078ab12f25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**实验 `eval_pi05_random_k05_long_seed43_postfix` 不存在。**\n\n- Registry：无此实验记录\n- 日志：cqa1-33015 上 `/root/autodl-tmp/importance_margin_vla_compress/logs/` 和 `/root/runs/` 均无匹配文件\n- Cron：无对应条目\n\n此实验很可能从未被提交。仅存在的相关日志是 seed42 版本：`/root/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42.log`（对应 seed42 Random k=0.5 Long = 46.8%）。\n\n如需补跑 seed43，需要新建实验并提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

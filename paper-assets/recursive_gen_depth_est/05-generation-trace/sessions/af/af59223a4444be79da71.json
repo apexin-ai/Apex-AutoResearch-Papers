@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "af59223a4444be79da71",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper figure fig feature trajectory",
+  "task_key": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_feature_trajectory_20260515T070506_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "94a3d7082176eeace06c5dfd03b2974ed19e41e7549ebdc7e010b9cc62a595db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册（`art_20260515_eac11b`）。\n\n输出文件：\n- PDF: `figures/paper/fig_feature_trajectory.pdf` (24KB)\n- PNG: `figures/paper/fig_feature_trajectory.png` (412KB)\n\n数据覆盖：Pythia 有 nucleus + temp 0.9 两条线（实线/虚线），OLMo 和 GPT-2 XL 仅 nucleus。pythia_topk50、olmo_temp09/topk50、gpt2xl_temp09/topk50 无 trajectory 数据，已跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

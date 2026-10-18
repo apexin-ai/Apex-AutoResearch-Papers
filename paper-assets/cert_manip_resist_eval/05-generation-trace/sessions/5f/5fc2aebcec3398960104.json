@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc2aebcec3398960104",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops d047 figure regen",
+  "task_key": "worker_ops_d047-figure-regen_20260525T212230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-figure-regen_20260525T212230_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "c383246af971a480e4d20cd5a630bbf0b7ff8951c02bee969dd734447e8d5dce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 figure 均已重画完成，视觉验证通过。\n\n### Figure 1: β trajectory\n- **K_eff** (蓝线) CI band 在所有 K 值下始终高于 zero line ✓\n- **η_max** (红线) CI 在 K=3 时完全在 zero 以上；K≥5 时 CI 下界跨过 zero line ✓\n- Position bias 散点（~-0.35）作为明显离群值可见（蓝色最底部点）\n- ylim 从 [-0.15, 0.60] 扩展到 [-0.45, 0.65] 以容纳修正后的 PB 负值散点\n\n### Figure 2: regime transition\n- K_eff: 8/12 → 8/12 → 7/12 ✓\n- η_max: 5/12 → 0/12 → 1/12 ✓\n- η_max 在 K≥5 时急剧下降，视觉效果清晰\n\n### Figure 3: framework 概念图\n- 无生成脚本（`gen_fig_framework*` 不存在），仅有手绘 PDF\n- 图中无嵌入数值，caption 中的数字由 LaTeX worker 处理，图本身无需更新\n\n### 产出文件\n- `docs/paper/figures/fig_beta_trajectory.{pdf,png}` — 已更新（本地 + 服务器）\n- `docs/paper/figures/fig_regime_transition.{pdf,png}` — 已更新（本地 + 服务器）\n- `docs/paper/figures/gen_fig_beta_trajectory.py` — 数据已更新（本地 + 服务器）\n- 服务器 `scripts/gen_fig_regime_transition_fixed.py` — WCB counts 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

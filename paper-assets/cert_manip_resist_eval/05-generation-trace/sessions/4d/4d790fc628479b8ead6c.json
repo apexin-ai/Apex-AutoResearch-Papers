@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d790fc628479b8ead6c",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit k5 aggregation v2 check",
+  "task_key": "worker_audit_k5-aggregation-v2-check_20260524T045111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_k5-aggregation-v2-check_20260524T045111_result.json",
+    "occurrence": 1,
+    "bytes": 1300,
+    "sha256": "ce170b9177ea596302926d02fb31fb4728f503777b185ac2a1a67aa8d95ca129"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：K=5 aggregation bootstrap 尚未用 V2 重跑\n\n### 证据\n\n1. **`k5_aggregation_bootstrap.json`** — 无 `error_handling`/`fix_description`/`V2` 任何标记 → **V1 数据**\n2. **`k5_aggregation_analysis.json`** — 同样无 V2 标记 → **V1 数据**\n3. **`k5_aggregation_analysis_v1_backup.json`** — 命名上就是 V1 备份\n4. 整个 `plan001/` 目录中，唯一有 V2 标记的聚合文件是 **`k3_aggregation_bootstrap_corrected.json`**（含 `fix_description: \"V2: replaced .get(\\\"winner\\\",\\\"tie\\\") with _is_valid_score() filter\"`）\n5. 不存在 `k5_aggregation_bootstrap_corrected.json` 或任何 K=5 的 V2 文件\n\n### 当前 V1 数据（K=5 bootstrap）\n\n| 聚合方式 | η_max FDR sig | K_eff FDR sig |\n|----------|--------------|--------------|\n| Majority Vote | 0/12 | 7/12 |\n| Weighted Vote | 1/12 | 9/12 |\n| Threshold Supermajority | 6/12 | 10/12 |\n| **Bayesian** | **1/12** | **0/12** |\n\n论文中 Bayesian \"neutralizes both predictors (0/12)\" 的说法基于此 V1 数据。V2 修复后结论可能改变。\n\n### 注意\n- 服务器 SSH 连接失败（端口 49657 拒绝连接），无法确认服务器上是否有比本地备份更新的文件。如需重跑 K=5 V2 bootstrap，需先恢复服务器连接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

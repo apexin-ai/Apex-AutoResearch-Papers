@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "df421e429712bb00e679",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "paper writing limitations",
+  "task_key": "worker_paper_writing_limitations_20260521T054219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_limitations_20260521T054219_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "7bbff4f1b23b881e1e413dcccf4781becc264545b803a9cc2e81d4ae5f64ab13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `docs/paper/limitations.tex` (~250 words). Five limitations with specific experimental numbers:\n\n1. **Expert budget threshold** — $n_{\\text{expert}}/K \\geq 25$ required; HB/MLE converge at $n \\geq 1000$\n2. **RMSE tradeoff** — up to 3.5× worse RMSE at $K{=}4$, small $n$\n3. **Plug-in SEs** — no confusion matrix uncertainty propagation (D010 requirement met)\n4. **Symmetric misclassification** — asymmetric case not empirically validated\n5. **Subgroup structure assumed known** — discrete pre-defined subgroups only; intersectional settings may exceed budget threshold"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "id": "ed31cc6d618df8e91c63",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "code gdn h24 extract",
+  "task_key": "worker_code_gdn_h24_extract_20260519T043545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_gdn_h24_extract_20260519T043545.jsonl",
+    "occurrence": 1,
+    "bytes": 8812,
+    "sha256": "f5e01ccc63d47c377b1955861e44f24f1943e0a0fda5a745e2ccf531a133df71"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T04:36:36.402975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T04:36:36.403302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T04:36:36.403511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -la /root/entrainment_gated_ft/lm_eval_clean/340m/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T04:36:36.403710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 777292\\\\ndrwxr-xr-x 12 root root      4096 May 19 12:22 .\\\\ndrwxr-xr-x  7 root root      4096 May 19 11:38 ..\\\\n-rw-r--r--  1 root root 132109893 May 18 23:13 340M-20B-GatedDeltaNet-New-hybrid-24-1.json\\\\n-rw-r--r--  1 root root 132113126 May 18 23:06 340M-20B-GatedDeltaNet-hybrid-12-1.json\\\\n-rw-r--r--  1 root root 132119709 May 18 22:55 340M-20B-GatedDeltaNet-hybrid-3-1.json\\\\n-rw-r--r--  1 root root 132133896 May 18 23:01 340M-20B-GatedDeltaNet-hybrid-6-1.json\\\\n-rw-r--r--  1 root root 132140588 May 18 22:49 340M-20B-GatedDeltaNet-pure-baseline.json\\\\ndrwxr-xr-x  2 root root        73 May 19 12:22 340M-20B-HGRN2-hybrid-12-1\\\\ndrwxr-xr-x  2 root root        73 May 19 12:26 340M-20B-HGRN2-hybrid-24-1\\\\ndrwxr-xr-x  2 root root        72 May 19 12:14 340M-20B-HGRN2-hybrid-3-1\\\\ndrwxr-xr-x  2 root root        72 May 19 12:18 340M-20B-HGRN2-hybrid-6-1\\\\ndrwxr-xr-x  2 root root        75 May 19 12:10 340M-20B-HGRN2-pure-baseline\\\\ndrwxr-xr-x  2 root root        74 May 19 12:02 340M-20B-RetNet-hybrid-12-1\\\\ndrwxr-xr-x  2 root root        74 May 19 12:06 340M-20B-RetNet-hybrid-24-1\\\\ndrwxr-xr-x  2 root root        73 May 19 11:54 340M-20B-RetNet-hybrid-3-1\\\\ndrwxr-xr-x  2 root root        73 May 19 11:58 340M-20B-RetNet-hybrid-6-1\\\\ndrwxr-xr-x  2 root root        67 May 19 11:50 340M-20B-RetNet-pure\\\\n-rw-r--r--  1 root root   1347909 May 18 23:13 eval_all.log\\\\n-rw-r--r--  1 root root   1776966 May 19 12:26 run_all.log\\\\n-rw-r--r--  1 root root 132163658 May 18 22:42 transformer_340M_baseline.json\\\\n-rw-r--r--  1 root root     14510 May 18 22:31 transformer_340M_baseline_lambada.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T04:36:36.403906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# GDN-New-hybrid-24-1\nwith open('/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-New-hybrid-24-1.json') as f:\n    data = json.load(f)\nr = data.get('results', {})\nprint('=== 340M-20B-GatedDeltaNet-New-hybrid-24-1 ===')\nprint('All benchmarks:', list(r.keys()))\nlambada = r.get('lambada_openai', {})\nprint(f'lambada_openai acc: {lambada.get(\\\"acc,none\\\", \\\"N/A\\\")}')\nprint(f'lambada_openai ppl: {lambada.get(\\\"perplexity,none\\\", \\\"N/A\\\")}')\nprint()\n\n# All GDN files\nimport glob\nfor f in sorted(glob.glob('/root/entrainment_gated_ft/lm_eval_clean/340m/*GatedDeltaNet*.json')):\n    with open(f) as fh:\n        d = json.load(fh)\n    res = d.get('results', {})\n    print(f'=== {f.split(\\\"/\\\")[-1]} ===')\n    print('Benchmarks:', list(res.keys()))\n    lam = res.get('lambada_openai', {})\n    print(f'  lambada acc: {lam.get(\\\"acc,none\\\", \\\"N/A\\\")}')\n    print(f'  lambada ppl: {lam.get(\\\"perplexity,none\\\", \\\"N/A\\\")}')\n    print()\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T04:36:36.404141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 340M-20B-GatedDeltaNet-New-hybrid-24-1 ===\\\\nAll benchmarks: ['lambada_openai', 'hellaswag', 'winogrande', 'arc_easy', 'arc_challenge', 'mmlu_abstract_algebra', 'mmlu_anatomy', 'mmlu_astronomy', 'mmlu_college_biology', 'mmlu_college_chemistry', 'mmlu_college_computer_science', 'mmlu_college_mathematics', 'mmlu_college_physics', 'mmlu_computer_security', 'mmlu_conceptual_physics', 'mmlu_electrical_engineering', 'mmlu_elementary_mathematics', 'mmlu_high_school_biology', 'mmlu_high_school_chemistry', 'mmlu_high_school_computer_science', 'mmlu_high_school_mathematics', 'mmlu_high_school_physics', 'mmlu_high_school_statistics', 'mmlu_machine_learning', 'mmlu_business_ethics', 'mmlu_clinical_knowledge', 'mmlu_college_medicine', 'mmlu_global_facts', 'mmlu_human_aging', 'mmlu_management', 'mmlu_marketing', 'mmlu_medical_genetics', 'mmlu_miscellaneous', 'mmlu_nutrition', 'mmlu_professional_accounting', 'mmlu_professional_medicine', 'mmlu_virology', 'mmlu_econometrics', 'mmlu_high_school_geography', 'mmlu_high_school_government_and_politics', 'mmlu_high_school_macroeconomics', 'mmlu_high_school_microeconomics', 'mmlu_high_school_psychology', 'mmlu_human_sexuality', 'mmlu_professional_psychology', 'mmlu_public_relations', 'mmlu_security_studies', 'mmlu_sociology', 'mmlu_us_foreign_policy', 'mmlu_formal_logic', 'mmlu_high_school_european_history', 'mmlu_high_school_us_history', 'mmlu_high_school_world_history', 'mmlu_international_law', 'mmlu_jurisprudence', 'mmlu_logical_fallacies', 'mmlu_moral_disputes', 'mmlu_moral_scenarios', 'mmlu_philosophy', 'mmlu_prehistory', 'mmlu_professional_law', 'mmlu_world_religions', 'mmlu_stem', 'mmlu_other', 'mmlu_social_sciences', 'mmlu_humanities', 'mmlu']\\\\nlambada_openai acc: 0.35066951290510384\\\\nlambada_openai ppl: 38.426388679826026\\\\n\\\\n=== 340M-20B-GatedDeltaNet-New-hybrid-24-1.json ===\\\\nBenchmarks: ['lambada_openai', 'hellaswag', 'winogrande', 'arc_easy', 'arc_challenge', 'm\n…[truncated 6251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T04:36:36.404319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, glob\nfor f in sorted(glob.glob('/root/entrainment_gated_ft/lm_eval_clean/340m/*GatedDeltaNet*.json')):\n    with open(f) as fh:\n        d = json.load(fh)\n    r = d.get('results', {})\n    lam = r.get('lambada_openai', {})\n    name = f.split('/')[-1].replace('.json','')\n    acc = lam.get('acc,none', 'N/A')\n    ppl = lam.get('perplexity,none', 'N/A')\n    print(f'{name} | acc={acc} | ppl={ppl}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T04:36:36.404461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"340M-20B-GatedDeltaNet-New-hybrid-24-1 | acc=0.35066951290510384 | ppl=38.426388679826026\\\\n340M-20B-GatedDeltaNet-hybrid-12-1 | acc=0.325247428682321 | ppl=42.978490604147204\\\\n340M-20B-GatedDeltaNet-hybrid-3-1 | acc=0.32679992237531535 | ppl=47.96175625497209\\\\n340M-20B-GatedDeltaNet-hybrid-6-1 | acc=0.3512516980399767 | ppl=39.09518273844964\\\\n340M-20B-GatedDeltaNet-pure-baseline | acc=0.37531535028138946 | ppl=34.80967535496665\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T04:36:36.404653+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 GDN 340M 的 lambada_openai 结果，全部模型都有完整 6-benchmark（lambada, hellaswag, winogrande, arc_easy, arc_challenge, mmlu）：\n\n| Model | lambada acc | lambada ppl |\n|---|---|---|\n| **GDN-New-hybrid-24-1** | **0.3507** | **38.43** |\n| GDN-hybrid-12-1 | 0.3252 | 42.98 |\n| GDN-hybrid-3-1 | 0.3268 | 47.96 |\n| GDN-hybrid-6-1 | 0.3513 | 39.10 |\n| GDN-pure-baseline | 0.3753 | 34.81 |\n\nGDN-New-hybrid-24-1 的 lambada acc=0.3507, ppl=38.43。pure baseline 仍是 lambada 最优（acc=0.3753, ppl=34.81）。hybrid-6-1 和 New-hybrid-24-1 接近，但都不及 pure。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gdn_h24_extract_20260519T043545"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ]
+}

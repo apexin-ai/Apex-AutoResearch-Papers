@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1ee9cab5c3cdc8b517",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code gemma budget sweep",
+  "task_key": "worker_code_gemma-budget-sweep_20260521T221030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-budget-sweep_20260521T221030_result.json",
+    "occurrence": 1,
+    "bytes": 1298,
+    "sha256": "82577f4c451fcabe4fefc43da8856d5c17c2c03f881c05864185f4c869a60852"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 outputs generated successfully:\n\n| File | Status |\n|------|--------|\n| `gemma_cm_profile.md` | Gemma Accuracy=0.764, FPR=0.098, FNR=0.310, Δπ=0.212, strong FNR>FPR asymmetry confirmed |\n| `gemma_budget_sweep_k4.csv` | 8000 rows (5 budgets × 50 seeds × 4 subgroups × 2 z-levels × 4 methods) |\n| `gemma_budget_sweep_k2.csv` | 4000 rows (5 budgets × 50 seeds × 2 subgroups × 2 z-levels × 4 methods) |\n| `gemma_sweep_analysis.md` | Full analysis with summary tables, crossover, bias-variance decomposition, K4 vs K2 comparison |\n\nKey findings:\n\n**CM Profile:** Max κ=2.21 (K=4), only 1/4 subgroups with κ>2 (vs. task's claimed 4/4 — the \"known\" Gemma stats appear to be from a different binarization or dataset version). The `False_medium` subgroup has the worst FNR (0.437).\n\n**K=4:** |Bias| crossover at n_expert=200, RMSE crossover never reached (variance cost of 4-way stratification is high at small budgets — K=4 with only 490 eligible observations means thin cells).\n\n**K=2:** |Bias| crossover at n_expert=100, RMSE crossover at n_expert=1000. K=2 dominates K=4 across all budgets — fewer subgroups = less variance, and Gemma's CM heterogeneity between hashtag groups is substantial enough that K=2 still captures the important variation."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

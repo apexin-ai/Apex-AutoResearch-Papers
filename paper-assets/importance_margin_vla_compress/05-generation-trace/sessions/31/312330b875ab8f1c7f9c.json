@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "312330b875ab8f1c7f9c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code openvla vtc m96 prep 41074",
+  "task_key": "worker_code_openvla_vtc_m96_prep_41074_20260519T213458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_openvla_vtc_m96_prep_41074_20260519T213458.log",
+    "occurrence": 1,
+    "bytes": 617931,
+    "sha256": "4f27874c9578fb7de453137228574278f82a996c9052b296f6751e6a22af7a57"
+  },
+  "statistics": {
+    "messages": 348,
+    "user_turns": 0,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 145,
+      "tool_result": 145,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 348,
+      "chunks": [
+        {
+          "path": "312330b875ab8f1c7f9c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "312330b875ab8f1c7f9c-part-0002.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ]
+}

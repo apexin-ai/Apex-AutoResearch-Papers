@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "29e67a8c52803d331082",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "run exp confusability batch inference",
+  "task_key": "worker_run_exp_confusability_batch_inference_20260516T063940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp_confusability_batch_inference_20260516T063940_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "4821c6b509f9dab3dc8fcbfc03d481e7a8d06837355767ed629ca060c769fce4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference is running. Condition 1/17 (`confusability_aware`), batch 1/8 (`confusability_aware_batch_0`), 120 samples being processed. GPU at 100% utilization, 89.4 GB memory used.\n\nSummary:\n- **Residual process**: cleaned\n- **flashinfer version mismatch**: bypassed with `FLASHINFER_DISABLE_VERSION_CHECK=1`\n- **Model**: Qwen3-32B-FP8 loaded (32 GiB), KV cache allocated (~57 GiB)\n- **Status**: Inference running — condition 1/17 (confusability_aware), batch 1/8\n- **PID**: 375859 on cqa1-38874\n- **Log**: `/tmp/exp018_extract.log`\n- **Registry**: updated to RUNNING\n\n17 conditions total (1 confusability_aware + 15 random seeds + 1 single_pass), 960 samples. Each condition processes 8 batches of 120 samples each (except single_pass: 1 batch of 960)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

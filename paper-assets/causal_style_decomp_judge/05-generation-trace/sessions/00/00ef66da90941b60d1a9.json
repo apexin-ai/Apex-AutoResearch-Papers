@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "00ef66da90941b60d1a9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops 32b monitor and prep",
+  "task_key": "worker_ops_32b_monitor_and_prep_20260520T150803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_32b_monitor_and_prep_20260520T150803_result.json",
+    "occurrence": 1,
+    "bytes": 1965,
+    "sha256": "ba155c03678c390383e4765d98c3085978516b069c3d7e7d05365db2f2d5b3cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. 32B 下载状态：进行中，接近完成\n\n| 项目 | 状态 |\n|------|------|\n| 总大小 | 62GB（含 temp） |\n| 已完成 shard | 14/17（main dir） |\n| 临时 shard | 3/17（`._____temp/`: #14, #15, #17，共 11GB） |\n| config.json | ✅ |\n| tokenizer.json | ✅ |\n| 下载进程 | **仍在运行**（PID 12163，ModelScope） |\n\n临时目录的 3 个文件大小看起来完整（3.5G + 3.5G + 1.7G），ModelScope 可能正在校验/移动。预计很快完成。\n\n### 2. vLLM 8B\n**未运行**，已停止。\n\n### 3. GPU 状态\n\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 / 96GB | 0% |\n| 1 | 0 / 96GB | 0% |\n| 2 | 0 / 96GB | 0% |\n| 3 | 0 / 96GB | **100%（驱动异常，需避开）** |\n\n所有卡空闲，GPU 3 仍然有驱动异常。\n\n### 4. 推荐 vLLM 32B 启动命令\n\n32B FP16 约需 ~64GB 显存，单卡 96GB 可承载。避开 GPU 3：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=0 python -m vllm.entrypoints.openai.api_server \\\n    --model /root/autodl-tmp/models/Qwen3-32B/ \\\n    --served-model-name Qwen3-32B \\\n    --tensor-parallel-size 1 \\\n    --max-model-len 4096 \\\n    --gpu-memory-utilization 0.85 \\\n    --port 8000 \\\n    --trust-remote-code \\\n    --enable-auto-tool-choice \\\n    --tool-call-parser hermes\n```\n\n关闭 Qwen3 thinking mode（在请求中加）：\n```json\n{\"extra_body\": {\"chat_template_kwargs\": {\"enable_thinking\": false}}}\n```\n\n或在 vLLM 启动时直接加 `--override-generation-config '{\"enable_thinking\": false}'`（如果 vLLM 版本支持）。\n\n### 下一步\n等 ModelScope 下载完成后（temp 文件移到主目录），验证模型，然后启动 vLLM。要不要我持续轮询下载状态？"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "extra_body": {
+                "chat_template_kwargs": {
+                  "enable_thinking": false
+                }
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

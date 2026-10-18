@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "616be6d1a02b118ad013",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd41074 gpu1 pi05 random k07",
+  "task_key": "worker_ops_westd41074-gpu1-pi05-random-k07_20260521T095037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd41074-gpu1-pi05-random-k07_20260521T095037_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "8c0af2c94bb0221927aaa5204a8ee43ac5964a49bf500bd704d5e91c4150a18e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 90689 |\n| **GPU** | cuda:1 (westd-41074) |\n| **日志** | `logs/eval_pi05_random_k07_object_seed42.log` |\n| **Registry** | `eval_pi05_random_k07_object_seed42_v2` → RUNNING |\n| **启动验证** | 模型加载中，config 已解析 (suite=libero_object, prune=random, keep=0.7) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

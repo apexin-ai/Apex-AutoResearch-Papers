@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb3b86fb7b8d8296338",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "eval exp 011 additional benchmarks",
+  "task_key": "worker_eval_exp_011_additional_benchmarks_20260519T141354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_011_additional_benchmarks_20260519T141354.log",
+    "occurrence": 1,
+    "bytes": 566358,
+    "sha256": "edac27e99cb08eff137e466eb01540451c9c1aca98e05aaeb98c4773787f74e8"
+  },
+  "statistics": {
+    "messages": 308,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 101,
+      "tool_call": 102,
+      "tool_result": 102
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 308,
+      "chunks": [
+        {
+          "path": "dbb3b86fb7b8d8296338-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dbb3b86fb7b8d8296338-part-0002.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ]
+}

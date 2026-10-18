@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c1643b930a70ce2bd684",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh llama download fix",
+  "task_key": "worker_ssh_llama-download-fix_20260515T083106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-download-fix_20260515T083106_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "24afbff0109c8b25c14410328493b7e2ea26d3c5da7d2316f10fea8c2594e667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总：\n\n**模型完整性验证**\n- Model: `llama`, hidden_size=8192, num_layers=80\n- Vocab: 128,000\n- **Shards: 15/15** — 全部来自 nvidia/Llama-3.3-70B-Instruct-FP8\n- Total size: **72.7GB**\n\n**已完成操作**\n1. 杀掉了所有冲突的下载进程（7+ 个）\n2. 确认无 neuralmagic 污染 — 所有分片大小一致，符合 nvidia repo 模式\n3. 从 hf-mirror.com 下载了缺失的 3 个分片（005, 007, 015），绕过 xet bridge\n4. 清理了根分区（删除 `/tmp/plan_a_integration_test/` 等）腾出空间\n5. transformers AutoConfig/AutoTokenizer 验证通过\n6. 已 kill 残留的 wget 父进程\n\n**磁盘空间**\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/root/autodl-tmp/` (数据盘) | 250G | 210G | 41G | 84% |\n| `/` (根分区) | 30G | 14G | 17G | 45% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

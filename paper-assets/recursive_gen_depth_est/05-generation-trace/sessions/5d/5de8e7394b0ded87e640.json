@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5de8e7394b0ded87e640",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops seed43 result check",
+  "task_key": "worker_ops_seed43-result-check_20260518T115032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed43-result-check_20260518T115032_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "cf93ee7722e8b2f6a3af67cc8189a853b9a1cfe9dc59891d664122ff6ae5fbb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### gpt2xl_seed43_001 (GPU1, PID 868749)\n\n| 阶段 | 状态 |\n|---|---|\n| depth_0 生成 (5000) | 完成 |\n| depth_0 LoRA 训练 | 完成 |\n| depth_1 生成 (5000) | 完成 |\n| depth_1 LoRA 训练 | 完成 |\n| depth_2 生成 (5000) | 完成 |\n| depth_2 LoRA 训练 | 完成 (loss=1.326, 3 epochs, 681s) |\n| **depth_3 生成 (5000)** | **进行中: 3230/5000 (64.6%)** |\n\n- 原始 PID 857779 已结束，当前新进程 PID 868749 (15.6GB VRAM, 70% util)\n- 无 summary.json，预计 depth_3 生成完后还需训练 depth_3 LoRA + 后续 pipeline 步骤\n\n### qwen25_14b_scale_002 (GPU0, PID 806751)\n\n| 阶段 | 状态 |\n|---|---|\n| 模型下载 | 完成 (8/8 shards, 下载错误已恢复) |\n| depth_0 生成 (5000) | 完成 |\n| depth_1 生成 (5000) | 完成 |\n| depth_1 LoRA 训练 | 完成 (loss=0.339, 3 epochs, 2429s) |\n| depth_2 生成 (5000) | 完成 |\n| **depth_2 LoRA 训练** | **进行中: 894/939 steps (95%), ~2min 剩余** |\n\n- GPU0 满载: 34.7GB VRAM, 100% util, 80°C, 603W\n- 训练速度 ~2.5s/step，即将完成 d2 训练，之后进入 d3 生成阶段\n- 14B 比 GPT2-XL 慢约 3.5x（单步 2.5s vs 0.7s）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

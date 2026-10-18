@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "ac547474e77068acb797",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "diag w9 v2 status check",
+  "task_key": "worker_diag_w9_v2_status_check_20260515T053130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_w9_v2_status_check_20260515T053130.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "384e0311fdd48e62b4ee3da6cba4ccadbd5613dc01cd11cafb6af71853e66a4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:31:39.449285+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_w9_v2_status_check_20260515T053130"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

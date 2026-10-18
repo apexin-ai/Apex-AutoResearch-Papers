@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "78350dcd0102a1950f21",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "infra fix data proxy",
+  "task_key": "worker_infra_fix-data-proxy_20260513T195022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-data-proxy_20260513T195022_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "d4087fc10e08add6d75e2a3c3bde9bfe37ab4d0bff2cb86b923057d4e01d917a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **tmux 清理** | 已清理 mvp_001 / sanity_001，无残留 GPU 进程 |\n| **C4 calibration 数据** | 策略 A 失败（代理 ProxyError），使用**策略 B**（WikiText-103 替代），100 samples / 66KB |\n| **WikiText-2 eval 数据** | 已缓存到 HF_HOME，离线加载验证通过 |\n| **profiler.py 修改** | 新增 `--calibration_data` 参数；`_load_calibration_data()` 优先从本地 JSON 加载，fallback 到 HF streaming |\n| **run_mvp.py 修改** | 新增 `--calibration_data` 参数，透传给 DistortionProfiler |\n| **eval_ppl.py** | 无需修改代码，tmux 中设 `HF_HOME=/root/autodl-tmp/.hf_cache` 即可离线加载 |\n| **语法验证** | profiler.py / run_mvp.py / eval_ppl.py 全部通过 |\n\n**使用方式**：启动实验时传入 `--calibration_data /root/ratekv/c4_calibration.json`，tmux session 需设置环境变量：\n```bash\nexport HF_HOME=/root/autodl-tmp/.hf_cache\n```\n\n**无剩余 blocker。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

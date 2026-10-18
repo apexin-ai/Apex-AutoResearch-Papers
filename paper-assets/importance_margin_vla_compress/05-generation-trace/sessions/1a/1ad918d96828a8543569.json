@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad918d96828a8543569",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest ov attn k095 goal v2",
+  "task_key": "worker_harvest_ov_attn_k095_goal_v2_20260527T093113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_ov_attn_k095_goal_v2_20260527T093113_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "2f289262f13f56851c983b0c719fd11529ff90d928b5debafcf8416d895d663a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 不存在（可能已被清除或未创建）。\n\n总结：**eval_openvla_attn_k095_goal_seed42_v2** 成功完成，Overall SR = **75.6%**，与 ROADMAP 已有值 76.8% 基本一致（-1.2pp）。10 个 task 全部跑完，耗时 199.3 min，EXIT_CODE=0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

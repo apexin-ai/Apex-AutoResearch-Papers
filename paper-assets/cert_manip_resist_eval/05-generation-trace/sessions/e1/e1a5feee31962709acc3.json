@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e1a5feee31962709acc3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis plan006 cross benchmark v2",
+  "task_key": "worker_analysis_plan006-cross-benchmark-v2_20260524T102005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-cross-benchmark-v2_20260524T102005_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "20e42387814a0779b451145b3cb006feb367464f657760f4407f7079e376e992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。验证结果文件已保存。\n\n## 结果\n\n**V2 Cross-Benchmark Sign Consistency: 17/18**（论文旧数据 V1: 14/18）\n\n按 K 分解：\n- K=3: **5/6** sign consistent（唯一不一致：`position_bias`，boot_rate=0.218）\n- K=5: **6/6** sign consistent\n- K=7: **6/6** sign consistent\n\n唯一不一致的条件是 **K3×position_bias**：MMLU β_keff=+0.0837（显著 p=0.007），ARC β_keff=−0.0500（不显著 p=0.43）。Bootstrap sign rate 仅 21.8%，说明 ARC 侧系数方向在 bootstrap 中不稳定。\n\nV2 数据修正后结果比 V1 更强（17/18 vs 14/18），β(K_eff) 在几乎所有条件下方向一致为正，且 K≥5 时 100% 一致。\n\n结果已保存至 `/root/cert_manip_resist_eval/artifacts/results/plan001/cross_benchmark_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

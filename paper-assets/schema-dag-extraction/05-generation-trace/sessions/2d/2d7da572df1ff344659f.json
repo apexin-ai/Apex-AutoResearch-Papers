@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d7da572df1ff344659f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis c3 extreme batch n",
+  "task_key": "worker_analysis_c3_extreme_batch_n_20260522T082600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c3_extreme_batch_n_20260522T082600_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "6eb75f6b5cdcc62880fc17ba69ef1d5b9492edf147ae6f6fc97914510c1b0f13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**Figure 1b 确认为 N=1 vs N=1 单 batch 比较。** 所有三个 pool size（16/40/80-rel）均使用贪心构造的单个极端 batch。\n\n核心发现：\n\n1. **80-rel 的 CI [17.7, 42.7] 是实例级 bootstrap**（对 96 个 test instance 重采样），不是 batch 级复制。`bootstrap_ci.py` 源码确认了这一点。\n\n2. **严重程度低于预期。** 论文已有充分的多 batch 证据作为主力支撑：\n   - 100-batch 回归 R²=0.218, p<0.001（主证据）\n   - 25v25 对比 Δ=25.5pp, r=-0.919（prompt sensitivity 部分）\n   - 四分位对比 Δ=-5.3pp, N=25 per group\n   - 论文已在正文中承认 \"based on a single extreme batch per BCS level\"\n\n3. **真正的风险**：Figure 1b 的 bar chart 视觉权重超过其统计权重。读者会将每根柱子理解为有重复的均值，而非 N=1 单点。5v5 对比（同一数据）的 Δ=7.92pp 且 CI 跨零（不显著），暴露了 batch 级变异的问题。\n\n4. **建议**：将 Figure 1b 降级为 illustrative example（论文已部分这样做），主证据地位交给 100-batch 回归分析。或用 scatter plot 替换 bar chart。\n\n报告已保存并注册：`analysis_c3_extreme_batch_n.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

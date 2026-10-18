@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e73709f3c2761914056f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "run exp fewrel 40rel r4",
+  "task_key": "worker_run_exp_fewrel_40rel_r4_20260515T211020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp_fewrel_40rel_r4_20260515T211020_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "84b96f41a52a020614bb01d0c28de7650cd29153bf64f9b67c8bb2b899207275"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已开始！第一个 batch（count_1_random_0，1 type，12 samples）正在处理，速度 ~2s/it。一切正常运行。\n\n实验状态总结：\n- **exp_id**: `exp_fewrel_40rel_r4`\n- **tmux session**: `exp_fewrel_40rel_r4`\n- **日志**: `~/runs/schema-dag-extraction/exp_fewrel_40rel_r4.log`\n- **配置**: 105 batches, 6960 inferences (exp1) + exp2 后续\n- **GPU**: 84487/97887 MiB, Qwen3-32B-FP8 正常加载\n- **增量保存**: 启用，写入 `artifacts/fewrel_40rel_r4/results_incremental.jsonl`\n- **预计 exp1 时间**: 实际推理速度 ~2s/sample 比估计的 1.5s 稍慢，exp1 约 230 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

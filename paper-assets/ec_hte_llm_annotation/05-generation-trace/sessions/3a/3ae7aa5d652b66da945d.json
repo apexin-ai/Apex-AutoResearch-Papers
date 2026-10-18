@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3ae7aa5d652b66da945d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "viz applicability frontier",
+  "task_key": "worker_viz_applicability-frontier_20260521T131949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_applicability-frontier_20260521T131949_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "c8f951f6f4dd0a034b709bbafbc93fd84d9af78b4fff5c0eb65c4bafe13d495d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The plot looks good. The key story is clear:\n\n- **Green zone** (bottom-right): EC-HTE benefits when budget per subgroup is high (n/K > ~50–250) and classifier quality is decent (worst misclass < 0.30)\n- **Red zone** (top-left): EC-HTE fails with poor classifiers (FNR > 0.5, exp-015) or insufficient budget (n/K = 12.5, exp-013)\n- **Yellow zone**: transitional region where HB and Global are comparable\n\nKey thresholds annotated:\n- `n_expert/K = 25` vertical dashed line (budget threshold from exp-013)\n- `worst FNR = 0.5` horizontal dotted line (classifier quality threshold from exp-015)\n- Crossover points: K=2 at n/K ≈ 50, K=4 at n/K ≈ 250\n\nOutput saved to `artifacts/figures/applicability_frontier.{pdf,png}` (300 dpi PNG, 350 KB)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

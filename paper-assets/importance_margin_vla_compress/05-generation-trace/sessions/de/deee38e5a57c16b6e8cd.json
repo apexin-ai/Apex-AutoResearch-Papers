@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "deee38e5a57c16b6e8cd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops openvla pruning result check",
+  "task_key": "worker_ops_openvla_pruning_result_check_20260517T193654",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_openvla_pruning_result_check_20260517T193654_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "f1b40640a1adcaaaf7906e24ace7d71885bd15db3422954b4b3441d26f2f39ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**PID 697608 仍在运行**，正在执行 random prune k=0.5 eval：\n\n```\npython -u eval_openvla_libero.py --mode random_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 7\n```\n\n### Baseline 结果（已完成）\n- **Overall SR: 74.0% (370/500)**\n- 文件: `openvla_baseline_object.json`\n- 耗时: 226.1 min\n\nPer-task SR:\n| Task | SR |\n|---|---|\n| alphabet soup | 78% |\n| cream cheese | 80% |\n| salad dressing | 82% |\n| bbq sauce | 46% |\n| ketchup | 96% |\n| tomato sauce | 78% |\n| butter | 58% |\n| milk | 72% |\n| chocolate pudding | 68% |\n| orange juice | 82% |\n\n### Random Prune k=0.5 状态\n- **仍在运行**，刚开始 ~7 分钟\n- Log 只到 Task 1/10, Ep 10/50 (task_sr=7/10)\n- 按 baseline 耗时推算，预计还需 **~3.5 小时**（约 07:00-07:30 服务器时间完成）\n- 输出可能被缓冲，最终结果会写入 `openvla_random_prune_k05_object.json`（目前尚未生成）\n\n### 结论\npruning eval 未退出，进程正常运行中。需要等待约 3.5 小时才能拿到最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

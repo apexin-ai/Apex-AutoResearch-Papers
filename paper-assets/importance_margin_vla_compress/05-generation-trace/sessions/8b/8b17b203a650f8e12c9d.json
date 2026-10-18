@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8b17b203a650f8e12c9d",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "registry batch register completed",
+  "task_key": "worker_registry_batch_register_completed_20260522T190707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_registry_batch_register_completed_20260522T190707.log",
+    "occurrence": 1,
+    "bytes": 848758,
+    "sha256": "b1477d3a0992098d58b8d0a836fec74643d47b240aa789b0a86bd5861c701949"
+  },
+  "statistics": {
+    "messages": 153,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 14,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "8b17b203a650f8e12c9d-part-0001.json",
+          "message_count": 49
+        },
+        {
+          "path": "8b17b203a650f8e12c9d-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ]
+}

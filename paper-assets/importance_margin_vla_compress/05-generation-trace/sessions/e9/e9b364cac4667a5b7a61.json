@@ -1,0 +1,1422 @@
+{
+  "schema_version": "1.0",
+  "id": "e9b364cac4667a5b7a61",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "paper research vit pruning gap",
+  "task_key": "worker_paper_research_vit_pruning_gap_20260522T230243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_vit_pruning_gap_20260522T230243.log",
+    "occurrence": 1,
+    "bytes": 113045,
+    "sha256": "a8c196d47e07daa4d06e61474ccccd3ab83da4810d35cc6b55c50199a18f3dec"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+                "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5e2668a2-1cf4-438f-b8e4-79b8bab348ae",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779495000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b2f24234-c9e1-492a-a84b-026db0abf56b",
+                "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll find a complementary paper for the ViT Token Pruning/Merging cluster. Let me start by reading the existing literature map and searching for candidates."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "c4e9afa9-1585-4a28-8538-299b23ab574c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmoEjgDkRK1Z5UiMXJbtG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12307,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12307
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014GQvujzqU1QuoRkiCD8Zbd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "13474bac-e0ab-4403-b2c8-81a703d2d38e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmoEjgDkRK1Z5UiMXJbtG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12307,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12307
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T23:02:54.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014GQvujzqU1QuoRkiCD8Zbd",
+              "type": "tool_result",
+              "content": "1\t# Literature Map — importance_margin_vla_compress\n2\t# Generated: 2026-05-17\n3\t# Citation budget: 35\n4\t\n5\tpapers:\n6\t\n7\t  # ============================================================\n8\t  # Cluster: VLA Models (target: 6)\n9\t  # ============================================================\n10\t  - bibtex_key: shukor2025smolvla\n11\t    title: \"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics\"\n12\t    authors: \"Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others\"\n13\t    year: 2025\n14\t    venue: \"arXiv preprint\"\n15\t    arxiv_id: \"2506.01844\"\n16\t    category: \"VLA Models\"\n17\t    role: foundation\n18\t    verified: true\n19\t    key_finding: \"450M-param VLA combining compact VLM (SigLIP+Qwen2) with flow matching action expert; 87.3% SR on LIBERO with batch size 64.\"\n20\t    pruning_stats: null\n21\t    notes: \"Our experimental platform. SigLIP encoder produces 128 vision tokens.\"\n22\t\n23\t  - bibtex_key: kim2024openvla\n24\t    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n25\t    authors: \"Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others\"\n26\t    year: 2024\n27\t    venue: \"CoRL 2024\"\n28\t    arxiv_id: \"2406.09246\"\n29\t    category: \"VLA Models\"\n30\t    role: foundation\n31\t    verified: true\n32\t    key_finding: \"7B-param open-source VLA trained on 970K episodes from Open X-Embodiment; supports parameter-efficient fine-tuning.\"\n33\t\n34\t  - bibtex_key: zitkovich2023rt2\n35\t    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n36\t    authors: \"Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others\"\n37\t    year: 2023\n38\t    venue: \"CoRL 2023\"\n39\t    arxiv_id: \"2307.15818\"\n40\t    category: \"VLA Models\"\n41\t    role: foundation\n42\t    verified: true\n43\t    key_finding: \"Co-fine-tunes VLM on robotic trajectory data; actions expressed as text tokens; emergent semantic reasoning via chain of thought.\"\n44\t\n45\t  - bibtex_key: ghosh2024octo\n46\t    title: \"Octo: An Open-Source Generalist Robot Policy\"\n47\t    authors: \"Ghosh, Dibya and Walke, Homer and Pertsch, Karl and others\"\n48\t    year: 2024\n49\t    venue: \"arXiv preprint\"\n50\t    arxiv_id: \"2405.12213\"\n51\t    category: \"VLA Models\"\n52\t    role: background\n53\t    verified: true\n54\t    key_finding: \"Transformer-based generalist policy trained on 800K trajectories from Open X-Embodiment; effective fine-tuning across 9 robot platforms.\"\n55\t\n56\t  - bibtex_key: black2024pi0\n57\t    title: \"pi0: A Vision-Language-Action Flow Model for General Robot Control\"\n58\t    authors: \"Black, Kevin and Brown, Noah and Driess, Danny and others\"\n59\t    year: 2024\n60\t    venue: \"arXiv preprint\"\n61\t    arxiv_id: \"2410.24164\"\n62\t    category: \"VLA Models\"\n63\t    role: foundation\n64\t    verified: true\n65\t    key_finding: \"3.3B VLA using flow matching for 50Hz action generation; trained on 10K+ hours of robot data across 7 platforms and 68 tasks.\"\n66\t\n67\t  - bibtex_key: openxembodiment2024\n68\t    title: \"Open X-Embodiment: Robotic Learning Datasets and RT-X Models\"\n69\t    authors: \"Open X-Embodiment Collaboration\"\n70\t    year: 2024\n71\t    venue: \"ICRA 2024\"\n72\t    arxiv_id: \"2310.08864\"\n73\t    category: \"VLA Models\"\n74\t    role: background\n75\t    verified: true\n76\t    key_finding: \"1M+ real robot trajectories spanning 22 embodiments; RT-1-X shows 50% improvement over single-embodiment baselines.\"\n77\t\n78\t  # ============================================================\n79\t  # Cluster: VLM/LLM Token Efficiency (target: 8)\n80\t  # ============================================================\n81\t  - bibtex_key: chen2024fastv\n82\t    title: \"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\"\n83\t    authors: \"Chen, Liang and others\"\n84\t    year: 2024\n85\t    venue: \"ECCV 2024 (Oral)\"\n86\t    arxiv_id: null\n87\t    category: \"VLM/LLM Token Efficiency\"\n88\t    role: direct-competitor\n89\t    verified: true\n90\t    key_finding: \"Plug-and-play visual token pruning for VLMs; prunes tokens in deep layers based on attention patterns from early layers.\"\n91\t    pruning_stats: \"Prunes ~50% visual tokens with minimal accuracy loss on VLM benchmarks.\"\n92\t\n93\t  - bibtex_key: zhang2023h2o\n94\t    title: \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\"\n95\t    authors: \"Zhang, Zhenyu and others\"\n96\t    year: 2023\n97\t    venue: \"NeurIPS 2023\"\n98\t    arxiv_id: \"2306.14048\"\n99\t    category: \"VLM/LLM Token Efficiency\"\n100\t    role: background\n101\t    verified: true\n102\t    key_finding: \"KV cache eviction retaining heavy-hitter tokens; 20% heavy hitters achieve up to 29x throughput improvement.\"\n103\t\n104\t  - bibtex_key: xiao2024streamingllm\n105\t    title: \"Efficient Streaming Language Models with Attention Sinks\"\n106\t    authors: \"Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike\"\n107\t    year: 2024\n108\t    venue: \"ICLR 2024\"\n109\t    arxiv_id: \"2309.17453\"\n110\t    category: \"VLM/LLM Token Efficiency\"\n111\t    role: background\n112\t    verified: true\n113\t    key_finding: \"Attention sink phenomenon: keeping KV of initial tokens recovers window attention performance; enables stable LLM inference over 4M+ tokens.\"\n114\t\n115\t  - bibtex_key: hsu2025vlacache\n116\t    title: \"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching\"\n117\t    authors: \"Hsu, Siyu and others\"\n118\t    year: 2025\n119\t    venue: \"NeurIPS 2025\"\n120\t    arxiv_id: \"2502.02175\"\n121\t    category: \"VLM/LLM Token Efficiency\"\n122\t    role: direct-competitor\n123\t    verified: true\n124\t    key_finding: \"Training-free VLA acceleration via temporal KV caching of static visual tokens; 1.7x speedup with negligible SR loss.\"\n125\t    notes: \"Exploits temporal continuity, not token removal. Key difference from our study: caches rather than removes tokens.\"\n126\t\n127\t  - bibtex_key: wang2026vlaiap\n128\t    title: \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models\"\n129\t    authors: \"Wang, others\"\n130\t    year: 2026\n131\t    venue: \"arXiv preprint\"\n132\t    arxiv_id: \"2603.22991\"\n133\t    category: \"VLM/LLM Token Efficiency\"\n134\t    role: direct-competitor\n135\t    verified: true\n136\t    key_finding: \"Geometric prior + dynamic scheduling for VLA token pruning; 97.8% SR with 1.54x speedup. Claims to preserve manipulation-critical tokens.\"\n137\t    notes: \"Reports successful VLA token pruning. Key contrast with our findings. Uses OpenVLA, not SmolVLA.\"\n138\t\n139\t  - bibtex_key: yang2025efficientvla\n140\t    title: \"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models\"\n141\t    authors: \"Yang, Yantai and Wang, Yuhao and Wen, Zichen and others\"\n142\t    year: 2025\n143\t    venue: \"arXiv preprint\"\n144\t    arxiv_id: \"2506.10100\"\n145\t    category: \"VLM/LLM Token Efficiency\"\n146\t    role: direct-competitor\n147\t    verified: true\n148\t    key_finding: \"Synergistic layer pruning + task-aware visual token selection + temporal caching on CogACT (7B); 1.93x speedup with 0.6% SR drop on SIMPLER.\"\n149\t    notes: \"Combines three orthogonal efficiency strategies. Uses CogACT not SmolVLA. Layer pruning and temporal caching are complementary to our token-level analysis.\"\n150\t\n151\t  - bibtex_key: liu2025vlapruner\n152\t    title: \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference\"\n153\t    authors: \"Liu, Ziyan and Chen, Yeqiu and Cai, Hongyi and others\"\n154\t    year: 2025\n155\t    venue: \"arXiv preprint\"\n156\t    arxiv_id: \"2511.16449\"\n157\t    category: \"VLM/LLM Token Efficiency\"\n158\t    role: direct-competitor\n159\t    verified: true\n160\t    key_finding: \"Dual-level importance criterion combining prefill attention (semantic) and temporally-smoothed action decode attention for VLA token pruning.\"\n161\t    notes: \"VLA-specific pruning exploiting temporal continuity. Directly relevant as it separates semantic vs action-level token importance.\"\n162\t\n163\t  - bibtex_key: shang2024prumerge\n164\t    title: \"LLaVA-PruMerge: Adaptive Token Reduction for Efficient Large Multimodal Models\"\n165\t    authors: \"Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan\"\n166\t    year: 2024\n167\t    venue: \"ICCV 2025\"\n168\t    arxiv_id: \"2403.15388\"\n169\t    category: \"VLM/LLM Token Efficiency\"\n170\t    role: direct-competitor\n171\t    verified: true\n172\t    key_finding: \"Adaptive visual token pruning + merging for LMMs; reduces tokens by 4x (to 5.5% with PruMerge) with comparable performance on VQA/reasoning tasks.\"\n173\t    notes: \"VLM token reduction via CLS attention importance + similarity-based merging. Establishes prune-then-merge paradigm for visual tokens in VLMs.\"\n174\t\n175\t  # ============================================================\n176\t  # Cluster: ViT Token Pruning/Merging (target: 7)\n177\t  # ============================================================\n178\t  - bibtex_key: rao2021dynamicvit\n179\t    title: \"DynamicViT: Efficient Vision Transformers with Dynamic Token Sparsification\"\n180\t    authors: \"Rao, Yongming and Zhao, Wenliang and Liu, Benlin and Lu, Jiwen and Zhou, Jie and Hsieh, Cho-Jui\"\n181\t    year: 2021\n182\t    venue: \"NeurIPS 2021\"\n183\t    arxiv_id: \"2106.02034\"\n184\t    category: \"ViT Token Pruning/Merging\"\n185\t    role: foundation\n186\t    verified: true\n187\t    key_finding: \"Hierarchical token pruning for ViT; removes 66% tokens with only 0.5% accuracy drop on ImageNet; 31-37% FLOPs reduction.\"\n188\t    pruning_stats: \"66% token removal, <0.5% accuracy drop, 40%+ throughput improvement.\"\n189\t\n190\t  - bibtex_key: bolya2023tome\n191\t    title: \"Token Merging: Your ViT But Faster\"\n192\t    authors: \"Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy\"\n193\t    year: 2023\n194\t    venue: \"ICLR 2023 (Oral)\"\n195\t    arxiv_id: \"2210.09461\"\n196\t    category: \"ViT Token Pruning/Merging\"\n197\t    role: foundation\n198\t    verified: true\n199\t    key_finding: \"Training-free token merging via bipartite matching; 2x throughput on ViT-L with only 0.2-0.3% accuracy drop.\"\n200\t    pruning_stats: \"2x throughput, 0.2-0.3% accuracy drop. Merges redundant foreground + background tokens.\"\n201\t\n202\t  - bibtex_key: liang2022evit\n203\t    title: \"Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations\"\n204\t    authors: \"Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao\"\n205\t    year: 2022\n206\t    venue: \"ICLR 2022\"\n207\t    arxiv_id: \"2202.07800\"\n208\t    category: \"ViT Token Pruning/Merging\"\n209\t    role: foundation\n210\t    verified: true\n211\t    key_finding: \"Token reorganization guided by CLS attention; 50% speedup with 0.3% accuracy drop on DeiT-S. Fuses inattentive tokens.\"\n212\t    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n213\t\n214\t  # ============================================================\n215\t  # Cluster: Closed-Loop Evaluation (target: 5)\n216\t  # ============================================================\n217\t  - bibtex_key: liu2023libero\n218\t    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n219\t    authors: \"Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter\"\n220\t    year: 2023\n221\t    venue: \"NeurIPS 2023\"\n222\t    arxiv_id: \"2306.03310\"\n223\t    category: \"Closed-Loop Evaluation\"\n224\t    role: foundation\n225\t    verified: true\n226\t    key_finding: \"130 manipulation tasks across 4 suites; evaluates knowledge transfer in lifelong robot learning with teleoperated demonstrations.\"\n227\t    notes: \"Our evaluation benchmark. We use Object/Spatial/Goal suites (10 tasks each, 50 episodes/task).\"\n228\t\n229\t  - bibtex_key: mees2022calvin\n230\t    title: \"CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks\"\n231\t    authors: \"Mees, Oier and Hermann, Lukas and Rosete-Beas, Erick and Burgard, Wolfram\"\n232\t    year: 2022\n233\t    venue: \"IEEE RA-L\"\n234\t    arxiv_id: \"2112.03227\"\n235\t    category: \"Closed-Loop Evaluation\"\n236\t    role: background\n237\t    verified: true\n238\t    key_finding: \"Long-horizon language-conditioned manipulation benchmark; 24h teleoperated play data with 20K language directives.\"\n239\t\n240\t  - bibtex_key: chi2023diffusionpolicy\n241\t    title: \"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\"\n242\t    authors: \"Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran\"\n243\t    year: 2023\n244\t    venue: \"RSS 2023\"\n245\t    arxiv_id: \"2303.04137\"\n246\t    category: \"Closed-Loop Evaluation\"\n247\t    role: background\n248\t    verified: true\n249\t    key_finding: \"Conditional denoising diffusion for robot policy; 46.9% average improvement across 12 tasks; handles multimodal action distributions.\"\n250\t\n251\t  # ============================================================\n252\t  # Cluster: Negative Results & Evaluation Pitfalls (target: 5)\n253\t  # ============================================================\n254\t  - bibtex_key: zeng2023transformers_tsf\n255\t    title: \"Are Transformers Effective for Time Series Forecasting?\"\n256\t    authors: \"Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang\"\n257\t    year: 2023\n258\t    venue: \"AAAI 2023\"\n259\t    arxiv_id: \"2205.13504\"\n260\t    category: \"Negative Results & Evaluation Pitfalls\"\n261\t    role: foundation\n262\t    verified: true\n263\t    key_finding: \"Simple linear models outperform sophisticated Transformer-based LTSF models on all 9 datasets, often by 20-50%. Challenges the Transformer paradigm for time series.\"\n264\t\n265\t  - bibtex_key: bouthillier2024negative\n266\t    title: \"Position: Embracing Negative Results in Machine Learning\"\n267\t    authors: \"Bouthillier, Xavier and others\"\n268\t    year: 2024\n269\t    venue: \"ICML 2024\"\n270\t    arxiv_id: \"2406.03980\"\n271\t    category: \"Negative Results & Evaluation Pitfalls\"\n272\t    role: background\n273\t    verified: true\n274\t    key_finding: \"Position paper arguing for publication of negative results to improve ML research efficiency; predictive performance alone is insufficient for evaluating contributions.\"\n275\t\n276\t  # ============================================================\n277\t  # Background / Architecture\n278\t  # ============================================================\n279\t  - bibtex_key: zhai2023siglip\n280\t    title: \"Sigmoid Loss for Language Image Pre-Training\"\n281\t    authors: \"Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas\"\n282\t    year: 2023\n283\t    venue: \"ICCV 2023\"\n284\t    arxiv_id: \"2303.15343\"\n285\t    category: \"VLA Models\"\n286\t    role: foundation\n287\t    verified: true\n288\t    key_finding: \"Pairwise sigmoid loss for image-text pretraining; optimal at batch size 32K; 84.5% ImageNet zero-shot with only 4 TPUv4 chips.\"\n289\t    notes: \"Vision encoder used in SmolVLA. Produces spatial patch tokens without CLS token.\"\n290\t\n291\t  - bibtex_key: yang2024qwen2\n292\t    title: \"Qwen2 Technical Report\"\n293\t    authors: \"Yang, An and others\"\n294\t    year: 2024\n295\t    venue: \"arXiv preprint\"\n296\t    arxiv_id: \"2407.10671\"\n297\t    category: \"VLA Models\"\n298\t    role: background\n299\t    verified: true\n300\t    key_finding: \"0.5B-72B parameter LLM family; Qwen2-1.5B is the LLM backbone in SmolVLA.\"\n301\t\n302\t  - bibtex_key: lipman2023flow\n303\t    title: \"Flow Matching for Generative Modeling\"\n304\t    authors: \"Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt\"\n305\t    year: 2023\n306\t    venue: \"ICLR 2023\"\n307\t    arxiv_id: \"2210.02747\"\n308\t    category: \"VLA Models\"\n309\t    role: foundation\n310\t    verified: true\n311\t    key_finding: \"Simulation-free CNF training via regressing conditional probability path vector fields; OT displacement interpolation enables faster training and sampling.\"\n312\t    notes: \"Action generation mechanism in SmolVLA and pi0.\"\n313\t\n314\t  # ============================================================\n315\t  # Cluster: Vision Connectors & Token Compression (target: 6)\n316\t  # ============================================================\n317\t  - bibtex_key: li2023blip2\n318\t    title: \"BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models\"\n319\t    authors: \"Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven\"\n320\t    year: 2023\n321\t    venue: \"ICML 2023\"\n322\t    arxiv_id: \"2301.12597\"\n323\t    category: \"Vision Connectors & Token Compression\"\n324\t    role: foundation\n325\t    verified: true\n326\t    key_finding: \"Querying Transformer (Q-Former) compresses visual tokens into fixed number of query tokens; outperforms Flamingo80B on zero-shot VQAv2 with 54x fewer trainable parameters.\"\n327\t    notes: \"Exemplar of learned cross-attention compression for vision-language bridging. Our proposed cross-attention compression draws on this principle.\"\n328\t\n329\t  - bibtex_key: alayrac2022flamingo\n330\t    title: \"Flamingo: a Visual Language Model for Few-Shot Learning\"\n331\t    authors: \"Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and others\"\n332\t    year: 2022\n333\t    venue: \"NeurIPS 2022\"\n334\t    arxiv_id: \"2204.14198\"\n335\t    category: \"Vision Connectors & Token Compression\"\n336\t    role: foundation\n337\t    verified: true\n338\t    key_finding: \"Perceiver Resampler maps variable-size spatio-temporal visual features to fixed number of output tokens via cross-attention with learnable queries.\"\n339\t    notes: \"Another learned cross-attention connector. Together with BLIP-2, establishes the cross-attention connector paradigm that contrasts with MLP/pixel_shuffle approaches.\"\n340\t\n341\t  - bibtex_key: liu2023llava\n342\t    title: \"Visual Instruction Tuning\"\n343\t    authors: \"Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae\"\n344\t    year: 2023\n345\t    venue: \"NeurIPS 2023\"\n346\t    arxiv_id: \"2304.08485\"\n347\t    category: \"Vision Connectors & Token Compression\"\n348\t    role: foundation\n349\t    verified: true\n350\t    key_finding: \"Simple linear/MLP projection connects vision encoder to LLM; LLaVA-1.5 shows two-layer MLP projector is surprisingly effective and data-efficient.\"\n351\t    notes: \"Key reference for the MLP projector approach used in OpenVLA. Our finding that MLP projector enables graceful degradation under token pruning connects to this design choice.\"\n352\t\n353\t  - bibtex_key: shi2016subpixel\n354\t    title: \"Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network\"\n355\t    authors: \"Shi, Wenzhe and Caballero, Jose and Huszar, Ferenc and Totz, Johannes and Aitken, Andrew P. and Bishop, Rob and Rueckert, Daniel and Wang, Zehan\"\n356\t    year: 2016\n357\t    venue: \"CVPR 2016\"\n358\t    arxiv_id: \"1609.05158\"\n359\t    category: \"Vision Connectors & Token Compression\"\n360\t    role: background\n361\t    verified: true\n362\t    key_finding: \"Introduces sub-pixel convolution (pixel shuffle) that rearranges spatial resolution and channel dimensions; enables real-time 1080p super-resolution.\"\n363\t    notes: \"Origin of the pixel_shuffle operation adopted by SmolVLA and InternVL as vision connector. Central to our cliff-edge failure analysis.\"\n364\t\n365\t  - bibtex_key: chen2024internvl\n366\t    title: \"How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites\"\n367\t    authors: \"Chen, Zhe and Wang, Weiyun and Tian, Hao and others\"\n368\t    year: 2024\n369\t    venue: \"arXiv preprint\"\n370\t    arxiv_id: \"2404.16821\"\n371\t    category: \"Vision Connectors & Token Compression\"\n372\t    role: background\n373\t    verified: true\n374\t    key_finding: \"InternVL 1.5 uses 2x2 pixel unshuffle to compress 1024 visual tokens to 256 per tile; supports dynamic high-resolution up to 4K with up to 40 tiles.\"\n375\t    notes: \"Another VLM using pixel_shuffle connector, confirming its adoption beyond SmolVLA. Strengthens generality of our cliff-edge finding.\"\n376\t\n377\t  - bibtex_key: oquab2024dinov2\n378\t    title: \"DINOv2: Learning Robust Visual Features without Supervision\"\n379\t    authors: \"Oquab, Maxime and Darcet, Timothee and Moutakanni, Theo and others\"\n380\t    year: 2024\n381\t    venue: \"TMLR 2024\"\n382\t    arxiv_id: \"2304.07193\"\n383\t    category: \"Vision Connectors & Token Compression\"\n384\t    role: foundation\n385\t    verified: true\n386\t    key_finding: \"Self-supervised ViT producing all-purpose visual features; scaled to ViT-g with curated LVD-142M dataset; strong transfer across tasks without finetuning.\"\n387\t    notes: \"Vision encoder used in OpenVLA (DinoSigLIP). Its feature structure interacts with the MLP projector to determine token-level importance distribution.\"\n388\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "b549c559-273a-47a6-be5b-f688c5ab465b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+                "content": "# Literature Map — importance_margin_vla_compress\n# Generated: 2026-05-17\n# Citation budget: 35\n\npapers:\n\n  # ============================================================\n  # Cluster: VLA Models (target: 6)\n  # ============================================================\n  - bibtex_key: shukor2025smolvla\n    title: \"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics\"\n    authors: \"Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others\"\n    year: 2025\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2506.01844\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"450M-param VLA combining compact VLM (SigLIP+Qwen2) with flow matching action expert; 87.3% SR on LIBERO with batch size 64.\"\n    pruning_stats: null\n    notes: \"Our experimental platform. SigLIP encoder produces 128 vision tokens.\"\n\n  - bibtex_key: kim2024openvla\n    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n    authors: \"Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others\"\n    year: 2024\n    venue: \"CoRL 2024\"\n    arxiv_id: \"2406.09246\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"7B-param open-source VLA trained on 970K episodes from Open X-Embodiment; supports parameter-efficient fine-tuning.\"\n\n  - bibtex_key: zitkovich2023rt2\n    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n    authors: \"Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others\"\n    year: 2023\n    venue: \"CoRL 2023\"\n    arxiv_id: \"2307.15818\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"Co-fine-tunes VLM on robotic trajectory data; actions expressed as text tokens; emergent semantic reasoning via chain of thought.\"\n\n  - bibtex_key: ghosh2024octo\n    title: \"Octo: An Open-Source Generalist Robot Policy\"\n    authors: \"Ghosh, Dibya and Walke, Homer and Pertsch, Karl and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2405.12213\"\n    category: \"VLA Models\"\n    role: background\n    verified: true\n    key_finding: \"Transformer-based generalist policy trained on 800K trajectories from Open X-Embodiment; effective fine-tuning across 9 robot platforms.\"\n\n  - bibtex_key: black2024pi0\n    title: \"pi0: A Vision-Language-Action Flow Model for General Robot Control\"\n    authors: \"Black, Kevin and Brown, Noah and Driess, Danny and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2410.24164\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"3.3B VLA using flow matching for 50Hz action generation; trained on 10K+ hours of robot data across 7 platforms and 68 tasks.\"\n\n  - bibtex_key: openxembodiment2024\n    title: \"Open X-Embodiment: Robotic Learning Datasets and RT-X Models\"\n    authors: \"Open X-Embodiment Collaboration\"\n    year: 2024\n    venue: \"ICRA 2024\"\n    arxiv_id: \"2310.08864\"\n    category: \"VLA Models\"\n    role: background\n    verified: true\n    key_finding: \"1M+ real robot trajectories spanning 22 embodiments; RT-1-X shows 50% improvement over single-embodiment baselines.\"\n\n  # ============================================================\n  # Cluster: VLM/LLM Token Efficiency (target: 8)\n  # ============================================================\n  - bibtex_key: chen2024fastv\n    title: \"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\"\n    authors: \"Chen, Liang and others\"\n    year: 2024\n    venue: \"ECCV 2024 (Oral)\"\n    arxiv_id: null\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Plug-and-play visual token pruning for VLMs; prunes tokens in deep layers based on attention patterns from early layers.\"\n    pruning_stats: \"Prunes ~50% visual tokens with minimal accuracy loss on VLM benchmarks.\"\n\n  - bibtex_key: zhang2023h2o\n    title: \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\"\n    authors: \"Zhang, Zhenyu and others\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2306.14048\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: background\n    verified: true\n    key_finding: \"KV cache eviction retaining heavy-hitter tokens; 20% heavy hitters achieve up to 29x throughput improvement.\"\n\n  - bibtex_key: xiao2024streamingllm\n    title: \"Efficient Streaming Language Models with Attention Sinks\"\n    authors: \"Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike\"\n    year: 2024\n    venue: \"ICLR 2024\"\n    arxiv_id: \"2309.17453\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: background\n    verified: true\n    key_finding: \"Attention sink phenomenon: keeping KV of initial tokens recovers window attention performance; enables stable LLM inference over 4M+ tokens.\"\n\n  - bibtex_key: hsu2025vlacache\n    title: \"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching\"\n    authors: \"Hsu, Siyu and others\"\n    year: 2025\n    venue: \"NeurIPS 2025\"\n    arxiv_id: \"2502.02175\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Training-free VLA acceleration via temporal KV caching of static visual tokens; 1.7x speedup with negligible SR loss.\"\n    notes: \"Exploits temporal continuity, not token removal. Key difference from our study: caches rather than removes tokens.\"\n\n  - bibtex_key: wang2026vlaiap\n    title: \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models\"\n    authors: \"Wang, others\"\n    year: 2026\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2603.22991\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Geometric prior + dynamic scheduling for VLA token pruning; 97.8% SR with 1.54x speedup. Claims to preserve manipulation-critical tokens.\"\n    notes: \"Reports successful VLA token pruning. Key contrast with our findings. Uses OpenVLA, not SmolVLA.\"\n\n  - bibtex_key: yang2025efficientvla\n    title: \"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models\"\n    authors: \"Yang, Yantai and Wang, Yuhao and Wen, Zichen and others\"\n    year: 2025\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2506.10100\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Synergistic layer pruning + task-aware visual token selection + temporal caching on CogACT (7B); 1.93x speedup with 0.6% SR drop on SIMPLER.\"\n    notes: \"Combines three orthogonal efficiency strategies. Uses CogACT not SmolVLA. Layer pruning and temporal caching are complementary to our token-level analysis.\"\n\n  - bibtex_key: liu2025vlapruner\n    title: \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference\"\n    authors: \"Liu, Ziyan and Chen, Yeqiu and Cai, Hongyi and others\"\n    year: 2025\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2511.16449\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Dual-level importance criterion combining prefill attention (semantic) and temporally-smoothed action decode attention for VLA token pruning.\"\n    notes: \"VLA-specific pruning exploiting temporal continuity. Directly relevant as it separates semantic vs action-level token importance.\"\n\n  - bibtex_key: shang2024prumerge\n    title: \"LLaVA-PruMerge: Adaptive Token Reduction for Efficient Large Multimodal Models\"\n    authors: \"Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan\"\n    year: 2024\n    venue: \"ICCV 2025\"\n    arxiv_id: \"2403.15388\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Adaptive visual token pruning + merging for LMMs; reduces tokens by 4x (to 5.5% with PruMerge) with comparable performance on VQA/reasoning tasks.\"\n    notes: \"VLM token reduction via CLS attention importance + similarity-based merging. Establishes prune-then-merge paradigm for visual tokens in VLMs.\"\n\n  # ============================================================\n  # Cluster: ViT Token Pruning/Merging (target: 7)\n  # ============================================================\n  - bibtex_key: rao2021dynamicvit\n    title: \"DynamicViT: Efficient Vision Transformers with Dynamic Token Sparsification\"\n    authors: \"Rao, Yongming and Zhao, Wenliang and Liu, Benlin and Lu, Jiwen and Zhou, Jie and Hsieh, Cho-Jui\"\n    year: 2021\n    venue: \"NeurIPS 2021\"\n    arxiv_id: \"2106.02034\"\n    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Hierarchical token pruning for ViT; removes 66% tokens with only 0.5% accuracy drop on ImageNet; 31-37% FLOPs reduction.\"\n    pruning_stats: \"66% token removal, <0.5% accuracy drop, 40%+ throughput improvement.\"\n\n  - bibtex_key: bolya2023tome\n    title: \"Token Merging: Your ViT But Faster\"\n    authors: \"Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy\"\n    year: 2023\n    venue: \"ICLR 2023 (Oral)\"\n    arxiv_id: \"2210.09461\"\n    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Training-free token merging via bipartite matching; 2x throughput on ViT-L with only 0.2-0.3% accuracy drop.\"\n    pruning_stats: \"2x throughput, 0.2-0.3% accuracy drop. Merges redundant foreground + background tokens.\"\n\n  - bibtex_key: liang2022evit\n    title: \"Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations\"\n    authors: \"Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao\"\n    year: 2022\n    venue: \"ICLR 2022\"\n    arxiv_id: \"2202.07800\"\n    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Token reorganization guided by CLS attention; 50% speedup with 0.3% accuracy drop on DeiT-S. Fuses inattentive tokens.\"\n    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================\n  - bibtex_key: liu2023libero\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2306.03310\"\n    category: \"Closed-Loop Evaluation\"\n    role: foundation\n    verified: true\n    key_finding: \"130 manipulation tasks across 4 suites; evaluates knowledge transfer in lifelong robot learning with teleoperated demonstrations.\"\n    notes: \"Our evaluation benchmark. We use Object/Spatial/Goal suites (10 tasks each, 50 episodes/task).\"\n\n  - bibtex_key: mees2022calvin\n    title: \"CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks\"\n    authors: \"Mees, Oier and Hermann, Lukas and Rosete-Beas, Erick and Burgard, Wolfram\"\n    year: 2022\n    venue: \"IEEE RA-L\"\n    arxiv_id: \"2112.03227\"\n    category: \"Closed-Loop Evaluation\"\n    role: background\n    verified: true\n    key_finding: \"Long-horizon language-conditioned manipulation benchmark; 24h teleoperated play data with 20K language directives.\"\n\n  - bibtex_key: chi2023diffusionpolicy\n    title: \"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\"\n    authors: \"Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran\"\n    year: 2023\n    venue: \"RSS 2023\"\n    arxiv_id: \"2303.04137\"\n    category: \"Closed-Loop Evaluation\"\n    role: background\n    verified: true\n    key_finding: \"Conditional denoising diffusion for robot policy; 46.9% average improvement across 12 tasks; handles multimodal action distributions.\"\n\n  # ============================================================\n  # Cluster: Negative Results & Evaluation Pitfalls (target: 5)\n  # ============================================================\n  - bibtex_key: zeng2023transformers_tsf\n    title: \"Are Transformers Effective for Time Series Forecasting?\"\n    authors: \"Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang\"\n    year: 2023\n    venue: \"AAAI 2023\"\n    arxiv_id: \"2205.13504\"\n    category: \"Negative Results & Evaluation Pitfalls\"\n    role: foundation\n    verified: true\n    key_finding: \"Simple linear models outperform sophisticated Transformer-based LTSF models on all 9 datasets, often by 20-50%. Challenges the Transformer paradigm for time series.\"\n\n  - bibtex_key: bouthillier2024negative\n    title: \"Position: Embracing Negative Results in Machine Learning\"\n    authors: \"Bouthillier, Xavier and others\"\n    year: 2024\n    venue: \"ICML 2024\"\n    arxiv_id: \"2406.03980\"\n    category: \"Negative Results & Evaluation Pitfalls\"\n    role: background\n    verified: true\n    key_finding: \"Position paper arguing for publication of negative results to improve ML research efficiency; predictive performance alone is insufficient for evaluating contributions.\"\n\n  # ============================================================\n  # Background / Architecture\n  # ============================================================\n  - bibtex_key: zhai2023siglip\n    title: \"Sigmoid Loss for Language Image Pre-Training\"\n    authors: \"Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas\"\n    year: 2023\n    venue: \"ICCV 2023\"\n    arxiv_id: \"2303.15343\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"Pairwise sigmoid loss for image-text pretraining; optimal at batch size 32K; 84.5% ImageNet zero-shot with only 4 TPUv4 chips.\"\n    notes: \"Vision encoder used in SmolVLA. Produces spatial patch tokens without CLS token.\"\n\n  - bibtex_key: yang2024qwen2\n    title: \"Qwen2 Technical Report\"\n    authors: \"Yang, An and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2407.10671\"\n    category: \"VLA Models\"\n    role: background\n    verified: true\n    key_finding: \"0.5B-72B parameter LLM family; Qwen2-1.5B is the LLM backbone in SmolVLA.\"\n\n  - bibtex_key: lipman2023flow\n    title: \"Flow Matching for Generative Modeling\"\n    authors: \"Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt\"\n    year: 2023\n    venue: \"ICLR 2023\"\n    arxiv_id: \"2210.02747\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"Simulation-free CNF training via regressing conditional probability path vector fields; OT displacement interpolation enables faster training and sampling.\"\n    notes: \"Action generation mechanism in SmolVLA and pi0.\"\n\n  # ============================================================\n  # Cluster: Vision Connectors & Token Compression (target: 6)\n  # ============================================================\n  - bibtex_key: li2023blip2\n    title: \"BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models\"\n    authors: \"Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven\"\n    year: 2023\n    venue: \"ICML 2023\"\n    arxiv_id: \"2301.12597\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Querying Transformer (Q-Former) compresses visual tokens into fixed number of query tokens; outperforms Flamingo80B on zero-shot VQAv2 with 54x fewer trainable parameters.\"\n    notes: \"Exemplar of learned cross-attention compression for vision-language bridging. Our proposed cross-attention compression draws on this principle.\"\n\n  - bibtex_key: alayrac2022flamingo\n    title: \"Flamingo: a Visual Language Model for Few-Shot Learning\"\n    authors: \"Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and others\"\n    year: 2022\n    venue: \"NeurIPS 2022\"\n    arxiv_id: \"2204.14198\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Perceiver Resampler maps variable-size spatio-temporal visual features to fixed number of output tokens via cross-attention with learnable queries.\"\n    notes: \"Another learned cross-attention connector. Together with BLIP-2, establishes the cross-attention connector paradigm that contrasts with MLP/pixel_shuffle approaches.\"\n\n  - bibtex_key: liu2023llava\n    title: \"Visual Instruction Tuning\"\n    authors: \"Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2304.08485\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Simple linear/MLP projection connects vision encoder to LLM; LLaVA-1.5 shows two-layer MLP projector is surprisingly effective and data-efficient.\"\n    notes: \"Key reference for the MLP projector approach used in OpenVLA. Our finding that MLP projector enables graceful degradation under token pruning connects to this design choice.\"\n\n  - bibtex_key: shi2016subpixel\n    title: \"Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network\"\n    authors: \"Shi, Wenzhe and Caballero, Jose and Huszar, Ferenc and Totz, Johannes and Aitken, Andrew P. and Bishop, Rob and Rueckert, Daniel and Wang, Zehan\"\n    year: 2016\n    venue: \"CVPR 2016\"\n    arxiv_id: \"1609.05158\"\n    category: \"Vision Connectors & Token Compression\"\n    role: background\n    verified: true\n    key_finding: \"Introduces sub-pixel convolution (pixel shuffle) that rearranges spatial resolution and channel dimensions; enables real-time 1080p super-resolution.\"\n    notes: \"Origin of the pixel_shuffle operation adopted by SmolVLA and InternVL as vision connector. Central to our cliff-edge failure analysis.\"\n\n  - bibtex_key: chen2024internvl\n    title: \"How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites\"\n    authors: \"Chen, Zhe and Wang, Weiyun and Tian, Hao and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2404.16821\"\n    category: \"Vision Connectors & Token Compression\"\n    role: background\n    verified: true\n    key_finding: \"InternVL 1.5 uses 2x2 pixel unshuffle to compress 1024 visual tokens to 256 per tile; supports dynamic high-resolution up to 4K with up to 40 tiles.\"\n    notes: \"Another VLM using pixel_shuffle connector, confirming its adoption beyond SmolVLA. Strengthens generality of our cliff-edge finding.\"\n\n  - bibtex_key: oquab2024dinov2\n    title: \"DINOv2: Learning Robust Visual Features without Supervision\"\n    authors: \"Oquab, Maxime and Darcet, Timothee and Moutakanni, Theo and others\"\n    year: 2024\n    venue: \"TMLR 2024\"\n    arxiv_id: \"2304.07193\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Self-supervised ViT producing all-purpose visual features; scaled to ViT-g with curated LVD-142M dataset; strong transfer across tasks without finetuning.\"\n    notes: \"Vision encoder used in OpenVLA (DinoSigLIP). Its feature structure interacts with the MLP projector to determine token-level importance distribution.\"\n",
+                "numLines": 388,
+                "startLine": 1,
+                "totalLines": 388
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T9DVkkBLbycTRXAm7v5LYw",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "a0411c01-85f0-438a-8b28-116e18787ddb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmoEjgDkRK1Z5UiMXJbtG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12307,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12307
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T23:02:54.562Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01T9DVkkBLbycTRXAm7v5LYw",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "477a8ce2-11e1-4adc-aaf3-d0a12d8ffde3",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the existing papers in the ViT Token Pruning/Merging cluster:\n\n1. **DynamicViT** (NeurIPS 2021) - Hierarchical token pruning with learned prediction modules (trained approach)\n2. **ToMe** (ICLR 2023) - Training-free token merging via bipartite matching\n3. **EViT** (ICLR 2022) - CLS attention-guided token reorganization (trained/finetuned approach)\n\nWhat's missing? Let me think about complementarity:\n\n\n- DynamicViT uses learned binary decisions to prune tokens\n- ToMe applies similarity-based merging without any training\n- EViT leverages CLS attention to identify and fuse less important tokens\n\nA-ViT (Adaptive Tokens for Efficient Vision Transformer, CVPR 2022) would fill a gap nicely—it introduces a halting mechanism where tokens can exit at different layers based on adaptive computation, which is fundamentally different from the pruning and merging approaches already covered. Let me verify those details.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "a27f26dd-8def-42d7-8ef2-345ea17823bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zFYYCkr84Ws49Ao1HtkRd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7736,
+                "cache_read_input_tokens": 24148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7736
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for the best complementary paper. The existing three cover: learned pruning (DynamicViT), training-free merging (ToMe), and CLS-attention reorganization (EViT). A paper with a different pruning paradigm would complement well."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "9554d50d-839a-44e1-9a12-273cb139f2b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zFYYCkr84Ws49Ao1HtkRd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7736,
+                "cache_read_input_tokens": 24148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7736
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011zcwHFaXdfVajjk6qi2Prz",
+              "name": "WebSearch",
+              "input": {
+                "query": "A-ViT Adaptive Tokens Efficient Vision Transformer CVPR 2022 Yin Hongxu"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "79447bb2-0edd-4475-a245-a116fa5068da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zFYYCkr84Ws49Ao1HtkRd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7736,
+                "cache_read_input_tokens": 24148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7736
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T23:03:12.228Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011zcwHFaXdfVajjk6qi2Prz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"A-ViT Adaptive Tokens Efficient Vision Transformer CVPR 2022 Yin Hongxu\"\n\nLinks: [{\"title\":\"A-ViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://a-vit.github.io/\"},{\"title\":\"A-ViT - CVPR 2022 Open Access Repository\",\"url\":\"https://openaccess.thecvf.com/content/CVPR2022/html/Yin_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer_CVPR_2022_paper.html\"},{\"title\":\"GitHub - NVlabs/A-ViT: Official PyTorch implementation of A-ViT: Adaptive Tokens for Efficient Vision Transformer (CVPR 2022) · GitHub\",\"url\":\"https://github.com/NVlabs/A-ViT\"},{\"title\":\"AdaViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://arxiv.org/pdf/2112.07658\"},{\"title\":\"[PDF] A-ViT: Adaptive Tokens for Efficient Vision Transformer | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/A-ViT:-Adaptive-Tokens-for-Efficient-Vision-Yin-Vahdat/c2a0c18e810535db52e5ebaf180c64ce70356748\"},{\"title\":\"A-ViT: Adaptive Tokens for Efficient Vision Transformer | Request PDF\",\"url\":\"https://www.researchgate.net/publication/363908419_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer\"},{\"title\":\"A-ViT: Adaptive Tokens for Efﬁcient Vision Transformer Hongxu Yin Arash Vahdat\",\"url\":\"https://openaccess.thecvf.com/content/CVPR2022/papers/Yin_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer_CVPR_2022_paper.pdf\"},{\"title\":\"A-ViT: Adaptive Tokens for Efficient Vision Transformer | NVIDIA Learning and Perception Research\",\"url\":\"https://research.nvidia.com/labs/lpr/publication/yin2022avit/\"},{\"title\":\"A-ViT: Adaptive Tokens for Efficient Vision Transformer | Research\",\"url\":\"https://research.nvidia.com/publication/2022-06_vit-adaptive-tokens-efficient-vision-transformer\"},{\"title\":\"A-ViT: Adaptive Tokens for Efficient Vision Transformer | Fundamental Generative AI Research\",\"url\":\"https://research.nvidia.com/labs/genair/publication/yin2022avit/\"}]\n\nGreat! I found comprehensive information about A-ViT. Here are the search results:\n\n## A-ViT: Adaptive Tokens for Efficient Vision Transformer\n\nA-ViT was accepted to CVPR 2022 and authored by Hongxu Yin, Arash Vahdat, Jose M. Alvarez, Arun Mallya, Jan Kautz, and Pavlo Molchanov.\n\n**Core Concept:**\nA-ViT is a method to enable adaptive token computation for vision transformers, augmenting the vision transformer block with an adaptive halting module that computes a halting probability per token.\n\n**Key Features:**\n- The module reuses the parameters of existing blocks and borrows a single neuron from the last dense layer in each block to compute the halting probability, imposing no extra parameters or computations\n- By adaptively halting tokens, dense compute is performed only on active tokens deemed informative for the task, resulting in successive blocks in vision transformers gradually receiving fewer tokens and leading to faster inference\n\n**Implementation:**\nThe official PyTorch implementation was released by NVLabs, and the current version includes training, evaluation, and visualization of models on ImageNet-1K.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "99809ba8-bde5-4eab-b4d3-4a32df34a6a3",
+            "tool_use_result": {
+              "query": "A-ViT Adaptive Tokens Efficient Vision Transformer CVPR 2022 Yin Hongxu",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01AcgtTpzmAGyBQX15CN4j8w",
+                  "content": [
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://a-vit.github.io/"
+                    },
+                    {
+                      "title": "A-ViT - CVPR 2022 Open Access Repository",
+                      "url": "https://openaccess.thecvf.com/content/CVPR2022/html/Yin_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer_CVPR_2022_paper.html"
+                    },
+                    {
+                      "title": "GitHub - NVlabs/A-ViT: Official PyTorch implementation of A-ViT: Adaptive Tokens for Efficient Vision Transformer (CVPR 2022) · GitHub",
+                      "url": "https://github.com/NVlabs/A-ViT"
+                    },
+                    {
+                      "title": "AdaViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://arxiv.org/pdf/2112.07658"
+                    },
+                    {
+                      "title": "[PDF] A-ViT: Adaptive Tokens for Efficient Vision Transformer | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/A-ViT:-Adaptive-Tokens-for-Efficient-Vision-Yin-Vahdat/c2a0c18e810535db52e5ebaf180c64ce70356748"
+                    },
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efficient Vision Transformer | Request PDF",
+                      "url": "https://www.researchgate.net/publication/363908419_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer"
+                    },
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efﬁcient Vision Transformer Hongxu Yin Arash Vahdat",
+                      "url": "https://openaccess.thecvf.com/content/CVPR2022/papers/Yin_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer_CVPR_2022_paper.pdf"
+                    },
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efficient Vision Transformer | NVIDIA Learning and Perception Research",
+                      "url": "https://research.nvidia.com/labs/lpr/publication/yin2022avit/"
+                    },
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efficient Vision Transformer | Research",
+                      "url": "https://research.nvidia.com/publication/2022-06_vit-adaptive-tokens-efficient-vision-transformer"
+                    },
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efficient Vision Transformer | Fundamental Generative AI Research",
+                      "url": "https://research.nvidia.com/labs/genair/publication/yin2022avit/"
+                    }
+                  ]
+                },
+                "Great! I found comprehensive information about A-ViT. Here are the search results:\n\n## A-ViT: Adaptive Tokens for Efficient Vision Transformer\n\nA-ViT was accepted to CVPR 2022 and authored by Hongxu Yin, Arash Vahdat, Jose M. Alvarez, Arun Mallya, Jan Kautz, and Pavlo Molchanov.\n\n**Core Concept:**\nA-ViT is a method to enable adaptive token computation for vision transformers, augmenting the vision transformer block with an adaptive halting module that computes a halting probability per token.\n\n**Key Features:**\n- The module reuses the parameters of existing blocks and borrows a single neuron from the last dense layer in each block to compute the halting probability, imposing no extra parameters or computations\n- By adaptively halting tokens, dense compute is performed only on active tokens deemed informative for the task, resulting in successive blocks in vision transformers gradually receiving fewer tokens and leading to faster inference\n\n**Implementation:**\nThe official PyTorch implementation was released by NVLabs, and the current version includes training, evaluation, and visualization of models on ImageNet-1K."
+              ],
+              "durationSeconds": 4.823464893000001
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "A-ViT is a great complement. Let me verify the arxiv ID and get more specific stats.\n\nThe existing papers:\n1. DynamicViT - learned binary predictor for pruning (trained)\n2. ToMe - training-free bipartite matching merging\n3. EViT - CLS attention-based reorganization + token fusing\n\nA-ViT brings:\n- Adaptive computation time (ACT) / halting mechanism - tokens halt at different depths\n- Per-token adaptive depth (different from all three which operate at fixed layers)\n- No extra parameters (reuses existing block parameters)\n\n\n- NVIDIA Research publication from CVPR 2022, arxiv 2112.07658",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "002ca31b-cf7c-44e3-9877-95019969b5c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M624bLg9VVtK3qpzDqHQXF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1423,
+                "cache_read_input_tokens": 31884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1423
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "A-ViT is a strong complement — it introduces per-token adaptive depth (halting mechanism), which is a fundamentally different paradigm from the fixed-layer pruning/merging in the other three. Let me verify the arxiv ID and citation stats."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "8a19ad85-5c4d-4f26-be23-d2526ec4645a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M624bLg9VVtK3qpzDqHQXF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1423,
+                "cache_read_input_tokens": 31884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1423
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MPRyLfZB3hJyT3eSMmbmeo",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2112.07658 A-ViT adaptive tokens vision transformer citations"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "0aa60db7-ed7d-41c2-930e-b6548fc46f4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M624bLg9VVtK3qpzDqHQXF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1423,
+                "cache_read_input_tokens": 31884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1423
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T23:03:31.428Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MPRyLfZB3hJyT3eSMmbmeo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2112.07658 A-ViT adaptive tokens vision transformer citations\"\n\nLinks: [{\"title\":\"[2112.07658] AdaViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://arxiv.org/abs/2112.07658\"},{\"title\":\"AdaViT: Adaptive Tokens for Efficient Vision Transformer - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2021arXiv211207658Y/abstract\"},{\"title\":\"[2112.07658v3] AdaViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://arxiv.org/abs/2112.07658v3\"},{\"title\":\"[2112.07658] A-ViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2112.07658\"},{\"title\":\"[2112.07658v1] AdaViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://arxiv.org/abs/2112.07658v1\"},{\"title\":\"[CVPR'22 Oral] A-ViT: Adaptive Tokens for Efficient Vision Transformer | Request PDF\",\"url\":\"https://www.researchgate.net/publication/357046283_CVPR'22_Oral_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer\"}]\n\nBased on the search results, here's information about arxiv 2112.07658:\n\n## Paper Overview\n\nThe paper is titled \"AdaViT: Adaptive Tokens for Efficient Vision Transformer\" by authors Hongxu Yin, Arash Vahdat, Jose Alvarez, Arun Mallya, Jan Kautz, and Pavlo Molchanov.\n\n## Main Contribution\n\nA-ViT is a method that adaptively adjusts the inference cost of vision transformers for images of different complexity by automatically reducing the number of tokens that are processed in the network as inference proceeds.\n\n## Technical Approach\n\nThe method reformulates Adaptive Computation Time (ACT) for this task, extending halting to discard redundant spatial tokens. A-ViT requires no extra parameters or sub-network for halting, as it bases the learning of adaptive halting on the original network parameters, and introduces distributional prior regularization that stabilizes training compared to prior ACT approaches.\n\n## Paper Status\n\nThe paper was accepted as an oral presentation at CVPR'22 and was submitted on December 14, 2021, with the latest revision (v3) on October 5, 2022.\n\nRegarding citations to this paper, the search results do not provide specific citation count information. You can check the arXiv page directly or use citation aggregators like Google Scholar for current citation metrics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "6efcf24d-7c33-47fe-b09b-66748fbddc86",
+            "tool_use_result": {
+              "query": "arxiv 2112.07658 A-ViT adaptive tokens vision transformer citations",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01TksuARbLB8kTWRNQGabDeG",
+                  "content": [
+                    {
+                      "title": "[2112.07658] AdaViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://arxiv.org/abs/2112.07658"
+                    },
+                    {
+                      "title": "AdaViT: Adaptive Tokens for Efficient Vision Transformer - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2021arXiv211207658Y/abstract"
+                    },
+                    {
+                      "title": "[2112.07658v3] AdaViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://arxiv.org/abs/2112.07658v3"
+                    },
+                    {
+                      "title": "[2112.07658] A-ViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://ar5iv.labs.arxiv.org/html/2112.07658"
+                    },
+                    {
+                      "title": "[2112.07658v1] AdaViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://arxiv.org/abs/2112.07658v1"
+                    },
+                    {
+                      "title": "[CVPR'22 Oral] A-ViT: Adaptive Tokens for Efficient Vision Transformer | Request PDF",
+                      "url": "https://www.researchgate.net/publication/357046283_CVPR'22_Oral_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer"
+                    }
+                  ]
+                },
+                "Based on the search results, here's information about arxiv 2112.07658:\n\n## Paper Overview\n\nThe paper is titled \"AdaViT: Adaptive Tokens for Efficient Vision Transformer\" by authors Hongxu Yin, Arash Vahdat, Jose Alvarez, Arun Mallya, Jan Kautz, and Pavlo Molchanov.\n\n## Main Contribution\n\nA-ViT is a method that adaptively adjusts the inference cost of vision transformers for images of different complexity by automatically reducing the number of tokens that are processed in the network as inference proceeds.\n\n## Technical Approach\n\nThe method reformulates Adaptive Computation Time (ACT) for this task, extending halting to discard redundant spatial tokens. A-ViT requires no extra parameters or sub-network for halting, as it bases the learning of adaptive halting on the original network parameters, and introduces distributional prior regularization that stabilizes training compared to prior ACT approaches.\n\n## Paper Status\n\nThe paper was accepted as an oral presentation at CVPR'22 and was submitted on December 14, 2021, with the latest revision (v3) on October 5, 2022.\n\nRegarding citations to this paper, the search results do not provide specific citation count information. You can check the arXiv page directly or use citation aggregators like Google Scholar for current citation metrics."
+              ],
+              "durationSeconds": 9.445811588999998
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "A-ViT (CVPR 2022 Oral) is an excellent complement. Key details:\n- arxiv_id: 2112.07658\n- Title: \"A-ViT: Adaptive Tokens for Efficient Vision Transformer\" (published name, originally \"AdaViT\" on arxiv)\n- Authors: Hongxu Yin, Arash Vahdat, Jose Alvarez, Arun Mallya, Jan Kautz, Pavlo Molchanov\n\n\n- Venue: CVPR 2022 (Oral)\n\nThe core innovation is Adaptive Computation Time halting, where individual tokens exit the network at different layers based on learned probabilities rather than following a fixed depth. This creates a fundamentally different efficiency axis compared to the other approaches: DynamicViT uses learned pruning at fixed layers, ToMe applies training-free merging throughout, and EViT reorganizes tokens based on CLS attention, but A-ViT uniquely enables per-token adaptive depth.\n\nThe key insight for our VLA work is that this reframes the question from \"which tokens matter at this layer\" to \"how deep should this token go,\" revealing that token importance isn't uniform across the network's depth and directly informs how pruning decisions cascade through different pipeline stages.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "43f36fa6-602a-49b3-be20-8dd74407730c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H1stFy4Y1TnETN11FBx3sr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1013,
+                "cache_read_input_tokens": 33307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1013
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PAWBtFQGU3mRwEcf3VZGUR",
+              "name": "WebSearch",
+              "input": {
+                "query": "A-ViT CVPR 2022 oral ImageNet accuracy FLOPs reduction token halting results DeiT"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "401f657c-1cbe-4bca-8ebd-44f4c5e2ce48",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H1stFy4Y1TnETN11FBx3sr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1013,
+                "cache_read_input_tokens": 33307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1013
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T23:03:53.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PAWBtFQGU3mRwEcf3VZGUR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"A-ViT CVPR 2022 oral ImageNet accuracy FLOPs reduction token halting results DeiT\"\n\nLinks: [{\"title\":\"[CVPR'22 Oral] A-ViT: Adaptive Tokens for Efficient Vision Transformer | Request PDF\",\"url\":\"https://www.researchgate.net/publication/357046283_CVPR'22_Oral_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer\"},{\"title\":\"AdaViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://arxiv.org/pdf/2112.07658\"},{\"title\":\"A-ViT: Adaptive Tokens for Efficient Vision Transformer\",\"url\":\"https://a-vit.github.io/\"},{\"title\":\"LookupViT: Compressing visual information to a limited number of tokens\",\"url\":\"https://arxiv.org/pdf/2407.12753\"},{\"title\":\"Global Vision Transformer Pruning with Hessian-Aware Saliency\",\"url\":\"https://arxiv.org/pdf/2110.04869\"},{\"title\":\"VTC-LFC: Vision Transformer Compression with Low-Frequency Components\",\"url\":\"https://papers.neurips.cc/paper_files/paper/2022/file/5a8177df23bdcc15a02a6739f5b9dd4a-Paper-Conference.pdf\"},{\"title\":\"Vision Transformer with Attention Map Hallucination and FFN Compaction\",\"url\":\"https://arxiv.org/pdf/2306.10875\"}]\n\nBased on the search results, here are the key findings about A-ViT from CVPR 2022:\n\n## A-ViT: Adaptive Tokens for Efficient Vision Transformer\n\nA-ViT is a method that adaptively adjusts the inference cost of vision transformer (ViT) for images of different complexity by automatically reducing the number of tokens in vision transformers that are processed in the network as inference proceeds.\n\n### Technical Approach\nA-ViT reformulates Adaptive Computation Time (ACT) for this task, extending halting to discard redundant spatial tokens. The method requires no extra parameters or sub-network for halting, as it bases the learning of adaptive halting on the original network parameters. A-ViT introduces distributional prior regularization that stabilizes training compared to prior ACT approaches.\n\n### Results on ImageNet\nThe proposed method improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.3% accuracy drop, outperforming prior art by a large margin.\n\nThe paper demonstrates that learnt token halting varies across images, yet aligns surprisingly well with image semantics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "a69515a6-e981-4439-bb4d-cc29ef83ace5",
+            "tool_use_result": {
+              "query": "A-ViT CVPR 2022 oral ImageNet accuracy FLOPs reduction token halting results DeiT",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MM7qkp2khiFD7hX3eUBe9U",
+                  "content": [
+                    {
+                      "title": "[CVPR'22 Oral] A-ViT: Adaptive Tokens for Efficient Vision Transformer | Request PDF",
+                      "url": "https://www.researchgate.net/publication/357046283_CVPR'22_Oral_A-ViT_Adaptive_Tokens_for_Efficient_Vision_Transformer"
+                    },
+                    {
+                      "title": "AdaViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://arxiv.org/pdf/2112.07658"
+                    },
+                    {
+                      "title": "A-ViT: Adaptive Tokens for Efficient Vision Transformer",
+                      "url": "https://a-vit.github.io/"
+                    },
+                    {
+                      "title": "LookupViT: Compressing visual information to a limited number of tokens",
+                      "url": "https://arxiv.org/pdf/2407.12753"
+                    },
+                    {
+                      "title": "Global Vision Transformer Pruning with Hessian-Aware Saliency",
+                      "url": "https://arxiv.org/pdf/2110.04869"
+                    },
+                    {
+                      "title": "VTC-LFC: Vision Transformer Compression with Low-Frequency Components",
+                      "url": "https://papers.neurips.cc/paper_files/paper/2022/file/5a8177df23bdcc15a02a6739f5b9dd4a-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Vision Transformer with Attention Map Hallucination and FFN Compaction",
+                      "url": "https://arxiv.org/pdf/2306.10875"
+                    }
+                  ]
+                },
+                "Based on the search results, here are the key findings about A-ViT from CVPR 2022:\n\n## A-ViT: Adaptive Tokens for Efficient Vision Transformer\n\nA-ViT is a method that adaptively adjusts the inference cost of vision transformer (ViT) for images of different complexity by automatically reducing the number of tokens in vision transformers that are processed in the network as inference proceeds.\n\n### Technical Approach\nA-ViT reformulates Adaptive Computation Time (ACT) for this task, extending halting to discard redundant spatial tokens. The method requires no extra parameters or sub-network for halting, as it bases the learning of adaptive halting on the original network parameters. A-ViT introduces distributional prior regularization that stabilizes training compared to prior ACT approaches.\n\n### Results on ImageNet\nThe proposed method improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.3% accuracy drop, outperforming prior art by a large margin.\n\nThe paper demonstrates that learnt token halting varies across images, yet aligns surprisingly well with image semantics."
+              ],
+              "durationSeconds": 9.393981263000002
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — I have all the details. A-ViT achieves 62% throughput improvement on DeiT-T and 38% on DeiT-S with only 0.3% accuracy drop. Now let me add it to the literature map."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "1005558e-0f39-4108-8347-2baad0c7825a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tJ5T3S8ZcbFtVCKGAwXk2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1110,
+                "cache_read_input_tokens": 34320,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1110
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S2X9KxBKQ48m6mxAUydo78",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+                "offset": 208,
+                "limit": 15
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "753d5778-e6ea-4bc6-ac31-8549478b90ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tJ5T3S8ZcbFtVCKGAwXk2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1110,
+                "cache_read_input_tokens": 34320,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1110
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T23:03:59.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S2X9KxBKQ48m6mxAUydo78",
+              "type": "tool_result",
+              "content": "208\t    category: \"ViT Token Pruning/Merging\"\n209\t    role: foundation\n210\t    verified: true\n211\t    key_finding: \"Token reorganization guided by CLS attention; 50% speedup with 0.3% accuracy drop on DeiT-S. Fuses inattentive tokens.\"\n212\t    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n213\t\n214\t  # ============================================================\n215\t  # Cluster: Closed-Loop Evaluation (target: 5)\n216\t  # ============================================================\n217\t  - bibtex_key: liu2023libero\n218\t    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n219\t    authors: \"Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter\"\n220\t    year: 2023\n221\t    venue: \"NeurIPS 2023\"\n222\t    arxiv_id: \"2306.03310\""
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "eb124b52-967c-4456-98ee-9a13d8e5268a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+                "content": "    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Token reorganization guided by CLS attention; 50% speedup with 0.3% accuracy drop on DeiT-S. Fuses inattentive tokens.\"\n    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================\n  - bibtex_key: liu2023libero\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2306.03310\"",
+                "numLines": 15,
+                "startLine": 208,
+                "totalLines": 388
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BjjuUNrZDegwrmKa5B2YEv",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+                "old_string": "    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================",
+                "new_string": "    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  - bibtex_key: yin2022avit\n    title: \"A-ViT: Adaptive Tokens for Efficient Vision Transformer\"\n    authors: \"Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo\"\n    year: 2022\n    venue: \"CVPR 2022 (Oral)\"\n    arxiv_id: \"2112.07658\"\n    category: \"ViT Token Pruning/Merging\"\n    role: background\n    verified: true\n    key_finding: \"Per-token adaptive depth via ACT halting — tokens exit at different layers based on learned halting probability. 62% throughput gain on DeiT-T, 38% on DeiT-S with 0.3% accuracy drop.\"\n    pruning_stats: \"62% throughput improvement (DeiT-T), 38% (DeiT-S), 0.3% accuracy drop. No extra parameters.\"\n    notes: \"Complements fixed-layer pruning (DynamicViT, EViT) and merging (ToMe) by introducing depth-adaptive token halting. Relevant to our analysis of how token importance varies across transformer depth.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "ee58b5c8-931a-4e1e-82b8-428d267be520",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N6XQeFvUYZZKh1tYFm9ndf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 576,
+                "cache_read_input_tokens": 35430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 576
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T23:04:08.907Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BjjuUNrZDegwrmKa5B2YEv",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "e34266a6-a62e-4e88-acaf-2ce0732ec678",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+              "oldString": "    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================",
+              "newString": "    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  - bibtex_key: yin2022avit\n    title: \"A-ViT: Adaptive Tokens for Efficient Vision Transformer\"\n    authors: \"Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo\"\n    year: 2022\n    venue: \"CVPR 2022 (Oral)\"\n    arxiv_id: \"2112.07658\"\n    category: \"ViT Token Pruning/Merging\"\n    role: background\n    verified: true\n    key_finding: \"Per-token adaptive depth via ACT halting — tokens exit at different layers based on learned halting probability. 62% throughput gain on DeiT-T, 38% on DeiT-S with 0.3% accuracy drop.\"\n    pruning_stats: \"62% throughput improvement (DeiT-T), 38% (DeiT-S), 0.3% accuracy drop. No extra parameters.\"\n    notes: \"Complements fixed-layer pruning (DynamicViT, EViT) and merging (ToMe) by introducing depth-adaptive token halting. Relevant to our analysis of how token importance varies across transformer depth.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================",
+              "originalFile": "# Literature Map — importance_margin_vla_compress\n# Generated: 2026-05-17\n# Citation budget: 35\n\npapers:\n\n  # ============================================================\n  # Cluster: VLA Models (target: 6)\n  # ============================================================\n  - bibtex_key: shukor2025smolvla\n    title: \"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics\"\n    authors: \"Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others\"\n    year: 2025\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2506.01844\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"450M-param VLA combining compact VLM (SigLIP+Qwen2) with flow matching action expert; 87.3% SR on LIBERO with batch size 64.\"\n    pruning_stats: null\n    notes: \"Our experimental platform. SigLIP encoder produces 128 vision tokens.\"\n\n  - bibtex_key: kim2024openvla\n    title: \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n    authors: \"Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others\"\n    year: 2024\n    venue: \"CoRL 2024\"\n    arxiv_id: \"2406.09246\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"7B-param open-source VLA trained on 970K episodes from Open X-Embodiment; supports parameter-efficient fine-tuning.\"\n\n  - bibtex_key: zitkovich2023rt2\n    title: \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n    authors: \"Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others\"\n    year: 2023\n    venue: \"CoRL 2023\"\n    arxiv_id: \"2307.15818\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"Co-fine-tunes VLM on robotic trajectory data; actions expressed as text tokens; emergent semantic reasoning via chain of thought.\"\n\n  - bibtex_key: ghosh2024octo\n    title: \"Octo: An Open-Source Generalist Robot Policy\"\n    authors: \"Ghosh, Dibya and Walke, Homer and Pertsch, Karl and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2405.12213\"\n    category: \"VLA Models\"\n    role: background\n    verified: true\n    key_finding: \"Transformer-based generalist policy trained on 800K trajectories from Open X-Embodiment; effective fine-tuning across 9 robot platforms.\"\n\n  - bibtex_key: black2024pi0\n    title: \"pi0: A Vision-Language-Action Flow Model for General Robot Control\"\n    authors: \"Black, Kevin and Brown, Noah and Driess, Danny and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2410.24164\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"3.3B VLA using flow matching for 50Hz action generation; trained on 10K+ hours of robot data across 7 platforms and 68 tasks.\"\n\n  - bibtex_key: openxembodiment2024\n    title: \"Open X-Embodiment: Robotic Learning Datasets and RT-X Models\"\n    authors: \"Open X-Embodiment Collaboration\"\n    year: 2024\n    venue: \"ICRA 2024\"\n    arxiv_id: \"2310.08864\"\n    category: \"VLA Models\"\n    role: background\n    verified: true\n    key_finding: \"1M+ real robot trajectories spanning 22 embodiments; RT-1-X shows 50% improvement over single-embodiment baselines.\"\n\n  # ============================================================\n  # Cluster: VLM/LLM Token Efficiency (target: 8)\n  # ============================================================\n  - bibtex_key: chen2024fastv\n    title: \"An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models\"\n    authors: \"Chen, Liang and others\"\n    year: 2024\n    venue: \"ECCV 2024 (Oral)\"\n    arxiv_id: null\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Plug-and-play visual token pruning for VLMs; prunes tokens in deep layers based on attention patterns from early layers.\"\n    pruning_stats: \"Prunes ~50% visual tokens with minimal accuracy loss on VLM benchmarks.\"\n\n  - bibtex_key: zhang2023h2o\n    title: \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\"\n    authors: \"Zhang, Zhenyu and others\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2306.14048\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: background\n    verified: true\n    key_finding: \"KV cache eviction retaining heavy-hitter tokens; 20% heavy hitters achieve up to 29x throughput improvement.\"\n\n  - bibtex_key: xiao2024streamingllm\n    title: \"Efficient Streaming Language Models with Attention Sinks\"\n    authors: \"Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike\"\n    year: 2024\n    venue: \"ICLR 2024\"\n    arxiv_id: \"2309.17453\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: background\n    verified: true\n    key_finding: \"Attention sink phenomenon: keeping KV of initial tokens recovers window attention performance; enables stable LLM inference over 4M+ tokens.\"\n\n  - bibtex_key: hsu2025vlacache\n    title: \"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching\"\n    authors: \"Hsu, Siyu and others\"\n    year: 2025\n    venue: \"NeurIPS 2025\"\n    arxiv_id: \"2502.02175\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Training-free VLA acceleration via temporal KV caching of static visual tokens; 1.7x speedup with negligible SR loss.\"\n    notes: \"Exploits temporal continuity, not token removal. Key difference from our study: caches rather than removes tokens.\"\n\n  - bibtex_key: wang2026vlaiap\n    title: \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models\"\n    authors: \"Wang, others\"\n    year: 2026\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2603.22991\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Geometric prior + dynamic scheduling for VLA token pruning; 97.8% SR with 1.54x speedup. Claims to preserve manipulation-critical tokens.\"\n    notes: \"Reports successful VLA token pruning. Key contrast with our findings. Uses OpenVLA, not SmolVLA.\"\n\n  - bibtex_key: yang2025efficientvla\n    title: \"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models\"\n    authors: \"Yang, Yantai and Wang, Yuhao and Wen, Zichen and others\"\n    year: 2025\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2506.10100\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Synergistic layer pruning + task-aware visual token selection + temporal caching on CogACT (7B); 1.93x speedup with 0.6% SR drop on SIMPLER.\"\n    notes: \"Combines three orthogonal efficiency strategies. Uses CogACT not SmolVLA. Layer pruning and temporal caching are complementary to our token-level analysis.\"\n\n  - bibtex_key: liu2025vlapruner\n    title: \"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference\"\n    authors: \"Liu, Ziyan and Chen, Yeqiu and Cai, Hongyi and others\"\n    year: 2025\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2511.16449\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Dual-level importance criterion combining prefill attention (semantic) and temporally-smoothed action decode attention for VLA token pruning.\"\n    notes: \"VLA-specific pruning exploiting temporal continuity. Directly relevant as it separates semantic vs action-level token importance.\"\n\n  - bibtex_key: shang2024prumerge\n    title: \"LLaVA-PruMerge: Adaptive Token Reduction for Efficient Large Multimodal Models\"\n    authors: \"Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan\"\n    year: 2024\n    venue: \"ICCV 2025\"\n    arxiv_id: \"2403.15388\"\n    category: \"VLM/LLM Token Efficiency\"\n    role: direct-competitor\n    verified: true\n    key_finding: \"Adaptive visual token pruning + merging for LMMs; reduces tokens by 4x (to 5.5% with PruMerge) with comparable performance on VQA/reasoning tasks.\"\n    notes: \"VLM token reduction via CLS attention importance + similarity-based merging. Establishes prune-then-merge paradigm for visual tokens in VLMs.\"\n\n  # ============================================================\n  # Cluster: ViT Token Pruning/Merging (target: 7)\n  # ============================================================\n  - bibtex_key: rao2021dynamicvit\n    title: \"DynamicViT: Efficient Vision Transformers with Dynamic Token Sparsification\"\n    authors: \"Rao, Yongming and Zhao, Wenliang and Liu, Benlin and Lu, Jiwen and Zhou, Jie and Hsieh, Cho-Jui\"\n    year: 2021\n    venue: \"NeurIPS 2021\"\n    arxiv_id: \"2106.02034\"\n    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Hierarchical token pruning for ViT; removes 66% tokens with only 0.5% accuracy drop on ImageNet; 31-37% FLOPs reduction.\"\n    pruning_stats: \"66% token removal, <0.5% accuracy drop, 40%+ throughput improvement.\"\n\n  - bibtex_key: bolya2023tome\n    title: \"Token Merging: Your ViT But Faster\"\n    authors: \"Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy\"\n    year: 2023\n    venue: \"ICLR 2023 (Oral)\"\n    arxiv_id: \"2210.09461\"\n    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Training-free token merging via bipartite matching; 2x throughput on ViT-L with only 0.2-0.3% accuracy drop.\"\n    pruning_stats: \"2x throughput, 0.2-0.3% accuracy drop. Merges redundant foreground + background tokens.\"\n\n  - bibtex_key: liang2022evit\n    title: \"Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations\"\n    authors: \"Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao\"\n    year: 2022\n    venue: \"ICLR 2022\"\n    arxiv_id: \"2202.07800\"\n    category: \"ViT Token Pruning/Merging\"\n    role: foundation\n    verified: true\n    key_finding: \"Token reorganization guided by CLS attention; 50% speedup with 0.3% accuracy drop on DeiT-S. Fuses inattentive tokens.\"\n    pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================\n  - bibtex_key: liu2023libero\n    title: \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n    authors: \"Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2306.03310\"\n    category: \"Closed-Loop Evaluation\"\n    role: foundation\n    verified: true\n    key_finding: \"130 manipulation tasks across 4 suites; evaluates knowledge transfer in lifelong robot learning with teleoperated demonstrations.\"\n    notes: \"Our evaluation benchmark. We use Object/Spatial/Goal suites (10 tasks each, 50 episodes/task).\"\n\n  - bibtex_key: mees2022calvin\n    title: \"CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks\"\n    authors: \"Mees, Oier and Hermann, Lukas and Rosete-Beas, Erick and Burgard, Wolfram\"\n    year: 2022\n    venue: \"IEEE RA-L\"\n    arxiv_id: \"2112.03227\"\n    category: \"Closed-Loop Evaluation\"\n    role: background\n    verified: true\n    key_finding: \"Long-horizon language-conditioned manipulation benchmark; 24h teleoperated play data with 20K language directives.\"\n\n  - bibtex_key: chi2023diffusionpolicy\n    title: \"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\"\n    authors: \"Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran\"\n    year: 2023\n    venue: \"RSS 2023\"\n    arxiv_id: \"2303.04137\"\n    category: \"Closed-Loop Evaluation\"\n    role: background\n    verified: true\n    key_finding: \"Conditional denoising diffusion for robot policy; 46.9% average improvement across 12 tasks; handles multimodal action distributions.\"\n\n  # ============================================================\n  # Cluster: Negative Results & Evaluation Pitfalls (target: 5)\n  # ============================================================\n  - bibtex_key: zeng2023transformers_tsf\n    title: \"Are Transformers Effective for Time Series Forecasting?\"\n    authors: \"Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang\"\n    year: 2023\n    venue: \"AAAI 2023\"\n    arxiv_id: \"2205.13504\"\n    category: \"Negative Results & Evaluation Pitfalls\"\n    role: foundation\n    verified: true\n    key_finding: \"Simple linear models outperform sophisticated Transformer-based LTSF models on all 9 datasets, often by 20-50%. Challenges the Transformer paradigm for time series.\"\n\n  - bibtex_key: bouthillier2024negative\n    title: \"Position: Embracing Negative Results in Machine Learning\"\n    authors: \"Bouthillier, Xavier and others\"\n    year: 2024\n    venue: \"ICML 2024\"\n    arxiv_id: \"2406.03980\"\n    category: \"Negative Results & Evaluation Pitfalls\"\n    role: background\n    verified: true\n    key_finding: \"Position paper arguing for publication of negative results to improve ML research efficiency; predictive performance alone is insufficient for evaluating contributions.\"\n\n  # ============================================================\n  # Background / Architecture\n  # ============================================================\n  - bibtex_key: zhai2023siglip\n    title: \"Sigmoid Loss for Language Image Pre-Training\"\n    authors: \"Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas\"\n    year: 2023\n    venue: \"ICCV 2023\"\n    arxiv_id: \"2303.15343\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"Pairwise sigmoid loss for image-text pretraining; optimal at batch size 32K; 84.5% ImageNet zero-shot with only 4 TPUv4 chips.\"\n    notes: \"Vision encoder used in SmolVLA. Produces spatial patch tokens without CLS token.\"\n\n  - bibtex_key: yang2024qwen2\n    title: \"Qwen2 Technical Report\"\n    authors: \"Yang, An and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2407.10671\"\n    category: \"VLA Models\"\n    role: background\n    verified: true\n    key_finding: \"0.5B-72B parameter LLM family; Qwen2-1.5B is the LLM backbone in SmolVLA.\"\n\n  - bibtex_key: lipman2023flow\n    title: \"Flow Matching for Generative Modeling\"\n    authors: \"Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt\"\n    year: 2023\n    venue: \"ICLR 2023\"\n    arxiv_id: \"2210.02747\"\n    category: \"VLA Models\"\n    role: foundation\n    verified: true\n    key_finding: \"Simulation-free CNF training via regressing conditional probability path vector fields; OT displacement interpolation enables faster training and sampling.\"\n    notes: \"Action generation mechanism in SmolVLA and pi0.\"\n\n  # ============================================================\n  # Cluster: Vision Connectors & Token Compression (target: 6)\n  # ============================================================\n  - bibtex_key: li2023blip2\n    title: \"BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models\"\n    authors: \"Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven\"\n    year: 2023\n    venue: \"ICML 2023\"\n    arxiv_id: \"2301.12597\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Querying Transformer (Q-Former) compresses visual tokens into fixed number of query tokens; outperforms Flamingo80B on zero-shot VQAv2 with 54x fewer trainable parameters.\"\n    notes: \"Exemplar of learned cross-attention compression for vision-language bridging. Our proposed cross-attention compression draws on this principle.\"\n\n  - bibtex_key: alayrac2022flamingo\n    title: \"Flamingo: a Visual Language Model for Few-Shot Learning\"\n    authors: \"Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and others\"\n    year: 2022\n    venue: \"NeurIPS 2022\"\n    arxiv_id: \"2204.14198\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Perceiver Resampler maps variable-size spatio-temporal visual features to fixed number of output tokens via cross-attention with learnable queries.\"\n    notes: \"Another learned cross-attention connector. Together with BLIP-2, establishes the cross-attention connector paradigm that contrasts with MLP/pixel_shuffle approaches.\"\n\n  - bibtex_key: liu2023llava\n    title: \"Visual Instruction Tuning\"\n    authors: \"Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2304.08485\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Simple linear/MLP projection connects vision encoder to LLM; LLaVA-1.5 shows two-layer MLP projector is surprisingly effective and data-efficient.\"\n    notes: \"Key reference for the MLP projector approach used in OpenVLA. Our finding that MLP projector enables graceful degradation under token pruning connects to this design choice.\"\n\n  - bibtex_key: shi2016subpixel\n    title: \"Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network\"\n    authors: \"Shi, Wenzhe and Caballero, Jose and Huszar, Ferenc and Totz, Johannes and Aitken, Andrew P. and Bishop, Rob and Rueckert, Daniel and Wang, Zehan\"\n    year: 2016\n    venue: \"CVPR 2016\"\n    arxiv_id: \"1609.05158\"\n    category: \"Vision Connectors & Token Compression\"\n    role: background\n    verified: true\n    key_finding: \"Introduces sub-pixel convolution (pixel shuffle) that rearranges spatial resolution and channel dimensions; enables real-time 1080p super-resolution.\"\n    notes: \"Origin of the pixel_shuffle operation adopted by SmolVLA and InternVL as vision connector. Central to our cliff-edge failure analysis.\"\n\n  - bibtex_key: chen2024internvl\n    title: \"How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites\"\n    authors: \"Chen, Zhe and Wang, Weiyun and Tian, Hao and others\"\n    year: 2024\n    venue: \"arXiv preprint\"\n    arxiv_id: \"2404.16821\"\n    category: \"Vision Connectors & Token Compression\"\n    role: background\n    verified: true\n    key_finding: \"InternVL 1.5 uses 2x2 pixel unshuffle to compress 1024 visual tokens to 256 per tile; supports dynamic high-resolution up to 4K with up to 40 tiles.\"\n    notes: \"Another VLM using pixel_shuffle connector, confirming its adoption beyond SmolVLA. Strengthens generality of our cliff-edge finding.\"\n\n  - bibtex_key: oquab2024dinov2\n    title: \"DINOv2: Learning Robust Visual Features without Supervision\"\n    authors: \"Oquab, Maxime and Darcet, Timothee and Moutakanni, Theo and others\"\n    year: 2024\n    venue: \"TMLR 2024\"\n    arxiv_id: \"2304.07193\"\n    category: \"Vision Connectors & Token Compression\"\n    role: foundation\n    verified: true\n    key_finding: \"Self-supervised ViT producing all-purpose visual features; scaled to ViT-g with curated LVD-142M dataset; strong transfer across tasks without finetuning.\"\n    notes: \"Vision encoder used in OpenVLA (DinoSigLIP). Its feature structure interacts with the MLP projector to determine token-level importance distribution.\"\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 211,
+                  "oldLines": 6,
+                  "newStart": 211,
+                  "newLines": 19,
+                  "lines": [
+                    "     key_finding: \"Token reorganization guided by CLS attention; 50% speedup with 0.3% accuracy drop on DeiT-S. Fuses inattentive tokens.\"",
+                    "     pruning_stats: \"50% speedup, 0.3% accuracy drop on ImageNet.\"",
+                    " ",
+                    "+  - bibtex_key: yin2022avit",
+                    "+    title: \"A-ViT: Adaptive Tokens for Efficient Vision Transformer\"",
+                    "+    authors: \"Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo\"",
+                    "+    year: 2022",
+                    "+    venue: \"CVPR 2022 (Oral)\"",
+                    "+    arxiv_id: \"2112.07658\"",
+                    "+    category: \"ViT Token Pruning/Merging\"",
+                    "+    role: background",
+                    "+    verified: true",
+                    "+    key_finding: \"Per-token adaptive depth via ACT halting — tokens exit at different layers based on learned halting probability. 62% throughput gain on DeiT-T, 38% on DeiT-S with 0.3% accuracy drop.\"",
+                    "+    pruning_stats: \"62% throughput improvement (DeiT-T), 38% (DeiT-S), 0.3% accuracy drop. No extra parameters.\"",
+                    "+    notes: \"Complements fixed-layer pruning (DynamicViT, EViT) and merging (ToMe) by introducing depth-adaptive token halting. Relevant to our analysis of how token importance varies across transformer depth.\"",
+                    "+",
+                    "   # ============================================================",
+                    "   # Cluster: Closed-Loop Evaluation (target: 5)",
+                    "   # ============================================================"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the entry was added correctly."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "40d9d01d-c756-4215-9e6e-25a4c53c6c75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EsspnKpbLxuXnCgoF8jHJ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 619,
+                "cache_read_input_tokens": 36006,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 619
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lbk7Wz7XyvxnMc4kkDUAc3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+                "offset": 213,
+                "limit": 18
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "f337e4ce-0a06-4f18-a31d-d17db943ef95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EsspnKpbLxuXnCgoF8jHJ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 619,
+                "cache_read_input_tokens": 36006,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 619
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T23:04:12.027Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lbk7Wz7XyvxnMc4kkDUAc3",
+              "type": "tool_result",
+              "content": "213\t\n214\t  - bibtex_key: yin2022avit\n215\t    title: \"A-ViT: Adaptive Tokens for Efficient Vision Transformer\"\n216\t    authors: \"Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo\"\n217\t    year: 2022\n218\t    venue: \"CVPR 2022 (Oral)\"\n219\t    arxiv_id: \"2112.07658\"\n220\t    category: \"ViT Token Pruning/Merging\"\n221\t    role: background\n222\t    verified: true\n223\t    key_finding: \"Per-token adaptive depth via ACT halting — tokens exit at different layers based on learned halting probability. 62% throughput gain on DeiT-T, 38% on DeiT-S with 0.3% accuracy drop.\"\n224\t    pruning_stats: \"62% throughput improvement (DeiT-T), 38% (DeiT-S), 0.3% accuracy drop. No extra parameters.\"\n225\t    notes: \"Complements fixed-layer pruning (DynamicViT, EViT) and merging (ToMe) by introducing depth-adaptive token halting. Relevant to our analysis of how token importance varies across transformer depth.\"\n226\t\n227\t  # ============================================================\n228\t  # Cluster: Closed-Loop Evaluation (target: 5)\n229\t  # ============================================================\n230\t  - bibtex_key: liu2023libero"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "2f775f41-a941-4272-8195-8cdd9400bd72",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/literature_map.yaml",
+                "content": "\n  - bibtex_key: yin2022avit\n    title: \"A-ViT: Adaptive Tokens for Efficient Vision Transformer\"\n    authors: \"Yin, Hongxu and Vahdat, Arash and Alvarez, Jose M. and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo\"\n    year: 2022\n    venue: \"CVPR 2022 (Oral)\"\n    arxiv_id: \"2112.07658\"\n    category: \"ViT Token Pruning/Merging\"\n    role: background\n    verified: true\n    key_finding: \"Per-token adaptive depth via ACT halting — tokens exit at different layers based on learned halting probability. 62% throughput gain on DeiT-T, 38% on DeiT-S with 0.3% accuracy drop.\"\n    pruning_stats: \"62% throughput improvement (DeiT-T), 38% (DeiT-S), 0.3% accuracy drop. No extra parameters.\"\n    notes: \"Complements fixed-layer pruning (DynamicViT, EViT) and merging (ToMe) by introducing depth-adaptive token halting. Relevant to our analysis of how token importance varies across transformer depth.\"\n\n  # ============================================================\n  # Cluster: Closed-Loop Evaluation (target: 5)\n  # ============================================================\n  - bibtex_key: liu2023libero",
+                "numLines": 18,
+                "startLine": 213,
+                "totalLines": 401
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Entry added and verified. Here's the summary:\n\n**Added:** `yin2022avit` — *A-ViT: Adaptive Tokens for Efficient Vision Transformer*, CVPR 2022 (Oral)\n\n**Why it complements the existing 3:**\n\n| Paper | Mechanism |\n|-------|-----------|\n| DynamicViT | Learned binary pruning predictor at **fixed layers** |\n| EViT | CLS-attention reorganization at **fixed layers** |\n| ToMe | Training-free bipartite **merging** at every layer |\n| **A-ViT** | Per-token **adaptive depth** via ACT halting — tokens exit at **different layers** |\n\nA-ViT introduces a fundamentally different axis: instead of deciding *which tokens to remove at a given layer*, it asks *how deep should each token be processed*. This is directly relevant to our VLA token pruning analysis because it highlights that token importance varies across transformer depth — connecting to our investigation of how pruning at different stages of the VLA pipeline produces different failure modes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "uuid": "ecb6c48c-a4a6-41db-97bf-fe5a9b0f099d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0148iEfaCg6sSHj3LkTBF49i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 539,
+                "cache_read_input_tokens": 36625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 539
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Entry added and verified. Here's the summary:\n\n**Added:** `yin2022avit` — *A-ViT: Adaptive Tokens for Efficient Vision Transformer*, CVPR 2022 (Oral)\n\n**Why it complements the existing 3:**\n\n| Paper | Mechanism |\n|-------|-----------|\n| DynamicViT | Learned binary pruning predictor at **fixed layers** |\n| EViT | CLS-attention reorganization at **fixed layers** |\n| ToMe | Training-free bipartite **merging** at every layer |\n| **A-ViT** | Per-token **adaptive depth** via ACT halting — tokens exit at **different layers** |\n\nA-ViT introduces a fundamentally different axis: instead of deciding *which tokens to remove at a given layer*, it asks *how deep should each token be processed*. This is directly relevant to our VLA token pruning analysis because it highlights that token importance varies across transformer depth — connecting to our investigation of how pruning at different stages of the VLA pipeline produces different failure modes."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 92721,
+            "duration_api_ms": 93872,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "3edbfaa2-e34b-4713-a1a6-f2b0de3b2845",
+            "total_cost_usd": 0.4098442500000001,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 25323,
+              "cache_read_input_tokens": 243561,
+              "output_tokens": 2488,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25323,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 250,
+                  "cache_read_input_tokens": 36625,
+                  "cache_creation_input_tokens": 539,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 539
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 30760,
+                "outputTokens": 1355,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 3,
+                "costUSD": 0.06753500000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2488,
+                "cacheReadInputTokens": 243561,
+                "cacheCreationInputTokens": 25323,
+                "webSearchRequests": 0,
+                "costUSD": 0.34230925000000006,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "70378820-1686-43a3-9fc4-eecbd5bcaf34"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ]
+}

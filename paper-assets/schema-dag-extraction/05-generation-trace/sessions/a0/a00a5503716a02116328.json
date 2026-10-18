@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "a00a5503716a02116328",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis re none evaluation check",
+  "task_key": "worker_analysis_re_none_evaluation_check_20260521T031735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_re_none_evaluation_check_20260521T031735.log",
+    "occurrence": 1,
+    "bytes": 693029,
+    "sha256": "4288ff5c55efcfd1677d7ad450b076032d563f6c3e08714df06700e2a04e0fe5"
+  },
+  "statistics": {
+    "messages": 159,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "a00a5503716a02116328-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "a00a5503716a02116328-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ]
+}

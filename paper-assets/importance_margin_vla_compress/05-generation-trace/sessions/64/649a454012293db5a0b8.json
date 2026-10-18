@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "649a454012293db5a0b8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent backup attn result",
+  "task_key": "worker_urgent_backup_attn_result_20260525T141502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_backup_attn_result_20260525T141502_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "17b0f0b2146321bad2077e7dda0b5413bd4cc1b2f03af73eff51ceb86df2defa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份成功。文件内容确认：\n\n- **overall_success_rate: 43.6%**（key 是 `overall_success_rate`，不是之前猜的两个名字）\n- mode: `l2norm_prune`，seed=42，500 episodes，时间戳 2026-05-25 22:06\n- 文件已安全保存为 `openvla_attn_prune_k09_long_seed42.json`\n\n注意：文件中记录的 mode 是 `l2norm_prune`、SR 是 43.6% 而非预期的 Attn k=0.9 Long (SR=44.0%)。这可能意味着 L2norm 的结果已经覆盖了 Attn 的结果，或者这本身就是 L2norm 的结果。建议确认是否还有其他地方保存了 Attn k=0.9 Long 的原始数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

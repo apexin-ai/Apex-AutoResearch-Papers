@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "46cf1ae3a1e991bd6379",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "ops tone pilot exp004",
+  "task_key": "worker_ops_tone_pilot_exp004_20260520T224149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tone_pilot_exp004_20260520T224149.log",
+    "occurrence": 1,
+    "bytes": 905089,
+    "sha256": "5a43f3407d5040492de2773d9f6fa2941d09ff62acbd7254f335b85429d22c2b"
+  },
+  "statistics": {
+    "messages": 679,
+    "user_turns": 1,
+    "tool_calls": 288,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 94,
+      "tool_call": 288,
+      "tool_result": 288,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 582,
+      "chunks": [
+        {
+          "path": "46cf1ae3a1e991bd6379-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "46cf1ae3a1e991bd6379-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "46cf1ae3a1e991bd6379-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "46cf1ae3a1e991bd6379-part-0004.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "46cf1ae3a1e991bd6379-part-0004.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ]
+}

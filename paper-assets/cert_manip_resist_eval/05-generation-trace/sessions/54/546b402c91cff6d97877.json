@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "546b402c91cff6d97877",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 step3 mi matrix",
+  "task_key": "worker_code_plan001-step3-mi-matrix_20260522T075635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-step3-mi-matrix_20260522T075635_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "ad877c7cec96ab63bed11115fa262ad9578ebae1b19b85851af9c3b39c521f1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已写好并通过 syntax check + import 验证：\n\n**脚本 1** `run_plan001_step3_mi_matrix.py`:\n- 从 `_step2v3_checkpoint.json` / `_taxonomy_checkpoint.json` 加载 6 本地模型 clean scores\n- 从 `plan001/individual_scores/{model}__{ds}__clean.json` 加载 9 API 模型 clean scores\n- 用 `sklearn.metrics.mutual_info_score` 计算 15×15 pairwise MI 矩阵（每 dataset 一个）\n- 枚举 C(15,3)=455 panels 计算 MI-based K_eff\n- 输出 → `plan001/mi_matrix/mi_matrix_15models.json`\n\n**脚本 2** `run_plan001_confound_diagnosis.py`:\n- 读取 MI 矩阵 + 各模型 individual ASR（本地从 checkpoint 计算，API 从 score 文件读 `asr` 字段）\n- 对 12 个 condition（2 dataset × 6 attack），枚举所有可用 panels，计算 K_eff vs η_max 的 Pearson r\n- 自动判定 `CONFOUND_SEVERE` / `CONFOUND_MODERATE` / `CONFOUND_BROKEN`\n- 生成 scatter grid 图 → `confound_scatter.png`\n- 输出 → `confound_diagnosis.json`\n\n缺失数据（API scores 未就绪）会 graceful skip，不会 crash。Step 1 完成后可直接顺序运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

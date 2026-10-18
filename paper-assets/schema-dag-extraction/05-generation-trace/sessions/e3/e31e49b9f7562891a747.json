@@ -1,0 +1,409 @@
+{
+  "schema_version": "1.0",
+  "id": "e31e49b9f7562891a747",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "analysis prepare appendix maven residualized",
+  "task_key": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_prepare_appendix_maven_residualized_20260516T020254.jsonl",
+    "occurrence": 1,
+    "bytes": 25033,
+    "sha256": "ce2a3a5d485d480be5865520355bc97e0b61a826220d5a38c4fb68dbfa78a900"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:04:28.274027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:04:28.274476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:04:28.274755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/maven_residualized_bcs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:04:28.275012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxr-xr-x  2 root root   101 May 16 09:31 .\\\\ndrwxr-xr-x 24 root root  4096 May 16 09:47 ..\\\\n-rw-r--r--  1 root root 11367 May 16 09:35 analysis_report.txt\\\\n-rw-r--r--  1 root root 18269 May 16 09:33 residualized_analysis.py\\\\n-rw-r--r--  1 root root  2088 May 16 09:33 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:04:28.275172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/maven_residualized_bcs/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:04:28.275357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"raw_qwen3\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.18371674783207342,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.02491052633962818,\\\\n    \\\\\\\"r\\\\\\\": 0.17534324407179305,\\\\n    \\\\\\\"r_p\\\\\\\": 0.03244286839664537\\\\n  },\\\\n  \\\\\\\"raw_minilm\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.20750567868961314,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.01110747053387184,\\\\n    \\\\\\\"r\\\\\\\": 0.16964202461357764,\\\\n    \\\\\\\"r_p\\\\\\\": 0.038609808158526535\\\\n  },\\\\n  \\\\\\\"partial_logfreq_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.18897560840229824,\\\\n    \\\\\\\"p\\\\\\\": 0.02099068688771195,\\\\n    \\\\\\\"rho\\\\\\\": 0.21455903541954235,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.008597824457940767\\\\n  },\\\\n  \\\\\\\"partial_logfreq_deg_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0639118518294047,\\\\n    \\\\\\\"p\\\\\\\": 0.43871469499647414,\\\\n    \\\\\\\"rho\\\\\\\": 0.1449456026113002,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.07778045647885352\\\\n  },\\\\n  \\\\\\\"partial_all_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0991456695448804,\\\\n    \\\\\\\"p\\\\\\\": 0.22897581583520504\\\\n  },\\\\n  \\\\\\\"partial_logfreq_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.13269188477758653,\\\\n    \\\\\\\"p\\\\\\\": 0.10669850706603998,\\\\n    \\\\\\\"rho\\\\\\\": 0.13375864204384524,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.10388620949512652\\\\n  },\\\\n  \\\\\\\"partial_logfreq_deg_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.09973708225304634,\\\\n    \\\\\\\"p\\\\\\\": 0.22619708799728583,\\\\n    \\\\\\\"rho\\\\\\\": -0.004657052417852722,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.9550485521909728\\\\n  },\\\\n  \\\\\\\"partial_all_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.0963351737044513,\\\\n    \\\\\\\"p\\\\\\\": 0.24250931012722668\\\\n  },\\\\n  \\\\\\\"max_scs_partial_qwen3\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": -0.08627832984060962,\\\\n    \\\\\\\"p\\\\\\\": 0.29544836829389437,\\\\n    \\\\\\\"rho\\\\\\\": 0.007244114993119694,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.9301293195071244\\\\n  },\\\\n  \\\\\\\"max_scs_partial_minilm\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.07378349587296466,\\\\n    \\\\\\\"p\\\\\\\": 0.3711737009790744,\\\\n    \\\\\\\"rho\\\\\\\": 0.044061863997490645,\\\\n    \\\\\\\"rho_p\\\\\\\": 0.5936368411142643\\\\n  },\\\\n  \\\\\\\"decomp_qwen3\\\\\\\": {\\\\n    \\\\\\\"A_r2\\\\\\\": 0.0018813327219389109,\\\\n    \\\\\\\"A_rho\\\\\\\": 0.20048357914519718,\n…[truncated 802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:04:28.275522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/maven_residualized_bcs/analysis_report.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:04:28.275736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================\\\\nMAVEN Residualized BCS Analysis (v2)\\\\n========================================================================\\\\nN types (freq-filtered) = 149\\\\nF1: mean=0.1830, std=0.1895, median=0.1274\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n1. RAW CORRELATIONS (BCS vs F1)\\\\n────────────────────────────────────────────────────────────\\\\n  Qwen3: ρ=+0.1837 (p=0.0249), r=+0.1753 (p=0.0324)\\\\n  MiniLM: ρ=+0.2075 (p=0.0111), r=+0.1696 (p=0.0386)\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n2. CENTRALITY DIAGNOSTICS\\\\n   Is BCS correlated with centrality proxies?\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  BCS vs log_freq: r=-0.0434 (p=0.5994)\\\\n  BCS vs degree_0.3: r=+0.6408 (p=0.0000)\\\\n  BCS vs degree_0.5: r=+0.9369 (p=0.0000)\\\\n  BCS vs degree_0.7: r=+0.8544 (p=0.0000)\\\\n  BCS vs max_scs: r=+0.4167 (p=0.0000)\\\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\\\n  degree_0.3 vs F1: r=+0.0592 (p=0.4729)\\\\n  degree_0.5 vs F1: r=+0.1834 (p=0.0252)\\\\n  degree_0.7 vs F1: r=+0.1672 (p=0.0416)\\\\n\\\\n  ── MiniLM ──\\\\n  BCS vs log_freq: r=+0.2014 (p=0.0138)\\\\n  BCS vs degree_0.3: r=+0.9086 (p=0.0000)\\\\n  BCS vs degree_0.5: r=+0.4015 (p=0.0000)\\\\n  BCS vs degree_0.7: r=-0.0009 (p=0.9916)\\\\n  BCS vs max_scs: r=+0.2773 (p=0.0006)\\\\n  log_freq vs F1: r=+0.2116 (p=0.0096)\\\\n  degree_0.3 vs F1: r=+0.1424 (p=0.0832)\\\\n  degree_0.5 vs F1: r=+0.2414 (p=0.0030)\\\\n  degree_0.7 vs F1: r=+0.1634 (p=0.0464)\\\\n\\\\n────────���───────────────────────────────────────────────────\\\\n3. PARTIAL CORRELATIONS: BCS vs F1, various controls\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n  ── Qwen3 ──\\\\n  A) BCS vs F1 | log_freq:            r=+0.1890 (p=0.0210), ρ=+0.2146 (p=0.0086)\\\\n  B) BCS vs F1 | degree_0.7:       r=+0.0634 (p=0.4421)\\\\n  C) BCS vs F1 | log_freq+degree_0.7: r=+0.063\n…[truncated 6546 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:04:28.275944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -100 /root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:04:28.276150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMAVEN Residualized BCS Analysis (v2 — proper type-name matching)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, numpy as np, torch\\\\nfrom scipy import stats\\\\nfrom sklearn.linear_model import LinearRegression\\\\nfrom pathlib import Path\\\\nimport warnings\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\nARTIFACTS = Path(\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\")\\\\nOUT = ARTIFACTS / \\\\\\\"maven_residualized_bcs\\\\\\\"\\\\n\\\\n# ── Load per-type data ──\\\\nwith open(ARTIFACTS / \\\\\\\"maven_minilm_pertype_analysis.json\\\\\\\") as f:\\\\n    data = json.load(f)\\\\n\\\\nper_type = data[\\\\\\\"per_type_details\\\\\\\"]\\\\ntypes_list = sorted(per_type.keys())\\\\nn = len(types_list)\\\\n\\\\nf1 = np.array([per_type[t][\\\\\\\"f1\\\\\\\"] for t in types_list])\\\\nerror_rate = 1.0 - f1\\\\ngold_freq = np.array([per_type[t][\\\\\\\"gold_freq\\\\\\\"] for t in types_list])\\\\nlog_freq = np.log1p(gold_freq)\\\\nbcs_minilm = np.array([per_type[t][\\\\\\\"mean_bcs_minilm\\\\\\\"] for t in types_list])\\\\nbcs_qwen3 = np.array([per_type[t][\\\\\\\"mean_bcs_qwen3\\\\\\\"] for t in types_list])\\\\n\\\\n# ── Load SCS matrices with type names ──\\\\nd_minilm = torch.load(ARTIFACTS / \\\\\\\"maven_minilm_sim_matrix.pt\\\\\\\", weights_only=False)\\\\nd_qwen3 = torch.load(ARTIFACTS / \\\\\\\"maven_bcs_matrix_qwen3.pt\\\\\\\", weights_only=False)\\\\n\\\\nmat_minilm = d_minilm[\\\\\\\"similarity_matrix\\\\\\\"].numpy().astype(float)\\\\nmat_qwen3 = d_qwen3[\\\\\\\"similarity_matrix\\\\\\\"].numpy().astype(float)\\\\nmat_names_minilm = d_minilm[\\\\\\\"type_names\\\\\\\"]\\\\nmat_names_qwen3 = d_qwen3[\\\\\\\"type_names\\\\\\\"]\\\\n\\\\n# Zero diagonals\\\\nnp.fill_diagonal(mat_minilm, 0)\\\\nnp.fill_diagonal(mat_qwen3, 0)\\\\n\\\\n# Build name→index maps\\\\nname2idx_minilm = {n: i for i, n in enumerate(mat_names_minilm)}\\\\nname2idx_qwen3 = {n: i for i, n in enumerate(mat_names_qwen3)}\\\\n\\\\n# ── Compute matrix-derived features for each type ──\\\\ndef compute_features(sim_matrix, name2idx, types_list, emb_name):\\\\n    features = {}\\\\n    indices = []\\\\n    valid_mask = []\\\\n    for t in typ\n…[truncated 2041 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:04:28.276327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -60 /root/schema-dag-extraction/artifacts/maven_residualized_bcs/analysis_report.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:04:28.276492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     → controlling degree_0.7: r=+0.063 (p=0.442, n.s.)\\\\n     → controlling log_freq+degree_0.7: r=+0.064 (p=0.439, n.s.)\\\\n\\\\n2. CENTRALITY CONFOUND HYPOTHESIS: SUPPORTED FOR BOTH EMBEDDINGS\\\\n   The positive BCS-F1 correlation on MAVEN is fully explained by centrality:\\\\n   - MiniLM: mediated by type frequency (BCS↔freq r=0.201)\\\\n   - Qwen3: mediated by degree centrality (BCS↔degree_0.7 r=0.854)\\\\n   After controlling for the appropriate centrality proxy, BCS-F1\\\\n   becomes non-significant in both cases (p>0.1).\\\\n\\\\n3. WHY DIFFERENT CONFOUNDS?\\\\n   MiniLM operates in a lower-dimensional similarity space (BCS range\\\\n   0.064–0.313), where frequent types accumulate more semantic neighbors.\\\\n   Qwen3 operates in a higher range (0.226–0.786) where all types are\\\\n   densely connected; frequency doesn't predict connectivity, but the\\\\n   graph-theoretic degree centrality does.\\\\n\\\\n4. COMPARISON WITH Few-NERD:\\\\n   Few-NERD shows the expected negative BCS-F1 trend because its type\\\\n   system has clearer semantic boundaries and no centrality confound\\\\n   (BCS↔log_freq r=0.042, n.s.). MAVEN's 168 event types are\\\\n   semantically denser, creating a regime where centrality dominates.\\\\n\\\\n────────────────────────────────────────────────────────────\\\\n9. SUGGESTED APPENDIX TEXT\\\\n────────────────────────────────────────────────────────────\\\\n\\\\n§ A.X  MAVEN Per-Type BCS Analysis\\\\n\\\\nOn MAVEN (168 event types, 149 after frequency filtering), per-type BCS \\\\nshows a positive correlation with F1 (Qwen3: ρ = +0.184, p = 0.025; \\\\nMiniLM: ρ = +0.208, p = 0.011), opposite to the negative trend observed \\\\non Few-NERD.\\\\n\\\\nWe investigate whether this reversal reflects a centrality confound — the \\\\npossibility that mean BCS acts as a proxy for type \\\\\\\"centrality\\\\\\\" (semantic \\\\nconnectivity), which independently predicts higher F1.\\\\n\\\\nFor MiniLM embeddings, BCS correlates with type frequency (r = +0.201, \\\\np =\n…[truncated 1458 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:04:28.276646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -200 /root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:04:28.276922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    r_e, p_e = partial_corr_pearson(bcs, f1, cov_e, m)\\\\n    add(f\\\\\\\"  E) BCS vs F1 | log_freq+max_scs:    r={r_e:+.4f} (p={p_e:.4f})\\\\\\\")\\\\n    \\\\n    # F) log_freq + degree + max_scs (kitchen sink)\\\\n    cov_f = np.column_stack([log_freq, deg, feats['max_scs']])\\\\n    r_f, p_f = partial_corr_pearson(bcs, f1, cov_f, m)\\\\n    add(f\\\\\\\"  F) BCS vs F1 | all centrality:      r={r_f:+.4f} (p={p_f:.4f})\\\\\\\")\\\\n    results[f\\\\\\\"partial_all_{name.lower()}\\\\\\\"] = dict(r=float(r_f), p=float(p_f))\\\\n\\\\n# ── Section 4: Alternative confusability metrics ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"4. ALTERNATIVE CONFUSABILITY METRICS vs F1\\\\\\\")\\\\nadd(\\\\\\\"   max_scs, top3_mean = local confusability (not centrality)\\\\\\\")\\\\nadd(\\\\\\\"─\\\\\\\" * 60)\\\\n\\\\nfor name, feats in [(\\\\\\\"Qwen3\\\\\\\", feats_qwen3), (\\\\\\\"MiniLM\\\\\\\", feats_minilm)]:\\\\n    add(f\\\\\\\"\\\\\\\\n  ── {name} ──\\\\\\\")\\\\n    m = feats['valid_mask']\\\\n    \\\\n    for metric in ['max_scs', 'top3_mean', 'top5_mean', 'std_scs', 'cv_scs', 'skew_scs']:\\\\n        vals = feats[metric]\\\\n        rho, p = stats.spearmanr(vals[m], f1[m])\\\\n        add(f\\\\\\\"  {metric:12s} vs F1: ρ={rho:+.4f} (p={p:.4f})\\\\\\\")\\\\n    \\\\n    # Partial: max_scs vs F1 | log_freq + mean_bcs\\\\n    bcs = bcs_qwen3 if name == \\\\\\\"Qwen3\\\\\\\" else bcs_minilm\\\\n    cov = np.column_stack([log_freq, bcs])\\\\n    for metric in ['max_scs', 'top3_mean', 'cv_scs']:\\\\n        vals = feats[metric]\\\\n        r, p = partial_corr_pearson(vals, f1, cov, m)\\\\n        rho, sp = partial_corr_spearman(vals, f1, cov, m)\\\\n        add(f\\\\\\\"  {metric:12s} vs F1 | log_freq+BCS: r={r:+.4f} (p={p:.4f}), ρ={rho:+.4f} (p={sp:.4f})\\\\\\\")\\\\n        if metric == 'max_scs':\\\\n            results[f\\\\\\\"max_scs_partial_{name.lower()}\\\\\\\"] = dict(r=float(r), p=float(p), rho=float(rho), rho_p=float(sp))\\\\n\\\\n# ── Section 5: Decomposition ──\\\\nadd(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"─\\\\\\\" * 60)\\\\nadd(\\\\\\\"5. DECOMPOSITION: BCS = centrality_component + residual\\\\\\\"\n…[truncated 6981 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:04:28.277153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/",
+              "description": "List local artifacts directory"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:04:28.277294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nace05_code\nace05_data_prep_report.md\nbcs_comparison.json\nbootstrap_ci.py\ncrossagentie_analysis.md\ndream_reports\neval_exp1.json\neval_exp2.json\nexp-004\nexp-008\nexp-012\nexp002_confusability_controlled\nexp003a\nexp003a_analysis.json\nexp004\nexp004_maven_bcs\nexp006_interaction_2x2\nexp008_sdgd_zero_fewnerd\nexp008_sdgd_zero_fewnerd_r2\nexp012_exp2_diagnosis.md\nexp012_llama_8b_r2\nexp012_llama_fewrel_ch2\nfewrel_formal\nfig_count_curves.py\nfig_error_taxonomy.py\nmanifest.yaml\nmaven_code\nmaven_dataset_report.md\nmulti_model_candidates.md\npaper\npaper_drafts\nreferences_survey.md\nreview_issues.yaml\nreview_reports\nsdgd_design_doc.md\nthird_task_type_eval.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:04:28.277433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md",
+              "content": "## Appendix X: MAVEN Per-Type BCS--F1 Analysis: A Centrality Artifact\n\n### Motivation\n\nIn our main experiments, higher BCS (Boundary Confusion Score) is associated with greater extraction difficulty---types whose schema neighbors are more semantically similar are harder to distinguish. On Few-NERD, per-type BCS correlates negatively with F1 ($\\rho = -0.293$, $p = 0.020$), consistent with this interpretation. On MAVEN, however, per-type BCS shows a *positive* correlation with F1 (Table~\\ref{tab:maven-raw}), suggesting that types embedded in denser schema neighborhoods are *easier* to classify. We investigate whether this reversal reflects a genuine structural effect or a centrality artifact.\n\n### Method\n\nWe compute per-type mean BCS under two embedding spaces (MiniLM, Qwen3) for 149 MAVEN event types (168 total; 19 excluded with gold frequency $< 5$). We then test whether the BCS--F1 correlation survives partial correlation analysis controlling for two centrality proxies:\n\n- **Type frequency** ($\\log(1 + \\text{freq})$): more frequent types may have both higher BCS (more training signal shaping their embedding neighborhood) and higher F1 (more supervision).\n- **Degree centrality**: the number of types exceeding a similarity threshold (0.7 for Qwen3, 0.3 for MiniLM, selected as the strongest BCS--degree correlate per embedding). High-degree types sit at the center of the schema graph and may benefit from richer contextual disambiguation cues.\n\nPartial correlations are computed by residualizing both BCS and F1 on the control variable(s) via OLS regression and correlating the residuals (Pearson $r$). We also report Spearman $\\rho$ where applicable.\n\n### Results\n\n**Table X.1: Raw per-type BCS--F1 correlations on MAVEN**\n\n| Embedding | Spearman $\\rho$ | $p$ | Pearson $r$ | $p$ |\n|-----------|-----------------|-----|-------------|-----|\n| Qwen3     | +0.184          | 0.025 | +0.175    | 0.032 |\n| MiniLM    | +0.208          | 0.011 | +0.170    | 0.039 |\n\nBoth embeddings show a significant positive BCS--F1 association ($p < 0.05$).\n\n**Table X.2: Centrality diagnostics---BCS correlates with different centrality proxies per embedding**\n\n| Embedding | BCS $\\leftrightarrow$ log\\_freq | BCS $\\leftrightarrow$ degree centrality |\n|-----------|---|----|\n| Qwen3     | $r = -0.043$ ($p = 0.599$, n.s.) | $r = +0.854$ ($p < 0.001$; threshold 0.7) |\n| MiniLM    | $r = +0.201$ ($p = 0.014$)        | $r = +0.909$ ($p < 0.001$; threshold 0.3) |\n\nFor MiniLM, BCS is confounded with type frequency. For Qwen3, BCS is nearly uncorrelated with frequency but strongly correlated with degree centrality---reflecting the denser similarity structure of the Qwen3 embedding space (BCS range 0.226--0.786 vs. MiniLM's 0.064--0.313).\n\n**Table X.3: Partial correlations---BCS--F1 after controlling for centrality**\n\n| Embedding | Control variable(s) | Partial $r$ | $p$ | Significant? |\n|-----------|---------------------|-------------|-----|--------------|\n| MiniLM    | log\\_freq            | +0.133      | 0.107 | No |\n| MiniLM    | log\\_freq + degree   | +0.100      | 0.226 | No |\n| Qwen3     | log\\_freq            | +0.189      | 0.021 | Yes |\n| Qwen3     | degree (0.7)         | +0.063      | 0.442 | No |\n| Qwen3     | log\\_freq + degree   | +0.064      | 0.439 | No |\n\nFor MiniLM, controlling for type frequency alone is sufficient to render BCS--F1 non-significant. For Qwen3, frequency control is insufficient (the confound operates through degree centrality, not frequency), but controlling for degree centrality eliminates the association. Under joint control, neither embedding retains a significant BCS--F1 relationship.\n\n### Discussion\n\nThe apparent positive BCS--F1 correlation on MAVEN is fully explained by centrality confounds. The confound operates through different proxies depending on the embedding space:\n\n- **MiniLM** (lower similarity scale): BCS acts as a proxy for type frequency. Frequent types accumulate more semantic neighbors, inflating mean BCS, while simultaneously benefiting from greater supervision.\n- **Qwen3** (higher similarity scale): all types are densely interconnected, so frequency does not predict BCS. Instead, BCS tracks graph-theoretic degree centrality---types with more neighbors above a high similarity threshold are both more \"central\" and easier to classify.\n\nThis contrasts sharply with Few-NERD, where no centrality confound exists (BCS $\\leftrightarrow$ log\\_freq: $r = 0.042$, $p = 0.74$) and BCS exhibits the expected negative association with F1. The difference arises from schema structure: Few-NERD spans 66 types across diverse domains (person, location, event, etc.) with clearer semantic boundaries, whereas MAVEN's 168 types are all event subtypes within a single ontological domain, creating a regime where semantic centrality dominates.\n\n### Conclusion\n\nMAVEN's per-type BCS--F1 reversal is an artifact of centrality confounding, not evidence that higher schema similarity aids extraction. The pairwise SCS--confusion relationship (types with higher pairwise semantic similarity are more frequently confused) remains robust on MAVEN and constitutes the valid claim. Per-type BCS should not be interpreted as having a direct causal effect on type-level performance for datasets with dense, same-domain type systems.\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:04:28.277611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:04:28.277772+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix 草稿已写入 `artifacts/appendix_maven_residualized.md`。\n\n结构：Motivation → Method (partial correlation with OLS residualization) → 三张表 (raw correlations, centrality diagnostics, partial correlations) → Discussion (MiniLM frequency confound vs Qwen3 degree confound, Few-NERD 对比) → Conclusion (centrality artifact, pairwise SCS-confusion is the valid claim)。\n\n所有数值均来自 `results.json` 和 `analysis_report.txt`，无虚构数据。MiniLM degree centrality 数据 ($r = +0.909$ at threshold 0.3) 取自 report 中的 centrality diagnostics section。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ]
+}

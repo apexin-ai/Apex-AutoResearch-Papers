@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "40f869ab244875e8de58",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest westd27271 zeromask",
+  "task_key": "worker_ops_harvest_westd27271_zeromask_20260522T122853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest_westd27271_zeromask_20260522T122853_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "e8d02553936cf5eac7a7d7e825a6a293d8ab984b7780a294850dfc88196d343b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已更新为 DONE (negative)。\n\n## 结果摘要\n\n| 实验 | 方法 | SR | 500 eps 中成功数 |\n|------|------|----|-----------------|\n| zeromask_random_k095 | 随机 5% token 置零（保持长度64） | **0.2%** (1/500) | 仅 task5 1次 |\n| zeromask_l2norm_k095 | 最低L2 norm 5% token 置零 | **0.0%** (0/500) | 全灭 |\n\n### 关键结论\n\n**zero_mask 同样导致接近 0% SR，与 true_removal 结果一致。** 这排除了 \"position shift\" 假说——即使序列长度保持不变（64 tokens），仅将 5% 的 token 值置零就足以摧毁模型性能。\n\n**含义：** SmolVLA 64-token 视觉表示中的信息是**不可丢弃的**，不是 position shift 问题，而是 token 信息本身的丢失造成 0% SR。每个 token 都承载了不可替代的信息。random zero_mask 的 0.2% 和 l2norm zero_mask 的 0% 都在统计噪声范围内（Wilson CI 包含 0），实际上等价于完全失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

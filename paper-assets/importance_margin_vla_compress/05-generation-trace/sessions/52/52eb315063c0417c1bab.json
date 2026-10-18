@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "52eb315063c0417c1bab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 zeromask l2norm",
+  "task_key": "worker_deploy_cqa1-zeromask-l2norm_20260525T182310",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-zeromask-l2norm_20260525T182310_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "4ad3c0fa9fb0142ba2ddd9809c04dc50df68299d1f726e5704c588a1f35594cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务启动成功，正在加载 π0.5 模型。\n\n- **exp_id**: `eval_pi05_zeromask_l2norm_k09_object_seed42`\n- **GPU**: cuda:2 @ cqa1-33015\n- **日志**: `/tmp/eval_pi05_zeromask_l2norm_k09_object_seed42.log`\n- **参数修正**: `--num_episodes` → `--n_episodes`，`--output` → `--output_dir`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

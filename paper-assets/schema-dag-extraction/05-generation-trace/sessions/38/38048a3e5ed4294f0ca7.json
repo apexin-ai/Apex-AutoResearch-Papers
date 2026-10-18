@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "38048a3e5ed4294f0ca7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure fix count curves exp001",
+  "task_key": "worker_figure_fix_count_curves_exp001_20260515T231821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix_count_curves_exp001_20260515T231821_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "bbe1920dd455a7cf6b93e758301da0fb3dbef3a099d9c9b3e777396539335516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证结果：\n\n- **PDF 有效**：21KB，PDF-1.4 格式\n- **Panel (a)** Few-NERD NER：7 个数据点，recall = [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]（exp001 数据，已替换 exp012 错误数据）\n- **Panel (b)** FewRel RE：8 个数据点（含 count_40=0.588 作为普通点），accuracy = [0.8573, 0.8667, 0.8021, 0.6958, 0.6578, 0.5880, 0.5424, 0.5042]\n- 布局从 3 panel 改为 2 panel，去掉了 MAVEN ED\n- 字体增大到 12pt+，学术风格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

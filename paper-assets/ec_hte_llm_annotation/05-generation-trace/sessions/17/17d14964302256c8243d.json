@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "17d14964302256c8243d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code balanced z modelscope",
+  "task_key": "worker_code_balanced-z-modelscope_20260521T172956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_balanced-z-modelscope_20260521T172956.log",
+    "occurrence": 1,
+    "bytes": 815385,
+    "sha256": "a3c0c27194c1ac64801cc88ba3f8fdcac72dc2d2e1ddc1d9c56d474d6e847d6a"
+  },
+  "statistics": {
+    "messages": 553,
+    "user_turns": 0,
+    "tool_calls": 210,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 130,
+      "tool_call": 210,
+      "tool_result": 210
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 553,
+      "chunks": [
+        {
+          "path": "17d14964302256c8243d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "17d14964302256c8243d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "17d14964302256c8243d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "17d14964302256c8243d-part-0004.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ]
+}

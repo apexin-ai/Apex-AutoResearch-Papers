@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "1fdfe04899cadf5110ec",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260514T095535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260514T095535.log",
+    "occurrence": 1,
+    "bytes": 952807,
+    "sha256": "44d4c335bc4a1a755dabe0df081ec6cad4d23f110dcacba8df15a7190548d5d4"
+  },
+  "statistics": {
+    "messages": 671,
+    "user_turns": 0,
+    "tool_calls": 289,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 289,
+      "tool_result": 289,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 671,
+      "chunks": [
+        {
+          "path": "1fdfe04899cadf5110ec-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fdfe04899cadf5110ec-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fdfe04899cadf5110ec-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fdfe04899cadf5110ec-part-0004.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ]
+}

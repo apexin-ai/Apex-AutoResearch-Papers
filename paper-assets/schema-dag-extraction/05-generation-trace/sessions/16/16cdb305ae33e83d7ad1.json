@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "16cdb305ae33e83d7ad1",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis stats w2 w3 w4",
+  "task_key": "worker_analysis_stats_w2_w3_w4_20260516T032244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stats_w2_w3_w4_20260516T032244.log",
+    "occurrence": 1,
+    "bytes": 585847,
+    "sha256": "2d0d8b1f66f199e9305748353f15e00825863b7b332689fb709d6207a99b01f8"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "16cdb305ae33e83d7ad1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "16cdb305ae33e83d7ad1-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ]
+}

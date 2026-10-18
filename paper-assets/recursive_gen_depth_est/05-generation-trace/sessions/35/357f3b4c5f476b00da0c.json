@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "357f3b4c5f476b00da0c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check training progress 20240514",
+  "task_key": "worker_check_training_progress_20240514_20260514T201533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training_progress_20240514_20260514T201533_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "36db33721a3593852c27ec9e259e3894af93dcf54b6d52bfacede6296e4da1ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇报\n\n### 实验 1: pythia_topk50_001 — **已完成** ✓\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | DEAD（正常结束） |\n| GPU 0 | 0%, 0 MiB — 已释放 |\n| 最终步骤 | Pipeline 全部完成，sentinel 已写入 |\n| 完成时间 | 2026-05-15 04:14:56 CST (20:14 UTC) |\n| Depth 2 final loss | **1.4374** |\n| 数据产出 | 4 × 5000 = 20000 样本 (depth 0-3) |\n\n### 实验 2: gpt2xl_temp09_001 — **运行中**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | ALIVE（GPU 1 活跃） |\n| GPU 1 | **76%**, 15671 / 97887 MiB |\n| 当前步骤 | **Step 4: Generate depth-2**（模型已加载，正在生成） |\n| Depth 1 finetune | 完成，final loss **1.6972**，耗时 844.8s |\n| 剩余步骤 | Generate d2 → Finetune d2 → Generate d3 → Feature extraction → Classification |\n| 预估剩余 | ~1.5-2h（finetune ~14min/轮 + generate ~15min/轮 + 后处理） |\n| 预估完成 | ~22:00-22:30 UTC，基本符合预期 ETA |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

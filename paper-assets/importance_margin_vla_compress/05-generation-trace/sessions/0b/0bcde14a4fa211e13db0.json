@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0bcde14a4fa211e13db0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval smart compress m128 seed44",
+  "task_key": "worker_eval_smart_compress_m128_seed44_20260519T100337",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smart_compress_m128_seed44_20260519T100337_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "93ee3af2825ec221a0b89a37ff4e7b687f3dfc267e5e3cebf1c23666316cb5aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动。\n\n- **exp_id**: `eval_smart_compress_m128_seed44`\n- **服务器**: westd-27271, GPU cuda:1\n- **PID**: 480299\n- **tmux session**: `eval_m128_s44`\n- **配置**: M=128, seed=44, libero_object, 10 tasks x 50 episodes = 500 total\n- **输出**: `eval_results/eval_smart_compress_m128_seed44.json`\n- **日志**: `~/runs/importance_margin_vla_compress/eval_smart_compress_m128_seed44.log`\n\n注：`eval_smart_compress_libero.py` 原不在 westd-27271 上，已从 cqa1-33015 完整复制（MD5 验证通过）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

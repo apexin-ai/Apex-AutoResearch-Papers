@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "062787beda9bd9dfaaf6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper tost margin anchoring",
+  "task_key": "worker_paper_tost_margin_anchoring_20260522T095444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tost_margin_anchoring_20260522T095444_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "5ce5f765f9768e135f0cdc68582187d765968d60478fd4d2adf4000e337eb63d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**Cross-prompt variance 数据**：\n- 4 个结构不同的 prompt 变体（V2 definition-first, Instruction-rewrite, Chain-of-thought, Minimal）在 FewRel 80-relation RE 上的 accuracy：\n  - Count 8: 74.9%–85.2%, SD = 4.6pp\n  - Count 32: 56.4%–66.2%, SD = 3.5pp\n- ±3pp margin 小于跨 prompt SD，属于保守选择。\n\n**Anchoring 论证**：±3pp 小于论文自身实验中跨 prompt 变体的 accuracy SD（3.5–4.6pp），满足 Lakens (2017) 的 smallest effect size of interest (SESOI) 原则——低于该 margin 的交互效应无法与 prompt 设计噪声区分。\n\n**Tex 修改**：`main.tex:235`，在 External anchor 中插入了一个分句，引用 Table `prompt_variants` 的跨 prompt SD 数据，并显式提及 SESOI 原则。原有 Lakens 2017 citation 已在 bib 中，无需新增。\n\n**编译结果**：成功，26 页，无 undefined reference/citation 错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

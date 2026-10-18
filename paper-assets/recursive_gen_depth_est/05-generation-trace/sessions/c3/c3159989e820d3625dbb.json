@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c3159989e820d3625dbb",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analyze cross model gpt2xl 001",
+  "task_key": "worker_analyze_cross_model_gpt2xl_001_20260514T182129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cross_model_gpt2xl_001_20260514T182129.log",
+    "occurrence": 1,
+    "bytes": 901265,
+    "sha256": "0bb12ac386ab86c23ce8d543f0d6665071299f347fea31d90d7de661b2811f6e"
+  },
+  "statistics": {
+    "messages": 154,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "c3159989e820d3625dbb-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "c3159989e820d3625dbb-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ]
+}

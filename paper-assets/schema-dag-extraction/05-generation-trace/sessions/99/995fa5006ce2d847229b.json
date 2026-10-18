@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "995fa5006ce2d847229b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r2 data fix URGENT",
+  "task_key": "worker_paper_r2_data_fix_URGENT_20260522T084608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r2_data_fix_URGENT_20260522T084608_result.json",
+    "occurrence": 1,
+    "bytes": 2593,
+    "sha256": "dc50f71ed2a600444e0498634a89cfb9c7079429b5eec5271283f55c4ac7e798"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Body text ends on page 8 (with Limitations starting on page 9). The 8-page limit is respected.\n\n---\n\n**修改报告：**\n\n| 文件 | 行号 | 修改前 | 修改后 |\n|------|------|--------|--------|\n| `abstract.tex` | 4 | `BCS explains ~22% ... ($R^2 \\approx 0.22$, ecological level)` | `BCS independently explains ~27% ... (semipartial $R^2 = 0.273$ after controlling for degree centrality; VIF=1.18)` |\n| `introduction.tex` | 24 | `explaining ~22% of batch-level variance (ecological level)` | `independently explaining ~27% of batch-level variance (semipartial $R^2 = 0.273$; ecological level)` |\n| `results.tex` | 50 | `BCS explains ~22% of cross-batch RE accuracy variance` | `BCS independently explains ~27% ... (semipartial $R^2 = 0.273$, $n = 204$, after controlling for degree centrality)` |\n| `results.tex` | 55 | `relative to FewRel (0.218)` | `relative to FewRel's pooled semipartial $R^2 = 0.273$` |\n| `results.tex` | 64 | `BCS explains 22% ... ($R^2 = 0.218$, $p < 0.001$)` | `$r = -0.22$, $R^2 \\approx 0.05$, $p = 0.027$ ... ~5% in restricted-range; pooled semipartial $R^2 = 0.273$ as primary` |\n| `results.tex` | 64 | `pairwise $r^2 \\approx 1.5\\%$ to batch-level $R^2 \\approx 22\\%$` | `pairwise $r^2 \\approx 1.5\\%$ to pooled semipartial $R^2 \\approx 27.3\\%$` |\n| `main.tex` | 595 | `observed batch-level $R^2 = 0.218$` | `observed pooled semipartial $R^2 = 0.273$` |\n| `main.tex` | 597 | `observed batch-level $R^2 \\approx 22\\%$` | `substantial batch-level $R^2$` |\n| `main.tex` | 599 | `matching the observed value of 0.218` | `consistent with the pooled semipartial $R^2 = 0.273$ (which falls within the simulation CI)` |\n| `main.tex` | 602 | `observed $R^2 = 0.218$` ... `matches the observed value` | `pooled semipartial $R^2 = 0.273$` ... `produces batch-level $R^2$ consistent with the pooled observation` |\n| `main.tex` | 605 | `still matching the observed value` ... `observed batch $R^2 = 0.218$` | removed \"still matching\" phrase; `pooled semipartial $R^2 = 0.273$` |\n| `main.tex` | 608 | `$R^2 = 0.218\\text{--}0.578$` | `FewRel semipartial $R^2 = 0.273$, DocRED pooled $R^2 = 0.578$` |\n\n**未修改（不同指标）：**\n- `main.tex:590` — SCS Spearman ρ = 0.218（SCS-confusion 相关性，非 R²）\n- `main.tex:630` — SCS baselines 表中 Spearman ρ = 0.218（同上）\n\n**Author response template** — 已确认无 R²=0.218 引用，已使用正确的 semipartial R²=0.273。\n\n**编译结果：** 26 pages, 0 errors, 0 undefined references, body ≤ 8 pages (Limitations 从 page 9 开始)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

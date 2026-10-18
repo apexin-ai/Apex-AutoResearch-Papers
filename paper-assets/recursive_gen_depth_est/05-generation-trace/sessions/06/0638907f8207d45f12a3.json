@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0638907f8207d45f12a3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh d1d3 eval mvp",
+  "task_key": "worker_ssh_d1d3_eval_mvp_20260514T160902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d1d3_eval_mvp_20260514T160902_result.json",
+    "occurrence": 1,
+    "bytes": 2183,
+    "sha256": "b6dab7dbd75e2a524186d98a562a77027b2363f053a74c05c93692bb95a9bc05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n```\n=======================================================\n=== FULL d1-d3 (N=15000, test=3000) ===\n=======================================================\nSample counts: d1=5000, d2=5000, d3=5000\n3-class acc: 0.7083 [95% CI: 0.6923, 0.7250]\nMAE: 0.3203\nPer-class recall:    d1=0.790, d2=0.607, d3=0.728\nPer-class precision: d1=0.852, d2=0.605, d3=0.680\nPer-class F1:        d1=0.820, d2=0.606, d3=0.703\nPairwise AUC: d1v2: 0.854, d1v3: 0.9569, d2v3: 0.7931\n\nConfusion matrix:\n         pred_d1  pred_d2  pred_d3\nd1       790     147      63\nd2       114     607     279\nd3        23     249     728\n\nTop-5 features: var_surprisal (0.1505), p90_ppl (0.1335), p75_ppl (0.0770),\n                mean_ppl (0.0688), mean_surprisal (0.0640)\n\n=======================================================\n=== FILTERED d1-d3 (code/HTML removed) (N=12012, test=2403) ===\n=======================================================\nSample counts: d1=4231, d2=4002, d3=3779\n3-class acc: 0.7466 [95% CI: 0.7274, 0.7636]\nMAE: 0.2759\nPer-class recall:    d1=0.862, d2=0.635, d3=0.735\nPer-class precision: d1=0.867, d2=0.659, d3=0.704\nPer-class F1:        d1=0.864, d2=0.647, d3=0.719\nPairwise AUC: d1v2: 0.8926, d1v3: 0.9769, d2v3: 0.8272\n\nConfusion matrix:\n         pred_d1  pred_d2  pred_d3\nd1       729      84      33\nd2        91     509     201\nd3        21     179     556\n\nTop-5 features: p90_ppl (0.1577), var_surprisal (0.1482), p75_ppl (0.0829),\n                mean_ppl (0.0669), mean_surprisal (0.0653)\n```\n\n**关键发现：**\n\n- **d2 是瓶颈**：full 子集 d2 recall 仅 60.7%，d2 大量被误判为 d3（279/1000），印证了 Reviewer 的疑虑\n- **Filtered 子集全面提升**：去除 code/HTML confound 后，3-class acc 从 70.8% 升至 74.7%，d2 recall 从 60.7% 升至 63.5%，所有 pairwise AUC 均上升。说明分类信号不依赖 content-type confound，filtered 后反而更干净\n- **d1v3 区分能力很强**（AUC 0.957/0.977），主要难点在 d2 与 d3 的区分（AUC 0.793/0.827）\n- **Top features 一致**：var_surprisal 和 p90_ppl 在两个子集中都是最重要的特征"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

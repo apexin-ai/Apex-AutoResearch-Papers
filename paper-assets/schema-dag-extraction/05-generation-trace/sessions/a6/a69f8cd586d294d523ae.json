@@ -1,0 +1,1035 @@
+{
+  "schema_version": "1.0",
+  "id": "a69f8cd586d294d523ae",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "cron hook exp012 llama 8b r2 20260515T225205 961220",
+  "task_key": "cron_hook_exp012_llama_8b_r2_20260515T225205_961220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp012_llama_8b_r2_20260515T225205_961220.jsonl",
+    "occurrence": 1,
+    "bytes": 46767,
+    "sha256": "eb1567f97d455de2d9fc87f06f9566c7236d0862d8f48c6ba47f5cf810117b06"
+  },
+  "statistics": {
+    "messages": 52,
+    "user_turns": 2,
+    "tool_calls": 24,
+    "roles": {
+      "user": 2,
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:48:09.445637+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: exp012_llama_8b_r2\n- project: schema-dag-extraction\n- server: cqa1-38874\n- log_path: ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:48:24.097603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:48:24.148180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:48:28.168259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:48:28.168683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:48:28.623076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (50.7KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-d7c14986/78d3b459-fea6-4c8a-8cac-b0c5fff68fb5/tool-results/toolu_018Bwhr2ZXvTYuRfypDsZvR3.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp012_llama_8b_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:48:07.707Z\\\", \\\"notes\\\": \\\"Chat template 修复版（run_extraction.py L220-279）。之前 7+ 次失败根因：1) GPU VRAM 冲突 2) LLaMA chat template 未正确应用导致 structured output 全空。本次修复后 vLLM 加载正常，16GB VRAM，FlashAttention v2。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T19:48:09.161853+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315801\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:38:30.259Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training-free inference)\\\", \\\"eval_data\\\": \\\"Few-NERD test split, exp-002 protocol (count=6/12 BCS correlation)\\\", \\\"wall_clock_seconds\\\": 4177.4, \\\"gpu_hours\\\n…[truncated 351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:48:28.623478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 454
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:48:28.623712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:48:28.774696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T19:48:08Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 28 个实验 — DONE 28\\\\n**DONE 分布**: failed 11, killed 2, negative 4, success 11\\\\n\\\\n### GPU 占用\\\\n- **分配**: 1 张 — cqa1-38874:cuda:0\\\\n- **空闲（分配了没跑）**: cqa1-38874:cuda:0\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp012_llama_8b_r2` [failed] — 2026-05-15T19:48:07 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp006_interaction_2x2` [negative] — 2026-05-15T18:37:33 — Traceback → extraction/src/run_extraction.py\\\\\\\", line 231, in run_extraction batch\\\\n- `exp012_llama_awq` [killed] — 2026-05-15T17:32:27\\\\n- `exp012_llama_8b_r3` [failed] — 2026-05-15T17:32:26\\\\n- `exp012_llama_8b` [killed] — 2026-05-15T17:32:24\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp012_llama_8b_r2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp012_llama_awq`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `exp012_llama_8b_r3`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp012_llama_8b_r2** (failed): LLaMA-3.1-8B-Instruct 复现 confusability-driven type confusion（chat template 修复版）。验证 confusability effect 跨模型家族（Qwen→LLaMA）+ 跨规模（32B→8B）泛化。\\\\n  [exp012_llama8b_r2_dryrun](ssh://cqa1-38874/root/schema-dag-extraction/artifacts/exp012_dryrun/)\\\\n- **exp006_interaction_2x2** (negative): Count × Confusability 交互效应：{low count, high count} × {low BCS, high BCS} 2×2 设计，测试 count 和 confusability 对 accuracy 的影响是 additive 还是 multiplicative。若 multiplicative，高 count + 高 BCS 组的 degradation 应超过两个主效应之和。 ← 基于 exp002_confusability_controlled\\\\n  [exp006_interaction_2x2_script](/api/workspac\n…[truncated 893 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 150
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:48:28.827042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:48:28.877820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\\\", \\\"content\\\": \\\"# schema-dag-extraction — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 16:24 UTC | 更新原因: D022: exp012 转 8B-Instruct, writing_plan 审批通过, 40rel 即将完成\\\\n\\\\n## 核心方向\\\\n验证 type confusability 独立于 type count 驱动 training-free LLM IE 质量下降，发现 multi-channel degradation model（count→recall, confusability→type confusion）。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Writing 阶段** — Claims 1+2 证据链完整，Paper Agent Full Draft 进行中，最后一个 P0 实验（8B 多模型验证）即将启动。\\\\n\\\\n- Claim 1+2：三任务验证完成（Few-NERD ✓, FewRel 80-rel ✓, MAVEN ✓），证据强\\\\n- Claim 3（SDGD）：正式放弃 (D019)，作为 negative result + future work\\\\n- exp-012（多模型验证）：转 LLaMA-3.1-8B-Instruct (D022)，跨 family + 跨 scale 验证\\\\n- Paper Agent：writing_plan.yaml 已审批，Full Draft 写作中\\\\n- Dream 两轮均 Weak Reject，主因写作质量，已纳入 Paper Agent 约束\\\\n\\\\n## 核心证据进展\\\\n\\\\n**已完成（Claim 1+2）**:\\\\n- exp-001: count curve (recall 0.72→0.42, WrongType 0→2434) ✓\\\\n- exp-002: pairwise r=0.156 (p<1e-11), confusion ratio 10-28x ✓\\\\n- exp-003a: prompt v2 降低 over-prediction ✓\\\\n- exp-004: MAVEN 168 types, MiniLM pairwise r=0.120 ✓, centrality confound ✓\\\\n- exp_fewrel_formal_80rel: BCS Δ=-31.2pp, scaling 3.4x ✓ ← 关键证据\\\\n- exp007_error_taxonomy: IntraSub ρ=1.0 ✓\\\\n- exp016_fewrel_error_taxonomy: RE IntraSub ρ=0.954 ✓\\\\n- bootstrap_ci_analysis: 全部 CI exclude zero ✓\\\\n- exp015_scs_validation: 两种 embedding 均显著 ✓\\\\n\\\\n**进行中**:\\\\n- exp_fewrel_40rel: 40-rel 中间点 scaling curve，最后一组 batch，即将完成\\\\n- exp012_llama_8b: 清理 AWQ 残留 → 40rel 完成后立即启动 (D022)\\\\n- Paper Agent: Full Draft writing（experimental_setup → results → ... → abstract）\\\\n\\\\n**负向结论**:\\\\n- exp-008 SDGD: F1=0.241 < baseline 0.445 (D014, D019)\\\\n- exp004_maven_bcs: per-type BCS 正向（centrality confound）\\\\n\\\\n## 近期任务\\\\n- [ ] exp_fewrel_40rel 完成 → 录入 registry → 分析 scaling curve 中间点\\\\n- [ ] AWQ 残留清理 → 释放 ~36GB 磁盘\\\\n- [ ] exp012_llama_8b 启动（GPU 空闲后立即） → 录入 registry → Patch 进论文\\\\n- [ ] Paper Agent Full Draft\n…[truncated 1644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:48:38.066937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-d7c14986/78d3b459-fea6-4c8a-8cac-b0c5fff68fb5/tool-results/toolu_018Bwhr2ZXvTYuRfypDsZvR3.txt",
+              "limit": "120"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:48:38.572542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp012_llama_8b_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:48:07.707Z\\\", \\\"notes\\\": \\\"Chat template 修复版（run_extraction.py L220-279）。之前 7+ 次失败根因：1) GPU VRAM 冲突 2) LLaMA chat template 未正确应用导致 structured output 全空。本次修复后 vLLM 加载正常，16GB VRAM，FlashAttention v2。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T19:48:09.161853+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315801\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:38:30.259Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training-free inference)\\\", \\\"eval_data\\\": \\\"Few-NERD test split, exp-002 protocol (count=6/12 BCS correlation)\\\", \\\"wall_clock_seconds\\\": 4177.4, \\\"gpu_hours\\\": 1.16}, \\\"hypothesis\\\": \\\"LLaMA-3.1-8B-Instruct 复现 confusability-driven type confusion（chat template 修复版）。验证 confusability effect 跨模型家族（Qwen→LLaMA）+ 跨规模（32B→8B）泛化。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T19:48:06.791Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"co\n…[truncated 49962 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "elapsed_ms": 505
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:48:38.573140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:48:38.623876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_d7c14986."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:48:42.740083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:48:43.092072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_d7c14986."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:48:43.092533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:48:43.143433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_d7c14986."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:48:46.358649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:48:46.761041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Glob",
+            "elapsed_ms": 402
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:48:46.761456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:48:46.811935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:49:24.294155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:exp012_llama_8b_r2",
+              "project": "schema-dag-extraction",
+              "task_prompt": "## 任务\n诊断 exp012_llama_8b_r2 实验失败原因。实验进程异常退出，cron 检测到 \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"。\n\n## 背景\n- 实验 ID: exp012_llama_8b_r2\n- 服务器: cqa1-38874\n- 日志路径: ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\n- 启动命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\"`\n- PID: 315801\n- 模型: LLaMA-3.1-8B-Instruct\n- GPU: cuda:0 (RTX PRO 6000 Blackwell 98GB)\n- 运行时间: ~70 分钟 (4177.4s)\n- 数据: Few-NERD test.parquet, 1000 samples\n- Hypothesis: LLaMA-3.1-8B-Instruct 复现 confusability-driven type confusion（chat template 修复版）\n\n之前这个实验有过多次失败：1) GPU VRAM 冲突 2) LLaMA chat template 问题导致 structured output 全空。本次是 chat template 修复版的重试。\n\n## 诊断步骤\n\n1. **先用 ssh_read_only 读取日志**:\n   - `tail -200 ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log` 看最后的输出\n   - `head -50 ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log` 看启动信息\n   - `grep -i \"error\\|exception\\|traceback\\|oom\\|killed\\|signal\\|cuda\" ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log | tail -30`\n\n2. **检查进程状态**:\n   - `ps -p 315801 -o pid,state,etime,cmd 2>/dev/null || echo \"PROCESS_DEAD\"`\n   - `dmesg | grep -i \"oom\\|killed\" | tail -10` 查 OOM killer\n\n3. **检查是否有产出文件**:\n   - `ls -la /root/schema-dag-extraction/artifacts/exp012*/ 2>/dev/null`\n   - 检查是否有 predictions JSON、metrics JSON 等\n\n4. **检查启动脚本内容**:\n   - `cat /root/schema-dag-extraction/scripts/run_exp012_llama8b_r2.sh`\n\n5. **检查 GPU 当前状态**:\n   - `nvidia-smi`\n\n## 产出要求\n写一份简洁的诊断报告，包含：\n- **根因**: 一句话说清失败原因\n- **证据**: 日志中的关键行（截取关键几行即可）\n- **影响**: 是否有部分结果可以挽救（比如已经跑完一部分 batch 的 predictions）\n- **修复建议**: 如何重跑（如果需要的话）\n\n不需要修改任何文件，只做诊断。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:49:24.846519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker of type 'diagnose:exp012_llama_8b_r2' is already active for project 'schema-dag-extraction'. worker_id=worker_diagnose_exp012_llama_8b_r2_20260515T194715\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 552
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:49:28.361115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:49:28.411733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T19:49:31.675332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_exp012_llama_8b_r2_20260515T194715",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T19:49:31.675861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp012_llama_8b_r2_20260515T194715\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diagnose:exp012_llama_8b_r2\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-15T19:47:15.247586+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"exp1 的评估结果已写入（03:39），实验正在跑 exp2 的 count_6/random/18 时进程死亡（03:47:52）。读取已有结果和检查进程。\\\", \\\"turn_count\\\": 7}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T19:49:55.172938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 1 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n**exp012_llama_8b_r2 失败回调处理中**\n\nCRON 检测到 exp012_llama_8b_r2 进程异常退出（\"process dead 5× with no sentinel/W&B\"）。已有诊断 Worker 在跑（turn 7），初步发现：\n- **exp1 结果已写入**（进程跑到 exp2 阶段才死亡）\n- 进程在 exp2 的 count_6/random/18 batch 时退出\n- 正在读取已有产出 + 检查死因（OOM / 其他）\n\n**影响评估**：\n- exp012 是最后一个 P0 实验（LLaMA-3.1-8B 跨 family+scale 验证）\n- 如果 exp1 结果可用，可能只需要重跑 exp2 部分\n- GPU cuda:0 当前空闲\n\n等 Worker 诊断完成后立即汇报根因和修复方案。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T19:49:58.990206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3817
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T19:50:03.007492+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 汇报。诊断 Worker 正在运行（turn 7，已定位到进程在 exp2 阶段死亡，exp1 结果可能已保存）。等待 Worker 完成回调后处理结果并决定下一步（重跑 exp2 或完整重试）。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T22:50:47.696622+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T22:51:01.493093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T22:51:01.543724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T22:51:06.664743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T22:51:06.665246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T22:51:07.169136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (55.4KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-d7c14986/b7d2cbbd-e1ed-439f-94da-59f9d4027071/tool-results/toolu_012WmKqv6YjaWLwwjicv4mW8.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp012_llama_fewrel_ch2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:12:56.136Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:40:40.901Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_llama_fewrel_ch2.sh\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"330198\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_fewrel_ch2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:43:45.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"FewRel 80-rel\\\", \\\"data_count\\\": 80, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"description\\\": \\\"LLaMA-3.1-8B-Instruct FewRel 80-rel exp2 BCS-controlled, verify confusability effect cross-model\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"eval_data\\\": \\\"FewRel 80-rel exp2 BCS-controlled\\\", \\\"wall_clock_seconds\\\": 3158.4, \\\"gpu_hours\\\": 0.88}, \\\"hypothesis\\\": \\\"LLaMA-3.1-8B-Instruct 在 FewRel 80-rel RE 任务上验证 Channel 2 (BCS-controlled confusability effect)。跨模型家族(Qwen→LLaMA) + 跨规模(32B→8B) + 跨任务(NER→RE) 三重泛化验证。exp2 design: count 8/16 × low/high BCS × 27 batches。\\\", \\\"parent\\\": \\\"exp012_llama_8b_r2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/\\\", \\\"completed_at\\\": \\\"2026-05-15T22:36:23.818Z\\\", \\\"metrics\\\": {\\\"count8_low_bcs_acc\\\": 0.7812, \\\"count8_high_bcs_acc\\\": 0.5104, \\\"count8_bcs_delta_pp\\\": -27.1, \\\"count16_low_bcs_acc\\\": 0.7552, \\\"count16_high_bcs_acc\\\": 0.5156, \\\"count16_bcs_delta_pp\\\": -24, \\\"overall\n…[truncated 359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T22:51:07.169666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 504
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T22:51:07.623612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T22:51:07.624061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T22:51:08.079144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp012_llama_fewrel_ch2** (success): LLaMA-3.1-8B-Instruct 在 FewRel 80-rel RE 任务上验证 Channel 2 (BCS-controlled confusability effect)。跨模型家族(Qwen→LLaMA) + 跨规模(32B→8B) + 跨任务(NER→RE) 三重泛化验证。exp2 design: count 8/16 × low/high BCS × 27 batches。 ← 基于 exp012_llama_8b_r2\\\\n- **exp_fewrel_40rel_r4** (success): —\\\\n- **exp012_llama_8b_r2_exp2** (negative): LLaMA-3.1-8B-Instruct exp2 重跑：BCS-controlled factorial (count=6/12, low/high BCS)，验证 confusability effect 跨模型泛化。Parent exp012_llama_8b_r2 的 exp1 count curve 已完成。\\\\n\\\\n## 趋势\\\\n成功 14 / 负向 5 / 失败 10 / 共 31\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-38874: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp008_sdgd_zero_fewnerd: 训练失败 — unknown\\\\n- exp012_llama_fewnerd: 训练失败 — unknown\\\\n- exp012_llama_fewnerd_r2: 训练失败 — unknown\\\\n- exp012_llama_fewnerd_r3: 训练失败 — unknown\\\\n- exp012_llama_8b: 已被终止 — unknown\\\\n- exp_fewrel_40rel: 训练失败 — unknown\\\\n- exp012_llama_awq: 已被终止 — unknown\\\\n- exp012_llama_fewnerd_r4: 训练失败 — unknown\\\\n- exp012_llama_8b_fewnerd: 训练失败 — unknown\\\\n- exp_fewrel_40rel_r2: 训练失败 — unknown\\\\n- exp_fewrel_40rel_r3: 训练失败 — unknown\\\\n- exp012_llama_8b_r3: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1176, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 455
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T22:51:08.082332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\\\", \\\"content\\\": \\\"# schema-dag-extraction — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 22:43 UTC | 更新原因: exp012 强复现完成(D031), 修复 Reviewer 3 个 info 点: 40rel 标完成/C001+C002 保留/exp006 负向结论恢复\\\\n\\\\n## 核心方向\\\\n验证 type confusability 独立于 type count 驱动 training-free LLM IE 质量下降，发现 multi-channel degradation model（count→recall, confusability→type confusion）。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Writing 冲刺** — 全部 P0 实验完成，Paper Agent Full Draft + exp012 patch 已完成，进入 Reviewer 对抗循环。\\\\n\\\\n- Claim 1（count scaling）：三任务 + 双模型验证完成 ✓\\\\n- Claim 2（BCS confusability）：三任务 + 双模型验证完成 ✓，**新发现：高 BCS 准确率跨模型恒定（≈51%），confusability 是 task-inherent difficulty floor**\\\\n- Claim 3（SDGD）：正式放弃 (D019)，negative result + future work\\\\n- exp012 LLaMA-8B FewRel：**强复现** — BCS Δ=-27.1pp(count_8)/-23.9pp(count_16)，达 Qwen3 的 75-87% (D031)\\\\n- Paper Agent：Full Draft + exp012 patch 完成，7 sites 更新，编译通过\\\\n\\\\n## 表述硬约束（C001/C002，Paper Agent + 全角色遵守）\\\\n- **C001**: count_40 子集来自 80-type pool 采样，论文必须写 \\\\\\\"40-rel subsets sampled from the 80-relation pool\\\\\\\"，不能暗示独立 pool\\\\n- **C002**: BCS amplification 3.4× 仅基于 16-type vs 80-type 两个 pool size，40-rel 的 BCS Δ 是 80-pool 内子集效应，不是第三个独立数据点\\\\n\\\\n## 核心证据进展\\\\n\\\\n**已完成（Claim 1+2）**:\\\\n- exp-001: count curve (recall 0.72→0.42, WrongType 0→2434) ✓\\\\n- exp-002: pairwise r=0.156 (p<1e-11), confusion ratio 10-28x ✓\\\\n- exp-003a: prompt v2 降低 over-prediction ✓\\\\n- exp-004: MAVEN 168 types, MiniLM pairwise r=0.120 ✓, centrality confound ✓\\\\n- exp_fewrel_formal_80rel: BCS Δ=-31.2pp, scaling 3.4x ✓\\\\n- exp_fewrel_40rel_r4: count_40=0.588, BCS Δ=-33.3pp/-31.8pp ✓（80-pool 内子集，C001）\\\\n- exp007_error_taxonomy: IntraSub ρ=1.0 ✓\\\\n- exp016_fewrel_error_taxonomy: RE IntraSub ρ=0.954 ✓\\\\n- bootstrap_ci_analysis: 全部 CI exclude zero ✓\\\\n- exp015_scs_validation: 两种 embedding 均显著 ✓\\\\n- **exp012_llama_fewrel_ch2**: BCS Δ=-27.1pp/-23.9pp, high-BCS floor 跨模型恒定 0.51 ✓ \n…[truncated 1974 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 458
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T22:51:08.082751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "status": "running"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T22:51:08.385092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 302
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T22:51:08.385482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T22:51:08.435989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"schema-dag-extraction\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/schema-dag-extraction\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\"}]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_51326259fe46fbae9da26b81cf03f1f8\\\", \\\"operational_chat_id\\\": \\\"oc_04544c3b7bc497e1d098ba47fb56a6c2\\\", \\\"submission_chat_id\\\": \\\"oc_ac7ab7270b6b5caecee04f89b11aab3e\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-14T16:07:46.825Z\\\", \\\"description\\\": \\\"Does Type Confusability Drive Schema-Induced Degradation in LLM Information Extraction? An Empirical Study and Principled Decomposition Framework\\\", \\\"name\\\": \\\"schema-dag-extraction\\\", \\\"phase\\\": \\\"research\\\", \\\"source_idea_id\\\": \\\"idea_007\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T22:51:17.881974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-d7c14986/b7d2cbbd-e1ed-439f-94da-59f9d4027071/tool-results/toolu_012WmKqv6YjaWLwwjicv4mW8.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T22:51:18.436988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp012_llama_fewrel_ch2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:12:56.136Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:40:40.901Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_llama_fewrel_ch2.sh\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"330198\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_fewrel_ch2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:43:45.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"FewRel 80-rel\\\", \\\"data_count\\\": 80, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"description\\\": \\\"LLaMA-3.1-8B-Instruct FewRel 80-rel exp2 BCS-controlled, verify confusability effect cross-model\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"eval_data\\\": \\\"FewRel 80-rel exp2 BCS-controlled\\\", \\\"wall_clock_seconds\\\": 3158.4, \\\"gpu_hours\\\": 0.88}, \\\"hypothesis\\\": \\\"LLaMA-3.1-8B-Instruct 在 FewRel 80-rel RE 任务上验证 Channel 2 (BCS-controlled confusability effect)。跨模型家族(Qwen→LLaMA) + 跨规模(32B→8B) + 跨任务(NER→RE) 三重泛化验证。exp2 design: count 8/16 × low/high BCS × 27 batches。\\\", \\\"parent\\\": \\\"exp012_llama_8b_r2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/\\\", \\\"completed_at\\\": \\\"2026-05-15T22:36:23.818Z\\\", \\\"metrics\\\": {\\\"count8_low_bcs_acc\\\": 0.7812, \\\"count8_high_bcs_acc\\\": 0.5104, \\\"count8_bcs_delta_pp\\\": -27.1, \\\"count16_low_bcs_acc\\\": 0.7552, \\\"count16_high_bcs_acc\\\": 0.5156, \\\"count16_bcs_delta_pp\\\": -24, \\\"overall_mean_acc\\\": 0.7677, \\\"bcs_acc_pearson_r\\\": -0.3896, \\\"bcs_acc_pearson_p\\\": 0.0036, \\\"bcs_acc_spearman_rho\\\": -0.433, \\\"bcs_acc_spearman_p\\\": 0.0011, \\\"n_batches\\\": 54, \\\"qwen3_ref_delta_pp\\\": -31.2, \\\"effect_ratio_vs_qwen3\\\": 0.87}}, \\\"exp_fewrel_40rel_r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T2\n…[truncated 54738 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "Read",
+            "elapsed_ms": 555
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T22:51:18.537830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T22:51:18.588922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\\\", \\\"content\\\": \\\"# Memory — schema-dag-extraction\\\\n\\\\n## FewRel 40-rel Scaling 中间点 — SUCCESS (2026-05-15) ⭐⭐\\\\n- Count curve 单调退化：count_1 acc=0.857 → count_40 acc=0.588 (-26.9pp)\\\\n- **BCS effect 饱和发现**：16-rel Δ=-9.1pp → 40-rel Δ=-32.5pp → 80-rel Δ=-31.2pp\\\\n  - 16→40 大幅跳变，40→80 基本持平\\\\n  - **语义混淆破坏效应在 ~40 relations 处饱和**，非线性增长\\\\n  - 论文 Discussion insight：实际应用中 ~40 types 即触发最大 confusability penalty\\\\n- count_1 baseline：40/80-rel 均为 0.857，低于 16-rel 0.904（relation 数量本身降 baseline，但 40→80 间已稳定）\\\\n\\\\n## exp012 跨模型验证 (2026-05-15) ⭐⭐\\\\n- **Channel 1 复现成功**: LLaMA-3.1-8B recall 0.702→0.273 (-43pp), Qwen3-32B -34pp。Per-batch correlation r=0.7249\\\\n- **Channel 2 NER NEGATIVE**: BCS-controlled confusability effect 在 NER 上跨模型未复现（floor effect + metric 问题）\\\\n- **Channel 2 FewRel 进行中**: exp012_llama_fewrel_ch2 正在跑。FewRel 用 accuracy metric 无 span 噪声，Qwen3 效应巨大（Δ=31.2pp），更可能检测到\\\\n- exact/relaxed F1=0 是因为 LLaMA predictions 缺少字符偏移量，text_match 是正确对比指标\\\\n- **教训**: 弱模型（8B）可能因 floor effect 压缩了 confusability signal\\\\n\\\\n## LLaMA-3.1-8B Chat Template 必须 (2026-05-15) ⭐⭐\\\\n- `run_extraction.py` 用 `llm.generate(prompts, ...)` 裸文本调用，Qwen3 能工作但 LLaMA-3.1-Instruct 不行\\\\n- **根因**: LLaMA-3.1-Instruct 严格依赖 chat template，裸文本输入不理解指令\\\\n- **修复**: `tokenizer.apply_chat_template()` 包装 prompt\\\\n- **教训**: 非 Qwen 模型都应检查 chat template 需求\\\\n- run_fewrel_formal.py 也已加 chat template 支持（L92-96, L132-141）\\\\n\\\\n## Blackwell GPU flashinfer 兼容性修复 (2026-05-15, UPDATED)\\\\n- RTX PRO 6000 Blackwell (SM120) 上 flashinfer 0.6.8.post1 无法 JIT 编译 FP8 GEMM\\\\n- **修复**: flashinfer 0.6.11.post2 + nvidia-cuda-nvcc 13.2.78 + `CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13`\\\\n- **所有新脚本都应包含 CUDA_HOME 设置**\\\\n\\\\n## Bootstrap 指标校正 (2026-05-15) ⭐⭐\\\\n- **Few-NERD pairwise r**: 论文用 0.112 [0.076, 0.156]\\\\n- **Confusion ratio (count_12)**: 论文用 21.2x [5.3, 52.2]\\\\n- 所有 7 项 CI 排除 nu\n…[truncated 2152 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T22:52:05.958558+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只有 cqa1-38874 的 cuda:0（单卡 RTX PRO 6000 Blackwell 98GB），无其他 GPU\n- **C001**: 40-rel 子集来自 80-type pool 采样，论文必须写 \"40-rel subsets sampled from the 80-relation pool\"，不能暗示独立 pool\n- **C002**: BCS amplification 3.4× 仅基于 16-type vs 80-type 两个 pool size，40-rel 的 BCS Δ 是 80-pool 内子集效应，不是第三个独立数据点\n- Blackwell SM120 上 FP8 模型需要 flashinfer 0.6.11.post2 + nvidia-cuda-nvcc 13.2.78 + `CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13`，缺任何一个就 JIT 失败\n- LLaMA-3.1-Instruct 必须用 `tokenizer.apply_chat_template()` 包装 prompt，裸文本调用零输出\n- exp012_llama_8b_r2_exp2 (NER Channel 2 跨模型) 是 negative，**不写入论文主体**，至多 rebuttal 中诚实讨论\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874，工作目录 `/root/schema-dag-extraction`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，Python 3.12.3）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Qwen3-32B-FP8：`/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n- LLaMA-3.1-8B-Instruct：`/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- vLLM 0.20.2, torch 2.10.0+cu128, flashinfer 0.6.11.post2\n- 活跃进程：**无**——全部实验完成，GPU 空闲，无 cron，无 Worker\n\n### 3. 📊 当前状态\n全部 31 个实验已完成（14 success / 5 negative / 10 failed / 2 killed）。Paper Agent Full Draft + exp012 patch 已完成，进入 Reviewer 对抗循环。GPU 当前空闲。无运行中的 Worker 或 Cron。\n\n**核心证据链完整**：\n- Claim 1（count→recall decline）：三任务（NER/ED/RE）+ 双模型（Qwen3/LLaMA）✓\n- Claim 2（BCS→type confusion）：三任务 + 双模型 ✓，新发现 high-BCS floor 跨模型恒定 ≈51%\n- Claim 3（SDGD）：正式放弃（D019），v1+v2 均 negative，作为 negative result + future work\n- exp012 强复现（D031）：BCS Δ=-27.1pp/-23.9pp，达 Qwen3 的 75-87%\n\n### 4. 📋 待办（条件触发式）\n- Reviewer 对抗循环继续 → 派 Worker 做写作质量迭代，聚焦论文一致性和数字准确性\n- AWQ 残留 ~36GB 在 `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/` → 可派 Worker 清理释放磁盘\n- Director 要求图表重生成/数字验证 → 用 cuda:0 跑可视化脚本\n- ARR May 25 提交（距今 10 天）→ 最终 PDF 编译 + reference audit + 视觉审查\n\n### 5. 🎯 战略上下文\n**核心论文 story**：type confusability（用 BCS 量化）独立于 type count 驱动 training-free LLM IE 质量下降，形成 multi-channel degradation model（Channel 1: count→recall, Channel 2: confusability→type confusion）。\n\n**决策链关键节点**：\n- D031/D032：exp012 强复现成功，升级为 cross-family claim，不追加新模型，聚焦写作\n- D019/D014：SDGD 正式放弃，negative result 写入 future work\n- D026：exp006 交互效应不显著（p=0.505），不在论文主体引用\n\n**易错点**：\n- 不要把 40-rel BCS Δ 当作第三个独立数据点（C002）——它是 80-pool 的子集\n- MAVEN per-type BCS 方向相反（正向），是 centrality confound，论文中作为 boundary condition 讨论，不要误用为支持证据\n- Few-NERD pairwise r 用 0.112（bootstrap 校正后），不是早期的 0.156\n- exp012_llama_8b_r2 的 exact/relaxed F1=0 不是 bug，是 LLaMA 缺少字符偏移量，text_match 是正确指标\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012_llama_8b_r2"
+          },
+          "id": "event-000052"
+        }
+      ],
+      "message_count": 20
+    }
+  ]
+}

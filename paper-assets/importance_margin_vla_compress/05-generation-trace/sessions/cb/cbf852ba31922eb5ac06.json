@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "cbf852ba31922eb5ac06",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code fix eval complete v8",
+  "task_key": "worker_code_fix-eval-complete-v8_20260516T031611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-eval-complete-v8_20260516T031611_result.json",
+    "occurrence": 1,
+    "bytes": 2340159,
+    "sha256": "d8d56848b12240ff124eae746f1d62d468bd3de257cdc59c2d784cc6cf1f58c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cbf852ba31922eb5ac06-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

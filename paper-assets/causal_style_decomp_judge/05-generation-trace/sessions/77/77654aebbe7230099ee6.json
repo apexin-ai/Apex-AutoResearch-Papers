@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "77654aebbe7230099ee6",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops api proxy detailed check",
+  "task_key": "worker_ops_api_proxy_detailed_check_20260521T060216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_api_proxy_detailed_check_20260521T060216_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "15f1ee76d5b3ef1efbb72f657893d2fe21acc0c199d0f912ad04575fddbcbf18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整原始输出：\n\n```\n=== ENV VARS ===\nNO_API_VARS\n\n=== CONFIG FILES ===\n--- .env content ---\nNO_ENV_FILE\n\n=== INSTALLED PACKAGES ===\nanthropic                                0.103.1\nopenai                                   2.37.0\nopenai-harmony                           0.0.8\n\n=== ANTHROPIC TEST ===\n<string>:5: DeprecationWarning: The model 'claude-sonnet-4-20250514' is deprecated and will reach end-of-life on June 15th, 2026.\nPlease migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.\nANTHROPIC_FAIL: \"Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\"\n\n=== GEMINI TEST ===\nGEMINI_FAIL: No module named 'google.generativeai'\n\n=== LITELLM TEST ===\nNO_LITELLM\n```\n\n**摘要：**\n- 无任何 API 相关环境变量，无 `.env` 文件\n- `anthropic` 0.103.1 和 `openai` 2.37.0 已安装，但无 `google-generativeai`、无 `litellm`\n- Anthropic 调用失败：**缺少 API key**（未设置 `ANTHROPIC_API_KEY` 环境变量）\n- Gemini 调用失败：**未安装 `google-generativeai` 包**\n- `claude-sonnet-4-20250514` 模型已标记 deprecated，建议迁移"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

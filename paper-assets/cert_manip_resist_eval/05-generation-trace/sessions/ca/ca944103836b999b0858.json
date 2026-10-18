@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ca944103836b999b0858",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig5 regime transition annotation fix",
+  "task_key": "worker_ops_fig5-regime-transition-annotation-fix_20260525T195614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig5-regime-transition-annotation-fix_20260525T195614_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "e4830da86413d35437a836216e070f005107059ed72f9ddfc97fc5b1e2e047e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=3 处的 \"4/12\" 和 \"3/12\" 标注已右移，不再与 y 轴重叠。其他标注和图的所有元素保持不变。文件已同步到本地：\n\n- `docs/paper/figures/fig_regime_transition.pdf` (17.7K)\n- `docs/paper/figures/fig_regime_transition.png` (44K)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

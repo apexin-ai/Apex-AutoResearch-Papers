@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb7f832967c4e1249bc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis gpt2xl topk50 001",
+  "task_key": "worker_analysis_gpt2xl_topk50_001_20260515T021757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T021757_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "b6ece6c2dc2fdb6edc507b3912eb3a3847d09c2e60390d4903820bea2d9577c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pipeline 状态：生成完成，评估未执行。**\n\nPipeline (`run_pipeline_gpt2xl_topk50.sh`) 只包含 Steps 1-5（生成 + 微调），不含分类评估。数据已就绪（4 个 depth × 5000 samples），但 `results/gpt2xl_topk50/` 目录不存在。\n\n### 已提取的信息\n\n**Finetune losses:**\n| Depth | Final Training Loss |\n|-------|-------------------|\n| depth_0 | (复用自 gpt2xl nucleus，symlink) |\n| depth_1 | 1.9886 |\n| depth_2 | 1.7554 |\n\n**Checkpoints:**\n- `lora_depth_0` → symlink 到 `checkpoints/gpt2xl/lora_depth_0`\n- `lora_depth_1` (2026-05-15 08:01)\n- `lora_depth_2` (2026-05-15 09:11)\n\n**Pipeline 运行时间:** 06:47 → 10:15 (约 3.5 小时)\n\n---\n\n### 需要执行评估\n\n参照 `run_eval_gpt2xl_temp09.sh`，需要为 `gpt2xl_topk50` 运行评估脚本，包括：\n1. Code contamination 检测\n2. Feature extraction\n3. 4-class classification\n4. 3-class (d1/d2/d3) classification\n5. 3-class filtered classification\n\n是否需要我创建 `run_eval_gpt2xl_topk50.sh` 并用 `ssh_execute` 执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

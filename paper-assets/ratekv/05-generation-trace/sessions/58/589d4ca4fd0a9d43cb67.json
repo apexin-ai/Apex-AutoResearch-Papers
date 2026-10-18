@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "589d4ca4fd0a9d43cb67",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh check both experiments status",
+  "task_key": "worker_ssh_check_both_experiments_status_20260516T023201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_both_experiments_status_20260516T023201_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "c2f236f59c5a2ae078d9893432e5a3c7c728bf7f114e2dc7cdbb7a01c8288198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 状态：\n  GPU 0: RTX PRO 6000 Blackwell, 23179 MiB, 100%  ← InternLM2 运行中\n  GPU 1: RTX PRO 6000 Blackwell, 3 MiB, 0%        ← 空闲\n\nInternLM2 profiling:\n  进程状态：运行中 (PID 389862)\n  进度：176/256 heads (68.8%), elapsed 39.8min, ETA ~18min\n  当前位置：Layer 21, Head 7\n\nPhi-3-medium MCKP:\n  进程状态：已完成 ✓\n  Profiling: 400/400 heads, 149.0min\n  concentration = 0.1742, 分类 = Flat (< 0.50)\n  t1/t5 = 0.1806 / 0.7700 = 0.234\n\n  PPL 结果：\n    bf16:               5.6359\n    uniform-4bit:       5.7987  (Δ +0.163)\n    constrained MCKP:   5.8149  (Δ +0.179)\n    unconstrained MCKP: 6.0730  (Δ +0.437)\n    greedy:             6.0730  (Δ +0.437)\n\n  constrained vs uniform: -0.016 (constrained 略差于 uniform)\n  bit分布 (constrained): 388×4bit, 8×2bit, 4×8bit\n\n  产出文件：\n    /root/ratekv/artifacts/phi3_medium_profiles_hires.json\n    /root/ratekv/artifacts/phi3_medium_constrained_results.json\n    /root/ratekv/artifacts/phi3_medium_hires_bf16_2bitonly_results.json\n```\n\nPhi-3-medium 的 Flat profile 符合预期——concentration 仅 0.17，敏感度分散，constrained MCKP 无法优于 uniform，反而略差 0.016。InternLM2 预计约 18 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

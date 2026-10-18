@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa5af19e8152151bc3c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp check 8b and launch",
+  "task_key": "worker_mvp_check_8b_and_launch_20260520T125314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_check_8b_and_launch_20260520T125314_result.json",
+    "occurrence": 1,
+    "bytes": 131,
+    "sha256": "dcb467e103265daa27a1ea4362a1bcf570d0fe72325ce11019bd20c75cbdfe1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动复查。shard 2 差约 0.3G，届时应已完成，可直接启动 vLLM 和 counterfactual_gen。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

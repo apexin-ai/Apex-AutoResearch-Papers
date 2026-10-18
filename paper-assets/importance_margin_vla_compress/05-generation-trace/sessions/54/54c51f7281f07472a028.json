@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "54c51f7281f07472a028",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest pi05 l2norm k085 goal s43",
+  "task_key": "worker_harvest_pi05-l2norm-k085-goal-s43_20260524T023321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_pi05-l2norm-k085-goal-s43_20260524T023321_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "bef8b3f416de2db075bddbe7a942b8bb44acd0179da6cc013bbc64d95cc13a2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。\n\n**eval_pi05_l2norm_k085_goal_seed43 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **87.0%** (435/500) |\n| Conclusion | **success**（baseline Goal ~88%，几乎无损） |\n| 耗时 | 86.5 min |\n\n**Per-task SR：**\n\n| Task | SR |\n|------|-----|\n| open the middle drawer of the cabinet | 88% |\n| put the bowl on the stove | 94% |\n| put the wine bottle on top of the cabinet | 96% |\n| open the top drawer and put the bowl inside | 80% |\n| put the bowl on top of the cabinet | 96% |\n| push the plate to the front of the stove | 94% |\n| put the cream cheese in the bowl | 86% |\n| turn on the stove | 96% |\n| put the bowl on the plate | 94% |\n| put the wine bottle on the rack | 46% |\n\nL2norm k=0.85 在 Goal suite 上 87% vs baseline ~88%，裁剪 15% vision tokens 几乎无损。唯一弱项是 \"put the wine bottle on the rack\"（46%），其余 task 均 ≥80%。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

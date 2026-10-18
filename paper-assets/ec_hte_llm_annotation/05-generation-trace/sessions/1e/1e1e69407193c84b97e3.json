@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1e69407193c84b97e3",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 028 asymmetric diagnostic auc",
+  "task_key": "worker_code_exp-028-asymmetric-diagnostic-auc_20260522T160245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-028-asymmetric-diagnostic-auc_20260522T160245_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "8973ecc4dc039f5342ca6928b2e7ed53a6f113dabda823141218faa59421acb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results produced. Key findings:\n\n**Overall AUC:**\n- Symmetric: 0.6259\n- Asymmetric: 0.6109 (slightly worse, -0.015)\n\n**Per-combo:** Asymmetric outperforms symmetric for some combos (gpt-3.5-turbo/TweetEval 0→1, gpt-4.1 0.67→1) but underperforms for others (gpt-3.5-turbo/CivilComments 0.67→0.33, gpt-4o/CivilComments 0.33→0).\n\n**Key observation:** For binary outcomes, the asymmetric scores for z=0 and z=1 are identical (confirmed in dry run output: `asym_score z=0: 0.1114, z=1: 0.1114`) because M is column-stochastic, so B_s columns sum to 0 and |B_s[0,1]| = |B_s[1,1]|. Analytically, the full DIM CATE bias from global correction reduces to `-2δ_s·τ_s/(1-2π̄)`, which depends only on the symmetric deviation δ_s, not on asymmetry. This explains why the asymmetric score (which captures only the FNR deviation component) doesn't improve over the symmetric score.\n\nOutput files:\n- `results/exp_asymmetric_diagnostic_auc.csv` — 112 rows (56 subgroups × 2 z-levels)\n- `results/exp_asymmetric_diagnostic_auc_summary.csv` — 16 combos with per-combo AUC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

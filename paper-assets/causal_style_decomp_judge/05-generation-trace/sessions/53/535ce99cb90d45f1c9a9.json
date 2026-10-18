@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "535ce99cb90d45f1c9a9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code figure pipeline diagram",
+  "task_key": "worker_code_figure_pipeline_diagram_20260521T050836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_figure_pipeline_diagram_20260521T050836_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "fcab129273654292ddc5119f270063e01f8e2def237b935df216b20446db6646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出：** `/root/causal_style_decomp_judge/artifacts/figures/paper/pipeline_diagram.pdf` (39.9 KB, 300 DPI 矢量 PDF)\n\n**Checklist：**\n- [x] 300 DPI PDF 矢量输出\n- [x] 字号 8.5pt (title) / 7.5pt (desc) / 6.5pt (sub/attrition)，缩到单栏后 ≥8pt effective\n- [x] 5 个阶段标签完整（圆角矩形 + 编号圆圈 + 标题 + 描述 + 子标注）\n- [x] 4 条 attrition 数字标注在箭头上方\n- [x] 灰度 + 形状区分，色盲友好，学术简洁风格\n\n脚本位于 `/root/causal_style_decomp_judge/csd_pipeline/gen_pipeline_figure.py`，可复现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

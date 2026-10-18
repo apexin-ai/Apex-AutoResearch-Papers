@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9377a12bc048220b171e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose all servers status check",
+  "task_key": "worker_diagnose_all_servers_status_check_20260528T060058",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_all_servers_status_check_20260528T060058_result.json",
+    "occurrence": 1,
+    "bytes": 1647,
+    "sha256": "a68a692a3ede11edfb179b38f10715be93a21be66d8f5fd1f2f0a5e2281f22c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the complete status:\n\n```\n[服务器状态]\nw27 (2 GPU):\n  cuda:0 = 在跑 eval_openvla_l2norm_k095_long_seed43_w27 (OV, T1 刚启动)\n  cuda:1 = 空闲\n\nw38 (4 GPU):\n  cuda:0 = 在跑 eval_pi05_random_k095_long_seed45_strict_w38 (T4, ~59min)\n  cuda:1 = 在跑 eval_pi05_l2norm_k095_long_seed45_strict_w38 (T9 ep40, 100%连续, ~112min, 即将完成)\n  cuda:2 = 在跑 eval_pi05_random_k07_long_seed45_strict_w38 (T4, ~59min)\n  cuda:3 = 在跑 eval_pi05_attn_k085_long_seed46_strict_w38 (T0, 刚启动)\n\nw41 (4 GPU):\n  cuda:0 = 在跑 eval_pi05_random_k085_long_seed46_strict_w41 (T0, 刚启动)\n  cuda:1 = 在跑 eval_openvla_random_k095_long_seed43_w41 (OV, T2, ~30min)\n  cuda:2 = 在跑 eval_pi05_l2norm_k075_long_seed46_strict_w41 (T0, 刚启动)\n  cuda:3 = 在跑 eval_pi05_attn_k07_long_seed45_strict_w41 (T2, ~30min)\n\ncqa1 (4 GPU):\n  cuda:0 = 在跑 eval_pi05_l2norm_k05_long_seed45_strict_cqa1 (T8, ~172min)\n  cuda:1 = 空闲\n  cuda:2 = 在跑 eval_openvla_random_k095_goal_seed42_v4 (OV, T1 刚启动)\n  cuda:3 = 空闲\n```\n\n```\n[收割结果]\neval_pi05_random_k07_long_seed44_strict_w27:  SR=64.4%  (150min)\n  per_task: [88, 58, 78, 76, 80, 42, 64, 70, 12, 76]\n\neval_pi05_attn_k095_long_seed45_strict_cqa1: SR=77.8%  (217min)\n  per_task: [94, 98, 78, 94, 84, 98, 16, 84, 38, 94]\n```\n\n```\n[空闲 GPU 列表]\nw27:cuda:1, cqa1:cuda:1, cqa1:cuda:3  — 共 3 张空闲\n\n[即将空闲]\nw38:cuda:1 — eval_pi05_l2norm_k095_long_s45 在 T9 且全 100%, 预计 ~10min 内完成\ncqa1:cuda:0 — eval_pi05_l2norm_k05_long_s45 在 T8, 预计 ~30min 内完成\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0ba998210df085eab284",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops e1 deploy 9 table gaps",
+  "task_key": "worker_ops_e1_deploy_9_table_gaps_20260523T060827",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_e1_deploy_9_table_gaps_20260523T060827_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "9467fada9b44d4c1e299886b801cf0b9dd1e966aa8f8cd23b4b3918c22e8ba39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个实验确认存活且正在产出结果。\n\n---\n\n## 部署完成报告\n\n**原始 9 个实验中，1 个已完成，8 个刚部署成功：**\n\n| # | exp_id | server | GPU | PID | status |\n|---|--------|--------|-----|-----|--------|\n| 1 | eval_pi05_random_k09_goal_seed42 | westd-41074 | 0 | 427737 | RUNNING (ep10, 50%) |\n| 2 | eval_pi05_l2norm_k07_goal_seed42 | westd-41074 | 1 | 427998 | RUNNING (ep10, 70%) |\n| 3 | eval_xvla_random_k07_spatial_seed42 | — | — | — | **DONE** (SR=76.6%) |\n| 4 | eval_xvla_random_k05_goal_seed42 | westd-27271 | 0 | 250272 | RUNNING |\n| 5 | eval_xvla_random_k09_long_seed42 | westd-27271 | 1 | 251117 | RUNNING |\n| 6 | eval_xvla_l2norm_k07_long_seed42 | westd-38929 | 0 | 457656 | RUNNING |\n| 7 | eval_xvla_random_k07_long_seed42 | westd-38929 | 1 | 458574 | RUNNING |\n| 8 | eval_xvla_l2norm_k05_long_seed42 | westd-38929 | 2 | 459651 | RUNNING |\n| 9 | eval_xvla_random_k05_long_seed42 | westd-38929 | 3 | 461085 | RUNNING |\n\n**修复过的问题：**\n- westd-38929 X-VLA 模型：相对导入 → 绝对导入、`_supports_sdpa` 安全访问、`_tied_weights_keys = None`、transformers 升级 5.5.3→5.5.4\n- westd-41074 π0.5：缺少 `HF_HOME=/root/autodl-tmp/.hf_cache` 导致 tokenizer 下载失败\n- X-VLA `--mode l2norm` → `--mode l2_norm`（脚本参数带下划线）\n\n**使用 GPU：** 8/14（westd-41074 × 2, westd-27271 × 2, westd-38929 × 4）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

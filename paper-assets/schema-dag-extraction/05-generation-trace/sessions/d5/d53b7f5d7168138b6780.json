@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d53b7f5d7168138b6780",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r22 cpu analyses corrected",
+  "task_key": "worker_analysis_r22_cpu_analyses_corrected_20260519T183833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r22_cpu_analyses_corrected_20260519T183833_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "ec0e4d097329ebc2b27a96f34c1b501898d215757465b215afdfee98a9274099"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个分析完成，结果已保存。\n\n### A1: FP8 count_16 BCS Δ noise propagation CI\n\n| 指标 | 值 |\n|------|-----|\n| low-BCS mean acc | 70.83% |\n| high-BCS mean acc | 59.90% |\n| **Δ (low − high)** | **+10.94pp** |\n| noise σ | 0.88pp per batch |\n| **95% CI** | **[+9.84, +12.02]pp** |\n| CI excludes zero | **Yes** |\n\n即使考虑 FP8 greedy decoding 噪声（σ=0.88pp），count_16 的 BCS gap 仍然稳健，CI 完全在零以上。Bootstrap std 仅 0.56pp，噪声对 Δ 的影响很小。\n\n### A3: Fisher z-test 同源基线修正\n\n找到 **10 个相同 type sets** 同时在 constrained 和 unconstrained decoding 下有结果：\n\n| 条件 | Pearson r | Spearman ρ | n |\n|------|-----------|------------|---|\n| Constrained (count_8) | −0.332 (p=0.35) | −0.079 | 10 |\n| Unconstrained (matched 10) | −0.709 (p=0.02) | −0.152 | 10 |\n\n| Fisher z-test | 值 |\n|------|-----|\n| **Fisher z** | **1.012** |\n| **p** | **0.311** |\n| Significant (α=0.05) | **No** |\n\n关键发现：使用同源基线后，**constrained 和 unconstrained 的 BCS-accuracy 相关性差异不显著**（p=0.311）。这与之前用异源 ρ=-0.919 vs ρ=-0.139（p=2e-6）的结论完全不同。\n\n值得注意的反转：同源对照下 unconstrained (r=−0.709) 反而比 constrained (r=−0.332) BCS-accuracy 相关更强，方向与预期相反。n=10 power 不足以做定论，但之前的 Fisher z 结果确实被 batch selection confound 严重放大了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

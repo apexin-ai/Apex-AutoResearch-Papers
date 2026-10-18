@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4eb13791fe7bca468600",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code openvla reencoding adapt",
+  "task_key": "worker_code_openvla_reencoding_adapt_20260519T162506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_openvla_reencoding_adapt_20260519T162506_result.json",
+    "occurrence": 1,
+    "bytes": 1452,
+    "sha256": "aa25fa9db4623782ea430f9ba3fba25cb3bf9330c86afb621548ae8c03b6205e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出文件：\n\n| 文件 | 用途 |\n|------|------|\n| `artifacts/openvla_vtc_adapter.py` | VTC 适配模块：`VisionTokenCompressor` (4096 dim, 16 heads)、`OpenVLAActionTokenizer` (256-bin 离散化)、`OpenVLASmartCompressWrapper` |\n| `artifacts/train_openvla_smart_compress.py` | 训练脚本：加载 OpenVLA 7B + VTC，冻结 backbone，LIBERO 数据 + cross-entropy loss |\n| `artifacts/eval_openvla_smart_compress.py` | 评估脚本：LIBERO 仿真 rollout，per-task 成功率 + Wilson CI |\n| `artifacts/configs/openvla_smart_compress_m32.yaml` | M=32 配置 (87.5% 压缩: 256→32) |\n\n**关键适配设计：**\n\n1. **维度变化**：hidden_dim 960→4096, num_heads 12→16, vision tokens 128→256/camera\n2. **动作范式**：SmolVLA 的 flow matching (MSE) → OpenVLA 的 autoregressive (cross-entropy on discretized action tokens)\n3. **无 action expert**：OpenVLA 用标准 LM head 生成动作 token，所以只训练 VTC（SmolVLA 额外训练 expert+projections）\n4. **输入构建**：`_build_compressed_inputs` 在 input_ids 中找到 image placeholder tokens，替换为 M 个 compressed embeddings，同步调整 attention_mask 和 labels\n5. **多相机支持**：每个相机单独过 vision backbone → 拼接 → 压缩（如 2 cameras: 512→M）\n6. **Action tokenizer**：支持 per-dim min/max normalization，自动检测 OpenVLA vocabulary 中的 action token 起始 ID"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

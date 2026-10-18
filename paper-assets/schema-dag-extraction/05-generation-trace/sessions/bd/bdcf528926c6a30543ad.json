@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bdcf528926c6a30543ad",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops d051 gpu check",
+  "task_key": "worker_ops_d051-gpu-check_20260516T215744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d051-gpu-check_20260516T215744_result.json",
+    "occurrence": 1,
+    "bytes": 1870,
+    "sha256": "db53607de1b22e682caeea9d6ba9a2fba5a7d625900c5a9bc690943ffc8ca060"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D051 GPU 实验状态报告\n\n### GPU 状态\n- **GPU**: NVIDIA RTX PRO 6000 Black (98GB VRAM)\n- **显存占用**: 89,357 / 97,887 MiB (91%)\n- **GPU 利用率**: 16%（vLLM 推理中，正常偏低态）\n- **进程**: `VLLM::EngineCore` (PID 412517)\n\n### 当前正在运行\n- **脚本**: `run_d051_count_curves_25.py --dataset fewnerd --n_batches 25 --seed 42`\n- **当前进度**: `count_66` (Few-NERD 的最后一个 count level)，已完成 batch 6/25\n- **启动时间**: 03:54 UTC (已运行约 2 小时)\n\n### 已完成文件\n\n**FewRel seed=42 (全部完成 ✓)**\n| 文件 | 大小 | 完成时间 |\n|------|------|----------|\n| results_count_4.jsonl | 487KB | 03:14 |\n| results_count_8.jsonl | 1.1MB | 03:35 |\n| results_count_16.jsonl | 2.9MB | 03:07 |\n| results_count_32.jsonl | 8.8MB | 03:13 |\n| results_count_40.jsonl | 12.6MB | 03:20 |\n| results_count_64.jsonl | 28.9MB | 03:34 |\n| results_count_80.jsonl | 43.1MB | 03:54 |\n| eval_results.json + count_curve_summary.json | ✓ | 03:54 |\n\n**Few-NERD seed=42 (进行中)**\n| 文件 | 大小 | 完成时间 |\n|------|------|----------|\n| results_count_2.jsonl | 7.3MB | 04:33 |\n| results_count_6.jsonl | 9.6MB | 05:50 |\n| results_count_12.jsonl | 13.1MB | 04:18 |\n| results_count_22.jsonl | 18.6MB | 04:59 |\n| results_count_44.jsonl | 30.6MB | 05:29 |\n| results_count_66.jsonl | **进行中** | — |\n\n### 预估剩余时间\n- `count_66` 剩余 19 batches × ~70s/batch ≈ **22 分钟**完成当前 count level\n- Few-NERD seed=42 完成后，FewRel 7/7 ✓ + Few-NERD 6/6 ✓ = **seed=42 全部完成**\n- seed=123 和 seed=456 尚未开始\n\n### 总结\nFewRel seed=42 已全部完成。Few-NERD seed=42 还剩最后一个 count level (count_66)，预计约 22 分钟跑完。之后 seed=42 实验全部结束，需要手动启动 seed=123/456 的实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

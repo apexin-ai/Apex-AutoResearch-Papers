@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dad796d0a97d27e3f98f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "submit n2 roberta finetune",
+  "task_key": "worker_submit_n2_roberta_finetune_20260515T121826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_n2_roberta_finetune_20260515T121826_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "74d33915f6dbb54b581c1a0f021e9472159369450fb34b89ff69e4996db391d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常进行，loss 稳步下降。\n\n**完成总结：**\n- `n2_roberta_finetune_001` 已在 gpu-6000pro-2 的 cuda:1 上启动（PID 235750）\n- 首次提交因 model.safetensors 文件损坏失败，已通过 hf-mirror 重新下载完整模型（476MB）后重新提交\n- 超参数与 DeBERTa 完全一致：epochs=3, batch_size=16, lr=2e-5, max_len=512, 5-fold CV, seed=42\n- Fold 1 训练中，step 400/1000，loss 从 1.44 降至 ~0.84\n- 5-fold × 3 epochs 预计总时间 ~2-3 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e3221d58f900308e823",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis api only diagnostic",
+  "task_key": "worker_analysis_api-only-diagnostic_20260523T073725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_api-only-diagnostic_20260523T073725_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "5c9051c769fe7e9d7a6c77ad58520c937593a35461d7608a2871b5d498ab75d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n=== API-only Diagnostic ===\nK=3 API-only (84 panels):\n  Pearson r (raw): 0.489\n  Pearson r (log): 0.480\n  VIF: 1.30\n\nK=5 API-only (126 panels):\n  Pearson r (raw): 0.853\n  Pearson r (log): 0.879\n  VIF: 4.40\n\nFull set comparison:\n  K=3 full r (raw): 0.70, API-only: 0.49\n  K=5 full r (log): ~0.82, API-only: 0.88\n```\n\n关键发现：\n- **K=3 API-only**: 相关性显著低于全集 (0.49 vs 0.70)，VIF=1.30 很低，multicollinearity 不是问题\n- **K=5 API-only**: 相关性反而略高于全集 (0.88 vs ~0.82)，VIF=4.40 接近但未超过常用阈值 5，需注意\n\n结果已保存到 `api_only_diagnostic.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

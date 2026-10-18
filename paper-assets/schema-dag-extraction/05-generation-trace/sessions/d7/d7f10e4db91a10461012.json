@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d7f10e4db91a10461012",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "submit exp012 llama fewrel ch2",
+  "task_key": "worker_submit_exp012_llama_fewrel_ch2_20260515T214330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp012_llama_fewrel_ch2_20260515T214330_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "d8d22ae9ec112131f15962ab0fec2254d201b5fb14a0e0407c5ce2e7e1bc9a94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已在运行中，无需重复提交。**\n\n状态：\n- tmux session `exp012_llama_fewrel_ch2` 已创建（05:43:45）\n- 进程 PID 330211 正在执行 `run_fewrel_formal.py --mode exp2`\n- 已加载 44,800 条 FewRel 样本（64 个关系）\n- GPU 显存尚未占用（正在数据加载阶段，vLLM 模型即将加载）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "de7a4df247f04bdf906e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd 41074 pi05 batch",
+  "task_key": "worker_deploy_westd-41074-pi05-batch_20260524T012049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-41074-pi05-batch_20260524T012049_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "647f017038b3fbf4c57ad8576ff3827715bb82991af173c305d29de43f074585"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行，模型加载成功，pruning 配置正确。\n\n## 部署汇总\n\n| GPU | 实验 ID | tmux session | PID | 状态 |\n|-----|---------|-------------|-----|------|\n| 0 | `eval_pi05_random_k095_goal_seed43` | eval_pi05_random_k095_goal_seed43 | 335825 | Random k=0.95, keep 243/256 tokens, Goal seed43 |\n| 1 | `eval_pi05_l2norm_k07_goal_seed43` | eval_pi05_l2norm_k07_goal_seed43 | 336074 | L2norm k=0.7, keep 179/256 tokens, Goal seed43 |\n| 2 | `eval_pi05_l2norm_k05_long_seed43` | eval_pi05_l2norm_k05_long_seed43 | 336428 | L2norm k=0.5, keep 128/256 tokens, Long seed43 |\n| 3 | `eval_pi05_random_k085_goal_seed43` | eval_pi05_random_k085_goal_seed43 | 318964 | **已在运行**（Task 2/10 进行中） |\n\n**注意事项**：\n- 任务描述中的参数名有误：脚本实际使用 `--prune_mode`（非 `--mode`）、`--keep_ratio`（非 `--k_ratio`）、`libero_10`（非 `libero_long`）\n- GPU 0 和 GPU 2 的实验是重跑（已有历史结果 SR=81.6% 和 54.0%），registry 状态卡在 DEPLOYED（状态机不允许 DONE→RUNNING 直接转换）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

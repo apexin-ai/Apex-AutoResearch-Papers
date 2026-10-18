@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e505887699c4cc2c917",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code mistral budget sweep",
+  "task_key": "worker_code_mistral-budget-sweep_20260521T221037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-budget-sweep_20260521T221037_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "6db7319cfda3efce708b9ffca7bc2286243598296fea60183bc37e4215285a97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 outputs generated successfully:\n\n1. **`mistral_cm_profile.md`** — Per-subgroup FPR, FNR, π_s, κ for K=4 and K=2\n2. **`mistral_budget_sweep_k4.csv`** — 8000 rows (4 subgroups × 2 z-levels × 4 methods × 5 budgets × 50 seeds)\n3. **`mistral_budget_sweep_k2.csv`** — 4000 rows (2 subgroups × 2 z-levels × 4 methods × 5 budgets × 50 seeds)\n4. **`mistral_sweep_analysis.md`** — Full analysis with all metrics\n\n**Key findings:**\n\n**K=4:**\n- |Bias| crossover at n_expert=200 (EC-HTE beats Naive)\n- RMSE crossover never reached — variance cost of 4 per-subgroup CMs is too high relative to Mistral's mild misclassification bias\n- Coverage improves from 0.688→0.943 as budget grows\n\n**K=2:**\n- |Bias| crossover at n_expert=100 (immediately)\n- RMSE crossover at n_expert=1000\n- Fewer CMs to estimate → lower variance → K=2 dominates K=4 on both RMSE and |Bias| at every budget\n\nConsistent with Mistral's balanced error profile: correction helps bias quickly, but with K=4 the variance penalty from estimating 4 CMs with limited expert labels keeps RMSE above Naive."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

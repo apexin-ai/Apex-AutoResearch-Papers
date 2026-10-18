@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd08175aa520f3514fc5",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 aggregation bootstrap",
+  "task_key": "worker_analysis_k5-aggregation-bootstrap_20260523T061722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-aggregation-bootstrap_20260523T061722_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "69e24d8d2aa862d393633f66f1d252191db06e22faf9f913d0175506f9c0af08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=5 Aggregation Bootstrap 结果 (B=9999)\n\n| Method | η_max OLS → Boot | K_eff OLS → Boot | K_pos | K_neg |\n|--------|------------------|------------------|-------|-------|\n| **Majority** | 10/12 → **0/12** | 12/12 → **7/12** | 7 | 0 |\n| **Weighted** | 9/12 → **1/12** | 11/12 → **9/12** | 9 | 0 |\n| **Threshold** | 12/12 → **6/12** | 11/12 → **10/12** | 10 | 0 |\n| **Bayesian** | 8/12 → **1/12** | 10/12 → **0/12** | 0 | 0 |\n\n### 核心发现\n\n1. **Bayesian K_eff 反转确认消失**：OLS 10+/0− → bootstrap 0+/0−。无显著也无负方向。所有 12 个 beta 中仅 1 个为负 (arc×sycophancy -0.043, maxp=0.40)，其余全正但 bootstrap p 值太大未通过 FDR。\n\n2. **Bootstrap deflation 幅度**：\n   - Threshold 最稳健：11→10（仅掉 1 个）\n   - Weighted 次之：11→9\n   - Majority：12→7（大幅下降但比 K=3 的 8→1 好很多）\n   - Bayesian：10→0（OLS 结果全是假阳性）\n\n3. **η_max 大幅 deflate**：所有方法 η_max FDR sig 近乎归零（0-6/12），cluster 结构严重影响 η_max 推断。\n\n4. **Validation**：arc×sycophancy majority K_eff β = -0.157（负方向），与 K=3 参考值 -0.192 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

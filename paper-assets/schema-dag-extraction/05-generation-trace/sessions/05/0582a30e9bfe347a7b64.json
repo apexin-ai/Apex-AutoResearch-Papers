@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "0582a30e9bfe347a7b64",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh exp schema intervention v2",
+  "task_key": "worker_ssh_exp_schema_intervention_v2_20260517T153900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_schema_intervention_v2_20260517T153900.log",
+    "occurrence": 1,
+    "bytes": 1268397,
+    "sha256": "ac76ca35ebb9f6a7526b773bb16ded1efac302e1db1c510ff12d52f6d54cc252"
+  },
+  "statistics": {
+    "messages": 513,
+    "user_turns": 1,
+    "tool_calls": 197,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 110,
+      "tool_call": 197,
+      "tool_result": 197,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 335,
+      "chunks": [
+        {
+          "path": "0582a30e9bfe347a7b64-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0582a30e9bfe347a7b64-part-0002.json",
+          "message_count": 155
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "0582a30e9bfe347a7b64-part-0002.json",
+          "message_count": 25
+        },
+        {
+          "path": "0582a30e9bfe347a7b64-part-0003.json",
+          "message_count": 153
+        }
+      ]
+    }
+  ]
+}

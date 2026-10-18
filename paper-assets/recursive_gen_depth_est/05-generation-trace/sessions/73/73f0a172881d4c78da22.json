@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73f0a172881d4c78da22",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "monitor multi tau ablation 001 v2",
+  "task_key": "worker_monitor_multi_tau_ablation_001_v2_20260516T022844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_multi_tau_ablation_001_v2_20260516T022844_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "ac44af8f0160b6ad9fdcd081b754f3c732a1e7078f2a81565b7f014b045e63eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：τ=1.1 depth-3 生成中，GPU 0 活跃。3 分钟后第 2 次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

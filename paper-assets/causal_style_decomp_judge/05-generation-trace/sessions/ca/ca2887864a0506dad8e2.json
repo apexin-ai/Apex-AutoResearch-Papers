@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "ca2887864a0506dad8e2",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "mvp urgent status and launch",
+  "task_key": "worker_mvp_urgent_status_and_launch_20260520T140237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_urgent_status_and_launch_20260520T140237.log",
+    "occurrence": 1,
+    "bytes": 563854,
+    "sha256": "d4b5412b0db3b6016035c68bb23bdab1ff5c2767d1b1924c8abd105b20b359e8"
+  },
+  "statistics": {
+    "messages": 338,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 2,
+      "assistant": 68,
+      "tool_call": 120,
+      "tool_result": 120,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "ca2887864a0506dad8e2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca2887864a0506dad8e2-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "ca2887864a0506dad8e2-part-0002.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ]
+}

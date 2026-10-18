@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "da93892e3e2ebbf58716",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exec fix flashinfer submit exp012 r3",
+  "task_key": "worker_exec_fix_flashinfer_submit_exp012_r3_20260515T154922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_fix_flashinfer_submit_exp012_r3_20260515T154922_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "531c84cde7f32baa967d2ffbbbfe0251697078f8f9a0375665949c924ed86ede"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验成功启动。**\n\n汇总：\n\n- **路径**: FP8（flashinfer 修复成功）\n- **flashinfer 版本**: `0.6.11.post2`（从 0.6.8.post1 升级，用 `FLASHINFER_DISABLE_VERSION_CHECK=1` 绕过 cubin 版本检查）\n- **GPU 内存**: 70383 MiB / 97887 MiB — 模型正在加载（15 个 safetensors shards 已加载 3/15）\n- **vLLM**: v0.20.2，使用 FlashInfer FP8 attention backend + ModelOpt FP8 量化\n- **模型**: `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`（llama-3.3-70b-fp8）\n- **tmux session**: `exp012_llama_fewnerd_r3`\n- **日志**: `/tmp/exp012_r3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

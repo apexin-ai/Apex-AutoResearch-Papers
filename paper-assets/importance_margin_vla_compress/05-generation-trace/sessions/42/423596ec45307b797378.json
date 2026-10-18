@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "423596ec45307b797378",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest l2norm k075 s45 w27",
+  "task_key": "worker_harvest_l2norm_k075_s45_w27_20260528T023415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_l2norm_k075_s45_w27_20260528T023415_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "c7d787598824a0233f40a3bbf6a8dd4b815d912b739abf40bb00c8577acbd7f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 汇总\n\n**L2norm k=0.75 seed45: SR=68.4%** (342/500)\n\n四 seed 汇总:\n| Seed | SR |\n|------|----|\n| s42 | 73.2% |\n| s43 | 70.8% |\n| s44 | 67.4% |\n| s45 | 68.4% |\n| **Mean** | **69.95% ± 2.3pp** |\n\nseed45 与 seed44 接近（68.4% vs 67.4%），拉低均值至 ~70%。四 seed 方差从三 seed 的 ±2.9pp 收窄到 ±2.3pp，seed44 的低值不是孤立噪声，L2norm k=0.75 的稳定表现区间在 67-73%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

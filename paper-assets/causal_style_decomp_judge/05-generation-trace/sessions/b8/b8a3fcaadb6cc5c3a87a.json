@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8a3fcaadb6cc5c3a87a",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code clmm bt spotcheck",
+  "task_key": "worker_code_clmm_bt_spotcheck_20260521T022659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clmm_bt_spotcheck_20260521T022659_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "0671664255145402ad3560e62156bd5305dcc039f64162706b0f26968ad29e35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## Task 1: CLMM 分析 — Blindspot 确认\n\n| 方法 | is_formal coef | p-value | 95% CI |\n|------|---------------|---------|--------|\n| Ordinal Regression | -0.079 | **0.769** | [-0.60, 0.45] |\n| GEE (paired) | -0.084 | **0.587** | [-0.39, 0.22] |\n| Wilcoxon | — | **0.905** | — |\n\n88 对中 55 对 (62.5%) Likert 分数完全相同。**三个检验一致：Likert 评分无法检测 style effect。**\n\n## Task 2: Bradley-Terry 建模\n\n| 指标 | 值 |\n|------|-----|\n| BT strength (formal-casual) | **+0.4436** |\n| P(formal wins) | **60.9%** |\n| Bootstrap 95% CI | **[53.8%, 68.0%]** |\n| CI 排除 50% | **Yes** |\n| N comparisons | 197 (全量) |\n\n对比 sign test (filtered): 69.1%, p=0.006。BT 更保守但仍显著。\n\n## Task 3: Spot Check 脚本\n\n`csd_pipeline/exp013_spotcheck.py` 已写入服务器。运行需设置 `SPOTCHECK_API_KEY` 环境变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

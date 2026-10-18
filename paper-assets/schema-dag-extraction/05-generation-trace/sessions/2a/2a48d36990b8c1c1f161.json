@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2a48d36990b8c1c1f161",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh disk cleanup llama download",
+  "task_key": "worker_ssh_disk-cleanup-llama-download_20260515T063826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_disk-cleanup-llama-download_20260515T063826_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "dc8bbffdd89d06c3fbb6345eed8aebe186f44e160e365334d209854a0aabb2de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从 5.6GB 增长到 6.8GB，约 30 秒增加 1.2GB，下载速度约 **40MB/s**。\n\n### 结果\n\n**清理**: 4 个目标目录已在上次 worker 中全部删除完毕，磁盘 115GB 可用。\n\n**LLaMA-3.3-70B-Instruct-FP8 下载**:\n- PID: **229978**（后台 nohup）\n- 模式: 常规 HF 下载（非 hf_transfer），8 分片并行，支持断点续传\n- 速度: **~40MB/s**\n- 模型总大小: ~75GB（15 个分片 × ~5GB）\n- 已下载: 6.8GB（含上次部分数据断点续传）\n- 预计完成: **约 30 分钟**\n- 日志: `/tmp/llama_download.log`\n- 目标路径: `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`\n\n另外注意：服务器上有一个实验 exp004（Qwen3-32B, MAVEN dataset）正在 GPU 0 上运行，与下载互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

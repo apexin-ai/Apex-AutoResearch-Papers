@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cd3234281316717fbfbd",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code local backup",
+  "task_key": "worker_code_local_backup_20260519T025639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_local_backup_20260519T025639_result.json",
+    "occurrence": 1,
+    "bytes": 255,
+    "sha256": "a98a1b4ae82ed3ccdb88b2968ae29bb8f0284897d0459da289b6a3d6a88719c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。文件大小 **411M**，比预期的 2-3GB 小很多（可能评测 JSON 文件被压缩率很高，或实际数量/大小比预估的少）。\n\n文件路径：`/root/autodl-tmp/entrainment_gated_ft_backup_20260519.tar.gz`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

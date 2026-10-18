@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "39c50c0d10527ccf63d8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp008 health check",
+  "task_key": "worker_ssh_exp008-health-check_20260515T094541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp008-health-check_20260515T094541_result.json",
+    "occurrence": 1,
+    "bytes": 1574,
+    "sha256": "c1a762fe6577790aa98fcac9f971253fdabe5cbfd03420dd40984dbeb95e2fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：进程卡死\n\n### GPU 状态\n- **RTX PRO 6000 Black** (98GB), GPU-Util **0%**, 显存 **669MiB / 97887MiB** (0.7%)\n- 唯一 GPU 进程: `VLLM::EngineCore` (PID 241610) 占 660MiB\n\n### 进程状态\n| PID | 进程 | 状态 | 说明 |\n|-----|-------|------|------|\n| 241208 | bash wrapper | S (sleeping) | 等待子进程 |\n| 241213 | run_exp008.sh | S (sleeping) | 等待子进程 |\n| 241217 | python3 run_sdgd_experiment.py | S (sleeping) | wchan=`do_poll` (等待子进程 IPC) |\n| 241610 | VLLM::EngineCore | S (sleeping) | wchan=`futex_wait_queue_me` (死锁) |\n\n### 日志分析\n- 日志仅 **31 行**，最后输出时间 **15:45:50**（2 小时前）\n- 停在 vLLM v0.20.2 引擎初始化阶段（parallel_state 初始化完成后）\n- 模型权重加载 **未开始/未完成** — 32B FP8 模型应占 ~35GB 显存，实际仅 660MiB\n- 无任何错误信息\n\n### 结果文件\n- `artifacts/exp008/` 仅有 `decomposition.json`（15:45 创建），无实验结果\n\n### 诊断\n**卡死**。vLLM EngineCore 在模型加载阶段 futex 死锁，主进程在 poll 等待 EngineCore 响应。2 小时无任何进展，不会自行恢复。\n\n可能原因：vLLM 0.20.2 + Qwen3-32B-FP8 + `enforce_eager=True` 组合在 CUDA 13.1/Driver 590 上的兼容性问题，或模型加载时 NCCL/内存映射卡住。\n\n### 建议操作\n需要 kill 进程并重启。可尝试：\n1. 去掉 `enforce_eager=True` 让 vLLM 用默认编译模式\n2. 或降级到 vLLM 0.19.x 排除版本兼容问题\n\n等 Director 决策。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

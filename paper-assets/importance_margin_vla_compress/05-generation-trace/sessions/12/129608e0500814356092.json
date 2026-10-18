@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "129608e0500814356092",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code two stage prep",
+  "task_key": "worker_code_two_stage_prep_20260516T041247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_two_stage_prep_20260516T041247.log",
+    "occurrence": 1,
+    "bytes": 610316,
+    "sha256": "bed04773940fb401f52c7bb4fcd20b433c0a9dd4b2c891ed27457c82f3405b7f"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "129608e0500814356092-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "129608e0500814356092-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ]
+}

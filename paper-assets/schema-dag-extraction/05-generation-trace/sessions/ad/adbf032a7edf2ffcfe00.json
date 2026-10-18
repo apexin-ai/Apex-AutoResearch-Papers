@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "adbf032a7edf2ffcfe00",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper schema renaming appendix",
+  "task_key": "worker_paper_schema_renaming_appendix_20260518T213448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_schema_renaming_appendix_20260518T213448_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "cffefdc18467aa09ec5d3d478c5bcad7337430d9aed59858fd50a95cf6bb50bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both edits applied correctly.\n\n**产出汇报：**\n\n1. **Appendix `\\ref{app:renaming}`** (L681-701): 实验设计描述 + 2×3 结果表 + 解释段落，约 0.4 页\n2. **Limitations 第 4 点** (L46): 更新为引用 Appendix，含具体数据 (3--9 pp)\n\n**实验细节发现：**\n- **Rename 策略**：对 14 对高 SCS 关系对（mean SCS=0.87），将其中一个 label 替换为语义不同的 paraphrase，用 all-MiniLM-L6-v2 embedding 选择使 cosine similarity 最小的替代名（mean new SCS=0.67，$\\Delta$=-0.20）\n- **具体例子**：`participant of` → `event involvement`, `follows` → `prior entry`, `mother` → `female progenitor`, `part of` → `integral segment of`\n- **Batches**：复用 BCS-controlled 实验的 50 个 batch（25 low + 25 high），FewRel count=8，每 batch 96 samples\n- **低 BCS batch 含 0-2 个被 rename 的 type；高 BCS batch 含 2-4 个**（高 BCS batch 天然包含更多 confusable pairs，因此 rename 更多）\n- **Solo sanity check**：12 个被 rename 的 label 中 11 个单独可识别（仅 `mother` → `maternal parent` 失败），排除了\"模型完全不认识新 label\"的解释"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

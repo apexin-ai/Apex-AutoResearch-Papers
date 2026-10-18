@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fd71c41bd61b0c8fea34",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops fix westd38929 race condition and restart",
+  "task_key": "worker_ops_fix-westd38929-race-condition-and-restart_20260520T232205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-westd38929-race-condition-and-restart_20260520T232205_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "17ae01345e2221e436504c5b1e7527e05da94908dfc730fe8b9fd3b3c59a2d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 总结\n\n### 根因分析\n\n**不是竞争条件**，而是 LIBERO 在实验运行期间被从 site-packages 重装为 editable install（LIBERO-plus）。时间线：\n\n| 时间 (UTC+8) | 事件 |\n|---|---|\n| 05:58 | 4 个实验启动（使用 site-packages 里的原版 LIBERO） |\n| 07:15 | LIBERO-plus init_files 重建 |\n| 07:17:22 | config.yaml 被更新（路径从 site-packages → LIBERO-plus） |\n| ~07:17 | **3 个进程 crash**：旧 site-packages 目录已删除，init files 不存在 |\n| 07:19:24 | `libero-plus.pth` 创建（editable install 完成） |\n\n关键代码：`benchmark/__init__.py:164` — `torch.load(init_states_path)` 每个 episode 调用一次。\n\n### 修复操作\n\n1. **切换 .pth** 从 LIBERO-plus 回 LIBERO-master：`/root/miniconda3/lib/python3.12/site-packages/libero-plus.pth` → 指向 `/root/autodl-tmp/libero_repo/LIBERO-master`\n2. **更新 config.yaml** 所有路径指向 LIBERO-master\n3. **Patch torch.load** 兼容 PyTorch 2.6+：`torch.load(path)` → `torch.load(path, weights_only=False)`\n   - 文件：`/root/autodl-tmp/libero_repo/LIBERO-master/libero/libero/benchmark/__init__.py:164`\n\n### 重启实验\n\n| GPU | 实验 | PID | tmux session | 状态 |\n|---|---|---|---|---|\n| 0 | random k=0.95 seed42 | 159683 | `eval_random_k095_s42_v2` | ✓ Ep 10/50, 9/10, 2.0 eps/min |\n| 1 | random k=0.7 seed42 | 159765 | `eval_random_k07_s42_v2` | ✓ Ep 10/50, 4/10, 1.8 eps/min |\n| 2 | random k=0.3 seed43 | 95670 | `eval_random_k03_s43` | ✓ 原进程，未中断 |\n| 3 | L2 norm k=0.9 seed43 | 159944 | `eval_l2norm_k09_s43_v2` | ✓ Ep 10/50, 7/10, 2.0 eps/min |\n\n**4/4 GPU 全部在用**，pruning 确认生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

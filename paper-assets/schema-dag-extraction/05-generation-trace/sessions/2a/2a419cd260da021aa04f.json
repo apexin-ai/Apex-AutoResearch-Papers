@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2a419cd260da021aa04f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis r11 q3 tost n525",
+  "task_key": "worker_analysis_r11-q3-tost-n525_20260517T103242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r11-q3-tost-n525_20260517T103242_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "d8d380420053d247aa5fc5583a8d8fe2bbb46bcbb62c6b7614060247fd323574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results written. Both linear and logit TOST remain **inconclusive** even with n=525:\n\n| Scale | Interaction | SE | p (H0: =0) | TOST p | Conclusion |\n|-------|------------|-----|-------------|--------|------------|\n| Linear | -0.094 | 0.090 | 0.297 | 0.761 | inconclusive |\n| Logit | -0.098 | 0.703 | 0.890 | 0.481 | inconclusive |\n\nThe interaction is non-significant in both scales (can't reject H0: coeff=0), but the SE is too large relative to the equivalence margins (3pp linear, 0.13 logit units) to demonstrate equivalence either. Back-transformed interaction at floor (47.7% accuracy): -2.4pp; at median (64.6%): -2.3pp.\n\nOutput saved to `artifacts/q3_tost_n525_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

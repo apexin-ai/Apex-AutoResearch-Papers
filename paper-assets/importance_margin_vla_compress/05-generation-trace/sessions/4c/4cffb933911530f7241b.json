@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4cffb933911530f7241b",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops openvla spatial maxsteps diagnosis",
+  "task_key": "worker_ops_openvla-spatial-maxsteps-diagnosis_20260521T011112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_openvla-spatial-maxsteps-diagnosis_20260521T011112.log",
+    "occurrence": 1,
+    "bytes": 513171,
+    "sha256": "6c4ea49fa509641d546e26ac981af678b76590f48d0944cc38007a7eb0a79751"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "4cffb933911530f7241b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4cffb933911530f7241b-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1b1eec37ff24d26fb981",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check exp 004 r2 completion",
+  "task_key": "worker_check_exp-004-r2-completion_20260519T171608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp-004-r2-completion_20260519T171608_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "40b90f6b041d96256883e5cce587e316e3398e552387c027fbd13a89d0072289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron 监控任务，无需清除。\n\n---\n\n**exp-004-r2 总结**：\n\n| 项目 | 状态 |\n|------|------|\n| **状态** | DONE (success) |\n| **耗时** | ~30 min（00:45 → 01:14 CST） |\n| **输出** | 3×.pt (~126MB each) + 3×.csv (~59MB each) + 3 分析文件 |\n| **GPU** | 空闲（0% util），可释放给 exp-007 |\n\n**核心发现**：假设被否定——attention entropy **无法**区分 helped 与 hurt 样本（三个架构的差异均 <0.02）。Per-example effect 不体现在 attention pattern 层面。\n\n**跨架构相似度**有意思：GDN 和 RetNet 全层高度相似（>0.9），HGRN2 在浅层（L2）与另外两者差异大（cos sim ~0.2），但深层收敛到 >0.94。这意味着三个架构在深层学到了相似的 attention pattern，分化主要在浅层。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

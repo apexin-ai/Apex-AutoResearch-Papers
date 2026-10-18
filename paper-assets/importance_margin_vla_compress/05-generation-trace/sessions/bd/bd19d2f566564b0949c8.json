@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "bd19d2f566564b0949c8",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval official smolvla pruning",
+  "task_key": "worker_eval_official_smolvla_pruning_20260518T121201",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_official_smolvla_pruning_20260518T121201.log",
+    "occurrence": 1,
+    "bytes": 557186,
+    "sha256": "4008a70cab609d1b5396638d2b607bba4d74704b80c4e9933c8d7eee4ea0252b"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "bd19d2f566564b0949c8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd19d2f566564b0949c8-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ]
+}

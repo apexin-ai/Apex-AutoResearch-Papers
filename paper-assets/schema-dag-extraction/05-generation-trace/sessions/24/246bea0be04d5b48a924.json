@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "246bea0be04d5b48a924",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis maven residualized bcs",
+  "task_key": "worker_analysis_maven_residualized_bcs_20260516T012720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_maven_residualized_bcs_20260516T012720_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "4dd6f8eff69af29ca6d3e312f5b39197db06eb07f77c12ca949aeb55e8bd8e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**MAVEN 正相关 BCS-F1 是 centrality artifact，对两种 embedding 都成立：**\n\n| | Raw ρ(BCS,F1) | Confound | BCS↔Confound r | Partial r (controlled) |\n|---|---|---|---|---|\n| **MiniLM** | +0.208 (p=.011) | log_freq | +0.201 (p=.014) | +0.133 (p=.107, n.s.) |\n| **Qwen3** | +0.184 (p=.025) | degree_0.7 | +0.854 (p<.001) | +0.063 (p=.442, n.s.) |\n\n关键发现：\n1. MiniLM 的 confound 是 **type frequency**（频繁类型 → 高 BCS → 高 F1）\n2. Qwen3 的 confound 不是 frequency（r=-0.043, n.s.），而是 **degree centrality**（语义邻居数量，r=0.854）\n3. 联合控制 log_freq + degree 后，两种 embedding 的 BCS-F1 相关都消失（Qwen3 p=0.439, MiniLM p=0.226）\n4. 与 Few-NERD 对比：Few-NERD 无 centrality confound（BCS↔freq r=0.042），所以 BCS 保持预期负方向\n\n产出文件在服务器 `artifacts/maven_residualized_bcs/`：`analysis_report.txt`（完整报告含 appendix 建议文本）和 `residualized_analysis.py`（可复现脚本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

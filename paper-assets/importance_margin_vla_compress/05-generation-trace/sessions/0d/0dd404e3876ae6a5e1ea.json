@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0dd404e3876ae6a5e1ea",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd 38929 harvest and pids",
+  "task_key": "worker_audit_westd-38929-harvest-and-pids_20260524T013412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd-38929-harvest-and-pids_20260524T013412_result.json",
+    "occurrence": 1,
+    "bytes": 1957,
+    "sha256": "d0c053d084841a81464e37a0b62ec75593430137fe92136736e44b508ed2080c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。另外发现 eval_xvla_random_k05_spatial_seed43 也已完成但不在 registry 中——这是个额外发现，暂不创建 registry 条目。\n\n---\n\n## eval_xvla_l2norm_k05_long_seed43\n状态: **完成** (PID 432791 已退出)\nSR: **43.8%** (219/500)\nWilson CI 95%: [39.5%, 48.2%]\n\n| Task | SR | Detail |\n|------|-----|--------|\n| T0 | 26% | put both alphabet soup & tomato sauce in basket |\n| T1 | 0% | put both cream cheese box & butter in basket |\n| T2 | 52% | turn on stove & put moka pot on it |\n| T3 | 78% | put black bowl in bottom drawer & close |\n| T4 | 38% | put white mug on left plate & yellow mug on right |\n| T5 | 86% | pick up book & place in caddy |\n| T6 | 56% | put white mug on plate & chocolate pudding right |\n| T7 | 76% | put both alphabet soup & cream cheese in basket |\n| T8 | 24% | put both moka pots on stove |\n| T9 | 2% | put yellow mug in microwave & close |\n\nRegistry → DONE (conclusion: success)\n\n## 额外发现：eval_xvla_random_k05_spatial_seed43\n状态: **完成** (tmux session 仍存在，进程已结束)\nSR: **72.6%** (363/500), Wilson CI 95%: [68.5%, 76.3%]\n结果: `eval_results/eval_xvla_random_k05_spatial_seed43.json`\n\n## X-VLA Random k=0.85 Re-runs (均启动于 09:10, 运行 ~26 min)\n\n| GPU | 实验 | PID | 已完成 Tasks | 当前进度 | 总进度 |\n|-----|------|-----|-------------|---------|--------|\n| 0 | Object seed42 | 674755 | T0=98%, T1=14%, T2=100%, T3=88% | T4 Ep 29/50 | ~229/500 (46%) |\n| 1 | **空闲** | — | — | — | — |\n| 2 | Goal seed42 | 674830 | T0=100%, T1=42%, T2=70%, T3=78% | T4 Ep 40/50 | ~240/500 (48%) |\n| 3 | Spatial seed42 | 674970 | T0=100%, T1=6%, T2=98%, T3=98% | T4 Ep 11/50 | ~211/500 (42%) |\n\ntmux sessions: `eval_xvla_random_k085_object_seed42`, `eval_xvla_random_k085_goal_seed42`, `eval_xvla_random_k085_spatial_seed42`\n\nGPU 1 完全空闲（0% util, 1 MiB），可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

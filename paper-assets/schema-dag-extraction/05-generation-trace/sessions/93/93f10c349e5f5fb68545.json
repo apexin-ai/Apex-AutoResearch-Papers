@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "93f10c349e5f5fb68545",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "cleanup awq residual",
+  "task_key": "worker_cleanup_awq_residual_20260515T223708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_awq_residual_20260515T223708_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "92058d4f4914a1574d3d80b1670ee11e229090655ad128bbc2cd1b7dd91253f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 评估结果\n\n### AWQ 相关文件清单\n\n| 类别 | 路径 | 大小 | 建议 |\n|------|------|------|------|\n| **脚本** | `/root/schema-dag-extraction/scripts/run_exp012_llama_awq.sh` | ~1KB | 可安全删除 |\n| **脚本** | `/root/schema-dag-extraction/scripts/auto_start_exp012_awq.sh` | ~1KB | 可安全删除 |\n| **库内置** | `transformers/integrations/awq.py` | — | transformers 自带，不动 |\n| **库内置** | `transformers/quantizers/quantizer_awq.py` | — | transformers 自带，不动 |\n\n### 关键发现\n\n- **70B AWQ 模型权重已不存在。** 脚本引用的路径 `/root/autodl-tmp/.hf_cache/llama-3.1-70b-instruct-awq-int4/` 不存在——~36GB 的模型文件已经被清理过了。\n- **`src/` 和 `configs/` 中无 AWQ 引用**，没有代码依赖。\n- **没有安装 `autoawq` pip 包**（site-packages 中只有 transformers 内置的 AWQ 集成模块，不需要处理）。\n\n### 建议\n\n仅剩两个废弃脚本（`run_exp012_llama_awq.sh`、`auto_start_exp012_awq.sh`），总计 ~2KB，磁盘影响可忽略。如需清理可直接删除，无任何代码依赖。\n\n**~36GB 模型权重已不在磁盘上，无需额外释放空间。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

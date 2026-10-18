@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "430e3be5ce957e271303",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh collect gpt2xl temp09 results",
+  "task_key": "worker_ssh_collect_gpt2xl_temp09_results_20260514T222516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_gpt2xl_temp09_results_20260514T222516_result.json",
+    "occurrence": 1,
+    "bytes": 1656,
+    "sha256": "34a760631ee26279a0bbbccccf96286b611e15ab9236da96fb440b416c48ace4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新。\n\n---\n\n## gpt2xl_temp09_001 结果汇总\n\n### Finetune Losses\n| Depth | Final Loss |\n|-------|-----------|\n| 1 | 2.5498 |\n| 2 | 1.6972 |\n| 3 | 1.2922 |\n\n### Code Contamination\n| Depth | Broad | Narrow |\n|-------|-------|--------|\n| 0 | 0.5% | 0.4% |\n| 1 | 0.5% | 0.8% |\n| 2 | 0.7% | 1.6% |\n| 3 | 0.5% | 1.5% |\n\n### 与 Baseline 对比（RF 指标）\n\n| Metric | GPT-2 XL nucleus (baseline) | GPT-2 XL temp09 | Delta |\n|--------|---------------------------|-----------------|-------|\n| 4-class acc | 83.3% | **85.42%** | **+2.1pp** |\n| 3-class acc | 79.3% | **82.00%** | **+2.7pp** |\n| 3-class filtered acc | — | **81.50%** | — |\n| d1v2 AUC | 0.913 | **0.9367** | +0.024 |\n| d2v3 AUC | 0.883 | 0.8815 | -0.002 |\n\n### 跨模型解码策略衰减对比\n\n| Model | Nucleus → Temp09 | Direction |\n|-------|-----------------|-----------|\n| Pythia-1.4B | 78.15% → 76.25% | **-1.9pp** |\n| GPT-2 XL | 83.3% → 85.42% | **+2.1pp** |\n\n### 关键发现\n\nGPT-2 XL 在 temperature-only τ=0.9 下**反而优于** nucleus p=0.95 baseline，与 Pythia 方向完全相反。解码策略对深度信号的影响是**模型依赖的**，不能简单假设 nucleus 总是最优。d2v3（最难区分的相邻深度）AUC 基本持平，说明信号增强主要来自 d1v2 边界。\n\n### 3×3 矩阵更新建议\n\nGPT-2 XL temp09 格填入 **85.4%**（原假设预期衰减，实际增强），标注为绿色/正向结果。这强化了\"深度信号是递归生成的内在属性\"的论点——即使解码策略变了，信号依然可检测，甚至在某些模型上更强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

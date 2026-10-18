@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "8874bdb4d216c5fed7f2",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "deploy openvla baseline spatial seed42 v3",
+  "task_key": "worker_deploy_openvla-baseline-spatial-seed42-v3_20260521T222500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla-baseline-spatial-seed42-v3_20260521T222500.log",
+    "occurrence": 1,
+    "bytes": 668442,
+    "sha256": "461680a30875357916f325d7b08612b07a62b3f6b37c433ea05869ab7c1938fc"
+  },
+  "statistics": {
+    "messages": 488,
+    "user_turns": 0,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 199,
+      "tool_result": 199,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 488,
+      "chunks": [
+        {
+          "path": "8874bdb4d216c5fed7f2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8874bdb4d216c5fed7f2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8874bdb4d216c5fed7f2-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ]
+}

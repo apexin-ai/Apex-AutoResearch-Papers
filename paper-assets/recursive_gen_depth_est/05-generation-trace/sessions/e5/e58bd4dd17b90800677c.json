@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e58bd4dd17b90800677c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code olmo temp09 002 resume script",
+  "task_key": "worker_code_olmo_temp09_002_resume_script_20260514T230046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo_temp09_002_resume_script_20260514T230046_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "45e4dd876dd94363252475afc6b54cf1e0aa204247caa84ebe5ff70ae10799bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复脚本已创建：`scripts/run_pipeline_olmo_temp09_resume.sh`\n\n- 语法检查通过\n- 所有引用路径（模型、adapter、数据、训练脚本）均存在\n- 脚本逻辑：验证 depth-0 adapter 和 depth_1.jsonl 存在 → 删除不完整的 lora_depth_1 → 从 Step 3 重新训练 → Step 4-6 正常执行\n- EXIT trap / sentinel 机制保留，日志写入 `logs/pipeline_olmo_temp09_resume.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

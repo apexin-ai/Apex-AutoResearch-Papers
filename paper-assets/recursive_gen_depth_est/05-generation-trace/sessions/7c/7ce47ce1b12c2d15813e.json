@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "7ce47ce1b12c2d15813e",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code base model pipeline",
+  "task_key": "worker_code_base-model-pipeline_20260514T102629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_base-model-pipeline_20260514T102629.log",
+    "occurrence": 1,
+    "bytes": 916775,
+    "sha256": "9dd4bcdfc071ab2e7580580f27053636ff7f78555fae97b01e6cc4619e702ff1"
+  },
+  "statistics": {
+    "messages": 780,
+    "user_turns": 0,
+    "tool_calls": 353,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 353,
+      "tool_result": 353
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 780,
+      "chunks": [
+        {
+          "path": "7ce47ce1b12c2d15813e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ce47ce1b12c2d15813e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ce47ce1b12c2d15813e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ce47ce1b12c2d15813e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ce47ce1b12c2d15813e-part-0005.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ]
+}

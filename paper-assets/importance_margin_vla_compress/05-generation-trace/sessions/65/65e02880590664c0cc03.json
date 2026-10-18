@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "65e02880590664c0cc03",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "research libero plus setup",
+  "task_key": "worker_research_libero-plus-setup_20260520T231402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_libero-plus-setup_20260520T231402.log",
+    "occurrence": 1,
+    "bytes": 774408,
+    "sha256": "45b6d7b4cba8930491a75cda57f544ea11fb350d545e1489ec6ce88212869b21"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 300,
+      "chunks": [
+        {
+          "path": "65e02880590664c0cc03-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "65e02880590664c0cc03-part-0002.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ]
+}

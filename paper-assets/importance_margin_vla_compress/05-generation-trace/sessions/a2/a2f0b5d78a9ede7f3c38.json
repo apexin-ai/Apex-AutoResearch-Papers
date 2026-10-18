@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a2f0b5d78a9ede7f3c38",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "spotcheck all servers",
+  "task_key": "worker_spotcheck_all-servers_20260523T132049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_spotcheck_all-servers_20260523T132049_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "c5f1a046ab008c9ae57163841cb4b0c8455bde97f6019bcbafb698ac199224c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 7pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

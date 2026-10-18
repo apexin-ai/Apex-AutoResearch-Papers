@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "91fea3f1a100344f05c0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd 38929 cliff zone",
+  "task_key": "worker_deploy_westd-38929-cliff-zone_20260525T180918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-38929-cliff-zone_20260525T180918_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "10a23fd9e01bcf647812e309d3da6e04d0bb05fec93ecfc6a901057e6b602b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行，已开始评估 Task 1/10：\n\n| GPU | exp_id | mode | k | token 裁剪 | 状态 |\n|-----|--------|------|---|-----------|------|\n| cuda:0 | `eval_openvla_attn_k07_long_seed42_v2` | attention_prune | 0.7 | 256→179 | running |\n| cuda:1 | `eval_openvla_l2norm_k07_long_seed42_v2` | l2norm_prune | 0.7 | 256→179 | running |\n| cuda:2 | `eval_openvla_random_k07_long_seed42_v2` | random_prune | 0.7 | 256→179 | running |\n| cuda:3 | `eval_openvla_l2norm_k085_long_seed42_v2` | l2norm_prune | 0.85 | 256→217 | running |\n\n每个实验 500 episodes（10 tasks × 50），libero_10 suite，timeout 12h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d6963ac58ae0ab6007c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 random k05 spatial seed42 postfix",
+  "task_key": "worker_harvest_eval_pi05_random_k05_spatial_seed42_postfix_20260524T005615",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_random_k05_spatial_seed42_postfix_20260524T005615_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "31c9ef2830b3513bdbcc97422beeefa97febe71c9edac02785bc03280f949ce6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 中删除）。\n\n## 结果\n\n**eval_pi05_random_k05_spatial_seed42_postfix — 失败（未产出数据）**\n\n- **原因**：启动命令缺少 `TRANSFORMERS_OFFLINE=1` 和 `HF_HUB_OFFLINE=1`，脚本尝试从网络下载 `google/paligemma-3b-pt-224` tokenizer 时报 `Network is unreachable`，在模型加载阶段就崩溃了\n- **SR**：无（未执行任何 episode）\n- **与 pre-fix 71.6% 对比**：无法对比\n\n**需要重跑**，正确的命令应包含离线环境变量（参考同服务器上 k=0.85 postfix 的成功启动命令）：\n```bash\nexport TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=1\n```\n\n**westd-41074 GPU 状态**：全部 4 卡空闲（0 MiB / 98 GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

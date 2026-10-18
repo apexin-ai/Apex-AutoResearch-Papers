@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac58c611ec2754193a16",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops gpu status urgent",
+  "task_key": "worker_ops_gpu_status_urgent_20260516T074736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_urgent_20260516T074736_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "1713bb52dbe32a1dc3b08056594ccff83b8782c724b50e1c3d79be45fb5b4ef9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### cross_scale_llama3_8b_003 (cuda:0) — 运行中\n\n| 项目 | 值 |\n|------|-----|\n| PID | 527537 |\n| GPU 显存 | 8,366 MiB / 97,887 MiB |\n| GPU 利用率 | 56% |\n| GPU 温度 | 46°C |\n| 当前阶段 | **depth-2 生成**（LoRA depth-1 训练已完成，loss=1.491） |\n| 当前进程 | `python scripts/qwen7b_generate.py` 正在用 depth-1 的 LoRA adapter 生成 depth-2 数据（500 samples, top_p=0.95） |\n| 状态 | **正常运行** |\n\n### domain_extension_001 (cuda:1) — 已完成\n\n| 项目 | 值 |\n|------|-----|\n| PID | 无（进程已退出） |\n| GPU 显存 | 0 MiB |\n| GPU 利用率 | 0% |\n| 完成时间 | 15:41:27 CST |\n| 结果 | **PASS** — 5-fold CV accuracy: **74.1% ± 2.0%**（阈值 65%） |\n| 产出文件 | `cv_results.json`, `classification_report.txt`, `confusion_matrix.png`, `feature_importance.json`, `pairwise_auc.json`, `features.jsonl` |\n\nPer-depth F1: depth-0=1.00, depth-1=0.78, depth-2=0.52, depth-3=0.66\n\n**总结：llama3_8b_003 在 cuda:0 正常推进 depth-2 生成；domain_extension_001 已完成且通过，cuda:1 空闲。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

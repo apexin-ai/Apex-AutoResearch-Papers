@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16ea6870eaab937f49de",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval official smolvla baseline",
+  "task_key": "worker_analysis_eval_official_smolvla_baseline_20260518T135729",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_official_smolvla_baseline_20260518T135729_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "5b93abfa24c4c2291dbb7e9d1e10f5d47eb1090d7be4794019e36bd14eaf935a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。总结如下：\n\n## 结果\n\n**Overall SR: 59.2% (296/500)**, 95% Wilson CI: [54.8%, 63.4%]\n\n| Task | Object | SR |\n|------|--------|-----|\n| 0 | alphabet soup | 64% |\n| 1 | cream cheese | 40% |\n| 2 | salad dressing | 44% |\n| 3 | bbq sauce | **38%** (最低) |\n| 4 | ketchup | 60% |\n| 5 | tomato sauce | 46% |\n| 6 | butter | 78% |\n| 7 | milk | 52% |\n| 8 | chocolate pudding | **90%** (最高) |\n| 9 | orange juice | 80% |\n\n## 与 hypothesis 对比\n\nOfficial checkpoint 的 **59.2%** 显著高于我们 fine-tuned baseline 的 **44.8%**，差距约 14.4 个百分点。这说明：\n\n1. **Official checkpoint 训练质量更高**：可能使用了更多数据、更长训练、或更优超参数，其 unpruned 性能本身就更强。\n2. **我们的 fine-tuned checkpoint 存在训练效果损失**：44.8% 并非 SmolVLA 在 LIBERO-Object 上的性能上限，fine-tuning 流程可能有改进空间。\n3. **对论文的意义**：pruning 实验如果以 official checkpoint 为基准，baseline 更高（59.2%），pruning 后的性能下降幅度会更有说服力。论文中应报告 official checkpoint baseline 作为更可靠的参考点，或至少在两个 baseline 上都展示 pruning 效果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

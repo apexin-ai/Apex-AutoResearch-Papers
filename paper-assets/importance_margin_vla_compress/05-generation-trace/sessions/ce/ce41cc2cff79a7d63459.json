@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ce41cc2cff79a7d63459",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit w38 gpu01",
+  "task_key": "worker_audit_w38-gpu01_20260527T194331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_w38-gpu01_20260527T194331_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "edb6ecdfbe03c023f9ded9bd1b1d7dec6c525833fff5706d103de8c89aa06dbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。w38 全部 4 个 GPU 状态正常，无未注册进程。\n\n**修复内容：**\n- `eval_openvla_random_k095_long_seed42_v3`：补全 gpu=cuda:0, pid=272022\n- `eval_openvla_attn_k075_long_seed42_v3`：补全 gpu=cuda:1, pid=266221\n\n**确认正常运行：**\n- cuda:2: L2norm k=0.5 s44 (PID 557458, 36m) — 已注册，pid=557449 是 bash wrapper\n- cuda:3: Attn k=0.5 s43 (PID 541249, 1h4m) — 已注册，pid=541240 是 bash wrapper\n\n两个 OV 实验已跑 7h+，接近完成。无异常进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

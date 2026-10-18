@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b5b02110e04a6c19584a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent westd41074 westd38929 audit deploy",
+  "task_key": "worker_urgent_westd41074-westd38929-audit-deploy_20260524T031920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_westd41074-westd38929-audit-deploy_20260524T031920_result.json",
+    "occurrence": 1,
+    "bytes": 1834,
+    "sha256": "3b6e2ad44d960e30334eacce760fa0a80422f2f539f28e671aeceaa192337de9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41074\n\n| GPU | 状态 | 实验 | 进度 |\n|-----|------|------|------|\n| 0 | **新部署** PID 542222 | pi05_l2norm_k05_spatial_seed43_v2 | 刚启动 |\n| 1 | RUNNING PID 515300 | pi05_random_k03_long_seed43_v2 | Task 0/10, SR=32% |\n| 2 | RUNNING PID 363842 | pi05_l2norm_k05_long_seed43 | Task 5/10, 累计56.4% |\n| 3 | RUNNING PID 450962 | pi05_random_k085_object_seed42_postfix | Task 4/10, 累计3.0% |\n\n**收割结果：**\n- pi05_random_k095_goal_seed43: **SR=83.4%** (417/500) ✓ registry 已更新\n- pi05_random_k085_goal_seed43: **SR=52.2%** (261/500) ✓ registry 已更新\n\n**Orphan tmux sessions（无活跃 python）：** diag_read_goal_results, eval_random_k09_s42, smolvla_spatial, xvla_long, eval_pi05_random_k085_goal_seed43\n**其他：** PID 584493 http.server:18765 (serving pi05_libero_finetuned)\n\n---\n\n## westd-38929\n\n| GPU | 状态 | 实验 | 进度 |\n|-----|------|------|------|\n| 0 | **IDLE** | xvla_l2norm_k05_goal_seed42_v2 刚完成 | SR=59.0% ✓ |\n| 1 | RUNNING PID 951181 | xvla_l2norm_k05_spatial_seed42_v2 | Task 8/10 |\n| 2 | RUNNING PID 16456 | xvla_l2norm_k03_goal_seed42_v3 | 早期，全 FAIL |\n| 3 | RUNNING PID 16599 | xvla_l2norm_k07_goal_seed42_v2 | ep 35/50，全 FAIL |\n\n**收割结果：**\n- xvla_l2norm_k05_goal_seed42_v2: **SR=59.0%** (295/500) ✓ registry 已更新\n- xvla_l2norm_k05_goal_seed43: **SR=60.2%** (301/500) — 之前已完成\n- xvla_random_k05_spatial_seed43: **SR=72.6%** (363/500) — 之前已完成\n\n**Orphan tmux sessions：** eval_xvla_l2norm_k05_goal_seed43, eval_xvla_random_k05_spatial_seed43, eval_xvla_l2norm_k05_goal_seed42_v2\n\n---\n\n**注意：** westd-38929 GPU 0 当前空闲，可部署新实验。westd-41074 的 k095_goal_seed43 之前因网络不可达崩溃过，但重跑后成功出结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

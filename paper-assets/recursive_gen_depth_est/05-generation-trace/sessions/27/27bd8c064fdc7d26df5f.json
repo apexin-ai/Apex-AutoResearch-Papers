@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.0",
+  "id": "27bd8c064fdc7d26df5f",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "paper figure fig feature trajectory",
+  "task_key": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure_fig_feature_trajectory_20260515T070506.jsonl",
+    "occurrence": 1,
+    "bytes": 15485,
+    "sha256": "db2647e884ca948c2160db9a5b21d0369ce5a30fc1780a65cdd7861d2f7e4b20"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T07:06:35.877634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/matrix_data.json",
+              "limit": "100"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T07:06:35.878146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"metadata\": {\n3\t    \"version\": \"2.0\",\n4\t    \"generated_at\": \"2026-05-15\",\n5\t    \"n_cells_completed\": 7,\n6\t    \"n_cells_total\": 9,\n7\t    \"n_samples_per_depth\": 5000,\n8\t    \"n_depths\": 4,\n9\t    \"feature_count\": 19,\n10\t    \"classifier\": \"RandomForest (primary), LogisticRegression (secondary)\",\n11\t    \"data_source\": \"gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/\",\n12\t    \"seed_data\": \"Wikipedia (depth_0.jsonl, 5000 samples)\"\n13\t  },\n14\t  \"grid\": {\n15\t    \"models\": [\"Pythia-1.4B\", \"OLMo-1B\", \"GPT-2-XL\"],\n16\t    \"strategies\": [\"nucleus_p095\", \"temperature_09\", \"topk_k50\"],\n17\t    \"cell_keys\": {\n18\t      \"Pythia-1.4B\": {\"nucleus_p095\": \"pythia_nucleus\", \"temperature_09\": \"pythia_temp09\", \"topk_k50\": \"pythia_topk50\"},\n19\t      \"OLMo-1B\": {\"nucleus_p095\": \"olmo_nucleus\", \"temperature_09\": \"olmo_temp09\", \"topk_k50\": \"olmo_topk50\"},\n20\t      \"GPT-2-XL\": {\"nucleus_p095\": \"gpt2xl_nucleus\", \"temperature_09\": \"gpt2xl_temp09\", \"topk_k50\": \"gpt2xl_topk50\"}\n21\t    }\n22\t  },\n23\t  \"cells\": {\n24\t    \"pythia_nucleus\": {\n25\t      \"model\": \"Pythia-1.4B\",\n26\t      \"strategy\": \"nucleus_p095\",\n27\t      \"experiment_id\": \"mvp_pipeline_pythia_002\",\n28\t      \"status\": \"done\",\n29\t      \"acc_4class\": {\"random_forest\": 0.782, \"logistic_regression\": 0.7492, \"rf_ci\": [0.769, 0.794]},\n30\t      \"acc_3class\": {\"random_forest\": 0.708, \"rf_ci\": [0.692, 0.725]},\n31\t      \"acc_3class_filtered\": {\"random_forest\": 0.747, \"rf_ci\": [0.727, 0.764]},\n32\t      \"pairwise_auc\": {\n33\t        \"random_forest\": {\"d0v1\": 0.9975, \"d0v2\": 0.9995, \"d0v3\": 0.9986, \"d1v2\": 0.8607, \"d1v3\": 0.9685, \"d2v3\": 0.8005},\n34\t        \"logistic_regression\": {\"d0v1\": 0.9922, \"d0v2\": 0.9997, \"d0v3\": 0.9997, \"d1v2\": 0.7784, \"d1v3\": 0.9484, \"d2v3\": 0.7578}\n35\t      },\n36\t      \"feature_importance\": {\n37\t        \"var_surprisal\": 0.1692, \"p90_ppl\": 0.1582, \"mean_ppl\": 0.1204, \"mean_surprisal\": 0.0884,\n38\t        \"p75_ppl\": 0.0671, \"skewness_ppl\": 0.0392, \"p50_ppl\": 0.0366, \"entropy_of_surprisal\": 0.0350,\n39\t        \"k\n…[truncated 4906 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T07:06:35.878353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXISTS\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T07:06:35.878496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 176\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 15 06:44 .\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 15 06:42 ..\n-rw-r--r-- 1 ubuntu ubuntu  19458 May 15 06:44 fig_auc_decay.pdf\n-rw-r--r-- 1 ubuntu ubuntu 146327 May 15 06:44 fig_auc_decay.png\n-rw-r--r-- 1 ubuntu ubuntu   2656 May 15 06:44 fig_auc_decay.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T07:06:35.878639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/matrix_data.json",
+              "offset": "100",
+              "limit": "200"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T07:06:35.878867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t        \"logistic_regression\": {\"d0v1\": 0.9889, \"d0v2\": 0.9983, \"d0v3\": 0.9995, \"d1v2\": 0.7289, \"d1v3\": 0.9039, \"d2v3\": 0.6804}\n101\t      },\n102\t      \"feature_importance\": {\n103\t        \"var_surprisal\": 0.1759, \"p90_ppl\": 0.1347, \"mean_ppl\": 0.1120, \"mean_surprisal\": 0.0702,\n104\t        \"p75_ppl\": 0.0612, \"type_token_ratio\": 0.0416, \"hapax_ratio\": 0.0416, \"p50_ppl\": 0.0386,\n105\t        \"p25_ppl\": 0.0373, \"entropy_of_surprisal\": 0.0368, \"bigram_entropy\": 0.0345, \"trigram_entropy\": 0.0333,\n106\t        \"p10_ppl\": 0.0330, \"skewness_ppl\": 0.0327, \"kurtosis_ppl\": 0.0316, \"rep_2gram\": 0.0297,\n107\t        \"rep_4gram\": 0.0281, \"rep_3gram\": 0.0264, \"var_ppl\": 0.0008\n108\t      },\n109\t      \"top5_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"],\n110\t      \"finetune_losses\": {\"depth_0\": 2.2406, \"depth_1\": 1.6704, \"depth_2\": 1.4374},\n111\t      \"code_contamination_narrow\": {\"d0\": 0.004, \"d1\": 0.077, \"d2\": 0.123, \"d3\": 0.131},\n112\t      \"feature_trajectory\": {\n113\t        \"available\": false,\n114\t        \"note\": \"features.jsonl not saved during pipeline; rerun extract_features.py to generate\"\n115\t      }\n116\t    },\n117\t    \"olmo_nucleus\": {\n118\t      \"model\": \"OLMo-1B\",\n119\t      \"strategy\": \"nucleus_p095\",\n120\t      \"experiment_id\": \"cross_model_olmo_002\",\n121\t      \"status\": \"done\",\n122\t      \"acc_4class\": {\"random_forest\": 0.788, \"logistic_regression\": 0.751, \"rf_ci\": [0.776, 0.800]},\n123\t      \"acc_3class\": {\"random_forest\": 0.744, \"rf_ci\": [0.728, 0.760]},\n124\t      \"acc_3class_filtered\": null,\n125\t      \"pairwise_auc\": {\n126\t        \"random_forest\": {\"d0v1\": 0.9834, \"d0v2\": 0.9949, \"d0v3\": 0.9989, \"d1v2\": 0.8673, \"d1v3\": 0.9806, \"d2v3\": 0.8124},\n127\t        \"logistic_regression\": {\"d0v1\": 0.9809, \"d0v2\": 0.9921, \"d0v3\": 0.9945, \"d1v2\": 0.8296, \"d1v3\": 0.9629, \"d2v3\": 0.7661}\n128\t      },\n129\t      \"feature_importance\": {\n130\t        \"p90_ppl\": 0.1803, \"var_surprisal\": 0.1608, \"p75_ppl\": 0.1110, \"mean_surprisal\": 0.0838,\n131\t        \"type_to\n…[truncated 8166 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T07:06:35.879104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_feature_trajectory.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\ndata_path = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/matrix_data.json')\nout_dir = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper')\n\nwith open(data_path) as f:\n    data = json.load(f)\n\ncells = data['cells']\ndepths = [0, 1, 2, 3]\nfeatures = ['p90_ppl', 'var_surprisal', 'mean_surprisal', 'p75_ppl', 'type_token_ratio']\nfeature_colors = {\n    'p90_ppl': '#D55E00',\n    'var_surprisal': '#0072B2',\n    'mean_surprisal': '#56B4E9',\n    'p75_ppl': '#E69F00',\n    'type_token_ratio': '#CC79A7',\n}\nfeature_labels = {\n    'p90_ppl': 'p90 PPL',\n    'var_surprisal': 'Var(surprisal)',\n    'mean_surprisal': 'Mean surprisal',\n    'p75_ppl': 'p75 PPL',\n    'type_token_ratio': 'TTR',\n}\n\nmodels = [\n    ('Pythia-1.4B', ['pythia_nucleus', 'pythia_temp09', 'pythia_topk50']),\n    ('OLMo-1B', ['olmo_nucleus', 'olmo_temp09', 'olmo_topk50']),\n    ('GPT-2 XL', ['gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']),\n]\n\nstrategy_styles = {\n    'nucleus': '-',\n    'temp09': '--',\n    'topk50': ':',\n}\nstrategy_labels = {\n    'nucleus': 'nucleus',\n    'temp09': 'temp 0.9',\n    'topk50': 'top-k 50',\n}\n\ndef get_strategy(cell_key):\n    if 'nucleus' in cell_key:\n        return 'nucleus'\n    elif 'temp09' in cell_key:\n        return 'temp09'\n    else:\n        return 'topk50'\n\ndef has_trajectory(cell_key):\n    c = cells.get(cell_key, {})\n    ft = c.get('feature_trajectory', {})\n    return ft.get('available', False) and 'depth_means' in ft\n\nfig, axes = plt.subplots(1, 3, figsize=(14, 4), sharey=True)\n\nfor ax_idx, (model_name, cell_keys) in enumerate(models):\n    ax = axes[ax_idx]\n    valid_keys = [k for k in cell_keys if has_trajectory(k)]\n    multi_strategy = len(valid_keys) > 1\n\n    for cell_key in valid_keys:\n        strat = get_strategy(cell_key)\n        ls = strategy_styles[strat]\n        dm = cells[cell_key]['feature_trajectory']['depth_means']\n\n        for feat in features:\n            vals = [dm[str(d)].get(feat) for d in depths]\n            if vals[0] is None or vals[0] == 0:\n                continue\n            normed = [v / vals[0] for v in vals]\n            label = None\n            if ax_idx == 0 and strat == 'nucleus':\n                label = feature_labels[feat]\n            ax.plot(depths, normed, color=feature_colors[feat], linestyle=ls,\n                    marker='o', markersize=4, label=label)\n\n    ax.set_title(model_name)\n    ax.set_xlabel('Recursive Depth')\n    ax.set_xticks(depths)\n    ax.set_ylim(0, 1.05)\n    if ax_idx == 0:\n        ax.set_ylabel('Normalized Feature Mean\\n(relative to depth 0)')\n\n# Build legend entries\nlegend_handles = []\nfor feat in features:\n    line, = axes[0].plot([], [], color=feature_colors[feat], linestyle='-',\n                          linewidth=1.8, label=feature_labels[feat])\n    legend_handles.append(line)\n\n# Check if any model has multiple strategies\nany_multi = any(sum(1 for k in ks if has_trajectory(k)) > 1 for _, ks in models)\nif any_multi:\n    from matplotlib.lines import Line2D\n    for strat_key, strat_ls in strategy_styles.items():\n        if any(has_trajectory(k) for _, ks in models for k in ks if get_strategy(k) == strat_key):\n            legend_handles.append(Line2D([0], [0], color='gray', linestyle=strat_ls,\n                                          linewidth=1.5, label=strategy_labels[strat_key]))\n\nfig.legend(handles=legend_handles, loc='lower center', ncol=len(legend_handles),\n           bbox_to_anchor=(0.5, -0.08), frameon=False, fontsize=10)\n\nplt.tight_layout()\nplt.subplots_adjust(bottom=0.18)\n\nfig.savefig(out_dir / 'fig_feature_trajectory.pdf')\nfig.savefig(out_dir / 'fig_feature_trajectory.png')\nplt.close()\n\npdf_size = (out_dir / 'fig_feature_trajectory.pdf').stat().st_size\npng_size = (out_dir / 'fig_feature_trajectory.png').stat().st_size\nprint(f\"PDF: {pdf_size} bytes, PNG: {png_size} bytes\")\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T07:06:35.879286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_feature_trajectory.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T07:06:35.879417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper && python3 fig_feature_trajectory.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T07:06:35.879536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF: 24479 bytes, PNG: 411653 bytes"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T07:06:35.879655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_feature_trajectory.png"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T07:06:35.880220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T07:06:35.880406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T07:06:35.880533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T07:06:35.880656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_feature_trajectory",
+              "type": "chart",
+              "description": "3-panel feature trajectory plot: top-5 features normalized depth means (d0→d3) across Pythia-1.4B, OLMo-1B, GPT-2 XL. Shows monotonic decay with p90_ppl fastest and TTR slowest.",
+              "project": "recursive_gen_depth_est",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_feature_trajectory.pdf",
+              "tags": "['paper', 'figure', 'feature_trajectory', 'atlas_v2']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T07:06:35.880804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_eac11b\\\", \\\"name\\\": \\\"fig_feature_trajectory\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"3-panel feature trajectory plot: top-5 features normalized depth means (d0→d3) across Pythia-1.4B, OLMo-1B, GPT-2 XL. Shows monotonic decay with p90_ppl fastest and TTR slowest.\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/_project/chart/fig_feature_trajectory.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T07:06:26.688622+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"feature_trajectory\\\", \\\"atlas_v2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T07:06:35.880995+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册（`art_20260515_eac11b`）。\n\n输出文件：\n- PDF: `figures/paper/fig_feature_trajectory.pdf` (24KB)\n- PNG: `figures/paper/fig_feature_trajectory.png` (412KB)\n\n数据覆盖：Pythia 有 nucleus + temp 0.9 两条线（实线/虚线），OLMo 和 GPT-2 XL 仅 nucleus。pythia_topk50、olmo_temp09/topk50、gpt2xl_temp09/topk50 无 trajectory 数据，已跳过。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_feature_trajectory_20260515T070506"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ]
+}

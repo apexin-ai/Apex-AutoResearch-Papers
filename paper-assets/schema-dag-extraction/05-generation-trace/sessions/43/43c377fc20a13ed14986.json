@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "43c377fc20a13ed14986",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh maven data download",
+  "task_key": "worker_ssh_maven-data-download_20260515T032939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_maven-data-download_20260515T032939_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "2912d758584b0dd984825162a8ff421747a7b7928e5a60b542e590a48bb6ec04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MAVEN 数据集下载完成。\n\n| 文件 | 大小 | 行数（文档数） |\n|------|------|--------------|\n| train.jsonl | 60M | 2,913 |\n| valid.jsonl | 15M | 710 |\n| test.jsonl | 16M | 857 |\n\n路径：`/root/schema-dag-extraction/data/maven/`。每行一个文档，包含 `title`、`id`、`content`（分句+token 列表）等字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

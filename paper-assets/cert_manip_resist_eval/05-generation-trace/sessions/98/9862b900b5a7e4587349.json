@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9862b900b5a7e4587349",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis api only power beta",
+  "task_key": "worker_analysis_api-only-power-beta_20260524T190116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_api-only-power-beta_20260524T190116_result.json",
+    "occurrence": 1,
+    "bytes": 1953,
+    "sha256": "dc29d2ababc12ed19ecb20cbee4154f8a361511cfcc51cee6bc461ba5d60da5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "A3 API-only power analysis complete. Results saved to `/root/cert_manip_resist_eval/artifacts/results/plan001/api_only_power_beta.json`.\n\n## Key Findings\n\n**Interpretation: `power_issue`** — API-only β_std is 164% of full pool; effect size is preserved, low significance is purely from fewer panels/clusters.\n\n### β_std Comparison (full pool vs API-only)\n\n| K | Full Pool β_std | API-only β_std | Ratio | API Panels | Full Panels |\n|---|----------------|----------------|-------|------------|-------------|\n| 3 | 0.349 | 0.634 | 1.82× | 84 | 455 |\n| 5 | 0.437 | 0.796 | 1.82× | 126 | 3,003 |\n| 7 | 0.401 | 0.511 | 1.27× | 36 | 6,435 |\n\n### WCB Significance (API-only, α=0.05)\n\n| K | Sig Count | Significant Conditions |\n|---|-----------|----------------------|\n| 3 | **4/12** | arc×position_bias (p=0.016), mmlu×authority_bias (p=0.047), mmlu×score_manipulation (p=0.047), mmlu×sycophancy (p=0.023) |\n| 5 | **1/12** | arc×position_bias (p=0.041) |\n| 7 | **0/12** | — |\n\n### Power Curves (average across 12 conditions)\n\n| β_std | K=3 Power | K=5 Power | K=7 Power |\n|-------|-----------|-----------|-----------|\n| 0.3 | 0.082 | 0.013 | 0.0 |\n| 0.5 | 0.322 | 0.055 | 0.0 |\n| 0.7 | 0.591 | 0.128 | 0.0 |\n| 1.0 | 0.785 | 0.271 | 0.0 |\n\n**MDE@80%**: `null` for all K values — power never reaches 80% within the tested β_std grid [0.1, 1.0].\n\n### Conclusion\n\nThe API-only subset's K_eff effect on manipulation resistance is **at least as strong** as the full 15-model pool (ratio ~1.6×). The dramatic drop in significance counts (from full pool's 7-9/12 to API-only's 0-4/12) is entirely attributable to reduced statistical power: 9 API models produce far fewer panel combinations and only 7-9 clusters per position (vs 15), making the wild cluster bootstrap extremely conservative. K=7 with only 36 panels and 3 clusters per position has literally zero power at any effect size tested."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

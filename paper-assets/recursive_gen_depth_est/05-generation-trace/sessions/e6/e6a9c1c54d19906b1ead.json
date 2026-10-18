@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a9c1c54d19906b1ead",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops kill broken roberta",
+  "task_key": "worker_ops_kill_broken_roberta_20260515T123508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_broken_roberta_20260515T123508_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "f68f42dc67c254ad639a6b22bae6f54f01c99c0cd143e55aa8347cba9c9e516d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **238817/238818 已 kill**（确认 KILLED）\n- **235755 正常运行中**：stat=Rl，已运行 11:08，当前 step 750/1000，loss≈1.39\n- broken 日志已移至 `logs/n2_roberta_finetune_broken.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

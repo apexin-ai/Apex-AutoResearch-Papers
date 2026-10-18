@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cd20bbdcf0d9568d73f9",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code fix originality subset formality",
+  "task_key": "worker_code_fix_originality_subset_formality_20260521T120643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_originality_subset_formality_20260521T120643_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "e9f2482017448c4b2b6ed70fc48e4dc6e9fe3f15ed4be596acba08ffa99359f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，结果符合预期：\n\n**Formality**\n- Full BT = **0.6647** (≈ canonical 0.665 ✓)\n- Likert balanced BT = 0.6727, n=55\n- Δ = +0.0080, Δ CI = [-0.1103, 0.1261] (包含0，稳定)\n\n**Verbosity** (不变)\n- Full BT = **0.7732** (≈ canonical 0.773 ✓)\n- Likert balanced BT = 0.7599, n=50\n- Δ = -0.0133, Δ CI = [-0.133, 0.1032]"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

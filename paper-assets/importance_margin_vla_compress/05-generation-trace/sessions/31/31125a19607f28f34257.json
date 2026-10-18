@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "31125a19607f28f34257",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16_1780016317.md",
+  "task_key": "loop_16_1780016317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1780016317.md",
+    "occurrence": 1,
+    "bytes": 4225,
+    "sha256": "48e50a2a42e3540d3cd44301c361bfe0d6091f7899e400df08ddb63fcdebefa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-29T00:58:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 14 张：westd-27271 cuda:0/1, cqa1-33015 cuda:0/1/2/3, westd-41074 cuda:0/1/2/3, westd-38929 cuda:0/1/2/3\n- westd-41074:cuda:2 刚空出（L2norm k=0.75 s46 完成），可立即部署下一个实验\n- Attn k=0.75 seed42/43 数据需确认来源服务器：w27 不支持 attention scoring，必须用 cqa1 的结果（seed43 统一用 cqa1=52.0%）\n- Random k=0.9 seed43 统一用 v2=35.0%（D292），不引用旧版 32.4%\n- metrics 格式统一为百分比（不是 0-1 比例），最终收割时逐条检查\n- 论文 error bar 标准：sample std (n-1)（D301）\n- 实验硬截止 May 28 20:00 BJT 已过，当前是收割阶段，新实验需 Director 批准\n\n### 2. 🖥️ 基础设施快照\n- **westd-27271**: 工作目录 /root/autodl-tmp/importance_margin_vla_compress, conda base (/root/miniconda3), HF_HOME=/root/autodl-tmp/.hf_cache, 磁盘充裕 819G/879G\n- **cqa1-33015**: 同上路径布局, /autodl-pub 90% ⚠️ 但 /autodl-pub/data 1.5T/4T, 系统盘 818G/879G\n- **westd-41074**: 同上路径布局, 磁盘 812G/879G\n- **westd-38929**: 同上路径布局, 磁盘 593G/879G（29% 用量，比其他高）\n- 模型: HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1（模型已本地缓存）\n- 脚本: eval_pi05_pruning_libero.py（π0.5）, eval_openvla_pruning_libero.py（OpenVLA）\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 3. 📊 当前状态\n**刚做完**: 收到 eval_pi05_l2norm_k075_long_seed46_strict_w41 完成回调，已派 Worker 分析结果（Worker ID: worker_analyze_eval_pi05_l2norm_k075_long_seed46_strict_w41_20260528T082147）。**Worker 尚未回调，结果未知。**\n\n**RUNNING 14 个实验（全部是 s45/s46 收尾 + OV 补充）**:\n- s46 π0.5: Random k=0.85 (w41), Attn k=0.85 (w38), L2norm k=0.85 (w41), L2norm k=0.9 (w27), Attn k=0.9 (cqa1), Attn k=0.7 (cqa1), Random k=0.9 (w38), L2norm k=0.5 (cqa1), Attn k=0.5 (w38), Random k=0.7 (w41), Random k=0.75 (w38), Attn k=0.75 (w38)\n- OV: random k=0.95 goal seed42 v4 (cqa1), l2norm k=0.95 long seed43 (w27)\n\n**ANALYZING 1 个**: eval_pi05_l2norm_k075_long_seed46_strict_w41（Worker 正在处理）\n\n**空闲 GPU**: westd-41074:cuda:2（刚释放）\n\n### 4. 📋 待办（条件触发式）\n- Worker analyze 回调到达 → 读取 success_rate，更新 registry DONE，计算 5-seed mean±std，与前 4 seed (70.8/73.2/67.4/68.4%) 对比，汇报 Director\n- westd-41074:cuda:2 空闲 → 检查是否有 PREPARING 状态的 s46 实验可部署（或 s45 残留），有则立即提交；无则汇报 Director GPU 空闲\n- 其余 14 个 RUNNING 实验陆续完成 → 逐个走 on-experiment-done 流程（分析 + update registry + 汇报）\n- 全部 s45/s46 闭合 → 触发最终数据收割：逐条检查 ROADMAP ⚠️ 数据整合注意事项，统一 metrics 格式，更新 Importance Margin Profile 表和 Attn Cliff+Plateau 表为 5-seed 版本\n- 全部闭合 + 数据整合完成 → 汇报 Director 可以进入 Paper Agent 更新 figures 阶段 → May 29 提交\n\n### 5. 🎯 战略上下文\n- **项目核心**: VLA vision token 压缩中 scoring method 的重要性。核心发现是 \"Importance Margin\" inverted-U 曲线（L2norm vs Random 的 gap 在 k=0.9 达到 peak +46pp，k=0.7 crossover 到 ~0pp）+ Attention scoring 的 cliff+plateau 行为\n- **当前阶段**: s44(3rd seed) 全部完成，s45(4th) 大部分完成（剩几个 RUNNING），s46(5th) 是高 variance 点加固（k=0.85 L2norm/Random/Attn + k=0.75 L2norm）\n- **CoRL 2026 deadline May 29**，Abstract 已提交(May 26)，Narrative 已定稿(D276)\n- **易错点 1**: Attn k=0.75 跨服务器数据不一致（w27 vs cqa1），w27 不支持 attention scoring，必须用 cqa1 数据\n- **易错点 2**: 有些实验 metrics 用 0-1 比例，有些用百分比，最终表格必须统一\n- **易错点 3**: 不要把 PREPARING 状态的 96 个实验当作待执行——大部分是历史残留，只关注 s45/s46 未完成的\n- **关键决策链**: D292(Random k=0.9 数据修正) → D293(Attn k=0.75 跨服务器) → D295-D301(s44 三 seed 汇总 + error bar 标准)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

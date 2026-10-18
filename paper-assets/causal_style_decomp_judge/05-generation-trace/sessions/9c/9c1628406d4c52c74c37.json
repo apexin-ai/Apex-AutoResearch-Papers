@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1628406d4c52c74c37",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "audit data truth maintext",
+  "task_key": "worker_audit_data-truth-maintext_20260525T194155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-truth-maintext_20260525T194155_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "ff0aa02eb5d7462dd87d000fdd121644002d13c137299ca1ee67696eb1708dd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。37 个数字逐一对账，结果：\n\n**33 个已验证** — 可追溯到 table1_verified.csv、nli_gate_ablation.json、construct_divergence_analysis.json、verbosity_bidir_nli.jsonl、scored.jsonl 等原始数据文件。\n\n**2 个问题：**\n\n1. **GPT-4o BT = 63.0% (intro:18)** — 中等严重度。nli_threshold_sweep 给出 bt=0.6228 (62.3%)，而论文报 .630。差异源于 bootstrap_10k_holm.py 使用 `alpha=0.01`，但论文声称用 \"default α=10⁻⁶\"。建议重跑脚本保存 output，并修正 experiments.tex 中 alpha 描述。\n\n2. **ΔBERTScore < 0.02 (method:24)** — 低严重度。无汇总数据文件验证，但原始 bertscore_cf 字段存在于各 verified_*.jsonl 中，可重算。\n\n**1 个外部引用**（\"76–92%\" from citations，不在审计范围）。\n\n所有跨文件引用在论文内部保持一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "2f4464600af5066071d9",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis k5 aggregation bootstrap",
+  "task_key": "worker_analysis_k5-aggregation-bootstrap_20260523T061722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-aggregation-bootstrap_20260523T061722.log",
+    "occurrence": 1,
+    "bytes": 819002,
+    "sha256": "628c0012bcfc5614ef49f9bd7efbbdcd299142e1edfa6b4a99fb3a9966a31cf4"
+  },
+  "statistics": {
+    "messages": 343,
+    "user_turns": 0,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 142,
+      "tool_result": 142,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 343,
+      "chunks": [
+        {
+          "path": "2f4464600af5066071d9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2f4464600af5066071d9-part-0002.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ]
+}

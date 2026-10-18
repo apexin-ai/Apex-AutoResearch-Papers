@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "876eaceff50a072018fd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "run exp 002",
+  "task_key": "worker_run_exp-002_20260520T202812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-002_20260520T202812_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "ff2b09b675a9ce9505ef7e928f8580e1ccf54c025e4940dceb67dc96d95070d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full run completed successfully. Total runtime: ~24 minutes (K=2 grid: 1356s, K=4 grid: 105s).\n\n## Final Summary\n\n| Metric | Value |\n|--------|-------|\n| **K=2 R²** | 0.9938 |\n| **K=4 R²** | 0.9738 |\n| **K=2 tightness** (median) | 1.003 |\n| **K=4 tightness** (median) | 1.023 |\n| **Coverage (2 SE)** | K=2: 95.1%, K=4: 94.0% |\n| **\"Debiasing hurts\" fraction** | 260/520 = **50.0%** |\n| **Debiasing hurts threshold** | Δ_misclass > **0.1235** |\n| **K=4 subgroups affected** | 1/4 (subgroup with π=0.05, ratio=2.41) |\n\nKey takeaways:\n- The analytic bias identity `bias = δ_s · Δτ / (1 - 2π̄)` is **exact** — confirmed by R² > 0.97 and ~95% coverage at 2 SE for both K=2 and K=4\n- Debiasing hurts subgroup B (lower misclassification) whenever Δ_misclass > 0.1235, **independent of Δτ magnitude**\n- The formula generalizes cleanly from K=2 to K=4 with no modification needed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

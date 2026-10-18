@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fbb40c614af37ab39e34",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh olmo temp09 001 check",
+  "task_key": "worker_ssh_olmo_temp09_001_check_20260514T225434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_olmo_temp09_001_check_20260514T225434_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "db24136675292e8a99f6ce876d57e71745dca8b418152c7682e82ac40c2bafb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## olmo_temp09_001 实验结果\n\n**状态：FAILED**\n\n| Step | 内容 | 状态 |\n|------|------|------|\n| 1 | LoRA finetune depth-0 | ✅ 完成, final loss=2.2684, 939/939 steps |\n| 2 | Generate depth-1 | ✅ 完成, 5000 samples |\n| 3 | LoRA finetune depth-1 | ❌ 在 ~626/939 步 (67%) 被 kill |\n| 4-7 | depth-2/3 生成 + 特征提取 + 分类 | 未执行 |\n\n**失败原因：** 进程在 Step 3 finetune 中途被 kill，日志无 traceback/error，大概率是 AutoDL 实例关机或 OOM。日志最后修改时间 06:56 CST，pipeline 启动于 06:23，总运行 ~33 分钟。\n\n**残留产出：**\n- `data/olmo_temp09/depth_0.jsonl` (symlink) + `depth_1.jsonl` (5000 lines)\n- `checkpoints/olmo_temp09/lora_depth_0/` (完整) + `lora_depth_1/checkpoint-626` (中间 checkpoint)\n\n需要重跑 pipeline，可以考虑从 Step 3 断点恢复（利用已有的 depth_1.jsonl 和 lora_depth_0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

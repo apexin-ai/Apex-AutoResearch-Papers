@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c2fb3360a349ebaa505f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "experiment lr zscore cross strategy 001",
+  "task_key": "worker_experiment_lr_zscore_cross_strategy_001_20260515T094139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_lr_zscore_cross_strategy_001_20260515T094139_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "7b39268f35dba452fb1edc75b37b7672232309ede0da577d6d6ac43c8bb2fe1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 和 artifact 已更新。\n\n## 结果摘要\n\n**结论：NEGATIVE — 论文 claim 不成立。**\n\n| 条件 | Model | d1v2 AUC (raw→zscore) | Paper 声称 |\n|------|-------|----------------------|-----------|\n| temp09 holdout | GPT-2 XL | 0.50 → **0.24** | 0.13 → 0.68 |\n| temp09 holdout | OLMo | 0.50 → **0.19** | 0.25 → 0.83 |\n| temp09 holdout | Pythia | 0.63 → **0.52** | — |\n\n关键发现：\n1. **Raw LR 完全失效**：lbfgs 在未缩放特征上收敛失败（0 iterations），acc = 0.25（随机猜测）\n2. **Z-score 大幅提升整体表现**：mean acc 0.25 → 0.61，nucleus/topk50 holdout d1v2 AUC 达 0.61-0.89\n3. **但 temp09 holdout d1v2 AUC 反转**：z-score 后 GPT-2 XL 和 OLMo 的 d1v2 AUC 降至 < 0.25（比随机差），说明模型学到了**反向**的 d1/d2 判别边界\n4. **temp09 的分布偏移不是 scale 问题**，z-score 无法修复，需要其他方法（如 domain adaptation 或重新设计 feature）\n\n**论文 framing 中 \"z-score 恢复 LR cross-strategy d1v2 AUC\" 的 claim 需紧急修改或删除。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

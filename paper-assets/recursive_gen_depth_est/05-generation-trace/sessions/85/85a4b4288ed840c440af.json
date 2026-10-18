@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "85a4b4288ed840c440af",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis pythia temp09 001",
+  "task_key": "worker_analysis_pythia_temp09_001_20260514T163125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia_temp09_001_20260514T163125.log",
+    "occurrence": 1,
+    "bytes": 1131404,
+    "sha256": "6a4ca2bfc70446404549fbc7ff37b294850029118665b7decd1a9edc2674b856"
+  },
+  "statistics": {
+    "messages": 259,
+    "user_turns": 1,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 72,
+      "tool_call": 89,
+      "tool_result": 89,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "85a4b4288ed840c440af-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "85a4b4288ed840c440af-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "85a4b4288ed840c440af-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ]
+}

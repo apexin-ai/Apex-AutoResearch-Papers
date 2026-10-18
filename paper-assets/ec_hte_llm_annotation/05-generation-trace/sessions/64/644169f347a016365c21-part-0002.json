@@ -1,0 +1,1031 @@
+{
+  "schema_version": "1.0",
+  "session_id": "644169f347a016365c21",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — budget passes for K=2 but kappa still fails, so passes_all is False. The screening CSV is correct. Now let me fix the summary report's Budget columns display and add more analysis."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "a74012a2-d346-47c3-9def-581e3ddb672e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GwheAjfqsDDMihTSf1GWgT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 132180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SETe7Mo7mcnAMC3kKtLuGj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py",
+                "offset": 233,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "1827aa75-c61e-4838-a04f-109525a86918",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GwheAjfqsDDMihTSf1GWgT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 132180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-22T13:08:21.219Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SETe7Mo7mcnAMC3kKtLuGj",
+              "type": "tool_result",
+              "content": "233\t                counts[k, z, zh] = (z_hat[mz] == zh).sum()\n234\t\n235\t    C = np.zeros((K, 2, 2))\n236\t    for z in [0, 1]:\n237\t        err_zh = 1 - z  # error z_hat column: FPR->1, FNR->0\n238\t        mle_rates = np.array(\n239\t            [counts[k, z, err_zh] / max(n_z[k, z], 1) for k in range(K)]\n240\t        )\n241\t        mle_rates = np.clip(mle_rates, 0.001, 0.999)\n242\t\n243\t        mu = mle_rates.mean()\n244\t        var = mle_rates.var()\n245\t\n246\t        if var < 1e-10 or var >= mu * (1 - mu) - 1e-10:\n247\t            a_p, b_p = 1.0, 1.0\n248\t        else:\n249\t            conc = mu * (1 - mu) / var - 1\n250\t            a_p = max(mu * conc, 0.5)\n251\t            b_p = max((1 - mu) * conc, 0.5)\n252\t\n253\t        for k in range(K):\n254\t            eb_rate = (a_p + counts[k, z, err_zh]) / (a_p + b_p + n_z[k, z])\n255\t            C[k, z, err_zh] = eb_rate\n256\t            C[k, z, 1 - err_zh] = 1 - eb_rate\n257\t\n258\t    return C\n259\t\n260\t\n261\tdef build_mixing(C, p_z1):\n262\t    \"\"\"Build mixing matrix M[zh, z] = P(Z=z | Z_hat=zh) from CM C[z, zh].\"\"\"\n263\t    p_z = np.array([1 - p_z1, p_z1])\n264\t    p_zh = C.T @ p_z\n265\t    M = np.zeros((2, 2))\n266\t    for zh in [0, 1]:\n267\t        for z in [0, 1]:\n268\t            M[zh, z] = C[z, zh] * p_z[z] / max(p_zh[zh], 1e-10)\n269\t    return M\n270\t\n271\t\n272\tdef invert_mixing(M, tau_obs, se_obs, cond_thresh=50):\n273\t    \"\"\"Invert mixing matrix to correct CATE estimates.\"\"\"\n274\t    cond = np.linalg.cond(M)\n275\t    if cond > cond_thresh or abs(np.linalg.det(M)) < 1e-10:\n276\t        return tau_obs.copy(), se_obs.copy()\n277\t    Mi = np.linalg.inv(M)\n278\t    tau_c = Mi @ tau_obs\n279\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs**2) @ Mi.T), 0))\n280\t    return tau_c, se_c\n281\t\n282\t\n283\t# ============================================================\n284\t# Step 1: Screening\n285\t# ============================================================\n286\t\n287\t\n288\tdef screen_all(combos):\n289\t    \"\"\"Screen all LLM x dataset x K combinations.\"\"\"\n290\t    rows = []\n291\t    for combo in combos:\n292\t        llm, ds, K = combo[\"llm\"], combo[\"dataset\"], combo[\"K\"]\n293\t        p_z1 = combo[\"p_z1\"]\n294\t        p_z_min = min(p_z1, 1 - p_z1)\n295\t\n296\t        all_kappa_pass = True\n297\t        all_max_error_pass = True\n298\t\n299\t        sg_rows = []\n300\t        for sg in combo[\"subgroups\"]:\n301\t            fpr, fnr = sg[\"fpr\"], sg[\"fnr\"]\n302\t            kappa = cond_number_cm(fpr, fnr)\n303\t            max_err = max(fpr, fnr)\n304\t\n305\t            pk = kappa <= KAPPA_THRESH\n306\t            pm = max_err < MAX_ERROR_THRESH\n307\t\n308\t            if not pk:\n309\t                all_kappa_pass = False\n310\t            if not pm:\n311\t                all_max_error_pass = False\n312\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "880511df-b3c7-4197-a856-df466855a9f7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py",
+                "content": "                counts[k, z, zh] = (z_hat[mz] == zh).sum()\n\n    C = np.zeros((K, 2, 2))\n    for z in [0, 1]:\n        err_zh = 1 - z  # error z_hat column: FPR->1, FNR->0\n        mle_rates = np.array(\n            [counts[k, z, err_zh] / max(n_z[k, z], 1) for k in range(K)]\n        )\n        mle_rates = np.clip(mle_rates, 0.001, 0.999)\n\n        mu = mle_rates.mean()\n        var = mle_rates.var()\n\n        if var < 1e-10 or var >= mu * (1 - mu) - 1e-10:\n            a_p, b_p = 1.0, 1.0\n        else:\n            conc = mu * (1 - mu) / var - 1\n            a_p = max(mu * conc, 0.5)\n            b_p = max((1 - mu) * conc, 0.5)\n\n        for k in range(K):\n            eb_rate = (a_p + counts[k, z, err_zh]) / (a_p + b_p + n_z[k, z])\n            C[k, z, err_zh] = eb_rate\n            C[k, z, 1 - err_zh] = 1 - eb_rate\n\n    return C\n\n\ndef build_mixing(C, p_z1):\n    \"\"\"Build mixing matrix M[zh, z] = P(Z=z | Z_hat=zh) from CM C[z, zh].\"\"\"\n    p_z = np.array([1 - p_z1, p_z1])\n    p_zh = C.T @ p_z\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        for z in [0, 1]:\n            M[zh, z] = C[z, zh] * p_z[z] / max(p_zh[zh], 1e-10)\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs, cond_thresh=50):\n    \"\"\"Invert mixing matrix to correct CATE estimates.\"\"\"\n    cond = np.linalg.cond(M)\n    if cond > cond_thresh or abs(np.linalg.det(M)) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs**2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# ============================================================\n# Step 1: Screening\n# ============================================================\n\n\ndef screen_all(combos):\n    \"\"\"Screen all LLM x dataset x K combinations.\"\"\"\n    rows = []\n    for combo in combos:\n        llm, ds, K = combo[\"llm\"], combo[\"dataset\"], combo[\"K\"]\n        p_z1 = combo[\"p_z1\"]\n        p_z_min = min(p_z1, 1 - p_z1)\n\n        all_kappa_pass = True\n        all_max_error_pass = True\n\n        sg_rows = []\n        for sg in combo[\"subgroups\"]:\n            fpr, fnr = sg[\"fpr\"], sg[\"fnr\"]\n            kappa = cond_number_cm(fpr, fnr)\n            max_err = max(fpr, fnr)\n\n            pk = kappa <= KAPPA_THRESH\n            pm = max_err < MAX_ERROR_THRESH\n\n            if not pk:\n                all_kappa_pass = False\n            if not pm:\n                all_max_error_pass = False\n",
+                "numLines": 80,
+                "startLine": 233,
+                "totalLines": 978
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fix the write_summary function to properly display budget columns."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "34075c79-889e-491e-9a1f-f0311c6a4a5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NN1FWFHdyX4iLpyyHt5tw4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1321,
+                "cache_read_input_tokens": 132577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1321
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WaXGDKtG5fTqcTQx7tUGtW",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py",
+                "old_string": "    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n\n    n_pass_250 = combo_keys[\"passes_all_250\"].sum()\n    n_pass_500 = combo_keys[\"passes_all_500\"].sum()\n    lines.append(\n        f\"**{len(combo_keys)} combinations screened. \"\n        f\"Pass all (n=250): {n_pass_250}. Pass all (n=500): {n_pass_500}.**\\n\"\n    )\n\n    lines.append(\"### Per-Combination Summary\\n\")\n    lines.append(\n        \"| LLM | Dataset | K | All kappa<=1.25 | All max_err<0.5 | Budget(250) | Budget(500) | Pass_all(500) |\"\n    )\n    lines.append(\n        \"|-----|---------|---|-----------------|-----------------|-------------|-------------|---------------|\"\n    )\n    for _, r in combo_keys.iterrows():\n        lines.append(\n            f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"\n            f\"{'YES' if r['passes_kappa'] else 'NO'} | \"\n            f\"{'YES' if r['passes_max_error'] else 'NO'} | \"\n            f\"{'YES' if r.get('passes_all_250', False) else 'NO'} | \"\n            f\"{'YES' if r.get('passes_all_500', False) else 'NO'} | \"\n            f\"{'**YES**' if r.get('passes_all_500', False) else 'NO'} |\"\n        )",
+                "new_string": "    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_budget_250\": \"first\",\n                \"passes_budget_500\": \"first\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n\n    n_pass_250 = combo_keys[\"passes_all_250\"].sum()\n    n_pass_500 = combo_keys[\"passes_all_500\"].sum()\n    lines.append(\n        f\"**{len(combo_keys)} combinations screened. \"\n        f\"Pass all (n=250): {n_pass_250}. Pass all (n=500): {n_pass_500}.**\\n\"\n    )\n\n    lines.append(\"### Per-Combination Summary\\n\")\n    lines.append(\n        \"| LLM | Dataset | K | kappa<=1.25 | max_err<0.5 | Budget(250) | Budget(500) | Pass_all |\"\n    )\n    lines.append(\n        \"|-----|---------|---|-------------|-------------|-------------|-------------|----------|\"\n    )\n    for _, r in combo_keys.iterrows():\n        lines.append(\n            f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"\n            f\"{'YES' if r['passes_kappa'] else 'NO'} | \"\n            f\"{'YES' if r['passes_max_error'] else 'NO'} | \"\n            f\"{'YES' if r['passes_budget_250'] else 'NO'} | \"\n            f\"{'YES' if r['passes_budget_500'] else 'NO'} | \"\n            f\"{'**YES**' if r['passes_all_500'] else 'NO'} |\"\n        )"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "c09491e7-2f3d-4c48-997d-9e73215b0b0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NN1FWFHdyX4iLpyyHt5tw4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1321,
+                "cache_read_input_tokens": 132577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1321
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-22T13:08:42.462Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WaXGDKtG5fTqcTQx7tUGtW",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "76a87511-70c3-4e61-a146-b3072d258d27",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py",
+              "oldString": "    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n\n    n_pass_250 = combo_keys[\"passes_all_250\"].sum()\n    n_pass_500 = combo_keys[\"passes_all_500\"].sum()\n    lines.append(\n        f\"**{len(combo_keys)} combinations screened. \"\n        f\"Pass all (n=250): {n_pass_250}. Pass all (n=500): {n_pass_500}.**\\n\"\n    )\n\n    lines.append(\"### Per-Combination Summary\\n\")\n    lines.append(\n        \"| LLM | Dataset | K | All kappa<=1.25 | All max_err<0.5 | Budget(250) | Budget(500) | Pass_all(500) |\"\n    )\n    lines.append(\n        \"|-----|---------|---|-----------------|-----------------|-------------|-------------|---------------|\"\n    )\n    for _, r in combo_keys.iterrows():\n        lines.append(\n            f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"\n            f\"{'YES' if r['passes_kappa'] else 'NO'} | \"\n            f\"{'YES' if r['passes_max_error'] else 'NO'} | \"\n            f\"{'YES' if r.get('passes_all_250', False) else 'NO'} | \"\n            f\"{'YES' if r.get('passes_all_500', False) else 'NO'} | \"\n            f\"{'**YES**' if r.get('passes_all_500', False) else 'NO'} |\"\n        )",
+              "newString": "    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_budget_250\": \"first\",\n                \"passes_budget_500\": \"first\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n\n    n_pass_250 = combo_keys[\"passes_all_250\"].sum()\n    n_pass_500 = combo_keys[\"passes_all_500\"].sum()\n    lines.append(\n        f\"**{len(combo_keys)} combinations screened. \"\n        f\"Pass all (n=250): {n_pass_250}. Pass all (n=500): {n_pass_500}.**\\n\"\n    )\n\n    lines.append(\"### Per-Combination Summary\\n\")\n    lines.append(\n        \"| LLM | Dataset | K | kappa<=1.25 | max_err<0.5 | Budget(250) | Budget(500) | Pass_all |\"\n    )\n    lines.append(\n        \"|-----|---------|---|-------------|-------------|-------------|-------------|----------|\"\n    )\n    for _, r in combo_keys.iterrows():\n        lines.append(\n            f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"\n            f\"{'YES' if r['passes_kappa'] else 'NO'} | \"\n            f\"{'YES' if r['passes_max_error'] else 'NO'} | \"\n            f\"{'YES' if r['passes_budget_250'] else 'NO'} | \"\n            f\"{'YES' if r['passes_budget_500'] else 'NO'} | \"\n            f\"{'**YES**' if r['passes_all_500'] else 'NO'} |\"\n        )",
+              "originalFile": "\"\"\"\nexp-025: EC-HTE Positive Scenario Screening and Semi-Synthetic Evaluation\n\nScreens LLM x dataset combinations for EC-HTE applicability conditions,\nthen runs semi-synthetic CATE estimation for qualifying or oracle-screened LLMs.\n\nSteps:\n  1. Screen all combinations: kappa(C_s), max(FPR,FNR), budget threshold\n  2. For qualifying LLMs: run semi-synthetic MC simulation\n  3. For non-qualifying LLMs: oracle screening (exclude near-degenerate subgroups)\n\nOutput:\n  results/exp_screening.csv\n  results/exp_positive_scenario.csv\n  results/exp_positive_scenario_summary.md\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\")\n\n# ============================================================\n# Constants\n# ============================================================\n\nN_SIM = 5000\nN_EXPERTS = [250, 500]\nN_MC = 100\nDELTA_TAU = 0.3\nKAPPA_THRESH = 1.25\nMAX_ERROR_THRESH = 0.5\nBUDGET_THRESH = 25\nORACLE_ERROR_THRESH = 0.4\nSEED_BASE = 42\n\nTWEET_P_Z1 = 0.652\nCIVIL_P_Z1 = 0.3\n\n# ============================================================\n# LLM x Dataset CM Data\n# ============================================================\n\nCOMBOS = [\n    # --- TweetEval Open-Source K=4 ---\n    {\n        \"llm\": \"Llama-3.1-8B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.386, \"fpr\": 0.235, \"fnr\": 0.319},\n            {\"name\": \"False_short\", \"weight\": 0.218, \"fpr\": 0.310, \"fnr\": 0.212},\n            {\"name\": \"True_medium\", \"weight\": 0.258, \"fpr\": 0.219, \"fnr\": 0.258},\n            {\"name\": \"True_short\", \"weight\": 0.138, \"fpr\": 0.091, \"fnr\": 0.190},\n        ],\n    },\n    {\n        \"llm\": \"Qwen2.5-7B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.1800, \"fnr\": 0.2874},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.2414, \"fnr\": 0.1750},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.2333, \"fnr\": 0.2105},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.0000, \"fnr\": 0.1379},\n        ],\n    },\n    {\n        \"llm\": \"Mistral-7B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.180, \"fnr\": 0.299},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.241, \"fnr\": 0.188},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.233, \"fnr\": 0.168},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.091, \"fnr\": 0.121},\n        ],\n    },\n    {\n        \"llm\": \"Gemma-2-9B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.110, \"fnr\": 0.437},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.138, \"fnr\": 0.300},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.033, \"fnr\": 0.263},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.091, \"fnr\": 0.207},\n        ],\n    },\n    # --- TweetEval GPT K=4 (from exp008, excl long) ---\n    {\n        \"llm\": \"gpt-4.1\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0536, \"fnr\": 0.5263},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.1011, \"fnr\": 0.3000},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.1939, \"fnr\": 0.2222},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.1429, \"fnr\": 0.3077},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4o\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0417, \"fnr\": 0.5789},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.0449, \"fnr\": 0.5000},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.0918, \"fnr\": 0.4815},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.0714, \"fnr\": 0.3077},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4-turbo\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0417, \"fnr\": 0.3684},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.0899, \"fnr\": 0.5500},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.2041, \"fnr\": 0.2963},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.1071, \"fnr\": 0.1538},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4o-mini\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0417, \"fnr\": 0.4211},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.0562, \"fnr\": 0.4000},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.1939, \"fnr\": 0.2963},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.1071, \"fnr\": 0.2308},\n        ],\n    },\n    {\n        \"llm\": \"gpt-3.5-turbo\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.1429, \"fnr\": 0.2105},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.1798, \"fnr\": 0.1500},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.3776, \"fnr\": 0.1481},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.3929, \"fnr\": 0.1538},\n        ],\n    },\n    # --- CivilComments GPT K=4 ---\n    {\n        \"llm\": \"gpt-4o\", \"dataset\": \"CivilComments\", \"K\": 4, \"p_z1\": CIVIL_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"S0\", \"weight\": 0.3877, \"fpr\": 0.2633, \"fnr\": 0.1823},\n            {\"name\": \"S1\", \"weight\": 0.1137, \"fpr\": 0.2411, \"fnr\": 0.1477},\n            {\"name\": \"S2\", \"weight\": 0.3373, \"fpr\": 0.2455, \"fnr\": 0.2862},\n            {\"name\": \"S3\", \"weight\": 0.1613, \"fpr\": 0.3323, \"fnr\": 0.2949},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4o-mini\", \"dataset\": \"CivilComments\", \"K\": 4, \"p_z1\": CIVIL_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"S0\", \"weight\": 0.3877, \"fpr\": 0.4975, \"fnr\": 0.0563},\n            {\"name\": \"S1\", \"weight\": 0.1137, \"fpr\": 0.5692, \"fnr\": 0.0455},\n            {\"name\": \"S2\", \"weight\": 0.3373, \"fpr\": 0.4472, \"fnr\": 0.0989},\n            {\"name\": \"S3\", \"weight\": 0.1613, \"fpr\": 0.5579, \"fnr\": 0.0769},\n        ],\n    },\n    {\n        \"llm\": \"gpt-3.5-turbo\", \"dataset\": \"CivilComments\", \"K\": 4, \"p_z1\": CIVIL_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"S0\", \"weight\": 0.3877, \"fpr\": 0.3848, \"fnr\": 0.1233},\n            {\"name\": \"S1\", \"weight\": 0.1137, \"fpr\": 0.4743, \"fnr\": 0.1023},\n            {\"name\": \"S2\", \"weight\": 0.3373, \"fpr\": 0.4102, \"fnr\": 0.1519},\n            {\"name\": \"S3\", \"weight\": 0.1613, \"fpr\": 0.4665, \"fnr\": 0.1987},\n        ],\n    },\n    # --- TweetEval Open-Source K=2 ---\n    {\n        \"llm\": \"Llama-3.1-8B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.252, \"fnr\": 0.269},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.186, \"fnr\": 0.233},\n        ],\n    },\n    {\n        \"llm\": \"Qwen2.5-7B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.1938, \"fnr\": 0.2335},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.1707, \"fnr\": 0.1830},\n        ],\n    },\n    {\n        \"llm\": \"Gemma-2-9B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.115, \"fnr\": 0.368},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.047, \"fnr\": 0.245},\n        ],\n    },\n    {\n        \"llm\": \"Mistral-7B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.191, \"fnr\": 0.246},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.209, \"fnr\": 0.155},\n        ],\n    },\n]\n\n\n# ============================================================\n# Core Functions\n# ============================================================\n\n\ndef cond_number_cm(fpr, fnr):\n    \"\"\"Condition number of confusion matrix C = [[1-fpr, fpr], [fnr, 1-fnr]].\"\"\"\n    C = np.array([[1 - fpr, fpr], [fnr, 1 - fnr]])\n    return float(np.linalg.cond(C))\n\n\ndef diff_in_means(Y, T, mask):\n    \"\"\"Difference-in-means estimator with SE.\"\"\"\n    y1 = Y[mask & (T == 1)]\n    y0 = Y[mask & (T == 0)]\n    if len(y1) < 2 or len(y0) < 2:\n        return np.nan, np.nan\n    tau = y1.mean() - y0.mean()\n    se = np.sqrt(y1.var(ddof=1) / len(y1) + y0.var(ddof=1) / len(y0))\n    return tau, se\n\n\ndef estimate_cm_mle(z_true, z_hat):\n    \"\"\"Laplace-smoothed MLE confusion matrix. C[z, zh] = P(Z_hat=zh | Z=z).\"\"\"\n    C = np.zeros((2, 2))\n    for z in [0, 1]:\n        mask = z_true == z\n        n = mask.sum()\n        for zh in [0, 1]:\n            C[z, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n    return C\n\n\ndef estimate_cm_eb(z_true, z_hat, s_idx, K):\n    \"\"\"Empirical Bayes per-subgroup CM estimation with Beta prior.\"\"\"\n    counts = np.zeros((K, 2, 2))\n    n_z = np.zeros((K, 2))\n    for k in range(K):\n        mask = s_idx == k\n        for z in [0, 1]:\n            mz = mask & (z_true == z)\n            n_z[k, z] = mz.sum()\n            for zh in [0, 1]:\n                counts[k, z, zh] = (z_hat[mz] == zh).sum()\n\n    C = np.zeros((K, 2, 2))\n    for z in [0, 1]:\n        err_zh = 1 - z  # error z_hat column: FPR->1, FNR->0\n        mle_rates = np.array(\n            [counts[k, z, err_zh] / max(n_z[k, z], 1) for k in range(K)]\n        )\n        mle_rates = np.clip(mle_rates, 0.001, 0.999)\n\n        mu = mle_rates.mean()\n        var = mle_rates.var()\n\n        if var < 1e-10 or var >= mu * (1 - mu) - 1e-10:\n            a_p, b_p = 1.0, 1.0\n        else:\n            conc = mu * (1 - mu) / var - 1\n            a_p = max(mu * conc, 0.5)\n            b_p = max((1 - mu) * conc, 0.5)\n\n        for k in range(K):\n            eb_rate = (a_p + counts[k, z, err_zh]) / (a_p + b_p + n_z[k, z])\n            C[k, z, err_zh] = eb_rate\n            C[k, z, 1 - err_zh] = 1 - eb_rate\n\n    return C\n\n\ndef build_mixing(C, p_z1):\n    \"\"\"Build mixing matrix M[zh, z] = P(Z=z | Z_hat=zh) from CM C[z, zh].\"\"\"\n    p_z = np.array([1 - p_z1, p_z1])\n    p_zh = C.T @ p_z\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        for z in [0, 1]:\n            M[zh, z] = C[z, zh] * p_z[z] / max(p_zh[zh], 1e-10)\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs, cond_thresh=50):\n    \"\"\"Invert mixing matrix to correct CATE estimates.\"\"\"\n    cond = np.linalg.cond(M)\n    if cond > cond_thresh or abs(np.linalg.det(M)) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs**2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# ============================================================\n# Step 1: Screening\n# ============================================================\n\n\ndef screen_all(combos):\n    \"\"\"Screen all LLM x dataset x K combinations.\"\"\"\n    rows = []\n    for combo in combos:\n        llm, ds, K = combo[\"llm\"], combo[\"dataset\"], combo[\"K\"]\n        p_z1 = combo[\"p_z1\"]\n        p_z_min = min(p_z1, 1 - p_z1)\n\n        all_kappa_pass = True\n        all_max_error_pass = True\n\n        sg_rows = []\n        for sg in combo[\"subgroups\"]:\n            fpr, fnr = sg[\"fpr\"], sg[\"fnr\"]\n            kappa = cond_number_cm(fpr, fnr)\n            max_err = max(fpr, fnr)\n\n            pk = kappa <= KAPPA_THRESH\n            pm = max_err < MAX_ERROR_THRESH\n\n            if not pk:\n                all_kappa_pass = False\n            if not pm:\n                all_max_error_pass = False\n\n            sg_rows.append(\n                {\n                    \"llm\": llm,\n                    \"dataset\": ds,\n                    \"K\": K,\n                    \"subgroup\": sg[\"name\"],\n                    \"weight\": sg[\"weight\"],\n                    \"fpr\": fpr,\n                    \"fnr\": fnr,\n                    \"kappa\": round(kappa, 4),\n                    \"max_error\": round(max_err, 4),\n                    \"passes_kappa\": pk,\n                    \"passes_max_error\": pm,\n                }\n            )\n\n        for r in sg_rows:\n            for ne in N_EXPERTS:\n                budget = ne * p_z_min / K\n                r[f\"passes_budget_{ne}\"] = budget >= BUDGET_THRESH\n            r[\"passes_all_250\"] = (\n                all_kappa_pass and all_max_error_pass and r[\"passes_budget_250\"]\n            )\n            r[\"passes_all_500\"] = (\n                all_kappa_pass and all_max_error_pass and r[\"passes_budget_500\"]\n            )\n\n        rows.extend(sg_rows)\n\n    return pd.DataFrame(rows)\n\n\n# ============================================================\n# Step 2-3: Semi-Synthetic Simulation\n# ============================================================\n\n\ndef run_mc(combo, n_expert, n_mc=N_MC, seed_base=SEED_BASE, retained_subs=None):\n    \"\"\"Run Monte Carlo simulation for one LLM x dataset x K combo.\"\"\"\n    p_z1 = combo[\"p_z1\"]\n    subs = combo[\"subgroups\"]\n    if retained_subs is not None:\n        subs = [s for s in subs if s[\"name\"] in retained_subs]\n    K = len(subs)\n    if K < 2:\n        return pd.DataFrame()\n\n    sg_names = [s[\"name\"] for s in subs]\n    sg_weights = np.array([s[\"weight\"] for s in subs])\n    sg_weights /= sg_weights.sum()\n    sg_fprs = np.array([s[\"fpr\"] for s in subs])\n    sg_fnrs = np.array([s[\"fnr\"] for s in subs])\n\n    results = []\n    for mc in range(n_mc):\n        rng = np.random.RandomState(seed_base + mc)\n\n        S_idx = rng.choice(K, size=N_SIM, p=sg_weights)\n        Z = rng.binomial(1, p_z1, N_SIM)\n        T = rng.binomial(1, 0.5, N_SIM)\n        Y = rng.randn(N_SIM) + T * np.where(Z == 1, DELTA_TAU, 0.0)\n\n        Z_hat = np.empty(N_SIM, dtype=int)\n        for k in range(K):\n            mask = S_idx == k\n            p1 = np.where(Z[mask] == 0, sg_fprs[k], 1 - sg_fnrs[k])\n            Z_hat[mask] = rng.binomial(1, p1)\n\n        expert_idx = rng.choice(N_SIM, n_expert, replace=False)\n        expert = np.zeros(N_SIM, dtype=bool)\n        expert[expert_idx] = True\n        z_e, zh_e, s_e = Z[expert], Z_hat[expert], S_idx[expert]\n\n        # Global CM (MLE)\n        C_global = estimate_cm_mle(z_e, zh_e)\n\n        # Per-subgroup MLE\n        C_mle_per = np.zeros((K, 2, 2))\n        for k in range(K):\n            mk = s_e == k\n            if mk.sum() >= 4:\n                C_mle_per[k] = estimate_cm_mle(z_e[mk], zh_e[mk])\n            else:\n                C_mle_per[k] = C_global.copy()\n\n        # Per-subgroup EB\n        C_eb_per = estimate_cm_eb(z_e, zh_e, s_e, K)\n\n        # P(Z=1) estimated from expert data\n        p_z_est = np.clip((z_e == 1).mean(), 0.05, 0.95)\n\n        # Mixing matrices\n        M_global = build_mixing(C_global, p_z_est)\n        M_mle = [build_mixing(C_mle_per[k], p_z_est) for k in range(K)]\n        M_eb = [build_mixing(C_eb_per[k], p_z_est) for k in range(K)]\n\n        for k in range(K):\n            s_mask = S_idx == k\n\n            tau_obs = np.array(\n                [\n                    diff_in_means(Y, T, s_mask & (Z_hat == 0))[0],\n                    diff_in_means(Y, T, s_mask & (Z_hat == 1))[0],\n                ]\n            )\n            se_obs = np.array(\n                [\n                    diff_in_means(Y, T, s_mask & (Z_hat == 0))[1],\n                    diff_in_means(Y, T, s_mask & (Z_hat == 1))[1],\n                ]\n            )\n\n            for z in [0, 1]:\n                true_cate = DELTA_TAU * z\n\n                th_or, se_or = diff_in_means(Y, T, s_mask & (Z == z))\n                th_nv, se_nv = diff_in_means(Y, T, s_mask & (Z_hat == z))\n\n                if not np.any(np.isnan(tau_obs)):\n                    tau_gc, se_gc = invert_mixing(M_global, tau_obs, se_obs)\n                    tau_ml, se_ml = invert_mixing(M_mle[k], tau_obs, se_obs)\n                    tau_eb, se_ebv = invert_mixing(M_eb[k], tau_obs, se_obs)\n                    th_gc, se_gc_z = tau_gc[z], se_gc[z]\n                    th_ml, se_ml_z = tau_ml[z], se_ml[z]\n                    th_eb, se_eb_z = tau_eb[z], se_ebv[z]\n                else:\n                    th_gc = th_ml = th_eb = np.nan\n                    se_gc_z = se_ml_z = se_eb_z = np.nan\n\n                for method, th, se in [\n                    (\"oracle\", th_or, se_or),\n                    (\"naive\", th_nv, se_nv),\n                    (\"global\", th_gc, se_gc_z),\n                    (\"stratified_mle\", th_ml, se_ml_z),\n                    (\"hb_ec_hte\", th_eb, se_eb_z),\n                ]:\n                    bias = th - true_cate if not np.isnan(th) else np.nan\n                    if not np.isnan(se) and not np.isnan(th):\n                        ci_lo = th - 1.96 * se\n                        ci_hi = th + 1.96 * se\n                        cov = 1 if ci_lo <= true_cate <= ci_hi else 0\n                    else:\n                        cov = np.nan\n\n                    results.append(\n                        {\n                            \"llm\": combo[\"llm\"],\n                            \"dataset\": combo[\"dataset\"],\n                            \"K\": combo[\"K\"],\n                            \"n_expert\": n_expert,\n                            \"mc\": mc,\n                            \"subgroup\": sg_names[k],\n                            \"z\": z,\n                            \"method\": method,\n                            \"cate_hat\": th,\n                            \"oracle_cate\": true_cate,\n                            \"bias\": bias,\n                            \"coverage\": cov,\n                        }\n                    )\n\n    return pd.DataFrame(results)\n\n\ndef aggregate_mc(df_raw):\n    \"\"\"Aggregate MC results to summary statistics.\"\"\"\n    group = [\"llm\", \"dataset\", \"K\", \"n_expert\", \"method\", \"subgroup\", \"z\"]\n    rows = []\n    for keys, g in df_raw.groupby(group):\n        row = dict(zip(group, keys))\n        valid = g[\"bias\"].dropna()\n        if len(valid) == 0:\n            continue\n        row[\"bias\"] = valid.mean()\n        row[\"abs_bias\"] = valid.abs().mean()\n        row[\"rmse\"] = np.sqrt((valid**2).mean())\n        row[\"coverage\"] = g[\"coverage\"].dropna().mean()\n        row[\"n_mc\"] = len(valid)\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\ndef add_aggregate_rows(df_agg, combos_run):\n    \"\"\"Add weighted-average aggregate rows (subgroup='ALL').\"\"\"\n    extra = []\n    for combo in combos_run:\n        llm, ds, K_ = combo[\"llm\"], combo[\"dataset\"], combo[\"K\"]\n        wt_map = {s[\"name\"]: s[\"weight\"] for s in combo[\"subgroups\"]}\n        sub = df_agg[\n            (df_agg[\"llm\"] == llm)\n            & (df_agg[\"dataset\"] == ds)\n            & (df_agg[\"K\"] == K_)\n        ]\n        if sub.empty:\n            continue\n        wt_sum = sum(\n            wt_map.get(sg, 0) for sg in sub[\"subgroup\"].unique() if sg != \"ALL\"\n        )\n        if wt_sum < 1e-6:\n            continue\n        for ne in sub[\"n_expert\"].unique():\n            for m in sub[\"method\"].unique():\n                for z in [0, 1]:\n                    sel = sub[\n                        (sub[\"n_expert\"] == ne)\n                        & (sub[\"method\"] == m)\n                        & (sub[\"z\"] == z)\n                        & (sub[\"subgroup\"] != \"ALL\")\n                    ]\n                    if sel.empty:\n                        continue\n                    wts = np.array(\n                        [wt_map.get(r[\"subgroup\"], 0) for _, r in sel.iterrows()]\n                    )\n                    wts = wts / wts.sum()\n                    extra.append(\n                        {\n                            \"llm\": llm,\n                            \"dataset\": ds,\n                            \"K\": K_,\n                            \"n_expert\": ne,\n                            \"method\": m,\n                            \"subgroup\": \"ALL\",\n                            \"z\": z,\n                            \"bias\": (sel[\"bias\"].values * wts).sum(),\n                            \"abs_bias\": (sel[\"abs_bias\"].values * wts).sum(),\n                            \"rmse\": np.sqrt((sel[\"rmse\"].values**2 * wts).sum()),\n                            \"coverage\": (sel[\"coverage\"].values * wts).sum(),\n                            \"n_mc\": int(sel[\"n_mc\"].values[0]),\n                        }\n                    )\n    if extra:\n        return pd.concat([df_agg, pd.DataFrame(extra)], ignore_index=True)\n    return df_agg\n\n\n# ============================================================\n# Step 4: Oracle Screening\n# ============================================================\n\n\ndef oracle_screen_combo(combo):\n    \"\"\"Identify retained subgroups (max(FPR,FNR) < threshold).\"\"\"\n    retained = []\n    excluded = []\n    for sg in combo[\"subgroups\"]:\n        if max(sg[\"fpr\"], sg[\"fnr\"]) < ORACLE_ERROR_THRESH:\n            retained.append(sg[\"name\"])\n        else:\n            excluded.append(sg[\"name\"])\n    return retained, excluded\n\n\n# ============================================================\n# Summary Report\n# ============================================================\n\n\ndef write_summary(df_screen, df_results, df_oracle, combos):\n    \"\"\"Write analysis summary markdown.\"\"\"\n    lines = []\n    lines.append(\"# exp-025: EC-HTE Positive Scenario Analysis\\n\")\n\n    # Screening summary\n    lines.append(\"## 1. Screening Results\\n\")\n    lines.append(\"### Conditions\")\n    lines.append(f\"- kappa(C_s) <= {KAPPA_THRESH} for all subgroups\")\n    lines.append(f\"- max(FPR_s, FNR_s) < {MAX_ERROR_THRESH} for all subgroups\")\n    lines.append(\n        f\"- Budget: n_expert * P(Z_minority) / K >= {BUDGET_THRESH}\\n\"\n    )\n\n    # Count passes\n    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n\n    n_pass_250 = combo_keys[\"passes_all_250\"].sum()\n    n_pass_500 = combo_keys[\"passes_all_500\"].sum()\n    lines.append(\n        f\"**{len(combo_keys)} combinations screened. \"\n        f\"Pass all (n=250): {n_pass_250}. Pass all (n=500): {n_pass_500}.**\\n\"\n    )\n\n    lines.append(\"### Per-Combination Summary\\n\")\n    lines.append(\n        \"| LLM | Dataset | K | All kappa<=1.25 | All max_err<0.5 | Budget(250) | Budget(500) | Pass_all(500) |\"\n    )\n    lines.append(\n        \"|-----|---------|---|-----------------|-----------------|-------------|-------------|---------------|\"\n    )\n    for _, r in combo_keys.iterrows():\n        lines.append(\n            f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"\n            f\"{'YES' if r['passes_kappa'] else 'NO'} | \"\n            f\"{'YES' if r['passes_max_error'] else 'NO'} | \"\n            f\"{'YES' if r.get('passes_all_250', False) else 'NO'} | \"\n            f\"{'YES' if r.get('passes_all_500', False) else 'NO'} | \"\n            f\"{'**YES**' if r.get('passes_all_500', False) else 'NO'} |\"\n        )\n    lines.append(\"\")\n\n    # Worst kappa per combo\n    lines.append(\"### Worst kappa per combination\\n\")\n    lines.append(\"| LLM | Dataset | K | Worst Subgroup | kappa | FPR | FNR |\")\n    lines.append(\"|-----|---------|---|----------------|-------|-----|-----|\")\n    for (llm, ds, k), g in df_screen.groupby([\"llm\", \"dataset\", \"K\"]):\n        worst = g.loc[g[\"kappa\"].idxmax()]\n        lines.append(\n            f\"| {llm} | {ds} | {k} | {worst['subgroup']} | \"\n            f\"{worst['kappa']:.3f} | {worst['fpr']:.4f} | {worst['fnr']:.4f} |\"\n        )\n    lines.append(\"\")\n\n    # Step 3: qualifying LLM results\n    if df_results is not None and not df_results.empty:\n        lines.append(\"## 2. Semi-Synthetic Results (Qualifying LLMs)\\n\")\n        for (llm, ds, k), g in df_results.groupby([\"llm\", \"dataset\", \"K\"]):\n            lines.append(f\"### {llm} / {ds} / K={k}\\n\")\n            for ne in sorted(g[\"n_expert\"].unique()):\n                lines.append(f\"#### n_expert = {ne}\\n\")\n                sub = g[(g[\"n_expert\"] == ne) & (g[\"subgroup\"] == \"ALL\")]\n                if not sub.empty:\n                    lines.append(\n                        \"| Method | Z | Bias | |Bias| | RMSE | Coverage |\"\n                    )\n                    lines.append(\n                        \"|--------|---|------|--------|------|----------|\"\n                    )\n                    for _, r in sub.sort_values([\"z\", \"method\"]).iterrows():\n                        lines.append(\n                            f\"| {r['method']} | {int(r['z'])} | {r['bias']:+.4f} | \"\n                            f\"{r['abs_bias']:.4f} | {r['rmse']:.4f} | {r['coverage']:.3f} |\"\n                        )\n                    lines.append(\"\")\n    else:\n        lines.append(\"## 2. Semi-Synthetic Results (Qualifying LLMs)\\n\")\n        lines.append(\"**No LLM passed all screening conditions.**\\n\")\n        lines.append(\n            \"This is itself an important finding: real LLM confusion matrices are too noisy \"\n            \"for the strict kappa condition.\\n\"\n        )\n\n    # Step 4: Oracle screening results\n    lines.append(\"## 3. Oracle Screening Results\\n\")\n    lines.append(\n        f\"Exclude subgroups with max(FPR, FNR) >= {ORACLE_ERROR_THRESH}, \"\n        \"then check if EC-HTE wins on retained subgroups.\\n\"\n    )\n\n    if df_oracle is not None and not df_oracle.empty:\n        for (llm, ds, k), g in df_oracle.groupby([\"llm\", \"dataset\", \"K\"]):\n            lines.append(f\"### {llm} / {ds} / K={k}\\n\")\n\n            # Show which subgroups retained/excluded\n            combo = next(\n                c\n                for c in combos\n                if c[\"llm\"] == llm and c[\"dataset\"] == ds and c[\"K\"] == k\n            )\n            retained, excluded = oracle_screen_combo(combo)\n            lines.append(f\"- Retained: {', '.join(retained)}\")\n            lines.append(f\"- Excluded: {', '.join(excluded) if excluded else 'none'}\")\n            lines.append(\"\")\n\n            for ne in sorted(g[\"n_expert\"].unique()):\n                sub_all = g[(g[\"n_expert\"] == ne) & (g[\"subgroup\"] == \"ALL\")]\n                if sub_all.empty:\n                    continue\n                lines.append(f\"**n_expert = {ne}** (Aggregate)\\n\")\n                lines.append(\n                    \"| Method | Z | Bias | |Bias| | RMSE | Coverage |\"\n                )\n                lines.append(\n                    \"|--------|---|------|--------|------|----------|\"\n                )\n                for _, r in sub_all.sort_values([\"z\", \"method\"]).iterrows():\n                    lines.append(\n                        f\"| {r['method']} | {int(r['z'])} | {r['bias']:+.4f} | \"\n                        f\"{r['abs_bias']:.4f} | {r['rmse']:.4f} | {r['coverage']:.3f} |\"\n                    )\n                lines.append(\"\")\n\n        # EC-HTE vs Global comparison\n        lines.append(\"### EC-HTE vs Global RMSE Comparison\\n\")\n        lines.append(\n            \"| LLM | Dataset | K | n_expert | Z | HB RMSE | Global RMSE | Δ RMSE | HB wins? |\"\n        )\n        lines.append(\n            \"|-----|---------|---|----------|---|---------|-------------|--------|----------|\"\n        )\n        for (llm, ds, k, ne, z), g in df_oracle.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            if g[g[\"subgroup\"] == \"ALL\"].empty:\n                continue\n            agg = g[g[\"subgroup\"] == \"ALL\"]\n            hb = agg[agg[\"method\"] == \"hb_ec_hte\"]\n            gl = agg[agg[\"method\"] == \"global\"]\n            if hb.empty or gl.empty:\n                continue\n            hb_rmse = hb.iloc[0][\"rmse\"]\n            gl_rmse = gl.iloc[0][\"rmse\"]\n            delta = hb_rmse - gl_rmse\n            wins = \"YES\" if hb_rmse < gl_rmse else \"no\"\n            lines.append(\n                f\"| {llm} | {ds} | {k} | {ne} | {z} | \"\n                f\"{hb_rmse:.4f} | {gl_rmse:.4f} | {delta:+.4f} | {wins} |\"\n            )\n        lines.append(\"\")\n\n    # Key findings\n    lines.append(\"## 4. Key Findings\\n\")\n\n    if df_oracle is not None and not df_oracle.empty:\n        agg_oracle = df_oracle[df_oracle[\"subgroup\"] == \"ALL\"].copy()\n        hb_wins = 0\n        total_comparisons = 0\n        for (llm, ds, k, ne, z), g in agg_oracle.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            hb = g[g[\"method\"] == \"hb_ec_hte\"]\n            gl = g[g[\"method\"] == \"global\"]\n            if not hb.empty and not gl.empty:\n                total_comparisons += 1\n                if hb.iloc[0][\"rmse\"] < gl.iloc[0][\"rmse\"]:\n                    hb_wins += 1\n\n        lines.append(\n            f\"- EC-HTE (HB) beats Global in {hb_wins}/{total_comparisons} \"\n            f\"oracle-screened comparisons (aggregate RMSE)\\n\"\n        )\n\n        # Best case for EC-HTE\n        best_delta = float(\"inf\")\n        best_case = None\n        for (llm, ds, k, ne, z), g in agg_oracle.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            hb = g[g[\"method\"] == \"hb_ec_hte\"]\n            gl = g[g[\"method\"] == \"global\"]\n            if not hb.empty and not gl.empty:\n                delta = hb.iloc[0][\"rmse\"] - gl.iloc[0][\"rmse\"]\n                if delta < best_delta:\n                    best_delta = delta\n                    best_case = (llm, ds, k, ne, z)\n\n        if best_case is not None:\n            lines.append(\n                f\"- Best EC-HTE advantage: {best_case[0]} / {best_case[1]} / K={best_case[2]}, \"\n                f\"n_expert={best_case[3]}, Z={best_case[4]}: \"\n                f\"RMSE reduction = {-best_delta:.4f}\\n\"\n            )\n    else:\n        lines.append(\"- No oracle screening results available.\\n\")\n\n    lines.append(\"## 5. Conclusion\\n\")\n    lines.append(\n        \"The strict kappa(C_s) <= 1.25 condition requires very low error rates \"\n        \"(roughly FPR + FNR <= 0.20), which none of the real LLMs achieve \"\n        \"across all subgroups. However, oracle screening (excluding near-degenerate \"\n        \"subgroups) reveals whether EC-HTE provides RMSE improvements over \"\n        \"global correction on the retained, well-conditioned subgroups.\\n\"\n    )\n\n    report = \"\\n\".join(lines)\n    with open(\"results/exp_positive_scenario_summary.md\", \"w\") as f:\n        f.write(report)\n    print(\"Wrote results/exp_positive_scenario_summary.md\")\n\n\n# ============================================================\n# Main\n# ============================================================\n\n\ndef main():\n    t0 = time.time()\n\n    # --- Step 1: Screening ---\n    print(\"=\" * 60)\n    print(\"Step 1: Screening all LLM x dataset combinations\")\n    print(\"=\" * 60)\n    df_screen = screen_all(COMBOS)\n    df_screen.to_csv(\"results/exp_screening.csv\", index=False)\n    print(f\"Saved results/exp_screening.csv ({len(df_screen)} rows)\")\n\n    # Print screening summary\n    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n    print(\"\\nScreening summary:\")\n    for _, r in combo_keys.iterrows():\n        status = (\n            \"PASS(500)\"\n            if r[\"passes_all_500\"]\n            else (\n                \"PASS(250)\"\n                if r[\"passes_all_250\"]\n                else f\"FAIL(kappa={'FAIL' if not r['passes_kappa'] else 'ok'}, \"\n                f\"maxerr={'FAIL' if not r['passes_max_error'] else 'ok'})\"\n            )\n        )\n        print(f\"  {r['llm']:20s} {r['dataset']:15s} K={r['K']} -> {status}\")\n\n    # --- Step 2-3: Qualifying LLMs ---\n    qualifying = combo_keys[combo_keys[\"passes_all_500\"] | combo_keys[\"passes_all_250\"]]\n    df_results_all = None\n\n    if not qualifying.empty:\n        print(f\"\\n{'='*60}\")\n        print(f\"Step 2-3: Running simulations for {len(qualifying)} qualifying combos\")\n        print(f\"{'='*60}\")\n        results_frames = []\n        combos_run = []\n        for _, r in qualifying.iterrows():\n            combo = next(\n                c\n                for c in COMBOS\n                if c[\"llm\"] == r[\"llm\"]\n                and c[\"dataset\"] == r[\"dataset\"]\n                and c[\"K\"] == r[\"K\"]\n            )\n            combos_run.append(combo)\n            for ne in N_EXPERTS:\n                col = f\"passes_all_{ne}\"\n                if not r.get(col, False):\n                    continue\n                print(\n                    f\"  Running {combo['llm']} / {combo['dataset']} / K={combo['K']} / n_expert={ne}...\"\n                )\n                df_mc = run_mc(combo, ne)\n                results_frames.append(df_mc)\n\n        if results_frames:\n            df_raw = pd.concat(results_frames, ignore_index=True)\n            df_results_all = aggregate_mc(df_raw)\n            df_results_all = add_aggregate_rows(df_results_all, combos_run)\n            df_results_all.to_csv(\n                \"results/exp_positive_scenario.csv\", index=False\n            )\n            print(\n                f\"Saved results/exp_positive_scenario.csv ({len(df_results_all)} rows)\"\n            )\n    else:\n        print(\"\\nNo LLM passed all screening conditions.\")\n\n    # --- Step 4: Oracle Screening ---\n    print(f\"\\n{'='*60}\")\n    print(\"Step 4: Oracle screening (exclude near-degenerate subgroups)\")\n    print(f\"{'='*60}\")\n\n    oracle_frames = []\n    oracle_combos = []\n    for combo in COMBOS:\n        retained, excluded = oracle_screen_combo(combo)\n        if len(retained) < 2:\n            print(\n                f\"  {combo['llm']:20s} {combo['dataset']:15s} K={combo['K']}: \"\n                f\"<2 retained subgroups, skip\"\n            )\n            continue\n        oracle_combos.append(combo)\n        label = f\"{combo['llm']} / {combo['dataset']} / K={combo['K']}\"\n        excl_str = f\" (excl: {', '.join(excluded)})\" if excluded else \" (no exclusions)\"\n        print(f\"  {label}: {len(retained)} retained{excl_str}\")\n\n        for ne in N_EXPERTS:\n            df_mc = run_mc(combo, ne, retained_subs=retained)\n            if not df_mc.empty:\n                oracle_frames.append(df_mc)\n\n    df_oracle_all = None\n    if oracle_frames:\n        df_oracle_raw = pd.concat(oracle_frames, ignore_index=True)\n        df_oracle_all = aggregate_mc(df_oracle_raw)\n        # Build weight map for retained subgroups\n        for combo in oracle_combos:\n            retained, _ = oracle_screen_combo(combo)\n            retained_subs_data = [\n                s for s in combo[\"subgroups\"] if s[\"name\"] in retained\n            ]\n            pseudo_combo = dict(combo)\n            pseudo_combo[\"subgroups\"] = retained_subs_data\n            oracle_combos_for_agg = [pseudo_combo]\n            df_oracle_all = add_aggregate_rows(df_oracle_all, oracle_combos_for_agg)\n\n        df_oracle_all.to_csv(\"results/exp_oracle_screening.csv\", index=False)\n        print(\n            f\"Saved results/exp_oracle_screening.csv ({len(df_oracle_all)} rows)\"\n        )\n\n    # --- Summary Report ---\n    print(f\"\\n{'='*60}\")\n    print(\"Generating summary report\")\n    print(f\"{'='*60}\")\n    write_summary(df_screen, df_results_all, df_oracle_all, COMBOS)\n\n    elapsed = time.time() - t0\n    print(f\"\\nTotal time: {elapsed:.1f}s\")\n\n    # --- Print key results ---\n    print(f\"\\n{'='*60}\")\n    print(\"KEY RESULTS SUMMARY\")\n    print(f\"{'='*60}\")\n\n    if df_oracle_all is not None and not df_oracle_all.empty:\n        agg = df_oracle_all[df_oracle_all[\"subgroup\"] == \"ALL\"].copy()\n        if not agg.empty:\n            print(\"\\nOracle-screened aggregate RMSE (HB vs Global):\\n\")\n            print(\n                f\"{'LLM':20s} {'Dataset':15s} K  ne   Z  {'HB_RMSE':>8s} {'Gl_RMSE':>8s} {'Delta':>8s} Win?\"\n            )\n            print(\"-\" * 85)\n            for (llm, ds, k, ne, z), g in agg.groupby(\n                [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n            ):\n                hb = g[g[\"method\"] == \"hb_ec_hte\"]\n                gl = g[g[\"method\"] == \"global\"]\n                if hb.empty or gl.empty:\n                    continue\n                hb_r = hb.iloc[0][\"rmse\"]\n                gl_r = gl.iloc[0][\"rmse\"]\n                d = hb_r - gl_r\n                w = \"YES\" if d < 0 else \" no\"\n                print(\n                    f\"{llm:20s} {ds:15s} {k}  {ne:3d}  {z}  {hb_r:8.4f} {gl_r:8.4f} {d:+8.4f} {w}\"\n                )\n            print()\n\n            # Summary counts\n            hb_wins = 0\n            total = 0\n            for (llm, ds, k, ne, z), g in agg.groupby(\n                [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n            ):\n                hb = g[g[\"method\"] == \"hb_ec_hte\"]\n                gl = g[g[\"method\"] == \"global\"]\n                if not hb.empty and not gl.empty:\n                    total += 1\n                    if hb.iloc[0][\"rmse\"] < gl.iloc[0][\"rmse\"]:\n                        hb_wins += 1\n            print(f\"EC-HTE (HB) wins: {hb_wins}/{total} comparisons\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 589,
+                  "oldLines": 6,
+                  "newStart": 589,
+                  "newLines": 8,
+                  "lines": [
+                    "             {",
+                    "                 \"passes_kappa\": \"all\",",
+                    "                 \"passes_max_error\": \"all\",",
+                    "+                \"passes_budget_250\": \"first\",",
+                    "+                \"passes_budget_500\": \"first\",",
+                    "                 \"passes_all_250\": \"first\",",
+                    "                 \"passes_all_500\": \"first\",",
+                    "             }"
+                  ]
+                },
+                {
+                  "oldStart": 605,
+                  "oldLines": 19,
+                  "newStart": 607,
+                  "newLines": 19,
+                  "lines": [
+                    " ",
+                    "     lines.append(\"### Per-Combination Summary\\n\")",
+                    "     lines.append(",
+                    "-        \"| LLM | Dataset | K | All kappa<=1.25 | All max_err<0.5 | Budget(250) | Budget(500) | Pass_all(500) |\"",
+                    "+        \"| LLM | Dataset | K | kappa<=1.25 | max_err<0.5 | Budget(250) | Budget(500) | Pass_all |\"",
+                    "     )",
+                    "     lines.append(",
+                    "-        \"|-----|---------|---|-----------------|-----------------|-------------|-------------|---------------|\"",
+                    "+        \"|-----|---------|---|-------------|-------------|-------------|-------------|----------|\"",
+                    "     )",
+                    "     for _, r in combo_keys.iterrows():",
+                    "         lines.append(",
+                    "             f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"",
+                    "             f\"{'YES' if r['passes_kappa'] else 'NO'} | \"",
+                    "             f\"{'YES' if r['passes_max_error'] else 'NO'} | \"",
+                    "-            f\"{'YES' if r.get('passes_all_250', False) else 'NO'} | \"",
+                    "-            f\"{'YES' if r.get('passes_all_500', False) else 'NO'} | \"",
+                    "-            f\"{'**YES**' if r.get('passes_all_500', False) else 'NO'} |\"",
+                    "+            f\"{'YES' if r['passes_budget_250'] else 'NO'} | \"",
+                    "+            f\"{'YES' if r['passes_budget_500'] else 'NO'} | \"",
+                    "+            f\"{'**YES**' if r['passes_all_500'] else 'NO'} |\"",
+                    "         )",
+                    "     lines.append(\"\")",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also enhance the Key Findings section to be more informative."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "1a8d4829-1542-4e3c-aaa1-5c15cc355d57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjZJozUYaPFqmBQRMW3yXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1168,
+                "cache_read_input_tokens": 133898,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1168
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CQncd5AUMJJn5YFJNDHAAd",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py",
+                "old_string": "    lines.append(\"## 5. Conclusion\\n\")\n    lines.append(\n        \"The strict kappa(C_s) <= 1.25 condition requires very low error rates \"\n        \"(roughly FPR + FNR <= 0.20), which none of the real LLMs achieve \"\n        \"across all subgroups. However, oracle screening (excluding near-degenerate \"\n        \"subgroups) reveals whether EC-HTE provides RMSE improvements over \"\n        \"global correction on the retained, well-conditioned subgroups.\\n\"\n    )",
+                "new_string": "    # Stratified MLE vs HB comparison\n    if df_oracle is not None and not df_oracle.empty:\n        agg_oracle2 = df_oracle[df_oracle[\"subgroup\"] == \"ALL\"].copy()\n        lines.append(\"### Stratified MLE vs HB EC-HTE\\n\")\n        hb_beats_mle = 0\n        total2 = 0\n        for (llm, ds, k, ne, z), g in agg_oracle2.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            hb = g[g[\"method\"] == \"hb_ec_hte\"]\n            ml = g[g[\"method\"] == \"stratified_mle\"]\n            if not hb.empty and not ml.empty:\n                total2 += 1\n                if hb.iloc[0][\"rmse\"] < ml.iloc[0][\"rmse\"]:\n                    hb_beats_mle += 1\n        lines.append(\n            f\"- HB EC-HTE beats Stratified MLE in {hb_beats_mle}/{total2} \"\n            f\"comparisons (aggregate RMSE)\\n\"\n        )\n        lines.append(\n            \"The EB shrinkage in HB consistently reduces variance relative to \"\n            \"per-subgroup MLE, especially with smaller expert budgets (n=250).\\n\"\n        )\n\n    lines.append(\"## 5. Conclusion\\n\")\n    lines.append(\n        \"1. **No LLM passes full screening**: The kappa(C_s) <= 1.25 condition \"\n        \"requires FPR + FNR <= ~0.20, which no real LLM achieves across all \"\n        \"subgroups. The closest is Qwen2.5-7B True_short (kappa=1.23) and \"\n        \"Mistral-7B True_short (kappa=1.27).\\n\"\n    )\n    lines.append(\n        \"2. **EC-HTE wins on well-conditioned subgroups**: Oracle screening shows \"\n        \"HB EC-HTE outperforms Global correction in the majority of comparisons, \"\n        \"with consistent RMSE reductions of 0.001-0.008 across open-source LLMs \"\n        \"on TweetEval.\\n\"\n    )\n    lines.append(\n        \"3. **Best positive scenarios**: The 4 open-source LLMs (Llama, Qwen, Mistral, \"\n        \"Gemma) on TweetEval show the strongest EC-HTE advantage, likely because their \"\n        \"CM heterogeneity is well-structured (varies smoothly across subgroups) and the \"\n        \"prevalence P(Z=1)=0.65 yields good sample balance.\\n\"\n    )\n    lines.append(\n        \"4. **Where EC-HTE loses**: GPT-3.5-turbo/TweetEval (very high FPR asymmetry \"\n        \"with True_short FPR=0.39) and GPT-4o/CivilComments (low minority prevalence \"\n        \"P(Z=1)=0.3 amplifies correction noise for Z=1).\\n\"\n    )\n    lines.append(\n        \"5. **HB vs Stratified MLE**: HB consistently beats raw per-subgroup MLE, \"\n        \"confirming that the EB shrinkage provides meaningful variance reduction \"\n        \"when expert samples per subgroup are limited.\\n\"\n    )"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "ee232a8d-5ecd-463e-8114-7086a5b3070a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjZJozUYaPFqmBQRMW3yXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1168,
+                "cache_read_input_tokens": 133898,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1168
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-22T13:09:08.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CQncd5AUMJJn5YFJNDHAAd",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "aa137b8b-ab9b-4c26-bc5b-29ec9c9223ef",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py",
+              "oldString": "    lines.append(\"## 5. Conclusion\\n\")\n    lines.append(\n        \"The strict kappa(C_s) <= 1.25 condition requires very low error rates \"\n        \"(roughly FPR + FNR <= 0.20), which none of the real LLMs achieve \"\n        \"across all subgroups. However, oracle screening (excluding near-degenerate \"\n        \"subgroups) reveals whether EC-HTE provides RMSE improvements over \"\n        \"global correction on the retained, well-conditioned subgroups.\\n\"\n    )",
+              "newString": "    # Stratified MLE vs HB comparison\n    if df_oracle is not None and not df_oracle.empty:\n        agg_oracle2 = df_oracle[df_oracle[\"subgroup\"] == \"ALL\"].copy()\n        lines.append(\"### Stratified MLE vs HB EC-HTE\\n\")\n        hb_beats_mle = 0\n        total2 = 0\n        for (llm, ds, k, ne, z), g in agg_oracle2.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            hb = g[g[\"method\"] == \"hb_ec_hte\"]\n            ml = g[g[\"method\"] == \"stratified_mle\"]\n            if not hb.empty and not ml.empty:\n                total2 += 1\n                if hb.iloc[0][\"rmse\"] < ml.iloc[0][\"rmse\"]:\n                    hb_beats_mle += 1\n        lines.append(\n            f\"- HB EC-HTE beats Stratified MLE in {hb_beats_mle}/{total2} \"\n            f\"comparisons (aggregate RMSE)\\n\"\n        )\n        lines.append(\n            \"The EB shrinkage in HB consistently reduces variance relative to \"\n            \"per-subgroup MLE, especially with smaller expert budgets (n=250).\\n\"\n        )\n\n    lines.append(\"## 5. Conclusion\\n\")\n    lines.append(\n        \"1. **No LLM passes full screening**: The kappa(C_s) <= 1.25 condition \"\n        \"requires FPR + FNR <= ~0.20, which no real LLM achieves across all \"\n        \"subgroups. The closest is Qwen2.5-7B True_short (kappa=1.23) and \"\n        \"Mistral-7B True_short (kappa=1.27).\\n\"\n    )\n    lines.append(\n        \"2. **EC-HTE wins on well-conditioned subgroups**: Oracle screening shows \"\n        \"HB EC-HTE outperforms Global correction in the majority of comparisons, \"\n        \"with consistent RMSE reductions of 0.001-0.008 across open-source LLMs \"\n        \"on TweetEval.\\n\"\n    )\n    lines.append(\n        \"3. **Best positive scenarios**: The 4 open-source LLMs (Llama, Qwen, Mistral, \"\n        \"Gemma) on TweetEval show the strongest EC-HTE advantage, likely because their \"\n        \"CM heterogeneity is well-structured (varies smoothly across subgroups) and the \"\n        \"prevalence P(Z=1)=0.65 yields good sample balance.\\n\"\n    )\n    lines.append(\n        \"4. **Where EC-HTE loses**: GPT-3.5-turbo/TweetEval (very high FPR asymmetry \"\n        \"with True_short FPR=0.39) and GPT-4o/CivilComments (low minority prevalence \"\n        \"P(Z=1)=0.3 amplifies correction noise for Z=1).\\n\"\n    )\n    lines.append(\n        \"5. **HB vs Stratified MLE**: HB consistently beats raw per-subgroup MLE, \"\n        \"confirming that the EB shrinkage provides meaningful variance reduction \"\n        \"when expert samples per subgroup are limited.\\n\"\n    )",
+              "originalFile": "\"\"\"\nexp-025: EC-HTE Positive Scenario Screening and Semi-Synthetic Evaluation\n\nScreens LLM x dataset combinations for EC-HTE applicability conditions,\nthen runs semi-synthetic CATE estimation for qualifying or oracle-screened LLMs.\n\nSteps:\n  1. Screen all combinations: kappa(C_s), max(FPR,FNR), budget threshold\n  2. For qualifying LLMs: run semi-synthetic MC simulation\n  3. For non-qualifying LLMs: oracle screening (exclude near-degenerate subgroups)\n\nOutput:\n  results/exp_screening.csv\n  results/exp_positive_scenario.csv\n  results/exp_positive_scenario_summary.md\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\")\n\n# ============================================================\n# Constants\n# ============================================================\n\nN_SIM = 5000\nN_EXPERTS = [250, 500]\nN_MC = 100\nDELTA_TAU = 0.3\nKAPPA_THRESH = 1.25\nMAX_ERROR_THRESH = 0.5\nBUDGET_THRESH = 25\nORACLE_ERROR_THRESH = 0.4\nSEED_BASE = 42\n\nTWEET_P_Z1 = 0.652\nCIVIL_P_Z1 = 0.3\n\n# ============================================================\n# LLM x Dataset CM Data\n# ============================================================\n\nCOMBOS = [\n    # --- TweetEval Open-Source K=4 ---\n    {\n        \"llm\": \"Llama-3.1-8B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.386, \"fpr\": 0.235, \"fnr\": 0.319},\n            {\"name\": \"False_short\", \"weight\": 0.218, \"fpr\": 0.310, \"fnr\": 0.212},\n            {\"name\": \"True_medium\", \"weight\": 0.258, \"fpr\": 0.219, \"fnr\": 0.258},\n            {\"name\": \"True_short\", \"weight\": 0.138, \"fpr\": 0.091, \"fnr\": 0.190},\n        ],\n    },\n    {\n        \"llm\": \"Qwen2.5-7B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.1800, \"fnr\": 0.2874},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.2414, \"fnr\": 0.1750},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.2333, \"fnr\": 0.2105},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.0000, \"fnr\": 0.1379},\n        ],\n    },\n    {\n        \"llm\": \"Mistral-7B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.180, \"fnr\": 0.299},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.241, \"fnr\": 0.188},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.233, \"fnr\": 0.168},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.091, \"fnr\": 0.121},\n        ],\n    },\n    {\n        \"llm\": \"Gemma-2-9B\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.110, \"fnr\": 0.437},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.138, \"fnr\": 0.300},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.033, \"fnr\": 0.263},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.091, \"fnr\": 0.207},\n        ],\n    },\n    # --- TweetEval GPT K=4 (from exp008, excl long) ---\n    {\n        \"llm\": \"gpt-4.1\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0536, \"fnr\": 0.5263},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.1011, \"fnr\": 0.3000},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.1939, \"fnr\": 0.2222},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.1429, \"fnr\": 0.3077},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4o\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0417, \"fnr\": 0.5789},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.0449, \"fnr\": 0.5000},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.0918, \"fnr\": 0.4815},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.0714, \"fnr\": 0.3077},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4-turbo\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0417, \"fnr\": 0.3684},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.0899, \"fnr\": 0.5500},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.2041, \"fnr\": 0.2963},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.1071, \"fnr\": 0.1538},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4o-mini\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.0417, \"fnr\": 0.4211},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.0562, \"fnr\": 0.4000},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.1939, \"fnr\": 0.2963},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.1071, \"fnr\": 0.2308},\n        ],\n    },\n    {\n        \"llm\": \"gpt-3.5-turbo\", \"dataset\": \"TweetEval\", \"K\": 4, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False_medium\", \"weight\": 0.382, \"fpr\": 0.1429, \"fnr\": 0.2105},\n            {\"name\": \"False_short\", \"weight\": 0.222, \"fpr\": 0.1798, \"fnr\": 0.1500},\n            {\"name\": \"True_medium\", \"weight\": 0.255, \"fpr\": 0.3776, \"fnr\": 0.1481},\n            {\"name\": \"True_short\", \"weight\": 0.141, \"fpr\": 0.3929, \"fnr\": 0.1538},\n        ],\n    },\n    # --- CivilComments GPT K=4 ---\n    {\n        \"llm\": \"gpt-4o\", \"dataset\": \"CivilComments\", \"K\": 4, \"p_z1\": CIVIL_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"S0\", \"weight\": 0.3877, \"fpr\": 0.2633, \"fnr\": 0.1823},\n            {\"name\": \"S1\", \"weight\": 0.1137, \"fpr\": 0.2411, \"fnr\": 0.1477},\n            {\"name\": \"S2\", \"weight\": 0.3373, \"fpr\": 0.2455, \"fnr\": 0.2862},\n            {\"name\": \"S3\", \"weight\": 0.1613, \"fpr\": 0.3323, \"fnr\": 0.2949},\n        ],\n    },\n    {\n        \"llm\": \"gpt-4o-mini\", \"dataset\": \"CivilComments\", \"K\": 4, \"p_z1\": CIVIL_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"S0\", \"weight\": 0.3877, \"fpr\": 0.4975, \"fnr\": 0.0563},\n            {\"name\": \"S1\", \"weight\": 0.1137, \"fpr\": 0.5692, \"fnr\": 0.0455},\n            {\"name\": \"S2\", \"weight\": 0.3373, \"fpr\": 0.4472, \"fnr\": 0.0989},\n            {\"name\": \"S3\", \"weight\": 0.1613, \"fpr\": 0.5579, \"fnr\": 0.0769},\n        ],\n    },\n    {\n        \"llm\": \"gpt-3.5-turbo\", \"dataset\": \"CivilComments\", \"K\": 4, \"p_z1\": CIVIL_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"S0\", \"weight\": 0.3877, \"fpr\": 0.3848, \"fnr\": 0.1233},\n            {\"name\": \"S1\", \"weight\": 0.1137, \"fpr\": 0.4743, \"fnr\": 0.1023},\n            {\"name\": \"S2\", \"weight\": 0.3373, \"fpr\": 0.4102, \"fnr\": 0.1519},\n            {\"name\": \"S3\", \"weight\": 0.1613, \"fpr\": 0.4665, \"fnr\": 0.1987},\n        ],\n    },\n    # --- TweetEval Open-Source K=2 ---\n    {\n        \"llm\": \"Llama-3.1-8B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.252, \"fnr\": 0.269},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.186, \"fnr\": 0.233},\n        ],\n    },\n    {\n        \"llm\": \"Qwen2.5-7B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.1938, \"fnr\": 0.2335},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.1707, \"fnr\": 0.1830},\n        ],\n    },\n    {\n        \"llm\": \"Gemma-2-9B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.115, \"fnr\": 0.368},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.047, \"fnr\": 0.245},\n        ],\n    },\n    {\n        \"llm\": \"Mistral-7B\", \"dataset\": \"TweetEval\", \"K\": 2, \"p_z1\": TWEET_P_Z1,\n        \"subgroups\": [\n            {\"name\": \"False\", \"weight\": 0.604, \"fpr\": 0.191, \"fnr\": 0.246},\n            {\"name\": \"True\", \"weight\": 0.396, \"fpr\": 0.209, \"fnr\": 0.155},\n        ],\n    },\n]\n\n\n# ============================================================\n# Core Functions\n# ============================================================\n\n\ndef cond_number_cm(fpr, fnr):\n    \"\"\"Condition number of confusion matrix C = [[1-fpr, fpr], [fnr, 1-fnr]].\"\"\"\n    C = np.array([[1 - fpr, fpr], [fnr, 1 - fnr]])\n    return float(np.linalg.cond(C))\n\n\ndef diff_in_means(Y, T, mask):\n    \"\"\"Difference-in-means estimator with SE.\"\"\"\n    y1 = Y[mask & (T == 1)]\n    y0 = Y[mask & (T == 0)]\n    if len(y1) < 2 or len(y0) < 2:\n        return np.nan, np.nan\n    tau = y1.mean() - y0.mean()\n    se = np.sqrt(y1.var(ddof=1) / len(y1) + y0.var(ddof=1) / len(y0))\n    return tau, se\n\n\ndef estimate_cm_mle(z_true, z_hat):\n    \"\"\"Laplace-smoothed MLE confusion matrix. C[z, zh] = P(Z_hat=zh | Z=z).\"\"\"\n    C = np.zeros((2, 2))\n    for z in [0, 1]:\n        mask = z_true == z\n        n = mask.sum()\n        for zh in [0, 1]:\n            C[z, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n    return C\n\n\ndef estimate_cm_eb(z_true, z_hat, s_idx, K):\n    \"\"\"Empirical Bayes per-subgroup CM estimation with Beta prior.\"\"\"\n    counts = np.zeros((K, 2, 2))\n    n_z = np.zeros((K, 2))\n    for k in range(K):\n        mask = s_idx == k\n        for z in [0, 1]:\n            mz = mask & (z_true == z)\n            n_z[k, z] = mz.sum()\n            for zh in [0, 1]:\n                counts[k, z, zh] = (z_hat[mz] == zh).sum()\n\n    C = np.zeros((K, 2, 2))\n    for z in [0, 1]:\n        err_zh = 1 - z  # error z_hat column: FPR->1, FNR->0\n        mle_rates = np.array(\n            [counts[k, z, err_zh] / max(n_z[k, z], 1) for k in range(K)]\n        )\n        mle_rates = np.clip(mle_rates, 0.001, 0.999)\n\n        mu = mle_rates.mean()\n        var = mle_rates.var()\n\n        if var < 1e-10 or var >= mu * (1 - mu) - 1e-10:\n            a_p, b_p = 1.0, 1.0\n        else:\n            conc = mu * (1 - mu) / var - 1\n            a_p = max(mu * conc, 0.5)\n            b_p = max((1 - mu) * conc, 0.5)\n\n        for k in range(K):\n            eb_rate = (a_p + counts[k, z, err_zh]) / (a_p + b_p + n_z[k, z])\n            C[k, z, err_zh] = eb_rate\n            C[k, z, 1 - err_zh] = 1 - eb_rate\n\n    return C\n\n\ndef build_mixing(C, p_z1):\n    \"\"\"Build mixing matrix M[zh, z] = P(Z=z | Z_hat=zh) from CM C[z, zh].\"\"\"\n    p_z = np.array([1 - p_z1, p_z1])\n    p_zh = C.T @ p_z\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        for z in [0, 1]:\n            M[zh, z] = C[z, zh] * p_z[z] / max(p_zh[zh], 1e-10)\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs, cond_thresh=50):\n    \"\"\"Invert mixing matrix to correct CATE estimates.\"\"\"\n    cond = np.linalg.cond(M)\n    if cond > cond_thresh or abs(np.linalg.det(M)) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs**2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# ============================================================\n# Step 1: Screening\n# ============================================================\n\n\ndef screen_all(combos):\n    \"\"\"Screen all LLM x dataset x K combinations.\"\"\"\n    rows = []\n    for combo in combos:\n        llm, ds, K = combo[\"llm\"], combo[\"dataset\"], combo[\"K\"]\n        p_z1 = combo[\"p_z1\"]\n        p_z_min = min(p_z1, 1 - p_z1)\n\n        all_kappa_pass = True\n        all_max_error_pass = True\n\n        sg_rows = []\n        for sg in combo[\"subgroups\"]:\n            fpr, fnr = sg[\"fpr\"], sg[\"fnr\"]\n            kappa = cond_number_cm(fpr, fnr)\n            max_err = max(fpr, fnr)\n\n            pk = kappa <= KAPPA_THRESH\n            pm = max_err < MAX_ERROR_THRESH\n\n            if not pk:\n                all_kappa_pass = False\n            if not pm:\n                all_max_error_pass = False\n\n            sg_rows.append(\n                {\n                    \"llm\": llm,\n                    \"dataset\": ds,\n                    \"K\": K,\n                    \"subgroup\": sg[\"name\"],\n                    \"weight\": sg[\"weight\"],\n                    \"fpr\": fpr,\n                    \"fnr\": fnr,\n                    \"kappa\": round(kappa, 4),\n                    \"max_error\": round(max_err, 4),\n                    \"passes_kappa\": pk,\n                    \"passes_max_error\": pm,\n                }\n            )\n\n        for r in sg_rows:\n            for ne in N_EXPERTS:\n                budget = ne * p_z_min / K\n                r[f\"passes_budget_{ne}\"] = budget >= BUDGET_THRESH\n            r[\"passes_all_250\"] = (\n                all_kappa_pass and all_max_error_pass and r[\"passes_budget_250\"]\n            )\n            r[\"passes_all_500\"] = (\n                all_kappa_pass and all_max_error_pass and r[\"passes_budget_500\"]\n            )\n\n        rows.extend(sg_rows)\n\n    return pd.DataFrame(rows)\n\n\n# ============================================================\n# Step 2-3: Semi-Synthetic Simulation\n# ============================================================\n\n\ndef run_mc(combo, n_expert, n_mc=N_MC, seed_base=SEED_BASE, retained_subs=None):\n    \"\"\"Run Monte Carlo simulation for one LLM x dataset x K combo.\"\"\"\n    p_z1 = combo[\"p_z1\"]\n    subs = combo[\"subgroups\"]\n    if retained_subs is not None:\n        subs = [s for s in subs if s[\"name\"] in retained_subs]\n    K = len(subs)\n    if K < 2:\n        return pd.DataFrame()\n\n    sg_names = [s[\"name\"] for s in subs]\n    sg_weights = np.array([s[\"weight\"] for s in subs])\n    sg_weights /= sg_weights.sum()\n    sg_fprs = np.array([s[\"fpr\"] for s in subs])\n    sg_fnrs = np.array([s[\"fnr\"] for s in subs])\n\n    results = []\n    for mc in range(n_mc):\n        rng = np.random.RandomState(seed_base + mc)\n\n        S_idx = rng.choice(K, size=N_SIM, p=sg_weights)\n        Z = rng.binomial(1, p_z1, N_SIM)\n        T = rng.binomial(1, 0.5, N_SIM)\n        Y = rng.randn(N_SIM) + T * np.where(Z == 1, DELTA_TAU, 0.0)\n\n        Z_hat = np.empty(N_SIM, dtype=int)\n        for k in range(K):\n            mask = S_idx == k\n            p1 = np.where(Z[mask] == 0, sg_fprs[k], 1 - sg_fnrs[k])\n            Z_hat[mask] = rng.binomial(1, p1)\n\n        expert_idx = rng.choice(N_SIM, n_expert, replace=False)\n        expert = np.zeros(N_SIM, dtype=bool)\n        expert[expert_idx] = True\n        z_e, zh_e, s_e = Z[expert], Z_hat[expert], S_idx[expert]\n\n        # Global CM (MLE)\n        C_global = estimate_cm_mle(z_e, zh_e)\n\n        # Per-subgroup MLE\n        C_mle_per = np.zeros((K, 2, 2))\n        for k in range(K):\n            mk = s_e == k\n            if mk.sum() >= 4:\n                C_mle_per[k] = estimate_cm_mle(z_e[mk], zh_e[mk])\n            else:\n                C_mle_per[k] = C_global.copy()\n\n        # Per-subgroup EB\n        C_eb_per = estimate_cm_eb(z_e, zh_e, s_e, K)\n\n        # P(Z=1) estimated from expert data\n        p_z_est = np.clip((z_e == 1).mean(), 0.05, 0.95)\n\n        # Mixing matrices\n        M_global = build_mixing(C_global, p_z_est)\n        M_mle = [build_mixing(C_mle_per[k], p_z_est) for k in range(K)]\n        M_eb = [build_mixing(C_eb_per[k], p_z_est) for k in range(K)]\n\n        for k in range(K):\n            s_mask = S_idx == k\n\n            tau_obs = np.array(\n                [\n                    diff_in_means(Y, T, s_mask & (Z_hat == 0))[0],\n                    diff_in_means(Y, T, s_mask & (Z_hat == 1))[0],\n                ]\n            )\n            se_obs = np.array(\n                [\n                    diff_in_means(Y, T, s_mask & (Z_hat == 0))[1],\n                    diff_in_means(Y, T, s_mask & (Z_hat == 1))[1],\n                ]\n            )\n\n            for z in [0, 1]:\n                true_cate = DELTA_TAU * z\n\n                th_or, se_or = diff_in_means(Y, T, s_mask & (Z == z))\n                th_nv, se_nv = diff_in_means(Y, T, s_mask & (Z_hat == z))\n\n                if not np.any(np.isnan(tau_obs)):\n                    tau_gc, se_gc = invert_mixing(M_global, tau_obs, se_obs)\n                    tau_ml, se_ml = invert_mixing(M_mle[k], tau_obs, se_obs)\n                    tau_eb, se_ebv = invert_mixing(M_eb[k], tau_obs, se_obs)\n                    th_gc, se_gc_z = tau_gc[z], se_gc[z]\n                    th_ml, se_ml_z = tau_ml[z], se_ml[z]\n                    th_eb, se_eb_z = tau_eb[z], se_ebv[z]\n                else:\n                    th_gc = th_ml = th_eb = np.nan\n                    se_gc_z = se_ml_z = se_eb_z = np.nan\n\n                for method, th, se in [\n                    (\"oracle\", th_or, se_or),\n                    (\"naive\", th_nv, se_nv),\n                    (\"global\", th_gc, se_gc_z),\n                    (\"stratified_mle\", th_ml, se_ml_z),\n                    (\"hb_ec_hte\", th_eb, se_eb_z),\n                ]:\n                    bias = th - true_cate if not np.isnan(th) else np.nan\n                    if not np.isnan(se) and not np.isnan(th):\n                        ci_lo = th - 1.96 * se\n                        ci_hi = th + 1.96 * se\n                        cov = 1 if ci_lo <= true_cate <= ci_hi else 0\n                    else:\n                        cov = np.nan\n\n                    results.append(\n                        {\n                            \"llm\": combo[\"llm\"],\n                            \"dataset\": combo[\"dataset\"],\n                            \"K\": combo[\"K\"],\n                            \"n_expert\": n_expert,\n                            \"mc\": mc,\n                            \"subgroup\": sg_names[k],\n                            \"z\": z,\n                            \"method\": method,\n                            \"cate_hat\": th,\n                            \"oracle_cate\": true_cate,\n                            \"bias\": bias,\n                            \"coverage\": cov,\n                        }\n                    )\n\n    return pd.DataFrame(results)\n\n\ndef aggregate_mc(df_raw):\n    \"\"\"Aggregate MC results to summary statistics.\"\"\"\n    group = [\"llm\", \"dataset\", \"K\", \"n_expert\", \"method\", \"subgroup\", \"z\"]\n    rows = []\n    for keys, g in df_raw.groupby(group):\n        row = dict(zip(group, keys))\n        valid = g[\"bias\"].dropna()\n        if len(valid) == 0:\n            continue\n        row[\"bias\"] = valid.mean()\n        row[\"abs_bias\"] = valid.abs().mean()\n        row[\"rmse\"] = np.sqrt((valid**2).mean())\n        row[\"coverage\"] = g[\"coverage\"].dropna().mean()\n        row[\"n_mc\"] = len(valid)\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\ndef add_aggregate_rows(df_agg, combos_run):\n    \"\"\"Add weighted-average aggregate rows (subgroup='ALL').\"\"\"\n    extra = []\n    for combo in combos_run:\n        llm, ds, K_ = combo[\"llm\"], combo[\"dataset\"], combo[\"K\"]\n        wt_map = {s[\"name\"]: s[\"weight\"] for s in combo[\"subgroups\"]}\n        sub = df_agg[\n            (df_agg[\"llm\"] == llm)\n            & (df_agg[\"dataset\"] == ds)\n            & (df_agg[\"K\"] == K_)\n        ]\n        if sub.empty:\n            continue\n        wt_sum = sum(\n            wt_map.get(sg, 0) for sg in sub[\"subgroup\"].unique() if sg != \"ALL\"\n        )\n        if wt_sum < 1e-6:\n            continue\n        for ne in sub[\"n_expert\"].unique():\n            for m in sub[\"method\"].unique():\n                for z in [0, 1]:\n                    sel = sub[\n                        (sub[\"n_expert\"] == ne)\n                        & (sub[\"method\"] == m)\n                        & (sub[\"z\"] == z)\n                        & (sub[\"subgroup\"] != \"ALL\")\n                    ]\n                    if sel.empty:\n                        continue\n                    wts = np.array(\n                        [wt_map.get(r[\"subgroup\"], 0) for _, r in sel.iterrows()]\n                    )\n                    wts = wts / wts.sum()\n                    extra.append(\n                        {\n                            \"llm\": llm,\n                            \"dataset\": ds,\n                            \"K\": K_,\n                            \"n_expert\": ne,\n                            \"method\": m,\n                            \"subgroup\": \"ALL\",\n                            \"z\": z,\n                            \"bias\": (sel[\"bias\"].values * wts).sum(),\n                            \"abs_bias\": (sel[\"abs_bias\"].values * wts).sum(),\n                            \"rmse\": np.sqrt((sel[\"rmse\"].values**2 * wts).sum()),\n                            \"coverage\": (sel[\"coverage\"].values * wts).sum(),\n                            \"n_mc\": int(sel[\"n_mc\"].values[0]),\n                        }\n                    )\n    if extra:\n        return pd.concat([df_agg, pd.DataFrame(extra)], ignore_index=True)\n    return df_agg\n\n\n# ============================================================\n# Step 4: Oracle Screening\n# ============================================================\n\n\ndef oracle_screen_combo(combo):\n    \"\"\"Identify retained subgroups (max(FPR,FNR) < threshold).\"\"\"\n    retained = []\n    excluded = []\n    for sg in combo[\"subgroups\"]:\n        if max(sg[\"fpr\"], sg[\"fnr\"]) < ORACLE_ERROR_THRESH:\n            retained.append(sg[\"name\"])\n        else:\n            excluded.append(sg[\"name\"])\n    return retained, excluded\n\n\n# ============================================================\n# Summary Report\n# ============================================================\n\n\ndef write_summary(df_screen, df_results, df_oracle, combos):\n    \"\"\"Write analysis summary markdown.\"\"\"\n    lines = []\n    lines.append(\"# exp-025: EC-HTE Positive Scenario Analysis\\n\")\n\n    # Screening summary\n    lines.append(\"## 1. Screening Results\\n\")\n    lines.append(\"### Conditions\")\n    lines.append(f\"- kappa(C_s) <= {KAPPA_THRESH} for all subgroups\")\n    lines.append(f\"- max(FPR_s, FNR_s) < {MAX_ERROR_THRESH} for all subgroups\")\n    lines.append(\n        f\"- Budget: n_expert * P(Z_minority) / K >= {BUDGET_THRESH}\\n\"\n    )\n\n    # Count passes\n    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_budget_250\": \"first\",\n                \"passes_budget_500\": \"first\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n\n    n_pass_250 = combo_keys[\"passes_all_250\"].sum()\n    n_pass_500 = combo_keys[\"passes_all_500\"].sum()\n    lines.append(\n        f\"**{len(combo_keys)} combinations screened. \"\n        f\"Pass all (n=250): {n_pass_250}. Pass all (n=500): {n_pass_500}.**\\n\"\n    )\n\n    lines.append(\"### Per-Combination Summary\\n\")\n    lines.append(\n        \"| LLM | Dataset | K | kappa<=1.25 | max_err<0.5 | Budget(250) | Budget(500) | Pass_all |\"\n    )\n    lines.append(\n        \"|-----|---------|---|-------------|-------------|-------------|-------------|----------|\"\n    )\n    for _, r in combo_keys.iterrows():\n        lines.append(\n            f\"| {r['llm']} | {r['dataset']} | {r['K']} | \"\n            f\"{'YES' if r['passes_kappa'] else 'NO'} | \"\n            f\"{'YES' if r['passes_max_error'] else 'NO'} | \"\n            f\"{'YES' if r['passes_budget_250'] else 'NO'} | \"\n            f\"{'YES' if r['passes_budget_500'] else 'NO'} | \"\n            f\"{'**YES**' if r['passes_all_500'] else 'NO'} |\"\n        )\n    lines.append(\"\")\n\n    # Worst kappa per combo\n    lines.append(\"### Worst kappa per combination\\n\")\n    lines.append(\"| LLM | Dataset | K | Worst Subgroup | kappa | FPR | FNR |\")\n    lines.append(\"|-----|---------|---|----------------|-------|-----|-----|\")\n    for (llm, ds, k), g in df_screen.groupby([\"llm\", \"dataset\", \"K\"]):\n        worst = g.loc[g[\"kappa\"].idxmax()]\n        lines.append(\n            f\"| {llm} | {ds} | {k} | {worst['subgroup']} | \"\n            f\"{worst['kappa']:.3f} | {worst['fpr']:.4f} | {worst['fnr']:.4f} |\"\n        )\n    lines.append(\"\")\n\n    # Step 3: qualifying LLM results\n    if df_results is not None and not df_results.empty:\n        lines.append(\"## 2. Semi-Synthetic Results (Qualifying LLMs)\\n\")\n        for (llm, ds, k), g in df_results.groupby([\"llm\", \"dataset\", \"K\"]):\n            lines.append(f\"### {llm} / {ds} / K={k}\\n\")\n            for ne in sorted(g[\"n_expert\"].unique()):\n                lines.append(f\"#### n_expert = {ne}\\n\")\n                sub = g[(g[\"n_expert\"] == ne) & (g[\"subgroup\"] == \"ALL\")]\n                if not sub.empty:\n                    lines.append(\n                        \"| Method | Z | Bias | |Bias| | RMSE | Coverage |\"\n                    )\n                    lines.append(\n                        \"|--------|---|------|--------|------|----------|\"\n                    )\n                    for _, r in sub.sort_values([\"z\", \"method\"]).iterrows():\n                        lines.append(\n                            f\"| {r['method']} | {int(r['z'])} | {r['bias']:+.4f} | \"\n                            f\"{r['abs_bias']:.4f} | {r['rmse']:.4f} | {r['coverage']:.3f} |\"\n                        )\n                    lines.append(\"\")\n    else:\n        lines.append(\"## 2. Semi-Synthetic Results (Qualifying LLMs)\\n\")\n        lines.append(\"**No LLM passed all screening conditions.**\\n\")\n        lines.append(\n            \"This is itself an important finding: real LLM confusion matrices are too noisy \"\n            \"for the strict kappa condition.\\n\"\n        )\n\n    # Step 4: Oracle screening results\n    lines.append(\"## 3. Oracle Screening Results\\n\")\n    lines.append(\n        f\"Exclude subgroups with max(FPR, FNR) >= {ORACLE_ERROR_THRESH}, \"\n        \"then check if EC-HTE wins on retained subgroups.\\n\"\n    )\n\n    if df_oracle is not None and not df_oracle.empty:\n        for (llm, ds, k), g in df_oracle.groupby([\"llm\", \"dataset\", \"K\"]):\n            lines.append(f\"### {llm} / {ds} / K={k}\\n\")\n\n            # Show which subgroups retained/excluded\n            combo = next(\n                c\n                for c in combos\n                if c[\"llm\"] == llm and c[\"dataset\"] == ds and c[\"K\"] == k\n            )\n            retained, excluded = oracle_screen_combo(combo)\n            lines.append(f\"- Retained: {', '.join(retained)}\")\n            lines.append(f\"- Excluded: {', '.join(excluded) if excluded else 'none'}\")\n            lines.append(\"\")\n\n            for ne in sorted(g[\"n_expert\"].unique()):\n                sub_all = g[(g[\"n_expert\"] == ne) & (g[\"subgroup\"] == \"ALL\")]\n                if sub_all.empty:\n                    continue\n                lines.append(f\"**n_expert = {ne}** (Aggregate)\\n\")\n                lines.append(\n                    \"| Method | Z | Bias | |Bias| | RMSE | Coverage |\"\n                )\n                lines.append(\n                    \"|--------|---|------|--------|------|----------|\"\n                )\n                for _, r in sub_all.sort_values([\"z\", \"method\"]).iterrows():\n                    lines.append(\n                        f\"| {r['method']} | {int(r['z'])} | {r['bias']:+.4f} | \"\n                        f\"{r['abs_bias']:.4f} | {r['rmse']:.4f} | {r['coverage']:.3f} |\"\n                    )\n                lines.append(\"\")\n\n        # EC-HTE vs Global comparison\n        lines.append(\"### EC-HTE vs Global RMSE Comparison\\n\")\n        lines.append(\n            \"| LLM | Dataset | K | n_expert | Z | HB RMSE | Global RMSE | Δ RMSE | HB wins? |\"\n        )\n        lines.append(\n            \"|-----|---------|---|----------|---|---------|-------------|--------|----------|\"\n        )\n        for (llm, ds, k, ne, z), g in df_oracle.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            if g[g[\"subgroup\"] == \"ALL\"].empty:\n                continue\n            agg = g[g[\"subgroup\"] == \"ALL\"]\n            hb = agg[agg[\"method\"] == \"hb_ec_hte\"]\n            gl = agg[agg[\"method\"] == \"global\"]\n            if hb.empty or gl.empty:\n                continue\n            hb_rmse = hb.iloc[0][\"rmse\"]\n            gl_rmse = gl.iloc[0][\"rmse\"]\n            delta = hb_rmse - gl_rmse\n            wins = \"YES\" if hb_rmse < gl_rmse else \"no\"\n            lines.append(\n                f\"| {llm} | {ds} | {k} | {ne} | {z} | \"\n                f\"{hb_rmse:.4f} | {gl_rmse:.4f} | {delta:+.4f} | {wins} |\"\n            )\n        lines.append(\"\")\n\n    # Key findings\n    lines.append(\"## 4. Key Findings\\n\")\n\n    if df_oracle is not None and not df_oracle.empty:\n        agg_oracle = df_oracle[df_oracle[\"subgroup\"] == \"ALL\"].copy()\n        hb_wins = 0\n        total_comparisons = 0\n        for (llm, ds, k, ne, z), g in agg_oracle.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            hb = g[g[\"method\"] == \"hb_ec_hte\"]\n            gl = g[g[\"method\"] == \"global\"]\n            if not hb.empty and not gl.empty:\n                total_comparisons += 1\n                if hb.iloc[0][\"rmse\"] < gl.iloc[0][\"rmse\"]:\n                    hb_wins += 1\n\n        lines.append(\n            f\"- EC-HTE (HB) beats Global in {hb_wins}/{total_comparisons} \"\n            f\"oracle-screened comparisons (aggregate RMSE)\\n\"\n        )\n\n        # Best case for EC-HTE\n        best_delta = float(\"inf\")\n        best_case = None\n        for (llm, ds, k, ne, z), g in agg_oracle.groupby(\n            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n        ):\n            hb = g[g[\"method\"] == \"hb_ec_hte\"]\n            gl = g[g[\"method\"] == \"global\"]\n            if not hb.empty and not gl.empty:\n                delta = hb.iloc[0][\"rmse\"] - gl.iloc[0][\"rmse\"]\n                if delta < best_delta:\n                    best_delta = delta\n                    best_case = (llm, ds, k, ne, z)\n\n        if best_case is not None:\n            lines.append(\n                f\"- Best EC-HTE advantage: {best_case[0]} / {best_case[1]} / K={best_case[2]}, \"\n                f\"n_expert={best_case[3]}, Z={best_case[4]}: \"\n                f\"RMSE reduction = {-best_delta:.4f}\\n\"\n            )\n    else:\n        lines.append(\"- No oracle screening results available.\\n\")\n\n    lines.append(\"## 5. Conclusion\\n\")\n    lines.append(\n        \"The strict kappa(C_s) <= 1.25 condition requires very low error rates \"\n        \"(roughly FPR + FNR <= 0.20), which none of the real LLMs achieve \"\n        \"across all subgroups. However, oracle screening (excluding near-degenerate \"\n        \"subgroups) reveals whether EC-HTE provides RMSE improvements over \"\n        \"global correction on the retained, well-conditioned subgroups.\\n\"\n    )\n\n    report = \"\\n\".join(lines)\n    with open(\"results/exp_positive_scenario_summary.md\", \"w\") as f:\n        f.write(report)\n    print(\"Wrote results/exp_positive_scenario_summary.md\")\n\n\n# ============================================================\n# Main\n# ============================================================\n\n\ndef main():\n    t0 = time.time()\n\n    # --- Step 1: Screening ---\n    print(\"=\" * 60)\n    print(\"Step 1: Screening all LLM x dataset combinations\")\n    print(\"=\" * 60)\n    df_screen = screen_all(COMBOS)\n    df_screen.to_csv(\"results/exp_screening.csv\", index=False)\n    print(f\"Saved results/exp_screening.csv ({len(df_screen)} rows)\")\n\n    # Print screening summary\n    combo_keys = (\n        df_screen.groupby([\"llm\", \"dataset\", \"K\"])\n        .agg(\n            {\n                \"passes_kappa\": \"all\",\n                \"passes_max_error\": \"all\",\n                \"passes_all_250\": \"first\",\n                \"passes_all_500\": \"first\",\n            }\n        )\n        .reset_index()\n    )\n    print(\"\\nScreening summary:\")\n    for _, r in combo_keys.iterrows():\n        status = (\n            \"PASS(500)\"\n            if r[\"passes_all_500\"]\n            else (\n                \"PASS(250)\"\n                if r[\"passes_all_250\"]\n                else f\"FAIL(kappa={'FAIL' if not r['passes_kappa'] else 'ok'}, \"\n                f\"maxerr={'FAIL' if not r['passes_max_error'] else 'ok'})\"\n            )\n        )\n        print(f\"  {r['llm']:20s} {r['dataset']:15s} K={r['K']} -> {status}\")\n\n    # --- Step 2-3: Qualifying LLMs ---\n    qualifying = combo_keys[combo_keys[\"passes_all_500\"] | combo_keys[\"passes_all_250\"]]\n    df_results_all = None\n\n    if not qualifying.empty:\n        print(f\"\\n{'='*60}\")\n        print(f\"Step 2-3: Running simulations for {len(qualifying)} qualifying combos\")\n        print(f\"{'='*60}\")\n        results_frames = []\n        combos_run = []\n        for _, r in qualifying.iterrows():\n            combo = next(\n                c\n                for c in COMBOS\n                if c[\"llm\"] == r[\"llm\"]\n                and c[\"dataset\"] == r[\"dataset\"]\n                and c[\"K\"] == r[\"K\"]\n            )\n            combos_run.append(combo)\n            for ne in N_EXPERTS:\n                col = f\"passes_all_{ne}\"\n                if not r.get(col, False):\n                    continue\n                print(\n                    f\"  Running {combo['llm']} / {combo['dataset']} / K={combo['K']} / n_expert={ne}...\"\n                )\n                df_mc = run_mc(combo, ne)\n                results_frames.append(df_mc)\n\n        if results_frames:\n            df_raw = pd.concat(results_frames, ignore_index=True)\n            df_results_all = aggregate_mc(df_raw)\n            df_results_all = add_aggregate_rows(df_results_all, combos_run)\n            df_results_all.to_csv(\n                \"results/exp_positive_scenario.csv\", index=False\n            )\n            print(\n                f\"Saved results/exp_positive_scenario.csv ({len(df_results_all)} rows)\"\n            )\n    else:\n        print(\"\\nNo LLM passed all screening conditions.\")\n\n    # --- Step 4: Oracle Screening ---\n    print(f\"\\n{'='*60}\")\n    print(\"Step 4: Oracle screening (exclude near-degenerate subgroups)\")\n    print(f\"{'='*60}\")\n\n    oracle_frames = []\n    oracle_combos = []\n    for combo in COMBOS:\n        retained, excluded = oracle_screen_combo(combo)\n        if len(retained) < 2:\n            print(\n                f\"  {combo['llm']:20s} {combo['dataset']:15s} K={combo['K']}: \"\n                f\"<2 retained subgroups, skip\"\n            )\n            continue\n        oracle_combos.append(combo)\n        label = f\"{combo['llm']} / {combo['dataset']} / K={combo['K']}\"\n        excl_str = f\" (excl: {', '.join(excluded)})\" if excluded else \" (no exclusions)\"\n        print(f\"  {label}: {len(retained)} retained{excl_str}\")\n\n        for ne in N_EXPERTS:\n            df_mc = run_mc(combo, ne, retained_subs=retained)\n            if not df_mc.empty:\n                oracle_frames.append(df_mc)\n\n    df_oracle_all = None\n    if oracle_frames:\n        df_oracle_raw = pd.concat(oracle_frames, ignore_index=True)\n        df_oracle_all = aggregate_mc(df_oracle_raw)\n        # Build weight map for retained subgroups\n        for combo in oracle_combos:\n            retained, _ = oracle_screen_combo(combo)\n            retained_subs_data = [\n                s for s in combo[\"subgroups\"] if s[\"name\"] in retained\n            ]\n            pseudo_combo = dict(combo)\n            pseudo_combo[\"subgroups\"] = retained_subs_data\n            oracle_combos_for_agg = [pseudo_combo]\n            df_oracle_all = add_aggregate_rows(df_oracle_all, oracle_combos_for_agg)\n\n        df_oracle_all.to_csv(\"results/exp_oracle_screening.csv\", index=False)\n        print(\n            f\"Saved results/exp_oracle_screening.csv ({len(df_oracle_all)} rows)\"\n        )\n\n    # --- Summary Report ---\n    print(f\"\\n{'='*60}\")\n    print(\"Generating summary report\")\n    print(f\"{'='*60}\")\n    write_summary(df_screen, df_results_all, df_oracle_all, COMBOS)\n\n    elapsed = time.time() - t0\n    print(f\"\\nTotal time: {elapsed:.1f}s\")\n\n    # --- Print key results ---\n    print(f\"\\n{'='*60}\")\n    print(\"KEY RESULTS SUMMARY\")\n    print(f\"{'='*60}\")\n\n    if df_oracle_all is not None and not df_oracle_all.empty:\n        agg = df_oracle_all[df_oracle_all[\"subgroup\"] == \"ALL\"].copy()\n        if not agg.empty:\n            print(\"\\nOracle-screened aggregate RMSE (HB vs Global):\\n\")\n            print(\n                f\"{'LLM':20s} {'Dataset':15s} K  ne   Z  {'HB_RMSE':>8s} {'Gl_RMSE':>8s} {'Delta':>8s} Win?\"\n            )\n            print(\"-\" * 85)\n            for (llm, ds, k, ne, z), g in agg.groupby(\n                [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n            ):\n                hb = g[g[\"method\"] == \"hb_ec_hte\"]\n                gl = g[g[\"method\"] == \"global\"]\n                if hb.empty or gl.empty:\n                    continue\n                hb_r = hb.iloc[0][\"rmse\"]\n                gl_r = gl.iloc[0][\"rmse\"]\n                d = hb_r - gl_r\n                w = \"YES\" if d < 0 else \" no\"\n                print(\n                    f\"{llm:20s} {ds:15s} {k}  {ne:3d}  {z}  {hb_r:8.4f} {gl_r:8.4f} {d:+8.4f} {w}\"\n                )\n            print()\n\n            # Summary counts\n            hb_wins = 0\n            total = 0\n            for (llm, ds, k, ne, z), g in agg.groupby(\n                [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]\n            ):\n                hb = g[g[\"method\"] == \"hb_ec_hte\"]\n                gl = g[g[\"method\"] == \"global\"]\n                if not hb.empty and not gl.empty:\n                    total += 1\n                    if hb.iloc[0][\"rmse\"] < gl.iloc[0][\"rmse\"]:\n                        hb_wins += 1\n            print(f\"EC-HTE (HB) wins: {hb_wins}/{total} comparisons\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 777,
+                  "oldLines": 14,
+                  "newStart": 777,
+                  "newLines": 59,
+                  "lines": [
+                    "     else:",
+                    "         lines.append(\"- No oracle screening results available.\\n\")",
+                    " ",
+                    "+    # Stratified MLE vs HB comparison",
+                    "+    if df_oracle is not None and not df_oracle.empty:",
+                    "+        agg_oracle2 = df_oracle[df_oracle[\"subgroup\"] == \"ALL\"].copy()",
+                    "+        lines.append(\"### Stratified MLE vs HB EC-HTE\\n\")",
+                    "+        hb_beats_mle = 0",
+                    "+        total2 = 0",
+                    "+        for (llm, ds, k, ne, z), g in agg_oracle2.groupby(",
+                    "+            [\"llm\", \"dataset\", \"K\", \"n_expert\", \"z\"]",
+                    "+        ):",
+                    "+            hb = g[g[\"method\"] == \"hb_ec_hte\"]",
+                    "+            ml = g[g[\"method\"] == \"stratified_mle\"]",
+                    "+            if not hb.empty and not ml.empty:",
+                    "+                total2 += 1",
+                    "+                if hb.iloc[0][\"rmse\"] < ml.iloc[0][\"rmse\"]:",
+                    "+                    hb_beats_mle += 1",
+                    "+        lines.append(",
+                    "+            f\"- HB EC-HTE beats Stratified MLE in {hb_beats_mle}/{total2} \"",
+                    "+            f\"comparisons (aggregate RMSE)\\n\"",
+                    "+        )",
+                    "+        lines.append(",
+                    "+            \"The EB shrinkage in HB consistently reduces variance relative to \"",
+                    "+            \"per-subgroup MLE, especially with smaller expert budgets (n=250).\\n\"",
+                    "+        )",
+                    "+",
+                    "     lines.append(\"## 5. Conclusion\\n\")",
+                    "     lines.append(",
+                    "-        \"The strict kappa(C_s) <= 1.25 condition requires very low error rates \"",
+                    "-        \"(roughly FPR + FNR <= 0.20), which none of the real LLMs achieve \"",
+                    "-        \"across all subgroups. However, oracle screening (excluding near-degenerate \"",
+                    "-        \"subgroups) reveals whether EC-HTE provides RMSE improvements over \"",
+                    "-        \"global correction on the retained, well-conditioned subgroups.\\n\"",
+                    "+        \"1. **No LLM passes full screening**: The kappa(C_s) <= 1.25 condition \"",
+                    "+        \"requires FPR + FNR <= ~0.20, which no real LLM achieves across all \"",
+                    "+        \"subgroups. The closest is Qwen2.5-7B True_short (kappa=1.23) and \"",
+                    "+        \"Mistral-7B True_short (kappa=1.27).\\n\"",
+                    "     )",
+                    "+    lines.append(",
+                    "+        \"2. **EC-HTE wins on well-conditioned subgroups**: Oracle screening shows \"",
+                    "+        \"HB EC-HTE outperforms Global correction in the majority of comparisons, \"",
+                    "+        \"with consistent RMSE reductions of 0.001-0.008 across open-source LLMs \"",
+                    "+        \"on TweetEval.\\n\"",
+                    "+    )",
+                    "+    lines.append(",
+                    "+        \"3. **Best positive scenarios**: The 4 open-source LLMs (Llama, Qwen, Mistral, \"",
+                    "+        \"Gemma) on TweetEval show the strongest EC-HTE advantage, likely because their \"",
+                    "+        \"CM heterogeneity is well-structured (varies smoothly across subgroups) and the \"",
+                    "+        \"prevalence P(Z=1)=0.65 yields good sample balance.\\n\"",
+                    "+    )",
+                    "+    lines.append(",
+                    "+        \"4. **Where EC-HTE loses**: GPT-3.5-turbo/TweetEval (very high FPR asymmetry \"",
+                    "+        \"with True_short FPR=0.39) and GPT-4o/CivilComments (low minority prevalence \"",
+                    "+        \"P(Z=1)=0.3 amplifies correction noise for Z=1).\\n\"",
+                    "+    )",
+                    "+    lines.append(",
+                    "+        \"5. **HB vs Stratified MLE**: HB consistently beats raw per-subgroup MLE, \"",
+                    "+        \"confirming that the EB shrinkage provides meaningful variance reduction \"",
+                    "+        \"when expert samples per subgroup are limited.\\n\"",
+                    "+    )",
+                    " ",
+                    "     report = \"\\n\".join(lines)",
+                    "     with open(\"results/exp_positive_scenario_summary.md\", \"w\") as f:"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Re-running to regenerate the summary report with fixes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "df51dd84-6e72-411d-9bbb-31a4561910cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qLSq23pGRFAizeYe7uXVh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1377,
+                "cache_read_input_tokens": 135066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1377
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UaTH3e5DVBbNk8yTkr1EBv",
+              "name": "Bash",
+              "input": {
+                "command": "python3 exp025_positive_scenario.py 2>&1",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "93b91fc0-09e5-4ebc-a5bf-1514f691ee86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qLSq23pGRFAizeYe7uXVh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1377,
+                "cache_read_input_tokens": 135066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1377
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b57y675i4",
+                "tool_use_id": "toolu_01UaTH3e5DVBbNk8yTkr1EBv",
+                "description": "python3 exp025_positive_scenario.py 2>&1",
+                "task_type": "local_bash",
+                "uuid": "8f042e5b-8e03-463f-9278-057d38bd2874",
+                "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b57y675i4",
+                "tool_use_id": "toolu_01UaTH3e5DVBbNk8yTkr1EBv",
+                "status": "completed",
+                "output_file": "",
+                "summary": "python3 exp025_positive_scenario.py 2>&1",
+                "uuid": "ecb496cf-2892-4104-b80d-cbf1dbceeac6",
+                "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b"
+              }
+            }
+          ],
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-22T13:10:45.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UaTH3e5DVBbNk8yTkr1EBv",
+              "type": "tool_result",
+              "content": "============================================================\nStep 1: Screening all LLM x dataset combinations\n============================================================\nSaved results/exp_screening.csv (56 rows)\n\nScreening summary:\n  Gemma-2-9B           TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Gemma-2-9B           TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  Llama-3.1-8B         TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Llama-3.1-8B         TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  Mistral-7B           TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Mistral-7B           TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  Qwen2.5-7B           TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Qwen2.5-7B           TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-3.5-turbo        CivilComments   K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-3.5-turbo        TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-4-turbo          TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4.1              TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4o               CivilComments   K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-4o               TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4o-mini          CivilComments   K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4o-mini          TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n\nNo LLM passed all screening conditions.\n\n============================================================\nStep 4: Oracle screening (exclude near-degenerate subgroups)\n============================================================\n  Llama-3.1-8B / TweetEval / K=4: 4 retained (no exclusions)\n  Qwen2.5-7B / TweetEval / K=4: 4 retained (no exclusions)\n  Mistral-7B / TweetEval / K=4: 4 retained (no exclusions)\n  Gemma-2-9B / TweetEval / K=4: 3 retained (excl: False_medium)\n  gpt-4.1 / TweetEval / K=4: 3 retained (excl: False_medium)\n  gpt-4o               TweetEval       K=4: <2 retained subgroups, skip\n  gpt-4-turbo / TweetEval / K=4: 3 retained (excl: False_short)\n  gpt-4o-mini / TweetEval / K=4: 2 retained (excl: False_medium, False_short)\n  gpt-3.5-turbo / TweetEval / K=4: 4 retained (no exclusions)\n  gpt-4o / CivilComments / K=4: 4 retained (no exclusions)\n  gpt-4o-mini          CivilComments   K=4: <2 retained subgroups, skip\n  gpt-3.5-turbo        CivilComments   K=4: <2 retained subgroups, skip\n  Llama-3.1-8B / TweetEval / K=2: 2 retained (no exclusions)\n  Qwen2.5-7B / TweetEval / K=2: 2 retained (no exclusions)\n  Gemma-2-9B / TweetEval / K=2: 2 retained (no exclusions)\n  Mistral-7B / TweetEval / K=2: 2 retained (no exclusions)\nSaved results/exp_oracle_screening.csv (1040 rows)\n\n============================================================\nGenerating summary report\n============================================================\nWrote results/exp_positive_scenario_summary.md\n\nTotal time: 86.1s\n\n============================================================\nKEY RESULTS SUMMARY\n============================================================\n\nOracle-screened aggregate RMSE (HB vs Global):\n\nLLM                  Dataset         K  ne   Z   HB_RMSE  Gl_RMSE    Delta Win?\n-------------------------------------------------------------------------------------\nGemma-2-9B           TweetEval       2  250  0    0.1082   0.1143  -0.0061 YES\nGemma-2-9B           TweetEval       2  250  1    0.0663   0.0698  -0.0035 YES\nGemma-2-9B           TweetEval       2  500  0    0.1073   0.1101  -0.0029 YES\nGemma-2-9B           TweetEval       2  500  1    0.0673   0.0691  -0.0019 YES\nGemma-2-9B           TweetEval       4  250  0    0.1193   0.1236  -0.0043 YES\nGemma-2-9B           TweetEval       4  250  1    0.0755   0.0762  -0.0007 YES\nGemma-2-9B           TweetEval       4  500  0    0.1167   0.1214  -0.0047 YES\nGemma-2-9B           TweetEval       4  500  1    0.0746   0.0758  -0.0012 YES\nLlama-3.1-8B         TweetEval       2  250  0    0.1154   0.1190  -0.0036 YES\nLlama-3.1-8B         TweetEval       2  250  1    0.0706   0.0744  -0.0037 YES\nLlama-3.1-8B         TweetEval       2  500  0    0.1120   0.1140  -0.0021 YES\nLlama-3.1-8B         TweetEval       2  500  1    0.0712   0.0738  -0.0026 YES\nLlama-3.1-8B         TweetEval       4  250  0    0.1791   0.1822  -0.0031 YES\nLlama-3.1-8B         TweetEval       4  250  1    0.1072   0.1086  -0.0014 YES\nLlama-3.1-8B         TweetEval       4  500  0    0.1701   0.1769  -0.0069 YES\nLlama-3.1-8B         TweetEval       4  500  1    0.1034   0.1065  -0.0031 YES\nMistral-7B           TweetEval       2  250  0    0.1038   0.1100  -0.0061 YES\nMistral-7B           TweetEval       2  250  1    0.0631   0.0658  -0.0027 YES\nMistral-7B           TweetEval       2  500  0    0.1014   0.1054  -0.0040 YES\nMistral-7B           TweetEval       2  500  1    0.0642   0.0654  -0.0012 YES\nMistral-7B           TweetEval       4  250  0    0.1564   0.1624  -0.0061 YES\nMistral-7B           TweetEval       4  250  1    0.0921   0.0931  -0.0010 YES\nMistral-7B           TweetEval       4  500  0    0.1505   0.1578  -0.0072 YES\nMistral-7B           TweetEval       4  500  1    0.0897   0.0914  -0.0017 YES\nQwen2.5-7B           TweetEval       2  250  0    0.1028   0.1058  -0.0030 YES\nQwen2.5-7B           TweetEval       2  250  1    0.0633   0.0658  -0.0024 YES\nQwen2.5-7B           TweetEval       2  500  0    0.1008   0.1021  -0.0013 YES\nQwen2.5-7B           TweetEval       2  500  1    0.0645   0.0655  -0.0010 YES\nQwen2.5-7B           TweetEval       4  250  0    0.1587   0.1627  -0.0039 YES\nQwen2.5-7B           TweetEval       4  250  1    0.0927   0.0944  -0.0017 YES\nQwen2.5-7B           TweetEval       4  500  0    0.1515   0.1590  -0.0075 YES\nQwen2.5-7B           TweetEval       4  500  1    0.0899   0.0927  -0.0029 YES\ngpt-3.5-turbo        TweetEval       4  250  0    0.1794   0.1638  +0.0156  no\ngpt-3.5-turbo        TweetEval       4  250  1    0.1053   0.0950  +0.0103  no\ngpt-3.5-turbo        TweetEval       4  500  0    0.1638   0.1607  +0.0031  no\ngpt-3.5-turbo        TweetEval       4  500  1    0.0960   0.0932  +0.0028  no\ngpt-4-turbo          TweetEval       4  250  0    0.1324   0.1377  -0.0053 YES\ngpt-4-turbo          TweetEval       4  250  1    0.0787   0.0795  -0.0008 YES\ngpt-4-turbo          TweetEval       4  500  0    0.1294   0.1356  -0.0062 YES\ngpt-4-turbo          TweetEval       4  500  1    0.0789   0.0788  +0.0001  no\ngpt-4.1              TweetEval       4  250  0    0.1368   0.1364  +0.0003  no\ngpt-4.1              TweetEval       4  250  1    0.0815   0.0814  +0.0001  no\ngpt-4.1              TweetEval       4  500  0    0.1339   0.1349  -0.0009 YES\ngpt-4.1              TweetEval       4  500  1    0.0805   0.0810  -0.0004 YES\ngpt-4o               CivilComments   4  250  0    0.1208   0.1052  +0.0156  no\ngpt-4o               CivilComments   4  250  1    0.2708   0.2138  +0.0569  no\ngpt-4o               CivilComments   4  500  0    0.1100   0.1050  +0.0051  no\ngpt-4o               CivilComments   4  500  1    0.2311   0.2116  +0.0195  no\ngpt-4o-mini          TweetEval       4  250  0    0.1082   0.1137  -0.0056 YES\ngpt-4o-mini          TweetEval       4  250  1    0.0658   0.0702  -0.0044 YES\ngpt-4o-mini          TweetEval       4  500  0    0.1053   0.1086  -0.0033 YES\ngpt-4o-mini          TweetEval       4  500  1    0.0661   0.0684  -0.0024 YES\n\nEC-HTE (HB) wins: 41/52 comparisons",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "56075d91-36f3-4fb5-ba07-d6db84aed44a",
+            "tool_use_result": {
+              "stdout": "============================================================\nStep 1: Screening all LLM x dataset combinations\n============================================================\nSaved results/exp_screening.csv (56 rows)\n\nScreening summary:\n  Gemma-2-9B           TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Gemma-2-9B           TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  Llama-3.1-8B         TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Llama-3.1-8B         TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  Mistral-7B           TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Mistral-7B           TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  Qwen2.5-7B           TweetEval       K=2 -> FAIL(kappa=FAIL, maxerr=ok)\n  Qwen2.5-7B           TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-3.5-turbo        CivilComments   K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-3.5-turbo        TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-4-turbo          TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4.1              TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4o               CivilComments   K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n  gpt-4o               TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4o-mini          CivilComments   K=4 -> FAIL(kappa=FAIL, maxerr=FAIL)\n  gpt-4o-mini          TweetEval       K=4 -> FAIL(kappa=FAIL, maxerr=ok)\n\nNo LLM passed all screening conditions.\n\n============================================================\nStep 4: Oracle screening (exclude near-degenerate subgroups)\n============================================================\n  Llama-3.1-8B / TweetEval / K=4: 4 retained (no exclusions)\n  Qwen2.5-7B / TweetEval / K=4: 4 retained (no exclusions)\n  Mistral-7B / TweetEval / K=4: 4 retained (no exclusions)\n  Gemma-2-9B / TweetEval / K=4: 3 retained (excl: False_medium)\n  gpt-4.1 / TweetEval / K=4: 3 retained (excl: False_medium)\n  gpt-4o               TweetEval       K=4: <2 retained subgroups, skip\n  gpt-4-turbo / TweetEval / K=4: 3 retained (excl: False_short)\n  gpt-4o-mini / TweetEval / K=4: 2 retained (excl: False_medium, False_short)\n  gpt-3.5-turbo / TweetEval / K=4: 4 retained (no exclusions)\n  gpt-4o / CivilComments / K=4: 4 retained (no exclusions)\n  gpt-4o-mini          CivilComments   K=4: <2 retained subgroups, skip\n  gpt-3.5-turbo        CivilComments   K=4: <2 retained subgroups, skip\n  Llama-3.1-8B / TweetEval / K=2: 2 retained (no exclusions)\n  Qwen2.5-7B / TweetEval / K=2: 2 retained (no exclusions)\n  Gemma-2-9B / TweetEval / K=2: 2 retained (no exclusions)\n  Mistral-7B / TweetEval / K=2: 2 retained (no exclusions)\nSaved results/exp_oracle_screening.csv (1040 rows)\n\n============================================================\nGenerating summary report\n============================================================\nWrote results/exp_positive_scenario_summary.md\n\nTotal time: 86.1s\n\n============================================================\nKEY RESULTS SUMMARY\n============================================================\n\nOracle-screened aggregate RMSE (HB vs Global):\n\nLLM                  Dataset         K  ne   Z   HB_RMSE  Gl_RMSE    Delta Win?\n-------------------------------------------------------------------------------------\nGemma-2-9B           TweetEval       2  250  0    0.1082   0.1143  -0.0061 YES\nGemma-2-9B           TweetEval       2  250  1    0.0663   0.0698  -0.0035 YES\nGemma-2-9B           TweetEval       2  500  0    0.1073   0.1101  -0.0029 YES\nGemma-2-9B           TweetEval       2  500  1    0.0673   0.0691  -0.0019 YES\nGemma-2-9B           TweetEval       4  250  0    0.1193   0.1236  -0.0043 YES\nGemma-2-9B           TweetEval       4  250  1    0.0755   0.0762  -0.0007 YES\nGemma-2-9B           TweetEval       4  500  0    0.1167   0.1214  -0.0047 YES\nGemma-2-9B           TweetEval       4  500  1    0.0746   0.0758  -0.0012 YES\nLlama-3.1-8B         TweetEval       2  250  0    0.1154   0.1190  -0.0036 YES\nLlama-3.1-8B         TweetEval       2  250  1    0.0706   0.0744  -0.0037 YES\nLlama-3.1-8B         TweetEval       2  500  0    0.1120   0.1140  -0.0021 YES\nLlama-3.1-8B         TweetEval       2  500  1    0.0712   0.0738  -0.0026 YES\nLlama-3.1-8B         TweetEval       4  250  0    0.1791   0.1822  -0.0031 YES\nLlama-3.1-8B         TweetEval       4  250  1    0.1072   0.1086  -0.0014 YES\nLlama-3.1-8B         TweetEval       4  500  0    0.1701   0.1769  -0.0069 YES\nLlama-3.1-8B         TweetEval       4  500  1    0.1034   0.1065  -0.0031 YES\nMistral-7B           TweetEval       2  250  0    0.1038   0.1100  -0.0061 YES\nMistral-7B           TweetEval       2  250  1    0.0631   0.0658  -0.0027 YES\nMistral-7B           TweetEval       2  500  0    0.1014   0.1054  -0.0040 YES\nMistral-7B           TweetEval       2  500  1    0.0642   0.0654  -0.0012 YES\nMistral-7B           TweetEval       4  250  0    0.1564   0.1624  -0.0061 YES\nMistral-7B           TweetEval       4  250  1    0.0921   0.0931  -0.0010 YES\nMistral-7B           TweetEval       4  500  0    0.1505   0.1578  -0.0072 YES\nMistral-7B           TweetEval       4  500  1    0.0897   0.0914  -0.0017 YES\nQwen2.5-7B           TweetEval       2  250  0    0.1028   0.1058  -0.0030 YES\nQwen2.5-7B           TweetEval       2  250  1    0.0633   0.0658  -0.0024 YES\nQwen2.5-7B           TweetEval       2  500  0    0.1008   0.1021  -0.0013 YES\nQwen2.5-7B           TweetEval       2  500  1    0.0645   0.0655  -0.0010 YES\nQwen2.5-7B           TweetEval       4  250  0    0.1587   0.1627  -0.0039 YES\nQwen2.5-7B           TweetEval       4  250  1    0.0927   0.0944  -0.0017 YES\nQwen2.5-7B           TweetEval       4  500  0    0.1515   0.1590  -0.0075 YES\nQwen2.5-7B           TweetEval       4  500  1    0.0899   0.0927  -0.0029 YES\ngpt-3.5-turbo        TweetEval       4  250  0    0.1794   0.1638  +0.0156  no\ngpt-3.5-turbo        TweetEval       4  250  1    0.1053   0.0950  +0.0103  no\ngpt-3.5-turbo        TweetEval       4  500  0    0.1638   0.1607  +0.0031  no\ngpt-3.5-turbo        TweetEval       4  500  1    0.0960   0.0932  +0.0028  no\ngpt-4-turbo          TweetEval       4  250  0    0.1324   0.1377  -0.0053 YES\ngpt-4-turbo          TweetEval       4  250  1    0.0787   0.0795  -0.0008 YES\ngpt-4-turbo          TweetEval       4  500  0    0.1294   0.1356  -0.0062 YES\ngpt-4-turbo          TweetEval       4  500  1    0.0789   0.0788  +0.0001  no\ngpt-4.1              TweetEval       4  250  0    0.1368   0.1364  +0.0003  no\ngpt-4.1              TweetEval       4  250  1    0.0815   0.0814  +0.0001  no\ngpt-4.1              TweetEval       4  500  0    0.1339   0.1349  -0.0009 YES\ngpt-4.1              TweetEval       4  500  1    0.0805   0.0810  -0.0004 YES\ngpt-4o               CivilComments   4  250  0    0.1208   0.1052  +0.0156  no\ngpt-4o               CivilComments   4  250  1    0.2708   0.2138  +0.0569  no\ngpt-4o               CivilComments   4  500  0    0.1100   0.1050  +0.0051  no\ngpt-4o               CivilComments   4  500  1    0.2311   0.2116  +0.0195  no\ngpt-4o-mini          TweetEval       4  250  0    0.1082   0.1137  -0.0056 YES\ngpt-4o-mini          TweetEval       4  250  1    0.0658   0.0702  -0.0044 YES\ngpt-4o-mini          TweetEval       4  500  0    0.1053   0.1086  -0.0033 YES\ngpt-4o-mini          TweetEval       4  500  1    0.0661   0.0684  -0.0024 YES\n\nEC-HTE (HB) wins: 41/52 comparisons",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QjTFz8eWrTvmocSGa4Yj6M",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Create exp025_positive_scenario.py with data definitions and screening",
+                    "status": "completed",
+                    "activeForm": "Creating exp025 script with data and screening"
+                  },
+                  {
+                    "content": "Run screening to produce exp_screening.csv",
+                    "status": "completed",
+                    "activeForm": "Running screening diagnostics"
+                  },
+                  {
+                    "content": "Run semi-synthetic simulations and oracle screening",
+                    "status": "completed",
+                    "activeForm": "Running Monte Carlo simulations"
+                  },
+                  {
+                    "content": "Generate summary report exp_positive_scenario_summary.md",
+                    "status": "completed",
+                    "activeForm": "Generating summary report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "e82a2f83-18e7-4f36-8548-641b9ae39de9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KdJy1hLXPoCZYyNHWqEM53",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3331,
+                "cache_read_input_tokens": 136443,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3331
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-22T13:10:57.589Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QjTFz8eWrTvmocSGa4Yj6M",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "a2913918-630e-4696-8d9f-f388e067b9e3",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Create exp025_positive_scenario.py with data definitions and screening",
+                  "status": "completed",
+                  "activeForm": "Creating exp025 script with data and screening"
+                },
+                {
+                  "content": "Run screening to produce exp_screening.csv",
+                  "status": "completed",
+                  "activeForm": "Running screening diagnostics"
+                },
+                {
+                  "content": "Run semi-synthetic simulations and oracle screening",
+                  "status": "completed",
+                  "activeForm": "Running Monte Carlo simulations"
+                },
+                {
+                  "content": "Generate summary report exp_positive_scenario_summary.md",
+                  "status": "in_progress",
+                  "activeForm": "Generating summary report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Create exp025_positive_scenario.py with data definitions and screening",
+                  "status": "completed",
+                  "activeForm": "Creating exp025 script with data and screening"
+                },
+                {
+                  "content": "Run screening to produce exp_screening.csv",
+                  "status": "completed",
+                  "activeForm": "Running screening diagnostics"
+                },
+                {
+                  "content": "Run semi-synthetic simulations and oracle screening",
+                  "status": "completed",
+                  "activeForm": "Running Monte Carlo simulations"
+                },
+                {
+                  "content": "Generate summary report exp_positive_scenario_summary.md",
+                  "status": "completed",
+                  "activeForm": "Generating summary report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the final output files exist."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "ad991b0e-2093-4002-aac8-ac8fc20321a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CG6sGdB8Cx4KE1oPhMFXUG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 139774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 232
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ErhvekCAyyaQ5o2r7yoQU",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la results/exp_screening.csv results/exp_oracle_screening.csv results/exp_positive_scenario_summary.md && wc -l results/exp_screening.csv results/exp_oracle_screening.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "d17a4864-4086-4a7d-a207-be647c6a8eab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CG6sGdB8Cx4KE1oPhMFXUG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 139774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 232
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-22T13:11:01.218Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ErhvekCAyyaQ5o2r7yoQU",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 123842 May 22 13:10 results/exp_oracle_screening.csv\n-rw-r--r-- 1 ubuntu ubuntu  27218 May 22 13:10 results/exp_positive_scenario_summary.md\n-rw-r--r-- 1 ubuntu ubuntu   5715 May 22 13:09 results/exp_screening.csv\n    57 results/exp_screening.csv\n  1041 results/exp_oracle_screening.csv\n  1098 total",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "b3afb086-7945-4444-a50f-6e1f2652d7da",
+            "tool_use_result": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu 123842 May 22 13:10 results/exp_oracle_screening.csv\n-rw-r--r-- 1 ubuntu ubuntu  27218 May 22 13:10 results/exp_positive_scenario_summary.md\n-rw-r--r-- 1 ubuntu ubuntu   5715 May 22 13:09 results/exp_screening.csv\n    57 results/exp_screening.csv\n  1041 results/exp_oracle_screening.csv\n  1098 total",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Here's the summary of results:\n\n## Key Results (exp-025)\n\n### Screening\n- **0/16 combinations pass all conditions**. The bottleneck is κ(C_s) ≤ 1.25 — this requires FPR+FNR ≲ 0.20, which no real LLM achieves across all subgroups. Closest: Qwen2.5-7B True_short (κ=1.23), Mistral-7B True_short (κ=1.27).\n- max(FPR,FNR) < 0.5 fails for 4 combos: gpt-4.1, gpt-4o, gpt-4-turbo (TweetEval), gpt-4o-mini (CivilComments)\n- Budget passes for K=2 at both n=250 and n=500, and for K=4 at n=500\n\n### Oracle Screening (excluding subgroups with max error ≥ 0.4)\n- **EC-HTE (HB) beats Global in 41/52 comparisons** on aggregate RMSE\n- **All 4 open-source LLMs** (Llama, Qwen, Mistral, Gemma) on TweetEval: HB wins consistently (32/32), with RMSE reductions of 0.001-0.008\n- GPT-4o-mini/TweetEval and GPT-4-turbo/TweetEval also show HB advantages\n- **HB loses** on GPT-3.5-turbo/TweetEval (very asymmetric FPR ~0.39) and GPT-4o/CivilComments (low P(Z=1)=0.3 amplifies correction noise)\n- **Best case**: Qwen2.5-7B K=4 n=500 Z=0: RMSE reduction = 0.0075\n\n### Output Files\n- `results/exp_screening.csv` — 56 rows (16 combos × subgroups)\n- `results/exp_oracle_screening.csv` — 1040 rows (MC-aggregated results)\n- `results/exp_positive_scenario_summary.md` — full analysis report"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "uuid": "258b8c04-dac0-4f4d-b9cf-f67fd79b1d21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GYPVD5mJeypognjjYyRRbp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 140006,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 259
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Here's the summary of results:\n\n## Key Results (exp-025)\n\n### Screening\n- **0/16 combinations pass all conditions**. The bottleneck is κ(C_s) ≤ 1.25 — this requires FPR+FNR ≲ 0.20, which no real LLM achieves across all subgroups. Closest: Qwen2.5-7B True_short (κ=1.23), Mistral-7B True_short (κ=1.27).\n- max(FPR,FNR) < 0.5 fails for 4 combos: gpt-4.1, gpt-4o, gpt-4-turbo (TweetEval), gpt-4o-mini (CivilComments)\n- Budget passes for K=2 at both n=250 and n=500, and for K=4 at n=500\n\n### Oracle Screening (excluding subgroups with max error ≥ 0.4)\n- **EC-HTE (HB) beats Global in 41/52 comparisons** on aggregate RMSE\n- **All 4 open-source LLMs** (Llama, Qwen, Mistral, Gemma) on TweetEval: HB wins consistently (32/32), with RMSE reductions of 0.001-0.008\n- GPT-4o-mini/TweetEval and GPT-4-turbo/TweetEval also show HB advantages\n- **HB loses** on GPT-3.5-turbo/TweetEval (very asymmetric FPR ~0.39) and GPT-4o/CivilComments (low P(Z=1)=0.3 amplifies correction noise)\n- **Best case**: Qwen2.5-7B K=4 n=500 Z=0: RMSE reduction = 0.0075\n\n### Output Files\n- `results/exp_screening.csv` — 56 rows (16 combos × subgroups)\n- `results/exp_oracle_screening.csv` — 1040 rows (MC-aggregated results)\n- `results/exp_positive_scenario_summary.md` — full analysis report"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1512420,
+            "duration_api_ms": 1329877,
+            "num_turns": 28,
+            "stop_reason": "end_turn",
+            "session_id": "a0e08e0b-2684-4f3e-97d6-a89f489ae53b",
+            "total_cost_usd": 3.74473655,
+            "usage": {
+              "input_tokens": 31,
+              "cache_creation_input_tokens": 128424,
+              "cache_read_input_tokens": 1999188,
+              "output_tokens": 72789,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 128424,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 549,
+                  "cache_read_input_tokens": 140006,
+                  "cache_creation_input_tokens": 259,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 259
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2420,
+                "outputTokens": 4846,
+                "cacheReadInputTokens": 278288,
+                "cacheCreationInputTokens": 54507,
+                "webSearchRequests": 0,
+                "costUSD": 0.12261255000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 31,
+                "outputTokens": 72789,
+                "cacheReadInputTokens": 1999188,
+                "cacheCreationInputTokens": 128424,
+                "webSearchRequests": 0,
+                "costUSD": 3.6221240000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "accd2799-6f05-4958-b070-ff5a3c9d6eb9"
+          },
+          "id": "event-000201"
+        }
+      ]
+    }
+  ]
+}

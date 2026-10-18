@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d47a2b33bc06349a88b4",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp005 prep and cleanup",
+  "task_key": "worker_ops_exp005_prep_and_cleanup_20260520T224212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp005_prep_and_cleanup_20260520T224212_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "892c1a3376d58dbb0bdf090d1fe88fb23ca9a6b981b698c6735fac11d6effc86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 任务 A: exp-005 RATE control 数据\n\n- `verified_32b.jsonl`: 100 条，全部有 `double_rewrite_text`\n- Formality 分布: formal=59, casual=41\n- NLI CF >= 0.90 过滤后: **88 条**\n- `data/rate_control_input.jsonl` 已生成，88 条记录\n  - NLI DR: mean=0.9185, min=0.0030, max=0.9990\n  - BERTScore DR: mean=0.8645, min=0.5956, max=1.0000\n  - Formality: formal=50, casual=38\n\n注意：NLI DR 有个别极低值（min=0.003），这些 double_rewrite 与 original 语义一致性较差，RATE control 实验中可能需要额外过滤。\n\n### 任务 B: 清理确认\n\n- `scored_verbosity.jsonl`: 原 100 条**全部** null scores（比预期的 7 条多），已清空为 0 行\n- `pairwise_verbosity.jsonl`: 文件不存在，无需清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

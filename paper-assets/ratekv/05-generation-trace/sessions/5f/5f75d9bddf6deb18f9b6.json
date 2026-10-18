@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f75d9bddf6deb18f9b6",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh verify qwen3seed running",
+  "task_key": "worker_ssh_verify_qwen3seed_running_20260515T195045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_qwen3seed_running_20260515T195045_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "701c5df7f0d72f5a68468cbe5f36988c4988834f3dad841713bbf0a90a9351b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **正常运行中**，无需重新提交。\n\n| 检查项 | 结果 |\n|--------|------|\n| PID 369205 | 存活，运行 02:23 |\n| GPU 占用 | PID 369210 (子进程) 占用 17460 MiB |\n| 日志进度 | `Running loglikelihood requests: 35% (18016/51065)` ~189 it/s |\n\ntmux 命令被 read-only 拦截无法查，但进程和 GPU 占用都在，实验不依赖 tmux session 存活。清理 Worker 杀掉的只是 tmux session 壳，实际 python 进程未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

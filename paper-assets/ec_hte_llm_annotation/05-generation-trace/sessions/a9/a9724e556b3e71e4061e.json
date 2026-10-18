@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a9724e556b3e71e4061e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 002",
+  "task_key": "worker_code_exp-002_20260520T200535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-002_20260520T200535_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "11d8a5788866d108f1cd74c15fc577ca1eec9a50ff92856151f05fadfd3068c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script exited cleanly (exit code 0). All 5 output files are in `results/`. The experiment is complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

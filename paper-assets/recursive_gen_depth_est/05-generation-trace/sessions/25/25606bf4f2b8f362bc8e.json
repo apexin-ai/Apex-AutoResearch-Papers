@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "id": "25606bf4f2b8f362bc8e",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ops read gen length results",
+  "task_key": "worker_ops_read_gen_length_results_20260517T055927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read_gen_length_results_20260517T055927.log",
+    "occurrence": 1,
+    "bytes": 53713,
+    "sha256": "8f70aae41f4450726e333563746bb5ce25ba435b2f1ca4ad21e699738e2205cc"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+                "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9596fa07-d983-467d-be13-e399d9c39fc5",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779006600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "028f522f-e048-4b5e-b97d-a3da0bd127ae",
+                "session_id": "45f258cc-70b3-4881-9326-b4080535262c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to read the results of the `gen_length_ablation_001` experiment from the remote server. Let me SSH to the server and read the results.",
+              "signature": "EtQCClkIDRgCKkD97DioC9wJHyi3VlPbfMNAoeeWiC7jSgPOAJDZka+qp/CPMO7wePWOcs7jtaR4RLje+4EMy3/avY6yCm+ZaPICMg9jbGF1ZGUtb3B1cy00LTY4ABIMjVaZ9pqpvBbUirbYGgz5EgIGpXX9Up8gryMiMPxtJ65KPKxGRe7TeYXOAMezUqsEqOhMROg3eaWMx9LosYuKYZ3gmNzRihWdz29JeCqoAYyXTPElfa9GlEPxsM0wUUX0g/Uo/pT/llbmlkQHjfbjW5GIZ88orIukuYBdgPHAH5B3km7fkNu3AN0DOdlQlBnilvAECcZxrn5DrI9JMs98VVkedzdnuV+W2B1CIbDH4jnvCPcx9Kv7SwXP29nkVNZjkqsI++aVusngRwPhiVrowq6TXF8cv3PHcODn4FC3AONYQJVmFhFMTu0ixpCR0H88hOg7Vx1psxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "6abe1b6f-38cf-45df-a0ee-f6073021f32e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015D4SznpUNmN3rWe9EGNpQB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12618,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12618
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VnyccaH5n9sBVTQwqMnybu",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "c4cfb0e0-69e0-41d4-992b-5b90c43ad7b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015D4SznpUNmN3rWe9EGNpQB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12618,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12618
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:59:42.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VnyccaH5n9sBVTQwqMnybu",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "f83fdedc-83f3-4276-96bd-4b6e248f9aeb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the results from the server. I'll start by checking the summary.json file and the tmux/log output in parallel.",
+              "signature": "ErYCClkIDRgCKkAm0M4X9jP4Np4Bg9sh6LyqzPpCbrZHDowAF069Vv2KLu6tLwnWBJnQDiTs4PcUWHZXMFUr84yZBxzWwnNpuGUgMg9jbGF1ZGUtb3B1cy00LTY4ABIMrb6vovq+aP4pQVOiGgxNpJscyMfdPvB4pKwiMLG7WPmhSpeyb/DKqAJI2nqZj5in3BVkBft43BG0Ga2HLfHZmjLd6Kv9pWg/a4rEpSqKAXIeiLnCZFkHY2LBQirPyf+h30N1XcLD7nEdXkw67Jn2WOphT1O3UVyuxoExfopdr/mr5A+IcNAc5gku/zfEUcrA+jtD6vtIHYMMGQDGkU8QBuinYHeradzbZ0Q4A58dzIXqDSQs5WodihWUtMYmj8BAR3BaXyjpv+1MPR763I4PRiyMiapYR+60ghgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "4d04e994-c243-40bd-b7b9-b13b1c7daa8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GgMbpZsH3dDohnrzp7ZBBC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 478,
+                "cache_read_input_tokens": 24459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 478
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NPdCUiAYYQYfx77zjSBcn2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "52d53dbb-b61b-403c-b417-9b84919708e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GgMbpZsH3dDohnrzp7ZBBC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 478,
+                "cache_read_input_tokens": 24459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 478
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UUSSwuResrbMhKUZ4YdsqC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "find /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation -type f"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "c91fe434-36dc-4a92-a387-096aea83059a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GgMbpZsH3dDohnrzp7ZBBC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 478,
+                "cache_read_input_tokens": 24459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 478
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FHZsWY7q5pJH3QS8Rcfy7Y",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "gpu-6000pro-2",
+                "command": "tail -100 /root/runs/recursive_gen_depth_est/gen_length_ablation_001.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "3133ef4f-e812-4eb7-8e88-63ab5fbb1fdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GgMbpZsH3dDohnrzp7ZBBC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 478,
+                "cache_read_input_tokens": 24459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 478
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:59:49.537Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NPdCUiAYYQYfx77zjSBcn2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"length_128\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.6835,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.6765,\\\\n      0.6905\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.7543,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.685,\\\\n      0.6963,\\\\n      0.6763,\\\\n      0.6875,\\\\n      0.6725\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_256\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.738,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.7248,\\\\n      0.7512\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8198,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.715,\\\\n      0.7312,\\\\n      0.7475,\\\\n      0.7325,\\\\n      0.7638\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_512\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.7782,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.768,\\\\n      0.7885\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8683,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.7825,\\\\n      0.7963,\\\\n      0.7837,\\\\n      0.76,\\\\n      0.7688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"spread_pp\\\\\\\": 9.47,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"num_samples_per_depth\\\\\\\": 1000,\\\\n    \\\\\\\"n_folds\\\\\\\": 5,\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"EleutherAI/pythia-1.4b\\\\\\\",\\\\n    \\\\\\\"decoding\\\\\\\": \\\\\\\"nucleus (top_p=0.95, temp=1.0)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"elapsed_minutes\\\\\\\": 33.1\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "1a136d93-b79c-4c8c-95d2-5c7a67aa06f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"length_128\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.6835,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.6765,\\\\n      0.6905\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.7543,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.685,\\\\n      0.6963,\\\\n      0.6763,\\\\n      0.6875,\\\\n      0.6725\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_256\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.738,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.7248,\\\\n      0.7512\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8198,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.715,\\\\n      0.7312,\\\\n      0.7475,\\\\n      0.7325,\\\\n      0.7638\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_512\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.7782,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.768,\\\\n      0.7885\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8683,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.7825,\\\\n      0.7963,\\\\n      0.7837,\\\\n      0.76,\\\\n      0.7688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"spread_pp\\\\\\\": 9.47,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"num_samples_per_depth\\\\\\\": 1000,\\\\n    \\\\\\\"n_folds\\\\\\\": 5,\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"EleutherAI/pythia-1.4b\\\\\\\",\\\\n    \\\\\\\"decoding\\\\\\\": \\\\\\\"nucleus (top_p=0.95, temp=1.0)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"elapsed_minutes\\\\\\\": 33.1\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.67}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"length_128\\\": {\\n    \\\"4class_acc\\\": 0.6835,\\n    \\\"ci_95\\\": [\\n      0.6765,\\n      0.6905\\n    ],\\n    \\\"d1v2_auc\\\": 0.7543,\\n    \\\"fold_accs\\\": [\\n      0.685,\\n      0.6963,\\n      0.6763,\\n      0.6875,\\n      0.6725\\n    ]\\n  },\\n  \\\"length_256\\\": {\\n    \\\"4class_acc\\\": 0.738,\\n    \\\"ci_95\\\": [\\n      0.7248,\\n      0.7512\\n    ],\\n    \\\"d1v2_auc\\\": 0.8198,\\n    \\\"fold_accs\\\": [\\n      0.715,\\n      0.7312,\\n      0.7475,\\n      0.7325,\\n      0.7638\\n    ]\\n  },\\n  \\\"length_512\\\": {\\n    \\\"4class_acc\\\": 0.7782,\\n    \\\"ci_95\\\": [\\n      0.768,\\n      0.7885\\n    ],\\n    \\\"d1v2_auc\\\": 0.8683,\\n    \\\"fold_accs\\\": [\\n      0.7825,\\n      0.7963,\\n      0.7837,\\n      0.76,\\n      0.7688\\n    ]\\n  },\\n  \\\"spread_pp\\\": 9.47,\\n  \\\"conclusion\\\": \\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\",\\n  \\\"config\\\": {\\n    \\\"num_samples_per_depth\\\": 1000,\\n    \\\"n_folds\\\": 5,\\n    \\\"n_estimators\\\": 200,\\n    \\\"seed\\\": 42,\\n    \\\"model\\\": \\\"EleutherAI/pythia-1.4b\\\",\\n    \\\"decoding\\\": \\\"nucleus (top_p=0.95, temp=1.0)\\\"\\n  },\\n  \\\"elapsed_minutes\\\": 33.1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.67}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:59:50.957Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UUSSwuResrbMhKUZ4YdsqC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "c8bd7d16-1790-4c56-9d72-19b0939f4a25",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_1.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_2.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/depth_3.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_128/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_1.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_2.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/depth_3.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_256/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_1.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_2.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/depth_3.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/len_512/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:59:52.844Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FHZsWY7q5pJH3QS8Rcfy7Y",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    Accuracy: 0.7380 CI: [np.float64(0.7248), np.float64(0.7512)]\\\\n    d1v2 AUC: 0.8198\\\\n\\\\n============================================================\\\\n  TARGET LENGTH: 512 tokens\\\\n============================================================\\\\n\\\\n  Generating depth 1 (adapter: lora_depth_0, max_new_tokens=512)...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights:   9%|▉         | 26/292 [00:00<00:01, 163.49it/s]\\\\rLoading weights:  16%|█▋        | 48/292 [00:00<00:01, 130.73it/s]\\\\rLoading weights:  23%|██▎       | 68/292 [00:00<00:01, 151.43it/s]\\\\rLoading weights:  29%|██▉       | 85/292 [00:00<00:01, 154.92it/s]\\\\rLoading weights:  36%|███▌      | 104/292 [00:00<00:01, 137.78it/s]\\\\rLoading weights:  42%|████▏     | 122/292 [00:00<00:01, 145.19it/s]\\\\rLoading weights:  49%|████▉     | 144/292 [00:00<00:00, 150.43it/s]\\\\rLoading weights:  58%|█████▊    | 168/292 [00:01<00:00, 142.19it/s]\\\\rLoading weights:  68%|██████▊   | 199/292 [00:01<00:00, 181.25it/s]\\\\rLoading weights:  75%|███████▌  | 219/292 [00:01<00:00, 156.43it/s]\\\\rLoading weights:  81%|████████  | 237/292 [00:01<00:00, 150.26it/s]\\\\rLoading weights:  87%|████████▋ | 254/292 [00:01<00:00, 135.47it/s]\\\\rLoading weights:  97%|█████████▋| 284/292 [00:01<00:00, 170.35it/s]\\\\rLoading weights: 100%|██████████| 292/292 [00:01<00:00, 158.28it/s]\\\\n\\\\rGenerating:   0%|          | 0/63 [00:00<?, ?batch/s]\\\\rGenerating:   2%|▏         | 1/63 [00:05<05:43,  5.54s/batch]\\\\rGenerating:   3%|▎         | 2/63 [00:10<05:35,  5.49s/batch]\\\\rGenerating:   5%|▍         | 3/63 [00:16<05:28,  5.47s/batch]\\\\rGenerating:   6%|▋         | 4/63 [00:21<05:22,  5.47s/batch]\\\\rGenerating:   8%|▊         | 5/63 [00:27<05:16,  5.46s/batch]\\\\rGenerating:  10%|▉         | 6/63 [00:32<05:11,  5.47s/batch]\\\\rGenerating:  11%|█         | 7/63 [00:38<05:08,  5.51s/batch]\\\\rGenerating:  13%|█��        | 8/63 [00:43<05:01,  5.48s/batch]\\\\rGenerating:  14%|█▍        | 9/63 [00:49<04:54,  5.46s/batch]\\\\rGenerating:  16%|█▌        | 10/63 [00:54<04:49,  5.46s/batch]\\\\rGenerating:  17%|█▋        | 11/63 [01:00<04:44,  5.48s/batch]\\\\rGenerating:  19%|█▉        | 12/63 [01:05<04:38,  5.46s/batch]\\\\rGenerating:  21%|██        | 13/63 [01:11<04:33,  5.47s/batch]\\\\rGenerating:  22%|██▏       | 14/63 [01:16<04:27,  5.45s/batch]\\\\rGenerating:  24%|██▍       | 15/63 [01:21<04:21,  5.44s/batch]\\\\rGenerating:  25%|██▌       | 16/63 [01:27<04:15,  5.44s/batch]\\\\rGenerating:  27%|██▋       | 17/63 [01:32<04:09,  5.43s/batch]\\\\rGenerating:  29%|██▊       | 18/63 [01:38<04:04,  5.43s/batch]\\\\rGenerating:  30%|███       | 19/63 [01:43<03:58,  5.43s/batch]\\\\rGenerating:  32%|███▏      | 20/63 [01:49<03:53,  5.42s/batch]\\\\rGenerating:  33%|███▎      | 21/63 [01:54<03:47,  5.43s/batch]\\\\rGenerating:  35%|███▍      | 22/63 [02:00<03:43,  5.45s/batch]\\\\rGenerating:  37%|███▋      | 23/63 [02:05<03:38,  5.46s/batch]\\\\rGenerating:  38%|███▊      | 24/63 [02:11<03:33,  5.47s/batch]\\\\rGenerating:  40%|███▉      | 25/63 [02:16<03:28,  5.47s/batch]\\\\rGenerating:  41%|████▏     | 26/63 [02:22<03:23,  5.51s/batch]\\\\rGenerating:  43%|████▎     | 27/63 [02:27<03:17,  5.48s/batch]\\\\rGenerating:  44%|████▍     | 28/63 [02:32<03:11,  5.47s/batch]\\\\rGenerating:  46%|████▌     | 29/63 [02:38<03:05,  5.46s/batch]\\\\rGenerating:  48%|████▊     | 30/63 [02:43<03:00,  5.47s/batch]\\\\rGenerating:  49%|████▉     | 31/63 [02:49<02:54,  5.46s/batch]\\\\rGenerating:  51%|█████     | 32/63 [02:54<02:49,  5.48s/batch]\\\\rGenerating:  52%|█████▏    | 33/63 [03:00<02:44,  5.48s/batch]\\\\rGenerating:  54%|█████▍    | 34/63 [03:05<02:38,  5.46s/batch]\\\\rGenerating:  56%|█████▌    | 35/63 [03:11<02:33,  5.47s/batch]\\\\rGenerating:  57%|█████▋    | 36/63 [03:16<02:27,  5.46s/batch]\\\\rGenerating:  59%|█████▊    | 37/63 [03:22<02:21,  5.45s/batch]\\\\rGenerating:  60%|██████    | 38/63 [03:27<02:16,  5.47s/batch]\\\\rGenerating:  62%|██████▏   | 39/63 [03:33<02:12,  5.52s/batch]\\\\rGenerating:  63%|██████▎   | 40/63 [03:38<02:07,  5.56s/batch]\\\\rGenerating:  65%|██████▌   | 41/63 [03:44<02:03,  5.59s/batch]\\\\rGenerating:  67%|██████▋   | 42/63 [03:50<01:57,  5.61s/b\\\\n\\\\n... [截断: 输出过长，省略 26427 字符] ...\\\\n\\\\n3<00:05,  7.25batch/s]\\\\r  Features d3:  41%|████▏     | 26/63 [00:03<00:05,  7.25batch/s]\\\\r  Features d3:  43%|████▎     | 27/63 [00:03<00:04,  7.26batch/s]\\\\r  Features d3:  44%|████▍     | 28/63 [00:03<00:04,  7.27batch/s]\\\\r  Features d3:  46%|████▌     | 29/63 [00:04<00:04,  7.26batch/s]\\\\r  Features d3:  48%|████▊     | 30/63 [00:04<00:04,  7.31batch/s]\\\\r  Features d3:  49%|████▉     | 31/63 [00:04<00:04,  7.30batch/s]\\\\r  Features d3:  51%|█████     | 32/63 [00:04<00:04,  7.31batch/s]\\\\r  Features d3:  52%|█████▏    | 33/63 [00:04<00:04,  7.23batch/s]\\\\r  Features d3:  54%|█████▍    | 34/63 [00:04<00:04,  7.24batch/s]\\\\r  Features d3:  56%|█████▌    | 35/63 [00:04<00:03,  7.18batch/s]\\\\r  Features d3:  57%|█████▋    | 36/63 [00:04<00:03,  7.21batch/s]\\\\r  Features d3:  59%|█████▊    | 37/63 [00:05<00:03,  7.19batch/s]\\\\r  Features d3:  60%|██████    | 38/63 [00:05<00:03,  7.15batch/s]\\\\r  Features d3:  62%|██████▏   | 39/63 [00:05<00:03,  7.10batch/s]\\\\r  Features d3:  63%|██████▎   | 40/63 [00:05<00:03,  7.06batch/s]\\\\r  Features d3:  65%|██████▌   | 41/63 [00:05<00:03,  7.12batch/s]\\\\r  Features d3:  67%|██████▋   | 42/63 [00:05<00:02,  7.15batch/s]\\\\r  Features d3:  68%|██████▊   | 43/63 [00:05<00:02,  7.17batch/s]\\\\r  Features d3:  70%|██████▉   | 44/63 [00:06<00:02,  7.19batch/s]\\\\r  Features d3:  71%|███████▏  | 45/63 [00:06<00:02,  7.23batch/s]\\\\r  Features d3:  73%|███████▎  | 46/63 [00:06<00:02,  7.24batch/s]\\\\r  Features d3:  75%|███████▍  | 47/63 [00:06<00:02,  7.25batch/s]\\\\r  Features d3:  76%|███████▌  | 48/63 [00:06<00:02,  7.24batch/s]\\\\r  Features d3:  78%|███████▊  | 49/63 [00:06<00:01,  7.23batch/s]\\\\r  Features d3:  79%|███████▉  | 50/63 [00:06<00:01,  7.22batch/s]\\\\r  Features d3:  81%|████████  | 51/63 [00:07<00:01,  7.18batch/s]\\\\r  Features d3:  83%|████████▎ | 52/63 [00:07<00:01,  7.21batch/s]\\\\r  Features d3:  84%|████████▍ | 53/63 [00:07<00:01,  7.21batch/s]\\\\r  Features d3:  86%|████████▌ | 54/63 [00:07<00:01,  7.20batch/s]\\\\r  Features d3:  87%|████████▋ | 55/63 [00:07<00:01,  7.13batch/s]\\\\r  Features d3:  89%|████████▉ | 56/63 [00:07<00:00,  7.17batch/s]\\\\r  Features d3:  90%|█████████ | 57/63 [00:07<00:00,  7.17batch/s]\\\\r  Features d3:  92%|█████████▏| 58/63 [00:08<00:00,  7.20batch/s]\\\\r  Features d3:  94%|█████████▎| 59/63 [00:08<00:00,  7.21batch/s]\\\\r  Features d3:  95%|█████████▌| 60/63 [00:08<00:00,  7.24batch/s]\\\\r  Features d3:  97%|█████████▋| 61/63 [00:08<00:00,  7.18batch/s]\\\\r  Features d3:  98%|█████████▊| 62/63 [00:08<00:00,  7.20batch/s]\\\\r  Features d3: 100%|██████████| 63/63 [00:08<00:00,  7.28batch/s]\\\\n    depth 3: 1000 samples extracted\\\\n\\\\n  Running 5-fold CV RF (n_estimators=200)...\\\\n    X shape: (4000, 19), classes: [0 1 2 3]\\\\n    Accuracy: 0.7782 CI: [np.float64(0.768), np.float64(0.7885)]\\\\n    d1v2 AUC: 0.8683\\\\n\\\\n============================================================\\\\nSUMMARY saved to /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\\\\n{\\\\n  \\\\\\\"length_128\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.6835,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.6765,\\\\n      0.6905\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.7543,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.685,\\\\n      0.6963,\\\\n      0.6763,\\\\n      0.6875,\\\\n      0.6725\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_256\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.738,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.7248,\\\\n      0.7512\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8198,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.715,\\\\n      0.7312,\\\\n      0.7475,\\\\n      0.7325,\\\\n      0.7638\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_512\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.7782,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.768,\\\\n      0.7885\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8683,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.7825,\\\\n      0.7963,\\\\n      0.7837,\\\\n      0.76,\\\\n      0.7688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"spread_pp\\\\\\\": 9.47,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"num_samples_per_depth\\\\\\\": 1000,\\\\n    \\\\\\\"n_folds\\\\\\\": 5,\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"EleutherAI/pythia-1.4b\\\\\\\",\\\\n    \\\\\\\"decoding\\\\\\\": \\\\\\\"nucleus (top_p=0.95, temp=1.0)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"elapsed_minutes\\\\\\\": 33.1\\\\n}\\\\nTotal time: 33.1 min\\\\n=== Done: Sun May 17 13:34:00 CST 2026 ===\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "b7ee92aa-7c44-442b-89c9-984702dd5221",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    Accuracy: 0.7380 CI: [np.float64(0.7248), np.float64(0.7512)]\\\\n    d1v2 AUC: 0.8198\\\\n\\\\n============================================================\\\\n  TARGET LENGTH: 512 tokens\\\\n============================================================\\\\n\\\\n  Generating depth 1 (adapter: lora_depth_0, max_new_tokens=512)...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights:   9%|▉         | 26/292 [00:00<00:01, 163.49it/s]\\\\rLoading weights:  16%|█▋        | 48/292 [00:00<00:01, 130.73it/s]\\\\rLoading weights:  23%|██▎       | 68/292 [00:00<00:01, 151.43it/s]\\\\rLoading weights:  29%|██▉       | 85/292 [00:00<00:01, 154.92it/s]\\\\rLoading weights:  36%|███▌      | 104/292 [00:00<00:01, 137.78it/s]\\\\rLoading weights:  42%|████▏     | 122/292 [00:00<00:01, 145.19it/s]\\\\rLoading weights:  49%|████▉     | 144/292 [00:00<00:00, 150.43it/s]\\\\rLoading weights:  58%|█████▊    | 168/292 [00:01<00:00, 142.19it/s]\\\\rLoading weights:  68%|██████▊   | 199/292 [00:01<00:00, 181.25it/s]\\\\rLoading weights:  75%|███████▌  | 219/292 [00:01<00:00, 156.43it/s]\\\\rLoading weights:  81%|████████  | 237/292 [00:01<00:00, 150.26it/s]\\\\rLoading weights:  87%|████████▋ | 254/292 [00:01<00:00, 135.47it/s]\\\\rLoading weights:  97%|█████████▋| 284/292 [00:01<00:00, 170.35it/s]\\\\rLoading weights: 100%|██████████| 292/292 [00:01<00:00, 158.28it/s]\\\\n\\\\rGenerating:   0%|          | 0/63 [00:00<?, ?batch/s]\\\\rGenerating:   2%|▏         | 1/63 [00:05<05:43,  5.54s/batch]\\\\rGenerating:   3%|▎         | 2/63 [00:10<05:35,  5.49s/batch]\\\\rGenerating:   5%|▍         | 3/63 [00:16<05:28,  5.47s/batch]\\\\rGenerating:   6%|▋         | 4/63 [00:21<05:22,  5.47s/batch]\\\\rGenerating:   8%|▊         | 5/63 [00:27<05:16,  5.46s/batch]\\\\rGenerating:  10%|▉         | 6/63 [00:32<05:11,  5.47s/batch]\\\\rGenerating:  11%|█         | 7/63 [00:38<05:08,  5.51s/batch]\\\\rGenerating:  13%|█��        | 8/63 [00:43<05:01,  5.48s/batch]\\\\rGenerating:  14%|█▍        | 9/63 [00:49<04:54,  5.46s/batch]\\\\rGenerating:  16%|█▌        | 10/63 [00:54<04:49,  5.46s/batch]\\\\rGenerating:  17%|█▋        | 11/63 [01:00<04:44,  5.48s/batch]\\\\rGenerating:  19%|█▉        | 12/63 [01:05<04:38,  5.46s/batch]\\\\rGenerating:  21%|██        | 13/63 [01:11<04:33,  5.47s/batch]\\\\rGenerating:  22%|██▏       | 14/63 [01:16<04:27,  5.45s/batch]\\\\rGenerating:  24%|██▍       | 15/63 [01:21<04:21,  5.44s/batch]\\\\rGenerating:  25%|██▌       | 16/63 [01:27<04:15,  5.44s/batch]\\\\rGenerating:  27%|██▋       | 17/63 [01:32<04:09,  5.43s/batch]\\\\rGenerating:  29%|██▊       | 18/63 [01:38<04:04,  5.43s/batch]\\\\rGenerating:  30%|███       | 19/63 [01:43<03:58,  5.43s/batch]\\\\rGenerating:  32%|███▏      | 20/63 [01:49<03:53,  5.42s/batch]\\\\rGenerating:  33%|███▎      | 21/63 [01:54<03:47,  5.43s/batch]\\\\rGenerating:  35%|███▍      | 22/63 [02:00<03:43,  5.45s/batch]\\\\rGenerating:  37%|███▋      | 23/63 [02:05<03:38,  5.46s/batch]\\\\rGenerating:  38%|███▊      | 24/63 [02:11<03:33,  5.47s/batch]\\\\rGenerating:  40%|███▉      | 25/63 [02:16<03:28,  5.47s/batch]\\\\rGenerating:  41%|████▏     | 26/63 [02:22<03:23,  5.51s/batch]\\\\rGenerating:  43%|████▎     | 27/63 [02:27<03:17,  5.48s/batch]\\\\rGenerating:  44%|████▍     | 28/63 [02:32<03:11,  5.47s/batch]\\\\rGenerating:  46%|████▌     | 29/63 [02:38<03:05,  5.46s/batch]\\\\rGenerating:  48%|████▊     | 30/63 [02:43<03:00,  5.47s/batch]\\\\rGenerating:  49%|████▉     | 31/63 [02:49<02:54,  5.46s/batch]\\\\rGenerating:  51%|█████     | 32/63 [02:54<02:49,  5.48s/batch]\\\\rGenerating:  52%|█████▏    | 33/63 [03:00<02:44,  5.48s/batch]\\\\rGenerating:  54%|█████▍    | 34/63 [03:05<02:38,  5.46s/batch]\\\\rGenerating:  56%|█████▌    | 35/63 [03:11<02:33,  5.47s/batch]\\\\rGenerating:  57%|█████▋    | 36/63 [03:16<02:27,  5.46s/batch]\\\\rGenerating:  59%|█████▊    | 37/63 [03:22<02:21,  5.45s/batch]\\\\rGenerating:  60%|██████    | 38/63 [03:27<02:16,  5.47s/batch]\\\\rGenerating:  62%|██████▏   | 39/63 [03:33<02:12,  5.52s/batch]\\\\rGenerating:  63%|██████▎   | 40/63 [03:38<02:07,  5.56s/batch]\\\\rGenerating:  65%|██████▌   | 41/63 [03:44<02:03,  5.59s/batch]\\\\rGenerating:  67%|██████▋   | 42/63 [03:50<01:57,  5.61s/b\\\\n\\\\n... [截断: 输出过长，省略 26427 字符] ...\\\\n\\\\n3<00:05,  7.25batch/s]\\\\r  Features d3:  41%|████▏     | 26/63 [00:03<00:05,  7.25batch/s]\\\\r  Features d3:  43%|████▎     | 27/63 [00:03<00:04,  7.26batch/s]\\\\r  Features d3:  44%|████▍     | 28/63 [00:03<00:04,  7.27batch/s]\\\\r  Features d3:  46%|████▌     | 29/63 [00:04<00:04,  7.26batch/s]\\\\r  Features d3:  48%|████▊     | 30/63 [00:04<00:04,  7.31batch/s]\\\\r  Features d3:  49%|████▉     | 31/63 [00:04<00:04,  7.30batch/s]\\\\r  Features d3:  51%|█████     | 32/63 [00:04<00:04,  7.31batch/s]\\\\r  Features d3:  52%|█████▏    | 33/63 [00:04<00:04,  7.23batch/s]\\\\r  Features d3:  54%|█████▍    | 34/63 [00:04<00:04,  7.24batch/s]\\\\r  Features d3:  56%|█████▌    | 35/63 [00:04<00:03,  7.18batch/s]\\\\r  Features d3:  57%|█████▋    | 36/63 [00:04<00:03,  7.21batch/s]\\\\r  Features d3:  59%|█████▊    | 37/63 [00:05<00:03,  7.19batch/s]\\\\r  Features d3:  60%|██████    | 38/63 [00:05<00:03,  7.15batch/s]\\\\r  Features d3:  62%|██████▏   | 39/63 [00:05<00:03,  7.10batch/s]\\\\r  Features d3:  63%|██████▎   | 40/63 [00:05<00:03,  7.06batch/s]\\\\r  Features d3:  65%|██████▌   | 41/63 [00:05<00:03,  7.12batch/s]\\\\r  Features d3:  67%|██████▋   | 42/63 [00:05<00:02,  7.15batch/s]\\\\r  Features d3:  68%|██████▊   | 43/63 [00:05<00:02,  7.17batch/s]\\\\r  Features d3:  70%|██████▉   | 44/63 [00:06<00:02,  7.19batch/s]\\\\r  Features d3:  71%|███████▏  | 45/63 [00:06<00:02,  7.23batch/s]\\\\r  Features d3:  73%|███████▎  | 46/63 [00:06<00:02,  7.24batch/s]\\\\r  Features d3:  75%|███████▍  | 47/63 [00:06<00:02,  7.25batch/s]\\\\r  Features d3:  76%|███████▌  | 48/63 [00:06<00:02,  7.24batch/s]\\\\r  Features d3:  78%|███████▊  | 49/63 [00:06<00:01,  7.23batch/s]\\\\r  Features d3:  79%|███████▉  | 50/63 [00:06<00:01,  7.22batch/s]\\\\r  Features d3:  81%|████████  | 51/63 [00:07<00:01,  7.18batch/s]\\\\r  Features d3:  83%|████████▎ | 52/63 [00:07<00:01,  7.21batch/s]\\\\r  Features d3:  84%|████████▍ | 53/63 [00:07<00:01,  7.21batch/s]\\\\r  Features d3:  86%|████████▌ | 54/63 [00:07<00:01,  7.20batch/s]\\\\r  Features d3:  87%|████████▋ | 55/63 [00:07<00:01,  7.13batch/s]\\\\r  Features d3:  89%|████████▉ | 56/63 [00:07<00:00,  7.17batch/s]\\\\r  Features d3:  90%|█████████ | 57/63 [00:07<00:00,  7.17batch/s]\\\\r  Features d3:  92%|█████████▏| 58/63 [00:08<00:00,  7.20batch/s]\\\\r  Features d3:  94%|█████████▎| 59/63 [00:08<00:00,  7.21batch/s]\\\\r  Features d3:  95%|█████████▌| 60/63 [00:08<00:00,  7.24batch/s]\\\\r  Features d3:  97%|█████████▋| 61/63 [00:08<00:00,  7.18batch/s]\\\\r  Features d3:  98%|█████████▊| 62/63 [00:08<00:00,  7.20batch/s]\\\\r  Features d3: 100%|██████████| 63/63 [00:08<00:00,  7.28batch/s]\\\\n    depth 3: 1000 samples extracted\\\\n\\\\n  Running 5-fold CV RF (n_estimators=200)...\\\\n    X shape: (4000, 19), classes: [0 1 2 3]\\\\n    Accuracy: 0.7782 CI: [np.float64(0.768), np.float64(0.7885)]\\\\n    d1v2 AUC: 0.8683\\\\n\\\\n============================================================\\\\nSUMMARY saved to /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\\\\n{\\\\n  \\\\\\\"length_128\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.6835,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.6765,\\\\n      0.6905\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.7543,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.685,\\\\n      0.6963,\\\\n      0.6763,\\\\n      0.6875,\\\\n      0.6725\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_256\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.738,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.7248,\\\\n      0.7512\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8198,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.715,\\\\n      0.7312,\\\\n      0.7475,\\\\n      0.7325,\\\\n      0.7638\\\\n    ]\\\\n  },\\\\n  \\\\\\\"length_512\\\\\\\": {\\\\n    \\\\\\\"4class_acc\\\\\\\": 0.7782,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      0.768,\\\\n      0.7885\\\\n    ],\\\\n    \\\\\\\"d1v2_auc\\\\\\\": 0.8683,\\\\n    \\\\\\\"fold_accs\\\\\\\": [\\\\n      0.7825,\\\\n      0.7963,\\\\n      0.7837,\\\\n      0.76,\\\\n      0.7688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"spread_pp\\\\\\\": 9.47,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"num_samples_per_depth\\\\\\\": 1000,\\\\n    \\\\\\\"n_folds\\\\\\\": 5,\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"EleutherAI/pythia-1.4b\\\\\\\",\\\\n    \\\\\\\"decoding\\\\\\\": \\\\\\\"nucleus (top_p=0.95, temp=1.0)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"elapsed_minutes\\\\\\\": 33.1\\\\n}\\\\nTotal time: 33.1 min\\\\n=== Done: Sun May 17 13:34:00 CST 2026 ===\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    Accuracy: 0.7380 CI: [np.float64(0.7248), np.float64(0.7512)]\\n    d1v2 AUC: 0.8198\\n\\n============================================================\\n  TARGET LENGTH: 512 tokens\\n============================================================\\n\\n  Generating depth 1 (adapter: lora_depth_0, max_new_tokens=512)...\\n\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\rLoading weights:   9%|▉         | 26/292 [00:00<00:01, 163.49it/s]\\rLoading weights:  16%|█▋        | 48/292 [00:00<00:01, 130.73it/s]\\rLoading weights:  23%|██▎       | 68/292 [00:00<00:01, 151.43it/s]\\rLoading weights:  29%|██▉       | 85/292 [00:00<00:01, 154.92it/s]\\rLoading weights:  36%|███▌      | 104/292 [00:00<00:01, 137.78it/s]\\rLoading weights:  42%|████▏     | 122/292 [00:00<00:01, 145.19it/s]\\rLoading weights:  49%|████▉     | 144/292 [00:00<00:00, 150.43it/s]\\rLoading weights:  58%|█████▊    | 168/292 [00:01<00:00, 142.19it/s]\\rLoading weights:  68%|██████▊   | 199/292 [00:01<00:00, 181.25it/s]\\rLoading weights:  75%|███████▌  | 219/292 [00:01<00:00, 156.43it/s]\\rLoading weights:  81%|████████  | 237/292 [00:01<00:00, 150.26it/s]\\rLoading weights:  87%|████████▋ | 254/292 [00:01<00:00, 135.47it/s]\\rLoading weights:  97%|█████████▋| 284/292 [00:01<00:00, 170.35it/s]\\rLoading weights: 100%|██████████| 292/292 [00:01<00:00, 158.28it/s]\\n\\rGenerating:   0%|          | 0/63 [00:00<?, ?batch/s]\\rGenerating:   2%|▏         | 1/63 [00:05<05:43,  5.54s/batch]\\rGenerating:   3%|▎         | 2/63 [00:10<05:35,  5.49s/batch]\\rGenerating:   5%|▍         | 3/63 [00:16<05:28,  5.47s/batch]\\rGenerating:   6%|▋         | 4/63 [00:21<05:22,  5.47s/batch]\\rGenerating:   8%|▊         | 5/63 [00:27<05:16,  5.46s/batch]\\rGenerating:  10%|▉         | 6/63 [00:32<05:11,  5.47s/batch]\\rGenerating:  11%|█         | 7/63 [00:38<05:08,  5.51s/batch]\\rGenerating:  13%|█��        | 8/63 [00:43<05:01,  5.48s/batch]\\rGenerating:  14%|█▍        | 9/63 [00:49<04:54,  5.46s/batch]\\rGenerating:  16%|█▌        | 10/63 [00:54<04:49,  5.46s/batch]\\rGenerating:  17%|█▋        | 11/63 [01:00<04:44,  5.48s/batch]\\rGenerating:  19%|█▉        | 12/63 [01:05<04:38,  5.46s/batch]\\rGenerating:  21%|██        | 13/63 [01:11<04:33,  5.47s/batch]\\rGenerating:  22%|██▏       | 14/63 [01:16<04:27,  5.45s/batch]\\rGenerating:  24%|██▍       | 15/63 [01:21<04:21,  5.44s/batch]\\rGenerating:  25%|██▌       | 16/63 [01:27<04:15,  5.44s/batch]\\rGenerating:  27%|██▋       | 17/63 [01:32<04:09,  5.43s/batch]\\rGenerating:  29%|██▊       | 18/63 [01:38<04:04,  5.43s/batch]\\rGenerating:  30%|███       | 19/63 [01:43<03:58,  5.43s/batch]\\rGenerating:  32%|███▏      | 20/63 [01:49<03:53,  5.42s/batch]\\rGenerating:  33%|███▎      | 21/63 [01:54<03:47,  5.43s/batch]\\rGenerating:  35%|███▍      | 22/63 [02:00<03:43,  5.45s/batch]\\rGenerating:  37%|███▋      | 23/63 [02:05<03:38,  5.46s/batch]\\rGenerating:  38%|███▊      | 24/63 [02:11<03:33,  5.47s/batch]\\rGenerating:  40%|███▉      | 25/63 [02:16<03:28,  5.47s/batch]\\rGenerating:  41%|████▏     | 26/63 [02:22<03:23,  5.51s/batch]\\rGenerating:  43%|████▎     | 27/63 [02:27<03:17,  5.48s/batch]\\rGenerating:  44%|████▍     | 28/63 [02:32<03:11,  5.47s/batch]\\rGenerating:  46%|████▌     | 29/63 [02:38<03:05,  5.46s/batch]\\rGenerating:  48%|████▊     | 30/63 [02:43<03:00,  5.47s/batch]\\rGenerating:  49%|████▉     | 31/63 [02:49<02:54,  5.46s/batch]\\rGenerating:  51%|█████     | 32/63 [02:54<02:49,  5.48s/batch]\\rGenerating:  52%|█████▏    | 33/63 [03:00<02:44,  5.48s/batch]\\rGenerating:  54%|█████▍    | 34/63 [03:05<02:38,  5.46s/batch]\\rGenerating:  56%|█████▌    | 35/63 [03:11<02:33,  5.47s/batch]\\rGenerating:  57%|█████▋    | 36/63 [03:16<02:27,  5.46s/batch]\\rGenerating:  59%|█████▊    | 37/63 [03:22<02:21,  5.45s/batch]\\rGenerating:  60%|██████    | 38/63 [03:27<02:16,  5.47s/batch]\\rGenerating:  62%|██████▏   | 39/63 [03:33<02:12,  5.52s/batch]\\rGenerating:  63%|██████▎   | 40/63 [03:38<02:07,  5.56s/batch]\\rGenerating:  65%|██████▌   | 41/63 [03:44<02:03,  5.59s/batch]\\rGenerating:  67%|██████▋   | 42/63 [03:50<01:57,  5.61s/b\\n\\n... [截断: 输出过长，省略 26427 字符] ...\\n\\n3<00:05,  7.25batch/s]\\r  Features d3:  41%|████▏     | 26/63 [00:03<00:05,  7.25batch/s]\\r  Features d3:  43%|████▎     | 27/63 [00:03<00:04,  7.26batch/s]\\r  Features d3:  44%|████▍     | 28/63 [00:03<00:04,  7.27batch/s]\\r  Features d3:  46%|████▌     | 29/63 [00:04<00:04,  7.26batch/s]\\r  Features d3:  48%|████▊     | 30/63 [00:04<00:04,  7.31batch/s]\\r  Features d3:  49%|████▉     | 31/63 [00:04<00:04,  7.30batch/s]\\r  Features d3:  51%|█████     | 32/63 [00:04<00:04,  7.31batch/s]\\r  Features d3:  52%|█████▏    | 33/63 [00:04<00:04,  7.23batch/s]\\r  Features d3:  54%|█████▍    | 34/63 [00:04<00:04,  7.24batch/s]\\r  Features d3:  56%|█████▌    | 35/63 [00:04<00:03,  7.18batch/s]\\r  Features d3:  57%|█████▋    | 36/63 [00:04<00:03,  7.21batch/s]\\r  Features d3:  59%|█████▊    | 37/63 [00:05<00:03,  7.19batch/s]\\r  Features d3:  60%|██████    | 38/63 [00:05<00:03,  7.15batch/s]\\r  Features d3:  62%|██████▏   | 39/63 [00:05<00:03,  7.10batch/s]\\r  Features d3:  63%|██████▎   | 40/63 [00:05<00:03,  7.06batch/s]\\r  Features d3:  65%|██████▌   | 41/63 [00:05<00:03,  7.12batch/s]\\r  Features d3:  67%|██████▋   | 42/63 [00:05<00:02,  7.15batch/s]\\r  Features d3:  68%|██████▊   | 43/63 [00:05<00:02,  7.17batch/s]\\r  Features d3:  70%|██████▉   | 44/63 [00:06<00:02,  7.19batch/s]\\r  Features d3:  71%|███████▏  | 45/63 [00:06<00:02,  7.23batch/s]\\r  Features d3:  73%|███████▎  | 46/63 [00:06<00:02,  7.24batch/s]\\r  Features d3:  75%|███████▍  | 47/63 [00:06<00:02,  7.25batch/s]\\r  Features d3:  76%|███████▌  | 48/63 [00:06<00:02,  7.24batch/s]\\r  Features d3:  78%|███████▊  | 49/63 [00:06<00:01,  7.23batch/s]\\r  Features d3:  79%|███████▉  | 50/63 [00:06<00:01,  7.22batch/s]\\r  Features d3:  81%|████████  | 51/63 [00:07<00:01,  7.18batch/s]\\r  Features d3:  83%|████████▎ | 52/63 [00:07<00:01,  7.21batch/s]\\r  Features d3:  84%|████████▍ | 53/63 [00:07<00:01,  7.21batch/s]\\r  Features d3:  86%|████████▌ | 54/63 [00:07<00:01,  7.20batch/s]\\r  Features d3:  87%|████████▋ | 55/63 [00:07<00:01,  7.13batch/s]\\r  Features d3:  89%|████████▉ | 56/63 [00:07<00:00,  7.17batch/s]\\r  Features d3:  90%|█████████ | 57/63 [00:07<00:00,  7.17batch/s]\\r  Features d3:  92%|█████████▏| 58/63 [00:08<00:00,  7.20batch/s]\\r  Features d3:  94%|█████████▎| 59/63 [00:08<00:00,  7.21batch/s]\\r  Features d3:  95%|█████████▌| 60/63 [00:08<00:00,  7.24batch/s]\\r  Features d3:  97%|█████████▋| 61/63 [00:08<00:00,  7.18batch/s]\\r  Features d3:  98%|█████████▊| 62/63 [00:08<00:00,  7.20batch/s]\\r  Features d3: 100%|██████████| 63/63 [00:08<00:00,  7.28batch/s]\\n    depth 3: 1000 samples extracted\\n\\n  Running 5-fold CV RF (n_estimators=200)...\\n    X shape: (4000, 19), classes: [0 1 2 3]\\n    Accuracy: 0.7782 CI: [np.float64(0.768), np.float64(0.7885)]\\n    d1v2 AUC: 0.8683\\n\\n============================================================\\nSUMMARY saved to /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\\n{\\n  \\\"length_128\\\": {\\n    \\\"4class_acc\\\": 0.6835,\\n    \\\"ci_95\\\": [\\n      0.6765,\\n      0.6905\\n    ],\\n    \\\"d1v2_auc\\\": 0.7543,\\n    \\\"fold_accs\\\": [\\n      0.685,\\n      0.6963,\\n      0.6763,\\n      0.6875,\\n      0.6725\\n    ]\\n  },\\n  \\\"length_256\\\": {\\n    \\\"4class_acc\\\": 0.738,\\n    \\\"ci_95\\\": [\\n      0.7248,\\n      0.7512\\n    ],\\n    \\\"d1v2_auc\\\": 0.8198,\\n    \\\"fold_accs\\\": [\\n      0.715,\\n      0.7312,\\n      0.7475,\\n      0.7325,\\n      0.7638\\n    ]\\n  },\\n  \\\"length_512\\\": {\\n    \\\"4class_acc\\\": 0.7782,\\n    \\\"ci_95\\\": [\\n      0.768,\\n      0.7885\\n    ],\\n    \\\"d1v2_auc\\\": 0.8683,\\n    \\\"fold_accs\\\": [\\n      0.7825,\\n      0.7963,\\n      0.7837,\\n      0.76,\\n      0.7688\\n    ]\\n  },\\n  \\\"spread_pp\\\": 9.47,\\n  \\\"conclusion\\\": \\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\",\\n  \\\"config\\\": {\\n    \\\"num_samples_per_depth\\\": 1000,\\n    \\\"n_folds\\\": 5,\\n    \\\"n_estimators\\\": 200,\\n    \\\"seed\\\": 42,\\n    \\\"model\\\": \\\"EleutherAI/pythia-1.4b\\\",\\n    \\\"decoding\\\": \\\"nucleus (top_p=0.95, temp=1.0)\\\"\\n  },\\n  \\\"elapsed_minutes\\\": 33.1\\n}\\nTotal time: 33.1 min\\n=== Done: Sun May 17 13:34:00 CST 2026 ===\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.88}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gen_length_ablation_001 实验结果\n\n**配置**: Pythia-1.4B, nucleus sampling (top_p=0.95, temp=1.0), 1000 samples/depth, 5-fold CV RF (n_estimators=200), seed=42\n\n---\n\n### 各 Generation Length 的 4-Class Accuracy\n\n| Length | 4-Class Acc | 95% CI | d1v2 AUC | Fold Accs |\n|--------|------------|--------|-----------|-----------|\n| 128 | 0.6835 | [0.6765, 0.6905] | 0.7543 | 0.685, 0.6963, 0.6763, 0.6875, 0.6725 |\n| 256 | 0.7380 | [0.7248, 0.7512] | 0.8198 | 0.715, 0.7312, 0.7475, 0.7325, 0.7638 |\n| 512 | 0.7782 | [0.768, 0.7885] | 0.8683 | 0.7825, 0.7963, 0.7837, 0.76, 0.7688 |\n\n---\n\n### Cross-Length Spread\n\n- **Max - Min**: 0.7782 - 0.6835 = **9.47 pp**\n- **结论**: Spread 9.47pp > 5pp threshold，generation length 显著影响 depth detection accuracy\n\n### 与 Baseline (256-token) 比较\n\n- 128 vs 256: -5.45 pp (CI 不重叠)\n- 512 vs 256: +4.02 pp (CI 不重叠)\n- 更长的生成文本提供更多统计特征信号，accuracy 单调递增\n\n### 运行时间\n\n33.1 分钟，exit_code=0"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "uuid": "2fcc9020-f239-4744-8cdd-fc37d46392d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DeeVsJTA1rFdyNkKEcmtjg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6326,
+                "cache_read_input_tokens": 24937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6326
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gen_length_ablation_001 实验结果\n\n**配置**: Pythia-1.4B, nucleus sampling (top_p=0.95, temp=1.0), 1000 samples/depth, 5-fold CV RF (n_estimators=200), seed=42\n\n---\n\n### 各 Generation Length 的 4-Class Accuracy\n\n| Length | 4-Class Acc | 95% CI | d1v2 AUC | Fold Accs |\n|--------|------------|--------|-----------|-----------|\n| 128 | 0.6835 | [0.6765, 0.6905] | 0.7543 | 0.685, 0.6963, 0.6763, 0.6875, 0.6725 |\n| 256 | 0.7380 | [0.7248, 0.7512] | 0.8198 | 0.715, 0.7312, 0.7475, 0.7325, 0.7638 |\n| 512 | 0.7782 | [0.768, 0.7885] | 0.8683 | 0.7825, 0.7963, 0.7837, 0.76, 0.7688 |\n\n---\n\n### Cross-Length Spread\n\n- **Max - Min**: 0.7782 - 0.6835 = **9.47 pp**\n- **结论**: Spread 9.47pp > 5pp threshold，generation length 显著影响 depth detection accuracy\n\n### 与 Baseline (256-token) 比较\n\n- 128 vs 256: -5.45 pp (CI 不重叠)\n- 512 vs 256: +4.02 pp (CI 不重叠)\n- 更长的生成文本提供更多统计特征信号，accuracy 单调递增\n\n### 运行时间\n\n33.1 分钟，exit_code=0"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 29110,
+            "duration_api_ms": 26000,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "45f258cc-70b3-4881-9326-b4080535262c",
+            "total_cost_usd": 0.178073,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 19422,
+              "cache_read_input_tokens": 61237,
+              "output_tokens": 989,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19422,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 497,
+                  "cache_read_input_tokens": 24937,
+                  "cache_creation_input_tokens": 6326,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 6326
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1212,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001307,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 989,
+                "cacheReadInputTokens": 61237,
+                "cacheCreationInputTokens": 19422,
+                "webSearchRequests": 0,
+                "costUSD": 0.176766,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8500cdca-82f2-4d48-a3e7-17f20009da87"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ]
+}

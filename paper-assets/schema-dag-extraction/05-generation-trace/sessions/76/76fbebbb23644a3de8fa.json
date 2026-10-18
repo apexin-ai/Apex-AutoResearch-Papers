@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "76fbebbb23644a3de8fa",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "run exp012 llama fewrel ch2",
+  "task_key": "worker_run_exp012_llama_fewrel_ch2_20260515T214311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp012_llama_fewrel_ch2_20260515T214311_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "d8c5cfb5312e856d783a46eaf1095a2e005bbdd2f91069be3d5f50ba7e7b7aa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中。\n\n**状态汇总：**\n- **exp012_llama_fewrel_ch2** → `RUNNING`，PID 330198，GPU cuda:0\n- 日志：`~/runs/schema-dag-extraction/exp012_llama_fewrel_ch2.log`\n- 正在加载 FewRel 数据，预计 55-65 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

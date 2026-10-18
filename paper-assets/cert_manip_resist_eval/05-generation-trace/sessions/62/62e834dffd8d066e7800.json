@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62e834dffd8d066e7800",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra api model probe",
+  "task_key": "worker_infra_api-model-probe_20260522T033428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_api-model-probe_20260522T033428_result.json",
+    "occurrence": 1,
+    "bytes": 1785,
+    "sha256": "7a56647085348b8c1dbacb85a2cf39d9c7bc27b5c2bb32fe7076bbd38d5bbf5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API 可用。以下是探测结果：\n\n## 探测报告\n\n### 1. API endpoint 可达性\n- **可达**，地址 `http://47.94.22.126/v1`\n- **需要 API key**：`Authorization: [REDACTED] 使用 OpenAI 兼容格式\n\n### 2. 完整模型列表（仅 chat 模型，按家族分类）\n\n| 家族 | 模型 |\n|------|------|\n| GPT-3.5 | gpt-3.5-turbo, gpt-3.5-turbo-16k, gpt-3.5-turbo-0125, gpt-3.5-turbo-1106 |\n| GPT-4 | gpt-4, gpt-4-0613, gpt-4-turbo, gpt-4-turbo-2024-04-09 |\n| GPT-4o | gpt-4o, gpt-4o-mini, gpt-4o-2024-05-13, gpt-4o-2024-08-06, gpt-4o-2024-11-20 |\n| GPT-4.1 | gpt-4.1, gpt-4.1-mini, gpt-4.1-nano |\n| GPT-5 | gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-pro |\n| GPT-5.1~5.5 | gpt-5.1, gpt-5.2, gpt-5.2-pro, gpt-5.4, gpt-5.4-pro, gpt-5.4-mini, gpt-5.4-nano, gpt-5.5, gpt-5.5-pro |\n| o-series | o1, o1-pro, o3, o3-mini, o4-mini |\n| Embedding | text-embedding-ada-002, text-embedding-3-small, text-embedding-3-large |\n| Audio/TTS | whisper-1, tts-1, gpt-4o-mini-tts, gpt-audio 等 |\n| Image | gpt-image-1, gpt-image-1-mini, gpt-image-2 |\n| Search | gpt-4o-search-preview, gpt-5-search-api |\n\n### 3. 优先选择的模型（用于实验）\n\n**注意：全部是 OpenAI 模型，没有 Claude / Gemini / DeepSeek。** 在可用范围内选择不同代际/能力层次：\n\n| 优先级 | 模型 | 理由 |\n|--------|------|------|\n| 1 | **gpt-4o-mini** | 便宜快速，已验证可用 |\n| 2 | **gpt-4o** | 强能力基线 |\n| 3 | **o4-mini** | reasoning 模型，不同推理范式 |\n| 4 | **gpt-4.1-mini** | 较新架构 |\n| 5 | **gpt-5.4-mini** | 最新一代小模型 |\n| 6 | **gpt-5.5** | 最新最强 |\n\n### 4. 测试结果\n`gpt-4o-mini` 请求成功，响应正常（返回 \"Hello! How can I assist you today?\"），延迟 ~3s。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

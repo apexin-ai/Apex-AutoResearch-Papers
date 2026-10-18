@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f434c7ffbea749a63547",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp012 8b cleanup and submit",
+  "task_key": "worker_code_exp012_8b_cleanup_and_submit_20260515T162406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_8b_cleanup_and_submit_20260515T162406_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "4267f9b497cf92958ce5ebf707f5d8a34a08ba7c741707e3a45d2a8227f2f992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1 — AWQ 清理** ✓\n- kill 284997 (下载) + 292859 (auto_start)\n- 删除 `/root/autodl-tmp/.hf_cache/llama-3.1-70b-instruct-awq-int4/` (~28GB)\n- 磁盘从 250G/250G → 213G/250G，释放 37GB\n\n**Step 2 — exp012 LLaMA-3.1-8B-Instruct 已提交** ✓\n- GPU 已空闲，无需等待\n- 脚本：`scripts/run_exp012_llama_8b.sh`（无 flashinfer、无量化、BF16 直接加载）\n- 模型：`/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- PID: 295200，GPU 82% / 89523 MiB\n- 日志：`/root/schema-dag-extraction/logs/exp012_llama_8b.log`\n- Registry: `exp012_llama_8b_fewnerd` → RUNNING\n- exp1 (Count Baseline) 已开始 extraction，1000 samples / 64 types"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

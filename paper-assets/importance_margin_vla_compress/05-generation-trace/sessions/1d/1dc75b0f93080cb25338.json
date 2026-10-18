@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1dc75b0f93080cb25338",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 w27 urgent harvest",
+  "task_key": "worker_diagnose_cqa1_w27_urgent_harvest_20260528T060706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1_w27_urgent_harvest_20260528T060706_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "d8efda2872f38ffdb9f76d7ddac95a1ab37654ca2e3cb1660223ed0f40f81ce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n```\n[cqa1 状态]\ncuda:0: 在跑 — eval_pi05_l2norm_k05_long_seed45_strict_cqa1, T8完成 49.6%, T9剩余 ~30min\ncuda:1: 空闲 — eval_pi05_attn_k095_long_seed45_strict_cqa1 已完成\ncuda:2: 在跑 — eval_openvla_random_k095_goal_seed42_v4, T1 ep30/50, 刚启动 ~数小时\ncuda:3: 空闲\n\n[w27 状态]\ncuda:0: 在跑 — eval_openvla_l2norm_k095_long_seed43_w27, T1 ep10/50, 刚启动 ~数小时\ncuda:1: 空闲 — eval_pi05_random_k07_long_seed44_strict_w27 已完成\n\n[收割结果]\neval_pi05_attn_k095_long_seed45_strict_cqa1: SR=77.8% EXIT_CODE=0 217min\n  per_task: [94, 98, 78, 94, 84, 98, 16, 84, 38, 94]\n\neval_pi05_random_k07_long_seed44_strict_w27: SR=64.4% EXIT_CODE=0 150min\n  per_task: [88, 58, 78, 76, 80, 42, 64, 70, 12, 76]\n\n[空闲 GPU]\ncqa1: cuda:1, cuda:3\nw27: cuda:1\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

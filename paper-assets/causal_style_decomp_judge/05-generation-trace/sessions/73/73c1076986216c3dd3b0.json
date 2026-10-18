@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73c1076986216c3dd3b0",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp010 binarized likert",
+  "task_key": "worker_ops_exp010_binarized_likert_20260520T233854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp010_binarized_likert_20260520T233854_result.json",
+    "occurrence": 1,
+    "bytes": 3621,
+    "sha256": "132a76c6388195f0871843c62a595567bb0de0b692b7d49d8533c76d240e090f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-010 完整结果\n\n```\nLoaded 100 scored records\n\n============================================================\n  Binarized Likert Sign Test (all, n=100)\n============================================================\n  formal > casual: 22\n  casual > formal: 18\n  Ties (equal):    60 (60.0%)\n  Non-tie pairs:   40\n\n  formal win rate (non-tie): 0.5500 (22/40)\n  95% CI (Wilson):  [0.3983, 0.6929]\n  Sign test p:      0.635828\n  Significant:      NO (α=0.05)\n\n  --- Comparison with Pairwise ---\n  Pairwise (reference): 69.1% win rate, p=0.006\n  Binarized Likert:     55.0% win rate, p=0.6358\n  → Binarized Likert NOT significant: confirms pairwise structural advantage\n  → C2 (Likert Blindspot) validated — forced choice matters, not just test choice\n\n============================================================\n  Binarized Likert Sign Test (NLI≥0.9, n=88)\n============================================================\n  formal > casual: 20\n  casual > formal: 13\n  Ties (equal):    55 (62.5%)\n  Non-tie pairs:   33\n\n  formal win rate (non-tie): 0.6061 (20/33)\n  95% CI (Wilson):  [0.4368, 0.7532]\n  Sign test p:      0.296206\n  Significant:      NO (α=0.05)\n\n============================================================\n  Binarized Likert Sign Test (NLI≥0.85, n=89)\n============================================================\n  formal > casual: 20\n  casual > formal: 13\n  Ties (equal):    56 (62.9%)\n  Non-tie pairs:   33\n\n  formal win rate (non-tie): 0.6061 (20/33)\n  Sign test p:      0.296206\n  Significant:      NO (α=0.05)\n\n============================================================\n  Binarized Likert Sign Test (NLI≥0.8, n=89)\n============================================================\n  (same as NLI≥0.85)\n\n============================================================\n  Directional Breakdown (all records)\n============================================================\n\n  --- formal→casual (n=59) ---\n  formal > casual: 9\n  casual > formal: 14\n  Ties (equal):    36 (61.0%)\n  Non-tie pairs:   23\n\n  formal win rate (non-tie): 0.3913 (9/23)\n  Sign test p:      0.404873\n  Significant:      NO\n\n  --- casual→formal (n=41) ---\n  formal > casual: 13\n  casual > formal: 4\n  Ties (equal):    24 (58.5%)\n  Non-tie pairs:   17\n\n  formal win rate (non-tie): 0.7647 (13/17)\n  Sign test p:      0.049042\n  Significant:      YES (α=0.05)\n```\n\n### 关键发现\n\n1. **Tie rate 极高：60%**（100 对中 60 对 Likert 分数相同）——这是 Likert 量表的核心问题，pairwise 强制二选一不存在 tie\n\n2. **全量 sign test：p=0.636，完全不显著**——同样用 sign test，binarized Likert 的 win rate 仅 55.0%，远低于 pairwise 的 69.1%/p=0.006。说明 sensitivity gap 不是统计检验选择的问题，而是测量结构本身的差异\n\n3. **NLI 过滤后仍不显著**：NLI≥0.9 时 win rate 升到 60.6%，但 p=0.296，仍不显著。有效样本只剩 33 对\n\n4. **方向不对称**：\n   - formal→casual（59 对）：formal win rate 仅 39.1%，甚至反向偏——formal 原文降级为 casual 后分数没降反升\n   - casual→formal（41 对）：formal win rate 76.5%，p=0.049，勉强显著——casual 原文升级为 formal 后分数确实上升\n\n5. **C2 (Likert Blindspot) 得到验证**：即使将 Likert 分数 binarize 后用相同的 sign test，仍无法检出 pairwise 能检出的偏差。60% 的 tie rate 直接证明了 Likert 量表在 style bias 检测上的 sensitivity 不足是测量结构问题，不是统计方法问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

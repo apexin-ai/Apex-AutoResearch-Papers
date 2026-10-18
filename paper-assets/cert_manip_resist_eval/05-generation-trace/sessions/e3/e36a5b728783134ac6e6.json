@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "e36a5b728783134ac6e6",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops anonymous repo v2",
+  "task_key": "worker_ops_anonymous-repo-v2_20260525T090515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous-repo-v2_20260525T090515.log",
+    "occurrence": 1,
+    "bytes": 598418,
+    "sha256": "0fc9e4e0737bcf6ce815f11a85f969a3414befc9e7aaf1cd5dd27fe52d42daf1"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 110,
+      "tool_result": 110,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "e36a5b728783134ac6e6-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 265,
+      "chunks": [
+        {
+          "path": "e36a5b728783134ac6e6-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "e36a5b728783134ac6e6-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ]
+}

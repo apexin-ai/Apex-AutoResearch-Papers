@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "580fb7e33cff6498f854",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "writing appendix maven residualized",
+  "task_key": "worker_writing_appendix_maven_residualized_20260516T020105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix_maven_residualized_20260516T020105_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "5f2be2a117ebdb7f661675bf724df8cd45f08f9bcf48d09846aba9f1f23b6f81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix section written and cross-referenced. Changes:\n\n1. **`docs/paper/main.tex`** — Added new Appendix section \"Controlling for Centrality Confounds in MAVEN Per-Type Analysis\" (`\\ref{sec:appendix_residualized_bcs}`) after the Factorial Analysis section. Contains:\n   - Confound identification: MiniLM → log freq (r=0.201), Qwen3 → degree centrality (r=0.854)\n   - Table with raw ρ vs. partial r for both embeddings under single and joint controls\n   - All six numbers from `exp_maven_residualized_bcs` registry entry\n   - Interpretation linking different confound mechanisms to embedding properties\n   - Explicit statement that pairwise SCS remains valid (MiniLM r=0.129, p<10⁻¹⁰)\n\n2. **`docs/paper/results.tex`** — Added forward reference from Section 3.5 (centrality confound) to the new appendix."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

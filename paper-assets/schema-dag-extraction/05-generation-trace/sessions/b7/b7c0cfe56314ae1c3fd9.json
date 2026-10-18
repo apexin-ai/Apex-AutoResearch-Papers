@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b7c0cfe56314ae1c3fd9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "fix paper text corrections",
+  "task_key": "worker_fix_paper_text_corrections_20260516T021409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_text_corrections_20260516T021409_result.json",
+    "occurrence": 1,
+    "bytes": 274,
+    "sha256": "26645cf5309ef8cdd0858e1d2dd8efa3b20dafe2af3f5b1b924587d712f0e6bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已经被修正了（可能是并发编辑）。两处修复都已完成：\n\n- **results.tex line 105/106**: 两个副本都已是 `ρ=+0.184 (p=0.025)`\n- **main.tex line 165** (appendix section): 已是 \"149 active event types\"\n\n无需额外修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

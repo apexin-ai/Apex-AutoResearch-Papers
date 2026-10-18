@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "af293e900ef01a864d4c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp fewrel 16rel bootstrap",
+  "task_key": "worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "223e88cf217c2cf4e8d5946f1373485f4ffe360a8cab0fd67c7565e457f9aedb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D033 诊断结果\n\n**实验已完成**，于 2026-05-16 09:40:20 正常结束。\n\n### 完成情况\n- 100/100 batches 全部完成\n- 每 batch 496 samples，共 49600 次推理\n- vLLM engine 已正常 shutdown\n\n### 核心结果\n| 指标 | 值 |\n|------|-----|\n| mean_accuracy | 0.8515 |\n| delta_BCS (low vs high) | **-7.42pp** &nbsp; 95% CI [-9.45, -4.49] |\n| Low BCS (Q1, n=26) acc | 0.8975 |\n| High BCS (Q4, n=33) acc | 0.8233 |\n| Amplification ratio (16→80) | **4.20x** &nbsp; 95% CI [3.30, 6.95] |\n| Pearson r(BCS, acc) | -0.6373 |\n\n### GPU 状态\n- **GPU 空闲**，无计算进程占用显存\n- 有一个 `test_ner_prompt.py` 进程在跑（PID 310564, 01:40 启动），但未占用 GPU\n- 后续 80-pool 实验可以立即启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

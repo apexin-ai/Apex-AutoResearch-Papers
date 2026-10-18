@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7458a3e9aa0333fc31a7",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research exp 005 alternatives",
+  "task_key": "worker_research_exp-005-alternatives_20260522T142547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp-005-alternatives_20260522T142547_result.json",
+    "occurrence": 1,
+    "bytes": 4873,
+    "sha256": "73924e354d63bfcee050401bfe084e5dacf95c2c013fa922182c139c0b91a766"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。下面写可行性报告。\n\n---\n\n## 可行性报告\n\n### 数据总览\n\n| 目录 | 内容 | 大小 |\n|------|------|------|\n| `lm_eval_clean/` | 主评估数据（per-example samples） | 4.1GB |\n| `results/` | 分析结果 + e4/exp005 数据 | 119MB |\n| `models/` | 模型权重（18个模型） | 23GB |\n\n磁盘：16GB/30GB (53%)，剩余空间充足。\n\n### 活跃进程\n\n- **exp005 zoo expansion** 在 tmux session `exp-005` 中运行：正在下载 DeltaNet-h3-1 模型（当前 ModelScope 下载阶段），之后会评估 5 个新架构的 lambada+arc_easy\n- GPU 空闲（0% util, 0 MiB mem）\n\n---\n\n### A. BoolQ + WinoGrande Benchmark 扩展\n\n**BoolQ per-example 数据：✅ 已存在**\n- 路径：`lm_eval_clean/boolq/{arch}/samples/boolq.jsonl`\n- 覆盖：3 架构 (GDN/RetNet/HGRN2) × 5 ratio (pure/h24-1/h12-1/h6-1/h3-1) = **15 个配置全部有**\n- 规模：1.3B scale，每文件 3270 样本\n- 格式：含 `doc_id`, `resps`（per-choice loglikelihood）, `acc`（per-example correctness）\n\n**WinoGrande per-example 数据：✅ 已存在**\n- 路径：`lm_eval_clean/winogrande/{arch}/samples/winogrande.jsonl`\n- 覆盖：同上 15 个配置\n- 规模：1.3B scale，每文件 1267 样本\n\n**所需工作**：改编现有 `compute_trajectories.py` 脚本（A1 分析），增加 BoolQ/WinoGrande 读取路径。纯计算，**预计 5-10 分钟**完成 Jaccard trajectory 分析。\n\n**补充说明**：HellaSwag (10042样本)、PIQA (1838样本) 的 per-example 数据同样完整（15配置全有），虽已在 A1 中做了 aggregate Jaccard trajectory，但**尚未做 per-example 的 detailed Jaccard 分析**（A1 只产出了 trajectory JSON，未做 per-sample 级分析）。\n\n---\n\n### B. Transformer Baseline Jaccard 对比\n\n**Transformer 模型：✅ 存在** (`models/transformer_340M_baseline/`, 1.3GB)\n\n**Transformer per-example 数据：⚠️ 仅 LAMBADA**\n- `exp007/340m/Transformer/samples/lambada_openai.jsonl` — 有\n- BoolQ/HellaSwag/WinoGrande/PIQA/ARC-Easy — **无 per-example 数据**\n- 仅有 aggregate JSON 结果（`340m/transformer_340M_baseline.json`）\n\n**mvp_logprob 数据**：`results/mvp_logprob/` 中有 `transformer_340M_baseline_depth{1-5}_details.json`，但这是 functional composition 任务的 logprob 数据，不是标准 benchmark 评估。\n\n**所需工作**：\n- LAMBADA Jaccard：可直接计算（hybrid vs transformer），**5 分钟**\n- 其他 benchmark：需重新跑 `lm_eval --log_samples` for transformer 340M on 5 benchmarks。340M 模型小，估计每 benchmark ~2-5 分钟，**总计 15-25 分钟**\n- 注：当前 exp005 占用 tmux 但 GPU 空闲（在下载阶段），需等 exp005 完成或另开评估\n\n---\n\n### C. 已有数据深入分析\n\n**样本字段**（以 BoolQ 为例）：\n\n| 字段 | 说明 |\n|------|------|\n| `doc_id` | 样本唯一 ID |\n| `doc` | 完整题目文本 |\n| `target` | 正确答案标签 |\n| `resps` | 每个选项的 `[loglikelihood, is_greedy]` |\n| `filtered_resps` | 过滤后的 loglikelihood |\n| `acc` | 0/1 per-example correctness |\n| `doc_hash`, `prompt_hash` | 可做跨模型 matching |\n\n**可做的分析**：\n\n1. **Confidence distribution 分析：✅ 可行**\n   - `resps` 含 per-choice loglikelihood → 可算 confidence margin = max_logprob - second_max_logprob\n   - 已有 A2 分析的框架代码可复用\n\n2. **Error type 分类：✅ 可行**\n   - `acc` 字段 + `doc` 内容 → 可做 helped/hurt/stayed 分类\n   - A3 complementarity 已做 UC/MC/mC/UW 四分类，可细化到 per-example 级\n\n3. **跨 benchmark consistency：✅ 可行**\n   - 6 个 benchmark 的 per-example 数据全在，doc_id 可跨配置 match\n   - 已有 A1 做了 4 benchmark 的 trajectory，加入 BoolQ/WinoGrande 扩展到 6 个\n\n**已完成的分析**（仅限 LAMBADA/HellaSwag/PIQA/ARC-Easy）：\n- A1: Cross-benchmark Jaccard trajectory\n- A2: Confidence margin prediction (AUC 0.54-0.76)\n- A3: Complementarity decomposition (UC/MC/mC/UW)\n- E1-E3: Confidence selection, continuous Jaccard, calibration\n\n---\n\n### 可行性排序\n\n| 排名 | 方案 | 已有数据 | 新评估需求 | 预计时间 |\n|------|------|----------|------------|----------|\n| **1** | **A. BoolQ+WinoGrande Jaccard** | ✅ 15×2 benchmark 完整 per-example 数据 | 零 | **5-10 分钟**（纯脚本） |\n| **2** | **C. 已有数据深入分析** | ✅ 6 benchmark × 15 config 全覆盖 | 零 | **20-30 分钟**（新分析脚本） |\n| **3** | **B. Transformer baseline Jaccard** | ⚠️ 仅 LAMBADA 有 per-example | 需跑 5 benchmark eval | **30-40 分钟**（含等 GPU+eval+分析） |\n\n**建议优先级**：A → C → B。A 和 C 完全不需要 GPU，可立即执行。B 需要等 exp005 释放 GPU 或在下载间隙插入评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

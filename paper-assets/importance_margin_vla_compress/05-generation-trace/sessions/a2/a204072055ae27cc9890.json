@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a204072055ae27cc9890",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "m103 resubmit westd38929",
+  "task_key": "worker_m103_resubmit_westd38929_20260525T012452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_m103_resubmit_westd38929_20260525T012452_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "c46511b0075f830e54b2d6403662a9e214c121c3342c0ab469b54296191e561c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部验证通过，模型路径正确：\n\n| GPU | 实验 | 加载模型 | 状态 |\n|-----|------|---------|------|\n| 0 | Random k=0.9 Goal | `openvla-7b-finetuned-libero-goal` | 已开始 Task 1/10, 256→230 tokens |\n| 1 | Random k=0.9 Spatial | `openvla-7b-finetuned-libero-spatial` | 已开始 Task 1/10, 256→230 tokens |\n| 2 | Attn k=0.85 Goal | `openvla-7b-finetuned-libero-goal` | 已开始 Task 1/10, 256→217 tokens |\n| 3 | Attn k=0.85 Spatial | `openvla-7b-finetuned-libero-spatial` | 已开始 Task 1/10, 256→217 tokens |\n\n所有实验均加载了正确的 suite-specific 微调模型，没有使用错误的 object/OFT 模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

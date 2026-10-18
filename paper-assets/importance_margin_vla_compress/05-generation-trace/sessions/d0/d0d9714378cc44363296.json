@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d9714378cc44363296",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy seed47 batch cqa1",
+  "task_key": "worker_deploy_seed47_batch_cqa1_20260528T222910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_seed47_batch_cqa1_20260528T222910_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "f94ec0e2e9acb4822732d84acf90ee32eedd3e687ca7335dd8b75d9f14b12de8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部正常启动，模型加载中。\n\n**部署汇总：**\n\n| 实验 | GPU | 状态 | 模型加载 |\n|------|-----|------|---------|\n| `eval_pi05_attn_k07_long_seed47_cqa1` | cuda:1 | RUNNING | ✓ attention k=0.7 |\n| `eval_pi05_attn_k075_long_seed47_cqa1` | cuda:2 | RUNNING | ✓ attention k=0.75 |\n| `eval_pi05_l2norm_k05_long_seed47_cqa1` | cuda:3 | RUNNING | ✓ l2norm k=0.5 |\n\ncqa1-33015 现在 4 个 GPU 全部占用（cuda:0 为已有的 l2norm k=0.7 seed47）。\n\n注：`submit_training_job` 工具在当前 session 不可用，改用 tmux + 显式 `CUDA_VISIBLE_DEVICES` 部署，效果等同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

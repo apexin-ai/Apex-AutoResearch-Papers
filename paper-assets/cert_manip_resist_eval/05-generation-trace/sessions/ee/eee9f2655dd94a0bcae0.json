@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eee9f2655dd94a0bcae0",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 gemini fix",
+  "task_key": "worker_code_plan001-gemini-fix_20260522T072340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-gemini-fix_20260522T072340_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "1b3281428019731e41bcaaf6f612cb36200a102d9b7d39daffa1769d9899fc82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项修改全部完成并验证通过：\n\n1. **max_tokens per-model 覆盖** — `gemini-2.5-pro` / `gemini-2.5-flash` → 2048，其他 → 512\n2. **`_parse_method` 字段** — `_parse_judge_output_robust` 返回中标记 `direct_json` / `regex_repair` / `failed`\n3. **`batch_score` 返回 `_meta`** — 包含 `repair_rate`、`parse_failed_rate`、`total`、`winner_distribution`；返回类型从 `List[Dict]` 改为 `Dict[str, Any]`（含 `results` 和 `_meta`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

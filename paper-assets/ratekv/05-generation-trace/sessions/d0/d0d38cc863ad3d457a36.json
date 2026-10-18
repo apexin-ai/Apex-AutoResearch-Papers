@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d38cc863ad3d457a36",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis c4 rerun exit check",
+  "task_key": "worker_analysis_c4_rerun_exit_check_20260514T110638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_rerun_exit_check_20260514T110638_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "e7b5d0bdecdc3f631f870de6b155d8a1d0079477a926e8656976e603e5585467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总如下：\n\n---\n\n## c4_rerun_d032 实验结果\n\n**进程状态**: PID 210299 已退出（EXITED），无 error/traceback\n\n**Conclusion**: **success**（Qwen2.5-7B plan_007 + plan_010 全部完成）\n\n**注意**: 实际只跑了 **Qwen2.5-7B**，未包含 Llama-3.1-8B 和 Mistral-7B-v0.3。\n\n### Qwen2.5-7B 关键 Metrics\n\n**Plan 007 — C4 calibration → WT2 eval**:\n\n| 指标 | 值 |\n|---|---|\n| Cal samples | 18 (from 100 C4 entries) |\n| Cal baseline PPL | 12.6505 |\n| bf16 WT2 PPL | 9.8106 |\n| **C4-MCKP WT2 PPL** | **11.2942** |\n| Uniform 4-bit WT2 PPL | 15.4454 |\n| Delta (uniform - MCKP) | +4.1512 |\n| Bit distribution | {8bit: 4, 4bit: 100, 2bit: 8} |\n| Agreement w/ WT2-cal | **96.4%** (108/112) |\n| Old contaminated PPL | 11.3285 (agree 98.2%) |\n\n**Plan 010 — Cross-domain robustness**:\n\n| 指标 | A (C4→WT2) | B (WT2→C4) |\n|---|---|---|\n| bf16 PPL | 9.8106 | 15.3246 |\n| MCKP PPL | 11.2942 | 20.5601 |\n| Uniform 4-bit PPL | 15.4454 | 35.4232 |\n| A↔B agreement | **96.4%** (108/112) | — |\n\n**核心发现**: 真实 C4 数据重跑 PPL=11.2942 vs 旧污染数据 PPL=11.3285，差异仅 0.03，说明之前的 C4 数据污染对 Qwen 结果影响极小。跨域 agreement 96.4% 表明分配方案对 calibration 数据源鲁棒。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

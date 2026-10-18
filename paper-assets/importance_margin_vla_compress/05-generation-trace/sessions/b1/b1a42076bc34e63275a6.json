@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b1a42076bc34e63275a6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval westd imm v2 collect and next",
+  "task_key": "worker_eval_westd_imm_v2_collect_and_next_20260516T235831",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_westd_imm_v2_collect_and_next_20260516T235831_result.json",
+    "occurrence": 1,
+    "bytes": 31,
+    "sha256": "71112d240f6949326c17a7a89f0d475ce13e7f47d9961e5d8fbb6d6944f693ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（等待中）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "32d6195c6b979969149b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis feature importance stability",
+  "task_key": "worker_analysis_feature_importance_stability_20260514T223439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_feature_importance_stability_20260514T223439_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "c0cb7ca95d7ffd2d124209b9cfd9db9a5ac923ee4ce61e64f026250466e82695"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n### 核心结论\n\n**Universal Core 4 特征**（所有 6 实验 top-5）：var_surprisal、p90_ppl、mean_surprisal、p75_ppl，累积占总 importance 的 44-68%。全部是 surprise/perplexity-based，lexical diversity 特征无一进入稳定 top-5。\n\n**Spearman rank correlation**：\n- 同模型跨策略：ρ = 0.859（Pythia t09 与 k50 完全一致 ρ=1.000）\n- 同策略跨模型：ρ = 0.801\n- 跨策略一致性 > 跨模型一致性\n\n**主要异常**：mean_ppl 变异最大（CV=0.64），在 Pythia 稳定 rank 3 但在 GPT2XL_t09 collapse 到 rank 18，属共线性导致的 importance 重分配。\n\n**产出**：\n- 完整分析报告 → `artifacts/feature_importance_consistency_analysis.md`\n- 关键 insight → `memory.md` 已更新\n- 推荐论文 figure：feature importance heatmap（6 实验 × 19 特征），配合文中 Spearman ρ 量化论证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

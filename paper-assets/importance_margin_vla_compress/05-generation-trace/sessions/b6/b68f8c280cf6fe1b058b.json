@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "b68f8c280cf6fe1b058b",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval fullft 100k sr formal",
+  "task_key": "worker_eval_fullft_100k_sr_formal_20260516T212956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_fullft_100k_sr_formal_20260516T212956.log",
+    "occurrence": 1,
+    "bytes": 1118402,
+    "sha256": "d4e677d6b751c899293ed78ae66515f9a605958fb218104374bd5086cfaa0fad"
+  },
+  "statistics": {
+    "messages": 919,
+    "user_turns": 1,
+    "tool_calls": 410,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 410,
+      "tool_result": 410,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 881,
+      "chunks": [
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0005.json",
+          "message_count": 161
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0005.json",
+          "message_count": 19
+        },
+        {
+          "path": "b68f8c280cf6fe1b058b-part-0006.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ]
+}

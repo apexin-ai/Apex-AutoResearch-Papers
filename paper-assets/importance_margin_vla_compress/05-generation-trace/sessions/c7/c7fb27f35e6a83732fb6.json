@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c7fb27f35e6a83732fb6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "infra status check urgent",
+  "task_key": "worker_infra_status-check-urgent_20260515T144626",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_status-check-urgent_20260515T144626_result.json",
+    "occurrence": 1,
+    "bytes": 3361,
+    "sha256": "89768a1480a052db204595b3a998d14a9f08d1417718f461231fba7696c05cff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== TMUX ===\nmvp_baseline: 1 windows (created Fri May 15 22:44:21 2026)\nmvp_imm_anchor: 1 windows (created Fri May 15 22:44:22 2026)\n=== NVIDIA-SMI ===\nFri May 15 22:46:52 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\n| N/A   31C    P8             35W /  600W |       3MiB /  97887MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\n| N/A   31C    P8             35W /  600W |       3MiB /  97887MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n=== TRAIN PROCESSES ===\nroot      24513  0.0  0.0   6080  3808 ?        Ss   22:44   0:00 tmux new-session -d -s mvp_baseline ...\nroot      24514  0.0  0.0   4364  3236 pts/0    Ss+  22:44   0:00 bash -c ...\nroot      24520 92.3  0.2 31216436 2149588 pts/0 Sl+ 22:44   2:18 python train.py --config configs/baseline.yaml --gpu 0 --seed 42 --wandb_run baseline_seed42\nroot      24587  0.0  0.0   4364  3264 pts/1    Ss+  22:44   0:00 bash -c ...\nroot      24593 82.0  0.2 31235620 2169012 pts/1 Sl+ 22:44   2:02 python train.py --config configs/imm_anchor.yaml --gpu 0 --seed 42 --wandb_run imm_d03_l05_seed42\n=== BASELINE LOG (last 20) ===\n2026-05-15 22:44:23 [INFO] Device: cuda:0\n2026-05-15 22:44:23 [INFO] Loading SmolVLA policy...\n=== IMM LOG (last 20) ===\n2026-05-15 22:44:24 [INFO] Device: cuda:0\n2026-05-15 22:44:24 [INFO] Loading SmolVLA policy...\n```\n\n两个 tmux session 都在运行，train.py 进程存在（CPU 占用 92%/82%），但 GPU 显存 0MB、GPU-Util 0%——目前还在加载模型阶段，尚未开始 GPU 训练。日志也只到 \"Loading SmolVLA policy...\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

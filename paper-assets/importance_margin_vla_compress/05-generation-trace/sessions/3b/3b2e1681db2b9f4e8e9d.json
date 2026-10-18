@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3b2e1681db2b9f4e8e9d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix westd m128 cleanup v2",
+  "task_key": "worker_fix_westd_m128_cleanup_v2_20260519T045020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_westd_m128_cleanup_v2_20260519T045020_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "5e31bd23dc3d1334ae4f27d9b009fabde22e1c351c36f5f784d4d4d0be7bd636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：无需清理。**\n\n- `train_m128_s44` tmux session 不存在，GPU 1 上没有多余进程\n- GPU 0: PID 462076 — `smart_compress_m16_seed44` 训练中\n- GPU 1: PID 459645 — `smart_compress_m128_seed44` 训练中\n- 保留的 m128_seed44 当前状态：**step 18950/100000，loss=0.0817，速度 5.3 steps/s**，正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

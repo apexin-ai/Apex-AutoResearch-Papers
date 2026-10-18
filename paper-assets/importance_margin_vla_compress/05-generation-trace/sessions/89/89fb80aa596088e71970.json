@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "89fb80aa596088e71970",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check plan 008 pruning sweep",
+  "task_key": "worker_check_plan_008_pruning_sweep_20260516T150940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_plan_008_pruning_sweep_20260516T150940_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "8de5aeb65cda831a02a495292a98744d832e5060b8c3e5893a489015fdd0b966"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_008 **没有在运行**。两台服务器的状态：\n\n**westd-27271:**\n- 无相关进程，无 tmux session\n- GPU 完全空闲（0 MiB / 97GB × 2，0% 利用率）\n- `eval_pruning_sweep.py` 脚本存在，但默认输出文件 `eval_results/pruning_sweep.json` 不存在 — **脚本从未被执行过**\n- 最近的活动是 `formal_bound_dryrun.json`（23:09）和 `plan_005_formal_bound.log`（22:32），属于 plan_005\n\n**cqa1-33015:**\n- 无 plan_008 相关文件或进程\n- tmux 里跑的是 `libero_full_ft_baseline` 和 `libero_lora_baseline`，与 plan_008 无关\n\n**结论：plan_008_pruning_sweep 状态标记为 RUNNING 但实际从未启动。** 脚本已就绪（`eval_pruning_sweep.py`），但没有被执行。需要手动启动，或将 registry 状态更新为 NOT_STARTED。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

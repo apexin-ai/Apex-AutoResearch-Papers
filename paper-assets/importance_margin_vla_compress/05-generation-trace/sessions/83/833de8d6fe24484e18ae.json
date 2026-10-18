@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "833de8d6fe24484e18ae",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops oft kill cqa1 check",
+  "task_key": "worker_ops_oft-kill-cqa1-check_20260520T131035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_oft-kill-cqa1-check_20260520T131035_result.json",
+    "occurrence": 1,
+    "bytes": 1557,
+    "sha256": "2432820289e582bbfc9fb8a544e4abfbb5adc60119496ae5e73612669547f506"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n### 1. westd-41074 GPU 0/1 释放情况\n\n**GPU 0 和 GPU 1 已成功释放。** 三个 OFT 进程（434280, 418851, 418848）已全部被 kill，ps 确认不存在。nvidia-smi 现在只剩 GPU 2/3 上的进程：\n- GPU 2: PID 68539, 28546 MiB\n- GPU 3: PID 68852, 27526 MiB\n\n### 2. cqa1-33015 GPU 状态\n\n只有 2 个 GPU 在使用：\n- GPU 0 (a2a1...): PID 868193, 4197 MiB — 跑 X-VLA seed43 eval\n- GPU 1 (c242...): PID 894197, 4521 MiB — 跑 X-VLA seed43 eval\n- GPU 2/3: 空闲\n\n### 3. OFT CV 计算\n\n**已崩溃。** 报错：`RuntimeError: expected mat1 and mat2 to have the same dtype, but got: float != c10::BFloat16`（发生在 LLaMA attention 的 q_proj linear layer）。dtype 不匹配问题，需要修复。\n\n### 4. X-VLA seed43 三个 k 值进度\n\n| k 值 | 状态 | SR | 详情 |\n|------|------|----|------|\n| **k=0.9** | **完成** | **97.6%** (488/500) | Wilson CI 95%: [95.9%, 98.6%]，45/50 vision tokens 保留 |\n| **k=0.7** | 运行中 | 当前 task 全 FAIL | Ep 30/50，连续 FAIL，steps=800 超时 |\n| **k=0.5** | 运行中 | 当前 task 全 FAIL | Ep 40/50，连续 FAIL，steps=800 超时 |\n\n### 5. Eval Results JSON\n\n仅 k=0.9 有结果文件（`xvla_prune_k0.9_libero_object_seed43.json`）：\n- 整体 SR = **97.6%**\n- per-task SR 范围：92%–100%\n- 最低：tomato sauce 92%, alphabet soup 94%\n- 6 个 task 达到 96%+，4 个 task 达到 100%\n\nk=0.7 和 k=0.5 从当前日志看表现很差，大量连续 FAIL，最终 SR 预计会很低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,2575 @@
+{
+  "schema_version": "1.0",
+  "id": "0d0683e4a538f67e2e00",
+  "project": "causal_style_decomp_judge",
+  "kind": "conversation",
+  "title": "bugfix gee and data discrepancy",
+  "task_key": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_bugfix_gee-and-data-discrepancy_20260522T234122.jsonl",
+    "occurrence": 1,
+    "bytes": 131203,
+    "sha256": "0900573bd7b5e333a79d7ae21ceb6b3a5fe91760ab4c0deb9e5eb3945fa457c8"
+  },
+  "statistics": {
+    "messages": 127,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "tool_call": 63,
+      "tool_result": 63,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T23:55:44.081355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T23:55:44.081664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T23:55:44.081849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T23:55:44.082001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "find /root/causal_style_decomp_judge -name \"cross_benchmark*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T23:55:44.082137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "find /root/causal_style_decomp_judge -name \"*.py\" -path \"*/cross*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T23:55:44.082467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GEE Model Diagnostics for all 6 judge x axis cells.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.families import Binomial\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable, Independence\\\\nfrom pathlib import Path\\\\n\\\\nNLI_THRESHOLD = 0.90\\\\n\\\\nCELLS = [\\\\n    {\\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"Formality\\\\\\\", \\\\\\\"file\\\\\\\": \\\\\\\"pairwise_results_32b.jsonl\\\\\\\",\\\\n     \\\\\\\"pole_a\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"casual\\\\\\\", \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_formality\\\\\\\", \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_formal\\\\\\\"},\\\\n    {\\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"Verbosity\\\\\\\", \\\\\\\"file\\\\\\\": \\\\\\\"pairwise_results_gpt4o_verbosity.jsonl\\\\\\\",\\\\n     \\\\\\\"pole_a\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"concise\\\\\\\", \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_verbosity\\\\\\\", \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_verbose\\\\\\\"},\\\\n    {\\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"Register\\\\\\\", \\\\\\\"file\\\\\\\": \\\\\\\"pairwise_results_gpt4o_register.jsonl\\\\\\\",\\\\n     \\\\\\\"pole_a\\\\\\\": \\\\\\\"academic\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"conversational\\\\\\\", \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_register\\\\\\\", \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_academic\\\\\\\"},\\\\n    {\\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"Formality\\\\\\\", \\\\\\\"file\\\\\\\": \\\\\\\"pairwise_results_qwen32b_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"pole_a\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"casual\\\\\\\", \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_formality\\\\\\\", \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_formal\\\\\\\"},\\\\n    {\\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"Verbosity\\\\\\\", \\\\\\\"file\\\\\\\": \\\\\\\"pairwise_results_qwen32b_verbosity.jsonl\\\\\\\",\\\\n     \\\\\\\"pole_a\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"concise\\\\\\\", \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_verbosity\\\\\\\", \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_verbose\\\\\\\"},\\\\n    {\\\\\\\"judge\\\\\\\": \\\\\\\"Qwe\n…[truncated 7621 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T23:55:44.082675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T23:55:44.082819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T23:55:44.082957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T23:55:44.083080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T23:55:44.083422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport choix\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.families import Binomial\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\n\\\\nFORMAL, CASUAL = 0, 1\\\\nN_BOOT = 10000\\\\nSEED = 42\\\\nNLI_THRESHOLD = 0.90\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\"\\\\n\\\\nCONFIGS = [\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_alpacaeval_llama70b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": None,\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef load_pairwise(path):\\\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n    for rec in recs:\\\\n        pid = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\\\\\"A\\\\\\\" else (CASUAL, FORMAL))\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\\\\\"A\\\\\\\" else (FORMAL, CASUAL))\\\\n        comparisons.\n…[truncated 7497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T23:55:44.083620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -5 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T23:55:44.083808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"n_consistent\\\\\\\": 61,\\\\n    \\\\\\\"n_inconsistent\\\\\\\": 39,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 0.61,\\\\n    \\\\\\\"bt_win_prob\\\\\\\": 0.7749,\\\\n    \\\\\\\"bt_ci\\\\\\\": [\\\\n      0.72,\\\\n      0.8299\\\\n    ],\\\\n    \\\\\\\"bt_p\\\\\\\": 0.0001,\\\\n    \\\\\\\"bt_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_ate\\\\\\\": 0.4508,\\\\n    \\\\\\\"likert_d\\\\\\\": 1.1235,\\\\n    \\\\\\\"likert_p\\\\\\\": 0.0,\\\\n    \\\\\\\"likert_n\\\\\\\": 61,\\\\n    \\\\\\\"likert_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_note\\\\\\\": \\\\\\\"sign-test (pairwise-derived)\\\\\\\",\\\\n    \\\\\\\"gee_style_or\\\\\\\": 12.1365,\\\\n    \\\\\\\"gee_style_ci\\\\\\\": [\\\\n      5.4725,\\\\n      26.9158\\\\n    ],\\\\n    \\\\\\\"gee_style_p\\\\\\\": 0.0,\\\\n    \\\\\\\"gee_orig_or\\\\\\\": 1.4361,\\\\n    \\\\\\\"gee_orig_ci\\\\\\\": [\\\\n      0.6744,\\\\n      3.0585\\\\n    ],\\\\n    \\\\\\\"gee_orig_p\\\\\\\": 0.348003,\\\\n    \\\\\\\"gee_n_obs\\\\\\\": 200,\\\\n    \\\\\\\"gee_n_pairs\\\\\\\": 100,\\\\n    \\\\\\\"blindspot\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 80,\\\\n    \\\\\\\"n_consistent\\\\\\\": 40,\\\\n    \\\\\\\"n_inconsistent\\\\\\\": 40,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 0.5,\\\\n    \\\\\\\"bt_win_prob\\\\\\\": 0.7,\\\\n    \\\\\\\"bt_ci\\\\\\\": [\\\\n      0.6375,\\\\n      0.7624\\\\n    ],\\\\n    \\\\\\\"bt_p\\\\\\\": 0.0001,\\\\n    \\\\\\\"bt_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_ate\\\\\\\": 0.3014,\\\\n    \\\\\\\"likert_d\\\\\\\": 0.2515,\\\\n    \\\\\\\"likert_p\\\\\\\": 0.034999,\\\\n    \\\\\\\"likert_n\\\\\\\": 73,\\\\n    \\\\\\\"likert_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_note\\\\\\\": \\\\\\\"paired t-test (Likert scores)\\\\\\\",\\\\n    \\\\\\\"gee_style_or\\\\\\\": 4.7341,\\\\n    \\\\\\\"gee_style_ci\\\\\\\": [\\\\n      1.229,\\\\n      18.2362\\\\n    ],\\\\n    \\\\\\\"gee_style_p\\\\\\\": 0.023844,\\\\n    \\\\\\\"gee_or\n…[truncated 329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T23:55:44.084006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0030\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"the computer\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9984084963798523, \\\\\\\"bertscore_cf\\\\\\\": 0.8639068007469177, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": true, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"formal_wins\\\\\\\": true}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0014\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Write a Python function that takes two integers and returns their least common multiple.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.01673969440162182, \\\\\\\"bertscore_cf\\\\\\\": 0.805616557598114, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": false, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": false, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"formal_wins\\\\\\\": false}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0045\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"How do I tell if a call claiming to be from my bank is legitimate?\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9946362376213074, \\\\\\\"bertscore_cf\\\\\\\": 0.8568202257156372, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": false, \\\\\\\"consistent\\\\\\\": false, \\\\\\\"formal_wins\\\\\\\": null}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0076\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Compute the derivative of 2x^2 + 5x.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9845300912857056, \\\\\\\"bertscore_cf\\\\\\\": 0.9999998807907104, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": false, \\\\\\\"consistent\\\\\\\": false, \\\\\\\"formal_wins\\\\\\\": null}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"mvp_0060\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"if a patient isn't able to recognize written words any longer, what neuropsychological syndrome could account for that?\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\n…[truncated 393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T23:55:44.084203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -o '\"original_formality\": \"[^\"]*\"' /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T23:55:44.084387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -c '\"original_formality\": \"formal\"' /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T23:55:44.084584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"casual\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\"\\\\n\\\\\\\"origi\n…[truncated 1760 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T23:55:44.084738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -c '\"original_formality\": \"casual\"' /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T23:55:44.084866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"69\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T23:55:44.084986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "wc -l /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T23:55:44.085105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T23:55:44.085225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"80 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T23:55:44.085439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && python3 -c \"\nimport json, numpy as np, pandas as pd\n\n# Load the pairwise data (no NLI filter, same as cross_benchmark_analysis.py)\nrecs = [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]\nprint(f'Total records: {len(recs)}')\nprint(f'Formal: {sum(1 for r in recs if r[\\\"original_formality\\\"]==\\\"formal\\\")}')\nprint(f'Casual: {sum(1 for r in recs if r[\\\"original_formality\\\"]==\\\"casual\\\")}')\n\n# Build the GEE design matrix exactly as cross_benchmark_analysis.py does\nrows = []\nfor i, r in enumerate(recs):\n    orig = r.get('original_formality', 'formal')\n    t1 = r.get('trial1_choice')\n    t2 = r.get('trial2_choice')\n    if t1 in ('A', 'B'):\n        rows.append({'pair_id': i, 'is_style_in_A': 1.0,\n                      'is_original_in_A': 1.0 if orig == 'formal' else 0.0,\n                      'chose_A': 1.0 if t1 == 'A' else 0.0})\n    if t2 in ('A', 'B'):\n        rows.append({'pair_id': i, 'is_style_in_A': 0.0,\n                      'is_original_in_A': 1.0 if orig == 'casual' else 0.0,\n                      'chose_A': 1.0 if t2 == 'A' else 0.0})\n\ndf = pd.DataFrame(rows)\nprint(f'\\nTotal GEE obs: {len(df)}')\n\n# Check correlation\nr_corr = df['is_style_in_A'].corr(df['is_original_in_A'])\nprint(f'Pearson r(style, orig): {r_corr:.6f}')\n\n# Check if columns are identical\nidentical = (df['is_style_in_A'] == df['is_original_in_A']).all()\nprint(f'Columns identical: {identical}')\n\n# Unique row patterns\nprint('\\nUnique (style, orig) patterns:')\nfor (s, o), grp in df.groupby(['is_style_in_A', 'is_original_in_A']):\n    y_mean = grp['chose_A'].mean()\n    print(f'  style={s}, orig={o}: n={len(grp)}, mean(chose_A)={y_mean:.4f}')\n\n# VIF\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\nimport statsmodels.api as sm\nX = sm.add_constant(df[['is_style_in_A', 'is_original_in_A']])\nfor i, col in enumerate(X.columns):\n    vif = variance_inflation_factor(X.values, i)\n    print(f'VIF({col}): {vif:.4f}')\n\n# Check response symmetry for casual pairs\nprint('\\nCasual pairs detail:')\ncasual_ids = [i for i, r in enumerate(recs) if r['original_formality'] == 'casual']\nfor pid in casual_ids:\n    pair = df[df['pair_id']==pid]\n    t1 = pair[pair['is_style_in_A']==1.0]\n    t2 = pair[pair['is_style_in_A']==0.0]\n    if len(t1) > 0 and len(t2) > 0:\n        print(f'  pair {pid}: trial1 chose_A={t1[\\\"chose_A\\\"].values[0]}, trial2 chose_A={t2[\\\"chose_A\\\"].values[0]}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T23:55:44.085645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && python3 -c \\\\\\\"\\\\\\\\nimport json, numpy as np, pandas as pd\\\\\\\\n\\\\\\\\n# Load the pairwise data (no NLI filter, same as cross_benchmark_analysis.py)\\\\\\\\nrecs = [json.loads(l) for l in open(\\\\\\\\'data/scored_mtbench_qwen32b_formality.jsonl\\\\\\\\')]\\\\\\\\nprint(f\\\\\\\\'Total records: {len(recs)}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Formal: {sum(1 for r in recs if r[\\\\\\\\\\\\\\\\\\\\\\\"original_formality\\\\\\\\\\\\\\\\\\\\\\\"]==\\\\\\\\\\\\\\\\\\\\\\\"formal\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Casual: {sum(1 for r in recs if r[\\\\\\\\\\\\\\\\\\\\\\\"original_formality\\\\\\\\\\\\\\\\\\\\\\\"]==\\\\\\\\\\\\\\\\\\\\\\\"casual\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Build the GEE design matrix exactly as cross_benchmark_analysis.py does\\\\\\\\nrows = []\\\\\\\\nfor i, r in enumerate(recs):\\\\\\\\n    orig = r.get(\\\\\\\\'original_formality\\\\\\\\', \\\\\\\\'formal\\\\\\\\')\\\\\\\\n    t1 = r.get(\\\\\\\\'trial1_choice\\\\\\\\')\\\\\\\\n    t2 = r.get(\\\\\\\\'trial2_choice\\\\\\\\')\\\\\\\\n    if t1 in (\\\\\\\\'A\\\\\\\\', \\\\\\\\'B\\\\\\\\'):\\\\\\\\n        rows.append({\\\\\\\\'pair_id\\\\\\\\': i, \\\\\\\\'is_style_in_A\\\\\\\\': 1.0,\\\\\\\\n                      \\\\\\\\'is_original_in_A\\\\\\\\': 1.0 if orig == \\\\\\\\'formal\\\\\\\\' else 0.0,\\\\\\\\n                      \\\\\\\\'chose_A\\\\\\\\': 1.0 if t1 == \\\\\\\\'A\\\\\\\\' else 0.0})\\\\\\\\n    if t2 in (\\\\\\\\'A\\\\\\\\', \\\\\\\\'B\\\\\\\\'):\\\\\\\\n        rows.append({\\\\\\\\'pair_id\\\\\\\\': i, \\\\\\\\'is_style_in_A\\\\\\\\': 0.0,\\\\\\\\n                      \\\\\\\\'is_original_in_A\\\\\\\\': 1.0 if orig == \\\\\\\\'casual\\\\\\\\' else 0.0,\\\\\\\\n                      \\\\\\\\'chose_A\\\\\\\\': 1.0 if t2 == \\\\\\\\'A\\\\\\\\' else 0.0})\\\\\\\\n\\\\\\\\ndf = pd.DataFrame(rows)\\\\\\\\nprint(f\\\\\\\\'\\\\\\\\\\\\\\\\nTotal GEE obs: {len(df)}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check correlation\\\\\\\\nr_corr = df[\\\\\\\\'is_style_in_A\\\\\\\\'].corr(df[\\\\\\\\'is_original_in_A\\\\\\\\'])\\\\\\\\nprint(f\\\\\\\\'Pearson r(style, orig): {r_corr:.6f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check if columns are identical\\\\\\\\nidentical = (df[\\\\\\\\'is_style_in_A\\\\\\\\'] == df[\\\\\\\\'is_original_in_A\\\\\\\\']).all()\\\\\\\\nprint(f\\\\\\\\'Columns \n…[truncated 1464 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T23:55:44.085827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "westb-29275",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T23:55:44.085970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "ls /root/miniconda3/bin/python",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T23:55:44.086100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T23:55:44.086220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T23:55:44.086365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json, numpy as np, pandas as pd\nimport statsmodels.api as sm\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\nfrom statsmodels.genmod.families import Binomial\nfrom statsmodels.genmod.cov_struct import Exchangeable\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\n\nrecs = [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]\nprint(f'Total records: {len(recs)}')\nprint(f'Formal: {sum(1 for r in recs if r[\\\"original_formality\\\"]==\\\"formal\\\")}')\nprint(f'Casual: {sum(1 for r in recs if r[\\\"original_formality\\\"]==\\\"casual\\\")}')\n\nrows = []\nfor i, r in enumerate(recs):\n    orig = r.get('original_formality', 'formal')\n    t1 = r.get('trial1_choice')\n    t2 = r.get('trial2_choice')\n    if t1 in ('A', 'B'):\n        rows.append({'pair_id': i, 'is_style_in_A': 1.0,\n                      'is_original_in_A': 1.0 if orig == 'formal' else 0.0,\n                      'chose_A': 1.0 if t1 == 'A' else 0.0})\n    if t2 in ('A', 'B'):\n        rows.append({'pair_id': i, 'is_style_in_A': 0.0,\n                      'is_original_in_A': 1.0 if orig == 'casual' else 0.0,\n                      'chose_A': 1.0 if t2 == 'A' else 0.0})\n\ndf = pd.DataFrame(rows)\nprint(f'Total GEE obs: {len(df)}')\n\nr_corr = df['is_style_in_A'].corr(df['is_original_in_A'])\nprint(f'Pearson r(style, orig): {r_corr:.6f}')\n\nidentical = (df['is_style_in_A'] == df['is_original_in_A']).all()\nprint(f'Columns identical: {identical}')\nmatch_pct = (df['is_style_in_A'] == df['is_original_in_A']).mean()\nprint(f'Match percentage: {match_pct:.4f}')\n\nprint('\\nUnique (style, orig, chose_A) patterns:')\nfor (s, o), grp in df.groupby(['is_style_in_A', 'is_original_in_A']):\n    y_mean = grp['chose_A'].mean()\n    print(f'  style={s}, orig={o}: n={len(grp)}, mean(chose_A)={y_mean:.4f}')\n\nX = sm.add_constant(df[['is_style_in_A', 'is_original_in_A']])\nfor i, col in enumerate(X.columns):\n    vif = variance_inflation_factor(X.values, i)\n    print(f'VIF({col}): {vif:.4f}')\n\n# Run GEE\nexog = sm.add_constant(df[['is_style_in_A', 'is_original_in_A']])\nmodel = GEE(df['chose_A'], exog, groups=df['pair_id'],\n            family=Binomial(), cov_struct=Exchangeable())\nres = model.fit()\nprint('\\nGEE Summary:')\nprint(res.summary())\nprint(f'\\nParams: {res.params.to_dict()}')\nprint(f'SE: {res.bse.to_dict()}')\nprint(f'P: {res.pvalues.to_dict()}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T23:55:44.086531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 80\\\\nFormal: 69\\\\nCasual: 11\\\\nTotal GEE obs: 160\\\\nPearson r(style, orig): 0.725000\\\\nColumns identical: False\\\\nMatch percentage: 0.8625\\\\n\\\\nUnique (style, orig, chose_A) patterns:\\\\n  style=0.0, orig=0.0: n=69, mean(chose_A)=0.4928\\\\n  style=0.0, orig=1.0: n=11, mean(chose_A)=0.8182\\\\n  style=1.0, orig=0.0: n=11, mean(chose_A)=0.8182\\\\n  style=1.0, orig=1.0: n=69, mean(chose_A)=0.9565\\\\nVIF(const): 2.1594\\\\nVIF(is_style_in_A): 2.1080\\\\nVIF(is_original_in_A): 2.1080\\\\n\\\\nGEE Summary:\\\\n                               GEE Regression Results                              \\\\n===================================================================================\\\\nDep. Variable:                     chose_A   No. Observations:                  160\\\\nModel:                                 GEE   No. clusters:                       80\\\\nMethod:                        Generalized   Min. cluster size:                   2\\\\n                      Estimating Equations   Max. cluster size:                   2\\\\nFamily:                           Binomial   Mean cluster size:                 2.0\\\\nDependence structure:         Exchangeable   Num. iterations:                     4\\\\nDate:                     Sat, 23 May 2026   Scale:                           1.000\\\\nCovariance type:                    robust   Time:                         07:44:05\\\\n====================================================================================\\\\n                       coef    std err          z      P>|z|      [0.025      0.975]\\\\n------------------------------------------------------------------------------------\\\\nconst               -0.0306      0.237     -0.129      0.897      -0.496       0.435\\\\nis_style_in_A        1.5548      0.688      2.260      0.024       0.206       2.903\\\\nis_original_in_A     1.5548      0.688      2.260      0.024       0.206       2.903\\\\n=====================================================\n…[truncated 724 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T23:55:44.086757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json, numpy as np\n\n# Check casual pair detail\nrecs = [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]\ncasual = [r for r in recs if r['original_formality'] == 'casual']\nprint(f'Casual pairs: {len(casual)}')\nt1_a = sum(1 for r in casual if r['trial1_choice'] == 'A')\nt2_a = sum(1 for r in casual if r['trial2_choice'] == 'A')\nprint(f'Casual trial1 chose A (formal): {t1_a}/{len(casual)}')\nprint(f'Casual trial2 chose A (casual): {t2_a}/{len(casual)}')\nprint(f'means equal: {t1_a == t2_a} -> this is why GEE coeffs are identical')\n\n# Per casual pair\nprint('\\nCasual pair detail:')\nfor r in casual:\n    print(f'  {r[\\\"id\\\"]}: t1={r[\\\"trial1_choice\\\"]}, t2={r[\\\"trial2_choice\\\"]}, consistent={r[\\\"consistent\\\"]}')\n\n# If we had different means, GEE would differ. This is data coincidence, not code bug.\n# Verify: perturb one casual pair and check\nimport pandas as pd\nimport statsmodels.api as sm\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\nfrom statsmodels.genmod.families import Binomial\nfrom statsmodels.genmod.cov_struct import Exchangeable\n\ndef run_gee(recs_in):\n    rows = []\n    for i, r in enumerate(recs_in):\n        orig = r.get('original_formality', 'formal')\n        t1, t2 = r.get('trial1_choice'), r.get('trial2_choice')\n        if t1 in ('A','B'):\n            rows.append({'pair_id':i,'is_style_in_A':1.0,'is_original_in_A':1.0 if orig=='formal' else 0.0,'chose_A':1.0 if t1=='A' else 0.0})\n        if t2 in ('A','B'):\n            rows.append({'pair_id':i,'is_style_in_A':0.0,'is_original_in_A':1.0 if orig=='casual' else 0.0,'chose_A':1.0 if t2=='A' else 0.0})\n    df = pd.DataFrame(rows)\n    exog = sm.add_constant(df[['is_style_in_A','is_original_in_A']])\n    model = GEE(df['chose_A'], exog, groups=df['pair_id'], family=Binomial(), cov_struct=Exchangeable())\n    res = model.fit()\n    return np.exp(res.params['is_style_in_A']), np.exp(res.params['is_original_in_A'])\n\n# Original\ns, o = run_gee(recs)\nprint(f'\\nOriginal GEE: style_OR={s:.4f}, orig_OR={o:.4f}')\n\n# Perturb: flip one casual pair trial2\nrecs2 = [json.loads(json.dumps(r)) for r in recs]\nfor r2 in recs2:\n    if r2['original_formality'] == 'casual':\n        r2['trial2_choice'] = 'B' if r2['trial2_choice'] == 'A' else 'A'\n        break\ns2, o2 = run_gee(recs2)\nprint(f'Perturbed GEE: style_OR={s2:.4f}, orig_OR={o2:.4f}')\nprint('-> Different! Confirms this is data symmetry, not code bug.')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T23:55:44.086921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Casual pairs: 11\\\\nCasual trial1 chose A (formal): 9/11\\\\nCasual trial2 chose A (casual): 9/11\\\\nmeans equal: True -> this is why GEE coeffs are identical\\\\n\\\\nCasual pair detail:\\\\n  mtbench_000: t1=A, t2=A, consistent=False\\\\n  mtbench_017: t1=B, t2=A, consistent=True\\\\n  mtbench_018: t1=A, t2=B, consistent=True\\\\n  mtbench_050: t1=A, t2=A, consistent=False\\\\n  mtbench_052: t1=A, t2=A, consistent=False\\\\n  mtbench_006: t1=A, t2=A, consistent=False\\\\n  mtbench_009: t1=B, t2=A, consistent=True\\\\n  mtbench_055: t1=A, t2=A, consistent=False\\\\n  mtbench_025: t1=A, t2=A, consistent=False\\\\n  mtbench_057: t1=A, t2=A, consistent=False\\\\n  mtbench_074: t1=A, t2=B, consistent=True\\\\n\\\\nOriginal GEE: style_OR=4.7341, orig_OR=4.7341\\\\nPerturbed GEE: style_OR=6.0784, orig_OR=3.3275\\\\n-> Different! Confirms this is data symmetry, not code bug.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T23:55:44.087089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "find /root/causal_style_decomp_judge -name \"*.py\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T23:55:44.087213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "find /root/causal_style_decomp_judge -name \"*.json\" -path \"*/artifacts/*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T23:55:44.087390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/__init__.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/data_prep.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/counterfactual_gen.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/content_verification.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/judge_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/ate_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/pairwise_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp010_binarized_likert.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp011_nli_sensitivity.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp012_consistency_bias.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp014_logistic_decomposition.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_nli_validation.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp015_clmm_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_spotcheck.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gen_power_curve.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_gee.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gen_pipeline_figure.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gen_forest_plot.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_register_bt.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_length_confound.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_qwen32b_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_verbosity_qwen32b.py\\\\n\n…[truncated 3010 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T23:55:44.087538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T23:55:44.087692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -100 /root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T23:55:44.087859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GPT-4o formality BT 10k bootstrap + Holm-Bonferroni + Qwen register Cohen's d.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nimport choix\\\\n\\\\nDATA_PAIRWISE = \\\\\\\"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\\\\\\"\\\\nDATA_REGISTER = \\\\\\\"/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\\\\\\"\\\\nN_BOOT = 10000\\\\nFORMAL, CASUAL = 0, 1\\\\n\\\\n\\\\ndef load_pairwise(path, nli_threshold=0.90):\\\\n    raw = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                raw.append(json.loads(line))\\\\n    raw = [d for d in raw if d.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_threshold]\\\\n\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n\\\\n    for rec in raw:\\\\n        pair_id = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            if t1 == \\\\\\\"A\\\\\\\":\\\\n                pcomps.append((FORMAL, CASUAL))\\\\n            else:\\\\n                pcomps.append((CASUAL, FORMAL))\\\\n\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            if t2 == \\\\\\\"A\\\\\\\":\\\\n                pcomps.append((CASUAL, FORMAL))\\\\n            else:\\\\n                pcomps.append((FORMAL, CASUAL))\\\\n\\\\n        comparisons.extend(pcomps)\\\\n        pair_groups[pair_id] = pcomps\\\\n\\\\n    return comparisons, pair_groups\\\\n\\\\n\\\\ndef fit_bt(comparisons):\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    return params[FORMAL] - params[CASUAL]\\\\n\\\\n\\\\ndef bootstrap_pair(pair_groups, n_boot=N_BOOT, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    pair_ids = list(pair_groups.keys())\\\\n    n_pairs = len(pair_ids)\\\\n    diffs = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\\\n        boot = []\\\\n        for i in idx:\\\\n            boot.extend(pair_groups[pair_ids[i]])\\\\n        try:\\\\n \n…[truncated 1360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T23:55:44.088002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "ls /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T23:55:44.088134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T23:55:44.088254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T23:55:44.088401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   100 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl\\\\n    80 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\\\n    80 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\\\n   260 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T23:55:44.088555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -80 /root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T23:55:44.088718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Qwen3-32B statistical analysis: BT + logistic decomposition (GEE).\\\\n\\\\nTask 1: BT on formality + verbosity (pair-level bootstrap, 10000 resamples)\\\\nTask 2: GEE logistic decomposition on register\\\\nTask 3: GEE logistic decomposition on formality\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\ndef load_records(path: str) -> list[dict]:\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\ndef nli_filter(records: list[dict], threshold: float = 0.90) -> list[dict]:\\\\n    return [r for r in records if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= threshold]\\\\n\\\\nAXIS_CONFIG = {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n        \\\\\\\"poles\\\\\\\": (\\\\\\\"formal\\\\\\\", \\\\\\\"casual\\\\\\\"),\\\\n        \\\\\\\"field\\\\\\\": \\\\\\\"original_formality\\\\\\\",\\\\n        \\\\\\\"prefers_key\\\\\\\": \\\\\\\"trial{}_prefers_formal\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"formal_wins\\\\\\\",\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n        \\\\\\\"poles\\\\\\\": (\\\\\\\"verbose\\\\\\\", \\\\\\\"concise\\\\\\\"),\\\\n        \\\\\\\"field\\\\\\\": \\\\\\\"original_verbosity\\\\\\\",\\\\n        \\\\\\\"prefers_key\\\\\\\": \\\\\\\"trial{}_prefers_verbose\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"verbose_wins\\\\\\\",\\\\n    },\\\\n    \\\\\\\"register\\\\\\\": {\\\\n        \\\\\\\"poles\\\\\\\": (\\\\\\\"academic\\\\\\\", \\\\\\\"conversational\\\\\\\"),\\\\n        \\\\\\\"field\\\\\\\": \\\\\\\"original_register\\\\\\\",\\\\n        \\\\\\\"prefers_key\\\\\\\": \\\\\\\"trial{}_prefers_academic\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"academic_wins\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\ndef build_bt_comparisons(records, axis):\\\\n    cfg = AXIS_CONFIG[axis]\\\\n    comparisons = []\\\\n    pair_groups = []\\\\n    for rec in records:\\\\n        pair_comps = []\\\\n        for trial in [1, 2]:\\\\n            key = cfg[\\\\\\\"prefers_key\\\\\\\"].format(trial)\\\\n            prefers_a = rec.get(key)\\\\n            if prefers_a is None:\\\\n                continue\\\\n            if prefers\n…[truncated 1020 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T23:55:44.088876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json\n\n# Compare the two files\nrecs100 = [json.loads(l) for l in open('data/pairwise_results_qwen32b_formality.jsonl')]\nrecs80 = [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]\n\nids100 = set(r['id'] for r in recs100)\nids80 = set(r['id'] for r in recs80)\n\nprint(f'File 100: {len(recs100)} records, IDs from {min(ids100)} to {max(ids100)}')\nprint(f'File 80: {len(recs80)} records, IDs from {min(ids80)} to {max(ids80)}')\nprint(f'Common IDs: {len(ids100 & ids80)}')\nprint(f'Only in 100: {len(ids100 - ids80)}')\nprint(f'Only in 80: {len(ids80 - ids100)}')\n\n# Check NLI distribution\nnli100 = [r.get('nli_cf', 0) for r in recs100]\nnli80 = [r.get('nli_cf', 0) for r in recs80]\n\nimport numpy as np\nprint(f'\\nFile 100 NLI: mean={np.mean(nli100):.4f}, >=0.90: {sum(1 for n in nli100 if n >= 0.90)}, <0.90: {sum(1 for n in nli100 if n < 0.90)}')\nprint(f'File 80 NLI: mean={np.mean(nli80):.4f}, >=0.90: {sum(1 for n in nli80 if n >= 0.90)}, <0.90: {sum(1 for n in nli80 if n < 0.90)}')\n\n# Check formality distribution\nf100 = sum(1 for r in recs100 if r.get('original_formality') == 'formal')\nc100 = sum(1 for r in recs100 if r.get('original_formality') == 'casual')\nf80 = sum(1 for r in recs80 if r.get('original_formality') == 'formal')\nc80 = sum(1 for r in recs80 if r.get('original_formality') == 'casual')\nprint(f'\\nFile 100: {f100} formal, {c100} casual')\nprint(f'File 80: {f80} formal, {c80} casual')\n\n# After NLI filtering on file 100\nrecs100_filt = [r for r in recs100 if r.get('nli_cf', 0) >= 0.90]\nf100f = sum(1 for r in recs100_filt if r.get('original_formality') == 'formal')\nc100f = sum(1 for r in recs100_filt if r.get('original_formality') == 'casual')\nprint(f'File 100 (NLI>=0.90): {len(recs100_filt)} records, {f100f} formal, {c100f} casual')\n\n# Check if 80 is a subset of 100\nsubset = ids80.issubset(ids100)\nprint(f'\\\\n80 is subset of 100: {subset}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T23:55:44.089022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"File 100: 100 records, IDs from mvp_0000 to mvp_0099\\\\nFile 80: 80 records, IDs from mtbench_000 to mtbench_079\\\\nCommon IDs: 0\\\\nOnly in 100: 100\\\\nOnly in 80: 80\\\\n\\\\nFile 100 NLI: mean=0.8956, >=0.90: 88, <0.90: 12\\\\nFile 80 NLI: mean=0.9152, >=0.90: 73, <0.90: 7\\\\n\\\\nFile 100: 59 formal, 41 casual\\\\nFile 80: 69 formal, 11 casual\\\\nFile 100 (NLI>=0.90): 88 records, 50 formal, 38 casual\\\\n\\\\n80 is subset of 100: False\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T23:55:44.089189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -l \"scored_mtbench_qwen32b\" /root/causal_style_decomp_judge/csd_pipeline/*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T23:55:44.089364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -l \"pairwise_results_qwen32b_formality\" /root/causal_style_decomp_judge/csd_pipeline/*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T23:55:44.089511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T23:55:44.089636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gee_interaction_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/originality_minimal_subset.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T23:55:44.089754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rn \"0.712\\|bt_win_prob.*712\\|BT.*712\" /root/causal_style_decomp_judge/artifacts/ /root/causal_style_decomp_judge/csd_pipeline/ --include=\"*.json\" --include=\"*.py\" --include=\"*.txt\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T23:55:44.089872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T23:55:44.090003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rn \"0.712\" /root/causal_style_decomp_judge/artifacts/ --include=\"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T23:55:44.090124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -30 /root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T23:55:44.090241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T23:55:44.090429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Qwen3-32B statistical analysis: BT + logistic decomposition (GEE).\\\\n\\\\nTask 1: BT on formality + verbosity (pair-level bootstrap, 10000 resamples)\\\\nTask 2: GEE logistic decomposition on register\\\\nTask 3: GEE logistic decomposition on formality\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\ndef load_records(path: str) -> list[dict]:\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\ndef nli_filter(records: list[dict], threshold: float = 0.90) -> list[dict]:\\\\n    return [r for r in records if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= threshold]\\\\n\\\\nAXIS_CONFIG = {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n        \\\\\\\"poles\\\\\\\": (\\\\\\\"formal\\\\\\\", \\\\\\\"casual\\\\\\\"),\\\\n        \\\\\\\"field\\\\\\\": \\\\\\\"original_formality\\\\\\\",\\\\n        \\\\\\\"prefers_key\\\\\\\": \\\\\\\"trial{}_prefers_formal\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"formal_wins\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T23:55:44.090564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep \"pairwise_results_qwen32b_formality\\|DATA_DIR\\|data_path\\|FILE\" /root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T23:55:44.090682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T23:55:44.090797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep \"pairwise_results_qwen32b\" /root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T23:55:44.090912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep \"DATA\" /root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T23:55:44.091029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        path = f\\\\\\\"{data_dir}/pairwise_results_qwen32b_{axis}.jsonl\\\\\\\"\\\\n    path = f\\\\\\\"{data_dir}/pairwise_results_qwen32b_register.jsonl\\\\\\\"\\\\n    path = f\\\\\\\"{data_dir}/pairwise_results_qwen32b_formality.jsonl\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T23:55:44.091158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T23:55:44.091333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json, numpy as np, choix\nfrom scipy import stats\n\nNLI = 0.90\nFORMAL, CASUAL = 0, 1\n\ndef bt_from_file(path, nli_filter=True, label=''):\n    recs = [json.loads(l) for l in open(path)]\n    n_total = len(recs)\n    if nli_filter:\n        recs = [r for r in recs if r.get('nli_cf', 0) >= NLI]\n    n_filt = len(recs)\n    \n    comps = []\n    pairs = {}\n    for rec in recs:\n        pid = rec['id']\n        pcomps = []\n        t1 = rec.get('trial1_choice')\n        if t1 in ('A','B'):\n            pcomps.append((FORMAL, CASUAL) if t1 == 'A' else (CASUAL, FORMAL))\n        t2 = rec.get('trial2_choice')\n        if t2 in ('A','B'):\n            pcomps.append((CASUAL, FORMAL) if t2 == 'A' else (FORMAL, CASUAL))\n        comps.extend(pcomps)\n        pairs[pid] = pcomps\n    \n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    diff = params[FORMAL] - params[CASUAL]\n    p_formal = 1.0/(1.0+np.exp(-diff))\n    \n    print(f'{label}: n_total={n_total}, n_filt={n_filt}, BT={p_formal:.4f}')\n    return recs\n\n# File 1: pairwise_results_qwen32b_formality.jsonl (100 records, mvp_ IDs)\nbt_from_file('data/pairwise_results_qwen32b_formality.jsonl', nli_filter=True, label='pairwise_results (NLI>=0.90)')\nbt_from_file('data/pairwise_results_qwen32b_formality.jsonl', nli_filter=False, label='pairwise_results (no NLI)')\n\n# File 2: scored_mtbench_qwen32b_formality.jsonl (80 records, mtbench_ IDs)\nbt_from_file('data/scored_mtbench_qwen32b_formality.jsonl', nli_filter=True, label='scored_mtbench (NLI>=0.90)')\nbt_from_file('data/scored_mtbench_qwen32b_formality.jsonl', nli_filter=False, label='scored_mtbench (no NLI)')\n\n# Also check Likert from scored_mtbench_qwen32b.jsonl (used by cross_benchmark for likert)\nrecs_likert = [json.loads(l) for l in open('data/scored_mtbench_qwen32b.jsonl')]\nrecs_likert_nli = [r for r in recs_likert if r.get('nli_cf', 0) >= NLI]\nprint(f'\\nscored_mtbench_qwen32b.jsonl (Likert source): total={len(recs_likert)}, NLI>=0.90={len(recs_likert_nli)}')\n\ndiffs = []\nfor r in recs_likert_nli:\n    so = r.get('score_original')\n    sc = r.get('score_counterfactual')\n    if so is not None and sc is not None:\n        orig = r.get('original_formality', 'formal')\n        if orig == 'formal':\n            diffs.append(so - sc)\n        else:\n            diffs.append(sc - so)\n\ndiffs = np.array(diffs)\nn = len(diffs)\nmean_d = np.mean(diffs)\nt_stat, p_val = stats.ttest_1samp(diffs, 0)\nh = mean_d / np.std(diffs, ddof=1)\nprint(f'Likert: n={n}, mean_diff={mean_d:.4f}, d={h:.4f}, p={p_val:.6f}')\n\n# Now check if there's a likert in the pairwise file\nrecs100 = [json.loads(l) for l in open('data/pairwise_results_qwen32b_formality.jsonl')]\nrecs100_nli = [r for r in recs100 if r.get('nli_cf', 0) >= NLI]\nconsistent100 = [r for r in recs100_nli if r.get('consistent')]\nprint(f'\\npairwise_results Likert (sign-test): n_consistent={len(consistent100)}')\nfw = sum(1 for r in consistent100 if r.get('formal_wins'))\nprint(f'formal_wins={fw}/{len(consistent100)} = {fw/len(consistent100):.4f}')\nh = 2*np.arcsin(np.sqrt(fw/len(consistent100))) - 2*np.arcsin(np.sqrt(0.5))\np = stats.binomtest(fw, len(consistent100), 0.5).pvalue\nprint(f'd(h)={h:.4f}, p={p:.6f}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T23:55:44.091500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pairwise_results (NLI>=0.90): n_total=100, n_filt=88, BT=0.6647\\\\npairwise_results (no NLI): n_total=100, n_filt=100, BT=0.6350\\\\nscored_mtbench (NLI>=0.90): n_total=80, n_filt=73, BT=0.6986\\\\nscored_mtbench (no NLI): n_total=80, n_filt=80, BT=0.7000\\\\n\\\\nscored_mtbench_qwen32b.jsonl (Likert source): total=80, NLI>=0.90=73\\\\nLikert: n=73, mean_diff=0.3014, d=0.2515, p=0.034999\\\\n\\\\npairwise_results Likert (sign-test): n_consistent=55\\\\nformal_wins=42/55 = 0.7636\\\\nd(h)=0.5554, p=0.000114\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T23:55:44.091663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rn \"0.712\" /root/causal_style_decomp_judge/ --include=\"*.tex\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T23:55:44.091784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rn \"0.149\" /root/causal_style_decomp_judge/ --include=\"*.tex\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T23:55:44.091903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T23:55:44.092015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "find /root/causal_style_decomp_judge -name \"*.tex\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T23:55:44.092130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T23:55:44.092240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T23:55:44.092415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rn \"0.712\" /root/causal_style_decomp_judge/ --include=\"*.md\" --include=\"*.json\" --include=\"*.txt\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T23:55:44.092533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T23:55:44.092650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -rn \"0.149\" /root/causal_style_decomp_judge/ --include=\"*.md\" --include=\"*.json\" --include=\"*.txt\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T23:55:44.092768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T23:55:44.092900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.712",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T23:55:44.093046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 76 files\nlogs/workers/worker_bugfix_gee-and-data-discrepancy_20260522T234122.log\nlogs/chats/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director.jsonl\nlogs/chats/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_reviewer.jsonl\nlogs/chats/archive/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_reviewer_20260522T183404_636064.jsonl\nlogs/workers/worker_paper_reference-audit_20260522T010830.log\nregistry.yaml\nlogs/chats/archive/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_20260522T003153_704616.jsonl\nlogs/chats/archive/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director_20260521T225051_923373.jsonl\nlogs/workers/worker_fig_forest_plot_gemini_20260521T224443.log\nlogs/workers/worker_viz_forest_plot_v2_20260521T224208.log\nartifacts/dream_reports/dream_20260521T152517/meta.yaml\nartifacts/dream_reports/dream_20260521T152517/logs/review_median.log\nartifacts/dream_reports/dream_20260521T152517/median/review_context.yaml\nartifacts/dream_reports/dream_20260521T152517/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260521T152517/median/experiment_data.json\nartifacts/dream_reports/dream_20260521T152517/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260521T152517/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260521T152517/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260521T132932/meta.yaml\nartifacts/dream_reports/dream_20260521T132932/logs/review_worst.log\nartifacts/dream_reports/dream_20260521T132932/worst/review_context.yaml\nartifacts/dream_reports/dream_20260521T132932/logs/review_median.log\nartifacts/dream_reports/dream_20260521T132932/median/review_context.yaml\nartifacts/dream_reports/dream_20260521T132932/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260521T132932/worst/experiment_data.json\nartifacts/dream_reports/dream_20260521T132932/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260521T132932/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260521T1\n…[truncated 4072 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T23:55:44.093186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.149",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T23:55:44.093395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 128 files\nlogs/workers/worker_bugfix_gee-and-data-discrepancy_20260522T234122.log\nlogs/chats/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director.jsonl\nlogs/chats/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_paper_agent.jsonl\nlogs/chats/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_reviewer.jsonl\nlogs/chats/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee.jsonl\nlogs/workers/worker_infra_pull-annotation_20260522T231527.log\ndecisions.yaml\nlogs/chats/feishu_group_oc_f810d8d75f013ad17831ce8459f07d6d_director.jsonl\nlogs/chats/archive/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_reviewer_20260522T183404_636064.jsonl\nlogs/chats/archive/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director_20260522T182957_806539.jsonl\nlogs/chats/worker_analysis_tost-delta_20260522T035524.jsonl\nlogs/workers/worker_analysis_tost-delta_20260522T035524.log\nregistry.yaml\nlogs/chats/archive/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_20260522T003153_704616.jsonl\nlogs/chats/archive/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director_20260521T225051_923373.jsonl\nlogs/workers/worker_code_mtbench_qwen32b_scoring_20260521T080440_result.json\nlogs/chats/worker_code_mtbench_qwen32b_scoring_20260521T080440.jsonl\nlogs/workers/worker_code_mtbench_qwen32b_scoring_20260521T080440.log\nlogs/workers/worker_ops_kill_vllm_residual_20260521T050605.log\nlogs/workers/worker_code_qwen32b_bt_and_decomp_20260521T042835.log\nlogs/workers/worker_code_clmm_bt_spotcheck_20260521T022659.log\nlogs/workers/worker_paper_writing_analysis_20260521T022453.log\nartifacts/dream_reports/dream_20260521T010111/meta.yaml\nartifacts/dream_reports/dream_20260521T010111/logs/review_worst.log\nlogs/chats/archive/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_reviewer_20260521T015828_574037.jsonl\nartifacts/dream_reports/dream_20260521T010111/logs/review_median.log\nartifacts/dream_reports/dream_20260521T010111/median/review_context.yaml\nartifacts/dream_reports/dream_20260521T010111/logs/paper_agent_median.log\n\n…[truncated 8583 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T23:55:44.093583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.712",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge",
+              "glob": "**/decisions.yaml",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-22T23:55:44.093710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-22T23:55:44.093827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.712",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge",
+              "glob": "**/registry.yaml",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-22T23:55:44.093961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "registry.yaml-2474-      bt_p_academic: 0.635\nregistry.yaml-2475-      bt_ci:\n/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml-2476-      - 0.555\nregistry.yaml:2477:      - 0.712\nregistry.yaml-2478-      bt_p_val: 0.0014\nregistry.yaml-2479-      likert_ate: 0.054\nregistry.yaml-2480-      likert_d: 0.024"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-22T23:55:44.094086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml",
+              "offset": "2460",
+              "limit": "50"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-22T23:55:44.094219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2460\t    spec:\n2461\t      command: python csd_pipeline/llama70b_register_scoring.py\n2462\t      server: westb-29275\n2463\t      data_path: data/verified_register.jsonl\n2464\t      data_count: 94\n2465\t      model_name: Llama-3.3-70B-Instruct\n2466\t      seed: 42\n2467\t      gpu: 2,3\n2468\t      note: Pairwise + Likert scoring for register axis via vLLM port 8003\n2469\t      checkpoint_path: data/llama70b_register_summary.json\n2470\t      log_path: /tmp/llama70b_register.log\n2471\t    conclusion: success\n2472\t    completed_at: '2026-05-21T17:07:51.781Z'\n2473\t    metrics:\n2474\t      bt_p_academic: 0.635\n2475\t      bt_ci:\n2476\t      - 0.555\n2477\t      - 0.712\n2478\t      bt_p_val: 0.0014\n2479\t      likert_ate: 0.054\n2480\t      likert_d: 0.024\n2481\t      likert_ttest_p: 0.69\n2482\t      likert_tie_rate: 0.688\n2483\t      gee_style_or: 3.33\n2484\t      gee_style_p: 0.0003\n2485\t      gee_orig_or: 3.07\n2486\t      gee_orig_p: 0.0008\n2487\t      blindspot: true\n2488\t      regime: Mixed\n2489\t  gemini_flash_fourth_judge:\n2490\t    status: DONE\n2491\t    retry_count: 0\n2492\t    created_at: '2026-05-21T22:04:28.393Z'\n2493\t    updated_at: '2026-05-21T22:36:06.643Z'\n2494\t    hypothesis: Gemini Flash as a fourth judge will also exhibit style blindspot (BT-significant\n2495\t      but Likert-NS) on formality and verbosity axes, consistent with GPT-4o, Qwen-32B,\n2496\t      and Claude judges, confirming the blindspot is judge-universal rather than model-specific.\n2497\t    spec:\n2498\t      command: OPENROUTER_KEY=*** GEMINI_MODEL=google/gemini-2.5-flash python csd_pipeline/gemini_flash_scoring.py\n2499\t      server: westb-29275\n2500\t      data_path: /root/causal_style_decomp_judge/data/\n2501\t      data_count: 174\n2502\t      model_name: google/gemini-2.5-flash\n2503\t      seed: 42\n2504\t    checkpoint_path: /root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json\n2505\t    log_path: /tmp/gemini_flash.log\n2506\t    metrics:\n2507\t      formality:\n2508\t        bt_pct: 57.4\n2509\t        bt_ci:"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-22T23:55:44.094393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "MT-Bench.*Qwen.*formality",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml",
+              "output_mode": "content",
+              "-C": "30"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-22T23:55:44.094514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-22T23:55:44.094627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "mtbench_qwen32b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml",
+              "output_mode": "content",
+              "-C": "30"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-22T23:55:44.094763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-22T23:55:44.094923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "cross_benchmark",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml",
+              "output_mode": "content",
+              "-C": "20"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-22T23:55:44.095040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-22T23:55:44.095152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "qwen32b.*formality|Qwen3-32B.*formality",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml",
+              "output_mode": "content",
+              "-C": "20"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-22T23:55:44.095385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "606-        n_comparisons: 197\n607-        p_formal_wins: 0.6091\n608-        bootstrap_ci:\n609-        - 0.5381\n610-        - 0.6784\n611-        bootstrap_p: 0.001\n612-        bootstrap_method: pair-level (2000 iterations, seed=42)\n613-        ci_excludes_50: true\n614-      comparison_level_reference:\n615-        all_data_ci:\n616-        - 0.5381\n617-        - 0.6751\n618-        nli_filtered_ci:\n619-        - 0.5607\n620-        - 0.6994\n621-        note: Pair-level CIs ~2-5% wider than comparison-level, conclusions unchanged\n622-      comparison_to_sign_test: BT NLI-filtered 63.0% [55.8-70.3%] p<0.001 vs sign\n623-        test 69.1% [56.0-79.7%] p=0.006\n624-    conclusion: success\n625-    completed_at: '2026-05-21T02:33:14.569Z'\n626:  qwen32b_formality:\n627-    status: DONE\n628-    retry_count: 0\n629-    created_at: '2026-05-21T04:24:01.452Z'\n630-    updated_at: '2026-05-21T04:43:06.759Z'\n631:    hypothesis: Qwen3-32B as local judge will show similar formality bias pattern\n632-      to GPT-4o (significant pairwise, non-significant Likert), confirming the Likert\n633-      Blindspot is cross-model and not GPT-4o-specific\n634-    spec:\n635-      command: pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2,\n636-        port 8000)\n637-      server: westb-29275\n638-      data_path: /root/causal_style_decomp_judge/data/verified_32b.jsonl\n639-      data_count: 88\n640-      model_name: Qwen3-32B (local judge via vLLM)\n641-      seed: 42\n642:      checkpoint_path: data/pairwise_results_qwen32b_formality.jsonl\n643:      log_path: data/scored_qwen32b_formality.jsonl\n644-    conclusion: success\n645-    metrics:\n646-      pairwise:\n647-        consistency_rate: 0.65\n648-        formal_win_rate: 0.764\n649-        sign_test_p: 0.000114\n650-        wilson_ci:\n651-        - 0.637\n652-        - 0.856\n653-      likert:\n654-        ate: 0.011\n655-        p: 0.908\n656-        cohens_d: 0.012\n657-        tie_rate: 0.727\n658-      direction:\n659-        formal_to_casual_wi\n…[truncated 8278 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-22T23:55:44.095578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "MT-Bench.*Qwen|mtbench.*qwen",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/registry.yaml",
+              "output_mode": "content",
+              "-C": "30"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-22T23:55:44.095704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-22T23:55:44.095822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/logs/workers/worker_code_mtbench_qwen32b_scoring_20260521T080440_result.json"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-22T23:55:44.095951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"全部完成。\\n\\n```\\n## MT-Bench × Qwen3-32B\\nPairs: 73 (NLI>=0.9)\\nConsistency: 49/73 (67.1%)\\nBT: P(formal)=71.2% [63.0%, 78.8%], p=0.0001\\nLikert: ATE=0.301, p=0.0068, d=0.149, tie_rate=60.3%\\n  mean(formal)=8.38, mean(casual)=8.08\\nBlindspot: Yes\\nGEE: Style OR=2.96 [0.90, 9.78] p=0.0753, Orig OR=4.51 [1.34, 15.11] p=0.0147\\n```\\n\\n产出文件：\\n- `data/pairwise_results_mtbench_qwen32b.jsonl` (80 records)\\n- `data/scored_mtbench_qwen32b.jsonl` (80 records)\\n- `csd_pipeline/mtbench_qwen32b_scoring.py`\\n\\n要点：BT 显著偏好 formal（71.2%, p=0.0001），Likert ATE 也显著（+0.30, p=0.007），效应量小（d=0.149）。GEE 中 Style OR=2.96 边际显著（p=0.075），Originality OR=4.51 显著（p=0.015）——说明 Qwen3-32B 在 MT-Bench 上存在 formality blindspot，且对 originality 的偏好比 style 更强。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-22T23:55:44.096124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-22T23:55:44.096413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MT-Bench × Qwen3-32B: pairwise + Likert scoring, then BT/Likert/GEE analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport asyncio\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nMODEL = \\\\\\\"/root/autodl-tmp/models/Qwen3-32B/\\\\\\\"\\\\nBASE_URL = \\\\\\\"http://localhost:8000/v1\\\\\\\"\\\\nAPI_KEY = \\\\\\\"EMPTY\\\\\\\"\\\\nNLI_THRESHOLD = 0.90\\\\n\\\\nPAIRWISE_SYSTEM = (\\\\n    \\\\\\\"You are an expert evaluator of AI assistant responses. \\\\\\\"\\\\n    \\\\\\\"Compare the two responses below and pick the better one.\\\\\\\"\\\\n)\\\\nPAIRWISE_USER = \\\\\\\"\\\\\\\"\\\\\\\"Instruction: {instruction}\\\\n\\\\nResponse A:\\\\n{response_a}\\\\n\\\\nResponse B:\\\\n{response_b}\\\\n\\\\nWhich response is better in terms of overall quality (helpfulness, accuracy, completeness, coherence)?\\\\nOutput ONLY \\\\\\\"A\\\\\\\" or \\\\\\\"B\\\\\\\".\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nLIKERT_SYSTEM = (\\\\n    \\\\\\\"You are an expert evaluator of AI assistant responses. \\\\\\\"\\\\n    \\\\\\\"Rate the quality of the following response to the given instruction.\\\\\\\"\\\\n)\\\\nLIKERT_USER = \\\\\\\"\\\\\\\"\\\\\\\"Instruction: {instruction}\\\\nResponse: {response}\\\\n\\\\nEvaluate the overall quality of this response based on helpfulness, accuracy, completeness, and coherence. Rate on a scale of 1-10, where:\\\\n1-2: Completely inadequate\\\\n3-4: Poor quality with major issues\\\\n5-6: Acceptable but with notable weaknesses\\\\n7-8: Good quality with minor issues\\\\n9-10: Excellent quality\\\\n\\\\nProvide your rating as a single integer. Output ONLY the number, nothing else.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef strip_thinking(text):\\\\n    if \\\\\\\"</think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"</think>\\\\\\\")[-1]\\\\n    return text.strip()\\\\n\\\\n\\\\ndef parse_choice(text):\\\\n    text = strip_thinking(text).upper()\\\\n    if text in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n        return text\\\\n    m = re.search(r\\\\\\\"\\\\\\\\b([AB])\\\\\\\\b\\\\\\\", text)\\\\n    return m.group(1) if m else None\\\\n\\\\n\\\\ndef \n…[truncated 7282 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-22T23:55:44.096637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -n \"def likert_analysis\" /root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-22T23:55:44.096775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"269:def likert_analysis(scored_records):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-22T23:55:44.096897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "wc -l /root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-22T23:55:44.097022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "ls -la /root/causal_style_decomp_judge/data/pairwise_results_mtbench_qwen32b.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-22T23:55:44.097144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"389 /root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-22T23:55:44.097260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 47036 May 21 16:13 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_qwen32b.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-22T23:55:44.097396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "tail -n +269 /root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-22T23:55:44.097614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def likert_analysis(scored_records):\\\\n    valid = [r for r in scored_records\\\\n             if r.get(\\\\\\\"score_original\\\\\\\") is not None and r.get(\\\\\\\"score_counterfactual\\\\\\\") is not None]\\\\n    formal_s, casual_s = [], []\\\\n    for r in valid:\\\\n        if r[\\\\\\\"original_formality\\\\\\\"] == \\\\\\\"formal\\\\\\\":\\\\n            formal_s.append(r[\\\\\\\"score_original\\\\\\\"])\\\\n            casual_s.append(r[\\\\\\\"score_counterfactual\\\\\\\"])\\\\n        else:\\\\n            formal_s.append(r[\\\\\\\"score_counterfactual\\\\\\\"])\\\\n            casual_s.append(r[\\\\\\\"score_original\\\\\\\"])\\\\n\\\\n    formal_s = np.array(formal_s, dtype=float)\\\\n    casual_s = np.array(casual_s, dtype=float)\\\\n    ate = np.mean(formal_s) - np.mean(casual_s)\\\\n    diffs = formal_s - casual_s\\\\n    pooled_std = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\\\\n    cohen_d = ate / pooled_std if pooled_std > 0 else 0.0\\\\n    _, wilcoxon_p = stats.wilcoxon(formal_s, casual_s, alternative=\\\\\\\"two-sided\\\\\\\")\\\\n    tie_rate = float(np.mean(diffs == 0))\\\\n\\\\n    return {\\\\\\\"n\\\\\\\": len(valid), \\\\\\\"mean_formal\\\\\\\": float(np.mean(formal_s)),\\\\n            \\\\\\\"mean_casual\\\\\\\": float(np.mean(casual_s)), \\\\\\\"ate\\\\\\\": ate,\\\\n            \\\\\\\"cohen_d\\\\\\\": cohen_d, \\\\\\\"wilcoxon_p\\\\\\\": wilcoxon_p, \\\\\\\"tie_rate\\\\\\\": tie_rate}\\\\n\\\\n\\\\ndef gee_analysis(pairwise_records):\\\\n    import pandas as pd\\\\n    import statsmodels.api as sm\\\\n    from statsmodels.genmod.generalized_estimating_equations import GEE\\\\n    from statsmodels.genmod.families import Binomial\\\\n    from statsmodels.genmod.cov_struct import Exchangeable\\\\n\\\\n    rows = []\\\\n    for i, r in enumerate(pairwise_records):\\\\n        orig = r[\\\\\\\"original_formality\\\\\\\"]\\\\n        rows.append({\\\\\\\"pair_id\\\\\\\": i, \\\\\\\"is_style_in_A\\\\\\\": 1.0,\\\\n                      \\\\\\\"is_original_in_A\\\\\\\": 1.0 if orig == \\\\\\\"formal\\\\\\\" else 0.0,\\\\n                      \\\\\\\"chose_A\\\\\\\": 1.0 if r[\\\\\\\"trial1_choice\\\\\\\"] == \\\\\\\"A\n…[truncated 4060 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-22T23:55:44.097841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "grep -A 30 \"def likert_from_scores\" /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-22T23:55:44.098025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def likert_from_scores(path):\\\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\\\n    recs = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= NLI_THRESHOLD]\\\\n    diffs = []\\\\n    for r in recs:\\\\n        so = r.get(\\\\\\\"score_original\\\\\\\")\\\\n        sc = r.get(\\\\\\\"score_counterfactual\\\\\\\")\\\\n        if so is not None and sc is not None:\\\\n            orig = r.get(\\\\\\\"original_formality\\\\\\\", \\\\\\\"formal\\\\\\\")\\\\n            if orig == \\\\\\\"formal\\\\\\\":\\\\n                diffs.append(so - sc)\\\\n            else:\\\\n                diffs.append(sc - so)\\\\n    diffs = np.array(diffs, dtype=float)\\\\n    n = len(diffs)\\\\n    if n == 0:\\\\n        return {\\\\\\\"likert_ate\\\\\\\": None, \\\\\\\"likert_d\\\\\\\": None, \\\\\\\"likert_p\\\\\\\": None, \\\\\\\"likert_sig\\\\\\\": None}\\\\n    ate = np.mean(diffs)\\\\n    d = ate / np.std(diffs, ddof=1) if np.std(diffs, ddof=1) > 0 else 0.0\\\\n    t_stat, p_val = stats.ttest_1samp(diffs, 0)\\\\n    return {\\\\n        \\\\\\\"likert_ate\\\\\\\": round(float(ate), 4),\\\\n        \\\\\\\"likert_d\\\\\\\": round(float(d), 4),\\\\n        \\\\\\\"likert_p\\\\\\\": round(float(p_val), 6),\\\\n        \\\\\\\"likert_n\\\\\\\": n,\\\\n        \\\\\\\"likert_sig\\\\\\\": p_val < 0.05,\\\\n        \\\\\\\"likert_note\\\\\\\": \\\\\\\"paired t-test (Likert scores)\\\\\\\",\\\\n    }\\\\n\\\\n\\\\ndef gee_analysis(recs):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-22T23:55:44.098174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json, numpy as np\nfrom scipy import stats\n\n# Check if the two pairwise files are the same data\npw1 = [json.loads(l) for l in open('data/pairwise_results_mtbench_qwen32b.jsonl')]\npw2 = [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]\nprint(f'pairwise_results_mtbench_qwen32b: {len(pw1)} records')\nprint(f'scored_mtbench_qwen32b_formality: {len(pw2)} records')\n\nids1 = [r['id'] for r in pw1]\nids2 = [r['id'] for r in pw2]\nprint(f'Same IDs: {set(ids1) == set(ids2)}')\nprint(f'Same order: {ids1 == ids2}')\n\n# Check if they have the same choices\nsame_choices = all(\n    r1.get('trial1_choice') == r2.get('trial1_choice') and\n    r1.get('trial2_choice') == r2.get('trial2_choice')\n    for r1, r2 in zip(pw1, pw2)\n)\nprint(f'Same choices: {same_choices}')\n\n# NLI filtering\npw1_nli = [r for r in pw1 if r.get('nli_cf', 0) >= 0.90]\npw2_nli = [r for r in pw2 if r.get('nli_cf', 0) >= 0.90]\nprint(f'pairwise_results NLI>=0.9: {len(pw1_nli)}')\nprint(f'scored_mtbench NLI>=0.9: {len(pw2_nli)}')\n\n# Field differences\nfor k in pw1[0].keys():\n    if k not in pw2[0]:\n        print(f'Field in pw1 only: {k}')\nfor k in pw2[0].keys():\n    if k not in pw1[0]:\n        print(f'Field in pw2 only: {k}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-22T23:55:44.098359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pairwise_results_mtbench_qwen32b: 80 records\\\\nscored_mtbench_qwen32b_formality: 80 records\\\\nSame IDs: True\\\\nSame order: False\\\\nSame choices: False\\\\npairwise_results NLI>=0.9: 73\\\\nscored_mtbench NLI>=0.9: 73\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-22T23:55:44.098557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json, numpy as np\n\npw1 = {r['id']: r for r in [json.loads(l) for l in open('data/pairwise_results_mtbench_qwen32b.jsonl')]}\npw2 = {r['id']: r for r in [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]}\n\ndiff_t1, diff_t2, same = 0, 0, 0\nfor pid in pw1:\n    r1, r2 = pw1[pid], pw2[pid]\n    t1_same = r1.get('trial1_choice') == r2.get('trial1_choice')\n    t2_same = r1.get('trial2_choice') == r2.get('trial2_choice')\n    if t1_same and t2_same:\n        same += 1\n    if not t1_same:\n        diff_t1 += 1\n    if not t2_same:\n        diff_t2 += 1\n\nprint(f'Both same: {same}/80')\nprint(f'Trial1 differs: {diff_t1}')\nprint(f'Trial2 differs: {diff_t2}')\n\n# Likert discrepancy: verify with exact computation\nrecs = [json.loads(l) for l in open('data/scored_mtbench_qwen32b.jsonl')]\nrecs = [r for r in recs if r.get('nli_cf', 0) >= 0.90]\n\nformal_s, casual_s = [], []\nfor r in recs:\n    so, sc = r.get('score_original'), r.get('score_counterfactual')\n    if so is not None and sc is not None:\n        if r.get('original_formality') == 'formal':\n            formal_s.append(so)\n            casual_s.append(sc)\n        else:\n            formal_s.append(sc)\n            casual_s.append(so)\n\nformal_s, casual_s = np.array(formal_s), np.array(casual_s)\ndiffs = formal_s - casual_s\nate = np.mean(diffs)\n\n# Method 1: cross_benchmark (t-test + diff-SD)\nfrom scipy import stats\nd_diffsd = ate / np.std(diffs, ddof=1)\n_, p_ttest = stats.ttest_1samp(diffs, 0)\n\n# Method 2: mtbench_scoring (Wilcoxon + pooled-SD)\npooled = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\nd_pooled = ate / pooled\n_, p_wilcoxon = stats.wilcoxon(formal_s, casual_s)\n\nprint(f'\\nLikert (n={len(diffs)}):')\nprint(f'  ATE = {ate:.4f}')\nprint(f'  Method 1 (t-test + diff-SD): d={d_diffsd:.4f}, p={p_ttest:.6f}')\nprint(f'  Method 2 (Wilcoxon + pooled-SD): d={d_pooled:.4f}, p={p_wilcoxon:.6f}')\nprint(f'  SD(diffs)={np.std(diffs, ddof=1):.4f}, pooled_SD={pooled:.4f}')\nprint(f'  correlation(formal, casual)={np.corrcoef(formal_s, casual_s)[0,1]:.4f}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-22T23:55:44.098710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Both same: 56/80\\\\nTrial1 differs: 6\\\\nTrial2 differs: 18\\\\n\\\\nLikert (n=73):\\\\n  ATE = 0.3014\\\\n  Method 1 (t-test + diff-SD): d=0.2515, p=0.034999\\\\n  Method 2 (Wilcoxon + pooled-SD): d=0.1493, p=0.006799\\\\n  SD(diffs)=1.1982, pooled_SD=2.0186\\\\n  correlation(formal, casual)=0.8243\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-22T23:55:44.098890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-22T23:55:44.099185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport choix\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.families import Binomial\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\n\\\\nFORMAL, CASUAL = 0, 1\\\\nN_BOOT = 10000\\\\nSEED = 42\\\\nNLI_THRESHOLD = 0.90\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\"\\\\n\\\\nCONFIGS = [\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_alpacaeval_llama70b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": None,\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef load_pairwise(path):\\\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n    for rec in recs:\\\\n        pid = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\\\\\"A\\\\\\\" else (CASUAL, FORMAL))\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\\\\\"A\\\\\\\" else (FORMAL, CASUAL))\\\\n        comparisons.\n…[truncated 7497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-22T23:55:44.099422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat > /tmp/fix_cross_benchmark.py << 'PYEOF'\nimport re\n\npath = \"/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\"\nwith open(path) as f:\n    code = f.read()\n\n# Fix 1: Add NLI filtering to load_pairwise\nold_load = '''def load_pairwise(path):\n    recs = [json.loads(l) for l in open(path) if l.strip()]\n    comparisons = []'''\n\nnew_load = '''def load_pairwise(path):\n    recs = [json.loads(l) for l in open(path) if l.strip()]\n    recs = [r for r in recs if r.get(\"nli_cf\", 0) >= NLI_THRESHOLD]\n    comparisons = []'''\n\ncode = code.replace(old_load, new_load)\n\n# Fix 2: Replace likert_from_scores to use Wilcoxon + pooled-SD (consistent with primary analysis)\nold_likert = '''def likert_from_scores(path):\n    recs = [json.loads(l) for l in open(path) if l.strip()]\n    recs = [r for r in recs if r.get(\"nli_cf\", 0) >= NLI_THRESHOLD]\n    diffs = []\n    for r in recs:\n        so = r.get(\"score_original\")\n        sc = r.get(\"score_counterfactual\")\n        if so is not None and sc is not None:\n            orig = r.get(\"original_formality\", \"formal\")\n            if orig == \"formal\":\n                diffs.append(so - sc)\n            else:\n                diffs.append(sc - so)\n    diffs = np.array(diffs, dtype=float)\n    n = len(diffs)\n    if n == 0:\n        return {\"likert_ate\": None, \"likert_d\": None, \"likert_p\": None, \"likert_sig\": None}\n    ate = np.mean(diffs)\n    d = ate / np.std(diffs, ddof=1) if np.std(diffs, ddof=1) > 0 else 0.0\n    t_stat, p_val = stats.ttest_1samp(diffs, 0)\n    return {\n        \"likert_ate\": round(float(ate), 4),\n        \"likert_d\": round(float(d), 4),\n        \"likert_p\": round(float(p_val), 6),\n        \"likert_n\": n,\n        \"likert_sig\": p_val < 0.05,\n        \"likert_note\": \"paired t-test (Likert scores)\",\n    }'''\n\nnew_likert = '''def likert_from_scores(path):\n    recs = [json.loads(l) for l in open(path) if l.strip()]\n    recs = [r for r in recs if r.get(\"nli_cf\", 0) >= NLI_THRESHOLD]\n    formal_s, casual_s = [], []\n    for r in recs:\n        so = r.get(\"score_original\")\n        sc = r.get(\"score_counterfactual\")\n        if so is not None and sc is not None:\n            orig = r.get(\"original_formality\", \"formal\")\n            if orig == \"formal\":\n                formal_s.append(so)\n                casual_s.append(sc)\n            else:\n                formal_s.append(sc)\n                casual_s.append(so)\n    formal_s = np.array(formal_s, dtype=float)\n    casual_s = np.array(casual_s, dtype=float)\n    n = len(formal_s)\n    if n == 0:\n        return {\"likert_ate\": None, \"likert_d\": None, \"likert_p\": None, \"likert_sig\": None}\n    ate = float(np.mean(formal_s) - np.mean(casual_s))\n    pooled_std = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\n    d = ate / pooled_std if pooled_std > 0 else 0.0\n    _, p_val = stats.wilcoxon(formal_s, casual_s, alternative=\"two-sided\")\n    return {\n        \"likert_ate\": round(float(ate), 4),\n        \"likert_d\": round(float(d), 4),\n        \"likert_p\": round(float(p_val), 6),\n        \"likert_n\": n,\n        \"likert_sig\": p_val < 0.05,\n        \"likert_note\": \"Wilcoxon signed-rank (Likert scores)\",\n    }'''\n\ncode = code.replace(old_likert, new_likert)\n\n# Fix 3: Add VIF + correlation to GEE output\nold_gee_return = '''    return {\n        \"gee_style_or\": style_or,\n        \"gee_style_ci\": style_ci,\n        \"gee_style_p\": style_p,\n        \"gee_orig_or\": orig_or,\n        \"gee_orig_ci\": orig_ci,\n        \"gee_orig_p\": orig_p,\n        \"gee_n_obs\": len(df),\n        \"gee_n_pairs\": df[\"pair_id\"].nunique(),\n    }'''\n\nnew_gee_return = '''    r_corr = float(df[\"is_style_in_A\"].corr(df[\"is_original_in_A\"]))\n    from statsmodels.stats.outliers_influence import variance_inflation_factor\n    vif = variance_inflation_factor(exog.values, 1)\n\n    return {\n        \"gee_style_or\": style_or,\n        \"gee_style_ci\": style_ci,\n        \"gee_style_p\": style_p,\n        \"gee_orig_or\": orig_or,\n        \"gee_orig_ci\": orig_ci,\n        \"gee_orig_p\": orig_p,\n        \"gee_n_obs\": len(df),\n        \"gee_n_pairs\": df[\"pair_id\"].nunique(),\n        \"gee_style_orig_corr\": round(r_corr, 4),\n        \"gee_vif\": round(float(vif), 4),\n    }'''\n\ncode = code.replace(old_gee_return, new_gee_return)\n\nwith open(path, \"w\") as f:\n    f.write(code)\n\nprint(\"Fixes applied successfully\")\nPYEOF\n/root/miniconda3/bin/python /tmp/fix_cross_benchmark.py\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-22T23:55:44.099603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixes applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-22T23:55:44.099745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python csd_pipeline/cross_benchmark_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-22T23:55:44.099887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  AlpacaEval × Llama-70B × formality\\\\n============================================================\\\\n  N=86, consistent=48 (55.8%)\\\\n\\\\n  BT: win_prob=0.7558, CI=[0.6976, 0.8139], p=0.000100, sig=True\\\\n  Likert: ATE=0.4583, d=1.1597, p=0.0, sig=True (sign-test (pairwise-derived))\\\\n  GEE: style_OR=7.6361 [3.3546, 17.3823] p=0.000001\\\\n       orig_OR=2.2609 [1.0232, 4.9961] p=0.043736\\\\n  Blindspot: False\\\\n\\\\n============================================================\\\\n  MT-Bench × Qwen3-32B × formality\\\\n============================================================\\\\n  N=73, consistent=37 (50.7%)\\\\n\\\\n  BT: win_prob=0.6986, CI=[0.6301, 0.7602], p=0.000100, sig=True\\\\n  Likert: ATE=0.3014, d=0.1493, p=0.006799, sig=True (Wilcoxon signed-rank (Likert scores))\\\\n  GEE: style_OR=4.6227 [1.2337, 17.3209] p=0.023109\\\\n       orig_OR=4.6227 [1.2337, 17.3209] p=0.023109\\\\n  Blindspot: False\\\\n\\\\nSaved to /root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-22T23:55:44.100060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python -c \"\nimport json, numpy as np\n\nrecs = [json.loads(l) for l in open('data/scored_mtbench_qwen32b_formality.jsonl')]\nrecs_nli = [r for r in recs if r.get('nli_cf', 0) >= 0.90]\n\ncasual_nli = [r for r in recs_nli if r['original_formality'] == 'casual']\nformal_nli = [r for r in recs_nli if r['original_formality'] == 'formal']\nprint(f'NLI-filtered: {len(recs_nli)} total, {len(formal_nli)} formal, {len(casual_nli)} casual')\n\nt1_a = sum(1 for r in casual_nli if r['trial1_choice'] == 'A')\nt2_a = sum(1 for r in casual_nli if r['trial2_choice'] == 'A')\nprint(f'Casual trial1 chose A: {t1_a}/{len(casual_nli)}')\nprint(f'Casual trial2 chose A: {t2_a}/{len(casual_nli)}')\nprint(f'Still symmetric: {t1_a == t2_a}')\n\n# Now check: what about pairwise_results_mtbench_qwen32b.jsonl (the Table 1 source)?\nrecs2 = [json.loads(l) for l in open('data/pairwise_results_mtbench_qwen32b.jsonl')]\nrecs2_nli = [r for r in recs2 if r.get('nli_cf', 0) >= 0.90]\ncasual2 = [r for r in recs2_nli if r['original_formality'] == 'casual']\nformal2 = [r for r in recs2_nli if r['original_formality'] == 'formal']\nprint(f'\\npairwise_results_mtbench_qwen32b (Table 1 source):')\nprint(f'NLI-filtered: {len(recs2_nli)} total, {len(formal2)} formal, {len(casual2)} casual')\nt1_a2 = sum(1 for r in casual2 if r.get('trial1_choice') == 'A')\nt2_a2 = sum(1 for r in casual2 if r.get('trial2_choice') == 'A')\nprint(f'Casual trial1 chose A: {t1_a2}/{len(casual2)}')\nprint(f'Casual trial2 chose A: {t2_a2}/{len(casual2)}')\nprint(f'Symmetric: {t1_a2 == t2_a2}')\n\n# The Table 1 GEE results from mtbench_qwen32b_scoring.py\nimport pandas as pd\nimport statsmodels.api as sm\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\nfrom statsmodels.genmod.families import Binomial\nfrom statsmodels.genmod.cov_struct import Exchangeable\n\ndef run_gee(records):\n    rows = []\n    for i, r in enumerate(records):\n        orig = r['original_formality']\n        rows.append({'pair_id': i, 'is_style_in_A': 1.0,\n                      'is_original_in_A': 1.0 if orig == 'formal' else 0.0,\n                      'chose_A': 1.0 if r['trial1_choice'] == 'A' else 0.0})\n        rows.append({'pair_id': i, 'is_style_in_A': 0.0,\n                      'is_original_in_A': 1.0 if orig == 'casual' else 0.0,\n                      'chose_A': 1.0 if r['trial2_choice'] == 'A' else 0.0})\n    df = pd.DataFrame(rows)\n    exog = sm.add_constant(df[['is_style_in_A', 'is_original_in_A']])\n    model = GEE(df['chose_A'], exog, groups=df['pair_id'],\n                family=Binomial(), cov_struct=Exchangeable())\n    res = model.fit()\n    s = np.exp(res.params['is_style_in_A'])\n    o = np.exp(res.params['is_original_in_A'])\n    sp = res.pvalues['is_style_in_A']\n    op = res.pvalues['is_original_in_A']\n    r_corr = df['is_style_in_A'].corr(df['is_original_in_A'])\n    return s, o, sp, op, r_corr\n\ns, o, sp, op, r = run_gee(recs2_nli)\nprint(f'\\nTable 1 GEE (pairwise_results, NLI>=0.9):')\nprint(f'  Style OR={s:.4f}, p={sp:.6f}')\nprint(f'  Orig OR={o:.4f}, p={op:.6f}')\nprint(f'  r(style,orig)={r:.4f}')\nprint(f'  ORs identical: {abs(s-o) < 0.001}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-22T23:55:44.100223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NLI-filtered: 73 total, 62 formal, 11 casual\\\\nCasual trial1 chose A: 9/11\\\\nCasual trial2 chose A: 9/11\\\\nStill symmetric: True\\\\n\\\\npairwise_results_mtbench_qwen32b (Table 1 source):\\\\nNLI-filtered: 73 total, 62 formal, 11 casual\\\\nCasual trial1 chose A: 7/11\\\\nCasual trial2 chose A: 8/11\\\\nSymmetric: False\\\\n\\\\nTable 1 GEE (pairwise_results, NLI>=0.9):\\\\n  Style OR=2.9590, p=0.075270\\\\n  Orig OR=4.5063, p=0.014737\\\\n  r(style,orig)=0.6986\\\\n  ORs identical: False\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-22T23:55:44.100396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cat /root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-22T23:55:44.100578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 86,\\\\n    \\\\\\\"n_consistent\\\\\\\": 48,\\\\n    \\\\\\\"n_inconsistent\\\\\\\": 38,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 0.5581,\\\\n    \\\\\\\"bt_win_prob\\\\\\\": 0.7558,\\\\n    \\\\\\\"bt_ci\\\\\\\": [\\\\n      0.6976,\\\\n      0.8139\\\\n    ],\\\\n    \\\\\\\"bt_p\\\\\\\": 0.0001,\\\\n    \\\\\\\"bt_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_ate\\\\\\\": 0.4583,\\\\n    \\\\\\\"likert_d\\\\\\\": 1.1597,\\\\n    \\\\\\\"likert_p\\\\\\\": 0.0,\\\\n    \\\\\\\"likert_n\\\\\\\": 48,\\\\n    \\\\\\\"likert_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_note\\\\\\\": \\\\\\\"sign-test (pairwise-derived)\\\\\\\",\\\\n    \\\\\\\"gee_style_or\\\\\\\": 7.6361,\\\\n    \\\\\\\"gee_style_ci\\\\\\\": [\\\\n      3.3546,\\\\n      17.3823\\\\n    ],\\\\n    \\\\\\\"gee_style_p\\\\\\\": 1e-06,\\\\n    \\\\\\\"gee_orig_or\\\\\\\": 2.2609,\\\\n    \\\\\\\"gee_orig_ci\\\\\\\": [\\\\n      1.0232,\\\\n      4.9961\\\\n    ],\\\\n    \\\\\\\"gee_orig_p\\\\\\\": 0.043736,\\\\n    \\\\\\\"gee_n_obs\\\\\\\": 172,\\\\n    \\\\\\\"gee_n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"gee_style_orig_corr\\\\\\\": 0.5814,\\\\n    \\\\\\\"gee_vif\\\\\\\": 1.5106,\\\\n    \\\\\\\"blindspot\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 73,\\\\n    \\\\\\\"n_consistent\\\\\\\": 37,\\\\n    \\\\\\\"n_inconsistent\\\\\\\": 36,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 0.5068,\\\\n    \\\\\\\"bt_win_prob\\\\\\\": 0.6986,\\\\n    \\\\\\\"bt_ci\\\\\\\": [\\\\n      0.6301,\\\\n      0.7602\\\\n    ],\\\\n    \\\\\\\"bt_p\\\\\\\": 0.0001,\\\\n    \\\\\\\"bt_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_ate\\\\\\\": 0.3014,\\\\n    \\\\\\\"likert_d\\\\\\\": 0.1493,\\\\n    \\\\\\\"likert_p\\\\\\\": 0.006799,\\\\n    \\\\\\\"likert_n\\\\\\\": 73,\\\\n    \\\\\\\"likert_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_note\\\\\\\": \\\\\\\"Wilcoxon signed-rank (Likert scores)\\\\\\\",\\\\n    \\\\\\\"gee_style_or\\\\\\\": 4.6227,\\\\n    \\\\\\\"gee_style_ci\\\\\\\": [\\\\n \n…[truncated 495 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-22T23:55:44.100832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "cd /root/causal_style_decomp_judge && /root/miniconda3/bin/python << 'PYEOF'\nimport json, os\n\nreport = {\n    \"report_date\": \"2026-05-23\",\n    \"summary\": \"GEE identical OR is a data artifact (not code bug); data discrepancy traced to two separate scoring runs + different NLI filtering + different Likert tests\",\n\n    \"gee_bug\": {\n        \"diagnosis\": \"data_artifact_not_code_bug\",\n        \"root_cause\": \"In scored_mtbench_qwen32b_formality.jsonl, among 11 casual-origin pairs (after NLI>=0.90 filtering), exactly 9/11 chose A in trial 1 AND 9/11 chose A in trial 2. This creates perfect response symmetry between is_style_in_A and is_original_in_A predictors, making them structurally indistinguishable in the GEE.\",\n        \"evidence\": {\n            \"casual_trial1_chose_A\": \"9/11\",\n            \"casual_trial2_chose_A\": \"9/11\",\n            \"response_symmetry\": True,\n            \"pearson_r_style_orig\": 0.6986,\n            \"vif\": 1.9534,\n            \"perturbation_test\": \"Flipping 1 casual pair trial2 response → Style OR=6.08, Orig OR=3.33 (distinct). Confirms data coincidence, not code bug.\"\n        },\n        \"comparison_with_primary_analysis\": {\n            \"file\": \"pairwise_results_mtbench_qwen32b.jsonl\",\n            \"casual_trial1_chose_A\": \"7/11\",\n            \"casual_trial2_chose_A\": \"8/11\",\n            \"response_symmetry\": False,\n            \"gee_style_or\": 2.959,\n            \"gee_style_p\": 0.0753,\n            \"gee_orig_or\": 4.506,\n            \"gee_orig_p\": 0.0147,\n            \"note\": \"Primary analysis file produces distinct GEE ORs because casual pair responses are asymmetric\"\n        },\n        \"fix_applied\": \"None (not a code bug). Documented as known limitation with VIF and correlation diagnostics added to output.\"\n    },\n\n    \"data_discrepancy\": {\n        \"table1_source\": {\n            \"script\": \"csd_pipeline/mtbench_qwen32b_scoring.py\",\n            \"pairwise_file\": \"pairwise_results_mtbench_qwen32b.jsonl\",\n            \"likert_file\": \"scored_mtbench_qwen32b.jsonl\",\n            \"nli_filter\": \">=0.90 on both pairwise and Likert\",\n            \"n_pairs_pairwise\": 73,\n            \"n_pairs_likert\": 73,\n            \"bt_method\": \"pair-level bootstrap (10k)\",\n            \"likert_test\": \"Wilcoxon signed-rank\",\n            \"likert_d_method\": \"pooled-SD Cohen's d\",\n            \"results\": {\n                \"bt_win_prob\": 0.712,\n                \"likert_d\": 0.149,\n                \"likert_p\": 0.007\n            }\n        },\n        \"cross_benchmark_source_before_fix\": {\n            \"script\": \"csd_pipeline/cross_benchmark_analysis.py\",\n            \"pairwise_file\": \"scored_mtbench_qwen32b_formality.jsonl\",\n            \"likert_file\": \"scored_mtbench_qwen32b.jsonl\",\n            \"nli_filter\": \"none on pairwise, >=0.90 on Likert\",\n            \"n_pairs_pairwise\": 80,\n            \"n_pairs_likert\": 73,\n            \"bt_method\": \"pair-level bootstrap (10k)\",\n            \"likert_test\": \"paired t-test\",\n            \"likert_d_method\": \"diff-SD Cohen's d (SD of paired differences)\",\n            \"results\": {\n                \"bt_win_prob\": 0.700,\n                \"likert_d\": 0.25,\n                \"likert_p\": 0.035\n            }\n        },\n        \"discrepancy_causes\": [\n            {\n                \"metric\": \"BT (0.712 vs 0.700)\",\n                \"cause\": \"Two different pairwise scoring runs of Qwen3-32B (same 80 questions, different judge responses; 24/80 trials differ). Table 1 uses pairwise_results_mtbench_qwen32b.jsonl with NLI>=0.90 (73 pairs). Cross-benchmark uses scored_mtbench_qwen32b_formality.jsonl without NLI filter (80 pairs).\"\n            },\n            {\n                \"metric\": \"Likert p (0.007 vs 0.035)\",\n                \"cause\": \"Different statistical tests on same data: Wilcoxon signed-rank (p=0.007) vs paired t-test (p=0.035). Both use scored_mtbench_qwen32b.jsonl with NLI>=0.90 (73 records).\"\n            },\n            {\n                \"metric\": \"Likert d (0.149 vs 0.25)\",\n                \"cause\": \"Different denominator for Cohen's d on same data: pooled SD of groups (2.02) vs SD of differences (1.20). High within-pair correlation (r=0.824) makes diffs variance much smaller than pooled variance. ATE is identical (0.301).\"\n            }\n        ],\n        \"correct_numbers\": \"Table 1 (from mtbench_qwen32b_scoring.py) is the canonical source. Cross-benchmark is a separate replication scoring run.\",\n        \"canonical_mtbench_qwen32b_formality\": {\n            \"bt_win_prob\": 0.712,\n            \"bt_ci\": [0.630, 0.788],\n            \"bt_p\": 0.0001,\n            \"likert_ate\": 0.301,\n            \"likert_d\": 0.149,\n            \"likert_p\": 0.007,\n            \"likert_test\": \"Wilcoxon signed-rank\",\n            \"gee_style_or\": 2.96,\n            \"gee_style_p\": 0.0753,\n            \"gee_orig_or\": 4.51,\n            \"gee_orig_p\": 0.0147,\n            \"note\": \"From primary scoring run (pairwise_results_mtbench_qwen32b.jsonl), NLI>=0.90, 73 pairs\"\n        }\n    },\n\n    \"fixes_applied\": {\n        \"cross_benchmark_analysis.py\": [\n            \"Added NLI>=0.90 filter to load_pairwise() — was missing, now consistent with all other analysis scripts\",\n            \"Changed likert_from_scores() from paired t-test + diff-SD to Wilcoxon + pooled-SD — now consistent with primary analysis (mtbench_qwen32b_scoring.py)\",\n            \"Added VIF and correlation diagnostics to GEE output for collinearity monitoring\"\n        ]\n    },\n\n    \"corrected_cross_benchmark_results\": {\n        \"alpacaeval_llama70b_formality\": {\n            \"n_pairs\": 86,\n            \"bt_win_prob\": 0.7558,\n            \"bt_ci\": [0.6976, 0.8139],\n            \"bt_p\": 0.0001,\n            \"likert_d\": 1.1597,\n            \"likert_p\": 0.0,\n            \"gee_style_or\": 7.6361,\n            \"gee_style_p\": 0.000001,\n            \"gee_orig_or\": 2.2609,\n            \"gee_orig_p\": 0.043736,\n            \"gee_corr\": 0.5814,\n            \"gee_vif\": 1.5106,\n            \"blindspot\": False\n        },\n        \"mtbench_qwen32b_formality\": {\n            \"n_pairs\": 73,\n            \"bt_win_prob\": 0.6986,\n            \"bt_ci\": [0.6301, 0.7602],\n            \"bt_p\": 0.0001,\n            \"likert_d\": 0.1493,\n            \"likert_p\": 0.006799,\n            \"gee_style_or\": 4.6227,\n            \"gee_style_p\": 0.023109,\n            \"gee_orig_or\": 4.6227,\n            \"gee_orig_p\": 0.023109,\n            \"gee_corr\": 0.6986,\n            \"gee_vif\": 1.9534,\n            \"gee_note\": \"Style OR == Orig OR is a data artifact: 11 casual-origin pairs have identical trial1/trial2 A-choice rates (9/11 each), creating structural symmetry. VIF=1.95 indicates moderate collinearity but not severe. Primary analysis file (different scoring run) produces distinct ORs: Style=2.96, Orig=4.51.\",\n            \"blindspot\": False\n        }\n    }\n}\n\nout_dir = \"/root/causal_style_decomp_judge/artifacts/r14_fixes\"\nos.makedirs(out_dir, exist_ok=True)\nout_path = os.path.join(out_dir, \"gee_bug_report.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(report, f, indent=2, ensure_ascii=False)\nprint(f\"Report saved to {out_path}\")\nPYEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-22T23:55:44.101064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report saved to /root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-22T23:55:44.101203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-29275",
+              "command": "head -20 /root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-22T23:55:44.101379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"report_date\\\\\\\": \\\\\\\"2026-05-23\\\\\\\",\\\\n  \\\\\\\"summary\\\\\\\": \\\\\\\"GEE identical OR is a data artifact (not code bug); data discrepancy traced to two separate scoring runs + different NLI filtering + different Likert tests\\\\\\\",\\\\n  \\\\\\\"gee_bug\\\\\\\": {\\\\n    \\\\\\\"diagnosis\\\\\\\": \\\\\\\"data_artifact_not_code_bug\\\\\\\",\\\\n    \\\\\\\"root_cause\\\\\\\": \\\\\\\"In scored_mtbench_qwen32b_formality.jsonl, among 11 casual-origin pairs (after NLI>=0.90 filtering), exactly 9/11 chose A in trial 1 AND 9/11 chose A in trial 2. This creates perfect response symmetry between is_style_in_A and is_original_in_A predictors, making them structurally indistinguishable in the GEE.\\\\\\\",\\\\n    \\\\\\\"evidence\\\\\\\": {\\\\n      \\\\\\\"casual_trial1_chose_A\\\\\\\": \\\\\\\"9/11\\\\\\\",\\\\n      \\\\\\\"casual_trial2_chose_A\\\\\\\": \\\\\\\"9/11\\\\\\\",\\\\n      \\\\\\\"response_symmetry\\\\\\\": true,\\\\n      \\\\\\\"pearson_r_style_orig\\\\\\\": 0.6986,\\\\n      \\\\\\\"vif\\\\\\\": 1.9534,\\\\n      \\\\\\\"perturbation_test\\\\\\\": \\\\\\\"Flipping 1 casual pair trial2 response → Style OR=6.08, Orig OR=3.33 (distinct). Confirms data coincidence, not code bug.\\\\\\\"\\\\n    },\\\\n    \\\\\\\"comparison_with_primary_analysis\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"pairwise_results_mtbench_qwen32b.jsonl\\\\\\\",\\\\n      \\\\\\\"casual_trial1_chose_A\\\\\\\": \\\\\\\"7/11\\\\\\\",\\\\n      \\\\\\\"casual_trial2_chose_A\\\\\\\": \\\\\\\"8/11\\\\\\\",\\\\n      \\\\\\\"response_symmetry\\\\\\\": false,\\\\n      \\\\\\\"gee_style_or\\\\\\\": 2.959,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-22T23:55:44.101562+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written. Here's the summary:\n\n---\n\n### GEE Bug: Data artifact, NOT code bug\n\nThe identical `Style OR == Orig OR = 4.73` in `scored_mtbench_qwen32b_formality.jsonl` is caused by **response symmetry in casual-origin pairs**: among 11 casual pairs, exactly 9/11 chose A in both trials. This makes `is_style_in_A` and `is_original_in_A` structurally indistinguishable. Perturbation test confirms — flipping one trial response produces distinct ORs (6.08 vs 3.33). The primary analysis file (`pairwise_results_mtbench_qwen32b.jsonl`) doesn't have this issue (7/11 vs 8/11 → Style OR=2.96, Orig OR=4.51).\n\n### Data Discrepancy: Three independent causes\n\n| Metric | Table 1 | cross_benchmark (old) | Cause |\n|--------|---------|----------------------|-------|\n| BT | .712 | .700 | Different scoring runs + NLI filter (73 vs 80 pairs) |\n| Likert p | .007 | .035 | Wilcoxon vs t-test (same data) |\n| Likert d | .149 | .25 | Pooled-SD vs diff-SD denominator (same data) |\n\n**Table 1 numbers are canonical** (from `mtbench_qwen32b_scoring.py`).\n\n### Fixes applied to `cross_benchmark_analysis.py`\n1. Added NLI≥0.90 filter to `load_pairwise()` (was missing)\n2. Changed Likert test from t-test to Wilcoxon + pooled-SD Cohen's d (consistent with primary analysis)\n3. Added VIF + correlation diagnostics to GEE output\n\nReport saved to `/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json`."
+            }
+          ],
+          "metadata": {
+            "session": "worker_bugfix_gee-and-data-discrepancy_20260522T234122"
+          },
+          "id": "event-000127"
+        }
+      ],
+      "message_count": 127
+    }
+  ]
+}

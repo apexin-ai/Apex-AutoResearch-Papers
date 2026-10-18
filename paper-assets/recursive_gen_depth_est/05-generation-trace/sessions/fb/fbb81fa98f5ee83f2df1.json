@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fbb81fa98f5ee83f2df1",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis w6 cross strategy per class recall",
+  "task_key": "worker_analysis_w6_cross_strategy_per_class_recall_20260515T110628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w6_cross_strategy_per_class_recall_20260515T110628_result.json",
+    "occurrence": 1,
+    "bytes": 1613,
+    "sha256": "22bd9e9d98b2d246f59f69aea64479d62d11f1751600890f16e12370aa90d6ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，accuracy 全部匹配。结果汇总：\n\n## Cross-Strategy LOO Per-Class Recall Table\n\n| Rotation | Acc | d0-R | d1-R | d2-R | d3-R |\n|---|---|---|---|---|---|\n| **Pythia** |\n| holdout_nucleus | 0.6935 | 1.000 | 0.443 | 0.543 | 0.788 |\n| holdout_temp09 | 0.6281 | 1.000 | 0.324 | 0.395 | 0.794 |\n| holdout_topk50 | 0.5151 | 1.000 | 0.922 | 0.076 | 0.062 |\n| **GPT-2 XL** |\n| holdout_nucleus | 0.5993 | 0.895 | 0.872 | 0.305 | 0.326 |\n| holdout_temp09 | 0.5609 | 1.000 | 0.224 | **0.037** | 0.982 |\n| holdout_topk50 | 0.5364 | 1.000 | 0.933 | 0.135 | 0.077 |\n| **OLMo** |\n| holdout_nucleus | 0.6538 | 0.980 | 0.777 | 0.397 | 0.461 |\n| holdout_temp09 | 0.5816 | 1.000 | 0.254 | **0.089** | 0.984 |\n| holdout_topk50 | 0.5488 | 1.000 | 0.976 | 0.191 | 0.028 |\n\n## 关键发现\n\n**temp09 holdout 的 d1 recall 确实异常低**（与 d1v2 AUC inversion 一致）：\n- GPT-2 XL temp09: d1-R=0.224, d2-R=0.037 — 几乎所有 d2 被误分为 d3（confusion matrix: 4791/5000 → d3）\n- OLMo temp09: d1-R=0.254, d2-R=0.089 — 同样 d2 大量误分为 d3（4524/5000 → d3）\n- Pythia temp09: d1-R=0.324, d2-R=0.395 — 相对较好但仍是最低\n\n**topk50 holdout 呈现相反模式**：d1 recall 极高（>0.92）但 d2/d3 recall 崩塌，说明 RF 将深层样本全部误分为 d1。\n\n**nucleus holdout 最均衡**：各 depth recall 分布最平衡，说明 nucleus 是最\"中性\"的策略。\n\n产出已保存至 `results/w6_cross_strategy_per_class_recall.json`（服务器）和 `artifacts/w6_cross_strategy_per_class/results.json`（本地）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

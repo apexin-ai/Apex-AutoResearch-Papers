@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d571643e29284f7b93f8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research covariate shift literature",
+  "task_key": "worker_research_covariate_shift_literature_20260515T050056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_covariate_shift_literature_20260515T050056_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "1f58056b5c7046ddd60c7ee3c26fb6dda4957b899154dffb9a8ac05ebea9d3e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。产出总结：\n\n**文件已写入:**\n- `artifacts/covariate_shift_literature_survey.md` — 完整文献调研报告\n- `literature_map.yaml` — 11 篇论文的结构化索引\n\n**关键发现:**\n\n| 论文 | 与我们发现的关系 |\n|------|-----------------|\n| Marchi et al. (ICASSP 2025) | **最强理论支撑** — 证明 T<1 放大概率差异，加速 mode collapse |\n| Dohmatob et al. (ICML 2024) | **机制解释** — temperature 产生 \"tail narrowing\" (q∝i^{-β/T})，不同于 top-k/nucleus 的 \"tail cutting\" |\n| Drayson et al. (EMNLP 2025) | **最强实证** — τ=0.9 在 99 代递归中多样性下降 70%，困惑度退化反而更温和 |\n| Shumailov et al. (Nature 2024) | 基础框架，但**未比较采样策略** |\n\n**新颖性评估: partially-known**\n- 已知：temperature 加速退化（定性层面）\n- **新颖**：①精确量化 ~1 depth 偏移量；②将跨策略差异框架化为协变量偏移；③z-score 标准化修正方法（AUC 0.13→0.68）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

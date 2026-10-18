@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "545fd4306e2df4272d9c",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "figure heatmap gemma2 hires switch",
+  "task_key": "worker_figure_heatmap-gemma2-hires-switch_20260515T010636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_heatmap-gemma2-hires-switch_20260515T010636_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "c2c77d022bfb4857343a75c97890385d3ac601201a3e046665ad47a134ae0bea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **Heatmap**: 5 模型均使用 hires 数据，Gemma-2 top-3 heads 验证通过 (L0H1=0.19, L40H6=0.10, L29H7=0.08)，无 `*` 脚注\n- **Scatter**: Qwen concentration = 0.61\n- **同步**: 4 个图表文件已同步到本地 `docs/paper/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

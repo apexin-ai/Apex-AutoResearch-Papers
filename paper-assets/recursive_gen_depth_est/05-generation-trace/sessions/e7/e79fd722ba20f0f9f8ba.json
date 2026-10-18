@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e79fd722ba20f0f9f8ba",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops kill dual gpu llama3",
+  "task_key": "worker_ops_kill_dual_gpu_llama3_20260516T140019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_dual_gpu_llama3_20260516T140019_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "7334ff09dfbe6136263fed3004c5a0797ccd1702447eab51f23bdd3ebdcd5b50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**完成。** 训练进程及子进程均已 kill，双卡 GPU 已完全释放：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 0% | 0 MiB |\n| 1 | 0% | 0 MiB |\n\n可以用单卡重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

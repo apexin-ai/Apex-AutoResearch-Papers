@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "9b5383f08769890877c6",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis m1 gemini leverage",
+  "task_key": "worker_analysis_m1_gemini_leverage_20260522T091146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m1_gemini_leverage_20260522T091146.log",
+    "occurrence": 1,
+    "bytes": 648790,
+    "sha256": "319686df0526c8c784da42643b5e886cb63d822b5ef4f9c9e32a8a392e538771"
+  },
+  "statistics": {
+    "messages": 289,
+    "user_turns": 1,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 107,
+      "tool_result": 107,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "9b5383f08769890877c6-part-0001.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "9b5383f08769890877c6-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "9b5383f08769890877c6-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ]
+}

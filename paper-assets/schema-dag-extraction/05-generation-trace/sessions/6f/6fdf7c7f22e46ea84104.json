@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6fdf7c7f22e46ea84104",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research literature survey v2",
+  "task_key": "worker_research_literature_survey_v2_20260515T161104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_survey_v2_20260515T161104_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "a07b323442cea5fab05d62a8055a0c6a737375b143307826654ac18fa24e8ec4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已更新，共 30 篇论文：\n\n**Part 1 — 修复 3 篇不完整引用：**\n- #19 SPT: Sheng Liang, Yongyue Zhang, Yaxiong Wu, Ruiming Tang, Yong Liu\n- #20 PARSE: Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, Promod Yenigalla\n- #21 Familiarity: Jonas Golde, Patrick Haller, Max Ploner, Fabio Barth, Nicolaas Jedema, Alan Akbik（同时更新 venue 为 NAACL 2025）\n\n**Part 2 — 新增 9 篇论文（#22-#30）：**\n\n| 方向 | 编号 | 论文 | Venue |\n|------|------|------|-------|\n| A. Structured decoding | #22 | GENRE (De Cao et al.) | ICLR 2021 |\n| A. Structured decoding | #23 | iNERD (Deußer et al.) | IEEE BigData 2024 |\n| B. Label ambiguity | #24 | NoiseBench (Merdjanovska et al.) | EMNLP 2024 |\n| B. Label ambiguity | #25 | LRN (Liu et al.) | EMNLP 2021 |\n| C. Evaluation | #26 | GenRES (Jiang et al.) | NAACL 2024 |\n| C. Evaluation | #27 | MultiCoNER 2 (Fetahu et al.) | SemEval 2023 |\n| D. Calibration | #28 | LLM Calibration Survey (Geng et al.) | NAACL 2024 |\n| D. Calibration | #29 | FaR (Zhao et al.) | ACL Findings 2024 |\n| D. Calibration | #30 | LinkNER (Zhang et al.) | WWW 2024 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

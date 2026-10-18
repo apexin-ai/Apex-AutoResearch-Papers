@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "a7b92392161141fb72fb",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "train openvla reencoding m128",
+  "task_key": "worker_train_openvla_reencoding_m128_20260519T164556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_openvla_reencoding_m128_20260519T164556.log",
+    "occurrence": 1,
+    "bytes": 568445,
+    "sha256": "266b085412912a476593dfda46d9019404fad97ffa2220266249d51355283e8e"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 67,
+      "tool_result": 67
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "a7b92392161141fb72fb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7b92392161141fb72fb-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ]
+}

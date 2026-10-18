@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "183abcf2309203a734db",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diag fewrel 80rel sighup",
+  "task_key": "worker_diag_fewrel_80rel_sighup_20260515T134010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_fewrel_80rel_sighup_20260515T134010_result.json",
+    "occurrence": 1,
+    "bytes": 1602,
+    "sha256": "3f56339f965805962d3651f73841db09fd3c0f793d048d6c89e6e20aebccc857"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. 失败原因：**不是真正的失败**\n\n主日志 `exp_fewrel_formal_80rel.log` 末尾显示：\n```\n===== 80-rel ALL DONE =====\nEXIT_CODE=129\n```\n\n实验**实际已跑完全部 batch**（count_1 到 count_80，exp1 + exp2），所有结果都已打印。EXIT_CODE=129 (SIGHUP) 是在主计算完成后才被记录的——SIGHUP 到达时实验已经做完了，只是 wrapper 脚本捕获到了非零退出码。\n\n另外 `/tmp/fewrel_80rel_exp1.log` 记录了一次**更早的失败尝试**：vLLM 启动时 GPU 显存不足（仅 2.42/94.97 GiB 可用），那次是因为其他进程占了 GPU。这不是当前产出对应的运行。\n\n### 2. Partial output → **实际是完整产出**\n\n| 文件 | 大小 | 说明 |\n|------|------|------|\n| predictions_exp1.json | 22MB | exp1 预测结果 |\n| predictions_exp2.json | 5.5MB | exp2 预测结果 |\n| eval_exp1.json | 175KB | exp1 评估 |\n| eval_exp2.json | 101KB | exp2 评估 |\n| preprocess_exp1/exp2.json | ~280KB each | 预处理配置 |\n| relation_sim_matrix.pt | 29KB | 相似度矩阵 |\n\nexp1 和 exp2 的 predictions + eval 都在，**数据应保留，无需重跑**。\n\n### 3. GPU 状态：**完全空闲**\n\n```\nNVIDIA RTX PRO 6000 Blackwell, 0 MiB / 97887 MiB, 0% utilization\n```\n\n### 4. 残留进程：**无**\n\nGPU 显存 0 MiB，无 vLLM 或实验进程在运行。无需清理。\n\n### 结论\n\n实验数据完整，EXIT_CODE=129 只是 SIGHUP 在实验完成后到达 wrapper 脚本导致的虚假失败。可以直接用现有产出继续下游分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

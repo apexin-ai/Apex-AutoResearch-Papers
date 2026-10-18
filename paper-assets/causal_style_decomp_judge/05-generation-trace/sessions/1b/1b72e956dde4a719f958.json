@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1b72e956dde4a719f958",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "push abstract abbrev expand",
+  "task_key": "worker_push_abstract-abbrev-expand_20260525T110703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_push_abstract-abbrev-expand_20260525T110703_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "eb4d5b605ca15adde714865dc98d6f8746795a27a996e0f2dcf17780d79ef789"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **Push 成功**，commit hash: `a95ddf1`\n- **PDF**: 20 页（正文 8 页 + appendix + references），无 undefined reference\n- **Remote URL 已清除 token**，当前指向 `https://github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

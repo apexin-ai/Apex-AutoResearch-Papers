@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a4949c2b6c5777afe1d1",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code arr submission checklist",
+  "task_key": "worker_code_arr-submission-checklist_20260522T024733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arr-submission-checklist_20260522T024733_result.json",
+    "occurrence": 1,
+    "bytes": 3043,
+    "sha256": "6bf9b0c52509a3878287bc74c5d87c8a295d89df6b7a5cc7744cd1ec8a6a2173"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ARR 提交 Checklist 检查结果\n\n> **前置警告：`paper/` 目录下的 `main.tex` 是 ACL LaTeX 模板示例文件，不是实际研究论文。** 标题为 \"Instructions for *ACL Proceedings\"，内容为 LaTeX 格式说明。以下检查基于该模板文件。\n\n---\n\n### 检查汇总\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| **1. 格式合规** | | |\n| documentclass | ✅ | `\\documentclass[11pt]{article}` 正确 |\n| 模板文件 | ✅ | `acl.sty` + `acl_natbib.bst` 齐全 |\n| review 模式 | ✅ | `\\usepackage[review]{acl}` 正确，匿名模式 |\n| `\\aclfinalcopy` | ✅ | 未出现 |\n| 字体 | ✅ | `\\usepackage{times}` 正确 |\n| 主文页数 | ✅ | 4 页总计（含 appendix），主文约 3 页，远低于 8 页限制 |\n| Abstract 字数 | ✅ | ~50 words，远低于 250 上限 |\n| **2. 匿名化** | | |\n| 作者信息 | ✅ | 使用占位符 \"First Author\" / \"Second Author\"，无真实姓名 |\n| 机构名称 | ✅ | 无真实机构名 |\n| `\\thanks` | ✅ | tex 中未使用 `\\thanks` 暴露身份 |\n| 个人链接 | ✅ | 无 github/个人网站链接 |\n| 自引模式 | ✅ | 未检测到 |\n| Acknowledgments | ❌ | **包含真实人名**（Steven Bethard, Ryan Cotterell, Rui Yan 等十余人）——审稿阶段必须删除或注释掉 |\n| **3. Supplementary** | | |\n| Appendix | ✅ | 在 main.tex 中通过 `\\appendix` 包含 |\n| Limitations | ✅ | `\\section*{Limitations}` 存在，内容简短（3 行） |\n| Ethics Statement | ⚠️ | 未包含（可选但推荐） |\n| ARR Checklist 在 PDF 中 | ✅ | PDF 中无 checklist（正确——应在 OpenReview form 填写） |\n| **4. References** | | |\n| undefined citation | ✅ | 0 个 |\n| \"?\" 引用 | ✅ | 0 个 |\n| bib 条目完整性 | ✅ | 7 个条目，均有 author/title/year |\n| bib 格式 | ✅ | 无明显格式问题 |\n| **5. 编译** | | |\n| 编译 errors | ✅ | 0 |\n| undefined references | ✅ | 0 |\n| multiply-defined labels | ✅ | 0 |\n| overfull hbox | ✅ | 0 |\n| underfull hbox | ✅ | 4 个，均非严重（最大 badness 10000 在 URL 行，正常） |\n| 总页数 | — | 4 页（含 appendix） |\n| **6. PDF metadata** | | |\n| Author 字段 | ✅ | 为空，不泄露身份 |\n| Title 字段 | ⚠️ | 为空（建议用 `\\pdfinfo` 设置论文标题） |\n\n---\n\n### 需修复问题（按严重度排序）\n\n**Critical:**\n1. **这不是实际论文，是 ACL 模板示例文件。** `\\title{Instructions for *ACL Proceedings}` 和全部正文都是格式说明。需要替换为实际研究内容。\n\n**Major:**\n2. **Acknowledgments 包含真实人名**（main.tex:345-362）——审稿提交阶段必须整段注释/删除，否则违反匿名要求。\n\n**Minor:**\n3. **缺少 Ethics Statement**——EMNLP 2026 可选但推荐，建议在 Limitations 后加 `\\section*{Ethics Statement}`。\n4. **PDF Title 为空**——建议在 preamble 添加 `\\hypersetup{pdftitle={Your Paper Title}}` 提升可访问性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

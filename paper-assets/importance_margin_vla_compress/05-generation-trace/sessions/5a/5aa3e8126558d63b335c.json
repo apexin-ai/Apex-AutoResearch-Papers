@@ -1,0 +1,1465 @@
+{
+  "schema_version": "1.0",
+  "id": "5aa3e8126558d63b335c",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "audit westd41074 westd38929 gpu status",
+  "task_key": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_audit_westd41074-westd38929-gpu-status_20260524T021409.jsonl",
+    "occurrence": 1,
+    "bytes": 59445,
+    "sha256": "bd18af80f06d3b7aa73aefc96bd0ff1df812c44f16e2279e5f1762cdc8756149"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "tool_call": 35,
+      "tool_result": 35,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T02:17:37.771528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T02:17:37.771915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T02:17:37.772110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T02:17:37.772301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ps aux --sort=-rss --cols 300 | grep python | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T02:17:37.772447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 10548 MiB, 97887 MiB, 54 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 10490 MiB, 97887 MiB, 54 %\\\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 9961 MiB, 97887 MiB, 0 %\\\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 10532 MiB, 97887 MiB, 55 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T02:17:37.772604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T02:17:37.772737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T02:17:37.772863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T02:17:37.772984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T02:17:37.773110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 MiB, 97887 MiB, 0 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 MiB, 97887 MiB, 0 %\\\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 4856 MiB, 97887 MiB, 24 %\\\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 4938 MiB, 97887 MiB, 16 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T02:17:37.773392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ps aux --sort=-rss --cols 300 | grep python | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T02:17:37.773611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T02:17:37.773824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T02:17:37.774048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T02:17:37.774352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T02:17:37.774584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T02:17:37.774783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ps aux --sort=-rss --cols 300 | grep python | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T02:17:37.775094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     363842  448  0.9 64073168 10489280 pts/6 Rl+ 09:51 104:58 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\nroot     318964  422  0.9 64684344 10445492 pts/3 Rl+ 08:56 332:20 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\\\\nroot     345089  423  0.9 64684368 10156604 pts/4 Rl 09:38 155:59 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\\\\nroot     363766  434  0.9 64896512 10149908 pts/5 Rl+ 09:51 101:52 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\\\\nroot     366545  0.7  0.0 19738820 643252 pts/5 Sl+  09:53   0:10 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=363766 --read-\\\\nroot     346178  0.4  0.0 19739856 643020 pts/4 Sl   09:39   0:10 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=345089 --read-\\\\nroot     366543  0.7  0.0 19739972 642840 pts/6 Sl+  09:53   0:09 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=363842 --read-\\\\nroot     319309  0.2  0.0 19739852 642800 pts/3 Sl+  08:57   0:10 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=f\n…[truncated 6293 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T02:17:37.775378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tmux list-sessions 2>/dev/null || echo \"NO_TMUX_SESSIONS\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T02:17:37.775603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"diag_read_goal_results: 1 windows (created Sat May 23 22:03:53 2026)\\\\neval_pi05_l2norm_k05_long_seed43: 1 windows (created Sun May 24 09:51:31 2026)\\\\neval_pi05_l2norm_k07_goal_seed43_v2: 1 windows (created Sun May 24 09:38:03 2026)\\\\neval_pi05_random_k085_goal_seed43: 1 windows (created Sun May 24 08:56:15 2026)\\\\neval_pi05_random_k095_goal_seed43: 1 windows (created Sun May 24 09:51:28 2026)\\\\nsmolvla_spatial: 1 windows (created Fri May 22 21:51:05 2026)\\\\nxvla_long: 1 windows (created Fri May 22 22:02:22 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T02:17:37.775812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ps aux --sort=-rss --cols 300 | grep python | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T02:17:37.776071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     674970  218  0.6 54071984 7094064 pts/2 Rl+ 09:10 141:02 python -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.85 --suite libero_spatial --domain_id 3 --seed 42 --model_path /root/autodl-tmp/X-VLA-Libero\\\\nroot     674830  247  0.6 56120420 6744400 pts/1 Sl+ 09:10 160:00 python -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.85 --suite libero_goal --domain_id 3 --seed 42 --model_path /root/autodl-tmp/X-VLA-Libero\\\\nroot        939  0.0  0.0 5405812 597760 ?      Sl   May21   2:21 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        943  0.0  0.0 187544 97640 ?        S    May21   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1057  0.0  0.0 28341192 10300 ?      Sl   May21   3:45 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_2kytwdof/port --die-after-stdin --error-file=/t\\\\nroot     674824  0.0  0.0   4364  3276 pts/1    Ss+  09:10   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.85 --suit\\\\nroot     674964  0.0  0.0   4364  3152 pts/2    Ss+  09:10   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.85 --suit\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T02:17:37.776383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tmux list-sessions 2>/dev/null || echo \"NO_TMUX_SESSIONS\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T02:17:37.776696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_xvla_random_k05_spatial_seed43: 1 windows (created Sun May 24 06:24:48 2026)\\\\neval_xvla_random_k085_goal_seed42: 1 windows (created Sun May 24 09:10:14 2026)\\\\neval_xvla_random_k085_spatial_seed42: 1 windows (created Sun May 24 09:10:16 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T02:17:37.776938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "ls -lt /root/autodl-tmp/importance_margin_vla_compress/logs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T02:17:37.777179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ls -lt /root/autodl-tmp/importance_margin_vla_compress/logs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T02:17:37.777503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2244\\\\n-rw-r--r-- 1 root root   3713 May 24 10:14 eval_pi05_random_k095_goal_seed43_v2.log\\\\n-rw-r--r-- 1 root root   4309 May 24 10:13 eval_pi05_l2norm_k07_goal_seed43_v2.log\\\\n-rw-r--r-- 1 root root   2667 May 24 10:12 eval_pi05_l2norm_k05_long_seed43_v2.log\\\\n-rw-r--r-- 1 root root   8819 May 24 09:31 eval_pi05_l2norm_k05_long_seed43.log\\\\n-rw-r--r-- 1 root root   8821 May 24 09:31 eval_pi05_l2norm_k07_goal_seed43.log\\\\n-rw-r--r-- 1 root root   8822 May 24 09:31 eval_pi05_random_k095_goal_seed43.log\\\\n-rw-r--r-- 1 root root   8820 May 23 16:47 eval_pi05_l2norm_k085_long_seed43_v3.log\\\\n-rw-r--r-- 1 root root   8819 May 23 16:47 eval_pi05_l2norm_k07_long_seed43_v3.log\\\\n-rw-r--r-- 1 root root   8818 May 23 16:47 eval_pi05_random_k03_long_seed43_v4.log\\\\n-rw-r--r-- 1 root root   8820 May 23 16:47 eval_pi05_random_k085_long_seed43_v2.log\\\\n-rw-r--r-- 1 root root   8820 May 23 16:30 eval_pi05_l2norm_k085_long_seed43.log\\\\n-rw-r--r-- 1 root root   8819 May 23 16:29 eval_pi05_random_k05_long_seed43.log\\\\n-rw-r--r-- 1 root root   7346 May 23 15:49 eval_pi05_random_k09_goal_seed42.log\\\\n-rw-r--r-- 1 root root   8824 May 23 15:45 eval_pi05_l2norm_k095_object_seed42_v2.log\\\\n-rw-r--r-- 1 root root   8823 May 23 15:44 eval_pi05_random_k09_object_seed43_v4.log\\\\n-rw-r--r-- 1 root root   7359 May 23 15:36 eval_pi05_l2norm_k07_goal_seed42.log\\\\n-rw-r--r-- 1 root root 102580 May 23 15:26 e4_inference_latency_smolvla_pi05.log\\\\n-rw-r--r-- 1 root root   2303 May 23 15:18 e3_cosine_similarity_smolvla_pi05.log\\\\n-rw-r--r-- 1 root root 169350 May 23 12:15 train_m64v6.log\\\\n-rw-r--r-- 1 root root   7769 May 23 11:00 eval_pi05_random_k05_spatial_seed43.log\\\\n-rw-r--r-- 1 root root   7693 May 23 09:50 eval_pi05_random_k085_long_seed43.log\\\\n-rw-r--r-- 1 root root   7693 May 23 09:46 eval_pi05_random_k05_long_seed43_v2.log\\\\n-rw-r--r-- 1 root root   7684 May 23 08:45 eval_pi05_l2norm_k03_long_seed43.log\\\\n-rw-r--r-- 1 root ro\n…[truncated 5376 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T02:17:37.777830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1404\\\\n-rw-r--r-- 1 root root 34852 May 24 08:53 eval_xvla_random_k05_goal_seed43_v4.log\\\\n-rw-r--r-- 1 root root 35721 May 24 07:29 eval_xvla_random_k05_spatial_seed43.log\\\\n-rw-r--r-- 1 root root 35503 May 24 07:12 eval_xvla_random_k05_long_seed43.log\\\\n-rw-r--r-- 1 root root 35032 May 24 07:04 eval_xvla_l2norm_k05_object_seed43.log\\\\n-rw-r--r-- 1 root root 34744 May 24 06:52 eval_xvla_l2norm_k05_goal_seed43.log\\\\n-rw-r--r-- 1 root root 35472 May 24 05:47 eval_xvla_random_k05_object_seed43.log\\\\n-rw-r--r-- 1 root root  5028 May 24 05:47 eval_xvla_random_k05_goal_seed43_v2.log\\\\n-rw-r--r-- 1 root root 19522 May 24 05:17 eval_xvla_random_k05_goal_seed43.log\\\\n-rw-r--r-- 1 root root 17704 May 24 04:32 eval_xvla_random_k05_goal_seed42_v2.log\\\\n-rw-r--r-- 1 root root 11076 May 23 16:35 eval_xvla_l2norm_k07_long_seed42_v2.log\\\\n-rw-r--r-- 1 root root  2867 May 23 16:21 e3_cosine_openvla.log\\\\n-rw-r--r-- 1 root root 12306 May 23 16:20 e3_cosine_xvla.log\\\\n-rw-r--r-- 1 root root 35306 May 23 15:56 eval_xvla_l2norm_k05_long_seed42.log\\\\n-rw-r--r-- 1 root root 35366 May 23 15:50 eval_xvla_l2norm_k07_long_seed42.log\\\\n-rw-r--r-- 1 root root 35423 May 23 15:47 eval_xvla_random_k07_long_seed42.log\\\\n-rw-r--r-- 1 root root 35556 May 23 15:44 eval_xvla_random_k05_long_seed42.log\\\\n-rw-r--r-- 1 root root  7940 May 23 09:34 eval_pi05_random_k09_long_seed43.log\\\\n-rw-r--r-- 1 root root  7955 May 23 07:27 eval_pi05_random_k03_long_seed42.log\\\\n-rw-r--r-- 1 root root  7977 May 23 07:14 eval_pi05_l2norm_k05_long_seed42.log\\\\n-rw-r--r-- 1 root root  2591 May 23 07:02 eval_pi05_random_k05_long_seed43.log\\\\n-rw-r--r-- 1 root root  7974 May 23 06:46 eval_pi05_random_k05_long_seed42.log\\\\n-rw-r--r-- 1 root root  7943 May 23 06:08 eval_pi05_random_k09_long_seed42.log\\\\n-rw-r--r-- 1 root root  7623 May 23 04:16 eval_pi05_random_k085_goal_seed42_v3.log\\\\n-rw-r--r-- 1 root root 33627 May 23 02:08 smolvla_random_k095_long_s42.log\\\\n-\n…[truncated 3918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T02:17:37.778149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---GPU-MAP---\"; nvidia-smi --query-gpu=index,uuid --format=csv,noheader",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T02:17:37.778394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"363766, GPU-b12dc93c-f616-7421-b28e-390b63a642ba, 10530 MiB\\\\n345089, GPU-b927bd9e-efa6-c56c-2068-1fc57e9147c6, 10455 MiB\\\\n363842, GPU-754fc39d-3de8-bd70-0b93-b752430ed568, 10651 MiB\\\\n318964, GPU-5de49e5a-94e3-c77a-dcf3-dc0cde876f0d, 10514 MiB\\\\n---GPU-MAP---\\\\n0, GPU-b12dc93c-f616-7421-b28e-390b63a642ba\\\\n1, GPU-b927bd9e-efa6-c56c-2068-1fc57e9147c6\\\\n2, GPU-754fc39d-3de8-bd70-0b93-b752430ed568\\\\n3, GPU-5de49e5a-94e3-c77a-dcf3-dc0cde876f0d\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T02:17:37.778616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "cat /proc/318964/environ 2>/dev/null | tr '\\0' '\\n' | grep CUDA; echo \"===\"; cat /proc/345089/environ 2>/dev/null | tr '\\0' '\\n' | grep CUDA; echo \"===\"; cat /proc/363766/environ 2>/dev/null | tr '\\0' '\\n' | grep CUDA; echo \"===\"; cat /proc/363842/environ 2>/dev/null | tr '\\0' '\\n' | grep CUDA",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T02:17:37.778835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CUDA_VISIBLE_DEVICES=3\\\\n===\\\\nCUDA_VISIBLE_DEVICES=1\\\\n===\\\\nCUDA_VISIBLE_DEVICES=0\\\\n===\\\\nCUDA_VISIBLE_DEVICES=2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T02:17:37.779024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_spatial_seed43.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-24T02:17:37.779303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 07:27:57 [INFO]   Ep 39/50 | FAIL | steps=800\\\\n2026-05-24 07:28:15 [INFO]   Ep 40/50 | FAIL | steps=800\\\\n2026-05-24 07:28:19 [INFO]   Ep 41/50 | SUCCESS | steps=118\\\\n2026-05-24 07:28:36 [INFO]   Ep 42/50 | FAIL | steps=800\\\\n2026-05-24 07:28:40 [INFO]   Ep 43/50 | SUCCESS | steps=115\\\\n2026-05-24 07:28:44 [INFO]   Ep 44/50 | SUCCESS | steps=119\\\\n2026-05-24 07:28:49 [INFO]   Ep 45/50 | SUCCESS | steps=114\\\\n2026-05-24 07:28:53 [INFO]   Ep 46/50 | SUCCESS | steps=133\\\\n2026-05-24 07:28:57 [INFO]   Ep 47/50 | SUCCESS | steps=120\\\\n2026-05-24 07:29:02 [INFO]   Ep 48/50 | SUCCESS | steps=119\\\\n2026-05-24 07:29:06 [INFO]   Ep 49/50 | SUCCESS | steps=117\\\\n2026-05-24 07:29:23 [INFO]   Ep 50/50 | FAIL | steps=800\\\\n2026-05-24 07:29:23 [INFO]   Task 9 SR: 33/50 (66.0%)\\\\n2026-05-24 07:29:23 [INFO] ============================================================\\\\n2026-05-24 07:29:23 [INFO] SUITE: libero_spatial | MODEL: xvla | keep_ratio: 0.50\\\\n2026-05-24 07:29:23 [INFO] Overall SR: 363/500 (72.6%)\\\\n2026-05-24 07:29:23 [INFO] 95% Wilson CI: [68.5%, 76.3%]\\\\n2026-05-24 07:29:23 [INFO]   Task 0: 100% (50/50) -- pick up the black bowl between the plate and the ramekin and place it on the plate\\\\n2026-05-24 07:29:23 [INFO]   Task 1: 38% (19/50) -- pick up the black bowl next to the ramekin and place it on the plate\\\\n2026-05-24 07:29:23 [INFO]   Task 2: 88% (44/50) -- pick up the black bowl from table center and place it on the plate\\\\n2026-05-24 07:29:23 [INFO]   Task 3: 92% (46/50) -- pick up the black bowl on the cookie box and place it on the plate\\\\n2026-05-24 07:29:23 [INFO]   Task 4: 88% (44/50) -- pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate\\\\n2026-05-24 07:29:23 [INFO]   Task 5: 0% (0/50) -- pick up the black bowl on the ramekin and place it on the plate\\\\n2026-05-24 07:29:23 [INFO]   Task 6: 94% (47/50) -- pick up the black bowl next to the cookie box and pl\n…[truncated 725 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-24T02:17:37.779547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-24T02:17:37.779791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 08:51:06 [INFO]   Ep 39/50 | FAIL | steps=800\\\\n2026-05-24 08:51:19 [INFO]   Ep 40/50 | FAIL | steps=800\\\\n2026-05-24 08:51:32 [INFO]   Ep 41/50 | FAIL | steps=800\\\\n2026-05-24 08:51:47 [INFO]   Ep 42/50 | FAIL | steps=800\\\\n2026-05-24 08:52:01 [INFO]   Ep 43/50 | FAIL | steps=800\\\\n2026-05-24 08:52:15 [INFO]   Ep 44/50 | FAIL | steps=800\\\\n2026-05-24 08:52:30 [INFO]   Ep 45/50 | FAIL | steps=800\\\\n2026-05-24 08:52:44 [INFO]   Ep 46/50 | FAIL | steps=800\\\\n2026-05-24 08:52:59 [INFO]   Ep 47/50 | FAIL | steps=800\\\\n2026-05-24 08:53:13 [INFO]   Ep 48/50 | FAIL | steps=800\\\\n2026-05-24 08:53:27 [INFO]   Ep 49/50 | FAIL | steps=800\\\\n2026-05-24 08:53:43 [INFO]   Ep 50/50 | FAIL | steps=800\\\\n2026-05-24 08:53:43 [INFO]   Task 9 SR: 0/50 (0.0%)\\\\n2026-05-24 08:53:43 [INFO] ============================================================\\\\n2026-05-24 08:53:43 [INFO] SUITE: libero_goal | MODEL: xvla | keep_ratio: 0.50\\\\n2026-05-24 08:53:43 [INFO] Overall SR: 343/500 (68.6%)\\\\n2026-05-24 08:53:43 [INFO] 95% Wilson CI: [64.4%, 72.5%]\\\\n2026-05-24 08:53:43 [INFO]   Task 0: 100% (50/50) -- open the middle drawer of the cabinet\\\\n2026-05-24 08:53:43 [INFO]   Task 1: 94% (47/50) -- put the bowl on the stove\\\\n2026-05-24 08:53:43 [INFO]   Task 2: 96% (48/50) -- put the wine bottle on top of the cabinet\\\\n2026-05-24 08:53:43 [INFO]   Task 3: 68% (34/50) -- open the top drawer and put the bowl inside\\\\n2026-05-24 08:53:43 [INFO]   Task 4: 98% (49/50) -- put the bowl on top of the cabinet\\\\n2026-05-24 08:53:43 [INFO]   Task 5: 0% (0/50) -- push the plate to the front of the stove\\\\n2026-05-24 08:53:43 [INFO]   Task 6: 38% (19/50) -- put the cream cheese in the bowl\\\\n2026-05-24 08:53:43 [INFO]   Task 7: 96% (48/50) -- turn on the stove\\\\n2026-05-24 08:53:43 [INFO]   Task 8: 96% (48/50) -- put the bowl on the plate\\\\n2026-05-24 08:53:43 [INFO]   Task 9: 0% (0/50) -- put the wine bottle on the rack\\\\n2026-05-24 08:53:43 [IN\n…[truncated 310 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T02:17:37.780021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T02:17:37.780292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 07:09:12 [INFO]   Ep 39/50 | FAIL | steps=900\\\\n2026-05-24 07:09:27 [INFO]   Ep 40/50 | FAIL | steps=900\\\\n2026-05-24 07:09:42 [INFO]   Ep 41/50 | FAIL | steps=900\\\\n2026-05-24 07:09:58 [INFO]   Ep 42/50 | FAIL | steps=900\\\\n2026-05-24 07:10:15 [INFO]   Ep 43/50 | FAIL | steps=900\\\\n2026-05-24 07:10:30 [INFO]   Ep 44/50 | FAIL | steps=900\\\\n2026-05-24 07:10:45 [INFO]   Ep 45/50 | FAIL | steps=900\\\\n2026-05-24 07:10:59 [INFO]   Ep 46/50 | FAIL | steps=900\\\\n2026-05-24 07:11:15 [INFO]   Ep 47/50 | FAIL | steps=900\\\\n2026-05-24 07:11:30 [INFO]   Ep 48/50 | FAIL | steps=900\\\\n2026-05-24 07:11:46 [INFO]   Ep 49/50 | FAIL | steps=900\\\\n2026-05-24 07:12:02 [INFO]   Ep 50/50 | FAIL | steps=900\\\\n2026-05-24 07:12:02 [INFO]   Task 9 SR: 3/50 (6.0%)\\\\n2026-05-24 07:12:02 [INFO] ============================================================\\\\n2026-05-24 07:12:02 [INFO] SUITE: libero_10 | MODEL: xvla | keep_ratio: 0.50\\\\n2026-05-24 07:12:02 [INFO] Overall SR: 291/500 (58.2%)\\\\n2026-05-24 07:12:02 [INFO] 95% Wilson CI: [53.8%, 62.4%]\\\\n2026-05-24 07:12:02 [INFO]   Task 0: 62% (31/50) -- put both the alphabet soup and the tomato sauce in the basket\\\\n2026-05-24 07:12:02 [INFO]   Task 1: 0% (0/50) -- put both the cream cheese box and the butter in the basket\\\\n2026-05-24 07:12:02 [INFO]   Task 2: 68% (34/50) -- turn on the stove and put the moka pot on it\\\\n2026-05-24 07:12:02 [INFO]   Task 3: 94% (47/50) -- put the black bowl in the bottom drawer of the cabinet and close it\\\\n2026-05-24 07:12:02 [INFO]   Task 4: 60% (30/50) -- put the white mug on the left plate and put the yellow and white mug on the right plate\\\\n2026-05-24 07:12:02 [INFO]   Task 5: 86% (43/50) -- pick up the book and place it in the back compartment of the caddy\\\\n2026-05-24 07:12:02 [INFO]   Task 6: 82% (41/50) -- put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\n2026-05-24 07:12:02 [INFO]   Task 7: 84% (42/\n…[truncated 603 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-24T02:17:37.780565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k05_object_seed43.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-24T02:17:37.780823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 07:03:32 [INFO]   Ep 39/50 | FAIL | steps=800\\\\n2026-05-24 07:03:36 [INFO]   Ep 40/50 | SUCCESS | steps=120\\\\n2026-05-24 07:03:49 [INFO]   Ep 41/50 | FAIL | steps=800\\\\n2026-05-24 07:03:52 [INFO]   Ep 42/50 | SUCCESS | steps=117\\\\n2026-05-24 07:03:56 [INFO]   Ep 43/50 | SUCCESS | steps=117\\\\n2026-05-24 07:03:59 [INFO]   Ep 44/50 | SUCCESS | steps=130\\\\n2026-05-24 07:04:03 [INFO]   Ep 45/50 | SUCCESS | steps=119\\\\n2026-05-24 07:04:15 [INFO]   Ep 46/50 | FAIL | steps=800\\\\n2026-05-24 07:04:28 [INFO]   Ep 47/50 | FAIL | steps=800\\\\n2026-05-24 07:04:31 [INFO]   Ep 48/50 | SUCCESS | steps=119\\\\n2026-05-24 07:04:35 [INFO]   Ep 49/50 | SUCCESS | steps=137\\\\n2026-05-24 07:04:39 [INFO]   Ep 50/50 | SUCCESS | steps=131\\\\n2026-05-24 07:04:39 [INFO]   Task 9 SR: 31/50 (62.0%)\\\\n2026-05-24 07:04:39 [INFO] ============================================================\\\\n2026-05-24 07:04:39 [INFO] SUITE: libero_object | MODEL: xvla | keep_ratio: 0.50\\\\n2026-05-24 07:04:39 [INFO] Overall SR: 215/500 (43.0%)\\\\n2026-05-24 07:04:39 [INFO] 95% Wilson CI: [38.7%, 47.4%]\\\\n2026-05-24 07:04:39 [INFO]   Task 0: 52% (26/50) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 1: 6% (3/50) -- pick up the cream cheese and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 2: 76% (38/50) -- pick up the salad dressing and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 3: 70% (35/50) -- pick up the bbq sauce and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 4: 52% (26/50) -- pick up the ketchup and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 5: 56% (28/50) -- pick up the tomato sauce and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 6: 2% (1/50) -- pick up the butter and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 7: 38% (19/50) -- pick up the milk and place it in the basket\\\\n2026-05-24 07:04:39 [INFO]   Task 8: 16% (\n…[truncated 509 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-24T02:17:37.781070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k05_goal_seed43.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-24T02:17:37.781350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 06:49:45 [INFO]   Ep 39/50 | FAIL | steps=800\\\\n2026-05-24 06:50:01 [INFO]   Ep 40/50 | FAIL | steps=800\\\\n2026-05-24 06:50:15 [INFO]   Ep 41/50 | FAIL | steps=800\\\\n2026-05-24 06:50:30 [INFO]   Ep 42/50 | FAIL | steps=800\\\\n2026-05-24 06:50:44 [INFO]   Ep 43/50 | FAIL | steps=800\\\\n2026-05-24 06:50:58 [INFO]   Ep 44/50 | FAIL | steps=800\\\\n2026-05-24 06:51:11 [INFO]   Ep 45/50 | FAIL | steps=800\\\\n2026-05-24 06:51:25 [INFO]   Ep 46/50 | FAIL | steps=800\\\\n2026-05-24 06:51:38 [INFO]   Ep 47/50 | FAIL | steps=800\\\\n2026-05-24 06:51:52 [INFO]   Ep 48/50 | FAIL | steps=800\\\\n2026-05-24 06:52:06 [INFO]   Ep 49/50 | FAIL | steps=800\\\\n2026-05-24 06:52:19 [INFO]   Ep 50/50 | FAIL | steps=800\\\\n2026-05-24 06:52:20 [INFO]   Task 9 SR: 2/50 (4.0%)\\\\n2026-05-24 06:52:20 [INFO] ============================================================\\\\n2026-05-24 06:52:20 [INFO] SUITE: libero_goal | MODEL: xvla | keep_ratio: 0.50\\\\n2026-05-24 06:52:20 [INFO] Overall SR: 301/500 (60.2%)\\\\n2026-05-24 06:52:20 [INFO] 95% Wilson CI: [55.8%, 64.4%]\\\\n2026-05-24 06:52:20 [INFO]   Task 0: 84% (42/50) -- open the middle drawer of the cabinet\\\\n2026-05-24 06:52:20 [INFO]   Task 1: 100% (50/50) -- put the bowl on the stove\\\\n2026-05-24 06:52:20 [INFO]   Task 2: 98% (49/50) -- put the wine bottle on top of the cabinet\\\\n2026-05-24 06:52:20 [INFO]   Task 3: 30% (15/50) -- open the top drawer and put the bowl inside\\\\n2026-05-24 06:52:20 [INFO]   Task 4: 100% (50/50) -- put the bowl on top of the cabinet\\\\n2026-05-24 06:52:20 [INFO]   Task 5: 0% (0/50) -- push the plate to the front of the stove\\\\n2026-05-24 06:52:20 [INFO]   Task 6: 22% (11/50) -- put the cream cheese in the bowl\\\\n2026-05-24 06:52:20 [INFO]   Task 7: 74% (37/50) -- turn on the stove\\\\n2026-05-24 06:52:20 [INFO]   Task 8: 90% (45/50) -- put the bowl on the plate\\\\n2026-05-24 06:52:20 [INFO]   Task 9: 4% (2/50) -- put the wine bottle on the rack\\\\n2026-05-24 06:52:20 [I\n…[truncated 311 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-24T02:17:37.781585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed43.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-24T02:17:37.781830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 05:47:00 [INFO]   Ep 39/50 | SUCCESS | steps=149\\\\n2026-05-24 05:47:04 [INFO]   Ep 40/50 | SUCCESS | steps=127\\\\n2026-05-24 05:47:08 [INFO]   Ep 41/50 | SUCCESS | steps=122\\\\n2026-05-24 05:47:11 [INFO]   Ep 42/50 | SUCCESS | steps=116\\\\n2026-05-24 05:47:14 [INFO]   Ep 43/50 | SUCCESS | steps=117\\\\n2026-05-24 05:47:18 [INFO]   Ep 44/50 | SUCCESS | steps=121\\\\n2026-05-24 05:47:21 [INFO]   Ep 45/50 | SUCCESS | steps=121\\\\n2026-05-24 05:47:25 [INFO]   Ep 46/50 | SUCCESS | steps=130\\\\n2026-05-24 05:47:31 [INFO]   Ep 47/50 | SUCCESS | steps=320\\\\n2026-05-24 05:47:35 [INFO]   Ep 48/50 | SUCCESS | steps=126\\\\n2026-05-24 05:47:38 [INFO]   Ep 49/50 | SUCCESS | steps=129\\\\n2026-05-24 05:47:41 [INFO]   Ep 50/50 | SUCCESS | steps=129\\\\n2026-05-24 05:47:42 [INFO]   Task 9 SR: 50/50 (100.0%)\\\\n2026-05-24 05:47:42 [INFO] ============================================================\\\\n2026-05-24 05:47:42 [INFO] SUITE: libero_object | MODEL: xvla | keep_ratio: 0.50\\\\n2026-05-24 05:47:42 [INFO] Overall SR: 358/500 (71.6%)\\\\n2026-05-24 05:47:42 [INFO] 95% Wilson CI: [67.5%, 75.4%]\\\\n2026-05-24 05:47:42 [INFO]   Task 0: 98% (49/50) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 1: 44% (22/50) -- pick up the cream cheese and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 2: 100% (50/50) -- pick up the salad dressing and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 3: 82% (41/50) -- pick up the bbq sauce and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 4: 100% (50/50) -- pick up the ketchup and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 5: 74% (37/50) -- pick up the tomato sauce and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 6: 2% (1/50) -- pick up the butter and place it in the basket\\\\n2026-05-24 05:47:42 [INFO]   Task 7: 84% (42/50) -- pick up the milk and place it in the basket\\\\n2026-05-24 05:47:42 [INFO\n…[truncated 528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-24T02:17:37.782110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_goal_seed43_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-24T02:17:37.782355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_goal_seed43_v2.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-24T02:17:37.782563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k07_goal_seed43_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-24T02:17:37.782779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 10:02:21,823   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\\\n2026-05-24 10:04:32,455   T3 [open the top drawer and put the bowl ins] ep=20: 8/20=40%\\\\n2026-05-24 10:06:30,517   T3 [open the top drawer and put the bowl ins] ep=30: 15/30=50%\\\\n2026-05-24 10:08:31,819   T3 [open the top drawer and put the bowl ins] ep=40: 21/40=52%\\\\n2026-05-24 10:10:43,840   T3 [open the top drawer and put the bowl ins] ep=50: 24/50=48%\\\\n2026-05-24 10:10:43,841 Task 3: SR=48.0% | Total: 135/200=67.5% | Time: 31.1min\\\\n2026-05-24 10:11:46,241   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\\\n2026-05-24 10:12:53,422   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\\\n2026-05-24 10:13:52,168   T4 [put the bowl on top of the cabinet] ep=30: 27/30=90%\\\\n2026-05-24 10:15:01,072   T4 [put the bowl on top of the cabinet] ep=40: 35/40=88%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-24T02:17:37.783005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k095_goal_seed43_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-24T02:17:37.783252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 10:04:53,193   T1 [put the bowl on the stove] ep=50: 47/50=94%\\\\n2026-05-24 10:04:53,193 Task 1: SR=94.0% | Total: 90/100=90.0% | Time: 11.5min\\\\n2026-05-24 10:06:12,139   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\\\n2026-05-24 10:07:23,649   T2 [put the wine bottle on top of the cabine] ep=20: 15/20=75%\\\\n2026-05-24 10:08:25,425   T2 [put the wine bottle on top of the cabine] ep=30: 24/30=80%\\\\n2026-05-24 10:09:15,470   T2 [put the wine bottle on top of the cabine] ep=40: 34/40=85%\\\\n2026-05-24 10:11:09,115   T2 [put the wine bottle on top of the cabine] ep=50: 37/50=74%\\\\n2026-05-24 10:11:09,115 Task 2: SR=74.0% | Total: 127/150=84.7% | Time: 17.8min\\\\n2026-05-24 10:12:56,041   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\\\n2026-05-24 10:14:41,294   T3 [open the top drawer and put the bowl ins] ep=20: 16/20=80%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-24T02:17:37.783493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k05_long_seed43_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-24T02:17:37.783736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 09:53:20,178 Suite: libero_10, 10 tasks, max_steps=520\\\\n[PRUNE-DIAG] l2norm: n_keep=128/256, first_indices=[9, 12, 27, 28, 29]\\\\n2026-05-24 09:56:40,178   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\\\n2026-05-24 09:59:53,494   T0 [put both the alphabet soup and the tomat] ep=20: 12/20=60%\\\\n2026-05-24 10:03:03,457   T0 [put both the alphabet soup and the tomat] ep=30: 19/30=63%\\\\n2026-05-24 10:06:24,102   T0 [put both the alphabet soup and the tomat] ep=40: 26/40=65%\\\\n2026-05-24 10:09:30,682   T0 [put both the alphabet soup and the tomat] ep=50: 33/50=66%\\\\n2026-05-24 10:09:30,682 Task 0: SR=66.0% | Total: 33/50=66.0% | Time: 16.2min\\\\n2026-05-24 10:12:28,131   T1 [put both the cream cheese box and the bu] ep=10: 6/10=60%\\\\n2026-05-24 10:15:06,457   T1 [put both the cream cheese box and the bu] ep=20: 14/20=70%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-24T02:17:37.783979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---GPU-MAP---\"; nvidia-smi --query-gpu=index,uuid --format=csv,noheader",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-24T02:17:37.784243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"674830, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 4838 MiB\\\\n674970, GPU-acf987b3-a60e-876a-773b-3e72756138ce, 4362 MiB\\\\n---GPU-MAP---\\\\n0, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4\\\\n1, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516\\\\n2, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e\\\\n3, GPU-acf987b3-a60e-876a-773b-3e72756138ce\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-24T02:17:37.784472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k085_goal_seed42.log 2>/dev/null || echo \"NO_LOG\"; echo \"===\"; tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k085_spatial_seed42.log 2>/dev/null || echo \"NO_LOG\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-24T02:17:37.784715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NO_LOG\\\\n===\\\\nNO_LOG\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-24T02:17:37.784998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ls -lt /root/autodl-tmp/importance_margin_vla_compress/logs/ | grep k085 | head -10",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-24T02:17:37.785275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  7623 May 23 04:16 eval_pi05_random_k085_goal_seed42_v3.log\\\\n-rw-r--r-- 1 root root  4265 May 22 21:56 pi05_l2norm_k085_long_s42.log\\\\n-rw-r--r-- 1 root root  4252 May 22 21:29 pi05_l2norm_k085_goal_s42.log\\\\n-rw-r--r-- 1 root root  8720 May 22 18:31 eval_pi05_random_k085_goal_seed42.log\\\\n-rw-r--r-- 1 root root  8724 May 22 09:15 eval_pi05_l2norm_k085_spatial_seed42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-24T02:17:37.785521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "cat /proc/674830/cmdline 2>/dev/null | tr '\\0' ' '; echo \"===\"; cat /proc/674970/cmdline 2>/dev/null | tr '\\0' ' '",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-24T02:17:37.785771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.85 --suite libero_goal --domain_id 3 --seed 42 --model_path /root/autodl-tmp/X-VLA-Libero ===\\\\npython -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.85 --suite libero_spatial --domain_id 3 --seed 42 --model_path /root/autodl-tmp/X-VLA-Libero \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-24T02:17:37.785996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "find /root/autodl-tmp/importance_margin_vla_compress/ -name \"*.log\" -newer /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log -type f 2>/dev/null | head -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-24T02:17:37.786235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-24T02:17:37.786446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_goal_seed43.log 2>/dev/null; echo \"===\"; grep \"Task.*SR=\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_goal_seed43.log 2>/dev/null | tail -5",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-24T02:17:37.786658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-24T02:17:37.786905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tmux capture-pane -t eval_xvla_random_k085_goal_seed42 -p | tail -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-24T02:17:37.787152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 10:13:06 [INFO]   Ep 28/50 | FAIL | steps=800\\\\n2026-05-24 10:13:13 [INFO]   Ep 29/50 | SUCCESS | steps=312\\\\n2026-05-24 10:13:17 [INFO]   Ep 30/50 | SUCCESS | steps=148\\\\n2026-05-24 10:13:20 [INFO]   Ep 31/50 | SUCCESS | steps=133\\\\n2026-05-24 10:13:24 [INFO]   Ep 32/50 | SUCCESS | steps=136\\\\n2026-05-24 10:13:39 [INFO]   Ep 33/50 | FAIL | steps=800\\\\n2026-05-24 10:13:52 [INFO]   Ep 34/50 | FAIL | steps=800\\\\n2026-05-24 10:14:06 [INFO]   Ep 35/50 | FAIL | steps=800\\\\n2026-05-24 10:14:12 [INFO]   Ep 36/50 | SUCCESS | steps=254\\\\n2026-05-24 10:14:27 [INFO]   Ep 37/50 | FAIL | steps=800\\\\n2026-05-24 10:14:41 [INFO]   Ep 38/50 | FAIL | steps=800\\\\n2026-05-24 10:14:56 [INFO]   Ep 39/50 | FAIL | steps=800\\\\n2026-05-24 10:15:11 [INFO]   Ep 40/50 | FAIL | steps=800\\\\n2026-05-24 10:15:25 [INFO]   Ep 41/50 | FAIL | steps=800\\\\n2026-05-24 10:15:40 [INFO]   Ep 42/50 | FAIL | steps=800\\\\n2026-05-24 10:15:54 [INFO]   Ep 43/50 | FAIL | steps=800\\\\n2026-05-24 10:15:58 [INFO]   Ep 44/50 | SUCCESS | steps=135\\\\n2026-05-24 10:16:13 [INFO]   Ep 45/50 | FAIL | steps=800\\\\n2026-05-24 10:16:27 [INFO]   Ep 46/50 | FAIL | steps=800\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-24T02:17:37.787397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tmux capture-pane -t eval_xvla_random_k085_spatial_seed42 -p | tail -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-24T02:17:37.787636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 10:15:01 [INFO]   Ep 28/50 | SUCCESS | steps=96\\\\n2026-05-24 10:15:05 [INFO]   Ep 29/50 | SUCCESS | steps=102\\\\n2026-05-24 10:15:09 [INFO]   Ep 30/50 | SUCCESS | steps=99\\\\n2026-05-24 10:15:13 [INFO]   Ep 31/50 | SUCCESS | steps=97\\\\n2026-05-24 10:15:17 [INFO]   Ep 32/50 | SUCCESS | steps=98\\\\n2026-05-24 10:15:21 [INFO]   Ep 33/50 | SUCCESS | steps=101\\\\n2026-05-24 10:15:38 [INFO]   Ep 34/50 | FAIL | steps=800\\\\n2026-05-24 10:15:42 [INFO]   Ep 35/50 | SUCCESS | steps=135\\\\n2026-05-24 10:15:46 [INFO]   Ep 36/50 | SUCCESS | steps=87\\\\n2026-05-24 10:15:50 [INFO]   Ep 37/50 | SUCCESS | steps=99\\\\n2026-05-24 10:15:54 [INFO]   Ep 38/50 | SUCCESS | steps=96\\\\n2026-05-24 10:15:58 [INFO]   Ep 39/50 | SUCCESS | steps=91\\\\n2026-05-24 10:16:02 [INFO]   Ep 40/50 | SUCCESS | steps=94\\\\n2026-05-24 10:16:06 [INFO]   Ep 41/50 | SUCCESS | steps=102\\\\n2026-05-24 10:16:10 [INFO]   Ep 42/50 | SUCCESS | steps=97\\\\n2026-05-24 10:16:14 [INFO]   Ep 43/50 | SUCCESS | steps=92\\\\n2026-05-24 10:16:18 [INFO]   Ep 44/50 | SUCCESS | steps=98\\\\n2026-05-24 10:16:22 [INFO]   Ep 45/50 | SUCCESS | steps=102\\\\n2026-05-24 10:16:26 [INFO]   Ep 46/50 | SUCCESS | steps=96\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-24T02:17:37.787867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41074",
+              "command": "tmux capture-pane -t eval_pi05_random_k085_goal_seed43 -p | tail -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-24T02:17:37.788106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 09:54:16,700   T6 [put the cream cheese in the bowl] ep=10: 8/10=80%\\\\n2026-05-24 09:55:51,128   T6 [put the cream cheese in the bowl] ep=20: 14/20=70%\\\\n2026-05-24 09:56:57,151   T6 [put the cream cheese in the bowl] ep=30: 23/30=77%\\\\n2026-05-24 09:58:31,531   T6 [put the cream cheese in the bowl] ep=40: 29/40=72%\\\\n2026-05-24 09:59:44,414   T6 [put the cream cheese in the bowl] ep=50: 37/50=74%\\\\n2026-05-24 09:59:44,415 Task 6: SR=74.0% | Total: 182/350=52.0% | Time: 61.9min\\\\n2026-05-24 10:00:45,384   T7 [turn on the stove] ep=10: 9/10=90%\\\\n2026-05-24 10:01:43,550   T7 [turn on the stove] ep=20: 18/20=90%\\\\n2026-05-24 10:02:44,044   T7 [turn on the stove] ep=30: 27/30=90%\\\\n2026-05-24 10:03:32,570   T7 [turn on the stove] ep=40: 37/40=92%\\\\n2026-05-24 10:04:41,789   T7 [turn on the stove] ep=50: 45/50=90%\\\\n2026-05-24 10:04:41,789 Task 7: SR=90.0% | Total: 227/400=56.8% | Time: 66.9min\\\\n2026-05-24 10:06:13,724   T8 [put the bowl on the plate] ep=10: 6/10=60%\\\\n2026-05-24 10:07:27,164   T8 [put the bowl on the plate] ep=20: 14/20=70%\\\\n2026-05-24 10:09:11,542   T8 [put the bowl on the plate] ep=30: 19/30=63%\\\\n2026-05-24 10:10:52,663   T8 [put the bowl on the plate] ep=40: 24/40=60%\\\\n2026-05-24 10:12:34,744   T8 [put the bowl on the plate] ep=50: 29/50=58%\\\\n2026-05-24 10:12:34,744 Task 8: SR=58.0% | Total: 256/450=56.9% | Time: 74.7min\\\\n2026-05-24 10:14:59,898   T9 [put the wine bottle on the rack] ep=10: 2/10=20%\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-24T02:17:37.788480+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 审计报告\n\n### westd-41074 — 4× RTX PRO 6000 Blackwell (96GB)\n\n**所有 4 个 GPU 满载，无空闲 GPU。**\n\n| GPU | VRAM | Util | PID | 实验 | 进度 |\n|-----|------|------|-----|------|------|\n| 0 | 10530/97887 MiB | 54% | 363766 | π0.5 Random k=0.95 Goal s43 | Task 3 ep20, 累计 84.7% |\n| 1 | 10455/97887 MiB | 54% | 345089 | π0.5 L2Norm k=0.7 Goal s43 | Task 4 ep40, 累计 67.5% |\n| 2 | 10651/97887 MiB | 0%* | 363842 | π0.5 L2Norm k=0.5 Long s43 | Task 1 ep20, 累计 ~66% |\n| 3 | 10514/97887 MiB | 55% | 318964 | π0.5 Random k=0.85 Goal s43 | **Task 9 ep10, 即将完成** (累计 56.9%) |\n\n*GPU 2 util 0% 是采样瞬态，进程活跃。\n\nTmux sessions: `eval_pi05_random_k085_goal_seed43`, `eval_pi05_l2norm_k07_goal_seed43_v2`, `eval_pi05_random_k095_goal_seed43`, `eval_pi05_l2norm_k05_long_seed43` + 历史残留 `smolvla_spatial`, `xvla_long`, `diag_read_goal_results`, `eval_random_k09_s42`\n\n**GPU 3 上的 Random k=0.85 Goal s43 预计 ~15-20 分钟内完成。**\n\n---\n\n### westd-38929 — 4× RTX PRO 6000 Blackwell (96GB)\n\n**GPU 0、1 空闲，GPU 2、3 运行中。**\n\n| GPU | VRAM | Util | PID | 实验 | 进度 |\n|-----|------|------|-----|------|------|\n| 0 | 1 MiB | 0% | — | **空闲** | — |\n| 1 | 1 MiB | 0% | — | **空闲** | — |\n| 2 | 4838 MiB | 24% | 674830 | X-VLA Random k=0.85 Goal s42 | 某 task ep46/50 |\n| 3 | 4362 MiB | 16% | 674970 | X-VLA Random k=0.85 Spatial s42 | 某 task ep46/50 |\n\n注意：这两个实验没有日志文件输出到 logs/ 目录，只在 tmux 内输出。\n\n---\n\n### westd-38929 已完成实验（今日，未收割）\n\n**X-VLA Random k=0.50 seed43 — 4 suite 全部完成：**\n\n| Suite | SR | 95% CI |\n|-------|-----|--------|\n| Object | **71.6%** | [67.5%, 75.4%] |\n| Goal (v4) | **68.6%** | [64.4%, 72.5%] |\n| Spatial | **72.6%** | [68.5%, 76.3%] |\n| Long (libero_10) | **58.2%** | [53.8%, 62.4%] |\n\n**X-VLA L2Norm k=0.50 seed43 — 2 suite 完成：**\n\n| Suite | SR | 95% CI |\n|-------|-----|--------|\n| Object | **43.0%** | [38.7%, 47.4%] |\n| Goal | **60.2%** | [55.8%, 64.4%] |\n\n---\n\n### 小结\n\n- **westd-41074**：4 GPU 全满，GPU 3 实验即将完成（~15min），之后可释放\n- **westd-38929**：**GPU 0、1 空闲可用**，GPU 2/3 运行 X-VLA k=0.85 s42 评测（这两个实验无 log 文件，需从 tmux 收割结果）\n- westd-38929 上 X-VLA Random k=0.50 s43 全 4 suite 结果已完成待收割，L2Norm k=0.50 s43 有 object/goal 两个结果"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_westd41074-westd38929-gpu-status_20260524T021409"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 71
+    }
+  ]
+}

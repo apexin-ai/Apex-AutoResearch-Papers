@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1344791081cb56898e",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3790,
+    "sha256": "b8af45fcd70800d127de6b1f7263cd2186277c60d2c627e608982bf8608cf206"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T19:34:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-52439 的 cuda:0 和 cuda:1（项目配置白名单）\n- 模型目录用 `olmo-1b-hf`（不是 `olmo-1b`），之前踩过坑\n- Qwen2.5 系列不能用（代码占比过高，LoRA 无法覆盖，MVP 阶段已验证两次失败）\n- submit_training_job 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_xxx.sh`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-52439（2× RTX PRO 6000 Blackwell 98GB），account: root\n- 工作目录：`/root/autodl-tmp/recursive_gen_depth_est`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型路径：`/root/autodl-tmp/models/`（pythia-1.4b/, gpt2-xl/, olmo-1b-hf/）\n- 数据路径：`/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl`（5000 条 Wikipedia）\n- 日志目录：`/root/autodl-tmp/recursive_gen_depth_est/logs/`\n- Checkpoint 目录：`/root/autodl-tmp/recursive_gen_depth_est/checkpoints/`\n- 活跃进程：cross_model_gpt2xl_001 (PID 123650, cuda:1, tmux 管理)\n\n### 3. 📊 当前状态\n**我刚做完**：收到 pythia_temp09_001 CRON 完成回调，派了两个 Worker：\n1. `worker_analysis_pythia_temp09_001_20260514T163125` — SSH 读日志提取 metrics，与 baseline 对比\n2. `worker_submit_cross_model_olmo_002_20260514T163144` — 准备在 cuda:0 提交 OLMo-1B 重跑\n\n**正在等待**：两个 Worker 的 [WORKER DONE] 回调均未返回。已向 Director 汇报了初步状态。\n\n**Registry 状态**：\n| exp_id | 状态 | GPU | 说明 |\n|--------|------|-----|------|\n| pythia_temp09_001 | ANALYZING | cuda:0(完成) | temp-only τ=0.9，Worker 正在提取 metrics |\n| cross_model_gpt2xl_001 | RUNNING | cuda:1 | GPT-2 XL pipeline，预计 ~19:00 UTC 完成 |\n| cross_model_olmo_002 | PREPARING | — | Worker 正在准备提交到 cuda:0 |\n| pythia_topk50_001 | PREPARING | — | 等 cuda:1（GPT-2 XL 完成后） |\n\n**还收到了一条重复 CRON 回调**（pythia_temp09_001 第二次），无需处理。\n\n### 4. 📋 待办\n- analysis Worker 回调 → 读 metrics → update_registry(conclusion, metrics) → 更新 report.md → 向 Director 详细汇报（含 vs baseline 对比 + 反思实验计划 + 文献联动）\n- OLMo Worker 回调 → 确认提交成功 → 更新 ROADMAP 状态\n- cross_model_gpt2xl_001 CRON 完成回调 → 派 Worker 分析 → cuda:1 释放 → 提交 pythia_topk50_001 (plan_001c)\n- plan_001b + plan_002 + plan_003 全部完成 → 可启动 plan_004 (DCOL) 和 plan_006 (Atlas)\n- 如果 pythia_temp09_001 conclusion = negative → 按 red-section skill 产出 Framing 调整提案，禁止直接跑下一个\n\n### 5. 🎯 战略上下文\n- **D001**：MVP PASS — Pythia-1.4B nucleus p=0.95，4-class acc 78.2%，3-class (d1-d3) 70.8%。递归深度可区分。\n- **D002**：Dream 审稿完成，Best=3.0/Median=3.0/Worst=2.5。Atlas/EDD 为 primary contribution，DCOL 为 secondary。6 项结构性必修已写入 paper_framing.md。\n- **核心 baseline 指标**：4-class acc 78.2%, filtered 81.6%, 3-class 70.8%, d1v2 AUC 0.861, top features = var_surprisal/p90_ppl/mean_ppl\n- **易错点**：pythia_temp09 的 hypothesis 是\"跨解码策略泛化\"——如果 metrics 与 nucleus 接近（±5pp），这本身就是 success（证明策略无关性）。不要因为没有\"显著提升\"就判 negative。\n- **pipeline 结构**：每个实验是 3 轮 LoRA finetune + 3 轮 generate + feature extraction + classification 的完整管线，wall clock ~1.5-2h per pipeline\n- **GPU 预算**：P0 预估 45 GPU·h (~1 day on 2 GPUs)，P0+P1 共 83 GPU·h\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

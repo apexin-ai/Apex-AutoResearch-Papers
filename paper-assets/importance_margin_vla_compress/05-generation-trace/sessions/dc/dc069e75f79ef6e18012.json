@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "dc069e75f79ef6e18012",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval libero lora 50k sr",
+  "task_key": "worker_eval_libero_lora_50k_sr_20260516T185313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_libero_lora_50k_sr_20260516T185313.log",
+    "occurrence": 1,
+    "bytes": 556766,
+    "sha256": "21847a78f38a357cf00c6ed68e3c6338a021cca7692abbe52fdc5c8886ebe381"
+  },
+  "statistics": {
+    "messages": 354,
+    "user_turns": 0,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 139,
+      "tool_result": 139,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 354,
+      "chunks": [
+        {
+          "path": "dc069e75f79ef6e18012-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc069e75f79ef6e18012-part-0002.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ]
+}

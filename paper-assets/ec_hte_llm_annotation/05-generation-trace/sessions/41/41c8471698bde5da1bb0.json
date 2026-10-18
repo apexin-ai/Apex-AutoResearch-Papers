@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "41c8471698bde5da1bb0",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "run exp 007 full",
+  "task_key": "worker_run_exp-007-full_20260520T225142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-007-full_20260520T225142_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "145ccc4233c293239c74b29c2ece636a5e48e6cad5ac62b58267812ae6f2c10f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out naturally (simulation was already done). No action needed — results are fully reported above."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

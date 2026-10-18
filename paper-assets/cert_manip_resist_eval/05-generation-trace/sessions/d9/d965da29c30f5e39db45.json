@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d965da29c30f5e39db45",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "figure regime transition redraw",
+  "task_key": "worker_figure_regime-transition-redraw_20260524T073722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_regime-transition-redraw_20260524T073722_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "b2052797de1c78dc54876965f7bcdd8a8718a4f453fd517c2ac36278c56b1f34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 已生成并下载到本地。数据点正确：K_eff 4→7→9，η_max 3→0→0。K∈(3,5) 的 predictor shift zone 灰色阴影区域清晰可见，legend 位于右侧中部不遮挡数据点。\n\n文件位置：\n- PDF: `docs/paper/figures/fig_regime_transition.pdf` (18KB)\n- PNG: `docs/paper/figures/fig_regime_transition.png` (71KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

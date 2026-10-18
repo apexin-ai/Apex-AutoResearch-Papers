@@ -1,0 +1,780 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b4b7cc0933581491d1b1",
+  "rounds": [
+    {
+      "number": 19,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-25T22:32:36.592977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.78\\textwidth]{figures/fig_framework.pdf}\n6\t\\caption{The diminishing weakest link in LLM judge panels. \\textbf{(a)}~In small panels ($K{=}3$), a single vulnerable judge (red) can flip the majority; individual weakness ($\\eta_{\\max}$) dominates vulnerability ($\\hat{\\beta}_{\\mathrm{std}}{=}0.243$). \\textbf{(b)}~As panel size grows, the balance shifts from individual weakness to collective diversity. \\textbf{(c)}~In large panels ($K{\\geq}5$), inter-judge diversity ($K_{\\mathrm{eff}}$, $\\hat{\\beta}_{\\mathrm{std}}{=}0.353$) drives vulnerability while $\\eta_{\\max}$ diminishes (CI crosses zero). Bottom bars show relative predictive weight.}\n7\t\\label{fig:framework}\n8\t\\end{figure*}\n9\t\n10\tMulti-judge panels have become the dominant defense against bias and manipulation in Large Language Model (LLM) evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, an approach inspired by Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization reports that 7-model committees reduce attack success rates (ASR) from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation, yet this framing conflates two distinct sources of robustness: the quality of individual judges and the independence among them.\n11\t\n12\tThe conflation matters because the BFT analogy breaks down in the LLM judge setting. BFT adversaries control faulty nodes from within; evaluation adversaries manipulate inputs from without, and shared pretraining corp\n…[truncated 2911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-25T22:32:36.593456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-25T22:32:36.694066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}\n4\tLLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj} and judge--human agreement across tasks \\citep{bavaresco2025llms}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.\n5\t\n6\t\\paragraph{Fault Tolerance and Voting Theory.}\n7\tThe Condorcet Jury Theorem \\citep{condorcet1785essai} proves that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended this to correlated voters, showing that positive correlation weakens the convergence guarantee. The CJT explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. Classical Byzantine fault tolerance \\citep{lamport1982byzantine,castro1999practical,blanchar\n…[truncated 3115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-25T22:32:42.881333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-25T22:32:43.791795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Threat Model and Problem Formulation}\n2\t\\label{sec:threat_model}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n7\t\\caption{$K_{\\mathrm{eff}}$--$\\eta_{\\max}$ scatter at $K{=}3$ (455 panels). The $r{=}0.70$ correlation reflects structural coupling between diversity and capability in the current LLM ecosystem.}\n8\t\\label{fig:keff_eta_scatter_main}\n9\t\\end{figure}\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\small\n14\t\\resizebox{\\columnwidth}{!}{%\n15\t\\begin{tabular}{llll}\n16\t\\toprule\n17\t\\textbf{Attack} & \\textbf{Category} & \\textbf{Mechanism} & \\textbf{Target} \\\\\n18\t\\midrule\n19\tPrompt inj.    & Targeted    & Override instruct. & Decision \\\\\n20\tScore manip.   & Targeted    & Numeric anchoring  & Score \\\\\n21\tSycophancy     & Shared bias & Flattery/agreement & Preference \\\\\n22\tVerbosity      & Shared bias & Content padding    & Attention \\\\\n23\tPosition bias  & Shared bias & Response reorder   & Position \\\\\n24\tAuthority bias & Shared bias & Credential appeal  & Trust \\\\\n25\t\\bottomrule\n26\t\\end{tabular}}\n27\t\\caption{Attack taxonomy. Targeted attacks exploit individual judge weaknesses; shared-bias attacks affect most judges similarly (\\S\\ref{sec:experiments}).}\n28\t\\label{tab:attack_taxonomy}\n29\t\\end{table}\n30\t\n31\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n32\t\n33\tTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutu\n…[truncated 6113 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 910
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-25T22:32:43.792257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-25T22:32:43.943403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_regime_transition.pdf}\n7\t\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) drops from 5/12 to 0--1/12, while $K_{\\mathrm{eff}}$ (blue) remains consistently high (7--8/12). Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\n8\t\\label{fig:regime_transition}\n9\t\\end{figure}\n10\t\n11\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n12\t\\label{sec:dominance}\n13\t\n14\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n15\t\n16\tUnder OLS, $K_{\\mathrm{eff}}$ is FDR-significant in all 12/12 conditions (positive in 10, negative in 2 position-bias conditions). $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Proposition~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n17\t\n18\tFigure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 5/12, $K_{\\mathrm{eff}}$ 8/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12). Crossed random-effects analysis confirms $K_{\\mathrm{eff}}$ significance at $K{\\geq}5$ (Appendix~\\ref{app:crossed_re}).\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\small\n23\t\\begin{tabular}{lcc}\n24\t\\toprule\n25\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n26\t\\midrule\n27\tOLS                    & 10/12 & 12/12 \\\\\n28\tClustered SE           & 4/\n…[truncated 5207 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-25T22:32:43.945919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-25T22:32:43.996899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Diversity--Capability Confound.}\n5\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}, Appendix~\\ref{app:extended_analysis}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound could account for the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (10--11/12 across all $K$). Causal attribution requires capability-controlled designs (Appendices~\\ref{app:sensitivity_poolA},~\\ref{app:cross_benchmark}).\n6\t\n7\t\\paragraph{API-Only vs.\\ Full Pool.}\n8\tRestricting to 9 API models removes the AWQ confound but increases collinearity ($r{=}0.85$): $\\eta_{\\max}$ retains significance (8/12) while $K_{\\mathrm{eff}}$ drops (2--3/12); the API-only pool lacks statistical power (MDE $> 0.9$; Appendices~\\ref{app:quant_dummy},~\\ref{app:random_subsample}).\n9\t\n10\t\\paragraph{Aggregation and Deployment.}\n11\tAggregation rules influence predictability but not $K_{\\mathrm{eff}}$'s direction (Figure~\\ref{fig:aggregation_heatmap}). Threshold voting yields the highest $R^2$ ($0.745$ at $K{=}3$), while Bayesian calibration nearly neutralizes panel composition effects ($R^2{\\leq}0.17$ across all $K$). At $K{=}7$, Bayesian calibration fully neutralizes $K_{\\mathrm{eff}}$ (0/12; Appendix~\\ref{app:bayesian_entropy}). Robustness-first selection ($\\min \\eta_{\\max}$) achieves lowest ASR in all 12 conditions (Appendix~\\ref{app:panel_selection}), confirming that selecting judges by individual robustness dominates diversity-maximizing strategies regardless of panel size. Clean $K_{\\mathrm{eff}}$ is stable under 4/6 attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}), offering a deployable metric from clean-condition agreement alone.\n12\t\n13\t\\paragraph{Metric Sensitivity of the Diversity Trajectory.}\n14\tThe diversity significance trajectory is operationaliza\n…[truncated 566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-25T22:34:48.403906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-25T22:34:48.605064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/review_reviewer_2_38d341a1."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-25T22:34:48.605514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-25T22:34:48.656036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/review_reviewer_2_38d341a1."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-25T22:34:54.583306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/submitted.pdf",
+              "project": "cert_manip_resist_eval",
+              "pages": "12-15",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-25T22:34:55.085879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.2}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.3}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 314.6}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 435.7}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 502
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-25T22:34:58.498297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-25T22:34:59.154463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 656
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-25T22:34:59.205225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-25T22:34:59.507494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-25T22:34:59.610095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-25T22:35:00.163449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-25T22:35:31.312295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-25T22:35:31.413155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-25T22:37:44.669574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 — Round 1 完整审稿报告\n\n**论文**: \"The Diminishing Weakest Link: How Panel Size Shifts Adversarial Vulnerability Drivers in LLM Judge Panels\"\n**Venue**: EMNLP 2026 (via ARR May 2026 cycle)\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.5 — Borderline Conference\n**一句话总结**: 实验设计严谨、统计方法论扎实的实证研究，但核心发现与经典 ensemble diversity theory 的增量有限，且标题/正文的因果语言与论文声称的关联性分析存在系统性矛盾。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4/5 | 5 种推断方法交叉验证、Monte Carlo 校准、Cinelli-Hazlett 敏感性分析，方法论非常扎实；但 diversity-capability confound (r=0.70-0.81) 和因果语言矛盾构成显著扣分项 |\n| Excitement | 2.5/5 | 核心发现（diversity 与 vulnerability 正相关、weakest link 随 K 递减）可被视为经典理论在 LLM judge 设定下的 instantiation，genuine novel insight 有限 |\n| Reproducibility | 5/5 | 代码和数据通过匿名链接提供，42 页论文含 30+ 页附录，实验细节极为详尽 |\n| Confidence | 4/5 | 对 ensemble theory、adversarial robustness、统计推断方法较为熟悉 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 因果语言与关联性声明的系统性矛盾\n\n- 具体位置：Title、Figure 1 caption、Section 5.2 标题、Abstract\n- 问题：\n  - 标题 \"How Panel Size **Shifts** Adversarial Vulnerability Drivers\" 使用因果动词 \"shifts\"，暗示 panel size 是 driver shift 的原因\n  - Figure 1 caption (p.2): \"the balance **shifts** from individual weakness to collective diversity\" — 同样是因果表述\n  - Section 5.2 标题 \"The Diminishing Weakest Link Across Panel Sizes\" 的 \"diminishing\" 暗示渐进过程\n  - 然而 Abstract 末尾和 Section 1 末尾明确声明 \"all findings are associational\"\n  - 这不是个别措辞问题，而是标题-正文-贡献声明的系统性矛盾\n- 为什么影响接收：Reviewer 在 ARR 中被明确要求检查 claims 是否被 evidence 支持。因果语言暗示的 claim 强度超出了观察性回归能够支撑的范围。如果论文真的只做关联分析，标题和 framing 不应使用因果动词。\n- 建议修改方向：将 \"Shifts\" 改为 \"Relates to\" 或 \"Tracks\"；Figure 1 caption 改为 \"the dominant predictor changes from...to...\"；或者增加因果识别策略（如 IV、自然实验）来支撑因果语言\n\n**N2** [critical] \"Diminishing\" 的渐进趋势 vs. K=3→K=5 的离散跳变\n\n- 具体位置：Title、Abstract、Section 5.2\n- 问题：\n  - 论文的核心 narrative 是 η_max 的预测力 \"diminishes monotonically\"，暗示平滑渐进趋势\n  - 实际数据：β̂_std = 0.243 (K=3) → 0.091 (K=5) → 0.086 (K=7)\n  - K=3→K=5 的下降幅度为 62.6%（0.243→0.091），而 K=5→K=7 仅下降 5.5%（0.091→0.086）\n  - 95% CI 在 K=5 和 K=7 几乎完全重叠（[-0.031, 0.212] vs. [-0.039, 0.211]）\n  - 这更像是 K=3 与 K≥5 之间的 **regime shift / threshold effect**，而非 \"diminishing\"（渐进衰减）\n  - 论文自身也承认 \"the predictor shift threshold K* is not precisely identified\"（Limitations），但标题和 narrative 仍暗示渐进过程\n- 为什么影响接收：仅 3 个数据点（K=3,5,7），且后两个点本质无差异，不足以支撑 \"monotonically diminishing\" 的 claim。标题中的 \"Diminishing\" 过度概括了数据实际展示的模式。\n- 建议修改方向：\n  1. 将 narrative 从 \"monotonic decline\" 调整为 \"regime transition between K=3 and K≥5\"\n  2. 标题考虑 \"The Weakening Weakest Link\" 或 \"From Weakest Link to Collective Vulnerability\" 来更准确反映离散转变\n  3. 或者增加 K=9, K=11 等数据点来真正验证渐进趋势\n\n**N3** [critical] 新颖性与经典 ensemble diversity theory 的增量不足\n\n- 具体位置：Section 2 (Related Work - Ensemble Diversity Theory paragraph), Section 1 (Contributions)\n- 问题：\n  - **Krogh & Vaidya (1995)** 的 bias-variance-covariance 分解已经预测：ensemble 中成员的相关性会降低集成效果。本文的 K_eff（基于 pairwise MI）本质上度量的就是这种相关性\n  - **Brown et al. (2005)** 明确指出 diversity 仅在 low bias 条件下有益。对抗性攻击系统性地引入 high bias，因此 diversity 无益甚至有害——这正是本文 Contribution 1 的核心发现\n  - **Kuncheva (2003)** 已证明没有 pairwise diversity measure 能可靠预测 ensemble improvement。本文发现 K_eff 的显著性高度依赖推断方法（0/12 到 12/12），与此经典结论一致\n  - 论文确实引用了这三篇工作（Section 2, Ensemble Diversity Theory），但仅用一段话概述，没有正面讨论本文发现在多大程度上是这些经典结论的 LLM-specific instantiation\n  - Contribution 1（diversity 与 vulnerability 正相关）和 Contribution 2（weakest link 递减）的核心 mechanism 可以从 Brown et al. (2005) 的框架中推导出来：adversary 制造 high bias → diversity 不再有益 → 小 panel 中 weakest link 主导（因为 adversary 只需攻克 1 个 judge）→ 大 panel 中 diversity 主导（因为 adversary 需要攻克多个 judge，而 diverse judges 提供更多 attack surfaces）\n- 为什么影响接收：如果核心发现可以从已知理论预测，那么实证验证虽然有价值，但 excitement/novelty 分数会受限。ACL ARR 的 Excitement 维度要求论文提供 \"new insights\"，而非仅仅是已知理论的实证确认。\n- 建议修改方向：\n  1. 在 Related Work 中增加专门的 subsection，正面讨论本文发现与 Krogh & Vaidya / Brown et al. / Kuncheva 的关系\n  2. 明确界定本文的 **genuine incremental contribution**：是什么发现是经典理论无法预测的？（例如：position bias exception？aggregation method 的调节效应？K* 阈值的具体位置？）\n  3. 考虑将 framing 从 \"surprising finding\" 转为 \"rigorous empirical characterization of known theoretical predictions in a new domain\"\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Conclusion 过于简略，缺少实践启示和 future directions\n\n- 具体位置：Section 7 (Conclusion)，约 150 words，1 段\n- 问题：\n  - Conclusion 仅重复了三个主要发现的数字，没有提供任何新的 perspective\n  - 缺少 **practical deployment recommendations**：给设计 LLM judge panel 的从业者什么具体指导？（例如：K=3 时应优先选最强 judge，K≥5 时应...？Bayesian calibration 应作为默认 aggregation？）\n  - 缺少 **AI safety 连接**：LLM judge panel 的对抗性脆弱性对 AI alignment、RLHF reward model ensembles、constitutional AI 评估有什么 broader implications？\n  - 缺少 **future directions**：如何 disentangle diversity-capability confound？Controlled experiments (training-based diversity control) 具体怎么做？\n  - 对比之下，Limitations section 有 5 段约 300 words，比 Conclusion 更详细\n- 建议：将 Conclusion 扩展到 2-3 段，增加 practical implications 和 2-3 个具体的 future work 方向\n\n**W2** [warning] K_eff 正系数的直觉解释不充分，与 BFT/Condorcet 的矛盾未展开\n\n- 具体位置：Section 5.3 (Random vs. Adaptive Fault Contrast)，Section 3 (Threat Model)\n- 问题：\n  - K_eff（独立性度量）与 vulnerability 正相关是论文最 counter-intuitive 的发现——与 BFT 和 Condorcet Jury Theorem 的预测相反\n  - Section 5.3 仅用一句话解释：\"under adversarial manipulation, independent judges present distinct attack surfaces rather than redundant defenses\"\n  - 但这个直觉需要更深入的展开：为什么在 LLM 设定下 \"distinct attack surfaces\" 比 \"redundant defenses\" 更主要？在什么条件下反转发生？Position bias exception (Section 5.4) 已经展示了反转条件（shared bias → diversity 有益），但论文没有将其上升为一个统一的理论框架\n  - Section 3 的 threat model 建立了 K_eff · η_max 的 scaling 直觉，但预测的方向是 \"fewer effective channels should reduce panel vulnerability\"（即 K_eff 高 → vulnerability 低），与实证结果相反。论文没有充分解释为什么理论预测和实证结果方向相反\n- 建议：在 Section 6 (Analysis) 或 Section 5.3 中增加 1-2 段，讨论 \"diversity as attack surface expansion\" vs. \"diversity as fault tolerance\" 的 conditions，用 position bias exception 作为 illustrative case\n\n**W3** [warning] 聚合规则分析（Bayesian R²=0.14）的深层含义未展开\n\n- 具体位置：Section 5.5, Section 6 (Aggregation and Deployment), Table 5\n- 问题：\n  - Bayesian calibration 将 R² 从 0.745（threshold）降到 0.136，几乎完全中和了 panel composition 的影响——这是一个非常有实践价值的发现\n  - 但论文仅用 1 段话讨论（Section 6, Aggregation and Deployment），没有深入分析：为什么 Bayesian calibration 如此有效？它通过什么机制中和 diversity 效应？是否因为 calibration 隐式地做了 capability-matching？\n  - At K=7, Bayesian calibration fully neutralizes K_eff (0/12)——这意味着适当的聚合策略可能完全 bypass diversity-vulnerability tradeoff，但论文没有将此作为一个重要的 practical takeaway 突出强调\n- 建议：增加对 Bayesian calibration mechanism 的分析，将 \"aggregation as a defense\" 作为 practical contribution 更显著地呈现\n\n**W4** [warning] Proposition 1 作为独立贡献的价值有限\n\n- 具体位置：Section 3 (Proposition 1), Appendix A\n- 问题：\n  - Proposition 1 (Weakest-Link Monotonicity): \"Replacing any panel member with a pointwise more vulnerable judge can only increase ASR*(P)\"\n  - 在 stochastic dominance 条件下，这个结论近似于定义的直接推论：如果 judge A 在每个条件下都比 judge B 更容易被攻破，那么替换 B 为 A 当然会增加 panel vulnerability\n  - 仅 58% 的 judge pairs (61/105) 满足 stochastic dominance 条件，其中 non-dominance 集中在 within-tier pairs (72.1% non-dominant)——这意味着 Proposition 主要适用于跨 tier 的 trivial 比较（frontier vs. lightweight）\n  - 虽然论文没有将 Proposition 1 列为三大 Contribution 之一，但给予了 formal Proposition 地位并在 Appendix A 提供完整证明，暗示这是一个 non-trivial 理论贡献\n- 建议：考虑将 Proposition 1 降级为 \"Observation\" 或 \"Remark\"，减少形式化程度。将节省的空间用于 Conclusion 的扩展或 K_eff 直觉的深入讨论\n\n**W5** [warning] 相关工作中缺少部分重要引用\n\n- 具体位置：Section 2 (Related Work)\n- 缺失引用：\n  1. **Lakshminarayanan et al. (2017)** \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\" — ensemble diversity 和 robustness 领域的标志性工作，与本文 ensemble diversity 讨论直接相关\n  2. **Horváth et al. (2022)** — certified ensemble robustness 方向的代表性工作，为 ensemble 对抗性鲁棒性提供理论保证，与本文的实证分析形成理论-实验互补\n  3. 论文引用了 MacKinnon & Webb (2018) 用于 few-cluster bootstrap，但在 Related Work 的 Ensemble Diversity Theory 段落中没有讨论 deep ensembles 的相关工作\n- 建议：在 Ensemble Diversity Theory 段落中增加对 Lakshminarayanan et al. (2017) 和 Horváth et al. (2022) 的讨论，特别是后者关于 certified robustness 的理论保证如何与本文的实证发现对照\n\n---\n\n## 小问题（不影响接收）\n\n1. **Abstract 中的 footnote**: Abstract 内含代码链接 footnote，虽然技术上合规，但部分 venue 要求 abstract 不含 footnote。建议确认 ACL 模板是否允许。\n2. **Table 2 中的 †**: gemini-3.5-flash 的 ARC accuracy 标注 \"†\" 说明 100% accuracy 伴随 26.3% format error rate。这个 format error rate 对 panel 实验有什么影响？是否被排除？未见讨论。\n3. **Notation 密度**: Section 3 在一页内引入 η_j(a)、X_j^a、η_max、ASR(P,a)、K_eff、MI(i,j) 等大量符号，可读性较低。建议增加一个符号表或在 appendix 中提供 notation summary。\n4. **Figure 2 位置**: Figure 2 (K_eff vs η_max scatter) 出现在 Section 3 (Threat Model) 而非 Section 5 (Results)，但该图展示的是实验数据而非理论构造，位置稍显不当。\n\n---\n\n## 主要优势\n\n1. **统计方法论极为严谨**: 5 种推断方法（OLS、Clustered SE、Mixed Effects、Wild Cluster Bootstrap、Fractional Logit）交叉验证同一发现，Monte Carlo 校准验证 bootstrap 保守性（max null rejection 1.6%），Cinelli-Hazlett 敏感性分析量化 confound 影响。这是我近期审稿中见过的最严谨的统计分析之一。\n\n2. **实验规模和设计**: 15 个模型 × 6 种攻击类型 × 2 个基准 × 3 个 panel 大小，最多 6,435 个 panel 组合。实验设计充分利用了组合空间，且对 combinatorial non-independence 问题做了正确的统计修正。\n\n3. **诚实的 confound 讨论**: 论文没有回避 diversity-capability confound (r=0.70-0.81) 的严重性，在 Abstract、Introduction、Analysis、Limitations 中反复提醒。这种科学诚实性值得肯定。\n\n4. **Position bias exception 的洞见**: Section 5.4 发现 position bias 下 K_eff 系数为负（diversity 有益），与其他 10 个条件形成鲜明对比，且与 targeted vs. shared-bias 的 attack taxonomy 完美对齐。这是论文中最 elegant 的发现。\n\n5. **Reproducibility**: 匿名代码仓库、30+ 页附录覆盖所有 sensitivity checks、完整的 bootstrap 配置，可复现性极高。\n\n---\n\n## Questions to Authors\n\nQ1: 标题中 \"Shifts\" 和正文中 \"all findings are associational\" 之间的矛盾，作者如何回应？是否愿意将标题改为不含因果暗示的版本？\n\nQ2: 仅 3 个 K 值 (3,5,7) 如何支撑 \"monotonically diminishing\" 的 claim？K=5 和 K=7 的 β̂_std 差异仅为 0.005（在 CI 完全重叠的情况下），是否更准确地描述为 \"regime shift at K=5\" 而非 \"monotonic decline\"？\n\nQ3: 如果将 Contribution 1 的 framing 从 \"surprising finding\" 调整为 \"empirical confirmation of Brown et al. (2005) prediction in LLM judge setting\"，作者是否同意这更准确地反映了发现的性质？\n\nQ4: Bayesian calibration 在 K=7 时完全中和 K_eff (0/12) ——这是否意味着在实际部署中，选择正确的 aggregation method 比优化 panel composition 更重要？如果是，这应该作为论文的核心实践建议之一。\n\nQ5: Proposition 1 的 stochastic dominance 条件仅 58% pairs 满足——如果将 Proposition 降级为 Observation 并将空间用于 Conclusion 扩展，作者是否愿意考虑？\n\n---\n\n## Missing References\n\n1. Lakshminarayanan, B., Pritzel, A., & Blundell, C. (2017). Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles. NeurIPS.\n2. Horváth, S., Laskaridis, S., Rajput, S., & Çakmak, H. (2022). Certified ensemble robustness — 与本文的 adversarial ensemble analysis 直接相关",
+              "reviewer_id": "2",
+              "project": "cert_manip_resist_eval"
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-25T22:37:48.536939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3867
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-25T22:37:54.268460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-25T22:37:54.320817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-25T22:37:58.336045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-25T22:37:58.386632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_round_8/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-25T22:38:10.677907+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n**审稿结论概要**：Overall 3.5（Borderline Conference）。\n\n三个 Must-Fix 问题：\n1. 标题/正文的因果语言（\"Shifts\"/\"diminishing\"）与 \"all findings are associational\" 声明存在系统性矛盾\n2. \"Monotonically diminishing\" 的 narrative 被 3 个数据点的实际模式反驳——K=5→K=7 的 β̂_std 差异仅 0.005（CI 完全重叠），本质是 K=3 vs K≥5 的离散 regime shift\n3. 核心发现（diversity 与 vulnerability 正相关、weakest link 递减）可从 Brown et al. (2005) 的经典框架推导，novelty increment 有限\n\n主要优势：统计方法论极为严谨（5 种推断方法 + Monte Carlo 校准），position bias exception 是一个 elegant 的发现，confound 讨论诚实透明，reproducibility 极高。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2"
+          },
+          "id": "event-000750"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-25T22:42:08.988615+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉审稿：请回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿报告。请逐条回应每个 Must-Fix 和 Should-Fix 问题，使用 `[AGREE]` 或 `[REBUT]` 标记你的立场，并简要说明理由。\n\n---\n\n**Reviewer 1 Overall**: 3.0 (Findings)\n\n### Must-Fix 问题\n\n**R1-N1** [critical] Diversity-Capability Confound (r=0.70-0.81) 使核心关联发现的可解释性存疑\n- Cinelli-Hazlett sensitivity analysis 显示 69% 条件下 confound 可完全解释关联\n- Capability-matched Pool A 的 MDE 不足（power 严重不足）\n- Introduction 说 \"we address this gap by decomposing\"，但实际分解因 multicollinearity 无法可靠执行\n\n**R1-N2** [critical] K_eff 的 Gaussian Copula 理论基础被经验数据普遍拒绝\n- Cramér-von Mises GoF 拒绝率 97-100%\n- K_eff 作为 \"effective independent channels\" 的理论解释失效\n- 论文辩称 ranking robustness（Spearman ρ≈0.86-0.87），但这不等于理论解释成立\n- 论文自身 Section 3 承认 K_eff \"serves as intuition rather than a formal bound\"\n\n**R1-N3** [critical] Vote-Counting (X/12) 作为主要 meta-analytic 汇总方法\n- Hedges & Olkin (1985) 已证明 vote-counting 效力可任意低\n- 主文和 Abstract 完全依赖 vote counts\n- DerSimonian-Laird pooling 被埋在附录中\n- I²>87% 下 12 条件中 10 个显著可能是条件间系统差异\n\n### Should-Fix 问题\n\n**R1-W1**: AWQ INT4 量化引入系统性 capability 混淆（26.3% accuracy reduction），K_eff 信号可能反映量化差异\n**R1-W2**: 仅 Multiple-Choice 基准限制泛化性\n**R1-W3**: 攻击模板 generalizability 不足（每种仅 1-2 个 template variant）\n**R1-W4**: ε=10⁻⁶ 在 log(ASR+ε) 中的 sensitivity 未充分验证\n**R1-W5**: Proposition 1 的理论贡献有限（经典 BFT 标准结果，58% 覆盖率）\n**R1-W6**: API 模型版本无锁定\n\n### 你的任务\n\n对每个 R1-N1/N2/N3 和 R1-W1~W6，请回应：\n- `[AGREE]` — 你同意这是一个有效问题\n- `[REBUT]` — 你不同意，并给出理由\n- 可以补充你在初审中未提到但被 Reviewer 1 触发的新观察"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-25T22:42:55.442392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+              "offset": "40",
+              "limit": "50"
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-25T22:42:55.995019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\\subsection{The Diminishing Weakest Link Across Panel Sizes}\n41\t\\label{sec:cross_k}\n42\t\n43\tThe $K{=}3$ pattern is method-sensitive (Table~\\ref{tab:method_comparison}), contrasting with $K{\\geq}5$ where $K_{\\mathrm{eff}}$'s dominance is consistent (bootstrap 8/12; fractional logit 11/12). We repeat the bootstrap at $K \\in \\{3, 5, 7\\}$ with max-$p$ correction.\n44\t\n45\tMeta-analytic pooling \\citep{dersimonian1986meta} quantifies trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.243$ [$0.163, 0.323$] at $K{=}3$, $0.091$ [$-0.031, 0.212$] at $K{=}5$, $0.086$ [$-0.039, 0.211$] at $K{=}7$; CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive ($0.286$--$0.353$, CI excluding zero; Appendix~\\ref{app:meta_analytic_details}). Figure~\\ref{fig:regime_transition} shows significance counts; per-condition effect sizes with 95\\% CIs are in Figure~\\ref{fig:forest_plot} (Appendix~\\ref{app:effect_size_forest}). The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity.\n46\t\n47\t\n48\t\\subsection{Random vs.\\ Adaptive Fault Contrast}\n49\t\\label{sec:rf_contrast}\n50\t\n51\tRandom faults yield $R^2 = 0.730$ [$0.718, 0.745$]; adaptive attack reduces predictability ($R^2{=}0.285$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The positive $K_{\\mathrm{eff}}$ coefficient under adaptive attack contrasts with the Condorcet Jury Theorem \\citep{condorcet1785essai}: under adversarial manipulation, independent judges present distinct attack surfaces rather than redundant defenses \\citep{goodfellow2015adversarial,kariyappa2019improving}.\n52\t\n53\t\\subsection{Positive Direction Across Attack Types}\n54\t\\label{sec:gam_taxonomy}\n55\t\n56\tGAM bootstrap confirms positive $K_{\\mathrm{eff}}$ direction in 10 of 12 conditions (88.9--100\\% positive rate; Figure~\\ref{fig:gam_split}), with no magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{\n…[truncated 2553 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-25T22:42:56.145971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-25T22:42:56.447442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Diversity--Capability Confound.}\n5\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}, Appendix~\\ref{app:extended_analysis}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound could account for the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (10--11/12 across all $K$). Causal attribution requires capability-controlled designs (Appendices~\\ref{app:sensitivity_poolA},~\\ref{app:cross_benchmark}).\n6\t\n7\t\\paragraph{API-Only vs.\\ Full Pool.}\n8\tRestricting to 9 API models removes the AWQ confound but increases collinearity ($r{=}0.85$): $\\eta_{\\max}$ retains significance (8/12) while $K_{\\mathrm{eff}}$ drops (2--3/12); the API-only pool lacks statistical power (MDE $> 0.9$; Appendices~\\ref{app:quant_dummy},~\\ref{app:random_subsample}).\n9\t\n10\t\\paragraph{Aggregation and Deployment.}\n11\tAggregation rules influence predictability but not $K_{\\mathrm{eff}}$'s direction (Figure~\\ref{fig:aggregation_heatmap}). Threshold voting yields the highest $R^2$ ($0.745$ at $K{=}3$), while Bayesian calibration nearly neutralizes panel composition effects ($R^2{\\leq}0.17$ across all $K$). At $K{=}7$, Bayesian calibration fully neutralizes $K_{\\mathrm{eff}}$ (0/12; Appendix~\\ref{app:bayesian_entropy}). Robustness-first selection ($\\min \\eta_{\\max}$) achieves lowest ASR in all 12 conditions (Appendix~\\ref{app:panel_selection}), confirming that selecting judges by individual robustness dominates diversity-maximizing strategies regardless of panel size. Clean $K_{\\mathrm{eff}}$ is stable under 4/6 attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}), offering a deployable metric from clean-condition agreement alone.\n12\t\n13\t\\paragraph{Metric Sensitivity of the Diversity Trajectory.}\n14\tThe diversity significance trajectory is operationaliza\n…[truncated 566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-25T22:42:56.799121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex",
+              "offset": "30",
+              "limit": "25"
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-25T22:42:56.849851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t\n31\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n32\t\n33\tTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutual information (MI) among judges:\n34\t\\begin{equation}\n35\t\\label{eq:keff}\n36\tK_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n37\t\\end{equation}\n38\tThis formulation computes effective independence from pairwise MI estimates without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\\mathrm{eff}} \\approx K$ when judges are nearly independent ($\\mathrm{MI} \\to 0$) to $K_{\\mathrm{eff}} \\approx 1$ when judges are highly correlated ($\\mathrm{MI} \\to \\infty$). Motivated by information-theoretic redundancy reduction, one can informally expect joint vulnerability to scale as $\\eta_{\\mathrm{joint}} \\sim K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$: independent channels multiply failure probabilities, so fewer effective channels (lower $K_{\\mathrm{eff}}$) should reduce panel vulnerability. This motivating relationship assumes non-adaptive faults and independent channels; it serves as intuition rather than a formal bound.\n39\t\n40\t\\begin{definition}[Adaptive Adversary]\n41\t\\label{def:adversary}\n42\tA \\emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\\mathcal{P}$, the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$, and \n…[truncated 1896 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-25T22:44:36.375673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 — 交叉审稿回应（针对 Reviewer 1）\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R1-N1: Diversity-Capability Confound 使核心关联发现可解释性存疑**\n\n同意这是一个有效问题，但对严重程度有不同判断。\n\n论文在 Section 6 (Analysis) 明确报告了 Cinelli-Hazlett 69% 结果，Abstract 和 Introduction 末尾反复声明 \"all findings are associational\"，且 Limitations 首段专门讨论此 confound。这种透明度在实证论文中是加分项。\n\nR1 指出 Introduction 的 \"we address this gap by decomposing\" 与 confound 的矛盾——我同意这个 framing 问题存在。\"decomposing\" 暗示可以干净地分离两个因子的贡献，但 r=0.70-0.81 的 multicollinearity 使得这种分离不可靠。这与我在初审 N1 中指出的因果语言问题属于同一类别：论文在具体数字上诚实，但在 high-level framing 上过度乐观。\n\n不过，我认为 R1 对此问题的定性为 \"critical\" 偏严厉。理由：(1) 正方向在 5 种推断方法中均保持一致（10/12 conditions），这不太可能完全由 confound 解释——confound 应当增加不确定性而非系统性地产生一致的正方向；(2) κ-diversity 作为独立的 diversity metric 在 12/12 conditions 中确认正方向；(3) position bias exception（2 个负方向条件）与 attack taxonomy 的一致性提供了 construct validity。\n\n**建议分级**：Should-Fix（framing 调整），而非 Must-Fix（方法论重做）。\n\n---\n\n**[REBUT] R1-N2: K_eff Gaussian Copula GoF 拒绝率 97-100%**\n\n部分不同意 R1 的严重程度判定。\n\nR1 正确指出 Cramér-von Mises GoF 在 97-100% 条件下拒绝 Gaussian copula 假设。但关键问题是：K_eff 在论文中的 actual role 是什么？\n\nSection 3 明确说 K_eff 的理论动机 \"serves as intuition rather than a formal bound\"（原文）。论文没有在任何结论中依赖 K_eff 的 Gaussian copula 理论解释——所有核心结论依赖的是 K_eff 作为回归预测变量的 empirical association（系数方向和显著性），而非其 distributional properties。\n\nR1 承认 ranking robustness（Spearman ρ≈0.86-0.87）但认为 \"这不等于理论解释成立\"。然而，对于一个回归预测变量来说，ranking consistency 正是最重要的属性——它确保 OLS/bootstrap 回归中的 coefficient 方向和显著性不会因 metric 的单调变换而改变。\n\n真正的问题不是 GoF 拒绝，而是 **terminology**: 使用 \"effective independent channels\" 这个名称暗示 K_eff 有精确的信息论解释，而 GoF 拒绝表明这种解释不成立。但这是一个 labeling/presentation 问题，不是一个 methodological 问题。\n\n**我的判断**：Should-Fix（建议将 \"effective independent channels\" 改为更中性的名称如 \"pairwise-MI-based diversity index\"，并明确声明 K_eff 仅作为 empirical predictor 使用），而非 Must-Fix。\n\n补充观察：R1 的这个发现与我初审未涉及的技术层面相关。GoF 拒绝率确实值得在正文中报告（目前仅在附录），因为读者可能会将 \"effective independent channels\" 字面理解为理论量。\n\n---\n\n**[AGREE] R1-N3: Vote-Counting (X/12) 作为主要汇总方法**\n\n同意这是一个有效的方法论问题，但需要修正 R1 的一个事实性陈述。\n\nR1 声称 \"DerSimonian-Laird pooling 被埋在附录中\"——这不准确。Section 5.2 (main text) 明确报告了 DL pooled β̂_std 及 95% CI：η_max 的 0.243 [0.163, 0.323] → 0.091 [-0.031, 0.212] → 0.086 [-0.039, 0.211]，以及 K_eff 的 0.286-0.353（CI excluding zero）。这是正文而非附录。\n\n然而，R1 的核心论点仍然成立：\n\n1. **Abstract 和 Introduction 完全依赖 vote counts**: \"K_eff positive in 10/12 conditions, κ-diversity 12/12\"（Abstract）、\"10/12 direction under OLS\"（Contribution 1）——这些 framing 使用的是 Hedges & Olkin (1985) 已证明 power 可任意低的 vote-counting 方法\n2. **I²>87% 的高异质性**：在这种异质性下，\"10/12 显著\" 可能反映条件间的系统差异（如 attack type × benchmark 交互），而非一致的效应。DL pooled effect 在 I²>87% 下的可解释性也值得质疑——random-effects model 在高异质性下给出的 pooled estimate 可能无意义\n3. 论文应将 **DL pooled effect sizes 作为 primary summary**（已在 Section 5.2），并将 vote counts 降级为 supplementary description\n\n**建议**：将 Abstract 和 Introduction 中的 framing 从 \"X/12 conditions\" 改为基于 pooled β̂_std 及 CI 的表述。例如 \"K_eff's pooled standardized coefficient is 0.286-0.353 (CI excludes zero across all K)\" 比 \"10/12 conditions\" 更 informative 且方法论更正确。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R1-W1: AWQ INT4 量化混淆**\n\n同意。Section 6 (API-Only vs. Full Pool) 报告 API-only pool 中 K_eff 降到 2-3/12 且 MDE > 0.9（power 严重不足），无法排除 K_eff 信号部分来自 API vs. quantized 的 capability gap 而非 genuine diversity。论文在 Limitations 中已承认 \"quantization-induced accuracy reduction conflates genuine capability limitations with quantization damage\"（Table 2 caption），但这个 confound 的严重性值得在主文 Analysis 部分更显著地讨论。\n\n**[AGREE] R1-W2: 仅 Multiple-Choice 基准**\n\n同意。论文 Limitations 已承认 \"open-ended generation may present different attack surfaces\"。Multiple-choice 格式的 bounded output space 可能使某些攻击类型（如 verbosity bias）的效果被低估。不过这是一个 scope limitation 而非 methodological flaw——论文的标题和 claims 没有过度泛化到 open-ended settings。\n\n**[AGREE] R1-W3: 攻击模板 generalizability**\n\n同意。每种攻击仅 1-2 个 template variant 是合理的 scope limitation，已在 Limitations 中承认。但我补充一个 R1 未提到的具体担忧：如果 template 选择与某些 model families 的 vulnerability 有系统性交互（例如某个 template 恰好对 Qwen 系列特别有效），那么 1-2 个 templates 可能引入 template-specific bias。\n\n**[AGREE] R1-W4: ε=10⁻⁶ sensitivity**\n\n同意这值得验证，但预期影响较小。log(ASR+ε) 转换中 ε 主要影响 ASR 接近 0 的条件——即 frontier models 在多数攻击下的情况。由于这些 panels 的 ASR 本身接近 0，它们在回归中的 leverage 有限。不过，一个简单的 sensitivity check（ε=10⁻⁴, 10⁻⁸）应该在附录中报告。\n\n**[AGREE] R1-W5: Proposition 1 理论贡献有限**\n\n强烈同意。这与我初审 W4 的观点完全一致。Stochastic dominance 下 ASR monotonicity 近似于定义推论，58% 覆盖率进一步限制其实用性。建议降级为 Observation 或 Remark。\n\n**[AGREE] R1-W6: API 模型版本无锁定**\n\n同意。论文在 Limitations 的 \"Temporal snapshot\" 段承认了这个问题，Table 2 caption 注明 \"May 2026 snapshots\"。但这是 LLM 实证研究的通病——所有使用 API models 的论文都面临版本漂移问题。建议在 Table 2 中增加具体的 model version/snapshot ID（如果 OpenRouter 提供的话）。\n\n---\n\n### 综合评价\n\nR1 的审稿在统计方法论层面非常深入（特别是 N2 的 GoF 分析和 N3 的 vote-counting 批评），发现了我初审中未涉及的技术细节。我与 R1 在以下几点高度一致：\n\n1. **Proposition 1 应降级**（R1-W5 = 我的 W4）\n2. **Confound 是核心限制**（R1-N1 ≈ 我的 N3 的部分内容）\n3. **格式和 scope limitations 是 acknowledged weaknesses**（R1-W2/W3/W6）\n\n主要分歧在 **严重程度判定**：\n- R1 给 3.0 (Findings)，我给 3.5 (Borderline Conference)\n- 差异主要来自对 \"实证严谨性是否能补偿 novelty 不足\" 的权重不同\n- R1 侧重方法论缺陷的 disqualifying 效应；我更看重 5 种推断方法交叉验证的工程质量和 position bias exception 的理论洞见\n\n**我维持 3.5 (Borderline Conference)** 的总体评分，但 R1 的 N3 (vote-counting) 触发了一个新的关注点：如果 Abstract/Introduction 的 framing 从 vote counts 转为 pooled effect sizes，论文的统计可信度会显著提升。",
+              "reviewer_id": "2",
+              "project": "cert_manip_resist_eval"
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-25T22:44:40.095407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3719
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-25T22:44:49.626277+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉审稿回应已提交。总结：\n\n- **R1-N1 (Confound)**: [AGREE] 但建议降级为 Should-Fix——论文透明度高，framing 调整即可\n- **R1-N2 (K_eff GoF)**: [REBUT] K_eff 作为 empirical predictor 有效（ranking ρ≈0.87），问题在 terminology 而非 methodology\n- **R1-N3 (Vote-counting)**: [AGREE] 但修正 R1 的事实错误——DL pooling 在 Section 5.2 主文而非附录；同意 Abstract/Intro 应改用 pooled effect sizes\n- **R1-W1~W6**: 全部 [AGREE]，其中 W5 (Proposition 1) 与我初审 W4 完全一致\n\n维持 Overall 3.5 (Borderline Conference)，与 R1 的 3.0 差距主要在于对实证严谨性 vs. novelty 的权重不同。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2"
+          },
+          "id": "event-000760"
+        }
+      ]
+    }
+  ]
+}

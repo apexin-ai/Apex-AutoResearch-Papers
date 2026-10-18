@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6f5f4394ee6704e596f0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops gpu status check westd",
+  "task_key": "worker_ops_gpu_status_check_westd_20260518T025328",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu_status_check_westd_20260518T025328_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "7b374ba19484a9d97afb404b7643046dd00b9387d4b6e6fe8a612572d8864c5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nwestd:0 — k=0.7: [running] Task 7/10, Ep 30/50\n  完成: T1=0.96, T2=0.84, T3=0.64, T4=0.46, T5=0.68, T6=0.62\n\nwestd:1 — k=0.3: [running] Task 4/10, Ep 40/50\n  完成: T1=0.14, T2=0.00, T3=0.64\n```\n\nk=0.3 剪枝率高，性能显著下降（T1 仅 0.14，T2 直接归零）。k=0.7 保留多，性能合理（均值约 0.70）。两个 GPU 利用率 ~60%，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

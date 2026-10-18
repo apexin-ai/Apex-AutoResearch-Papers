@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "5c19b7f507b83b0227df",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code claude judge lmbar scoring",
+  "task_key": "worker_code_claude_judge_lmbar_scoring_20260521T082556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_claude_judge_lmbar_scoring_20260521T082556.log",
+    "occurrence": 1,
+    "bytes": 727294,
+    "sha256": "964160d893a08c21f391f272f48cf3cd32eba44249f1c5ee65acd72cdf516a3a"
+  },
+  "statistics": {
+    "messages": 491,
+    "user_turns": 0,
+    "tool_calls": 223,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 223,
+      "tool_result": 223,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 491,
+      "chunks": [
+        {
+          "path": "5c19b7f507b83b0227df-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5c19b7f507b83b0227df-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5c19b7f507b83b0227df-part-0003.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ]
+}

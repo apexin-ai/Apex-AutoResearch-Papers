@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3389a31aba2b1d5ab08a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix kill gpu0 stale pid",
+  "task_key": "worker_fix_kill_gpu0_stale_pid_20260526T015811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill_gpu0_stale_pid_20260526T015811_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "641909c01f8b7f07305d699dc7eb0ca2f5c0598b7ebc6430c5abf0bb88e678c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 300693 已不存在（可能已自行退出）。\n\n当前 GPU 占用状态：\n\n| PID | GPU | 显存 |\n|-----|-----|------|\n| 303189 | GPU-b12d… (GPU0) | 16169 MiB |\n| 76492 | GPU-b927… (GPU1) | 15961 MiB |\n| 259181 | GPU-754f… (GPU2) | 15961 MiB |\n\nGPU0 上只剩 PID 303189（新 Random 进程），无残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

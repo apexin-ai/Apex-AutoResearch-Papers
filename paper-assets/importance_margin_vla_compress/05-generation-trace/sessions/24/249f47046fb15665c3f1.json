@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "249f47046fb15665c3f1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit cron log judgment",
+  "task_key": "worker_audit_cron_log_judgment_20260527T070149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_cron_log_judgment_20260527T070149_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "86df24dab95dd0f61a9baed4ed201f6b5ca005552861fb3f5895bb0bb245fff5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "判定结果汇总：\n\n| exp_id | 日志状态 | 判定 | SR值/说明 |\n|--------|---------|------|----------|\n| eval_pi05_baseline_goal_seed42_strict | Registry 已标记 DONE(killed)；~/runs 日志显示新进程在跑（T3 ep=20/50），autodl-tmp 路径另一实例等 GPU | **仍在运行** | 原实验被 kill，新实验未完成。无需更新 registry（killed 记录准确） |\n| eval_pi05_attn_k09_long_seed42_strict | 完整完成 10/10 tasks | **success** (已录入) | SR=64.0% (320/500) |\n| eval_pi05_attn_k085_long_seed42_strict | 完整完成 10/10 tasks | **success** (已修正，原误标 failed) | SR=50.0% (250/500) |\n\n关键修正：实验 3 从 DONE(failed) → DONE(success)，补录 metrics 和 per-task SR。实验 1 有新进程在跑但尚未完成，当前 registry 的 killed 记录仍然有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

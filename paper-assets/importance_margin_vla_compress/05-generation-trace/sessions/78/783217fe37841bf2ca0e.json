@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "783217fe37841bf2ca0e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code action divergence",
+  "task_key": "worker_code_action_divergence_20260517T100440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_action_divergence_20260517T100440_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "26d5951a1a66b9f9233d285c4e3338620885a10599d94368d055e6383f83289e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过。\n\n脚本已部署到 `/root/autodl-tmp/importance_margin_vla_compress/artifacts/analyze_action_divergence.py`。\n\n**设计要点：**\n- 方式一：baseline 驱动环境，每步同时给两个模型相同 observation，只用 baseline action 推进 env\n- 每次 re-plan（每 50 步或首步）时对两个模型分别预测 action chunk\n- ACIS pruning 通过 forward hook 对 connector 输出做 mask（k=0.7, retain 70%）\n- 对比 `libero_full_ft_100k`（baseline）vs `libero_acis_stage1only_k07`（ACIS pruned）\n\n**输出：**\n- `artifacts/action_divergence_data.json` — 每步 raw action pairs + L2 distance\n- `artifacts/action_divergence_curve.pdf` — 三图: overall divergence curve, per-dim breakdown, per-task comparison\n- `artifacts/action_divergence_summary.pdf` — 统计摘要\n\n**运行命令**（GPU 0/1 空闲后）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/importance_margin_vla_compress\npython artifacts/analyze_action_divergence.py --gpu 2 --num_episodes 5 --task_ids 0,1,2\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

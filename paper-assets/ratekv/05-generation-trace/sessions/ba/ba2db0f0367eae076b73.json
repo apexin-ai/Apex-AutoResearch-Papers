@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba2db0f0367eae076b73",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp qwen14b greedy constrained",
+  "task_key": "worker_exp_qwen14b_greedy_constrained_20260515T145632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen14b_greedy_constrained_20260515T145632_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "ed40f372dc9ce7803e7514e0c551fc5b4d9969342edadaf52bebbbe7893c56b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，artifact 已注册。\n\n**结果汇总（Table 1 Greedy 列 - Qwen2.5-14B）：**\n\n| Method | WikiText-2 PPL |\n|---|---|\n| Baseline (bf16) | 6.8654 |\n| Uniform 4-bit | 7.2020 |\n| Constrained MCKP (k=8) | 7.2206 |\n| **Greedy constrained (k=8)** | **7.2206** |\n\n- Greedy PPL = MCKP PPL（delta = -0.0000），完全验证了 solver equivalence\n- Bit distribution: {4: 374, 8: 1, 16: 1, 2: 8}（正好 8 个 2-bit heads，满足 cardinality constraint）\n- 总耗时 1.8min（solver 0.08s + 两轮 PPL eval）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

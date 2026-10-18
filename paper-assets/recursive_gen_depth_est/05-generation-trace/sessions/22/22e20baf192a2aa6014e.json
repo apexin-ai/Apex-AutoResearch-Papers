@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "22e20baf192a2aa6014e",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp shap and lr zscore",
+  "task_key": "worker_exp_shap_and_lr_zscore_20260515T170353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_shap_and_lr_zscore_20260515T170353.log",
+    "occurrence": 1,
+    "bytes": 694745,
+    "sha256": "4b6614d4058cf6cf9fe33ddae06c93b38297d5b3de32476222abd6fb52eef6d1"
+  },
+  "statistics": {
+    "messages": 302,
+    "user_turns": 0,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 112,
+      "tool_result": 112,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "22e20baf192a2aa6014e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "22e20baf192a2aa6014e-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "4de1301dd7895109e4ce",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "infra olmo pipeline launch",
+  "task_key": "worker_infra_olmo-pipeline-launch_20260514T141126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_olmo-pipeline-launch_20260514T141126.log",
+    "occurrence": 1,
+    "bytes": 732310,
+    "sha256": "efd4138e5d43483825c777529db834cd5b66562b4c2d22e4af1d8f1ff93ac50c"
+  },
+  "statistics": {
+    "messages": 524,
+    "user_turns": 0,
+    "tool_calls": 198,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 124,
+      "tool_call": 198,
+      "tool_result": 198,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 524,
+      "chunks": [
+        {
+          "path": "4de1301dd7895109e4ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4de1301dd7895109e4ce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4de1301dd7895109e4ce-part-0003.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ]
+}

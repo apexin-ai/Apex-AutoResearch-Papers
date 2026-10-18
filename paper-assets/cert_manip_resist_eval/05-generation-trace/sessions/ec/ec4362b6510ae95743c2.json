@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec4362b6510ae95743c2",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code theorem1 reviewer fixes",
+  "task_key": "worker_code_theorem1-reviewer-fixes_20260522T113408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_theorem1-reviewer-fixes_20260522T113408_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "3097a208bbb1db1c76dab530d8826f13b60fc80b3923799b297c20664ce96457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`r ≈ -0.78` 不再出现在 proof 中（grep 返回 0 匹配），确认已移到 Remark 中。\n\n完成。两处修改已应用并验证：\n\n1. **Line 191**: 新增 `Remark [Empirical Verification of Pointwise Dominance]`，在 Theorem 1 证明之后，说明如何用实验数据验证 pointwise dominance（per-sample error indicators → violation rate → 与 pivotal probability 比较）。\n\n2. **Lines 296-306**: Corollary 证明中 Stage 2 改为纯理论表述（BFT-like regime，near-independent failures），移除 `r ≈ -0.78` 和 SDPI bound 引用；经验数据移到 proof 之后的新 `Remark [Empirical Support]`。\n\nLaTeX 语法检查通过：40 个 begin/end 全部配对。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

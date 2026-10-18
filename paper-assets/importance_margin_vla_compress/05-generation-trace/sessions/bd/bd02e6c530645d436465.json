@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bd02e6c530645d436465",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research check openvla suite support",
+  "task_key": "worker_research_check-openvla-suite-support_20260520T224913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_check-openvla-suite-support_20260520T224913_result.json",
+    "occurrence": 1,
+    "bytes": 1967,
+    "sha256": "417a519072a695e173a027f49fa587bb5e28c70e88c02e46cfc166a874d4b198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### eval_openvla_libero.py — 部分支持 suite 切换\n\n**已支持：**\n- `--suite` 参数（默认 `libero_object`）\n- `SUITE_MAX_STEPS` 覆盖 4 个 suite：`libero_spatial`(280), `libero_object`(280), `libero_goal`(300), `libero_10`(520)\n- LIBERO benchmark 加载使用 `benchmark_dict[args.suite]()`，动态切换\n\n**需要修改的 2 个硬编码问题：**\n\n| 行号 | 问题 | 当前值 | 应改为 |\n|------|------|--------|--------|\n| ~31 | `CHECKPOINT_PATH` 硬编码 | `\"/root/autodl-tmp/openvla-libero-object\"` | 添加 `--model_path` 参数 |\n| ~32 | `UNNORM_KEY` 硬编码 | `\"libero_object\"` | 从 `dataset_statistics.json` 自动读取（参考 ACIS 脚本: `next(iter(model.norm_stats.keys()))`） |\n\n### eval_openvla_acis_prune.py — 已完全支持\n\n- `--suite` 参数 + `--model_path` 参数（required）\n- `unnorm_key` 自动从模型 stats 推断（line 152）\n- 无需修改\n\n### eval_openvla_l2norm_libero.py — 不存在\n\n服务器上无此文件。\n\n### 服务器上现有 OpenVLA checkpoint\n\n只有 `/root/autodl-tmp/openvla-libero-object`，其 `dataset_statistics.json` 只包含 `libero_object` 的 stats。要跑其他 suite，需下载对应的 fine-tuned checkpoint（OpenVLA 官方为每个 LIBERO suite 单独发布了 checkpoint）。\n\n### LIBERO 支持的 suite\n\n标准 4 个 suite，每个 10 tasks：\n- `libero_spatial` — 空间关系任务\n- `libero_object` — 物体操作任务  \n- `libero_goal` — 目标导向任务\n- `libero_10` (也叫 libero_long) — 长序列任务\n\n### 总结：扩展到全 4 suite 需要\n\n1. **eval_openvla_libero.py**: 加 `--model_path` 参数，UNNORM_KEY 改为自动推断（约 5 行改动）\n2. **下载 checkpoint**: `openvla-libero-spatial`, `openvla-libero-goal`, `openvla-libero-10`（HuggingFace `openvla/openvla-7b-finetuned-libero-*`）\n3. **eval_openvla_acis_prune.py**: 无需改动，直接可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

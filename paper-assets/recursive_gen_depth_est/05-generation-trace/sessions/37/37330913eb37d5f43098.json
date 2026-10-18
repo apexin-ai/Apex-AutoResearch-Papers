@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "37330913eb37d5f43098",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ssh bugfix load features",
+  "task_key": "worker_ssh_bugfix_load_features_20260515T023831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_bugfix_load_features_20260515T023831.log",
+    "occurrence": 1,
+    "bytes": 712839,
+    "sha256": "57324c0d282b1ba8e955a698fa316a561bb6ce4f7cb0d7b7a14ffbbf52a934d2"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 0,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 58,
+      "tool_call": 137,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "37330913eb37d5f43098-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "37330913eb37d5f43098-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ]
+}

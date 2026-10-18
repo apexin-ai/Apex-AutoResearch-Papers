@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "04cb259b82b45fbf4545",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment r1w2 fp16 baseline fix",
+  "task_key": "worker_experiment_r1w2-fp16-baseline-fix_20260524T171913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r1w2-fp16-baseline-fix_20260524T171913_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "4cb96a31f59ef36a520730eab0e0ae7824579464ca823a5ece9554ecd58276ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "V2 script is running. It's downloading Qwen2.5-14B-Instruct-AWQ via ModelScope now. The pipeline:\n\n1. Download AWQ 14B via ModelScope → load → eval 200 samples\n2. Download FP16 14B → load → eval 200 samples  \n3. Same for 32B (AWQ + FP16)\n4. 72B AWQ only (FP16 skipped - too large)\n\nEstimated total runtime: 3-5 hours depending on download speeds and JIT compilation time. PID 18494 (Monte Carlo job) is undisturbed on the same GPU but only uses CPU."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

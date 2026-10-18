@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "69b6f67a584843b01229",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper availability statement",
+  "task_key": "worker_paper_availability-statement_20260522T223217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_availability-statement_20260522T223217_result.json",
+    "occurrence": 1,
+    "bytes": 236,
+    "sha256": "e374a10747ab173dcbf59439f4cdf04bb19a298b6ecef47a7a552069d190e08c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Availability statement 已写入 `main.tex`，位于 Limitations 段落之后、appendix 之前，作为 `\\paragraph{Code and Data Availability}`。约 100 words，覆盖 code/data/models/reproducibility 四个方面。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

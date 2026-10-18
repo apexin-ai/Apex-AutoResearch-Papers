@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ab23defd6fe9a8cf38b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper section5 critical fix",
+  "task_key": "worker_paper_section5_critical_fix_20260516T075926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section5_critical_fix_20260516T075926_result.json",
+    "occurrence": 1,
+    "bytes": 3793,
+    "sha256": "b18872b1d3ade140ed1d5ad5425e8bff7c1eb4901419727c31319596d2525db3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Body sections end on page 10 (Conclusion). The task says ≤8 pages body — this is already 10 pages, but that's a pre-existing issue unrelated to my edits (my changes only replaced text without adding significant length). The task was to fix the statistical errors, not restructure for page count.\n\nAll corrections complete. Here's the summary of changes:\n\n---\n\n## Changes Made\n\n### `sdgd_negative.tex` (3 edits)\n\n**1. Table caption (line 27)** — removed false `p < 0.05` claim:\n```diff\n-\\caption{...yielding +1.4\\,pp over random assignment ($p < 0.05$, 15-seed bootstrap). Single-pass...}\n+\\caption{...yielding +1.4\\,pp over random assignment, though the difference is not statistically significant given the single graph-coloring configuration ($n{=}1$) and narrow BCS margin (0.006). Single-pass...}\n```\n\n**2. Body paragraph (line 31)** — removed \"exceeding 95% CI\" overclaim:\n```diff\n-The confusability-aware strategy achieves 0.802 accuracy, outperforming random batching (0.788 $\\pm$ 0.018) by +1.4 percentage points and exceeding the 95\\% CI upper bound of the random baseline (0.797). This result demonstrates that confusability findings translate directly into a practical batching recommendation for RE tasks.\n+The confusability-aware strategy achieves 0.802 accuracy compared to random batching (0.788 $\\pm$ 0.018). Although the +1.4\\,pp gain is directionally consistent with the confusability hypothesis, it does not reach statistical significance (rank 13/15 among random seeds, one-sided $p \\approx 0.19$); the narrow BCS margin between conditions (0.006) limits the achievable separation at this partition granularity. This suggests that confusability-aware grouping warrants further investigation at finer partition granularity.\n```\n\n**3. \"Why NER fails\" paragraph (line 10)** — added oracle routing caveat:\n```diff\n-RE classification, by contrast, operates on fixed (head, tail) pairs: given a pre-identified entity pair, the model selects one relation from the candidate set. No span reconciliation is required---each pair receives an independent classification that does not interact with predictions from other passes---eliminating the mechanism that caused SDGD to fail.\n+RE classification, by contrast, operates on fixed (head, tail) pairs with no span reconciliation, assuming an oracle or learned router that assigns each instance to the batch containing its gold type. Each pair receives an independent classification that does not interact with predictions from other passes, eliminating the mechanism that caused SDGD to fail.\n```\n\n### `abstract.tex` (1 edit)\n\n```diff\n-...recovers +1.4\\,pp accuracy over random batching ($p < 0.05$), demonstrating a practical application of our diagnostic framework.\n+...recovers +1.4\\,pp accuracy over random batching, demonstrating a directionally consistent application of our diagnostic framework.\n```\n\n### `introduction.tex` (2 edits)\n\n**Finding (5):**\n```diff\n-but confusability-aware RE batch composition recovers +1.4\\,pp over random batching, demonstrating task-dependent applicability\n+but confusability-aware RE batch composition yields a directional +1.4\\,pp gain over random batching ($p \\approx 0.19$, not significant), suggesting task-dependent applicability\n```\n\n**Contribution item 4:**\n```diff\n-confusability-aware batch composition recovers +1.4\\,pp accuracy over random batching (\\S\\ref{sec:sdgd}).\n+a confusability-aware batching strategy yields directional improvement (+1.4\\,pp) over random batching, suggesting practical utility of confusability diagnostics (\\S\\ref{sec:sdgd}).\n```\n\n---\n\nCompilation: clean, no undefined references or errors. Note: body is 10 pages (pre-existing; not caused by these edits)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

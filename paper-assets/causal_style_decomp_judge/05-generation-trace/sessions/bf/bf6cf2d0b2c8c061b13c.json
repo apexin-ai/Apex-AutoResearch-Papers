@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bf6cf2d0b2c8c061b13c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra vllm check restart",
+  "task_key": "worker_infra_vllm-check-restart_20260522T231152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_vllm-check-restart_20260522T231152_result.json",
+    "occurrence": 1,
+    "bytes": 2278,
+    "sha256": "3aa1da130bee2a2c084c7d794f6612dd8832793717784a47708a65b69c1d26e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. vLLM 状态：全部存活\n\n| 端口 | 模型 | GPU | 状态 |\n|------|------|-----|------|\n| 8000 | Qwen3-32B | GPU 0,1 (89GB/卡) | **正常** |\n| 8003 | Llama-3.3-70B-Instruct | GPU 2,3 (88GB/卡) | **正常** |\n\n4x NVIDIA RTX PRO 6000 Blackwell (98GB/卡)，GPU Util 0%（空闲等待请求）。\n\n### 2. Benchmark 数据\n\n已有数据文件：\n- **AlpacaEval**: `benchmark_alpacaeval.jsonl`, `counterfactuals_alpacaeval.jsonl`, `verified_alpacaeval.jsonl`, `scored_alpacaeval_*.jsonl`, `pairwise_results_alpacaeval_*.jsonl`\n- **MT-Bench**: `benchmark_mtbench.jsonl`, `counterfactuals_mtbench.jsonl`, `verified_mtbench.jsonl`, `scored_mtbench_*.jsonl`, `pairwise_results_mtbench_*.jsonl`\n- **Cross-benchmark scored 数据** (大量已完成): `scored_*_formality.jsonl`, `scored_*_verbosity.jsonl`, `scored_*_register.jsonl` — 覆盖 Qwen32B / GPT-4o / Llama70B / Claude / Gemini Flash 多个 judge\n- **Verified 数据**: `verified_*.jsonl` 覆盖 formality / verbosity / register / alpacaeval / mtbench\n\n### 3. Pipeline 脚本接口\n\n`pairwise_scoring.py` 使用 `AsyncOpenAI` 客户端，API key 传递方式：\n- **CLI 参数**: `--api-key`\n- **环境变量**: `OPENAI_API_KEY`\n- **Base URL**: `--base-url`（默认 `http://47.94.22.126/v1`），也读 `OPENAI_BASE_URL` 环境变量\n- **本地 vLLM 用法**: `--base-url http://localhost:8000/v1 --api-key dummy --model /root/autodl-tmp/models/Qwen3-32B/`\n\n其他关键参数：`--axis` (formality/verbosity/tone/register), `--model`, `--max-concurrent`, `--disable-thinking`\n\n### 4. 可立即跑的 cross-benchmark 配置\n\n数据和 vLLM 都就绪，以下组合可直接执行：\n\n| 输入数据 | Judge | 轴 | 端口 |\n|----------|-------|----|------|\n| `verified_alpacaeval.jsonl` | Qwen3-32B | formality/verbosity/register | localhost:8000 |\n| `verified_mtbench.jsonl` | Qwen3-32B | formality/verbosity/register | localhost:8000 |\n| `verified_alpacaeval.jsonl` | Llama-70B | formality/verbosity/register | localhost:8003 |\n| `verified_mtbench.jsonl` | Llama-70B | formality/verbosity/register | localhost:8003 |\n| 任何 `verified_*.jsonl` | 两个 judge | tone 轴 | 8000/8003 |\n\n不需要重启任何服务，vLLM 双模型均在线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

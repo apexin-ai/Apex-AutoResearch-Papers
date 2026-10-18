@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "44037e63c2b9d1286db0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp plan 015 gpt2xl wild calibration",
+  "task_key": "worker_exp_plan_015_gpt2xl_wild_calibration_20260515T223324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_015_gpt2xl_wild_calibration_20260515T223324_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "4caf704125b96e9e15210a129a4065e195d071bf5878b09436649f2d26eef804"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n## GPT-2 XL Wild-Data Calibration 结果\n\n| 指标 | Pythia RF | GPT-2 XL RF |\n|------|-----------|-------------|\n| CV accuracy | 0.7878 ± 0.0056 | **0.8412 ± 0.0040** |\n| C4 d0 预测率 | 79.76% | **77.62%** |\n| C4 d1 预测率 | 19.68% | 9.04% |\n| C4 d2 预测率 | 0.34% | 3.72% |\n| C4 d3 预测率 | 0.22% | 9.62% |\n| WikiText d0 率 | 100% | 99.27% |\n| C4 mean P(d0) | 0.80 | 0.68 |\n\n**结论：wild-data calibration 跨 model cell 成立。** 两个 RF 都将 C4 判为 majority d0（差距仅 2.14%）。GPT-2 XL RF 分辨率更高（CV 84.1% vs 78.8%），但对 C4 的 d3 误判率偏高（9.6% vs 0.2%），说明 GPT-2 XL cell 的 d3 特征空间与 C4 某些 web text 有部分重叠。\n\n输出文件：`gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/gpt2xl_c4_calibration.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

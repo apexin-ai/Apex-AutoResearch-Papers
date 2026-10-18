@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c77208b5a5046ab73473",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis cross scale llama3 base 001",
+  "task_key": "worker_analysis_cross_scale_llama3_base_001_20260516T163607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_scale_llama3_base_001_20260516T163607_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "dc0ea37072f07e75c3bc0e7b0bf5d65ed2a31ed690946baa5a8a8bb651392bdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果总结\n\n### 关键指标\n| 指标 | BASE (本实验) | Instruct (对照) |\n|------|--------------|----------------|\n| 4-class acc | 0.599 | 0.702 |\n| 6-class acc | 0.4953 | 0.554 |\n| EDD | >5 | >5 |\n\n### Consecutive Pairwise AUC\n| Pair | BASE | Instruct |\n|------|------|----------|\n| d0v1 | 0.9175 | 0.9494 |\n| d1v2 | 0.7936 | 0.8768 |\n| d2v3 | 0.6815 | 0.7706 |\n| d3v4 | **0.730** ↑ | 0.716 |\n| d4v5 | 0.595 | 0.6183 |\n\n### 假设验证：**NEGATIVE（不支持）**\n\n原假设：BASE 模型 AUC 衰减应单调递减，以证明 instruction-tuning 导致 U 形。\n\n实际结果恰恰相反：\n- **Instruct** 是严格单调递减的（无 U 形）\n- **BASE** 在 d3v4 出现非单调 bump（0.730 > d2v3 的 0.6815）\n\n**结论**：Instruction-tuning 不是 U 形的原因；相反，IT **正则化**了 depth signal，使衰减更加单调。BASE 模型文本在递归深度增加时退化模式更不规则。\n\nRegistry 已更新为 DONE/negative，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

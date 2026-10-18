@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "267608622e65bf0dfcb6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix cqa1 s44 l2norm095 oom",
+  "task_key": "worker_fix_cqa1-s44-l2norm095-oom_20260527T224041",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cqa1-s44-l2norm095-oom_20260527T224041_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "201b0b111242d6aabfad56c9e2d8b78c0d06b50c3178ec018afae5d028f4aae1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行正常，正在 CPU 加载 π0.5 模型（~32GB RAM 已分配）。模型上 GPU 后显存会分配约 10GB，GPU 1 有 24GB 容量，无 OOM 风险。\n\n**部署结果汇总：**\n- **tmux session**: `eval_pi05_l2norm_k095_long_seed44_strict_cqa1`\n- **PID**: 797637（python 进程），797633（bash 父进程）\n- **GPU**: 物理卡 1（`CUDA_VISIBLE_DEVICES=1`），24564MiB 全空闲\n- **状态**: R (running)，模型 CPU 加载中，加载完成后自动移至 GPU 1\n- **log**: `~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_long_seed44_strict_cqa1.log`\n- **环境变量**: `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=1` 均已确认\n\nGPU 1 完全空闲（0 进程、1MiB 显存），不会重复之前 OOM 的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

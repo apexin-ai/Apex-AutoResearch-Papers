@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a3f779997613b4f2dbc5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis qwen25 14b temp09",
+  "task_key": "worker_analysis_qwen25_14b_temp09_20260520T035840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen25_14b_temp09_20260520T035840_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "f9dbd4b9cedb649912d49b780aa08958acd70e50c1c9f07cc27202ee5dc11989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| RF 4-class acc | **50.5%** [49.76%, 51.24%] |\n| LR 4-class acc | 48.65% [48.01%, 49.38%] |\n| RF 3-class (no d0) | 52.44% [51.61%, 53.23%] |\n| Pairwise AUC mean | 78.28% |\n\n### Pairwise AUC\n\n| 对 | AUC |\n|----|-----|\n| d0v1 | 0.632 |\n| d0v2 | 0.918 |\n| d0v3 | **0.958** |\n| d1v2 | 0.726 |\n| d1v3 | 0.845 |\n| d2v3 | 0.618 |\n\n### 与参考值对比\n\n- RF 4-class: 50.5% vs scale_002 nucleus 54.05% → **低 3.55pp**\n- Pairwise AUC mean: 78.28% vs 参考 78.4% → **几乎一致**\n- 远超 25% random baseline (2×)\n\n### Hypothesis 验证: **PARTIAL SUCCESS**\n\n- 深度信号在 τ=0.9 temperature sampling 下明确存在（2× random baseline）\n- 4-class accuracy 略低于 nucleus（50.5% vs 54.05%），但 pairwise AUC 结构几乎完全一致\n- 足以支持 Claim 2（Atlas 覆盖 3 种解码策略），信号存在但略有衰减\n- Top features: 尾部分布统计量（p90_ppl, skew_ppl, kurt_ppl）\n\n报告已注册: `art_20260520_312d80`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

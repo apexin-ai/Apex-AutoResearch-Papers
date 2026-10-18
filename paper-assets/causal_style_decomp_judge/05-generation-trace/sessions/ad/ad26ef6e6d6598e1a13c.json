@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ad26ef6e6d6598e1a13c",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "audit data truth appendix",
+  "task_key": "worker_audit_data-truth-appendix_20260525T194238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-truth-appendix_20260525T194238.log",
+    "occurrence": 1,
+    "bytes": 784711,
+    "sha256": "efb6aa68f05e344a7bd2aaab8989fe1c1bd27862dac8361522b340e59820fb77"
+  },
+  "statistics": {
+    "messages": 139,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "ad26ef6e6d6598e1a13c-part-0001.json",
+          "message_count": 89
+        },
+        {
+          "path": "ad26ef6e6d6598e1a13c-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ]
+}

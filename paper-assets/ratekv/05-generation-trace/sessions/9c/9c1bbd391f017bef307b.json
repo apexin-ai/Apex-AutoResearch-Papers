@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1bbd391f017bef307b",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama full pipeline",
+  "task_key": "worker_code_llama_full_pipeline_20260514T013209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_full_pipeline_20260514T013209_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "ffdc7ade1499e3a52e7bcd0d6e4486854c70e483ccadfefb7ddcc922c76578d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Dry-run**: 通过，配置正确（model path、num_kv_heads=8、256 heads）\n- **Pipeline**: 已后台启动（PID 163850），模型已加载，Phase 1 profiling 进行中\n- **Registry**: `llama_full_pipeline` 状态已更新为 RUNNING\n- **日志**: `/root/ratekv/llama_pipeline.log`\n- **预计耗时**: 60-90 min（256 heads × 3 bit-widths profiling + solver + eval）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

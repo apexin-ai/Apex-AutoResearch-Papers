@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c399206db78fa591845d",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3431,
+    "sha256": "204c8469dc0a3dc828b2af0ee0b1b584729af175926b9adf594c80a5d648a668"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-17T22:45:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- gpu-6000pro-2 本项目只用 cuda:0（14B 实验占用中）和 cuda:1（instruct/feature 实验）\n- C003：EDD 上界必须是 Proposition 不是 Theorem；写入论文前必须过 Reviewer 审查\n- C004：wild data FPR 结果禁止用 \"contamination\" 暗示 AI 内容占比，只能 frame 为 FPR/limitation\n- Pareek 引用：作者是 Pareek, Du, Oh（不是 Sanghavi）——已修复，但后续引用时注意\n- 论文源文件权威位置：**本地** `docs/paper/*.tex`，远程 `/root/autodl-tmp/.../paper/` 是旧版残留\n\n### 2. 🖥️ 基础设施快照\n- **gpu-6000pro-2**：`/root/autodl-tmp/recursive_gen_depth_est/`，cuda:0 跑 qwen25_14b_scale_002（PID 806751）\n- **westd-48862**：`/root/autodl-tmp/recursive_gen_depth_est/`，cuda:0 跑 qwen25_14b_scale_003（PID 20700）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/`\n- 论文文件：`docs/paper/*.tex`（最近修改 2026-05-17 ~19:57 UTC，D038 patched）\n- artifacts：`artifacts/_project/paper/theory_draft.tex`（理论草稿，未编入 main paper）\n\n### 3. 📊 当前状态\n**刚完成**：D038 Paper Patch 质量审查（已 post to Director），发现 1 critical（geometric decay 公式不自洽）+ 1 warning（C004 轻度违规）。Framing 风险评估（depth≈perplexity 攻击角度）已回复 Director：中等风险，建议补 single-feature p90_ppl ablation。\n\n**RUNNING 实验**：\n- qwen25_14b_scale_002 @ gpu-6000pro-2：d0 已 94%，即将进入 d1-d3（ETA ~数小时）\n- qwen25_14b_scale_003 @ westd-48862：d0 约 51%（ETA ~10-12h 全部完成）\n\n**已审无异常的 worker**：rf_seed_robustness（std 0.06%）、feature_importance_ablation（perplexity 组 66.0%/full 66.55%）、pareek_bib_entry（修正完成）\n\n### 4. 📋 待办\n- 14B scale_002 完成 → 审查 Phase 4/5 结果，核实 AUC 是否 > 1.5B baseline，检查 GPU 使用合规\n- 14B scale_003 完成 → 同上，交叉验证两个 run 一致性\n- Director 回复 geometric decay 修复方案 → 审查修复后的 atlas.tex §4.4 是否数学自洽\n- single-feature p90_ppl ablation worker 完成 → 审查结果，若 gap < 2pp 需提醒加强叙事防御\n- registry 中 downstream_benchmark_001 和 learned_estimator_001 仍标 RUNNING 但实际已 dead（westd 上无进程）→ 待 Director 清理\n\n### 5. 🎯 战略上下文\n- **项目目标**：EMNLP 2026 Main via ARR May 25 cycle（~7 天 DDL）\n- **核心 story**：recursive generation depth estimation formalization + systematic 3×3 atlas + EDD metric + cross-model generalization\n- **最大未解决硬伤**：atlas.tex geometric decay 段落公式 AUC=A₀·γ^d 与 γ=0.74 + 所列预测值三者不自洽。\"Predicted\" 值实为 3-model means，\"observed\" 是 Pythia-only，formula 用的是 raw AUC 但 γ=0.74 只在 AUC-excess 空间近似成立。审稿人一行计算即可发现。必须在提交前修复。\n- **易错点**：论文本地文件 vs 远程文件——远程是旧版，本地是权威。审查论文时必须读本地 `docs/paper/`，不要只看远程。\n- **14B validation**：两台机器并行跑，结果用于 cross-scale claim 加强。如果 14B 结果弱于 7B，需评估是否 report 为 negative（当前叙事已为 \"preliminary observations\"，有回旋空间）。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

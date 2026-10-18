@@ -1,0 +1,1282 @@
+{
+  "schema_version": "1.0",
+  "id": "2a21295eae03915e0198",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh fewrel re prompt fix",
+  "task_key": "worker_ssh_fewrel-re-prompt-fix_20260515T063640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T063640.log",
+    "occurrence": 1,
+    "bytes": 140997,
+    "sha256": "63bd79e555c0beaa41766551ccede9bc36f0cf0cbf9eb3b0484ce525d59884bb"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "3c9e9011-0b56-4c88-8910-61156684e333",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778837400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "bbe235d9-fa82-408f-89f1-d5578e112206",
+                "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the relevant files on the server to understand the current state of the code.",
+              "signature": "EqACClkIDRgCKkDpn0usJvsy4+VfT+BPV93VCzwMnxsSgS9gyu8pZKkDSxOt9rJ2srj85fwAO1qx9iwQrXGq8C8INKdddcb8mW0dMg9jbGF1ZGUtb3B1cy00LTY4ABIMaUXCu5KBohpkOOX+GgyDCG6FINtqEp59bEoiMGsMKbxAVo6QMyPxYsOPkAOXkMoUuN1+4+btfVJjtvf4GY1QgQx0VignZDfoukXH2Cp1Y9sLPG2a0+h14rAEmnJA8LxcJD1bGaOQPoW1uwJxyLEEycr6qCwS2KkKxYuYkDsfEDjX2EXd8xdbIa5JyCa1pmbSYcn5BMJbqWcZu3DBTyk/mOp5SqMAaucgRdcQLXab4oROOFDX7ZjdzzMgh89r9QZm46xPGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "3de27fca-8cb3-43a0-a28c-0fd3c680cbca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MosCoZbETr4kzyQd1DKSms",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12183,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12183
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取服务器上的相关代码文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "2fd87d9b-d8ca-4edb-acac-7c178616d985",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MosCoZbETr4kzyQd1DKSms",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12183,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12183
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RqoWqewn9dLSrWzTqBPQ7T",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "292179ff-95ad-4d73-853a-47beeb373138",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MosCoZbETr4kzyQd1DKSms",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12183,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12183
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T06:36:54.548Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RqoWqewn9dLSrWzTqBPQ7T",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "f8bc26a3-4072-45e3-bcd9-263931592743",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014fTy6MA3Vc51MMAfZrMsiM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cat /root/schema-dag-extraction/src/run_extraction.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "ba7aaa70-23ed-4409-b3b2-bac90829691c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QVihntiv23B1gPqh1tgR42",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 922,
+                "cache_read_input_tokens": 24024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 922
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012JVrQUS4bXNa6ntFm3agga",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cat /root/schema-dag-extraction/src/run_fewrel_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "61a2177a-58d8-4f27-919e-55b26864839c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QVihntiv23B1gPqh1tgR42",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 922,
+                "cache_read_input_tokens": 24024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 922
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T06:37:01.505Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014fTy6MA3Vc51MMAfZrMsiM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Constrained JSON decoding NER extraction using vLLM.\\\\n\\\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\\\n\\\\nInput: Few-NERD test data, type batch config, Qwen3 model\\\\nOutput: JSON with extraction results per (sample, batch) pair\\\\nDependencies: vllm, transformers\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# --- v1: original schema/prompt with start/end offsets ---\\\\n\\\\ndef build_json_schema_v1(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema with start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n                \\\\\\\"start\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n                \\\\\\\"end\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": ..., \\\\\\\"end\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n# --- v2: text+type only, no offsets ---\\\\n\\\\ndef build_json_schema_v2(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema without start/end fields (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract entities that clearly match one of the given types. \\\\\\\"\\\\n        f\\\\\\\"If no entities of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\"}}]'\\\\n    )\\\\n\\\\n\\\\n# Backward-compatible aliases\\\\nbuild_json_schema = build_json_schema_v1\\\\nbuild_prompt = build_prompt_v1\\\\n\\\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\\\n\\\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build event trigger extraction prompt (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all event triggers from the following text. \\\\\\\"\\\\n        f\\\\\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\\\\\"\\\\n        f\\\\\\\"Only extract triggers of the following event types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract triggers that clearly match one of the given event types. \\\\\\\"\\\\n        f\\\\\\\"If no events of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"...\\\\\\\\\\\\n\\\\n... [截断: 输出过长，省略 4120 字符] ...\\\\n\\\\n              sample[\\\\\\\"text\\\\\\\"], sample[\\\\\\\"head_entity\\\\\\\"],\\\\n                        sample[\\\\\\\"tail_entity\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n                if not prompts:\\\\n                    logger.warning(\\\\\\\"No RE samples for batch %s\\\\\\\", full_batch_id)\\\\n                    continue\\\\n            else:\\\\n                for si, sample in enumerate(samples):\\\\n                    prompt = prompt_fn(sample[\\\\\\\"text\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n\\\\n            t0 = time.time()\\\\n            outputs = llm.generate(prompts, sampling_params)\\\\n            elapsed = time.time() - t0\\\\n\\\\n            for oi, output in enumerate(outputs):\\\\n                si = sample_indices[oi]\\\\n                generated_text = output.outputs[0].text\\\\n                prompt_tokens = len(output.prompt_token_ids)\\\\n                gen_tokens = len(output.outputs[0].token_ids)\\\\n\\\\n                try:\\\\n                    predictions = json.loads(generated_text)\\\\n                except json.JSONDecodeError:\\\\n                    logger.warning(\\\\\\\"Failed to parse JSON for sample %d batch %s: %s\\\\\\\",\\\\n                                   si, full_batch_id, generated_text[:200])\\\\n                    predictions = []\\\\n\\\\n                all_results.append({\\\\n                    \\\\\\\"sample_id\\\\\\\": si,\\\\n                    \\\\\\\"batch_id\\\\\\\": full_batch_id,\\\\n                    \\\\\\\"count_key\\\\\\\": count_key,\\\\n                    \\\\\\\"batch_types\\\\\\\": batch_types,\\\\n                    \\\\\\\"batch_bcs\\\\\\\": batch_bcs,\\\\n                    \\\\\\\"predictions\\\\\\\": predictions,\\\\n                    \\\\\\\"prompt_tokens\\\\\\\": prompt_tokens,\\\\n                    \\\\\\\"gen_tokens\\\\\\\": gen_tokens,\\\\n                    \\\\\\\"latency_s\\\\\\\": elapsed / len(prompts),\\\\n                    \\\\\\\"prompt_version\\\\\\\": prompt_version,\\\\n                })\\\\n\\\\n            logger.info(\\\\\\\"  Batch %s done: %.1fs total, %d outputs\\\\\\\", full_batch_id, elapsed, len(outputs))\\\\n\\\\n    return all_results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Run constrained JSON NER extraction with vLLM\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to Qwen3 model\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch_config\\\\\\\", required=True, help=\\\\\\\"Type batch JSON from select_type_batches.py\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_path\\\\\\\", required=True, help=\\\\\\\"Output results JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--prompt_version\\\\\\\", choices=[\\\\\\\"v1\\\\\\\", \\\\\\\"v2\\\\\\\"], default=\\\\\\\"v1\\\\\\\",\\\\n                        help=\\\\\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    import sys\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n    from few_nerd_utils import load_few_nerd, load_type_definitions\\\\n\\\\n    logger.info(\\\\\\\"Loading data...\\\\\\\")\\\\n    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=args.max_samples)\\\\n    type_definitions = load_type_definitions(args.types_file)\\\\n\\\\n    with open(args.batch_config, \\\\\\\"r\\\\\\\") as f:\\\\n        batch_config = json.load(f)\\\\n\\\\n    results = run_extraction(\\\\n        model_path=args.model_path,\\\\n        samples=samples,\\\\n        batch_config=batch_config,\\\\n        type_definitions=type_definitions,\\\\n        max_model_len=args.max_model_len,\\\\n        prompt_version=args.prompt_version,\\\\n    )\\\\n\\\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d results to %s\\\\\\\", len(results), args.output_path)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "f24edb3c-4cc3-4340-addc-001f616b74a7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Constrained JSON decoding NER extraction using vLLM.\\\\n\\\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\\\n\\\\nInput: Few-NERD test data, type batch config, Qwen3 model\\\\nOutput: JSON with extraction results per (sample, batch) pair\\\\nDependencies: vllm, transformers\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# --- v1: original schema/prompt with start/end offsets ---\\\\n\\\\ndef build_json_schema_v1(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema with start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n                \\\\\\\"start\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n                \\\\\\\"end\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": ..., \\\\\\\"end\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n# --- v2: text+type only, no offsets ---\\\\n\\\\ndef build_json_schema_v2(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema without start/end fields (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract entities that clearly match one of the given types. \\\\\\\"\\\\n        f\\\\\\\"If no entities of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\"}}]'\\\\n    )\\\\n\\\\n\\\\n# Backward-compatible aliases\\\\nbuild_json_schema = build_json_schema_v1\\\\nbuild_prompt = build_prompt_v1\\\\n\\\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\\\n\\\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build event trigger extraction prompt (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all event triggers from the following text. \\\\\\\"\\\\n        f\\\\\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\\\\\"\\\\n        f\\\\\\\"Only extract triggers of the following event types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract triggers that clearly match one of the given event types. \\\\\\\"\\\\n        f\\\\\\\"If no events of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"...\\\\\\\\\\\\n\\\\n... [截断: 输出过长，省略 4120 字符] ...\\\\n\\\\n              sample[\\\\\\\"text\\\\\\\"], sample[\\\\\\\"head_entity\\\\\\\"],\\\\n                        sample[\\\\\\\"tail_entity\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n                if not prompts:\\\\n                    logger.warning(\\\\\\\"No RE samples for batch %s\\\\\\\", full_batch_id)\\\\n                    continue\\\\n            else:\\\\n                for si, sample in enumerate(samples):\\\\n                    prompt = prompt_fn(sample[\\\\\\\"text\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n\\\\n            t0 = time.time()\\\\n            outputs = llm.generate(prompts, sampling_params)\\\\n            elapsed = time.time() - t0\\\\n\\\\n            for oi, output in enumerate(outputs):\\\\n                si = sample_indices[oi]\\\\n                generated_text = output.outputs[0].text\\\\n                prompt_tokens = len(output.prompt_token_ids)\\\\n                gen_tokens = len(output.outputs[0].token_ids)\\\\n\\\\n                try:\\\\n                    predictions = json.loads(generated_text)\\\\n                except json.JSONDecodeError:\\\\n                    logger.warning(\\\\\\\"Failed to parse JSON for sample %d batch %s: %s\\\\\\\",\\\\n                                   si, full_batch_id, generated_text[:200])\\\\n                    predictions = []\\\\n\\\\n                all_results.append({\\\\n                    \\\\\\\"sample_id\\\\\\\": si,\\\\n                    \\\\\\\"batch_id\\\\\\\": full_batch_id,\\\\n                    \\\\\\\"count_key\\\\\\\": count_key,\\\\n                    \\\\\\\"batch_types\\\\\\\": batch_types,\\\\n                    \\\\\\\"batch_bcs\\\\\\\": batch_bcs,\\\\n                    \\\\\\\"predictions\\\\\\\": predictions,\\\\n                    \\\\\\\"prompt_tokens\\\\\\\": prompt_tokens,\\\\n                    \\\\\\\"gen_tokens\\\\\\\": gen_tokens,\\\\n                    \\\\\\\"latency_s\\\\\\\": elapsed / len(prompts),\\\\n                    \\\\\\\"prompt_version\\\\\\\": prompt_version,\\\\n                })\\\\n\\\\n            logger.info(\\\\\\\"  Batch %s done: %.1fs total, %d outputs\\\\\\\", full_batch_id, elapsed, len(outputs))\\\\n\\\\n    return all_results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Run constrained JSON NER extraction with vLLM\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to Qwen3 model\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch_config\\\\\\\", required=True, help=\\\\\\\"Type batch JSON from select_type_batches.py\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_path\\\\\\\", required=True, help=\\\\\\\"Output results JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--prompt_version\\\\\\\", choices=[\\\\\\\"v1\\\\\\\", \\\\\\\"v2\\\\\\\"], default=\\\\\\\"v1\\\\\\\",\\\\n                        help=\\\\\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    import sys\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n    from few_nerd_utils import load_few_nerd, load_type_definitions\\\\n\\\\n    logger.info(\\\\\\\"Loading data...\\\\\\\")\\\\n    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=args.max_samples)\\\\n    type_definitions = load_type_definitions(args.types_file)\\\\n\\\\n    with open(args.batch_config, \\\\\\\"r\\\\\\\") as f:\\\\n        batch_config = json.load(f)\\\\n\\\\n    results = run_extraction(\\\\n        model_path=args.model_path,\\\\n        samples=samples,\\\\n        batch_config=batch_config,\\\\n        type_definitions=type_definitions,\\\\n        max_model_len=args.max_model_len,\\\\n        prompt_version=args.prompt_version,\\\\n    )\\\\n\\\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d results to %s\\\\\\\", len(results), args.output_path)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Constrained JSON decoding NER extraction using vLLM.\\n\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\n\\nInput: Few-NERD test data, type batch config, Qwen3 model\\nOutput: JSON with extraction results per (sample, batch) pair\\nDependencies: vllm, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional, Set\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# --- v1: original schema/prompt with start/end offsets ---\\n\\ndef build_json_schema_v1(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema with start/end offsets (v1).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n                \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": ..., \\\"end\\\": ...}}]'\\n    )\\n\\n\\n# --- v2: text+type only, no offsets ---\\n\\ndef build_json_schema_v2(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema without start/end fields (v2: text+type only).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract entities that clearly match one of the given types. \\\"\\n        f\\\"If no entities of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\"}}]'\\n    )\\n\\n\\n# Backward-compatible aliases\\nbuild_json_schema = build_json_schema_v1\\nbuild_prompt = build_prompt_v1\\n\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\n\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\n    \\\"\\\"\\\"Build event trigger extraction prompt (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all event triggers from the following text. \\\"\\n        f\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\"\\n        f\\\"Only extract triggers of the following event types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract triggers that clearly match one of the given event types. \\\"\\n        f\\\"If no events of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\n\\n... [截断: 输出过长，省略 4120 字符] ...\\n\\n              sample[\\\"text\\\"], sample[\\\"head_entity\\\"],\\n                        sample[\\\"tail_entity\\\"], type_definitions, batch_types)\\n                    prompts.append(prompt)\\n                    sample_indices.append(si)\\n                if not prompts:\\n                    logger.warning(\\\"No RE samples for batch %s\\\", full_batch_id)\\n                    continue\\n            else:\\n                for si, sample in enumerate(samples):\\n                    prompt = prompt_fn(sample[\\\"text\\\"], type_definitions, batch_types)\\n                    prompts.append(prompt)\\n                    sample_indices.append(si)\\n\\n            t0 = time.time()\\n            outputs = llm.generate(prompts, sampling_params)\\n            elapsed = time.time() - t0\\n\\n            for oi, output in enumerate(outputs):\\n                si = sample_indices[oi]\\n                generated_text = output.outputs[0].text\\n                prompt_tokens = len(output.prompt_token_ids)\\n                gen_tokens = len(output.outputs[0].token_ids)\\n\\n                try:\\n                    predictions = json.loads(generated_text)\\n                except json.JSONDecodeError:\\n                    logger.warning(\\\"Failed to parse JSON for sample %d batch %s: %s\\\",\\n                                   si, full_batch_id, generated_text[:200])\\n                    predictions = []\\n\\n                all_results.append({\\n                    \\\"sample_id\\\": si,\\n                    \\\"batch_id\\\": full_batch_id,\\n                    \\\"count_key\\\": count_key,\\n                    \\\"batch_types\\\": batch_types,\\n                    \\\"batch_bcs\\\": batch_bcs,\\n                    \\\"predictions\\\": predictions,\\n                    \\\"prompt_tokens\\\": prompt_tokens,\\n                    \\\"gen_tokens\\\": gen_tokens,\\n                    \\\"latency_s\\\": elapsed / len(prompts),\\n                    \\\"prompt_version\\\": prompt_version,\\n                })\\n\\n            logger.info(\\\"  Batch %s done: %.1fs total, %d outputs\\\", full_batch_id, elapsed, len(outputs))\\n\\n    return all_results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Run constrained JSON NER extraction with vLLM\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to Qwen3 model\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--batch_config\\\", required=True, help=\\\"Type batch JSON from select_type_batches.py\\\")\\n    parser.add_argument(\\\"--output_path\\\", required=True, help=\\\"Output results JSON path\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    import sys\\n    sys.path.insert(0, str(Path(__file__).parent))\\n    from few_nerd_utils import load_few_nerd, load_type_definitions\\n\\n    logger.info(\\\"Loading data...\\\")\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=args.max_samples)\\n    type_definitions = load_type_definitions(args.types_file)\\n\\n    with open(args.batch_config, \\\"r\\\") as f:\\n        batch_config = json.load(f)\\n\\n    results = run_extraction(\\n        model_path=args.model_path,\\n        samples=samples,\\n        batch_config=batch_config,\\n        type_definitions=type_definitions,\\n        max_model_len=args.max_model_len,\\n        prompt_version=args.prompt_version,\\n    )\\n\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\n    logger.info(\\\"Saved %d results to %s\\\", len(results), args.output_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T06:37:02.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012JVrQUS4bXNa6ntFm3agga",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"FewRel RE pilot experiment (D007).\\\\n\\\\nValidates BCS-confusion hypothesis on relation extraction:\\\\n- 200 samples from val set (16 relations, balanced)\\\\n- Controlled batches at count={4,8,16}: low/high BCS + random\\\\n- Qwen3-32B-FP8 RE inference via vLLM\\\\n- Accuracy comparison: high-BCS vs low-BCS\\\\n\\\\nUsage:\\\\n    python3 src/run_fewrel_pilot.py --help\\\\n    python3 src/run_fewrel_pilot.py --dry-run\\\\n    python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/models/Qwen3-32B-FP8\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\n\\\\n\\\\ndef compute_relation_embeddings_st(pid2name: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute relation embeddings using sentence-transformers (CPU).\\\\n\\\\n    Args:\\\\n        pid2name: {pid: relation_name} from fewrel_relation_types.json.\\\\n\\\\n    Returns:\\\\n        {relation_name: tensor} embeddings.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sentence_transformers import SentenceTransformer\\\\n    import torch\\\\n\\\\n    local_path = \\\\\\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\\\\\"\\\\n    from pathlib import Path\\\\n    if Path(local_path).exists():\\\\n        model = SentenceTransformer(local_path, device=\\\\\\\"cpu\\\\\\\")\\\\n    else:\\\\n        model = SentenceTransformer(\\\\\\\"all-MiniLM-L6-v2\\\\\\\", device=\\\\\\\"cpu\\\\\\\")\\\\n\\\\n    names = []\\\\n    texts = []\\\\n    for pid, name in pid2name.items():\\\\n        names.append(name)\\\\n        texts.append(f\\\\\\\"Relation type: {name}\\\\\\\")\\\\n\\\\n    embeddings_np = model.encode(texts, show_progress_bar=False)\\\\n    return {name: torch.tensor(emb) for name, emb in zip(names, embeddings_np)}\\\\n\\\\n\\\\ndef build_batch_config(sim_matrix, type_names, type_to_idx, counts,\\\\n                       num_random=3, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build controlled batch configuration with low/high BCS + random.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from compute_bcs import compute_bcs\\\\n    from select_type_batches import (select_high_bcs, select_low_bcs,\\\\n                                     select_random_batches)\\\\n\\\\n    batch_config = {}\\\\n    for count in counts:\\\\n        effective = min(count, len(type_names))\\\\n        low = select_low_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        high = select_high_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        rand = select_random_batches(effective, num_random, type_names,\\\\n                                     sim_matrix, type_to_idx, seed + count)\\\\n        batch_config[f\\\\\\\"count_{effective}\\\\\\\"] = {\\\\n            \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"random\\\\\\\": rand,\\\\n        }\\\\n    return batch_config\\\\n\\\\n\\\\ndef run_re_extraction(model_path, samples, batch_config, relation_defs,\\\\n                      max_model_len=4096):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run RE extraction using vLLM with constrained JSON decoding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n\\\\n    from vllm import LLM, SamplingParams\\\\n    from vllm.sampling_params import StructuredOutputsParams\\\\n\\\\n    llm = LLM(model=model_path, max_model_len=max_model_len,\\\\n              trust_remote_code=True, dtype=\\\\\\\"auto\\\\\\\", enable_thinking=False)\\\\n\\\\n    all_results = []\\\\n\\\\n    for count_key, batches in batch_config.items():\\\\n        for batch_label, batch_data in batches.items():\\\\n            if batch_label == \\\\\\\"random\\\\\\\":\\\\n                batch_list = batch_data\\\\n            else:\\\\n                batch_list = [batch_data]\\\\n\\\\n            for bi, entry in enumerate(batch_list):\\\\n                batch_types = entry[\\\\\\\"types\\\\\\\"]\\\\n                batch_bcs = entry[\\\\\\\"bcs\\\\\\\"]\\\\n                bid = (f\\\\\\\"{count_key}_{batch_label}_{bi}\\\\\\\"\\\\n                       if batch_label == \\\\\\\"random\\\\\\\"\\\\n                       else f\\\\\\\"{count_key}_{batch_label}\\\\\\\")\\\\n\\\\n                batch_samples = [s for s in samples\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 5236 字符] ...\\\\n\\\\ns.n_samples // len(all_relations)\\\\n    samples = sample_balanced(all_samples, n_per_rel, seed=args.seed)\\\\n    logger.info(\\\\\\\"Sampled %d (%d per relation)\\\\\\\", len(samples), n_per_rel)\\\\n\\\\n    # --- Relation definitions ---\\\\n    with open(args.types_file) as f:\\\\n        pid2name = json.load(f)\\\\n    relation_defs = {name: name for name in pid2name.values()}\\\\n\\\\n    # --- Compute relation embeddings (CPU) ---\\\\n    logger.info(\\\\\\\"Computing relation embeddings (sentence-transformers, CPU)...\\\\\\\")\\\\n    embeddings = compute_relation_embeddings_st(pid2name)\\\\n    dim = next(iter(embeddings.values())).shape[0]\\\\n    logger.info(\\\\\\\"Embeddings: %d relations, dim=%d\\\\\\\", len(embeddings), dim)\\\\n\\\\n    # --- Similarity matrix ---\\\\n    from compute_bcs import compute_similarity_matrix\\\\n    sim_matrix, type_names, type_to_idx = compute_similarity_matrix(embeddings)\\\\n\\\\n    # --- Batch config ---\\\\n    counts = [int(c.strip()) for c in args.counts.split(\\\\\\\",\\\\\\\")]\\\\n    batch_config = build_batch_config(sim_matrix, type_names, type_to_idx,\\\\n                                      counts, args.num_random, args.seed)\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    with open(output_dir / \\\\\\\"batch_config.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(batch_config, f, indent=2)\\\\n\\\\n    import torch\\\\n    torch.save({\\\\\\\"sim_matrix\\\\\\\": sim_matrix, \\\\\\\"type_names\\\\\\\": type_names,\\\\n                \\\\\\\"type_to_idx\\\\\\\": type_to_idx},\\\\n               output_dir / \\\\\\\"relation_sim_matrix.pt\\\\\\\")\\\\n\\\\n    # --- Print summary ---\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"BATCH CONFIGURATION\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    total_batches = 0\\\\n    total_inferences = 0\\\\n    for ck, batches in sorted(batch_config.items()):\\\\n        logger.info(\\\\\\\"  %s:\\\\\\\", ck)\\\\n        for label, data in batches.items():\\\\n            if label == \\\\\\\"random\\\\\\\":\\\\n                bcs_vals = [b[\\\\\\\"bcs\\\\\\\"] for b in data]\\\\n                for b in data:\\\\n                    n = sum(1 for s in samples\\\\n                            if s[\\\\\\\"relation_type\\\\\\\"] in b[\\\\\\\"types\\\\\\\"])\\\\n                    total_inferences += n\\\\n                total_batches += len(data)\\\\n                logger.info(\\\\\\\"    random (%d): BCS [%.4f, %.4f]\\\\\\\",\\\\n                            len(data), min(bcs_vals), max(bcs_vals))\\\\n            else:\\\\n                n = sum(1 for s in samples\\\\n                        if s[\\\\\\\"relation_type\\\\\\\"] in data[\\\\\\\"types\\\\\\\"])\\\\n                total_inferences += n\\\\n                total_batches += 1\\\\n                logger.info(\\\\\\\"    %s: BCS=%.4f, types=%s\\\\\\\", label, data[\\\\\\\"bcs\\\\\\\"],\\\\n                            data[\\\\\\\"types\\\\\\\"][:4])\\\\n\\\\n    if args.dry_run:\\\\n        logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        logger.info(\\\\\\\"DRY RUN COMPLETE\\\\\\\")\\\\n        logger.info(\\\\\\\"  Samples: %d (%d/rel)\\\\\\\", len(samples), n_per_rel)\\\\n        logger.info(\\\\\\\"  Relations: %d\\\\\\\", len(all_relations))\\\\n        logger.info(\\\\\\\"  Batch counts: %s\\\\\\\", counts)\\\\n        logger.info(\\\\\\\"  Total batches: %d\\\\\\\", total_batches)\\\\n        logger.info(\\\\\\\"  Total inferences: %d\\\\\\\", total_inferences)\\\\n        est_sec_per_sample = 1.5\\\\n        logger.info(\\\\\\\"  Est. GPU time: ~%.0f min (@%.1fs/sample, Qwen3-32B-FP8)\\\\\\\",\\\\n                    total_inferences * est_sec_per_sample / 60,\\\\n                    est_sec_per_sample)\\\\n        logger.info(\\\\\\\"  Output: %s\\\\\\\", output_dir)\\\\n        return\\\\n\\\\n    # --- Run extraction ---\\\\n    results = run_re_extraction(args.model_path, samples, batch_config,\\\\n                                relation_defs, args.max_model_len)\\\\n\\\\n    with open(output_dir / \\\\\\\"predictions.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d predictions\\\\\\\", len(results))\\\\n\\\\n    # --- Evaluate ---\\\\n    eval_results = evaluate_re(results)\\\\n    with open(output_dir / \\\\\\\"eval_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(eval_results, f, indent=2)\\\\n\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"RESULTS\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for bid, m in sorted(eval_results.items()):\\\\n        logger.info(\\\\\\\"  %-35s acc=%.4f (%3d/%3d) BCS=%.4f\\\\\\\",\\\\n                    bid, m[\\\\\\\"accuracy\\\\\\\"], m[\\\\\\\"correct\\\\\\\"], m[\\\\\\\"total\\\\\\\"], m[\\\\\\\"bcs\\\\\\\"])\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "d28f1227-59e2-418c-945f-49c752af286a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"FewRel RE pilot experiment (D007).\\\\n\\\\nValidates BCS-confusion hypothesis on relation extraction:\\\\n- 200 samples from val set (16 relations, balanced)\\\\n- Controlled batches at count={4,8,16}: low/high BCS + random\\\\n- Qwen3-32B-FP8 RE inference via vLLM\\\\n- Accuracy comparison: high-BCS vs low-BCS\\\\n\\\\nUsage:\\\\n    python3 src/run_fewrel_pilot.py --help\\\\n    python3 src/run_fewrel_pilot.py --dry-run\\\\n    python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/models/Qwen3-32B-FP8\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\n\\\\n\\\\ndef compute_relation_embeddings_st(pid2name: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute relation embeddings using sentence-transformers (CPU).\\\\n\\\\n    Args:\\\\n        pid2name: {pid: relation_name} from fewrel_relation_types.json.\\\\n\\\\n    Returns:\\\\n        {relation_name: tensor} embeddings.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sentence_transformers import SentenceTransformer\\\\n    import torch\\\\n\\\\n    local_path = \\\\\\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\\\\\"\\\\n    from pathlib import Path\\\\n    if Path(local_path).exists():\\\\n        model = SentenceTransformer(local_path, device=\\\\\\\"cpu\\\\\\\")\\\\n    else:\\\\n        model = SentenceTransformer(\\\\\\\"all-MiniLM-L6-v2\\\\\\\", device=\\\\\\\"cpu\\\\\\\")\\\\n\\\\n    names = []\\\\n    texts = []\\\\n    for pid, name in pid2name.items():\\\\n        names.append(name)\\\\n        texts.append(f\\\\\\\"Relation type: {name}\\\\\\\")\\\\n\\\\n    embeddings_np = model.encode(texts, show_progress_bar=False)\\\\n    return {name: torch.tensor(emb) for name, emb in zip(names, embeddings_np)}\\\\n\\\\n\\\\ndef build_batch_config(sim_matrix, type_names, type_to_idx, counts,\\\\n                       num_random=3, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build controlled batch configuration with low/high BCS + random.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from compute_bcs import compute_bcs\\\\n    from select_type_batches import (select_high_bcs, select_low_bcs,\\\\n                                     select_random_batches)\\\\n\\\\n    batch_config = {}\\\\n    for count in counts:\\\\n        effective = min(count, len(type_names))\\\\n        low = select_low_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        high = select_high_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        rand = select_random_batches(effective, num_random, type_names,\\\\n                                     sim_matrix, type_to_idx, seed + count)\\\\n        batch_config[f\\\\\\\"count_{effective}\\\\\\\"] = {\\\\n            \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"random\\\\\\\": rand,\\\\n        }\\\\n    return batch_config\\\\n\\\\n\\\\ndef run_re_extraction(model_path, samples, batch_config, relation_defs,\\\\n                      max_model_len=4096):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run RE extraction using vLLM with constrained JSON decoding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n\\\\n    from vllm import LLM, SamplingParams\\\\n    from vllm.sampling_params import StructuredOutputsParams\\\\n\\\\n    llm = LLM(model=model_path, max_model_len=max_model_len,\\\\n              trust_remote_code=True, dtype=\\\\\\\"auto\\\\\\\", enable_thinking=False)\\\\n\\\\n    all_results = []\\\\n\\\\n    for count_key, batches in batch_config.items():\\\\n        for batch_label, batch_data in batches.items():\\\\n            if batch_label == \\\\\\\"random\\\\\\\":\\\\n                batch_list = batch_data\\\\n            else:\\\\n                batch_list = [batch_data]\\\\n\\\\n            for bi, entry in enumerate(batch_list):\\\\n                batch_types = entry[\\\\\\\"types\\\\\\\"]\\\\n                batch_bcs = entry[\\\\\\\"bcs\\\\\\\"]\\\\n                bid = (f\\\\\\\"{count_key}_{batch_label}_{bi}\\\\\\\"\\\\n                       if batch_label == \\\\\\\"random\\\\\\\"\\\\n                       else f\\\\\\\"{count_key}_{batch_label}\\\\\\\")\\\\n\\\\n                batch_samples = [s for s in samples\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 5236 字符] ...\\\\n\\\\ns.n_samples // len(all_relations)\\\\n    samples = sample_balanced(all_samples, n_per_rel, seed=args.seed)\\\\n    logger.info(\\\\\\\"Sampled %d (%d per relation)\\\\\\\", len(samples), n_per_rel)\\\\n\\\\n    # --- Relation definitions ---\\\\n    with open(args.types_file) as f:\\\\n        pid2name = json.load(f)\\\\n    relation_defs = {name: name for name in pid2name.values()}\\\\n\\\\n    # --- Compute relation embeddings (CPU) ---\\\\n    logger.info(\\\\\\\"Computing relation embeddings (sentence-transformers, CPU)...\\\\\\\")\\\\n    embeddings = compute_relation_embeddings_st(pid2name)\\\\n    dim = next(iter(embeddings.values())).shape[0]\\\\n    logger.info(\\\\\\\"Embeddings: %d relations, dim=%d\\\\\\\", len(embeddings), dim)\\\\n\\\\n    # --- Similarity matrix ---\\\\n    from compute_bcs import compute_similarity_matrix\\\\n    sim_matrix, type_names, type_to_idx = compute_similarity_matrix(embeddings)\\\\n\\\\n    # --- Batch config ---\\\\n    counts = [int(c.strip()) for c in args.counts.split(\\\\\\\",\\\\\\\")]\\\\n    batch_config = build_batch_config(sim_matrix, type_names, type_to_idx,\\\\n                                      counts, args.num_random, args.seed)\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    with open(output_dir / \\\\\\\"batch_config.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(batch_config, f, indent=2)\\\\n\\\\n    import torch\\\\n    torch.save({\\\\\\\"sim_matrix\\\\\\\": sim_matrix, \\\\\\\"type_names\\\\\\\": type_names,\\\\n                \\\\\\\"type_to_idx\\\\\\\": type_to_idx},\\\\n               output_dir / \\\\\\\"relation_sim_matrix.pt\\\\\\\")\\\\n\\\\n    # --- Print summary ---\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"BATCH CONFIGURATION\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    total_batches = 0\\\\n    total_inferences = 0\\\\n    for ck, batches in sorted(batch_config.items()):\\\\n        logger.info(\\\\\\\"  %s:\\\\\\\", ck)\\\\n        for label, data in batches.items():\\\\n            if label == \\\\\\\"random\\\\\\\":\\\\n                bcs_vals = [b[\\\\\\\"bcs\\\\\\\"] for b in data]\\\\n                for b in data:\\\\n                    n = sum(1 for s in samples\\\\n                            if s[\\\\\\\"relation_type\\\\\\\"] in b[\\\\\\\"types\\\\\\\"])\\\\n                    total_inferences += n\\\\n                total_batches += len(data)\\\\n                logger.info(\\\\\\\"    random (%d): BCS [%.4f, %.4f]\\\\\\\",\\\\n                            len(data), min(bcs_vals), max(bcs_vals))\\\\n            else:\\\\n                n = sum(1 for s in samples\\\\n                        if s[\\\\\\\"relation_type\\\\\\\"] in data[\\\\\\\"types\\\\\\\"])\\\\n                total_inferences += n\\\\n                total_batches += 1\\\\n                logger.info(\\\\\\\"    %s: BCS=%.4f, types=%s\\\\\\\", label, data[\\\\\\\"bcs\\\\\\\"],\\\\n                            data[\\\\\\\"types\\\\\\\"][:4])\\\\n\\\\n    if args.dry_run:\\\\n        logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        logger.info(\\\\\\\"DRY RUN COMPLETE\\\\\\\")\\\\n        logger.info(\\\\\\\"  Samples: %d (%d/rel)\\\\\\\", len(samples), n_per_rel)\\\\n        logger.info(\\\\\\\"  Relations: %d\\\\\\\", len(all_relations))\\\\n        logger.info(\\\\\\\"  Batch counts: %s\\\\\\\", counts)\\\\n        logger.info(\\\\\\\"  Total batches: %d\\\\\\\", total_batches)\\\\n        logger.info(\\\\\\\"  Total inferences: %d\\\\\\\", total_inferences)\\\\n        est_sec_per_sample = 1.5\\\\n        logger.info(\\\\\\\"  Est. GPU time: ~%.0f min (@%.1fs/sample, Qwen3-32B-FP8)\\\\\\\",\\\\n                    total_inferences * est_sec_per_sample / 60,\\\\n                    est_sec_per_sample)\\\\n        logger.info(\\\\\\\"  Output: %s\\\\\\\", output_dir)\\\\n        return\\\\n\\\\n    # --- Run extraction ---\\\\n    results = run_re_extraction(args.model_path, samples, batch_config,\\\\n                                relation_defs, args.max_model_len)\\\\n\\\\n    with open(output_dir / \\\\\\\"predictions.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d predictions\\\\\\\", len(results))\\\\n\\\\n    # --- Evaluate ---\\\\n    eval_results = evaluate_re(results)\\\\n    with open(output_dir / \\\\\\\"eval_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(eval_results, f, indent=2)\\\\n\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"RESULTS\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for bid, m in sorted(eval_results.items()):\\\\n        logger.info(\\\\\\\"  %-35s acc=%.4f (%3d/%3d) BCS=%.4f\\\\\\\",\\\\n                    bid, m[\\\\\\\"accuracy\\\\\\\"], m[\\\\\\\"correct\\\\\\\"], m[\\\\\\\"total\\\\\\\"], m[\\\\\\\"bcs\\\\\\\"])\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"FewRel RE pilot experiment (D007).\\n\\nValidates BCS-confusion hypothesis on relation extraction:\\n- 200 samples from val set (16 relations, balanced)\\n- Controlled batches at count={4,8,16}: low/high BCS + random\\n- Qwen3-32B-FP8 RE inference via vLLM\\n- Accuracy comparison: high-BCS vs low-BCS\\n\\nUsage:\\n    python3 src/run_fewrel_pilot.py --help\\n    python3 src/run_fewrel_pilot.py --dry-run\\n    python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/models/Qwen3-32B-FP8\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = Path(\\\"/root/schema-dag-extraction\\\")\\n\\n\\ndef compute_relation_embeddings_st(pid2name: dict) -> dict:\\n    \\\"\\\"\\\"Compute relation embeddings using sentence-transformers (CPU).\\n\\n    Args:\\n        pid2name: {pid: relation_name} from fewrel_relation_types.json.\\n\\n    Returns:\\n        {relation_name: tensor} embeddings.\\n    \\\"\\\"\\\"\\n    from sentence_transformers import SentenceTransformer\\n    import torch\\n\\n    local_path = \\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\"\\n    from pathlib import Path\\n    if Path(local_path).exists():\\n        model = SentenceTransformer(local_path, device=\\\"cpu\\\")\\n    else:\\n        model = SentenceTransformer(\\\"all-MiniLM-L6-v2\\\", device=\\\"cpu\\\")\\n\\n    names = []\\n    texts = []\\n    for pid, name in pid2name.items():\\n        names.append(name)\\n        texts.append(f\\\"Relation type: {name}\\\")\\n\\n    embeddings_np = model.encode(texts, show_progress_bar=False)\\n    return {name: torch.tensor(emb) for name, emb in zip(names, embeddings_np)}\\n\\n\\ndef build_batch_config(sim_matrix, type_names, type_to_idx, counts,\\n                       num_random=3, seed=42):\\n    \\\"\\\"\\\"Build controlled batch configuration with low/high BCS + random.\\\"\\\"\\\"\\n    import sys\\n    sys.path.insert(0, str(BASE_DIR / \\\"src\\\"))\\n    from compute_bcs import compute_bcs\\n    from select_type_batches import (select_high_bcs, select_low_bcs,\\n                                     select_random_batches)\\n\\n    batch_config = {}\\n    for count in counts:\\n        effective = min(count, len(type_names))\\n        low = select_low_bcs(effective, sim_matrix, type_names, type_to_idx)\\n        high = select_high_bcs(effective, sim_matrix, type_names, type_to_idx)\\n        rand = select_random_batches(effective, num_random, type_names,\\n                                     sim_matrix, type_to_idx, seed + count)\\n        batch_config[f\\\"count_{effective}\\\"] = {\\n            \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n            \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n            \\\"random\\\": rand,\\n        }\\n    return batch_config\\n\\n\\ndef run_re_extraction(model_path, samples, batch_config, relation_defs,\\n                      max_model_len=4096):\\n    \\\"\\\"\\\"Run RE extraction using vLLM with constrained JSON decoding.\\\"\\\"\\\"\\n    import sys\\n    sys.path.insert(0, str(BASE_DIR / \\\"src\\\"))\\n    from run_extraction import build_json_schema_re, build_prompt_v2_re\\n\\n    from vllm import LLM, SamplingParams\\n    from vllm.sampling_params import StructuredOutputsParams\\n\\n    llm = LLM(model=model_path, max_model_len=max_model_len,\\n              trust_remote_code=True, dtype=\\\"auto\\\", enable_thinking=False)\\n\\n    all_results = []\\n\\n    for count_key, batches in batch_config.items():\\n        for batch_label, batch_data in batches.items():\\n            if batch_label == \\\"random\\\":\\n                batch_list = batch_data\\n            else:\\n                batch_list = [batch_data]\\n\\n            for bi, entry in enumerate(batch_list):\\n                batch_types = entry[\\\"types\\\"]\\n                batch_bcs = entry[\\\"bcs\\\"]\\n                bid = (f\\\"{count_key}_{batch_label}_{bi}\\\"\\n                       if batch_label == \\\"random\\\"\\n                       else f\\\"{count_key}_{batch_label}\\\")\\n\\n                batch_samples = [s for s in samples\\n    \\n\\n... [截断: 输出过长，省略 5236 字符] ...\\n\\ns.n_samples // len(all_relations)\\n    samples = sample_balanced(all_samples, n_per_rel, seed=args.seed)\\n    logger.info(\\\"Sampled %d (%d per relation)\\\", len(samples), n_per_rel)\\n\\n    # --- Relation definitions ---\\n    with open(args.types_file) as f:\\n        pid2name = json.load(f)\\n    relation_defs = {name: name for name in pid2name.values()}\\n\\n    # --- Compute relation embeddings (CPU) ---\\n    logger.info(\\\"Computing relation embeddings (sentence-transformers, CPU)...\\\")\\n    embeddings = compute_relation_embeddings_st(pid2name)\\n    dim = next(iter(embeddings.values())).shape[0]\\n    logger.info(\\\"Embeddings: %d relations, dim=%d\\\", len(embeddings), dim)\\n\\n    # --- Similarity matrix ---\\n    from compute_bcs import compute_similarity_matrix\\n    sim_matrix, type_names, type_to_idx = compute_similarity_matrix(embeddings)\\n\\n    # --- Batch config ---\\n    counts = [int(c.strip()) for c in args.counts.split(\\\",\\\")]\\n    batch_config = build_batch_config(sim_matrix, type_names, type_to_idx,\\n                                      counts, args.num_random, args.seed)\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    with open(output_dir / \\\"batch_config.json\\\", \\\"w\\\") as f:\\n        json.dump(batch_config, f, indent=2)\\n\\n    import torch\\n    torch.save({\\\"sim_matrix\\\": sim_matrix, \\\"type_names\\\": type_names,\\n                \\\"type_to_idx\\\": type_to_idx},\\n               output_dir / \\\"relation_sim_matrix.pt\\\")\\n\\n    # --- Print summary ---\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"BATCH CONFIGURATION\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    total_batches = 0\\n    total_inferences = 0\\n    for ck, batches in sorted(batch_config.items()):\\n        logger.info(\\\"  %s:\\\", ck)\\n        for label, data in batches.items():\\n            if label == \\\"random\\\":\\n                bcs_vals = [b[\\\"bcs\\\"] for b in data]\\n                for b in data:\\n                    n = sum(1 for s in samples\\n                            if s[\\\"relation_type\\\"] in b[\\\"types\\\"])\\n                    total_inferences += n\\n                total_batches += len(data)\\n                logger.info(\\\"    random (%d): BCS [%.4f, %.4f]\\\",\\n                            len(data), min(bcs_vals), max(bcs_vals))\\n            else:\\n                n = sum(1 for s in samples\\n                        if s[\\\"relation_type\\\"] in data[\\\"types\\\"])\\n                total_inferences += n\\n                total_batches += 1\\n                logger.info(\\\"    %s: BCS=%.4f, types=%s\\\", label, data[\\\"bcs\\\"],\\n                            data[\\\"types\\\"][:4])\\n\\n    if args.dry_run:\\n        logger.info(\\\"=\\\" * 60)\\n        logger.info(\\\"DRY RUN COMPLETE\\\")\\n        logger.info(\\\"  Samples: %d (%d/rel)\\\", len(samples), n_per_rel)\\n        logger.info(\\\"  Relations: %d\\\", len(all_relations))\\n        logger.info(\\\"  Batch counts: %s\\\", counts)\\n        logger.info(\\\"  Total batches: %d\\\", total_batches)\\n        logger.info(\\\"  Total inferences: %d\\\", total_inferences)\\n        est_sec_per_sample = 1.5\\n        logger.info(\\\"  Est. GPU time: ~%.0f min (@%.1fs/sample, Qwen3-32B-FP8)\\\",\\n                    total_inferences * est_sec_per_sample / 60,\\n                    est_sec_per_sample)\\n        logger.info(\\\"  Output: %s\\\", output_dir)\\n        return\\n\\n    # --- Run extraction ---\\n    results = run_re_extraction(args.model_path, samples, batch_config,\\n                                relation_defs, args.max_model_len)\\n\\n    with open(output_dir / \\\"predictions.json\\\", \\\"w\\\") as f:\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\n    logger.info(\\\"Saved %d predictions\\\", len(results))\\n\\n    # --- Evaluate ---\\n    eval_results = evaluate_re(results)\\n    with open(output_dir / \\\"eval_results.json\\\", \\\"w\\\") as f:\\n        json.dump(eval_results, f, indent=2)\\n\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"RESULTS\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for bid, m in sorted(eval_results.items()):\\n        logger.info(\\\"  %-35s acc=%.4f (%3d/%3d) BCS=%.4f\\\",\\n                    bid, m[\\\"accuracy\\\"], m[\\\"correct\\\"], m[\\\"total\\\"], m[\\\"bcs\\\"])\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me parse through both files carefully.\n\n**run_extraction.py** has:\n- `build_json_schema_v1`, `build_json_schema_v2` (NER schemas)\n- `build_prompt_v1`, `build_prompt_v2` (NER prompts)\n- `build_prompt_v2_event` (event detection prompt)\n- Backward compat aliases: `build_json_schema = build_json_schema_v1`, `build_prompt = build_prompt_v1`\n- `run_extraction()` function that handles NER, ED, and RE tasks\n\n\n- For RE tasks, it calls `build_prompt_v2_re` with the text and entity pair, and uses `build_json_schema_re` for the schema\n\n**run_fewrel_pilot.py** imports both `build_json_schema_re` and `build_prompt_v2_re` from run_extraction, then uses them in its own `run_re_extraction()` function.\n\nI need to see the exact arguments being passed to these functions and what they return.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "ee9e9dcd-1254-42f6-adf8-b1e585214867",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AhNgvbk1VDgBin1oN3GvUw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6692,
+                "cache_read_input_tokens": 24946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出被截断了，读取关键部分。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "4f437653-5926-4a54-a939-0e9d5699b6b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AhNgvbk1VDgBin1oN3GvUw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6692,
+                "cache_read_input_tokens": 24946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SFx7fh4n8jTkZxvTAeU48Q",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "grep -n \"build_json_schema_re\\|build_prompt_v2_re\\|build_prompt_v2_re_batch\\|def run_extraction\\|task_type\" /root/schema-dag-extraction/src/run_extraction.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "20a76d3e-6d6f-4397-bb91-a1a41f2f1bbb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AhNgvbk1VDgBin1oN3GvUw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6692,
+                "cache_read_input_tokens": 24946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T06:37:13.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SFx7fh4n8jTkZxvTAeU48Q",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "d95403c2-13c3-410f-aa0a-deb0a66125b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G8pps3D1cts1xEp3bDLuwm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "grep -n \"build_json_schema_re\\|build_prompt_v2_re\\|build_prompt_v2_re_batch\" /root/schema-dag-extraction/src/run_fewrel_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "0b096d55-10e8-4430-a781-e8427cce2183",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AhNgvbk1VDgBin1oN3GvUw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6692,
+                "cache_read_input_tokens": 24946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6692
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T06:37:14.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G8pps3D1cts1xEp3bDLuwm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "74bdbd2f-a642-4de1-96fe-92d4b01cca70",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Nr5uGzfwyyy3M35tkJyk74",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "grep -n \"build_json_schema_re\\|build_prompt_v2_re\\|task_type\\|def run_extraction\" /root/schema-dag-extraction/src/run_extraction.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "9f241b27-f6a6-408c-b40e-1267aed7aca1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G8eUyjfJcs2vhZ6PV3WFLq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 972,
+                "cache_read_input_tokens": 31638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 972
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T06:37:17.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Nr5uGzfwyyy3M35tkJyk74",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "5ee40fb7-c195-4d73-ab2c-fbb04f05c62a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CYFFNQJB5TC2X1e8fx1bLh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "grep -n \"build_json_schema_re\\|build_prompt_v2_re\" /root/schema-dag-extraction/src/run_fewrel_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "8f416407-c6aa-4d81-9e1e-076ba4beaabf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G8eUyjfJcs2vhZ6PV3WFLq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 972,
+                "cache_read_input_tokens": 31638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 972
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T06:37:18.917Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CYFFNQJB5TC2X1e8fx1bLh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "b3b05bea-d97a-444b-8d9e-976211632d97",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `\\|` is being treated as a shell metacharacter. Let me use `-e` flags instead.",
+              "signature": "Eo0CClkIDRgCKkB5MZfObBo9XE2yXvEO4pS7fBXB1gG5X7kJXEqW/XKAGUMCKdbRitZOr3A1NGl+DxE1CaJ+pSfvKeGCsLqHMA9gMg9jbGF1ZGUtb3B1cy00LTY4ABIMB3lsFCpRvN8/XFxWGgwaMCAOPWtjS+Y37iQiMJqJLEpimW2UverC3qke0TOdz4a3fXgvAzOmM1wthIpMJTPIdN5K7q55VUb0yooBwipi1AqXZ3E9SdpBJ0Yv0AY2yaopiocSEYq40dAMCsYmH9RbB4myR8hit2EWfTQxcHNKfOTIObm/RXK7qZPXTyX2g9UjGRjtnYg60uqRIxJ6tfxIkdrj3IsOEx3p1kxm4OLMGUQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "8f88e40f-f43f-4b30-9d2f-6b8568aedb20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HoHf8FWbB3W1KBTyDztvD8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 32610,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016CRfZUgcb6GTDGdwMAyPJJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "grep -n -e \"build_json_schema_re\" -e \"build_prompt_v2_re\" -e \"task_type\" -e \"def run_extraction\" /root/schema-dag-extraction/src/run_extraction.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "cb21ede0-a444-4cf1-a10c-1b537e73a40c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HoHf8FWbB3W1KBTyDztvD8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 32610,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NjBpY7ZEdypHjcgHmqaFrg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "grep -n -e \"build_json_schema_re\" -e \"build_prompt_v2_re\" /root/schema-dag-extraction/src/run_fewrel_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "6b1b57ab-3098-445e-86db-ec4d3ab5f341",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HoHf8FWbB3W1KBTyDztvD8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 32610,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T06:37:23.973Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016CRfZUgcb6GTDGdwMAyPJJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"136:def run_extraction(\\\\n162:        schema_fn = build_json_schema_re\\\\n163:        prompt_fn = None  # RE uses build_prompt_v2_re with different signature\\\\n221:                    prompt = build_prompt_v2_re(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "a0087dd2-6f05-4a36-b7a7-809d3de17661",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"136:def run_extraction(\\\\n162:        schema_fn = build_json_schema_re\\\\n163:        prompt_fn = None  # RE uses build_prompt_v2_re with different signature\\\\n221:                    prompt = build_prompt_v2_re(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"136:def run_extraction(\\n162:        schema_fn = build_json_schema_re\\n163:        prompt_fn = None  # RE uses build_prompt_v2_re with different signature\\n221:                    prompt = build_prompt_v2_re(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T06:37:24.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NjBpY7ZEdypHjcgHmqaFrg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"85:    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n118:                schema = build_json_schema_re(batch_types)\\\\n124:                    build_prompt_v2_re(s[\\\\\\\"text\\\\\\\"], s[\\\\\\\"head_entity\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "bb8e685e-028b-4722-b59e-bea4ba5ea506",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"85:    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n118:                schema = build_json_schema_re(batch_types)\\\\n124:                    build_prompt_v2_re(s[\\\\\\\"text\\\\\\\"], s[\\\\\\\"head_entity\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"85:    from run_extraction import build_json_schema_re, build_prompt_v2_re\\n118:                schema = build_json_schema_re(batch_types)\\n124:                    build_prompt_v2_re(s[\\\"text\\\"], s[\\\"head_entity\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the exact call sites in both files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "d52b6644-1886-4bce-9bab-cd26850efb51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SiyZ4VvjcWJ7WvMZmqqWHV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 784,
+                "cache_read_input_tokens": 33135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 784
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FxYab8Fb3C7dmgoPPdX6Kc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "head -235 /root/schema-dag-extraction/src/run_extraction.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "c37d5eec-257a-4296-bd72-942ea5384253",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SiyZ4VvjcWJ7WvMZmqqWHV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 784,
+                "cache_read_input_tokens": 33135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 784
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T06:37:27.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FxYab8Fb3C7dmgoPPdX6Kc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Constrained JSON decoding NER extraction using vLLM.\\\\n\\\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\\\n\\\\nInput: Few-NERD test data, type batch config, Qwen3 model\\\\nOutput: JSON with extraction results per (sample, batch) pair\\\\nDependencies: vllm, transformers\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# --- v1: original schema/prompt with start/end offsets ---\\\\n\\\\ndef build_json_schema_v1(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema with start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n                \\\\\\\"start\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n                \\\\\\\"end\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": ..., \\\\\\\"end\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n# --- v2: text+type only, no offsets ---\\\\n\\\\ndef build_json_schema_v2(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema without start/end fields (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract entities that clearly match one of the given types. \\\\\\\"\\\\n        f\\\\\\\"If no entities of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\"}}]'\\\\n    )\\\\n\\\\n\\\\n# Backward-compatible aliases\\\\nbuild_json_schema = build_json_schema_v1\\\\nbuild_prompt = build_prompt_v1\\\\n\\\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\\\n\\\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build event trigger extraction prompt (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all event triggers from the following text. \\\\\\\"\\\\n        f\\\\\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\\\\\"\\\\n        f\\\\\\\"Only extract triggers of the following event types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract triggers that clearly match one of the given event types. \\\\\\\"\\\\n        f\\\\\\\"If no events of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"...\\\\\\\\\\\\n\\\\n... [截断: 输出过长，省略 758 字符] ...\\\\n\\\\n..\\\\\\\\\\\\\\\",'\\\\n        f' \\\\\\\\\\\\\\\"start\\\\\\\\\\\\\\\": ..., \\\\\\\\\\\\\\\"end\\\\\\\\\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n\\\\n\\\\ndef run_extraction(\\\\n    model_path: str,\\\\n    samples: List[Dict],\\\\n    batch_config: Dict,\\\\n    type_definitions: Dict[str, str],\\\\n    max_model_len: int = 4096,\\\\n    prompt_version: str = \\\\\\\"v1\\\\\\\",\\\\n    task: str = \\\\\\\"ner\\\\\\\",\\\\n) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run NER extraction for all (sample, type_batch) combinations.\\\\n\\\\n    Args:\\\\n        model_path: Path to Qwen3 model.\\\\n        samples: List of {\\\\\\\"text\\\\\\\": str, \\\\\\\"entities\\\\\\\": [...]}.\\\\n        batch_config: Output of select_type_batches.py (nested dict by count).\\\\n        type_definitions: {type_name: definition}.\\\\n        max_model_len: vLLM max sequence length.\\\\n        prompt_version: \\\\\\\"v1\\\\\\\" (with offsets) or \\\\\\\"v2\\\\\\\" (text+type only).\\\\n\\\\n    Returns:\\\\n        List of result dicts with predictions and metadata.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from vllm import LLM, SamplingParams\\\\n    from vllm.sampling_params import StructuredOutputsParams\\\\n\\\\n    if task == \\\\\\\"re\\\\\\\":\\\\n        schema_fn = build_json_schema_re\\\\n        prompt_fn = None  # RE uses build_prompt_v2_re with different signature\\\\n    elif prompt_version == \\\\\\\"v2\\\\\\\":\\\\n        schema_fn = build_json_schema_v2\\\\n        prompt_fn = build_prompt_v2_event if task == \\\\\\\"event_detection\\\\\\\" else build_prompt_v2\\\\n    else:\\\\n        schema_fn = build_json_schema_v1\\\\n        prompt_fn = build_prompt_v1_event if task == \\\\\\\"event_detection\\\\\\\" else build_prompt_v1\\\\n\\\\n    logger.info(\\\\\\\"Loading vLLM model from %s (prompt_version=%s)\\\\\\\", model_path, prompt_version)\\\\n    llm = LLM(\\\\n        model=model_path,\\\\n        dtype=\\\\\\\"bfloat16\\\\\\\",\\\\n        gpu_memory_utilization=0.95,\\\\n        enforce_eager=True,\\\\n        max_model_len=max_model_len,\\\\n        trust_remote_code=True,\\\\n        disable_log_stats=True,\\\\n    )\\\\n\\\\n    all_results = []\\\\n\\\\n    for count_key, strategies in batch_config.items():\\\\n        batches_to_run = []\\\\n\\\\n        # Low BCS batch\\\\n        if \\\\\\\"low_bcs\\\\\\\" in strategies:\\\\n            batches_to_run.append((\\\\\\\"low_bcs\\\\\\\", strategies[\\\\\\\"low_bcs\\\\\\\"][\\\\\\\"types\\\\\\\"], strategies[\\\\\\\"low_bcs\\\\\\\"][\\\\\\\"bcs\\\\\\\"]))\\\\n\\\\n        # High BCS batch\\\\n        if \\\\\\\"high_bcs\\\\\\\" in strategies:\\\\n            batches_to_run.append((\\\\\\\"high_bcs\\\\\\\", strategies[\\\\\\\"high_bcs\\\\\\\"][\\\\\\\"types\\\\\\\"], strategies[\\\\\\\"high_bcs\\\\\\\"][\\\\\\\"bcs\\\\\\\"]))\\\\n\\\\n        # Random batches\\\\n        if \\\\\\\"random\\\\\\\" in strategies:\\\\n            for ri, rb in enumerate(strategies[\\\\\\\"random\\\\\\\"]):\\\\n                batches_to_run.append((f\\\\\\\"random_{ri}\\\\\\\", rb[\\\\\\\"types\\\\\\\"], rb[\\\\\\\"bcs\\\\\\\"]))\\\\n\\\\n        for batch_id, batch_types, batch_bcs in batches_to_run:\\\\n            full_batch_id = f\\\\\\\"{count_key}_{batch_id}\\\\\\\"\\\\n            type_set = set(batch_types)\\\\n            logger.info(\\\\\\\"Running batch %s (%d types, BCS=%.4f) on %d samples\\\\\\\",\\\\n                        full_batch_id, len(batch_types), batch_bcs, len(samples))\\\\n\\\\n            # Per-batch JSON schema with type enum constraint\\\\n            batch_schema = schema_fn(batch_types)\\\\n            structured_params = StructuredOutputsParams(json=batch_schema)\\\\n            sampling_params = SamplingParams(\\\\n                max_tokens=1024,\\\\n                temperature=0.0,\\\\n                structured_outputs=structured_params,\\\\n            )\\\\n\\\\n            prompts = []\\\\n            sample_indices = []\\\\n            if task == \\\\\\\"re\\\\\\\":\\\\n                for si, sample in enumerate(samples):\\\\n                    if sample.get(\\\\\\\"relation_type\\\\\\\") and sample[\\\\\\\"relation_type\\\\\\\"] not in batch_types:\\\\n                        continue\\\\n                    prompt = build_prompt_v2_re(\\\\n                        sample[\\\\\\\"text\\\\\\\"], sample[\\\\\\\"head_entity\\\\\\\"],\\\\n                        sample[\\\\\\\"tail_entity\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n                if not prompts:\\\\n                    logger.warning(\\\\\\\"No RE samples for batch %s\\\\\\\", full_batch_id)\\\\n                    continue\\\\n            else:\\\\n                for si, sample in enumerate(samples):\\\\n                    prompt = prompt_fn(sample[\\\\\\\"text\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n\\\\n            t0 = time.time()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "6ac506c5-1caf-4845-86c7-8455fcc78f29",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Constrained JSON decoding NER extraction using vLLM.\\\\n\\\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\\\n\\\\nInput: Few-NERD test data, type batch config, Qwen3 model\\\\nOutput: JSON with extraction results per (sample, batch) pair\\\\nDependencies: vllm, transformers\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# --- v1: original schema/prompt with start/end offsets ---\\\\n\\\\ndef build_json_schema_v1(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema with start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n                \\\\\\\"start\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n                \\\\\\\"end\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": ..., \\\\\\\"end\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n# --- v2: text+type only, no offsets ---\\\\n\\\\ndef build_json_schema_v2(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema without start/end fields (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract entities that clearly match one of the given types. \\\\\\\"\\\\n        f\\\\\\\"If no entities of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\"}}]'\\\\n    )\\\\n\\\\n\\\\n# Backward-compatible aliases\\\\nbuild_json_schema = build_json_schema_v1\\\\nbuild_prompt = build_prompt_v1\\\\n\\\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\\\n\\\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build event trigger extraction prompt (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all event triggers from the following text. \\\\\\\"\\\\n        f\\\\\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\\\\\"\\\\n        f\\\\\\\"Only extract triggers of the following event types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract triggers that clearly match one of the given event types. \\\\\\\"\\\\n        f\\\\\\\"If no events of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"...\\\\\\\\\\\\n\\\\n... [截断: 输出过长，省略 758 字符] ...\\\\n\\\\n..\\\\\\\\\\\\\\\",'\\\\n        f' \\\\\\\\\\\\\\\"start\\\\\\\\\\\\\\\": ..., \\\\\\\\\\\\\\\"end\\\\\\\\\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n\\\\n\\\\ndef run_extraction(\\\\n    model_path: str,\\\\n    samples: List[Dict],\\\\n    batch_config: Dict,\\\\n    type_definitions: Dict[str, str],\\\\n    max_model_len: int = 4096,\\\\n    prompt_version: str = \\\\\\\"v1\\\\\\\",\\\\n    task: str = \\\\\\\"ner\\\\\\\",\\\\n) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run NER extraction for all (sample, type_batch) combinations.\\\\n\\\\n    Args:\\\\n        model_path: Path to Qwen3 model.\\\\n        samples: List of {\\\\\\\"text\\\\\\\": str, \\\\\\\"entities\\\\\\\": [...]}.\\\\n        batch_config: Output of select_type_batches.py (nested dict by count).\\\\n        type_definitions: {type_name: definition}.\\\\n        max_model_len: vLLM max sequence length.\\\\n        prompt_version: \\\\\\\"v1\\\\\\\" (with offsets) or \\\\\\\"v2\\\\\\\" (text+type only).\\\\n\\\\n    Returns:\\\\n        List of result dicts with predictions and metadata.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from vllm import LLM, SamplingParams\\\\n    from vllm.sampling_params import StructuredOutputsParams\\\\n\\\\n    if task == \\\\\\\"re\\\\\\\":\\\\n        schema_fn = build_json_schema_re\\\\n        prompt_fn = None  # RE uses build_prompt_v2_re with different signature\\\\n    elif prompt_version == \\\\\\\"v2\\\\\\\":\\\\n        schema_fn = build_json_schema_v2\\\\n        prompt_fn = build_prompt_v2_event if task == \\\\\\\"event_detection\\\\\\\" else build_prompt_v2\\\\n    else:\\\\n        schema_fn = build_json_schema_v1\\\\n        prompt_fn = build_prompt_v1_event if task == \\\\\\\"event_detection\\\\\\\" else build_prompt_v1\\\\n\\\\n    logger.info(\\\\\\\"Loading vLLM model from %s (prompt_version=%s)\\\\\\\", model_path, prompt_version)\\\\n    llm = LLM(\\\\n        model=model_path,\\\\n        dtype=\\\\\\\"bfloat16\\\\\\\",\\\\n        gpu_memory_utilization=0.95,\\\\n        enforce_eager=True,\\\\n        max_model_len=max_model_len,\\\\n        trust_remote_code=True,\\\\n        disable_log_stats=True,\\\\n    )\\\\n\\\\n    all_results = []\\\\n\\\\n    for count_key, strategies in batch_config.items():\\\\n        batches_to_run = []\\\\n\\\\n        # Low BCS batch\\\\n        if \\\\\\\"low_bcs\\\\\\\" in strategies:\\\\n            batches_to_run.append((\\\\\\\"low_bcs\\\\\\\", strategies[\\\\\\\"low_bcs\\\\\\\"][\\\\\\\"types\\\\\\\"], strategies[\\\\\\\"low_bcs\\\\\\\"][\\\\\\\"bcs\\\\\\\"]))\\\\n\\\\n        # High BCS batch\\\\n        if \\\\\\\"high_bcs\\\\\\\" in strategies:\\\\n            batches_to_run.append((\\\\\\\"high_bcs\\\\\\\", strategies[\\\\\\\"high_bcs\\\\\\\"][\\\\\\\"types\\\\\\\"], strategies[\\\\\\\"high_bcs\\\\\\\"][\\\\\\\"bcs\\\\\\\"]))\\\\n\\\\n        # Random batches\\\\n        if \\\\\\\"random\\\\\\\" in strategies:\\\\n            for ri, rb in enumerate(strategies[\\\\\\\"random\\\\\\\"]):\\\\n                batches_to_run.append((f\\\\\\\"random_{ri}\\\\\\\", rb[\\\\\\\"types\\\\\\\"], rb[\\\\\\\"bcs\\\\\\\"]))\\\\n\\\\n        for batch_id, batch_types, batch_bcs in batches_to_run:\\\\n            full_batch_id = f\\\\\\\"{count_key}_{batch_id}\\\\\\\"\\\\n            type_set = set(batch_types)\\\\n            logger.info(\\\\\\\"Running batch %s (%d types, BCS=%.4f) on %d samples\\\\\\\",\\\\n                        full_batch_id, len(batch_types), batch_bcs, len(samples))\\\\n\\\\n            # Per-batch JSON schema with type enum constraint\\\\n            batch_schema = schema_fn(batch_types)\\\\n            structured_params = StructuredOutputsParams(json=batch_schema)\\\\n            sampling_params = SamplingParams(\\\\n                max_tokens=1024,\\\\n                temperature=0.0,\\\\n                structured_outputs=structured_params,\\\\n            )\\\\n\\\\n            prompts = []\\\\n            sample_indices = []\\\\n            if task == \\\\\\\"re\\\\\\\":\\\\n                for si, sample in enumerate(samples):\\\\n                    if sample.get(\\\\\\\"relation_type\\\\\\\") and sample[\\\\\\\"relation_type\\\\\\\"] not in batch_types:\\\\n                        continue\\\\n                    prompt = build_prompt_v2_re(\\\\n                        sample[\\\\\\\"text\\\\\\\"], sample[\\\\\\\"head_entity\\\\\\\"],\\\\n                        sample[\\\\\\\"tail_entity\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n                if not prompts:\\\\n                    logger.warning(\\\\\\\"No RE samples for batch %s\\\\\\\", full_batch_id)\\\\n                    continue\\\\n            else:\\\\n                for si, sample in enumerate(samples):\\\\n                    prompt = prompt_fn(sample[\\\\\\\"text\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n\\\\n            t0 = time.time()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Constrained JSON decoding NER extraction using vLLM.\\n\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\n\\nInput: Few-NERD test data, type batch config, Qwen3 model\\nOutput: JSON with extraction results per (sample, batch) pair\\nDependencies: vllm, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional, Set\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# --- v1: original schema/prompt with start/end offsets ---\\n\\ndef build_json_schema_v1(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema with start/end offsets (v1).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n                \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": ..., \\\"end\\\": ...}}]'\\n    )\\n\\n\\n# --- v2: text+type only, no offsets ---\\n\\ndef build_json_schema_v2(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema without start/end fields (v2: text+type only).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract entities that clearly match one of the given types. \\\"\\n        f\\\"If no entities of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\"}}]'\\n    )\\n\\n\\n# Backward-compatible aliases\\nbuild_json_schema = build_json_schema_v1\\nbuild_prompt = build_prompt_v1\\n\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\n\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\n    \\\"\\\"\\\"Build event trigger extraction prompt (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all event triggers from the following text. \\\"\\n        f\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\"\\n        f\\\"Only extract triggers of the following event types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract triggers that clearly match one of the given event types. \\\"\\n        f\\\"If no events of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\n\\n... [截断: 输出过长，省略 758 字符] ...\\n\\n..\\\\\\\",'\\n        f' \\\\\\\"start\\\\\\\": ..., \\\\\\\"end\\\\\\\": ...}}]'\\n    )\\n\\n\\n\\n\\ndef run_extraction(\\n    model_path: str,\\n    samples: List[Dict],\\n    batch_config: Dict,\\n    type_definitions: Dict[str, str],\\n    max_model_len: int = 4096,\\n    prompt_version: str = \\\"v1\\\",\\n    task: str = \\\"ner\\\",\\n) -> List[Dict]:\\n    \\\"\\\"\\\"Run NER extraction for all (sample, type_batch) combinations.\\n\\n    Args:\\n        model_path: Path to Qwen3 model.\\n        samples: List of {\\\"text\\\": str, \\\"entities\\\": [...]}.\\n        batch_config: Output of select_type_batches.py (nested dict by count).\\n        type_definitions: {type_name: definition}.\\n        max_model_len: vLLM max sequence length.\\n        prompt_version: \\\"v1\\\" (with offsets) or \\\"v2\\\" (text+type only).\\n\\n    Returns:\\n        List of result dicts with predictions and metadata.\\n    \\\"\\\"\\\"\\n    from vllm import LLM, SamplingParams\\n    from vllm.sampling_params import StructuredOutputsParams\\n\\n    if task == \\\"re\\\":\\n        schema_fn = build_json_schema_re\\n        prompt_fn = None  # RE uses build_prompt_v2_re with different signature\\n    elif prompt_version == \\\"v2\\\":\\n        schema_fn = build_json_schema_v2\\n        prompt_fn = build_prompt_v2_event if task == \\\"event_detection\\\" else build_prompt_v2\\n    else:\\n        schema_fn = build_json_schema_v1\\n        prompt_fn = build_prompt_v1_event if task == \\\"event_detection\\\" else build_prompt_v1\\n\\n    logger.info(\\\"Loading vLLM model from %s (prompt_version=%s)\\\", model_path, prompt_version)\\n    llm = LLM(\\n        model=model_path,\\n        dtype=\\\"bfloat16\\\",\\n        gpu_memory_utilization=0.95,\\n        enforce_eager=True,\\n        max_model_len=max_model_len,\\n        trust_remote_code=True,\\n        disable_log_stats=True,\\n    )\\n\\n    all_results = []\\n\\n    for count_key, strategies in batch_config.items():\\n        batches_to_run = []\\n\\n        # Low BCS batch\\n        if \\\"low_bcs\\\" in strategies:\\n            batches_to_run.append((\\\"low_bcs\\\", strategies[\\\"low_bcs\\\"][\\\"types\\\"], strategies[\\\"low_bcs\\\"][\\\"bcs\\\"]))\\n\\n        # High BCS batch\\n        if \\\"high_bcs\\\" in strategies:\\n            batches_to_run.append((\\\"high_bcs\\\", strategies[\\\"high_bcs\\\"][\\\"types\\\"], strategies[\\\"high_bcs\\\"][\\\"bcs\\\"]))\\n\\n        # Random batches\\n        if \\\"random\\\" in strategies:\\n            for ri, rb in enumerate(strategies[\\\"random\\\"]):\\n                batches_to_run.append((f\\\"random_{ri}\\\", rb[\\\"types\\\"], rb[\\\"bcs\\\"]))\\n\\n        for batch_id, batch_types, batch_bcs in batches_to_run:\\n            full_batch_id = f\\\"{count_key}_{batch_id}\\\"\\n            type_set = set(batch_types)\\n            logger.info(\\\"Running batch %s (%d types, BCS=%.4f) on %d samples\\\",\\n                        full_batch_id, len(batch_types), batch_bcs, len(samples))\\n\\n            # Per-batch JSON schema with type enum constraint\\n            batch_schema = schema_fn(batch_types)\\n            structured_params = StructuredOutputsParams(json=batch_schema)\\n            sampling_params = SamplingParams(\\n                max_tokens=1024,\\n                temperature=0.0,\\n                structured_outputs=structured_params,\\n            )\\n\\n            prompts = []\\n            sample_indices = []\\n            if task == \\\"re\\\":\\n                for si, sample in enumerate(samples):\\n                    if sample.get(\\\"relation_type\\\") and sample[\\\"relation_type\\\"] not in batch_types:\\n                        continue\\n                    prompt = build_prompt_v2_re(\\n                        sample[\\\"text\\\"], sample[\\\"head_entity\\\"],\\n                        sample[\\\"tail_entity\\\"], type_definitions, batch_types)\\n                    prompts.append(prompt)\\n                    sample_indices.append(si)\\n                if not prompts:\\n                    logger.warning(\\\"No RE samples for batch %s\\\", full_batch_id)\\n                    continue\\n            else:\\n                for si, sample in enumerate(samples):\\n                    prompt = prompt_fn(sample[\\\"text\\\"], type_definitions, batch_types)\\n                    prompts.append(prompt)\\n                    sample_indices.append(si)\\n\\n            t0 = time.time()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PAbTedDNpJJuQCmLcPRWoc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "head -140 /root/schema-dag-extraction/src/run_fewrel_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "b7e89b29-3486-4cbf-b6d3-ac97fc9245bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SiyZ4VvjcWJ7WvMZmqqWHV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 784,
+                "cache_read_input_tokens": 33135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 784
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T06:37:28.563Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PAbTedDNpJJuQCmLcPRWoc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"FewRel RE pilot experiment (D007).\\\\n\\\\nValidates BCS-confusion hypothesis on relation extraction:\\\\n- 200 samples from val set (16 relations, balanced)\\\\n- Controlled batches at count={4,8,16}: low/high BCS + random\\\\n- Qwen3-32B-FP8 RE inference via vLLM\\\\n- Accuracy comparison: high-BCS vs low-BCS\\\\n\\\\nUsage:\\\\n    python3 src/run_fewrel_pilot.py --help\\\\n    python3 src/run_fewrel_pilot.py --dry-run\\\\n    python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/models/Qwen3-32B-FP8\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\n\\\\n\\\\ndef compute_relation_embeddings_st(pid2name: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute relation embeddings using sentence-transformers (CPU).\\\\n\\\\n    Args:\\\\n        pid2name: {pid: relation_name} from fewrel_relation_types.json.\\\\n\\\\n    Returns:\\\\n        {relation_name: tensor} embeddings.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sentence_transformers import SentenceTransformer\\\\n    import torch\\\\n\\\\n    local_path = \\\\\\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\\\\\"\\\\n    from pathlib import Path\\\\n    if Path(local_path).exists():\\\\n        model = SentenceTransformer(local_path, device=\\\\\\\"cpu\\\\\\\")\\\\n    else:\\\\n        model = SentenceTransformer(\\\\\\\"all-MiniLM-L6-v2\\\\\\\", device=\\\\\\\"cpu\\\\\\\")\\\\n\\\\n    names = []\\\\n    texts = []\\\\n    for pid, name in pid2name.items():\\\\n        names.append(name)\\\\n        texts.append(f\\\\\\\"Relation type: {name}\\\\\\\")\\\\n\\\\n    embeddings_np = model.encode(texts, show_progress_bar=False)\\\\n    return {name: torch.tensor(emb) for name, emb in zip(names, embeddings_np)}\\\\n\\\\n\\\\ndef build_batch_config(sim_matrix, type_names, type_to_idx, counts,\\\\n                       num_random=3, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build controlled batch configuration with low/high BCS + random.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from compute_bcs import compute_bcs\\\\n    from select_type_batches import (select_high_bcs, select_low_bcs,\\\\n                                     select_random_batches)\\\\n\\\\n    batch_config = {}\\\\n    for count in counts:\\\\n        effective = min(count, len(type_names))\\\\n        low = select_low_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        high = select_high_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        rand = select_random_batches(effective, num_random, type_names,\\\\n                                     sim_matrix, type_to_idx, seed + count)\\\\n        batch_config[f\\\\\\\"count_{effective}\\\\\\\"] = {\\\\n            \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"random\\\\\\\": rand,\\\\n        }\\\\n    return batch_config\\\\n\\\\n\\\\ndef run_re_extraction(model_path, samples, batch_config, relation_defs,\\\\n                      max_model_len=4096):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run RE extraction using vLLM with constrained JSON decoding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n\\\\n    from vllm import LLM, SamplingParams\\\\n    from vllm.sampling_params import StructuredOutputsParams\\\\n\\\\n    llm = LLM(model=model_path, max_model_len=max_model_len,\\\\n              trust_remote_code=True, dtype=\\\\\\\"auto\\\\\\\", enable_thinking=False)\\\\n\\\\n    all_results = []\\\\n\\\\n    for count_key, batches in batch_config.items():\\\\n        for batch_label, batch_data in batches.items():\\\\n            if batch_label == \\\\\\\"random\\\\\\\":\\\\n                batch_list = batch_data\\\\n            else:\\\\n                batch_list = [batch_data]\\\\n\\\\n            for bi, entry in enumerate(batch_list):\\\\n                batch_types = entry[\\\\\\\"types\\\\\\\"]\\\\n                batch_bcs = entry[\\\\\\\"bcs\\\\\\\"]\\\\n                bid = (f\\\\\\\"{count_key}_{batch_label}_{bi}\\\\\\\"\\\\n                       if batch_label == \\\\\\\"random\\\\\\\"\\\\n                       else f\\\\\\\"{count_key}_{batch_label}\\\\\\\")\\\\n\\\\n                batch_samples = [s for s in samples\\\\n                                 if s[\\\\\\\"relation_type\\\\\\\"] in batch_types]\\\\n                if not batch_samples:\\\\n                    logger.warning(\\\\\\\"No samples for batch %s\\\\\\\", bid)\\\\n                    continue\\\\n\\\\n                logger.info(\\\\\\\"Batch %s: BCS=%.4f, %d types, %d samples\\\\\\\",\\\\n                            bid, batch_bcs, len(batch_types), len(batch_samples))\\\\n\\\\n                schema = build_json_schema_re(batch_types)\\\\n                structured = StructuredOutputsParams(json=schema)\\\\n                params = SamplingParams(max_tokens=128, temperature=0.0,\\\\n                                        structured_outputs=structured)\\\\n\\\\n                prompts = [\\\\n                    build_prompt_v2_re(s[\\\\\\\"text\\\\\\\"], s[\\\\\\\"head_entity\\\\\\\"],\\\\n                                      s[\\\\\\\"tail_entity\\\\\\\"], relation_defs,\\\\n                                      batch_types)\\\\n                    for s in batch_samples\\\\n                ]\\\\n\\\\n                t0 = time.time()\\\\n                outputs = llm.generate(prompts, params)\\\\n                elapsed = time.time() - t0\\\\n\\\\n                for oi, output in enumerate(outputs):\\\\n                    gen_text = output.outputs[0].text\\\\n                    try:\\\\n                        pred = json.loads(gen_text)\\\\n                    except json.JSONDecodeError:\\\\n                        pred = {\\\\\\\"relation\\\\\\\": \\\\\\\"PARSE_ERROR\\\\\\\"}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1946945c-eaef-4d9f-815e-ceacc79070e1",
+            "uuid": "7d56ae75-4bcb-42e7-9d76-7a1f34bbfa9d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"FewRel RE pilot experiment (D007).\\\\n\\\\nValidates BCS-confusion hypothesis on relation extraction:\\\\n- 200 samples from val set (16 relations, balanced)\\\\n- Controlled batches at count={4,8,16}: low/high BCS + random\\\\n- Qwen3-32B-FP8 RE inference via vLLM\\\\n- Accuracy comparison: high-BCS vs low-BCS\\\\n\\\\nUsage:\\\\n    python3 src/run_fewrel_pilot.py --help\\\\n    python3 src/run_fewrel_pilot.py --dry-run\\\\n    python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/models/Qwen3-32B-FP8\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\n\\\\n\\\\ndef compute_relation_embeddings_st(pid2name: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute relation embeddings using sentence-transformers (CPU).\\\\n\\\\n    Args:\\\\n        pid2name: {pid: relation_name} from fewrel_relation_types.json.\\\\n\\\\n    Returns:\\\\n        {relation_name: tensor} embeddings.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sentence_transformers import SentenceTransformer\\\\n    import torch\\\\n\\\\n    local_path = \\\\\\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\\\\\"\\\\n    from pathlib import Path\\\\n    if Path(local_path).exists():\\\\n        model = SentenceTransformer(local_path, device=\\\\\\\"cpu\\\\\\\")\\\\n    else:\\\\n        model = SentenceTransformer(\\\\\\\"all-MiniLM-L6-v2\\\\\\\", device=\\\\\\\"cpu\\\\\\\")\\\\n\\\\n    names = []\\\\n    texts = []\\\\n    for pid, name in pid2name.items():\\\\n        names.append(name)\\\\n        texts.append(f\\\\\\\"Relation type: {name}\\\\\\\")\\\\n\\\\n    embeddings_np = model.encode(texts, show_progress_bar=False)\\\\n    return {name: torch.tensor(emb) for name, emb in zip(names, embeddings_np)}\\\\n\\\\n\\\\ndef build_batch_config(sim_matrix, type_names, type_to_idx, counts,\\\\n                       num_random=3, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build controlled batch configuration with low/high BCS + random.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from compute_bcs import compute_bcs\\\\n    from select_type_batches import (select_high_bcs, select_low_bcs,\\\\n                                     select_random_batches)\\\\n\\\\n    batch_config = {}\\\\n    for count in counts:\\\\n        effective = min(count, len(type_names))\\\\n        low = select_low_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        high = select_high_bcs(effective, sim_matrix, type_names, type_to_idx)\\\\n        rand = select_random_batches(effective, num_random, type_names,\\\\n                                     sim_matrix, type_to_idx, seed + count)\\\\n        batch_config[f\\\\\\\"count_{effective}\\\\\\\"] = {\\\\n            \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"random\\\\\\\": rand,\\\\n        }\\\\n    return batch_config\\\\n\\\\n\\\\ndef run_re_extraction(model_path, samples, batch_config, relation_defs,\\\\n                      max_model_len=4096):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run RE extraction using vLLM with constrained JSON decoding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import sys\\\\n    sys.path.insert(0, str(BASE_DIR / \\\\\\\"src\\\\\\\"))\\\\n    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n\\\\n    from vllm import LLM, SamplingParams\\\\n    from vllm.sampling_params import StructuredOutputsParams\\\\n\\\\n    llm = LLM(model=model_path, max_model_len=max_model_len,\\\\n              trust_remote_code=True, dtype=\\\\\\\"auto\\\\\\\", enable_thinking=False)\\\\n\\\\n    all_results = []\\\\n\\\\n    for count_key, batches in batch_config.items():\\\\n        for batch_label, batch_data in batches.items():\\\\n            if batch_label == \\\\\\\"random\\\\\\\":\\\\n                batch_list = batch_data\\\\n            else:\\\\n                batch_list = [batch_data]\\\\n\\\\n            for bi, entry in enumerate(batch_list):\\\\n                batch_types = entry[\\\\\\\"types\\\\\\\"]\\\\n                batch_bcs = entry[\\\\\\\"bcs\\\\\\\"]\\\\n                bid = (f\\\\\\\"{count_key}_{batch_label}_{bi}\\\\\\\"\\\\n                       if batch_label == \\\\\\\"random\\\\\\\"\\\\n                       else f\\\\\\\"{count_key}_{batch_label}\\\\\\\")\\\\n\\\\n                batch_samples = [s for s in samples\\\\n                                 if s[\\\\\\\"relation_type\\\\\\\"] in batch_types]\\\\n                if not batch_samples:\\\\n                    logger.warning(\\\\\\\"No samples for batch %s\\\\\\\", bid)\\\\n                    continue\\\\n\\\\n                logger.info(\\\\\\\"Batch %s: BCS=%.4f, %d types, %d samples\\\\\\\",\\\\n                            bid, batch_bcs, len(batch_types), len(batch_samples))\\\\n\\\\n                schema = build_json_schema_re(batch_types)\\\\n                structured = StructuredOutputsParams(json=schema)\\\\n                params = SamplingParams(max_tokens=128, temperature=0.0,\\\\n                                        structured_outputs=structured)\\\\n\\\\n                prompts = [\\\\n                    build_prompt_v2_re(s[\\\\\\\"text\\\\\\\"], s[\\\\\\\"head_entity\\\\\\\"],\\\\n                                      s[\\\\\\\"tail_entity\\\\\\\"], relation_defs,\\\\n                                      batch_types)\\\\n                    for s in batch_samples\\\\n                ]\\\\n\\\\n                t0 = time.time()\\\\n                outputs = llm.generate(prompts, params)\\\\n                elapsed = time.time() - t0\\\\n\\\\n                for oi, output in enumerate(outputs):\\\\n                    gen_text = output.outputs[0].text\\\\n                    try:\\\\n                        pred = json.loads(gen_text)\\\\n                    except json.JSONDecodeError:\\\\n                        pred = {\\\\\\\"relation\\\\\\\": \\\\\\\"PARSE_ERROR\\\\\\\"}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"FewRel RE pilot experiment (D007).\\n\\nValidates BCS-confusion hypothesis on relation extraction:\\n- 200 samples from val set (16 relations, balanced)\\n- Controlled batches at count={4,8,16}: low/high BCS + random\\n- Qwen3-32B-FP8 RE inference via vLLM\\n- Accuracy comparison: high-BCS vs low-BCS\\n\\nUsage:\\n    python3 src/run_fewrel_pilot.py --help\\n    python3 src/run_fewrel_pilot.py --dry-run\\n    python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/models/Qwen3-32B-FP8\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = Path(\\\"/root/schema-dag-extraction\\\")\\n\\n\\ndef compute_relation_embeddings_st(pid2name: dict) -> dict:\\n    \\\"\\\"\\\"Compute relation embeddings using sentence-transformers (CPU).\\n\\n    Args:\\n        pid2name: {pid: relation_name} from fewrel_relation_types.json.\\n\\n    Returns:\\n        {relation_name: tensor} embeddings.\\n    \\\"\\\"\\\"\\n    from sentence_transformers import SentenceTransformer\\n    import torch\\n\\n    local_path = \\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\"\\n    from pathlib import Path\\n    if Path(local_path).exists():\\n        model = SentenceTransformer(local_path, device=\\\"cpu\\\")\\n    else:\\n        model = SentenceTransformer(\\\"all-MiniLM-L6-v2\\\", device=\\\"cpu\\\")\\n\\n    names = []\\n    texts = []\\n    for pid, name in pid2name.items():\\n        names.append(name)\\n        texts.append(f\\\"Relation type: {name}\\\")\\n\\n    embeddings_np = model.encode(texts, show_progress_bar=False)\\n    return {name: torch.tensor(emb) for name, emb in zip(names, embeddings_np)}\\n\\n\\ndef build_batch_config(sim_matrix, type_names, type_to_idx, counts,\\n                       num_random=3, seed=42):\\n    \\\"\\\"\\\"Build controlled batch configuration with low/high BCS + random.\\\"\\\"\\\"\\n    import sys\\n    sys.path.insert(0, str(BASE_DIR / \\\"src\\\"))\\n    from compute_bcs import compute_bcs\\n    from select_type_batches import (select_high_bcs, select_low_bcs,\\n                                     select_random_batches)\\n\\n    batch_config = {}\\n    for count in counts:\\n        effective = min(count, len(type_names))\\n        low = select_low_bcs(effective, sim_matrix, type_names, type_to_idx)\\n        high = select_high_bcs(effective, sim_matrix, type_names, type_to_idx)\\n        rand = select_random_batches(effective, num_random, type_names,\\n                                     sim_matrix, type_to_idx, seed + count)\\n        batch_config[f\\\"count_{effective}\\\"] = {\\n            \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n            \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n            \\\"random\\\": rand,\\n        }\\n    return batch_config\\n\\n\\ndef run_re_extraction(model_path, samples, batch_config, relation_defs,\\n                      max_model_len=4096):\\n    \\\"\\\"\\\"Run RE extraction using vLLM with constrained JSON decoding.\\\"\\\"\\\"\\n    import sys\\n    sys.path.insert(0, str(BASE_DIR / \\\"src\\\"))\\n    from run_extraction import build_json_schema_re, build_prompt_v2_re\\n\\n    from vllm import LLM, SamplingParams\\n    from vllm.sampling_params import StructuredOutputsParams\\n\\n    llm = LLM(model=model_path, max_model_len=max_model_len,\\n              trust_remote_code=True, dtype=\\\"auto\\\", enable_thinking=False)\\n\\n    all_results = []\\n\\n    for count_key, batches in batch_config.items():\\n        for batch_label, batch_data in batches.items():\\n            if batch_label == \\\"random\\\":\\n                batch_list = batch_data\\n            else:\\n                batch_list = [batch_data]\\n\\n            for bi, entry in enumerate(batch_list):\\n                batch_types = entry[\\\"types\\\"]\\n                batch_bcs = entry[\\\"bcs\\\"]\\n                bid = (f\\\"{count_key}_{batch_label}_{bi}\\\"\\n                       if batch_label == \\\"random\\\"\\n                       else f\\\"{count_key}_{batch_label}\\\")\\n\\n                batch_samples = [s for s in samples\\n                                 if s[\\\"relation_type\\\"] in batch_types]\\n                if not batch_samples:\\n                    logger.warning(\\\"No samples for batch %s\\\", bid)\\n                    continue\\n\\n                logger.info(\\\"Batch %s: BCS=%.4f, %d types, %d samples\\\",\\n                            bid, batch_bcs, len(batch_types), len(batch_samples))\\n\\n                schema = build_json_schema_re(batch_types)\\n                structured = StructuredOutputsParams(json=schema)\\n                params = SamplingParams(max_tokens=128, temperature=0.0,\\n                                        structured_outputs=structured)\\n\\n                prompts = [\\n                    build_prompt_v2_re(s[\\\"text\\\"], s[\\\"head_entity\\\"],\\n                                      s[\\\"tail_entity\\\"], relation_defs,\\n                                      batch_types)\\n                    for s in batch_samples\\n                ]\\n\\n                t0 = time.time()\\n                outputs = llm.generate(prompts, params)\\n                elapsed = time.time() - t0\\n\\n                for oi, output in enumerate(outputs):\\n                    gen_text = output.outputs[0].text\\n                    try:\\n                        pred = json.loads(gen_text)\\n                    except json.JSONDecodeError:\\n                        pred = {\\\"relation\\\": \\\"PARSE_ERROR\\\"}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ]
+}

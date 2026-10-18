@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d9d2e48ff742a02883",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis exp llama70b cross model exp3",
+  "task_key": "worker_analysis_exp_llama70b_cross_model_exp3_20260517T110806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_llama70b_cross_model_exp3_20260517T110806.log",
+    "occurrence": 1,
+    "bytes": 915964,
+    "sha256": "b30b3ee1885cbcda73ce417f203cf7055e9c03b33aee4829a5d9761c0ed8accf"
+  },
+  "statistics": {
+    "messages": 391,
+    "user_turns": 2,
+    "tool_calls": 134,
+    "roles": {
+      "log": 1,
+      "system": 74,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 134,
+      "tool_result": 134,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 63,
+      "chunks": [
+        {
+          "path": "c3d9d2e48ff742a02883-part-0001.json",
+          "message_count": 63
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "c3d9d2e48ff742a02883-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "c3d9d2e48ff742a02883-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "c3d9d2e48ff742a02883-part-0002.json",
+          "message_count": 91
+        },
+        {
+          "path": "c3d9d2e48ff742a02883-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ]
+}

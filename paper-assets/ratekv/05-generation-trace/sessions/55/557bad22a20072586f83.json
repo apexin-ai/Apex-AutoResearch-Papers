@@ -1,0 +1,1129 @@
+{
+  "schema_version": "1.0",
+  "id": "557bad22a20072586f83",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code fix llama mistral hf env",
+  "task_key": "worker_code_fix_llama_mistral_hf_env_20260514T013840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_llama_mistral_hf_env_20260514T013840.log",
+    "occurrence": 1,
+    "bytes": 91593,
+    "sha256": "1c17559c32c51b7bd85c64cc04535418fa4eb20a0064cb5435a7a9ad668284e2"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "73daed6f-42d9-4a4d-86d3-4b400f0f6611",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778740200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9af99bed-a604-42c9-ae4f-bae3449c18ca",
+                "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the two pipeline files to understand their structure, then make the modifications and check the current process status.",
+              "signature": "EssCClkIDRgCKkDCp14mx2NjSTqAueooyNm0ttolSqnJaWql4cwbpeBRKIfysQxaeUy2ZXB3NfvZBR4V+6P3t2bV04GUbDK3zQf8Mg9jbGF1ZGUtb3B1cy00LTY4ABIMkTkoZCVfmAL07MVGGgzKouy0vIccqWmXd3IiMIq86PizHgVhxU2ZGYnj+ILYJe58LqTa1w8u8QXCdOBnOIln7en5/9cPNb6O3AvroSqfAUh5dZmxtF24kZssz6I4ISK/73GGKxslUiT60APBjtysdVToJKNUD4YEOFDrRhyDf7FloK7gQe/D85AVXnr5T7aOteZ60GvSPgpYCU3L449UmlHCm5jsIY4TjCZ+sl6Oo1y3TJyLsVcLFlUYl2yMnXDK2sO4Thc/mPjv6iM8ka0z3t3/D8cSiuN8bBIw1v8vzKnHMTcRE6UckZ1JG4gLqhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "acce6d8c-b459-4d13-a927-0efaf6cfde81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0197uzCcfQ2p4DpeXPQoxpX4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11730,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11730
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取两个 pipeline 文件和当前日志状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "342e3ad2-619d-48f9-bf4f-063e06105d61",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0197uzCcfQ2p4DpeXPQoxpX4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11730,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11730
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EyJfkcGMXjhoBSFMPoNQnn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "d772dc86-cb4a-4bd1-b3cd-0dadbc128f41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0197uzCcfQ2p4DpeXPQoxpX4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11730,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11730
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T01:38:53.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01EyJfkcGMXjhoBSFMPoNQnn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "78c75390-70c9-44c7-8ccb-32f9632aa0fb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0171vmAPtjL2RuFH1PN5B679",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/ratekv/run_llama_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "f6247332-2219-4c4e-95df-cad6f3b422da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkN7vSahpCcL7JcesTpDyN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 23571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 730
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mg1yp46i8h8i4uXMvYaMt7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/ratekv/run_mistral_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "f3a657ec-954e-4c98-95b1-333d0b9e99e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkN7vSahpCcL7JcesTpDyN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 23571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 730
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y24UBG8PsqP17dNQFBZVaZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "tail -30 /root/ratekv/llama_pipeline.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "c20ccb42-9cc4-4c49-a5a6-b8655019afb3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkN7vSahpCcL7JcesTpDyN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 23571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 730
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T01:38:58.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0171vmAPtjL2RuFH1PN5B679",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Llama-3.1-8B: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/\\\\\\\"\\\\nPROFILE_OUTPUT = \\\\\\\"llama_profiling_results.json\\\\\\\"\\\\nRESULT_OUTPUT = \\\\\\\"llama_results.json\\\\\\\"\\\\n\\\\n\\\\ndef print_config(args):\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Llama-3.1-8B Full Pipeline\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Model:        {args.model}\\\\\\\")\\\\n    print(f\\\\\\\"Budget:       {args.budget} (={int(args.budget*16)}-bit equivalent)\\\\\\\")\\\\n    print(f\\\\\\\"max_2bit:     {args.max_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"l0_exclude:   {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Device:       {args.device}\\\\\\\")\\\\n    print(f\\\\\\\"Calibration:  {args.calibration_data}\\\\\\\")\\\\n    print(f\\\\\\\"Cal samples:  {args.num_calibration_samples}\\\\\\\")\\\\n    print(f\\\\\\\"Cal seq_len:  {args.calibration_seq_len}\\\\\\\")\\\\n    print(f\\\\\\\"Profile out:  {args.profile_output}\\\\\\\")\\\\n    print(f\\\\\\\"Result out:   {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Llama-3.1-8B profiling + MCKP + eval pipeline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=MODEL_PATH)\\\\n    parser.add_argument(\\\\\\\"--calibration_data\\\\\\\", type=str, default=\\\\\\\"calibration_data.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--budget\\\\\\\", type=float, default=0.25)\\\\n    parser.add_argument(\\\\\\\"--max_2bit\\\\\\\", type=int, default=8)\\\\n    parser.add_argument(\\\\\\\"--l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--no_l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=RESULT_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--profile_output\\\\\\\", type=str, default=PROFILE_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--num_calibration_samples\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--calibration_seq_len\\\\\\\", type=int, default=512)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print config only, no GPU work\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.no_l0_exclude_2bit:\\\\n        args.l0_exclude_2bit = False\\\\n\\\\n    print_config(args)\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Exiting without GPU work.\\\\\\\")\\\\n        return\\\\n\\\\n    # === Phase 1: Profile ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 1] Profiling per-head PPL sensitivity...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    t0 = time.time()\\\\n\\\\n    profiler = FullBitwidthProfiler(\\\\n        model_path=args.model,\\\\n        calibration_data=args.calibration_data,\\\\n        device=args.device,\\\\n        num_samples=args.num_calibration_samples,\\\\n        seq_len=args.calibration_seq_len\\\\n    )\\\\n    baseline_cal_ppl = profiler.compute_baseline_ppl()\\\\n    profiles = profiler.profile_all(bit_widths=(2, 4, 8))\\\\n\\\\n    profile_time = time.time() - t0\\\\n    print(f\\\\\\\"\\\\\\\\nProfiling done in {profile_time:.1f}s\\\\\\\")\\\\n\\\\n    # Save profiling results\\\\n    profile_data = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"num_layers\\\\\\\": profiler.num_layers,\\\\n        \\\\\\\"num_kv_heads\\\\\\\": profiler.num_kv_heads,\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n    }\\\\n    with open(args.profile_output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(profile_data, f, indent=2)\\\\n    print(f\\\\\\\"Profiles saved to {args.profile_output}\\\\\\\")\\\\n\\\\n    # Sensitivity analysis\\\\n    _print_sensitivity(profiles)\\\\n\\\\n    # === Phase 2: Solve constrained MCKP ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 2] Solving constrained MCKP...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    enforced_profiles = enforce_monotonicity(profiles)\\\\n    mckp_result = solve_mckp_constrained(\\\\n        enforced_profiles, args.budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n        max_2bit=args.max_2bit, l0_exclude_2bit=args.l0_exclude_2bit\\\\n    )\\\\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\\\\n\\\\n    bit_counts = mckp_result.get(\\\\\\\"bit_distribution\\\\\\\", {})\\\\n    print\\\\n\\\\n... [截断: 输出过长，省略 1071 字符] ...\\\\n\\\\nf\\\\\\\"  >>> Baseline WikiText-2 PPL: {baseline_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating non-uniform MCKP...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, mckp_result[\\\\\\\"allocation\\\\\\\"])\\\\n    mckp_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Non-uniform MCKP WikiText-2 PPL: {mckp_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating uniform 4-bit...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, uniform_result[\\\\\\\"allocation\\\\\\\"])\\\\n    uniform_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Uniform 4-bit WikiText-2 PPL: {uniform_wt2:.4f}\\\\\\\")\\\\n\\\\n    eval_time = time.time() - t1\\\\n\\\\n    # === Phase 4: Summary ===\\\\n    delta = uniform_wt2 - mckp_wt2\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"RESULTS — Llama-3.1-8B\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n{'Method':<30} {'PPL':>10} {'Delta vs uniform':>18}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"{'Baseline (FP16)':<30} {baseline_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"{'Non-uniform MCKP':<30} {mckp_wt2:>10.4f} {delta:>+18.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Uniform 4-bit':<30} {uniform_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nBit distribution: {bit_counts}\\\\\\\")\\\\n    print(f\\\\\\\"2-bit heads: {mckp_result.get('n_2bit', 0)}/{args.max_2bit} max\\\\\\\")\\\\n    print(f\\\\\\\"L0 exclude 2-bit: {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Budget target: {args.budget:.4f}, Actual: {mckp_result['actual_memory_ratio']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Profile time: {profile_time:.1f}s, Eval time: {eval_time:.1f}s\\\\\\\")\\\\n\\\\n    # Save results\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\" if delta >= 0.5 else \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"baseline_wikitext2_ppl\\\\\\\": baseline_wt2,\\\\n        \\\\\\\"mckp_wikitext2_ppl\\\\\\\": mckp_wt2,\\\\n        \\\\\\\"uniform4bit_wikitext2_ppl\\\\\\\": uniform_wt2,\\\\n        \\\\\\\"mckp_improvement_over_uniform\\\\\\\": delta,\\\\n        \\\\\\\"bit_distribution\\\\\\\": bit_counts,\\\\n        \\\\\\\"n_2bit\\\\\\\": mckp_result.get(\\\\\\\"n_2bit\\\\\\\", 0),\\\\n        \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n        \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n        \\\\\\\"mckp_actual_memory_ratio\\\\\\\": mckp_result[\\\\\\\"actual_memory_ratio\\\\\\\"],\\\\n        \\\\\\\"mckp_total_distortion\\\\\\\": mckp_result[\\\\\\\"total_distortion\\\\\\\"],\\\\n        \\\\\\\"mckp_allocation\\\\\\\": mckp_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"uniform_allocation\\\\\\\": uniform_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model,\\\\n            \\\\\\\"budget\\\\\\\": args.budget,\\\\n            \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n            \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n            \\\\\\\"num_calibration_samples\\\\\\\": args.num_calibration_samples,\\\\n            \\\\\\\"calibration_seq_len\\\\\\\": args.calibration_seq_len,\\\\n            \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n            \\\\\\\"eval_time_seconds\\\\\\\": eval_time\\\\n        }\\\\n    }\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nFull results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef _print_sensitivity(profiles):\\\\n    all_2bit = []\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            delta_2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            delta_4 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"4\\\\\\\", 0.0)\\\\n            delta_8 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"8\\\\\\\", 0.0)\\\\n            all_2bit.append((f\\\\\\\"L{l_str}H{h_str}\\\\\\\", delta_2, delta_4, delta_8))\\\\n\\\\n    deltas = [x[1] for x in all_2bit]\\\\n    print(f\\\\\\\"\\\\\\\\n2-bit delta stats: min={min(deltas):.4f}, max={max(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"mean={sum(deltas)/len(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"std={torch.tensor(deltas).std().item():.4f}\\\\\\\")\\\\n\\\\n    by_2bit = sorted(all_2bit, key=lambda x: -x[1])\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[:5]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nBottom-5 least sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[-5:]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "c130ce25-7431-4757-844d-f9baf0da07c2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Llama-3.1-8B: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/\\\\\\\"\\\\nPROFILE_OUTPUT = \\\\\\\"llama_profiling_results.json\\\\\\\"\\\\nRESULT_OUTPUT = \\\\\\\"llama_results.json\\\\\\\"\\\\n\\\\n\\\\ndef print_config(args):\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Llama-3.1-8B Full Pipeline\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Model:        {args.model}\\\\\\\")\\\\n    print(f\\\\\\\"Budget:       {args.budget} (={int(args.budget*16)}-bit equivalent)\\\\\\\")\\\\n    print(f\\\\\\\"max_2bit:     {args.max_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"l0_exclude:   {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Device:       {args.device}\\\\\\\")\\\\n    print(f\\\\\\\"Calibration:  {args.calibration_data}\\\\\\\")\\\\n    print(f\\\\\\\"Cal samples:  {args.num_calibration_samples}\\\\\\\")\\\\n    print(f\\\\\\\"Cal seq_len:  {args.calibration_seq_len}\\\\\\\")\\\\n    print(f\\\\\\\"Profile out:  {args.profile_output}\\\\\\\")\\\\n    print(f\\\\\\\"Result out:   {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Llama-3.1-8B profiling + MCKP + eval pipeline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=MODEL_PATH)\\\\n    parser.add_argument(\\\\\\\"--calibration_data\\\\\\\", type=str, default=\\\\\\\"calibration_data.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--budget\\\\\\\", type=float, default=0.25)\\\\n    parser.add_argument(\\\\\\\"--max_2bit\\\\\\\", type=int, default=8)\\\\n    parser.add_argument(\\\\\\\"--l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--no_l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=RESULT_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--profile_output\\\\\\\", type=str, default=PROFILE_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--num_calibration_samples\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--calibration_seq_len\\\\\\\", type=int, default=512)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print config only, no GPU work\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.no_l0_exclude_2bit:\\\\n        args.l0_exclude_2bit = False\\\\n\\\\n    print_config(args)\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Exiting without GPU work.\\\\\\\")\\\\n        return\\\\n\\\\n    # === Phase 1: Profile ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 1] Profiling per-head PPL sensitivity...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    t0 = time.time()\\\\n\\\\n    profiler = FullBitwidthProfiler(\\\\n        model_path=args.model,\\\\n        calibration_data=args.calibration_data,\\\\n        device=args.device,\\\\n        num_samples=args.num_calibration_samples,\\\\n        seq_len=args.calibration_seq_len\\\\n    )\\\\n    baseline_cal_ppl = profiler.compute_baseline_ppl()\\\\n    profiles = profiler.profile_all(bit_widths=(2, 4, 8))\\\\n\\\\n    profile_time = time.time() - t0\\\\n    print(f\\\\\\\"\\\\\\\\nProfiling done in {profile_time:.1f}s\\\\\\\")\\\\n\\\\n    # Save profiling results\\\\n    profile_data = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"num_layers\\\\\\\": profiler.num_layers,\\\\n        \\\\\\\"num_kv_heads\\\\\\\": profiler.num_kv_heads,\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n    }\\\\n    with open(args.profile_output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(profile_data, f, indent=2)\\\\n    print(f\\\\\\\"Profiles saved to {args.profile_output}\\\\\\\")\\\\n\\\\n    # Sensitivity analysis\\\\n    _print_sensitivity(profiles)\\\\n\\\\n    # === Phase 2: Solve constrained MCKP ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 2] Solving constrained MCKP...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    enforced_profiles = enforce_monotonicity(profiles)\\\\n    mckp_result = solve_mckp_constrained(\\\\n        enforced_profiles, args.budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n        max_2bit=args.max_2bit, l0_exclude_2bit=args.l0_exclude_2bit\\\\n    )\\\\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\\\\n\\\\n    bit_counts = mckp_result.get(\\\\\\\"bit_distribution\\\\\\\", {})\\\\n    print\\\\n\\\\n... [截断: 输出过长，省略 1071 字符] ...\\\\n\\\\nf\\\\\\\"  >>> Baseline WikiText-2 PPL: {baseline_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating non-uniform MCKP...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, mckp_result[\\\\\\\"allocation\\\\\\\"])\\\\n    mckp_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Non-uniform MCKP WikiText-2 PPL: {mckp_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating uniform 4-bit...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, uniform_result[\\\\\\\"allocation\\\\\\\"])\\\\n    uniform_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Uniform 4-bit WikiText-2 PPL: {uniform_wt2:.4f}\\\\\\\")\\\\n\\\\n    eval_time = time.time() - t1\\\\n\\\\n    # === Phase 4: Summary ===\\\\n    delta = uniform_wt2 - mckp_wt2\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"RESULTS — Llama-3.1-8B\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n{'Method':<30} {'PPL':>10} {'Delta vs uniform':>18}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"{'Baseline (FP16)':<30} {baseline_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"{'Non-uniform MCKP':<30} {mckp_wt2:>10.4f} {delta:>+18.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Uniform 4-bit':<30} {uniform_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nBit distribution: {bit_counts}\\\\\\\")\\\\n    print(f\\\\\\\"2-bit heads: {mckp_result.get('n_2bit', 0)}/{args.max_2bit} max\\\\\\\")\\\\n    print(f\\\\\\\"L0 exclude 2-bit: {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Budget target: {args.budget:.4f}, Actual: {mckp_result['actual_memory_ratio']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Profile time: {profile_time:.1f}s, Eval time: {eval_time:.1f}s\\\\\\\")\\\\n\\\\n    # Save results\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\" if delta >= 0.5 else \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"baseline_wikitext2_ppl\\\\\\\": baseline_wt2,\\\\n        \\\\\\\"mckp_wikitext2_ppl\\\\\\\": mckp_wt2,\\\\n        \\\\\\\"uniform4bit_wikitext2_ppl\\\\\\\": uniform_wt2,\\\\n        \\\\\\\"mckp_improvement_over_uniform\\\\\\\": delta,\\\\n        \\\\\\\"bit_distribution\\\\\\\": bit_counts,\\\\n        \\\\\\\"n_2bit\\\\\\\": mckp_result.get(\\\\\\\"n_2bit\\\\\\\", 0),\\\\n        \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n        \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n        \\\\\\\"mckp_actual_memory_ratio\\\\\\\": mckp_result[\\\\\\\"actual_memory_ratio\\\\\\\"],\\\\n        \\\\\\\"mckp_total_distortion\\\\\\\": mckp_result[\\\\\\\"total_distortion\\\\\\\"],\\\\n        \\\\\\\"mckp_allocation\\\\\\\": mckp_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"uniform_allocation\\\\\\\": uniform_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model,\\\\n            \\\\\\\"budget\\\\\\\": args.budget,\\\\n            \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n            \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n            \\\\\\\"num_calibration_samples\\\\\\\": args.num_calibration_samples,\\\\n            \\\\\\\"calibration_seq_len\\\\\\\": args.calibration_seq_len,\\\\n            \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n            \\\\\\\"eval_time_seconds\\\\\\\": eval_time\\\\n        }\\\\n    }\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nFull results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef _print_sensitivity(profiles):\\\\n    all_2bit = []\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            delta_2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            delta_4 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"4\\\\\\\", 0.0)\\\\n            delta_8 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"8\\\\\\\", 0.0)\\\\n            all_2bit.append((f\\\\\\\"L{l_str}H{h_str}\\\\\\\", delta_2, delta_4, delta_8))\\\\n\\\\n    deltas = [x[1] for x in all_2bit]\\\\n    print(f\\\\\\\"\\\\\\\\n2-bit delta stats: min={min(deltas):.4f}, max={max(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"mean={sum(deltas)/len(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"std={torch.tensor(deltas).std().item():.4f}\\\\\\\")\\\\n\\\\n    by_2bit = sorted(all_2bit, key=lambda x: -x[1])\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[:5]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nBottom-5 least sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[-5:]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Full pipeline for Llama-3.1-8B: profile -> constrained MCKP solve -> eval.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport time\\nimport torch\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/\\\"\\nPROFILE_OUTPUT = \\\"llama_profiling_results.json\\\"\\nRESULT_OUTPUT = \\\"llama_results.json\\\"\\n\\n\\ndef print_config(args):\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Llama-3.1-8B Full Pipeline\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"Model:        {args.model}\\\")\\n    print(f\\\"Budget:       {args.budget} (={int(args.budget*16)}-bit equivalent)\\\")\\n    print(f\\\"max_2bit:     {args.max_2bit}\\\")\\n    print(f\\\"l0_exclude:   {args.l0_exclude_2bit}\\\")\\n    print(f\\\"Device:       {args.device}\\\")\\n    print(f\\\"Calibration:  {args.calibration_data}\\\")\\n    print(f\\\"Cal samples:  {args.num_calibration_samples}\\\")\\n    print(f\\\"Cal seq_len:  {args.calibration_seq_len}\\\")\\n    print(f\\\"Profile out:  {args.profile_output}\\\")\\n    print(f\\\"Result out:   {args.output}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Llama-3.1-8B profiling + MCKP + eval pipeline\\\")\\n    parser.add_argument(\\\"--model\\\", type=str, default=MODEL_PATH)\\n    parser.add_argument(\\\"--calibration_data\\\", type=str, default=\\\"calibration_data.json\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--budget\\\", type=float, default=0.25)\\n    parser.add_argument(\\\"--max_2bit\\\", type=int, default=8)\\n    parser.add_argument(\\\"--l0_exclude_2bit\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--no_l0_exclude_2bit\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--output\\\", type=str, default=RESULT_OUTPUT)\\n    parser.add_argument(\\\"--profile_output\\\", type=str, default=PROFILE_OUTPUT)\\n    parser.add_argument(\\\"--num_calibration_samples\\\", type=int, default=16)\\n    parser.add_argument(\\\"--calibration_seq_len\\\", type=int, default=512)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print config only, no GPU work\\\")\\n    args = parser.parse_args()\\n\\n    if args.no_l0_exclude_2bit:\\n        args.l0_exclude_2bit = False\\n\\n    print_config(args)\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Exiting without GPU work.\\\")\\n        return\\n\\n    # === Phase 1: Profile ===\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"[Phase 1] Profiling per-head PPL sensitivity...\\\")\\n    print(f\\\"{'='*60}\\\")\\n    t0 = time.time()\\n\\n    profiler = FullBitwidthProfiler(\\n        model_path=args.model,\\n        calibration_data=args.calibration_data,\\n        device=args.device,\\n        num_samples=args.num_calibration_samples,\\n        seq_len=args.calibration_seq_len\\n    )\\n    baseline_cal_ppl = profiler.compute_baseline_ppl()\\n    profiles = profiler.profile_all(bit_widths=(2, 4, 8))\\n\\n    profile_time = time.time() - t0\\n    print(f\\\"\\\\nProfiling done in {profile_time:.1f}s\\\")\\n\\n    # Save profiling results\\n    profile_data = {\\n        \\\"model\\\": args.model,\\n        \\\"baseline_calibration_ppl\\\": baseline_cal_ppl,\\n        \\\"num_layers\\\": profiler.num_layers,\\n        \\\"num_kv_heads\\\": profiler.num_kv_heads,\\n        \\\"profiles\\\": profiles,\\n        \\\"profile_time_seconds\\\": profile_time,\\n    }\\n    with open(args.profile_output, \\\"w\\\") as f:\\n        json.dump(profile_data, f, indent=2)\\n    print(f\\\"Profiles saved to {args.profile_output}\\\")\\n\\n    # Sensitivity analysis\\n    _print_sensitivity(profiles)\\n\\n    # === Phase 2: Solve constrained MCKP ===\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"[Phase 2] Solving constrained MCKP...\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    enforced_profiles = enforce_monotonicity(profiles)\\n    mckp_result = solve_mckp_constrained(\\n        enforced_profiles, args.budget, mode=\\\"quant_only\\\",\\n        max_2bit=args.max_2bit, l0_exclude_2bit=args.l0_exclude_2bit\\n    )\\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\\n\\n    bit_counts = mckp_result.get(\\\"bit_distribution\\\", {})\\n    print\\n\\n... [截断: 输出过长，省略 1071 字符] ...\\n\\nf\\\"  >>> Baseline WikiText-2 PPL: {baseline_wt2:.4f}\\\")\\n\\n    print(\\\"\\\\n  Evaluating non-uniform MCKP...\\\")\\n    orig_fwds = patch_attention(model, mckp_result[\\\"allocation\\\"])\\n    mckp_wt2 = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  >>> Non-uniform MCKP WikiText-2 PPL: {mckp_wt2:.4f}\\\")\\n\\n    print(\\\"\\\\n  Evaluating uniform 4-bit...\\\")\\n    orig_fwds = patch_attention(model, uniform_result[\\\"allocation\\\"])\\n    uniform_wt2 = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  >>> Uniform 4-bit WikiText-2 PPL: {uniform_wt2:.4f}\\\")\\n\\n    eval_time = time.time() - t1\\n\\n    # === Phase 4: Summary ===\\n    delta = uniform_wt2 - mckp_wt2\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"RESULTS — Llama-3.1-8B\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"\\\\n{'Method':<30} {'PPL':>10} {'Delta vs uniform':>18}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"{'Baseline (FP16)':<30} {baseline_wt2:>10.4f} {'---':>18}\\\")\\n    print(f\\\"{'Non-uniform MCKP':<30} {mckp_wt2:>10.4f} {delta:>+18.4f}\\\")\\n    print(f\\\"{'Uniform 4-bit':<30} {uniform_wt2:>10.4f} {'---':>18}\\\")\\n    print(f\\\"\\\\nBit distribution: {bit_counts}\\\")\\n    print(f\\\"2-bit heads: {mckp_result.get('n_2bit', 0)}/{args.max_2bit} max\\\")\\n    print(f\\\"L0 exclude 2-bit: {args.l0_exclude_2bit}\\\")\\n    print(f\\\"Budget target: {args.budget:.4f}, Actual: {mckp_result['actual_memory_ratio']:.4f}\\\")\\n    print(f\\\"Profile time: {profile_time:.1f}s, Eval time: {eval_time:.1f}s\\\")\\n\\n    # Save results\\n    results = {\\n        \\\"model\\\": args.model,\\n        \\\"model_name\\\": \\\"Llama-3.1-8B\\\",\\n        \\\"verdict\\\": \\\"PASS\\\" if delta >= 0.5 else \\\"FAIL\\\",\\n        \\\"baseline_calibration_ppl\\\": baseline_cal_ppl,\\n        \\\"baseline_wikitext2_ppl\\\": baseline_wt2,\\n        \\\"mckp_wikitext2_ppl\\\": mckp_wt2,\\n        \\\"uniform4bit_wikitext2_ppl\\\": uniform_wt2,\\n        \\\"mckp_improvement_over_uniform\\\": delta,\\n        \\\"bit_distribution\\\": bit_counts,\\n        \\\"n_2bit\\\": mckp_result.get(\\\"n_2bit\\\", 0),\\n        \\\"max_2bit\\\": args.max_2bit,\\n        \\\"l0_exclude_2bit\\\": args.l0_exclude_2bit,\\n        \\\"mckp_actual_memory_ratio\\\": mckp_result[\\\"actual_memory_ratio\\\"],\\n        \\\"mckp_total_distortion\\\": mckp_result[\\\"total_distortion\\\"],\\n        \\\"mckp_allocation\\\": mckp_result[\\\"allocation\\\"],\\n        \\\"uniform_allocation\\\": uniform_result[\\\"allocation\\\"],\\n        \\\"profiles\\\": profiles,\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model,\\n            \\\"budget\\\": args.budget,\\n            \\\"max_2bit\\\": args.max_2bit,\\n            \\\"l0_exclude_2bit\\\": args.l0_exclude_2bit,\\n            \\\"num_calibration_samples\\\": args.num_calibration_samples,\\n            \\\"calibration_seq_len\\\": args.calibration_seq_len,\\n            \\\"profile_time_seconds\\\": profile_time,\\n            \\\"eval_time_seconds\\\": eval_time\\n        }\\n    }\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nFull results saved to {args.output}\\\")\\n\\n\\ndef _print_sensitivity(profiles):\\n    all_2bit = []\\n    for l_str in sorted(profiles.keys(), key=int):\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            delta_2 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"2\\\", 0.0)\\n            delta_4 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"4\\\", 0.0)\\n            delta_8 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"8\\\", 0.0)\\n            all_2bit.append((f\\\"L{l_str}H{h_str}\\\", delta_2, delta_4, delta_8))\\n\\n    deltas = [x[1] for x in all_2bit]\\n    print(f\\\"\\\\n2-bit delta stats: min={min(deltas):.4f}, max={max(deltas):.4f}, \\\"\\n          f\\\"mean={sum(deltas)/len(deltas):.4f}, \\\"\\n          f\\\"std={torch.tensor(deltas).std().item():.4f}\\\")\\n\\n    by_2bit = sorted(all_2bit, key=lambda x: -x[1])\\n    print(\\\"\\\\nTop-5 most sensitive heads (2-bit):\\\")\\n    for name, d2, d4, d8 in by_2bit[:5]:\\n        print(f\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\")\\n\\n    print(\\\"\\\\nBottom-5 least sensitive heads (2-bit):\\\")\\n    for name, d2, d4, d8 in by_2bit[-5:]:\\n        print(f\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T01:38:59.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mg1yp46i8h8i4uXMvYaMt7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Mistral-7B-v0.3: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/mistralai/Mistral-7B-v0___3/\\\\\\\"\\\\nPROFILE_OUTPUT = \\\\\\\"mistral_profiling_results.json\\\\\\\"\\\\nRESULT_OUTPUT = \\\\\\\"mistral_results.json\\\\\\\"\\\\n\\\\n\\\\ndef print_config(args):\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Mistral-7B-v0.3 Full Pipeline\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Model:        {args.model}\\\\\\\")\\\\n    print(f\\\\\\\"Budget:       {args.budget} (={int(args.budget*16)}-bit equivalent)\\\\\\\")\\\\n    print(f\\\\\\\"max_2bit:     {args.max_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"l0_exclude:   {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Device:       {args.device}\\\\\\\")\\\\n    print(f\\\\\\\"Calibration:  {args.calibration_data}\\\\\\\")\\\\n    print(f\\\\\\\"Cal samples:  {args.num_calibration_samples}\\\\\\\")\\\\n    print(f\\\\\\\"Cal seq_len:  {args.calibration_seq_len}\\\\\\\")\\\\n    print(f\\\\\\\"Profile out:  {args.profile_output}\\\\\\\")\\\\n    print(f\\\\\\\"Result out:   {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Mistral-7B-v0.3 profiling + MCKP + eval pipeline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=MODEL_PATH)\\\\n    parser.add_argument(\\\\\\\"--calibration_data\\\\\\\", type=str, default=\\\\\\\"calibration_data.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--budget\\\\\\\", type=float, default=0.25)\\\\n    parser.add_argument(\\\\\\\"--max_2bit\\\\\\\", type=int, default=8)\\\\n    parser.add_argument(\\\\\\\"--l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--no_l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=RESULT_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--profile_output\\\\\\\", type=str, default=PROFILE_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--num_calibration_samples\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--calibration_seq_len\\\\\\\", type=int, default=512)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print config only, no GPU work\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.no_l0_exclude_2bit:\\\\n        args.l0_exclude_2bit = False\\\\n\\\\n    print_config(args)\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Exiting without GPU work.\\\\\\\")\\\\n        return\\\\n\\\\n    # === Phase 1: Profile ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 1] Profiling per-head PPL sensitivity...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    t0 = time.time()\\\\n\\\\n    profiler = FullBitwidthProfiler(\\\\n        model_path=args.model,\\\\n        calibration_data=args.calibration_data,\\\\n        device=args.device,\\\\n        num_samples=args.num_calibration_samples,\\\\n        seq_len=args.calibration_seq_len\\\\n    )\\\\n    baseline_cal_ppl = profiler.compute_baseline_ppl()\\\\n    profiles = profiler.profile_all(bit_widths=(2, 4, 8))\\\\n\\\\n    profile_time = time.time() - t0\\\\n    print(f\\\\\\\"\\\\\\\\nProfiling done in {profile_time:.1f}s\\\\\\\")\\\\n\\\\n    # Save profiling results\\\\n    profile_data = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"num_layers\\\\\\\": profiler.num_layers,\\\\n        \\\\\\\"num_kv_heads\\\\\\\": profiler.num_kv_heads,\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n    }\\\\n    with open(args.profile_output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(profile_data, f, indent=2)\\\\n    print(f\\\\\\\"Profiles saved to {args.profile_output}\\\\\\\")\\\\n\\\\n    _print_sensitivity(profiles)\\\\n\\\\n    # === Phase 2: Solve constrained MCKP ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 2] Solving constrained MCKP...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    enforced_profiles = enforce_monotonicity(profiles)\\\\n    mckp_result = solve_mckp_constrained(\\\\n        enforced_profiles, args.budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n        max_2bit=args.max_2bit, l0_exclude_2bit=args.l0_exclude_2bit\\\\n    )\\\\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\\\\n\\\\n    bit_counts = mckp_result.get(\\\\\\\"bit_distribution\\\\\\\", {})\\\\n    print(f\\\\\\\"MCKP allocation:\\\\n\\\\n... [截断: 输出过长，省略 1019 字符] ...\\\\n\\\\ne)\\\\n    print(f\\\\\\\"  >>> Baseline WikiText-2 PPL: {baseline_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating non-uniform MCKP...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, mckp_result[\\\\\\\"allocation\\\\\\\"])\\\\n    mckp_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Non-uniform MCKP WikiText-2 PPL: {mckp_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating uniform 4-bit...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, uniform_result[\\\\\\\"allocation\\\\\\\"])\\\\n    uniform_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Uniform 4-bit WikiText-2 PPL: {uniform_wt2:.4f}\\\\\\\")\\\\n\\\\n    eval_time = time.time() - t1\\\\n\\\\n    # === Phase 4: Summary ===\\\\n    delta = uniform_wt2 - mckp_wt2\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"RESULTS — Mistral-7B-v0.3\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n{'Method':<30} {'PPL':>10} {'Delta vs uniform':>18}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"{'Baseline (FP16)':<30} {baseline_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"{'Non-uniform MCKP':<30} {mckp_wt2:>10.4f} {delta:>+18.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Uniform 4-bit':<30} {uniform_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nBit distribution: {bit_counts}\\\\\\\")\\\\n    print(f\\\\\\\"2-bit heads: {mckp_result.get('n_2bit', 0)}/{args.max_2bit} max\\\\\\\")\\\\n    print(f\\\\\\\"L0 exclude 2-bit: {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Budget target: {args.budget:.4f}, Actual: {mckp_result['actual_memory_ratio']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Profile time: {profile_time:.1f}s, Eval time: {eval_time:.1f}s\\\\\\\")\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\" if delta >= 0.5 else \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"baseline_wikitext2_ppl\\\\\\\": baseline_wt2,\\\\n        \\\\\\\"mckp_wikitext2_ppl\\\\\\\": mckp_wt2,\\\\n        \\\\\\\"uniform4bit_wikitext2_ppl\\\\\\\": uniform_wt2,\\\\n        \\\\\\\"mckp_improvement_over_uniform\\\\\\\": delta,\\\\n        \\\\\\\"bit_distribution\\\\\\\": bit_counts,\\\\n        \\\\\\\"n_2bit\\\\\\\": mckp_result.get(\\\\\\\"n_2bit\\\\\\\", 0),\\\\n        \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n        \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n        \\\\\\\"mckp_actual_memory_ratio\\\\\\\": mckp_result[\\\\\\\"actual_memory_ratio\\\\\\\"],\\\\n        \\\\\\\"mckp_total_distortion\\\\\\\": mckp_result[\\\\\\\"total_distortion\\\\\\\"],\\\\n        \\\\\\\"mckp_allocation\\\\\\\": mckp_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"uniform_allocation\\\\\\\": uniform_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model,\\\\n            \\\\\\\"budget\\\\\\\": args.budget,\\\\n            \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n            \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n            \\\\\\\"num_calibration_samples\\\\\\\": args.num_calibration_samples,\\\\n            \\\\\\\"calibration_seq_len\\\\\\\": args.calibration_seq_len,\\\\n            \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n            \\\\\\\"eval_time_seconds\\\\\\\": eval_time\\\\n        }\\\\n    }\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nFull results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef _print_sensitivity(profiles):\\\\n    all_2bit = []\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            delta_2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            delta_4 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"4\\\\\\\", 0.0)\\\\n            delta_8 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"8\\\\\\\", 0.0)\\\\n            all_2bit.append((f\\\\\\\"L{l_str}H{h_str}\\\\\\\", delta_2, delta_4, delta_8))\\\\n\\\\n    deltas = [x[1] for x in all_2bit]\\\\n    print(f\\\\\\\"\\\\\\\\n2-bit delta stats: min={min(deltas):.4f}, max={max(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"mean={sum(deltas)/len(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"std={torch.tensor(deltas).std().item():.4f}\\\\\\\")\\\\n\\\\n    by_2bit = sorted(all_2bit, key=lambda x: -x[1])\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[:5]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nBottom-5 least sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[-5:]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "42b9324e-f20d-42c5-a356-279a96d0d1cf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Mistral-7B-v0.3: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/mistralai/Mistral-7B-v0___3/\\\\\\\"\\\\nPROFILE_OUTPUT = \\\\\\\"mistral_profiling_results.json\\\\\\\"\\\\nRESULT_OUTPUT = \\\\\\\"mistral_results.json\\\\\\\"\\\\n\\\\n\\\\ndef print_config(args):\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Mistral-7B-v0.3 Full Pipeline\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Model:        {args.model}\\\\\\\")\\\\n    print(f\\\\\\\"Budget:       {args.budget} (={int(args.budget*16)}-bit equivalent)\\\\\\\")\\\\n    print(f\\\\\\\"max_2bit:     {args.max_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"l0_exclude:   {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Device:       {args.device}\\\\\\\")\\\\n    print(f\\\\\\\"Calibration:  {args.calibration_data}\\\\\\\")\\\\n    print(f\\\\\\\"Cal samples:  {args.num_calibration_samples}\\\\\\\")\\\\n    print(f\\\\\\\"Cal seq_len:  {args.calibration_seq_len}\\\\\\\")\\\\n    print(f\\\\\\\"Profile out:  {args.profile_output}\\\\\\\")\\\\n    print(f\\\\\\\"Result out:   {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Mistral-7B-v0.3 profiling + MCKP + eval pipeline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=MODEL_PATH)\\\\n    parser.add_argument(\\\\\\\"--calibration_data\\\\\\\", type=str, default=\\\\\\\"calibration_data.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--budget\\\\\\\", type=float, default=0.25)\\\\n    parser.add_argument(\\\\\\\"--max_2bit\\\\\\\", type=int, default=8)\\\\n    parser.add_argument(\\\\\\\"--l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    parser.add_argument(\\\\\\\"--no_l0_exclude_2bit\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=RESULT_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--profile_output\\\\\\\", type=str, default=PROFILE_OUTPUT)\\\\n    parser.add_argument(\\\\\\\"--num_calibration_samples\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--calibration_seq_len\\\\\\\", type=int, default=512)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print config only, no GPU work\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.no_l0_exclude_2bit:\\\\n        args.l0_exclude_2bit = False\\\\n\\\\n    print_config(args)\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Exiting without GPU work.\\\\\\\")\\\\n        return\\\\n\\\\n    # === Phase 1: Profile ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 1] Profiling per-head PPL sensitivity...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    t0 = time.time()\\\\n\\\\n    profiler = FullBitwidthProfiler(\\\\n        model_path=args.model,\\\\n        calibration_data=args.calibration_data,\\\\n        device=args.device,\\\\n        num_samples=args.num_calibration_samples,\\\\n        seq_len=args.calibration_seq_len\\\\n    )\\\\n    baseline_cal_ppl = profiler.compute_baseline_ppl()\\\\n    profiles = profiler.profile_all(bit_widths=(2, 4, 8))\\\\n\\\\n    profile_time = time.time() - t0\\\\n    print(f\\\\\\\"\\\\\\\\nProfiling done in {profile_time:.1f}s\\\\\\\")\\\\n\\\\n    # Save profiling results\\\\n    profile_data = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"num_layers\\\\\\\": profiler.num_layers,\\\\n        \\\\\\\"num_kv_heads\\\\\\\": profiler.num_kv_heads,\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n    }\\\\n    with open(args.profile_output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(profile_data, f, indent=2)\\\\n    print(f\\\\\\\"Profiles saved to {args.profile_output}\\\\\\\")\\\\n\\\\n    _print_sensitivity(profiles)\\\\n\\\\n    # === Phase 2: Solve constrained MCKP ===\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"[Phase 2] Solving constrained MCKP...\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    enforced_profiles = enforce_monotonicity(profiles)\\\\n    mckp_result = solve_mckp_constrained(\\\\n        enforced_profiles, args.budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n        max_2bit=args.max_2bit, l0_exclude_2bit=args.l0_exclude_2bit\\\\n    )\\\\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\\\\n\\\\n    bit_counts = mckp_result.get(\\\\\\\"bit_distribution\\\\\\\", {})\\\\n    print(f\\\\\\\"MCKP allocation:\\\\n\\\\n... [截断: 输出过长，省略 1019 字符] ...\\\\n\\\\ne)\\\\n    print(f\\\\\\\"  >>> Baseline WikiText-2 PPL: {baseline_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating non-uniform MCKP...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, mckp_result[\\\\\\\"allocation\\\\\\\"])\\\\n    mckp_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Non-uniform MCKP WikiText-2 PPL: {mckp_wt2:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n  Evaluating uniform 4-bit...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, uniform_result[\\\\\\\"allocation\\\\\\\"])\\\\n    uniform_wt2 = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  >>> Uniform 4-bit WikiText-2 PPL: {uniform_wt2:.4f}\\\\\\\")\\\\n\\\\n    eval_time = time.time() - t1\\\\n\\\\n    # === Phase 4: Summary ===\\\\n    delta = uniform_wt2 - mckp_wt2\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"RESULTS — Mistral-7B-v0.3\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n{'Method':<30} {'PPL':>10} {'Delta vs uniform':>18}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(f\\\\\\\"{'Baseline (FP16)':<30} {baseline_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"{'Non-uniform MCKP':<30} {mckp_wt2:>10.4f} {delta:>+18.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Uniform 4-bit':<30} {uniform_wt2:>10.4f} {'---':>18}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nBit distribution: {bit_counts}\\\\\\\")\\\\n    print(f\\\\\\\"2-bit heads: {mckp_result.get('n_2bit', 0)}/{args.max_2bit} max\\\\\\\")\\\\n    print(f\\\\\\\"L0 exclude 2-bit: {args.l0_exclude_2bit}\\\\\\\")\\\\n    print(f\\\\\\\"Budget target: {args.budget:.4f}, Actual: {mckp_result['actual_memory_ratio']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Profile time: {profile_time:.1f}s, Eval time: {eval_time:.1f}s\\\\\\\")\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\" if delta >= 0.5 else \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_cal_ppl,\\\\n        \\\\\\\"baseline_wikitext2_ppl\\\\\\\": baseline_wt2,\\\\n        \\\\\\\"mckp_wikitext2_ppl\\\\\\\": mckp_wt2,\\\\n        \\\\\\\"uniform4bit_wikitext2_ppl\\\\\\\": uniform_wt2,\\\\n        \\\\\\\"mckp_improvement_over_uniform\\\\\\\": delta,\\\\n        \\\\\\\"bit_distribution\\\\\\\": bit_counts,\\\\n        \\\\\\\"n_2bit\\\\\\\": mckp_result.get(\\\\\\\"n_2bit\\\\\\\", 0),\\\\n        \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n        \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n        \\\\\\\"mckp_actual_memory_ratio\\\\\\\": mckp_result[\\\\\\\"actual_memory_ratio\\\\\\\"],\\\\n        \\\\\\\"mckp_total_distortion\\\\\\\": mckp_result[\\\\\\\"total_distortion\\\\\\\"],\\\\n        \\\\\\\"mckp_allocation\\\\\\\": mckp_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"uniform_allocation\\\\\\\": uniform_result[\\\\\\\"allocation\\\\\\\"],\\\\n        \\\\\\\"profiles\\\\\\\": profiles,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model,\\\\n            \\\\\\\"budget\\\\\\\": args.budget,\\\\n            \\\\\\\"max_2bit\\\\\\\": args.max_2bit,\\\\n            \\\\\\\"l0_exclude_2bit\\\\\\\": args.l0_exclude_2bit,\\\\n            \\\\\\\"num_calibration_samples\\\\\\\": args.num_calibration_samples,\\\\n            \\\\\\\"calibration_seq_len\\\\\\\": args.calibration_seq_len,\\\\n            \\\\\\\"profile_time_seconds\\\\\\\": profile_time,\\\\n            \\\\\\\"eval_time_seconds\\\\\\\": eval_time\\\\n        }\\\\n    }\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nFull results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\ndef _print_sensitivity(profiles):\\\\n    all_2bit = []\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            delta_2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            delta_4 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"4\\\\\\\", 0.0)\\\\n            delta_8 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"8\\\\\\\", 0.0)\\\\n            all_2bit.append((f\\\\\\\"L{l_str}H{h_str}\\\\\\\", delta_2, delta_4, delta_8))\\\\n\\\\n    deltas = [x[1] for x in all_2bit]\\\\n    print(f\\\\\\\"\\\\\\\\n2-bit delta stats: min={min(deltas):.4f}, max={max(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"mean={sum(deltas)/len(deltas):.4f}, \\\\\\\"\\\\n          f\\\\\\\"std={torch.tensor(deltas).std().item():.4f}\\\\\\\")\\\\n\\\\n    by_2bit = sorted(all_2bit, key=lambda x: -x[1])\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[:5]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nBottom-5 least sensitive heads (2-bit):\\\\\\\")\\\\n    for name, d2, d4, d8 in by_2bit[-5:]:\\\\n        print(f\\\\\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Full pipeline for Mistral-7B-v0.3: profile -> constrained MCKP solve -> eval.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport time\\nimport torch\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/models/mistralai/Mistral-7B-v0___3/\\\"\\nPROFILE_OUTPUT = \\\"mistral_profiling_results.json\\\"\\nRESULT_OUTPUT = \\\"mistral_results.json\\\"\\n\\n\\ndef print_config(args):\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Mistral-7B-v0.3 Full Pipeline\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"Model:        {args.model}\\\")\\n    print(f\\\"Budget:       {args.budget} (={int(args.budget*16)}-bit equivalent)\\\")\\n    print(f\\\"max_2bit:     {args.max_2bit}\\\")\\n    print(f\\\"l0_exclude:   {args.l0_exclude_2bit}\\\")\\n    print(f\\\"Device:       {args.device}\\\")\\n    print(f\\\"Calibration:  {args.calibration_data}\\\")\\n    print(f\\\"Cal samples:  {args.num_calibration_samples}\\\")\\n    print(f\\\"Cal seq_len:  {args.calibration_seq_len}\\\")\\n    print(f\\\"Profile out:  {args.profile_output}\\\")\\n    print(f\\\"Result out:   {args.output}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Mistral-7B-v0.3 profiling + MCKP + eval pipeline\\\")\\n    parser.add_argument(\\\"--model\\\", type=str, default=MODEL_PATH)\\n    parser.add_argument(\\\"--calibration_data\\\", type=str, default=\\\"calibration_data.json\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--budget\\\", type=float, default=0.25)\\n    parser.add_argument(\\\"--max_2bit\\\", type=int, default=8)\\n    parser.add_argument(\\\"--l0_exclude_2bit\\\", action=\\\"store_true\\\", default=True)\\n    parser.add_argument(\\\"--no_l0_exclude_2bit\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--output\\\", type=str, default=RESULT_OUTPUT)\\n    parser.add_argument(\\\"--profile_output\\\", type=str, default=PROFILE_OUTPUT)\\n    parser.add_argument(\\\"--num_calibration_samples\\\", type=int, default=16)\\n    parser.add_argument(\\\"--calibration_seq_len\\\", type=int, default=512)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print config only, no GPU work\\\")\\n    args = parser.parse_args()\\n\\n    if args.no_l0_exclude_2bit:\\n        args.l0_exclude_2bit = False\\n\\n    print_config(args)\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Exiting without GPU work.\\\")\\n        return\\n\\n    # === Phase 1: Profile ===\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"[Phase 1] Profiling per-head PPL sensitivity...\\\")\\n    print(f\\\"{'='*60}\\\")\\n    t0 = time.time()\\n\\n    profiler = FullBitwidthProfiler(\\n        model_path=args.model,\\n        calibration_data=args.calibration_data,\\n        device=args.device,\\n        num_samples=args.num_calibration_samples,\\n        seq_len=args.calibration_seq_len\\n    )\\n    baseline_cal_ppl = profiler.compute_baseline_ppl()\\n    profiles = profiler.profile_all(bit_widths=(2, 4, 8))\\n\\n    profile_time = time.time() - t0\\n    print(f\\\"\\\\nProfiling done in {profile_time:.1f}s\\\")\\n\\n    # Save profiling results\\n    profile_data = {\\n        \\\"model\\\": args.model,\\n        \\\"baseline_calibration_ppl\\\": baseline_cal_ppl,\\n        \\\"num_layers\\\": profiler.num_layers,\\n        \\\"num_kv_heads\\\": profiler.num_kv_heads,\\n        \\\"profiles\\\": profiles,\\n        \\\"profile_time_seconds\\\": profile_time,\\n    }\\n    with open(args.profile_output, \\\"w\\\") as f:\\n        json.dump(profile_data, f, indent=2)\\n    print(f\\\"Profiles saved to {args.profile_output}\\\")\\n\\n    _print_sensitivity(profiles)\\n\\n    # === Phase 2: Solve constrained MCKP ===\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"[Phase 2] Solving constrained MCKP...\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    enforced_profiles = enforce_monotonicity(profiles)\\n    mckp_result = solve_mckp_constrained(\\n        enforced_profiles, args.budget, mode=\\\"quant_only\\\",\\n        max_2bit=args.max_2bit, l0_exclude_2bit=args.l0_exclude_2bit\\n    )\\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\\n\\n    bit_counts = mckp_result.get(\\\"bit_distribution\\\", {})\\n    print(f\\\"MCKP allocation:\\n\\n... [截断: 输出过长，省略 1019 字符] ...\\n\\ne)\\n    print(f\\\"  >>> Baseline WikiText-2 PPL: {baseline_wt2:.4f}\\\")\\n\\n    print(\\\"\\\\n  Evaluating non-uniform MCKP...\\\")\\n    orig_fwds = patch_attention(model, mckp_result[\\\"allocation\\\"])\\n    mckp_wt2 = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  >>> Non-uniform MCKP WikiText-2 PPL: {mckp_wt2:.4f}\\\")\\n\\n    print(\\\"\\\\n  Evaluating uniform 4-bit...\\\")\\n    orig_fwds = patch_attention(model, uniform_result[\\\"allocation\\\"])\\n    uniform_wt2 = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  >>> Uniform 4-bit WikiText-2 PPL: {uniform_wt2:.4f}\\\")\\n\\n    eval_time = time.time() - t1\\n\\n    # === Phase 4: Summary ===\\n    delta = uniform_wt2 - mckp_wt2\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"RESULTS — Mistral-7B-v0.3\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"\\\\n{'Method':<30} {'PPL':>10} {'Delta vs uniform':>18}\\\")\\n    print(\\\"-\\\" * 60)\\n    print(f\\\"{'Baseline (FP16)':<30} {baseline_wt2:>10.4f} {'---':>18}\\\")\\n    print(f\\\"{'Non-uniform MCKP':<30} {mckp_wt2:>10.4f} {delta:>+18.4f}\\\")\\n    print(f\\\"{'Uniform 4-bit':<30} {uniform_wt2:>10.4f} {'---':>18}\\\")\\n    print(f\\\"\\\\nBit distribution: {bit_counts}\\\")\\n    print(f\\\"2-bit heads: {mckp_result.get('n_2bit', 0)}/{args.max_2bit} max\\\")\\n    print(f\\\"L0 exclude 2-bit: {args.l0_exclude_2bit}\\\")\\n    print(f\\\"Budget target: {args.budget:.4f}, Actual: {mckp_result['actual_memory_ratio']:.4f}\\\")\\n    print(f\\\"Profile time: {profile_time:.1f}s, Eval time: {eval_time:.1f}s\\\")\\n\\n    results = {\\n        \\\"model\\\": args.model,\\n        \\\"model_name\\\": \\\"Mistral-7B-v0.3\\\",\\n        \\\"verdict\\\": \\\"PASS\\\" if delta >= 0.5 else \\\"FAIL\\\",\\n        \\\"baseline_calibration_ppl\\\": baseline_cal_ppl,\\n        \\\"baseline_wikitext2_ppl\\\": baseline_wt2,\\n        \\\"mckp_wikitext2_ppl\\\": mckp_wt2,\\n        \\\"uniform4bit_wikitext2_ppl\\\": uniform_wt2,\\n        \\\"mckp_improvement_over_uniform\\\": delta,\\n        \\\"bit_distribution\\\": bit_counts,\\n        \\\"n_2bit\\\": mckp_result.get(\\\"n_2bit\\\", 0),\\n        \\\"max_2bit\\\": args.max_2bit,\\n        \\\"l0_exclude_2bit\\\": args.l0_exclude_2bit,\\n        \\\"mckp_actual_memory_ratio\\\": mckp_result[\\\"actual_memory_ratio\\\"],\\n        \\\"mckp_total_distortion\\\": mckp_result[\\\"total_distortion\\\"],\\n        \\\"mckp_allocation\\\": mckp_result[\\\"allocation\\\"],\\n        \\\"uniform_allocation\\\": uniform_result[\\\"allocation\\\"],\\n        \\\"profiles\\\": profiles,\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model,\\n            \\\"budget\\\": args.budget,\\n            \\\"max_2bit\\\": args.max_2bit,\\n            \\\"l0_exclude_2bit\\\": args.l0_exclude_2bit,\\n            \\\"num_calibration_samples\\\": args.num_calibration_samples,\\n            \\\"calibration_seq_len\\\": args.calibration_seq_len,\\n            \\\"profile_time_seconds\\\": profile_time,\\n            \\\"eval_time_seconds\\\": eval_time\\n        }\\n    }\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nFull results saved to {args.output}\\\")\\n\\n\\ndef _print_sensitivity(profiles):\\n    all_2bit = []\\n    for l_str in sorted(profiles.keys(), key=int):\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            delta_2 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"2\\\", 0.0)\\n            delta_4 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"4\\\", 0.0)\\n            delta_8 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"8\\\", 0.0)\\n            all_2bit.append((f\\\"L{l_str}H{h_str}\\\", delta_2, delta_4, delta_8))\\n\\n    deltas = [x[1] for x in all_2bit]\\n    print(f\\\"\\\\n2-bit delta stats: min={min(deltas):.4f}, max={max(deltas):.4f}, \\\"\\n          f\\\"mean={sum(deltas)/len(deltas):.4f}, \\\"\\n          f\\\"std={torch.tensor(deltas).std().item():.4f}\\\")\\n\\n    by_2bit = sorted(all_2bit, key=lambda x: -x[1])\\n    print(\\\"\\\\nTop-5 most sensitive heads (2-bit):\\\")\\n    for name, d2, d4, d8 in by_2bit[:5]:\\n        print(f\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\")\\n\\n    print(\\\"\\\\nBottom-5 least sensitive heads (2-bit):\\\")\\n    for name, d2, d4, d8 in by_2bit[-5:]:\\n        print(f\\\"  {name}: 2bit={d2:+.4f}, 4bit={d4:+.4f}, 8bit={d8:+.4f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T01:38:59.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y24UBG8PsqP17dNQFBZVaZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[622/768] L25H7 @2bit: delta=0.134758\\\\n[623/768] L25H7 @4bit: delta=0.000000\\\\n[624/768] L25H7 @8bit: delta=0.000000\\\\n[625/768] L26H0 @2bit: delta=0.134758\\\\n[626/768] L26H0 @4bit: delta=0.000000\\\\n[627/768] L26H0 @8bit: delta=0.000000\\\\n[628/768] L26H1 @2bit: delta=0.134758\\\\n[629/768] L26H1 @4bit: delta=0.000000\\\\n[630/768] L26H1 @8bit: delta=0.000000\\\\n[631/768] L26H2 @2bit: delta=0.134758\\\\n[632/768] L26H2 @4bit: delta=0.000000\\\\n[633/768] L26H2 @8bit: delta=0.000000\\\\n[634/768] L26H3 @2bit: delta=0.134758\\\\n[635/768] L26H3 @4bit: delta=0.000000\\\\n[636/768] L26H3 @8bit: delta=0.000000\\\\n[637/768] L26H4 @2bit: delta=0.134758\\\\n[638/768] L26H4 @4bit: delta=0.000000\\\\n[639/768] L26H4 @8bit: delta=0.000000\\\\n[640/768] L26H5 @2bit: delta=0.134758\\\\n[641/768] L26H5 @4bit: delta=0.000000\\\\n[642/768] L26H5 @8bit: delta=0.000000\\\\n[643/768] L26H6 @2bit: delta=0.134758\\\\n[644/768] L26H6 @4bit: delta=0.000000\\\\n[645/768] L26H6 @8bit: delta=0.000000\\\\n[646/768] L26H7 @2bit: delta=0.134758\\\\n[647/768] L26H7 @4bit: delta=0.000000\\\\n[648/768] L26H7 @8bit: delta=0.000000\\\\n[649/768] L27H0 @2bit: delta=0.134758\\\\n[650/768] L27H0 @4bit: delta=0.000000\\\\n[651/768] L27H0 @8bit: delta=0.000000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "cdc4e366-fd9b-4e76-b454-1122ce60e466",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[622/768] L25H7 @2bit: delta=0.134758\\\\n[623/768] L25H7 @4bit: delta=0.000000\\\\n[624/768] L25H7 @8bit: delta=0.000000\\\\n[625/768] L26H0 @2bit: delta=0.134758\\\\n[626/768] L26H0 @4bit: delta=0.000000\\\\n[627/768] L26H0 @8bit: delta=0.000000\\\\n[628/768] L26H1 @2bit: delta=0.134758\\\\n[629/768] L26H1 @4bit: delta=0.000000\\\\n[630/768] L26H1 @8bit: delta=0.000000\\\\n[631/768] L26H2 @2bit: delta=0.134758\\\\n[632/768] L26H2 @4bit: delta=0.000000\\\\n[633/768] L26H2 @8bit: delta=0.000000\\\\n[634/768] L26H3 @2bit: delta=0.134758\\\\n[635/768] L26H3 @4bit: delta=0.000000\\\\n[636/768] L26H3 @8bit: delta=0.000000\\\\n[637/768] L26H4 @2bit: delta=0.134758\\\\n[638/768] L26H4 @4bit: delta=0.000000\\\\n[639/768] L26H4 @8bit: delta=0.000000\\\\n[640/768] L26H5 @2bit: delta=0.134758\\\\n[641/768] L26H5 @4bit: delta=0.000000\\\\n[642/768] L26H5 @8bit: delta=0.000000\\\\n[643/768] L26H6 @2bit: delta=0.134758\\\\n[644/768] L26H6 @4bit: delta=0.000000\\\\n[645/768] L26H6 @8bit: delta=0.000000\\\\n[646/768] L26H7 @2bit: delta=0.134758\\\\n[647/768] L26H7 @4bit: delta=0.000000\\\\n[648/768] L26H7 @8bit: delta=0.000000\\\\n[649/768] L27H0 @2bit: delta=0.134758\\\\n[650/768] L27H0 @4bit: delta=0.000000\\\\n[651/768] L27H0 @8bit: delta=0.000000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[622/768] L25H7 @2bit: delta=0.134758\\n[623/768] L25H7 @4bit: delta=0.000000\\n[624/768] L25H7 @8bit: delta=0.000000\\n[625/768] L26H0 @2bit: delta=0.134758\\n[626/768] L26H0 @4bit: delta=0.000000\\n[627/768] L26H0 @8bit: delta=0.000000\\n[628/768] L26H1 @2bit: delta=0.134758\\n[629/768] L26H1 @4bit: delta=0.000000\\n[630/768] L26H1 @8bit: delta=0.000000\\n[631/768] L26H2 @2bit: delta=0.134758\\n[632/768] L26H2 @4bit: delta=0.000000\\n[633/768] L26H2 @8bit: delta=0.000000\\n[634/768] L26H3 @2bit: delta=0.134758\\n[635/768] L26H3 @4bit: delta=0.000000\\n[636/768] L26H3 @8bit: delta=0.000000\\n[637/768] L26H4 @2bit: delta=0.134758\\n[638/768] L26H4 @4bit: delta=0.000000\\n[639/768] L26H4 @8bit: delta=0.000000\\n[640/768] L26H5 @2bit: delta=0.134758\\n[641/768] L26H5 @4bit: delta=0.000000\\n[642/768] L26H5 @8bit: delta=0.000000\\n[643/768] L26H6 @2bit: delta=0.134758\\n[644/768] L26H6 @4bit: delta=0.000000\\n[645/768] L26H6 @8bit: delta=0.000000\\n[646/768] L26H7 @2bit: delta=0.134758\\n[647/768] L26H7 @4bit: delta=0.000000\\n[648/768] L26H7 @8bit: delta=0.000000\\n[649/768] L27H0 @2bit: delta=0.134758\\n[650/768] L27H0 @4bit: delta=0.000000\\n[651/768] L27H0 @8bit: delta=0.000000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Key findings:\n\n1. **Llama pipeline log** shows profiling at step 651/768 (~85% complete, not 29%). Still in Phase 1.\n\n2. **Both scripts** start with the docstring, then `import argparse, json, math, time, torch` — no `os.environ` setup at the top.\n\n3. **Phase 1 profiling saves to `llama_profiling_results.json`** after completion (confirmed in the code). So we can use **方案 C**: let the current process finish profiling (it saves the JSON), then it will fail at Phase 3 eval. We modify the files now so any future re-run will have HF_HOME set correctly.\n\n\n4. Both scripts follow the same structure with different model paths and names.\n\nNow I'm adding the environment variable setup to both files by inserting the HF_HOME configuration before the existing docstring...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "0c4ab2a9-49e3-4f40-840a-9d035acd5688",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ARXUhVuhJpDSkQSS9bXFDZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8765,
+                "cache_read_input_tokens": 24301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Profiling 已到 651/768 (~85%)，还在 Phase 1。Phase 1 完成后会保存 `llama_profiling_results.json`，Phase 3 eval 失败后可用修改后的脚本恢复。现在修改两个文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "537696d4-19dc-474d-810d-e0137656630d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ARXUhVuhJpDSkQSS9bXFDZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8765,
+                "cache_read_input_tokens": 24301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRbEJLDmWvrvexqouQZaEf",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-37397",
+                "command": "cd /root/ratekv && sed -i '1i import os\\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\\n' run_llama_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "defbd379-bcab-44bd-9f9e-2bd35e1d63e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ARXUhVuhJpDSkQSS9bXFDZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8765,
+                "cache_read_input_tokens": 24301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T01:39:15.675Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRbEJLDmWvrvexqouQZaEf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "fb10dc70-ee7d-405f-8d3f-8f6d6ff9f421",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017c7gFgXdj3XDZpLH2LbD31",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-37397",
+                "command": "cd /root/ratekv && sed -i '1i import os\\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\\n' run_mistral_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "b5b6df8c-8455-41b1-9bf5-d073d0a74d6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ARXUhVuhJpDSkQSS9bXFDZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8765,
+                "cache_read_input_tokens": 24301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8765
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T01:39:16.474Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017c7gFgXdj3XDZpLH2LbD31",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "73cfb130-c8b8-49dd-909d-5c14b3eb8c60",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "61191b4b-972f-4997-a90f-751215ac93a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BhipGairpYNkAACWwWiFMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 968,
+                "cache_read_input_tokens": 33066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 968
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdoKnLqeEsKGwAZEhcRTzD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "head -8 /root/ratekv/run_llama_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "64a044fa-2fe5-42b9-8e68-66e3153b304e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BhipGairpYNkAACWwWiFMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 968,
+                "cache_read_input_tokens": 33066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 968
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T01:39:23.424Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MdoKnLqeEsKGwAZEhcRTzD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Llama-3.1-8B: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "c4000909-2c21-4940-accf-31c6470e26a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Llama-3.1-8B: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\n\\\"\\\"\\\"Full pipeline for Llama-3.1-8B: profile -> constrained MCKP solve -> eval.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KtMu4GF9nKDtcQ5ZgaDpRz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "head -8 /root/ratekv/run_mistral_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "39ecf4ca-0c33-4501-a2a8-87d5a65efccf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BhipGairpYNkAACWwWiFMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 968,
+                "cache_read_input_tokens": 33066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 968
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T01:39:24.022Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KtMu4GF9nKDtcQ5ZgaDpRz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Mistral-7B-v0.3: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "1518ee35-5342-4b26-8cfd-4b01ed43ff6d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Full pipeline for Mistral-7B-v0.3: profile -> constrained MCKP solve -> eval.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\n\\\"\\\"\\\"Full pipeline for Mistral-7B-v0.3: profile -> constrained MCKP solve -> eval.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件修改确认完成。\n\n**总结：**\n- `run_llama_pipeline.py` 和 `run_mistral_pipeline.py` 顶部已添加 `HF_HOME` 和 `HF_DATASETS_OFFLINE` 环境变量\n- 当前 Llama 进程在 Phase 1 profiling (651/768 ≈ 85%)，不受文件修改影响\n- Phase 1 完成后会保存 `llama_profiling_results.json`，即使 Phase 3 eval 因网络问题失败，profiling 数据不丢\n- 下次重新运行脚本时，`HF_DATASETS_OFFLINE=1` + `HF_HOME` 指向缓存目录，Phase 3 eval 会直接从 `/root/autodl-tmp/.hf_cache` 加载 WikiText-2，不再尝试下载"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "uuid": "c08e85ff-9201-4626-8f9d-e10e0ae5b373",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CZwavxdm1cRv2eR8syFWXi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 768,
+                "cache_read_input_tokens": 34034,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 768
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件修改确认完成。\n\n**总结：**\n- `run_llama_pipeline.py` 和 `run_mistral_pipeline.py` 顶部已添加 `HF_HOME` 和 `HF_DATASETS_OFFLINE` 环境变量\n- 当前 Llama 进程在 Phase 1 profiling (651/768 ≈ 85%)，不受文件修改影响\n- Phase 1 完成后会保存 `llama_profiling_results.json`，即使 Phase 3 eval 因网络问题失败，profiling 数据不丢\n- 下次重新运行脚本时，`HF_DATASETS_OFFLINE=1` + `HF_HOME` 指向缓存目录，Phase 3 eval 会直接从 `/root/autodl-tmp/.hf_cache` 加载 WikiText-2，不再尝试下载"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 41780,
+            "duration_api_ms": 42405,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "c6cd4240-a7a5-40e7-85e7-d14a5b57d4c8",
+            "total_cost_usd": 0.25181575,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 22961,
+              "cache_read_input_tokens": 126813,
+              "output_tokens": 1725,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22961,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 250,
+                  "cache_read_input_tokens": 34034,
+                  "cache_creation_input_tokens": 768,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 768
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1608,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0017330000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1725,
+                "cacheReadInputTokens": 126813,
+                "cacheCreationInputTokens": 22961,
+                "webSearchRequests": 0,
+                "costUSD": 0.25008275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a7771c6f-1890-4a60-a9c8-7181644c7c74"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ]
+}

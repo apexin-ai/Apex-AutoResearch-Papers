@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a951dcd3534a339c49cc",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "check d048 and yi15",
+  "task_key": "worker_check_d048_and_yi15_20260514T183057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d048_and_yi15_20260514T183057_result.json",
+    "occurrence": 1,
+    "bytes": 2254,
+    "sha256": "ae6679af7bfef4ba03533563e3cd98da02aa8bfb3c2c1c222fcc855f0b72c13a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. qwen25-hires-profiling (D048 验证)\n\n**Float32 profiling 已完成。** 另有一个新进程仍在运行。\n\n| 项目 | 状态 |\n|------|------|\n| PID 246442 | 已结束 |\n| PID 247434 | **运行中**（1h36m），`run_hires_quant.py --budget 0.25 --num_samples 64 --seq_len 2048`，GPU 0 占 35GB/98GB，100% 利用率 |\n\n**Float32 验证结果**（来自 `qwen_float32_validate.log`）：\n\n| 指标 | Float32 值 |\n|------|-----------|\n| **Top-5% concentration** | **0.4220** |\n| Top-5 heads distortion sum | 8.2906 |\n| Total 2-bit distortion sum | 19.6478 |\n| Baseline PPL | 10.7739 |\n| MCKP allocation | {8: 4, 2: 8, 4: 100} |\n| **与 bf16 allocation 一致性** | **YES - IDENTICAL** |\n\n结论：float32 下 concentration = 0.4220，MCKP 分配方案与 bf16 完全一致，bf16 bug 未导致 allocation 偏移。\n\n**结果文件：**\n- `/root/ratekv/qwen_float32_profiles.json` — float32 per-head profile（19KB, May 15 01:54）\n- `/root/ratekv/qwen_float32_validate.log` — 验证日志\n- `/root/ratekv/qwen_float32_validate.py` — 验证脚本\n\nPID 247434 正在跑的 `run_hires_quant.py` 是 hires calibration 下的 quantization evaluation（输出到 `qwen_hires_results.json`），这是另一个步骤，非 profiling 验证。\n\n---\n\n### 2. Yi-1.5-9B (D047)\n\n**实验已完成，verdict = FAIL。**\n\n| 指标 | 值 |\n|------|-----|\n| baseline_wikitext2_ppl | 7.016 |\n| mckp_wikitext2_ppl | 7.313 |\n| uniform_4bit_ppl | 7.217 |\n| mckp_improvement_over_uniform | **-0.096**（worse） |\n| top5_concentration | 0.4934 |\n| best_k (ablation) | max_2bit=2, ppl=7.221 |\n\n**文件路径（用于 registry 更新）：**\n\n| 用途 | 路径 |\n|------|------|\n| 完整结果 | `/root/ratekv/yi15_full_results.json` |\n| K-ablation | `/root/ratekv/yi15_k_ablation_results.json` |\n| Profiling 原始数据 | `/root/ratekv/yi15_profiling_results.json` |\n| 运行日志 | `/root/ratekv/yi15_full.log`（注：这是早期 crash 的日志，成功运行的输出在结果 JSON 中） |\n| Pipeline 脚本 | `/root/ratekv/run_yi15_full_pipeline.py` |\n\n无独立 checkpoint 目录——Yi-1.5 实验是 profiling+evaluation pipeline，未产生模型 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

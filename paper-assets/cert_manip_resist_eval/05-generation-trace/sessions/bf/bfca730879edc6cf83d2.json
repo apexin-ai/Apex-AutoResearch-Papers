@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bfca730879edc6cf83d2",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra dl qwen72b resume",
+  "task_key": "worker_infra_dl-qwen72b-resume_20260521T202818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dl-qwen72b-resume_20260521T202818_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "220b7df074460063b2929e025c99c1fc6d39336c871bad57b6f0b7906b417e9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认，所有后台计时器均已完成。下载任务已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

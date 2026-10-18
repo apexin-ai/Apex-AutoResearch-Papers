@@ -1,0 +1,3465 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d6e6323219bc00f03388",
+  "rounds": [
+    {
+      "number": 30,
+      "messages": [
+        {
+          "source_line": 1261,
+          "timestamp": "2026-05-23T14:31:41.485955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1575
+          },
+          "id": "event-001261"
+        },
+        {
+          "source_line": 1262,
+          "timestamp": "2026-05-23T14:31:42.090003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1778
+          },
+          "id": "event-001262"
+        },
+        {
+          "source_line": 1263,
+          "timestamp": "2026-05-23T14:31:42.392203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1470
+          },
+          "id": "event-001263"
+        },
+        {
+          "source_line": 1264,
+          "timestamp": "2026-05-23T14:31:49.019859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/submitted.pdf",
+              "pages": "11-20",
+              "project": "entrainment_gated_ft",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001264"
+        },
+        {
+          "source_line": 1265,
+          "timestamp": "2026-05-23T14:31:50.679601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 500.2}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 509.8}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 450.3}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 392.4}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 397.5}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 455.1}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 458.4}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 500.8}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p19.png\\\", \\\"width\\\": 1241, \\\"he\n…[truncated 489 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1659
+          },
+          "id": "event-001265"
+        },
+        {
+          "source_line": 1266,
+          "timestamp": "2026-05-23T14:31:54.092306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-001266"
+        },
+        {
+          "source_line": 1267,
+          "timestamp": "2026-05-23T14:31:54.594486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-001267"
+        },
+        {
+          "source_line": 1268,
+          "timestamp": "2026-05-23T14:31:55.550108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1457
+          },
+          "id": "event-001268"
+        },
+        {
+          "source_line": 1269,
+          "timestamp": "2026-05-23T14:31:55.551479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-001269"
+        },
+        {
+          "source_line": 1270,
+          "timestamp": "2026-05-23T14:31:55.551892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-001270"
+        },
+        {
+          "source_line": 1271,
+          "timestamp": "2026-05-23T14:31:56.004452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-001271"
+        },
+        {
+          "source_line": 1272,
+          "timestamp": "2026-05-23T14:31:56.457332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-001272"
+        },
+        {
+          "source_line": 1273,
+          "timestamp": "2026-05-23T14:31:56.460442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 455
+          },
+          "id": "event-001273"
+        },
+        {
+          "source_line": 1274,
+          "timestamp": "2026-05-23T14:31:56.460865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-001274"
+        },
+        {
+          "source_line": 1275,
+          "timestamp": "2026-05-23T14:31:57.368841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 907
+          },
+          "id": "event-001275"
+        },
+        {
+          "source_line": 1276,
+          "timestamp": "2026-05-23T14:31:57.369288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-001276"
+        },
+        {
+          "source_line": 1277,
+          "timestamp": "2026-05-23T14:31:57.921898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001277"
+        },
+        {
+          "source_line": 1278,
+          "timestamp": "2026-05-23T14:31:58.374619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1005
+          },
+          "id": "event-001278"
+        },
+        {
+          "source_line": 1279,
+          "timestamp": "2026-05-23T14:31:58.376893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001279"
+        },
+        {
+          "source_line": 1280,
+          "timestamp": "2026-05-23T14:31:59.283157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1361
+          },
+          "id": "event-001280"
+        },
+        {
+          "source_line": 1281,
+          "timestamp": "2026-05-23T14:31:59.286825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 909
+          },
+          "id": "event-001281"
+        },
+        {
+          "source_line": 1282,
+          "timestamp": "2026-05-23T14:31:59.287241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001282"
+        },
+        {
+          "source_line": 1283,
+          "timestamp": "2026-05-23T14:31:59.488304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001283"
+        },
+        {
+          "source_line": 1284,
+          "timestamp": "2026-05-23T14:32:00.243084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-001284"
+        },
+        {
+          "source_line": 1285,
+          "timestamp": "2026-05-23T14:32:00.444804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-001285"
+        },
+        {
+          "source_line": 1286,
+          "timestamp": "2026-05-23T14:32:08.716806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/submitted.pdf",
+              "pages": "21-22",
+              "project": "entrainment_gated_ft",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001286"
+        },
+        {
+          "source_line": 1287,
+          "timestamp": "2026-05-23T14:32:08.919097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 491.9}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 128.1}], \\\"total_pages\\\": 22, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 202
+          },
+          "id": "event-001287"
+        },
+        {
+          "source_line": 1288,
+          "timestamp": "2026-05-23T14:32:12.683083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-001288"
+        },
+        {
+          "source_line": 1289,
+          "timestamp": "2026-05-23T14:32:13.135072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-001289"
+        },
+        {
+          "source_line": 1290,
+          "timestamp": "2026-05-23T14:32:13.138862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3
+          },
+          "id": "event-001290"
+        },
+        {
+          "source_line": 1291,
+          "timestamp": "2026-05-23T14:32:13.240552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 557
+          },
+          "id": "event-001291"
+        },
+        {
+          "source_line": 1292,
+          "timestamp": "2026-05-23T14:33:09.919310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "predictive multiplicity Rashomon set 2025 2026 recent advances NLP"
+            }
+          },
+          "id": "event-001292"
+        },
+        {
+          "source_line": 1293,
+          "timestamp": "2026-05-23T14:33:11.023572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ensemble diversity model disagreement per-example analysis architecture comparison NLP 2024 2025"
+            }
+          },
+          "id": "event-001293"
+        },
+        {
+          "source_line": 1294,
+          "timestamp": "2026-05-23T14:33:11.726512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "linear attention vs full attention per-example behavior differences 2024 2025"
+            }
+          },
+          "id": "event-001294"
+        },
+        {
+          "source_line": 1295,
+          "timestamp": "2026-05-23T14:33:17.442869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"predictive multiplicity Rashomon set 2025 2026 recent advances NLP\"\n\nLinks: [{\"title\":\"Resolving Predictive Multiplicity for the Rashomon Set | Request PDF\",\"url\":\"https://www.researchgate.net/publication/402661358_Resolving_Predictive_Multiplicity_for_the_Rashomon_Set\"},{\"title\":\"[2601.09071] Resolving Predictive Multiplicity for the Rashomon Set\",\"url\":\"https://arxiv.org/abs/2601.09071\"},{\"title\":\"Rashomon Sets and Model Multiplicity in Federated Learning\",\"url\":\"https://arxiv.org/html/2602.09520\"},{\"title\":\"Resolving Predictive Multiplicity for the Rashomon Set\",\"url\":\"https://arxiv.org/pdf/2601.09071\"},{\"title\":\"Allocation Multiplicity: Evaluating the Promises of the Rashomon Set\",\"url\":\"https://arxiv.org/html/2503.16621\"},{\"title\":\"Dropout-Based Rashomon Set Exploration for Efficient Predictive   Multiplicity Estimation\",\"url\":\"https://arxiv.org/pdf/2402.00728\"},{\"title\":\"Horizon-constrained Rashomon sets for chaotic forecasting | AIP Advances | AIP Publishing\",\"url\":\"https://pubs.aip.org/aip/adv/article/16/4/045208/3386130/Horizon-constrained-Rashomon-sets-for-chaotic\"}]\n\nBased on the search results, here are the recent advances in predictive multiplicity and Rashomon sets for 2025-2026:\n\n## Recent Research Directions\n\nThe research field of model multiplicity seeks to understand and quantify divergence within Rashomon sets, highlighting how different design choices during model training can lead to conflicting predictions for individual data samples.\n\n### Recent Methodological Advances\n\nOutliers can cause the Rashomon set to have high variance predictions in a local area, so fixing them can lower variance. A recent paper from January 2026 proposes approaches including outlier correction and local patching to address this issue.\n\nResearchers have introduced horizon-constrained Rashomon sets, a theoretical framework that characterizes how model multiplicity evolves with prediction horizon in chaotic systems.\n\n### Fairness and Decis\n…[truncated 999 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7523
+          },
+          "id": "event-001295"
+        },
+        {
+          "source_line": 1296,
+          "timestamp": "2026-05-23T14:33:18.618092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ensemble diversity model disagreement per-example analysis architecture comparison NLP 2024 2025\"\n\nLinks: [{\"title\":\"Ensemble Large Language Models: A Survey\",\"url\":\"https://www.mdpi.com/2078-2489/16/8/688\"},{\"title\":\"MSA at BEA 2025 Shared Task: Disagreement-Aware ...\",\"url\":\"https://aclanthology.org/2025.bea-1.95.pdf\"},{\"title\":\"Weak Ensemble Learning from Multiple Annotators for ...\",\"url\":\"https://aclanthology.org/2025.nlperspectives-1.8.pdf\"},{\"title\":\"Effective Proxy for Human Labeling: Ensemble Disagreement Scores in   Large Language Models for Industrial NLP\",\"url\":\"https://arxiv.org/pdf/2309.05619\"},{\"title\":\"Opt-ICL at LeWiDi-2025: Maximizing In-Context Signal from Rater Examples via Meta-Learning\",\"url\":\"https://arxiv.org/pdf/2510.07105\"},{\"title\":\"Modeling Annotator Disagreement with Demographic-Aware Experts and Synthetic Perspectives\",\"url\":\"https://arxiv.org/pdf/2508.02853\"},{\"title\":\"Diversity-Aware Ensembling of Language Models Based on Topological Data Analysis\",\"url\":\"https://arxiv.org/html/2402.14184v1\"}]\n\nI found several relevant research papers and resources related to ensemble diversity, model disagreement, and per-example analysis in NLP from 2024-2025. Here's a summary of the search results:\n\n## Key Findings:\n\n**Ensemble Learning in NLP:**\nEnsemble learning, which combines multiple models to improve performance, presents a promising approach for addressing limitations in large language models, with comprehensive analysis of current methodologies and applications.\n\n**Disagreement-Aware Ensembling:**\nRecent approaches include disagreement-aware ensemble inference with LoRA-based fine-tuning. Additionally, disagreement scores from ensembles have shown mean average error as low as 0.4% and on average 13.8% better performance than using alternative approaches.\n\n**Diversity in Ensemble Models:**\nBoth the quality of individual models and their diversity are important factors in ensemble decision-making, as diversity h\n…[truncated 839 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7594
+          },
+          "id": "event-001296"
+        },
+        {
+          "source_line": 1297,
+          "timestamp": "2026-05-23T14:33:20.223976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"linear attention vs full attention per-example behavior differences 2024 2025\"\n\nLinks: [{\"title\":\"Linear Attention: A Comprehensive Guide for 2025 - Shadecoder - 100% Invisibile AI Coding Interview Copilot\",\"url\":\"https://www.shadecoder.com/topics/linear-attention-a-comprehensive-guide-for-2025\"},{\"title\":\"Hybrid Sparse & Linear Attention\",\"url\":\"https://www.emergentmind.com/topics/hybrid-sparse-and-linear-attention-mechanisms\"},{\"title\":\"A Visual Guide to Attention Variants in Modern LLMs\",\"url\":\"https://magazine.sebastianraschka.com/p/visual-attention-variants\"},{\"title\":\"Linear Attention and Mamba: New Power to Old Ideas - Synthesis AI\",\"url\":\"https://synthesis.ai/2024/11/20/linear-attention-and-mamba-new-power-to-old-ideas/\"},{\"title\":\"Linear Attention Architectures\",\"url\":\"https://www.emergentmind.com/topics/linear-attention-architectures\"},{\"title\":\"Power-based Partial Attention: Bridging Linear-Complexity and Full Attention\",\"url\":\"https://arxiv.org/pdf/2601.17334\"},{\"title\":\"A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\",\"url\":\"https://arxiv.org/pdf/2602.01763\"}]\n\nI found relevant research on linear attention vs full attention behavior differences. Here's what the recent literature shows:\n\n## Computational and Memory Differences\n\nLinear attention is an attention mechanism designed to make attention computation scale linearly with sequence length rather than quadratically, replacing the standard attention's O(n²) pairwise interactions with approximations or algebraic rearrangements that result in O(n) or near-linear computation and memory use.\n\n## Per-Example Behavior Differences\n\nRecent research highlights important behavioral distinctions:\n\n**Approximate vs. Exact Behavior**: Linear attention typically trades exactness of pairwise interactions for efficiency. DeltaNet (a linear attention variant) is less exact at content-based retrieval compared to full attention.\n\n**Performance Trade-offs**: Pure linear \n…[truncated 857 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 8497
+          },
+          "id": "event-001297"
+        },
+        {
+          "source_line": 1298,
+          "timestamp": "2026-05-23T14:33:32.366785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"provable expressiveness hierarchy\" hybrid linear full attention 2026 arxiv"
+            }
+          },
+          "id": "event-001298"
+        },
+        {
+          "source_line": 1299,
+          "timestamp": "2026-05-23T14:33:32.467608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Hollman Kyle Maleki West 2025 \"convergence and divergence\" language models random seeds multiplicity"
+            }
+          },
+          "id": "event-001299"
+        },
+        {
+          "source_line": 1300,
+          "timestamp": "2026-05-23T14:33:38.795658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"provable expressiveness hierarchy\" hybrid linear full attention 2026 arxiv\"\n\nLinks: [{\"title\":\"[2602.01763] A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\",\"url\":\"https://arxiv.org/abs/2602.01763\"},{\"title\":\"A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\",\"url\":\"https://www.arxiv.org/pdf/2602.01763\"},{\"title\":\"A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\",\"url\":\"https://arxiv.org/html/2602.01763v1\"},{\"title\":\"A Systematic Analysis of Hybrid Linear Attention\",\"url\":\"https://arxiv.org/html/2507.06457v1\"},{\"title\":\"Hybrid Linear Attention Done Right: Efficient Distillation ...\",\"url\":\"https://arxiv.org/pdf/2601.22156\"},{\"title\":\"Alleviating Forgetfulness of Linear Attention by Hybrid Sparse Attention and Contextualized Learnable Token Eviction\",\"url\":\"https://arxiv.org/html/2510.20787v1\"}]\n\nI found the paper you were searching for! \"A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\" is a paper by Xiaowei Ye and 4 other authors, available on arXiv.\n\nThe work provides the first provable separation between hybrid attention and standard full attention, offering a theoretical perspective for understanding the fundamental capabilities and limitations of different attention mechanisms.\n\nThe paper addresses the quadratic complexity of standard full attention by examining various efficient attention mechanisms, such as linear and hybrid attention, though their expressive power relative to full attention lacked rigorous theoretical characterization.\n\nThe theory applies to all linear attention variants that can be formulated as a recurrence, including Mamba, DeltaNet, and others. Additionally, the paper identifies a fundamental limitation of single-layer sparse attention mechanisms based on block compression and selection, showing that for tasks like 2-Sum requiring uniform pair-wise comparisons, such sparse mechanisms are provably weaker than full attention unless t\n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6428
+          },
+          "id": "event-001300"
+        },
+        {
+          "source_line": 1301,
+          "timestamp": "2026-05-23T14:33:39.549757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Hollman Kyle Maleki West 2025 \"convergence and divergence\" language models random seeds multiplicity\"\n\nLinks: [{\"title\":\"Convergence and Divergence of Language Models under Different Random Seeds\",\"url\":\"https://arxiv.org/pdf/2509.26643\"},{\"title\":\"Convergence and Divergence of Language Models under Different Random Seeds\",\"url\":\"https://arxiv.org/html/2509.26643v1\"},{\"title\":\"[2509.26643] Convergence and Divergence of Language Models under Different Random Seeds\",\"url\":\"https://arxiv.org/abs/2509.26643\"},{\"title\":\"[2509.26643v1] Convergence and Divergence of Language Models under Different Random Seeds\",\"url\":\"https://arxiv.org/abs/2509.26643v1\"},{\"title\":\"Convergence and Divergence of Language Models under Different Random Seeds - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1675/\"},{\"title\":\"Convergence and Divergence of Language Models under Different Random Seeds | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397424372_Convergence_and_Divergence_of_Language_Models_under_Different_Random_Seeds\"}]\n\nI found the paper you were searching for! However, I should note that the authors listed are **Finlay Fehlauer, Kyle Mahowald, and Tiago Pimentel** (not Hollman, Kyle, Maleki, and West as mentioned in your search query).\n\nThe paper investigates the convergence of language models (LMs) trained under different random seeds, measuring convergence as the expected per-token Kullback–Leibler (KL) divergence across seeds.\n\nBy comparing LM convergence as a function of model size and training checkpoint, the authors identify a four-phase convergence pattern: (i) an initial uniform phase, (ii) a sharp-convergence phase, (iii) a sharp-divergence phase, and (iv) a slow-reconvergence phase.\n\nKey findings include:\n\n- Larger models reconverge faster in later training stages, while smaller models never actually reconverge; these results suggest that a certain model size may be necessary to learn stable distributions.\n\n- \n…[truncated 362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7082
+          },
+          "id": "event-001301"
+        },
+        {
+          "source_line": 1302,
+          "timestamp": "2026-05-23T14:36:38.326157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 2 审稿报告：Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\n\n---\n\n## 总体评分\n**Overall**: 3.5 / 5（Borderline Conference）\n**Reviewer Confidence**: 4 / 5（Quite sure; carefully checked key claims and related work）\n**一句话总结**: 一篇实验严谨、统计方法扎实的实证研究，揭示了 hybrid recurrent architectures 在 aggregate 指标趋同时 per-example 行为显著分化的现象，但核心概念贡献有限——本质上是 ecological fallacy 在特定领域的已知实例化，且 routing 方法贡献不够深入。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 统计方法论扎实（permutation tests, bootstrap CIs, Bonferroni correction），但部分统计报告存在 misleading 倾向（先报 effect size 再补 non-significant p-value），且 routing 分析缺乏系统验证 |\n| **Excitement** | 2.5/5 | 核心发现（aggregate convergence ≠ per-example convergence）是 ecological fallacy 的已知表现，在新领域的实证价值有限；Jaccard similarity 是标准度量的直接应用；routing 作为 actionable insight 不够成熟 |\n| **Reproducibility** | 4/5 | 使用公开 model zoo（Wang et al. 2025），代码承诺发布，实验设置描述清晰，统计检验完整报告 |\n\n---\n\n## Paper Summary\n\n本文利用 Wang et al. (2025) 的 controlled model zoo（3种 hybrid linear recurrent architectures × 5种 attention ratios × 2种 scale），系统分析了增加 attention 对 per-example 预测一致性的影响。核心发现：(1) aggregate cross-architecture variance 随 attention 比例增加而降低，但 per-example Jaccard similarity 始终很低（J ≈ 0.11–0.30），说明不同架构在 aggregate 层面趋同时，影响的是完全不同的 example 子集；(2) multiplicity 主要由 task type 而非 attention ratio 驱动；(3) pure-model confidence margin 可部分预测哪些 example 会被 attention 帮助。\n\n---\n\n## 主要优势\n\n**S1. 实验设计严谨**：利用 controlled model zoo 隔离了 architecture 和 attention ratio 作为自变量，控制了 training data、tokenizer、hyperparameters 等混淆因素。这是研究架构差异的理想实验范式。（Section 3.1）\n\n**S2. 统计方法论扎实**：全文使用 exact permutation tests（非参数检验）、bootstrap 95% CIs、Bonferroni correction（10-benchmark correction α/10 = 0.005），对多重比较问题处理到位。附录 D-K 提供了大量 robustness checks（binarization sensitivity、continuous-threshold Jaccard、seed calibration、340M scale replication）。\n\n**S3. 实践相关性强**：在 hybrid architectures 快速替代 pure Transformer 的当下（Jamba、Griffin、RWKV 等陆续进入生产环境），指出 aggregate benchmark 不足以指导 per-example 级别的部署决策，具有时效性。\n\n**S4. 写作结构清晰**：Section 3（Method）→ Section 4（Results）的叙事逻辑清楚，从 convergence metrics → per-example decomposition → aggregate trends → routing 层层递进。Figure 1 的双面板设计有效传达了 aggregate vs. per-example 的核心对比。\n\n**S5. 扩展验证充分**：Appendix X 将分析扩展到 5 个架构（加入 GLA 和 DeltaNet），Table 30 的 15 pair permutation tests 全部 significant（z ≥ 2.9, p ≤ .006），表明 low-overlap pattern 并非原始 3 架构的特例。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1 [critical] 核心概念新颖性不足——ecological fallacy 的已知实例**\n- 具体位置：Section 1 (Introduction), Section 4.2\n- 问题：论文的核心发现——\"aggregate convergence 与 per-example divergence 的 decoupling\"——本质上是 ecological fallacy（Robinson 1950）在 architecture comparison 场景下的体现。论文自身在 Section 4.2 第二段承认这一联系（\"This is a suggestive but underpowered secondary observation (n = 5)\"），并在 Introduction 引用了 Robinson (1950)。然而，Introduction 的 framing 将此呈现为一个新发现（\"We present the first systematic per-example analysis of how attention affects cross-architecture agreement\"），而实际上方法论层面（Jaccard overlap on helped/hurt sets + permutation tests）并无创新——Jaccard similarity 是标准集合度量，permutation test 是标准非参数检验。真正的贡献仅在于选择了一个新的 application domain（hybrid recurrent architectures），但这种 domain transfer 的概念增量有限。\n- 为什么影响接收：EMNLP 对 main conference 论文的 excitement/novelty 有较高要求。一篇主要贡献为\"将已知现象在新领域验证\"的论文，除非提供了超越验证的深层洞察或新方法，否则难以达到 Conference 档位。\n- 建议修改方向：(1) 在 Introduction 中更准确地定位贡献为 **empirical contribution**，明确承认方法论并非新颖；(2) 深化分析以超越单纯验证——例如，探究 WHY 不同架构影响不同 examples（是因为 recurrence mechanism 的 inductive bias 差异？还是 attention pattern 的系统性差异？），Section F 的 attention weight analysis 是一个好的开始，但结论（\"per-example divergence is not driven by differential attention allocation\"）实际上是一个 null result，未能提供正面解释。\n\n**N2 [critical] Routing 分析（§4.3）作为方法贡献严重不足**\n- 具体位置：Section 4.3 \"Confidence-based routing\"\n- 问题：Section 4.3 提出 confidence-based routing 作为 \"actionable insight\"，但实际内容仅限于：(a) 在 LAMBADA 上观察到 rescue-threshold routing 达到 56.2% accuracy vs. 50.9% majority vote；(b) 在 ARC-Easy 上 gain 为 +1.1pp。这些结果存在多个问题：\n  1. **缺乏方法论贡献**：routing 策略仅为\"选择 pure-model confidence 最高的架构\"，没有 learned routing、没有 feature engineering、没有与 simple ensembling baseline 的对比\n  2. **结果不稳定**：在 HellaSwag 和 PIQA 上\"routing provides no benefit\"（Section 4.3），在 BoolQ 上\"fails when multiplicity is low\"——即该方法仅在特定条件下有效，且条件本身（high multiplicity）需要预先知道\n  3. **评估不充分**：仅用 10-fold cross-validated splits，无 held-out test set 验证，无统计显著性检验\n  4. Conclusion (§4.1) 将此提升为 \"practitioner implications\"，但实际证据不支持如此推断\n- 为什么影响接收：论文试图同时贡献 empirical findings 和 practical methodology，但后者过于薄弱，拉低了整体贡献强度。如果 routing 不能独立成立，论文只剩下 empirical observation，进一步限制了 excitement。\n- 建议修改方向：(1) 将 routing 降级为 preliminary/exploratory analysis，不作为主要贡献；(2) 或大幅扩展：加入 oracle routing upper bound、simple ensemble baseline（majority vote with confidence weighting）、learned routing with cross-validation、across-benchmark generalization analysis。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1 [warning] 统计报告存在系统性 misleading 倾向**\n- 具体位置：Section 4.2（aggregate convergence）, Section 6（p.6 Table 1 区域）\n- 问题：论文多处采用\"先报告 effect size / 描述性趋势，再补充 non-significant p-value\"的叙事策略，容易给读者造成 significant result 的印象：\n  - Section 4.2: \"Only LAMBADA shows monotonic convergence (ρ = −1.0, Bonferroni-adjusted p = .170)\" — 用 \"monotonic convergence\" 这一确定性措辞描述未达显著性的结果\n  - Section 6 (p.6): \"Aggregate trends do not reach statistical significance (α = .5, Bonferroni-adjusted p = .170), yet per-example overlap saturates...\" — \"yet\" 的转折暗示趋势仍应被重视\n  - Table 1 结果描述：\"non-significant but partially revealing\" — 这一措辞在统计实践中是有问题的\n  - Section 4.2 (p.7): \"a suggestive but underpowered secondary observation (n=5)\" — 这是更合理的表述，但全文不一致\n- 建议：统一采用 \"underpowered\" 表述，明确标注 non-significant results 不应用于支持 directional claims。或者增加 n（通过纳入更多 benchmark/architecture）来获得足够 statistical power。\n\n**W2 [warning] 相关工作遗漏重要文献**\n- 具体位置：Section 2 (Related Work)\n- 遗漏文献：\n  1. **Ye et al. (2026), \"A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\"**（arXiv: 2602.01763）——直接为本文的研究对象（hybrid architecture 中 linear vs. full attention 的比例）提供了理论基础，证明了 hybrid attention 和 full attention 之间存在 provable expressiveness separation。本文完全缺乏理论视角来解释 WHY different architectures affect different examples，而这篇理论论文恰好提供了可能的解释框架。\n  2. **\"Resolving Predictive Multiplicity for the Rashomon Set\"**（arXiv: 2601.09071, Jan 2026）——predictive multiplicity 的最新进展，提出了 outlier correction 和 local patching 方法来 resolve multiplicity，直接相关于本文的 routing 贡献（作为一种 resolution 策略）。\n  3. **\"Rashomon Sets and Model Multiplicity in Federated Learning\"**（arXiv: 2602.09520）——将 Rashomon sets 扩展到分布式场景，与本文的 cross-architecture multiplicity 在概念上有交集。\n  4. **Ensemble diversity 的 exploitation 文献**：本文引用了 Kuncheva and Whitaker (2003) 作为 diversity 度量，但未讨论 ensemble diversity 如何被 exploit（而非仅被 measured）——这直接相关于 §4.3 的 routing 思路。Diversity-aware ensembling（如 Topological Data Analysis-based 方法，Barilaro et al. 2024）是一个活跃的研究方向。\n- 建议：至少引用 Ye et al. (2026) 并讨论其理论结果如何 contextualize 本文的实证发现（即 expressiveness gap 可能解释 per-example divergence）。\n\n**W3 [warning] Introduction 的 framing 与实际结果强度不匹配**\n- 具体位置：Section 1, Abstract\n- 问题：\n  - Abstract 声称 \"we decompose per-example effects and find that this predictive multiplicity (Marx et al., 2020) depends on task type (κ = 0.11–0.30) rather than attention dose\"——但 Section 4.1 的分析显示 κ 在 task type 之间的差异幅度有限（Table 2），且置信区间宽泛。\"rather than\" 的对比过于绝对。\n  - Introduction 中 \"Confidence-informed routing extracts 36% of oracle complementarity on LAMBADA (4+5.3pp in majority vote), suggesting these differences are partially actionable\" ——36% 的 oracle complementarity 提取率并不高，\"partially actionable\" 是更准确的措辞，但 36% 这个数字被放在显要位置可能给人积极印象。\n- 建议：将 \"rather than\" 改为 \"more than\" 或 \"primarily...rather than\"，并在 routing 结果描述中增加 baseline comparison context。\n\n**W4 [warning] Scale 局限性影响结论外推**\n- 具体位置：Limitations (p.8), Appendix T\n- 问题：所有实验限于 340M 和 1.3B 参数量。Limitations 承认 \"at larger scales (e.g. 7B+) may differ\"，但论文 Conclusion 中的 practitioner implications 使用了不加限定的一般性语言（\"practitioners\" without scale qualification）。Appendix T 的 340M 结果显示 aggregate convergence 在该 scale 上不存在，且 per-example multiplicity pattern 虽然 qualitatively 一致但 magnitude 不同，表明 scale 确实 matters。在当前 LLM 主流 7B-70B 的背景下，1.3B 的结论直接外推有风险。\n- 建议：在 Conclusion 的 practitioner implications 中明确添加 scale 限定词。\n\n---\n\n## 小问题（不影响接收）\n\n**M1** Section 3.3 的 Jaccard similarity 公式 J = |A∩B|/|A∪B| 是标准定义，无需整页推导——可以更简洁地引出。\n\n**M2** Figure 2 (p.7) 的 y 轴标签 \"Spearman ρ\" 与标题 \"Spearman ρ between attention ratio and cross-architecture ν\" 重复。建议简化。\n\n**M3** Appendix R (BoolQ) 和 S (WinoGrande) 各自分析了 supplementary benchmarks 的行为，篇幅较长（各约 1.5 页），但核心发现（BoolQ 的 binary classification 特殊性、WinoGrande 的 near-chance accuracy）可以更精简地总结。\n\n**M4** Abstract 约 195 words，符合 EMNLP 200-word 限制，但信息密度很高，第一次阅读时不易 parse——特别是 \"(κ = 0.11–0.30)\" 这种 inline 统计量在 abstract 中显得 cluttered。\n\n**M5** 论文在 p.3 line 区域使用了 \"zoo\" 这一非正式术语（\"the model zoo of Wang et al.\"），在学术论文中可考虑使用 \"model collection\" 或 \"controlled model suite\"。\n\n---\n\n## Questions for Authors\n\n**Q1**: Section F 的 attention weight analysis 得出 null result（per-example divergence 不是由 differential attention allocation 驱动的）。那么作者认为 per-example divergence 的 root cause 是什么？是 recurrence mechanism 的 inductive bias？还是初始化/训练 trajectory 的 stochastic 差异？\n\n**Q2**: 为什么没有将 simple ensembling（e.g., majority vote across all 3 architectures）作为 routing 的 baseline？这是最自然的 comparison。\n\n**Q3**: Appendix W 的 seed-variation calibration 使用了 Pythia 70M（远小于实验中的 340M/1.3B），作者如何确保 seed variation 在更大 scale 上不会产生不同的 pattern？\n\n**Q4**: 论文是否考虑过使用 KL divergence 或 prediction entropy 作为 per-example multiplicity 的替代度量（而非 binarized Jaccard）？Binarization（Section 3.4）会丢失 confidence 信息——Appendix O 的 continuous-threshold 分析部分解决了这个问题，但为什么不在主文中使用 continuous 版本？\n\n---\n\n## Missing References\n\n1. **Ye et al. (2026)**, \"A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention\", arXiv: 2602.01763 — 直接为 hybrid architecture 的 expressiveness gap 提供理论基础\n2. **arXiv: 2601.09071 (Jan 2026)**, \"Resolving Predictive Multiplicity for the Rashomon Set\" — multiplicity resolution 的最新方法，与 routing 贡献直接相关\n3. **arXiv: 2602.09520**, \"Rashomon Sets and Model Multiplicity in Federated Learning\" — Rashomon sets 在分布式场景的扩展\n4. Diversity-aware ensemble 方法文献（如 TDA-based ensembling）——与 §4.3 routing 思路有概念交集\n\n---\n\n## EMNLP 2026 适配性\n\n**Scope 匹配度**：中等。论文主题（hybrid architectures + predictive multiplicity）与 EMNLP 的 scope 有交集——hybrid architectures 是 NLP 的热门话题，predictive multiplicity 是 ML fairness/reliability 的重要概念。但论文更偏向 ML methodology 而非 NLP-specific insight，可能更适合 ICML/NeurIPS。\n\n**预期影响力**：中等偏低。核心发现（aggregate ≠ per-example）对于熟悉 ecological fallacy 的读者来说不意外。对 NLP practitioners 有一定参考价值（部署时注意架构选择对特定样本的影响），但缺乏可操作的方法论输出（routing 不成熟）。\n\n---\n\n## Overall Assessment 详述\n\n**给分理由**：3.5（Borderline Conference）\n\n**支持 Conference 的因素**：\n- 实验设计严谨，controlled variables 是这类研究的黄金标准\n- 统计方法论全面，robustness checks 充分（附录 A-X 覆盖了大量 sensitivity analyses）\n- 主题时效性强——hybrid architectures 正在快速部署\n- 5-architecture 扩展验证（Appendix X）增强了结论的 generalizability\n\n**限制 excitement 的因素**：\n- 核心概念贡献有限（ecological fallacy 的 domain-specific 验证）\n- 方法论无创新（标准度量 + 标准检验）\n- Routing 分析作为\"practical contribution\"不够成熟\n- 部分统计报告有 misleading 倾向\n- Scale 限于 ≤1.3B，在 7B+ 时代外推价值有限\n- 未能解释 per-example divergence 的 root cause（null result in attention analysis）\n\n**与 Findings 的比较**：论文的 soundness 和 reproducibility 满足 Findings 标准（3.0），但 excitement 不足以 confidently recommend for main conference。若 Must-Fix N1 和 N2 得到解决（更准确的 novelty framing + 更成熟的 routing 方法），可上升到 Conference 档位。\n",
+              "reviewer_id": "2",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-001302"
+        },
+        {
+          "source_line": 1303,
+          "timestamp": "2026-05-23T14:36:42.091086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3764
+          },
+          "id": "event-001303"
+        },
+        {
+          "source_line": 1304,
+          "timestamp": "2026-05-23T14:36:46.464739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001304"
+        },
+        {
+          "source_line": 1305,
+          "timestamp": "2026-05-23T14:36:46.515264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001305"
+        },
+        {
+          "source_line": 1306,
+          "timestamp": "2026-05-23T14:36:50.128933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/_pdf_images"
+            }
+          },
+          "id": "event-001306"
+        },
+        {
+          "source_line": 1307,
+          "timestamp": "2026-05-23T14:36:50.129399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-001307"
+        },
+        {
+          "source_line": 1308,
+          "timestamp": "2026-05-23T14:37:01.180320+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n**评分：3.5/5（Borderline Conference）**\n\n核心判断：\n- **2个 Must-Fix**：(1) 概念新颖性不足——aggregate vs. per-example 的 decoupling 本质上是 ecological fallacy 的已知实例，方法论（Jaccard + permutation test）无创新；(2) Routing 分析（§4.3）作为 practical contribution 严重不足，缺乏 ensemble baseline 对比和系统评估\n- **4个 Should-Fix**：统计报告有 misleading 倾向（先报 effect size 再补 non-significant p-value）、遗漏重要相关工作（特别是 Ye et al. 2026 的 hybrid attention expressiveness hierarchy）、Introduction framing 过度、scale 局限性未在 conclusion 中充分限定\n- **优势**：实验设计严谨（controlled model zoo）、统计方法全面、5-architecture 扩展验证增强 generalizability、主题时效性强"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2"
+          },
+          "id": "event-001308"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "messages": [
+        {
+          "source_line": 1309,
+          "timestamp": "2026-05-23T14:39:59.685171+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整审稿意见。请逐条回应：对每条 Must-Fix 和 Should-Fix，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 审稿报告\n\n**Overall**: 3.0 — Findings\n**Reviewer Confidence**: 4/5\n\n**Soundness**: 2.5/5 | **Excitement**: 3.0/5 | **Reproducibility**: 4/5\n\n---\n\n### Must-Fix\n\n**N1 [critical] Spearman n=5 的结构性统计效力不足使 convergence claim 不可检验**\n- n=5 时最小可达 p = 0.017（两侧），Bonferroni 校正后 adjusted p = 0.170\n- 即使完美单调关系也无法达到常规显著性——结构性限制\n- Abstract 和 Section 4.2 仍用\"monotonic convergence\"等措辞暗示 convergence 为已确立事实\n- 建议：(a) 降级为 descriptive/exploratory observation；(b) abstract/conclusion 加 power limitation caveat；(c) 考虑 regression-based 方法替代 rank correlation\n\n**N2 [critical] GDN h3-1 的 16-head vs 32-head confound 削弱主要发现**\n- 移除 GDN 后 LAMBADA correlation 从 ρ=-1.0 降至 ρ=-0.7\n- LAMBADA 是唯一支撑 convergence claim 的 benchmark，对 GDN 的依赖构成实质性威胁\n- 建议：(a) 主文显著讨论 GDN confound；(b) 将 Table 3 提升到主文；(c) 明确 LAMBADA convergence 是 confound-dependent\n\n**N3 [critical] 单次训练 run 无法区分 seed 效应与架构效应**\n- Appendix W 的 Pythia 70M seed calibration 中 within-seed J_s=0.312 vs cross-arch J_a=0.354，差距仅 0.042\n- Pythia 是 Transformer（非 hybrid）且 70M 远小于 340M/1.3B\n- 如果 seed variation 已能产生与 architecture variation 相当的 divergence，核心 claim 增量贡献被削弱\n- 建议：(a) Limitations 明确讨论 seed confounding；(b) 至少一个 hybrid 配置多 seed 训练；(c) 弱化因果性措辞\n\n---\n\n### Should-Fix\n\n**W1 [warning] Confidence-based routing 实际效力被高估**\n- 仅 LAMBADA 有实质增益（56.2% vs 50.9%），1/4 成功率\n- 未报告 variance/CI across splits/repeats\n- 建议报告 SD，限定 \"partially actionable\" 为 \"actionable on one benchmark\"\n\n**W2 [warning] Task type vs evaluation format confound 未被区分**\n- LAMBADA 是唯一 free-form generation benchmark，其余均为 multiple-choice\n- LAMBADA 也是唯一显示独特 pattern 的 benchmark\n- Multiple-choice format 机械性约束答案空间，可能降低 per-example divergence\n- 建议讨论 evaluation format 作为 alternative explanation\n\n**W3 [warning] BCa bootstrap 在 n=3 架构上的覆盖率不可靠**\n- n=3 时 acceleration parameter 的 jackknife estimate 仅基于 3 个值\n- Appendix D.1 改用 percentile CI，但主文仍引用 bootstrap CI\n- 建议全面改用 percentile bootstrap 或说明仅为 heuristic indicator\n\n**W4 [warning] Confirmatory/exploratory benchmark 分类缺乏预注册**\n- \"informal pre-analysis plan\" 无 external timestamp\n- 主文用 all-10 correction（更保守），但 Appendix A 报告 6-benchmark correction 可能给选择性引用空间\n- 建议明确 all-10 为唯一有效 correction\n\n**W5 [warning] 5 架构扩展验证仅限 340M scale**\n- GLA 和 DeltaNet 仅 340M 可用\n- 建议 Limitations 明确说明\n\n---\n\n### Minor\n- M1: Figure 1 排版拥挤\n- M2: Table 1 列名缺 inline 解释\n- M3: Section 4.1 \"saturates\" 一词暗示 ceiling，实际接近 floor\n- M4: Appendix P 分析量大，核心发现应在主文简述\n- M5: 格式合规（8页，Limitations 3点，匿名完好）\n- M6: Abstract 接近 200 word 上限\n\n---\n\n### Questions\n1. GDN confound 是否可通过重训 32-head 版本解决？\n2. Jaccard ≈ 0.10 在实际部署中的风险量化？\n3. 是否考虑 linear regression / mixed-effects model 替代 Spearman？\n4. Pythia 70M seed calibration 在 340M hybrid 上预期差距如何？\n\n### Missing References\n- Zamba / Jamba-1.5 等生产级 hybrid 架构\n- Watson-Daniels et al. 2023 和 Hsu and Calmon 2022（已确认论文中已引用）\n\n请对以上每条 Must-Fix 和 Should-Fix 逐条回应 [AGREE] 或 [REBUT]。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001309"
+        },
+        {
+          "source_line": 1310,
+          "timestamp": "2026-05-23T14:41:46.867156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n### Must-Fix 回应\n\n**[AGREE] R1-N1: Spearman n=5 的结构性统计效力不足**\n\n同意这是本文最核心的方法论缺陷之一。我在自己的审稿中将相同问题归入 W1（统计报告 misleading 倾向）。补充几点：\n\n1. R1 精确指出了问题的数学本质：n=5 时 exact permutation test 的最小可达 p = 1/5! × 2 = 0.0167（双侧），Bonferroni 10-benchmark 校正后 adjusted p = 0.167 > 0.05。这意味着 **无论真实效应多强，该检验框架在设计上就不可能拒绝 H₀**——这不是 power 不足，而是检验结构本身无法区分信号与噪声。\n2. 论文在 Section 4.2 确实使用了 \"monotonic convergence\" 措辞（LAMBADA ρ = −1.0），尽管同段落补充了 \"Bonferroni-adjusted p = .170\"。但 Abstract 中 \"Aggregate trends do not reach statistical significance\" 的表述相对准确。问题在于 Section 4.2 和 Conclusion 的 framing 不一致——有时用探索性语言，有时用确认性语言。\n3. R1 建议的 regression-based 替代方法值得考虑。如果将 attention ratio 视为连续自变量（而非 5 个 rank），在 5 个 configuration × 3 architecture = 15 个数据点上做 mixed-effects regression（random intercept for architecture），统计效力会显著提升。论文未采用此方法是一个遗憾。\n\n**[AGREE] R1-N2: GDN h3-1 的 16-head confound**\n\n同意这是一个实质性威胁，但程度判断上与 R1 略有差异。\n\n1. R1 正确指出：Appendix E 显示移除 GDN 后 LAMBADA ρ 从 -1.0 降至 -0.7。论文自身承认 \"partially attributable to the reduced sample size (n = 2 architectures) and partially to the confound itself\"（Appendix E）。\n2. 然而，我认为 R1 可能 **略微高估了此 confound 的破坏力**。Appendix E 同时报告：\"Three-architecture results are stable across both 340M and 1.3B scales\"（即排除 GDN 后，其他 convergence patterns 在两个 scale 上一致）。此外，Appendix D 的 sensitivity analysis 显示 GDN exclusion 主要影响 LAMBADA 的 convergence 斜率，而非 per-example Jaccard 的核心发现——Table 3 中 RetNet 和 HGRN2 之间的 pairwise Jaccard 仍然很低（Table 9, Appendix M 显示 mean J ≈ 0.10 across all pairs）。\n3. 关键区分：GDN confound 主要威胁的是 **convergence claim**（§4.2），而非 **per-example divergence claim**（§4.1）。论文的核心贡献是后者（不同架构影响不同 examples），这一发现不依赖于 GDN 的 head count。R1 的建议（主文显著讨论、提升 Table 3）完全合理，但将其标记为 \"critical\" 可能需要区分它影响的是哪个 claim。\n\n**[AGREE] R1-N3: 单次训练 run 的 seed confound**\n\n完全同意，这是对论文因果推断最根本的威胁。\n\n1. R1 精确引用了关键数据：Appendix W 的 Pythia 70M seed calibration 中 within-seed J_s = 0.312 vs cross-architecture J_a = 0.354，gap 仅 0.042。这意味着 **seed variation 已能解释大部分观测到的 per-example divergence**，架构差异的增量贡献可能很小。\n2. R1 还正确指出了两个额外问题：(a) Pythia 70M 是 standard Transformer，不是 hybrid recurrent architecture——seed variation 在 hybrid architectures 上可能完全不同；(b) 70M 远小于 340M/1.3B——scale 差异可能改变 seed sensitivity。\n3. 我在自己的审稿 Q3 中提出了相同疑问。论文的 Limitations 确实提到了 \"single training run\"（p.8），但措辞过于轻描淡写——\"we cannot fully exclude it as a confounding factor\" 低估了问题严重性。如果 seed variation 本身就能产生 J ≈ 0.31 的 divergence，那么论文观测到的 cross-architecture J ≈ 0.10 可能反映的是 **seed + architecture 的复合效应**，而非纯粹的架构差异。\n4. 反过来说，cross-architecture J (0.354) 与 within-architecture cross-seed J (0.312) 的差值虽小，但 cross-architecture J **更低** 可能本身就是一个信号——不过这需要在 hybrid architectures 上用 matched seeds 验证，而非在完全不同的 Transformer 模型上外推。\n\n---\n\n### Should-Fix 回应\n\n**[AGREE] R1-W1: Routing 效力被高估**\n\n完全同意。我在自己的审稿中将此标记为 N2 [critical]，优先级比 R1 更高。补充：\n- 论文 Section 4.3 报告 LAMBADA routing accuracy 56.2% vs majority vote 50.9%，但未报告 SD across 10-fold splits。在 10-fold CV 中，fold-level variance 可能很大——如果 SD > 3pp，则 5.3pp 的增益可能不显著。\n- 更关键的是，HellaSwag、PIQA 上 \"routing provides no benefit\"，BoolQ 上 \"fails when multiplicity is low\"——即 routing 的成功条件（high multiplicity benchmark + free-form generation）恰好与 LAMBADA 的特殊性重合，缺乏 generalizability 证据。\n\n**[AGREE] R1-W2: Task type vs evaluation format confound**\n\n这是一个我在自己的审稿中未充分关注的重要观点。\n\n1. LAMBADA 是唯一的 free-form generation（open-ended word prediction）benchmark，其余 9 个均为 multiple-choice 或 yes/no 格式。LAMBADA 也恰好是唯一显示 monotonic convergence（ρ = -1.0）和最高 multiplicity 的 benchmark。\n2. Multiple-choice format 将答案空间约束为 2-5 个选项，这 **机械性地限制了 per-example divergence 的上界**。在 4-choice 设置下，即使随机猜测，pairwise agreement 的期望值已经是 25%——而 free-form generation 的 agreement baseline 接近 0%。这意味着 LAMBADA 的高 multiplicity 可能部分（甚至主要）由 evaluation format 驱动，而非 task 认知需求。\n3. 论文 Section 3.2 的 task taxonomy 按 \"cognitive demand\" 分类（retrieval, comprehension, reasoning, mixed），完全忽略了 evaluation format 这一混淆变量。建议至少在 Discussion 中讨论这一 alternative explanation。\n\n**[AGREE] R1-W3: BCa bootstrap 在 n=3 上不可靠**\n\n技术上正确。BCa 的 acceleration parameter 基于 jackknife，n=3 时仅有 3 个 jackknife 值，估计极不稳定。Appendix D.1 承认了这一问题并改用 percentile CI，但主文（如 Figure 1 的 shaded bands）仍然引用 bootstrap CI。建议统一为 percentile bootstrap 并在主文注释。\n\n**[AGREE] R1-W4: Confirmatory/exploratory 分类缺乏预注册**\n\n同意关切，但认为严重性低于 R1 的定位。\n\n1. 论文主文全程使用 all-10 benchmark Bonferroni correction（α/10 = 0.005），这是最保守的处理方式——即使分类有事后调整嫌疑，all-10 correction 已经 subsume 了 6-benchmark correction。\n2. Appendix A 报告的 6-benchmark correction 结果（adjusted p = .017 × 6 = .170 vs .017 × 10 = .170——实际上两者在 LAMBADA 上相同，因为 p_min = .017 不变）更多是 sensitivity check 而非 p-hacking。\n3. 不过 R1 的建议合理：\"明确 all-10 为唯一有效 correction\"可以消除任何歧义。\n\n**[AGREE] R1-W5: 5 架构扩展验证仅限 340M**\n\n事实性同意。Appendix X 的 GLA 和 DeltaNet 验证仅在 340M 上进行（因为 model zoo 中这两个架构仅有 340M 配置）。论文应在 Appendix X 开头或 Limitations 中明确说明此限制。不过我认为这是 minor 级别问题——340M 的 5-architecture 验证至少证明了 pattern 不是原始 3 架构的特例，即使 scale generalization 有待验证。\n\n---\n\n### 对 R1 总体评分的看法\n\nR1 给出 Overall 3.0（Findings），Soundness 2.5/5。我给出 3.5（Borderline Conference），Soundness 3.5/5。差异主要来自：\n\n1. **Soundness 分歧**：R1 对 n=5 Spearman 和 seed confound 的批评在技术上完全正确，但我认为这些主要威胁的是 **convergence claim**（§4.2），而论文的核心贡献——per-example divergence（§4.1）中 Jaccard ≈ 0.10 的发现——通过 permutation tests（N > 10,000 resamples）和 5-architecture 扩展验证得到了更稳健的支撑。R1 可能将 convergence 和 divergence 两个 claims 的 soundness 问题混合评估了。\n2. **Excitement 分歧**：R1 给 3.0，我给 2.5。我认为概念新颖性更低（ecological fallacy 的领域实例化），但 R1 可能更看重 practical relevance。\n3. **共识**：routing 分析不成熟（R1 W1 = 我的 N2）、seed confound 是根本威胁（R1 N3 = 我的隐含关切）、统计报告需要更审慎。\n\n**结论**：R1 的三个 Must-Fix 在技术上均成立。如果作者能 (a) 将 convergence claim 降级为 exploratory observation，(b) 主文讨论 GDN confound，(c) 在至少一个 hybrid 配置上提供多 seed 验证——论文的可信度将显著提升。在此之前，3.0-3.5 的评分区间合理。\n",
+              "reviewer_id": "2",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-001310"
+        },
+        {
+          "source_line": 1311,
+          "timestamp": "2026-05-23T14:41:50.529202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3662
+          },
+          "id": "event-001311"
+        },
+        {
+          "source_line": 1312,
+          "timestamp": "2026-05-23T14:42:01.212048+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿交叉回应已提交。对 R1 的 3 条 Must-Fix 和 5 条 Should-Fix 全部标注了 [AGREE]，但对 N2（GDN confound）补充了 nuance——该 confound 主要威胁 convergence claim 而非 per-example divergence 的核心发现。对 W4（预注册）和 W5（340M 限制）认为严重性低于 R1 的定位。总体认为 R1 的 3.0 和我的 3.5 评分差异主要来自对 convergence vs. divergence 两个 claim 的 soundness 权重不同。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2"
+          },
+          "id": "event-001312"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "messages": [
+        {
+          "source_line": 1313,
+          "timestamp": "2026-05-24T11:59:21.073453+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n你是 Reviewer 2，负责**新颖性 + 完整性**审查。\n\n## 投稿信息\n- **论文**：*Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures*\n- **Venue**：EMNLP 2026 via ARR（May cycle）\n- **截止日期**：2026-05-25\n- **格式要求**：Long paper，8 页正文 + 无限参考文献。Limitations 和 ethical considerations 不计页数。\n- **模板**：ACL template，`\\usepackage[review]{acl}`\n- **匿名规则**：Double-blind\n- **论文路径**：`projects/entrainment_gated_ft/docs/paper/main.tex`\n- **PDF 路径**：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/submitted.pdf`\n\n## 你的审查侧重\n\n重点关注以下方面，按严厉的顶会审稿人标准评估：\n\n1. **新颖性评估**：\n   - 论文的贡献是否足够支撑 EMNLP Main/Findings 发表\n   - 相对于 underspecification (D'Amour 2022) 和 predictive multiplicity (Marx 2020) 文献，增量贡献是什么\n   - 是否仅是已知现象（ecological fallacy）在新 domain 的直接实例化\n   - 方法论上是否有创新（还是已有指标的直接套用）\n\n2. **Related Work 完整性**：\n   - 是否遗漏重要相关工作（特别是 2025-2026 年的最新文献）\n   - 与 ensemble diversity、Rashomon set、model soups 等文献的关系是否充分讨论\n   - 引用格式是否正确和一致\n\n3. **写作质量与 Framing**：\n   - Abstract 是否过度拥挤（200-word 限制）\n   - Introduction 的叙事主线是否清晰——aggregate convergence vs per-example divergence 的定位\n   - Convergence claim 在全文中的措辞是否一致（exploratory vs confirmatory）\n   - 结论是否与实验证据匹配——是否有过度泛化\n\n4. **完整性与实用性**：\n   - Confidence-based routing 作为 practical contribution 的定位是否合理\n   - Complementarity decomposition 的分析深度\n   - 补充分析（BoolQ、WinoGrande）的呈现\n   - Conclusion 中的 practical implications 是否与实验支撑匹配\n\n5. **格式合规**：\n   - 8 页限制、Limitations 章节、匿名性、ARR checklist\n\n请提供完整的审稿报告，包括：Summary、Strengths（逐条）、Weaknesses（逐条，标注严重度 Critical/Major/Minor）、Questions、Missing References、Overall Assessment。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001313"
+        },
+        {
+          "source_line": 1314,
+          "timestamp": "2026-05-24T11:59:33.217685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001314"
+        },
+        {
+          "source_line": 1315,
+          "timestamp": "2026-05-24T11:59:33.268297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001315"
+        },
+        {
+          "source_line": 1316,
+          "timestamp": "2026-05-24T11:59:37.186822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 reviewer guidelines review form criteria scoring"
+            }
+          },
+          "id": "event-001316"
+        },
+        {
+          "source_line": 1317,
+          "timestamp": "2026-05-24T11:59:37.894966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/submitted.pdf",
+              "project": "entrainment_gated_ft",
+              "pages": "1-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001317"
+        },
+        {
+          "source_line": 1318,
+          "timestamp": "2026-05-24T11:59:44.975906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 reviewer guidelines review form criteria scoring\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"},{\"title\":\"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"}]\n\nBased on the search results, here's information about ACL ARR 2026 reviewer guidelines, review form criteria, and scoring:\n\n## Scoring System\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation. The soundness scores must be justified by the text of the review.\n\n## Overall Recommendation Score\n\nThe Overall a\n…[truncated 1103 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7789
+          },
+          "id": "event-001318"
+        },
+        {
+          "source_line": 1319,
+          "timestamp": "2026-05-24T11:59:46.160978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 453.0}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 529.2}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 564.2}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 502.1}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 505.9}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 386.1}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 365.3}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.7}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images\\\"}, \\\"er\n…[truncated 32 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 8266
+          },
+          "id": "event-001319"
+        },
+        {
+          "source_line": 1320,
+          "timestamp": "2026-05-24T11:59:52.737276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-001320"
+        },
+        {
+          "source_line": 1321,
+          "timestamp": "2026-05-24T11:59:53.099340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-001321"
+        },
+        {
+          "source_line": 1322,
+          "timestamp": "2026-05-24T11:59:53.704446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-001322"
+        },
+        {
+          "source_line": 1323,
+          "timestamp": "2026-05-24T11:59:54.561987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1824
+          },
+          "id": "event-001323"
+        },
+        {
+          "source_line": 1324,
+          "timestamp": "2026-05-24T11:59:54.562431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-001324"
+        },
+        {
+          "source_line": 1325,
+          "timestamp": "2026-05-24T11:59:55.069829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-001325"
+        },
+        {
+          "source_line": 1326,
+          "timestamp": "2026-05-24T11:59:55.777435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-001326"
+        },
+        {
+          "source_line": 1327,
+          "timestamp": "2026-05-24T11:59:56.585984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3486
+          },
+          "id": "event-001327"
+        },
+        {
+          "source_line": 1328,
+          "timestamp": "2026-05-24T11:59:56.587273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2882
+          },
+          "id": "event-001328"
+        },
+        {
+          "source_line": 1329,
+          "timestamp": "2026-05-24T11:59:56.587585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-001329"
+        },
+        {
+          "source_line": 1330,
+          "timestamp": "2026-05-24T11:59:56.990119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-001330"
+        },
+        {
+          "source_line": 1331,
+          "timestamp": "2026-05-24T11:59:57.749470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3187
+          },
+          "id": "event-001331"
+        },
+        {
+          "source_line": 1332,
+          "timestamp": "2026-05-24T11:59:57.752231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2682
+          },
+          "id": "event-001332"
+        },
+        {
+          "source_line": 1333,
+          "timestamp": "2026-05-24T11:59:57.755096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1977
+          },
+          "id": "event-001333"
+        },
+        {
+          "source_line": 1334,
+          "timestamp": "2026-05-24T11:59:57.755562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review review form soundness excitement scoring 1-5 scale 2025 2026"
+            }
+          },
+          "id": "event-001334"
+        },
+        {
+          "source_line": 1335,
+          "timestamp": "2026-05-24T11:59:57.758016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1170
+          },
+          "id": "event-001335"
+        },
+        {
+          "source_line": 1336,
+          "timestamp": "2026-05-24T11:59:58.159828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1169
+          },
+          "id": "event-001336"
+        },
+        {
+          "source_line": 1337,
+          "timestamp": "2026-05-24T12:00:07.157108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review review form soundness excitement scoring 1-5 scale 2025 2026\"\n\nLinks: [{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"ACL 2026 on X: \\\"Checkout the blog post on the soundness/excitement scores https://t.co/AKSO9DjiYP . It clarifies the reasoning behind the separation of overall scores and how it might make the reviewer recommendation more robust. #ACL2023Toronto #ACL2023NLP #NLProc\\\" / X\",\"url\":\"https://x.com/aclmeeting/status/1637827267173953540\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md\"}]\n\nBased on the search results, I found detailed information about the ACL Rolling Review's scoring system for soundness and excitement:\n\n## Soundness Scoring (1-5 Scale)\n\nThe soundness assessment considers whether the paper is sufficiently sound and thorough, clearly states scientific claims and provides adequate support for them. For experimental papers, it evaluates the depth and breadth of research questions, technical soundness of experiments, and methodological validity of evaluation. For position papers and s\n…[truncated 1994 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 9401
+          },
+          "id": "event-001337"
+        },
+        {
+          "source_line": 1338,
+          "timestamp": "2026-05-24T12:00:34.876782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/submitted.pdf",
+              "project": "entrainment_gated_ft",
+              "pages": "9-21",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001338"
+        },
+        {
+          "source_line": 1339,
+          "timestamp": "2026-05-24T12:00:35.328689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001339"
+        },
+        {
+          "source_line": 1340,
+          "timestamp": "2026-05-24T12:00:36.384068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 531.1}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 543.2}, {\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 519.6}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 493.3}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 441.9}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 423.2}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 465.4}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 489.7}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"heig\n…[truncated 1147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1507
+          },
+          "id": "event-001340"
+        },
+        {
+          "source_line": 1341,
+          "timestamp": "2026-05-24T12:00:36.384808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1056
+          },
+          "id": "event-001341"
+        },
+        {
+          "source_line": 1342,
+          "timestamp": "2026-05-24T12:00:44.114441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-001342"
+        },
+        {
+          "source_line": 1343,
+          "timestamp": "2026-05-24T12:00:44.668260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-001343"
+        },
+        {
+          "source_line": 1344,
+          "timestamp": "2026-05-24T12:00:45.120981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1006
+          },
+          "id": "event-001344"
+        },
+        {
+          "source_line": 1345,
+          "timestamp": "2026-05-24T12:00:45.523241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 854
+          },
+          "id": "event-001345"
+        },
+        {
+          "source_line": 1346,
+          "timestamp": "2026-05-24T12:00:45.674273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-001346"
+        },
+        {
+          "source_line": 1347,
+          "timestamp": "2026-05-24T12:00:45.978793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-001347"
+        },
+        {
+          "source_line": 1348,
+          "timestamp": "2026-05-24T12:00:46.562720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 888
+          },
+          "id": "event-001348"
+        },
+        {
+          "source_line": 1349,
+          "timestamp": "2026-05-24T12:00:46.563131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-001349"
+        },
+        {
+          "source_line": 1350,
+          "timestamp": "2026-05-24T12:00:47.014871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-001350"
+        },
+        {
+          "source_line": 1351,
+          "timestamp": "2026-05-24T12:00:47.872110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1893
+          },
+          "id": "event-001351"
+        },
+        {
+          "source_line": 1352,
+          "timestamp": "2026-05-24T12:00:47.873233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1310
+          },
+          "id": "event-001352"
+        },
+        {
+          "source_line": 1353,
+          "timestamp": "2026-05-24T12:00:47.873503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-001353"
+        },
+        {
+          "source_line": 1354,
+          "timestamp": "2026-05-24T12:00:48.326149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1311
+          },
+          "id": "event-001354"
+        },
+        {
+          "source_line": 1355,
+          "timestamp": "2026-05-24T12:00:48.326580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-001355"
+        },
+        {
+          "source_line": 1356,
+          "timestamp": "2026-05-24T12:00:48.829763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-001356"
+        },
+        {
+          "source_line": 1357,
+          "timestamp": "2026-05-24T12:00:48.830197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001357"
+        },
+        {
+          "source_line": 1358,
+          "timestamp": "2026-05-24T12:00:49.686928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1360
+          },
+          "id": "event-001358"
+        },
+        {
+          "source_line": 1359,
+          "timestamp": "2026-05-24T12:00:49.687943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 857
+          },
+          "id": "event-001359"
+        },
+        {
+          "source_line": 1360,
+          "timestamp": "2026-05-24T12:00:49.738445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001360"
+        },
+        {
+          "source_line": 1361,
+          "timestamp": "2026-05-24T12:00:50.240980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001361"
+        },
+        {
+          "source_line": 1362,
+          "timestamp": "2026-05-24T12:00:50.696800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-001362"
+        },
+        {
+          "source_line": 1363,
+          "timestamp": "2026-05-24T12:00:50.697238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001363"
+        },
+        {
+          "source_line": 1364,
+          "timestamp": "2026-05-24T12:00:51.601922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1360
+          },
+          "id": "event-001364"
+        },
+        {
+          "source_line": 1365,
+          "timestamp": "2026-05-24T12:00:51.603044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-001365"
+        },
+        {
+          "source_line": 1366,
+          "timestamp": "2026-05-24T12:00:51.603468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-001366"
+        },
+        {
+          "source_line": 1367,
+          "timestamp": "2026-05-24T12:00:52.056931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-001367"
+        },
+        {
+          "source_line": 1368,
+          "timestamp": "2026-05-24T12:00:53.919313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form including all scoring dimensions (soundness, excitement, overall assessment), their exact scale descriptions (1-5), and any other required fields. List every score level with its description."
+            }
+          },
+          "id": "event-001368"
+        },
+        {
+          "source_line": 1369,
+          "timestamp": "2026-05-24T12:01:01.948203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Scoring Dimensions\n\n## Primary Scoring Dimensions\n\n### Reviewer Confidence (1-5 scale)\n- **5:** \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- **4:** \"Quite sure. I tried to check the important points carefully.\"\n- **3:** \"Pretty sure, but there's a chance I missed something.\"\n- **2:** \"Willing to defend my evaluation, but it is fairly likely that I missed some details.\"\n- **1:** \"Not my area, or paper is very hard to understand.\"\n\n### Soundness (1-5 scale)\n- **5:** \"Excellent: This study is one of the most thorough I have seen, given its type.\"\n- **4:** \"Strong: This study provides sufficient support for all of its claims.\"\n- **3:** \"Acceptable: This study provides sufficient support for its main claims.\"\n- **2:** \"Poor: Some of the main claims are not sufficiently supported.\"\n- **1:** \"Major Issues: This study is not yet sufficiently thorough to warrant publication.\"\n\n### Excitement (1-5 scale)\n- **5:** \"Highly Exciting: I would recommend this paper to others and/or attend its presentation.\"\n- **4:** \"Exciting: I would mention this paper to others and/or make an effort to attend.\"\n- **3:** \"Interesting: I might mention some points of this paper to others.\"\n- **2:** \"Potentially Interesting: this paper does not resonate with me.\"\n- **1:** \"Not Exciting: this paper does not resonate with me, and I don't think it would with others.\"\n\n### Overall Assessment (1-5 scale)\n- **5:** Consider for Award (top 2.5% papers)\n- **4.5:** Borderline Award\n- **4:** Conference acceptance\n- **3.5:** Borderline Conference\n- **3:** Findings acceptance\n- **2.5:** Borderline Findings\n- **2:** Resubmit next cycle\n- **1.5:** Resubmit after next cycle\n- **1:** Do not resubmit\n\n## Additional Required Fields\n- Paper Summary\n- Summary of Strengths\n- Summary of Weaknesses\n- Comments/Suggestions/Typos\n- Best Paper Justification (if award consideration)\n- Limitations and Societal Impact\n- Ethical C\n…[truncated 145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 8028
+          },
+          "id": "event-001369"
+        },
+        {
+          "source_line": 1370,
+          "timestamp": "2026-05-24T12:04:52.754135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 审稿报告：Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\n\n**审查侧重：新颖性 + 完整性**\n\n---\n\n## 论文摘要（Reviewer's Summary）\n\n本文研究混合线性循环架构（GatedDeltaNet、RetNet、HGRN2）在 aggregate benchmark 上表现相近时，per-example 层面的预测差异。使用 Wang et al. (2025) 的 model zoo（3 架构 × 5 attention 比例 × 2 规模），作者发现：(1) 不同架构添加 attention 后影响的样本集差异显著（Jaccard ≈ 0.10，约为独立基线的 2 倍）；(2) per-example Jaccard 在 4% attention 即饱和，而 aggregate variance 的下降不具统计显著性（Bonferroni-adjusted p = .170）；(3) 基于 confidence 的 routing 可提取 36% 的 oracle 互补性（LAMBADA 上 +5.2pp）。论文将此现象纳入 predictive multiplicity 框架，强调 aggregate 等价不保证 per-example 一致性。\n\n---\n\n## 总体评分\n\n**Overall Assessment: 3.0 — Findings**\n\n**一句话总结**: 扎实的实证研究揭示了 hybrid recurrent 架构间有意义的 per-example 差异，但核心叙事建立在统计不显著的 aggregate convergence 之上，新颖性为增量贡献——将已知概念（ecological fallacy、predictive multiplicity）应用于新 domain，方法论创新有限。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3/5 (Acceptable) | Per-example divergence 的统计检验严谨（permutation test, all p < .001），但两个核心问题削弱 soundness：(1) aggregate convergence 是论文叙事中枢却统计不显著；(2) 每个架构配置仅一次训练运行，无法分离架构效应与随机种子效应 |\n| **Excitement** | 2.5/5 (Potentially Interesting → Interesting) | Per-example saturation at 4% attention 是一个非平凡发现，但整体贡献是已知现象在新 domain 的实例化，routing 贡献过于初步，难以激发广泛兴趣 |\n| **Reproducibility** | 4/5 | 使用公开 model zoo，承诺发布代码和评估输出，统计方法描述详尽，bootstrap/permutation 参数明确 |\n| **Reviewer Confidence** | 4/5 | 熟悉 predictive multiplicity、ensemble diversity 和 hybrid architecture 文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Aggregate convergence 叙事缺乏统计支撑，构成 framing 硬伤\n\n- 具体位置：Abstract (\"Aggregate trends do not reach statistical significance (τ > 0; Bonferroni-adjusted p = .170)\")；Section 4.1 (\"aggregate convergence is absent at 340M\")；Section 5 Conclusion（仍以\"convergence\"为前提讨论 practical implications）\n- 问题：论文的核心叙事框架是 **\"aggregate convergence masks per-example divergence\"**——这是一个 ecological fallacy 的经典结构。然而 aggregate convergence 本身在统计上不成立（p = .170），Appendix B 进一步确认仅 LAMBADA 显示单调下降。在 10 个 benchmark 中，只有 1 个显示 aggregate convergence，论文却将整篇叙事建立在\"convergence vs. divergence\"的对比之上。这意味着论文的标志性发现（\"architectures converge in aggregate but diverge per-example\"）的前半部分没有证据支持。\n- 为什么影响接收：这不是一个数据解读问题，而是 **framing 的根基问题**。如果 aggregate 也不 converge，那么论文的核心张力（aggregate 等价 vs. per-example 不同）就不成立。Per-example divergence 本身仍有价值，但需要完全不同的叙事框架。\n- 建议修改方向：(1) 将叙事重构为 \"architectures that appear interchangeable by aggregate metrics actually differ substantially at per-example level\"——不强调 convergence 趋势，而是强调 aggregate 分数的不可区分性（overlapping CIs）；(2) 或者限定 convergence claim 仅对 LAMBADA 成立，并明确这是 1/10 的 benchmark。\n\n**N2** [critical] 单次训练运行无法分离架构效应与随机种子效应\n\n- 具体位置：Limitations (\"Single training runs. Each configuration corresponds to a single training run, so architectural and seed-specific effects cannot be fully disentangled\")；Appendix W（仅用 Pythia 70M Transformer 做 seed 分析，不是 hybrid 架构）\n- 问题：每个架构 × attention 比例 × 规模的配置只有一次训练。论文声称观察到的 per-example 差异是\"架构差异\"驱动的，但这些差异可能部分或大部分来自不同的随机种子/初始化。Appendix W 的 seed 分析使用 Pythia 70M（一个标准 Transformer），within-seed Jaccard 为 2.7–4.5× 更高——这部分缓解了担忧，但 (a) Pythia 是 Transformer 不是 hybrid 架构，(b) 70M 比主实验的 340M/1.3B 小很多，(c) 仅有 9 个 seed 且没有对应的 hybrid 架构 seed 变异数据。\n- 为什么影响接收：这是一个 **confound** 问题。论文的核心 claim 是\"architectural variation produces per-example multiplicity\"，但在没有同架构多 seed 对照的情况下，无法排除\"training randomness produces most of the per-example multiplicity\"这一替代假说。D'Amour et al. (2022) 的 underspecification 工作恰恰说明了 seed 变异可以产生大量 per-example 差异。\n- 建议修改方向：(1) 对至少一个 hybrid 架构（如 RetNet 或 HGRN2）训练 3-5 个不同 seed 的模型，计算 within-architecture Jaccard 并与 cross-architecture Jaccard 对比；(2) 或者大幅弱化 claim，明确标注 \"architectural variation (confounded with training randomness)\" 而非单独归因于架构。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [major] 新颖性为增量贡献——已知概念在新 domain 的应用，缺乏方法论创新\n\n- 具体位置：Section 1 Introduction（contributions 列表）；Section 2 Related Work\n- 问题：论文的四项贡献为：(1) 将 predictive multiplicity 扩展到架构变异；(2) per-example decomposition (helped/hurt/unchanged)；(3) cross-architecture Jaccard saturation；(4) confidence-based routing。然而：\n  - 贡献 (1) 本质上是将 Marx et al. (2020) 的框架直接套用到新 domain。核心发现\"不同架构犯不同错误\"是 ensemble diversity 文献的基本前提（Kuncheva & Whitaker, 2003，论文已引用）。\n  - 贡献 (2) 的 helped/hurt/unchanged 分解是直截了当的，不需要方法论创新。\n  - 贡献 (3)（saturation at 4%）是最有趣的经验发现，但它是一个观察而非方法。\n  - 贡献 (4) 的 routing 仅提取 36% oracle 互补性，方法（confidence-based selection）是基础的。\n- 建议：强调贡献 (3) 的 non-trivial 性质；对贡献 (4) 提出更 principled 的 routing 方法（如 learned routing 或 mixture-of-experts 式的门控）；明确与 ensemble diversity 文献的区别——不是\"我们发现了 diversity\"，而是\"我们在 architecture-level 发现了 structured diversity patterns\"。\n\n**W2** [major] Related Work 遗漏重要文献\n\n- 具体位置：Section 2\n- 问题：以下相关工作未被讨论或讨论不足：\n  1. **Model Soups** (Wortsman et al., 2022, ICML): 将 aggregate 相近但 per-example 不同的模型进行权重平均——与本文的 routing 思路互补，应讨论为什么 weight averaging 对不同架构不可行。\n  2. **Rashomon sets 的深度讨论**：Fisher et al. (2019) 已引用但仅一句带过。Rashomon set 框架可以更自然地表述本文的发现——aggregate 等价的模型集合中，per-example 行为的变异。\n  3. **Mixture-of-Experts (MoE) 文献**：论文提出的 routing 方案本质上是一个简化的 MoE。应至少引用 Shazeer et al. (2017) 或 Switch Transformer (Fedus et al., 2022) 并讨论区别。\n  4. **2025-2026 年 hybrid architecture 的最新进展**：论文引用了 Mamba-2、Mamba-3，但 2025-2026 年的 hybrid 架构文献发展迅速，应检查是否遗漏了重要的新工作（如更多关于 attention-recurrence 交互的分析性工作）。\n  5. **Prediction disagreement 和 model comparison 文献**：如 Jiang et al. (2022) \"Methods for Comparing Uncertainty Quantifications\"、或 model comparison 的 statistical frameworks。\n- 建议：增加一段讨论 ensemble/MoE/model soups 的联系与区别；深化 Rashomon set 的讨论。\n\n**W3** [major] Confidence-based routing 作为 practical contribution 定位过高\n\n- 具体位置：Section 4.1 (\"Confidence-based routing\")；Section 5 Conclusion (\"confidence-based selection is effective on high-κ tasks\")\n- 问题：Routing 在 LAMBADA 上 +5.2pp，但在 PIQA 上 -0.8pp，在 HellaSwag 上 no benefit (−1.2pp)。10 个 benchmark 中仅 1 个显著受益。Section 5 的表述 \"confidence-based selection is effective on high-κ tasks\" 试图用 task type 来条件化这一结论，但论文仅有 1 个 high-κ task (LAMBADA) 作为正例。这是 n=1 的泛化。同时，routing 方法本身（选择 confidence 最高的架构的预测）过于简单，缺乏与更 sophisticated 方法（learned routing、calibrated ensembling）的比较。\n- 建议：(1) 将 routing 降级为 \"preliminary exploration\" 而非 main contribution；(2) 增加至少一个 baseline（如 calibrated ensemble、learned selector）；(3) 不要在 conclusion 中将 routing 作为两个 practical implications 之一。\n\n**W4** [major] Abstract 过度拥挤，可读性差\n\n- 具体位置：Abstract\n- 问题：Abstract 试图在 ~200 words 内压入过多技术细节。具体问题：\n  1. 第三句 \"Across three controlled designs, adding attention affects substantially different examples per architecture (Jaccard ≈ 0.10, approximately twice the independence baseline's validation across five architectures and ten pairwise comparisons confirms this on all four benchmarks (all p < .01))\" 句法混乱——似乎将两个独立句子挤成了一个长句，\"baseline's\" 后面缺少句号或连接词。\n  2. 数字过多：Jaccard ≈ 0.10, p < .01, κ = 0.11-0.30, p = .170, 36%, +5.2pp——密度过高，降低了 abstract 的传播效果。\n  3. \"Using the model zoo of Wang et al. (2025)\" 暴露了对特定 prior work 的强依赖，可能让不熟悉该工作的读者困惑。\n- 建议：(1) 修复第三句的句法错误；(2) 删减到 3-4 个关键数字；(3) 用直觉描述替代部分统计数字。\n\n---\n\n## 小问题（不影响接收）\n\n**M1** [minor] \"Convergence\" 一词使用不一致\n- Section 4.1 标题是 \"Per-Example Divergence\"，但讨论的内容既包括 convergence（aggregate）又包括 divergence（per-example）。Appendix A 区分了 confirmatory vs. exploratory benchmarks，但主文中\"convergence\"有时指 aggregate variance 下降，有时指 Jaccard 趋于稳定，易混淆。\n\n**M2** [minor] Table 1 和 Table 2 的 benchmark 子集不完全一致\n- Table 1 报告 10 个 benchmark 的 σ 趋势，Table 2 仅报告 4 个 benchmark 的 κ 值。虽然有合理原因（COPA 样本量太小），但应在正文中明确说明选择标准。\n\n**M3** [minor] Figure 1 的 panel (b) 标注\n- Figure 1(b) 的 y 轴标签 \"Per-example J steps flat\" 不够直观，建议改为 \"Pairwise Jaccard similarity\"。\n\n**M4** [minor] Limitations 中未讨论评估 benchmark 的代表性\n- Limitations 提到 single training runs 和 seed effects，但未讨论 10 个 benchmark 是否代表了 NLP 任务的广泛分布。所有 benchmark 都是 zero-shot 分类/检索任务，没有生成任务。\n\n**M5** [minor] Section Y \"Use of AI Assistants\" 的位置\n- 这一节出现在 Appendix 最末尾（page 21），位置合理但格式上看起来像是最后附加的，建议检查 venue 对 AI 使用声明的具体位置要求。\n\n---\n\n## 主要优势\n\n**S1** 系统性强的实证研究：30 个配置（3 架构 × 5 attention × 2 规模） × 10 benchmarks 的完整矩阵分析，配合严格的多重比较校正（Bonferroni）和 bootstrap CI，统计方法论水准高于多数同类工作。\n\n**S2** Per-example saturation at 4% attention 是一个非平凡发现：这意味着即使是极少量的 attention（每 k+1 层一层）就足以创造大部分 per-example 分化，这对 hybrid 架构的设计实践有直接指导意义——不需要为了\"per-example 行为一致性\"而限制 attention 比例，因为 4% 已经\"造成了全部损害\"。\n\n**S3** 诚实的统计报告：论文坦诚报告了 aggregate convergence 不显著（p = .170），没有 cherry-pick 显著性结果。Appendix A 的 confirmatory/exploratory 分类也体现了方法论自觉。\n\n**S4** 五架构验证扩展（Appendix X）：通过引入 GLA 和 DeltaNet 将分析扩展到 5 个架构 15 个 pairwise 比较，所有 Jaccard 值 ≤ 0.11，permutation tests 全部显著——增强了核心发现的鲁棒性。\n\n**S5** 丰富的附录分析：21 页中 13 页为附录（Appendix A-Y），涵盖 bootstrap CI、GDN exclusion sensitivity、attention weight analysis、cosine similarity、BoolQ/WinoGrande 补充分析、scale comparison、seed variation、complementarity decomposition 等——虽然主文的某些 claim 有待加强，但附录展示了作者的分析深度。\n\n---\n\n## Questions for Authors\n\n**Q1**: 是否可以对至少一个 hybrid 架构训练多个 seed，以定量分离 within-architecture（seed-driven）vs. cross-architecture Jaccard 差异？Pythia 70M 的 seed 分析（Appendix W）因架构不同和规模差异，无法直接迁移到主实验。\n\n**Q2**: Abstract 第三句是否存在编辑错误？\"...baseline's validation across five architectures...\" 读起来像是两个句子被拼接在一起。\n\n**Q3**: Confidence-based routing 在 LAMBADA 外的表现（PIQA −0.8pp, HellaSwag −1.2pp）是否说明 routing 的 practical value 高度任务依赖？如果是，Section 5 的 practical implications 是否应当大幅限定范围？\n\n**Q4**: 论文声称 per-example Jaccard 在 4% attention 饱和——但这是否只是因为 4% 已经是最低的非零 attention 配置？如果存在 1%、2% 的中间配置，saturation 点是否会更早？这限制了 \"4% saturation\" 的 claim 的精度。\n\n**Q5**: 为什么没有与 Transformer baseline（pure attention）进行 per-example 比较？Wang et al. (2025) 的 zoo 包含 Transformer baseline，这个对照组对理解 \"hybrid vs. pure attention\" 的 per-example 差异很有价值。\n\n---\n\n## Missing References（建议补充）\n\n1. Wortsman, M. et al. (2022). \"Model Soups: Averaging Weights of Multiple Fine-tuned Models Improves Accuracy without Increasing Inference Time.\" ICML.\n2. Shazeer, N. et al. (2017). \"Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer.\" ICLR. （与 routing 方案的关系）\n3. Fedus, W. et al. (2022). \"Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity.\" JMLR.\n4. Breiman, L. (2001). \"Statistical Modeling: The Two Cultures.\" Statistical Science. （Rashomon sets 的原始来源）\n5. Fort, S., Hu, H., & Lakshminarayanan, B. (2019). \"Deep Ensembles: A Loss Landscape Perspective.\" NeurIPS. （已引用但可加深讨论）\n\n---\n\n## 格式合规检查\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| 8 页正文限制 | ✅ 通过 | 正文至 page 8，Limitations 在 page 8 底部 |\n| Limitations 章节 | ✅ 有 | 在 page 8，覆盖 single training runs 和 seed effects |\n| 匿名性 | ✅ 通过 | 未发现去匿名化内容 |\n| ACL 模板 | ✅ 通过 | 使用 `\\usepackage[review]{acl}` |\n| Abstract 长度 | ⚠️ 建议检查 | 内容极度密集，可能接近 200-word 上限 |\n| References 格式 | ✅ 基本一致 | 混合使用 arXiv preprint 和会议格式，但这在该领域常见 |\n\n---\n\n## 最终判断\n\n本文是一篇扎实的实证分析，核心发现（per-example divergence across architectures）有价值且经过严格检验。但两个 critical 问题——aggregate convergence 叙事无统计支撑、单次训练无法分离架构与种子效应——共同削弱了论文的 claim 强度。新颖性为增量贡献（已知框架在新 domain 的应用），方法论创新有限。建议 **Findings** 接收，前提是作者修复 convergence framing 并适当弱化 claim。如能补充同架构多 seed 对照实验，可重新评估为 Borderline Conference。",
+              "reviewer_id": "2",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-001370"
+        },
+        {
+          "source_line": 1371,
+          "timestamp": "2026-05-24T12:04:56.681190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3927
+          },
+          "id": "event-001371"
+        },
+        {
+          "source_line": 1372,
+          "timestamp": "2026-05-24T12:05:01.158839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001372"
+        },
+        {
+          "source_line": 1373,
+          "timestamp": "2026-05-24T12:05:01.309828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 150
+          },
+          "id": "event-001373"
+        },
+        {
+          "source_line": 1374,
+          "timestamp": "2026-05-24T12:05:05.677034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_18/_pdf_images"
+            }
+          },
+          "id": "event-001374"
+        },
+        {
+          "source_line": 1375,
+          "timestamp": "2026-05-24T12:05:05.677730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-001375"
+        },
+        {
+          "source_line": 1376,
+          "timestamp": "2026-05-24T12:05:17.653232+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n**核心判断：Overall 3.0 (Findings)**\n\n两个 critical 问题：\n1. **Aggregate convergence 叙事无统计支撑**（p = .170），但论文核心框架建立在 \"convergence vs. divergence\" 对比之上\n2. **单次训练运行无法分离架构效应与种子效应**，Appendix W 的 Pythia 70M seed 分析因架构类型和规模不同无法迁移\n\n新颖性评估：增量贡献——将 predictive multiplicity (Marx 2020) 和 ecological fallacy 框架应用于 hybrid recurrent 架构，方法论创新有限（标准指标的直接套用）。Per-example saturation at 4% attention 是最有价值的经验发现。Related work 遗漏 Model Soups、MoE 文献。Confidence-based routing 作为 practical contribution 定位过高（仅 1/10 benchmark 受益）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2"
+          },
+          "id": "event-001376"
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "messages": [
+        {
+          "source_line": 1377,
+          "timestamp": "2026-05-24T12:06:25.955792+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整审稿意见。请逐条回应：对每个问题标注 **[AGREE]** 同意并说明理由，或 **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 的 Must-Fix 问题\n\n**N1** [critical] Spearman 相关性在 n=5 下严重 underpowered，但论文多处基于此做推断\n- n=5 时仅 |ρ|=1.0 才能 p < .05。Table 2 显示 Bonferroni adjusted p > .170。论文在 §4.2 和 Abstract 中仍将这些 underpowered 相关性作为核心结论证据。建议明确标注为 exploratory/descriptive。\n\n**N2** [critical] 单次训练 run 的 architecture vs. seed confound 未充分解决\n- Pythia 70M seed calibration 存在双重 confound：(a) scale mismatch (70M vs 340M/1.3B)；(b) architecture family mismatch (Transformer vs hybrid)。更关键的是，Pythia within-seed J = 0.273 vs 跨架构 J = 0.293，差距仅 0.02，暗示 seed 效应可能是主要驱动因素。\n\n**N3** [critical] Bootstrap CI 基于 n=3 架构不可靠\n- 3 个点重采样的 bootstrap 仅有 3³=27 种可能。论文排除退化 case（same-architecture triplicates）进一步降低有效样本量。报告的 95% CI = [-1.0, -0.7] 给出虚假精度感。建议改用 exact permutation test 或明确声明 n=3 下 bootstrap 局限。\n\n## Reviewer 1 的 Should-Fix 问题\n\n**W1** [major] Routing 实验仅 1/4 benchmark 有效，作为 contribution 过于单薄\n- LAMBADA +5.2pp，但 HellaSwag -1.2pp, PIQA -0.87pp (significantly negative)。缺少 ensemble baseline（majority vote / average logits）在所有 benchmark 上的对比。\n\n**W2** [major] 任务分类法存在 evaluation format confound\n- LAMBADA 是唯一 free-form generation task，其余均为 multiple-choice。LAMBADA 的异常表现可能源于 format 而非 task type。HellaSwag 使用 acc_norm 与其他 Reasoning benchmark 不同。\n\n**W3** [major] Scale robustness 仅两个数据点（340M, 1.3B），claim 过强\n- \"scale-robust\" 应改为 \"consistent across the two scales examined\"。\n\n**W4** [warning] 5-architecture validation 范围过窄\n- 仅在 340M、LAMBADA、h3-1 配置上验证。缺乏其他 benchmark 和 attention ratio 的验证。\n\n**W5** [warning] Permutation test null baseline 仅排除 random overlap，不排除 example difficulty confound\n- 如果某些 example 天然容易被 attention 帮助，即使 architecture-specific 效应为零也会看到显著高于随机的 Jaccard。\n\n## Reviewer 1 的优势评价\n\n- S1: 问题定位精准且新颖\n- S2: Controlled model zoo 是理想实验框架\n- S3: 分析深度和透明度高（21 页 + sensitivity analysis）\n- S4: 核心描述性发现 robust 且实践有意义\n- S5: 写作质量好，figures 可读性高\n\n## Reviewer 1 的 Questions\n\n1. Pythia 70M within-seed J (0.273) vs cross-arch J (0.293) 差距仅 0.02，如何解释？\n2. 为什么不在 GDN/RetNet/HGRN2 任一架构上用 2-3 个 seed 训练？\n3. LAMBADA 的独特 pattern 是否因 evaluation format 而非 task type？\n4. Majority vote 在非 LAMBADA benchmark 上的表现？\n5. 5-arch validation 为何仅选 LAMBADA 和 h3-1？\n\n## Reviewer 1 的 Missing References\n\n- Jiang et al. (2024) \"On the Predictive Multiplicity of Foundation Models\"\n\n---\n\n请逐条回应上述所有问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001377"
+        },
+        {
+          "source_line": 1378,
+          "timestamp": "2026-05-24T12:08:47.907936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 对 Reviewer 1 的逐条回应\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R1-N1: Spearman n=5 underpowered**\n\n同意。n=5 的 Spearman 相关性检验力极低，|ρ|=1.0 才 p < .05，这是教科书级别的 power 问题。论文虽然诚实报告了 Bonferroni-adjusted p = .170（Abstract、Section 4.2），但问题在于文本多处仍将这些 underpowered 的相关性用于推断——例如 Section 4.2 的 \"Aggregate Trends and Per-Example Independence\" 标题暗示了确定性结论，Table 1 的 ρ 值被用来比较不同 benchmark 的 convergence 趋势强弱。\n\n与我自己的 N1（aggregate convergence 叙事缺乏统计支撑）一致：论文的核心叙事需要 aggregate convergence 成立，但统计证据不支持。R1 从 power analysis 角度指出了同一问题的技术根源。\n\n补充发现：即使不做 Bonferroni 校正，Table 1 中只有 LAMBADA（ρ = −1.0）达到 nominal significance。论文用 10 个 benchmark 的趋势方向（多数为负）作为间接证据，但这属于 vote-counting meta-analysis，已知 power 很低。\n\n---\n\n**[REBUT] R1-N2: Pythia within-seed J (0.273) vs cross-arch J (0.293)，差距仅 0.02**\n\nR1 的具体数字比较存在误读。根据 Appendix W（page 20），论文报告的是：\n- **Within-seed Jaccard**（Pythia 70M 同架构不同 seed）：J_h = 0.273（helped set），J_hu = 0.293（hurt set）\n- **Cross-architecture Jaccard**（主实验，不同架构间）：J ≈ 0.10\n\n0.273 和 0.293 都是 **within-seed** 的值（分别对应 helped 和 hurt 子集），不是一个 within-seed 一个 cross-architecture。实际的 within-seed vs. cross-architecture 对比是 0.273 vs. 0.10，差距是 2.7×，而非 R1 声称的\"仅 0.02\"。这一比值恰好支持论文的 claim：同架构不同 seed 的 per-example 一致性远高于不同架构间——即架构差异确实是 per-example divergence 的一个独立驱动因素。\n\n**但我同意 R1 的深层关切（与我的 N2 一致）**：Pythia 70M 是 Transformer 而非 hybrid 架构，且规模差异大（70M vs 340M/1.3B），这一 calibration 的可迁移性有限。核心需求仍然是：对 GDN/RetNet/HGRN2 中至少一个做多 seed 训练。\n\n---\n\n**[AGREE] R1-N3: Bootstrap CI 基于 n=3 不可靠**\n\n完全同意。3 个架构的 bootstrap 重采样空间仅 3³ = 27 种组合，排除退化 case 后更少。报告 95% CI = [−1.0, −0.7] 传递了与 n=3 不匹配的精度感。\n\n我的审稿中未单独列出此问题，R1 的发现是有价值的补充。建议作者：(1) 改用 exact permutation test（所有 3! = 6 种排列），或 (2) 直接报告 3 个架构的完整数据点而非 CI，让读者自行判断变异性。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R1-W1: Routing 仅 1/4 有效**\n\n与我的 W3 一致。补充一点：论文缺少最基本的 ensemble baseline——average logits。Confidence-based routing 本质上是一个 hard selection，而 soft ensemble（logit averaging）在 NLP 中通常更 robust。没有这个 baseline，无法判断 routing 是否优于 naive ensembling。\n\n---\n\n**[AGREE] R1-W2: 评估 format confound**\n\n这是一个我未充分注意到的好问题。LAMBADA 是唯一的 free-form generation task（预测最后一个词），其评估方式（exact match on last token）与 multiple-choice 任务根本不同。R1 的假说——LAMBADA 的异常 routing 效果可能源于 evaluation format 差异（free-form 的 confidence 分布与 MC 不同）而非 task type——是合理的。\n\n进一步证据：Table 2 显示 LAMBADA 的 κ = 0.30 远高于其他 benchmark（HellaSwag 0.14, PIQA 0.11）。如果这一差异由 format 驱动，则 Section 4.1 的\"task-type modulates multiplicity\"结论需要修正为\"evaluation format modulates observed multiplicity\"。\n\nHellaSwag 使用 acc_norm 这一点也值得注意（Section 3.2 确认）——acc_norm 改变了 per-example correctness 的定义，可能影响 helped/hurt 分类。\n\n---\n\n**[AGREE] R1-W3: Scale claim 过强**\n\n同意。两个数据点（340M, 1.3B）不足以支撑 \"scale-robust\" 的表述。建议改为 \"consistent across the two scales examined (340M, 1.3B)\"。\n\n---\n\n**[AGREE] R1-W4: 5-architecture validation 范围窄**\n\n同意，但程度略弱。Appendix X 的 5-architecture 验证确实局限于 LAMBADA + h3-1 + 340M 的单一配置。不过，作者在 page 21 提到 \"all 15 six-architecture permutation tests remain significant (z ≥ 2.8, p < .001)\" 以及 \"All pairwise Jaccard values remain ≤ 0.11\"——这与主实验的三架构结果一致。\n\n更有说服力的验证应至少覆盖：(1) 另一个 benchmark（如 HellaSwag 或 ARC-Easy），(2) 另一个 attention ratio（如 h12-1），以排除 LAMBADA-specific 或 h3-1-specific 的可能。\n\n---\n\n**[AGREE] R1-W5: Permutation test 不排除 example difficulty confound**\n\n这是一个精妙的统计问题。当前 permutation test 的 null hypothesis 是\"架构间的 helped/hurt set overlap 不高于随机\"。但如果某些 example 具有 attention-friendly 的内在属性（如长距离依赖），所有架构添加 attention 后都会在这些 example 上受益——这会产生 above-random Jaccard 而不需要 architecture-specific 效应。\n\n换言之：显著的 permutation test 证明了\"特定 example 被一致地影响\"，但没有证明\"这种一致性是 architecture-specific 的\"。一个更严格的 null 应该条件化于 example difficulty（或 attention-benefit propensity），例如 stratified permutation test。\n\n这与论文 Section 3.4 的 per-example decomposition 相关：如果 helped set 在所有架构间高度重叠（而非 architecture-specific），则 per-example multiplicity 的 claim 被削弱。Table 9（Appendix H）的 Jaccard ≈ 0.10 (= 较低) 部分缓解了这一担忧——如果是纯 difficulty-driven，J 应该更高。但 R1 的 conceptual 批评仍然成立，论文应当讨论这一替代假说。\n\n---\n\n### Questions 回应\n\n**Q1**: 如上 R1-N2 的 REBUT 所述，R1 比较的两个数字（0.273 和 0.293）都是 within-seed 值（helped 和 hurt 子集），cross-architecture reference 是 J ≈ 0.10。实际差距是 2.7×，不是 0.02。\n\n**Q2**: 同意，这是最关键的补充实验。与我的 N2 建议一致。\n\n**Q3**: 同意 format confound 假说值得排查（同 W2）。建议作者增加一个 format-matched 的 free-form generation benchmark（如 text completion on other datasets）看是否复现 LAMBADA 的 pattern。\n\n**Q4**: 合理问题。论文应在正文（而非仅附录）报告 majority vote 在所有 benchmark 上的表现，包括 negative cases。\n\n**Q5**: 合理问题。如 W4 所述，验证范围应扩展。\n\n---\n\n### Missing References\n\n**[AGREE]** Jiang et al. (2024) \"On the Predictive Multiplicity of Foundation Models\" 是直接相关工作。该文将 predictive multiplicity 扩展到 foundation models，与本文的 architectural multiplicity 互补。应在 Section 2 的 \"Underspecification and Predictive Multiplicity\" 段落中讨论。\n\n---\n\n### 综合评价\n\nR1 和我（R2）的审稿意见高度一致：\n\n**共识问题（两位 reviewer 独立指出）**：\n1. Aggregate convergence 叙事缺乏统计支撑（R1-N1 ↔ R2-N1）\n2. 单次训练 seed confound（R1-N2 ↔ R2-N2）\n3. Routing 贡献过于初步（R1-W1 ↔ R2-W3）\n\n**R1 的独特贡献（我未充分覆盖）**：\n- N3: Bootstrap n=3 的技术局限——有价值的补充\n- W2: Evaluation format confound——很好的分析角度\n- W5: Permutation test 的 difficulty confound——精妙的统计批评\n\n**我的独特贡献（R1 未充分覆盖）**：\n- W1 (novelty assessment): 新颖性为增量贡献的系统论证\n- W2 (related work gaps): Model Soups、MoE、Rashomon sets 等遗漏文献\n- W4 (abstract readability): 句法错误和信息密度问题\n\n**总体判断**：两位 reviewer 均认为论文是 solid empirical work，核心 per-example 发现有价值，但 framing 和 claim 强度需要显著修正。我维持 **Overall 3.0 (Findings)** 的评分。",
+              "reviewer_id": "2",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-001378"
+        },
+        {
+          "source_line": 1379,
+          "timestamp": "2026-05-24T12:08:51.608241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3700
+          },
+          "id": "event-001379"
+        },
+        {
+          "source_line": 1380,
+          "timestamp": "2026-05-24T12:08:57.997033+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。\n\n核心发现：R1 和 R2 的审稿意见在三个关键问题上独立达成共识——(1) aggregate convergence 无统计支撑、(2) seed confound、(3) routing 贡献单薄。R1 在 bootstrap n=3 局限、evaluation format confound、permutation test difficulty confound 上提供了我未覆盖的有价值补充。我在 R1-N2 的具体数字比较上提出了反驳（0.273 和 0.293 都是 within-seed 值，cross-architecture reference 是 0.10，实际差距 2.7× 而非 0.02）。整体维持 Findings 评分。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2"
+          },
+          "id": "event-001380"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "messages": [
+        {
+          "source_line": 1381,
+          "timestamp": "2026-05-24T13:15:33.122322+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n你是 Reviewer 2，负责审查**新颖性、完整性和写作质量**。\n\n## Venue 信息（必须据此评审）\n- **目标 venue**: EMNLP 2026 via ACL Rolling Review (May 2026 cycle)\n- **截止日期**: 2026-05-25\n- **页数限制**: 正文 8 页，References 不限，Limitations 不计入页数\n- **模板**: ACL style (LaTeX)\n- **审稿制度**: Double-blind\n- **附录**: 允许，不限页数\n- **Overall Assessment 评分**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next, 1=Do not resubmit\n\n## 论文文件\n- 主文件: `projects/entrainment_gated_ft/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/submitted.pdf`\n- Section 文件在 `projects/entrainment_gated_ft/docs/paper/sections/` 下\n\n## 你的审查侧重\n\n### 1. 新颖性评估\n- 论文的核心贡献是否足够新颖？\n- \"Predictive multiplicity under architectural variation\"是否是一个有意义的新方向，还是已有工作（Marx et al. 2020, D'Amour et al. 2022）的简单应用？\n- Per-example decomposition 在 hybrid recurrent architectures 上的应用是否有足够的 insight？\n- 与已有的 ensemble diversity / model disagreement 文献相比，增量贡献是什么？\n\n### 2. Related Work 完整性\n- 是否遗漏了重要的相关工作？特别关注：\n  - 最近的 hybrid architecture 论文（2025-2026）\n  - Predictive multiplicity 的最新进展\n  - Model disagreement / ensemble diversity 的经典和最新工作\n  - Per-example analysis 方法论\n- 论文对自身在文献中的定位是否准确？\n\n### 3. 写作质量\n- 论文的叙事逻辑是否清晰？\n- Abstract 是否准确概括了论文内容？（注意：EMNLP 2026 要求 abstract 不超过 200 words）\n- Introduction 的 motivation 是否有说服力？\n- Method 和 Experiments 的划分是否合理？\n- Conclusion 是否恰当总结了发现，避免了过度 claim？\n- Limitations 是否充分覆盖了主要局限？\n- 术语使用是否一致？\n- 图表质量和可读性\n\n### 4. 格式合规\n- 页数是否符合 8 页正文限制？\n- 匿名性是否完整（无泄露作者身份的信息）？\n- 引用格式是否正确？\n- Appendix 的引用是否使用了正确的字母编号？\n\n### 5. 完整性\n- 论文的实验是否覆盖了 claims 所需的全部场景？\n- 是否有重要的消融实验缺失？\n- Negative results 是否被诚实报告？\n\n请按以下格式输出审稿意见：\n1. Summary (2-3 句)\n2. Strengths (逐条)\n3. Weaknesses (逐条，标注 severity: critical/major/minor)\n4. Questions to Authors\n5. Missing References (如有)\n6. Overall Assessment (评分 + 置信度 + 理由)\n7. Detailed Comments (逐节)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001381"
+        },
+        {
+          "source_line": 1382,
+          "timestamp": "2026-05-24T13:15:40.444271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001382"
+        },
+        {
+          "source_line": 1383,
+          "timestamp": "2026-05-24T13:15:40.444737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001383"
+        },
+        {
+          "source_line": 1384,
+          "timestamp": "2026-05-24T13:15:44.319607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review 2026 reviewer guidelines review form criteria"
+            }
+          },
+          "id": "event-001384"
+        },
+        {
+          "source_line": 1385,
+          "timestamp": "2026-05-24T13:15:45.373274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR review form dimensions scoring rubric 2025 2026"
+            }
+          },
+          "id": "event-001385"
+        },
+        {
+          "source_line": 1386,
+          "timestamp": "2026-05-24T13:15:46.025799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/submitted.pdf",
+              "project": "entrainment_gated_ft",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001386"
+        },
+        {
+          "source_line": 1387,
+          "timestamp": "2026-05-24T13:15:51.244465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review 2026 reviewer guidelines review form criteria\"\n\nLinks: [{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"}]\n\nBased on the search results, I found information about ACL Rolling Review 2026 reviewer guidelines and review form criteria. Here's what the results show:\n\n## Reviewer Guidelines\n\nReviewers are asked to read the paper, search for related work, and state in the review if they did not check some major parts, such as proofs. Reviewers should check for academic conflicts of interest and recuse themselves if the submission is very close to their own work.\n\n## Review Form Criteria\n\nPapers rated 5 are considered for award: reviewers th\n…[truncated 901 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6924
+          },
+          "id": "event-001387"
+        },
+        {
+          "source_line": 1388,
+          "timestamp": "2026-05-24T13:15:51.596894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR review form dimensions scoring rubric 2025 2026\"\n\nLinks: [{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"ACL ARR | OpenReview\",\"url\":\"https://openreview.net/group?id=aclweb.org%2FACL%2FARR\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"}]\n\nBased on the web search results, I found relevant information about the ACL ARR review form for 2025-2026:\n\n## ARR Review Form Dimensions and Scoring (2025-2026)\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\n### The Three Scoring Dimensions:\n\n1. **Soundness** - The soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, t\n…[truncated 991 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6223
+          },
+          "id": "event-001388"
+        },
+        {
+          "source_line": 1389,
+          "timestamp": "2026-05-24T13:15:52.952175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 450.9}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 521.0}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 562.8}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.9}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.4}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 432.5}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.8}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 354.2}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"si\n…[truncated 471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 6926
+          },
+          "id": "event-001389"
+        },
+        {
+          "source_line": 1390,
+          "timestamp": "2026-05-24T13:15:57.878359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001390"
+        },
+        {
+          "source_line": 1391,
+          "timestamp": "2026-05-24T13:15:57.934908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 56
+          },
+          "id": "event-001391"
+        },
+        {
+          "source_line": 1392,
+          "timestamp": "2026-05-24T13:16:01.633713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form with all dimensions, scoring scales, and descriptions. I need the exact scoring rubric for each dimension (soundness, excitement, overall assessment, etc.) with all score levels and their meanings."
+            }
+          },
+          "id": "event-001392"
+        },
+        {
+          "source_line": 1393,
+          "timestamp": "2026-05-24T13:16:03.041732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/submitted.pdf",
+              "project": "entrainment_gated_ft",
+              "pages": "11-21",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001393"
+        },
+        {
+          "source_line": 1394,
+          "timestamp": "2026-05-24T13:16:03.543467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-001394"
+        },
+        {
+          "source_line": 1395,
+          "timestamp": "2026-05-24T13:16:04.045623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-001395"
+        },
+        {
+          "source_line": 1396,
+          "timestamp": "2026-05-24T13:16:04.447580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-001396"
+        },
+        {
+          "source_line": 1397,
+          "timestamp": "2026-05-24T13:16:05.452511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-001397"
+        },
+        {
+          "source_line": 1398,
+          "timestamp": "2026-05-24T13:16:05.754802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-001398"
+        },
+        {
+          "source_line": 1399,
+          "timestamp": "2026-05-24T13:16:08.366948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Rubric\n\n## Reviewer Confidence\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully\"\n- **4**: \"Quite sure. I tried to check the important points carefully\"\n- **3**: \"Pretty sure, but there's a chance I missed something\"\n- **2**: \"Willing to defend my evaluation, but it is fairly likely that I missed some details\"\n- **1**: \"Not my area, or paper is very hard to understand\"\n\n## Soundness\n- **5**: Excellent - \"one of the most thorough I have seen, given its type\"\n- **4**: Strong - \"provides sufficient support for all of its claims\"\n- **3**: Acceptable - \"provides sufficient support for its main claims\"\n- **2**: Poor - \"Some of the main claims are not sufficiently supported\"\n- **1**: Major Issues - \"not yet sufficiently thorough to warrant publication\"\n\n## Excitement\n- **5**: Highly Exciting - \"I would recommend this paper to others\"\n- **4**: Exciting - \"I would mention this paper to others\"\n- **3**: Interesting - \"I might mention some points\"\n- **2**: Potentially Interesting - \"does not resonate with me, but might with others\"\n- **1**: Not Exciting - \"does not resonate with me\"\n\n## Overall Assessment\n- **5**: Consider for Award - \"could be considered for an outstanding paper award\"\n- **4**: Conference - \"could be accepted to an ACL conference\"\n- **3**: Findings - \"could be accepted to the Findings of the ACL\"\n- **2**: Resubmit next cycle - \"needs substantial revisions\"\n- **1**: Do not resubmit - \"has to be fully redone\"\n\n## Reproducibility\n- **5**: Results easily reproducible\n- **3**: \"reproduce the results with some difficulty\"\n- **1**: Cannot reproduce results\n\n## Datasets & Software\nBoth use identical 5-point scales measuring utility for other researchers."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 6733
+          },
+          "id": "event-001399"
+        },
+        {
+          "source_line": 1400,
+          "timestamp": "2026-05-24T13:16:10.033589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 516.0}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 498.3}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 469.1}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 414.3}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 465.3}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 477.5}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 491.1}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 524.4}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p19.png\\\", \\\"width\\\": 1241, \\\"he\n…[truncated 709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 6991
+          },
+          "id": "event-001400"
+        },
+        {
+          "source_line": 1401,
+          "timestamp": "2026-05-24T13:16:12.757569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 8309
+          },
+          "id": "event-001401"
+        },
+        {
+          "source_line": 1402,
+          "timestamp": "2026-05-24T13:16:12.760682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 9217
+          },
+          "id": "event-001402"
+        },
+        {
+          "source_line": 1403,
+          "timestamp": "2026-05-24T13:16:12.761883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 7007
+          },
+          "id": "event-001403"
+        },
+        {
+          "source_line": 1404,
+          "timestamp": "2026-05-24T13:16:12.764953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 8719
+          },
+          "id": "event-001404"
+        },
+        {
+          "source_line": 1405,
+          "timestamp": "2026-05-24T13:16:12.766006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 7313
+          },
+          "id": "event-001405"
+        },
+        {
+          "source_line": 1406,
+          "timestamp": "2026-05-24T13:16:17.834621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-001406"
+        },
+        {
+          "source_line": 1407,
+          "timestamp": "2026-05-24T13:16:18.387026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-001407"
+        },
+        {
+          "source_line": 1408,
+          "timestamp": "2026-05-24T13:16:18.889856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1055
+          },
+          "id": "event-001408"
+        },
+        {
+          "source_line": 1409,
+          "timestamp": "2026-05-24T13:16:18.890247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-001409"
+        },
+        {
+          "source_line": 1410,
+          "timestamp": "2026-05-24T13:16:19.894587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1507
+          },
+          "id": "event-001410"
+        },
+        {
+          "source_line": 1411,
+          "timestamp": "2026-05-24T13:16:19.896156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1005
+          },
+          "id": "event-001411"
+        },
+        {
+          "source_line": 1412,
+          "timestamp": "2026-05-24T13:16:20.097835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-001412"
+        },
+        {
+          "source_line": 1413,
+          "timestamp": "2026-05-24T13:16:20.098309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-001413"
+        },
+        {
+          "source_line": 1414,
+          "timestamp": "2026-05-24T13:16:21.155628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1057
+          },
+          "id": "event-001414"
+        },
+        {
+          "source_line": 1415,
+          "timestamp": "2026-05-24T13:16:21.207024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1108
+          },
+          "id": "event-001415"
+        },
+        {
+          "source_line": 1416,
+          "timestamp": "2026-05-24T13:16:25.071355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-001416"
+        },
+        {
+          "source_line": 1417,
+          "timestamp": "2026-05-24T13:16:26.026036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-001417"
+        },
+        {
+          "source_line": 1418,
+          "timestamp": "2026-05-24T13:16:26.026470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-001418"
+        },
+        {
+          "source_line": 1419,
+          "timestamp": "2026-05-24T13:16:26.530845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-001419"
+        },
+        {
+          "source_line": 1420,
+          "timestamp": "2026-05-24T13:16:26.985823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 959
+          },
+          "id": "event-001420"
+        },
+        {
+          "source_line": 1421,
+          "timestamp": "2026-05-24T13:16:26.986305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-001421"
+        },
+        {
+          "source_line": 1422,
+          "timestamp": "2026-05-24T13:16:28.043370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-001422"
+        },
+        {
+          "source_line": 1423,
+          "timestamp": "2026-05-24T13:16:28.145476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1614
+          },
+          "id": "event-001423"
+        },
+        {
+          "source_line": 1424,
+          "timestamp": "2026-05-24T13:16:28.302828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-001424"
+        },
+        {
+          "source_line": 1425,
+          "timestamp": "2026-05-24T13:16:28.557698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1571
+          },
+          "id": "event-001425"
+        },
+        {
+          "source_line": 1426,
+          "timestamp": "2026-05-24T13:16:29.512318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1468
+          },
+          "id": "event-001426"
+        },
+        {
+          "source_line": 1427,
+          "timestamp": "2026-05-24T13:16:29.563425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1260
+          },
+          "id": "event-001427"
+        },
+        {
+          "source_line": 1428,
+          "timestamp": "2026-05-24T13:16:33.781830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001428"
+        },
+        {
+          "source_line": 1429,
+          "timestamp": "2026-05-24T13:16:34.384311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001429"
+        },
+        {
+          "source_line": 1430,
+          "timestamp": "2026-05-24T13:16:34.788814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1006
+          },
+          "id": "event-001430"
+        },
+        {
+          "source_line": 1431,
+          "timestamp": "2026-05-24T13:16:34.789666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001431"
+        },
+        {
+          "source_line": 1432,
+          "timestamp": "2026-05-24T13:16:35.796667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1412
+          },
+          "id": "event-001432"
+        },
+        {
+          "source_line": 1433,
+          "timestamp": "2026-05-24T13:16:35.797082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001433"
+        },
+        {
+          "source_line": 1434,
+          "timestamp": "2026-05-24T13:16:35.849807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_19/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-001434"
+        },
+        {
+          "source_line": 1435,
+          "timestamp": "2026-05-24T13:16:37.568238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2778
+          },
+          "id": "event-001435"
+        },
+        {
+          "source_line": 1436,
+          "timestamp": "2026-05-24T13:16:38.677574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2827
+          },
+          "id": "event-001436"
+        },
+        {
+          "source_line": 1437,
+          "timestamp": "2026-05-24T13:16:38.935819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3138
+          },
+          "id": "event-001437"
+        },
+        {
+          "source_line": 1438,
+          "timestamp": "2026-05-24T13:17:16.667377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "predictive multiplicity recent advances 2024 2025 Rashomon sets machine learning"
+            }
+          },
+          "id": "event-001438"
+        },
+        {
+          "source_line": 1439,
+          "timestamp": "2026-05-24T13:17:16.667832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "hybrid recurrent architecture comparison 2025 2026 Mamba RWKV Griffin linear attention"
+            }
+          },
+          "id": "event-001439"
+        },
+        {
+          "source_line": 1440,
+          "timestamp": "2026-05-24T13:17:16.668044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ensemble diversity model disagreement per-example analysis NLP 2024 2025"
+            }
+          },
+          "id": "event-001440"
+        }
+      ]
+    }
+  ]
+}

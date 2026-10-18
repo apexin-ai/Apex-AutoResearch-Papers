@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6109434be774c08483",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops read eval fast",
+  "task_key": "worker_ops_read_eval_fast_20260515T134441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read_eval_fast_20260515T134441_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "3e2ce09cf66403b9077d90484447bd20a9f8d98a329f6811c1c944f996c6e1c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件都成功读取，但输出被截断（中间省略了约 269241 字符）。文件内容结构：\n\n**eval_exp1.json** 和 **eval_exp2.json** 都包含按 `count_{N}_random_{M}` 组织的评估结果，每个条目包含：\n- `accuracy`, `correct`, `total`, `bcs`\n- `count_key`, `num_types`, `batch_types`\n- `per_type_accuracy`（每种关系类型的细分准确率）\n\n可见的数据范围：\n- **exp1** 从 `count_1_random_0` 开始（单类型，12 samples/type）\n- **exp2** 到 `count_16_random_24` 结束（16 类型，192 samples/batch）\n\n输出总量过大（~270K 字符），单次 SSH 返回被截断。如需完整内容，需要分文件读取或用 `python3 -c` 提取摘要统计。要我分别读取两个文件，或者直接提取汇总指标？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2841ef69a953c732c8b3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops 20k gate prep",
+  "task_key": "worker_ops_20k_gate_prep_20260520T024314",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_20k_gate_prep_20260520T024314_result.json",
+    "occurrence": 1,
+    "bytes": 2192,
+    "sha256": "70a37445ee2a1d6019abe199b7e232ce3999a90357824a9e6b3bbb7e710a627b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。\n\n```\nM-sweep Launch Readiness (westd-41074)\n========================================\n\n[C4-ext M128 训练状态]\n  当前: step 17350/100000, 0.6 sps\n  ETA 到 20K: ~74 min (~12:00 UTC)\n  ETA 到 50K: ~15 hours (~01:45 UTC May 21)\n  Checkpoint: checkpoint.pt + checkpoint_step10000.pt\n  save_every=10000 → 20K checkpoint 会自动保存\n\n[M-sweep 资源]\n  M=64 config:    EXISTS  configs/openvla_smart_compress_m64.yaml (num_queries=64)\n  M=96 config:    EXISTS  configs/openvla_smart_compress_m96.yaml (num_queries=96)\n  HF dataset:     CACHED  66GB (/root/autodl-tmp/.hf_cache/datasets/parquet/)\n  Base model:     EXISTS  15GB (/root/autodl-tmp/openvla-libero-object/)\n  Train script:   EXISTS  train_openvla_smart_compress.py\n  Eval script:    EXISTS  eval_openvla_smart_compress.py\n  Disk:           85GB free (250GB total)\n\n[⚠️ 冲突]\n  M128 训练正在占用 GPU (tmux session: train_openvla_sc_m128_seed42)\n  M=64/96 训练需等 M128 结束 或 使用其他服务器\n\n[Launch 命令模板]\n  # M=64 训练\n  python train_openvla_smart_compress.py --config configs/openvla_smart_compress_m64.yaml\n\n  # M=96 训练\n  python train_openvla_smart_compress.py --config configs/openvla_smart_compress_m96.yaml\n\n  # C4-ext 20K eval (M128)\n  python eval_openvla_smart_compress.py \\\n    --n_queries 128 \\\n    --checkpoint_path checkpoints/openvla_sc_m128/checkpoint_step20000.pt \\\n    --suite libero_object \\\n    --num_episodes 50 --gpu 0\n\n  # C4-ext 50K eval (M128)\n  python eval_openvla_smart_compress.py \\\n    --n_queries 128 \\\n    --checkpoint_path checkpoints/openvla_sc_m128/checkpoint_step50000.pt \\\n    --suite libero_object \\\n    --num_episodes 50 --gpu 0\n\n[缺失项]\n  无——所有脚本、config、数据、模型均已就绪\n  唯一瓶颈: GPU 占用，M=64/96 需等 M128 完成或另开机器\n```\n\n**关键决策点**: M128 再跑 ~1.2h 到 20K。如果 20K gate 通过要立即起 M=64/96，有两个选择：\n1. **停掉 M128**，先跑 M=64/96（M128 之后从 checkpoint 恢复）\n2. **另开服务器**跑 M=64/96，westd-41074 继续跑 M128 到 50K/100K"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

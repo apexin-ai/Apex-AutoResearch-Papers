@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "879389b434e717918ecd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code zeroshot llm 500 001",
+  "task_key": "worker_code_zeroshot_llm_500_001_20260515T163627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_zeroshot_llm_500_001_20260515T163627_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "7ad06cd8c16cad72376f8f5742fc2afd25230dca4e62c341b4e7ced0f99ccb6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Zero-shot LLM 500-sample baseline completed.** Results:\n\n| Metric | Value |\n|--------|-------|\n| **4-class accuracy** | **36.2%** |\n| **95% bootstrap CI** | **[32.0%, 40.4%]** (width = 8.4pp) |\n| MAE | 1.028 |\n| Errors | 0/500 |\n\n**Per-class breakdown:**\n\n| Depth | Precision | Recall | F1 |\n|-------|-----------|--------|----|\n| d0 (human) | 0.39 | **0.952** | 0.55 |\n| d1 | 0.33 | 0.128 | 0.18 |\n| d2 | 0.30 | 0.248 | 0.27 |\n| d3 | 0.38 | 0.120 | 0.18 |\n\n**Key takeaways for R1-W4:**\n\n1. **CI narrowed** from ~13.6pp (200 samples) to **8.4pp** (500 samples) — the tighter CI confirms the result is stable, not a fluke.\n2. **500-sample acc (36.2%)** is within the 200-sample estimate (40.0%) range — consistent, slight drop due to larger sample regression to mean.\n3. **RF baseline (78.2%) dominates by 42pp** — the gap is unambiguous even at the upper CI bound (40.4%).\n4. **Failure mode is clear**: the LLM overwhelmingly predicts depth-0 (recall 95.2%) but collapses on d1/d2/d3 (recall 12–25%), confirming it cannot distinguish generation depths beyond \"human vs. not quite human.\"\n\nArtifact registered as `art_20260515_0d8eeb`. Remote results at `/root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

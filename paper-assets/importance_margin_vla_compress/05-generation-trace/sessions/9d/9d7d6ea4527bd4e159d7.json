@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d7d6ea4527bd4e159d7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 verify random k085 code",
+  "task_key": "worker_ops_cqa1-verify-random-k085-code_20260521T042120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-verify-random-k085-code_20260521T042120_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "2249d2d2feb31c3cf3aa2816dadd6f8f8273ede6284fd2b61060ed2bc84f7c9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：PID 522841 用的是**修复后的代码**，结果有效，无需重跑。\n\n**证据链：**\n\n| 事件 | 时间 (CST +0800) |\n|---|---|\n| 脚本 D124 修复 (last modify) | 2026-05-21 **10:23:51** |\n| 日志创建 (进程启动) | 2026-05-21 **10:30:23** |\n\n进程在修复后 **~7 分钟**启动。\n\n**日志确认：**\n- 第1行明确打印 `Vision pruning installed: keep_ratio=0.85, mode=random`\n- 当前脚本第103-105行有 `elif mode == \"random\": torch.randperm(N)` 分支\n- 脚本第76行有 `--mode` 参数（D124 新增）\n\n**运行结果：**\n- 已完成，`EXIT_CODE=0`\n- Overall SR: **318/500 (63.6%)**，95% Wilson CI: [59.3%, 67.7%]\n- 耗时 81.4 min\n\n不需要 kill 或重跑。63.6% 就是 X-VLA random k=0.85 的真实表现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

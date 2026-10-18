@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "15c43ec8e9f9828d3c3d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "file download",
+  "task_key": "worker_file_download_20260522T210739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_file_download_20260522T210739_result.json",
+    "occurrence": 1,
+    "bytes": 63,
+    "sha256": "bc8f3ca79ce7e22a820c770db1711a039701f5ce967bf95dbc04a042e556142c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 已结束，文件下载任务完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

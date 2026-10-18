@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0d772aa548b69ff07f43",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d044 framing rewrite",
+  "task_key": "worker_paper_d044_framing_rewrite_20260516T093329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d044_framing_rewrite_20260516T093329_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "1a05a1c9670aef116f2987b093f1455306f99d8243cea5647ab8a73e149a153e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete:\n\n1. **Title**: \"Drive\" → \"Shape\" in `main.tex:16`\n2. **Abstract**: Fully rewritten (~195 words). Leads with quartile Δ=-5.3pp and typical-batch 2.2pp; 31.2pp demoted to \"under extreme-batch construction\"; includes all required phrasings verbatim (cross-model, prompt robustness, MAVEN, decomposition, RE closed-set).\n3. **Introduction**:\n   - Finding (1) now leads with typical magnitudes (quartile -5.3pp, typical 2.2pp) before extreme -49pp count effect\n   - Finding (3) changed from \"robust across ... prompt designs\" to \"directionally consistent across prompt designs, with attenuated magnitude under improved prompts\"\n   - Contribution #4 rewritten with oracle routing +29.8pp, inconclusive grouping +1.4pp p≈0.19, merge amplification\n   - RQ1 doesn't use \"Drive\" (already phrased differently), so no change needed there\n4. **Prompt robustness (S12)**: `main.tex:245` updated from \"robust to prompt design\" to \"directionally consistent across prompt designs, with attenuated magnitude\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

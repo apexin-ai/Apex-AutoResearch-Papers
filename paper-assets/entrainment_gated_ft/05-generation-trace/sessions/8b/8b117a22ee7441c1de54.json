@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b117a22ee7441c1de54",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code 1 3b correct download",
+  "task_key": "worker_code_1_3b-correct-download_20260518T101539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b-correct-download_20260518T101539_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "ccc14e031fd1f343e5e62973d643a98e77b2b1ae1e9f98029b81f29ecd005f4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载持续进行中。当前状态汇报：\n\n**已确认的正确 repo 名称格式**：`m-a-p/1.3B-100B-{variant}`\n- 用户列表中的修正：\n  - `GatedDeltaNet-pure-baseline` → 实际为 `GatedDeltaNet-pure`\n  - `GatedDeltaNet-New-hybrid-24-1` → 实际为 `GatedDeltaNet-hybrid-24-1`\n  - `HGRN2-pure-baseline` → 实际为 `HGRN2-pure`\n\n**下载速度**：~600 KB/s (0.6 MB/s)\n\n**当前进度**：正在下载第 1/13 个模型 (GatedDeltaNet-pure)，已下载 ~122MB / ~5.3GB\n\n**已完成的 3 个模型**（之前正确下载的）：\n| 模型 | 大小 |\n|------|------|\n| 1.3B-100B-GatedDeltaNet-hybrid-3-1 | 5.3G |\n| 1.3B-100B-RetNet-pure | 4.9G |\n| transformer_1.3B_baseline | 4.3G |\n\n**预计总时间**：~30 小时（13 个模型 × ~5GB × 600KB/s 速度）\n\n**磁盘**：44G/250G 已用 (18%)，剩余 207G 足够（~65GB 新增）\n\n下载在 `screen -r download` 中运行，不会因 SSH 断开而中断。需要我定期检查进度还是等完成后再汇报？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

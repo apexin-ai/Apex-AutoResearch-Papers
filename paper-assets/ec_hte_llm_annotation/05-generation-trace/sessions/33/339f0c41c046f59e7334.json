@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "339f0c41c046f59e7334",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code agnews mc v2",
+  "task_key": "worker_code_agnews-mc-v2_20260524T154635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_agnews-mc-v2_20260524T154635_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "2cbd5df561ce0e549a8d629d5548a7318018c44a4a714c764317110442277c0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。关键结果：\n\n- **Asymmetric R² = 0.9534**（vs symmetric R² = -1.24），完整的非对称 bias identity 准确预测了 Global correction 的残差偏差\n- **P(Z=1)=0.5** 后 π̄ = 0.173（从之前的更高值降下来），Δπ = 0.19\n- EC-HTE 在 n_expert ≥ 500 时 |Bias| 胜出（2/3 budget levels），但 RMSE 全输（variance-bias tradeoff：stratified 估计方差更大）\n- Sign reversal 极低（Global 0.13%，EC-HTE 3%）\n- 按 n_expert 分的 asymmetric R²：250 → 0.929，500 → 0.962，1000 → 0.966\n\n三个输出文件已覆盖：`agnews_raw.csv`、`agnews_summary.csv`、`agnews_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

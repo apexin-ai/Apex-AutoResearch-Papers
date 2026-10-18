@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "53fec95917f9a768f718",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code gpu status and mistral launch",
+  "task_key": "worker_code_gpu_status_and_mistral_launch_20260514T020231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu_status_and_mistral_launch_20260514T020231_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "ae7c305616acbd41c7dd1d26ffc2e94e93ef5b1a7558f6b2197eb2c5216c807f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### cuda:0 — Llama-3.1-8B recovery\n- **PID**: 169686, tmux session: `llama_recovery`\n- **利用率**: 85%, 16510MiB\n- **状态**: Phase 1-2 已完成（profiling 768/768 + MCKP solver），原 Phase 3 eval 因 HF Hub 离线失败崩溃。恢复脚本 `run_llama_eval_recovery.py` 已提交，加载缓存数据集成功，正在跑 eval\n- **MCKP 结果**: bit_dist={4:244, 8:4, 2:8}, memory_ratio=0.2500, distortion=0.2695\n\n### cuda:1 — Mistral-7B-v0.3 full pipeline\n- **PID**: 169768, tmux session: `mistral_pipeline`\n- **利用率**: 95%, 17218MiB\n- **状态**: Phase 1 profiling 进行中（768 profiles to go, ~7min）\n\n### 采取的行动\n1. **修复 `eval_ppl.py`**: 添加 arrow 文件 fallback，防止 HF Hub 不可达时 crash\n2. **清理旧进程**: 终止了残留的 `mistral_full_pipeline` tmux session (PID 169384)\n3. **写恢复脚本**: `run_llama_eval_recovery.py` — 跳过 profiling，加载 `llama_profiling_results.json`，re-solve MCKP，只跑 eval\n4. **并行提交**: Llama recovery → cuda:0, Mistral pipeline → cuda:1\n5. **Registry 已更新**: mistral_full_pipeline → RUNNING, llama_full_pipeline notes 更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

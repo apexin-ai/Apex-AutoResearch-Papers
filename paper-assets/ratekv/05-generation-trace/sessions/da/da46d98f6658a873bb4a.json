@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "da46d98f6658a873bb4a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops submit llama 8k eval",
+  "task_key": "worker_ops_submit_llama_8k_eval_20260516T025548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_8k_eval_20260516T025548_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "f0c2e22b101cd512c13290ec941a06ca90775d0a491495ce32325433b11a0243"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **脚本同步**：`run_llama_8k_eval.py` 已上传到 `/root/ratekv/`\n- **依赖**：`eval_ppl.py`、`solver.py`、两个 profile JSON 均已存在\n- **环境**：2x RTX PRO 6000 Blackwell，模型已在 `/root/autodl-tmp/models/`\n- **实验已提交**：tmux session `llama_longctx_8k_eval`，运行在 `cuda:1`（通过 `CUDA_VISIBLE_DEVICES=1`）\n- **Registry**：`llama_longctx_8k_eval` → RUNNING\n- **日志**：`/root/ratekv/logs/llama_longctx_8k_eval.log`\n\n早期日志显示 solver 已完成（bit distribution: {4:253, 8:1, 2:2}），模型加载完毕，正在进行 8K stride PPL 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

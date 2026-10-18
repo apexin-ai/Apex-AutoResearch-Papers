@@ -1,0 +1,1165 @@
+{
+  "schema_version": "1.0",
+  "id": "82939b57078f390613b2",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "code gen length ablation c",
+  "task_key": "worker_code_gen_length_ablation_c_20260517T045550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_gen_length_ablation_c_20260517T045550.jsonl",
+    "occurrence": 1,
+    "bytes": 66189,
+    "sha256": "e4f49737272067675277f77b248e83856875ba222e816fbc3b94af4ecb76359a"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T05:01:23.715909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T05:01:23.716276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T05:01:23.716447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "filters": "{'exp_id': 'mvp_pipeline_pythia_002'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T05:01:23.716587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.332}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T05:01:23.716709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/checkpoints/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:01:23.716827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:01:23.716969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -maxdepth 2 -type f -name \"*.py\""
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:01:23.717103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross_model_chain\\\\ndcol\\\\ndcol_feature\\\\ndcol_lora\\\\ndcol_lora_dryrun\\\\ndcol_lora_v5\\\\ndcol_roberta_v6\\\\ndcol_test\\\\ndcol_v2\\\\ndcol_v3\\\\ndcol_v4\\\\ndcol_v4_dryrun\\\\ndomain_extension\\\\ngpt2xl\\\\ngpt2xl_temp09\\\\ngpt2xl_topk50\\\\nllama3_8b_nucleus\\\\nllama3_base_nucleus\\\\nlora_depth_0\\\\nlora_depth_1\\\\nlora_depth_2\\\\nlora_depth_3\\\\nlora_depth_4\\\\nolmo\\\\nolmo_temp09\\\\nolmo_topk50\\\\npythia_temp05\\\\npythia_temp07\\\\npythia_temp09\\\\npythia_temp11\\\\npythia_topk50\\\\nqwen7b_nucleus\\\\nreverse_chain\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:01:23.717254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nadd_seed_id.py\\\\natlas_analysis.py\\\\natlas_v2_analysis.py\\\\natlas_v2_complete.py\\\\natlas_v2_heavy_plots.py\\\\natlas_v2_plots.py\\\\nbaseline_ce_classification.py\\\\nbaseline_coral.py\\\\nbaseline_diveye_ordinal.py\\\\nbaseline_ppl_regression.py\\\\nbaseline_utils.py\\\\nbaseline_zeroshot_llm.py\\\\nbatch_feature_extraction.sh\\\\ndcol_train_standalone_deprecated.py\\\\ndcol_trainer_v4.py\\\\neval_d1d3.py\\\\neval_lora_rank_ablation.py\\\\neval_second_seed.py\\\\nextract_features.py\\\\nfeature_ablation.py\\\\nfilter_code.py\\\\nfilter_features_d1d3.py\\\\ngenerate_next_depth.py\\\\ngpt2xl_c4_calibration.py\\\\nllama3_eval.py\\\\nlora_finetune.py\\\\nlr_cross_strategy_zscore.py\\\\nmixed_depth_corpus_eval.py\\\\nmulti_tau_eval.py\\\\nplan_015_wild_data.py\\\\nprepare_arxiv_seeds.py\\\\nprepare_seed_data.py\\\\nqwen7b_eval.py\\\\nqwen7b_generate.py\\\\nqwen7b_lora_finetune.py\\\\nref_model_ablation.py\\\\nresume_olmo_step5.sh\\\\nrun_atlas_analysis.sh\\\\nrun_cross_model_chain.sh\\\\nrun_dcol_training.sh\\\\nrun_depth_extension.sh\\\\nrun_depth_extension_gpt2xl.sh\\\\nrun_depth_extension_olmo.sh\\\\nrun_domain_extension_arxiv.sh\\\\nrun_eval_gpt2xl_temp09.sh\\\\nrun_eval_gpt2xl_topk50.sh\\\\nrun_eval_olmo_topk50.sh\\\\nrun_eval_pythia_topk50.sh\\\\nrun_evaluation.sh\\\\nrun_llama3_8b_pipeline.sh\\\\nrun_llama3_8b_pipeline_002.sh\\\\nrun_llama3_8b_pipeline_003.sh\\\\nrun_llama3_base_pipeline.sh\\\\nrun_lora_rank_ablation.sh\\\\nrun_multi_tau_pipeline.sh\\\\nrun_pipeline.sh\\\\nrun_pipeline_base.sh\\\\nrun_pipeline_gpt2xl.sh\\\\nrun_pipeline_gpt2xl_temp09.sh\\\\nrun_pipeline_gpt2xl_topk50.sh\\\\nrun_pipeline_olmo.sh\\\\nrun_pipeline_olmo_temp09.sh\\\\nrun_pipeline_olmo_topk50.sh\\\\nrun_pipeline_pythia_temp07.sh\\\\nrun_pipeline_pythia_temp09.sh\\\\nrun_pipeline_pythia_topk50.sh\\\\nrun_qwen7b_pipeline.sh\\\\nrun_ref_model_ablation.sh\\\\nrun_reverse_chain_pipeline.sh\\\\nrun_second_seed_replication.sh\\\\nrun_three_class_eval.py\\\\nrun_wild_data_plan015.sh\\\\nrun_zeroshot_500.py\\\\nrun_zeroshot_500.sh\\\\nrun_zeroshot_baseline.sh\\\\n\n…[truncated 251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T05:01:23.717452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/prepare_seed_data.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/add_seed_id.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/lora_finetune.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/generate_next_depth.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/train_classifier.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/filter_code.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/eval_d1d3.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/filter_features_d1d3.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/atlas_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_three_class_eval.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_utils.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_ce_classification.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_coral.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_zeroshot_llm.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_ppl_regression.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_diveye_ordinal.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/dcol_train_standalone_deprecated.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/atlas_v2_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/atlas_v2_complete.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/atlas_v2_plots.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/atlas_v2_heavy_plots.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/dcol_trainer_v4.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_zeroshot_500.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/feature_ablation.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/shap_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/lr_cross_strategy_\n…[truncated 4530 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:01:23.717605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/generate_next_depth.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:01:23.717733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:01:23.717850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/train_classifier.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T05:01:23.718068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"用 LoRA 微调后的模型无条件生成下一代文本。\\\\n\\\\nseed_id 为独立递增编号（0..num_samples-1），不与上一代数据对应。\\\\nmax_new_tokens 默认 512，与 depth-0 的 token 范围（256-512）一致，\\\\n避免生成文本系统性偏短导致分类器学到长度 confound。\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom peft import PeftModel\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Generate next-depth text with LoRA model\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--adapter_dir\\\\\\\", required=True, help=\\\\\\\"LoRA adapter path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_path\\\\\\\", required=True, help=\\\\\\\"Output jsonl path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"EleutherAI/pythia-1.4b\\\\\\\", help=\\\\\\\"Base model name\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_cache\\\\\\\", default=\\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\", help=\\\\\\\"Model cache dir\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--target_depth\\\\\\\", type=int, required=True, help=\\\\\\\"Target depth (1, 2, 3)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_samples\\\\\\\", type=int, default=5000, help=\\\\\\\"Number of samples to generate\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=512)\\\\n    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=1.0)\\\\n    p.add_argument(\\\\\\\"--top_p\\\\\\\", type=float, default=0.95)\\\\n    p.add_argument(\\\\\\\"--top_k\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--decoding_strategy\\\\\\\", default=\\\\\\\"nucleus\\\\\\\",\\\\n                   choices=[\\\\\\\"nucleus\\\\\\\", \\\\\\\"topk\\\\\\\", \\\\\\\"temp_only\\\\\\\"],\\\\n                   help=\\\\\\\"Decoding strategy: nucleus (top_p), topk (top_k), temp_only\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" not in os.environ:\\\\n    \n…[truncated 2549 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T05:01:23.718337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nExtract statistical features from depth-level JSONL files using frozen Pythia-1.4B.\\\\n\\\\nInput:  data/depth_{0,1,2,3}.jsonl — each line: {\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"depth\\\\\\\": N, ...}\\\\nOutput: data/features.jsonl — each line: {\\\\\\\"depth\\\\\\\": N, \\\\\\\"sample_id\\\\\\\": M, \\\\\\\"mean_ppl\\\\\\\": ..., ...}\\\\n\\\\nDependencies: torch, transformers, scipy, numpy, tqdm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom scipy.stats import skew, kurtosis, entropy\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom tqdm import tqdm\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Extract statistical features from depth JSONL files.\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_path\\\\\\\", default=\\\\\\\"data/features.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=1)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=0, help=\\\\\\\"Max samples per depth (0=all)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_depth\\\\\\\", type=int, default=3, help=\\\\\\\"Maximum depth index to load (default: 3 for depth_0..depth_3)\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef load_depth_data(data_dir, max_samples, max_depth=3):\\\\n    depth_data = {}\\\\n    for d in range(max_depth + 1):\\\\n        fpath = os.path.join(data_dir, f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n        if not os.path.exists(fpath):\\\\n            print(f\\\\\\\"[WARN] {fpath} not found, skipping\\\\\\\")\\\\n            continue\\\\n        records = []\\\\n        with open(fpath) as f:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if not line:\\\\n                    continue\\\\n                try:\\\\\n…[truncated 1606 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T05:01:23.718566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nTrain depth classifiers on extracted features and output MVP results.\\\\n\\\\nInput:  data/features.jsonl\\\\nOutput: results/classification_report.txt, confusion_matrix.png, pairwise_auc.json, feature_importance.json\\\\n\\\\nDependencies: numpy, scipy, sklearn, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom sklearn.preprocessing import StandardScaler\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.metrics import (accuracy_score, roc_auc_score,\\\\n                             confusion_matrix, classification_report)\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train depth classifiers on extracted features.\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_path\\\\\\\", default=\\\\\\\"data/features.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"results/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--test_size\\\\\\\", type=float, default=0.2)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef load_features(path):\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for i, line in enumerate(f):\\\\n            line = line.strip()\\\\n            if not line:\\\\n                continue\\\\n            try:\\\\n                records.append(json.loads(line))\\\\n            except json.JSONDecodeError as e:\\\\n                print(f'WARNING: Skipping line {i+1} in {path}: {e}')\\\\n    exclude = {\\\\\\\"depth\\\\\\\", \\\\\\\"sample_id\\\\\\\"}\\\\n    feature_names = [k for k in records[0].keys() if k not in exclude]\\\\n    X = np.array([[r[k] for k in feature_names] for r in records], dtype=np.float64)\\\\n    y = np.array([r[\\\\\\\"depth\\\\\\\"] for r in records], dtype=np.int64)\\\\n    X = np.nan_to_num(X, nan=0.0\n…[truncated 1153 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T05:01:23.718751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline.sh"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T05:01:23.718897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_0/"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T05:01:23.719024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T05:01:23.719187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# 递归生成链流水线 (Pythia-1.4B)\\\\n\\\\nset -e\\\\n\\\\n# Sentinel for cron monitoring — writes exit code to /tmp/agent-ml-exit/{exp_id}.exit\\\\n# Works with both submit_training_job (redundant but harmless) and manual ssh_execute runs\\\\nif [ -n \\\\\\\"${AML_EXP_ID:-}\\\\\\\" ]; then\\\\n    _aml_exit_handler() { local ec=$?; mkdir -p /tmp/agent-ml-exit; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$ec\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > \\\\\\\"/tmp/agent-ml-exit/${AML_EXP_ID}.exit\\\\\\\"; }\\\\n    trap _aml_exit_handler EXIT\\\\nfi\\\\n\\\\nPROJECT_DIR=\\\\\\\"/root/autodl-tmp/recursive_gen_depth_est\\\\\\\"\\\\ncd $PROJECT_DIR\\\\n\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then\\\\n    source /root/miniconda3/etc/profile.d/conda.sh\\\\n    conda activate base\\\\nfi\\\\n\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\"\\\\nTARGET_MODULES=\\\\\\\"query_key_value\\\\\\\"\\\\n\\\\nmkdir -p data checkpoints logs\\\\n\\\\necho \\\\\\\"=== Step 0: Add seed_id to depth_0 ===\\\\\\\"\\\\npython scripts/add_seed_id.py\\\\n\\\\necho \\\\\\\"=== Step 1: LoRA finetune on depth-0 ===\\\\\\\"\\\\npython scripts/lora_finetune.py --input_data data/depth_0.jsonl --output_dir checkpoints/lora_depth_0 --model_name \\\\\\\"$MODEL_PATH\\\\\\\" --target_modules \\\\\\\"$TARGET_MODULES\\\\\\\" --gpu 0\\\\n\\\\necho \\\\\\\"=== Step 2: Generate depth-1 ===\\\\\\\"\\\\npython scripts/generate_next_depth.py --adapter_dir checkpoints/lora_depth_0 --output_path data/depth_1.jsonl --target_depth 1 --model_name \\\\\\\"$MODEL_PATH\\\\\\\" --gpu 0\\\\n\\\\necho \\\\\\\"=== Step 3: LoRA finetune on depth-1 ===\\\\\\\"\\\\npython scripts/lora_finetune.py --input_data data/depth_1.jsonl --output_dir checkpoints/lora_depth_1 --model_name \\\\\\\"$MODEL_PATH\\\\\\\" --target_modules \\\\\\\"$TARGET_MODULES\\\\\\\" --gpu 0\\\\n\\\\necho \\\\\\\"=== \n…[truncated 850 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T05:01:23.719338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\ncheckpoint-939\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T05:01:23.719478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross_model_chain\\\\ncuration_poc\\\\ndepth_0.jsonl\\\\ndepth_0_features.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\ndepth_4.jsonl\\\\ndepth_5.jsonl\\\\ndomain_extension\\\\nfeatures_3class.jsonl\\\\nfeatures_all.jsonl\\\\nfeatures_d4d5.jsonl\\\\nfeatures_depth_4.jsonl\\\\nfeatures_depth_5.jsonl\\\\nfeatures_filtered.jsonl\\\\ngpt2xl\\\\ngpt2xl_temp09\\\\ngpt2xl_topk50\\\\nllama3_8b_nucleus\\\\nllama3_base_nucleus\\\\nolmo\\\\nolmo_temp09\\\\nolmo_topk50\\\\npythia_temp05\\\\npythia_temp07\\\\npythia_temp09\\\\npythia_temp11\\\\npythia_topk50\\\\nqwen7b_nucleus\\\\nredpajama_en_head.json.gz\\\\nreverse_chain\\\\nwikitext103_test.txt\\\\nwild_data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T05:01:23.719635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -200 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T05:01:23.719756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T05:01:23.719888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -2 /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T05:01:23.720101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return 1.0 - unique / total if total > 0 else 0.0\\\\n\\\\n\\\\ndef compute_lexical_features(token_ids):\\\\n    total = len(token_ids)\\\\n    if total == 0:\\\\n        return {k: 0.0 for k in [\\\\n            \\\\\\\"type_token_ratio\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"bigram_entropy\\\\\\\", \\\\\\\"trigram_entropy\\\\\\\",\\\\n            \\\\\\\"rep_2gram\\\\\\\", \\\\\\\"rep_3gram\\\\\\\", \\\\\\\"rep_4gram\\\\\\\"]}\\\\n\\\\n    counts = Counter(token_ids)\\\\n    unique = len(counts)\\\\n    ttr = unique / total\\\\n    hapax = sum(1 for c in counts.values() if c == 1)\\\\n    hapax_ratio = hapax / unique if unique > 0 else 0.0\\\\n\\\\n    bigrams = [tuple(token_ids[i:i+2]) for i in range(total - 1)]\\\\n    if bigrams:\\\\n        bg_counts = Counter(bigrams)\\\\n        bg_freq = np.array(list(bg_counts.values()), dtype=np.float64)\\\\n        bg_freq /= bg_freq.sum()\\\\n        bg_ent = float(entropy(bg_freq))\\\\n    else:\\\\n        bg_ent = 0.0\\\\n\\\\n    trigrams = [tuple(token_ids[i:i+3]) for i in range(total - 2)]\\\\n    if trigrams:\\\\n        tg_counts = Counter(trigrams)\\\\n        tg_freq = np.array(list(tg_counts.values()), dtype=np.float64)\\\\n        tg_freq /= tg_freq.sum()\\\\n        tg_ent = float(entropy(tg_freq))\\\\n    else:\\\\n        tg_ent = 0.0\\\\n\\\\n    return {\\\\n        \\\\\\\"type_token_ratio\\\\\\\": ttr,\\\\n        \\\\\\\"hapax_ratio\\\\\\\": hapax_ratio,\\\\n        \\\\\\\"bigram_entropy\\\\\\\": bg_ent,\\\\n        \\\\\\\"trigram_entropy\\\\\\\": tg_ent,\\\\n        \\\\\\\"rep_2gram\\\\\\\": compute_repetition(token_ids, 2),\\\\n        \\\\\\\"rep_3gram\\\\\\\": compute_repetition(token_ids, 3),\\\\n        \\\\\\\"rep_4gram\\\\\\\": compute_repetition(token_ids, 4),\\\\n    }\\\\n\\\\n\\\\ndef compute_perplexity_features(losses_np):\\\\n    if len(losses_np) == 0:\\\\n        return {k: 0.0 for k in [\\\\n            \\\\\\\"mean_ppl\\\\\\\", \\\\\\\"var_ppl\\\\\\\", \\\\\\\"skewness_ppl\\\\\\\", \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n            \\\\\\\"p10_ppl\\\\\\\", \\\\\\\"p25_ppl\\\\\\\", \\\\\\\"p50_ppl\\\\\\\", \\\\\\\"p75_ppl\\\\\\\", \\\\\\\"p90_ppl\\\\\\\",\\\\n            \\\\\\\"mean_surprisal\\\\\\\", \\\\\\\"\n…[truncated 5965 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T05:01:23.720259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T05:01:23.720439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\\\\\n\\\\\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical era of anarchism. In the last decades of the 20th and into the 21st century, the anarchist movement has been resurgent once more, growing in popularity and influence within anti-capitalist, anti-war and anti-globalisation movements.\\\\\\\\n\\\\\\\\nAnarchists employ diverse approaches, which may be generally divided into revolutionary and evolutionary strategies; there is significant overlap between the two. Evolutionary methods try to simulate what an anarchist society might be like, but revolutionary tactics, which have historically taken a violent turn, aim to overthrow\n…[truncated 3609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T05:01:23.720703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/scripts/gen_length_ablation.py << 'PYTHON_EOF'\n\"\"\"\nGeneration Length Ablation (Experiment C)\nTests whether depth signal strength varies with passage length (128, 256, 512 tokens).\n\nFor each target length:\n1. Subsample depth_0 (seed data) to 1000 passages\n2. Generate depths 1-3 using existing LoRA checkpoints (1000 passages each, max_new_tokens=target_length)\n3. Extract 19-dim features with fixed truncation at target_length\n4. Run 5-fold CV Random Forest (n_estimators=200)\n5. Output accuracy, CI, and d1v2 AUC\n\nOutput: results/gen_length_ablation/summary.json\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time\nimport numpy as np\nimport torch\nfrom collections import Counter\nfrom scipy.stats import skew, kurtosis, entropy\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, roc_auc_score\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom peft import PeftModel\nfrom tqdm import tqdm\n\n\ndef parse_args():\n    p = argparse.ArgumentParser()\n    p.add_argument(\"--project_dir\", default=\"/root/autodl-tmp/recursive_gen_depth_est\")\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/models/pythia-1.4b\")\n    p.add_argument(\"--lengths\", type=int, nargs=\"+\", default=[128, 256, 512])\n    p.add_argument(\"--num_samples\", type=int, default=1000)\n    p.add_argument(\"--batch_size\", type=int, default=16)\n    p.add_argument(\"--n_folds\", type=int, default=5)\n    p.add_argument(\"--n_estimators\", type=int, default=200)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--skip_generate\", action=\"store_true\", help=\"Skip generation, use existing data\")\n    return p.parse_args()\n\n\n# ─── Generation ───\n\ndef generate_depth(model, tokenizer, num_samples, max_new_tokens, batch_size, device, seed):\n    torch.manual_seed(seed)\n    bos_token_id = tokenizer.bos_token_id or tokenizer.eos_token_id\n    all_texts = []\n\n    for batch_start in tqdm(range(0, num_samples, batch_size), desc=\"Generating\", unit=\"batch\"):\n        cur_bs = min(batch_size, num_samples - batch_start)\n        input_ids = torch.tensor([[bos_token_id]] * cur_bs, device=device)\n        attention_mask = torch.ones_like(input_ids)\n\n        with torch.no_grad():\n            outputs = model.generate(\n                input_ids=input_ids,\n                attention_mask=attention_mask,\n                max_new_tokens=max_new_tokens,\n                do_sample=True,\n                top_p=0.95,\n                temperature=1.0,\n                pad_token_id=tokenizer.pad_token_id,\n            )\n\n        for seq in outputs:\n            tokens = seq[1:]  # remove BOS\n            text = tokenizer.decode(tokens, skip_special_tokens=True)\n            if text.strip():\n                all_texts.append(text)\n\n    return all_texts[:num_samples]\n\n\n# ─── Feature Extraction ───\n\ndef compute_repetition(token_ids, n):\n    if len(token_ids) < n:\n        return 0.0\n    ngrams = [tuple(token_ids[i:i+n]) for i in range(len(token_ids) - n + 1)]\n    total = len(ngrams)\n    unique = len(set(ngrams))\n    return 1.0 - unique / total if total > 0 else 0.0\n\n\ndef compute_lexical_features(token_ids):\n    total = len(token_ids)\n    if total == 0:\n        return {k: 0.0 for k in [\n            \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n            \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"]}\n\n    counts = Counter(token_ids)\n    unique = len(counts)\n    ttr = unique / total\n    hapax = sum(1 for c in counts.values() if c == 1)\n    hapax_ratio = hapax / unique if unique > 0 else 0.0\n\n    bigrams = [tuple(token_ids[i:i+2]) for i in range(total - 1)]\n    if bigrams:\n        bg_counts = Counter(bigrams)\n        bg_freq = np.array(list(bg_counts.values()), dtype=np.float64)\n        bg_freq /= bg_freq.sum()\n        bg_ent = float(entropy(bg_freq))\n    else:\n        bg_ent = 0.0\n\n    trigrams = [tuple(token_ids[i:i+3]) for i in range(total - 2)]\n    if trigrams:\n        tg_counts = Counter(trigrams)\n        tg_freq = np.array(list(tg_counts.values()), dtype=np.float64)\n        tg_freq /= tg_freq.sum()\n        tg_ent = float(entropy(tg_freq))\n    else:\n        tg_ent = 0.0\n\n    return {\n        \"type_token_ratio\": ttr,\n        \"hapax_ratio\": hapax_ratio,\n        \"bigram_entropy\": bg_ent,\n        \"trigram_entropy\": tg_ent,\n        \"rep_2gram\": compute_repetition(token_ids, 2),\n        \"rep_3gram\": compute_repetition(token_ids, 3),\n        \"rep_4gram\": compute_repetition(token_ids, 4),\n    }\n\n\ndef compute_perplexity_features(losses_np):\n    if len(losses_np) == 0:\n        return {k: 0.0 for k in [\n            \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n            \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n            \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"]}\n\n    ppl = np.exp(losses_np)\n    result = {\n        \"mean_ppl\": float(np.mean(ppl)),\n        \"var_ppl\": float(np.var(ppl)),\n        \"skewness_ppl\": float(skew(ppl)) if len(ppl) > 2 else 0.0,\n        \"kurtosis_ppl\": float(kurtosis(ppl)) if len(ppl) > 3 else 0.0,\n        \"p10_ppl\": float(np.percentile(ppl, 10)),\n        \"p25_ppl\": float(np.percentile(ppl, 25)),\n        \"p50_ppl\": float(np.percentile(ppl, 50)),\n        \"p75_ppl\": float(np.percentile(ppl, 75)),\n        \"p90_ppl\": float(np.percentile(ppl, 90)),\n    }\n    surprisal = losses_np\n    result[\"mean_surprisal\"] = float(np.mean(surprisal))\n    result[\"var_surprisal\"] = float(np.var(surprisal))\n\n    if len(surprisal) > 1 and surprisal.max() > surprisal.min():\n        n_bins = min(50, max(10, len(surprisal) // 5))\n        hist, _ = np.histogram(surprisal, bins=n_bins, density=True)\n        bin_width = (surprisal.max() - surprisal.min()) / n_bins\n        probs = hist * bin_width\n        probs = probs / probs.sum() if probs.sum() > 0 else probs\n        result[\"entropy_of_surprisal\"] = float(entropy(probs[probs > 0]))\n    else:\n        result[\"entropy_of_surprisal\"] = 0.0\n\n    return result\n\n\ndef extract_features_batch(model, tokenizer, texts, trunc_len, device):\n    pad_id = tokenizer.pad_token_id\n    encoded = []\n    for text in texts:\n        ids = tokenizer.encode(text, add_special_tokens=False)[:trunc_len]\n        encoded.append(ids)\n\n    max_len = max(len(e) for e in encoded)\n    input_ids = []\n    attention_mask = []\n    for e in encoded:\n        pad_len = max_len - len(e)\n        input_ids.append(e + [pad_id] * pad_len)\n        attention_mask.append([1] * len(e) + [0] * pad_len)\n\n    input_ids_t = torch.tensor(input_ids, dtype=torch.long, device=device)\n    attention_mask_t = torch.tensor(attention_mask, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(input_ids=input_ids_t, attention_mask=attention_mask_t)\n    logits = outputs.logits\n\n    shift_logits = logits[:, :-1, :].contiguous()\n    shift_labels = input_ids_t[:, 1:].contiguous()\n    loss_fn = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    per_token_loss = loss_fn(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1)\n    ).view(shift_logits.size(0), shift_logits.size(1))\n\n    results = []\n    for i in range(len(texts)):\n        seq_len = len(encoded[i])\n        if seq_len <= 1:\n            losses_np = np.array([0.0])\n        else:\n            losses_np = per_token_loss[i, :seq_len-1].cpu().numpy().astype(np.float64)\n\n        feats = {}\n        feats.update(compute_perplexity_features(losses_np))\n        feats.update(compute_lexical_features(encoded[i]))\n        results.append(feats)\n\n    return results\n\n\n# ─── Classification ───\n\ndef run_cv_classification(X, y, n_folds, n_estimators, seed):\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\n    fold_accs = []\n    all_y_true = []\n    all_y_prob = []\n\n    for train_idx, test_idx in skf.split(X, y):\n        X_train, X_test = X[train_idx], X[test_idx]\n        y_train, y_test = y[train_idx], y[test_idx]\n\n        clf = RandomForestClassifier(n_estimators=n_estimators, random_state=seed, n_jobs=-1)\n        clf.fit(X_train, y_train)\n\n        y_pred = clf.predict(X_test)\n        y_prob = clf.predict_proba(X_test)\n        fold_accs.append(accuracy_score(y_test, y_pred))\n        all_y_true.extend(y_test)\n        all_y_prob.extend(y_prob)\n\n    all_y_true = np.array(all_y_true)\n    all_y_prob = np.array(all_y_prob)\n    mean_acc = np.mean(fold_accs)\n\n    # Bootstrap CI on fold accuracies\n    rng = np.random.RandomState(seed)\n    boot_means = []\n    for _ in range(1000):\n        idx = rng.choice(len(fold_accs), len(fold_accs), replace=True)\n        boot_means.append(np.mean([fold_accs[i] for i in idx]))\n    ci_lo = np.percentile(boot_means, 2.5)\n    ci_hi = np.percentile(boot_means, 97.5)\n\n    # d1 vs d2 AUC\n    d1v2_auc = None\n    mask = np.isin(all_y_true, [1, 2])\n    if mask.sum() > 10:\n        yt = (all_y_true[mask] == 2).astype(int)\n        labels = sorted(np.unique(all_y_true))\n        if 2 in labels:\n            d2_idx = list(labels).index(2)\n            yp = all_y_prob[mask, d2_idx]\n            if len(np.unique(yt)) == 2:\n                d1v2_auc = float(roc_auc_score(yt, yp))\n\n    return {\n        \"4class_acc\": round(mean_acc, 4),\n        \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"d1v2_auc\": round(d1v2_auc, 4) if d1v2_auc else None,\n        \"fold_accs\": [round(a, 4) for a in fold_accs],\n    }\n\n\n# ─── Main ───\n\ndef main():\n    args = parse_args()\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"Device: {device}\")\n    print(f\"Lengths to test: {args.lengths}\")\n    print(f\"Samples per depth: {args.num_samples}\")\n\n    project_dir = args.project_dir\n    data_dir = os.path.join(project_dir, \"data\")\n    ckpt_dir = os.path.join(project_dir, \"checkpoints\")\n    output_dir = os.path.join(project_dir, \"results\", \"gen_length_ablation\")\n    os.makedirs(output_dir, exist_ok=True)\n\n    # Load tokenizer\n    print(f\"\\nLoading tokenizer from {args.model_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    # Load depth_0 seed data (subsample to num_samples)\n    print(f\"\\nLoading depth_0 seed data...\")\n    depth_0_records = []\n    with open(os.path.join(data_dir, \"depth_0.jsonl\")) as f:\n        for line in f:\n            if line.strip():\n                depth_0_records.append(json.loads(line))\n    rng = np.random.RandomState(args.seed)\n    if len(depth_0_records) > args.num_samples:\n        idx = rng.choice(len(depth_0_records), args.num_samples, replace=False)\n        depth_0_records = [depth_0_records[i] for i in sorted(idx)]\n    depth_0_texts = [r[\"text\"] for r in depth_0_records]\n    print(f\"  depth_0: {len(depth_0_texts)} passages\")\n\n    # Load base model for feature extraction\n    print(f\"\\nLoading base model (ref) for feature extraction...\")\n    ref_model = AutoModelForCausalLM.from_pretrained(\n        args.model_path, torch_dtype=torch.float16\n    ).to(device)\n    ref_model.eval()\n\n    results = {}\n    t_start = time.time()\n\n    for target_len in args.lengths:\n        print(f\"\\n{'='*60}\")\n        print(f\"  TARGET LENGTH: {target_len} tokens\")\n        print(f\"{'='*60}\")\n\n        len_dir = os.path.join(output_dir, f\"len_{target_len}\")\n        os.makedirs(len_dir, exist_ok=True)\n\n        # Collect texts for all depths\n        all_texts = {0: depth_0_texts[:args.num_samples]}\n\n        if not args.skip_generate:\n            # Generate depths 1-3 with target length\n            for depth in range(1, 4):\n                adapter_dir = os.path.join(ckpt_dir, f\"lora_depth_{depth-1}\")\n                print(f\"\\n  Generating depth {depth} (adapter: lora_depth_{depth-1}, max_new_tokens={target_len})...\")\n\n                # Load LoRA model\n                gen_model = AutoModelForCausalLM.from_pretrained(\n                    args.model_path, torch_dtype=torch.bfloat16, cache_dir=args.model_path\n                ).to(device)\n                gen_model = PeftModel.from_pretrained(gen_model, adapter_dir)\n                gen_model.eval()\n\n                texts = generate_depth(\n                    gen_model, tokenizer, args.num_samples, target_len,\n                    args.batch_size, device, seed=args.seed + depth\n                )\n                all_texts[depth] = texts\n                print(f\"    Generated {len(texts)} passages\")\n\n                # Save generated data\n                gen_path = os.path.join(len_dir, f\"depth_{depth}.jsonl\")\n                with open(gen_path, \"w\") as f:\n                    for i, t in enumerate(texts):\n                        f.write(json.dumps({\"text\": t, \"depth\": depth, \"sample_id\": i}) + \"\\n\")\n\n                # Free GPU memory\n                del gen_model\n                torch.cuda.empty_cache()\n        else:\n            # Use existing data (truncation handled in feature extraction)\n            for depth in range(1, 4):\n                fpath = os.path.join(data_dir, f\"depth_{depth}.jsonl\")\n                records = []\n                with open(fpath) as f:\n                    for line in f:\n                        if line.strip():\n                            records.append(json.loads(line))\n                if len(records) > args.num_samples:\n                    idx = rng.choice(len(records), args.num_samples, replace=False)\n                    records = [records[i] for i in sorted(idx)]\n                all_texts[depth] = [r[\"text\"] for r in records]\n                print(f\"  Loaded existing depth_{depth}: {len(all_texts[depth])} passages\")\n\n        # Extract features for all depths with fixed truncation\n        print(f\"\\n  Extracting features (trunc_len={target_len})...\")\n        all_features = []\n        all_labels = []\n\n        for depth in sorted(all_texts.keys()):\n            texts = all_texts[depth]\n            depth_feats = []\n            for start in tqdm(range(0, len(texts), args.batch_size),\n                              desc=f\"  Features d{depth}\", unit=\"batch\"):\n                end = min(start + args.batch_size, len(texts))\n                batch_texts = texts[start:end]\n                try:\n                    batch_feats = extract_features_batch(\n                        ref_model, tokenizer, batch_texts, target_len, device)\n                    depth_feats.extend(batch_feats)\n                except Exception as e:\n                    print(f\"    [WARN] Batch error d{depth} [{start}:{end}]: {e}\")\n                    continue\n\n            all_features.extend(depth_feats)\n            all_labels.extend([depth] * len(depth_feats))\n            print(f\"    depth {depth}: {len(depth_feats)} samples extracted\")\n\n        # Save features\n        feat_path = os.path.join(len_dir, \"features.jsonl\")\n        with open(feat_path, \"w\") as f:\n            for i, feat in enumerate(all_features):\n                row = {\"depth\": all_labels[i], \"sample_id\": i}\n                row.update(feat)\n                f.write(json.dumps(row) + \"\\n\")\n\n        # Build feature matrix\n        feature_names = [k for k in all_features[0].keys()]\n        X = np.array([[feat[k] for k in feature_names] for feat in all_features], dtype=np.float64)\n        y = np.array(all_labels, dtype=np.int64)\n        X = np.nan_to_num(X, nan=0.0, posinf=0.0, neginf=0.0)\n\n        print(f\"\\n  Running {args.n_folds}-fold CV RF (n_estimators={args.n_estimators})...\")\n        print(f\"    X shape: {X.shape}, classes: {np.unique(y)}\")\n\n        cv_results = run_cv_classification(X, y, args.n_folds, args.n_estimators, args.seed)\n        results[f\"length_{target_len}\"] = cv_results\n        print(f\"    Accuracy: {cv_results['4class_acc']:.4f} CI: {cv_results['ci_95']}\")\n        print(f\"    d1v2 AUC: {cv_results['d1v2_auc']}\")\n\n    # Compute spread\n    accs = [results[f\"length_{l}\"][\"4class_acc\"] for l in args.lengths]\n    spread_pp = round((max(accs) - min(accs)) * 100, 2)\n\n    # Determine conclusion\n    if spread_pp <= 5:\n        conclusion = f\"Cross-length spread {spread_pp}pp <= 5pp threshold. Depth signal is robust across passage lengths {args.lengths}.\"\n    else:\n        conclusion = f\"Cross-length spread {spread_pp}pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\"\n\n    summary = {\n        \"length_128\": results.get(\"length_128\"),\n        \"length_256\": results.get(\"length_256\"),\n        \"length_512\": results.get(\"length_512\"),\n        \"spread_pp\": spread_pp,\n        \"conclusion\": conclusion,\n        \"config\": {\n            \"num_samples_per_depth\": args.num_samples,\n            \"n_folds\": args.n_folds,\n            \"n_estimators\": args.n_estimators,\n            \"seed\": args.seed,\n            \"model\": \"EleutherAI/pythia-1.4b\",\n            \"decoding\": \"nucleus (top_p=0.95, temp=1.0)\",\n        },\n        \"elapsed_minutes\": round((time.time() - t_start) / 60, 1),\n    }\n\n    summary_path = os.path.join(output_dir, \"summary.json\")\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\n{'='*60}\")\n    print(f\"SUMMARY saved to {summary_path}\")\n    print(json.dumps(summary, indent=2))\n    print(f\"Total time: {summary['elapsed_minutes']:.1f} min\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYTHON_EOF"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T05:01:23.721054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T05:01:23.721211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/scripts/run_gen_length_ablation.sh << 'SHELL_EOF'\n#!/bin/bash\n# Generation Length Ablation (Experiment C)\n# exp_id: gen_length_ablation_001\n\nset -e\n\nif [ -n \"${AML_EXP_ID:-}\" ]; then\n    _aml_exit_handler() { local ec=$?; mkdir -p /tmp/agent-ml-exit; printf \"%s|%s\\n\" \"$ec\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > \"/tmp/agent-ml-exit/${AML_EXP_ID}.exit\"; }\n    trap _aml_exit_handler EXIT\nfi\n\nPROJECT_DIR=\"/root/autodl-tmp/recursive_gen_depth_est\"\ncd $PROJECT_DIR\n\nsource /etc/network_turbo 2>/dev/null || true\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then\n    source /root/miniconda3/etc/profile.d/conda.sh\n    conda activate base\nfi\n\necho \"=== Generation Length Ablation ===\"\necho \"Lengths: 128, 256, 512\"\necho \"Samples per depth: 1000\"\necho \"GPU: cuda:0\"\necho \"Start: $(date)\"\n\npython scripts/gen_length_ablation.py \\\n    --project_dir \"$PROJECT_DIR\" \\\n    --model_path /root/autodl-tmp/models/pythia-1.4b \\\n    --lengths 128 256 512 \\\n    --num_samples 1000 \\\n    --batch_size 16 \\\n    --n_folds 5 \\\n    --n_estimators 200 \\\n    --seed 42 \\\n    --gpu 0\n\necho \"=== Done: $(date) ===\"\nSHELL_EOF\nchmod +x /root/autodl-tmp/recursive_gen_depth_est/scripts/run_gen_length_ablation.sh"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T05:01:23.721353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T05:01:23.721491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python -c \\\"import scripts.gen_length_ablation; print('imports OK')\\\" 2>&1 || python scripts/gen_length_ablation.py --help\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T05:01:23.721618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"imports OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T05:01:23.721737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python scripts/gen_length_ablation.py --num_samples 2 --lengths 128 --batch_size 2 --gpu 0 2>&1 | head -30\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T05:01:23.721861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python scripts/gen_length_ablation.py --num_samples 2 --lengths 128 --batch_size 2 --gpu 0 2>&1 | head -30\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T05:01:23.722028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python -c \\\"\nfrom scripts.gen_length_ablation import parse_args\nimport sys\nsys.argv = ['test', '--num_samples', '2', '--lengths', '128', '256', '512']\nargs = parse_args()\nprint(f'lengths={args.lengths}, samples={args.num_samples}, folds={args.n_folds}')\nprint(f'estimators={args.n_estimators}, seed={args.seed}, gpu={args.gpu}')\nprint('OK - all args parsed')\n\\\"\""
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T05:01:23.722155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lengths=[128, 256, 512], samples=2, folds=5\\\\nestimators=200, seed=42, gpu=0\\\\nOK - all args parsed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T05:01:23.722294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T05:01:23.722408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T05:01:23.722531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gen_length_ablation_001",
+              "field": "hypothesis",
+              "value": "Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T05:01:23.722667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_length_ablation_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T05:00:34.188Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:34.188Z\\\", \\\"hypothesis\\\": \\\"Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5394}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T05:01:23.722787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gen_length_ablation_001",
+              "field": "parent",
+              "value": "mvp_pipeline_pythia_002",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T05:01:23.722932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_length_ablation_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T05:00:34.188Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:35.511Z\\\", \\\"hypothesis\\\": \\\"Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp\\\", \\\"parent\\\": \\\"mvp_pipeline_pythia_002\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.401}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T05:01:23.723072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_gen_length_ablation.sh\"",
+              "exp_id": "gen_length_ablation_001",
+              "project": "recursive_gen_depth_est",
+              "timeout_hours": "6"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T05:01:23.723206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"650410\\\", \\\"log_file\\\": \\\"~/runs/recursive_gen_depth_est/gen_length_ablation_001.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"gen_length_ablation_001\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T05:01:23.723327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gen_length_ablation_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'bash scripts/run_gen_length_ablation.sh', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/', 'data_count': 4000, 'model_name': 'EleutherAI/pythia-1.4b', 'seed': 42, 'checkpoint_source': 'checkpoints/lora_depth_{0,1,2,3}', 'log_path': '~/runs/recursive_gen_depth_est/gen_length_ablation_001.log'}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T05:01:23.723463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3144}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T05:01:23.723582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gen_length_ablation_001",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T05:01:23.723749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_length_ablation_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T05:00:34.188Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:54.932Z\\\", \\\"hypothesis\\\": \\\"Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp\\\", \\\"parent\\\": \\\"mvp_pipeline_pythia_002\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_gen_length_ablation.sh\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"650410\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/gen_length_ablation_001.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T05:00:44.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7474}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T05:01:23.723992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gen_length_ablation_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'bash scripts/run_gen_length_ablation.sh', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/', 'data_count': 4000, 'model_name': 'EleutherAI/pythia-1.4b', 'seed': 42, 'checkpoint_source': 'checkpoints/lora_depth_{0,1,2,3}', 'log_path': '~/runs/recursive_gen_depth_est/gen_length_ablation_001.log'}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T05:01:23.724152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5379}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T05:01:23.724277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gen_length_ablation_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'bash scripts/run_gen_length_ablation.sh', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/', 'data_count': 4000, 'model_name': 'EleutherAI/pythia-1.4b', 'seed': 42, 'checkpoint_source': 'checkpoints/lora_depth_{0,1,2,3}', 'eval_data': 'data/depth_{0,1,2,3}.jsonl (1000 samples/depth x 3 lengths)', 'log_path': '~/runs/recursive_gen_depth_est/gen_length_ablation_001.log'}"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T05:01:23.724440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gen_length_ablation_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T05:00:34.188Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:01:07.132Z\\\", \\\"hypothesis\\\": \\\"Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp\\\", \\\"parent\\\": \\\"mvp_pipeline_pythia_002\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_gen_length_ablation.sh\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"650410\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/gen_length_ablation_001.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T05:00:44.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/\\\", \\\"data_count\\\": 4000, \\\"model_name\\\": \\\"EleutherAI/pythia-1.4b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/lora_depth_{0,1,2,3}\\\", \\\"eval_data\\\": \\\"data/depth_{0,1,2,3}.jsonl (1000 samples/depth x 3 lengths)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2683}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T05:01:23.724587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -20 /root/runs/recursive_gen_depth_est/gen_length_ablation_001.log"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T05:01:23.724732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\nDevice: cuda:0\\\\nLengths to test: [128, 256, 512]\\\\nSamples per depth: 1000\\\\n\\\\nLoading tokenizer from /root/autodl-tmp/models/pythia-1.4b\\\\n\\\\nLoading depth_0 seed data...\\\\n  depth_0: 1000 passages\\\\n\\\\nLoading base model (ref) for feature extraction...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 292/292 [00:00<00:00, 9733.81it/s]\\\\n\\\\n============================================================\\\\n  TARGET LENGTH: 128 tokens\\\\n============================================================\\\\n\\\\n  Generating depth 1 (adapter: lora_depth_0, max_new_tokens=128)...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights:  21%|██        | 62/292 [00:00<00:00, 571.02it/s]\\\\rLoading weights:  45%|████▌     | 132/292 [00:00<00:00, 637.51it/s]\\\\rLoading weights:  74%|███████▍  | 216/292 [00:00<00:00, 693.43it/s]\\\\rLoading weights: 100%|█████���████| 292/292 [00:00<00:00, 694.07it/s]\\\\n\\\\rGenerating:   0%|          | 0/63 [00:00<?, ?batch/s]\\\\rGenerating:   2%|▏         | 1/63 [00:01<02:03,  1.99s/batch]\\\\rGenerating:   3%|▎         | 2/63 [00:03<01:39,  1.63s/batch]\\\\rGenerating:   5%|▍         | 3/63 [00:04<01:30,  1.52s/batch]\\\\rGenerating:   6%|▋         | 4/63 [00:06<01:26,  1.47s/batch]\\\\rGenerating:   8%|▊         | 5/63 [00:07<01:22,  1.43s/batch]\\\\rGenerating:  10%|▉         | 6/63 [00:08<01:20,  1.41s/batch]\\\\rGenerating:  11%|█         | 7/63 [00:10<01:18,  1.40s/batch]\\\\rGenerating:  13%|█▎        | 8/63 [00:11<01:16,  1.40s/batch]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T05:01:23.724945+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running correctly. Generation for 128-token length is progressing at ~1.4s/batch (63 batches for 1000 samples at batch_size=16).\n\n**Status:**\n- `gen_length_ablation_001` submitted to `cuda:0` on `gpu-6000pro-2`, status RUNNING\n- Currently generating 128-token passages for depth 1\n- Estimated timeline: ~1.4s/batch × 63 batches × 3 depths × 3 lengths for generation, plus feature extraction and classification\n- Output will be at `results/gen_length_ablation/summary.json`\n\nEstimated total runtime: ~2-3 hours (generation is the bottleneck; 128-token generation is faster than 512-token)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_gen_length_ablation_c_20260517T045550"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ]
+}

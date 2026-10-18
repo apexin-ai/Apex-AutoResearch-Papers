@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4c6f9b2d74b43b9c304c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 h3 1 repair v2",
+  "task_key": "worker_code_hgrn2_h3_1_repair_v2_20260518T162752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_h3_1_repair_v2_20260518T162752_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "e2ee9bb076827247d1022feb05119c28934d20275d91aa21526d7484cd529833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。文件状态汇报：\n\n| 文件 | 修复前 | 修复后 |\n|------|--------|--------|\n| model-00001-of-00002.safetensors | 4.6GB (完好) | 4.6GB (未动) |\n| model-00002-of-00002.safetensors | 61MB (损坏) | 88MB (232→3 keys, OK) |\n| tokenizer.json | 0 字节 | 3.3MB |\n\n两个 shard 均可正常打开 (shard-1: 232 keys, shard-2: 3 keys)，验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

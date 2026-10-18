@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c676209d508bd6d14220",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 priority1 v2",
+  "task_key": "worker_exp_exp-005-priority1-v2_20260522T144606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-priority1-v2_20260522T144606_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "dac8b16959e70dc7db17da0529c7104aa76ee966911a0d309c1004ec917c2262"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 正常启动，正在下载 DeltaNet h3-1。\n\n**当前状态：**\n- **GLA h3-1**: 已下载 ✅，待评估\n- **DeltaNet h3-1**: 正在下载（~50min @ 400KB/s）\n- **HGRN h3-1**: 待下载（DeltaNet 完成后开始）\n\n**预估时间线：**\n- 下载 2 个模型：~100 min\n- 评估 3 个模型：~15-20 min/model = ~60 min\n- 总计：~2.5-3 小时\n\n脚本流程：下载 DeltaNet → 下载 HGRN → 验证全部 3 个模型文件 → 逐个评估（LAMBADA + ARC-Easy, `--log_samples`）。全程在 tmux 中运行，不怕 SSH 断连。\n\n可以过 30-60 分钟后 `tail` 日志文件检查进度：\n```\ntail -30 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

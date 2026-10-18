@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ccdfb3b62e1e69f81c27",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh phi3 model redownload",
+  "task_key": "worker_ssh_phi3_model_redownload_20260515T194547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_phi3_model_redownload_20260515T194547_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "17d8d3bf8ac2263f213a943108b87d167dea07843ebda5cf1d62be10f262d72f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘满了，无法下载。** 当前状态：\n\n| 路径 | 大小 | 内容 |\n|------|------|------|\n| `.hf_cache/AI-ModelScope/CodeLlama-7b-hf` | 51G | CodeLlama |\n| `.hf_cache/google/gemma-2-9b` | 35G | Gemma-2 |\n| `.hf_cache/microsoft/Phi-3-medium-128k-instruct` | 18G | **不完整** (仅 shard 5/6) |\n| `.hf_cache/01ai/` | 17G | Yi |\n| `.hf_cache/Qwen/` | 15G | Qwen |\n| `.hf_cache/EleutherAI/` | 5.5G | Pythia |\n| `models/LLM-Research/` | 30G | Llama-3.1-8B (两份) |\n| `models/Mistral-7B-v0.3/` | 14G | Mistral |\n| `prov_grounded_uie/` | 68G | 其他项目？ |\n| **总计** | **250G / 250G** | **剩余 1.6MB** |\n\nPhi-3-medium 完整下载需要 ~28GB（现有 shard 5 约 4.5GB + 缺少 5 个 shards ~23GB）。\n\n需要清理至少 23GB 空间。可以删什么？\n- `prov_grounded_uie/` (68G) — 看起来不是 ratekv 项目的？\n- `AI-ModelScope/CodeLlama-7b-hf` (51G) — 如果 CodeLlama 实验已跑完可以删\n- `models/LLM-Research/` 里有两份 Llama-3.1-8B (30G) — 是否有重复？\n\n请告知可以清理哪些。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

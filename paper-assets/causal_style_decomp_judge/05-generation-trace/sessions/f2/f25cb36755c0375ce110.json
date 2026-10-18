@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f25cb36755c0375ce110",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code alpacaeval qwen32b scoring",
+  "task_key": "worker_code_alpacaeval_qwen32b_scoring_20260521T074636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpacaeval_qwen32b_scoring_20260521T074636_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "f3ffac6fb184a6dc9f976c899052771d68c2416b08f0c3fed80210d010c747c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All scoring and analysis complete. Results:\n\n```\n## AlpacaEval × Qwen3-32B\nPairs: 86 (NLI≥0.90)\nConsistency: 53/86 (61.6%)\nBT: P(formal)=65.7% [58.1%, 73.3%], p=0.0001\nLikert: ATE=0.151, p=0.1976, d=0.081, tie_rate=47.7%\n  mean(formal)=6.87, mean(casual)=6.72\nBlindspot: Yes\nGEE: Style OR=1.99 [0.90, 4.42] p=0.0890, Orig OR=3.12 [1.41, 6.93] p=0.0050\n```\n\nKey observations:\n\n- **BT confirms formality bias**: P(formal)=65.7% with tight CI above 50%, p=0.0001 — Qwen3-32B significantly prefers formal responses on AlpacaEval data\n- **Likert insensitive**: ATE=0.151 is tiny, Cohen's d=0.081 (negligible), p=0.20 not significant, 47.7% ties — Likert scoring cannot detect the bias (blindspot confirmed)\n- **GEE decomposition**: Style OR=1.99 (p=0.089, marginal) vs Orig OR=3.12 (p=0.005, significant) — originality confound is stronger than pure style effect on this dataset. The style effect trends formal but doesn't reach significance after controlling for originality\n- **Consistency 61.6%** — lower than typical LLMBar (~70%+), likely because AlpacaEval pairs have subtler stylistic differences\n\nOutput files: `data/pairwise_results_alpacaeval_qwen32b.jsonl` (100 records) and `data/scored_alpacaeval_qwen32b.jsonl` (100 records)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

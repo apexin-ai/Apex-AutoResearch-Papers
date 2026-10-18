@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d595445dc78326b90a7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing warning review fixes",
+  "task_key": "worker_writing_warning-review-fixes_20260515T200308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_warning-review-fixes_20260515T200308_result.json",
+    "occurrence": 1,
+    "bytes": 1318,
+    "sha256": "a35fd31b2d1ea890745b6ce0ada62e8e72a39596798be8ceb3a48908f7d705d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 modifications complete. Summary:\n\n| # | Item | File | Change |\n|---|------|------|--------|\n| 1 | R1-N1 EDD formula | `method.tex:94` | Added empty-set convention (`EDD_T=0` when no pair meets threshold) and non-monotonic caveat in footnote |\n| 2 | R2-N2 Literature | `related_work.tex:21,31-33` | Added watermarking \\cite{kirchenbauer2023_watermark} to detection paragraph; added new \"Ordinal Classification\" paragraph citing CORAL and CLOC |\n| 3 | W3 LoRA | `method.tex:33` | Added parenthetical definition: \"low-rank adaptation that freezes pretrained weights and injects trainable rank-decomposition matrices\" |\n| 4 | W5 Unconditional gen | `method.tex:34` | Clarified \"not continuation of a given prompt or prefix\" |\n| 5 | W6 Per-class recall | `generalization.tex:96-98` | Expanded cross-strategy paragraph to explicitly report d0 (≥89.5%) and d2 (3.7-19%) per-class recall breakdown |\n| 6 | R2-W2 Terminology | — | **No changes needed**: audit confirmed consistent usage of EDD formatting (`\\mathrm{EDD}`), \"decoding strategy\", \"feature-based methods\", \"statistical features\", and \"model family\" |\n| 7 | R2-W6 Orphan bib | `references.bib` | Removed 3 orphan entries: `dsir2023`, `qurating2024`, `sugiyama2007_importance_weighting`. 0 missing entries found. |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7e68d7b93534b627ee45",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_7_1778819777.md",
+  "task_key": "loop_7_1778819777",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778819777.md",
+    "occurrence": 1,
+    "bytes": 3983,
+    "sha256": "82b881c04a25941f8b5d4121ef1d80f2350d2076b11e29c68b39cc7929938155"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-15T04:35:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-37397 的 cuda:0 和 cuda:1，不可用其他设备\n- 所有 eval 必须用 bf16，禁止 fp16（Llama fp16 会 overflow 得到 PPL=1.31）\n- Profile 文件加载时必须验证 concentration 值与预期一致（hires ~0.61 vs lowres ~0.42），防止文件名歧义导致数据混用\n- Head 数 >200 的模型必须用 hires profiling (≥64×2048)，lowres 会导致 delta 同质化\n- 不使用 W&B 的短实验（solver+eval）会被 cron 假阳性判为失败——这类实验应写 sentinel file 或不挂 cron\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，2× RTX PRO 6000 96GB\n- 工作目录：/root/ratekv\n- Python：/root/miniconda3/bin/python（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：\n  - Llama-3.1-8B: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\n  - Mistral-7B-v0.3: /root/autodl-tmp/models/Mistral-7B-v0.3\n  - Gemma-2-9B: /root/autodl-tmp/.hf_cache/google/gemma-2-9b\n  - Qwen2.5-7B: /root/autodl-tmp/models/Qwen2.5-7B\n  - Yi-1.5-9B: /root/autodl-tmp/models/01ai/Yi-1.5-9B\n- HF_HOME: /root/autodl-tmp/.hf_cache\n- 活跃进程：可能有 gemma2_hires_bf16_2bitonly (PID 268242, cuda:0) 仍在跑（cron 报 sentinel 完成但 notes 说 31/336 heads，需 Worker 确认）\n\n### 3. 📊 当前状态\n**刚做完**：收到 llama_c4_hires_crossdataset 失败回调（EXIT_CODE=2, shell syntax），诊断 Worker 自动修复并重提交（--reuse-hires），重试后正常完成进入 ANALYZING。\n\n**等待中的 Worker 回调（2 个）**：\n1. `worker_analyze_llama_c4_hires_crossdataset_20260514T225021` — 读日志提取 metrics（C4 跨数据集校准结果）\n2. `worker_analyze_gemma2_hires_bf16_2bitonly_20260514T225101` — 检查 gemma2 真实状态（sentinel 完成 vs 仍在跑）\n\n**Registry 状态**：\n- ANALYZING: llama_c4_hires_crossdataset, gemma2_hires_bf16_2bitonly\n- PREPARING (5): mistral_hires_bf16_2bitonly_v3, qwen_hires_constrained_d049, qwen25-hires-profiling, cross_domain_calibration_v2, greedy_constrained_ablation\n- DONE: 65 个（success 34, negative 14, failed 9, killed 8）\n\n**等待 Director 决策**：P0 patches 值替换方案（Qwen concentration 用 0.61 还是 0.59-0.66）\n\n### 4. 📋 待办\n- Worker llama_c4 分析回调 → 提取 metrics 写 registry → 判断 conclusion（预期 negative/与 WT2 一致的 FAIL）→ 更新 report.md → 汇报 Director\n- Worker gemma2 分析回调 → 如果真完成：提取 metrics 写 registry（预期 concentration ~0.23, flat）；如果仍在跑：更新 notes 记录进度，不动状态\n- gemma2 真正完成后 → 5 模型 hires 全景图完成 → 可去掉 Table 3 的 ddagger 标注 → 汇报 Director\n- Director 决策 P0 值替换方案后 → 派 Worker 执行全文替换 + framing-reaudit\n- 收到 Group C 审稿报告 → 按 rebuttal skill 处理\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 Main (ARR May 25, 距今 11 天)\n- **核心贡献**：cardinality constraint 让 greedy=MCKP（Δ=0.0000），concentration threshold (0.50) 诊断 non-uniform 是否值得\n- **5 模型格局**：Qwen PASS (0.61), Yi-1.5 FAIL (spike), Llama ≈Uniform (noise), Mistral FAIL (flat), Gemma-2 FAIL (flat)。只有 Qwen (GQA 7:1, spread pattern) 从 MCKP 获益\n- **Claim 3 的陷阱**：0.50 阈值仅在 standard profiling 下 5/5 正确分类。Hires 下 Yi-1.5 concentration=0.71 变成 false positive——需要加 shape 条件（spike vs spread）。论文已用 concentration + t1/t5 双条件诊断（D050）\n- **易踩的坑**：\n  - Gemma-2 有 BOS token 依赖 bug（每 chunk 需 prepend BOS）——已修复但新脚本要确认包含此 fix\n  - ssh_execute 有 30 秒硬超时，大操作必须用 tmux 脚本\n  - `qwen_float32_profiles.json` 中 \"float32\" 指精度不是分辨率，实际是 lowres 数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

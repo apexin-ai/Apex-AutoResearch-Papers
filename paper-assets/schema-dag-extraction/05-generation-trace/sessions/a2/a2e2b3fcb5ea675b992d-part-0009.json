@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a2e2b3fcb5ea675b992d",
+  "rounds": [
+    {
+      "number": 138,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-15T18:37:29.687084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:37:29.362Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4387}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-15T18:37:33.102122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-15T18:37:33.606616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:37:33.183Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4037}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-15T18:37:33.808002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp006_interaction_2x2",
+              "field": "status",
+              "value": "DONE",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-15T18:37:34.209872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp006_interaction_2x2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:18:49.619Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:37:33.919Z\\\", \\\"hypothesis\\\": \\\"Count × Confusability 交互效应：{low count, high count} × {low BCS, high BCS} 2×2 设计，测试 count 和 confusability 对 accuracy 的影响是 additive 还是 multiplicative。若 multiplicative，高 count + 高 BCS 组的 degradation 应超过两个主效应之和。\\\", \\\"parent\\\": \\\"exp002_confusability_controlled\\\", \\\"plan_id\\\": \\\"exp-006\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T17:20:09.901Z\\\", \\\"finished_at\\\": \\\"2026-05-15T18:33:22.708Z\\\", \\\"training_hours\\\": 1.22}, \\\"failure_reason\\\": \\\"Traceback → extraction/src/run_extraction.py\\\\\\\", line 231, in run_extraction batches_to_run.append((\\\\\\\"low_bcs\\\\\\\", strategies[\\\\\\\"low_bcs\\\\\\\"][\\\\\\\"types\\\\\\\"], strategies[\\\\\\\"low_bcs\\\\\\\"][\\\\\\\"bcs\\\\\\\"])) ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^ TypeError: list indices must be integers or slices, not str\\\", \\\"completed_at\\\": \\\"2026-05-15T17:48:27.854Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:48:29.418279+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:33:24.005257+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 python scripts/run_exp006_interaction.py --max_samples 1000\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 40000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp006_interaction_2x2.log\\\", \\\"checkpoint_source\\\": \\\"N/A (training-free inference)\\\", \\\"e\n…[truncated 1069 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-15T18:37:37.726148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-15T18:37:38.079729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:37:37.794Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3604}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-15T18:37:40.386496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-15T18:37:54.105521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "submit:exp012_llama_8b_r2",
+              "project": "schema-dag-extraction",
+              "task_prompt": "你是 schema-dag-extraction 项目的提交 Worker。立即提交 exp012_llama_8b_r2。\n\n## 任务\n1. SSH (read_only) 到 cqa1-38874，nvidia-smi 确认 cuda:0 空闲\n2. 确认脚本存在：`ls -la /root/schema-dag-extraction/scripts/run_exp012_llama8b_r2.sh`\n3. 读取脚本内容确认 chat template 修复已包含\n4. 用 submit_training_job 提交：\n   - exp_id: exp012_llama_8b_r2\n   - server: cqa1-38874\n   - gpu_ids: [\"cuda:0\"]\n   - account: root\n   - timeout_hours: 4\n   - command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && export FLASHINFER_DISABLE_VERSION_CHECK=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && bash scripts/run_exp012_llama8b_r2.sh\"\n5. 提交后 30 秒 ssh_read_only 确认：\n   - nvidia-smi 显示 LLaMA-8B 开始加载\n   - tmux session 存在\n6. 如果 GPU 被占用（不应该，exp006 已完成），报告情况\n\n## 验证要点（Director 指定）\n- LLaMA-8B 在 chat template 修复下应产出**非零预测**\n- gen_tokens 应 >2（此前 r4 的 gen_tokens=2 即 `[]` 是零预测标志）\n- 提交后不需要等结果，cron 会监控\n\n## 环境\n- 服务器: cqa1-38874, root 用户\n- Python: conda base\n- GPU: cuda:0（应空闲）\n- LLaMA-8B 路径: /root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3.1-8B-Instruct",
+              "tool_groups": "['ssh']",
+              "tools": "['submit_training_job']"
+            }
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-15T18:37:59.870210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp012_llama_8b_r2_20260515T183754\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_submit_exp012_llama_8b_r2_20260515T183754.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_submit_exp012_llama_8b_r2_20260515T183754 started. Use get_worker_status('worker_submit_exp012_llama_8b_r2_20260515T183754') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5764
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-15T18:38:02.429424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:37:40.478Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3777}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 22042
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-15T18:38:02.633052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 1 (cuda:0) / 实际跑 0 (exp006 刚完成) | Worker 池 0 → 即将 spawn exp012 提交 Worker\n\n## exp006 Interaction 2×2 — Conclusion: NEGATIVE\n\n### 实验结果\n\n| | low BCS | high BCS |\n|---|---|---|\n| **low count (6)** | F1=0.324 | F1=0.313 |\n| **high count (22)** | F1=0.325 | F1=0.277 |\n\n- Count main effect: -0.018\n- BCS main effect: -0.029\n- **Interaction term: -0.036（方向正确，multiplicative）**\n- **z=-0.667, p=0.505（不显著）**\n- BCS effect at high count (-0.048) 是 low count (-0.011) 的 4.4x，但 batch 间方差大\n\n### Framing 调整提案（red-section 协议）\n\n**1. 原 claim**: Count × confusability 交互是 multiplicative（高 count 放大 confusability 负效应）\n\n**2. 实验结果**: 方向符合假设，但效应量小（~3.6pp）且统计不显著\n\n**3. 重新审视**:\n- 这个结果挑战的是 \"multiplicative interaction\" 的强度声明，不影响 Claim 1（count degradation）和 Claim 2（confusability effect）的独立证据\n- 80-rel FewRel 中已有 3.4x amplification（BCS effect 9.1pp→31.2pp），那个是跨 count 水平的放大，更接近 between-dataset scaling 而非 within-dataset 2×2\n- Few-NERD 的 BCS 范围较窄（66 types，BCS floor 高），导致 low/high BCS 分离度有限（0.84 vs 0.96），削弱了检测力\n\n**4. 三种 narrative 备选**:\n- **A) 补充证据路线**: 2×2 作为 supplementary，报告\"方向一致但未达显著\"，主论据仍是 FewRel 80-rel 的 3.4x amplification\n- **B) 省略路线**: 不报告 2×2，将 FewRel cross-count BCS amplification 作为唯一 interaction evidence\n- **C) Discussion 路线**: 在 Discussion/Limitations 中提及\"within-dataset 2×2 未达显著，可能因 BCS 范围限制\"，承认需要更大 type space 验证\n\n**5. 对论文各章节的影响**:\n- Abstract/Intro: 不受影响（未 claim multiplicative）\n- Method: 不受影响\n- Results: 如选 A，加 1 段 + 1 表；如选 B/C，不改\n- Discussion: 建议提及 limitation\n- Conclusion: 不受影响\n\n**6. 建议下一步实验**: 无需补做——Claims 1+2 证据已充分，exp012 多模型验证更重要\n\n### 实验计划反思\n- exp006 的 negative 不影响 hypothesis（confusability 独立于 count 驱动 degradation），只是 interaction 的统计效应未达显著\n- 已有 FewRel 80-rel 跨 count 的 3.4x amplification 作为更强的 interaction evidence\n- 建议 narrative 选 A 或 C，保持数据透明\n\n### exp012 提交\n按 Director 预授权，GPU 释放后立即提交 exp012_llama_8b_r2（chat template 修复版）。Registry 已回到 PREPARING，正在推进状态 + spawn Worker。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-15T18:38:03.261349+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp012_llama_8b_r2 提交 Worker 已启动。exp006 已 DONE/negative，registry 完整。等 Worker 回调确认提交成功。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-15T18:38:06.601459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3968
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-15T18:38:10.436981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-15T18:38:11.193031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:38:10.589Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7663}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 756
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-15T18:38:30.649782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "submit:exp012_llama_8b_r2",
+              "project": "schema-dag-extraction",
+              "task_prompt": "你是 schema-dag-extraction 项目的提交 Worker。\n\n## 任务\n提交 exp012_llama_8b_r2（LLaMA-3.1-8B-Instruct 多模型验证，chat template 修复版）到 cuda:0。\n\n## 背景\n- exp012 之前连续失败 7+ 次，根因已定位并修复：\n  1. chat template 修复已在 run_extraction.py L220-279\n  2. cgroup OOM 缓解已包含在脚本中\n- 提交脚本 `scripts/run_exp012_llama8b_r2.sh` 已就绪\n- exp006 刚完成，cuda:0 应已释放\n\n## 步骤\n\n### Step 1: 确认 GPU 空闲\n1. SSH (read_only) 到 cqa1-38874 (root)\n2. `nvidia-smi` 确认 cuda:0 空闲（0MiB 或接近 0）\n3. 如果还有残留进程（exp006 的 Qwen），等 30 秒后重查。如果 2 分钟后仍在，kill 它。\n\n### Step 2: 检查脚本\n4. `cat /root/schema-dag-extraction/scripts/run_exp012_llama8b_r2.sh` 确认脚本内容\n5. 确认 chat template 修复存在：`grep -n \"chat_template\\|apply_chat\" /root/schema-dag-extraction/src/run_extraction.py | head -10`\n\n### Step 3: 提交\n6. 用 submit_training_job 提交：\n   - exp_id: exp012_llama_8b_r2\n   - server: cqa1-38874\n   - gpu_ids: [\"cuda:0\"]\n   - account: root\n   - timeout_hours: 4\n   - command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\"\n\n### Step 4: 验证启动\n7. 等 30 秒后 ssh_read_only：\n   - `nvidia-smi` 确认模型开始加载\n   - 查看日志头部：`tail -20 ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log`\n   - **关键验证点**：观察 gen_tokens 是否 > 2（之前 r4 的 gen_tokens=2 就是空输出标志）\n   - 如果日志显示 vLLM 正常加载 + 第一个 batch 产出 gen_tokens > 10，确认 chat template 修复生效\n\n## 环境\n- 服务器: cqa1-38874, root 用户\n- Python: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- GPU: 1× RTX PRO 6000 Blackwell 98GB, cuda:0\n- 模型路径: /root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3.1-8B-Instruct\n- 项目路径: /root/schema-dag-extraction",
+              "tool_groups": "['ssh']",
+              "tools": "['submit_training_job']"
+            }
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-15T18:38:31.253241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker of type 'submit:exp012_llama_8b_r2' is already active for project 'schema-dag-extraction'. worker_id=worker_submit_exp012_llama_8b_r2_20260515T183754\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 603
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-15T18:38:35.804166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp012_llama_8b_r2_20260515T183754",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-15T18:38:35.854830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp012_llama_8b_r2_20260515T183754\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"submit:exp012_llama_8b_r2\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-15T18:37:54.673373+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"submit_training_job\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"已提交，PID=315801，tmux session=`exp012_llama_8b_r2`。等 30 秒后验证启动。\\\", \\\"turn_count\\\": 12}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-15T18:38:39.443711+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp012 已被另一个系统 spawn 的 Worker 提交，PID=315801，正在验证启动。等待其完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-001461"
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "messages": [
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-15T18:39:47.582558+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_submit_exp012_llama_8b_r2_20260515T183754 已完成（status=done）。用 `get_worker_status('worker_submit_exp012_llama_8b_r2_20260515T183754')` 读取结果，然后处理。\n\n- worker_id: worker_submit_exp012_llama_8b_r2_20260515T183754\n- project: schema-dag-extraction\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "worker:done"
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-15T18:39:55.902526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp012_llama_8b_r2_20260515T183754"
+            }
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-15T18:39:55.958317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp012_llama_8b_r2_20260515T183754\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"submit:exp012_llama_8b_r2\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-15T18:37:54.673373+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T18:39:46.172930+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"LLaMA-8B 已上 GPU，确认正常：\\\\n\\\\n- **GPU 显存**: 16,233 MiB 已占用（vLLM::EngineCore PID=316128）\\\\n- **模型加载**: safetensors checkpoint 25% (1/4 shards)，FlashAttention v2 启用\\\\n- **GPU 状态**: P0 性能模式，87W，6% 利用率\\\\n\\\\n任务运行正常，cron 接管监控。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 55
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-15T18:40:07.361002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "schema-dag-extraction",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\"', 'server': 'cqa1-38874', 'data_path': '/root/schema-dag-extraction/data/parquet/test.parquet', 'data_count': 1000, 'model_name': 'LLaMA-3.1-8B-Instruct', 'seed': 42, 'log_path': '~/runs/schema-dag-extraction/exp012_llama_8b_r2.log', 'checkpoint_source': 'N/A (training-free inference)', 'eval_data': 'Few-NERD test split, exp-002 protocol (count=6/12 BCS correlation)'}"
+            }
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-15T18:40:07.813218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:40:07.459Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315801\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:38:30.259Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training-free inference)\\\", \\\"eval_data\\\": \\\"Few-NERD test split, exp-002 protocol (count=6/12 BCS correlation)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4278}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-15T18:40:08.366565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "server": "cqa1-38874",
+              "pid": "316128",
+              "log_path": "~/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+              "project": "schema-dag-extraction",
+              "interval_seconds": "120"
+            }
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-15T18:40:08.468197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"pid\\\": \\\"316128\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-15T18:40:08.361Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 101
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-15T18:40:13.891192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "hypothesis",
+              "value": "LLaMA-3.1-8B-Instruct 复现 confusability-driven type confusion（chat template 修复版）。验证 confusability effect 跨模型家族（Qwen→LLaMA）+ 跨规模（32B→8B）泛化。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-15T18:40:14.393599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:40:13.974Z\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315801\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:38:30.259Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training-free inference)\\\", \\\"eval_data\\\": \\\"Few-NERD test split, exp-002 protocol (count=6/12 BCS correlation)\\\"}, \\\"hypothesis\\\": \\\"LLaMA-3.1-8B-Instruct 复现 confusability-driven type confusion（chat template 修复版）。验证 confusability effect 跨模型家族（Qwen→LLaMA）+ 跨规模（32B→8B）泛化。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1564}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-15T18:40:16.452919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012_llama_8b_r2",
+              "field": "notes",
+              "value": "Chat template 修复版（run_extraction.py L220-279）。之前 7+ 次失败根因：1) GPU VRAM 冲突 2) LLaMA chat template 未正确应用导致 structured output 全空。本次修复后 vLLM 加载正常，16GB VRAM，FlashAttention v2。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-15T18:40:16.655384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012_llama_8b_r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T17:05:44.959Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:40:16.534Z\\\", \\\"notes\\\": \\\"Chat template 修复版（run_extraction.py L220-279）。之前 7+ 次失败根因：1) GPU VRAM 冲突 2) LLaMA chat template 未正确应用导致 structured output 全空。本次修复后 vLLM 加载正常，16GB VRAM，FlashAttention v2。\\\", \\\"completed_at\\\": \\\"2026-05-15T17:32:25.608Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && bash scripts/run_exp012_llama8b_r2.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315801\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp012_llama_8b_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:38:30.259Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training-free inference)\\\", \\\"eval_data\\\": \\\"Few-NERD test split, exp-002 protocol (count=6/12 BCS correlation)\\\"}, \\\"hypothesis\\\": \\\"LLaMA-3.1-8B-Instruct 复现 confusability-driven type confusion（chat template 修复版）。验证 confusability effect 跨模型家族（Qwen→LLaMA）+ 跨规模（32B→8B）泛化。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 202
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-15T18:40:23.618741+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp012_llama_8b_r2 RUNNING，cron 已注册。当前状态：\n\n- **exp006**: ANALYZING/negative，已向 Director 提交 Framing 调整提案（3 个 narrative 备选）\n- **exp012_llama_8b_r2**: RUNNING，cuda:0，LLaMA-8B + chat template 修复，cron 120s 监控\n- **Paper writing**: introduction.tex, results.tex, related_work.tex, sdgd_negative.tex, experimental_setup.tex 均已完成\n- **数据溯源**: exp007 NER missed 数据问题已报告 Director\n\n等待 exp012 cron 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-001473"
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "messages": [
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-15T18:53:34.629235+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_paper_writing_conclusion_20260515T185237 已完成（status=done）。用 `get_worker_status('worker_paper_writing_conclusion_20260515T185237')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_conclusion_20260515T185237\n- project: schema-dag-extraction\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "worker:done"
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-15T18:53:41.688010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_conclusion_20260515T185237"
+            }
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-15T18:53:41.789065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_conclusion_20260515T185237\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing:conclusion\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-15T18:52:37.210959+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T18:53:33.099650+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Conclusion written to `docs/paper/conclusion.tex`. ~250 words, covers all five task points: multi-channel model, pairwise SCS as partial signal, centrality confound, SDGD negative result with merge amplification, and single-model limitation. All numbers match §1 and §4; no new claims introduced.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-001476"
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "messages": [
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-15T19:11:30.931064+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_paper_writing_abstract_20260515T191020 已完成（status=done）。用 `get_worker_status('worker_paper_writing_abstract_20260515T191020')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_abstract_20260515T191020\n- project: schema-dag-extraction\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "worker:done"
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-15T19:11:37.942995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_abstract_20260515T191020"
+            }
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-15T19:11:37.999113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_abstract_20260515T191020\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing:abstract\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-15T19:10:20.145154+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T19:11:29.435183+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"已写入 `abstract.tex`。约 260 words，覆盖全部 5 个元素。数字核对：\\\\n\\\\n| 指标 | Abstract | §1 一致性 |\\\\n|------|----------|-----------|\\\\n| NER recall 0.72→0.42 | ✓ | ✓ |\\\\n| RE accuracy 85.7%→50.4% | ✓ | ✓ |\\\\n| r = 0.112–0.129 | ✓ | ✓ |\\\\n| r² ≈ 0.013–0.017 | ✓ (DR2 fix) | ✓ |\\\\n| 3.4× amplification, 9.1→31.2 pp | ✓ | ✓ |\\\\n| Count degradation限定NER and RE | ✓ | ✓ |\\\\n| 无 \\\\\\\\cite、无禁用词 | ✓ | — |\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 56
+          },
+          "id": "event-001479"
+        }
+      ]
+    },
+    {
+      "number": 142,
+      "messages": [
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-15T19:12:05.378023+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-15T19:12:51.708071+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只有 **1 块 GPU cuda:0**（cqa1-38874），不存在其他 GPU，不得假设多卡\n- **run_extraction.py 已有 isinstance 兼容改动**（L227-244），Director 确认保留，不要 revert\n- exp006 batch_config 修复在 `run_exp006_interaction.py`（flatten 成 40 独立 entries），不要再改 run_extraction.py 的 batch 逻辑\n- exp012 的 chat template 修复在 `run_extraction.py L220-279`，这是让 LLaMA-8B 产出非空预测的关键，不要动\n- **Table 3 NER Missed 数据（12%/14%/16%）已确认无来源**——实际值 33-72%，已报 Director，等决策。不要在论文中引用这些数字\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874，root 用户，工作目录 `/root/schema-dag-extraction`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，非 venv）\n- Qwen3-32B-FP8：路径见现有脚本（run_experiment.py 中），已多次成功加载\n- LLaMA-3.1-8B-Instruct：`/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- 数据：`/root/schema-dag-extraction/data/parquet/test.parquet`（Few-NERD）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 环境变量必须：`FLASHINFER_DISABLE_VERSION_CHECK=1`\n- **活跃进程**：exp012_llama_8b_r2（PID 315801/316128, tmux=exp012_llama_8b_r2, cron 120s 轮询）\n- 磁盘：数据盘 248/250GB，之前 AWQ 残留可能未清理\n\n### 3. 📊 当前状态\n**刚完成**：\n- exp006_interaction_2x2：**NEGATIVE**（交互方向正确但 p=0.505 不显著），Framing 提案已报 Director，等决策（建议选 A: supplementary + FewRel 3.4x 作主论据）\n- Paper writing 全 sections 已完成：abstract, introduction, experimental_setup, results, related_work, sdgd_negative, conclusion\n- exp007 NER missed-entity 数据溯源：发现 Table 3 NER Missed 12/14/16% 无来源（实际 33-72%），已报 Director\n\n**RUNNING**：\n- exp012_llama_8b_r2：LLaMA-8B chat template 修复版，跑 exp-002 协议（count=6/12 BCS correlation）。cron 监控中。关键验证点：gen_tokens > 2（之前全空是 gen_tokens=2）\n\n**等待中**：\n- exp012 cron 完成回调\n- Director 对 exp006 negative Framing 提案的决策（A/B/C 三选一）\n- Director 对 Table 3 NER Missed 数据修正的决策\n\n### 4. 📋 待办\n- exp012 cron 回调 success → 分析 pairwise r(SCS, confusion) + count curve + BCS-controlled delta → 与 Qwen 结果对比 → 汇报 Director → patch 进论文\n- exp012 cron 回调 failed → 检查日志，关注 gen_tokens 是否 >2。如果仍 =2 则 chat template 修复未生效，需进一步诊断\n- Director 批准 exp006 Framing 选项 → 按选项调整 results.tex（A: 加 1 段+1 表 / B: 不改 / C: 加 discussion 段）\n- Director 回复 Table 3 修正方案 → 更新 results.tex 中 NER Missed 行（用 42.8%/64.8%/49.9% 或 N/A）\n- exp012 完成 + 论文 sections 就绪 → Reviewer 对抗循环\n- 所有实验完成 → 目标 ARR May 25 提交（距今 10 天）\n\n### 5. 🎯 战略上下文\n- **核心结论**：type confusability 独立于 type count 驱动 LLM IE 质量下降，multi-channel degradation model（count→recall, confusability→type confusion）\n- Claims 1+2 证据链完整（Few-NERD + FewRel 80-rel + MAVEN），唯一缺口是 **多模型验证**（exp012 正在补）\n- Claim 3（SDGD）已正式放弃（D019），作为 negative result + future work\n- **易错判断**：exp006 negative ≠ hypothesis 失败。它只说 within-dataset 2×2 缺统计功效，FewRel 80-rel 的 3.4x amplification 仍是强 interaction evidence\n- **易踩的坑**：cqa1-38874 是 cgroup 容器（free -h 显示 1TB 是宿主机，实际限制 120GB）——之前多次 SIGKILL 归因错误就因为这个。LLaMA-8B 15GB VRAM 不会触发 GPU OOM，但如果与 Qwen-32B 同时加载会立刻崩\n- **Registry 有 27+ 条实验**，大量历史死条目（exp012 系列 7+ 次失败），已全部清理到 DONE 终态。只关注 RUNNING/PREPARING 的即可\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-001481"
+        }
+      ]
+    }
+  ]
+}

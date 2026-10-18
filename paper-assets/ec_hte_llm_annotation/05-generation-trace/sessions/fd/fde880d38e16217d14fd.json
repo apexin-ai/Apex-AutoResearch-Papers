@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fde880d38e16217d14fd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code data integrity fix",
+  "task_key": "worker_code_data-integrity-fix_20260523T112330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data-integrity-fix_20260523T112330_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "4bddf98a04e171e40d5422ce0536cfadac97d2e77f7f86b3187c45e24c980c83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**3 个问题中，只有 1 个需要修复：**\n\n| 问题 | 结论 | 操作 |\n|------|------|------|\n| AUC=0.86 | **正确**，来自 Δπ-only 诊断 (AUC=0.865)，非 exp-005 的 correlation。审计报告误判。 | 无修改 |\n| AUC=0.82 | **不可追溯**。实际值 0.66（exp_asym_diag_v2: all-subgroup Sym AUC=0.6571） | 修改 3 处：theory.tex:58, limitations.tex:23, appendix.tex:170 |\n| 74–82% coverage | **正确**，对应受影响子组覆盖率 (0.74, 0.78, 0.78, 0.82)。审计的 84.5% 是含未受影响子组的均值。 | 无修改 |\n\n编译通过，0 errors，29 页。报告已注册至 `artifacts/data_integrity_fixes.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

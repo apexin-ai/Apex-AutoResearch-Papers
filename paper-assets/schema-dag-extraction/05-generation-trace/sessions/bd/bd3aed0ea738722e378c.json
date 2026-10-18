@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3aed0ea738722e378c",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "research maven data prep",
+  "task_key": "worker_research_maven_data_prep_20260515T050740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maven_data_prep_20260515T050740.log",
+    "occurrence": 1,
+    "bytes": 611002,
+    "sha256": "f558b551160d8dad4d1a39a1a189de5c8e405328234a3695af9cc648ae13b51d"
+  },
+  "statistics": {
+    "messages": 226,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "bd3aed0ea738722e378c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd3aed0ea738722e378c-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ]
+}

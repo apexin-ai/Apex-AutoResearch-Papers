@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d12eb55c23539f24d045",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd41074 full",
+  "task_key": "worker_audit_westd41074_full_20260522T200531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd41074_full_20260522T200531_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "3038f98d76d1e935cbd435ab87c2e4f4eeef48cbbf26fe33dc6c1b2c2570828c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，模型加载中。以下是完整汇报：\n\n---\n\n## 四卡审计表 (westd-41074)\n\n| GPU | 显存占用 | 利用率 | 进程 | 状态 |\n|-----|---------|--------|------|------|\n| 0 | 10448/97887 MiB | 55% | PID 3789: π0.5 Random k=0.85 Long s42 | Task 3/10 进行中, 总 SR 49.3% |\n| 1 | 10406/97887 MiB | 24% | PID 3863: π0.5 Random k=0.7 Long s42 | Task 3/10 进行中, 总 SR 76.0% |\n| 2 | ~0 MiB (加载中) | 0% | PID 57623: **新部署** π0.5 Random k=0.5 Long s42 | 模型加载中 |\n| 3 | 27535/97887 MiB | 0% | PID 59671: OpenVLA SC M64 v6 训练 | step 72900/100000 (72.9%) |\n\n## Attention k=0.7 Object 收割结果\n\n| 指标 | 值 |\n|------|-----|\n| SR | **0.6%** (3/500) |\n| keep_ratio | 0.7 |\n| prune_mode | attention |\n| suite | libero_object |\n| seed | 42 |\n| 结论 | **negative** — 灾难性失败，attention importance 无法为 π0.5 识别任务相关 vision tokens |\n\n已注册 registry: `eval_pi05_attention_k07_object_seed42` → DONE (negative)\n\n## 新部署实验\n\n| 优先级 | 实验 | GPU | 状态 |\n|--------|------|-----|------|\n| #1 | π0.5 Long Random k=0.5 s42 | cuda:2 | **已部署**，模型加载中 |\n| #2 | π0.5 Long Random k=0.3 s42 | — | 等待空卡 |\n| #3 | π0.5 Object Random k=0.7 s43 | — | 等待空卡 |\n| #4 | X-VLA Long L2norm k=0.7 s42 | — | 等待空卡 |\n\n## 备注\n- GPU 0/1 的 Long 实验（k=0.85, k=0.7）正在运行，预计各还需 ~2-3h 完成\n- GPU 3 M64 训练在 72.9%，约还需 ~12h 完成\n- 优先级 #2-#4 需等 GPU 0/1 释放后才能部署"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

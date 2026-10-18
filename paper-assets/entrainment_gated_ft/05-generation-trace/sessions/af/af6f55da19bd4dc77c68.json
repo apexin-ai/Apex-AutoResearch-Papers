@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "af6f55da19bd4dc77c68",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code logprob eval",
+  "task_key": "worker_code_logprob-eval_20260518T072542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_logprob-eval_20260518T072542_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "eefb5ff1176db873984cb809500871f465e09c45b69a87083e13013f77f36269"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量评估已在后台运行，3 分钟后自动检查进度。\n\n产出：\n1. 脚本已部署到 `/root/entrainment_gated_ft/scripts/eval_logprob.py`\n2. Dry-run 验证通过（GatedDeltaNet-pure, D=1: mean_rank=4.1, mean_prob=0.110, 优于 random 的 5.5/0.100）\n3. 全量 16 models × 5 depths × 500 samples 正在运行，结果将写入 `/root/entrainment_gated_ft/results/mvp_logprob/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

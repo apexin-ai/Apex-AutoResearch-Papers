@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4dfce07afe1e896f61e1",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp w2 logo bugfix rerun",
+  "task_key": "worker_exp_w2_logo_bugfix_rerun_20260515T200026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_w2_logo_bugfix_rerun_20260515T200026.log",
+    "occurrence": 1,
+    "bytes": 559641,
+    "sha256": "ade7722d434b15433e68dde80aeaf00793622b227c7ff034743ef1772d027860"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "4dfce07afe1e896f61e1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4dfce07afe1e896f61e1-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ]
+}

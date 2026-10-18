@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "65c28481aa90aa06b391",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code prep longctx eval scripts",
+  "task_key": "worker_code_prep_longctx_eval_scripts_20260516T023901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_longctx_eval_scripts_20260516T023901_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "bdec96d56f3ed5c64232f7d003d767f0b3a324043bfa6ab445f1395e4589ed68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建：\n\n**`run_llama8b_8k_eval.py`** — Llama-3.1-8B 8K context eval\n- 模型路径: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B`\n- Profile 文件: `llama_hires_bf16_2bitonly_profiles.json` + `llama_profiling_results.json`\n- 输出: `artifacts/llama8b_8k_eval_results.json`\n\n**`run_mistral7b_8k_eval.py`** — Mistral-7B-v0.3 8K context eval\n- 模型路径: `/root/autodl-tmp/models/Mistral-7B-v0.3`\n- Profile 文件: `mistral_hires_bf16_2bitonly_profiles.json` + `mistral_profiling_results.json`\n- 输出: `artifacts/mistral7b_8k_eval_results.json`\n\n**相比模板的关键改动：**\n1. 添加 `--gpu` 参数（`argparse`），用法: `python run_llama8b_8k_eval.py --gpu 1`\n2. 使用 merged profiles（hires 2-bit + standard 4/8-bit），与项目中 Llama/Mistral 已有脚本一致\n3. `max_2bit=2`（Llama/Mistral 惯例，Qwen 用 `max_2bit=8`）\n4. 去掉了 Qwen 脚本中硬编码的 `results_2k_reference`，因为两个模型的 2K 参考值不同\n5. 记录 `heads_2bit` 和 `heads_8bit` 列表，便于分析分配细节"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

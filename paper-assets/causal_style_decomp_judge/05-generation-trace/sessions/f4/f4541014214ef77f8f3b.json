@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f4541014214ef77f8f3b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra quick fixes",
+  "task_key": "worker_infra_quick_fixes_20260520T094856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_quick_fixes_20260520T094856_result.json",
+    "occurrence": 1,
+    "bytes": 1338,
+    "sha256": "da219ddfffbb4b42f67bd94c2dd17153872f493dd3c23546fcd055794020acf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline uses `cross-encoder/nli-deberta-v3-large` (HF name) but online resolution fails on AutoDL. The model loads fine from local path `/root/autodl-tmp/models/nli-deberta-v3-large/`. This needs a path update in the code or an HF cache symlink — flagging it below.\n\n---\n\n### 产出汇报\n\n**1. NLI 模型: ✅**\n- model.safetensors 1.74GB 已下载到 `/root/autodl-tmp/models/nli-deberta-v3-large/`\n- 验证加载成功: **435.1M params**, tokenizer 正常\n- ⚠️ `content_verification.py:127` 使用 HF 名 `cross-encoder/nli-deberta-v3-large`，AutoDL 网络无法在线解析。需改为本地路径 `/root/autodl-tmp/models/nli-deberta-v3-large` 或建 HF cache symlink\n\n**2. ATE 方向修复: ✅ 已确认**\n- 服务器 `ate_analysis.py` L31-47 已包含 `is_casual`/`score_formal`/`score_casual`/`np.where(is_casual, ...)` 方向统一逻辑\n\n**3. Qwen3-32B: 🔄 下载中**\n- 进程活跃，正在并行下载 shards 5-7 of 17\n- shard 5: 60%, shard 6: 72%, ~1.1 MB/s\n- 目标目录 `/root/autodl-tmp/models/Qwen3-32B/` 暂为空（ModelScope 下载完成后统一移入）\n- 预计还需数小时\n\n**4. data_prep.py URL: ✅ 已同步**\n- 本地和服务器 BASE_URL 完全一致: `https://raw.githubusercontent.com/princeton-nlp/LLMBar/main/Dataset/LLMBar/Adversarial`\n- 无需修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

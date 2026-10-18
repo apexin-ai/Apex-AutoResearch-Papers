@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d4972a1ed7eafd7cd6f3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 gpu2 attn k05 long",
+  "task_key": "worker_deploy_westd41074-gpu2-attn-k05-long_20260526T221222",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd41074-gpu2-attn-k05-long_20260526T221222_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "41a3c1aa5e87c687a139653844e65f049f23a38fdb51c5ca26b4f1abd7f2c2d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 2 状态: 占用中\n实验: eval_openvla_random_k095_object_seed42\nPID: 934369\n运行时间: 40分钟\n进度: Task 2/10, Ep 20/50 (2.0 eps/min)\n预计剩余: ~4小时 (10个task × 50ep × ~0.5min/ep ≈ 250min, 已完成 ~70ep/500ep)\n```\n\nGPU 2 被 Random k=0.95 Object 评测占用，无法部署 Attn k=0.5 Long。该实验刚跑了 40 分钟，正在第 2/10 个 task，预计还需约 3.5-4 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

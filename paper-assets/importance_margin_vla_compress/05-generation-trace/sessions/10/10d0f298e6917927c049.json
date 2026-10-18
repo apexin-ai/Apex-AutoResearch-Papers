@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "10d0f298e6917927c049",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check m16 seed44 eval",
+  "task_key": "worker_ops_check-m16-seed44-eval_20260520T094946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-m16-seed44-eval_20260520T094946_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "bd95eba280f21b05e78e1408e10cd2dc916b7d2e0fe0d3081d19c515d15a02c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval 实际上已成功完成，不是失败。**\n\n```\neval 失败原因: 误报。eval 实际已正常完成（500 eps × 10 tasks = 5000 eps 全部跑完）。\n             监控系统在进程退出后检测不到 sentinel/W&B 信号，误判为失败。\n             日志最后一行时间 17:15:39，结果文件已写入。\n\ncheckpoint 状态: 完好（1.48GB, checkpoint.pt 存在）\ncheckpoint 路径: /root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m16_seed44/checkpoint.pt\n\neval 结果:\n  suite: libero_object, M=16, seed=44\n  Overall SR: 56.5% [95% CI: 55.1%-57.8%]\n  Per-task: 38% / 70% / 55% / 42% / 65% / 33% / 73% / 64% / 87% / 38%\n\ncqa1 可用 GPU: 全部 4 张 RTX 4090D 空闲（0/1/2/3, 均 0 MiB used, 0% util）\n\n建议: 无需重新 eval，结果已完整。直接使用 eval_results/eval_smart_compress_m16_seed44.json。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

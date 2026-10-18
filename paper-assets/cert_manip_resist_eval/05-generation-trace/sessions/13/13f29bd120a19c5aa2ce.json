@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "13f29bd120a19c5aa2ce",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra qwen72b verify",
+  "task_key": "worker_infra_qwen72b-verify_20260521T212121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen72b-verify_20260521T212121_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "253d1787ceeedf0337c536ede225daacda8756f9daf11bccc20bb90b77d4c6aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成。汇总：\n\n---\n\n## 1. Qwen-72B (Qwen2.5-72B-Instruct-AWQ) — **就绪**\n\n| 指标 | 结果 |\n|------|------|\n| Shards | 11/11 |\n| 大小 | 39 GB |\n| Temp 目录 | 空（干净） |\n| 加载时间 | 101.8s（含 81s 引擎初始化 + CUDA graph 捕获 58s） |\n| **Pairwise 推理** | **30/30 valid，26.5s** |\n| 吞吐 | 196 tok/s input, 62 tok/s output |\n| 样例输出 | winner=A, score_a=5, score_b=1/2（正确偏好直接正确答案） |\n| 卸载 | OK |\n\n## 2. Llama-70B (Llama-3.1-70B-Instruct-AWQ) — **就绪**\n\n| 指标 | 结果 |\n|------|------|\n| Shards | 9/9（root 目录完整） |\n| 大小 | 39 GB |\n| Temp 残留 | `model-00005` 1.31GB（旧中断残留，root 版本 4.89GB 完整） |\n\n## 3. Mistral-Large (Mistral-Large-Instruct-2407-AWQ) — **就绪**\n\n| 指标 | 结果 |\n|------|------|\n| Shards | 14/14（root 目录完整） |\n| 大小 | 62 GB |\n| Temp 残留 | `model-00008` 1.61GB（旧中断残留，root 版本 4.85GB 完整） |\n\n## 4. GPU 状态 — **全部空闲**\n\n4x NVIDIA RTX PRO 6000 Blackwell (96GB each), 0 MiB used, 0% utilization.\n\n---\n\n**附注**：Llama 和 Mistral 的 `._____temp/` 各有一个旧下载残留文件，可以安全删除以释放 ~3GB 空间。另有一个 Qwen2.5-32B 的 ModelScope 修复下载正在后台运行（PID 26210）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

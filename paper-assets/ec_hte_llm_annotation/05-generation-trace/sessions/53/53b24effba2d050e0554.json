@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "53b24effba2d050e0554",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 001 hyperprior v2",
+  "task_key": "worker_code_exp-001-hyperprior-v2_20260520T221457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-001-hyperprior-v2_20260520T221457_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "1b2bf91a3599cae1653e3166200d5600fe45fd089007737d853d6439ce16f327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes complete and verified:\n\n1. **Added K=4/moderate/n=100 config** alongside the existing K=2/moderate/n=250\n2. **Imported `invert_mixing_safe`** from `exp001_hb_synthetic` — K=4 uses it (condition number guard), K=2 keeps the original `invert_mixing`\n3. **CONFIGS list** drives both configs through the same loop: 2 configs × 3 scales × n_mc = 600 total runs at full scale\n4. **CSV output** includes `config` column\n5. **Summary tables** print separately per config group\n\nDry-run (2 MC per config, 12 runs total) completed in 23s with no errors."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

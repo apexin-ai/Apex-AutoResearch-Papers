@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b245b6f94cfda70e1ab4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d047 round1 compression",
+  "task_key": "worker_paper_d047_round1_compression_20260516T123803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d047_round1_compression_20260516T123803_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "fffede9c90b8cca5d39c970ff0ecef0ca3720bdcafc8907bfde06d56d5c49d9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Summary:\n\n**Results:**\n1. **Compilation**: Clean — no errors, no undefined references, no multiply-defined labels\n2. **Body pages**: 7 pages (sections 1–7 + Limitations fit within pp. 1–7; checklist starts p.8). The compression freed ~1 page of vertical space within the body (§4.1 went from 6 `\\paragraph` blocks to 1 paragraph; Table 3 + within-pool table + interpretation moved to appendix).\n3. **New appendix labels** all resolve correctly:\n   - `app:bcs-controlled-table` → Appendix J (p.16)\n   - `app:within-pool-method` → Appendix K (p.16)\n   - `app:scs-ablation` → Appendix L (p.16)\n   - `app:aggregation-sim` → Appendix M (p.16)\n\n**Changes made:**\n- **A1**: §4.1 compressed from 6 `\\paragraph` blocks to single unified paragraph\n- **A2**: `tab:bcs_controlled` moved to Appendix J; inline summary in §4.3\n- **A3**: Within-pool methodology + `tab:within_pool` moved to Appendix K; one-liner replacement\n- **D3**: Cluster bootstrap CIs added to `tab:pairwise` caption\n- **F**: Aggregation sentence corrected (7% → 22%, ~3× with MC simulation reference)\n- **E**: Three new appendix sections added (SCS ablation, within-pool method, aggregation sim)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

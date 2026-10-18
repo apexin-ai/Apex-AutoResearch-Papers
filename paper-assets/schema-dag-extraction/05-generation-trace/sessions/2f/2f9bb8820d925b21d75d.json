@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f9bb8820d925b21d75d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d044 critical fixes",
+  "task_key": "worker_paper_d044_critical_fixes_20260516T095301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d044_critical_fixes_20260516T095301_result.json",
+    "occurrence": 1,
+    "bytes": 1563,
+    "sha256": "0dd6afd53a2596b8b4a5c769ad6c75c8cf73eb83bd159661b72221e7bfc6ca47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Structure:\n- Pages 1–2: intro/setup\n- Page 3–5: results.tex  \n- Page 6: sdgd_negative.tex\n- Page 6–7: discussion.tex (includes conclusion)\n- Page 7–8: checklist\n\nBody content (intro through conclusion) ends on page 7. ≤ 8 pages confirmed.\n\n---\n\n**Summary of corrections:**\n\n| # | File | Line | Before | After |\n|---|------|------|--------|-------|\n| 1 | abstract.tex | 4 | \"MAVEN generally suppresses extraction for cross-domain schemas; same-domain schemas exhibit centrality confounding.\" | \"Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend.\" |\n| 2 | discussion.tex | 13 | \"confusability-aware batch composition recovers +1.4\\,pp on RE where span reconciliation is unnecessary\" | \"confusability-aware grouping yields a directionally consistent but non-significant improvement (+1.4\\,pp, $p\\approx 0.19$)\" |\n| 3 | results.tex | 67 | \"into gaps reaching 31.2\\,pp under extreme-batch comparison\" | \"into quartile gaps of 3.9--5.3\\,pp under typical batching, reaching 31.2\\,pp only under extreme-batch construction\" |\n| 4 | results.tex | 65, 72 | \"quasi-experimental\" (×2) | \"controlled stratified comparison\" (×2) |\n| 5 | results.tex | after line 124 | (none) | New paragraph on 80-rel null result (IQR=0.033, n=25, slope=+0.221, p=0.762) |\n\n**Compilation**: Clean — no undefined citations, no broken references.  \n**Pages**: 15 total; body (intro–conclusion) = 7 pages (≤ 8 ✓)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

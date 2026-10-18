@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6a127636afb559e121d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check 340m eval status",
+  "task_key": "worker_check_340m-eval-status_20260521T230006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_340m-eval-status_20260521T230006_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "065e28246a8af59b9d482acf6bb533c91092348937a48a4e9232c3e1ce083b95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 检查项 | 状态 |\n|--------|------|\n| **进程 PID 777365** | 存活，运行 33 分 11 秒，状态 `Ss+` |\n| **tmux session** | ssh_read_only 不允许 tmux 命令，无法检查 |\n| **GPU** | 利用率 0%，显存占用 1253 MiB / 97887 MiB — 当前处于模型加载/数据准备阶段，非计算密集阶段 |\n| **输出目录** | 已有 6 个模型的结果：`GDN-h12-1`, `GDN-h24-1`, `GDN-h3-1`, `GDN-h6-1`, `GDN-pure`, `RetNet-pure` |\n| **日志** | 正在跑第 7/15 个模型 `RetNet-h24-1`，刚完成模型加载，正在评估 hellaswag（用的缓存数据集，网络不通但不影响） |\n\n进程正常运行中，进度 6/15 已完成，当前在第 7 个模型的 benchmark 评估阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

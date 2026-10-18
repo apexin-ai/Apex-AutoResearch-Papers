@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "37049c3abf3ac17dcf82",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval openvla attn k05 object seed42",
+  "task_key": "worker_deploy_eval_openvla_attn_k05_object_seed42_20260526T132946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_openvla_attn_k05_object_seed42_20260526T132946_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "e32544422e997e40154079d9772662a44e6b7cbcbce0ede9227a04d9285b9b10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 652888 在 cuda:1 (GPU-b927bd9e) 上占用 15961 MiB，正常运行。\n\n```\nDEPLOYED: yes\nSERVER: westd-41074\nGPU: cuda:1\nPID: 652888\nEXP_ID: eval_openvla_attn_k05_object_seed42\n```\n\n实验已启动，Attention pruning k=0.5 正在评测 libero_object（10 tasks x 50 episodes），256→128 vision tokens。日志: `~/runs/importance_margin_vla_compress/eval_openvla_attn_k05_object_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

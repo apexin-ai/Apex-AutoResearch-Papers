@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "253fc2b184586e9bbb1f",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code cross scale convergence",
+  "task_key": "worker_code_cross_scale_convergence_20260519T045618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_scale_convergence_20260519T045618_result.json",
+    "occurrence": 1,
+    "bytes": 2116,
+    "sha256": "c6b986b1775e5eb170796a8e0320379c59d4052606de8d056f9c95122aeb30d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有输出已生成。以下是完整结果总结：\n\n**输出文件**（均在 `/root/entrainment_gated_ft/analysis/`）：\n- `cross_scale_convergence.py` (9.9K) - 分析脚本\n- `cross_scale_convergence.pdf` (34K) - 2×3 subplot 图表\n- `cross_scale_convergence.png` (299K) - 同上 PNG 版\n- `cross_scale_summary.csv` (6.1K) - 完整数据表\n\n---\n\n**Spearman 相关性 (arch_std vs attn_layers)**：\n\n| Scale | Benchmark | rho | p-value |\n|-------|-----------|-----|---------|\n| 1.3B | lambada_acc | **-1.000** | 1.4e-24 |\n| 1.3B | arc_easy_norm | -0.700 | 0.188 |\n| 1.3B | mmlu_acc | -0.700 | 0.188 |\n| 1.3B | hellaswag_norm | 0.300 | 0.624 |\n| 1.3B | arc_challenge_norm | 0.600 | 0.285 |\n| 1.3B | winogrande_acc | 0.100 | 0.873 |\n| 340M | arc_challenge_norm | **-0.900** | **0.037** |\n| 340M | lambada_acc | -0.500 | 0.391 |\n| 340M | arc_easy_norm | -0.500 | 0.391 |\n| 340M | mmlu_acc | -0.300 | 0.624 |\n| 340M | hellaswag_norm | 0.400 | 0.505 |\n| 340M | winogrande_acc | 0.800 | 0.104 |\n\n---\n\n**关键发现**：\n\n| Scale | Benchmark | Std: 0→8 attn | 趋势 | 变化幅度 |\n|-------|-----------|---------------|------|----------|\n| 1.3B | lambada_acc | 0.0240→0.0049 | CONVERGE | -79.4% |\n| 1.3B | arc_easy_norm | 0.0100→0.0013 | CONVERGE | -87.0% |\n| 1.3B | mmlu_acc | 0.0092→0.0040 | CONVERGE | -56.0% |\n| 340M | mmlu_acc | 0.0071→0.0025 | CONVERGE | -64.5% |\n| 340M | lambada_acc | 0.0246→0.0151 | CONVERGE | -38.7% |\n| 340M | arc_challenge_norm | 0.0137→0.0088 | CONVERGE | -35.6% |\n| 340M | winogrande_acc | 0.0043→0.0131 | DIVERGE | +206.4% |\n| 1.3B | arc_challenge_norm | 0.0096→0.0132 | DIVERGE | +38.3% |\n\n**核心观察**：\n1. **LAMBADA 在 1.3B 上展现完美的单调收敛**（rho=-1.0），3 种架构随 attention 增多趋于一致\n2. **收敛效应在 1.3B 比 340M 更强**（lambada 79% vs 39%），符合 scale-dependent convergence 假设\n3. 部分 benchmark（winogrande, arc_challenge）呈 diverge 模式，可能因为任务特性不同\n4. 340M MMLU 接近随机（~0.25），收敛数据噪声大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8929574a27d602fe1066",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code fix max2bit bugs",
+  "task_key": "worker_code_fix_max2bit_bugs_20260516T033345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_max2bit_bugs_20260516T033345_result.json",
+    "occurrence": 1,
+    "bytes": 2682,
+    "sha256": "0e27d2e683ff42f2d7fe9d3707dfb7bedaebee803382015c8e5b10f7b1c6d09a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes verified. Final cross-check against the correct k-value table:\n\n| Model | Correct k | Files | Status |\n|-------|-----------|-------|--------|\n| **Qwen-7B** (k=8) | `run_qwen_longcontext_8k.py`=8, `run_qwen_hires_constrained.py`=8, `run_qwen7b_8k_spotcheck.py`=8, `run_qwen7b_longcontext_8k.py`=8, `run_qwen_3seed_downstream_ci.py`=8, `run_qwen14b_*`=8, `run_c4_cross_dataset.py`=8, `run_kivi_mckp_combined.py`=8 | all correct |\n| **Gemma-2** (k=8) | `run_gemma2_3seed_downstream_ci.py`=8, `run_gemma2_longcontext_8k.py`=8 | all correct |\n| **Phi-3** (k=8) | `run_phi3_longcontext_8k.py`=8, `run_phi3_medium_constrained_pipeline.py`=8 | all correct |\n| **CodeLlama** (k=8) | `run_codellama_longcontext_8k.py`=8 | correct |\n| **Yi-1.5** (k=2) | `run_yi_3seed_downstream_ci.py`=**2** ✓, `run_yi_longcontext_8k.py`=**2** ✓, `run_yi15_8k_spotcheck.py`=**2** ✓, `run_yi15_hires_constrained.py`=2 | all correct |\n| **Llama-3.1** (k=2) | `run_llama_8k_eval.py`=2, `run_llama8b_8k_eval.py`=2, `run_llama_8k_spotcheck.py`=2, `run_w3_downstream_eval.py`=**2** ✓, `run_llama_c4_cross_dataset.py`=2 | all correct |\n| **Mistral-7B** (k=2) | `run_mistral_3seed_downstream_ci.py`=**2** ✓, `run_mistral_8k_eval.py`=2, `run_mistral7b_8k_eval.py`=2, `run_mistral_hires_constrained.py`=2, `run_mistral_c4_cross_dataset.py`=**2** ✓ | all correct |\n| **InternLM2** (k=2) | `run_internlm2_longcontext_8k.py`=**2** ✓, `run_internlm2_constrained_mckp.py`=2 | all correct |\n\n## 修改清单\n\n| # | 文件 | 行号 | 修改前 → 修改后 | 位置 |\n|---|------|------|----------------|------|\n| 1 | `run_yi_3seed_downstream_ci.py` | 36 | `MAX_2BIT = 8` → `MAX_2BIT = 2` | local |\n| 2 | `run_mistral_3seed_downstream_ci.py` | 36 | `MAX_2BIT = 8` → `MAX_2BIT = 2` | local |\n| 3 | `run_qwen_longcontext_8k.py` | 26 | `models/Qwen/...` → `.hf_cache/Qwen/...` | local |\n| 4 | `run_internlm2_longcontext_8k.py` | 212 | `max_2bit = 8` → `max_2bit = 2` | local |\n| 5 | `run_yi_longcontext_8k.py` | 31 | `max_2bit = 8` → `max_2bit = 2` | local |\n| 6 | `run_yi15_8k_spotcheck.py` | 25 | `max_2bit = 8` → `max_2bit = 2` | local + server |\n| 7 | `run_w3_downstream_eval.py` | 31 | `MAX_2BIT = 8` → `MAX_2BIT = 2` | local + server |\n| 8 | `run_mistral_c4_cross_dataset.py` | 18 | `MAX_2BIT = 4` → `MAX_2BIT = 2` | local + server |\n\nQwen 模型路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B` 在服务器上已确认存在（4 个 safetensors + config.json 完整）。\n\n系统性审查发现了 4 个额外 bug（#5-#8），已一并修复。5 个仅在本地的文件（#1-#5）需要在下次 sync_code 时推送到服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

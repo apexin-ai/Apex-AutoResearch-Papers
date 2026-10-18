@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "99e732d1408cbf366f00",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval fullft 50k libero spatial",
+  "task_key": "worker_eval_fullft_50k_libero_spatial_20260516T200824",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_fullft_50k_libero_spatial_20260516T200824.log",
+    "occurrence": 1,
+    "bytes": 521527,
+    "sha256": "ed591d3c2e22ebe3c12fecac91252997b33c00118a15edaa168a8e5f987a17be"
+  },
+  "statistics": {
+    "messages": 350,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "system": 7,
+      "assistant": 55,
+      "record": 1,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 350,
+      "chunks": [
+        {
+          "path": "99e732d1408cbf366f00-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "99e732d1408cbf366f00-part-0002.json",
+          "message_count": 170
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7ec2fddd49079e23598f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval smolvla k095 pruning",
+  "task_key": "worker_eval_smolvla_k095_pruning_20260518T121311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smolvla_k095_pruning_20260518T121311_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "c496415bb7e3b265aa591456c8c7f3af703704f59226e3f48677f721b36a9e52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行：\n\n- **实验**: `eval_smolvla_random_prune_k095`\n- **服务器**: cqa1-33015, GPU 1\n- **PID**: 92881 (tmux session: `eval_random_k095`)\n- **Pruning**: random true_removal, k=0.95, keep 121/128 tokens, remove 7\n- **Checkpoint**: `libero_full_ft/step_099999` (baseline full_ft)\n- **任务**: 10 tasks × 50 episodes = 500 total\n- **日志**: `~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log`\n\n首个 episode 已确认 FAIL (T0 Ep1)。预计 ~2-3h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

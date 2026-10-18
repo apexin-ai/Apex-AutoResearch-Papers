@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "beb5c274327c78bc69d5",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 gpu3 pi05 random object",
+  "task_key": "worker_deploy-cqa1-gpu3-pi05-random-object_20260523T215722",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-cqa1-gpu3-pi05-random-object_20260523T215722_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "8b60f5e6e97cd19cc00af7cc8a99e4866e74a920e724915b9021500117330624"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **实验**: `eval_pi05_random_k05_object_seed42_v2`\n- **服务器**: cqa1-33015, GPU 3\n- **tmux session**: `eval_pi05_random_k05_object_v2`\n- **日志**: `/tmp/eval_pi05_random_k05_object_seed42_v2.log`\n- **Registry**: RUNNING，parent 链接到原 pre-fix 版本\n- **状态**: 模型加载中，GPU 0/1/2 上的实验未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

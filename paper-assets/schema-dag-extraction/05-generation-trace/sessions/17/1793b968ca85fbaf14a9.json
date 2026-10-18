@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1793b968ca85fbaf14a9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "local gemini flash resume",
+  "task_key": "worker_local_gemini_flash_resume_20260517T165815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_local_gemini_flash_resume_20260517T165815_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "4c49335b9d610a6870b57736bbb3452fec86ed4d32bb46be16e4109422b46850"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验恢复成功。总结：\n\n- **Dry run**: 成功，5/5 correct，API 响应正常（1-5s/request）\n- **tmux 进程**: alive，session `gemini_flash` 运行中\n- **数据增长**: 396 → 444 行（+48 行，新完成约 4 个 batch）\n- **Resume 正确**: 检测到 28 batches 已完成（25 count_1 + 3 count_4 的部分），自动跳过\n\n**估算总完成时间**：\n- 每个 sample ~1.5s，每 batch 12 samples → ~18s/batch\n- Part 1 剩余: 175 - 28 = 147 batches → ~44 min\n- Part 2（BCS-controlled extreme batches）取决于 batch 数量，假设类似规模 ~40 min\n- 总计约 **1.5 小时**完成全部实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

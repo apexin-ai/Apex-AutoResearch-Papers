@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1e0e85cae5089f33639",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_15_1779976172.md",
+  "task_key": "loop_15_1779976172",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_15_1779976172.md",
+    "occurrence": 1,
+    "bytes": 4355,
+    "sha256": "907eb065b5f1c3a9209901044c84a1b4a4124bacf42b0e6728d34d653e0dec18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-28T13:08:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-27271 cuda:0/1, cqa1-33015 cuda:0/1/2/3, westd-41074 cuda:0/1/2/3, westd-38929 cuda:0/1/2/3（共 14 张）\n- 实验硬截止：**May 28 20:00 BJT**（约 6h），之后不再提交新实验\n- Random k=0.85 s43 per-task T0/T1 数据有混入错误，论文须用 server log 真值，不能用 W&B per-task 数据\n- westd-27271 不支持 attention pruning（缺 flash-attn），attention 实验只能部署到 w41/w38/cqa1\n- 所有 eval 实验用 `--n_episodes 50 --suite libero_10`（strict mode），总 500 episodes\n\n### 2. 🖥️ 基础设施快照\n- **4 台服务器**，工作目录均为 `/root/autodl-tmp/importance_margin_vla_compress`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- 评估脚本：`eval_pi05_pruning_libero.py`（π0.5）/ OpenVLA 用对应脚本\n- 磁盘：w27/w41/w38 充足（>5T 可用），cqa1 `/autodl-pub` 91% 已用 ⚠️\n- 活跃 cron 9 个（reconcile 刚确认），tmux session 命名与 exp_id 对应\n\n### 3. 📊 当前状态\n**刚做完**：收到 `eval_pi05_random_k05_long_seed43_strict_w27` ANALYZING 回调，发现共 3 个 ANALYZING 实验，已派 2 个 Worker 并行读日志：\n- `worker_analyze_w27_batch_3exp_20260527T205516`：读 w27 两个日志（Random k=0.5 s43 + L2norm k=0.7 s43）\n- `worker_analyze_w41_attn_k085_s43_20260527T205521`：读 w41 一个日志（Attn k=0.85 s43）\n\n**等待中**：上述 2 个 Worker 回调（未返回即被 RESET）\n\n**RUNNING 实验（13 个）**：\n| 实验 | 服务器:GPU | 用途 |\n|------|-----------|------|\n| eval_openvla_attn_k075_long_seed42_v3 | w38:GPU1 | OV Attn k=0.75（OV 表最后 2 个之一） |\n| eval_openvla_random_k095_long_seed42_v3 | w38:GPU0 | OV Random k=0.95（OV 表最后 2 个之一） |\n| eval_pi05_l2norm_k05_long_seed43_strict_cqa1 | cqa1:GPU0 | L2norm k=0.5 error bar |\n| eval_pi05_attn_k075_long_seed43_strict_cqa1 | cqa1:GPU3 | Attn k=0.75 error bar |\n| eval_pi05_attn_k05_long_seed43_strict_w41 | w41:GPU3 | Attn k=0.5 error bar |\n| eval_pi05_l2norm_k09_long_seed44_strict_cqa1 | cqa1:GPU1 | L2norm k=0.9 第三 seed |\n| eval_pi05_random_k09_long_seed44_strict_w41 | w41:GPU2 | Random k=0.9 第三 seed |\n| eval_pi05_attn_k09_long_seed44_strict_w38 | cqa1:GPU2 | Attn k=0.9 第三 seed |\n| eval_pi05_random_k085_long_seed44_strict_w41 | w41:GPU0 | Random k=0.85 第三 seed（加固最大 error bar） |\n| +4 个 w27/w41/w38 上的 seed43 error bar 实验 | | |\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调到达**（w27 batch + w41 attn）→ 读结果 → update_registry(DONE) → 计算 error bar → 更新 ROADMAP → 汇报 Director\n- **w27 GPU0/1 释放**（Random k=0.5 s43 + L2norm k=0.7 s43 已完成）→ 检查 PREPARING 队列，部署下一批实验（优先 seed44 系列或 OV 缺失点）\n- **OV 最后 2 个完成**（w38 GPU0/1，预计 ~4h）→ OpenVLA Long Cliff Curve 18/18 闭合 → 更新 ROADMAP\n- **所有 error bar 闭合** → 通知 Paper Agent 更新 figures + narrative → May 29 提交\n- **截止前（May 28 20:00 BJT）**→ 停止提交新实验，收割所有 RUNNING，确保结果入 registry\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance margin（L2norm SR − Random SR）呈 inverted-U：k=0.95(25.3pp) → k=0.9(**46.0pp** peak) → k=0.85(32.5pp) → k=0.5(≈0)。这是论文的核心 diagnostic metric\n- **Narrative 已定稿**（D276）：systematic study + importance margin 作为 diagnostic metric，不是方法论文\n- **π0.5 Cliff Curve 18/18 已完成**，当前全力收割 error bar（seed43 全系列 + seed44 加固关键点）\n- **OV 差 2 个点**：Random k=0.95 和 Attn k=0.75，都在跑\n- **Attn k=0.85 s43 可能已有结果**：D282 记录 52.4%，但 registry 里 w41 实验仍 ANALYZING，Worker 会确认是否一致\n- **易错点**：w27 不能跑 attention 实验；cqa1 磁盘紧张不要往上堆新实验；Random k=0.85 s43 per-task 数据不可信（用 log 真值）\n- **Paper 提交 May 29**，CoRL 2026 要求 Limitations section（算在 8 页限制内）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

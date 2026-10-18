@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b9b66f6b80f477683945",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops 32b wait and launch",
+  "task_key": "worker_ops_32b_wait_and_launch_20260520T151303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_32b_wait_and_launch_20260520T151303_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "92b27f38f04b8e6545d195cae6db822d4f8a0a2e72f68c933601b7e9d85d5b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已调度，60 秒后继续检查下载进度。当前 14/17 shards 完成，3 个文件在 temp 目录中持续增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

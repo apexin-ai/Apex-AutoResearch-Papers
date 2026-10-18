@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9535866f12dcf02f7602",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code llama budget sweep k2",
+  "task_key": "worker_code_llama-budget-sweep-k2_20260521T212758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-budget-sweep-k2_20260521T212758_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "ef2d6f1b7864758934d87d087f0ceaf6a993e89e4588460ead485cbdd6f1f748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Run complete (92s). Both outputs saved.\n\n**Key results:**\n\n| n_expert | Naive RMSE | Global RMSE | HB EC-HTE RMSE | HB/Naive |\n|----------|-----------|-------------|----------------|----------|\n| 100 | 0.1000 | 0.1456 | 0.1927 | 1.93 |\n| 200 | 0.1000 | 0.1223 | 0.1557 | 1.56 |\n| 500 | 0.1000 | 0.1070 | 0.1242 | 1.24 |\n| **1000** | **0.1000** | **0.0952** | **0.0997** | **1.00** |\n| 2000 | 0.1000 | 0.0908 | 0.0920 | 0.92 |\n\n**Findings:**\n- **RMSE crossover at n_expert=1000** — HB EC-HTE just barely beats Naive (ratio=0.998)\n- **|Bias| is always lower for HB** (5-8x reduction over Naive at all budgets), but variance inflation dominates until n_expert≈1000\n- **Global corrected dominates HB EC-HTE at every budget** — with Δπ=0.051, the per-subgroup CM heterogeneity is too small to justify the extra variance from stratified estimation\n- Bias-variance decomposition confirms: Naive has Bias²=0.0082 (stable), HB trades this for Var that shrinks from 0.041→0.009 as n_expert grows\n\n**Bottom line:** K=2 merging reduced Δπ from 0.137 (K=4) to 0.051, pushing the crossover from ~200 to ~1000. The global corrected estimator (single CM) is the best choice here since CM heterogeneity is negligible."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

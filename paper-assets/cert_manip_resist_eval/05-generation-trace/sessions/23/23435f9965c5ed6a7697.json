@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23435f9965c5ed6a7697",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis beta std trajectory",
+  "task_key": "worker_analysis_beta-std-trajectory_20260524T190134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_beta-std-trajectory_20260524T190134_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "87c011b36bd85421f120ee6606bcd471be3b5a0827d274fb0810c2ee31ae8296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated successfully. Summary:\n\n| K | β_std(K_eff) | β_std(η_max) | K_eff sig | η_max sig |\n|---|---|---|---|---|\n| 3 | 0.349 ± 0.183 | 0.266 ± 0.179 | 7/12 | 5/12 |\n| 5 | 0.437 ± 0.293 | 0.101 ± 0.327 | 8/12 | 5/12 |\n| 7 | 0.401 ± 0.222 | 0.084 ± 0.284 | 9/12 | 3/12 |\n\nPredictor shift 在 standardized effect size 上得到了确认：β_std(K_eff) 在 K=3→7 保持稳定偏高（0.35→0.44→0.40），而 β_std(η_max) 从 0.27 下降到 0.08，向零收敛。这与 significance count 的趋势一致，但提供了连续量化的证据。\n\n输出文件：\n- JSON: `artifacts/results/plan001/beta_std_trajectory.json`\n- 轨迹图: `artifacts/results/plan001/fig_beta_std_trajectory.pdf`\n- p-value 分布图: `artifacts/results/plan001/fig_pvalue_distribution.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

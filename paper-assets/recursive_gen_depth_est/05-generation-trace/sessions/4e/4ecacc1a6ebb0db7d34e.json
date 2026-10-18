@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4ecacc1a6ebb0db7d34e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code qwen25 14b restart",
+  "task_key": "worker_code_qwen25_14b_restart_20260517T130946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen25_14b_restart_20260517T130946_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "db381f94445933d3d8c719953a512137175056ab9445c5391bb9d2402406a15e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中 — aria2c 正在用16连接下载分片3。任务运行正常。\n\n**总结：**\n- `qwen25_14b_scale_002` 已提交到 gpu-6000pro-2 cuda:0\n- 修复了脚本中模型完整性检查的 bug（原来只要有任一 safetensors 就跳过下载）\n- 当前正在下载分片 3-8（约 22GB），下载完成后自动进入 pipeline\n- tmux session: `qwen25_14b_scale_002`, PID: 714992\n- 日志: `~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log`\n- Registry 已更新 hypothesis/parent/notes\n- 24h timeout，下载+pipeline 应可在此内完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

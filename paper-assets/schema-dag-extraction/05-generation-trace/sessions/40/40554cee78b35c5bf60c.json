@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "40554cee78b35c5bf60c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp fewshot bcs count16",
+  "task_key": "worker_check_exp_fewshot_bcs_count16_20260523T144837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_fewshot_bcs_count16_20260523T144837_result.json",
+    "occurrence": 1,
+    "bytes": 2618833,
+    "sha256": "5961994cfbf020a890667a10e6a2ea12ce8149d0cff3eae88ccb3f3bfcd172c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "40554cee78b35c5bf60c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

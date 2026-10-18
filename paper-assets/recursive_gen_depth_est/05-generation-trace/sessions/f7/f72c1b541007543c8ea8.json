@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f72c1b541007543c8ea8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops data migration execute",
+  "task_key": "worker_ops_data-migration-execute_20260520T110813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-migration-execute_20260520T110813_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "6d95d7965331945ece877c5294b042c2917dddd7a29ddc8557d94b7dd03e3077"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的上传测速任务延迟完成，但迁移已通过直连方式顺利结束，无需关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

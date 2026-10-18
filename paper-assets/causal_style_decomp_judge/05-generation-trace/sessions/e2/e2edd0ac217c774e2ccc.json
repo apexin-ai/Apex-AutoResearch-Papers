@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "e2edd0ac217c774e2ccc",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code nli gate full validation",
+  "task_key": "worker_code_nli_gate_full_validation_20260521T114504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli_gate_full_validation_20260521T114504.log",
+    "occurrence": 1,
+    "bytes": 765355,
+    "sha256": "553f05c10acce0eb2b2b38fa510cffb5a146ca6c1cc037d729e3237ebd25401a"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 1,
+    "tool_calls": 183,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 3,
+      "assistant": 79,
+      "tool_call": 183,
+      "user": 1,
+      "tool_result": 183,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "e2edd0ac217c774e2ccc-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 462,
+      "chunks": [
+        {
+          "path": "e2edd0ac217c774e2ccc-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "e2edd0ac217c774e2ccc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2edd0ac217c774e2ccc-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ]
+}

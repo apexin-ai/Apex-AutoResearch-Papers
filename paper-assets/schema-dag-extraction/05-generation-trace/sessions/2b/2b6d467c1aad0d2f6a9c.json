@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2b6d467c1aad0d2f6a9c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp fewrel formal 80rel",
+  "task_key": "worker_diagnose_exp_fewrel_formal_80rel_20260515T133657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_fewrel_formal_80rel_20260515T133657_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "5a9e80eb50330841d0bcc5c7583d2976ddd9c805e8693da10dc7ab4dfe98c7ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**失败根因**：实验**未失败**。Python 脚本正常跑完，日志最后打印 `===== 80-rel ALL DONE =====`。EXIT_CODE=129 (SIGHUP) 来自外层 shell/tmux 在脚本结束后收到 HUP 信号（SSH 会话断开），不是 Python 进程被杀。\n\n**完成度**：100%。exp1（8-rel × 25 random + high/low BCS）和 exp2（16-rel × 25 random + high/low BCS）全部跑完，产出文件完整：\n- `predictions_exp1.json` (22MB), `eval_exp1.json`\n- `predictions_exp2.json` (5.5MB), `eval_exp2.json`\n- 预处理和配置文件齐全\n\n**结论**：无需重跑，无需修复。所有结果已在 `/root/schema-dag-extraction/artifacts/fewrel_formal_full/`。EXIT_CODE=129 是误报——脚本本身返回 0，只是包裹它的 shell 被 SIGHUP 了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

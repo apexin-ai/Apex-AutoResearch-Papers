@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1dda630c89c7870a661",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops check yi mistral progress",
+  "task_key": "worker_ops_check_yi_mistral_progress_20260515T180004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_yi_mistral_progress_20260515T180004_result.json",
+    "occurrence": 1,
+    "bytes": 1493,
+    "sha256": "960cf58ff31cc615be9a9374f94fbe9ea06fe0bff3177c69798f30dd49969255"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### Yi/Mistral downstream eval (PID 356698)\n- **运行时间**: 12 分钟\n- **GPU**: cuda:0, RTX PRO 6000 Black, 18856MiB / 97887MiB, 利用率 100%\n- **当前进度**: Yi-1.5-9B 第 2/3 个配置 (Uniform 4-bit), loglikelihood 52% (26446/51065), ~56 it/s\n\n| 任务 | 状态 |\n|------|------|\n| Yi baseline (bf16) | ✅ 完成 — `{arc: 0.5265, hella: 0.5912, piqa: 0.7949, wino: 0.7332}` |\n| Yi uniform 4-bit | 🔄 52% |\n| Yi MCKP k=2 | ⏳ 等待 |\n| Mistral baseline | ⏳ 等待 |\n| Mistral uniform | ⏳ 等待 |\n| Mistral MCKP k=2 | ⏳ 等待 |\n\n**完成度**: 1/6 任务完成，第 2 个进行中\n**预估剩余**: ~35-40 分钟（当前任务 ~5 min + Yi MCKP ~10 min + Mistral 3 个任务 ~24 min，Mistral-7B 比 Yi-9B 略快）\n\n### Phi-3-medium-128k-instruct 下载 (PID 351296)\n- **运行时间**: ~80 分钟（自 00:41 开始）\n- **进度**: 6 个 safetensors 分片中 1 个完成（model-00005, 4.5GB），5 个下载中（.cache/ 目录 6.3GB incomplete 文件）\n- **已下载**: ~10.8GB / ~27.5GB ≈ **39%**\n- **速率**: ~2.3 MB/s（HuggingFace 直连，未走 ModelScope）\n- **预估剩余**: ~2 小时\n\n### 磁盘空间\n- `/root/autodl-tmp/`: 48GB 可用 / 250GB 总量 (81% 已用)\n- Phi-3 下载完成后还需 ~17GB，剩余空间充足\n\n### 其他进程\n- PID 353520: `run_llama_downstream_eval.py` 也在 cuda:0 上运行（18024MiB）\n- PID 357568: CodeLlama-7b-hf 通过 ModelScope 下载中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

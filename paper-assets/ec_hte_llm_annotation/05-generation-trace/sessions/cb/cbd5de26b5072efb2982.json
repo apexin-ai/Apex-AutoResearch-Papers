@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cbd5de26b5072efb2982",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code mvp simulation v2",
+  "task_key": "worker_code_mvp_simulation_v2_20260520T183830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_simulation_v2_20260520T183830_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "3e9bb8c04c3dec3ea6310af536204923403fc62be2730a4e62ab7b041b13c7d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Key results from the N_MC=100 run:\n\n**Extreme regime** (misclass 0.25 vs 0.05, τ gap = 0.4):\n- **Naive** has large bias: +0.053 (z0), -0.063 (z1), coverage drops to 79%/70%\n- **Global-corrected** substantially corrects: bias near 0, coverage ~88-94%\n- **EC-HTE** also corrects well, with coverage improving as n_expert grows (82%→93%)\n- **Oracle** baseline: ~94% coverage\n\n**v1 bug is fixed**: Global and Naive are now clearly different (v1 had Global ≈ Naive with <0.001 difference).\n\n**Moderate/Homogeneous**: Corrections work but the naive bias is smaller to begin with, so the gap is narrower. In homogeneous regime, all methods perform similarly — as expected when misclassification is uniform.\n\nResults saved to `results/mvp_results_v2.csv` (summary) and `results/mvp_results_v2_raw.csv` (per-run)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

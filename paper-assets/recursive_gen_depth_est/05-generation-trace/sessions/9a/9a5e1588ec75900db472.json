@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5e1588ec75900db472",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "experiment plan 007 cross strategy loo zscore",
+  "task_key": "worker_experiment_plan_007_cross_strategy_loo_zscore_20260515T050637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_plan_007_cross_strategy_loo_zscore_20260515T050637_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "cd26bff06b9bf17a9e51662513aa5e5c1396ac166220b98fda096e92c7c0f5a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Negative result**: Z-score 对 RF 无效（Δd1v2 ≤ +0.018，噪声级别）。\n\n| Model | Holdout temp09 raw d1v2 | Z d1v2 | Δ |\n|-------|------------------------|--------|---|\n| Pythia | 0.576 | 0.594 | +0.018 |\n| GPT-2 XL | 0.129 | 0.135 | +0.006 |\n| OLMo | 0.253 | 0.250 | -0.003 |\n\n**原因**：RF 是树模型，决策树分裂基于阈值比较，对特征的线性缩放/平移不变。z-score 不改变样本在每个特征上的排序，因此不改变任何分裂点。之前独立验证中 z-score 恢复 AUC（0.13→0.68）是用 LR 做的——LR 的线性决策边界对 scale 敏感，z-score 能修正 covariate shift。\n\n**结论**：covariate shift 假说正确，但修复方案依赖分类器类型。RF 不需要（也无法受益于）z-score；LR 需要。Raw 结果与 cross_strategy_loo_001 完全一致，已注册 `cross_strategy_loo_zscore_001`（conclusion=negative）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

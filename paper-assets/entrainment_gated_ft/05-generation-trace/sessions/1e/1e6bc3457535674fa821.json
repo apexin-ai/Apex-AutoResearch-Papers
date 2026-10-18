@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1e6bc3457535674fa821",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix xstorycloze taxonomy fig2",
+  "task_key": "worker_fix_xstorycloze-taxonomy-fig2_20260519T183036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_xstorycloze-taxonomy-fig2_20260519T183036_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "de035ee2696144384616dccb43e4ae8350961c44e3266321c8a2152a2a4b8bbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- **xstorycloze_en** — 灰色空心圆（mixed），不再是蓝色\n- **LAMBADA** — 唯一的蓝色实心点（retrieval）\n- **BoolQ** — 绿色（comprehension）\n\n所有修改已完成：convergence_table.csv、gen_fig2.py 已更新，fig2 PDF/PNG 已重新生成并复制到 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

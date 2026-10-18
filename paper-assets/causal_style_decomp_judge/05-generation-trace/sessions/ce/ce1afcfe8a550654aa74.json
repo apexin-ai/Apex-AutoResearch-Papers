@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ce1afcfe8a550654aa74",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra pull annotation",
+  "task_key": "worker_infra_pull-annotation_20260522T231527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_pull-annotation_20260522T231527_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "e2d845eb13119473f04ae482e06b3937642321090c3b00501824559fc3d1d4e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个文件已拉取到本地：\n\n| 文件 | 大小 |\n|------|------|\n| `annotation_batch2_template.csv` | 144KB, **1266 行** |\n| `annotation_batch2_samples.csv` | 143KB |\n| `annotation_batch2_samples.json` | 159KB |\n\n路径：`artifacts/r14_fixes/annotation_batch2_*`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

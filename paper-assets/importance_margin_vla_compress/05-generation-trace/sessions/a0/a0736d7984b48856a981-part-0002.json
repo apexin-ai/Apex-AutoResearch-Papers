@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a0736d7984b48856a981",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-17T10:10:49.203Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H1pbttSMntfRtzBYSwUaEs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "9432fa26-2cde-4e8d-8f3c-79fd998a0672",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4gLqdD9myi8nUe2XJAcgA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-27271",
+                "command": "cd /root/autodl-tmp/importance_margin_vla_compress && /root/miniconda3/bin/python -c \"\nimport json, csv, os\n\neval_dir = 'eval_results'\nout_dir = 'artifacts'\nos.makedirs(out_dir, exist_ok=True)\n\nsim_files = {\n    'full_ft_seed42_object': ('full_ft_100k_libero_object_formal.json', 1.0, 'none', 'none', 42, 'baseline', ''),\n    'full_ft_seed0_object': ('full_ft_seed0_100k_libero_object.json', 1.0, 'none', 'none', 0, 'baseline', ''),\n    'full_ft_seed42_spatial': ('full_ft_100k_seed42_libero_spatial_formal.json', 1.0, 'none', 'none', 42, 'baseline', 'seed=42 model fails on spatial suite entirely'),\n    'full_ft_seed0_spatial': ('full_ft_seed0_100k_libero_spatial.json', 1.0, 'none', 'none', 0, 'baseline', ''),\n    'full_ft_seed0_goal': ('full_ft_seed0_100k_libero_goal.json', 1.0, 'none', 'none', 0, 'baseline', ''),\n    'stage1only_acis_k05_zeromask': ('eval_stage1only_object_v2_fixed.json', 0.5, 'ACIS', 'zero_mask', 42, 'stage1_only_pruning', ''),\n    'stage1only_random_k05_zeromask': ('eval_random_prune_k05_object.json', 0.5, 'random', 'zero_mask', 42, 'stage1_only_pruning', ''),\n    'stage1only_acis_k09_zeromask': ('eval_stage1only_k09_object.json', 0.9, 'ACIS', 'zero_mask', 42, 'stage1_only_pruning', 'Even keeping 90pct tokens fails without stage2 FT'),\n    'stage1only_acis_k05_true_removal': ('eval_true_removal_k05_object.json', 0.5, 'ACIS', 'true_removal', 42, 'stage1_only_pruning', ''),\n    'imm_twostage_k05_acis_prune': ('imm_fullft_100k_libero_object.json', 0.5, 'ACIS', 'zero_mask', 42, 'imm_pruning', ''),\n    'imm_twostage_k05_bypass': ('imm_100k_bypass_object.json', 1.0, 'none', 'none', 42, 'imm_pruning', 'IMM-trained model without pruning at inference fails'),\n    'imm_v2_twostage_k05_acis_prune': ('imm_v2_fullft_libero_object.json', 0.5, 'ACIS', 'zero_mask', 42, 'imm_pruning', 'v2 eval with improved ACIS implementation'),\n    'imm_twostage_k07_acis_prune': ('eval_imm_k07_object_acis_prune.json', 0.7, 'ACIS', 'zero_mask', 42, 'imm_pruning', ''),\n    'imm_twostage_k07_bypass': ('imm_k07_bypass_object.json', 1.0, 'none', 'none', 42, 'imm_pruning', 'IMM k=0.7 model without pruning at inference'),\n    'imm_k07_merge': ('libero_libero_object.json', 0.7, 'ACIS', 'merge', 42, 'merge_pruning', 'Preliminary eval 2ep/task merge_alpha=1.0'),\n    'full_ft_50k_spatial': ('libero_libero_spatial.json', 1.0, 'none', 'none', 42, 'baseline', '50k ckpt 10ep/task'),\n    'full_ft_50k_goal': ('libero_libero_goal.json', 1.0, 'none', 'none', 42, 'baseline', '50k ckpt 10ep/task'),\n}\n\nrows = []\nfor exp_id, (fname, k_ratio, ptype, pmethod, seed, category, notes) in sim_files.items():\n    fpath = os.path.join(eval_dir, fname)\n    if not os.path.exists(fpath):\n        print(f'SKIP: {fpath}')\n        continue\n    with open(fpath) as f:\n        d = json.load(f)\n    per_task = {str(k): v['success_rate'] for k, v in d.get('per_task', {}).items()}\n    rows.append({\n        'exp_id': exp_id,\n        'k_ratio': k_ratio,\n        'pruning_type': ptype,\n        'pruning_method': pmethod,\n        'suite': d.get('suite', ''),\n        'total_episodes': d.get('total_episodes', 0),\n        'successful_episodes': d.get('total_successes', 0),\n        'success_rate': d.get('overall_success_rate', 0),\n        'training_seed': seed,\n        'checkpoint': d.get('checkpoint', ''),\n        'category': category,\n        'per_task_sr': json.dumps(per_task),\n        'date': '2026-05-17',\n        'notes': notes,\n    })\n\ncsv_path = os.path.join(out_dir, 'experiment_summary.csv')\nfields = ['exp_id','k_ratio','pruning_type','pruning_method','suite','total_episodes','successful_episodes','success_rate','training_seed','checkpoint','category','per_task_sr','date','notes']\nwith open(csv_path, 'w', newline='') as f:\n    w = csv.DictWriter(f, fieldnames=fields)\n    w.writeheader()\n    w.writerows(rows)\nprint(f'CSV: {len(rows)} rows')\n\nmargin_files = {\n    'baseline_v5_no_imm': 'eval_baseline_v5_final.json',\n    'imm_v7': 'eval_imm_v7_final.json',\n    'imm_v8_1': 'eval_imm_v8_1_acis_prune.json',\n    'imm_v8b_twostage': 'eval_imm_v8b_acis_prune.json',\n    'imm_v8c_annealing': 'eval_imm_v8c_acis_prune.json',\n}\nmargin_results = []\nfor eid, fname in margin_files.items():\n    fpath = os.path.join(eval_dir, fname)\n    with open(fpath) as f:\n        d = json.load(f)\n    meta = d.get('_meta', {})\n    eps0 = d.get('eps0.0_pruneFalse', d.get('eps0.0_pruneTrue', {}))\n    eps001 = d.get('eps0.01_pruneFalse', d.get('eps0.01_pruneTrue', {}))\n    eps005 = d.get('eps0.05_pruneFalse', d.get('eps0.05_pruneTrue', {}))\n    margin_results.append({\n        'exp_id': eid,\n        'source_file': fname,\n        'checkpoint': meta.get('checkpoint',''),\n        'config': meta.get('config',''),\n        'imm_enabled': meta.get('imm_enabled', False),\n        'margin_mean': round(eps0.get('margin_mean',0), 4),\n        'margin_median': round(eps0.get('margin_median',0), 4),\n        'preservation_rate_eps0': eps0.get('preservation_rate', 0),\n        'preservation_rate_eps001': round(eps001.get('preservation_rate',0), 3),\n        'preservation_rate_eps005': round(eps005.get('preservation_rate',0), 3),\n        'kendall_tau_eps001': round(eps001.get('kendall_tau',0), 3),\n        'kendall_tau_eps005': round(eps005.get('kendall_tau',0), 3),\n        'lipschitz_empirical': round(meta.get('lipschitz_empirical',0), 3),\n    })\n\nwith open(os.path.join(eval_dir, 'pruning_sweep_v2.json')) as f:\n    sweep = json.load(f)\n\nsummary = {\n    'metadata': {'project': 'importance_margin_vla_compress', 'generated': '2026-05-17'},\n    'sim_rollout_results': rows,\n    'acis_margin_quality': margin_results,\n    'pruning_sweep': {\n        'source_file': 'pruning_sweep_v2.json',\n        'checkpoint': sweep['meta']['checkpoint'],\n        'sweet_spot_ratio': sweep['sweet_spot_ratio'],\n        'results': [{'k_ratio': k, 'g3': round(sweep['per_ratio_details'][str(k)]['g3'],3), 'loss_pruned': round(sweep['per_ratio_details'][str(k)]['loss_pruned'],5), 'margin_mean': round(sweep['per_ratio_details'][str(k)]['margin_mean'],3)} for k in sweep['k_ratios']]\n    }\n}\n\njson_path = os.path.join(out_dir, 'experiment_summary.json')\nwith open(json_path, 'w') as f:\n    json.dump(summary, f, indent=2)\nprint('JSON written')\nprint('Done')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "4c95a427-1def-4b0b-94f1-d49212b564eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019QpA8pqTEWLhM1kfZzADpu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 327,
+                "cache_read_input_tokens": 113118,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 327
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-17T10:11:29.785Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4gLqdD9myi8nUe2XJAcgA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CSV: 17 rows\\\\nJSON written\\\\nDone\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "f5dcb51a-08c4-4e4e-a091-2138ac5583e2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CSV: 17 rows\\\\nJSON written\\\\nDone\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"CSV: 17 rows\\nJSON written\\nDone\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证 westd 上的文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "97f4b4a0-0209-42c4-be8f-fc0107841876",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011CpH6KgttfEcsk2DGha5DG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2745,
+                "cache_read_input_tokens": 113445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2745
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QJtTYBgJddsAkGWo15279Q",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/artifacts/experiment_summary.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "798cafbb-cdbb-4e73-8fde-fdbe9e0f14d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011CpH6KgttfEcsk2DGha5DG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2745,
+                "cache_read_input_tokens": 113445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2745
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U8twMKG5azbouFYuLtSU1r",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "head -5 /root/autodl-tmp/importance_margin_vla_compress/artifacts/experiment_summary.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "9e26dbab-47ae-4ecf-a1fc-93f9d17650f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011CpH6KgttfEcsk2DGha5DG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2745,
+                "cache_read_input_tokens": 113445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2745
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-17T10:11:38.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QJtTYBgJddsAkGWo15279Q",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18 /root/autodl-tmp/importance_margin_vla_compress/artifacts/experiment_summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "da38d031-3908-4269-9f21-8a7665d8ac9d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18 /root/autodl-tmp/importance_margin_vla_compress/artifacts/experiment_summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"18 /root/autodl-tmp/importance_margin_vla_compress/artifacts/experiment_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-17T10:11:39.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U8twMKG5azbouFYuLtSU1r",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_id,k_ratio,pruning_type,pruning_method,suite,total_episodes,successful_episodes,success_rate,training_seed,checkpoint,category,per_task_sr,date,notes\\\\r\\\\nfull_ft_seed42_object,1.0,none,none,libero_object,500,224,0.448,42,checkpoints/libero_full_ft_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.02, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.46, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.62, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.74, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.6, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.32, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.36, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.48, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.34, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.54}\\\\\\\",2026-05-17,\\\\r\\\\nfull_ft_seed0_object,1.0,none,none,libero_object,500,255,0.51,0,checkpoints/libero_full_ft_seed0_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.04, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.74, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.56, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.68, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.54, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.32, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.68, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.14, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.8, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.6}\\\\\\\",2026-05-17,\\\\r\\\\nfull_ft_seed42_spatial,1.0,none,none,libero_spatial,500,0,0.0,42,checkpoints/libero_full_ft_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.0}\\\\\\\",2026-05-17,seed=42 model fails on spatial suite entirely\\\\r\\\\nfull_ft_seed0_spatial,1.0,none,none,libero_spatial,500,259,0.518,0,checkpoints/libero_full_ft_seed0_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.6, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.42, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.22, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.8, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.34, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.44, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.66, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.5, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.74, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.46}\\\\\\\",2026-05-17,\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "0a5bd59c-2f1a-46ba-a004-dd65935fc00c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_id,k_ratio,pruning_type,pruning_method,suite,total_episodes,successful_episodes,success_rate,training_seed,checkpoint,category,per_task_sr,date,notes\\\\r\\\\nfull_ft_seed42_object,1.0,none,none,libero_object,500,224,0.448,42,checkpoints/libero_full_ft_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.02, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.46, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.62, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.74, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.6, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.32, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.36, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.48, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.34, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.54}\\\\\\\",2026-05-17,\\\\r\\\\nfull_ft_seed0_object,1.0,none,none,libero_object,500,255,0.51,0,checkpoints/libero_full_ft_seed0_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.04, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.74, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.56, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.68, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.54, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.32, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.68, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.14, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.8, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.6}\\\\\\\",2026-05-17,\\\\r\\\\nfull_ft_seed42_spatial,1.0,none,none,libero_spatial,500,0,0.0,42,checkpoints/libero_full_ft_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.0, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.0}\\\\\\\",2026-05-17,seed=42 model fails on spatial suite entirely\\\\r\\\\nfull_ft_seed0_spatial,1.0,none,none,libero_spatial,500,259,0.518,0,checkpoints/libero_full_ft_seed0_100k/checkpoint.pt,baseline,\\\\\\\"{\\\\\\\"\\\\\\\"0\\\\\\\"\\\\\\\": 0.6, \\\\\\\"\\\\\\\"1\\\\\\\"\\\\\\\": 0.42, \\\\\\\"\\\\\\\"2\\\\\\\"\\\\\\\": 0.22, \\\\\\\"\\\\\\\"3\\\\\\\"\\\\\\\": 0.8, \\\\\\\"\\\\\\\"4\\\\\\\"\\\\\\\": 0.34, \\\\\\\"\\\\\\\"5\\\\\\\"\\\\\\\": 0.44, \\\\\\\"\\\\\\\"6\\\\\\\"\\\\\\\": 0.66, \\\\\\\"\\\\\\\"7\\\\\\\"\\\\\\\": 0.5, \\\\\\\"\\\\\\\"8\\\\\\\"\\\\\\\": 0.74, \\\\\\\"\\\\\\\"9\\\\\\\"\\\\\\\": 0.46}\\\\\\\",2026-05-17,\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"exp_id,k_ratio,pruning_type,pruning_method,suite,total_episodes,successful_episodes,success_rate,training_seed,checkpoint,category,per_task_sr,date,notes\\r\\nfull_ft_seed42_object,1.0,none,none,libero_object,500,224,0.448,42,checkpoints/libero_full_ft_100k/checkpoint.pt,baseline,\\\"{\\\"\\\"0\\\"\\\": 0.02, \\\"\\\"1\\\"\\\": 0.46, \\\"\\\"2\\\"\\\": 0.62, \\\"\\\"3\\\"\\\": 0.74, \\\"\\\"4\\\"\\\": 0.6, \\\"\\\"5\\\"\\\": 0.32, \\\"\\\"6\\\"\\\": 0.36, \\\"\\\"7\\\"\\\": 0.48, \\\"\\\"8\\\"\\\": 0.34, \\\"\\\"9\\\"\\\": 0.54}\\\",2026-05-17,\\r\\nfull_ft_seed0_object,1.0,none,none,libero_object,500,255,0.51,0,checkpoints/libero_full_ft_seed0_100k/checkpoint.pt,baseline,\\\"{\\\"\\\"0\\\"\\\": 0.04, \\\"\\\"1\\\"\\\": 0.74, \\\"\\\"2\\\"\\\": 0.56, \\\"\\\"3\\\"\\\": 0.68, \\\"\\\"4\\\"\\\": 0.54, \\\"\\\"5\\\"\\\": 0.32, \\\"\\\"6\\\"\\\": 0.68, \\\"\\\"7\\\"\\\": 0.14, \\\"\\\"8\\\"\\\": 0.8, \\\"\\\"9\\\"\\\": 0.6}\\\",2026-05-17,\\r\\nfull_ft_seed42_spatial,1.0,none,none,libero_spatial,500,0,0.0,42,checkpoints/libero_full_ft_100k/checkpoint.pt,baseline,\\\"{\\\"\\\"0\\\"\\\": 0.0, \\\"\\\"1\\\"\\\": 0.0, \\\"\\\"2\\\"\\\": 0.0, \\\"\\\"3\\\"\\\": 0.0, \\\"\\\"4\\\"\\\": 0.0, \\\"\\\"5\\\"\\\": 0.0, \\\"\\\"6\\\"\\\": 0.0, \\\"\\\"7\\\"\\\": 0.0, \\\"\\\"8\\\"\\\": 0.0, \\\"\\\"9\\\"\\\": 0.0}\\\",2026-05-17,seed=42 model fails on spatial suite entirely\\r\\nfull_ft_seed0_spatial,1.0,none,none,libero_spatial,500,259,0.518,0,checkpoints/libero_full_ft_seed0_100k/checkpoint.pt,baseline,\\\"{\\\"\\\"0\\\"\\\": 0.6, \\\"\\\"1\\\"\\\": 0.42, \\\"\\\"2\\\"\\\": 0.22, \\\"\\\"3\\\"\\\": 0.8, \\\"\\\"4\\\"\\\": 0.34, \\\"\\\"5\\\"\\\": 0.44, \\\"\\\"6\\\"\\\": 0.66, \\\"\\\"7\\\"\\\": 0.5, \\\"\\\"8\\\"\\\": 0.74, \\\"\\\"9\\\"\\\": 0.46}\\\",2026-05-17,\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成完毕。汇总如下：\n\n**输出文件** (本地 `artifacts/` + westd-27271 `artifacts/`):\n- `experiment_summary.csv` - 17 行实验数据 + header\n- `experiment_summary.json` - 含 3 个模块：sim_rollout_results, acis_margin_quality, pruning_sweep\n\n**收录的实验 (17 条 sim rollout)**:\n\n| 类别 | 数量 | 关键结果 |\n|------|------|---------|\n| Baseline (full FT) | 7 | seed0: object 51%, spatial 51.8%, goal 51.6%; seed42: object 44.8%, spatial 0% |\n| Stage1-only pruning | 4 | 全部 0% (ACIS/random, k=0.5/0.9, zero_mask/true_removal) |\n| IMM two-stage pruning | 5 | k=0.5 ACIS: 10.4%/15.4%; k=0.7 ACIS: 4.8%; bypass: 0% |\n| Merge pruning | 1 | 0% (仅 20 episodes 初步测试) |\n\n**ACIS margin quality metrics (5 个训练版本)**:\n- baseline(无 IMM): margin_mean=0.015, preservation@eps0.01=33.5%\n- v8c_annealing(最优): margin_mean=1.688, preservation@eps0.01=97.5%\n\n**Pruning sweep** (v8b, 7 个 k_ratio): sweet spot at k=0.6"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "uuid": "24e3fe7b-5121-4051-b413-363a0cd97b62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FaHdpwkV6byak1G37qrUWx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1465,
+                "cache_read_input_tokens": 116190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成完毕。汇总如下：\n\n**输出文件** (本地 `artifacts/` + westd-27271 `artifacts/`):\n- `experiment_summary.csv` - 17 行实验数据 + header\n- `experiment_summary.json` - 含 3 个模块：sim_rollout_results, acis_margin_quality, pruning_sweep\n\n**收录的实验 (17 条 sim rollout)**:\n\n| 类别 | 数量 | 关键结果 |\n|------|------|---------|\n| Baseline (full FT) | 7 | seed0: object 51%, spatial 51.8%, goal 51.6%; seed42: object 44.8%, spatial 0% |\n| Stage1-only pruning | 4 | 全部 0% (ACIS/random, k=0.5/0.9, zero_mask/true_removal) |\n| IMM two-stage pruning | 5 | k=0.5 ACIS: 10.4%/15.4%; k=0.7 ACIS: 4.8%; bypass: 0% |\n| Merge pruning | 1 | 0% (仅 20 episodes 初步测试) |\n\n**ACIS margin quality metrics (5 个训练版本)**:\n- baseline(无 IMM): margin_mean=0.015, preservation@eps0.01=33.5%\n- v8c_annealing(最优): margin_mean=1.688, preservation@eps0.01=97.5%\n\n**Pruning sweep** (v8b, 7 个 k_ratio): sweet spot at k=0.6"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 414842,
+            "duration_api_ms": 394998,
+            "num_turns": 45,
+            "stop_reason": "end_turn",
+            "session_id": "c81bf2ca-21eb-43e5-94ca-32dea5d49109",
+            "total_cost_usd": 2.0705060000000004,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 105814,
+              "cache_read_input_tokens": 1539367,
+              "output_tokens": 25519,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 105814,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 430,
+                  "cache_read_input_tokens": 116190,
+                  "cache_creation_input_tokens": 1465,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1465
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1300,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00139,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 24,
+                "outputTokens": 25519,
+                "cacheReadInputTokens": 1539367,
+                "cacheCreationInputTokens": 105814,
+                "webSearchRequests": 0,
+                "costUSD": 2.069116,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5dc41863-45ff-498b-8602-029a50746f72"
+          },
+          "id": "event-000116"
+        }
+      ]
+    }
+  ]
+}

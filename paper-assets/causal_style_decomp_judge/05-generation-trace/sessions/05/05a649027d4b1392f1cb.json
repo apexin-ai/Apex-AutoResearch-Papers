@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "05a649027d4b1392f1cb",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code register content verification",
+  "task_key": "worker_code_register_content_verification_20260521T011307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_register_content_verification_20260521T011307_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "1fc35b15d4b757062574810a8ea9bb90959c9420b179b385cea4d57370e578cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Register n=100 content verification 完成。结果：\n\n| 指标 | Original vs CF | Original vs DR |\n|------|---------------|----------------|\n| BERTScore mean | 0.8589 | 0.8477 |\n| NLI mean | 0.9410 | 0.8208 |\n| Pass rate | **94/100 (94.0%)** | 81/100 (81.0%) |\n\n- NLI-only gating 生效（register axis 不检查 BERTScore）\n- CF pass rate 94% 与 pilot 的 95% (19/20) 一致\n- 输出文件: `westb-29275:/root/causal_style_decomp_judge/data/verified_register.jsonl` (100条, 312K)\n- Artifact 已注册: `art_20260521_227674`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

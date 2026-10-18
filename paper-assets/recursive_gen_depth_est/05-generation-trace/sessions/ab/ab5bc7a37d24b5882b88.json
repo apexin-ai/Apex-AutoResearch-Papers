@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ab5bc7a37d24b5882b88",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh dcol v4 lora clean restart",
+  "task_key": "worker_ssh_dcol_v4_lora_clean_restart_20260515T022544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dcol_v4_lora_clean_restart_20260515T022544_result.json",
+    "occurrence": 1,
+    "bytes": 1552,
+    "sha256": "40300b6ed718ea85df323707969eab981ff5f7677c3c0eadeecd72f22fcc96f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行。汇报：\n\n---\n\n## 执行结果\n\n### 1. cuda:1 清理\n- 初始清理确认：0MiB，无进程 ✅\n- 训练启动后另一个 worker 的 `extract_features.py` (PID 278173) 也在 cuda:1，占 9GB。97GB 显卡不受影响\n\n### 2. LoRA 模块名\n- `query_proj`, `key_proj`, `value_proj`（DeBERTa-v3-large 24层 × 3 = 72 个 LoRA adapter）\n\n### 3. Trainable params\n- **LoRA**: 2,359,296 (0.54% of backbone 436M)\n- **总 trainable**: 2,676,979 (含 head + classifier + margins)\n\n### 4. 显存\n- dry-run 峰值: **3.83 GB**\n- 实际运行: **4,694 MiB ≈ 4.6 GB** （远低于 15GB 限制）\n\n### 5. PID\n- **277577**，tmux session: `dcol_deberta_004`\n\n### 6. 前 100 steps loss\n\n| Step | Loss | CE | CL | Acc | LR |\n|------|------|-----|-----|------|-----|\n| 20 | 1.9045 | 1.3881 | 0.5164 | 25.6% | 3.05e-06 |\n| 40 | 1.9047 | 1.3884 | 0.5163 | 25.6% | 6.10e-06 |\n| 60 | 1.9041 | 1.3876 | 0.5165 | 25.7% | 9.15e-06 |\n| 80 | 1.9033 | 1.3871 | 0.5162 | 26.2% | 1.22e-05 |\n| 100 | 1.9026 | 1.3867 | 0.5159 | 26.5% | 1.52e-05 |\n\nLoss 缓慢下降，无 NaN。当前仍在 warmup 阶段（5% ≈ 197 steps），lr 到达 3e-4 后下降应加速。\n\n### 偏离指定参数的改动\n1. **`lora_alpha`: 32 → 16** — alpha=32 (scaling=2.0) 导致 DeBERTa disentangled attention 在 ~5 步后产生 NaN。alpha=16 (scaling=1.0) 稳定\n2. **移除 autocast** — DeBERTa-v2 的 `masked_fill(torch.finfo().min)` 与 bf16/fp16 不兼容（overflow），改用 float32。显存仍仅 4.6GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

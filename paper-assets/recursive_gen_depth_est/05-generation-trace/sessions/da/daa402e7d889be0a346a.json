@@ -1,0 +1,530 @@
+{
+  "schema_version": "1.0",
+  "id": "daa402e7d889be0a346a",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "code feature extraction v2",
+  "task_key": "worker_code_feature-extraction-v2_20260514T114749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_feature-extraction-v2_20260514T114749.jsonl",
+    "occurrence": 1,
+    "bytes": 35825,
+    "sha256": "948cac629ebb6991e078698324f4bac20297b74d5aca03bf4de7d4cbe780ec00"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T11:50:46.213580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T11:50:46.214429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T11:50:46.214774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T11:50:46.215029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/ 2>/dev/null; ls /root/autodl-tmp/recursive_gen_depth_est/data/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T11:50:46.215248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T11:50:46.215444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T11:50:46.215644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T11:50:46.215832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T11:50:46.216212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"add_seed_id.py\\\\ngenerate_next_depth.py\\\\nlora_finetune.py\\\\nprepare_seed_data.py\\\\nrun_pipeline.sh\\\\nrun_pipeline_base.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T11:50:46.216416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T11:50:46.216645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -2 /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T11:50:46.216977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\\\\\n\\\\\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical era of anarchism. In the last decades of the 20th and into the 21st century, the anarchist movement has been resurgent once more, growing in popularity and influence within anti-capitalist, anti-war and anti-globalisation movements.\\\\\\\\n\\\\\\\\nAnarchists employ diverse approaches, which may be generally divided into revolutionary and evolutionary strategies; there is significant overlap between the two. Evolutionary methods try to simulate what an anarchist society might be like, but revolutionary tactics, which have historically taken a violent turn, aim to overthrow\n…[truncated 3609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T11:50:46.217294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py << 'SCRIPT_EOF'\nimport argparse\nimport json\nimport os\nimport numpy as np\nimport pandas as pd\nimport torch\nfrom collections import Counter\nfrom scipy.stats import skew, kurtosis, entropy\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Extract statistical features from depth-level JSONL files using a frozen reference LM.\")\n    p.add_argument(\"--data_dir\", default=\"data/\", help=\"Directory containing depth JSONL files\")\n    p.add_argument(\"--depth_files\", default=\"depth_0.jsonl,depth_1.jsonl,depth_2.jsonl,depth_3.jsonl\",\n                   help=\"Comma-separated JSONL filenames\")\n    p.add_argument(\"--model_name\", default=\"/root/autodl-tmp/models/Qwen2.5-1.5B\",\n                   help=\"Path to frozen reference model\")\n    p.add_argument(\"--output_path\", default=\"data/features.csv\", help=\"Output CSV path\")\n    p.add_argument(\"--max_samples_per_depth\", type=int, default=5000)\n    p.add_argument(\"--truncate_tokens\", type=int, default=0,\n                   help=\"Uniform truncation length in tokens (0 = auto: min of per-depth median lengths)\")\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--batch_size\", type=int, default=16)\n    return p.parse_args()\n\n\ndef load_data(data_dir, depth_files, max_samples_per_depth):\n    records = []\n    for fname in depth_files.split(\",\"):\n        fpath = os.path.join(data_dir, fname.strip())\n        if not os.path.exists(fpath):\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n        with open(fpath) as f:\n            lines = f.readlines()\n        depth_records = []\n        for line in lines:\n            obj = json.loads(line)\n            depth_records.append(obj)\n        if len(depth_records) > max_samples_per_depth:\n            rng = np.random.RandomState(42)\n            idx = rng.choice(len(depth_records), max_samples_per_depth, replace=False)\n            depth_records = [depth_records[i] for i in sorted(idx)]\n        records.extend(depth_records)\n        print(f\"Loaded {len(depth_records)} samples from {fname} (depth={depth_records[0]['depth']})\")\n    return records\n\n\ndef determine_truncation_length(records, tokenizer):\n    from collections import defaultdict\n    depth_lengths = defaultdict(list)\n    for r in records:\n        ids = tokenizer.encode(r[\"text\"], add_special_tokens=False)\n        depth_lengths[r[\"depth\"]].append(len(ids))\n    medians = {}\n    for d, lengths in sorted(depth_lengths.items()):\n        med = int(np.median(lengths))\n        medians[d] = med\n        print(f\"  Depth {d}: n={len(lengths)}, median_tokens={med}, min={min(lengths)}, max={max(lengths)}\")\n    trunc = min(medians.values())\n    print(f\"  => Uniform truncation length: {trunc} tokens\")\n    return trunc\n\n\ndef compute_lexical_features(token_ids):\n    total = len(token_ids)\n    if total == 0:\n        return 0.0, 0.0, 0.0, 0.0\n    counts = Counter(token_ids)\n    unique = len(counts)\n    ttr = unique / total\n    hapax = sum(1 for c in counts.values() if c == 1)\n    hapax_ratio = hapax / unique if unique > 0 else 0.0\n\n    bigrams = [(token_ids[i], token_ids[i+1]) for i in range(len(token_ids)-1)]\n    if bigrams:\n        bg_counts = Counter(bigrams)\n        bg_freq = np.array(list(bg_counts.values()), dtype=np.float64)\n        bg_freq /= bg_freq.sum()\n        bg_ent = entropy(bg_freq)\n    else:\n        bg_ent = 0.0\n\n    trigrams = [(token_ids[i], token_ids[i+1], token_ids[i+2]) for i in range(len(token_ids)-2)]\n    if trigrams:\n        tg_counts = Counter(trigrams)\n        tg_freq = np.array(list(tg_counts.values()), dtype=np.float64)\n        tg_freq /= tg_freq.sum()\n        tg_ent = entropy(tg_freq)\n    else:\n        tg_ent = 0.0\n\n    return ttr, hapax_ratio, bg_ent, tg_ent\n\n\ndef compute_model_features(logits, input_ids):\n    shift_logits = logits[:, :-1, :].contiguous()\n    shift_labels = input_ids[:, 1:].contiguous()\n    loss_fn = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    per_token_loss = loss_fn(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))\n    per_token_loss = per_token_loss.view(shift_logits.size(0), shift_logits.size(1))\n    return per_token_loss\n\n\ndef surprisal_entropy(surprisals, n_bins=50):\n    if len(surprisals) < 2:\n        return 0.0\n    hist, _ = np.histogram(surprisals, bins=n_bins, density=True)\n    hist = hist[hist > 0]\n    if len(hist) == 0:\n        return 0.0\n    hist = hist / hist.sum()\n    return entropy(hist)\n\n\ndef extract_features_batch(model, tokenizer, texts, trunc_len, device):\n    encoded = [tokenizer.encode(t, add_special_tokens=False)[:trunc_len] for t in texts]\n    max_len = max(len(e) for e in encoded)\n    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id\n    input_ids = []\n    attention_mask = []\n    for e in encoded:\n        pad_len = max_len - len(e)\n        input_ids.append(e + [pad_id] * pad_len)\n        attention_mask.append([1] * len(e) + [0] * pad_len)\n\n    input_ids_t = torch.tensor(input_ids, dtype=torch.long, device=device)\n    attention_mask_t = torch.tensor(attention_mask, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(input_ids=input_ids_t, attention_mask=attention_mask_t)\n    logits = outputs.logits\n    per_token_loss = compute_model_features(logits, input_ids_t)\n\n    results = []\n    for i in range(len(texts)):\n        seq_len = len(encoded[i])\n        if seq_len <= 1:\n            losses_np = np.array([0.0])\n        else:\n            losses_np = per_token_loss[i, :seq_len-1].cpu().numpy().astype(np.float64)\n\n        mean_l = float(np.mean(losses_np))\n        var_l = float(np.var(losses_np))\n        skew_l = float(skew(losses_np)) if len(losses_np) > 2 else 0.0\n        kurt_l = float(kurtosis(losses_np)) if len(losses_np) > 3 else 0.0\n        ent_s = surprisal_entropy(losses_np)\n        max_s = float(np.max(losses_np))\n        min_s = float(np.min(losses_np))\n        range_s = max_s - min_s\n\n        ttr, hapax_r, bg_ent, tg_ent = compute_lexical_features(encoded[i])\n\n        results.append({\n            \"mean_loss\": mean_l,\n            \"var_loss\": var_l,\n            \"skewness_loss\": skew_l,\n            \"kurtosis_loss\": kurt_l,\n            \"entropy_surprisal\": ent_s,\n            \"max_surprisal\": max_s,\n            \"min_surprisal\": min_s,\n            \"surprisal_range\": range_s,\n            \"ttr\": ttr,\n            \"hapax_ratio\": hapax_r,\n            \"bigram_entropy\": bg_ent,\n            \"trigram_entropy\": tg_ent,\n            \"token_count\": seq_len,\n        })\n    return results\n\n\ndef main():\n    args = parse_args()\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"Device: {device}\")\n\n    print(f\"Loading data from {args.data_dir} ...\")\n    records = load_data(args.data_dir, args.depth_files, args.max_samples_per_depth)\n    if not records:\n        print(\"No data loaded. Exiting.\")\n        return\n\n    print(f\"Loading tokenizer from {args.model_name} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\n\n    if args.truncate_tokens > 0:\n        trunc_len = args.truncate_tokens\n        print(f\"Using user-specified truncation length: {trunc_len}\")\n    else:\n        print(\"Computing auto truncation length (min of per-depth median token counts) ...\")\n        trunc_len = determine_truncation_length(records, tokenizer)\n\n    print(f\"Loading model from {args.model_name} ...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name, torch_dtype=torch.float16, trust_remote_code=True\n    ).to(device)\n    model.eval()\n\n    texts = [r[\"text\"] for r in records]\n    depths = [r[\"depth\"] for r in records]\n\n    all_features = []\n    n = len(texts)\n    bs = args.batch_size\n    for start in range(0, n, bs):\n        end = min(start + bs, n)\n        batch_texts = texts[start:end]\n        batch_feats = extract_features_batch(model, tokenizer, batch_texts, trunc_len, device)\n        all_features.extend(batch_feats)\n        if (start // bs) % max(1, 500 // bs) == 0 or end == n:\n            print(f\"  Processed {end}/{n} samples\")\n\n    rows = []\n    for i, feat in enumerate(all_features):\n        row = {\"sample_id\": i, \"depth\": depths[i]}\n        row.update(feat)\n        rows.append(row)\n\n    df = pd.DataFrame(rows)\n    col_order = [\"sample_id\", \"depth\", \"mean_loss\", \"var_loss\", \"skewness_loss\", \"kurtosis_loss\",\n                 \"entropy_surprisal\", \"max_surprisal\", \"min_surprisal\", \"surprisal_range\",\n                 \"ttr\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"token_count\"]\n    df = df[col_order]\n\n    os.makedirs(os.path.dirname(args.output_path) or \".\", exist_ok=True)\n    df.to_csv(args.output_path, index=False)\n    print(f\"Features saved to {args.output_path} ({len(df)} samples, {len(col_order)-2} features)\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"extract_features.py written\""
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T11:50:46.217719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"extract_features.py written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T11:50:46.218046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/scripts/train_classifier.py << 'SCRIPT_EOF'\nimport argparse\nimport json\nimport os\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import (accuracy_score, mean_absolute_error, roc_auc_score,\n                             confusion_matrix, classification_report, ConfusionMatrixDisplay)\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Train and evaluate depth classifiers on extracted features.\")\n    p.add_argument(\"--features_path\", default=\"data/features.csv\", help=\"Path to features CSV\")\n    p.add_argument(\"--output_dir\", default=\"results/\", help=\"Output directory for results\")\n    p.add_argument(\"--test_ratio\", type=float, default=0.1)\n    p.add_argument(\"--val_ratio\", type=float, default=0.1)\n    p.add_argument(\"--seed\", type=int, default=42)\n    return p.parse_args()\n\n\nFEATURE_COLS = [\"mean_loss\", \"var_loss\", \"skewness_loss\", \"kurtosis_loss\",\n                \"entropy_surprisal\", \"max_surprisal\", \"min_surprisal\", \"surprisal_range\",\n                \"ttr\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"token_count\"]\n\n\ndef pairwise_auc(y_true, y_prob, d1, d2):\n    mask = np.isin(y_true, [d1, d2])\n    if mask.sum() < 2:\n        return float(\"nan\")\n    yt = (y_true[mask] == d2).astype(int)\n    if len(np.unique(yt)) < 2:\n        return float(\"nan\")\n    yp = y_prob[mask, d2]\n    return roc_auc_score(yt, yp)\n\n\ndef evaluate_model(name, y_true, y_pred, y_prob, labels):\n    acc = accuracy_score(y_true, y_pred)\n    mae = mean_absolute_error(y_true, y_pred)\n    report = classification_report(y_true, y_pred, target_names=[f\"depth_{d}\" for d in labels], output_dict=True)\n\n    pair_aucs = {}\n    for i in range(len(labels) - 1):\n        d1, d2 = labels[i], labels[i+1]\n        auc_val = pairwise_auc(y_true, y_prob, d1, d2)\n        pair_aucs[f\"auc_{d1}v{d2}\"] = round(auc_val, 4) if not np.isnan(auc_val) else None\n\n    return {\n        \"accuracy\": round(acc, 4),\n        \"mae\": round(mae, 4),\n        \"pair_aucs\": pair_aucs,\n        \"classification_report\": report,\n    }\n\n\ndef run_random_baseline(y_test, labels):\n    rng = np.random.RandomState(0)\n    y_pred = rng.choice(labels, size=len(y_test))\n    n_classes = len(labels)\n    y_prob = np.full((len(y_test), max(labels)+1), 1.0 / n_classes)\n    return evaluate_model(\"Random\", y_test, y_pred, y_prob, labels)\n\n\ndef run_binary_baseline(X_train, y_train, X_test, y_test, labels, seed):\n    y_bin_train = (y_train > 0).astype(int)\n    y_bin_test = (y_test > 0).astype(int)\n    scaler = StandardScaler()\n    X_tr_s = scaler.fit_transform(X_train)\n    X_te_s = scaler.transform(X_test)\n    clf = LogisticRegression(max_iter=1000, random_state=seed)\n    clf.fit(X_tr_s, y_bin_train)\n    y_bin_pred = clf.predict(X_te_s)\n\n    rng = np.random.RandomState(seed)\n    synth_labels = [l for l in labels if l > 0]\n    y_pred = np.where(y_bin_pred == 0, 0, rng.choice(synth_labels, size=len(y_bin_pred)))\n\n    n_classes = max(labels) + 1\n    y_prob = np.full((len(y_test), n_classes), 1.0 / n_classes)\n    return evaluate_model(\"Binary+Random\", y_test, y_pred, y_prob, labels)\n\n\ndef run_logistic_regression(X_train, y_train, X_test, y_test, labels, seed):\n    scaler = StandardScaler()\n    X_tr_s = scaler.fit_transform(X_train)\n    X_te_s = scaler.transform(X_test)\n    clf = LogisticRegression(multi_class=\"multinomial\", max_iter=1000, random_state=seed)\n    clf.fit(X_tr_s, y_train)\n\n    cv_scores = cross_val_score(clf, scaler.fit_transform(np.vstack([X_train, X_test])),\n                                np.concatenate([y_train, y_test]),\n                                cv=5, scoring=\"accuracy\")\n    y_pred = clf.predict(X_te_s)\n    y_prob_raw = clf.predict_proba(X_te_s)\n    n_classes = max(labels) + 1\n    y_prob = np.zeros((len(y_test), n_classes))\n    for i, c in enumerate(clf.classes_):\n        y_prob[:, c] = y_prob_raw[:, i]\n\n    metrics = evaluate_model(\"LogisticRegression\", y_test, y_pred, y_prob, labels)\n    metrics[\"cv_5fold_accuracy\"] = round(float(np.mean(cv_scores)), 4)\n    metrics[\"cv_5fold_std\"] = round(float(np.std(cv_scores)), 4)\n    return metrics\n\n\ndef run_random_forest(X_train, y_train, X_test, y_test, labels, seed):\n    scaler = StandardScaler()\n    X_tr_s = scaler.fit_transform(X_train)\n    X_te_s = scaler.transform(X_test)\n    clf = RandomForestClassifier(n_estimators=100, random_state=seed)\n    clf.fit(X_tr_s, y_train)\n    y_pred = clf.predict(X_te_s)\n    y_prob_raw = clf.predict_proba(X_te_s)\n    n_classes = max(labels) + 1\n    y_prob = np.zeros((len(y_test), n_classes))\n    for i, c in enumerate(clf.classes_):\n        y_prob[:, c] = y_prob_raw[:, i]\n\n    metrics = evaluate_model(\"RandomForest\", y_test, y_pred, y_prob, labels)\n    metrics[\"feature_importance\"] = {\n        name: round(float(imp), 4)\n        for name, imp in sorted(zip(FEATURE_COLS, clf.feature_importances_), key=lambda x: -x[1])\n    }\n    return metrics, clf, scaler\n\n\ndef plot_confusion_matrix(y_true, y_pred, labels, title, save_path):\n    cm = confusion_matrix(y_true, y_pred, labels=labels)\n    fig, ax = plt.subplots(figsize=(6, 5))\n    disp = ConfusionMatrixDisplay(cm, display_labels=[f\"D{d}\" for d in labels])\n    disp.plot(ax=ax, cmap=\"Blues\", values_format=\"d\")\n    ax.set_title(title)\n    plt.tight_layout()\n    plt.savefig(save_path, dpi=150)\n    plt.close()\n    print(f\"Saved {save_path}\")\n\n\ndef plot_feature_importance(importances, save_path):\n    names = list(importances.keys())\n    vals = list(importances.values())\n    fig, ax = plt.subplots(figsize=(8, 5))\n    ax.barh(range(len(names)), vals, color=\"steelblue\")\n    ax.set_yticks(range(len(names)))\n    ax.set_yticklabels(names)\n    ax.set_xlabel(\"Importance\")\n    ax.set_title(\"Random Forest Feature Importance\")\n    ax.invert_yaxis()\n    plt.tight_layout()\n    plt.savefig(save_path, dpi=150)\n    plt.close()\n    print(f\"Saved {save_path}\")\n\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    df = pd.read_csv(args.features_path)\n    print(f\"Loaded {len(df)} samples from {args.features_path}\")\n    print(f\"Depth distribution:\\n{df['depth'].value_counts().sort_index().to_string()}\")\n\n    labels = sorted(df[\"depth\"].unique().tolist())\n    X = df[FEATURE_COLS].values\n    y = df[\"depth\"].values\n\n    X_train_val, X_test, y_train_val, y_test = train_test_split(\n        X, y, test_size=args.test_ratio, random_state=args.seed, stratify=y)\n    val_frac = args.val_ratio / (1 - args.test_ratio)\n    X_train, X_val, y_train, y_val = train_test_split(\n        X_train_val, y_train_val, test_size=val_frac, random_state=args.seed, stratify=y_train_val)\n    print(f\"Split: train={len(y_train)}, val={len(y_val)}, test={len(y_test)}\")\n\n    all_metrics = {}\n\n    print(\"\\n--- Baseline 1: Random ---\")\n    m_rand = run_random_baseline(y_test, labels)\n    all_metrics[\"random\"] = m_rand\n    print(f\"  Accuracy: {m_rand['accuracy']}, MAE: {m_rand['mae']}\")\n\n    print(\"\\n--- Baseline 2: Binary (human vs synthetic) + random depth ---\")\n    m_bin = run_binary_baseline(X_train, y_train, X_test, y_test, labels, args.seed)\n    all_metrics[\"binary_random\"] = m_bin\n    print(f\"  Accuracy: {m_bin['accuracy']}, MAE: {m_bin['mae']}\")\n\n    print(\"\\n--- Method A: Logistic Regression (4-class) ---\")\n    m_lr = run_logistic_regression(X_train, y_train, X_test, y_test, labels, args.seed)\n    all_metrics[\"logistic_regression\"] = m_lr\n    print(f\"  Accuracy: {m_lr['accuracy']}, MAE: {m_lr['mae']}, CV-5fold: {m_lr['cv_5fold_accuracy']}±{m_lr['cv_5fold_std']}\")\n    for k, v in m_lr[\"pair_aucs\"].items():\n        print(f\"    {k}: {v}\")\n\n    print(\"\\n--- Method B: Random Forest (4-class) ---\")\n    m_rf, rf_clf, rf_scaler = run_random_forest(X_train, y_train, X_test, y_test, labels, args.seed)\n    all_metrics[\"random_forest\"] = m_rf\n    print(f\"  Accuracy: {m_rf['accuracy']}, MAE: {m_rf['mae']}\")\n    for k, v in m_rf[\"pair_aucs\"].items():\n        print(f\"    {k}: {v}\")\n    print(\"  Feature importance (top 5):\")\n    for i, (k, v) in enumerate(m_rf[\"feature_importance\"].items()):\n        if i >= 5:\n            break\n        print(f\"    {k}: {v}\")\n\n    # Best model for plots\n    best_name = \"random_forest\" if m_rf[\"accuracy\"] >= m_lr[\"accuracy\"] else \"logistic_regression\"\n    best_metrics = all_metrics[best_name]\n    print(f\"\\nBest model: {best_name} (acc={best_metrics['accuracy']})\")\n\n    # Confusion matrix for RF\n    X_te_s = rf_scaler.transform(X_test)\n    y_pred_rf = rf_clf.predict(X_te_s)\n    plot_confusion_matrix(y_test, y_pred_rf, labels, \"Random Forest Confusion Matrix\",\n                          os.path.join(args.output_dir, \"confusion_matrix.png\"))\n\n    # Feature importance plot\n    plot_feature_importance(m_rf[\"feature_importance\"],\n                            os.path.join(args.output_dir, \"feature_importance.png\"))\n\n    # Pass/Fail\n    best_acc = max(m_lr[\"accuracy\"], m_rf[\"accuracy\"])\n    auc_1v2 = None\n    for m in [m_lr, m_rf]:\n        v = m[\"pair_aucs\"].get(\"auc_1v2\")\n        if v is not None and (auc_1v2 is None or v > auc_1v2):\n            auc_1v2 = v\n    pass_fail = \"PASS\" if (best_acc > 0.40 and auc_1v2 is not None and auc_1v2 > 0.6) else \"FAIL\"\n    all_metrics[\"pass_fail\"] = pass_fail\n    all_metrics[\"best_model\"] = best_name\n    all_metrics[\"best_accuracy\"] = best_acc\n    all_metrics[\"best_auc_1v2\"] = auc_1v2\n\n    print(f\"\\n{'='*40}\")\n    print(f\"VERDICT: {pass_fail}\")\n    print(f\"  Best 4-class accuracy: {best_acc}\")\n    print(f\"  Best depth-1 vs depth-2 AUC: {auc_1v2}\")\n    print(f\"  Criteria: acc > 0.40 AND auc_1v2 > 0.6\")\n    print(f\"{'='*40}\")\n\n    metrics_path = os.path.join(args.output_dir, \"metrics.json\")\n    with open(metrics_path, \"w\") as f:\n        json.dump(all_metrics, f, indent=2, default=str)\n    print(f\"\\nMetrics saved to {metrics_path}\")\n\n    # Print full classification reports\n    print(\"\\n--- Logistic Regression Classification Report ---\")\n    for cls, vals in m_lr[\"classification_report\"].items():\n        if isinstance(vals, dict):\n            print(f\"  {cls}: P={vals.get('precision',0):.3f} R={vals.get('recall',0):.3f} F1={vals.get('f1-score',0):.3f}\")\n\n    print(\"\\n--- Random Forest Classification Report ---\")\n    for cls, vals in m_rf[\"classification_report\"].items():\n        if isinstance(vals, dict):\n            print(f\"  {cls}: P={vals.get('precision',0):.3f} R={vals.get('recall',0):.3f} F1={vals.get('f1-score',0):.3f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"train_classifier.py written\""
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T11:50:46.218411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"train_classifier.py written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T11:50:46.218620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root",
+              "command": "cat > /root/autodl-tmp/recursive_gen_depth_est/scripts/run_evaluation.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# 评估流水线\n# 用法: bash scripts/run_evaluation.sh\n\nPROJECT_DIR=\"/root/autodl-tmp/recursive_gen_depth_est\"\ncd $PROJECT_DIR\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\n\nmkdir -p results\n\n# 特征提取\npython scripts/extract_features.py \\\n    --model_name /root/autodl-tmp/models/Qwen2.5-1.5B \\\n    --output_path data/features.csv \\\n    --gpu 0\n\n# 分类器训练 + 评估\npython scripts/train_classifier.py \\\n    --features_path data/features.csv \\\n    --output_dir results/\n\necho \"=== MVP EVALUATION COMPLETE ===\"\ncat results/metrics.json\nSCRIPT_EOF\nchmod +x /root/autodl-tmp/recursive_gen_depth_est/scripts/run_evaluation.sh\necho \"run_evaluation.sh written\""
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T11:50:46.218864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"run_evaluation.sh written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T11:50:46.219130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import ast; ast.parse(open('scripts/extract_features.py').read()); print('extract_features.py: SYNTAX OK')\" && python -c \"import ast; ast.parse(open('scripts/train_classifier.py').read()); print('train_classifier.py: SYNTAX OK')\""
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T11:50:46.219337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"extract_features.py: SYNTAX OK\\\\ntrain_classifier.py: SYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T11:50:46.219541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/extract_features.py --help"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T11:50:46.219742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/train_classifier.py --help"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T11:50:46.219990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: extract_features.py [-h] [--data_dir DATA_DIR]\\\\n                           [--depth_files DEPTH_FILES]\\\\n                           [--model_name MODEL_NAME]\\\\n                           [--output_path OUTPUT_PATH]\\\\n                           [--max_samples_per_depth MAX_SAMPLES_PER_DEPTH]\\\\n                           [--truncate_tokens TRUNCATE_TOKENS] [--gpu GPU]\\\\n                           [--batch_size BATCH_SIZE]\\\\n\\\\nExtract statistical features from depth-level JSONL files using a frozen\\\\nreference LM.\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --data_dir DATA_DIR   Directory containing depth JSONL files\\\\n  --depth_files DEPTH_FILES\\\\n                        Comma-separated JSONL filenames\\\\n  --model_name MODEL_NAME\\\\n                        Path to frozen reference model\\\\n  --output_path OUTPUT_PATH\\\\n                        Output CSV path\\\\n  --max_samples_per_depth MAX_SAMPLES_PER_DEPTH\\\\n  --truncate_tokens TRUNCATE_TOKENS\\\\n                        Uniform truncation length in tokens (0 = auto: min of\\\\n                        per-depth median lengths)\\\\n  --gpu GPU\\\\n  --batch_size BATCH_SIZE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T11:50:46.220234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: train_classifier.py [-h] [--features_path FEATURES_PATH]\\\\n                           [--output_dir OUTPUT_DIR] [--test_ratio TEST_RATIO]\\\\n                           [--val_ratio VAL_RATIO] [--seed SEED]\\\\n\\\\nTrain and evaluate depth classifiers on extracted features.\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --features_path FEATURES_PATH\\\\n                        Path to features CSV\\\\n  --output_dir OUTPUT_DIR\\\\n                        Output directory for results\\\\n  --test_ratio TEST_RATIO\\\\n  --val_ratio VAL_RATIO\\\\n  --seed SEED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T11:50:46.220499+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 产出\n\n| 脚本 | 路径 | 状态 |\n|------|------|------|\n| `extract_features.py` | `scripts/extract_features.py` | 语法 OK, argparse OK |\n| `train_classifier.py` | `scripts/train_classifier.py` | 语法 OK, argparse OK |\n| `run_evaluation.sh` | `scripts/run_evaluation.sh` | 已写入 + chmod +x |\n\n**extract_features.py** — 加载各 depth jsonl，自动计算统一截断长度（各 depth token 中位数的最小值），用 frozen Qwen2.5-1.5B 提取 13 维特征（perplexity 统计 4 维 + surprisal 分布 4 维 + 词汇多样性 4 维 + token_count），输出 CSV。\n\n**train_classifier.py** — 4 个分类器（Random baseline、Binary+Random baseline、Logistic Regression 4-class with 5-fold CV、Random Forest 4-class），输出 metrics.json + confusion_matrix.png + feature_importance.png，Pass/Fail 判定（acc>40% 且 auc_1v2>0.6）。\n\n**run_evaluation.sh** — 串联两个脚本的一键评估流水线。\n\nPipeline 跑完 depth_0~3 数据后，`bash scripts/run_evaluation.sh` 即可执行。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_feature-extraction-v2_20260514T114749"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ]
+}

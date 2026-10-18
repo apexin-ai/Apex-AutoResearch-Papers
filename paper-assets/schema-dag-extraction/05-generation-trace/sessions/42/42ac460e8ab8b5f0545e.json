@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "42ac460e8ab8b5f0545e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper figure fig sdgd comparison",
+  "task_key": "worker_paper_figure_fig_sdgd_comparison_20260515T164931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_sdgd_comparison_20260515T164931_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "0cfbd12b554f3b07c437454418752c2d58247a3bb77a42eec4819da3d94688ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册：\n\n- **PDF**: `figures/paper/fig_sdgd_comparison.pdf` (20KB)\n- **PNG**: `figures/paper/fig_sdgd_comparison.png` (99KB)\n- **Artifact ID**: `art_20260515_33b6fc`\n\n图表清晰展示了 precision-recall tradeoff：Single Pass F1 最高 (0.45)，decomposition 方法（Per-Type）能将 recall 提到 0.59 但 precision 降到 0.19。SDGD-Zero 在所有指标上都最差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

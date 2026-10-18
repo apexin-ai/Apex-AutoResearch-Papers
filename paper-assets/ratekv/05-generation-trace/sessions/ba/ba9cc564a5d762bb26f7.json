@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba9cc564a5d762bb26f7",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu llama hires monitor",
+  "task_key": "worker_gpu_llama_hires_monitor_20260514T210406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_llama_hires_monitor_20260514T210406_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "0b19ca6a65cce0f21532cab8c6961fd7b01c12cd3fdc5b08a97e811e3ca1d7c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。当前状态：\n- **进度**：85/256 heads (33%)\n- **当前层**：Layer 10\n- **运行时间**：20 分钟\n- **预计剩余**：~40 分钟\n- **进程状态**：正常运行 (Rl)\n\n~4.5 分钟后自动检查下一轮进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

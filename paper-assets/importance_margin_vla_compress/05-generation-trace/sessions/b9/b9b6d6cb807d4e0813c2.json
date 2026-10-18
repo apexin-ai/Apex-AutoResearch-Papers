@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b9b6d6cb807d4e0813c2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla attn k09 goal seed42",
+  "task_key": "worker_diagnose_eval_openvla_attn_k09_goal_seed42_20260524T230545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_attn_k09_goal_seed42_20260524T230545_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "7a626c345dddaf3eb175092fb0976f636f2e45eac1c75886dda184a4ea5684c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**实验结果：OpenVLA Attention k=0.9 Goal — 成功**\n\n| 指标 | 值 |\n|------|-----|\n| Overall SR | **73.2%** (366/500) |\n| 耗时 | 198.3 min |\n| Per-task SR | 62, 86, 80, 30, 96, 80, 70, 98, 82, 48 |\n\nCrossover 表 Goal 行 Attn 数据点：**73.2%**（对比 Spatial Attn k=0.9 = 80.4%）。\n\nRegistry 已更新为 DONE(success)，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

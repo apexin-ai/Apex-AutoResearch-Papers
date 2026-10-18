@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84c6578008a68c666cbc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "figures atlas figure fixes",
+  "task_key": "worker_figures_atlas_figure_fixes_20260515T042151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figures_atlas_figure_fixes_20260515T042151_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "e0c13c6b8e182a75df30e6d5081b49983cbd4c64afecd046167f1db68ba69506"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇报：\n\n---\n\n### 4 个 Bug 修复结果\n\n| Bug | 修复内容 | 验证 |\n|-----|---------|------|\n| **Bug 1** EDD off-by-one | `edd_val = idx + 2` → `idx + 1` | Pythia topk/OLMo topk 均显示 EDD=3（idx=2 处 d2v3 AUC < 0.75），\"7/9 configs\" 统计正确 |\n| **Bug 2** 解码策略不一致 | Pythia 无 nucleus 数据，改为标注策略：Pythia (temp=0.9)、OLMo (nucleus p=0.95)、GPT-2 XL (nucleus p=0.95) | `model_key` 保留用于颜色映射，`model` 含策略标签 |\n| **Bug 3** 硬编码 accuracy | 标题改为 5-fold CV 计算：`cv_acc = np.trace(cm) / cm.sum() * 100` | GPT-2 XL/temp: **85.8%**（原硬编码 85.4%）；Pythia/top-k: **68.8%**（原 69.6%）。与 CM 对角线一致 |\n| **Bug 4** OLMo RF 核对 | Registry 确认 cross_model_olmo_002: RF=0.788, LR=0.751 → 78.8% 是 RF | 全部 9 格值与 registry RF accuracy 匹配（Pythia temp 76.25% → 76.3% 为四舍五入差异，可接受） |\n\n8 个文件（PDF+PNG）已重新生成到 `artifacts/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

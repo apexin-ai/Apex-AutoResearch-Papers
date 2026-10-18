@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "1462a68bf651228248c7",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code exp b full bitwidth mckp",
+  "task_key": "worker_code_exp-b-full-bitwidth-mckp_20260513T232628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-b-full-bitwidth-mckp_20260513T232628.log",
+    "occurrence": 1,
+    "bytes": 561111,
+    "sha256": "329e6cc0d1e3917a94e9bc7ea66183b7833a25706d85da0a3511d7addb4b3191"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "1462a68bf651228248c7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1462a68bf651228248c7-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ]
+}

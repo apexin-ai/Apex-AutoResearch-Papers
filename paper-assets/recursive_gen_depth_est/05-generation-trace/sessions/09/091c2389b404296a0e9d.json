@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "091c2389b404296a0e9d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp learned estimator resweep westd",
+  "task_key": "worker_exp_learned_estimator_resweep_westd_20260517T180629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_learned_estimator_resweep_westd_20260517T180629_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "f6841763df8ecaae5073b3d8eec0608dfeb3788a39a2f47e26da91c8186c5eb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**learned_estimator_002 完成。** 全部 9 个 run（3 methods x 3 holdouts）成功，总耗时 ~11.6 分钟。\n\n## 结果汇总\n\n| Method | Pythia | OLMo | GPT2-XL | Mean |\n|--------|--------|------|---------|------|\n| **XGBoost** | 63.72% | **69.76%** | **68.05%** | **67.18%** |\n| **Ordinal MLP** | 62.52% | **69.69%** | **67.90%** | 66.70% |\n| **Prototypical** | 61.55% | **70.01%** | **68.35%** | 66.64% |\n\nRF baseline = 66.4%。加粗 = 超过 baseline。\n\n**关键结论：**\n- NaN 修复成功，Prototypical Network 不再崩溃\n- 3 种方法在 olmo 和 gpt2xl holdout 上均超过 baseline（成功标准达成）\n- 最佳单项：Prototypical on olmo = **70.01%**（AUC=0.9004）\n- XGBoost 平均最强（67.18%）\n- Pythia holdout 对所有方法最难（61-64%），可能因为 Pythia 的文本分布与 olmo/gpt2xl 差异较大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

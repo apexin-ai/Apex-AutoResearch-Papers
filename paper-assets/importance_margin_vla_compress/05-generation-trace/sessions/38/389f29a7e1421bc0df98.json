@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "389f29a7e1421bc0df98",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code xvla libero eval 41074",
+  "task_key": "worker_code_xvla-libero-eval-41074_20260520T074020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_xvla-libero-eval-41074_20260520T074020.log",
+    "occurrence": 1,
+    "bytes": 2037284,
+    "sha256": "da665c208128804b84500b431b075907293f6d32c3a01796234db441e1456bbd"
+  },
+  "statistics": {
+    "messages": 820,
+    "user_turns": 2,
+    "tool_calls": 315,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 178,
+      "tool_call": 315,
+      "tool_result": 315,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 259,
+      "chunks": [
+        {
+          "path": "389f29a7e1421bc0df98-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "389f29a7e1421bc0df98-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 450,
+      "chunks": [
+        {
+          "path": "389f29a7e1421bc0df98-part-0002.json",
+          "message_count": 67
+        },
+        {
+          "path": "389f29a7e1421bc0df98-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "389f29a7e1421bc0df98-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "389f29a7e1421bc0df98-part-0005.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "389f29a7e1421bc0df98-part-0005.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ]
+}

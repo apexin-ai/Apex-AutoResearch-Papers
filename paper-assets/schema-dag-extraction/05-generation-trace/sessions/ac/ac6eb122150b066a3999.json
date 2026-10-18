@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac6eb122150b066a3999",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "fetch paired constrained perbatch",
+  "task_key": "worker_fetch_paired_constrained_perbatch_20260520T041146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fetch_paired_constrained_perbatch_20260520T041146_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "a3a76f68358e2bee92161d5b674ac8642e3b51578d2ca44dc5d8a5d4451c943c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/exp_paired_constrained/data/per_batch_results.json`。\n\n关键发现：\n- 25 个 batch 中，23 个 constrained 和 unconstrained accuracy 完全相同\n- 仅 high_5 和 high_11 各差 1 个样本（1/96 ≈ 1.04pp）\n- 整体 acc 差异仅 -0.08pp（constrained 0.7950 vs unconstrained 0.7958）\n- Pearson r 几乎一致：constrained -0.4479 vs unconstrained -0.4393（均 p<0.03）\n- Spearman rho 也一致：constrained -0.1566 vs unconstrained -0.1442（均不显著）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

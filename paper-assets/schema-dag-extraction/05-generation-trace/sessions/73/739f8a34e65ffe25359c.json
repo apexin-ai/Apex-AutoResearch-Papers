@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "739f8a34e65ffe25359c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code fix fewshot bcs v2",
+  "task_key": "worker_code_fix_fewshot_bcs_v2_20260517T133511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_fewshot_bcs_v2_20260517T133511_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "9b5ff97f4add81ea024c1bcc97c3918dc5e30164cc0f2ce87df477912dd41019"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交。\n\n**exp_fewshot_bcs_v2** 在 cqa1-38874 cuda:0 上运行，PID 480497。\n\n配置：\n- 50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) from `exp_v2_re_n25/batch_groups.json`\n- BCS 对比度 ~0.44（vs 旧实验的 0.04）\n- 0/1/5-shot × count=8，总推理 14400 次\n- timeout 8h\n- 日志: `~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

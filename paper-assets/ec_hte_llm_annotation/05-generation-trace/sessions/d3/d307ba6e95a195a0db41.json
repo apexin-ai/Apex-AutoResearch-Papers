@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "d307ba6e95a195a0db41",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code mvp simulation",
+  "task_key": "worker_code_mvp_simulation_20260520T175313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_simulation_20260520T175313.log",
+    "occurrence": 1,
+    "bytes": 652817,
+    "sha256": "f73787229d822036f455e05fb4e86f79596fc5ad792cac79cfdebf005aba14ed"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "d307ba6e95a195a0db41-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d307ba6e95a195a0db41-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0682b185b5fbc3fbfad6",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 hgrn eval submit",
+  "task_key": "worker_exp_exp-005-hgrn-eval-submit_20260522T162135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-hgrn-eval-submit_20260522T162135_result.json",
+    "occurrence": 1,
+    "bytes": 236,
+    "sha256": "f05cb1da1767f5d17c83e127bcf400b561138bc6fd65eb40c235d8743fdf6559"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **HGRN 下载**：1.33GB / ~1.33GB（95%+），aria2c PID 901886 正在完成剩余部分\n- **GPU**：仍被 PID 901104 占用（pure baseline 评估中，2028 MiB）\n- **下次检查**：3 分钟后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

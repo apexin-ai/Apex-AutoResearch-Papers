@@ -1,0 +1,2515 @@
+{
+  "schema_version": "1.0",
+  "id": "5b99861c714426aa7914",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "ops r6 data audit",
+  "task_key": "worker_ops_r6-data-audit_20260525T064840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_r6-data-audit_20260525T064840.jsonl",
+    "occurrence": 1,
+    "bytes": 132441,
+    "sha256": "c0bedfacbe639ae9e6cc0e43cc2cc98f2aed7f2c0c08a60f7d77f801d67d1d4d"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 0,
+    "tool_calls": 62,
+    "roles": {
+      "tool_call": 62,
+      "tool_result": 62,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T06:54:04.576420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T06:54:04.576792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_attacks.tex\ndocs/paper/figures/fig_framework.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/analysis.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/results.tex\ndocs/paper/methodology.tex\ndocs/paper/threat_model.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T06:54:04.576969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Scan tex for fractional logit",
+              "subagent_type": "Explore",
+              "prompt": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ for any mentions related to fractional logit data. Search for these patterns:\n1. \"fractional\" or \"frac\" (case insensitive)\n2. \"binomial\" or \"glm\" or \"GLM\"\n3. Any pattern like N/12 (digits followed by /12)\n4. \"K_eff\" or \"K\\\\_{eff}\" or \"Keff\"\n5. \"eta_max\" or \"\\\\eta\" or \"eta\\\\_{max}\"\n6. \"significant\" near numbers\n7. \"logit\" or \"logistic\"\n\nFor each match, show the file path, line number, and surrounding context (3 lines before and after). Be very thorough - search breadth \"very thorough\"."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T06:54:04.577147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T06:54:04.577274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_attacks.tex\ndocs/paper/figures/fig_framework.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/analysis.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/results.tex\ndocs/paper/methodology.tex\ndocs/paper/threat_model.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T06:54:04.577398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper -name \"*.tex\" -type f"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T06:54:04.577518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix_attacks.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T06:54:04.577702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Scan tex for adaptive R²",
+              "subagent_type": "Explore",
+              "prompt": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ for any mentions related to adaptive R² or related numbers. Search for these patterns:\n1. \"adaptive\" (case insensitive)\n2. \"R²\" or \"R^2\" or \"R\\\\^2\" or \"R-squared\" or \"$R^2$\" or \"R\\textsuperscript{2}\"\n3. The number \"0.275\" or \"0.256\"\n4. \"variance\" near \"explained\"\n5. \"r_squared\" or \"r2\"\n\nFor each match, show the file path, line number, and surrounding context (3 lines before and after). Be very thorough - search breadth \"very thorough\"."
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T06:54:04.577942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fractional|frac",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T06:54:04.578103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-12-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-13-\ndocs/paper/analysis.tex-14-\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\ndocs/paper/analysis.tex:15:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-18-[Omitted long context line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-41-\ndocs/paper/main.tex-42-Our study has several limitations. \\textbf{Diversity--capability confound.} The structural coupling between diversity and capability in current LLM ecosystems ($r{=}0.70$--$0.81$; VIF $\\approx 2.0$--$2.9$) is a fundamental limitation: observational regression cannot reliably separate their contributions. Capability-matched subsampling reduces but does not eliminate this confound (Pool~A $r{=}0.50$; \\S\\ref{sec:analysis}). Causal identification requires training-based diversity control.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-43-\ndocs/paper/main.tex:44:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-45-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-46-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-47-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-287-Pool A\n…[truncated 6972 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T06:54:04.578249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "binomial|glm|GLM",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T06:54:04.578370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T06:54:04.578494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\d+/12",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T06:54:04.578622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (44.7KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01Dun1yZJi2M7Y9TMDPupdae.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex-2-\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\ndocs/paper/analysis.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-12-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-13-\ndocs/paper/analysis.tex-14-\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\ndocs/paper/analysis.tex:15:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\ndocs/paper/analysis.tex:18:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-19-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-20-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T06:54:04.578782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "K_eff|K\\\\_{eff}|Keff",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T06:54:04.578899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T06:54:04.579011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eta_max|\\\\eta|eta\\\\_{max}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T06:54:04.579120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T06:54:04.579230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "logit|logistic",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T06:54:04.579369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-12-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-13-\ndocs/paper/analysis.tex-14-\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\ndocs/paper/analysis.tex:15:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-18-[Omitted long context line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-41-\ndocs/paper/main.tex-42-Our study has several limitations. \\textbf{Diversity--capability confound.} The structural coupling between diversity and capability in current LLM ecosystems ($r{=}0.70$--$0.81$; VIF $\\approx 2.0$--$2.9$) is a fundamental limitation: observational regression cannot reliably separate their contributions. Capability-matched subsampling reduces but does not eliminate this confound (Pool~A $r{=}0.50$; \\S\\ref{sec:analysis}). Causal identification requires training-based diversity control.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-43-\ndocs/paper/main.tex:44:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-45-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-46-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-47-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-60-\\sub\n…[truncated 6454 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T06:54:04.579503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/**/*.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T06:54:04.579664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_attacks.tex\ndocs/paper/figures/fig_framework.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/analysis.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/results.tex\ndocs/paper/methodology.tex\ndocs/paper/threat_model.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T06:54:04.579790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ -name \"*.tex\" -type f"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T06:54:04.579907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix_attacks.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T06:54:04.580038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Scan tex for OLS/dominance/Bayesian",
+              "subagent_type": "Explore",
+              "prompt": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ for mentions related to OLS significance counts, dominance distribution, and Bayesian analysis. Search for these patterns:\n1. \"OLS\" or \"ordinary least\"\n2. \"dominance\" or \"Co:\" or \"K:\" or \"eta:\" \n3. \"10/12\" or \"12/12\" or \"11/12\" or \"9/12\" or \"8/12\" or \"7/12\" or \"4/12\" or \"3/12\" or \"2/12\" or \"1/12\" or \"0/12\" or \"5/12\"\n4. \"Bayesian\" or \"bayes\"\n5. \"neutralization\" or \"neutral\"\n6. \"5+/1-\" or \"direction\"\n7. \"WCB\" or \"wild cluster\" or \"Rademacher\" or \"bootstrap\"\n8. \"clustered\" near \"SE\" or \"standard error\"\n\nFor each match, show the file path, line number, and surrounding context (3 lines before and after). Be very thorough - search breadth \"very thorough\"."
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T06:54:04.580191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "adaptive",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3",
+              "-i": "True"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-25T06:54:04.580327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-4-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-5-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-6-\\paragraph{Condorcet Jury Theorem.}\ndocs/paper/related_work.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-10-[Omitted long context line]\n--\ndocs/paper/appendix.tex-53-\\subsection{BFT Reversal Mechanism: Detailed Evidence}\ndocs/paper/appendix.tex-54-\\label{app:bft_reversal}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-55-\ndocs/paper/appendix.tex:56:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-57-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-58-\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-59-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-75-\\subsection{Aggregation Mechanism Details}\ndocs/paper/appendix.tex-76-\\label{app:aggregation_details}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-77-\ndocs/paper/appendix.tex:78:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-79-\n/home/ubunt\n…[truncated 5587 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T06:54:04.580480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "R\\^2|R²|R\\\\^2|R-squared|\\$R\\^2\\$",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-25T06:54:04.580667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-27-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-28-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-29-\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\ndocs/paper/analysis.tex:30:\\caption{$K_{\\mathrm{eff}}$ coefficient distribution across aggregation methods ($K{=}3$). Majority and weighted voting: uniformly positive (12+/0$-$); Bayesian calibration: reduced predictability ($R^2{=}0.087$, 5+/1$-$).}\ndocs/paper/analysis.tex-31-\\label{fig:aggregation}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-32-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-33-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-26-\\maketitle\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-27-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-28-\\begin{abstract}\ndocs/paper/main.tex:29:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-30-\\end{abstract}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-31-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-32-\\input{introduction}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-55-\\end{equation}\ndocs/paper/methodology.tex-56-with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\\n…[truncated 13706 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T06:54:04.580827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/**/*.tex"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-25T06:54:04.580947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_attacks.tex\ndocs/paper/figures/fig_framework.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/analysis.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/results.tex\ndocs/paper/methodology.tex\ndocs/paper/threat_model.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T06:54:04.581072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "R\\\\textsuperscript\\{2\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-25T06:54:04.581184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T06:54:04.581309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.275|0\\.256",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-25T06:54:04.581473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-91-\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-92-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-93-Majority   & 2/12  & 7/12 & 0.285 \\\\\ndocs/paper/appendix.tex:94:Weighted   & 2/12  & 7/12 & 0.275 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-95-Threshold  & 3/12  & 7/12 & 0.408 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-96-Bayesian   & 2/12  & 7/12 & 0.166 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-97-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-14-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-15-\ndocs/paper/introduction.tex:16:Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-17-\ndocs/paper/introduction.tex-18-These findings yield three contributions:\n/home/ubuntu/.agent-ml-resea\n…[truncated 1128 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-25T06:54:04.581627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "significant.*[0-9]|[0-9].*significant",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "3",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T06:54:04.581823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-15-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\ndocs/paper/analysis.tex:18:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-19-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-20-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-21-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-41-\ndocs/paper/main.tex-42-Our study has several limitations. \\textbf{Diversity--capability confound.} The structural coupling between diversity and capability in current LLM ecosystems ($r{=}0.70$--$0.81$; VIF $\\approx 2.0$--$2.9$) is a fundamental limitation: observational regression cannot reliably separate their contributions. Capability-matched subsampling reduces but does not eliminate this confound (Pool~A $r{=}0.50$; \\S\\ref{sec:analysis}). Causal identification requires training-based diversity control.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-43-\ndocs/paper/main.tex:44:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-45-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-46-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-47-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/pap\n…[truncated 13043 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-25T06:54:04.581978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "r_squared|r2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-25T06:54:04.582112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-4-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-5-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-6-\\paragraph{Condorcet Jury Theorem.}\ndocs/paper/related_work.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-10-[Omitted long context line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-13-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-14-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-15-\\paragraph{BFT and Security Games.}\ndocs/paper/related_work.tex:16:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-17-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-18-\\paragraph{Information-Theoretic Evaluation.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-19-Information-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversa\n…[truncated 3772 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-25T06:54:04.582252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "OLS|ordinary least",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-25T06:54:04.582382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-25T06:54:04.582509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (28KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_018xVa3kGRzC814RUjh69PPm.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex-2-\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\ndocs/paper/analysis.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-7-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\ndocs/paper/related_work.tex:10:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-11-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-12-\\paragraph{Adversarial Robustness and Transferability.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-13-[Omitted long context line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-26-\\maketitle\n/home\n…[truncated 294 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-25T06:54:04.582683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n5\t\\label{sec:dominance}\n6\t\n7\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n8\t\n9\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Theorem~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n10\t\n11\tEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}).\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\begin{tabular}{lcc}\n17\t\\toprule\n18\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n19\t\\midrule\n20\tOLS                    & 10/12 & 12/12 \\\\\n21\tClustered SE           & 4/12  & 0/12  \\\\\n22\tMixed effects          & 6/12  & 3/12  \\\\\n23\tWild bootstrap         & 3/12  & 4/12  \\\\\n24\tFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).\n…[truncated 5867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-25T06:54:04.582843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+              "limit": "200"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-25T06:54:04.583018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n4\t\\label{app:proof}\n5\t\n6\tThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n7\t\\begin{align}\n8\t\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n9\t\\end{align}\n10\tSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n11\t\n12\t\\section{Robustness Correction Methods}\n13\t\\label{app:robustness_methods}\n14\t\n15\tThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n16\t\n17\t\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n18\t\n19\t\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effec\n…[truncated 17978 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-25T06:54:04.583168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "dominance|Co:|K:|eta:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-25T06:54:04.583291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (30.5KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01KL4uMyH8umZGHyLoTGRqeu.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls-439-INPUT ./figures/fig_regime_transition.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls-440-INPUT ./figures/fig_regime_transition.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls-441-INPUT ./figures/fig_regime_transition.pdf\ndocs/paper/main.fls:442:INPUT ./figures/fig_dominance_heatmap.pdf\ndocs/paper/main.fls:443:INPUT ./figures/fig_dominance_heatmap.pdf\ndocs/paper/main.fls:444:INPUT ./figures/fig_dominance_heatmap.pdf\ndocs/paper/main.fls:445:INPUT ./figures/fig_dominance_heatmap.pdf\ndocs/paper/main.fls:446:INPUT ./figures/fig_dominance_heatmap.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls-447-INPUT ./analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls-448-INPUT ./analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls-449-INPUT ./analysis.tex\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-4-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-5-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-6-\\paragraph{Condorcet Jury Theorem.}\ndocs/paper/related_work.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.t\n…[truncated 317 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-25T06:54:04.583436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "variance.*explained|explained.*variance",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3",
+              "-i": "True"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-25T06:54:04.583608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-25T06:54:04.583780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "10/12|12/12|11/12|9/12|8/12|7/12|4/12|3/12|2/12|1/12|0/12|5/12",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-25T06:54:04.583908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (26.9KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01B5oriSt3pNPHSMfS5oGpYV.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex-2-\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\ndocs/paper/analysis.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-12-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-13-\ndocs/paper/analysis.tex-14-\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\ndocs/paper/analysis.tex:15:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\ndocs/paper/analysis.tex:18:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-19-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-20-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-25T06:54:04.584055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Bayesian|bayes",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-25T06:54:04.584179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (28.5KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_019Jhu6YjWcaZKZpso61vPgM.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-27-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-28-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-29-\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\ndocs/paper/analysis.tex:30:\\caption{$K_{\\mathrm{eff}}$ coefficient distribution across aggregation methods ($K{=}3$). Majority and weighted voting: uniformly positive (12+/0$-$); Bayesian calibration: reduced predictability ($R^2{=}0.087$, 5+/1$-$).}\ndocs/paper/analysis.tex-31-\\label{fig:aggregation}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-32-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-33-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-34-\\paragraph{Aggregation and Deployment.}\ndocs/paper/analysis.tex:35:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-36-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-37-\\paragraph{$K_{\\mathrm{eff}}$ vs.\\ Alternative Diversity Measures.}\ndocs/paper/analysis.tex-38-$\\kappa$-diversity \\citep{kuncheva2003measures} outperforms $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12) but falls behind at $K{\\geq}5$ (6--7/12 vs.\\ 7--8/12) without the predictor shift ($8 \\to 7 \\to 6$; Appendix~\\ref{app:alt_diversi\n…[truncated 267 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-25T06:54:04.584317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "neutralization|neutral",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-25T06:54:04.584453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-32-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-33-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-34-\\paragraph{Aggregation and Deployment.}\ndocs/paper/analysis.tex:35:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-36-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-37-\\paragraph{$K_{\\mathrm{eff}}$ vs.\\ Alternative Diversity Measures.}\ndocs/paper/analysis.tex-38-$\\kappa$-diversity \\citep{kuncheva2003measures} outperforms $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12) but falls behind at $K{\\geq}5$ (6--7/12 vs.\\ 7--8/12) without the predictor shift ($8 \\to 7 \\to 6$; Appendix~\\ref{app:alt_diversity}). Shannon MI entropy shows no shift either ($4 \\to 4 \\to 0$; Appendix~\\ref{app:shannon_entropy}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-81-\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\ndocs/paper/appendix.tex-82-\\label{app:aggregation_k5}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-83-\ndocs/paper/appendix.tex:84:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-85-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-86-\\begin{table}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-87-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-103-\\subsection{Aggregation at \\texorpdfstring{$K{=}7$}{K=7}}\ndocs/paper/appen\n…[truncated 6539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-25T06:54:04.584598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-25T06:54:04.584754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.93\\textwidth]{figures/fig_framework.pdf}\n6\t\\caption{The shifting bottleneck in LLM judge panels. \\textbf{(a)}~At $K{=}3$, one compromised judge flips the majority---$\\eta_{\\max}$ dominates. \\textbf{(b)}~A predictor shift emerges at $K^* \\in (3,5)$. \\textbf{(c)}~At $K{\\geq}5$, the adversary must compromise multiple independent judges---$K_{\\mathrm{eff}}$ becomes the dominant predictor.}\n7\t\\label{fig:framework}\n8\t\\end{figure*}\n9\t\n10\tMulti-judge panels have become the dominant defense against bias and manipulation in Large Language Model (LLM) evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, an approach inspired by Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization reports that 7-model committees reduce attack success rates (ASR) from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation, yet this framing conflates two distinct sources of robustness: the quality of individual judges and the independence among them.\n11\t\n12\tThe conflation matters because the BFT analogy breaks down in the LLM judge setting. BFT adversaries control faulty nodes from within; evaluation adversaries manipulate inputs from without, and shared pretraining corpora create correlated failure modes that violate the independence assumption underlying majority-vote guarantees \\citep{schneier2000secrets}. No existing work disentangles diversity from individual robustness across panel sizes, so the mechanism behind\n…[truncated 2920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-25T06:54:04.584904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-25T06:54:04.585049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n5\t\\label{sec:dominance}\n6\t\n7\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n8\t\n9\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Theorem~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n10\t\n11\tEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}).\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\begin{tabular}{lcc}\n17\t\\toprule\n18\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n19\t\\midrule\n20\tOLS                    & 10/12 & 12/12 \\\\\n21\tClustered SE           & 4/12  & 0/12  \\\\\n22\tMixed effects          & 6/12  & 3/12  \\\\\n23\tWild bootstrap         & 3/12  & 4/12  \\\\\n24\tFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).\n…[truncated 5867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-25T06:54:04.585195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-25T06:54:04.585326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Predictor Shift and Direction.}\n5\tAt $K{=}3$, a single compromised judge flips the majority ($t{=}2$), making both predictors relevant. At $K{\\geq}5$, no single judge is pivotal; $\\eta_{\\max}$'s contribution collapses while high-$K_{\\mathrm{eff}}$ panels present more distinct attack surfaces ($K^* \\in (3,5)$). $K_{\\mathrm{eff}}$'s direction is positive in all 12 conditions (OLS and GAM bootstrap 12/12), but significance is method-sensitive (0--12/12; bootstrap 4/12 at $K{=}3$, 7/12 at $K{=}5$). No magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$; Appendix~\\ref{app:bft_reversal}).\n6\t\n7\t\\begin{figure}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n10\t\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange, $r{=}0.50$, 126 panels) shows reduced confounding.}\n11\t\\label{fig:keff_eta_scatter}\n12\t\\end{figure}\n13\t\n14\t\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\n15\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (variance inflation factor, VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound explains the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (9/12 at all $K$). Pool~A ($r{=}0.50$) raises the robustness value (RV) in 10/12 at $K{=}5$ despite max 30.1\\% power (Appendix~\\ref{app:sensitivity_poolA}); cross-benchmark instrumental variable (IV) analysis provides additional identification (Appendix~\\ref{app:cross_benchmark}), though causal attribution requires capability-controlled designs.\n16\t\n17\t\\paragraph{API-Only vs.\\ Full Pool.}\n18\tRestricting to 9 API models re\n…[truncated 3010 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-25T06:54:04.585476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "5\\+/1-|direction",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-25T06:54:04.585604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (25.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01Y9nD6U3gEJ7xgHQyV7Hg64.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex-2-\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\ndocs/paper/analysis.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-32-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-33-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-34-\\paragraph{Aggregation and Deployment.}\ndocs/paper/analysis.tex:35:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-36-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-37-\\paragraph{$K_{\\mathrm{eff}}$ vs.\\ Alternative Diversity Measures.}\ndocs/paper/analysis.tex-38-$\\kappa$-diversity \\citep{kuncheva2003measures} outperforms $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12) but falls behind at $K{\\geq}5$ (6--7/12 vs.\\ 7--8/12) without the predictor shift ($8 \\to 7 \\to 6$; Appendix~\\ref{app:alt_diversity}). Shannon MI en\n…[truncated 213 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-25T06:54:04.585768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "WCB|wild cluster|Rademacher|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-25T06:54:04.585900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (32.1KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_014vcQyTehmk9NDTRQCHWK8U.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex-2-\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\ndocs/paper/analysis.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-7-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\ndocs/paper/related_work.tex:10:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-11-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-12-\\paragraph{Adversarial Robustness and Transferability.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-13-[Omitted long context line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-18-\n...\n</per\n…[truncated 14 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-25T06:54:04.586045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "clustered.*SE|clustered.*standard error|SE.*clustered|standard error.*clustered",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-25T06:54:04.586188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-9-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-10-\ndocs/paper/results.tex:11:Each judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-12-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-13-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-14-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-24-Frac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-25-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-26-\\end{tabular}\ndocs/paper/results.tex:27:\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).}\ndocs/paper/results.tex-28-\\label{tab:method_comparison}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-29-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/proj\n…[truncated 8613 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-25T06:54:04.586339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results -name \"*toolu_01Dun1yZJi2M7Y9TMDPupdae.txt\" -type f"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-25T06:54:04.586456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01Dun1yZJi2M7Y9TMDPupdae.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-25T06:54:04.586575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+              "limit": "150"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-25T06:54:04.586750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n4\t\\label{app:proof}\n5\t\n6\tThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n7\t\\begin{align}\n8\t\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n9\t\\end{align}\n10\tSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n11\t\n12\t\\section{Robustness Correction Methods}\n13\t\\label{app:robustness_methods}\n14\t\n15\tThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n16\t\n17\t\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n18\t\n19\t\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effec\n…[truncated 12791 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-25T06:54:04.586909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01Dun1yZJi2M7Y9TMDPupdae.txt"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-25T06:54:04.587038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.256",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-25T06:54:04.587152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-25T06:54:04.587376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdocs/paper/analysis.tex-2-\\label{sec:analysis}\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n3\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\n4\tdocs/paper/analysis.tex:5:[Omitted long matching line]\n5\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n6\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n8\t--\n9\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-12-\\end{figure}\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-13-\n11\tdocs/paper/analysis.tex-14-\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\n12\tdocs/paper/analysis.tex:15:[Omitted long matching line]\n13\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n14\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\n15\tdocs/paper/analysis.tex:18:[Omitted long matching line]\n16\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-19-\n17\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-20-\\begin{figure}[t]\n18\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-21-\\centering\n19\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-22-\\includegraphics[width=\\columnwidth]{figures/fig4_panel_design.pdf}\n20\tdocs/paper/analysis.tex:2\n…[truncated 45234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-25T06:54:04.587526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_018xVa3kGRzC814RUjh69PPm.txt"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-25T06:54:04.587707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "papke",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "2",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-25T06:54:04.587937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdocs/paper/analysis.tex-2-\\label{sec:analysis}\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n3\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\n4\tdocs/paper/analysis.tex:5:[Omitted long matching line]\n5\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n6\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n8\t--\n9\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-7-[Omitted long context line]\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n11\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\n12\tdocs/paper/related_work.tex:10:[Omitted long matching line]\n13\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-11-\n14\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-12-\\paragraph{Adversarial Robustness and Transferability.}\n15\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-13-[Omitted long context line]\n16\t--\n17\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-26-\\maketitle\n18\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-27-\n19\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-28-\\begin{abstract}\n20\tdocs/paper/main.tex:29:\n…[truncated 27571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-25T06:54:04.588091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/methodology.tex-61-\\label{sec:robustness_method}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-62-\ndocs/paper/methodology.tex:63:[Omitted long matching line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-160-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-161-\\end{tabular}\ndocs/paper/appendix.tex:162:[Omitted long matching line]\ndocs/paper/appendix.tex-163-\\label{tab:robustness_checks}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-164-\\end{table}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-395-}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-396-\ndocs/paper/references.bib:397:@article{papke1996econometric,\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-398-  author    = {Leslie E. Papke and Jeffrey M. Wooldridge},\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-399-  title     = {Econometric Methods for Fractional Response Variables},\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-97-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-98-\\paragraph{Fractional Logit Robustness.}\ndocs/paper/results.tex:99:Fractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; Appendix~\\ref{app:robustness_checks})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-25T06:54:04.588239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_01B5oriSt3pNPHSMfS5oGpYV.txt"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-25T06:54:04.588376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -rn \"0\\.256\\|0\\.275\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ --include=\"*.tex\""
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-25T06:54:04.588498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:66:We simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.73$--$0.81$ ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap narrows from ${\\sim}0.6$ ($K{=}3$) to $0.43$ ($K{=}5$).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex:16:Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:94:Weighted   & 2/12  & 7/12 & 0.275 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-25T06:54:04.588633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -rn \"explained\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ --include=\"*.tex\" | head -20"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-25T06:54:04.588786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:316:Two implications follow. First, Pool~A at $K{=}5$ is fundamentally underpowered: the maximum attainable power (30.1\\% at $\\beta_{\\mathrm{std}}{=}1.0$) never reaches 80\\%. The 10/12 Cinelli--Hazlett success at $K{=}5$ therefore reflects large effect sizes surviving low power, strengthening the causal signal. Second, the low Cinelli--Hazlett RV at $K{=}3$ (2/12 exceeding the $\\eta_{\\max}$ benchmark) is partially explained by Pool~A's 84-panel design: MDE$_{\\,80\\%}{=}0.897$ means only effects exceeding ${\\approx}0.9$ SD are detectable. Crucially, the full-pool $K{=}3 \\to K{=}5$ significance increase ($4/12 \\to 7/12$) is not a power artifact: Pool~A power at $K{=}5$ (max 30.1\\%) is \\emph{lower} than at $K{=}3$ (max 85.8\\%), so the increase reflects growing effect sizes rather than inflated type~I error."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-25T06:54:04.588998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdocs/paper/analysis.tex-2-\\label{sec:analysis}\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-3-\n3\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-4-\\paragraph{Predictor Shift and Direction.}\n4\tdocs/paper/analysis.tex:5:[Omitted long matching line]\n5\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-6-\n6\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-7-\\begin{figure}[t]\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-8-\\centering\n8\t--\n9\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-12-\\end{figure}\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-13-\n11\tdocs/paper/analysis.tex-14-\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\n12\tdocs/paper/analysis.tex:15:[Omitted long matching line]\n13\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-16-\n14\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-17-\\paragraph{API-Only vs.\\ Full Pool.}\n15\tdocs/paper/analysis.tex:18:[Omitted long matching line]\n16\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-19-\n17\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-20-\\begin{figure}[t]\n18\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-21-\\centering\n19\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-22-\\includegraphics[width=\\columnwidth]{figures/fig4_panel_design.pdf}\n20\tdocs/paper/analysis.tex:2\n…[truncated 26441 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-25T06:54:04.589156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/d39a0003-01c7-410a-89c8-5139b23956ac/tool-results/toolu_019Jhu6YjWcaZKZpso61vPgM.txt"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-25T06:54:04.589408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-27-\\begin{figure}[t]\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-28-\\centering\n3\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-29-\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\n4\tdocs/paper/analysis.tex:30:\\caption{$K_{\\mathrm{eff}}$ coefficient distribution across aggregation methods ($K{=}3$). Majority and weighted voting: uniformly positive (12+/0$-$); Bayesian calibration: reduced predictability ($R^2{=}0.087$, 5+/1$-$).}\n5\tdocs/paper/analysis.tex-31-\\label{fig:aggregation}\n6\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-32-\\end{figure}\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-33-\n8\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-34-\\paragraph{Aggregation and Deployment.}\n9\tdocs/paper/analysis.tex:35:[Omitted long matching line]\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-36-\n11\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-37-\\paragraph{$K_{\\mathrm{eff}}$ vs.\\ Alternative Diversity Measures.}\n12\tdocs/paper/analysis.tex-38-$\\kappa$-diversity \\citep{kuncheva2003measures} outperforms $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12) but falls behind at $K{\\geq}5$ (6--7/12 vs.\\ 7--8/12) without the predictor shift ($8 \\to 7 \\to 6$; Appendix~\\ref{app:alt_diversity}). Shannon MI entropy shows no shift either ($4 \\to 4 \\to 0$; Appendix~\\ref{app:shannon_entropy}).\n13\t--\n14\t/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-13-[Omitted long context line]\n15\t/home/ubuntu/.a\n…[truncated 28056 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-25T06:54:04.589615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -rn \"how.*variance\\|variance.*panel\\|composition.*explains\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ --include=\"*.tex\" | head -20"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-25T06:54:04.589813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex:22:\\item \\textbf{Aggregation as predictability control.} Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), so the defense is partial rather than complete (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-25T06:54:04.589956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-25T06:54:04.590102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Methodology}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Models and Panel Construction}\n5\t\n6\tWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX~6000 Ada (48\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n7\t\n8\t\\subsection{Benchmarks and Attack Types}\n9\t\n10\tTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n11\t\n12\tEach benchmark is paired with six attack types: (1)~\\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \\citep{p\n…[truncated 5848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-25T06:54:04.590250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-25T06:54:04.590402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n5\t\\label{sec:dominance}\n6\t\n7\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n8\t\n9\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Theorem~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n10\t\n11\tEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}).\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\begin{tabular}{lcc}\n17\t\\toprule\n18\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n19\t\\midrule\n20\tOLS                    & 10/12 & 12/12 \\\\\n21\tClustered SE           & 4/12  & 0/12  \\\\\n22\tMixed effects          & 6/12  & 3/12  \\\\\n23\tWild bootstrap         & 3/12  & 4/12  \\\\\n24\tFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).\n…[truncated 5867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-25T06:54:04.590553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+              "limit": "500"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-25T06:54:04.590816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n4\t\\label{app:proof}\n5\t\n6\tThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n7\t\\begin{align}\n8\t\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n9\t\\end{align}\n10\tSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n11\t\n12\t\\section{Robustness Correction Methods}\n13\t\\label{app:robustness_methods}\n14\t\n15\tThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n16\t\n17\t\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n18\t\n19\t\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effec\n…[truncated 43251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-25T06:54:04.590986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-25T06:54:04.591132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Threat Model and Problem Formulation}\n2\t\\label{sec:threat_model}\n3\t\n4\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n5\t\n6\tTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutual information (MI) among judges:\n7\t\\begin{equation}\n8\t\\label{eq:keff}\n9\tK_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n10\t\\end{equation}\n11\tThis formulation computes effective independence from pairwise MI estimates without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\\mathrm{eff}} \\approx K$ when judges are nearly independent ($\\mathrm{MI} \\to 0$) to $K_{\\mathrm{eff}} \\approx 1$ when judges are highly correlated ($\\mathrm{MI} \\to \\infty$). Motivated by information-theoretic redundancy reduction, one can informally expect joint vulnerability to scale as $\\eta_{\\mathrm{joint}} \\sim K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$: independent channels multiply failure probabilities, so fewer effective channels (lower $K_{\\mathrm{eff}}$) should reduce panel vulnerability. This motivating relationship assumes non-adaptive faults and independent channels; it serves as intuition rather than a formal bound.\n12\t\n13\t\\begin{definition}[Adaptive Adversary]\n14\t\\label{def:adversary}\n15\tA \\emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\\mathcal{P}$, t\n…[truncated 4230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-25T06:54:04.591280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-25T06:54:04.591412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Predictor Shift and Direction.}\n5\tAt $K{=}3$, a single compromised judge flips the majority ($t{=}2$), making both predictors relevant. At $K{\\geq}5$, no single judge is pivotal; $\\eta_{\\max}$'s contribution collapses while high-$K_{\\mathrm{eff}}$ panels present more distinct attack surfaces ($K^* \\in (3,5)$). $K_{\\mathrm{eff}}$'s direction is positive in all 12 conditions (OLS and GAM bootstrap 12/12), but significance is method-sensitive (0--12/12; bootstrap 4/12 at $K{=}3$, 7/12 at $K{=}5$). No magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$; Appendix~\\ref{app:bft_reversal}).\n6\t\n7\t\\begin{figure}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n10\t\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange, $r{=}0.50$, 126 panels) shows reduced confounding.}\n11\t\\label{fig:keff_eta_scatter}\n12\t\\end{figure}\n13\t\n14\t\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\n15\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (variance inflation factor, VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound explains the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (9/12 at all $K$). Pool~A ($r{=}0.50$) raises the robustness value (RV) in 10/12 at $K{=}5$ despite max 30.1\\% power (Appendix~\\ref{app:sensitivity_poolA}); cross-benchmark instrumental variable (IV) analysis provides additional identification (Appendix~\\ref{app:cross_benchmark}), though causal attribution requires capability-controlled designs.\n16\t\n17\t\\paragraph{API-Only vs.\\ Full Pool.}\n18\tRestricting to 9 API models re\n…[truncated 3010 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-25T06:54:04.591581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-25T06:54:04.591795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Methodology}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Models and Panel Construction}\n5\t\n6\tWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX~6000 Ada (48\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n7\t\n8\t\\subsection{Benchmarks and Attack Types}\n9\t\n10\tTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n11\t\n12\tEach benchmark is paired with six attack types: (1)~\\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \\citep{p\n…[truncated 5848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-25T06:54:04.592029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me compile my comprehensive findings based on all the searches I've performed:\n\n## Summary of Findings\n\nI have completed a thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/` for mentions related to adaptive R² and the specified patterns. Here are the results:\n\n### **1. ADAPTIVE (case insensitive) - 7 matches:**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex` (Line 7)**\n- Context mentions adaptive approaches\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex` (Line 56)**\n- Context: \"adaptive attack reduces predictability\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 16)**\n- Lines 14-18: Discusses how \"adaptive attack reduces predictability to $R^2 = 0.275$\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex` (Lines 13, 18)**\n- Line 13-16: Definition of \"Adaptive Adversary\"\n- Line 18: \"An adaptive adversary concentrates on the weakest link... suggesting a \\emph{reversal}: under random faults, higher $K_{\\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex` (Line 63, 66)**\n- Line 63: Section titled \"Random vs.\\ Adaptive Fault Contrast\"\n- Line 66: \"adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$)\"\n\n### **2. R² Mentions - Multiple locations:**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 16)**\n- \"Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictabili\n…[truncated 2970 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Agent",
+            "elapsed_ms": 14
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-25T06:54:04.592277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me compile a comprehensive report with all the findings. Let me create a summary of all the matches:\n\n## COMPREHENSIVE SEARCH RESULTS: FRACTIONAL LOGIT DATA PATTERNS IN .TEX FILES\n\nI have completed a thorough search of all 12 .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/` for mentions related to fractional logit data. Here are the detailed findings:\n\n---\n\n### PATTERN 1: \"FRACTIONAL\" OR \"FRAC\" (case insensitive)\n\n**File: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex**\n\nLine 24 (Table caption and method row):\n```\nFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n```\nContext: Part of a table comparing inference method sensitivity at K=3, showing that fractional logit with clustered SE yields 6/12 for eta_max and 9/12 for K_eff significance.\n\nLine 43:\n```\nTable~\\ref{tab:method_comparison} reveals that the $K{=}3$ pattern is method-sensitive: $K_{\\mathrm{eff}}$ \nsignificance ranges from 0/12 (clustered SE) to 12/12 (OLS), with fractional logit giving 9/12. This contrasts \nwith $K{\\geq}5$, where $K_{\\mathrm{eff}}$'s dominance is consistent across methods (bootstrap 7/12 at $K{=}5$; \nfractional logit 9/12).\n```\n\nLine 99:\n```\nFractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ \nsignificance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; \nAppendix~\\ref{app:robustness_checks}).\n```\nContext: Section titled \"Fractional Logit Robustness\" discussing method performance across panel sizes.\n\n**File: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex**\n\nLine 159:\n```\nFractional logit     & 0.81 & 4/12 & 9/12 & \\checkmark \\\\\n```\nContext: Table comparing robustness at K=5 with correlation r=0.81 and significant conditions.\n\nLine 162 (Table caption):\n```\nPredictor shift robustness at $K{=\n…[truncated 6508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Agent",
+            "elapsed_ms": 15
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-25T06:54:04.592509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have comprehensive coverage. Let me compile all the findings from the thorough search:\n\n## COMPREHENSIVE SEARCH RESULTS: OLS, Dominance, Bayesian Analysis, and Bootstrap Methods\n\nI've completed a very thorough search of all .tex files in the `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/` directory. Here are all the relevant matches organized by pattern:\n\n### 1. OLS (Ordinary Least Squares) References\n\n**File: results.tex (Lines 7, 11, 27, 43)**\n- Line 7: \"Table~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\"\n- Line 11: \"This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12)\"\n- Line 27: \"Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).\"\n- Line 43: \"Table~\\ref{tab:method_comparison} reveals that the $K{=}3$ pattern is method-sensitive: $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS), with fractional logit giving 9/12.\"\n\n**File: appendix.tex (Lines 15, 65, 141, 375)**\n- Line 15: \"Standard OLS assumes independent errors, potentially inflating significance.\"\n- Line 65: \"Under corrected data (V2), all 12 $K_{\\mathrm{eff}}$ OLS coefficients are positive.\"\n- Line 141: \"Under clustered standard errors (clustering on the $K$ judge positions), $\\eta_{\\max}$ retains significance in 4/12 conditions while $K_{\\mathrm{eff}}$ achieves significance in 0/12. This contrasts with OLS ($\\eta_{\\max}$ 10/12, $K_{\\mathrm{eff}}$ 12/12)\"\n- Line 375: \"We compare $K_{\\mathrm{eff}}$ against three classical ensemble diversity meas\n…[truncated 7329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Agent",
+            "elapsed_ms": 12
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-25T06:54:04.592711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-25T06:54:04.592898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n5\t\\label{sec:dominance}\n6\t\n7\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n8\t\n9\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Theorem~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n10\t\n11\tEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}).\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\begin{tabular}{lcc}\n17\t\\toprule\n18\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n19\t\\midrule\n20\tOLS                    & 10/12 & 12/12 \\\\\n21\tClustered SE           & 4/12  & 0/12  \\\\\n22\tMixed effects          & 6/12  & 3/12  \\\\\n23\tWild bootstrap         & 3/12  & 4/12  \\\\\n24\tFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).\n…[truncated 5867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-25T06:54:04.593051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-25T06:54:04.593203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.93\\textwidth]{figures/fig_framework.pdf}\n6\t\\caption{The shifting bottleneck in LLM judge panels. \\textbf{(a)}~At $K{=}3$, one compromised judge flips the majority---$\\eta_{\\max}$ dominates. \\textbf{(b)}~A predictor shift emerges at $K^* \\in (3,5)$. \\textbf{(c)}~At $K{\\geq}5$, the adversary must compromise multiple independent judges---$K_{\\mathrm{eff}}$ becomes the dominant predictor.}\n7\t\\label{fig:framework}\n8\t\\end{figure*}\n9\t\n10\tMulti-judge panels have become the dominant defense against bias and manipulation in Large Language Model (LLM) evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, an approach inspired by Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization reports that 7-model committees reduce attack success rates (ASR) from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation, yet this framing conflates two distinct sources of robustness: the quality of individual judges and the independence among them.\n11\t\n12\tThe conflation matters because the BFT analogy breaks down in the LLM judge setting. BFT adversaries control faulty nodes from within; evaluation adversaries manipulate inputs from without, and shared pretraining corpora create correlated failure modes that violate the independence assumption underlying majority-vote guarantees \\citep{schneier2000secrets}. No existing work disentangles diversity from individual robustness across panel sizes, so the mechanism behind\n…[truncated 2920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-25T06:54:04.593350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-25T06:54:04.593502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Predictor Shift and Direction.}\n5\tAt $K{=}3$, a single compromised judge flips the majority ($t{=}2$), making both predictors relevant. At $K{\\geq}5$, no single judge is pivotal; $\\eta_{\\max}$'s contribution collapses while high-$K_{\\mathrm{eff}}$ panels present more distinct attack surfaces ($K^* \\in (3,5)$). $K_{\\mathrm{eff}}$'s direction is positive in all 12 conditions (OLS and GAM bootstrap 12/12), but significance is method-sensitive (0--12/12; bootstrap 4/12 at $K{=}3$, 7/12 at $K{=}5$). No magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$; Appendix~\\ref{app:bft_reversal}).\n6\t\n7\t\\begin{figure}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n10\t\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange, $r{=}0.50$, 126 panels) shows reduced confounding.}\n11\t\\label{fig:keff_eta_scatter}\n12\t\\end{figure}\n13\t\n14\t\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\n15\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (variance inflation factor, VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound explains the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (9/12 at all $K$). Pool~A ($r{=}0.50$) raises the robustness value (RV) in 10/12 at $K{=}5$ despite max 30.1\\% power (Appendix~\\ref{app:sensitivity_poolA}); cross-benchmark instrumental variable (IV) analysis provides additional identification (Appendix~\\ref{app:cross_benchmark}), though causal attribution requires capability-controlled designs.\n16\t\n17\t\\paragraph{API-Only vs.\\ Full Pool.}\n18\tRestricting to 9 API models re\n…[truncated 3010 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-25T06:54:04.593656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-25T06:54:04.594016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n4\t\\label{app:proof}\n5\t\n6\tThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n7\t\\begin{align}\n8\t\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n9\t\\end{align}\n10\tSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n11\t\n12\t\\section{Robustness Correction Methods}\n13\t\\label{app:robustness_methods}\n14\t\n15\tThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n16\t\n17\t\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n18\t\n19\t\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effec\n…[truncated 43251 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-25T06:54:04.594202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-25T06:54:04.594340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Mirror of abstract in main.tex — do not edit here.\n2\t\n3\tMulti-judge panels are widely deployed for robust Large Language Model (LLM) evaluation, yet adding judges can shift, not reduce, the dominant vulnerability pathway. Existing defenses conflate panel diversity with individual judge robustness, and it remains unclear which factor drives attack success rate (ASR) reduction. We decompose panel ASR into weakest-link susceptibility ($\\eta_{\\max}$) and effective independent channels ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). $K_{\\mathrm{eff}}$'s coefficient is positive in all 12 conditions under ordinary least squares, but significance varies across inference methods (0 to 12 of 12), and the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal claims. The dominant predictor shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ dominates while $\\eta_{\\max}$ attenuates. Aggregation rules modulate predictability ($R^2$: threshold 0.83, Bayesian 0.09). Small panels benefit most from individual robustness screening; larger panels require attention to judge independence.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-25T06:54:04.594473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-25T06:54:04.594596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\n3\tPanel vulnerability shifts with size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ matter; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ dominates while $\\eta_{\\max}$ attenuates. The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal claims; capability-controlled designs and open-ended benchmarks are needed.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-25T06:54:04.594737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-25T06:54:04.594903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Methodology}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Models and Panel Construction}\n5\t\n6\tWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX~6000 Ada (48\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n7\t\n8\t\\subsection{Benchmarks and Attack Types}\n9\t\n10\tTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n11\t\n12\tEach benchmark is paired with six attack types: (1)~\\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \\citep{p\n…[truncated 5848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-25T06:54:04.595147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-25T06:54:04.595284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-25T06:54:04.595416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-25T06:54:04.595554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nanalyze_judge_asr_concentration.py\ndiagnostic_gam_keff_mismatch.txt\ndream_reports\nfigures\nmanifest.yaml\nplan001_step1_full_v4\nreport_step2v3_retry.md\nresults\nreview_issues.yaml\nreview_reports\nreview_round_1\nreview_round_2\nreview_round_3\nreview_round_4\nreview_round_5\nreview_round_6\nrun_aggregation_regression_15model.py\nrun_sensitivity_analysis.py\nrun_sensitivity_analysis_poolA.py\nscripts\nserver_backup\ntheorem1_proof.aux\ntheorem1_proof.log\ntheorem1_proof.pdf\ntheorem1_proof.tex\ntheory\nwild_cluster_bootstrap.py\nworker_output_step2v3_retry2_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-25T06:54:04.595752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/r6_data_audit.md",
+              "content": "# R6 数据审计报告\n\n审计日期：2026-05-25\n审计范围：`docs/paper/*.tex` 中所有定量 claim vs V2 registry 数据\n\n---\n\n## 1. Fractional Logit 数字\n\n### V2 正确数据（Fractional logit, clustered SE）\n| K | K_eff sig | η_max sig |\n|---|-----------|-----------|\n| 3 | 4/12      | 7/12      |\n| 5 | 9/12      | 5/12      |\n| 7 | 10/12     | 5/12      |\n\n### 发现的不一致\n\n#### ❌ results.tex:24 — 方法对比表（K=3）\n```\nFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n```\n- 论文：η_max=6/12, K_eff=9/12\n- 正确：η_max=**7/12**, K_eff=**4/12**\n- **两个数字都错**\n\n#### ❌ results.tex:43 — 正文描述\n```\n$K{=}3$ pattern is method-sensitive: $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS), with fractional logit giving 9/12.\n```\n- 论文：fractional logit K_eff = 9/12（K=3）\n- 正确：**4/12**\n\n#### ❌ results.tex:99 — Fractional Logit Robustness 段落\n```\n$K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$)\n```\n- 论文：声称三个 K 值均为 9/12\n- 正确：K=3: **4/12**, K=5: 9/12, K=7: **10/12**\n- **需要改写为按 K 分别报告**\n\n#### ❌ introduction.tex:20 — 贡献 1\n```\nfractional logit confirms the positive association (9/12 across all $K$)\n```\n- 同上，9/12 uniform 不正确\n- 正确：4/12, 9/12, 10/12\n\n#### ❌ analysis.tex:15 — Confound 段落\n```\nfractional logit confirms the positive association (9/12 at all $K$)\n```\n- 同上\n\n#### ❌ appendix.tex:159 — Robustness Checks 表（K=5）\n```\nFractional logit     & 0.81 & 4/12 & 9/12 & \\checkmark \\\\\n```\n- 论文：η_max=4/12, K_eff=9/12\n- 正确：η_max=**5/12**, K_eff=9/12 ✅\n- **η_max 差 1（4→5）**\n\n#### ⚠️ results.tex:99 — 方向一致性声明\n```\n98.6\\% directional concordance with OLS (71/72)\n```\n- 如果 fractional logit 数字改变，此声明可能需要重新验证\n- **需与 registry 核实 71/72 是否仍成立**\n\n#### ⚠️ appendix.tex:162 — 同一声明\n```\n98.6\\% directional agreement (71/72 direction matches; the single discordance is $\\eta_{\\max}$ at $K{=}7$ for ARC $\\times$ score manipulation)\n```\n- 同上，需核实\n\n---\n\n## 2. Adaptive R²\n\n### V2 正确数据\n- k5_rf_contrast.adaptive_r2_mean = **0.256**\n\n### 发现的不一致\n\n#### ❌ introduction.tex:16\n```\nadaptive attack reduces predictability to $R^2 = 0.275$\n```\n- 论文：0.275\n- 正确：**0.256**\n\n#### ❌ results.tex:66\n```\nadaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$)\n```\n- 论文：0.275\n- 正确：**0.256**\n\n---\n\n## 3. WCB Bootstrap 数字（majority vote, B=9999, Rademacher）\n\n### V2 正确数据\n| K | K_eff sig | η_max sig |\n|---|-----------|-----------|\n| 3 | 4/12      | 3/12      |\n| 5 | 7/12      | 2/12      |\n| 7 | 8/12      | 1/12      |\n\n### 审计结果：全部一致 ✅\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| results.tex:11 | bootstrap (η_max 3/12, K_eff 4/12) | ✅ |\n| results.tex:50 caption | 3/12→2/12, 4/12→7/12 | ✅ |\n| results.tex:61 | K=3: η_max 3/12, K_eff 4/12; K=5: η_max 2/12, K_eff 7/12 | ✅ |\n| introduction.tex:14 | K=3: η_max 3/12, K_eff 4/12; K≥5: 7/12, 8/12; η_max: 2/12, 1/12 | ✅ |\n| introduction.tex:21 | 同上重复 | ✅ |\n| analysis.tex:5 | bootstrap 4/12 at K=3, 7/12 at K=5 | ✅ |\n| appendix.tex:39-41 | Crossed RE 表 bootstrap 列 | ✅ |\n| appendix.tex:56 | η_max 3/12, K_eff 4/12 | ✅ |\n| appendix.tex:155 | Full bootstrap: η_max 2/12, K_eff 7/12 (K=5) | ✅ |\n\n---\n\n## 4. OLS 显著性计数\n\n### V2 正确数据：K_eff 12/12, η_max 10/12\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| results.tex:9 | K_eff 12/12, η_max 10/12 | ✅ |\n| results.tex:20 | OLS: η_max 10/12, K_eff 12/12 | ✅ |\n| appendix.tex:141 | OLS (η_max 10/12, K_eff 12/12) | ✅ |\n| methodology.tex:21-33 | 逐条件 dominance 表 | ✅ |\n\n---\n\n## 5. Dominance 分布\n\n### V2 正确数据：Co:10, K:2, η:0\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| results.tex:9 | 10 co-dominant, 2 K_eff-dominant, zero η_max-dominant | ✅ |\n| methodology.tex:21-33 | 表格逐条件：Co×10, K×2 | ✅ |\n\n---\n\n## 6. Bayesian 方向 & K=7 neutralization\n\n### V2 正确数据：5+/1−; K=7 neutralization 0/12\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| results.tex:88 | Bayesian: 5+/1− | ✅ |\n| results.tex:96 | Bayesian attenuates K_eff (5+/1−) | ✅ |\n| analysis.tex:30 | 5+/1− | ✅ |\n| introduction.tex:22 | 5+/1− | ✅ |\n| analysis.tex:35 | K=7 Bayesian neutralizes (0/12) | ✅ |\n| appendix.tex:118 | Bayesian: K_eff 0/12 (K=7 table) | ✅ |\n| appendix.tex:121 | full K_eff neutralization (0/12) | ✅ |\n| appendix.tex:468 | 0/12 significant | ✅ |\n\n---\n\n## 7. 其他数字（抽查）\n\n| 位置 | Claim | 状态 |\n|------|-------|------|\n| introduction.tex:20 | Cinelli-Hazlett 69% (25/36) | ✅ 与 appendix 表一致 |\n| introduction.tex:22 | R²: threshold 0.83, Bayesian 0.09 | ✅ 四舍五入自 0.829, 0.087 |\n| results.tex:85-88 | 聚合表 R² 值 (0.829, 0.327, 0.328, 0.087) | ✅ 内部一致 |\n| appendix.tex:94 | Weighted R̄²=0.275 (K=5 aggregation) | ⚠️ 不是 adaptive R²，是不同指标；但与错误的 adaptive R² 同值，建议与 registry 核实 |\n\n---\n\n## 汇总\n\n| 类别 | 不一致数 | 严重性 |\n|------|---------|--------|\n| Fractional logit 显著性计数 | **6处** | 🔴 高（含 introduction, results, analysis, appendix） |\n| Adaptive R² | **2处** | 🔴 高（introduction + results） |\n| WCB bootstrap 数字 | 0 | ✅ |\n| OLS 数字 | 0 | ✅ |\n| Dominance 分布 | 0 | ✅ |\n| Bayesian 方向/neutralization | 0 | ✅ |\n| 方向一致性 98.6% (71/72) | 需验证 | ⚠️ |\n\n**共 8 处需修正，2 处需核实。**\n"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-25T06:54:04.596001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/r6_data_audit.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-25T06:54:04.596174+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存至 `artifacts/r6_data_audit.md`。\n\n**发现 8 处不一致：**\n\n**Fractional logit（6处 🔴）：**\n- `results.tex:24` 表格 K=3 行：η_max 6/12→**7/12**, K_eff 9/12→**4/12**（都错）\n- `results.tex:43` \"fractional logit giving 9/12\"→**4/12**（K=3）\n- `results.tex:99` 声称 \"9/12 across all K\"→实际 **4/12, 9/12, 10/12**\n- `introduction.tex:20` 同上 \"9/12 across all K\"\n- `analysis.tex:15` 同上 \"9/12 at all K\"\n- `appendix.tex:159` 表格 K=5 行 η_max 4/12→**5/12**\n\n**Adaptive R²（2处 🔴）：**\n- `introduction.tex:16` R²=0.275→**0.256**\n- `results.tex:66` R²=0.275→**0.256**\n\n**全部正确的：** WCB bootstrap 数字（9处）、OLS 计数、dominance 分布、Bayesian 方向/neutralization。\n\n**需额外核实：** 98.6% directional concordance (71/72) 在 fractional logit 数字修正后是否仍成立。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_r6-data-audit_20260525T064840"
+          },
+          "id": "event-000125"
+        }
+      ],
+      "message_count": 125
+    }
+  ]
+}

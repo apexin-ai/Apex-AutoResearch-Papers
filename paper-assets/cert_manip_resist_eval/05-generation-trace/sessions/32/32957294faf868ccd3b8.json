@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "32957294faf868ccd3b8",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis vif partial corr",
+  "task_key": "worker_analysis_vif-partial-corr_20260522T233637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_vif-partial-corr_20260522T233637_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "b19dfe9dfbc78ead65978a596204f06d77a543694621ed3575cb413ca6e4c50b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `/root/cert_manip_resist_eval/artifacts/results/plan001/vif_partial_corr.json`。\n\n**VIF 结果：**\n- Mean = 2.98, Min = 1.23 (mmlu×sycophancy), Max = 7.03 (arc_challenge×score_manipulation)\n- 高于预期的 ~1.96，arc_challenge 上几个条件 VIF 较高（score_manipulation 7.03, position_bias 6.53），说明这些条件下 log(K_eff) 和 log(η_max) 共线性较强\n\n**Partial Correlation 结果：**\n- η_max → ASR | K_eff: mean r = 0.305, 11/12 conditions 显著 (p < 0.05)\n- K_eff → ASR | η_max: mean r = 0.116, 8/12 conditions 显著 (p < 0.05)\n- η_max 控制 K_eff 后仍有较强独立解释力；K_eff 控制 η_max 后效应较弱但多数条件仍显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

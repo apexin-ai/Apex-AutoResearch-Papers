@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "522aa5fc84c90b8fc0fa",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp downstream benchmark 002",
+  "task_key": "worker_exp_downstream_benchmark_002_20260517T172537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_downstream_benchmark_002_20260517T172537_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "49394ad781fc2a9223730c30fc00303ac47ce530f61c2299579d4074572578d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常进行中。有一个小问题（logs 目录不存在导致 tee 报错），但主日志正常写入到 runs 目录。\n\n关键确认：\n- 数据加载正确：4 × 500 训练 + 200 eval\n- d0_only 训练已开始，loss 从 2.577 → 2.536 下降（不再全部 3.021）\n- LoRA 参数：786,432 trainable / 406M total (0.19%)\n- 训练速度 ~6.7 it/s，每个 subset 96 steps × 3 epochs\n\n预计总时长：~30 min 训练（4 models × ~7 min each）+ ~5 min 评估 = ~35 min。\n\n已完成：\n- 从 gpu-6000pro-2 采样 2200 条文本（4 depths × 500 train + 200 eval）\n- 传输到 westd-48862\n- 编写完整 pipeline（训练 + held-out perplexity 评估 + 基线对比）\n- 注册实验 `downstream_benchmark_002`，状态 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

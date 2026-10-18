@@ -1,0 +1,1033 @@
+{
+  "schema_version": "1.0",
+  "id": "1a9de7205de4ea7d1f8a",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "paper d048 page compression v2",
+  "task_key": "worker_paper_d048_page_compression_v2_20260516T151046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_d048_page_compression_v2_20260516T151046.jsonl",
+    "occurrence": 1,
+    "bytes": 46615,
+    "sha256": "5f0daf612c7c181d09d4ef4c9e89b1bed315036e045246b58deba7f237193342"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T15:14:52.333671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T15:14:52.334114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe two-channel decomposition applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1 extreme-batch gap; Appendix~\\ref{sec:appendix_prompt_sensitivity}).\n6\t\n7\t\\paragraph{Why does embedding similarity predict LLM confusion?}\n8\tType name embeddings capture semantic proximity in the same representational space LLMs use for in-context type resolution; high SCS indexes the degree of representational overlap that causes substitution errors during decoding. The pair-level effect is modest ($R^2 \\approx 7\\%$) because individual substitutions are stochastic, but pairs sharing a common type exhibit correlated SCS values ($\\rho = 0.35$), so co-occurring high-SCS pairs aggregate constructively---an effective ${\\sim}3\\times$ amplification confirmed by Monte Carlo simulation (Appendix~\\ref{app:aggregation-sim}). Batch-level BCS therefore explains 22--53\\% of accuracy variance, sufficient for pre-hoc schema screening.\n9\t\n10\t\\paragraph{Schema design implications.}\n11\tSince typical random batches differ by only ${\\approx}\\,2.2$\\,pp (\\S\\ref{sec:practical_magnitude}), the practical impact depends on schema composition.\n12\tOur findings suggest a pre-hoc workflow for practitioners designing extraction schemas. Before deployment, one can compute all-pairs SCS across the type inventory and flag pairs exceeding a high percentile (e.g., 75th) of the corpus's SCS distribution\n…[truncated 2550 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T15:14:52.334339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T15:14:52.334494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/conclusion.tex\ndocs/paper/prompt_appendix.tex\ndocs/paper/related_work.tex\ndocs/paper/sdgd_negative.tex\ndocs/paper/results.tex\ndocs/paper/experimental_setup.tex\ndocs/paper/checklist.tex\ndocs/paper/introduction.tex\ndocs/paper/abstract.tex\ndocs/paper/main.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T15:14:52.334631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T15:14:52.334953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T15:14:52.335252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tUnless otherwise noted, all experiments in this section use the v1 prompt (\\S\\ref{sec:model}; full templates in Appendix~\\ref{sec:appendix_prompts}).\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\begin{minipage}[t]{0.48\\columnwidth}\n12\t\\centering\n13\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n14\t\\end{minipage}\n15\t\\hfill\n16\t\\begin{minipage}[t]{0.48\\columnwidth}\n17\t\\centering\n18\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n19\t\\end{minipage}\n20\t\\caption{\\textbf{(a)} Count-degradation curves across four datasets. NER recall generally declines and RE accuracy (both FewRel and DocRED) declines monotonically with schema size; MAVEN relaxed F1 increases (\\S\\ref{sec:centrality_confound}). \\textbf{(b)} BCS-controlled FewRel accuracy. The BCS--accuracy slope is consistent across the independent 16-relation pool and within-pool 16-relation subsets (permutation $p = 0.60$); the wider BCS range available at 80 relations produces larger absolute gaps.}\n21\t\\label{fig:main_results}\n22\t\\end{figure}\n23\t\n24\tFigure~\\ref{fig:main_results}a shows extraction quality degrades monotonically with schema size across three datasets: Few-NERD recall drops from 0.72 to 0.42 ($-$42\\%), FewRel accuracy from 85.7\\% to 50.4\\% ($-$35.3\\,pp), and DocRED from 88.0\\% to 38.7\\% ($-$56\\%). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}), indicating schema configuration rather than model-specific factors predicts difficulty.\n25\t\n26\t\\subsection{Pairwise Confusability and Type Confusion}\n27\t\\label{sec:pairwise}\n28\t\n29\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate---the fraction\n…[truncated 8700 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T15:14:52.335721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{enumitem}\n14\t\\usepackage[normalem]{ulem}\n15\t\\usepackage{listings}\n16\t\n17\t\\title{Does Type Confusability Shape Schema-Induced Degradation\\\\in Training-Free LLM Information Extraction?}\n18\t\n19\t\\author{Anonymous}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t\\input{abstract}\n25\t\n26\t\\input{introduction}\n27\t\n28\t\\input{related_work}\n29\t\n30\t\\input{experimental_setup}\n31\t\n32\t\\input{results}\n33\t\n34\t\\input{sdgd_negative}\n35\t\n36\t\\input{discussion}\n37\t\n38\t\\section*{Limitations}\n39\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n40\t\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B with cross-model validation on Llama-3.1-8B-Instruct. Whether patterns hold for proprietary models (GPT-4, Gemini) remains unverified. Channel~2 was not robustly detectable on NER at 8B scale, likely due to floor effects.\n41\t\n42\t\\item \\textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\\% of type confusion variance; entity frequency, prompt position, mention ambiguity, and type definition quality likely account for the remainder.\n43\t\n44\t\\item \\textbf{Factorial interaction tests.} Within-dataset count $\\times$ BCS interaction on Few-NERD did not reach significance ($p = 0.50$; Appendix~\\ref{sec:appendix_factorial}). However, a FewRel factorial with TOST equivalence testing confirms additive separability ($p_{\\text{TOST}} = .003$, interaction = 0.47\\,pp; Appendix~\\ref{sec:appendix_factorial}), and cross-pool slope consistency ($p = 0.60$) corroborates stable rather than amplifying sensitivity.\n45\t\n46\t\\item \\textbf{Decomposition and metric scope.} RE batch composition is tested on FewRel only; NER merge alternatives remain unexplored. SCS relies on embedding cosine similarity; label entropy or ontologica\n…[truncated 25124 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T15:14:52.335961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T15:14:52.336101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -20",
+              "description": "Compile LaTeX paper to check current page count",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T15:14:52.336267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}\n2\t\\label{sec:sdgd}\n3\t\n4\tA natural intervention against confusability-driven degradation is to partition the schema so that confusable types never co-occur in the same prompt. We test this idea with \\textbf{Schema-DAG-Guided Decomposition} (SDGD\\footnote{SDGD (Schema Decomposition and Grouping for Degradation mitigation) is an adopted abbreviation for schema decomposition and grouping; the graph structure is undirected.}), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches.\n5\t\n6\tWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent---i.e., highly confusable---types share a batch. Each color class forms one extraction batch. For NER, predictions from all batches are merged via set union; for RE, each instance is routed to the batch containing its gold type (oracle routing). We test four NER modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, each type extracted in isolation. Every mode falls below the single-pass NER baseline: SDGD obtains F1\\,=\\,0.251, random batching 0.320, per-type 0.292, versus 0.445 for single-pass (Table~\\ref{tab:sdgd_results}, Appendix~\\ref{sec:appendix_sdgd}).\n7\t\n8\t\\paragraph{Merge amplification in NER.}\n9\tThe core failure mechanism is \\emph{merge amplification}: presenting the same text to the model $k$ times with different type subsets causes each pass to independently generate entity predictions, and union merge accumulates all of them into a single output. Each pass produces an independent set of span predictions; because LLM outputs are not calib\n…[truncated 4344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T15:14:52.336416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (18 pages, 417280 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T15:14:52.336578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdftotext main.pdf - 2>/dev/null | grep -n \"Conclusion\\|Limitations\\|References\" | head -10",
+              "description": "Find Conclusion and Limitations positions in PDF text"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T15:14:52.336707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1238:on 8B NER (Limitations, item 1).\n1716:Conclusion\n1735:Limitations\n1864:Yes. The Limitations section (after §7) discusses single-model reliance, modest pairwise\n2211:References"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T15:14:52.336827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdftotext -layout main.pdf - 2>/dev/null | grep -n \"^$\" | head -5; echo \"---\"; pdftotext main.pdf /tmp/paper_text.txt 2>/dev/null && grep -n \"Conclusion\\|Limitations\" /tmp/paper_text.txt",
+              "description": "Extract text and find section boundaries"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T15:14:52.336973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3:\n4:\n6:\n7:\n8:\n---\n1238:on 8B NER (Limitations, item 1).\n1716:Conclusion\n1735:Limitations\n1864:Yes. The Limitations section (after §7) discusses single-model reliance, modest pairwise"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T15:14:52.337095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.split('\\n')\n# Find page breaks (form feeds)\npage = 1\nfor i, line in enumerate(lines):\n    if '\\f' in line:\n        page += 1\n    if 'Conclusion' in line and page <= 10:\n        print(f'Page {page}, line {i}: {line.strip()}')\n    if 'Limitations' in line and page <= 10:\n        print(f'Page {page}, line {i}: {line.strip()}')\nprint(f'Total pages in text: {page}')\n\"",
+              "description": "Find which page Conclusion and Limitations fall on"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T15:14:52.337234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 6, line 485: 447      on 8B NER (Limitations, item 1).\nPage 8, line 632: 630   amplification confirmed by Monte Carlo simulation            7   Conclusion                                          679\nPage 8, line 647: 643   mitigation strategies follow from the two-channel            Limitations                                             691\nPage 9, line 676: 706      not reach significance (p = 0.50; Appendix C).                 Yes. The Limitations section (after §7) dis-       753\nTotal pages in text: 19"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T15:14:52.337399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\nfor i, page in enumerate(pages[:10], 1):\n    lines = [l for l in page.strip().split('\\n') if l.strip()]\n    if lines:\n        print(f'=== Page {i} (last 5 lines) ===')\n        for l in lines[-5:]:\n            print(f'  {l.strip()[:80]}')\n        print()\n\"",
+              "description": "Show last 5 lines of each page to find Conclusion location"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T15:14:52.337539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 1 (last 5 lines) ===\n  078\n  079\n  080\n  081\n  082\n\n=== Page 2 (last 5 lines) ===\n  177\n  178\n  179\n  180\n  181\n\n=== Page 3 (last 5 lines) ===\n  262\n  263\n  264\n  265\n  266\n\n=== Page 4 (last 5 lines) ===\n  359\n  360\n  361\n  362\n  363\n\n=== Page 5 (last 5 lines) ===\n  425\n  426\n  427\n  428\n  429\n\n=== Page 6 (last 5 lines) ===\n  510\n  511\n  512\n  513\n  514\n\n=== Page 7 (last 5 lines) ===\n  599\n  600\n  601\n  602\n  603\n\n=== Page 8 (last 5 lines) ===\n  696\n  697\n  698\n  699\n  700\n\n=== Page 9 (last 5 lines) ===\n  790\n  789\n  791\n  792\n  793\n\n=== Page 10 (last 5 lines) ===\n  875\n  876\n  877\n  878\n  879"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T15:14:52.337676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n# Show page 8 and 9 content\nfor i in [7, 8]:  # 0-indexed\n    page = pages[i]\n    lines = page.strip().split('\\n')\n    print(f'=== Page {i+1} ===')\n    # Show first 15 and last 15 lines\n    print('--- First 15 lines ---')\n    for l in lines[:15]:\n        print(f'  {l[:100]}')\n    print('--- Last 15 lines ---')\n    for l in lines[-15:]:\n        print(f'  {l[:100]}')\n    print()\n\"",
+              "description": "Show content of pages 8-9 to find Conclusion boundaries"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T15:14:52.337815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 8 ===\n--- First 15 lines ---\n  604\n  \n  6\n  \n  605\n  \n  Boundary conditions. The two-channel decomposition applies to cross-domain schemas; samedomain schem\n  that obscures per-type aggregated signals, requiring\n  pairwise SCS or centrality adjustment (§4.5). HighBCS accuracy converges to ≈51% across tested\n  models, suggesting a task-inherent difficulty ceiling. RE’s clean channel separation may partly\n  reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope −0.71).\n  Prompt design modulates but does not eliminate\n  the effect (v2 gap: −25.5 pp vs. v1 extreme-batch\n  gap; Appendix H).\n  \n--- Last 15 lines ---\n  684\n  685\n  686\n  687\n  688\n  689\n  \n  693\n  694\n  695\n  696\n  697\n  698\n  699\n  700\n\n=== Page 9 ===\n--- First 15 lines ---\n  701\n  702\n  703\n  704\n  705\n  706\n  707\n  708\n  709\n  710\n  711\n  712\n  713\n  714\n  715\n--- Last 15 lines ---\n  \n  788\n  \n  Yes. All four datasets are publicly available\n  research benchmarks. Few-NERD is released\n  under CC-BY-SA 4.0; FewRel, DocRED, and\n  MAVEN are publicly released for research use.\n  \n  790\n  \n  789\n  \n  791\n  792\n  793"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T15:14:52.337971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n# Show full page 8\npage = pages[7]\nlines = page.strip().split('\\n')\nprint(f'=== Page 8 ({len(lines)} lines) ===')\nfor l in lines:\n    stripped = l.strip()\n    if stripped and not stripped.isdigit() and len(stripped) > 3:\n        print(f'  {stripped[:120]}')\n\" 2>&1 | tail -60",
+              "description": "Show all content lines on page 8"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T15:14:52.338134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope −0.71).\n  Prompt design modulates but does not eliminate\n  the effect (v2 gap: −25.5 pp vs. v1 extreme-batch\n  gap; Appendix H).\n  Discussion\n  ity graph (§5), accepting the precision–recall tradeoff that merge introduces. We deliberately avoid\n  recommending a fixed SCS threshold, as optimal\n  granularity is task-dependent: the acceptable confusion rate depends on downstream costs, schema\n  size, and available compute budget for multi-pass\n  extraction.\n  Why does embedding similarity predict LLM\n  confusion? Type name embeddings capture semantic proximity in the same representational\n  space LLMs use for in-context type resolution;\n  high SCS indexes the degree of representational\n  overlap that causes substitution errors during decoding. The pair-level effect is modest (R2 ≈ 7%)\n  because individual substitutions are stochastic, but\n  pairs sharing a common type exhibit correlated\n  SCS values (ρ = 0.35), so co-occurring high-SCS\n  pairs aggregate constructively—an effective ∼3×\n  amplification confirmed by Monte Carlo simulation\n  (Appendix M). Batch-level BCS therefore explains\n  22–53% of accuracy variance, sufficient for prehoc schema screening.\n  Schema design implications. Since typical random batches differ by only ≈ 2.2 pp (§4.3), the\n  practical impact depends on schema composition.\n  Our findings suggest a pre-hoc workflow for practitioners designing extraction schemas. Before deployment, one can compu\n  the type inventory and flag pairs exceeding a high\n  percentile (e.g., 75th) of the corpus’s SCS distribution as high-risk for mutual confusion. Three\n  mitigation strategies follow from the two-channel\n  decomposition: (i) Expand definitions—for highSCS pairs, include contrastive definitions or disambiguating examples in t\n  representational separation; (ii) Rename types—\n  replace semantically proximate labels with more\n  descriptive alternatives (e.g., “person-\n…[truncated 1904 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T15:14:52.338294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n# Show full page 9\npage = pages[8]\nlines = page.strip().split('\\n')\nprint(f'=== Page 9 ({len(lines)} lines) ===')\nfor l in lines:\n    stripped = l.strip()\n    if stripped and not stripped.isdigit() and len(stripped) > 3:\n        print(f'  {stripped[:120]}')\n\" 2>&1 | head -60",
+              "description": "Show page 9 content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T15:14:52.338444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Page 9 (219 lines) ===\n  tity frequency, prompt position, mention ambiguity, and type definition quality likely account\n  for the remainder.\n  3. Factorial interaction tests. Within-dataset\n  count × BCS interaction on Few-NERD did\n  not reach significance (p = 0.50; Appendix C).\n  However, a FewRel factorial with TOST equivalence testing confirms additive separability\n  (pTOST = .003, interaction = 0.47 pp; Appendix C), and cross-pool slope consistency\n  (p = 0.60) corroborates stable rather than amplifying sensitivity.\n  5. RE format specificity. RE’s clean channel separation may reflect its closed-set classification\n  format. FewRel combines training and validation splits for 80 types and characterizes classification accuracy rather tha\n  6. Causal mechanism. The study establishes correlational evidence with controlled stratification;\n  mechanistic analysis at the attention or logit\n  level is needed to confirm the causal pathway.\n  The controlled stratification provides evidence\n  consistent with a directional relationship but\n  does not establish interventional causality.\n  7. Data contamination. FewRel (2018) may appear in pretraining corpora. However, trainorigin relations show numerically \n  opposite to the contamination hypothesis. Moreover, the monotonic count-dependent degradation curve (85.7%→50.4%) cannot\n  by uniform contamination, which would elevate\n  all conditions equally.\n  Responsible NLP Research Checklist\n  For each question, the answer is Yes, No, or N/A.\n  If Yes, the relevant section is indicated. If No, a\n  For Every Submission\n  A1. Did you describe the limitations of your\n  work?\n  Yes. The Limitations section (after §7) discusses single-model reliance, modest pairwise\n  effect sizes, cross-pool slope consistency, factorial interaction tests with TOST equivalence,\n  decomposition scope, and metric scope.\n  A2. Did you discuss any potential risks of your\n  work?\n  N/A. This is a purely analytical study of\n  schema-induced degradation i\n…[truncated 1279 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T15:14:52.338628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -i \"overfull\\|underfull\\|page\" main.log | grep -i \"page\" | tail -20",
+              "description": "Check log for page overflow warnings"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T15:14:52.338757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\c@pagewiselinenumber=\\count287\n\\c@LN@truepage=\\count288\nPackage: geometry 2020/01/02 v5.9 Page Geometry\n\\Hy@pagecounter=\\count301\nPackage hyperref Info: Plain pages OFF on input line 4210.\n\\Hy@abspage=\\count305\nOutput written on main.pdf (18 pages, 417280 bytes)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T15:14:52.338899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\n# Use pdfinfo to check page count and pdftotext to find where Conclusion ends\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n\n# Find which page contains 'Limitations' section header (the section AFTER conclusion)\nfor i, page in enumerate(pages, 1):\n    if 'Limitations' in page and i <= 10:\n        # Check if Conclusion is on this page too\n        has_conclusion = 'Conclusion' in page\n        # Find the position of Limitations relative to page\n        lines = page.split('\\n')\n        for j, line in enumerate(lines):\n            if 'Limitations' in line and 'section' not in line.lower() and j < 20:\n                print(f'Page {i}: Limitations found at relative line {j}/{len(lines)}')\n                break\n        if has_conclusion:\n            for j, line in enumerate(lines):\n                if 'Conclusion' in line and 'section' not in line.lower():\n                    print(f'Page {i}: Conclusion found at relative line {j}/{len(lines)}')\n                    break\n\"",
+              "description": "Find Conclusion and Limitations page positions precisely"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T15:14:52.339029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 8: Conclusion found at relative line 138/195"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T15:14:52.339166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n\n# Page 8 (0-indexed: 7)\npage8 = pages[7]\nlines8 = page8.split('\\n')\nprint(f'Page 8 total lines: {len(lines8)}')\n# Find Conclusion and Limitations positions\nfor j, line in enumerate(lines8):\n    if 'Conclusion' in line:\n        print(f'  Conclusion at line {j}: {line.strip()[:80]}')\n    if 'Limitations' in line:\n        print(f'  Limitations at line {j}: {line.strip()[:80]}')\n\n# Page 9 (0-indexed: 8)  \npage9 = pages[8]\nlines9 = page9.split('\\n')\nprint(f'\\\\nPage 9 total lines: {len(lines9)}')\nfor j, line in enumerate(lines9[:30]):\n    if line.strip() and not line.strip().isdigit() and len(line.strip()) > 3:\n        print(f'  line {j}: {line.strip()[:100]}')\n\"",
+              "description": "Precisely locate Conclusion and Limitations across pages"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T15:14:52.339290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 8 total lines: 195\n  Conclusion at line 138: Conclusion\n  Limitations at line 157: Limitations\n\nPage 9 total lines: 221"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T15:14:52.339469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Boundary conditions.}\nThe two-channel decomposition applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1 extreme-batch gap; Appendix~\\ref{sec:appendix_prompt_sensitivity}).",
+              "new_string": "\\paragraph{Boundary conditions.}\nThe two-channel decomposition applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1 extreme-batch gap; Appendix~\\ref{sec:appendix_prompt_sensitivity}). Preliminary cross-scale evidence (32B vs.\\ 8B) shows Channel~2 attenuates on smaller models due to floor effects, while Channel~1 replicates fully (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs})."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T15:14:52.339632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T15:14:52.339771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Why does embedding similarity predict LLM confusion?}\nType name embeddings capture semantic proximity in the same representational space LLMs use for in-context type resolution; high SCS indexes the degree of representational overlap that causes substitution errors during decoding. The pair-level effect is modest ($R^2 \\approx 7\\%$) because individual substitutions are stochastic, but pairs sharing a common type exhibit correlated SCS values ($\\rho = 0.35$), so co-occurring high-SCS pairs aggregate constructively---an effective ${\\sim}3\\times$ amplification confirmed by Monte Carlo simulation (Appendix~\\ref{app:aggregation-sim}). Batch-level BCS therefore explains 22--53\\% of accuracy variance, sufficient for pre-hoc schema screening.",
+              "new_string": "\\paragraph{Why does embedding similarity predict LLM confusion?}\nType name embeddings capture semantic proximity in the same representational space LLMs use for in-context type resolution; high SCS indexes representational overlap that causes substitution errors during decoding. The pair-level effect is modest ($R^2 \\approx 7\\%$) but amplifies ${\\sim}3\\times$ at the batch level through inter-pair correlation (Appendix~\\ref{app:aggregation-sim}), yielding batch-level $R^2$ of 22--53\\%---sufficient for pre-hoc schema screening."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T15:14:52.340004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T15:14:52.340268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Cross-domain connections.}\nSchema complexity effects may parallel findings in schema-guided dialogue systems (§2; see Appendix~\\ref{app:cross-domain} for discussion).\n\n\\paragraph{Model scale and confusability sensitivity.}\nPreliminary evidence from two model sizes (32B vs.\\ 8B) suggests that Channel~2 (confusability) effects attenuate on smaller models due to floor effects, while Channel~1 (count) replicates fully (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Systematic scaling studies remain future work.\n\n",
+              "new_string": "\n"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T15:14:52.340513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: \\paragraph{Cross-domain connections.}\nSchema complexity effects may parallel findings in schema-guided dialogue systems (§2; see Appendix~\\ref{app:cross-domain} for discussion).\n\n\\paragraph{Model scale and confusability sensitivity.}\nPreliminary evidence from two model sizes (32B vs.\\ 8B) suggests that Channel~2 (confusability) effects attenuate on smaller models due to floor effects, while Channel~1 (count) replicates fully (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Systematic scaling studies remain future work.\n\n\n(note: Edit also tried swapping \\uXXXX escapes and their characters; neither form matched, so the mismatch is likely elsewhere in old_string. Re-read the file and copy the exact surrounding text.)</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T15:14:52.340654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "offset": "15",
+              "limit": "20"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T15:14:52.340965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15\t(iii)~\\emph{Decompose batches}---assign high-SCS pairs to different extraction passes using graph coloring on the SCS-thresholded confusability graph (\\S\\ref{sec:sdgd}), accepting the precision--recall trade-off that merge introduces.\n16\tWe deliberately avoid recommending a fixed SCS threshold, as optimal granularity is task-dependent: the acceptable confusion rate depends on downstream costs, schema size, and available compute budget for multi-pass extraction.\n17\t\n18\t\\paragraph{Cross-domain connections.}\n19\tSchema complexity effects may parallel findings in schema-guided dialogue systems (\\S2; see Appendix~\\ref{app:cross-domain} for discussion).\n20\t\n21\t\\paragraph{Model scale and confusability sensitivity.}\n22\tPreliminary evidence from two model sizes (32B vs.\\ 8B) suggests that Channel~2 (confusability) effects attenuate on smaller models due to floor effects, while Channel~1 (count) replicates fully (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Systematic scaling studies remain future work.\n23\t\n24\t\\paragraph{Future directions.}\n25\tThree directions merit investigation: (i)~non-oracle routing strategies that make decomposition deployable without gold labels; (ii)~broader model coverage, particularly proprietary APIs; and (iii)~definition-inclusive SCS (current name+definition ablation shows no systematic improvement; Appendix~\\ref{app:scs-ablation}). For NER, calibration-aware merge or joint decoding may address merge amplification (\\S\\ref{sec:sdgd}).\n26\t\n27\t\\section{Conclusion}\n28\t\\label{sec:conclusion}\n29\t\n30\tWe presented controlled evidence that schema-induced degradation operates through two additively separable channels---count-driven recall decline and confusability-driven type confusion---replicating across model families and extraction granularities ($R^2$ up to 0.53). The practical contribution is a lightweight pre-hoc screening tool: batch-level BCS flags high-risk schemas before deployment. Future work should address non-oracle routing for\n…[truncated 73 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T15:14:52.341259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{Cross-domain connections.}\nSchema complexity effects may parallel findings in schema-guided dialogue systems (\\S2; see Appendix~\\ref{app:cross-domain} for discussion).\n\n\\paragraph{Model scale and confusability sensitivity.}\nPreliminary evidence from two model sizes (32B vs.\\ 8B) suggests that Channel~2 (confusability) effects attenuate on smaller models due to floor effects, while Channel~1 (count) replicates fully (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}). Systematic scaling studies remain future work.\n\n\\paragraph{Future directions.}",
+              "new_string": "\\paragraph{Future directions.}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T15:14:52.341420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T15:14:52.341554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Error|error|Output written\"",
+              "description": "Compile paper after Priority 2 edits",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T15:14:52.341686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": " [6 <../../figures/paper/fig_error_taxonomy.pdf>]) (./discussion.tex [7]\nOutput written on main.pdf (18 pages, 416546 bytes).\n [6 <../../figures/paper/fig_error_taxonomy.pdf>]) (./discussion.tex [7]\nOutput written on main.pdf (18 pages, 416365 bytes)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T15:14:52.341826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n\n# Check pages 7 and 8 (0-indexed)\nfor idx in [6, 7, 8]:\n    page = pages[idx]\n    lines = page.split('\\n')\n    has_conclusion = any('Conclusion' in l for l in lines)\n    has_limitations = any('Limitations' in l for l in lines)\n    has_discussion = any('Discussion' in l for l in lines)\n    print(f'Page {idx+1}: Discussion={has_discussion}, Conclusion={has_conclusion}, Limitations={has_limitations}')\n    if has_conclusion:\n        for j, line in enumerate(lines):\n            if 'Conclusion' in line:\n                print(f'  Conclusion at line {j}/{len(lines)}')\n    if has_limitations:\n        for j, line in enumerate(lines):\n            if 'Limitations' in line:\n                print(f'  Limitations at line {j}/{len(lines)}')\n                break\n\"",
+              "description": "Check Conclusion page position after compression"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T15:14:52.341983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 7: Discussion=False, Conclusion=False, Limitations=False\nPage 8: Discussion=True, Conclusion=True, Limitations=True\n  Conclusion at line 112/191\n  Limitations at line 131/191\nPage 9: Discussion=False, Conclusion=False, Limitations=True\n  Limitations at line 184/224"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T15:14:52.342126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T15:14:52.342267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe two-channel decomposition applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1 extreme-batch gap; Appendix~\\ref{sec:appendix_prompt_sensitivity}). Preliminary cross-scale evidence (32B vs.\\ 8B) shows Channel~2 attenuates on smaller models due to floor effects, while Channel~1 replicates fully (Tables~\\ref{tab:cross_model}--\\ref{tab:cross_model_bcs}).\n6\t\n7\t\\paragraph{Why does embedding similarity predict LLM confusion?}\n8\tType name embeddings capture semantic proximity in the same representational space LLMs use for in-context type resolution; high SCS indexes representational overlap that causes substitution errors during decoding. The pair-level effect is modest ($R^2 \\approx 7\\%$) but amplifies ${\\sim}3\\times$ at the batch level through inter-pair correlation (Appendix~\\ref{app:aggregation-sim}), yielding batch-level $R^2$ of 22--53\\%---sufficient for pre-hoc schema screening.\n9\t\n10\t\\paragraph{Schema design implications.}\n11\tSince typical random batches differ by only ${\\approx}\\,2.2$\\,pp (\\S\\ref{sec:practical_magnitude}), the practical impact depends on schema composition.\n12\tOur findings suggest a pre-hoc workflow for practitioners designing extraction schemas. Before deployment, one can compute all-pairs SCS across the type inventory and flag pairs exceeding a high percentile (e.g., 75th) of the corpus's SCS distribution as high-risk for \n…[truncated 1977 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T15:14:52.342425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -c \"^!\" main.log; echo \"---\"; grep \"Undefined control sequence\\|Missing\" main.log | head -5",
+              "description": "Check for LaTeX errors in log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T15:14:52.342545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\n---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T15:14:52.342698+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No errors. Final result:\n\n**Priority 1 (Conclusion)**: Already at target (~4 source lines / ~8 rendered lines). No change needed.\n\n**Priority 2 (Discussion)**: Compressed ~12 source lines:\n- \"Why does embedding similarity...\" paragraph: cut from 5 lines to 3 (removed Monte Carlo mechanism details, kept conclusion)\n- \"Cross-domain connections\" paragraph: deleted entirely (2 lines)\n- \"Model scale\" paragraph: deleted (3 lines); merged as 1 sentence into \"Boundary conditions\"\n\n**Conclusion position**: moved from line 138/195 (71%) to line 112/191 (59%) on page 8. Limitations starts at line 131/191. Well within the 8-page limit — no need for Priority 3.\n\n**Compilation**: 0 errors, 18 pages total (unchanged — savings absorbed into more breathing room on page 8)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d048_page_compression_v2_20260516T151046"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ]
+}

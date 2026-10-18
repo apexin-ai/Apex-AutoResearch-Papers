@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c7166d78410aae6bb85d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "fix table2 aggregation corrected",
+  "task_key": "worker_fix_table2-aggregation-corrected_20260523T181032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_table2-aggregation-corrected_20260523T181032_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "64e320d90bf7566ba9f0ca71496dbfc7d8548799144e2c7e9c879095113dbf2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Table 2 修正结果对比：\n\n| Method | Metric | Old (buggy) | New (V2) |\n|--------|--------|-------------|----------|\n| **Threshold** | η_sig | 12/12 | 12/12 |\n| | K_sig | 11/12 | 11/12 |\n| | K_dir | 10+/1- | **11+/0-** |\n| | R² | 0.89 | 0.829 |\n| **Majority** | η_sig | 9/12 | **10/12** |\n| | K_sig | 8/12 | **12/12** |\n| | K_dir | 7+/1- | **12+/0-** |\n| | R² | 0.298 | 0.327 |\n| **Weighted** | η_sig | 9/12 | 9/12 |\n| | K_sig | 9/12 | **12/12** |\n| | K_dir | 9+/0- | **12+/0-** |\n| | R² | 0.284 | 0.328 |\n| **Bayesian** | η_sig | 9/12 | 9/12 |\n| | K_sig | 7/12 | 6/12 |\n| | K_dir | 1+/6- | **5+/1-** |\n| | R² | 0.104 | 0.087 |\n\n关键发现：\n- **Bayesian direction reversal 确认**：1+/6- → 5+/1-，旧的负方向是 error 被当作 \"tie\" 导致的 log-odds 偏差伪影\n- **Majority/Weighted**：K_eff 现在全部 12/12 显著且方向一致为正，error-as-tie 之前在掩盖 diversity signal\n- **Threshold**：那个虚假的负方向条件消失了（10+/1- → 11+/0-）\n- 修正后 **强化了论文的核心论点**：judge diversity 提升操纵抵抗力\n\n输出已写入 `docs/paper/data/table2_corrected.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

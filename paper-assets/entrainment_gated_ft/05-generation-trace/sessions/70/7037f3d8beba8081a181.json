@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7037f3d8beba8081a181",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code pvalue sweep fix",
+  "task_key": "worker_code_pvalue_sweep_fix_20260519T063141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pvalue_sweep_fix_20260519T063141_result.json",
+    "occurrence": 1,
+    "bytes": 1815,
+    "sha256": "7ed4dfefad210a11ee7928a452fc4cc8f39a62f00a7b5a28fedfc37a61ee662d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。汇总：\n\n### FINAL_REPORT.md — 19 行修改\n\n**Section 4.1 叙事文本（3处）：**\n- L70 GDN: `p = 0.037` → `one-tailed p = 0.0417`\n- L74 HGRN2: `one-tailed p < 0.01` → `one-tailed p = 0.0083`\n- L76 RetNet: `p = 0.037` → `one-tailed p = 0.0417`\n\n**Section 4.2 收敛表（7处）：**\n- 表头 `p-value` → `p (1-tail)`\n- LAMBADA: `<0.01` → `0.0083`\n- HellaSwag: `0.624` → `0.3417`\n- Winogrande: `0.873` → `0.4750`\n- ARC-Easy: `0.188` → `0.1167`\n- ARC-Challenge: `0.285` → `0.1750`\n- MMLU: `0.188` → `0.1167`\n- L95 叙事: `p < 0.01` → `p = 0.0083`\n\n**Section 4.3 每架构表（7处）：**\n- 表头列名加 `(1-tail)`\n- LAMBADA: GDN/RetNet `0.037` → `0.0417`，HGRN2 `<0.01` → `0.0083`\n- 其余 15 个 p 值全部替换为精确排列检验 one-tailed 值\n\n### convergence_analysis.py\n- 添加 `exact_spearman_p()` 暴力枚举函数\n- `spearmanr()` 调用替换为精确排列检验\n- 输出已验证：two-tailed 精确值与枚举一致\n\n### 未修改\n- `cross_scale_convergence.py`：已使用精确排列检验，无需修改\n- `lambada_matched_comparison.py`：无 Spearman p 值\n\n### 精确排列检验参考值（n=5, 暴力枚举验证）\n\n| |ρ| | two-tailed | one-tailed |\n|---|---|---|\n| 1.0 | 2/120 = 0.0167 | 0.0083 |\n| 0.9 | 10/120 = 0.0833 | 0.0417 |\n| 0.7 | 28/120 = 0.2333 | 0.1167 |\n| 0.6 | 42/120 = 0.3500 | 0.1750 |\n| 0.5 | 54/120 = 0.4500 | 0.2250 |\n| 0.4 | 62/120 = 0.5167 | 0.2583 |\n| 0.3 | 82/120 = 0.6833 | 0.3417 |\n| 0.2 | 94/120 = 0.7833 | 0.3917 |\n| 0.1 | 114/120 = 0.9500 | 0.4750 |\n\n注意：用户提供的参考表中 |ρ|=0.8 以下部分计数有误（如 |ρ|=0.8 实际为 16/120=0.1333 而非 20/120=0.1667），所有修改均基于暴力枚举验证值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,1130 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d8cb4e96f9754e52a5",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "exp exp 005 priority1 v2",
+  "task_key": "worker_exp_exp-005-priority1-v2_20260522T144606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_exp-005-priority1-v2_20260522T144606.jsonl",
+    "occurrence": 1,
+    "bytes": 41840,
+    "sha256": "bb363687fc9af33065187d12da262b250aa7e240ee2c0b74e8983522a5b72594"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:49:50.744284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:49:50.744613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:49:50.744836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -la /root/entrainment_gated_ft/models/ | grep -iE 'GLA|DeltaNet|HGRN[^2]'",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:49:50.744983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:49:50.745111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "du -sh /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:49:50.745237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T14:49:50.745353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/autodl-tmp/.hf_cache/hub/ 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:49:50.745469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:49:50.745583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ps aux | grep -E 'lm_eval|download|huggingface' | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:49:50.745721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:49:50.745848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/results/exp005_zoo_expansion/ 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:49:50.745966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:49:50.746109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls -la /root/entrainment_gated_ft/models/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:49:50.746222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "du -sh /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T14:49:50.746330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T14:49:50.746437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T14:49:50.746544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T14:49:50.746690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 76\\\\ndrwxr-xr-x 20 root root 4096 May 22 22:22 .\\\\ndrwxr-xr-x  9 root root 4096 May 22 19:26 ..\\\\ndrwxr-xr-x  2 root root 4096 May 22 21:51 340M-20B-GLA-hybrid-3-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:09 340M-20B-GatedDeltaNet-New-hybrid-24-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:11 340M-20B-GatedDeltaNet-hybrid-12-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:15 340M-20B-GatedDeltaNet-hybrid-3-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:13 340M-20B-GatedDeltaNet-hybrid-6-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:07 340M-20B-GatedDeltaNet-pure-baseline\\\\ndrwxr-xr-x  2 root root   10 May 22 20:50 340M-20B-HGRN-hybrid-3-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:19 340M-20B-HGRN2-hybrid-12-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:18 340M-20B-HGRN2-hybrid-24-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:23 340M-20B-HGRN2-hybrid-3-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:21 340M-20B-HGRN2-hybrid-6-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:16 340M-20B-HGRN2-pure-baseline\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:29 340M-20B-RetNet-hybrid-12-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:27 340M-20B-RetNet-hybrid-24-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:32 340M-20B-RetNet-hybrid-3-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:30 340M-20B-RetNet-hybrid-6-1\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:25 340M-20B-RetNet-pure\\\\ndrwxr-xr-x  2 root root 4096 May 18 14:34 transformer_340M_baseline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T14:49:50.746834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/results/exp005_zoo_expansion/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T14:49:50.746954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3G\\\\t/root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T14:49:50.747070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T14:49:50.747182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T14:49:50.747293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T14:49:50.747406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_6arch.py\\\\npriority1.log\\\\npriority1_v2.log\\\\npriority1_v3.log\\\\nrun_all.log\\\\nrun_priority1.sh\\\\nrun_priority1_v2.sh\\\\nrun_priority1_v3.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T14:49:50.747560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/priority1_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T14:49:50.747699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "ls /root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-hybrid-3-1/",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T14:49:50.747839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T14:49:50.748127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Priority 1 v3 START Fri May 22 20:53:27 CST 2026 ===\\\\nDownloading 340M-20B-GLA-hybrid-3-1 via ModelScope...\\\\n2026-05-22 20:53:30,534 - modelscope - INFO - Got 8 files, start to download ...\\\\nDownloading Model from https://www.modelscope.cn to directory: /root/autodl-tmp/.ms_cache/m-a-p/340M-20B-GLA-hybrid-3-1\\\\n\\\\rProcessing 8 items:   0%|          | 0.00/8.00 [00:00<?, ?it/s]\\\\n\\\\rDownloading [config.json]:   0%|          | 0.00/1.11k [00:00<?, ?B/s]\\\\u001b[A\\\\n\\\\n\\\\rDownloading [configuration.json]:   0%|          | 0.00/64.0 [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\rDownloading [generation_config.json]:   0%|          | 0.00/111 [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:   0%|          | 0.00/1.24G [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [README.md]:   0%|          | 0.00/1.34k [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [special_tokens_map.json]:   0%|          | 0.00/414 [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [tokenizer.json]:   0%|          | 0.00/3.34M [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [tokenizer_config.json]:   0%|          | 0.00/1.00k [00:00<?, ?B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\rDownloading [generation_config.json]: 100%|██████████| 111/111 [00:00<00:00, 231B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\rDownloading [generation_config.json]: 100%|██████████| 111/111 [00:00<00:00, 231B/s]\\\\n\\\\rProcessing 8 items:  12%|█▎        | 1.00/8.00 [00:00<00:03, 2.05it/s]\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [special_tokens_map.json]: 100%|██████████| 414/414 [00:00<00:00, 546B/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\rDownloading [special_tokens_map.json]: 100%|███████\n…[truncated 8527 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T14:49:50.748295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T14:49:50.748416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T14:49:50.748570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -80 /root/entrainment_gated_ft/results/exp005_zoo_expansion/priority1_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T14:49:50.748715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:huggingface.co m-a-p 340M-20B DeltaNet hybrid",
+              "allowed_domains": "['huggingface.co']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T14:49:50.748903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▌| 1.19G/1.24G [55:09<02:23, 385kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▌| 1.19G/1.24G [55:12<02:23, 375kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▌| 1.19G/1.24G [55:15<02:23, 370kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▌| 1.19G/1.24G [55:18<02:18, 375kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▌| 1.19G/1.24G [55:21<02:14, 378kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▋| 1.19G/1.24G [55:23<02:09, 385kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▋| 1.20G/1.24G [55:26<02:03, 394kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▋| 1.20G/1.24G [55:28<02:03, 386kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  96%|█████████▋| 1.20G/1.24G [55:31<01:57, 398kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  97%|█████████▋| 1.20G/1.24G [55:33<01:49, 418kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  97%|█████████▋| 1.20G/1.24G [55:36<01:45, 421kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  97%|█████████▋| 1.20G/1.24G [55:38<01:42, 425kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  97%|█████████▋| 1.20G/1.24G [55:41<01:42, 413kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  97%|█████████▋| 1.20G/1.24G [55:44<01:45, 394kB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:  97%|████\n…[truncated 859 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T14:49:50.749051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:huggingface.co m-a-p 340M-20B HGRN hybrid",
+              "allowed_domains": "['huggingface.co']"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T14:49:50.749203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:huggingface.co m-a-p 340M-20B DeltaNet hybrid\"\n\nLinks: [{\"title\":\"m-a-p/340M-20B-DeltaNet-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-24-1\"},{\"title\":\"m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1\"},{\"title\":\"diff --git \\\"a/tokenizer.json\\\" \\\"b/tokenizer.json\\\"\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-6-1/commit/5696ff2a5ba98c31a95505684bb96737cbb05260.diff?file=tokenizer.json\"},{\"title\":\"See raw diff\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1/commit/df87c03b9e0ed686df4adef8e3eff9e7f4f6b925.diff?file=tokenizer.json\"},{\"title\":\"m-a-p/1.3B-100B-DeltaNet-hybrid-6-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/1.3B-100B-DeltaNet-hybrid-6-1\"},{\"title\":\"The Secret Engine of Next-Gen AI: Why Hybrid Attention is a Game Changer\",\"url\":\"https://huggingface.co/blog/jlopez-dl/hybrid-attention-game-changer\"},{\"title\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-2...\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-24-1/commit/f8831c8a23e2016653685c3b01502dd47157fa78.diff?file=tokenizer.json\"},{\"title\":\"linear-moe-hub/Gated-Deltanet-340M · Hugging Face\",\"url\":\"https://huggingface.co/linear-moe-hub/Gated-Deltanet-340M\"},{\"title\":\"m-a-p/transformer_340M_baseline · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/transformer_340M_baseline\"},{\"title\":\"DuoNeural/Qwen3.6-35B-A3B-Code-imatrix-GGUF · Hugging Face\",\"url\":\"https://huggingface.co/DuoNeural/Qwen3.6-35B-A3B-Code-imatrix-GGUF\"}]\n\nI found several results related to your search. The web search revealed:\n\n1. The m-a-p/340M-20B-DeltaNet-hybrid model is part of \"All 1.3B & 340M hybrid linear-attention experiments\".\n\n2. There are multiple variants in this model family hosted on Hugging Face, including the 340M-20B-DeltaNet-hybrid-24-1 and 340M-20B-GatedDeltaNet-New-hybrid-24-1.\n\n3. The hybri\n…[truncated 518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T14:49:50.749376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:huggingface.co m-a-p 340M-20B HGRN hybrid\"\n\nLinks: [{\"title\":\"A Systematic Analysis of Hybrid Linear Attention\",\"url\":\"https://arxiv.org/pdf/2507.06457\"},{\"title\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-2...\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-24-1/commit/f8831c8a23e2016653685c3b01502dd47157fa78.diff?file=tokenizer.json\"},{\"title\":\"m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1\"},{\"title\":\"m-a-p/340M-20B-DeltaNet-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-24-1\"},{\"title\":\"m-a-p/transformer_340M_baseline · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/transformer_340M_baseline\"},{\"title\":\"HGRN2: Gated Linear RNNs with State Expansion\",\"url\":\"https://arxiv.org/pdf/2404.07904\"},{\"title\":\"BabyHGRN: Exploring RNNs for Sample-Efficient Training of Language Models\",\"url\":\"https://arxiv.org/pdf/2412.15978\"},{\"title\":\"apierro-hf/hgrn-340M-instruct-capybara · Hugging Face\",\"url\":\"https://huggingface.co/apierro-hf/hgrn-340M-instruct-capybara\"}]\n\nBased on the search results, I found information about the models you're looking for. The m-a-p organization trained and open-sourced 72 models: 36 at 340M parameters (20B tokens) and 36 at 1.3B parameters (100B tokens), covering six linear attention variants across five hybridization ratios.\n\nThe search results show several related models on Hugging Face from the m-a-p organization, including models like \"340M-20B-GatedDeltaNet-New-hybrid-24-1\" and \"340M-20B-DeltaNet-hybrid-24-1\". These models are part of a comprehensive study on hybrid linear attention architectures.\n\nThe researchers recommend architectures such as HGRN-2 or GatedDeltaNet with a linear-to-full ratio between 3:1 and 6:1 to achieve Transformer-level recall efficiently. This suggests that the HGRN hybrid models you're asking about are part of this broader research eff\n…[truncated 158 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T14:49:50.749555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:huggingface.co \"m-a-p/340M-20B-DeltaNet-hybrid-3-1\"",
+              "allowed_domains": "['huggingface.co']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T14:49:50.749702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:huggingface.co \"m-a-p/340M-20B-HGRN-hybrid\"",
+              "allowed_domains": "['huggingface.co']"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T14:49:50.749830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "huggingface.co/collections/m-a-p hybrid-linear-attention-research 340M models list",
+              "allowed_domains": "['huggingface.co']"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T14:49:50.749973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:huggingface.co \"m-a-p/340M-20B-DeltaNet-hybrid-3-1\"\"\n\nLinks: [{\"title\":\"m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1\"},{\"title\":\"m-a-p/340M-20B-DeltaNet-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-24-1\"},{\"title\":\"m-a-p/1.3B-100B-DeltaNet-hybrid-6-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/1.3B-100B-DeltaNet-hybrid-6-1\"},{\"title\":\"linear-moe-hub/Gated-Deltanet-340M · Hugging Face\",\"url\":\"https://huggingface.co/linear-moe-hub/Gated-Deltanet-340M\"},{\"title\":\"m-a-p/transformer_340M_baseline · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/transformer_340M_baseline\"},{\"title\":\"A Unified View of Delta Parameter Editing in Post-Trained Large-Scale   Models\",\"url\":\"https://arxiv.org/pdf/2410.13841\"},{\"title\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-2...\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-24-1/commit/f8831c8a23e2016653685c3b01502dd47157fa78.diff?file=tokenizer.json\"},{\"title\":\"Gated Delta Networks: Improving Mamba2 with Delta Rule\",\"url\":\"https://arxiv.org/pdf/2412.06464\"},{\"title\":\"Parallelizing Linear Transformers with the Delta Rule over Sequence   Length\",\"url\":\"https://arxiv.org/pdf/2406.06484\"}]\n\nThe search results show similar models from the m-a-p organization on Hugging Face, but not the exact model \"m-a-p/340M-20B-DeltaNet-hybrid-3-1\" that you requested. The closest results include:\n\n- **m-a-p/340M-20B-DeltaNet-hybrid-24-1** - A hybrid linear-attention model (updated September 11, 2025)\n- **m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1** - Another hybrid linear-attention variant (updated September 11, 2025)\n\nThese appear to be part of 1.3B & 340M hybrid linear-attention experiments from the m-a-p organization.\n\nThe specific model with the \"-3-1\" suffix you're looking for doesn't appear in these search results. It's possible the model may not be publicl\n…[truncated 276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T14:49:50.750144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:huggingface.co \"m-a-p/340M-20B-HGRN-hybrid\"\"\n\nLinks: [{\"title\":\"m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1\"},{\"title\":\"m-a-p/340M-20B-DeltaNet-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-24-1\"},{\"title\":\"Hybrid Linear Attention Research - a m-a-p Collection\",\"url\":\"https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research\"},{\"title\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-2...\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GLA-hybrid-24-1/commit/f8831c8a23e2016653685c3b01502dd47157fa78.diff?file=tokenizer.json\"},{\"title\":\"m-a-p/transformer_340M_baseline · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/transformer_340M_baseline\"},{\"title\":\"m-a-p (Multimodal Art Projection)\",\"url\":\"https://huggingface.co/m-a-p\"},{\"title\":\"diff --git \\\"a/tokenizer.json\\\" \\\"b/tokenizer.json\\\"\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-6-1/commit/5696ff2a5ba98c31a95505684bb96737cbb05260.diff?file=tokenizer.json\"},{\"title\":\"apierro-hf/hgrn-340M-instruct-capybara · Hugging Face\",\"url\":\"https://huggingface.co/apierro-hf/hgrn-340M-instruct-capybara\"},{\"title\":\"HGRN - a fla-hub Collection\",\"url\":\"https://huggingface.co/collections/fla-hub/hgrn\"},{\"title\":\"m-a-p/1.3B-100B-DeltaNet-hybrid-6-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/1.3B-100B-DeltaNet-hybrid-6-1\"}]\n\nThe search didn't return results for the exact model \"m-a-p/340M-20B-HGRN-hybrid\". However, the results show related models from the m-a-p organization on Hugging Face that appear to be part of hybrid linear-attention research experiments. The search returned several similar model variants including:\n\n- 340M-20B-GatedDeltaNet-New-hybrid-24-1\n- 340M-20B-DeltaNet-hybrid-24-1\n- 340M-20B-GLA-hybrid-24-1\n\nThese models are part of \"All 1.3B & 340M hybrid linear-attention experiments\" from the m-a-p (Multimodal \n…[truncated 473 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T14:49:50.750317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"huggingface.co/collections/m-a-p hybrid-linear-attention-research 340M models list\"\n\nLinks: [{\"title\":\"Paper page - A Systematic Analysis of Hybrid Linear Attention\",\"url\":\"https://huggingface.co/papers/2507.06457\"},{\"title\":\"Hybrid Linear Attention Research - a m-a-p Collection\",\"url\":\"https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research\"},{\"title\":\"A Systematic Analysis of Hybrid Linear Attention\",\"url\":\"https://arxiv.org/pdf/2507.06457\"},{\"title\":\"m-a-p/transformer_340M_baseline · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/transformer_340M_baseline\"},{\"title\":\"m-a-p/340M-20B-DeltaNet-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-DeltaNet-hybrid-24-1\"},{\"title\":\"m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1 · Hugging Face\",\"url\":\"https://huggingface.co/m-a-p/340M-20B-GatedDeltaNet-New-hybrid-24-1\"},{\"title\":\"Paper page - Gated Linear Attention Transformers with Hardware-Efficient Training\",\"url\":\"https://huggingface.co/papers/2312.06635\"},{\"title\":\"RADLADS: Rapid Attention Distillation to Linear Attention Decoders at Scale\",\"url\":\"https://arxiv.org/pdf/2505.03005\"},{\"title\":\"TerminalTraj - a m-a-p Collection\",\"url\":\"https://huggingface.co/collections/m-a-p/terminaltraj\"}]\n\nBased on the search results, I found information about the Hugging Face collection for hybrid linear attention research:\n\nThe models are open-sourced at https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research.\n\nThe collection includes 72 trained models: 36 at 340M parameters (20B tokens) and 36 at 1.3B parameters (100B tokens), covering six linear attention variants across five hybridization ratios. All models in the collection are 1.3B & 340M hybrid linear-attention experiments.\n\nThe study recommends architectures such as HGRN-2 or GatedDeltaNet with a linear-to-full ratio between 3:1 and 6:1 to achieve Transformer-level recall efficiently.\n\nThe collection contains various models trained on th\n…[truncated 299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T14:49:50.750500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python3 -c \\\"\nfrom huggingface_hub import repo_info\nrepos = [\n    'm-a-p/340M-20B-DeltaNet-hybrid-3-1',\n    'm-a-p/340M-20B-HGRN-hybrid-3-1',\n    'm-a-p/340M-20B-GLA-hybrid-3-1',\n]\nfor r in repos:\n    try:\n        info = repo_info(r)\n        print(f'OK: {r} (siblings={len(info.siblings)})')\n    except Exception as e:\n        print(f'FAIL: {r} -> {e}')\n\\\"\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T14:49:50.750670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nOK: m-a-p/340M-20B-DeltaNet-hybrid-3-1 (siblings=7)\\\\nOK: m-a-p/340M-20B-HGRN-hybrid-3-1 (siblings=7)\\\\nOK: m-a-p/340M-20B-GLA-hybrid-3-1 (siblings=7)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T14:49:50.750842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T14:49:50.750968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"import fla; print('fla version:', fla.__version__)\\\"\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T14:49:50.751091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T14:49:50.751207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fla version: 0.5.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T14:49:50.751381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat > /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_p1_v4.sh << 'SCRIPT_EOF'\n#!/bin/bash\nset -eo pipefail\n\n# Environment\nsource /etc/network_turbo\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nexport CUDA_VISIBLE_DEVICES=0\n\nMODELS=\"/root/entrainment_gated_ft/models\"\nRESULTS=\"/root/entrainment_gated_ft/results/exp005_zoo_expansion\"\nLOG=\"$RESULTS/priority1_v4.log\"\n\necho \"=== P1 v4 START $(date) ===\" | tee \"$LOG\"\n\n# Verify fla\npython3 -c \"import fla; print('fla OK:', fla.__version__)\" 2>&1 | tee -a \"$LOG\"\n\n# Download DeltaNet if needed\nif [ ! -f \"$MODELS/340M-20B-DeltaNet-hybrid-3-1/model.safetensors\" ]; then\n  echo \"=== Downloading DeltaNet h3-1 $(date) ===\" | tee -a \"$LOG\"\n  python3 -c \"\nimport os\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nfrom huggingface_hub import snapshot_download\nsnapshot_download(\n    'm-a-p/340M-20B-DeltaNet-hybrid-3-1',\n    local_dir='$MODELS/340M-20B-DeltaNet-hybrid-3-1'\n)\nprint('DeltaNet download complete')\n\" 2>&1 | tee -a \"$LOG\"\nelse\n  echo \"DeltaNet already present\" | tee -a \"$LOG\"\nfi\n\n# Download HGRN if needed\nif [ ! -f \"$MODELS/340M-20B-HGRN-hybrid-3-1/model.safetensors\" ]; then\n  echo \"=== Downloading HGRN h3-1 $(date) ===\" | tee -a \"$LOG\"\n  python3 -c \"\nimport os\nos.environ['HF_HUB_DISABLE_XET'] = '1'\nfrom huggingface_hub import snapshot_download\nsnapshot_download(\n    'm-a-p/340M-20B-HGRN-hybrid-3-1',\n    local_dir='$MODELS/340M-20B-HGRN-hybrid-3-1'\n)\nprint('HGRN download complete')\n\" 2>&1 | tee -a \"$LOG\"\nelse\n  echo \"HGRN already present\" | tee -a \"$LOG\"\nfi\n\n# Verify all 3 models exist\necho \"=== Verifying models ===\" | tee -a \"$LOG\"\nfor ARCH in GLA DeltaNet HGRN; do\n  if [ -f \"$MODELS/340M-20B-${ARCH}-hybrid-3-1/model.safetensors\" ]; then\n    echo \"  $ARCH: OK ($(du -sh $MODELS/340M-20B-${ARCH}-hybrid-3-1/model.safetensors | cut -f1))\" | tee -a \"$LOG\"\n  else\n    echo \"  $ARCH: MISSING!\" | tee -a \"$LOG\"\n    exit 1\n  fi\ndone\n\n# Evaluate each model\nfor ARCH in GLA DeltaNet HGRN; do\n  LOCAL=\"$MODELS/340M-20B-${ARCH}-hybrid-3-1\"\n  OUTDIR=\"$RESULTS/${ARCH}_hybrid-3-1\"\n\n  # Skip if already evaluated (check for jsonl output)\n  if find \"$OUTDIR\" -name \"*.jsonl\" 2>/dev/null | head -1 | grep -q .; then\n    echo \"=== $ARCH already evaluated, skipping ===\" | tee -a \"$LOG\"\n    continue\n  fi\n\n  echo \"=== EVAL $ARCH START $(date) ===\" | tee -a \"$LOG\"\n  python3 -m lm_eval \\\n    --model hf \\\n    --model_args pretrained=$LOCAL,trust_remote_code=True \\\n    --tasks lambada_openai,arc_easy \\\n    --device cuda:0 \\\n    --batch_size auto \\\n    --log_samples \\\n    --output_path \"$OUTDIR/\" 2>&1 | tee -a \"$LOG\"\n  echo \"=== EVAL $ARCH DONE $(date) ===\" | tee -a \"$LOG\"\ndone\n\necho \"=== P1 v4 ALL DONE $(date) ===\" | tee \"$LOG.done\"\necho \"=== P1 v4 ALL DONE $(date) ===\" | tee -a \"$LOG\"\n\n# Summary\necho \"\" | tee -a \"$LOG\"\necho \"=== RESULTS SUMMARY ===\" | tee -a \"$LOG\"\nfind \"$RESULTS\" -name \"*.jsonl\" -type f 2>/dev/null | tee -a \"$LOG\"\nSCRIPT_EOF\nchmod +x /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_p1_v4.sh\necho \"Script written OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T14:49:50.751542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T14:49:50.751699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westb-48145",
+              "gpu_ids": "['cuda:0']",
+              "exp_id": "exp-005-p1-v4",
+              "command": "bash -c \"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_p1_v4.sh\"",
+              "timeout_hours": "8",
+              "project": "entrainment_gated_ft",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T14:49:50.751854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"870648\\\", \\\"log_file\\\": \\\"~/runs/entrainment_gated_ft/exp-005-p1-v4.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westb-48145\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-005-p1-v4\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T14:49:50.752005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "tail -20 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T14:49:50.752144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n=== P1 v4 START Fri May 22 22:49:35 CST 2026 ===\\\\nfla OK: 0.5.0\\\\n=== Downloading DeltaNet h3-1 Fri May 22 22:49:35 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T14:49:50.752305+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 正常启动，正在下载 DeltaNet h3-1。\n\n**当前状态：**\n- **GLA h3-1**: 已下载 ✅，待评估\n- **DeltaNet h3-1**: 正在下载（~50min @ 400KB/s）\n- **HGRN h3-1**: 待下载（DeltaNet 完成后开始）\n\n**预估时间线：**\n- 下载 2 个模型：~100 min\n- 评估 3 个模型：~15-20 min/model = ~60 min\n- 总计：~2.5-3 小时\n\n脚本流程：下载 DeltaNet → 下载 HGRN → 验证全部 3 个模型文件 → 逐个评估（LAMBADA + ARC-Easy, `--log_samples`）。全程在 tmux 中运行，不怕 SSH 断连。\n\n可以过 30-60 分钟后 `tail` 日志文件检查进度：\n```\ntail -30 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp-005-priority1-v2_20260522T144606"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ]
+}

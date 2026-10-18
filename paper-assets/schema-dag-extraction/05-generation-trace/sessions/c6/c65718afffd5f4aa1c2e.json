@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c65718afffd5f4aa1c2e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diag exp012 sigkill",
+  "task_key": "worker_diag_exp012_sigkill_20260515T171456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp012_sigkill_20260515T171456_result.json",
+    "occurrence": 1,
+    "bytes": 1609,
+    "sha256": "f85be87f5b78a0c4651e05b00725f4486ae70717216289ecc0699ab43776fa69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 已完全释放：0MiB 占用，无残留进程。\n\n---\n\n## 诊断报告\n\n### 1. dmesg OOM killer 记录\n容器内无 dmesg 权限（`Operation not permitted`），无法直接确认 OOM killer。\n\n### 2. 根因分析\n日志明确显示 **不是 host RAM OOM (SIGKILL/137)**，而是 **GPU VRAM 冲突**：\n\n```\nValueError: Free memory on device cuda:0 (7.01/94.97 GiB) on startup is less than\ndesired GPU memory utilization (0.9, 85.48 GiB).\n```\n\nexp012_llama_8b 启动时（00:26），GPU 已被另一个 exp012 实例占用 ~88GB VRAM（该实例在 `artifacts/exp012/` 产出了成功结果，时间戳 00:37-00:45）。**两个实验并行运行同一 GPU 导致 VRAM 不足**。\n\n### 3. 清理前/后 free -h 对比\n\n| 指标 | 清理前（诊断时） | 清理后 |\n|------|---------|--------|\n| Total RAM | 1.0 TiB | 1.0 TiB |\n| Used | 85 GiB | 87 GiB |\n| Available | 913 GiB | 911 GiB |\n| GPU VRAM | 0 MiB (已自行释放) | 0 MiB |\n\nHost RAM 从未紧张（1TB 总量，>900GB 可用）。\n\n### 4. vLLM 裸跑结果：**成功**\n\n- 模型加载耗时 15.66 秒，占用 14.99 GiB VRAM\n- KV cache 分配 63.58 GiB（`gpu_memory_utilization=0.80`）\n- 推理正常，生成输出 \"Hope you're having a great day so far...\"\n- `EXIT_CODE=0`，引擎正常关闭\n\n### 5. 重试 exp012 条件\n- **确保 GPU 无其他进程占用**：运行前 `nvidia-smi` 确认 0MiB\n- **不要并行启动多个 vLLM 实例到同一 GPU**\n- `gpu_memory_utilization=0.80` 已验证可行（留 ~20GB 余量比 0.9 更安全）\n- Host RAM 完全不是瓶颈"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

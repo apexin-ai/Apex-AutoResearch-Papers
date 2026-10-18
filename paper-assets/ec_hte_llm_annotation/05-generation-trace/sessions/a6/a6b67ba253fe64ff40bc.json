@@ -1,0 +1,1134 @@
+{
+  "schema_version": "1.0",
+  "id": "a6b67ba253fe64ff40bc",
+  "project": "ec_hte_llm_annotation",
+  "kind": "conversation",
+  "title": "research adaptive shrinkage",
+  "task_key": "worker_research_adaptive-shrinkage_20260523T071542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_adaptive-shrinkage_20260523T071542.jsonl",
+    "occurrence": 1,
+    "bytes": 69489,
+    "sha256": "2145129ef74e1a6e6796d9242f9610335919aab988a4e51a711448be1575fafa"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T07:25:56.292324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T07:25:56.292882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T07:25:56.293243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "ls /root/ec_hte_llm_annotation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T07:25:56.293512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Account 'root' not found on server 'local-cpu'. Available: ['ubuntu']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T07:25:56.293768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "find /root/ec_hte_llm_annotation/ -name \"*.py\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T07:25:56.294049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Account 'root' not found on server 'local-cpu'. Available: ['ubuntu']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T07:25:56.294322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "ls /root/ec_hte_llm_annotation/",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T07:25:56.294585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\nls: cannot open file '/root/ec_hte_llm_annotation/': Permission denied\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T07:25:56.294865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "find /root/ec_hte_llm_annotation/ -name \"*.py\" -type f",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T07:25:56.295147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\nfind: ‘/root/ec_hte_llm_annotation/’: Permission denied\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T07:25:56.295461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "ls /home/ubuntu/",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T07:25:56.295735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"agent-ml-research\\\\nbe-backup.log\\\\nbe_backup_script.py\\\\nclaude-pool-watchdog.log\\\\nec_hte_llm_annotation\\\\nopen-chrome-account-2.sh\\\\nopen-chrome-account-3.sh\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T07:25:56.296050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "find /home/ubuntu -maxdepth 3 -name \"*.py\" -type f",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T07:25:56.296476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/ubuntu/.local/bin/rst2odt_prepstyles.py\\\\n/home/ubuntu/.local/bin/rst2xml.py\\\\n/home/ubuntu/.local/bin/rst2s5.py\\\\n/home/ubuntu/.local/bin/rst2xetex.py\\\\n/home/ubuntu/.local/bin/rst2html5.py\\\\n/home/ubuntu/.local/bin/rst2html4.py\\\\n/home/ubuntu/.local/bin/rst2man.py\\\\n/home/ubuntu/.local/bin/rst2odt.py\\\\n/home/ubuntu/.local/bin/rstpep2html.py\\\\n/home/ubuntu/.local/bin/rst2pseudoxml.py\\\\n/home/ubuntu/.local/bin/rst2latex.py\\\\n/home/ubuntu/.local/bin/rst2html.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp037_calibration.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp027b_cf_oracle_k2.py\\\\n/home/ubuntu/ec_hte_llm_annotation/scripts/plot_applicability_frontier.py\\\\n/home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py\\\\n/home/ubuntu/ec_hte_llm_annotation/scripts/fig1_bias_mechanism.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp015_semi_real_cm.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp033_k8_adaptive.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp004_hate_speech.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp017_rlearner.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp031_confounded_dgp.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp035_asymmetric_cm.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp029_a1_sensitivity.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp_mf2_cf_bootstrap_se.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp_w4_bootstrap_se.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py\\\\n/home/ubuntu/ec_hte_llm_annotation/mvp_simulation.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp006_budget_sensitivity.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py\\\\n/home/ubuntu/ec_hte_llm_annotation/pilot_llm_annotation.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp027c_cf_oracle_mf2dgp.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp032_confounded_sweep.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp005_diagno\n…[truncated 6563 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T07:25:56.296846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "ls /home/ubuntu/ec_hte_llm_annotation/",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T07:25:56.297164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nartifacts\\\\ndata\\\\ndraw_fig2.py\\\\ndraw_fig3.py\\\\nexp001_hb_synthetic.py\\\\nexp001_hyperprior_sensitivity.py\\\\nexp001_regularize.py\\\\nexp002_bias_bound.py\\\\nexp003_tweeteval.py\\\\nexp004_hate_speech.py\\\\nexp005_diagnostic_criterion.py\\\\nexp006_budget_sensitivity.py\\\\nexp007_ppci_dsl.py\\\\nexp008_filter_analysis.py\\\\nexp008_gpt55_annotate.py\\\\nexp008_gpt5x_annotate.py\\\\nexp008_multi_llm.py\\\\nexp010_misspecified_subgroups.py\\\\nexp011_causal_forest.py\\\\nexp013_boundary_condition.py\\\\nexp014_asymmetric.py\\\\nexp015_semi_real_cm.py\\\\nexp016_semi_real_better_cm.py\\\\nexp017_rlearner.py\\\\nexp018_multiplicative_dgp.py\\\\nexp019_pz1_sweep.py\\\\nexp020_kappa_sweep.py\\\\nexp021_seeds_supplement.py\\\\nexp022_ppi_dsl_baseline.py\\\\nexp023_annotate_parallel.py\\\\nexp023_civil_comments_prepare.py\\\\nexp023_civil_comments_semisynthetic.py\\\\nexp023_civil_comments_semisynthetic_v2.py\\\\nexp023_civil_comments_semisynthetic_v3.py\\\\nexp023_civil_comments_symmetric.py\\\\nexp023_ppi_dsl_baseline.py\\\\nexp023_ppi_dsl_k2.py\\\\nexp023_run_all.sh\\\\nexp024_realcm_bias_identity.py\\\\nexp025_positive_scenario.py\\\\nexp026_low_budget_hb.py\\\\nexp027_cf_oracle_coverage.py\\\\nexp027b_cf_oracle_k2.py\\\\nexp027c_cf_oracle_mf2dgp.py\\\\nexp028_asymmetric_diagnostic_auc.py\\\\nexp029_a1_sensitivity.py\\\\nexp030_k8_subgroups.py\\\\nexp031_confounded_dgp.py\\\\nexp032_confounded_sweep.py\\\\nexp033_k8_adaptive.py\\\\nexp034_fl_comparison.py\\\\nexp035_asymmetric_cm.py\\\\nexp036_bootstrap_se.py\\\\nexp036_bootstrap_se_v2.py\\\\nexp037_calibration.py\\\\nexp_mf2_cf_bootstrap_se.py\\\\nexp_w4_bootstrap_se.py\\\\nexp_w8_a5_violation.py\\\\nmvp_simulation.py\\\\npilot_gemini_annotation.py\\\\npilot_llm_annotation.py\\\\nresults\\\\nscripts\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T07:25:56.297461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "grep -rl \"hierarchical\\|gibbs\\|alpha_0\\|Gamma\\|shrinkage\\|dirichlet\" /home/ubuntu/ec_hte_llm_annotation/ --include=\"*.py\" -l",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T07:25:56.297723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T07:25:56.298004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "grep -rl \"hierarchical\\|gibbs\\|alpha_0\\|dirichlet\" /home/ubuntu/ec_hte_llm_annotation/ --include=\"*.py\"",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T07:25:56.298261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T07:25:56.298511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "grep -rl \"gibbs\" /home/ubuntu/ec_hte_llm_annotation/ --include=\"*.py\"",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T07:25:56.298798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp015_semi_real_cm.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/sklearn/neural_network/_rbm.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/sklearn/neural_network/tests/test_rbm.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/pymc/sampling/mcmc.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/pymc/step_methods/metropolis.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp006_budget_sensitivity.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp001_hyperprior_sensitivity.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp022_ppi_dsl_baseline.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp016_semi_real_better_cm.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp023_ppi_dsl_baseline.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp023_civil_comments_symmetric.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp023_civil_comments_semisynthetic.py\\\\n/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_llama_semisynthetic.py\\\\n/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_budget_sweep_k2.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp026_low_budget_hb.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp023_civil_comments_semisynthetic_v3.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp023_civil_comments_semisynthetic_v2.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp023_ppi_dsl_k2.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp013_boundary_condition.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp018_multiplicative_dgp.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp003_tweeteval.py\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\n…[truncated 2 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T07:25:56.299129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "grep -rl \"hierarchical\" /home/ubuntu/ec_hte_llm_annotation/ --include=\"*.py\"",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T07:25:56.299386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "grep -rl \"alpha_0\" /home/ubuntu/ec_hte_llm_annotation/ --include=\"*.py\"",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T07:25:56.299736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/_explanation.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/plots/_force.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/plots/_decision.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/plots/_text.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/maskers/_tabular.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/utils/_clustering.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/explainers/_partition.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/explainers/_permutation.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/explainers/_explainer.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/explainers/_coalition.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/regression/mixed_linear_model.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tools/grouputils.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/graphics/tests/test_mosaicplot.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/graphics/mosaicplot.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/sandbox/multilinear.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/numpy/_typing/_nbit_base.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/numpy/ma/core.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/pyarrow/__init__.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/sklearn/cluster/_hdbscan/hdbscan.py\\\\n/home/ubuntu/ec_hte_llm\n…[truncated 4652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T07:25:56.300101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/stats/diagnostic.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/statespace/dynamic_factor_mq.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/sklearn/covariance/_graph_lasso.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/pandas/tests/indexing/test_loc.py\\\\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/scipy/signal/_filter_design.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp007_ppci_dsl.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp006_budget_sensitivity.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py\\\\n/home/ubuntu/ec_hte_llm_annotation/exp001_hyperprior_sensitivity.py\\\\n/home/ubuntu/ec_hte_llm_annotation/artifacts/gamma_sensitivity/run_gamma_sweep.py\\\\n/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/analyze_llama.py\\\\n/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/analyze_all_models.py\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T07:25:56.300432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "cat /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T07:25:56.300915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\\\\n\\\\nCompares confusion matrix estimators for CATE correction under heterogeneous\\\\nmisclassification across subgroups:\\\\n  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\\\\n\\\\nInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\\\\nOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.special import gammaln\\\\nfrom scipy.optimize import minimize_scalar\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\ntry:\\\\n    import pymc as pm\\\\n    import pytensor.tensor as pt\\\\n    import arviz as az\\\\n    HAS_PYMC = True\\\\nexcept ImportError:\\\\n    HAS_PYMC = False\\\\n\\\\nN = 5000\\\\nSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\\\\n\\\\nREGIMES = {\\\\n    2: {\\\\n        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n    4: {\\\\n        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n}\\\\n\\\\nDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\\\\nDEFAULT_K_LIST = [2, 4]\\\\n\\\\n\\\\n# ── DGP ───────────────────────────────────────────────────────────────────────\\\\n\\\\ndef generate_data(regime_params, n_expert, k, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    labels = SUBGROUP_LABELS[k]\\\\n    T = rng.binomial(1, 0.5, N)\\\\n    Z = rng.binomial(1, 0.5,\n…[truncated 6879 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T07:25:56.301237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "cat /home/ubuntu/ec_hte_llm_annotation/mvp_simulation.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T07:25:56.301704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nEC-HTE Synthetic Simulation MVP v3\\\\n\\\\nEvaluates CATE estimation at three levels: marginal, subgroup_A, subgroup_B.\\\\nEC-HTE's value: global correction is biased at subgroup level when misclassification\\\\nrates are heterogeneous; stratified correction (EC-HTE) removes this bias.\\\\n\\\\nInput: regime parameters (misclassification rates, treatment effects)\\\\nOutput: results/mvp_results_v3.csv, results/mvp_results_v3_raw.csv\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\nimport time\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\nREGIMES = {\\\\n    'extreme':     {'misclass_A': 0.25, 'misclass_B': 0.05, 'tau_z1': 0.5,  'tau_z0': 0.1},\\\\n    'moderate':    {'misclass_A': 0.15, 'misclass_B': 0.10, 'tau_z1': 0.3,  'tau_z0': 0.15},\\\\n    'homogeneous': {'misclass_A': 0.12, 'misclass_B': 0.12, 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n}\\\\nN_EXPERTS = [100, 250, 500]\\\\nN_MC = 100\\\\nN = 5000\\\\n\\\\n\\\\ndef generate_data(regime_params, n_expert, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    p = regime_params\\\\n\\\\n    T = rng.binomial(1, 0.5, N)\\\\n    Z = rng.binomial(1, 0.5, N)\\\\n    S = rng.choice(['A', 'B'], N, p=[0.5, 0.5])\\\\n    X = rng.randn(N, 5)\\\\n\\\\n    tau = np.where(Z == 1, p['tau_z1'], p['tau_z0'])\\\\n    eps = rng.randn(N)\\\\n    Y = 1 + tau * T + 0.5 * X[:, 0] + eps\\\\n\\\\n    mc_rates = np.where(S == 'A', p['misclass_A'], p['misclass_B'])\\\\n    flip = rng.rand(N) < mc_rates\\\\n    Z_hat = np.where(flip, 1 - Z, Z)\\\\n\\\\n    expert_idx = rng.choice(N, n_expert, replace=False)\\\\n    expert_mask = np.zeros(N, dtype=bool)\\\\n    expert_mask[expert_idx] = True\\\\n\\\\n    return dict(T=T, Z=Z, Z_hat=Z_hat, S=S, X=X, Y=Y, tau=tau, expert_mask=expert_mask)\\\\n\\\\n\\\\ndef diff_in_means(Y, T, mask):\\\\n    t1 = mask & (T == 1)\\\\n    t0 = mask & (T == 0)\\\\n    n1, n0 = t1.sum(), t0.sum()\\\\n    if n1 < 2 or n0 < 2:\\\\n        return np.nan, np.nan\\\\n    y1, y0 = Y[t1], Y[t0]\\\\n    t\n…[truncated 6798 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T07:25:56.302097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "grep -n \"def estimate_cm_hb\" /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T07:25:56.302371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"181:def estimate_cm_hb_eb(counts, labels):\\\\n280:def estimate_cm_hb_gibbs(counts, labels, seed=42, n_iter=4000, n_warmup=2000, n_chains=4,\\\\n357:def estimate_cm_hb_mcmc(counts, labels, seed=42, draws=1000, tune=500, chains=2):\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T07:25:56.302628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T07:25:56.302908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"672 /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T07:25:56.303166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "head -180 /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T07:25:56.303571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\\\\n\\\\nCompares confusion matrix estimators for CATE correction under heterogeneous\\\\nmisclassification across subgroups:\\\\n  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\\\\n\\\\nInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\\\\nOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.special import gammaln\\\\nfrom scipy.optimize import minimize_scalar\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\ntry:\\\\n    import pymc as pm\\\\n    import pytensor.tensor as pt\\\\n    import arviz as az\\\\n    HAS_PYMC = True\\\\nexcept ImportError:\\\\n    HAS_PYMC = False\\\\n\\\\nN = 5000\\\\nSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\\\\n\\\\nREGIMES = {\\\\n    2: {\\\\n        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n    4: {\\\\n        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n}\\\\n\\\\nDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\\\\nDEFAULT_K_LIST = [2, 4]\\\\n\\\\n\\\\n# ── DGP ───────────────────────────────────────────────────────────────────────\\\\n\\\\ndef generate_data(regime_params, n_expert, k, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    labels = SUBGROUP_LABELS[k]\\\\n    T = rng.binomial(1, 0.5, N)\\\\n    Z = rng.binomial(1, 0.5,\n…[truncated 4505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T07:25:56.303936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "head -450 /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T07:25:56.304388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\\\\n\\\\nCompares confusion matrix estimators for CATE correction under heterogeneous\\\\nmisclassification across subgroups:\\\\n  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\\\\n\\\\nInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\\\\nOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.special import gammaln\\\\nfrom scipy.optimize import minimize_scalar\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\ntry:\\\\n    import pymc as pm\\\\n    import pytensor.tensor as pt\\\\n    import arviz as az\\\\n    HAS_PYMC = True\\\\nexcept ImportError:\\\\n    HAS_PYMC = False\\\\n\\\\nN = 5000\\\\nSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\\\\n\\\\nREGIMES = {\\\\n    2: {\\\\n        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n    4: {\\\\n        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n}\\\\n\\\\nDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\\\\nDEFAULT_K_LIST = [2, 4]\\\\n\\\\n\\\\n# ── DGP ───────────────────────────────────────────────────────────────────────\\\\n\\\\ndef generate_data(regime_params, n_expert, k, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    labels = SUBGROUP_LABELS[k]\\\\n    T = rng.binomial(1, 0.5, N)\\\\n    Z = rng.binomial(1, 0.5,\n…[truncated 6818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T07:25:56.304741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "head -355 /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T07:25:56.305218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\\\\n\\\\nCompares confusion matrix estimators for CATE correction under heterogeneous\\\\nmisclassification across subgroups:\\\\n  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\\\\n\\\\nInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\\\\nOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.special import gammaln\\\\nfrom scipy.optimize import minimize_scalar\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\ntry:\\\\n    import pymc as pm\\\\n    import pytensor.tensor as pt\\\\n    import arviz as az\\\\n    HAS_PYMC = True\\\\nexcept ImportError:\\\\n    HAS_PYMC = False\\\\n\\\\nN = 5000\\\\nSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\\\\n\\\\nREGIMES = {\\\\n    2: {\\\\n        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n    4: {\\\\n        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\\\\n        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\\\\n        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\\\\n    },\\\\n}\\\\n\\\\nDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\\\\nDEFAULT_K_LIST = [2, 4]\\\\n\\\\n\\\\n# ── DGP ───────────────────────────────────────────────────────────────────────\\\\n\\\\ndef generate_data(regime_params, n_expert, k, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    labels = SUBGROUP_LABELS[k]\\\\n    T = rng.binomial(1, 0.5, N)\\\\n    Z = rng.binomial(1, 0.5,\n…[truncated 6846 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T07:25:56.305577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "tail -n +181 /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T07:25:56.306071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def estimate_cm_hb_eb(counts, labels):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Empirical Bayes HB: optimize shared Dirichlet concentration, posterior mean.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    k = len(labels)\\\\n    alpha_opt = np.zeros(2)\\\\n    for z in [0, 1]:\\\\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\\\\n        total = sum(c0 + c1 for c0, c1 in cl)\\\\n        if total == 0:\\\\n            alpha_opt[z] = 2.0\\\\n            continue\\\\n        res = minimize_scalar(\\\\n            lambda a: _dirmult_neg_ll(a, cl), bounds=(0.01, 500), method='bounded')\\\\n        alpha_opt[z] = res.x\\\\n\\\\n    C = {}\\\\n    for i, s in enumerate(labels):\\\\n        C_s = np.zeros((2, 2))\\\\n        for z in [0, 1]:\\\\n            a = alpha_opt[z] / 2.0\\\\n            n = counts[i, z, :].sum()\\\\n            d = n + 2 * a\\\\n            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\\\\n            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\\\\n        C[s] = C_s\\\\n\\\\n    diag = {'rhat_max': np.nan, 'ess_min': np.nan, 'divergent_count': 0,\\\\n            'runtime_seconds': 0.0, 'hb_method': 'eb',\\\\n            'alpha_0_z0': alpha_opt[0], 'alpha_0_z1': alpha_opt[1]}\\\\n    return C, diag\\\\n\\\\n\\\\ndef _split_rhat(chains):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split R-hat for a scalar parameter. chains: (n_chains, n_draws).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    parts = []\\\\n    for c in range(chains.shape[0]):\\\\n        half = chains.shape[1] // 2\\\\n        parts.append(chains[c, :half])\\\\n        parts.append(chains[c, half:2 * half])\\\\n    parts = np.array(parts)\\\\n    m = parts.shape[0]\\\\n    n = parts.shape[1]\\\\n    chain_means = parts.mean(axis=1)\\\\n    W = np.mean(np.var(parts, axis=1, ddof=1))\\\\n    B = n * np.var(chain_means, ddof=1)\\\\n    if W < 1e-20:\\\\n        return 1.0\\\\n    var_hat = (1 - 1.0 / n) * W + B / n\\\\n    return float(np.sqrt(var_hat / W))\\\\n\\\\n\\\\ndef _bulk_ess(chains):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Approximate bulk ESS via initial positive sequence. chains: (n_c\n…[truncated 6921 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T07:25:56.306471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "head -80 /home/ubuntu/ec_hte_llm_annotation/exp033_k8_adaptive.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T07:25:56.306822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp033_k8_adaptive.py — K=8 adaptive shrinkage variants\\\\n\\\\nTests 3 method variants to reduce HB RMSE at K=8:\\\\n  V1: Adaptive alpha (alpha=10 for high-pi subgroups, alpha=3 for low-pi)\\\\n  V2: kappa-threshold fallback (fallback to Global CM when kappa>10)\\\\n  V3: V1 + V2 combined\\\\n\\\\nSame DGP as exp-030: K=8, N=5000, n_expert=250, pi uniformly in [0.05, 0.35].\\\\n\\\\nOutput: results/exp_k8_adaptive.csv, results/exp_k8_adaptive_summary.csv\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport time\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\nN = 5000\\\\nK = 8\\\\nN_EXPERT = 250\\\\nPI = [0.05 + 0.30 * i / (K - 1) for i in range(K)]\\\\nTAU_Z = {0: 0.0, 1: 0.3}\\\\nSUB_WEIGHTS = [1.0 / K] * K\\\\nN_MC = 50\\\\nPI_THRESHOLD = 0.20\\\\nALPHA_LOW = 3.0\\\\nALPHA_HIGH = 10.0\\\\nKAPPA_STRICT = 10.0\\\\n\\\\n\\\\ndef generate_data(seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    S = rng.choice(K, N, p=SUB_WEIGHTS)\\\\n    T = rng.binomial(1, 0.5, N)\\\\n    Z_true = rng.binomial(1, 0.5, N)\\\\n\\\\n    Z_hat = Z_true.copy()\\\\n    for s in range(K):\\\\n        mask_s = S == s\\\\n        flip = rng.binomial(1, PI[s], mask_s.sum())\\\\n        Z_hat[mask_s] = np.where(flip, 1 - Z_true[mask_s], Z_true[mask_s])\\\\n\\\\n    tau = np.array([TAU_Z[z] for z in Z_true])\\\\n    baseline = 1.0 + 0.5 * Z_true\\\\n    Y = baseline + tau * T + rng.normal(0, 1, N)\\\\n\\\\n    expert_idx = rng.choice(N, N_EXPERT, replace=False)\\\\n    expert_mask = np.zeros(N, dtype=bool)\\\\n    expert_mask[expert_idx] = True\\\\n\\\\n    return Y, T, Z_true, Z_hat, S, expert_mask\\\\n\\\\n\\\\ndef compute_confusion_matrix(z_true, z_hat):\\\\n    C = np.zeros((2, 2))\\\\n    for z in [0, 1]:\\\\n        mz = z_true == z\\\\n        C[z, 0] = (z_hat[mz] == 0).sum() + 1\\\\n        C[z, 1] = (z_hat[mz] == 1).sum() + 1\\\\n    return C / C.sum(axis=1, keepdims=True)\\\\n\\\\n\\\\ndef dim_estimate(Y, T, Z_labels, S, s):\\\\n    mask_s = S == s\\\\n\n…[truncated 588 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T07:25:56.307139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "tail -n +430 /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T07:25:56.307586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    # Global CM (pool all expert labels, Laplace)\\\\n    cg = counts.sum(axis=0)\\\\n    C_gl = np.zeros((2, 2))\\\\n    for z in [0, 1]:\\\\n        n = cg[z, :].sum()\\\\n        for zh in [0, 1]:\\\\n            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\\\\n\\\\n    M_gl = build_mixing_matrix(C_gl)\\\\n    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\\\\n    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\\\\n\\\\n    base = {'regime': regime_name, 'n_expert': n_expert, 'k_subgroups': k, 'mc_run': seed}\\\\n    rows = []\\\\n\\\\n    for s in labels:\\\\n        sm = S == s\\\\n        th0_or, se0_or = diff_in_means(Y, T, sm & (Z == 0))\\\\n        th1_or, se1_or = diff_in_means(Y, T, sm & (Z == 1))\\\\n        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\\\\n        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\\\\n\\\\n        tau_obs = np.array([th0_n, th1_n])\\\\n        se_obs = np.array([se0_n, se1_n])\\\\n        if np.any(np.isnan(tau_obs)):\\\\n            continue\\\\n\\\\n        tgc, sgc = invert_mixing(M_gl, tau_obs, se_obs)\\\\n        tml, sml = invert_mixing(M_mle[s], tau_obs, se_obs)\\\\n        thb, shb = invert_mixing(M_hb[s], tau_obs, se_obs)\\\\n\\\\n        def mr(method, th0, th1, se0, se1):\\\\n            return {**base, 'subgroup': s, 'method': method,\\\\n                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\\\\n                    'se_z0': se0, 'se_z1': se1,\\\\n                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\\\\n\\\\n        rows.append(mr('oracle', th0_or, th1_or, se0_or, se1_or))\\\\n        rows.append(mr('naive', th0_n, th1_n, se0_n, se1_n))\\\\n        rows.append(mr('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]))\\\\n        rows.append(mr('mle_laplace', tml[0], tml[1], sml[0], sml[1]))\\\\n        rows.append(mr('hb_dirichlet', thb[0], thb[1], shb[0], shb[1]))\\\\n\\\\n    return rows, {**base, **hb_diag}\\\\n\\\\n\\\\n# ── Aggregation ──────────────────────────────────────────\n…[truncated 6802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T07:25:56.308424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "cat > /home/ubuntu/ec_hte_llm_annotation/exp_adaptive_shrinkage.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp_adaptive_shrinkage.py — Adaptive Shrinkage for EC-HTE\n\nTests adaptive shrinkage to make EC-HTE competitive with Global correction\nunder moderate heterogeneity while preserving extreme-heterogeneity gains.\n\nKey insight: original HB uses symmetric Dir(α/2, α/2), shrinking toward (0.5,0.5).\nActual CMs are far from uniform (e.g. 0.9/0.1). Centering the Dirichlet on the\nglobal CM lets the EB pick large α under moderate heterogeneity (≈ Global correction)\nand small α under extreme heterogeneity (≈ per-subgroup EC-HTE).\n\nMethods:\n  oracle           — true Z labels\n  naive            — raw Z_hat labels\n  global_corrected — pooled CM correction\n  hb_original      — original EB with symmetric Dirichlet\n  hb_centered      — EB with Dirichlet centered on global CM\n  pretest          — LR test for CM homogeneity → Global or centered EB\n\nOutput: results/exp_adaptive_shrinkage.csv, results/exp_adaptive_shrinkage_raw.csv\n\"\"\"\n\nimport os\nimport sys\nimport time\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom scipy.special import gammaln\nfrom scipy.optimize import minimize_scalar\nfrom scipy.stats import chi2\n\nwarnings.filterwarnings('ignore')\n\nN = 5000\nN_MC = 100\n\nCONFIGS = {\n    'K2_moderate': {\n        'k': 2, 'misclass': [0.10, 0.15], 'tau_z1': 0.3, 'tau_z0': 0.15,\n        'n_expert': 250, 'labels': ['A', 'B'],\n    },\n    'K2_extreme': {\n        'k': 2, 'misclass': [0.05, 0.25], 'tau_z1': 0.5, 'tau_z0': 0.1,\n        'n_expert': 250, 'labels': ['A', 'B'],\n    },\n    'K4_moderate': {\n        'k': 4, 'misclass': [0.10, 0.12, 0.14, 0.16], 'tau_z1': 0.3, 'tau_z0': 0.15,\n        'n_expert': 500, 'labels': ['A', 'B', 'C', 'D'],\n    },\n    'K4_extreme': {\n        'k': 4, 'misclass': [0.05, 0.10, 0.15, 0.25], 'tau_z1': 0.5, 'tau_z0': 0.1,\n        'n_expert': 500, 'labels': ['A', 'B', 'C', 'D'],\n    },\n}\n\n\n# ── DGP ──────────────────────────────────────────────────────────────────────\n\ndef generate_data(cfg, seed):\n    rng = np.random.RandomState(seed)\n    k = cfg['k']\n    labels = cfg['labels']\n    n_expert = cfg['n_expert']\n    T = rng.binomial(1, 0.5, N)\n    Z = rng.binomial(1, 0.5, N)\n    S = rng.choice(labels, N, p=[1.0 / k] * k)\n    X = rng.randn(N, 5)\n    tau = np.where(Z == 1, cfg['tau_z1'], cfg['tau_z0'])\n    Y = 1 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n    mc_rates = np.zeros(N)\n    for i, s in enumerate(labels):\n        mc_rates[S == s] = cfg['misclass'][i]\n    Z_hat = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n    idx = rng.choice(N, min(n_expert, N), replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[idx] = True\n    return dict(T=T, Z=Z, Z_hat=Z_hat, S=S, X=X, Y=Y, tau=tau, expert_mask=expert_mask)\n\n\n# ── Utilities ────────────────────────────────────────────────────────────────\n\ndef diff_in_means(Y, T, mask):\n    t1, t0 = mask & (T == 1), mask & (T == 0)\n    n1, n0 = t1.sum(), t0.sum()\n    if n1 < 2 or n0 < 2:\n        return np.nan, np.nan\n    y1, y0 = Y[t1], Y[t0]\n    return y1.mean() - y0.mean(), np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n\n\ndef get_counts(z_true, z_hat, subgroups, labels):\n    k = len(labels)\n    counts = np.zeros((k, 2, 2), dtype=int)\n    for i, s in enumerate(labels):\n        ms = subgroups == s\n        for z in [0, 1]:\n            mz = ms & (z_true == z)\n            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n    return counts\n\n\ndef build_mixing_matrix(C):\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        if cs > 0:\n            M[zh, 0] = C[0, zh] / cs\n            M[zh, 1] = C[1, zh] / cs\n        else:\n            M[zh, :] = 0.5\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\ndef compute_global_cm(counts):\n    cg = counts.sum(axis=0)\n    C_gl = np.zeros((2, 2))\n    for z in [0, 1]:\n        n = cg[z, :].sum()\n        for zh in [0, 1]:\n            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\n    return C_gl\n\n\n# ── Original HB EB (symmetric Dirichlet) ─────────────────────────────────────\n\ndef _dirmult_neg_ll_symmetric(alpha, counts_z):\n    a = alpha / 2.0\n    if a < 1e-10:\n        return 1e10\n    ll = 0.0\n    for c0, c1 in counts_z:\n        n = c0 + c1\n        if n == 0:\n            continue\n        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n        ll -= 2 * gammaln(a) - gammaln(2 * a)\n    return -ll\n\n\ndef estimate_cm_hb_eb_original(counts, labels):\n    k = len(labels)\n    alpha_opt = np.zeros(2)\n    for z in [0, 1]:\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n        total = sum(c0 + c1 for c0, c1 in cl)\n        if total == 0:\n            alpha_opt[z] = 2.0\n            continue\n        res = minimize_scalar(\n            lambda a: _dirmult_neg_ll_symmetric(a, cl),\n            bounds=(0.01, 500), method='bounded')\n        alpha_opt[z] = res.x\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            a = alpha_opt[z] / 2.0\n            n = counts[i, z, :].sum()\n            d = n + 2 * a\n            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n        C[s] = C_s\n    return C\n\n\n# ── Centered EB (Dirichlet centered on global CM) ────────────────────────────\n\ndef _dirmult_neg_ll_centered(alpha, counts_z, theta_g):\n    if alpha < 1e-10:\n        return 1e10\n    a0 = alpha * theta_g[0]\n    a1 = alpha * theta_g[1]\n    if a0 < 1e-10 or a1 < 1e-10:\n        return 1e10\n    ll = 0.0\n    for c0, c1 in counts_z:\n        n = c0 + c1\n        if n == 0:\n            continue\n        ll += gammaln(c0 + a0) + gammaln(c1 + a1) - gammaln(n + alpha)\n        ll -= gammaln(a0) + gammaln(a1) - gammaln(alpha)\n    return -ll\n\n\ndef estimate_cm_centered_eb(counts, labels, global_cm):\n    k = len(labels)\n    alpha_opt = np.zeros(2)\n    for z in [0, 1]:\n        theta_g = global_cm[z]\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n        total = sum(c0 + c1 for c0, c1 in cl)\n        if total == 0:\n            alpha_opt[z] = 2.0\n            continue\n        res = minimize_scalar(\n            lambda a, tg=theta_g: _dirmult_neg_ll_centered(a, cl, tg),\n            bounds=(0.01, 5000), method='bounded')\n        alpha_opt[z] = res.x\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            a = alpha_opt[z]\n            n = counts[i, z, :].sum()\n            d = n + a\n            C_s[z, 0] = (counts[i, z, 0] + a * global_cm[z, 0]) / d if d > 0 else 0.5\n            C_s[z, 1] = (counts[i, z, 1] + a * global_cm[z, 1]) / d if d > 0 else 0.5\n        C[s] = C_s\n    return C, alpha_opt\n\n\n# ── Pre-test selector ────────────────────────────────────────────────────────\n\ndef cm_homogeneity_lr_test(counts):\n    k = counts.shape[0]\n    pooled = counts.sum(axis=0)\n    lr_stat = 0.0\n    df = 0\n    for z in [0, 1]:\n        n_pooled = pooled[z, :].sum()\n        if n_pooled == 0:\n            continue\n        p_pooled = pooled[z, :].astype(float) / n_pooled\n        for i in range(k):\n            n_i = counts[i, z, :].sum()\n            if n_i == 0:\n                continue\n            for j in [0, 1]:\n                if counts[i, z, j] > 0 and p_pooled[j] > 0:\n                    expected = n_i * p_pooled[j]\n                    lr_stat += 2.0 * counts[i, z, j] * np.log(counts[i, z, j] / expected)\n        df += (k - 1)\n    if df == 0:\n        return 0.0, 1.0, 0\n    p_value = chi2.sf(max(lr_stat, 0), df)\n    return lr_stat, p_value, df\n\n\ndef estimate_cm_pretest(counts, labels, global_cm, test_alpha=0.05):\n    _, p_value, _ = cm_homogeneity_lr_test(counts)\n    if p_value > test_alpha:\n        C = {s: global_cm.copy() for s in labels}\n        return C, 'global', p_value\n    else:\n        C, _ = estimate_cm_centered_eb(counts, labels, global_cm)\n        return C, 'stratified', p_value\n\n\n# ── Single MC run ────────────────────────────────────────────────────────────\n\ndef run_one_mc(config_name, cfg, seed):\n    data = generate_data(cfg, seed)\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    em = data['expert_mask']\n    labels = cfg['labels']\n    tau_z0, tau_z1 = cfg['tau_z0'], cfg['tau_z1']\n    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n\n    global_cm = compute_global_cm(counts)\n    M_gl = build_mixing_matrix(global_cm)\n\n    C_hb_orig = estimate_cm_hb_eb_original(counts, labels)\n    M_hb_orig = {s: build_mixing_matrix(C_hb_orig[s]) for s in labels}\n\n    C_centered, _ = estimate_cm_centered_eb(counts, labels, global_cm)\n    M_centered = {s: build_mixing_matrix(C_centered[s]) for s in labels}\n\n    C_pretest, pt_decision, pt_pval = estimate_cm_pretest(counts, labels, global_cm)\n    M_pretest = {s: build_mixing_matrix(C_pretest[s]) for s in labels}\n\n    base = {'config': config_name, 'mc_run': seed}\n    rows = []\n\n    for s in labels:\n        sm = S == s\n        th0_or, se0_or = diff_in_means(Y, T, sm & (Z == 0))\n        th1_or, se1_or = diff_in_means(Y, T, sm & (Z == 1))\n        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n\n        tau_obs = np.array([th0_n, th1_n])\n        se_obs = np.array([se0_n, se1_n])\n        if np.any(np.isnan(tau_obs)):\n            continue\n\n        tgc, sgc = invert_mixing(M_gl, tau_obs, se_obs)\n        tho, sho = invert_mixing(M_hb_orig[s], tau_obs, se_obs)\n        thc, shc = invert_mixing(M_centered[s], tau_obs, se_obs)\n        tpt, spt = invert_mixing(M_pretest[s], tau_obs, se_obs)\n\n        def mr(method, th0, th1, se0, se1, **extra):\n            return {**base, 'subgroup': s, 'method': method,\n                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n                    'se_z0': se0, 'se_z1': se1,\n                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1, **extra}\n\n        rows.append(mr('oracle', th0_or, th1_or, se0_or, se1_or))\n        rows.append(mr('naive', th0_n, th1_n, se0_n, se1_n))\n        rows.append(mr('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]))\n        rows.append(mr('hb_original', tho[0], tho[1], sho[0], sho[1]))\n        rows.append(mr('hb_centered', thc[0], thc[1], shc[0], shc[1]))\n        rows.append(mr('pretest', tpt[0], tpt[1], spt[0], spt[1],\n                        pretest_decision=pt_decision, pretest_pval=pt_pval))\n\n    return rows\n\n\n# ── Aggregation ──────────────────────────────────────────────────────────────\n\ndef aggregate_results(df):\n    rows = []\n    for keys, grp in df.groupby(['config', 'subgroup', 'method']):\n        config, subgroup, method = keys\n        row = {'config': config, 'subgroup': subgroup, 'method': method, 'n_mc': len(grp)}\n        for z in ['z0', 'z1']:\n            err = grp[f'tau_hat_{z}'].values - grp[f'tau_true_{z}'].values\n            bias = err.mean()\n            rmse = np.sqrt((err ** 2).mean())\n            ci_lo = grp[f'tau_hat_{z}'].values - 1.96 * grp[f'se_{z}'].values\n            ci_hi = grp[f'tau_hat_{z}'].values + 1.96 * grp[f'se_{z}'].values\n            cov = ((ci_lo <= grp[f'tau_true_{z}'].values) &\n                   (grp[f'tau_true_{z}'].values <= ci_hi)).mean()\n            row[f'bias_{z}'] = bias\n            row[f'abs_bias_{z}'] = abs(bias)\n            row[f'rmse_{z}'] = rmse\n            row[f'coverage_{z}'] = cov\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\n# ── Main ─────────────────────────────────────────────────────────────────────\n\nif __name__ == '__main__':\n    n_mc = int(sys.argv[1]) if len(sys.argv) > 1 else N_MC\n\n    print(f\"exp_adaptive_shrinkage | N={N}, N_MC={n_mc}\")\n    print(f\"Configs: {list(CONFIGS.keys())}\\n\")\n\n    all_rows = []\n    t0 = time.time()\n    total = len(CONFIGS) * n_mc\n    count = 0\n\n    for config_name, cfg in CONFIGS.items():\n        for mc in range(n_mc):\n            rows = run_one_mc(config_name, cfg, seed=mc)\n            all_rows.extend(rows)\n            count += 1\n            if count % max(1, total // 20) == 0:\n                el = time.time() - t0\n                eta = el / count * (total - count) if count > 0 else 0\n                print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s | {config_name} mc={mc}\")\n\n    elapsed = time.time() - t0\n    print(f\"\\nTotal time: {elapsed:.1f}s\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate_results(df_raw)\n\n    os.makedirs('results', exist_ok=True)\n    df_raw.to_csv('results/exp_adaptive_shrinkage_raw.csv', index=False)\n    df_agg.to_csv('results/exp_adaptive_shrinkage.csv', index=False)\n\n    pd.set_option('display.float_format', '{:.4f}'.format)\n    pd.set_option('display.width', 200)\n    pd.set_option('display.max_columns', 20)\n\n    method_order = ['oracle', 'naive', 'global_corrected', 'hb_original', 'hb_centered', 'pretest']\n\n    for config_name in CONFIGS:\n        print(f\"\\n{'=' * 140}\")\n        cfg = CONFIGS[config_name]\n        print(f\"Config: {config_name} | K={cfg['k']} misclass={cfg['misclass']} \"\n              f\"tau_z0={cfg['tau_z0']} tau_z1={cfg['tau_z1']} n_expert={cfg['n_expert']}\")\n        print(f\"{'=' * 140}\")\n\n        sub = df_agg[df_agg['config'] == config_name]\n        avg = sub.groupby('method').agg({\n            'abs_bias_z0': 'mean', 'abs_bias_z1': 'mean',\n            'rmse_z0': 'mean', 'rmse_z1': 'mean',\n            'coverage_z0': 'mean', 'coverage_z1': 'mean',\n        }).reset_index()\n        avg.columns = ['method', '|bias|_z0', '|bias|_z1', 'RMSE_z0', 'RMSE_z1', 'cov_z0', 'cov_z1']\n        avg['_order'] = avg['method'].map({m: i for i, m in enumerate(method_order)})\n        avg = avg.sort_values('_order').drop('_order', axis=1)\n        print(avg.to_string(index=False))\n\n    if 'pretest_decision' in df_raw.columns:\n        print(f\"\\n{'=' * 140}\")\n        print(\"Pre-test decisions (fraction choosing 'stratified'):\")\n        for config_name in CONFIGS:\n            pt_rows = df_raw[(df_raw['config'] == config_name) &\n                             (df_raw['method'] == 'pretest')].drop_duplicates(subset=['mc_run'])\n            if not pt_rows.empty:\n                frac_strat = (pt_rows['pretest_decision'] == 'stratified').mean()\n                print(f\"  {config_name}: {frac_strat:.1%} stratified\")\n\n    print(f\"\\nSaved: results/exp_adaptive_shrinkage.csv ({len(df_agg)} rows)\")\n    print(f\"Saved: results/exp_adaptive_shrinkage_raw.csv ({len(df_raw)} rows)\")\nPYEOF\necho \"Script written successfully\"",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T07:25:56.309034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T07:25:56.309327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "cd /home/ubuntu/ec_hte_llm_annotation && source .venv/bin/activate && python exp_adaptive_shrinkage.py 5",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T07:25:56.309673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_adaptive_shrinkage | N=5000, N_MC=5\\\\nConfigs: ['K2_moderate', 'K2_extreme', 'K4_moderate', 'K4_extreme']\\\\n\\\\n  [1/20] 0s elapsed, ETA 0s | K2_moderate mc=0\\\\n  [2/20] 0s elapsed, ETA 0s | K2_moderate mc=1\\\\n  [3/20] 0s elapsed, ETA 0s | K2_moderate mc=2\\\\n  [4/20] 0s elapsed, ETA 0s | K2_moderate mc=3\\\\n  [5/20] 0s elapsed, ETA 0s | K2_moderate mc=4\\\\n  [6/20] 0s elapsed, ETA 0s | K2_extreme mc=0\\\\n  [7/20] 0s elapsed, ETA 0s | K2_extreme mc=1\\\\n  [8/20] 0s elapsed, ETA 0s | K2_extreme mc=2\\\\n  [9/20] 0s elapsed, ETA 0s | K2_extreme mc=3\\\\n  [10/20] 0s elapsed, ETA 0s | K2_extreme mc=4\\\\n  [11/20] 0s elapsed, ETA 0s | K4_moderate mc=0\\\\n  [12/20] 0s elapsed, ETA 0s | K4_moderate mc=1\\\\n  [13/20] 0s elapsed, ETA 0s | K4_moderate mc=2\\\\n  [14/20] 0s elapsed, ETA 0s | K4_moderate mc=3\\\\n  [15/20] 0s elapsed, ETA 0s | K4_moderate mc=4\\\\n  [16/20] 0s elapsed, ETA 0s | K4_extreme mc=0\\\\n  [17/20] 0s elapsed, ETA 0s | K4_extreme mc=1\\\\n  [18/20] 0s elapsed, ETA 0s | K4_extreme mc=2\\\\n  [19/20] 0s elapsed, ETA 0s | K4_extreme mc=3\\\\n  [20/20] 0s elapsed, ETA 0s | K4_extreme mc=4\\\\n\\\\nTotal time: 0.2s\\\\n\\\\n============================================================================================================================================\\\\nConfig: K2_moderate | K=2 misclass=[0.1, 0.15] tau_z0=0.15 tau_z1=0.3 n_expert=250\\\\n============================================================================================================================================\\\\n          method  |bias|_z0  |bias|_z1  RMSE_z0  RMSE_z1  cov_z0  cov_z1\\\\n          oracle     0.0256     0.0212   0.0511   0.0532  1.0000  1.0000\\\\n           naive     0.0177     0.0329   0.0483   0.0515  1.0000  1.0000\\\\nglobal_corrected     0.0356     0.0107   0.0635   0.0494  1.0000  1.0000\\\\n     hb_original     0.0357     0.0106   0.0628   0.0486  1.0000  1.0000\\\\n     hb_centered     0.0355     0.0108   0.0634   0.0494  1.0000  1.0000\\\\n  \n…[truncated 3425 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T07:25:56.310073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "local-cpu",
+              "command": "cd /home/ubuntu/ec_hte_llm_annotation && source .venv/bin/activate && python exp_adaptive_shrinkage.py 100",
+              "account": "ubuntu"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T07:25:56.310429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_adaptive_shrinkage | N=5000, N_MC=100\\\\nConfigs: ['K2_moderate', 'K2_extreme', 'K4_moderate', 'K4_extreme']\\\\n\\\\n  [20/400] 0s elapsed, ETA 4s | K2_moderate mc=19\\\\n  [40/400] 0s elapsed, ETA 4s | K2_moderate mc=39\\\\n  [60/400] 1s elapsed, ETA 3s | K2_moderate mc=59\\\\n  [80/400] 1s elapsed, ETA 3s | K2_moderate mc=79\\\\n  [100/400] 1s elapsed, ETA 3s | K2_moderate mc=99\\\\n  [120/400] 1s elapsed, ETA 3s | K2_extreme mc=19\\\\n  [140/400] 1s elapsed, ETA 3s | K2_extreme mc=39\\\\n  [160/400] 2s elapsed, ETA 2s | K2_extreme mc=59\\\\n  [180/400] 2s elapsed, ETA 2s | K2_extreme mc=79\\\\n  [200/400] 2s elapsed, ETA 2s | K2_extreme mc=99\\\\n  [220/400] 2s elapsed, ETA 2s | K4_moderate mc=19\\\\n  [240/400] 3s elapsed, ETA 2s | K4_moderate mc=39\\\\n  [260/400] 3s elapsed, ETA 2s | K4_moderate mc=59\\\\n  [280/400] 3s elapsed, ETA 1s | K4_moderate mc=79\\\\n  [300/400] 3s elapsed, ETA 1s | K4_moderate mc=99\\\\n  [320/400] 4s elapsed, ETA 1s | K4_extreme mc=19\\\\n  [340/400] 4s elapsed, ETA 1s | K4_extreme mc=39\\\\n  [360/400] 4s elapsed, ETA 0s | K4_extreme mc=59\\\\n  [380/400] 5s elapsed, ETA 0s | K4_extreme mc=79\\\\n  [400/400] 5s elapsed, ETA 0s | K4_extreme mc=99\\\\n\\\\nTotal time: 4.9s\\\\n\\\\n============================================================================================================================================\\\\nConfig: K2_moderate | K=2 misclass=[0.1, 0.15] tau_z0=0.15 tau_z1=0.3 n_expert=250\\\\n============================================================================================================================================\\\\n          method  |bias|_z0  |bias|_z1  RMSE_z0  RMSE_z1  cov_z0  cov_z1\\\\n          oracle     0.0068     0.0032   0.0597   0.0648  0.9700  0.9500\\\\n           naive     0.0121     0.0221   0.0582   0.0696  0.9750  0.9200\\\\nglobal_corrected     0.0080     0.0014   0.0684   0.0783  0.9800  0.9350\\\\n     hb_original     0.0109     0.0039   0.0703   0.0787  0.9750  0.9350\\\\n     hb_ce\n…[truncated 3494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T07:25:56.310845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp_adaptive_shrinkage_results",
+              "type": "data",
+              "description": "Adaptive shrinkage experiment: centered EB vs original HB vs Global across 4 configs (K2/K4 × moderate/extreme). Centered EB matches Global in moderate, beats both in extreme.",
+              "project": "ec_hte_llm_annotation",
+              "source_path": "/home/ubuntu/ec_hte_llm_annotation/results/exp_adaptive_shrinkage.csv",
+              "tags": "['adaptive-shrinkage', 'centered-eb', 'simulation']"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T07:25:56.311167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_66c6f7\\\", \\\"name\\\": \\\"exp_adaptive_shrinkage_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Adaptive shrinkage experiment: centered EB vs original HB vs Global across 4 configs (K2/K4 × moderate/extreme). Centered EB matches Global in moderate, beats both in extreme.\\\", \\\"path\\\": \\\"projects/ec_hte_llm_annotation/artifacts/_project/data/exp_adaptive_shrinkage.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"ec_hte_llm_annotation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T07:25:36.970347+00:00\\\", \\\"tags\\\": [\\\"adaptive-shrinkage\\\", \\\"centered-eb\\\", \\\"simulation\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T07:25:56.311514+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n### 核心发现：Centered EB 全面优于 Original HB\n\n| Config | Method | RMSE_z0 | RMSE_z1 | \\|bias\\|_z0 | \\|bias\\|_z1 |\n|--------|--------|---------|---------|------------|------------|\n| **K2 moderate** | global_corrected | 0.0684 | 0.0783 | 0.0080 | 0.0014 |\n| | hb_original | 0.0703 | 0.0787 | 0.0109 | 0.0039 |\n| | **hb_centered** | **0.0691** | **0.0781** | 0.0083 | 0.0014 |\n| **K2 extreme** | global_corrected | 0.0912 | 0.1022 | 0.0496 | 0.0569 |\n| | hb_original | 0.0879 | 0.0942 | 0.0134 | 0.0041 |\n| | **hb_centered** | **0.0839** | **0.0909** | 0.0070 | 0.0068 |\n| **K4 moderate** | global_corrected | 0.0978 | 0.1070 | 0.0089 | 0.0078 |\n| | hb_original | 0.1006 | 0.1089 | 0.0131 | 0.0096 |\n| | **hb_centered** | **0.0983** | **0.1070** | 0.0100 | 0.0081 |\n| **K4 extreme** | global_corrected | 0.1040 | 0.1140 | 0.0277 | 0.0314 |\n| | hb_original | 0.1081 | 0.1158 | 0.0163 | 0.0094 |\n| | **hb_centered** | **0.1027** | **0.1117** | 0.0094 | 0.0066 |\n\n### 关键结论\n\n1. **Moderate heterogeneity**: `hb_centered` RMSE ≈ Global（不更差）— 目标达成\n2. **Extreme heterogeneity**: `hb_centered` RMSE 低于 Global 和 original HB — 优势保持并增强\n3. **原因**: 原始 HB 用 Dir(α/2, α/2) 向 (0.5, 0.5) 收缩（错误目标），Centered EB 向 global CM 收缩（正确目标），允许更强 pooling 而不引入偏差\n4. **Pre-test**: moderate 下 79% 选 Global，extreme 下 97-100% 选 stratified — 决策合理\n5. **意外发现**: K4 extreme 下原始 HB 的 RMSE 比 Global 还高，Centered EB 修复了这个问题\n\n脚本：`/home/ubuntu/ec_hte_llm_annotation/exp_adaptive_shrinkage.py`\n结果：`results/exp_adaptive_shrinkage.csv` (聚合) / `results/exp_adaptive_shrinkage_raw.csv` (原始)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_adaptive-shrinkage_20260523T071542"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ]
+}

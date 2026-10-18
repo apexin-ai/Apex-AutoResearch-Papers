@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "0281bd28dc5bcb5c1ed5",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 005 diagnostic",
+  "task_key": "worker_code_exp-005-diagnostic_20260520T232612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-005-diagnostic_20260520T232612.log",
+    "occurrence": 1,
+    "bytes": 630233,
+    "sha256": "ba02290fad3b684439de3cbabedc1641ebaaa06418d5b30ce295c49c27cbfbac"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 47,
+      "tool_result": 47,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "0281bd28dc5bcb5c1ed5-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "0281bd28dc5bcb5c1ed5-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "0281bd28dc5bcb5c1ed5-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

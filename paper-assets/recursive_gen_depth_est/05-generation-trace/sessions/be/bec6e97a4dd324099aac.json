@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bec6e97a4dd324099aac",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix edd summary stats",
+  "task_key": "worker_fix_edd_summary_stats_20260515T044024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_edd_summary_stats_20260515T044024_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "e8c9406158dbd67264a9d3fcc4bf2054a2193580cc956935e6cc0b80ad15e0af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处 EDD 均值已修正：\n\n- T=0.75: 2.67 → **2.78**\n- T=0.80: 2.56 → **2.44**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

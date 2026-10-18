@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ec14ebb687da6d0b3a8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis prepare appendix maven residualized",
+  "task_key": "worker_analysis_prepare_appendix_maven_residualized_20260516T020254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prepare_appendix_maven_residualized_20260516T020254_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "d16e24a9295a44ada66f5857ea49a847795527b6e7eae5198cb90f6e930e7b49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix 草稿已写入 `artifacts/appendix_maven_residualized.md`。\n\n结构：Motivation → Method (partial correlation with OLS residualization) → 三张表 (raw correlations, centrality diagnostics, partial correlations) → Discussion (MiniLM frequency confound vs Qwen3 degree confound, Few-NERD 对比) → Conclusion (centrality artifact, pairwise SCS-confusion is the valid claim)。\n\n所有数值均来自 `results.json` 和 `analysis_report.txt`，无虚构数据。MiniLM degree centrality 数据 ($r = +0.909$ at threshold 0.3) 取自 report 中的 centrality diagnostics section。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

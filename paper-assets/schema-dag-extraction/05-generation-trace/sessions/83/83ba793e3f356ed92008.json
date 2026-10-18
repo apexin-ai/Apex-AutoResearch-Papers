@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "83ba793e3f356ed92008",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fewrel 80rel launch",
+  "task_key": "worker_ssh_fewrel-80rel-launch_20260515T125537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fewrel-80rel-launch_20260515T125537_result.json",
+    "occurrence": 1,
+    "bytes": 1042,
+    "sha256": "193d1b53f848d79e50599d8a13acfd13a002c5a03bb4441d0e1789fab445b61d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 检查项 | 状态 |\n|--------|------|\n| **GPU 空闲** | **是** — 0% 利用率，0 MiB 已用 / 97887 MiB 总显存，无进程占用 |\n| **16-rel exp2 完成** | **是** — eval_exp2.json (101KB) 和 predictions_exp2.json (26.7MB) 均已生成，无残留 tmux/进程 |\n| **--use_all 参数** | **可用** — `--use_all`: Load both train+val splits (all 80 relations) |\n\n### exp2 关键结果（16-rel / 8-way分类）\n\n| Batch | Accuracy | BCS (相似度) |\n|-------|----------|-------------|\n| count_8_low_bcs | **88.9%** | 0.782 |\n| count_8_high_bcs | **79.8%** | 0.892 |\n| count_8_random_0 | **88.1%** | 0.847 |\n\n- 低 BCS 批次（类间区分度高）准确率最高 88.9%\n- 高 BCS 批次（类间容易混淆）准确率降至 79.8%，符合预期\n- `military rank` 在两个批次中均达 100%；`main subject`（62.9%）、`mother`（59.7%）、`follows`（61.3%）是弱项\n\n**GPU 已空闲，exp2 已完成，`--use_all` 参数就绪，可以启动 80-rel 实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

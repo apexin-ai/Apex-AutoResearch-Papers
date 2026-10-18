@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6281999e48496e1c8438",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest westd27271",
+  "task_key": "worker_ops_harvest-westd27271_20260524T080029",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-westd27271_20260524T080029_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "271bd9467faa84631bb1f45178fb854bb2faf280485c8f9345b0c3c0e8659743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行中，尚未完成。\n\n## 实验状态报告\n\n| 字段 | eval_openvla_attn_k05_object_seed42_v2 (GPU 0) | eval_openvla_attn_k05_goal_seed42 (GPU 1) |\n|------|------|------|\n| **Status** | **running** | **running** |\n| **PID** | 676491 | 675522 |\n| **Started** | ~14:49 | ~14:47 |\n| **Progress** | Task 3/10, Ep 10/50 | Task 4/10, 刚开始 |\n| **已完成 tasks** | Task 1: 0/50 (0%), Task 2: 0/50 (0%) | Task 1: 7/50 (14%), Task 2: 28/50 (56%), Task 3: 35/50 (70%) |\n| **Speed** | ~1.5 eps/min | ~1.7-2.0 eps/min |\n| **结果文件** | 尚未生成 | 尚未生成 |\n| **日志** | `logs/eval_openvla_attn_k05_object_seed42_v2.log` | `logs/eval_openvla_attn_k05_goal_seed42.log` |\n\n**预估剩余时间**：\n- Object: 完成了 ~110/500 episodes，剩 ~390 eps ÷ 1.5 eps/min ≈ **4.3 小时**\n- Goal: 完成了 ~150/500 episodes，剩 ~350 eps ÷ 1.8 eps/min ≈ **3.2 小时**\n\n注意：Object 实验前 2 个 task 成功率为 0%，attention pruning k=0.5 在 object suite 上可能表现很差。Goal 前 3 个 task 平均成功率 46.7%，表现合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

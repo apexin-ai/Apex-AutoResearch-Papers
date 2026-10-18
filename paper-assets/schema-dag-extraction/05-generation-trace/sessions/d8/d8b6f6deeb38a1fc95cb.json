@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d8b6f6deeb38a1fc95cb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "write d037 results tex edits",
+  "task_key": "worker_write_d037_results_tex_edits_20260516T034134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_d037_results_tex_edits_20260516T034134_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "a8c355efe0a57ab252c5c6f2ee894a8cc06f866ccda528e68db036bf404e07fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。编译 0 错误，15 页。\n\n改动摘要：\n1. **§4.1 NER**: recall 改为 macro-avg (0.52/0.55)，加 bootstrap CI + permutation p=0.31 + 重叠说明\n2. **§4.2 pairwise**: 在 Table 2 后讨论中加 cluster-robust CI（Few-NERD [0.057,0.190]，MAVEN [0.070,0.139]），Table 保留 pair-level CI\n3. **§4.3 新段 Practical magnitude**: IQR=0.054 → 2.2pp gap，quartile 对比 3.9pp，P10-P90 4.2pp，明确 31.2pp 是 extreme-batch\n4. **31.2pp 所有出现**（6处）均加 \"extreme-batch\" caveat 或指向 §practical_magnitude\n5. **§4 开头**: 加 v1 prompt 总注\n6. **§4.4**: Figure ref 改为 \"Figure X in Appendix A\"\n7. **framework→pattern**: results.tex 中无 \"framework\"，无需改动\n8. bibtex 有 3 个预存 warning（cite key 不匹配），非本次引入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

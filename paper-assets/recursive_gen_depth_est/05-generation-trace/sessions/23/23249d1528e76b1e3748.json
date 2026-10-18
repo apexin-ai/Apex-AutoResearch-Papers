@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23249d1528e76b1e3748",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops llama3 status urgent",
+  "task_key": "worker_ops_llama3_status_urgent_20260516T101159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3_status_urgent_20260516T101159_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "9911629372fe8b669366f924f2c40fb8d0d8312f680e602d6e343a7712e19f30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cross_scale_llama3_8b_003 状态：已完成 ✓\n\nPipeline 于 **17:25 CST** 正常结束，GPU 已释放（0MiB / 0%）。\n\n### 关键指标\n\n| 指标 | 值 |\n|------|-----|\n| **4-class acc** | **0.702** [0.683, 0.724] |\n| **6-class acc** | **0.554** [0.536, 0.571] |\n| **EDD estimate** | **>5** |\n\n### Pairwise AUC（consecutive binary）\n\n| 对比 | Acc | AUC |\n|------|-----|-----|\n| d0v1 | 0.885 | 0.949 |\n| d1v2 | 0.810 | 0.877 |\n| d2v3 | 0.698 | 0.771 |\n| d3v4 | 0.656 | 0.716 |\n| d4v5 | 0.583 | 0.618 |\n\n模型：Meta-Llama-3.1-8B-Instruct，策略：nucleus_p0.95，每深度 500 样本。AUC 随深度递增单调下降，符合预期。cuda:0 当前空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

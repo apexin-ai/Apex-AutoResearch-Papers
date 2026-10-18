@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd889e25214400a9e783",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops healthcheck westd38929 v2",
+  "task_key": "worker_ops_healthcheck-westd38929-v2_20260524T093531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_healthcheck-westd38929-v2_20260524T093531_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "7af98c1e0fd03d721797a2a8c0165fa1911ca2bbabd94d74d440db46d78a23d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-38929 GPU 状态报告\n\n### GPU 0 — IDLE (空闲)\n- **实验**: eval_pi05_random_k09_goal_seed42_postfix\n- **Status**: ✅ **COMPLETED**\n- **SR = 61.8%** (309/500)\n- 结果文件: `eval_results/pi05_random_k0.90_libero_goal_seed42.json`\n- Per-task: T0=76%, T1=32%, T2=38%, T3=38%, T4=90%, T5=88%, T6=80%, T7=88%, T8=74%, T9=14%\n\n### GPU 1 — IDLE (空闲)\n- **实验**: eval_pi05_random_k085_goal_seed42_postfix\n- **Status**: ✅ **COMPLETED**\n- **SR = 52.8%** (264/500)\n- 结果文件: `eval_results/pi05_random_k0.85_libero_goal_seed42.json`\n- Per-task: T0=68%, T1=4%, T2=20%, T3=30%, T4=66%, T5=80%, T6=86%, T7=90%, T8=78%, T9=6%\n\n### GPU 2 — IDLE (空闲)\n- **实验**: eval_pi05_random_k07_goal_seed42_postfix\n- **Status**: ✅ **COMPLETED**\n- **SR = 75.6%** (378/500)\n- 结果文件: `eval_results/pi05_random_k0.70_libero_goal_seed42.json`\n- Per-task: T0=90%, T1=48%, T2=82%, T3=74%, T4=96%, T5=72%, T6=62%, T7=100%, T8=82%, T9=50%\n\n### GPU 3 — PID 16832, 4838MiB, 1% GPU util\n- **实验**: eval_xvla_l2norm_k03_goal_seed42_v5\n- **Status**: 🔄 **RUNNING** — Task 6 进行中 (ep 9/50, 暂全 FAIL)\n- **已完成 6/10 tasks**: T0=42%, T1=92%, T2=20%, T3=24%, T4=98%, T5=0%\n- **Interim SR**: 138/300 = **46.0%**\n- 注意: T5 和 T6 连续全 FAIL（800 step timeout），最终 SR 可能会较低\n- 对比旧 domain_id=1 的结果 (SR=0.2%)，domain_id=3 大幅改善\n\n### 关键发现\n\n**π0.5 Random Goal 呈非单调趋势**:\n| keep_ratio | SR |\n|---|---|\n| 0.90 | 61.8% |\n| 0.85 | 52.8% |\n| 0.70 | **75.6%** |\n\nk=0.7 反而最高，比 k=0.9 高 14 个点。\n\n**GPU 0-2 已空闲**，可部署新实验。GPU 3 的 v5 预计还需 ~50 分钟完成（Task 6-9 剩余约 200 episodes）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

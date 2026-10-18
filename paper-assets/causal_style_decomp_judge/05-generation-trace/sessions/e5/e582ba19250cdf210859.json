@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e582ba19250cdf210859",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "research missing refs",
+  "task_key": "worker_research_missing-refs_20260522T043517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_missing-refs_20260522T043517_result.json",
+    "occurrence": 1,
+    "bytes": 4254,
+    "sha256": "bd0b96b13f7088b7d0c2a4248082f7c6bc9c28f0c959f0ce22432845400838cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕，以下是验证结果。\n\n---\n\n## Reference 1: \"Girrbach et al. Likert or Not\"\n\n- **状态: 存疑 — 两篇论文混淆**\n\n不存在一篇由 Girrbach 撰写、标题为 \"Likert or Not\" 的论文。这很可能是以下两篇论文的混淆：\n\n**论文 A — 标题匹配 \"Likert or Not\"，但作者不含 Girrbach：**\n\n```bibtex\n@article{godfrey2025likert,\n  title={Likert or Not: {LLM} Absolute Relevance Judgments on Fine-Grained Ordinal Scales},\n  author={Godfrey, Charles and Nie, Ping and Ostapuk, Natalia and Ken, David and Gao, Shang and Inati, Souheil},\n  journal={arXiv preprint arXiv:2505.19334},\n  year={2025}\n}\n```\n- 内容：pointwise scoring vs listwise ranking，ordinal scale 粒度对 LLM relevance judgment 的影响\n- 偏 IR 方向，与 LLM-as-Judge style bias 关系较远\n\n**论文 B — 作者含 Girrbach，讨论 Likert-scale rating 问题，但标题不是 \"Likert or Not\"：**\n\n```bibtex\n@article{girrbach2025reference,\n  title={Reference-Free Rating of {LLM} Responses via Latent Information},\n  author={Girrbach, Leander and Su, Chi-Ping and Saanum, Tankred and Socher, Richard and Schulz, Eric and Akata, Zeynep},\n  journal={arXiv preprint arXiv:2509.24678},\n  year={2025}\n}\n```\n- 内容：LLM judge 用 Likert-scale 打分时 scores 不稳定、calibration 差、top-of-scale compression、frequent ties。提出 Latent Judges 用 internal signals 替代显式打分\n- **与 style bias 项目高度相关，极可能是你想引的那篇**\n\n**建议：确认你想引的是论文 B (Girrbach et al., 2025)，修正标题为 \"Reference-Free Rating of LLM Responses via Latent Information\"。**\n\n---\n\n## Reference 2: PRePair (Jeong et al. 2025)\n\n- **状态: 存在**\n- 完整标题: The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences of LLM Evaluators\n- 作者: Hawon Jeong, ChaeHun Park, Jimin Hong, Hojoon Lee, Jaegul Choo\n- Venue: BlackboxNLP 2025 (EMNLP Workshop), Suzhou, China\n- PRePair 是论文提出的方法（Pointwise Reasoning Enhanced Pairwise evaluation）\n\n```bibtex\n@inproceedings{jeong-etal-2025-comparative,\n    title = \"The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences of {LLM} Evaluators\",\n    author = \"Jeong, Hawon and Park, ChaeHun and Hong, Jimin and Lee, Hojoon and Choo, Jaegul\",\n    booktitle = \"Proceedings of the 8th BlackboxNLP Workshop: Analyzing and Interpreting Neural Networks for NLP\",\n    month = nov,\n    year = \"2025\",\n    address = \"Suzhou, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/2025.blackboxnlp-1.5/\",\n    doi = \"10.18653/v1/2025.blackboxnlp-1.5\",\n    pages = \"79--108\"\n}\n```\n\n---\n\n## Reference 3: Acquiescence Bias / Central Tendency Bias 经典引用\n\n- **状态: 存在，推荐两篇互补经典**\n\n**推荐 A — Krosnick (1999)：survey response bias 的综述性权威引用**\n\n覆盖 acquiescence bias、satisficing、response order effects、central tendency 等所有 rating scale bias，被引 5000+。\n\n```bibtex\n@article{krosnick1999survey,\n  title={Survey Research},\n  author={Krosnick, Jon A.},\n  journal={Annual Review of Psychology},\n  volume={50},\n  number={1},\n  pages={537--567},\n  year={1999},\n  doi={10.1146/annurev.psych.50.1.537},\n  publisher={Annual Reviews}\n}\n```\n\n**推荐 B — Paulhus (1991)：response bias measurement 的经典 chapter**\n\n专门讨论 acquiescence、social desirability、extreme response style 的测量与控制，心理测量学标准引用。\n\n```bibtex\n@incollection{paulhus1991measurement,\n  title={Measurement and Control of Response Bias},\n  author={Paulhus, Delroy L.},\n  booktitle={Measures of Personality and Social Psychological Attitudes},\n  editor={Robinson, John P. and Shaver, Phillip R. and Wrightsman, Lawrence S.},\n  pages={17--59},\n  year={1991},\n  publisher={Academic Press},\n  address={San Diego, CA}\n}\n```\n\n**建议：引 Krosnick (1999) 作为一站式引用最方便（一篇覆盖 acquiescence + central tendency + satisficing）。如果需要更专门讨论 response style 的分类学，补引 Paulhus (1991)。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

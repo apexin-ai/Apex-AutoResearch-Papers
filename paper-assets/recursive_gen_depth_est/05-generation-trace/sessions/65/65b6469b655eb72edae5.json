@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "65b6469b655eb72edae5",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp plan 021 instruct model",
+  "task_key": "worker_exp_plan_021_instruct_model_20260517T153626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_021_instruct_model_20260517T153626.log",
+    "occurrence": 1,
+    "bytes": 802422,
+    "sha256": "ccc34443d4b00d306ae155e954cd90719dcb03e9e905666604a492d948dcb960"
+  },
+  "statistics": {
+    "messages": 503,
+    "user_turns": 0,
+    "tool_calls": 191,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 191,
+      "tool_result": 191,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 503,
+      "chunks": [
+        {
+          "path": "65b6469b655eb72edae5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "65b6469b655eb72edae5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "65b6469b655eb72edae5-part-0003.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ]
+}

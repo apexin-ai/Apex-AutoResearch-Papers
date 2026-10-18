@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8f3abf91d4963cbc56",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d044 section5 discussion",
+  "task_key": "worker_paper_d044_section5_discussion_20260516T101343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d044_section5_discussion_20260516T101343_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "64f0e0099b75debc9196717af69310103fa4e274d7e0c1af42bf3e057570a83a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files have balanced braces. Here's a summary of all modifications:\n\n---\n\n**Modified files:**\n\n| File | Change |\n|------|--------|\n| `sdgd_negative.tex` | (C4) Oracle routing qualifier: \"Under oracle routing, RE requires no span reconciliation---each pair receives a single classification from the batch containing its gold type\" |\n| `sdgd_negative.tex` | (C4) Added `($n{=}1$)` limitation to +1.4pp result |\n| `sdgd_negative.tex` | (S4) Inserted merge amplification mechanistic paragraph (boundary conflicts, FP inflation via span overlap resolution) |\n| `results.tex` | (S5) Moved `fig_error_taxonomy` into §4.4 body as `\\begin{figure}[t]` |\n| `main.tex` | (S5) Removed duplicate figure from appendix |\n| `discussion.tex` | (S1) MAVEN scope sentence integrated into Boundary conditions |\n| `discussion.tex` | (S6) New `\\paragraph{Practitioner guidance.}` with SCS > 0.75 threshold |\n| `discussion.tex` | (S6) Rewrote Future directions with three specific items (non-oracle routing, model coverage, definition-inclusive SCS) |\n| `discussion.tex` | (S6) No unsupported theoretical speculation added |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

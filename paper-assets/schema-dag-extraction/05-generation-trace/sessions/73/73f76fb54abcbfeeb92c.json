@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73f76fb54abcbfeeb92c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis metric consistency check",
+  "task_key": "worker_analysis_metric-consistency-check_20260517T112414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_metric-consistency-check_20260517T112414_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "521a2549ea551ce294b0748a7b7520c5874e5c25a9777ed64b87e28b393ccca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/schema-dag-extraction/artifacts/metric_consistency_report.md`。\n\n## 结论\n\n**根本原因**: 70B 脚本的 `evaluate_ner_results` 计算的是 **type-agnostic text recall**（只看文本是否出现在预测中，不检查 type label 是否正确），而 d051 脚本用 `src/evaluate.py` 的 `_text_match` 函数计算 **type+text match recall**（要求 type 和 text 同时匹配）。\n\n对 count_2 的影响尤其大：schema 只有 2 个 type 时，模型能正确提取文本但常分错 type → 70B 报 0.970（不看 type），d051 报 0.527（看 type）。\n\n**修复路径**: 如果 westd-24295 上还有 70B 的 `results_count_*.jsonl`（含 per-entity type 字段），可直接用 `evaluate_all(preds, samples, eval_mode=\"text_match\")` 重算，无需重跑 inference。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

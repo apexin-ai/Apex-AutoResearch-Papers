@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7b6b5d15f613d8bddb01",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper final response template",
+  "task_key": "worker_paper_final_response_template_20260522T110854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_response_template_20260522T110854_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "db0136f13b470030c7b0f9f8371c2e960f28c0e34417701a772ed34650ed88f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。总结：\n\n1. **R² 数字** — 模板中无 \"0.218\" / \"22%\" 残留，全部已是 semipartial R²=0.273。\n\n2. **新增 3 个 Q&A blocks**：\n   - **Q6 (Gemini leverage)**: count_16 r=−0.80 确实由单个 leverage point 驱动（Cook's D=0.490），但 count_8 (n=50) trimmed r 从 −0.887 增强至 −0.913，论文已在 §4.3/Appendix U 中披露。\n   - **Q7 (Ecological fallacy)**: BCS 是 Level-2 contextual variable，within-batch variance=0，ecological fallacy 结构上不适用；effect direction 在所有层级一致为负。\n   - **Q8 (FewRel contamination)**: 三条证据线——per-type accuracy 高方差(σ=0.147)、跨模型 degradation slope 一致、IntraSub causal mechanism (ρ=0.954)——排除 memorization artifact。\n\n3. **Appendix/Table 编号** — 全部 8 个 Q&A 中的引用与 main.aux 一致：E.1=Partial Correlation, E.2=NER Power, U=Gemini Cross-Model, Y=Relaxed Matching, C=Factorial, Table 2/5/6/10/25 均正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

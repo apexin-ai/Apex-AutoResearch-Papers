@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "06f4558b51eb910fdbd6",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops westd41074 disk emergency",
+  "task_key": "worker_ops_westd41074-disk-emergency_20260521T082244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd41074-disk-emergency_20260521T082244.log",
+    "occurrence": 1,
+    "bytes": 636594,
+    "sha256": "d373f9a084876bdf7cbf3e252c8be618f63b7ef10ce7f3c00d358b66af3a45b6"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 1,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 84,
+      "tool_result": 84,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "06f4558b51eb910fdbd6-part-0001.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "06f4558b51eb910fdbd6-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "06f4558b51eb910fdbd6-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ]
+}

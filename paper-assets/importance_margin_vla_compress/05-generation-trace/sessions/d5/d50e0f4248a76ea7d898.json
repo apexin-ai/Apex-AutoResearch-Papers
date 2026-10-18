@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d50e0f4248a76ea7d898",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops kill duplicate attn k095",
+  "task_key": "worker_ops_kill_duplicate_attn_k095_20260529T025332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_duplicate_attn_k095_20260529T025332_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "c6f535e26efe7f61ab1e809d1dfbad2ef040cb961c52511923efa90dc3f84f88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕：\n\n- PID 743426 已终止\n- PID 726668 正常运行，已运行 26 分钟，attn k=0.95 seed47 libero_10，GPU 0\n- GPU 0 上只剩 726668 一个进程（9944 MiB），GPU 1 上有另一个进程 543553"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

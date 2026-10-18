@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "32fd0bf03c583528114a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 fix concurrency urgent",
+  "task_key": "worker_code_plan001-fix-concurrency-urgent_20260522T102750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-fix-concurrency-urgent_20260522T102750_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "096fddb56c21d37768f55284e8d41728c304dcac16ac8c82eb40ebad968a32e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **Kill** — PID 94836 已终止，所有 plan001 相关进程已清除\n2. **改并发** — `MAX_GLOBAL_CONCURRENT: 15→5`, `BATCH_WORKERS: 3→2`, `MODEL_RPS: 3.0→1.5`\n3. **重启** — PID 97561，tmux session `plan001_step1_v3`\n\n运行正常：\n- claude-3-haiku 全部 SKIP（14/14 已完成）\n- gpt-4o mmlu 前 9 个条件 SKIP（已有 checkpoint），正在跑 `arc_challenge/sycophancy`（300 pairs）\n- 模型间 stagger 5s 正常生效，无 500 错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

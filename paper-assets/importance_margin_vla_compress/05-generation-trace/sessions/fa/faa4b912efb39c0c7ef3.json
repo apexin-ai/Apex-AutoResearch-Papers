@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "faa4b912efb39c0c7ef3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag westd official eval failures",
+  "task_key": "worker_diag_westd_official_eval_failures_20260518T162727",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_westd_official_eval_failures_20260518T162727_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "cba8e0673cba1fc16fac11ab3d82b33bd6fd9a356f680c1c5ef2e18d7a97ebb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 结论：两个实验**没有崩溃**，cron 误判\n\n两个进程都还活着，正常运行中：\n\n| 实验 | PID | GPU | 进度 | 当前状态 |\n|------|-----|-----|------|----------|\n| k09 (k_ratio=0.9) | 247752 | cuda:0 | 6/10 tasks 完成，Task 6 进行中 | 运行中 |\n| k095 (k_ratio=0.95) | 247606 | cuda:1 | 6/10 tasks 完成，Task 6 进行中 | 运行中 |\n\n### 已完成的结果\n\n**两个实验到目前为止全部 0% 成功率**（Task 0-5 各 0/50 episodes），每个 episode 都跑满 280 steps 后失败。\n\n这和已完成的 **k05 (k_ratio=0.5)** 一致：也是 10/10 tasks 全 0%。\n\n对比 baseline（无 pruning）：overall_success_rate = **59.2%**。\n\n### 关键发现\n\n`true_removal` random pruning 在 k=0.5/0.9/0.95 三个比例下都是 **0%**，完全摧毁了模型能力。这说明：\n1. 随机 pruning + true_removal 对官方 SmolVLA 极其破坏性，即使只移除 5% 的 token (k=0.95) 也彻底失效\n2. 两个实验预计还需 ~20 分钟跑完剩余 4 个 tasks，但结果几乎肯定仍是 0%\n3. 无需重启，让它们跑完即可\n\n### 不需要操作\n进程正常，等待自然结束。最终 JSON 结果文件会自动生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

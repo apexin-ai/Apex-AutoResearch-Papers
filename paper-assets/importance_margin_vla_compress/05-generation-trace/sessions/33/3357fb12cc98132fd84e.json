@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3357fb12cc98132fd84e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops deploy e3 e4 cqa1",
+  "task_key": "worker_ops_deploy_e3_e4_cqa1_20260523T070853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy_e3_e4_cqa1_20260523T070853_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "fe1c957f1119e768098a5916f012bc51b889576223a944f42626718ba8ac8dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0&1 已进入 LIBERO 仿真，GPU 2&3 模型加载中。\n\n## 部署状态总结\n\n### cqa1-33015 (4×4090D)\n\n| GPU | 实验 | PID | 状态 | 显存 | 预计时间 |\n|-----|------|-----|------|------|----------|\n| 0 | Pi0.5 l2norm k=0.50 libero_object | 304615 | 运行中（episode 进行中） | 10.2 GB | ~2-4h |\n| 1 | Pi0.5 random k=0.50 libero_object | 304879 | 运行中（episode 进行中） | 10.2 GB | ~2-4h |\n| 2 | Pi0.5 l2norm k=0.70 libero_object | 305122 | 加载中 | 加载中 | ~2-4h |\n| 3 | Pi0.5 random k=0.70 libero_object | 305386 | 加载中 | 加载中 | ~2-4h |\n\n### 已完成\n\n**E3 (Token Cosine Similarity) — Pi0.5 完成：**\n- π0.5: CV=0.055, **Mean CosSim=0.9545**, std=0.0174, 512 tokens × 2048D\n- 验证假设：低 CV → 高 token 同质性（cosine sim ≈ 0.95）\n- 产出：`artifacts/token_cosine_similarity_stats.json` + heatmap PDF/PNG\n\n**E4 (Inference Latency) — 之前已完成：**\n- Baseline 128tok: 164.33ms, M=32: 154.78ms (1.06x), M=64: 156.16ms (1.05x)\n- 产出：`eval_results/inference_latency_comparison.json`\n\n### 无法运行\n\n- **E3 SmolVLA**: 服务器无法访问 HuggingFace，SmolVLM2-500M 未缓存\n- **E3 OpenVLA**: `openvla-repo` 依赖不在此服务器\n- **E3 X-VLA/OFT/Pi0**: 模型不在此服务器\n\n### Table 2 gap 填充\n\n4 个 Pi0.5 pruning eval 填充 libero_object 上的缺口（之前只有 k=0.90 一个数据点）。完成后新增 k=0.50 和 k=0.70 的 l2norm+random 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

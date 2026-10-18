@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3b4840d18a46fa7e9965",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 007 refactor",
+  "task_key": "worker_code_exp-007-refactor_20260520T220558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-refactor_20260520T220558_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "d13a799b71246243dec5fe96a39249b2e60ff03c6f98d5d7f40bcfddece93edf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 verification checks pass:\n\n1. **DSL → stratified_mle rename**: Method column contains `stratified_mle`, no `dsl` anywhere.\n2. **PPCI implementation**: All 48 PPCI rows have non-NaN values for both `tau_hat_z0` and `tau_hat_z1`. Uses multiple imputation (M=20) with Rubin's rules.\n3. **Outcome error DGP**: `sigma_outcome` column present with values `[0.0, 0.5]` in dry-run (full run sweeps `[0.0, 0.5, 1.0]`).\n4. **HB placeholder**: `# TODO: integrate HB from exp001 after MCMC fix` added at `estimate_cm_hb` and `method_ec_hte`.\n\nDry-run completed in 2.6s with no errors."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

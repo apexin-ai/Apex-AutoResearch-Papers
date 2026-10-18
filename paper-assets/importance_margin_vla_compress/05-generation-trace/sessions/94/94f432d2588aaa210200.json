@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94f432d2588aaa210200",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest xvla k085 goal westd38929",
+  "task_key": "worker_harvest_xvla-k085-goal-westd38929_20260524T022025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_xvla-k085-goal-westd38929_20260524T022025_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "39a8a9c4eada39636f513f3fb359a45d7efd15cfcf0583e14225249ce6be58d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Object 条目已存在且已是 DONE 状态，metrics 已正确。\n\n**收割完成。X-VLA Random k=0.85 全部三个 suite 结果：**\n\n| Suite | SR | 95% CI | Episodes |\n|-------|-----|--------|----------|\n| **Goal** | 60.4% | [56.1%, 64.6%] | 500 |\n| **Object** | 65.0% | [60.7%, 69.1%] | 500 |\n| **Spatial** | 68.2% | [64.0%, 72.1%] | 500 |\n\nRegistry 状态：\n- `eval_xvla_random_k085_goal_seed42` → DONE ✓（本次收割）\n- `eval_xvla_random_k085_object_seed42` → DONE ✓（已有）\n- `eval_xvla_random_k085_spatial_seed42` → DONE ✓（metrics 已更新至 68.2%）\n\n对比 π0.5 的 disruption peak（Goal k=0.85=52.4%），X-VLA 在 k=0.85 没有出现明显的 disruption peak — 三个 suite 的 SR 都相对平稳，支持 BART connector（无 RoPE）不会产生位置编码中断的假说。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

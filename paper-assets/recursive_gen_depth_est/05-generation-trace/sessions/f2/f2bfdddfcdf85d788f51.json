@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "f2bfdddfcdf85d788f51",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp plan 018 binoculars baseline",
+  "task_key": "worker_exp_plan_018_binoculars_baseline_20260517T133152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_018_binoculars_baseline_20260517T133152_result.json",
+    "occurrence": 1,
+    "bytes": 2463333,
+    "sha256": "0ddf68d2c53d21369ee3e5339dd14706df2f3830d037eeda38a9145a19697e91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "f2bfdddfcdf85d788f51-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

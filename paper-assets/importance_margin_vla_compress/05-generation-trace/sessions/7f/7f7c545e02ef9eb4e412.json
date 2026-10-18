@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7f7c545e02ef9eb4e412",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest l2norm k095 s44 cqa1",
+  "task_key": "worker_harvest_l2norm_k095_s44_cqa1_20260528T015848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_l2norm_k095_s44_cqa1_20260528T015848_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "7e2181c82746ffa9979e3ce8f8703a583bde16fe9ff3f08f8348325e9ebe1779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 结果汇总\n\n**L2norm k=0.95 seed44: SR = 86.8%**\n\n| Task | SR |\n|------|-----|\n| T0 alphabet_soup_tomato | 94% |\n| T1 cream_cheese_butter | 96% |\n| T2 stove_moka_pot | 96% |\n| T3 black_bowl_drawer | 98% |\n| T4 white_mug_left_plate | 98% |\n| T5 book_back_shelf | 98% |\n| T6 white_mug_plate_yellow | **46%** |\n| T7 alphabet_soup_cream | 96% |\n| T8 both_moka_pots_stove | **52%** |\n| T9 yellow_white_mug_microwave | 94% |\n\n**3-seed 汇总 (L2norm k=0.95):**\n\n| Seed | SR |\n|------|------|\n| s42 | 85.8% |\n| s43 | 86.2% |\n| s44 | 86.8% |\n| **Mean ± std** | **86.3% ± 0.4pp** |\n\n与 2-seed mean (86.0%±0.2pp) 相比，s44 略高，3-seed mean 上升到 86.3%，方差依然很小（0.4pp），结果稳定。T6 和 T8 仍是跨 seed 的一致弱点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

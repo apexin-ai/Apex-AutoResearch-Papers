@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94b997349346eccef097",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code fix plan 005 formal bound",
+  "task_key": "worker_code_fix_plan_005_formal_bound_20260516T145019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix_plan_005_formal_bound_20260516T145019_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "b518db1e376a39a28968a500fc97b09fbdf5a171f18ff928cfb16b7e7eb8f8c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，输出文件已生成。\n\n**修复内容**: `eval_formal_bound.py` 第 137 行，将 `tokenizer = get_tokenizer_from_policy(model)` 改为：\n```python\npolicy_for_tok = model.policy if hasattr(model, \"policy\") else model\ntokenizer = get_tokenizer_from_policy(policy_for_tok)\n```\n与 `evaluate.py` 中相同的处理方式——`IMMSmolVLAWrapper` 没有 `.model` 属性，但有 `.policy`（底层的 SmolVLAPolicy）。\n\n**Dry-run 结果**: 2 batch (8 samples) 全部通过，top-k stability 在所有 epsilon 水平下 100%，Lipschitz 常数 L_spectral=1.067，margin 均值=1.46。输出已写入 `results/formal_bound_dryrun.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

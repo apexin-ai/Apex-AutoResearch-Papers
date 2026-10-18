@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "641390f9ad5b7b4f7767",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper compile final d043",
+  "task_key": "worker_paper_compile-final-d043_20260524T085718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-final-d043_20260524T085718_result.json",
+    "occurrence": 1,
+    "bytes": 2339,
+    "sha256": "14a26576b1478e6dce23abeab31faf481ab4df87e16ea21b3bd658bb8e58eef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终编译验证 + 审计报告\n\n### 编译状态\n- **错误**: NO_ERRORS\n- **页数**: 20\n\n### 0/12 审计 (11处匹配)\n\n| 位置 | 上下文 | 判定 |\n|------|--------|------|\n| results.tex:37 | K=3 clustered SE K_eff 0/12 | 正确保留 |\n| results.tex:47 | K=3 clustered SE K_eff 0/12 (表格) | 正确保留 |\n| results.tex:53 | K=3 clustered SE K_eff 0/12 (caption) | 正确保留 |\n| results.tex:69 | K=3 clustered SE K_eff 0/12 | 正确保留 |\n| analysis.tex:14 | K=7 Bayesian K_eff 0/12 | 正确保留 |\n| appendix.tex:69 | K=7 Bayesian K_eff 0/12 | 正确保留 |\n| appendix.tex:91 | K=7 Bayesian K_eff 0/12 | 正确保留 |\n| appendix.tex:103 | K=7 Bayesian η_max 1/12, K_eff 0/12 (表格) | 正确保留 |\n| appendix.tex:106 | K=7 Bayesian K_eff 0/12 (caption) | 正确保留 |\n| appendix.tex:115 | K=3 partial info K_eff 0/12 | 正确保留 |\n| appendix.tex:132 | K=3 clustered SE K_eff 0/12 | 正确保留 |\n\n**无错误残留。** 所有 0/12 均属于 K=7 Bayesian K_eff、K=3 clustered SE K_eff、或 K=3 partial info K_eff，全部合法。无 K=5 η_max 0/12 错误。\n\n### 9/12 审计 (多处匹配)\n\n全部合法，分布在：\n- **Fractional logit K=3**: abstract, analysis.tex:11, conclusion, introduction, results.tex:50/69/118\n- **K=3 Bayesian OLS η_max**: analysis.tex:14, appendix.tex:57, introduction:22, results.tex:106-107/115\n- **Pool A K=5**: appendix.tex:148/157/278\n- **K=5 Cinelli sensitivity**: appendix.tex:249\n- **Q-statistic**: appendix.tex:353/364\n\n**无 K=7 bootstrap 残留。**\n\n### 10/12 审计 (12处匹配)\n\n全部合法，分布在：\n- **K=3 OLS η_max**: results.tex:35/46/105\n- **K=7 Threshold K_eff**: analysis.tex:14, appendix.tex:69/91/102/106\n- **Pool A K=5 Cinelli**: analysis.tex:11, appendix.tex:278/281/285\n\n**无 K=5 bootstrap 残留。**\n\n### \"sole\" 审计 (2处匹配)\n\n| 位置 | 上下文 | 判定 |\n|------|--------|------|\n| appendix.tex:115 | \"η_max remains the sole significant predictor\" — K=3 partial info (K_eff=0/12) | 合法 |\n| appendix.tex:190 | \"sole non-significant η_max condition\" — 指 position bias 单个条件 | 合法 |\n\n**无 K≥5 \"sole significant predictor\" 残留。**\n\n### 结论\n\n编译无错误，20页，所有四项审计全部通过，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

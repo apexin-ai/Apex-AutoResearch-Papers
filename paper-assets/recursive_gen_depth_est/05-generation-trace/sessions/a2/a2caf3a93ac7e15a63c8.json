@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a2caf3a93ac7e15a63c8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "eval pythia topk50 001",
+  "task_key": "worker_eval_pythia_topk50_001_20260514T183056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pythia_topk50_001_20260514T183056_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "2384fbf8573d15445f7fed86ca6ecef97a40adde66a30f9f366104ec0cd5d3ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline `pythia_topk50_001` 正在 cuda:0 上运行中：\n- **depth-0 finetune**: 完成（loss=2.24, 268s）\n- **depth-1 generate**: 进行中（1630/5000, top-k k=50）\n- depth-2, depth-3: 待运行\n\n已创建 eval 脚本 `scripts/run_eval_pythia_topk50.sh`，涵盖：\n1. 代码污染检查（filter_code.py stats）\n2. 特征提取（extract_features.py, GPU）\n3. 4-class 分类（RF+LR）\n4. 3-class d1/d2/d3 分类\n5. 3-class 去除代码污染后分类\n\n每 ~4.5 分钟轮询进度，pipeline 完成后立即启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

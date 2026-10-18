@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f132b070646be1993c57",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "recon openvla availability",
+  "task_key": "worker_recon_openvla-availability_20260523T115331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_recon_openvla-availability_20260523T115331_result.json",
+    "occurrence": 1,
+    "bytes": 2354,
+    "sha256": "027adeabc495b38aa0814fca38d459090657cff28165536da6ddddae869ca9ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n### 服务器: westd-41074（4 GPU，~10-30min 释放）\n\n| 项目 | 状态 |\n|------|------|\n| OpenVLA 模型 | `openvla-libero-object` (4/4 safetensors ✅)；`openvla-oft-libero-object-ms` (空目录 ❌) |\n| 评估脚本 | 4个 ✅ (`eval_openvla_libero.py`, `l2norm`, `smart_compress`, `acis_prune`) |\n| OpenVLA 代码库 | `openvla-repo` ✅, `openvla-oft-repo` ✅ |\n| 磁盘 | 250G / **38G 可用** (86%) |\n| **可否直接跑 E2** | **部分可以** — 只有 Object suite 模型，缺 Spatial/Goal/Long 模型。磁盘偏紧，再下载 3 个模型（~42GB）不够 |\n\n---\n\n### 服务器: westd-27271（2 GPU，~30min 释放）\n\n| 项目 | 状态 |\n|------|------|\n| OpenVLA 模型 | **4 个 suite 全有** ✅：`openvla-libero-object` (4/4), `openvla-7b-finetuned-libero-spatial` (4/4), `openvla-7b-finetuned-libero-goal` (4/4), `openvla-7b-finetuned-libero-10` (4/4) |\n| 评估脚本 | 3个 ✅ (`eval_openvla_libero.py`, `l2norm`, `smart_compress`)；缺 `eval_openvla_acis_prune.py` |\n| OpenVLA 代码库 | `openvla-repo` ✅, `openvla_deps` ✅ |\n| 磁盘 | 250G / **83G 可用** (67%) |\n| **可否直接跑 E2** | **是，最佳选择** — 全部 4 个 suite 模型就绪，磁盘充裕。仅 2 GPU 但够用（eval 只需 1 GPU） |\n\n---\n\n### 服务器: westd-38929（4 GPU，~50min-3h 释放）\n\n| 项目 | 状态 |\n|------|------|\n| OpenVLA 模型 | `openvla-libero-object` (4/4 ✅), `openvla-oft-libero-object` (4/4 ✅), `openvla-oft-libero-spatial` (4/4 ✅), `openvla-oft-libero-goal` (**2/4 ⚠️ 不完整**), `openvla-oft-libero-object-fresh` (2/4 ⚠️ 不完整) |\n| 评估脚本 | 5个 ✅（最全，含 `liberoplus_smoke` 和 `acis_prune`） |\n| OpenVLA 代码库 | `openvla-repo` ✅, `openvla_code` ✅, `openvla-oft-official` ✅, `openvla-oft-git` ✅ |\n| 磁盘 | 250G / **52G 可用** (80%) |\n| **可否直接跑 E2** | **部分可以** — Object + Spatial 的 OFT 模型完整，但 Goal 模型不完整（2/4），缺 Long/LIBERO-10 模型 |\n\n---\n\n### 结论\n\n**westd-27271 是跑 E2 的最佳选择**：4 个 suite 的 fine-tuned 模型全部完整就绪，磁盘最充裕（83G 可用），评估脚本基本齐全（缺的 `acis_prune.py` 可从其他服务器复制）。虽然只有 2 GPU，但 eval 通常单 GPU 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

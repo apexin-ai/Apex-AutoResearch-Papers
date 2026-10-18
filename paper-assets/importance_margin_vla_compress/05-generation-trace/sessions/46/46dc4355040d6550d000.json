@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "46dc4355040d6550d000",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 random k05 spatial seed42 postfix v2",
+  "task_key": "worker_harvest_eval_pi05_random_k05_spatial_seed42_postfix_v2_20260524T010502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_random_k05_spatial_seed42_postfix_v2_20260524T010502_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "14c2ba03047993b430310d723a18f4304a3e90e52c16f296ff8fed5ad0e18f15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n**eval_pi05_random_k05_spatial_seed42_postfix_v2**: 再次崩溃（连续第2次）\n\n- **崩溃原因**: `httpx.ConnectError: [Errno 101] Network is unreachable` — tokenizer `google/paligemma-3b-pt-224` 加载时尝试联网。`TRANSFORMERS_OFFLINE=1` 无效，因为调用链经过 `lerobot → huggingface_hub`，需要 `HF_HUB_OFFLINE=1`\n- **与 pre-fix 对比**: 无法对比，seed42 spatial 未产出结果\n- **参考**: seed43 已有结果 72.4%（May 23），与 pre-fix 71.6% 接近\n- **Registry**: 已更新为 DONE/failed\n\n**下一步**: 如需重试（v3），启动命令需加 `HF_HUB_OFFLINE=1`（参考同服务器上 `eval_pi05_random_k085_spatial_seed42_postfix` 的命令格式，该实验已正确设置此变量）\n\n**westd-41074 GPU 状态**: GPU 0/1/2 空闲（0% utilization），GPU 3 在用（39%）。GPU 2 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

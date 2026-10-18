@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6000fc9b15f5b2d5dfb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d049 batch1 framing fix",
+  "task_key": "worker_paper_d049_batch1_framing_fix_20260516T154125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d049_batch1_framing_fix_20260516T154125_result.json",
+    "occurrence": 1,
+    "bytes": 1715,
+    "sha256": "e6c9795c5cc54492e7e9ff738f189670822207b9a5bcc4be339d74058e7077f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not a git repo — no diff stat available. Here's the completion report:\n\n---\n\n## 产出报告\n\n### 修改完成状态\n\n| # | 项目 | 文件 | 状态 |\n|---|------|------|------|\n| 1 | W1 — Abstract 重写 | abstract.tex | ✓ |\n| 2 | W2 — Introduction Finding (1) | introduction.tex | ✓ |\n| 2 | W2 — Introduction Finding (5) | introduction.tex | ✓ |\n| 2 | W2 — Introduction Contribution 1 | introduction.tex | ✓ |\n| 3 | W5 — Results practical magnitude | results.tex | ✓ |\n| 4 | W5 — Discussion R² qualifier | discussion.tex | ✓ |\n| 4 | W10 — Prompt length paragraph | discussion.tex | ✓ |\n| 4 | W1+W9 — Conclusion 重写 | discussion.tex | ✓ |\n| 5 | W12 — Related work 3 citations | related_work.tex | ✓ |\n| 6 | Bib entries (5 new) | references.bib | ✓ |\n| 7 | W8 — Limitations #7 contamination | main.tex | ✓ |\n| 7 | W13 — Multiple comparisons + cite | main.tex | ✓ |\n| 8 | W14 — p-value 格式统一 | results.tex, main.tex (×3) | ✓ |\n\n### 引用核实结果\n\n| Key | 核实结果 |\n|-----|---------|\n| `haystack-to-needle-2025` | ✓ Vandemoortele et al., arXiv:2502.08436 |\n| `cohen-1988-power` | ✓ Cohen (1988), Routledge, 2nd ed. |\n| `lakens-2013-effect-size` | ✓ Lakens (2013), Frontiers in Psychology 4:863 |\n| `deng-2010-imagenet` | ✓ Deng et al. (2010), ECCV |\n| `rothman-1990` | ✓ Rothman (1990), Epidemiology 1(1):43-46 |\n| `lost-in-middle-2024` | ✓ 已存在于 bib |\n\n### 编译 & 页数\n\n- 编译：无错误，无 undefined citation 警告\n- 总页数：19（含附录）\n- Conclusion 结束位置：**page 8**（正文 ≤ 8 页约束满足）\n- Limitations 起始位置：page 8"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

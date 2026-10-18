@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1e772bfa7157565b6fba",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 dedup kill",
+  "task_key": "worker_ops_fp16-dedup-kill_20260525T105527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-dedup-kill_20260525T105527_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "8d2b86ec98b1e2ec56e299880fc48083b465677dc0db86e71eeeef4052aa46c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nKill: 7 个重复进程已清除\n保留: 75403 (14B FP16) ALIVE (运行 1h17m), 10163 (32B FP16) ALIVE (运行 3h31m), 78663 (8B AWQ) DEAD\n其他下载进程: 无（剩余进程均为保留进程的父 shell）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

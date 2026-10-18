@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8359515357348eac69c4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 gpu0 attn seed43",
+  "task_key": "worker_deploy-westd41074-gpu0-attn-seed43_20260523T212038",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd41074-gpu0-attn-seed43_20260523T212038_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "32e16d270126c2bc4b2a33373e1962b81954b952a83931b203e9cb3a62b29a45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **PID**: 65843\n- **tmux session**: `eval_pi05_attention_k05_goal_seed43`\n- **GPU 0**: 9700 MiB 占用\n- **状态**: 模型已加载到 GPU，正在初始化 eval\n- **Registry**: RUNNING，hypothesis 已设置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

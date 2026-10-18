@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "13bc771c508289169da3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp docred phase2",
+  "task_key": "worker_code_exp_docred_phase2_20260516T043709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_docred_phase2_20260516T043709_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "e6ef43eea011ec36e8c7f45795ebe321ff1f06e121c08676c0206b0175ecc50c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 DocRED Confusability Study 完成。\n\n**结果总结：**\n\n**Phase 2a — Count Curve** (accuracy vs. schema size):\n- count=1: 88.0% → count=4: 77.0% → count=8: 77.4% → count=16: 52.4% → count=32: 52.1% → count=64: 42.4% → count=96: 38.7%\n- 单调递减，验证 Claim 1（schema size 增大导致性能退化）\n\n**Phase 2b — BCS-Controlled** (confusability effect, holding count fixed):\n- count=16: low-BCS 67.9% vs high-BCS 44.7% → **23.3pp gap**\n- count=32: low-BCS 57.8% vs high-BCS 40.3% → **17.6pp gap**\n- 验证 Claim 2（高 confusability 独立于 count 导致性能下降）\n\n**Phase 2c — Bootstrap CI** (statistical significance):\n- count=16: slope=-0.713 CI[-0.909, -0.529], Spearman r=-0.661 (p=1.5e-5)\n- count=32: slope=-0.690 CI[-0.854, -0.519], Spearman r=-0.509 (p=0.002)\n- 两个 count level 的 BCS-accuracy 负相关均显著，quartile gap CI 不含 0\n\n所有 artifacts 已注册，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

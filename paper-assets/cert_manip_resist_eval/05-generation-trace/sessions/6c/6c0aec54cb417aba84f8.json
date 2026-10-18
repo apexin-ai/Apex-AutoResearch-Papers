@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c0aec54cb417aba84f8",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 rf contrast",
+  "task_key": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-rf-contrast_20260523T070356_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "1ba752a3fff64df22cabccce506817af9a873e66b8647bbfc3058f704da509b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=5 RF contrast analysis 完成。结果：\n\n**K=5 RF vs Adaptive 对比**\n\n| | mmlu R² | arc R² | K_eff boot sig |\n|---|---|---|---|\n| **K=3 RF** | 0.734 | 0.813 | 2/2 |\n| **K=5 RF** | 0.659 | 0.751 | 2/2 |\n| **K=5 Adaptive** (mean) | 0.299 | 0.213 | — |\n\n**关键发现**：\n- RF mean R²=0.705 vs adaptive mean R²=0.256，gap=+0.449\n- K_eff 在 RF 下 2/2 conditions 显著（OLS、clustered SE、bootstrap 三种方法一致）\n- eta_max 在 mmlu 下显著（bootstrap p=0.007），arc 下不显著（bootstrap p=0.570）\n- K=5 RF R² 略低于 K=3 RF（符合预期：K 增大时 majority vote threshold 提高，RF ASR 下降），但仍远高于 adaptive\n- 结论与 K=3 一致：RF 模型（独立误差假设）比 adaptive 模型解释更多方差，K_eff 在 RF 下始终显著\n\n输出文件：`/root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

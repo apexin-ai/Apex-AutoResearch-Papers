@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "id": "2e6f66b59e0f8ddd5336",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "exp exp 005 pure baselines",
+  "task_key": "worker_exp_exp-005-pure-baselines_20260522T155641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-pure-baselines_20260522T155641.log",
+    "occurrence": 1,
+    "bytes": 2686987,
+    "sha256": "276a5226451504d94f4454d484b462c206d638fc1a93630452e786c67a1a7d75"
+  },
+  "statistics": {
+    "messages": 2145,
+    "user_turns": 2,
+    "tool_calls": 870,
+    "roles": {
+      "log": 1,
+      "system": 78,
+      "record": 2,
+      "assistant": 310,
+      "tool_call": 870,
+      "tool_result": 870,
+      "user": 2,
+      "result": 12
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1001,
+      "chunks": [
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0006.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 853,
+      "chunks": [
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0006.json",
+          "message_count": 79
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0011.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 291,
+      "chunks": [
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0011.json",
+          "message_count": 126
+        },
+        {
+          "path": "2e6f66b59e0f8ddd5336-part-0012.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "4a488ded1bd10e7506ca",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code number consistency check",
+  "task_key": "worker_code_number-consistency-check_20260522T000249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_number-consistency-check_20260522T000249.log",
+    "occurrence": 1,
+    "bytes": 700918,
+    "sha256": "96d59a59b91818f4f4b73eefb5b134ed9b720661bd104845accc8f450da0c6a3"
+  },
+  "statistics": {
+    "messages": 195,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 70,
+      "tool_result": 70,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "4a488ded1bd10e7506ca-part-0001.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "4a488ded1bd10e7506ca-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "4a488ded1bd10e7506ca-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ]
+}

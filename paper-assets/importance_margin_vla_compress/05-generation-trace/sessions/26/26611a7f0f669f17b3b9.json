@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "26611a7f0f669f17b3b9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check smart compress eval results",
+  "task_key": "worker_ops_check_smart_compress_eval_results_20260518T012042",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check_smart_compress_eval_results_20260518T012042_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "dd6dadbb2c6945674f865e4e611e931449291536fa1c7d230ef6dba75a00cb52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nM=32 eval: running | ep 191/500 | SR = 64.9% (124/191) | ~37% done\nM=64 eval: running | ep 174/500 | SR = 68.97% (120/174) | ~35% done\nM=96 train: step 67050/100K (67%) | loss=0.039 | sps=4.1\nM=16 train: step 63800/100K (64%) | loss=0.040 | sps=4.2\n\nGPU status:\n  GPU 0: 19%, 3462/24564 MiB (M=32 eval)\n  GPU 1:  1%, 3494/24564 MiB (M=64 eval)\n  GPU 2: 21%, 2787/24564 MiB (M=96 train)\n  GPU 3:  0%, 2815/24564 MiB (M=16 train)\n```\n\n早期信号很积极：M=32 当前 ~65% SR，M=64 更高 ~69% SR。两个 eval 还需约 2 小时完成（按当前速度 ~6 sec/ep）。训练 M=96 和 M=16 都在正常推进，预计再跑约 2 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

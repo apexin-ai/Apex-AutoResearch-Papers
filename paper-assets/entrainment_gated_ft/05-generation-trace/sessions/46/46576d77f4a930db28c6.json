@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "46576d77f4a930db28c6",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code benchmark visualization",
+  "task_key": "worker_code_benchmark_visualization_20260518T191343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_benchmark_visualization_20260518T191343_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "86c160991ec67baee481c6b2b9f46a3401d0c6ae465d23bca0f2622d5f2ae19b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**CSV**: 16 行，覆盖所有模型（GDN 5 + RetNet 5 + HGRN2 5 + Transformer 1）\n\n**生成的图表** (6 个文件):\n- `fig1_lambada_vs_attn.pdf/png` — LAMBADA acc vs attention layer count\n- `fig2_all_benchmarks.pdf/png` — 6 panel (LAMBADA acc/ppl, HellaSwag, Winogrande, ARC-E, ARC-C)\n- `fig3_delta_heatmap.pdf/png` — 各 hybrid 相对 pure 的 delta heatmap\n\n**关键发现**:\n- GDN pure (0 attn) 的 LAMBADA acc 最高 (0.543)，优于 Transformer baseline (0.480)\n- 所有 3 个 linear model family 在 LAMBADA 上都超过 Transformer baseline\n- HGRN2 随 attention 层数增加有稳定提升趋势\n- GDN 和 RetNet 的 hybrid 版本反而不如 pure，增加 attention 层没有带来一致的增益"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

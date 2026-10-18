@@ -1,0 +1,971 @@
+{
+  "schema_version": "1.0",
+  "id": "fcb49b8f7a1a37694dfa",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "analysis exp 007 340m rebound",
+  "task_key": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp-007-340m-rebound_20260519T185316.jsonl",
+    "occurrence": 1,
+    "bytes": 77213,
+    "sha256": "eb4840985914922a8e55c7b348348d8cadb16bda9413e0e45b91b5042b151336"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "tool_call": 23,
+      "tool_result": 23,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T19:04:48.570841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T19:04:48.571174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T19:04:48.571376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/lm_eval_clean/exp007/ -name \"*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T19:04:48.571574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/lm_eval_clean/1.3b/ -name \"*lambada*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T19:04:48.571750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results_1.3b/ -name \"*lambada*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T19:04:48.571920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h24-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h24-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h24-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/Transformer/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/ex\n…[truncated 732 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T19:04:48.572074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h24-1-logsamples/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h6-1-logsamples/samples/lambada_openai.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T19:04:48.572231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T17-58-59.437801.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-18T18-04-21.775324.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-18T18-09-55.701549.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-06-58.522842.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-13-40.854538.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-17-00.154753.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-17-29.870669.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-24-24.830994.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T19-47-30.065126.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-19-29.095742.jsonl\\\\n/root/entrainmen\n…[truncated 707 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T19:04:48.572417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T19:04:48.572547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/samples/lambada_openai.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T19:04:48.572713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" signs\\\\\\\", \\\\\\\"arguments\\\\\\\": [[\\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\\\\\", \\\\\\\" signs\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-4.3125, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-4.3125, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\\\\\", \\\\\\\"perplexity\\\\\\\": -4.3125, \\\\\\\"acc\\\\\\\": 0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T19:04:48.572883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" signs\\\\\\\", \\\\\\\"arguments\\\\\\\": [[\\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\\\\\", \\\\\\\" signs\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-2.453125, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-2.453125, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\\\\\", \\\\\\\"perplexity\\\\\\\": -2.453125, \\\\\\\"acc\\\\\\\": 0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T19:04:48.573021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -1 /root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-13-40.854538.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T19:04:48.573174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" signs\\\\\\\", \\\\\\\"arguments\\\\\\\": {\\\\\\\"gen_args_0\\\\\\\": {\\\\\\\"arg_0\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\\\\\", \\\\\\\"arg_1\\\\\\\": \\\\\\\" signs\\\\\\\"}}, \\\\\\\"resps\\\\\\\": [[[\\\\\\\"-8.5625\\\\\\\", \\\\\\\"False\\\\\\\"]]], \\\\\\\"filtered_resps\\\\\\\": [[\\\\\\\"-8.5625\\\\\\\", \\\\\\\"False\\\\\\\"]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\\\\\", \\\\\\\"perplexity\\\\\\\": -8.5625, \\\\\\\"acc\\\\\\\": 0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T19:04:48.573350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "find /root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/ -name \"*lambada*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T19:04:48.573475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "wc -l /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T19:04:48.573609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-17-00.154753.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-17-29.870669.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-24-24.830994.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T19-47-30.065126.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_lambada_openai_2026-05-18T18-19-29.095742.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-18T18-38-22.701250.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-18T20-08-23.041662.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-59-18.864716.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T19:04:48.573771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5153 /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T19:04:48.574003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check if paper_data directory exists"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T19:04:48.574138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bca_ci_data.json\nconvergence_table.csv\ndecoupling_data.csv\ngdn_sensitivity_table.csv\nper_example_table.csv"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T19:04:48.574329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/analyze_exp007.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"exp-007 340M Rebound comprehensive analysis.\"\"\"\n\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom itertools import combinations\nfrom scipy.stats import mannwhitneyu\n\n# ============================================================\n# Configuration\n# ============================================================\nBASE_340M = \"/root/entrainment_gated_ft/lm_eval_clean/exp007/340m\"\nBASE_1_3B_EXP007 = \"/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b\"\nBASE_1_3B_OLD = \"/root/entrainment_gated_ft/lm_eval_clean/1.3b\"\nBASE_1_3B_RESULTS = \"/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed\"\n\nARCHITECTURES = [\"GDN\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nRATIO_KEYS = [\"pure\", \"h24_1\", \"h12_1\", \"h6_1\", \"h3_1\"]\n\nSIGMA_1_3B = [0.02405, 0.01624, 0.01360, 0.00606, 0.00494]\n\nPATHS_1_3B_CROSS_SCALE = {\n    \"GDN\": {\n        \"pure\": os.path.join(BASE_1_3B_EXP007, \"GDN-pure\", \"samples\", \"lambada_openai.jsonl\"),\n        \"h3-1\": os.path.join(BASE_1_3B_OLD, \"GDN-h3-1-logsamples\", \"samples\", \"lambada_openai.jsonl\"),\n    },\n    \"RetNet\": {\n        \"pure\": os.path.join(BASE_1_3B_RESULTS, \"1.3B-100B-RetNet-pure\",\n                             \"__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure\",\n                             \"samples_lambada_openai_2026-05-18T18-59-18.864716.jsonl\"),\n        \"h3-1\": os.path.join(BASE_1_3B_EXP007, \"RetNet-h3-1\", \"samples\", \"lambada_openai.jsonl\"),\n    },\n    \"HGRN2\": {\n        \"pure\": os.path.join(BASE_1_3B_EXP007, \"HGRN2-pure\", \"samples\", \"lambada_openai.jsonl\"),\n        \"h3-1\": os.path.join(BASE_1_3B_EXP007, \"HGRN2-h3-1\", \"samples\", \"lambada_openai.jsonl\"),\n    },\n}\n\n\ndef get_340m_path(arch, ratio):\n    return os.path.join(BASE_340M, f\"{arch}-{ratio}\" if ratio != \"pure\" else f\"{arch}-pure\",\n                        \"samples\", \"lambada_openai.jsonl\")\n\n\ndef load_jsonl(path):\n    data = {}\n    with open(path) as f:\n        for line in f:\n            rec = json.loads(line)\n            data[rec[\"doc_id\"]] = rec\n    return data\n\n\ndef load_acc(path):\n    data = load_jsonl(path)\n    return {did: int(rec[\"acc\"]) for did, rec in data.items()}\n\n\ndef jaccard(s1, s2):\n    if len(s1) == 0 and len(s2) == 0:\n        return 0.0\n    return round(len(s1 & s2) / len(s1 | s2), 4)\n\n\ndef context_word_count(rec):\n    return len(rec[\"doc\"][\"text\"].split())\n\n\n# ============================================================\n# Load data\n# ============================================================\nprint(\"Loading 340M data...\")\nacc_340m = {}\nfull_340m = {}\nfor arch in ARCHITECTURES:\n    acc_340m[arch] = {}\n    full_340m[arch] = {}\n    for ratio in RATIOS:\n        path = get_340m_path(arch, ratio)\n        raw = load_jsonl(path)\n        acc_340m[arch][ratio] = {did: int(r[\"acc\"]) for did, r in raw.items()}\n        full_340m[arch][ratio] = raw\n        n_correct = sum(acc_340m[arch][ratio].values())\n        n_total = len(acc_340m[arch][ratio])\n        print(f\"  {arch}-{ratio}: {n_correct}/{n_total} ({n_correct/n_total:.4f})\")\n\n# Transformer\ntf_raw = load_jsonl(os.path.join(BASE_340M, \"Transformer\", \"samples\", \"lambada_openai.jsonl\"))\nacc_340m[\"Transformer\"] = {\"pure\": {did: int(r[\"acc\"]) for did, r in tf_raw.items()}}\nn_tf = sum(acc_340m[\"Transformer\"][\"pure\"].values())\nprint(f\"  Transformer: {n_tf}/{len(acc_340m['Transformer']['pure'])} ({n_tf/len(acc_340m['Transformer']['pure']):.4f})\")\n\nprint(\"\\nLoading 1.3B data...\")\nacc_1_3b = {}\nfor arch in ARCHITECTURES:\n    acc_1_3b[arch] = {}\n    for rk in [\"pure\", \"h3-1\"]:\n        path = PATHS_1_3B_CROSS_SCALE[arch][rk]\n        if os.path.exists(path):\n            acc_1_3b[arch][rk] = load_acc(path)\n            n = sum(acc_1_3b[arch][rk].values())\n            print(f\"  1.3B {arch}-{rk}: {n}/{len(acc_1_3b[arch][rk])}\")\n        else:\n            acc_1_3b[arch][rk] = None\n            print(f\"  1.3B {arch}-{rk}: NOT FOUND ({path})\")\n\n# ============================================================\n# (a) Cross-Architecture Convergence (340M)\n# ============================================================\nprint(\"\\n=== (a) Cross-Architecture Convergence ===\")\ncross_arch = {}\nstds_340m = []\n\nfor ratio, rkey in zip(RATIOS, RATIO_KEYS):\n    accs = {}\n    for arch in ARCHITECTURES:\n        total = len(acc_340m[arch][ratio])\n        correct = sum(acc_340m[arch][ratio].values())\n        accs[arch] = round(correct / total, 4)\n    vals = list(accs.values())\n    std = round(float(np.std(vals, ddof=0)), 4)\n    stds_340m.append(std)\n    cross_arch[rkey] = {\"std\": std, \"mean\": round(float(np.mean(vals)), 4), \"accs\": accs}\n    print(f\"  {ratio}: std={std}, accs={accs}\")\n\nmin_idx = int(np.argmin(stds_340m))\npure_std = stds_340m[0]\nmin_std = stds_340m[min_idx]\nendpoint_std = stds_340m[-1]\n\ncross_arch[\"peak_reduction_pct\"] = round((pure_std - min_std) / pure_std * 100, 4) if pure_std > 0 else 0\ncross_arch[\"peak_at\"] = RATIO_KEYS[min_idx]\ncross_arch[\"endpoint_reduction_pct\"] = round((pure_std - endpoint_std) / pure_std * 100, 4) if pure_std > 0 else 0\n\ncomparison = {}\nfor i, rk in enumerate(RATIO_KEYS):\n    comparison[rk] = {\n        \"sigma_340m\": stds_340m[i],\n        \"sigma_1_3b\": SIGMA_1_3B[i],\n        \"ratio_340m_over_1_3b\": round(stds_340m[i] / SIGMA_1_3B[i], 4) if SIGMA_1_3B[i] > 0 else None\n    }\ncross_arch[\"comparison_1_3b\"] = comparison\n\nprint(f\"  Peak reduction: {cross_arch['peak_reduction_pct']}% at {cross_arch['peak_at']}\")\nprint(f\"  Endpoint reduction: {cross_arch['endpoint_reduction_pct']}%\")\nprint(f\"  h3-1 σ: {endpoint_std}\")\n\n# ============================================================\n# (b) Per-Example Helped/Hurt (340M, pure → h3-1)\n# ============================================================\nprint(\"\\n=== (b) Per-Example Helped/Hurt ===\")\nper_example = {}\nhelped_sets = {}\nhurt_sets = {}\n\nfor arch in ARCHITECTURES:\n    pure = acc_340m[arch][\"pure\"]\n    h3_1 = acc_340m[arch][\"h3-1\"]\n    common = set(pure) & set(h3_1)\n    helped = {d for d in common if pure[d] == 0 and h3_1[d] == 1}\n    hurt = {d for d in common if pure[d] == 1 and h3_1[d] == 0}\n    helped_sets[arch] = helped\n    hurt_sets[arch] = hurt\n    per_example[arch] = {\"helped\": len(helped), \"hurt\": len(hurt), \"net\": len(helped) - len(hurt)}\n    print(f\"  {arch}: helped={len(helped)}, hurt={len(hurt)}, net={len(helped)-len(hurt)}\")\n\njac_helped = {}\njac_hurt = {}\nfor a1, a2 in combinations(ARCHITECTURES, 2):\n    k = f\"{a1}_vs_{a2}\"\n    jac_helped[k] = jaccard(helped_sets[a1], helped_sets[a2])\n    jac_hurt[k] = jaccard(hurt_sets[a1], hurt_sets[a2])\n    print(f\"  Jaccard helped {k}: {jac_helped[k]}, hurt: {jac_hurt[k]}\")\n\nper_example[\"pairwise_jaccard_helped\"] = jac_helped\nper_example[\"pairwise_jaccard_hurt\"] = jac_hurt\n\n# ============================================================\n# (c) Cross-Scale Jaccard (340M vs 1.3B, h3-1)\n# ============================================================\nprint(\"\\n=== (c) Cross-Scale Jaccard ===\")\ncross_scale = {}\n\nfor arch in ARCHITECTURES:\n    p13 = acc_1_3b[arch].get(\"pure\")\n    h13 = acc_1_3b[arch].get(\"h3-1\")\n    if p13 is None or h13 is None:\n        cross_scale[f\"{arch}_h3_1\"] = {\"helped_jaccard\": None, \"hurt_jaccard\": None,\n                                        \"note\": f\"Missing 1.3B data (pure={'found' if p13 else 'missing'}, h3-1={'found' if h13 else 'missing'})\"}\n        print(f\"  {arch}: SKIPPED — missing 1.3B data\")\n        continue\n\n    common_13 = set(p13) & set(h13)\n    helped_13 = {d for d in common_13 if p13[d] == 0 and h13[d] == 1}\n    hurt_13 = {d for d in common_13 if p13[d] == 1 and h13[d] == 0}\n\n    hj = jaccard(helped_sets[arch], helped_13)\n    huj = jaccard(hurt_sets[arch], hurt_13)\n\n    cross_scale[f\"{arch}_h3_1\"] = {\n        \"helped_jaccard\": hj,\n        \"hurt_jaccard\": huj,\n        \"helped_340m\": len(helped_sets[arch]),\n        \"helped_1_3b\": len(helped_13),\n        \"helped_overlap\": len(helped_sets[arch] & helped_13),\n        \"hurt_340m\": len(hurt_sets[arch]),\n        \"hurt_1_3b\": len(hurt_13),\n        \"hurt_overlap\": len(hurt_sets[arch] & hurt_13),\n    }\n    print(f\"  {arch}: helped_J={hj} ({len(helped_sets[arch])}∩{len(helped_13)}={len(helped_sets[arch]&helped_13)}), \"\n          f\"hurt_J={huj} ({len(hurt_sets[arch])}∩{len(hurt_13)}={len(hurt_sets[arch]&hurt_13)})\")\n\n# ============================================================\n# (d) Rebound Analysis (h6-1 correct → h3-1 wrong)\n# ============================================================\nprint(\"\\n=== (d) Rebound Analysis ===\")\nrebound_all = set()\nstay_correct_all = set()\nrebound_per_arch = {}\n\nfor arch in ARCHITECTURES:\n    h6 = acc_340m[arch][\"h6-1\"]\n    h3 = acc_340m[arch][\"h3-1\"]\n    common = set(h6) & set(h3)\n    rb = {d for d in common if h6[d] == 1 and h3[d] == 0}\n    sc = {d for d in common if h6[d] == 1 and h3[d] == 1}\n    rebound_all |= rb\n    stay_correct_all |= sc\n    rebound_per_arch[arch] = {\"rebound\": len(rb), \"stay_correct\": len(sc)}\n    print(f\"  {arch}: rebound={len(rb)}, stay_correct={len(sc)}\")\n\nstay_correct_all -= rebound_all\n\nref_full = full_340m[\"GDN\"][\"h6-1\"]\npure_ref = acc_340m[\"GDN\"][\"pure\"]\n\nrb_lens = np.array([context_word_count(ref_full[d]) for d in rebound_all if d in ref_full])\nsc_lens = np.array([context_word_count(ref_full[d]) for d in stay_correct_all if d in ref_full])\nrb_pure = np.array([pure_ref[d] for d in rebound_all if d in pure_ref])\nsc_pure = np.array([pure_ref[d] for d in stay_correct_all if d in pure_ref])\n\nif len(rb_lens) > 0 and len(sc_lens) > 0:\n    u_stat, u_p = mannwhitneyu(rb_lens, sc_lens, alternative='two-sided')\nelse:\n    u_stat, u_p = None, None\n\nrebound_analysis = {\n    \"rebound_samples_count\": len(rebound_all),\n    \"stay_correct_samples_count\": len(stay_correct_all),\n    \"per_architecture\": rebound_per_arch,\n    \"context_length_comparison\": {\n        \"rebound_mean\": round(float(rb_lens.mean()), 4) if len(rb_lens) else None,\n        \"rebound_median\": round(float(np.median(rb_lens)), 4) if len(rb_lens) else None,\n        \"rebound_std\": round(float(rb_lens.std()), 4) if len(rb_lens) else None,\n        \"stay_correct_mean\": round(float(sc_lens.mean()), 4) if len(sc_lens) else None,\n        \"stay_correct_median\": round(float(np.median(sc_lens)), 4) if len(sc_lens) else None,\n        \"stay_correct_std\": round(float(sc_lens.std()), 4) if len(sc_lens) else None,\n    },\n    \"baseline_acc_comparison\": {\n        \"rebound_pure_acc_rate\": round(float(rb_pure.mean()), 4) if len(rb_pure) else None,\n        \"stay_correct_pure_acc_rate\": round(float(sc_pure.mean()), 4) if len(sc_pure) else None,\n    },\n    \"mann_whitney_p\": round(float(u_p), 4) if u_p is not None else None,\n    \"mann_whitney_stat\": round(float(u_stat), 4) if u_stat is not None else None,\n}\n\nprint(f\"  Total: rebound={len(rebound_all)}, stay_correct={len(stay_correct_all)}\")\nprint(f\"  Context length: rebound mean={rebound_analysis['context_length_comparison']['rebound_mean']}, \"\n      f\"stay_correct mean={rebound_analysis['context_length_comparison']['stay_correct_mean']}\")\nprint(f\"  Mann-Whitney p={rebound_analysis['mann_whitney_p']}\")\nprint(f\"  Pure acc rate: rebound={rebound_analysis['baseline_acc_comparison']['rebound_pure_acc_rate']}, \"\n      f\"stay_correct={rebound_analysis['baseline_acc_comparison']['stay_correct_pure_acc_rate']}\")\n\n# ============================================================\n# (e) Attention Ratio Evolution\n# ============================================================\nprint(\"\\n=== (e) Attention Ratio Evolution ===\")\nevolution = {}\npairs = list(zip(RATIOS[:-1], RATIOS[1:]))\nkpairs = list(zip(RATIO_KEYS[:-1], RATIO_KEYS[1:]))\n\nfor arch in ARCHITECTURES:\n    evolution[arch] = {}\n    for (r1, r2), (rk1, rk2) in zip(pairs, kpairs):\n        d1 = acc_340m[arch][r1]\n        d2 = acc_340m[arch][r2]\n        common = set(d1) & set(d2)\n        helped = sum(1 for d in common if d1[d] == 0 and d2[d] == 1)\n        hurt = sum(1 for d in common if d1[d] == 1 and d2[d] == 0)\n        key = f\"{rk1}_to_{rk2}\"\n        evolution[arch][key] = {\"helped\": helped, \"hurt\": hurt, \"net\": helped - hurt}\n        print(f\"  {arch} {r1}→{r2}: helped={helped}, hurt={hurt}, net={helped-hurt}\")\n\n# ============================================================\n# Output\n# ============================================================\noutput = {\n    \"cross_arch_convergence_340m\": cross_arch,\n    \"per_example_340m\": per_example,\n    \"cross_scale_jaccard\": cross_scale,\n    \"rebound_analysis\": rebound_analysis,\n    \"attention_ratio_evolution\": evolution,\n}\n\nout_path = \"/root/entrainment_gated_ft/exp007_340m_analysis.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2, ensure_ascii=False)\n\nprint(f\"\\nSaved to {out_path}\")\nprint(json.dumps(output, indent=2, ensure_ascii=False))\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T19:04:48.574678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/analyze_exp007.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T19:04:48.574859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 -w0 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/analyze_exp007.py",
+              "description": "Base64 encode the script for transfer"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T19:04:48.575046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA3IDM0ME0gUmVib3VuZCBjb21wcmVoZW5zaXZlIGFuYWx5c2lzLiIiIgoKaW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCBzeXMKaW1wb3J0IG51bXB5IGFzIG5wCmZyb20gaXRlcnRvb2xzIGltcG9ydCBjb21iaW5hdGlvbnMKZnJvbSBzY2lweS5zdGF0cyBpbXBvcnQgbWFubndoaXRuZXl1CgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQojIENvbmZpZ3VyYXRpb24KIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KQkFTRV8zNDBNID0gIi9yb290L2VudHJhaW5tZW50X2dhdGVkX2Z0L2xtX2V2YWxfY2xlYW4vZXhwMDA3LzM0MG0iCkJBU0VfMV8zQl9FWFAwMDcgPSAiL3Jvb3QvZW50cmFpbm1lbnRfZ2F0ZWRfZnQvbG1fZXZhbF9jbGVhbi9leHAwMDcvMS4zYiIKQkFTRV8xXzNCX09MRCA9ICIvcm9vdC9lbnRyYWlubWVudF9nYXRlZF9mdC9sbV9ldmFsX2NsZWFuLzEuM2IiCkJBU0VfMV8zQl9SRVNVTFRTID0gIi9yb290L2VudHJhaW5tZW50X2dhdGVkX2Z0L3Jlc3VsdHNfMS4zYi9sbV9ldmFsX2ZpeGVkIgoKQVJDSElURUNUVVJFUyA9IFsiR0ROIiwgIlJldE5ldCIsICJIR1JOMiJdClJBVElPUyA9IFsicHVyZSIsICJoMjQtMSIsICJoMTItMSIsICJoNi0xIiwgImgzLTEiXQpSQVRJT19LRVlTID0gWyJwdXJlIiwgImgyNF8xIiwgImgxMl8xIiwgImg2XzEiLCAiaDNfMSJdCgpTSUdNQV8xXzNCID0gWzAuMDI0MDUsIDAuMDE2MjQsIDAuMDEzNjAsIDAuMDA2MDYsIDAuMDA0OTRdCgpQQVRIU18xXzNCX0NST1NTX1NDQUxFID0gewogICAgIkdETiI6IHsKICAgICAgICAicHVyZSI6IG9zLnBhdGguam9pbihCQVNFXzFfM0JfRVhQMDA3LCAiR0ROLXB1cmUiLCAic2FtcGxlcyIsICJsYW1iYWRhX29wZW5haS5qc29ubCIpLAogICAgICAgICJoMy0xIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9PTEQsICJHRE4taDMtMS1sb2dzYW1wbGVzIiwgInNhbXBsZXMiLCAibGFtYmFkYV9vcGVuYWkuanNvbmwiKSwKICAgIH0sCiAgICAiUmV0TmV0IjogewogICAgICAgICJwdXJlIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9SRVNVTFRTLCAiMS4zQi0xMDBCLVJldE5ldC1wdXJlIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiX19yb290X19hdXRvZGwtdG1wX19tb2RlbHNfMS4zYl9fMS4zQi0xMDBCLVJldE5ldC1wdXJlIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAic2FtcGxlc19sYW1iYWRhX29wZW5haV8yMDI2LTA1LTE4VDE4LTU5LTE4Ljg2NDcxNi5qc29ubCIpLAogICAgICAgICJoMy0xIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9FWFAwMDcsICJSZXROZXQtaDMtMSIsICJzYW1wbGVzIiwgImxhbWJhZGFfb3BlbmFpLmpzb25sIiksCiAgICB9LAogICAgIkhHUk4yIjogewogICAgICAgICJwdXJlIjogb3MucGF0aC5qb2luKEJBU0Vf\n…[truncated 14908 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T19:04:48.575213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "echo 'IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJleHAtMDA3IDM0ME0gUmVib3VuZCBjb21wcmVoZW5zaXZlIGFuYWx5c2lzLiIiIgoKaW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCBzeXMKaW1wb3J0IG51bXB5IGFzIG5wCmZyb20gaXRlcnRvb2xzIGltcG9ydCBjb21iaW5hdGlvbnMKZnJvbSBzY2lweS5zdGF0cyBpbXBvcnQgbWFubndoaXRuZXl1CgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQojIENvbmZpZ3VyYXRpb24KIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KQkFTRV8zNDBNID0gIi9yb290L2VudHJhaW5tZW50X2dhdGVkX2Z0L2xtX2V2YWxfY2xlYW4vZXhwMDA3LzM0MG0iCkJBU0VfMV8zQl9FWFAwMDcgPSAiL3Jvb3QvZW50cmFpbm1lbnRfZ2F0ZWRfZnQvbG1fZXZhbF9jbGVhbi9leHAwMDcvMS4zYiIKQkFTRV8xXzNCX09MRCA9ICIvcm9vdC9lbnRyYWlubWVudF9nYXRlZF9mdC9sbV9ldmFsX2NsZWFuLzEuM2IiCkJBU0VfMV8zQl9SRVNVTFRTID0gIi9yb290L2VudHJhaW5tZW50X2dhdGVkX2Z0L3Jlc3VsdHNfMS4zYi9sbV9ldmFsX2ZpeGVkIgoKQVJDSElURUNUVVJFUyA9IFsiR0ROIiwgIlJldE5ldCIsICJIR1JOMiJdClJBVElPUyA9IFsicHVyZSIsICJoMjQtMSIsICJoMTItMSIsICJoNi0xIiwgImgzLTEiXQpSQVRJT19LRVlTID0gWyJwdXJlIiwgImgyNF8xIiwgImgxMl8xIiwgImg2XzEiLCAiaDNfMSJdCgpTSUdNQV8xXzNCID0gWzAuMDI0MDUsIDAuMDE2MjQsIDAuMDEzNjAsIDAuMDA2MDYsIDAuMDA0OTRdCgpQQVRIU18xXzNCX0NST1NTX1NDQUxFID0gewogICAgIkdETiI6IHsKICAgICAgICAicHVyZSI6IG9zLnBhdGguam9pbihCQVNFXzFfM0JfRVhQMDA3LCAiR0ROLXB1cmUiLCAic2FtcGxlcyIsICJsYW1iYWRhX29wZW5haS5qc29ubCIpLAogICAgICAgICJoMy0xIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9PTEQsICJHRE4taDMtMS1sb2dzYW1wbGVzIiwgInNhbXBsZXMiLCAibGFtYmFkYV9vcGVuYWkuanNvbmwiKSwKICAgIH0sCiAgICAiUmV0TmV0IjogewogICAgICAgICJwdXJlIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9SRVNVTFRTLCAiMS4zQi0xMDBCLVJldE5ldC1wdXJlIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiX19yb290X19hdXRvZGwtdG1wX19tb2RlbHNfMS4zYl9fMS4zQi0xMDBCLVJldE5ldC1wdXJlIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAic2FtcGxlc19sYW1iYWRhX29wZW5haV8yMDI2LTA1LTE4VDE4LTU5LTE4Ljg2NDcxNi5qc29ubCIpLAogICAgICAgICJoMy0xIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9FWFAwMDcsICJSZXROZXQtaDMtMSIsICJzYW1wbGVzIiwgImxhbWJhZGFfb3BlbmFpLmpzb25sIiksCiAgICB9LAogICAgIkhHUk4yIjogewogICAgICAgICJwdXJlIjogb3MucGF0aC5qb2luKEJBU0VfMV8zQl9FWFAwMDcsICJIR1JOMi1wdXJlIiwgInNhbXBsZXMiLCAibGFtYmFkYV9vcGVuYWkuanNvbmwiKSwKICAgICAgICAiaDMtMSI6IG9zLnBhdGguam9pbihCQVNFXzFfM0JfRVhQMDA3LCAiSEdSTjItaDMtMSIsICJzYW1wbGVzIiwgImxhbWJhZGFfb3BlbmFpLmpzb25sIiksCiAgICB9LAp9CgoKZGVmIGdldF8zNDBtX3BhdGgoYXJjaCwgcmF0aW8pOgogICAgcmV0dXJuIG9zLnBhdGguam9pbihCQVNFXzM0ME0sIGYie2FyY2h9LXtyYXRpb30iIGlmIHJhdGlvICE9ICJwdXJlIiBlbHNlIGYie2FyY2h9LXB1cmUiLAogICAgICAgICAgICAgICAgICAgICAgICAic2FtcGxlcyIsICJsYW1iYWRhX29wZW5haS5qc29ubCIpCgoKZGVmIGxvYWRfanNvbmwocGF0aCk6CiAgICBkYXRhID0ge30KICAgIHdpdGggb3BlbihwYXRoKSBhcyBmOgogICAgICAgIGZvciBsaW5lIGluIGY6CiAgICAgICAgICAgIHJlYyA9IGpzb24ubG9hZHMobGluZSkKICAgICAgICAgICAgZGF0YVtyZWNbImRvY19pZCJdXSA9IHJlYwogICAgcmV0dXJuIGRhdGEKCgpkZWYgbG9hZF9hY2MocGF0aCk6CiAgICBkYXRhID0gbG9hZF9qc29ubChwYXRoKQogICAgcmV0dXJuIHtkaWQ6IGludChyZWNbImFjYyJdKSBmb3IgZGlkLCByZWMgaW4gZGF0YS5pdGVtcygpfQoKCmRlZiBqYWNjYXJkKHMxLCBzMik6CiAgICBpZiBsZW4oczEpID09IDAgYW5kIGxlbihzMikgPT0gMDoKICAgICAgICByZXR1cm4gMC4wCiAgICByZXR1cm4gcm91bmQobGVuKHMxICYgczIpIC8gbGVuKHMxIHwgczIpLCA0KQoKCmRlZiBjb250ZXh0X3dvcmRfY291bnQocmVjKToKICAgIHJldHVybiBsZW4ocmVjWyJkb2MiXVsidGV4dCJdLnNwbGl0KCkpCgoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBMb2FkIGRhdGEKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KcHJpbnQoIkxvYWRpbmcgMzQwTSBkYXRhLi4uIikKYWNjXzM0MG0gPSB7fQpmdWxsXzM0MG0gPSB7fQpmb3IgYXJjaCBpbiBBUkNISVRFQ1RVUkVTOgogICAgYWNjXzM0MG1bYXJjaF0gPSB7fQogICAgZnVsbF8zNDBtW2FyY2hdID0ge30KICAgIGZvciByYXRpbyBpbiBSQVRJT1M6CiAgICAgICAgcGF0aCA9IGdldF8zNDBtX3BhdGgoYXJjaCwgcmF0aW8pCiAgICAgICAgcmF3ID0gbG9hZF9qc29ubChwYXRoKQogICAgICAgIGFjY18zNDBtW2FyY2hdW3JhdGlvXSA9IHtkaWQ6IGludChyWyJhY2MiXSkgZm9yIGRpZCwgciBpbiByYXcuaXRlbXMoKX0KICAgICAgICBmdWxsXzM0MG1bYXJjaF1bcmF0aW9dID0gcmF3CiAgICAgICAgbl9jb3JyZWN0ID0gc3VtKGFjY18zNDBtW2FyY2hdW3JhdGlvXS52YWx1ZXMoKSkKICAgICAgICBuX3RvdGFsID0gbGVuKGFjY18zNDBtW2FyY2hdW3JhdGlvXSkKICAgICAgICBwcmludChmIiAge2FyY2h9LXtyYXRpb306IHtuX2NvcnJlY3R9L3tuX3RvdGFsfSAoe25fY29ycmVjdC9uX3RvdGFsOi40Zn0pIikKCiMgVHJhbnNmb3JtZXIKdGZfcmF3ID0gbG9hZF9qc29ubChvcy5wYXRoLmpvaW4oQkFTRV8zNDBNLCAiVHJhbnNmb3JtZXIiLCAic2FtcGxlcyIsICJsYW1iYWRhX29wZW5haS5qc29ubCIpKQphY2NfMzQwbVsiVHJhbnNmb3JtZXIiXSA9IHsicHVyZSI6IHtkaWQ6IGludChyWyJhY2MiXSkgZm9yIGRpZCwgciBpbiB0Zl9yYXcuaXRlbXMoKX19Cm5fdGYgPSBzdW0oYWNjXzM0MG1bIlRyYW5zZm9ybWVyIl1bInB1cmUiXS52YWx1ZXMoKSkKcHJpbnQoZiIgIFRyYW5zZm9ybWVyOiB7bl90Zn0ve2xlbihhY2NfMzQwbVsnVHJhbnNmb3JtZXInXVsncHVyZSddKX0gKHtuX3RmL2xlbihhY2NfMzQwbVsnVHJhbnNmb3JtZXInXVsncHVyZSddKTouNGZ9KSIpCgpwcmludCgiXG5Mb2FkaW5nIDEuM0IgZGF0YS4uLiIpCmFjY18xXzNiID0ge30KZm9yIGFyY2ggaW4gQVJDSElURUNUVVJFUzoKICAgIGFjY18xXzNiW2FyY2hdID0ge30KICAgIGZvciByayBpbiBbInB1cmUiLCAiaDMtMSJdOgogICAgICAgIHBhdGggPSBQQVRIU18xXzNCX0NST1NTX1NDQUxFW2FyY2hdW3JrXQogICAgICAgIGlmIG9zLnBhdGguZXhpc3RzKHBhdGgpOgogICAgICAgICAgICBhY2NfMV8zYlthcmNoXVtya10gPSBsb2FkX2FjYyhwYXRoKQogICAgICAgICAgICBuID0gc3VtKGFjY18xXzNiW2FyY2hdW3JrXS52YWx1ZXMoKSkKICAgICAgICAgICAgcHJpbnQoZiIgIDEuM0Ige2FyY2h9LXtya306IHtufS97bGVuKGFjY18xXzNiW2FyY2hdW3JrXSl9IikKICAgICAgICBlbHNlOgogICAgICAgICAgICBhY2NfMV8zYlthcmNoXVtya10gPSBOb25lCiAgICAgICAgICAgIHByaW50KGYiICAxLjNCIHthcmNofS17cmt9OiBOT1QgRk9VTkQgKHtwYXRofSkiKQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyAoYSkgQ3Jvc3MtQXJjaGl0ZWN0dXJlIENvbnZlcmdlbmNlICgzNDBNKQojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpwcmludCgiXG49PT0gKGEpIENyb3NzLUFyY2hpdGVjdHVyZSBDb252ZXJnZW5jZSA9PT0iKQpjcm9zc19hcmNoID0ge30Kc3Rkc18zNDBtID0gW10KCmZvciByYXRpbywgcmtleSBpbiB6aXAoUkFUSU9TLCBSQVRJT19LRVlTKToKICAgIGFjY3MgPSB7fQogICAgZm9yIGFyY2ggaW4gQVJDSElURUNUVVJFUzoKICAgICAgICB0b3RhbCA9IGxlbihhY2NfMzQwbVthcmNoXVtyYXRpb10pCiAgICAgICAgY29ycmVjdCA9IHN1bShhY2NfMzQwbVthcmNoXVtyYXRpb10udmFsdWVzKCkpCiAgICAgICAgYWNjc1thcmNoXSA9IHJvdW5kKGNvcnJlY3QgLyB0b3RhbCwgNCkKICAgIHZhbHMgPSBsaXN0KGFjY3MudmFsdWVzKCkpCiAgICBzdGQgPSByb3VuZChmbG9hdChucC5zdGQodmFscywgZGRvZj0wKSksIDQpCiAgICBzdGRzXzM0MG0uYXBwZW5kKHN0ZCkKICAgIGNyb3NzX2FyY2hbcmtleV0gPSB7InN0ZCI6IHN0ZCwgIm1lYW4iOiByb3VuZChmbG9hdChucC5tZWFuKHZhbHMpKSwgNCksICJhY2NzIjogYWNjc30KICAgIHByaW50KGYiICB7cmF0aW99OiBzdGQ9e3N0ZH0sIGFjY3M9e2FjY3N9IikKCm1pbl9pZHggPSBpbnQobnAuYXJnbWluKHN0ZHNfMzQwbSkpCnB1cmVfc3RkID0gc3Rkc18zNDBtWzBdCm1pbl9zdGQgPSBzdGRzXzM0MG1bbWluX2lkeF0KZW5kcG9pbnRfc3RkID0gc3Rkc18zNDBtWy0xXQoKY3Jvc3NfYXJjaFsicGVha19yZWR1Y3Rpb25fcGN0Il0gPSByb3VuZCgocHVyZV9zdGQgLSBtaW5fc3RkKSAvIHB1cmVfc3RkICogMTAwLCA0KSBpZiBwdXJlX3N0ZCA+IDAgZWxzZSAwCmNyb3NzX2FyY2hbInBlYWtfYXQiXSA9IFJBVElPX0tFWVNbbWluX2lkeF0KY3Jvc3NfYXJjaFsiZW5kcG9pbnRfcmVkdWN0aW9uX3BjdCJdID0gcm91bmQoKHB1cmVfc3RkIC0gZW5kcG9pbnRfc3RkKSAvIHB1cmVfc3RkICogMTAwLCA0KSBpZiBwdXJlX3N0ZCA+IDAgZWxzZSAwCgpjb21wYXJpc29uID0ge30KZm9yIGksIHJrIGluIGVudW1lcmF0ZShSQVRJT19LRVlTKToKICAgIGNvbXBhcmlzb25bcmtdID0gewogICAgICAgICJzaWdtYV8zNDBtIjogc3Rkc18zNDBtW2ldLAogICAgICAgICJzaWdtYV8xXzNiIjogU0lHTUFfMV8zQltpXSwKICAgICAgICAicmF0aW9fMzQwbV9vdmVyXzFfM2IiOiByb3VuZChzdGRzXzM0MG1baV0gLyBTSUdNQV8xXzNCW2ldLCA0KSBpZiBTSUdNQV8xXzNCW2ldID4gMCBlbHNlIE5vbmUKICAgIH0KY3Jvc3NfYXJjaFsiY29tcGFyaXNvbl8xXzNiIl0gPSBjb21wYXJpc29uCgpwcmludChmIiAgUGVhayByZWR1Y3Rpb246IHtjcm9zc19hcmNoWydwZWFrX3JlZHVjdGlvbl9wY3QnXX0lIGF0IHtjcm9zc19hcmNoWydwZWFrX2F0J119IikKcHJpbnQoZiIgIEVuZHBvaW50IHJlZHVjdGlvbjoge2Nyb3NzX2FyY2hbJ2VuZHBvaW50X3JlZHVjdGlvbl9wY3QnXX0lIikKcHJpbnQoZiIgIGgzLTEgz4M6IHtlbmRwb2ludF9zdGR9IikKCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgKGIpIFBlci1FeGFtcGxlIEhlbHBlZC9IdXJ0ICgzNDBNLCBwdXJlIOKGkiBoMy0xKQojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpwcmludCgiXG49PT0gKGIpIFBlci1FeGFtcGxlIEhlbHBlZC9IdXJ0ID09PSIpCnBlcl9leGFtcGxlID0ge30KaGVscGVkX3NldHMgPSB7fQpodXJ0X3NldHMgPSB7fQoKZm9yIGFyY2ggaW4gQVJDSElURUNUVVJFUzoKICAgIHB1cmUgPSBhY2NfMzQwbVthcmNoXVsicHVyZSJdCiAgICBoM18xID0gYWNjXzM0MG1bYXJjaF1bImgzLTEiXQogICAgY29tbW9uID0gc2V0KHB1cmUpICYgc2V0KGgzXzEpCiAgICBoZWxwZWQgPSB7ZCBmb3IgZCBpbiBjb21tb24gaWYgcHVyZVtkXSA9PSAwIGFuZCBoM18xW2RdID09IDF9CiAgICBodXJ0ID0ge2QgZm9yIGQgaW4gY29tbW9uIGlmIHB1cmVbZF0gPT0gMSBhbmQgaDNfMVtkXSA9PSAwfQogICAgaGVscGVkX3NldHNbYXJjaF0gPSBoZWxwZWQKICAgIGh1cnRfc2V0c1thcmNoXSA9IGh1cnQKICAgIHBlcl9leGFtcGxlW2FyY2hdID0geyJoZWxwZWQiOiBsZW4oaGVscGVkKSwgImh1cnQiOiBsZW4oaHVydCksICJuZXQiOiBsZW4oaGVscGVkKSAtIGxlbihodXJ0KX0KICAgIHByaW50KGYiICB7YXJjaH06IGhlbHBlZD17bGVuKGhlbHBlZCl9LCBodXJ0PXtsZW4oaHVydCl9LCBuZXQ9e2xlbihoZWxwZWQpLWxlbihodXJ0KX0iKQoKamFjX2hlbHBlZCA9IHt9CmphY19odXJ0ID0ge30KZm9yIGExLCBhMiBpbiBjb21iaW5hdGlvbnMoQVJDSElURUNUVVJFUywgMik6CiAgICBrID0gZiJ7YTF9X3ZzX3thMn0iCiAgICBqYWNfaGVscGVkW2tdID0gamFjY2FyZChoZWxwZWRfc2V0c1thMV0sIGhlbHBlZF9zZXRzW2EyXSkKICAgIGphY19odXJ0W2tdID0gamFjY2FyZChodXJ0X3NldHNbYTFdLCBodXJ0X3NldHNbYTJdKQogICAgcHJpbnQoZiIgIEphY2NhcmQgaGVscGVkIHtrfToge2phY19oZWxwZWRba119LCBodXJ0OiB7amFjX2h1cnRba119IikKCnBlcl9leGFtcGxlWyJwYWlyd2lzZV9qYWNjYXJkX2hlbHBlZCJdID0gamFjX2hlbHBlZApwZXJfZXhhbXBsZVsicGFpcndpc2VfamFjY2FyZF9odXJ0Il0gPSBqYWNfaHVydAoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyAoYykgQ3Jvc3MtU2NhbGUgSmFjY2FyZCAoMzQwTSB2cyAxLjNCLCBoMy0xKQojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpwcmludCgiXG49PT0gKGMpIENyb3NzLVNjYWxlIEphY2NhcmQgPT09IikKY3Jvc3Nfc2NhbGUgPSB7fQoKZm9yIGFyY2ggaW4gQVJDSElURUNUVVJFUzoKICAgIHAxMyA9IGFjY18xXzNiW2FyY2hdLmdldCgicHVyZSIpCiAgICBoMTMgPSBhY2NfMV8zYlthcmNoXS5nZXQoImgzLTEiKQogICAgaWYgcDEzIGlzIE5vbmUgb3IgaDEzIGlzIE5vbmU6CiAgICAgICAgY3Jvc3Nfc2NhbGVbZiJ7YXJjaH1faDNfMSJdID0geyJoZWxwZWRfamFjY2FyZCI6IE5vbmUsICJodXJ0X2phY2NhcmQiOiBOb25lLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm5vdGUiOiBmIk1pc3NpbmcgMS4zQiBkYXRhIChwdXJlPXsnZm91bmQnIGlmIHAxMyBlbHNlICdtaXNzaW5nJ30sIGgzLTE9eydmb3VuZCcgaWYgaDEzIGVsc2UgJ21pc3NpbmcnfSkifQogICAgICAgIHByaW50KGYiICB7YXJjaH06IFNLSVBQRUQg4oCUIG1pc3NpbmcgMS4zQiBkYXRhIikKICAgICAgICBjb250aW51ZQoKICAgIGNvbW1vbl8xMyA9IHNldChwMTMpICYgc2V0KGgxMykKICAgIGhlbHBlZF8xMyA9IHtkIGZvciBkIGluIGNvbW1vbl8xMyBpZiBwMTNbZF0gPT0gMCBhbmQgaDEzW2RdID09IDF9CiAgICBodXJ0XzEzID0ge2QgZm9yIGQgaW4gY29tbW9uXzEzIGlmIHAxM1tkXSA9PSAxIGFuZCBoMTNbZF0gPT0gMH0KCiAgICBoaiA9IGphY2NhcmQoaGVscGVkX3NldHNbYXJjaF0sIGhlbHBlZF8xMykKICAgIGh1aiA9IGphY2NhcmQoaHVydF9zZXRzW2FyY2hdLCBodXJ0XzEzKQoKICAgIGNyb3NzX3NjYWxlW2Yie2FyY2h9X2gzXzEiXSA9IHsKICAgICAgICAiaGVscGVkX2phY2NhcmQiOiBoaiwKICAgICAgICAiaHVydF9qYWNjYXJkIjogaHVqLAogICAgICAgICJoZWxwZWRfMzQwbSI6IGxlbihoZWxwZWRfc2V0c1thcmNoXSksCiAgICAgICAgImhlbHBlZF8xXzNiIjogbGVuKGhlbHBlZF8xMyksCiAgICAgICAgImhlbHBlZF9vdmVybGFwIjogbGVuKGhlbHBlZF9zZXRzW2FyY2hdICYgaGVscGVkXzEzKSwKICAgICAgICAiaHVydF8zNDBtIjogbGVuKGh1cnRfc2V0c1thcmNoXSksCiAgICAgICAgImh1cnRfMV8zYiI6IGxlbihodXJ0XzEzKSwKICAgICAgICAiaHVydF9vdmVybGFwIjogbGVuKGh1cnRfc2V0c1thcmNoXSAmIGh1cnRfMTMpLAogICAgfQogICAgcHJpbnQoZiIgIHthcmNofTogaGVscGVkX0o9e2hqfSAoe2xlbihoZWxwZWRfc2V0c1thcmNoXSl94oipe2xlbihoZWxwZWRfMTMpfT17bGVuKGhlbHBlZF9zZXRzW2FyY2hdJmhlbHBlZF8xMyl9KSwgIgogICAgICAgICAgZiJodXJ0X0o9e2h1an0gKHtsZW4oaHVydF9zZXRzW2FyY2hdKX3iiKl7bGVuKGh1cnRfMTMpfT17bGVuKGh1cnRfc2V0c1thcmNoXSZodXJ0XzEzKX0pIikKCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgKGQpIFJlYm91bmQgQW5hbHlzaXMgKGg2LTEgY29ycmVjdCDihpIgaDMtMSB3cm9uZykKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KcHJpbnQoIlxuPT09IChkKSBSZWJvdW5kIEFuYWx5c2lzID09PSIpCnJlYm91bmRfYWxsID0gc2V0KCkKc3RheV9jb3JyZWN0X2FsbCA9IHNldCgpCnJlYm91bmRfcGVyX2FyY2ggPSB7fQoKZm9yIGFyY2ggaW4gQVJDSElURUNUVVJFUzoKICAgIGg2ID0gYWNjXzM0MG1bYXJjaF1bImg2LTEiXQogICAgaDMgPSBhY2NfMzQwbVthcmNoXVsiaDMtMSJdCiAgICBjb21tb24gPSBzZXQoaDYpICYgc2V0KGgzKQogICAgcmIgPSB7ZCBmb3IgZCBpbiBjb21tb24gaWYgaDZbZF0gPT0gMSBhbmQgaDNbZF0gPT0gMH0KICAgIHNjID0ge2QgZm9yIGQgaW4gY29tbW9uIGlmIGg2W2RdID09IDEgYW5kIGgzW2RdID09IDF9CiAgICByZWJvdW5kX2FsbCB8PSByYgogICAgc3RheV9jb3JyZWN0X2FsbCB8PSBzYwogICAgcmVib3VuZF9wZXJfYXJjaFthcmNoXSA9IHsicmVib3VuZCI6IGxlbihyYiksICJzdGF5X2NvcnJlY3QiOiBsZW4oc2MpfQogICAgcHJpbnQoZiIgIHthcmNofTogcmVib3VuZD17bGVuKHJiKX0sIHN0YXlfY29ycmVjdD17bGVuKHNjKX0iKQoKc3RheV9jb3JyZWN0X2FsbCAtPSByZWJvdW5kX2FsbAoKcmVmX2Z1bGwgPSBmdWxsXzM0MG1bIkdETiJdWyJoNi0xIl0KcHVyZV9yZWYgPSBhY2NfMzQwbVsiR0ROIl1bInB1cmUiXQoKcmJfbGVucyA9IG5wLmFycmF5KFtjb250ZXh0X3dvcmRfY291bnQocmVmX2Z1bGxbZF0pIGZvciBkIGluIHJlYm91bmRfYWxsIGlmIGQgaW4gcmVmX2Z1bGxdKQpzY19sZW5zID0gbnAuYXJyYXkoW2NvbnRleHRfd29yZF9jb3VudChyZWZfZnVsbFtkXSkgZm9yIGQgaW4gc3RheV9jb3JyZWN0X2FsbCBpZiBkIGluIHJlZl9mdWxsXSkKcmJfcHVyZSA9IG5wLmFycmF5KFtwdXJlX3JlZltkXSBmb3IgZCBpbiByZWJvdW5kX2FsbCBpZiBkIGluIHB1cmVfcmVmXSkKc2NfcHVyZSA9IG5wLmFycmF5KFtwdXJlX3JlZltkXSBmb3IgZCBpbiBzdGF5X2NvcnJlY3RfYWxsIGlmIGQgaW4gcHVyZV9yZWZdKQoKaWYgbGVuKHJiX2xlbnMpID4gMCBhbmQgbGVuKHNjX2xlbnMpID4gMDoKICAgIHVfc3RhdCwgdV9wID0gbWFubndoaXRuZXl1KHJiX2xlbnMsIHNjX2xlbnMsIGFsdGVybmF0aXZlPSd0d28tc2lkZWQnKQplbHNlOgogICAgdV9zdGF0LCB1X3AgPSBOb25lLCBOb25lCgpyZWJvdW5kX2FuYWx5c2lzID0gewogICAgInJlYm91bmRfc2FtcGxlc19jb3VudCI6IGxlbihyZWJvdW5kX2FsbCksCiAgICAic3RheV9jb3JyZWN0X3NhbXBsZXNfY291bnQiOiBsZW4oc3RheV9jb3JyZWN0X2FsbCksCiAgICAicGVyX2FyY2hpdGVjdHVyZSI6IHJlYm91bmRfcGVyX2FyY2gsCiAgICAiY29udGV4dF9sZW5ndGhfY29tcGFyaXNvbiI6IHsKICAgICAgICAicmVib3VuZF9tZWFuIjogcm91bmQoZmxvYXQocmJfbGVucy5tZWFuKCkpLCA0KSBpZiBsZW4ocmJfbGVucykgZWxzZSBOb25lLAogICAgICAgICJyZWJvdW5kX21lZGlhbiI6IHJvdW5kKGZsb2F0KG5wLm1lZGlhbihyYl9sZW5zKSksIDQpIGlmIGxlbihyYl9sZW5zKSBlbHNlIE5vbmUsCiAgICAgICAgInJlYm91bmRfc3RkIjogcm91bmQoZmxvYXQocmJfbGVucy5zdGQoKSksIDQpIGlmIGxlbihyYl9sZW5zKSBlbHNlIE5vbmUsCiAgICAgICAgInN0YXlfY29ycmVjdF9tZWFuIjogcm91bmQoZmxvYXQoc2NfbGVucy5tZWFuKCkpLCA0KSBpZiBsZW4oc2NfbGVucykgZWxzZSBOb25lLAogICAgICAgICJzdGF5X2NvcnJlY3RfbWVkaWFuIjogcm91bmQoZmxvYXQobnAubWVkaWFuKHNjX2xlbnMpKSwgNCkgaWYgbGVuKHNjX2xlbnMpIGVsc2UgTm9uZSwKICAgICAgICAic3RheV9jb3JyZWN0X3N0ZCI6IHJvdW5kKGZsb2F0KHNjX2xlbnMuc3RkKCkpLCA0KSBpZiBsZW4oc2NfbGVucykgZWxzZSBOb25lLAogICAgfSwKICAgICJiYXNlbGluZV9hY2NfY29tcGFyaXNvbiI6IHsKICAgICAgICAicmVib3VuZF9wdXJlX2FjY19yYXRlIjogcm91bmQoZmxvYXQocmJfcHVyZS5tZWFuKCkpLCA0KSBpZiBsZW4ocmJfcHVyZSkgZWxzZSBOb25lLAogICAgICAgICJzdGF5X2NvcnJlY3RfcHVyZV9hY2NfcmF0ZSI6IHJvdW5kKGZsb2F0KHNjX3B1cmUubWVhbigpKSwgNCkgaWYgbGVuKHNjX3B1cmUpIGVsc2UgTm9uZSwKICAgIH0sCiAgICAibWFubl93aGl0bmV5X3AiOiByb3VuZChmbG9hdCh1X3ApLCA0KSBpZiB1X3AgaXMgbm90IE5vbmUgZWxzZSBOb25lLAogICAgIm1hbm5fd2hpdG5leV9zdGF0Ijogcm91bmQoZmxvYXQodV9zdGF0KSwgNCkgaWYgdV9zdGF0IGlzIG5vdCBOb25lIGVsc2UgTm9uZSwKfQoKcHJpbnQoZiIgIFRvdGFsOiByZWJvdW5kPXtsZW4ocmVib3VuZF9hbGwpfSwgc3RheV9jb3JyZWN0PXtsZW4oc3RheV9jb3JyZWN0X2FsbCl9IikKcHJpbnQoZiIgIENvbnRleHQgbGVuZ3RoOiByZWJvdW5kIG1lYW49e3JlYm91bmRfYW5hbHlzaXNbJ2NvbnRleHRfbGVuZ3RoX2NvbXBhcmlzb24nXVsncmVib3VuZF9tZWFuJ119LCAiCiAgICAgIGYic3RheV9jb3JyZWN0IG1lYW49e3JlYm91bmRfYW5hbHlzaXNbJ2NvbnRleHRfbGVuZ3RoX2NvbXBhcmlzb24nXVsnc3RheV9jb3JyZWN0X21lYW4nXX0iKQpwcmludChmIiAgTWFubi1XaGl0bmV5IHA9e3JlYm91bmRfYW5hbHlzaXNbJ21hbm5fd2hpdG5leV9wJ119IikKcHJpbnQoZiIgIFB1cmUgYWNjIHJhdGU6IHJlYm91bmQ9e3JlYm91bmRfYW5hbHlzaXNbJ2Jhc2VsaW5lX2FjY19jb21wYXJpc29uJ11bJ3JlYm91bmRfcHVyZV9hY2NfcmF0ZSddfSwgIgogICAgICBmInN0YXlfY29ycmVjdD17cmVib3VuZF9hbmFseXNpc1snYmFzZWxpbmVfYWNjX2NvbXBhcmlzb24nXVsnc3RheV9jb3JyZWN0X3B1cmVfYWNjX3JhdGUnXX0iKQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyAoZSkgQXR0ZW50aW9uIFJhdGlvIEV2b2x1dGlvbgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpwcmludCgiXG49PT0gKGUpIEF0dGVudGlvbiBSYXRpbyBFdm9sdXRpb24gPT09IikKZXZvbHV0aW9uID0ge30KcGFpcnMgPSBsaXN0KHppcChSQVRJT1NbOi0xXSwgUkFUSU9TWzE6XSkpCmtwYWlycyA9IGxpc3QoemlwKFJBVElPX0tFWVNbOi0xXSwgUkFUSU9fS0VZU1sxOl0pKQoKZm9yIGFyY2ggaW4gQVJDSElURUNUVVJFUzoKICAgIGV2b2x1dGlvblthcmNoXSA9IHt9CiAgICBmb3IgKHIxLCByMiksIChyazEsIHJrMikgaW4gemlwKHBhaXJzLCBrcGFpcnMpOgogICAgICAgIGQxID0gYWNjXzM0MG1bYXJjaF1bcjFdCiAgICAgICAgZDIgPSBhY2NfMzQwbVthcmNoXVtyMl0KICAgICAgICBjb21tb24gPSBzZXQoZDEpICYgc2V0KGQyKQogICAgICAgIGhlbHBlZCA9IHN1bSgxIGZvciBkIGluIGNvbW1vbiBpZiBkMVtkXSA9PSAwIGFuZCBkMltkXSA9PSAxKQogICAgICAgIGh1cnQgPSBzdW0oMSBmb3IgZCBpbiBjb21tb24gaWYgZDFbZF0gPT0gMSBhbmQgZDJbZF0gPT0gMCkKICAgICAgICBrZXkgPSBmIntyazF9X3RvX3tyazJ9IgogICAgICAgIGV2b2x1dGlvblthcmNoXVtrZXldID0geyJoZWxwZWQiOiBoZWxwZWQsICJodXJ0IjogaHVydCwgIm5ldCI6IGhlbHBlZCAtIGh1cnR9CiAgICAgICAgcHJpbnQoZiIgIHthcmNofSB7cjF94oaSe3IyfTogaGVscGVkPXtoZWxwZWR9LCBodXJ0PXtodXJ0fSwgbmV0PXtoZWxwZWQtaHVydH0iKQoKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBPdXRwdXQKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0Kb3V0cHV0ID0gewogICAgImNyb3NzX2FyY2hfY29udmVyZ2VuY2VfMzQwbSI6IGNyb3NzX2FyY2gsCiAgICAicGVyX2V4YW1wbGVfMzQwbSI6IHBlcl9leGFtcGxlLAogICAgImNyb3NzX3NjYWxlX2phY2NhcmQiOiBjcm9zc19zY2FsZSwKICAgICJyZWJvdW5kX2FuYWx5c2lzIjogcmVib3VuZF9hbmFseXNpcywKICAgICJhdHRlbnRpb25fcmF0aW9fZXZvbHV0aW9uIjogZXZvbHV0aW9uLAp9CgpvdXRfcGF0aCA9ICIvcm9vdC9lbnRyYWlubWVudF9nYXRlZF9mdC9leHAwMDdfMzQwbV9hbmFseXNpcy5qc29uIgp3aXRoIG9wZW4ob3V0X3BhdGgsICJ3IikgYXMgZjoKICAgIGpzb24uZHVtcChvdXRwdXQsIGYsIGluZGVudD0yLCBlbnN1cmVfYXNjaWk9RmFsc2UpCgpwcmludChmIlxuU2F2ZWQgdG8ge291dF9wYXRofSIpCnByaW50KGpzb24uZHVtcHMob3V0cHV0LCBpbmRlbnQ9MiwgZW5zdXJlX2FzY2lpPUZhbHNlKSkK' | base64 -d > /root/entrainment_gated_ft/analyze_exp007.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T19:04:48.575492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T19:04:48.575626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analyze_exp007.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T19:04:48.575971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading 340M data...\\\\n  GDN-pure: 1934/5153 (0.3753)\\\\n  GDN-h24-1: 1807/5153 (0.3507)\\\\n  GDN-h12-1: 1675/5153 (0.3251)\\\\n  GDN-h6-1: 1807/5153 (0.3507)\\\\n  GDN-h3-1: 1678/5153 (0.3256)\\\\n  RetNet-pure: 1886/5153 (0.3660)\\\\n  RetNet-h24-1: 1882/5153 (0.3652)\\\\n  RetNet-h12-1: 1862/5153 (0.3613)\\\\n  RetNet-h6-1: 1788/5153 (0.3470)\\\\n  RetNet-h3-1: 1780/5153 (0.3454)\\\\n  HGRN2-pure: 1642/5153 (0.3186)\\\\n  HGRN2-h24-1: 1735/5153 (0.3367)\\\\n  HGRN2-h12-1: 1877/5153 (0.3643)\\\\n  HGRN2-h6-1: 1917/5153 (0.3720)\\\\n  HGRN2-h3-1: 1880/5153 (0.3648)\\\\n  Transformer: 1926/5153 (0.3738)\\\\n\\\\nLoading 1.3B data...\\\\n  1.3B GDN-pure: 2800/5153\\\\n  1.3B GDN-h3-1: 2645/5153\\\\n  1.3B RetNet-pure: 0/5153\\\\n  1.3B RetNet-h3-1: 2589/5153\\\\n  1.3B HGRN2-pure: 2494/5153\\\\n  1.3B HGRN2-h3-1: 2650/5153\\\\n\\\\n=== (a) Cross-Architecture Convergence ===\\\\n  pure: std=0.0248, accs={'GDN': 0.3753, 'RetNet': 0.366, 'HGRN2': 0.3186}\\\\n  h24-1: std=0.0116, accs={'GDN': 0.3507, 'RetNet': 0.3652, 'HGRN2': 0.3367}\\\\n  h12-1: std=0.0178, accs={'GDN': 0.3251, 'RetNet': 0.3613, 'HGRN2': 0.3643}\\\\n  h6-1: std=0.011, accs={'GDN': 0.3507, 'RetNet': 0.347, 'HGRN2': 0.372}\\\\n  h3-1: std=0.016, accs={'GDN': 0.3256, 'RetNet': 0.3454, 'HGRN2': 0.3648}\\\\n  Peak reduction: 55.6452% at h6_1\\\\n  Endpoint reduction: 35.4839%\\\\n  h3-1 σ: 0.016\\\\n\\\\n=== (b) Per-Example Helped/Hurt ===\\\\n  GDN: helped=422, hurt=678, net=-256\\\\n  RetNet: helped=373, hurt=479, net=-106\\\\n  HGRN2: helped=575, hurt=337, net=238\\\\n  Jaccard helped GDN_vs_RetNet: 0.092, hurt: 0.1093\\\\n  Jaccard helped GDN_vs_HGRN2: 0.0837, hurt: 0.0752\\\\n  Jaccard helped RetNet_vs_HGRN2: 0.1075, hurt: 0.0851\\\\n\\\\n=== (c) Cross-Scale Jaccard ===\\\\n  GDN: helped_J=0.0474 (422∩461=40), hurt_J=0.0874 (678∩616=104)\\\\n  RetNet: helped_J=0.1077 (373∩2589=288), hurt_J=0.0 (479∩0=0)\\\\n  HGRN2: helped_J=0.0892 (575∩548=92), hurt_J=0.055 (337∩392=38)\\\\n\\\\n=== (d) Rebound Analysis ===\\\\n  GDN: rebound=542, stay_corr\n…[truncated 7652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T19:04:48.576185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "python3 -c \"import json; data=[json.loads(l) for l in open('/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-59-18.864716.jsonl')]; accs=[d['acc'] for d in data]; print(f'total={len(accs)}, sum={sum(accs)}, types={set(type(a).__name__ for a in accs)}, uniq={set(accs[:20])}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T19:04:48.576325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T19:04:48.576451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "python3 -c \"import json; data=[json.loads(l) for l in open('/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-13-40.854538.jsonl')]; accs=[d['acc'] for d in data]; print(f'total={len(accs)}, sum={sum(accs)}, types={set(type(a).__name__ for a in accs)}, uniq_vals={sorted(set(accs))[:5]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T19:04:48.576582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T19:04:48.576724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -c '\"acc\": 1' /root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-59-18.864716.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T19:04:48.576848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "grep -c '\"acc\": 1' /root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-13-40.854538.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T19:04:48.576967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T19:04:48.577083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T19:04:48.577210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "head -5 /root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_lambada_openai_2026-05-18T18-59-18.864716.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T19:04:48.577438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" signs\\\\\\\", \\\\\\\"arguments\\\\\\\": {\\\\\\\"gen_args_0\\\\\\\": {\\\\\\\"arg_0\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\\\\\", \\\\\\\"arg_1\\\\\\\": \\\\\\\" signs\\\\\\\"}}, \\\\\\\"resps\\\\\\\": [[[\\\\\\\"-10.625\\\\\\\", \\\\\\\"False\\\\\\\"]]], \\\\\\\"filtered_resps\\\\\\\": [[\\\\\\\"-10.625\\\\\\\", \\\\\\\"False\\\\\\\"]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\\\\\", \\\\\\\"perplexity\\\\\\\": -10.625, \\\\\\\"acc\\\\\\\": 0}\\\\n{\\\\\\\"doc_id\\\\\\\": 1, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\\\\\\\\\" She'd forced those words through her teeth.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"No need to change. We won't be that long.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nShane gripped her arm and started leading her to the dock.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"I can make it there on my own, Shane\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" Shane\\\\\\\", \\\\\\\"arguments\\\\\\\": {\\\\\\\"gen_args_0\\\\\\\": {\\\\\\\"arg_0\\\\\\\": \\\\\\\"Give me a minute to change and I'll \n…[truncated 5530 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T19:04:48.577662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/entrainment_gated_ft/exp007_340m_analysis.json') as f:\n    data = json.load(f)\ndata['cross_scale_jaccard']['RetNet_h3_1'] = {\n    'helped_jaccard': None,\n    'hurt_jaccard': None,\n    'note': 'RetNet-pure 1.3B log_samples has 0% accuracy (all acc=0), likely broken evaluation. Cross-scale Jaccard unreliable.'\n}\nwith open('/root/entrainment_gated_ft/exp007_340m_analysis.json', 'w') as f:\n    json.dump(data, f, indent=2, ensure_ascii=False)\nprint('Updated RetNet cross-scale note')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T19:04:48.577812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Updated RetNet cross-scale note\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T19:04:48.577937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-48145",
+              "command": "cat /root/entrainment_gated_ft/exp007_340m_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T19:04:48.578171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"cross_arch_convergence_340m\\\\\\\": {\\\\n    \\\\\\\"pure\\\\\\\": {\\\\n      \\\\\\\"std\\\\\\\": 0.0248,\\\\n      \\\\\\\"mean\\\\\\\": 0.3533,\\\\n      \\\\\\\"accs\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.3753,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.366,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.3186\\\\n      }\\\\n    },\\\\n    \\\\\\\"h24_1\\\\\\\": {\\\\n      \\\\\\\"std\\\\\\\": 0.0116,\\\\n      \\\\\\\"mean\\\\\\\": 0.3509,\\\\n      \\\\\\\"accs\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.3507,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.3652,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.3367\\\\n      }\\\\n    },\\\\n    \\\\\\\"h12_1\\\\\\\": {\\\\n      \\\\\\\"std\\\\\\\": 0.0178,\\\\n      \\\\\\\"mean\\\\\\\": 0.3502,\\\\n      \\\\\\\"accs\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.3251,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.3613,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.3643\\\\n      }\\\\n    },\\\\n    \\\\\\\"h6_1\\\\\\\": {\\\\n      \\\\\\\"std\\\\\\\": 0.011,\\\\n      \\\\\\\"mean\\\\\\\": 0.3566,\\\\n      \\\\\\\"accs\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.3507,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.347,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.372\\\\n      }\\\\n    },\\\\n    \\\\\\\"h3_1\\\\\\\": {\\\\n      \\\\\\\"std\\\\\\\": 0.016,\\\\n      \\\\\\\"mean\\\\\\\": 0.3453,\\\\n      \\\\\\\"accs\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.3256,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.3454,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.3648\\\\n      }\\\\n    },\\\\n    \\\\\\\"peak_reduction_pct\\\\\\\": 55.6452,\\\\n    \\\\\\\"peak_at\\\\\\\": \\\\\\\"h6_1\\\\\\\",\\\\n    \\\\\\\"endpoint_reduction_pct\\\\\\\": 35.4839,\\\\n    \\\\\\\"comparison_1_3b\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"sigma_340m\\\\\\\": 0.0248,\\\\n        \\\\\\\"sigma_1_3b\\\\\\\": 0.02405,\\\\n        \\\\\\\"ratio_340m_over_1_3b\\\\\\\": 1.0312\\\\n      },\\\\n      \\\\\\\"h24_1\\\\\\\": {\\\\n        \\\\\\\"sigma_340m\\\\\\\": 0.0116,\\\\n        \\\\\\\"sigma_1_3b\\\\\\\": 0.01624,\\\\n        \\\\\\\"ratio_340m_over_1_3b\\\\\\\": 0.7143\\\\n      },\\\\n      \\\\\\\"h12_1\\\\\\\": {\\\\n        \\\\\\\"sigma_340m\\\\\\\": 0.0178,\\\\n        \\\\\\\"sigma_1_3b\\\\\\\": 0.0136,\\\\n        \\\\\\\"ratio_340m_over_1_3b\\\\\\\": 1.3088\\\\n      },\\\\n      \\\\\\\"h6_1\\\\\\\": {\\\\n        \\\\\\\"sigma_340m\\\\\\\": 0.011,\\\\n        \\\\\\\"sigma_1_3b\\\\\\\": 0.00606,\\\\n        \\\\\\\"ratio_340m_over_1_3b\\\\\\\": 1.8152\\\\n      },\\\\\n…[truncated 4634 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T19:04:48.578393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/exp007_340m_analysis.json",
+              "content": "{\n  \"cross_arch_convergence_340m\": {\n    \"pure\": {\n      \"std\": 0.0248,\n      \"mean\": 0.3533,\n      \"accs\": {\n        \"GDN\": 0.3753,\n        \"RetNet\": 0.366,\n        \"HGRN2\": 0.3186\n      }\n    },\n    \"h24_1\": {\n      \"std\": 0.0116,\n      \"mean\": 0.3509,\n      \"accs\": {\n        \"GDN\": 0.3507,\n        \"RetNet\": 0.3652,\n        \"HGRN2\": 0.3367\n      }\n    },\n    \"h12_1\": {\n      \"std\": 0.0178,\n      \"mean\": 0.3502,\n      \"accs\": {\n        \"GDN\": 0.3251,\n        \"RetNet\": 0.3613,\n        \"HGRN2\": 0.3643\n      }\n    },\n    \"h6_1\": {\n      \"std\": 0.011,\n      \"mean\": 0.3566,\n      \"accs\": {\n        \"GDN\": 0.3507,\n        \"RetNet\": 0.347,\n        \"HGRN2\": 0.372\n      }\n    },\n    \"h3_1\": {\n      \"std\": 0.016,\n      \"mean\": 0.3453,\n      \"accs\": {\n        \"GDN\": 0.3256,\n        \"RetNet\": 0.3454,\n        \"HGRN2\": 0.3648\n      }\n    },\n    \"peak_reduction_pct\": 55.6452,\n    \"peak_at\": \"h6_1\",\n    \"endpoint_reduction_pct\": 35.4839,\n    \"comparison_1_3b\": {\n      \"pure\": {\n        \"sigma_340m\": 0.0248,\n        \"sigma_1_3b\": 0.02405,\n        \"ratio_340m_over_1_3b\": 1.0312\n      },\n      \"h24_1\": {\n        \"sigma_340m\": 0.0116,\n        \"sigma_1_3b\": 0.01624,\n        \"ratio_340m_over_1_3b\": 0.7143\n      },\n      \"h12_1\": {\n        \"sigma_340m\": 0.0178,\n        \"sigma_1_3b\": 0.0136,\n        \"ratio_340m_over_1_3b\": 1.3088\n      },\n      \"h6_1\": {\n        \"sigma_340m\": 0.011,\n        \"sigma_1_3b\": 0.00606,\n        \"ratio_340m_over_1_3b\": 1.8152\n      },\n      \"h3_1\": {\n        \"sigma_340m\": 0.016,\n        \"sigma_1_3b\": 0.00494,\n        \"ratio_340m_over_1_3b\": 3.2389\n      }\n    }\n  },\n  \"per_example_340m\": {\n    \"GDN\": {\n      \"helped\": 422,\n      \"hurt\": 678,\n      \"net\": -256\n    },\n    \"RetNet\": {\n      \"helped\": 373,\n      \"hurt\": 479,\n      \"net\": -106\n    },\n    \"HGRN2\": {\n      \"helped\": 575,\n      \"hurt\": 337,\n      \"net\": 238\n    },\n    \"pairwise_jaccard_helped\": {\n      \"GDN_vs_RetNet\": 0.092,\n      \"GDN_vs_HGRN2\": 0.0837,\n      \"RetNet_vs_HGRN2\": 0.1075\n    },\n    \"pairwise_jaccard_hurt\": {\n      \"GDN_vs_RetNet\": 0.1093,\n      \"GDN_vs_HGRN2\": 0.0752,\n      \"RetNet_vs_HGRN2\": 0.0851\n    }\n  },\n  \"cross_scale_jaccard\": {\n    \"GDN_h3_1\": {\n      \"helped_jaccard\": 0.0474,\n      \"hurt_jaccard\": 0.0874,\n      \"helped_340m\": 422,\n      \"helped_1_3b\": 461,\n      \"helped_overlap\": 40,\n      \"hurt_340m\": 678,\n      \"hurt_1_3b\": 616,\n      \"hurt_overlap\": 104\n    },\n    \"RetNet_h3_1\": {\n      \"helped_jaccard\": null,\n      \"hurt_jaccard\": null,\n      \"note\": \"RetNet-pure 1.3B log_samples has 0% accuracy (all acc=0), likely broken evaluation. Cross-scale Jaccard unreliable.\"\n    },\n    \"HGRN2_h3_1\": {\n      \"helped_jaccard\": 0.0892,\n      \"hurt_jaccard\": 0.055,\n      \"helped_340m\": 575,\n      \"helped_1_3b\": 548,\n      \"helped_overlap\": 92,\n      \"hurt_340m\": 337,\n      \"hurt_1_3b\": 392,\n      \"hurt_overlap\": 38\n    }\n  },\n  \"rebound_analysis\": {\n    \"rebound_samples_count\": 1165,\n    \"stay_correct_samples_count\": 1432,\n    \"per_architecture\": {\n      \"GDN\": {\n        \"rebound\": 542,\n        \"stay_correct\": 1265\n      },\n      \"RetNet\": {\n        \"rebound\": 399,\n        \"stay_correct\": 1389\n      },\n      \"HGRN2\": {\n        \"rebound\": 442,\n        \"stay_correct\": 1475\n      }\n    },\n    \"context_length_comparison\": {\n      \"rebound_mean\": 58.6524,\n      \"rebound_median\": 57.0,\n      \"rebound_std\": 11.0551,\n      \"stay_correct_mean\": 58.463,\n      \"stay_correct_median\": 57.0,\n      \"stay_correct_std\": 11.2508\n    },\n    \"baseline_acc_comparison\": {\n      \"rebound_pure_acc_rate\": 0.5193,\n      \"stay_correct_pure_acc_rate\": 0.7633\n    },\n    \"mann_whitney_p\": 0.3125,\n    \"mann_whitney_stat\": 853324.5\n  },\n  \"attention_ratio_evolution\": {\n    \"GDN\": {\n      \"pure_to_h24_1\": {\n        \"helped\": 470,\n        \"hurt\": 597,\n        \"net\": -127\n      },\n      \"h24_1_to_h12_1\": {\n        \"helped\": 460,\n        \"hurt\": 592,\n        \"net\": -132\n      },\n      \"h12_1_to_h6_1\": {\n        \"helped\": 555,\n        \"hurt\": 423,\n        \"net\": 132\n      },\n      \"h6_1_to_h3_1\": {\n        \"helped\": 413,\n        \"hurt\": 542,\n        \"net\": -129\n      }\n    },\n    \"RetNet\": {\n      \"pure_to_h24_1\": {\n        \"helped\": 439,\n        \"hurt\": 443,\n        \"net\": -4\n      },\n      \"h24_1_to_h12_1\": {\n        \"helped\": 393,\n        \"hurt\": 413,\n        \"net\": -20\n      },\n      \"h12_1_to_h6_1\": {\n        \"helped\": 367,\n        \"hurt\": 441,\n        \"net\": -74\n      },\n      \"h6_1_to_h3_1\": {\n        \"helped\": 391,\n        \"hurt\": 399,\n        \"net\": -8\n      }\n    },\n    \"HGRN2\": {\n      \"pure_to_h24_1\": {\n        \"helped\": 443,\n        \"hurt\": 350,\n        \"net\": 93\n      },\n      \"h24_1_to_h12_1\": {\n        \"helped\": 513,\n        \"hurt\": 371,\n        \"net\": 142\n      },\n      \"h12_1_to_h6_1\": {\n        \"helped\": 432,\n        \"hurt\": 392,\n        \"net\": 40\n      },\n      \"h6_1_to_h3_1\": {\n        \"helped\": 405,\n        \"hurt\": 442,\n        \"net\": -37\n      }\n    }\n  }\n}\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T19:04:48.578601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/exp007_340m_analysis.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T19:04:48.578795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp007_340m_analysis",
+              "type": "data",
+              "description": "exp-007 340M rebound comprehensive analysis: cross-arch convergence (σ values), per-example helped/hurt with Jaccard, cross-scale 340M vs 1.3B Jaccard, rebound sample characterization with Mann-Whitney test, attention ratio evolution",
+              "project": "entrainment_gated_ft",
+              "exp_id": "exp-007",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/exp007_340m_analysis.json",
+              "tags": "['340m', 'rebound', 'convergence', 'per-example', 'lambada']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T19:04:48.578962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_058605\\\", \\\"name\\\": \\\"exp007_340m_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"exp-007 340M rebound comprehensive analysis: cross-arch convergence (σ values), per-example helped/hurt with Jaccard, cross-scale 340M vs 1.3B Jaccard, rebound sample characterization with Mann-Whitney test, attention ratio evolution\\\", \\\"path\\\": \\\"projects/entrainment_gated_ft/artifacts/exp-007/data/exp007_340m_analysis.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"exp_id\\\": \\\"exp-007\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T19:04:23.274897+00:00\\\", \\\"tags\\\": [\\\"340m\\\", \\\"rebound\\\", \\\"convergence\\\", \\\"per-example\\\", \\\"lambada\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T19:04:48.579145+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n### (a) Cross-Architecture Convergence (340M)\n| Ratio | σ | vs 1.3B σ |\n|-------|------|-----------|\n| pure | 0.0248 | 1.03× (持平) |\n| h24-1 | 0.0116 | 0.71× |\n| h12-1 | 0.0178 | 1.31× |\n| **h6-1** | **0.0110** | 1.82× |\n| h3-1 | 0.0160 | 3.24× |\n\n- **Non-monotonic rebound 确认**：σ 在 h6-1 最低 (0.011)，h3-1 回弹到 0.016\n- Peak reduction: 55.6%，endpoint reduction: 35.5%\n- 340M 的 rebound 比 1.3B 更强（1.3B 的 σ 持续下降到 0.00494）\n\n### (b) Per-Example Helped/Hurt\n- GDN: helped=422, hurt=678 (net -256) — attention 伤害 GDN\n- RetNet: helped=373, hurt=479 (net -106)\n- HGRN2: helped=575, hurt=337 (net **+238**) — attention 帮助 HGRN2\n- **Pairwise Jaccard 极低** (~0.08-0.11)：各架构被 help/hurt 的是不同的样本\n\n### (c) Cross-Scale Jaccard\n- GDN: helped_J=0.047, hurt_J=0.087\n- HGRN2: helped_J=0.089, hurt_J=0.055\n- RetNet: null（1.3B RetNet-pure log_samples 数据异常，全部 acc=0）\n- **跨 scale 的 per-example 效应几乎不重叠**\n\n### (d) Rebound 样本特征\n- Rebound samples: 1165, stay-correct: 1432\n- Context length **无显著差异** (mean ~58.5 words, Mann-Whitney p=0.31)\n- **关键发现**：rebound 样本的 pure acc rate = 0.519，stay-correct 的 = 0.763 — rebound 样本本身就更难（baseline 正确率低 24pp）\n\n### (e) Attention Ratio Evolution\n- **h6-1→h3-1** 是所有架构唯一的共同 hurt 转折点（GDN net=-129, RetNet net=-8, HGRN2 net=-37）\n- GDN 路径非单调：先降后升再降 (pure→h12-1 净减少, h12-1→h6-1 净增 132, h6-1→h3-1 再减 129)\n- HGRN2 持续受益直到 h6-1，在 h3-1 才首次转负"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-007-340m-rebound_20260519T185316"
+          },
+          "id": "event-000047"
+        }
+      ],
+      "message_count": 47
+    }
+  ]
+}

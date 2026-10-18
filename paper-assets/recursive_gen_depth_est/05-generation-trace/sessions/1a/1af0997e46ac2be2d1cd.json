@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1af0997e46ac2be2d1cd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis gpt2xl topk50 001",
+  "task_key": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T024241_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "5c130447e23e4269e7625b1b7bc47f8adb21a80537be40c711028717295a7b6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。分析总结：\n\n**GPT-2 XL top-k k=50**: 4-class RF **74.45%** (CI 73.0-75.8%), d1v2 AUC **0.813**, 3-class RF **69.47%**。\n\n与同模型对比：相比 nucleus baseline (83.3%) 下降 **-8.85pp**，相比 temp09 (85.4%) 下降 **-10.95pp**。d1v2 AUC 从 0.913/0.937 降至 0.813，中间深度区分力显著削弱。\n\n跨模型 top-k 影响：GPT-2 XL 降幅 (-8.85pp) 与 Pythia (-8.6pp) 几乎一致，OLMo 仅降 3.1pp。Top-k 截断对 GPT-2 XL 和 Pythia 的深度信号破坏程度相当，OLMo 更鲁棒。\n\n值得注意：尽管 top-k 是三种策略中最差的，74.45% 仍是随机基线 (25%) 的 ~3 倍，深度信号在 top-k 下依然存在且可检测。three_class_filtered 结果缺失，contamination filtering 未跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

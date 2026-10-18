@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84034538fd4220d35304",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code zeroshot llm 500 001",
+  "task_key": "worker_code_zeroshot_llm_500_001_20260515T161117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_zeroshot_llm_500_001_20260515T161117_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "a66ce4ff2d634b427305aea30a1ef0eb78c12af137ea436449b9a936fecbfc19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本验证通过：500 条平衡样本（每类 125），数据加载正常。\n\n**状态报告：**\n\n- 脚本已就绪：`scripts/run_zeroshot_500.py` + `scripts/run_zeroshot_500.sh`\n- 与 200-sample 实验完全一致：模型 `deepseek/deepseek-v3.2`，同一 prompt，同一 API proxy (`http://47.94.22.126/v1`)\n- 500 条类别平衡样本（seed=42），带 checkpoint 断点续传\n- 输出包含 accuracy + 95% bootstrap CI + per-class recall + 与 RF 78.2% 对比 + 与 200-sample 对比\n\n**阻塞问题：`OPENAI_API_KEY` 未设置。**\n\nshell 脚本注释 `# OPENAI_API_KEY 由外部注入`，服务器 `.bashrc` 和环境变量中均不存在该 key。proxy `http://47.94.22.126/v1` 已验证需要有效 key（dummy key 返回 401）。\n\n运行方式（拿到 key 后）：\n```bash\nexport OPENAI_API_KEY=\"your_key_here\"\nbash scripts/run_zeroshot_500.sh\n```\n\n预计运行时间：500 samples × 0.5s delay ≈ 4-5 分钟。请提供 `OPENAI_API_KEY`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

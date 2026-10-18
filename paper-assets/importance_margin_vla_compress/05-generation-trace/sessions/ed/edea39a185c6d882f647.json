@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "edea39a185c6d882f647",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops e1 deploy 9 table gaps",
+  "task_key": "worker_ops_e1_deploy_9_table_gaps_20260523T060827",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_e1_deploy_9_table_gaps_20260523T060827.log",
+    "occurrence": 1,
+    "bytes": 561077,
+    "sha256": "ba7349accf34f30d8a3bc6bdf8131dd4e3e34c69a9668c8c972f14eb0e7b1c29"
+  },
+  "statistics": {
+    "messages": 407,
+    "user_turns": 0,
+    "tool_calls": 161,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 161,
+      "tool_result": 161,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 407,
+      "chunks": [
+        {
+          "path": "edea39a185c6d882f647-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "edea39a185c6d882f647-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "edea39a185c6d882f647-part-0003.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ]
+}

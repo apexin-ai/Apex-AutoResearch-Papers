@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "fe55843beab2d4c89c64",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "audit numbers traceability",
+  "task_key": "worker_audit_numbers-traceability_20260524T042839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_numbers-traceability_20260524T042839.log",
+    "occurrence": 1,
+    "bytes": 654952,
+    "sha256": "158e1d8bb26c0f621ef22ba0b6b2716d4089e93f44343a917ba5f141d7cfde6b"
+  },
+  "statistics": {
+    "messages": 116,
+    "user_turns": 1,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 39,
+      "tool_result": 39,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "fe55843beab2d4c89c64-part-0001.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "fe55843beab2d4c89c64-part-0001.json",
+          "message_count": 71
+        },
+        {
+          "path": "fe55843beab2d4c89c64-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ]
+}

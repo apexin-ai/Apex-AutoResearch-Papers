@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "244f82f6ce732169c42c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check westd38929 status",
+  "task_key": "worker_ops_check-westd38929-status_20260520T221000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-westd38929-status_20260520T221000_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "e65e33070a1a9c4c1f4341b11bd6765bf3a514b044d7de1123b18d182eb138a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行。汇总：\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 85% | 15980 / 97887 MiB |\n| 1 | 67% | 15980 / 97887 MiB |\n| 2 | 59% | 16108 / 97887 MiB |\n| 3 | 63% | 15980 / 97887 MiB |\n\n### 实验进程状态\n| GPU | PID | 实验 | 状态 | 进度 |\n|-----|-----|------|------|------|\n| 0 | 95088 | random_prune k=0.95 seed42 | **运行中** (Rl+) | Task 1/10, Ep 20/50, sr=18/20 (90%) |\n| 1 | 95361 | random_prune k=0.7 seed42 | **运行中** (Rl+) | Task 1/10, Ep 20/50, sr=13/20 (65%) |\n| 2 | 95670 | random_prune k=0.3 seed43 | **运行中** (Rl+) | Task 1/10, Ep 10/50, sr=2/10 (20%) |\n| 3 | 95853 | l2norm_prune k=0.9 seed43 | **运行中** (Rl+) | Task 1/10, Ep 20/50, sr=13/20 (65%) |\n\n4 个进程均存活，GPU 利用率正常（59-85%），各实验 log 有持续输出，都在 Task 1/10 阶段推进中。一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

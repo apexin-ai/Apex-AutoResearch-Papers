@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a52ca22e665d1feb6896",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops scp libero to 38929",
+  "task_key": "worker_ops_scp-libero-to-38929_20260520T083600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_scp-libero-to-38929_20260520T083600_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "62f569e06c8ced2f3520bc28f8d67445c92c4102fc89227cf65ff59e3d070c97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**传输报告：**\n\n| 目录 | 源 (27271) | 传输前 (38929) | 传输后 (38929) |\n|------|-----------|---------------|---------------|\n| `libero/libero/assets/` | 405M | 334M | 398M |\n| `assets/turbosquid_objects/` | 69M | 20M | 69M |\n| `assets/textures/` | 36M | 20M | 33M |\n| `.cache/libero/` | 2.2M | 0 | 2.2M |\n\n实际传输量：~54MB（rsync 增量传输）。\n\n**验证结果：**\n- `libero_object` / `libero_spatial` / `libero_goal` 三个 suite 均加载成功（各 10 tasks）\n- `OffScreenRenderEnv` 创建、reset、set_init_state 均正常\n- robosuite 基础环境正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

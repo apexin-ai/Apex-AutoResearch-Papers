@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b0dfd1ed716387a2017",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fix keff eta scatter",
+  "task_key": "worker_ops_fix-keff-eta-scatter_20260525T222512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-keff-eta-scatter_20260525T222512_result.json",
+    "occurrence": 1,
+    "bytes": 1745,
+    "sha256": "9f61f9d7a3da3227b53ae5bee23f2fde17e07ce414f031e6ff4ce2eb8b3815d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All updated. Here's the final verification summary:\n\n---\n\n**Figures generated** (from actual data):\n| Figure | K | Pool | Computed r | Caption r | n panels |\n|--------|---|------|-----------|-----------|----------|\n| `fig_keff_eta_scatter_main.pdf` | 3 | Full only | 0.8585 | **0.86** | 455 |\n| `fig_keff_eta_scatter.pdf` | 5 | Full | 0.7924 | **0.79** | 3003 |\n| `fig_keff_eta_scatter.pdf` | 5 | Pool A | 0.5094 | **0.51** | 126 |\n\n**Files modified:**\n- `threat_model.tex`: `includegraphics` → `fig_keff_eta_scatter_main.pdf`, caption r=0.70→0.86\n- `methodology.tex L42`: r=0.70→0.86\n- `appendix.tex L93`: caption r=0.81→0.79, Pool A r=0.50→0.51\n- `appendix.tex` (L740, L755, L492, L494, L596, L601, L605, L1183): Pool A r=0.50→0.51\n- `main.tex L43`: Pool A r=0.50→0.51\n\n**Pool A fix confirmed**: Pool A is now the correct capability-matched 9 models (5 API + 4 local), NOT the API-only 9 models. The figure annotation shows r=0.51, matching the computed bivariate r.\n\n**Compilation**: 0 new errors. All pre-existing issues (missing `fig_panel_composition.pdf`, undefined citations) are unchanged.\n\n**Known discrepancy**: The scatter bivariate r values (0.86, 0.79) differ from the per-condition log-space regression correlations (~0.70, ~0.81) that appear elsewhere in the paper (analysis.tex, conclusion.tex, abstract.tex, introduction.tex, appendix.tex VIF section). These references use per-condition regression diagnostic r values (mean VIF consistent with r≈0.70–0.81), which is a different metric from the aggregate bivariate scatter r. I left those per-condition references unchanged — they are internally consistent with the VIF≈2.0–2.9 values from the regression analysis."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

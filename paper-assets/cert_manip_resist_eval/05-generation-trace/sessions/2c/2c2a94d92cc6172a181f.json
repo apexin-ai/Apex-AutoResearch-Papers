@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2c2a94d92cc6172a181f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper figures 1 2",
+  "task_key": "worker_paper_figures-1-2_20260522T210456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figures-1-2_20260522T210456_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "86085b363737f02937c54474865fee7e9b5b48125b04da2020a473cc165ca98c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图都已完成，质量检查通过：\n\n**Fig 1** — Robustness Comparison:\n- Grouped bar chart，η_max vs K_eff 在 4 种校正方法下的 FDR 显著 condition 数\n- η_max 在所有方法下均保持多数显著（5-11/12），K_eff 在 robust 方法下急剧下降（0-3/12）\n- Wild Bootstrap† 和 Clustered SE† 标注为 recommended\n\n**Fig 2** — GAM K_eff 6:6 Split:\n- Diverging bar chart，12 conditions 按 K_eff 效应大小排列\n- 正向 6 条（蓝，targeted attacks: prompt injection, score manipulation, position bias）— diversity harmful\n- 负向 6 条（橙，shared-bias attacks: sycophancy, verbosity bias, authority bias）— diversity protective\n- 所有效应在 GAM 中 FDR 显著\n\n文件位置：\n- 服务器: `/root/cert_manip_resist_eval/artifacts/figures/fig{1,2}_*.{pdf,png}`\n- 本地: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

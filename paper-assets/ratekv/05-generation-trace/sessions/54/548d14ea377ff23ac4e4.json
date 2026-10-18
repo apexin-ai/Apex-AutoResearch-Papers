@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "548d14ea377ff23ac4e4",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "cleanup pythia14b residual",
+  "task_key": "worker_cleanup_pythia14b_residual_20260515T130806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_pythia14b_residual_20260515T130806_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "cb0296bf885b3451845627b70d20180c8b21243f710fce0c59c46237ffd4c889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都完成：\n\n- **Pythia 进程**：PID 333622 + 333627 已 kill，确认无残留\n- **JSON 修复**：`unconstrained_bit_distribution` 已从 `{}` 更新为 `{\"2\": 90, \"4\": 249, \"8\": 45}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

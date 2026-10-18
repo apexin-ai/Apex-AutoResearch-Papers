@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d9fc01aef076b0cac065",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "research bib verify shi2024",
+  "task_key": "worker_research_bib-verify-shi2024_20260523T123030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib-verify-shi2024_20260523T123030_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "e62eaf90a33ad31b8e7f663d3a90c3f7cd5f2c300bc69eabe0f2d1aa953a1874"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核实完成。以下是对比结果：\n\n### arXiv:2402.14016 真实信息\n\n- **标题**: Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment\n- **作者**: Vyas Raina, Adian Liusie, Mark Gales\n- **年份**: 2024\n\n### 当前 bib 条目问题\n\n`shi2024judgerobust` 条目存在 **严重错误**：\n\n| 字段 | 当前 bib 值 | 正确值 |\n|------|-----------|--------|\n| author | Kaijie Shi, Fuwen Luo, Yew Ken Chia, Lidong Bing | **Vyas Raina, Adian Liusie, Mark Gales** |\n| title | Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena | **Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment** |\n\n作者和标题完全错误，是另一篇论文的信息被错误关联到了这个 arXiv ID。\n\n### 修正后的完整 bib 条目\n\n```bibtex\n@article{raina2024judgerobust,\n  author    = {Vyas Raina and Adian Liusie and Mark Gales},\n  title     = {Is {LLM}-as-a-Judge Robust? {Investigating} Universal Adversarial Attacks on Zero-shot {LLM} Assessment},\n  journal   = {arXiv preprint arXiv:2402.14016},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2402.14016},\n  note      = {arXiv:2402.14016}\n}\n```\n\n注意 cite key 也应从 `shi2024judgerobust` 改为 `raina2024judgerobust`，需同步更新所有 `.tex` 文件中的 `\\cite{shi2024judgerobust}` 引用。是否需要我直接修改？\n\nSources:\n- [arXiv:2402.14016](https://arxiv.org/abs/2402.14016)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

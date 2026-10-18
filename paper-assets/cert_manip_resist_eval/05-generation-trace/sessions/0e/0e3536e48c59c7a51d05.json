@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e3536e48c59c7a51d05",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit gam keff data loading",
+  "task_key": "worker_audit_gam-keff-data-loading_20260523T173750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_gam-keff-data-loading_20260523T173750_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "f1298afd1d6de0fa3eca7b1e6017b391878a6a48eb292982e6c0803ce05d86e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现：\n\n**K_eff 值完全一致**，两个脚本从同一 JSON 文件读取相同字段。差异根因是 **ASR 计算的 error handling 不同**：\n\n| | 原始 GAM 脚本 | Bootstrap 脚本 |\n|---|---|---|\n| Error 处理 | `.get(\"winner\", \"tie\")` → error 当作 tie | `_is_valid_score()` → 跳过 error |\n| 结果 | 6:6 split (targeted +, shared-bias -) | 12/12 全部正向 |\n\n**6:6 split 是 bug 产物**。3 个 frontier API 模型 (gemini-3.5-flash 17.7%、gemini-3.1-pro-preview 8.0%、gpt-5.5 3.1%) 有大量 error scores。将 error 当作 \"tie\" 虚增了这些高 K_eff 模型的 ASR，导致 shared-bias attacks 的 GAM partial dependence 被人为翻转为负向。\n\n正确处理 error 后（跳过无效样本），全部 12 个 condition 的 K_eff 效果均为正向。V1 的 shared-bias 负向 slope 仅 -0.15 ~ -2.9，而正确计算的 slope 为 +14 ~ +39，说明原来的\"负向\"极其脆弱。\n\n报告已保存到 `artifacts/diagnostic_gam_keff_mismatch.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

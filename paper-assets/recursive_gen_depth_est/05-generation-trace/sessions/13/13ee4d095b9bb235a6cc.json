@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "13ee4d095b9bb235a6cc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis qwen25 7b selfref 001",
+  "task_key": "worker_analysis_qwen25_7b_selfref_001_20260523T024054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen25_7b_selfref_001_20260523T024054_result.json",
+    "occurrence": 1,
+    "bytes": 1571,
+    "sha256": "84055fbf26fdbdcbc23bbfd1303e87971e2404f3483bd875c5c6f69e69123ae1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 实验 qwen25_7b_selfref_001 结果总结\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| RF 4-class acc | **52.05%** (CI: 51.35%-52.71%) |\n| LR 4-class acc | 48.79% (CI: 48.09%-49.48%) |\n| RF 3-class (d1/d2/d3) | 51.87% (CI: 51.06%-52.70%) |\n| Chance baseline | 25% (4-class) / 33.3% (3-class) |\n\n### Pairwise AUC（RF）\n\n| 对比 | AUC | 解读 |\n|------|-----|------|\n| d0 vs d1 | 0.697 | 相邻深度，最难区分 |\n| d0 vs d2 | 0.895 | |\n| d0 vs d3 | **0.957** | 距离越远越易区分 |\n| d1 vs d2 | 0.673 | |\n| d1 vs d3 | 0.844 | |\n| d2 vs d3 | 0.659 | 相邻深度，最难区分 |\n\nAUC 呈清晰的**单调递增模式**：深度差越大，区分度越高。\n\n### 与 14B 对比\n\n| | Qwen2.5-14B (nucleus) | Qwen2.5-7B self-ref |\n|---|---|---|\n| RF 4-class acc | ~54.05% | 52.05% |\n| 差异 | — | -2.0pp |\n\n7B 仅比 14B 低约 2 个百分点，信号强度非常接近。\n\n### Top-5 特征\n`p90_ppl`, `skew_ppl`, `p90_surprisal`, `kurt_ppl`, `var_surprisal` — 以 perplexity 尾部统计量为主导。\n\n### Hypothesis 验证\n\n**Confirmed.** 递归生成深度信号在 Qwen2.5-7B + self-reference 条件下持续存在：\n- 4-class 准确率 52.05%，远超 chance (25%)，置信区间不含 25%\n- 去掉 d0 后 3-class 仍有 51.87%（chance=33.3%），证明 d1-d3 之间有可分性\n- Pairwise AUC 单调模式与 14B 一致\n- 与 14B 差距极小（~2pp），支持 depth signal 非模型规模特异性的结论\n\n**Conclusion: SUCCESS**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

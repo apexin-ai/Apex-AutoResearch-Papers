@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "65abb25d4f83970695ae",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops fill 4 gpus e3 seed43",
+  "task_key": "worker_ops_fill_4_gpus_e3_seed43_20260523T075512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fill_4_gpus_e3_seed43_20260523T075512.log",
+    "occurrence": 1,
+    "bytes": 648570,
+    "sha256": "dba362a1a67ec641ebaffd416a8e8fe80f17fbe6b06e4d0b587adff53eadd993"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 50,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 193,
+      "chunks": [
+        {
+          "path": "65abb25d4f83970695ae-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "65abb25d4f83970695ae-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1041e310bb2ca87cf9dc",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 nohup start",
+  "task_key": "worker_code_hgrn2_nohup_start_20260518T155445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_nohup_start_20260518T155445_result.json",
+    "occurrence": 1,
+    "bytes": 159,
+    "sha256": "cfab2b11758dcafddc4c4d12c0d3bedd0b9e92a408795301d64ca18791b4ef9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HGRN2 评测已启动：\n- **PID**: 352421\n- **状态**: 运行中（`bash` 进程已确认存活）\n- **日志**: `/tmp/hgrn2_eval_all.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

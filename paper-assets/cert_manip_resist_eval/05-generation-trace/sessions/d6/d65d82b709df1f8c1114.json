@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d65d82b709df1f8c1114",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 download setup",
+  "task_key": "worker_ops_fp16-download-setup_20260525T103533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-download-setup_20260525T103533_result.json",
+    "occurrence": 1,
+    "bytes": 2592,
+    "sha256": "556c238a489abf0d4ddc7bafd29f058f26214b976933f3c3885b07d18975b7a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 模型下载状态\n\n| 模型 | FP16 状态 | AWQ 状态 | FP16 路径 | AWQ 路径 |\n|------|----------|---------|----------|---------|\n| Qwen2.5-7B | ❌缺失→⏳下载中 | ❌缺失→⏳下载中 | (下载到 modelscope_cache) | (下载到 modelscope_cache) |\n| Qwen2.5-14B | ⚠️不完整(6/8 shards)→⏳补全中 | ✅完整 9.4GB | `.../Qwen2___5-14B-Instruct` | `.../Qwen2___5-14B-Instruct-AWQ` |\n| Qwen2.5-32B | ⚠️不完整(15/17 shards)→⏳补全中 | ✅完整 19GB | `.../Qwen2___5-32B-Instruct` | `.../Qwen2___5-32B-Instruct-AWQ` |\n| Qwen2.5-72B | ❌缺失，**磁盘不足(需~140GB)** | ❌缺失→⏳下载中 | 无法下载 | (下载到 modelscope_cache) |\n| Llama-3.1-8B | ✅完整 30GB | ⚠️不完整(1/2 in temp)→⏳补全中 | `.../Meta-Llama-3___1-8B-Instruct` | `.../Meta-Llama-3___1-8B-Instruct-AWQ-INT4` |\n| Mistral-7B-v0.3 | ❌缺失→⏳下载中 | ❌缺失→⏳下载中 | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3-AWQ` |\n\n> 所有 ModelScope 路径前缀: `/root/autodl-tmp/modelscope_cache/`\n\n## 启动的 nohup 下载\n\n| 模型 | PID | 日志路径 | 来源 |\n|------|-----|---------|------|\n| Qwen2.5-14B FP16 补全 | 80512 | `/tmp/download_qwen14b_fp16.log` | ModelScope |\n| Qwen2.5-32B FP16 补全 | 80606 | `/tmp/download_qwen32b_fp16.log` | ModelScope |\n| Llama-3.1-8B AWQ 补全 | 80699 | `/tmp/download_llama8b_awq.log` | ModelScope |\n| Qwen2.5-7B FP16 | 80806 | `/tmp/download_qwen7b_fp16.log` | ModelScope |\n| Qwen2.5-7B AWQ | 80909 | `/tmp/download_qwen7b_awq.log` | ModelScope |\n| Qwen2.5-72B AWQ | 81023 | `/tmp/download_qwen72b_awq.log` | ModelScope |\n| Mistral-7B FP16 | 81175 | `/tmp/download_mistral7b_fp16.log` | HuggingFace |\n| Mistral-7B AWQ | 81214 | `/tmp/download_mistral7b_awq.log` | HuggingFace |\n\n## 磁盘状态\n\n- **数据盘** `/root/autodl-tmp`: 167GB / 250GB 已用，**84GB 可用**\n- **系统盘** `/root`: 9.2GB / 30GB 已用，21GB 可用\n\n## 风险提醒\n\n1. **Qwen2.5-72B FP16 (~140GB) 无法下载**——磁盘空间不足，需清理或换更大磁盘\n2. 8 个并发下载预计总新增 ~93GB，与可用 84GB 接近。72B AWQ (~40GB) 可能导致磁盘满——如果空间不足会自动失败，不会损坏已有模型\n3. **Mistral-7B AWQ repo `TheBloke/Mistral-7B-Instruct-v0.3-AWQ` 可能不存在**，需检查日志确认。备选: `solidrust/Mistral-7B-Instruct-v0.3-AWQ`\n4. HF cache 中的旧残余文件 (~130MB) 已部分清理 .incomplete 文件，目录结构保留"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

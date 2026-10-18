@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1dae4160fbe9a7cd563a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "regen fig method gap",
+  "task_key": "worker_regen-fig-method-gap_20260523T214437",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_regen-fig-method-gap_20260523T214437_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "81ea796a1286a435dc87ba12b8e3e809d6ff06f92871e887924b3990d3054c0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，OpenVLA bar 已移除，仅保留 π0.5 和 X-VLA。\n\n产出文件：\n- `docs/paper/figures/paper/fig_method_gap.pdf`\n- `docs/paper/figures/paper/fig_method_gap.png`\n- `artifacts/_project/chart/fig_method_gap.pdf`\n- `artifacts/_project/chart/fig_method_gap.png`\n\n图表内容：π0.5 在 Object/Spatial 上 method gap 分别为 28.8/21.4 pp（远超 2pp 阈值），X-VLA 在 Object/Spatial/Goal 上分别为 0.2/1.4/0.2 pp（均在阈值以下），15× bracket 标注 Spatial 维度差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

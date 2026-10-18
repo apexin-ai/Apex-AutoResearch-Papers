@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20efe6f94009ff955e7e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval imm 100k restart object",
+  "task_key": "worker_eval_imm_100k_restart_object_20260517T010938",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_imm_100k_restart_object_20260517T010938_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "93d3e2c83924b8471501692cdcc0500cbdb926418dac693330e60301816a8a2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动：\n\n```\nGPU 0: python PID=727477, 3247MiB\nStatus: Task 0/10 starting — \"pick up the alphabet soup and place it in the basket\"\nMode: acis_prune, Suite: libero_object, 50 eps/task\n```\n\nSession: `tmux attach -t imm_100k_eval_object` 可查看实时进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

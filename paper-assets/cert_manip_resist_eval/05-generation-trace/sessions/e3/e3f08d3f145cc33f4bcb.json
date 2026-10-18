@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e3f08d3f145cc33f4bcb",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis v2 pattern mining",
+  "task_key": "worker_analysis_v2-pattern-mining_20260523T184437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2-pattern-mining_20260523T184437_result.json",
+    "occurrence": 1,
+    "bytes": 1699,
+    "sha256": "0f24f528f31542eec83d7080301c79d03fd7a14f7d59e0749536401175aabdd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 output files saved. Summary:\n\n---\n\n### Part A: K=3 K_eff FDR by Attack Type\n- **4/4 significant conditions are shared-bias**: mmluxsycophancy (0.032), mmluxverbosity_bias (0.032), mmluxauthority_bias (0.032), arc_challengexverbosity_bias (0.042)\n- **0/6 targeted attacks** reach FDR significance at K=3\n- **Mann-Whitney U**: p=0.147 (trend-level, underpowered with n=6/group), rank-biserial r=-0.39\n- Targeted median FDR p = 0.082 vs shared-bias median = 0.037\n\n### Part B: Aggregation R² Bootstrap (B=9999)\n| Method | R² | 95% CI |\n|--------|-----|--------|\n| Threshold | 0.829 | [0.806, 0.859] |\n| Majority | 0.327 | [0.309, 0.351] |\n| Weighted | 0.328 | [0.311, 0.352] |\n| Bayesian | 0.087 | [0.077, 0.106] |\n\nAll pairwise differences significant except Majority vs Weighted (CI includes 0). Threshold–Bayesian gap = 0.741 [0.712, 0.771].\n\n### Part C: GAM Magnitude Gradient\n- K=3/K=5: Kruskal-Wallis p=0.200/0.423 (not significant) — targeted and shared-bias slopes are NOT statistically distinguishable in magnitude\n- Position_bias slopes (~0.4–0.85) are 30–60× smaller than others (~13–35) due to ASR scale difference\n- All 12 conditions show positive slopes (direction_positive_rate = 1.0 for most)\n\n### Part D: V2 Script Audit\n| Script | Version | Needs Rerun |\n|--------|---------|-------------|\n| run_cross_benchmark_iv.py | V1 | Yes |\n| run_sensitivity_analysis.py | N/A (reads stats) | Depends on upstream |\n| run_sensitivity_analysis_poolA.py | N/A (reads stats) | Yes (upstream V1) |\n| run_capability_matched.py | V1 | Yes |\n| run_epsilon_sensitivity_k5.py | V1 | Yes |\n| run_alt_diversity_effect_size.py | V1 | Yes |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

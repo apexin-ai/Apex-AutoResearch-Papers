@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b0a9793311ed390b6f86",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 step3 5 compat review",
+  "task_key": "worker_code_plan001-step3-5-compat-review_20260522T103145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-step3-5-compat-review_20260522T103145_result.json",
+    "occurrence": 1,
+    "bytes": 1439,
+    "sha256": "af9e2f44ee3122b0a42221cc301f85d32aed58a20900c70af1cd1361bb67b3a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有依赖就绪。\n\n## 审查总结\n\n**兼容性状态：全部通过（1 个 bug 已修复）**\n\n### 发现并修复的问题\n\n`scripts/run_plan001_confound_diagnosis.py` — `load_local_individual_asr()` 未对 `position_bias` 攻击分数执行 A↔B 反转。position_bias 攻击交换了 response_a/b，checkpoint 中存储的是原始模型输出，需要反转 winner 才能与原始 ground_truth 正确比较。已添加 `_invert_winners()` 并在 `attack == \"position_bias\"` 时调用。（Step 4/5 已有此逻辑，仅 confound diagnosis 遗漏。API 模型不受影响，因为直接读取预计算 ASR。）\n\n### 验证通过项\n\n- 文件名双下划线格式 `{model}__{ds}__{condition}.json` — 一致 ✓\n- JSON 字段（`scores`, `winner`, `asr`, `ground_truth_winner`）— 一致 ✓\n- 15 个 model ID — 一致 ✓\n- 6 个攻击名 — 一致 ✓\n- 本地/API 数据源分离读取逻辑 — 正确 ✓\n- 所有 Python 依赖 — 已安装 ✓\n- 数据流端到端测试（7 项）— 全部通过 ✓\n\n### 当前状态\n\n- 已完成：claude-3-haiku（全部条件）、gpt-4o（部分条件）\n- 未完成：7 个 API 模型仍在运行\n- Step 3-5 脚本支持优雅降级（跳过缺失模型的 panel）\n\n### 产出\n\n- 修复：`scripts/run_plan001_confound_diagnosis.py`（服务器 + 本地）\n- 新增：`scripts/run_plan001_pipeline.sh`（服务器 + 本地）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

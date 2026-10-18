@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "51ce52cb555078e3f291",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix e4 pythia exact",
+  "task_key": "worker_fix_e4-pythia-exact_20260522T111254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_e4-pythia-exact_20260522T111254_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "4d8d12dacf4c72c82037e13c7703fcea70af4f5d755030bb4bcae73a2ff6474e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已启动：\n- **PID**: 838915\n- **Server**: westb-48145, cuda:0\n- **状态**: seed1 正在下载模型中\n- **脚本**: 依次评估 seed1-9，每个 seed 跑 lambada_openai + arc_easy，使用 `EleutherAI/pythia-410m-seed{N}` HF model ID\n\n5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

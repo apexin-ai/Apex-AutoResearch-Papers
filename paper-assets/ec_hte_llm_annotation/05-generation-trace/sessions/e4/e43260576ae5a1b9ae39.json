@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e43260576ae5a1b9ae39",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "paper r20 fixes full",
+  "task_key": "worker_paper_r20-fixes-full_20260524T120136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r20-fixes-full_20260524T120136_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "08687a1a2a07891053f03298c5c6801378fd591711ccbac452d6e82ff91e216b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 项修改已完成，编译通过。\n\n**结果**：0 errors, 0 undefined refs, 主文 8 页（未超页），abstract ~170 words。\n\n**修改清单**：\n- **MF1**: method.tex L11 + experiments.tex L81-85 新增 (A2) 讨论，配套精简 James-Stein 解释、PPCI 段、对比段\n- **MF2**: abstract.tex AUC 顺序改为 0.86 → 1.0 → 0.63\n- **SF3**: 4 篇引用已补（Gligorić NAACL'25, Knox/Lucas/Cho ARPS'22, Ura QE'18, Knox/Lowe/Mummolo APSR'20），bib 条目已添加，ura2015→ura2018 已更新\n- **SF1**: experiments.tex L78 补 Table 22 筛选结果（strict/relaxed screening）\n- **SF4**: method.tex L56 补 PPCI 组合独立性充分条件\n- **SF5**: method.tex L44 补 Eq.6 独立性假设 + 脚注\n- **SF6**: experiments.tex L85 补 class imbalance 退化\n- **Figure 2**: experiments.tex + theory.tex 中 fig:heatmap 引用已加 `(Appendix~\\ref{app:dgp})`\n\n报告已保存至 `artifacts/r20_fixes_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

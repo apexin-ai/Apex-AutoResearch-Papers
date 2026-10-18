@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d5a8b77c16aa5eb3f788",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis edd threshold sensitivity",
+  "task_key": "worker_analysis_edd_threshold_sensitivity_20260515T032002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edd_threshold_sensitivity_20260515T032002_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "a95b37b17f58933e95eccadee08c119468eef8157edc221f5c704f58ce05da0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**EDD=3 计数随阈值变化：** 9/9 → 8/9 → 7/9 → 5/9（T=0.65/0.70/0.75/0.80）\n\n**关键发现：**\n- **瓶颈统一是 d2v3 pair**，d0v1（>0.98）从不是限制因素\n- **topk50 策略最敏感**：3 个 topk50 cell 占了 4 个敏感 cell 中的 3 个\n- **5 个 cell 全阈值稳定**（EDD=3）：pythia_nucleus、olmo_nucleus、olmo_temp09、gpt2xl_nucleus、gpt2xl_temp09\n- **pythia_topk50 最脆弱**：EDD 从 3→2→2→1，唯一降到 EDD=1 的 cell\n- **推荐默认阈值 T=0.75**：7/9 维持 EDD=3，仅 topk50 掉队；T=0.80 过于激进（5/9），T=0.65/0.70 过于宽松\n\n**注：** 原 Atlas v2 声称 T=0.80 下\"6/7 cells EDD=3\"，但实际数据显示 pythia_temp09 的 d2v3=0.7928 < 0.80，应为 EDD=2。完整 9-cell 分析下 T=0.80 实际为 5/9 EDD=3。\n\n产出已注册：`art_20260515_acdedc`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

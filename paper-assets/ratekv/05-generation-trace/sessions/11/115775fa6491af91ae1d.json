@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "115775fa6491af91ae1d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "audit paper data integration",
+  "task_key": "worker_audit_paper_data_integration_20260516T023911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_data_integration_20260516T023911_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "8b2582ff65313e71a86dfc051f5d97e2081d027ad779c22d2202cc3dfde27a99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。总结：\n\n**3/5 项已集成，2 项缺失：**\n\n| 项目 | 状态 |\n|------|------|\n| Compounding curves (Fig 2) — 3 曲线 + 最新 sweep 数据 | ✅ |\n| §3.3 compounding 讨论 — 引用和数值匹配 | ✅ |\n| Qwen 3-seed downstream CI — ±1σ error bars | ✅ |\n| **Llama 3-seed downstream CI** — `experiments.tex:123` 无 ±std | ❌ |\n| **Phi-3-medium-14B Table 1** — 无占位行 | ❌ |\n\n两个缺失项的修复点：\n- Llama CI → `experiments.tex:123` 添加 `±X.X` 格式 error bars，更新 caption (line 115)\n- Phi-3 → `experiments.tex:58` 插入新行，同步更新 Models 段落 (line 7-16) 和 Table 1 caption (line 44)\n\n报告已写入 `artifacts/paper_data_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

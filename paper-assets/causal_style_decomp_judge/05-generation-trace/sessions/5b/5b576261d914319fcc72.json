@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b576261d914319fcc72",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code llama70b poll 4",
+  "task_key": "worker_code_llama70b_poll_4_20260521T141946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b_poll_4_20260521T141946_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "f639cdc64bc370e386cc045981be7e2f5e4beba8ea42562c3d7b0df1f911219e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**8/30 shards complete, 36 GB total, process ALIVE (running 48 min), no temp dir found — download in progress, ~3.5 hours remaining at current pace.**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

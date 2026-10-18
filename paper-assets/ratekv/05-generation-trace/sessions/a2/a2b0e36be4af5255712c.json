@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b0e36be4af5255712c",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code c4 cross dataset eval",
+  "task_key": "worker_code_c4_cross_dataset_eval_20260514T011833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c4_cross_dataset_eval_20260514T011833.log",
+    "occurrence": 1,
+    "bytes": 573689,
+    "sha256": "911c0e20eca4d7f832bda93c3326d4f2faf5f7350ce8ec4fe54cd488561e3b74"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 67,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "a2b0e36be4af5255712c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a2b0e36be4af5255712c-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ]
+}

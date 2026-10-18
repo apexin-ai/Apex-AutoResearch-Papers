@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "3c059c40d20405a1c8f5",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops pi05 pipeline diagnostic",
+  "task_key": "worker_ops_pi05-pipeline-diagnostic_20260521T030016",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_pi05-pipeline-diagnostic_20260521T030016.log",
+    "occurrence": 1,
+    "bytes": 668115,
+    "sha256": "4227b5782b1fc338a47f2cc5ac4729e1fafb50b9f5b3c07aa1bfb3840225691f"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 47,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "3c059c40d20405a1c8f5-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "3c059c40d20405a1c8f5-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ]
+}

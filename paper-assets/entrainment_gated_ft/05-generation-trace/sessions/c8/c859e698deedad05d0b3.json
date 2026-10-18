@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "c859e698deedad05d0b3",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix e4 pythia restart",
+  "task_key": "worker_fix_e4-pythia-restart_20260522T102601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_e4-pythia-restart_20260522T102601_result.json",
+    "occurrence": 1,
+    "bytes": 2349593,
+    "sha256": "0acf1ac395200c9d5a748329dd365e93300e1f893057e2af4b81f4b25179f2e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c859e698deedad05d0b3-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

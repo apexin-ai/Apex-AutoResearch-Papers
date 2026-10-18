@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aebe4c2bd88ab2118714",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "verify pdf patches",
+  "task_key": "worker_verify_pdf-patches_20260523T174403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_pdf-patches_20260523T174403_result.json",
+    "occurrence": 1,
+    "bytes": 2385,
+    "sha256": "bc9f7b51f554ef77d83f5d4e8c5fa10514e453bde6e9bc3f599ec877b77666f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器没有 pdflatex，PDF 已在本地编译完成。汇总结果：\n\n---\n\n## Patch 验证\n\n**Patch 1: PIQA routing** ✅ 已到位\n- `experiments.tex:41` — 明确报告 PIQA routing 为负结果：`\"on PIQA, it is significantly negative ($-0.49$\\,pp, $p = .006$)\"`\n- `conclusion.tex:5` — 同样确认：`\"routing is counterproductive on low-$\\alpha$ tasks ($-0.49$\\,pp on PIQA)\"`\n\n**Patch 2: Appendix P.2 Shapiro-Wilk** ✅ 已到位\n- `appendix.tex:541` — 包含 W 统计量（`all $W < 0.98$, $p < 10^{-6}$`）和 `\"approximately log-normal distribution\"` 描述，含 skewness 数据\n\n**Patch 3: Appendix Y AI disclosure** ✅ 已到位\n- `appendix.tex:777-789` — 完整声明：`\\section{Use of AI Assistants}`，列出 Claude (Anthropic) 用于 Code/Writing/Literature 三方面\n\n**Patch 4: R15-R17 五处微调** ✅ 全部到位\n- **\"nearly disjoint\" 替换**: ✅ 主论文 tex 中无此短语（仅出现在 author_response_r7.tex 中），主文使用 `\"${\\sim}90\\%$ non-overlap\"` 等 calibrated 表述\n- **GDN confound inline**: ✅ `experiments.tex:110` (§4.4 Robustness) 详细讨论 GDN 16-head confound，引用 Appendix E\n- **5-arch 验证 (10 pairs)**: ✅ `experiments.tex:110` — `\"Five-architecture validation at 340M (GLA, DeltaNet added) confirms $J \\leq 0.14$ across all ten pairs and four benchmarks (all $p < .01$)\"`\n- **DeltaNet Table 30**: ✅ `appendix.tex:740-770` — 含 GLA-DeltaNet 等全部 10 对数据\n- **Abstract 5-arch 句法**: ✅ `main.tex:26` — `\"validation across five architectures and ten pairwise comparisons confirms this on all four benchmarks (all $p < .01$)\"`\n\n---\n\n## 编译结果\n\n| 项目 | 结果 |\n|------|------|\n| 编译状态 | ✅ 成功（本地编译，服务器无 pdflatex） |\n| Warnings | 1（`caption` 包 hypcap 选项，无害） |\n| Undefined references | 0 |\n| Undefined citations | 0 |\n| 总页数 | 22 页 |\n| Abstract 字数 | ~160 words（≤ 200 ✅） |\n\n## ⚠️ 需注意\n\n**主文超 8 页**：§5 Conclusion 从第 9 页开始，主文（§1-§5）约 9 页，超过 EMNLP 2026 的 8 页限制。Limitations/References/Appendix 不计入，但 Conclusion 属于主文。需要压缩约 1 页。\n\nPDF 路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

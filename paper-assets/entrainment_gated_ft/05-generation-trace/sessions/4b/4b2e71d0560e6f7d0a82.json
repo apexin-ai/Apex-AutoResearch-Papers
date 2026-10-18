@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b2e71d0560e6f7d0a82",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "ops s3 backup",
+  "task_key": "worker_ops_s3-backup_20260525T205524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup_20260525T205524_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "a0f476f02f42e3ec4c260f7fb6784bde4f6002fa84ec2c19a2c45759de1167af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 备份完成\n\n| 项目 | 值 |\n|------|-----|\n| **Tarball** | `entrainment_gated_ft-final-20260525T205624Z.tar.gz` |\n| **大小** | 1496.8 MB (1,569,461,077 bytes) |\n| **S3 URI** | `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/entrainment_gated_ft/project-archive/entrainment_gated_ft-final-20260525T205624Z.tar.gz` |\n| **上传速率** | 16.0 MB/s (93.5s) |\n\n**注意**：由于 BE 机器无法直连 westb-48145（SSH 密钥认证失败），跳过了 Step 2 的 SCP 步骤，改为从服务器直接上传到 S3。已清理服务器上的临时凭证脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

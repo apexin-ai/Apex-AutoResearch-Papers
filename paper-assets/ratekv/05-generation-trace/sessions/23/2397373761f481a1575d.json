@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2397373761f481a1575d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama eval bf16 fix",
+  "task_key": "worker_code_llama_eval_bf16_fix_20260514T021119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_eval_bf16_fix_20260514T021119_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "63432949103a410e706ab8bb461d226cfa543eb9fe804b43e8e2b1d7162175ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**已修复：**\n- `run_llama_eval_fix.py:93` — `torch.float16` → `torch.bfloat16`，标签 `FP16` → `BF16`\n- `run_exp_e_eval_fix.py:118` — `torch.float16` → `torch.bfloat16`\n\n**无需修复：**\n- `eval_ppl.py` — 已经是 `bfloat16`\n- `run_llama_eval_recovery.py` — 已经是 `bfloat16`\n- 其他文件的 `fp16` 均为变量名/字符串，不影响实际 dtype\n\n**进程状态：**\n- `llama_eval_bf16` tmux session — GPU 1 上运行中（14.9GB 已加载），PID 170958\n- `mistral_pipeline` tmux session — GPU 0 上正常运行，未受影响\n\n**注意：** 原任务指定 `CUDA_VISIBLE_DEVICES=0`，但实际 GPU 0 被 Mistral 占用（17.2GB），改用 GPU 1 启动 Llama eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9a60b61a7e4757673cba",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check v8 diagnostics artifacts",
+  "task_key": "worker_check_v8-diagnostics-artifacts_20260516T012925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_v8-diagnostics-artifacts_20260516T012925_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "82e8f3b00b0fd918267ab479e2ad9e26d7de0d528a6a707f0758172fdb16af0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断产出检查结果\n\n### v8_step2k_diagnostics/ — 5 个文件全部存在\n\n| 文件 | 大小 |\n|------|------|\n| `margin_distribution.png` | 139 KB |\n| `margin_distribution_stats.json` | 351 B |\n| `keep_ratio_sensitivity.png` | 199 KB |\n| `keep_ratio_sensitivity.json` | 369 B |\n| `token_importance_heatmap.png` | 943 KB |\n\n生成时间：2026-05-16 09:17–09:25\n\n### scripts/ — 5 个诊断脚本\n\n- `analyze_margin_distribution.py`\n- `analyze_keep_ratio_sensitivity.py`\n- `visualize_token_importance.py`\n- `eval_checkpoint_trajectory.py`\n- `plot_checkpoint_trajectory.py`\n\n### v8 训练进度\n\nstep **23550/30000**（78.5%），loss=0.0355，margin_loss=0.0671，Δ=0.7421，sps=3.1。LIP monitor 正常（spectral_norm=1.0003）。训练运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

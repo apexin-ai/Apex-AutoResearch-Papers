@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "946d579d85b42ae8a67e",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp llama multi seed ppl",
+  "task_key": "worker_exp_llama_multi_seed_ppl_20260516T033727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_llama_multi_seed_ppl_20260516T033727_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "4b35c1414f362f4fb4e1bbb2c31abe8e2f0a4701a68b5a0a41367e586e97c74c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n- **exp_id**: `llama_multi_seed_ppl`\n- **GPU**: cuda:0 (RTX PRO 6000, 96GB)\n- **tmux session**: `llama_multi_seed_ppl`\n- **日志**: `~/runs/ratekv/llama_multi_seed_ppl.log`\n- **输出**: `/root/ratekv/artifacts/llama_multi_seed_ppl_results.json`\n\n3 个 seed (42, 123, 456) 的 PPL eval 正在运行，dry-run 已确认 seed 间 calibration subset 差异率 99%+。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

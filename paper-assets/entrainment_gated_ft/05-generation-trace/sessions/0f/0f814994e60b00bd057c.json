@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "0f814994e60b00bd057c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 pure baselines",
+  "task_key": "worker_exp_exp-005-pure-baselines_20260522T155641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-pure-baselines_20260522T155641_result.json",
+    "occurrence": 1,
+    "bytes": 2410671,
+    "sha256": "2710692e33d36f741f21ad3d84fc66263a492060a0e2f6367ff79f69264e04df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0f814994e60b00bd057c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

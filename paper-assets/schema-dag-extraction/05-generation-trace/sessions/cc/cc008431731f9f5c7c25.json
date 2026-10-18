@@ -1,0 +1,2289 @@
+{
+  "schema_version": "1.0",
+  "id": "cc008431731f9f5c7c25",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis docred factorial tost",
+  "task_key": "worker_analysis_docred_factorial_tost_20260518T213650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_factorial_tost_20260518T213650.log",
+    "occurrence": 1,
+    "bytes": 130675,
+    "sha256": "30fe0e91fa1400769b621f26a6de54a4a5eec072f591d9d1050e52abad6d3c8d"
+  },
+  "statistics": {
+    "messages": 56,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 19,
+      "tool_result": 19,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "28ab2000-6c9e-4fc7-a695-6d84f8b754af",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779155400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "c8a68d35-8aac-48c0-abd6-71ecc1493ec1",
+                "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by exploring the DocRED BCS-controlled experiment data on the remote server.",
+              "signature": "EpQCClkIDRgCKkDVd7+iAqmclyJbBSNXNDrDpei9kAxrPuuloFiZceDz6wBmWPUtncuj4WL+I0TVRlnTkzLZ8+aXmY4NYF6tb9TDMg9jbGF1ZGUtb3B1cy00LTY4ABIM+PSGY0L1SXo3iCUWGgxwbZNhPLmNAuV1FasiMGmbzGZ/4c6sX0RMjF9pejCmIiv3jPES1gNiBqKRhjhYiSajIY/20GmhYwH3rNbOmypplNFv7/PrTIezGyo+KyhLudNUTaUUV68gVbFAaYNvgwnXEAuwMLnb0j9bWeFW5LUyBs/cSOCGgfZYOwYPOWipvt+rdoJ54WEdoidz49gNCHd6jK+n9uwvgnoPyVlVcNjqf853GD5lmpqnGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "fa28676c-a2f1-48b0-88a2-58716c80fa7f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLoYEoCvys6gQHL7MFSe8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13488,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13488
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先 SSH 到服务器找数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "8a2b13c6-72a8-4c9f-bc03-7c18358ca7ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLoYEoCvys6gQHL7MFSe8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13488,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13488
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LAwaDpb11skTjEoyvuxYAt",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "dda41557-9aab-4160-a8ca-f296320be139",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLoYEoCvys6gQHL7MFSe8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13488,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13488
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T21:37:03.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LAwaDpb11skTjEoyvuxYAt",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "765fdb0c-44d8-4754-acab-630a4943e2e3",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CNTibHYqcBdMjppiEzKhpN",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && find results/ artifacts/ -path \"*docred*\" -name \"*.json\" 2>/dev/null | head -30",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "5d599d74-846f-4914-8696-c7c449bf298a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rp5ixWHLk2MV4BsiZmDUbX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 394,
+                "cache_read_input_tokens": 25329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 394
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T21:37:07.953Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CNTibHYqcBdMjppiEzKhpN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts/exp_docred_confusability/preprocess_config.json\\\\nartifacts/exp_docred_confusability/predictions.json\\\\nartifacts/exp_docred_confusability/eval_results.json\\\\nartifacts/exp_docred_confusability/pilot_results.json\\\\nartifacts/exp_docred_confusability/bcs_fix_results.json\\\\nartifacts/exp_docred_confusability/phase2_preprocess_config.json\\\\nartifacts/exp_docred_confusability/all_predictions/phase2_predictions.json\\\\nartifacts/exp_docred_confusability/phase2_eval_results.json\\\\nartifacts/exp_docred_confusability/count_curve_results.json\\\\nartifacts/exp_docred_confusability/bcs_controlled_results.json\\\\nartifacts/exp_docred_confusability/bootstrap_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "aa3d3f73-d5b9-4059-9124-437730da8efd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts/exp_docred_confusability/preprocess_config.json\\\\nartifacts/exp_docred_confusability/predictions.json\\\\nartifacts/exp_docred_confusability/eval_results.json\\\\nartifacts/exp_docred_confusability/pilot_results.json\\\\nartifacts/exp_docred_confusability/bcs_fix_results.json\\\\nartifacts/exp_docred_confusability/phase2_preprocess_config.json\\\\nartifacts/exp_docred_confusability/all_predictions/phase2_predictions.json\\\\nartifacts/exp_docred_confusability/phase2_eval_results.json\\\\nartifacts/exp_docred_confusability/count_curve_results.json\\\\nartifacts/exp_docred_confusability/bcs_controlled_results.json\\\\nartifacts/exp_docred_confusability/bootstrap_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"artifacts/exp_docred_confusability/preprocess_config.json\\nartifacts/exp_docred_confusability/predictions.json\\nartifacts/exp_docred_confusability/eval_results.json\\nartifacts/exp_docred_confusability/pilot_results.json\\nartifacts/exp_docred_confusability/bcs_fix_results.json\\nartifacts/exp_docred_confusability/phase2_preprocess_config.json\\nartifacts/exp_docred_confusability/all_predictions/phase2_predictions.json\\nartifacts/exp_docred_confusability/phase2_eval_results.json\\nartifacts/exp_docred_confusability/count_curve_results.json\\nartifacts/exp_docred_confusability/bcs_controlled_results.json\\nartifacts/exp_docred_confusability/bootstrap_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JYcReQcASHGEMf6hcn9ZRS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 -c \"\nimport json\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\nprint(type(d))\nif isinstance(d, dict):\n    print('Keys:', list(d.keys())[:20])\n    for k in list(d.keys())[:5]:\n        v = d[k]\n        if isinstance(v, dict):\n            print(f'  {k}: keys={list(v.keys())[:10]}')\n        elif isinstance(v, list):\n            print(f'  {k}: list len={len(v)}, first={v[0] if v else None}')\n        else:\n            print(f'  {k}: {repr(v)[:200]}')\nelif isinstance(d, list):\n    print('List len:', len(d))\n    print('First:', json.dumps(d[0], indent=2)[:500] if d else 'empty')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "e3df350f-60bc-4f10-9ee4-eb78fd1935be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyERUdRUvDZibeN2SX4ESB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 25723,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T21:37:14.470Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JYcReQcASHGEMf6hcn9ZRS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"<class 'dict'>\\\\nKeys: ['bcs_count_16_high_bcs', 'bcs_count_16_low_bcs', 'bcs_count_16_random', 'bcs_count_32_high_bcs', 'bcs_count_32_low_bcs', 'bcs_count_32_random']\\\\n  bcs_count_16_high_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_16_low_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_16_random: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_32_high_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_32_low_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "7990eea1-d1cb-4b29-874f-85fe09aba6fe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"<class 'dict'>\\\\nKeys: ['bcs_count_16_high_bcs', 'bcs_count_16_low_bcs', 'bcs_count_16_random', 'bcs_count_32_high_bcs', 'bcs_count_32_low_bcs', 'bcs_count_32_random']\\\\n  bcs_count_16_high_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_16_low_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_16_random: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_32_high_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  bcs_count_32_low_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"<class 'dict'>\\nKeys: ['bcs_count_16_high_bcs', 'bcs_count_16_low_bcs', 'bcs_count_16_random', 'bcs_count_32_high_bcs', 'bcs_count_32_low_bcs', 'bcs_count_32_random']\\n  bcs_count_16_high_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  bcs_count_16_low_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  bcs_count_16_random: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  bcs_count_32_high_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  bcs_count_32_low_bcs: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "有 count=16 和 count=32 的数据，且已按 high_bcs/low_bcs 分组。探索 batch 级别数据结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "26480f82-bba6-4054-931a-facc8ff23011",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EoZ9fq7yjgp2haREL2dJXh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 770,
+                "cache_read_input_tokens": 26174,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 770
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014eeLHR8UQzECzrjaPBYv8A",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 -c \"\nimport json\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\n\nfor cond in ['bcs_count_16_high_bcs', 'bcs_count_16_low_bcs', 'bcs_count_32_high_bcs', 'bcs_count_32_low_bcs']:\n    c = d[cond]\n    print(f'{cond}:')\n    print(f'  n_samples={c[\\\"n_samples\\\"]}, mean_acc={c[\\\"mean_acc\\\"]:.4f}, std_acc={c[\\\"std_acc\\\"]:.4f}, mean_bcs={c[\\\"mean_bcs\\\"]:.4f}')\n    batches = c['batches']\n    print(f'  n_batches={len(batches)}')\n    if batches:\n        b0 = batches[0]\n        print(f'  batch keys: {list(b0.keys())}')\n        print(f'  batch[0]: acc={b0.get(\\\"accuracy\\\", b0.get(\\\"acc\\\"))}, bcs={b0.get(\\\"bcs\\\", b0.get(\\\"bcs_value\\\"))}')\n    print()\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "97afc251-e21b-4ce1-abca-e387bcb63d5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EoZ9fq7yjgp2haREL2dJXh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 770,
+                "cache_read_input_tokens": 26174,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 770
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T21:37:22.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014eeLHR8UQzECzrjaPBYv8A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\n\\\\\\\\nfor cond in [\\\\\\\\'bcs_count_16_high_bcs\\\\\\\\', \\\\\\\\'bcs_count_16_low_bcs\\\\\\\\', \\\\\\\\'bcs_count_32_high_bcs\\\\\\\\', \\\\\\\\'bcs_count_32_low_bcs\\\\\\\\']:\\\\\\\\n    c = d[cond]\\\\\\\\n    print(f\\\\\\\\'{cond}:\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  n_samples={c[\\\\\\\\\\\\\\\\\\\\\\\"n_samples\\\\\\\\\\\\\\\\\\\\\\\"]}, mean_acc={c[\\\\\\\\\\\\\\\\\\\\\\\"mean_acc\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}, std_acc={c[\\\\\\\\\\\\\\\\\\\\\\\"std_acc\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}, mean_bcs={c[\\\\\\\\\\\\\\\\\\\\\\\"mean_bcs\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n    batches = c[\\\\\\\\'batches\\\\\\\\']\\\\\\\\n    print(f\\\\\\\\'  n_batches={len(batches)}\\\\\\\\')\\\\\\\\n    if batches:\\\\\\\\n        b0 = batches[0]\\\\\\\\n        print(f\\\\\\\\'  batch keys: {list(b0.keys())}\\\\\\\\')\\\\\\\\n        print(f\\\\\\\\'  batch[0]: acc={b0.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\", b0.get(\\\\\\\\\\\\\\\\\\\\\\\"acc\\\\\\\\\\\\\\\\\\\\\\\"))}, bcs={b0.get(\\\\\\\\\\\\\\\\\\\\\\\"bcs\\\\\\\\\\\\\\\\\\\\\\\", b0.get(\\\\\\\\\\\\\\\\\\\\\\\"bcs_value\\\\\\\\\\\\\\\\\\\\\\\"))}\\\\\\\\')\\\\\\\\n    print()\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nbcs_count_16_high_bcs:\\\\n  n_samples=[77, 77, 77, 77, 77], mean_acc=0.4468, std_acc=0.0490, mean_bcs=0.7302\\\\n  n_batches=5\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 14, in <module>\\\\nAttributeError: 'float' object has no attribute 'keys'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "c918d4c6-a255-4802-84db-c629da6c82cd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\n\\\\\\\\nfor cond in [\\\\\\\\'bcs_count_16_high_bcs\\\\\\\\', \\\\\\\\'bcs_count_16_low_bcs\\\\\\\\', \\\\\\\\'bcs_count_32_high_bcs\\\\\\\\', \\\\\\\\'bcs_count_32_low_bcs\\\\\\\\']:\\\\\\\\n    c = d[cond]\\\\\\\\n    print(f\\\\\\\\'{cond}:\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  n_samples={c[\\\\\\\\\\\\\\\\\\\\\\\"n_samples\\\\\\\\\\\\\\\\\\\\\\\"]}, mean_acc={c[\\\\\\\\\\\\\\\\\\\\\\\"mean_acc\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}, std_acc={c[\\\\\\\\\\\\\\\\\\\\\\\"std_acc\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}, mean_bcs={c[\\\\\\\\\\\\\\\\\\\\\\\"mean_bcs\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n    batches = c[\\\\\\\\'batches\\\\\\\\']\\\\\\\\n    print(f\\\\\\\\'  n_batches={len(batches)}\\\\\\\\')\\\\\\\\n    if batches:\\\\\\\\n        b0 = batches[0]\\\\\\\\n        print(f\\\\\\\\'  batch keys: {list(b0.keys())}\\\\\\\\')\\\\\\\\n        print(f\\\\\\\\'  batch[0]: acc={b0.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\", b0.get(\\\\\\\\\\\\\\\\\\\\\\\"acc\\\\\\\\\\\\\\\\\\\\\\\"))}, bcs={b0.get(\\\\\\\\\\\\\\\\\\\\\\\"bcs\\\\\\\\\\\\\\\\\\\\\\\", b0.get(\\\\\\\\\\\\\\\\\\\\\\\"bcs_value\\\\\\\\\\\\\\\\\\\\\\\"))}\\\\\\\\')\\\\\\\\n    print()\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nbcs_count_16_high_bcs:\\\\n  n_samples=[77, 77, 77, 77, 77], mean_acc=0.4468, std_acc=0.0490, mean_bcs=0.7302\\\\n  n_batches=5\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 14, in <module>\\\\nAttributeError: 'float' object has no attribute 'keys'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\') as f:\\\\n    d = json.load(f)\\\\n\\\\nfor cond in [\\\\'bcs_count_16_high_bcs\\\\', \\\\'bcs_count_16_low_bcs\\\\', \\\\'bcs_count_32_high_bcs\\\\', \\\\'bcs_count_32_low_bcs\\\\']:\\\\n    c = d[cond]\\\\n    print(f\\\\'{cond}:\\\\')\\\\n    print(f\\\\'  n_samples={c[\\\\\\\\\\\"n_samples\\\\\\\\\\\"]}, mean_acc={c[\\\\\\\\\\\"mean_acc\\\\\\\\\\\"]:.4f}, std_acc={c[\\\\\\\\\\\"std_acc\\\\\\\\\\\"]:.4f}, mean_bcs={c[\\\\\\\\\\\"mean_bcs\\\\\\\\\\\"]:.4f}\\\\')\\\\n    batches = c[\\\\'batches\\\\']\\\\n    print(f\\\\'  n_batches={len(batches)}\\\\')\\\\n    if batches:\\\\n        b0 = batches[0]\\\\n        print(f\\\\'  batch keys: {list(b0.keys())}\\\\')\\\\n        print(f\\\\'  batch[0]: acc={b0.get(\\\\\\\\\\\"accuracy\\\\\\\\\\\", b0.get(\\\\\\\\\\\"acc\\\\\\\\\\\"))}, bcs={b0.get(\\\\\\\\\\\"bcs\\\\\\\\\\\", b0.get(\\\\\\\\\\\"bcs_value\\\\\\\\\\\"))}\\\\')\\\\n    print()\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nbcs_count_16_high_bcs:\\n  n_samples=[77, 77, 77, 77, 77], mean_acc=0.4468, std_acc=0.0490, mean_bcs=0.7302\\n  n_batches=5\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"<string>\\\", line 14, in <module>\\nAttributeError: 'float' object has no attribute 'keys'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "batches 不是 dict list 而是 float list。进一步看结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "92672fe1-4fb7-4fdb-9ebd-39514c948560",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AFRzBpQ6FS8pxoWC65xieT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 28141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017y9ZJGzRRDoi8zGgQ8MZKN",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\n\nfor cond in ['bcs_count_16_high_bcs', 'bcs_count_16_low_bcs', 'bcs_count_32_high_bcs', 'bcs_count_32_low_bcs']:\n    c = d[cond]\n    print(f\"{cond}:\")\n    print(f\"  mean_acc={c['mean_acc']:.4f}, std_acc={c['std_acc']:.4f}, mean_bcs={c['mean_bcs']:.4f}\")\n    print(f\"  n_samples={c['n_samples']}\")\n    print(f\"  batches (type={type(c['batches'][0]).__name__}): {c['batches'][:5]}\")\n    print(f\"  bcs_values: {c['bcs_values'][:5]}\")\n    print()\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "d91630a8-9fbc-41f8-ae49-fa378c5f8df9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AFRzBpQ6FS8pxoWC65xieT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 28141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T21:37:30.374Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017y9ZJGzRRDoi8zGgQ8MZKN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_count_16_high_bcs:\\\\n  mean_acc=0.4468, std_acc=0.0490, mean_bcs=0.7302\\\\n  n_samples=[77, 77, 77, 77, 77]\\\\n  batches (type=float): [0.5064935064935064, 0.4025974025974026, 0.37662337662337664, 0.4675324675324675, 0.4805194805194805]\\\\n  bcs_values: [0.6771903283894062, 0.7205597172180812, 0.7506259034077326, 0.7453926106293997, 0.7570966427524884]\\\\n\\\\nbcs_count_16_low_bcs:\\\\n  mean_acc=0.6793, std_acc=0.0275, mean_bcs=0.3841\\\\n  n_samples=[76, 76, 76, 73, 76]\\\\n  batches (type=float): [0.7105263157894737, 0.6447368421052632, 0.6710526315789473, 0.7123287671232876, 0.6578947368421053]\\\\n  bcs_values: [0.380259021371603, 0.3846218193570773, 0.3897938447693984, 0.38596860840916636, 0.37963757539788884]\\\\n\\\\nbcs_count_32_high_bcs:\\\\n  mean_acc=0.4025, std_acc=0.0136, mean_bcs=0.6868\\\\n  n_samples=[157, 157, 157, 157, 157]\\\\n  batches (type=float): [0.40764331210191085, 0.37579617834394907, 0.40764331210191085, 0.4140127388535032, 0.40764331210191085]\\\\n  bcs_values: [0.694971195512241, 0.6576678693414696, 0.694971195512241, 0.6913155372585019, 0.694971195512241]\\\\n\\\\nbcs_count_32_low_bcs:\\\\n  mean_acc=0.5782, std_acc=0.0183, mean_bcs=0.4344\\\\n  n_samples=[156, 156, 156, 156, 156]\\\\n  batches (type=float): [0.5512820512820513, 0.6025641025641025, 0.5833333333333334, 0.5897435897435898, 0.5641025641025641]\\\\n  bcs_values: [0.4324798233086063, 0.4344927531576926, 0.43503603074819813, 0.432820005282279, 0.4369718248565351]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "02701dd3-5ddb-4c79-bf3c-5a0d35549171",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_count_16_high_bcs:\\\\n  mean_acc=0.4468, std_acc=0.0490, mean_bcs=0.7302\\\\n  n_samples=[77, 77, 77, 77, 77]\\\\n  batches (type=float): [0.5064935064935064, 0.4025974025974026, 0.37662337662337664, 0.4675324675324675, 0.4805194805194805]\\\\n  bcs_values: [0.6771903283894062, 0.7205597172180812, 0.7506259034077326, 0.7453926106293997, 0.7570966427524884]\\\\n\\\\nbcs_count_16_low_bcs:\\\\n  mean_acc=0.6793, std_acc=0.0275, mean_bcs=0.3841\\\\n  n_samples=[76, 76, 76, 73, 76]\\\\n  batches (type=float): [0.7105263157894737, 0.6447368421052632, 0.6710526315789473, 0.7123287671232876, 0.6578947368421053]\\\\n  bcs_values: [0.380259021371603, 0.3846218193570773, 0.3897938447693984, 0.38596860840916636, 0.37963757539788884]\\\\n\\\\nbcs_count_32_high_bcs:\\\\n  mean_acc=0.4025, std_acc=0.0136, mean_bcs=0.6868\\\\n  n_samples=[157, 157, 157, 157, 157]\\\\n  batches (type=float): [0.40764331210191085, 0.37579617834394907, 0.40764331210191085, 0.4140127388535032, 0.40764331210191085]\\\\n  bcs_values: [0.694971195512241, 0.6576678693414696, 0.694971195512241, 0.6913155372585019, 0.694971195512241]\\\\n\\\\nbcs_count_32_low_bcs:\\\\n  mean_acc=0.5782, std_acc=0.0183, mean_bcs=0.4344\\\\n  n_samples=[156, 156, 156, 156, 156]\\\\n  batches (type=float): [0.5512820512820513, 0.6025641025641025, 0.5833333333333334, 0.5897435897435898, 0.5641025641025641]\\\\n  bcs_values: [0.4324798233086063, 0.4344927531576926, 0.43503603074819813, 0.432820005282279, 0.4369718248565351]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bcs_count_16_high_bcs:\\n  mean_acc=0.4468, std_acc=0.0490, mean_bcs=0.7302\\n  n_samples=[77, 77, 77, 77, 77]\\n  batches (type=float): [0.5064935064935064, 0.4025974025974026, 0.37662337662337664, 0.4675324675324675, 0.4805194805194805]\\n  bcs_values: [0.6771903283894062, 0.7205597172180812, 0.7506259034077326, 0.7453926106293997, 0.7570966427524884]\\n\\nbcs_count_16_low_bcs:\\n  mean_acc=0.6793, std_acc=0.0275, mean_bcs=0.3841\\n  n_samples=[76, 76, 76, 73, 76]\\n  batches (type=float): [0.7105263157894737, 0.6447368421052632, 0.6710526315789473, 0.7123287671232876, 0.6578947368421053]\\n  bcs_values: [0.380259021371603, 0.3846218193570773, 0.3897938447693984, 0.38596860840916636, 0.37963757539788884]\\n\\nbcs_count_32_high_bcs:\\n  mean_acc=0.4025, std_acc=0.0136, mean_bcs=0.6868\\n  n_samples=[157, 157, 157, 157, 157]\\n  batches (type=float): [0.40764331210191085, 0.37579617834394907, 0.40764331210191085, 0.4140127388535032, 0.40764331210191085]\\n  bcs_values: [0.694971195512241, 0.6576678693414696, 0.694971195512241, 0.6913155372585019, 0.694971195512241]\\n\\nbcs_count_32_low_bcs:\\n  mean_acc=0.5782, std_acc=0.0183, mean_bcs=0.4344\\n  n_samples=[156, 156, 156, 156, 156]\\n  batches (type=float): [0.5512820512820513, 0.6025641025641025, 0.5833333333333334, 0.5897435897435898, 0.5641025641025641]\\n  bcs_values: [0.4324798233086063, 0.4344927531576926, 0.43503603074819813, 0.432820005282279, 0.4369718248565351]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构清晰：`batches` 是 accuracy list，`bcs_values` 是对应 BCS list。现在看每组有多少 batches，然后跑完整的 2×2 factorial TOST 分析。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "1203caa8-d778-4cc2-9cb5-81615c7b1398",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TF72Zc6ekhV9pGf1MZyeZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1201,
+                "cache_read_input_tokens": 28141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1201
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NZagVBEqzmuPfBSHJThadY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\nfor cond in sorted(d.keys()):\n    c = d[cond]\n    print(f\"{cond}: n_batches={len(c['batches'])}\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "4161700d-bbd2-47d1-930a-5469d94541d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TF72Zc6ekhV9pGf1MZyeZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1201,
+                "cache_read_input_tokens": 28141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1201
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T21:37:36.272Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NZagVBEqzmuPfBSHJThadY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_count_16_high_bcs: n_batches=5\\\\nbcs_count_16_low_bcs: n_batches=5\\\\nbcs_count_16_random: n_batches=25\\\\nbcs_count_32_high_bcs: n_batches=5\\\\nbcs_count_32_low_bcs: n_batches=5\\\\nbcs_count_32_random: n_batches=25\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "897bd0e6-803d-4c68-862a-4ed8a8c169a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_count_16_high_bcs: n_batches=5\\\\nbcs_count_16_low_bcs: n_batches=5\\\\nbcs_count_16_random: n_batches=25\\\\nbcs_count_32_high_bcs: n_batches=5\\\\nbcs_count_32_low_bcs: n_batches=5\\\\nbcs_count_32_random: n_batches=25\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bcs_count_16_high_bcs: n_batches=5\\nbcs_count_16_low_bcs: n_batches=5\\nbcs_count_16_random: n_batches=25\\nbcs_count_32_high_bcs: n_batches=5\\nbcs_count_32_low_bcs: n_batches=5\\nbcs_count_32_random: n_batches=25\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Each BCS-controlled condition has only 5 batches. The random conditions have 25 batches each. With n=5 per cell in the 2×2 design, the TOST analysis will be underpowered but let's proceed.\n\nLet me also check if there's more data. The task mentioned \"count=16 has n=35 batches\" - that might be in the count_curve_results or elsewhere. Let me check the count_curve_results too.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "fc576fb8-6865-434c-96f8-4db54570039e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168QMvgvCdGrD1wQhAFRgGp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 559,
+                "cache_read_input_tokens": 29342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "每个 BCS-controlled cell 只有 5 batches。任务提到 count=16 有 n=35 batches，可能在其他文件。先看 count_curve_results 和 bootstrap_analysis。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "2e2bb483-afbd-4529-bd2c-c7064a5fb019",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168QMvgvCdGrD1wQhAFRgGp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 559,
+                "cache_read_input_tokens": 29342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017d2T7orH8e8LW8n1decJVT",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\n\nfor fname in ['count_curve_results.json', 'bootstrap_analysis.json']:\n    print(f\"=== {fname} ===\")\n    with open(f'artifacts/exp_docred_confusability/{fname}') as f:\n        d = json.load(f)\n    if isinstance(d, dict):\n        for k in list(d.keys())[:10]:\n            v = d[k]\n            if isinstance(v, dict):\n                print(f\"  {k}: keys={list(v.keys())[:10]}\")\n            elif isinstance(v, list):\n                print(f\"  {k}: list[{len(v)}]\")\n            else:\n                print(f\"  {k}: {repr(v)[:100]}\")\n    print()\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "28dae04c-12d5-49a9-a0a3-9b4088936565",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168QMvgvCdGrD1wQhAFRgGp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 559,
+                "cache_read_input_tokens": 29342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T21:37:45.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017d2T7orH8e8LW8n1decJVT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== count_curve_results.json ===\\\\n  curve_count_1: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_16: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_32: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_4: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_64: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_8: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_96: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n\\\\n=== bootstrap_analysis.json ===\\\\n  count_16: keys=['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\\\n  count_32: keys=['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "ddad8fa2-a336-4f76-9af7-d3f53c17d43b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== count_curve_results.json ===\\\\n  curve_count_1: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_16: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_32: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_4: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_64: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_8: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n  curve_count_96: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\\\n\\\\n=== bootstrap_analysis.json ===\\\\n  count_16: keys=['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\\\n  count_32: keys=['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== count_curve_results.json ===\\n  curve_count_1: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  curve_count_16: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  curve_count_32: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  curve_count_4: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  curve_count_64: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  curve_count_8: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n  curve_count_96: keys=['batches', 'mean_acc', 'std_acc', 'bcs_values', 'mean_bcs', 'n_samples']\\n\\n=== bootstrap_analysis.json ===\\n  count_16: keys=['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\n  count_32: keys=['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y3AU1iWK4zz9Y78phHui5c",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\n\n# Check count_curve for n_batches at count 16 and 32\nwith open('artifacts/exp_docred_confusability/count_curve_results.json') as f:\n    cc = json.load(f)\nfor k in ['curve_count_16', 'curve_count_32']:\n    c = cc[k]\n    print(f\"{k}: n_batches={len(c['batches'])}, mean_acc={c['mean_acc']:.4f}, mean_bcs={c['mean_bcs']:.4f}\")\n\nprint()\n# Check bootstrap_analysis for n_batches\nwith open('artifacts/exp_docred_confusability/bootstrap_analysis.json') as f:\n    ba = json.load(f)\nfor k in ['count_16', 'count_32']:\n    c = ba[k]\n    print(f\"{k}: n_batches={c['n_batches']}, spearman_r={c['spearman_r']:.4f}, spearman_p={c['spearman_p']:.4f}\")\n    print(f\"  bcs_range={c['bcs_range']}, acc_range={c['acc_range']}\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "690365e3-c547-4d6a-9c78-afd506c6085f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GiUv8TaExf9VTzWnp1yZsc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1040,
+                "cache_read_input_tokens": 29901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1040
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T21:37:51.711Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y3AU1iWK4zz9Y78phHui5c",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"curve_count_16: n_batches=5, mean_acc=0.5244, mean_bcs=0.5638\\\\ncurve_count_32: n_batches=5, mean_acc=0.5211, mean_bcs=0.5533\\\\n\\\\ncount_16: n_batches=35, spearman_r=-0.6613, spearman_p=0.0000\\\\n  bcs_range=[0.37963757539788884, 0.7570966427524884], acc_range=[0.37662337662337664, 0.75]\\\\ncount_32: n_batches=35, spearman_r=-0.5094, spearman_p=0.0018\\\\n  bcs_range=[0.4324798233086063, 0.694971195512241], acc_range=[0.37579617834394907, 0.6470588235294118]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "24c899c5-7db6-4d0f-9136-d1c657c00c12",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"curve_count_16: n_batches=5, mean_acc=0.5244, mean_bcs=0.5638\\\\ncurve_count_32: n_batches=5, mean_acc=0.5211, mean_bcs=0.5533\\\\n\\\\ncount_16: n_batches=35, spearman_r=-0.6613, spearman_p=0.0000\\\\n  bcs_range=[0.37963757539788884, 0.7570966427524884], acc_range=[0.37662337662337664, 0.75]\\\\ncount_32: n_batches=35, spearman_r=-0.5094, spearman_p=0.0018\\\\n  bcs_range=[0.4324798233086063, 0.694971195512241], acc_range=[0.37579617834394907, 0.6470588235294118]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"curve_count_16: n_batches=5, mean_acc=0.5244, mean_bcs=0.5638\\ncurve_count_32: n_batches=5, mean_acc=0.5211, mean_bcs=0.5533\\n\\ncount_16: n_batches=35, spearman_r=-0.6613, spearman_p=0.0000\\n  bcs_range=[0.37963757539788884, 0.7570966427524884], acc_range=[0.37662337662337664, 0.75]\\ncount_32: n_batches=35, spearman_r=-0.5094, spearman_p=0.0018\\n  bcs_range=[0.4324798233086063, 0.694971195512241], acc_range=[0.37579617834394907, 0.6470588235294118]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "bootstrap_analysis 里有 n=35 batches per count level。需要提取这些 batch-level 数据（含 accuracy 和 BCS）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "de032702-b5c3-4b5b-a6de-eea46f512683",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H1LmpVQBpnRqAqR84zXJEr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 724,
+                "cache_read_input_tokens": 30941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 724
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0174bNMQsPnhndFGTYe7nFEK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\n\nwith open('artifacts/exp_docred_confusability/bootstrap_analysis.json') as f:\n    ba = json.load(f)\n\n# Check if batch-level data is in here\nc16 = ba['count_16']\nprint(\"count_16 keys:\", list(c16.keys()))\n# Check quartile_analysis and strategy_breakdown\nprint(\"\\nquartile_analysis keys:\", list(c16['quartile_analysis'].keys()) if isinstance(c16['quartile_analysis'], dict) else type(c16['quartile_analysis']))\nprint(\"strategy_breakdown keys:\", list(c16['strategy_breakdown'].keys()) if isinstance(c16['strategy_breakdown'], dict) else type(c16['strategy_breakdown']))\n\n# Check regression\nprint(\"\\nregression:\", c16['regression'])\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "79b6c329-6a96-4e5b-ae4e-8495b0a0a7cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H1LmpVQBpnRqAqR84zXJEr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 724,
+                "cache_read_input_tokens": 30941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 724
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T21:37:58.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0174bNMQsPnhndFGTYe7nFEK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"count_16 keys: ['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\\\n\\\\nquartile_analysis keys: ['q25_threshold', 'q75_threshold', 'low_bcs_quartile_mean_acc', 'high_bcs_quartile_mean_acc', 'gap', 'gap_95ci', 'n_low', 'n_high']\\\\nstrategy_breakdown keys: ['high_bcs', 'low_bcs', 'random']\\\\n\\\\nregression: {'slope': -0.7125609053819278, 'intercept': 0.9869522525264236, 'r_squared': 0.5250585912464634, 'p_value': 8.575071181448774e-07, 'slope_95ci': [-0.9091306012735534, -0.5286726881267889]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "4398a96b-1f6e-4b1b-b948-773aac4b1de1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"count_16 keys: ['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\\\n\\\\nquartile_analysis keys: ['q25_threshold', 'q75_threshold', 'low_bcs_quartile_mean_acc', 'high_bcs_quartile_mean_acc', 'gap', 'gap_95ci', 'n_low', 'n_high']\\\\nstrategy_breakdown keys: ['high_bcs', 'low_bcs', 'random']\\\\n\\\\nregression: {'slope': -0.7125609053819278, 'intercept': 0.9869522525264236, 'r_squared': 0.5250585912464634, 'p_value': 8.575071181448774e-07, 'slope_95ci': [-0.9091306012735534, -0.5286726881267889]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"count_16 keys: ['n_batches', 'bcs_range', 'acc_range', 'spearman_r', 'spearman_p', 'regression', 'quartile_analysis', 'strategy_breakdown']\\n\\nquartile_analysis keys: ['q25_threshold', 'q75_threshold', 'low_bcs_quartile_mean_acc', 'high_bcs_quartile_mean_acc', 'gap', 'gap_95ci', 'n_low', 'n_high']\\nstrategy_breakdown keys: ['high_bcs', 'low_bcs', 'random']\\n\\nregression: {'slope': -0.7125609053819278, 'intercept': 0.9869522525264236, 'r_squared': 0.5250585912464634, 'p_value': 8.575071181448774e-07, 'slope_95ci': [-0.9091306012735534, -0.5286726881267889]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015BrCACiDEUffvEN8CXT4AA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\n\nwith open('artifacts/exp_docred_confusability/bootstrap_analysis.json') as f:\n    ba = json.load(f)\n\n# strategy_breakdown should contain batch-level data\nc16 = ba['count_16']['strategy_breakdown']\nfor strat in c16:\n    s = c16[strat]\n    if isinstance(s, dict):\n        print(f\"count_16/{strat}: keys={list(s.keys())[:10]}\")\n        for sk in list(s.keys())[:3]:\n            sv = s[sk]\n            if isinstance(sv, list):\n                print(f\"  {sk}: list[{len(sv)}], first={sv[0] if sv else None}\")\n            else:\n                print(f\"  {sk}: {repr(sv)[:100]}\")\n    elif isinstance(s, list):\n        print(f\"count_16/{strat}: list[{len(s)}]\")\nprint()\nc32 = ba['count_32']['strategy_breakdown']\nfor strat in c32:\n    s = c32[strat]\n    if isinstance(s, dict):\n        print(f\"count_32/{strat}: keys={list(s.keys())[:10]}\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "920456f9-80b3-4f4e-8faf-550ecf0b8187",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V2CWoi3Z5sRbPDkB3EbbDi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 31665,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T21:38:06.631Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015BrCACiDEUffvEN8CXT4AA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"count_16/high_bcs: keys=['mean', 'std', 'n']\\\\n  mean: 0.44675324675324674\\\\n  std: 0.04900769419250181\\\\n  n: 5\\\\ncount_16/low_bcs: keys=['mean', 'std', 'n']\\\\n  mean: 0.6793078586878154\\\\n  std: 0.027520167903053346\\\\n  n: 5\\\\ncount_16/random: keys=['mean', 'std', 'n']\\\\n  mean: 0.6103171929689594\\\\n  std: 0.07686467783092508\\\\n  n: 25\\\\n\\\\ncount_32/high_bcs: keys=['mean', 'std', 'n']\\\\ncount_32/low_bcs: keys=['mean', 'std', 'n']\\\\ncount_32/random: keys=['mean', 'std', 'n']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "fd3468b3-654c-499d-9f3e-4e7382c6fb7b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"count_16/high_bcs: keys=['mean', 'std', 'n']\\\\n  mean: 0.44675324675324674\\\\n  std: 0.04900769419250181\\\\n  n: 5\\\\ncount_16/low_bcs: keys=['mean', 'std', 'n']\\\\n  mean: 0.6793078586878154\\\\n  std: 0.027520167903053346\\\\n  n: 5\\\\ncount_16/random: keys=['mean', 'std', 'n']\\\\n  mean: 0.6103171929689594\\\\n  std: 0.07686467783092508\\\\n  n: 25\\\\n\\\\ncount_32/high_bcs: keys=['mean', 'std', 'n']\\\\ncount_32/low_bcs: keys=['mean', 'std', 'n']\\\\ncount_32/random: keys=['mean', 'std', 'n']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"count_16/high_bcs: keys=['mean', 'std', 'n']\\n  mean: 0.44675324675324674\\n  std: 0.04900769419250181\\n  n: 5\\ncount_16/low_bcs: keys=['mean', 'std', 'n']\\n  mean: 0.6793078586878154\\n  std: 0.027520167903053346\\n  n: 5\\ncount_16/random: keys=['mean', 'std', 'n']\\n  mean: 0.6103171929689594\\n  std: 0.07686467783092508\\n  n: 25\\n\\ncount_32/high_bcs: keys=['mean', 'std', 'n']\\ncount_32/low_bcs: keys=['mean', 'std', 'n']\\ncount_32/random: keys=['mean', 'std', 'n']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So the bootstrap_analysis has 35 batches per count level (5 high_bcs + 5 low_bcs + 25 random = 35), but the individual batch-level accuracy and BCS values are in the bcs_controlled_results.json and count_curve_results.json. Let me combine all batches. The total of 35 comes from: 5 high_bcs + 5 low_bcs + 25 random = 35.\n\nTo do the 2×2 factorial analysis, I need batch-level accuracy and BCS values for all 35 batches at each count level, then do a median split on BCS to form {low BCS, high BCS} groups.\n\n\nI'm realizing the data structure is different than expected—bcs_controlled_results.json has the high and low BCS batches, but count_curve_results only shows 5 random batches per count level, not 25. I need to figure out where the full set of 25 random batches is stored.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "674d6631-d805-447b-b79c-680c26f6bcd9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Var2726NEqUdJcsji1XToy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 32352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 736
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要找到所有 35 batches 的 batch-level accuracy 和 BCS 数据。这 35 = 5 (high_bcs) + 5 (low_bcs) + 25 (random)。random 的 batch 数据在 bcs_controlled_results 里。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "56280406-b91d-4d07-8491-0310e4700eb7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Var2726NEqUdJcsji1XToy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 32352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 736
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LQ6MSxEB7PcSHzkMwfKP46",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\n\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\n\n# Check random conditions\nfor cond in ['bcs_count_16_random', 'bcs_count_32_random']:\n    c = d[cond]\n    print(f\"{cond}: n_batches={len(c['batches'])}, mean_acc={c['mean_acc']:.4f}, mean_bcs={c['mean_bcs']:.4f}\")\n    print(f\"  acc[:5]={c['batches'][:5]}\")\n    print(f\"  bcs[:5]={c['bcs_values'][:5]}\")\n    print()\n\n# All batches for count_16\nall_acc_16 = d['bcs_count_16_high_bcs']['batches'] + d['bcs_count_16_low_bcs']['batches'] + d['bcs_count_16_random']['batches']\nall_bcs_16 = d['bcs_count_16_high_bcs']['bcs_values'] + d['bcs_count_16_low_bcs']['bcs_values'] + d['bcs_count_16_random']['bcs_values']\nprint(f\"Total count_16 batches: {len(all_acc_16)}\")\n\nall_acc_32 = d['bcs_count_32_high_bcs']['batches'] + d['bcs_count_32_low_bcs']['batches'] + d['bcs_count_32_random']['batches']\nall_bcs_32 = d['bcs_count_32_high_bcs']['bcs_values'] + d['bcs_count_32_low_bcs']['bcs_values'] + d['bcs_count_32_random']['bcs_values']\nprint(f\"Total count_32 batches: {len(all_acc_32)}\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "03e0548e-ccf0-4fbd-bc26-9047d4f1a5bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Var2726NEqUdJcsji1XToy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 32352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 736
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T21:38:21.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LQ6MSxEB7PcSHzkMwfKP46",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_count_16_random: n_batches=25, mean_acc=0.6103, mean_bcs=0.5437\\\\n  acc[:5]=[0.575, 0.75, 0.684931506849315, 0.6625, 0.5375]\\\\n  bcs[:5]=[0.5442313971618812, 0.5710166826844215, 0.5035249171157677, 0.527620813002189, 0.5329574979841709]\\\\n\\\\nbcs_count_32_random: n_batches=25, mean_acc=0.5280, mean_bcs=0.5493\\\\n  acc[:5]=[0.50625, 0.45, 0.42948717948717946, 0.525, 0.6346153846153846]\\\\n  bcs[:5]=[0.5569840369806174, 0.5584370200071604, 0.5398673718614925, 0.5495685068590026, 0.5282926403827244]\\\\n\\\\nTotal count_16 batches: 35\\\\nTotal count_32 batches: 35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "728f7507-f6fa-4a16-addb-b57a9ce7f575",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_count_16_random: n_batches=25, mean_acc=0.6103, mean_bcs=0.5437\\\\n  acc[:5]=[0.575, 0.75, 0.684931506849315, 0.6625, 0.5375]\\\\n  bcs[:5]=[0.5442313971618812, 0.5710166826844215, 0.5035249171157677, 0.527620813002189, 0.5329574979841709]\\\\n\\\\nbcs_count_32_random: n_batches=25, mean_acc=0.5280, mean_bcs=0.5493\\\\n  acc[:5]=[0.50625, 0.45, 0.42948717948717946, 0.525, 0.6346153846153846]\\\\n  bcs[:5]=[0.5569840369806174, 0.5584370200071604, 0.5398673718614925, 0.5495685068590026, 0.5282926403827244]\\\\n\\\\nTotal count_16 batches: 35\\\\nTotal count_32 batches: 35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bcs_count_16_random: n_batches=25, mean_acc=0.6103, mean_bcs=0.5437\\n  acc[:5]=[0.575, 0.75, 0.684931506849315, 0.6625, 0.5375]\\n  bcs[:5]=[0.5442313971618812, 0.5710166826844215, 0.5035249171157677, 0.527620813002189, 0.5329574979841709]\\n\\nbcs_count_32_random: n_batches=25, mean_acc=0.5280, mean_bcs=0.5493\\n  acc[:5]=[0.50625, 0.45, 0.42948717948717946, 0.525, 0.6346153846153846]\\n  bcs[:5]=[0.5569840369806174, 0.5584370200071604, 0.5398673718614925, 0.5495685068590026, 0.5282926403827244]\\n\\nTotal count_16 batches: 35\\nTotal count_32 batches: 35\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "每个 count level 35 batches。现在运行完整的 2×2 factorial TOST 分析。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "0de63985-1f9c-4c1a-8d7c-55c3cda67d2b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V3WQ89csK8H4hBScUAXXFo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1312,
+                "cache_read_input_tokens": 33088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1312
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RoRsXg7FXoVTfyTaVgattK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && python3 << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\nimport os\n\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\n\n# Collect all batch-level data\n# count_16: 35 batches (5 high_bcs + 5 low_bcs + 25 random)\nacc_16 = d['bcs_count_16_high_bcs']['batches'] + d['bcs_count_16_low_bcs']['batches'] + d['bcs_count_16_random']['batches']\nbcs_16 = d['bcs_count_16_high_bcs']['bcs_values'] + d['bcs_count_16_low_bcs']['bcs_values'] + d['bcs_count_16_random']['bcs_values']\n\n# count_32: 35 batches\nacc_32 = d['bcs_count_32_high_bcs']['batches'] + d['bcs_count_32_low_bcs']['batches'] + d['bcs_count_32_random']['batches']\nbcs_32 = d['bcs_count_32_high_bcs']['bcs_values'] + d['bcs_count_32_low_bcs']['bcs_values'] + d['bcs_count_32_random']['bcs_values']\n\nacc_16 = np.array(acc_16)\nbcs_16 = np.array(bcs_16)\nacc_32 = np.array(acc_32)\nbcs_32 = np.array(bcs_32)\n\n# Combine all 70 batches\nall_acc = np.concatenate([acc_16, acc_32])\nall_bcs = np.concatenate([bcs_16, bcs_32])\ncount_labels = np.array([16]*35 + [32]*35)\n\n# Median split on BCS (across all 70 batches)\nbcs_median = np.median(all_bcs)\nprint(f\"BCS median (across all 70 batches): {bcs_median:.4f}\")\n\n# Assign groups\nbcs_group = np.where(all_bcs <= bcs_median, 'low', 'high')\n\n# 2x2 cells\ncells = {}\nfor cl in [16, 32]:\n    for bg in ['low', 'high']:\n        mask = (count_labels == cl) & (bcs_group == bg)\n        cell_acc = all_acc[mask]\n        cells[f\"count_{cl}_{bg}_bcs\"] = {\n            'n': int(np.sum(mask)),\n            'mean': float(np.mean(cell_acc)),\n            'std': float(np.std(cell_acc, ddof=1)),\n            'values': cell_acc.tolist()\n        }\n\nprint(\"\\n2x2 Cell Means:\")\nfor k, v in cells.items():\n    print(f\"  {k}: n={v['n']}, mean={v['mean']*100:.2f}% +/- {v['std']*100:.2f}%\")\n\n# Main effects\ncount_16_mean = np.mean(all_acc[count_labels == 16])\ncount_32_mean = np.mean(all_acc[count_labels == 32])\nlow_bcs_mean = np.mean(all_acc[bcs_group == 'low'])\nhigh_bcs_mean = np.mean(all_acc[bcs_group == 'high'])\n\nprint(f\"\\nMain Effects:\")\nprint(f\"  Count effect: {(count_16_mean - count_32_mean)*100:.2f}pp (count_16 - count_32)\")\nprint(f\"  BCS effect: {(high_bcs_mean - low_bcs_mean)*100:.2f}pp (high_bcs - low_bcs)\")\n\n# Interaction: (high_count_high_bcs - high_count_low_bcs) - (low_count_high_bcs - low_count_low_bcs)\n# Using count_32 as \"high count\" and count_16 as \"low count\"\nc32_high = cells['count_32_high_bcs']['values']\nc32_low = cells['count_32_low_bcs']['values']\nc16_high = cells['count_16_high_bcs']['values']\nc16_low = cells['count_16_low_bcs']['values']\n\n# Cell means\nm_32_high = np.mean(c32_high)\nm_32_low = np.mean(c32_low)\nm_16_high = np.mean(c16_high)\nm_16_low = np.mean(c16_low)\n\ninteraction = (m_32_high - m_32_low) - (m_16_high - m_16_low)\nprint(f\"\\nInteraction estimate: {interaction*100:.2f}pp\")\n\n# For TOST, we need SE of the interaction\n# interaction = mean(c32_high) - mean(c32_low) - mean(c16_high) + mean(c16_low)\n# Var(interaction) = Var(c32_high)/n1 + Var(c32_low)/n2 + Var(c16_high)/n3 + Var(c16_low)/n4\nn1 = len(c32_high)\nn2 = len(c32_low)\nn3 = len(c16_high)\nn4 = len(c16_low)\n\nvar_interaction = (np.var(c32_high, ddof=1)/n1 + np.var(c32_low, ddof=1)/n2 + \n                   np.var(c16_high, ddof=1)/n3 + np.var(c16_low, ddof=1)/n4)\nse_interaction = np.sqrt(var_interaction)\n\n# Welch-Satterthwaite df\nnumerator = var_interaction**2\ns1 = np.var(c32_high, ddof=1)/n1\ns2 = np.var(c32_low, ddof=1)/n2\ns3 = np.var(c16_high, ddof=1)/n3\ns4 = np.var(c16_low, ddof=1)/n4\ndenominator = s1**2/(n1-1) + s2**2/(n2-1) + s3**2/(n3-1) + s4**2/(n4-1)\ndf = numerator / denominator\n\nprint(f\"SE(interaction): {se_interaction*100:.2f}pp\")\nprint(f\"Welch-Satterthwaite df: {df:.1f}\")\n\n# 95% CI\nt_crit = stats.t.ppf(0.975, df)\nci_lower = interaction - t_crit * se_interaction\nci_upper = interaction + t_crit * se_interaction\nprint(f\"95% CI: [{ci_lower*100:.2f}pp, {ci_upper*100:.2f}pp]\")\n\n# TOST for two margins\nresults = {}\nfor margin_pp in [3, 2]:\n    margin = margin_pp / 100.0\n    # TOST: two one-sided tests\n    # H0_lower: interaction <= -margin => t_lower = (interaction - (-margin)) / SE\n    # H0_upper: interaction >= margin  => t_upper = (interaction - margin) / SE\n    t_lower = (interaction - (-margin)) / se_interaction\n    t_upper = (interaction - margin) / se_interaction\n    \n    p_lower = 1 - stats.t.cdf(t_lower, df)  # want interaction > -margin\n    p_upper = stats.t.cdf(t_upper, df)       # want interaction < margin\n    \n    p_tost = max(p_lower, p_upper)\n    established = p_tost < 0.05\n    \n    print(f\"\\nTOST +/-{margin_pp}pp:\")\n    print(f\"  t_lower={t_lower:.3f}, p_lower={p_lower:.4f}\")\n    print(f\"  t_upper={t_upper:.3f}, p_upper={p_upper:.4f}\")\n    print(f\"  p_TOST={p_tost:.4f} => {'ESTABLISHED' if established else 'NOT established'}\")\n    \n    results[f\"tost_{margin_pp}pp\"] = {\n        \"margin_pp\": margin_pp,\n        \"t_lower\": float(t_lower),\n        \"p_lower\": float(p_lower),\n        \"t_upper\": float(t_upper),\n        \"p_upper\": float(p_upper),\n        \"p_tost\": float(p_tost),\n        \"equivalence_established\": bool(established)\n    }\n\n# Also compute bootstrap CI for interaction\nnp.random.seed(42)\nn_boot = 10000\nboot_interactions = []\nfor _ in range(n_boot):\n    b32h = np.random.choice(c32_high, size=n1, replace=True)\n    b32l = np.random.choice(c32_low, size=n2, replace=True)\n    b16h = np.random.choice(c16_high, size=n3, replace=True)\n    b16l = np.random.choice(c16_low, size=n4, replace=True)\n    boot_int = (np.mean(b32h) - np.mean(b32l)) - (np.mean(b16h) - np.mean(b16l))\n    boot_interactions.append(boot_int)\n\nboot_interactions = np.array(boot_interactions)\nboot_ci = np.percentile(boot_interactions, [2.5, 97.5])\nprint(f\"\\nBootstrap 95% CI for interaction: [{boot_ci[0]*100:.2f}pp, {boot_ci[1]*100:.2f}pp]\")\n\n# Save results\noutput = {\n    \"bcs_median\": float(bcs_median),\n    \"cell_means\": {k: {\"n\": v['n'], \"mean_acc\": v['mean'], \"std_acc\": v['std']} for k, v in cells.items()},\n    \"main_effects\": {\n        \"count_effect_pp\": float((count_16_mean - count_32_mean) * 100),\n        \"bcs_effect_pp\": float((high_bcs_mean - low_bcs_mean) * 100)\n    },\n    \"interaction\": {\n        \"estimate_pp\": float(interaction * 100),\n        \"se_pp\": float(se_interaction * 100),\n        \"df\": float(df),\n        \"ci_95_pp\": [float(ci_lower * 100), float(ci_upper * 100)],\n        \"bootstrap_ci_95_pp\": [float(boot_ci[0] * 100), float(boot_ci[1] * 100)]\n    },\n    \"tost_results\": results,\n    \"design\": {\n        \"total_batches\": 70,\n        \"batches_per_count_level\": 35,\n        \"count_levels\": [16, 32],\n        \"bcs_split\": \"median\",\n        \"bcs_median_threshold\": float(bcs_median)\n    }\n}\n\nos.makedirs('artifacts/docred_factorial_tost', exist_ok=True)\nwith open('artifacts/docred_factorial_tost/results.json', 'w') as f:\n    json.dump(output, f, indent=2)\n\nprint(\"\\nResults saved to artifacts/docred_factorial_tost/results.json\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "4fbcee37-5c8c-437a-9741-899e2e4d3833",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V3WQ89csK8H4hBScUAXXFo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1312,
+                "cache_read_input_tokens": 33088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1312
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T21:38:58.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RoRsXg7FXoVTfyTaVgattK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\nimport os\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\n\\\\\\\\n# Collect all batch-level data\\\\\\\\n# count_16: 35 batches (5 high_bcs + 5 low_bcs + 25 random)\\\\\\\\nacc_16 = d[\\\\\\\\'bcs_count_16_high_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_low_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_random\\\\\\\\'][\\\\\\\\'batches\\\\\\\\']\\\\\\\\nbcs_16 = d[\\\\\\\\'bcs_count_16_high_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_low_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_random\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\']\\\\\\\\n\\\\\\\\n# count_32: 35 batches\\\\\\\\nacc_32 = d[\\\\\\\\'bcs_count_32_high_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_low_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_random\\\\\\\\'][\\\\\\\\'batches\\\\\\\\']\\\\\\\\nbcs_32 = d[\\\\\\\\'bcs_count_32_high_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_low_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_random\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\']\\\\\\\\n\\\\\\\\nacc_16 = np.array(acc_16)\\\\\\\\nbcs_16 = np.array(bcs_16)\\\\\\\\nacc_32 = np.array(acc_32)\\\\\\\\nbcs_32 = np.array(bcs_32)\\\\\\\\n\\\\\\\\n# Combine all 70 batches\\\\\\\\nall_acc = np.concatenate([acc_16, acc_32])\\\\\\\\nall_bcs = np.concatenate([bcs_16, bcs_32])\\\\\\\\ncount_labels = np.array([16]*35 + [32]*35)\\\\\\\\n\\\\\\\\n# Median split on BCS (across all 70 batches)\\\\\\\\nbcs_median = np.median(all_bcs)\\\\\\\\nprint(f\\\\\\\"BCS median (across all 70 batches): {bcs_median:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Assign groups\\\\\\\\nbcs_group = np.where(all_bcs <= bcs_median, \\\\\\\\'low\\\\\\\\', \\\\\\\\'high\\\\\\\\')\\\\\\\\n\\\\\\\\n# 2x2 cells\\\\\\\\ncells = {}\\\\\\\\nfor cl in [16, 32]:\\\\\\\\n    for bg in [\\\\\\\\'low\\\\\\\\', \\\\\\\\'high\\\\\\\\']:\\\\\\\\n        mask = (count_labels == cl) & (bcs_group == bg)\\\\\\\\n        cell_acc = all_acc[mask]\\\\\\\\n        cells[f\\\\\\\"count_{cl}_{bg}_bcs\\\\\\\"] = {\\\\\\\\n            \\\\\\\\'n\\\\\\\\': int(np.sum(mask)),\\\\\\\\n            \\\\\\\\'mean\\\\\\\\': float(np.mean(cell_acc)),\\\\\\\\n            \\\\\\\\'std\\\\\\\\': float(np.std(cell_acc, ddof=1)),\\\\\\\\n            \\\\\\\\'values\\\\\\\\': cell_acc.tolist()\\\\\\\\n        }\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n2x2 Cell Means:\\\\\\\")\\\\\\\\nfor k, v in cells.items():\\\\\\\\n    print(f\\\\\\\"  {k}: n={v[\\\\\\\\'n\\\\\\\\']}, mean={v[\\\\\\\\'mean\\\\\\\\']*100:.2f}% +/- {v[\\\\\\\\'std\\\\\\\\']*100:.2f}%\\\\\\\")\\\\\\\\n\\\\\\\\n# Main effects\\\\\\\\ncount_16_mean = np.mean(all_acc[count_labels == 16])\\\\\\\\ncount_32_mean = np.mean(all_acc[count_labels == 32])\\\\\\\\nlow_bcs_mean = np.mean(all_acc[bcs_group == \\\\\\\\'low\\\\\\\\'])\\\\\\\\nhigh_bcs_mean = np.mean(all_acc[bcs_group == \\\\\\\\'high\\\\\\\\'])\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nMain Effects:\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Count effect: {(count_16_mean - count_32_mean)*100:.2f}pp (count_16 - count_32)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  BCS effect: {(high_bcs_mean - low_bcs_mean)*100:.2f}pp (high_bcs - low_bcs)\\\\\\\")\\\\\\\\n\\\\\\\\n# Interaction: (high_count_high_bcs - high_count_low_bcs) - (low_count_high_bcs - low_count_low_bcs)\\\\\\\\n# Using count_32 as \\\\\\\"high count\\\\\\\" and count_16 as \\\\\\\"low count\\\\\\\"\\\\\\\\nc32_high = cells[\\\\\\\\'count_32_high_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\nc32_low = cells[\\\\\\\\'count_32_low_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\nc16_high = cells[\\\\\\\\'count_16_high_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\nc16_low = cells[\\\\\\\\'count_16_low_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\n\\\\\\\\n# Cell means\\\\\\\\nm_32_high = np.mean(c32_high)\\\\\\\\nm_32_low = np.mean(c32_low)\\\\\\\\nm_16_high = np.mean(c16_high)\\\\\\\\nm_16_low = np.mean(c16_low)\\\\\\\\n\\\\\\\\ninteraction = (m_32_high - m_32_low) - (m_16_high - m_16_low)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nInteraction estimate: {interaction*100:.2f}pp\\\\\\\")\\\\\\\\n\\\\\\\\n# For TOST, we need SE of the interaction\\\\\\\\n# interaction = mean(c32_high) - mean(c32_low) - mean(c16_high) + mean(c16_low)\\\\\\\\n# Var(interaction) = Var(c32_high)/n1 + Var(c32_low)/n2 + Var(c16_high)/n3 + Var(c16_low)/n4\\\\\\\\nn1 = len(c32_high)\\\\\\\\nn2 = len(c32_low)\\\\\\\\nn3 = len(c16_high)\\\\\\\\nn4 = len(c16_low)\\\\\\\\n\\\\\\\\nvar_interaction = (np.var(c32_high, ddof=1)/n1 + np.var(c32_low, ddof=1)/n2 + \\\\\\\\n                   np.var(c16_high, ddof=1)/n3 + np.var(c16_low, ddof=1)/n4)\\\\\\\\nse_interaction = np.sqrt(var_interaction)\\\\\\\\n\\\\\\\\n# Welch-Satterthwaite df\\\\\\\\nnumerator = var_interaction**2\\\\\\\\ns1 = np.var(c32_high, ddof=1)/n1\\\\\\\\ns2 = np.var(c32_low, ddof=1)/n2\\\\\\\\ns3 = np.var(c16_high, ddof=1)/n3\\\\\\\\ns4 = np.var(c16_low, ddof=1)/n4\\\\\\\\ndenominator = s1**2/(n1-1) + s2**2/(n2-1) + s3**2/(n3-1) + s4**2/(n4-1)\\\\\\\\ndf = numerator / denominator\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"SE(interaction): {se_interaction*100:.2f}pp\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Welch-Satterthwaite df: {df:.1f}\\\\\\\")\\\\\\\\n\\\\\\\\n# 95% CI\\\\\\\\nt_crit = stats.t.ppf(0.975, df)\\\\\\\\nci_lower = interaction - t_crit * se_interaction\\\\\\\\nci_upper = interaction + t_crit * se_interaction\\\\\\\\nprint(f\\\\\\\"95% CI: [{ci_lower*100:.2f}pp, {ci_upper*100:.2f}pp]\\\\\\\")\\\\\\\\n\\\\\\\\n# TOST for two margins\\\\\\\\nresults = {}\\\\\\\\nfor margin_pp in [3, 2]:\\\\\\\\n    margin = margin_pp / 100.0\\\\\\\\n    # TOST: two one-sided tests\\\\\\\\n    # H0_lower: interaction <= -margin => t_lower = (interaction - (-margin)) / SE\\\\\\\\n    # H0_upper: interaction >= margin  => t_upper = (interaction - margin) / SE\\\\\\\\n    t_lower = (interaction - (-margin)) / se_interaction\\\\\\\\n    t_upper = (interaction - margin) / se_interaction\\\\\\\\n    \\\\\\\\n    p_lower = 1 - stats.t.cdf(t_lower, df)  # want interaction > -margin\\\\\\\\n    p_upper = stats.t.cdf(t_upper, df)       # want interaction < margin\\\\\\\\n    \\\\\\\\n    p_tost = max(p_lower, p_upper)\\\\\\\\n    established = p_tost < 0.05\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"\\\\\\\\\\\\\\\\nTOST +/-{margin_pp}pp:\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  t_lower={t_lower:.3f}, p_lower={p_lower:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  t_upper={t_upper:.3f}, p_upper={p_upper:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  p_TOST={p_tost:.4f} => {\\\\\\\\'ESTABLISHED\\\\\\\\' if established else \\\\\\\\'NOT established\\\\\\\\'}\\\\\\\")\\\\\\\\n    \\\\\\\\n    results[f\\\\\\\"tost_{margin_pp}pp\\\\\\\"] = {\\\\\\\\n        \\\\\\\"margin_pp\\\\\\\": margin_pp,\\\\\\\\n        \\\\\\\"t_lower\\\\\\\": float(t_lower),\\\\\\\\n        \\\\\\\"p_lower\\\\\\\": float(p_lower),\\\\\\\\n        \\\\\\\"t_upper\\\\\\\": float(t_upper),\\\\\\\\n        \\\\\\\"p_upper\\\\\\\": float(p_upper),\\\\\\\\n        \\\\\\\"p_tost\\\\\\\": float(p_tost),\\\\\\\\n        \\\\\\\"equivalence_established\\\\\\\": bool(established)\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# Also compute bootstrap CI for interaction\\\\\\\\nnp.random.seed(42)\\\\\\\\nn_boot = 10000\\\\\\\\nboot_interactions = []\\\\\\\\nfor _ in range(n_boot):\\\\\\\\n    b32h = np.random.choice(c32_high, size=n1, replace=True)\\\\\\\\n    b32l = np.random.choice(c32_low, size=n2, replace=True)\\\\\\\\n    b16h = np.random.choice(c16_high, size=n3, replace=True)\\\\\\\\n    b16l = np.random.choice(c16_low, size=n4, replace=True)\\\\\\\\n    boot_int = (np.mean(b32h) - np.mean(b32l)) - (np.mean(b16h) - np.mean(b16l))\\\\\\\\n    boot_interactions.append(boot_int)\\\\\\\\n\\\\\\\\nboot_interactions = np.array(boot_interactions)\\\\\\\\nboot_ci = np.percentile(boot_interactions, [2.5, 97.5])\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nBootstrap 95% CI for interaction: [{boot_ci[0]*100:.2f}pp, {boot_ci[1]*100:.2f}pp]\\\\\\\")\\\\\\\\n\\\\\\\\n# Save results\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\"bcs_median\\\\\\\": float(bcs_median),\\\\\\\\n    \\\\\\\"cell_means\\\\\\\": {k: {\\\\\\\"n\\\\\\\": v[\\\\\\\\'n\\\\\\\\'], \\\\\\\"mean_acc\\\\\\\": v[\\\\\\\\'mean\\\\\\\\'], \\\\\\\"std_acc\\\\\\\": v[\\\\\\\\'std\\\\\\\\']} for k, v in cells.items()},\\\\\\\\n    \\\\\\\"main_effects\\\\\\\": {\\\\\\\\n        \\\\\\\"count_effect_pp\\\\\\\": float((count_16_mean - count_32_mean) * 100),\\\\\\\\n        \\\\\\\"bcs_effect_pp\\\\\\\": float((high_bcs_mean - low_bcs_mean) * 100)\\\\\\\\n    },\\\\\\\\n    \\\\\\\"interaction\\\\\\\": {\\\\\\\\n        \\\\\\\"estimate_pp\\\\\\\": float(interaction * 100),\\\\\\\\n        \\\\\\\"se_pp\\\\\\\": float(se_interaction * 100),\\\\\\\\n        \\\\\\\"df\\\\\\\": float(df),\\\\\\\\n        \\\\\\\"ci_95_pp\\\\\\\": [float(ci_lower * 100), float(ci_upper * 100)],\\\\\\\\n        \\\\\\\"bootstrap_ci_95_pp\\\\\\\": [float(boot_ci[0] * 100), float(boot_ci[1] * 100)]\\\\\\\\n    },\\\\\\\\n    \\\\\\\"tost_results\\\\\\\": results,\\\\\\\\n    \\\\\\\"design\\\\\\\": {\\\\\\\\n        \\\\\\\"total_batches\\\\\\\": 70,\\\\\\\\n        \\\\\\\"batches_per_count_level\\\\\\\": 35,\\\\\\\\n        \\\\\\\"count_levels\\\\\\\": [16, 32],\\\\\\\\n        \\\\\\\"bcs_split\\\\\\\": \\\\\\\"median\\\\\\\",\\\\\\\\n        \\\\\\\"bcs_median_threshold\\\\\\\": float(bcs_median)\\\\\\\\n    }\\\\\\\\n}\\\\\\\\n\\\\\\\\nos.makedirs(\\\\\\\\'artifacts/docred_factorial_tost\\\\\\\\', exist_ok=True)\\\\\\\\nwith open(\\\\\\\\'artifacts/docred_factorial_tost/results.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nResults saved to artifacts/docred_factorial_tost/results.json\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "bf07aa33-67d2-45d1-88af-017fcb43af05",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\nimport os\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\n\\\\\\\\n# Collect all batch-level data\\\\\\\\n# count_16: 35 batches (5 high_bcs + 5 low_bcs + 25 random)\\\\\\\\nacc_16 = d[\\\\\\\\'bcs_count_16_high_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_low_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_random\\\\\\\\'][\\\\\\\\'batches\\\\\\\\']\\\\\\\\nbcs_16 = d[\\\\\\\\'bcs_count_16_high_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_low_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_16_random\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\']\\\\\\\\n\\\\\\\\n# count_32: 35 batches\\\\\\\\nacc_32 = d[\\\\\\\\'bcs_count_32_high_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_low_bcs\\\\\\\\'][\\\\\\\\'batches\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_random\\\\\\\\'][\\\\\\\\'batches\\\\\\\\']\\\\\\\\nbcs_32 = d[\\\\\\\\'bcs_count_32_high_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_low_bcs\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\'] + d[\\\\\\\\'bcs_count_32_random\\\\\\\\'][\\\\\\\\'bcs_values\\\\\\\\']\\\\\\\\n\\\\\\\\nacc_16 = np.array(acc_16)\\\\\\\\nbcs_16 = np.array(bcs_16)\\\\\\\\nacc_32 = np.array(acc_32)\\\\\\\\nbcs_32 = np.array(bcs_32)\\\\\\\\n\\\\\\\\n# Combine all 70 batches\\\\\\\\nall_acc = np.concatenate([acc_16, acc_32])\\\\\\\\nall_bcs = np.concatenate([bcs_16, bcs_32])\\\\\\\\ncount_labels = np.array([16]*35 + [32]*35)\\\\\\\\n\\\\\\\\n# Median split on BCS (across all 70 batches)\\\\\\\\nbcs_median = np.median(all_bcs)\\\\\\\\nprint(f\\\\\\\"BCS median (across all 70 batches): {bcs_median:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Assign groups\\\\\\\\nbcs_group = np.where(all_bcs <= bcs_median, \\\\\\\\'low\\\\\\\\', \\\\\\\\'high\\\\\\\\')\\\\\\\\n\\\\\\\\n# 2x2 cells\\\\\\\\ncells = {}\\\\\\\\nfor cl in [16, 32]:\\\\\\\\n    for bg in [\\\\\\\\'low\\\\\\\\', \\\\\\\\'high\\\\\\\\']:\\\\\\\\n        mask = (count_labels == cl) & (bcs_group == bg)\\\\\\\\n        cell_acc = all_acc[mask]\\\\\\\\n        cells[f\\\\\\\"count_{cl}_{bg}_bcs\\\\\\\"] = {\\\\\\\\n            \\\\\\\\'n\\\\\\\\': int(np.sum(mask)),\\\\\\\\n            \\\\\\\\'mean\\\\\\\\': float(np.mean(cell_acc)),\\\\\\\\n            \\\\\\\\'std\\\\\\\\': float(np.std(cell_acc, ddof=1)),\\\\\\\\n            \\\\\\\\'values\\\\\\\\': cell_acc.tolist()\\\\\\\\n        }\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n2x2 Cell Means:\\\\\\\")\\\\\\\\nfor k, v in cells.items():\\\\\\\\n    print(f\\\\\\\"  {k}: n={v[\\\\\\\\'n\\\\\\\\']}, mean={v[\\\\\\\\'mean\\\\\\\\']*100:.2f}% +/- {v[\\\\\\\\'std\\\\\\\\']*100:.2f}%\\\\\\\")\\\\\\\\n\\\\\\\\n# Main effects\\\\\\\\ncount_16_mean = np.mean(all_acc[count_labels == 16])\\\\\\\\ncount_32_mean = np.mean(all_acc[count_labels == 32])\\\\\\\\nlow_bcs_mean = np.mean(all_acc[bcs_group == \\\\\\\\'low\\\\\\\\'])\\\\\\\\nhigh_bcs_mean = np.mean(all_acc[bcs_group == \\\\\\\\'high\\\\\\\\'])\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nMain Effects:\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Count effect: {(count_16_mean - count_32_mean)*100:.2f}pp (count_16 - count_32)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  BCS effect: {(high_bcs_mean - low_bcs_mean)*100:.2f}pp (high_bcs - low_bcs)\\\\\\\")\\\\\\\\n\\\\\\\\n# Interaction: (high_count_high_bcs - high_count_low_bcs) - (low_count_high_bcs - low_count_low_bcs)\\\\\\\\n# Using count_32 as \\\\\\\"high count\\\\\\\" and count_16 as \\\\\\\"low count\\\\\\\"\\\\\\\\nc32_high = cells[\\\\\\\\'count_32_high_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\nc32_low = cells[\\\\\\\\'count_32_low_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\nc16_high = cells[\\\\\\\\'count_16_high_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\nc16_low = cells[\\\\\\\\'count_16_low_bcs\\\\\\\\'][\\\\\\\\'values\\\\\\\\']\\\\\\\\n\\\\\\\\n# Cell means\\\\\\\\nm_32_high = np.mean(c32_high)\\\\\\\\nm_32_low = np.mean(c32_low)\\\\\\\\nm_16_high = np.mean(c16_high)\\\\\\\\nm_16_low = np.mean(c16_low)\\\\\\\\n\\\\\\\\ninteraction = (m_32_high - m_32_low) - (m_16_high - m_16_low)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nInteraction estimate: {interaction*100:.2f}pp\\\\\\\")\\\\\\\\n\\\\\\\\n# For TOST, we need SE of the interaction\\\\\\\\n# interaction = mean(c32_high) - mean(c32_low) - mean(c16_high) + mean(c16_low)\\\\\\\\n# Var(interaction) = Var(c32_high)/n1 + Var(c32_low)/n2 + Var(c16_high)/n3 + Var(c16_low)/n4\\\\\\\\nn1 = len(c32_high)\\\\\\\\nn2 = len(c32_low)\\\\\\\\nn3 = len(c16_high)\\\\\\\\nn4 = len(c16_low)\\\\\\\\n\\\\\\\\nvar_interaction = (np.var(c32_high, ddof=1)/n1 + np.var(c32_low, ddof=1)/n2 + \\\\\\\\n                   np.var(c16_high, ddof=1)/n3 + np.var(c16_low, ddof=1)/n4)\\\\\\\\nse_interaction = np.sqrt(var_interaction)\\\\\\\\n\\\\\\\\n# Welch-Satterthwaite df\\\\\\\\nnumerator = var_interaction**2\\\\\\\\ns1 = np.var(c32_high, ddof=1)/n1\\\\\\\\ns2 = np.var(c32_low, ddof=1)/n2\\\\\\\\ns3 = np.var(c16_high, ddof=1)/n3\\\\\\\\ns4 = np.var(c16_low, ddof=1)/n4\\\\\\\\ndenominator = s1**2/(n1-1) + s2**2/(n2-1) + s3**2/(n3-1) + s4**2/(n4-1)\\\\\\\\ndf = numerator / denominator\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"SE(interaction): {se_interaction*100:.2f}pp\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Welch-Satterthwaite df: {df:.1f}\\\\\\\")\\\\\\\\n\\\\\\\\n# 95% CI\\\\\\\\nt_crit = stats.t.ppf(0.975, df)\\\\\\\\nci_lower = interaction - t_crit * se_interaction\\\\\\\\nci_upper = interaction + t_crit * se_interaction\\\\\\\\nprint(f\\\\\\\"95% CI: [{ci_lower*100:.2f}pp, {ci_upper*100:.2f}pp]\\\\\\\")\\\\\\\\n\\\\\\\\n# TOST for two margins\\\\\\\\nresults = {}\\\\\\\\nfor margin_pp in [3, 2]:\\\\\\\\n    margin = margin_pp / 100.0\\\\\\\\n    # TOST: two one-sided tests\\\\\\\\n    # H0_lower: interaction <= -margin => t_lower = (interaction - (-margin)) / SE\\\\\\\\n    # H0_upper: interaction >= margin  => t_upper = (interaction - margin) / SE\\\\\\\\n    t_lower = (interaction - (-margin)) / se_interaction\\\\\\\\n    t_upper = (interaction - margin) / se_interaction\\\\\\\\n    \\\\\\\\n    p_lower = 1 - stats.t.cdf(t_lower, df)  # want interaction > -margin\\\\\\\\n    p_upper = stats.t.cdf(t_upper, df)       # want interaction < margin\\\\\\\\n    \\\\\\\\n    p_tost = max(p_lower, p_upper)\\\\\\\\n    established = p_tost < 0.05\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"\\\\\\\\\\\\\\\\nTOST +/-{margin_pp}pp:\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  t_lower={t_lower:.3f}, p_lower={p_lower:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  t_upper={t_upper:.3f}, p_upper={p_upper:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  p_TOST={p_tost:.4f} => {\\\\\\\\'ESTABLISHED\\\\\\\\' if established else \\\\\\\\'NOT established\\\\\\\\'}\\\\\\\")\\\\\\\\n    \\\\\\\\n    results[f\\\\\\\"tost_{margin_pp}pp\\\\\\\"] = {\\\\\\\\n        \\\\\\\"margin_pp\\\\\\\": margin_pp,\\\\\\\\n        \\\\\\\"t_lower\\\\\\\": float(t_lower),\\\\\\\\n        \\\\\\\"p_lower\\\\\\\": float(p_lower),\\\\\\\\n        \\\\\\\"t_upper\\\\\\\": float(t_upper),\\\\\\\\n        \\\\\\\"p_upper\\\\\\\": float(p_upper),\\\\\\\\n        \\\\\\\"p_tost\\\\\\\": float(p_tost),\\\\\\\\n        \\\\\\\"equivalence_established\\\\\\\": bool(established)\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# Also compute bootstrap CI for interaction\\\\\\\\nnp.random.seed(42)\\\\\\\\nn_boot = 10000\\\\\\\\nboot_interactions = []\\\\\\\\nfor _ in range(n_boot):\\\\\\\\n    b32h = np.random.choice(c32_high, size=n1, replace=True)\\\\\\\\n    b32l = np.random.choice(c32_low, size=n2, replace=True)\\\\\\\\n    b16h = np.random.choice(c16_high, size=n3, replace=True)\\\\\\\\n    b16l = np.random.choice(c16_low, size=n4, replace=True)\\\\\\\\n    boot_int = (np.mean(b32h) - np.mean(b32l)) - (np.mean(b16h) - np.mean(b16l))\\\\\\\\n    boot_interactions.append(boot_int)\\\\\\\\n\\\\\\\\nboot_interactions = np.array(boot_interactions)\\\\\\\\nboot_ci = np.percentile(boot_interactions, [2.5, 97.5])\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nBootstrap 95% CI for interaction: [{boot_ci[0]*100:.2f}pp, {boot_ci[1]*100:.2f}pp]\\\\\\\")\\\\\\\\n\\\\\\\\n# Save results\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\"bcs_median\\\\\\\": float(bcs_median),\\\\\\\\n    \\\\\\\"cell_means\\\\\\\": {k: {\\\\\\\"n\\\\\\\": v[\\\\\\\\'n\\\\\\\\'], \\\\\\\"mean_acc\\\\\\\": v[\\\\\\\\'mean\\\\\\\\'], \\\\\\\"std_acc\\\\\\\": v[\\\\\\\\'std\\\\\\\\']} for k, v in cells.items()},\\\\\\\\n    \\\\\\\"main_effects\\\\\\\": {\\\\\\\\n        \\\\\\\"count_effect_pp\\\\\\\": float((count_16_mean - count_32_mean) * 100),\\\\\\\\n        \\\\\\\"bcs_effect_pp\\\\\\\": float((high_bcs_mean - low_bcs_mean) * 100)\\\\\\\\n    },\\\\\\\\n    \\\\\\\"interaction\\\\\\\": {\\\\\\\\n        \\\\\\\"estimate_pp\\\\\\\": float(interaction * 100),\\\\\\\\n        \\\\\\\"se_pp\\\\\\\": float(se_interaction * 100),\\\\\\\\n        \\\\\\\"df\\\\\\\": float(df),\\\\\\\\n        \\\\\\\"ci_95_pp\\\\\\\": [float(ci_lower * 100), float(ci_upper * 100)],\\\\\\\\n        \\\\\\\"bootstrap_ci_95_pp\\\\\\\": [float(boot_ci[0] * 100), float(boot_ci[1] * 100)]\\\\\\\\n    },\\\\\\\\n    \\\\\\\"tost_results\\\\\\\": results,\\\\\\\\n    \\\\\\\"design\\\\\\\": {\\\\\\\\n        \\\\\\\"total_batches\\\\\\\": 70,\\\\\\\\n        \\\\\\\"batches_per_count_level\\\\\\\": 35,\\\\\\\\n        \\\\\\\"count_levels\\\\\\\": [16, 32],\\\\\\\\n        \\\\\\\"bcs_split\\\\\\\": \\\\\\\"median\\\\\\\",\\\\\\\\n        \\\\\\\"bcs_median_threshold\\\\\\\": float(bcs_median)\\\\\\\\n    }\\\\\\\\n}\\\\\\\\n\\\\\\\\nos.makedirs(\\\\\\\\'artifacts/docred_factorial_tost\\\\\\\\', exist_ok=True)\\\\\\\\nwith open(\\\\\\\\'artifacts/docred_factorial_tost/results.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nResults saved to artifacts/docred_factorial_tost/results.json\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 << \\\\'PYEOF\\\\'\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nimport os\\\\n\\\\nwith open(\\\\'artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\') as f:\\\\n    d = json.load(f)\\\\n\\\\n# Collect all batch-level data\\\\n# count_16: 35 batches (5 high_bcs + 5 low_bcs + 25 random)\\\\nacc_16 = d[\\\\'bcs_count_16_high_bcs\\\\'][\\\\'batches\\\\'] + d[\\\\'bcs_count_16_low_bcs\\\\'][\\\\'batches\\\\'] + d[\\\\'bcs_count_16_random\\\\'][\\\\'batches\\\\']\\\\nbcs_16 = d[\\\\'bcs_count_16_high_bcs\\\\'][\\\\'bcs_values\\\\'] + d[\\\\'bcs_count_16_low_bcs\\\\'][\\\\'bcs_values\\\\'] + d[\\\\'bcs_count_16_random\\\\'][\\\\'bcs_values\\\\']\\\\n\\\\n# count_32: 35 batches\\\\nacc_32 = d[\\\\'bcs_count_32_high_bcs\\\\'][\\\\'batches\\\\'] + d[\\\\'bcs_count_32_low_bcs\\\\'][\\\\'batches\\\\'] + d[\\\\'bcs_count_32_random\\\\'][\\\\'batches\\\\']\\\\nbcs_32 = d[\\\\'bcs_count_32_high_bcs\\\\'][\\\\'bcs_values\\\\'] + d[\\\\'bcs_count_32_low_bcs\\\\'][\\\\'bcs_values\\\\'] + d[\\\\'bcs_count_32_random\\\\'][\\\\'bcs_values\\\\']\\\\n\\\\nacc_16 = np.array(acc_16)\\\\nbcs_16 = np.array(bcs_16)\\\\nacc_32 = np.array(acc_32)\\\\nbcs_32 = np.array(bcs_32)\\\\n\\\\n# Combine all 70 batches\\\\nall_acc = np.concatenate([acc_16, acc_32])\\\\nall_bcs = np.concatenate([bcs_16, bcs_32])\\\\ncount_labels = np.array([16]*35 + [32]*35)\\\\n\\\\n# Median split on BCS (across all 70 batches)\\\\nbcs_median = np.median(all_bcs)\\\\nprint(f\\\"BCS median (across all 70 batches): {bcs_median:.4f}\\\")\\\\n\\\\n# Assign groups\\\\nbcs_group = np.where(all_bcs <= bcs_median, \\\\'low\\\\', \\\\'high\\\\')\\\\n\\\\n# 2x2 cells\\\\ncells = {}\\\\nfor cl in [16, 32]:\\\\n    for bg in [\\\\'low\\\\', \\\\'high\\\\']:\\\\n        mask = (count_labels == cl) & (bcs_group == bg)\\\\n        cell_acc = all_acc[mask]\\\\n        cells[f\\\"count_{cl}_{bg}_bcs\\\"] = {\\\\n            \\\\'n\\\\': int(np.sum(mask)),\\\\n            \\\\'mean\\\\': float(np.mean(cell_acc)),\\\\n            \\\\'std\\\\': float(np.std(cell_acc, ddof=1)),\\\\n            \\\\'values\\\\': cell_acc.tolist()\\\\n        }\\\\n\\\\nprint(\\\"\\\\\\\\n2x2 Cell Means:\\\")\\\\nfor k, v in cells.items():\\\\n    print(f\\\"  {k}: n={v[\\\\'n\\\\']}, mean={v[\\\\'mean\\\\']*100:.2f}% +/- {v[\\\\'std\\\\']*100:.2f}%\\\")\\\\n\\\\n# Main effects\\\\ncount_16_mean = np.mean(all_acc[count_labels == 16])\\\\ncount_32_mean = np.mean(all_acc[count_labels == 32])\\\\nlow_bcs_mean = np.mean(all_acc[bcs_group == \\\\'low\\\\'])\\\\nhigh_bcs_mean = np.mean(all_acc[bcs_group == \\\\'high\\\\'])\\\\n\\\\nprint(f\\\"\\\\\\\\nMain Effects:\\\")\\\\nprint(f\\\"  Count effect: {(count_16_mean - count_32_mean)*100:.2f}pp (count_16 - count_32)\\\")\\\\nprint(f\\\"  BCS effect: {(high_bcs_mean - low_bcs_mean)*100:.2f}pp (high_bcs - low_bcs)\\\")\\\\n\\\\n# Interaction: (high_count_high_bcs - high_count_low_bcs) - (low_count_high_bcs - low_count_low_bcs)\\\\n# Using count_32 as \\\"high count\\\" and count_16 as \\\"low count\\\"\\\\nc32_high = cells[\\\\'count_32_high_bcs\\\\'][\\\\'values\\\\']\\\\nc32_low = cells[\\\\'count_32_low_bcs\\\\'][\\\\'values\\\\']\\\\nc16_high = cells[\\\\'count_16_high_bcs\\\\'][\\\\'values\\\\']\\\\nc16_low = cells[\\\\'count_16_low_bcs\\\\'][\\\\'values\\\\']\\\\n\\\\n# Cell means\\\\nm_32_high = np.mean(c32_high)\\\\nm_32_low = np.mean(c32_low)\\\\nm_16_high = np.mean(c16_high)\\\\nm_16_low = np.mean(c16_low)\\\\n\\\\ninteraction = (m_32_high - m_32_low) - (m_16_high - m_16_low)\\\\nprint(f\\\"\\\\\\\\nInteraction estimate: {interaction*100:.2f}pp\\\")\\\\n\\\\n# For TOST, we need SE of the interaction\\\\n# interaction = mean(c32_high) - mean(c32_low) - mean(c16_high) + mean(c16_low)\\\\n# Var(interaction) = Var(c32_high)/n1 + Var(c32_low)/n2 + Var(c16_high)/n3 + Var(c16_low)/n4\\\\nn1 = len(c32_high)\\\\nn2 = len(c32_low)\\\\nn3 = len(c16_high)\\\\nn4 = len(c16_low)\\\\n\\\\nvar_interaction = (np.var(c32_high, ddof=1)/n1 + np.var(c32_low, ddof=1)/n2 + \\\\n                   np.var(c16_high, ddof=1)/n3 + np.var(c16_low, ddof=1)/n4)\\\\nse_interaction = np.sqrt(var_interaction)\\\\n\\\\n# Welch-Satterthwaite df\\\\nnumerator = var_interaction**2\\\\ns1 = np.var(c32_high, ddof=1)/n1\\\\ns2 = np.var(c32_low, ddof=1)/n2\\\\ns3 = np.var(c16_high, ddof=1)/n3\\\\ns4 = np.var(c16_low, ddof=1)/n4\\\\ndenominator = s1**2/(n1-1) + s2**2/(n2-1) + s3**2/(n3-1) + s4**2/(n4-1)\\\\ndf = numerator / denominator\\\\n\\\\nprint(f\\\"SE(interaction): {se_interaction*100:.2f}pp\\\")\\\\nprint(f\\\"Welch-Satterthwaite df: {df:.1f}\\\")\\\\n\\\\n# 95% CI\\\\nt_crit = stats.t.ppf(0.975, df)\\\\nci_lower = interaction - t_crit * se_interaction\\\\nci_upper = interaction + t_crit * se_interaction\\\\nprint(f\\\"95% CI: [{ci_lower*100:.2f}pp, {ci_upper*100:.2f}pp]\\\")\\\\n\\\\n# TOST for two margins\\\\nresults = {}\\\\nfor margin_pp in [3, 2]:\\\\n    margin = margin_pp / 100.0\\\\n    # TOST: two one-sided tests\\\\n    # H0_lower: interaction <= -margin => t_lower = (interaction - (-margin)) / SE\\\\n    # H0_upper: interaction >= margin  => t_upper = (interaction - margin) / SE\\\\n    t_lower = (interaction - (-margin)) / se_interaction\\\\n    t_upper = (interaction - margin) / se_interaction\\\\n    \\\\n    p_lower = 1 - stats.t.cdf(t_lower, df)  # want interaction > -margin\\\\n    p_upper = stats.t.cdf(t_upper, df)       # want interaction < margin\\\\n    \\\\n    p_tost = max(p_lower, p_upper)\\\\n    established = p_tost < 0.05\\\\n    \\\\n    print(f\\\"\\\\\\\\nTOST +/-{margin_pp}pp:\\\")\\\\n    print(f\\\"  t_lower={t_lower:.3f}, p_lower={p_lower:.4f}\\\")\\\\n    print(f\\\"  t_upper={t_upper:.3f}, p_upper={p_upper:.4f}\\\")\\\\n    print(f\\\"  p_TOST={p_tost:.4f} => {\\\\'ESTABLISHED\\\\' if established else \\\\'NOT established\\\\'}\\\")\\\\n    \\\\n    results[f\\\"tost_{margin_pp}pp\\\"] = {\\\\n        \\\"margin_pp\\\": margin_pp,\\\\n        \\\"t_lower\\\": float(t_lower),\\\\n        \\\"p_lower\\\": float(p_lower),\\\\n        \\\"t_upper\\\": float(t_upper),\\\\n        \\\"p_upper\\\": float(p_upper),\\\\n        \\\"p_tost\\\": float(p_tost),\\\\n        \\\"equivalence_established\\\": bool(established)\\\\n    }\\\\n\\\\n# Also compute bootstrap CI for interaction\\\\nnp.random.seed(42)\\\\nn_boot = 10000\\\\nboot_interactions = []\\\\nfor _ in range(n_boot):\\\\n    b32h = np.random.choice(c32_high, size=n1, replace=True)\\\\n    b32l = np.random.choice(c32_low, size=n2, replace=True)\\\\n    b16h = np.random.choice(c16_high, size=n3, replace=True)\\\\n    b16l = np.random.choice(c16_low, size=n4, replace=True)\\\\n    boot_int = (np.mean(b32h) - np.mean(b32l)) - (np.mean(b16h) - np.mean(b16l))\\\\n    boot_interactions.append(boot_int)\\\\n\\\\nboot_interactions = np.array(boot_interactions)\\\\nboot_ci = np.percentile(boot_interactions, [2.5, 97.5])\\\\nprint(f\\\"\\\\\\\\nBootstrap 95% CI for interaction: [{boot_ci[0]*100:.2f}pp, {boot_ci[1]*100:.2f}pp]\\\")\\\\n\\\\n# Save results\\\\noutput = {\\\\n    \\\"bcs_median\\\": float(bcs_median),\\\\n    \\\"cell_means\\\": {k: {\\\"n\\\": v[\\\\'n\\\\'], \\\"mean_acc\\\": v[\\\\'mean\\\\'], \\\"std_acc\\\": v[\\\\'std\\\\']} for k, v in cells.items()},\\\\n    \\\"main_effects\\\": {\\\\n        \\\"count_effect_pp\\\": float((count_16_mean - count_32_mean) * 100),\\\\n        \\\"bcs_effect_pp\\\": float((high_bcs_mean - low_bcs_mean) * 100)\\\\n    },\\\\n    \\\"interaction\\\": {\\\\n        \\\"estimate_pp\\\": float(interaction * 100),\\\\n        \\\"se_pp\\\": float(se_interaction * 100),\\\\n        \\\"df\\\": float(df),\\\\n        \\\"ci_95_pp\\\": [float(ci_lower * 100), float(ci_upper * 100)],\\\\n        \\\"bootstrap_ci_95_pp\\\": [float(boot_ci[0] * 100), float(boot_ci[1] * 100)]\\\\n    },\\\\n    \\\"tost_results\\\": results,\\\\n    \\\"design\\\": {\\\\n        \\\"total_batches\\\": 70,\\\\n        \\\"batches_per_count_level\\\": 35,\\\\n        \\\"count_levels\\\": [16, 32],\\\\n        \\\"bcs_split\\\": \\\"median\\\",\\\\n        \\\"bcs_median_threshold\\\": float(bcs_median)\\\\n    }\\\\n}\\\\n\\\\nos.makedirs(\\\\'artifacts/docred_factorial_tost\\\\', exist_ok=True)\\\\nwith open(\\\\'artifacts/docred_factorial_tost/results.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(output, f, indent=2)\\\\n\\\\nprint(\\\"\\\\\\\\nResults saved to artifacts/docred_factorial_tost/results.json\\\")\\\\nPYEOF\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"<stdin>\\\", line 2, in <module>\\nModuleNotFoundError: No module named 'numpy'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要安装 numpy 和 scipy。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "73a2e23c-3cde-408e-bcc6-f93e1d969fce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMsoMsE6GFT8K4uWscVBKD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7066,
+                "cache_read_input_tokens": 34400,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7066
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F5LZnXGWCzzZBJAqDB9fNE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && pip install numpy scipy -q 2>&1 | tail -3",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "bda1781b-ed7e-449d-8d9f-2925cdfeb821",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMsoMsE6GFT8K4uWscVBKD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7066,
+                "cache_read_input_tokens": 34400,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7066
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T21:39:03.749Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F5LZnXGWCzzZBJAqDB9fNE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: pip: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "492d2927-051c-43e1-a3a9-4581c981cb63",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: pip: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: pip: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UVRyuzHiXdC37yV6iapLvi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "which python3 && python3 --version && pip3 install numpy scipy -q 2>&1 | tail -5",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "248ffe89-6713-4964-a19e-7ef33b15683e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G7BJWnkJmTVZzqCiwCqeZW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 223,
+                "cache_read_input_tokens": 41466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 223
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T21:39:07.444Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UVRyuzHiXdC37yV6iapLvi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\nPython 3.10.12\\\\nbash: line 1: pip3: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "5944230c-c206-405a-9c53-f69f411b0942",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\nPython 3.10.12\\\\nbash: line 1: pip3: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\nPython 3.10.12\\nbash: line 1: pip3: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014zK7dMAwVJQokhC4KWUksa",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "python3 -m pip install numpy scipy -q 2>&1 | tail -5",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "312b3d77-e582-4d21-98dd-4ea65d0462cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hghz5LomUSHDDSvLhDsgxh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 457,
+                "cache_read_input_tokens": 41466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 457
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T21:39:10.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014zK7dMAwVJQokhC4KWUksa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3: No module named pip\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "e632c8d5-2c6f-4c83-9ed5-29a0fa91edfa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3: No module named pip\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3: No module named pip\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015UcmTj69Vo86QKEB6mLquT",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "ls /root/miniconda* /opt/conda* /root/anaconda* 2>/dev/null; which conda 2>/dev/null; find /root -name \"python3\" -o -name \"python\" 2>/dev/null | head -10",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "a848dd4c-4986-46c5-96ae-b044256b7d77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TihuL6kfsqvfZ6fma7sUgH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 207,
+                "cache_read_input_tokens": 41923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 207
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T21:39:16.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015UcmTj69Vo86QKEB6mLquT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3:\\\\nLICENSE.txt\\\\n_conda\\\\nbin\\\\ncmake\\\\ncompiler_compat\\\\nconda-meta\\\\ncondabin\\\\nenvs\\\\netc\\\\ninclude\\\\nlib\\\\nman\\\\npkgs\\\\nsbin\\\\nshare\\\\nshell\\\\nssl\\\\nx86_64-conda-linux-gnu\\\\nx86_64-conda_cos7-linux-gnu\\\\n/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/src/arrow/python\\\\n/root/miniconda3/lib/python3.12/site-packages/tilelang/3rdparty/tvm/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cccl/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/examples/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/test/python\\\\n/root/miniconda3/lib/python3.12/site-packages/torch/include/google/protobuf/compiler/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "b43d0c7d-0845-46cb-9a80-c53a375ce100",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3:\\\\nLICENSE.txt\\\\n_conda\\\\nbin\\\\ncmake\\\\ncompiler_compat\\\\nconda-meta\\\\ncondabin\\\\nenvs\\\\netc\\\\ninclude\\\\nlib\\\\nman\\\\npkgs\\\\nsbin\\\\nshare\\\\nshell\\\\nssl\\\\nx86_64-conda-linux-gnu\\\\nx86_64-conda_cos7-linux-gnu\\\\n/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/src/arrow/python\\\\n/root/miniconda3/lib/python3.12/site-packages/tilelang/3rdparty/tvm/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cccl/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/examples/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/python\\\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/test/python\\\\n/root/miniconda3/lib/python3.12/site-packages/torch/include/google/protobuf/compiler/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3:\\nLICENSE.txt\\n_conda\\nbin\\ncmake\\ncompiler_compat\\nconda-meta\\ncondabin\\nenvs\\netc\\ninclude\\nlib\\nman\\npkgs\\nsbin\\nshare\\nshell\\nssl\\nx86_64-conda-linux-gnu\\nx86_64-conda_cos7-linux-gnu\\n/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/src/arrow/python\\n/root/miniconda3/lib/python3.12/site-packages/tilelang/3rdparty/tvm/python\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cccl/python\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/examples/python\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/python\\n/root/miniconda3/lib/python3.12/site-packages/flashinfer/data/cutlass/test/python\\n/root/miniconda3/lib/python3.12/site-packages/torch/include/google/protobuf/compiler/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQhwDsL2qFthcgTTRVzvEL",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "/root/miniconda3/bin/python3 -c \"import numpy; import scipy; print('numpy', numpy.__version__, 'scipy', scipy.__version__)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "47410fdf-d188-4fce-9c1e-ded0e9bad11e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QC46VX4rKcuNZ6KGjCZoo7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 624,
+                "cache_read_input_tokens": 42130,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 624
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T21:39:20.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQhwDsL2qFthcgTTRVzvEL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"numpy 2.2.6 scipy 1.17.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "3ca55194-4f59-49c8-bd21-d3136085d482",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"numpy 2.2.6 scipy 1.17.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"numpy 2.2.6 scipy 1.17.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在用 miniconda 的 python 跑分析。把脚本写成文件上传执行更可靠。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "f99a9f0f-a206-4ab0-84eb-0c5a2c2143de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015tuV2fe9NdMzjR4fDrytKs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 229,
+                "cache_read_input_tokens": 42754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQcsAfzuXdrcEa2KPAKWdB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cat > /root/schema-dag-extraction/factorial_tost.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\nimport os\n\nwith open('artifacts/exp_docred_confusability/bcs_controlled_results.json') as f:\n    d = json.load(f)\n\n# Collect all batch-level data\nacc_16 = d['bcs_count_16_high_bcs']['batches'] + d['bcs_count_16_low_bcs']['batches'] + d['bcs_count_16_random']['batches']\nbcs_16 = d['bcs_count_16_high_bcs']['bcs_values'] + d['bcs_count_16_low_bcs']['bcs_values'] + d['bcs_count_16_random']['bcs_values']\n\nacc_32 = d['bcs_count_32_high_bcs']['batches'] + d['bcs_count_32_low_bcs']['batches'] + d['bcs_count_32_random']['batches']\nbcs_32 = d['bcs_count_32_high_bcs']['bcs_values'] + d['bcs_count_32_low_bcs']['bcs_values'] + d['bcs_count_32_random']['bcs_values']\n\nacc_16 = np.array(acc_16)\nbcs_16 = np.array(bcs_16)\nacc_32 = np.array(acc_32)\nbcs_32 = np.array(bcs_32)\n\nall_acc = np.concatenate([acc_16, acc_32])\nall_bcs = np.concatenate([bcs_16, bcs_32])\ncount_labels = np.array([16]*35 + [32]*35)\n\n# Median split on BCS\nbcs_median = np.median(all_bcs)\nprint(f\"BCS median (across all 70 batches): {bcs_median:.4f}\")\n\nbcs_group = np.where(all_bcs <= bcs_median, 'low', 'high')\n\n# 2x2 cells\ncells = {}\nfor cl in [16, 32]:\n    for bg in ['low', 'high']:\n        mask = (count_labels == cl) & (bcs_group == bg)\n        cell_acc = all_acc[mask]\n        cells[f\"count_{cl}_{bg}_bcs\"] = {\n            'n': int(np.sum(mask)),\n            'mean': float(np.mean(cell_acc)),\n            'std': float(np.std(cell_acc, ddof=1)),\n            'values': cell_acc.tolist()\n        }\n\nprint(\"\\n2x2 Cell Means:\")\nfor k, v in cells.items():\n    print(f\"  {k}: n={v['n']}, mean={v['mean']*100:.2f}% +/- {v['std']*100:.2f}%\")\n\n# Main effects\ncount_16_mean = np.mean(all_acc[count_labels == 16])\ncount_32_mean = np.mean(all_acc[count_labels == 32])\nlow_bcs_mean = np.mean(all_acc[bcs_group == 'low'])\nhigh_bcs_mean = np.mean(all_acc[bcs_group == 'high'])\n\nprint(f\"\\nMain Effects:\")\nprint(f\"  Count effect: {(count_16_mean - count_32_mean)*100:.2f}pp (count_16 - count_32)\")\nprint(f\"  BCS effect: {(high_bcs_mean - low_bcs_mean)*100:.2f}pp (high_bcs - low_bcs)\")\n\n# Interaction\nc32_high = np.array(cells['count_32_high_bcs']['values'])\nc32_low = np.array(cells['count_32_low_bcs']['values'])\nc16_high = np.array(cells['count_16_high_bcs']['values'])\nc16_low = np.array(cells['count_16_low_bcs']['values'])\n\nm_32_high = np.mean(c32_high)\nm_32_low = np.mean(c32_low)\nm_16_high = np.mean(c16_high)\nm_16_low = np.mean(c16_low)\n\ninteraction = (m_32_high - m_32_low) - (m_16_high - m_16_low)\nprint(f\"\\nInteraction estimate: {interaction*100:.2f}pp\")\n\nn1, n2, n3, n4 = len(c32_high), len(c32_low), len(c16_high), len(c16_low)\n\nvar_interaction = (np.var(c32_high, ddof=1)/n1 + np.var(c32_low, ddof=1)/n2 +\n                   np.var(c16_high, ddof=1)/n3 + np.var(c16_low, ddof=1)/n4)\nse_interaction = np.sqrt(var_interaction)\n\n# Welch-Satterthwaite df\ns1 = np.var(c32_high, ddof=1)/n1\ns2 = np.var(c32_low, ddof=1)/n2\ns3 = np.var(c16_high, ddof=1)/n3\ns4 = np.var(c16_low, ddof=1)/n4\ndf = (s1 + s2 + s3 + s4)**2 / (s1**2/(n1-1) + s2**2/(n2-1) + s3**2/(n3-1) + s4**2/(n4-1))\n\nprint(f\"SE(interaction): {se_interaction*100:.2f}pp\")\nprint(f\"Welch-Satterthwaite df: {df:.1f}\")\n\nt_crit = stats.t.ppf(0.975, df)\nci_lower = interaction - t_crit * se_interaction\nci_upper = interaction + t_crit * se_interaction\nprint(f\"95% CI: [{ci_lower*100:.2f}pp, {ci_upper*100:.2f}pp]\")\n\n# TOST\nresults = {}\nfor margin_pp in [3, 2]:\n    margin = margin_pp / 100.0\n    t_lower = (interaction + margin) / se_interaction\n    t_upper = (interaction - margin) / se_interaction\n\n    p_lower = 1 - stats.t.cdf(t_lower, df)\n    p_upper = stats.t.cdf(t_upper, df)\n\n    p_tost = max(p_lower, p_upper)\n    established = p_tost < 0.05\n\n    print(f\"\\nTOST +/-{margin_pp}pp:\")\n    print(f\"  t_lower={t_lower:.3f}, p_lower={p_lower:.4f}\")\n    print(f\"  t_upper={t_upper:.3f}, p_upper={p_upper:.4f}\")\n    print(f\"  p_TOST={p_tost:.4f} => {'ESTABLISHED' if established else 'NOT established'}\")\n\n    results[f\"tost_{margin_pp}pp\"] = {\n        \"margin_pp\": margin_pp,\n        \"t_lower\": float(t_lower),\n        \"p_lower\": float(p_lower),\n        \"t_upper\": float(t_upper),\n        \"p_upper\": float(p_upper),\n        \"p_tost\": float(p_tost),\n        \"equivalence_established\": bool(established)\n    }\n\n# Bootstrap CI\nnp.random.seed(42)\nn_boot = 10000\nboot_interactions = []\nfor _ in range(n_boot):\n    b32h = np.random.choice(c32_high, size=n1, replace=True)\n    b32l = np.random.choice(c32_low, size=n2, replace=True)\n    b16h = np.random.choice(c16_high, size=n3, replace=True)\n    b16l = np.random.choice(c16_low, size=n4, replace=True)\n    boot_int = (np.mean(b32h) - np.mean(b32l)) - (np.mean(b16h) - np.mean(b16l))\n    boot_interactions.append(boot_int)\n\nboot_interactions = np.array(boot_interactions)\nboot_ci = np.percentile(boot_interactions, [2.5, 97.5])\nprint(f\"\\nBootstrap 95% CI for interaction: [{boot_ci[0]*100:.2f}pp, {boot_ci[1]*100:.2f}pp]\")\n\n# Save results\noutput = {\n    \"bcs_median\": float(bcs_median),\n    \"cell_means\": {k: {\"n\": v['n'], \"mean_acc\": v['mean'], \"std_acc\": v['std']} for k, v in cells.items()},\n    \"main_effects\": {\n        \"count_effect_pp\": float((count_16_mean - count_32_mean) * 100),\n        \"bcs_effect_pp\": float((high_bcs_mean - low_bcs_mean) * 100)\n    },\n    \"interaction\": {\n        \"estimate_pp\": float(interaction * 100),\n        \"se_pp\": float(se_interaction * 100),\n        \"df\": float(df),\n        \"ci_95_pp\": [float(ci_lower * 100), float(ci_upper * 100)],\n        \"bootstrap_ci_95_pp\": [float(boot_ci[0] * 100), float(boot_ci[1] * 100)]\n    },\n    \"tost_results\": results,\n    \"design\": {\n        \"total_batches\": 70,\n        \"batches_per_count_level\": 35,\n        \"count_levels\": [16, 32],\n        \"bcs_split\": \"median\",\n        \"bcs_median_threshold\": float(bcs_median)\n    }\n}\n\nos.makedirs('artifacts/docred_factorial_tost', exist_ok=True)\nwith open('artifacts/docred_factorial_tost/results.json', 'w') as f:\n    json.dump(output, f, indent=2)\n\nprint(\"\\nResults saved to artifacts/docred_factorial_tost/results.json\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "cc1af044-51ae-4542-a447-32b9a00f4a51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015tuV2fe9NdMzjR4fDrytKs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 229,
+                "cache_read_input_tokens": 42754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T21:39:50.377Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQcsAfzuXdrcEa2KPAKWdB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "3d15c4e6-ec4c-4c85-8f34-cdd7380fa939",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B9a4sbKqJABdwoSJe17zGt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-38874",
+                "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3 factorial_tost.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "cf3568d0-9c9f-4252-8f38-30c44ab3c1b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FM4GC796VBe3FQZDmeMXd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2826,
+                "cache_read_input_tokens": 42983,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2826
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T21:40:00.528Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B9a4sbKqJABdwoSJe17zGt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BCS median (across all 70 batches): 0.5488\\\\n\\\\n2x2 Cell Means:\\\\n  count_16_low_bcs: n=18, mean=64.84% +/- 5.29%\\\\n  count_16_high_bcs: n=17, mean=54.22% +/- 10.26%\\\\n  count_32_low_bcs: n=17, mean=54.26% +/- 6.24%\\\\n  count_32_high_bcs: n=18, mean=49.33% +/- 7.46%\\\\n\\\\nMain Effects:\\\\n  Count effect: 7.96pp (count_16 - count_32)\\\\n  BCS effect: -7.99pp (high_bcs - low_bcs)\\\\n\\\\nInteraction estimate: 5.70pp\\\\nSE(interaction): 3.62pp\\\\nWelch-Satterthwaite df: 50.3\\\\n95% CI: [-1.58pp, 12.98pp]\\\\n\\\\nTOST +/-3pp:\\\\n  t_lower=2.399, p_lower=0.0101\\\\n  t_upper=0.744, p_upper=0.7698\\\\n  p_TOST=0.7698 => NOT established\\\\n\\\\nTOST +/-2pp:\\\\n  t_lower=2.123, p_lower=0.0193\\\\n  t_upper=1.020, p_upper=0.8436\\\\n  p_TOST=0.8436 => NOT established\\\\n\\\\nBootstrap 95% CI for interaction: [-1.23pp, 12.43pp]\\\\n\\\\nResults saved to artifacts/docred_factorial_tost/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "8a627ec6-4073-4548-8c12-1c57cda967c9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BCS median (across all 70 batches): 0.5488\\\\n\\\\n2x2 Cell Means:\\\\n  count_16_low_bcs: n=18, mean=64.84% +/- 5.29%\\\\n  count_16_high_bcs: n=17, mean=54.22% +/- 10.26%\\\\n  count_32_low_bcs: n=17, mean=54.26% +/- 6.24%\\\\n  count_32_high_bcs: n=18, mean=49.33% +/- 7.46%\\\\n\\\\nMain Effects:\\\\n  Count effect: 7.96pp (count_16 - count_32)\\\\n  BCS effect: -7.99pp (high_bcs - low_bcs)\\\\n\\\\nInteraction estimate: 5.70pp\\\\nSE(interaction): 3.62pp\\\\nWelch-Satterthwaite df: 50.3\\\\n95% CI: [-1.58pp, 12.98pp]\\\\n\\\\nTOST +/-3pp:\\\\n  t_lower=2.399, p_lower=0.0101\\\\n  t_upper=0.744, p_upper=0.7698\\\\n  p_TOST=0.7698 => NOT established\\\\n\\\\nTOST +/-2pp:\\\\n  t_lower=2.123, p_lower=0.0193\\\\n  t_upper=1.020, p_upper=0.8436\\\\n  p_TOST=0.8436 => NOT established\\\\n\\\\nBootstrap 95% CI for interaction: [-1.23pp, 12.43pp]\\\\n\\\\nResults saved to artifacts/docred_factorial_tost/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.92}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"BCS median (across all 70 batches): 0.5488\\n\\n2x2 Cell Means:\\n  count_16_low_bcs: n=18, mean=64.84% +/- 5.29%\\n  count_16_high_bcs: n=17, mean=54.22% +/- 10.26%\\n  count_32_low_bcs: n=17, mean=54.26% +/- 6.24%\\n  count_32_high_bcs: n=18, mean=49.33% +/- 7.46%\\n\\nMain Effects:\\n  Count effect: 7.96pp (count_16 - count_32)\\n  BCS effect: -7.99pp (high_bcs - low_bcs)\\n\\nInteraction estimate: 5.70pp\\nSE(interaction): 3.62pp\\nWelch-Satterthwaite df: 50.3\\n95% CI: [-1.58pp, 12.98pp]\\n\\nTOST +/-3pp:\\n  t_lower=2.399, p_lower=0.0101\\n  t_upper=0.744, p_upper=0.7698\\n  p_TOST=0.7698 => NOT established\\n\\nTOST +/-2pp:\\n  t_lower=2.123, p_lower=0.0193\\n  t_upper=1.020, p_upper=0.8436\\n  p_TOST=0.8436 => NOT established\\n\\nBootstrap 95% CI for interaction: [-1.23pp, 12.43pp]\\n\\nResults saved to artifacts/docred_factorial_tost/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.92}}"
+              }
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `artifacts/docred_factorial_tost/results.json`。\n\n## 2×2 Factorial TOST 结果\n\n**2×2 Cell Means:**\n| | low BCS | high BCS |\n|---|---|---|\n| **count_16** | 64.84% ± 5.29% (n=18) | 54.22% ± 10.26% (n=17) |\n| **count_32** | 54.26% ± 6.24% (n=17) | 49.33% ± 7.46% (n=18) |\n\n**Main Effects:**\n- Count effect: +7.96pp (count_16 > count_32)\n- BCS effect: -7.99pp (high BCS lowers accuracy)\n\n**Interaction:** +5.70pp (CI: [-1.58pp, 12.98pp])\n\nBCS 的负面效果在 count_16 时更大（10.62pp drop）比 count_32（4.93pp drop），差异 5.70pp。\n\n**TOST Results:**\n- ±3pp: p_TOST = 0.7698 → **NOT established**\n- ±2pp: p_TOST = 0.8436 → **NOT established**\n\n**Bootstrap 95% CI:** [-1.23pp, 12.43pp]\n\n**结论：** 交互效应无法在 ±3pp 或 ±2pp 边界内建立等价性。interaction estimate 为 +5.70pp，CI 跨越 0 但上界达 ~13pp，远超等价边界。BCS median split (0.5488) 将 70 batches (35×2 count levels) 分为近似等大的 4 cells。交互效应表明 confusability 对 accuracy 的影响在较小 schema count 时更严重。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "uuid": "e3c92e6b-1f0c-4ba6-a619-998142e6b31f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TX3vK2bqeuJTWNCskCk6xc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 642,
+                "cache_read_input_tokens": 45809,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 642
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `artifacts/docred_factorial_tost/results.json`。\n\n## 2×2 Factorial TOST 结果\n\n**2×2 Cell Means:**\n| | low BCS | high BCS |\n|---|---|---|\n| **count_16** | 64.84% ± 5.29% (n=18) | 54.22% ± 10.26% (n=17) |\n| **count_32** | 54.26% ± 6.24% (n=17) | 49.33% ± 7.46% (n=18) |\n\n**Main Effects:**\n- Count effect: +7.96pp (count_16 > count_32)\n- BCS effect: -7.99pp (high BCS lowers accuracy)\n\n**Interaction:** +5.70pp (CI: [-1.58pp, 12.98pp])\n\nBCS 的负面效果在 count_16 时更大（10.62pp drop）比 count_32（4.93pp drop），差异 5.70pp。\n\n**TOST Results:**\n- ±3pp: p_TOST = 0.7698 → **NOT established**\n- ±2pp: p_TOST = 0.8436 → **NOT established**\n\n**Bootstrap 95% CI:** [-1.23pp, 12.43pp]\n\n**结论：** 交互效应无法在 ±3pp 或 ±2pp 边界内建立等价性。interaction estimate 为 +5.70pp，CI 跨越 0 但上界达 ~13pp，远超等价边界。BCS median split (0.5488) 将 70 batches (35×2 count levels) 分为近似等大的 4 cells。交互效应表明 confusability 对 accuracy 的影响在较小 schema count 时更严重。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 192091,
+            "duration_api_ms": 174789,
+            "num_turns": 20,
+            "stop_reason": "end_turn",
+            "session_id": "cc0059cf-39c1-4426-b05d-7b134276f65b",
+            "total_cost_usd": 0.8336735000000001,
+            "usage": {
+              "input_tokens": 24,
+              "cache_creation_input_tokens": 33636,
+              "cache_read_input_tokens": 665569,
+              "output_tokens": 11545,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 33636,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 488,
+                  "cache_read_input_tokens": 45809,
+                  "cache_creation_input_tokens": 642,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 642
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1804,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019190000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 24,
+                "outputTokens": 11545,
+                "cacheReadInputTokens": 665569,
+                "cacheCreationInputTokens": 33636,
+                "webSearchRequests": 0,
+                "costUSD": 0.8317545000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b81bb7a8-d10f-4ab7-9ec1-9bde7c6a05ab"
+          },
+          "id": "event-000056"
+        }
+      ],
+      "message_count": 56
+    }
+  ]
+}

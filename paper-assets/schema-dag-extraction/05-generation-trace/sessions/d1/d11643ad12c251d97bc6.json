@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d11643ad12c251d97bc6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r26 fix related work",
+  "task_key": "worker_paper_r26_fix_related_work_20260522T043743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_fix_related_work_20260522T043743_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "7ef000814d362e8a5e2c70a984e20e9237c9d2ba727c175c2dc2f1b27dd7208c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**文件**: `docs/paper/related_work.tex:18`\n\n**插入位置**: \"SCS novelty\" 段落第一句之后，第二句（\"The metric is a means...\"）之前。\n\n**新增内容**（1 句）:\n> Unlike LLM-PEE, which uses embedding similarity to partition schemas for improved extraction, our SCS/BCS metrics serve an analytical role: SCS quantifies pairwise type confusability, and BCS averages all pairwise SCS values within a batch to predict batch-level accuracy.\n\n覆盖了三个要点：\n1. LLM-PEE 用 similarity 做 partition engineering vs. 我们做 prediction/analysis\n2. BCS = MEAN（averages all pairwise SCS）\n3. 与后续已有文字（\"The metric is a means; the empirical findings are the contribution, enabled by ... BCS-controlled batches that isolate confusability from count\"）衔接，共同强调贡献是 controlled experimental design 而非 metric 本身\n\n未添加第二句\"The contribution is not the metric itself but the controlled batch design...\"，因为紧跟的已有文字已表达相同含义，避免冗余。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb243e330d1793959e60",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260522T195705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260522T195705_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "d433f8b3df63b922b73bbddee6ef8fa822191ea40d5c4df421799cb831dbd686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (~200 words). Three paragraphs mapping to the four required elements:\n\n1. **Problem + why important** (P1): BFT-diversity assumption untested, diversity vs robustness not disentangled\n2. **What we do** (P2): 455 panels, 15 models, 6 families, 6 attacks, 2 benchmarks; log-log regression + dominance analysis separating η_max and K_eff channels\n3. **Results** (P3): η_max significant 11/12, K_eff positively associated with vulnerability 7/12 (\"diversity trap\"), Bayesian calibration reverses the association; framed as observational\n\nKey numbers used: 11/12 (η_max) and 7/12 (K_eff positive), with setup numbers kept to one compact sentence. All red lines checked: no em-dash, no -ing endings, no causal language, LLM expanded, \"observational\" explicit."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

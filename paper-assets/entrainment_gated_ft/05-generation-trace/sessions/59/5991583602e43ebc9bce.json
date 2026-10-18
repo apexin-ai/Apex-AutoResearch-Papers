@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5991583602e43ebc9bce",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code check new gdn config",
+  "task_key": "worker_code_check_new_gdn_config_20260518T153721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_new_gdn_config_20260518T153721_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "e53fec7dbbad5b22fd94aa6cc0a94e5ad2015b168d7544d7c9d44b634d84bb1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 差异字段\n\n仅 3 个字段有差异，其中 2 个无关紧要：\n\n| 字段 | 说明 |\n|---|---|\n| `_name_or_path` | 训练时的原始 config 路径，无实质影响 |\n| `transformers_version` | hybrid-12-1 是 4.51.3，其余都是 4.49.0，无架构影响 |\n| **`attn`** | 唯一的实质差异 |\n\n## Attention 层配置对比\n\n| 模型 | attn layers | num_heads | num_kv_heads |\n|---|---|---|---|\n| **New-hybrid-24-1** | `[23]` (1层) | 32 | 8 |\n| hybrid-12-1 | `[11, 23]` (2层) | 32 | 8 |\n| hybrid-6-1 | `[6, 11, 17, 23]` (4层) | 32 | 8 |\n| hybrid-3-1 | `[2, 5, 8, 11, 14, 17, 20, 23]` (8层) | **16** | 8 |\n| pure-baseline | None (0层) | - | - |\n\n其余所有 GDN 特有参数（hidden_size, num_hidden_layers, head_dim, expand_k, expand_v, conv_size, qk_activation, qk_norm, use_beta, use_gate 等）**完全一致**。\n\n## 结论\n\n**\"New\" 不意味着不同架构。** `New-hybrid-24-1` 与 `hybrid-12-1` 的架构参数完全相同，唯一区别是 attention 层数量和位置不同（New 只在最后一层 [23] 放 attention）。命名中的 \"New\" 可能只是标记一个新的实验 run，而 \"24-1\" 的含义是每 24 层插 1 层 attention（24层模型中即只有最后 1 层是 attention）。这与 hybrid-3-1（每3层1层）、hybrid-6-1（每6层1层）、hybrid-12-1（每12层1层）的命名规律一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

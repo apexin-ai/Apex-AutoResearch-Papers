@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "57c4b676384d4c5375f3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k085 long seed42 strict",
+  "task_key": "worker_diagnose_eval_pi05_random_k085_long_seed42_strict_20260527T030030",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k085_long_seed42_strict_20260527T030030_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "e86e4e3339c9876b6250c5132fb181c003734d4228f6eb3841a1e7919969582b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n### Root Cause\n\n**网络不可达** (`[Errno 101] Network is unreachable`)。脚本在初始化阶段加载 tokenizer 时，`transformers` 库尝试从 HuggingFace Hub 查询 `google/paligemma-3b-pt-224` 的 model_info（`is_base_mistral` 检查），但服务器没有外网访问。脚本在启动后 ~9 分钟就崩溃，根本没进入 eval 循环。\n\n关键调用链：\n```\nmain() → make_pre_post_processors() → from_pretrained() → AutoTokenizer.from_pretrained(\"google/paligemma-3b-pt-224\") → model_info() → HTTP GET → Network is unreachable\n```\n\n### 是否可直接重试\n\n**不能直接重试。** 这不是 transient error——服务器本身没有外网。需要以下修复之一：\n\n1. **设置 `HF_HUB_OFFLINE=1`**（推荐）：让 transformers 跳过所有网络请求，只用本地缓存。前提是 tokenizer 文件已在本地缓存中。启动命令改为：\n   ```bash\n   HF_HUB_OFFLINE=1 python -u eval_pi05_pruning_libero.py ...\n   ```\n\n2. **设置 `TRANSFORMERS_OFFLINE=1`**：效果类似，专门控制 transformers 库。\n\n3. 如果 tokenizer 文件不在本地缓存，需要先在有网络的环境下载好，再拷贝过去。\n\n### Success 条件确认\n\n脚本使用的是 **strict** 条件（第 383 行）：\n```python\nif done:\n    task_successes += 1\n```\n只检查 `done`，没有 `reward > 0.5` 的宽松条件。确认是 strict 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

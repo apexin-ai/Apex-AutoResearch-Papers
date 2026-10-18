@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17f0310d3ab4d430244f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k05 spatial seed42 postfix v3",
+  "task_key": "worker_analyze_eval_pi05_random_k05_spatial_seed42_postfix_v3_20260524T044353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k05_spatial_seed42_postfix_v3_20260524T044353_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "b27bf1e907bc8929e3ca07bcd0c575e017de3be5a1943bf692912bbb0a3348e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已推进到 DONE。\n\n**实验结果：π0.5 Random k=0.5 Spatial seed42 (post-fix v3)**\n\n| 指标 | 值 |\n|---|---|\n| Overall SR | **71.8%** (359/500) |\n| 耗时 | 139.2 min |\n\n**Per-task SR:** 88%, 88%, 88%, 48%, 40%, 32%, 92%, 86%, 84%, 72%\n\n**关键发现：** Random pruning 50% 在 π0.5 Spatial 上表现与 Attention pruning 几乎无差异（71.8% vs 72.6%, -0.8pp），远超 L2norm（58.2%, +13.6pp）。这与 X-VLA 上的 Random k=0.5 Spatial (71.4%) 高度一致，说明 Spatial suite 对 random token removal 有较强鲁棒性，L2norm 作为 importance metric 在此场景下反而有害。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

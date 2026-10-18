@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e075c03847ee5945b30",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix resubmit imm v2 conda",
+  "task_key": "worker_fix_resubmit_imm_v2_conda_20260516T204132",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_resubmit_imm_v2_conda_20260516T204132_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "b64b46a2d4e22bd35b25925e5a63cad566c7a1581f3c56cb034b73b18f3a0008"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n| 项目 | 状态 |\n|------|------|\n| **旧 session 清理** | 已清理（共清理 3 次，原始 + 两次重试） |\n| **训练启动** | 成功。Stage 1 已在运行：step 150/10000, margin_loss=0.2799, sps=5.5 |\n| **GPU 0 显存** | 3445 MiB，正常 |\n| **libero_goal eval** | 没有在运行。无 eval 进程，无相关 tmux session |\n\n**修复过程中遇到的 3 个问题：**\n1. `--checkpoint` 参数不存在 → 去掉，checkpoint 路径已在 config yaml 中配置（`twostage.baseline_checkpoint`）\n2. 网络不通（`Network is unreachable`）→ 加了 `source /etc/network_turbo` + SSL 证书环境变量\n3. wandb 未登录 → 设置 `WANDB_MODE=offline`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bc3db4edbca9f9eddc01",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops m64 train exit diagnosis",
+  "task_key": "worker_ops_m64-train-exit-diagnosis_20260521T023947",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_m64-train-exit-diagnosis_20260521T023947_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "35f51e49d81038b13fdc3fd2766cc9cd25110666cf68b073494df296140ac5e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：train_openvla_sc_m64_seed42_v3 失败 — 磁盘写满。**\n\n- 训练本身正常运行到 step 50000/100000（loss ~2.5-2.9, eval_loss=2.9016）\n- 在 step 50000 保存 checkpoint 时 crash：`RuntimeError: PytorchStreamWriter failed writing file`\n- 根因：westd-41074 数据盘 250G/250G（100% 满）\n- checkpoint_step50000.pt（14G）存在但损坏\n- cuda:3 已释放\n\n已完成：\n- Registry: `train_openvla_sc_m64_seed42_v3` → DONE(failed)\n- Cron: `train_openvla_sc_m64_seed42` 已删除\n\n**⚠️ 紧急风险：M96 训练（同一磁盘，cuda:2，当前 step 40450）也会在下一次 checkpoint save 时 crash。** 磁盘上有 M128 旧 checkpoint（38G）和 M64 损坏 checkpoint（14G），合计 52G 可清理。建议尽快清理磁盘以拯救 M96 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

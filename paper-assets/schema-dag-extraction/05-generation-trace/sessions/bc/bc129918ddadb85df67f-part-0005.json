@@ -1,0 +1,886 @@
+{
+  "schema_version": "1.0",
+  "session_id": "bc129918ddadb85df67f",
+  "rounds": [
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-16T01:49:40.119009+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 用户要求当前论文 PDF。请立即执行：\n\n1. SSH 到服务器，在论文目录编译最新版本（pdflatex × 2 + bibtex + pdflatex × 2）\n2. 确认编译成功，0 errors\n3. 用 feishu_upload_file 上传编译好的 main.pdf 到 A 群\n\n优先级最高，先于其他任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "director"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-16T01:50:01.420509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:compile-upload-paper",
+              "project": "schema-dag-extraction",
+              "task_prompt": "## 任务：编译论文 PDF 并上传到飞书 A 群\n\n**优先级最高，立即执行。**\n\n### 步骤\n\n1. SSH 到服务器 cqa1-38874 (account: root)\n2. 找到论文目录。可能在以下位置之一：\n   - `/root/schema-dag-extraction/paper/`\n   - `/root/schema-dag-extraction/latex/`\n   - 用 `find /root/schema-dag-extraction -name \"main.tex\" -o -name \"*.tex\" | head -10` 找到\n3. 在论文目录执行完整编译序列：\n   ```bash\n   cd <论文目录>\n   pdflatex -interaction=nonstopmode main.tex\n   bibtex main\n   pdflatex -interaction=nonstopmode main.tex\n   pdflatex -interaction=nonstopmode main.tex\n   ```\n   如果主文件不叫 main.tex，用实际文件名替换。\n4. 确认编译成功：检查输出中 0 errors（warnings 可以忽略）\n5. 确认 main.pdf 生成且文件大小合理（>100KB）\n6. 用 `feishu_upload_file` 上传 PDF 到飞书群\n\n### 环境\n- 服务器: cqa1-38874, account: root\n- Python/conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 如果 pdflatex 不存在，尝试 `apt list --installed 2>/dev/null | grep texlive` 检查，或 `which pdflatex`\n\n### 飞书上传\n编译成功后，用 feishu_upload_file 工具上传 PDF。如果工具需要 chat_id，使用: `oc_04544c3b7bc497e1d098ba47fb56a6c2`\n\n### 错误处理\n- 如果 tex 文件不存在，报告实际目录结构\n- 如果编译有 errors，报告前 20 行错误信息\n- 如果 pdflatex 未安装，报告并建议安装命令（不要自行安装）\n",
+              "tool_groups": "['ssh', 'feishu']"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-16T01:50:07.731234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_compile-upload-paper_20260516T015001\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_compile-upload-paper_20260516T015001.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_compile-upload-paper_20260516T015001 started. Use get_worker_status('worker_ops_compile-upload-paper_20260516T015001') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6310
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-16T01:50:14.062748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 1 / 实际在跑 1 (D033) | Worker 池 2 (GPU 1 / CPU 1)\n\n已派 Worker 编译论文 PDF + 上传飞书。Worker 正在执行：SSH → 找 tex → pdflatex×2 + bibtex + pdflatex×2 → feishu_upload_file。完成后立即回调。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000724"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-16T01:51:21.078283+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_compile-upload-paper_20260516T015001 已完成（status=done）。用 `get_worker_status('worker_ops_compile-upload-paper_20260516T015001')` 读取结果，然后处理。\n\n- worker_id: worker_ops_compile-upload-paper_20260516T015001\n- project: schema-dag-extraction\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "worker:done"
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-16T01:51:27.552029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_compile-upload-paper_20260516T015001",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-16T01:51:27.703255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_compile-upload-paper_20260516T015001\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:compile-upload-paper\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-16T01:50:02.095962+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T01:51:19.562029+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"完成。论文已在本地编译（12 页，0 errors，358KB），PDF 已上传至飞书 A 群，文件名 `schema-dag-extraction-paper.pdf`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-16T01:51:32.725860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 1 / 实际在跑 1 (D033) | Worker 池 1 (GPU 1)\n\n论文 PDF 已编译上传至 A 群：`schema-dag-extraction-paper.pdf`（12 页，0 errors，358KB）。",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-16T01:51:36.441399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3715
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-16T01:51:42.739458+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "论文 PDF 编译成功（12 页，0 errors，358KB），已上传飞书 A 群。已向 Director 汇报。\n\nD033 Worker 仍在监控中，等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-000730"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-16T01:54:45.594733+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统告警] Worker 日志 30 分钟无更新，可能卡死 (第 1/3 次告警)：\n\nworker_id: worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228\nproject: schema-dag-extraction\n日志最后内容: 3 batches done in ~20s after first batch. Experiment is running well.  **Summary:**  - Script: `src/run_fewrel_16rel_bootstrap.py` — two-stage (preprocess CPU → extract GPU subprocess) - 100 random 8-\n\n请调用 get_worker_status('worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228') 确认状态，并根据情况决定是等待、SSH 检查还是取消 worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "system_monitor"
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-16T01:54:50.968726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-16T01:54:51.019492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"submit:exp_fewrel_16rel_bootstrap\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-16T01:02:28.665951+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"Monitor\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"3 batches done in ~20s after first batch. Experiment is running well.\\\\n\\\\n**Summary:**\\\\n\\\\n- Script: `src/run_fewrel_16rel_bootstrap.py` — two-stage (preprocess CPU → extract GPU subprocess)\\\\n- 100 random 8-type batches from 16-rel pool, BCS range [0.6532, 0.9002]\\\\n- 992 balanced samples (62/rel), ~496 per \\\", \\\"turn_count\\\": 37}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-16T01:55:14.459127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:exp_fewrel_16rel_bootstrap",
+              "project": "schema-dag-extraction",
+              "task_prompt": "## 任务：诊断 D033 实验状态\n\nD033 实验 (exp_fewrel_16rel_bootstrap) 的 Worker 可能卡死。SSH 到服务器检查实际状态。\n\n### 检查步骤（全部用 ssh_read_only）\n\n1. 检查 tmux session 是否存在：\n   ```bash\n   tmux list-sessions 2>/dev/null | grep -i fewrel\n   ```\n\n2. 检查 GPU 进程：\n   ```bash\n   nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader 2>/dev/null\n   ```\n\n3. 检查 python 进程：\n   ```bash\n   ps aux | grep -E \"run_fewrel_16rel_bootstrap|run_fewrel\" | grep -v grep\n   ```\n\n4. 检查输出文件：\n   ```bash\n   ls -la /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/ 2>/dev/null\n   ```\n\n5. 检查增量结果文件（如果存在）：\n   ```bash\n   wc -l /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results_incremental.jsonl 2>/dev/null\n   cat /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results_incremental.jsonl 2>/dev/null | tail -3\n   ```\n\n6. 检查日志最后 30 行：\n   ```bash\n   tail -30 ~/runs/schema-dag-extraction/exp_fewrel_16rel_bootstrap.log 2>/dev/null\n   # 也试 tmux capture\n   tmux capture-pane -t fewrel_16rel_bootstrap -p 2>/dev/null | tail -30\n   ```\n\n7. 如果实验已完成，检查输出 JSON：\n   ```bash\n   ls -la /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/*.json 2>/dev/null\n   # 读取 summary 或 final results\n   cat /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/bootstrap_results.json 2>/dev/null | python3 -c \"import sys,json; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if k in ['n_batches','bcs_quartile_means','delta_bcs','bootstrap_ci']}, indent=2))\" 2>/dev/null\n   ```\n\n### 服务器\n- cqa1-38874, account: root\n- Conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 汇报\n- 实验是否还在运行？（进程存活 / tmux active）\n- 如果已完成：完成了几个 batch？最终结果？\n- 如果失败：错误信息\n- GPU 当前是否空闲？（关系到后续 80-pool 实验能否启动）\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-16T01:55:20.593196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515 started. Use get_worker_status('worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6134
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-16T01:55:23.380350+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断 Worker 已派出。Worker 池 = 2（卡住的 D033 Worker + 诊断 Worker）。等诊断结果后决定下一步。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-000736"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-16T01:55:39.903404+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **紧急：GPU 空转数小时，立即修复。**\n\n1. **立即启动 80-pool-within GPU 推理**。D033 已完成（09:40 UTC），GPU 空了这么久不可接受。检查 80-pool preprocess 是否就绪，直接提交 GPU 任务。\n\n2. **更新 Registry**：exp_fewrel_16rel_bootstrap 从 RUNNING → DONE，录入结论：\n   - Δ(Q4-Q1) = -7.42pp, 95% CI [-9.45, -4.49]\n   - Pearson r(BCS, acc) = -0.6373\n   - conclusion: success\n\n3. **80-pool-within 实验额外要求**：除了 quartile Δ 分析，**同时计算 BCS-accuracy 回归斜率**。Reviewer 指出 80-pool BCS 范围 [0.47, 0.65] 与 16-rel [0.65, 0.90] 几乎不重叠，Q4-Q1 Δ 不直接可比。斜率比较是公平的标准化指标——如果 80-pool 斜率 > 16-rel 斜率，才是真正的 amplification 证据。\n\n4. **D033 也补算回归斜率**：用 D033 的 100 batch 数据计算 BCS-accuracy 线性回归斜率 + CI，以便与 80-pool 做同方法论比较。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "director"
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-16T01:55:48.926994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-16T01:55:49.303667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_fewrel_16rel_bootstrap_20260516T010228\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 376
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-16T01:55:49.304136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-16T01:55:49.407075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diagnose:exp_fewrel_16rel_bootstrap\\\", \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"started_at\\\": \\\"2026-05-16T01:55:15.305003+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"实验输出文件存在且 GPU 空闲。检查结果内容。\\\", \\\"turn_count\\\": 16}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-16T01:55:58.900905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_16rel_bootstrap",
+              "field": "metrics",
+              "value": "{'n_batches': 100, 'pool_size': 16, 'batch_size': 8, 'bcs_range': [0.6532, 0.9002], 'quartile_delta': {'Q4_minus_Q1_pp': -7.42, 'ci_95_lower': -9.45, 'ci_95_upper': -4.49}, 'pearson_r_bcs_acc': -0.6373, 'key_finding': '16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples.'}",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-16T01:55:59.409309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_16rel_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:01:33.940Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:55:59.038Z\\\", \\\"hypothesis\\\": \\\"FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。\\\", \\\"parent\\\": \\\"exp_fewrel_formal\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_parquet/val.parquet\\\", \\\"data_count\\\": 992, \\\"seed\\\": 42, \\\"description\\\": \\\"100 random 8-type batches from 16-rel pool, BCS quartile bootstrap CI\\\", \\\"command\\\": \\\"python3 src/run_fewrel_16rel_bootstrap.py\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"FewRel val 16-rel\\\"}, \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -7.42, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49}, \\\"pearson_r_bcs_acc\\\": -0.6373, \\\"key_finding\\\": \\\"16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2939}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 508
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-16T01:55:59.561993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_16rel_bootstrap",
+              "field": "conclusion",
+              "value": "success",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-16T01:55:59.813221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_16rel_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:01:33.940Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:55:59.685Z\\\", \\\"hypothesis\\\": \\\"FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。\\\", \\\"parent\\\": \\\"exp_fewrel_formal\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_parquet/val.parquet\\\", \\\"data_count\\\": 992, \\\"seed\\\": 42, \\\"description\\\": \\\"100 random 8-type batches from 16-rel pool, BCS quartile bootstrap CI\\\", \\\"command\\\": \\\"python3 src/run_fewrel_16rel_bootstrap.py\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"FewRel val 16-rel\\\"}, \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -7.42, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49}, \\\"pearson_r_bcs_acc\\\": -0.6373, \\\"key_finding\\\": \\\"16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples.\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2272}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-16T01:56:03.184105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_16rel_bootstrap",
+              "field": "checkpoint_path",
+              "value": "/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-16T01:56:03.686552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_16rel_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:01:33.940Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:56:03.310Z\\\", \\\"hypothesis\\\": \\\"FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。\\\", \\\"parent\\\": \\\"exp_fewrel_formal\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_parquet/val.parquet\\\", \\\"data_count\\\": 992, \\\"seed\\\": 42, \\\"description\\\": \\\"100 random 8-type batches from 16-rel pool, BCS quartile bootstrap CI\\\", \\\"command\\\": \\\"python3 src/run_fewrel_16rel_bootstrap.py\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"FewRel val 16-rel\\\"}, \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -7.42, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49}, \\\"pearson_r_bcs_acc\\\": -0.6373, \\\"key_finding\\\": \\\"16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2085}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-16T01:56:04.189040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_16rel_bootstrap",
+              "field": "log_path",
+              "value": "~/runs/schema-dag-extraction/exp_fewrel_16rel_bootstrap.log",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-16T01:56:04.440414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_16rel_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:01:33.940Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:56:04.298Z\\\", \\\"hypothesis\\\": \\\"FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。\\\", \\\"parent\\\": \\\"exp_fewrel_formal\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_parquet/val.parquet\\\", \\\"data_count\\\": 992, \\\"seed\\\": 42, \\\"description\\\": \\\"100 random 8-type batches from 16-rel pool, BCS quartile bootstrap CI\\\", \\\"command\\\": \\\"python3 src/run_fewrel_16rel_bootstrap.py\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"FewRel val 16-rel\\\"}, \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -7.42, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49}, \\\"pearson_r_bcs_acc\\\": -0.6373, \\\"key_finding\\\": \\\"16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_fewrel_16rel_bootstrap.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2107}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-16T01:56:07.857258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_16rel_bootstrap",
+              "field": "status",
+              "value": "DONE",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-16T01:56:08.461646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_16rel_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:01:33.940Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:56:07.987Z\\\", \\\"hypothesis\\\": \\\"FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。\\\", \\\"parent\\\": \\\"exp_fewrel_formal\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/fewrel_parquet/val.parquet\\\", \\\"data_count\\\": 992, \\\"seed\\\": 42, \\\"description\\\": \\\"100 random 8-type batches from 16-rel pool, BCS quartile bootstrap CI\\\", \\\"command\\\": \\\"python3 src/run_fewrel_16rel_bootstrap.py\\\", \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"FewRel val 16-rel\\\"}, \\\"metrics\\\": {\\\"n_batches\\\": 100, \\\"pool_size\\\": 16, \\\"batch_size\\\": 8, \\\"bcs_range\\\": [0.6532, 0.9002], \\\"quartile_delta\\\": {\\\"Q4_minus_Q1_pp\\\": -7.42, \\\"ci_95_lower\\\": -9.45, \\\"ci_95_upper\\\": -4.49}, \\\"pearson_r_bcs_acc\\\": -0.6373, \\\"key_finding\\\": \\\"16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/\\\", \\\"log_path\\\": \\\"~/runs/schema-dag-extraction/exp_fewrel_16rel_bootstrap.log\\\", \\\"completed_at\\\": \\\"2026-05-16T01:56:07.987Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5644}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 604
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-16T01:56:13.935004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_80pool_16sub_bootstrap",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-16T01:56:14.386699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_80pool_16sub_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:26:54.812Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:56:14.032Z\\\", \\\"hypothesis\\\": \\\"从 80-rel pool 随机采样 16 types 构造 8-type batches，100 random batches + BCS quartile bootstrap CI。消除跨 pool 混淆（MW1 审稿人），与 D033 独立 16-rel pool 和 80-rel 做三方比较。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4392}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-16T01:56:17.570213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewrel_80pool_16sub_bootstrap",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-16T01:56:18.580111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewrel_80pool_16sub_bootstrap\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:26:54.812Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:56:17.817Z\\\", \\\"hypothesis\\\": \\\"从 80-rel pool 随机采样 16 types 构造 8-type batches，100 random batches + BCS quartile bootstrap CI。消除跨 pool 混淆（MW1 审稿人），与 D033 独立 16-rel pool 和 80-rel 做三方比较。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9977}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1009
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-16T01:56:42.085098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "submit:exp_fewrel_80pool_16sub_bootstrap",
+              "project": "schema-dag-extraction",
+              "task_prompt": "## 任务：提交 80-pool 16-type subset bootstrap GPU 实验\n\n**紧急：GPU 已空转数小时，立即提交。**\n\n### 背景\n脚本 `src/run_fewrel_80pool_16sub_bootstrap.py` 已由前一个 Worker 编写并完成 preprocess（100 batches 已生成在 `artifacts/fewrel_80pool_16sub/`）。现在需要提交 GPU 推理阶段。\n\n### 步骤\n\n1. SSH 到 cqa1-38874 确认：\n   - GPU 空闲：`nvidia-smi --query-compute-apps=pid --format=csv,noheader` 应为空\n   - Preprocess 文件存在：`ls -la /root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/preprocess.json`\n   - 脚本存在：`ls -la /root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py`\n\n2. **重要修改**：在提交前，先修改脚本的 analyze 阶段，**增加 BCS-accuracy 线性回归斜率分析**：\n   - 对 100 个 batch 的 (BCS, accuracy) 做线性回归：`scipy.stats.linregress(bcs_array, acc_array)`\n   - 记录：slope, intercept, r_value, p_value, stderr\n   - Bootstrap 1000 次重采样的斜率 95% CI\n   - 输出到结果 JSON 中的 `regression_slope` 字段\n   - 这是 Reviewer 要求的：BCS 范围不同时 Q4-Q1 Δ 不可比，但斜率可比\n\n3. 用 `submit_training_job` 提交实验：\n   ```\n   command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_HOME=/usr/local/cuda python3 src/run_fewrel_80pool_16sub_bootstrap.py --stage extract && python3 src/run_fewrel_80pool_16sub_bootstrap.py --stage analyze\"\n   ```\n   - exp_id: exp_fewrel_80pool_16sub_bootstrap\n   - server: cqa1-38874\n   - gpu: [\"cuda:0\"]\n\n4. 提交成功后，用 ssh_read_only 监控前几个 batch 确认推理正常启动，然后汇报：\n   - 提交成功的 PID / tmux session\n   - 预计完成时间\n   - BCS 范围确认\n\n### 环境\n- 服务器: cqa1-38874, account: root\n- Conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- vLLM: Qwen3-32B-FP8, gpu_memory_utilization=0.95, max_model_len=4096\n- FLASHINFER_DISABLE_VERSION_CHECK=1, CUDA_HOME=/usr/local/cuda\n- GPU: cuda:0\n\n### 回归斜率代码参考\n```python\nfrom scipy.stats import linregress\nimport numpy as np\n\ndef compute_regression_slope_with_ci(bcs_arr, acc_arr, n_bootstrap=1000, seed=42):\n    rng = np.random.default_rng(seed)\n    slope, intercept, r_value, p_value, stderr = linregress(bcs_arr, acc_arr)\n    n = len(bcs_arr)\n    boot_slopes = []\n    for _ in range(n_bootstrap):\n        idx = rng.choice(n, n, replace=True)\n        s, _, _, _, _ = linregress(bcs_arr[idx], acc_arr[idx])\n        boot_slopes.append(s)\n    ci_lower, ci_upper = np.percentile(boot_slopes, [2.5, 97.5])\n    return {\n        \"slope\": slope, \"intercept\": intercept, \"r_value\": r_value,\n        \"p_value\": p_value, \"stderr\": stderr,\n        \"bootstrap_ci_95\": [ci_lower, ci_upper]\n    }\n```\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-16T01:56:57.682892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642 started. Use get_worker_status('worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 15597
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-16T01:56:57.833936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:d033_regression_slope",
+              "project": "schema-dag-extraction",
+              "task_prompt": "## 任务：D033 数据补算 BCS-accuracy 回归斜率\n\n**背景**：D033 实验 (exp_fewrel_16rel_bootstrap) 已完成，100 个 random 8-type batches from 16-rel pool。Director 要求补算 BCS-accuracy 线性回归斜率 + bootstrap CI，以便与 80-pool 实验做同方法论比较。\n\nReviewer 指出 80-pool BCS 范围 [0.47, 0.65] 与 16-rel [0.65, 0.90] 几乎不重叠，Q4-Q1 Δ 不直接可比。回归斜率是公平的标准化指标。\n\n### 步骤\n\n1. SSH 到 cqa1-38874，找到 D033 结果文件：\n   ```bash\n   ls -la /root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/\n   ```\n   结果应在 `bootstrap_results.json` 或类似文件中，包含每个 batch 的 BCS 和 accuracy。\n\n2. 如果结果文件存在，读取每个 batch 的 (BCS, accuracy) 数据对。\n\n3. 编写并执行 Python 分析脚本 `/root/schema-dag-extraction/scripts/d033_regression_slope.py`：\n   ```python\n   import json, numpy as np\n   from scipy.stats import linregress\n   \n   # Load D033 results\n   with open('/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/bootstrap_results.json') as f:\n       data = json.load(f)\n   \n   # Extract per-batch BCS and accuracy arrays\n   # (adapt field names to actual data structure)\n   bcs_arr = np.array([b['bcs'] for b in data['batches']])\n   acc_arr = np.array([b['accuracy'] for b in data['batches']])\n   \n   # Point estimate\n   slope, intercept, r_value, p_value, stderr = linregress(bcs_arr, acc_arr)\n   \n   # Bootstrap 1000 resamples\n   rng = np.random.default_rng(42)\n   n = len(bcs_arr)\n   boot_slopes = []\n   for _ in range(1000):\n       idx = rng.choice(n, n, replace=True)\n       s, _, _, _, _ = linregress(bcs_arr[idx], acc_arr[idx])\n       boot_slopes.append(s)\n   ci_lower, ci_upper = np.percentile(boot_slopes, [2.5, 97.5])\n   \n   result = {\n       \"experiment\": \"D033 (exp_fewrel_16rel_bootstrap)\",\n       \"n_batches\": len(bcs_arr),\n       \"bcs_range\": [float(bcs_arr.min()), float(bcs_arr.max())],\n       \"regression\": {\n           \"slope\": float(slope),\n           \"intercept\": float(intercept),\n           \"r_value\": float(r_value),\n           \"p_value\": float(p_value),\n           \"stderr\": float(stderr),\n           \"bootstrap_slope_ci_95\": [float(ci_lower), float(ci_upper)]\n       },\n       \"interpretation\": f\"Each +0.1 BCS → {slope*0.1:.2f}pp accuracy change\"\n   }\n   \n   with open('/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/regression_slope.json', 'w') as f:\n       json.dump(result, f, indent=2)\n   \n   print(json.dumps(result, indent=2))\n   ```\n\n4. 先读取实际数据结构，适配字段名，然后执行脚本。\n\n5. 汇报结果：\n   - slope (每 0.1 BCS 对应多少 pp accuracy 变化)\n   - bootstrap 95% CI\n   - BCS 范围 [min, max]\n   - r_value 和 p_value\n\n### 环境\n- 服务器: cqa1-38874, account: root\n- Conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 只需 CPU，不占 GPU\n",
+              "tool_groups": "['ssh']",
+              "tools": "['update_registry']"
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-16T01:57:00.798018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_d033_regression_slope_20260516T015657\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_d033_regression_slope_20260516T015657.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_d033_regression_slope_20260516T015657 started. Use get_worker_status('worker_analysis_d033_regression_slope_20260516T015657') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2964
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-16T01:57:14.162346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 1 / 实际在跑 0→1 (80-pool 提交中) | Worker 池 3 (GPU 1 / CPU 2)\n\n**紧急修复执行中：**\n\n1. **D033 registry → DONE**: Δ(Q4-Q1)=-7.42pp, CI [-9.45, -4.49], r=-0.637 ✓\n2. **80-pool-within GPU 提交**: Worker 正在修改脚本（加回归斜率分析）+ submit_training_job，preprocess 已就绪（100 batches, BCS 0.458-0.684），GPU ~19min\n3. **D033 回归斜率**: 独立 Worker 正在用 D033 的 100 batch 数据计算 linregress slope + bootstrap CI\n4. **卡死 Worker**: D033 原 Worker (turn_count=37 停滞) 已 cancel\n\n两个回归斜率会在同一框架下比较：\n- 16-rel slope（BCS range 0.65-0.90）\n- 80-pool slope（BCS range 0.46-0.68）\n- 如果 80-pool |slope| > 16-rel |slope| → amplification 在斜率维度成立",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-16T01:57:15.473731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1311
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-16T01:57:21.353475+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已汇报 Director。等待两个 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-000762"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-16T01:57:21.864769+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-16T01:58:08.743393+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 cqa1-38874 的 cuda:0（唯一一张 RTX PRO 6000 Blackwell 98GB）\n- vLLM 启动必须设 `FLASHINFER_DISABLE_VERSION_CHECK=1` + `CUDA_HOME=/usr/local/cuda`，否则 JIT 编译失败\n- LLaMA-70B FP8 在此卡上不可用（nvcc 12.8 < flashinfer 要求的 12.9，三次尝试均失败），只能用 LLaMA-3.1-8B-Instruct BF16\n- C001: count_40 数据来自 80-type pool 子集，论文必须写 \"40-rel subsets sampled from the 80-relation pool\"\n- C002: 3.4× amplification 仅基于 16-type vs 80-type 两个独立 pool，不可扩展到其他比较\n- 80-pool BCS 范围 [0.47, 0.65] 与 16-rel [0.65, 0.90] 不重叠，Director 已明确要求用回归斜率比较而非 Q4-Q1 Δ\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874, account: root, 工作目录 `/root/schema-dag-extraction`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 `/root/miniconda3/bin/`\n- Qwen3-32B-FP8：`/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n- LLaMA-3.1-8B：`/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- 数据：FewRel `/root/schema-dag-extraction/data/fewrel_parquet/`，Few-NERD `/root/schema-dag-extraction/data/parquet/`，MAVEN `/root/schema-dag-extraction/data/maven_parquet/`\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：80-pool GPU 实验刚提交（Worker `worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642` 正在提交中，尚未确认 PID）\n- 论文 LaTeX 在本地（已从服务器编译上传过 PDF，12页 358KB）\n\n### 3. 📊 当前状态\n**刚做完：**\n- D033 (exp_fewrel_16rel_bootstrap) → DONE/success，Δ(Q4-Q1)=-7.42pp CI [-9.45, -4.49], r=-0.637\n- 卡死的 D033 Worker 已 cancel\n- 80-pool 16-sub 脚本已预写就绪（preprocess 完成，100 batches BCS 0.458-0.684）\n- exp_maven_residualized_bcs → DONE/success（centrality artifact 确认）\n- 论文 PDF 编译上传至飞书 A 群\n\n**正在做（3 个 Worker running）：**\n1. `worker_submit_exp_fewrel_80pool_16sub_bootstrap_20260516T015642` — 提交 80-pool GPU 实验 + 修改脚本加回归斜率分析\n2. `worker_analysis_d033_regression_slope_20260516T015657` — D033 数据补算 BCS-accuracy 回归斜率 + bootstrap CI\n3. `worker_diagnose_exp_fewrel_16rel_bootstrap_20260516T015515` — 诊断 Worker（可能已完成但未收到回调，可忽略或 cancel）\n\n**Registry RUNNING/PREPARING：**\n- exp_fewrel_80pool_16sub_bootstrap: ALLOCATED → 正在提交 GPU\n\n### 4. 📋 待办（条件触发式）\n- 80-pool Worker 回调 → 确认 GPU 实验启动成功（PID/tmux），更新 registry RUNNING\n- D033 斜率 Worker 回调 → 记录 slope + CI 到 registry，写入 memory.md\n- 80-pool 实验完成（cron 回调）→ 处理结果：quartile Δ + 回归斜率 + bootstrap CI → 与 D033 斜率做三方比较 → 更新 registry → 汇报 Director\n- 三方比较完成后 → 如果 80-pool |slope| > 16-rel |slope| → amplification 在斜率维度成立，更新论文 Section 4.3 + Table 补充 → 汇报 Director\n- 三方比较完成后 → 写 Appendix：residualized BCS 分析（MAVEN centrality artifact）+ 80-pool within-pool 控制实验\n- 诊断 Worker 如果回调 → 读结果确认 D033 完成时间，可忽略\n\n### 5. 🎯 战略上下文\n- **核心结论**：multi-channel degradation model 成立。Channel 1（count→recall）三任务+双模型验证。Channel 2（BCS→type confusion）三任务+双模型验证（LLaMA Δ=-27.1pp = Qwen3 的 87%）。SDGD 方案放弃（D019 negative）。\n- **当前聚焦**：Borderline 3/5 预审的 Soundness 补强。80-pool within-pool 实验是最关键的补充（消除 MW1 审稿人的跨 pool 混淆质疑）。D033 + 80-pool 的回归斜率比较是 Reviewer 要求的公平比较方案。\n- **易错点**：\n  1. 不要混淆 16-rel pool（独立的 val 16 种 relation）和 80-pool 16-type subset（从 80 种中采样 16 种）——前者 BCS 0.65-0.90，后者 0.46-0.68，完全不同的 confusability regime\n  2. exp_fewrel_16rel_100batch 是被 kill 的重复项（与 exp_fewrel_16rel_bootstrap 是同一个 D033），不要误以为是另一个实验\n  3. MAVEN per-type BCS 正相关是 centrality artifact（已用 residualized 分析证明），论文中 MAVEN 只能 claim pairwise SCS-confusion 相关，不能 claim per-type BCS 效应\n  4. LLaMA-8B NER Channel 2 未复现（floor effect），但 FewRel RE Channel 2 强复现——论文 cross-model claim 限定在 RE 任务\n- **距 ARR May 25 提交：9 天**\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
+          },
+          "id": "event-000764"
+        }
+      ]
+    }
+  ]
+}

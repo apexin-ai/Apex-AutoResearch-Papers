@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d4c32155a98b7d09484",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code exp b full bitwidth mckp",
+  "task_key": "worker_code_exp-b-full-bitwidth-mckp_20260513T232628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-b-full-bitwidth-mckp_20260513T232628_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "f42b469a1fc63f8a409cf3f62c63603014469dbedc497bb68e716b69ebf351fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件一览：\n- `/root/ratekv/full_bitwidth_profiler.py` — 完整 bit-width profiler\n- `/root/ratekv/run_full_bitwidth.py` — 端到端编排脚本\n- `/root/ratekv/full_bitwidth_results.json` — 完整 profiling + solver + eval 结果\n- `/root/ratekv/full_bitwidth.log` — 7B 实验完整日志\n- `/root/ratekv/manual_test.log` — 手动策略对比日志\n- `/root/ratekv/budget_matched.log` — budget-matched 最终验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

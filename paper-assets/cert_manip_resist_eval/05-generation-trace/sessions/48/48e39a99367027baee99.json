@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "48e39a99367027baee99",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis capability matched",
+  "task_key": "worker_analysis_capability-matched_20260523T074327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_capability-matched_20260523T074327_result.json",
+    "occurrence": 1,
+    "bytes": 2111,
+    "sha256": "ed8b63a1910e44146fd48c135b22b1b45cdad70a802cfa39dd177ec4117f5e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are saved. Here's the summary:\n\n## Results\n\n### Model Accuracy Ranking (15 models)\n| Model | Type | Accuracy |\n|-------|------|----------|\n| claude-opus-4-6 | API | 0.9383 |\n| gpt-5.5 | API | 0.9300 |\n| gemini-3.1-pro-preview | API | 0.9100 |\n| gpt-4.1 | API | 0.9017 |\n| claude-sonnet-4-6 | API | 0.8817 |\n| gpt-4.1-mini | API | 0.8817 |\n| llama3.1-70b | LOCAL | 0.8750 |\n| mistral-large | LOCAL | 0.8717 |\n| qwen2.5-32b | LOCAL | 0.8250 |\n| gemini-3.5-flash | API | 0.8183 |\n| qwen2.5-72b | LOCAL | 0.8067 |\n| gpt-4.1-nano | API | 0.7433 |\n| llama3.1-8b | LOCAL | 0.6183 |\n| claude-3-haiku | API | 0.6083 |\n| qwen2.5-14b | LOCAL | 0.6000 |\n\n### Strategy A (Middle 9, API:5 LOCAL:4, acc 0.74–0.90, std=0.048)\n| | K=3 Clustered | K=5 Clustered |\n|---|---|---|\n| η_max sig | 5/12 | 5/12 |\n| K_eff sig | 3/12 | **9/12** |\n| **Transition** | | **HOLDS** (K_eff dominates) |\n\nCorrelation: K3 r=0.57, K5 r=0.41\n\n### Strategy B (acc>0.45 closest to median, API:6 LOCAL:3, acc 0.82–0.93, std=0.035)\n| | K=3 Clustered | K=5 Clustered |\n|---|---|---|\n| η_max sig | 5/12 | 3/12 |\n| K_eff sig | 2/12 | 2/12 |\n| **Transition** | | **FAILS** |\n\nCorrelation: K3 r=0.73, K5 r=0.73\n\n### API-only Correlation (critical finding)\n- K=3: raw r=**0.9803**, log r=**0.9820**\n- K=5: raw r=**0.9691**, log r=**0.9785**\n\n### Diagnosis: **Inconclusive — but pattern is revealing**\n\nThe key insight is the **API-only K_eff-η_max correlation of r≈0.98**. Among API models, K_eff and η_max are nearly perfectly collinear — the regression literally cannot separate their effects. Strategy B (6 API + 3 local) inherits more of this collinearity (r=0.73) and transition fails. Strategy A (5 API + 4 local) breaks it more (r=0.41) and transition holds.\n\nThis points to **power + collinearity**, not pure confound: the transition is real but requires sufficient variation independence between K_eff and η_max, which API-only models don't provide.\n\nOutput saved to `/root/cert_manip_resist_eval/artifacts/results/plan001/capability_matched_subsample.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

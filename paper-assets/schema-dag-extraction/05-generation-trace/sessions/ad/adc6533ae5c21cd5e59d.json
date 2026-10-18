@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "adc6533ae5c21cd5e59d",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper case study appendix",
+  "task_key": "worker_paper_case_study_appendix_20260518T194133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_case_study_appendix_20260518T194133.log",
+    "occurrence": 1,
+    "bytes": 700263,
+    "sha256": "3d09d48f896558045777f376b3140217dc45cb8f23aa31cff46306fcdbe3107a"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "adc6533ae5c21cd5e59d-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "adc6533ae5c21cd5e59d-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ]
+}

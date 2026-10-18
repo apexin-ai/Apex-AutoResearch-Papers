@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "e0053186d1d7adc09588",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "fix n2 roberta finetune 001",
+  "task_key": "worker_fix_n2_roberta_finetune_001_20260515T122400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_n2_roberta_finetune_001_20260515T122400.log",
+    "occurrence": 1,
+    "bytes": 801192,
+    "sha256": "6d01a4f9a03a762500a94179a80042fdc88845a5280c9577885418cfcfc652da"
+  },
+  "statistics": {
+    "messages": 629,
+    "user_turns": 0,
+    "tool_calls": 261,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 261,
+      "tool_result": 261,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 629,
+      "chunks": [
+        {
+          "path": "e0053186d1d7adc09588-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e0053186d1d7adc09588-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e0053186d1d7adc09588-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e0053186d1d7adc09588-part-0004.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ]
+}

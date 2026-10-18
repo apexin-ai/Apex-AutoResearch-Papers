@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2bd3dbbbeb5e1c2c2c02",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code full benchmark run",
+  "task_key": "worker_code_full-benchmark-run_20260518T113450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full-benchmark-run_20260518T113450_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "d701f60ed90a19670a6de544cb7dacf579feaeff6ce309273d47dd92bf0b8b74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Transformer baseline 主 tasks 正在运行，3 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

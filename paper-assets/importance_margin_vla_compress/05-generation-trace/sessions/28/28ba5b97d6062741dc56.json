@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28ba5b97d6062741dc56",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 attn k09 long seed46 strict cqa1",
+  "task_key": "worker_analysis_eval_pi05_attn_k09_long_seed46_strict_cqa1_20260528T105411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_attn_k09_long_seed46_strict_cqa1_20260528T105411_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "49b6baab3c51421c8f18b31c1864e526a661e312a809be5c5e61808661086b44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，日志完整，无报错。\n\n```\n=== RESULT ===\nexp_id: eval_pi05_attn_k09_long_seed46_strict_cqa1\noverall_success_rate: 65.4%\nper_task: [T0: 44%, T1: 94%, T2: 46%, T3: 92%, T4: 68%, T5: 88%, T6: 54%, T7: 68%, T8: 10%, T9: 90%]\nstatus: success\nnotes: EXIT_CODE=0, 总耗时263.2min。历史seeds: s42=64.0%, s43=62.8%, s44=63.4%, s46=65.4%。结果文件已保存至 eval_results/pi05_attention_k0.90_libero_10_seed46.json\n=== END ===\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

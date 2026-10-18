@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9cbe182d8fbd94da7b43",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama c4 hires crossdataset",
+  "task_key": "worker_code_llama-c4-hires-crossdataset_20260514T221727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-c4-hires-crossdataset_20260514T221727_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "0be7c68630b3977932cf1525f4a8611f6e56b61239208f9fb0b3f9119153db9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写好：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/run_llama_c4_hires_crossdataset.py`\n\n**设计**：\n- **Phase 1 (新做)**：C4 hires 2-bit profiling，64×2048 bf16 inline `patch_attention` 循环（同 `run_llama_hires_bf16_2bitonly.py` 套路）→ 保存 `llama_c4_hires_bf16_2bitonly_profiles.json`\n- **Phase 2 (默认复用)**：C4 standard 4/8-bit profiles 从 `llama_c4_cross_dataset_results.json` 的 `c4_profiles` 字段读（16×512）；`--fresh-standard` 可强制重新 profile\n- **Phase 3–4**：merge → `enforce_monotonicity` → `solve_mckp_constrained(budget=0.25, max_2bit=2, l0_exclude_2bit=True)`\n- **Phase 5**：WT2 PPL（`evaluate_perplexity`）+ C4 PPL（自定义 forward pass）各跑 BF16 / MCKP / uniform-4bit 三种\n- **Phase 6**：和 `llama_hires_constrained_results.json` 的 WT2 hires 参考对比（baseline 8.0922 / MCKP 8.5042 / uniform 8.4701 / delta -0.0341，FAIL）\n\n**Flags**：\n- `--device cuda:0`（默认；提醒不要用 cuda:1）\n- `--reuse-hires`：跳过 Phase 1 复用已有 hires profiles\n- `--fresh-standard`：不复用，重新 inline profile 4/8-bit\n\n**服务器验证完成**：\n- Model `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B`（symlink → `Meta-Llama-3___1-8B`）有完整 safetensors\n- `c4_calibration_real.json` (371KB)、`llama_c4_cross_dataset_results.json`、`llama_hires_constrained_results.json`、`solver.py`/`eval_ppl.py`/`full_bitwidth_profiler.py` 都存在\n- 架构：32L × 8KV = 256 heads，GQA 4:1\n\n未提交运行，等 Mistral 完成后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

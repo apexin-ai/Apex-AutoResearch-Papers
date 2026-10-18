@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8051f619be08f33e1a78",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix cqa1 gpu2 transformers",
+  "task_key": "worker_fix_cqa1_gpu2_transformers_20260527T074123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cqa1_gpu2_transformers_20260527T074123_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "1a6353d66f57d0cc6f624fca39d94ecf815ab15c41c959f4b2c6d48f4cbaea6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，正在加载模型。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| transformers 版本 | 5.5.3（qwen2_5_vl 导入 OK） |\n| 新实验 exp_id | `eval_pi05_attn_k095_long_seed42_strict_v2` |\n| PID | 89654 |\n| GPU2 状态 | 已释放旧进程，新实验正在加载模型 |\n| Registry | 旧实验标记 failed，新实验已注册并关联 parent |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

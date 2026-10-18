@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "61723177ddafe8f0f4bc",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops westd38929 gpu2 kill zombie and liberoplus smoke",
+  "task_key": "worker_ops_westd38929-gpu2-kill-zombie-and-liberoplus-smoke_20260520T234556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd38929-gpu2-kill-zombie-and-liberoplus-smoke_20260520T234556.log",
+    "occurrence": 1,
+    "bytes": 1031739,
+    "sha256": "2228f8265b1ba394f19f85fa8279d9e1e5350a47c497255f50d095571b0ea4a1"
+  },
+  "statistics": {
+    "messages": 406,
+    "user_turns": 1,
+    "tool_calls": 138,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 107,
+      "tool_call": 138,
+      "tool_result": 138,
+      "user": 1,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 349,
+      "chunks": [
+        {
+          "path": "61723177ddafe8f0f4bc-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "61723177ddafe8f0f4bc-part-0002.json",
+          "message_count": 174
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "61723177ddafe8f0f4bc-part-0002.json",
+          "message_count": 6
+        },
+        {
+          "path": "61723177ddafe8f0f4bc-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ]
+}

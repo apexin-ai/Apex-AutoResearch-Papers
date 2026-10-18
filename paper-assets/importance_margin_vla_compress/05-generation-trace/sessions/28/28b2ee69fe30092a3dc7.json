@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28b2ee69fe30092a3dc7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu023 xvla",
+  "task_key": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd38929-gpu023-xvla_20260523T235350_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "85e5e9623a16ce7789e2a5c5a65e7ac5b0fad271f3c30d3c24a0879c1c82e29e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇总：\n\n## westd-38929 GPU 状态\n\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | eval_xvla_l2norm_k05_spatial_seed43 | 🔄 运行中 (PID 330589) |\n| 1 | eval_xvla_l2norm_k05_long_seed43 | 🔄 运行中 (PID 432791, 另一 Worker) |\n| 2 | — | 空闲 |\n| 3 | **eval_xvla_random_k05_goal_seed43_v4** | ✅ 刚启动 (PID 469773, tmux: xvla_random_goal_s43_v4) |\n\n## GPU 2 情况说明\n\n任务指定的两个 fallback 都无法执行：\n1. **`eval_xvla_random_k05_object_seed43`** — 已完成 (SR=71.0%)，无需重跑\n2. **`eval_xvla_attention_k05_goal_seed43`** — X-VLA 脚本只支持 `l2_norm` 和 `random`，不支持 `attention` 模式\n\nR6-C1 X-VLA CV seed43 实验已全部覆盖（4 running/done + Goal v4 刚部署），GPU 2 暂无明确的 X-VLA CV 实验可部署。需要指示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

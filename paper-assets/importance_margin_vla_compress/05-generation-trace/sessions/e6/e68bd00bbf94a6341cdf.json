@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e68bd00bbf94a6341cdf",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval openvla attn k07 goal seed42",
+  "task_key": "worker_analysis_eval_openvla_attn_k07_goal_seed42_20260526T175950",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_openvla_attn_k07_goal_seed42_20260526T175950_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "5a740d70263e5e04340be4714106c77bca46e1731f843581ea697f4fe6c15e74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**`eval_openvla_attn_k07_goal_seed42`** — conclusion: **negative**\n- overall_sr = **66.4%** (332/500)\n\n**对比分析**: Attn 在 Goal 上的 cliff curve 确认：k=0.9 → 73.2%, k=0.85 → 74.6%（平稳甚至微升），k=0.7 → 66.4%（骤降 8.2pp）。Cliff 点在 k=0.85 到 k=0.7 之间，说明 Attention pruning 在 Goal suite 上保留 70% heads 已不足以维持性能，安全压缩上限约为 k=0.85（保留 85% heads）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

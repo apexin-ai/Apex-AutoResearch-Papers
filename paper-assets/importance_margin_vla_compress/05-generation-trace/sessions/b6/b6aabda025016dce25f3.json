@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b6aabda025016dce25f3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose random k03 spatial v2",
+  "task_key": "worker_diagnose_random_k03_spatial_v2_20260524T150256",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_random_k03_spatial_v2_20260524T150256_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "1d38a061a118ea8ffe71640c854877b010917653228294b0dde408a46247e16f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**结果汇总：**\n- **Spatial k=0.3 (random): SR = 43.4%**\n- Per-task: T1=60%, T2=52%, T3=8%, T4=34%, T5=22%, T6=24%, T7=62%, T8=74%, T9=40%\n- 三个 suite k=0.3 对比：Object=32.2%, Spatial=43.4%, Goal=52.8%\n- 结果文件：`/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.30_libero_spatial_seed42.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

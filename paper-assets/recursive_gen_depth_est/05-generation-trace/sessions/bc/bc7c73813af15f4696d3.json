@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "bc7c73813af15f4696d3",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "writing r4 compile and deep compress",
+  "task_key": "worker_writing_r4_compile_and_deep_compress_20260516T134740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r4_compile_and_deep_compress_20260516T134740.log",
+    "occurrence": 1,
+    "bytes": 1073763,
+    "sha256": "4c4a784bdadaf58ca9348d359a54d1997577469a701c1677630ea17ab2125459"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 71,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "bc7c73813af15f4696d3-part-0001.json",
+          "message_count": 118
+        },
+        {
+          "path": "bc7c73813af15f4696d3-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "bc7c73813af15f4696d3-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "802b6991060612cb8912",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code baseline battery",
+  "task_key": "worker_code_baseline_battery_20260514T161949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_battery_20260514T161949_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "37c0e3dd1659d9f64fcbd7c5464e351d26552b1d8330692148aca047af614435"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个 baseline 跑通，结果汇总：\n\n| Method | 4-class | 3-class | MAE |\n|---|---|---|---|\n| PPL Regression (single: mean_ppl) | 0.2513 | 0.3351 | 0.9440 |\n| PPL Regression (multi: 19-dim OLS) | 0.6223 | 0.5200 | 0.3890 |\n| CE-MLP (DCOL ablation) | 0.7897 | 0.7204 | 0.2280 |\n| CORAL Ordinal Regression | 0.7807 | 0.7089 | 0.2273 |\n| DivEye (XGBoost) | 0.7817 | 0.7098 | 0.2363 |\n| (ref) RF MVP | 0.7815 | — | — |\n\n文件已部署到 `/root/autodl-tmp/recursive_gen_depth_est/src/baselines.py`，结果保存在 `results/baselines/baseline_results.json`。\n\n关键发现：\n- 单特征 PPL 回归几乎等于随机（25%），说明单靠 mean_ppl 无法区分 depth\n- CE-MLP (79.0%) 略胜 RF MVP (78.2%)，但差异在置信区间内——这意味着 DCOL 的 contrastive loss 对性能提升至关重要\n- CORAL (78.1%) 和 DivEye (78.2%) 与 RF 持平\n- 所有方法在 depth-2 的 recall 最低（~60%），depth-0 最高（~99%）\n\nDivEye 的 TODO：当前使用 14/19 维特征的静态统计量，未实现 DivEye 原版的 first-order (∆S) 和 second-order (∆²S) temporal surprisal 特征（需要 raw token-level surprisal 序列）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

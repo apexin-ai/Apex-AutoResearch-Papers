@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1752eaf78074201d966d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code collect results",
+  "task_key": "worker_code_collect-results_20260518T121745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_collect-results_20260518T121745_result.json",
+    "occurrence": 1,
+    "bytes": 3254,
+    "sha256": "6c67a6cad40729836539bae9a571a31aa764ebadc5dbfadb5f0ed15466ff3adc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整报告。\n\n---\n\n## Benchmark 结果汇总\n\n### 服务器状态\n- **GPU**: 空闲 (0% util, 3353 MiB used)\n- **无正在运行的评测进程**\n\n---\n\n### 1. LM-Eval 标准 Benchmark（0-shot）\n\n有两套结果：早期 `lm_eval/` 和后来的 `results_v5/` + `lm_eval_fixed/`。GatedDeltaNet 正确结果仅存在于早期 `lm_eval/` 目录中，后续 `lm_eval_fixed/` 对 GatedDeltaNet 和 RetNet 的结果均**异常**（lambada acc=0, ppl=数亿，其他任务接近随机水平），疑似模型加载 bug。\n\n| Benchmark | Metric | Transformer 1.3B | GatedDeltaNet Hybrid | RetNet Pure |\n|---|---|---|---|---|\n| **lambada_openai** | acc | 0.4809 | **0.5077** | ~~0.0~~ (broken) |\n| | ppl↓ | 11.46 | **9.97** | ~~14.5M~~ (broken) |\n| **hellaswag** | acc_norm | 0.5923 | **0.6025** | ~~0.2605~~ (broken) |\n| **arc_easy** | acc | 0.7075 | **0.7218** | ~~0.2576~~ (broken) |\n| **arc_challenge** | acc_norm | 0.3916 | **0.3985** | ~~0.2876~~ (broken) |\n| **winogrande** | acc | 0.6148 | **0.6148** | ~~0.4997~~ (broken) |\n| **openbookqa** | acc_norm | 0.392 | — | — |\n| **MMLU (5-shot)** | acc | 0.2698 | — | — |\n\n**Transformer 来源**: `results_v5` 逐任务运行（正确），MMLU 来自 `lm_eval_fixed`\n**GatedDeltaNet 来源**: `lm_eval/gated_deltanet_hybrid/results_2026-05-18T18-09-55`（正确）\n**RetNet**: 所有运行均异常，模型加载有问题，结果不可用\n\n---\n\n### 2. GatedDeltaNet MMLU（5-shot, from lm_eval_fixed/18-56-16）\n\n部分子任务已存，但**缺少 group-level 聚合分数**。已读到的子任务包括 abstract_algebra(0.23)、anatomy(0.25)、astronomy(0.20)、college_biology(0.23) 等，整体约 0.22-0.25 范围。\n\n---\n\n### 3. Function Composition 评测（func_comp, direct）\n\n仅有 **Transformer 1.3B baseline** 的完整结果：\n\n| Depth | Accuracy | Correct/Total |\n|---|---|---|\n| 1 | 0.094 | 47/500 |\n| 2 | 0.094 | 47/500 |\n| 3 | 0.124 | 62/500 |\n| 4 | 0.128 | 64/500 |\n| 5 | 0.118 | 59/500 |\n\nRandom chance = 0.10。GatedDeltaNet 和 RetNet 有 prediction 文件但**未包含在 summary 中**。\n\n---\n\n### 4. Logprob 评测（仅 Transformer）\n\n| Depth | fraction_rank_1 | mean_correct_prob | mean_margin |\n|---|---|---|---|\n| 1 | 0.184 | 0.132 | -0.679 |\n| 2 | 0.118 | 0.106 | -1.044 |\n| 3 | 0.132 | 0.108 | -1.112 |\n| 4 | 0.132 | 0.110 | -1.134 |\n| 5 | 0.110 | 0.105 | -1.142 |\n\n---\n\n### 5. 失败的评测任务\n\n| Log | 错误 |\n|---|---|\n| t7 (logiqa2) | `Dataset scripts are no longer supported` — datasets 库版本不兼容 |\n| t9 | `httpx.ConnectTimeout` — 网络超时 |\n| transformer_6tasks | SIGTERM (exit 143) — 被 kill，39% 进度 |\n| transformer_7tasks | `Feature type 'List' not found` — datasets 库版本不兼容 |\n\n---\n\n### 关键问题\n1. **RetNet 和 GatedDeltaNet 在 lm_eval_fixed 中模型加载异常**，导致近随机结果。GatedDeltaNet 仅早期的 5-task 一次运行是正确的；RetNet 无可用结果。\n2. **GatedDeltaNet 缺少 openbookqa 和完整 MMLU**。\n3. **func_comp/logprob 缺少 GatedDeltaNet 和 RetNet** 的汇总数据。\n4. 模型存储: `/root/autodl-tmp/models_1.3b/` 共 26G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

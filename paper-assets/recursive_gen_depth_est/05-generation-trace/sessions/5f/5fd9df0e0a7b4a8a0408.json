@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5fd9df0e0a7b4a8a0408",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper research bib fix",
+  "task_key": "worker_paper_research_bib_fix_20260515T090356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_fix_20260515T090356_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "73c5f20d804fd174ccde3d072069e2f91a24970093fe0a08449be4189d74828a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 37 entries fixed. Summary of changes:\n\n**Critical fix:**\n- `sigma2026_spectral`: replaced `(multiple)` with real authors (Gu, Yi and Pang, Lingyou and Ye, Xiangkun and others)\n\n**Warning 1 — Full first names added to all 37 entries** in `{LastName, FirstName}` format.\n\n**Warning 2 — Expanded incomplete author lists:**\n- `alemohammad2024_mad`: 3 named authors + others (was 2)\n- `gerstgrasser2024_accumulate`: 3 named + others (was 2)\n- `drayson2025_detection_prevents_collapse`: all 3 authors listed (was 1)\n- `binoculars2024`: 3 named + others (was 3 + others, now with first names)\n- `fast_detectgpt2024`: all 5 authors listed (was 1 + others)\n- `garces_arias2025_decoding_decoded`: all 4 authors listed (was 1)\n- `pudasaini2026_detection_fails`: all 4 authors listed (was 1)\n- `editlens2026`: all 4 authors listed (was 1)\n- `qurating2024`: all 4 authors listed (was 2 + others)\n- `cloc2025`: all 3 authors listed (was 2 + others)\n- `loki2025`: 3 named + others (was 15 last-name-only, trimmed per >6 rule)\n\n**Warning 3 — URLs added** for all entries with arXiv IDs (28 entries).\n\n**Bonus fix:** `basu2021_mirostat` had wrong author names (Sachdev/Kamdar/Nishi) — corrected to Ramachandran/Keskar/Varshney per the actual ICLR 2021 paper."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

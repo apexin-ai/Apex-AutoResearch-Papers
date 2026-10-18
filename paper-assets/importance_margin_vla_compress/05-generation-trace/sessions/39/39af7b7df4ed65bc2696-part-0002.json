@@ -1,0 +1,409 @@
+{
+  "schema_version": "1.0",
+  "session_id": "39af7b7df4ed65bc2696",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the complete picture. Let me also verify which version was used for the \"canonical\" results referenced in the user's question. The k=0.95=63.2% was from westd-41074 (426 lines, `if done:`, with `--fixed_mask` support).\n\nLet me also check the DEVICE setting across versions. Version A (294 lines) uses `DEVICE = \"cuda:0\"` hardcoded, while version B/C use `DEVICE = f\"cuda:{args.gpu}\"`.\n\nAnd one more important detail: Version B (westd-41074) only overrides `embed_prefix` when `prune_fn is not None` (i.e., when pruning), while Version C (cqa1-33015) **always** overrides `embed_prefix` with `fixed_embed_prefix`. \n\nThe comment in Version C reveals this is fixing a double language embedding scaling bug in the default `PI05Pytorch.embed_prefix`. This could be significant—if the default embed_prefix has this bug, then Versions A and B would have it in their baseline runs but not in pruning runs, while Version C fixes it across the board.\n\nFor random pruning specifically though, all three versions override embed_prefix anyway, so the bug wouldn't show up there. The issue would only surface in baseline runs without pruning.\n\nLooking more closely at Versions A and B, they both conditionally override the embed_prefix when pruning is enabled, replacing the default implementation with a custom one that handles language embedding differently.\n\nVersion C takes a different approach — it always overrides embed_prefix regardless of pruning mode, explicitly to prevent the double scaling issue.\n\nSince random pruning overrides embed_prefix in all versions, the actual differences causing non-monotonicity likely come from elsewhere: the success condition in cqa1-33015 that counts partial successes, the inherent noise from unseeded random pruning operations, or device-specific variations.\n\nNow I'm mapping out which experiments used which success conditions and servers to understand the pattern better. I'm noticing the user's curve actually combines results from two different experiments with different success conditions—westd-41074 uses just `if done:` while cqa1-33015 uses `if done or reward > 0.5:`—but the success rates don't follow what I'd expect from that difference, suggesting the condition itself isn't the main factor driving the performance variation.\n\nThe real culprit is probably the unseeded randomness in the mask generation across thousands of inference steps, creating massive variance between runs. The sharp drop from k=0.95 at 63.2% to k=0.9 at 32% and then the jump back up to k=0.85 at 44.4% is striking enough that I should dig into the per-task results to see if there's a consistent pattern explaining these swings, rather than just treating it as noise. masks. But k=0.9 on westd-41074 is 32% while on westd-38929 is 31.8% — very consistent across servers! So the k=0.9 result seems reliable at ~32%.\n\nThe non-monotonicity pattern is:\n- k=0.95 → 63.2%\n- k=0.9 → 32% ← massive drop\n- k=0.85 → 44.4% ← recovery\n- k=0.75 → 62.4% ← further recovery\n- k=0.7 → 62.4% ← stable\n- k=0.5 → 50.2% ← slight drop\n\nThe k=0.9 result (32%) is consistently low across two independent servers with different code versions but same random pruning function. This suggests the issue isn't code bugs but rather something about k=0.9 specifically.\n\nNow I'm calculating the actual token counts for different keep ratios with 256 tokens — k=0.95 keeps 243 tokens, k=0.9 keeps 230, and k=0.85 keeps 217. The differences are small, only 5-13 tokens apart, so it's hard to see how dropping just 5% more tokens could cause a 50% relative performance drop from 63% down to 32%. This makes me wonder if there's something about how position embeddings interact with the truncated sequence length that's causing the issue. I'm noticing the config differences between servers — westd-38929 lacks the `\"fixed_mask\"` field while westd-41074 has `\"fixed_mask\": false`, confirming they ran different code versions. I've also spotted a file naming mismatch on westd-38929 where one results file has the wrong pruning mode recorded. I have enough information now to summarize my findings.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "93db9c7f-d58e-455f-b5b5-10d7d8e461b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SXVKjg1oYcm4gVKniaV4BV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7909,
+                "cache_read_input_tokens": 75330,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7909
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有所有数据了。检查 k=0.9 的 per-task 分布来理解异常低值。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "3d6622dd-86d2-4384-b8bb-5bf165e90e33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SXVKjg1oYcm4gVKniaV4BV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7909,
+                "cache_read_input_tokens": 75330,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7909
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J7Cg9z3AebLjzfeYcpZVga",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41074",
+                "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_10_seed42.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "a8acc162-66b9-4390-8a73-59f2a7e23388",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SXVKjg1oYcm4gVKniaV4BV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7909,
+                "cache_read_input_tokens": 75330,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7909
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-27T02:05:48.917Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J7Cg9z3AebLjzfeYcpZVga",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.9,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fixed_mask\\\\\\\": false,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 230\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.46,\\\\n      \\\\\\\"n\\\\\\\": 23\\\\n    },\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.38,\\\\n      \\\\\\\"n\\\\\\\": 19\\\\n    },\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.44,\\\\n      \\\\\\\"n\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.16,\\\\n      \\\\\\\"n\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.26,\\\\n      \\\\\\\"n\\\\\\\": 13\\\\n    },\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 0.38,\\\\n      \\\\\\\"n\\\\\\\": 19\\\\n    },\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 0.82,\\\\n      \\\\\\\"n\\\\\\\": 41\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.32,\\\\n  \\\\\\\"total_successes\\\\\\\": 160,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 181.0765340924263\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "b95f89bf-fe20-4de5-a926-bf88befab7c4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.9,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fixed_mask\\\\\\\": false,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 230\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.46,\\\\n      \\\\\\\"n\\\\\\\": 23\\\\n    },\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.38,\\\\n      \\\\\\\"n\\\\\\\": 19\\\\n    },\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.44,\\\\n      \\\\\\\"n\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.16,\\\\n      \\\\\\\"n\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.26,\\\\n      \\\\\\\"n\\\\\\\": 13\\\\n    },\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 0.38,\\\\n      \\\\\\\"n\\\\\\\": 19\\\\n    },\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.1,\\\\n      \\\\\\\"n\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 0.82,\\\\n      \\\\\\\"n\\\\\\\": 41\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.32,\\\\n  \\\\\\\"total_successes\\\\\\\": 160,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 181.0765340924263\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_10\\\",\\n    \\\"prune_mode\\\": \\\"random\\\",\\n    \\\"keep_ratio\\\": 0.9,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 42,\\n    \\\"fixed_mask\\\": false,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 230\\n  },\\n  \\\"per_task\\\": {\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.1,\\n      \\\"n\\\": 5\\n    },\\n    \\\"put both the cream cheese box and the butter in the basket\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 0.46,\\n      \\\"n\\\": 23\\n    },\\n    \\\"turn on the stove and put the moka pot on it\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.38,\\n      \\\"n\\\": 19\\n    },\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.44,\\n      \\\"n\\\": 22\\n    },\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.16,\\n      \\\"n\\\": 8\\n    },\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 0.26,\\n      \\\"n\\\": 13\\n    },\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 0.1,\\n      \\\"n\\\": 5\\n    },\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 0.38,\\n      \\\"n\\\": 19\\n    },\\n    \\\"put both moka pots on the stove\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 0.1,\\n      \\\"n\\\": 5\\n    },\\n    \\\"put the yellow and white mug in the microwave and close it\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 0.82,\\n      \\\"n\\\": 41\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.32,\\n  \\\"total_successes\\\": 160,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 181.0765340924263\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011gZ8SUo7ZThca9M6RSP4mA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41074",
+                "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_10_seed42.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "e397cb42-2dae-41b6-acbb-178231c8e25e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SXVKjg1oYcm4gVKniaV4BV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7909,
+                "cache_read_input_tokens": 75330,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7909
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-27T02:05:49.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011gZ8SUo7ZThca9M6RSP4mA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.95,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fixed_mask\\\\\\\": false,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 243\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.7,\\\\n      \\\\\\\"n\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.94,\\\\n      \\\\\\\"n\\\\\\\": 47\\\\n    },\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.68,\\\\n      \\\\\\\"n\\\\\\\": 34\\\\n    },\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.84,\\\\n      \\\\\\\"n\\\\\\\": 42\\\\n    },\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.48,\\\\n      \\\\\\\"n\\\\\\\": 24\\\\n    },\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.82,\\\\n      \\\\\\\"n\\\\\\\": 41\\\\n    },\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.06,\\\\n      \\\\\\\"n\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 0.72,\\\\n      \\\\\\\"n\\\\\\\": 36\\\\n    },\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.2,\\\\n      \\\\\\\"n\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 0.88,\\\\n      \\\\\\\"n\\\\\\\": 44\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.632,\\\\n  \\\\\\\"total_successes\\\\\\\": 316,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 149.63803504308063\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "8fb4860c-4e9a-4c2b-b4f3-dbd15dc7dca1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.95,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fixed_mask\\\\\\\": false,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 243\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.7,\\\\n      \\\\\\\"n\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.94,\\\\n      \\\\\\\"n\\\\\\\": 47\\\\n    },\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.68,\\\\n      \\\\\\\"n\\\\\\\": 34\\\\n    },\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.84,\\\\n      \\\\\\\"n\\\\\\\": 42\\\\n    },\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.48,\\\\n      \\\\\\\"n\\\\\\\": 24\\\\n    },\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.82,\\\\n      \\\\\\\"n\\\\\\\": 41\\\\n    },\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.06,\\\\n      \\\\\\\"n\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 0.72,\\\\n      \\\\\\\"n\\\\\\\": 36\\\\n    },\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.2,\\\\n      \\\\\\\"n\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 0.88,\\\\n      \\\\\\\"n\\\\\\\": 44\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.632,\\\\n  \\\\\\\"total_successes\\\\\\\": 316,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 149.63803504308063\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_10\\\",\\n    \\\"prune_mode\\\": \\\"random\\\",\\n    \\\"keep_ratio\\\": 0.95,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 42,\\n    \\\"fixed_mask\\\": false,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 243\\n  },\\n  \\\"per_task\\\": {\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.7,\\n      \\\"n\\\": 35\\n    },\\n    \\\"put both the cream cheese box and the butter in the basket\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 0.94,\\n      \\\"n\\\": 47\\n    },\\n    \\\"turn on the stove and put the moka pot on it\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.68,\\n      \\\"n\\\": 34\\n    },\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.84,\\n      \\\"n\\\": 42\\n    },\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.48,\\n      \\\"n\\\": 24\\n    },\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 0.82,\\n      \\\"n\\\": 41\\n    },\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 0.06,\\n      \\\"n\\\": 3\\n    },\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 0.72,\\n      \\\"n\\\": 36\\n    },\\n    \\\"put both moka pots on the stove\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 0.2,\\n      \\\"n\\\": 10\\n    },\\n    \\\"put the yellow and white mug in the microwave and close it\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 0.88,\\n      \\\"n\\\": 44\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.632,\\n  \\\"total_successes\\\": 316,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 149.63803504308063\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the per-task comparison between k=0.95 and k=0.9 on the same server (westd-41074), same code version, same seed:\n\n| Task | k=0.95 SR | k=0.9 SR | Δ |\n|------|-----------|----------|---|\n| T0 alphabet_soup_tomato | 70% | 10% | -60% |\n| T1 cream_cheese_butter | 94% | 46% | -48% |\n\n\n| T2 stove_moka_pot | 68% | 38% | -30% |\n| T3 black_bowl_drawer | 84% | 44% | -40% |\n| T4 white_mug_plates | 48% | 16% | -32% |\n| T5 book_caddy | 82% | 26% | -56% |\n| T6 white_mug_pudding | 6% | 10% | +4% |\n| T7 alphabet_cream | 72% | 38% | -34% |\n| T8 moka_pots_stove | 20% | — | — |\n\nThe pattern is clear: lowering k from 0.95 to 0.9 consistently hurts performance across nearly all tasks, with drops ranging from 30-60 percentage points, though T6 is an outlier that actually improves slightly.\n\nBut then something unexpected happens — at k=0.85 and k=0.75, performance actually rebounds and exceeds the k=0.95 baseline, suggesting there's a non-monotonic relationship between token retention and task performance that's quite unusual for random pruning. The consistency across servers with k=0.9 is striking—getting nearly identical results (32% and 31.8%) from supposedly independent random experiments suggests something deterministic is happening. I'm realizing the seed might be controlling torch's randomness too, even though the code only explicitly sets it for the environment, which would explain why the random masks aren't actually varying between runs.\n\nBut wait, if the PyTorch seed isn't being set explicitly, the random masks should differ across runs, yet the results are nearly identical. Maybe k=0.9 just performs poorly at this threshold regardless—it's right at a critical point where the model struggles. Looking at the token counts more carefully: k=0.9 removes only 78 tokens total across the three image slots, while k=0.75 removes 192 tokens, yet k=0.75 actually performs better. That's the real puzzle here—why does more aggressive pruning outperform less aggressive pruning?\n\nI suspect the k=0.75 and k=0.7 results might be inflated because they used the `if done or reward > 0.5:` success criterion instead of just `if done:`. Looking at k=0.85 on the same setup with the inflated criterion, it gets 44.4%, so if I adjust for the criterion difference, the curve would probably look more monotonic and make sense.\n\nThe non-monotonicity likely stems from three factors: the experiments used different servers and success conditions (k=0.95 and k=0.9 on westd-41074 with strict `if done:`, while k=0.85 through k=0.5 ran on cqa1-33015 with the looser criterion), random pruning introduces significant variance across thousands of inference calls per task, and k=0.9 might sit at a critical threshold where token removal starts degrading performance substantially.\n\nThe per-task breakdown for k=0.9 is striking—T0 plummets from 70% to 10%, T5 from 82% to 26%—suggesting a sharp phase transition where removing just 13 more tokens causes catastrophic collapse, possibly due to how 230 tokens interact with position encoding or attention patterns. Now I'm wondering whether the `if done or reward > 0.5:` success condition in cqa1-33015 is actually inflating those results, so I need to check how LIBERO's reward signal works.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "51845c4e-434b-42e8-a046-a093d621eb5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Sf36VyVtwwCLRjyvj4wQ9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5027,
+                "cache_read_input_tokens": 83239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5027
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是诊断报告。\n\n---\n\n## 1. π0.5 Random Long 实验 × 服务器 × 代码版本\n\n| k | SR | 结果文件服务器 | 代码行数 | success条件 | seed |\n|---|---|---|---|---|---|\n| 0.95 | 63.2% | westd-41074 | 426 | `if done:` | 42 |\n| 0.95 | 61.2% | westd-38929 | 294 | `if done:` | 42 |\n| 0.90 | 32.0% | westd-41074 | 426 | `if done:` | 42 |\n| 0.90 | 31.8% | westd-38929 | 294 | `if done:` | 42 |\n| 0.85 | 44.4% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n| 0.75 | 62.4% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n| 0.70 | 62.4% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n| 0.50 | 50.2% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n\nRegistry 中对应的 exp_id（主要使用的版本）：\n\n| exp_id | server | k | SR | status |\n|--------|--------|---|---|----|\n| (无注册) | westd-41074 | 0.95 | 63.2% | — |\n| (无注册) | westd-41074 | 0.90 | 32.0% | — |\n| eval_pi05_random_k085_long_seed42_v2 | cqa1-33015 | 0.85 | 44.4% | DONE |\n| eval_pi05_random_k075_long_seed42_v2 | cqa1-33015 | 0.75 | 62.4% | DONE |\n| eval_pi05_random_k07_long_seed42 | cqa1-33015 | 0.70 | 62.4% | DONE |\n| eval_pi05_random_k05_long_seed42_v3 | cqa1-33015 | 0.50 | 50.2% | DONE |\n\n## 2. 代码 diff 关键发现\n\n### 三个版本概要\n\n| 特性 | V-A (294行, westd-38929/27271) | V-B (426行, westd-41074) | V-C (464行, cqa1-33015) |\n|------|------|------|------|\n| prune_mode 选项 | none/random/l2norm | +attention | +attention/zero_mask_* |\n| `--fixed_mask` | 无 | 有 | 有 |\n| `_episode_mask_cache` | 无 | 有 | 有 |\n| embed_prefix 覆盖 | 仅 prune 时 | 仅 prune 时 | **始终覆盖**（修复 double scaling） |\n| success 条件 | `if done:` | `if done:` | **`if done or reward > 0.5:`** |\n| DEVICE | 硬编码 cuda:0 | `cuda:{args.gpu}` | `cuda:{args.gpu}` |\n| 文件名 tag | 无 | `_fixmask` tag | 无 |\n\n### Random pruning 实现差异\n\n**`prune_tokens_random()` 函数三个版本完全一致**：\n```python\nindices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\nreturn img_emb[:, indices, :], n_keep\n```\n- 无固定种子，每次 inference 调用生成不同 mask\n- n_keep 计算方式相同：`max(1, int(n_tokens * keep_ratio))`\n\n### 导致非单调的两个根因\n\n**根因 1（CRITICAL）：混合 success 条件**\n- k=0.95, k=0.9 在 westd-41074 运行，用 `if done:` — 严格判定\n- k=0.85 ~ k=0.5 在 cqa1-33015 运行，用 `if done or reward > 0.5:` — 宽松判定，`reward > 0.5` 会捕获部分完成状态，虚增 SR\n\n这意味着 k≤0.85 的 SR 被系统性高估，与 k≥0.9 的结果不可直接比较。\n\n**根因 2：k=0.9 存在真实的性能崩塌**\n\n同台服务器 (westd-41074) 相同条件下的 per-task 对比：\n\n| Task | k=0.95 | k=0.9 | Δ |\n|------|--------|-------|---|\n| T0 alphabet_soup | 70% | **10%** | -60% |\n| T1 cream_cheese | 94% | 46% | -48% |\n| T5 book_caddy | 82% | **26%** | -56% |\n| T3 black_bowl | 84% | 44% | -40% |\n\n仅多丢 13 个 token（243→230/256），多数 task 崩塌 30-60%。这在两台独立服务器上一致复现（westd-41074=32.0%, westd-38929=31.8%），说明 k=0.9 确实是 random pruning 的敏感阈值——但非单调曲线的\"回升\"部分主要是 success 条件差异造成的假象。\n\n### Version C 的 embed_prefix 修复\n\ncqa1-33015 版本注释：\n> \"Always override embed_prefix to avoid double lang_emb scaling. GemmaTextScaledWordEmbedding already applies * sqrt(hidden_size) in embed_tokens(); the default PI05Pytorch.embed_prefix applies it again, breaking the model.\"\n\n但此修复对 random pruning 结果影响有限——V-A/V-B 在 prune 模式下也会覆盖 embed_prefix，只有 baseline（no pruning）模式受影响。\n\n## 3. westd-38929 文件名不匹配\n\n**`eval_results/openvla_l2norm_prune_k085_10.json` 实际内容：**\n```json\n\"mode\": \"attention_prune\",\n\"k_ratio\": null,\n\"overall_success_rate\": 0.458\n```\n- 文件名写的是 `l2norm`，实际内容是 **attention_prune** 模式\n- `k_ratio` 为 null（attention mode 未记录 keep_ratio）\n- SR=45.8%\n\n**正确的 l2norm k=0.85 Long 结果在：**\n`results/openvla_l2norm_prune_k085_long_seed42.json`\n- `\"mode\": \"l2norm_prune\"`, `\"k_ratio\": 0.85`\n- SR=38.8%\n\n**影响范围：** 如果之前引用 `openvla_l2norm_prune_k085_10.json` 作为 l2norm 结果，实际拿到的是 attention 数据（45.8% vs 正确的 38.8%），差异 7%。\n\n---\n\n**结论：π0.5 Random Long 曲线不可用。** k≥0.9 和 k≤0.85 的实验使用了不同 success 条件，混合比较无意义。需要统一到 `if done:` 条件后重跑 k=0.85/0.75/0.7/0.5，或统一到 `if done or reward > 0.5:` 重跑 k=0.95/0.9。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "uuid": "b1731d3c-0703-4010-bfca-03e04bfd1b44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Sf36VyVtwwCLRjyvj4wQ9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5027,
+                "cache_read_input_tokens": 83239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5027
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是诊断报告。\n\n---\n\n## 1. π0.5 Random Long 实验 × 服务器 × 代码版本\n\n| k | SR | 结果文件服务器 | 代码行数 | success条件 | seed |\n|---|---|---|---|---|---|\n| 0.95 | 63.2% | westd-41074 | 426 | `if done:` | 42 |\n| 0.95 | 61.2% | westd-38929 | 294 | `if done:` | 42 |\n| 0.90 | 32.0% | westd-41074 | 426 | `if done:` | 42 |\n| 0.90 | 31.8% | westd-38929 | 294 | `if done:` | 42 |\n| 0.85 | 44.4% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n| 0.75 | 62.4% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n| 0.70 | 62.4% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n| 0.50 | 50.2% | cqa1-33015 | 464 | `if done or reward > 0.5:` | 42 |\n\nRegistry 中对应的 exp_id（主要使用的版本）：\n\n| exp_id | server | k | SR | status |\n|--------|--------|---|---|----|\n| (无注册) | westd-41074 | 0.95 | 63.2% | — |\n| (无注册) | westd-41074 | 0.90 | 32.0% | — |\n| eval_pi05_random_k085_long_seed42_v2 | cqa1-33015 | 0.85 | 44.4% | DONE |\n| eval_pi05_random_k075_long_seed42_v2 | cqa1-33015 | 0.75 | 62.4% | DONE |\n| eval_pi05_random_k07_long_seed42 | cqa1-33015 | 0.70 | 62.4% | DONE |\n| eval_pi05_random_k05_long_seed42_v3 | cqa1-33015 | 0.50 | 50.2% | DONE |\n\n## 2. 代码 diff 关键发现\n\n### 三个版本概要\n\n| 特性 | V-A (294行, westd-38929/27271) | V-B (426行, westd-41074) | V-C (464行, cqa1-33015) |\n|------|------|------|------|\n| prune_mode 选项 | none/random/l2norm | +attention | +attention/zero_mask_* |\n| `--fixed_mask` | 无 | 有 | 有 |\n| `_episode_mask_cache` | 无 | 有 | 有 |\n| embed_prefix 覆盖 | 仅 prune 时 | 仅 prune 时 | **始终覆盖**（修复 double scaling） |\n| success 条件 | `if done:` | `if done:` | **`if done or reward > 0.5:`** |\n| DEVICE | 硬编码 cuda:0 | `cuda:{args.gpu}` | `cuda:{args.gpu}` |\n| 文件名 tag | 无 | `_fixmask` tag | 无 |\n\n### Random pruning 实现差异\n\n**`prune_tokens_random()` 函数三个版本完全一致**：\n```python\nindices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\nreturn img_emb[:, indices, :], n_keep\n```\n- 无固定种子，每次 inference 调用生成不同 mask\n- n_keep 计算方式相同：`max(1, int(n_tokens * keep_ratio))`\n\n### 导致非单调的两个根因\n\n**根因 1（CRITICAL）：混合 success 条件**\n- k=0.95, k=0.9 在 westd-41074 运行，用 `if done:` — 严格判定\n- k=0.85 ~ k=0.5 在 cqa1-33015 运行，用 `if done or reward > 0.5:` — 宽松判定，`reward > 0.5` 会捕获部分完成状态，虚增 SR\n\n这意味着 k≤0.85 的 SR 被系统性高估，与 k≥0.9 的结果不可直接比较。\n\n**根因 2：k=0.9 存在真实的性能崩塌**\n\n同台服务器 (westd-41074) 相同条件下的 per-task 对比：\n\n| Task | k=0.95 | k=0.9 | Δ |\n|------|--------|-------|---|\n| T0 alphabet_soup | 70% | **10%** | -60% |\n| T1 cream_cheese | 94% | 46% | -48% |\n| T5 book_caddy | 82% | **26%** | -56% |\n| T3 black_bowl | 84% | 44% | -40% |\n\n仅多丢 13 个 token（243→230/256），多数 task 崩塌 30-60%。这在两台独立服务器上一致复现（westd-41074=32.0%, westd-38929=31.8%），说明 k=0.9 确实是 random pruning 的敏感阈值——但非单调曲线的\"回升\"部分主要是 success 条件差异造成的假象。\n\n### Version C 的 embed_prefix 修复\n\ncqa1-33015 版本注释：\n> \"Always override embed_prefix to avoid double lang_emb scaling. GemmaTextScaledWordEmbedding already applies * sqrt(hidden_size) in embed_tokens(); the default PI05Pytorch.embed_prefix applies it again, breaking the model.\"\n\n但此修复对 random pruning 结果影响有限——V-A/V-B 在 prune 模式下也会覆盖 embed_prefix，只有 baseline（no pruning）模式受影响。\n\n## 3. westd-38929 文件名不匹配\n\n**`eval_results/openvla_l2norm_prune_k085_10.json` 实际内容：**\n```json\n\"mode\": \"attention_prune\",\n\"k_ratio\": null,\n\"overall_success_rate\": 0.458\n```\n- 文件名写的是 `l2norm`，实际内容是 **attention_prune** 模式\n- `k_ratio` 为 null（attention mode 未记录 keep_ratio）\n- SR=45.8%\n\n**正确的 l2norm k=0.85 Long 结果在：**\n`results/openvla_l2norm_prune_k085_long_seed42.json`\n- `\"mode\": \"l2norm_prune\"`, `\"k_ratio\": 0.85`\n- SR=38.8%\n\n**影响范围：** 如果之前引用 `openvla_l2norm_prune_k085_10.json` 作为 l2norm 结果，实际拿到的是 attention 数据（45.8% vs 正确的 38.8%），差异 7%。\n\n---\n\n**结论：π0.5 Random Long 曲线不可用。** k≥0.9 和 k≤0.85 的实验使用了不同 success 条件，混合比较无意义。需要统一到 `if done:` 条件后重跑 k=0.85/0.75/0.7/0.5，或统一到 `if done or reward > 0.5:` 重跑 k=0.95/0.9。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 374699,
+            "duration_api_ms": 370577,
+            "num_turns": 55,
+            "stop_reason": "end_turn",
+            "session_id": "04ac84b9-f778-4e7d-8b6c-5d01810064e3",
+            "total_cost_usd": 1.31479475,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 76425,
+              "cache_read_input_tokens": 745085,
+              "output_tokens": 18485,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 76425,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 4030,
+                  "cache_read_input_tokens": 83239,
+                  "cache_creation_input_tokens": 5027,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 5027
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2276,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002381,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 18,
+                "outputTokens": 18485,
+                "cacheReadInputTokens": 745085,
+                "cacheCreationInputTokens": 76425,
+                "webSearchRequests": 0,
+                "costUSD": 1.31241375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3923dce1-afef-45f3-8a1f-14194a94b05c"
+          },
+          "id": "event-000137"
+        }
+      ]
+    }
+  ]
+}

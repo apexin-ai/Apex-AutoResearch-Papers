@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60d1a8e4fc5ad39d6ad4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r26 squeeze 3lines",
+  "task_key": "worker_paper_r26_squeeze_3lines_20260522T054237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_squeeze_3lines_20260522T054237_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "140b05f293abb7131d052bedc2c8b2f0d80b77d1a39310c71732987204ad025c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验收通过。\n\n**执行方案汇总**：\n\n| 方案 | 操作 | 效果 |\n|------|------|------|\n| 方案 1 | discussion.tex \"Boundary conditions\"：删除重复数字 `$r^2 \\approx 1.3\\%$`、`($R^2 \\approx 22\\%$, ~31 pp extreme gap on FewRel)` | ~1 行 |\n| 方案 1 | discussion.tex \"Practical implications\"：删除 `BCS enables pre-hoc diagnostics (flag SCS > 0.85 pairs);`、`(TOST p=0.003 at ±3 pp; logit-scale equivalence inconclusive, p=0.209)`、`on the probability scale`；合并句子结构 | ~3 行 |\n| 方案 2 | results.tex §4.1、§4.2 两段加 `\\looseness=-1` | 辅助 |\n| 方案 2 | sdgd_negative.tex 加 `\\looseness=-1` | 辅助 |\n\n**验证结果**：\n- Page 8 末尾：Discussion \"separability holds on the linear scale but remains open on the logit scale.\"\n- Page 9 开头：`Limitations`\n- 0 errors, 0 undefined references"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

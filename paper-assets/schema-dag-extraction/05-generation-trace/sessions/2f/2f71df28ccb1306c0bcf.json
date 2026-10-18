@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f71df28ccb1306c0bcf",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp012 gpu status",
+  "task_key": "worker_check_exp012_gpu_status_20260515T171029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp012_gpu_status_20260515T171029_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "37f8f7c6053aae0b97c6df9021f66ec580eaf45aa382d5500a58edef1c47c4e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n1. **GPU**：cuda:0 空闲，0MiB 显存占用，无 Python 进程。\n2. **tmux**：`tmux ls` 被 read-only 白名单拦截，无法执行。\n3. **PID 303055**：已死，`ps` 返回空结果（exit code 1）。\n4. **日志**：exp012 r3 的进程 PID 303070 被 **Killed**（信号 137 = OOM Killer），退出码 137。进程在加载数据和 embedding 后、刚开始 extraction 就被杀了。\n\n**结论：exp012 没在跑，进程已被 OOM kill。** 显存 97GB 的卡当前完全空闲。日志显示是 host memory（非 GPU OOM）导致的 kill，因为进程刚加载完数据就死了，还没上 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

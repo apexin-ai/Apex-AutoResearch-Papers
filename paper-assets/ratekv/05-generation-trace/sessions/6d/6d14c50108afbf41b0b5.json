@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6d14c50108afbf41b0b5",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code p0 2 2bit cliff",
+  "task_key": "worker_code_p0-2-2bit-cliff_20260513T221743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0-2-2bit-cliff_20260513T221743_result.json",
+    "occurrence": 1,
+    "bytes": 3027,
+    "sha256": "e28fb4104c4e6946dfc61f26921cda2265a80a4c3c7b3d3aad0b3593f5b6b431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部测试完成。以下是产出报告。\n\n---\n\n## 产出报告\n\n### 1. cliff_test.py 已部署\n`/root/ratekv/cliff_test.py`，9615 bytes。提供 `CliffTester` 类和 CLI 入口。\n\n### 2. Smoke Test 输出（1.5B, 5000 tokens）\n```\nBaseline PPL: 17.62\nHead 0_0 @2bit: PPL delta = 92.5715\nHead 14_0 @2bit: PPL delta = 0.7646\nSMOKE TEST PASSED\n```\n\n### 3. 1.5B 完整测试结果（10000 tokens, Baseline PPL = 16.0218）\n\n#### 2-bit 量化\n| 指标 | 值 |\n|------|-----|\n| Cliff heads (>10% PPL increase) | **2/56 (3.6%)** |\n| Max delta | +47.56 (L0H0, +296.8%) |\n| Mean delta | +1.90 |\n\n**Top-10 worst:**\n| Head | PPL | Delta | % |\n|------|-----|-------|---|\n| L0H0 | 63.58 | +47.56 | +296.8% |\n| L0H1 | 54.55 | +38.53 | +240.5% |\n| L24H1 | 16.90 | +0.88 | +5.5% |\n| L6H1 | 16.89 | +0.86 | +5.4% |\n| L8H0 | 16.89 | +0.86 | +5.4% |\n| L8H1 | 16.86 | +0.84 | +5.2% |\n| L25H1 | 16.83 | +0.81 | +5.1% |\n| L21H0 | 16.82 | +0.80 | +5.0% |\n| L17H1 | 16.81 | +0.79 | +4.9% |\n| L10H0 | 16.70 | +0.68 | +4.3% |\n\n**Bottom-10 (最小 delta):**\n| Head | PPL | Delta | % |\n|------|-----|-------|---|\n| L12H0 | 16.00 | -0.02 | -0.1% |\n| L3H1 | 16.07 | +0.05 | +0.3% |\n| L17H0 | 16.13 | +0.11 | +0.7% |\n| L10H1 | 16.14 | +0.12 | +0.8% |\n| L2H1 | 16.16 | +0.14 | +0.9% |\n| L6H1 → L13H1 | 16.17 | +0.15 | +0.9% |\n| L22H0 | 16.18 | +0.16 | +1.0% |\n| L26H1 | 16.19 | +0.17 | +1.1% |\n| L1H1 | 16.20 | +0.18 | +1.1% |\n| L18H0 | 16.20 | +0.18 | +1.1% |\n\n#### 4-bit 量化\n| 指标 | 值 |\n|------|-----|\n| Cliff heads | **1/56 (1.8%)** |\n| Max delta | +2.21 (L0H1, +13.8%) |\n| Mean delta | +0.06 |\n\n除 Layer 0 外，所有 head 的 4-bit delta < 1%。\n\n#### 8-bit 量化\n| 指标 | 值 |\n|------|-----|\n| Cliff heads | **0/56 (0%)** |\n| Max delta | +0.27 (L0H0, +1.7%) |\n| Mean delta | -0.003 |\n\n完全安全，无 cliff。\n\n### 4. Cliff Effect 分析\n\n**是否存在 cliff effect？是，但仅限于 Layer 0。**\n\n- **2-bit cliff 集中在 Layer 0**：L0H0 (+297%) 和 L0H1 (+241%) 是唯二超过 10% 阈值的 head。其余 54 个 head 的 2-bit delta 都在 0~5.5% 范围内，无 cliff。\n- **4-bit 也主要是 Layer 0 敏感**：L0H1 (+13.8%) 是唯一 cliff head。\n- **8-bit 完全无 cliff**。\n- **结论**：2-bit 不是\"任一 head 设为 2-bit 即灾难\"。问题是**Layer 0 极度敏感**，而非 2-bit 本身不可用。MCKP solver 的 action space 不应全局删除 2-bit，而应**仅对 Layer 0 禁止 2-bit（和低于 8-bit 的 quant）**，其他层的 2-bit 可以保留。\n\n### 5. 7B 完整测试推荐命令\n\n```bash\ncd /root/ratekv && CUDA_VISIBLE_DEVICES=1 python cliff_test.py \\\n  --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B \\\n  --calibration_data calibration_data.json \\\n  --device cuda:0 \\\n  --bits 2,4,8 \\\n  --max_eval_tokens 10000 \\\n  --output cliff_7B_results.json\n```\n\n预计耗时：112 heads × 3 bits × ~2s/head ≈ ~11 min（7B 比 1.5B 慢但 Blackwell 96GB 够快）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

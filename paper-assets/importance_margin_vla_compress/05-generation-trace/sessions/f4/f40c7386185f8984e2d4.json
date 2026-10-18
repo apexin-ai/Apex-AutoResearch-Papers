@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f40c7386185f8984e2d4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "debug checkpoint collapse boundary",
+  "task_key": "worker_debug_checkpoint_collapse_boundary_20260516T120050",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_checkpoint_collapse_boundary_20260516T120050_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "4e09d083ef41c8b330ded69f4d084a25a05fa91d0acd5d24f8a0148368de64bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "扫描完成。结果清晰：\n\n```\n=== cuda:1 Early Checkpoints ===\n\n--- baseline (alpha=64) ---\n  step_005000: std=0.011365 [WARN]\n  step_010000: std=0.007966 [FAIL]\n  step_015000: std=0.007222 [FAIL]\n  step_020000: std=0.006670 [FAIL]\n  step_025000: std=0.006106 [FAIL]\n  step_029999: std=0.005876 [FAIL]\n  Collapse boundary: step_005000 (std=0.0114) -> step_010000 (std=0.0080)\n\n--- v6_alpha16 (alpha=16) ---\n  step_005000: std=0.036188 [WARN]\n  step_010000: std=0.034032 [WARN]\n  step_015000: std=0.014785 [WARN]\n  step_020000: std=0.023635 [WARN]\n  step_025000: std=0.016814 [WARN]\n  step_029999: std=0.029462 [WARN]\n  No collapse detected in any checkpoint\n```\n\n**关键发现：**\n\n1. **baseline (alpha=64)**：collapse 发生在 step 5K→10K 之间。step_005000 的 std=0.011 已经很低（仅 WARN），没有任何 checkpoint 达到 PASS (>0.05)。说明 alpha=64 从极早期就开始 collapse，**不存在\"既有 diversity 又有 quality\"的最优窗口**。\n\n2. **v6_alpha16 (alpha=16)**：全程 WARN，无 FAIL。std 范围 0.015-0.036，说明 alpha=16 有效抑制了 collapse，但 diversity 仍低于健康水平 (0.05)。\n\nbaseline step_005000 是最接近 PASS 的 checkpoint (std=0.011)，但仍然太低。是否需要对它做快速 rollout 验证 action quality？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

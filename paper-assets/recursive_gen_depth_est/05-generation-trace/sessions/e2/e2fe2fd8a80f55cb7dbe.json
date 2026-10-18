@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e2fe2fd8a80f55cb7dbe",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix w2 logo seed rerun",
+  "task_key": "worker_fix_w2_logo_seed_rerun_20260515T200018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_w2_logo_seed_rerun_20260515T200018_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "f2d11bb091c3baa7bb194eb80c17f11e8fb5f1333f5b15b37dc986d749a87c6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 修复前后对比\n\n| 指标 | 修复前 (buggy) | 修复后 | 说明 |\n|------|-------------|--------|------|\n| **Sub-A** d1-d3 mean acc | 72.0% | 72.0% | 不变（不依赖 seed groups） |\n| **Sub-B** LOGO mean acc | **64.0%** | **72.1%** | +8.1pp，groups 不再 depth-correlated |\n| Sub-B range | 46.6%-76.7% | 59.5%-81.6% | 最低 fold 大幅提升 |\n| **Sub-C** seed_group pred | **20.8%** | **10.2%** | 从 2x chance 降至 ~chance (10%) |\n| Sub-C depth/sg ratio | 3.46x | 7.06x | 分离度翻倍 |\n\n### 论文需更新的数字\n- Sub-B LOGO accuracy：64% → **72.1%**（range 59.5%-81.6%）\n- Sub-C seed group prediction：20.8% → **10.2%**（现在真正接近 chance=10%，证明 groups 与 depth 无关）\n- Sub-C depth/seed_group ratio：3.46x → **7.06x**\n\n修复后结论更强：LOGO 保留组的 accuracy 几乎等于 Sub-A 的标准 CV（72.1% vs 72.0%），说明 depth 信号完全不依赖 seed text identity。Negative control 中 seed group 预测 10.2% ≈ chance，确认 groups 现在与 depth 真正解耦。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

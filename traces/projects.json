@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "projects": [
+    {
+      "project": "causal_style_decomp_judge",
+      "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
+      "catalog": "../paper-assets/causal_style_decomp_judge/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 506,
+        "messages": 73378,
+        "user_turns": 2385,
+        "tool_calls": 30580,
+        "unparsed_lines": 214,
+        "result": 211,
+        "worker": 221,
+        "conversation": 69,
+        "history": 5
+      }
+    },
+    {
+      "project": "cert_manip_resist_eval",
+      "title": "The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation",
+      "catalog": "../paper-assets/cert_manip_resist_eval/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 880,
+        "messages": 97735,
+        "user_turns": 2743,
+        "tool_calls": 39456,
+        "unparsed_lines": 382,
+        "worker": 381,
+        "result": 358,
+        "conversation": 137,
+        "history": 4
+      }
+    },
+    {
+      "project": "ec_hte_llm_annotation",
+      "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
+      "catalog": "../paper-assets/ec_hte_llm_annotation/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 434,
+        "messages": 75488,
+        "user_turns": 2375,
+        "tool_calls": 31107,
+        "unparsed_lines": 181,
+        "worker": 183,
+        "result": 175,
+        "conversation": 72,
+        "history": 4
+      }
+    },
+    {
+      "project": "entrainment_gated_ft",
+      "title": "Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models",
+      "catalog": "../paper-assets/entrainment_gated_ft/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 599,
+        "messages": 80801,
+        "user_turns": 2393,
+        "tool_calls": 32667,
+        "unparsed_lines": 271,
+        "worker": 266,
+        "result": 223,
+        "conversation": 99,
+        "history": 11
+      }
+    },
+    {
+      "project": "importance_margin_vla_compress",
+      "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
+      "catalog": "../paper-assets/importance_margin_vla_compress/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 5754,
+        "messages": 413702,
+        "user_turns": 11786,
+        "tool_calls": 163280,
+        "unparsed_lines": 2111,
+        "result": 2107,
+        "worker": 2223,
+        "conversation": 1235,
+        "history": 189
+      }
+    },
+    {
+      "project": "ratekv",
+      "title": "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic",
+      "catalog": "../paper-assets/ratekv/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1250,
+        "messages": 87631,
+        "user_turns": 2530,
+        "tool_calls": 35146,
+        "unparsed_lines": 475,
+        "result": 419,
+        "worker": 513,
+        "conversation": 260,
+        "history": 58
+      }
+    },
+    {
+      "project": "recursive_gen_depth_est",
+      "title": "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints",
+      "catalog": "../paper-assets/recursive_gen_depth_est/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1779,
+        "messages": 166550,
+        "user_turns": 5043,
+        "tool_calls": 67907,
+        "unparsed_lines": 663,
+        "result": 642,
+        "worker": 686,
+        "conversation": 347,
+        "history": 104
+      }
+    },
+    {
+      "project": "schema-dag-extraction",
+      "title": "How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?",
+      "catalog": "../paper-assets/schema-dag-extraction/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1242,
+        "messages": 131771,
+        "user_turns": 4172,
+        "tool_calls": 53631,
+        "unparsed_lines": 499,
+        "result": 474,
+        "worker": 506,
+        "conversation": 217,
+        "history": 45
+      }
+    }
+  ]
+}

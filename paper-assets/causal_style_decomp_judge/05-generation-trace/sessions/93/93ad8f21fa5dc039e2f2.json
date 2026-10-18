@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "93ad8f21fa5dc039e2f2",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops s3 backup",
+  "task_key": "worker_ops_s3_backup_20260525T205615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3_backup_20260525T205615_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "96eb58eebf8856deb5dda88748214f78cb29df591384a89249027d2ee3ca23c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 备份报告\n\n| 项目 | 值 |\n|------|-----|\n| **Tarball** | `/tmp/causal_style_decomp_judge-final-20260525T205710Z.tar.gz` |\n| **大小** | 11,293,045 bytes (10.8 MB) |\n| **S3 URI** | `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/causal_style_decomp_judge/project-archive/causal_style_decomp_judge-final-20260525T205710Z.tar.gz` |\n| **上传速率** | 1.9 MB/s |\n\n### 各目录大小\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| `code/` | 1.3 MB | .git、*.py、*.sh、*.txt、*.md、csd_pipeline/、scripts/、analysis/ |\n| `data/` | 41 MB | 项目生成的实验数据 |\n| `results/` | 1.9 MB | results/、outputs/、logs/ |\n| `artifacts/` | 1.5 MB | 分析产物 |\n| `paper/` | 0 | 无 docs 目录 |\n\n### 归档目录结构\n\n```\ncausal_style_decomp_judge_archive/\n├── code/\n│   ├── csd_pipeline/\n│   ├── scripts/\n│   └── analysis/\n├── results/\n│   ├── results/\n│   ├── outputs/\n│   └── logs/\n├── data/\n│   └── data/\n├── artifacts/\n│   └── artifacts/\n└── paper/\n```\n\n凭证文件已清理。Tarball 保留在服务器 `/tmp/` 作为本地备份。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

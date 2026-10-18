@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08fb3ac853dc69b12504",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp fewrel 80pool 16sub bootstrap",
+  "task_key": "worker_code_exp_fewrel_80pool_16sub_bootstrap_20260516T014220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_fewrel_80pool_16sub_bootstrap_20260516T014220_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "d54e015a9123bef094f2419dfb29c564738aa5a0a94f58846746d54b3c1df793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**脚本路径**: `/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py`\n\n**Dry-run 结果 (preprocess stage)**:\n- 数据: train+val 合并 56000 samples, 80 relations, 均衡采样 960 条 (12/rel)\n- 80-rel sim matrix 加载成功 (80×80)\n- 100 batches 生成完成，每 batch: 80→16 types→8 types\n\n**BCS 分布** (mean pairwise cosine similarity):\n| 指标 | 值 |\n|------|------|\n| Min | 0.4578 |\n| Q1 | 0.5281 |\n| Median | 0.5568 |\n| Q3 | 0.5820 |\n| Max | 0.6836 |\n| Mean±Std | 0.5570±0.0438 |\n\n**推理规模**: ~9600 total inferences, 预计 GPU 时间 ~19 min\n\n**输出文件**:\n- `artifacts/fewrel_80pool_16sub/preprocess.json` (305K) — 含 samples + batches + relation_defs\n- `artifacts/fewrel_80pool_16sub/batch_config.json` (68K) — 100 batches 的 pool_16/types/BCS\n\n**三阶段运行方式**:\n```bash\n# Stage 1 已完成（preprocess）\n# Stage 2: GPU 推理\npython3 src/run_fewrel_80pool_16sub_bootstrap.py --stage extract\n# Stage 3: Bootstrap CI 分析\npython3 src/run_fewrel_80pool_16sub_bootstrap.py --stage analyze\n# 或一步到位:\npython3 src/run_fewrel_80pool_16sub_bootstrap.py --stage all\n```\n\n支持 `--resume` 断点续传，每个 batch 推理后增量保存到 `results_incremental.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

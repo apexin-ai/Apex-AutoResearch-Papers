@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7859eeaf3c05dd72acd8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp004 maven launch",
+  "task_key": "worker_ssh_exp004-maven-launch_20260515T060057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp004-maven-launch_20260515T060057_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "4f74481b12d245d3b3e2c421c4ab78d6be4f0f16f07c31ea5275e4c19500f4c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并验证成功。\n\n---\n\n**汇总：**\n\n1. **命令全文**（exp1 + exp2 串行）：\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export CUDA_VISIBLE_DEVICES=0 && cd /root/schema-dag-extraction && \n   python3 src/run_experiment.py --dataset maven --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 500 --embeddings_path artifacts/maven_type_embeddings_qwen3.pt --sim_matrix_path artifacts/maven_bcs_matrix_qwen3.pt --types_file configs/maven_event_types.json --output_dir artifacts/exp004 &&\n   python3 src/run_experiment.py --dataset maven --mode exp2 ...（同上参数，mode=exp2）\n   ```\n\n2. **PID**: 224685 | tmux session: `exp004_maven_bcs`\n\n3. **预估运行时间**：\n   - exp1: 149 solo batches (count=1) + 6×5=30 random batches = ~179 batches × 500 samples。count=1 的 solo 推理快（短 prompt），大 count 的 prompt 长。预估 **3-5 小时**\n   - exp2: 2 counts × 27 batches = 54 batches × 500 samples。预估 **2-3 小时**\n   - 总计约 **5-8 小时**\n\n4. **代码修改**：`src/run_experiment.py` — 在 batch config 构建前添加 dataset-specific count levels：\n   - MAVEN: exp1=`[1,6,12,24,42,84,168]`, exp2=`[12,24]`\n   - Few-NERD（不变）: exp1=`[1,2,6,12,22,44,66]`, exp2=`[6,12]`\n   - 实际 active types = 149（500 samples 中只出现 149/168 种 event type）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

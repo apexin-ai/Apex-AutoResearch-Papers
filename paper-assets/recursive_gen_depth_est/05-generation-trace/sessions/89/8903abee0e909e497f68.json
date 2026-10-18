@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8903abee0e909e497f68",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops plan 013 check and analyze",
+  "task_key": "worker_ops_plan_013_check_and_analyze_20260515T235059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan_013_check_and_analyze_20260515T235059_result.json",
+    "occurrence": 1,
+    "bytes": 1778,
+    "sha256": "63aebc2d55c8612a10ec338144c2838ea364b59cecbea623f28e68231fcd4ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. 完成状态\n40/40 runs 全部成功（8 conditions × 5 seeds），两个 GPU 进程均正常退出。\n\n### 2. 统计分析结果\n\n| Condition | PPL (mean±std) | Δ vs unfiltered | p-value | Cohen's d | Sig? | n_samples |\n|-----------|---------------|-----------------|---------|-----------|------|-----------|\n| **unfiltered** | 15.78±0.07 | (baseline) | — | — | — | 10000 |\n| rf_strict | 15.81±0.06 | -0.03 | 0.607 | -0.53 | No | 2496 |\n| rf_moderate | 15.76±0.06 | +0.02 | 0.492 | 0.33 | No | 4940 |\n| rf_soft | 15.73±0.04 | +0.04 | 0.407 | 0.79 | No | 4422 |\n| oracle_strict | 15.88±0.13 | -0.10 | 0.216 | -1.00 | No | 2500 |\n| oracle_moderate | 15.81±0.10 | -0.03 | 0.485 | -0.38 | No | ~5000 |\n| random_strict | **16.24±0.17** | **-0.46** | **0.013** | -3.67 | **Yes** | 2496 |\n| random_moderate | **16.00±0.09** | **-0.22** | **0.028** | -2.81 | **Yes** | ~5000 |\n\n### 3. 结论：**Negative**\n\n- **RF filtering vs unfiltered**：所有 RF 条件均无统计显著差异（p > 0.4）。rf_soft 用 44% 数据达到与全量相当的 PPL（d=0.79 是大效应量，但 n=5 seeds 不足以达到显著性）。\n- **Random filtering 显著更差**：random_strict (p=0.013) 和 random_moderate (p=0.028) 均显著差于 unfiltered，确认随机删除数据有害。\n- **Oracle 也不帮忙**：即使用真实递归深度做 oracle filtering，PPL 也不优于 unfiltered，说明按递归深度筛选数据这条路本身对下游 PPL 的影响有限。\n- RF 的价值在于\"不伤害\"（不像 random），但不显著提升。\n\n### 4. Registry 更新\n- conclusion → `negative`\n- metrics → 8 conditions 完整指标\n- status → `DONE`\n- artifact 已注册 (`art_20260515_3ef4f0`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

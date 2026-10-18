@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c729f1950d014e3f90",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code llama70b script adapt",
+  "task_key": "worker_code_llama70b-script-adapt_20260517T073247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b-script-adapt_20260517T073247_result.json",
+    "occurrence": 1,
+    "bytes": 1993,
+    "sha256": "98bcc46270168a1bd764956255284e82de4d741a2300ba2d2720bfe2f46aa9d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All scripts validated. Here's the summary:\n\n---\n\n## 产出\n\n### 创建的文件（均在 `/root/schema-dag-extraction/scripts/`）\n\n| 文件 | 用途 |\n|------|------|\n| `run_d051_count_curves_llama70b.py` | Count curves 实验（FewRel + Few-NERD），支持 LLaMA chat template + TP=2 |\n| `run_bcs_controlled_llama70b.py` | BCS-controlled extreme batch 实验，支持多 count_key |\n| `run_llama70b_cross_model.sh` | 一键启动所有实验的 shell 脚本 |\n\n### 相比原版的关键修改\n\n1. **Chat template**：自动检测 LLaMA 模型并 `apply_chat_template`（原 `run_d051` 缺失此功能）\n2. **tensor_parallel_size=2**：适配 2×RTX PRO 6000\n3. **CLI 参数化**：`--model_path`, `--tensor_parallel_size`, `--gpu_mem`, `--max_model_len` 均可配置\n4. **模型路径**：默认 `neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8`（如 westd 有本地缓存可通过 `LLAMA70B_MODEL_PATH` 环境变量覆盖）\n\n### 在 westd 上运行\n\n```bash\n# 如果模型已下载到本地缓存\nexport LLAMA70B_MODEL_PATH=/path/to/local/Meta-Llama-3.1-70B-Instruct-FP8\n\n# 一键启动\nbash scripts/run_llama70b_cross_model.sh\n\n# 或分步运行\npython3 scripts/run_d051_count_curves_llama70b.py --dataset fewrel --seed 42 --counts \"8,16,32,64,80\"\npython3 scripts/run_bcs_controlled_llama70b.py --stage all --count_keys \"count_8,count_16\"\npython3 scripts/run_d051_count_curves_llama70b.py --dataset fewnerd --seed 42\n```\n\n### 兼容性注意事项\n\n- **Prompt 格式**：使用通用英文 prompt（非 Qwen 专属），LLaMA chat template 由 vLLM tokenizer 自动处理\n- **Structured output**：vLLM 的 JSON constrained decoding 对 LLaMA 3.1 同样适用，无需额外适配\n- **FP8**：`neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8` 是原生 FP8 量化权重，vLLM 直接支持，无需额外量化参数\n- **VRAM 预估**：70B FP8 ≈ 70GB，2×48GB = 96GB，`gpu_memory_utilization=0.90` 下约用 86GB，留有余量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

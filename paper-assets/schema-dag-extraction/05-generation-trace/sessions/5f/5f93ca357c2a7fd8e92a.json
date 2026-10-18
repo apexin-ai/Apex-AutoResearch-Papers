@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f93ca357c2a7fd8e92a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fix nameerror",
+  "task_key": "worker_ssh_fix-nameerror_20260514T234103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-nameerror_20260514T234103_result.json",
+    "occurrence": 1,
+    "bytes": 232,
+    "sha256": "671e208fb43f89cf8391987d5775365678f2415c3a56eb721588be612e1bfbab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n- 语法验证通过 (`SYNTAX_OK`)\n- `pass_recall` 定义在第 199 行（`pass_f1` 之后），使用位置第 231、240 行，共 1 份定义，无重复\n- exp2 进程 (PID 197321) 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

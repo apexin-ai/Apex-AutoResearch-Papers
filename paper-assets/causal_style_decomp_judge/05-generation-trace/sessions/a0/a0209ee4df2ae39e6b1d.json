@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a0209ee4df2ae39e6b1d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code gpt4o rewriter verbosity",
+  "task_key": "worker_code_gpt4o_rewriter_verbosity_20260521T082638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt4o_rewriter_verbosity_20260521T082638_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "b284ccdd8fa0178b5054890e77ca125f780d210eb561670deab5739760d7fb76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 步完成。结果汇总：\n\n## GPT-4o Rewriter × Verbosity × Qwen3-32B Judge\n\n| 指标 | GPT-4o Rewriter | Qwen3-32B Rewriter (baseline) |\n|------|----------------|-------------------------------|\n| CF 生成 | 100/100 | 100/100 |\n| NLI pass (≥0.90) | 81/100 (81.0%) | — |\n| **BT P(verbose)** | **73.5% [65.4, 80.9]** | **77.3% [70.3, 84.3]** |\n| BT p-value | 0.0001 | — |\n| Likert ATE | 0.000 | — |\n| Likert Wilcoxon p | 0.8384 | — |\n| Cohen's d | 0.000 | — |\n| Tie rate | 46.9% | — |\n| **Blindspot** | **Yes** | **Yes** |\n| GEE Style OR | **10.17, p < 0.0001** | — |\n| GEE Originality OR | 1.61, p = 0.3143 | — |\n\n**结论**：换用 GPT-4o 作为 rewriter，verbosity blindspot 依然显著存在（BT 73.5%，CI 不含 50%，p=0.0001）。与 Qwen3-32B rewriter baseline（77.3%）的置信区间高度重叠，说明 blindspot 不依赖于特定的 rewriter。GEE 分解确认效应来自 style（OR=10.17, p<0.0001），而非 originality（OR=1.61, p=0.31）。Likert ATE=0 + 高 tie rate（46.9%）说明 pointwise 评分无法捕捉 pairwise 偏好中的偏差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

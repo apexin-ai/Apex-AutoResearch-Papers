@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5acff9c9213443fd531d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "bugfix claude bt recalc",
+  "task_key": "worker_bugfix_claude-bt-recalc_20260523T013304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_claude-bt-recalc_20260523T013304_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "43e18f129cc7eab234b801af25931ce8ef35f6de226fc3480a8f1d3cdfa36680"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the old vs new BT comparison:\n\n| Config | Old BT% | Old n | New BT% | New n | New obs | Inflation |\n|---|---|---|---|---|---|---|\n| LLMBar×formality | 61.7% | 47 | **56.2%** | 88 | 176 | +5.4pp |\n| LLMBar×verbosity | 57.1% | 49 | **54.1%** | 86 | 172 | +3.1pp |\n| AlpacaEval×formality | 84.0% | 50 | **69.8%** | 86 | 172 | **+14.2pp** |\n| AlpacaEval×verbosity | 75.0% | 60 | **68.3%** | 82 | 164 | +6.7pp |\n| MT-Bench×formality | 85.4% | 48 | **73.3%** | 73 | 146 | **+12.1pp** |\n\n**Blindspot status** (BT p<0.05 AND Likert p>0.05):\n- AlpacaEval×formality: still **YES** (BT p<0.0001, Likert p=0.09)\n- All others: NO (unchanged)\n\n**What changed:**\n- `bt_pair_bootstrap()` in `claude_crossbench_analysis.py` now uses `trial1_prefers_{axis}` + `trial2_prefers_{axis}` (2 observations per pair) instead of the aggregate `prefers_{axis}`/`formal_wins` field that dropped inconsistent pairs\n- Pair-level bootstrap (10000 iterations, seed=42) with `np.random.default_rng`\n- Inflation ranged from +3.1pp to +14.2pp, confirming the 5-15pp estimate"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

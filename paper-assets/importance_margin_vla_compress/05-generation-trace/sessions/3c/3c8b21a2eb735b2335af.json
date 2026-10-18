@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c8b21a2eb735b2335af",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops kill westd41074 lora",
+  "task_key": "worker_ops_kill_westd41074_lora_20260519T184505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_westd41074_lora_20260519T184505_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "11112da519882c9466bde72e56ad0667dbda7a0764f93f81ec358db131fa0b1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 28029 已成功 kill。PID 26118（VTC-only）未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

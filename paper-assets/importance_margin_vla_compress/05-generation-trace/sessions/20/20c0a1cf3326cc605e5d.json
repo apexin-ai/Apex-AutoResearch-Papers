@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20c0a1cf3326cc605e5d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest and deploy s47 batch2",
+  "task_key": "worker_ops_harvest_and_deploy_s47_batch2_20260529T040515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest_and_deploy_s47_batch2_20260529T040515_result.json",
+    "occurrence": 1,
+    "bytes": 1830,
+    "sha256": "08797943a187a93a145d322b0ba5f478ff4f2ddc6c57cc75114526b4999bda27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 张 GPU 均被占用，无法立即部署新实验。汇报当前状态。\n\n## 收割结果\n\n3 个目标实验**均未完成**，全部仍在运行。\n\n| exp_id | 服务器 | 当前进度 | 预计完成 (UTC) |\n|--------|--------|----------|---------------|\n| eval_pi05_random_k095_long_seed47_cqa1 | cqa1 cuda:0 | 刚启动 ~7min，初始化中 | ~15:30 |\n| eval_pi05_attention_k050_long_seed47_w41 | w41 cuda:0 | T5 ep=40/50 (~55%) | ~13:20 |\n| eval_pi05_attention_k085_long_seed47_w38 | w38 cuda:0 | T6 ep=20/50 (~62%) | ~13:00 |\n\n## GPU 状态\n\n| 服务器 | GPU | 当前实验 | 进度 | 预计释放 |\n|--------|-----|---------|------|---------|\n| cqa1 cuda:0 | Random k=0.95 s47 | 刚启动 | ~15:30 |\n| cqa1 cuda:1 | Attn k=0.9 s47 | T2 ep=40 (~24%) | ~15:10 |\n| cqa1 cuda:2 | Random k=0.9 s47 | T2 ep=10 (~22%) | ~15:55 |\n| cqa1 cuda:3 | Random k=0.85 s47 | T2 ep=20 (~24%) | ~15:55 |\n| w41 cuda:0 | Attn k=0.5 s47 | T5 ep=40 (~55%) | ~13:20 |\n| w38 cuda:0 | Attn k=0.85 s47 | T6 ep=20 (~62%) | ~13:00 |\n\n**6/6 GPU 全部占满，无空卡可部署。**\n\n## 待部署（按释放顺序排队）\n\n| 优先级 | exp_id | prune_mode | keep_ratio | 目标服务器 | 预计可部署 |\n|--------|--------|-----------|------------|-----------|-----------|\n| 1 | eval_pi05_l2norm_k085_long_seed47_w38 | l2norm | 0.85 | w38（最先释放） | ~13:00 UTC |\n| 2 | eval_pi05_l2norm_k09_long_seed47_w41 | l2norm | 0.9 | w41 | ~13:20 UTC |\n| 3 | eval_pi05_l2norm_k095_long_seed47_cqa1 | l2norm | 0.95 | cqa1 首个空卡 | ~15:10 UTC |\n| 4 | eval_pi05_random_k05_long_seed47_cqa1 | random | 0.5 | cqa1 第二个空卡 | ~15:30 UTC |\n\n需要约 1 小时后回来收割 w38/w41 的结果并部署前两个 L2norm 实验。要设置 cron 监控还是稍后手动回来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

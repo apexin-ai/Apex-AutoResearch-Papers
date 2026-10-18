@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bae69369a4f93b3681e5",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper full draft init",
+  "task_key": "worker_paper_full-draft-init_20260515T194742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_full-draft-init_20260515T194742_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "cac64c184af9474b7cb49547179a26477a50c0afb4b44e6c351f7fcc85dfc9f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experimental Setup (§3) 已完成，位于 `docs/paper/experimental_setup.tex`。\n\n**章节结构**（~900 words，符合预算）：\n- §3.1 Tasks and Datasets — Few-NERD/FewRel/MAVEN 三数据集 + 统计表\n- §3.2 SCS — pairwise SCS 和 BCS 的形式化定义，Qwen3 (5120-d) + MiniLM (384-d) 双 embedding\n- §3.3 Experimental Design — Exp1 count curves + Exp2 BCS-controlled factorial\n- §3.4 Evaluation Metrics — text-match F1 (NER), accuracy (RE), relaxed F1 (ED) + 跨任务 metric 差异 justification\n- §3.5 Model and Inference — Qwen3-32B-FP8, vLLM, prompt v2, greedy decoding, bootstrap CI\n\n**所有数字已与 registry 交叉验证。** 唯一新增编辑：补充 Qwen3 embedding 维度 (5120-d)。\n\n**待注意**：\n- MAVEN \"8,042 sentences\" 来自先前数据探查，registry 仅记录 710 documents / 18,904 mentions — 合理但不可从 registry 直接追溯\n- 表中 BCS Range 为 batch 级别范围（包含 Exp1+Exp2 极端 batch），非 pairwise SCS 范围\n- D024：当前为单模型版本（Qwen3-32B-FP8），LLaMA-3.1-8B 结果待 exp-012 完成后 patch"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

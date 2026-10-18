@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "894efa66bdd3fdd6cce8",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix fig1 340m sigma update",
+  "task_key": "worker_fix_fig1-340m-sigma-update_20260519T191646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig1-340m-sigma-update_20260519T191646_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "8a7e1e7ee4652b1f6ce6bf3101132725f679d89fa24a1dd854484eba5a8b6531"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已更新。340M 线 endpoint 在 attn_ratio=25% 处为 0.0160（旧值 0.0151），略高于之前，符合预期。\"rebound\" 标注仍正确指向 7.7% 处的 bump，1.3B 的 \"-79%\" 标注由代码动态计算，未受影响。\n\n产出：\n- `figures/paper/gen_fig1.py` — sigma_340M 已更新为 exp-007 权威值\n- `figures/paper/fig1_decoupling_hero.pdf` + `.png` — 重新生成\n- `artifacts/_project/chart/fig1_decoupling_hero.pdf` — 已复制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

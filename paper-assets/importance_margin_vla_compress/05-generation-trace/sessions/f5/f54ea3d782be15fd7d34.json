@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f54ea3d782be15fd7d34",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "submit openvla random k09 goal spatial",
+  "task_key": "worker_submit_openvla_random_k09_goal_spatial_20260524T230009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_openvla_random_k09_goal_spatial_20260524T230009_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "864561a6cd9590e36cd6a0118f750bc0e7388ad6b99636ba78647ab8f2810dbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验**已经在运行中**，无需重复提交。\n\n当前状态：\n- **GPU0** `eval_openvla_random_k09_goal_seed42` — PID 936689，已运行约42分钟，GPU显存占用 15946 MiB\n- **GPU1** `eval_openvla_random_k09_spatial_seed42` — PID 937175，已运行约38分钟，GPU显存占用 16028 MiB\n- 两个 tmux session 均存活，进程 CPU 使用率 ~700%（正常）\n- Registry 状态已为 RUNNING，hypothesis 已设置\n\n日志目前只显示启动信息（模型加载 + Task 1 开始），episode 级别进度更新尚未刷出（tee 管道缓冲导致），但进程在正常运行。\n\n同服务器 GPU2/GPU3 上还有 Attn k=0.85 Goal/Spatial 正在并行执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

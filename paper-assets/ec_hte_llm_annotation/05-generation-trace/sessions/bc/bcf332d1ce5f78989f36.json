@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bcf332d1ce5f78989f36",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research agnews cm literature",
+  "task_key": "worker_research_agnews-cm-literature_20260524T152852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_agnews-cm-literature_20260524T152852_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "cf33825f5a4c8f98e59f9e0a513667e00d665edf76df1d96482f53207d9a2eee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/agnews_cm_literature.md`。\n\n核心发现：\n- **找到完整 4×4 confusion matrix**：arXiv:2506.18501 报告了 ChatGPT 和 DeepSeek 在 AG News 上的完整 CM（n=80）\n- **主要混淆模式**：Business→World 是最大误分类方向（ChatGPT 45%误分），Sports 最容易（90-100% recall）\n- **多精度级别**：弱 LLM ~80%、中 GPT-4 ~85%、强 GPT-4o/Claude ~88-91%，可构造不同强度的 CM\n- **MNLI**：未找到标准 MNLI 的完整 CM，但从 FraCaS 数据确认 Neutral 是最难类别，已基于文献模式构造了推荐 CM\n- **推荐方案**：直接使用 arXiv:2506.18501 的 CM 结构作为基础，按目标 accuracy 水平缩放误差率"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

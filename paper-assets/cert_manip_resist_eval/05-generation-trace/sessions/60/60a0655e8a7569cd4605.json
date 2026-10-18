@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "60a0655e8a7569cd4605",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code anonymous repo prep",
+  "task_key": "worker_code_anonymous-repo-prep_20260523T125117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous-repo-prep_20260523T125117_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "5a8b1563291f2d5e91144586f117a27bd7614202fda84f894d267c0ab9f06696"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告如下：\n\n---\n\n**1. 仓库 URL**: `https://github.com/anonymous-nlp-2026-2/cert_manip_resist_eval`\n\n**2. 文件统计**: 95 个文件\n- `src/` — 13 个核心模块（keff, attacks, panels, correlation, scaling 等）\n- `scripts/` — 78 个实验脚本 + 3 个 shell 脚本\n- `artifacts/` — 1 个 .py + 1 个 .tex（Theorem 1 证明）\n- 顶层 — `requirements.txt`, `README.md`\n\n**3. Commit hash**: `d6710e4`\n\n**4. 敏感词检查**: CLEAN\n- `tum_` API key → 全部替换为 `YOUR_API_KEY_HERE`\n- `47.94.22.126` 私有 IP → 全部替换为 `YOUR_API_SERVER`\n- `caoxiaoyu` / `1844118046@qq.com` → 无匹配（原始代码中就没有）\n- `ghp_` / `sk-` → 无残留\n- `_test_openai.py` / `_test_openai2.py` 调试文件已删除\n- Push URL token 已清除，remote 已重设为公共 URL\n\n**5. Push 状态**: 成功（main branch）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

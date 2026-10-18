@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "44c64053b1072897f5b9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops diagnose gpu experiments",
+  "task_key": "worker_ops_diagnose_gpu_experiments_20260517T113019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_gpu_experiments_20260517T113019_result.json",
+    "occurrence": 1,
+    "bytes": 1918,
+    "sha256": "a495f6915232dbe074c59e8bbca303d1485d0483bb11211786ebb9a9002a7be0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 实验 1: qwen25_14b_scale_001 — **下载卡死（未真正失败）**\n\n**状态**: tmux session `qwen25_14b_scale` 仍存在（PID 696523），`hf download` 进程（PID 696537）仍在运行，但**模型下载反复超时**。\n\n**根因**: HuggingFace 下载超时，未设置 `HF_TOKEN`（日志提示 \"sending unauthenticated requests\"）。8 个 safetensors 分片全部 timeout，持续 retry 无进展。\n\n**已下载内容**: 只有小文件（config.json、tokenizer.json 等，共 ~11MB），无任何模型权重文件（.safetensors）。\n\n**目录**: `/root/autodl-tmp/models/qwen25_14b/` — 无 safetensors 文件。\n\n**错误日志摘要**:\n```\nError while downloading .../model-00001-of-00008.safetensors: The read operation timed out\nError while downloading .../model-00002-of-00008.safetensors: The read operation timed out\n...（全部 8 个分片都超时）\n```\n\n**修复建议**: 设置 `HF_TOKEN` 或使用 HF 镜像源。\n\n---\n\n### 实验 2: prompted_gen_gpt2xl_001 — **正常运行中**\n\n**状态**: 进程 PID 695547 活跃，GPU 1 占用 15685MiB / 74% 利用率。\n\n**为什么找不到 tmux session**: 该实验通过 `nohup` 启动（不是 tmux），所以没有对应的 tmux session。\n\n**当前进度**: \n- 训练阶段已完成：3 epochs, 939/939 steps, final loss = **1.4379**, runtime = 714.8s\n- 当前进入 **\"d2: LoRA + topic prompts\"** 阶段，权重加载完成，正在执行推理/生成\n\n**吞吐**: ~1.32 it/s，运行稳定。\n\n**结论**: 此实验无异常，正常推进中。\n\n---\n\n### 汇总\n\n| 实验 | 状态 | 问题 | 需要操作 |\n|------|------|------|----------|\n| qwen25_14b_scale_001 | 卡住 | HF 下载超时，无 TOKEN | 需设置 HF_TOKEN 或换镜像源后重试 |\n| prompted_gen_gpt2xl_001 | 正常运行 | 无（nohup 启动，非 tmux） | 无需操作 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

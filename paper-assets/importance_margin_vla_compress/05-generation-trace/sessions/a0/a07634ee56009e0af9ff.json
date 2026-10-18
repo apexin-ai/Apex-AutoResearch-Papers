@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a07634ee56009e0af9ff",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose train openvla sc m96 seed42",
+  "task_key": "worker_diagnose_train_openvla_sc_m96_seed42_20260520T040532",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_train_openvla_sc_m96_seed42_20260520T040532_result.json",
+    "occurrence": 1,
+    "bytes": 2445,
+    "sha256": "98f3e15fbc6e52a6acee1c819b620e50243dec1cc58fa96e3dd5cddd6756f09a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。磁盘充足（根分区 9G free，数据盘 812G free）。\n\n## 诊断结论\n\n**根因：提交实验时配置文件不存在。**\n\nconfig 文件 Birth 时间对比：\n\n| 配置文件 | Birth 时间 | 实验提交时间 | 结果 |\n|---------|-----------|------------|------|\n| `openvla_smart_compress_m128.yaml` | **01:32** | 02:33 | cuda:0 正常运行 |\n| `openvla_smart_compress_m96.yaml` | **11:40** | 03:28 | 03:28时不存在 → 崩溃 |\n| `openvla_smart_compress_m64.yaml` | **11:40** | 03:28 | 03:28时不存在 → 崩溃 |\n| `*vtconly*` 系列 | **从未创建** | 03:22 | 不存在 → 崩溃 |\n\n- vtconly 变体：configs 目录下**从未存在**任何含 \"vtconly\" 的 yaml 文件\n- m96/m64 非 vtconly 变体：配置文件直到 **11:40 才被创建**（Birth 时间），提交时（03:28）不存在\n- 训练脚本 `train_openvla_smart_compress.py` 通过 `open(config_path)` 加载 yaml，文件不存在会抛 `FileNotFoundError` 立即退出\n- vtconly ~1min 标记失败 vs 非 vtconly ~35min 标记失败的差异是监控轮询间隔，实际进程都是秒级崩溃\n- GPU 硬件无问题：4 卡 RTX PRO 6000 Black 全部健康，当前 GPU 0/2/3 正在正常训练\n- 11:40 创建配置文件后重启的 m96/m64 已正常训练到 step 450+/500+\n\n```json\n{\"root_cause\":\"FileNotFoundError: config files openvla_smart_compress_m96.yaml / m64.yaml (Birth=11:40) did not exist at job submission time (03:22-03:28); vtconly configs never existed at all\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"已自动修复：m96/m64 配置文件在 11:40 创建，重启后正常训练中\",\"vtconly 实验需确认是否仍需要——如需要，须先创建对应 vtconly 配置文件再提交\"],\"can_auto_fix\":false,\"affected_gpus\":\"cuda:2,3\",\"healthy_gpus\":\"cuda:0,1,2,3\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "FileNotFoundError: config files openvla_smart_compress_m96.yaml / m64.yaml (Birth=11:40) did not exist at job submission time (03:22-03:28); vtconly configs never existed at all",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "已自动修复：m96/m64 配置文件在 11:40 创建，重启后正常训练中",
+                "vtconly 实验需确认是否仍需要——如需要，须先创建对应 vtconly 配置文件再提交"
+              ],
+              "can_auto_fix": false,
+              "affected_gpus": "cuda:2,3",
+              "healthy_gpus": "cuda:0,1,2,3"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

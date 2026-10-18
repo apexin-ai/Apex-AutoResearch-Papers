@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b6d5d831a4dbe1d60a9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis semipartial r2 fix",
+  "task_key": "worker_analysis_semipartial_r2_fix_20260521T220639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_semipartial_r2_fix_20260521T220639_result.json",
+    "occurrence": 1,
+    "bytes": 1251,
+    "sha256": "04140f264b593b5d4c36b26c3b230d78e9170d942e25c5be234dc7949296ca8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### 原始错误确认\n`r1_statistical_supplements.py:167` 用了 `bcs_unique_r2 = r_partial**2`（squared partial correlation），不是 true semipartial R²（ΔR²）。\n\n### DocRED (110 batches, VIF=50.9, 高共线性)\n\n| 指标 | 值 |\n|------|-----|\n| R²_full (BCS+cent) | 0.5949 |\n| R²_BCS_only | 0.5779 (= 0.7602² ✓) |\n| R²_cent_only | 0.5393 |\n| **True ΔR²_BCS** | **0.0557** |\n| Old partial r² | 0.1208 |\n| **高估倍数** | **2.17x** |\n| Shared variance | 87.8% of R²_full |\n\n### FewRel (204 batches, VIF=1.18, 低共线性)\n\n| 指标 | 值 |\n|------|-----|\n| R²_full (BCS+cent) | 0.3253 |\n| R²_BCS_only | 0.3253 (= 0.5703² ✓) |\n| R²_cent_only | 0.0524 |\n| **True ΔR²_BCS** | **0.2729** |\n| Old partial r² | 0.2880 |\n| **高估倍数** | **1.06x** |\n| Shared variance | 16.1% of R²_full |\n\n### 关键发现\n- DocRED 问题严重：因 BCS 与 centrality 相关性极高（r=0.99），87.8% 的解释方差是共享的，BCS 的 unique contribution 仅 5.6%（被高估 2.17 倍）\n- FewRel 影响轻微：低共线性下 partial r² ≈ ΔR²，误差仅 6%\n- Degree centrality 对 FewRel accuracy 几乎无独立预测力（ΔR²_cent ≈ 0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73d2f22aef0b8a55fd87",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu0 l2norm spatial seed43",
+  "task_key": "worker_deploy-westd38929-gpu0-l2norm-spatial-seed43_20260523T225912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd38929-gpu0-l2norm-spatial-seed43_20260523T225912_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "f6d1402bae3be79b148a8e42dd27b30ef2f479bd18163d97e2e10db4303e1414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**状态总结：**\n- **实验** `eval_xvla_l2norm_k05_spatial_seed43` 已在 westd-38929 GPU 0 上运行\n- **tmux session**: `eval_xvla_l2norm_k05_spatial_seed43`\n- **日志**: `/tmp/eval_xvla_l2norm_k05_spatial_seed43.log`\n- **GPU 0 显存**: 4938 MiB，Task 0 已开始评估\n- **Registry**: RUNNING，spec 已更新\n- 其他 GPU (1/2/3) 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

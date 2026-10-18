@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c6a1279b775a89270b4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra kill orphan mink westd",
+  "task_key": "worker_infra_kill-orphan-mink-westd_20260519T145835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-orphan-mink-westd_20260519T145835_result.json",
+    "occurrence": 1,
+    "bytes": 221,
+    "sha256": "2a8dc55ee1efc172119c339361cd9d9bf1888bebf34cb64e14e511e82314acab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 进程列表为空（nvidia-smi 无输出），tmux 也没有运行中的 session。\n\n结果：\n- **PID 131089 和 131527 已终止**，cuda:0 显存完全释放\n- **无 tmux session** 需要清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

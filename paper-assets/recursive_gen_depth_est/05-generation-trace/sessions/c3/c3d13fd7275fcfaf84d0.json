@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d13fd7275fcfaf84d0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "diagnose cross model olmo 002",
+  "task_key": "worker_diagnose_cross_model_olmo_002_20260514T170358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cross_model_olmo_002_20260514T170358_result.json",
+    "occurrence": 1,
+    "bytes": 3782,
+    "sha256": "4d19465df878e0ae2cdd3d3aa5d957d59ecdecbca7840d0ec853f106792e958f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据充分了。汇总结果：\n\n```json\n{\n  \"actually_completed\": false,\n  \"process_status\": \"running\",\n  \"process_details\": {\n    \"pid\": 150550,\n    \"elapsed\": \"29:49\",\n    \"child_pid\": 153301,\n    \"child_cmd\": \"python scripts/generate_next_depth.py --adapter_dir checkpoints/olmo/lora_depth_0 --output_path data/olmo/depth_1.jsonl --target_depth 1 --model_name /root/autodl-tmp/models/olmo-1b-hf --gpu 0\",\n    \"child_elapsed\": \"25:41\"\n  },\n  \"pipeline_stages_completed\": [\n    \"Step 1: LoRA finetune depth-0 (loss=2.2686, 317s, adapter → checkpoints/olmo/lora_depth_0)\"\n  ],\n  \"pipeline_stages_in_progress\": [\n    \"Step 2: Generate depth-1 (4525/5000 lines, ~90.5%)\"\n  ],\n  \"pipeline_stages_remaining\": [\n    \"Step 3: LoRA finetune depth-1\",\n    \"Step 4: Generate depth-2\",\n    \"Step 5: LoRA finetune depth-2\",\n    \"Step 6: Generate depth-3\",\n    \"Feature extraction + classification\"\n  ],\n  \"last_log_lines\": \"Step 2 model loaded (OLMo-1B + lora_depth_0), generating depth-1 text\",\n  \"classification_metrics\": null,\n  \"checkpoint_files\": [\"checkpoints/olmo/lora_depth_0\"],\n  \"data_files\": {\n    \"depth_0.jsonl\": \"5000 lines, 11MB\",\n    \"depth_1.jsonl\": \"4525 lines, 10.4MB (in progress)\"\n  },\n  \"results_dir_contents\": [\n    \"classification_report.txt (from prior experiment, May 14)\",\n    \"confusion_matrix.png\",\n    \"feature_importance.json\",\n    \"pairwise_auc.json\",\n    \"baselines/\",\n    \"pythia_temp09/\"\n  ],\n  \"root_cause\": \"cron 监控配置错误——使用了不存在的服务器名 westb-52439，实验实际在 gpu-6000pro-2 上正常运行\",\n  \"error_details\": null,\n  \"estimated_remaining\": \"Step 2 生成还剩 ~475 条（约2-3分钟），之后还有 2 轮 finetune+generate（各约 5+25 分钟），加上特征提取和分类。预计总共还需 ~60-70 分钟完成\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "actually_completed": false,
+              "process_status": "running",
+              "process_details": {
+                "pid": 150550,
+                "elapsed": "29:49",
+                "child_pid": 153301,
+                "child_cmd": "python scripts/generate_next_depth.py --adapter_dir checkpoints/olmo/lora_depth_0 --output_path data/olmo/depth_1.jsonl --target_depth 1 --model_name /root/autodl-tmp/models/olmo-1b-hf --gpu 0",
+                "child_elapsed": "25:41"
+              },
+              "pipeline_stages_completed": [
+                "Step 1: LoRA finetune depth-0 (loss=2.2686, 317s, adapter → checkpoints/olmo/lora_depth_0)"
+              ],
+              "pipeline_stages_in_progress": [
+                "Step 2: Generate depth-1 (4525/5000 lines, ~90.5%)"
+              ],
+              "pipeline_stages_remaining": [
+                "Step 3: LoRA finetune depth-1",
+                "Step 4: Generate depth-2",
+                "Step 5: LoRA finetune depth-2",
+                "Step 6: Generate depth-3",
+                "Feature extraction + classification"
+              ],
+              "last_log_lines": "Step 2 model loaded (OLMo-1B + lora_depth_0), generating depth-1 text",
+              "classification_metrics": null,
+              "checkpoint_files": [
+                "checkpoints/olmo/lora_depth_0"
+              ],
+              "data_files": {
+                "depth_0.jsonl": "5000 lines, 11MB",
+                "depth_1.jsonl": "4525 lines, 10.4MB (in progress)"
+              },
+              "results_dir_contents": [
+                "classification_report.txt (from prior experiment, May 14)",
+                "confusion_matrix.png",
+                "feature_importance.json",
+                "pairwise_auc.json",
+                "baselines/",
+                "pythia_temp09/"
+              ],
+              "root_cause": "cron 监控配置错误——使用了不存在的服务器名 westb-52439，实验实际在 gpu-6000pro-2 上正常运行",
+              "error_details": null,
+              "estimated_remaining": "Step 2 生成还剩 ~475 条（约2-3分钟），之后还有 2 轮 finetune+generate（各约 5+25 分钟），加上特征提取和分类。预计总共还需 ~60-70 分钟完成"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

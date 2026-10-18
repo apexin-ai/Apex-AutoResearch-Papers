@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "id": "439d470e18ee90573f0b",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper ref pages batch",
+  "task_key": "worker_paper_ref_pages_batch_20260522T073024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref_pages_batch_20260522T073024.log",
+    "occurrence": 1,
+    "bytes": 776586,
+    "sha256": "f2420ab18bf2e488b6dbfcecbb18b6a80d6923979b8df0246aa5e2b244d5883f"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 4,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 55,
+      "tool_result": 55,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "439d470e18ee90573f0b-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "439d470e18ee90573f0b-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "439d470e18ee90573f0b-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "439d470e18ee90573f0b-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "439d470e18ee90573f0b-part-0001.json",
+          "message_count": 86
+        },
+        {
+          "path": "439d470e18ee90573f0b-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ]
+}

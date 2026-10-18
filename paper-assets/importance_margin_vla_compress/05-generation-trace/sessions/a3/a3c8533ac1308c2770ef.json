@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c8533ac1308c2770ef",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k05 long seed43 strict w38",
+  "task_key": "worker_analyze_eval_pi05_attn_k05_long_seed43_strict_w38_20260527T214736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k05_long_seed43_strict_w38_20260527T214736_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "f385f82e096005d96447468ac3c8eb5168461726ad780b1b62b848e3d0ad465d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n**π0.5 Attn k=0.5 Long seed43: avg_success_rate = 48.8%**\n\n与 seed42 (52.0%) 对比：**-3.2pp**，两 seed 均值 = 50.4%\n\n### Per-task 明细\n\n| Task | seed43 | \n|------|--------|\n| T0 alphabet_soup_tomato | 72% |\n| T1 cream_cheese_butter | 34% |\n| T2 stove_moka_pot | 62% |\n| T3 black_bowl_drawer | 76% |\n| T4 white_mug_left_plate | 54% |\n| T5 book_back_shelf | 50% |\n| T6 white_mug_plate | 16% |\n| T7 alphabet_soup_cream | 46% |\n| T8 moka_pots_stove | 18% |\n| T9 yellow_white_mug_microwave | 60% |\n\n无错误，EXIT_CODE=0，耗时 181.1 min。日志中无 W&B run ID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

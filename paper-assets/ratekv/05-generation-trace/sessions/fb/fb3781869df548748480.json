@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3781869df548748480",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code pythia14b profiling script",
+  "task_key": "worker_code_pythia14b_profiling_script_20260515T095103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pythia14b_profiling_script_20260515T095103.log",
+    "occurrence": 1,
+    "bytes": 530458,
+    "sha256": "712cfe2b1bb77aef9d806906f80921763b068159494369aebc99223acaa91fea"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 0,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 133,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "fb3781869df548748480-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb3781869df548748480-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    }
+  ]
+}

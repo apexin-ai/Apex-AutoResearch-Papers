@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e4844e799a541d678fcf",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diagnose w3 gpu check",
+  "task_key": "worker_diagnose_w3-gpu-check_20260521T092723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w3-gpu-check_20260521T092723_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "3407161e060d963e2bb75e6e78eb6545f9dd5490fa8454ad316560b68a1ff3e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程已死，但任务已全部完成。**\n\n### GPU 状态\n- GPU 空闲：0MiB 显存，0% 利用率，无任何进程占用\n\n### 进程状态\n- 无任何 python/lm_eval 进程存活\n- 服务器上仅有系统进程（sshd、supervisord、jupyter-lab）\n\n### Eval 完成情况\n**30/30 任务全部完成。** 日志最后一行：\n\n```\n17:20:55 ALL DONE\n```\n\n最后完成的模型是 `1.3B-100B-HGRN2-hybrid-3-1`，winogrande 于 17:19 完成，piqa 于 17:20 完成。\n\n结果目录确认——winogrande 和 piqa 各 15 个模型全部有结果：\n- `winogrande/`: 15 个模型目录（GatedDeltaNet×5 + RetNet×5 + HGRN2×5）\n- `piqa/`: 15 个模型目录（同上）\n\n### 结论\nW3 eval 脚本已于今天 **17:20:55** 正常跑完全部 30 个任务并退出，所以 GPU 利用率为 0% 是正常的。不需要修复，可以直接进行下一步分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

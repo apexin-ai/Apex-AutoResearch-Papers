@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "0a2f8539d723e654e1a6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "figure fig method gap",
+  "task_key": "worker_figure_fig_method_gap_20260526T074646",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig_method_gap_20260526T074646_result.json",
+    "occurrence": 1,
+    "bytes": 2270559,
+    "sha256": "28ba2bd8a04df5ea2e445602ca49cf9f26084b905516b7ccdfe8006b17b93232"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0a2f8539d723e654e1a6-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8203271fb1104ca52857",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu qwen float32 validation",
+  "task_key": "worker_gpu_qwen_float32_validation_20260514T174811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_qwen_float32_validation_20260514T174811_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "e5eceda7a773eea97fb39c10203bfd4df08461a3e172b3e8882ff890cee58154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有背景任务已完成。验证结果此前已汇总 — MCKP 分配 {2:8, 4:100, 8:4} 与之前完全一致，`.float()` 修复后结果 robust。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

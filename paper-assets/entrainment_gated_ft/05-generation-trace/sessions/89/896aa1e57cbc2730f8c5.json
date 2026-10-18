@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "896aa1e57cbc2730f8c5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 register",
+  "task_key": "worker_code_hgrn2_register_20260518T142924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_register_20260518T142924_result.json",
+    "occurrence": 1,
+    "bytes": 2106,
+    "sha256": "e3a76620a6c7a21ad4e564ee54e1e8a2240eadc5a047f13b47ab41e227db12a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进度正常，约 20-40 MB/s 聚合速度。预计 ~5-10 分钟完成 HGRN2-pure 的 4.65GB。后续还有 3 个模型要补。\n\n让我汇报当前完成的产出。\n\n---\n\n## 产出汇总\n\n### 1. 脚本关键变更 (`/root/entrainment_gated_ft/run_lmeval_clean.py`)\n\n三处修改：\n- **Import**: 添加 `from fla.models.hgrn2 import HGRN2Config, HGRN2ForCausalLM`\n- **注册**: `AutoConfig.register(\"hgrn2\", HGRN2Config)` + `AutoModelForCausalLM.register(HGRN2Config, HGRN2ForCausalLM)`\n- **`_tied_weights_keys` monkey-patch**: `HGRN2ForCausalLM._tied_weights_keys = {\"lm_head.weight\": \"model.embeddings.weight\"}` — fla 的 HGRN2 将此定义为 `list`，transformers 5.8.1 的 `post_init()` 期望 `dict`，不 patch 会崩\n\n原有的通用 tying 修复 (`if tie_word_embeddings: model.lm_head.weight = model.model.embeddings.weight`) 自动覆盖 HGRN2，无需额外处理。\n\n### 2. Smoke test 结果\n\n**HGRN2-hybrid-12-1**（完整模型）:\n- 加载成功，`_tied_weights_keys` dict patch 解决了 `AttributeError: 'list' object has no attribute 'keys'`\n- 加载后权重已自动 tied（`data_ptr()` 相同），脚本的手动 tying 作为 safety net 仍会执行\n\n### 3. HGRN2 × lambada 评测结果\n\n```\nModel: 1.3B-100B-HGRN2-hybrid-12-1\nlambada_openai: acc=0.5030, ppl=10.28\n```\n\nppl=10.28，在合理范围（10-50），确认 tying 修复正确生效。\n\n### 4. 发现的问题\n\n**模型文件不完整**：4 个模型缺失 safetensors shard（下载脚本的 skip 逻辑有 bug：只检查是否存在任何 `.safetensors` 文件，不验证完整性）：\n- `1.3B-100B-HGRN2-pure`: 缺 shard-1（主权重 ~4.65GB）\n- `1.3B-100B-HGRN2-hybrid-3-1`: 缺 shard-2\n- `1.3B-100B-HGRN2-hybrid-6-1`: 缺 shard-2\n- `1.3B-100B-RetNet-hybrid-24-1`: 缺 shard-1\n\n已启动后台修复下载（PID 316952, `/tmp/fix_downloads.py`），进度可通过 `cat /tmp/fix_downloads.log` 查看。HGRN2-pure 正在下载中（~270MB/4.65GB），其余三个排队中。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "lm_head.weight": "model.embeddings.weight"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

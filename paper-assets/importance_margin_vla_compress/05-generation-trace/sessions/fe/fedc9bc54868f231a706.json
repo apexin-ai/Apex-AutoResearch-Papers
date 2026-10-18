@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fedc9bc54868f231a706",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 eval prep dryrun",
+  "task_key": "worker_eval_v8-eval-prep-dryrun_20260516T001824",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8-eval-prep-dryrun_20260516T001824_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "4bdb098fa08594301c701bfce8d3055a9964244874e06eb35205acadb6411565"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### P0: Dry-run eval (3/3 PASS)\n\n| 模式 | 状态 | 条件数 | 关键指标 |\n|------|------|--------|----------|\n| **a) v8 标准 eval** | **PASS** | 8 | action_loss=0.0084 (clean), margin_median=0.2026, Lipschitz_emp=0.1466 |\n| **b) v8 bypass-ACIS** | **PASS** | 8 | action_loss=0.0348 (clean), bypass_acis=True 确认 |\n| **c) baseline eval** | **PASS** | 8 | action_loss=0.0023 (clean), imm_enabled=False 确认 |\n\n所有 JSON 格式正确，无 NaN/Inf。\n\n**踩坑记录**：AutoDL 上必须 `source /etc/network_turbo` + 设置 `REQUESTS_CA_BUNDLE`/`SSL_CERT_FILE`/`HF_HUB_DISABLE_XET`，否则 `SmolVLAPolicy.from_pretrained()` 和 `LeRobotDataset()` 联网检查会 hang。\n\n### P1: Baseline 500-batch 数据\n\n**完备** — `eval_results/eval_baseline_v5_final.json` (4147 bytes)，8 个条件 + _meta，所有 action_loss 值正常。\n\n### P2: 全量 eval 脚本\n\n**路径**: `/root/autodl-tmp/importance_margin_vla_compress/run_v8_final_eval.sh`\n\n**使用方式**:\n```bash\n# 默认 cuda:1\nnohup bash run_v8_final_eval.sh > /tmp/v8_final_eval.log 2>&1 &\n\n# 指定 GPU\nnohup bash run_v8_final_eval.sh 0 > /tmp/v8_final_eval.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

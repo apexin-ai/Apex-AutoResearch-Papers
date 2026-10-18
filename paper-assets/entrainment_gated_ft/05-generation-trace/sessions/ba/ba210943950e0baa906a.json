@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba210943950e0baa906a",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis arc easy per example full",
+  "task_key": "worker_analysis_arc-easy-per-example-full_20260520T092702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arc-easy-per-example-full_20260520T092702_result.json",
+    "occurrence": 1,
+    "bytes": 2142,
+    "sha256": "fa732ef97e2c8d774ebeedd4ca83bf7bc65b65e9c4c6bd36d652ddc5f80373bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 artifacts 全部注册完成。以下是关键结果摘要：\n\n### A. Per-Example Classification (ARC-Easy, N=2376)\n\n| Arch | Ratio | Helped | Hurt | Net |\n|------|-------|--------|------|-----|\n| GDN | h24-1 | 178 | 185 | **-7** |\n| GDN | h12-1 | 176 | 206 | **-30** |\n| GDN | h6-1 | 170 | 157 | **+13** |\n| GDN | h3-1 | 171 | 180 | **-9** |\n| RetNet | h24-1 | 158 | 168 | **-10** |\n| RetNet | h12-1 | 163 | 146 | **+17** |\n| RetNet | h6-1 | 159 | 147 | **+12** |\n| RetNet | h3-1 | 144 | 184 | **-40** |\n| HGRN2 | h24-1 | 160 | 119 | **+41** |\n| HGRN2 | h12-1 | 159 | 111 | **+48** |\n| HGRN2 | h6-1 | 185 | 118 | **+67** |\n| HGRN2 | h3-1 | 164 | 146 | **+18** |\n\nHGRN2 在所有 ratio 下 attention 层都有正向 net effect；GDN/RetNet 混合。\n\n### B-C. Jaccard + Null Model\n\n所有 24 个 Jaccard 比较均显著高于 null model（22/24 p<0.001，2/24 p<0.01）。Normalized ES 范围 0.035–0.135，说明跨架构 helped/hurt 重叠虽然显著但绝对幅度低——不同架构倾向于在不同样本上受 attention 影响。\n\n### D. Convergence σ\n\nmean σ 在 pure(0.0964) → h24-1(0.1067) → h12-1(0.1052) → h6-1(0.0948) → h3-1(0.0990) 之间无单调趋势。Spearman ρ=-0.20, p=0.78 (ns)——attention ratio 与跨架构分歧无显著线性关系。\n\n### E. Multiplicity Metrics\n\n| Benchmark | Ratio | α (ambiguity) | δ (discrepancy) |\n|-----------|-------|---------------|-----------------|\n| ARC-Easy | pure | 0.205 | 2.55 |\n| ARC-Easy | h24-1 | 0.226 | 2.98 |\n| ARC-Easy | h12-1 | 0.223 | 3.12 |\n| ARC-Easy | h6-1 | 0.201 | 2.32 |\n| ARC-Easy | h3-1 | 0.210 | 2.66 |\n| LAMBADA | pure | 0.307 | 0.61 |\n| LAMBADA | h24-1 | 0.300 | 0.58 |\n| LAMBADA | h12-1 | 0.316 | 0.55 |\n| LAMBADA | h6-1 | 0.294 | 0.53 |\n| LAMBADA | h3-1 | 0.296 | 0.55 |\n\nLAMBADA 的 α 高于 ARC-Easy（~0.30 vs ~0.21），但 δ 低得多（~0.55 vs ~2.7），说明 LAMBADA 上架构间分歧更频繁，但一致正确时 confidence 更接近。ARC-Easy 上 h12-1 的 δ 最高（3.12），表明该 ratio 下即使都答对，3 个架构的 confidence 差异最大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

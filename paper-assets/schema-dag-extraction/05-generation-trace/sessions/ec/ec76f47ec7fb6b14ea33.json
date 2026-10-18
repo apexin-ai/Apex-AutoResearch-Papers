@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec76f47ec7fb6b14ea33",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d040 reviewer followup",
+  "task_key": "worker_paper_d040-reviewer-followup_20260516T061500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d040-reviewer-followup_20260516T061500_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "f0d7ae0a97efba8d351b579e0107cab0fc7b2a3fa5c8e04345252f735b97937a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four modifications are done. Summary:\n\n| # | File | Change |\n|---|------|--------|\n| 1 | `introduction.tex:12` | finding (3): \"robust across schema sizes and granularities\" → \"robust across schema sizes, granularities, **and prompt designs**\" |\n| 2 | `abstract.tex:2` | \"robust across schema sizes\" → \"robust across schema sizes **and prompt designs**\" |\n| 3a | `introduction.tex:16` | contribution header: \"Multi-channel degradation pattern\" → \"**Robust** multi-channel degradation pattern\" |\n| 3b | `results.tex:133` | \"This pattern indicates ... floor consistent across the tested models\" → \"This **consistent empirical** pattern indicates ... floor that **holds** across the tested models\" |\n| 4 | `main.tex:55-57` | Added two limitation items: **Model coverage** (two open-weight families only) and **Causal mechanism** (correlational only, no attention/logit-level evidence) |\n\nNotes on modification 3: I upgraded only batch-level references. The \"pattern\" at `results.tex:42` (count curves) and `main.tex:53` (limitations) were left unchanged — those are qualifications/limitations, not claims to strengthen. Pairwise \"modest\" language was not touched."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

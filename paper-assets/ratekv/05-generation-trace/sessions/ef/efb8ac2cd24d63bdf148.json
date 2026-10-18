@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "efb8ac2cd24d63bdf148",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu yi15 tmux download",
+  "task_key": "worker_gpu_yi15_tmux_download_20260514T160503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_yi15_tmux_download_20260514T160503_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "f6f06737a32d48ac2ae8a59517fbf17a8782c64b39b696d12f54789d425583fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**下载结果：**\n- DOWNLOAD_PATH: `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B`\n- SHARD_COUNT: 4/4\n- VERIFICATION_PASSED\n\n**Pipeline 状态：**\n- Yi-1.5-9B（48 layers, 4 KV heads/layer, GQA 8:1, 192 total KV heads）\n- 模型加载成功，Phase 1 Profiling 进行中（computing baseline PPL）\n- GPU 1: 100% utilization, 22555 MiB / 97887 MiB, 554W\n- tmux session: `yi15_9b_full_pipeline`\n- 日志: `/root/runs/ratekv/yi15_9b_full_pipeline.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

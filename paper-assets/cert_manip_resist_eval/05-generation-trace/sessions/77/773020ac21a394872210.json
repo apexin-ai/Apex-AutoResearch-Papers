@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "773020ac21a394872210",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 pid cleanup",
+  "task_key": "worker_ops_fp16-pid-cleanup_20260524T171713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-pid-cleanup_20260524T171713_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "04e7678c99356c1a6adeba45d2b02335daf5c302592e56c56981e0629078f1ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**PID 状态：**\n- **PID 42389**：已不存在，无需 kill\n- **PID 43685**：在 tmux `r1w2-fp16-baseline` 中，但脚本已执行完毕\n\n**FP16 job 结果：脚本已结束，但结果不完整。**\n\n结果文件已产出 (`fp16_baseline.json`, 3199 bytes)，但日志显示：\n- `n_compared: 0, n_skipped_fp16: 3` — 没有成功对比任何模型，3 个全部跳过\n- AWQ 评估 `Mistral-Large-Instruct-2407-AWQ` 时报错：缺少 `gptqmodel` 包\n  ```\n  ImportError: Loading an AWQ quantized model requires gptqmodel. \n  Please install it with `pip install gptqmodel`\n  ```\n\n**结论：**\n- 不需要 kill 任何进程（42389 已死，43685 的脚本已自行结束）\n- FP16 baseline 需要安装 `gptqmodel` 后重跑，或者跳过 AWQ 模型"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "127184a9d27aaff39218",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment r1w2 fp16 baseline",
+  "task_key": "worker_experiment_r1w2-fp16-baseline_20260524T163008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r1w2-fp16-baseline_20260524T163008_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "f2d1941c772188f38f2f8cfcbaf5939c27c1ec524437aa036ab7f4d1f4c4c3a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Files are growing — 10MB -> 20MB for two shards, 180MB -> 200MB for the largest. Download speed is ~10MB/s aggregate. Each shard is ~2.5GB, so total ~8GB will take about 13 minutes. The download is progressing fine.\n\nThis is a long-running job (6 models, each requiring model download + inference). The entire run will likely take 2-3 hours including downloads and evaluations. The job is running in tmux and will checkpoint after each model.\n\nStatus summary:\n- **Job**: `r1w2-fp16-baseline` running in tmux on seetacloud-rtx6000\n- **Current**: Downloading Qwen2.5-14B-Instruct-AWQ weights (~200MB/8GB done)\n- **Pipeline**: 6 models total, with checkpoint/resume. First 3 get both AWQ+FP16, last 3 AWQ-only\n- **Output**: `/root/cert_manip_resist_eval/artifacts/results/plan001/fp16_baseline.json`\n\nI'll check back on progress periodically. Would you like me to monitor it now, or shall I check later?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

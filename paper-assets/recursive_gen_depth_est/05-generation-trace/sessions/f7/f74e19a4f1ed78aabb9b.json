@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f74e19a4f1ed78aabb9b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code fix fig4 atlas heatmap",
+  "task_key": "worker_code_fix_fig4_atlas_heatmap_20260515T180645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_fig4_atlas_heatmap_20260515T180645_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "f40760922eebbe6d81684135447970315030471bb729c67ffffa244af257039c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改总结：\n\n**改动**：`src/plot_atlas_figures.py` 的 `fig4_atlas_heatmap()` 函数\n- **之前**：对每个 cell 重新训练 RF 5-fold CV 计算 accuracy（耗时且值与论文 Table 不一致）\n- **之后**：直接使用论文 Table main_matrix 的 per-experiment RF 4-class accuracy 值\n\n**Accuracy 矩阵**（%）：\n```\n              nucleus   temp=0.9   top-k=50\nPythia-1.4B    78.2      76.2       69.6\nOLMo-1B        78.8      82.0       74.2\nGPT-2 XL       83.3      85.4       76.6\n```\n\n**输出文件**：\n- `figures/paper/fig_atlas_heatmap.pdf` (25KB)\n- `figures/paper/fig_atlas_heatmap.png` (114KB)\n- `artifacts/figures/fig4_atlas_heatmap.pdf` / `.png` 也已同步更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

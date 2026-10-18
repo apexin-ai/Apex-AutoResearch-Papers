@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "05b8a5595e507b09f742",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code xvla eval westd38929",
+  "task_key": "worker_code_xvla-eval-westd38929_20260520T085727",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_xvla-eval-westd38929_20260520T085727.log",
+    "occurrence": 1,
+    "bytes": 559391,
+    "sha256": "8c18277a01d669e32ec840c639da3092cfaca174ec23db754c66ad4b1a9de938"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 104,
+      "tool_result": 104
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 300,
+      "chunks": [
+        {
+          "path": "05b8a5595e507b09f742-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "05b8a5595e507b09f742-part-0002.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ]
+}

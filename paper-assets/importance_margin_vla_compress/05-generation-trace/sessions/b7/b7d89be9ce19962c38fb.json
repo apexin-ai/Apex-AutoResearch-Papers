@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b7d89be9ce19962c38fb",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval xvla random k05 goal seed43 v4",
+  "task_key": "worker_harvest_eval_xvla_random_k05_goal_seed43_v4_20260524T005647",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_xvla_random_k05_goal_seed43_v4_20260524T005647_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "259530ab9611f5615bfb63e91855993d464440186766a3323a11ddd624565d11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE/success.\n\n## 结果报告\n\n**eval_xvla_random_k05_goal_seed43_v4** — 正常完成，10 task 全跑完。\n\n| | seed42 | seed43 | Mean |\n|---|---|---|---|\n| **SR** | 67.2% | 68.6% | **67.9%** |\n\n差异仅 1.4pp，CV 非常一致。两个 seed 的 95% Wilson CI 重叠，结果可靠。\n\nPer-task 分布也一致：T5 (push plate) 和 T9 (wine on rack) 两个 seed 都是 0%，T0/T4/T7/T8 都接近满分。\n\n**westd-38929 GPU 3 已空闲可用。** 无 cron 需要删除（本 session 无活跃 cron）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

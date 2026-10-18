@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "eb45bafa8004f1931077",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh check phi3 profiling result",
+  "task_key": "worker_ssh_check_phi3_profiling_result_20260516T014722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_phi3_profiling_result_20260516T014722_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "43e22dd7ca41280a57dacb43cf9a64a3b965021378efb72ae017bba61dfe3a9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验成功完成。** 无任何错误。\n\n## 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| 模型 | Phi-3-medium-14B |\n| 总耗时 | 2.48h (149 min) |\n| Baseline PPL | 4.783 |\n| Top-5% concentration | **0.1742** (20 heads) |\n| CV of delta(2bit) | 0.8905 |\n| Layer-0 dominance | 0.04x (非 L0 主导) |\n\n**Shape 分类：Early-middle concentrated**——敏感度集中在 L8-L11，不是常见的 L0/embedding 邻近层主导模式。\n\n**Top-5 最敏感 heads：**\n- L9H6: +0.1806\n- L8H9: +0.1724\n- L11H8: +0.1671\n- L9H4: +0.1656\n- L11H4: +0.0843\n\n**t1/t5 指标：** concentration = 0.1742，CV = 0.89，属于中等非均匀分布（有明显热点但不极端集中）。\n\nGPU 已释放（0 MiB used on both GPUs）。产出文件已保存到 `artifacts/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

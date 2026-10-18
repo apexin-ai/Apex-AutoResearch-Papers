@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b24f1fefabf94056e01",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "data seed prep",
+  "task_key": "worker_data_seed-prep_20260514T095557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_seed-prep_20260514T095557_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "2d702b80ca026bd7721fc540be448704202d0afb6a00330f96d3d349ed9d6cf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "种子数据准备完成。\n\n### 产出报告\n\n| 项目 | 值 |\n|------|-----|\n| 数据来源 | Wikipedia (wikimedia/wikipedia, 20231101.en) |\n| 样本数量 | 5000 条 |\n| Token 范围 | min=256, max=512, mean=491 |\n| 文件路径 | `/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl` |\n| 文件大小 | 11MB |\n| 全部 depth=0 | Yes |\n\n**Token 长度分布：**\n- 256-299: 131 (2.6%)\n- 300-399: 344 (6.9%)\n- 400-499: 310 (6.2%)\n- 500-512: 4215 (84.3%)\n\n大部分样本被截断到 512 tokens（Wikipedia 文章通常较长），符合预期。\n\n**前 2 条样本预览（截断）：**\n1. \"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority...\" (512 tokens, wikipedia)\n2. \"Albedo is the fraction of sunlight that is diffusely reflected by a body...\" (512 tokens, wikipedia)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

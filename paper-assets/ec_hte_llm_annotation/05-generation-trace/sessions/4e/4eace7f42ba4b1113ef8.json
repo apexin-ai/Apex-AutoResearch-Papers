@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4eace7f42ba4b1113ef8",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code arr checklist v2",
+  "task_key": "worker_code_arr-checklist-v2_20260522T025104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arr-checklist-v2_20260522T025104_result.json",
+    "occurrence": 1,
+    "bytes": 4017,
+    "sha256": "1755413ad32f17e7b65bf95e34c1c807bebd132913a1c5ec8d36ce6f9af0cb19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The 11.14pt overfull is from a table in experiments.tex. The remaining 4 large overfull hboxes (27pt, 52pt, 68pt, 24pt) are all in appendix.tex (pages 12-17). Let me now compile the full checklist report.\n\n---\n\n## ARR Submission Checklist Report\n\n### 1. Format Compliance\n\n| Item | Status | Details |\n|------|--------|---------|\n| `\\documentclass[11pt]{article}` | ✅ | Correct |\n| `\\usepackage[review]{acl}` | ✅ | Review/anonymous mode enabled |\n| No `\\aclfinalcopy` | ✅ | Not present |\n| Abstract ≤ 250 words | ✅ | ~227 words |\n| Main text ≤ 8 pages | ✅ | Conclusion ends on page 7-8; Limitations starts on page 8. Total PDF: 20 pages |\n\n### 2. Anonymization\n\n| Item | Status | Details |\n|------|--------|---------|\n| `\\author{Anonymous}` | ✅ | Correct |\n| No institution names | ✅ | None found |\n| No `\\thanks` | ✅ | None found |\n| No Acknowledgments section | ✅ | Not present |\n| No personal URLs/GitHub links | ✅ | No URLs in any .tex file |\n| No self-citation patterns | ✅ | No \"our previous work\" etc. |\n| PDF Author metadata empty | ✅ | `Author:` field is blank |\n| PDF Creator | ✅ | \"LaTeX with hyperref\" — no identifying info |\n\n### 3. Supplementary Material\n\n| Item | Status | Details |\n|------|--------|---------|\n| appendix.tex included | ✅ | `\\input{appendix}` after `\\appendix` |\n| limitations.tex exists & has content | ✅ | Substantive section covering 7+ limitation points |\n| Limitations length | ⚠️ | **18 lines, ~3 paragraphs** — longer than the recommended \"short paragraph, ~3 points\" per EMNLP rules, but not a violation |\n| checklist.tex content | ⚠️ | Contains full Responsible NLP Checklist text in PDF. Per EMNLP 2026 rules, this should be filled in the **OpenReview submission form**, not embedded in PDF. See below. |\n\n### 4. References\n\n| Item | Status | Details |\n|------|--------|---------|\n| .bib file exists | ✅ | `references.bib` — 34 entries |\n| Compilation: no undefined citations | ✅ | Zero warnings |\n| No \"?\" in citations | ✅ | Verified via PDF text extraction |\n| bibtex runs cleanly | ✅ | No errors |\n\n### 5. Compilation\n\n| Item | Status | Details |\n|------|--------|---------|\n| Compiles without errors | ✅ | Clean compilation |\n| No warnings | ✅ | Zero LaTeX warnings |\n| Undefined references | ✅ | None |\n| Multiply-defined labels | ✅ | None |\n| Overfull hbox > 10pt | ⚠️ | 5 instances (see below) |\n\n**Overfull hbox > 10pt:**\n| Location | Amount | Source |\n|----------|--------|--------|\n| experiments.tex:58-80 | 11.1pt | Table `tab:main_results` |\n| appendix.tex:220-230 | 27.0pt | Appendix table/text |\n| appendix.tex:310-327 | 52.4pt | Appendix table/text |\n| appendix.tex:468-480 | 67.9pt | Appendix table/text |\n| appendix.tex:544-565 | 24.4pt | Appendix table/text |\n\n### 6. PDF Metadata\n\n| Item | Status | Details |\n|------|--------|---------|\n| Author field empty | ✅ | Blank |\n| Title field empty | ✅ | Blank |\n| No identifying metadata | ✅ | Clean |\n\n---\n\n## Issues to Fix (Priority Order)\n\n### Major\n\n1. **checklist.tex 包含 Responsible NLP Checklist 内容** — EMNLP 2026 规定 ARR Responsible NLP Checklist 在 OpenReview submission form 中填写，不应出现在 PDF 中。建议：将 `checklist.tex` 内容清空或移除 `main.tex` 中的 `\\input{checklist}`，改为在 OpenReview 表单中填写。当前 checklist 占了约 2 页 PDF 空间。\n\n### Minor\n\n2. **Limitations 偏长** — 当前约 18 行 / 3 段，覆盖 7+ 个点。EMNLP 2026 规范建议简短（~3 个点，一小段）。不是硬性违规，但可以精简。\n\n3. **Overfull hbox (experiments.tex:58-80, 11.1pt)** — 主文表格略微溢出。建议调整 `tab:main_results` 的列宽或用 `\\resizebox`。\n\n4. **Overfull hbox in appendix (4 instances, up to 67.9pt)** — Appendix 中多处表格/文本溢出严重。不影响审稿评分但影响可读性，建议修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

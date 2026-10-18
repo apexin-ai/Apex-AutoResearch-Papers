@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ae56ff7e902822ecb91f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper limitations compress",
+  "task_key": "worker_paper_limitations_compress_20260522T073005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_limitations_compress_20260522T073005_result.json",
+    "occurrence": 1,
+    "bytes": 1578,
+    "sha256": "1eeb7d6e3cb250b7592a33ff1514deb0fd6d22fd6f014b1e4a00bdf0a56cd17f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Main body (Discussion/Conclusion + Limitations start) is on page 8. Limitations continues onto page 9 but that's fine — Limitations doesn't count toward the 8-page limit per EMNLP rules. The body content is within 8 pages. Compilation: 0 errors, 0 undefined refs.\n\n---\n\n**压缩前后对比：**\n\n| | 压缩前 | 压缩后 |\n|---|---|---|\n| 结构 | 5 条 enumerate + 2 段 paragraph | 1 段，3 个编号点 |\n| 行数（.tex） | ~35 行 | ~15 行 |\n| 覆盖点 | 5 条 + 2 段 = 7 个独立主题 | 3 个核心点 |\n\n**保留的 3 点：**\n1. Model & statistical scope — 单一 LLM family、TOST logit-scale inconclusive、greedy decoding uncertainty、correlational evidence\n2. DocRED VIF confounding — VIF=50.9、semipartial R²=5.6% directional only\n3. Experimental scope — 4 datasets zero-shot only、RE vs NER asymmetry、Bonferroni robustness\n\n**合并/删除：**\n- 原 Item 1 的 Gemini leave-one-out 细节、error taxonomy cross-model 细节 → 删除\n- 原 Item 2 的 SCS variance fraction、DocRED 5-batch 细节 → 删除\n- 原 Item 3 的 format independence、NER 3-model table ref → 删除\n- 原 Item 4 (Causal mechanism) → 半句并入 Point 1 (\"All evidence is correlational...\")\n- 原 Item 4 的 contamination/renaming 细节 → 删除\n- 原 Item 5 (Domain/language) → 并入 Point 3\n- Across-batch correlation 段 → 半句并入 Point 3\n- Multiple comparisons 段 → 半句并入 Point 3 (Bonferroni + Rothman citation)\n- 删除 `\\citep{card-2020-power}` (随 multiple comparisons 段压缩)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

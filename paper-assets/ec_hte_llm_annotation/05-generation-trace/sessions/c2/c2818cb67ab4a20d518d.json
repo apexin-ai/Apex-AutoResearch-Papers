@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c2818cb67ab4a20d518d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 018 multiplicative dgp",
+  "task_key": "worker_code_exp-018-multiplicative-dgp_20260521T134318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-018-multiplicative-dgp_20260521T134318_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "8a814c46c8ab2c4993491a296f02fff3c61f5c8d765475d2019ac0a4eee502b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-018 complete. Key results:\n\n| Method | Avg |Bias| | RMSE | Coverage |\n|---|---|---|---|\n| oracle | 0.0305 | 0.0384 | 0.960 |\n| **ec_hte** | **0.0539** | **0.0677** | **0.955** |\n| global_corrected | 0.1104 | 0.1241 | 0.540 |\n| naive | 0.1352 | 0.1422 | 0.435 |\n\nEC-HTE reduces RMSE by 52% vs naive and achieves 95.5% coverage (target 95%). Compared to exp-001 additive DGP (same config), EC-HTE actually performs *better* here (RMSE 0.068 vs 0.091) because the multiplicative DGP produces larger true CATEs, making relative bias smaller. Coverage matches exactly at 0.955.\n\nConclusion: **success** — EC-HTE is robust to non-additive treatment effects."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

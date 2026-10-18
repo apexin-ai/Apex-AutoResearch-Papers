@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dbbdd0e349cae2560c0b",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code prep cross arch scripts",
+  "task_key": "worker_code_prep_cross_arch_scripts_20260514T012405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_cross_arch_scripts_20260514T012405_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "786b46fd013edcb41655777dff232d5ab140f15afb17e3e71a360413544af2ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 修改的文件\n\n**eval_ppl.py** — 1 处关键改动：\n- 删除 `from transformers.models.qwen2.modeling_qwen2 import apply_rotary_pos_emb` 硬编码 import\n- 新增 `_get_rotary_fn(model)` 函数，根据 `model.config.model_type`（qwen2/llama/mistral）动态 import 对应的 `apply_rotary_pos_emb`\n- `patch_attention` 中调用 `_get_rotary_fn` 获取 RoPE 函数，通过闭包默认参数传入 `make_forward`\n\n### 新增的文件\n\n**run_llama_pipeline.py** 和 **run_mistral_pipeline.py** — 结构相同，4 phase pipeline：\n1. **Profile**: `FullBitwidthProfiler` 在 {2,4,8}-bit 上 profiling，结果单独保存到 `{model}_profiling_results.json`\n2. **Solve**: `enforce_monotonicity` → `solve_mckp_constrained(budget=0.25, max_2bit=8, l0_exclude_2bit=True)` + uniform 4-bit baseline\n3. **Eval**: WikiText-2 PPL 三组（baseline / MCKP / uniform）\n4. **Summary**: 打印 table + bit distribution + L0 allocation，完整结果保存到 `{model}_results.json`\n\n支持 `--dry-run` 只打印 config 不跑 GPU。\n\n### 兼容性确认\n- `apply_rotary_pos_emb` 动态 import 对 qwen2/llama/mistral 三种 model_type 均验证通过\n- `orig_attn.scaling` 在 transformers 4.57.6 的 Llama/Mistral attention 中均存在\n- `model.model.layers[i].self_attn.{q,k,v,o}_proj` 结构三种架构一致\n- profiler 的 `num_hidden_layers`/`num_key_value_heads` 从 config 自动读取，无需手动设\n- solver.py 未修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

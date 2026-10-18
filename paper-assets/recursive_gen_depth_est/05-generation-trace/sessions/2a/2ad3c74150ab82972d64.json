@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2ad3c74150ab82972d64",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops fix eval n estimators",
+  "task_key": "worker_ops_fix_eval_n_estimators_20260517T035440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_n_estimators_20260517T035440_result.json",
+    "occurrence": 1,
+    "bytes": 122,
+    "sha256": "ac6eeb9c2126414de523e0fb53e882d4b967e0f9638cee004394b9f65381e837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。L22 已改为 `N_ESTIMATORS = 200`，与代码库标准一致。实验继续运行未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

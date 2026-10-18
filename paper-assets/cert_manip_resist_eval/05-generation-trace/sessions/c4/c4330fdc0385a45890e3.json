@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c4330fdc0385a45890e3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis a5 crossed re",
+  "task_key": "worker_analysis_a5-crossed-re_20260524T114401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a5-crossed-re_20260524T114401_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "4e9f033a71a686aa64e78311c5969d03707b3ac249c9867c6a4c7a7bc6f7545e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results saved to `crossed_re_results.json`.\n\n**Summary — Multi-Membership Clustered SE vs. Wild Cluster Bootstrap:**\n\n| K | Bootstrap (K_eff FDR sig) | Crossed RE (K_eff FDR sig) | Crossed RE (raw sig) |\n|---|---|---|---|\n| 3 | 4/12 | **0/12** | 5/12 |\n| 5 | 7/12 | **8/12** | 8/12 |\n| 7 | 8/12 | **8/12** | 9/12 |\n\nKey findings:\n\n- **K=3**: The multi-membership CRVE is substantially more conservative — none of the 12 conditions survive FDR correction (vs 4/12 bootstrap). SE inflation from OLS is modest (1.75×–4.96×), reflecting the high overlap when 15 judges appear across only 455 panels of size 3.\n\n- **K=5/K=7**: Results closely align with bootstrap. At K=5, CRVE finds 8/12 (vs 7/12 bootstrap); at K=7, both agree at 8/12. SE inflation is much larger (6×–19×), correctly accounting for the extreme overlap in C(15,5)=3003 and C(15,7)=6435 panels sharing the same 15 judges.\n\n- **η_max** is mostly non-significant across all methods — the panel's maximum individual ASR is not a reliable predictor of panel-level attack success after accounting for crossed judge structure.\n\nThe core conclusion holds: **K_eff significantly predicts panel-level attack success for K≥5, robust to the crossed random effects structure.** The K=3 discrepancy with bootstrap is expected — with only 15 judges forming 455 3-judge panels, the effective degrees of freedom (df=14) severely limit power, making the CRVE approach appropriately conservative."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

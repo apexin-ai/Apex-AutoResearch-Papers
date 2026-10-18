@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c38275ff5e68637750c",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_8_1778891346.md",
+  "task_key": "loop_8_1778891346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778891346.md",
+    "occurrence": 1,
+    "bytes": 3919,
+    "sha256": "3ebe7486913b411ab6bdada31fd7f20aaadbfa2659b9b0b33e61a7d198bb5817"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-16T00:17:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：gpu-6000pro-2 的 cuda:0 和 cuda:1（仅此两张）。之前 CUDA_VISIBLE_DEVICES 必须在 shell 层设置（`CUDA_VISIBLE_DEVICES=0 python ...`），不能在 Python 内设置（import torch 前）\n- downstream_curation_poc_001 的 conclusion 是 **negative**（RF 不优于 unfiltered）。论文 framing 约束（Reviewer #27）：可 claim RF > random + data efficiency，**不可** claim RF improves over unfiltered 或 RF approximates oracle\n- Cohen's d 已全部改为 d_z（paired design 用差值 SD 做分母）。registry 中旧 d 值是 pooled SD，**论文以 d_z 为准**\n- dohmatob bib key 已从 `dohmatob2024_strong_collapse` 改为 `dohmatob2025_strong_collapse`（ICLR 2025），related_work.tex 引用已同步。不要用旧 key\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est/`\n- Python：conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- GPT-2 base reference model：HF cache（用于所有特征提取）\n- RF classifiers：`/root/autodl-tmp/recursive_gen_depth_est/results/` 下各 model-strategy cell\n- 已有 wild-data 结果：`results/plan_015_wild_data/` (WikiText+C4, 3 models)\n- curation PoC 结果：`results/curation_poc/` (8+1 conditions × 5 seeds)\n- 活跃进程：无（双卡空闲）\n- Cron：downstream_curation_poc_001 有一个 \"pending escalation retry\" 残留，实验已 DONE，可忽略\n\n### 3. 📊 当前状态\n**刚完成：**\n- plan_013 downstream curation PoC 全部完成（40 runs + random_soft control），论文已更新（Discussion + Appendix 两张表 + d_z 修正）\n- Reviewer #28 random_soft control: rf_soft vs random_soft Δ=0.328, p=5.6e-5，三个 tier RF vs random 全部配对完成\n- 数值交叉核对 3 处修正：Kendall's W 0.896→0.90, SHAP-perm ρ 0.830→0.84, provenance C001 已是 36.2%\n- Paper writeup worker: Discussion 写入 curation 数据, Appendix 两表, dohmatob bib 2024→2025, artifacts bib 同步\n- section_appendix.tex L190 \"remains to be validated\" → PoC 引用, random_moderate p 0.029→0.028\n\n**Registry RUNNING/PREPARING：** 无。全部 DONE。\n\n**等待中：** Director 审批 plan_015 扩展方案（RedPajama/Dolma wild-data calibration）\n\n### 4. 📋 待办\n- Director 审批 plan_015 → spawn worker 双卡并行（cuda:0 RedPajama, cuda:1 Dolma），streaming 下载 5000 passages/corpus，GPT-2 base 提取特征，3 个 RF model 分类，报告 d0 accuracy + FPR\n- plan_015 完成 → 更新论文 tab:calibration（扩展为 4 corpus），验证假设：OLMo 在 Dolma 上 FPR 最低\n- random_soft vs unfiltered 的 d_z=-2.77 是 Welch 近似值（p<0.001 无论哪种检验都成立）。如 Reviewer 要求精确 paired d_z → spawn worker 从服务器取 unfiltered per-seed PPL 重算\n- experiment_plan.yaml 中 plan_010（DCOL ablation）已作废，plan_014（7B cross-scale）需 cloud GPU 25h，Director 决定是否投入\n\n### 5. 🎯 战略上下文\n- EMNLP ARR May 25 deadline，距今 ~9 天。experiment_plan 内所有 P0/P1 实验已完成。剩余均 P2\n- 核心 story：19 个统计特征（p90_ppl + var_surprisal 主导）在 3×3 atlas 上达到 69.6-85.4% 四分类准确率，EDD=4（三模型一致），cross-model transfer 66.4%，cross-strategy 59.1%\n- 论文 per-class recall 数据之前发现 paper vs source JSON 有 ≤10.5pp 偏差，Director 确认 source 可信，Paper Agent 负责修正（不是我们的任务）\n- 易踩坑：(1) downstream_curation_poc_001 conclusion=negative 但 story 是 positive（data efficiency），不要搞混 (2) appendix 的 d_z 列是新改的，registry 里的 d 值仍是旧的 pooled SD (3) literature_map.yaml 中 he2025→shi2025, feng2025→yi2026 已修正，bib key 和 yaml key 都改了\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

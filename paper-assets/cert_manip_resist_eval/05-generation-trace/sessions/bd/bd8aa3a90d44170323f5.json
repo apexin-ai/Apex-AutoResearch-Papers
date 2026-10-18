@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bd8aa3a90d44170323f5",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis bayesian posterior entropy",
+  "task_key": "worker_analysis_bayesian-posterior-entropy_20260524T192252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T192252_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "958a3b20724830451a3e3e09e6546011c00ebef17682d43285dfd13dcfc4728f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已写入 `/root/cert_manip_resist_eval/artifacts/results/plan001/bayesian_posterior_entropy.json`。\n\n关键发现：\n\n| 指标 | K=3 | K=5 | K=7 |\n|------|-----|-----|-----|\n| Posterior entropy | 0.975 | 1.470 | 1.800 |\n| Effective judges | 2.67/3 | 4.37/5 | 6.07/7 |\n| Concentration ratio | 0.890 | 0.874 | 0.867 |\n| K_eff CV | 0.157 | 0.148 | 0.131 |\n| Max weight (mean) | 0.500 | 0.342 | 0.266 |\n\n非单调行为的双重机制解释：\n1. **Posterior concentration**: concentration ratio 单调下降 (0.890→0.874→0.867)，所有 pairwise Mann-Whitney 检验均显著 (p < 1e-20)\n2. **K_eff variance compression**: K_eff 的 CV 从 0.157 降至 0.131，predictor range 被压缩，regression 检测力下降\n\nK=5 时 raw panel size 增益尚可补偿 concentration loss；K=7 时双重压缩叠加导致 K_eff 效应完全不显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "197c7d1156e155c60cd7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd 38929 sweep",
+  "task_key": "worker_audit_westd-38929-sweep_20260521T150221",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd-38929-sweep_20260521T150221_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "d09c5249b9e790f496eaf80d7b0ea965318701a5d83ec8083c5e4b6fc52bf6a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 当前运行中的 4 个实验（所有 GPU 占用）\n\n| GPU | 实验 | 进度 | 预估剩余 |\n|-----|------|------|----------|\n| GPU0 | random_k05_seed42 | Task 7/10, Ep 30/50 (~66%) | ~1.5h |\n| GPU1 | random_k07_seed43 | Task 6/10, Ep 30/50 (~56%) | ~2h |\n| GPU2 | baseline_seed42 (PID 186981) | Task 8/10, Ep 20/50 (~74%) | ~1h |\n| GPU3 | l2norm_k03_seed43 | Task 6/10, Ep 30/50 (~56%) | ~2h |\n\n所有 GPU 均 ~16GB 显存占用，~70% 利用率。**无空闲 GPU。**\n\n### 已完成的历史结果（eval_results/ 目录）\n\n| 文件 | 模式 | k_ratio | Seed | SR |\n|------|------|---------|------|----|\n| l2norm_prune_k0_3_object | l2norm | 0.3 | 7 | **25.0%** |\n| l2norm_prune_k05_object | l2norm | 0.5 | 7 | **39.2%** |\n| l2norm_prune_k07_object | l2norm | 0.7 | 7 | **49.8%** |\n| l2norm_prune_k0_9_object | l2norm | 0.9 | 7 | **70.6%** |\n| l2norm_prune_k0_95_object | l2norm | 0.95 | 7 | **70.6%** |\n| random_prune_k03_object | random | 0.3 | 7 | **21.4%** |\n| random_prune_k07_object | random | 0.7 | 7 | **44.4%** |\n| random_k07_seed42_v2 | random | 0.7 | 42 | **44.4%** |\n| random_k095_seed42_v2 | random | 0.95 | 42 | **69.2%** |\n\n### 运行中实验的中间 per-task 结果（截至目前）\n\n**baseline_seed42** (最快完成，锚点实验):\n- Task 6 tomato sauce: 78.0%, Task 7 butter: 58.0% — 目前看 baseline seed42 表现比较强，与 seed7 baseline 74.0% 应该在同一量级。\n\n**无已完成的新实验需要更新 registry。** 4 个实验均仍在运行，预计 baseline_seed42 最先完成（~1h），l2norm_k03_seed43 和 random_k07_seed43 最后（~2h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

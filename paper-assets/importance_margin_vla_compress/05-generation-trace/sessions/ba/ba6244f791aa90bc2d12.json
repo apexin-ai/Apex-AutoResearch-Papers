@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ba6244f791aa90bc2d12",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "research c5 bce blast radius",
+  "task_key": "worker_research_c5_bce_blast_radius_20260519T225657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_c5_bce_blast_radius_20260519T225657_result.json",
+    "occurrence": 1,
+    "bytes": 2319,
+    "sha256": "406d15dbdbffaa1e740a8043887a746b6544072bce817f4510f4e40cfcdd56c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是完整结果：\n\n## 检查结果\n\n### BCE 调用汇总\n\n| 文件:行号 | 调用 | 输入是否已 sigmoid | 是否 bug |\n|-----------|------|-------------------|---------|\n| `train_libero.py:144` | `binary_cross_entropy` | 是 (MLPSigmoidHead) | **已修复** — 已改为正确的 BCE |\n| `test_train_pipeline.py:103` | `binary_cross_entropy_with_logits` | 是 (MLPSigmoidHead via DeterministicDecoder) | **BUG** |\n| `test_train_pipeline.py:123` | `binary_cross_entropy_with_logits` | 是 (同上) | **BUG** |\n| `train_utils.py:574` | `binary_cross_entropy` | 是 | 正确 |\n| `train_utils.py:903` | `binary_cross_entropy` | 是 | 正确 |\n| `train_utils.py:1136` | `binary_cross_entropy` | 是 | 正确 |\n\n### 追溯链（test_train_pipeline.py 的 bug）\n\n1. 模型 `decoder_type='lstm'` → `flamingo_mpt.py:128` 创建 `DeterministicDecoder`\n2. `DeterministicDecoder.__init__` 中 `self.gripper = MLPSigmoidHead(...)` — 最后一层是 `nn.Sigmoid()`\n3. `DeterministicDecoder.forward()` 返回 `self.gripper(x)` — **已经是 [0,1] 范围**\n4. `test_train_pipeline.py:103` 对此用 `binary_cross_entropy_with_logits` → 内部再做一次 sigmoid → **double sigmoid**\n\n### 额外发现：模型内部的 double sigmoid\n\n| 文件:行号 | 问题 |\n|-----------|------|\n| `action_head.py:623` (GPTDecoderActPad.forward) | `nn.functional.sigmoid(self.gripper(x))` 其中 `self.gripper = MLPSigmoidHead(...)` — MLPSigmoidHead 已含 Sigmoid 层，外面又套了一层 sigmoid |\n\n`GPTDecoderActPad` 目前**未被 factory 使用**（factory 用的是 `GPTDecoder`，其 forward 中 `gripper = self.gripper(x)` 无额外 sigmoid，是正确的）。但如果未来有人切到这个类会踩坑。\n\n### importance_margin_vla_compress 项目\n\n两台服务器（westd-41074、cqa1-33015）均**未找到** `binary_cross_entropy_with_logits` 或 `BCEWithLogitsLoss` 调用，无此类 bug。\n\n### 影响评估\n\n- `test_train_pipeline.py` 是测试脚本，不影响正式训练实验结果，但会导致测试中 gripper loss 信号被压缩，测试结论不可靠。修复方式：将两处 `binary_cross_entropy_with_logits` 改为 `binary_cross_entropy`。\n- `GPTDecoderActPad:623` 是潜在 bug，当前不影响任何实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

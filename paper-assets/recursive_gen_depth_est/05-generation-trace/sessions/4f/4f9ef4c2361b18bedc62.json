@@ -1,0 +1,755 @@
+{
+  "schema_version": "1.0",
+  "id": "4f9ef4c2361b18bedc62",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "paper bibliography terminology",
+  "task_key": "worker_paper_bibliography-terminology_20260515T155105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_bibliography-terminology_20260515T155105.jsonl",
+    "occurrence": 1,
+    "bytes": 34914,
+    "sha256": "be0508fc05a3f38a8cc6ad2caf8c066102ad44b2982747bfc691e496a31981f0"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:53:06.216819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:53:06.217483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@article{shumailov2024_nature,\n2\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n3\t  title     = {{AI models collapse when trained on recursively generated data}},\n4\t  journal   = {Nature},\n5\t  year      = {2024},\n6\t  doi       = {10.1038/s41586-024-07566-y},\n7\t}\n8\t\n9\t@inproceedings{marchi2024_heat_death,\n10\t  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n11\t  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n12\t  booktitle = {Proceedings of ICASSP},\n13\t  year      = {2024},\n14\t  note      = {arXiv:2404.02325},\n15\t  url       = {https://arxiv.org/abs/2404.02325},\n16\t}\n17\t\n18\t@inproceedings{dohmatob2024_tale_of_tails,\n19\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n20\t  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n21\t  booktitle = {Proceedings of ICML},\n22\t  year      = {2024},\n23\t  note      = {arXiv:2402.07043},\n24\t  url       = {https://arxiv.org/abs/2402.07043},\n25\t}\n26\t\n27\t@inproceedings{dohmatob2024_strong_collapse,\n28\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n29\t  title     = {{Strong Model Collapse}},\n30\t  booktitle = {Proceedings of ICLR},\n31\t  year      = {2024},\n32\t  note      = {arXiv:2410.04840},\n33\t  url       = {https://arxiv.org/abs/2410.04840},\n34\t}\n35\t\n36\t@inproceedings{dohmatob2024_demystified,\n37\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n38\t  title     = {{Model Collapse Demystified: The Case of Regression}},\n39\t  booktitle = {Proceedings of NeurIPS},\n40\t  year      = {2024},\n41\t  note      = {arXiv:2402.07712},\n42\t  url       = {https://arxiv.org/abs/2402.07712},\n43\t}\n44\t\n45\t@inproceedings{mohamed2025_broken_telephone,\n46\t  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n47\t  title     = {{LLM a\n…[truncated 12027 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:53:06.217824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:53:06.218108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex\ndocs/paper/abstract.tex\ndocs/paper/section_appendix.tex\ndocs/paper/conclusion.tex\ndocs/paper/related_work.tex\ndocs/paper/discussion.tex\ndocs/paper/generalization.tex\ndocs/paper/method.tex\ndocs/paper/atlas.tex\ndocs/paper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:53:06.218402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:53:06.218643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n2\t% Target: EMNLP 2026 (ARR May cycle)\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{amsmath}\n10\t\\usepackage{amssymb}\n11\t\\usepackage{multirow}\n12\t\\usepackage{xcolor}\n13\t\\usepackage{subcaption}\n14\t\\usepackage[T1]{fontenc}\n15\t\\usepackage[utf8]{inputenc}\n16\t\\usepackage{microtype}\n17\t\n18\t\\title{How Deep Is Your Data? Estimating Recursive Generation Depth\\\\via Statistical Fingerprints}\n19\t\n20\t\\author{Anonymous}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\input{abstract}\n26\t\n27\t\\input{introduction}\n28\t\n29\t\\input{related_work}\n30\t\n31\t\\input{method}\n32\t\n33\t\\input{atlas}\n34\t\n35\t\\input{generalization}\n36\t\n37\t\\input{discussion}\n38\t\n39\t\\input{conclusion}\n40\t\n41\t\\bibliography{references}\n42\t\n43\t\\appendix\n44\t\\input{section_appendix}\n45\t\n46\t\\end{document}\n47\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:53:06.218915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:53:06.219158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tAs large language models increasingly train on web text containing their own outputs, a recursive model$\\to$data$\\to$model loop arises---yet no method estimates how many such iterations a text has undergone.\n3\tWe formalize \\emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K passages spanning 3 model families, 3 decoding strategies, and 4 generation depths.\n4\tFrom each passage we extract 19 statistical features---perplexity percentiles, surprisal moments, and lexical diversity measures---computed against a fixed reference model (GPT-2 base, 124M).\n5\tA Random Forest classifier achieves 70--85\\% four-class accuracy (chance = 25\\%; a zero-shot LLM baseline reaches only 40\\%), with 90th-percentile perplexity and surprisal variance emerging as universal depth markers (top-2 importance in 9/9 and 7/9 model--strategy cells, respectively; mean Spearman $\\rho{=}0.868$).\n6\tOur \\emph{Depth Degradation Atlas} reveals that decoding strategy reshapes degradation trajectories rather than merely attenuating them, and we define the \\emph{Effective Discriminable Depth} (EDD) metric, finding $\\mathrm{EDD}_{0.75}{=}4$ for extended recursion chains.\n7\tCross-model transfer reaches 66.4\\% and cross-strategy transfer 59.1\\%, though temperature sampling induces a d1/d2 AUC inversion that z-score normalization cannot resolve.\n8\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:53:06.219391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:53:06.219655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:intro}\n3\t\n4\tThe text on which large language models are trained increasingly contains their own outputs.\n5\tAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\n6\tThis model$\\to$data$\\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n7\t\n8\tExisting tools address adjacent but distinct problems.\n9\tBinary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \\geq 1$ into a single category.\n10\tWatermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.\n11\tThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\n12\tNo existing method estimates the ordinal recursive depth of a text passage from its content alone.\n13\t\n14\tOur key insight is that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints exhibit universal stability across model families and decoding strategies.\n15\tSpecifically, perplexity tail statistics---the 90th-percentile perplexity (\\textsc{p90\\_ppl}) and surprisal variance (\\textsc{var\\_surprisal})---emerge as dominant depth indicators, rank\n…[truncated 2942 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:53:06.219947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:53:06.220228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\paragraph{Model Collapse Theory.}\n5\t\\citet{shumailov2024_nature} demonstrate that recursively training language models on their own outputs erodes distributional tails, eventually collapsing the output distribution to a narrow mode.\n6\t\\citet{dohmatob2024_tale_of_tails} formalize this phenomenon through scaling laws that distinguish tail \\emph{narrowing} (reduced variance) from tail \\emph{cutting} (lost support), showing both accelerate with generation depth; \\citet{dohmatob2024_strong_collapse} establish strong collapse guarantees, and \\citet{dohmatob2024_demystified} analyze the regression case.\n7\tThe MAD framework \\cite{alemohammad2024_mad} extends this analysis to self-consuming generative models and quantifies the precision--recall tradeoff as synthetic data accumulates across generations.\n8\tMitigation strategies include retaining real data \\cite{gerstgrasser2024_accumulate} and filtering synthetic samples via detection \\cite{drayson2025_detection_prevents_collapse}.\n9\tRecent work identifies non-monotonic dynamics \\cite{bakshi2026_collapse_improvement}, fixed-point convergence \\cite{marchi2024_heat_death}, contamination bounds \\cite{wang2026_contamination}, curated pipelines \\cite{falahati2026_curated}, knowledge collapse \\cite{knowledge_collapse2025}, spectral signatures \\cite{sigma2026_spectral}, and self-improving loops \\cite{synthetic_eggs2026}.\n10\tThese works characterize degradation patterns but assume the generation depth is known a priori; our work addresses the inverse problem of estimating depth from text alone.\n11\t\n12\t\\paragraph{AI Text Detection.}\n13\tDetectGPT \\cite{mitchell2023_detectgpt} introduced probability curvature---the tendency of model-generated text to occupy local maxima of the log-probability surface---as a zero-shot detection signal.\n14\t\\citet{fast_detectgpt2024} improve computational efficiency by replacing random perturbations with conditional probability curvature from a surrogate \n…[truncated 3207 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:53:06.220487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T15:53:06.220792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Task Formulation}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Definition}\n5\t\\label{sec:method:problem}\n6\t\n7\tLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\n8\tWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\n9\tDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n10\t\n11\tGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\n12\tThis is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n13\t\n14\t\\subsection{Multi-Generational Benchmark Construction}\n15\t\\label{sec:method:benchmark}\n16\t\n17\tWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n18\t\n19\t\\paragraph{Model families.}\n20\tWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\n21\tRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n22\t\n23\t\\paragraph{Decoding strategies.}\n24\tEach model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\n25\tThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\n26\t\n27\t\\paragraph{Depth and scale.}\n28\tThe primary benchmark covers depths d0--d3 across all $3 \\times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).\n29\tFor depth ex\n…[truncated 5766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T15:53:06.221088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T15:53:06.221436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Depth Degradation Atlas}\n2\t\\label{sec:atlas}\n3\t\n4\tWe systematically characterize how recursive generation reshapes the statistical profile of text across a grid of 3 model families $\\times$ 3 decoding strategies $\\times$ 4 generation depths (d0--d3), yielding 9 experimental configurations each spanning 4 depths.\n5\tFor each cell we train a Random Forest (RF) classifier on the 19 statistical features defined in \\S\\ref{sec:method} and examine (i)~in-distribution depth classification accuracy, (ii)~which features carry depth signal, (iii)~how far into the recursion chain depth remains discriminable, and (iv)~how decoding strategy modulates the degradation trajectory.\n6\t\n7\t\\subsection{In-Distribution Performance}\n8\t\\label{sec:atlas:indist}\n9\t\n10\tTable~\\ref{tab:main_matrix} reports 4-class depth estimation accuracy under 5-fold cross-validation.\n11\tAll 9 cells exceed chance (25\\%) by a wide margin, with accuracy ranging from 69.6\\% to 85.4\\%.\n12\tBoth model family and decoding strategy influence accuracy, with model ordering GPT-2~XL $>$ OLMo $>$ Pythia holding across all strategies.\n13\tTop-$k$ ($k{=}50$) trails by 6--9 percentage points, while temperature and nucleus sampling alternate for the lead depending on model family.\n14\t\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\caption{In-distribution 4-class depth estimation accuracy (\\%) across 3 model families $\\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV (std 0.2--0.9pp across all cells). Chance = 25\\%.}\n19\t\\label{tab:main_matrix}\n20\t\\begin{tabular}{lccc}\n21\t\\toprule\n22\tModel & Nucleus & Temp & Top-$k$ \\\\\n23\t & $p{=}0.95$ & $\\tau{=}0.9$ & $k{=}50$ \\\\\n24\t\\midrule\n25\tPythia-1.4B & 78.2 & 76.3 & 69.6 \\\\\n26\tOLMo-1B & 78.8 & 82.0 & 74.2 \\\\\n27\tGPT-2 XL & 83.3 & \\textbf{85.4} & 76.6 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table}\n31\t\n32\tBecause the human-written seed text (d0) is often trivially separable from any machine-generated depth, we also evaluate 3-class accurac\n…[truncated 9164 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T15:53:06.221709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T15:53:06.222039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Generalization and Robustness}\n2\t\\label{sec:generalization}\n3\t\n4\tWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\n5\t\n6\t\\subsection{Baseline Comparison}\n7\t\\label{sec:gen:baselines}\n8\t\n9\tTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\n10\tThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\n11\tThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\n12\tSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n18\t\\label{tab:baselines}\n19\t\\begin{tabular}{lc}\n20\t\\toprule\n21\tMethod & 4-class Acc (\\%) \\\\\n22\t\\midrule\n23\tRF (19 features) & 78.2 \\\\\n24\tCORAL & 78.1 \\\\\n25\tDivEye & 78.2 \\\\\n26\tCE-MLP & 74.9 \\\\\n27\tLR & 75.0 \\\\\n28\tDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\n29\tppl-regression (single feature) & 25.1 \\\\\n30\t\\bottomrule\n31\t\\end{tabular}\n32\t\\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell on\n…[truncated 5299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T15:53:06.222301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T15:53:06.222523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Depth-graduated data curation.}\n5\tPredicted depth can serve as a continuous quality proxy for importance weighting in curation pipelines \\cite{dsir2023,qurating2024}, retaining shallow-generation text while down-weighting deeply recursive samples that binary filters \\cite{drayson2025_detection_prevents_collapse} would indiscriminately discard.\n6\t\n7\t\\paragraph{Deployment considerations.}\n8\tThe temperature-induced d1/d2 AUC inversion (\\S\\ref{sec:gen:crossstrategy}) means deploying without knowing the target decoding strategy risks systematic prediction reversals; strategy-conditioned classifiers or automatic strategy identification are needed.\n9\t\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T15:53:06.222753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T15:53:06.223028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe introduced recursive generation depth estimation and showed that 19 lightweight statistical features---with p90 perplexity and surprisal variance as universal markers---achieve 70--85\\% four-class accuracy (chance = 25\\%) with $\\mathrm{EDD}_{0.75}{=}4$.\n5\tCross-model transfer reaches 66.4\\% and cross-strategy 59.1\\%, though the temperature-induced d1/d2 inversion and PLMs' ${\\sim}$59\\% ceiling underscore remaining challenges; future work should address wild-data transfer, larger scales, and strategy-conditioned classifiers.\n6\tCode and data will be released upon acceptance.\n7\t\n8\t\\section*{Limitations}\n9\t\\label{sec:limitations}\n10\t\n11\t\\paragraph{Cross-strategy deployment constraint.}\n12\tDeploying depth estimators across decoding strategies requires knowing the target strategy type a priori.\n13\tWithout this knowledge, d1/d2 predictions may systematically invert: cross-strategy holdout d1v2 AUC drops to 0.129 (GPT-2~XL) and 0.253 (OLMo) when temperature-sampled text is classified by a model trained on nucleus and top-$k$ (\\S\\ref{sec:gen:crossstrategy}).\n14\tStrategy-conditioned classifiers or automatic strategy identification are needed before deployment.\n15\t\n16\t\\paragraph{d0 inflation of headline metrics.}\n17\tDepth~0 (human-written text) is near-perfectly separable (recall $>$98\\% across all settings), inflating headline accuracy.\n18\tCross-model transfer accuracy of 66.4\\% is substantially driven by d0; d2 recall drops to 26.8\\% in the worst case (Pythia holdout).\n19\t\n20\t\\paragraph{Controlled vs.\\ ecological setting.}\n21\tAll experiments use Wikipedia seed text with controlled recursive generation (LoRA fine-tuning, 1--1.5B parameter models).\n22\tTransfer to mixed-domain corpora, instruction-tuned models, and larger scales (7B+) remains open.\n23\tWild-data calibration is probed only indirectly; ecological transfer is future work.\n24\t\n25\t\\paragraph{EDD threshold sensitivity.}\n26\tThe Effective Discriminable Depth depend\n…[truncated 1107 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T15:53:06.223281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T15:53:06.223542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Additional Results}\n2\t\\label{app:additional}\n3\t\n4\t\\subsection{Top-$k$ Feature Trajectories}\n5\t\\label{app:topk_trajectories}\n6\t\n7\tFigure~\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\tau{=}0.9$) sampling.\n8\tTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\S\\ref{sec:atlas:trajectories}.\n9\tConcretely, the d0$\\to$d1 drop in \\textsc{p90\\_ppl} under top-$k$ is 78\\% (vs.\\ 87\\% for nucleus), and the d2$\\to$d3 reduction is 31\\% (vs.\\ 39\\% for nucleus).\n10\tDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\n11\t\n12\t\\subsection{Permutation Importance}\n13\t\\label{app:permutation}\n14\t\n15\tTo verify that the Gini-based importance rankings in \\S\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\n16\tResults are highly consistent: \\textsc{p90\\_ppl} ranks in the top 2 in 9/9 cells under both measures, and \\textsc{var\\_surprisal} in 8/9 (vs.\\ 7/9 for Gini, with the additional cell being OLMo top-$k$).\n17\tThe mean Spearman rank correlation between Gini and permutation importance vectors across all 9 cells is $\\rho{=}0.94$, confirming that the reported feature universality is robust to the choice of importance measure.\n18\t\n19\t\\subsection{DCOL Iteration Details}\n20\t\\label{app:dcol_iterations}\n21\t\n22\tTable~\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\n23\tDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\n24\t\n25\t\\begin{table}[h]\n26\t\\centering\n27\t\\small\n28\t\\caption{DCOL iteration summary. All experim\n…[truncated 1689 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T15:53:06.223864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "recursive depth|iteration depth",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T15:53:06.224103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/introduction.tex:12:No existing method estimates the ordinal recursive depth of a text passage from its content alone."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T15:53:06.224315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "quality degradation|hand-crafted|perplexity features",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T15:53:06.224528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/method.tex:75:While correlated with perplexity features, surprisal variance captures second-order structure---the variability of token predictability---that is not redundant with perplexity moments."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T15:53:06.224739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "recursive collapse",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T15:53:06.224965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T15:53:06.225174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T15:53:06.225448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/generalization.tex:10:Three feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\ndocs/paper/generalization.tex:98:Z-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.\ndocs/paper/generalization.tex:108:DCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.\ndocs/paper/introduction.tex:5:As synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\ndocs/paper/introduction.tex:6:This model$\\to$data$\\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\ndocs/paper/introduction.tex:9:Binary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing al\n…[truncated 4334 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T15:53:06.225810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\citet\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T15:53:06.226094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/introduction.tex:11:The model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\ndocs/paper/method.tex:35:We adopt standard LoRA hyperparameters ($r{=}16$, $\\alpha{=}32$, dropout$\\,{=}\\,0.05$) following \\citet{hu2022lora}, applied uniformly across all models.\ndocs/paper/conclusion.tex:35:\\citet{bakshi2026_collapse_improvement} find that early recursion can temporarily \\emph{improve} model quality, potentially violating the monotonicity assumption, and \\citet{falahati2026_curated} show that curated synthetic data need not trigger collapse, attenuating the fingerprints we exploit.\ndocs/paper/atlas.tex:127:Temperature sampling ($\\tau{=}0.9$) applies uniform logit scaling rather than the hard truncation of nucleus or top-$k$, which accelerates convergence toward the low-entropy attractor described by \\citet{marchi2024_heat_death}.\ndocs/paper/related_work.tex:5:\\citet{shumailov2024_nature} demonstrate that recursively training language models on their own outputs erodes distributional tails, eventually collapsing the output distribution to a narrow mode.\ndocs/paper/related_work.tex:6:\\citet{dohmatob2024_tale_of_tails} formalize this phenomenon through scaling laws that distinguish tail \\emph{narrowing} (reduced variance) from tail \\emph{cutting} (lost support), showing both accelerate with generation depth; \\citet{dohmatob2024_strong_collapse} establish strong collapse guarantees, and \\citet{dohmatob2024_demystified} analyze the regression case.\ndocs/paper/related_work.tex:14:\\citet{fast_detectgpt2024} improve computational efficiency by replacing random perturbations with conditional probability curvature from a surrogate model.\ndocs/paper/related_work.tex:17:\\citet{sadasivan2023_paraphrase} expose fundamental limits: paraphrasing attacks reduce detection accuracy to near chance, and\n…[truncated 1669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T15:53:06.226423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+              "old_string": "No existing method estimates the ordinal recursive depth of a text passage from its content alone.",
+              "new_string": "No existing method estimates the ordinal recursive generation depth of a text passage from its content alone."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T15:53:06.226685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T15:53:06.226977+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Task 1: Bibliography — 已满足\n38 条 bib 条目，≥ 25。任务要求的所有引用均已存在：Kirchenbauer, Alemohammad, Dohmatob (tale of tails + strong + demystified), Gerstgrasser, Shumailov, DSIR, QuRating, Uchendu, Binoculars, Fast-DetectGPT, DivEye, Garces Arias, Holtzman, Sadasivan, CORAL, CLOC, Drayson, EditLens, Bakshi, Marchi, Pudasaini, Falahati, Sugiyama, Hu (LoRA)。无需新增。\n\n### Task 2: 术语一致性 — 1 处修正\n- `introduction.tex:12` \"ordinal recursive depth\" → \"ordinal recursive generation depth\"\n- 其余术语一致：首次出现均用 \"recursive generation depth\"，后续缩写 \"generation depth\"；\"model collapse\" 统一使用文献标准用法；\"statistical features\" 全文一致；EDD 在 abstract 首次出现时已定义。\n\n### Task 3: Orphan bib — 无 orphan\n38/38 条 bib 条目均在 .tex 文件中被引用，无需标记。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_bibliography-terminology_20260515T155105"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ]
+}

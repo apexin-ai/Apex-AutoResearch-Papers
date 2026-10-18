@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "51e247140d175c66eac0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis e2 e3 continuous jaccard calibration",
+  "task_key": "worker_analysis_e2_e3_continuous_jaccard_calibration_20260522T095214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_e2_e3_continuous_jaccard_calibration_20260522T095214_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "99c256f41b3648ad8549c1e1fca4ed2d2385d962eb7c6de96aa5581e41262c32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n## E2: Continuous-Threshold Jaccard\n\n| τ | LAMBADA J_helped | LAMBADA J_hurt | ARC-Easy J_helped | PIQA J_helped |\n|---|---|---|---|---|\n| 0.00 | 0.256 | 0.271 | 0.314 | 0.291 |\n| 0.05 | 0.187 | 0.208 | 0.190 | 0.182 |\n| 0.10 | 0.145 | 0.150 | 0.156 | 0.154 |\n| 0.20 | 0.087 | 0.078 | 0.110 | 0.101 |\n| 0.30 | 0.051 | 0.044 | 0.065 | 0.088 |\n\n**结论**：Jaccard 随 τ 增大单调下降，在所有 benchmark 上均低于 0.32。HellaSwag 因 softmax 概率变化极小，τ≥0.05 时几乎无样本满足条件。低 Jaccard 不是 binary decomposition 的 artifact。\n\n## E3: ECE Calibration\n\n| 架构 | LAMBADA ECE (pure) | Disruption Threshold |\n|---|---|---|\n| GDN | 0.198 | 0.696 |\n| RetNet | 0.233 | 0.998 |\n| HGRN2 | 0.236 | 1.137 |\n\n- ECE relative spread: **17.1%** vs disruption threshold relative spread: **46.7%**\n- Spearman rho=1.0（仅 3 个点，rank 一致但 p 值无参考价值）\n- PIQA/ARC-Easy 的 ECE 跨架构差异极小（<1%）\n- HellaSwag ECE 全部在 0.41-0.42，几乎无差异\n\n**结论**：calibration 差异的量级远小于 disruption threshold 差异，不足以解释后者。Threshold 差异反映真实的架构特异性，而非 calibration artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

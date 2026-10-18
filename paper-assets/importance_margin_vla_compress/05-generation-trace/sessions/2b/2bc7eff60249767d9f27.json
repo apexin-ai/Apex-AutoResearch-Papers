@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2bc7eff60249767d9f27",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops server audit and deploy",
+  "task_key": "worker_ops_server_audit_and_deploy_20260528T062149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_server_audit_and_deploy_20260528T062149_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "829bbd491b2e1c2239a5684bd9caa76d90f524250a5f4e3e47571b52345550e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在加载模型，启动正常。\n\n---\n\n## 产出汇总\n\n### 1. GPU 审计\n\n| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |\n|--------|-------|-------|-------|-------|\n| w27 | ⚡ 69% | 空闲 | — | — |\n| cqa1 | 空闲→已部署 | cron占用 | ⚡ 94% | cron占用 |\n| w41 | ⚡ 39% | ⚡ 71% | ⚡ 34% | ⚡ 53% |\n| w38 | ⚡ 28% | 空闲→已部署 | ⚡ 19% | ⚡ 39% |\n\n### 2. 过期实验清理（8个→全部 DONE）\n\n| # | exp_id | 结果 | SR |\n|---|--------|------|-----|\n| 1 | pi05_l2norm_k09_long_s43_cqa1 | ✅ success | **81.2%** |\n| 2 | pi05_l2norm_k095_long_s43_w38 | ✅ success | **85.8%** |\n| 3 | ov_attn_k075_long_s42 | ⚠️ killed (TIMEOUT T9@ep30) | 37.4% partial |\n| 4 | pi05_l2norm_k085_long_s42 | ✅ success | **77.8%** |\n| 5 | ov_random_k095_object_s42 | ✅ success | **67.4%** |\n| 6 | pi05_random_k07_long_s42 | ✅ success | **62.4%** |\n| 7 | ov_random_k075_goal_s42 | ✅ success | **72.0%** |\n| 8 | ov_attn_k075_goal_s42 (w27) | ❌ killed (无效) | 67.4% invalid |\n\n注：#3 的 v3 已在 w38 完成（SR=34.2%），无需再跑。\n\n### 3. 新实验部署（2个）\n\n| exp_id | 服务器:GPU | 状态 |\n|--------|-----------|------|\n| eval_pi05_l2norm_k05_long_seed46_strict | cqa1:0 | ✅ 启动中 |\n| eval_pi05_attn_k05_long_seed46_strict | w38:1 | ✅ 启动中 |\n\n剩余空闲: w27:1（仅支持 l2norm/random，无待部署实验）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

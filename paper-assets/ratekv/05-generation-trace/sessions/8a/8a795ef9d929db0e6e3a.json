@@ -1,0 +1,1551 @@
+{
+  "schema_version": "1.0",
+  "id": "8a795ef9d929db0e6e3a",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "ssh phi3 constrained mckp and compounding",
+  "task_key": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003.jsonl",
+    "occurrence": 1,
+    "bytes": 100055,
+    "sha256": "76420562f10650af8fa529eff1771646012b3c5b0cea1e9972d421f2d0d0029c"
+  },
+  "statistics": {
+    "messages": 77,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "tool_call": 38,
+      "tool_result": 38,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:16:11.007685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read reference scripts",
+              "subagent_type": "Explore",
+              "prompt": "Read the following files in full and return their complete contents:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_qwen_hires_constrained.py\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/generate_compounding_curves.py\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_hires_profiling.py\n\nI need to understand the full structure and patterns used in these scripts to create similar ones for Phi-3-medium constrained MCKP and compounding sweep experiments."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:16:11.008041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_qwen_hires_constrained.py"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:16:11.008309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Qwen2.5-7B Constrained MCKP + WikiText-2 Eval using D048 float32 hires profiling data.\"\"\"\n2\timport os\n3\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n4\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n5\t\n6\timport json\n7\timport time\n8\timport torch\n9\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n10\tfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\n11\tfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n12\t\n13\t\n14\tdef main():\n15\t    device = \"cuda:0\"\n16\t    model_name = \"Qwen/Qwen2.5-7B\"\n17\t    profiles_path = \"hires_profiles.json\"\n18\t    output_path = \"qwen_hires_constrained_results.json\"\n19\t    budget = 0.25\n20\t    max_2bit = 8\n21\t    t0 = time.time()\n22\t\n23\t    config = AutoConfig.from_pretrained(model_name)\n24\t    num_layers = config.num_hidden_layers\n25\t    num_kv_heads = config.num_key_value_heads\n26\t    num_q_heads = config.num_attention_heads\n27\t    gqa_ratio = num_q_heads // num_kv_heads\n28\t    total_kv_heads = num_layers * num_kv_heads\n29\t    print(f\"Qwen2.5-7B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n30\t\n31\t    # Load D048 float32 hires profiling data\n32\t    print(f\"\\nLoading profiles from {profiles_path}...\")\n33\t    with open(profiles_path) as f:\n34\t        raw = json.load(f)\n35\t    profiles_raw = raw[\"profiles\"] if \"profiles\" in raw else raw\n36\t    print(f\"Loaded: {len(profiles_raw)} layers, {len(profiles_raw['0'])} heads/layer\")\n37\t\n38\t    profiles = enforce_monotonicity(profiles_raw)\n39\t\n40\t    # Constrained MCKP\n41\t    print(f\"\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\")\n42\t    mckp_result = solve_mckp_constrained(\n43\t        profiles, budget, mode=\"quant_only\",\n44\t        max_2bit=max_2bit, l0_exclude_2bit=True)\n45\t\n46\t    bit_counts = {}\n47\t    for key, (atype, param) in mckp_result[\"allocation\"].items():\n48\t        b = int(param) if atype == \"quant\" else 16\n49\t        bit_counts[b] = \n…[truncated 4761 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:16:11.008484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/generate_compounding_curves.py"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:16:11.008668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Generate cross-architecture compounding curves figure for RateKV paper.\"\"\"\n2\timport matplotlib\n3\tmatplotlib.use('Agg')\n4\timport matplotlib.pyplot as plt\n5\timport matplotlib.ticker as mticker\n6\timport numpy as np\n7\t\n8\tplt.rcParams.update({\n9\t    'font.family': 'DejaVu Sans',\n10\t    'font.size': 11,\n11\t    'axes.titlesize': 13,\n12\t    'axes.labelsize': 12,\n13\t    'xtick.labelsize': 10,\n14\t    'ytick.labelsize': 10,\n15\t    'legend.fontsize': 9.5,\n16\t    'figure.dpi': 300,\n17\t    'savefig.dpi': 300,\n18\t    'savefig.bbox': 'tight',\n19\t    'savefig.pad_inches': 0.05,\n20\t    'axes.spines.top': False,\n21\t    'axes.spines.right': False,\n22\t    'lines.linewidth': 1.8,\n23\t})\n24\t\n25\tmodels = [\n26\t    {\n27\t        'name': 'Qwen2.5-7B',\n28\t        'pattern': 'Spread',\n29\t        'k': [0, 2, 4, 8, 16, 32, 64, 128, 256],\n30\t        'ppl': [9.8106, 9.83, 9.85, 10.0474, 10.40, 11.63, 23.2176, 98.75, 98.7523],\n31\t        'color': '#D55E00',\n32\t        'marker': '^',\n33\t        'conc': 0.61,\n34\t    },\n35\t    {\n36\t        'name': 'Llama-3.1-8B',\n37\t        'pattern': 'Spike',\n38\t        'k': [0, 2, 4, 8, 16, 32, 64, 128, 256],\n39\t        'ppl': [8.09, 8.12, 8.18, 8.23, 8.44, 9.05, 11.99, 40.21, 1519.19],\n40\t        'color': '#0072B2',\n41\t        'marker': 'o',\n42\t        'conc': 0.57,\n43\t    },\n44\t    {\n45\t        'name': 'Mistral-7B-v0.3',\n46\t        'pattern': 'Flat',\n47\t        'k': [0, 2, 4, 8, 16, 32, 64, 128, 256],\n48\t        'ppl': [7.04, 7.04, 7.05, 7.06, 7.11, 7.24, 7.77, 10.47, 45.28],\n49\t        'color': '#009E73',\n50\t        'marker': 's',\n51\t        'conc': 0.24,\n52\t    },\n53\t]\n54\t\n55\tfig, ax = plt.subplots(figsize=(7, 4.5))\n56\t\n57\tfor m in models:\n58\t    k_arr = np.array(m['k'])\n59\t    ppl_arr = np.array(m['ppl'])\n60\t    label = f\"{m['name']} ({m['pattern']}, $c$ = {m['conc']:.2f})\"\n61\t    ms = m.get('markersize', 6)\n62\t    ax.plot(k_arr, ppl_arr, marker=m['marker'], color=m['color'],\n63\t            markersize=ms, label=label, zorder=3, markeredgewidth=0.5,\n64\t       \n…[truncated 1188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:16:11.008858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_hires_profiling.py"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:16:11.009034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Phi-3-medium-14B hires bf16 profiling — 2-bit only concentration measurement.\n2\tArchitecture: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads.\n3\tOutput: artifacts/phi3_medium_profiles_hires.json, artifacts/phi3_medium_hires_bf16_2bitonly_results.json\n4\t\"\"\"\n5\timport os\n6\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n7\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n8\t\n9\timport argparse\n10\timport json\n11\timport math\n12\timport time\n13\timport torch\n14\timport torch.nn.functional as F\n15\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n16\tfrom eval_ppl import patch_attention, restore_attention\n17\t\n18\t\n19\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n20\t    with open(path) as f:\n21\t        samples = json.load(f)\n22\t    all_ids = []\n23\t    for s in samples:\n24\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n25\t        if len(tokens) >= seq_len:\n26\t            all_ids.append(tokens[:seq_len])\n27\t        if len(all_ids) >= num_samples:\n28\t            break\n29\t    if not all_ids:\n30\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n31\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n32\t\n33\t\n34\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n35\t    total_loss = 0.0\n36\t    total_tokens = 0\n37\t    n = input_ids.shape[0]\n38\t    with torch.no_grad():\n39\t        for start in range(0, n, batch_size):\n40\t            end = min(start + batch_size, n)\n41\t            batch = input_ids[start:end]\n42\t            outputs = model(\n43\t                batch, use_cache=False,\n44\t                cache_position=torch.arange(seq_len, device=device)\n45\t            )\n46\t            shift_logits = outputs.logits[:, :-1].contiguous()\n47\t            shift_labels = batch[:, 1:].contiguous()\n48\t            loss = F.cross_entropy(\n49\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n50\t                shift_labels.view(-1),\n51\t         \n…[truncated 8377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:16:11.009232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete contents of all three files:\n\n## 1. run_qwen_hires_constrained.py\n\nThis script performs constrained MCKP optimization and perplexity evaluation on Qwen2.5-7B. Key structure:\n\n- **Setup**: Configures model paths, output files, constraints (budget=0.25, max_2bit=8)\n- **Architecture inspection**: Loads config to determine layers, KV heads, GQA ratio\n- **Profile loading**: Reads hires profiling data from JSON\n- **Solver**: Runs `solve_mckp_constrained()` with quantization-only mode\n- **Model evaluation**: Loads model in bf16, evaluates three methods (baseline, MCKP, uniform 4-bit) via WikiText-2 perplexity\n- **Analysis**: Computes top-5% concentration of 2-bit deltas\n- **Output**: Comprehensive JSON with architecture, results, bit distribution, timing, and allocation details\n\n## 2. generate_compounding_curves.py\n\nA visualization script that generates a cross-architecture comparison figure:\n\n- **Data structure**: Each model has name, pattern type, k values (number of 2-bit heads), PPL curves, color, marker, concentration\n- **Models**: Qwen2.5-7B (Spread), Llama-3.1-8B (Spike), Mistral-7B-v0.3 (Flat)\n- **Plot configuration**: Symlog x-scale, log y-scale, custom ticks, catastrophic threshold line at PPL=100\n- **Output**: Saves PDF and PNG to docs/paper/figures directory\n\n## 3. run_phi3_medium_hires_profiling.py\n\nA profiling script for Phi-3-medium-14B focusing on 2-bit-only deltas:\n\n- **Architecture**: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads\n- **Calibration data**: Loads from JSON with configurable seq_len (default 2048)\n- **Profiling approach**: Per-head evaluation of 2-bit quantization impact on PPL\n- **Batched evaluation**: Computes perplexity in batches to manage memory\n- **Concentration analysis**: Top-5% concentration, layer-0 dominance ratio, CV calculation\n- **Results structure**: Model info, architecture, baseline PPL, analysis metrics, timing\n- **Output**: Two JSON files (profiles and results) in artifacts directory\n\n**Key patt\n…[truncated 723 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:16:11.009382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_qwen_hires_constrained.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:16:11.009592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Qwen2.5-7B Constrained MCKP + WikiText-2 Eval using D048 float32 hires profiling data.\"\"\"\n2\timport os\n3\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n4\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n5\t\n6\timport json\n7\timport time\n8\timport torch\n9\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n10\tfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\n11\tfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n12\t\n13\t\n14\tdef main():\n15\t    device = \"cuda:0\"\n16\t    model_name = \"Qwen/Qwen2.5-7B\"\n17\t    profiles_path = \"hires_profiles.json\"\n18\t    output_path = \"qwen_hires_constrained_results.json\"\n19\t    budget = 0.25\n20\t    max_2bit = 8\n21\t    t0 = time.time()\n22\t\n23\t    config = AutoConfig.from_pretrained(model_name)\n24\t    num_layers = config.num_hidden_layers\n25\t    num_kv_heads = config.num_key_value_heads\n26\t    num_q_heads = config.num_attention_heads\n27\t    gqa_ratio = num_q_heads // num_kv_heads\n28\t    total_kv_heads = num_layers * num_kv_heads\n29\t    print(f\"Qwen2.5-7B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n30\t\n31\t    # Load D048 float32 hires profiling data\n32\t    print(f\"\\nLoading profiles from {profiles_path}...\")\n33\t    with open(profiles_path) as f:\n34\t        raw = json.load(f)\n35\t    profiles_raw = raw[\"profiles\"] if \"profiles\" in raw else raw\n36\t    print(f\"Loaded: {len(profiles_raw)} layers, {len(profiles_raw['0'])} heads/layer\")\n37\t\n38\t    profiles = enforce_monotonicity(profiles_raw)\n39\t\n40\t    # Constrained MCKP\n41\t    print(f\"\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\")\n42\t    mckp_result = solve_mckp_constrained(\n43\t        profiles, budget, mode=\"quant_only\",\n44\t        max_2bit=max_2bit, l0_exclude_2bit=True)\n45\t\n46\t    bit_counts = {}\n47\t    for key, (atype, param) in mckp_result[\"allocation\"].items():\n48\t        b = int(param) if atype == \"quant\" else 16\n49\t        bit_counts[b] = \n…[truncated 4761 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:16:11.009775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/generate_compounding_curves.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:16:11.009941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Generate cross-architecture compounding curves figure for RateKV paper.\"\"\"\n2\timport matplotlib\n3\tmatplotlib.use('Agg')\n4\timport matplotlib.pyplot as plt\n5\timport matplotlib.ticker as mticker\n6\timport numpy as np\n7\t\n8\tplt.rcParams.update({\n9\t    'font.family': 'DejaVu Sans',\n10\t    'font.size': 11,\n11\t    'axes.titlesize': 13,\n12\t    'axes.labelsize': 12,\n13\t    'xtick.labelsize': 10,\n14\t    'ytick.labelsize': 10,\n15\t    'legend.fontsize': 9.5,\n16\t    'figure.dpi': 300,\n17\t    'savefig.dpi': 300,\n18\t    'savefig.bbox': 'tight',\n19\t    'savefig.pad_inches': 0.05,\n20\t    'axes.spines.top': False,\n21\t    'axes.spines.right': False,\n22\t    'lines.linewidth': 1.8,\n23\t})\n24\t\n25\tmodels = [\n26\t    {\n27\t        'name': 'Qwen2.5-7B',\n28\t        'pattern': 'Spread',\n29\t        'k': [0, 2, 4, 8, 16, 32, 64, 128, 256],\n30\t        'ppl': [9.8106, 9.83, 9.85, 10.0474, 10.40, 11.63, 23.2176, 98.75, 98.7523],\n31\t        'color': '#D55E00',\n32\t        'marker': '^',\n33\t        'conc': 0.61,\n34\t    },\n35\t    {\n36\t        'name': 'Llama-3.1-8B',\n37\t        'pattern': 'Spike',\n38\t        'k': [0, 2, 4, 8, 16, 32, 64, 128, 256],\n39\t        'ppl': [8.09, 8.12, 8.18, 8.23, 8.44, 9.05, 11.99, 40.21, 1519.19],\n40\t        'color': '#0072B2',\n41\t        'marker': 'o',\n42\t        'conc': 0.57,\n43\t    },\n44\t    {\n45\t        'name': 'Mistral-7B-v0.3',\n46\t        'pattern': 'Flat',\n47\t        'k': [0, 2, 4, 8, 16, 32, 64, 128, 256],\n48\t        'ppl': [7.04, 7.04, 7.05, 7.06, 7.11, 7.24, 7.77, 10.47, 45.28],\n49\t        'color': '#009E73',\n50\t        'marker': 's',\n51\t        'conc': 0.24,\n52\t    },\n53\t]\n54\t\n55\tfig, ax = plt.subplots(figsize=(7, 4.5))\n56\t\n57\tfor m in models:\n58\t    k_arr = np.array(m['k'])\n59\t    ppl_arr = np.array(m['ppl'])\n60\t    label = f\"{m['name']} ({m['pattern']}, $c$ = {m['conc']:.2f})\"\n61\t    ms = m.get('markersize', 6)\n62\t    ax.plot(k_arr, ppl_arr, marker=m['marker'], color=m['color'],\n63\t            markersize=ms, label=label, zorder=3, markeredgewidth=0.5,\n64\t       \n…[truncated 1188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:16:11.010088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_hires_profiling.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:16:11.010297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Phi-3-medium-14B hires bf16 profiling — 2-bit only concentration measurement.\n2\tArchitecture: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads.\n3\tOutput: artifacts/phi3_medium_profiles_hires.json, artifacts/phi3_medium_hires_bf16_2bitonly_results.json\n4\t\"\"\"\n5\timport os\n6\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n7\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n8\t\n9\timport argparse\n10\timport json\n11\timport math\n12\timport time\n13\timport torch\n14\timport torch.nn.functional as F\n15\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n16\tfrom eval_ppl import patch_attention, restore_attention\n17\t\n18\t\n19\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n20\t    with open(path) as f:\n21\t        samples = json.load(f)\n22\t    all_ids = []\n23\t    for s in samples:\n24\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n25\t        if len(tokens) >= seq_len:\n26\t            all_ids.append(tokens[:seq_len])\n27\t        if len(all_ids) >= num_samples:\n28\t            break\n29\t    if not all_ids:\n30\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n31\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n32\t\n33\t\n34\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n35\t    total_loss = 0.0\n36\t    total_tokens = 0\n37\t    n = input_ids.shape[0]\n38\t    with torch.no_grad():\n39\t        for start in range(0, n, batch_size):\n40\t            end = min(start + batch_size, n)\n41\t            batch = input_ids[start:end]\n42\t            outputs = model(\n43\t                batch, use_cache=False,\n44\t                cache_position=torch.arange(seq_len, device=device)\n45\t            )\n46\t            shift_logits = outputs.logits[:, :-1].contiguous()\n47\t            shift_labels = batch[:, 1:].contiguous()\n48\t            loss = F.cross_entropy(\n49\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n50\t                shift_labels.view(-1),\n51\t         \n…[truncated 8377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:16:11.010469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_pythia14b_constrained_pipeline.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:16:11.010724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Pythia-1.4B constrained vs uniform pipeline (cuda:0).\n2\t\n3\tEvaluates uniform-4bit, constrained MCKP, and unconstrained MCKP\n4\ton WikiText-2 to verify that Flat-shape models gain nothing from\n5\tnon-uniform allocation.\n6\t\"\"\"\n7\timport os, json, time, copy\n8\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n9\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"0\"\n10\t\n11\timport torch\n12\timport torch.nn.functional as F\n13\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n14\tfrom transformers.models.gpt_neox.modeling_gpt_neox import apply_rotary_pos_emb\n15\t\n16\tfrom eval_ppl import evaluate_perplexity\n17\tfrom solver import (solve_mckp_constrained, solve_mckp,\n18\t                    uniform_quantization_baseline)\n19\tfrom utils import quantize_per_channel\n20\t\n21\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b\"\n22\tPROFILE_PATH = \"pythia14b_hires_bf16_2bitonly_profiles.json\"\n23\tOUTPUT_PATH = \"artifacts/pythia14b_constrained_pipeline_results.json\"\n24\tDEVICE = \"cuda:0\"\n25\tBUDGET = 0.25\n26\tRATIO_4BIT = 0.25\n27\tRATIO_8BIT = 0.05\n28\tMAX_2BIT = 8\n29\t\n30\t\n31\tdef patch_attention_pythia(model, allocations):\n32\t    config = model.config\n33\t    num_heads = config.num_attention_heads\n34\t    head_dim = config.hidden_size // num_heads\n35\t    original_forwards = {}\n36\t\n37\t    for layer_idx, layer in enumerate(model.gpt_neox.layers):\n38\t        attn = layer.attention\n39\t        head_allocs = {}\n40\t        for h in range(num_heads):\n41\t            key = f\"{layer_idx},{h}\"\n42\t            if key in allocations:\n43\t                atype, param = allocations[key]\n44\t                head_allocs[h] = (atype, param)\n45\t            else:\n46\t                head_allocs[h] = (\"full\", 16)\n47\t\n48\t        if all(a[0] == \"full\" for a in head_allocs.values()):\n49\t            continue\n50\t\n51\t        original_forwards[layer_idx] = attn.forward\n52\t\n53\t        def make_forward(orig_attn, h_allocs, nh=num_heads, hd=head_dim):\n54\t            def compressed_forward(hidden_states, atte\n…[truncated 8582 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:16:11.010891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def solve_mckp_constrained|def uniform_quantization_baseline|def enforce_monotonicity|def greedy_allocation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:16:11.011151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (31.7KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/9777ac37-86f8-49d9-81d6-d825292be565/tool-results/toolu_01KRtJ47NPjShjKzgNo849eo.txt\n\nPreview (first 2KB):\nlogs/chats/worker_gpu_llama_hires_constrained_mckp_20260514T214744.jsonl:43:[Omitted long matching line]\nlogs/chats/worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250.jsonl:9:{\"ts\": \"2026-05-15T15:07:41.237168+00:00\", \"role\": \"tool\", \"session\": \"worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250\", \"text\": \"called Grep\", \"tool\": \"Grep\", \"tool_args\": {\"pattern\": \"def uniform_quantization_baseline\", \"output_mode\": \"content\", \"-A\": \"15\"}}\nlogs/chats/worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250.jsonl:11:{\"ts\": \"2026-05-15T15:07:41.237611+00:00\", \"role\": \"tool\", \"session\": \"worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250\", \"text\": \"called Grep\", \"tool\": \"Grep\", \"tool_args\": {\"pattern\": \"def uniform_quantization_baseline\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv\", \"glob\": \"solver.py\", \"output_mode\": \"content\", \"-A\": \"20\"}}\nlogs/chats/worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250.jsonl:17:{\"ts\": \"2026-05-15T15:07:41.238585+00:00\", \"role\": \"tool\", \"session\": \"worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250\", \"text\": \"called mcp__agent-ml-research__ssh_read_only\", \"tool\": \"mcp__agent-ml-research__ssh_read_only\", \"tool_args\": {\"server\": \"westd-37397\", \"command\": \"grep -n \\\"def uniform_quantization_baseline\\\" /root/ratekv/solver.py\", \"account\": \"root\"}}\nlogs/chats/worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250.jsonl:18:{\"ts\": \"2026-05-15T15:07:41.238743+00:00\", \"role\": \"tool_result\", \"session\": \"worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\n…[truncated 287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:16:11.011327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/solver.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:16:11.011487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:16:11.011608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "run_*compounding*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:16:11.011742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "run_w9_compounding_scaling.py\nrun_w9_compounding_scaling_v2.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:16:11.011855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:16:11.011970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:16:11.012080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w9_compounding_scaling.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:16:11.012271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"W9: Compounding scaling — quantify super-additivity of per-head distortion.\"\"\"\n2\timport os\n3\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n4\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n5\tos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\n6\tos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n7\t\n8\timport json\n9\timport math\n10\timport time\n11\timport torch\n12\timport torch.nn.functional as F\n13\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n14\tfrom eval_ppl import patch_attention, restore_attention\n15\t\n16\t\n17\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n18\t    with open(path) as f:\n19\t        samples = json.load(f)\n20\t    all_ids = []\n21\t    for s in samples:\n22\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n23\t        if len(tokens) >= seq_len:\n24\t            all_ids.append(tokens[:seq_len])\n25\t        if len(all_ids) >= num_samples:\n26\t            break\n27\t    if not all_ids:\n28\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n29\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n30\t\n31\t\n32\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n33\t    total_loss = 0.0\n34\t    total_tokens = 0\n35\t    n = input_ids.shape[0]\n36\t    with torch.no_grad():\n37\t        for start in range(0, n, batch_size):\n38\t            end = min(start + batch_size, n)\n39\t            batch = input_ids[start:end]\n40\t            outputs = model(\n41\t                batch, use_cache=False,\n42\t                cache_position=torch.arange(seq_len, device=device)\n43\t            )\n44\t            shift_logits = outputs.logits[:, :-1].contiguous()\n45\t            shift_labels = batch[:, 1:].contiguous()\n46\t            loss = F.cross_entropy(\n47\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n48\t                shift_labels.view(-1),\n49\t                reduction=\"sum\"\n50\t            )\n51\t            total_loss += loss.item()\n52\t            total_tokens += shift_labels\n…[truncated 6683 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:16:11.012445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -150 /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:16:11.012653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MCKP solver for KV cache allocation.\\\\nInput: distortion profiles + memory budget\\\\nOutput: per-head allocation decisions\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\\n\\\\ndef _build_pareto(head_data, mode):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build Pareto-optimal action set for a single head.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    actions = [(1.0, 0.0, \\\\\\\"full\\\\\\\", 16)]\\\\n\\\\n    if mode == \\\\\\\"full\\\\\\\":\\\\n        for r_str, mse in head_data.get(\\\\\\\"eviction\\\\\\\", {}).items():\\\\n            r = float(r_str)\\\\n            actions.append((r, mse, \\\\\\\"evict\\\\\\\", r))\\\\n\\\\n    for b_str, mse in head_data.get(\\\\\\\"quantization\\\\\\\", {}).items():\\\\n        b = int(float(b_str))\\\\n        actions.append((b / 16.0, mse, \\\\\\\"quant\\\\\\\", b))\\\\n\\\\n    # Deduplicate by memory: keep lowest distortion per memory level\\\\n    by_mem = {}\\\\n    for a in actions:\\\\n        mem = round(a[0], 6)\\\\n        if mem not in by_mem or a[1] < by_mem[mem][1]:\\\\n            by_mem[mem] = a\\\\n\\\\n    # Sort by memory ascending, build Pareto front\\\\n    sorted_actions = sorted(by_mem.values(), key=lambda x: x[0])\\\\n    pareto = [sorted_actions[0]]\\\\n    for a in sorted_actions[1:]:\\\\n        if a[1] < pareto[-1][1] - 1e-12:\\\\n            pareto.append(a)\\\\n\\\\n    # Sort by memory descending for greedy downgrade\\\\n    pareto.sort(key=lambda x: -x[0])\\\\n    return pareto\\\\n\\\\n\\\\ndef solve_mckp(profiles, budget, mode=\\\\\\\"full\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Solve MCKP for KV cache allocation via greedy downgrade.\\\\n\\\\n    Args:\\\\n        profiles: {layer: {head: {eviction: {ratio: mse}, quantization: {bits: mse}}}}\\\\n        budget: target average memory ratio per head (e.g. 0.25 for 4x compression)\\\\n        mode: \\\\\\\"full\\\\\\\" (eviction + quantization) or \\\\\\\"quant_only\\\\\\\"\\\\n    Returns:\\\\n        dict with allocation, total_distortion, actual_memory_ratio\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    heads = []\\\\n    for l_str in sorted(profiles.keys(), key=lambda x: int(x)):\\\\n        for h_s\n…[truncated 3579 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:16:11.012808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -20 /root/ratekv/artifacts/phi3_medium_profiles_hires.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:16:11.012945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"0\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"quantization\\\\\\\": {\\\\n        \\\\\\\"2\\\\\\\": 0.0005921086252911323\\\\n      }\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"quantization\\\\\\\": {\\\\n        \\\\\\\"2\\\\\\\": 0.0012868250469031395\\\\n      }\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"quantization\\\\\\\": {\\\\n        \\\\\\\"2\\\\\\\": 0.0013783362378347874\\\\n      }\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"quantization\\\\\\\": {\\\\n        \\\\\\\"2\\\\\\\": 0.0006053210177796586\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:16:11.013073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/artifacts/phi3_medium_hires_bf16_2bitonly_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:16:11.013230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct\\\\\\\",\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"Phi-3-medium-14B\\\\\\\",\\\\n  \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"profiling_config\\\\\\\": {\\\\n    \\\\\\\"num_samples\\\\\\\": 64,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"bitwidths\\\\\\\": [\\\\n      2\\\\n    ]\\\\n  },\\\\n  \\\\\\\"architecture\\\\\\\": {\\\\n    \\\\\\\"num_layers\\\\\\\": 40,\\\\n    \\\\\\\"num_kv_heads\\\\\\\": 10,\\\\n    \\\\\\\"num_attention_heads\\\\\\\": 40,\\\\n    \\\\\\\"head_dim\\\\\\\": 128,\\\\n    \\\\\\\"hidden_size\\\\\\\": 5120,\\\\n    \\\\\\\"gqa_ratio\\\\\\\": 4,\\\\n    \\\\\\\"total_kv_heads\\\\\\\": 400\\\\n  },\\\\n  \\\\\\\"baseline_calibration_ppl\\\\\\\": 4.78339970288397,\\\\n  \\\\\\\"analysis\\\\\\\": {\\\\n    \\\\\\\"top5_concentration\\\\\\\": 0.1742,\\\\n    \\\\\\\"top5_n_heads\\\\\\\": 20,\\\\n    \\\\\\\"layer0_mean_delta_2bit\\\\\\\": 0.001075,\\\\n    \\\\\\\"other_layers_mean_delta_2bit\\\\\\\": 0.0267,\\\\n    \\\\\\\"layer0_dominance_ratio\\\\\\\": 0.04,\\\\n    \\\\\\\"delta_2bit_mean\\\\\\\": 0.02606,\\\\n    \\\\\\\"delta_2bit_std\\\\\\\": 0.023207,\\\\n    \\\\\\\"delta_2bit_cv\\\\\\\": 0.8905,\\\\n    \\\\\\\"heads_with_positive_delta\\\\\\\": 396,\\\\n    \\\\\\\"total_heads\\\\\\\": 400\\\\n  },\\\\n  \\\\\\\"top5_sensitive_heads\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"layer\\\\\\\": 9,\\\\n      \\\\\\\"head\\\\\\\": 6,\\\\n      \\\\\\\"delta_2bit\\\\\\\": 0.180619\\\\n    },\\\\n    {\\\\n      \\\\\\\"layer\\\\\\\": 8,\\\\n      \\\\\\\"head\\\\\\\": 9,\\\\n      \\\\\\\"delta_2bit\\\\\\\": 0.172419\\\\n    },\\\\n    {\\\\n      \\\\\\\"layer\\\\\\\": 11,\\\\n      \\\\\\\"head\\\\\\\": 8,\\\\n      \\\\\\\"delta_2bit\\\\\\\": 0.167117\\\\n    },\\\\n    {\\\\n      \\\\\\\"layer\\\\\\\": 9,\\\\n      \\\\\\\"head\\\\\\\": 4,\\\\n      \\\\\\\"delta_2bit\\\\\\\": 0.165587\\\\n    },\\\\n    {\\\\n      \\\\\\\"layer\\\\\\\": 11,\\\\n      \\\\\\\"head\\\\\\\": 4,\\\\n      \\\\\\\"delta_2bit\\\\\\\": 0.084271\\\\n    }\\\\n  ],\\\\n  \\\\\\\"timing\\\\\\\": {\\\\n    \\\\\\\"profile_seconds\\\\\\\": 8940.5,\\\\n    \\\\\\\"total_seconds\\\\\\\": 8940.5\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:16:11.013379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "grep -n \"def solve_mckp_constrained\\|def enforce_monotonicity\\|def greedy_allocation\" /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:16:11.013501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:16:11.013624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "grep -n \"def \" /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:16:11.013774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10:def _build_pareto(head_data, mode):\\\\n42:def solve_mckp(profiles, budget, mode=\\\\\\\"full\\\\\\\"):\\\\n117:def uniform_quantization_baseline(profiles, bits=4):\\\\n139:def main():\\\\n170:def _build_actions_no_pareto(head_data, mode, exclude_bits=None):\\\\n198:def solve_mckp_constrained(profiles, budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n285:def solve_greedy_ratequant(profiles, budget=0.25, bit_options=None,\\\\n316:    def current_mem():\\\\n370:def enforce_monotonicity(profiles):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:16:11.013894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -n +198 /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T02:16:11.014091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def solve_mckp_constrained(profiles, budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n                           max_2bit=8, l0_exclude_2bit=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MCKP with cardinality constraints (D009).\\\\n    - max_2bit: at most K heads at 2-bit (K=8, manual experiment safe zone)\\\\n    - l0_exclude_2bit: Layer 0 heads excluded from 2-bit (cliff effect)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    heads = []\\\\n    for l_str in sorted(profiles.keys(), key=lambda x: int(x)):\\\\n        for h_str in sorted(profiles[l_str].keys(), key=lambda x: int(x)):\\\\n            l, h = int(l_str), int(h_str)\\\\n            exclude = {2} if (l0_exclude_2bit and l == 0) else set()\\\\n            actions = _build_actions_no_pareto(profiles[l_str][h_str], mode, exclude)\\\\n            heads.append((l, h, actions))\\\\n\\\\n    n_heads = len(heads)\\\\n    target = budget * n_heads\\\\n    current = {(l, h): 0 for l, h, _ in heads}\\\\n    total_memory = sum(a[0][0] for _, _, a in heads)\\\\n    n_2bit = 0\\\\n\\\\n    while total_memory > target + 1e-9:\\\\n        best_eff = float(\\\\\\\"inf\\\\\\\")\\\\n        best_saved = 0.0\\\\n        best_key = None\\\\n        best_idx = None\\\\n\\\\n        for l, h, actions in heads:\\\\n            ci = current[(l, h)]\\\\n            if ci + 1 >= len(actions):\\\\n                continue\\\\n            curr = actions[ci]\\\\n            for ni in range(ci + 1, len(actions)):\\\\n                nxt = actions[ni]\\\\n                mem_saved = curr[0] - nxt[0]\\\\n                if mem_saved < 1e-12:\\\\n                    continue\\\\n                # D009: cardinality constraint on 2-bit\\\\n                is_2bit = (nxt[2] == \\\\\\\"quant\\\\\\\" and nxt[3] == 2)\\\\n                if is_2bit and max_2bit is not None and n_2bit >= max_2bit:\\\\n                    continue\\\\n                eff = (nxt[1] - curr[1]) / mem_saved\\\\n                # Prefer lower eff; break ties by larger mem_saved for faster convergence\\\\n                if eff < best_eff - 1e-12 or (abs(eff -\n…[truncated 6020 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T02:16:11.014348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_constrained_pipeline.py",
+              "content": "\"\"\"Phi-3-medium-14B constrained MCKP + WikiText-2 eval pipeline.\n\nArchitecture: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads.\nProfiling source: artifacts/phi3_medium_profiles_hires.json (2-bit only).\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport argparse\nimport json\nimport time\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import (solve_mckp_constrained, solve_mckp,\n                    solve_greedy_ratequant, uniform_quantization_baseline)\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct\"\nPROFILE_PATH = \"artifacts/phi3_medium_profiles_hires.json\"\nOUTPUT_PATH = \"artifacts/phi3_medium_constrained_results.json\"\nBUDGET = 0.25\nMAX_2BIT = 8\nRATIO_4BIT = 0.25\nRATIO_8BIT = 0.05\n\n\ndef synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads):\n    \"\"\"Synthesize 4-bit and 8-bit deltas from 2-bit-only profiling data.\"\"\"\n    profiles = {}\n    for li in range(num_layers):\n        l_str = str(li)\n        layer_data = raw_profiles[l_str]\n        profiles[l_str] = {}\n        for hi in range(num_kv_heads):\n            h_str = str(hi)\n            d2 = layer_data[h_str][\"quantization\"][\"2\"]\n            profiles[l_str][h_str] = {\n                \"quantization\": {\n                    \"2\": d2,\n                    \"4\": d2 * RATIO_4BIT,\n                    \"8\": d2 * RATIO_8BIT,\n                }\n            }\n    return profiles\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Phi-3-medium-14B constrained MCKP pipeline\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:1\")\n    args = parser.parse_args()\n\n    device = args.gpu\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(MODEL_PATH, trust_remote_code=False)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n    print(f\"Phi-3-medium-14B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n\n    # Load 2-bit-only profiles and synthesize multi-bit\n    print(f\"\\nLoading profiles from {PROFILE_PATH}...\")\n    with open(PROFILE_PATH) as f:\n        raw = json.load(f)\n    raw_profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n    profiles = synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads)\n    print(f\"Synthesized multi-bit profiles: {num_layers} layers x {num_kv_heads} heads\")\n\n    # Concentration analysis\n    all_deltas_2bit = []\n    for l_str in sorted(profiles.keys(), key=int):\n        for h_str in sorted(profiles[l_str].keys(), key=int):\n            d2 = profiles[l_str][h_str][\"quantization\"][\"2\"]\n            all_deltas_2bit.append(d2)\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\n    total_sum = sum(all_deltas_2bit)\n    top5_sum = sum(sorted_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n    print(f\"Top-5% concentration: {top5_concentration:.4f} (Spread pattern)\")\n\n    # --- Solve allocations ---\n    print(f\"\\n--- Solving allocations (budget={BUDGET}, max_2bit={MAX_2BIT}) ---\")\n\n    constrained = solve_mckp_constrained(\n        profiles, BUDGET, mode=\"quant_only\",\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True)\n\n    unconstrained = solve_mckp(profiles, BUDGET, mode=\"quant_only\")\n\n    greedy = solve_greedy_ratequant(profiles, budget=BUDGET, mode=\"quant_only\")\n\n    uniform = uniform_quantization_baseline(profiles, bits=4)\n\n    for name, sol in [(\"Constrained MCKP\", constrained),\n                      (\"Unconstrained MCKP\", unconstrained),\n                      (\"Greedy\", greedy),\n                      (\"Uniform-4bit\", uniform)]:\n        bits_dist = {}\n        for k, v in sol[\"allocation\"].items():\n            b = int(v[1])\n            bits_dist[b] = bits_dist.get(b, 0) + 1\n        print(f\"  {name}: mem={sol['actual_memory_ratio']:.4f}, \"\n              f\"dist={sol['total_distortion']:.6f}, bits={bits_dist}\")\n\n    # --- Load model ---\n    print(f\"\\nLoading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=False)\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16,\n        attn_implementation=\"eager\", trust_remote_code=False\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"Model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    # --- Eval: BF16 baseline ---\n    print(\"\\n[1/5] BF16 baseline PPL...\")\n    ppl_bf16 = evaluate_perplexity(model, tokenizer, device)\n    print(f\"  BF16 PPL = {ppl_bf16:.4f}\")\n\n    # --- Eval: Uniform 4-bit ---\n    print(\"\\n[2/5] Uniform 4-bit PPL...\")\n    orig_fwds = patch_attention(model, uniform[\"allocation\"])\n    ppl_uniform = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Uniform-4bit PPL = {ppl_uniform:.4f}\")\n\n    # --- Eval: Constrained MCKP ---\n    print(\"\\n[3/5] Constrained MCKP PPL...\")\n    orig_fwds = patch_attention(model, constrained[\"allocation\"])\n    ppl_constrained = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Constrained PPL = {ppl_constrained:.4f}\")\n\n    # --- Eval: Unconstrained MCKP ---\n    print(\"\\n[4/5] Unconstrained MCKP PPL...\")\n    orig_fwds = patch_attention(model, unconstrained[\"allocation\"])\n    ppl_unconstrained = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Unconstrained PPL = {ppl_unconstrained:.4f}\")\n\n    # --- Eval: Greedy ---\n    print(\"\\n[5/5] Greedy PPL...\")\n    orig_fwds = patch_attention(model, greedy[\"allocation\"])\n    ppl_greedy = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Greedy PPL = {ppl_greedy:.4f}\")\n\n    # --- Save results ---\n    elapsed = time.time() - t0\n\n    results = {\n        \"model\": MODEL_PATH,\n        \"model_name\": \"Phi-3-medium-14B\",\n        \"precision\": \"bfloat16\",\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"profiling_source\": PROFILE_PATH,\n        \"synthesis\": {\"ratio_4bit\": RATIO_4BIT, \"ratio_8bit\": RATIO_8BIT},\n        \"constraint\": {\"budget\": BUDGET, \"max_2bit\": MAX_2BIT, \"l0_exclude_2bit\": True},\n        \"analysis\": {\"top5_concentration\": round(top5_concentration, 4)},\n        \"ppl_bf16\": round(ppl_bf16, 4),\n        \"ppl_uniform_4bit\": round(ppl_uniform, 4),\n        \"ppl_constrained_mckp\": round(ppl_constrained, 4),\n        \"ppl_unconstrained_mckp\": round(ppl_unconstrained, 4),\n        \"ppl_greedy\": round(ppl_greedy, 4),\n        \"delta_uniform\": round(ppl_uniform - ppl_bf16, 4),\n        \"delta_constrained\": round(ppl_constrained - ppl_bf16, 4),\n        \"delta_unconstrained\": round(ppl_unconstrained - ppl_bf16, 4),\n        \"delta_greedy\": round(ppl_greedy - ppl_bf16, 4),\n        \"constrained_vs_uniform\": round(ppl_uniform - ppl_constrained, 4),\n        \"constrained_bit_distribution\": constrained.get(\"bit_distribution\", {}),\n        \"unconstrained_bit_distribution\": unconstrained.get(\"bit_distribution\", {}),\n        \"greedy_bit_distribution\": greedy.get(\"bit_distribution\", {}),\n        \"constrained_allocation\": {k: list(v) for k, v in constrained[\"allocation\"].items()},\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n\n    os.makedirs(\"artifacts\", exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {OUTPUT_PATH}\")\n\n    # --- Summary ---\n    print(f\"\\n{'='*65}\")\n    print(\"RESULTS — Phi-3-medium-14B Constrained MCKP Pipeline\")\n    print(f\"{'='*65}\")\n    print(f\"{'Method':<28} {'PPL':>10} {'Delta':>10} {'vs Uniform':>12}\")\n    print(\"-\" * 65)\n    print(f\"{'Baseline (bf16)':<28} {ppl_bf16:>10.4f} {'---':>10} {'---':>12}\")\n    print(f\"{'Constrained MCKP (k=8)':<28} {ppl_constrained:>10.4f} {ppl_constrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_constrained:>+12.4f}\")\n    print(f\"{'Unconstrained MCKP':<28} {ppl_unconstrained:>10.4f} {ppl_unconstrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_unconstrained:>+12.4f}\")\n    print(f\"{'Greedy':<28} {ppl_greedy:>10.4f} {ppl_greedy-ppl_bf16:>+10.4f} {ppl_uniform-ppl_greedy:>+12.4f}\")\n    print(f\"{'Uniform 4-bit':<28} {ppl_uniform:>10.4f} {ppl_uniform-ppl_bf16:>+10.4f} {'---':>12}\")\n    print(f\"\\nTop-5% concentration: {top5_concentration:.4f}\")\n    print(f\"Total time: {elapsed/60:.1f}min\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T02:16:11.014662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_constrained_pipeline.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T02:16:11.014863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_compounding_sweep.py",
+              "content": "\"\"\"Phi-3-medium-14B compounding sweep — measure super-additivity of 2-bit deltas.\n\nArchitecture: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads.\nProgressively apply 2-bit quantization to increasing numbers of heads\n(sorted by individual delta, most sensitive first) and measure joint PPL.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport argparse\nimport json\nimport math\nimport time\nimport torch\nimport torch.nn.functional as F\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct\"\nPROFILE_PATH = \"artifacts/phi3_medium_profiles_hires.json\"\nOUTPUT_PATH = \"artifacts/phi3_medium_compounding_sweep.json\"\n\n\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n    with open(path) as f:\n        samples = json.load(f)\n    all_ids = []\n    for s in samples:\n        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n        if len(tokens) >= seq_len:\n            all_ids.append(tokens[:seq_len])\n        if len(all_ids) >= num_samples:\n            break\n    if not all_ids:\n        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\n\n\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n    total_loss = 0.0\n    total_tokens = 0\n    n = input_ids.shape[0]\n    with torch.no_grad():\n        for start in range(0, n, batch_size):\n            end = min(start + batch_size, n)\n            batch = input_ids[start:end]\n            outputs = model(\n                batch, use_cache=False,\n                cache_position=torch.arange(seq_len, device=device)\n            )\n            shift_logits = outputs.logits[:, :-1].contiguous()\n            shift_labels = batch[:, 1:].contiguous()\n            loss = F.cross_entropy(\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\n                shift_labels.view(-1),\n                reduction=\"sum\"\n            )\n            total_loss += loss.item()\n            total_tokens += shift_labels.numel()\n            del outputs, shift_logits, loss\n            torch.cuda.empty_cache()\n    return math.exp(total_loss / total_tokens)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Phi-3-medium-14B compounding sweep\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:1\")\n    parser.add_argument(\"--num_samples\", type=int, default=64)\n    parser.add_argument(\"--seq_len\", type=int, default=2048)\n    parser.add_argument(\"--batch_size\", type=int, default=1)\n    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n    args = parser.parse_args()\n\n    device = args.gpu\n    n_values = [1, 2, 4, 8, 16, 32, 64, 128, 200, 400]\n    t0 = time.time()\n\n    # Load profiles\n    print(\"Loading profiles...\")\n    with open(PROFILE_PATH) as f:\n        raw = json.load(f)\n    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n\n    head_deltas = []\n    for l_str in sorted(profiles.keys(), key=int):\n        for h_str in sorted(profiles[l_str].keys(), key=int):\n            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n            head_deltas.append({\n                \"layer\": int(l_str),\n                \"head\": int(h_str),\n                \"key\": f\"{l_str},{h_str}\",\n                \"delta_2bit\": d2,\n            })\n    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n\n    total_kv_heads = len(head_deltas)\n    n_values = [n for n in n_values if n <= total_kv_heads]\n    print(f\"Total KV heads: {total_kv_heads}\")\n    print(f\"Sweep n values: {n_values}\")\n    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n\n    # Load model\n    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=False)\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16,\n        attn_implementation=\"eager\", trust_remote_code=False\n    )\n    model = model.to(device)\n    model.eval()\n    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n\n    # Load calibration data\n    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n    input_ids = load_calibration_data(\n        tokenizer, args.calibration_data,\n        args.num_samples, args.seq_len, device)\n    print(f\"Loaded {input_ids.shape[0]} sequences\")\n\n    # Baseline\n    print(\"\\nMeasuring baseline PPL...\")\n    baseline_ppl = compute_ppl_batched(\n        model, input_ids, args.seq_len, args.batch_size, device)\n    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n\n    # Sweep\n    results = []\n    for n in n_values:\n        print(f\"\\n--- n={n} ---\")\n        top_n = head_deltas[:n]\n        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_n}\n        sum_individual = sum(h[\"delta_2bit\"] for h in top_n)\n\n        orig_fwds = patch_attention(model, allocation)\n        joint_ppl = compute_ppl_batched(\n            model, input_ids, args.seq_len, args.batch_size, device)\n        restore_attention(model, orig_fwds)\n\n        joint_delta = joint_ppl - baseline_ppl\n        predicted_ppl = baseline_ppl + sum_individual\n        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n\n        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n\n        results.append({\n            \"n\": n,\n            \"heads\": [h[\"key\"] for h in top_n],\n            \"sum_individual_delta\": round(sum_individual, 6),\n            \"joint_ppl\": round(joint_ppl, 4),\n            \"joint_delta\": round(joint_delta, 6),\n            \"predicted_ppl\": round(predicted_ppl, 4),\n            \"super_additive_ratio\": round(ratio, 4),\n        })\n\n    elapsed = time.time() - t0\n\n    output = {\n        \"experiment\": \"phi3_medium_compounding_sweep\",\n        \"model\": MODEL_PATH,\n        \"model_name\": \"Phi-3-medium-14B\",\n        \"pattern\": \"Spread\",\n        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n        \"calibration\": {\n            \"path\": args.calibration_data,\n            \"num_samples\": args.num_samples,\n            \"seq_len\": args.seq_len,\n        },\n        \"total_kv_heads\": total_kv_heads,\n        \"results\": results,\n        \"top_heads\": [\n            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n            for h in head_deltas[:10]\n        ],\n        \"timing_seconds\": round(elapsed, 1),\n    }\n\n    os.makedirs(\"artifacts\", exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n\n    # Summary\n    print(f\"\\n{'='*70}\")\n    print(\"COMPOUNDING SWEEP — Phi-3-medium-14B (Spread, c=0.17)\")\n    print(f\"{'='*70}\")\n    print(f\"{'n':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n    print(\"-\" * 70)\n    for r in results:\n        print(f\"{r['n']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n              f\"{r['super_additive_ratio']:>8.4f}\")\n    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T02:16:11.015137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_compounding_sweep.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T02:16:11.015304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "git add run_phi3_medium_constrained_pipeline.py run_phi3_medium_compounding_sweep.py && git stash",
+              "description": "Stage and stash new scripts for sync"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T02:16:11.015456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved working directory and index state WIP on master: d96d7da refactor: systematic claim-strength reframing for reviewer response"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T02:16:11.015592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "git stash pop",
+              "description": "Restore stashed changes"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T02:16:11.015772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "On branch master\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tnew file:   run_phi3_medium_compounding_sweep.py\n\tnew file:   run_phi3_medium_constrained_pipeline.py\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   docs/paper/abstract.tex\n\tmodified:   docs/paper/analysis.tex\n\tmodified:   docs/paper/conclusion.tex\n\tmodified:   docs/paper/experiments.tex\n\tmodified:   docs/paper/figures/fig1_head_delta_heatmap.pdf\n\tmodified:   docs/paper/introduction.tex\n\tmodified:   docs/paper/main.aux\n\tmodified:   docs/paper/main.bbl\n\tmodified:   docs/paper/main.blg\n\tmodified:   docs/paper/main.fdb_latexmk\n\tmodified:   docs/paper/main.fls\n\tmodified:   docs/paper/main.log\n\tmodified:   docs/paper/main.out\n\tmodified:   docs/paper/main.pdf\n\tmodified:   docs/paper/method.tex\n\tmodified:   paper_provenance.yaml\n\tmodified:   run_kivi_baseline.py\n\tmodified:   run_pythia14b_constrained_pipeline.py\n\tmodified:   run_qwen7b_8k_spotcheck.py\n\tmodified:   run_qwen_hires_constrained.py\n\tmodified:   run_yi15_full_pipeline.py\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\t.claude/\n\tAGENTS.md\n\tROADMAP.lock\n\tROADMAP.md\n\t__pycache__/\n\tanalyze_codellama_profiling.py\n\tartifacts/\n\tcheckpoints/\n\tdecisions.lock\n\tdecisions.yaml\n\tdocs/IDEA_BRIEF.md\n\tdocs/paper/_pdf_images/\n\tdocs/paper/figures/fig_compounding_curves.pdf\n\tdocs/paper/figures/fig_compounding_curves.png\n\tdream_registry.lock\n\tdream_registry.yaml\n\tdream_registry.yaml.bak\n\texperiment_plan.lock\n\texperiment_plan.yaml\n\tfigures/\n\tgenerate_compounding_curves.py\n\tgenerate_hires_heatmap.py\n\tliterature_map.lock\n\tliterature_map.yaml\n\tlogs/\n\tmemory.md\n\tpaper_framing.md\n\tpaper_framing_backup_current.md\n\tpaper_provenance.lock\n\tregistry.lock\n\tregistry.yaml\n\treport.md\n\trun_c4_cross_dataset.py\n\trun_codellama_hires_profiling.py\n\trun_deepseekvl_hires_profiling.py\n\trun_falcon7b\n…[truncated 884 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T02:16:11.015942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_constrained_pipeline.py | base64 -w0",
+              "description": "Base64 encode constrained pipeline script"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T02:16:11.016100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IiIiUGhpLTMtbWVkaXVtLTE0QiBjb25zdHJhaW5lZCBNQ0tQICsgV2lraVRleHQtMiBldmFsIHBpcGVsaW5lLgoKQXJjaGl0ZWN0dXJlOiA0MCBsYXllcnMgw5cgMTAgS1YgaGVhZHMgKEdRQSA0OjEpLCA0MDAgdG90YWwgS1YgaGVhZHMuClByb2ZpbGluZyBzb3VyY2U6IGFydGlmYWN0cy9waGkzX21lZGl1bV9wcm9maWxlc19oaXJlcy5qc29uICgyLWJpdCBvbmx5KS4KNC1iaXQvOC1iaXQgZGVsdGFzIHN5bnRoZXNpemVkIGZyb20gMi1iaXQgdmlhIGZpeGVkIHJhdGlvcy4KIiIiCmltcG9ydCBvcwpvcy5lbnZpcm9uWyJIRl9IT01FIl0gPSAiL3Jvb3QvYXV0b2RsLXRtcC8uaGZfY2FjaGUiCm9zLmVudmlyb25bIkhGX0RBVEFTRVRTX09GRkxJTkUiXSA9ICIxIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCB0aW1lCmltcG9ydCB0b3JjaApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIsIEF1dG9Db25maWcKZnJvbSBldmFsX3BwbCBpbXBvcnQgcGF0Y2hfYXR0ZW50aW9uLCByZXN0b3JlX2F0dGVudGlvbiwgZXZhbHVhdGVfcGVycGxleGl0eQpmcm9tIHNvbHZlciBpbXBvcnQgKHNvbHZlX21ja3BfY29uc3RyYWluZWQsIHNvbHZlX21ja3AsCiAgICAgICAgICAgICAgICAgICAgc29sdmVfZ3JlZWR5X3JhdGVxdWFudCwgdW5pZm9ybV9xdWFudGl6YXRpb25fYmFzZWxpbmUpCgpNT0RFTF9QQVRIID0gIi9yb290L2F1dG9kbC10bXAvLmhmX2NhY2hlL0xMTS1SZXNlYXJjaC9QaGktMy1tZWRpdW0tMTI4ay1pbnN0cnVjdCIKUFJPRklMRV9QQVRIID0gImFydGlmYWN0cy9waGkzX21lZGl1bV9wcm9maWxlc19oaXJlcy5qc29uIgpPVVRQVVRfUEFUSCA9ICJhcnRpZmFjdHMvcGhpM19tZWRpdW1fY29uc3RyYWluZWRfcmVzdWx0cy5qc29uIgpCVURHRVQgPSAwLjI1Ck1BWF8yQklUID0gOApSQVRJT180QklUID0gMC4yNQpSQVRJT184QklUID0gMC4wNQoKCmRlZiBzeW50aGVzaXplX211bHRpYml0X3Byb2ZpbGVzKHJhd19wcm9maWxlcywgbnVtX2xheWVycywgbnVtX2t2X2hlYWRzKToKICAgICIiIlN5bnRoZXNpemUgNC1iaXQgYW5kIDgtYml0IGRlbHRhcyBmcm9tIDItYml0LW9ubHkgcHJvZmlsaW5nIGRhdGEuIiIiCiAgICBwcm9maWxlcyA9IHt9CiAgICBmb3IgbGkgaW4gcmFuZ2UobnVtX2xheWVycyk6CiAgICAgICAgbF9zdHIgPSBzdHIobGkpCiAgICAgICAgbGF5ZXJfZGF0YSA9IHJhd19wcm9maWxlc1tsX3N0cl0KICAgICAgICBwcm9maWxlc1tsX3N0cl0gPSB7fQogICAgICAgIGZvciBoaSBpbiByYW5nZShudW1fa3ZfaGVhZHMpOgogICAgICAgICAgICBoX3N0ciA9IHN0cihoaSkKICAgICAgICAgICAgZDIgPSBsYXllcl9kYXRhW2hfc3RyXVsicXVhbnRpemF0aW9uIl1bIjIiXQogICAgICAgICAgICBwcm9maWxlc1tsX3N0cl1baF9zdHJdID0gewogICAgICAgICAgICAgICAgInF1YW50aXphdGlvbiI6IHsKICAgICAgICAgICAgICAgICAgICAiMiI6IGQy\n…[truncated 10064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T02:16:11.016243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_compounding_sweep.py | base64 -w0",
+              "description": "Base64 encode compounding sweep script"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T02:16:11.016390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IiIiUGhpLTMtbWVkaXVtLTE0QiBjb21wb3VuZGluZyBzd2VlcCDigJQgbWVhc3VyZSBzdXBlci1hZGRpdGl2aXR5IG9mIDItYml0IGRlbHRhcy4KCkFyY2hpdGVjdHVyZTogNDAgbGF5ZXJzIMOXIDEwIEtWIGhlYWRzIChHUUEgNDoxKSwgNDAwIHRvdGFsIEtWIGhlYWRzLgpQcm9ncmVzc2l2ZWx5IGFwcGx5IDItYml0IHF1YW50aXphdGlvbiB0byBpbmNyZWFzaW5nIG51bWJlcnMgb2YgaGVhZHMKKHNvcnRlZCBieSBpbmRpdmlkdWFsIGRlbHRhLCBtb3N0IHNlbnNpdGl2ZSBmaXJzdCkgYW5kIG1lYXN1cmUgam9pbnQgUFBMLgoiIiIKaW1wb3J0IG9zCm9zLmVudmlyb25bIkhGX0hPTUUiXSA9ICIvcm9vdC9hdXRvZGwtdG1wLy5oZl9jYWNoZSIKb3MuZW52aXJvblsiSEZfREFUQVNFVFNfT0ZGTElORSJdID0gIjEiCgppbXBvcnQgYXJncGFyc2UKaW1wb3J0IGpzb24KaW1wb3J0IG1hdGgKaW1wb3J0IHRpbWUKaW1wb3J0IHRvcmNoCmltcG9ydCB0b3JjaC5ubi5mdW5jdGlvbmFsIGFzIEYKZnJvbSB0cmFuc2Zvcm1lcnMgaW1wb3J0IEF1dG9Nb2RlbEZvckNhdXNhbExNLCBBdXRvVG9rZW5pemVyLCBBdXRvQ29uZmlnCmZyb20gZXZhbF9wcGwgaW1wb3J0IHBhdGNoX2F0dGVudGlvbiwgcmVzdG9yZV9hdHRlbnRpb24KCk1PREVMX1BBVEggPSAiL3Jvb3QvYXV0b2RsLXRtcC8uaGZfY2FjaGUvTExNLVJlc2VhcmNoL1BoaS0zLW1lZGl1bS0xMjhrLWluc3RydWN0IgpQUk9GSUxFX1BBVEggPSAiYXJ0aWZhY3RzL3BoaTNfbWVkaXVtX3Byb2ZpbGVzX2hpcmVzLmpzb24iCk9VVFBVVF9QQVRIID0gImFydGlmYWN0cy9waGkzX21lZGl1bV9jb21wb3VuZGluZ19zd2VlcC5qc29uIgoKCmRlZiBsb2FkX2NhbGlicmF0aW9uX2RhdGEodG9rZW5pemVyLCBwYXRoLCBudW1fc2FtcGxlcywgc2VxX2xlbiwgZGV2aWNlKToKICAgIHdpdGggb3BlbihwYXRoKSBhcyBmOgogICAgICAgIHNhbXBsZXMgPSBqc29uLmxvYWQoZikKICAgIGFsbF9pZHMgPSBbXQogICAgZm9yIHMgaW4gc2FtcGxlczoKICAgICAgICB0b2tlbnMgPSB0b2tlbml6ZXIuZW5jb2RlKHNbInRleHQiXSwgYWRkX3NwZWNpYWxfdG9rZW5zPUZhbHNlKQogICAgICAgIGlmIGxlbih0b2tlbnMpID49IHNlcV9sZW46CiAgICAgICAgICAgIGFsbF9pZHMuYXBwZW5kKHRva2Vuc1s6c2VxX2xlbl0pCiAgICAgICAgaWYgbGVuKGFsbF9pZHMpID49IG51bV9zYW1wbGVzOgogICAgICAgICAgICBicmVhawogICAgaWYgbm90IGFsbF9pZHM6CiAgICAgICAgcmFpc2UgUnVudGltZUVycm9yKGYiTm8gY2FsaWJyYXRpb24gc2VxcyB3aXRoID49IHtzZXFfbGVufSB0b2tlbnMiKQogICAgcmV0dXJuIHRvcmNoLnRlbnNvcihhbGxfaWRzLCBkdHlwZT10b3JjaC5sb25nLCBkZXZpY2U9ZGV2aWNlKQoKCmRlZiBjb21wdXRlX3BwbF9iYXRjaGVkKG1vZGVsLCBpbnB1dF9pZHMsIHNlcV9sZW4sIGJhdGNoX3NpemUsIGRldmljZSk6CiAgICB0b3RhbF9sb3NzID0gMC4wCiAgICB0b3RhbF90b2tlbnMgPSAwCiAgICBu\n…[truncated 7772 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T02:16:11.016577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat > /root/ratekv/run_phi3_medium_constrained_pipeline.py << 'SCRIPT_EOF'\n\"\"\"Phi-3-medium-14B constrained MCKP + WikiText-2 eval pipeline.\n\nArchitecture: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads.\nProfiling source: artifacts/phi3_medium_profiles_hires.json (2-bit only).\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport argparse\nimport json\nimport time\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import (solve_mckp_constrained, solve_mckp,\n                    solve_greedy_ratequant, uniform_quantization_baseline)\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct\"\nPROFILE_PATH = \"artifacts/phi3_medium_profiles_hires.json\"\nOUTPUT_PATH = \"artifacts/phi3_medium_constrained_results.json\"\nBUDGET = 0.25\nMAX_2BIT = 8\nRATIO_4BIT = 0.25\nRATIO_8BIT = 0.05\n\n\ndef synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads):\n    \"\"\"Synthesize 4-bit and 8-bit deltas from 2-bit-only profiling data.\"\"\"\n    profiles = {}\n    for li in range(num_layers):\n        l_str = str(li)\n        layer_data = raw_profiles[l_str]\n        profiles[l_str] = {}\n        for hi in range(num_kv_heads):\n            h_str = str(hi)\n            d2 = layer_data[h_str][\"quantization\"][\"2\"]\n            profiles[l_str][h_str] = {\n                \"quantization\": {\n                    \"2\": d2,\n                    \"4\": d2 * RATIO_4BIT,\n                    \"8\": d2 * RATIO_8BIT,\n                }\n            }\n    return profiles\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Phi-3-medium-14B constrained MCKP pipeline\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:1\")\n    args = parser.parse_args()\n\n    device = args.gpu\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(MODEL_PATH, trust_remote_code=False)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n    print(f\"Phi-3-medium-14B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n\n    # Load 2-bit-only profiles and synthesize multi-bit\n    print(f\"\\nLoading profiles from {PROFILE_PATH}...\")\n    with open(PROFILE_PATH) as f:\n        raw = json.load(f)\n    raw_profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n    profiles = synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads)\n    print(f\"Synthesized multi-bit profiles: {num_layers} layers x {num_kv_heads} heads\")\n\n    # Concentration analysis\n    all_deltas_2bit = []\n    for l_str in sorted(profiles.keys(), key=int):\n        for h_str in sorted(profiles[l_str].keys(), key=int):\n            d2 = profiles[l_str][h_str][\"quantization\"][\"2\"]\n            all_deltas_2bit.append(d2)\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\n    total_sum = sum(all_deltas_2bit)\n    top5_sum = sum(sorted_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n    print(f\"Top-5% concentration: {top5_concentration:.4f} (Spread pattern)\")\n\n    # --- Solve allocations ---\n    print(f\"\\n--- Solving allocations (budget={BUDGET}, max_2bit={MAX_2BIT}) ---\")\n\n    constrained = solve_mckp_constrained(\n        profiles, BUDGET, mode=\"quant_only\",\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True)\n\n    unconstrained = solve_mckp(profiles, BUDGET, mode=\"quant_only\")\n\n    greedy = solve_greedy_ratequant(profiles, budget=BUDGET, mode=\"quant_only\")\n\n    uniform = uniform_quantization_baseline(profiles, bits=4)\n\n    for name, sol in [(\"Constrained MCKP\", constrained),\n                      (\"Unconstrained MCKP\", unconstrained),\n                      (\"Greedy\", greedy),\n                      (\"Uniform-4bit\", uniform)]:\n        bits_dist = {}\n        for k, v in sol[\"allocation\"].items():\n            b = int(v[1])\n            bits_dist[b] = bits_dist.get(b, 0) + 1\n        print(f\"  {name}: mem={sol['actual_memory_ratio']:.4f}, \"\n              f\"dist={sol['total_distortion']:.6f}, bits={bits_dist}\")\n\n    # --- Load model ---\n    print(f\"\\nLoading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=False)\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16,\n        attn_implementation=\"eager\", trust_remote_code=False\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"Model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    # --- Eval: BF16 baseline ---\n    print(\"\\n[1/5] BF16 baseline PPL...\")\n    ppl_bf16 = evaluate_perplexity(model, tokenizer, device)\n    print(f\"  BF16 PPL = {ppl_bf16:.4f}\")\n\n    # --- Eval: Uniform 4-bit ---\n    print(\"\\n[2/5] Uniform 4-bit PPL...\")\n    orig_fwds = patch_attention(model, uniform[\"allocation\"])\n    ppl_uniform = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Uniform-4bit PPL = {ppl_uniform:.4f}\")\n\n    # --- Eval: Constrained MCKP ---\n    print(\"\\n[3/5] Constrained MCKP PPL...\")\n    orig_fwds = patch_attention(model, constrained[\"allocation\"])\n    ppl_constrained = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Constrained PPL = {ppl_constrained:.4f}\")\n\n    # --- Eval: Unconstrained MCKP ---\n    print(\"\\n[4/5] Unconstrained MCKP PPL...\")\n    orig_fwds = patch_attention(model, unconstrained[\"allocation\"])\n    ppl_unconstrained = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Unconstrained PPL = {ppl_unconstrained:.4f}\")\n\n    # --- Eval: Greedy ---\n    print(\"\\n[5/5] Greedy PPL...\")\n    orig_fwds = patch_attention(model, greedy[\"allocation\"])\n    ppl_greedy = evaluate_perplexity(model, tokenizer, device)\n    restore_attention(model, orig_fwds)\n    print(f\"  Greedy PPL = {ppl_greedy:.4f}\")\n\n    # --- Save results ---\n    elapsed = time.time() - t0\n\n    results = {\n        \"model\": MODEL_PATH,\n        \"model_name\": \"Phi-3-medium-14B\",\n        \"precision\": \"bfloat16\",\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"profiling_source\": PROFILE_PATH,\n        \"synthesis\": {\"ratio_4bit\": RATIO_4BIT, \"ratio_8bit\": RATIO_8BIT},\n        \"constraint\": {\"budget\": BUDGET, \"max_2bit\": MAX_2BIT, \"l0_exclude_2bit\": True},\n        \"analysis\": {\"top5_concentration\": round(top5_concentration, 4)},\n        \"ppl_bf16\": round(ppl_bf16, 4),\n        \"ppl_uniform_4bit\": round(ppl_uniform, 4),\n        \"ppl_constrained_mckp\": round(ppl_constrained, 4),\n        \"ppl_unconstrained_mckp\": round(ppl_unconstrained, 4),\n        \"ppl_greedy\": round(ppl_greedy, 4),\n        \"delta_uniform\": round(ppl_uniform - ppl_bf16, 4),\n        \"delta_constrained\": round(ppl_constrained - ppl_bf16, 4),\n        \"delta_unconstrained\": round(ppl_unconstrained - ppl_bf16, 4),\n        \"delta_greedy\": round(ppl_greedy - ppl_bf16, 4),\n        \"constrained_vs_uniform\": round(ppl_uniform - ppl_constrained, 4),\n        \"constrained_bit_distribution\": constrained.get(\"bit_distribution\", {}),\n        \"unconstrained_bit_distribution\": unconstrained.get(\"bit_distribution\", {}),\n        \"greedy_bit_distribution\": greedy.get(\"bit_distribution\", {}),\n        \"constrained_allocation\": {k: list(v) for k, v in constrained[\"allocation\"].items()},\n        \"elapsed_seconds\": round(elapsed, 1),\n    }\n\n    os.makedirs(\"artifacts\", exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {OUTPUT_PATH}\")\n\n    # --- Summary ---\n    print(f\"\\n{'='*65}\")\n    print(\"RESULTS — Phi-3-medium-14B Constrained MCKP Pipeline\")\n    print(f\"{'='*65}\")\n    print(f\"{'Method':<28} {'PPL':>10} {'Delta':>10} {'vs Uniform':>12}\")\n    print(\"-\" * 65)\n    print(f\"{'Baseline (bf16)':<28} {ppl_bf16:>10.4f} {'---':>10} {'---':>12}\")\n    print(f\"{'Constrained MCKP (k=8)':<28} {ppl_constrained:>10.4f} {ppl_constrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_constrained:>+12.4f}\")\n    print(f\"{'Unconstrained MCKP':<28} {ppl_unconstrained:>10.4f} {ppl_unconstrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_unconstrained:>+12.4f}\")\n    print(f\"{'Greedy':<28} {ppl_greedy:>10.4f} {ppl_greedy-ppl_bf16:>+10.4f} {ppl_uniform-ppl_greedy:>+12.4f}\")\n    print(f\"{'Uniform 4-bit':<28} {ppl_uniform:>10.4f} {ppl_uniform-ppl_bf16:>+10.4f} {'---':>12}\")\n    print(f\"\\nTop-5% concentration: {top5_concentration:.4f}\")\n    print(f\"Total time: {elapsed/60:.1f}min\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"constrained pipeline written OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T02:16:11.016849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"constrained pipeline written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T02:16:11.017016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat > /root/ratekv/run_phi3_medium_compounding_sweep.py << 'SCRIPT_EOF'\n\"\"\"Phi-3-medium-14B compounding sweep — measure super-additivity of 2-bit deltas.\n\nArchitecture: 40 layers × 10 KV heads (GQA 4:1), 400 total KV heads.\nProgressively apply 2-bit quantization to increasing numbers of heads\n(sorted by individual delta, most sensitive first) and measure joint PPL.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport argparse\nimport json\nimport math\nimport time\nimport torch\nimport torch.nn.functional as F\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct\"\nPROFILE_PATH = \"artifacts/phi3_medium_profiles_hires.json\"\nOUTPUT_PATH = \"artifacts/phi3_medium_compounding_sweep.json\"\n\n\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n    with open(path) as f:\n        samples = json.load(f)\n    all_ids = []\n    for s in samples:\n        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n        if len(tokens) >= seq_len:\n            all_ids.append(tokens[:seq_len])\n        if len(all_ids) >= num_samples:\n            break\n    if not all_ids:\n        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\n\n\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n    total_loss = 0.0\n    total_tokens = 0\n    n = input_ids.shape[0]\n    with torch.no_grad():\n        for start in range(0, n, batch_size):\n            end = min(start + batch_size, n)\n            batch = input_ids[start:end]\n            outputs = model(\n                batch, use_cache=False,\n                cache_position=torch.arange(seq_len, device=device)\n            )\n            shift_logits = outputs.logits[:, :-1].contiguous()\n            shift_labels = batch[:, 1:].contiguous()\n            loss = F.cross_entropy(\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\n                shift_labels.view(-1),\n                reduction=\"sum\"\n            )\n            total_loss += loss.item()\n            total_tokens += shift_labels.numel()\n            del outputs, shift_logits, loss\n            torch.cuda.empty_cache()\n    return math.exp(total_loss / total_tokens)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Phi-3-medium-14B compounding sweep\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:1\")\n    parser.add_argument(\"--num_samples\", type=int, default=64)\n    parser.add_argument(\"--seq_len\", type=int, default=2048)\n    parser.add_argument(\"--batch_size\", type=int, default=1)\n    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n    args = parser.parse_args()\n\n    device = args.gpu\n    n_values = [1, 2, 4, 8, 16, 32, 64, 128, 200, 400]\n    t0 = time.time()\n\n    # Load profiles\n    print(\"Loading profiles...\")\n    with open(PROFILE_PATH) as f:\n        raw = json.load(f)\n    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n\n    head_deltas = []\n    for l_str in sorted(profiles.keys(), key=int):\n        for h_str in sorted(profiles[l_str].keys(), key=int):\n            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n            head_deltas.append({\n                \"layer\": int(l_str),\n                \"head\": int(h_str),\n                \"key\": f\"{l_str},{h_str}\",\n                \"delta_2bit\": d2,\n            })\n    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n\n    total_kv_heads = len(head_deltas)\n    n_values = [n for n in n_values if n <= total_kv_heads]\n    print(f\"Total KV heads: {total_kv_heads}\")\n    print(f\"Sweep n values: {n_values}\")\n    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n\n    # Load model\n    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=False)\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16,\n        attn_implementation=\"eager\", trust_remote_code=False\n    )\n    model = model.to(device)\n    model.eval()\n    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n\n    # Load calibration data\n    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n    input_ids = load_calibration_data(\n        tokenizer, args.calibration_data,\n        args.num_samples, args.seq_len, device)\n    print(f\"Loaded {input_ids.shape[0]} sequences\")\n\n    # Baseline\n    print(\"\\nMeasuring baseline PPL...\")\n    baseline_ppl = compute_ppl_batched(\n        model, input_ids, args.seq_len, args.batch_size, device)\n    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n\n    # Sweep\n    results = []\n    for n in n_values:\n        print(f\"\\n--- n={n} ---\")\n        top_n = head_deltas[:n]\n        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_n}\n        sum_individual = sum(h[\"delta_2bit\"] for h in top_n)\n\n        orig_fwds = patch_attention(model, allocation)\n        joint_ppl = compute_ppl_batched(\n            model, input_ids, args.seq_len, args.batch_size, device)\n        restore_attention(model, orig_fwds)\n\n        joint_delta = joint_ppl - baseline_ppl\n        predicted_ppl = baseline_ppl + sum_individual\n        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n\n        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n\n        results.append({\n            \"n\": n,\n            \"heads\": [h[\"key\"] for h in top_n],\n            \"sum_individual_delta\": round(sum_individual, 6),\n            \"joint_ppl\": round(joint_ppl, 4),\n            \"joint_delta\": round(joint_delta, 6),\n            \"predicted_ppl\": round(predicted_ppl, 4),\n            \"super_additive_ratio\": round(ratio, 4),\n        })\n\n    elapsed = time.time() - t0\n\n    output = {\n        \"experiment\": \"phi3_medium_compounding_sweep\",\n        \"model\": MODEL_PATH,\n        \"model_name\": \"Phi-3-medium-14B\",\n        \"pattern\": \"Spread\",\n        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n        \"calibration\": {\n            \"path\": args.calibration_data,\n            \"num_samples\": args.num_samples,\n            \"seq_len\": args.seq_len,\n        },\n        \"total_kv_heads\": total_kv_heads,\n        \"results\": results,\n        \"top_heads\": [\n            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n            for h in head_deltas[:10]\n        ],\n        \"timing_seconds\": round(elapsed, 1),\n    }\n\n    os.makedirs(\"artifacts\", exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n\n    # Summary\n    print(f\"\\n{'='*70}\")\n    print(\"COMPOUNDING SWEEP — Phi-3-medium-14B (Spread, c=0.17)\")\n    print(f\"{'='*70}\")\n    print(f\"{'n':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n    print(\"-\" * 70)\n    for r in results:\n        print(f\"{r['n']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n              f\"{r['super_additive_ratio']:>8.4f}\")\n    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"compounding sweep written OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T02:16:11.017227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"compounding sweep written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T02:16:11.017369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_phi3_medium_constrained_pipeline.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T02:16:11.017493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_phi3_medium_compounding_sweep.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T02:16:11.017616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: run_phi3_medium_constrained_pipeline.py [-h] [--gpu GPU]\\\\n\\\\nPhi-3-medium-14B constrained MCKP pipeline\\\\n\\\\noptions:\\\\n  -h, --help  show this help message and exit\\\\n  --gpu GPU\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T02:16:11.017769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: run_phi3_medium_compounding_sweep.py [-h] [--gpu GPU]\\\\n                                            [--num_samples NUM_SAMPLES]\\\\n                                            [--seq_len SEQ_LEN]\\\\n                                            [--batch_size BATCH_SIZE]\\\\n                                            [--calibration_data CALIBRATION_DATA]\\\\n\\\\nPhi-3-medium-14B compounding sweep\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --gpu GPU\\\\n  --num_samples NUM_SAMPLES\\\\n  --seq_len SEQ_LEN\\\\n  --batch_size BATCH_SIZE\\\\n  --calibration_data CALIBRATION_DATA\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T02:16:11.017911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T02:16:11.018027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T02:16:11.018145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T02:16:11.018257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T02:16:11.018396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3_medium_constrained_mckp",
+              "field": "status",
+              "value": "running",
+              "project": "ratekv",
+              "spec": "{'command': 'python run_phi3_medium_constrained_pipeline.py --gpu cuda:1', 'server': 'westd-37397', 'data_path': 'artifacts/phi3_medium_profiles_hires.json', 'data_count': 400, 'model_name': 'Phi-3-medium-14B', 'seed': 42, 'description': 'Constrained MCKP + unconstrained + greedy + uniform-4bit eval on WikiText-2'}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T02:16:11.018522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'running'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2599}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T02:16:11.018655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3_medium_constrained_mckp",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "ratekv",
+              "spec": "{'command': 'python run_phi3_medium_constrained_pipeline.py --gpu cuda:1', 'server': 'westd-37397', 'data_path': 'artifacts/phi3_medium_profiles_hires.json', 'data_count': 400, 'model_name': 'Phi-3-medium-14B', 'seed': 42, 'description': 'Constrained MCKP + unconstrained + greedy + uniform-4bit eval on WikiText-2'}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T02:16:11.018792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3177}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T02:16:11.018909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3_medium_constrained_mckp",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T02:16:11.019027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3_medium_constrained_mckp\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T02:15:13.523Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:15:13.523Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8869}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T02:16:11.019141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3_medium_constrained_mckp",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "ratekv",
+              "spec": "{'command': 'python run_phi3_medium_constrained_pipeline.py --gpu cuda:1', 'server': 'westd-37397', 'data_path': 'artifacts/phi3_medium_profiles_hires.json', 'data_count': 400, 'model_name': 'Phi-3-medium-14B', 'seed': 42, 'description': 'Constrained MCKP + unconstrained + greedy + uniform-4bit eval on WikiText-2'}"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T02:16:11.019278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3_medium_constrained_mckp\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T02:15:13.523Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:15:18.701Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_phi3_medium_constrained_pipeline.py --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"artifacts/phi3_medium_profiles_hires.json\\\", \\\"data_count\\\": 400, \\\"model_name\\\": \\\"Phi-3-medium-14B\\\", \\\"seed\\\": 42, \\\"description\\\": \\\"Constrained MCKP + unconstrained + greedy + uniform-4bit eval on WikiText-2\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8725}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T02:16:11.019424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && nohup python run_phi3_medium_constrained_pipeline.py --gpu cuda:1 > /root/ratekv/logs/phi3_medium_constrained_mckp.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T02:16:11.019556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && nohup python run_phi3_medium_constrained_pipeline.py --gpu cuda:1 > /root/ratekv/logs/phi3_medium_constrained_mckp.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=391613\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T02:16:11.019717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ls -la /root/ratekv/logs/phi3_medium_constrained_mckp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T02:16:11.019836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -20 /root/ratekv/logs/phi3_medium_constrained_mckp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T02:16:11.019952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1338 May 16 10:15 /root/ratekv/logs/phi3_medium_constrained_mckp.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T02:16:11.020088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\nPhi-3-medium-14B: 40L x 10KV, GQA 4:1, 400 total heads\\\\n\\\\nLoading profiles from artifacts/phi3_medium_profiles_hires.json...\\\\nSynthesized multi-bit profiles: 40 layers x 10 heads\\\\nTop-5% concentration: 0.1742 (Spread pattern)\\\\n\\\\n--- Solving allocations (budget=0.25, max_2bit=8) ---\\\\n  Constrained MCKP: mem=0.2500, dist=2.471070, bits={4: 388, 2: 8, 8: 4}\\\\n  Unconstrained MCKP: mem=0.2500, dist=2.278186, bits={2: 66, 4: 301, 8: 33}\\\\n  Greedy: mem=0.2500, dist=2.278186, bits={2: 66, 4: 301, 8: 33}\\\\n  Uniform-4bit: mem=0.2500, dist=2.605969, bits={4: 400}\\\\n\\\\nLoading model in bf16 to cuda:1...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 6/6 [00:00<00:00, 415.87it/s]\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\\\nToken indices sequence length is longer than the specified maximum sequence length for this model (338534 > 131072). Running this sequence through the model will result in indexing errors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T02:16:11.020258+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在运行。模型已加载，solver 分配完成，正在评估 WikiText-2 PPL。\n\n关键中间结果：\n- **Constrained MCKP**: 388×4bit + 8×2bit + 4×8bit (mem=0.25)\n- **Unconstrained MCKP**: 301×4bit + 66×2bit + 33×8bit (mem=0.25)\n- **Greedy**: 与 Unconstrained 完全一致\n- **Uniform-4bit**: 400×4bit (mem=0.25)\n- Constrained 总 distortion (2.47) 比 Uniform (2.61) 低 5.2%，说明非均匀分配在 Spread 模式下仍有收益\n\ntoken 长度警告是 Phi-3 的 131072 context window 限制，WikiText-2 eval 不受影响（每段 2048 tokens）。\n\n实验预计运行 ~30-40 分钟（14B 模型 5 次 PPL eval）。constrained MCKP 完成后再提交 compounding sweep（共享 cuda:1）。\n\n需要我等进程完成后自动提交 compounding sweep 吗？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003"
+          },
+          "id": "event-000077"
+        }
+      ],
+      "message_count": 77
+    }
+  ]
+}

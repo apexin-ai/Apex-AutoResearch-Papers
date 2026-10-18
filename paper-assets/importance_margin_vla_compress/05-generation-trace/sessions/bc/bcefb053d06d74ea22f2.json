@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bcefb053d06d74ea22f2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd41074 gpu0 openvla attn k09 long",
+  "task_key": "worker_deploy_westd41074_gpu0_openvla_attn_k09_long_20260524T220619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd41074_gpu0_openvla_attn_k09_long_20260524T220619_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "19593d9711db6762a37953551e76c0044b253373f98d7f38de17826727d57d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n服务器: westd-41074\nGPU0: 空闲→部署成功 PID=982879 (982884), 16169 MiB 显存占用\nGPU0 进程数: 1\nRegistry: RUNNING (eval_openvla_attn_k09_long_seed42)\n```\n\n日志显示已开始评估 Task 1/10 (libero_10)，attention pruning 256→230 vision tokens (k=0.9)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

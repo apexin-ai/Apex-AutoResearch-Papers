@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8c1579eb89873219c4",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_2_1778758749.md",
+  "task_key": "loop_2_1778758749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778758749.md",
+    "occurrence": 1,
+    "bytes": 3607,
+    "sha256": "06a5a47f537f6ca9274624baa8f5c306e470c18b48391ac186f3a3e35db979da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T08:49:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-37397 的 cuda:0 和 cuda:1（仅此两张）\n- Mistral hires 结果是 **negative**（MCKP 7.3231 > Uniform 7.1314），已向 Director 提交 Framing 调整提案，**禁止在 Director 决策前动 paper 或默默跑下一个实验填 Mistral 格子**\n- 所有 eval 必须用 bf16，禁止 fp16（Qwen L27 和 Llama 都出过 overflow）\n- 不使用 W&B 的短实验（solver+eval 类）会被 cron 误判为 failed——这类脚本要么加 sentinel file，要么不挂 cron 监控\n- HF_HOME 必须设 `/root/autodl-tmp/.hf_cache`，HF_DATASETS_OFFLINE=1\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，工作目录 `/root/ratekv/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型缓存：`/root/autodl-tmp/.hf_cache/`（Qwen2.5-7B、Llama-3.1-8B、Mistral-7B-v0.3 均已下载）\n- WikiText-2 缓存：`/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/`\n- 活跃进程：无。两张 GPU 均空闲\n- Cron：reconcile 已完成，无活跃 cron\n\n### 3. 📊 当前状态\n**刚完成**：诊断 mistral_hires_pipeline 和 llama_aggressive_compression 的 cron 误判。两个实验实际正常完成，已纠正 registry（mistral→negative，llama_aggressive→success），录入 metrics，发送飞书结果卡片，向 Director 提交完整汇报 + Framing 调整提案。\n\n**Registry 概览**：27 个实验全部 DONE（12 success / 4 negative / 8 failed-早期 / 3 negative-已知）。P0 计划 8/8 完成。无 RUNNING/PREPARING 实验。\n\n**等待中**：\n- Director 对 Framing 调整提案的决策（三选一：A=Architecture-Aware / B=Compression-Level / C=Analysis Tool）\n- Director 对下一步实验的批准（建议 Mistral aggressive + plan_012 downstream + plan_011 visualization）\n\n### 4. 📋 待办\n- Director 选择 narrative A/B/C → 按选择更新 paper_framing.md → 如选 A 则 Claim 2 加 GQA qualifier\n- Director 批准 Mistral aggressive → spawn worker 写 `run_mistral_aggressive.py`（参考 `run_llama_aggressive.py`）→ 提交 cuda:1\n- Director 批准 plan_012 (downstream tasks) → spawn worker 写 lm-eval-harness 脚本 → 提交 cuda:0\n- Director 批准 plan_011 (visualization) → spawn worker 出图（CPU 任务，不占 GPU）\n- 任何实验提交后 → 确保脚本结尾有 sentinel 或用 W&B logging，避免 cron 再次误判\n\n### 5. 🎯 战略上下文\n**核心发现链**：MSE distortion 失败 (mvp_004) → eviction 全面失败 (exp_a/p0_1) → PPL-based profiling + constrained MCKP 成功 (exp_c, 27% on Qwen) → hires profiling 再提升 70% (exp_e) → GQA ratio 是 MCKP 优势的决定性因素 (Llama/Mistral negative at 4x) → 但 aggressive compression (5.3x) 即使低 GQA 也有 45x 优势\n\n**三模型 4x 总结**：Qwen (7:1 GQA) +27% ✓ | Llama (4:1) +0.2% 勉强 ✓ | Mistral (4:1) -2.7% ✗。framing 必须 scope，不能 claim universal。\n\n**易错点**：\n- 不要把 Llama hires 4x 的微弱优势 (+0.019 PPL) 当作 \"success across architectures\"——统计上不显著\n- max_2bit 对 256-head 模型需要按比例缩放（Mistral hires 用了 18，Qwen 用 8），这不是 bug 是 design\n- 距 ARR May 25 deadline 还有 11 天，P1 实验（plan_009/010/011/012/014）需要优先级排序，不能全跑\n- plan_012 (downstream eval) 对论文说服力很重要（reviewer concern #7），建议优先于 plan_009 (oracle)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

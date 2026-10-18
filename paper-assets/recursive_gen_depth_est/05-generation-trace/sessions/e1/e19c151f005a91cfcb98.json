@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e19c151f005a91cfcb98",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_4_1778822430.md",
+  "task_key": "loop_4_1778822430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778822430.md",
+    "occurrence": 1,
+    "bytes": 5185,
+    "sha256": "81aaef27d3e909eb2b9377e3cf261ba7878c1c2b82c1ef2cccad37eb29bd4996"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T05:06:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **gpu-6000pro-2 的 cuda:0 和 cuda:1**（config `execution.servers[0].gpu_ids=[0,1]`）\n- DCOL 是 **non-blocking**（D011 决策）——Atlas/EDD 是 primary contribution，DCOL 无论成败不阻塞论文写作\n- **EMNLP ARR May 25 DDL**——剩 10 天，Phase 2 写作应在 May 18 启动\n- submit_training_job 的启动命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv\n- GPU 编号脚本内始终从 0 开始（框架自动映射物理 GPU）\n- olmo_temp09_002 状态为 QUEUED+killed，不要重新提交——等 GPU 释放后需 Director 决策是否还跑\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **模型路径**: 服务器本地（Pythia-1.4B / OLMo-1B / GPT-2 XL 均已下载）\n- **数据路径**: `/root/autodl-tmp/recursive_gen_depth_est/data/` 下各 cell 子目录\n- **AUC 数据源**: 各 cell 的 `pairwise_auc.json` 是 ground truth；`edd_sensitivity.json` 8/9 已校正可用；`edd_analysis_9cell.json` 系统性偏高 +0.03 **论文不引用**\n- **活跃进程**:\n  - `depth_extension_pythia_d4d5_001`: PID 29626, cuda:0, cron 监控中\n  - `dcol_roberta_v6_001`: PID 136481, cuda:1, cron 监控中, timeout 12h\n- **活跃 Workers**（5 个 running，均为上一 session 尾部派发）:\n  - `worker_research_covariate_shift_literature` — 文献调研\n  - `worker_analysis_global_reconciliation_check` — 数据一致性审计\n  - `worker_analysis_global_data_reconciliation` — 数据一致性审计\n  - `worker_research_literature_map_check` — 文献 map 检查\n  - `worker_experiment_plan_005_cross_model_loo_detailed` — cross-model LOO 详细分析\n\n### 3. 📊 当前状态\n上一 session 完成了：AUC 数据源统一（pipeline JSON 为 truth source）、plot_atlas_figures.py 重构、temp09 d1v2 反转根因确认（协变量偏移，z-score 标准化后恢复）、olmo_topk50 mean_ppl outlier 分析（p90_ppl 完美单调 mean_ppl 不可救）、cross-strategy LOO 完整分析、9-cell baseline battery 完成。\n\n**RUNNING 实验**:\n- `depth_extension_pythia_d4d5_001` (cuda:0) — 验证 EDD≥5，d4/d5 扩展。若 d3v4 和 d4v5 AUC>0.75 则 EDD≥5 成立\n- `dcol_roberta_v6_001` (cuda:1) — RoBERTa-large 替代 DeBERTa 的 DCOL v6，lr=5e-5 + grad clip + NaN guard + collapse guard\n\n**等待中**:\n- 5 个 Worker 回调待处理（上面列出的 running workers）\n- 2 个 cron 回调（实验完成时触发）\n- olmo_temp09_002 排队等 GPU（killed 状态，需 Director 决策）\n\n### 4. 📋 待办（条件触发式）\n- `depth_extension_pythia_d4d5_001` cron 回调到达 → 分析 d3v4/d4v5 AUC → ≥0.75 则 EDD≥5 写入 registry + 更新 Atlas 图 + 汇报 Director；<0.75 则 EDD=3 定论，仍是正面结果（7/9 cells EDD=3）\n- `dcol_roberta_v6_001` cron 回调到达 → 检查 4-class acc vs RF baseline 78.2% → ≥78.2% 则 DCOL 成功（意外收获，更新 framing）；<78.2% 则 DCOL 正式定为 negative result，按 D011 写 negative analysis section\n- 5 个 running Worker 完成 → 读取产出，整合到项目知识文件（literature_map / memory.md）\n- 两个 GPU 实验都完成 → Phase 1 实验收尾完成 → 立即启动 Phase 2 论文写作（spawn paper-writing workers）\n- 论文写作启动前 → 必须 Read `paper_framing.md` + `writing_plan.yaml`（如有）+ red-section skill\n\n### 5. 🎯 战略上下文\n- **核心结论**: 递归生成的文本携带可检测的深度信号。3×3 矩阵（3 模型×3 解码策略）全部 70-85% 4-class acc。信号跨模型（cross-model LOO 66.4%）和跨策略（cross-strategy LOO 59.1%）可迁移。p90_ppl 和 var_surprisal 是最稳定特征。EDD≥3 在 7/9 cells 成立。\n- **Framing (D011 Plan A)**: Atlas/EDD 是 primary contribution，DCOL 降级为 negative analysis。论文是 \"Depth Degradation Atlas\" 故事线，不是 DCOL 故事线。\n- **关键决策链**: D006（解码策略效应模型依赖）→ D007（feature set 稳定但 ranking 因模型异）→ D011（Plan A Atlas primary）→ D014（temp09 反转=协变量偏移，正面发现）→ D015（修正 soft sampling 分类）\n- **易错点**:\n  1. **不要把 `edd_analysis_9cell.json` 的 AUC 用于论文**——它系统性偏高 +0.03，只用 pipeline `pairwise_auc.json`\n  2. **temp09 d1v2 反转不是 bug 是 feature**——已定性为协变量偏移（D014），z-score 标准化后恢复，论文 Discussion 讨论 \"accelerated convergence\"\n  3. **不要说 \"strategy-agnostic\"**——应说 \"strategy-dependent magnitude with consistent signal presence\"（D006）\n  4. **DCOL 无论结果如何都不阻塞论文**——D011 已决策，不要等 DCOL 结果才开始写论文\n  5. **Pythia topk50 是唯一 EDD=1 的 cell**——小模型+受限采样的信号饱和是 Discussion 核心论点\n  6. **mean_ppl 不可用**——极度重尾（kurtosis>4900），论文只用 p90_ppl\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

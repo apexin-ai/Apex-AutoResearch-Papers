@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "106d343471f841d7f4f9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check westd41074 status 20250525",
+  "task_key": "worker_check_westd41074_status_20250525_20260525T230839",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_westd41074_status_20250525_20260525T230839_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "24577bfed9223d83609445b4cc2277b5c211b6f7589f4892d9cd92b444925dc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU0: [运行中] eval_openvla_random_k05_object_seed42_v2 — 未被 kill，Task 6/10 ~ep40/50\nGPU1: [运行中] eval_openvla_l2norm_k05_object_seed42_v2 — 未被 kill，Task 5/10 ~ep40/50\n              eval_pi05_attention_k0925_long_seed42 — Task 6/10 ep30/50 (T6: 17% SR)\nGPU2: [运行中] eval_openvla_attn_k085_long_seed42 — 刚启动，Task 1/10 ep20/50 (0% SR)\nGPU3: [空闲]   zeromask_l2norm 已完成 (2026-05-25 22:44 UTC)\n\n空闲 GPU: GPU3\n```\n\n**注意**: GPU0/GPU1 的 random_k05 和 l2norm_k05 实验 **并未被 kill**，仍在运行并占用 GPU。\n\n---\n\n### zeromask L2norm 结果（已完成）\n\n**Overall SR: 68.8%** (344/500)\n\nPer-task:\n| Task | SR |\n|------|-----|\n| alphabet soup | 84% |\n| cream cheese | 62% |\n| salad dressing | 88% |\n| bbq sauce | 26% |\n| ketchup | 82% |\n| tomato sauce | 54% |\n| butter | 62% |\n| milk | 82% |\n| chocolate pudding | 60% |\n| orange juice | 88% |\n\n### 2×2 Zeromask 对比表（完整）\n\n| | Random | L2norm |\n|---|---|---|\n| **hard-prune** | 62.8% | 70.6% |\n| **zeromask** | 71.8% | **68.8%** |\n\n解读：\n- hard-prune 下 L2norm >> Random（70.6 vs 62.8），说明 L2norm 选的 token 确实更重要\n- zeromask 下 Random ≈ L2norm（71.8 vs 68.8），甚至 Random 略高\n- zeromask Random (71.8%) 最高，说明零掩码 + 随机选择的组合保留了更多信息冗余\n\n---\n\n### π0.5 Profiling 结果（已完成）\n\n| k | Median (ms) | P5-P95 | Speedup |\n|---|---|---|---|\n| 1.0 (baseline) | 209.88 | 197.76–221.67 | — |\n| 0.9 | 206.36 | 171.43–225.03 | 1.7% |\n| 0.5 | 201.87 | 189.21–211.31 | 4.0% |\n\nSpeedup 很小（k=0.5 仅 4%），vision token pruning 对 π0.5 推理延迟影响有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

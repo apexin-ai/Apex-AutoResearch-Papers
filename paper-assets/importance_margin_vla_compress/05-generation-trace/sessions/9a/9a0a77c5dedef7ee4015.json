@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9a0a77c5dedef7ee4015",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops fix westd41074 gpu3 zombie redeploy pi05 random k07",
+  "task_key": "worker_ops_fix-westd41074-gpu3-zombie-redeploy-pi05-random-k07_20260521T110541",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-westd41074-gpu3-zombie-redeploy-pi05-random-k07_20260521T110541_result.json",
+    "occurrence": 1,
+    "bytes": 97,
+    "sha256": "4ce9aa08609f6d9424d74e3e0530a5b16fb2a364071f7658af88e41cbec79f1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同上，历史等待任务，已无需处理。部署已确认成功运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f50b3050908c24c1fe",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "submit eval pi05 l2norm k085 object seed43 postfix",
+  "task_key": "worker_submit_eval_pi05_l2norm_k085_object_seed43_postfix_20260525T003027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_eval_pi05_l2norm_k085_object_seed43_postfix_20260525T003027_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "c6254594698364927bfcefad320b49add23ab5dc386c624649170abe40dda163"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并注册。总结：\n\n- **实验**: `eval_pi05_l2norm_k085_object_seed43_postfix`\n- **服务器**: cqa1-33015, GPU0\n- **命令**: `python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_object --n_episodes 50 --seed 43 --gpu 0`\n- **tmux session**: `eval_pi05_l2norm_k085_object_seed43_postfix`\n- **日志**: `~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_object_seed43_postfix.log`\n- **Registry**: RUNNING，spec 已填写完整\n- **进程状态**: Python 进程运行中，模型加载中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

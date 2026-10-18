@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "436364e27cd71179961c",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops prompted gen verify",
+  "task_key": "worker_ops_prompted-gen-verify_20260518T034636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prompted-gen-verify_20260518T034636_result.json",
+    "occurrence": 1,
+    "bytes": 1907,
+    "sha256": "be68761dd61e461c13eeefc8445ea9d7cd783f19693cbb5650b07640697791fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 核查结论\n\n**69.5% 是真实的，存在于结果文件中。实验完整运行成功，未 crash。**\n\n### 证据\n\n**结果文件** — `/root/autodl-tmp/recursive_gen_depth_est/results/prompted_generation/summary.json`：\n```json\n{\n  \"four_class_accuracy\": 0.6952,\n  \"accuracy_ci_95\": [0.689, 0.7015],\n  \"fold_accuracies\": [0.6885, 0.707, 0.6987, 0.6943, 0.6877],\n  \"baseline_bos_seeded_acc\": 0.833,\n  \"delta_vs_baseline_pp\": -13.78,\n  \"elapsed_hours\": 5.14\n}\n```\n\n**日志** — `/root/autodl-tmp/recursive_gen_depth_est/logs/prompted_gen_gpt2xl_001.log` 确认全部 3 个阶段完成：\n- Phase 1: d0-d3 各生成 5000 samples（50 prompts × 100 samples）\n- Phase 2: 20000 条特征提取完成\n- Phase 3: 5-fold CV 完成，最终输出 `RESULT: 0.6952 [0.689, 0.7015]`\n\n**数据完整** — `data/prompted_gen/` 含 depth_0~3.jsonl（各 ~11-13MB）、features.jsonl（13.7MB）、prompts.json；checkpoints 含 lora_depth_0/1/2。\n\n### Registry \"failed\" vs ROADMAP \"69.5%\" 的矛盾\n\n实验**技术上完全成功**（代码跑完、数据完整、结果写入）。Registry 标 \"failed\" 是**实验目标层面的判断**：prompted generation 的 4-class accuracy (69.5%) 相比 BOS-seeded baseline (83.3%) 下降了 13.8pp，说明 topic prompt 引入的分布变化削弱了 depth signal。\n\nROADMAP 的描述 \"69.5% (signal attenuated but present)\" 是准确的——信号存在但减弱。这不是 crash 或无效输出，而是一个有意义的负面结果（ecological validity 实验发现了 signal degradation）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "four_class_accuracy": 0.6952,
+              "accuracy_ci_95": [
+                0.689,
+                0.7015
+              ],
+              "fold_accuracies": [
+                0.6885,
+                0.707,
+                0.6987,
+                0.6943,
+                0.6877
+              ],
+              "baseline_bos_seeded_acc": 0.833,
+              "delta_vs_baseline_pp": -13.78,
+              "elapsed_hours": 5.14
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

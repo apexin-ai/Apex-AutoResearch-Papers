@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "32f1db8db31022f0bdf4",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code coral ordinal 9cell phase1",
+  "task_key": "worker_code_coral_ordinal_9cell_phase1_20260519T102830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_coral_ordinal_9cell_phase1_20260519T102830.log",
+    "occurrence": 1,
+    "bytes": 988888,
+    "sha256": "2da79e613713120738a759f24d4e45208470c306751b4571766111ae2d7de2ea"
+  },
+  "statistics": {
+    "messages": 571,
+    "user_turns": 1,
+    "tool_calls": 237,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 237,
+      "tool_result": 237,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 558,
+      "chunks": [
+        {
+          "path": "32f1db8db31022f0bdf4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "32f1db8db31022f0bdf4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "32f1db8db31022f0bdf4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "32f1db8db31022f0bdf4-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "32f1db8db31022f0bdf4-part-0004.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ]
+}

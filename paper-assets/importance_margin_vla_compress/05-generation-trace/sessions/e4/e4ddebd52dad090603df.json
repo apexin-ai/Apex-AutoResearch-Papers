@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e4ddebd52dad090603df",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose batch64 oom root cause",
+  "task_key": "worker_diagnose_batch64_oom_root_cause_20260517T083148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_batch64_oom_root_cause_20260517T083148_result.json",
+    "occurrence": 1,
+    "bytes": 3352,
+    "sha256": "d61171cc1e26a342256ad40f2a4664016c15d6c6de5fb9ad3d524cb549d5cba9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已存活超过 17 分钟（超过上次崩溃时间），同时 cgroup oom_kill 仍为 0。诊断结论如下。\n\n---\n\n## 诊断结果\n\n### 根因：Host-level OOM Killer (非容器自身 OOM)\n\n**核心证据**：\n\n| 检查项 | 结果 |\n|--------|------|\n| tmux 输出 | `Killed`（SIGKILL，无 traceback） |\n| cgroup `memory.max` | 320 GB |\n| cgroup `memory.current` (崩溃后) | ~42 GB（远低于限制） |\n| cgroup `oom_kill` 计数器 | **0**（崩溃前后都是 0） |\n| 进程 RSS | 稳定 2.6 GB，VmHWM（峰值）仅 3.6 GB |\n| 进程 `oom_score_adj` | **999**（最高优先级 victim） |\n| /dev/shm | 160 GB 仅用 6 MB |\n| Host memory | 1 TB 总量，952 GB 可用 |\n| Swap | **完全没有**（容器和 Host 均为 0） |\n| GPU 错误 | 无 ECC/Xid 错误 |\n| 崩溃模式 | 非确定性（相同代码相同步数，Run 4 已存活超过 Run 3 崩溃时间点） |\n\n### 机制\n\n```\n                        物理节点 (1 TB RAM, 无 swap)\n                 ┌──────────────────────────────────────────┐\n                 │  容器 A (oom_score_adj=999, limit=320GB) │ ← 你的容器\n                 │  容器 B (其他租户)                        │\n                 │  容器 C (其他租户)                        │\n                 └──────────────────────────────────────────┘\n                                    ↓\n        当其他租户瞬间申请大量内存 → Host 内核触发全局 OOM killer\n                                    ↓\n        选择 oom_score 最高的进程 → 你的训练进程 (adj=999)\n                                    ↓\n        发送 SIGKILL → \"Killed\"，无任何 Python 错误信息\n        cgroup oom_kill 计数器 NOT 增加（因为不是 cgroup 自身限制触发）\n```\n\n### 排除项\n\n- **NOT** 容器内存泄漏（RSS 完全不增长）\n- **NOT** cgroup OOM（计数器始终为 0）\n- **NOT** 磁盘满（34 GB 剩余）\n- **NOT** GPU 错误\n- **NOT** 代码 bug（相同代码在不同时间可以正常运行）\n\n### 建议（非必要时不执行）\n\n这个问题**无法从容器内部解决**。可能的缓解方式：\n1. 联系 AutoDL 客服反映节点超售/OOM 问题，要求迁移到负载较低的节点\n2. 添加 checkpoint resume 逻辑（save_every=2000 已配置），这样被杀后可以从最近 checkpoint 恢复\n3. 避开高峰时段训练（如果可能）\n\n---\n\n## k07/k03 状态\n\n| 任务 | 状态 | Checkpoint |\n|------|------|-----------|\n| k07 | **已完成** (exitcode 0) | `/root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_acis_stage1only_k07/stage1_done/checkpoint.pt` (878 MB, 15:56) |\n| k03 | **已完成** (exitcode 0) | `/root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt` (878 MB, 15:57) |\n\n两个 tmux session 均已清理。\n\n---\n\n## 当前 batch64_v2 状态\n\nPID 23996 仍在运行（已 17+ 分钟），RSS=2.6 GB 稳定。监控脚本 `/tmp/monitor_kill.sh` 在后台持续记录，如果再次被杀可查看 `/tmp/kill_monitor.log` 确认崩溃时内存状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

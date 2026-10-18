@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb64cc0465cdd9c4349",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd38929 gpu3 openvla l2norm k03 seed43",
+  "task_key": "worker_ops_westd38929-gpu3-openvla-l2norm-k03-seed43_20260521T121236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd38929-gpu3-openvla-l2norm-k03-seed43_20260521T121236_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "fc8173865f4be3841e4bcb3564a0a4d477b09775c2e3e923c24c404a568175ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **PID**: 195275（运行中）\n- **GPU**: westd-38929 GPU3, `CUDA_VISIBLE_DEVICES=3`\n- **状态**: 正在执行 libero_object task 1/10，L2 pruning 256→76 vision tokens (k=0.3)\n- **日志**: `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k03_object_seed43.log`\n- **Registry**: `eval_openvla_l2norm_k03_object_seed43` → RUNNING\n\n注意：脚本不接受 `--device` 参数，已去掉，仅用 `CUDA_VISIBLE_DEVICES=3` 控制 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

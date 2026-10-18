@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cc8430571cf52c75d901",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code debug baseline gradient",
+  "task_key": "worker_code_debug-baseline-gradient_20260515T150117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_debug-baseline-gradient_20260515T150117_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "4b84849eebc604b04b762d791da5175956d2e7b1507117a0bb1a845bc320ccf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is healthy and converging:\n\n| Step | Loss | Grad Norm |\n|------|------|-----------|\n| 0 | 3.4066 | 4.62 |\n| 50 | 4.2220 | 4.55 |\n| 100 | 0.3337 | 2.18 |\n| 150 | 0.1344 | 1.25 |\n| 200 | 0.0334 | 0.61 |\n\n---\n\n**Bug**: `SmolVLAPolicy.forward()` applies `action_is_pad` masking (zeros out padded timestep losses) then computes `losses.mean()` dividing by ALL elements including the masked zeros. With `chunk_size=50` and short episodes, most action chunks are heavily padded, so the mean is diluted to near-zero → near-zero gradients. The IMM wrapper bypassed this entirely by computing flow matching loss directly without pad masking.\n\n**Fix**: Added `baseline_forward(policy, batch)` at line 280 of `train.py` that calls `policy.model.forward()` directly (bypassing `SmolVLAPolicy.forward()`'s pad masking), slices to `action_dim=14`, and computes `losses.mean()` without any `action_is_pad` reduction. The baseline training loop now calls this function instead of `model(batch)`.\n\n**Training**: Running in tmux session `mvp_baseline`, loss dropping from 3.4→0.03 by step 200 with non-zero gradients throughout. Matches IMM anchor's convergence behavior."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

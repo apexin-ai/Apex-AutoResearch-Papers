@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3476f38653e287f9edb",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "experiment depth extension binary pairwise 002",
+  "task_key": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_depth_extension_binary_pairwise_002_20260515T060515_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "a7ffa273d2f4f5e44915e36d922e55edf55e971b0d76d91fd457ffd99441193e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。Registry 已更新为 DONE/success。\n\n**结果摘要：**\n\n| Pair | Binary AUC | 95% CI | 4-class ref | Δ |\n|------|-----------|--------|------------|---|\n| d1v2 | 0.9250 | [0.914, 0.935] | 0.8607 | +0.064 |\n| d2v3 | 0.8225 | [0.805, 0.840] | 0.8005 | +0.022 |\n| d3v4 | **0.7837** | [0.765, 0.802] | — | — |\n| d4v5 | **0.6832** | [0.661, 0.705] | — | — |\n\n**EDD = 4**：d3v4 AUC (0.784) > 0.75 阈值，d4v5 AUC (0.683) < 0.75 阈值。Binary classifiers 一致优于 4-class pipeline（消除了决策边界稀释效应）。d4 和 d5 之间的统计特征区分度明显下降，d5 生成文本在特征空间中趋于饱和。\n\n注：原任务中 d4/d5 的 features 文件不存在，额外执行了 Pythia-1.4B 特征提取（`extract_features.py`）生成了 `features_depth_4.jsonl` 和 `features_depth_5.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

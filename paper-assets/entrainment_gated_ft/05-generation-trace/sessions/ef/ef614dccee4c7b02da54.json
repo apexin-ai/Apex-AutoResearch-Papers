@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ef614dccee4c7b02da54",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 eval queue",
+  "task_key": "worker_code_hgrn2_eval_queue_20260518T162739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_eval_queue_20260518T162739_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "fb84398884bd7cfced7d4ced6db629cb029a9e006566bd7e37d843d02b7bba81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型都评测完成。所有可用模型的评测汇总：\n\n## 新完成评测结果\n\n| 模型 | lambada acc | hellaswag acc_norm | arc_challenge acc_norm | mmlu acc |\n|---|---|---|---|---|\n| **RetNet-hybrid-6-1** | 0.4972 | 0.5852 | 0.3746 | 0.2517 |\n| **RetNet-hybrid-3-1** | 0.5032 | 0.5778 | 0.3720 | 0.2508 |\n\n## 跳过的模型\n- `HGRN2-pure`: shard 1 缺失\n- `HGRN2-hybrid-6-1`: shard 2 缺失\n- `HGRN2-hybrid-3-1`: 另一 Worker 在修复\n\n所有可评测模型已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

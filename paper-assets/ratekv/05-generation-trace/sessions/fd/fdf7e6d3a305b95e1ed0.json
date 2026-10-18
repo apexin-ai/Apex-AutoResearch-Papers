@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fdf7e6d3a305b95e1ed0",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code llama heuristic k2",
+  "task_key": "worker_code_llama_heuristic_k2_20260514T115449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_heuristic_k2_20260514T115449_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "5b89da40092ff177af0cfba72805b91dfa101f3b3d66d5f91ffacb07d715ea68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动：\n- **服务器**: westd-37397, cuda:0\n- **tmux session**: `d041_k2`\n- **Budget**: 0.25（精确匹配，1 个 L0 head @8-bit + 7 个 L0 @4-bit + 2 random @2-bit + 253 @4-bit）\n- **配置**: Llama-3.1-8B, k=2, 5 seeds L0-random + naive positional + baseline + uniform\n- **日志**: `/root/ratekv/d041_llama_heuristic_k2.log`\n\n等待实验完成后读取结果并注册到 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

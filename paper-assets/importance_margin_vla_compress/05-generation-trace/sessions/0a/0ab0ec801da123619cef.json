@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0ab0ec801da123619cef",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "urgent westd 41074 collect and redeploy",
+  "task_key": "worker_urgent_westd-41074-collect-and-redeploy_20260525T224015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_westd-41074-collect-and-redeploy_20260525T224015_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "ed9905af1e929cd359f24e23daa367083a3e6f2c3902358999ad8ceceb22e686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**zeromask_random 结果收集** ✓\n- `eval_openvla_zeromask_random_k09_object_seed42`: **SR = 71.8%**（10 tasks, 500 episodes, 246 min）\n- 对比 hard-prune random k=0.9 = 62.8% → zeromask 71.8% >> hard-prune 62.8%\n- 结论：zero_mask（保留位置，置零值）显著优于 hard-prune（直接删除），说明**位置扰动是主要性能损失来源**，不只是信息丢失\n\n**GPU 重部署** ✓\n- GPU2: `eval_openvla_attn_k085_long_seed42` 已启动（PID 199285, 16GB loaded）\n- GPU3: zeromask_l2norm 仍在运行（PID 5519），无需操作\n\n**当前 westd-41074 状态**:\n| GPU | 占用 | 实验 |\n|-----|------|------|\n| 0 | 16GB, 78% | 其他实验 |\n| 1 | 27GB, 90% | 其他实验 |\n| 2 | 16GB, 69% | attn_k085_long (新部署) |\n| 3 | 16GB, 68% | zeromask_l2norm (进行中) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

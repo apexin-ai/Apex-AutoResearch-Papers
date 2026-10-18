@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f3df1a17230941841a6a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 l2norm k095 spatial seed42",
+  "task_key": "worker_diagnose_eval_pi05_l2norm_k095_spatial_seed42_20260522T020202",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_l2norm_k095_spatial_seed42_20260522T020202_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "a4f80d9ba7be3714545ea4143aa06bb5fdff9273a6e01736749a24aefe60df3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 根因\n\n**网络断连 + 缺少离线模式环境变量。** 模型权重加载成功（~90s），但 preprocessor 初始化时 `AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224')` 内部的 `is_base_mistral()` 无条件调用 `model_info()` API → `[Errno 101] Network is unreachable`。\n\nTokenizer 缓存完整存在于 `/root/autodl-tmp/.hf_cache/hub/models--google--paligemma-3b-pt-224/`，但 transformers 库即使有本地缓存也会发网络请求（除非设置 `TRANSFORMERS_OFFLINE=1`）。\n\n之前的 k=0.9（07:58 启动）成功是因为当时网络还可用；k=0.95（09:31 启动）时网络已断。\n\n## 服务器状态\n\n- 4× RTX PRO 6000 Blackwell 94GB，GPU 1/2/3 空闲\n- 磁盘充足（根 22GB free，数据盘 52GB free）\n\n## 重提交命令\n\n```bash\nsource /etc/network_turbo && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\n```\n\n报告已写入 `artifacts/diag_eval_pi05_l2norm_k095_spatial.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

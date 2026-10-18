@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "e8c3118dec50b41e6b1c",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code compounding sweep",
+  "task_key": "worker_code_compounding_sweep_20260514T002939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compounding_sweep_20260514T002939.log",
+    "occurrence": 1,
+    "bytes": 518917,
+    "sha256": "451c6eccaca3bab338a236a88139115953a20a7025d53d1a1331f58fa899d308"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 0,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 146,
+      "tool_result": 146,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 365,
+      "chunks": [
+        {
+          "path": "e8c3118dec50b41e6b1c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e8c3118dec50b41e6b1c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e8c3118dec50b41e6b1c-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ]
+}

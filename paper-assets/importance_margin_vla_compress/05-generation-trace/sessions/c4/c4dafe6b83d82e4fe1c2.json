@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c4dafe6b83d82e4fe1c2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla random k07 long seed42",
+  "task_key": "worker_diagnose_eval_openvla_random_k07_long_seed42_20260525T172535",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_random_k07_long_seed42_20260525T172535_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "b53bf0afb0b69f30984ea1a4fad92c811d31aebc821374da6b84c07a67f354d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**实验状态：failed（机器重启导致中断）**\n\n- 实验于 22:36 启动，01:09 停止写入日志，01:18 机器重启 — 进程被杀\n- 日志无 error/traceback/OOM，纯粹是机器重启导致\n- 仅完成 **3/10 tasks**（150/500 episodes）\n\n**已完成的部分结果：**\n\n| Task | SR |\n|------|----|\n| Task 1: put both the alphabet soup and the tomato sauce in the basket | 0.480 (24/50) |\n| Task 2: put both the cream cheese box and the butter in the basket | 0.460 (23/50) |\n| Task 3: turn on the stove and put the moka pot on it | 0.580 (29/50) |\n\nRegistry 已更新为 failed，需要重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

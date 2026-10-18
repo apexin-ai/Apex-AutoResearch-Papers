@@ -1,0 +1,400 @@
+{
+  "schema_version": "1.0",
+  "id": "5d5d061fbed4540d8b53",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "paper writing results reframe",
+  "task_key": "worker_paper_writing_results_reframe_20260523T013739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_results_reframe_20260523T013739.jsonl",
+    "occurrence": 1,
+    "bytes": 29070,
+    "sha256": "c3da3e9f745f2c7d60156823d5fe447e0cbb28a1280d844caf75652d182d492e"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T01:41:40.024867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T01:41:40.025431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T01:41:40.025628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T01:41:40.026027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T01:41:40.026192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T01:41:40.026392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Weakest-Link Dominance}\n5\t\\label{sec:dominance}\n6\t\n7\tTable~\\ref{tab:dominance} reports the log-log OLS regression results (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels constructed from the 15 judges in Table~\\ref{tab:models}.\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\small\n12\t\\begin{tabular}{llccc}\n13\t\\toprule\n14\t\\textbf{Bench.} & \\textbf{Attack} & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Dom.} \\\\\n15\t\\midrule\n16\tMMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\n17\tMMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\n18\tMMLU & Score manip.   & $+^{*}$ & n.s.    & $\\eta$ \\\\\n19\tMMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\n20\tMMLU & Position bias  & $+^{*}$ & n.s.    & $\\eta$ \\\\\n21\tMMLU & Authority bias & $+^{*}$ & n.s.    & $\\eta$ \\\\\n22\t\\addlinespace\n23\tARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\n24\tARC  & Sycophancy     & $+^{*}$ & $-^{*}$ & Co \\\\\n25\tARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\\\\n26\tARC  & Verbosity      & $+^{*}$ & n.s.    & $\\eta$ \\\\\n27\tARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\\\\n28\tARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n29\t\\bottomrule\n30\t\\end{tabular}\n31\t\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\n32\t\\label{tab:dominance}\n33\t\\end{table}\n34\t\n35\tThe weakest-link vulnerability $\\eta_{\\max}$ is the stronger predictor under OLS, reaching FDR significance in 11 of 12 conditions. The sole exception is ARC $\\times$ position bias ($p = 0.909$). This near-universal significance is consistent with the prediction of Theorem~\\ref{thm:monotonicity}: the most vulnerable panel member is t\n…[truncated 10008 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T01:41:40.026701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+              "content": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n\\label{sec:dominance}\n\nTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Bench.} & \\textbf{Attack} & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Dom.} \\\\\n\\midrule\nMMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Score manip.   & $+^{*}$ & n.s.    & $\\eta$ \\\\\nMMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Position bias  & $+^{*}$ & n.s.    & $\\eta$ \\\\\nMMLU & Authority bias & $+^{*}$ & n.s.    & $\\eta$ \\\\\n\\addlinespace\nARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Sycophancy     & $+^{*}$ & $-^{*}$ & Co \\\\\nARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Verbosity      & $+^{*}$ & n.s.    & $\\eta$ \\\\\nARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\\\\nARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\n\\label{tab:dominance}\n\\end{table}\n\nThe weakest-link vulnerability $\\eta_{\\max}$ reaches FDR significance in 11 of 12 conditions; the sole exception is ARC $\\times$ position bias ($p = 0.909$). This near-universal significance is consistent with Theorem~\\ref{thm:monotonicity}: the most vulnerable member is the primary channel through which adaptive attacks succeed at $K{=}3$. Panel diversity $K_{\\mathrm{eff}}$ is FDR-significant positive in 7 of 12 conditions and negative in 1 (ARC $\\times$ sycophancy). Dominance analysis \\citep{budescu1993dominance} yields 4 $\\eta_{\\max}$-dominant, 7 co-dominant, and 1 $K_{\\mathrm{eff}}$-dominant conditions. However, the $r = 0.70$ correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ raises a confound concern, and OLS treats the 455 panels as independent when they are not.\n\nEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Table~\\ref{tab:robustness} compares OLS against three corrections.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{dir.} & $\\boldsymbol{\\eta}$\\textbf{:}$\\boldsymbol{K}$ \\\\\n\\midrule\nOLS                   & 11/12 & 8/12 & 7+/1$-$ & 1.4:1 \\\\\nClustered SE (CR1)    & 8/12  & 0/12 & ---     & ---   \\\\\nMixed effects         & 7/12  & 3/12 & 3+/0$-$ & 2.3:1 \\\\\nWild cluster bootstrap & 5/12  & 1/12 & 1+/0$-$ & 5:1   \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Robustness of regression results to non-independence correction ($K{=}3$). Clustered SE uses 3-position max-SE with CR1 correction (13 clusters per position). Mixed effects uses 3-position max-$p$ with random judge intercepts. Wild cluster bootstrap uses $B{=}9999$ resamples, Rademacher weights, and max-$p$ across 3 panel positions. $\\eta$:$K$ ratio = $\\eta_{\\max}$ significant conditions / $K_{\\mathrm{eff}}$ significant conditions.}\n\\label{tab:robustness}\n\\end{table}\n\n$\\eta_{\\max}$ remains robust: 8/12 under clustered SE, 7/12 under mixed effects, and 5/12 under the most conservative wild cluster bootstrap (Figure~\\ref{fig:robustness}). Bootstrap attrition concentrates in ARC conditions (1/6 survive vs.\\ MMLU 4/6), likely reflecting lower power in ARC's 2-choice format. $K_{\\mathrm{eff}}$ collapses under correction: clustered SE reduces OLS's 8/12 to 0/12, and bootstrap to 1/12. Point estimates remain predominantly positive, but confidence intervals contain zero in 11 of 12 conditions (Appendix~\\ref{app:forest_plot}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig1_robustness_comparison.pdf}\n\\caption{Significance counts (FDR $< 0.05$) for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}\n\\label{fig:robustness}\n\\end{figure}\n\nA power analysis (1{,}000 iterations, $\\binom{15}{3}$ structure, 13 clusters per position) yields a minimum detectable effect of $\\beta_{\\mathrm{std}} = 0.14$ at 80\\% power, below the OLS estimate of 0.164. $K_{\\mathrm{eff}}$'s non-significance at $K{=}3$ is thus an \\emph{informative null}: any true independent effect is smaller than 0.14 standard deviations. The sole negative coefficient (ARC $\\times$ sycophancy, $\\hat{\\beta}_{\\mathrm{std}} = -0.192$) does not survive correction (bootstrap $p \\approx 0.06$). FDR counts are stable across $\\epsilon \\in \\{10^{-3}, 10^{-6}, 10^{-9}\\}$.\n\n\\subsection{Panel-Size-Dependent Regime Transition}\n\\label{sec:cross_k}\n\nThe $K{=}3$ results above show that $K_{\\mathrm{eff}}$ fails to reach significance under corrected inference. A natural question is whether this negligibility is intrinsic to judge diversity or an artifact of small panel size. We address this by repeating the wild cluster bootstrap analysis at $K \\in \\{3, 5, 7\\}$, constructing all $\\binom{15}{K}$ panels for each value and applying the same specification (Equation~\\ref{eq:regression}) with $K$-position max-$p$ correction.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{rrccc}\n\\toprule\n$\\boldsymbol{K}$ & \\textbf{Panels} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{dir.} \\\\\n\\midrule\n3 & 455     & 5/12 & 1/12 & 1+/0$-$ \\\\\n5 & 3{,}003 & 0/12 & 7/12 & 7+/0$-$ \\\\\n7 & 6{,}435 & 0/12 & 5/12 & 5+/0$-$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-$K$ wild cluster bootstrap summary ($B{=}9999$, Rademacher weights, $K$-position max-$p$, BH FDR $\\alpha{=}0.05$, $\\epsilon{=}10^{-6}$). As panel size increases, $\\eta_{\\max}$ significance drops from 5/12 to 0/12 while $K_{\\mathrm{eff}}$ rises from 1/12 to 7/12. All significant $K_{\\mathrm{eff}}$ coefficients are positive.}\n\\label{tab:cross_k}\n\\end{table}\n\nTable~\\ref{tab:cross_k} reveals a sharp regime transition between $K{=}3$ and $K{=}5$. At $K{=}3$, $\\eta_{\\max}$ is the dominant predictor (5/12 significant) and $K_{\\mathrm{eff}}$ is negligible (1/12). At $K{=}5$, this pattern reverses: $\\eta_{\\max}$ drops to 0/12 while $K_{\\mathrm{eff}}$ rises to 7/12, all positive. The transition persists at $K{=}7$ (0/12, 5/12). Diversity does not shift from harmful to protective across $K$; the $K_{\\mathrm{eff}}$ coefficient is positive in every significant condition at every panel size. Instead, diversity transitions from a negligible to a significantly harmful predictor of panel vulnerability.\n\nThe direction consistency reinforces this interpretation. All 7 significant $K_{\\mathrm{eff}}$ conditions at $K{=}5$ and all 5 at $K{=}7$ carry positive coefficients. The ARC $\\times$ sycophancy condition, the sole negative outlier at $K{=}3$ ($\\hat{\\beta}_{\\mathrm{std}} = -0.192$), remains negative at $K{=}5$ ($-0.157$) and $K{=}7$ ($-0.176$) but does not reach FDR significance at any $K \\geq 5$.\n\nThe mechanism is tied to majority-threshold arithmetic. At $K{=}3$, a majority requires 2 of 3 votes; a single compromised judge can flip the panel, so the identity of the weakest member ($\\eta_{\\max}$) is the binding constraint. At $K{\\geq}5$, a majority requires at least 3 of 5 votes; the adversary must compromise multiple judges simultaneously. Panels with high $K_{\\mathrm{eff}}$ (independent judges) present more distinct attack surfaces, each exploitable individually, while panels with low $K_{\\mathrm{eff}}$ (correlated judges) share a robust consensus that resists piecemeal compromise. Independence thus transitions from noise to a significant vulnerability channel as the number of required flips increases.\n\nThe attenuation from 7/12 at $K{=}5$ to 5/12 at $K{=}7$ reflects increased conservatism of the max-$p$ correction (7 panel positions vs.\\ 5), not a weakening of the underlying effect. $K_{\\mathrm{eff}}$ point estimates at $K{=}7$ remain comparable in magnitude to those at $K{=}5$.\n\n\\subsection{Random vs.\\ Adaptive Fault Contrast}\n\\label{sec:rf_contrast}\n\nPanel composition is far more predictive of vulnerability under random faults than under adaptive attack. We simulate non-adversarial evaluation noise by randomly flipping judge votes at rates matching observed per-judge error distributions, then re-run the corrected regressions. Under random faults, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ are significant positive predictors of panel error in both benchmark conditions, surviving all correction methods ($K_{\\mathrm{eff}}$: clustered SE $p = 3.7 \\times 10^{-4}$ and $0.009$; bootstrap $p = 0.004$ and $0.019$; $\\hat{\\beta}_{\\mathrm{std}} = +0.215$ and $+0.379$). The regression $R^2$ ranges from 0.73 to 0.81, indicating that panel composition is highly predictable under non-adaptive faults. Under adaptive attack, this predictability breaks down: $K_{\\mathrm{eff}}$'s apparent significance is an artifact of panel overlap (0--1/12 after correction), while adaptive adversaries introduce strategic variance beyond what panel structure can explain. The contrast is one of genuineness: $K_{\\mathrm{eff}}$'s association with vulnerability is real under random faults but inflated under adaptive attack.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_gam_keff_split.pdf}\n\\caption{$K_{\\mathrm{eff}}$ effect direction split by attack type (GAM with FDR correction). Targeted attacks show positive $K_{\\mathrm{eff}}$ (diversity increases vulnerability), while shared-bias attacks show negative $K_{\\mathrm{eff}}$ (diversity provides protection).}\n\\label{fig:gam_split}\n\\end{figure}\n\n\\subsection{Attack-Type Taxonomy}\n\\label{sec:gam_taxonomy}\n\nGAM analysis of the $K_{\\mathrm{eff}}$ partial effect reveals structure masked by the significance collapse documented in \\S\\ref{sec:dominance} (Figure~\\ref{fig:gam_split}). The 12 conditions split cleanly into two regimes by attack mechanism. \\textit{Targeted attacks} exploit judge-specific parsing or format vulnerabilities (prompt injection, score manipulation, position bias): the $K_{\\mathrm{eff}}$ partial effect is positive in all 6 conditions (2 benchmarks $\\times$ 3 attacks). Diverse panels expose more distinct weaknesses for the adversary to exploit. \\textit{Shared-bias attacks} exploit cognitive biases common across architectures (sycophancy, verbosity bias, authority bias): the $K_{\\mathrm{eff}}$ partial effect is negative in all 6 conditions. Diverse panels dilute shared susceptibility rather than exposing new attack surface.\n\nThis 6:6 split is obscured by linear OLS, which averages over the two regimes. The taxonomy provides mechanistic explanatory power: the \\emph{direction} of $K_{\\mathrm{eff}}$'s effect is predictable from attack type, even when its \\emph{magnitude} is not statistically significant after correction.\n\n\\subsection{Aggregation Rules Modulate the Diversity Channel}\n\\label{sec:aggregation}\n\nTable~\\ref{tab:aggregation} reports regression results for four aggregation methods across all 12 conditions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{$\\eta_{\\max}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ $\\beta$ dir.} & \\textbf{$R^2$} \\\\\n\\midrule\nThreshold       & 12/12 & 11/12 & 10+/1$-$  & 0.89 \\\\\nMajority        & 11/12 & 8/12  & 7+/1$-$   & 0.298 \\\\\nWeighted        & 9/12  & 9/12  & 9+/0$-$   & 0.284 \\\\\nBayesian        & 9/12  & 7/12  & 1+/6$-$   & 0.104 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, log-log canonical spec). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Methods are ordered by $R^2$ to highlight the vulnerability gradient from threshold (most predictable) to Bayesian (least).}\n\\label{tab:aggregation}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\n\\caption{Distribution of $K_{\\mathrm{eff}}$ coefficients across aggregation methods. Bayesian aggregation reverses $K_{\\mathrm{eff}}$ direction (1 positive, 6 negative), contrasting sharply with majority voting (7 positive, 1 negative).}\n\\label{fig:aggregation}\n\\end{figure}\n\nThe methods form a vulnerability gradient from threshold ($R^2{=}0.89$, compositional factors almost perfectly predictive) to Bayesian ($R^2{=}0.104$, Figure~\\ref{fig:aggregation}). Bayesian calibration reverses the diversity channel: the $K_{\\mathrm{eff}}$ coefficient direction flips from predominantly positive (7+/1$-$) to predominantly negative (1+/6$-$), and partially weakens $\\eta_{\\max}$ (11/12 $\\to$ 9/12). The directional reversal is clear, but the low $R^2$ (0.104) indicates limited predictive power: Bayesian aggregation decouples vulnerability from composition. Threshold voting amplifies both channels ($\\eta_{\\max}$: 12/12, $K_{\\mathrm{eff}}$: 11/12) because unanimity makes panels maximally sensitive to composition. These results are structurally independent of non-independence: changing the aggregation rule alters the dependent variable, not the panel overlap.\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T01:41:40.027111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T01:41:40.027284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"—\\|—\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+              "description": "Check for em-dashes"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T01:41:40.027415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T01:41:40.027533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"ing,\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex | head -20",
+              "description": "Check for -ing phrase patterns"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T01:41:40.027681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T01:41:40.027799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -nc \"phase transition\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+              "description": "Check for forbidden \"phase transition\""
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T01:41:40.027913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T01:41:40.028022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c \"becomes protective\\|diversity becomes\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+              "description": "Check for forbidden phrasing"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T01:41:40.028133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T01:41:40.028367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+              "description": "Count lines in new file"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T01:41:40.028483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "144 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T01:41:40.028638+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. No em-dashes, no -ing phrase endings, no \"phase transition\", no \"diversity becomes protective\". File grew from 125 to 144 lines (+19 lines, well within budget).\n\nChanges made:\n\n1. **§4.1 merged**: Combined old §4.1 (Weakest-Link Dominance) + §4.2 (Robustness) into \"Weakest-Link Dominance at K=3\". Tightened narrative to save ~10 lines. All tables (tab:dominance, tab:robustness), figures (fig:robustness), and key results preserved. Added K=3 scoping to framing and captions.\n\n2. **§4.2 new**: \"Panel-Size-Dependent Regime Transition\" with:\n   - Cross-K Bootstrap table (tab:cross\\_k): K=3/5/7 with panels, η\\_max sig, K\\_eff sig, K\\_eff direction\n   - 4 paragraphs: main finding (η\\_max cliff + K\\_eff emergence), direction consistency (all positive, ARC×sycophancy outlier), majority-threshold mechanism, K=7 max-p conservatism explanation\n\n3. **§4.3-§4.5**: Unchanged. Updated §4.4's cross-reference from `\\S\\ref{sec:robustness}` to `\\S\\ref{sec:dominance}` since robustness is now part of §4.1."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_results_reframe_20260523T013739"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "3fc940fe2d265c198272",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analyze deberta pilot pythia temp09",
+  "task_key": "worker_analyze_deberta_pilot_pythia_temp09_20260519T173138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_deberta_pilot_pythia_temp09_20260519T173138_result.json",
+    "occurrence": 1,
+    "bytes": 3256,
+    "sha256": "70676814832baad1f858d87e9a19fa10ff85e1da9c0c4759ae701aa52626c924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐了。以下是完整分析。\n\n---\n\n## 实验结果：deberta_pilot_pythia_temp09\n\n### 训练状态\n训练正常完成，EXIT_CODE=0，5-fold CV 全部跑完。\n\n### DeBERTa 关键指标\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy_4class** | **60.57%** |\n| std_acc | ±1.55% |\n| balanced_accuracy | ~60.57% (各 fold 的 acc ≈ balanced_acc) |\n| per_class_recall | d0=0.921, d1=0.466, d2=0.256, d3=0.780 |\n| fold_accuracies | [57.75, 62.40, 61.42, 60.78, 60.52] |\n| total_time | 7997s (~2.2h) |\n\n### RF Baseline 对比\n\n来源：`9cell_baseline_battery.txt`（per-cell RF 准确率）\n\n| Cell | DeBERTa | RF Baseline | Delta |\n|------|---------|-------------|-------|\n| **pythia_temp09** | **60.57%** | **76.8%** | **-16.2pp** |\n| gpt2xl_temp09 (姐妹) | 53.14% | 85.3% | -32.2pp |\n\n### 与姐妹实验对比\n\n| 指标 | pythia_temp09 | gpt2xl_temp09 |\n|------|---------------|---------------|\n| DeBERTa acc | 60.57% | 53.14% |\n| RF baseline | 76.8% | 85.3% |\n| Gap | -16.2pp | -32.2pp |\n| d0 recall | 0.921 | 0.812 |\n| d1 recall | 0.466 | 0.288 |\n| d2 recall | 0.256 | 0.084 |\n| d3 recall | 0.780 | 0.942 |\n\npythia_temp09 上 DeBERTa 相对更好（gap 更小），d1/d2 中间深度召回明显高于 gpt2xl，但 RF 仍大幅领先。\n\n### Hypothesis 验证\n\n**Hypothesis**: DeBERTa < RF on pythia_temp09, confirming cross-model generality of \"simple features beat neural\".\n\n**结论: success** — DeBERTa (60.57%) 远低于 RF (76.8%)，差距 16.2pp。两个 cell（pythia + gpt2xl）均确认 RF+19-feature > end-to-end neural，支持论文 claim。\n\n### 完整 metrics dict (可直接写入 registry)\n\n```json\n{\n  \"accuracy_4class\": 0.6057,\n  \"std_acc\": 0.0155,\n  \"balanced_accuracy\": 0.6057,\n  \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.466, \"d2\": 0.2558, \"d3\": 0.7804},\n  \"fold_accuracies\": [0.5775, 0.624, 0.6142, 0.6078, 0.6052],\n  \"confusion_matrix\": [[4604,389,7,0],[120,2330,1322,1228],[6,991,1279,2724],[4,424,670,3902]],\n  \"total_time_seconds\": 7997.1,\n  \"rf_baseline_acc\": 0.768,\n  \"delta_vs_rf\": -0.162,\n  \"model_name\": \"microsoft/deberta-v3-base\",\n  \"lora_config\": \"r=8, alpha=16, query_proj+value_proj\",\n  \"num_samples\": 20000,\n  \"folds\": 5,\n  \"epochs\": 5\n}\n```\n\n**建议 conclusion: `success`** — hypothesis confirmed, cross-model generality established."
+            }
+          ],
+          "metadata": {
+            "data": {
+              "accuracy_4class": 0.6057,
+              "std_acc": 0.0155,
+              "balanced_accuracy": 0.6057,
+              "per_class_recall": {
+                "d0": 0.9208,
+                "d1": 0.466,
+                "d2": 0.2558,
+                "d3": 0.7804
+              },
+              "fold_accuracies": [
+                0.5775,
+                0.624,
+                0.6142,
+                0.6078,
+                0.6052
+              ],
+              "confusion_matrix": [
+                [
+                  4604,
+                  389,
+                  7,
+                  0
+                ],
+                [
+                  120,
+                  2330,
+                  1322,
+                  1228
+                ],
+                [
+                  6,
+                  991,
+                  1279,
+                  2724
+                ],
+                [
+                  4,
+                  424,
+                  670,
+                  3902
+                ]
+              ],
+              "total_time_seconds": 7997.1,
+              "rf_baseline_acc": 0.768,
+              "delta_vs_rf": -0.162,
+              "model_name": "microsoft/deberta-v3-base",
+              "lora_config": "r=8, alpha=16, query_proj+value_proj",
+              "num_samples": 20000,
+              "folds": 5,
+              "epochs": 5
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

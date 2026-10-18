@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bffa513eb41276c44d00",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp conditional pi 002",
+  "task_key": "worker_exp_conditional_pi_002_20260522T021207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_conditional_pi_002_20260522T021207_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "5d73d342c80d83332fa2e6cf5c31d568e38c8dff0684130d33d906e9ac3e8f01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**conditional_pi_002 实验已完成**，Registry 已更新为 DONE (negative)，3 个 artifact 已注册。\n\n**关键验证结论**：Perplexity tail family 在 conditional PI 下**不是** top family。\n\n| Family | Avg PI | Avg Rank |\n|--------|--------|----------|\n| **surprisal** | 0.0890 | 7.3 |\n| perplexity | 0.0388 | 7.5 |\n| lexical | 0.0043 | 9.7 |\n\n- **Top feature**: var_surprisal (rank 1.4, PI=0.260, bootstrap CI width=0.44)\n- **Runner-up**: p90_ppl (rank 1.7, PI=0.238, bootstrap CI width=0.22)\n- Surprisal family胜出是因为 var_surprisal 单特征极强（PI=0.260），而 perplexity family 虽然 p90_ppl/p75_ppl 个体排名高，但被 skewness_ppl (rank 13.3) 和 kurtosis_ppl (rank 14.2) 拉低了家族均值\n- 两个 top 特征的 bootstrap 排名极度稳定（CI width < 0.5），结论可靠"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

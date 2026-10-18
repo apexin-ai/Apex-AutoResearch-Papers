@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "46cd5175285e14d19fe9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check cqa1 gpu0 status",
+  "task_key": "worker_check_cqa1_gpu0_status_20260527T091204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cqa1_gpu0_status_20260527T091204_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "5b8813248d19d7bbb55c68babe8f42f00121f238eca45055b9db837753b0acdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1-33015 全部 4 GPU 状态\n\n| GPU | PID | 实验 | 状态 | 详情 |\n|-----|-----|------|------|------|\n| **GPU0** | 109152 | π0.5 Random k=0.7 Long strict_v2 | **运行中** | Task 0 完成 (96%), Task 1 进行中 (ep=40, 70%)。`HF_HUB_OFFLINE=1` 避开了 HF Hub 崩溃 |\n| **GPU1** | 118726 | π0.5 Random k=0.5 Long strict | **运行中** | 11% GPU util, 10417 MiB |\n| **GPU2** | 93525 | π0.5 L2norm k=0.85 Long strict | **运行中** | 31% GPU util, 10194 MiB |\n| **GPU3** | 897095 | OV Attn k=0.5 Goal v3 | **运行中** | 73% GPU util, 15712 MiB |\n\nGPU0 的 π0.5 Random k=0.7 实验正常运行，`HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 成功绕过了 westd-41074 上遇到的 HF Hub 崩溃问题。无需恢复 426 行版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

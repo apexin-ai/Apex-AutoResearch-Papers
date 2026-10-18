@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8afc1e145143b097f842",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check llama3 auc verification",
+  "task_key": "worker_check_llama3_auc_verification_20260522T153327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llama3_auc_verification_20260522T153327_result.json",
+    "occurrence": 1,
+    "bytes": 1965,
+    "sha256": "f2feb3992df3f7b80ba4540ddba697002999053e294cd119a018ed1442fe5f04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n## 报告\n\n### 1. Table 20 的 0.949/0.877 来源\n\n**文件**: `results/cross_scale_llama3_8b_003/summary.json` → `consecutive_binary`\n- d0v1 auc = 0.9494 → 四舍五入 0.949 ✓\n- d1v2 auc = 0.8768 → 四舍五入 0.877 ✓\n- d2v3 auc = 0.7706 → 0.771 ✓\n- d3v4 auc = 0.716 ✓\n- d4v5 auc = 0.6183 → 0.618 ✓\n\n### 2. Table 21 的 0.965/0.874 来源\n\n**在服务器上找不到任何对应的源数据文件。** 搜索范围覆盖了：\n- 所有 `results/` 下的 JSON 文件\n- 所有 llama 相关日志 (pipeline.log, pipeline_002.log, pipeline_003.log, pipeline_tmux.log, base_pipeline.log)\n- 所有 `.py`, `.csv`, `.txt`, `.sh` 文件\n- 本地 artifacts 目录\n\n0.965 仅出现在 `paper/section_appendix.tex:446` (Table 21 本身) 和编译产物 `main.txt`。artifacts 中的 0.965 是 dream report 中 binoculars 实验的虚构数据，无关。\n\n### 3. 差异分析\n\n| 指标 | Table 20 | Table 21 | 003 原始数据 | 匹配情况 |\n|------|----------|----------|-------------|---------|\n| d0v1 | 0.949 | **0.965** | 0.9494 | Table 20 正确，Table 21 错误 |\n| d1v2 | 0.877 | **0.874** | 0.8768 | Table 20 正确，Table 21 错误 |\n| d2v3 | 0.771 | 0.771 | 0.7706 | 两表一致 |\n| d3v4 | 0.716 | 0.716 | 0.716 | 两表一致 |\n| d4v5 | 0.618 | 0.618 | 0.6183 | 两表一致 |\n\nTable 21 的 Base 行（0.918/0.794/0.682/0.730/0.595）与 `results/cross_scale_llama3_base/summary.json` 完全匹配，无问题。\n\n排除了其他 run 的可能性：pipeline run 001 和 002 都在 depth-1 LoRA 训练时 JSON 解析错误崩溃，从未到达评估阶段，结果目录为空。\n\n### 4. 结论\n\n**Table 21 Instruct 行的 d0v1=0.965 和 d1v2=0.874 是无源数据支撑的错误值**，可能是手动填写时的笔误。正确值应与 Table 20 一致：d0v1=0.949, d1v2=0.877（来自 `cross_scale_llama3_8b_003/summary.json` 的 `consecutive_binary` 指标）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

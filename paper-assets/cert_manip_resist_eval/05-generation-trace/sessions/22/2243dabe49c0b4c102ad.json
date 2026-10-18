@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2243dabe49c0b4c102ad",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops anon repo v1 residual fix",
+  "task_key": "worker_ops_anon-repo-v1-residual-fix_20260523T203119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-v1-residual-fix_20260523T203119_result.json",
+    "occurrence": 1,
+    "bytes": 1128,
+    "sha256": "f34cbdd288f60363f200427e82898396361289dfbead4895a69e3995e4b5649e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the summary:\n\n**修复了 34 个脚本** (35 files changed including README):\n\n| 类别 | 脚本数 | 修复内容 |\n|------|--------|---------|\n| 标准 compute_individual_asr + compute_panel_asr | 28 | 添加 `_is_valid_score()` 过滤 |\n| compute_panel_asr_all_methods (聚合脚本) | 3 | 同上 |\n| K=4 面板 variant | 1 | 同上 (majority_vote_k4) |\n| pairwise 多样性指标 (Q/disagreement/kappa) | 1 | 同上 |\n| 独立脚本 (run_7model_preview) | 1 | 添加本地 `_is_valid_score` 定义 |\n\n**判定为安全（未修改）的 4 处 `.get('winner', 'tie')`：**\n- `src/unified_data_loader.py:_invert_winners` — position_bias swap 逻辑，非 ASR 计算\n- `src/correlation.py:_extract_winners` — 下游 MI/agreement 库\n- `src/panels.py:Panel.aggregate` — 下游面板聚合库\n- `run_7model_preview.py:113` — MI 矩阵计算，需保持向量对齐\n\n**README 修复：**\n- 删除 `fig5_forest_plot.py` 引用\n- 删除 `fig5_*.py` 项目结构描述\n- 添加 V2 Data Correction 段落\n- 删除 `scripts/fig5_forest_plot.py` 文件\n\n**Commit**: `bfc4594`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

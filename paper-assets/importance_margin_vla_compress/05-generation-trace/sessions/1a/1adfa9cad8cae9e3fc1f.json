@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1adfa9cad8cae9e3fc1f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval openvla attn k085 long seed42 v5",
+  "task_key": "worker_analyze_eval_openvla_attn_k085_long_seed42_v5_20260526T231340",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_openvla_attn_k085_long_seed42_v5_20260526T231340_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "b4eeeef9dcff420dbe952efd6b965bd0445600dde63201e2b678aac152c4234b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，registry 已更新为 DONE。\n\n---\n\n### 实验 1: eval_openvla_attn_k085_long_seed42_v5\n\n**Overall SR: 45.8%** (229/500) — 确认了之前 k=0.85=45.8% 的数据点，非 noise。\n\nPer-task SR (%): 60, 58, 56, 34, 38, 66, 34, 66, 24, 22\n\n**Long suite Attention cliff curve 更新**:\n| k | SR | tokens kept |\n|---|---|---|\n| 0.90 | 44.0% | 230 |\n| **0.85** | **45.8%** | **217** |\n| 0.70 | 24.0% | 179 |\n| 0.50 | running | 128 |\n\nk=0.85 和 k=0.9 之间差异极小（+1.8pp），说明 Attention pruning 在 Long suite 上 k=0.85~0.9 区间处于平台期，cliff 在 k=0.7 以下。\n\n---\n\n### 实验 2: eval_openvla_l2norm_k075_goal_seed42_v2\n\n**Overall SR: 70.2%** (351/500)\n\nPer-task SR (%): 54, 80, 86, 22, 88, 70, 68, 98, 82, 54\n\n**Goal suite L2norm cliff curve 更新**:\n| k | SR | tokens kept |\n|---|---|---|\n| 0.90 | 74.8% | 230 |\n| 0.85 | 75.4% | 217 |\n| **0.75** | **70.2%** | **192** |\n| 0.70 | 68.4% | 179 |\n| 0.50 | 43.4% | 128 |\n\nk=0.75 填补了 k=0.85→k=0.7 的斜率：75.4% → 70.2% → 68.4%，下降是渐进的（~2.5pp per 0.05 step），没有 cliff。L2norm 在 Goal suite 上退化非常 graceful，真正的 cliff 在 k=0.5 附近（68.4% → 43.4%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

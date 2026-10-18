@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e2125340c0ad51361e95",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure sdgd pipeline v6",
+  "task_key": "worker_figure_sdgd_pipeline_v6_20260524T125633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_sdgd_pipeline_v6_20260524T125633_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "3e08a46d7a06005813600dbc6de9cf0388556720452bddb28c50b822bbb4b4ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已发送 Feishu 密钥请求卡片，等待提交。60 秒后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

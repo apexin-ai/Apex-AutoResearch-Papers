@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "347e84a0c5537145156f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 l2norm k085 long seed42 postfix",
+  "task_key": "worker_diagnose_eval_pi05_l2norm_k085_long_seed42_postfix_20260524T130959",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_l2norm_k085_long_seed42_postfix_20260524T130959_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "64fc82474e529f186147120538e1fb6dac556530f5c4245a2b8024a2226936d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验没有失败，已成功完成。** cron 误报。\n\n### 详情\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | 全部 10 task × 50 episodes 跑完 |\n| **最终结果** | **SR = 78.4%** (392/500) |\n| **耗时** | 128.8 分钟 |\n| **结果文件** | `eval_results/pi05_l2norm_k0.85_libero_10_seed42.json` ✅ 已保存 |\n| **进程** | PID 213578 已正常退出，cuda:2 当前显存 1 MiB（已释放） |\n\n### 各 task 成绩\n\n| Task | SR |\n|------|-----|\n| T0 alphabet soup + tomato sauce → basket | 96% |\n| T1 cream cheese + butter → basket | 92% |\n| T2 stove + moka pot | 86% |\n| T3 black bowl → drawer | 100% |\n| T4 white mug left + yellow mug right | 76% |\n| T5 book → caddy | 96% |\n| T6 white mug on plate + chocolate pudding | 12% |\n| T7 alphabet soup + cream cheese → basket | 84% |\n| T8 both moka pots → stove | 50% |\n| T9 yellow mug → microwave | 92% |\n\n### 失败误报原因\n\n进程在完成全部评测后正常退出，但 cron 监控脚本在进程结束后检测到\"无响应\"（进程已不存在），将其标记为失败。这是 **cron 监控逻辑的误判**——它没有区分\"进程正常完成退出\"和\"进程异常消失\"。\n\n**无需重跑，结果完整可用。** 建议修复 cron 监控脚本，使其在标记失败前检查是否有对应的结果文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "cacc4d6434a05a79a509",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops fig radar chart",
+  "task_key": "worker_ops_fig-radar-chart_20260525T142321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-radar-chart_20260525T142321.log",
+    "occurrence": 1,
+    "bytes": 687122,
+    "sha256": "c10050e8612533d6bac0fe5740fb43008c0238533f83548b589b34b2e22106c8"
+  },
+  "statistics": {
+    "messages": 205,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 205,
+      "chunks": [
+        {
+          "path": "cacc4d6434a05a79a509-part-0001.json",
+          "message_count": 143
+        },
+        {
+          "path": "cacc4d6434a05a79a509-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ]
+}

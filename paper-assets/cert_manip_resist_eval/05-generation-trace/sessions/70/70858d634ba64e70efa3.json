@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "70858d634ba64e70efa3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code mvp framework",
+  "task_key": "worker_code_mvp-framework_20260521T170853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-framework_20260521T170853_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "5fdd5605eaae886f89bae922292f078e6e7d694b4cd0028491cba5d5a42dfe14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 12 个文件已写完，所有模块导入和 smoke test 通过。\n\n**文件清单：**\n\n| 文件 | 功能 |\n|------|------|\n| `src/__init__.py` | 包初始化 |\n| `src/config.py` | 4 个 judge 模型配置、数据集、实验参数、panel 组合 |\n| `src/utils.py` | logging、seed、JSON 结果保存 |\n| `src/judge_service.py` | vLLM 加载 AWQ 模型，pairwise/Likert 评分，batch 推理，JSON 解析 |\n| `src/eval_pipeline.py` | 加载 MMLU/ARC，生成好/差 response pair（随机 A/B 位置），多 judge 打分 |\n| `src/correlation.py` | agreement rate、MI（Miller-Madow 校正）、Gaussian copula rho、bootstrap CI、cross vs within family 验证 |\n| `src/attacks.py` | 3 种攻击（PromptInjection/Sycophancy/ScoreManipulation）× 多 variant = 7 个攻击实例，ASR 计算 |\n| `src/panels.py` | homo/hetero panel 生成、majority vote 聚合、panel-level ASR |\n| `src/keff.py` | empirical effective rank（eigenspectrum）、formula K_eff、两者对比验证 |\n| `src/scaling.py` | Spearman ρ、log-log regression + bootstrap CI、homo vs hetero ASR 对比 |\n| `scripts/` | 4 个 step 脚本 + run_all + deploy_judges |\n| `requirements.txt` | 依赖列表 |\n\n**SSH 问题**：服务器 `seetacloud-rtx6000` 配置的密钥 `~/.ssh/id_ed25519` 不存在，需要添加密钥或更新 SSH config 后再同步代码到服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

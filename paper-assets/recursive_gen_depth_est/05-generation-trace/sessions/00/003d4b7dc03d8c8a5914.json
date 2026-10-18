@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "003d4b7dc03d8c8a5914",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper theory section fixes",
+  "task_key": "worker_paper_theory_section_fixes_20260517T185407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_theory_section_fixes_20260517T185407_result.json",
+    "occurrence": 1,
+    "bytes": 1632,
+    "sha256": "5fdacd6bce0113b4d8e099923c624afa8d398432610436e8617d1a513f063479"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改完成报告\n\n### 修改 1：AUC 数值（两个文件）\n\n**文件 A**: `artifacts/_project/paper/theory_draft.tex` line 110\n| 项 | 旧值 | 新值 |\n|---|---|---|\n| AUC(d₁,d₂) | ≈ 0.93 | = 0.922 |\n| AUC(d₂,d₃) | ≈ 0.85 | = 0.802 |\n| AUC(d₃,d₄) | ≈ 0.77 | = 0.712 |\n| AUC(d₄,d₅) | ≈ 0.68 | = 0.653 |\n\n**文件 B**: `paper/theory_section_draft.md` line 28 + line 59\n- §5.1 (line 28): 0.93→0.922, 0.86→0.802, 0.77→0.712\n- §5.2 (line 59): 0.93→0.922, 0.86→0.802, 0.77→0.712, 0.68→0.653\n\n### 修改 2：γ 值与空间明确化\n\n| 文件 | 旧值 | 新值 |\n|---|---|---|\n| `_project/paper/theory_draft.tex` L110 | γ ≈ 0.80 | γ ≈ 0.75 in KL-divergence space |\n| `paper/theory_section_draft.md` L59 | γ ≈ 0.85 in feature space | γ ≈ 0.75 in KL-divergence space |\n\n两处均补充了: \"This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).\"\n\n### 确认：d3v4 range\n\nRegistry 三模型数据完整：\n- Pythia: 0.784, OLMo: 0.765, GPT-2 XL: 0.750\n- **[0.750, 0.784] 正确，保持不变**\n\n注意：同处 d4v5 range 写 [0.681, 0.694]，但实际 registry 上限为 0.684（OLMo），0.694 偏高。任务未要求修正此值。\n\n### Shi et al. (2025) venue\n\n**确认正确**：NeurIPS 2025 Spotlight。`paper/theory_section_draft.md` line 110 已正确标注。\n\n### 未完成\n\n`post_to_reviewer` 工具不在当前可用工具列表中，无法自动提交审查。需手动触发 reviewer 审查流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

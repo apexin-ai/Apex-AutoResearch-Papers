@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bff8a28678b7d8d092ef",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper research kv cache quantization",
+  "task_key": "worker_paper_research_kv_cache_quantization_20260514T075325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_kv_cache_quantization_20260514T075325_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "3ab7240bbc4cba1f8b575f73de732f92886b89433b1f2b4d762aae10aa9125a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。literature_map.yaml 已添加 6 篇 KV Cache Quantization 论文，全部 verified=true：\n\n| # | bibtex_key | 论文 | venue | role |\n|---|---|---|---|---|\n| 1 | liu2024kivi | **KIVI** — asymmetric per-channel key / per-token value 2-bit | ICML 2024 | direct-competitor |\n| 2 | hooper2024kvquant | **KVQuant** — pre-RoPE + non-uniform + dense-and-sparse outlier | NeurIPS 2024 | direct-competitor |\n| 3 | lin2024qserve | **QServe** — W4A8KV4 + SmoothAttention co-design | MLSys 2025 | foundation |\n| 4 | he2024zipcache | **ZipCache** — channel-separable tokenwise + saliency-based mixed-precision | NeurIPS 2024 | direct-competitor |\n| 5 | kang2024gear | **GEAR** — quantization + low-rank + sparse residual correction | arXiv 2024 | direct-competitor |\n| 6 | duanmu2024skvq | **SKVQ** — channel rearrangement + sliding-window 2-bit/1.5-bit | arXiv 2024 | direct-competitor |\n\nMust-cite KIVI 和 KVQuant 均已包含。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

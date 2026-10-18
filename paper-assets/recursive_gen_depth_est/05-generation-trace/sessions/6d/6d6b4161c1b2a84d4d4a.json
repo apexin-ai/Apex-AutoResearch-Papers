@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6d6b4161c1b2a84d4d4a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh cuda0 task submit",
+  "task_key": "worker_ssh_cuda0_task_submit_20260515T030830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cuda0_task_submit_20260515T030830_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "9c0a4160612fffc0881a9c45e54d542839df4d718eec12343e75659fa7c7d3bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 已有 GPU 任务在跑。** 汇总：\n\n| GPU | 进程 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | batch feature extraction (PID 287191) | 18066 MiB | 100% |\n| cuda:1 | DCOL v5 training (PID 283196) | 4703 MiB | 99% |\n\n**已提交任务**: `batch_feature_extraction_5cells`\n- 在 cuda:0 上依次为 5 个缺 features 的 cell 提取特征：gpt2xl_topk50 → gpt2xl_temp09 → olmo_topk50 → olmo_temp09 → pythia_topk50\n- 模型：gpt2-xl, olmo-1b-hf, pythia-1.4b\n- 输出：`results/{cell}/features.jsonl`\n- 日志：`logs/batch_feature_extraction.log`\n- 实验已注册为 RUNNING\n\n提取完成后可以在 CPU 上跑分类（plan_009 cross-cell baseline battery 的前置步骤）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

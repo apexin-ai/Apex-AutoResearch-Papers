@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dd7700f22625083e45ac",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code deberta pilot deploy v2",
+  "task_key": "worker_code_deberta-pilot-deploy-v2_20260519T150615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deberta-pilot-deploy-v2_20260519T150615_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "686c053485328f26329d752259ad63678363b4fdadbc8c799b06b0085c431993"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**结果汇总：**\n\n| 检查项 | 状态 |\n|--------|------|\n| 文件存在 | `/root/autodl-tmp/recursive_gen_depth_est/scripts/deberta_depth_pilot.py` (7394 bytes) |\n| py_compile | COMPILE_OK |\n| --help | 正常输出，所有参数匹配 spec |\n| 数据文件 | `depth_0~3.jsonl` 4 个文件均存在 |\n\n**脚本与旧版差异（已修正）：**\n- LoRA: r=16/alpha=32 → **r=8/alpha=16**（匹配 spec）\n- output_dir: `artifacts/deberta_pilot` → **`results/deberta_pilot`**\n- 新增训练时间记录（per-fold + total）\n- 使用 DataCollatorWithPadding 动态 padding（替代全量 pad 到 512）\n- 每 fold 训练后清理 checkpoint 目录节省磁盘\n- 移除了不在 spec 中的 `--lora_rank` 和 `--no_lora` 参数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

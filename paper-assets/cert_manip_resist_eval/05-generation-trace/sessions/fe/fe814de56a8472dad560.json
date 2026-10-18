@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fe814de56a8472dad560",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops anon repo integrity check",
+  "task_key": "worker_ops_anon-repo-integrity-check_20260523T185637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-integrity-check_20260523T185637_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "df0f46717c1d2e5046951d49158864b75c0fa46e5ce328c119a1801e25876b08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 匿名仓库完整性核查报告\n\n### 一致性对比\n\n| 项目 | GitHub 远程 | 本地 (`/root/autodl-tmp/anon_repo/`) |\n|------|------------|--------------------------------------|\n| 文件数 | **99** | **99** |\n| 最新 commit | `3d1671d` | `3d1671d` |\n| 未推送 commit | — | **无** |\n\n**两边完全一致。**\n\n### Remote 配置\n已确认为 HTTPS+token 格式（`https://anonymous-nlp-2026-2:ghp_***@github.com/...`），无需修改。\n\n### 仓库根目录结构\n```\n.\n├── README.md\n├── requirements.txt\n├── artifacts/\n│   ├── run_stochastic_dominance.py\n│   └── theorem1_proof.tex\n├── docs/paper/\n│   └── data/   (3 JSON 数据文件)\n├── scripts/     (82 个实验/分析脚本)\n└── src/         (12 个核心模块)\n    ├── __init__.py\n    ├── api_judge_service.py\n    ├── attacks.py\n    ├── config.py\n    ├── correlation.py\n    ├── eval_pipeline.py\n    ├── judge_service.py\n    ├── keff.py\n    ├── panel_selection.py\n    ├── panels.py\n    ├── scaling.py\n    ├── unified_data_loader.py\n    └── utils.py\n```\n\n### 核心文件检查\n- **README.md** ✓\n- **requirements.txt** ✓\n- **src/** 核心代码 (12 模块) ✓\n- **scripts/** 实验脚本 (82 个) ✓\n- **docs/paper/data/** 论文数据 ✓\n\n### Git 状态\n- 分支：`main`，与 `origin/main` 同步\n- 工作区干净，无未提交修改\n- 共 2 个 commit：`f9a3944` (Anonymous submission) → `3d1671d` (Fix K=5 epsilon sensitivity...)\n\n**结论：匿名仓库本地与远程完全同步，结构完整，包含所有核心代码、README 和 requirements。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "adf1bdcb66f48da0626b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig beta trajectory",
+  "task_key": "worker_ops_fig-beta-trajectory_20260525T150515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-beta-trajectory_20260525T150515_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "f79241df3828de06edda9789a68727a0933a70bd17488b38f06629f3852693fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "视觉检查通过：\n\n- **CI band** 清晰可见，蓝色（K_eff）始终在零线以上，红色（η_max）在 K=5 和 K=7 穿越零线\n- **Per-condition 散点**作为背景可见但不抢主线\n- **β = 0 参考线**标注到位\n- 干净双轴 spines，图例右上角\n\n输出文件：\n- `fig_beta_trajectory.pdf`\n- `fig_beta_trajectory.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

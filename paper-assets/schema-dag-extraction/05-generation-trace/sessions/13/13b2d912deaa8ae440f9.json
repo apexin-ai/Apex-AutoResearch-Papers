@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "13b2d912deaa8ae440f9",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh q3 fewrel 16type scs analysis",
+  "task_key": "worker_ssh_q3_fewrel_16type_scs_analysis_20260517T145436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_q3_fewrel_16type_scs_analysis_20260517T145436_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "ff4f01d7d267b9f7d9deb7a6f0e9020037474d2432bf9aaa51dbb67e7afc94f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**数据来源**:\n- SCS: 80-type all-MiniLM-L6-v2 cosine similarity matrix,提取 16 val types 的 16×16 子矩阵\n- Confusion: `fewrel_16rel_bootstrap` 实验 (100 bootstrap batches × 8 types/batch, Qwen3-32B-FP8, 49,600 predictions)\n- 16 val types 与 64 train types **完全不重叠** (PIDs disjoint)\n\n**Spearman correlation**:\n\n| Setting | Pairs | ρ | p-value |\n|---|---|---|---|\n| 80-type training pool (d051, count_80) | 3160 | 0.158 | 5.1×10⁻¹⁹ |\n| 80-type pool, count_16 subsets | 3160 | 0.153 | 6.3×10⁻¹⁸ |\n| **16 val types (held-out)** | **120** | **0.470** | **6.1×10⁻⁸** |\n\n方向一致（均为正相关），val split 的 ρ 更强（0.470 vs 0.158）。\n\nTop confused pairs 也符合语义直觉：child↔mother (conf=1033, SCS=0.84)、competition class↔sport (conf=285, SCS=0.71)、member of↔part of (conf=177, SCS=0.90)。\n\n**论文用一句话**: On the held-out FewRel validation split (16 relation types fully disjoint from the 64 training types), pairwise SCS-confusion Spearman correlation remains positive and significant (ρ = 0.470, p < 10⁻⁷, n = 120 pairs), ruling out training-set contamination as the driver of the observed relationship."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

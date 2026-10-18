@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3cdddfaaaa101d442a16",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d051 batch1 round9 text",
+  "task_key": "worker_paper_d051_batch1_round9_text_20260516T183703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d051_batch1_round9_text_20260516T183703_result.json",
+    "occurrence": 1,
+    "bytes": 1728,
+    "sha256": "5f63ddaa26c7c6b0373e05ac6b9a3129afc63818926f4d498d0fafd21d93ab58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes are in place. Here's the status report:\n\n---\n\n**Completion Status:**\n\n| Item | Status | Notes |\n|------|--------|-------|\n| **W1** TOST separability weakened | ✅ | \"additive separability\" → \"bounded interaction\" across all 6 files; TOST margin justification replaced with effect-size anchored reasoning; ±1pp inconclusive note placed in Appendix table caption |\n| **W2** Introduction typical-first | ✅ | 2.2pp/5.3pp already in Introduction; abstract \"up to 53%\" → \"22--53%\"; W2.4 natural-sampling caveat added (compressed to fit) |\n| **W3** Simulation → illustrative | ✅ | Disclaimer paragraph added at Appendix M opening; results.tex §4.3 \"reproduced by\" → \"consistent with...illustrative aggregation model\" |\n| **W4** Contributions reorganized | ✅ | 4 items rewritten per spec (count dominance, pairwise predictor, BCS generalization, structural barriers) |\n| **S3** NER boundary error caveat | ✅ | New Limitations item 5 added |\n| **S5** Few-NERD shared-representation | ✅ | Limitations item 4 strengthened with dependency explanation, confusion matrix correlation 0.894 |\n| **S6** Cross-model Channel 2 failure | ✅ | Added to Discussion §Boundary conditions (Llama-3.1-8B NER R² near zero) |\n| **S7** \"First controlled study\" qualified | ✅ | \"To our knowledge,\" added in both abstract.tex and introduction.tex |\n| **S8** AI assistant disclosure | ✅ | Updated to name Claude (Anthropic) explicitly |\n| **S9** Anonymous code link | ✅ | Footnote added in Introduction first sentence |\n\n**Page count:** Body (Introduction → Conclusion) = **8 pages** ✅  \n**Compilation:** 0 errors, 0 undefined references, 0 citation warnings ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

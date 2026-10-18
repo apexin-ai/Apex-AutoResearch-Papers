@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "459d4d2c4a5bf7893fdb",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper mistral footnote fix",
+  "task_key": "worker_paper_mistral_footnote_fix_20260514T213232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral_footnote_fix_20260514T213232_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "f73f345094360b5662b30ef1c7754e82fd07c3415a0e960a4498286e3695968e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n- **analysis.tex L43**: Changed Mistral footnote from `$^\\ddagger$` (standard profiling) to `$^\\dagger$` (hires profiling).\n- **analysis.tex caption**: `$^\\ddagger$` definition kept — Llama and Gemma still use it.\n- **experiments.tex L52**: No change needed — `$^{\\dagger\\ddagger}$` there means hires profiling (`†`) + best $k$ from ablation (`‡`), which are different footnotes with different definitions in that table's caption. Both are correct."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

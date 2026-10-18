@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d46a507257904d5dade",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 attn k09 long seed46 strict cqa1",
+  "task_key": "worker_analyze_eval_pi05_attn_k09_long_seed46_strict_cqa1_20260528T105558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_attn_k09_long_seed46_strict_cqa1_20260528T105558_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "0fbcb3646588b1bfc80b0478bc95831200119ef178e08809993c3ece2b29dbed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 实验结果 ===\nexp_id: eval_pi05_attn_k09_long_seed46_strict_cqa1\noverall_success_rate: 65.4%\nper_task: {T0: 44%, T1: 94%, T2: 46%, T3: 92%, T4: 68%, T5: 88%, T6: 54%, T7: 68%, T8: 10%, T9: 90%}\nconclusion: success\n5-seed 统计: [64.0, 62.8, 63.4, 65.0, 65.4] → mean=64.1% ± 1.1pp\n```\n\nRegistry 已查到 s45（`eval_pi05_attn_k09_long_seed45_strict_w38`, SR=65.0%），5-seed 完整。Attn k=0.9 方差很小（1.1pp），结果稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

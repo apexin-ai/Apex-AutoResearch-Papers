@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f72dcded7c59dbe0b749",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest3 deploy4 s47",
+  "task_key": "worker_ops_harvest3_deploy4_s47_20260529T041242",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest3_deploy4_s47_20260529T041242_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "648ccb8b2e3390ea134d77ee23baa161636f4fe45cbe5cae0395825610a5a252"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部仍在运行，无一完成。\n\n## 当前进度\n\n| exp_id | 服务器 | 当前位置 | 累计 SR | 运行时间 |\n|--------|--------|---------|---------|---------|\n| eval_pi05_attention_k085_long_seed47_w38 | westd-38929 | T6 完成 (6/10) | 171/350 = 48.9% | 111.6min |\n| eval_pi05_attention_k050_long_seed47_w41 | westd-41074 | T5 完成 (5/10) | 179/300 = 59.7% | 107.5min |\n| eval_pi05_random_k095_long_seed47_cqa1 | cqa1-33015 | T0 进行中 (ep20) | 13/20 = 65% | 刚启动 ~11min |\n\n**w38** 和 **w41** 预计还需 ~60-80min 完成（按当前速率）。**cqa1** 刚开始，预计需 ~3h。\n\n全部 GPU 仍被占用，无法部署新实验。需等当前实验完成后再收割和部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

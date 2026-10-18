@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3c3728da190f5a016cc",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest pi05 l2norm k085 strict w41",
+  "task_key": "worker_harvest_pi05_l2norm_k085_strict_w41_20260527T125411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_pi05_l2norm_k085_strict_w41_20260527T125411_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "77d10b8f9503ab13feaaa86cd2a4d64e7b15352e8f448658909af05de0ec7e01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n**eval_pi05_l2norm_k085_long_seed42_strict_w41 — DONE (success)**\n\n| Task | SR |\n|------|-----|\n| T0 | 96% |\n| T1 | 92% |\n| T2 | 84% |\n| T3 | 98% |\n| T4 | 78% |\n| T5 | 92% |\n| T6 | 6% |\n| T7 | 82% |\n| T8 | 48% |\n| T9 | 90% |\n| **Overall** | **76.6%** |\n\n总耗时 128.1 min。与 cqa1 主实验 77.6% 基本一致（差 1%，在正常方差内）。\n\n**westd-41074 GPU 状态：**\n\n| GPU | Util | Memory |\n|-----|------|--------|\n| 0 | 54% | 21.8/97.9 GB (忙) |\n| 1 | 51% | 10.5/97.9 GB (忙) |\n| 2 | 42% | 10.6/97.9 GB (忙) |\n| **3** | **0%** | **1 MiB / 97.9 GB (空闲)** |\n\nGPU 3 已完全释放，可用于 cascade 部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

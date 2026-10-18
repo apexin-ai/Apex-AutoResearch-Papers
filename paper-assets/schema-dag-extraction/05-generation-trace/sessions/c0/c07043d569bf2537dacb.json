@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c07043d569bf2537dacb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp012 r4 llama switch",
+  "task_key": "worker_code_exp012_r4_llama_switch_20260515T155808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_r4_llama_switch_20260515T155808_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "8f8cad8f23d3f80623988711d6b008c569bec01fff41fb9a6c7f47666422e7b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. `exp012_llama_fewnerd_r4` now has:\n\n- **status**: PREPARING (set by `submit_training_job`)\n- **hypothesis**: LLaMA replicates confusability-driven type confusion, validating model-independence\n- **parent**: `exp012_llama_fewnerd_r3`\n- **spec**: full provenance — `llama-3.1-8b-instruct`, BF16, server `cqa1-38874`, PID 294428, fix note\n\n实验已在 tmux session `exp012_llama_fewnerd_r4` 中运行，日志在 `~/runs/schema-dag-extraction/exp012_llama_fewnerd_r4.log`。可以用 check-training-status 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

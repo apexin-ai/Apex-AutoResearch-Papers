@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e9a1cd7e00209f064cf6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 full status",
+  "task_key": "worker_ops_cqa1_full_status_20260520T001139",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1_full_status_20260520T001139_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "bbc9e404ff9a3583145075fbdd01a763d2ff4693d256f759a7b56d276c7e9d55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. GPU 状态\n\n| GPU | PID | 任务 | 显存 | Util |\n|-----|-----|------|------|------|\n| 0 | 994858 | **eval m16_seed44** (刚启动) | 3459 MiB | 18% |\n| 1 | 818806 | eval m128_seed43 | 3461 MiB | 1% |\n| 2 | 819552 | eval m16_seed43 | 3459 MiB | 1% |\n| 3 | — | **空闲** | 1 MiB | 0% |\n\n### 2. Eval 结果\n\n两个 eval 均在运行中，尚无结果 JSON：\n\n- **m128_seed43**: Ep 180/500 (36%), 运行 1h13m，最近 30 ep 窗口 SR ≈ 26.7% (8/30)\n- **m16_seed43**: Ep 160/500 (32%), 运行 1h12m，最近 30 ep 窗口 SR ≈ 50% (15/30)\n\n预计两者均还需 ~2h 完成。\n\n### 3. m16_seed44\n\n- 无 `_v3` 训练日志，但 `checkpoints/smart_compress_m16_seed44/checkpoint.pt` 已存在\n- 已提交 eval 到 GPU 0（PID 994858），正在运行，Ep 2/500\n\n### 4. GPU 3 安排\n\n**无待跑任务。** 所有 smart_compress checkpoint（m16/m32/m64/m96/m128 × seed43/seed44）均已有 eval 结果或正在 eval 中。不存在 m128_seed44 checkpoint。GPU 3 当前空闲。\n\n### 5. 最终 nvidia-smi\n\nGPU 0/1/2 各跑一个 eval（各占 ~3.5GB），GPU 3 空闲。3 个 eval 并行运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

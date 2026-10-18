@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4ef0a2c8a48265db7020",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code mvp pipeline",
+  "task_key": "worker_code_mvp-pipeline_20260514T161549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-pipeline_20260514T161549_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "d70bf5dbccdb11aa5d36c2d16fd6a897b2e7c1021bfbe6c48cd72ccd0c9122e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n`/root/schema-dag-extraction/src/` 下创建了 8 个文件，全部语法和 CLI 验证通过：\n\n| 文件 | 功能 |\n|------|------|\n| `few_nerd_utils.py` | Few-NERD 数据加载，token-level BIO → span-level 转换 |\n| `compute_type_embeddings.py` | 用 Qwen3 causal LM 计算 66 个 type 的 mean-pooled last-layer embeddings |\n| `compute_bcs.py` | 计算 pairwise cosine similarity 矩阵和 BCS 分数，输出 heatmap |\n| `select_type_batches.py` | 贪心选择 low/high BCS type batch + 随机采样，输出 JSON 配置 |\n| `run_extraction.py` | vLLM constrained JSON decoding NER extraction，批量推理 |\n| `evaluate.py` | exact/relaxed span matching，计算 micro P/R/F1 |\n| `run_experiment.py` | 主入口，串联全流程，支持 dry_run / exp1 / exp2 三种模式 |\n| `analyze_results.py` | Pearson correlation、t-test、Cohen's d 统计分析 + 学术图表输出 |\n\n运行前需准备：\n1. `configs/few_nerd_types.json` — 66 个 type 的 name→definition 映射\n2. 先跑 `compute_type_embeddings.py` 生成 embeddings，再跑 `run_experiment.py`（避免同时加载两个模型 OOM）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

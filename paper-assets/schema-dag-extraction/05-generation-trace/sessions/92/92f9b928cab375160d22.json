@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "92f9b928cab375160d22",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper figure2 re panels",
+  "task_key": "worker_paper_figure2-re-panels_20260516T050522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure2-re-panels_20260516T050522_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "6e3a1dff92d8fefd3f26f1fcb8636df9c14ec880773e6e6095b7727904b05c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完毕。\n\n- **PDF**: `docs/figures/paper/fig_re_channels.pdf` (26K)\n- **PNG**: `docs/figures/paper/fig_re_channels.png` (213K)\n\nPanel (a) 展示 count 1→80 的 −35.3pp 衰退曲线，Panel (b) 展示 low-BCS vs high-BCS 的 grouped bar（GPT-4o + LLaMA），delta 标注清晰可见，legend 不遮挡数据。x 轴标签注明 \"from 80-rel pool\" 以符合 C001 约束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

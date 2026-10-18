@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "96f87ed6ac30b4684f6f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code cross scale llama3 8b 003",
+  "task_key": "worker_code_cross_scale_llama3_8b_003_20260516T071429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_scale_llama3_8b_003_20260516T071429_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "ba9003aac3ce0b2aa523ec1f4d53a0daa84e2b8cb951de94179be464bf545a56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在运行中。\n\n**完成摘要：**\n\n1. **诊断**：`depth_1.jsonl` 有 504 行（预期 500）— 1 个因 unescaped newline 断裂的 fragment + 3 条重复记录 (seed_id 497-499)。所有 500 个 seed_id 的有效 JSON 记录都在。\n2. **数据修复**：去重 + 删除坏行，depth_1.jsonl 恢复为 500 条干净记录。\n3. **代码修复**：`qwen7b_lora_finetune.py` 的 `TextDataset` 添加了 `line.strip()` + `try/except JSONDecodeError` 跳过逻辑，防止未来再崩。\n4. **重跑**：创建 `run_llama3_8b_pipeline_003.sh`，从 finetune depth_1 开始继续（跳过已完成的 depth_0 finetune + depth_1 生成），已注册为 `cross_scale_llama3_8b_003` 并在 gpu-6000pro-2 cuda:0 上运行。当前正在 finetune depth_1 (96 steps, ~2s/it ≈ 3min)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

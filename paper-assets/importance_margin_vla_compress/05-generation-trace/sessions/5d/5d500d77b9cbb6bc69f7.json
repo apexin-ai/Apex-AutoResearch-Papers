@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5d500d77b9cbb6bc69f7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd41074 gpu1 openvla baseline spatial",
+  "task_key": "worker_ops_westd41074-gpu1-openvla-baseline-spatial_20260520T235202",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd41074-gpu1-openvla-baseline-spatial_20260520T235202_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "7144cac52face4b0b47bb1e11aa91bc7bb6662fed986850668e9fd72415c33cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shard 3 downloading at ~5.4 MiB/s, 39% complete. Will check back in ~4 min to catch it finishing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

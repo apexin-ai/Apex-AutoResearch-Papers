@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cc4df617b6cda9a15d0c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "exec 32b full pipeline",
+  "task_key": "worker_exec_32b_full_pipeline_20260520T171934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_32b_full_pipeline_20260520T171934_result.json",
+    "occurrence": 1,
+    "bytes": 3793,
+    "sha256": "a5fda141cf1e4d1adc3cfe615ae76f22b7b74d9066ac543d86c13ac6507cb430"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全流程完成。\n\n---\n\n## Counterfactual Gen\n- 状态: 完成\n- 总条数: 100\n\n## Content Verification\n- 总条数: 100\n- NLI>=0.90 pass rate: 88.0%\n- NLI mean: 0.8956\n- BERTScore>=0.92: 25\n\n## Judge Scoring\n- 总条数: 100（去重后）\n- Null scores: 0\n- Duplicates: 0\n\n## ATE Analysis (完整 stdout)\n\n### PRIMARY ANALYSIS (NLI≥0.90, n=88)\n```\nOverall:\n  N = 88\n  Raw ATE          = -0.1023  (SE=0.1490)\n  Raw 95% CI       = [-0.3985, +0.1940]\n  Raw p-value      = 0.494428\n  Raw Cohen's d    = -0.0731\n  Rewrite bias     = -0.2045\n  Corrected ATE    = +0.1023  (SE=0.1048)\n  Corrected 95% CI = [-0.1060, +0.3106]\n  Corrected p      = 0.331808\n  Corrected d      = +0.1040\n\nDirectional:\n  formal→casual  (n=50): Corrected ATE = +0.1400, p = 0.331996, d = +0.1386\n  casual→formal  (n=38): Corrected ATE = +0.0526, p = 0.736542, d = +0.0550\n\nStratified:\n  nli_cf≥0.90 (n=88): ATE=+0.1023, p=0.331808, d=+0.1040\n  bertscore_cf≥0.85 (n=60): ATE=+0.0333, p=0.810681, d=+0.0311\n  bertscore_cf≥0.88 (n=41): ATE=-0.1707, p=0.241382, d=-0.1857\n  bertscore_cf≥0.90 (n=29): ATE=-0.1724, p=0.305327, d=-0.1939\n  bertscore_cf≥0.92 (n=25): ATE=-0.1600, p=0.356264, d=-0.1881\n  all (n=88): ATE=+0.1023, p=0.331808, d=+0.1040\n```\n\n### SENSITIVITY 1: exclude NLI<0.50 (n=88)\n```\nOverall:\n  N = 88\n  Raw ATE          = -0.1023  (SE=0.1490)\n  Raw 95% CI       = [-0.3985, +0.1940]\n  Raw p-value      = 0.494428\n  Raw Cohen's d    = -0.0731\n  Rewrite bias     = -0.2045\n  Corrected ATE    = +0.1023  (SE=0.1048)\n  Corrected 95% CI = [-0.1060, +0.3106]\n  Corrected p      = 0.331808\n  Corrected d      = +0.1040\n\nDirectional:\n  formal→casual  (n=50): Corrected ATE = +0.1400, p = 0.331996, d = +0.1386\n  casual→formal  (n=38): Corrected ATE = +0.0526, p = 0.736542, d = +0.0550\n\nStratified: (same as PRIMARY — no records with NLI<0.50 after NLI≥0.90 filter)\n```\n\n### SENSITIVITY 2: winsorize at 3σ (n=88)\n```\nWinsorize bounds=[-4.30, +4.09], clipped 2 values\n\nOverall:\n  N = 88\n  Raw ATE          = -0.0636  (SE=0.1331)\n  Raw 95% CI       = [-0.3281, +0.2009]\n  Raw p-value      = 0.634078\n  Raw Cohen's d    = -0.0509\n  Rewrite bias     = -0.1595\n  Corrected ATE    = +0.0959  (SE=0.1050)\n  Corrected 95% CI = [-0.1127, +0.3045]\n  Corrected p      = 0.363294\n  Corrected d      = +0.0974\n\nDirectional:\n  formal→casual  (n=50): Corrected ATE = +0.1400, p = 0.331996, d = +0.1386\n  casual→formal  (n=38): Corrected ATE = +0.0379, p = 0.808917, d = +0.0395\n```\n\n### REFERENCE: all records (n=100)\n```\nOverall:\n  N = 100\n  Raw ATE          = -0.0800  (SE=0.1656)\n  Raw 95% CI       = [-0.4085, +0.2485]\n  Raw p-value      = 0.630015\n  Raw Cohen's d    = -0.0483\n  Rewrite bias     = -0.1800\n  Corrected ATE    = +0.1000  (SE=0.0959)\n  Corrected 95% CI = [-0.0902, +0.2902]\n  Corrected p      = 0.299475\n  Corrected d      = +0.1043\n\nDirectional:\n  formal→casual  (n=59): Corrected ATE = +0.1525, p = 0.236397, d = +0.1558\n  casual→formal  (n=41): Corrected ATE = +0.0244, p = 0.868200, d = +0.0261\n```\n\n## RATE Ratios\n```\nate_primary: raw=-0.1023, corr=+0.1023, ratio=-1.0000\nate_sens1:   raw=-0.1023, corr=+0.1023, ratio=-1.0000\nate_sens2:   raw=-0.0636, corr=+0.0959, ratio=-1.5091\nate_all:     raw=-0.0800, corr=+0.1000, ratio=-1.2500\n```\n\n## 输出文件\n```\n-rw-r--r-- 1 root root  2701 May 21 01:28 ate_all_summary.csv\n-rw-r--r-- 1 root root 39700 May 21 01:28 ate_bar.png\n-rw-r--r-- 1 root root  2712 May 21 01:28 ate_primary_summary.csv\n-rw-r--r-- 1 root root  2712 May 21 01:28 ate_sens1_summary.csv\n-rw-r--r-- 1 root root  2750 May 21 01:28 ate_sens2_summary.csv\n-rw-r--r-- 1 root root 72673 May 21 01:28 score_violin.png\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

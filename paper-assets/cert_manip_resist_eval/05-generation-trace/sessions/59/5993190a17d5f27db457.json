@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5993190a17d5f27db457",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig sensitivity contour",
+  "task_key": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-sensitivity-contour_20260525T151931_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "35b3c78b741f187b36e9bc784dc0dab9b079a405a750fa4000e2a170bf8076e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个文件已生成（K=3/5/7 各 PDF + PNG）。\n\n输出:\n- `fig_sensitivity_contour_K3.pdf` (716KB) + `.png` (2.9MB)\n- `fig_sensitivity_contour_K5.pdf` (590KB) + `.png` (2.2MB)\n- `fig_sensitivity_contour_K7.pdf` (603KB) + `.png` (2.3MB)\n\n每个图 4×3 multi-panel（2 benchmarks × 6 attacks），统一样式：\n- 灰色实线 contour + β 值标注\n- 红色粗线 β=0 临界阈值\n- 红色菱形 η_max benchmark\n- 淡蓝→白渐变填充\n- 橙色虚线 RV 等值线\n- DejaVu Sans 字体，300 DPI，clean spines"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

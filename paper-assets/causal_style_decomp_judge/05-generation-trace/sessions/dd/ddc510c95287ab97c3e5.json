@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ddc510c95287ab97c3e5",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code nli ablation cross axis",
+  "task_key": "worker_code_nli_ablation_cross_axis_20260521T132507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli_ablation_cross_axis_20260521T132507_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "6ae30b31bb4b0272f9b06e5ed142592447b88c477b9d96678b19230f51031486"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验完成。结果验证：\n\n**实验 B — NLI Gate Ablation**\n\n| | Formality | Verbosity |\n|---|---|---|\n| **NLI-pass** (n=88/86) | BT=66.5%, CI=[58.5, 73.9], p<0.001 | BT=77.3%, CI=[70.3, 84.3], p<0.001 |\n| **NLI-fail** (n=12/14) | BT=41.7%, CI=[16.7, 66.6], p=0.69 | BT=75.0%, CI=[53.6, 92.8], p=0.006 |\n| **All** (n=100/100) | BT=63.5%, CI=[56.0, 70.5], p<0.001 | BT=77.0%, CI=[70.0, 83.5], p<0.001 |\n\nNLI-pass BT 与 canonical 值一致（formality 66.5%, verbosity 77.3%）。NLI-fail formality 反转到 41.7%（不显著），说明 NLI gate 确实过滤了 content-contaminated pairs。Verbosity NLI-fail 仍然高（75.0%），因为 verbosity manipulation 即使 NLI 未通过，judge 偏好仍强。\n\n**实验 C — Cross-Axis Gradient**\n\n| Axis | NLI Rejection | BT | Likert d | GEE OR |\n|---|---|---|---|---|\n| Register | 6% | 55.3% | 0.069 | 1.91 |\n| Formality | 12% | 66.5% | 0.012 | 4.20 |\n| Verbosity | 14% | 77.3% | -0.146 | 13.10 |\n\n输出文件：`data/nli_gate_ablation.json` 和 `data/cross_axis_gradient.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

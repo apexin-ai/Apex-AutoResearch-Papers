@@ -1,0 +1,1477 @@
+{
+  "schema_version": "1.0",
+  "id": "7fc592ad5cbbf744b47d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code exp 001 regularize",
+  "task_key": "worker_code_exp-001-regularize_20260520T213804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-001-regularize_20260520T213804.log",
+    "occurrence": 1,
+    "bytes": 151097,
+    "sha256": "0ff671a9c236442f4053456db5717e07ab3c1d275e1ea7c4a93ecb85c2268704"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+                "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7d4a6098-56f6-4367-b773-0ebd5005de52",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-ec-hte-llm-annotation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779326400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "dc5120b2-0e89-4bf3-83b2-c57067484cd8",
+                "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the existing experiment script to understand the current code structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "7ddc9321-61fd-434e-b759-666781d3de25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MW4UPuAkXzUbT7EuUtPHQH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7634,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7634
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KUgjDhHUJGX8bTKPssSAiE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "c6c9e2d5-4420-4a0b-97e9-3fd2fb5b01d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MW4UPuAkXzUbT7EuUtPHQH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7634,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7634
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T21:38:16.846Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KUgjDhHUJGX8bTKPssSAiE",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\texp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\n4\t\n5\tCompares confusion matrix estimators for CATE correction under heterogeneous\n6\tmisclassification across subgroups:\n7\t  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\n8\t\n9\tInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\n10\tOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport os\n15\timport sys\n16\timport time\n17\timport warnings\n18\timport numpy as np\n19\timport pandas as pd\n20\tfrom scipy.special import gammaln\n21\tfrom scipy.optimize import minimize_scalar\n22\t\n23\twarnings.filterwarnings('ignore')\n24\t\n25\ttry:\n26\t    import pymc as pm\n27\t    import pytensor.tensor as pt\n28\t    import arviz as az\n29\t    HAS_PYMC = True\n30\texcept ImportError:\n31\t    HAS_PYMC = False\n32\t\n33\tN = 5000\n34\tSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\n35\t\n36\tREGIMES = {\n37\t    2: {\n38\t        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\n39\t        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\n40\t        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n41\t    },\n42\t    4: {\n43\t        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\n44\t        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\n45\t        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n46\t    },\n47\t}\n48\t\n49\tDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\n50\tDEFAULT_K_LIST = [2, 4]\n51\t\n52\t\n53\t# ── DGP ───────────────────────────────────────────────────────────────────────\n54\t\n55\tdef generate_data(regime_params, n_expert, k, seed):\n56\t    rng = np.random.RandomState(seed)\n57\t    labels = SUBGROUP_LABELS[k]\n58\t    T = rng.binomial(1, 0.5, N)\n59\t    Z = rng.binomial(1, 0.5, N)\n60\t    S = rng.choice(labels, N, p=[1.0 / k] * k)\n61\t    X = rng.randn(N, 5)\n62\t    tau = np.where(Z == 1, regime_params['tau_z1'], regime_params['tau_z0'])\n63\t    Y = 1 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n64\t    mc_rates = np.zeros(N)\n65\t    for i, s in enumerate(labels):\n66\t        mc_rates[S == s] = regime_params['misclass'][i]\n67\t    Z_hat = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n68\t    idx = rng.choice(N, min(n_expert, N), replace=False)\n69\t    expert_mask = np.zeros(N, dtype=bool)\n70\t    expert_mask[idx] = True\n71\t    return dict(T=T, Z=Z, Z_hat=Z_hat, S=S, X=X, Y=Y, tau=tau, expert_mask=expert_mask)\n72\t\n73\t\n74\t# ── Helpers ───────────────────────────────────────────────────────────────────\n75\t\n76\tdef diff_in_means(Y, T, mask):\n77\t    t1, t0 = mask & (T == 1), mask & (T == 0)\n78\t    n1, n0 = t1.sum(), t0.sum()\n79\t    if n1 < 2 or n0 < 2:\n80\t        return np.nan, np.nan\n81\t    y1, y0 = Y[t1], Y[t0]\n82\t    return y1.mean() - y0.mean(), np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n83\t\n84\t\n85\tdef get_counts(z_true, z_hat, subgroups, labels):\n86\t    \"\"\"Confusion matrix counts per subgroup: (k, 2, 2) = [subgroup, true_z, z_hat].\"\"\"\n87\t    k = len(labels)\n88\t    counts = np.zeros((k, 2, 2), dtype=int)\n89\t    for i, s in enumerate(labels):\n90\t        ms = subgroups == s\n91\t        for z in [0, 1]:\n92\t            mz = ms & (z_true == z)\n93\t            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n94\t            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n95\t    return counts\n96\t\n97\t\n98\tdef build_mixing_matrix(C):\n99\t    \"\"\"C[z, z_hat] → M[z_hat, z] via Bayes rule (assuming P(Z=0)=P(Z=1)=0.5).\"\"\"\n100\t    M = np.zeros((2, 2))\n101\t    for zh in [0, 1]:\n102\t        cs = C[0, zh] + C[1, zh]\n103\t        if cs > 0:\n104\t            M[zh, 0] = C[0, zh] / cs\n105\t            M[zh, 1] = C[1, zh] / cs\n106\t        else:\n107\t            M[zh, :] = 0.5\n108\t    return M\n109\t\n110\t\n111\tdef invert_mixing(M, tau_obs, se_obs):\n112\t    det = np.linalg.det(M)\n113\t    if abs(det) < 1e-10:\n114\t        return tau_obs.copy(), se_obs.copy()\n115\t    Mi = np.linalg.inv(M)\n116\t    tau_c = Mi @ tau_obs\n117\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n118\t    return tau_c, se_c\n119\t\n120\t\n121\t# ── Confusion Matrix Estimators ───────────────────────────────────────────────\n122\t\n123\tdef estimate_cm_mle(counts, labels):\n124\t    \"\"\"Per-subgroup MLE with Laplace smoothing (add-1).\"\"\"\n125\t    C = {}\n126\t    for i, s in enumerate(labels):\n127\t        C_s = np.zeros((2, 2))\n128\t        for z in [0, 1]:\n129\t            n = counts[i, z, :].sum()\n130\t            for zh in [0, 1]:\n131\t                C_s[z, zh] = (counts[i, z, zh] + 1) / (n + 2) if n > 0 else 0.5\n132\t        C[s] = C_s\n133\t    return C\n134\t\n135\t\n136\tdef _dirmult_neg_ll(alpha, counts_z):\n137\t    \"\"\"Negative log marginal likelihood for Dirichlet-Multinomial.\"\"\"\n138\t    a = alpha / 2.0\n139\t    if a < 1e-10:\n140\t        return 1e10\n141\t    ll = 0.0\n142\t    for c0, c1 in counts_z:\n143\t        n = c0 + c1\n144\t        if n == 0:\n145\t            continue\n146\t        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n147\t        ll -= 2 * gammaln(a) - gammaln(2 * a)\n148\t    return -ll\n149\t\n150\t\n151\tdef estimate_cm_hb_eb(counts, labels):\n152\t    \"\"\"Empirical Bayes HB: optimize shared Dirichlet concentration, posterior mean.\"\"\"\n153\t    k = len(labels)\n154\t    alpha_opt = np.zeros(2)\n155\t    for z in [0, 1]:\n156\t        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n157\t        total = sum(c0 + c1 for c0, c1 in cl)\n158\t        if total == 0:\n159\t            alpha_opt[z] = 2.0\n160\t            continue\n161\t        res = minimize_scalar(\n162\t            lambda a: _dirmult_neg_ll(a, cl), bounds=(0.01, 500), method='bounded')\n163\t        alpha_opt[z] = res.x\n164\t\n165\t    C = {}\n166\t    for i, s in enumerate(labels):\n167\t        C_s = np.zeros((2, 2))\n168\t        for z in [0, 1]:\n169\t            a = alpha_opt[z] / 2.0\n170\t            n = counts[i, z, :].sum()\n171\t            d = n + 2 * a\n172\t            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n173\t            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n174\t        C[s] = C_s\n175\t\n176\t    diag = {'rhat_max': np.nan, 'ess_min': np.nan, 'divergent_count': 0,\n177\t            'runtime_seconds': 0.0, 'hb_method': 'eb',\n178\t            'alpha_0_z0': alpha_opt[0], 'alpha_0_z1': alpha_opt[1]}\n179\t    return C, diag\n180\t\n181\t\n182\tdef _split_rhat(chains):\n183\t    \"\"\"Split R-hat for a scalar parameter. chains: (n_chains, n_draws).\"\"\"\n184\t    parts = []\n185\t    for c in range(chains.shape[0]):\n186\t        half = chains.shape[1] // 2\n187\t        parts.append(chains[c, :half])\n188\t        parts.append(chains[c, half:2 * half])\n189\t    parts = np.array(parts)\n190\t    m = parts.shape[0]\n191\t    n = parts.shape[1]\n192\t    chain_means = parts.mean(axis=1)\n193\t    W = np.mean(np.var(parts, axis=1, ddof=1))\n194\t    B = n * np.var(chain_means, ddof=1)\n195\t    if W < 1e-20:\n196\t        return 1.0\n197\t    var_hat = (1 - 1.0 / n) * W + B / n\n198\t    return float(np.sqrt(var_hat / W))\n199\t\n200\t\n201\tdef _bulk_ess(chains):\n202\t    \"\"\"Approximate bulk ESS via initial positive sequence. chains: (n_chains, n_draws).\"\"\"\n203\t    x = chains.ravel()\n204\t    n = len(x)\n205\t    mu = x.mean()\n206\t    xc = x - mu\n207\t    max_lag = min(n // 2, 300)\n208\t    c0 = np.dot(xc, xc)\n209\t    if c0 < 1e-20:\n210\t        return float(n)\n211\t    tau = 1.0\n212\t    for lag in range(1, max_lag - 1, 2):\n213\t        r1 = np.dot(xc[:n - lag], xc[lag:]) / c0\n214\t        r2 = np.dot(xc[:n - lag - 1], xc[lag + 1:]) / c0 if lag + 1 < n else 0\n215\t        pair = r1 + r2\n216\t        if pair < 0:\n217\t            break\n218\t        tau += 2 * pair\n219\t    return float(n / tau)\n220\t\n221\t\n222\tdef _fast_diagnostics(alpha_arr, theta_arr, labels):\n223\t    \"\"\"Compute R-hat and ESS over all parameters without arviz.\"\"\"\n224\t    rhats, esss = [], []\n225\t    for d in range(alpha_arr.shape[2]):\n226\t        rhats.append(_split_rhat(alpha_arr[:, :, d]))\n227\t        esss.append(_bulk_ess(alpha_arr[:, :, d]))\n228\t    k = len(labels)\n229\t    for i in range(k):\n230\t        for z in [0, 1]:\n231\t            for zh in range(theta_arr.shape[4]):\n232\t                ch = theta_arr[:, :, i, z, zh]\n233\t                rhats.append(_split_rhat(ch))\n234\t                esss.append(_bulk_ess(ch))\n235\t    return max(rhats), min(esss)\n236\t\n237\t\n238\tdef _log_target_alpha(alpha, theta_z):\n239\t    \"\"\"Log posterior for alpha_0[z] in log-alpha space (includes Jacobian).\"\"\"\n240\t    if alpha < 1e-10:\n241\t        return -1e10\n242\t    a = alpha / 2.0\n243\t    k = theta_z.shape[0]\n244\t    lp = 2.0 * np.log(alpha) - alpha\n245\t    lp += k * (gammaln(alpha) - 2.0 * gammaln(a))\n246\t    lp += (a - 1.0) * np.sum(np.log(np.clip(theta_z, 1e-300, None)))\n247\t    return lp\n248\t\n249\t\n250\tdef estimate_cm_hb_gibbs(counts, labels, seed=42, n_iter=2000, n_warmup=1000):\n251\t    \"\"\"Gibbs sampler for HB Dirichlet-Multinomial (conjugate + adaptive MH for alpha_0).\"\"\"\n252\t    k = len(labels)\n253\t    n_chains = 2\n254\t    chain_inits = [np.array([1.0, 1.0]), np.array([5.0, 5.0])]\n255\t    all_alpha, all_theta = [], []\n256\t    t0 = time.time()\n257\t\n258\t    for chain in range(n_chains):\n259\t        rng = np.random.RandomState(seed * 31 + chain * 7919 + 1)\n260\t        alpha = chain_inits[chain].copy()\n261\t        theta = np.ones((k, 2, 2)) * 0.5\n262\t        mh_scale = np.array([0.3, 0.3])\n263\t        accept_ct = np.array([0, 0])\n264\t        attempt_ct = np.array([0, 0])\n265\t\n266\t        alpha_samples = np.zeros((n_iter, 2))\n267\t        theta_samples = np.zeros((n_iter, k, 2, 2))\n268\t\n269\t        for it in range(n_warmup + n_iter):\n270\t            for z in [0, 1]:\n271\t                post_a = counts[:, z, :].astype(float) + alpha[z] / 2.0\n272\t                post_a = np.maximum(post_a, 1e-6)\n273\t                g = rng.gamma(post_a)\n274\t                g_sum = g.sum(axis=1, keepdims=True)\n275\t                theta[:, z, :] = g / np.maximum(g_sum, 1e-300)\n276\t\n277\t            for z in [0, 1]:\n278\t                x_prop = np.log(alpha[z]) + rng.normal(0, mh_scale[z])\n279\t                a_prop = np.exp(x_prop)\n280\t                log_r = (_log_target_alpha(a_prop, theta[:, z, :]) -\n281\t                         _log_target_alpha(alpha[z], theta[:, z, :]))\n282\t                accepted = np.log(rng.rand()) < log_r\n283\t                if accepted:\n284\t                    alpha[z] = a_prop\n285\t                if it < n_warmup:\n286\t                    accept_ct[z] += int(accepted)\n287\t                    attempt_ct[z] += 1\n288\t\n289\t            if it < n_warmup and it > 0 and it % 100 == 0:\n290\t                for z in [0, 1]:\n291\t                    rate = accept_ct[z] / max(attempt_ct[z], 1)\n292\t                    if rate < 0.2:\n293\t                        mh_scale[z] *= 0.7\n294\t                    elif rate > 0.5:\n295\t                        mh_scale[z] *= 1.3\n296\t                    accept_ct[z] = 0\n297\t                    attempt_ct[z] = 0\n298\t\n299\t            if it >= n_warmup:\n300\t                idx = it - n_warmup\n301\t                alpha_samples[idx] = alpha.copy()\n302\t                theta_samples[idx] = theta.copy()\n303\t\n304\t        all_alpha.append(alpha_samples)\n305\t        all_theta.append(theta_samples)\n306\t\n307\t    runtime = time.time() - t0\n308\t    alpha_arr = np.stack(all_alpha)\n309\t    theta_arr = np.stack(all_theta)\n310\t\n311\t    C = {}\n312\t    for i, s in enumerate(labels):\n313\t        C[s] = theta_arr[:, :, i, :, :].mean(axis=(0, 1))\n314\t\n315\t    rhat_max, ess_min = _fast_diagnostics(alpha_arr, theta_arr, labels)\n316\t\n317\t    diag = {'rhat_max': rhat_max, 'ess_min': ess_min, 'divergent_count': 0,\n318\t            'runtime_seconds': runtime, 'hb_method': 'gibbs'}\n319\t    return C, diag\n320\t\n321\t\n322\tdef estimate_cm_hb_mcmc(counts, labels, seed=42, draws=1000, tune=500, chains=2):\n323\t    \"\"\"Full Bayesian HB with PyMC MCMC.\"\"\"\n324\t    k = len(labels)\n325\t    n_per_sz = counts.sum(axis=2)\n326\t\n327\t    with pm.Model():\n328\t        alpha_0 = pm.Gamma('alpha_0', alpha=2, beta=1, shape=2)\n329\t        for z in [0, 1]:\n330\t            for i, s in enumerate(labels):\n331\t                nsz = int(n_per_sz[i, z])\n332\t                if nsz == 0:\n333\t                    continue\n334\t                a = pt.stack([alpha_0[z] / 2, alpha_0[z] / 2])\n335\t                theta = pm.Dirichlet(f'theta_{s}_z{z}', a=a)\n336\t                pm.Multinomial(f'obs_{s}_z{z}', n=nsz, p=theta,\n337\t                               observed=counts[i, z, :].astype('int32'))\n338\t        t0 = time.time()\n339\t        trace = pm.sample(draws=draws, tune=tune, chains=chains,\n340\t                          random_seed=seed, progressbar=False)\n341\t        runtime = time.time() - t0\n342\t\n343\t    C = {}\n344\t    for i, s in enumerate(labels):\n345\t        C_s = np.zeros((2, 2))\n346\t        for z in [0, 1]:\n347\t            vn = f'theta_{s}_z{z}'\n348\t            if vn in trace.posterior:\n349\t                C_s[z, :] = trace.posterior[vn].values.mean(axis=(0, 1))\n350\t            else:\n351\t                C_s[z, :] = 0.5\n352\t        C[s] = C_s\n353\t\n354\t    all_vars = list(trace.posterior.data_vars)\n355\t    try:\n356\t        summ = az.summary(trace, var_names=all_vars)\n357\t        rhat_max = float(summ['r_hat'].max())\n358\t        ess_min = float(summ['ess_bulk'].min())\n359\t    except Exception:\n360\t        rhat_max = ess_min = np.nan\n361\t    try:\n362\t        divergent = int(trace.sample_stats['diverging'].values.sum())\n363\t    except Exception:\n364\t        divergent = -1\n365\t\n366\t    diag = {'rhat_max': rhat_max, 'ess_min': ess_min,\n367\t            'divergent_count': divergent, 'runtime_seconds': runtime,\n368\t            'hb_method': 'mcmc'}\n369\t    return C, diag\n370\t\n371\t\n372\t# ── Single MC Run ─────────────────────────────────────────────────────────────\n373\t\n374\tdef run_one_mc(regime_name, regime_params, n_expert, k, seed, hb_method='eb'):\n375\t    data = generate_data(regime_params, n_expert, k, seed)\n376\t    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n377\t    em = data['expert_mask']\n378\t    labels = SUBGROUP_LABELS[k]\n379\t    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n380\t\n381\t    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n382\t\n383\t    C_mle = estimate_cm_mle(counts, labels)\n384\t\n385\t    if hb_method == 'gibbs':\n386\t        C_hb, hb_diag = estimate_cm_hb_gibbs(counts, labels, seed=seed)\n387\t    elif hb_method == 'mcmc' and HAS_PYMC:\n388\t        try:\n389\t            C_hb, hb_diag = estimate_cm_hb_mcmc(counts, labels, seed=seed)\n390\t        except Exception:\n391\t            C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n392\t            hb_diag['hb_method'] = 'eb_fallback'\n393\t    else:\n394\t        C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n395\t\n396\t    # Global CM (pool all expert labels, Laplace)\n397\t    cg = counts.sum(axis=0)\n398\t    C_gl = np.zeros((2, 2))\n399\t    for z in [0, 1]:\n400\t        n = cg[z, :].sum()\n401\t        for zh in [0, 1]:\n402\t            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\n403\t\n404\t    M_gl = build_mixing_matrix(C_gl)\n405\t    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n406\t    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n407\t\n408\t    base = {'regime': regime_name, 'n_expert': n_expert, 'k_subgroups': k, 'mc_run': seed}\n409\t    rows = []\n410\t\n411\t    for s in labels:\n412\t        sm = S == s\n413\t        th0_or, se0_or = diff_in_means(Y, T, sm & (Z == 0))\n414\t        th1_or, se1_or = diff_in_means(Y, T, sm & (Z == 1))\n415\t        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n416\t        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n417\t\n418\t        tau_obs = np.array([th0_n, th1_n])\n419\t        se_obs = np.array([se0_n, se1_n])\n420\t        if np.any(np.isnan(tau_obs)):\n421\t            continue\n422\t\n423\t        tgc, sgc = invert_mixing(M_gl, tau_obs, se_obs)\n424\t        tml, sml = invert_mixing(M_mle[s], tau_obs, se_obs)\n425\t        thb, shb = invert_mixing(M_hb[s], tau_obs, se_obs)\n426\t\n427\t        def mr(method, th0, th1, se0, se1):\n428\t            return {**base, 'subgroup': s, 'method': method,\n429\t                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n430\t                    'se_z0': se0, 'se_z1': se1,\n431\t                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n432\t\n433\t        rows.append(mr('oracle', th0_or, th1_or, se0_or, se1_or))\n434\t        rows.append(mr('naive', th0_n, th1_n, se0_n, se1_n))\n435\t        rows.append(mr('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]))\n436\t        rows.append(mr('mle_laplace', tml[0], tml[1], sml[0], sml[1]))\n437\t        rows.append(mr('hb_dirichlet', thb[0], thb[1], shb[0], shb[1]))\n438\t\n439\t    return rows, {**base, **hb_diag}\n440\t\n441\t\n442\t# ── Aggregation ───────────────────────────────────────────────────────────────\n443\t\n444\tdef aggregate_results(df):\n445\t    rows = []\n446\t    grp_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method']\n447\t    for keys, grp in df.groupby(grp_cols):\n448\t        regime, n_expert, k, subgroup, method = keys\n449\t        row = {'regime': regime, 'n_expert': int(n_expert), 'k_subgroups': int(k),\n450\t               'subgroup': subgroup, 'method': method}\n451\t        n_mc = len(grp)\n452\t        for z in ['z0', 'z1']:\n453\t            err = grp[f'tau_hat_{z}'].values - grp[f'tau_true_{z}'].values\n454\t            bias = err.mean()\n455\t            mse = (err ** 2).mean()\n456\t            rmse = np.sqrt(mse)\n457\t            ci_lo = grp[f'tau_hat_{z}'].values - 1.96 * grp[f'se_{z}'].values\n458\t            ci_hi = grp[f'tau_hat_{z}'].values + 1.96 * grp[f'se_{z}'].values\n459\t            cov = ((ci_lo <= grp[f'tau_true_{z}'].values) &\n460\t                   (grp[f'tau_true_{z}'].values <= ci_hi)).mean()\n461\t            row[f'bias_{z}'] = bias\n462\t            row[f'rmse_{z}'] = rmse\n463\t            row[f'coverage_{z}'] = cov\n464\t            row[f'bias_{z}_se'] = err.std() / np.sqrt(n_mc)\n465\t            mse_se = (err ** 2).std() / np.sqrt(n_mc)\n466\t            row[f'rmse_{z}_se'] = mse_se / (2 * rmse) if rmse > 1e-10 else np.nan\n467\t        rows.append(row)\n468\t    return pd.DataFrame(rows)\n469\t\n470\t\n471\t# ── Output ────────────────────────────────────────────────────────────────────\n472\t\n473\tdef print_summary(df_agg, df_diag):\n474\t    pd.set_option('display.float_format', '{:.4f}'.format)\n475\t\n476\t    # MCMC / Gibbs diagnostics\n477\t    if 'hb_method' in df_diag.columns:\n478\t        for method_label in ['gibbs', 'mcmc']:\n479\t            mrows = df_diag[df_diag['hb_method'] == method_label]\n480\t            if mrows.empty:\n481\t                continue\n482\t            print(f\"\\n── {method_label.upper()} Diagnostics ──────────────────────────────\")\n483\t            print(f\"  Runs:           {len(mrows)}\")\n484\t            rh = mrows['rhat_max'].dropna()\n485\t            es = mrows['ess_min'].dropna()\n486\t            if not rh.empty:\n487\t                print(f\"  R-hat max:      {rh.max():.4f} (target < 1.01)\")\n488\t            if not es.empty:\n489\t                print(f\"  ESS min:        {es.min():.0f} (target > 200)\")\n490\t            print(f\"  Divergent total:{int(mrows['divergent_count'].sum())}\")\n491\t            print(f\"  Runtime median: {mrows['runtime_seconds'].median():.2f}s\")\n492\t\n493\t    # Per-config HB vs MLE comparison\n494\t    print(\"\\n── HB vs MLE RMSE Comparison (subgroup-level, averaged) ──\")\n495\t    for k in sorted(df_agg['k_subgroups'].unique()):\n496\t        print(f\"\\n  K = {int(k)} subgroups\")\n497\t        for regime in ['extreme', 'moderate', 'homogeneous']:\n498\t            sub = df_agg[(df_agg['k_subgroups'] == k) & (df_agg['regime'] == regime)]\n499\t            if sub.empty:\n500\t                continue\n501\t            print(f\"    {regime}:\")\n502\t            print(f\"    {'n_exp':>6s}  {'oracle':>8s}  {'naive':>8s}  {'global':>8s}  \"\n503\t                  f\"{'mle':>8s}  {'hb':>8s}  {'HB vs MLE':>10s}\")\n504\t            for ne in sorted(sub['n_expert'].unique()):\n505\t                vals = {}\n506\t                for m in ['oracle', 'naive', 'global_corrected', 'mle_laplace', 'hb_dirichlet']:\n507\t                    ms = sub[(sub['method'] == m) & (sub['n_expert'] == ne)]\n508\t                    if ms.empty:\n509\t                        vals[m] = np.nan\n510\t                    else:\n511\t                        vals[m] = np.sqrt((ms['rmse_z0'].values ** 2 +\n512\t                                           ms['rmse_z1'].values ** 2).mean())\n513\t                mle_v, hb_v = vals['mle_laplace'], vals['hb_dirichlet']\n514\t                pct = (mle_v - hb_v) / mle_v * 100 if mle_v > 1e-10 else 0\n515\t                tag = f\"{pct:+.1f}%\"\n516\t                print(f\"    {int(ne):6d}  {vals['oracle']:8.4f}  {vals['naive']:8.4f}  \"\n517\t                      f\"{vals['global_corrected']:8.4f}  {mle_v:8.4f}  {hb_v:8.4f}  {tag:>10s}\")\n518\t\n519\t\n520\t# ── Sweep ─────────────────────────────────────────────────────────────────────\n521\t\n522\tdef run_sweep(regime_names, n_experts, k_list, n_mc,\n523\t              hb_method='eb', mcmc_diag_runs=5, verbose=True):\n524\t    all_rows, all_diag = [], []\n525\t    total = sum(1 for k in k_list for r in regime_names if r in REGIMES[k]) * len(n_experts) * n_mc\n526\t    count = 0\n527\t    t0 = time.time()\n528\t\n529\t    for k in k_list:\n530\t        for rn in regime_names:\n531\t            if rn not in REGIMES[k]:\n532\t                continue\n533\t            rp = REGIMES[k][rn]\n534\t            for ne in n_experts:\n535\t                for mc in range(n_mc):\n536\t                    use = hb_method\n537\t                    if hb_method == 'auto':\n538\t                        use = 'mcmc' if mc < mcmc_diag_runs else 'eb'\n539\t                    try:\n540\t                        rows, diag = run_one_mc(rn, rp, ne, k, seed=mc, hb_method=use)\n541\t                        all_rows.extend(rows)\n542\t                        all_diag.append(diag)\n543\t                    except Exception as e:\n544\t                        if verbose:\n545\t                            print(f\"  WARN: k={k} {rn} ne={ne} mc={mc} failed: {e}\")\n546\t                        all_diag.append({\n547\t                            'regime': rn, 'n_expert': ne, 'k_subgroups': k,\n548\t                            'mc_run': mc, 'hb_method': 'error',\n549\t                            'rhat_max': np.nan, 'ess_min': np.nan,\n550\t                            'divergent_count': -1, 'runtime_seconds': 0.0})\n551\t                    count += 1\n552\t                    if verbose and count % max(1, total // 20) == 0:\n553\t                        el = time.time() - t0\n554\t                        eta = el / count * (total - count)\n555\t                        print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s | \"\n556\t                              f\"k={k} {rn} ne={ne} mc={mc}\")\n557\t\n558\t    if verbose:\n559\t        print(f\"  Sweep done: {time.time() - t0:.1f}s ({count} runs)\")\n560\t    return pd.DataFrame(all_rows), pd.DataFrame(all_diag)\n561\t\n562\t\n563\t# ── Main ──────────────────────────────────────────────────────────────────────\n564\t\n565\tif __name__ == '__main__':\n566\t    parser = argparse.ArgumentParser()\n567\t    parser.add_argument('--n-mc', type=int, default=100)\n568\t    parser.add_argument('--dry-run', action='store_true')\n569\t    parser.add_argument('--hb-method', choices=['auto', 'mcmc', 'gibbs', 'eb'], default='auto')\n570\t    parser.add_argument('--mcmc-diag-runs', type=int, default=5)\n571\t    args = parser.parse_args()\n572\t\n573\t    n_mc = 5 if args.dry_run else args.n_mc\n574\t    regime_names = ['moderate'] if args.dry_run else ['extreme', 'moderate', 'homogeneous']\n575\t    n_experts = [100] if args.dry_run else DEFAULT_N_EXPERTS\n576\t    k_list = [2] if args.dry_run else DEFAULT_K_LIST\n577\t\n578\t    print(f\"exp-001 HB Synthetic Validation | PyMC={HAS_PYMC}\")\n579\t    print(f\"N={N} n_mc={n_mc} hb={args.hb_method}\")\n580\t    print(f\"Regimes={regime_names} n_experts={n_experts} K={k_list}\\n\")\n581\t\n582\t    # Timing test\n583\t    effective_method = args.hb_method\n584\t    d = generate_data(REGIMES[2]['moderate'], 100, 2, seed=9999)\n585\t    em = d['expert_mask']\n586\t    tc = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], ['A', 'B'])\n587\t\n588\t    if args.hb_method == 'auto':\n589\t        print(\"Timing Gibbs sampler...\")\n590\t        t0 = time.time()\n591\t        _, dg = estimate_cm_hb_gibbs(tc, ['A', 'B'], seed=9999)\n592\t        gt = time.time() - t0\n593\t        print(f\"  Gibbs: {gt:.2f}s | rhat={dg['rhat_max']:.3f} \"\n594\t              f\"ess={dg['ess_min']:.0f}\")\n595\t        if gt < 5:\n596\t            effective_method = 'gibbs'\n597\t            print(f\"  Fast enough → using Gibbs for all runs\")\n598\t        else:\n599\t            effective_method = 'eb'\n600\t            print(f\"  Slow → using EB\")\n601\t    elif args.hb_method == 'mcmc' and HAS_PYMC:\n602\t        print(\"Timing PyMC MCMC...\")\n603\t        t0 = time.time()\n604\t        try:\n605\t            _, dg = estimate_cm_hb_mcmc(tc, ['A', 'B'], seed=9999)\n606\t            mt = time.time() - t0\n607\t            print(f\"  MCMC: {mt:.1f}s | rhat={dg['rhat_max']:.3f} \"\n608\t                  f\"ess={dg['ess_min']:.0f} div={dg['divergent_count']}\")\n609\t        except Exception as e:\n610\t            print(f\"  MCMC failed: {e} → falling back to Gibbs\")\n611\t            effective_method = 'gibbs'\n612\t\n613\t    print(f\"\\nEffective method: {effective_method}\\n\")\n614\t\n615\t    df_raw, df_diag = run_sweep(\n616\t        regime_names, n_experts, k_list, n_mc,\n617\t        hb_method=effective_method, mcmc_diag_runs=args.mcmc_diag_runs)\n618\t\n619\t    df_agg = aggregate_results(df_raw)\n620\t\n621\t    os.makedirs('results', exist_ok=True)\n622\t    agg_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method',\n623\t                'bias_z0', 'rmse_z0', 'coverage_z0', 'bias_z1', 'rmse_z1', 'coverage_z1',\n624\t                'bias_z0_se', 'rmse_z0_se', 'bias_z1_se', 'rmse_z1_se']\n625\t    df_agg[agg_cols].to_csv('results/exp001_hb_results.csv', index=False)\n626\t\n627\t    diag_cols = ['regime', 'n_expert', 'k_subgroups', 'mc_run',\n628\t                 'rhat_max', 'ess_min', 'divergent_count', 'runtime_seconds']\n629\t    save_cols = [c for c in diag_cols if c in df_diag.columns]\n630\t    if 'hb_method' in df_diag.columns:\n631\t        save_cols.insert(4, 'hb_method')\n632\t    df_diag[save_cols].to_csv('results/exp001_hb_diagnostics.csv', index=False)\n633\t\n634\t    print_summary(df_agg, df_diag)\n635\t\n636\t    print(f\"\\nSaved: results/exp001_hb_results.csv ({len(df_agg)} rows)\")\n637\t    print(f\"Saved: results/exp001_hb_diagnostics.csv ({len(df_diag)} rows)\")\n638\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "952fc44a-dc41-4871-906c-e693304ca040",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nexp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\n\nCompares confusion matrix estimators for CATE correction under heterogeneous\nmisclassification across subgroups:\n  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\n\nInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\nOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\n\"\"\"\n\nimport argparse\nimport os\nimport sys\nimport time\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom scipy.special import gammaln\nfrom scipy.optimize import minimize_scalar\n\nwarnings.filterwarnings('ignore')\n\ntry:\n    import pymc as pm\n    import pytensor.tensor as pt\n    import arviz as az\n    HAS_PYMC = True\nexcept ImportError:\n    HAS_PYMC = False\n\nN = 5000\nSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\n\nREGIMES = {\n    2: {\n        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\n        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\n        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n    },\n    4: {\n        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\n        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\n        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n    },\n}\n\nDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\nDEFAULT_K_LIST = [2, 4]\n\n\n# ── DGP ───────────────────────────────────────────────────────────────────────\n\ndef generate_data(regime_params, n_expert, k, seed):\n    rng = np.random.RandomState(seed)\n    labels = SUBGROUP_LABELS[k]\n    T = rng.binomial(1, 0.5, N)\n    Z = rng.binomial(1, 0.5, N)\n    S = rng.choice(labels, N, p=[1.0 / k] * k)\n    X = rng.randn(N, 5)\n    tau = np.where(Z == 1, regime_params['tau_z1'], regime_params['tau_z0'])\n    Y = 1 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n    mc_rates = np.zeros(N)\n    for i, s in enumerate(labels):\n        mc_rates[S == s] = regime_params['misclass'][i]\n    Z_hat = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n    idx = rng.choice(N, min(n_expert, N), replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[idx] = True\n    return dict(T=T, Z=Z, Z_hat=Z_hat, S=S, X=X, Y=Y, tau=tau, expert_mask=expert_mask)\n\n\n# ── Helpers ───────────────────────────────────────────────────────────────────\n\ndef diff_in_means(Y, T, mask):\n    t1, t0 = mask & (T == 1), mask & (T == 0)\n    n1, n0 = t1.sum(), t0.sum()\n    if n1 < 2 or n0 < 2:\n        return np.nan, np.nan\n    y1, y0 = Y[t1], Y[t0]\n    return y1.mean() - y0.mean(), np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n\n\ndef get_counts(z_true, z_hat, subgroups, labels):\n    \"\"\"Confusion matrix counts per subgroup: (k, 2, 2) = [subgroup, true_z, z_hat].\"\"\"\n    k = len(labels)\n    counts = np.zeros((k, 2, 2), dtype=int)\n    for i, s in enumerate(labels):\n        ms = subgroups == s\n        for z in [0, 1]:\n            mz = ms & (z_true == z)\n            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n    return counts\n\n\ndef build_mixing_matrix(C):\n    \"\"\"C[z, z_hat] → M[z_hat, z] via Bayes rule (assuming P(Z=0)=P(Z=1)=0.5).\"\"\"\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        if cs > 0:\n            M[zh, 0] = C[0, zh] / cs\n            M[zh, 1] = C[1, zh] / cs\n        else:\n            M[zh, :] = 0.5\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# ── Confusion Matrix Estimators ───────────────────────────────────────────────\n\ndef estimate_cm_mle(counts, labels):\n    \"\"\"Per-subgroup MLE with Laplace smoothing (add-1).\"\"\"\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            n = counts[i, z, :].sum()\n            for zh in [0, 1]:\n                C_s[z, zh] = (counts[i, z, zh] + 1) / (n + 2) if n > 0 else 0.5\n        C[s] = C_s\n    return C\n\n\ndef _dirmult_neg_ll(alpha, counts_z):\n    \"\"\"Negative log marginal likelihood for Dirichlet-Multinomial.\"\"\"\n    a = alpha / 2.0\n    if a < 1e-10:\n        return 1e10\n    ll = 0.0\n    for c0, c1 in counts_z:\n        n = c0 + c1\n        if n == 0:\n            continue\n        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n        ll -= 2 * gammaln(a) - gammaln(2 * a)\n    return -ll\n\n\ndef estimate_cm_hb_eb(counts, labels):\n    \"\"\"Empirical Bayes HB: optimize shared Dirichlet concentration, posterior mean.\"\"\"\n    k = len(labels)\n    alpha_opt = np.zeros(2)\n    for z in [0, 1]:\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n        total = sum(c0 + c1 for c0, c1 in cl)\n        if total == 0:\n            alpha_opt[z] = 2.0\n            continue\n        res = minimize_scalar(\n            lambda a: _dirmult_neg_ll(a, cl), bounds=(0.01, 500), method='bounded')\n        alpha_opt[z] = res.x\n\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            a = alpha_opt[z] / 2.0\n            n = counts[i, z, :].sum()\n            d = n + 2 * a\n            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n        C[s] = C_s\n\n    diag = {'rhat_max': np.nan, 'ess_min': np.nan, 'divergent_count': 0,\n            'runtime_seconds': 0.0, 'hb_method': 'eb',\n            'alpha_0_z0': alpha_opt[0], 'alpha_0_z1': alpha_opt[1]}\n    return C, diag\n\n\ndef _split_rhat(chains):\n    \"\"\"Split R-hat for a scalar parameter. chains: (n_chains, n_draws).\"\"\"\n    parts = []\n    for c in range(chains.shape[0]):\n        half = chains.shape[1] // 2\n        parts.append(chains[c, :half])\n        parts.append(chains[c, half:2 * half])\n    parts = np.array(parts)\n    m = parts.shape[0]\n    n = parts.shape[1]\n    chain_means = parts.mean(axis=1)\n    W = np.mean(np.var(parts, axis=1, ddof=1))\n    B = n * np.var(chain_means, ddof=1)\n    if W < 1e-20:\n        return 1.0\n    var_hat = (1 - 1.0 / n) * W + B / n\n    return float(np.sqrt(var_hat / W))\n\n\ndef _bulk_ess(chains):\n    \"\"\"Approximate bulk ESS via initial positive sequence. chains: (n_chains, n_draws).\"\"\"\n    x = chains.ravel()\n    n = len(x)\n    mu = x.mean()\n    xc = x - mu\n    max_lag = min(n // 2, 300)\n    c0 = np.dot(xc, xc)\n    if c0 < 1e-20:\n        return float(n)\n    tau = 1.0\n    for lag in range(1, max_lag - 1, 2):\n        r1 = np.dot(xc[:n - lag], xc[lag:]) / c0\n        r2 = np.dot(xc[:n - lag - 1], xc[lag + 1:]) / c0 if lag + 1 < n else 0\n        pair = r1 + r2\n        if pair < 0:\n            break\n        tau += 2 * pair\n    return float(n / tau)\n\n\ndef _fast_diagnostics(alpha_arr, theta_arr, labels):\n    \"\"\"Compute R-hat and ESS over all parameters without arviz.\"\"\"\n    rhats, esss = [], []\n    for d in range(alpha_arr.shape[2]):\n        rhats.append(_split_rhat(alpha_arr[:, :, d]))\n        esss.append(_bulk_ess(alpha_arr[:, :, d]))\n    k = len(labels)\n    for i in range(k):\n        for z in [0, 1]:\n            for zh in range(theta_arr.shape[4]):\n                ch = theta_arr[:, :, i, z, zh]\n                rhats.append(_split_rhat(ch))\n                esss.append(_bulk_ess(ch))\n    return max(rhats), min(esss)\n\n\ndef _log_target_alpha(alpha, theta_z):\n    \"\"\"Log posterior for alpha_0[z] in log-alpha space (includes Jacobian).\"\"\"\n    if alpha < 1e-10:\n        return -1e10\n    a = alpha / 2.0\n    k = theta_z.shape[0]\n    lp = 2.0 * np.log(alpha) - alpha\n    lp += k * (gammaln(alpha) - 2.0 * gammaln(a))\n    lp += (a - 1.0) * np.sum(np.log(np.clip(theta_z, 1e-300, None)))\n    return lp\n\n\ndef estimate_cm_hb_gibbs(counts, labels, seed=42, n_iter=2000, n_warmup=1000):\n    \"\"\"Gibbs sampler for HB Dirichlet-Multinomial (conjugate + adaptive MH for alpha_0).\"\"\"\n    k = len(labels)\n    n_chains = 2\n    chain_inits = [np.array([1.0, 1.0]), np.array([5.0, 5.0])]\n    all_alpha, all_theta = [], []\n    t0 = time.time()\n\n    for chain in range(n_chains):\n        rng = np.random.RandomState(seed * 31 + chain * 7919 + 1)\n        alpha = chain_inits[chain].copy()\n        theta = np.ones((k, 2, 2)) * 0.5\n        mh_scale = np.array([0.3, 0.3])\n        accept_ct = np.array([0, 0])\n        attempt_ct = np.array([0, 0])\n\n        alpha_samples = np.zeros((n_iter, 2))\n        theta_samples = np.zeros((n_iter, k, 2, 2))\n\n        for it in range(n_warmup + n_iter):\n            for z in [0, 1]:\n                post_a = counts[:, z, :].astype(float) + alpha[z] / 2.0\n                post_a = np.maximum(post_a, 1e-6)\n                g = rng.gamma(post_a)\n                g_sum = g.sum(axis=1, keepdims=True)\n                theta[:, z, :] = g / np.maximum(g_sum, 1e-300)\n\n            for z in [0, 1]:\n                x_prop = np.log(alpha[z]) + rng.normal(0, mh_scale[z])\n                a_prop = np.exp(x_prop)\n                log_r = (_log_target_alpha(a_prop, theta[:, z, :]) -\n                         _log_target_alpha(alpha[z], theta[:, z, :]))\n                accepted = np.log(rng.rand()) < log_r\n                if accepted:\n                    alpha[z] = a_prop\n                if it < n_warmup:\n                    accept_ct[z] += int(accepted)\n                    attempt_ct[z] += 1\n\n            if it < n_warmup and it > 0 and it % 100 == 0:\n                for z in [0, 1]:\n                    rate = accept_ct[z] / max(attempt_ct[z], 1)\n                    if rate < 0.2:\n                        mh_scale[z] *= 0.7\n                    elif rate > 0.5:\n                        mh_scale[z] *= 1.3\n                    accept_ct[z] = 0\n                    attempt_ct[z] = 0\n\n            if it >= n_warmup:\n                idx = it - n_warmup\n                alpha_samples[idx] = alpha.copy()\n                theta_samples[idx] = theta.copy()\n\n        all_alpha.append(alpha_samples)\n        all_theta.append(theta_samples)\n\n    runtime = time.time() - t0\n    alpha_arr = np.stack(all_alpha)\n    theta_arr = np.stack(all_theta)\n\n    C = {}\n    for i, s in enumerate(labels):\n        C[s] = theta_arr[:, :, i, :, :].mean(axis=(0, 1))\n\n    rhat_max, ess_min = _fast_diagnostics(alpha_arr, theta_arr, labels)\n\n    diag = {'rhat_max': rhat_max, 'ess_min': ess_min, 'divergent_count': 0,\n            'runtime_seconds': runtime, 'hb_method': 'gibbs'}\n    return C, diag\n\n\ndef estimate_cm_hb_mcmc(counts, labels, seed=42, draws=1000, tune=500, chains=2):\n    \"\"\"Full Bayesian HB with PyMC MCMC.\"\"\"\n    k = len(labels)\n    n_per_sz = counts.sum(axis=2)\n\n    with pm.Model():\n        alpha_0 = pm.Gamma('alpha_0', alpha=2, beta=1, shape=2)\n        for z in [0, 1]:\n            for i, s in enumerate(labels):\n                nsz = int(n_per_sz[i, z])\n                if nsz == 0:\n                    continue\n                a = pt.stack([alpha_0[z] / 2, alpha_0[z] / 2])\n                theta = pm.Dirichlet(f'theta_{s}_z{z}', a=a)\n                pm.Multinomial(f'obs_{s}_z{z}', n=nsz, p=theta,\n                               observed=counts[i, z, :].astype('int32'))\n        t0 = time.time()\n        trace = pm.sample(draws=draws, tune=tune, chains=chains,\n                          random_seed=seed, progressbar=False)\n        runtime = time.time() - t0\n\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            vn = f'theta_{s}_z{z}'\n            if vn in trace.posterior:\n                C_s[z, :] = trace.posterior[vn].values.mean(axis=(0, 1))\n            else:\n                C_s[z, :] = 0.5\n        C[s] = C_s\n\n    all_vars = list(trace.posterior.data_vars)\n    try:\n        summ = az.summary(trace, var_names=all_vars)\n        rhat_max = float(summ['r_hat'].max())\n        ess_min = float(summ['ess_bulk'].min())\n    except Exception:\n        rhat_max = ess_min = np.nan\n    try:\n        divergent = int(trace.sample_stats['diverging'].values.sum())\n    except Exception:\n        divergent = -1\n\n    diag = {'rhat_max': rhat_max, 'ess_min': ess_min,\n            'divergent_count': divergent, 'runtime_seconds': runtime,\n            'hb_method': 'mcmc'}\n    return C, diag\n\n\n# ── Single MC Run ─────────────────────────────────────────────────────────────\n\ndef run_one_mc(regime_name, regime_params, n_expert, k, seed, hb_method='eb'):\n    data = generate_data(regime_params, n_expert, k, seed)\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    em = data['expert_mask']\n    labels = SUBGROUP_LABELS[k]\n    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n\n    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n\n    C_mle = estimate_cm_mle(counts, labels)\n\n    if hb_method == 'gibbs':\n        C_hb, hb_diag = estimate_cm_hb_gibbs(counts, labels, seed=seed)\n    elif hb_method == 'mcmc' and HAS_PYMC:\n        try:\n            C_hb, hb_diag = estimate_cm_hb_mcmc(counts, labels, seed=seed)\n        except Exception:\n            C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n            hb_diag['hb_method'] = 'eb_fallback'\n    else:\n        C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n\n    # Global CM (pool all expert labels, Laplace)\n    cg = counts.sum(axis=0)\n    C_gl = np.zeros((2, 2))\n    for z in [0, 1]:\n        n = cg[z, :].sum()\n        for zh in [0, 1]:\n            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\n\n    M_gl = build_mixing_matrix(C_gl)\n    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n\n    base = {'regime': regime_name, 'n_expert': n_expert, 'k_subgroups': k, 'mc_run': seed}\n    rows = []\n\n    for s in labels:\n        sm = S == s\n        th0_or, se0_or = diff_in_means(Y, T, sm & (Z == 0))\n        th1_or, se1_or = diff_in_means(Y, T, sm & (Z == 1))\n        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n\n        tau_obs = np.array([th0_n, th1_n])\n        se_obs = np.array([se0_n, se1_n])\n        if np.any(np.isnan(tau_obs)):\n            continue\n\n        tgc, sgc = invert_mixing(M_gl, tau_obs, se_obs)\n        tml, sml = invert_mixing(M_mle[s], tau_obs, se_obs)\n        thb, shb = invert_mixing(M_hb[s], tau_obs, se_obs)\n\n        def mr(method, th0, th1, se0, se1):\n            return {**base, 'subgroup': s, 'method': method,\n                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n                    'se_z0': se0, 'se_z1': se1,\n                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n\n        rows.append(mr('oracle', th0_or, th1_or, se0_or, se1_or))\n        rows.append(mr('naive', th0_n, th1_n, se0_n, se1_n))\n        rows.append(mr('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]))\n        rows.append(mr('mle_laplace', tml[0], tml[1], sml[0], sml[1]))\n        rows.append(mr('hb_dirichlet', thb[0], thb[1], shb[0], shb[1]))\n\n    return rows, {**base, **hb_diag}\n\n\n# ── Aggregation ───────────────────────────────────────────────────────────────\n\ndef aggregate_results(df):\n    rows = []\n    grp_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method']\n    for keys, grp in df.groupby(grp_cols):\n        regime, n_expert, k, subgroup, method = keys\n        row = {'regime': regime, 'n_expert': int(n_expert), 'k_subgroups': int(k),\n               'subgroup': subgroup, 'method': method}\n        n_mc = len(grp)\n        for z in ['z0', 'z1']:\n            err = grp[f'tau_hat_{z}'].values - grp[f'tau_true_{z}'].values\n            bias = err.mean()\n            mse = (err ** 2).mean()\n            rmse = np.sqrt(mse)\n            ci_lo = grp[f'tau_hat_{z}'].values - 1.96 * grp[f'se_{z}'].values\n            ci_hi = grp[f'tau_hat_{z}'].values + 1.96 * grp[f'se_{z}'].values\n            cov = ((ci_lo <= grp[f'tau_true_{z}'].values) &\n                   (grp[f'tau_true_{z}'].values <= ci_hi)).mean()\n            row[f'bias_{z}'] = bias\n            row[f'rmse_{z}'] = rmse\n            row[f'coverage_{z}'] = cov\n            row[f'bias_{z}_se'] = err.std() / np.sqrt(n_mc)\n            mse_se = (err ** 2).std() / np.sqrt(n_mc)\n            row[f'rmse_{z}_se'] = mse_se / (2 * rmse) if rmse > 1e-10 else np.nan\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\n# ── Output ────────────────────────────────────────────────────────────────────\n\ndef print_summary(df_agg, df_diag):\n    pd.set_option('display.float_format', '{:.4f}'.format)\n\n    # MCMC / Gibbs diagnostics\n    if 'hb_method' in df_diag.columns:\n        for method_label in ['gibbs', 'mcmc']:\n            mrows = df_diag[df_diag['hb_method'] == method_label]\n            if mrows.empty:\n                continue\n            print(f\"\\n── {method_label.upper()} Diagnostics ──────────────────────────────\")\n            print(f\"  Runs:           {len(mrows)}\")\n            rh = mrows['rhat_max'].dropna()\n            es = mrows['ess_min'].dropna()\n            if not rh.empty:\n                print(f\"  R-hat max:      {rh.max():.4f} (target < 1.01)\")\n            if not es.empty:\n                print(f\"  ESS min:        {es.min():.0f} (target > 200)\")\n            print(f\"  Divergent total:{int(mrows['divergent_count'].sum())}\")\n            print(f\"  Runtime median: {mrows['runtime_seconds'].median():.2f}s\")\n\n    # Per-config HB vs MLE comparison\n    print(\"\\n── HB vs MLE RMSE Comparison (subgroup-level, averaged) ──\")\n    for k in sorted(df_agg['k_subgroups'].unique()):\n        print(f\"\\n  K = {int(k)} subgroups\")\n        for regime in ['extreme', 'moderate', 'homogeneous']:\n            sub = df_agg[(df_agg['k_subgroups'] == k) & (df_agg['regime'] == regime)]\n            if sub.empty:\n                continue\n            print(f\"    {regime}:\")\n            print(f\"    {'n_exp':>6s}  {'oracle':>8s}  {'naive':>8s}  {'global':>8s}  \"\n                  f\"{'mle':>8s}  {'hb':>8s}  {'HB vs MLE':>10s}\")\n            for ne in sorted(sub['n_expert'].unique()):\n                vals = {}\n                for m in ['oracle', 'naive', 'global_corrected', 'mle_laplace', 'hb_dirichlet']:\n                    ms = sub[(sub['method'] == m) & (sub['n_expert'] == ne)]\n                    if ms.empty:\n                        vals[m] = np.nan\n                    else:\n                        vals[m] = np.sqrt((ms['rmse_z0'].values ** 2 +\n                                           ms['rmse_z1'].values ** 2).mean())\n                mle_v, hb_v = vals['mle_laplace'], vals['hb_dirichlet']\n                pct = (mle_v - hb_v) / mle_v * 100 if mle_v > 1e-10 else 0\n                tag = f\"{pct:+.1f}%\"\n                print(f\"    {int(ne):6d}  {vals['oracle']:8.4f}  {vals['naive']:8.4f}  \"\n                      f\"{vals['global_corrected']:8.4f}  {mle_v:8.4f}  {hb_v:8.4f}  {tag:>10s}\")\n\n\n# ── Sweep ─────────────────────────────────────────────────────────────────────\n\ndef run_sweep(regime_names, n_experts, k_list, n_mc,\n              hb_method='eb', mcmc_diag_runs=5, verbose=True):\n    all_rows, all_diag = [], []\n    total = sum(1 for k in k_list for r in regime_names if r in REGIMES[k]) * len(n_experts) * n_mc\n    count = 0\n    t0 = time.time()\n\n    for k in k_list:\n        for rn in regime_names:\n            if rn not in REGIMES[k]:\n                continue\n            rp = REGIMES[k][rn]\n            for ne in n_experts:\n                for mc in range(n_mc):\n                    use = hb_method\n                    if hb_method == 'auto':\n                        use = 'mcmc' if mc < mcmc_diag_runs else 'eb'\n                    try:\n                        rows, diag = run_one_mc(rn, rp, ne, k, seed=mc, hb_method=use)\n                        all_rows.extend(rows)\n                        all_diag.append(diag)\n                    except Exception as e:\n                        if verbose:\n                            print(f\"  WARN: k={k} {rn} ne={ne} mc={mc} failed: {e}\")\n                        all_diag.append({\n                            'regime': rn, 'n_expert': ne, 'k_subgroups': k,\n                            'mc_run': mc, 'hb_method': 'error',\n                            'rhat_max': np.nan, 'ess_min': np.nan,\n                            'divergent_count': -1, 'runtime_seconds': 0.0})\n                    count += 1\n                    if verbose and count % max(1, total // 20) == 0:\n                        el = time.time() - t0\n                        eta = el / count * (total - count)\n                        print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s | \"\n                              f\"k={k} {rn} ne={ne} mc={mc}\")\n\n    if verbose:\n        print(f\"  Sweep done: {time.time() - t0:.1f}s ({count} runs)\")\n    return pd.DataFrame(all_rows), pd.DataFrame(all_diag)\n\n\n# ── Main ──────────────────────────────────────────────────────────────────────\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--n-mc', type=int, default=100)\n    parser.add_argument('--dry-run', action='store_true')\n    parser.add_argument('--hb-method', choices=['auto', 'mcmc', 'gibbs', 'eb'], default='auto')\n    parser.add_argument('--mcmc-diag-runs', type=int, default=5)\n    args = parser.parse_args()\n\n    n_mc = 5 if args.dry_run else args.n_mc\n    regime_names = ['moderate'] if args.dry_run else ['extreme', 'moderate', 'homogeneous']\n    n_experts = [100] if args.dry_run else DEFAULT_N_EXPERTS\n    k_list = [2] if args.dry_run else DEFAULT_K_LIST\n\n    print(f\"exp-001 HB Synthetic Validation | PyMC={HAS_PYMC}\")\n    print(f\"N={N} n_mc={n_mc} hb={args.hb_method}\")\n    print(f\"Regimes={regime_names} n_experts={n_experts} K={k_list}\\n\")\n\n    # Timing test\n    effective_method = args.hb_method\n    d = generate_data(REGIMES[2]['moderate'], 100, 2, seed=9999)\n    em = d['expert_mask']\n    tc = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], ['A', 'B'])\n\n    if args.hb_method == 'auto':\n        print(\"Timing Gibbs sampler...\")\n        t0 = time.time()\n        _, dg = estimate_cm_hb_gibbs(tc, ['A', 'B'], seed=9999)\n        gt = time.time() - t0\n        print(f\"  Gibbs: {gt:.2f}s | rhat={dg['rhat_max']:.3f} \"\n              f\"ess={dg['ess_min']:.0f}\")\n        if gt < 5:\n            effective_method = 'gibbs'\n            print(f\"  Fast enough → using Gibbs for all runs\")\n        else:\n            effective_method = 'eb'\n            print(f\"  Slow → using EB\")\n    elif args.hb_method == 'mcmc' and HAS_PYMC:\n        print(\"Timing PyMC MCMC...\")\n        t0 = time.time()\n        try:\n            _, dg = estimate_cm_hb_mcmc(tc, ['A', 'B'], seed=9999)\n            mt = time.time() - t0\n            print(f\"  MCMC: {mt:.1f}s | rhat={dg['rhat_max']:.3f} \"\n                  f\"ess={dg['ess_min']:.0f} div={dg['divergent_count']}\")\n        except Exception as e:\n            print(f\"  MCMC failed: {e} → falling back to Gibbs\")\n            effective_method = 'gibbs'\n\n    print(f\"\\nEffective method: {effective_method}\\n\")\n\n    df_raw, df_diag = run_sweep(\n        regime_names, n_experts, k_list, n_mc,\n        hb_method=effective_method, mcmc_diag_runs=args.mcmc_diag_runs)\n\n    df_agg = aggregate_results(df_raw)\n\n    os.makedirs('results', exist_ok=True)\n    agg_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method',\n                'bias_z0', 'rmse_z0', 'coverage_z0', 'bias_z1', 'rmse_z1', 'coverage_z1',\n                'bias_z0_se', 'rmse_z0_se', 'bias_z1_se', 'rmse_z1_se']\n    df_agg[agg_cols].to_csv('results/exp001_hb_results.csv', index=False)\n\n    diag_cols = ['regime', 'n_expert', 'k_subgroups', 'mc_run',\n                 'rhat_max', 'ess_min', 'divergent_count', 'runtime_seconds']\n    save_cols = [c for c in diag_cols if c in df_diag.columns]\n    if 'hb_method' in df_diag.columns:\n        save_cols.insert(4, 'hb_method')\n    df_diag[save_cols].to_csv('results/exp001_hb_diagnostics.csv', index=False)\n\n    print_summary(df_agg, df_diag)\n\n    print(f\"\\nSaved: results/exp001_hb_results.csv ({len(df_agg)} rows)\")\n    print(f\"Saved: results/exp001_hb_diagnostics.csv ({len(df_diag)} rows)\")\n",
+                "numLines": 638,
+                "startLine": 1,
+                "totalLines": 638
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QygzyfcvkqMNPtSY5eAzxw",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv 2>/dev/null; echo \"---\"; wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv 2>/dev/null",
+                "description": "Check CSV structure and size"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "244ee807-c1ee-4662-a4be-93c245c9d555",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MW4UPuAkXzUbT7EuUtPHQH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7634,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7634
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T21:38:18.000Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QygzyfcvkqMNPtSY5eAzxw",
+              "type": "tool_result",
+              "content": "regime,n_expert,k_subgroups,subgroup,method,bias_z0,rmse_z0,coverage_z0,bias_z1,rmse_z1,coverage_z1,bias_z0_se,rmse_z0_se,bias_z1_se,rmse_z1_se\nextreme,50,2,A,global_corrected,0.04190692147594412,0.09483168689745484,0.9,-0.04478415361403242,0.10090538121583174,0.92,0.008506972888299318,0.00627761511695205,0.009042276009604593,0.006908200687135487\nextreme,50,2,A,hb_dirichlet,-0.04073581530338976,0.20088390652314891,0.87,0.03335618303226938,0.19589667072169908,0.89,0.019671028760989938,0.03249461223748733,0.019303593099048565,0.03163479210857814\nextreme,50,2,A,mle_laplace,-0.04479997489806359,0.2207981209191847,0.9,0.037491274184812434,0.2160219183134855,0.89,0.021620539412923016,0.04361226606931674,0.021274368040399557,0.043197850384468064\nextreme,50,2,A,naive,0.09756803374719857,0.11623361373168385,0.68,-0.09999315701782521,0.12037578915952567,0.67,0.006317223877489071,0.00584994557329452,0.00670201399982657,0.006621695048010532\n---\n541 /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "5ee56fcb-ebad-4cf3-9ae1-83cdc1c17ebb",
+            "tool_use_result": {
+              "stdout": "regime,n_expert,k_subgroups,subgroup,method,bias_z0,rmse_z0,coverage_z0,bias_z1,rmse_z1,coverage_z1,bias_z0_se,rmse_z0_se,bias_z1_se,rmse_z1_se\nextreme,50,2,A,global_corrected,0.04190692147594412,0.09483168689745484,0.9,-0.04478415361403242,0.10090538121583174,0.92,0.008506972888299318,0.00627761511695205,0.009042276009604593,0.006908200687135487\nextreme,50,2,A,hb_dirichlet,-0.04073581530338976,0.20088390652314891,0.87,0.03335618303226938,0.19589667072169908,0.89,0.019671028760989938,0.03249461223748733,0.019303593099048565,0.03163479210857814\nextreme,50,2,A,mle_laplace,-0.04479997489806359,0.2207981209191847,0.9,0.037491274184812434,0.2160219183134855,0.89,0.021620539412923016,0.04361226606931674,0.021274368040399557,0.043197850384468064\nextreme,50,2,A,naive,0.09756803374719857,0.11623361373168385,0.68,-0.09999315701782521,0.12037578915952567,0.67,0.006317223877489071,0.00584994557329452,0.00670201399982657,0.006621695048010532\n---\n541 /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the code structure. Let me look at the key parts:\n\n1. `invert_mixing` function (line 111-118) - uses `np.linalg.inv(M)` to invert the mixing matrix\n2. `run_one_mc` function (line 374-439) - the main MC runner that calls `invert_mixing` for each method\n3. The CSV has aggregated results (540 data rows)\n\nI need to:\n1. Add `safe_invert_correction` function\n2. Add `hb_dirichlet_reg` and `mle_laplace_reg` methods\n\n\n3. Write a standalone script `exp001_regularize.py` that only reruns the affected cells with the new methods\n4. Append results to the existing CSV\n\nNow I'm examining the CSV structure to identify which cells need rerunning, and looking at how `invert_mixing` currently works so I can replace the matrix inversion with `np.linalg.solve` for better numerical stability.\n\nThe key insight is that `invert_mixing` computes `Mi @ tau_obs` where `Mi` is the inverse of `M`, which I can replace directly with `np.linalg.solve(M, tau_obs)`. However, the standard error calculation is more complex—it uses `Mi @ np.diag(se_obs**2) @ Mi.T`, which requires solving for each column separately when using `solve`. Looking at the task requirements, `safe_invert_correction` only needs to return the corrected tau values, not the SE, so I need to figure out how to handle the error propagation separately or if it's even needed for this step.\n\nThe simplest approach is to create a wrapper function that uses `safe_invert_correction` for the inversion step and integrate it into the existing methods, replacing the direct `np.linalg.inv` calls with the safer version that checks condition numbers first. I'm settling on modifying the original script rather than creating a standalone one, since that's cleaner and the task allows either approach. I need to add the `safe_invert_correction` function, create a wrapper around `invert_mixing` that guards against numerical issues, modify `run_one_mc` to selectively run methods, and add a `--regularize-only` CLI flag. Let me first verify the exact CSV column structure so I know what data I'm writing. I'm setting up a standalone script that will run the regularized methods on the affected cells, aggregate the results across all MC runs, and append them to the existing CSV file.\n\nWriting the script structure... Defining the Monte Carlo simulation function... Building result rows... Writing main execution logic... Writing comparison table... Comparing performance metrics across configurations...\n\nActually, I need to step back and reconsider the approach here. The task asks me to either modify the main script with a `--regularize-only` flag or write a standalone script that imports from it. The standalone script approach seems cleaner since it avoids touching the main pipeline, so I'll go with that instead. Writing the implementation...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "11015d75-f43d-49c4-9f98-7db6c7c88173",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W28Rkk98FSzwwSN9KdqNzt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11701,
+                "cache_read_input_tokens": 19475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11701
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've read the code. Now I'll implement the fix: add `safe_invert_correction` to the main script and write a standalone regularization script for the partial rerun."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "d4563a7f-53dc-40f9-a60d-f322261dd2b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W28Rkk98FSzwwSN9KdqNzt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11701,
+                "cache_read_input_tokens": 19475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11701
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AoVL3xcp8pfBa9xPBJKAnd",
+              "name": "Bash",
+              "input": {
+                "command": "head -1 /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv && grep -E \"K=4|k_subgroups.*4\" /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv | head -3; echo \"---\"; grep \"hb_dirichlet\\|mle_laplace\" /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv | grep -E \",4,(extreme|moderate),\" | grep -E \",50,|,100,\" ",
+                "description": "Check affected cells in CSV"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "b8567d12-8cbf-4a5f-855e-5f0b10c2f34e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W28Rkk98FSzwwSN9KdqNzt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11701,
+                "cache_read_input_tokens": 19475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11701
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T21:39:27.166Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AoVL3xcp8pfBa9xPBJKAnd",
+              "type": "tool_result",
+              "content": "regime,n_expert,k_subgroups,subgroup,method,bias_z0,rmse_z0,coverage_z0,bias_z1,rmse_z1,coverage_z1,bias_z0_se,rmse_z0_se,bias_z1_se,rmse_z1_se\n---",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "53d82261-f32a-4b65-a0fc-e4f32b01e35f",
+            "tool_use_result": {
+              "stdout": "regime,n_expert,k_subgroups,subgroup,method,bias_z0,rmse_z0,coverage_z0,bias_z1,rmse_z1,coverage_z1,bias_z0_se,rmse_z0_se,bias_z1_se,rmse_z1_se\n---",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "returnCodeInterpretation": "No matches found",
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TuPwstviZztqAw2wzAyGSK",
+              "name": "Bash",
+              "input": {
+                "command": "grep -E \"^extreme,(50|100),4,.*hb_dirichlet|^extreme,(50|100),4,.*mle_laplace|^moderate,50,4,.*hb_dirichlet|^moderate,50,4,.*mle_laplace\" /home/ubuntu/ec_hte_llm_annotation/results/exp001_hb_results.csv",
+                "description": "Check affected rows with correct column order"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "274447ff-8f49-4846-a987-5debacd3d189",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BQbSMzW9TGhMkdwK5BcdKb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4726,
+                "cache_read_input_tokens": 31176,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4726
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T21:39:30.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TuPwstviZztqAw2wzAyGSK",
+              "type": "tool_result",
+              "content": "extreme,50,4,A,hb_dirichlet,-0.24727178287894422,3.1443269256310002,0.93,0.2306634588452625,3.143573785958034,0.91,0.31345890449371455,1.3111011649679283,0.31350997618123844,1.3055014841285795\nextreme,50,4,A,mle_laplace,-0.09858199215282097,0.5210411505450551,0.95,0.08347884106621672,0.5264591279816504,0.95,0.05116302096089478,0.0698946472728156,0.051979851532054325,0.06622805695423531\nextreme,50,4,B,hb_dirichlet,50.91467975829677,509.93026220018504,0.9,-50.90988560227617,509.9373512373838,0.91,50.73820726953797,253.6870292770845,50.73896783882799,253.6905630642597\nextreme,50,4,B,mle_laplace,-0.10002684435962228,0.29994447506797384,0.92,0.103793339520429,0.28968611814837747,0.92,0.028277432438476136,0.04946850159323756,0.027045330413783562,0.05288541805943031\nextreme,50,4,C,hb_dirichlet,-0.06413313806429519,0.14068197443648103,0.93,0.047899326304982,0.15225330595853376,0.89,0.012521325222744097,0.010511419819174276,0.014452239866135539,0.010780877476200868\nextreme,50,4,C,mle_laplace,-0.08267900669294334,0.15364465558122997,0.91,0.06566875172039859,0.16354468657997287,0.88,0.012950236307088381,0.01115626827389866,0.01497814392908087,0.011893162467628983\nextreme,50,4,D,hb_dirichlet,-0.06956747965613275,0.1269669222273269,0.93,0.0640146342971063,0.1366813649488759,0.92,0.01062118878194604,0.007939178289622258,0.012076391066910488,0.015780925823318134\nextreme,50,4,D,mle_laplace,-0.0895113499796387,0.144374920356899,0.88,0.0819493827352127,0.15142890662846856,0.92,0.011327769353621026,0.009458937894300006,0.012733818135975978,0.017867455658646482\nextreme,100,4,A,hb_dirichlet,1.1277053770532754,11.569629957066637,0.92,-1.1419458998294887,11.550685748968196,0.92,1.151453941441076,5.752297936373891,1.1494098521992908,5.742917056061971\nextreme,100,4,A,mle_laplace,-0.035524258523554675,0.29004092705848117,0.94,0.021284656490218507,0.2857814934432918,0.93,0.02878571979737433,0.0433801257649782,0.02849877635842838,0.043764530473134604\nextreme,100,4,B,hb_dirichlet,-0.03983130511913801,0.21149101554543723,0.92,0.0438761518569874,0.20217923474891325,0.93,0.020770632342070494,0.03791158010246879,0.01973609035799105,0.04466905334854126\nextreme,100,4,B,mle_laplace,-0.048672848734712504,0.21678182533093926,0.93,0.05213186760124534,0.20889886161083404,0.94,0.021124704397899076,0.04142240445774458,0.020228940348596763,0.04855713798156267\nextreme,100,4,C,hb_dirichlet,-0.03952471663025522,0.11870830787326767,0.94,0.022536604107891215,0.1381120730137464,0.91,0.011193506659413092,0.011151333904545223,0.013626094887178272,0.011247919198627958\nextreme,100,4,C,mle_laplace,-0.04837353994042397,0.12307225986291281,0.94,0.030775600149064483,0.14154508814060385,0.88,0.011316705254355857,0.011330505778347265,0.013815887380909058,0.011840507878915465\nextreme,100,4,D,hb_dirichlet,-0.03708094646779958,0.10123590199496317,0.97,0.03033369485955979,0.10801555983989661,0.94,0.009420037824651221,0.005941323311877854,0.010366883873032147,0.011424850039645862\nextreme,100,4,D,mle_laplace,-0.046212044330515054,0.10696463502725125,0.95,0.038612435403776416,0.11262929235450993,0.93,0.009646698971828432,0.006278739603258281,0.01058037680258452,0.011767197949363973\nmoderate,50,4,A,hb_dirichlet,-0.017752382506642225,0.1701267797443192,0.95,0.004945914898668606,0.17755797540902504,0.92,0.016919803220342124,0.014708776098190119,0.017748907728975062,0.017730139527013463\nmoderate,50,4,A,mle_laplace,-0.023201841988643102,0.1911474360596927,0.95,0.01113321181652097,0.19875025385200185,0.92,0.018973406873971883,0.01686208117257987,0.019843818937110784,0.019036694070893163\nmoderate,50,4,B,hb_dirichlet,-0.018438861400567587,0.14396552249697617,0.95,0.019624968553915382,0.133572322693082,0.95,0.014277983071175707,0.014261777965965044,0.01321227686618876,0.011208525245313366\nmoderate,50,4,B,mle_laplace,-0.024435898691924914,0.15819589488911243,0.95,0.025038292889246833,0.1495294886157038,0.95,0.015629724250569837,0.01795122233734127,0.014741828873944433,0.015899412454313824\nmoderate,50,4,C,hb_dirichlet,-0.02944150939599703,0.11068009501558876,0.97,0.012070312018341644,0.12684389334131213,0.92,0.010669245970144835,0.00786685819276256,0.012626828915354025,0.008352086844720191\nmoderate,50,4,C,mle_laplace,-0.03776133799550326,0.11844933715542781,0.96,0.020190139324450886,0.13526372076714696,0.93,0.01122689931608437,0.008052486450781896,0.013374839225139106,0.009379275228115448\nmoderate,50,4,D,hb_dirichlet,-0.03798217276620539,0.10871517688857668,0.97,0.026123654544983818,0.122024866454772,0.93,0.010186434232778731,0.00775652986542324,0.01191957327529777,0.013596391376279937\nmoderate,50,4,D,mle_laplace,-0.04684472838542716,0.11851141953901165,0.96,0.03473975250342849,0.13047918030056213,0.93,0.01088601303675831,0.009031853535920443,0.012576949585613808,0.0153878044527105",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "cd332726-b0a3-466a-8d16-11e4380bb339",
+            "tool_use_result": {
+              "stdout": "extreme,50,4,A,hb_dirichlet,-0.24727178287894422,3.1443269256310002,0.93,0.2306634588452625,3.143573785958034,0.91,0.31345890449371455,1.3111011649679283,0.31350997618123844,1.3055014841285795\nextreme,50,4,A,mle_laplace,-0.09858199215282097,0.5210411505450551,0.95,0.08347884106621672,0.5264591279816504,0.95,0.05116302096089478,0.0698946472728156,0.051979851532054325,0.06622805695423531\nextreme,50,4,B,hb_dirichlet,50.91467975829677,509.93026220018504,0.9,-50.90988560227617,509.9373512373838,0.91,50.73820726953797,253.6870292770845,50.73896783882799,253.6905630642597\nextreme,50,4,B,mle_laplace,-0.10002684435962228,0.29994447506797384,0.92,0.103793339520429,0.28968611814837747,0.92,0.028277432438476136,0.04946850159323756,0.027045330413783562,0.05288541805943031\nextreme,50,4,C,hb_dirichlet,-0.06413313806429519,0.14068197443648103,0.93,0.047899326304982,0.15225330595853376,0.89,0.012521325222744097,0.010511419819174276,0.014452239866135539,0.010780877476200868\nextreme,50,4,C,mle_laplace,-0.08267900669294334,0.15364465558122997,0.91,0.06566875172039859,0.16354468657997287,0.88,0.012950236307088381,0.01115626827389866,0.01497814392908087,0.011893162467628983\nextreme,50,4,D,hb_dirichlet,-0.06956747965613275,0.1269669222273269,0.93,0.0640146342971063,0.1366813649488759,0.92,0.01062118878194604,0.007939178289622258,0.012076391066910488,0.015780925823318134\nextreme,50,4,D,mle_laplace,-0.0895113499796387,0.144374920356899,0.88,0.0819493827352127,0.15142890662846856,0.92,0.011327769353621026,0.009458937894300006,0.012733818135975978,0.017867455658646482\nextreme,100,4,A,hb_dirichlet,1.1277053770532754,11.569629957066637,0.92,-1.1419458998294887,11.550685748968196,0.92,1.151453941441076,5.752297936373891,1.1494098521992908,5.742917056061971\nextreme,100,4,A,mle_laplace,-0.035524258523554675,0.29004092705848117,0.94,0.021284656490218507,0.2857814934432918,0.93,0.02878571979737433,0.0433801257649782,0.02849877635842838,0.043764530473134604\nextreme,100,4,B,hb_dirichlet,-0.03983130511913801,0.21149101554543723,0.92,0.0438761518569874,0.20217923474891325,0.93,0.020770632342070494,0.03791158010246879,0.01973609035799105,0.04466905334854126\nextreme,100,4,B,mle_laplace,-0.048672848734712504,0.21678182533093926,0.93,0.05213186760124534,0.20889886161083404,0.94,0.021124704397899076,0.04142240445774458,0.020228940348596763,0.04855713798156267\nextreme,100,4,C,hb_dirichlet,-0.03952471663025522,0.11870830787326767,0.94,0.022536604107891215,0.1381120730137464,0.91,0.011193506659413092,0.011151333904545223,0.013626094887178272,0.011247919198627958\nextreme,100,4,C,mle_laplace,-0.04837353994042397,0.12307225986291281,0.94,0.030775600149064483,0.14154508814060385,0.88,0.011316705254355857,0.011330505778347265,0.013815887380909058,0.011840507878915465\nextreme,100,4,D,hb_dirichlet,-0.03708094646779958,0.10123590199496317,0.97,0.03033369485955979,0.10801555983989661,0.94,0.009420037824651221,0.005941323311877854,0.010366883873032147,0.011424850039645862\nextreme,100,4,D,mle_laplace,-0.046212044330515054,0.10696463502725125,0.95,0.038612435403776416,0.11262929235450993,0.93,0.009646698971828432,0.006278739603258281,0.01058037680258452,0.011767197949363973\nmoderate,50,4,A,hb_dirichlet,-0.017752382506642225,0.1701267797443192,0.95,0.004945914898668606,0.17755797540902504,0.92,0.016919803220342124,0.014708776098190119,0.017748907728975062,0.017730139527013463\nmoderate,50,4,A,mle_laplace,-0.023201841988643102,0.1911474360596927,0.95,0.01113321181652097,0.19875025385200185,0.92,0.018973406873971883,0.01686208117257987,0.019843818937110784,0.019036694070893163\nmoderate,50,4,B,hb_dirichlet,-0.018438861400567587,0.14396552249697617,0.95,0.019624968553915382,0.133572322693082,0.95,0.014277983071175707,0.014261777965965044,0.01321227686618876,0.011208525245313366\nmoderate,50,4,B,mle_laplace,-0.024435898691924914,0.15819589488911243,0.95,0.025038292889246833,0.1495294886157038,0.95,0.015629724250569837,0.01795122233734127,0.014741828873944433,0.015899412454313824\nmoderate,50,4,C,hb_dirichlet,-0.02944150939599703,0.11068009501558876,0.97,0.012070312018341644,0.12684389334131213,0.92,0.010669245970144835,0.00786685819276256,0.012626828915354025,0.008352086844720191\nmoderate,50,4,C,mle_laplace,-0.03776133799550326,0.11844933715542781,0.96,0.020190139324450886,0.13526372076714696,0.93,0.01122689931608437,0.008052486450781896,0.013374839225139106,0.009379275228115448\nmoderate,50,4,D,hb_dirichlet,-0.03798217276620539,0.10871517688857668,0.97,0.026123654544983818,0.122024866454772,0.93,0.010186434232778731,0.00775652986542324,0.01191957327529777,0.013596391376279937\nmoderate,50,4,D,mle_laplace,-0.04684472838542716,0.11851141953901165,0.96,0.03473975250342849,0.13047918030056213,0.93,0.01088601303675831,0.009031853535920443,0.012576949585613808,0.0153878044527105",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the affected rows. The big ones:\n- K=4/extreme/n=50/B: HB RMSE_z0=509.93, MLE RMSE_z0=0.30\n- K=4/extreme/n=50/A: HB RMSE_z0=3.14\n- K=4/extreme/n=100/A: HB RMSE_z0=11.57\n\n\n- Now I need to implement the safe inversion functions and create a standalone regularization script to address these problematic cases.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "d297634d-8d28-49d8-ab08-d2014344e11e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HjLk4XdH1J2x9wnz6FAaZD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 35902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2426
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I see the affected rows. The B subgroup at K=4/extreme/n=50 has HB RMSE of 509.93. Let me add the regularization function to the main script and write the standalone rerun script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "3348f360-b08f-412d-aa76-20d8fd8c2256",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HjLk4XdH1J2x9wnz6FAaZD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 35902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2426
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NkR46Jvpig5GWX46UvLuJs",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+                "old_string": "def invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c",
+                "new_string": "def invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\ndef safe_invert_correction(M_s, tau_obs, cond_threshold=100, fallback='naive'):\n    \"\"\"Invert mixing matrix with condition number guard.\n\n    When cond(M_s) > threshold, matrix inversion is numerically unstable.\n    Falls back to naive (no correction) to avoid catastrophic amplification.\n    \"\"\"\n    cond = np.linalg.cond(M_s)\n    if cond > cond_threshold:\n        return tau_obs.copy()\n    return np.linalg.solve(M_s, tau_obs)\n\n\ndef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n    \"\"\"Like invert_mixing but with condition number guard.\"\"\"\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold:\n        return tau_obs.copy(), se_obs.copy()\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "1bfb68ba-4c02-48cd-8328-65176baca4a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HjLk4XdH1J2x9wnz6FAaZD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2426,
+                "cache_read_input_tokens": 35902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2426
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T21:39:44.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NkR46Jvpig5GWX46UvLuJs",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "c746928f-3191-43d6-aee5-42581bed1761",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py",
+              "oldString": "def invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c",
+              "newString": "def invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\ndef safe_invert_correction(M_s, tau_obs, cond_threshold=100, fallback='naive'):\n    \"\"\"Invert mixing matrix with condition number guard.\n\n    When cond(M_s) > threshold, matrix inversion is numerically unstable.\n    Falls back to naive (no correction) to avoid catastrophic amplification.\n    \"\"\"\n    cond = np.linalg.cond(M_s)\n    if cond > cond_threshold:\n        return tau_obs.copy()\n    return np.linalg.solve(M_s, tau_obs)\n\n\ndef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n    \"\"\"Like invert_mixing but with condition number guard.\"\"\"\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold:\n        return tau_obs.copy(), se_obs.copy()\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"\nexp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\n\nCompares confusion matrix estimators for CATE correction under heterogeneous\nmisclassification across subgroups:\n  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\n\nInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\nOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\n\"\"\"\n\nimport argparse\nimport os\nimport sys\nimport time\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom scipy.special import gammaln\nfrom scipy.optimize import minimize_scalar\n\nwarnings.filterwarnings('ignore')\n\ntry:\n    import pymc as pm\n    import pytensor.tensor as pt\n    import arviz as az\n    HAS_PYMC = True\nexcept ImportError:\n    HAS_PYMC = False\n\nN = 5000\nSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\n\nREGIMES = {\n    2: {\n        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\n        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\n        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n    },\n    4: {\n        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\n        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\n        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n    },\n}\n\nDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\nDEFAULT_K_LIST = [2, 4]\n\n\n# ── DGP ───────────────────────────────────────────────────────────────────────\n\ndef generate_data(regime_params, n_expert, k, seed):\n    rng = np.random.RandomState(seed)\n    labels = SUBGROUP_LABELS[k]\n    T = rng.binomial(1, 0.5, N)\n    Z = rng.binomial(1, 0.5, N)\n    S = rng.choice(labels, N, p=[1.0 / k] * k)\n    X = rng.randn(N, 5)\n    tau = np.where(Z == 1, regime_params['tau_z1'], regime_params['tau_z0'])\n    Y = 1 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n    mc_rates = np.zeros(N)\n    for i, s in enumerate(labels):\n        mc_rates[S == s] = regime_params['misclass'][i]\n    Z_hat = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n    idx = rng.choice(N, min(n_expert, N), replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[idx] = True\n    return dict(T=T, Z=Z, Z_hat=Z_hat, S=S, X=X, Y=Y, tau=tau, expert_mask=expert_mask)\n\n\n# ── Helpers ───────────────────────────────────────────────────────────────────\n\ndef diff_in_means(Y, T, mask):\n    t1, t0 = mask & (T == 1), mask & (T == 0)\n    n1, n0 = t1.sum(), t0.sum()\n    if n1 < 2 or n0 < 2:\n        return np.nan, np.nan\n    y1, y0 = Y[t1], Y[t0]\n    return y1.mean() - y0.mean(), np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n\n\ndef get_counts(z_true, z_hat, subgroups, labels):\n    \"\"\"Confusion matrix counts per subgroup: (k, 2, 2) = [subgroup, true_z, z_hat].\"\"\"\n    k = len(labels)\n    counts = np.zeros((k, 2, 2), dtype=int)\n    for i, s in enumerate(labels):\n        ms = subgroups == s\n        for z in [0, 1]:\n            mz = ms & (z_true == z)\n            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n    return counts\n\n\ndef build_mixing_matrix(C):\n    \"\"\"C[z, z_hat] → M[z_hat, z] via Bayes rule (assuming P(Z=0)=P(Z=1)=0.5).\"\"\"\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        cs = C[0, zh] + C[1, zh]\n        if cs > 0:\n            M[zh, 0] = C[0, zh] / cs\n            M[zh, 1] = C[1, zh] / cs\n        else:\n            M[zh, :] = 0.5\n    return M\n\n\ndef invert_mixing(M, tau_obs, se_obs):\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# ── Confusion Matrix Estimators ───────────────────────────────────────────────\n\ndef estimate_cm_mle(counts, labels):\n    \"\"\"Per-subgroup MLE with Laplace smoothing (add-1).\"\"\"\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            n = counts[i, z, :].sum()\n            for zh in [0, 1]:\n                C_s[z, zh] = (counts[i, z, zh] + 1) / (n + 2) if n > 0 else 0.5\n        C[s] = C_s\n    return C\n\n\ndef _dirmult_neg_ll(alpha, counts_z):\n    \"\"\"Negative log marginal likelihood for Dirichlet-Multinomial.\"\"\"\n    a = alpha / 2.0\n    if a < 1e-10:\n        return 1e10\n    ll = 0.0\n    for c0, c1 in counts_z:\n        n = c0 + c1\n        if n == 0:\n            continue\n        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n        ll -= 2 * gammaln(a) - gammaln(2 * a)\n    return -ll\n\n\ndef estimate_cm_hb_eb(counts, labels):\n    \"\"\"Empirical Bayes HB: optimize shared Dirichlet concentration, posterior mean.\"\"\"\n    k = len(labels)\n    alpha_opt = np.zeros(2)\n    for z in [0, 1]:\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n        total = sum(c0 + c1 for c0, c1 in cl)\n        if total == 0:\n            alpha_opt[z] = 2.0\n            continue\n        res = minimize_scalar(\n            lambda a: _dirmult_neg_ll(a, cl), bounds=(0.01, 500), method='bounded')\n        alpha_opt[z] = res.x\n\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            a = alpha_opt[z] / 2.0\n            n = counts[i, z, :].sum()\n            d = n + 2 * a\n            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n        C[s] = C_s\n\n    diag = {'rhat_max': np.nan, 'ess_min': np.nan, 'divergent_count': 0,\n            'runtime_seconds': 0.0, 'hb_method': 'eb',\n            'alpha_0_z0': alpha_opt[0], 'alpha_0_z1': alpha_opt[1]}\n    return C, diag\n\n\ndef _split_rhat(chains):\n    \"\"\"Split R-hat for a scalar parameter. chains: (n_chains, n_draws).\"\"\"\n    parts = []\n    for c in range(chains.shape[0]):\n        half = chains.shape[1] // 2\n        parts.append(chains[c, :half])\n        parts.append(chains[c, half:2 * half])\n    parts = np.array(parts)\n    m = parts.shape[0]\n    n = parts.shape[1]\n    chain_means = parts.mean(axis=1)\n    W = np.mean(np.var(parts, axis=1, ddof=1))\n    B = n * np.var(chain_means, ddof=1)\n    if W < 1e-20:\n        return 1.0\n    var_hat = (1 - 1.0 / n) * W + B / n\n    return float(np.sqrt(var_hat / W))\n\n\ndef _bulk_ess(chains):\n    \"\"\"Approximate bulk ESS via initial positive sequence. chains: (n_chains, n_draws).\"\"\"\n    x = chains.ravel()\n    n = len(x)\n    mu = x.mean()\n    xc = x - mu\n    max_lag = min(n // 2, 300)\n    c0 = np.dot(xc, xc)\n    if c0 < 1e-20:\n        return float(n)\n    tau = 1.0\n    for lag in range(1, max_lag - 1, 2):\n        r1 = np.dot(xc[:n - lag], xc[lag:]) / c0\n        r2 = np.dot(xc[:n - lag - 1], xc[lag + 1:]) / c0 if lag + 1 < n else 0\n        pair = r1 + r2\n        if pair < 0:\n            break\n        tau += 2 * pair\n    return float(n / tau)\n\n\ndef _fast_diagnostics(alpha_arr, theta_arr, labels):\n    \"\"\"Compute R-hat and ESS over all parameters without arviz.\"\"\"\n    rhats, esss = [], []\n    for d in range(alpha_arr.shape[2]):\n        rhats.append(_split_rhat(alpha_arr[:, :, d]))\n        esss.append(_bulk_ess(alpha_arr[:, :, d]))\n    k = len(labels)\n    for i in range(k):\n        for z in [0, 1]:\n            for zh in range(theta_arr.shape[4]):\n                ch = theta_arr[:, :, i, z, zh]\n                rhats.append(_split_rhat(ch))\n                esss.append(_bulk_ess(ch))\n    return max(rhats), min(esss)\n\n\ndef _log_target_alpha(alpha, theta_z):\n    \"\"\"Log posterior for alpha_0[z] in log-alpha space (includes Jacobian).\"\"\"\n    if alpha < 1e-10:\n        return -1e10\n    a = alpha / 2.0\n    k = theta_z.shape[0]\n    lp = 2.0 * np.log(alpha) - alpha\n    lp += k * (gammaln(alpha) - 2.0 * gammaln(a))\n    lp += (a - 1.0) * np.sum(np.log(np.clip(theta_z, 1e-300, None)))\n    return lp\n\n\ndef estimate_cm_hb_gibbs(counts, labels, seed=42, n_iter=2000, n_warmup=1000):\n    \"\"\"Gibbs sampler for HB Dirichlet-Multinomial (conjugate + adaptive MH for alpha_0).\"\"\"\n    k = len(labels)\n    n_chains = 2\n    chain_inits = [np.array([1.0, 1.0]), np.array([5.0, 5.0])]\n    all_alpha, all_theta = [], []\n    t0 = time.time()\n\n    for chain in range(n_chains):\n        rng = np.random.RandomState(seed * 31 + chain * 7919 + 1)\n        alpha = chain_inits[chain].copy()\n        theta = np.ones((k, 2, 2)) * 0.5\n        mh_scale = np.array([0.3, 0.3])\n        accept_ct = np.array([0, 0])\n        attempt_ct = np.array([0, 0])\n\n        alpha_samples = np.zeros((n_iter, 2))\n        theta_samples = np.zeros((n_iter, k, 2, 2))\n\n        for it in range(n_warmup + n_iter):\n            for z in [0, 1]:\n                post_a = counts[:, z, :].astype(float) + alpha[z] / 2.0\n                post_a = np.maximum(post_a, 1e-6)\n                g = rng.gamma(post_a)\n                g_sum = g.sum(axis=1, keepdims=True)\n                theta[:, z, :] = g / np.maximum(g_sum, 1e-300)\n\n            for z in [0, 1]:\n                x_prop = np.log(alpha[z]) + rng.normal(0, mh_scale[z])\n                a_prop = np.exp(x_prop)\n                log_r = (_log_target_alpha(a_prop, theta[:, z, :]) -\n                         _log_target_alpha(alpha[z], theta[:, z, :]))\n                accepted = np.log(rng.rand()) < log_r\n                if accepted:\n                    alpha[z] = a_prop\n                if it < n_warmup:\n                    accept_ct[z] += int(accepted)\n                    attempt_ct[z] += 1\n\n            if it < n_warmup and it > 0 and it % 100 == 0:\n                for z in [0, 1]:\n                    rate = accept_ct[z] / max(attempt_ct[z], 1)\n                    if rate < 0.2:\n                        mh_scale[z] *= 0.7\n                    elif rate > 0.5:\n                        mh_scale[z] *= 1.3\n                    accept_ct[z] = 0\n                    attempt_ct[z] = 0\n\n            if it >= n_warmup:\n                idx = it - n_warmup\n                alpha_samples[idx] = alpha.copy()\n                theta_samples[idx] = theta.copy()\n\n        all_alpha.append(alpha_samples)\n        all_theta.append(theta_samples)\n\n    runtime = time.time() - t0\n    alpha_arr = np.stack(all_alpha)\n    theta_arr = np.stack(all_theta)\n\n    C = {}\n    for i, s in enumerate(labels):\n        C[s] = theta_arr[:, :, i, :, :].mean(axis=(0, 1))\n\n    rhat_max, ess_min = _fast_diagnostics(alpha_arr, theta_arr, labels)\n\n    diag = {'rhat_max': rhat_max, 'ess_min': ess_min, 'divergent_count': 0,\n            'runtime_seconds': runtime, 'hb_method': 'gibbs'}\n    return C, diag\n\n\ndef estimate_cm_hb_mcmc(counts, labels, seed=42, draws=1000, tune=500, chains=2):\n    \"\"\"Full Bayesian HB with PyMC MCMC.\"\"\"\n    k = len(labels)\n    n_per_sz = counts.sum(axis=2)\n\n    with pm.Model():\n        alpha_0 = pm.Gamma('alpha_0', alpha=2, beta=1, shape=2)\n        for z in [0, 1]:\n            for i, s in enumerate(labels):\n                nsz = int(n_per_sz[i, z])\n                if nsz == 0:\n                    continue\n                a = pt.stack([alpha_0[z] / 2, alpha_0[z] / 2])\n                theta = pm.Dirichlet(f'theta_{s}_z{z}', a=a)\n                pm.Multinomial(f'obs_{s}_z{z}', n=nsz, p=theta,\n                               observed=counts[i, z, :].astype('int32'))\n        t0 = time.time()\n        trace = pm.sample(draws=draws, tune=tune, chains=chains,\n                          random_seed=seed, progressbar=False)\n        runtime = time.time() - t0\n\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            vn = f'theta_{s}_z{z}'\n            if vn in trace.posterior:\n                C_s[z, :] = trace.posterior[vn].values.mean(axis=(0, 1))\n            else:\n                C_s[z, :] = 0.5\n        C[s] = C_s\n\n    all_vars = list(trace.posterior.data_vars)\n    try:\n        summ = az.summary(trace, var_names=all_vars)\n        rhat_max = float(summ['r_hat'].max())\n        ess_min = float(summ['ess_bulk'].min())\n    except Exception:\n        rhat_max = ess_min = np.nan\n    try:\n        divergent = int(trace.sample_stats['diverging'].values.sum())\n    except Exception:\n        divergent = -1\n\n    diag = {'rhat_max': rhat_max, 'ess_min': ess_min,\n            'divergent_count': divergent, 'runtime_seconds': runtime,\n            'hb_method': 'mcmc'}\n    return C, diag\n\n\n# ── Single MC Run ─────────────────────────────────────────────────────────────\n\ndef run_one_mc(regime_name, regime_params, n_expert, k, seed, hb_method='eb'):\n    data = generate_data(regime_params, n_expert, k, seed)\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    em = data['expert_mask']\n    labels = SUBGROUP_LABELS[k]\n    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n\n    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n\n    C_mle = estimate_cm_mle(counts, labels)\n\n    if hb_method == 'gibbs':\n        C_hb, hb_diag = estimate_cm_hb_gibbs(counts, labels, seed=seed)\n    elif hb_method == 'mcmc' and HAS_PYMC:\n        try:\n            C_hb, hb_diag = estimate_cm_hb_mcmc(counts, labels, seed=seed)\n        except Exception:\n            C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n            hb_diag['hb_method'] = 'eb_fallback'\n    else:\n        C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n\n    # Global CM (pool all expert labels, Laplace)\n    cg = counts.sum(axis=0)\n    C_gl = np.zeros((2, 2))\n    for z in [0, 1]:\n        n = cg[z, :].sum()\n        for zh in [0, 1]:\n            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\n\n    M_gl = build_mixing_matrix(C_gl)\n    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n\n    base = {'regime': regime_name, 'n_expert': n_expert, 'k_subgroups': k, 'mc_run': seed}\n    rows = []\n\n    for s in labels:\n        sm = S == s\n        th0_or, se0_or = diff_in_means(Y, T, sm & (Z == 0))\n        th1_or, se1_or = diff_in_means(Y, T, sm & (Z == 1))\n        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n\n        tau_obs = np.array([th0_n, th1_n])\n        se_obs = np.array([se0_n, se1_n])\n        if np.any(np.isnan(tau_obs)):\n            continue\n\n        tgc, sgc = invert_mixing(M_gl, tau_obs, se_obs)\n        tml, sml = invert_mixing(M_mle[s], tau_obs, se_obs)\n        thb, shb = invert_mixing(M_hb[s], tau_obs, se_obs)\n\n        def mr(method, th0, th1, se0, se1):\n            return {**base, 'subgroup': s, 'method': method,\n                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n                    'se_z0': se0, 'se_z1': se1,\n                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n\n        rows.append(mr('oracle', th0_or, th1_or, se0_or, se1_or))\n        rows.append(mr('naive', th0_n, th1_n, se0_n, se1_n))\n        rows.append(mr('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]))\n        rows.append(mr('mle_laplace', tml[0], tml[1], sml[0], sml[1]))\n        rows.append(mr('hb_dirichlet', thb[0], thb[1], shb[0], shb[1]))\n\n    return rows, {**base, **hb_diag}\n\n\n# ── Aggregation ───────────────────────────────────────────────────────────────\n\ndef aggregate_results(df):\n    rows = []\n    grp_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method']\n    for keys, grp in df.groupby(grp_cols):\n        regime, n_expert, k, subgroup, method = keys\n        row = {'regime': regime, 'n_expert': int(n_expert), 'k_subgroups': int(k),\n               'subgroup': subgroup, 'method': method}\n        n_mc = len(grp)\n        for z in ['z0', 'z1']:\n            err = grp[f'tau_hat_{z}'].values - grp[f'tau_true_{z}'].values\n            bias = err.mean()\n            mse = (err ** 2).mean()\n            rmse = np.sqrt(mse)\n            ci_lo = grp[f'tau_hat_{z}'].values - 1.96 * grp[f'se_{z}'].values\n            ci_hi = grp[f'tau_hat_{z}'].values + 1.96 * grp[f'se_{z}'].values\n            cov = ((ci_lo <= grp[f'tau_true_{z}'].values) &\n                   (grp[f'tau_true_{z}'].values <= ci_hi)).mean()\n            row[f'bias_{z}'] = bias\n            row[f'rmse_{z}'] = rmse\n            row[f'coverage_{z}'] = cov\n            row[f'bias_{z}_se'] = err.std() / np.sqrt(n_mc)\n            mse_se = (err ** 2).std() / np.sqrt(n_mc)\n            row[f'rmse_{z}_se'] = mse_se / (2 * rmse) if rmse > 1e-10 else np.nan\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\n# ── Output ────────────────────────────────────────────────────────────────────\n\ndef print_summary(df_agg, df_diag):\n    pd.set_option('display.float_format', '{:.4f}'.format)\n\n    # MCMC / Gibbs diagnostics\n    if 'hb_method' in df_diag.columns:\n        for method_label in ['gibbs', 'mcmc']:\n            mrows = df_diag[df_diag['hb_method'] == method_label]\n            if mrows.empty:\n                continue\n            print(f\"\\n── {method_label.upper()} Diagnostics ──────────────────────────────\")\n            print(f\"  Runs:           {len(mrows)}\")\n            rh = mrows['rhat_max'].dropna()\n            es = mrows['ess_min'].dropna()\n            if not rh.empty:\n                print(f\"  R-hat max:      {rh.max():.4f} (target < 1.01)\")\n            if not es.empty:\n                print(f\"  ESS min:        {es.min():.0f} (target > 200)\")\n            print(f\"  Divergent total:{int(mrows['divergent_count'].sum())}\")\n            print(f\"  Runtime median: {mrows['runtime_seconds'].median():.2f}s\")\n\n    # Per-config HB vs MLE comparison\n    print(\"\\n── HB vs MLE RMSE Comparison (subgroup-level, averaged) ──\")\n    for k in sorted(df_agg['k_subgroups'].unique()):\n        print(f\"\\n  K = {int(k)} subgroups\")\n        for regime in ['extreme', 'moderate', 'homogeneous']:\n            sub = df_agg[(df_agg['k_subgroups'] == k) & (df_agg['regime'] == regime)]\n            if sub.empty:\n                continue\n            print(f\"    {regime}:\")\n            print(f\"    {'n_exp':>6s}  {'oracle':>8s}  {'naive':>8s}  {'global':>8s}  \"\n                  f\"{'mle':>8s}  {'hb':>8s}  {'HB vs MLE':>10s}\")\n            for ne in sorted(sub['n_expert'].unique()):\n                vals = {}\n                for m in ['oracle', 'naive', 'global_corrected', 'mle_laplace', 'hb_dirichlet']:\n                    ms = sub[(sub['method'] == m) & (sub['n_expert'] == ne)]\n                    if ms.empty:\n                        vals[m] = np.nan\n                    else:\n                        vals[m] = np.sqrt((ms['rmse_z0'].values ** 2 +\n                                           ms['rmse_z1'].values ** 2).mean())\n                mle_v, hb_v = vals['mle_laplace'], vals['hb_dirichlet']\n                pct = (mle_v - hb_v) / mle_v * 100 if mle_v > 1e-10 else 0\n                tag = f\"{pct:+.1f}%\"\n                print(f\"    {int(ne):6d}  {vals['oracle']:8.4f}  {vals['naive']:8.4f}  \"\n                      f\"{vals['global_corrected']:8.4f}  {mle_v:8.4f}  {hb_v:8.4f}  {tag:>10s}\")\n\n\n# ── Sweep ─────────────────────────────────────────────────────────────────────\n\ndef run_sweep(regime_names, n_experts, k_list, n_mc,\n              hb_method='eb', mcmc_diag_runs=5, verbose=True):\n    all_rows, all_diag = [], []\n    total = sum(1 for k in k_list for r in regime_names if r in REGIMES[k]) * len(n_experts) * n_mc\n    count = 0\n    t0 = time.time()\n\n    for k in k_list:\n        for rn in regime_names:\n            if rn not in REGIMES[k]:\n                continue\n            rp = REGIMES[k][rn]\n            for ne in n_experts:\n                for mc in range(n_mc):\n                    use = hb_method\n                    if hb_method == 'auto':\n                        use = 'mcmc' if mc < mcmc_diag_runs else 'eb'\n                    try:\n                        rows, diag = run_one_mc(rn, rp, ne, k, seed=mc, hb_method=use)\n                        all_rows.extend(rows)\n                        all_diag.append(diag)\n                    except Exception as e:\n                        if verbose:\n                            print(f\"  WARN: k={k} {rn} ne={ne} mc={mc} failed: {e}\")\n                        all_diag.append({\n                            'regime': rn, 'n_expert': ne, 'k_subgroups': k,\n                            'mc_run': mc, 'hb_method': 'error',\n                            'rhat_max': np.nan, 'ess_min': np.nan,\n                            'divergent_count': -1, 'runtime_seconds': 0.0})\n                    count += 1\n                    if verbose and count % max(1, total // 20) == 0:\n                        el = time.time() - t0\n                        eta = el / count * (total - count)\n                        print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s | \"\n                              f\"k={k} {rn} ne={ne} mc={mc}\")\n\n    if verbose:\n        print(f\"  Sweep done: {time.time() - t0:.1f}s ({count} runs)\")\n    return pd.DataFrame(all_rows), pd.DataFrame(all_diag)\n\n\n# ── Main ──────────────────────────────────────────────────────────────────────\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--n-mc', type=int, default=100)\n    parser.add_argument('--dry-run', action='store_true')\n    parser.add_argument('--hb-method', choices=['auto', 'mcmc', 'gibbs', 'eb'], default='auto')\n    parser.add_argument('--mcmc-diag-runs', type=int, default=5)\n    args = parser.parse_args()\n\n    n_mc = 5 if args.dry_run else args.n_mc\n    regime_names = ['moderate'] if args.dry_run else ['extreme', 'moderate', 'homogeneous']\n    n_experts = [100] if args.dry_run else DEFAULT_N_EXPERTS\n    k_list = [2] if args.dry_run else DEFAULT_K_LIST\n\n    print(f\"exp-001 HB Synthetic Validation | PyMC={HAS_PYMC}\")\n    print(f\"N={N} n_mc={n_mc} hb={args.hb_method}\")\n    print(f\"Regimes={regime_names} n_experts={n_experts} K={k_list}\\n\")\n\n    # Timing test\n    effective_method = args.hb_method\n    d = generate_data(REGIMES[2]['moderate'], 100, 2, seed=9999)\n    em = d['expert_mask']\n    tc = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], ['A', 'B'])\n\n    if args.hb_method == 'auto':\n        print(\"Timing Gibbs sampler...\")\n        t0 = time.time()\n        _, dg = estimate_cm_hb_gibbs(tc, ['A', 'B'], seed=9999)\n        gt = time.time() - t0\n        print(f\"  Gibbs: {gt:.2f}s | rhat={dg['rhat_max']:.3f} \"\n              f\"ess={dg['ess_min']:.0f}\")\n        if gt < 5:\n            effective_method = 'gibbs'\n            print(f\"  Fast enough → using Gibbs for all runs\")\n        else:\n            effective_method = 'eb'\n            print(f\"  Slow → using EB\")\n    elif args.hb_method == 'mcmc' and HAS_PYMC:\n        print(\"Timing PyMC MCMC...\")\n        t0 = time.time()\n        try:\n            _, dg = estimate_cm_hb_mcmc(tc, ['A', 'B'], seed=9999)\n            mt = time.time() - t0\n            print(f\"  MCMC: {mt:.1f}s | rhat={dg['rhat_max']:.3f} \"\n                  f\"ess={dg['ess_min']:.0f} div={dg['divergent_count']}\")\n        except Exception as e:\n            print(f\"  MCMC failed: {e} → falling back to Gibbs\")\n            effective_method = 'gibbs'\n\n    print(f\"\\nEffective method: {effective_method}\\n\")\n\n    df_raw, df_diag = run_sweep(\n        regime_names, n_experts, k_list, n_mc,\n        hb_method=effective_method, mcmc_diag_runs=args.mcmc_diag_runs)\n\n    df_agg = aggregate_results(df_raw)\n\n    os.makedirs('results', exist_ok=True)\n    agg_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method',\n                'bias_z0', 'rmse_z0', 'coverage_z0', 'bias_z1', 'rmse_z1', 'coverage_z1',\n                'bias_z0_se', 'rmse_z0_se', 'bias_z1_se', 'rmse_z1_se']\n    df_agg[agg_cols].to_csv('results/exp001_hb_results.csv', index=False)\n\n    diag_cols = ['regime', 'n_expert', 'k_subgroups', 'mc_run',\n                 'rhat_max', 'ess_min', 'divergent_count', 'runtime_seconds']\n    save_cols = [c for c in diag_cols if c in df_diag.columns]\n    if 'hb_method' in df_diag.columns:\n        save_cols.insert(4, 'hb_method')\n    df_diag[save_cols].to_csv('results/exp001_hb_diagnostics.csv', index=False)\n\n    print_summary(df_agg, df_diag)\n\n    print(f\"\\nSaved: results/exp001_hb_results.csv ({len(df_agg)} rows)\")\n    print(f\"Saved: results/exp001_hb_diagnostics.csv ({len(df_diag)} rows)\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 118,
+                  "oldLines": 6,
+                  "newStart": 118,
+                  "newLines": 32,
+                  "lines": [
+                    "     return tau_c, se_c",
+                    " ",
+                    " ",
+                    "+def safe_invert_correction(M_s, tau_obs, cond_threshold=100, fallback='naive'):",
+                    "+    \"\"\"Invert mixing matrix with condition number guard.",
+                    "+",
+                    "+    When cond(M_s) > threshold, matrix inversion is numerically unstable.",
+                    "+    Falls back to naive (no correction) to avoid catastrophic amplification.",
+                    "+    \"\"\"",
+                    "+    cond = np.linalg.cond(M_s)",
+                    "+    if cond > cond_threshold:",
+                    "+        return tau_obs.copy()",
+                    "+    return np.linalg.solve(M_s, tau_obs)",
+                    "+",
+                    "+",
+                    "+def invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):",
+                    "+    \"\"\"Like invert_mixing but with condition number guard.\"\"\"",
+                    "+    cond = np.linalg.cond(M)",
+                    "+    if cond > cond_threshold:",
+                    "+        return tau_obs.copy(), se_obs.copy()",
+                    "+    det = np.linalg.det(M)",
+                    "+    if abs(det) < 1e-10:",
+                    "+        return tau_obs.copy(), se_obs.copy()",
+                    "+    Mi = np.linalg.inv(M)",
+                    "+    tau_c = Mi @ tau_obs",
+                    "+    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))",
+                    "+    return tau_c, se_c",
+                    "+",
+                    "+",
+                    " # ── Confusion Matrix Estimators ───────────────────────────────────────────────",
+                    " ",
+                    " def estimate_cm_mle(counts, labels):"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now write the standalone regularization script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "a89d03cc-6c0a-4457-818e-647b3463d6b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TptR5hY73kAQ4XFfwKp6mg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1007,
+                "cache_read_input_tokens": 38328,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BdF8XVwe1ouVrc2QLk5HuH",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp001_regularize.py - Rerun affected cells with condition-number-guarded inversion.\"\"\"\n\nimport argparse\nimport time\nimport numpy as np\nimport pandas as pd\n\nfrom exp001_hb_synthetic import (\n    REGIMES, SUBGROUP_LABELS,\n    generate_data, get_counts, build_mixing_matrix, diff_in_means,\n    estimate_cm_mle, estimate_cm_hb_eb, estimate_cm_hb_gibbs,\n    invert_mixing_safe, aggregate_results,\n)\n\nAFFECTED_CELLS = [\n    (4, 'extreme', 50),\n    (4, 'extreme', 100),\n    (4, 'moderate', 50),\n]\n\n\ndef run_one_mc_reg(regime_name, regime_params, n_expert, k, seed,\n                   cond_threshold=100, hb_method='eb'):\n    data = generate_data(regime_params, n_expert, k, seed)\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    em = data['expert_mask']\n    labels = SUBGROUP_LABELS[k]\n    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n\n    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n    C_mle = estimate_cm_mle(counts, labels)\n\n    if hb_method == 'gibbs':\n        C_hb, _ = estimate_cm_hb_gibbs(counts, labels, seed=seed)\n    else:\n        C_hb, _ = estimate_cm_hb_eb(counts, labels)\n\n    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n\n    base = {'regime': regime_name, 'n_expert': n_expert,\n            'k_subgroups': k, 'mc_run': seed}\n    rows = []\n\n    for s in labels:\n        sm = S == s\n        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n\n        tau_obs = np.array([th0_n, th1_n])\n        se_obs = np.array([se0_n, se1_n])\n        if np.any(np.isnan(tau_obs)):\n            continue\n\n        tml_r, sml_r = invert_mixing_safe(M_mle[s], tau_obs, se_obs, cond_threshold)\n        thb_r, shb_r = invert_mixing_safe(M_hb[s], tau_obs, se_obs, cond_threshold)\n\n        def mr(method, th0, th1, se0, se1):\n            return {**base, 'subgroup': s, 'method': method,\n                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n                    'se_z0': se0, 'se_z1': se1,\n                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n\n        rows.append(mr('mle_laplace_reg', tml_r[0], tml_r[1], sml_r[0], sml_r[1]))\n        rows.append(mr('hb_dirichlet_reg', thb_r[0], thb_r[1], shb_r[0], shb_r[1]))\n\n    return rows\n\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--n-mc', type=int, default=100)\n    parser.add_argument('--cond-threshold', type=float, default=100)\n    args = parser.parse_args()\n\n    print(f\"exp-001 Regularization fix | cond_threshold={args.cond_threshold}\")\n    print(f\"Affected cells: {AFFECTED_CELLS}\")\n    print(f\"n_mc={args.n_mc}\\n\")\n\n    # Pick HB method (same auto-timing as main script)\n    d = generate_data(REGIMES[2]['moderate'], 100, 2, seed=9999)\n    em = d['expert_mask']\n    tc = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], ['A', 'B'])\n    t0 = time.time()\n    _, dg = estimate_cm_hb_gibbs(tc, ['A', 'B'], seed=9999)\n    gt = time.time() - t0\n    hb_method = 'gibbs' if gt < 5 else 'eb'\n    print(f\"HB method: {hb_method} (gibbs timing: {gt:.2f}s)\\n\")\n\n    all_rows = []\n    total = len(AFFECTED_CELLS) * args.n_mc\n    count = 0\n    t0 = time.time()\n\n    for k, regime, n_expert in AFFECTED_CELLS:\n        rp = REGIMES[k][regime]\n        for mc in range(args.n_mc):\n            rows = run_one_mc_reg(regime, rp, n_expert, k, seed=mc,\n                                  cond_threshold=args.cond_threshold,\n                                  hb_method=hb_method)\n            all_rows.extend(rows)\n            count += 1\n            if count % 50 == 0:\n                el = time.time() - t0\n                print(f\"  [{count}/{total}] {el:.0f}s elapsed\")\n\n    print(f\"  Done: {time.time() - t0:.1f}s ({count} runs)\\n\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate_results(df_raw)\n\n    csv_path = 'results/exp001_hb_results.csv'\n    df_existing = pd.read_csv(csv_path)\n\n    agg_cols = list(df_existing.columns)\n    df_combined = pd.concat([df_existing, df_agg[agg_cols]], ignore_index=True)\n    df_combined.to_csv(csv_path, index=False)\n\n    # Comparison table\n    print(\"=\" * 110)\n    print(f\"{'Config':>40s} | {'Method':>15s} | {'RMSE_z0 (before)':>16s} | \"\n          f\"{'RMSE_z0 (after)':>15s} | {'RMSE_z1 (before)':>16s} | {'RMSE_z1 (after)':>15s}\")\n    print(\"-\" * 110)\n\n    for k, regime, n_expert in AFFECTED_CELLS:\n        for subgroup in SUBGROUP_LABELS[k]:\n            mask_e = ((df_existing['k_subgroups'] == k) &\n                      (df_existing['regime'] == regime) &\n                      (df_existing['n_expert'] == n_expert) &\n                      (df_existing['subgroup'] == subgroup))\n\n            for orig, reg in [('hb_dirichlet', 'hb_dirichlet_reg'),\n                              ('mle_laplace', 'mle_laplace_reg')]:\n                before = df_existing[mask_e & (df_existing['method'] == orig)]\n                after = df_agg[(df_agg['k_subgroups'] == k) &\n                               (df_agg['regime'] == regime) &\n                               (df_agg['n_expert'] == n_expert) &\n                               (df_agg['subgroup'] == subgroup) &\n                               (df_agg['method'] == reg)]\n\n                if before.empty or after.empty:\n                    continue\n\n                b_z0 = before['rmse_z0'].values[0]\n                a_z0 = after['rmse_z0'].values[0]\n                b_z1 = before['rmse_z1'].values[0]\n                a_z1 = after['rmse_z1'].values[0]\n\n                config = f\"K={k}/{regime}/n={n_expert}/{subgroup}\"\n                print(f\"{config:>40s} | {orig:>15s} | {b_z0:16.4f} | \"\n                      f\"{a_z0:15.4f} | {b_z1:16.4f} | {a_z1:15.4f}\")\n\n    print(\"=\" * 110)\n    print(f\"\\nAppended {len(df_agg)} rows to {csv_path}\")\n    print(f\"Total rows: {len(df_combined)}\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "bb77458d-a6d8-4c51-992b-7b858bf8e700",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TptR5hY73kAQ4XFfwKp6mg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1007,
+                "cache_read_input_tokens": 38328,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T21:40:18.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BdF8XVwe1ouVrc2QLk5HuH",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "fe2fbde0-3d24-49ff-900d-c449111f43e5",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"exp001_regularize.py - Rerun affected cells with condition-number-guarded inversion.\"\"\"\n\nimport argparse\nimport time\nimport numpy as np\nimport pandas as pd\n\nfrom exp001_hb_synthetic import (\n    REGIMES, SUBGROUP_LABELS,\n    generate_data, get_counts, build_mixing_matrix, diff_in_means,\n    estimate_cm_mle, estimate_cm_hb_eb, estimate_cm_hb_gibbs,\n    invert_mixing_safe, aggregate_results,\n)\n\nAFFECTED_CELLS = [\n    (4, 'extreme', 50),\n    (4, 'extreme', 100),\n    (4, 'moderate', 50),\n]\n\n\ndef run_one_mc_reg(regime_name, regime_params, n_expert, k, seed,\n                   cond_threshold=100, hb_method='eb'):\n    data = generate_data(regime_params, n_expert, k, seed)\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    em = data['expert_mask']\n    labels = SUBGROUP_LABELS[k]\n    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n\n    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n    C_mle = estimate_cm_mle(counts, labels)\n\n    if hb_method == 'gibbs':\n        C_hb, _ = estimate_cm_hb_gibbs(counts, labels, seed=seed)\n    else:\n        C_hb, _ = estimate_cm_hb_eb(counts, labels)\n\n    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n\n    base = {'regime': regime_name, 'n_expert': n_expert,\n            'k_subgroups': k, 'mc_run': seed}\n    rows = []\n\n    for s in labels:\n        sm = S == s\n        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n\n        tau_obs = np.array([th0_n, th1_n])\n        se_obs = np.array([se0_n, se1_n])\n        if np.any(np.isnan(tau_obs)):\n            continue\n\n        tml_r, sml_r = invert_mixing_safe(M_mle[s], tau_obs, se_obs, cond_threshold)\n        thb_r, shb_r = invert_mixing_safe(M_hb[s], tau_obs, se_obs, cond_threshold)\n\n        def mr(method, th0, th1, se0, se1):\n            return {**base, 'subgroup': s, 'method': method,\n                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n                    'se_z0': se0, 'se_z1': se1,\n                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n\n        rows.append(mr('mle_laplace_reg', tml_r[0], tml_r[1], sml_r[0], sml_r[1]))\n        rows.append(mr('hb_dirichlet_reg', thb_r[0], thb_r[1], shb_r[0], shb_r[1]))\n\n    return rows\n\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--n-mc', type=int, default=100)\n    parser.add_argument('--cond-threshold', type=float, default=100)\n    args = parser.parse_args()\n\n    print(f\"exp-001 Regularization fix | cond_threshold={args.cond_threshold}\")\n    print(f\"Affected cells: {AFFECTED_CELLS}\")\n    print(f\"n_mc={args.n_mc}\\n\")\n\n    # Pick HB method (same auto-timing as main script)\n    d = generate_data(REGIMES[2]['moderate'], 100, 2, seed=9999)\n    em = d['expert_mask']\n    tc = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], ['A', 'B'])\n    t0 = time.time()\n    _, dg = estimate_cm_hb_gibbs(tc, ['A', 'B'], seed=9999)\n    gt = time.time() - t0\n    hb_method = 'gibbs' if gt < 5 else 'eb'\n    print(f\"HB method: {hb_method} (gibbs timing: {gt:.2f}s)\\n\")\n\n    all_rows = []\n    total = len(AFFECTED_CELLS) * args.n_mc\n    count = 0\n    t0 = time.time()\n\n    for k, regime, n_expert in AFFECTED_CELLS:\n        rp = REGIMES[k][regime]\n        for mc in range(args.n_mc):\n            rows = run_one_mc_reg(regime, rp, n_expert, k, seed=mc,\n                                  cond_threshold=args.cond_threshold,\n                                  hb_method=hb_method)\n            all_rows.extend(rows)\n            count += 1\n            if count % 50 == 0:\n                el = time.time() - t0\n                print(f\"  [{count}/{total}] {el:.0f}s elapsed\")\n\n    print(f\"  Done: {time.time() - t0:.1f}s ({count} runs)\\n\")\n\n    df_raw = pd.DataFrame(all_rows)\n    df_agg = aggregate_results(df_raw)\n\n    csv_path = 'results/exp001_hb_results.csv'\n    df_existing = pd.read_csv(csv_path)\n\n    agg_cols = list(df_existing.columns)\n    df_combined = pd.concat([df_existing, df_agg[agg_cols]], ignore_index=True)\n    df_combined.to_csv(csv_path, index=False)\n\n    # Comparison table\n    print(\"=\" * 110)\n    print(f\"{'Config':>40s} | {'Method':>15s} | {'RMSE_z0 (before)':>16s} | \"\n          f\"{'RMSE_z0 (after)':>15s} | {'RMSE_z1 (before)':>16s} | {'RMSE_z1 (after)':>15s}\")\n    print(\"-\" * 110)\n\n    for k, regime, n_expert in AFFECTED_CELLS:\n        for subgroup in SUBGROUP_LABELS[k]:\n            mask_e = ((df_existing['k_subgroups'] == k) &\n                      (df_existing['regime'] == regime) &\n                      (df_existing['n_expert'] == n_expert) &\n                      (df_existing['subgroup'] == subgroup))\n\n            for orig, reg in [('hb_dirichlet', 'hb_dirichlet_reg'),\n                              ('mle_laplace', 'mle_laplace_reg')]:\n                before = df_existing[mask_e & (df_existing['method'] == orig)]\n                after = df_agg[(df_agg['k_subgroups'] == k) &\n                               (df_agg['regime'] == regime) &\n                               (df_agg['n_expert'] == n_expert) &\n                               (df_agg['subgroup'] == subgroup) &\n                               (df_agg['method'] == reg)]\n\n                if before.empty or after.empty:\n                    continue\n\n                b_z0 = before['rmse_z0'].values[0]\n                a_z0 = after['rmse_z0'].values[0]\n                b_z1 = before['rmse_z1'].values[0]\n                a_z1 = after['rmse_z1'].values[0]\n\n                config = f\"K={k}/{regime}/n={n_expert}/{subgroup}\"\n                print(f\"{config:>40s} | {orig:>15s} | {b_z0:16.4f} | \"\n                      f\"{a_z0:15.4f} | {b_z1:16.4f} | {a_z1:15.4f}\")\n\n    print(\"=\" * 110)\n    print(f\"\\nAppended {len(df_agg)} rows to {csv_path}\")\n    print(f\"Total rows: {len(df_combined)}\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me run it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "dcba99f9-7e34-49d8-b7c5-7c23d13f6feb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SJr8fqSzU5BFPWppWLhjCa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2517,
+                "cache_read_input_tokens": 39335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2517
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YD2SJmSD9MWx5hWJbYjYGL",
+              "name": "Bash",
+              "input": {
+                "command": "python exp001_regularize.py 2>&1 | tee results/exp001_reg_run.log",
+                "description": "Run regularization rerun on affected cells",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "c609b2dc-08f8-4481-a4e2-55b47ec46fb4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SJr8fqSzU5BFPWppWLhjCa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2517,
+                "cache_read_input_tokens": 39335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2517
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T21:40:21.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YD2SJmSD9MWx5hWJbYjYGL",
+              "type": "tool_result",
+              "content": "/bin/bash: line 1: python: command not found",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "fc6c08c0-468f-401a-bbfd-7cfcf448bee3",
+            "tool_use_result": {
+              "stdout": "/bin/bash: line 1: python: command not found",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EDuhnp4eSriibaxpscLio1",
+              "name": "Bash",
+              "input": {
+                "command": "which python3 && python3 exp001_regularize.py 2>&1 | tee results/exp001_reg_run.log",
+                "description": "Run regularization script with python3",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "a63c90aa-f0b5-479e-af27-9fee21b7837b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MUTsSMg7oR99zNPQYqHMvD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 151,
+                "cache_read_input_tokens": 41852,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 151
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "ba1zkgo9l",
+                "tool_use_id": "toolu_01EDuhnp4eSriibaxpscLio1",
+                "description": "Run regularization script with python3",
+                "task_type": "local_bash",
+                "uuid": "2bb8fa67-b532-4180-9ffc-93aa1f340319",
+                "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "ba1zkgo9l",
+                "tool_use_id": "toolu_01EDuhnp4eSriibaxpscLio1",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run regularization script with python3",
+                "uuid": "7f7758a5-3402-4ae3-b359-6147cc8f635a",
+                "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T21:45:38.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EDuhnp4eSriibaxpscLio1",
+              "type": "tool_result",
+              "content": "/usr/bin/python3\nexp-001 Regularization fix | cond_threshold=100\nAffected cells: [(4, 'extreme', 50), (4, 'extreme', 100), (4, 'moderate', 50)]\nn_mc=100\n\nHB method: gibbs (gibbs timing: 1.11s)\n\n  [50/300] 47s elapsed\n  [100/300] 108s elapsed\n  [150/300] 161s elapsed\n  [200/300] 217s elapsed\n  [250/300] 263s elapsed\n  [300/300] 310s elapsed\n  Done: 310.3s (300 runs)\n\n==============================================================================================================\n                                  Config |          Method | RMSE_z0 (before) | RMSE_z0 (after) | RMSE_z1 (before) | RMSE_z1 (after)\n--------------------------------------------------------------------------------------------------------------\n                      K=4/extreme/n=50/A |    hb_dirichlet |           3.1443 |          1.3118 |           3.1436 |          1.3269\n                      K=4/extreme/n=50/A |     mle_laplace |           0.5210 |          0.5210 |           0.5265 |          0.5265\n                      K=4/extreme/n=50/B |    hb_dirichlet |         509.9303 |          0.2723 |         509.9374 |          0.2590\n                      K=4/extreme/n=50/B |     mle_laplace |           0.2999 |          0.2999 |           0.2897 |          0.2897\n                      K=4/extreme/n=50/C |    hb_dirichlet |           0.1407 |          0.1407 |           0.1523 |          0.1523\n                      K=4/extreme/n=50/C |     mle_laplace |           0.1536 |          0.1536 |           0.1635 |          0.1635\n                      K=4/extreme/n=50/D |    hb_dirichlet |           0.1270 |          0.1270 |           0.1367 |          0.1367\n                      K=4/extreme/n=50/D |     mle_laplace |           0.1444 |          0.1444 |           0.1514 |          0.1514\n                     K=4/extreme/n=100/A |    hb_dirichlet |          11.5696 |          0.2850 |          11.5507 |          0.2827\n                     K=4/extreme/n=100/A |     mle_laplace |           0.2900 |          0.2900 |           0.2858 |          0.2858\n                     K=4/extreme/n=100/B |    hb_dirichlet |           0.2115 |          0.2115 |           0.2022 |          0.2022\n                     K=4/extreme/n=100/B |     mle_laplace |           0.2168 |          0.2168 |           0.2089 |          0.2089\n                     K=4/extreme/n=100/C |    hb_dirichlet |           0.1187 |          0.1187 |           0.1381 |          0.1381\n                     K=4/extreme/n=100/C |     mle_laplace |           0.1231 |          0.1231 |           0.1415 |          0.1415\n                     K=4/extreme/n=100/D |    hb_dirichlet |           0.1012 |          0.1012 |           0.1080 |          0.1080\n                     K=4/extreme/n=100/D |     mle_laplace |           0.1070 |          0.1070 |           0.1126 |          0.1126\n                     K=4/moderate/n=50/A |    hb_dirichlet |           0.1701 |          0.1701 |           0.1776 |          0.1776\n                     K=4/moderate/n=50/A |     mle_laplace |           0.1911 |          0.1911 |           0.1988 |          0.1988\n                     K=4/moderate/n=50/B |    hb_dirichlet |           0.1440 |          0.1440 |           0.1336 |          0.1336\n                     K=4/moderate/n=50/B |     mle_laplace |           0.1582 |          0.1582 |           0.1495 |          0.1495\n                     K=4/moderate/n=50/C |    hb_dirichlet |           0.1107 |          0.1107 |           0.1268 |          0.1268\n                     K=4/moderate/n=50/C |     mle_laplace |           0.1184 |          0.1184 |           0.1353 |          0.1353\n                     K=4/moderate/n=50/D |    hb_dirichlet |           0.1087 |          0.1087 |           0.1220 |          0.1220\n                     K=4/moderate/n=50/D |     mle_laplace |           0.1185 |          0.1185 |           0.1305 |          0.1305\n==============================================================================================================\n\nAppended 24 rows to results/exp001_hb_results.csv\nTotal rows: 564",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "b49fecd7-7fc3-48db-855d-87c9a78a9ffc",
+            "tool_use_result": {
+              "stdout": "/usr/bin/python3\nexp-001 Regularization fix | cond_threshold=100\nAffected cells: [(4, 'extreme', 50), (4, 'extreme', 100), (4, 'moderate', 50)]\nn_mc=100\n\nHB method: gibbs (gibbs timing: 1.11s)\n\n  [50/300] 47s elapsed\n  [100/300] 108s elapsed\n  [150/300] 161s elapsed\n  [200/300] 217s elapsed\n  [250/300] 263s elapsed\n  [300/300] 310s elapsed\n  Done: 310.3s (300 runs)\n\n==============================================================================================================\n                                  Config |          Method | RMSE_z0 (before) | RMSE_z0 (after) | RMSE_z1 (before) | RMSE_z1 (after)\n--------------------------------------------------------------------------------------------------------------\n                      K=4/extreme/n=50/A |    hb_dirichlet |           3.1443 |          1.3118 |           3.1436 |          1.3269\n                      K=4/extreme/n=50/A |     mle_laplace |           0.5210 |          0.5210 |           0.5265 |          0.5265\n                      K=4/extreme/n=50/B |    hb_dirichlet |         509.9303 |          0.2723 |         509.9374 |          0.2590\n                      K=4/extreme/n=50/B |     mle_laplace |           0.2999 |          0.2999 |           0.2897 |          0.2897\n                      K=4/extreme/n=50/C |    hb_dirichlet |           0.1407 |          0.1407 |           0.1523 |          0.1523\n                      K=4/extreme/n=50/C |     mle_laplace |           0.1536 |          0.1536 |           0.1635 |          0.1635\n                      K=4/extreme/n=50/D |    hb_dirichlet |           0.1270 |          0.1270 |           0.1367 |          0.1367\n                      K=4/extreme/n=50/D |     mle_laplace |           0.1444 |          0.1444 |           0.1514 |          0.1514\n                     K=4/extreme/n=100/A |    hb_dirichlet |          11.5696 |          0.2850 |          11.5507 |          0.2827\n                     K=4/extreme/n=100/A |     mle_laplace |           0.2900 |          0.2900 |           0.2858 |          0.2858\n                     K=4/extreme/n=100/B |    hb_dirichlet |           0.2115 |          0.2115 |           0.2022 |          0.2022\n                     K=4/extreme/n=100/B |     mle_laplace |           0.2168 |          0.2168 |           0.2089 |          0.2089\n                     K=4/extreme/n=100/C |    hb_dirichlet |           0.1187 |          0.1187 |           0.1381 |          0.1381\n                     K=4/extreme/n=100/C |     mle_laplace |           0.1231 |          0.1231 |           0.1415 |          0.1415\n                     K=4/extreme/n=100/D |    hb_dirichlet |           0.1012 |          0.1012 |           0.1080 |          0.1080\n                     K=4/extreme/n=100/D |     mle_laplace |           0.1070 |          0.1070 |           0.1126 |          0.1126\n                     K=4/moderate/n=50/A |    hb_dirichlet |           0.1701 |          0.1701 |           0.1776 |          0.1776\n                     K=4/moderate/n=50/A |     mle_laplace |           0.1911 |          0.1911 |           0.1988 |          0.1988\n                     K=4/moderate/n=50/B |    hb_dirichlet |           0.1440 |          0.1440 |           0.1336 |          0.1336\n                     K=4/moderate/n=50/B |     mle_laplace |           0.1582 |          0.1582 |           0.1495 |          0.1495\n                     K=4/moderate/n=50/C |    hb_dirichlet |           0.1107 |          0.1107 |           0.1268 |          0.1268\n                     K=4/moderate/n=50/C |     mle_laplace |           0.1184 |          0.1184 |           0.1353 |          0.1353\n                     K=4/moderate/n=50/D |    hb_dirichlet |           0.1087 |          0.1087 |           0.1220 |          0.1220\n                     K=4/moderate/n=50/D |     mle_laplace |           0.1185 |          0.1185 |           0.1305 |          0.1305\n==============================================================================================================\n\nAppended 24 rows to results/exp001_hb_results.csv\nTotal rows: 564",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are exactly as expected:\n\n**Affected cells fixed:**\n- **K=4/extreme/n=50/B** (worst case): HB RMSE dropped from **509.93 → 0.27** (now better than MLE's 0.30)\n- **K=4/extreme/n=50/A**: HB RMSE dropped from **3.14 → 1.31** (still elevated — some ill-conditioned runs remain but no catastrophic blowup)\n- **K=4/extreme/n=100/A**: HB RMSE dropped from **11.57 → 0.29** (now matches MLE)\n\n**Unaffected cells unchanged:** All other subgroups (C, D, and moderate regime) have identical before/after RMSE — the condition number guard only triggers when needed.\n\n**MLE was already stable:** `mle_laplace_reg` matches `mle_laplace` everywhere, confirming MLE confusion matrices were well-conditioned to begin with.\n\nLet me verify the CSV was appended correctly."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "7176e29c-1459-4a70-84b8-1da838ccb430",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CnFfew8XrVQ3A4mK6HwGsw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1554,
+                "cache_read_input_tokens": 42003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1554
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MmQfnQ9ZpbUDETHXVdXe2z",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l results/exp001_hb_results.csv && tail -5 results/exp001_hb_results.csv",
+                "description": "Verify CSV append"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "847bb196-1a21-41e7-a9c3-037d8fbba6b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CnFfew8XrVQ3A4mK6HwGsw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1554,
+                "cache_read_input_tokens": 42003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1554
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T21:45:46.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MmQfnQ9ZpbUDETHXVdXe2z",
+              "type": "tool_result",
+              "content": "565 results/exp001_hb_results.csv\nmoderate,50,4,B,mle_laplace_reg,-0.024435898691924925,0.1581958948891124,0.95,0.025038292889246833,0.1495294886157038,0.95,0.015629724250569837,0.01795122233734126,0.014741828873944433,0.015899412454313824\nmoderate,50,4,C,hb_dirichlet_reg,-0.029441509395997024,0.11068009501558877,0.97,0.012070312018341644,0.12684389334131213,0.92,0.010669245970144837,0.00786685819276256,0.012626828915354025,0.008352086844720191\nmoderate,50,4,C,mle_laplace_reg,-0.03776133799550326,0.11844933715542781,0.96,0.020190139324450875,0.135263720767147,0.93,0.01122689931608437,0.008052486450781896,0.013374839225139106,0.009379275228115446\nmoderate,50,4,D,hb_dirichlet_reg,-0.0379821727662054,0.10871517688857668,0.97,0.02612365454498381,0.12202486645477198,0.93,0.01018643423277873,0.007756529865423239,0.01191957327529777,0.013596391376279939\nmoderate,50,4,D,mle_laplace_reg,-0.04684472838542715,0.11851141953901165,0.96,0.03473975250342849,0.13047918030056213,0.93,0.01088601303675831,0.009031853535920443,0.012576949585613808,0.0153878044527105",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "d1d5bde4-1887-44ef-9f05-a2be9793a850",
+            "tool_use_result": {
+              "stdout": "565 results/exp001_hb_results.csv\nmoderate,50,4,B,mle_laplace_reg,-0.024435898691924925,0.1581958948891124,0.95,0.025038292889246833,0.1495294886157038,0.95,0.015629724250569837,0.01795122233734126,0.014741828873944433,0.015899412454313824\nmoderate,50,4,C,hb_dirichlet_reg,-0.029441509395997024,0.11068009501558877,0.97,0.012070312018341644,0.12684389334131213,0.92,0.010669245970144837,0.00786685819276256,0.012626828915354025,0.008352086844720191\nmoderate,50,4,C,mle_laplace_reg,-0.03776133799550326,0.11844933715542781,0.96,0.020190139324450875,0.135263720767147,0.93,0.01122689931608437,0.008052486450781896,0.013374839225139106,0.009379275228115446\nmoderate,50,4,D,hb_dirichlet_reg,-0.0379821727662054,0.10871517688857668,0.97,0.02612365454498381,0.12202486645477198,0.93,0.01018643423277873,0.007756529865423239,0.01191957327529777,0.013596391376279939\nmoderate,50,4,D,mle_laplace_reg,-0.04684472838542715,0.11851141953901165,0.96,0.03473975250342849,0.13047918030056213,0.93,0.01088601303675831,0.009031853535920443,0.012576949585613808,0.0153878044527105",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "564 data rows (540 original + 24 new). CSV appended correctly, original data untouched.\n\n**Summary of changes:**\n1. **`exp001_hb_synthetic.py`**: Added `safe_invert_correction` (condition number guard, threshold=100) and `invert_mixing_safe` (full wrapper with SE propagation)\n2. **`exp001_regularize.py`**: Standalone script that reruns 3 affected cells (300 MC runs) with `hb_dirichlet_reg` and `mle_laplace_reg` methods, appends 24 aggregated rows to the CSV\n3. The `cond_threshold=100` is appropriate — it catches the near-singular matrices in K=4/extreme while leaving well-conditioned cells unchanged"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "uuid": "c6461dee-34d5-4a3e-8d56-c448c1146bdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011JDNwJaUM9wDK93nbXSfhb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 43557,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "564 data rows (540 original + 24 new). CSV appended correctly, original data untouched.\n\n**Summary of changes:**\n1. **`exp001_hb_synthetic.py`**: Added `safe_invert_correction` (condition number guard, threshold=100) and `invert_mixing_safe` (full wrapper with SE propagation)\n2. **`exp001_regularize.py`**: Standalone script that reruns 3 affected cells (300 MC runs) with `hb_dirichlet_reg` and `mle_laplace_reg` methods, appends 24 aggregated rows to the CSV\n3. The `cond_threshold=100` is appropriate — it catches the near-singular matrices in K=4/extreme while leaving well-conditioned cells unchanged"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 459474,
+            "duration_api_ms": 146792,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "8ca26d34-da0f-407e-bbc0-c340fee30479",
+            "total_cost_usd": 0.5866784999999999,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 32572,
+              "cache_read_input_tokens": 303469,
+              "output_tokens": 9176,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32572,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 186,
+                  "cache_read_input_tokens": 43557,
+                  "cache_creation_input_tokens": 856,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 856
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1819,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019190000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 9176,
+                "cacheReadInputTokens": 303469,
+                "cacheCreationInputTokens": 32572,
+                "webSearchRequests": 0,
+                "costUSD": 0.5847594999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "090f211b-7a30-43a3-a642-3898c577ef73"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ]
+}

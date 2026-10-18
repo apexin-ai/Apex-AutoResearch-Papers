@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "623c285768155b7e135e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training_progress_check_20260514T165444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training_progress_check_20260514T165444_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "d34abc1e61f2fdafc5d320bf2dfa1cf7f0f7fee3a1d605f19f71a7414b0dfd25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## OLMo-1B (cross_model_olmo_002)\n- 进程状态: **ALIVE** (PID 150550, elapsed 20:41)\n- 当前 stage: **Step 2 — Generate depth-1** (模型已加载，生成中)\n- 进度: **1/6** stages 完成\n  - Step 1 finetune depth-0: ✅ 完成（loss 2.2686, 939 steps, 317s, ~2.5 it/s）\n  - Step 2 generate depth-1: 🔄 进行中（~15min ago 开始加载模型）\n- 预计完成: **~17:30-17:50 UTC**（每个 finetune ~5min, 生成时间未知但模型小）\n- 异常: 无，训练 loss 正常收敛\n\n## GPT-2 XL (cross_model_gpt2xl_001)\n- 进程状态: **ALIVE** (PID 123650, elapsed 2:12:53)\n- 当前 stage: **Step 4 — Generate depth-2** (模型已加载，生成中)\n- 进度: **3/6** stages 完成\n  - Step 1 finetune depth-0: ✅（loss 2.5498）\n  - Step 2 generate depth-1: ✅\n  - Step 3 finetune depth-1: ✅（loss 1.7146, 939 steps, 687.9s, ~1.37 it/s）\n  - Step 4 generate depth-2: 🔄 进行中\n- 预计完成: **~18:00-18:30 UTC**（剩余 generate_2 + finetune_2 + generate_3，每个 finetune ~12min）\n- 异常: depth-1 finetune 有 grad_norm 尖刺（最高 6.938 @ epoch 2.397），但 loss 稳定收敛到 1.7146，不影响训练\n\n## GPU 利用率\n- **GPU 0**: 60% util, 9.7/95.6 GB（OLMo-1B，轻量级）\n- **GPU 1**: 52% util, 15.3/95.6 GB（GPT-2 XL，正常负载）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -17,4 +17,6 @@ This catalogue lists the eight paper projects in this release. Each project is s
 
 For the complete 8×8 matrix, see [`paper-assets/asset-matrix.csv`](paper-assets/asset-matrix.csv). The interactive dashboard is [`paper-assets/index.html`](paper-assets/index.html).
 
+For recorded conversations and tool interactions, start with the [trace catalogue](traces/README.md), [offline preview](traces/demo.html), or each project's `05-generation-trace/README.md`. The interactive browser supports round navigation and JSON downloads.
+
 The status column is a dated snapshot copied from each project’s `ROADMAP.md`; it is not an independent claim of submission, acceptance, or publication. Internal review files are labelled as internal evidence.

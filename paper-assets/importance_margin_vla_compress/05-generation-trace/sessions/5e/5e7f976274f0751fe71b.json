@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e7f976274f0751fe71b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix cqa1 gpu1 kill duplicate",
+  "task_key": "worker_fix_cqa1-gpu1-kill-duplicate_20260525T215701",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cqa1-gpu1-kill-duplicate_20260525T215701_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "7eab42b399ec4451345f03816aa7c45b3f0d3e45206cdb5da284a35669263341"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- **PID 790989 存活** — 正在运行 `eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10`（GPU 0）\n- **GPU1 显存已回落** — 从 ~20GB 降至 10483 MiB（单进程水位），重复进程已清除\n- **tmux session** — 仅剩 `eval_pi05_l2norm_k075_long_seed42_v2`（1 window），重复 session 已消失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

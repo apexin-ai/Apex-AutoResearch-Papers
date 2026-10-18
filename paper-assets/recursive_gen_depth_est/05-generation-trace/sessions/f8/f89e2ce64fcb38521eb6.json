@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f89e2ce64fcb38521eb6",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops read mink results",
+  "task_key": "worker_ops_read_mink_results_20260518T183528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read_mink_results_20260518T183528_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "000964b35cc25f819dbf0cfaee81ebfd5ea8442b65aeb9b3b8071b56a92a8ddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**Min-K% Prob baseline 正在运行中**（PID 994671，启动于 02:14 UTC，已跑 ~22 分钟）。\n\n**进度**：\n- 已完成 2/9 cells 的 logprob 计算：\n  - `pythia_nucleus` — 3 个 K 值的 score 已保存（K=10/20/30）\n  - `pythia_temp09` — 3 个 K 值的 score 已保存\n- 当前正在处理第 3 个 cell：`pythia_topk50`\n- 剩余 6 个 cells：`olmo_nucleus`, `olmo_temp09`, `olmo_topk50`, `gpt2xl_nucleus`, `gpt2xl_temp09`, `gpt2xl_topk50`\n\n**产出**：\n- 6 个 `.npy` score 文件（每个 ~156KB，含 20000 条 passage 的 Min-K% score）\n- 无 `mink_prob_results.json`（分类评估尚未运行，应在所有 cells logprob 计算完成后执行）\n- 无 error/traceback\n\n**预估**：每个 cell ~8 分钟（417 batches × ~1.13 it/s），9 cells 总计 ~72 分钟。已跑 22 分钟完成 2 个，预计还需 ~50 分钟完成全部 logprob + 后续 5-fold CV 分类评估。\n\n**其他新 .json 文件**（比 table2_rerun_5foldcv.json 更新）：\n- `results/qwen25_14b_scale/summary.json`\n- `results/reviewer_metrics/pipeline_conditional_decomp.json`\n- `results/wild_data_calibration/threshold_calibration_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "95fd78d788f71e4d86b5",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper round3 text edits",
+  "task_key": "worker_paper_round3-text-edits_20260516T050504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round3-text-edits_20260516T050504_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "8e2030533ad809d81db392eda5a0b771ec2046dc28b7320361f22b0566b44931"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verification results:\n- LaTeX compiles cleanly, 17 pages output\n- \"interventional\" — 0 hits across all .tex files\n- \"drives substitution\" — 1 hit in main.tex (appendix BCS aggregation section, per instructions this one is kept)\n\nAll 8 items (1-7 + 9) applied. Item 2 note: the \"31.2pp under extreme-batch comparison\" text was in results.tex line 66 (§4.2), not introduction.tex — applied the attenuation parenthetical there."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

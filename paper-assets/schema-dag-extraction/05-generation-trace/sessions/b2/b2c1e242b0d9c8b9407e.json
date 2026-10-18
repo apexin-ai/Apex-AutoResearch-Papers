@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b2c1e242b0d9c8b9407e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh maven preprocess",
+  "task_key": "worker_ssh_maven-preprocess_20260515T033306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_maven-preprocess_20260515T033306_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "d3a681a8efdfa203d850e67d0bbff1239468acc7870fdb5856ce29e0a4586c5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n- **valid split**: 710 docs → 8042 sentences, 18904 event mentions\n- **168 种事件类型**\n- 输出: `/root/schema-dag-extraction/data/maven_parquet/valid.parquet`\n- 列: `doc_id`, `sent_id`, `text`, `tokens`, `entities`, `negative_triggers`\n- 脚本: `/root/schema-dag-extraction/src/preprocess_maven.py`\n\n每行一个句子，`entities` 是 `[{\"text\", \"type\", \"start\", \"end\"}]` 格式，`negative_triggers` 也一并保留了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

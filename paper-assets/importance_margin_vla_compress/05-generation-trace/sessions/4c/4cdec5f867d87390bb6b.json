@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4cdec5f867d87390bb6b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k05 long seed42 v3",
+  "task_key": "worker_diagnose_eval_pi05_random_k05_long_seed42_v3_20260526T100618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k05_long_seed42_v3_20260526T100618_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "257203109d11aa0fec05d4cbb4aad55cc334508e9263a22cf255483934b2e564"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **已正常完成**，进程消失是因为评估跑完自然退出（EXIT_CODE=0）。\n\n**状态**: completed\n\n**Overall SR**: **50.2%** (251/500, 10 tasks × 50 episodes, 252.3 min)\n\n**Per-task SR**:\n\n| Task | Description | SR |\n|------|------------|-----|\n| T0 | put both the alphabet soup and the tomato sauce in the basket | 84% |\n| T1 | put both the cream cheese box and the butter in the basket | 32% |\n| T2 | turn on the stove and put the moka pot on it | 64% |\n| T3 | put the black bowl in the bottom drawer of the cabinet and close it | 72% |\n| T4 | put the white mug on the left plate and put the yellow and white mug on the right plate | 74% |\n| T5 | pick up the book and place it in the back compartment of the caddy | 38% |\n| T6 | put the white mug on the plate and put the chocolate pudding to the right of the plate | 30% |\n| T7 | put both the alphabet soup and the cream cheese box in the basket | 54% |\n| T8 | put both moka pots on the stove | 4% |\n| T9 | put the yellow and white mug in the microwave and close it | 50% |\n\n结果已保存至 `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed42.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

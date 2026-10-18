@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "724a4e89d82f8bd580b4",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper figure fig1 decoupling hero",
+  "task_key": "worker_paper_figure_fig1_decoupling_hero_20260519T172700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_decoupling_hero_20260519T172700_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "26412741dce762881efee9d4d1e1a11d13392539f030d9ecf3457e35dbb26109"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。\n\n**输出文件**:\n- PDF: `figures/paper/fig1_decoupling_hero.pdf`\n- PNG: `figures/paper/fig1_decoupling_hero.png` (300 DPI)\n\n**图表内容**:\n- Panel (a): 1.3B (实线蓝) σ 从 0.024 降至 0.005 (−79%)，340M (虚线灰) 非单调 rebound 已标注\n- Panel (b): J(helped) 实心圆 + J(hurt) 空心菱形，4% 即饱和于 ~0.09-0.10，灰色 band 标注 saturation zone\n- 所有 annotation 有白色 path_effects 描边，去 top/right spines，PDF TrueType 嵌入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

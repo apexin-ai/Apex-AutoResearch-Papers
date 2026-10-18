@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5056b0425c193996bcf1",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code qwen32b register bt and forest plot",
+  "task_key": "worker_code_qwen32b_register_bt_and_forest_plot_20260521T055308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen32b_register_bt_and_forest_plot_20260521T055308_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "f4e733b3f1a000200cc320b4a844fbe65c904ecca45e9dcbcbb408cf9ac11599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Qwen3-32B Register BT 结果：**\n```\nP(academic) = 0.553\n95% CI = [0.479, 0.628]\nBootstrap p = 0.0763\nN pairs = 94, N comparisons = 188\n```\n\nRegister 效应**不显著** (p=0.076 > 0.05)，CI 跨越 0.5。这与 GPT-4o register 的边缘显著 (p=0.040) 形成对比——Qwen3-32B 对 academic register 的偏好更弱。\n\n**Forest plot**: `artifacts/figures/paper/forest_plot.pdf` (16.4 KB)，Qwen3-32B register 排在最底部（effect size 最小），用空心菱形 ◇ 标记不显著。6 行按 effect size 降序排列。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

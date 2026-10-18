@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec715466c8120b3d0dd8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze goal l2norm postfix batch",
+  "task_key": "worker_analyze_goal_l2norm_postfix_batch_20260524T111041",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_goal_l2norm_postfix_batch_20260524T111041_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "48dc968b83e0c32d4aec358a12321d75e29bb3ffea987d546181186eb4fcb15b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n## π0.5 L2norm Goal Post-fix 结果\n\n| 实验 | keep ratio | tokens kept | overall SR | Δ vs baseline (88.4%) |\n|------|-----------|-------------|------------|----------------------|\n| k=0.9 | 90% | 230/256 | **88.6%** | +0.2% |\n| k=0.7 | 70% | 179/256 | **70.2%** | -18.2% |\n| k=0.5 | 50% | 128/256 | **59.8%** | -28.6% |\n\n已知数据点：L2norm k=0.85 = 87.4%\n\nL2norm Goal disruption curve: k=0.9 几乎无损（88.6% ≈ baseline 88.4%），k=0.85 轻微下降（87.4%），k=0.7 开始明显退化（70.2%），k=0.5 严重退化（59.8%）。cliff zone 在 k=0.85~0.7 之间。\n\n值得注意：T9（put wine bottle on rack）在所有 keep ratio 下都是最弱 task（k=0.9: 38%, k=0.7: 44%, k=0.5: 48%），说明该 task 对 vision tokens 不敏感，性能瓶颈在其他方面。T1（put bowl on stove）在 k=0.5 时崩塌到 2%，是受 pruning 影响最大的 task。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

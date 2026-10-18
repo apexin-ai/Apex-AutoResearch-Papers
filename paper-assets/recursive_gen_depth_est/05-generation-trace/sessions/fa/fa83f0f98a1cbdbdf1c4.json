@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa83f0f98a1cbdbdf1c4",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4651,
+    "sha256": "99326acab1382bf4086d49769644d0a1b64aa16ca104fe59175a22c133ae1d6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-14T15:59:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0, cuda:1 on westb-52439。不要用其他 GPU 编号\n- OLMo 必须用 `allenai/OLMo-1B-hf`（路径 `olmo-1b-hf`），不是 `OLMo-1B`（后者需 hf_olmo 自定义代码）\n- OLMo LoRA targets 是 **3 个模块** `q_proj,k_proj,v_proj`，不是 2 个\n- Pipeline 脚本提交前必须 `bash -n script.sh` 验证语法（olmo_001 因未闭合引号崩溃浪费一个 GPU cycle）\n- submit_training_job 不会自动推进 registry 状态到 RUNNING——需要手动走 PREPARING→QUEUED→ALLOCATED→RUNNING（带完整 spec）\n- Checkpoint 目录按模型/策略隔离（data/olmo/, data/gpt2xl/, data/pythia_temp09/, data/pythia_topk50/），不要混写\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westb-52439（SSH config alias，实际 hostname autodl-rtx6000），2× NVIDIA RTX PRO 6000 Blackwell 98GB\n- 工作目录: `/root/autodl-tmp/recursive_gen_depth_est`\n- Python: conda base — `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径:\n  - Pythia-1.4B: `/root/autodl-tmp/models/pythia-1.4b/` (LoRA: query_key_value)\n  - OLMo-1B: `/root/autodl-tmp/models/olmo-1b-hf/` (LoRA: q_proj,k_proj,v_proj)\n  - GPT-2 XL: `/root/autodl-tmp/models/gpt2-xl/` (LoRA: c_attn,c_proj)\n- 种子数据: `data/depth_0.jsonl` (5000 Wikipedia samples, 共享)\n- 活跃进程（截至 14:55 UTC）:\n  - cuda:0: Pythia temp09 pipeline, PID 125067 (bash wrapper) → 125083 (python finetune), tmux=pythia_temp09_001\n  - cuda:1: GPT-2 XL pipeline, PID 126022 (generate depth-1), tmux=cross_model_gpt2xl_001\n- Cron: cross_model_gpt2xl_001 有 120s 间隔监控；pythia_temp09_001 由 submit_training_job 注册\n\n### 3. 📊 当前状态\n**刚做完**:\n- 处理了 Director CRITICAL: rogue GPT-2 XL 进程（PID 122428/122434）已自行退出，无 checkpoint 污染\n- 修复 OLMo 脚本: MODEL_PATH→olmo-1b-hf, TARGET_MODULES→q_proj,k_proj,v_proj, SYNTAX_OK\n- 创建并启动 Pythia temp09 pipeline on cuda:0 (registry RUNNING)\n- 创建 Pythia topk50 pipeline 脚本（就绪待启动）\n- 修复 experiment_plan.yaml: plan_002→olmo_002, plan_003→gpt2xl_001, plan_006b→done, 拆分 plan_001b/001c\n- OLMo crash 分析: olmo_001→failed (脚本bug), 创建 olmo_002 (PREPARING)\n\n**Registry 活跃实验**:\n- `pythia_temp09_001` RUNNING — Pythia temp-only τ=0.9, cuda:0, ~2h\n- `cross_model_gpt2xl_001` RUNNING — GPT-2 XL nucleus, cuda:1, ~4h total from 14:42 UTC\n- `cross_model_olmo_002` PREPARING — 等 cuda:0 释放\n- `pythia_topk50_001` PREPARING — 等 cuda:1 释放\n\n**等待中**: 两个 cron 回调（pythia_temp09 完成 / gpt2xl 完成）\n\n### 4. 📋 待办（条件触发式）\n- pythia_temp09_001 cron 回调(~17:00 UTC) → 启动 cross_model_olmo_002 on cuda:0（脚本已修复, depth-0 checkpoint 可复用跳过 ~5min）→ submit_training_job → 推 registry 到 RUNNING\n- cross_model_gpt2xl_001 cron 回调(~19:00 UTC) → 分析结果 + domain consistency check → 启动 pythia_topk50_001 on cuda:1（脚本 run_pipeline_pythia_topk50.sh 已就绪）\n- cross_model_olmo_002 完成(~19:00 UTC) → 分析 OLMo 结果 + 与 Pythia MVP 对比 → 汇报 Director\n- 所有 4 条 pipeline 完成(~21:00 UTC) → plan_004 (DCOL DeBERTa) + plan_006 (Atlas) 可启动，向 Director 提交 P0 下半段审批\n- 每次实验完成 → 按 on-experiment-done skill 分叉处理(success/negative/failed)\n\n### 5. 🎯 战略上下文\n- **核心发现**: 递归生成深度可从统计特征高精度区分。MVP Pythia-1.4B 4-class acc=78.2%, 3-class=70.8%, top features: var_surprisal > p90_ppl > mean_ppl\n- **决策 D001**: MVP PASS，进入 research phase (2026-05-14)\n- **论文目标**: EMNLP 2026 ARR DDL 5/25。3 个 Claims: (1) DCOL ordinal depth estimation, (2) Depth Degradation Atlas, (3) depth-graduated curation\n- **P0 关键路径**: 3 模型(Pythia/OLMo/GPT-2 XL) × 3 策略(nucleus/temp/topk) 数据生成 → DCOL 训练 → leave-one-model-out → Atlas。数据生成是瓶颈，预计今天 21:00 UTC 全部完成\n- **易错点**:\n  - OLMo 用 `olmo-1b-hf` 不是 `olmo-1b`，后者有 aria2 残留且需自定义代码\n  - GPT-2 XL 的 Conv1D 特殊性——PEFT 自动处理但 LoRA targets 必须是 c_attn/c_proj\n  - 代码污染随深度增加（d1=17.8%→d3=27.4% 宽标准），但过滤后 acc 反而提升（78.2→81.6%），信号是真实的\n  - Registry 状态推进不能跳步（PREPARING→QUEUED→ALLOCATED→RUNNING），每步都要调 update_registry\n  - DDL 紧迫（11 天），不要在任何地方留 buffer，全速推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

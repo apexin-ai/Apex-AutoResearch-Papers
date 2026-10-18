@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d1d096603d554fa8ac48",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "audit server data",
+  "task_key": "worker_audit_server-data_20260525T194518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_server-data_20260525T194518_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "c353dea54c876c077623d817bdcaeb1790124855265ad6f24e1c98e57560daa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/audit_server_data.md`。\n\n提取覆盖：\n- 9-cell 主结果 (4-class acc + d1-d3 balanced acc + 95% CI + per-class recall)\n- Pairwise AUC decay 全部 9 cells (含 std)\n- EDD@T=0.70 分布\n- Cross-model rank correlation (Spearman ρ)\n- Cross-model transfer (LOO balanced acc)\n- 14B scale (cross-ref + self-ref, Qwen-7B/14B)\n- Detection baselines (Binoculars + Fast-DetectGPT + Combined)\n- PPL threshold vs RF 对比\n- Feature importance (universal ranking + conditional PI)\n- Accumulation mix25/50 (含 verified 500-tree 版本)\n- Wild data calibration FPR (C4/FineWeb/RedPajama) + threshold sweep\n- FPR-coverage tradeoff\n- LoRA 完整训练配置 (r=16, alpha=32, lr=2e-4, bs=8, epoch=3, 939 steps)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0c899d7c2be8890a59",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code register nli only gating",
+  "task_key": "worker_code_register_nli_only_gating_20260521T002132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_register_nli_only_gating_20260521T002132.log",
+    "occurrence": 1,
+    "bytes": 562977,
+    "sha256": "8a8613024e77372929eb293ec78b7d615302140e44c06b59992e6df92f0fd797"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 0,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 84,
+      "tool_call": 129,
+      "tool_result": 129,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 346,
+      "chunks": [
+        {
+          "path": "4b0c899d7c2be8890a59-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b0c899d7c2be8890a59-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ]
+}

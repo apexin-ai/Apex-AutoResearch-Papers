@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4f6f38e161eb9c17397f",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "experiment exp llama70b ner bcs null",
+  "task_key": "worker_experiment_exp_llama70b_ner_bcs_null_20260521T171749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_llama70b_ner_bcs_null_20260521T171749.log",
+    "occurrence": 1,
+    "bytes": 703084,
+    "sha256": "96ab385ab95985d34776010a3f957b5d30ed618e7e1c8ac386e731ae20cfd944"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "4f6f38e161eb9c17397f-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "4f6f38e161eb9c17397f-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ]
+}

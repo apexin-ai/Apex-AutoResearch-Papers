@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cec0c7c4c25eabda6b04",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh verify dcol early logs",
+  "task_key": "worker_ssh_verify_dcol_early_logs_20260514T203553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_dcol_early_logs_20260514T203553_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "405b110fcded39f263a3f5beb78ef7a9f71a5f022d82b25ac2acb8ade6e4fbd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DCOL 训练状态\n\n**进程**: PID 193684 存活，运行 16 分 39 秒。\n\n**GPU**:\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 100% | 58,733 / 97,887 MiB |\n| 1 | 70% | 15,671 / 97,887 MiB |\n\n**训练进度**: Epoch 1, step 1280/2187（~59%），无报错。\n\n**Loss 趋势**（正常下降）:\n| Step | loss | ce | cl | acc |\n|------|------|------|------|------|\n| 300 | 1.6283 | 1.3842 | 0.4881 | 0.2743 |\n| 500 | 1.6310 | 1.3844 | 0.4932 | 0.2725 |\n| 800 | 1.6224 | 1.3792 | 0.4864 | 0.2796 |\n| 1000 | 1.6150 | 1.3762 | 0.4776 | 0.2822 |\n| 1280 | 1.6029 | 1.3720 | 0.4618 | 0.2849 |\n\n- 总 loss 从 1.63 降到 1.60，ce 和 cl 都在稳步下降\n- acc 从 0.274 升到 0.285\n- lr 在 warmup 阶段（2.7e-6 → 1.2e-5）\n- 速度约 12s/20steps\n\n**Checkpoints**: 已有 `best_model.pt`（830MB）和 `results.json`。\n\n结论：训练正常运行，loss 稳步下降，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

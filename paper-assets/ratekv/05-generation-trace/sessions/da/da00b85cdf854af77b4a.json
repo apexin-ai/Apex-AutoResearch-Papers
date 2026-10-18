@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "da00b85cdf854af77b4a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analyze mistral hires bf16 2bitonly v4",
+  "task_key": "worker_analyze_mistral_hires_bf16_2bitonly_v4_20260514T223456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mistral_hires_bf16_2bitonly_v4_20260514T223456_result.json",
+    "occurrence": 1,
+    "bytes": 1550,
+    "sha256": "7f9de499d29d7410d1f4703e1ba86a8fbad136d80e40bf70147f83462f9ba3e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE / success。\n\n## mistral_hires_bf16_2bitonly_v4 结果总结\n\n**实验完成** — Mistral-7B-v0.3 hires bf16 2-bit profiling（v4，前3次因模型文件损坏失败）\n\n### 核心指标\n| 指标 | 数值 |\n|------|------|\n| **top5_concentration** | **0.241** (12 / 256 heads) |\n| baseline_ppl | 5.8702 |\n| top1_head | **L2H5** (delta=0.3236) |\n| top2_head | L12H1 (delta=0.1435) |\n| top3_head | L0H7 (delta=0.1403) |\n| delta_2bit_cv | 1.3091 |\n| L0 dominance ratio | 1.74x (weak) |\n| positive_delta_heads | 252 / 256 (98.4%) |\n| total_hours | 0.94h (56.2min profiling) |\n\n### 关键发现\n- **Distribution shape: FLAT** (concentration 0.241 < 0.30 阈值)\n- Mistral 在 hires 下 concentration (0.241) 与 standard profiling (0.22) 几乎一致 → **确认为 genuine flat / low-heterogeneity 模型**\n- 虽然 L2H5 是单一最大 head (delta=0.324)，但其只占总 delta 的约 6% — 不足以构成 \"spike\" 模式\n- 98.4% heads 有正 delta，扩散性极高（CV=1.31 同时也较低）\n- L0 dominance 仅 1.74x，远弱于 spike 类模型\n\n### 5 模型 hires concentration 全景图\n- Qwen2.5-7B: 0.61 (spike)\n- Llama-3.1-8B: 0.51 (moderate-spike)\n- Yi-1.5-9B: 0.27 (flat)\n- **Mistral-7B-v0.3: 0.24 (flat) ← 本次**\n- Gemma-2: pending\n\n### 产物\n- log: `/root/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log`\n- profiles JSON: `/root/ratekv/mistral_hires_bf16_2bitonly_profiles.json`\n- results JSON: `/root/ratekv/mistral_hires_bf16_2bitonly_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

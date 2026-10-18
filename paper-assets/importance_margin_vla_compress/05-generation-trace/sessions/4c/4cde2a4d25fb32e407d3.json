@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "4cde2a4d25fb32e407d3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops oft pruning eval",
+  "task_key": "worker_ops_oft-pruning-eval_20260520T111119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_oft-pruning-eval_20260520T111119_result.json",
+    "occurrence": 1,
+    "bytes": 2282032,
+    "sha256": "360f6aa3ac816f6f701cf0144330eef9dc66c36e30fe991f7d451b89878fb4ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "4cde2a4d25fb32e407d3-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

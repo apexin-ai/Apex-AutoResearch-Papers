@@ -1,0 +1,481 @@
+{
+  "schema_version": "1.0",
+  "id": "be969fc972160b3eb2dd",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "research attn heads audit",
+  "task_key": "worker_research_attn-heads-audit_20260518T055457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_attn-heads-audit_20260518T055457.jsonl",
+    "occurrence": 1,
+    "bytes": 20082,
+    "sha256": "8967a5893da12119dbde83dc9b8defb5fe161e7dde6f96da97a9d16cd690594a"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T05:55:46.361350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T05:55:46.361675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T05:55:46.361878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-HGRN2-pure-baseline/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T05:55:46.362010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-HGRN2-hybrid-24-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T05:55:46.362132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-HGRN2-hybrid-12-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T05:55:46.362249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-HGRN2-hybrid-6-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T05:55:46.362401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/HGRN2/hgrn2_340M_hybrid_24.json\",\n  \"architectures\": [\n    \"HGRN2ForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_ratio\": 128,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"hgrn2\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 8,\n  \"num_hidden_layers\": 24,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_lower_bound\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T05:55:46.362602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-HGRN2-hybrid-3-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T05:55:46.362790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/HGRN2/hgrn2_340M.json\",\n  \"architectures\": [\n    \"HGRN2ForCausalLM\"\n  ],\n  \"attn\": null,\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_ratio\": 128,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"hgrn2\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 8,\n  \"num_hidden_layers\": 24,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_lower_bound\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```\n\nThis is the configuration file for the **HGRN2 340M** model, a causal language model with:\n- **24 layers** with **8 attention heads**\n- **1024 hidden dimensions** with **4x hidden ratio**\n- **2048 max position embeddings** (context length)\n- **32,000 vocabulary size**\n- Optimizations: fused cross-entropy, norm, and SwiGLU operations\n- Chunk-based attention mode with 4-sized convolutions\n- Compatible with Hugging Face Transformers 4.49.0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T05:55:46.362940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-RetNet-pure/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T05:55:46.363080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/HGRN2/hgrn2_340M_hybrid_12.json\",\n  \"architectures\": [\n    \"HGRN2ForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      11,\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_ratio\": 128,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"hgrn2\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 8,\n  \"num_hidden_layers\": 24,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_lower_bound\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T05:55:46.363205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-RetNet-hybrid-24-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T05:55:46.363337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/HGRN2/hgrn2_340M_hybrid_6.json\",\n  \"architectures\": [\n    \"HGRN2ForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      5,\n      11,\n      17,\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_ratio\": 128,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"hgrn2\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 8,\n  \"num_hidden_layers\": 24,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_lower_bound\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T05:55:46.363505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-RetNet-hybrid-12-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T05:55:46.363659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/HGRN2/hgrn2_340M_hybrid_3.json\",\n  \"architectures\": [\n    \"HGRN2ForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      2,\n      5,\n      8,\n      11,\n      14,\n      17,\n      20,\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_ratio\": 128,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"hgrn2\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 8,\n  \"num_hidden_layers\": 24,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_lower_bound\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T05:55:46.363791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-RetNet-hybrid-6-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T05:55:46.363920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/RetNet/retnet_340M.json\",\n  \"architectures\": [\n    \"RetNetForCausalLM\"\n  ],\n  \"attn\": null,\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"clamp_min\": null,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_k\": 0.5,\n  \"expand_v\": 1,\n  \"feature_map\": null,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"retnet\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 4,\n  \"num_hidden_layers\": 24,\n  \"num_kv_heads\": null,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_output_gate\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```\n\nThis is a configuration file for a **RetNet 340M** causal language model with 24 layers, 1024 hidden dimensions, 4 attention heads, and a 32k token vocabulary."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T05:55:46.364041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://huggingface.co/m-a-p/340M-20B-RetNet-hybrid-3-1/raw/main/config.json",
+              "prompt": "Return the FULL JSON content exactly as-is, no summarization. I need every field."
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T05:55:46.364173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/RetNet/retnet_340M_hybrid_24.json\",\n  \"architectures\": [\n    \"RetNetForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"clamp_min\": null,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_k\": 0.5,\n  \"expand_v\": 1,\n  \"feature_map\": null,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"retnet\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 4,\n  \"num_hidden_layers\": 24,\n  \"num_kv_heads\": null,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_output_gate\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T05:55:46.364315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/RetNet/retnet_340M_hybrid_12.json\",\n  \"architectures\": [\n    \"RetNetForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      11,\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"clamp_min\": null,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_k\": 0.5,\n  \"expand_v\": 1,\n  \"feature_map\": null,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"retnet\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 4,\n  \"num_hidden_layers\": 24,\n  \"num_kv_heads\": null,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_output_gate\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T05:55:46.364454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/RetNet/retnet_340M_hybrid_3.json\",\n  \"architectures\": [\n    \"RetNetForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      2,\n      5,\n      8,\n      11,\n      14,\n      17,\n      20,\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"clamp_min\": null,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_k\": 0.5,\n  \"expand_v\": 1,\n  \"feature_map\": null,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"retnet\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 4,\n  \"num_hidden_layers\": 24,\n  \"num_kv_heads\": null,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_output_gate\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```\n\nThis is a RetNet 340M hybrid model configuration with 24 hidden layers, 1024 hidden dimensions, and 32K vocabulary size. Attention is applied selectively to 8 specific layers using chunked attention mode with RoPE positional embeddings."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T05:55:46.364596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"_name_or_path\": \"/mnt/bn/ridger1/flame/configs/RetNet/retnet_340M_hybrid_6.json\",\n  \"architectures\": [\n    \"RetNetForCausalLM\"\n  ],\n  \"attn\": {\n    \"layers\": [\n      5,\n      11,\n      17,\n      23\n    ],\n    \"num_heads\": 16,\n    \"num_kv_heads\": 8,\n    \"qkv_bias\": false,\n    \"rope_theta\": 10000.0,\n    \"window_size\": null\n  },\n  \"attn_mode\": \"chunk\",\n  \"bos_token_id\": 1,\n  \"clamp_min\": null,\n  \"conv_size\": 4,\n  \"elementwise_affine\": true,\n  \"eos_token_id\": 2,\n  \"expand_k\": 0.5,\n  \"expand_v\": 1,\n  \"feature_map\": null,\n  \"fuse_cross_entropy\": true,\n  \"fuse_norm\": true,\n  \"fuse_swiglu\": true,\n  \"hidden_act\": \"swish\",\n  \"hidden_ratio\": 4,\n  \"hidden_size\": 1024,\n  \"initializer_range\": 0.02,\n  \"intermediate_size\": null,\n  \"max_position_embeddings\": 2048,\n  \"model_type\": \"retnet\",\n  \"norm_eps\": 1e-06,\n  \"num_heads\": 4,\n  \"num_hidden_layers\": 24,\n  \"num_kv_heads\": null,\n  \"tie_word_embeddings\": true,\n  \"torch_dtype\": \"float32\",\n  \"transformers_version\": \"4.49.0\",\n  \"use_cache\": true,\n  \"use_output_gate\": true,\n  \"use_short_conv\": false,\n  \"vocab_size\": 32000\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T05:55:46.364817+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已获取。\n\n## 对比表\n\n### HGRN2\n\n| Ratio | attn.num_heads | attn.num_kv_heads | head_dim | attn.layers | 其他 attn 参数 |\n|-------|---------------|-------------------|----------|-------------|---------------|\n| pure  | N/A (attn=null) | N/A | N/A | N/A | recurrent num_heads=8 |\n| 24:1  | **16** | **8** | 64 | [23] | qkv_bias=false, rope_theta=10000, window_size=null |\n| 12:1  | **16** | **8** | 64 | [11, 23] | 同上 |\n| 6:1   | **16** | **8** | 64 | [5, 11, 17, 23] | 同上 |\n| 3:1   | **16** | **8** | 64 | [2, 5, 8, 11, 14, 17, 20, 23] | 同上 |\n\n### RetNet\n\n| Ratio | attn.num_heads | attn.num_kv_heads | head_dim | attn.layers | 其他 attn 参数 |\n|-------|---------------|-------------------|----------|-------------|---------------|\n| pure  | N/A (attn=null) | N/A | N/A | N/A | recurrent num_heads=4 |\n| 24:1  | **16** | **8** | 64 | [23] | qkv_bias=false, rope_theta=10000, window_size=null |\n| 12:1  | **16** | **8** | 64 | [11, 23] | 同上 |\n| 6:1   | **16** | **8** | 64 | [5, 11, 17, 23] | 同上 |\n| 3:1   | **16** | **8** | 64 | [2, 5, 8, 11, 14, 17, 20, 23] | 同上 |\n\n## 结论\n\n1. **HGRN2 各 ratio 之间完全一致。** 所有 hybrid 变体的 full attention 层配置完全相同：num_heads=16, num_kv_heads=8, head_dim=64。唯一区别是 attention 层的数量和位置（均匀分布在 24 层中）。\n\n2. **RetNet 各 ratio 之间完全一致。** 与 HGRN2 完全相同的 attention 配置。\n\n3. **HGRN2 和 RetNet 之间也完全一致。** 两者的 hybrid attention 层使用了完全相同的 num_heads/num_kv_heads 配置。\n\n4. **与 GatedDeltaNet 的对比：GatedDeltaNet 是唯一存在 cross-ratio 不一致的架构。** GatedDeltaNet 的 3:1 ratio 使用 num_heads=16，而 6:1/12:1/24:1 使用 num_heads=32。HGRN2 和 RetNet 不存在这个问题。\n\n### 影响评估\n\nHGRN2 和 RetNet 的 cross-ratio 实验可比性没有问题。GatedDeltaNet 3:1 的 num_heads 差异（16 vs 32）是该架构独有的配置异常，意味着 GatedDeltaNet 3:1 的 attention 层 head_dim=64，而其他 ratio 的 head_dim=32。这可能混淆 ratio 效果和 head 配置效果的归因。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_attn-heads-audit_20260518T055457"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ]
+}

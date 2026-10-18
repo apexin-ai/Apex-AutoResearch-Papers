@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2cd60d36c80241d6e00b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "check server file verification",
+  "task_key": "worker_check_server-file-verification_20260523T010057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server-file-verification_20260523T010057_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "513e7375a2af5a9fb4ffe04cf63ce338db30959b21c92f1c567a4e162e46762d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查结果汇总：\n\n**三个文件全部存在** ✓\n\n| 文件 | 路径 | 大小 | 时间 |\n|------|------|------|------|\n| K=5 wild cluster bootstrap | `artifacts/results/plan001/k5_wild_cluster_bootstrap.json` | 13.2 KB | May 23 08:52 |\n| Partial-knowledge adversary | `artifacts/results/plan001/partial_knowledge_adversary.json` | 20.1 KB | May 23 08:50 |\n| Framework figure (PDF) | `artifacts/figures/fig_framework.pdf` | 48.3 KB | May 23 08:54 |\n| Framework figure (PNG) | `artifacts/figures/fig_framework.png` | 202.5 KB | May 23 08:54 |\n\n**无残留 bootstrap 进程**——服务器上没有相关 python 进程在跑。\n\n**K5 bootstrap 结果摘要**（前 100 行）：\n- 方法：`wild_cluster_bootstrap_k5`，K=5，B=9999 次重采样，Rademacher 权重\n- 回归模型：`log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)`\n- 每个 condition 有 3003 个 panel，11 个 cluster\n- `mmluxprompt_injection`：K_eff final_p=0.0016（显著），eta final_p=0.0329\n- `mmluxsycophancy`：K_eff final_p=0.0103（显著），eta final_p=0.0276"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

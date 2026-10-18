@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "19ea8c5ff9df84429ff4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh olmo rescue",
+  "task_key": "worker_ssh_olmo_rescue_20260514T170614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_olmo_rescue_20260514T170614_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "f327fd0057e8dd2ad3b2d40598d4e8d7380ff54645c9e8e5c5aa55d25762998a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. OLMo (PID 150550) — 存活，正在生成 depth-1\n- **PID 存活**，已运行 32 分钟，状态 `S+`\n- depth_0 训练已完成（final loss 2.2686，LoRA adapter 已保存）\n- 正在执行 Step 2：加载 OLMo-1B 模型生成 depth-1 数据\n- 进度：\n  - `depth_0.jsonl`: 5000 lines（完成）\n  - `depth_1.jsonl`: 4830 lines（生成中，接近完成）\n  - `depth_2.jsonl`: 不存在\n  - `depth_3.jsonl`: 不存在\n\n### 2. GPT-2 XL (PID 123650) — 存活，正在生成 depth-2\n- **PID 存活**，已运行 2 小时 24 分钟\n- depth_1 训练已完成，LoRA adapter 已保存\n- 正在执行 Step 4：加载 GPT-2 XL 模型生成 depth-2 数据\n- 进度：\n  - `depth_0.jsonl`: 5000 lines（完成）\n  - `depth_1.jsonl`: 5000 lines（完成）\n  - `depth_2.jsonl`: 4991 lines（生成中，接近完成）\n\n### 3. GPU 利用\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| GPU 0 | 63% | 9,973 / 97,887 MiB |\n| GPU 1 | 77% | 15,641 / 97,887 MiB |\n\n两个进程都正常运行，未被杀死。GPT-2 XL 进度领先，OLMo 落后约一个 step。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

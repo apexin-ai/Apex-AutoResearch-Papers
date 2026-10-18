@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d3cd7e52b344507a7be7",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260514T102130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260514T102130_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "aaf193200f512136747fb514aa59027f960489d8f7acd77267958d43c955bd8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 已写入 `docs/paper/related_work.tex`，约 580 words，4 个子主题：\n\n1. **KV Cache Quantization** — 6 篇 uniform 方法，定位我们为 per-head non-uniform + hardware-aligned\n2. **KV Cache Eviction** — 6 篇 token eviction 方法，明确正交互补关系\n3. **Mixed-Precision Rate-Distortion Allocation** — RateQuant 为核心对比（polymatroid 在 {2,4,8,16} 上失效 + compounding failure），加 SqueezeLLM/ARKV/KVmix/MixKVQ 各自差异化\n4. **Attention Head Analysis** — Voita 和 Michel 用 `[UNVERIFIED: ...]` 占位，区分 head pruning vs quantization sensitivity\n\n所有 17 个已验证 `\\cite{}` 均使用，无新增定量 claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

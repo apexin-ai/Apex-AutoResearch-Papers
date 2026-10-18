@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84f16935d77d68d8da5d",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4576,
+    "sha256": "5d0149685fd57ca474ab5a7ab473472ecceaf68f04ad50a11c1e365fb962e1ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T15:48:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**gpu-6000pro-2 cuda:0, cuda:1** 仅此两卡，禁用其他设备\n- **z-score 恢复 LR d1v2 AUC 的 claim 已证伪** (D021)：论文中必须删除/修改此声明。LR z-score 实验结果：GPT-2 XL 0.50→0.24, OLMo 0.50→0.19，与 framing 声称完全相反\n- **EDD 不得写\"EDD=4 across all models\"**：正确措辞是\"连续 AUC 衰减曲线 + d3v4 clusters near 0.75 + d4v5 uniformly <0.70\"。Pythia p=0.001 显著，OLMo p=0.091 边际，GPT-2 XL p=0.505 不显著 (D027)\n- **Baseline 叙事**：RF ≈ CORAL ≈ DivEye 统计不可区分 (bootstrap p>0.05 Bonferroni)，不得写\"RF best\" (D022/D023)\n- **DCOL 方向已永久关闭** (D018)：6 版迭代全败，只能写 negative analysis section\n- submit_on_allocated 的 command 必须用 `bash -c \"...\"` 包裹（tmux 跑 /bin/sh），脚本内 GPU 一律 `cuda:0`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2（本地机，非 AutoDL）\n- **工作目录**: `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: 各模型 LoRA checkpoint 在 `/root/autodl-tmp/recursive_gen_depth_est/models/` 下（Pythia-1.4B / GPT-2 XL / OLMo-1B）\n- **数据路径**: `/root/autodl-tmp/recursive_gen_depth_est/data/`（pythia_nucleus095 / pythia_temp09 / pythia_topk50 / gpt2xl_* / olmo_*，每 cell 5000 samples × 4 depths = 20000）\n- **Artifacts**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/`\n- **活跃进程**: 无（两卡空闲）\n- **Cron**: 无活跃 cron\n- **Workers**: 无运行中 worker\n\n### 3. 📊 当前状态\nPhase 1 全部完成（46 个实验：24 success / 3 negative / 6 failed / 其余 killed）。**项目处于 Phase 2 写作阶段**，DDL EMNLP ARR May 25（剩 10 天）。\n\n两卡完全空闲，无 RUNNING 实验。两个 PENDING 实验等待 Director 审批：\n- **zeroshot_llm_500_001** (PENDING): 零样本 LLM 样本量从 200→500 缩窄 CI (R1-W4)\n- **temp07_pilot_pythia_001** (PENDING): τ=0.7 temperature pilot 验证 d1v2 inversion 是否在 τ<0.9 也出现 (R2-W3)\n\n无等待中的 Worker 回调或 Cron。上一轮 session 完成了 N2 双 backbone 实验（DeBERTa 58.3% / RoBERTa 59.5% 均远低于 RF 78.2%）和 feature overlap 分析（Spearman ρ=-0.484），以及全部 EDD 跨模型验证。\n\n### 4. 📋 待办（条件触发式）\n- **Director 审批 zeroshot_llm_500_001** → spawn worker 在 cuda:0 跑 500-sample zero-shot eval\n- **Director 审批 temp07_pilot_pythia_001** → spawn worker 在 cuda:1 跑 Pythia τ=0.7 数据生成+评估\n- **写作启动**（可立即开始，不等审批）→ spawn paper worker 按 memory.md §D 写作顺序执行：\n  - 第一批：§4 EDD 公式定义(R1-N1) + §3 Benchmark Construction(W5) + Bibliography 扩充(R2-N2) + 术语一致性(R2-W2)\n  - 第二批：§4 Atlas analysis(D024/D027) + §5 Results baseline 重构(D022/D023) + per-class recall 表(W6)\n  - 第三批：§5 End-to-end baseline 对比(R1-N3, 数据已就绪) + §6 Discussion(D015/D014)\n  - 第四批：§1 Intro + Abstract + Limitations 调整 + orphan bib 清理\n- **4 张必需图**(Dream D002 硬约束) → 与第二批写作并行，spawn worker 用 draw-paper-figure skill 生成：AUC decay curve / feature trajectory / confusion matrix / Atlas heatmap\n- **两个 PENDING 审批超过 24h 无响应** → 向 Director 催促，DDL 紧迫不能等\n\n### 5. 🎯 战略上下文\n**核心结论链**: 19 个统计特征 (p90_ppl, var_surprisal 等) 的手工特征 + 简单分类器 (RF) 能以 70-85% 准确率估计递归生成深度。端到端 PLM (DeBERTa/RoBERTa ~59%) 大幅落后 (-19pp)，因为 PLM 表征与手工特征关注文本的不同层面 (Spearman ρ=-0.484)。深度退化信号在 depth-4 饱和 (EDD=4)，跨模型方向一致但统计强度分层。\n\n**易错点**:\n- 不要把 6-class pairwise AUC 与 4-class 直比（决策边界稀释，见 D019/D020）\n- Cross-strategy LOO temp09 d1v2 反转是 covariate shift 而非 bug（temp09 depth N ≈ 其他策略 depth N+1）\n- 3-class acc < 4-class 是结构性的（排除了最易分的 d0），不是异常\n- **两卡空闲 = 失职**——Phase 2 写作期间应同时跑补充实验（两个 PENDING + 可能的制图任务）\n- DDL 只剩 10 天，写作是关键路径，不要等所有补充实验跑完才开始写\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

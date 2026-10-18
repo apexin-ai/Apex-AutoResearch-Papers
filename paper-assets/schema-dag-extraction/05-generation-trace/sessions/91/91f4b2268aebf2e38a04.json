@@ -1,0 +1,770 @@
+{
+  "schema_version": "1.0",
+  "id": "91f4b2268aebf2e38a04",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "analysis fewrel 80rel error taxonomy",
+  "task_key": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702.jsonl",
+    "occurrence": 1,
+    "bytes": 49994,
+    "sha256": "5b09b969e4f49e7b786c71e7f80e60daa3f078b8ded438e4702ae02ad7e7da02"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:10:41.631455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:10:41.631922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:10:41.632205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/fewrel_formal_full/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:10:41.632400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -100 /root/schema-dag-extraction/src/error_taxonomy.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:10:41.632602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28296\\\\ndrwxr-xr-x  2 root root     4096 May 15 21:17 .\\\\ndrwxr-xr-x 13 root root     4096 May 15 21:45 ..\\\\n-rw-r--r--  1 root root    39116 May 15 21:05 batch_config_exp1.json\\\\n-rw-r--r--  1 root root    22751 May 15 21:11 batch_config_exp2.json\\\\n-rw-r--r--  1 root root   175776 May 15 21:10 eval_exp1.json\\\\n-rw-r--r--  1 root root   101465 May 15 21:17 eval_exp2.json\\\\n-rw-r--r--  1 root root 22455332 May 15 21:10 predictions_exp1.json\\\\n-rw-r--r--  1 root root  5565847 May 15 21:17 predictions_exp2.json\\\\n-rw-r--r--  1 root root   283960 May 15 21:05 preprocess_exp1.json\\\\n-rw-r--r--  1 root root   274571 May 15 21:11 preprocess_exp2.json\\\\n-rw-r--r--  1 root root    29373 May 15 21:11 relation_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:10:41.632928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Error taxonomy analysis: classify FP predictions by BCS bin.\\\\n\\\\nSupports Claim 2 (multi-channel degradation model): high BCS environments\\\\nshould show higher intra-batch type_substitution rates (confusability channel).\\\\n\\\\nDistinguishes intra-batch vs extra-batch type substitution:\\\\n  - intra: pred text matches gold entity whose type IS in batch_types (within-batch confusion)\\\\n  - extra: pred text matches gold entity whose type is NOT in batch_types\\\\n\\\\nInput:\\\\n  - artifacts/predictions_exp1.json (random batches, BCS 0-0.97)\\\\n  - artifacts/predictions_exp2.json (controlled BCS batches, BCS 0.86-0.97)\\\\n  - data/parquet/test.parquet (1000 samples, Few-NERD)\\\\nOutput:\\\\n  - artifacts/exp007/error_taxonomy_report.txt\\\\n  - artifacts/exp007/error_taxonomy_by_bcs.csv\\\\n  - artifacts/exp007/error_taxonomy_raw.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Set, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, str(Path(__file__).parent))\\\\nfrom few_nerd_utils import load_few_nerd\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = \\\\\\\"/root/schema-dag-extraction\\\\\\\"\\\\nARTIFACTS_DIR = os.path.join(BASE_DIR, \\\\\\\"artifacts\\\\\\\")\\\\nMAX_SAMPLES = 1000\\\\n\\\\nBCS_BINS_EXP1 = [\\\\n    (\\\\\\\"zero\\\\\\\", 0.0, 0.001),       # count_1 batches, BCS=0\\\\n    (\\\\\\\"low\\\\\\\", 0.001, 0.90),       # multi-type, low confusability\\\\n    (\\\\\\\"medium\\\\\\\", 0.90, 0.95),     # multi-type, medium confusability\\\\n    (\\\\\\\"high\\\\\\\", 0.95, 1.001),      # multi-type, high confusability\\\\n]\\\\n\\\\nBCS_BINS_EXP2 = [\\\\n    (\\\\\\\"low\\\\\\\", 0.0, 0.90),\\\\n    (\\\\\\\"medium\\\\\\\", 0.90, 0.95),\\\\n    (\\\\\\\"high\\\\\\\", 0.95, 1.001),\\\\n]\\\\n\\\\n# intra_type_sub = within-batch confusion (confusability channel signal)\\\\n# extra_\n…[truncated 1993 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:10:41.633226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp2.json')); print(type(d)); print(list(d.keys()) if isinstance(d,dict) else len(d)); import json; print(json.dumps(d if isinstance(d,list) and len(d)<3 else (d[list(d.keys())[0]] if isinstance(d,dict) else d[:2]), indent=2, ensure_ascii=False)[:3000])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:10:41.633438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:10:41.633616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json')); print(type(d)); print(list(d.keys())[:20] if isinstance(d,dict) else len(d)); print(json.dumps(d if isinstance(d,list) and len(d)<3 else {k:d[k] for k in list(d.keys())[:3]} if isinstance(d,dict) else d[:2], indent=2, ensure_ascii=False)[:3000])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:10:41.633804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:10:41.633979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp2.json')); print(type(d)); print(list(d.keys())[:10] if isinstance(d,dict) else len(d)); print(json.dumps(d if isinstance(d,list) and len(d)<3 else {k:d[k] for k in list(d.keys())[:2]} if isinstance(d,dict) else d[:2], indent=2, ensure_ascii=False)[:3000])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:10:41.634112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:10:41.634255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -100 /root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T15:10:41.634377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -100 /root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T15:10:41.634492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -80 /root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T15:10:41.634677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"sample_id\\\\\\\": 120,\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_8_low_bcs\\\\\\\",\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_8\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"headquarters location\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"batch_bcs\\\\\\\": 0.47147512435913086,\\\\n    \\\\\\\"prediction\\\\\\\": \\\\\\\"country of citizenship\\\\\\\",\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"country of citizenship\\\\\\\",\\\\n    \\\\\\\"head_entity\\\\\\\": \\\\\\\"art linson\\\\\\\",\\\\n    \\\\\\\"tail_entity\\\\\\\": \\\\\\\"american\\\\\\\",\\\\n    \\\\\\\"prompt_tokens\\\\\\\": 126,\\\\n    \\\\\\\"gen_tokens\\\\\\\": 9,\\\\n    \\\\\\\"latency_s\\\\\\\": 0.09048781543970108\\\\n  },\\\\n  {\\\\n    \\\\\\\"sample_id\\\\\\\": 121,\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_8_low_bcs\\\\\\\",\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_8\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"headquarters location\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"batch_bcs\\\\\\\": 0.47147512435913086,\\\\n    \\\\\\\"prediction\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"country of citizenship\\\\\\\",\\\\n    \\\\\\\"head_entity\\\\\\\": \\\\\\\"david bronstein\\\\\\\",\\\\n    \\\\\\\"tail_entity\\\\\\\": \\\\\\\"the soviet union\\\\\\\",\\\\n    \\\\\\\"prompt_tokens\\\\\\\": 139,\\\\n    \\\\\\\"gen_tokens\\\\\\\": 7,\\\\n    \\\\\\\"latency_s\\\\\\\": 0.09048781543970108\\\\n  },\\\\n  {\\\\n    \\\\\\\"sample_id\\\\\\\": 122,\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_8_low_bcs\\\\\\\",\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_8\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"h\n…[truncated 1968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T15:10:41.634935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_8_low_bcs\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n    \\\\\\\"correct\\\\\\\": 79,\\\\n    \\\\\\\"total\\\\\\\": 96,\\\\n    \\\\\\\"bcs\\\\\\\": 0.47147512435913086,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_8\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 8,\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"headquarters location\\\\\\\",\\\\n      \\\\\\\"original language of film or TV show\\\\\\\",\\\\n      \\\\\\\"successful candidate\\\\\\\",\\\\n      \\\\\\\"sports season of league or competition\\\\\\\",\\\\n      \\\\\\\"country of citizenship\\\\\\\",\\\\n      \\\\\\\"located in or next to body of water\\\\\\\",\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n      \\\\\\\"mountain range\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"per_type_accuracy\\\\\\\": {\\\\n      \\\\\\\"country of citizenship\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n        \\\\\\\"correct\\\\\\\": 9,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"headquarters location\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n        \\\\\\\"correct\\\\\\\": 10,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"licensed to broadcast to\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.3333333333333333,\\\\n        \\\\\\\"correct\\\\\\\": 4,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"located in or next to body of water\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"correct\\\\\\\": 12,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"mountain range\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"correct\\\\\\\": 11,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"original language of film or TV show\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"correct\\\\\\\": 12,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"sports season of league or competition\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"correct\\\\\\\": 11,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"successful candidate\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n        \\\\\\\"correct\\\\\\\": 10,\\\\n        \\\\\\\"total\\\\\\\": 12\\\\n      }\\\\n    }\\\\n  \n…[truncated 1241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T15:10:41.635158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_8\\\\\\\": {\\\\n    \\\\\\\"low_bcs\\\\\\\": {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"headquarters location\\\\\\\",\\\\n        \\\\\\\"original language of film or TV show\\\\\\\",\\\\n        \\\\\\\"successful candidate\\\\\\\",\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"mountain range\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.47147512435913086\\\\n    },\\\\n    \\\\\\\"high_bcs\\\\\\\": {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"participant\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"part of\\\\\\\",\\\\n        \\\\\\\"member of\\\\\\\",\\\\n        \\\\\\\"follows\\\\\\\",\\\\n        \\\\\\\"followed by\\\\\\\",\\\\n        \\\\\\\"has part\\\\\\\",\\\\n        \\\\\\\"instance of\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.9705880880355835\\\\n    },\\\\n    \\\\\\\"random\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"publisher\\\\\\\",\\\\n          \\\\\\\"location of formation\\\\\\\",\\\\n          \\\\\\\"notable work\\\\\\\",\\\\n          \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n          \\\\\\\"platform\\\\\\\",\\\\n          \\\\\\\"mountain range\\\\\\\",\\\\n          \\\\\\\"country of citizenship\\\\\\\",\\\\n          \\\\\\\"screenwriter\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.6652612686157227\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"military rank\\\\\\\",\\\\n          \\\\\\\"league\\\\\\\",\\\\n          \\\\\\\"sports season of league or competition\\\\\\\",\\\\n          \\\\\\\"country of citizenship\\\\\\\",\\\\n          \\\\\\\"follows\\\\\\\",\\\\n          \\\\\\\"movement\\\\\\\",\\\\n          \\\\\\\"crosses\\\\\\\",\\\\n          \\\\\\\"successful candidate\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7423046827316284\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"military rank\\\\\\\",\\\\n          \\\\\\\"league\\\\\\\",\\\\n          \\\\\\\"heritage designation\\\\\\\",\\\\n          \\\\\\\"contains administrative territorial entity\\\\\\\",\\\\n          \\\\\\\"mountain range\\\\\\\",\\\\n\n…[truncated 667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T15:10:41.635350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json')); [print(k, round(d[k]['bcs'],4), d[k]['accuracy'], d[k]['total']) for k in d]\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T15:10:41.635483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T15:10:41.635603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -E \"\\\"(accuracy|bcs|total|count_key)\\\"\" /root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T15:10:41.635723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T15:10:41.635855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -E \"\\\"(accuracy|bcs|total|count_key)\\\"\" /root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T15:10:41.635983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T15:10:41.636128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"bcs\" /root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T15:10:41.636288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"count_8_low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.47147512435913086,\\\\n  \\\\\\\"count_8_high_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9705880880355835,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6652612686157227,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7423046827316284,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7091653347015381,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7238919734954834,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7468862533569336,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6464519500732422,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7094486355781555,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8200748562812805,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7122566103935242,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7908356785774231,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6741521954536438,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6916008591651917,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8226474523544312,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6921325922012329,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7118586301803589,\\\\n    \\\\\\\"bcs\\\\\\\": 0.691864013671875,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7423046827316284,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6788426637649536,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7091586589813232,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6783125996589661,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7348428964614868,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7676975131034851,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6868898272514343,\\\\n    \\\\\\\"bcs\\\\\\\": 0.6724083423614502,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7778328061103821,\\\\n  \\\\\\\"count_16_low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.5704576969146729,\\\\n  \\\\\\\"count_16_high_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9705880880355835,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8146615028381348,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8370872139930725,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7535355687141418,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7130398750305176,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8564784526824951,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7871875762939453,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8968737721443176,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8024017810821533,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8361343145370483,\\\\n    \\\\\\\"bcs\\\\\\\": 0.9001670479774475,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7676975131034851,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8919832706451416,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7501540184020996,\\\\n    \\\\\\\"bcs\\\\\\\": 0.8968737721443176,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7256805896759033,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7774745225906372,\\\\n    \\\\\\\"bcs\\\\\\\": 0.7575422525405884,\\\\n    \\\\\\\"bcs\\\\\\\": 0.756\n…[truncated 394 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T15:10:41.636430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"accuracy\" /root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T15:10:41.636726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"accuracy\\\\\\\": 0.8229166666666666,\\\\n    \\\\\\\"per_type_accuracy\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.3333333333333333,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.5104166666666666,\\\\n    \\\\\\\"per_type_accuracy\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6666666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.16666666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.3333333333333333,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.4166666666666667,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8958333333333334,\\\\n    \\\\\\\"per_type_accuracy\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8645833333333334,\\\\n    \\\\\\\"per_type_accuracy\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8333333333333334,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6666666666666666,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.6770833333333334,\\\\n    \\\\\\\"per_type_accuracy\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9166666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6666666666666666,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.25,\\\\n        \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.25,\\\\n        \\\\\\\"accu\n…[truncated 8128 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T15:10:41.636980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -50 /root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp1.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T15:10:41.637156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"sample_id\\\\\\\": 0,\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_1_random_0\\\\\\\",\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"after a work by\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"batch_bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"prediction\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"after a work by\\\\\\\",\\\\n    \\\\\\\"head_entity\\\\\\\": \\\\\\\"the black stallion\\\\\\\",\\\\n    \\\\\\\"tail_entity\\\\\\\": \\\\\\\"walter farley\\\\\\\",\\\\n    \\\\\\\"prompt_tokens\\\\\\\": 112,\\\\n    \\\\\\\"gen_tokens\\\\\\\": 7,\\\\n    \\\\\\\"latency_s\\\\\\\": 0.4583993156750997\\\\n  },\\\\n  {\\\\n    \\\\\\\"sample_id\\\\\\\": 1,\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_1_random_0\\\\\\\",\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"after a work by\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"batch_bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"prediction\\\\\\\": \\\\\\\"after a work by\\\\\\\",\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"after a work by\\\\\\\",\\\\n    \\\\\\\"head_entity\\\\\\\": \\\\\\\"the end of the affair\\\\\\\",\\\\n    \\\\\\\"tail_entity\\\\\\\": \\\\\\\"graham greene\\\\\\\",\\\\n    \\\\\\\"prompt_tokens\\\\\\\": 103,\\\\n    \\\\\\\"gen_tokens\\\\\\\": 10,\\\\n    \\\\\\\"latency_s\\\\\\\": 0.4583993156750997\\\\n  },\\\\n  {\\\\n    \\\\\\\"sample_id\\\\\\\": 2,\\\\n    \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_1_random_0\\\\\\\",\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"batch_types\\\\\\\": [\\\\n      \\\\\\\"after a work by\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"batch_bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"prediction\\\\\\\": \\\\\\\"after a work by\\\\\\\",\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"after a work by\\\\\\\",\\\\n    \\\\\\\"head_entity\\\\\\\": \\\\\\\"carol\\\\\\\",\\\\n    \\\\\\\"tail_entity\\\\\\\": \\\\\\\"patricia highsmith\\\\\\\",\\\\n    \\\\\\\"prompt_tokens\\\\\\\": 114,\\\\n    \\\\\\\"gen_tokens\\\\\\\": 10,\\\\n    \\\\\\\"latency_s\\\\\\\": 0.4583993156750997\\\\n  },\\\\n  {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T15:10:41.637371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/fewrel_error_taxonomy.py",
+              "content": "\"\"\"FewRel error taxonomy analysis: classify predictions by BCS bin.\n\nAdapts NER error taxonomy (exp-007) to Relation Extraction.\nFor RE, errors are:\n  - correct: prediction == ground_truth\n  - wrong_type_intra: prediction != ground_truth, prediction in batch_types\n  - wrong_type_extra: prediction != ground_truth, prediction not in batch_types, prediction != \"none\"\n  - missed: prediction == \"none\" (or empty)\n\nInput:\n  - artifacts/fewrel_formal_full/predictions_exp1.json\n  - artifacts/fewrel_formal_full/predictions_exp2.json\nOutput:\n  - artifacts/fewrel_80rel_error_taxonomy.json\n\"\"\"\n\nimport json\nimport os\nfrom collections import defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nBASE_DIR = \"/root/schema-dag-extraction\"\nARTIFACTS_DIR = os.path.join(BASE_DIR, \"artifacts\", \"fewrel_formal_full\")\nOUT_PATH = os.path.join(BASE_DIR, \"artifacts\", \"fewrel_80rel_error_taxonomy.json\")\n\nBCS_BINS = [\n    (\"zero\",      0.0,   0.001),\n    (\"low\",       0.001, 0.65),\n    (\"medium\",    0.65,  0.80),\n    (\"high\",      0.80,  0.95),\n    (\"very_high\", 0.95,  1.001),\n]\n\n\ndef classify_prediction(pred):\n    gt = pred[\"ground_truth\"].strip().lower()\n    p = pred[\"prediction\"].strip().lower()\n    batch_types = {t.strip().lower() for t in pred[\"batch_types\"]}\n\n    if p == gt:\n        return \"correct\"\n    if p in (\"none\", \"\"):\n        return \"missed\"\n    if p in batch_types:\n        return \"wrong_type_intra\"\n    return \"wrong_type_extra\"\n\n\ndef get_bin(bcs):\n    for name, lo, hi in BCS_BINS:\n        if lo <= bcs < hi:\n            return name\n    return \"unknown\"\n\n\ndef main():\n    all_preds = []\n    for fname in [\"predictions_exp1.json\", \"predictions_exp2.json\"]:\n        path = os.path.join(ARTIFACTS_DIR, fname)\n        with open(path) as f:\n            preds = json.load(f)\n        for p in preds:\n            p[\"_source\"] = fname.replace(\"predictions_\", \"\").replace(\".json\", \"\")\n        all_preds.extend(preds)\n        print(f\"Loaded {len(preds)} predictions from {fname}\")\n\n    print(f\"Total predictions: {len(all_preds)}\")\n\n    # Classify each prediction\n    for p in all_preds:\n        p[\"_error_type\"] = classify_prediction(p)\n\n    # === Per-batch aggregation ===\n    batch_data = defaultdict(lambda: {\"preds\": [], \"bcs\": None})\n    for p in all_preds:\n        bid = p[\"batch_id\"]\n        batch_data[bid][\"preds\"].append(p)\n        batch_data[bid][\"bcs\"] = p[\"batch_bcs\"]\n\n    batch_stats = []\n    for bid, bd in sorted(batch_data.items()):\n        counts = defaultdict(int)\n        for p in bd[\"preds\"]:\n            counts[p[\"_error_type\"]] += 1\n        total = len(bd[\"preds\"])\n        wrong_type = counts[\"wrong_type_intra\"] + counts[\"wrong_type_extra\"]\n        batch_stats.append({\n            \"batch_id\": bid,\n            \"bcs\": bd[\"bcs\"],\n            \"total\": total,\n            \"correct\": counts[\"correct\"],\n            \"wrong_type_intra\": counts[\"wrong_type_intra\"],\n            \"wrong_type_extra\": counts[\"wrong_type_extra\"],\n            \"missed\": counts[\"missed\"],\n            \"wrong_type_rate\": wrong_type / total if total > 0 else 0,\n            \"intra_sub_rate\": counts[\"wrong_type_intra\"] / total if total > 0 else 0,\n            \"accuracy\": counts[\"correct\"] / total if total > 0 else 0,\n        })\n\n    # === BCS bin aggregation ===\n    bin_agg = {name: {\"correct\": 0, \"wrong_type_intra\": 0, \"wrong_type_extra\": 0,\n                       \"missed\": 0, \"total\": 0, \"bcs_values\": [], \"n_batches\": 0}\n               for name, _, _ in BCS_BINS}\n\n    for bs in batch_stats:\n        b = get_bin(bs[\"bcs\"])\n        if b == \"unknown\":\n            continue\n        agg = bin_agg[b]\n        agg[\"correct\"] += bs[\"correct\"]\n        agg[\"wrong_type_intra\"] += bs[\"wrong_type_intra\"]\n        agg[\"wrong_type_extra\"] += bs[\"wrong_type_extra\"]\n        agg[\"missed\"] += bs[\"missed\"]\n        agg[\"total\"] += bs[\"total\"]\n        agg[\"bcs_values\"].append(bs[\"bcs\"])\n        agg[\"n_batches\"] += 1\n\n    bin_results = []\n    for name, lo, hi in BCS_BINS:\n        agg = bin_agg[name]\n        t = agg[\"total\"]\n        if t == 0:\n            continue\n        wt = agg[\"wrong_type_intra\"] + agg[\"wrong_type_extra\"]\n        bin_results.append({\n            \"bin\": name,\n            \"bcs_range\": [lo, hi],\n            \"mean_bcs\": float(np.mean(agg[\"bcs_values\"])) if agg[\"bcs_values\"] else 0,\n            \"n_batches\": agg[\"n_batches\"],\n            \"total\": t,\n            \"correct\": agg[\"correct\"],\n            \"correct_rate\": round(agg[\"correct\"] / t, 4),\n            \"wrong_type_intra\": agg[\"wrong_type_intra\"],\n            \"wrong_type_extra\": agg[\"wrong_type_extra\"],\n            \"wrong_type_total\": wt,\n            \"wrong_type_rate\": round(wt / t, 4),\n            \"intra_sub_rate\": round(agg[\"wrong_type_intra\"] / t, 4),\n            \"missed\": agg[\"missed\"],\n            \"missed_rate\": round(agg[\"missed\"] / t, 4),\n        })\n\n    # === Spearman correlations (per-batch level) ===\n    bcs_arr = np.array([bs[\"bcs\"] for bs in batch_stats])\n    wt_rate_arr = np.array([bs[\"wrong_type_rate\"] for bs in batch_stats])\n    intra_rate_arr = np.array([bs[\"intra_sub_rate\"] for bs in batch_stats])\n    acc_arr = np.array([bs[\"accuracy\"] for bs in batch_stats])\n\n    rho_wt, p_wt = spearmanr(bcs_arr, wt_rate_arr)\n    rho_intra, p_intra = spearmanr(bcs_arr, intra_rate_arr)\n    rho_acc, p_acc = spearmanr(bcs_arr, acc_arr)\n\n    correlations = {\n        \"wrong_type_rate_vs_bcs\": {\"rho\": round(rho_wt, 4), \"p\": round(p_wt, 6)},\n        \"intra_sub_rate_vs_bcs\": {\"rho\": round(rho_intra, 4), \"p\": round(p_intra, 6)},\n        \"accuracy_vs_bcs\": {\"rho\": round(rho_acc, 4), \"p\": round(p_acc, 6)},\n        \"n_batches\": len(batch_stats),\n    }\n\n    # === Print summary ===\n    print(\"\\n\" + \"=\" * 80)\n    print(\"FewRel 80-rel Error Taxonomy by BCS Bin\")\n    print(\"=\" * 80)\n    header = f\"{'Bin':<12} {'BCS_mean':>8} {'N':>5} {'Total':>6} {'Correct%':>9} {'WrongType%':>11} {'IntraSub%':>10} {'Missed%':>8}\"\n    print(header)\n    print(\"-\" * 80)\n    for br in bin_results:\n        print(f\"{br['bin']:<12} {br['mean_bcs']:>8.4f} {br['n_batches']:>5} {br['total']:>6} \"\n              f\"{br['correct_rate']:>9.4f} {br['wrong_type_rate']:>11.4f} \"\n              f\"{br['intra_sub_rate']:>10.4f} {br['missed_rate']:>8.4f}\")\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"Spearman Correlations (per-batch)\")\n    print(\"=\" * 80)\n    for k, v in correlations.items():\n        if k == \"n_batches\":\n            print(f\"  n_batches = {v}\")\n        else:\n            print(f\"  {k}: rho={v['rho']:.4f}, p={v['p']:.6f}\")\n\n    # === Save ===\n    output = {\n        \"task\": \"FewRel_80rel\",\n        \"analysis\": \"error_taxonomy_by_bcs\",\n        \"bin_results\": bin_results,\n        \"correlations\": correlations,\n        \"per_batch_stats\": batch_stats,\n    }\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved to {OUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T15:10:41.637595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/fewrel_error_taxonomy.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T15:10:41.637767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat > /root/schema-dag-extraction/src/fewrel_error_taxonomy.py << 'SCRIPTEOF'\n\"\"\"FewRel error taxonomy analysis: classify predictions by BCS bin.\n\nAdapts NER error taxonomy (exp-007) to Relation Extraction.\nFor RE, errors are:\n  - correct: prediction == ground_truth\n  - wrong_type_intra: prediction != ground_truth, prediction in batch_types\n  - wrong_type_extra: prediction != ground_truth, prediction not in batch_types, prediction != \"none\"\n  - missed: prediction == \"none\" (or empty)\n\nInput:\n  - artifacts/fewrel_formal_full/predictions_exp1.json\n  - artifacts/fewrel_formal_full/predictions_exp2.json\nOutput:\n  - artifacts/fewrel_80rel_error_taxonomy.json\n\"\"\"\n\nimport json\nimport os\nfrom collections import defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nBASE_DIR = \"/root/schema-dag-extraction\"\nARTIFACTS_DIR = os.path.join(BASE_DIR, \"artifacts\", \"fewrel_formal_full\")\nOUT_PATH = os.path.join(BASE_DIR, \"artifacts\", \"fewrel_80rel_error_taxonomy.json\")\n\nBCS_BINS = [\n    (\"zero\",      0.0,   0.001),\n    (\"low\",       0.001, 0.65),\n    (\"medium\",    0.65,  0.80),\n    (\"high\",      0.80,  0.95),\n    (\"very_high\", 0.95,  1.001),\n]\n\n\ndef classify_prediction(pred):\n    gt = pred[\"ground_truth\"].strip().lower()\n    p = pred[\"prediction\"].strip().lower()\n    batch_types = {t.strip().lower() for t in pred[\"batch_types\"]}\n\n    if p == gt:\n        return \"correct\"\n    if p in (\"none\", \"\"):\n        return \"missed\"\n    if p in batch_types:\n        return \"wrong_type_intra\"\n    return \"wrong_type_extra\"\n\n\ndef get_bin(bcs):\n    for name, lo, hi in BCS_BINS:\n        if lo <= bcs < hi:\n            return name\n    return \"unknown\"\n\n\ndef main():\n    all_preds = []\n    for fname in [\"predictions_exp1.json\", \"predictions_exp2.json\"]:\n        path = os.path.join(ARTIFACTS_DIR, fname)\n        with open(path) as f:\n            preds = json.load(f)\n        for p in preds:\n            p[\"_source\"] = fname.replace(\"predictions_\", \"\").replace(\".json\", \"\")\n        all_preds.extend(preds)\n        print(f\"Loaded {len(preds)} predictions from {fname}\")\n\n    print(f\"Total predictions: {len(all_preds)}\")\n\n    # Classify each prediction\n    for p in all_preds:\n        p[\"_error_type\"] = classify_prediction(p)\n\n    # === Per-batch aggregation ===\n    batch_data = defaultdict(lambda: {\"preds\": [], \"bcs\": None})\n    for p in all_preds:\n        bid = p[\"batch_id\"]\n        batch_data[bid][\"preds\"].append(p)\n        batch_data[bid][\"bcs\"] = p[\"batch_bcs\"]\n\n    batch_stats = []\n    for bid, bd in sorted(batch_data.items()):\n        counts = defaultdict(int)\n        for p in bd[\"preds\"]:\n            counts[p[\"_error_type\"]] += 1\n        total = len(bd[\"preds\"])\n        wrong_type = counts[\"wrong_type_intra\"] + counts[\"wrong_type_extra\"]\n        batch_stats.append({\n            \"batch_id\": bid,\n            \"bcs\": bd[\"bcs\"],\n            \"total\": total,\n            \"correct\": counts[\"correct\"],\n            \"wrong_type_intra\": counts[\"wrong_type_intra\"],\n            \"wrong_type_extra\": counts[\"wrong_type_extra\"],\n            \"missed\": counts[\"missed\"],\n            \"wrong_type_rate\": wrong_type / total if total > 0 else 0,\n            \"intra_sub_rate\": counts[\"wrong_type_intra\"] / total if total > 0 else 0,\n            \"accuracy\": counts[\"correct\"] / total if total > 0 else 0,\n        })\n\n    # === BCS bin aggregation ===\n    bin_agg = {name: {\"correct\": 0, \"wrong_type_intra\": 0, \"wrong_type_extra\": 0,\n                       \"missed\": 0, \"total\": 0, \"bcs_values\": [], \"n_batches\": 0}\n               for name, _, _ in BCS_BINS}\n\n    for bs in batch_stats:\n        b = get_bin(bs[\"bcs\"])\n        if b == \"unknown\":\n            continue\n        agg = bin_agg[b]\n        agg[\"correct\"] += bs[\"correct\"]\n        agg[\"wrong_type_intra\"] += bs[\"wrong_type_intra\"]\n        agg[\"wrong_type_extra\"] += bs[\"wrong_type_extra\"]\n        agg[\"missed\"] += bs[\"missed\"]\n        agg[\"total\"] += bs[\"total\"]\n        agg[\"bcs_values\"].append(bs[\"bcs\"])\n        agg[\"n_batches\"] += 1\n\n    bin_results = []\n    for name, lo, hi in BCS_BINS:\n        agg = bin_agg[name]\n        t = agg[\"total\"]\n        if t == 0:\n            continue\n        wt = agg[\"wrong_type_intra\"] + agg[\"wrong_type_extra\"]\n        bin_results.append({\n            \"bin\": name,\n            \"bcs_range\": [lo, hi],\n            \"mean_bcs\": float(np.mean(agg[\"bcs_values\"])) if agg[\"bcs_values\"] else 0,\n            \"n_batches\": agg[\"n_batches\"],\n            \"total\": t,\n            \"correct\": agg[\"correct\"],\n            \"correct_rate\": round(agg[\"correct\"] / t, 4),\n            \"wrong_type_intra\": agg[\"wrong_type_intra\"],\n            \"wrong_type_extra\": agg[\"wrong_type_extra\"],\n            \"wrong_type_total\": wt,\n            \"wrong_type_rate\": round(wt / t, 4),\n            \"intra_sub_rate\": round(agg[\"wrong_type_intra\"] / t, 4),\n            \"missed\": agg[\"missed\"],\n            \"missed_rate\": round(agg[\"missed\"] / t, 4),\n        })\n\n    # === Spearman correlations (per-batch level) ===\n    bcs_arr = np.array([bs[\"bcs\"] for bs in batch_stats])\n    wt_rate_arr = np.array([bs[\"wrong_type_rate\"] for bs in batch_stats])\n    intra_rate_arr = np.array([bs[\"intra_sub_rate\"] for bs in batch_stats])\n    acc_arr = np.array([bs[\"accuracy\"] for bs in batch_stats])\n\n    rho_wt, p_wt = spearmanr(bcs_arr, wt_rate_arr)\n    rho_intra, p_intra = spearmanr(bcs_arr, intra_rate_arr)\n    rho_acc, p_acc = spearmanr(bcs_arr, acc_arr)\n\n    correlations = {\n        \"wrong_type_rate_vs_bcs\": {\"rho\": round(rho_wt, 4), \"p\": round(p_wt, 6)},\n        \"intra_sub_rate_vs_bcs\": {\"rho\": round(rho_intra, 4), \"p\": round(p_intra, 6)},\n        \"accuracy_vs_bcs\": {\"rho\": round(rho_acc, 4), \"p\": round(p_acc, 6)},\n        \"n_batches\": len(batch_stats),\n    }\n\n    # === Print summary ===\n    print(\"\\n\" + \"=\" * 80)\n    print(\"FewRel 80-rel Error Taxonomy by BCS Bin\")\n    print(\"=\" * 80)\n    header = f\"{'Bin':<12} {'BCS_mean':>8} {'N':>5} {'Total':>6} {'Correct%':>9} {'WrongType%':>11} {'IntraSub%':>10} {'Missed%':>8}\"\n    print(header)\n    print(\"-\" * 80)\n    for br in bin_results:\n        print(f\"{br['bin']:<12} {br['mean_bcs']:>8.4f} {br['n_batches']:>5} {br['total']:>6} \"\n              f\"{br['correct_rate']:>9.4f} {br['wrong_type_rate']:>11.4f} \"\n              f\"{br['intra_sub_rate']:>10.4f} {br['missed_rate']:>8.4f}\")\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"Spearman Correlations (per-batch)\")\n    print(\"=\" * 80)\n    for k, v in correlations.items():\n        if k == \"n_batches\":\n            print(f\"  n_batches = {v}\")\n        else:\n            print(f\"  {k}: rho={v['rho']:.4f}, p={v['p']:.6f}\")\n\n    # === Save ===\n    output = {\n        \"task\": \"FewRel_80rel\",\n        \"analysis\": \"error_taxonomy_by_bcs\",\n        \"bin_results\": bin_results,\n        \"correlations\": correlations,\n        \"per_batch_stats\": batch_stats,\n    }\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved to {OUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPTEOF\necho \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T15:10:41.637988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T15:10:41.638115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python src/fewrel_error_taxonomy.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T15:10:41.638252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 13200 predictions from predictions_exp1.json\\\\nLoaded 7776 predictions from predictions_exp2.json\\\\nTotal predictions: 20976\\\\n\\\\n================================================================================\\\\nFewRel 80-rel Error Taxonomy by BCS Bin\\\\n================================================================================\\\\nBin          BCS_mean     N  Total  Correct%  WrongType%  IntraSub%  Missed%\\\\n--------------------------------------------------------------------------------\\\\nzero           0.0000    80    960    0.8573      0.0000     0.0000   0.1427\\\\nlow            0.5652     6    528    0.8542      0.0417     0.0417   0.1042\\\\nmedium         0.7293    37   5568    0.7570      0.1300     0.1300   0.1130\\\\nhigh           0.8602    19   5952    0.6667      0.2028     0.2028   0.1305\\\\nvery_high      0.9706    12   7968    0.5203      0.3225     0.3225   0.1571\\\\n\\\\n================================================================================\\\\nSpearman Correlations (per-batch)\\\\n================================================================================\\\\n  wrong_type_rate_vs_bcs: rho=0.9539, p=0.000000\\\\n  intra_sub_rate_vs_bcs: rho=0.9539, p=0.000000\\\\n  accuracy_vs_bcs: rho=-0.5821, p=0.000000\\\\n  n_batches = 154\\\\n\\\\nSaved to /root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T15:10:41.638446+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清晰。\n\n## FewRel 80-rel Error Taxonomy\n\n| Bin | BCS_mean | Batches | Samples | Correct% | WrongType% | IntraSub% | Missed% |\n|-----|----------|---------|---------|----------|------------|-----------|---------|\n| zero | 0.0000 | 80 | 960 | 85.73% | 0.00% | 0.00% | 14.27% |\n| low | 0.5652 | 6 | 528 | 85.42% | 4.17% | 4.17% | 10.42% |\n| medium | 0.7293 | 37 | 5568 | 75.70% | 13.00% | 13.00% | 11.30% |\n| high | 0.8602 | 19 | 5952 | 66.67% | 20.28% | 20.28% | 13.05% |\n| very_high | 0.9706 | 12 | 7968 | 52.03% | 32.25% | 32.25% | 15.71% |\n\n## Spearman Correlations (n=154 batches)\n\n| Metric | ρ | p |\n|--------|------|------|\n| **IntraSub rate vs BCS** | **0.9539** | <1e-6 |\n| WrongType rate vs BCS | 0.9539 | <1e-6 |\n| Accuracy vs BCS | -0.5821 | <1e-6 |\n\n## Cross-task 对比 (NER exp-007 vs FewRel RE)\n\n| | NER (Few-NERD) | RE (FewRel 80-rel) |\n|---|---|---|\n| IntraSub vs BCS ρ | **1.0** | **0.9539** |\n| 机制一致性 | IntraSub 随 BCS 单调增 | IntraSub 随 BCS 单调增 |\n\n关键发现：\n\n1. **IntraSub = WrongType**：在每个 bin 中 intra_sub_rate == wrong_type_rate，说明 RE 任务中 **100% 的类型混淆都是 batch 内混淆**（模型不会预测 schema 之外的 relation），这与 NER 结论一致。\n2. **Missed rate 相对平坦**（10-16%），BCS 主要驱动类型混淆而非检测失败。\n3. **IntraSub 机制从 NER 成功迁移到 RE**：ρ=0.9539 vs NER 的 ρ=1.0，跨任务验证成立。\n\n输出已保存到 `artifacts/fewrel_80rel_error_taxonomy.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ]
+}

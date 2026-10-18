@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac07071d1f4679d552e1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure fig degradation curve v3",
+  "task_key": "worker_paper_figure_fig_degradation_curve_v3_20260521T113741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_degradation_curve_v3_20260521T113741_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "2d94453c60053fc204ee6c08811a55d247c6137bfc79bbb0f352751a0ea67c4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean layout, no overlaps. Figure saved to `docs/paper/figures/paper/fig_degradation_curve.pdf` (59.7KB, 300 DPI PDF)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

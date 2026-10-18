@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "746e7b8be65d2ea7f37e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit westd41074",
+  "task_key": "worker_ops_audit_westd41074_20260522T025707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit_westd41074_20260522T025707_result.json",
+    "occurrence": 1,
+    "bytes": 2865,
+    "sha256": "0d0f5f97adbf54efe2adc505742f4c33d9815d2f43115d89642b8ce959cfebab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。以下是完整报告。\n\n---\n\n## westd-41074 审计报告\n\n### 1. GPU 状态\n\n| GPU | 进程 | 显存 | 利用率 | 状态 |\n|-----|------|------|--------|------|\n| 0 | PID 922854 (k=0.95 spatial, 42min) + PID 943114 (k=0.95 spatial **v2**, 25min) | 21.3/97.9 GB | 45% | **重复** |\n| 1 | PID 922934 (k=0.85 object s43 v3, 42min) + PID 942398 (k=0.925 spatial, 25min) | 21.2/97.9 GB | 66% | 双实验共享 |\n| 2 | PID 68539 (M96 train) | 28.6/97.9 GB | 0%\\* | 正常 |\n| 3 | PID 59671 (M64v6 train) | 27.5/97.9 GB | 0%\\* | 正常 |\n\n\\*GPU 2/3 进程活跃(CPU 315%/327%)，瞬时利用率为0可能是数据加载阶段。\n\n**GPU 0 关键问题**: PID 922854 是原始 k095 崩溃(n_episodes=500)后的非 registry 重试，PID 943114 是正式 v2。两个进程跑**完全相同**的实验（random k=0.95 spatial seed42 50eps），且日志交叉污染 v2 log，导致结果归属不确定。\n\n### 2. n_episodes Bug 检查\n\n- **代码逻辑无覆盖 bug**: `args.n_episodes` 在 for loop (L217) 和 SR 计算 (L274) 中直接使用，无隐式覆盖\n- **存在验证缺失**: `init_states` 只有 50 条，若 `--n_episodes > 50`，L220 `init_states[ep]` 会 IndexError\n- **已触发**: 原始 k095 run 用了 `--n_episodes 500`，在 T0 ep=50 崩溃:\n  ```\n  IndexError: index 50 is out of bounds for axis 0 with size 50\n  ```\n- **当前运行实验**: 全部 `--n_episodes 50`，不受影响\n\n### 3. Eval 进度（均未完成，无法收割最终结果）\n\n**k=0.95 spatial seed42 v2** (GPU 0, PID 943114):\n| Task | SR |\n|------|----|\n| T0 pick up bowl between plate | 100% |\n| T1 pick up bowl next to ramek | 88% |\n| T2 pick up bowl from table center | 94% |\n| T3+ | 进行中（日志被 PID 922854 污染，结果不可靠） |\n\n**k=0.925 spatial seed42** (GPU 1, PID 942398):\n| Task | SR |\n|------|----|\n| T0 pick up bowl between plate | 94% |\n| T1 pick up bowl next to ramek | 48% |\n| T2+ | 进行中 (ep=10, ~80%) |\n\n**k=0.85 object seed43 v3** (GPU 1, PID 922934) — 确认 cliff:\n| Task | SR |\n|------|----|\n| T0 alphabet soup | 4% |\n| T1 cream cheese | 6% |\n| T2 salad dressing | 2% |\n| T3 bbq sauce | 0% (ep=20) |\n\n### 4. 空闲 GPU 部署\n\n**无空闲 GPU**，4 张全部占用。\n\n### 5. 建议操作\n\n1. **Kill PID 922854** (GPU 0 孤儿进程) — 与 v2 重复，日志交叉污染\n2. **修复 eval 代码 L217**: 加 `n_episodes = min(args.n_episodes, len(init_states))` 防止 IndexError 重现\n3. 等 eval 完成后重新收割结果（预计 k=0.95 v2 还需 ~40min, k=0.925 还需 ~60min）\n\n### Registry 更新已完成\n- `eval_pi05_random_k095_spatial_seed42_v2`: PREPARING → RUNNING\n- `eval_pi05_random_k0925_spatial_seed42`: PREPARING → RUNNING\n- `eval_pi05_random_k085_object_seed43_v3`: PREPARING → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

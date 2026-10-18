@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "74f96bc9c552a94a7ff9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 collect xvla random k05",
+  "task_key": "worker_ops_cqa1-collect-xvla-random-k05_20260521T052528",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-collect-xvla-random-k05_20260521T052528_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "3ddefc97494bb62060026c1b6edf0844cabf8128ecf720d6c89ce1290293476e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## X-VLA Random k=0.5 Object — seed42 结果（已完成）\n\n**Overall SR: 353/500 (70.6%)**，95% Wilson CI: [66.5%, 74.4%]，耗时 76.0 min\n\n| Task | 描述 | SR |\n|------|------|-----|\n| 0 | pick up the alphabet soup | 96% (48/50) |\n| 1 | pick up the cream cheese | 46% (23/50) |\n| 2 | pick up the salad dressing | 98% (49/50) |\n| 3 | pick up the bbq sauce | 80% (40/50) |\n| 4 | pick up the ketchup | 100% (50/50) |\n| 5 | pick up the tomato sauce | 76% (38/50) |\n| 6 | pick up the butter | 2% (1/50) |\n| 7 | pick up the milk | 82% (41/50) |\n| 8 | pick up the chocolate pudding | 26% (13/50) |\n| 9 | pick up the orange juice | 100% (50/50) |\n\n结果与预期一致（SR=70.6%）。结果已保存至 `eval_results/xvla_prune_k0.5_libero_object.json`。\n\n**seed43** 目前仍在运行中（当前在 Task 3），cuda:2 上有 python 进程占用 4521MiB 显存，GPU 利用率 0%（在等 episode 间 reset）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73fb7db86f174687971f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh check deberta n2",
+  "task_key": "worker_ssh_check_deberta_n2_20260515T123057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_deberta_n2_20260515T123057_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "a4c668cc6303abbfa1f090d5179755cb0ab63d8f35ba9cd5e5c3f5e96d23458a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/n2_deberta_check_result.md`。\n\n**结论**：训练仍在运行，当前完成 Fold 1/5，预估还需 ~2.5 小时。\n\n**核心问题**：Fold 1 val_acc 仅 55.0%（best epoch），远低于 RF baseline 78.2%。train_loss 持续下降而 val_acc 不升，过拟合严重。5-fold 跑完后若结果依然差，需排查输入格式和标签映射是否与 RF pipeline 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "6b37b5bcc0e6cd5f4f86",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp012 awq",
+  "task_key": "worker_code_exp012_awq_20260515T160358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_awq_20260515T160358.log",
+    "occurrence": 1,
+    "bytes": 578803,
+    "sha256": "ecd7f7c300c1f607e3842ced1adba58bf73aa17a9b13c5062d2da101a14fb1ab"
+  },
+  "statistics": {
+    "messages": 386,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 126,
+      "record": 1,
+      "tool_call": 128,
+      "tool_result": 128,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 386,
+      "chunks": [
+        {
+          "path": "6b37b5bcc0e6cd5f4f86-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b37b5bcc0e6cd5f4f86-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b37b5bcc0e6cd5f4f86-part-0003.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ]
+}

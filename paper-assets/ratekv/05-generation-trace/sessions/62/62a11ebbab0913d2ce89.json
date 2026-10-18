@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "62a11ebbab0913d2ce89",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "exp qwen7b 8k spotcheck",
+  "task_key": "worker_exp_qwen7b_8k_spotcheck_20260515T130833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen7b_8k_spotcheck_20260515T130833.log",
+    "occurrence": 1,
+    "bytes": 685569,
+    "sha256": "26837f216460533c829bbac2e7005080b1b82009545d8e466e1d90459c4a6f82"
+  },
+  "statistics": {
+    "messages": 473,
+    "user_turns": 0,
+    "tool_calls": 189,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 91,
+      "tool_call": 189,
+      "tool_result": 189,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "62a11ebbab0913d2ce89-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "62a11ebbab0913d2ce89-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "62a11ebbab0913d2ce89-part-0003.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ]
+}

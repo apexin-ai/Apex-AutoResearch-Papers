@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "da1cf1838adad94ec8f6",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "analysis ppi dsl full data",
+  "task_key": "worker_analysis_ppi-dsl-full-data_20260522T044421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ppi-dsl-full-data_20260522T044421_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "ac0cfa47f522c58644e28a55ca1079e5cb7f9b69060fae56aef7b746f50e4d89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/ppi_dsl_full_analysis.md`。核心发现：\n\n**数据不支持之前的结论。** 完整数据（3 regime × 3 budget × 8 cell 平均）显示：\n\n1. **Naive 在所有条件下 RMSE 最低**（~0.105），击败所有纠偏方法——该模拟中误分类 bias 较小（|Bias|≈0.026），纠偏方差代价远超 bias 收益\n2. **Global 是最优纠偏方法**（n≤250），PPI-global 在 n=500 胜出（0.116 vs 0.124）\n3. **EC-HTE 在 9/9 条件下 RMSE 均劣于 Global**，n=100 时差距最大（0.500 vs 0.138）\n4. **EC-HTE vs Strat.MLE**: partial pooling 有效（8/9 条件 EC-HTE 更优），但远不足以追上 Global\n5. **\"Debiasing hurts\" 确认**: Global 在 S₀(π=0.05) 的 |bias| 一致大于 Naive\n6. 高噪声子群 S₃(π=0.25) 是 EC-HTE/Strat.MLE 的灾难区——z=1 n=100 时 RMSE 爆炸到 2.0\n\n论文叙事需要调整：要么重新定位 EC-HTE 的卖点（bias correctness 而非 RMSE），要么修改实验参数使 bias-variance tradeoff 更有利。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

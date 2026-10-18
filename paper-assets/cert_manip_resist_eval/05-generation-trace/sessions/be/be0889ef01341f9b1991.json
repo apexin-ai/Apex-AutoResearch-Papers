@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "be0889ef01341f9b1991",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops d047 nearchance filtered",
+  "task_key": "worker_ops_d047-nearchance-filtered_20260525T215030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-nearchance-filtered_20260525T215030.log",
+    "occurrence": 1,
+    "bytes": 1144334,
+    "sha256": "3601988263323fb6e62220e2a4e29b6a9dc852ac0e4c96ffa05ea54c9b98970b"
+  },
+  "statistics": {
+    "messages": 250,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "be0889ef01341f9b1991-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "be0889ef01341f9b1991-part-0002.json",
+          "message_count": 33
+        },
+        {
+          "path": "be0889ef01341f9b1991-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ]
+}

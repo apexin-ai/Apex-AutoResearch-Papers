@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6cfdf4e5a6ade50e8db5",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra dl status check",
+  "task_key": "worker_infra_dl-status-check_20260521T190434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dl-status-check_20260521T190434_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "e564bc4b78cd8b3f92073b29003b7e0ea9e0b5cd6bf46d8149664eba683cb5b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 模型 | 大小 | Safetensors | Config | 状态 |\n|------|------|-------------|--------|------|\n| Qwen2.5-72B-Instruct-AWQ | 21G | 0 | YES | **下载中** (temp: 21G) |\n| Qwen2.5-32B-Instruct-AWQ | 14G | 0 | YES | **下载中** (temp: 14G) |\n| Llama-3.1-70B-Instruct-AWQ | 23G | 0 | YES | **下载中** (temp: 23G) |\n| Mistral-Large-Instruct-2407-AWQ | 22G | 0 | YES | **下载中** (temp: 22G) |\n\n4 个模型全部仍在下载中（safetensors 文件数均为 0，temp 目录存在）。当前已用 97G / 250G（39%），剩余 154G 空间充足。下载进程均活跃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

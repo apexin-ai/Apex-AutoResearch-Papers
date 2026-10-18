@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "001a91dee5e2b9390db7",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp prompt sensitivity",
+  "task_key": "worker_code_exp_prompt_sensitivity_20260517T062052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_prompt_sensitivity_20260517T062052.log",
+    "occurrence": 1,
+    "bytes": 974729,
+    "sha256": "6f7a73826e9c1ba5288aa389b4b108e999dbcedeea1503b38f5e7271424a8e36"
+  },
+  "statistics": {
+    "messages": 541,
+    "user_turns": 0,
+    "tool_calls": 227,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 227,
+      "tool_result": 227,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 541,
+      "chunks": [
+        {
+          "path": "001a91dee5e2b9390db7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "001a91dee5e2b9390db7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "001a91dee5e2b9390db7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "001a91dee5e2b9390db7-part-0004.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

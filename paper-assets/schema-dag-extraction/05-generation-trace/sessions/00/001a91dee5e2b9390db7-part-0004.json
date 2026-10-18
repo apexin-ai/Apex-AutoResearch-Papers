@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "001a91dee5e2b9390db7",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full run initializing correctly: 56000 samples, 80 relations, 10 batches per count level (count_8 and count_32). Model is loading. The experiment is properly started.\n\n**Summary:**\n\n- Script: `/root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py`\n- Tmux session: `prompt_sensitivity`\n- Log: `~/runs/schema-dag-extraction/prompt_sensitivity.log`\n- GPU: cuda:0 on cqa1-38874\n- Design: 4 variants (v2, instruction_rewrite, cot, minimal) × 2 counts (8, 32) × 10 batches = 80 total batch evaluations\n  - count_8: 12 samples/type × 8 types = 96 instances per batch\n  - count_32: 12 samples/type × 32 types = 384 instances per batch\n- Dry run verified: EXIT_CODE=0, 91.67% accuracy on 1 batch with v2 prompt\n- Supports `--resume` for crash recovery\n- Output: `experiments/prompt_sensitivity/results.json` with per-variant Pearson correlations (BCS vs accuracy)\n\nEstimated runtime: ~2-4h (CoT variant will be slower due to longer outputs without constrained decoding)."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1533668,
+            "duration_api_ms": 1225682,
+            "num_turns": 228,
+            "stop_reason": "end_turn",
+            "session_id": "dd18199c-a919-47fb-947a-6a563212de73",
+            "total_cost_usd": 13.316987249999997,
+            "usage": {
+              "input_tokens": 210,
+              "cache_creation_input_tokens": 141231,
+              "cache_read_input_tokens": 22092657,
+              "output_tokens": 55374,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 141231,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 320,
+                  "cache_read_input_tokens": 152557,
+                  "cache_creation_input_tokens": 515,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 515
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2470,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002565,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 210,
+                "outputTokens": 55374,
+                "cacheReadInputTokens": 22092657,
+                "cacheCreationInputTokens": 141231,
+                "webSearchRequests": 0,
+                "costUSD": 13.314422249999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "81c2eca4-f794-4fc2-9713-5e4e50d4a5b1"
+          },
+          "id": "event-000541"
+        }
+      ]
+    }
+  ]
+}

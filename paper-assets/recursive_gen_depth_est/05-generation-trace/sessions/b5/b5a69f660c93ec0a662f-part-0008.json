@@ -1,0 +1,2576 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b5a69f660c93ec0a662f",
+  "rounds": [
+    {
+      "number": 38,
+      "messages": [
+        {
+          "source_line": 1261,
+          "timestamp": "2026-05-25T21:16:52.259806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 8997
+          },
+          "id": "event-001261"
+        },
+        {
+          "source_line": 1262,
+          "timestamp": "2026-05-25T21:16:52.260627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 8998
+          },
+          "id": "event-001262"
+        },
+        {
+          "source_line": 1263,
+          "timestamp": "2026-05-25T21:16:52.565063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 8439
+          },
+          "id": "event-001263"
+        },
+        {
+          "source_line": 1264,
+          "timestamp": "2026-05-25T21:16:52.666669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 7476
+          },
+          "id": "event-001264"
+        },
+        {
+          "source_line": 1265,
+          "timestamp": "2026-05-25T21:16:53.975755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 498.2}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 433.3}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 418.4}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 495.6}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 495.4}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 490.7}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 490.0}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 503.3}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p19.p\n…[truncated 522 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 7987
+          },
+          "id": "event-001265"
+        },
+        {
+          "source_line": 1266,
+          "timestamp": "2026-05-25T21:17:12.653178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-001266"
+        },
+        {
+          "source_line": 1267,
+          "timestamp": "2026-05-25T21:17:13.558347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-001267"
+        },
+        {
+          "source_line": 1268,
+          "timestamp": "2026-05-25T21:17:13.610088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-001268"
+        },
+        {
+          "source_line": 1269,
+          "timestamp": "2026-05-25T21:17:14.062796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-001269"
+        },
+        {
+          "source_line": 1270,
+          "timestamp": "2026-05-25T21:17:14.670230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1060
+          },
+          "id": "event-001270"
+        },
+        {
+          "source_line": 1271,
+          "timestamp": "2026-05-25T21:17:14.670698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-001271"
+        },
+        {
+          "source_line": 1272,
+          "timestamp": "2026-05-25T21:17:15.026146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-001272"
+        },
+        {
+          "source_line": 1273,
+          "timestamp": "2026-05-25T21:17:16.084582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2021
+          },
+          "id": "event-001273"
+        },
+        {
+          "source_line": 1274,
+          "timestamp": "2026-05-25T21:17:16.463049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-001274"
+        },
+        {
+          "source_line": 1275,
+          "timestamp": "2026-05-25T21:17:16.626157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001275"
+        },
+        {
+          "source_line": 1276,
+          "timestamp": "2026-05-25T21:17:17.028332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2357
+          },
+          "id": "event-001276"
+        },
+        {
+          "source_line": 1277,
+          "timestamp": "2026-05-25T21:17:17.029893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001277"
+        },
+        {
+          "source_line": 1278,
+          "timestamp": "2026-05-25T21:17:17.986422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2960
+          },
+          "id": "event-001278"
+        },
+        {
+          "source_line": 1279,
+          "timestamp": "2026-05-25T21:17:17.986856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001279"
+        },
+        {
+          "source_line": 1280,
+          "timestamp": "2026-05-25T21:17:19.150632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001280"
+        },
+        {
+          "source_line": 1281,
+          "timestamp": "2026-05-25T21:17:20.160462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/submitted.pdf",
+              "project": "recursive_gen_depth_est",
+              "pages": "21-26",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001281"
+        },
+        {
+          "source_line": 1282,
+          "timestamp": "2026-05-25T21:17:20.616019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4152
+          },
+          "id": "event-001282"
+        },
+        {
+          "source_line": 1283,
+          "timestamp": "2026-05-25T21:17:20.921501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4295
+          },
+          "id": "event-001283"
+        },
+        {
+          "source_line": 1284,
+          "timestamp": "2026-05-25T21:17:22.183566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 5153
+          },
+          "id": "event-001284"
+        },
+        {
+          "source_line": 1285,
+          "timestamp": "2026-05-25T21:17:22.790642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 4803
+          },
+          "id": "event-001285"
+        },
+        {
+          "source_line": 1286,
+          "timestamp": "2026-05-25T21:17:23.047018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 3896
+          },
+          "id": "event-001286"
+        },
+        {
+          "source_line": 1287,
+          "timestamp": "2026-05-25T21:17:23.754299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 499.6}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.7}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 515.4}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 474.6}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 484.4}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 181.3}], \\\"total_pages\\\": 26, \\\"rendered_pages\\\": 6, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 3593
+          },
+          "id": "event-001287"
+        },
+        {
+          "source_line": 1288,
+          "timestamp": "2026-05-25T21:17:29.446058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-001288"
+        },
+        {
+          "source_line": 1289,
+          "timestamp": "2026-05-25T21:17:29.949058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-001289"
+        },
+        {
+          "source_line": 1290,
+          "timestamp": "2026-05-25T21:17:30.856651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1410
+          },
+          "id": "event-001290"
+        },
+        {
+          "source_line": 1291,
+          "timestamp": "2026-05-25T21:17:30.857768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 908
+          },
+          "id": "event-001291"
+        },
+        {
+          "source_line": 1292,
+          "timestamp": "2026-05-25T21:17:30.908398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p23.png"
+            }
+          },
+          "id": "event-001292"
+        },
+        {
+          "source_line": 1293,
+          "timestamp": "2026-05-25T21:17:31.413383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p24.png"
+            }
+          },
+          "id": "event-001293"
+        },
+        {
+          "source_line": 1294,
+          "timestamp": "2026-05-25T21:17:32.019008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1110
+          },
+          "id": "event-001294"
+        },
+        {
+          "source_line": 1295,
+          "timestamp": "2026-05-25T21:17:32.019429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p25.png"
+            }
+          },
+          "id": "event-001295"
+        },
+        {
+          "source_line": 1296,
+          "timestamp": "2026-05-25T21:17:32.372654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p26.png"
+            }
+          },
+          "id": "event-001296"
+        },
+        {
+          "source_line": 1297,
+          "timestamp": "2026-05-25T21:17:34.842141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 3428
+          },
+          "id": "event-001297"
+        },
+        {
+          "source_line": 1298,
+          "timestamp": "2026-05-25T21:17:35.601135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 3228
+          },
+          "id": "event-001298"
+        },
+        {
+          "source_line": 1299,
+          "timestamp": "2026-05-25T21:17:35.907763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 3888
+          },
+          "id": "event-001299"
+        },
+        {
+          "source_line": 1300,
+          "timestamp": "2026-05-25T21:19:31.590769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex",
+              "limit": "200"
+            }
+          },
+          "id": "event-001300"
+        },
+        {
+          "source_line": 1301,
+          "timestamp": "2026-05-25T21:19:32.042942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n2\t% Target: EMNLP 2026 (ARR May cycle)\n3\t\\documentclass[11pt]{article}\n4\t\n5\t% Change \"review\" to \"final\" to generate the camera-ready version.\n6\t\\usepackage[review]{acl}\n7\t\n8\t% Standard package includes (per official ACL template)\n9\t\\usepackage{times}\n10\t\\usepackage{latexsym}\n11\t\\usepackage[T1]{fontenc}\n12\t\\usepackage[utf8]{inputenc}\n13\t\\usepackage{microtype}\n14\t% \\usepackage{inconsolata}  % not available in this TeX installation\n15\t\\usepackage{graphicx}\n16\t\n17\t% Additional packages for this paper\n18\t\\usepackage{booktabs}\n19\t\\usepackage{amsmath}\n20\t\\usepackage{amssymb}\n21\t\\usepackage{multirow}\n22\t\\usepackage{subcaption}\n23\t\\usepackage{enumitem}\n24\t\\usepackage{amsthm}\n25\t\n26\t\\theoremstyle{definition}\n27\t\\newtheorem{definition}{Definition}\n28\t\n29\t\\title{How Deep Is Your Data? Estimating Recursive Generation Depth\\\\via Statistical Fingerprints}\n30\t\n31\t\\author{Anonymous}\n32\t\n33\t\\begin{document}\n34\t\\maketitle\n35\t\n36\t\\input{abstract}\n37\t\n38\t\\input{introduction}\n39\t\n40\t\\input{related_work}\n41\t\n42\t\\input{method}\n43\t\n44\t\\input{theory}\n45\t\n46\t\\input{atlas}\n47\t\n48\t\\input{generalization}\n49\t\n50\t\\input{discussion}\n51\t\n52\t\\input{conclusion}\n53\t\n54\t\\bibliography{references}\n55\t\n56\t\\appendix\n57\t\\input{section_appendix}\n58\t\n59\t\\end{document}\n60\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001301"
+        },
+        {
+          "source_line": 1302,
+          "timestamp": "2026-05-25T21:19:33.550073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the complete reviewer guidelines, especially: what reviewers should focus on, how to evaluate soundness, excitement, and reproducibility. Include any specific instructions about scoring scales and what each score means."
+            }
+          },
+          "id": "event-001302"
+        },
+        {
+          "source_line": 1303,
+          "timestamp": "2026-05-25T21:19:39.375547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Reviewer Guidelines: Core Focus Areas\n\n## Primary Reviewer Responsibilities\n\nReviewers should concentrate on four main tasks:\n\n1. **Calendar allocation** for reviewing and discussion periods\n2. **Assignment verification** (expertise, conflicts of interest, desk-rejection criteria)\n3. **Substantive review writing** with clear, justified feedback\n4. **Engagement with author responses** and other reviewers\n\n## Evaluating Soundness\n\nSoundness assessment examines technical validity and methodological rigor. The guidance emphasizes: \"The soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation.\"\n\nKey areas include checking for:\n- Appropriate scope and framing of claims\n- Valid proofs and complete assumptions\n- Sound experimental design and statistical significance\n- Adequate disclosure of limitations\n\n## Excitement Score\n\nThis separate metric captures subjective interest independent of technical merit. The guidelines note: \"You may find the work sound, but not something that is interesting for you personally. Such preferences are more subjective and should be reflected in a separate excitement score, which is orthogonal to the assessment of the soundness.\"\n\n## Overall Recommendation\n\nThis composite score reflects soundness, excitement, novelty, and potential impact—balancing technical quality with community value.\n\n## Reproducibility Expectations\n\nReviewers assess whether sufficient implementation details, hyperparameters, and code/data availability information exists to enable replication, though they aren't obligated to execute experiments themselves."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 5825
+          },
+          "id": "event-001303"
+        },
+        {
+          "source_line": 1304,
+          "timestamp": "2026-05-25T21:19:53.045016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read LaTeX source sections",
+              "subagent_type": "Explore",
+              "prompt": "I need to read multiple LaTeX source files from this paper directory. Please read the following files completely and report their contents, especially focusing on:\n1. The EDD metric definition (exact formula)\n2. RF classifier details (number of trees, cross-validation setup)\n3. Feature details (all 19 features, VIF analysis)\n4. Bootstrap CI details\n5. Multiple comparison corrections\n6. Reference model discussion\n7. Cross-scale analysis (7-8B, 14B results)\n8. Partial mixing results\n\nFiles to read:\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/theory.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex\n\nReport exact numbers, formulas, and any methodological details. Be thorough - I need precise quotes and line numbers for my review."
+            }
+          },
+          "id": "event-001304"
+        },
+        {
+          "source_line": 1305,
+          "timestamp": "2026-05-25T21:20:03.837026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+            }
+          },
+          "id": "event-001305"
+        },
+        {
+          "source_line": 1306,
+          "timestamp": "2026-05-25T21:20:03.837433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Definition}\n5\t\\label{sec:method:problem}\n6\t\n7\tLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\n8\tWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\n9\tDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n10\t\n11\tGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\n12\tWe use \\emph{depth estimation} as shorthand throughout; the underlying task is ordinal classification.\n13\tDepths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n14\t\n15\t\\subsection{Multi-Generational Benchmark Construction}\n16\t\\label{sec:method:benchmark}\n17\t\n18\tWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n19\t\n20\t\\paragraph{Model families.}\n21\tWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\n22\tRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n23\t\n24\t\\paragraph{Decoding strategies.}\n25\tEach model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\n26\tThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\n27\tOur findings on feature importance and discriminability are limited to this grid; transfer to untested models, scales, or strategies is not established.\n2\n…[truncated 7246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001306"
+        },
+        {
+          "source_line": 1307,
+          "timestamp": "2026-05-25T21:20:03.837626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/theory.tex"
+            }
+          },
+          "id": "event-001307"
+        },
+        {
+          "source_line": 1308,
+          "timestamp": "2026-05-25T21:20:03.837973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Theoretical Motivation}\n2\t\\label{sec:method:theory}\n3\t\n4\tRecursive generation contracts the support of the learned distribution, with low-probability tokens lost first \\cite{shumailov2024_nature}: tail mass $P_k(\\mathrm{ppl} > t)$ decreases monotonically in depth $k$.\n5\tThis tail erosion predicts the perplexity tail feature family as a depth marker, confirmed jointly with surprisal variance across all 9 cells (\\S\\ref{sec:atlas:features}).\n6\tSurprisal variance captures complementary distributional narrowing: as the support contracts, per-token surprise becomes more predictable.\n7\t\n8\t\\paragraph{EDD upper bound.}\n9\tTail mass at depth $k$ scales as $\\gamma^k$ for a contraction factor $\\gamma \\in (0,1)$ \\cite{dohmatob2024_tale_of_tails}; EDD reaches its upper bound when adjacent-depth feature distance falls below classifier resolution.\n10\tOur empirical AUC-excess contraction ratios (0.80 at d1v2$\\to$d2v3, 0.69 at d3v4$\\to$d4v5, averaged across three models under nucleus; \\S\\ref{sec:atlas:edd}) are consistent with geometric decay approaching a fixed point \\cite{bertrand2024_stability}.\n11\t5-class extensions to d4 (71--81\\%, chance = 20\\%; Appendix~\\ref{app:depth4_ext}) confirm depth~4 discriminability; mean perplexity saturates before tail statistics, placing a physical ceiling on EDD.\n12\t\n13\t\\paragraph{Scale-dependent attenuation.}\n14\tLarger models approximate the training distribution more faithfully per step ($\\gamma$ closer to 1), predicting weaker per-step signal.\n15\tQwen2.5-14B supports this: d0-vs-d1 AUC drops to 0.643 (vs.\\ ${>}0.98$ at 1--1.5B; \\S\\ref{sec:gen:crossscale}); 7--8B results are mixed, and additional confounds likely interact with the scale effect (Appendix~\\ref{app:cross_scale_full}).\n16\t\n17\t\\paragraph{Strategy-dependent convergence.}\n18\tThe contraction rate $\\gamma$ varies with decoding strategy.\n19\tTemperature scaling ($\\tau < 1$) sharpens the logit distribution uniformly and accelerates convergence to the mode; temperature depth-$d$ \n…[truncated 415 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001308"
+        },
+        {
+          "source_line": 1309,
+          "timestamp": "2026-05-25T21:20:03.838161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+            }
+          },
+          "id": "event-001309"
+        },
+        {
+          "source_line": 1310,
+          "timestamp": "2026-05-25T21:20:03.838358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Depth Degradation Atlas}\n2\t\\label{sec:atlas}\n3\t\n4\tWe present the Depth Degradation Atlas: a systematic empirical map of how statistical fingerprints evolve across recursive generation depths, models, and decoding strategies.\n5\tThe atlas spans $3 \\times 3 = 9$ model--strategy cells at the 1--1.5B parameter scale, evaluated at depths $d \\in \\{0, 1, 2, 3\\}$, with depth extensions to $d{=}5$ for cross-model EDD validation (\\S\\ref{sec:atlas:edd}).\n6\t\n7\t%% ----------------------------------------------------------------\n8\t\\subsection{In-Distribution Performance}\n9\t\\label{sec:atlas:id}\n10\t\n11\tTable~\\ref{tab:main_matrix} reports four-class Random Forest accuracy (5-fold CV, 200 trees) across all nine cells.\n12\tAccuracy ranges from 68.9\\% (Pythia, top-$k$) to 85.9\\% (GPT-2~XL, temperature) four-class (d1--d3 balanced: 58.9--81.5\\%), all exceeding the 25\\%/33\\% chance baselines.\n13\tTwo axis effects emerge.\n14\tGPT-2~XL achieves the highest accuracy under every strategy (75.8--85.9\\%), followed by OLMo (74.4--82.3\\%) and Pythia (68.9--78.7\\%).\n15\tTop-$k$ sampling yields the lowest accuracy in every model.\n16\tThe mean within-model strategy gap is 9.3~pp, comparable to the 7.2~pp mean within-strategy model gap; decoding strategy contributes at least as much as model family to performance variance.\n17\t\n18\t\\begin{table}[t]\n19\t\\centering\n20\t\\small\n21\t\\caption{Four-class RF accuracy (\\%) with bootstrap 95\\% confidence interval (CI; ${\\pm}$half-width; $B{=}10{,}000$). RF with 200 trees, evaluated via 5-fold stratified CV (seed=42). Parenthesized: d1--d3 balanced accuracy from the same 4-class RF (chance = 25\\% / 33\\%). Depth-0 recall exceeds 97\\% in all cells. Within-distribution ordinal quality: mean absolute error (MAE)\\,=\\,0.23, QWK\\,=\\,0.89 (QWK$_{\\text{d1--d3}}$\\,=\\,0.74); 98.2\\% of errors fall on adjacent depths ($|\\Delta| \\leq 1$). $^\\dagger$Self-reference scoring (Pythia-1.4B is both generator and reference model); 4--11\\,pp advantage over cross-model references\n…[truncated 8117 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001310"
+        },
+        {
+          "source_line": 1311,
+          "timestamp": "2026-05-25T21:20:03.838555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+            }
+          },
+          "id": "event-001311"
+        },
+        {
+          "source_line": 1312,
+          "timestamp": "2026-05-25T21:20:03.838740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Generalization and Robustness}\n2\t\\label{sec:generalization}\n3\t\n4\tWe test whether atlas accuracy (68.9--85.9\\% four-class; d1--d3: 58.9--81.5\\%) reflects genuine statistical regularities across eight generalization axes (five below, three in Appendix).\n5\t\n6\t\\subsection{Classifier Comparison and Surface-Text Ablation}\n7\t\\label{sec:gen:baselines}\n8\t\n9\tTable~\\ref{tab:baselines} compares methods across all 9 cells.\n10\tFour classifiers (RF, XGBoost, ordinal multilayer perceptron (MLP), prototypical) converge within 0.8\\,pp under cross-model transfer (Appendix~\\ref{app:learned_estimator}), which confirms a feature-determined accuracy ceiling.\n11\t\n12\t\\paragraph{Neural end-to-end baselines.}\n13\tDeBERTa-v3-base (LoRA, 53--61\\%) and RoBERTa-DCOL (ordinal contrastive, 64.5\\%) lag RF by 14--33\\,pp; note that RF features access reference-model log-probabilities unavailable to end-to-end pretrained language model (PLM) baselines (\\S\\ref{sec:discussion}).\n14\t\n15\t\\paragraph{Binary detectors and membership inference.}\n16\tPerturbation-based (DetectGPT, 28.8\\%) and membership-inference (Min-K\\% Prob, 33.2\\%) methods produce scores with no ordinal resolution (Table~\\ref{tab:baselines}); Binoculars d1v2 AUC\\,=\\,0.50--0.53 vs.\\ RF 0.93 (Appendix~\\ref{app:detector_baselines}). Binoculars convergence with our pipeline is discussed in \\S\\ref{sec:discussion}.\n17\t\n18\t\\paragraph{Surface-text ablation.}\n19\tSingle-feature regression on mean perplexity (25.1\\%) and zero-shot LLMs (best 36.2\\%; Appendix~\\ref{app:zeroshot_prompt}) confirm depth signal is inaccessible from surface text.\n20\t\n21\t\\begin{table}[t]\n22\t\\centering\n23\t\\small\n24\t\\caption{Method comparison (RF mean across 9 cells, 5-fold CV). Chance = 25\\% / 33.3\\% (d1--d3). $^\\dagger$Adapted from binary detection; Binoculars 11-feat: $p{>}0.05$ vs.\\ 19-feat RF (paired permutation test).}\n25\t\\label{tab:baselines}\n26\t\\resizebox{\\columnwidth}{!}{%\n27\t\\begin{tabular}{@{}llcc@{}}\n28\t\\toprule\n29\tMethod & Calibration & 4-Cl (\\%) & d1--d3 \n…[truncated 4400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001312"
+        },
+        {
+          "source_line": 1313,
+          "timestamp": "2026-05-25T21:20:03.838926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-001313"
+        },
+        {
+          "source_line": 1314,
+          "timestamp": "2026-05-25T21:20:03.839068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\tFour importance measures converge (Kendall's $W{=}0.90$); Binoculars cross-perplexity features independently reach 78.1\\% (merged: 82.6\\%; Appendix~\\ref{app:feature_ablation_bino}); four classifiers converge within 0.8\\,pp (\\S\\ref{sec:gen:baselines}; Appendix~\\ref{app:learned_estimator}).\n5\tThe accuracy ceiling resides in the feature space, not the classifier: future gains require richer distributional statistics rather than more expressive classifiers.\n6\tEnd-to-end classifiers lag by 14--33\\,pp (d2 F1\\,${\\leq}$\\,0.27; Appendix~\\ref{app:e2e}, \\ref{app:dcol_iterations}): depth manifests as a global distributional shift requiring explicit passage-level aggregation inaccessible to pretrained encoders (Appendix~\\ref{app:feature_overlap}).\n7\tThe strategy effect (9.3\\,pp) exceeds the model effect (7.2\\,pp), requiring decoding-conditioned deployment or two-stage routing (\\S\\ref{sec:gen:crossstrategy}; Appendix~\\ref{app:extended_discussion}).\n8\tReference-model mismatch costs 4--11\\,pp (Appendix~\\ref{app:ref_ablation}), and a 7B self-reference probe reveals a scale ceiling ($\\mathrm{EDD}_{0.70}{=}0$; Appendix~\\ref{app:qwen7b_selfref}).\n9\tAccumulation and cross-boundary experiments (84.8\\%; Appendix~\\ref{app:accumulation_auc},~\\ref{app:cross_boundary}) confirm process-level depth fingerprints that persist under partial mixing and across model boundaries.\n10\t\n11\t\\paragraph{Practical implications.}\n12\tOrdinal depth labels enable tiered curation, retaining $d{=}1$ text while filtering $d{\\geq}2$; the lightweight pipeline (19 statistics, one 1.4B forward pass) supports inline deployment with ${\\leq}$7\\% calibrated false-positive rate (Appendix~\\ref{app:calibration}).\n13\tDepth fingerprints are thus resolvable to $\\mathrm{EDD}_{0.70}{=}3$ in 8/9 cells; scaling beyond 1.5B, paraphrase robustness, and curation remain open (Appendix~\\ref{app:curation_poc}, \\ref{app:downstream}).\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001314"
+        },
+        {
+          "source_line": 1315,
+          "timestamp": "2026-05-25T21:20:03.839235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-001315"
+        },
+        {
+          "source_line": 1316,
+          "timestamp": "2026-05-25T21:20:03.839379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tAs language models increasingly train on web text containing their own outputs, a recursive model$\\to$data$\\to$model loop arises, yet no method estimates how many such iterations a text has undergone.\n3\tWe formalize \\emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K cell-instances (140K unique passages) spanning three model families, three decoding strategies, and four depths under full-replacement chains at 1--1.5B scale.\n4\tA lightweight pipeline (19 statistical features classified by Random Forest) achieves d1--d3 balanced accuracy of 59--82\\% across nine model--strategy cells, with Effective Discriminable Depth $\\mathrm{EDD}_{0.70} = 3$ in 8/9 cells.\n5\tThree findings emerge: (1)~depth signal concentrates in perplexity distribution tails, corroborated by classifier convergence and independent cross-perplexity features; (2)~decoding strategy affects cross-condition transfer more than model architecture, consistent with structurally distinct degradation trajectories; (3)~signal attenuates with scale (14B: $\\mathrm{EDD}_{0.70}{=}2$ under nucleus and temperature, 0 under top-$k$), with reference-model choice as a major confound.\n6\tOur claims hold within-strategy or when decoding configuration is known; a two-stage routing pipeline recovers $+$11.5\\,pp under cross-strategy transfer.\n7\tPerturbation-based and membership-inference baselines lack ordinal resolution; depth estimation requires distributional statistics beyond binary detection scores\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/recursive_gen_depth_est-1BD0/}.}.\n8\t\\end{abstract}\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001316"
+        },
+        {
+          "source_line": 1317,
+          "timestamp": "2026-05-25T21:20:03.839520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-001317"
+        },
+        {
+          "source_line": 1318,
+          "timestamp": "2026-05-25T21:20:03.839682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:intro}\n3\t\n4\tThe text on which large language models (LLMs) are trained increasingly contains their own outputs.\n5\tAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\n6\tThis model$\\to$data$\\to$model cycle is no longer hypothetical; it is already occurring in the wild. Yet whether the recursive generation depth of a text can be estimated from its statistical properties remains unstudied, a question that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n7\tWe focus on the 1--1.5B parameter regime under \\emph{controlled full-replacement chains}, where each generation fully replaces the prior training set, isolating the depth variable. Real-world contamination involves partial mixing at unknown proportions; full replacement provides an upper bound on depth signal strength (\\S\\ref{sec:discussion}).\n8\t\n9\tExisting tools address adjacent but distinct problems.\n10\tBinary detectors \\cite{binoculars2024,fast_detectgpt2024,diveye2026} collapse all depths $d \\geq 1$ into a single category, a limitation we confirm empirically: their pairwise d1-vs-d2 AUC collapses to chance level (\\S\\ref{sec:gen:baselines}); watermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding.\n11\tThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\n12\tNo existing method estimates the ordinal recursive generation depth of a text passage from its content alone (Figure~\\ref{fig:problem}).\n13\t\n14\tWe fin\n…[truncated 3227 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001318"
+        },
+        {
+          "source_line": 1319,
+          "timestamp": "2026-05-25T21:20:03.940300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read appendix LaTeX source",
+              "subagent_type": "Explore",
+              "prompt": "Read the appendix file of this paper and report all key methodological details:\n\nFile: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex\n\nI specifically need:\n1. Appendix B.3: Conditional permutation importance details, VIF analysis\n2. Appendix B.14: Data leakage / domain bias analysis  \n3. Appendix B.17: Reference model ablation (Table 18 exact numbers)\n4. Appendix B.18: Cross-scale analysis (7-8B scale details, Table 19)\n5. Appendix B.19: Qwen2.5-14B self-reference results, EDD values\n6. Appendix B.8: Accumulation pairwise AUC\n7. Appendix B.22: Depth-4 extension results\n8. Appendix B.24: Mixed-depth corpus results\n9. Any discussion of multiple comparison correction\n10. Cross-reference control details (Table 22)\n\nReport exact numbers, formulas, table contents. Be thorough."
+            }
+          },
+          "id": "event-001319"
+        },
+        {
+          "source_line": 1320,
+          "timestamp": "2026-05-25T21:20:05.146261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex"
+            }
+          },
+          "id": "event-001320"
+        },
+        {
+          "source_line": 1321,
+          "timestamp": "2026-05-25T21:20:05.498904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (29242 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-001321"
+        },
+        {
+          "source_line": 1322,
+          "timestamp": "2026-05-25T21:20:07.507282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "appendix.*B\\.(3|8|14|17|18|19|22|24)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001322"
+        },
+        {
+          "source_line": 1323,
+          "timestamp": "2026-05-25T21:20:07.708750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 201
+          },
+          "id": "event-001323"
+        },
+        {
+          "source_line": 1324,
+          "timestamp": "2026-05-25T21:20:07.809617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\subsection\\{B\\.",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001324"
+        },
+        {
+          "source_line": 1325,
+          "timestamp": "2026-05-25T21:20:07.860379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001325"
+        },
+        {
+          "source_line": 1326,
+          "timestamp": "2026-05-25T21:20:09.568061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "B\\.3|B\\.8|B\\.14|B\\.17|B\\.18|B\\.19|B\\.22|B\\.24",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-001326"
+        },
+        {
+          "source_line": 1327,
+          "timestamp": "2026-05-25T21:20:09.769345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 201
+          },
+          "id": "event-001327"
+        },
+        {
+          "source_line": 1328,
+          "timestamp": "2026-05-25T21:20:09.970750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\section|\\\\subsection",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "output_mode": "content",
+              "head_limit": "100"
+            }
+          },
+          "id": "event-001328"
+        },
+        {
+          "source_line": 1329,
+          "timestamp": "2026-05-25T21:20:10.021488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:\\section{LoRA Fine-Tuning Protocol}\n35:\\section{Additional Results}\n38:\\subsection{Top-$k$ Feature Trajectories}\n46:\\subsection{Permutation Importance}\n55:\\subsection{Conditional Permutation Importance under Multicollinearity}\n105:\\subsection{Per-Cell Gini Feature Rankings}\n131:\\subsection{Per-Class Recall}\n160:\\subsection{Confusion Matrices}\n170:\\subsection{Cross-Strategy Transfer Details}\n197:\\subsection{Accumulation Pairwise AUC}\n223:\\subsection{DCOL Iteration Details}\n249:\\subsection{Zero-Shot LLM Prompt Template}\n264:\\subsection{Temperature Robustness}\n326:\\subsection{Feature Overlap Analysis}\n333:\\subsection{End-to-End Learning}\n366:\\subsection{Domain Bias Analysis}\n391:\\subsection{Wild-Data Calibration}\n435:\\subsection{Downstream Curation PoC (Inconclusive)}\n487:\\subsection{Reference Model Ablation}\n509:\\subsection{Cross-Scale Full Results}\n654:\\subsection{Qwen2.5-7B Self-Reference Scale Probe}\n678:\\subsection{Cross-Boundary Generalization}\n711:\\subsection{Cross-Seed Replication}\n746:\\subsection{Depth-4 Extension}\n763:\\subsection{Generation Length Ablation}\n787:\\subsection{Mixed-Depth Corpus}\n793:\\subsection{Learned Estimator Comparison}\n820:\\subsection{Instruction-Tuned Model at 1.5B Scale}\n833:\\subsection{Downstream Fine-Tuning Probe (Inconclusive)}\n861:\\subsection{Feature Group Ablation}\n908:\\subsection{RF Seed Robustness}\n933:\\subsection{Binary Detector Baselines for Ordinal Classification}\n992:\\subsection{Binoculars Feature Ablation and Signal Decomposition}\n1074:\\subsection{Prompted Generation Results}\n1108:\\subsection{Extended Discussion}\n1127:\\subsection{Computational Resources and Reproducibility}\n1147:\\section{Use of AI Assistants}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001329"
+        },
+        {
+          "source_line": 1330,
+          "timestamp": "2026-05-25T21:20:12.180069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "55",
+              "limit": "60"
+            }
+          },
+          "id": "event-001330"
+        },
+        {
+          "source_line": 1331,
+          "timestamp": "2026-05-25T21:20:12.331194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\\subsection{Conditional Permutation Importance under Multicollinearity}\n56\t\\label{app:conditional_pi}\n57\t\n58\tWith 14--16 of 19 features exhibiting VIF${>}$10 (\\S\\ref{sec:atlas:features}), standard permutation importance may inflate contributions of correlated features: permuting one member of a collinear set allows others to compensate, masking true individual effects.\n59\tWe compute conditional permutation importance (CPI) \\citep{strobl2008_conditional}, which permutes each feature \\emph{within strata defined by its correlated partners}, isolating the unique contribution after controlling for multicollinearity.\n60\t\n61\t\\paragraph{Setup.}\n62\tCPI is computed on all 9 model$\\times$strategy cells.\n63\tFor each cell, 1{,}000 bootstrap resamples produce a rank distribution per feature; the 95\\% bootstrap CI width quantifies rank stability (width $\\leq 1.0$ indicates near-invariant rankings across resamples).\n64\t\n65\t\\paragraph{Results.}\n66\tTable~\\ref{tab:conditional_pi} summarizes the top-5 features by mean CPI across cells.\n67\t\\texttt{var\\_surprisal} (avg rank 1.4, CPI\\,=\\,0.260) and \\texttt{p90\\_ppl} (avg rank 1.7, CPI\\,=\\,0.238) are the top-2 in 8/9 cells, with bootstrap rank CI widths of 0.44 and 0.22 (both $\\leq 0.5$), indicating near-invariant rankings across resamples.\n68\tRanks 3--5 are \\texttt{p75\\_ppl} (CPI\\,=\\,0.063, CI width\\,=\\,0.78), \\texttt{p50\\_ppl} (0.016, width\\,=\\,2.67), and a cell-dependent set (\\texttt{p25\\_ppl} or \\texttt{mean\\_ppl}); rank stability decreases beyond the top-2, with CI widths of 2.7--3.7 for ranks 4--5.\n69\t\n70\t\\begin{table}[h]\n71\t\\centering\n72\t\\small\n73\t\\caption{Conditional permutation importance aggregated across 9 model$\\times$strategy cells (1{,}000 bootstrap resamples). Avg Rank and Avg CPI: means over cells. Rank CI Width: mean 95\\% bootstrap CI width for the rank. Bottom rows: feature-family averages.}\n74\t\\label{tab:conditional_pi}\n75\t\\resizebox{\\columnwidth}{!}{%\n76\t\\begin{tabular}{@{}lccc@{}}\n77\t\\toprule\n78\tFeature / Family & A\n…[truncated 2432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001331"
+        },
+        {
+          "source_line": 1332,
+          "timestamp": "2026-05-25T21:20:12.883968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "197",
+              "limit": "30"
+            }
+          },
+          "id": "event-001332"
+        },
+        {
+          "source_line": 1333,
+          "timestamp": "2026-05-25T21:20:12.884477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "197\t\\subsection{Accumulation Pairwise AUC}\n198\t\\label{app:accumulation_auc}\n199\t\n200\tTable~\\ref{tab:accum_auc} reports pairwise AUC for the six accumulation cells (3 models $\\times$ 2 mixing ratios; GPT-2~XL and Pythia use nucleus, OLMo uses temperature 0.9).\n201\tAt 25\\% mixing, all three cells preserve $\\mathrm{EDD}_{0.70}{=}3$.\n202\tAt 50\\% mixing, GPT-2~XL nucleus is the sole failure: d2v3 AUC\\,=\\,0.695, marginally below the 0.70 threshold (0.55\\,pp).\n203\t\n204\t\\begin{table}[h]\n205\t\\centering\n206\t\\small\n207\t\\caption{Pairwise AUC under accumulation (GPT-2~XL/Pythia: nucleus; OLMo: temp 0.9; binary RF, 5-fold CV). Bold: $\\mathrm{EDD}_{0.70}$ boundary failure.}\n208\t\\label{tab:accum_auc}\n209\t\\begin{tabular}{@{}llccc@{}}\n210\t\\toprule\n211\tModel & Mix & d0v1 & d1v2 & d2v3 \\\\\n212\t\\midrule\n213\tGPT-2~XL & 25\\% & 1.000 & 0.817 & 0.726 \\\\\n214\t & 50\\% & 1.000 & 0.831 & \\textbf{0.695} \\\\\n215\tPythia & 25\\% & 1.000 & 0.809 & 0.749 \\\\\n216\t & 50\\% & 1.000 & 0.793 & 0.716 \\\\\n217\tOLMo & 25\\% & 1.000 & 0.848 & 0.759 \\\\\n218\t & 50\\% & 1.000 & 0.817 & 0.726 \\\\\n219\t\\bottomrule\n220\t\\end{tabular}\n221\t\\end{table}\n222\t\n223\t\\subsection{DCOL Iteration Details}\n224\t\\label{app:dcol_iterations}\n225\t\n226\tTable~\\ref{tab:dcol_iterations} summarizes all six DCOL iterations."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001333"
+        },
+        {
+          "source_line": 1334,
+          "timestamp": "2026-05-25T21:20:12.985533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "366",
+              "limit": "30"
+            }
+          },
+          "id": "event-001334"
+        },
+        {
+          "source_line": 1335,
+          "timestamp": "2026-05-25T21:20:13.839934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "366\t\\subsection{Domain Bias Analysis}\n367\t\\label{app:domain_bias}\n368\t\n369\tTo assess whether the classifier exploits depth-related features or memorizes stylistic cues from individual seed articles, we conduct three sub-experiments.\n370\t\n371\t\\paragraph{Methodological note.}\n372\tAn initial implementation assigned sample IDs with a global counter across depths, inadvertently correlating seed-group identity with depth (LOGO accuracy 64.0\\%, seed-group prediction 20.8\\%).\n373\tWe discovered the issue during internal review, corrected to per-depth seed assignment ensuring each group contains equal samples per depth, and re-ran all sub-experiments.\n374\tThe results below use the corrected pipeline; the initial (buggy) numbers are reported for transparency.\n375\t\n376\t\\paragraph{Sub-A: Standard CV.}\n377\tFive-fold CV accuracy on 3-class (d1/d2/d3) classification ranges from 59\\% to 82\\% across the 9 atlas cells (up to 2.5$\\times$ above the 33.3\\% chance level); depth signal is therefore the dominant classification factor.\n378\t\n379\t\\paragraph{Sub-B: LOGO evaluation.}\n380\tWe assign each passage to one of 10 seed-article groups (balanced: each group contains equal samples per depth) and perform leave-one-group-out CV.\n381\tLOGO mean accuracy is 72.1\\% (range 59.5--81.6\\%), matching standard CV (72.0\\%) within noise (before fix: 64.0\\%, reflecting the depth--group confound).\n382\tPer-cell fold standard deviations range from 0.4pp to 1.4pp; cross-group generalization is therefore as reliable as within-group classification.\n383\t\n384\t\\paragraph{Sub-C: Negative control.}\n385\tWe train two classifiers on identical features: one predicting depth, the other predicting seed-group identity (10-class, chance = 10\\%).\n386\tDepth prediction accuracy averages 72.0\\%; seed-group prediction averages 10.2\\%, indistinguishable from chance (before fix: 20.8\\%, inflated by the depth--group confound).\n387\tThe depth-to-seed-group accuracy ratio is 7.1$\\times$; the feature representation therefore encodes d\n…[truncated 642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 854
+          },
+          "id": "event-001335"
+        },
+        {
+          "source_line": 1336,
+          "timestamp": "2026-05-25T21:20:13.890563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "487",
+              "limit": "30"
+            }
+          },
+          "id": "event-001336"
+        },
+        {
+          "source_line": 1337,
+          "timestamp": "2026-05-25T21:20:13.891104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "487\t\\subsection{Reference Model Ablation}\n488\t\\label{app:ref_ablation}\n489\t\n490\tTable~\\ref{tab:ref_ablation} ablates the reference model used for feature extraction on Pythia-1.4B nucleus text (d0--d3, 5-fold CV).\n491\tSelf-reference (Pythia-1.4B) yields 78.6\\%; switching to a cross-architecture reference degrades accuracy by 4--11\\,pp, confirming that reference-generator alignment amplifies depth signal.\n492\t\n493\t\\begin{table}[h]\n494\t\\centering\n495\t\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\n496\t\\label{tab:ref_ablation}\n497\t\\resizebox{\\columnwidth}{!}{%\n498\t\\begin{tabular}{@{}lcc@{}}\n499\t\\toprule\n500\tReference Model & Architecture & Accuracy (\\%) \\\\\n501\t\\midrule\n502\tPythia-1.4B (self) & GPT-NeoX & 78.5 $\\pm$ 0.6 \\\\\n503\tOLMo-1B (cross) & OLMo & 74.5 $\\pm$ 0.7 \\\\\n504\tGPT-2~XL (cross) & GPT-2 & 67.3 $\\pm$ 0.7 \\\\\n505\t\\bottomrule\n506\t\\end{tabular}}\n507\t\\end{table}\n508\t\n509\t\\subsection{Cross-Scale Full Results}\n510\t\\label{app:cross_scale_full}\n511\t\n512\tThis section provides the full cross-scale analysis summarized in \\S\\ref{sec:gen:crossscale}.\n513\tWe extend the benchmark to two 7--8B models (Qwen2.5-7B-Instruct \\cite{qwen2.5}, Llama-3.1-8B-Instruct \\cite{llama3}) and one 14B model (Qwen2.5-14B).\n514\tThe 7--8B models use 4-bit NF4 QLoRA fine-tuning with nucleus sampling ($p{=}0.95$, 500 samples per depth, depths $d \\in \\{0, 1, \\ldots, 5\\}$).\n515\tThe 14B model uses clean FP16 LoRA fine-tuning across all three decoding strategies (nucleus, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$; 5{,}000 samples per depth, depths $d \\in \\{0, 1, 2, 3\\}$).\n516\tFeature extraction for 1--8B models uses Pythia-1.4B as reference; Qwen2.5-14B is evaluated under both self-reference and cross-reference (Pythia-1.4B) to disentangle reference-model artifacts from scale effects (see paragraph~5 below)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001337"
+        },
+        {
+          "source_line": 1338,
+          "timestamp": "2026-05-25T21:20:13.891458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "509",
+              "limit": "150"
+            }
+          },
+          "id": "event-001338"
+        },
+        {
+          "source_line": 1339,
+          "timestamp": "2026-05-25T21:20:13.891835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "509\t\\subsection{Cross-Scale Full Results}\n510\t\\label{app:cross_scale_full}\n511\t\n512\tThis section provides the full cross-scale analysis summarized in \\S\\ref{sec:gen:crossscale}.\n513\tWe extend the benchmark to two 7--8B models (Qwen2.5-7B-Instruct \\cite{qwen2.5}, Llama-3.1-8B-Instruct \\cite{llama3}) and one 14B model (Qwen2.5-14B).\n514\tThe 7--8B models use 4-bit NF4 QLoRA fine-tuning with nucleus sampling ($p{=}0.95$, 500 samples per depth, depths $d \\in \\{0, 1, \\ldots, 5\\}$).\n515\tThe 14B model uses clean FP16 LoRA fine-tuning across all three decoding strategies (nucleus, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$; 5{,}000 samples per depth, depths $d \\in \\{0, 1, 2, 3\\}$).\n516\tFeature extraction for 1--8B models uses Pythia-1.4B as reference; Qwen2.5-14B is evaluated under both self-reference and cross-reference (Pythia-1.4B) to disentangle reference-model artifacts from scale effects (see paragraph~5 below).\n517\t\n518\t\\paragraph{Scale comparison.}\n519\tTable~\\ref{tab:cross_scale} contrasts the 7--14B models with the three 1--1.5B models on matched evaluation (depths 0--3).\n520\tThe 14B model is tested across all three decoding strategies; the 7--8B models use nucleus sampling only.\n521\t\n522\t\\begin{table}[h]\n523\t\\centering\n524\t\\small\n525\t\\caption{Cross-scale comparison: 4-class RF accuracy (\\%, depths 0--3), $\\mathrm{EDD}_{0.70}$ (computed from full depth range: 0--5 for 1--1.5B nucleus and 7--8B, 0--3 for 1--1.5B temp/top-$k$ and 14B), and d0-vs-d1 AUC. CI: 95\\% bootstrap. Chance = 25\\%. $^\\dagger$Self-reference model (see text).}\n526\t\\label{tab:cross_scale}\n527\t\\resizebox{\\columnwidth}{!}{%\n528\t\\begin{tabular}{@{}llccc@{}}\n529\t\\toprule\n530\tModel & Strategy & 4-class acc & $\\mathrm{EDD}_{0.70}$ & d0v1 \\\\\n531\t\\midrule\n532\tGPT-2~XL (1.5B) & nucleus & 84.3 & 4 & 0.999 \\\\\n533\tOLMo-1B & nucleus & 78.9 & 4 & 0.997 \\\\\n534\tPythia-1.4B & nucleus & 78.7 & 4 & 0.998 \\\\\n535\t\\midrule\n536\tLlama-3.1-8B & nucleus & 70.2\\,[68.3, 72.4] & 4 & 0.949 \\\\\n537\tQwen2.5-7B & nucleus & 60.1\\,[5\n…[truncated 11011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001339"
+        },
+        {
+          "source_line": 1340,
+          "timestamp": "2026-05-25T21:20:16.154316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "654",
+              "limit": "30"
+            }
+          },
+          "id": "event-001340"
+        },
+        {
+          "source_line": 1341,
+          "timestamp": "2026-05-25T21:20:16.357235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "654\t\\subsection{Qwen2.5-7B Self-Reference Scale Probe}\n655\t\\label{app:qwen7b_selfref}\n656\t\n657\tThe preceding 7--8B experiments (\\S\\ref{app:cross_scale_full}) use 4-bit NF4 QLoRA with Pythia-1.4B cross-reference, leaving two confounds unresolved: (1)~quantization-induced perplexity distortion and (2)~vocabulary mismatch between the 7B generator and the 1.4B reference model.\n658\tTo isolate the scale effect from these artifacts, we run the full recursive generation pipeline on Qwen2.5-7B \\cite{qwen2.5} (base model, not instruction-tuned) using FP16 LoRA fine-tuning and self-reference feature extraction (the same model serves as both generator and reference).\n659\t\n660\t\\paragraph{Setup.}\n661\tAt each depth $k \\in \\{0, 1, 2, 3\\}$, a fresh LoRA adapter ($r{=}16$, $\\alpha{=}32$, dropout $0.05$, target modules \\texttt{q\\_proj}, \\texttt{k\\_proj}, \\texttt{v\\_proj}) is initialized on the base model and trained on $\\mathcal{D}_{k-1}$ for 3 epochs (lr $2{\\times}10^{-4}$, effective batch size 16 via $4 \\times 4$ gradient accumulation, bfloat16 mixed precision), following the same protocol as the 1--1.5B benchmark (\\S\\ref{sec:method:benchmark}).\n662\tGeneration uses nucleus sampling ($p{=}0.95$), producing 5{,}000 passages per depth (20{,}000 total, matching the per-cell sample size of the primary benchmark).\n663\tFeature extraction computes a 19-dimensional feature vector using the model's own token-level log-probabilities as the reference distribution, eliminating the cross-model reference artifact quantified in Table~\\ref{tab:cross_ref_14b}.\n664\tThe self-reference feature set replaces lower perplexity percentiles (p10, p25) and \\texttt{entropy\\_of\\_surprisal} with surprisal percentiles (\\texttt{median\\_surprisal}, \\texttt{p75\\_surprisal}, \\texttt{p90\\_surprisal}); all other features match Table~\\ref{tab:features}.\n665\tClassification uses the same 5-fold stratified Random Forest (200 trees, seed 42) as all other cells.\n666\t\n667\t\\paragraph{Comparison to prior 7B experiments.}\n668\tThi\n…[truncated 1942 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-001341"
+        },
+        {
+          "source_line": 1342,
+          "timestamp": "2026-05-25T21:20:16.558942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "746",
+              "limit": "25"
+            }
+          },
+          "id": "event-001342"
+        },
+        {
+          "source_line": 1343,
+          "timestamp": "2026-05-25T21:20:16.810418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "746\t\\subsection{Depth-4 Extension}\n747\t\\label{app:depth4_ext}\n748\t\n749\tWe extend all three model families (GPT-2~XL, Pythia-1.4B, OLMo-1B; nucleus $p{=}0.95$) to depth~4 and train 5-class RF classifiers (d0--d4, 5{,}000 samples per depth).\n750\tFive-class accuracy reaches 80.5\\% (OLMo), 74.0\\% (GPT-2~XL), and 71.3\\% (Pythia), all substantially above the 20\\% chance baseline.\n751\tFor Pythia and GPT-2~XL, d3 recall drops from ${\\sim}$80\\% (4-class) to ${\\sim}$49\\% (5-class) due to d3/d4 confusion; d4 recall is higher (Pythia 68.1\\%, GPT-2~XL 63.9\\%).\n752\t$\\mathrm{EDD}_{0.70} \\geq 4$ was established by dedicated binary classifiers in the atlas (\\S\\ref{sec:atlas:edd}; d3v4 AUC: Pythia 0.784, OLMo 0.765, GPT-2~XL 0.750); the 5-class results provide complementary evidence that depth~4 remains discriminable in the multi-class setting.\n753\t\n754\t\\paragraph{Feature monotonicity at d4.}\n755\tFor Pythia and GPT-2~XL, the dominant depth markers (\\texttt{p90\\_ppl}, \\texttt{var\\_surprisal}) maintain monotonic decrease through d4 (Pythia \\texttt{p90\\_ppl}: $483.7 \\to 12.5$ from d0 to d4; \\texttt{var\\_surprisal}: $6.50 \\to 1.29$), consistent with continued tail erosion (\\S\\ref{sec:method:theory}).\n756\tMean perplexity breaks monotonicity at d4 for GPT-2~XL (d3: $1{,}076\\mathrm{K}$ $\\to$ d4: $928\\mathrm{K}$) while tail perplexity continues to decline.\n757\tOLMo exhibits a \\texttt{var\\_surprisal} rebound at d4 ($2.49 \\to 2.83$, non-monotonic), creating a feature signature absent in GPT-2~XL and Pythia.\n758\tThe 5-class RF exploits non-adjacent depth contrasts (particularly d0-vs-d4 and d2-vs-d4) to achieve 80.5\\% accuracy, the highest among all three families, while the dedicated binary d3-vs-d4 classifier (AUC 0.765) is restricted to adjacent-depth features.\n759\tThis discrepancy illustrates that multi-class classifiers can exploit global distributional structure unavailable to pairwise comparisons.\n760\tThe divergence between aggregate and tail statistics suggests that aggregate distributi\n…[truncated 579 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001343"
+        },
+        {
+          "source_line": 1344,
+          "timestamp": "2026-05-25T21:20:17.011602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "787",
+              "limit": "20"
+            }
+          },
+          "id": "event-001344"
+        },
+        {
+          "source_line": 1345,
+          "timestamp": "2026-05-25T21:20:17.212902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "787\t\\subsection{Mixed-Depth Corpus}\n788\t\\label{app:mixed_depth}\n789\t\n790\tPer-passage classification is largely independent of corpus composition: evaluating on a corpus containing mixed proportions of d0--d3 passages (rather than balanced classes) yields macro-recall $\\Delta{=}{-}1.62$\\,pp relative to the balanced benchmark (within the 2\\,pp tolerance).\n791\tIndividual class deltas range from $-$0.45\\,pp to $-$2.43\\,pp (d1 shows the largest shift); the RF classifier operates on per-sample features without sensitivity to the class distribution of the evaluation corpus, as Random Forest produces identical per-sample predictions regardless of batch context.\n792\t\n793\t\\subsection{Learned Estimator Comparison}\n794\t\\label{app:learned_estimator}\n795\t\n796\tTable~\\ref{tab:learned_estimator} evaluates three learned classifiers (XGBoost, ordinal MLP with CORAL loss \\cite{coral2020}, prototypical networks) under the same leave-one-model-out protocol as Table~\\ref{tab:cross_model}.\n797\tThe ordinal MLP follows the nested binary reduction framework \\cite{mccullagh1980_ordinal,frank2001} with the loss function of \\citet{rennie2005}.\n798\tAll three methods operate on the same 19-dimensional feature vector; the comparison isolates the effect of the classification head.\n799\t\n800\t\\begin{table}[h]\n801\t\\centering\n802\t\\small\n803\t\\caption{Learned estimator cross-model transfer (leave-one-model-out, nucleus, 4-class). RF baseline from Table~\\ref{tab:cross_model}. Chance = 25\\%.}\n804\t\\label{tab:learned_estimator}\n805\t\\begin{tabular}{@{}lcccc@{}}\n806\t\\toprule"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-001345"
+        },
+        {
+          "source_line": 1346,
+          "timestamp": "2026-05-25T21:20:17.563042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "multiple.*comparison|correction|bonferroni",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-001346"
+        },
+        {
+          "source_line": 1347,
+          "timestamp": "2026-05-25T21:20:17.613617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "485:However, the primary comparison (RF-filtered vs.\\ unfiltered, $p > 0.4$) is non-significant; the significant RF-vs-random contrasts ($p < 0.02$) involve multiple pairwise comparisons that were not corrected for multiplicity."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001347"
+        },
+        {
+          "source_line": 1348,
+          "timestamp": "2026-05-25T21:20:20.233092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Table.*22|tab:cross_ref|cross-reference control",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-001348"
+        },
+        {
+          "source_line": 1349,
+          "timestamp": "2026-05-25T21:20:20.484835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "618:Table~\\ref{tab:cross_ref_14b} compares self-reference and cross-reference results per strategy.\n623:\\caption{14B cross-reference control: Pythia-1.4B reference vs.\\ self-reference on Qwen2.5-14B text. $\\Delta$: cross $-$ self. $\\mathrm{EDD}_{0.70}$ computed from consecutive pairwise AUC.}\n624:\\label{tab:cross_ref_14b}\n650:For the 14B model specifically: the cross-reference control (Table~\\ref{tab:cross_ref_14b}) quantifies the reference-model artifact at ${\\sim}$7\\,pp, but the remaining accuracy gap (44\\% vs.\\ 78--85\\% at 1--1.5B) still conflates scale with the other confounds listed above.\n663:Feature extraction computes a 19-dimensional feature vector using the model's own token-level log-probabilities as the reference distribution, eliminating the cross-model reference artifact quantified in Table~\\ref{tab:cross_ref_14b}."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 251
+          },
+          "id": "event-001349"
+        },
+        {
+          "source_line": 1350,
+          "timestamp": "2026-05-25T21:20:20.535607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "616",
+              "limit": "30"
+            }
+          },
+          "id": "event-001350"
+        },
+        {
+          "source_line": 1351,
+          "timestamp": "2026-05-25T21:20:20.586179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "616\t\\paragraph{(5) Cross-reference control at 14B.}\n617\tTo disentangle the scale effect from the reference-model artifact, we re-extract all 19 features using Pythia-1.4B (the same reference model as the 1--1.5B benchmark) on the Qwen2.5-14B generated text.\n618\tTable~\\ref{tab:cross_ref_14b} compares self-reference and cross-reference results per strategy.\n619\t\n620\t\\begin{table}[h]\n621\t\\centering\n622\t\\small\n623\t\\caption{14B cross-reference control: Pythia-1.4B reference vs.\\ self-reference on Qwen2.5-14B text. $\\Delta$: cross $-$ self. $\\mathrm{EDD}_{0.70}$ computed from consecutive pairwise AUC.}\n624\t\\label{tab:cross_ref_14b}\n625\t\\resizebox{\\columnwidth}{!}{%\n626\t\\begin{tabular}{@{}lccccc@{}}\n627\t\\toprule\n628\tStrategy & Self-ref (\\%) & Cross-ref (\\%) & $\\Delta$ & $\\mathrm{EDD}_{0.70}$ & d0v1 AUC \\\\\n629\t\\midrule\n630\tnucleus & 54.1 & 45.0 & $-$9.1 & 2 & 0.702 \\\\\n631\ttemp ($\\tau{=}0.9$) & 50.5 & 46.3 & $-$4.2 & 2 & 0.739 \\\\\n632\ttop-$k$ ($k{=}50$) & 47.9 & 40.9 & $-$7.1 & 0 & 0.699 \\\\\n633\t\\cmidrule{2-6}\n634\t\\textit{mean} & \\textit{50.8} & \\textit{44.1} & $-$\\textit{6.8} & --- & --- \\\\\n635\t\\bottomrule\n636\t\\end{tabular}}\n637\t\\end{table}\n638\t\n639\tCross-reference accuracy drops by 6.8\\,pp on average (range 4.2--9.1\\,pp), but $\\mathrm{EDD}_{0.70}$ \\emph{rises} from 0 to 2 for nucleus and temperature: the consecutive d0v1 (0.70--0.74) and d1v2 (0.72--0.73) AUCs now exceed the 0.70 threshold, while d2v3 remains below (0.54--0.61).\n640\tUnder self-reference, the first boundary d0v1 falls below $T{=}0.70$ in all strategies (0.56--0.64), breaking the contiguous prefix and yielding $\\mathrm{EDD}_{0.70}{=}0$ even though some later pairs (e.g., nucleus d1v2\\,=\\,0.713, d2v3\\,=\\,0.728) exceed the threshold; the Pythia-1.4B reference model provides sharper distributional contrast at the cost of overall accuracy.\n641\tThe ${\\sim}$7\\,pp accuracy gap between self- and cross-reference is therefore a reference-model artifact, not a depth-signal artifact: depth signal persists at 14B albeit at\n…[truncated 571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001351"
+        },
+        {
+          "source_line": 1352,
+          "timestamp": "2026-05-25T21:20:23.548200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "654",
+              "limit": "45"
+            }
+          },
+          "id": "event-001352"
+        },
+        {
+          "source_line": 1353,
+          "timestamp": "2026-05-25T21:20:23.699394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "654\t\\subsection{Qwen2.5-7B Self-Reference Scale Probe}\n655\t\\label{app:qwen7b_selfref}\n656\t\n657\tThe preceding 7--8B experiments (\\S\\ref{app:cross_scale_full}) use 4-bit NF4 QLoRA with Pythia-1.4B cross-reference, leaving two confounds unresolved: (1)~quantization-induced perplexity distortion and (2)~vocabulary mismatch between the 7B generator and the 1.4B reference model.\n658\tTo isolate the scale effect from these artifacts, we run the full recursive generation pipeline on Qwen2.5-7B \\cite{qwen2.5} (base model, not instruction-tuned) using FP16 LoRA fine-tuning and self-reference feature extraction (the same model serves as both generator and reference).\n659\t\n660\t\\paragraph{Setup.}\n661\tAt each depth $k \\in \\{0, 1, 2, 3\\}$, a fresh LoRA adapter ($r{=}16$, $\\alpha{=}32$, dropout $0.05$, target modules \\texttt{q\\_proj}, \\texttt{k\\_proj}, \\texttt{v\\_proj}) is initialized on the base model and trained on $\\mathcal{D}_{k-1}$ for 3 epochs (lr $2{\\times}10^{-4}$, effective batch size 16 via $4 \\times 4$ gradient accumulation, bfloat16 mixed precision), following the same protocol as the 1--1.5B benchmark (\\S\\ref{sec:method:benchmark}).\n662\tGeneration uses nucleus sampling ($p{=}0.95$), producing 5{,}000 passages per depth (20{,}000 total, matching the per-cell sample size of the primary benchmark).\n663\tFeature extraction computes a 19-dimensional feature vector using the model's own token-level log-probabilities as the reference distribution, eliminating the cross-model reference artifact quantified in Table~\\ref{tab:cross_ref_14b}.\n664\tThe self-reference feature set replaces lower perplexity percentiles (p10, p25) and \\texttt{entropy\\_of\\_surprisal} with surprisal percentiles (\\texttt{median\\_surprisal}, \\texttt{p75\\_surprisal}, \\texttt{p90\\_surprisal}); all other features match Table~\\ref{tab:features}.\n665\tClassification uses the same 5-fold stratified Random Forest (200 trees, seed 42) as all other cells.\n666\t\n667\t\\paragraph{Comparison to prior 7B experiments.}\n668\tThi\n…[truncated 3478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001353"
+        },
+        {
+          "source_line": 1354,
+          "timestamp": "2026-05-25T21:20:23.750153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "746",
+              "limit": "30"
+            }
+          },
+          "id": "event-001354"
+        },
+        {
+          "source_line": 1355,
+          "timestamp": "2026-05-25T21:20:23.851055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "746\t\\subsection{Depth-4 Extension}\n747\t\\label{app:depth4_ext}\n748\t\n749\tWe extend all three model families (GPT-2~XL, Pythia-1.4B, OLMo-1B; nucleus $p{=}0.95$) to depth~4 and train 5-class RF classifiers (d0--d4, 5{,}000 samples per depth).\n750\tFive-class accuracy reaches 80.5\\% (OLMo), 74.0\\% (GPT-2~XL), and 71.3\\% (Pythia), all substantially above the 20\\% chance baseline.\n751\tFor Pythia and GPT-2~XL, d3 recall drops from ${\\sim}$80\\% (4-class) to ${\\sim}$49\\% (5-class) due to d3/d4 confusion; d4 recall is higher (Pythia 68.1\\%, GPT-2~XL 63.9\\%).\n752\t$\\mathrm{EDD}_{0.70} \\geq 4$ was established by dedicated binary classifiers in the atlas (\\S\\ref{sec:atlas:edd}; d3v4 AUC: Pythia 0.784, OLMo 0.765, GPT-2~XL 0.750); the 5-class results provide complementary evidence that depth~4 remains discriminable in the multi-class setting.\n753\t\n754\t\\paragraph{Feature monotonicity at d4.}\n755\tFor Pythia and GPT-2~XL, the dominant depth markers (\\texttt{p90\\_ppl}, \\texttt{var\\_surprisal}) maintain monotonic decrease through d4 (Pythia \\texttt{p90\\_ppl}: $483.7 \\to 12.5$ from d0 to d4; \\texttt{var\\_surprisal}: $6.50 \\to 1.29$), consistent with continued tail erosion (\\S\\ref{sec:method:theory}).\n756\tMean perplexity breaks monotonicity at d4 for GPT-2~XL (d3: $1{,}076\\mathrm{K}$ $\\to$ d4: $928\\mathrm{K}$) while tail perplexity continues to decline.\n757\tOLMo exhibits a \\texttt{var\\_surprisal} rebound at d4 ($2.49 \\to 2.83$, non-monotonic), creating a feature signature absent in GPT-2~XL and Pythia.\n758\tThe 5-class RF exploits non-adjacent depth contrasts (particularly d0-vs-d4 and d2-vs-d4) to achieve 80.5\\% accuracy, the highest among all three families, while the dedicated binary d3-vs-d4 classifier (AUC 0.765) is restricted to adjacent-depth features.\n759\tThis discrepancy illustrates that multi-class classifiers can exploit global distributional structure unavailable to pairwise comparisons.\n760\tThe divergence between aggregate and tail statistics suggests that aggregate distributi\n…[truncated 912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001355"
+        },
+        {
+          "source_line": 1356,
+          "timestamp": "2026-05-25T21:20:26.272772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "VIF|variance inflation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-001356"
+        },
+        {
+          "source_line": 1357,
+          "timestamp": "2026-05-25T21:20:26.323432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "58:With 14--16 of 19 features exhibiting VIF${>}$10 (\\S\\ref{sec:atlas:features}), standard permutation importance may inflate contributions of correlated features: permuting one member of a collinear set allows others to compensate, masking true individual effects.\n111:\\caption{Top-5 features by Gini importance. \\textbf{Bold}: top-2. \\texttt{p90\\_ppl} top-2 in 9/9; \\texttt{var\\_surprisal} 8/9 under SHAP (7/9 under Gini). Individual rankings are approximate due to multicollinearity (VIF${>}$10 for 14--16/19 features).}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001357"
+        },
+        {
+          "source_line": 1358,
+          "timestamp": "2026-05-25T21:20:27.880499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"Table.*18\\|tab:ref\" /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex | head -20"
+            }
+          },
+          "id": "event-001358"
+        },
+        {
+          "source_line": 1359,
+          "timestamp": "2026-05-25T21:20:28.082944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "490:Table~\\ref{tab:ref_ablation} ablates the reference model used for feature extraction on Pythia-1.4B nucleus text (d0--d3, 5-fold CV).\n496:\\label{tab:ref_ablation}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-001359"
+        },
+        {
+          "source_line": 1360,
+          "timestamp": "2026-05-25T21:20:29.039555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the content. Let me compile the comprehensive review findings focusing on the specific methodological details you requested.\n\n## Complete Paper Review Report\n\nI have read all seven LaTeX files. Here are the exact methodological details you requested:\n\n---\n\n### 1. EDD METRIC DEFINITION (EXACT FORMULA)\n\n**File:** method.tex, lines 92-101\n\nThe Effective Discriminable Depth (EDD) metric is formally defined as:\n\n```\nEDD_T = max { d' + 1 : ∀ d' ≤ d*, AUC(d', d' + 1) ≥ T }\n```\n\nWhere:\n- d* ∈ {0, ..., K-1}\n- If AUC(0,1) < T, then EDD_T = 0\n- T is a discrimination threshold ∈ (0.5, 1.0]\n- **Primary threshold used: T = 0.70** (following \"acceptable discrimination\" threshold in ROC analysis)\n\nEDD reports the longest **contiguous discriminable prefix** - the deepest d such that every pair from (0,1) through (d-1, d) exceeds T.\n\n**Key property:** All AUC profiles in primary benchmark decay monotonically; non-monotonic profiles occur only in cross-scale extensions (Appendix reference).\n\n---\n\n### 2. RF CLASSIFIER DETAILS\n\n**Primary Classifier (method.tex, lines 107-109):**\n- **200 trees**\n- Unconstrained depth\n- **5-fold stratified cross-validation**\n- Seed robustness in Appendix\n\n**EDD Binary Classifiers (method.tex, line 89):**\n- **500 trees**\n- Designated features per split: **⌊√19⌋ = 4 candidate features per split**\n- Class-balanced training data\n- 5-fold stratified cross-validation\n- **Important note (line 108):** \"Statistical tests are not corrected for multiple comparisons; p-values should be interpreted as exploratory.\"\n\n**Ordinal Quality Metrics (method.tex, line 109):**\n- 98.2% of errors fall on adjacent depths (|Δ| ≤ 1)\n- Quadratic weighted kappa (QWK) = 0.89\n- d1-d3 balanced: QWK = 0.74\n\n---\n\n### 3. FEATURE DETAILS - ALL 19 FEATURES AND VIF ANALYSIS\n\n**File:** method.tex, lines 44-76 and Table 1 (lines 50-71)\n\n**19 Features grouped into 4 categories:**\n\n| Category | Features | Count |\n|----------|----------|-------|\n| **Perplexity statistics** (9 feature\n…[truncated 6448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Agent",
+            "elapsed_ms": 35994
+          },
+          "id": "event-001360"
+        },
+        {
+          "source_line": 1361,
+          "timestamp": "2026-05-25T21:20:29.544157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"Table.*19\\|tab:cross_scale\\|EDD.*7.*8B\\|Llama.*Qwen\" /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex | head -30"
+            }
+          },
+          "id": "event-001361"
+        },
+        {
+          "source_line": 1362,
+          "timestamp": "2026-05-25T21:20:29.594870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "394:Table~\\ref{tab:calibration} reports d0 accuracy and false positive rate (FPR) for all three model-specific nucleus RF classifiers on two out-of-distribution human-text corpora: WikiText-103 (546 editorial passages) and C4 (5{,}000 web-crawl passages, crawled 2019--2020; pre-LLM deployment).\n513:We extend the benchmark to two 7--8B models (Qwen2.5-7B-Instruct \\cite{qwen2.5}, Llama-3.1-8B-Instruct \\cite{llama3}) and one 14B model (Qwen2.5-14B).\n519:Table~\\ref{tab:cross_scale} contrasts the 7--14B models with the three 1--1.5B models on matched evaluation (depths 0--3).\n525:\\caption{Cross-scale comparison: 4-class RF accuracy (\\%, depths 0--3), $\\mathrm{EDD}_{0.70}$ (computed from full depth range: 0--5 for 1--1.5B nucleus and 7--8B, 0--3 for 1--1.5B temp/top-$k$ and 14B), and d0-vs-d1 AUC. CI: 95\\% bootstrap. Chance = 25\\%. $^\\dagger$Self-reference model (see text).}\n526:\\label{tab:cross_scale}\n549:Both 7--8B models substantially exceed the 25\\% chance baseline: Llama-3.1-8B achieves 70.2\\% (95\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\% ($[58.0, 62.1]$); recursive depth therefore remains estimable from perplexity-based features even when the generator is 5--7$\\times$ larger than the reference model.\n550:Depth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\n552:\\paragraph{(2) EDD at 7--8B scale.}\n553:At threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\ref{tab:cross_scale_auc}), yielding $\\mathrm{EDD}_{0.70} = 5$ (the maximum observable from the tested depth range), exceeding the $\\mathrm{EDD}_{0.70}{=}4$ observed at 1--1.5B.\n555:Both larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\ 0.852 at 1--1.5B).\n560:\\caption{Consecutive binary AUC. Llama-3.1-8B exhibits monotonic decay; Qwen2.5-7B shows a U-shaped pattern; Qwen2.5-14B$^\\dagger$ (depths 0--3 only) has d0v1 below\n…[truncated 1407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001362"
+        },
+        {
+          "source_line": 1363,
+          "timestamp": "2026-05-25T21:20:32.607438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "480",
+              "limit": "15"
+            }
+          },
+          "id": "event-001363"
+        },
+        {
+          "source_line": 1364,
+          "timestamp": "2026-05-25T21:20:32.658321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "480\t\\bottomrule\n481\t\\end{tabular}}\n482\t\\end{table}\n483\t\n484\tFor the binary task of identifying low-depth passages (d0 vs.\\ d1--d3, evaluated on the same Pythia nucleus corpus with 5-fold CV), RF-based depth filtering achieves F1\\,=\\,0.997, substantially outperforming a simple perplexity-threshold baseline (F1\\,=\\,0.845); the multi-feature representation provides discriminative value beyond raw perplexity.\n485\tHowever, the primary comparison (RF-filtered vs.\\ unfiltered, $p > 0.4$) is non-significant; the significant RF-vs-random contrasts ($p < 0.02$) involve multiple pairwise comparisons that were not corrected for multiplicity.\n486\t\n487\t\\subsection{Reference Model Ablation}\n488\t\\label{app:ref_ablation}\n489\t\n490\tTable~\\ref{tab:ref_ablation} ablates the reference model used for feature extraction on Pythia-1.4B nucleus text (d0--d3, 5-fold CV).\n491\tSelf-reference (Pythia-1.4B) yields 78.6\\%; switching to a cross-architecture reference degrades accuracy by 4--11\\,pp, confirming that reference-generator alignment amplifies depth signal.\n492\t\n493\t\\begin{table}[h]\n494\t\\centering"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001364"
+        },
+        {
+          "source_line": 1365,
+          "timestamp": "2026-05-25T21:20:34.017109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "787",
+              "limit": "15"
+            }
+          },
+          "id": "event-001365"
+        },
+        {
+          "source_line": 1366,
+          "timestamp": "2026-05-25T21:20:34.067906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "787\t\\subsection{Mixed-Depth Corpus}\n788\t\\label{app:mixed_depth}\n789\t\n790\tPer-passage classification is largely independent of corpus composition: evaluating on a corpus containing mixed proportions of d0--d3 passages (rather than balanced classes) yields macro-recall $\\Delta{=}{-}1.62$\\,pp relative to the balanced benchmark (within the 2\\,pp tolerance).\n791\tIndividual class deltas range from $-$0.45\\,pp to $-$2.43\\,pp (d1 shows the largest shift); the RF classifier operates on per-sample features without sensitivity to the class distribution of the evaluation corpus, as Random Forest produces identical per-sample predictions regardless of batch context.\n792\t\n793\t\\subsection{Learned Estimator Comparison}\n794\t\\label{app:learned_estimator}\n795\t\n796\tTable~\\ref{tab:learned_estimator} evaluates three learned classifiers (XGBoost, ordinal MLP with CORAL loss \\cite{coral2020}, prototypical networks) under the same leave-one-model-out protocol as Table~\\ref{tab:cross_model}.\n797\tThe ordinal MLP follows the nested binary reduction framework \\cite{mccullagh1980_ordinal,frank2001} with the loss function of \\citet{rennie2005}.\n798\tAll three methods operate on the same 19-dimensional feature vector; the comparison isolates the effect of the classification head.\n799\t\n800\t\\begin{table}[h]\n801\t\\centering"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001366"
+        },
+        {
+          "source_line": 1367,
+          "timestamp": "2026-05-25T21:20:35.676073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "197",
+              "limit": "35"
+            }
+          },
+          "id": "event-001367"
+        },
+        {
+          "source_line": 1368,
+          "timestamp": "2026-05-25T21:20:35.726798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "197\t\\subsection{Accumulation Pairwise AUC}\n198\t\\label{app:accumulation_auc}\n199\t\n200\tTable~\\ref{tab:accum_auc} reports pairwise AUC for the six accumulation cells (3 models $\\times$ 2 mixing ratios; GPT-2~XL and Pythia use nucleus, OLMo uses temperature 0.9).\n201\tAt 25\\% mixing, all three cells preserve $\\mathrm{EDD}_{0.70}{=}3$.\n202\tAt 50\\% mixing, GPT-2~XL nucleus is the sole failure: d2v3 AUC\\,=\\,0.695, marginally below the 0.70 threshold (0.55\\,pp).\n203\t\n204\t\\begin{table}[h]\n205\t\\centering\n206\t\\small\n207\t\\caption{Pairwise AUC under accumulation (GPT-2~XL/Pythia: nucleus; OLMo: temp 0.9; binary RF, 5-fold CV). Bold: $\\mathrm{EDD}_{0.70}$ boundary failure.}\n208\t\\label{tab:accum_auc}\n209\t\\begin{tabular}{@{}llccc@{}}\n210\t\\toprule\n211\tModel & Mix & d0v1 & d1v2 & d2v3 \\\\\n212\t\\midrule\n213\tGPT-2~XL & 25\\% & 1.000 & 0.817 & 0.726 \\\\\n214\t & 50\\% & 1.000 & 0.831 & \\textbf{0.695} \\\\\n215\tPythia & 25\\% & 1.000 & 0.809 & 0.749 \\\\\n216\t & 50\\% & 1.000 & 0.793 & 0.716 \\\\\n217\tOLMo & 25\\% & 1.000 & 0.848 & 0.759 \\\\\n218\t & 50\\% & 1.000 & 0.817 & 0.726 \\\\\n219\t\\bottomrule\n220\t\\end{tabular}\n221\t\\end{table}\n222\t\n223\t\\subsection{DCOL Iteration Details}\n224\t\\label{app:dcol_iterations}\n225\t\n226\tTable~\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\n227\tDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\n228\t\n229\t\\begin{table}[h]\n230\t\\centering\n231\t\\small"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001368"
+        },
+        {
+          "source_line": 1369,
+          "timestamp": "2026-05-25T21:20:37.684389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "offset": "493",
+              "limit": "20"
+            }
+          },
+          "id": "event-001369"
+        },
+        {
+          "source_line": 1370,
+          "timestamp": "2026-05-25T21:20:37.735273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "493\t\\begin{table}[h]\n494\t\\centering\n495\t\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\n496\t\\label{tab:ref_ablation}\n497\t\\resizebox{\\columnwidth}{!}{%\n498\t\\begin{tabular}{@{}lcc@{}}\n499\t\\toprule\n500\tReference Model & Architecture & Accuracy (\\%) \\\\\n501\t\\midrule\n502\tPythia-1.4B (self) & GPT-NeoX & 78.5 $\\pm$ 0.6 \\\\\n503\tOLMo-1B (cross) & OLMo & 74.5 $\\pm$ 0.7 \\\\\n504\tGPT-2~XL (cross) & GPT-2 & 67.3 $\\pm$ 0.7 \\\\\n505\t\\bottomrule\n506\t\\end{tabular}}\n507\t\\end{table}\n508\t\n509\t\\subsection{Cross-Scale Full Results}\n510\t\\label{app:cross_scale_full}\n511\t\n512\tThis section provides the full cross-scale analysis summarized in \\S\\ref{sec:gen:crossscale}."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001370"
+        },
+        {
+          "source_line": 1371,
+          "timestamp": "2026-05-25T21:21:27.503976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me compile my comprehensive report based on all the information I've gathered. Let me do one final check on the depth-4 results to ensure I have all the exact numbers:\n\nBased on my thorough review of the appendix file, here is a comprehensive report of all key methodological details:\n\n---\n\n## COMPREHENSIVE APPENDIX REPORT: RECURSIVE GENERATION DEPTH ESTIMATION\n\n### 1. **Appendix B.3: Conditional Permutation Importance & VIF Analysis**\n\n**Multicollinearity context:**\n- 14–16 of 19 features exhibit VIF > 10\n- Standard permutation importance may inflate contributions of correlated features\n\n**Conditional Permutation Importance (CPI) Setup:**\n- Computed on all 9 model×strategy cells\n- 1,000 bootstrap resamples per cell\n- 95% bootstrap CI width quantifies rank stability (width ≤ 1.0 = near-invariant rankings)\n\n**Top-5 Features by CPI (Table from B.3):**\n| Feature | Avg Rank | Avg CPI | Rank CI Width |\n|---------|----------|---------|---------------|\n| `var_surprisal` | 1.4 | 0.260 | 0.44 |\n| `p90_ppl` | 1.7 | 0.238 | 0.22 |\n| `p75_ppl` | 3.1 | 0.063 | 0.78 |\n| `p50_ppl` | 5.0 | 0.016 | 2.67 |\n| `p25_ppl`† | 5.8 | 0.012 | 3.67 |\n\n**Family-Level Results:**\n- Surprisal family: avg CPI = 0.089, rank = 7.3\n- Perplexity family: avg CPI = 0.039, rank = 7.5\n- Lexical family: avg CPI = 0.004, rank = 9.7\n\n**Key findings:**\n- `var_surprisal` and `p90_ppl` are top-2 in 8/9 cells\n- Bootstrap rank CI widths ≤ 0.5 for top-2 features confirm rankings are not artifacts\n- CPI and Gini rankings agree on dominant feature in 8/9 cells\n- Exception: GPT-2 XL top-k sampling shows rank reversals (p90_ppl = 0.475, var_surprisal = 0.037)\n- Rank stability decreases beyond top-2 (CI widths 2.7–3.7 for ranks 4–5)\n\n---\n\n### 2. **Appendix B.14: Data Leakage / Domain Bias Analysis**\n\n**Methodological note:**\n- Initial implementation discovered depth–seed-group identity confound during review\n- Bug: global counter across depths inadvertently correlated seed groups with depth\n- Correcti\n…[truncated 11235 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Agent",
+            "elapsed_ms": 83563
+          },
+          "id": "event-001371"
+        },
+        {
+          "source_line": 1372,
+          "timestamp": "2026-05-25T21:25:25.296474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿意见\n\n**论文**: How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\n**Venue**: EMNLP 2026 (ARR May cycle)\n**审查侧重**: 方法严谨性、实验设计、统计方法、可复现性\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.0 / 5（Findings）\n**一句话总结**: 问题形式化新颖且 atlas 设计系统，但 reference model confound 贯穿全部实验、full-replacement 假设远离真实场景、14B 规模信号消失——三个核心问题叠加后，方法的实际价值和可靠性存疑，尚不足以进入主会议。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.0 / 5 | Reference model confound 系统性膨胀 Pythia cells 结果；full-replacement 链与现实 gap 大且仅测 25-50% mixing；多重比较未校正（脚注3承认）；VIF>10 的 14-16/19 特征使 feature importance 排名不可靠 |\n| Excitement | 3.5 / 5 | 问题形式化（递归深度估计 vs. 二分检测）确实新颖；EDD 指标有设计感；atlas 概念系统。但 14B 信号消失和 full-replacement 假设严重限制实际影响力 |\n| Reproducibility | 4.0 / 5 | 超参数、种子（42/43/45）、硬件（2×RTX PRO 6000, 200 GPU-hours）、匿名代码/数据链接均有报告；cross-seed replication（B.29）覆盖 3 个种子 |\n| Confidence | 4 / 5 | 全文含 18 页 appendix 通读，熟悉 model collapse、统计检验、RF multicollinearity 相关文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [Critical] **Reference Model Confound 贯穿全部实验设计**\n- 具体位置：§3.3 (p.4)、Table 2 (p.5)、Appendix B.17 (Table 18)、B.19 (Table 22)\n- 问题：Pythia-1.4B 同时作为 3 个 generator 之一和全部 19 个特征的固定 reference model。自引用优势 4-11 pp（B.17: self=78.5% vs. GPT-2 XL cross=67.3%）。12/19 特征依赖 reference model 的 log-probability，这不是边际偏差，而是系统性地膨胀了 Pythia cells 的所有指标。论文虽在 §3.3 用 † 标记并在 Limitations 提及，但 Pythia 结果仍被纳入 Table 2 全部聚合统计（atlas 均值、feature importance 排名、EDD 分布）。更关键的是，B.19 的 14B 实验揭示了一个根本矛盾：Qwen2.5-14B self-reference EDD₀.₇₀ = 0（d0v1 AUC 仅 0.56-0.64），而 cross-reference（Pythia-1.4B）EDD₀.₇₀ = 2（d0v1 AUC 升至 0.70-0.74）。同一文本、同一特征集，仅改变 reference model 就使 EDD 从 0 跳到 2——这说明 EDD 度量的不是文本的内在深度属性，而是 reference model 与 generator 的兼容性。\n- 为什么影响接收：论文的核心 claim（\"statistical fingerprints of recursive depth\"）建立在特征能反映文本内在属性的假设上。Reference model confound 使这一假设不成立。\n- 建议修改方向：(a) 在 atlas 聚合统计中排除 Pythia self-reference cells 或单独报告；(b) 至少对一个 non-Pythia generator 使用两个不同 reference model 做 cross-validation；(c) 在主文而非仅 appendix 讨论 14B EDD 悖论及其对 \"intrinsic depth signal\" claim 的影响；(d) 考虑在 model-free 特征（7个 lexical/repetition 特征）上单独报告性能下界。\n\n**N2** [Critical] **Full-Replacement Chain 与现实场景的生态有效性 Gap 严重且讨论不足**\n- 具体位置：§3.2 (p.3)、§5.3 (p.8)、Appendix B.8 (Table 10)、Limitations (p.9)\n- 问题：Atlas 使用 100% 合成替换构建递归链——每一深度完全替换上一深度语料。真实 web 递归污染的混合比例远低于此（估计 5-30%）。§5.3 仅测试了 25% 和 50% 两个混合比例，结果已显示 8-15 pp 准确率衰减。50% mixing 下 GPT-2 XL d2v3 AUC=0.695 已低于 T=0.70 阈值（EDD 降级）。5-10% mixing 完全未测试——考虑到 25%→50% 的衰减趋势，信号可能在更低比例下消失。论文在 Limitations（p.9 第1段）仅用一句话提及 \"real-world contamination involves accumulation at unknown mixing ratios\"，未量化这一 gap 或讨论其对所有实验结论的影响。\n- 为什么影响接收：如果方法在真实污染比例（<10%）下不工作，180K-cell atlas 的全部结论仅适用于一个人工设定，学术贡献受限。\n- 建议修改方向：(a) 补充 5% 和 10% mixing ratio 实验；(b) 建立 mixing ratio vs. signal strength 的衰减曲线并外推下界；(c) 在主文明确讨论 full-replacement 设定的适用范围和局限。\n\n**N3** [Major] **14B 规模信号消失与 Scale Attenuation 讨论不充分**\n- 具体位置：§5.4 (p.8)、Appendix B.18 (Table 19)、B.19\n- 问题：Qwen2.5-14B self-reference EDD₀.₇₀ = 0，四分类准确率 50.8%（仅 2× chance）。d0v1 AUC 在三种策略下均低于 0.70（nucleus: 0.643, temp: 0.632, top-k: 0.561）。7-8B 结果混合：Llama-3.1-8B 单调衰减（d0v1=0.949→d4v5=0.618），Qwen2.5-7B 呈 U 型恢复（d0v1=0.969, d2v3=0.709, d4v5=0.772）——两个模型在同一规模上行为完全不同，无法得出一般性结论。论文在 §3.5 用 model collapse theory 解释 scale attenuation（γ→1 时 per-step 信号变弱），但这一理论预测的是 monotonic 衰减，不能解释 Qwen-7B 的 U 型 AUC 曲线。更重要的是：当前主流 LLM（7B-70B+）正处于信号衰减区间，方法的实际部署价值需要正视。\n- 为什么影响接收：scale limitation 是论文实际影响力的核心瓶颈。如果仅在 1-1.5B 工作，贡献范围有限。\n- 建议修改方向：(a) 解释 Qwen-7B U 型曲线与 model collapse theory 预测不一致的原因；(b) 讨论是否可以通过更大/更小的 reference model 缓解 14B 信号消失；(c) 在 abstract/introduction 中明确方法的 scale 适用范围。\n\n**N4** [Major] **Feature Multicollinearity 对 Importance 排名可靠性的影响**\n- 具体位置：§4.2 (p.6)、Table 1 (p.4)、Appendix B.3 (Table 6-7)\n- 问题：19 个特征中 14-16 个 VIF > 10，有效独立维度仅 4-5。在此极端多重共线性下：(a) Gini importance 已知会偏向高基数连续变量（Strobl et al., 2007, 2008 在论文中已引用但未充分讨论此 bias）；(b) CPI 通过 conditional permutation 部分缓解，但当 14-16/19 个特征都在一个相关簇中时，CPI 的 \"within-group permutation\" 的组定义本身就有问题；(c) Rank 4-5 的 bootstrap CI width 达 2.7-3.7（B.3 Table 6），确认 top-2 之外排名不稳定。Group-level ablation（§4.2：perplexity alone 76.6%）比个体排名更可靠，但论文中多处（§4.3 \"p90_ppl dominates at deeper depths\", §4.4 strategy-dependent trajectories）依赖个体特征排名做因果叙事。\n- 为什么影响接收：Feature importance 叙事是论文三大发现之一（\"depth signal concentrates in perplexity distribution tails\"）。如果排名不可靠，这一发现的置信度下降。\n- 建议修改方向：(a) 在主文报告 group-level ablation 作为 primary evidence，个体排名作为 secondary；(b) 对 rank 3+ 的特征明确标注 \"unstable under multicollinearity\"；(c) 考虑使用 elastic net 或 LASSO 做特征选择作为补充验证。\n\n**N5** [Major] **多重比较未校正**\n- 具体位置：脚注 3（§3.4, p.5）、B.15（p.16）\n- 问题：论文明确承认 \"Statistical tests are not corrected for multiple comparisons; p-values should be interpreted as exploratory\"。但实际论文中有大量比较：9 cells × 3+ pairwise depth comparisons × multiple feature rankings × cross-condition transfers = 远超 50 次假设检验。仅在一个特定测试（d3v4 AUC, §4.3）应用了 Bonferroni 校正（α=0.0167, 3 comparisons）。B.15 downstream curation PoC 也承认 \"multiple pairwise comparisons that were not corrected for multiplicity\"。当大量比较未校正时，某些 \"显著\" 发现可能是假阳性。\n- 为什么影响接收：ARR 的 Soundness 评分要求 claims 有充分 statistical support。批量未校正的 p-values 削弱了 claims 的可信度。\n- 建议修改方向：(a) 对主要 claims 涉及的比较应用 FDR 或 Bonferroni 校正并报告校正后 p-values；(b) 或者将未校正的结论明确标注为 exploratory 而非 confirmatory；(c) 区分 confirmatory（预先计划的）和 exploratory（数据驱动的）分析。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [Warning] **EDD 阈值 T=0.70 的理论依据可质疑**\n- 具体位置：Definition 1 (§3.4, p.4-5)、§4.1 sensitivity analysis\n- 问题：T=0.70 引用 Hosmer & Lemeshow (2000) 的 \"acceptable discrimination\" 阈值，但 H&L 的阈值设计用于二元 logistic regression 的 goodness-of-fit 评估，而非 pairwise ordinal AUC。将其移植到不同上下文缺乏理论依据。不过 §4.1 的 sensitivity analysis 显示 EDD 对 T ∈ {0.65, 0.70, 0.80} 在 8/9 cells 中稳定，部分缓解了此问题。\n- 建议：明确说明 T=0.70 是 operational choice 而非理论推导的结果；报告多个 T 值下的完整结果表。\n\n**W2** [Warning] **Generation Protocol 过于统一**\n- 具体位置：§3.2 (p.3)、Table 5 (Appendix A)\n- 问题：所有模型使用完全相同的 LoRA 超参数（r=16, α=32, dropout=0.05, 3 epochs）。真实递归污染中，不同迭代/模型会使用不同的微调方法和参数。BOS seeding 统一用于所有生成，可能放大 prior-depth 数据 artifacts。Table 5 确认三个模型和所有深度使用 identical 配置——这虽然提高了内部一致性，但降低了外部有效性。\n- 建议：至少在一个模型上测试不同 LoRA rank 或 full fine-tuning 对深度信号的影响。\n\n**W3** [Warning] **Cross-Strategy Transfer 效果较弱**\n- 具体位置：§5.2 (p.8)、Table 9 (Appendix B.7)\n- 问题：Leave-one-out cross-strategy 准确率仅 45.95%（4-class，chance=25%），仅 1.84× chance。Two-stage pipeline 恢复到 59.1% 但仍不理想。这意味着深度信号高度策略特异，实际部署时需先识别解码策略——但论文未讨论策略识别的准确率和误差传播。\n- 建议：在 two-stage pipeline 中报告 Stage 1（strategy identification）的准确率及其对 Stage 2 的误差级联效应。\n\n**W4** [Warning] **Ordinal Classification 使用 Non-Ordinal Classifier**\n- 具体位置：§3.4 (p.5)、§5.1 (p.7)\n- 问题：RF 不是固有有序分类器。论文在 §5.1 与 ordinal MLP (prototypical) 比较，差距仅 0.8 pp，且 QWK=0.89 表明 RF 经验上尊重有序结构。但 EDD 的二元分类器（500 棵树）与主分类器（200 棵树）之间存在评价体系不一致——主结果用四分类 RF，EDD 用 pairwise binary RF。\n- 建议：统一报告主分类器和 EDD 分类器的关系，或在主文解释为什么两者可以共存。\n\n---\n\n## 小问题（不影响接收）\n\n- §3.3 (p.4) \"Pythia results in Table 2 are marked †\" — 但 Table 2 (p.5) 中 † 标记在 PDF 中不够醒目，容易忽略。建议加粗或加脚注说明。\n- Notation 不一致：EDD 下标有时用 T（Definition 1），有时用 τ=0.70（§3.5），有时用 0.70（Table 2 caption）。建议统一。\n- §4.3 (p.6) \"Bonferroni-corrected for 3 comparisons, α=0.0167 yields p = 0.001\" — 应明确说明这 3 个比较是哪 3 个模型的 d3v4 AUC 测试。\n- Figure 3 (p.7) Y 轴 \"normalized to depth 0\" 但具体归一化方法未在 caption 中说明。\n- B.14 (p.15) 承认发现并修复了 seed-group 分配 bug，透明度好；但 initial buggy results 占用了篇幅，可以精简。\n\n---\n\n## Questions to Authors\n\n1. **Reference model dependency**: 如果使用一个完全独立的 reference model（如 GPT-2 small 或 LLaMA-3.1-8B）替代 Pythia-1.4B 作为所有 cells 的 reference model，atlas 的均值准确率和 EDD 分布会如何变化？是否测试过？\n\n2. **Low mixing ratios**: 5% 和 10% mixing ratio 下的 signal strength 是否有任何 pilot data？如果没有，作者对低比例下信号存活的预期是什么（基于 25%→50% 的衰减趋势）？\n\n3. **14B EDD paradox**: Cross-reference 使 EDD 从 0 升到 2，但 overall accuracy 下降 6.8 pp。作者如何调和这两个方向相反的结果？这是否暗示 EDD 和 accuracy 在大规模下度量的是不同的东西？\n\n4. **Qwen-7B U-shaped AUC**: d2v3=0.709 但 d4v5=0.772 的 U 型恢复在 model collapse theory 框架下如何解释？是否可能是 QLoRA 量化引入的 artifact？\n\n5. **Model-free features only**: 仅使用 7 个 model-free 特征（TTR、hapax ratio、bigram/trigram entropy、repeated n-gram fractions）的分类性能如何？这将建立一个不受 reference model confound 影响的性能下界。\n\n6. **Multiple comparisons**: 如果对 Table 2 全部 9 cells 的 depth-pair AUC 测试应用 FDR 校正（共 27 次比较：9 cells × 3 adjacent pairs），有多少会保持显著？\n\n---\n\n## 主要优势\n\n1. **问题形式化新颖**：将递归生成深度估计形式化为 ordinal classification 是一个真正的概念贡献。EDD 指标从 binary detection 升级到\"能可靠区分多深\"，比简单 accuracy 更有信息量。\n2. **Atlas 设计系统**：3 model families × 3 decoding strategies × 4 depths 的全因子设计提供了 comprehensive baseline，对后续研究有参考价值。\n3. **可复现性好**：超参数完整报告（Table 5）、多种子验证（B.29, 3 seeds, σ≤1.06 pp）、硬件和计算量（B.34, 2×RTX PRO 6000, ~200 GPU-hours）、匿名代码/数据链接。\n4. **消融充分**：34 个 appendix subsections 覆盖分类器（§5.1: RF vs. XGBoost vs. ordinal MLP）、特征（§4.2 group ablation）、reference model（B.17）、domain transfer（B.15 FineWeb/RedPajama）、calibration（B.15 threshold calibration）等。\n5. **透明度高**：脚注 3 主动声明未做多重比较校正；B.14 主动报告并修复了 seed-group bug；Limitations section 覆盖了主要局限。",
+              "reviewer_id": "1",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001372"
+        },
+        {
+          "source_line": 1373,
+          "timestamp": "2026-05-25T21:25:29.111609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3815
+          },
+          "id": "event-001373"
+        },
+        {
+          "source_line": 1374,
+          "timestamp": "2026-05-25T21:25:35.698377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images"
+            }
+          },
+          "id": "event-001374"
+        },
+        {
+          "source_line": 1375,
+          "timestamp": "2026-05-25T21:25:35.749447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 51
+          },
+          "id": "event-001375"
+        },
+        {
+          "source_line": 1376,
+          "timestamp": "2026-05-25T21:25:48.820418+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n**核心判断**: Overall 3.0（Findings 水平）。\n\n**5 个 Must-Fix 问题**：\n1. **Reference model confound** [Critical]：Pythia-1.4B 同时做 generator 和 reference model，4-11pp 自引用优势贯穿全部实验；14B 的 EDD=0 (self) / EDD=2 (cross) 悖论证明 EDD 度量的不是文本内在属性而是 reference model 兼容性\n2. **Full-replacement vs. 现实 gap** [Critical]：100% 替换链远离真实场景，仅测了 25/50% mixing，5-10% 未测试\n3. **14B 信号消失** [Major]：当前主流规模（7B+）信号大幅衰减，方法部署价值受限\n4. **Feature multicollinearity** [Major]：14-16/19 VIF>10，top-2 之外排名不稳定（CI width 2.7-3.7），feature importance 叙事可靠性存疑\n5. **多重比较未校正** [Major]：50+ 次比较仅 1 处做了 Bonferroni\n\n**主要优势**：问题形式化新颖、atlas 设计系统、可复现性好、消融充分、透明度高。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1"
+          },
+          "id": "event-001376"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "messages": [
+        {
+          "source_line": 1377,
+          "timestamp": "2026-05-25T21:26:17.068461+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 2 的完整审稿意见，请逐条回应：对每个 Must-Fix 和 Should-Fix 条目，标注 [AGREE] 同意并简述理由，或 [REBUT] 反驳并引用具体 Section/Table/Figure 作为证据。\n\n---\n\n## Reviewer 2 完整审稿意见\n\n**Overall**: 3.5 (Borderline Conference), Soundness 3/5, Excitement 3/5\n\n### Must-Fix 问题\n\n**N1** [Critical] \"Decoding strategy contributes at least as much as model architecture\" — 9 个 cell 无法支撑此 claim\n- 基于 3×3 grid 的均值比较（within-model strategy gap 9.3pp vs. within-strategy model gap 7.2pp），但仅有 9 个 cell，且未对 9.3 vs. 7.2 的差异进行任何统计检验。2.1pp 的差异完全可能是噪声。这是论文三大 findings 之一。\n\n**N2** [Critical] Scale generalization claim 证据薄弱——\"signal attenuates with scale\" 基于极有限的数据点\n- 主 benchmark 仅覆盖 1–1.5B。7–8B 仅 2 个模型（仅 nucleus），14B 仅 1 个模型（QLoRA）。Reference model 始终固定为 Pythia-1.4B——当目标模型为 14B 时 reference model 比目标小一个数量级。Appendix B.19 承认 \"U-shaped pattern likely originates from cross-reference setup\"。\n\n**N3** [Critical] Full-replacement 假设与真实场景的鸿沟未被充分弥合\n- Partial-mixing 实验仅测 3/9 cells × 2 比例点（25%, 50%）。50% mixing 下 GPT-2 XL 已失败。5-10% mixing 完全未测试。\n\n### Should-Fix 问题\n\n**W1** [Major] EDD 指标的新颖性和独特价值论证不充分\n- 技术上仅是对 pairwise AUC 设定阈值取最大连续深度。τ=0.70 从 binary logistic regression 直接移植到 ordinal depth AUC 场景是否合理未论证。\n\n**W2** [Major] PLM baseline 比较可能不公平\n- PLM baseline 仅用 frozen CLS + linear probing / ordinal MLP。未测试 full fine-tuned DeBERTa。\"statistical features > PLM representations\" 的 claim 可能仅反映 baseline 设计弱点。\n\n**W3** [Major] Seed corpus 单一性可能夸大特征一致性\n- 全部基于 Wikipedia seed。Cross-domain 结果下降 14pp+。Wikipedia 百科全书体可能不代表对话、创意写作等多样场景。\n\n**W4** [Minor] LoRA fine-tuning 作为 recursive training 代理可能引入系统性偏差\n- LoRA 低秩约束可能人为压缩相邻深度 distributional shift。未讨论 LoRA rank 对 depth signal 的影响。\n\n### Missing References\n1. Stylometric analysis 传统（Stamatatos 2009, Neal et al. 2017）\n2. Ordinal classification ensemble 方法\n3. Iterative self-improvement / self-play 文献（Chen et al. 2024 Self-Play, Yuan et al. 2024 Self-Rewarding）\n\n---\n\n请逐条回应（[AGREE] 或 [REBUT]），引用具体论文内容作为证据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001377"
+        },
+        {
+          "source_line": 1378,
+          "timestamp": "2026-05-25T21:26:51.570524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/submitted.pdf",
+              "project": "recursive_gen_depth_est",
+              "pages": "2,5,6,7,8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001378"
+        },
+        {
+          "source_line": 1379,
+          "timestamp": "2026-05-25T21:26:52.482613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 553.1}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 537.6}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 522.8}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 442.3}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 476.1}], \\\"total_pages\\\": 26, \\\"rendered_pages\\\": 5, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 912
+          },
+          "id": "event-001379"
+        },
+        {
+          "source_line": 1380,
+          "timestamp": "2026-05-25T21:26:55.302699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-001380"
+        },
+        {
+          "source_line": 1381,
+          "timestamp": "2026-05-25T21:26:56.107604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 804
+          },
+          "id": "event-001381"
+        },
+        {
+          "source_line": 1382,
+          "timestamp": "2026-05-25T21:26:56.258628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-001382"
+        },
+        {
+          "source_line": 1383,
+          "timestamp": "2026-05-25T21:26:56.660657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-001383"
+        },
+        {
+          "source_line": 1384,
+          "timestamp": "2026-05-25T21:26:57.014195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-001384"
+        },
+        {
+          "source_line": 1385,
+          "timestamp": "2026-05-25T21:26:57.167566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 908
+          },
+          "id": "event-001385"
+        },
+        {
+          "source_line": 1386,
+          "timestamp": "2026-05-25T21:26:57.974387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1313
+          },
+          "id": "event-001386"
+        },
+        {
+          "source_line": 1387,
+          "timestamp": "2026-05-25T21:26:58.327089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1312
+          },
+          "id": "event-001387"
+        },
+        {
+          "source_line": 1388,
+          "timestamp": "2026-05-25T21:29:13.216115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R2-N1: \"Decoding strategy contributes at least as much as model architecture\" claim 缺乏统计支撑**\n\n同意。§4.1 (p.5) 原文：\"mean within-model strategy gap is 9.3 pp, comparable to the 7.2 pp mean within-strategy model gap; decoding strategy contributes at least as much as model family to performance variance\"。这一 claim 基于 3×3=9 个 cell 的均值比较，2.1 pp 的差异在如此小的样本上完全没有统计效力。论文未对此差异进行 permutation test、bootstrap test 或任何假设检验。作为论文 Introduction (p.2) 列出的三大发现之一（\"decoding strategy affects cross-condition transfer more than model architecture\"），该 claim 的证据强度与其在论文中的突出程度严重不匹配。\n\n补充发现：§5.2 (p.8) cross-strategy transfer 仅 45.95%（4-class）也从反面佐证了策略差异的重要性，但这并不等价于 \"contributes at least as much\" 的定量 claim。建议作者要么提供统计检验，要么将 claim 降级为 observation。\n\n---\n\n**[AGREE] R2-N2: Scale generalization 证据薄弱**\n\n同意，且补充我自己审稿中的发现。R2 准确指出了数据点稀疏的问题：7–8B 仅 2 个模型（Llama-3.1-8B + Qwen2.5-7B），14B 仅 1 个模型（Qwen2.5-14B with QLoRA）。\n\n我进一步发现了一个 R2 未充分展开的关键矛盾（B.19, Table 22）：14B self-reference EDD₀.₇₀ = 0（d0v1 AUC 仅 0.56–0.64），但 cross-reference（Pythia-1.4B）EDD₀.₇₀ = 2（d0v1 AUC 升至 0.70–0.74）。同一文本、同一特征集，仅更换 reference model 就使 EDD 从 0 跃升至 2。这说明在大规模下，EDD 度量的更多是 reference-generator 兼容性而非文本内在深度属性。\n\n此外，Qwen2.5-7B 的 U 型 AUC 曲线（d0v1=0.969, d2v3=0.709, d4v5=0.772, Table 19/20）与 Llama-3.1-8B 的单调衰减模式完全矛盾，论文的 model collapse theory（§3.5, γ→1 per-step signal attenuation）仅能解释单调衰减。B.19 承认 \"U-shaped pattern likely originates from cross-reference setup\" 恰好证明了 R2 关于 reference model confound 的观点。\n\n---\n\n**[AGREE] R2-N3: Full-replacement 假设与真实场景的鸿沟**\n\n同意。这与我自己审稿中的 N2 一致。补充具体数据：\n\n- B.8 Table 10 显示 50% mixing 下 GPT-2 XL d2v3 AUC = 0.695，已低于 T=0.70 阈值\n- 从 25% → 50% mixing，d2v3 AUC 的衰减幅度为 0.03–0.05（三个 cell 均值）\n- 如果按此趋势线性外推到 10% mixing，AUC 可能仍在阈值以上，但 5% 就存疑了\n- 论文完全未测试 <25% 的比例，而真实 web 递归污染的估计比例更可能在 5-15% 范围\n\n关键的是：partial-mixing 仅覆盖了 3/9 cells（GPT-2 XL nucleus、Pythia nucleus、OLMo temperature），其余 6 个 cell 未测试。在已测试的 3 个 cell 中就有 1 个失败（33% failure rate at 50%），这一失败率在更多 cells 上可能更高。\n\n---\n\n### Should-Fix 问题\n\n**[REBUT] R2-W1: EDD 指标的新颖性和独特价值**\n\n部分不同意。R2 将 EDD 简化为 \"pairwise AUC 设阈值取最大连续深度\"，但忽略了两个关键设计决策：\n\n1. **Contiguous prefix 约束**：EDD 要求从 (0,1) 到 (d-1,d) 的所有相邻对**连续**超过阈值，而非允许跳跃。这比简单取 max AUC 或 mean AUC 更保守但更有实际意义——如果 d1-d2 不可区分但 d2-d3 可区分，声称能区分到 d3 是误导的。Definition 1 (§3.4, p.4-5) 中 \"longest contiguous discriminable prefix\" 的形式化是对 ordinal depth 问题的恰当抽象。\n\n2. **与 model collapse 理论的对接**：§3.5 (p.5) 将 EDD 与 model collapse 的 tail erosion 理论联系，指出 EDD 提供了 classifier resolution 上的 physical ceiling——当相邻深度的分布差异低于分类器分辨率时 EDD 饱和。这不仅仅是一个 metric，而是连接理论预测和实证测量的桥梁。\n\n3. **Sensitivity analysis**：§4.1 (p.7) 报告 EDD 在 T ∈ {0.65, 0.70, 0.80} 下对 8/9 cells 稳定，Table 2 caption 和 §4.3 Figure 4 均佐证了 EDD 对阈值选择的鲁棒性。\n\n但我同意 R2 关于 **T=0.70 移植缺乏理论依据** 的具体批评（这也是我自己审稿的 W1）。Hosmer & Lemeshow (2000) 的阈值设计用于 binary logistic regression goodness-of-fit，不是 pairwise ordinal AUC。论文应明确 T=0.70 是 operational choice 而非理论推导。\n\n---\n\n**[AGREE] R2-W2: PLM baseline 比较可能不公平**\n\n同意。B.13 (p.14) 明确报告 PLM baseline 仅使用 \"frozen CLS representation + linear probing / ordinal MLP\"：\n- DeBERTa-v3-base: 64.5% (±4.7%)\n- RoBERTa-base: 59.5% (±3.2%)\n- RF (statistical features): 78.5%\n\n但 frozen CLS + linear probing 是已知最弱的 PLM adaptation 方式。Full fine-tuned DeBERTa-v3-large 在许多分类任务上性能远超 frozen probing。论文自身在 B.13 末尾承认 \"whether larger PLMs (e.g., 7B+) can close the gap via richer internal representations remains an open question\"，这隐含承认了 baseline 设计的局限。\n\n\"Statistical features > PLM representations\" 这一 claim（§6 Discussion, p.8：\"end-to-end PLMs lag RF by 14–33 pp\"）的可信度取决于 baseline 是否足够强。当前 baseline 设计不足以支撑此 claim。\n\n---\n\n**[AGREE] R2-W3: Seed corpus 单一性，但 R2 关于 14pp+ 下降的数字需要修正**\n\n同意 seed corpus 单一性是一个有效的关切。全部 atlas 基于 Wikipedia seed，百科全书文体的 token 分布（规范、事实陈述为主）可能与对话、创意写作、代码等场景差异显著。\n\n但 R2 称 \"Cross-domain 结果下降 14pp+\" 需要修正。论文实际报告的 cross-domain 数据：\n- B.26 arXiv 抽象文迁移：74.1% ± 2.0%（vs. WikiText ~78%），下降约 **4 pp**，非 14 pp\n- B.15 FineWeb/RedPajama：calibrated FPR remains ≤7%\n\nR2 可能混淆了 cross-**domain** transfer（~4 pp drop）和 cross-**model** transfer（§5.2: 66.4% mean，~12 pp drop）。尽管如此，仅测试 arXiv（同属学术/百科文体）不足以验证对话/创意写作等 far-domain 场景。建议补充至少一个非学术 domain（如 Reddit 或 fiction）。\n\n---\n\n**[AGREE] R2-W4: LoRA 作为 recursive training 代理的系统性偏差**\n\n同意。LoRA 的低秩约束（r=16, Table 5 Appendix A）在每次微调时仅更新一个低维子空间，这可能系统性地压缩相邻深度之间的分布偏移幅度。论文对此完全未讨论——Table 5 确认所有模型、所有深度使用 identical LoRA 配置。\n\n如果 LoRA rank 较低导致 per-step distributional shift 被人为缩小，那么论文报告的 EDD 值可能是 LoRA 特异的，不适用于 full fine-tuning 或 different rank 的 LoRA 递归链。至少应测试 r=4 和 r=64 来评估 rank 对 depth signal 的影响。\n\n---\n\n### Missing References\n\n**[AGREE]** 三个方向的缺失引用均合理：\n\n1. **Stylometric analysis**：论文的 19 个统计特征本质上就是 stylometric features（TTR、hapax ratio、n-gram entropy 等）。Stamatatos (2009) 的 survey 和 authorship attribution 文献是直接的方法论先驱，不引用是一个显著遗漏。这也可能帮助论文更好地定位自身贡献——将 depth estimation 与 authorship attribution 的区别和联系讲清楚。\n\n2. **Ordinal classification**：论文使用 RF 做 ordinal classification 但未引用 ordinal ensemble 方法文献。Frank & Hall (2001) 将 ordinal 分类分解为二元子任务的经典方法与论文的 EDD pairwise binary classifier 有直接关联。\n\n3. **Self-play / self-improvement**：Chen et al. (2024) Self-Play 和 Yuan et al. (2024) Self-Rewarding 代表了另一种递归生成范式（刻意的、有目标的递归），与论文研究的 \"意外\" web 递归污染形成有趣对比。引用这些工作可以拓宽论文的 Related Work 视野。",
+              "reviewer_id": "1",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001388"
+        },
+        {
+          "source_line": 1389,
+          "timestamp": "2026-05-25T21:29:16.931529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3715
+          },
+          "id": "event-001389"
+        },
+        {
+          "source_line": 1390,
+          "timestamp": "2026-05-25T21:29:23.944036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images"
+            }
+          },
+          "id": "event-001390"
+        },
+        {
+          "source_line": 1391,
+          "timestamp": "2026-05-25T21:29:24.044844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_round_17/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 100
+          },
+          "id": "event-001391"
+        },
+        {
+          "source_line": 1392,
+          "timestamp": "2026-05-25T21:29:36.097458+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交对 Reviewer 2 全部 8 条意见（5 Must-Fix + 3 Should-Fix）+ Missing References 的逐条回应：\n\n- **N1-N3 全部 AGREE**：9-cell claim 无统计检验、scale generalization 数据稀疏且 14B EDD 悖论加深了 reference model confound 的严重性、full-replacement 鸿沟与 R1 自己的 N2 一致\n- **W1 REBUT**：EDD 的 contiguous prefix 约束和与 model collapse 理论的对接使其不仅仅是 \"阈值+max\"；但同意 T=0.70 移植缺乏理论依据\n- **W2-W4 全部 AGREE**：PLM baseline 仅 frozen CLS + linear probing 过弱、seed corpus 单一性有效（但修正了 R2 的 14pp 数字——实际 cross-domain 仅降 4pp）、LoRA 低秩约束可能人为压缩 depth signal\n- **Missing References AGREE**：stylometric analysis、ordinal ensemble、self-play 文献均为合理补充"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_db3bd143165620ee6950e6ef0826eec8:reviewer_1"
+          },
+          "id": "event-001392"
+        }
+      ]
+    }
+  ]
+}

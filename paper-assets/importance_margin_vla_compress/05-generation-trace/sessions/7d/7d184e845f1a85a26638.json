@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7d184e845f1a85a26638",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "debug inference pipeline audit",
+  "task_key": "worker_debug_inference_pipeline_audit_20260516T122642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_inference_pipeline_audit_20260516T122642.log",
+    "occurrence": 1,
+    "bytes": 876813,
+    "sha256": "eac5158e206956979e53cc50a4abfb3ec06386165e36db5a8db14d882e91041a"
+  },
+  "statistics": {
+    "messages": 303,
+    "user_turns": 0,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 105,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 303,
+      "chunks": [
+        {
+          "path": "7d184e845f1a85a26638-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d184e845f1a85a26638-part-0002.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ]
+}

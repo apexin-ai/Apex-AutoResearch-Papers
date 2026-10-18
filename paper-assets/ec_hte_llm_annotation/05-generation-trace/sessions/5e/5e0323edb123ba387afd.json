@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e0323edb123ba387afd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 011 causal forest",
+  "task_key": "worker_code_exp-011-causal-forest_20260521T013156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-011-causal-forest_20260521T013156_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "631d72abf409b959a9cc80da9d67a3d88cdea822a0b9c3dfe4886bff1c75286e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment completed successfully. Here's a summary of the key results:\n\n**exp-011 CausalForest EC-HTE: 100 MC runs, 8 configs, 800 total fits, ~35 min runtime**\n\n### Key Findings\n\n**1. ec_hte_forest has the lowest bias across all configs:**\n- Overall mean |bias|: naive=0.1558, global=0.1073, **ec_hte=0.0608**\n- With n_expert=500, ec_hte bias drops to near-zero (e.g., 0.0039-0.0098 in K=2 configs)\n\n**2. Global correction HURTS low-misclassification subgroups (4 cases detected):**\n- K=2 extreme: subgroup 0 (pi=0.05) naive |bias|=0.047 vs global=0.125 (2.6x worse)\n- K=4 extreme: subgroup 0 (pi=0.05) naive |bias|=0.056 vs global=0.273 (4.9x worse)\n- This is the \"debiasing hurts\" pattern — global over-corrects where misclassification is low\n\n**3. Pattern consistent with exp-001 diff-in-means:**\n- ec_hte best overall bias? **YES**\n- Global hurts low-pi subgroups in extreme regimes? **YES**\n- With more expert labels (n_expert=500), ec_hte bias approaches zero uniformly\n\n**4. RMSE note:** ec_hte has higher RMSE in small-expert (n=100) K=4 configs due to noisy per-subgroup CM estimates (~25 experts per subgroup). With n_expert=500 the RMSE is competitive or better.\n\n### Files\n- Script: `/home/ubuntu/ec_hte_llm_annotation/exp011_causal_forest.py`\n- Results: `results/exp011_causal_forest.csv` (144 rows)\n- Log: `results/exp011_run.log` (298 lines)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

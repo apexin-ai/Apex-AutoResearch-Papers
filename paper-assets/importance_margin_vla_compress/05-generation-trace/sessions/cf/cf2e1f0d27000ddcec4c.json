@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cf2e1f0d27000ddcec4c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy pi05 fixedmask k09 and diagnose",
+  "task_key": "worker_deploy_pi05-fixedmask-k09-and-diagnose_20260521T195603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-fixedmask-k09-and-diagnose_20260521T195603_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "63306149ce914c86001067744bc5b5739a14020c8fe733339e6ec09e13c32c52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载中，GPU1 尚未分配显存（正常启动行为）。\n\n**总结：**\n\n**Part 1 — seed43 诊断完成：**\n- PID 531274 已退出，eval 正常完成\n- **Overall SR = 9.6%** (48/500)，与 seed42 的 12% 一致，确认 random k=0.9 的性能退化可复现\n- Registry `eval_pi05_random_k09_object_seed43` → DONE (success)，metrics 已记录\n\n**Part 2 — fixed-mask 已部署：**\n- PID 625841 在 westd-41074 GPU1 启动，模型加载中\n- Registry `eval_pi05_random_k09_fixedmask_object_seed42` → RUNNING\n- 预计运行 ~2h，结果将判别 temporal consistency 假说：\n  - fixed-mask 恢复 ~90%+ → per-call stochastic mask 是根因\n  - fixed-mask 仍 ~10% → random 90% subset 本身信息不够"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

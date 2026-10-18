@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e380a9c5796e5df0d514",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check cqa1 westd38929 gpu status",
+  "task_key": "worker_check_cqa1_westd38929_gpu_status_20260524T193136",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cqa1_westd38929_gpu_status_20260524T193136_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "513b36fd0a24957afc2ea41b3f969e42e3d81dcd37799ab4b5d0f8f2bf099237"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### westd-38929 (4x H20 97GB)\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 15980/97887 MiB | 70% | OpenVLA Attn Prune k=0.9, object, seed42 (PID 692475) — Task 3/10, ep 30/50 |\n| 1 | 15980/97887 MiB | 72% | OpenVLA Attn Prune k=0.85, object, seed42 (PID 693434) — Task 3/10, ep 30/50 |\n| 2 | **1/97887 MiB** | **0%** | **空闲** |\n| 3 | 10420/97887 MiB | 20% | Pi0.5 L2norm k=0.5, libero_10, seed43 (PID 612707) — Task 9/10 进行中 (Task 8 SR=22%, 累计 218/450=48.4%) |\n\n**已完成的结果：**\n- X-VLA Random k=0.5 Spatial seed43: **SR=72.6%** (363/500)\n- X-VLA L2norm k=0.5 Goal seed43 (tmux): **SR=59.0%** (295/500)\n- L2norm k=0.95 seed43 结果文件不存在（GPU2/3 之前的实验没留下结果文件）\n\n---\n\n### cqa1-33015 (4x 4090D 24GB)\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 10294/24564 MiB | 19% | Pi0.5 L2norm k=0.3, libero_10, seed43 v2 (PID 566658) — Task 7/10 进行中 (Task 6 SR=8%, 累计 143/350=40.9%) |\n| 1 | 10065/24564 MiB | 48% | Pi0.5 Random k=0.5, libero_10, seed43 (PID 600325) — Task 2/10 进行中 (Task 1 ep30, T0 SR=72%) |\n| 2 | 10421/24564 MiB | 28% | Pi0.5 Random k=0.95, libero_10, seed43 (PID 600400) — Task 2/10 进行中 (Task 1 ep40, T0 SR=50%) |\n| 3 | 10533/24564 MiB | 24% | Pi0.5 Random k=0.7, libero_10, seed43 (PID 600244) — Task 2/10 进行中 (Task 1 done SR=74%, 累计 83/100=83%) |\n\n**cqa1 Random seed43 进度汇总** (均在 02:43 启动，已运行约 48 min)：\n\n| 实验 | 已完成 Tasks | 当前进度 | 预估剩余 |\n|------|-------------|---------|---------|\n| Random k=0.7 | 2/10 | Task 2 开始 | ~3.5h |\n| Random k=0.5 | 1/10 (T1 ep30) | Task 1 进行中 | ~4h |\n| Random k=0.95 | 1/10 (T1 ep40) | Task 1 进行中 | ~4h |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

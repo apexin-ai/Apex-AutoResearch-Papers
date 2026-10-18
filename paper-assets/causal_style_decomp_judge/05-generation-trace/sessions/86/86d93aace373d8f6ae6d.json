@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "86d93aace373d8f6ae6d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code power curve bt fix",
+  "task_key": "worker_code_power_curve_bt_fix_20260521T030205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_power_curve_bt_fix_20260521T030205_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "0df93d3d1cb3b3f9cfd2193282b997838c8b5eae6e126ac46124091c8ab74881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both scripts ran successfully. Results:\n\n### Task A: Power Curve (fixed)\n\n80% power crossings:\n| Method | n for 80% power |\n|--------|-----------------|\n| Pairwise BT (p=0.609) | **163** |\n| Pairwise Sign Test (p=0.691, filtered) | **93** |\n| Binarized Likert (p=0.606, tie-adj.) | **462** |\n| Likert ATE (d=0.073) | **1,473** (off-chart) |\n\nBinarized Likert now correctly requires n≈462 (vs old 172), confirming the Likert Blindspot argument. PDF saved to `artifacts/figures/paper/power_curve.pdf`.\n\n### Task B: BT Bootstrap (pair-level fix)\n\n**All Data (100 pairs, 197 comparisons):**\n- BT P(formal wins): 0.6091\n- Pair-level CI: [0.5381, 0.6784], p = 0.001\n- Comparison-level CI: [0.5381, 0.6751] (reference)\n- CI width ratio pair/comp: 1.024 (pair CI ~2.4% wider)\n\n**NLI-filtered (88 pairs, 173 comparisons):**\n- BT P(formal wins): 0.6300\n- Pair-level CI: [0.5575, 0.7028], p = 0.0004\n- Comparison-level CI: [0.5607, 0.6994] (reference)\n- CI width ratio pair/comp: 1.048 (pair CI ~4.8% wider)\n\nAs expected, pair-level CIs are slightly wider than comparison-level, but conclusions hold — both subsets remain significant with the corrected bootstrap."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

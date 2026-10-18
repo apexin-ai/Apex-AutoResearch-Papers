@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2b981203faf31179c5fd",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code nli gate full validation",
+  "task_key": "worker_code_nli_gate_full_validation_20260521T114504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli_gate_full_validation_20260521T114504_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "3c1636ff25fa2b9c4ab81cb38630599faca409895f75df907ce4c3a35bd1714f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量验证完成。结果：\n\n| | Formality | Verbosity | Overall |\n|---|---|---|---|\n| N | 100 | 100 | 200 |\n| Agreement | **88.0%** | **79.0%** | **83.5%** |\n| Cohen's κ | 0.47 | 0.31 | 0.38 |\n| Pass precision | 92.1% | 82.6% | 87.4% |\n| Fail recall | 58.3% | 57.1% | 57.7% |\n| Base rate pass | 88% | 86% | 87% |\n\n**Confusion (overall)**: TP=152, FP=22, TN=15, FN=11\n\n**vs spot-check**: Full agreement 83.5% vs spot-check 65.0% (+18.5pp)。差异主要因为 spot-check 人为平衡了 50 pass/50 fail，而全量数据 pass 占 87%——pass 组 agreement 高（~92%）拉高了整体。\n\n关键发现：\n- NLI pass 判定可靠（pass precision 87-92%）\n- NLI fail 判定较弱（fail recall 仅 58%）——GPT-4o 认为约 42% 的 NLI-fail 对实际保留了语义\n- Formality 表现优于 verbosity（κ=0.47 vs 0.31）\n\n脚本 `csd_pipeline/nli_gate_full_validation.py`，结果 `data/nli_gate_full_validation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

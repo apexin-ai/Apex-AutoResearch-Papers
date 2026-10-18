@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "76386ed50b2f03e10d9f",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops verbosity nli rerun",
+  "task_key": "worker_ops_verbosity_nli_rerun_20260520T212813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verbosity_nli_rerun_20260520T212813_result.json",
+    "occurrence": 1,
+    "bytes": 1867,
+    "sha256": "c31ea1510bb4d9519531652e533d9d8525c34f2f7a9da07bd9e350dfadce02e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n---\n\n## Direction-aware NLI v2 结果报告\n\n### 整体\n- **Overall pass rate: 3/100 (3.0%)** — 使用 BERTScore ≥ 0.92 + NLI ≥ 0.90\n\n### Direction 分布\n| Direction | N | Passed | NLI mean | BERTScore mean |\n|-----------|---|--------|----------|----------------|\n| forward (compression: verbose→concise) | 46 | 2/46 (4.3%) | 0.9476 | 0.8449 |\n| backward (expansion: concise→verbose) | 54 | 1/54 (1.9%) | 0.8267 | 0.6732 |\n\n### NLI direction-aware 效果（核心改进）\nDirection-aware NLI 效果显著：\n- **NLI ≥ 0.80: 86/100 (86.0%)** — 比之前 bidirectional 的 65% 大幅提升\n- NLI ≥ 0.85: 86.0%\n- NLI ≥ 0.90: 86.0%\n- NLI ≥ 0.95: 83.0%\n\n### 瓶颈：BERTScore\nBERTScore 是主要瓶颈（verbosity 改变文本长度，BERTScore 天然对长度敏感）：\n- BERTScore ≥ 0.80: 44/100 (44.0%)\n- BERTScore ≥ 0.85: 27/100 (27.0%)\n- BERTScore ≥ 0.90: 7/100 (7.0%)\n- BERTScore ≥ 0.92: 3/100 (3.0%)\n\n### Threshold Sweep（联合阈值）\n| BERTScore ≥ | NLI ≥ 0.90 |\n|-------------|------------|\n| 0.70 | 63/100 (63.0%) |\n| 0.75 | 57/100 (57.0%) |\n| 0.80 | 43/100 (43.0%) |\n| 0.85 | 26/100 (26.0%) |\n\n---\n\n### 判定：FAIL (3% << 80%)\n\n**核心发现：Direction-aware NLI 成功解决了原来的问题（86% vs 65%），但 BERTScore 0.92 阈值对 verbosity 轴不适用。** Verbosity 改写本质上改变文本长度，BERTScore（基于 token-level 对齐）对长度变化极其敏感，尤其是 backward（expansion）方向 BERTScore 均值仅 0.6732。\n\n**建议方案（需你决定）：**\n1. 对 verbosity 轴降低 BERTScore 阈值到 0.70-0.75（可得 57-63% pass rate）\n2. 对 verbosity 轴去掉 BERTScore 门控，仅用 direction-aware NLI（86% pass rate at 0.90）\n3. 换用对长度不敏感的语义相似度指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

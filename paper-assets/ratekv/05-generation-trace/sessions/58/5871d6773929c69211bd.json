@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5871d6773929c69211bd",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis gpu and oracle status",
+  "task_key": "worker_analysis_gpu_and_oracle_status_20260514T114359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpu_and_oracle_status_20260514T114359_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "479f345f23a5b0aa182133edf8cc030ba0de2390d01a9554c1fd6215ce2e7119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### GPU 状态\n两张 RTX PRO 6000 (96GB) **完全空闲**，GPU 利用率 0%，显存占用 0 MiB。无 Python/训练进程在运行。\n\n### Oracle Comparison\n**已完成**，结果在 `/root/ratekv/oracle_comparison_results.json`。\n\n关键结果：\n- **MCKP PPL**: 10.9131（budget=0.25）\n- 28 层中 8 层有替代方案（54 次 PPL 评估，耗时 21.3 min）\n- **Max gap**: 0.0183 PPL（layer 11）\n- **Avg gap**: 0.0046 PPL\n- 结论：**MCKP 接近最优**，per-layer exhaustive search 几乎找不到改进，验证了 additive distortion model 的有效性\n\n### 活跃进程\n仅有系统服务（supervisord, jupyter-lab, tensorboard, sshd, autopanel），无训练任务。\n\nRegistry 已更新为 `DONE/success`。GPU 空闲可用于下一个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

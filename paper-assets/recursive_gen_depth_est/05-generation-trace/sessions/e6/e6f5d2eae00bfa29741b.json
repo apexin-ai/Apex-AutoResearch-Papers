@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "e6f5d2eae00bfa29741b",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code prompted generation",
+  "task_key": "worker_code_prompted_generation_20260517T084602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prompted_generation_20260517T084602.log",
+    "occurrence": 1,
+    "bytes": 620577,
+    "sha256": "c0c054bd3fe11d751cf3ed374825fbaf4059a090c55c7e258a64ffae9347c7e0"
+  },
+  "statistics": {
+    "messages": 186,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 65,
+      "user": 1,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "e6f5d2eae00bfa29741b-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "e6f5d2eae00bfa29741b-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "e6f5d2eae00bfa29741b-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ]
+}

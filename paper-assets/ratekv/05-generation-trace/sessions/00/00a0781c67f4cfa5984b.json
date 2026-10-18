@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "00a0781c67f4cfa5984b",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code compounding sweep 5models",
+  "task_key": "worker_code_compounding_sweep_5models_20260516T024122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compounding_sweep_5models_20260516T024122.log",
+    "occurrence": 1,
+    "bytes": 760140,
+    "sha256": "7942e7fc9f3c24d5f58b89659d921bfd4990c3d85492625929faa95ac9cb9dc7"
+  },
+  "statistics": {
+    "messages": 340,
+    "user_turns": 2,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 76,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 119,
+      "tool_result": 119,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "00a0781c67f4cfa5984b-part-0001.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "00a0781c67f4cfa5984b-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "00a0781c67f4cfa5984b-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "00a0781c67f4cfa5984b-part-0002.json",
+          "message_count": 160
+        }
+      ]
+    }
+  ]
+}

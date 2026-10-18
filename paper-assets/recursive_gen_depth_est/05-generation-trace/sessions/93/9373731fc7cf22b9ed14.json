@@ -1,0 +1,1988 @@
+{
+  "schema_version": "1.0",
+  "id": "9373731fc7cf22b9ed14",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "research citation mismatch check",
+  "task_key": "worker_research_citation_mismatch_check_20260519T032126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_mismatch_check_20260519T032126.log",
+    "occurrence": 1,
+    "bytes": 138488,
+    "sha256": "5f9ad68bbff06de3ecc5dbebbc4781a11c50abb0c122704cd0ff2fd9b3dccc80"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+                "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c475ac40-88a6-4d43-b616-4c950f8c7beb",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779164400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "326fec2c-873d-41f5-a598-3210e258466a",
+                "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to verify 7 citations - 5 existing ones that reviewers flagged as having mismatches, and 2 new ones that need complete BibTeX entries. Let me first check if there's a local bib file, then do web searches for each citation.\n\nLet me start by finding the bib file and then launch parallel searches.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "e216a96a-4565-424a-84fe-ba0331633e27",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Feubd6ELPXdLwsKZwCURAQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13539,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13539
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先找本地 bib 文件，同时启动 7 条引用的并行核实。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "ea2ce994-a2ab-45d3-9afd-f8b2d3942973",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Feubd6ELPXdLwsKZwCURAQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13539,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13539
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016VjHyFjhg68d9s95zWtDsx",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "639bbc8d-9a04-4eed-a03d-174ddeab364e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Feubd6ELPXdLwsKZwCURAQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13539,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13539
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T03:21:41.699Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016VjHyFjhg68d9s95zWtDsx",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/references.bib\ndocs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "2c6f500a-b917-4b8b-9f2d-d321f9f8938e",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/references.bib",
+                "docs/paper/references.bib"
+              ],
+              "durationMs": 15,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RNfk6CM1ohZdHYcvfcHQ6P",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "1bd5acb7-8494-4e1a-a883-bdc7ea7d2ba6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xn4QQXnokMKijhyzg4XbRU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 253,
+                "cache_read_input_tokens": 25380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 253
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T03:21:45.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RNfk6CM1ohZdHYcvfcHQ6P",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Model Collapse Theory\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024_nature,\n6\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n7\t  title     = {{AI models collapse when trained on recursively generated data}},\n8\t  journal   = {Nature},\n9\t  volume    = {631},\n10\t  pages     = {755--759},\n11\t  year      = {2024},\n12\t  doi       = {10.1038/s41586-024-07566-y},\n13\t}\n14\t\n15\t@inproceedings{dohmatob2024_tale_of_tails,\n16\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n17\t  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n18\t  booktitle = {Proceedings of ICML},\n19\t  year      = {2024},\n20\t  note      = {arXiv:2402.07043},\n21\t  url       = {https://arxiv.org/abs/2402.07043},\n22\t}\n23\t\n24\t@inproceedings{dohmatob2025_strong_collapse,\n25\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n26\t  title     = {{Strong Model Collapse}},\n27\t  booktitle = {Proceedings of ICLR},\n28\t  year      = {2025},\n29\t  note      = {arXiv:2410.04840},\n30\t  url       = {https://arxiv.org/abs/2410.04840},\n31\t}\n32\t\n33\t@inproceedings{dohmatob2024_demystified,\n34\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n35\t  title     = {{Model Collapse Demystified: The Case of Regression}},\n36\t  booktitle = {Proceedings of NeurIPS},\n37\t  year      = {2024},\n38\t  note      = {arXiv:2402.07712},\n39\t  url       = {https://arxiv.org/abs/2402.07712},\n40\t}\n41\t\n42\t@inproceedings{alemohammad2024_mad,\n43\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n44\t  title     = {{Self-Consuming Generative Models Go MAD}},\n45\t  booktitle = {Proceedings of ICLR},\n46\t  year      = {2024},\n47\t  note      = {arXiv:2307.01850},\n48\t  url       = {https://arxiv.org/abs/2307.01850},\n49\t}\n50\t\n51\t@misc{gerstgrasser2024_accumulate,\n52\t  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n53\t  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n54\t  year      = {2024},\n55\t  howpublished = {arXiv:2404.01413},\n56\t  url       = {https://arxiv.org/abs/2404.01413},\n57\t}\n58\t\n59\t@inproceedings{marchi2024_heat_death,\n60\t  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n61\t  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n62\t  booktitle = {Proceedings of ICASSP},\n63\t  year      = {2024},\n64\t  note      = {arXiv:2404.02325},\n65\t  url       = {https://arxiv.org/abs/2404.02325},\n66\t}\n67\t\n68\t@misc{knowledge_collapse2025,\n69\t  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n70\t  title     = {{Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training}},\n71\t  year      = {2025},\n72\t  howpublished = {arXiv:2509.04796},\n73\t  url       = {https://arxiv.org/abs/2509.04796},\n74\t}\n75\t\n76\t@misc{sigma2026_spectral,\n77\t  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n78\t  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n79\t  year      = {2026},\n80\t  howpublished = {arXiv:2601.03385},\n81\t  url       = {https://arxiv.org/abs/2601.03385},\n82\t}\n83\t\n84\t@inproceedings{mohamed2025_broken_telephone,\n85\t  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n86\t  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n87\t  booktitle = {Proceedings of ACL},\n88\t  year      = {2025},\n89\t  note      = {arXiv:2502.20258},\n90\t  url       = {https://arxiv.org/abs/2502.20258},\n91\t}\n92\t\n93\t@inproceedings{synthetic_eggs2026,\n94\t  author    = {Schaffelder, Max and Gatt, Albert},\n95\t  title     = {{Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n96\t  booktitle = {Findings of ACL},\n97\t  year      = {2026},\n98\t  note      = {arXiv:2511.01490},\n99\t  url       = {https://arxiv.org/abs/2511.01490},\n100\t}\n101\t\n102\t@inproceedings{shi2025_closer_look,\n103\t  author    = {Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n104\t  title     = {{A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective}},\n105\t  booktitle = {Proceedings of NeurIPS},\n106\t  year      = {2025},\n107\t  note      = {Spotlight},\n108\t}\n109\t\n110\t@inproceedings{yi2026_escaping_collapse,\n111\t  author    = {Yi, Bingji and Liu, Qiyuan and Cheng, Yuwei and Xu, Haifeng},\n112\t  title     = {{Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence}},\n113\t  booktitle = {3rd DATA-FM Workshop at ICLR 2026},\n114\t  year      = {2026},\n115\t}\n116\t\n117\t% --- Model collapse: collapse-can-be-avoided / contamination ---\n118\t\n119\t@inproceedings{drayson2025_detection_prevents_collapse,\n120\t  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n121\t  title     = {{Machine-generated text detection prevents language model collapse}},\n122\t  booktitle = {Findings of EMNLP},\n123\t  year      = {2025},\n124\t  note      = {arXiv:2502.15654},\n125\t  url       = {https://arxiv.org/abs/2502.15654},\n126\t}\n127\t\n128\t@misc{bakshi2026_collapse_improvement,\n129\t  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n130\t  title     = {{From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources}},\n131\t  year      = {2026},\n132\t  howpublished = {arXiv:2602.10531},\n133\t  url       = {https://arxiv.org/abs/2602.10531},\n134\t}\n135\t\n136\t@misc{wang2026_contamination,\n137\t  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n138\t  title     = {{Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training}},\n139\t  year      = {2026},\n140\t  howpublished = {arXiv:2602.16065},\n141\t  url       = {https://arxiv.org/abs/2602.16065},\n142\t}\n143\t\n144\t@misc{falahati2026_curated,\n145\t  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n146\t  title     = {{Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences}},\n147\t  year      = {2026},\n148\t  howpublished = {arXiv:2605.07724},\n149\t  url       = {https://arxiv.org/abs/2605.07724},\n150\t}\n151\t\n152\t% ============================================================\n153\t% AI-Generated Text Detection\n154\t% ============================================================\n155\t\n156\t@article{wu2025_detection_survey,\n157\t  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Chao, Lidia Sam and Wong, Derek Fai},\n158\t  title     = {{A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions}},\n159\t  journal   = {Computational Linguistics},\n160\t  volume    = {51},\n161\t  number    = {1},\n162\t  pages     = {275--354},\n163\t  year      = {2025},\n164\t  publisher = {MIT Press},\n165\t}\n166\t\n167\t% --- Statistical / zero-shot detectors ---\n168\t\n169\t@inproceedings{gehrmann2019_gltr,\n170\t  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n171\t  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n172\t  booktitle = {Proceedings of ACL: System Demonstrations},\n173\t  year      = {2019},\n174\t  note      = {arXiv:1906.04043},\n175\t  url       = {https://arxiv.org/abs/1906.04043},\n176\t}\n177\t\n178\t@inproceedings{mitchell2023_detectgpt,\n179\t  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n180\t  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n181\t  booktitle = {Proceedings of ICML},\n182\t  year      = {2023},\n183\t  note      = {arXiv:2301.11305},\n184\t  url       = {https://arxiv.org/abs/2301.11305},\n185\t}\n186\t\n187\t@inproceedings{fast_detectgpt2024,\n188\t  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n189\t  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n190\t  booktitle = {Proceedings of ICLR},\n191\t  year      = {2024},\n192\t  note      = {arXiv:2310.05130},\n193\t  url       = {https://arxiv.org/abs/2310.05130},\n194\t}\n195\t\n196\t@inproceedings{binoculars2024,\n197\t  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n198\t  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n199\t  booktitle = {Proceedings of ICML},\n200\t  year      = {2024},\n201\t  note      = {arXiv:2401.12070},\n202\t  url       = {https://arxiv.org/abs/2401.12070},\n203\t}\n204\t\n205\t@article{diveye2026,\n206\t  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n207\t  title     = {{Diversity Boosts AI-Generated Text Detection}},\n208\t  journal   = {Transactions on Machine Learning Research (TMLR)},\n209\t  year      = {2026},\n210\t  note      = {arXiv:2509.18880},\n211\t  url       = {https://arxiv.org/abs/2509.18880},\n212\t}\n213\t\n214\t% --- Robustness / limitations of detectors ---\n215\t\n216\t@misc{sadasivan2023_paraphrase,\n217\t  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n218\t  title     = {{Can AI-Generated Text be Reliably Detected?}},\n219\t  year      = {2023},\n220\t  howpublished = {arXiv:2303.11156},\n221\t  url       = {https://arxiv.org/abs/2303.11156},\n222\t}\n223\t\n224\t@misc{pudasaini2026_detection_fails,\n225\t  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n226\t  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy}},\n227\t  year      = {2026},\n228\t  howpublished = {arXiv:2603.23146},\n229\t  url       = {https://arxiv.org/abs/2603.23146},\n230\t}\n231\t\n232\t@misc{pu2026_generator_barrier,\n233\t  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n234\t  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n235\t  year      = {2026},\n236\t  howpublished = {arXiv:2604.13692},\n237\t  url       = {https://arxiv.org/abs/2604.13692},\n238\t}\n239\t\n240\t% --- Beyond binary: attribution, editing extent, benchmarks ---\n241\t\n242\t@inproceedings{bevendorff2025_two_paradigms,\n243\t  author    = {Bevendorff, Janek and Wiegmann, Matti and Richter, Emmelie and Potthast, Martin and Stein, Benno},\n244\t  title     = {{The Two Paradigms of LLM Detection: Authorship Attribution vs. Authorship Verification}},\n245\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n246\t  pages     = {3762--3787},\n247\t  year      = {2025},\n248\t  address   = {Vienna, Austria},\n249\t}\n250\t\n251\t@inproceedings{uchendu2020_attribution,\n252\t  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n253\t  title     = {{Authorship Attribution for Neural Text Generation}},\n254\t  booktitle = {Proceedings of EMNLP},\n255\t  year      = {2020},\n256\t}\n257\t\n258\t@inproceedings{editlens2026,\n259\t  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n260\t  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n261\t  booktitle = {Proceedings of ICLR},\n262\t  year      = {2026},\n263\t  note      = {arXiv:2510.03154},\n264\t  url       = {https://arxiv.org/abs/2510.03154},\n265\t}\n266\t\n267\t@inproceedings{loki2025,\n268\t  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and Zhang, Junan and Bai, Tianyi and Kang, Hengrui and He, Jun and Lin, Honglin and Wang, Zihao and Wu, Tong and Wu, Zhizheng and Chen, Yiping and Lin, Dahua and He, Conghui and Li, Weijia},\n269\t  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n270\t  booktitle = {Proceedings of ICLR (Spotlight)},\n271\t  year      = {2025},\n272\t  note      = {arXiv:2410.09732},\n273\t  url       = {https://arxiv.org/abs/2410.09732},\n274\t}\n275\t\n276\t% --- Geometric / intrinsic dimension detectors ---\n277\t\n278\t@inproceedings{tulchinskii2024_intrinsic_dim,\n279\t  author    = {Tulchinskii, Eduard and Kuznetsov, Kristian and Kushnareva, Laida and Cherniavskii, Daniil and Barannikov, Serguei and Piontkovskaya, Irina and Nikolenko, Sergey and Burnaev, Evgeny},\n280\t  title     = {{Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts}},\n281\t  booktitle = {Proceedings of NeurIPS},\n282\t  year      = {2023},\n283\t  note      = {arXiv:2306.04723},\n284\t  url       = {https://arxiv.org/abs/2306.04723},\n285\t}\n286\t\n287\t% --- Statistical / feature-based / shared-task detectors ---\n288\t\n289\t@inproceedings{verma2024_ghostbuster,\n290\t  author    = {Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n291\t  title     = {{Ghostbuster: Detecting Text Ghostwritten by Large Language Models}},\n292\t  booktitle = {Proceedings of NAACL},\n293\t  year      = {2024},\n294\t  note      = {arXiv:2305.15047},\n295\t  url       = {https://arxiv.org/abs/2305.15047},\n296\t}\n297\t\n298\t@inproceedings{wang2024_m4_semeval,\n299\t  author    = {Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas and Whitehouse, Chenxi and Aji, Alham Fikri and Habash, Nizar and Gurevych, Iryna and Nakov, Preslav},\n300\t  title     = {{SemEval-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection}},\n301\t  booktitle = {Proceedings of the 18th International Workshop on Semantic Evaluation (SemEval-2024)},\n302\t  year      = {2024},\n303\t  note      = {arXiv:2404.14183},\n304\t  url       = {https://arxiv.org/abs/2404.14183},\n305\t}\n306\t\n307\t@inproceedings{li2024_mage,\n308\t  author    = {Li, Yongkang and Li, Donghao and Yang, Yue and Hu, Baotian and Zhang, Min},\n309\t  title     = {{MAGE: Machine-generated Text Detection in the Wild}},\n310\t  booktitle = {Proceedings of ACL},\n311\t  year      = {2024},\n312\t  note      = {arXiv:2305.13242},\n313\t  url       = {https://arxiv.org/abs/2305.13242},\n314\t}\n315\t\n316\t@inproceedings{yang2024_dnagpt,\n317\t  author    = {Yang, Xianjun and Cheng, Wei and Wu, Yue and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n318\t  title     = {{DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text}},\n319\t  booktitle = {Proceedings of ICLR},\n320\t  year      = {2024},\n321\t  note      = {arXiv:2305.17359},\n322\t  url       = {https://arxiv.org/abs/2305.17359},\n323\t}\n324\t\n325\t% --- Watermarking ---\n326\t\n327\t@inproceedings{kirchenbauer2023_watermark,\n328\t  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n329\t  title     = {{A Watermark for Large Language Models}},\n330\t  booktitle = {Proceedings of ICML},\n331\t  year      = {2023},\n332\t  note      = {arXiv:2301.10226},\n333\t  url       = {https://arxiv.org/abs/2301.10226},\n334\t}\n335\t\n336\t% ============================================================\n337\t% Decoding Strategies\n338\t% ============================================================\n339\t\n340\t@inproceedings{holtzman2020_nucleus,\n341\t  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n342\t  title     = {{The Curious Case of Neural Text Degeneration}},\n343\t  booktitle = {Proceedings of ICLR},\n344\t  year      = {2020},\n345\t  note      = {arXiv:1904.09751},\n346\t  url       = {https://arxiv.org/abs/1904.09751},\n347\t}\n348\t\n349\t@inproceedings{finlayson2024_closing,\n350\t  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n351\t  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n352\t  booktitle = {Proceedings of ICLR},\n353\t  year      = {2024},\n354\t  note      = {arXiv:2310.01693},\n355\t  url       = {https://arxiv.org/abs/2310.01693},\n356\t}\n357\t\n358\t@inproceedings{garces_arias2025_decoding_decoded,\n359\t  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n360\t  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n361\t  booktitle = {Proceedings of COLING},\n362\t  year      = {2025},\n363\t  note      = {arXiv:2410.06097},\n364\t  url       = {https://arxiv.org/abs/2410.06097},\n365\t}\n366\t\n367\t@article{wiher2022_decoding,\n368\t  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n369\t  title     = {{On Decoding Strategies for Neural Text Generators}},\n370\t  journal   = {Transactions of the Association for Computational Linguistics},\n371\t  volume    = {10},\n372\t  pages     = {997--1012},\n373\t  year      = {2022},\n374\t}\n375\t\n376\t@inproceedings{basu2021_mirostat,\n377\t  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n378\t  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n379\t  booktitle = {Proceedings of ICLR},\n380\t  year      = {2021},\n381\t}\n382\t\n383\t% ============================================================\n384\t% Ordinal Classification / Contrastive Learning\n385\t% ============================================================\n386\t\n387\t@article{coral2020,\n388\t  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n389\t  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n390\t  journal   = {Pattern Recognition Letters},\n391\t  volume    = {140},\n392\t  pages     = {325--331},\n393\t  year      = {2020},\n394\t  note      = {arXiv:1901.07884},\n395\t  url       = {https://arxiv.org/abs/1901.07884},\n396\t}\n397\t\n398\t@inproceedings{cloc2025,\n399\t  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n400\t  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n401\t  booktitle = {Proceedings of CVPR},\n402\t  year      = {2025},\n403\t  note      = {arXiv:2504.17813},\n404\t  url       = {https://arxiv.org/abs/2504.17813},\n405\t}\n406\t\n407\t% ============================================================\n408\t% Foundation Models / Fine-tuning\n409\t% ============================================================\n410\t\n411\t@inproceedings{hu2022lora,\n412\t  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n413\t  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n414\t  booktitle = {Proceedings of ICLR},\n415\t  year      = {2022},\n416\t  note      = {arXiv:2106.09685},\n417\t  url       = {https://arxiv.org/abs/2106.09685},\n418\t}\n419\t\n420\t@inproceedings{he2021_deberta_v3,\n421\t  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n422\t  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n423\t  booktitle = {Proceedings of ICLR},\n424\t  year      = {2023},\n425\t  note      = {arXiv:2111.09543},\n426\t  url       = {https://arxiv.org/abs/2111.09543},\n427\t}\n428\t\n429\t@article{liu2019_roberta,\n430\t  author    = {Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},\n431\t  title     = {{RoBERTa: A Robustly Optimized BERT Pretraining Approach}},\n432\t  journal   = {arXiv preprint arXiv:1907.11692},\n433\t  year      = {2019},\n434\t  url       = {https://arxiv.org/abs/1907.11692},\n435\t}\n436\t\n437\t% ============================================================\n438\t% Data Curation / Selection\n439\t% ============================================================\n440\t\n441\t@inproceedings{dsir2023,\n442\t  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n443\t  title     = {{Data Selection for Language Models via Importance Resampling}},\n444\t  booktitle = {Proceedings of NeurIPS},\n445\t  year      = {2023},\n446\t  note      = {arXiv:2302.03169},\n447\t  url       = {https://arxiv.org/abs/2302.03169},\n448\t}\n449\t\n450\t@inproceedings{qurating2024,\n451\t  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n452\t  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n453\t  booktitle = {Proceedings of ICML},\n454\t  year      = {2024},\n455\t  note      = {arXiv:2402.09739},\n456\t  url       = {https://arxiv.org/abs/2402.09739},\n457\t}\n458\t\n459\t@inproceedings{penedo2024_fineweb,\n460\t  author    = {Penedo, Guilherme and Kydl{\\'\\i}{\\v{c}}ek, Hynek and Lozhkov, Anton and Mitchell, Margaret and Wolf, Thomas and von Werra, Leandro},\n461\t  title     = {{The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale}},\n462\t  booktitle = {Proceedings of NeurIPS},\n463\t  year      = {2024},\n464\t  note      = {arXiv:2406.17557},\n465\t  url       = {https://arxiv.org/abs/2406.17557},\n466\t}\n467\t\n468\t@article{sugiyama2007_importance_weighting,\n469\t  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n470\t  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n471\t  journal   = {Journal of Machine Learning Research},\n472\t  volume    = {8},\n473\t  pages     = {985--1005},\n474\t  year      = {2007},\n475\t}\n476\t\n477\t% ============================================================\n478\t% Large Language Models (cross-scale experiments)\n479\t% ============================================================\n480\t\n481\t@misc{qwen2.5,\n482\t  author    = {Qwen Team},\n483\t  title     = {{Qwen2.5: A Party of Foundation Models}},\n484\t  year      = {2025},\n485\t  howpublished = {arXiv:2412.15115},\n486\t  url       = {https://arxiv.org/abs/2412.15115},\n487\t}\n488\t\n489\t@misc{llama3,\n490\t  author    = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and others},\n491\t  title     = {{The Llama 3 Herd of Models}},\n492\t  year      = {2024},\n493\t  howpublished = {arXiv:2407.21783},\n494\t  url       = {https://arxiv.org/abs/2407.21783},\n495\t}\n496\t\n497\t% ============================================================\n498\t% Additional References (R5-R7 fixes)\n499\t% ============================================================\n500\t\n501\t@article{schaeffer2025,\n502\t  author    = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n503\t  title     = {{Position: Model Collapse Does Not Mean What You Think}},\n504\t  journal   = {arXiv preprint arXiv:2503.03150},\n505\t  year      = {2025},\n506\t  url       = {https://arxiv.org/abs/2503.03150},\n507\t}\n508\t\n509\t@inproceedings{frank2001,\n510\t  author    = {Frank, Eibe and Hall, Mark},\n511\t  title     = {{A Simple Approach to Ordinal Classification}},\n512\t  booktitle = {Proceedings of ECML},\n513\t  year      = {2001},\n514\t  pages     = {145--156},\n515\t}\n516\t\n517\t@inproceedings{rennie2005,\n518\t  author    = {Rennie, Jason D. M. and Srebro, Nathan},\n519\t  title     = {{Loss Functions for Preference Levels: Regression with Discrete Ordered Labels}},\n520\t  booktitle = {Proceedings of IJCAI Workshop on Advances in Preference Handling},\n521\t  year      = {2005},\n522\t}\n523\t\n524\t@article{mccullagh1980_ordinal,\n525\t  title={Regression Models for Ordinal Data},\n526\t  author={McCullagh, Peter},\n527\t  journal={Journal of the Royal Statistical Society: Series B},\n528\t  volume={42},\n529\t  number={2},\n530\t  pages={109--142},\n531\t  year={1980}\n532\t}\n533\t\n534\t@inproceedings{wenzek2020_ccnet,\n535\t  title={{CCNet}: Extracting High Quality Monolingual Datasets from Web Crawl Data},\n536\t  author={Wenzek, Guillaume and Lachaux, Marie-Anne and Conneau, Alexis and Chaudhary, Vishrav and Guzm{\\'a}n, Francisco and Joulin, Armand and Grave, Edouard},\n537\t  booktitle={Proceedings of LREC},\n538\t  year={2020}\n539\t}\n540\t\n541\t@inproceedings{dugan2024_raid,\n542\t  author    = {Dugan, Liam and Hwang, Alyssa and Trhl{\\'\\i}k, Filip and Zhu, Andrew and Ludan, Josh Magnus and Xu, Hainiu and Ippolito, Daphne and Callison-Burch, Chris},\n543\t  title     = {{RAID: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors}},\n544\t  booktitle = {Proceedings of ACL},\n545\t  pages     = {12463--12492},\n546\t  year      = {2024},\n547\t  note      = {arXiv:2405.07940},\n548\t  url       = {https://arxiv.org/abs/2405.07940},\n549\t}\n550\t\n551\t% ============================================================\n552\t% Reviewer-requested citations (MR1--MR5)\n553\t% ============================================================\n554\t\n555\t@inproceedings{guo2024curious,\n556\t  author    = {Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chlo{\\'e}},\n557\t  title     = {{The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text}},\n558\t  booktitle = {Findings of NAACL},\n559\t  year      = {2024},\n560\t  note      = {arXiv:2311.09807},\n561\t  url       = {https://arxiv.org/abs/2311.09807},\n562\t}\n563\t\n564\t@inproceedings{padmakumar2024diversity,\n565\t  author    = {Padmakumar, Vishakh and He, He},\n566\t  title     = {{Does Writing with Language Models Reduce Content Diversity?}},\n567\t  booktitle = {Proceedings of ICLR},\n568\t  year      = {2024},\n569\t  note      = {arXiv:2309.05196},\n570\t  url       = {https://arxiv.org/abs/2309.05196},\n571\t}\n572\t\n573\t@misc{briesch2024selfconsuming,\n574\t  author    = {Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n575\t  title     = {{Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop}},\n576\t  year      = {2024},\n577\t  howpublished = {arXiv:2311.16822},\n578\t  url       = {https://arxiv.org/abs/2311.16822},\n579\t}\n580\t\n581\t@misc{seddik2024synthetic,\n582\t  author    = {Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane},\n583\t  title     = {{How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse}},\n584\t  year      = {2024},\n585\t  howpublished = {arXiv:2404.05090},\n586\t  url       = {https://arxiv.org/abs/2404.05090},\n587\t}\n588\t\n589\t@inproceedings{pareek2024understanding,\n590\t  author    = {Pareek, Divyansh and Du, Simon S. and Oh, Sewoong},\n591\t  title     = {{Understanding the Gains from Repeated Self-Distillation}},\n592\t  booktitle = {Proceedings of NeurIPS},\n593\t  year      = {2024},\n594\t  note      = {arXiv:2407.04600},\n595\t  url       = {https://arxiv.org/abs/2407.04600},\n596\t}\n597\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "5dbb8fac-f549-4c95-ba78-41ca8c38bf6a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib",
+                "content": "% ============================================================\n% Model Collapse Theory\n% ============================================================\n\n@article{shumailov2024_nature,\n  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  title     = {{AI models collapse when trained on recursively generated data}},\n  journal   = {Nature},\n  volume    = {631},\n  pages     = {755--759},\n  year      = {2024},\n  doi       = {10.1038/s41586-024-07566-y},\n}\n\n@inproceedings{dohmatob2024_tale_of_tails,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.07043},\n  url       = {https://arxiv.org/abs/2402.07043},\n}\n\n@inproceedings{dohmatob2025_strong_collapse,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  title     = {{Strong Model Collapse}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2025},\n  note      = {arXiv:2410.04840},\n  url       = {https://arxiv.org/abs/2410.04840},\n}\n\n@inproceedings{dohmatob2024_demystified,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  title     = {{Model Collapse Demystified: The Case of Regression}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2402.07712},\n  url       = {https://arxiv.org/abs/2402.07712},\n}\n\n@inproceedings{alemohammad2024_mad,\n  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n  title     = {{Self-Consuming Generative Models Go MAD}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2307.01850},\n  url       = {https://arxiv.org/abs/2307.01850},\n}\n\n@misc{gerstgrasser2024_accumulate,\n  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n  year      = {2024},\n  howpublished = {arXiv:2404.01413},\n  url       = {https://arxiv.org/abs/2404.01413},\n}\n\n@inproceedings{marchi2024_heat_death,\n  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n  booktitle = {Proceedings of ICASSP},\n  year      = {2024},\n  note      = {arXiv:2404.02325},\n  url       = {https://arxiv.org/abs/2404.02325},\n}\n\n@misc{knowledge_collapse2025,\n  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n  title     = {{Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training}},\n  year      = {2025},\n  howpublished = {arXiv:2509.04796},\n  url       = {https://arxiv.org/abs/2509.04796},\n}\n\n@misc{sigma2026_spectral,\n  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2601.03385},\n  url       = {https://arxiv.org/abs/2601.03385},\n}\n\n@inproceedings{mohamed2025_broken_telephone,\n  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n  booktitle = {Proceedings of ACL},\n  year      = {2025},\n  note      = {arXiv:2502.20258},\n  url       = {https://arxiv.org/abs/2502.20258},\n}\n\n@inproceedings{synthetic_eggs2026,\n  author    = {Schaffelder, Max and Gatt, Albert},\n  title     = {{Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n  booktitle = {Findings of ACL},\n  year      = {2026},\n  note      = {arXiv:2511.01490},\n  url       = {https://arxiv.org/abs/2511.01490},\n}\n\n@inproceedings{shi2025_closer_look,\n  author    = {Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n  title     = {{A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2025},\n  note      = {Spotlight},\n}\n\n@inproceedings{yi2026_escaping_collapse,\n  author    = {Yi, Bingji and Liu, Qiyuan and Cheng, Yuwei and Xu, Haifeng},\n  title     = {{Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence}},\n  booktitle = {3rd DATA-FM Workshop at ICLR 2026},\n  year      = {2026},\n}\n\n% --- Model collapse: collapse-can-be-avoided / contamination ---\n\n@inproceedings{drayson2025_detection_prevents_collapse,\n  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  title     = {{Machine-generated text detection prevents language model collapse}},\n  booktitle = {Findings of EMNLP},\n  year      = {2025},\n  note      = {arXiv:2502.15654},\n  url       = {https://arxiv.org/abs/2502.15654},\n}\n\n@misc{bakshi2026_collapse_improvement,\n  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n  title     = {{From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources}},\n  year      = {2026},\n  howpublished = {arXiv:2602.10531},\n  url       = {https://arxiv.org/abs/2602.10531},\n}\n\n@misc{wang2026_contamination,\n  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n  title     = {{Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training}},\n  year      = {2026},\n  howpublished = {arXiv:2602.16065},\n  url       = {https://arxiv.org/abs/2602.16065},\n}\n\n@misc{falahati2026_curated,\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  title     = {{Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences}},\n  year      = {2026},\n  howpublished = {arXiv:2605.07724},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n% ============================================================\n% AI-Generated Text Detection\n% ============================================================\n\n@article{wu2025_detection_survey,\n  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Chao, Lidia Sam and Wong, Derek Fai},\n  title     = {{A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions}},\n  journal   = {Computational Linguistics},\n  volume    = {51},\n  number    = {1},\n  pages     = {275--354},\n  year      = {2025},\n  publisher = {MIT Press},\n}\n\n% --- Statistical / zero-shot detectors ---\n\n@inproceedings{gehrmann2019_gltr,\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n  booktitle = {Proceedings of ACL: System Demonstrations},\n  year      = {2019},\n  note      = {arXiv:1906.04043},\n  url       = {https://arxiv.org/abs/1906.04043},\n}\n\n@inproceedings{mitchell2023_detectgpt,\n  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.11305},\n  url       = {https://arxiv.org/abs/2301.11305},\n}\n\n@inproceedings{fast_detectgpt2024,\n  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.05130},\n  url       = {https://arxiv.org/abs/2310.05130},\n}\n\n@inproceedings{binoculars2024,\n  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2401.12070},\n  url       = {https://arxiv.org/abs/2401.12070},\n}\n\n@article{diveye2026,\n  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n  title     = {{Diversity Boosts AI-Generated Text Detection}},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2026},\n  note      = {arXiv:2509.18880},\n  url       = {https://arxiv.org/abs/2509.18880},\n}\n\n% --- Robustness / limitations of detectors ---\n\n@misc{sadasivan2023_paraphrase,\n  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  title     = {{Can AI-Generated Text be Reliably Detected?}},\n  year      = {2023},\n  howpublished = {arXiv:2303.11156},\n  url       = {https://arxiv.org/abs/2303.11156},\n}\n\n@misc{pudasaini2026_detection_fails,\n  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy}},\n  year      = {2026},\n  howpublished = {arXiv:2603.23146},\n  url       = {https://arxiv.org/abs/2603.23146},\n}\n\n@misc{pu2026_generator_barrier,\n  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n  year      = {2026},\n  howpublished = {arXiv:2604.13692},\n  url       = {https://arxiv.org/abs/2604.13692},\n}\n\n% --- Beyond binary: attribution, editing extent, benchmarks ---\n\n@inproceedings{bevendorff2025_two_paradigms,\n  author    = {Bevendorff, Janek and Wiegmann, Matti and Richter, Emmelie and Potthast, Martin and Stein, Benno},\n  title     = {{The Two Paradigms of LLM Detection: Authorship Attribution vs. Authorship Verification}},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  pages     = {3762--3787},\n  year      = {2025},\n  address   = {Vienna, Austria},\n}\n\n@inproceedings{uchendu2020_attribution,\n  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n  title     = {{Authorship Attribution for Neural Text Generation}},\n  booktitle = {Proceedings of EMNLP},\n  year      = {2020},\n}\n\n@inproceedings{editlens2026,\n  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2510.03154},\n  url       = {https://arxiv.org/abs/2510.03154},\n}\n\n@inproceedings{loki2025,\n  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and Zhang, Junan and Bai, Tianyi and Kang, Hengrui and He, Jun and Lin, Honglin and Wang, Zihao and Wu, Tong and Wu, Zhizheng and Chen, Yiping and Lin, Dahua and He, Conghui and Li, Weijia},\n  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n  booktitle = {Proceedings of ICLR (Spotlight)},\n  year      = {2025},\n  note      = {arXiv:2410.09732},\n  url       = {https://arxiv.org/abs/2410.09732},\n}\n\n% --- Geometric / intrinsic dimension detectors ---\n\n@inproceedings{tulchinskii2024_intrinsic_dim,\n  author    = {Tulchinskii, Eduard and Kuznetsov, Kristian and Kushnareva, Laida and Cherniavskii, Daniil and Barannikov, Serguei and Piontkovskaya, Irina and Nikolenko, Sergey and Burnaev, Evgeny},\n  title     = {{Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2306.04723},\n  url       = {https://arxiv.org/abs/2306.04723},\n}\n\n% --- Statistical / feature-based / shared-task detectors ---\n\n@inproceedings{verma2024_ghostbuster,\n  author    = {Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n  title     = {{Ghostbuster: Detecting Text Ghostwritten by Large Language Models}},\n  booktitle = {Proceedings of NAACL},\n  year      = {2024},\n  note      = {arXiv:2305.15047},\n  url       = {https://arxiv.org/abs/2305.15047},\n}\n\n@inproceedings{wang2024_m4_semeval,\n  author    = {Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas and Whitehouse, Chenxi and Aji, Alham Fikri and Habash, Nizar and Gurevych, Iryna and Nakov, Preslav},\n  title     = {{SemEval-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection}},\n  booktitle = {Proceedings of the 18th International Workshop on Semantic Evaluation (SemEval-2024)},\n  year      = {2024},\n  note      = {arXiv:2404.14183},\n  url       = {https://arxiv.org/abs/2404.14183},\n}\n\n@inproceedings{li2024_mage,\n  author    = {Li, Yongkang and Li, Donghao and Yang, Yue and Hu, Baotian and Zhang, Min},\n  title     = {{MAGE: Machine-generated Text Detection in the Wild}},\n  booktitle = {Proceedings of ACL},\n  year      = {2024},\n  note      = {arXiv:2305.13242},\n  url       = {https://arxiv.org/abs/2305.13242},\n}\n\n@inproceedings{yang2024_dnagpt,\n  author    = {Yang, Xianjun and Cheng, Wei and Wu, Yue and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n  title     = {{DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2305.17359},\n  url       = {https://arxiv.org/abs/2305.17359},\n}\n\n% --- Watermarking ---\n\n@inproceedings{kirchenbauer2023_watermark,\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  title     = {{A Watermark for Large Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.10226},\n  url       = {https://arxiv.org/abs/2301.10226},\n}\n\n% ============================================================\n% Decoding Strategies\n% ============================================================\n\n@inproceedings{holtzman2020_nucleus,\n  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  title     = {{The Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2020},\n  note      = {arXiv:1904.09751},\n  url       = {https://arxiv.org/abs/1904.09751},\n}\n\n@inproceedings{finlayson2024_closing,\n  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.01693},\n  url       = {https://arxiv.org/abs/2310.01693},\n}\n\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n  note      = {arXiv:2410.06097},\n  url       = {https://arxiv.org/abs/2410.06097},\n}\n\n@article{wiher2022_decoding,\n  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n  title     = {{On Decoding Strategies for Neural Text Generators}},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  volume    = {10},\n  pages     = {997--1012},\n  year      = {2022},\n}\n\n@inproceedings{basu2021_mirostat,\n  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2021},\n}\n\n% ============================================================\n% Ordinal Classification / Contrastive Learning\n% ============================================================\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n% ============================================================\n% Foundation Models / Fine-tuning\n% ============================================================\n\n@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n\n@inproceedings{he2021_deberta_v3,\n  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2023},\n  note      = {arXiv:2111.09543},\n  url       = {https://arxiv.org/abs/2111.09543},\n}\n\n@article{liu2019_roberta,\n  author    = {Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},\n  title     = {{RoBERTa: A Robustly Optimized BERT Pretraining Approach}},\n  journal   = {arXiv preprint arXiv:1907.11692},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1907.11692},\n}\n\n% ============================================================\n% Data Curation / Selection\n% ============================================================\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@inproceedings{penedo2024_fineweb,\n  author    = {Penedo, Guilherme and Kydl{\\'\\i}{\\v{c}}ek, Hynek and Lozhkov, Anton and Mitchell, Margaret and Wolf, Thomas and von Werra, Leandro},\n  title     = {{The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2406.17557},\n  url       = {https://arxiv.org/abs/2406.17557},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  volume    = {8},\n  pages     = {985--1005},\n  year      = {2007},\n}\n\n% ============================================================\n% Large Language Models (cross-scale experiments)\n% ============================================================\n\n@misc{qwen2.5,\n  author    = {Qwen Team},\n  title     = {{Qwen2.5: A Party of Foundation Models}},\n  year      = {2025},\n  howpublished = {arXiv:2412.15115},\n  url       = {https://arxiv.org/abs/2412.15115},\n}\n\n@misc{llama3,\n  author    = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and others},\n  title     = {{The Llama 3 Herd of Models}},\n  year      = {2024},\n  howpublished = {arXiv:2407.21783},\n  url       = {https://arxiv.org/abs/2407.21783},\n}\n\n% ============================================================\n% Additional References (R5-R7 fixes)\n% ============================================================\n\n@article{schaeffer2025,\n  author    = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n  title     = {{Position: Model Collapse Does Not Mean What You Think}},\n  journal   = {arXiv preprint arXiv:2503.03150},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2503.03150},\n}\n\n@inproceedings{frank2001,\n  author    = {Frank, Eibe and Hall, Mark},\n  title     = {{A Simple Approach to Ordinal Classification}},\n  booktitle = {Proceedings of ECML},\n  year      = {2001},\n  pages     = {145--156},\n}\n\n@inproceedings{rennie2005,\n  author    = {Rennie, Jason D. M. and Srebro, Nathan},\n  title     = {{Loss Functions for Preference Levels: Regression with Discrete Ordered Labels}},\n  booktitle = {Proceedings of IJCAI Workshop on Advances in Preference Handling},\n  year      = {2005},\n}\n\n@article{mccullagh1980_ordinal,\n  title={Regression Models for Ordinal Data},\n  author={McCullagh, Peter},\n  journal={Journal of the Royal Statistical Society: Series B},\n  volume={42},\n  number={2},\n  pages={109--142},\n  year={1980}\n}\n\n@inproceedings{wenzek2020_ccnet,\n  title={{CCNet}: Extracting High Quality Monolingual Datasets from Web Crawl Data},\n  author={Wenzek, Guillaume and Lachaux, Marie-Anne and Conneau, Alexis and Chaudhary, Vishrav and Guzm{\\'a}n, Francisco and Joulin, Armand and Grave, Edouard},\n  booktitle={Proceedings of LREC},\n  year={2020}\n}\n\n@inproceedings{dugan2024_raid,\n  author    = {Dugan, Liam and Hwang, Alyssa and Trhl{\\'\\i}k, Filip and Zhu, Andrew and Ludan, Josh Magnus and Xu, Hainiu and Ippolito, Daphne and Callison-Burch, Chris},\n  title     = {{RAID: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors}},\n  booktitle = {Proceedings of ACL},\n  pages     = {12463--12492},\n  year      = {2024},\n  note      = {arXiv:2405.07940},\n  url       = {https://arxiv.org/abs/2405.07940},\n}\n\n% ============================================================\n% Reviewer-requested citations (MR1--MR5)\n% ============================================================\n\n@inproceedings{guo2024curious,\n  author    = {Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chlo{\\'e}},\n  title     = {{The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text}},\n  booktitle = {Findings of NAACL},\n  year      = {2024},\n  note      = {arXiv:2311.09807},\n  url       = {https://arxiv.org/abs/2311.09807},\n}\n\n@inproceedings{padmakumar2024diversity,\n  author    = {Padmakumar, Vishakh and He, He},\n  title     = {{Does Writing with Language Models Reduce Content Diversity?}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2309.05196},\n  url       = {https://arxiv.org/abs/2309.05196},\n}\n\n@misc{briesch2024selfconsuming,\n  author    = {Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n  title     = {{Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop}},\n  year      = {2024},\n  howpublished = {arXiv:2311.16822},\n  url       = {https://arxiv.org/abs/2311.16822},\n}\n\n@misc{seddik2024synthetic,\n  author    = {Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane},\n  title     = {{How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse}},\n  year      = {2024},\n  howpublished = {arXiv:2404.05090},\n  url       = {https://arxiv.org/abs/2404.05090},\n}\n\n@inproceedings{pareek2024understanding,\n  author    = {Pareek, Divyansh and Du, Simon S. and Oh, Sewoong},\n  title     = {{Understanding the Gains from Repeated Self-Distillation}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2407.04600},\n  url       = {https://arxiv.org/abs/2407.04600},\n}\n",
+                "numLines": 597,
+                "startLine": 1,
+                "totalLines": 597
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已读取 bib 文件。现在并行搜索 7 条引用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "41d2e372-f7e7-4111-b7f7-0ac5ecdf43cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRFqQbPg56kQbWwLabH8Pd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10509,
+                "cache_read_input_tokens": 25633,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10509
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RKYTFKKcUE4PvHyBqAPE3b",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "c7cd4a5d-2671-4c81-b32a-bfe4b4c3faaf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRFqQbPg56kQbWwLabH8Pd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10509,
+                "cache_read_input_tokens": 25633,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10509
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T03:21:48.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RKYTFKKcUE4PvHyBqAPE3b",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "9471d97c-1aa4-4a91-b33b-193f52571584",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me launch parallel web searches for all 7 citations.",
+              "signature": "EvcBClkIDRgCKkCkRQk9OtISz0WmVoj9ImNB70QdFCjgbpnAQUOujX1wPmSUWNK+jhBXFPXbjkxnhUhAL0sEDlYflbKCuPX4T1dGMg9jbGF1ZGUtb3B1cy00LTY4ABIMusLMsTsiLb3dRyeZGgw3KqkJnyqqvduutnUiMBw8qFv86dPIClhrUl01RFijSX8XRlvvpFnxpXa/HOHeHHEFdtB36k9xAeXWUZghuipM+Nfmjh6Q0QJQFiUAAYtTj+SvXU+q6kj9e952MAj3gzKcf7/fk327bujcp71c9c6OO+gWTPL2yXXr3N8B51QNcJWPA+PptyrPOmfmxhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "a1ba6897-9410-4430-aa9a-bc5c5be4ea68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0118eWweSeaZS5edpvSRpSZ7",
+              "name": "WebSearch",
+              "input": {
+                "query": "Alemohammad \"Self-Consuming Generative Models Go MAD\" ICLR 2024 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "4f8a5477-0cf6-406e-ab3b-0659c9c6dc91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016SAceJw4zQvSnTZFZjREHt",
+              "name": "WebSearch",
+              "input": {
+                "query": "Garcés Arias \"Decoding Decoded\" hyperparameter open-ended text generation 2025 venue"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "e9a8d15b-47aa-4641-be87-9984477418c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B6ei7v8fDqdRKSoxJUo1xE",
+              "name": "WebSearch",
+              "input": {
+                "query": "He Pengcheng \"DeBERTaV3\" ICLR 2023 publication year arXiv 2111.09543"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "efa180b5-3041-4ae4-a3f3-31d3a43abd07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019guqv6LoC63rWWCu4CLUaB",
+              "name": "WebSearch",
+              "input": {
+                "query": "Meta \"The Llama 3 Herd of Models\" arXiv 2407.21783 authors citation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "c3ccf3e3-33a6-4076-bbc9-2ae6df9f2e63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MSjvUoTwoygxmsBu81r72Y",
+              "name": "WebSearch",
+              "input": {
+                "query": "Guo BiScope NeurIPS 2024 AI-generated text detection"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "f6680b61-7079-4e21-8758-5be2bb6c5d6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T03:21:56.735Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0118eWweSeaZS5edpvSRpSZ7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Alemohammad \"Self-Consuming Generative Models Go MAD\" ICLR 2024 authors\"\n\nLinks: [{\"title\":\"SELF-CONSUMING GENERATIVE MODELS GO MAD - Houston Methodist Scholars\",\"url\":\"https://scholars.houstonmethodist.org/en/publications/self-consuming-generative-models-go-mad/\"},{\"title\":\"Self-Consuming AI Resources\",\"url\":\"https://dsp.rice.edu/ai-loops/\"},{\"title\":\"Self-Consuming Generative Models Go MAD | NSF Public Access Repository\",\"url\":\"https://par.nsf.gov/biblio/10570494\"},{\"title\":\"ICLR Poster Self-Consuming Generative Models Go MAD\",\"url\":\"https://iclr.cc/virtual/2024/poster/18592\"},{\"title\":\"[2307.01850] Self-Consuming Generative Models Go MAD\",\"url\":\"https://arxiv.org/abs/2307.01850\"},{\"title\":\"Self-Consuming Generative Models Go MAD | OpenReview\",\"url\":\"https://openreview.net/forum?id=ShjMHfmPs0\"},{\"title\":\"[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a\"},{\"title\":\"Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute\",\"url\":\"https://montrealethics.ai/self-consuming-generative-models-go-mad/\"},{\"title\":\"SELF-CONSUMING GENERATIVE MODELS GO MAD\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/ebc042e767de551803ccfcc45e2454f5-Paper-Conference.pdf\"},{\"title\":\"Self-Correcting Self-Consuming Loops for Generative Model Training\",\"url\":\"https://arxiv.org/pdf/2402.07087\"}]\n\nBased on the search results, the authors of \"Self-Consuming Generative Models Go MAD\" are Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard G. Baraniuk. The paper was presented at the 12th International Conference on Learning Representations (ICLR 2024) in Vienna, Austria.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "9257d5e2-c728-4370-9f35-5224cac5789a",
+            "tool_use_result": {
+              "query": "Alemohammad \"Self-Consuming Generative Models Go MAD\" ICLR 2024 authors",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01ThmMLbFZeuHW6HQ5Uh2PtL",
+                  "content": [
+                    {
+                      "title": "SELF-CONSUMING GENERATIVE MODELS GO MAD - Houston Methodist Scholars",
+                      "url": "https://scholars.houstonmethodist.org/en/publications/self-consuming-generative-models-go-mad/"
+                    },
+                    {
+                      "title": "Self-Consuming AI Resources",
+                      "url": "https://dsp.rice.edu/ai-loops/"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | NSF Public Access Repository",
+                      "url": "https://par.nsf.gov/biblio/10570494"
+                    },
+                    {
+                      "title": "ICLR Poster Self-Consuming Generative Models Go MAD",
+                      "url": "https://iclr.cc/virtual/2024/poster/18592"
+                    },
+                    {
+                      "title": "[2307.01850] Self-Consuming Generative Models Go MAD",
+                      "url": "https://arxiv.org/abs/2307.01850"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | OpenReview",
+                      "url": "https://openreview.net/forum?id=ShjMHfmPs0"
+                    },
+                    {
+                      "title": "[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute",
+                      "url": "https://montrealethics.ai/self-consuming-generative-models-go-mad/"
+                    },
+                    {
+                      "title": "SELF-CONSUMING GENERATIVE MODELS GO MAD",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/ebc042e767de551803ccfcc45e2454f5-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training",
+                      "url": "https://arxiv.org/pdf/2402.07087"
+                    }
+                  ]
+                },
+                "Based on the search results, the authors of \"Self-Consuming Generative Models Go MAD\" are Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard G. Baraniuk. The paper was presented at the 12th International Conference on Learning Representations (ICLR 2024) in Vienna, Austria."
+              ],
+              "durationSeconds": 3.9719828049999997
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CDJ3cfnxecNEma8aMnLtaC",
+              "name": "WebSearch",
+              "input": {
+                "query": "Muennighoff \"Scaling Data-Constrained Language Models\" NeurIPS 2024 authors venue"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "9af9a6fe-b614-4717-9021-84a55ba17cd8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YEhk35KsMMVW9wuirA9tXB",
+              "name": "WebSearch",
+              "input": {
+                "query": "Ilyas \"Datamodels: Predicting Predictions from Training Data\" ICML 2022 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "d85affd4-6fc4-415f-bc54-47fb16247483",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmEcgC2eq3zxJ5jRwbFtzU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 627,
+                "cache_read_input_tokens": 36142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 627
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T03:21:58.359Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016SAceJw4zQvSnTZFZjREHt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Garcés Arias \"Decoding Decoded\" hyperparameter open-ended text generation 2025 venue\"\n\nLinks: [{\"title\":\"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.coling-main.668/\"},{\"title\":\"(PDF) Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\",\"url\":\"https://www.researchgate.net/publication/389215115_Decoding_Decoded_Understanding_Hyperparameter_Effects_in_Open-Ended_Text_Generation\"},{\"title\":\"GitHub - YecanLee/Decoding-Decoded: [COLING 2025] Official PyTorch Implementation of \\\"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\\\" · GitHub\",\"url\":\"https://github.com/YecanLee/Decoding-Decoded\"},{\"title\":\"[2410.06097v2] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\",\"url\":\"https://arxiv.org/abs/2410.06097v2\"},{\"title\":\"[2410.06097] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\",\"url\":\"https://arxiv.org/abs/2410.06097\"},{\"title\":\"(PDF) GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation\",\"url\":\"https://www.researchgate.net/publication/395033855_GUARD_Glocal_Uncertainty-Aware_Robust_Decoding_for_Effective_and_Efficient_Open-Ended_Text_Generation\"},{\"title\":\"GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.380/\"},{\"title\":\"GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation\",\"url\":\"https://arxiv.org/html/2508.20757v1\"}]\n\nBased on the search results, here's the information about the paper:\n\n\"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\" is by Esteban Garcés Arias, Meimingwei Li, Christian Heumann, and Matthias Assenmacher.\n\nThe paper was published in the Proceedings of the 31st International Conference on Computational Linguistics in Abu Dhabi, UAE. The specific venue is **COLING 2025** (the International Conference on Computational Linguistics).\n\nThe paper focuses on decoding strategies for generative large language models and how specific hyperparameters guide these strategies to transform raw probability distributions into coherent, fluent text.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "214f7ac2-2be3-48b8-89ae-5adc6be1da88",
+            "tool_use_result": {
+              "query": "Garcés Arias \"Decoding Decoded\" hyperparameter open-ended text generation 2025 venue",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01QKZEAvq7Q97mVZqoEjrtEB",
+                  "content": [
+                    {
+                      "title": "Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.coling-main.668/"
+                    },
+                    {
+                      "title": "(PDF) Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation",
+                      "url": "https://www.researchgate.net/publication/389215115_Decoding_Decoded_Understanding_Hyperparameter_Effects_in_Open-Ended_Text_Generation"
+                    },
+                    {
+                      "title": "GitHub - YecanLee/Decoding-Decoded: [COLING 2025] Official PyTorch Implementation of \"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\" · GitHub",
+                      "url": "https://github.com/YecanLee/Decoding-Decoded"
+                    },
+                    {
+                      "title": "[2410.06097v2] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation",
+                      "url": "https://arxiv.org/abs/2410.06097v2"
+                    },
+                    {
+                      "title": "[2410.06097] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation",
+                      "url": "https://arxiv.org/abs/2410.06097"
+                    },
+                    {
+                      "title": "(PDF) GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation",
+                      "url": "https://www.researchgate.net/publication/395033855_GUARD_Glocal_Uncertainty-Aware_Robust_Decoding_for_Effective_and_Efficient_Open-Ended_Text_Generation"
+                    },
+                    {
+                      "title": "GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-emnlp.380/"
+                    },
+                    {
+                      "title": "GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation",
+                      "url": "https://arxiv.org/html/2508.20757v1"
+                    }
+                  ]
+                },
+                "Based on the search results, here's the information about the paper:\n\n\"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\" is by Esteban Garcés Arias, Meimingwei Li, Christian Heumann, and Matthias Assenmacher.\n\nThe paper was published in the Proceedings of the 31st International Conference on Computational Linguistics in Abu Dhabi, UAE. The specific venue is **COLING 2025** (the International Conference on Computational Linguistics).\n\nThe paper focuses on decoding strategies for generative large language models and how specific hyperparameters guide these strategies to transform raw probability distributions into coherent, fluent text."
+              ],
+              "durationSeconds": 4.656680127
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T03:22:00.083Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B6ei7v8fDqdRKSoxJUo1xE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"He Pengcheng \"DeBERTaV3\" ICLR 2023 publication year arXiv 2111.09543\"\n\nLinks: [{\"title\":\"[2111.09543] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\",\"url\":\"https://arxiv.org/abs/2111.09543\"},{\"title\":\"[2111.09543v2] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\",\"url\":\"https://arxiv.org/abs/2111.09543v2\"},{\"title\":\"Published as a conference paper at ICLR 2023 DEBERTAV3: IMPROVING DEBERTA USING\",\"url\":\"https://arxiv.org/pdf/2111.09543\"},{\"title\":\"[2111.09543] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2111.09543\"},{\"title\":\"[2111.09543v1] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\",\"url\":\"https://arxiv.org/abs/2111.09543v1\"},{\"title\":\"[2111.09543v4] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\",\"url\":\"https://arxiv.org/abs/2111.09543v4\"},{\"title\":\"GitHub - microsoft/DeBERTa: The implementation of DeBERTa · GitHub\",\"url\":\"https://github.com/microsoft/DeBERTa\"},{\"title\":\"[PDF] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/DeBERTaV3:-Improving-DeBERTa-using-ELECTRA-Style-He-Gao/972706306f85b1bfb40c7d35c796ad5174eb0c9c\"}]\n\nBased on the search results, here's what I found about the DeBERTaV3 paper:\n\nThe paper \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\" was submitted on November 18, 2021, with the last revision on March 24, 2023. The arXiv identifier is 2111.09543.\n\nThe DeBERTaV3 paper was accepted by ICLR 2023, making the conference publication year 2023. The authors are Pengcheng He, Jianfeng Gao, and Weizhu Chen.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "5f99c902-353f-4104-b477-f7c390316cdf",
+            "tool_use_result": {
+              "query": "He Pengcheng \"DeBERTaV3\" ICLR 2023 publication year arXiv 2111.09543",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019VRfkyqdzoGa81bZTjjjWo",
+                  "content": [
+                    {
+                      "title": "[2111.09543] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing",
+                      "url": "https://arxiv.org/abs/2111.09543"
+                    },
+                    {
+                      "title": "[2111.09543v2] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing",
+                      "url": "https://arxiv.org/abs/2111.09543v2"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2023 DEBERTAV3: IMPROVING DEBERTA USING",
+                      "url": "https://arxiv.org/pdf/2111.09543"
+                    },
+                    {
+                      "title": "[2111.09543] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing",
+                      "url": "https://ar5iv.labs.arxiv.org/html/2111.09543"
+                    },
+                    {
+                      "title": "[2111.09543v1] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing",
+                      "url": "https://arxiv.org/abs/2111.09543v1"
+                    },
+                    {
+                      "title": "[2111.09543v4] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing",
+                      "url": "https://arxiv.org/abs/2111.09543v4"
+                    },
+                    {
+                      "title": "GitHub - microsoft/DeBERTa: The implementation of DeBERTa · GitHub",
+                      "url": "https://github.com/microsoft/DeBERTa"
+                    },
+                    {
+                      "title": "[PDF] DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/DeBERTaV3:-Improving-DeBERTa-using-ELECTRA-Style-He-Gao/972706306f85b1bfb40c7d35c796ad5174eb0c9c"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the DeBERTaV3 paper:\n\nThe paper \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\" was submitted on November 18, 2021, with the last revision on March 24, 2023. The arXiv identifier is 2111.09543.\n\nThe DeBERTaV3 paper was accepted by ICLR 2023, making the conference publication year 2023. The authors are Pengcheng He, Jianfeng Gao, and Weizhu Chen."
+              ],
+              "durationSeconds": 5.224842463999997
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T03:22:00.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019guqv6LoC63rWWCu4CLUaB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Meta \"The Llama 3 Herd of Models\" arXiv 2407.21783 authors citation\"\n\nLinks: [{\"title\":\"[2407.21783v1] The Llama 3 Herd of Models\",\"url\":\"https://arxiv.org/abs/2407.21783v1\"},{\"title\":\"[2407.21783v2] The Llama 3 Herd of Models\",\"url\":\"https://arxiv.org/abs/2407.21783v2\"},{\"title\":\"(PDF) The Llama 3 Herd of Models\",\"url\":\"https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models\"},{\"title\":\"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2407.21783\"},{\"title\":\"[2407.21783] The Llama 3 Herd of Models\",\"url\":\"https://arxiv.org/abs/2407.21783\"},{\"title\":\"The Llama 3 Herd of Models Llama Team, AI @ Meta1\",\"url\":\"https://arxiv.org/pdf/2407.21783\"},{\"title\":\"The Llama 3 Herd of Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240721783G/abstract\"},{\"title\":\"Paper page - The Llama 3 Herd of Models\",\"url\":\"https://huggingface.co/papers/2407.21783\"},{\"title\":\"The Llama 3 herd of models - Archive ouverte HAL\",\"url\":\"https://hal.science/hal-05414211\"}]\n\nBased on the search results, here is information about the arXiv paper 2407.21783 \"The Llama 3 Herd of Models\":\n\n**Paper Details:**\nThe paper presents a new set of foundation models, called Llama 3. It is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage.\n\n**Authors:**\nThe paper has an extensive author list. The paper was authored by Aaron Grattafiori and 558 other authors. The first authors listed include Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, and many others.\n\n**Citation Information:**\n- **arXiv ID:** 2407.21783\n- **Submitted:** July 31, 2024\n- **Latest Version:** v3 (November 23, 2024)\n- **DOI:** 10.48550/arXiv.2407.21783\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "814e405c-8050-4f27-aa9e-be2c1fdd37b8",
+            "tool_use_result": {
+              "query": "Meta \"The Llama 3 Herd of Models\" arXiv 2407.21783 authors citation",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01GsDG9VubNxd83fLJThdt6p",
+                  "content": [
+                    {
+                      "title": "[2407.21783v1] The Llama 3 Herd of Models",
+                      "url": "https://arxiv.org/abs/2407.21783v1"
+                    },
+                    {
+                      "title": "[2407.21783v2] The Llama 3 Herd of Models",
+                      "url": "https://arxiv.org/abs/2407.21783v2"
+                    },
+                    {
+                      "title": "(PDF) The Llama 3 Herd of Models",
+                      "url": "https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models"
+                    },
+                    {
+                      "title": "[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv",
+                      "url": "https://ar5iv.labs.arxiv.org/html/2407.21783"
+                    },
+                    {
+                      "title": "[2407.21783] The Llama 3 Herd of Models",
+                      "url": "https://arxiv.org/abs/2407.21783"
+                    },
+                    {
+                      "title": "The Llama 3 Herd of Models Llama Team, AI @ Meta1",
+                      "url": "https://arxiv.org/pdf/2407.21783"
+                    },
+                    {
+                      "title": "The Llama 3 Herd of Models - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240721783G/abstract"
+                    },
+                    {
+                      "title": "Paper page - The Llama 3 Herd of Models",
+                      "url": "https://huggingface.co/papers/2407.21783"
+                    },
+                    {
+                      "title": "The Llama 3 herd of models - Archive ouverte HAL",
+                      "url": "https://hal.science/hal-05414211"
+                    }
+                  ]
+                },
+                "Based on the search results, here is information about the arXiv paper 2407.21783 \"The Llama 3 Herd of Models\":\n\n**Paper Details:**\nThe paper presents a new set of foundation models, called Llama 3. It is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage.\n\n**Authors:**\nThe paper has an extensive author list. The paper was authored by Aaron Grattafiori and 558 other authors. The first authors listed include Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, and many others.\n\n**Citation Information:**\n- **arXiv ID:** 2407.21783\n- **Submitted:** July 31, 2024\n- **Latest Version:** v3 (November 23, 2024)\n- **DOI:** 10.48550/arXiv.2407.21783"
+              ],
+              "durationSeconds": 4.907919479
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T03:22:01.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YEhk35KsMMVW9wuirA9tXB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Ilyas \"Datamodels: Predicting Predictions from Training Data\" ICML 2022 authors\"\n\nLinks: [{\"title\":\"GitHub - MadryLab/datamodels\",\"url\":\"https://github.com/MadryLab/datamodels\"},{\"title\":\"datamodels/README.md at main · MadryLab/datamodels\",\"url\":\"https://github.com/MadryLab/datamodels/blob/main/README.md\"},{\"title\":\"[2202.00622] Datamodels: Predicting Predictions from Training Data\",\"url\":\"https://arxiv.org/abs/2202.00622\"},{\"title\":\"ICML Poster Datamodels: Understanding Predictions with Data and Data with Predictions\",\"url\":\"https://icml.cc/virtual/2022/poster/16971\"},{\"title\":\"Datamodels: Predicting Predictions from Training Data\",\"url\":\"https://arxiv.org/pdf/2202.00622\"},{\"title\":\"Datamodels: Understanding Predictions with Data and Data with Predictions\",\"url\":\"https://proceedings.mlr.press/v162/ilyas22a.html\"},{\"title\":\"MedAI #51: Datamodels - Predicting Predictions from Training Data | Andrew Ilyas - YouTube\",\"url\":\"https://www.youtube.com/watch?v=dgo7nRQcw_E\"},{\"title\":\"[PDF] Datamodels: Predicting Predictions from Training Data | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Datamodels:-Predicting-Predictions-from-Training-Ilyas-Park/2a7a6648563e6a09e6fea6dd96e68e0563216dcb\"},{\"title\":\"Datamodels Predicting Predictions with Training Data @andrew_ilyas\",\"url\":\"https://icml.cc/media/icml-2022/Slides/16972.pdf\"},{\"title\":\"Mapping from Training Data to Predictions with Datamodels - YouTube\",\"url\":\"https://www.youtube.com/watch?v=r7Sv-udvE2M\"}]\n\nThe authors of \"Datamodels: Predicting Predictions from Training Data\" published at ICML 2022 are: Andrew Ilyas, Sung Min Park, Logan Engstrom, Guillaume Leclerc, and Aleksander Madry.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "a1d3e326-7533-4e8c-a229-5d1819a44eb6",
+            "tool_use_result": {
+              "query": "Ilyas \"Datamodels: Predicting Predictions from Training Data\" ICML 2022 authors",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01T3tegb6UVFV3DcwfufKtyn",
+                  "content": [
+                    {
+                      "title": "GitHub - MadryLab/datamodels",
+                      "url": "https://github.com/MadryLab/datamodels"
+                    },
+                    {
+                      "title": "datamodels/README.md at main · MadryLab/datamodels",
+                      "url": "https://github.com/MadryLab/datamodels/blob/main/README.md"
+                    },
+                    {
+                      "title": "[2202.00622] Datamodels: Predicting Predictions from Training Data",
+                      "url": "https://arxiv.org/abs/2202.00622"
+                    },
+                    {
+                      "title": "ICML Poster Datamodels: Understanding Predictions with Data and Data with Predictions",
+                      "url": "https://icml.cc/virtual/2022/poster/16971"
+                    },
+                    {
+                      "title": "Datamodels: Predicting Predictions from Training Data",
+                      "url": "https://arxiv.org/pdf/2202.00622"
+                    },
+                    {
+                      "title": "Datamodels: Understanding Predictions with Data and Data with Predictions",
+                      "url": "https://proceedings.mlr.press/v162/ilyas22a.html"
+                    },
+                    {
+                      "title": "MedAI #51: Datamodels - Predicting Predictions from Training Data | Andrew Ilyas - YouTube",
+                      "url": "https://www.youtube.com/watch?v=dgo7nRQcw_E"
+                    },
+                    {
+                      "title": "[PDF] Datamodels: Predicting Predictions from Training Data | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Datamodels:-Predicting-Predictions-from-Training-Ilyas-Park/2a7a6648563e6a09e6fea6dd96e68e0563216dcb"
+                    },
+                    {
+                      "title": "Datamodels Predicting Predictions with Training Data @andrew_ilyas",
+                      "url": "https://icml.cc/media/icml-2022/Slides/16972.pdf"
+                    },
+                    {
+                      "title": "Mapping from Training Data to Predictions with Datamodels - YouTube",
+                      "url": "https://www.youtube.com/watch?v=r7Sv-udvE2M"
+                    }
+                  ]
+                },
+                "The authors of \"Datamodels: Predicting Predictions from Training Data\" published at ICML 2022 are: Andrew Ilyas, Sung Min Park, Logan Engstrom, Guillaume Leclerc, and Aleksander Madry."
+              ],
+              "durationSeconds": 3.3632442220000014
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T03:22:01.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CDJ3cfnxecNEma8aMnLtaC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Muennighoff \"Scaling Data-Constrained Language Models\" NeurIPS 2024 authors venue\"\n\nLinks: [{\"title\":\"Scaling Data-Constrained Language Models\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/hash/9d89448b63ce1e2e8dc7af72c984c196-Abstract-Conference.html\"},{\"title\":\"Scaling Data-Constrained Language Models\",\"url\":\"https://hunterheidenreich.com/notes/natural-language-processing/language-models/scaling-data-constrained-language-models/\"},{\"title\":\"Scaling Data-Constrained Language Models Niklas Muennighoff\",\"url\":\"http://logon.emmtee.net/outreach/skeikampen/2024/muennighoff.pdf\"},{\"title\":\"[2305.16264] Scaling Data-Constrained Language Models\",\"url\":\"https://arxiv.org/abs/2305.16264\"},{\"title\":\"NeurIPS Poster Scaling Data-Constrained Language Models\",\"url\":\"https://nips.cc/virtual/2023/poster/70706\"},{\"title\":\"Scaling Laws in Linear Regression: Compute, Parameters, and Data Licong Lin\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/6fcb1afcc1e9c2c82c8ddddf03bcf0f6-Paper-Conference.pdf\"},{\"title\":\"Scaling Data-Constrained Language Models Niklas Muennighoff 1\",\"url\":\"https://openreview.net/pdf?id=j5BuTrEj35\"},{\"title\":\"Scaling Data-Constrained Language Models\",\"url\":\"https://arxiv.org/pdf/2305.16264\"},{\"title\":\"[Paper Note] Scaling Data-Constrained Language Models, Niklas Muennighoff+, NeurIPS'23 · Issue #1829 · AkihikoWatanabe/paper_notes\",\"url\":\"https://github.com/AkihikoWatanabe/paper_notes/issues/1829\"}]\n\nBased on the search results, here is the information about the paper:\n\n**Title:** Scaling Data-Constrained Language Models\n\n**Authors:** Niklas Muennighoff, Alexander Rush, Boaz Barak, Teven Le Scao, Nouamane Tazi, Aleksandra Piktus, Sampo Pyysalo, Thomas Wolf, Colin A Raffel\n\n**Venue:** Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track\n\nNote: The paper was presented at NeurIPS 2023, not NeurIPS 2024 as mentioned in your search query.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "3598b96b-0bce-4a35-ad34-073ae82dcde2",
+            "tool_use_result": {
+              "query": "Muennighoff \"Scaling Data-Constrained Language Models\" NeurIPS 2024 authors venue",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019yJiwmm2NgHYKRwzdRKeaa",
+                  "content": [
+                    {
+                      "title": "Scaling Data-Constrained Language Models",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/9d89448b63ce1e2e8dc7af72c984c196-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models",
+                      "url": "https://hunterheidenreich.com/notes/natural-language-processing/language-models/scaling-data-constrained-language-models/"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models Niklas Muennighoff",
+                      "url": "http://logon.emmtee.net/outreach/skeikampen/2024/muennighoff.pdf"
+                    },
+                    {
+                      "title": "[2305.16264] Scaling Data-Constrained Language Models",
+                      "url": "https://arxiv.org/abs/2305.16264"
+                    },
+                    {
+                      "title": "NeurIPS Poster Scaling Data-Constrained Language Models",
+                      "url": "https://nips.cc/virtual/2023/poster/70706"
+                    },
+                    {
+                      "title": "Scaling Laws in Linear Regression: Compute, Parameters, and Data Licong Lin",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/6fcb1afcc1e9c2c82c8ddddf03bcf0f6-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models Niklas Muennighoff 1",
+                      "url": "https://openreview.net/pdf?id=j5BuTrEj35"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models",
+                      "url": "https://arxiv.org/pdf/2305.16264"
+                    },
+                    {
+                      "title": "[Paper Note] Scaling Data-Constrained Language Models, Niklas Muennighoff+, NeurIPS'23 · Issue #1829 · AkihikoWatanabe/paper_notes",
+                      "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/1829"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the information about the paper:\n\n**Title:** Scaling Data-Constrained Language Models\n\n**Authors:** Niklas Muennighoff, Alexander Rush, Boaz Barak, Teven Le Scao, Nouamane Tazi, Aleksandra Piktus, Sampo Pyysalo, Thomas Wolf, Colin A Raffel\n\n**Venue:** Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track\n\nNote: The paper was presented at NeurIPS 2023, not NeurIPS 2024 as mentioned in your search query."
+              ],
+              "durationSeconds": 4.299961993000001
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T03:22:03.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MSjvUoTwoygxmsBu81r72Y",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Guo BiScope NeurIPS 2024 AI-generated text detection\"\n\nLinks: [{\"title\":\"GitHub - MarkGHX/BiScope: Official Implementation of NeurIPS 2024 paper - BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://github.com/MarkGHX/BiScope\"},{\"title\":\"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/bc808cf2d2444b0abcceca366b771389-Abstract-Conference.html\"},{\"title\":\"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens | OpenReview\",\"url\":\"https://openreview.net/forum?id=Hew2JSDycr\"},{\"title\":\"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/BiScope:-AI-generated-Text-Detection-by-Checking-of-Guo-Cheng/97649635b7b36352df5839ba5ed87e00e2430aeb\"},{\"title\":\"NeurIPS Poster BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://neurips.cc/virtual/2024/poster/95814\"},{\"title\":\"BiScope: AI-generated Text Detection by Checking ...\",\"url\":\"https://neurips.cc/media/neurips-2024/Slides/95814.pdf\"},{\"title\":\"MarkGHX (Hanxi Guo) · GitHub\",\"url\":\"https://github.com/MarkGHX\"},{\"title\":\"DeTeCtive: Detecting AI-generated Text via Multi-Level Contrastive Learning\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/a117a3cd54b7affad04618c77c2fb18b-Abstract-Conference.html\"},{\"title\":\"On the Possibilities of AI-Generated Text Detection\",\"url\":\"https://arxiv.org/pdf/2304.04736\"},{\"title\":\"AI-Generated Text is Non-Stationary: Detection via Temporal Tomography\",\"url\":\"https://arxiv.org/pdf/2508.01754\"}]\n\nBased on the search results, here's information about the BiScope paper by Guo et al. at NeurIPS 2024:\n\n## Overview\n\nBiScope is the official implementation for the NeurIPS 2024 paper \"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\".\n\n## Key Motivation and Approach\n\nDetecting text generated by Large Language Models (LLMs) is a pressing need in order to identify and prevent misuse of these powerful models in a wide range of applications, which have highly undesirable consequences such as misinformation and academic dishonesty.\n\nThe paper makes a critical observation that how well the current token's output logits memorizes the closely preceding input tokens also provides strong evidence, proposing a novel bi-directional calculation method that measures the cross-entropy losses between an output logits and the ground-truth token (forward) and between the output logits and the immediately preceding input token (backward).\n\n## Evaluation and Results\n\nThe researchers extended existing datasets by crafting more AI-generated data using five latest commercial LLMs, including GPT-3.5-Turbo, GPT-4-Turbo, Claude-3-Sonnet, Claude-3-Opus, and Gemini-1.0-Pro.\n\nBiScope demonstrates superior detection accuracy and robustness compared to six existing baseline methods, exceeding the state-of-the-art non-commercial methods' detection accuracy by over 0.30 F1 score, achieving over 0.95 detection F1 score on average.\n\nCode is available at https://github.com/MarkGHX/BiScope.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "9292f923-d1e1-456a-9fbe-50483df243f0",
+            "tool_use_result": {
+              "query": "Guo BiScope NeurIPS 2024 AI-generated text detection",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01J2tUoXdLGHugPjS1pTcQjc",
+                  "content": [
+                    {
+                      "title": "GitHub - MarkGHX/BiScope: Official Implementation of NeurIPS 2024 paper - BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://github.com/MarkGHX/BiScope"
+                    },
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/bc808cf2d2444b0abcceca366b771389-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens | OpenReview",
+                      "url": "https://openreview.net/forum?id=Hew2JSDycr"
+                    },
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/BiScope:-AI-generated-Text-Detection-by-Checking-of-Guo-Cheng/97649635b7b36352df5839ba5ed87e00e2430aeb"
+                    },
+                    {
+                      "title": "NeurIPS Poster BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://neurips.cc/virtual/2024/poster/95814"
+                    },
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking ...",
+                      "url": "https://neurips.cc/media/neurips-2024/Slides/95814.pdf"
+                    },
+                    {
+                      "title": "MarkGHX (Hanxi Guo) · GitHub",
+                      "url": "https://github.com/MarkGHX"
+                    },
+                    {
+                      "title": "DeTeCtive: Detecting AI-generated Text via Multi-Level Contrastive Learning",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/a117a3cd54b7affad04618c77c2fb18b-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "On the Possibilities of AI-Generated Text Detection",
+                      "url": "https://arxiv.org/pdf/2304.04736"
+                    },
+                    {
+                      "title": "AI-Generated Text is Non-Stationary: Detection via Temporal Tomography",
+                      "url": "https://arxiv.org/pdf/2508.01754"
+                    }
+                  ]
+                },
+                "Based on the search results, here's information about the BiScope paper by Guo et al. at NeurIPS 2024:\n\n## Overview\n\nBiScope is the official implementation for the NeurIPS 2024 paper \"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\".\n\n## Key Motivation and Approach\n\nDetecting text generated by Large Language Models (LLMs) is a pressing need in order to identify and prevent misuse of these powerful models in a wide range of applications, which have highly undesirable consequences such as misinformation and academic dishonesty.\n\nThe paper makes a critical observation that how well the current token's output logits memorizes the closely preceding input tokens also provides strong evidence, proposing a novel bi-directional calculation method that measures the cross-entropy losses between an output logits and the ground-truth token (forward) and between the output logits and the immediately preceding input token (backward).\n\n## Evaluation and Results\n\nThe researchers extended existing datasets by crafting more AI-generated data using five latest commercial LLMs, including GPT-3.5-Turbo, GPT-4-Turbo, Claude-3-Sonnet, Claude-3-Opus, and Gemini-1.0-Pro.\n\nBiScope demonstrates superior detection accuracy and robustness compared to six existing baseline methods, exceeding the state-of-the-art non-commercial methods' detection accuracy by over 0.30 F1 score, achieving over 0.95 detection F1 score on average.\n\nCode is available at https://github.com/MarkGHX/BiScope."
+              ],
+              "durationSeconds": 7.714271107
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me get more details on the BiScope paper authors and the Llama 3 proper citation format. Let me also check the Garcés Arias author name spelling more carefully.",
+              "signature": "EuUCClkIDRgCKkCbsz34mkvRNWFfjVHrbdnGE1wTakhjCDiynN6ZgKfQEHWp6XKMPPMM5QvAoszB0kaWYs4nHhMngRDF7Mjn0yNDMg9jbGF1ZGUtb3B1cy00LTY4ABIMlow3BeCFbYiFFugQGgyUBOTA3eZsV6vwPfMiMEJA0abRZ7vpzUR6jwtx22KVnbXiNgb2Ei3tp28Sy0o13xhWmHAv/59kISGX96hLFyq5AUwtc4rHYwbxiQlcjXIniH3FL4+1wpT8R4ZiUNwv+exODA+PVF0UMfqoafasMJYSv4uOOIIVvIqdNSdG/qqeNzwd4g6wzV/4YF/YO5dbAXUoAGU5QncFm1/eBewsLGdkIiJuRM5wDKqi+L1unrMoX8SSesIhkjdDwTjItWu7aWvdfifHiwqu1Am5DeOO7jY6MCxh1ryeTncH6kB7WF7tchMciUzPxSZuKi+KR1Xijp5eYUvKt4Ap365bGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "f926c8e7-7fd3-4e78-8d0a-5af189613b9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9tKPYwXi8TrkrVF9WHxfH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1332,
+                "cache_creation_input_tokens": 4508,
+                "cache_read_input_tokens": 36769,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4508
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要补充 BiScope 作者全名和 Llama 3 的正式引用格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "671d850f-d679-4e38-9451-9b85001238d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9tKPYwXi8TrkrVF9WHxfH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1332,
+                "cache_creation_input_tokens": 4508,
+                "cache_read_input_tokens": 36769,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4508
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F8JGjQ4nb4k1oHJk1b8kMG",
+              "name": "WebSearch",
+              "input": {
+                "query": "BiScope \"Hanxi Guo\" authors full list NeurIPS 2024 proceedings"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "df9160b4-bff6-45ef-96b1-fdb7584fd0ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9tKPYwXi8TrkrVF9WHxfH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1332,
+                "cache_creation_input_tokens": 4508,
+                "cache_read_input_tokens": 36769,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4508
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BKeN4FVwLsE6xL5peWVyYe",
+              "name": "WebSearch",
+              "input": {
+                "query": "Grattafiori \"Llama 3 Herd of Models\" 2024 BibTeX citation format first author"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "cbe8a9b9-39db-4e22-9479-ec4b10906f47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9tKPYwXi8TrkrVF9WHxfH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1332,
+                "cache_creation_input_tokens": 4508,
+                "cache_read_input_tokens": 36769,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4508
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UMWudGiyLHgFJskZ2ucTxK",
+              "name": "WebSearch",
+              "input": {
+                "query": "Muennighoff \"Scaling Data-Constrained Language Models\" full author list BibTeX NeurIPS 2023"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "ad03a7ea-c952-4347-ba09-22b63fe02f8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9tKPYwXi8TrkrVF9WHxfH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1332,
+                "cache_creation_input_tokens": 4508,
+                "cache_read_input_tokens": 36769,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4508
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T03:22:15.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BKeN4FVwLsE6xL5peWVyYe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Grattafiori \"Llama 3 Herd of Models\" 2024 BibTeX citation format first author\"\n\nLinks: [{\"title\":\"The Llama 3 Herd of Models\",\"url\":\"https://bibbase.org/network/publication/grattafiori-dubey-jauhri-pandey-kadian-aldahle-letman-mathur-etal-thellama3herdofmodels-2024\"},{\"title\":\"[2407.21783v3] The Llama 3 Herd of Models\",\"url\":\"https://arxiv.org/abs/2407.21783v3\"},{\"title\":\"[2407.21783] The Llama 3 Herd of Models\",\"url\":\"https://arxiv.org/abs/2407.21783\"},{\"title\":\"The Llama 3 herd of models - Archive ouverte HAL\",\"url\":\"https://hal.science/hal-05414211v1\"},{\"title\":\"Paper page - The Llama 3 Herd of Models\",\"url\":\"https://huggingface.co/papers/2407.21783\"},{\"title\":\"The Llama 3 Herd of Models\",\"url\":\"https://arxiv.org/pdf/2407.21783\"},{\"title\":\"(PDF) The Llama 3 Herd of Models\",\"url\":\"https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models\"}]\n\nBased on the search results, I found information about the \"Llama 3 Herd of Models\" paper. The paper is by Aaron Grattafiori and 558 other authors, making Aaron Grattafiori the first author.\n\nThe search results include a BibTeX citation format from one of the sources. The BibTeX citation is: `@misc{grattafiori_llama_2024, title = {The {Llama} 3 {Herd} of {Models}}, url = {http://arxiv.org/abs/2407.21783}, doi = {10.48550/arXiv.2407.21783}`\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "a6c0deb7-5e36-4b19-acdc-ab7be2a3968c",
+            "tool_use_result": {
+              "query": "Grattafiori \"Llama 3 Herd of Models\" 2024 BibTeX citation format first author",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01AVhLdnxtaCaZrD1e4eD2Bw",
+                  "content": [
+                    {
+                      "title": "The Llama 3 Herd of Models",
+                      "url": "https://bibbase.org/network/publication/grattafiori-dubey-jauhri-pandey-kadian-aldahle-letman-mathur-etal-thellama3herdofmodels-2024"
+                    },
+                    {
+                      "title": "[2407.21783v3] The Llama 3 Herd of Models",
+                      "url": "https://arxiv.org/abs/2407.21783v3"
+                    },
+                    {
+                      "title": "[2407.21783] The Llama 3 Herd of Models",
+                      "url": "https://arxiv.org/abs/2407.21783"
+                    },
+                    {
+                      "title": "The Llama 3 herd of models - Archive ouverte HAL",
+                      "url": "https://hal.science/hal-05414211v1"
+                    },
+                    {
+                      "title": "Paper page - The Llama 3 Herd of Models",
+                      "url": "https://huggingface.co/papers/2407.21783"
+                    },
+                    {
+                      "title": "The Llama 3 Herd of Models",
+                      "url": "https://arxiv.org/pdf/2407.21783"
+                    },
+                    {
+                      "title": "(PDF) The Llama 3 Herd of Models",
+                      "url": "https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the \"Llama 3 Herd of Models\" paper. The paper is by Aaron Grattafiori and 558 other authors, making Aaron Grattafiori the first author.\n\nThe search results include a BibTeX citation format from one of the sources. The BibTeX citation is: `@misc{grattafiori_llama_2024, title = {The {Llama} 3 {Herd} of {Models}}, url = {http://arxiv.org/abs/2407.21783}, doi = {10.48550/arXiv.2407.21783}`"
+              ],
+              "durationSeconds": 5.413702535999997
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T03:22:15.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UMWudGiyLHgFJskZ2ucTxK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Muennighoff \"Scaling Data-Constrained Language Models\" full author list BibTeX NeurIPS 2023\"\n\nLinks: [{\"title\":\"Scaling Data-Constrained Language Models\",\"url\":\"https://hunterheidenreich.com/notes/natural-language-processing/language-models/scaling-data-constrained-language-models/\"},{\"title\":\"Scaling Data-Constrained Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=j5BuTrEj35\"},{\"title\":\"Scaling Data-Constrained Language Models\",\"url\":\"https://bibbase.org/network/publication/muennighoff-rush-barak-scao-piktus-tazi-pyysalo-wolf-etal-scalingdataconstrainedlanguagemodels-2023\"},{\"title\":\"Scaling Data-Constrained Language Models\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/hash/9d89448b63ce1e2e8dc7af72c984c196-Abstract-Conference.html\"},{\"title\":\"C4AI @ NeurIPS, 2023 - Niklas Muennighoff on Scaling Data-Constrained Language Models - YouTube\",\"url\":\"https://www.youtube.com/watch?v=lfOzyBIC5kQ\"},{\"title\":\"[2305.16264] Scaling Data-Constrained Language Models\",\"url\":\"https://arxiv.org/abs/2305.16264\"},{\"title\":\"[Paper Note] Scaling Data-Constrained Language Models, Niklas Muennighoff+, NeurIPS'23 · Issue #1829 · AkihikoWatanabe/paper_notes\",\"url\":\"https://github.com/AkihikoWatanabe/paper_notes/issues/1829\"},{\"title\":\"Scaling Data-Constrained Language Models Niklas Muennighoff 1\",\"url\":\"https://openreview.net/pdf?id=j5BuTrEj35\"},{\"title\":\"NeurIPS Poster Scaling Data-Constrained Language Models\",\"url\":\"https://nips.cc/virtual/2023/poster/70706\"}]\n\nBased on the search results, here is the complete author list and BibTeX entry for the paper:\n\n**Full Author List:**\nNiklas Muennighoff, Alexander M. Rush, Boaz Barak, Teven Le Scao, Aleksandra Piktus, Nouamane Tazi, Sampo Pyysalo, Thomas Wolf, and Colin Raffel\n\n**BibTeX Entry:**\n@inproceedings{muennighoff2023scaling, author = {Niklas Muennighoff and Alexander M. Rush and Boaz Barak and Teven Le Scao and Aleksandra Piktus and Nouamane Tazi and Sampo Pyysalo and Thomas Wolf and Colin Raffel}, title = {Scaling Data-Constrained Language Models}, booktitle = {Thirty-seventh Conference on Neural Information Processing Systems}, year = {2023}, url_paper = {https://arxiv.org/abs/2305.16264}, note = {Outstanding Main Track Paper award, Runner-Up}, selected = {yes} }\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "349ce4b5-e22e-49d8-91c8-1028cd2ca110",
+            "tool_use_result": {
+              "query": "Muennighoff \"Scaling Data-Constrained Language Models\" full author list BibTeX NeurIPS 2023",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SUdgQsrxGui4npiijXbv6M",
+                  "content": [
+                    {
+                      "title": "Scaling Data-Constrained Language Models",
+                      "url": "https://hunterheidenreich.com/notes/natural-language-processing/language-models/scaling-data-constrained-language-models/"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models | OpenReview",
+                      "url": "https://openreview.net/forum?id=j5BuTrEj35"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models",
+                      "url": "https://bibbase.org/network/publication/muennighoff-rush-barak-scao-piktus-tazi-pyysalo-wolf-etal-scalingdataconstrainedlanguagemodels-2023"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/9d89448b63ce1e2e8dc7af72c984c196-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "C4AI @ NeurIPS, 2023 - Niklas Muennighoff on Scaling Data-Constrained Language Models - YouTube",
+                      "url": "https://www.youtube.com/watch?v=lfOzyBIC5kQ"
+                    },
+                    {
+                      "title": "[2305.16264] Scaling Data-Constrained Language Models",
+                      "url": "https://arxiv.org/abs/2305.16264"
+                    },
+                    {
+                      "title": "[Paper Note] Scaling Data-Constrained Language Models, Niklas Muennighoff+, NeurIPS'23 · Issue #1829 · AkihikoWatanabe/paper_notes",
+                      "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/1829"
+                    },
+                    {
+                      "title": "Scaling Data-Constrained Language Models Niklas Muennighoff 1",
+                      "url": "https://openreview.net/pdf?id=j5BuTrEj35"
+                    },
+                    {
+                      "title": "NeurIPS Poster Scaling Data-Constrained Language Models",
+                      "url": "https://nips.cc/virtual/2023/poster/70706"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the complete author list and BibTeX entry for the paper:\n\n**Full Author List:**\nNiklas Muennighoff, Alexander M. Rush, Boaz Barak, Teven Le Scao, Aleksandra Piktus, Nouamane Tazi, Sampo Pyysalo, Thomas Wolf, and Colin Raffel\n\n**BibTeX Entry:**\n@inproceedings{muennighoff2023scaling, author = {Niklas Muennighoff and Alexander M. Rush and Boaz Barak and Teven Le Scao and Aleksandra Piktus and Nouamane Tazi and Sampo Pyysalo and Thomas Wolf and Colin Raffel}, title = {Scaling Data-Constrained Language Models}, booktitle = {Thirty-seventh Conference on Neural Information Processing Systems}, year = {2023}, url_paper = {https://arxiv.org/abs/2305.16264}, note = {Outstanding Main Track Paper award, Runner-Up}, selected = {yes} }"
+              ],
+              "durationSeconds": 5.162921993000004
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T03:22:17.772Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F8JGjQ4nb4k1oHJk1b8kMG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BiScope \"Hanxi Guo\" authors full list NeurIPS 2024 proceedings\"\n\nLinks: [{\"title\":\"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/bc808cf2d2444b0abcceca366b771389-Abstract-Conference.html\"},{\"title\":\"GitHub - MarkGHX/BiScope: Official Implementation of NeurIPS 2024 paper - BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://github.com/MarkGHX/BiScope\"},{\"title\":\"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/BiScope:-AI-generated-Text-Detection-by-Checking-of-Guo-Cheng/97649635b7b36352df5839ba5ed87e00e2430aeb\"},{\"title\":\"NeurIPS Poster BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://neurips.cc/virtual/2024/poster/95814\"},{\"title\":\"dblp: Hanxi Guo\",\"url\":\"https://dblp.org/pid/300/2967.html\"},{\"title\":\"BiScope: AI-generated Text Detection by Checking ...\",\"url\":\"https://neurips.cc/media/neurips-2024/Slides/95814.pdf\"},{\"title\":\"MarkGHX (Hanxi Guo) · GitHub\",\"url\":\"https://github.com/MarkGHX\"},{\"title\":\"Hanxi Guo | Purdue University\",\"url\":\"https://hanxiguo.me/\"},{\"title\":\"Publications - Kaiyuan Zhang @Purdue University\",\"url\":\"https://kaiyuanzhang.com/publications/\"},{\"title\":\"NeurIPS Poster BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\",\"url\":\"https://nips.cc/virtual/2024/poster/95814\"}]\n\nBased on the search results, the full list of authors for the BiScope paper in NeurIPS 2024 proceedings is: Hanxi Guo, Siyuan Cheng, Xiaolong Jin, Zhuo Zhang, Kaiyuan Zhang, Guanhong Tao, Guangyu Shen, and Xiangyu Zhang.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "33324bfd-c1c3-4250-a4f3-76329c8c47c3",
+            "tool_use_result": {
+              "query": "BiScope \"Hanxi Guo\" authors full list NeurIPS 2024 proceedings",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Bd3mSaxZKzP1XXavmbiShg",
+                  "content": [
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/bc808cf2d2444b0abcceca366b771389-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "GitHub - MarkGHX/BiScope: Official Implementation of NeurIPS 2024 paper - BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://github.com/MarkGHX/BiScope"
+                    },
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/BiScope:-AI-generated-Text-Detection-by-Checking-of-Guo-Cheng/97649635b7b36352df5839ba5ed87e00e2430aeb"
+                    },
+                    {
+                      "title": "NeurIPS Poster BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://neurips.cc/virtual/2024/poster/95814"
+                    },
+                    {
+                      "title": "dblp: Hanxi Guo",
+                      "url": "https://dblp.org/pid/300/2967.html"
+                    },
+                    {
+                      "title": "BiScope: AI-generated Text Detection by Checking ...",
+                      "url": "https://neurips.cc/media/neurips-2024/Slides/95814.pdf"
+                    },
+                    {
+                      "title": "MarkGHX (Hanxi Guo) · GitHub",
+                      "url": "https://github.com/MarkGHX"
+                    },
+                    {
+                      "title": "Hanxi Guo | Purdue University",
+                      "url": "https://hanxiguo.me/"
+                    },
+                    {
+                      "title": "Publications - Kaiyuan Zhang @Purdue University",
+                      "url": "https://kaiyuanzhang.com/publications/"
+                    },
+                    {
+                      "title": "NeurIPS Poster BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens",
+                      "url": "https://nips.cc/virtual/2024/poster/95814"
+                    }
+                  ]
+                },
+                "Based on the search results, the full list of authors for the BiScope paper in NeurIPS 2024 proceedings is: Hanxi Guo, Siyuan Cheng, Xiaolong Jin, Zhuo Zhang, Kaiyuan Zhang, Guanhong Tao, Guangyu Shen, and Xiangyu Zhang."
+              ],
+              "durationSeconds": 7.845539734000005
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me compile the results.\n\nLet me also check the current bib entry for `guo2024_biscope` - I don't see it in the bib file I read. Let me search for it.\n\nActually, looking at the bib file again, I don't see a `guo2024_biscope` entry. The reviewer mentioned it but it might not be in the bib yet, or maybe it's referenced differently. Let me check.\n\nWait, re-reading the task - the user says \"审稿指出的 5 条 mismatch\" - these are mismatches the reviewer pointed out. \n\nI'm searching through the bib file more carefully now. I found `guo2024curious` about \"The Curious Decline of Linguistic Diversity\" by Yanzhu Guo, but there's no `guo2024_biscope` entry anywhere. The user is asking me to verify these citations, so either they plan to add it or it's stored elsewhere. Looking back at the task, the reviewer flagged these five items as having citation mismatches, so I need to identify what's actually wrong with each one.\n\nChecking the entries: `alemohammad2024_mad` looks fine with matching authors and ICLR 2024. For `garces_arias2025_decoding_decoded`, the bib has `{Garces Arias}` but the actual name should have an accent mark (Garcés), and the venue and year check out. With `he2021_deberta_v3`, there's a discrepancy—the citation key says 2021 but the year field shows 2023, which is the correct ICLR publication year since the arXiv version was from 2021. The reviewer might be flagging this key-year mismatch.\n\nFor `llama3`, the entry uses `\\misc` format with author names and \"others\" for the remaining authors, which is roughly correct for 2024. But `guo2024_biscope` doesn't appear to exist in the bibliography file at all—the reviewer is citing it as a mismatch, but it seems like it's either missing from the bib or filed under a different key entirely. I should check if this citation is actually referenced in the tex file or if it needs to be added.\n\nNow I'm compiling my findings on all five mismatches the reviewer identified, starting with what I've verified so far and what still needs correction. Muennighoff et al. is actually from NeurIPS 2023, not 2024, with authors including Niklas Muennighoff, Alexander M. Rush, Boaz Barak, and others. The Ilyas et al. paper is confirmed as ICML 2022, and I'm now looking up the exact proceedings details—it's volume PMLR 162 from the 39th International Conference on Machine Learning.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "a8049acb-e154-4a1b-9239-9b4343d31cbc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EXmp4i5PAhnEekMZthk7gj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1397,
+                "cache_creation_input_tokens": 2271,
+                "cache_read_input_tokens": 41277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2271
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有搜索完成，汇总结果如下。\n\n---\n\n## 1. alemohammad2024\\_mad\n\n- **当前 bib**: authors = Alemohammad, Casco-Rodriguez, Luzi, Humayun, Babaei, LeJeune, Siahkoohi, Baraniuk; venue = ICLR; year = 2024\n- **WebSearch 结果**: 完全一致。ICLR 2024, Vienna. 作者列表完整且正确。\n- **差异**: **无**。该条目无需修改。\n\n---\n\n## 2. garces\\_arias2025\\_decoding\\_decoded\n\n- **当前 bib**: `author = {{Garces Arias}, Esteban and ...}`, booktitle = COLING, year = 2025\n- **WebSearch 结果**: COLING 2025 (Abu Dhabi) 确认。作者: Esteban **Garcés** Arias, Meimingwei Li, Christian Heumann, Matthias Assenmacher。\n- **差异**: 作者姓氏缺重音符号 `Garces` → `Garc{\\'e}s`\n- **修正建议**:\n\n```bibtex\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garc{\\'e}s Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n  note      = {arXiv:2410.06097},\n  url       = {https://arxiv.org/abs/2410.06097},\n}\n```\n\n---\n\n## 3. he2021\\_deberta\\_v3\n\n- **当前 bib**: key = `he2021_deberta_v3`, year = **2023**, booktitle = ICLR\n- **WebSearch 结果**: arXiv 首次提交 2021-11-18, 正式发表 **ICLR 2023**。\n- **差异**: bib **key 名** 含 \"2021\" 但 year 字段正确写 2023。审稿人可能因 key 名产生误解，或因正文某处写了 \"(He et al., 2021)\" 而非 \"(He et al., 2023)\"。\n- **修正建议**: 将 key 改为 `he2023_deberta_v3` 以消除歧义，并确保正文 `\\cite` 同步更新。bib 内容本身（year=2023, ICLR）已正确。\n\n```bibtex\n@inproceedings{he2023_deberta_v3,\n  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2023},\n  note      = {arXiv:2111.09543},\n  url       = {https://arxiv.org/abs/2111.09543},\n}\n```\n\n---\n\n## 4. llama3\n\n- **当前 bib**: `@misc`, author = `Grattafiori, Aaron and Dubey, Abhimanyu and ... and others`, year = 2024\n- **WebSearch 结果**: arXiv:2407.21783, 2024。第一作者 Aaron Grattafiori, 共 559 位作者。该论文为 arXiv 技术报告，未正式发表于会议。\n- **差异**: 当前条目基本正确。可考虑的改进：\n  - 截断作者列表时用 `and others` 是合理做法（BibTeX 标准）\n  - 可补充 `doi = {10.48550/arXiv.2407.21783}`\n- **修正建议**: 实质内容无错误，可选补充 DOI：\n\n```bibtex\n@misc{llama3,\n  author    = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and others},\n  title     = {{The Llama 3 Herd of Models}},\n  year      = {2024},\n  howpublished = {arXiv:2407.21783},\n  url       = {https://arxiv.org/abs/2407.21783},\n}\n```\n\n---\n\n## 5. guo2024\\_biscope\n\n- **当前 bib**: **该 key 不存在于 references.bib 中**。\n- **WebSearch 结果**: \"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\", **NeurIPS 2024** 确认。Authors: Hanxi Guo, Siyuan Cheng, Xiaolong Jin, Zhuo Zhang, Kaiyuan Zhang, Guanhong Tao, Guangyu Shen, Xiangyu Zhang。\n- **差异**: 条目缺失，需新增。\n- **修正建议**:\n\n```bibtex\n@inproceedings{guo2024_biscope,\n  author    = {Guo, Hanxi and Cheng, Siyuan and Jin, Xiaolong and Zhang, Zhuo and Zhang, Kaiyuan and Tao, Guanhong and Shen, Guangyu and Zhang, Xiangyu},\n  title     = {{BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  url       = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/bc808cf2d2444b0abcceca366b771389-Abstract-Conference.html},\n}\n```\n\n---\n\n## 6. Muennighoff et al. — Scaling Data-Constrained Language Models (新引用)\n\n- **WebSearch 结果**: **NeurIPS 2023**（非 2024）。Outstanding Main Track Paper Runner-Up。\n- Authors: Niklas Muennighoff, Alexander M. Rush, Boaz Barak, Teven Le Scao, Aleksandra Piktus, Nouamane Tazi, Sampo Pyysalo, Thomas Wolf, Colin Raffel\n- **完整 BibTeX**:\n\n```bibtex\n@inproceedings{muennighoff2023_scaling,\n  author    = {Muennighoff, Niklas and Rush, Alexander M. and Barak, Boaz and Le Scao, Teven and Piktus, Aleksandra and Tazi, Nouamane and Pyysalo, Sampo and Wolf, Thomas and Raffel, Colin},\n  title     = {{Scaling Data-Constrained Language Models}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2305.16264},\n  url       = {https://arxiv.org/abs/2305.16264},\n}\n```\n\n---\n\n## 7. Ilyas et al. — Datamodels (新引用)\n\n- **WebSearch 结果**: **ICML 2022** 确认 (PMLR vol. 162)。\n- Authors: Andrew Ilyas, Sung Min Park, Logan Engstrom, Guillaume Leclerc, Aleksander Madry\n- **完整 BibTeX**:\n\n```bibtex\n@inproceedings{ilyas2022_datamodels,\n  author    = {Ilyas, Andrew and Park, Sung Min and Engstrom, Logan and Leclerc, Guillaume and Madry, Aleksander},\n  title     = {{Datamodels: Understanding Predictions with Data and Data with Predictions}},\n  booktitle = {Proceedings of ICML},\n  year      = {2022},\n  note      = {arXiv:2202.00622},\n  url       = {https://arxiv.org/abs/2202.00622},\n}\n```\n\n注意 ICML 正式标题为 \"Datamodels: **Understanding** Predictions with Data and Data with Predictions\"（与 arXiv 标题 \"Predicting Predictions from Training Data\" 略有不同）。\n\n---\n\n**汇总需要行动的项**:\n\n| # | Key | 问题 | 操作 |\n|---|-----|------|------|\n| 2 | `garces_arias2025_decoding_decoded` | Garcés 缺重音 | 修改 author |\n| 3 | `he2021_deberta_v3` | key 名含 2021 但实际 2023 | 改 key + 更新所有 `\\cite` |\n| 5 | `guo2024_biscope` | 条目缺失 | 新增 |\n| 6 | `muennighoff2023_scaling` | 新引用，NeurIPS **2023** | 新增 |\n| 7 | `ilyas2022_datamodels` | 新引用，ICML 2022 | 新增 |\n\n条目 1 和 4 无实质错误。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "uuid": "c5290a98-b4f6-413a-8a0e-c48107021793",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EXmp4i5PAhnEekMZthk7gj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1397,
+                "cache_creation_input_tokens": 2271,
+                "cache_read_input_tokens": 41277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2271
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有搜索完成，汇总结果如下。\n\n---\n\n## 1. alemohammad2024\\_mad\n\n- **当前 bib**: authors = Alemohammad, Casco-Rodriguez, Luzi, Humayun, Babaei, LeJeune, Siahkoohi, Baraniuk; venue = ICLR; year = 2024\n- **WebSearch 结果**: 完全一致。ICLR 2024, Vienna. 作者列表完整且正确。\n- **差异**: **无**。该条目无需修改。\n\n---\n\n## 2. garces\\_arias2025\\_decoding\\_decoded\n\n- **当前 bib**: `author = {{Garces Arias}, Esteban and ...}`, booktitle = COLING, year = 2025\n- **WebSearch 结果**: COLING 2025 (Abu Dhabi) 确认。作者: Esteban **Garcés** Arias, Meimingwei Li, Christian Heumann, Matthias Assenmacher。\n- **差异**: 作者姓氏缺重音符号 `Garces` → `Garc{\\'e}s`\n- **修正建议**:\n\n```bibtex\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garc{\\'e}s Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n  note      = {arXiv:2410.06097},\n  url       = {https://arxiv.org/abs/2410.06097},\n}\n```\n\n---\n\n## 3. he2021\\_deberta\\_v3\n\n- **当前 bib**: key = `he2021_deberta_v3`, year = **2023**, booktitle = ICLR\n- **WebSearch 结果**: arXiv 首次提交 2021-11-18, 正式发表 **ICLR 2023**。\n- **差异**: bib **key 名** 含 \"2021\" 但 year 字段正确写 2023。审稿人可能因 key 名产生误解，或因正文某处写了 \"(He et al., 2021)\" 而非 \"(He et al., 2023)\"。\n- **修正建议**: 将 key 改为 `he2023_deberta_v3` 以消除歧义，并确保正文 `\\cite` 同步更新。bib 内容本身（year=2023, ICLR）已正确。\n\n```bibtex\n@inproceedings{he2023_deberta_v3,\n  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2023},\n  note      = {arXiv:2111.09543},\n  url       = {https://arxiv.org/abs/2111.09543},\n}\n```\n\n---\n\n## 4. llama3\n\n- **当前 bib**: `@misc`, author = `Grattafiori, Aaron and Dubey, Abhimanyu and ... and others`, year = 2024\n- **WebSearch 结果**: arXiv:2407.21783, 2024。第一作者 Aaron Grattafiori, 共 559 位作者。该论文为 arXiv 技术报告，未正式发表于会议。\n- **差异**: 当前条目基本正确。可考虑的改进：\n  - 截断作者列表时用 `and others` 是合理做法（BibTeX 标准）\n  - 可补充 `doi = {10.48550/arXiv.2407.21783}`\n- **修正建议**: 实质内容无错误，可选补充 DOI：\n\n```bibtex\n@misc{llama3,\n  author    = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and others},\n  title     = {{The Llama 3 Herd of Models}},\n  year      = {2024},\n  howpublished = {arXiv:2407.21783},\n  url       = {https://arxiv.org/abs/2407.21783},\n}\n```\n\n---\n\n## 5. guo2024\\_biscope\n\n- **当前 bib**: **该 key 不存在于 references.bib 中**。\n- **WebSearch 结果**: \"BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens\", **NeurIPS 2024** 确认。Authors: Hanxi Guo, Siyuan Cheng, Xiaolong Jin, Zhuo Zhang, Kaiyuan Zhang, Guanhong Tao, Guangyu Shen, Xiangyu Zhang。\n- **差异**: 条目缺失，需新增。\n- **修正建议**:\n\n```bibtex\n@inproceedings{guo2024_biscope,\n  author    = {Guo, Hanxi and Cheng, Siyuan and Jin, Xiaolong and Zhang, Zhuo and Zhang, Kaiyuan and Tao, Guanhong and Shen, Guangyu and Zhang, Xiangyu},\n  title     = {{BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  url       = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/bc808cf2d2444b0abcceca366b771389-Abstract-Conference.html},\n}\n```\n\n---\n\n## 6. Muennighoff et al. — Scaling Data-Constrained Language Models (新引用)\n\n- **WebSearch 结果**: **NeurIPS 2023**（非 2024）。Outstanding Main Track Paper Runner-Up。\n- Authors: Niklas Muennighoff, Alexander M. Rush, Boaz Barak, Teven Le Scao, Aleksandra Piktus, Nouamane Tazi, Sampo Pyysalo, Thomas Wolf, Colin Raffel\n- **完整 BibTeX**:\n\n```bibtex\n@inproceedings{muennighoff2023_scaling,\n  author    = {Muennighoff, Niklas and Rush, Alexander M. and Barak, Boaz and Le Scao, Teven and Piktus, Aleksandra and Tazi, Nouamane and Pyysalo, Sampo and Wolf, Thomas and Raffel, Colin},\n  title     = {{Scaling Data-Constrained Language Models}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2305.16264},\n  url       = {https://arxiv.org/abs/2305.16264},\n}\n```\n\n---\n\n## 7. Ilyas et al. — Datamodels (新引用)\n\n- **WebSearch 结果**: **ICML 2022** 确认 (PMLR vol. 162)。\n- Authors: Andrew Ilyas, Sung Min Park, Logan Engstrom, Guillaume Leclerc, Aleksander Madry\n- **完整 BibTeX**:\n\n```bibtex\n@inproceedings{ilyas2022_datamodels,\n  author    = {Ilyas, Andrew and Park, Sung Min and Engstrom, Logan and Leclerc, Guillaume and Madry, Aleksander},\n  title     = {{Datamodels: Understanding Predictions with Data and Data with Predictions}},\n  booktitle = {Proceedings of ICML},\n  year      = {2022},\n  note      = {arXiv:2202.00622},\n  url       = {https://arxiv.org/abs/2202.00622},\n}\n```\n\n注意 ICML 正式标题为 \"Datamodels: **Understanding** Predictions with Data and Data with Predictions\"（与 arXiv 标题 \"Predicting Predictions from Training Data\" 略有不同）。\n\n---\n\n**汇总需要行动的项**:\n\n| # | Key | 问题 | 操作 |\n|---|-----|------|------|\n| 2 | `garces_arias2025_decoding_decoded` | Garcés 缺重音 | 修改 author |\n| 3 | `he2021_deberta_v3` | key 名含 2021 但实际 2023 | 改 key + 更新所有 `\\cite` |\n| 5 | `guo2024_biscope` | 条目缺失 | 新增 |\n| 6 | `muennighoff2023_scaling` | 新引用，NeurIPS **2023** | 新增 |\n| 7 | `ilyas2022_datamodels` | 新引用，ICML 2022 | 新增 |\n\n条目 1 和 4 无实质错误。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 107747,
+            "duration_api_ms": 148021,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "c9a0590b-63c9-4342-a9d8-1be72779142b",
+            "total_cost_usd": 0.6566947500000001,
+            "usage": {
+              "input_tokens": 2736,
+              "cache_creation_input_tokens": 31707,
+              "cache_read_input_tokens": 177042,
+              "output_tokens": 5160,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31707,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1397,
+                  "output_tokens": 3994,
+                  "cache_read_input_tokens": 41277,
+                  "cache_creation_input_tokens": 2271,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2271
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 113475,
+                "outputTokens": 2770,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 10,
+                "costUSD": 0.22732500000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 2736,
+                "outputTokens": 5160,
+                "cacheReadInputTokens": 177042,
+                "cacheCreationInputTokens": 31707,
+                "webSearchRequests": 0,
+                "costUSD": 0.42936975000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "92d9a8a9-513c-48a3-ae87-21f6b7354c44"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ]
+}

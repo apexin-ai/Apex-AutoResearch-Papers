@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "87077a6de5c44aa1b3a5",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code zeroshot qwen7b 500 001",
+  "task_key": "worker_code_zeroshot_qwen7b_500_001_20260516T013534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_zeroshot_qwen7b_500_001_20260516T013534.log",
+    "occurrence": 1,
+    "bytes": 1294841,
+    "sha256": "b02fcb031812b7c74846357b669d791ff7953fe86a508a7fc2985ceba6295e4c"
+  },
+  "statistics": {
+    "messages": 978,
+    "user_turns": 1,
+    "tool_calls": 396,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 163,
+      "tool_call": 396,
+      "tool_result": 396,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 921,
+      "chunks": [
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0006.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "87077a6de5c44aa1b3a5-part-0006.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ]
+}

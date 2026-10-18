@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c19282e5d3e219ca25d8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops c4ext early check",
+  "task_key": "worker_ops_c4ext-early-check_20260520T115345",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_c4ext-early-check_20260520T115345_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "c734f3d49b4b63ed591b88e6d441b7952d1b657dab19d260cb3ce609e6bcfdb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已 kill。汇总：\n\n```\ncqa1-33015 C4-ext (PID 858901):\n  状态: 已 kill\n  进度: Task 0/10 (pick up alphabet soup → basket), Ep 44/50\n  已完成 episode SR: 0/44 = 0% (全部 FAIL，每个都跑满 280 步超时)\n  判断: ❌ overfitting，已终止\n\nwestd-41074 C4-ext backup:\n  状态: 已崩溃\n  原因: LIBERO assets 缺失 (libero_floor_base_style.xml)\n        HF 下载失败 — HF_HUB_OFFLINE 未关闭，代理下无法下载 assets\n  进度: 0（未开始任何 episode）\n  判断: 需修复 assets 路径或设 HF_HUB_OFFLINE=0 后重跑\n```\n\n两边 eval 都无效。cqa1 是模型本身不工作（0% SR），westd 是环境配置问题（assets 缺失）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

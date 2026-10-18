@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "391a14e6cb09c59e23c1",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3408,
+    "sha256": "a3fb7f19db137c7358dc87af088008a092b881f139c0e2b5d2d50d4689685587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-16T14:40:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 cqa1-38874 只有 1 张 GPU，GPU ID 未明确标注——不要假设多卡\n- FewRel 不在 Table 2 主表中（D045 revert 决策）——Table 2 仅含 span-level NER 任务；FewRel r=0.187 只在 §3.2 作 proxy validation 引用\n- Abstract/Intro 中 r² 范围必须与 Table 2 一致：r²=1.3-1.7%，r=0.112-0.129——之前 Agent 错误更新为 r²=1.3-3.5% 已回滚\n- 31.2pp 全文出现次数必须 ≤3 次（D048 核心要求），2.2pp/5.3pp 至少 ≥5 次\n- ACL ARR 正文 ≤8 页硬限制——D047 曾超到 9 页被 critical\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874，工作目录 /root/schema-dag-extraction\n- Python：conda base 环境 /root/miniconda3/bin/python\n- 模型：Qwen3-32B via vLLM（本地部署）\n- 论文本地路径：`projects/schema-dag-extraction/docs/paper/main.tex`\n- 无活跃训练进程（所有实验已完成）\n- 无 wandb（本项目用本地 JSON artifacts）\n\n### 3. 📊 当前状态\nAgent 正在处理 3 条队列消息（idle_seconds=296 时读取）：\n1. **worker:done 回调** — exp_fewrel_factorial_tost 完成（Analysis 2: interaction=0.47pp, TOST p=.003, count p=.008, BCS p=.0002, R²=0.52）\n2. **TOST 集成指导** — 指示 Agent 将 TOST 结果写入 Appendix C + Limitations + §4.4 引用\n3. **D048 文本修改清单** — Round 6 全部文本修改（31.2pp 削减、\"model\"→\"decomposition\"、Contribution #1 重写、Channel 1/2 标签、causal language、sampling note、seed、r² defense、multiple comparisons limitation、6 minor fixes）\n\nRegistry: 47 实验全部 DONE（21 success / 5 negative / 10 failed / 11 other）。无 RUNNING/PREPARING。\n\nreview_issues.yaml 已更新：所有 D048 涉及的 Round 6 issues 从 open → in_progress。\n\n### 4. 📋 待办\n- Agent 完成 D048 全部修改 → post_to_reviewer 请求验证审计（检查 31.2pp 频率、\"model\" 残留、页数、TOST 集成正确性）\n- Reviewer 审计通过 → update_review_issues 将已修复项标 resolved\n- Reviewer 审计通过 + 无 critical → submit_paper_to_review（recommended_review_mode=\"continue\"，验证 Round 6 issues 修复效果）\n- 若 Agent 长时间无回复（>30min）→ get_agent_queue_status 检查是否卡死/需要 reset\n- MW2 round 6 action（SCS 替代方案讨论）仍为 open——低优先级，视 Round 7 是否再提及决定是否做\n\n### 5. 🎯 战略上下文\n- 项目处于 Review 阶段迭代修改期。Round 5 borderline 3.3 → Round 6 weak reject 3.0-3.2（fresh mode 审稿，新 reviewer 看到新问题）\n- D048 是对 Round 6 的全面回应：核心突破是 FewRel factorial+TOST 补上了 \"separability\" 的统计证据（TOST p=.003 confirms additive separability）\n- 最大风险：31.2pp 频率问题是 6 轮审稿反复出现的顽疾——D048 要求减至 ≤3 次，如果 Agent 没执行到位会再次被打回\n- \"model\" → \"decomposition\" 替换必须彻底（3 处特定位置，不是全局替换——\"two-channel model\" 才改，\"language model\" 不改）\n- 页数紧张：之前 D047 扩展后超限被紧急压回，D048 新增 TOST appendix 内容不影响正文页数但需确认\n- 决策链：D044(Round 4 fixes) → D045(FewRel Table 2, reverted) → D047(Round 5 comprehensive revision) → D048(Round 6 fixes + TOST)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

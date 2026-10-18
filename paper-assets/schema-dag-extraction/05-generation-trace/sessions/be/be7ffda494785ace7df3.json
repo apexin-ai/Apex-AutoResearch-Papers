@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "be7ffda494785ace7df3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis fewrel 80rel error taxonomy",
+  "task_key": "worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702_result.json",
+    "occurrence": 1,
+    "bytes": 1570,
+    "sha256": "012432dab778759bd5c06d7e426fe984943ff248b6df3cd3c065a38a7d57dda2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清晰。\n\n## FewRel 80-rel Error Taxonomy\n\n| Bin | BCS_mean | Batches | Samples | Correct% | WrongType% | IntraSub% | Missed% |\n|-----|----------|---------|---------|----------|------------|-----------|---------|\n| zero | 0.0000 | 80 | 960 | 85.73% | 0.00% | 0.00% | 14.27% |\n| low | 0.5652 | 6 | 528 | 85.42% | 4.17% | 4.17% | 10.42% |\n| medium | 0.7293 | 37 | 5568 | 75.70% | 13.00% | 13.00% | 11.30% |\n| high | 0.8602 | 19 | 5952 | 66.67% | 20.28% | 20.28% | 13.05% |\n| very_high | 0.9706 | 12 | 7968 | 52.03% | 32.25% | 32.25% | 15.71% |\n\n## Spearman Correlations (n=154 batches)\n\n| Metric | ρ | p |\n|--------|------|------|\n| **IntraSub rate vs BCS** | **0.9539** | <1e-6 |\n| WrongType rate vs BCS | 0.9539 | <1e-6 |\n| Accuracy vs BCS | -0.5821 | <1e-6 |\n\n## Cross-task 对比 (NER exp-007 vs FewRel RE)\n\n| | NER (Few-NERD) | RE (FewRel 80-rel) |\n|---|---|---|\n| IntraSub vs BCS ρ | **1.0** | **0.9539** |\n| 机制一致性 | IntraSub 随 BCS 单调增 | IntraSub 随 BCS 单调增 |\n\n关键发现：\n\n1. **IntraSub = WrongType**：在每个 bin 中 intra_sub_rate == wrong_type_rate，说明 RE 任务中 **100% 的类型混淆都是 batch 内混淆**（模型不会预测 schema 之外的 relation），这与 NER 结论一致。\n2. **Missed rate 相对平坦**（10-16%），BCS 主要驱动类型混淆而非检测失败。\n3. **IntraSub 机制从 NER 成功迁移到 RE**：ρ=0.9539 vs NER 的 ρ=1.0，跨任务验证成立。\n\n输出已保存到 `artifacts/fewrel_80rel_error_taxonomy.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

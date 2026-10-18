@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "34e01e59d34f3ac249fd",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 l2norm k05 long seed43 strict cqa1",
+  "task_key": "worker_analyze_eval_pi05_l2norm_k05_long_seed43_strict_cqa1_20260527T215923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_l2norm_k05_long_seed43_strict_cqa1_20260527T215923_result.json",
+    "occurrence": 1,
+    "bytes": 243,
+    "sha256": "0379bdea11a711c4a170214c227e998a7f89cd718ef821ed181f040123cc9ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. No errors, no NaN, no crash — clean run.\n\n**Per-task SR:** T0=64%, T1=64%, T2=80%, T3=54%, T4=24%, T5=54%, T6=34%, T7=62%, T8=12%, T9=80%\n\nRESULT: overall_sr=52.8%, seed42=49.2%, mean=51.0%, delta=+3.6pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

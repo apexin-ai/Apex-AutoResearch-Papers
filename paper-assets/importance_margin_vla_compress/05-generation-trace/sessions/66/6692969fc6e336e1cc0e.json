@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "6692969fc6e336e1cc0e",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "verify lora 50k checkpoint integrity",
+  "task_key": "worker_verify_lora_50k_checkpoint_integrity_20260516T192803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_lora_50k_checkpoint_integrity_20260516T192803.log",
+    "occurrence": 1,
+    "bytes": 558810,
+    "sha256": "9627b34ff70196564564558d391c662c5a4438f87113d4ddd0e46452ff1165e7"
+  },
+  "statistics": {
+    "messages": 259,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 259,
+      "chunks": [
+        {
+          "path": "6692969fc6e336e1cc0e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6692969fc6e336e1cc0e-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c322169b28f22bed6ba",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh backup westd 70b data",
+  "task_key": "worker_ssh_backup_westd_70b_data_20260517T133316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_backup_westd_70b_data_20260517T133316_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "4864f3fb0e4c5b09187d4c799866cf40bc990a97cec9ec30ff206bd5f0bbdbc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。验证结果：文件大小与源端完全一致。\n\n### 备份清单\n\n| 目录/文件 | 大小 | 目标路径 (cqa1) |\n|---|---|---|\n| `artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/` | 113M | 同路径 ✓ |\n| `artifacts/d051_llama-3.1-70b-fp8_fewrel_n25_s42/` | 82M | 同路径 ✓ |\n| `artifacts/bcs_controlled_llama-3.1-70b-fp8/` | 1.4M | 同路径 ✓ |\n| `results/d051_70b_reeval_summary.json` | 5.4K | 同路径 ✓ |\n\n**总计约 196M**，包含：\n- Few-NERD 实验：6 个 count 级别的 prediction JSONL + summary_unified_protocol.json + summary_type_text.json\n- FewRel 实验：5 个 count 级别的 prediction JSONL\n- BCS controlled 实验数据（count_8, count_16）\n- 70B 重评估汇总 JSON"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

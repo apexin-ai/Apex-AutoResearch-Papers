@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0148f27d53d60f003eec",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp shap analysis r3n3",
+  "task_key": "worker_exp_shap_analysis_r3n3_20260515T190141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_shap_analysis_r3n3_20260515T190141_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "c6b2d168a69db27d6b07e99f45223e529bf620f7b64a8d442dd3477aa9687baa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**服务器端产出**：\n- `results/shap_analysis/shap_importance_all_cells.json` — 9 cell × 19 feature SHAP 值\n- `results/shap_analysis/shap_cross_cell_summary.json` — 跨 cell 汇总\n- `results/shap_analysis/shap_vs_permutation.json` — SHAP vs permutation 对比\n- `results/shap_analysis/shap_summary_plots/` — 12 张图（9 per-cell bar + aggregated bar + heatmap + scatter）\n\n**核心结论**：\n- `var_surprisal` + `p90_ppl` 在全部 9 cell 中排名 #1/#2，贡献 53.5% SHAP importance\n- PPL/surprisal 类特征占 88.8%，lexical diversity 仅 11.2%\n- SHAP 与 permutation importance Spearman ρ = 0.830（全部 p < 0.001）\n- SHAP、permutation、Gini 三种方法 top-5 完全一致（同 5 个特征），充分替代被审稿人质疑的 attention-importance 方法\n- 报告已注册为 artifact `art_20260515_a15690`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1f50cd277aa5e492e7c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy w27 seed45 highvar",
+  "task_key": "worker_deploy_w27_seed45_highvar_20260528T000547",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_w27_seed45_highvar_20260528T000547_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "3460e0786a74fb1e1b565cf3b70105eadc6a9a1479d6693caf5f98db66481cc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已正常启动，正在加载 π0.5 模型。\n\n**部署完成汇总：**\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|------|-----|-----|-------------|------|\n| L2norm k=0.75 seed45 | w27:cuda0 | 346959 | `l2norm_k075_s45` | RUNNING ✓ |\n| Random k=0.85 seed45 | w27:cuda1 | 347032 | `random_k085_s45` | RUNNING ✓ |\n\n注意：`submit_training_job` 工具当前不可用，已用 tmux session + 显式 `CUDA_VISIBLE_DEVICES` 替代，避免了 nohup 的环境变量丢失问题（C005 的根因）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

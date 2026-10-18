@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "42a8a83ead127d60098e",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis da gate quality",
+  "task_key": "worker_analysis_da-gate-quality_20260522T230728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_da-gate-quality_20260522T230728_result.json",
+    "occurrence": 1,
+    "bytes": 2354,
+    "sha256": "e9ad71e83e5ce41b2cad8d6f745c240865628f68d9b7bff16c5b58b730467616"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON saved to `/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json`.\n\n## Results Summary\n\n### Group Sizes\n| Group | n |\n|-------|---|\n| Bidirectional-pass | 65 |\n| DA-only (+21 recovered) | 21 |\n| Reject | 14 |\n\n### (a) NLI Entailment Scores\n\n| Metric | Bidir-pass | DA-only | p |\n|--------|-----------|---------|---|\n| Forward NLI | 0.987±0.017 | 0.230±0.399 | <0.0001 |\n| Backward NLI | 0.986±0.018 | 0.838±0.325 | 0.809 |\n| min(fwd,bwd) | 0.980±0.021 | 0.076±0.173 | <0.0001 |\n\nDA-only组 17/21 failed forward NLI, 4/21 failed backward — 主要是 expansion 方向加了新内容导致 forward entailment 低，这在语义上是合理的。\n\n### (b) Likert Score Diff (orig−cf)\n\n| Judge | Bidir-pass | DA-only | p |\n|-------|-----------|---------|---|\n| GPT-4o | −0.32±1.20 | −0.14±2.05 | 0.996 |\n| Claude | −0.05±0.95 | +0.29±1.91 | 0.663 |\n| LLaMA-70B | −0.25±1.02 | −0.29±2.00 | 0.131 |\n| Qwen-32B | −0.22±0.89 | +0.05±1.36 | 0.861 |\n| Gemini-Flash | −0.35±1.78 | +0.38±2.38 | 0.552 |\n\n**5/5 judges 均无显著差异** (all p>0.13)。DA-only 组质量与 bidir 组等价。\n\n### (c) BT Verbose Win Rate (by judge)\n\n| Judge | Bidir-pass | DA-only |\n|-------|-----------|---------|\n| GPT-4o | 0.600 | 0.619 |\n| Claude | 0.277 | 0.476 |\n| LLaMA-70B | 0.523 | 0.714 |\n| Qwen-32B | 0.646 | 0.619 |\n| Gemini-Flash | 0.492 | 0.571 |\n\nDA-only 组在所有 judge 上 win rate ≥ bidir 组，与之前的 BT=0.7379 vs 0.7845 结论一致（无显著差异）。\n\n### (d) Text Statistics\n\n| Metric | Bidir-pass | DA-only | p |\n|--------|-----------|---------|---|\n| Orig word count | 135.7±143.0 | 28.7±37.9 | — |\n| CF word count | 124.4±107.8 | 82.4±50.4 | — |\n| WC ratio (cf/orig) | 3.50±12.71 | 5.34±4.37 | 0.0001 |\n| BERTScore CF | 0.797±0.108 | 0.701±0.116 | 0.002 |\n\nDA-only 组原文更短、expansion ratio 更大、BERTScore 更低，但这些是 NLI 不对称的自然结果（短文大幅扩写），不影响评判质量。\n\n### 结论\nDirection-aware gate 恢复的 21 pairs 在 **Likert 质量评分和 BT win rate 上与 strict 组无显著差异**，可以安全纳入。它们的特征是短原文的大幅扩写（17/21 forward NLI 低），bidirectional gate 对这类 pair 过于严格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

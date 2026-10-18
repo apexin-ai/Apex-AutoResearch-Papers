@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d70d756da8ebe0eea2f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh remove dangerous resume script",
+  "task_key": "worker_ssh_remove_dangerous_resume_script_20260514T230745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_remove_dangerous_resume_script_20260514T230745_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "7037329758cf4d1d68295dc37fe7cec25330e8734f018a9921ab2aed3e263962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **脚本已删除**：`run_pipeline_olmo_temp09_resume.sh` 已不存在\n- **进程正常**：PID 205384 运行中（已运行 44 分 59 秒），执行的是安全的 `run_pipeline_olmo_temp09.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

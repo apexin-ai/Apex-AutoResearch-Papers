@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "96d55477054540fbb767",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code final report",
+  "task_key": "worker_code_final_report_20260518T233905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_final_report_20260518T233905_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "39992ed441e0981c53638445279715af75286aeb515da9fc77de4975baede9e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/entrainment_gated_ft/FINAL_REPORT.md`，共 268 行，包含全部 8 个章节：\n\n1. **Research Hypotheses** — 三假设框架和 MVP 标准\n2. **Experimental Setup** — 16 模型、6 benchmark、评测配置\n3. **Complete Results** — summary_all_1.3b.csv 完整 markdown 表格\n4. **Core Findings** — 四个核心发现，含全部 Spearman 数据、convergence 表、per-example 分析数据\n5. **MVP Judgment: FAIL** — 五条具体失败原因\n6. **Pivot Exploration: Equalizer Effect** — 发现、机制、局限性\n7. **Technical Lessons** — fla 兼容性、评测坑、GDN h3-1 confound\n8. **Artifact Inventory** — 全部文件清单含实际大小\n\n所有数字均从 CSV/JSON 和分析脚本输出中提取，无编造。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

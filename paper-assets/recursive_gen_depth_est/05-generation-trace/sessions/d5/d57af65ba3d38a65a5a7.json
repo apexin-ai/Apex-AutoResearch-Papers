@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d57af65ba3d38a65a5a7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops 14b status gpu6000pro2",
+  "task_key": "worker_ops_14b-status-gpu6000pro2_20260518T024344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-status-gpu6000pro2_20260518T024344_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "1fdee0c096fbae7bb140f96948664b00ac2f9d8e0cded45f4e4575ae388f5f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## qwen25_14b_scale_002 状态报告\n\n**进程**: PID 806751 存活，GPU 0 占用 32376MiB，利用率 89%\n\n**模型下载**: 8/8 shards 全部完成（shard 5 昨晚 SSL 错误后自动重试成功，00:26 完成）\n\n**生成进度**:\n| depth | 行数 | 状态 | 最后修改 |\n|-------|------|------|---------|\n| d0 | 5000 | 完成 | 05:51 |\n| d1 | 3736/5000 | **进行中 (74.7%)** | 11:03 |\n| d2 | 未开始 | - | - |\n| d3 | 未开始 | - | - |\n\n**当前阶段**: d1 生成中\n\n**ETA 估算**:\n- d0 耗时 ~4.5h，d1 速率 ~718 samples/h（14B 比小模型慢）\n- d1 剩余 ~1264 samples → ~1.8h → 约 12:50 完成\n- d2/d3 各约 7h\n- RF 训练 ~30min\n- **预计总完成时间: ~May 19 03:00-04:00**\n\n**结果文件**: 尚无 `qwen25_14b_scale_002` 结果目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

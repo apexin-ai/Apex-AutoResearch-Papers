@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db4507700e1bdace5e9d",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code prep step2 attacks",
+  "task_key": "worker_code_prep-step2-attacks_20260521T214143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-step2-attacks_20260521T214143_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "bc7d1e030c6170deb0bdb57b4f548b54eeb74b03a79cb9de80bdb6171ea81eac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**产出** — `attack_data/` 目录 8 个 JSON 文件（2 数据集 × (1 clean + 3 attacked)）：\n\n| 文件 | 大小 |\n|------|------|\n| `mmlu_clean_pairs.json` | 272 KB |\n| `mmlu_prompt_injection_attacked.json` | 317 KB |\n| `mmlu_sycophancy_attacked.json` | 321 KB |\n| `mmlu_score_manipulation_attacked.json` | 315 KB |\n| `arc_challenge_clean_pairs.json` | 199 KB |\n| `arc_challenge_prompt_injection_attacked.json` | 244 KB |\n| `arc_challenge_sycophancy_attacked.json` | 248 KB |\n| `arc_challenge_score_manipulation_attacked.json` | 242 KB |\n\n每个文件 300 条样本，字段包含 `question`, `response_a`, `response_b`, `ground_truth_winner`, `attacked_side`, `attack_name`。Step 2 可直接读取使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

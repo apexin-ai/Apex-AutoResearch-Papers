@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d1bbe46caf8ac2e75f0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd41074 westd38929",
+  "task_key": "worker_audit_westd41074_westd38929_20260527T104740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd41074_westd38929_20260527T104740_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "5dc830aef0afa7dbf99a7c1c69b4365e1ac61a107413324633187d620008793f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### westd-41074 — 4/4 GPU 全部存活\n\n| GPU | 利用率 | 显存 | 进程 | PID |\n|-----|--------|------|------|-----|\n| 0 | 11% | 10.9/97.9 GB | π0.5 Random k=0.9 strict v2 | 356361 |\n| 1 | 19% | 10.4/97.9 GB | π0.5 Random k=0.5 strict v2 | 356612 |\n| 2 | 51% | 10.9/97.9 GB | π0.5 Attn k=0.95 strict | 433293 |\n| 3 | 53% | 10.8/97.9 GB | π0.5 L2norm k=0.85 strict v2 | 433369 |\n\nGPU2 仍在运行（51% 利用率），**不需要重部署**。\n\n### westd-38929 — 4/4 GPU 全部存活\n\n| GPU | 利用率 | 显存 | 进程 | PID |\n|-----|--------|------|------|-----|\n| 0 | 71% | 16.4/97.9 GB | OV Long 实验 | 112587 |\n| 1 | 62% | 15.8/97.9 GB | OV Long 实验 | 949447 |\n| 2 | 58% | 16.1/97.9 GB | OV Long 实验 | 950007 |\n| 3 | 66% | 16.0/97.9 GB | OV Long 实验 | 968309 |\n\n两台服务器 8 个 GPU 全部正常运行，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

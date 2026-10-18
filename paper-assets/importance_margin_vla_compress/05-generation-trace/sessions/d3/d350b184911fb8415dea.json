@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "d350b184911fb8415dea",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops d166 cqa1 openvla",
+  "task_key": "worker_ops_d166_cqa1_openvla_20260522T131218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_d166_cqa1_openvla_20260522T131218_result.json",
+    "occurrence": 1,
+    "bytes": 2372559,
+    "sha256": "3ab321b340ad5e5f0b40b642adc8822e33251f65d5edd86a1b495c7d0ea2cce8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d350b184911fb8415dea-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

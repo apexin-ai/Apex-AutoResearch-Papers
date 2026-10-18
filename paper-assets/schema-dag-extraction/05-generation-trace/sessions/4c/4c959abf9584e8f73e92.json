@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4c959abf9584e8f73e92",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp fewshot bcs count16",
+  "task_key": "worker_code_exp_fewshot_bcs_count16_20260523T140539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_fewshot_bcs_count16_20260523T140539_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "248b2b5fcf05c843d47bd7c82f46422ab2156b7fbf657a0f09d3ecc2e1812210"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理正常运行：\n- Batch 1 (low_0, 0-shot): 108/192 correct (56.2%), 8.8s\n- Batch 2 (low_1, 0-shot): 115/192 correct (59.9%), 5.8s  \n- 吞吐 ~6.8K toks/s input, ~350 toks/s output\n- 每个 batch 约 5-9 秒，150 conditions → 预估 ~15-20 分钟完成\n\n实验已成功启动并正常运行。\n\n**总结：**\n- 脚本 `src/run_fewshot_bcs_count16.py` 已创建并部署\n- Extreme batches: 25 low (BCS 0.405) + 25 high (BCS 0.739), count=16\n- 实验在 tmux session `fewshot_bcs_count16` 中运行，PID 845785\n- 实验 ID: `exp_fewshot_bcs_count16`，状态 RUNNING\n- 预估 ~20 分钟完成 150 conditions × 192 samples = 28,800 inferences\n- 结果将保存到 `/root/schema-dag-extraction/artifacts/exp_fewshot_bcs_count16/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

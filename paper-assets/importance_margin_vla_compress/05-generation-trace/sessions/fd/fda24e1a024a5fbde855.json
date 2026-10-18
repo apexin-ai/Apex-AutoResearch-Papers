@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fda24e1a024a5fbde855",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest westd 27271",
+  "task_key": "worker_harvest_westd-27271_20260523T154349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_westd-27271_20260523T154349_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "7022aae59a42b8e7687e88e4415ee6fc7ae7c1c4f390b9018e11cbff5ee80d15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## 收割结果\n\n### 已完成: eval_e5_xvla_attn_last_obj_k03\n- **SR: 84.2%** (421/500), Wilson CI [80.7%, 87.1%]\n- 15/50 tokens 保留 (k=0.3)\n- Registry → DONE (success)\n\n**X-VLA Object k=0.3 三种 attention 模式对比：**\n| Mode | SR |\n|------|-----|\n| attention_mean | **96.0%** |\n| attention_rollout | **92.0%** |\n| attention_last | **84.2%** |\n\nattention_last 在极端剪枝下退化最严重，但仍保持 84.2%，远好于 attention_last k=0.5 的 74.4%——说明 k=0.5→k=0.3 结果反升，可能存在数据波动或之前 k=0.5 数据有问题。\n\n### 仍在运行\n\n| 实验 | 进度 | GPU |\n|------|------|-----|\n| eval_openvla_baseline_goal_seed42_v3 (PID 263442) | Task 3/10, ~130/500 ep (~26%) | GPU 0 |\n| eval_openvla_baseline_long_seed42 (PID 291098) | Task 1/10, 刚启动 (~5min) | GPU 2 |\n\n还有 PID 257941 在 GPU 0 跑了 1.5h，是一个没带 `--model_path` 和 `--unnorm_key` 的旧 Goal baseline（可能是 v1），与 v3 并行占用资源。两个 OpenVLA Goal baseline 预计还需 ~4-5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

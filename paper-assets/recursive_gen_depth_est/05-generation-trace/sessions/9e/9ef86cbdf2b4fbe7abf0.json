@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9ef86cbdf2b4fbe7abf0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis accum olmo mix50 and summary",
+  "task_key": "worker_analysis_accum_olmo_mix50_and_summary_20260522T074900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_accum_olmo_mix50_and_summary_20260522T074900_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "1d8d122ef51a246ec0dacbc13727a711b5732a9d398a34ef5ff72828bcd5fe0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是汇总：\n\n## accum_olmo_temp_mix50 结果\n\n- **4-class accuracy**: 70.23% (balanced: 70.22%)\n- **d1-d3 balanced acc**: 60.39%\n- **Per-class recall**: d0=99.7%, d1=72.5%, d2=41.2%, d3=67.4%\n- **Fold range**: 69.13%–71.47%\n- **Runtime**: 1.69h\n- **vs mix25 (73.47%)**: Δ=-3.24pp\n- **vs full replacement (82.27%)**: Δ=-12.04pp\n\nRegistry 已更新为 DONE/success。\n\n## 全部 6 个 Accumulation 实验汇总\n\n| Model | Mix | 4-class Acc | d1d3 Bal | d2v3 AUC | EDD(T=0.70) | Δ vs Full |\n|-------|-----|-------------|----------|----------|-------------|-----------|\n| GPT-2 XL | 25% | 70.08% | 60.30% | 0.726 | 3 | -14.20pp |\n| GPT-2 XL | 50% | 69.05% | 58.95% | **0.690** | **2** | -15.23pp |\n| Pythia-1.4B | 25% | 70.77% | 61.15% | 0.749 | 3 | -7.93pp |\n| Pythia-1.4B | 50% | 68.65% | 58.34% | 0.713 | 3 | -10.05pp |\n| OLMo-1B | 25% | 73.47% | 64.72% | 0.759 | 3 | -8.80pp |\n| OLMo-1B | 50% | 70.23% | 60.39% | 0.722 | 3 | -12.04pp |\n\n关键发现：\n- 5/6 实验保持 EDD=3，仅 GPT-2 XL mix50 降至 EDD=2（d2v3 AUC=0.690，刚好低于 0.70 阈值）\n- d2v3 AUC 的 mix25→mix50 下降幅度跨模型高度一致（~0.036）\n- d0v1 AUC 对 human mixing 完全免疫（≥0.9995）\n- OLMo temp09 绝对准确率最高但 mix25→mix50 下降最大（-3.24pp）\n\n完整报告已注册为 artifact `accumulation_results_summary`。Pairwise AUC 数据保存在服务器 `results/accumulation_pairwise_auc.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

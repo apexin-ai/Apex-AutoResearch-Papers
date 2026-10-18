@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "25ed29436cf672986cd7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "inspect westd41074 gpu02 logs",
+  "task_key": "worker_inspect_westd41074_gpu02_logs_20260526T030141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inspect_westd41074_gpu02_logs_20260526T030141_result.json",
+    "occurrence": 1,
+    "bytes": 2363,
+    "sha256": "0614f33293b0690da72a797dd4fdb7f19b4b7c2de2283f59c6ddcd3a44937444"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息足够了。以下是汇总结果：\n\n---\n\n## westd-41074\n\n### GPU0 — PID 303189 (ALIVE, 可能卡住)\n- **实验**: OpenVLA Random k=0.85, libero_10 (Long), seed42 v2\n- **命令**: `eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.85 --suite libero_10 --seed 42`\n- **状态**: stat=Sl, 运行 1h21m\n- **日志**: `/root/runs/importance_margin_vla_compress/eval_openvla_random_k085_long_seed42_v2.log`\n- **进度**: Task 1/10, ep 40/50 (0.6 eps/min)\n- **日志最后更新**: May 26 10:50 — **30+ 分钟无新输出，结合 GPU 利用率 0%，疑似卡住**\n\n### GPU2 — PID 259181 (ALIVE, 可能卡住)\n- **实验**: OpenVLA Attention k=0.7, libero_object, seed42\n- **命令**: `eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.7 --suite libero_object --seed 42`\n- **状态**: stat=Rl+, 运行 2h40m\n- **日志**: `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k07_object_seed42.log` (41 行)\n- **进度**: Task 4/10, ep 40/50 (1.2 eps/min)\n- **日志最后更新**: May 26 10:57 — **25+ 分钟无新输出，结合 GPU 利用率 0%，疑似卡住**\n\n---\n\n## 4 个 Stale RUNNING 实验\n\n| # | exp_id | 状态 | overall_sr | 结果文件 |\n|---|--------|------|-----------|---------|\n| 1 | eval_pi05_random_k085_long_seed43_postfix | **COMPLETED** | **41.8%** (209/500) | `pi05_random_k0.85_libero_10_seed43.json` |\n| 2 | eval_pi05_random_k09_long_seed43_postfix | **COMPLETED** | **35.6%** (178/500) | `pi05_random_k0.90_libero_10_seed43.json` |\n| 3 | eval_pi05_l2norm_k03_long_seed42_postfix | **COMPLETED** | **36.6%** (183/500) | `pi05_l2norm_k0.30_libero_10_seed42.json` |\n| 4 | eval_xvla_random_k05_spatial_seed43 (westd-38929) | **COMPLETED**, PID gone | **72.6%** (363/500) | `eval_xvla_random_k05_spatial_seed43.json` |\n\n---\n\n## westd-38929 — eval_xvla_random_k05_spatial_seed43 详情\n- 模型: xvla, random mode, keep_ratio=0.5, 50→25 vision tokens\n- Per-task: 100% / 38% / 88% / 92% / 88% / 0% / 94% / 68% / 92% / 66%\n- 95% Wilson CI: [68.5%, 76.3%]\n- 耗时 64.3 min\n\n---\n\n**结论**: 4 个 stale 实验均已完成，可在 registry 标记 DONE。westd-41074 的两个 GPU 进程（303189, 259181）虽然 PID 存在，但日志 25-30 分钟无更新且 GPU 利用率 0%，很可能已卡死，需要 kill 后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

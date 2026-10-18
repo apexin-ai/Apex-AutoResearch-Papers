@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f1b15911fd593a5db71",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze random k07 seed43 object",
+  "task_key": "worker_analyze_random_k07_seed43_object_20260525T123223",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_random_k07_seed43_object_20260525T123223_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "023ab49a129411b7aa47c71fc4926f6ec8918962d3048fe455fa9e66925940f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果如下：\n\n## random_k07_seed43_object 结果\n\n**Overall: 51.2% (256/500)** | 耗时 270 min | 256→179 vision tokens (k=0.7)\n\n| Task | SR | Succ/Ep |\n|------|---:|--------:|\n| orange juice | 84.0% | 42/50 |\n| alphabet soup | 74.0% | 37/50 |\n| ketchup | 72.0% | 36/50 |\n| tomato sauce | 62.0% | 31/50 |\n| salad dressing | 58.0% | 29/50 |\n| bbq sauce | 56.0% | 28/50 |\n| chocolate pudding | 42.0% | 21/50 |\n| milk | 30.0% | 15/50 |\n| butter | 20.0% | 10/50 |\n| cream cheese | 14.0% | 7/50 |\n\n**结论：success** — seed43 的 51.2% 与 seed7 的 49.0% 高度一致（差异仅 2.2pp），确认 random k=0.7 的退化模式跨 seed 稳定。随机丢弃 30% vision tokens 导致性能从 baseline 水平稳定下降到 ~50%，且 per-task 分布模式一致（cream cheese/butter/milk 始终是最弱的三个 task）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "b3b9abdb17bdbf2bb79a",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval geometric prior k09",
+  "task_key": "worker_eval_geometric_prior_k09_20260517T160530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_geometric_prior_k09_20260517T160530.log",
+    "occurrence": 1,
+    "bytes": 926023,
+    "sha256": "71b2e2478d178daccd0ba743a180182620452a42359cfcbf4dbb6465e48f30a8"
+  },
+  "statistics": {
+    "messages": 740,
+    "user_turns": 0,
+    "tool_calls": 290,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 134,
+      "tool_call": 290,
+      "tool_result": 290,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 740,
+      "chunks": [
+        {
+          "path": "b3b9abdb17bdbf2bb79a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b3b9abdb17bdbf2bb79a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b3b9abdb17bdbf2bb79a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b3b9abdb17bdbf2bb79a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b3b9abdb17bdbf2bb79a-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ]
+}

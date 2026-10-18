@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e375d29445927b926df",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops full gpu audit and redeploy urgent",
+  "task_key": "worker_ops_full-gpu-audit-and-redeploy-urgent_20260521T104544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_full-gpu-audit-and-redeploy-urgent_20260521T104544_result.json",
+    "occurrence": 1,
+    "bytes": 2983,
+    "sha256": "7ffe0d4f12feb2589bf83e991630fa7c627260d04d4eed1fe97ecc8dadcd8385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 全服务器 GPU 审计报告\n\n### [审计] westd-41074 — 4/4 GPU BUSY\n\n| GPU | VRAM | Util | PID | 实验 | 运行时间 | ETA |\n|-----|------|------|-----|------|---------|-----|\n| 0 | 10.5G/98G | 34% | 68573 | π0.5 l2norm k=0.7 seed42 | 1h15m | ~30min |\n| 1 | 10.5G/98G | 42% | 95490 | π0.5 random k=0.5 seed43 | 52m | ~30min |\n| 2 | 28.6G/98G | 0% | 68539 | OpenVLA M96 training | 1d7h | 数天 |\n| 3 | 27.5G/98G | 94% | 59671 | OpenVLA M64v6 training | 1h30m | 数天 |\n\nPID 51513 (π0.5 random k=0.7) 已完成退出。\n\n### [审计] westd-38929 — 4/4 GPU BUSY\n\n| GPU | VRAM | Util | PID | 实验 | 运行时间 | 进度 | ETA |\n|-----|------|------|-----|------|---------|------|-----|\n| 0 | 16G/98G | 75% | 1945 | OpenVLA l2norm k=0.7 v2 | 3h20m | T4/10 ep30 | ~2h |\n| 1 | 16G/98G | 83% | 2478 | OpenVLA random k=0.3 v2 | 3h20m | T4/10 ep20 | ~2h |\n| 2 | 16G/98G | 70% | 3110 | OpenVLA random k=0.7 v2 | 3h19m | T4/10 | ~2h |\n| 3 | 16G/98G | 70% | 3825 | OpenVLA l2norm k=0.5 v2 | 3h19m | T4/10 ep10 | ~2h |\n\n### [审计] westd-27271 — 2/2 GPU BUSY\n\n| GPU | VRAM | Util | PID | 实验 | 运行时间 | 进度 | ETA |\n|-----|------|------|-----|------|---------|------|-----|\n| 0 | 16G/98G | 66% | 193983 | OpenVLA l2norm k=0.3 rerun | 2h52m | T6/10 ep40 | ~1.5h |\n| 1 | 42G/98G | 0% | 921279 | OpenVLA M32 training | 24h | step 54750/100K | ~25h |\n\n### [审计] cqa1-33015 — 4/4 GPU BUSY\n\n| GPU | VRAM | Util | PID | 实验 | 运行时间 | 进度 | ETA |\n|-----|------|------|-----|------|---------|------|-----|\n| 0 | 4.5G/24G | 1% | 944993 | X-VLA l2norm k=0.3 seed43 | 53m | T1 ep20/50 | ~4h |\n| 1 | 4.5G/24G | 1% | 946702 | X-VLA random k=0.3 seed43 | 52m | T1 ep23/50 | ~4h |\n| 2 | 4.5G/24G | 34% | 66544 | X-VLA random k=0.7 seed44 | 14m | T1 ep20/50 | ~4h |\n| 3 | 4.5G/24G | 23% | 947883 | X-VLA l2norm k=0.7 seed43 | 52m | T1 ep29/50 | ~4h |\n\n---\n\n## 总结: 14/14 GPU 满载运行，无空闲卡\n\n### [结果] 新完成实验\n- **eval_pi05_random_k07_object_seed42**: SR=**77.2%** (386/500, 83min) → Registry 已更新为 DONE\n\n### [结果] π0.5 Scaling Law 汇总 (libero_object, seed42)\n\n| k | Random | L2norm |\n|---|--------|--------|\n| 1.0 | 98.2% (baseline) | — |\n| 0.7 | **77.2%** ✅ NEW | (running ~30min) |\n| 0.5 | 69.4% | 33.4% |\n| 0.3 | 36.4% | 51.0% ⚠️ |\n\n⚠️ L2norm 非单调 (k=0.3 > k=0.5)，需关注 k=0.7 结果是否修正趋势。\n\n### [结果] OpenVLA 已有结果 (libero_object, seed42)\n\n| k | Random | L2norm |\n|---|--------|--------|\n| 0.95 | 69.2% | 70.6% |\n| 0.9 | — | 70.6% |\n| 0.7 | 44.4% | (re-running, ~2h) |\n| 0.5 | — | 39.2% (re-verifying, ~2h) |\n| 0.3 | — | 25.0% (re-verifying, ~1.5h) |\n\n### [部署] 无需部署 — 全部 GPU 已占用\n\n下一批空闲 GPU 预计 **~1.5-2h 后**出现（westd-41074 GPU0/1 的 π0.5 eval 先完成，westd-38929 4卡 + westd-27271 GPU0 的 OpenVLA eval 紧随其后）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

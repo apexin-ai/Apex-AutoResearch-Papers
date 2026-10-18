@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d88eea15a0a208e7429",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix eval script filename bug",
+  "task_key": "worker_fix_eval_script_filename_bug_20260525T143544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_eval_script_filename_bug_20260525T143544_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "68168f249805d559823ee1083e49c96d064fe5ac5bf1299e5259b3df1b71a134"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，三台服务器输出逻辑一致。\n\n**修复总结：**\n\n| 服务器 | 状态 |\n|--------|------|\n| westd-38929 | ✓ 已修复 |\n| westd-27271 | ✓ 已修复 |\n| westd-41074 | ✓ 已修复 |\n| cqa1-33015 | 无此脚本，跳过 |\n\n**两处修改：**\n1. **文件名**：`else` 分支从硬编码 `openvla_l2norm_prune_k...` 改为 `openvla_{args.mode}_k...`，同时包含 `_seed{args.seed}` 防止不同 seed 冲突\n2. **k_ratio 字段**：从 `args.mode == \"random_prune\"` 改为 `args.mode != \"baseline\"`，所有 pruning 模式都正确记录 k_ratio\n\n已运行的实验不受影响，新启动的实验将使用正确的文件名。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

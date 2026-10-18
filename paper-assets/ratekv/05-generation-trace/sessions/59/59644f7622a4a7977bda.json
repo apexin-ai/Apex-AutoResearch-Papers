@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "59644f7622a4a7977bda",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "exp pythia14b constrained pipeline",
+  "task_key": "worker_exp_pythia14b_constrained_pipeline_20260515T123706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pythia14b_constrained_pipeline_20260515T123706_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "e6c447749551216d81608fa091b0c6f8b951af11bed3a70c84dfeea89953d44e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本正常运行中。Solver 结果和 concentration 数据已出：\n\n- **t1=0.0289, t5=0.2439** — 确认 Flat shape\n- **Constrained**: 372×4bit + 4×8bit + 8×2bit (受 max_2bit=8 约束)\n- **Unconstrained**: 90×2bit + 249×4bit + 45×8bit\n- **Uniform-4bit**: 384×4bit\n\n正在跑 BF16 baseline PPL eval（563 chunks），预计 4 个 eval 共 ~10-15min。\n\n产出汇总：\n1. **脚本**: `/root/ratekv/run_pythia14b_constrained_pipeline.py`（本地 + 远程）\n2. **Dry-run**: solver OK，profiles 加载正确，模型加载成功，eval 已开始\n3. **PID**: 333915\n4. **预计完成**: ~15min 后（4 轮 WikiText-2 eval，563 chunks/轮）\n5. **输出 JSON**: `/root/ratekv/artifacts/pythia14b_constrained_pipeline_results.json`\n6. **日志**: `/tmp/pythia14b_constrained.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

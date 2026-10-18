@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7ad593a286d28906db17",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops r6 data audit",
+  "task_key": "worker_ops_r6-data-audit_20260525T064840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_r6-data-audit_20260525T064840_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "ac3a140793dee7092a4e3bc1c9fc2a3081917e1eb773c57911c570535ee6d94c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存至 `artifacts/r6_data_audit.md`。\n\n**发现 8 处不一致：**\n\n**Fractional logit（6处 🔴）：**\n- `results.tex:24` 表格 K=3 行：η_max 6/12→**7/12**, K_eff 9/12→**4/12**（都错）\n- `results.tex:43` \"fractional logit giving 9/12\"→**4/12**（K=3）\n- `results.tex:99` 声称 \"9/12 across all K\"→实际 **4/12, 9/12, 10/12**\n- `introduction.tex:20` 同上 \"9/12 across all K\"\n- `analysis.tex:15` 同上 \"9/12 at all K\"\n- `appendix.tex:159` 表格 K=5 行 η_max 4/12→**5/12**\n\n**Adaptive R²（2处 🔴）：**\n- `introduction.tex:16` R²=0.275→**0.256**\n- `results.tex:66` R²=0.275→**0.256**\n\n**全部正确的：** WCB bootstrap 数字（9处）、OLS 计数、dominance 分布、Bayesian 方向/neutralization。\n\n**需额外核实：** 98.6% directional concordance (71/72) 在 fractional logit 数字修正后是否仍成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

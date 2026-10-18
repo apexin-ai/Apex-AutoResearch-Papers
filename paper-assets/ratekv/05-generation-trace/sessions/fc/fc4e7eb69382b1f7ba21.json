@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fc4e7eb69382b1f7ba21",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "fix llama hires shape metrics",
+  "task_key": "worker_fix_llama_hires_shape_metrics_20260515T142158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama_hires_shape_metrics_20260515T142158_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "ff2982b0b5f9490be9e134eef5921d142b0f129100463312e10edab03c6461ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**变更**：`compute_shape_metrics.py` 第6行 Llama 路径从 `llama_profiling_results.json`（lowres）改为 `llama_hires_bf16_2bitonly_profiles.json`（hires）。\n\n**更新后 7 模型 shape_metrics**：\n\n| Model | top5_conc | top1_share | Gini |\n|-------|-----------|------------|------|\n| Qwen2.5-7B | 0.6104 | 0.3461 | 0.7065 |\n| Qwen2.5-14B | 0.3312 | 0.1885 | 0.5626 |\n| **Llama-3.1-8B** | **0.5749** | **0.4867** | **0.6695** |\n| Yi-1.5-9B | 0.7139 | 0.6434 | 0.7772 |\n| Mistral-7B-v0.3 | 0.2200 | 0.0401 | 0.4941 |\n| Gemma-2-9B | 0.2299 | 0.0404 | 0.5305 |\n| Pythia-1.4B | 0.2439 | 0.0289 | 0.5301 |\n\nLlama concentration 从 0.3387 → **0.5749**，与 registry 和 hires 实验结果一致。其他模型值不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

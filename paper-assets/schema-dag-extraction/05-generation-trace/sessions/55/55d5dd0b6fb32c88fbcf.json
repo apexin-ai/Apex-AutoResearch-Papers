@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "55d5dd0b6fb32c88fbcf",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp012 llama 8b r2 final",
+  "task_key": "worker_diagnose_exp012_llama_8b_r2_final_20260515T194608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp012_llama_8b_r2_final_20260515T194608_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "a6b89561258e37e1241ef359bd64149a1e966216452a3500a0a7c3e553836cf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行，未退出。** \n\n当前状态：\n- exit 文件不存在（`/tmp/agent-ml-exit/exp012_llama_8b_r2.exit` → No such file）\n- PID 319316 活跃（40% CPU），vLLM EngineCore PID 319623（105% CPU）\n- **exp1 已完成**（02:38→03:39）\n- **exp2 正在运行**：count_6 batches 进行中，已完成 low_bcs、high_bcs、random/0→17。当前 running count_6/random/17，之后还有 count_12 全部 batches\n\nartifacts/exp012/ 中 00:45 的 exp2 文件是旧 run 遗留，本次 run 的 exp2 还没写出新结果。\n\n**预估剩余时间**：count_6 random 即将完成（~18 batches done），count_12 还需 ~20 batches × ~15s ≈ 5-7 分钟。总计约 10 分钟内应结束。\n\n不更新 registry、不删 cron——等进程完成后再操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

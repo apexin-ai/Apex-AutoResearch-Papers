@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bade1677562deb35dbae",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops restart 13b mirror",
+  "task_key": "worker_ops_restart_13b_mirror_20260517T113254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_13b_mirror_20260517T113254_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "d59fa7d381113e5d1fae4762fad890bfa835445ca54f0f283257fa068f311062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "994MB，持续增长。下载速度稳定在 ~2-3 MB/s。\n\n总结当前状态：\n\n- **tmux session**: `qwen25_14b_scale` 运行中\n- **下载方式**: aria2c 16 连接从 hf-mirror.com → XET CDN\n- **当前进度**: shard 1/8 下载中，~1GB/3.6GB\n- **预估时间**: 每 shard ~25-30 分钟，8 个 shard 共 ~3.5-4 小时完成下载\n- **下载后自动执行**: 模型加载 → d0 生成 → LoRA finetune → d1-d3 生成 → 特征提取 → 分类\n- **registry**: qwen25_14b_scale_001，状态 RUNNING\n\n**关键修改**:\n1. 注释 `source /etc/network_turbo`（代理导致 timeout）\n2. 添加 `HF_ENDPOINT=https://hf-mirror.com` + `unset proxy`\n3. 替换 `hf download` 为 `aria2c` 16 连接并行下载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

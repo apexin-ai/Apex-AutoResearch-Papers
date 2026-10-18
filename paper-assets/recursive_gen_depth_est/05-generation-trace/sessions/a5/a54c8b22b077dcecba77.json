@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "id": "a54c8b22b077dcecba77",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code wild data calibration 002",
+  "task_key": "worker_code_wild_data_calibration_002_20260516T002255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wild_data_calibration_002_20260516T002255.log",
+    "occurrence": 1,
+    "bytes": 3454427,
+    "sha256": "09639417c925b99bb36e71fe41e7dbe254e739b72ec6dbc81d4a4a2b1ea2fb38"
+  },
+  "statistics": {
+    "messages": 1768,
+    "user_turns": 4,
+    "tool_calls": 709,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 3,
+      "assistant": 328,
+      "tool_call": 709,
+      "tool_result": 709,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "a54c8b22b077dcecba77-part-0001.json",
+          "message_count": 131
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 483,
+      "chunks": [
+        {
+          "path": "a54c8b22b077dcecba77-part-0002.json",
+          "message_count": 138
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0004.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 272,
+      "chunks": [
+        {
+          "path": "a54c8b22b077dcecba77-part-0004.json",
+          "message_count": 15
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0006.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 817,
+      "chunks": [
+        {
+          "path": "a54c8b22b077dcecba77-part-0006.json",
+          "message_count": 103
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0010.json",
+          "message_count": 174
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "a54c8b22b077dcecba77-part-0010.json",
+          "message_count": 6
+        },
+        {
+          "path": "a54c8b22b077dcecba77-part-0011.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

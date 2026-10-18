@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "15727d3285beb8cfd478",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code d032 c4 rerun",
+  "task_key": "worker_code_d032_c4_rerun_20260514T090707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d032_c4_rerun_20260514T090707.log",
+    "occurrence": 1,
+    "bytes": 723613,
+    "sha256": "fa9ad192ed76de3cf61242a39e45d885e1eee13db5d506145ecde1945a1d3f20"
+  },
+  "statistics": {
+    "messages": 456,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 74,
+      "record": 5,
+      "assistant": 151,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 61
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 456,
+      "chunks": [
+        {
+          "path": "15727d3285beb8cfd478-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "15727d3285beb8cfd478-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "15727d3285beb8cfd478-part-0003.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ]
+}

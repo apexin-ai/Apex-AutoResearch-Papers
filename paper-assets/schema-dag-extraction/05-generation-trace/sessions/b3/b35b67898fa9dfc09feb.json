@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b35b67898fa9dfc09feb",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper sdgd routing update",
+  "task_key": "worker_paper_sdgd-routing-update_20260517T061924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sdgd-routing-update_20260517T061924_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "1ddc832da08e9915f688644880ef7db36a4bf7898d4ff4a9f066936c75443afe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Compilation succeeds with no undefined references, body fits within page limits.\n\n**Summary of changes:**\n1. **sdgd_negative.tex** — Added `\\paragraph{Practical routing strategies.}` after the oracle routing discussion, documenting the failure of all 5 practical strategies (best 36.5% vs 50.4% single-pass) and the constrained-decoding root cause.\n2. **introduction.tex** — Contribution 4 upgraded from \"merge limitations\" to \"systematic routing failure,\" now mentioning 7 strategies tested with the key 36.5% vs 50.4% comparison.\n3. **main.tex** (appendix) — Added `\\subsection{Practical Routing Strategies on RE}` with Table~\\ref{tab:routing_strategies} in the SDGD appendix section.\n4. **supplementary.tex** — Same table added for standalone supplementary compilation.\n5. **abstract.tex** — No change needed; existing text is already compatible."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

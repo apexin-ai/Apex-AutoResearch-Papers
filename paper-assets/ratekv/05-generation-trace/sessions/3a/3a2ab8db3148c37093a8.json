@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3a2ab8db3148c37093a8",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh deploy phi3 profiling",
+  "task_key": "worker_ssh_deploy_phi3_profiling_20260515T231033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deploy_phi3_profiling_20260515T231033_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "5664a2b06ec8c610bffd07cfe390cf2b2ba621f13fdc3edd6541f9365f907f1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Profiling 已成功启动并产出首条结果。\n\n## 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **patch_attention 兼容性** | Phi-3 使用 fused `qkv_proj`，原始 eval_ppl.py 不兼容。已修补 `patch_attention` 增加 fused qkv 分支（`hasattr(orig_attn, 'qkv_proj')` 检测），不影响已有模型 |\n| **trust_remote_code** | 改为 `False`。原因：Phi-3 自带的 modeling_phi3.py 用旧 forward 签名（`position_ids`），与 eval_ppl.py 期望的 `position_embeddings` 不兼容。transformers 4.57.6 原生 Phi-3 签名匹配 |\n| **脚本部署** | `/root/ratekv/run_phi3_medium_hires_profiling.py` + eval_ppl.py patch 已部署 |\n| **模型下载** | 已完成，6/6 shards，总计 ~27GB |\n| **Profiling 状态** | PID 383089，cuda:1 (28GB)，Baseline PPL=4.7834，已开始逐头 profiling，ETA ~337min (~5.6h)。日志：`/tmp/phi3_profiling.log` |\n\n旧的 `phi3_auto_profiling.sh`（PID 352691）已终止——它有两个 bug：模型路径错误（`microsoft/` vs `LLM-Research/`）且下载完成信号不匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

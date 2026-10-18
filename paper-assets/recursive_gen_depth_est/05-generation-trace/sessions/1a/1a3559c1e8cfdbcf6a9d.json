@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1a3559c1e8cfdbcf6a9d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis olmo topk50 001",
+  "task_key": "worker_analysis_olmo_topk50_001_20260515T014117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_olmo_topk50_001_20260515T014117_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "a6d2ad781a845b4c1357d750fae87b91ce69c3a5cd95878107e4c440245003ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结：\n\n**olmo_topk50_001 — SUCCESS**\n\n| 指标 | 值 |\n|------|-----|\n| 4-class LR acc | 75.7% [74.3%, 77.0%] |\n| 4-class RF acc | 74.2% [72.8%, 75.6%] |\n| d1v2 AUC (LR/RF) | 0.829 / 0.831 |\n| 3-class filtered LR/RF | 67.0% / 67.0% |\n| Code contamination | < 1% (narrow) |\n\n**vs 对比基准：**\n\n| Config | 4-class LR | d1v2 AUC |\n|--------|-----------|----------|\n| OLMo temp09 | 82.0% | 0.901 |\n| OLMo nucleus | 78.8% | 0.867 |\n| **OLMo topk50** | **75.7%** | **0.829** |\n| Pythia topk50 | 69.6% | 0.752 |\n\nOLMo topk50 比 nucleus 低 ~3pp，但仍显著高于 Pythia topk50（+6pp），确认模型效应 > 解码策略效应。3×3 矩阵最后一格完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

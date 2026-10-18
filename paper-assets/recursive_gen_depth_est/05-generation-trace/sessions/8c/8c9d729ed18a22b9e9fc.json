@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c9d729ed18a22b9e9fc",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper update table1 ci",
+  "task_key": "worker_paper_update_table1_ci_20260517T143445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update_table1_ci_20260517T143445_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "e8b80e34136d8e2637e3be0d0e9e441b8c9d2846085dc45734102927f851a258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX compiles cleanly with zero errors, 19 pages output.\n\n**Summary of changes across 7 files:**\n\n**Table 1 (`atlas.tex`):** Updated all 9 cells to bootstrap point estimates with `±` CI half-widths (all ≤0.6pp). GPT-2 XL row bolded as best per column. Caption now references \"bootstrap 95% CI (10,000 resamples)\" instead of \"5-fold CV SD ≤ 0.9pp\".\n\n**Inline text updates (26 edits across files):**\n- `atlas.tex`: accuracy range 68.8–85.9%, per-model/strategy ranges, spread 17.1pp, strategy gap 9.2pp / model gap 7.2pp\n- `abstract.tex`: ≈69–86%, 43pp below RF\n- `introduction.tex`: 43pp below RF\n- `discussion.tex`: 69–86%\n- `method.tex`: Pythia 78.7% vs GPT-2 XL 85.9%\n- `generalization.tex`: range 68.8–85.9%, CORAL/DivEye within 0.6pp, 43pp gap vs RF at 78.7%, baselines table diff ≤0.2pp, confusion matrix caption 85.9%, E2E lagging 20pp\n- `conclusion.tex` (Limitations): 78.7% vs 85.9%\n- `section_appendix.tex`: DCOL baseline 78.7%, E2E gaps 20.4/19.2pp, cross-scale table 84.1/78.9/78.7, 20pp accuracy gap"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

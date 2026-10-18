@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "abbc22eb9b1d3d43271c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fix rerun analysis",
+  "task_key": "worker_ssh_fix-rerun-analysis_20260515T023655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-rerun-analysis_20260515T023655_result.json",
+    "occurrence": 1,
+    "bytes": 1716,
+    "sha256": "cbf8835fa43925703cf233b75bfeb713d13269b77f20b2e485fd4d4b7df3180c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果如下：\n\n```\n=== CLEAN DATA ANALYSIS (text_match reeval) ===\n\nPRIMARY: r(recall, BCS)\n  count_6:  r=0.2754, p=0.1644, n=27, verdict=FAIL\n  count_12: r=0.2219, p=0.2660, n=27, verdict=FAIL\n  partial:  r=0.2522, p=0.0658, n=54, verdict=FAIL\n\nSECONDARY: r(F1, BCS)\n  count_6:  r=0.1754, p=0.3814, n=27, verdict=FAIL\n  count_12: r=0.5012, p=0.0077, n=27, verdict=PASS\n  partial:  r=0.3025, p=0.0262, n=54, verdict=PASS\n\nMECHANISTIC: confusion_rate (wrong_type/total_fp)\n  count_6  high_bcs: 1.57%   low_bcs: 0.88%   ratio=1.7x\n  count_12 high_bcs: 3.04%   low_bcs: 1.31%   ratio=2.4x\n\nEXTREME BATCHES:\n  count_6  high: 7.28%  low: 0.14%  ratio=27.5x\n  count_12 high: 4.80%  low: 0.61%  ratio=9.9x\n```\n\n**D004 判定：**\n\n| Criterion | Requirement | Result | Verdict |\n|-----------|------------|--------|---------|\n| Primary: r(recall, BCS) | \\|r\\|≥0.3, p<0.05 | 最高 r=0.275 (count_6), p=0.164 | **FAIL** |\n| Secondary: r(F1, BCS) | — | count_12 r=0.501 p=0.008 PASS; partial r=0.303 p=0.026 PASS | mixed |\n| Mechanistic: confusion_rate | high > low | 全部方向正确，极端 batch 27.5x | **PASS** |\n\n**结论：** Primary criterion (recall vs BCS) 全部 FAIL — clean data 下 recall 与 BCS 的 correlation 方向正确（正相关）但效应量不足且不显著。F1 在 count_12 和 partial 上通过。Mechanistic 方向完全正确（high-BCS batch 产生更多 wrong_type 混淆）。\n\n与之前错误数据对比：recall partial 从 r=0.252 变成 r=0.252（几乎不变），F1 count_12 从 r=0.501 变成 r=0.501（不变）— 说明 text_match 修正对 correlation pattern 影响极小，之前的结论方向没有翻转。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

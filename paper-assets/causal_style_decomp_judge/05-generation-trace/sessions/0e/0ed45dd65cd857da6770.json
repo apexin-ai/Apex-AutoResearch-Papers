@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0ed45dd65cd857da6770",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper figure forest plot sync",
+  "task_key": "worker_paper_figure_forest_plot_sync_20260521T060100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_forest_plot_sync_20260521T060100_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "27427943765cd37587cc8717a3099147e7a16e79041563c3cc858f8d8cb61356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。文件大小 16,446 bytes（~16.1KB），与 Director 说的 16.4KB 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

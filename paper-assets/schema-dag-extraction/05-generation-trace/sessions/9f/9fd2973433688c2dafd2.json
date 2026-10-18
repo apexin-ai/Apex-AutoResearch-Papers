@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9fd2973433688c2dafd2",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp2 full analysis",
+  "task_key": "worker_ssh_exp2-full-analysis_20260515T022540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp2-full-analysis_20260515T022540_result.json",
+    "occurrence": 1,
+    "bytes": 2771,
+    "sha256": "a91a1459d992af1e4bd957374a3b5bdb3729707f5b778e651f87545376611ed1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## exp2 完成确认\n\n54 batches 全部完成，无错误，耗时 11732s (~3.3h)。\n\n---\n\n## text-match 重评估汇总\n\n| Count | #Bat | ExactF1 | RelaxF1 | **TextF1** | TextP | TextR | P/G | Hallu | WrTyp | Spur |\n|---------|------|---------|---------|----------|-------|-------|------|-------|-------|-------|\n| count_6 | 27 | 0.1957 | 0.2203 | **0.2000** | 0.1189 | 0.6292 | 5.29 | 1417 | 426 | 34273 |\n| count_12 | 27 | 0.2263 | 0.2560 | **0.2298** | 0.1471 | 0.5247 | 3.57 | 5771 | 1216 | 35639 |\n\n---\n\n## 关键数字\n\n### PRIMARY: r(recall, BCS)\n\n| Scope | r | p | CI 95% | n | 判定 |\n|-------|------|------|--------|---|------|\n| count_6 | 0.2754 | 0.1644 | [-0.117, 0.593] | 27 | **FAIL** |\n| count_12 | 0.2219 | 0.2660 | [-0.173, 0.555] | 27 | **FAIL** |\n| Partial (|count) | 0.2522 | 0.0658 | [-0.017, 0.487] | 54 | **FAIL** |\n\n### SECONDARY: r(F1, BCS)\n\n| Scope | r | p | CI 95% | n | 判定 |\n|-------|------|------|--------|---|------|\n| count_6 | 0.1754 | 0.3814 | [-0.219, 0.521] | 27 | FAIL |\n| count_12 | **0.5012** | **0.0077** | [0.150, 0.740] | 27 | **PASS** |\n| Partial (|count) | **0.3025** | **0.0262** | [0.038, 0.528] | 54 | **PASS** |\n\n### MECHANISTIC: Confusion Rate (wrong_type / total_pred)\n\n| Batch | wrong_type | total_pred | **confusion_rate** |\n|-------|------------|------------|--------------------|\n| count_6_high_bcs | 55 | 999 | **5.51%** |\n| count_6_low_bcs | 2 | 1,563 | **0.13%** |\n| count_12_high_bcs | 79 | 1,944 | **4.06%** |\n| count_12_low_bcs | 8 | 1,465 | **0.55%** |\n\nHigh-BCS confusion rate >> Low-BCS → **PASS**（~30-40x 差异）\n\nT-test (top/bottom third by BCS):\n- count_12: t=2.22, p=0.043 → significant\n- count_6: t=0.01, p=0.989 → not significant\n\n---\n\n## GO/NO-GO 判定\n\n**PRIMARY criterion: FAIL** — r(recall, BCS) 在两个 count 和偏相关中均未达到 |r|≥0.3 且 p<0.05。\n\n解读：\n- BCS 的效应更多体现在 **precision 通道**（通过 wrong_type confusion）而非 recall。F1 在 count_12 达到 r=0.50 (p=0.008)，partial r=0.30 (p=0.026)。\n- **Mechanistic evidence 强烈支持** confusability 假设：high-BCS 批次的 type confusion 率是 low-BCS 的 30-40 倍。\n- 每组 n=27 对检测 r≈0.25 的效应量而言统计功效不足。\n\n---\n\n## 产出文件\n\n```\nresults/exp2_reeval_results.json      # per-batch text_match 评估\nresults/exp2_reeval_summary.json      # per-count 聚合\nresults/analysis_summary.json         # 完整统计分析\nresults/exp2_analysis_f1.png/pdf      # BCS vs F1 散点图 (per-count)\nresults/exp2_analysis_f1_combined.png/pdf\nresults/exp2_analysis_recall.png/pdf  # BCS vs Recall 散点图\nresults/exp2_analysis_recall_combined.png/pdf\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

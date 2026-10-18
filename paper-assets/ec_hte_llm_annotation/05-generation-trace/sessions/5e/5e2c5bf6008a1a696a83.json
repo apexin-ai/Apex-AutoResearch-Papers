@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5e2c5bf6008a1a696a83",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "audit negative experiment framing",
+  "task_key": "worker_audit_negative-experiment-framing_20260524T075928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_negative-experiment-framing_20260524T075928_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "3897e4723a1425a5d9f1c51097e56ce9d78815bd8c9e9a629128733a15d43036"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。所有 6 个阴性/killed 实验在论文中都有诚实充分的讨论，无需补充。\n\n关键发现：\n- **exp-015/016**（real CM 失败）：主文给出 operating conditions（FNR<0.5, K≤4），Appendix 有完整 root cause 分析和 applicability frontier 图\n- **exp-030/033**（K=8 boundary）：主文、limitations、Appendix 三处覆盖，明确承认 scalability boundary\n- **exp-028**（非对称 diagnostic 退化）：theory.tex Remark 2 中 reframe 为理论便利性，framing 合理\n- **exp-007b**（killed）：无需提及，PPCI composition 讨论完整\n\n唯一潜在弱点是 exp-015/016 完整 root cause 只在 Appendix，主文措辞较间接，但符合顶会惯例。\n\n产出已写入 `artifacts/negative_experiment_framing_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

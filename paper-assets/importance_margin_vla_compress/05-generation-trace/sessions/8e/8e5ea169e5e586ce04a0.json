@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8e5ea169e5e586ce04a0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops xvla seed43 k05",
+  "task_key": "worker_ops_xvla-seed43-k05_20260520T115837",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_xvla-seed43-k05_20260520T115837_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "bb5d34624bc450ad1e50068cc75eeac2ea9e52a5fe5e8e56b1097f778e503cb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "k=0.5 eval 已在 GPU 3 上成功启动并运行 (PID 894191)，已完成 2/50 episodes。\n\n**汇总：**\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | OpenVLA SC m128 eval (seed42) | 858906 | 运行中 (~43min) |\n| 1 | X-VLA k=0.9 seed43 | 866924 | 运行中 |\n| 2 | X-VLA k=0.7 seed43 | 868193 | 运行中 |\n| 3 | **X-VLA k=0.5 seed43** | **894191** | **刚启动，2/50 ep** |\n\n**注意事项：**\n- GPU 0 未释放，被 OpenVLA SC eval 占用，k=0.5 改到 GPU 3 启动\n- OFT CV (PID 869442) 已崩溃，错误：`RuntimeError: expected mat1 and mat2 to have the same dtype, but got: float != c10::BFloat16`（linear 层输入 float32 vs 权重 bfloat16 不匹配）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

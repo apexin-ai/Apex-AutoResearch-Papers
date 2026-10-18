@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "932bd2fd4d582bbd45e9",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops diagnose openvla l2norm k05 and random k03 westd38929",
+  "task_key": "worker_ops_diagnose-openvla-l2norm-k05-and-random-k03-westd38929_20260521T120834",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_diagnose-openvla-l2norm-k05-and-random-k03-westd38929_20260521T120834_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "b5e44b75d19453bc4f06680f94de0c96b546f82952000cfe5c6cfd8b99791e8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## 实验 1: eval_openvla_l2norm_k05_object_seed42_v2 — **完成 ✓**\n\n**Overall SR: 39.2% (196/500)** — 确认与先前崩溃恢复结果一致。\n\nPer-task SR:\n| Task | SR |\n|---|---|\n| ketchup | 70% |\n| alphabet_soup | 56% |\n| milk | 50% |\n| chocolate_pudding | 44% |\n| orange_juice | 44% |\n| salad_dressing | 38% |\n| bbq_sauce | 32% |\n| tomato_sauce | 32% |\n| cream_cheese | 14% |\n| butter | 12% |\n\nRegistry: DONE/success, v3 duplicate 标记为 killed。\n\n## 实验 2: eval_openvla_random_k03_object_seed42_v2 — **仍在运行**\n\nPID 2478, GPU 1, 已运行 4h42m。当前进度: task 10/10, ep 10/50。预计 ~25 分钟内完成。\n\n## westd-38929 GPU 状态\n\n| GPU | 状态 | PID | 任务 |\n|---|---|---|---|\n| 0 | 占用 | 181687 | random k=0.5 seed42 (15h28m) |\n| 1 | 占用 | 2478 | random k=0.3 seed42 (~25min剩余) |\n| 2 | 占用 | 186986 | baseline seed42 (6h41m) |\n| **3** | **空闲** | — | l2norm k=0.5 已完成 |\n\n无活跃 cron 需要删除。GPU 3 现在可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

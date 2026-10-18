@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7433e5be7d046b7353d8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 process failures",
+  "task_key": "worker_diagnose_cqa1_process_failures_20260517T014152",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1_process_failures_20260517T014152_result.json",
+    "occurrence": 1,
+    "bytes": 1122,
+    "sha256": "0a1eafce4c8f0584fad1dc4e58a7ddf782c995d058004eaf95e9ddb3876be060"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：两个实验都在正常运行\n\n### 实验 1: libero_imm_fullft_k07\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** (PID 117885, GPU3, 89% CPU) |\n| 最后 step | 19700/20000 (98.5%) @ 09:41:58 |\n| 最新 checkpoint | `stage2/step_018000` (09:33) |\n| 错误 | 无 |\n| 退出原因 | **未退出，仍在运行** |\n\n预计 ~5 分钟内完成剩余 300 steps (以 3.1 sps 计算)。step_020000 final checkpoint 即将写入。\n\n### 实验 2: libero_fullft_seed1\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** (PID 45551 + 4 workers, GPU0) |\n| 最后 step | 61850/100000 (61.85%) @ 09:42:07 |\n| 最新 checkpoint | `step_060000` (09:34) |\n| 错误 | 无 |\n| 退出原因 | **未退出，仍在运行** |\n\n以 4.2 sps 计算，剩余 ~38150 steps 约需 2.5 小时。\n\n### 结论\n\n两个实验进程均存活且正常训练中，reconcile 的 \"进程消失\" 报告是误报。可能原因：检测时 GPU utilization 短暂下降（checkpoint 写入期间）或进程检测逻辑匹配不到新的子进程 PID。无需任何恢复操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e12a4ce58b5cb48dfaca",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k075 long seed46 strict w38",
+  "task_key": "worker_analyze_eval_pi05_random_k075_long_seed46_strict_w38_20260528T102558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k075_long_seed46_strict_w38_20260528T102558_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "902bc8d54f52df378248a53b43a46bafa23be8602014e1e6d447e42576c2db75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果汇总：\n\n**π0.5 Random k=0.75 Long seed46 — SR = 62.2%**\n\n| Task | SR |\n|------|-----|\n| T0 alphabet_soup_tomato | 82% |\n| T1 cream_cheese_butter | 52% |\n| T2 stove_moka_pot | 70% |\n| T3 black_bowl_drawer | 70% |\n| T4 white_mug_left_plate | 68% |\n| T5 book_back_shelf | 38% |\n| T6 white_mug_plate | 72% |\n| T7 alphabet_soup_cream | 76% |\n| T8 both_moka_pots_stove | 6% |\n| T9 yellow_white_mug_microwave | 88% |\n\n5-seed 更新：s42=62.6, s43=63.0, s44=60.2, s45=61.2, **s46=62.2** → 均值 ≈ 61.8%, seed46 落在均值附近，误差棒应略收窄。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

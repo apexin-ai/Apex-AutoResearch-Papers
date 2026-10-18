@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c2c62db4db3b95aaf4b0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check cqa1 oom random k095 goal",
+  "task_key": "worker_check_cqa1_oom_random_k095_goal_20260527T093731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cqa1_oom_random_k095_goal_20260527T093731_result.json",
+    "occurrence": 1,
+    "bytes": 1573,
+    "sha256": "2b7536bbe1ea90420da3b8848bf1f1e7568cbd69babddc59f2f4064d8d883328"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval_openvla_random_k095_goal_seed42` **没有崩溃，已成功完成**。结果文件显示：\n\n**openvla_random_prune_k095_goal_seed42** — 已完成于 2026-05-27 16:07:16\n- Overall: **78.4%** (392/500), 耗时 ~345 分钟\n- 10/10 tasks 全部跑完（每个 50 episodes）\n\nPer-task 结果：\n\n| Task | Success Rate |\n|------|-------------|\n| open the middle drawer of the cabinet | 50.0% |\n| put the bowl on the stove | 94.0% |\n| put the wine bottle on top of the cabinet | 82.0% |\n| open the top drawer and put the bowl inside | 56.0% |\n| put the bowl on top of the cabinet | 98.0% |\n| push the plate to the front of the stove | 84.0% |\n| put the cream cheese in the bowl | 76.0% |\n| turn on the stove | 100.0% |\n| put the bowl on the plate | 86.0% |\n| put the wine bottle on the rack | 58.0% |\n\n现在确认其他 4 个 GPU 实验状态。从 `nvidia-smi`：\n\n| GPU | PID | Memory | 预期实验 | 状态 |\n|-----|-----|--------|---------|------|\n| GPU0 | 109156 | 10131MiB | eval_pi05_random_k07_long (expected PID 109152) | **运行中** |\n| GPU1 | 118731 | 9990MiB | eval_pi05_random_k05_long (expected PID 118726) | **运行中** |\n| GPU2 | 93525 | 10657MiB | eval_pi05_l2norm_k085_long (expected PID 93525) | **运行中** |\n| GPU3 | 897100 | 15694MiB | eval_openvla_attn_k05_goal_v3 (expected PID 897095) | **运行中** |\n\nPID 略有偏移是 parent/child 进程差异，所有 4 个实验正常运行。GPU3 上现在跑的是 `attn_k05_goal_v3`，因为 `random_k095_goal` 已在 16:07 完成释放了 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

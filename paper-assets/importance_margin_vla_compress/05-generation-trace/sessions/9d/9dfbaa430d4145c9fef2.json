@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9dfbaa430d4145c9fef2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k09 object seed42 v2",
+  "task_key": "worker_diagnose_eval_pi05_random_k09_object_seed42_v2_20260524T014416",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k09_object_seed42_v2_20260524T014416_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "2e001fb1481d3a23e8d9f75734ae41e33aa5adf921463028b617a1ecbfff4566"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：实验未失败，已成功完成\n\n**根因**：实验没有崩溃。日志 `logs/eval_pi05_random_k09_object_seed42_v2.log` 显示全部 10 个 task × 50 episodes 正常跑完，耗时 159.6 分钟。\n\n**最终结果**：\n- `libero_object prune=random keep=0.9 SR=9.0%`（45/500）\n- 结果文件已保存：`eval_results/pi05_random_k0.90_libero_object_seed42.json`\n\n**\"异常退出5次\"的可能解释**：监控系统可能检测到进程结束（正常退出）并误判为异常，或者之前确实有失败的尝试但 `/tmp` 日志已被清理，最终一次成功执行并写入了 `logs/` 目录。\n\n**GPU 0 状态**：空闲（1MiB 显存占用，0% 利用率），可用。GPU 1 和 3 有其他进程在跑。\n\n**磁盘**：根分区 30G 用了 8.7G，22G 可用，正常。\n\n**结论**：无需重试。实验已产出结果 SR=9.0%，与之前的 12% 接近（随机 pruning 的方差范围内）。如果缺少 W&B metrics 和 sentinel，问题可能在上报逻辑而非实验本身——实验数据完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

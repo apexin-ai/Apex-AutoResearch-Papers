@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8c08b10159f110dcfbe5",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "diagnose eval pi05 attn k085 long seed43 strict w27",
+  "task_key": "worker_diagnose_eval_pi05_attn_k085_long_seed43_strict_w27_20260527T175301",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_attn_k085_long_seed43_strict_w27_20260527T175301.log",
+    "occurrence": 1,
+    "bytes": 638422,
+    "sha256": "5b493520eb61a07b354e1b66eaaed241d51b4f68d287c3e4994c482487cd3f37"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "8c08b10159f110dcfbe5-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "8c08b10159f110dcfbe5-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ]
+}

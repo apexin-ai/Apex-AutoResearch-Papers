@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "154550f169ac6afa4949",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "prep anon github tar",
+  "task_key": "worker_prep_anon-github-tar_20260517T013515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_anon-github-tar_20260517T013515_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "79d32fed0140a953829adbab179c05bb3de68896a7b3cbbd0a1f9f721b7778f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **src/**: 51 个 .py 文件\n- **scripts/**: 27 个 .py 文件\n- **总大小**: 996K\n- **`/root/` 引用**: 无残留\n- **作者邮箱**: 无残留\n\n36 个缺失文件已补入 `anonymous_github`，路径已匿名化，验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

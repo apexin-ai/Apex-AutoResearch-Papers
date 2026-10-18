@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6adb36ab5e3fe642328e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure fig framework",
+  "task_key": "worker_figure_fig_framework_20260523T122944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig_framework_20260523T122944_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "5cf24bdf954bc5c77bf9ceda0ad007173be94abf4cd05dffd39788db469b406b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成。PDF (35KB) 和 PNG (126KB) 均在 `figures/paper/` 下。\n\n图中展示了：\n- 175 个 batch 的 Count × BCS 散点，颜色编码 accuracy（RdYlGn colormap）\n- 蓝色水平箭头标注 Dimension 1: Type Count (§4.1)\n- 橙色垂直箭头标注 Dim 2: Confusability (§4.3)\n- 灰色标注 \"BCS range narrows\" 指向高 count 端的 funnel 收窄现象\n- count=4 处的 BCS 范围虚线辅助线\n\n脚本在 `scripts/gen_fig_framework.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

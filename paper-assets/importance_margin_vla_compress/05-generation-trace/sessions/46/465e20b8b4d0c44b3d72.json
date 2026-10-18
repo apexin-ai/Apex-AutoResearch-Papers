@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "465e20b8b4d0c44b3d72",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops smolvla zeromask deploy",
+  "task_key": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_smolvla_zeromask_deploy_20260522T112240_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "9a89d42440cbd3d97fb5e750f28878bbdec4843ef0b67a067057b937fc8cf2d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功部署并正常运行。\n\n## 部署结果\n\n**服务器**: westd-27271 (2x RTX PRO 6000 Blackwell, 98GB each)\n\n| 实验 | GPU | PID | 日志 |\n|------|-----|-----|------|\n| zero_mask random k=0.95 | GPU 0 | 396732 | `logs/smolvla_zeromask_random_k095.log` |\n| zero_mask l2norm k=0.95 | GPU 1 | 398985 | `logs/smolvla_zeromask_l2norm_k095.log` |\n\n**脚本**: `eval_smolvla_pruning_official.py`（已有完整的 `random_prune` / `l2norm_prune` + `zero_mask` / `true_removal` 支持，**无需修改代码**）\n\n**结果输出**:\n- `eval_results/zeromask_random_k095_obj_s42.json`\n- `eval_results/zeromask_l2norm_k095_obj_s42.json`\n\n**早期信号**: random zero_mask 实验已跑到 Task 0 Ep 12/50，目前全部 FAIL（280 steps max）。l2norm 刚开始加载，hook 确认 N=64 → k=60（保留 95%，置零 4 tokens），norm range [83, 299]。\n\n**注意**: GPU 0 上还有一个先前的实验（PID 387588, l2norm k=0.9 10ep），VRAM 充裕无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

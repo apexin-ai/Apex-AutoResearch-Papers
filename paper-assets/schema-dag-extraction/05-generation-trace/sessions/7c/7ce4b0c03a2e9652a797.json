@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7ce4b0c03a2e9652a797",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diagnose exp006 interaction 2x2",
+  "task_key": "worker_diagnose_exp006_interaction_2x2_20260515T174931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp006_interaction_2x2_20260515T174931_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "561054753b175cb35850b9b52dfb8d4c13d274adb1c409e0ca6c5b2c8ba95afa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**根因**：`run_extraction.py:231` 把 `strategies[\"low_bcs\"]` 当单个 dict 索引，但 exp006 的 `build_factorial_batches` 返回的是 list（每个 cell 10 个 batch dict）。附带问题：batch_id 用 `_` 拼接但下游 `compute_interaction_analysis` 按 `/` 分割，即使不崩溃也会丢掉所有分析结果。\n\n**修复内容**（`src/run_extraction.py` lines 227-244）：\n- `low_bcs`/`high_bcs` 策略支持 list 和 dict 两种格式（`isinstance` 判断），向后兼容\n- batch_id 分隔符从 `_` 改为 `/`，使 `\"low_count/low_bcs/0\"` 能正确归入 `\"low_count/low_bcs\"` cell\n\n**验证**：`--dry_run --max_samples 10` 通过，4 个 factorial cell 共 22 batches 正常生成。脚本已可重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

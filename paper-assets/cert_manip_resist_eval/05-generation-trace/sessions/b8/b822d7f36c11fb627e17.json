@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b822d7f36c11fb627e17",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k5 v2 cleanup and r2",
+  "task_key": "worker_analysis_k5-v2-cleanup-and-r2_20260524T070750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k5-v2-cleanup-and-r2_20260524T070750_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "64d83f7e6c64888b94f5a119ba24df88b92666d4816af80b210bbe2f78b686cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "== R² 值（May 24 V2）==\n\n| Method | mean R² |\n|--------|---------|\n| Majority | 0.285 |\n| Weighted | 0.275 |\n| Threshold | 0.408 |\n| Bayesian | 0.166 |\n\n== V1 清理 ==\n- `_project/data/` 重命名: 成功（May 23 14:33 → `.v1_deprecated`）\n- `server_backup/` 重命名: 成功（May 23 14:32 → `.v1_deprecated`）\n- V2 文件确认存在: 是（May 24 14:13, 71KB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

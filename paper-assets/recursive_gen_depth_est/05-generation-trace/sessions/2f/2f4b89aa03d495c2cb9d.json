@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2f4b89aa03d495c2cb9d",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops data migration probe",
+  "task_key": "worker_ops_data-migration-probe_20260520T110456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-migration-probe_20260520T110456_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "64422ca4c6b84cd6fa7e2e10853bc67c7995977a9e97dae5c46705e544ea6539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gpu-6000pro-2\n- **项目总大小**: 18G\n- **文件数**: 2,891\n- **子目录明细**（按大小排序）:\n  - `checkpoints/` — 16G\n  - `results/` — 1.5G\n  - `data/` — 1.2G\n  - `paper/` — 11M\n  - `logs/` — 9.7M\n  - `artifacts/` — 6.3M\n  - `scripts/` — 1.8M\n  - `src/` — 784K\n  - `results_filtered/` — 92K\n  - `__pycache__/` — 88K\n  - `baselines/` — 40K\n  - `figures/` — 0\n- **/root/autodl-tmp/ 其他数据**:\n  - `models/` — 90G\n  - `alfworld_data/` — 2.2G\n  - `compresslink/` — 44M\n  - `wild_data/` — 15M\n- **磁盘使用率**: 250G 总量，175G 已用 (70%)，76G 可用\n\n## westd-48862\n- **项目总大小**: 2.9G\n- **文件数**: 446\n- **子目录明细**（按大小排序）:\n  - `checkpoints/` — 2.2G\n  - `data/` — 403M\n  - `results/` — 322M\n  - `scripts/` — 316K\n  - `logs/` — 8K\n  - `models/` — 0\n  - `runs/` — 0\n- **/root/autodl-tmp/ 其他数据**:\n  - `models/` — 28G\n  - `logs/` — 8K\n- **磁盘使用率**: 250G 总量，47G 已用 (19%)，204G 可用\n\n---\n\n**迁移要点**：gpu-6000pro-2 数据量远大于 westd-48862（18G vs 2.9G），主要差异在 checkpoints（16G vs 2.2G）、results（1.5G vs 322M）和 data（1.2G vs 403M）。gpu-6000pro-2 还多了 paper/、artifacts/、baselines/ 等目录。westd-48862 磁盘余量充裕（204G 可用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

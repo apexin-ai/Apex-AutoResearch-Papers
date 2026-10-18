@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "80404dd16a23b48be84d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper c3 evidence hierarchy",
+  "task_key": "worker_paper_c3_evidence_hierarchy_20260522T085201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_c3_evidence_hierarchy_20260522T085201_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "3ed223b355095c1159fbee88820b574676ba57d5de8256227caac562b74c1d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，所有修改确认正确。\n\n## 报告\n\n### Figure 1b：走备选方案（保留现有 bar chart）\n- 原因：204-batch 散点图所需的原始数据在本地不完整——d051 + eval_exp2 凑得 204 batches 但 BCS 值与论文报告的范围/SD 不匹配（推测是 BCS 定义从 MAX→MEAN 修复后，部分数据文件未同步更新）。重新生成需要回服务器跑脚本，超出任务时间预算。\n- 已在 `experimental_setup.tex:74` 的 caption 中将 (b) 标注为 **\"Illustrative\"**，明确说明 \"each bar represents one extreme-BCS batch per condition\"，并指向 pooled regression 统计证据（§4.2, semipartial R²=0.273, n=204）。\n\n### 正文证据层级调整（3 处修改）\n\n| 文件 | 行 | 修改 |\n|------|-----|------|\n| `experimental_setup.tex:74` | Figure 1b caption | 加 \"Illustrative\" + \"each bar represents one extreme-BCS batch\" + 引用 pooled R² |\n| `results.tex:50` | §4.3 开头 | pooled semipartial R²=0.273 后加 \"---the primary quantitative evidence\" |\n| `results.tex:64` | Practical magnitude | 80pool R²≈0.05 前加 \"conservative restricted-range estimate\" |\n\n### 编译结果\n- 0 errors, 0 undefined references, 26 pages (body ≤ 8 pages), 1 bibtex warning (pre-existing volume/number conflict)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

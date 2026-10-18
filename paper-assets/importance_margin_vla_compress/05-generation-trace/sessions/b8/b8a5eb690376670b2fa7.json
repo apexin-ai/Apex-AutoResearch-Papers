@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8a5eb690376670b2fa7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops diagnose openvla random k03 westd38929",
+  "task_key": "worker_ops_diagnose-openvla-random-k03-westd38929_20260521T123239",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_diagnose-openvla-random-k03-westd38929_20260521T123239_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "77422f4cd5afdbf1d53a1b6e2751b6cb9c3a5d2ae4d14d1de8c01a36887fecd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果\n\n**eval_openvla_random_k03_object_seed42_v2** — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **21.4%** (107/500) |\n| salad_dressing | 56% |\n| orange_juice | 56% |\n| bbq_sauce | 30% |\n| ketchup | 26% |\n| chocolate_pudding | 16% |\n| alphabet_soup | 14% |\n| milk | 14% |\n| butter | 2% |\n| cream_cheese | 0% |\n| tomato_sauce | 0% |\n| 耗时 | 304 min |\n\n## GPU1 状态\n\n**GPU1 空闲可用。** 当前仅 GPU 0/2/3 在运行进程（各占 ~16GB），GPU1 使用 1MiB，温度 27°C，idle 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

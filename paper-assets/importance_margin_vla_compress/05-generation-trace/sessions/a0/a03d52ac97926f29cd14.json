@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a03d52ac97926f29cd14",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix westd 41074 redeploy",
+  "task_key": "worker_fix_westd-41074-redeploy_20260523T145924",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_westd-41074-redeploy_20260523T145924_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "09cb1487ae70792830053715f52dc81802e286781e78486d728267eb2bb31893"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**任务实际无需执行——4 个实验已在 westd-41074 正常运行**\n\n### 现状\n| GPU | 实验 | PID | 进度 | 运行时长 |\n|-----|------|-----|------|----------|\n| 0 | k=0.95 | 124997 | T0 30 ep / 83% | 6:07 |\n| 1 | k=0.7 | 125142 | T0 30 ep / 87% | 6:03 |\n| 2 | k=0.3 | 125328 | T0 40 ep / 88% | 5:59 |\n| 3 | k=0.9 | 125577 | T0 30 ep / 67% | 5:55 |\n\n### 关键发现\n- **PID 120874 是 defunct `cat` 进程**（非训练进程），无需 kill\n- **PI05 模型从本地路径加载** (`/root/autodl-tmp/pi05_libero_finetuned`)，不依赖在线 paligemma tokenizer 下载，网络问题对实验无影响\n- **Registry 4 个 exp 已是 RUNNING 状态**，hypothesis 已正确设置\n- 日志位置：`/root/runs/importance_margin_vla_compress/eval_pi05_random_k0{X}_goal_seed42_v2.log`\n\nGPU 利用率 18-52%，正常推理中。预计每个 suite 50 ep × 10 task ≈ 60-90 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

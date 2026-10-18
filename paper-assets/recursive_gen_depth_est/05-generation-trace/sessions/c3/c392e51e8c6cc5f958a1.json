@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "c392e51e8c6cc5f958a1",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "ops random soft control",
+  "task_key": "worker_ops_random_soft_control_20260515T235714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_random_soft_control_20260515T235714.log",
+    "occurrence": 1,
+    "bytes": 1069492,
+    "sha256": "95f55771c195b1444fa624cd7bb31f0096a246c9697920d56317dace81595de5"
+  },
+  "statistics": {
+    "messages": 369,
+    "user_turns": 1,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 142,
+      "tool_result": 142,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 331,
+      "chunks": [
+        {
+          "path": "c392e51e8c6cc5f958a1-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "c392e51e8c6cc5f958a1-part-0002.json",
+          "message_count": 160
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "c392e51e8c6cc5f958a1-part-0002.json",
+          "message_count": 20
+        },
+        {
+          "path": "c392e51e8c6cc5f958a1-part-0003.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ]
+}

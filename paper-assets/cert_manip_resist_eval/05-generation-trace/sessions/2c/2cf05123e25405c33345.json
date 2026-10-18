@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2cf05123e25405c33345",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis epsilon sensitivity k5 v2",
+  "task_key": "worker_analysis_epsilon-sensitivity-k5-v2_20260523T191934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_epsilon-sensitivity-k5-v2_20260523T191934_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "908a484dcc90f3d029a88133a1cad8bbf2900dacb22d753ca38e7c2df86c6254"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "对比分析完成。\n\n## 新旧结果对比\n\n### 1. ASR=0 rates（大幅上升，errors 不再计为 tie）\n\n| Condition | 旧 | 新 |\n|-----------|-----|-----|\n| mmlu_prompt_injection | 0.0% | 4.4% |\n| mmlu_sycophancy | 0.1% | 11.0% |\n| mmlu_verbosity_bias | 0.5% | 17.3% |\n| arc_sycophancy | 23.3% | 43.5% |\n| arc_verbosity_bias | 14.6% | 32.2% |\n| arc_authority_bias | 31.5% | 42.8% |\n\n### 2. max_coefficient_change（%，相对 ε=1e-06 基线）\n\n| | 旧 | 新 |\n|---|-----|-----|\n| keff | **184.5%** | **36.24%** |\n| eta | 31.07% | 29.36% |\n\n旧数据 keff 变化 184.5% 实际上已经不支持\"insensitive to ε\"的结论了，修复后降至 36.24%，sensitivity claim 更站得住脚。\n\n### 3. 方向翻转（ε=1e-06 基线，keff vs eta 主导性）\n\n6 个 condition 从 η-dominant 翻转为 K_eff-dominant：\n- mmlu_prompt_injection, mmlu_sycophancy, mmlu_score_manipulation, mmlu_verbosity_bias\n- arc_sycophancy, arc_score_manipulation\n\n修复后 K_eff 在所有 condition 中都占主导（除 arc_verbosity_bias 仍为 η-dominant），与论文核心 claim 一致性更强。\n\n### 4. max Δβ_std（ε=1e-06 vs ε=1e-09 绝对值变化）\n\n- 旧：**0.067**（keff, mmlu_authority_bias）\n- 新：**0.073**（keff, mmlu_prompt_injection）\n\n论文 appendix 的 \"max Δβ_std = 0.067\" 需更新为 **0.073**。变化很小，sensitivity 结论不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed3bbba7727ab0c84430",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference_audit_20260514T120938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_20260514T120938_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "dde5cb720fa9ba1a67359131ea54d2c0eaedff8fc36a4905dc6d7bf3a6db2c55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/reference_audit_report.md`。\n\n核心结论：\n- **19 条 bib 条目与 .tex 引用完全一致**，无孤立、无缺失、无重复\n- **5 篇抽查全部真实**，无幻觉引用\n- 发现 **2 处轻微问题**：`lin2024qserve` 的 key 隐含 2024 但实际 venue 是 MLSys 2025；`liu2024scissorhands` 的 key 隐含 2024 但实际是 NeurIPS 2023。这是命名规范不一致，不影响编译"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "089a24dda4238db5ef82",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval cqa1 seed44 sweep",
+  "task_key": "worker_eval_cqa1_seed44_sweep_20260519T215208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_cqa1_seed44_sweep_20260519T215208_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "55f5db3266367800238545d0ed6d5ce6736b4ce9def5e45e01687d5ea0507f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个 eval 都已经完成了**，结果文件完整（500 episodes，10 tasks × 50 eps）：\n\n| 模型 | Success Rate | 95% CI |\n|------|-------------|--------|\n| **m64_seed44** | **64.4%** | [60.1%, 68.5%] |\n| **m96_seed44** | **52.8%** | [48.4%, 57.1%] |\n\nGPU 3 上的残留进程 685415 就是跑完这些 eval 后没退出的。现在已清理，无需重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

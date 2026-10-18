@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a91c05c89566fc1fd5f6",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh check internlm2 and start profiling",
+  "task_key": "worker_ssh_check_internlm2_and_start_profiling_20260516T015144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_internlm2_and_start_profiling_20260516T015144_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "059e5c5b0f8185d6662cfe9ecbaaa598bd103c2a3a3d7d233666fb190623d627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 状态 |\n|------|------|\n| 模型下载 | ✅ 完成（15GB，2 shards） |\n| Profiling | ✅ 已启动，正在运行 |\n| PID | **389862** |\n| GPU | cuda:0（A100 98GB） |\n| 进度 | 模型加载完成（15.5GB），已开始逐 head profiling：L0H0 完成，baseline PPL=7.6319，ETA ~136 min |\n\n日志位置：`/tmp/internlm2_profiling.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

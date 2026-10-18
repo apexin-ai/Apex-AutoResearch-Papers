@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "82376b06a0e2d7d9a2dd",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu llama hires bf16 final",
+  "task_key": "worker_gpu_llama_hires_bf16_final_20260514T210031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_llama_hires_bf16_final_20260514T210031_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "ea5f91ebebf3b6ad139fc9f77492d71e73b149302b3164d76d51461adb65219b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Llama-3.1-8B hires bf16 2-bit only profiling 正在运行中（PID 258952），当前进度 72/256，ETA ~43 分钟。已设置轮询，4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

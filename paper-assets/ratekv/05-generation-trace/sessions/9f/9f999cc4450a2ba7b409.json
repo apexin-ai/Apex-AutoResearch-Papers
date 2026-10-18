@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9f999cc4450a2ba7b409",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "fix paper figures hires update",
+  "task_key": "worker_fix_paper_figures_hires_update_20260515T010628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_figures_hires_update_20260515T010628_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "4e5f185ad49bdcf2ed1c6742a788936db62e1d30dc43b219223b2a578df6cf95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本在服务器上已经是修复后的版本（Gemma-2 用 `gemma2_hires_bf16_2bitonly_profiles.json` + `'source': 'hires'`，无 `*` 脚注；Qwen concentration = 0.61），重新运行后输出已同步到本地。\n\n生成文件：\n\n| 文件 | 服务器 | 本地 |\n|---|---|---|\n| `fig1_head_delta_heatmap.pdf` | 59624 B | 59624 B |\n| `fig1_head_delta_heatmap.png` | 157566 B | 157566 B |\n| `fig_concentration_scatter.pdf` | 29851 B | 29851 B |\n| `fig_concentration_scatter.png` | 121979 B | 121979 B |\n\nHeatmap 验证：Gemma-2 显示为 `(42x8, hires)`，top head L0H1=0.19（hires 数据）。所有 5 个模型 source 均为 hires，无脚注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

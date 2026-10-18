@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "129fb036d1291a6b6e85",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_8_1778868140.md",
+  "task_key": "loop_8_1778868140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778868140.md",
+    "occurrence": 1,
+    "bytes": 4489,
+    "sha256": "3f55f56b1754414cbb500f2eacd6960c9c4733aa246769ea627dcdbb665ea849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T16:58:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：gpu-6000pro-2 的 cuda:0 和 cuda:1，**只有这两张卡**。submit_training_job 里 gpu 参数从 0 开始\n- 种子数据是 **Wikipedia subset**，三个模型 pipeline 共用同一份。Worker 之前错误改成 \"OpenWebText/Dolma/WebText\"——不要合并该 artifact 的数据源描述\n- DCOL 方向已正式关闭 (D018)，不要再尝试任何 DCOL 变体。plan_010 已取消\n- DDL: **EMNLP ARR May 25**，剩余 10 天。Phase 2 写作 + 审稿修改优先于一切补充实验\n- EDD 叙事已从\"硬阈值 EDD=4\"降级为\"连续 AUC 衰减曲线 + d3v4 borderline 透明报告\" (D024/D026/D027)。Pythia 统计显著 (p=0.001)，OLMo 边际 (p=0.0x)——**不要再 claim \"三模型均 EDD=4\"**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**gpu-6000pro-2**，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- Python：服务器上需探测（之前用 conda 或 venv 不确定，先 `detect_image` 再决定）\n- 数据：`/root/autodl-tmp/recursive_gen_depth_est/data/` 下各子目录（pythia_nucleus095, pythia_temp09, pythia_topk50, olmo_*, gpt2xl_*）\n- W&B / HF cache：未在 memory.md 记录，需 Worker 首次连接时确认\n- 活跃 Worker（3 个 running）：\n  - `worker_code_zeroshot_llm_500_001_20260515T163627` — 写 zeroshot_llm_500_001 代码\n  - `worker_ops_kill_duplicate_zeroshot_20260515T165604` — 清理重复 zeroshot 进程\n  - `worker_fix_atlas_data_errors_20260515T165653` — 修复 Atlas 数据错误\n- Cron：reconcile 结果 0 条活跃，无监控中的训练进程\n- GPU：两卡当前空闲（无 RUNNING 实验）\n\n### 3. 📊 当前状态\n**Registry**: 47 DONE + 1 ALLOCATED (zeroshot_llm_500_001)。成功 25 / 负向 3 / 失败 6 / killed 13。\n\n**刚完成的关键实验**:\n- temp07_pilot_pythia_001 (success): τ=0.7 pilot，d1v2 AUC=0.838，与 τ=0.9 持平，排除温度反转是 τ 边界效应\n- n2_deberta_finetune_001 (success): DeBERTa 58.3% vs RF 78.2% (-19.9pp)\n- n2_roberta_finetune_001 (success): RoBERTa 59.5% vs RF 78.2% (-18.7pp)\n- Feature overlap: Spearman ρ=-0.484 (p=0.036)，Top-5 overlap=0\n\n**正在进行**:\n- zeroshot_llm_500_001 状态 ALLOCATED (gpu-6000pro-2 cuda:1)，3 个 Worker 在跑（写代码 + 清重复进程 + 修 Atlas 数据错误）——等 Worker 回调\n- Phase 2 写作尚未实际启动（审稿修改 pending Paper Agent）\n\n**等待中**:\n- 3 个 Worker 回调\n- 无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- worker_code_zeroshot_llm_500_001 完成 → 用 `submit_on_allocated` 提交到 cuda:1 → 注册 cron 监控\n- worker_fix_atlas_data_errors 完成 → 检查 Atlas JSON 修复结果 → 更新 registry atlas_v1_analysis 的 notes\n- worker_ops_kill_duplicate_zeroshot 完成 → 确认 GPU 干净无残留进程\n- zeroshot_llm_500_001 训练完成 → 分析 CI 缩窄效果 → 更新 report.md → 汇报 Director\n- 所有补充实验完成 → spawn Paper Agent Worker 批量处理审稿修改：\n  - 纳入 N2 双 backbone + feature overlap 到 Section 5.4\n  - R1-N1 EDD 公式修订\n  - R2-N2 文献补充\n  - W1/W3/W5/W6/R2-W2/R2-W4/R2-W6 各 warning 级修改\n- Paper Agent 完成 → Reviewer 对抗迭代 (max 5 rounds) → 最终 polish → May 23-25 提交\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D011: Plan A 激活（Atlas/EDD 为 primary，DCOL 关闭）\n- D018: DCOL 正式关闭，6 个版本全失败\n- D022/D023: Baseline 排名 RF ≈ CORAL ≈ DivEye 统计不可区分，核心贡献在特征发现而非分类器\n- D024/D026/D027: EDD 叙事从硬阈值转向连续 AUC 衰减曲线，三模型统计强度分层报告\n- N2 dual backbone: 直接证明手工特征有独立贡献（finetune 差 ~20pp，且 feature importance 负相关）\n\n**易错点**:\n- cross-strategy LOO 的 temp09 d1v2 反转 (GPT-2 XL 0.13, OLMo 0.25) 是 covariate shift 不是 bug——温度的 uniform logit scaling 加速收敛使 temp09 d1 ≈ nucleus d2\n- z-score normalization 不能修复 temp09 d1v2 反转（D021 已推翻 cross-strategy claim），只改善 LR 整体 acc\n- 6-class accuracy (62.9%) 不能与 4-class (78.2%) 直接比较——decision boundary dilution effect\n- method.tex 中种子数据描述是正确的 (Wikipedia)，不要被 Worker artifact 误导改成 OpenWebText\n- plan_010/013/014/015 都是 planned 但低优先级，DDL 前不应启动除非 Director 明确要求\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

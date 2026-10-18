@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36d14604feb893f242c8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code wild data calibration 015",
+  "task_key": "worker_code_wild_data_calibration_015_20260522T080508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wild_data_calibration_015_20260522T080508_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "408b36b3ffc164647d31d798c890c968cb628a64bcddc21d2df62f7e4d6e5d53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n**Base FPR（argmax，无阈值）:**\n| Dataset | N | d0% | FPR |\n|---|---|---|---|\n| C4 10K | 10,000 | 65.98% | 34.02% |\n| FineWeb 10K | 10,000 | 82.85% | 17.15% |\n| RedPajama 10K | 10,000 | 84.47% | **15.53%** |\n\n**Threshold Sweep（P(d0) < T 才判为 d1+）:**\n| T | C4 FPR | FineWeb FPR | RedPajama FPR |\n|---|---|---|---|\n| 0.05 | 0.23% | 0.07% | 2.72% |\n| 0.10 | 0.89% | 0.14% | 6.98% |\n| 0.15 | 6.71% | 2.50% | 9.72% |\n| 0.20 | 22.38% | 9.45% | 11.49% |\n\n**关键发现:**\n- RedPajama 10K 与 5K 一致（FPR 15.5% vs 15.3%），结果稳定\n- FineWeb 和 RedPajama base FPR 接近（17% vs 15.5%），C4 显著更高（34%）\n- RedPajama 的 P(d0) 分布与 C4/FineWeb 不同：低阈值下 FPR 降不到 1% 以下（T=0.05 时仍有 2.72%），说明 RedPajama 有更多边界样本\n- 所有 19 特征在所有数据集上都有显著 distribution shift（KS p<0.01）\n- 5-fold CV balanced accuracy: 0.7872\n\n产出文件在 `results/wild_data_calibration_comprehensive/comprehensive_results.json`，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

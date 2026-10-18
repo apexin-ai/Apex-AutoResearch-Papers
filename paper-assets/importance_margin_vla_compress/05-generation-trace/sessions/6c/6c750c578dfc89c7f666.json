@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6c750c578dfc89c7f666",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 l2norm k085 long seed42 v3",
+  "task_key": "worker_analysis_eval_pi05_l2norm_k085_long_seed42_v3_20260526T175110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_l2norm_k085_long_seed42_v3_20260526T175110_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "458a6e2c65c02b4fdfcc714db7be3f53e285f8f27ed8f1a4a6c0b5829de2f86d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 结果汇总\n\n**overall SR = 78.8%** (394/500)\n\n### Per-task SR\n\n| Task | SR |\n|---|---|\n| T0 alphabet soup + tomato | 98% |\n| T1 cream cheese + butter | 94% |\n| T2 stove + moka pot | 88% |\n| T3 black bowl → drawer | 98% |\n| T4 white mug → left plate | 72% |\n| T5 book → back | 98% |\n| T6 white mug → plate (hard) | 6% |\n| T7 alphabet soup + cream | 86% |\n| T8 moka pots → stove | 54% |\n| T9 yellow mug → microwave | 94% |\n\n### L2norm Long 单调曲线验证\n\n| keep_ratio | SR | Δ to next |\n|---|---|---|\n| 0.95 | 87.0% | — |\n| 0.90 | 81.0% | −6.0 |\n| **0.85** | **78.8%** | **−2.2** |\n| 0.75 | 73.4% | −5.4 |\n| 0.50 | 50.0% | −23.4 |\n| 0.30 | ~23% | −27 |\n\n**单调性完美保持**：78.8% 落在 81%（k=0.9）和 73.4%（k=0.75）之间。\n\n值得注意的是 k=0.9→0.85 的降幅仅 2.2pp，明显小于 k=0.95→0.9 的 6.0pp 和 k=0.85→0.75 的 5.4pp。这表明 L2norm 在 k=0.85~0.90 区间退化特别平缓，存在一个\"肩部\"（shoulder），而非完美线性下降。这进一步支持 D237 的 position encoding sensitivity 假设——L2norm 按 norm 大小剪枝时，中等重要性的 token 贡献较为均匀，移除少量不会引发 cliff。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

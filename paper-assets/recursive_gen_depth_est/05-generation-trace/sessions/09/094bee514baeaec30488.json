@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "094bee514baeaec30488",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code deberta depth pilot",
+  "task_key": "worker_code_deberta-depth-pilot_20260519T145724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deberta-depth-pilot_20260519T145724_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "cb5a45aa317739d794341a0a9b500829d86dc2b4fc4f7c25b86a29b0e584ed11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- LoRA targets: `[\"query_proj\", \"value_proj\"]` ✓\n- Trainable params: 592,900 / 185M (0.32%) ✓\n- Tokenizer 正常 ✓\n- 分类 head 正确初始化（MISSING 是正常的，from pretrained MLM → seq classification）\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 环境 | Python 3.10.12, torch 2.10+cu128, transformers 5.8.1, peft 0.7.1 |\n| GPU | 2x RTX PRO 6000 (98GB), 任务用 cuda:1 |\n| 模型 | `/root/autodl-tmp/models/deberta-v3-base` 已缓存 |\n| 数据 | 每 cell 4×5000 条 JSONL |\n| 脚本 | `/root/autodl-tmp/recursive_gen_depth_est/scripts/deberta_depth_pilot.py` |\n| dry-run | `--help` + 模型加载 + LoRA 均通过 |\n\n**需要确认**：`pythia_nucleus` 目录不存在。可用 pythia cells: `pythia_seed43`, `pythia_temp05/07/09/11`, `pythia_topk50`。建议用 `pythia_temp09` 替代，还是你有其他偏好？\n\n训练命令示例（未启动）：\n```bash\nCUDA_VISIBLE_DEVICES=1 python scripts/deberta_depth_pilot.py --cell gpt2xl_temp09 --gpu 0\nCUDA_VISIBLE_DEVICES=1 python scripts/deberta_depth_pilot.py --cell pythia_temp09 --gpu 0\n```\n（`--gpu 0` 因为 `CUDA_VISIBLE_DEVICES=1` 已将物理 GPU1 映射为逻辑 GPU0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

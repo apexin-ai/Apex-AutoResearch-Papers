@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a91bf3b156b17f2ebc8a",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper compile check",
+  "task_key": "worker_paper_compile_check_20260514T121430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_check_20260514T121430_result.json",
+    "occurrence": 1,
+    "bytes": 2556,
+    "sha256": "a0d0e89aa9a74f625061affe0ba27e83f572be34f75f04c209a96e438cc0323b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ACL 模板文件齐全。以下是完整检查报告。\n\n---\n\n## 论文编译 & Figure 完整性检查报告\n\n### 1. Figure 文件完整性 ✅\n\n`docs/paper/figures/` 下 3 个 PDF 文件，全部存在：\n| 文件 | 状态 |\n|------|------|\n| `fig1_head_delta_heatmap.pdf` | ✅ |\n| `fig2_compounding_curve.pdf` | ✅ |\n| `fig3_allocation_comparison.pdf` | ✅ |\n\n### 2. LaTeX 引用完整性 ✅\n\n**Figure 引用**：3 个 `\\includegraphics` 全部指向存在的文件，3 个 `\\label{fig:*}` 均有对应 `\\ref{fig:*}`。\n\n**Table 引用**：6 个 table label（`main_results`, `budget_sweep`, `heuristic`, `downstream`, `solver_equiv`, `heterogeneity`）全部有对应 `\\ref`。\n\n**Section 引用**：所有 `\\S\\ref{sec:*}` 引用（`profiling`, `heterogeneity`, `profiling_resolution`, `method`, `compounding`, `experiments`, `solver_equiv`, `kv_separation`）均有对应 `\\label`。\n\n**Bibliography 引用**：19 个 `\\cite` key 全部在 `references.bib` 中有对应条目。ACL 模板文件（`acl.sty`, `acl_natbib.bst`）存在。\n\n### 3. 论文结构 ✅\n\n| 文件 | 行数 | 章节 |\n|------|------|------|\n| main.tex | 31 | 入口文件 |\n| abstract.tex | 7 | Abstract |\n| introduction.tex | 50 | Introduction |\n| related_work.tex | 17 | Related Work |\n| method.tex | 118 | Method |\n| experiments.tex | 177 | Experiments |\n| analysis.tex | 110 | Analysis |\n| conclusion.tex | 19 | Conclusion |\n| **Total** | **529** | |\n\n`main.tex` 的 `\\input` 顺序：abstract → introduction → related_work → method → experiments → analysis → conclusion。结构完整。\n\n### 4. 数字精度一致性\n\n**PPL 值**：主要结果统一为小数点后 2 位（9.81, 15.45, 11.23, 8.45, 7.16 等）。✅\n\n**发现 1 个问题**：\n\n- **Tab 2 (budget_sweep) 算术误差**：Uniform 15.45 − Constrained 11.23 = **4.22**，但表中写的是 **4.21**。需修正。(`experiments.tex:92`)\n\n**发现 1 个精度不一致**：\n\n- Layer 1 oracle gap 在两处精度不同：`analysis.tex:93` 写 \"0.018\"，`method.tex:118` 写 \"0.0183\"。建议统一为 0.018 或 0.0183。\n\n### 5. 其他观察\n\n- `\\bibliographystyle` 未显式声明——`acl.sty` 内部处理，编译应无问题。\n- 论文总行数 529 行（不含 bib），对 ARR 8 页正文限制来说篇幅合理。\n\n### 总结\n\n**需修复**：1 项（budget_sweep 表 Δ 值 4.21 → 4.22）\n**建议统一**：1 项（oracle gap 精度 0.018 vs 0.0183）\n**其余检查项全部通过。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

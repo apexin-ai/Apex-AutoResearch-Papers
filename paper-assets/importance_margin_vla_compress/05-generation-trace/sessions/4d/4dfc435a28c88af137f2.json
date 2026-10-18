@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4dfc435a28c88af137f2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code eval scripts prep",
+  "task_key": "worker_code_eval_scripts_prep_20260516T103229",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_eval_scripts_prep_20260516T103229_result.json",
+    "occurrence": 1,
+    "bytes": 1467,
+    "sha256": "ccea5a6c1e224effb341b87d64eb7cc87179ec041d83178610733cfff55e58ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署并验证：\n\n**`eval_success_rate.py`** — closed-loop rollout 评估\n- 参数：`--checkpoint_path`, `--config_path`, `--mode`, `--num_episodes`(50), `--max_steps`(400), `--action_horizon`(50), `--seed`, `--gpu`, `--output`\n- 使用 `policy.model.sample_actions()` 做 flow matching ODE 推理\n- 每个 episode 打印 success/fail + steps + reward + wall clock 时间\n- 汇总输出 success rate + 95% Wilson CI + mean episode length\n- 支持 baseline/acis_prune/bypass 三种模式\n- 结果保存为 JSON\n\n**`test_mode_collapse.py`** — action diversity 快速诊断\n- 两个测试：\n  1. **Cross-obs**: 不同 obs → 不同 actions？（batch 内 std）\n  2. **Same-obs noise diversity**: 同一 obs 不同 noise → 不同 actions？（直接测 ODE 是否 collapse）\n- 判定标准：noise std > 0.05 → PASS，< 0.01 → FAIL\n- 可选 `--pretrained_path` 与原始预训练模型对比\n\n运行示例：\n```bash\n# baseline_v6_alpha16 训练完成后\npython eval_success_rate.py \\\n    --checkpoint_path checkpoints/baseline_v6_alpha16/latest/checkpoint.pt \\\n    --config_path configs/baseline_v6_alpha16.yaml \\\n    --mode baseline --num_episodes 50\n\npython test_mode_collapse.py \\\n    --checkpoint_path checkpoints/baseline_v6_alpha16/latest/checkpoint.pt \\\n    --config_path configs/baseline_v6_alpha16.yaml \\\n    --pretrained_path /root/autodl-tmp/.hf_cache/lerobot/smolvla_base\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

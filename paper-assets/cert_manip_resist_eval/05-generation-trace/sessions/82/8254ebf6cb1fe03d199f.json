@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8254ebf6cb1fe03d199f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops d047 nearchance filtered",
+  "task_key": "worker_ops_d047-nearchance-filtered_20260525T215030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-nearchance-filtered_20260525T215030_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "6843c180a785ee360f3528ed55adcaf68e239e8cacff613f802760aca2e1b81e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are clean. Here's the summary:\n\n---\n\n**Filtered (13 models) results after position-bias fix:**\n\n| K | n | OLS | WCB | Frac | β̄_std | R̄² |\n|---|---|-----|-----|------|--------|-----|\n| 3 | 286 | 12/12 | 5/12 | 10/12 | 0.291 | 0.361 |\n| 5 | 1,287 | 11/12 | 3/12 | 11/12 | 0.321 | 0.271 |\n| 7 | 1,716 | 10/12 | 1/12 | 10/12 | 0.251 | 0.212 |\n\n**Files updated:**\n- `appendix.tex`: Filled 3 TBD rows, updated caption (removed TBD note), replaced placeholder text with analysis of full-vs-filtered comparison\n- `appendix.tex` line 1177: Changed \"strengthens\" → \"preserves\" for near-chance exclusion recommendation\n- `main.tex` line 45: Changed \"strengthens the association\" → \"preserves the association (OLS 10--12/12)\"\n\n**Key finding:** OLS and fractional logit significance remain high (10–12/12) after filtering, confirming the diversity–vulnerability association is not driven by near-chance models. WCB significance drops substantially due to reduced panel counts lowering bootstrap power. β̄_std is slightly lower in the filtered pool at K=5,7, so \"strengthens\" was corrected to \"preserves.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

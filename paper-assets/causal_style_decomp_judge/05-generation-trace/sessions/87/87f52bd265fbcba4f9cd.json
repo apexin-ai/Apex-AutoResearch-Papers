@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "87f52bd265fbcba4f9cd",
+  "project": "causal_style_decomp_judge",
+  "kind": "conversation",
+  "title": "audit ref check B",
+  "task_key": "worker_audit_ref_check_B_20260526T110655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_ref_check_B_20260526T110655.jsonl",
+    "occurrence": 1,
+    "bytes": 165,
+    "sha256": "62b623441e70903b5ecbc8ee2a544174020cfcf0a37ee54dfeeacecaba79bae8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T11:07:05.406825+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_ref_check_B_20260526T110655"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

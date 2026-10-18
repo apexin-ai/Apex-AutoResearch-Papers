@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5245ada9f5fa91267350",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check harvest westd38929 gpu0 spatial",
+  "task_key": "worker_check-harvest-westd38929-gpu0-spatial_20260523T201206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check-harvest-westd38929-gpu0-spatial_20260523T201206_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "0b81829e4d6107fa77ae1ea69b41ffbe1a49216909da15da6f9d45af5f7c46fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已经在 registry 中标记为 **DONE**，metrics 也已填好。\n\n## 结果汇总\n\n**X-VLA L2norm k=0.5 Spatial** — Overall SR: **58.8%** (294/500), 95% Wilson CI: [54.4%, 63.0%]\n\n| Task | Description | SR |\n|------|------------|-----|\n| 0 | bowl between plate and ramekin → plate | **92%** |\n| 1 | bowl next to ramekin → plate | **22%** |\n| 2 | bowl from table center → plate | **88%** |\n| 3 | bowl on cookie box → plate | **72%** |\n| 4 | bowl in top drawer → plate | **84%** |\n| 5 | bowl on ramekin → plate | **0%** |\n| 6 | bowl next to cookie box → plate | **82%** |\n| 7 | bowl on stove → plate | **32%** |\n| 8 | bowl next to plate → plate | **72%** |\n| 9 | bowl on wooden cabinet → plate | **44%** |\n\n实验已完成，registry 已更新为 DONE，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

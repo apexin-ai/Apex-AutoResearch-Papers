@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d30f46759b5b27bfc4de",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval geometric prior k05",
+  "task_key": "worker_eval_geometric_prior_k05_20260517T160512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_geometric_prior_k05_20260517T160512_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "500e40b8b562aaf3390abffcc9b771ca5146005075dc3c5864d898f7fc18afcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task 0 完成: 0/50 (0% SR)，Task 1 正在进行。eval 运行正常，预计全部 FAIL。\n\n当前状态总结：\n\n**Geometric Prior Pruning k=0.5 eval 已在 cqa1-33015 GPU 1 运行 (PID 244007)**\n\n- 脚本：`eval_geometric_prior_k05.py`\n- Checkpoint：`libero_full_ft/step_099999/checkpoint.pt`\n- 使用现有 `GeometricPriorPruner` (Sobel edge + true_removal hook)\n- 进度：Task 0 完成 (0/50)，Task 1 进行中\n- 预期结果：**全部 0% SR**（k=0.7 和 k=0.9 也是 0%）\n- 输出：`eval_results/eval_geometric_prior_k05.json`\n\n**关键结论（已确认）：**\n- Geometric prior pruning 即使只去掉 10% tokens (k=0.9) 也导致 0% SR\n- ACIS-based pruning 去掉 70% tokens (k=0.3) 仍有 45% SR\n- 这完美证明了 cliff-edge phenomenon 和 ACIS 的价值\n\neval 还需 ~30 分钟完成全部 500 episodes。完成后 JSON 会自动写入 `eval_results/eval_geometric_prior_k05.json`。需要我等完成后汇报最终结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

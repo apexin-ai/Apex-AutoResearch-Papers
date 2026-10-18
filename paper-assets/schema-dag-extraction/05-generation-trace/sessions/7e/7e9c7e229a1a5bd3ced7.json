@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7e9c7e229a1a5bd3ced7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research exp007 missed entity audit",
+  "task_key": "worker_research_exp007_missed_entity_audit_20260515T175845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp007_missed_entity_audit_20260515T175845_result.json",
+    "occurrence": 1,
+    "bytes": 2682,
+    "sha256": "01b0f5fee7a2a30f5a7459139b671b09c2ab2b29190b489dac964c07077a6bc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据溯源完成。以下是结论。\n\n---\n\n## 报告：exp007 NER Missed-Entity Percentage 数据溯源\n\n### 1. Table 3 NER Missed 12%, 14%, 16% — 无数据来源\n\n**这些数字无法从任何已有 artifact 推导出来。**\n\nexp007 `error_taxonomy.py` 脚本只计算了 FP 分类（IntraSub/ExtraSub/Boundary/Halluc/Spurious 占 FP 的比例）和 FN 原始计数。没有任何脚本计算 NER 的 \"missed_pct\"。\n\n从 raw data 重新计算的实际 NER missed rates（`artifacts/exp007/error_taxonomy_by_bcs.csv` + `predictions_exp1.json`）：\n\n| BCS Bin | FN/total_gold (1-Recall) | Truly Missed (无任何预测覆盖) |\n|---------|-------------------------|-------------------------------|\n| zero    | 35.9%                   | 33.3%                         |\n| low     | 47.6%                   | 42.8%                         |\n| medium  | 72.2%                   | 64.8%                         |\n| high    | 65.4%                   | 49.9%                         |\n\n无论用哪种 \"missed\" 定义，实际值都在 **33-72%** 范围内，远非 12-16%，且**不是 flat**。\n\n### 2. 与 Table 3 的一致性\n\n**不一致。** Table 3 声称 NER Missed 为 12%, 14%, 16% 且 \"remains flat\"。实际数据显示：\n- 值域是 33-72%，不是 12-16%\n- 趋势不 flat（low→medium 急剧上升）\n\n### 3. RE Missed 的对比\n\nRE (FewRel) 的 missed_rate **有源数据**（`artifacts/fewrel_80rel_error_taxonomy.json`）：\n- low: **10.42%** → Table 3 写 10% ✓\n- medium: **11.30%** → Table 3 写 12%（向上取整 0.7pp）\n- high: **13.05%** → Table 3 写 14%（向上取整 0.95pp）\n\nRE 数据基本可追溯，但取整偏激进。\n\n### 4. NER Missed 数字的可能来源\n\nTable 3 中 NER Missed = RE Missed + 2%（逐格）：\n\n| Bin  | RE Missed | NER Missed | 差值 |\n|------|-----------|------------|------|\n| Low  | 10%       | 12%        | +2%  |\n| Mid  | 12%       | 14%        | +2%  |\n| High | 14%       | 16%        | +2%  |\n\n**NER Missed 的 12/14/16% 高度疑似基于 RE Missed 外推（+2pp 偏移），而非独立计算。** 服务器上无任何脚本或中间文件产生过这些数字。\n\n### 正确数字\n\n如果论文需要报告 NER per-BCS-bin missed rate，准确数字（truly missed = 无任何预测文本重叠的 gold 实体 / total gold）：\n\n| BCS Bin | Truly Missed Rate |\n|---------|-------------------|\n| low     | **42.8%**         |\n| medium  | **64.8%**         |\n| high    | **49.9%**         |\n\n来源：从 `artifacts/predictions_exp1.json` + Few-NERD test set 重新计算（脚本 `scripts/compute_missed_rate.py`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

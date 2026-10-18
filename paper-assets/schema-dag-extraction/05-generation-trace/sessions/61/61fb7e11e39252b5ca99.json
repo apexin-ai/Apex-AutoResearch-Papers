@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "61fb7e11e39252b5ca99",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp008 analysis prep",
+  "task_key": "worker_ssh_exp008-analysis-prep_20260515T111102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp008-analysis-prep_20260515T111102_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "2b1a191ab1039dfe52cd2c243cdef5e03c33f7685c836e485a893bd81dc39fc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功，per_type 结果也已出（F1=0.2915）。两个脚本都已创建完成。\n\n**分析结果摘要：**\n\n| Mode | F1 | Precision | Recall | #Batches | Time(s) | Δ vs single_pass |\n|------|-----|-----------|--------|----------|---------|------------------|\n| single_pass | 0.4451 | 0.5631 | 0.3679 | 1 | 77.3 | baseline |\n| sdgd_zero | 0.2514 | 0.2096 | 0.3141 | 8 | 408.7 | -0.1937 |\n| random_batch | 0.3197 | 0.2491 | 0.4462 | 8 | 476.1 | -0.1253 |\n| per_type | 0.2915 | 0.1940 | 0.5856 | 66 | 2532.2 | -0.1536 |\n\n关键发现：所有分解模式 F1 都低于 single_pass baseline。分解提升了 recall（per_type 0.59 vs single_pass 0.37）但 precision 大幅下降。sdgd_zero 甚至不如 random_batch。\n\n**已创建的文件：**\n- `src/analyze_exp008_results.py` — 分析脚本，已在服务器 dry-run 验证通过，summary 已保存到 `artifacts/exp008/analysis_summary.json`\n- `scripts/compute_fewrel_qwen3_embeddings.sh` — FewRel embedding 脚本，使用 `configs/fewrel_relation_types.json`（80 relations）+ Qwen3-32B-FP8，输出 embeddings 和 sim_matrix 两个 .pt 文件。未执行，等 GPU 空闲时运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

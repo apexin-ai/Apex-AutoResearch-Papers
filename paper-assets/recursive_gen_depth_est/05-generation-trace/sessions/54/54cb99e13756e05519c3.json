@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "54cb99e13756e05519c3",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis n2 roberta feature overlap",
+  "task_key": "worker_analysis_n2_roberta_feature_overlap_20260515T132452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n2_roberta_feature_overlap_20260515T132452_result.json",
+    "occurrence": 1,
+    "bytes": 2057,
+    "sha256": "02e2b3deef1471c0b0bd24025cc8cf75a25638c4d2b758e5eb6875dbfc37a5be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RoBERTa Feature Overlap 分析结果\n\n### RoBERTa Probing R²（Top-5 → Bottom-3）\n\n| Feature | RoBERTa R² | DeBERTa R² |\n|---------|-----------|-----------|\n| bigram_entropy | **0.829** | 0.72 |\n| rep_2gram | **0.819** | **0.82** |\n| mean_surprisal | **0.818** | 0.78 |\n| type_token_ratio | **0.811** | **0.85** |\n| trigram_entropy | **0.789** | 0.69 |\n| ... | ... | ... |\n| var_ppl | **-4215.8** | -28.1 |\n| mean_ppl | **-9.50** | -4.2 |\n| p10_ppl | -0.30 | — |\n\n### Overlap 指标\n\n| 指标 | RoBERTa | DeBERTa |\n|------|---------|---------|\n| Spearman ρ (RF vs Model) | **-0.456** (p=0.050) | **-0.484** (p=0.036) |\n| Top-5 overlap | **0/10** | **0/10** |\n| Top-10 overlap | **2/18** (trigram_entropy, var_surprisal) | — |\n| Top-10 Jaccard | 0.111 | — |\n\n### RoBERTa Top-5 vs RF Top-5\n\n- **RF**: var_surprisal, p90_ppl, p50_ppl, skewness_ppl, var_ppl\n- **RoBERTa**: bigram_entropy, rep_2gram, mean_surprisal, type_token_ratio, trigram_entropy\n\n### Feature Group 对比\n\n| Group | RoBERTa Probing R² | RF Importance |\n|-------|-------------------|---------------|\n| ngram_entropy | 0.809 | 0.0019 |\n| repetition | 0.777 | 0.0014 |\n| surprisal | 0.758 | **0.103** |\n| lexical_diversity | 0.698 | 0.0009 |\n| ppl_quantiles | 0.229 | **0.018** |\n| ppl_central | -4.50 | 0.011 |\n| ppl_spread | -1405.4 | 0.006 |\n\n### 总结\n\nRoBERTa 与 DeBERTa 的 feature overlap 分析高度一致：**两个模型都擅长表面文本特征（n-gram entropy、repetition、lexical diversity，R²>0.7），但对 RF 最重要的 perplexity 类特征（var_ppl、mean_ppl）完全失败（R²远低于0）**。Spearman ρ 几乎相同（RoBERTa -0.456 vs DeBERTa -0.484），Top-5 overlap 均为 0——这证实了 transformer 模型与 RF 关注的特征空间是系统性正交的，而非单一模型的偶然现象。RoBERTa 在 var_ppl 上的崩溃更极端（R²=-4215 vs DeBERTa 的 -28），进一步说明 token-level perplexity 分布的高阶统计量是 transformer 表征的盲区。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

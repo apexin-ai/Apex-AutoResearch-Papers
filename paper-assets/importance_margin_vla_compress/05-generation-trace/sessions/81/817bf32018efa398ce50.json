@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "817bf32018efa398ce50",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "kill westd27271 gpu0 pid551487",
+  "task_key": "worker_kill_westd27271-gpu0-pid551487_20260526T232238",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_kill_westd27271-gpu0-pid551487_20260526T232238_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "4b6dfe06bc59f158d36a39ad9e5cfa6f6ecd6d81fba0ec675822dc8c07f0515a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 551487 已 kill。当前状态：\n\n| GPU | PID | 显存 | 状态 |\n|-----|-----|------|------|\n| 0 | 499267 (Attn k=0.75 Goal) | 15946 MiB | 运行中, 43% util |\n| 1 | 397225 (Attn k=0.5 Long) | 15762 MiB | 运行中, 55% util |\n\n两个正常评估进程均在运行，误部署进程已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

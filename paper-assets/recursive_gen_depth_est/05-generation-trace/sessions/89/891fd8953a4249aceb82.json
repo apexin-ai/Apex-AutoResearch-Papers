@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "891fd8953a4249aceb82",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops migration status check",
+  "task_key": "worker_ops_migration-status-check_20260520T113205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_migration-status-check_20260520T113205_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "25764181831cb1d5b173bb0c32f37e96e6c98076392f105687536ab16db841c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nautodl-rtx6000: 大小=19G, 文件数=2867\nwestd-48862:    大小=2.9G, 文件数=440\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

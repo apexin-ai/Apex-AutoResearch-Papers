@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2d1afd0b635b8844985b",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 h3 1 eval and downloads",
+  "task_key": "worker_code_hgrn2_h3_1_eval_and_downloads_20260518T164413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_h3_1_eval_and_downloads_20260518T164413_result.json",
+    "occurrence": 1,
+    "bytes": 128,
+    "sha256": "b0f6299f110a6f163840b0c0ac266570593b24242d0f0893b404df38f7e0cc03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "h3-1 评测已在后台运行（PID 372903），pure/h6-1 下载也在进行中。91 秒后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

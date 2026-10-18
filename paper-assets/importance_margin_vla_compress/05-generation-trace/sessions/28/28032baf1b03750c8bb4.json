@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "28032baf1b03750c8bb4",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops status check cqa1 westd27271",
+  "task_key": "worker_ops_status-check-cqa1-westd27271_20260520T065619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_status-check-cqa1-westd27271_20260520T065619_result.json",
+    "occurrence": 1,
+    "bytes": 2125,
+    "sha256": "b2ca9feaf5c1d4d235c9c8344df1a244b955fba728ef71eb5f213c61de973033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐了。汇总：\n\n---\n\n## cqa1-33015 — 3 个 Eval（全部 ALIVE）\n\nGPU 显存：GPU0=3478 MiB, GPU1=3448 MiB, GPU2=3446 MiB, GPU3=1 MiB\n\n### eval_smart_compress_m128_seed43 (GPU1)\n**进度：Task 8/10, Ep 456/500** — 预计 ~1h 完成\n\n已完成 task SR：\n\n| Task | 描述 | SR |\n|------|------|----|\n| 0 | alphabet soup → basket | 64.6% |\n| 1 | cream cheese → basket | 32.2% |\n| 2 | salad dressing → basket | 61.4% |\n| 3 | bbq sauce → basket | 43.2% |\n| 4 | ketchup → basket | 34.8% |\n| 5 | tomato sauce → basket | 44.2% |\n| 6 | butter → basket | **71.6%** |\n| 7 | milk → basket | 60.4% |\n| 8 | chocolate pudding (进行中) | ~456 ep |\n\n**前 8 task 均值：51.55%** — 确认之前 47.24% running avg 是低估（只看了部分 ep），最终 10-task 均值预计在 **50-53%** 区间。\n\n### eval_smart_compress_m16_seed43 (GPU2)\n**进度：Task 8/10, Ep 471/500** — 预计 ~45min 完成\n\n| Task | SR |\n|------|----|\n| 0 | 42.8% |\n| 1 | 47.4% |\n| 2 | 66.2% |\n| 3 | 48.4% |\n| 4 | **74.2%** |\n| 5 | 40.0% |\n| 6 | **79.2%** |\n| 7 | 69.8% |\n\n**前 8 task 均值：58.5%** — m16 比 m128 高约 7pp。\n\n### eval_smart_compress_m16_seed44 (GPU0)\n**进度：Task 7/10, Ep 207/500** — 预计 ~3h 完成\n\n| Task | SR |\n|------|----|\n| 0 | 38.0% |\n| 1 | 70.0% |\n| 2 | 55.2% |\n| 3 | 42.0% |\n| 4 | 64.8% |\n| 5 | 32.8% |\n| 6 | 73.2% |\n\n**前 7 task 均值：53.7%**\n\n---\n\n## westd-27271 — 2 个 Training（全部 ALIVE）\n\nGPU 显存：GPU0=32285 MiB, GPU1=25991 MiB（5× 进程，4 DDP workers）\n\n### train_openvla_sc_m32_seed42 (GPU1)\n- **Step 13050/100000** (13.05%)\n- loss=2.478, lr=9.65e-05, grad=1.75, sps=0.5\n- 从 08:16 开始运行，稳定\n\n### train_openvla_sc_m128_seed42_v2 (GPU0, 4×DDP)\n- **Step 22900/100000** (22.9%)\n- loss=2.894, lr=8.87e-05, grad=2.30, sps=0.5\n- 从 02:38 开始运行，稳定\n\n---\n\n**结论**：5 个任务全部存活，无崩溃。m128_seed43 eval 前 8 task 均值 51.55%，比预期好；m16_seed43 更强 (58.5%)。两个 westd 训练都在正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "31766c98050bfd388454",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "check mistral heuristic k value",
+  "task_key": "worker_check_mistral_heuristic_k_value_20260514T093421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mistral_heuristic_k_value_20260514T093421_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "39b2e642b737673bba2c5b8c3708470437b62d43f2a0f708b65b90f79af6763f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：\n\n**Mistral 在 `l0_heuristic_corrected` 中用的 `k=16`。**\n\n代码证据（`run_l0_heuristic_corrected.py` 第 ~38 行）：\n```python\n\"Mistral-7B-v0.3\": {\n    ...\n    \"k\": 16,\n    \"mckp_ppl\": 7.323,\n},\n```\n\n这个 `k` 值直接用于 `build_l0_random_allocation` 和 `build_naive_heuristic_allocation`，控制有多少个 non-L0 head 被分配 2-bit。代码中还有 budget 断言验证 `expected_budget == 0.25`，说明 k=16 是满足 budget=0.25 约束的正确值（对于 Mistral 的 32 layers × 8 kv_heads = 256 total heads）。\n\n结果文件也确认实验成功运行并产出了 Mistral 的完整结果（MCKP PPL=7.323, naive=7.481, L0-random mean=7.560）。\n\n**与 Table 1 的冲突**：如果 Table 1 Mistral MCKP 用的是 k=4 (PPL=7.16)，那和 heuristic 实验的 k=16 不在同一对比条件下。需要统一 k 值才能公平对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

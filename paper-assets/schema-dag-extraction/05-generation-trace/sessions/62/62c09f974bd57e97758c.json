@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62c09f974bd57e97758c",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "agent / loop_6_1778908056.md",
+  "task_key": "loop_6_1778908056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778908056.md",
+    "occurrence": 1,
+    "bytes": 3448,
+    "sha256": "a02d9c0e70328db5ce5894424bf5cfc10787317da133f930081922bcc14c1608"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T04:05:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cqa1-38874 cuda:0**（RTX PRO 6000 Blackwell 98GB），白名单仅此一张卡\n- **C001 表述约束**：count_40 子集来自 80-type pool 采样，论文必须写 \"40-rel subsets sampled from the 80-relation pool\"，不得写成独立 40-rel pool\n- **3.4× amplification 不再是 claim**（C002 已移除 per D036），Table 4 已重构为 slope-based 主指标，四分位 Δ 为辅\n- **SDGD (Claim 3) 已正式放弃**（D019），只作为 negative result + future work 讨论，不得复活\n- **ARR May 25 提交 deadline**（距今 9 天），所有实验已完成，当前是纯写作+审稿阶段\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874，account=root，工作目录 `/root/schema-dag-extraction`\n- GPU：1× RTX PRO 6000 Blackwell (98GB)，cuda:0，**当前空闲**\n- 活跃进程：无（全部实验 DONE，无 Worker，无 Cron）\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/`\n\n### 3. 📊 当前状态\n全部 36 个实验均已完成（success 18 / negative 5 / failed 10 / killed 3）。无 RUNNING / PREPARING 实验，无活跃 Worker，无活跃 Cron。\n\n刚完成的关键工作链（D033→D037，全在 2026-05-16）：\n- D033: 追加 16-rel 100 random batches + bootstrap CI\n- D034: Amplification 报告策略定稿（quartile Δ + BCS-accuracy slope 并报）\n- D035: 论文 Table 3 统一用极端批次方法重算\n- D036: 叙事重构——slope 为主指标，permutation p=0.436 表明斜率跨条件一致\n- D037: Round 2 审稿 Action Matrix 定稿（5C + 12W 逐条方案）\n\n**当前阶段**：论文编译通过，已提交 fresh review，等待审稿结果。Reviewer 数据一致性审查已 PASS（22/22 数据点）。\n\n### 4. 📋 待办（条件触发式）\n- Fresh review 审稿结果返回 → 按 D037 Action Matrix 逐条处理 reviewer comments → 修改论文 → 重新编译\n- 如果 reviewer 要求补实验 → 用 cuda:0 跑，但注意距 deadline 仅 9 天，优先能快速完成的补充实验\n- ARR May 25 提交前 → 最终 reference-audit + paper-visual-review + 编译检查\n- GPU 空闲期间若无审稿反馈 → 可以考虑跑 robustness check / 额外 seed 复现（需 Director 批准）\n\n### 5. 🎯 战略上下文\n**核心结论**：type confusability 独立于 type count 驱动 training-free LLM IE 质量下降，multi-channel degradation model 已跨三任务（NER/RE/ED）+ 双模型（Qwen3/LLaMA）验证。\n\n**决策链关键节点**：\n- D019: SDGD 放弃，转 negative result\n- D026: 交互效应不显著（p=0.505），两 channel 正交\n- D028: NER Channel 2 跨模型复现失败（floor effect），但 RE Channel 2 成功（D031/D032）\n- D036: 从 amplification ratio 叙事转向 slope consistency 叙事（permutation test）\n\n**易错点**：\n- 不要把 80-pool-16sub（从 80-rel pool 采样 16 types）和独立 16-rel pool（exp_fewrel_formal）混淆——前者 BCS 范围窄 [0.458, 0.684]，后者 [0.653, 0.900]\n- MAVEN per-type BCS 正相关是 centrality confound artifact（exp_maven_residualized_bcs 已证实），不要把它当正面证据\n- Table 3 用极端批次方法（不是四分位），四分位 CI 只作补充\n- memory.md 记录了 D035 集成方案细节和 80-pool-16sub 关键发现，新 session 务必先看\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4994cc16d678aefb1f21",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research w5 rebuttal generation code",
+  "task_key": "worker_research_w5_rebuttal_generation_code_20260515T110650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_w5_rebuttal_generation_code_20260515T110650_result.json",
+    "occurrence": 1,
+    "bytes": 2181,
+    "sha256": "20a70c088db347e97ed21761d314b2f745ff440d2027db90bea4f173868891c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**无条件生成（Unconditional）**\n\n### 关键证据\n\n**1. 生成代码** (`scripts/generate_next_depth.py`)\n\n文件开头 docstring 直接声明：\n> \"用 LoRA 微调后的模型**无条件生成**下一代文本。seed_id 为独立递增编号（0..num_samples-1），**不与上一代数据对应**。\"\n\n核心代码（约第 72-73 行）：\n```python\ninput_ids = torch.tensor([[bos_token_id]] * cur_batch_size, device=device)\nattention_mask = torch.ones_like(input_ids)\n```\n\n`model.generate()` 的 `input_ids` 仅含单个 BOS token，无任何上一代文本作为 prompt。\n\n**2. 训练代码** (`scripts/lora_finetune.py`)\n\nDocstring 声明：\n> \"每代从 base model 重新微调。\"\n\n训练流程：加载 base model → 全新 LoRA adapter → 在 depth N 文本上做标准 causal LM (next-token prediction) → 保存 adapter。训练数据就是上一轮生成的文本，但用于学习分布特征，不用于 generation-time conditioning。\n\n**3. Pipeline 流程** (`scripts/run_pipeline.sh`)\n\n```\ndepth_0 文本 → LoRA finetune → adapter_0 → 无条件生成 → depth_1 文本\ndepth_1 文本 → LoRA finetune → adapter_1 → 无条件生成 → depth_2 文本\n...\n```\n\n每步 generation 都只以 BOS token 启动，不输入任何上一代文本。\n\n### Rebuttal 可引用文本\n\n> **Generation is strictly unconditional.** Each depth-N+1 corpus is produced by sampling from a BOS token alone — no depth-N passage is used as a prompt or prefix during generation (`input_ids = [[bos_token_id]]`, `generate_next_depth.py` L72). The `seed_id` field is an independent counter (0…4999) with no correspondence to any depth-N document. Consequently, **no passage-level lineage exists between depths**: the sole information channel from depth N to depth N+1 is the LoRA weight update obtained by fitting the depth-N distribution via standard next-token prediction (`lora_finetune.py`). This design is intentional — it ensures that any depth-distinguishing signal captured by our estimator reflects cumulative parametric degradation in the model, not surface-level textual inheritance."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

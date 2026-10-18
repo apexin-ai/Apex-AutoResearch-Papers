@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "112cf3ad8702526740e0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops fill westd41074 gpu0 gpu1 pi05 multiseed",
+  "task_key": "worker_ops_fill-westd41074-gpu0-gpu1-pi05-multiseed_20260521T112534",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fill-westd41074-gpu0-gpu1-pi05-multiseed_20260521T112534_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "a2a17d8af4c08e0682f2064885ccfd7ffc7ab375187d518820e66b5584814674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "120 秒等待完成。之前已验证两个实验正常运行，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

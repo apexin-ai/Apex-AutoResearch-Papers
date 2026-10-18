@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cac6795411422f19b5f5",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp sdgd zero maven",
+  "task_key": "worker_code_exp_sdgd_zero_maven_20260519T114328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_sdgd_zero_maven_20260519T114328_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "04d752d77a14ab6630f5cff0846797a124d6fc860b95914df9eb6ac5c4a832e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 已清理，无残留进程。\n\n实验准备完成。总结：\n\n**已完成：**\n1. 读取了 SDGD 全模块（decompose, graph, merge, evaluate, similarity）和 run_sdgd_experiment.py\n2. 验证了 MAVEN 数据（8042 samples, 168 types, parquet 格式）和 SCS matrix（168x168 .pt）\n3. 创建了 `/root/schema-dag-extraction/src/run_sdgd_maven.py`：\n   - 单次加载 vLLM，复用跑三臂\n   - single_pass (168 types) → sdgd_zero (18 batches) → random_batch (3 seeds × 18 batches)\n   - 包含 merge 统计（raw vs merged predictions, expansion ratio）\n   - 输出 summary.json + per-mode results/predictions\n4. 创建了 `launch_sdgd_maven.sh` 启动脚本\n5. Dry-run 通过：5 samples, F1=0.200, pipeline 端到端正常\n6. 更新了 registry（hypothesis + notes）\n\n**MAVEN 分解特征：**\n- tau=0.3191（Few-NERD 为 0.8676，低很多因为 SCS 分布不同）\n- 18 batches（Few-NERD 8 batches），sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]\n- 更多 batches 意味着 merge amplification 效应可能更强\n\n**待执行：**\n- 等 exp_docred_bcs_expanded 完成后，运行 `bash /root/schema-dag-extraction/src/launch_sdgd_maven.sh`\n- 预计 3-4 GPU 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

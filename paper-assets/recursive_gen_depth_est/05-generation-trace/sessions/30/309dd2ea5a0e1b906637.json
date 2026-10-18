@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "309dd2ea5a0e1b906637",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3287,
+    "sha256": "3470ab34145268d940ab8d892654440afa7ff9721d557c44abba92c5514114e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T18:23:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 98GB）\n- OLMo 模型路径必须用 `olmo-1b-hf`，不是 `olmo-1b`（后者缺 HF 格式文件）\n- 项目配置 server 名必须与实际一致（曾因 westb-52439 事件导致 cron 误杀实验）\n- 审稿阶段已启动（review_chat_id: oc_db3bd143165620ee6950e6ef0826eec8），论文格式/投稿由 Group C 负责，你不参与\n- Dream D002 的 6 项结构性硬约束写在 ROADMAP\"Dream-Derived 论文硬约束\"一节，论文写作必须满足\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2 (connect.westb.seetacloud.com)，工作目录 /root/autodl-tmp/recursive_gen_depth_est\n- GPU：cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 98GB）\n- Python 环境：未确认 conda/venv，Agent 连接时自动探测\n- 模型：Pythia-1.4B / OLMo-1B (olmo-1b-hf) / GPT-2 XL，均在远程\n- W&B / HF cache：未配置\n- 活跃进程：Agent 正在处理 OLMo false-failure 修正 + pythia_topk50 代码提交结果，queue depth=3\n\n### 3. 📊 当前状态\n**刚做完**：Dream D002 三档分析 → 提取 6 项行动项写入 framing → 启动 3×3 矩阵补全（3 模型 × 3 解码策略）\n\n**实验状态**（3×3 矩阵进度 2/9 done）：\n- `pythia_temp09_001` — ✅ DONE (success)，Pythia nucleus+temp09 完成\n- `cross_model_olmo_002` — registry 显示 RUNNING，但 Reviewer 报告 pipeline 实际已完成，Agent 正在修正 false-failure（第二次了）\n- `cross_model_gpt2xl_001` — ANALYZING，GPT-2 XL nucleus depth-2 生成 ~100%\n- `pythia_topk50_001` — RUNNING/PREPARING，Agent 刚提交代码\n\n**Agent 队列**（depth=3，正在处理）：\n1. [处理中] Reviewer critical：OLMo false failure 修正\n2. [排队] 紧急指令：OLMo 第二次 false failure 立即修正\n3. [排队] Worker done × 2（OLMo 诊断 + pythia topk50 代码提交）\n\n### 4. 📋 待办（条件触发式）\n- Agent 消化完队列 → 检查 OLMo 是否已正确标记 success + eval 完成 → 立即排 OLMo temp09 到 cuda:0\n- GPT-2 XL nucleus ANALYZING 完成 → eval → 排 GPT-2 XL temp09 到 cuda:1\n- Pythia topk50 代码就绪 + GPU 空出 → 提交运行\n- 3×3 矩阵 9/9 完成 → 启动 plan_006 Atlas + plan_004 DCOL\n- Atlas 生成时同步出图（AUC decay, feature trajectory, heatmap, confusion matrix）\n- 写作前必须完成 multi-seed evaluation（≥3 seeds, ~6 GPU·h）\n\n### 5. 🎯 战略上下文\n- **核心结论**：递归生成深度可从统计特征高精度区分（MVP 4-class acc 78.2%），D001 确认方向成立\n- **Framing 重心**（D002 决策）：Atlas/EDD 为 primary contribution，DCOL 为 secondary。三档 Dream 一致建议此方向\n- **最容易判断错的事**：OLMo 实验反复出现 false failure（registry 标 failed 但实际成功），已出现两次。看到 OLMo failure 先检查日志再信 registry\n- **容易踩的坑**：Agent 队列里有重复/冲突指令时用 `replace_agent_queue` 清理；3×3 矩阵排队策略是\"每模型 nucleus 完成后立即接 temp09 → topk50\"，不要打乱顺序\n- **GPU 预算**：P0 剩余 ~35 GPU·h (~18h on 2 GPUs)，P0+P1 ~83 GPU·h (~2 days)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

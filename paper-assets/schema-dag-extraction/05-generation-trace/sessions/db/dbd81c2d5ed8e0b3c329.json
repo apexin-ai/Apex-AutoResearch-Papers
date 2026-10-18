@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dbd81c2d5ed8e0b3c329",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops gpu check submit maven r2",
+  "task_key": "worker_ops_gpu_check_submit_maven_r2_20260519T131045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_submit_maven_r2_20260519T131045_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "d65d7d12e649340f4da08a069f82971ecae1cb9b643ad0586f79f07b870e5627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **GPU**: RTX PRO 6000 (98GB) 空闲，无进程占用\n- **Tmux**: 残留 session 已清理\n- **实验已启动**: `exp_sdgd_zero_maven` 在 tmux 中运行，vLLM 正在加载 Qwen3-32B-FP8\n- **日志确认**: 168 event types、1000 samples 已加载，模型初始化中\n- **Registry**: notes 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

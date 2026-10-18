@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "79d2e26691fccbeebb1a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "research paper prep checklist",
+  "task_key": "worker_research_paper-prep-checklist_20260515T091715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-prep-checklist_20260515T091715_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "d35930d95c11f96e6e00eaded97a221a430691d39d98008ddd106b9434ff1688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checklist 已写入 `artifacts/paper_prep_checklist.md`。\n\n**总结**：D002 硬约束 8 项中 3 项完全通过、3 项部分完成、2 项缺失。\n\n关键发现：\n- **4 张主图已齐**（fig1–fig4 PDF+PNG），bibliography 35 refs 超额\n- **最大风险**：paper_framing 声称 z-score 恢复 linear model d1v2 AUC（0.13→0.68, 0.25→0.83），但服务器上只有 RF 的 z-score 数据（delta<0.01pp），linear model 恢复效果无实验支撑。需在 May 17 前跑 LR cross-strategy LOO + z-score 实验验证\n- **k-NN inference**（D002-6）完全缺失——无代码、无结果，需确认是否仍为硬约束\n- **Surprisal reference model specification**（D002-4）纯写作缺口，Phase 2 必修"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

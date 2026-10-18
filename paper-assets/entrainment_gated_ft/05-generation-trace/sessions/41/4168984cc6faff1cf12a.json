@@ -1,0 +1,1551 @@
+{
+  "schema_version": "1.0",
+  "id": "4168984cc6faff1cf12a",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "fix method tex reviewer fixes",
+  "task_key": "worker_fix_method-tex-reviewer-fixes_20260519T191659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_method-tex-reviewer-fixes_20260519T191659.log",
+    "occurrence": 1,
+    "bytes": 98520,
+    "sha256": "8adcedb9a6d1f08930a0ef79e0dc27ed8a696749c45231f9371a91da5d326893"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2b34fb45-e452-458a-af24-c62deb5dfee2",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779230400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8f80e466-61b5-429c-a691-fc4e54701ed8",
+                "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the current method.tex file first.",
+              "signature": "EukBClkIDRgCKkDd8FBPilQLVY6xR4zBU6k35frNk15HBpL2rgQE8yCMrPnbyuAuX05rSLfDSVF5CKvIBNShXyvWH+fwhPp/nEjNMg9jbGF1ZGUtb3B1cy00LTY4ABIMiIBq15ADkbkz8oKSGgxovViEcxk4p+ZnN14iML4qRyCSO94tsyc1u67l2lh4ETaRqYzhL4qucxJglvy9blazXQEZScit0humxyAuJCo+LRFf1BWNzgTtwKBQqabU4ouDyCMIvon+6ErnDXZ79Idm378xYHIliribNJvc8oj7JcrKv7Pl7GspZoLZRmEYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "9a68cad3-0a9d-40fd-ad5e-f4f8d78c5edc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J5nJqgrs2itzeX43iNp8nW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11880,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11880
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K4ND1gSnieMhjdCw1chBEm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "57a840d7-73cd-4eb9-bb15-8230b1c11d52",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J5nJqgrs2itzeX43iNp8nW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11880,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11880
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T19:17:10.673Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K4ND1gSnieMhjdCw1chBEm",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\tWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n4\t\n5\t\\subsection{Model Zoo}\\label{ssec:model_zoo}\n6\t\n7\tWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n8\t\n9\t\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n10\t\n11\tWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (decision record D003), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n12\t\n13\t\\begin{itemize}\n14\t    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n15\t    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n16\t    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n17\t    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n18\t\\end{itemize}\n19\t\n20\tAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.\n21\t\n22\t\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n23\t\n24\tWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n25\t\n26\tWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n27\t\n28\t\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n29\t\n30\tTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n31\t\n32\t\\begin{itemize}\n33\t    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n34\t    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n35\t    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n36\t\\end{itemize}\n37\t\n38\tThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n39\t\n40\tTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n41\t\n42\t\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n43\t\n44\tAll statistical tests are two-tailed unless otherwise noted.\n45\t\n46\t\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n47\t\n48\t\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n49\t\n50\t\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n51\t\n52\t\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n53\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "942eca2b-a33f-4c9f-a23f-a09bfb83b5a1",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "content": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (decision record D003), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n",
+                "numLines": 53,
+                "startLine": 1,
+                "totalLines": 53
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll apply all three modifications."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "1ccd1b99-fc30-4540-9f80-c6f966639fed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PjmNYSsjQ47mUYDiSqyyYa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1858,
+                "cache_read_input_tokens": 23721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1858
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GaCbfCxHH3yUivkdpEazR1",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "old_string": "(decision record D003)",
+                "new_string": "(pre-registered prior to analysis; see Appendix~A for pre-registration details)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "3ecabd82-6a0e-4758-b37f-55ad050d753b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PjmNYSsjQ47mUYDiSqyyYa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1858,
+                "cache_read_input_tokens": 23721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1858
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T19:17:16.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GaCbfCxHH3yUivkdpEazR1",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "ca77c7c1-44ba-4e25-a81d-ebf387051547",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "oldString": "(decision record D003)",
+              "newString": "(pre-registered prior to analysis; see Appendix~A for pre-registration details)",
+              "originalFile": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (decision record D003), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 8,
+                  "oldLines": 7,
+                  "newStart": 8,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}",
+                    " ",
+                    "-We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (decision record D003), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.",
+                    "+We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.",
+                    " ",
+                    " \\begin{itemize}",
+                    "     \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JrG1cfkxYGv5bapYMptMDb",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "old_string": "All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.",
+                "new_string": "All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "b933d4d4-2100-4fb6-bb3a-d8d878f869d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NMfktdSo5aRrBmvKah1khC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2096,
+                "cache_read_input_tokens": 23721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2096
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T19:17:24.916Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JrG1cfkxYGv5bapYMptMDb",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "542cd296-6088-4ac2-b7ec-c4586b1068e9",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "oldString": "All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.",
+              "newString": "All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.",
+              "originalFile": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 17,
+                  "oldLines": 7,
+                  "newStart": 17,
+                  "newLines": 7,
+                  "lines": [
+                    "     \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.",
+                    " \\end{itemize}",
+                    " ",
+                    "-All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts and metrics for each benchmark.",
+                    "+All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.",
+                    " ",
+                    " \\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014kRwmnoSGGJDVQ38oveKLY",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "old_string": "\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.",
+                "new_string": "\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n\n\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "9b3e9a84-4abe-44d8-b791-c4397bb6c6bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NYNpq5rBcQvV83V12Cnp8u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 279,
+                "cache_read_input_tokens": 25817,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 279
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T19:17:32.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014kRwmnoSGGJDVQ38oveKLY",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "da2a6de4-9418-4d6b-a8d3-3ac2c95b9055",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "oldString": "\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.",
+              "newString": "\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n\n\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D.",
+              "originalFile": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 50,
+                  "oldLines": 3,
+                  "newStart": 50,
+                  "newLines": 5,
+                  "lines": [
+                    " \\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.",
+                    " ",
+                    " \\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.",
+                    "+",
+                    "+\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now verifying the result."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "90496197-b0f9-42ca-a999-40139207224a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011HuwMuHoL4TXYzzzjrLx4v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 510,
+                "cache_read_input_tokens": 26096,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 510
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eab7fPUUcjnJQjiRcgDDh5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "bb6f28e3-0d51-44fe-a50b-25197e4ff874",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011HuwMuHoL4TXYzzzjrLx4v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 510,
+                "cache_read_input_tokens": 26096,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 510
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T19:17:37.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eab7fPUUcjnJQjiRcgDDh5",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\tWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n4\t\n5\t\\subsection{Model Zoo}\\label{ssec:model_zoo}\n6\t\n7\tWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n8\t\n9\t\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n10\t\n11\tWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n12\t\n13\t\\begin{itemize}\n14\t    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n15\t    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n16\t    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n17\t    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n18\t\\end{itemize}\n19\t\n20\tAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.\n21\t\n22\t\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n23\t\n24\tWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n25\t\n26\tWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n27\t\n28\t\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n29\t\n30\tTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n31\t\n32\t\\begin{itemize}\n33\t    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n34\t    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n35\t    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n36\t\\end{itemize}\n37\t\n38\tThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n39\t\n40\tTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n41\t\n42\t\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n43\t\n44\tAll statistical tests are two-tailed unless otherwise noted.\n45\t\n46\t\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n47\t\n48\t\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n49\t\n50\t\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n51\t\n52\t\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n53\t\n54\t\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D.\n55\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "481d0f15-1d6f-43aa-a89c-7c31aa57a51c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "content": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n\n\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D.\n",
+                "numLines": 55,
+                "startLine": 1,
+                "totalLines": 55
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I notice line 50 still has \"D003\" — the second occurrence in the Multiple comparisons paragraph. Let me fix that too.\n\nAlso, line 11 reads a bit redundantly now: \"This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details)\" — the \"pre-registered before any analysis\" and \"(pre-registered prior to analysis\" is redundant. But the user specified the exact replacement string, so I should follow it. Let me re-read the instruction...\n\nThe user said: find \"(decision record D003)\" and replace with \"(pre-registered prior to analysis; see Appendix~A for pre-registration details)\". \n\nThat's what I did. The surrounding text says \"This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details)\" which is indeed redundant. But the user asked for exactly this replacement. I should flag the redundancy but also note the remaining D003 on line 50. I need to remove that second occurrence as well since the task requires all instances of \"D003\" to be replaced.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "178c5be0-c912-40f3-920f-2daa2f3b1546",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuUmopmZECgjz72oPkYi9h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 26606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1969
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 50 still contains \"D003\". Fixing it now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "a23faa61-0e85-4abd-9099-76856f804afb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuUmopmZECgjz72oPkYi9h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 26606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1969
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B6tYL2WXQvazkv4DLhDqDD",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "old_string": "We apply Bonferroni correction across six pre-registered benchmarks (D003).",
+                "new_string": "We apply Bonferroni correction across six pre-registered benchmarks (Appendix~A)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "66012b77-459a-4cab-929a-8b366fe55169",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuUmopmZECgjz72oPkYi9h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1969,
+                "cache_read_input_tokens": 26606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1969
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T19:17:49.554Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B6tYL2WXQvazkv4DLhDqDD",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "1d6e2e6b-966d-4100-8347-37fe8340a610",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "oldString": "We apply Bonferroni correction across six pre-registered benchmarks (D003).",
+              "newString": "We apply Bonferroni correction across six pre-registered benchmarks (Appendix~A).",
+              "originalFile": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n\n\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 47,
+                  "oldLines": 7,
+                  "newStart": 47,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.",
+                    " ",
+                    "-\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (D003). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.",
+                    "+\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (Appendix~A). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.",
+                    " ",
+                    " \\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now running all verification checks."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "30740c58-7942-4c44-b972-0dccfa55a2dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CU2fw8UEVgn6dbw5MEMrpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 533,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 533
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U5pYHbyjNxsF3LXViz77Ny",
+              "name": "Grep",
+              "input": {
+                "pattern": "D003",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "594cc436-705e-45f3-b1bb-2b5199f25339",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CU2fw8UEVgn6dbw5MEMrpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 533,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 533
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T19:17:54.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U5pYHbyjNxsF3LXViz77Ny",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "2ab881d2-3fe5-4718-a872-2d5ff2423013",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F74XkqBm1mMCVbszFZoM4y",
+              "name": "Grep",
+              "input": {
+                "pattern": "—",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "e387f365-993b-4f42-96b5-4125a8cc1de8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CU2fw8UEVgn6dbw5MEMrpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 533,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 533
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T19:17:55.256Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F74XkqBm1mMCVbszFZoM4y",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "d1e853d4-be01-419f-aad0-274cfd19539f",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LCzAjrPDRLoS1AztB4eQi1",
+              "name": "Grep",
+              "input": {
+                "pattern": "paradox|co-evolution",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "-i": true,
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "869dd2fa-16c2-452e-9006-0aadd044226a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CU2fw8UEVgn6dbw5MEMrpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 533,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 533
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T19:17:56.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LCzAjrPDRLoS1AztB4eQi1",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "32a4b31d-645d-42bc-88ab-a40908f9b1d1",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HVme8RBmEUiK52paTuNTCR",
+              "name": "Grep",
+              "input": {
+                "pattern": "= 0\\.\\d|= \\.0",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "289db35f-9e3c-4186-866c-e1d2172b9be6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CU2fw8UEVgn6dbw5MEMrpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 533,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 533
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T19:17:57.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HVme8RBmEUiK52paTuNTCR",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "c06539c7-d1cf-4deb-a360-4bb18bbb9bca",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. One note on line 11: the replacement produces slightly redundant phrasing — \"This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details)\". I'll tighten that."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "10b7d253-aaf3-45d5-838f-f8b72b1ac5cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KUgQD63gNwPcVM5fkWRHQa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 29108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 722
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TmG9Ex69bixNRLpaGq6NXR",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+                "old_string": "This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results.",
+                "new_string": "This taxonomy was pre-registered prior to analysis (see Appendix~A for pre-registration details), not derived post hoc from observed results."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "504ca18e-22b7-42ad-bedc-321828a94453",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KUgQD63gNwPcVM5fkWRHQa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 29108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 722
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T19:18:04.254Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TmG9Ex69bixNRLpaGq6NXR",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "3c6126ce-6bb9-4a9c-abb1-7319a7a60458",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "oldString": "This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results.",
+              "newString": "This taxonomy was pre-registered prior to analysis (see Appendix~A for pre-registration details), not derived post hoc from observed results.",
+              "originalFile": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark.\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nAll evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that attention reduces cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on LAMBADA (5{,}153 examples). For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means attention produces more correct predictions than it removes; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed unless otherwise noted.\n\n\\paragraph{Permutation test.} With only $n = 5$ attention ratios, we use an exact permutation test for $\\rho$. All $5! = 120$ permutations of the attention ratio ranks are enumerated, and the two-tailed $p$-value is the fraction of permutations yielding $|\\rho| \\geq |\\rho_{\\text{obs}}|$.\n\n\\paragraph{Bootstrap confidence intervals.} We construct 95\\% BCa (bias-corrected and accelerated) bootstrap confidence intervals for $\\rho$ using 10{,}000 resamples at the architecture level. When the BCa correction degenerates at a boundary value, we report percentile confidence intervals instead.\n\n\\paragraph{Multiple comparisons.} We apply Bonferroni correction across six pre-registered benchmarks (Appendix~A). The four remaining benchmarks are corrected separately across all 10 benchmarks and reported as exploratory.\n\n\\paragraph{Within- and cross-architecture tests.} For within-architecture comparisons of per-example properties (e.g., token count of helped vs.\\ hurt examples), we use the Mann-Whitney U test. For cross-architecture comparisons of per-example effect distributions, we use the Kruskal-Wallis test. Both are rank-based nonparametric tests, chosen because the per-example effect distributions are non-normal and contain ties.\n\n\\paragraph{Attention weight analysis.} To probe whether attention mechanisms differ between helped and hurt examples, we extract attention weight matrices from each attention layer via forward hooks and compute two quantities: (1) cosine similarity between the mean attention distributions of two architectures at each layer, which measures cross-architecture agreement in attention allocation; and (2) Shannon entropy of the attention distribution for each example, which measures how concentrated or diffuse the attention pattern is. Details of the extraction procedure appear in Appendix~D.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 8,
+                  "oldLines": 7,
+                  "newStart": 8,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}",
+                    " ",
+                    "-We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered before any analysis (pre-registered prior to analysis; see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.",
+                    "+We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was pre-registered prior to analysis (see Appendix~A for pre-registration details), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.",
+                    " ",
+                    " \\begin{itemize}",
+                    "     \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成，验证通过。\n\n**修改行号清单：**\n\n| 修改 | 行号 | 内容 |\n|------|------|------|\n| b | 11 | `(decision record D003)` → `(see Appendix~A for pre-registration details)` |\n| c | 20 | `with default prompts and metrics for each benchmark.` → `with default prompts; accuracy serves as the primary metric for all benchmarks.` |\n| — | 50 | 额外清理：`(D003)` → `(Appendix~A)` |\n| a | 54 | 新增 `\\paragraph{Attention weight analysis.}` 段落 |\n\n**验证结果：**\n- D003：无残留\n- em-dash (—)：无\n- forbidden terms (paradox, co-evolution)：无\n- 前导零 p-value：无"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "uuid": "0f179228-c078-48e6-82c6-a7821aed716d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014XThFYCvhohBHiLTHXd8Ku",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 332,
+                "cache_read_input_tokens": 29830,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 332
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成，验证通过。\n\n**修改行号清单：**\n\n| 修改 | 行号 | 内容 |\n|------|------|------|\n| b | 11 | `(decision record D003)` → `(see Appendix~A for pre-registration details)` |\n| c | 20 | `with default prompts and metrics for each benchmark.` → `with default prompts; accuracy serves as the primary metric for all benchmarks.` |\n| — | 50 | 额外清理：`(D003)` → `(Appendix~A)` |\n| a | 54 | 新增 `\\paragraph{Attention weight analysis.}` 段落 |\n\n**验证结果：**\n- D003：无残留\n- em-dash (—)：无\n- forbidden terms (paradox, co-evolution)：无\n- 前导零 p-value：无"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 67282,
+            "duration_api_ms": 68769,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "c493c5bc-b9b9-4e54-9b92-cba722aabfdd",
+            "total_cost_usd": 0.30303224999999995,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 20179,
+              "cache_read_input_tokens": 225315,
+              "output_tokens": 2514,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20179,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 234,
+                  "cache_read_input_tokens": 29830,
+                  "cache_creation_input_tokens": 332,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 332
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1271,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001351,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 2514,
+                "cacheReadInputTokens": 225315,
+                "cacheCreationInputTokens": 20179,
+                "webSearchRequests": 0,
+                "costUSD": 0.30168124999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9609651d-c0c2-483f-a85e-73bb71677bc8"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ]
+}

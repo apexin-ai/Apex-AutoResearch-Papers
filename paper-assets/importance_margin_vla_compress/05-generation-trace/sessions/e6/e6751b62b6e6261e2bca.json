@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e6751b62b6e6261e2bca",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis v8 step2k diagnostics",
+  "task_key": "worker_analysis_v8-step2k-diagnostics_20260516T010922",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_v8-step2k-diagnostics_20260516T010922_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "d722ea4f2b2d14e4ca09601c1495f40dfd8d5c4b25d2227c4541a542a4649edf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(all background timers completed — analyses and report were already delivered above)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "df9c1ea39558929d8b78",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "infra env setup v2",
+  "task_key": "worker_infra_env_setup_v2_20260520T084411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env_setup_v2_20260520T084411.log",
+    "occurrence": 1,
+    "bytes": 1137952,
+    "sha256": "39648dfcee8d529bcd857b4c04ddb99d5357dfac942340ba61036712c391ee5a"
+  },
+  "statistics": {
+    "messages": 883,
+    "user_turns": 1,
+    "tool_calls": 406,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 406,
+      "tool_result": 406,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 827,
+      "chunks": [
+        {
+          "path": "df9c1ea39558929d8b78-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "df9c1ea39558929d8b78-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "df9c1ea39558929d8b78-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "df9c1ea39558929d8b78-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "df9c1ea39558929d8b78-part-0005.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "df9c1ea39558929d8b78-part-0005.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ]
+}

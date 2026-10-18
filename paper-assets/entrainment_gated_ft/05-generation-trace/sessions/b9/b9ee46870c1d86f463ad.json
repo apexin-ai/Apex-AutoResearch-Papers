@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b9ee46870c1d86f463ad",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code fix report pvalues v2",
+  "task_key": "worker_code_fix_report_pvalues_v2_20260519T055605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_report_pvalues_v2_20260519T055605_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "1d6ac64662032755d020df6b26563b9cf9e349aacafd84deb11b068cb7515e79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证结果：\n\n- **行 74**：首次出现 `one-tailed p < 0.01`，注释已添加 ✓\n- **行 95**：`one-tailed p < 0.01`，无重复注释 ✓\n- **行 172**：`one-tailed p < 0.01`，无重复注释 ✓\n- **行 110**：`p < 0.05` 未被修改 ✓\n- 无残留的裸 `p < 0.01` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

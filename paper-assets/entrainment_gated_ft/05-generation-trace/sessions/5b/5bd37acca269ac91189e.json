@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5bd37acca269ac91189e",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "check 340m eval urgent",
+  "task_key": "worker_check_340m-eval-urgent_20260522T002003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_340m-eval-urgent_20260522T002003_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "89195f4a05f4eb0a203321cae69cfa52cda346a966b9f37d15d8983157af9caf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## PID 状态\n**已死亡** — PID 777365 不存在（ps 返回空）\n\n## GPU 状态\n- RTX PRO 6000 (96GB)：0% 利用率，0MiB 显存占用，无运行进程\n- GPU 完全空闲\n\n## 完成进度\n**全部 15 个模型已完成**，每个模型均有 3 个 jsonl 文件（hellaswag / piqa / arc_easy）：\n\n| 模型系列 | 变体 | jsonl 数 |\n|---------|------|---------|\n| GDN | pure, h3-1, h6-1, h12-1, h24-1 | 各 3 ✓ |\n| RetNet | pure, h3-1, h6-1, h12-1, h24-1 | 各 3 ✓ |\n| HGRN2 | pure, h3-1, h6-1, h12-1, h24-1 | 各 3 ✓ |\n\n## 日志最后输出\n```\nHGRN2-h3-1 DONE\n\n========================================\nAll complete. Evaluated: 15, Skipped: 0\nFinish time: 2026-05-22 07:43:55\n========================================\nEXIT_CODE=0\n```\n\n## 判断\n**全部完成，正常退出。** 15 个模型的 3 个 benchmark（hellaswag, piqa, arc_easy）均已评估完毕，进程以 exit code 0 正常结束于 07:43:55。GPU 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "587e9800f6f1b8a5e754",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 cuda0 xvla spatial random",
+  "task_key": "worker_ops_cqa1-cuda0-xvla-spatial-random_20260521T032724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-cuda0-xvla-spatial-random_20260521T032724_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "189de1c4452845a07e43b90e0ae717be9d3843c0c793ba18e701040993388a21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，运行正常。\n\n**结果汇总：**\n- **PID**: 798928 (子进程 798933 占用 GPU)\n- **GPU**: cuda:0, 4046 MiB 已占用\n- **配置确认**: suite=libero_spatial, keep_ratio=0.85, mode=random, 50 tokens 保留 42 (85%)\n- **进度**: Task 0 已开始，Ep 1 SUCCESS (76 steps), Ep 2 SUCCESS (79 steps)\n- **日志**: `~/runs/importance_margin_vla_compress/eval_xvla_random_k085_spatial_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

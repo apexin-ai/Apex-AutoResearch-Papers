@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed5112d2e1acc3f86d62",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analyze cross model gpt2xl 001",
+  "task_key": "worker_analyze_cross_model_gpt2xl_001_20260514T182129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cross_model_gpt2xl_001_20260514T182129_result.json",
+    "occurrence": 1,
+    "bytes": 2820,
+    "sha256": "d78b42bd39b7bab88153d3de80b92dc3f182988bcf785514450dea78dd3df419"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分类完成，结果非常强。现在输出完整报告。\n\n## GPT-2 XL 跨模型泛化实验结果\n\n### Pipeline 状态\n- 完成状态: **success**\n- 数据生成: 4 个 depth 各 5000 samples，共 20000 samples\n- 特征提取 + 分类: 手动补跑完成（pipeline 脚本未包含此步骤）\n\n### 分类指标\n- **4-class RF accuracy: 83.3% [82.3, 84.5]**\n- 4-class LR accuracy: 81.3% [80.1, 82.6]\n- RF pairwise AUC:\n  - 0v1: **0.9941**, 1v2: **0.9131**, 2v3: **0.8829**\n  - 0v2: 0.9965, 0v3: 0.9988, 1v3: 0.9857\n- LR pairwise AUC:\n  - 0v1: 0.9808, 1v2: 0.8469, 2v3: 0.8651\n\n### 与 Baseline (Pythia-1.4B nucleus) 对比\n\n| Metric | Pythia-1.4B | GPT-2 XL | Δ |\n|--------|-------------|----------|---|\n| 4-class RF acc | 78.2% [76.9, 79.4] | **83.3%** [82.3, 84.5] | **+5.1pp** |\n| 4-class LR acc | 74.9% | **81.3%** | **+6.4pp** |\n| AUC 0v1 | 0.9975 | 0.9941 | -0.003 |\n| AUC 1v2 | 0.8607 | **0.9131** | **+0.052** |\n| AUC 2v3 | 0.8005 | **0.8829** | **+0.082** |\n\n### Feature Importance (RF Top-5)\n| Feature | Weight |\n|---------|--------|\n| p90_ppl | 0.2082 |\n| var_surprisal | 0.2079 |\n| p75_ppl | 0.1034 |\n| mean_surprisal | 0.0821 |\n| mean_ppl | 0.0645 |\n\nTop features 与 Pythia baseline 高度一致（var_surprisal, p90_ppl, mean_ppl 都在前列），验证了特征的跨模型稳定性。\n\n### 代码污染（Broad filter）\n| Depth | GPT-2 XL | Pythia baseline |\n|-------|----------|-----------------|\n| d1 | **0.5%** | 5% |\n| d2 | **1.3%** | 9% |\n| d3 | **0.7%** | 12% |\n\nGPT-2 XL 的代码污染远低于 Pythia，说明分类信号更纯净。\n\n### Finetune Loss\n| Depth | GPT-2 XL | Pythia baseline |\n|-------|----------|-----------------|\n| d0 | 2.550 | 2.241 |\n| d1 | 1.715 | 1.389 |\n| d2 | 1.342 | 1.025 |\n\nGPT-2 XL 各 depth loss 略高于 Pythia（模型更大，可能收敛需要更多 epoch 或更大 lr），但递减趋势一致。\n\n### 分析与结论\n\n1. **跨模型泛化假设验证通过**：GPT-2 XL (1.5B) 产生的递归生成深度信号不仅存在，而且**比 Pythia-1.4B 更强** — 4-class accuracy 提升 5.1pp，关键的 deep-depth AUC (1v2, 2v3) 均显著提升。\n\n2. **递归退化是通用现象**：不同架构/训练数据的模型（GPT-2 XL vs Pythia）表现出相同的深度可分性模式，使用 Pythia 作为 frozen judge 评估 GPT-2 XL 生成的文本同样有效。这说明递归生成退化信号是模型无关的。\n\n3. **代码污染极低**：GPT-2 XL 的代码混入率 <1.5%，远低于 Pythia，排除了 domain confusion 混淆因素。\n\n4. **深层 depth 区分能力更强**：2v3 AUC 从 0.80 升至 0.88，说明 GPT-2 XL 在深层递归中产生更显著的退化特征，可能因为 GPT-2 XL 本身生成质量更高，递归退化对比更鲜明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "accfcb3d5973032faff1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp fewrel contamination check",
+  "task_key": "worker_exp_fewrel_contamination_check_20260516T120932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_fewrel_contamination_check_20260516T120932_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "b2a2c7c8fce1707211d182ae754c5fe16fd86ea29e656807d35dec8b2879c491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存至服务器和 artifact registry。\n\n## 结果\n\n| 指标 | Train-origin (64 rels) | Val-origin (16 rels) |\n|------|----------------------|---------------------|\n| Mean accuracy | 0.4831 | 0.5885 |\n| Std | 0.2940 | 0.2879 |\n| Median | 0.4167 | 0.6250 |\n\n**统计检验：**\n- Delta = **-0.1055 pp**（val 更高，方向与 contamination 假设相反）\n- Mann-Whitney U = 416.0, **p = 0.2485**\n- Welch t-test **p = 0.2168**\n- Cohen's d = **-0.3602**（small-medium effect，方向仍是 val 更高）\n\n**结论：** 无显著 contamination 证据。如果模型从 FewRel 训练集中\"记住\"了 train-origin relations，那么 train-origin 应该有更高的 accuracy。但实际结果相反——val-origin relations 的 accuracy 反而略高，且差异不显著（p > 0.2）。可直接用于 Reviewer W-W5 Q3 的 defense。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

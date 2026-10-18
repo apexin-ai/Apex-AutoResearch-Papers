@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "debd422095b2842123f0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla random k09 long seed42 v3",
+  "task_key": "worker_diagnose_eval_openvla_random_k09_long_seed42_v3_20260525T134439",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_random_k09_long_seed42_v3_20260525T134439_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "abf3661efad1ad37434e7a029e67b491e81a300efcfbaa8051e369c8a7b15537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**CRON 误报，实验已正常完成。**\n\n`eval_openvla_random_k09_long_seed42_v3` 跑完了全部 500 episodes，**Overall SR = 46.80%**，结果已保存到 JSON 文件。CRON 报错是因为 eval 脚本不写 W&B metrics，监控找不到 W&B 数据就误判为失败。\n\n其他 3 个实验状态：\n| 实验 | 状态 | SR |\n|------|------|-----|\n| attn_k09_long_v3 (GPU 0) | **运行中** — Task 10/10, Ep ~40/50 | 即将完成 |\n| attn_k085_long_v3 (GPU 1) | **已完成** | 45.80% |\n| l2norm_k09_long_v3 (GPU 3) | **运行中** — Task 10/10, Ep ~30/50 | 即将完成 |\n\n两个需要注意的问题：\n1. CRON 监控应对 eval 任务改为检查 JSON 结果文件，而非 W&B metrics\n2. `attn_k085` 实验的结果文件被命名为 `openvla_l2norm_prune_k085_10.json`（mode 标签错误），可能是脚本中结果文件命名 bug\n\n报告已保存到 `artifacts/diagnose_random_k09_long_v3.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

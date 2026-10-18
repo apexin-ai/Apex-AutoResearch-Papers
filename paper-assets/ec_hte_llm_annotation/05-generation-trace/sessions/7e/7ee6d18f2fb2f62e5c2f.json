@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "7ee6d18f2fb2f62e5c2f",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research ref audit worker C",
+  "task_key": "worker_research_ref-audit-worker-C_20260526T104757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-C_20260526T104757.log",
+    "occurrence": 1,
+    "bytes": 868589,
+    "sha256": "fe147a00d15fabb50b4d18bae3d4fc8b1d0d8c184721304439f66b950a81fb58"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 1,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 97,
+      "tool_result": 97,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "7ee6d18f2fb2f62e5c2f-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "7ee6d18f2fb2f62e5c2f-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "7ee6d18f2fb2f62e5c2f-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ]
+}

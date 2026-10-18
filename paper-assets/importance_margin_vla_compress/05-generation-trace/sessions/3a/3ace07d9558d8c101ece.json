@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3ace07d9558d8c101ece",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval openvla attn k05 long seed42",
+  "task_key": "worker_deploy_eval_openvla_attn_k05_long_seed42_20260526T154428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_openvla_attn_k05_long_seed42_20260526T154428_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "c8b91a49101baee2ed6ff2060d3c3755393a58fe68120a8a1e7342c8f8af25d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 正在运行活跃实验，Task 3/10 Ep 20/50，预计还需 ~3 小时完成。\n\n**状态汇报：**\n\n```\nDEPLOYED: no\nMODEL_MISSING: false\nMODEL_PATH: /root/autodl-tmp/openvla-7b-finetuned-libero-10\n```\n\n**阻塞原因：** cuda:1 被 `eval_openvla_random_k05_goal_seed42` 占用（PID 357375, 15946 MiB），当前进度 Task 3/10，~2 eps/min，预计还需约 3 小时。\n\ncuda:0 同样被占用（PID 307307, 15946 MiB）。\n\n**选项：**\n1. Kill PID 357375 释放 cuda:1 立即部署（goal random k=0.5 数据会丢失）\n2. 等 goal 实验跑完后再部署\n3. 换其他服务器\n\n需要你决定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

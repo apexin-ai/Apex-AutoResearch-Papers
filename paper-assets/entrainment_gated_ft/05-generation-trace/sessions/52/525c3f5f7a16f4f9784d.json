@@ -1,0 +1,822 @@
+{
+  "schema_version": "1.0",
+  "id": "525c3f5f7a16f4f9784d",
+  "project": "entrainment_gated_ft",
+  "kind": "conversation",
+  "title": "paper research lit cluster 1 hybrid",
+  "task_key": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_lit_cluster_1_hybrid_20260519T182256.jsonl",
+    "occurrence": 1,
+    "bytes": 44386,
+    "sha256": "08e6cc3b5b0bdee877812bc4ee12c6e942ee0e32e26159d4c98fe3a5f949ed86"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T18:25:18.903702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T18:25:18.904113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T18:25:18.904349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T18:25:18.904600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map for entrainment_gated_ft\n2\t# Auto-generated skeleton; Workers will populate per cluster\n3\t\n4\tclusters:\n5\t  - cluster_name: \"Hybrid Architectures\"\n6\t    target_count: 7\n7\t    papers:\n8\t      - bibtex_key: wang2025hybrid\n9\t        title: \"Scaling Laws for Hybrid Language Models\"\n10\t        authors: \"Wang, Junxiong and others\"\n11\t        year: 2025\n12\t        venue: \"arXiv:2507.06457\"\n13\t        category: \"Hybrid Architectures\"\n14\t        verified: true\n15\t        doi: \"\"\n16\t        url: \"https://arxiv.org/abs/2507.06457\"\n17\t        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n18\t\n19\t  - cluster_name: \"Linear Recurrent Models\"\n20\t    target_count: 6\n21\t    papers: []\n22\t\n23\t  - cluster_name: \"Underspecification and Model Agreement\"\n24\t    target_count: 5\n25\t    papers:\n26\t      - bibtex_key: damour2022underspecification\n27\t        title: \"Underspecification Presents Challenges for Credibility in Modern Machine Learning\"\n28\t        authors: \"D'Amour, Alexander and Heller, Katherine and Moldovan, Dan and others\"\n29\t        year: 2022\n30\t        venue: \"JMLR\"\n31\t        category: \"Underspecification and Model Agreement\"\n32\t        verified: true\n33\t        doi: \"\"\n34\t        url: \"\"\n35\t        relevance: \"Framing anchor — defines underspecification; our finding is a specific instance\"\n36\t\n37\t  - cluster_name: \"Ensemble Diversity\"\n38\t    target_count: 3\n39\t    papers: []\n40\t\n41\t  - cluster_name: \"Dataset Cartography and Per-Example Analysis\"\n42\t    target_count: 4\n43\t    papers: []\n44\t\n45\t  - cluster_name: \"Attention Interpretability\"\n46\t    target_count: 4\n47\t    papers: []\n48\t\n49\t  - cluster_name: \"Benchmarks and Evaluation\"\n50\t    target_count: 3\n51\t    papers:\n52\t      - bibtex_key: paperno2016lambada\n53\t        title: \"The LAMBADA Dataset: Word Prediction Requiring a Broad Discourse Context\"\n54\t        authors: \"Paperno, Denis and Kruszewski, Germán and Lazaridou, Angeliki and others\"\n55\t        year: 2\n…[truncated 230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T18:25:18.904894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Lieber et al 2024 \"Jamba: A Hybrid Transformer-Mamba Language Model\" arxiv"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T18:25:18.905075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Peng et al 2024 \"Eagle and Finch\" RWKV-6 arxiv paper"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T18:25:18.905244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "De et al 2024 \"Griffin: Mixing Gated Linear Recurrences with Local Attention\" arxiv"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T18:25:18.905409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Dao Gu 2024 \"Transformers are SSMs\" Mamba-2 arxiv"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T18:25:18.905584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "hybrid recurrent attention architecture language model 2024 2025 arxiv"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T18:25:18.905780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Jamba Mamba-2 RWKV-6 RecurrentGemma Griffin linear attention hybrid 2024 2025"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T18:25:18.906010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Peng et al 2024 \"Eagle and Finch\" RWKV-6 arxiv paper\"\n\nLinks: [{\"title\":\"[PDF] Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/157ed5647da39a7f5d33a84a90414b2a9e97e301\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://openreview.net/pdf/7503464277054ff67a466511be7bc9d259f12885.pdf\"},{\"title\":\"[2404.05892] Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://arxiv.org/abs/2404.05892\"},{\"title\":\"Paper page - Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://huggingface.co/papers/2404.05892\"},{\"title\":\"(PDF) Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://www.academia.edu/126419179/Eagle_and_Finch_RWKV_with_Matrix_Valued_States_and_Dynamic_Recurrence\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://arxiv.org/pdf/2404.05892\"},{\"title\":\"🦅 Eagle & 🐦 Finch - architecture paper is here\",\"url\":\"https://blog.rwkv.com/p/eagle-and-finch-architecture-paper\"}]\n\nI found the paper you're looking for! Here's what I can tell you about it:\n\nThe paper \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\" by Peng et al. was submitted on April 8, 2024, with the latest version (v4) on September 26, 2024.\n\n**Key Details:**\n\n- The paper presents Eagle (RWKV-5) and Finch (RWKV-6), sequence models improving upon the RWKV (RWKV-4) architecture.\n\n- Their architectural design advancements include multi-headed matrix-valued states and a dynamic recurrence mechanism that improve expressivity while maintaining the inference efficiency characteristics of RNNs.\n\n- They introduced a new multilingual corpus with 1.12 trillion tokens and trained four Eagle models ranging from 0.46 to 7.5 billion parameters, and two Finch models with 1.6 and 3.1 billion parameters\n…[truncated 184 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T18:25:18.906274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"De et al 2024 \"Griffin: Mixing Gated Linear Recurrences with Local Attention\" arxiv\"\n\nLinks: [{\"title\":\"Paper page - Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://huggingface.co/papers/2402.19427\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local ...\",\"url\":\"https://www.summarizepaper.com/en/arxiv-id/2402.19427v1/\"},{\"title\":\"[2402.19427v1] Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://arxiv.org/abs/2402.19427v1\"},{\"title\":\"[2402.19427] Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://arxiv.org/abs/2402.19427\"},{\"title\":\"Explaining Modern Gated-Linear RNNs via A Unified Implicit Attention Formulation\",\"url\":\"https://arxiv.org/html/2405.16504v2\"},{\"title\":\"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\",\"url\":\"https://arxiv.org/html/2404.07839v1\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://gonzoml.substack.com/p/griffin-mixing-gated-linear-recurrences\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://arxiv.org/html/2402.19427v1\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local ...\",\"url\":\"https://arxiv.org/pdf/2402.19427\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Paper:** Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models proposes Hawk, an RNN with gated linear recurrences, and Griffin, a hybrid model that mixes gated linear recurrences with local attention.\n\n**Authors:** Soham De, Samuel L. Smith, Anushan Fernando, Aleksandar Botev, George Cristian-Muraru, Albert Gu, Ruba Haroun, Leonard Berrada, Yutian Chen, Srivatsan Srinivasan, Guillaume Desjardins, Arnaud Doucet, David Budden, Yee Whye T\n…[truncated 494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T18:25:18.906546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Dao Gu 2024 \"Transformers are SSMs\" Mamba-2 arxiv\"\n\nLinks: [{\"title\":\"[PDF] Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Transformers-are-SSMs:-Generalized-Models-and-State-Dao-Gu/ca9f5b3bf0f54ad97513e6175b30497873670fed\"},{\"title\":\"Mamba-2 is here! - by Grigory Sapunov - Gonzo ML\",\"url\":\"https://gonzoml.substack.com/p/mamba-2-is-here\"},{\"title\":\"[2405.21060] Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\",\"url\":\"https://arxiv.org/abs/2405.21060\"},{\"title\":\"[2405.21060v1] Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\",\"url\":\"https://arxiv.org/abs/2405.21060v1\"},{\"title\":\"Paper page - Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\",\"url\":\"https://huggingface.co/papers/2405.21060\"},{\"title\":\"Transformers are SSMs: Generalized Models and Efficient Algorithms\",\"url\":\"https://arxiv.org/pdf/2405.21060\"},{\"title\":\"Understanding and Enhancing Mamba-Transformer Hybrids for Memory Recall and Language Modeling\",\"url\":\"https://arxiv.org/html/2510.26912v1\"},{\"title\":\"GitHub - state-spaces/mamba: Mamba SSM architecture · GitHub\",\"url\":\"https://github.com/state-spaces/mamba\"},{\"title\":\"Transformers are SSMs: Generalized Models and Efficient Algorithms Through\",\"url\":\"https://openreview.net/pdf/54bf495d93336f1f195f264c1b6c2805169b3492.pdf\"},{\"title\":\"Transformers to SSMs: Distilling Quadratic Knowledge to Subquadratic   Models\",\"url\":\"https://arxiv.org/pdf/2408.10189\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**Paper Details:**\n- **Title:** Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\n- **Authors:** Tri Dao and Albert Gu\n- **Publication:** ArXiv, 2024, volume abs/2\n…[truncated 740 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T18:25:18.906845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"hybrid recurrent attention architecture language model 2024 2025 arxiv\"\n\nLinks: [{\"title\":\"Hybrid Architectures for Language Models: Systematic Analysis and Design Insights\",\"url\":\"https://arxiv.org/html/2510.04800v1\"},{\"title\":\"Liger: Linearizing Large Language Models to Gated Recurrent Structures\",\"url\":\"https://arxiv.org/pdf/2503.01496\"},{\"title\":\"Hybrid Architectures for Language Models:\",\"url\":\"https://arxiv.org/pdf/2510.04800v1\"},{\"title\":\"Native Hybrid Attention for Efficient Sequence Modeling\",\"url\":\"https://arxiv.org/html/2510.07019v1\"},{\"title\":\"Hybrid Linear Attention Done Right: Efficient Distillation and Effective Architectures for Extremely Long Contexts\",\"url\":\"https://arxiv.org/html/2601.22156v1\"},{\"title\":\"A Systematic Analysis of Hybrid Linear Attention\",\"url\":\"https://arxiv.org/pdf/2507.06457\"},{\"title\":\"WuNeng: Hybrid State with Attention\",\"url\":\"https://arxiv.org/pdf/2504.19191\"}]\n\nBased on the search results, here are the key findings about hybrid recurrent attention architecture language models from 2024-2025 arxiv papers:\n\n## Key Hybrid Architectures\n\nNotable examples include Zamba, Jamba, Samba, Hunyuan-TurboS, Nemotron nano 2, and IBM Granite 4.0, which leverage Mamba's efficiency with global or local attention, scaling to over 1M context length.\n\nOther hybrids—RecurrentGemma, Griffin, Titans, RWKV-X, MiniMax-01, and Qwen3-Next—combine diverse self-attention variants with different linear modules.\n\n## Hybrid Design Approaches\n\nInter-layer hybrid architectures mix different layer types within the same model depth, with examples including Zamba, Jamba, Samba, and Minimax-01, which insert Transformer layers at fixed ratios among linear or recurrent layers.\n\nIn the head-wise splitting approach (e.g., Hymba, WuNeng), attention heads are divided into groups with each group assigned to a distinct module, while works like Liger process each token through all modules in parallel and fuse the outputs.\n\n## Post-Training \n…[truncated 363 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T18:25:18.907135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Jamba Mamba-2 RWKV-6 RecurrentGemma Griffin linear attention hybrid 2024 2025\"\n\nLinks: [{\"title\":\"RecurrentGemma: Moving Past Transformers for Efficient Open Language   Models\",\"url\":\"https://arxiv.org/pdf/2404.07839\"},{\"title\":\"RWKV-X: A Linear Complexity Hybrid Language Model\",\"url\":\"https://arxiv.org/html/2504.21463\"},{\"title\":\"Jamba: A Hybrid Transformer-Mamba Language Model with Mixture-of-Experts | by Sulbha Jain | Nov, 2025 | Medium\",\"url\":\"https://medium.com/@sulbha.jindal/jamba-a-hybrid-transformer-mamba-language-model-with-mixture-of-experts-506281f2398e\"},{\"title\":\"Transformers vs Mamba vs Linear Attention: Who Wins Long Context? | by Devansh | Medium\",\"url\":\"https://machine-learning-made-simple.medium.com/transformers-vs-mamba-vs-linear-attention-who-wins-long-context-f1dc8ceb5ede\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local Attention for   Efficient Language Models\",\"url\":\"https://arxiv.org/pdf/2402.19427\"},{\"title\":\"GitHub - radarFudan/Awesome-state-space-models: Collection of papers on state-space models · GitHub\",\"url\":\"https://github.com/radarFudan/Awesome-state-space-models\"},{\"title\":\"The Hidden Attention of Mamba Models\",\"url\":\"https://aclanthology.org/2025.acl-long.76.pdf\"},{\"title\":\"2Mamba2Furious: Linear in Complexity, Competitive in Accuracy\",\"url\":\"https://arxiv.org/pdf/2602.17363\"}]\n\nBased on the search results, here's what I found about these hybrid language models and linear attention architectures:\n\n## Jamba\nJamba is a hybrid transformer-mamba language model. Jamba matches or outperforms Mixtral and Llama-2 70B in reasoning, comprehension, and long-context benchmarks, despite a much smaller active parameter and memory footprint. Hybridizing attention and Mamba layers yields better loss curves and overall accuracy than pure attention or pure Mamba alone.\n\n## RWKV-6\nRWKV-6 improved training stability, facilitating greater scalability, with RWKV being a Linear RNN architecture.\n\n## Recurrent\n…[truncated 739 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T18:25:18.907431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Lieber et al 2024 \"Jamba: A Hybrid Transformer-Mamba Language Model\" arxiv\"\n\nLinks: [{\"title\":\"[PDF] Jamba: A Hybrid Transformer-Mamba Language Model | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Jamba:-A-Hybrid-Transformer-Mamba-Language-Model-Lieber-Lenz/cbaf689fd9ea9bc939510019d90535d6249b3367\"},{\"title\":\"Paper page - Jamba: A Hybrid Transformer-Mamba Language Model\",\"url\":\"https://huggingface.co/papers/2403.19887\"},{\"title\":\"Musing 37: Jamba: A Hybrid Transformer-Mamba Language Model\",\"url\":\"https://aiscientist.substack.com/p/musing-37-jamba-a-hybrid-transformer\"},{\"title\":\"Jamba: A Hybrid Transformer-Mamba Language Model | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/jamba-hybrid-transformer-mamba-language-model\"},{\"title\":\"[2403.19887] Jamba: A Hybrid Transformer-Mamba Language Model\",\"url\":\"https://arxiv.org/abs/2403.19887\"},{\"title\":\"Jamba-1.5: Hybrid Transformer-Mamba Models at Scale\",\"url\":\"https://arxiv.org/html/2408.12570v1\"},{\"title\":\"Understanding and Enhancing Mamba-Transformer Hybrids for Memory Recall and Language Modeling\",\"url\":\"https://arxiv.org/html/2510.26912v1\"},{\"title\":\"Jamba: A Hybrid Transformer-Mamba Language Model\",\"url\":\"https://arxiv.org/html/2403.19887v1\"},{\"title\":\"JambaTalk: Speech-driven 3D Talking Head Generation based on a Hybrid Transformer-Mamba Model\",\"url\":\"https://arxiv.org/html/2408.01627v2\"},{\"title\":\"Jamba: A Hybrid Transformer-Mamba Language Model Opher Lieber∗ Barak Lenz∗\",\"url\":\"https://arxiv.org/pdf/2403.19887\"}]\n\nBased on the search results, I found detailed information about the Lieber et al. 2024 paper on Jamba.\n\n## Summary\n\nThe paper presents Jamba, a new base large language model based on a novel hybrid Transformer-Mamba mixture-of-experts (MoE) architecture. Jamba interleaves blocks of Transformer and Mamba layers, enjoying the benefits of both model families, with MoE added in some of these layers to increase model capacity while keepi\n…[truncated 1030 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T18:25:18.907740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "RecurrentGemma \"Moving Past Transformers\" Botev 2024 arxiv authors"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T18:25:18.907944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Hymba hybrid Mamba attention language model 2024 arxiv"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T18:25:18.908174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"RecurrentGemma \"Moving Past Transformers\" Botev 2024 arxiv authors\"\n\nLinks: [{\"title\":\"Paper page - RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\",\"url\":\"https://huggingface.co/papers/2404.07839\"},{\"title\":\"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/recurrentgemma-moving-past-transformers-efficient-open-language\"},{\"title\":\"[PDF] RecurrentGemma: Moving Past Transformers for Efficient Open Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/RecurrentGemma:-Moving-Past-Transformers-for-Open-Botev-De/fe33be95849c556ce0bdffaa1d2c7db9bb2e2c61\"},{\"title\":\"2024-8-29 RecurrentGemma: Moving Past Transformers\",\"url\":\"https://arxiv.org/pdf/2404.07839\"},{\"title\":\"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\",\"url\":\"https://arxiv.org/html/2404.07839v1\"},{\"title\":\"Marconi: Prefix Caching for the Era of Hybrid LLMs\",\"url\":\"https://arxiv.org/html/2411.19379v2\"},{\"title\":\"Overflow Prevention Enhances Long-Context Recurrent LLMs\",\"url\":\"https://arxiv.org/html/2505.07793v2\"},{\"title\":\"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240407839B/abstract\"},{\"title\":\"[2404.07839v2] RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\",\"url\":\"https://arxiv.org/abs/2404.07839v2\"},{\"title\":\"[2404.07839] RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\",\"url\":\"https://arxiv.org/abs/2404.07839\"}]\n\nBased on the search results, here is the information about the \"RecurrentGemma: Moving Past Transformers\" paper:\n\n**Paper Details:**\n- arXiv ID: 2404.07839, Published on April 11, 2024\n\n**Authors:**\nAleksandar Botev, Soham De, Samuel L Smith, Anushan Fernando, George-Cristian Muraru, Ruba Haroun, Leonard Berrada, Razvan Pascanu, Pier Giuseppe S\n…[truncated 1221 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T18:25:18.908425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Hymba hybrid Mamba attention language model 2024 arxiv\"\n\nLinks: [{\"title\":\"Paper page - Hymba: A Hybrid-head Architecture for Small Language Models\",\"url\":\"https://huggingface.co/papers/2411.13676\"},{\"title\":\"Hymba: A Hybrid-head Architecture for Small Language Models\",\"url\":\"https://arxiv.org/html/2411.13676v1\"},{\"title\":\"Understanding and Enhancing Mamba-Transformer Hybrids for Memory Recall and Language Modeling\",\"url\":\"https://arxiv.org/html/2510.26912v1\"},{\"title\":\"[2411.13676] Hymba: A Hybrid-head Architecture for Small Language Models\",\"url\":\"https://arxiv.org/abs/2411.13676\"},{\"title\":\"Hybrid Architectures for Language Models: Systematic Analysis and Design Insights\",\"url\":\"https://arxiv.org/html/2510.04800v1\"},{\"title\":\"An Empirical Study of Mamba-based Language Models\",\"url\":\"https://arxiv.org/pdf/2406.07887\"},{\"title\":\"Hymba: A Hybrid-head Architecture for Small Language Models\",\"url\":\"https://arxiv.org/pdf/2411.13676\"}]\n\nI found information about Hymba, a hybrid language model architecture paper from 2024. Here are the key details:\n\n## Overview\n\nHymba is a novel LM architecture that integrates attention heads and SSM heads within the same layer, offering parallel and complementary processing of the same inputs.\n\n## Key Features\n\nThe model introduces learnable meta tokens that are prepended to prompts, storing critical information and alleviating the \"forced-to-attend\" burden associated with attention mechanisms. Additionally, it incorporates cross-layer key-value (KV) sharing and partial sliding window attention, resulting in a compact cache size.\n\n## Performance Results\n\nHymba's 1.5B-Base model surpasses all sub-2B public models in performance and even outperforms Llama-3.2-3B with 1.32% higher average accuracy, an 11.67x cache size reduction, and 3.49x throughput.\n\n## Architecture Design\n\nThe model uses a head-wise splitting approach where attention heads are divided into groups, with each group assigned to a distinct mod\n…[truncated 258 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T18:25:18.908694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2411.13676",
+              "prompt": "Extract the exact title, full list of authors (especially first author), submission date, and any venue/conference information for this paper."
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T18:25:18.908886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2404.05892",
+              "prompt": "Extract the exact title, first author full name, submission date, and any venue/conference information for this paper."
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T18:25:18.909051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2405.21060",
+              "prompt": "Extract the exact title, authors, submission date, and any venue/conference information (e.g., ICML 2024) for this paper."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T18:25:18.909229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information Extract\n\n**Title:** \"Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\"\n\n**Authors:** Tri Dao and Albert Gu\n\n**Submission Date:** May 31, 2024\n\n**Venue:** ICML 2024 (International Conference on Machine Learning)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T18:25:18.909405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Extraction Summary\n\n**Title:** \"Hymba: A Hybrid-head Architecture for Small Language Models\"\n\n**First Author:** Xin Dong\n\n**Full Author List:** Xin Dong, Yonggan Fu, Shizhe Diao, Wonmin Byeon, Zijia Chen, Ameya Sunil Mahabaleshwarkar, Shih-Yang Liu, Matthijs Van Keirsbilck, Min-Hung Chen, Yoshi Suhara, Yingyan Lin, Jan Kautz, Pavlo Molchanov\n\n**Submission Date:** November 20, 2024\n\n**Venue/Conference Information:** No specific conference or venue is listed. The paper was submitted to arXiv (identifier: 2411.13676) in the Computation and Language category. The comments section notes the work is \"20 pages, models are available on huggingface,\" but no traditional conference venue is mentioned."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T18:25:18.909576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Exact Title:** \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\"\n\n**First Author Full Name:** Bo Peng\n\n**Submission Date:** April 8, 2024 (v1 submission)\n\n**Venue/Conference Information:** None specified. This paper was submitted to arXiv in the Computer Science > Computation and Language category (cs.CL). There is no traditional conference or journal venue listed in the metadata provided."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T18:25:18.909813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Eagle and Finch\" RWKV Peng 2024 EMNLP ICML NeurIPS accepted venue"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T18:25:18.909989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Griffin \"Mixing Gated Linear Recurrences\" De 2024 ICML NeurIPS accepted venue"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T18:25:18.910184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Eagle and Finch\" RWKV Peng 2024 EMNLP ICML NeurIPS accepted venue\"\n\nLinks: [{\"title\":\"[PDF] Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/157ed5647da39a7f5d33a84a90414b2a9e97e301\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://arxiv.org/pdf/2404.05892\"},{\"title\":\"[2404.05892] Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://arxiv.org/abs/2404.05892\"},{\"title\":\"Peng Zhou\",\"url\":\"https://pengzhouzp.github.io/\"},{\"title\":\"RWKV-CLIP: A Robust Vision-Language Representation ...\",\"url\":\"https://aclanthology.org/2024.emnlp-main.276.pdf\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and ...\",\"url\":\"https://openreview.net/pdf/9f3d829735b231725665ff226a4f732293ad4aa8.pdf\"},{\"title\":\"2024 in Post-Transformers Architectures (State Space Models, RWKV) [LS Live @ NeurIPS]\",\"url\":\"https://www.latent.space/p/2024-post-transformers\"},{\"title\":\"2024 in Post-Transformers Architectures (State Space Models, RWKV) [LS Live @ NeurIPS]\",\"url\":\"https://podcasts.apple.com/ug/podcast/2024-in-post-transformers-architectures-state-space/id1674008350?i=1000681506946\"}]\n\nBased on the search results, I found information about the \"Eagle and Finch\" paper:\n\nEagle and Finch are sequence models improving upon the RWKV (RWKV-4) architecture. The paper introduces two new architectures: Eagle (RWKV-5) and Finch (RWKV-6).\n\nThe paper was authored by Bo Peng and colleagues and was made available on arXiv on April 8, 2024.\n\nHowever, based on the search results provided, I could not find definitive information about which specific venue (EMNLP, ICML, or NeurIPS) the \"Eagle and Finch\" paper was accepted to. The paper is referenced in citations on other publications, but the search results don't clearly indicate its final acceptance venue. The arXiv paper itself appears to be the primary pub\n…[truncated 141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T18:25:18.910440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Griffin \"Mixing Gated Linear Recurrences\" De 2024 ICML NeurIPS accepted venue\"\n\nLinks: [{\"title\":\"[2402.19427] Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://arxiv.org/abs/2402.19427\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://gonzoml.substack.com/p/griffin-mixing-gated-linear-recurrences\"},{\"title\":\"2024-3-1 Griffin: Mixing Gated Linear Recurrences with\",\"url\":\"https://arxiv.org/pdf/2402.19427\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local ...\",\"url\":\"https://ucl-ellis.github.io/dm_csml_seminars/2024-03-22-Botev/\"},{\"title\":\"Paper page - Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://huggingface.co/papers/2402.19427\"},{\"title\":\"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\",\"url\":\"https://arxiv.org/html/2402.19427v1\"},{\"title\":\"GitHub - kyegomez/Griffin: Implementation of Griffin from the paper: \\\"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\\\"\",\"url\":\"https://github.com/kyegomez/Griffin\"},{\"title\":\"[Let’s Review] Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models by Dogukan Uraz Tuna | Medium | Medium\",\"url\":\"https://medium.com/@dtunai/lets-review-griffin-mixing-gated-linear-recurrences-with-local-attention-for-efficient-lms-57c824846b3d\"},{\"title\":\"GitHub - knotgrass/Griffin: Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models · GitHub\",\"url\":\"https://github.com/knotgrass/Griffin\"}]\n\nThe paper \"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\" was released by DeepMind in late February 2024. It was initially submitted to arXiv on February 29, 2024.\n\nHowever, based on the search results, I cannot find informatio\n…[truncated 539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T18:25:18.910689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://www.semanticscholar.org/paper/157ed5647da39a7f5d33a84a90414b2a9e97e301",
+              "prompt": "What venue/conference was this paper published at? Look for EMNLP, ICML, NeurIPS, ICLR, or any other conference/journal name."
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T18:25:18.910887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I don't see any web page content provided in your message. The section marked \"Web page content:\" appears to be empty.\n\nCould you please share the actual content of the web page or paper? Once you provide it, I'll be happy to identify the venue or conference where it was published, looking for mentions of EMNLP, ICML, NeurIPS, ICLR, or other conferences/journals."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T18:25:18.911071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://www.semanticscholar.org/paper/Jamba:-A-Hybrid-Transformer-Mamba-Language-Model-Lieber-Lenz/cbaf689fd9ea9bc939510019d90535d6249b3367",
+              "prompt": "What venue/conference was this paper published at? Look for any conference name like ICML, NeurIPS, ICLR, EMNLP, ACL, etc."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T18:25:18.911254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I don't see any web page content provided in your message. The area between the dashes appears to be empty:\n\n```\nWeb page content:\n---\n\n---\n```\n\nCould you please share the actual web page content or paper details? Once you provide that information, I'll be happy to identify the venue or conference where the paper was published."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T18:25:18.911491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Eagle and Finch\" RWKV EMNLP 2024 Findings proceedings"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T18:25:18.911767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Eagle and Finch\" RWKV EMNLP 2024 Findings proceedings\"\n\nLinks: [{\"title\":\"Findings of EMNLP 2024\",\"url\":\"https://www.proceedings.com/content/077/077401webtoc.pdf\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and ...\",\"url\":\"https://www.emergentmind.com/papers/2404.05892\"},{\"title\":\"[2404.05892] Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://arxiv.org/abs/2404.05892\"},{\"title\":\"EMNLP Findings 2024 - Finch et al. - Emory NLP\",\"url\":\"https://www.emorynlp.org/publications/emnlp-findings-2024-finch-et-al\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\",\"url\":\"https://arxiv.org/pdf/2404.05892\"},{\"title\":\"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/eagle-finch-rwkv-matrix-valued-states-dynamic\"},{\"title\":\"Eagle (RWKV-5) and Finch (RWKV-6): Marking Substantial Progress in Recurrent Neural Networks-Based Language Models by Integrating Multiheaded Matrix-Valued States and Dynamic Data-Driven Recurrence Mechanisms - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2024/04/12/eagle-rwkv-5-and-finch-rwkv-6-marking-substantial-progress-in-recurrent-neural-networks-based-language-models-by-integrating-multiheaded-matrix-valued-states-and-dynamic-data-driven-recurrence-me/\"},{\"title\":\"🦅 Eagle & 🐦 Finch - architecture paper is here\",\"url\":\"https://blog.rwkv.com/p/eagle-and-finch-architecture-paper\"},{\"title\":\"Eagle (RWKV-5) and Finch (RWKV-6): Marking Substantial Progress in Recurrent Neural Networks-Based Language Models by Integrating Multiheaded Matrix-Valued States and Dynamic Data-Driven Recurrence Mechanisms Vineet Kumar Artificial Intelligence Category – MarkTechPost – PhD Studio\",\"url\":\"https://phdstudio.org/2024/04/13/eagle-rwkv-5-and-finch-rwkv-6-marking-substantial-progress-in-recurrent-neural-networks-based-language-models-by-integrating-multiheaded-ma\n…[truncated 1266 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T18:25:18.912087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml",
+              "old_string": "        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n\n  - cluster_name: \"Linear Recurrent Models\"",
+              "new_string": "        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n      - bibtex_key: lieber2024jamba\n        title: \"Jamba: A Hybrid Transformer-Mamba Language Model\"\n        authors: \"Lieber, Opher and others\"\n        year: 2024\n        venue: \"arXiv:2403.19887\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2403.19887\"\n        relevance: \"First production-scale hybrid interleaving Transformer and Mamba layers with MoE; key design reference for attention-ratio choices\"\n      - bibtex_key: peng2024eagle\n        title: \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\"\n        authors: \"Peng, Bo and others\"\n        year: 2024\n        venue: \"arXiv:2404.05892\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2404.05892\"\n        relevance: \"RWKV-5/6 with matrix-valued states and dynamic recurrence; pure-recurrent baseline in the hybrid architecture spectrum\"\n      - bibtex_key: de2024griffin\n        title: \"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\"\n        authors: \"De, Soham and others\"\n        year: 2024\n        venue: \"arXiv:2402.19427\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2402.19427\"\n        relevance: \"Proposes Hawk (pure RNN) and Griffin (gated linear recurrence + local attention); matches Llama-2 with 6x fewer tokens\"\n      - bibtex_key: dao2024mamba2\n        title: \"Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\"\n        authors: \"Dao, Tri and Gu, Albert\"\n        year: 2024\n        venue: \"ICML 2024\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2405.21060\"\n        relevance: \"Establishes SSD framework unifying SSMs and attention; Mamba-2 core layer used in many hybrid designs\"\n      - bibtex_key: botev2024recurrentgemma\n        title: \"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\"\n        authors: \"Botev, Aleksandar and others\"\n        year: 2024\n        venue: \"arXiv:2404.07839\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2404.07839\"\n        relevance: \"Open-weight Griffin-based model combining linear recurrence with local sliding-window attention; directly comparable to hybrid zoo models\"\n      - bibtex_key: dong2024hymba\n        title: \"Hymba: A Hybrid-head Architecture for Small Language Models\"\n        authors: \"Dong, Xin and others\"\n        year: 2024\n        venue: \"arXiv:2411.13676\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2411.13676\"\n        relevance: \"Intra-layer head-wise hybrid mixing attention and SSM heads; contrasts with inter-layer hybrid designs like Jamba/Griffin\"\n\n  - cluster_name: \"Linear Recurrent Models\""
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T18:25:18.912425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T18:25:18.912656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml",
+              "limit": "80"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T18:25:18.912924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map for entrainment_gated_ft\n2\t# Auto-generated skeleton; Workers will populate per cluster\n3\t\n4\tclusters:\n5\t  - cluster_name: \"Hybrid Architectures\"\n6\t    target_count: 7\n7\t    papers:\n8\t      - bibtex_key: wang2025hybrid\n9\t        title: \"Scaling Laws for Hybrid Language Models\"\n10\t        authors: \"Wang, Junxiong and others\"\n11\t        year: 2025\n12\t        venue: \"arXiv:2507.06457\"\n13\t        category: \"Hybrid Architectures\"\n14\t        verified: true\n15\t        doi: \"\"\n16\t        url: \"https://arxiv.org/abs/2507.06457\"\n17\t        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n18\t      - bibtex_key: lieber2024jamba\n19\t        title: \"Jamba: A Hybrid Transformer-Mamba Language Model\"\n20\t        authors: \"Lieber, Opher and others\"\n21\t        year: 2024\n22\t        venue: \"arXiv:2403.19887\"\n23\t        category: \"Hybrid Architectures\"\n24\t        verified: true\n25\t        doi: \"\"\n26\t        url: \"https://arxiv.org/abs/2403.19887\"\n27\t        relevance: \"First production-scale hybrid interleaving Transformer and Mamba layers with MoE; key design reference for attention-ratio choices\"\n28\t      - bibtex_key: peng2024eagle\n29\t        title: \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\"\n30\t        authors: \"Peng, Bo and others\"\n31\t        year: 2024\n32\t        venue: \"arXiv:2404.05892\"\n33\t        category: \"Hybrid Architectures\"\n34\t        verified: true\n35\t        doi: \"\"\n36\t        url: \"https://arxiv.org/abs/2404.05892\"\n37\t        relevance: \"RWKV-5/6 with matrix-valued states and dynamic recurrence; pure-recurrent baseline in the hybrid architecture spectrum\"\n38\t      - bibtex_key: de2024griffin\n39\t        title: \"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\"\n40\t        authors: \"De, Soham and others\"\n41\t        year: 2024\n42\t        venue: \"arXiv:2402.19427\"\n43\t        category: \"Hybrid Architectures\"\n44\t        verified: true\n45\t        \n…[truncated 1862 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T18:25:18.913196+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 格式正确，Hybrid Architectures cluster 现在有 7 篇论文（1 已有 + 6 新增）。\n\n**新增 6 篇论文摘要：**\n\n| bibtex_key | 标题 | 年份 | Venue | verified |\n|---|---|---|---|---|\n| `lieber2024jamba` | Jamba: A Hybrid Transformer-Mamba Language Model | 2024 | arXiv:2403.19887 | true |\n| `peng2024eagle` | Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence | 2024 | arXiv:2404.05892 | true |\n| `de2024griffin` | Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models | 2024 | arXiv:2402.19427 | true |\n| `dao2024mamba2` | Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality | 2024 | ICML 2024 | true |\n| `botev2024recurrentgemma` | RecurrentGemma: Moving Past Transformers for Efficient Open Language Models | 2024 | arXiv:2404.07839 | true |\n| `dong2024hymba` | Hymba: A Hybrid-head Architecture for Small Language Models | 2024 | arXiv:2411.13676 | true |\n\n4 篇 must-cite 全部确认。额外 2 篇选了 RecurrentGemma（Griffin 架构的开源权重实现，inter-layer hybrid）和 Hymba（NVIDIA 的 intra-layer head-wise hybrid，与 Jamba/Griffin 的 inter-layer 设计形成对比）。Mamba-2 是唯一确认发表在顶会（ICML 2024）的论文，其余均为 arXiv preprint。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_lit_cluster_1_hybrid_20260519T182256"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ]
+}

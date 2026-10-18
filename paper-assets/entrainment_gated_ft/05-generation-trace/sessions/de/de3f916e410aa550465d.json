@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "de3f916e410aa550465d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "prep arr checklist draft",
+  "task_key": "worker_prep_arr-checklist-draft_20260522T185615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_arr-checklist-draft_20260522T185615_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "a331277e59dbc9cd76430fc8908e6e397db7d6c1471bf714dc973e94942ff2e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。草稿写入 `artifacts/arr_checklist_draft.txt` 并注册到 manifest。\n\n要点：\n- A1-A4 全部 Yes，覆盖 Limitations section 的五个方面（单次训练、覆盖范围、仅预训练、统计功效、Bonferroni 报告）\n- B1-B3 Yes（Wang et al. model zoo、lm-eval-harness、flash-linear-attention 均已引用），B4-B6 N/A\n- C1-C4 Yes，报告了 RTX PRO 6000、~5 GPU-hours inference-only、340M/1.3B 参数量、无超参搜索、完整统计方法\n- D 全部 N/A（纯计算实验）\n- E1 Yes（AI 写作辅助）\n- 额外补充了 fairness/bias implications 段落，强调 per-example multiplicity 的公平性含义（Jaccard ≤ 0.10, alpha 0.14-0.30）\n\n注意：现有 `arr_checklist.tex`（论文 PDF 内）仍写的是 3 architectures / 30 models，但论文实际已扩展到 5 architectures。本草稿按最新 5-arch 状态撰写。PDF 内的 checklist.tex 也需要同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

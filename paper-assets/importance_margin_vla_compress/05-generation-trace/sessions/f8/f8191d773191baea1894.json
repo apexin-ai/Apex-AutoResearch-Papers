@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f8191d773191baea1894",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval imm v7 dryrun",
+  "task_key": "worker_eval_imm-v7-dryrun_20260515T174706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_imm-v7-dryrun_20260515T174706_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "f4c5f3db156e2588becb51022fe3bf96ce4f7ba8e95a32695c4f8358674ecd46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. Baseline eval 结果\n**不存在** — `eval_baseline_v5.json` 文件未找到，baseline 评估仍在运行中（或未启动）。\n\n### 2. IMM v7 训练状态\n- **当前 step**: 2000/30000（~6.7%），loss=0.0089，lr=9.97e-05，3.2 steps/sec\n- **Checkpoints**: `step_002000`（已保存，`latest` 软链接指向它）\n\n### 3. IMM dry-run 结果 — **成功**\n\n完整 JSON 已保存至 `results/eval_imm_v7_dryrun.json`。关键指标摘要：\n\n| 条件 | action_loss | preservation_rate | kendall_tau | L·ε·k/Δ_k (mean) |\n|------|-------------|-------------------|-------------|-------------------|\n| eps0.0_pruneFalse | 0.0605 | 1.000 | 1.000 | 1.218 |\n| eps0.0_pruneTrue | 0.0872 | 1.000 | 1.000 | 0.794 |\n| eps0.01_pruneFalse | 0.0986 | 0.917 | 0.845 | 0.991 |\n| eps0.01_pruneTrue | 0.0344 | 0.932 | 0.841 | 0.818 |\n| eps0.02_pruneFalse | 0.0136 | 0.844 | 0.638 | 0.728 |\n| eps0.02_pruneTrue | 0.0588 | 0.878 | 0.672 | 3.927 |\n| eps0.05_pruneFalse | 0.0677 | 0.707 | 0.221 | 2.484 |\n| eps0.05_pruneTrue | 0.0424 | 0.715 | 0.247 | 2.214 |\n\n**Meta**: Lipschitz spectral=1.067, empirical=0.096, max_batches=5, seed=42\n\n**注意**: 首次运行遇到 xet_get 401 错误，加 `HF_HUB_DISABLE_XET=1` 后解决。后续正式评估也需要加此环境变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

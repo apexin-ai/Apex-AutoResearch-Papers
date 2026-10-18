@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8f7cf2c349d5ebf6820a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis keff distribution corrected",
+  "task_key": "worker_analysis_keff-distribution-corrected_20260523T143348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_keff-distribution-corrected_20260523T143348_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "b402b1454db5a171818d86b8eefd6b99d92534729c02d2c0251ba118747df920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `docs/paper/data/keff_distribution_corrected.json`。\n\n验证结果：\n- K=5 range **[2.16, 4.30]** — 与 scatter plot worker 验证值完全一致\n- 使用了正确公式 `K_eff = K - (1/K) Σᵢ Σⱼ≠ᵢ ρᵢⱼ²`，ρ 由 MI 通过 Gaussian copula 转换（`exp(-2·MI) = 1-ρ²`），每个 panel 的 K_eff 取 mmlu 和 arc_challenge 的均值\n- 旧文件 K=5 range 是 [1.43, 3.55]（错误 Kish 公式），修正后所有 K 值的 K_eff 分布均上移"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

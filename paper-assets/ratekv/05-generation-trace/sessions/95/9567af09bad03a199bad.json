@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9567af09bad03a199bad",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analysis check compounding data ready",
+  "task_key": "worker_analysis_check_compounding_data_ready_20260516T023620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_compounding_data_ready_20260516T023620_result.json",
+    "occurrence": 1,
+    "bytes": 3228,
+    "sha256": "a45c79d8a9fd4d5761ce79e072b35b7bf7143cfb4fbfe64a4c36c3a1156dfe01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full assessment:\n\n---\n\n## 1. llama_compounding_sweep — FULLY INTEGRATED\n\n| Item | Status |\n|------|--------|\n| **Registry** | DONE, success (registry.yaml:3497) |\n| **Metrics** | k=0→8.09, k=8→8.23, k=64→11.99, k=128→40.21, k=256→1519.19 |\n| **Checkpoint** | `/root/ratekv/artifacts/llama_compounding_sweep_results.json` (server) |\n| **Local artifact** | `artifacts/llama_compounding_sweep/data/llama_compounding_sweep_summary.txt` |\n| **Paper figure** | Hardcoded in `generate_compounding_curves.py:38-39`, rendered as `fig_compounding_curves.pdf` |\n| **Paper text** | `experiments.tex:103` — numbers match exactly |\n| **Action needed** | None |\n\n## 2. mistral_compounding_sweep — FULLY INTEGRATED (with stale JSON)\n\n| Item | Status |\n|------|--------|\n| **Registry** | DONE, success. V1 (registry.yaml:3528) + V2 bf16_2bitonly (registry.yaml:3701) |\n| **Paper uses V2 data** | k256=45.28 (V2) not k256=7.59 (V1) |\n| **Figure script** | `generate_compounding_curves.py:48` uses V2 values (45.28) — correct |\n| **Paper text** | `experiments.tex:105` — \"reaches only 45.28 at k=256 (6.4×)\" — matches V2 |\n| **Stale file** | `compounding_curves_data.json` contains V1 data (k256=7.59) — NOT used by figure script, but misleading if someone reads it directly |\n| **Action needed** | Optional: update `compounding_curves_data.json` to V2 values for consistency |\n\n## 3. llama_3seed_downstream_ci — INTEGRATED, minor paper update possible\n\n| Item | Status |\n|------|--------|\n| **Registry** | DONE, success (registry.yaml:4039) |\n| **Metrics** | ARC-C: -0.8, HS: 0.0, PIQA: -0.1, WG: +0.5, Avg: -0.1 |\n| **Key finding** | Single profile → deterministic allocation → **all 3 seeds identical (std=0)** |\n| **Checkpoint** | `/root/ratekv/artifacts/llama_3seed_downstream_ci_results.json` (server) |\n| **Table 4** | `experiments.tex:123` — \"Llama-3.1-8B: -0.8, +0.0, -0.1, +0.5, -0.1\" — **values match** |\n| **No ±σ shown** | Correct, since std=0. But table caption only mentions Qwen 3-seed; doesn't note Llama also ran 3 seeds |\n\n### Issues to address\n\n1. **`conclusion.tex:21`** says \"no confidence intervals are reported for the current single-seed results\" — **outdated**. Qwen has 3-seed CI, Llama 3-seed confirms std=0. Should update to something like: \"Qwen downstream is reported with 3-seed CI; Llama 3-seed yields identical results (single-profile determinism); Yi, Mistral, and Gemma-2 remain single-seed.\"\n\n2. **Table caption** (`experiments.tex:115`) says \"Qwen values are mean over 3 calibration seeds (±1σ)\" — could add: \"Llama 3-seed results are identical (single-profile determinism) and reported without error bars.\"\n\n3. **`compounding_curves_data.json`** has stale V1 Mistral data — not blocking (figure bypasses it) but a housekeeping inconsistency.\n\n### Summary\n\nAll three experiments' data are **already integrated** into the paper figures and tables with correct values. No new figures need to be generated. The only actionable items are minor text updates to `conclusion.tex` (limitation statement) and optionally the table caption to reflect the Llama 3-seed determinism finding."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b66ae0e2a46fb9305284",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops kill duplicate zeroshot v2",
+  "task_key": "worker_ops_kill_duplicate_zeroshot_v2_20260515T170123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicate_zeroshot_v2_20260515T170123_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "075a7740d710329a6aa08ad7bd7b8f3af9c50262d03c3810b5c0dcd9502ccc99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。报告如下：\n\n**进程状态**\n- PID 270036（00:45 启动）已 kill\n- PID 270336（00:48 启动，via `/tmp/run_zs500.sh`）保留运行中\n- 剩余 zeroshot 进程：1 个\n\n**GPU 状态**\n- 2× NVIDIA RTX PRO 6000 Black (各 97GB)，均空闲（0MiB / 0% util）\n- 无 GPU 进程——保留的进程当前在 CPU 阶段运行\n\n**Checkpoint 产出**\n- `/root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json` — 4KB，01:00 写入\n- 目录下仅此一个文件，无损坏迹象"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

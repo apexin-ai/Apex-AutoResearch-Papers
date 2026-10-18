@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b48b61da6e4ad21c6a19",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code prepare olmo temp09 experiment",
+  "task_key": "worker_code_prepare_olmo_temp09_experiment_20260514T203351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_olmo_temp09_experiment_20260514T203351_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "64ce40a42bf131d565e428c8ad1358f597fd2fbe0716ddac926b4d56f2f642b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 结果汇总\n\n| 检查项 | 状态 |\n|--------|------|\n| Registry 条目 `cross_model_olmo_temp09_001` | PENDING, hypothesis/parent 已设置 |\n| 模型文件 `/root/autodl-tmp/models/olmo-1b-hf/` | 存在，model.safetensors 4.7GB |\n| 数据文件 `data/depth_0.jsonl` | 存在，10.5MB |\n| 脚本语法检查 `bash -n` | SYNTAX_OK |\n\n### 提交命令\n\ncuda:1 空出后可直接执行：\n\n```bash\ncd /root/autodl-tmp/recursive_gen_depth_est && GPU=1 AML_EXP_ID=cross_model_olmo_temp09_001 nohup bash scripts/run_pipeline_olmo_temp09.sh > logs/pipeline_olmo_temp09.log 2>&1 &\n```\n\n脚本配置确认：\n- 模型：`/root/autodl-tmp/models/olmo-1b-hf`\n- target_modules：`q_proj,k_proj,v_proj`\n- 解码：`temp_only`, temperature=0.9\n- 递归深度：0→1→2→3（3轮 finetune + 3轮 generate）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ede6699f499d02f210b2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code n2 feature overlap analysis",
+  "task_key": "worker_code_n2_feature_overlap_analysis_20260515T123203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n2_feature_overlap_analysis_20260515T123203_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "c0e445ec4be6d8da56d06c66e558b17ba56c25118dc8cae8a0763d1c10198798"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建，语法和依赖验证通过。\n\n**文件路径**: `/root/autodl-tmp/recursive_gen_depth_est/src/n2_feature_overlap_analysis.py`\n\n**使用方法**:\n\n```bash\n# N2 训练完成后，先在 n2_deberta_finetune.py 中添加 checkpoint 保存：\n#   model.save_pretrained(Path(args.output_dir) / \"checkpoint\")\n#   tokenizer.save_pretrained(Path(args.output_dir) / \"checkpoint\")\n\n# 然后运行分析：\ncd /root/autodl-tmp/recursive_gen_depth_est\npython src/n2_feature_overlap_analysis.py --checkpoint_dir results/n2_deberta_finetune/checkpoint\n\n# 快速测试（500 样本 + pretrained model，无需 checkpoint）：\npython src/n2_feature_overlap_analysis.py --n_samples 500\n\n# 指定其他 RF cell 对比：\npython src/n2_feature_overlap_analysis.py --cell gpt2xl_nucleus095\n```\n\n**分析内容**:\n1. **Probing R²** — 用 Ridge 回归从 DeBERTa [CLS] embedding 预测每个手工特征，5-fold CV R² 衡量 DeBERTa 表征中包含多少该特征的信息\n2. **Attention-feature correlation** — 9 个 attention 统计量（entropy, Gini, 重复 token 注意力占比等）与 19 个特征的 Spearman 相关\n3. **Overlap metrics** — RF permutation importance ranking vs DeBERTa probing R² ranking 的 Spearman ρ 和 top-K Jaccard\n\n**输出**:\n- `results/n2_feature_overlap/overlap_results.json`\n- `results/n2_feature_overlap/attention_vs_importance.pdf`（4 panel：RF importance bar、probing R² bar、rank scatter、attention-feature correlation heatmap）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

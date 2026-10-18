@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "d2590ea2023a40ccd73d",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code gpu continue annotation",
+  "task_key": "worker_code_gpu-continue-annotation_20260521T200600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-continue-annotation_20260521T200600.log",
+    "occurrence": 1,
+    "bytes": 1161918,
+    "sha256": "7aa7c0541a0b67d5c7aa1f5e6cc24230b75244ee2f3f55de222ff65650a4dd21"
+  },
+  "statistics": {
+    "messages": 1020,
+    "user_turns": 1,
+    "tool_calls": 348,
+    "roles": {
+      "log": 1,
+      "system": 57,
+      "record": 2,
+      "assistant": 259,
+      "tool_call": 348,
+      "tool_result": 348,
+      "result": 4,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 408,
+      "chunks": [
+        {
+          "path": "d2590ea2023a40ccd73d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2590ea2023a40ccd73d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2590ea2023a40ccd73d-part-0003.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 612,
+      "chunks": [
+        {
+          "path": "d2590ea2023a40ccd73d-part-0003.json",
+          "message_count": 132
+        },
+        {
+          "path": "d2590ea2023a40ccd73d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2590ea2023a40ccd73d-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2590ea2023a40ccd73d-part-0006.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ]
+}

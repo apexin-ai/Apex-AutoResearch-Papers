@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c4671fd23002775fef5",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu d048 hires profiler fix rerun",
+  "task_key": "worker_gpu_d048_hires_profiler_fix_rerun_20260514T181102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_d048_hires_profiler_fix_rerun_20260514T181102_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "8acd6cb2eb122a6d9b83b64620b8171799e7c3a2ee22b4ed6d09d5431f7e6072"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载完成（~15.5GB VRAM），profiling 正在运行。logs 目录不存在导致 tee 副本失败，但主日志在 `~/runs/ratekv/qwen25-hires-profiling.log`，不影响运行。\n\n**汇报：**\n\n1. **Bug 已修复**：`hires_quant_profiler.py` L64 的 `shift_logits.view(...)` → `shift_logits.float().view(...)`，cross_entropy 现在在 float32 精度下计算，避免 bf16 累积精度截断。\n\n2. **Profiling 已启动**：`qwen25-hires-profiling` 任务在 cuda:0 上运行，模型 Qwen2.5-7B，64 samples × 2048 tokens，batch_size=4。每个 head 需要 profile 两次（4-bit 和 8-bit），Qwen2.5-7B 有 28 layers × 4 KV heads = 112 heads × 2 = 224 次 forward pass + 1 baseline = 225 次完整推理。\n\n3. **预计完成时间**：2-4 小时（取决于每次 forward pass 耗时）。日志在 `~/runs/ratekv/qwen25-hires-profiling.log`。\n\n4. **关键输出**：`/root/ratekv/qwen25_7b_hires_float32_results.json` 和 `/root/ratekv/hires_profiles.json`，核心看 top-5% concentration 是否 > 0.50。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "06616454adabbf9989e4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing generalization",
+  "task_key": "worker_writing_generalization_20260515T155339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_generalization_20260515T155339_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "1d9dce243c744863ddcd4702f8aef9ee6823c709be6829c582cd756a256dba4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `section_generalization.tex`，已注册 artifact。\n\n**报告：**\n\n| Subsection | 内容 | 关键数据 |\n|---|---|---|\n| 5.1 Baseline Comparison | RF/CORAL/DivEye 统计不可区分，叙事重心在 feature set 而非 classifier；DeepSeek zero-shot 40.0% 作 external anchor | tab_baselines 含 7 methods |\n| 5.2 Cross-Model Transfer | mean 66.4%，per-class recall 表完整呈现 d0 膨胀 + d2 bottleneck (26.8–52.6%)，3-class 55.4% | tab_cross_model 含 per-class recall |\n| 5.3 Cross-Strategy Transfer | mean 59.1%，temp09 d1v2 反转 (0.13/0.25)，z-score falsification (LR d1v2 0.50→0.24/0.19)，RF scale-invariant | tab_cross_strategy 含 z-score LR 行 |\n| 5.4 Negative Result | DeBERTa 58.3%/RoBERTa 59.5% << RF 78.2%，feature overlap ρ=−0.484，DCOL v6 64.5% + 过拟合 | architecture-independent conclusion |\n\n**交叉引用**：`\\ref{sec:gen:crossstrategy}` 与 Discussion §6 已有引用对齐；`\\ref{sec:generalization}` 与 Method §3 对齐。占位表/图 label (`tab_baselines`, `tab_cross_model`, `tab_cross_strategy`, `fig_confusion_matrix`) 均已嵌入。约 980 words 正文（不含表格）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

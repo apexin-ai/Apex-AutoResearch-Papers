@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4e0368d1714d65c1f46e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd27271 full 20260526c",
+  "task_key": "worker_audit_westd27271-full-20260526c_20260526T190142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd27271-full-20260526c_20260526T190142_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "6a42edf081100d401da8f923bfd1d2ece3ec59a8086e30557c069a27a742d4df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### GPU 状态（仅 2 块 GPU）\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 71% | 16/98 GB | `eval_openvla_l2norm_k075_goal_seed42_v2` — Task 7/10 开始，~1h 完成 |\n| 1 | 71% | 16/98 GB | `eval_openvla_attn_k05_long_seed42` — Task 4/10 ep10，0.9 eps/min，~6h 完成 |\n\n**无 GPU 2/3，服务器只有 2 块 GPU。**\n\n### 已完成\n| 实验 | SR | 详情 |\n|------|-----|------|\n| `eval_openvla_l2norm_k09_goal_seed43_v3` | **75.2%** (376/500) | l2norm k=0.9, Goal, seed 43, 210min |\n\n### 运行中\n- **GPU 0** `l2norm k=0.75, Goal, seed 42` — Task 7/10 刚开始，ETA ~1h\n- **GPU 1** `attn k=0.5, Long, seed 42` — Task 4/10 ep10/50，ETA ~6h（极慢，0.9 eps/min）\n\n### 可用模型\n- `openvla-7b-finetuned-libero-10` (Long)\n- `openvla-7b-finetuned-libero-goal` (Goal)\n- `openvla-7b-finetuned-libero-spatial` (Spatial)\n- **无 Object 模型**\n\n### 空闲 GPU\n无。两块 GPU 均被占满，无法部署新实验。GPU 0 约 1h 后空闲可复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

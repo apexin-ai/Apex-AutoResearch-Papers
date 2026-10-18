@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5ac585e0af3a079fab22",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 attn k05 goal",
+  "task_key": "worker_deploy_westd38929_attn_k05_goal_20260526T161201",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_attn_k05_goal_20260526T161201_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "34588d494a68b25d0e0187e3ef29fefbe52112e9a9c9689c2dd054e4e1b91ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU_OCCUPIED**\n\ncuda:1 上 PID 668245 仍在运行 Random k=0.85 Long：\n```\npython -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\n```\n\nGPU 状态：16188 MiB / 97887 MiB, 65% utilization。四张卡全部占用，无空闲 GPU。\n\n```\nDEPLOYED: no\nSERVER: westd-38929\nGPU: cuda:1\nREASON: GPU_OCCUPIED — PID 668245 running Random k=0.85 Long (libero_10), 16169 MiB\nALL_GPUs: 4/4 occupied\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

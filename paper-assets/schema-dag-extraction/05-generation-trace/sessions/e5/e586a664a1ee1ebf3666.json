@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e586a664a1ee1ebf3666",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d048 critical data fix",
+  "task_key": "worker_paper_d048_critical_data_fix_20260516T145921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d048_critical_data_fix_20260516T145921_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "8e2b494cc59368119f3cefdbe116f41fead6b1f54d3aebcf4a2f429e8aed8410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无错误、无 undefined 引用。\n\n**完成的修改：**\n\n1. **Fix 1** (main.tex:158-162) — Appendix C 正文替换为多元回归描述（5 count levels, 69 batches），移除旧的 2×2 factorial 描述作为主测试，改为补充段落。\n2. **Fix 2** — 确认全文无残留 ±5pp TOST 引用（Appendix C 已是 ±3pp）。\n3. **Fix 3** (abstract.tex:4) — `Table~3` → `Table~\\ref{tab:bcs_controlled}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

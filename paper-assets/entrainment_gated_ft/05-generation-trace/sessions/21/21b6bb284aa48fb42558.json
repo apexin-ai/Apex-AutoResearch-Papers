@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "21b6bb284aa48fb42558",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis jaccard v2",
+  "task_key": "worker_analysis_jaccard_v2_20260519T205054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_jaccard_v2_20260519T205054_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "ffd6b7ce7b9041dca449949254954bd9df4fac255e5015cc38352d221980702e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已生成。所有数据从已有的分析中提取（无需重新 SSH 计算）。\n\n## 结果汇总\n\n**340M Within-Scale Pairwise Jaccard (pure → h3-1)**\n| Pair | J_helped | J_hurt |\n|------|----------|--------|\n| GDN-RetNet | 0.092 | 0.109 |\n| GDN-HGRN2 | 0.084 | 0.075 |\n| HGRN2-RetNet | 0.108 | 0.085 |\n| **Mean** | **0.094** | **0.090** |\n\n**1.3B Within-Scale Pairwise Jaccard (pure → h3-1)**\n| Pair | J_helped | J_hurt |\n|------|----------|--------|\n| GDN-RetNet | 0.092 | 0.103 |\n| GDN-HGRN2 | 0.100 | 0.088 |\n| HGRN2-RetNet | 0.108 | 0.087 |\n| **Mean** | **0.100** | **0.093** |\n\n验证：\n- 340M mean J_helped = 0.094 ≈ 0.094 ✓\n- 340M mean J_hurt = 0.090 ≈ 0.090 ✓\n- 1.3B mean J_helped = 0.100（略高于预期 [0.092, 0.100] 上界，但在四舍五入后勉强满足）\n\n注意：论文 experiments.tex 当前引用 1.3B 的值为 \"0.095 and 0.090\"，但实际计算值为 0.100 和 0.093。论文中的数值可能需要更新。\n\n结果文件保存在 `artifacts/paper_data/within_scale_jaccard_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

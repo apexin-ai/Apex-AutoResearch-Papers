@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "73693af51bf0440a04a1",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_14_1779870876.md",
+  "task_key": "loop_14_1779870876",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1779870876.md",
+    "occurrence": 1,
+    "bytes": 4303,
+    "sha256": "24237aa0bee81156b4596a238d110de143cbdcd9ed0e7a345396abdd686fa9d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-27T07:41:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-3 on westd-27271 / cqa1-33015 / westd-41074 / westd-38929，共 16 张。不得使用任何白名单外 GPU\n- **实验硬截止 May 28 20:00 BJT (~28h)**，CoRL 论文 May 29 提交。截止后不能再跑新实验\n- π0.5 Long k≤0.85 数据已被判定污染（D247），论文仅使用 k≥0.9 的 strict 重跑值。**不得引用 cqa1 旧版宽松条件的 π0.5 数据**\n- cqa1 代码已修复（strict success 条件 `if done: only`），但 cqa1 上所有旧实验（Object/Goal/Spatial/Long）均视为污染（D248）\n- westd-41074 GPU2/3 + westd-38929 GPU0 有 3 个未注册实验，需补注册到 registry\n\n### 2. 🖥️ 基础设施快照\n- **服务器**（全部 account=root）：\n  - westd-27271: 2 GPU 活跃（GPU0 OV Attn k=0.95 Goal, GPU1 OV L2norm k=0.85 Object 重跑）\n  - westd-38929: 4 GPU 满载（GPU0 OV Random k=0.95 Long v2 pid=112587, GPU1 OV L2norm k=0.95 Long, GPU2 OV L2norm k=0.75 Long pid=968300, GPU3 OV Attn k=0.95 Long）\n  - westd-41074: 4 GPU 活跃（GPU0 OV Random k=0.95 Long, GPU1 π0.5 Random k=0.75 strict, GPU2 π0.5 Random k=0.95 strict ⚠️未注册, GPU3 π0.5 L2norm k=0.95 strict ⚠️未注册）\n  - cqa1-33015: 4 GPU 满载（GPU0 OV Random k=0.95 Goal v2, GPU1 OV Attn k=0.95 Goal v2, GPU2 π0.5 Attn k=0.95 strict, GPU3 OV Attn k=0.5 Goal v3）\n- **工作目录**: `/root/autodl-tmp/importance_margin_vla_compress`（所有服务器统一）\n- **活跃 cron**: 9 个，监控上述 RUNNING 实验（reconcile 确认全部存活）\n- **活跃 Worker**: 2 个（worker_deploy_fill_cqa1_westd38929_idle_gpus + worker_audit_cqa1_gpu_harvest_deploy）\n\n### 3. 📊 当前状态\n11 个 RUNNING 实验，全部是 cliff curve 填格子：\n- **OpenVLA Long k=0.95** 三方法（L2norm/Attn/Random）+ L2norm k=0.75 — 在 westd-38929 和 westd-41074 上跑，ETA ~19:30-23:30 UTC\n- **OpenVLA Goal** 缺口：Random k=0.95（cqa1 GPU0, ~15:55 UTC 完成）+ Attn k=0.5（cqa1 GPU3）+ Attn k=0.95 v2（cqa1 GPU1）\n- **OpenVLA Object** L2norm k=0.85 重跑验证非单调（westd-27271 GPU1）\n- **π0.5 strict 重跑**: Attn k=0.95（cqa1 GPU2, ~17:15 UTC）、Random k=0.75（westd-41074 GPU1）、Random k=0.95 + L2norm k=0.95（westd-41074 GPU2/3 未注册）\n\n2 个 Worker 正在运行（部署+审计任务），等待回调。\n\n总计 754 实验：468 success / 110 negative / 104 failed。Paper provenance 83/83。Abstract 已提交。\n\n### 4. 📋 待办（条件触发式）\n- **cqa1 GPU0 OV Random k=0.95 Goal 完成**（~16:00 UTC）→ 立即部署 π0.5 Random k=0.7 Long strict\n- **cqa1 GPU2 π0.5 Attn k=0.95 strict 完成**（~17:15 UTC）→ 部署 π0.5 Random k=0.5 Long strict\n- **westd-38929 GPU1/3 OV L2norm/Attn k=0.95 Long 完成**（~19:30 UTC）→ 有空闲 GPU 可部署剩余 π0.5 strict 格子\n- **westd-41074 GPU2/3 + westd-38929 GPU0 实验** → 补注册到 registry（3 个未注册）\n- **所有 cliff curve 格子填完** → 更新 ROADMAP 表格 → 通知 Director 实验阶段收尾\n- **May 28 20:00 BJT 前** → 所有实验必须完成或放弃，进入论文最终整合\n\n### 5. 🎯 战略上下文\n- **项目核心**: VLA vision token compressibility — scoring method (L2norm/Attn/Random) × model (OpenVLA/π0.5/SmolVLA/XVLA) × task suite (Object/Goal/Long/Spatial) 的 cliff curve\n- **当前阶段**: 填最后的 cliff curve 格子。Crossover table 16/16 已完成。论文已有 Abstract，provenance 齐全\n- **π0.5 污染事件**（D247/D248）: cqa1 旧代码 success 条件宽松（done|reward>0.5），所有 cqa1 上的 π0.5 实验数据均污染。strict 重跑版本正在进行中。D250 确认 Attn k=0.9/0.85 strict 偏差极小（Δ<1pp），说明污染影响不大但论文仍使用 strict 值\n- **易错点**:\n  - cqa1 GPU1 的 OV Attn k=0.95 Goal v2 可能与 westd-27271 GPU0 重复（registry 记录 server=westd-27271），需确认\n  - westd-38929 GPU0 之前标记为\"⚠️未注册重复\"，实际跑的是 v2 版本\n  - π0.5 Random k=0.7/k=0.5 Long strict 还没部署，等 cqa1 GPU 释放——这两个是最后的 π0.5 strict 格子，必须在截止前完成\n  - 不要把 non-strict 和 strict π0.5 数据混用写论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

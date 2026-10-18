@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ecd8c76e95915f12ea3f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code metaworld baseline",
+  "task_key": "worker_code_metaworld_baseline_20260524T160423",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_metaworld_baseline_20260524T160423_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "03ca046ffda1c9f687be7d7d921bbe4a883d6474568c43b5147647c72db3f7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 phases deployed successfully on westd-38929:\n\n**Phase 1 (Environment):** MetaWorld 3.0.0 installed, eval script transferred, SmolVLA checkpoint + SmolVLM2-500M-Instruct base model downloaded via hf-mirror.com.\n\n**Phase 2 (Baseline):** Complete.\n| Task | SR |\n|------|-----|\n| reach-v3 | 28% (7/25) |\n| push-v3 | 24% (6/25) |\n| pick-place-v3 | 8% (2/25) |\n| drawer-open-v3 | 52% (13/25) |\n| assembly-v3 | 20% (5/25) |\n| **Overall** | **26.4%** [95% CI: 19.5-34.7%] |\n\n**Phase 3 (Pruning Sweep):** Both running in parallel:\n- **Random** (GPU 1, PID 613253): k=0.5 task 2/5 in progress. reach-v3 k=0.5 → 20% SR\n- **L2norm** (GPU 3, PID 614338): k=0.5 task 2/5 in progress. reach-v3 k=0.5 → 4% SR\n\nEach sweep runs 4 k_ratios × 5 tasks × 50 episodes. ETA ~60 min.\n\n**Phase 4 (Registry):** 3 entries created:\n- `eval_smolvla_metaworld_baseline` → DONE\n- `eval_smolvla_metaworld_random_sweep` → RUNNING\n- `eval_smolvla_metaworld_l2norm_sweep` → RUNNING\n\nEarly signal: L2norm k=0.5 (4% on reach-v3) is performing **worse** than Random k=0.5 (20%), consistent with the scale-invariance hypothesis for Linear connectors."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

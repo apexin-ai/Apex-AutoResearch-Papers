@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "50513e7db17ca72ad15f",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code reference free baseline",
+  "task_key": "worker_code_reference_free_baseline_20260517T045516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_reference_free_baseline_20260517T045516_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "13f3e0c6c317e9289fba8aed493406a522e06d0162a7db3e374160d03b3830c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果已注册。\n\n## 结果摘要\n\n| 指标 | Reference-Free (7 feat) | Full (19 feat) |\n|------|------------------------|----------------|\n| 4-class Acc | **53.68%** [53.36, 54.01] | 78.77% |\n| Delta | **-25.09 pp** | — |\n| d1v2 AUC | 0.625 | — |\n\n**Per-class recall:** d0=85.7%, d1=39.7%, d2=31.8%, d3=57.6%\n\n**结论: NEGATIVE.** 53.68% 虽然 >2× chance (25%)，但未达到 60% 假设阈值。PPL/surprisal 特征贡献约 25pp accuracy。Token-level 统计能区分 depth 0（人类原文 vs 机器生成），但 d1/d2 中间深度的区分严重依赖 reference model 特征。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

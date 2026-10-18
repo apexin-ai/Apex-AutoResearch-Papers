@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6060aa190b9ce4eff69a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper figure fig atlas heatmap",
+  "task_key": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_atlas_heatmap_20260515T074238_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "6a6f401546e2c1dc3e005c3b7e6fd7ea5afd18ee1763e0678efcb12271e9e9e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (34KB) 和 PNG (240KB) 已生成并注册：\n\n- PDF: `figures/paper/fig_atlas_heatmap.pdf`\n- PNG: `figures/paper/fig_atlas_heatmap.png`\n- Artifact ID: `art_20260515_93792f`\n\n图表包含 7 行 feature × 9 列 cell，每格标注 importance 值和排名，top-2 加粗，★ 标记 universal top-2（p90_ppl 9/9, var_surprisal 7/9），白色竖线分隔三个 model group。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

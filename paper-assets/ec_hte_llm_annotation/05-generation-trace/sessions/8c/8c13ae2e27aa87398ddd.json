@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "id": "8c13ae2e27aa87398ddd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code gpu serial download annotate",
+  "task_key": "worker_code_gpu-serial-download-annotate_20260521T184517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-serial-download-annotate_20260521T184517.log",
+    "occurrence": 1,
+    "bytes": 1383523,
+    "sha256": "487ba570f4857fe4572151c0ad2a098a027ee4e4c3d1b36040e04e57a012fedf"
+  },
+  "statistics": {
+    "messages": 1212,
+    "user_turns": 1,
+    "tool_calls": 475,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 228,
+      "tool_call": 475,
+      "tool_result": 475,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 986,
+      "chunks": [
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0006.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0006.json",
+          "message_count": 94
+        },
+        {
+          "path": "8c13ae2e27aa87398ddd-part-0007.json",
+          "message_count": 132
+        }
+      ]
+    }
+  ]
+}

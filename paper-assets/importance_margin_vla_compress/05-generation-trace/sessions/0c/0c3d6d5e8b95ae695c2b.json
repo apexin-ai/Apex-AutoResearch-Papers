@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "0c3d6d5e8b95ae695c2b",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "diag full status harvest",
+  "task_key": "worker_diag_full-status-harvest_20260523T175203",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_full-status-harvest_20260523T175203.log",
+    "occurrence": 1,
+    "bytes": 763409,
+    "sha256": "902d80107aec5aa12867cbc6f495327f71cf99c83fe079890d4110326ffc2fd3"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 31,
+      "tool_call": 119,
+      "tool_result": 119,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "0c3d6d5e8b95ae695c2b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c3d6d5e8b95ae695c2b-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ]
+}

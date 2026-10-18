@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4b3dadd0f673fda5e260",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "diag w2 w9 server check",
+  "task_key": "worker_diag_w2_w9_server_check_20260515T050332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_w2_w9_server_check_20260515T050332_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "93f8e8aabe649db7badce01394626098480f1f7b0840dbf3763dd96e5cc10098"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行：\n\n- **W2** (`w2_unconstrained_baselines`) — GPU 0，Yi-1.5 模型已加载，greedy/MCKP allocation 完成（165 heads at 2-bit, 27 at 16-bit），正在评估 PPL\n- **W9** (`w9_compounding_scaling`) — GPU 1，Qwen2.5-7B 已加载，正在跑 compounding scaling 实验\n\nRegistry 状态均已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3760348d1b2e9647ec8e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis latex crossref check",
+  "task_key": "worker_analysis_latex_crossref_check_20260522T015528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_latex_crossref_check_20260522T015528_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "57396a1763d8250e691c316675d98548031650931260360b86acb75d35d96a19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。结果：\n\n- **编译**：0 errors，12 个 float specifier 警告（无害）\n- **Undefined references**：无\n- **Undefined citations**：无\n- **Multiply defined labels**：无\n- **`tab:cross_model_error_taxonomy`**：定义和引用均存在，正确匹配\n- **Orphan labels**：20 个（定义了但未被引用，仅供参考）\n\n报告已写入 `artifacts/latex_crossref_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

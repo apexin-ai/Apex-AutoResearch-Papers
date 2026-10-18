@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "adc1894410fb89a02202",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "exp plan001 step1 api scoring",
+  "task_key": "worker_exp_plan001-step1-api-scoring_20260522T072241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan001-step1-api-scoring_20260522T072241.log",
+    "occurrence": 1,
+    "bytes": 1288326,
+    "sha256": "802c259eea60fe6e94f7e1f5de7ab644b361dcc1e16f51a41a5f56cacd46fec2"
+  },
+  "statistics": {
+    "messages": 627,
+    "user_turns": 1,
+    "tool_calls": 221,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 161,
+      "tool_call": 221,
+      "tool_result": 221,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 466,
+      "chunks": [
+        {
+          "path": "adc1894410fb89a02202-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "adc1894410fb89a02202-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "adc1894410fb89a02202-part-0003.json",
+          "message_count": 106
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "adc1894410fb89a02202-part-0003.json",
+          "message_count": 74
+        },
+        {
+          "path": "adc1894410fb89a02202-part-0004.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ]
+}

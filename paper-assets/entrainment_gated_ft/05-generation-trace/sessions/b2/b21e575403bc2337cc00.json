@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b21e575403bc2337cc00",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code 340m eval script fix",
+  "task_key": "worker_code_340m-eval-script-fix_20260521T222448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_340m-eval-script-fix_20260521T222448_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "650f05dd41d22d0fee27a6c2d0bea7ad97b30259bd0d5f4834205c2101a122a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报如下：\n\n---\n\n### 1. 模型路径\n\n模型在 `/root/entrainment_gated_ft/models/`（两个目录都有，脚本使用项目目录）。15 个模型全部确认存在：\n\n| Arch | pure | h24-1 | h12-1 | h6-1 | h3-1 |\n|------|------|-------|-------|------|------|\n| GDN | `*-pure-baseline` | `*-New-hybrid-24-1` | `*-hybrid-12-1` | `*-hybrid-6-1` | `*-hybrid-3-1` |\n| RetNet | `*-pure` | `*-hybrid-24-1` | `*-hybrid-12-1` | `*-hybrid-6-1` | `*-hybrid-3-1` |\n| HGRN2 | `*-pure-baseline` | `*-hybrid-24-1` | `*-hybrid-12-1` | `*-hybrid-6-1` | `*-hybrid-3-1` |\n\n### 2. 脚本位置\n\n`/root/entrainment_gated_ft/run_340m_multi_eval.sh`\n\n- 15 个模型，associative array 映射 SHORT_NAME → 目录名\n- 固定遍历顺序：GDN 5 → RetNet 5 → HGRN2 5\n- 跳过逻辑：`output_dir/samples/` 下 ≥3 个 `.jsonl` 文件则跳过\n- `--log_samples` 已加\n- `--device cuda:0`\n- 每个模型前后打印时间戳\n\n### 3. 验证结果\n\n| 检查项 | 结果 |\n|--------|------|\n| `bash -n` 语法检查 | SYNTAX_OK |\n| `run_lmeval_clean.py --help` | 确认支持 `--model_path`, `--tasks`, `--output_dir`, `--batch_size`, `--device`, `--log_samples` |\n| 3 个 pure 模型 config.json | 全部存在 |\n\n脚本就绪，可直接用 `nohup bash /root/entrainment_gated_ft/run_340m_multi_eval.sh > /tmp/eval_340m_multi.log 2>&1 &` 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,877 @@
+{
+  "schema_version": "1.0",
+  "session_id": "cf9dea0bfc0d190c54e4",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor set up — I'll get notified when the eval finishes and \"Results saved\" appears in the log. Waiting for completion."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1735820,
+            "duration_api_ms": 1591944,
+            "num_turns": 312,
+            "stop_reason": "end_turn",
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "total_cost_usd": 20.30422449999998,
+            "usage": {
+              "input_tokens": 308,
+              "cache_creation_input_tokens": 174421,
+              "cache_read_input_tokens": 34642837,
+              "output_tokens": 68270,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 174421,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 112,
+                  "cache_read_input_tokens": 30842,
+                  "cache_creation_input_tokens": 281,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 281
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2616,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0027359999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1646,
+                "outputTokens": 71767,
+                "cacheReadInputTokens": 34809817,
+                "cacheCreationInputTokens": 175068,
+                "webSearchRequests": 0,
+                "costUSD": 20.30148849999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "cb013f92-d069-4254-b912-79b2b6047a3c"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_updated",
+                "task_id": "b3pjpkzmc",
+                "patch": {
+                  "status": "killed",
+                  "end_time": 1778886176809
+                },
+                "uuid": "79d381a1-334b-411f-9485-20060eb8dd48",
+                "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f"
+              }
+            }
+          ],
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b3pjpkzmc",
+                "tool_use_id": "toolu_015V97i6A1jzEBiTm9CEi1H9",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "v7.2 bypass-ACIS eval completion",
+                "uuid": "e764e9d8-9689-477e-bfea-4d959b618884",
+                "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f"
+              }
+            }
+          ],
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+                "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "6e28fc67-adb5-4b47-a490-4a431e27bb34",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The monitor timed out (15 minutes). Let me check the current state of the process and log.",
+              "signature": "EpUCClkIDRgCKkCksiDjuORb/62GhFmqAIcxfHM5+bcImmdxrFo7UbOAVxkSBm/ID/1J6BHIs0lLu/tfN+7TF+V4E+s8pro9gRwQMg9jbGF1ZGUtb3B1cy00LTY4ABIMCtEy92bMGsCro7bKGgxCzH20RWs+n1Kz+B4iMG2uR6/DirZ32Zw4E29eLtEp2j92iiLdqImmRU/2xJ7tjUy4mlurXyC8/GjSJ2LqUipqbIBiql9WSa7cfrK0Qx0ZUqp8mLAagjhixZpNtLtstHW/6KG5PFtH45rKQaZRj/8hv3uyt6ACx7/gUNIEpDTSNwplN9Hy1F7aKH6zbeUAvcZTBxYUBaAte4an/tDjQtwj1rEa/OFx1vEtlhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "2296d7a6-a6c2-4c68-a538-1693c4f56438",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LPrCocrXLDbRPZkodG6Vhd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 31123,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 185
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out. Let me check the current state."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "18e27d1d-98c8-47af-a230-e212b6fe75fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LPrCocrXLDbRPZkodG6Vhd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 31123,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 185
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CXDgpGiRhpokyNgFyXRots",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "ps -p 81137 -o pid="
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "6946893f-728e-4dd8-8d2d-e9da4cfa2b6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LPrCocrXLDbRPZkodG6Vhd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 31123,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 185
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SBATgJ49yAmv6dbTFFkj7a",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "tail -20 /tmp/eval_v7_2_bypass2.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "fc8de49f-56b1-4aae-a7d3-20bb8dadb5b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LPrCocrXLDbRPZkodG6Vhd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 31123,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 185
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-15T23:03:01.307Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CXDgpGiRhpokyNgFyXRots",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "4f285612-c086-47ca-a6ac-18719f197416",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778904000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f7496a48-9cf4-439d-a3c6-0ed725651a10",
+                "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f"
+              }
+            }
+          ],
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-15T23:03:01.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SBATgJ49yAmv6dbTFFkj7a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 06:41:26 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lerobot/aloha_sim_insertion_scripted_image/refs \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-16 06:41:26 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lerobot/aloha_sim_insertion_scripted_image/revision/v3.0 \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\\rFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rFetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 6636.56it/s]\\\\n2026-05-16 06:41:26 [INFO] Evaluating condition: eps0.0_pruneFalse\\\\n2026-05-16 06:42:58 [INFO]   eps0.0_pruneFalse: {'action_loss': '0.0078'}\\\\n2026-05-16 06:42:58 [INFO] Evaluating condition: eps0.0_pruneTrue\\\\n2026-05-16 06:44:51 [INFO]   eps0.0_pruneTrue: {'action_loss': '0.0285'}\\\\n2026-05-16 06:44:51 [INFO] Evaluating condition: eps0.01_pruneFalse\\\\n2026-05-16 06:46:46 [INFO]   eps0.01_pruneFalse: {'action_loss': '0.0079'}\\\\n2026-05-16 06:46:46 [INFO] Evaluating condition: eps0.01_pruneTrue\\\\n2026-05-16 06:48:41 [INFO]   eps0.01_pruneTrue: {'action_loss': '0.0285'}\\\\n2026-05-16 06:48:41 [INFO] Evaluating condition: eps0.02_pruneFalse\\\\n2026-05-16 06:50:30 [INFO]   eps0.02_pruneFalse: {'action_loss': '0.0096'}\\\\n2026-05-16 06:50:30 [INFO] Evaluating condition: eps0.02_pruneTrue\\\\n2026-05-16 06:52:25 [INFO]   eps0.02_pruneTrue: {'action_loss': '0.0308'}\\\\n2026-05-16 06:52:25 [INFO] Evaluating condition: eps0.05_pruneFalse\\\\n2026-05-16 06:54:17 [INFO]   eps0.05_pruneFalse: {'action_loss': '0.0229'}\\\\n2026-05-16 06:54:17 [INFO] Evaluating condition: eps0.05_pruneTrue\\\\n2026-05-16 06:56:08 [INFO]   eps0.05_pruneTrue: {'action_loss': '0.0418'}\\\\n2026-05-16 06:56:08 [INFO] Results saved to eval_results/eval_imm_v7_2_bypass_acis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "1a2cbfaa-e3e2-46b0-a83c-08640a07f2c9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 06:41:26 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lerobot/aloha_sim_insertion_scripted_image/refs \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-16 06:41:26 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lerobot/aloha_sim_insertion_scripted_image/revision/v3.0 \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\\rFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rFetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 6636.56it/s]\\\\n2026-05-16 06:41:26 [INFO] Evaluating condition: eps0.0_pruneFalse\\\\n2026-05-16 06:42:58 [INFO]   eps0.0_pruneFalse: {'action_loss': '0.0078'}\\\\n2026-05-16 06:42:58 [INFO] Evaluating condition: eps0.0_pruneTrue\\\\n2026-05-16 06:44:51 [INFO]   eps0.0_pruneTrue: {'action_loss': '0.0285'}\\\\n2026-05-16 06:44:51 [INFO] Evaluating condition: eps0.01_pruneFalse\\\\n2026-05-16 06:46:46 [INFO]   eps0.01_pruneFalse: {'action_loss': '0.0079'}\\\\n2026-05-16 06:46:46 [INFO] Evaluating condition: eps0.01_pruneTrue\\\\n2026-05-16 06:48:41 [INFO]   eps0.01_pruneTrue: {'action_loss': '0.0285'}\\\\n2026-05-16 06:48:41 [INFO] Evaluating condition: eps0.02_pruneFalse\\\\n2026-05-16 06:50:30 [INFO]   eps0.02_pruneFalse: {'action_loss': '0.0096'}\\\\n2026-05-16 06:50:30 [INFO] Evaluating condition: eps0.02_pruneTrue\\\\n2026-05-16 06:52:25 [INFO]   eps0.02_pruneTrue: {'action_loss': '0.0308'}\\\\n2026-05-16 06:52:25 [INFO] Evaluating condition: eps0.05_pruneFalse\\\\n2026-05-16 06:54:17 [INFO]   eps0.05_pruneFalse: {'action_loss': '0.0229'}\\\\n2026-05-16 06:54:17 [INFO] Evaluating condition: eps0.05_pruneTrue\\\\n2026-05-16 06:56:08 [INFO]   eps0.05_pruneTrue: {'action_loss': '0.0418'}\\\\n2026-05-16 06:56:08 [INFO] Results saved to eval_results/eval_imm_v7_2_bypass_acis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 06:41:26 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lerobot/aloha_sim_insertion_scripted_image/refs \\\"HTTP/1.1 200 OK\\\"\\n2026-05-16 06:41:26 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lerobot/aloha_sim_insertion_scripted_image/revision/v3.0 \\\"HTTP/1.1 200 OK\\\"\\n\\rFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]\\rFetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 6636.56it/s]\\n2026-05-16 06:41:26 [INFO] Evaluating condition: eps0.0_pruneFalse\\n2026-05-16 06:42:58 [INFO]   eps0.0_pruneFalse: {'action_loss': '0.0078'}\\n2026-05-16 06:42:58 [INFO] Evaluating condition: eps0.0_pruneTrue\\n2026-05-16 06:44:51 [INFO]   eps0.0_pruneTrue: {'action_loss': '0.0285'}\\n2026-05-16 06:44:51 [INFO] Evaluating condition: eps0.01_pruneFalse\\n2026-05-16 06:46:46 [INFO]   eps0.01_pruneFalse: {'action_loss': '0.0079'}\\n2026-05-16 06:46:46 [INFO] Evaluating condition: eps0.01_pruneTrue\\n2026-05-16 06:48:41 [INFO]   eps0.01_pruneTrue: {'action_loss': '0.0285'}\\n2026-05-16 06:48:41 [INFO] Evaluating condition: eps0.02_pruneFalse\\n2026-05-16 06:50:30 [INFO]   eps0.02_pruneFalse: {'action_loss': '0.0096'}\\n2026-05-16 06:50:30 [INFO] Evaluating condition: eps0.02_pruneTrue\\n2026-05-16 06:52:25 [INFO]   eps0.02_pruneTrue: {'action_loss': '0.0308'}\\n2026-05-16 06:52:25 [INFO] Evaluating condition: eps0.05_pruneFalse\\n2026-05-16 06:54:17 [INFO]   eps0.05_pruneFalse: {'action_loss': '0.0229'}\\n2026-05-16 06:54:17 [INFO] Evaluating condition: eps0.05_pruneTrue\\n2026-05-16 06:56:08 [INFO]   eps0.05_pruneTrue: {'action_loss': '0.0418'}\\n2026-05-16 06:56:08 [INFO] Results saved to eval_results/eval_imm_v7_2_bypass_acis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The eval has completed. Process 81137 is no longer running (exit code 1 from ps means not found). The log shows all 8 conditions completed and results saved to `eval_results/eval_imm_v7_2_bypass_acis.json`.\n\nResults:\n- eps0.0_pruneFalse: 0.0078\n\n\n- eps0.0_pruneTrue: 0.0285\n- eps0.01_pruneFalse: 0.0079\n- eps0.01_pruneTrue: 0.0285\n- eps0.02_pruneFalse: 0.0096\n- eps0.02_pruneTrue: 0.0308\n- eps0.05_pruneFalse: 0.0229\n- eps0.05_pruneTrue: 0.0418\n\nNow I'm loading both JSON files to generate a comparison table.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "d03bbab9-67ab-46e8-ae8b-15f42f1b6fce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iBypyYe83nTEDjNpemot2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1276,
+                "cache_read_input_tokens": 31308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1276
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval completed successfully — all 8 conditions done. Let me read both JSON result files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "ccc79caf-75db-4fef-8829-0684be332e0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iBypyYe83nTEDjNpemot2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1276,
+                "cache_read_input_tokens": 31308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1276
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LJVi3LqhJFoWX2NQ8kaf9i",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v7_2_bypass_acis.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "8938b4e6-46b4-402e-95b5-a11e3369709b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iBypyYe83nTEDjNpemot2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1276,
+                "cache_read_input_tokens": 31308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1276
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-15T23:03:08.969Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LJVi3LqhJFoWX2NQ8kaf9i",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eps0.0_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.007803429500665516\\\\n  },\\\\n  \\\\\\\"eps0.0_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.02849792813602835\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.0079320346894674\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.028471675580367447\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.009633202861528843\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.03076050653681159\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.022940687842899935\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.04175169057399034\\\\n  },\\\\n  \\\\\\\"_meta\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/imm_anchor_v7_1/step_029999\\\\\\\",\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"configs/imm_anchor_v7_1.yaml\\\\\\\",\\\\n    \\\\\\\"imm_enabled\\\\\\\": true,\\\\n    \\\\\\\"bypass_acis\\\\\\\": true,\\\\n    \\\\\\\"lipschitz_empirical\\\\\\\": 0.0,\\\\n    \\\\\\\"lipschitz_spectral\\\\\\\": 0.0,\\\\n    \\\\\\\"max_batches\\\\\\\": 500,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "f6faec54-af76-4deb-bcca-dcf436a47678",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eps0.0_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.007803429500665516\\\\n  },\\\\n  \\\\\\\"eps0.0_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.02849792813602835\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.0079320346894674\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.028471675580367447\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.009633202861528843\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.03076050653681159\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.022940687842899935\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.04175169057399034\\\\n  },\\\\n  \\\\\\\"_meta\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/imm_anchor_v7_1/step_029999\\\\\\\",\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"configs/imm_anchor_v7_1.yaml\\\\\\\",\\\\n    \\\\\\\"imm_enabled\\\\\\\": true,\\\\n    \\\\\\\"bypass_acis\\\\\\\": true,\\\\n    \\\\\\\"lipschitz_empirical\\\\\\\": 0.0,\\\\n    \\\\\\\"lipschitz_spectral\\\\\\\": 0.0,\\\\n    \\\\\\\"max_batches\\\\\\\": 500,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"eps0.0_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.007803429500665516\\n  },\\n  \\\"eps0.0_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.02849792813602835\\n  },\\n  \\\"eps0.01_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.0079320346894674\\n  },\\n  \\\"eps0.01_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.028471675580367447\\n  },\\n  \\\"eps0.02_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.009633202861528843\\n  },\\n  \\\"eps0.02_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.03076050653681159\\n  },\\n  \\\"eps0.05_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.022940687842899935\\n  },\\n  \\\"eps0.05_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.04175169057399034\\n  },\\n  \\\"_meta\\\": {\\n    \\\"checkpoint\\\": \\\"checkpoints/imm_anchor_v7_1/step_029999\\\",\\n    \\\"config\\\": \\\"configs/imm_anchor_v7_1.yaml\\\",\\n    \\\"imm_enabled\\\": true,\\n    \\\"bypass_acis\\\": true,\\n    \\\"lipschitz_empirical\\\": 0.0,\\n    \\\"lipschitz_spectral\\\": 0.0,\\n    \\\"max_batches\\\": 500,\\n    \\\"seed\\\": 42\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013pJogZr7mr7AUg2PDGkEFs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-27271",
+                "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_baseline_v5_bypass_acis.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "f865ffde-054a-4344-8ab1-a33d7b199831",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iBypyYe83nTEDjNpemot2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1276,
+                "cache_read_input_tokens": 31308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1276
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-15T23:03:09.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013pJogZr7mr7AUg2PDGkEFs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eps0.0_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.004076992952439468,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015189582481980324,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010021626949310303,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.01604626514017582,\\\\n    \\\\\\\"margin_min\\\\\\\": 9.5367431640625e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.18299126625061035,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 1.0,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.0_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.11897319450229406,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015510914847254753,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.01091766357421875,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015184479765594006,\\\\n    \\\\\\\"margin_min\\\\\\\": 6.616115570068359e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.1128535270690918,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 1.0,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.004578520475653931,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015266411937773228,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010328888893127441,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015553168952465057,\\\\n    \\\\\\\"margin_min\\\\\\\": 3.933906555175781e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.10412579774856567,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3352324962615967,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22639383375644684,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.11897956316918135,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015248583629727364,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010410547256469727,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015103976242244244,\\\\n    \\\\\\\"margin_min\\\\\\\": 3.5762786865234375e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.10819816589355469,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3375215232372284,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22806978225708008,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.0055804768478265035,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015410494059324265,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010627388954162598,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015855124220252037,\\\\n    \\\\\\\"margin_min\\\\\\\": 1.0132789611816406e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.1822846531867981,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3362119495868683,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.2283305674791336,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.12176352410018444,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015608799643814564,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010717570781707764,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.016029760241508484,\\\\n    \\\\\\\"margin_min\\\\\\\": 1.0728836059570312e-05,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.12200933694839478,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3356461524963379,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22542554140090942,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.018036772006424145,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.01604827307164669,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010943293571472168,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.01592353731393814,\\\\n    \\\\\\\"margin_min\\\\\\\": 7.033348083496094e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.11335277557373047,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3380565047264099,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22824472188949585,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.13947658463567494,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015478301793336868,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.011144399642944336,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.014781307429075241,\\\\n    \\\\\\\"margin_min\\\\\\\": 3.7550926208496094e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.12079334259033203,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3362075984477997,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22662945091724396,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"_meta\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/baseline/step_029999\\\\\\\",\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"configs/baseline.yaml\\\\\\\",\\\\n    \\\\\\\"imm_enabled\\\\\\\": false,\\\\n    \\\\\\\"lipschitz_empirical\\\\\\\": 0.0,\\\\n    \\\\\\\"lipschitz_spectral\\\\\\\": 0.0,\\\\n    \\\\\\\"max_batches\\\\\\\": 500,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"bypass_acis\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "3db39037-1790-4b08-881c-83f6f1f7698c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eps0.0_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.004076992952439468,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015189582481980324,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010021626949310303,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.01604626514017582,\\\\n    \\\\\\\"margin_min\\\\\\\": 9.5367431640625e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.18299126625061035,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 1.0,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.0_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.11897319450229406,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015510914847254753,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.01091766357421875,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015184479765594006,\\\\n    \\\\\\\"margin_min\\\\\\\": 6.616115570068359e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.1128535270690918,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 1.0,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.004578520475653931,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015266411937773228,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010328888893127441,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015553168952465057,\\\\n    \\\\\\\"margin_min\\\\\\\": 3.933906555175781e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.10412579774856567,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3352324962615967,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22639383375644684,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.01_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.11897956316918135,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015248583629727364,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010410547256469727,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015103976242244244,\\\\n    \\\\\\\"margin_min\\\\\\\": 3.5762786865234375e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.10819816589355469,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3375215232372284,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22806978225708008,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.0055804768478265035,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015410494059324265,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010627388954162598,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.015855124220252037,\\\\n    \\\\\\\"margin_min\\\\\\\": 1.0132789611816406e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.1822846531867981,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3362119495868683,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.2283305674791336,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.02_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.12176352410018444,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015608799643814564,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010717570781707764,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.016029760241508484,\\\\n    \\\\\\\"margin_min\\\\\\\": 1.0728836059570312e-05,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.12200933694839478,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3356461524963379,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22542554140090942,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneFalse\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.018036772006424145,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.01604827307164669,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.010943293571472168,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.01592353731393814,\\\\n    \\\\\\\"margin_min\\\\\\\": 7.033348083496094e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.11335277557373047,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3380565047264099,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22824472188949585,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"eps0.05_pruneTrue\\\\\\\": {\\\\n    \\\\\\\"action_loss\\\\\\\": 0.13947658463567494,\\\\n    \\\\\\\"margin_mean\\\\\\\": 0.015478301793336868,\\\\n    \\\\\\\"margin_median\\\\\\\": 0.011144399642944336,\\\\n    \\\\\\\"margin_std\\\\\\\": 0.014781307429075241,\\\\n    \\\\\\\"margin_min\\\\\\\": 3.7550926208496094e-06,\\\\n    \\\\\\\"margin_max\\\\\\\": 0.12079334259033203,\\\\n    \\\\\\\"preservation_rate\\\\\\\": 0.3362075984477997,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.22662945091724396,\\\\n    \\\\\\\"certified_bound_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"certified_bound_max\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"l_eps_delta_ratio_median\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"_meta\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/baseline/step_029999\\\\\\\",\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"configs/baseline.yaml\\\\\\\",\\\\n    \\\\\\\"imm_enabled\\\\\\\": false,\\\\n    \\\\\\\"lipschitz_empirical\\\\\\\": 0.0,\\\\n    \\\\\\\"lipschitz_spectral\\\\\\\": 0.0,\\\\n    \\\\\\\"max_batches\\\\\\\": 500,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"bypass_acis\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"eps0.0_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.004076992952439468,\\n    \\\"margin_mean\\\": 0.015189582481980324,\\n    \\\"margin_median\\\": 0.010021626949310303,\\n    \\\"margin_std\\\": 0.01604626514017582,\\n    \\\"margin_min\\\": 9.5367431640625e-06,\\n    \\\"margin_max\\\": 0.18299126625061035,\\n    \\\"preservation_rate\\\": 1.0,\\n    \\\"kendall_tau\\\": 1.0,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.0_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.11897319450229406,\\n    \\\"margin_mean\\\": 0.015510914847254753,\\n    \\\"margin_median\\\": 0.01091766357421875,\\n    \\\"margin_std\\\": 0.015184479765594006,\\n    \\\"margin_min\\\": 6.616115570068359e-06,\\n    \\\"margin_max\\\": 0.1128535270690918,\\n    \\\"preservation_rate\\\": 1.0,\\n    \\\"kendall_tau\\\": 1.0,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.01_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.004578520475653931,\\n    \\\"margin_mean\\\": 0.015266411937773228,\\n    \\\"margin_median\\\": 0.010328888893127441,\\n    \\\"margin_std\\\": 0.015553168952465057,\\n    \\\"margin_min\\\": 3.933906555175781e-06,\\n    \\\"margin_max\\\": 0.10412579774856567,\\n    \\\"preservation_rate\\\": 0.3352324962615967,\\n    \\\"kendall_tau\\\": -0.22639383375644684,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.01_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.11897956316918135,\\n    \\\"margin_mean\\\": 0.015248583629727364,\\n    \\\"margin_median\\\": 0.010410547256469727,\\n    \\\"margin_std\\\": 0.015103976242244244,\\n    \\\"margin_min\\\": 3.5762786865234375e-06,\\n    \\\"margin_max\\\": 0.10819816589355469,\\n    \\\"preservation_rate\\\": 0.3375215232372284,\\n    \\\"kendall_tau\\\": -0.22806978225708008,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.02_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.0055804768478265035,\\n    \\\"margin_mean\\\": 0.015410494059324265,\\n    \\\"margin_median\\\": 0.010627388954162598,\\n    \\\"margin_std\\\": 0.015855124220252037,\\n    \\\"margin_min\\\": 1.0132789611816406e-06,\\n    \\\"margin_max\\\": 0.1822846531867981,\\n    \\\"preservation_rate\\\": 0.3362119495868683,\\n    \\\"kendall_tau\\\": -0.2283305674791336,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.02_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.12176352410018444,\\n    \\\"margin_mean\\\": 0.015608799643814564,\\n    \\\"margin_median\\\": 0.010717570781707764,\\n    \\\"margin_std\\\": 0.016029760241508484,\\n    \\\"margin_min\\\": 1.0728836059570312e-05,\\n    \\\"margin_max\\\": 0.12200933694839478,\\n    \\\"preservation_rate\\\": 0.3356461524963379,\\n    \\\"kendall_tau\\\": -0.22542554140090942,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.05_pruneFalse\\\": {\\n    \\\"action_loss\\\": 0.018036772006424145,\\n    \\\"margin_mean\\\": 0.01604827307164669,\\n    \\\"margin_median\\\": 0.010943293571472168,\\n    \\\"margin_std\\\": 0.01592353731393814,\\n    \\\"margin_min\\\": 7.033348083496094e-06,\\n    \\\"margin_max\\\": 0.11335277557373047,\\n    \\\"preservation_rate\\\": 0.3380565047264099,\\n    \\\"kendall_tau\\\": -0.22824472188949585,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"eps0.05_pruneTrue\\\": {\\n    \\\"action_loss\\\": 0.13947658463567494,\\n    \\\"margin_mean\\\": 0.015478301793336868,\\n    \\\"margin_median\\\": 0.011144399642944336,\\n    \\\"margin_std\\\": 0.014781307429075241,\\n    \\\"margin_min\\\": 3.7550926208496094e-06,\\n    \\\"margin_max\\\": 0.12079334259033203,\\n    \\\"preservation_rate\\\": 0.3362075984477997,\\n    \\\"kendall_tau\\\": -0.22662945091724396,\\n    \\\"certified_bound_mean\\\": 0.0,\\n    \\\"certified_bound_max\\\": 0.0,\\n    \\\"l_eps_delta_ratio_mean\\\": 0.0,\\n    \\\"l_eps_delta_ratio_median\\\": 0.0\\n  },\\n  \\\"_meta\\\": {\\n    \\\"checkpoint\\\": \\\"checkpoints/baseline/step_029999\\\",\\n    \\\"config\\\": \\\"configs/baseline.yaml\\\",\\n    \\\"imm_enabled\\\": false,\\n    \\\"lipschitz_empirical\\\": 0.0,\\n    \\\"lipschitz_spectral\\\": 0.0,\\n    \\\"max_batches\\\": 500,\\n    \\\"seed\\\": 42,\\n    \\\"bypass_acis\\\": true\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both JSON files ready. Here are the results:\n\n## Bypass-ACIS Evaluation Results\n\n### Clean condition (eps=0, no pruning) — G3 diagnostic\n\n| Model | bypass-ACIS clean action_loss | baseline clean action_loss | G3 ratio |\n|---|---|---|---|\n| **v7.2 (IMM)** | 0.00780 | 0.00408 | **1.91x** |\n| **baseline** | 0.00408 | 0.00408 | 1.00x |\n\n### Full condition breakdown\n\n| Condition | v7.2 bypass-ACIS | baseline bypass-ACIS | Ratio |\n|---|---|---|---|\n| eps0.0_pruneFalse | 0.00780 | 0.00408 | 1.91x |\n| eps0.0_pruneTrue | 0.02850 | 0.11897 | 0.24x |\n| eps0.01_pruneFalse | 0.00793 | 0.00458 | 1.73x |\n| eps0.01_pruneTrue | 0.02847 | 0.11898 | 0.24x |\n| eps0.02_pruneFalse | 0.00963 | 0.00558 | 1.73x |\n| eps0.02_pruneTrue | 0.03076 | 0.12176 | 0.25x |\n| eps0.05_pruneFalse | 0.02294 | 0.01804 | 1.27x |\n| eps0.05_pruneTrue | 0.04175 | 0.13948 | 0.30x |\n\n### 结论\n\n**bypass G3 = 1.91 >> 1.10 → IMM 训练损坏了模型权重，需要 gradient isolation。**\n\n即使完全绕过 ACIS 打分和 token selection，仅使用 IMM 训练后的 policy 权重（含 LoRA），action_loss 仍然是 baseline 的 1.91 倍。这说明退化不是 selection 机制的 overhead，而是 ACIS/LoRA 的梯度回传污染了 VLM backbone 权重。\n\n附注：pruneTrue 条件下 v7.2 反而远好于 baseline（0.24-0.30x），因为 IMM 的 LoRA 微调提供了对随机 pruning 的某种鲁棒性，但这不改变 clean 条件下权重已受损的事实。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "uuid": "3ae96c9f-b366-4fc3-bfb6-7b314cad0663",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AB75qtPX7LBuZMHe8MvvRr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3743,
+                "cache_read_input_tokens": 32584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3743
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "isUsingOverage": false
+                },
+                "uuid": "3ca77150-1998-4b75-aee4-744e8661ff37",
+                "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f"
+              }
+            }
+          ],
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both JSON files ready. Here are the results:\n\n## Bypass-ACIS Evaluation Results\n\n### Clean condition (eps=0, no pruning) — G3 diagnostic\n\n| Model | bypass-ACIS clean action_loss | baseline clean action_loss | G3 ratio |\n|---|---|---|---|\n| **v7.2 (IMM)** | 0.00780 | 0.00408 | **1.91x** |\n| **baseline** | 0.00408 | 0.00408 | 1.00x |\n\n### Full condition breakdown\n\n| Condition | v7.2 bypass-ACIS | baseline bypass-ACIS | Ratio |\n|---|---|---|---|\n| eps0.0_pruneFalse | 0.00780 | 0.00408 | 1.91x |\n| eps0.0_pruneTrue | 0.02850 | 0.11897 | 0.24x |\n| eps0.01_pruneFalse | 0.00793 | 0.00458 | 1.73x |\n| eps0.01_pruneTrue | 0.02847 | 0.11898 | 0.24x |\n| eps0.02_pruneFalse | 0.00963 | 0.00558 | 1.73x |\n| eps0.02_pruneTrue | 0.03076 | 0.12176 | 0.25x |\n| eps0.05_pruneFalse | 0.02294 | 0.01804 | 1.27x |\n| eps0.05_pruneTrue | 0.04175 | 0.13948 | 0.30x |\n\n### 结论\n\n**bypass G3 = 1.91 >> 1.10 → IMM 训练损坏了模型权重，需要 gradient isolation。**\n\n即使完全绕过 ACIS 打分和 token selection，仅使用 IMM 训练后的 policy 权重（含 LoRA），action_loss 仍然是 baseline 的 1.91 倍。这说明退化不是 selection 机制的 overhead，而是 ACIS/LoRA 的梯度回传污染了 VLM backbone 权重。\n\n附注：pruneTrue 条件下 v7.2 反而远好于 baseline（0.24-0.30x），因为 IMM 的 LoRA 微调提供了对随机 pruning 的某种鲁棒性，但这不改变 clean 条件下权重已受损的事实。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 28382,
+            "duration_api_ms": 1619334,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "a2b2fca2-5c77-4c60-a417-08e72fc7ba4f",
+            "total_cost_usd": 20.418631999999977,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 5204,
+              "cache_read_input_tokens": 95015,
+              "output_tokens": 1374,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 5204,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 669,
+                  "cache_read_input_tokens": 32584,
+                  "cache_creation_input_tokens": 3743,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3743
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2616,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0027359999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1651,
+                "outputTokens": 73141,
+                "cacheReadInputTokens": 34904832,
+                "cacheCreationInputTokens": 180272,
+                "webSearchRequests": 0,
+                "costUSD": 20.41589599999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "uuid": "b75c045b-f8d6-4749-8205-dda29b2d6b63"
+          },
+          "id": "event-000740"
+        }
+      ]
+    }
+  ]
+}

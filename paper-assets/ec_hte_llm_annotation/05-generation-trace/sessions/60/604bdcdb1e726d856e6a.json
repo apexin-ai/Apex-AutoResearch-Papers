@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "604bdcdb1e726d856e6a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code mistral hetero tau",
+  "task_key": "worker_code_mistral-hetero-tau_20260522T001452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-hetero-tau_20260522T001452_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "4cdcec11f15b212537d3d5c6472770daf4bb669778897dcdc0536cf763c69796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results:\n\n- **CSV**: 4801 lines (4800 data + 1 header) — matches expected count\n- **Script**: `artifacts/c1_multi_llm/run_mistral_hetero_tau.py`\n- **CSV**: `artifacts/c1_multi_llm/mistral_hetero_tau_results.csv`\n- **Analysis**: `artifacts/c1_multi_llm/mistral_hetero_tau_analysis.md`\n\n**Key findings**:\n- EC-HTE wins on |Bias| in **2/3** budget levels (n=500, n=1000); Global wins at n=200\n- EC-HTE wins on RMSE in **0/3** levels (higher variance from per-subgroup estimation)\n- Average Δ|Bias|: Mistral +0.0030 vs Llama +0.0163 — Llama shows larger EC-HTE improvement\n- Mistral has smaller FPR heterogeneity (0.15 vs 0.22) but larger FNR heterogeneity (0.18 vs 0.13) than Llama\n- Mistral's CM is closer to Llama than Qwen's was, with True_short being the most accurate subgroup (FPR=0.091, FNR=0.121)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

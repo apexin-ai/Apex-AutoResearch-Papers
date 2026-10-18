@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "938dd0d990b8219e08f0",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code gen length ablation c",
+  "task_key": "worker_code_gen_length_ablation_c_20260517T045550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gen_length_ablation_c_20260517T045550_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "d67b3ce1097ceca90604738024eec8635f9fbff07b21e784b7c93933ead9a0bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running correctly. Generation for 128-token length is progressing at ~1.4s/batch (63 batches for 1000 samples at batch_size=16).\n\n**Status:**\n- `gen_length_ablation_001` submitted to `cuda:0` on `gpu-6000pro-2`, status RUNNING\n- Currently generating 128-token passages for depth 1\n- Estimated timeline: ~1.4s/batch × 63 batches × 3 depths × 3 lengths for generation, plus feature extraction and classification\n- Output will be at `results/gen_length_ablation/summary.json`\n\nEstimated total runtime: ~2-3 hours (generation is the bottleneck; 128-token generation is faster than 512-token)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "131082131e9c6466de55",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh westd install tmux",
+  "task_key": "worker_ssh_westd-install-tmux_20260517T082134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-install-tmux_20260517T082134_result.json",
+    "occurrence": 1,
+    "bytes": 58,
+    "sha256": "c485b8b84aef3c97d2a12ff6eb5a7ed24ced7fba7d2154a9ac5d6094f9282f2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 安装成功。版本：**tmux 3.2a**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

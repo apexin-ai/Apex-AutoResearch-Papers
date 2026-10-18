@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6d37292898a5a74e072b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "bugfix gee and data discrepancy",
+  "task_key": "worker_bugfix_gee-and-data-discrepancy_20260522T234122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_gee-and-data-discrepancy_20260522T234122_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "fd3ff4d6fadfa088af2fc5d7a3170999b68a9609460a5722520b26fadc4fd918"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written. Here's the summary:\n\n---\n\n### GEE Bug: Data artifact, NOT code bug\n\nThe identical `Style OR == Orig OR = 4.73` in `scored_mtbench_qwen32b_formality.jsonl` is caused by **response symmetry in casual-origin pairs**: among 11 casual pairs, exactly 9/11 chose A in both trials. This makes `is_style_in_A` and `is_original_in_A` structurally indistinguishable. Perturbation test confirms — flipping one trial response produces distinct ORs (6.08 vs 3.33). The primary analysis file (`pairwise_results_mtbench_qwen32b.jsonl`) doesn't have this issue (7/11 vs 8/11 → Style OR=2.96, Orig OR=4.51).\n\n### Data Discrepancy: Three independent causes\n\n| Metric | Table 1 | cross_benchmark (old) | Cause |\n|--------|---------|----------------------|-------|\n| BT | .712 | .700 | Different scoring runs + NLI filter (73 vs 80 pairs) |\n| Likert p | .007 | .035 | Wilcoxon vs t-test (same data) |\n| Likert d | .149 | .25 | Pooled-SD vs diff-SD denominator (same data) |\n\n**Table 1 numbers are canonical** (from `mtbench_qwen32b_scoring.py`).\n\n### Fixes applied to `cross_benchmark_analysis.py`\n1. Added NLI≥0.90 filter to `load_pairwise()` (was missing)\n2. Changed Likert test from t-test to Wilcoxon + pooled-SD Cohen's d (consistent with primary analysis)\n3. Added VIF + correlation diagnostics to GEE output\n\nReport saved to `/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

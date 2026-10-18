@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6a37a4c63b150745949f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest attn k085 s47 w38 then deploy",
+  "task_key": "worker_harvest_attn_k085_s47_w38_then_deploy_20260529T050212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_attn_k085_s47_w38_then_deploy_20260529T050212_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "ef1f51dd3193d26d7422556ea6eb30bee5b9c6cccbdf955c35ff15e1cd317129"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 收割: Attn k=0.85 s47\n- SR: **47.8%**\n- vs 5-seed mean (50.8±1.3pp): **-3.0pp**（低于均值，在均值 - 2.3σ 处）\n- 状态: **success**\n\n## 部署: L2norm k=0.85 s47\n- server: westd-38929 cuda:0\n- PID: 155565\n- 30s 复查: **alive**（模型加载中）\n- cron 已注册，120s 轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

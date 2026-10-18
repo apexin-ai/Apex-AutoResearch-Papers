@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "64575c7b7c0d4fe9c053",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "exec pairwise dual 32b",
+  "task_key": "worker_exec_pairwise_dual_32b_20260520T175614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_pairwise_dual_32b_20260520T175614_result.json",
+    "occurrence": 1,
+    "bytes": 2787,
+    "sha256": "c07624a2e0732cb5d6299bd78d2c4d494c38eb10039afe3f0e273d6b7c620be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n---\n\n## 完整报告\n\n### 1. vLLM Kill + GPU 释放\n- vLLM 未在运行，无需 kill\n- GPU 全部空闲：4×98GB，0 MiB 使用\n\n### 2. 代码同步\n- `pairwise_scoring.py` 353 行写入成功\n- 关键词 trial1/trial2/dual/consistent 验证通过\n\n### 3. 完整分析 stdout\n\n```\n============================================================\n  Pairwise Comparison (Position-Controlled)\n============================================================\n  Total records: 100\n  Valid (both trials): 98\n  Consistent: 55 (56.1%)\n  Ties (inconsistent): 43 (43.9%)\n\n  Position bias:\n    Trial 1 chose A: 62/98 (63.3%)\n    Trial 2 chose A: 41/98 (41.8%)\n    Overall A rate: 103/196 (52.6%)\n\n============================================================\n  Overall Results (consistent pairs only)\n============================================================\n  N = 55\n  Formal wins: 38 (69.1%)\n  Casual wins: 17 (30.9%)\n  Formal win rate: 0.6909\n  95% CI (Wilson): [0.5597, 0.7972]\n  Sign test p-value: 0.006456\n\n============================================================\n  Directional Analysis (consistent only)\n============================================================\n  formal→casual (n=33)\n    Formal wins: 26 (78.8%), p=0.001319\n    (formal=original, casual=rewrite → formal win = prefer original)\n\n  casual→formal (n=22)\n    Formal wins: 12 (54.5%), p=0.831812\n    (casual=original, formal=rewrite → formal win = prefer rewrite)\n\n============================================================\n  NLI-Stratified Analysis (consistent only)\n============================================================\n  NLI≥0.90 (n=46): formal wins 34 (73.9%), p=0.001641\n  All (n=55): formal wins 38 (69.1%), p=0.006456\n```\n\n### 4. pairwise_summary.csv\n\n| group | n | formal_wins | casual_wins | win_rate | ci_lo | ci_hi | sign_test_p | ties | consistency_rate | position_a_rate |\n|---|---|---|---|---|---|---|---|---|---|---|\n| overall | 55 | 38 | 17 | 0.6909 | 0.5597 | 0.7972 | 0.006456 | 43 | 0.5612 | 0.5255 |\n\n### 5. pairwise_detailed.csv\n\n| group | n | formal_wins | win_rate | p_value |\n|---|---|---|---|---|\n| formal→casual | 33 | 26 | 0.7879 | 0.001319 |\n| casual→formal | 22 | 12 | 0.5455 | 0.831812 |\n| NLI≥0.90 | 46 | 34 | 0.7391 | 0.001641 |\n| All | 55 | 38 | 0.6909 | 0.006456 |\n\n### 6. 补充统计\n\n- Total: 100, Valid: 98, Consistent: 55, Ties: 43\n- Formal wins: 38, Casual wins: 17\n- formal original (n=33): formal_wins=26\n- casual original (n=22): formal_wins=12\n\n**注**：去重处理已完成（两个并行进程写入 181 行 → 100 条唯一记录）。产出文件均在 `data/pairwise_results_32b/` 和 `data/pairwise_results_32b.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

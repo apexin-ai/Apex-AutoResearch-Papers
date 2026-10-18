@@ -1,0 +1,1353 @@
+{
+  "schema_version": "1.0",
+  "id": "220eddb06291dbb1bff7",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "code ensemble reference",
+  "task_key": "worker_code_ensemble_reference_20260517T045532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_ensemble_reference_20260517T045532.jsonl",
+    "occurrence": 1,
+    "bytes": 75972,
+    "sha256": "d028475384429994afe02d81b1758357631821f6bed67324ece3eb698075711a"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "tool_call": 32,
+      "tool_result": 32,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T05:01:17.451625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T05:01:17.452033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T05:01:17.452227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recursive_gen_depth_est",
+              "filters": "{'exp_id': 'gpt2xl_ref_ablation_001'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T05:01:17.452370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4336}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T05:01:17.452498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && find . -name \"*olmo*features*\" -o -name \"*gpt2xl*features*\" -o -name \"*features_all*\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:01:17.452631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"./data/features_all.jsonl\\\\n./results/ref_model_ablation_001/olmo_features.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:01:17.452774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && ls results/gpt2xl_ref_model/ 2>/dev/null; echo \"---\"; find . -path \"*gpt2*\" -type f 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:01:17.452941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"features_gpt2xl_ref.jsonl\\\\nrun.log\\\\nsummary.json\\\\n---\\\\n./data/gpt2xl/depth_0.jsonl\\\\n./data/gpt2xl/depth_1.jsonl\\\\n./data/gpt2xl/depth_2.jsonl\\\\n./data/gpt2xl/depth_3.jsonl\\\\n./data/gpt2xl/features.jsonl\\\\n./data/gpt2xl/depth_4.jsonl\\\\n./data/gpt2xl/depth_5.jsonl\\\\n./data/gpt2xl_temp09/depth_1.jsonl\\\\n./data/gpt2xl_temp09/depth_2.jsonl\\\\n./data/gpt2xl_temp09/depth_3.jsonl\\\\n./data/gpt2xl_topk50/depth_1.jsonl\\\\n./data/gpt2xl_topk50/depth_2.jsonl\\\\n./data/gpt2xl_topk50/depth_3.jsonl\\\\n./logs/pipeline_gpt2xl.log\\\\n./logs/pipeline_gpt2xl_temp09.log\\\\n./logs/pipeline_gpt2xl_temp09.done\\\\n./logs/eval_gpt2xl_temp09.log\\\\n./logs/pipeline_gpt2xl_topk50.log\\\\n./logs/eval_gpt2xl_topk50.log\\\\n./logs/depth_extension_gpt2xl_d4d5.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:01:17.453096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && head -1 data/features_all.jsonl | python3 -c \"import json,sys; d=json.loads(sys.stdin.readline()); print(sorted(d.keys()))\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T05:01:17.453240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"['bigram_entropy', 'depth', 'entropy_of_surprisal', 'hapax_ratio', 'kurtosis_ppl', 'mean_ppl', 'mean_surprisal', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'rep_2gram', 'rep_3gram', 'rep_4gram', 'sample_id', 'skewness_ppl', 'trigram_entropy', 'type_token_ratio', 'var_ppl', 'var_surprisal']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:01:17.453369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && head -1 results/ref_model_ablation_001/olmo_features.jsonl | python3 -c \"import json,sys; d=json.loads(sys.stdin.readline()); print(sorted(d.keys()))\""
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:01:17.453492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && head -1 results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl | python3 -c \"import json,sys; d=json.loads(sys.stdin.readline()); print(sorted(d.keys()))\""
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:01:17.453616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"['bigram_entropy', 'depth', 'entropy_of_surprisal', 'hapax_ratio', 'kurtosis_ppl', 'mean_ppl', 'mean_surprisal', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'rep_2gram', 'rep_3gram', 'rep_4gram', 'sample_id', 'skewness_ppl', 'trigram_entropy', 'type_token_ratio', 'var_ppl', 'var_surprisal']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T05:01:17.453740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"['bigram_entropy', 'depth', 'entropy_of_surprisal', 'hapax_ratio', 'kurtosis_ppl', 'mean_ppl', 'mean_surprisal', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'rep_2gram', 'rep_3gram', 'rep_4gram', 'sample_id', 'skewness_ppl', 'trigram_entropy', 'type_token_ratio', 'var_ppl', 'var_surprisal']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T05:01:17.453892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && wc -l data/features_all.jsonl results/ref_model_ablation_001/olmo_features.jsonl results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T05:01:17.454028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   20000 data/features_all.jsonl\\\\n   20000 results/ref_model_ablation_001/olmo_features.jsonl\\\\n   20000 results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\\\\n   60000 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T05:01:17.454201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, roc_auc_score\nimport os\n\n# Load all three feature files\ndef load_features(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            data.append(json.loads(line))\n    return data\n\npythia = load_features(\"data/features_all.jsonl\")\nolmo = load_features(\"results/ref_model_ablation_001/olmo_features.jsonl\")\ngpt2xl = load_features(\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")\n\nprint(f\"Loaded: Pythia={len(pythia)}, OLMo={len(olmo)}, GPT2XL={len(gpt2xl)}\")\n\n# Verify sample_id alignment\nfor i in range(len(pythia)):\n    assert pythia[i]['sample_id'] == olmo[i]['sample_id'] == gpt2xl[i]['sample_id'], f\"Mismatch at {i}\"\nprint(\"All sample_ids aligned.\")\n\n# Define which features are surprisal/ppl (ref-model-dependent) vs text-intrinsic\nsurprisal_features = ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n                      'mean_ppl', 'var_ppl', 'kurtosis_ppl', 'skewness_ppl',\n                      'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl']\ntext_features = ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n                 'rep_2gram', 'rep_3gram', 'rep_4gram']\n\n# Build ensemble features: average surprisal features across 3 models, keep text features from pythia\nensemble_data = []\nfor i in range(len(pythia)):\n    row = {}\n    row['sample_id'] = pythia[i]['sample_id']\n    row['depth'] = pythia[i]['depth']\n    # Average surprisal features\n    for feat in surprisal_features:\n        row[feat] = (pythia[i][feat] + olmo[i][feat] + gpt2xl[i][feat]) / 3.0\n    # Text features (same across all, take from pythia)\n    for feat in text_features:\n        row[feat] = pythia[i][feat]\n    ensemble_data.append(row)\n\n# Prepare for classification\nfeature_cols = surprisal_features + text_features\nX = np.array([[d[f] for f in feature_cols] for d in ensemble_data])\ny = np.array([d['depth'] for d in ensemble_data])\n\nprint(f\"Feature matrix: {X.shape}, Labels: {np.unique(y, return_counts=True)}\")\n\n# 5-fold CV with RF\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\naccs = []\n# For d1v2 AUC: binary task depth>=1 vs depth==0\ny_binary = (y >= 1).astype(int)\naucs = []\n\nfor fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X[train_idx], y[train_idx])\n    pred = clf.predict(X[test_idx])\n    acc = accuracy_score(y[test_idx], pred)\n    accs.append(acc)\n    \n    # d1v2 AUC: P(depth>=1) from RF probabilities\n    proba = clf.predict_proba(X[test_idx])\n    classes = clf.classes_\n    # Sum probabilities for depth >= 1\n    mask_ge1 = classes >= 1\n    p_ge1 = proba[:, mask_ge1].sum(axis=1)\n    y_bin_test = (y[test_idx] >= 1).astype(int)\n    if len(np.unique(y_bin_test)) == 2:\n        auc = roc_auc_score(y_bin_test, p_ge1)\n        aucs.append(auc)\n    \n    print(f\"  Fold {fold+1}: acc={acc:.4f}\" + (f\", d1v2_auc={aucs[-1]:.4f}\" if aucs else \"\"))\n\nmean_acc = np.mean(accs)\nstd_acc = np.std(accs)\nci_lo = mean_acc - 1.96 * std_acc\nci_hi = mean_acc + 1.96 * std_acc\nmean_auc = np.mean(aucs) if aucs else None\n\nprint(f\"\\nEnsemble 4-class accuracy: {mean_acc:.4f} ± {std_acc:.4f}\")\nprint(f\"95% CI: [{ci_lo:.4f}, {ci_hi:.4f}]\")\nif mean_auc:\n    print(f\"d1v2 AUC: {mean_auc:.4f}\")\n\n# Compare with baselines\npythia_ref = 0.785\nolmo_ref = 0.745\ngpt2xl_ref = 0.673\n\nprint(f\"\\nComparison:\")\nprint(f\"  Pythia ref alone: {pythia_ref:.1%}\")\nprint(f\"  OLMo ref alone:   {olmo_ref:.1%}\")\nprint(f\"  GPT-2 XL ref:     {gpt2xl_ref:.1%}\")\nprint(f\"  Ensemble (3-model avg): {mean_acc:.1%}\")\nprint(f\"  vs GPT-2 XL: {(mean_acc - gpt2xl_ref)*100:+.1f}pp\")\nprint(f\"  vs OLMo:     {(mean_acc - olmo_ref)*100:+.1f}pp\")\nprint(f\"  vs Pythia:   {(mean_acc - pythia_ref)*100:+.1f}pp\")\n\n# Hypothesis check\nhyp_pass = mean_acc > gpt2xl_ref + 0.05\nprint(f\"\\nHypothesis (ensemble > GPT2XL + 5pp): {'PASS' if hyp_pass else 'FAIL'}\")\n\n# Save results\nos.makedirs(\"results/ensemble_reference\", exist_ok=True)\nsummary = {\n    \"n_ref_models\": 3,\n    \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"],\n    \"ensemble_4class_acc\": round(mean_acc, 4),\n    \"ensemble_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    \"ensemble_d1v2_auc\": round(mean_auc, 4) if mean_auc else None,\n    \"vs_pythia_ref\": round((mean_acc - pythia_ref) * 100, 1),\n    \"vs_olmo_ref\": round((mean_acc - olmo_ref) * 100, 1),\n    \"vs_gpt2xl_ref\": round((mean_acc - gpt2xl_ref) * 100, 1),\n    \"hypothesis_pass\": hyp_pass,\n    \"conclusion\": f\"3-model ensemble achieves {mean_acc:.1%} 4-class accuracy, \"\n                  f\"{(mean_acc - gpt2xl_ref)*100:+.1f}pp vs GPT-2 XL (worst single ref). \"\n                  f\"{'Hypothesis confirmed.' if hyp_pass else 'Hypothesis NOT confirmed.'}\"\n}\n\nwith open(\"results/ensemble_reference/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(f\"\\nSaved to results/ensemble_reference/summary.json\")\nprint(json.dumps(summary, indent=2))\nEOF",
+              "warn": "True",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T05:01:17.454441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded: Pythia=20000, OLMo=20000, GPT2XL=20000\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 24, in <module>\\\\nAssertionError: Mismatch at 5000\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T05:01:17.454598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 -c \"\nimport json\ndef get_ids(path, n=5):\n    with open(path) as f:\n        return [json.loads(next(f))['sample_id'] for _ in range(n)]\ndef get_ids_at(path, pos, n=3):\n    data = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if i >= pos and i < pos+n:\n                data.append(json.loads(line)['sample_id'])\n            if i >= pos+n:\n                break\n    return data\n\nprint('Pythia [0:5]:', get_ids('data/features_all.jsonl'))\nprint('OLMo [0:5]:', get_ids('results/ref_model_ablation_001/olmo_features.jsonl'))\nprint('GPT2XL [0:5]:', get_ids('results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl'))\nprint()\nprint('Pythia [4998:5002]:', get_ids_at('data/features_all.jsonl', 4998, 4))\nprint('OLMo [4998:5002]:', get_ids_at('results/ref_model_ablation_001/olmo_features.jsonl', 4998, 4))\nprint('GPT2XL [4998:5002]:', get_ids_at('results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl', 4998, 4))\n\"\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T05:01:17.454738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pythia [0:5]: [0, 1, 2, 3, 4]\\\\nOLMo [0:5]: [0, 1, 2, 3, 4]\\\\nGPT2XL [0:5]: [0, 1, 2, 3, 4]\\\\n\\\\nPythia [4998:5002]: [4998, 4999, 5000, 5001]\\\\nOLMo [4998:5002]: [4998, 4999, 5000, 5001]\\\\nGPT2XL [4998:5002]: [4998, 4999, 0, 1]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T05:01:17.454999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, roc_auc_score\nimport os\n\ndef load_features(path):\n    data = {}\n    with open(path) as f:\n        for line in f:\n            d = json.loads(line)\n            key = (d['sample_id'], d['depth'])\n            data[key] = d\n    return data\n\npythia = load_features(\"data/features_all.jsonl\")\nolmo = load_features(\"results/ref_model_ablation_001/olmo_features.jsonl\")\ngpt2xl = load_features(\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")\n\nprint(f\"Unique keys: Pythia={len(pythia)}, OLMo={len(olmo)}, GPT2XL={len(gpt2xl)}\")\n\n# Find common keys\ncommon_keys = set(pythia.keys()) & set(olmo.keys()) & set(gpt2xl.keys())\nprint(f\"Common (sample_id, depth) keys: {len(common_keys)}\")\n\nif len(common_keys) == 0:\n    print(\"ERROR: no overlap\")\n    exit(1)\n\nsurprisal_features = ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n                      'mean_ppl', 'var_ppl', 'kurtosis_ppl', 'skewness_ppl',\n                      'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl']\ntext_features = ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n                 'rep_2gram', 'rep_3gram', 'rep_4gram']\nfeature_cols = surprisal_features + text_features\n\n# Build ensemble features\nrows = []\nfor key in sorted(common_keys):\n    p, o, g = pythia[key], olmo[key], gpt2xl[key]\n    row = {'depth': p['depth']}\n    for feat in surprisal_features:\n        row[feat] = (p[feat] + o[feat] + g[feat]) / 3.0\n    for feat in text_features:\n        row[feat] = p[feat]\n    rows.append(row)\n\nX = np.array([[r[f] for f in feature_cols] for r in rows])\ny = np.array([r['depth'] for r in rows])\n\nprint(f\"Feature matrix: {X.shape}\")\nprint(f\"Label distribution: {dict(zip(*np.unique(y, return_counts=True)))}\")\n\n# 5-fold CV\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\naccs = []\naucs = []\n\nfor fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X[train_idx], y[train_idx])\n    pred = clf.predict(X[test_idx])\n    acc = accuracy_score(y[test_idx], pred)\n    accs.append(acc)\n    \n    proba = clf.predict_proba(X[test_idx])\n    classes = clf.classes_\n    mask_ge1 = classes >= 1\n    p_ge1 = proba[:, mask_ge1].sum(axis=1)\n    y_bin_test = (y[test_idx] >= 1).astype(int)\n    if len(np.unique(y_bin_test)) == 2:\n        auc = roc_auc_score(y_bin_test, p_ge1)\n        aucs.append(auc)\n    \n    print(f\"  Fold {fold+1}: acc={acc:.4f}\" + (f\", d1v2_auc={auc:.4f}\" if aucs else \"\"))\n\nmean_acc = np.mean(accs)\nstd_acc = np.std(accs)\nci_lo = mean_acc - 1.96 * std_acc\nci_hi = mean_acc + 1.96 * std_acc\nmean_auc = np.mean(aucs) if aucs else None\n\nprint(f\"\\nEnsemble 4-class accuracy: {mean_acc:.4f} ± {std_acc:.4f}\")\nprint(f\"95% CI: [{ci_lo:.4f}, {ci_hi:.4f}]\")\nif mean_auc:\n    print(f\"d1v2 AUC: {mean_auc:.4f}\")\n\npythia_ref = 0.785\nolmo_ref = 0.745\ngpt2xl_ref = 0.673\n\nprint(f\"\\nComparison:\")\nprint(f\"  Pythia ref alone: {pythia_ref:.1%}\")\nprint(f\"  OLMo ref alone:   {olmo_ref:.1%}\")\nprint(f\"  GPT-2 XL ref:     {gpt2xl_ref:.1%}\")\nprint(f\"  Ensemble (3-model avg): {mean_acc:.1%}\")\nprint(f\"  vs GPT-2 XL: {(mean_acc - gpt2xl_ref)*100:+.1f}pp\")\nprint(f\"  vs OLMo:     {(mean_acc - olmo_ref)*100:+.1f}pp\")\nprint(f\"  vs Pythia:   {(mean_acc - pythia_ref)*100:+.1f}pp\")\n\nhyp_pass = mean_acc > gpt2xl_ref + 0.05\nprint(f\"\\nHypothesis (ensemble > GPT2XL + 5pp): {'PASS' if hyp_pass else 'FAIL'}\")\n\nos.makedirs(\"results/ensemble_reference\", exist_ok=True)\nsummary = {\n    \"n_ref_models\": 3,\n    \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"],\n    \"n_samples\": len(common_keys),\n    \"ensemble_4class_acc\": round(mean_acc, 4),\n    \"ensemble_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    \"ensemble_d1v2_auc\": round(mean_auc, 4) if mean_auc else None,\n    \"vs_pythia_ref\": round((mean_acc - pythia_ref) * 100, 1),\n    \"vs_olmo_ref\": round((mean_acc - olmo_ref) * 100, 1),\n    \"vs_gpt2xl_ref\": round((mean_acc - gpt2xl_ref) * 100, 1),\n    \"hypothesis_pass\": hyp_pass,\n    \"conclusion\": f\"3-model ensemble achieves {mean_acc:.1%} 4-class accuracy, \"\n                  f\"{(mean_acc - gpt2xl_ref)*100:+.1f}pp vs GPT-2 XL (worst single ref). \"\n                  f\"{'Hypothesis confirmed.' if hyp_pass else 'Hypothesis NOT confirmed.'}\"\n}\n\nwith open(\"results/ensemble_reference/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(f\"\\nSaved to results/ensemble_reference/summary.json\")\nprint(json.dumps(summary, indent=2))\nEOF",
+              "warn": "True",
+              "timeout": "180000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T05:01:17.455244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Unique keys: Pythia=20000, OLMo=20000, GPT2XL=20000\\\\nCommon (sample_id, depth) keys: 5000\\\\nFeature matrix: (5000, 19)\\\\nLabel distribution: {np.int64(0): np.int64(5000)}\\\\n\\\", \\\"stderr\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/_array_api.py:878: RuntimeWarning: overflow encountered in cast\\\\n  array = numpy.asarray(array, order=order, dtype=dtype)\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 62, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/base.py\\\\\\\", line 1336, in wrapper\\\\n    return fit_method(estimator, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/ensemble/_forest.py\\\\\\\", line 374, in fit\\\\n    estimator._compute_missing_values_in_feature_mask(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/tree/_classes.py\\\\\\\", line 225, in _compute_missing_values_in_feature_mask\\\\n    _assert_all_finite_element_wise(X, xp=np, allow_nan=True, **common_kwargs)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py\\\\\\\", line 182, in _assert_all_finite_element_wise\\\\n    raise ValueError(msg_err)\\\\nValueError: Input X contains infinity or a value too large for dtype('float32').\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T05:01:17.455411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 << 'EOF'\nimport json\nfrom collections import Counter\n\ndef analyze(path):\n    depths = Counter()\n    ids_per_depth = {}\n    with open(path) as f:\n        for line in f:\n            d = json.loads(line)\n            dep = d['depth']\n            depths[dep] += 1\n            if dep not in ids_per_depth:\n                ids_per_depth[dep] = []\n            if len(ids_per_depth[dep]) < 3:\n                ids_per_depth[dep].append(d['sample_id'])\n    return depths, ids_per_depth\n\nfor name, path in [(\"Pythia\", \"data/features_all.jsonl\"),\n                   (\"OLMo\", \"results/ref_model_ablation_001/olmo_features.jsonl\"),\n                   (\"GPT2XL\", \"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")]:\n    depths, ids = analyze(path)\n    print(f\"{name}: depths={dict(sorted(depths.items()))}\")\n    for dep in sorted(ids.keys()):\n        print(f\"  depth {dep} first ids: {ids[dep]}\")\n    print()\nEOF"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T05:01:17.455564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pythia: depths={0: 5000, 1: 5000, 2: 5000, 3: 5000}\\\\n  depth 0 first ids: [0, 1, 2]\\\\n  depth 1 first ids: [5000, 5001, 5002]\\\\n  depth 2 first ids: [10000, 10001, 10002]\\\\n  depth 3 first ids: [15000, 15001, 15002]\\\\n\\\\nOLMo: depths={0: 5000, 1: 5000, 2: 5000, 3: 5000}\\\\n  depth 0 first ids: [0, 1, 2]\\\\n  depth 1 first ids: [5000, 5001, 5002]\\\\n  depth 2 first ids: [10000, 10001, 10002]\\\\n  depth 3 first ids: [15000, 15001, 15002]\\\\n\\\\nGPT2XL: depths={0: 5000, 1: 5000, 2: 5000, 3: 5000}\\\\n  depth 0 first ids: [0, 1, 2]\\\\n  depth 1 first ids: [0, 1, 2]\\\\n  depth 2 first ids: [0, 1, 2]\\\\n  depth 3 first ids: [0, 1, 2]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T05:01:17.455740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, roc_auc_score\nimport os\n\ndef load_features_list(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            data.append(json.loads(line))\n    return data\n\npythia = load_features_list(\"data/features_all.jsonl\")\nolmo = load_features_list(\"results/ref_model_ablation_001/olmo_features.jsonl\")\ngpt2xl = load_features_list(\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")\n\n# Verify depth alignment (row-by-row)\nfor i in range(len(pythia)):\n    assert pythia[i]['depth'] == olmo[i]['depth'] == gpt2xl[i]['depth'], f\"Depth mismatch at row {i}\"\nprint(\"All rows depth-aligned (by position).\")\n\nsurprisal_features = ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n                      'mean_ppl', 'var_ppl', 'kurtosis_ppl', 'skewness_ppl',\n                      'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl']\ntext_features = ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n                 'rep_2gram', 'rep_3gram', 'rep_4gram']\nfeature_cols = surprisal_features + text_features\n\n# Build ensemble: average surprisal features\nX_rows = []\ny_list = []\nfor i in range(len(pythia)):\n    row = []\n    for feat in surprisal_features:\n        row.append((pythia[i][feat] + olmo[i][feat] + gpt2xl[i][feat]) / 3.0)\n    for feat in text_features:\n        row.append(pythia[i][feat])\n    X_rows.append(row)\n    y_list.append(pythia[i]['depth'])\n\nX = np.array(X_rows, dtype=np.float64)\ny = np.array(y_list)\n\n# Check for inf/nan\ninf_mask = ~np.isfinite(X)\nif inf_mask.any():\n    n_bad = inf_mask.sum()\n    print(f\"WARNING: {n_bad} non-finite values found. Replacing with column median.\")\n    for col in range(X.shape[1]):\n        bad = ~np.isfinite(X[:, col])\n        if bad.any():\n            median_val = np.median(X[np.isfinite(X[:, col]), col])\n            X[bad, col] = median_val\n\nprint(f\"Feature matrix: {X.shape}, Labels: {dict(zip(*np.unique(y, return_counts=True)))}\")\n\n# 5-fold CV\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\naccs = []\naucs = []\nfold_details = []\n\nfor fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X[train_idx], y[train_idx])\n    pred = clf.predict(X[test_idx])\n    acc = accuracy_score(y[test_idx], pred)\n    accs.append(acc)\n    \n    proba = clf.predict_proba(X[test_idx])\n    classes = clf.classes_\n    mask_ge1 = classes >= 1\n    p_ge1 = proba[:, mask_ge1].sum(axis=1)\n    y_bin_test = (y[test_idx] >= 1).astype(int)\n    auc = roc_auc_score(y_bin_test, p_ge1) if len(np.unique(y_bin_test)) == 2 else None\n    if auc:\n        aucs.append(auc)\n    \n    fold_details.append({\"fold\": fold+1, \"acc\": round(acc, 4), \"d1v2_auc\": round(auc, 4) if auc else None})\n    print(f\"  Fold {fold+1}: acc={acc:.4f}, d1v2_auc={auc:.4f}\" if auc else f\"  Fold {fold+1}: acc={acc:.4f}\")\n\nmean_acc = np.mean(accs)\nstd_acc = np.std(accs)\nci_lo = mean_acc - 1.96 * std_acc\nci_hi = mean_acc + 1.96 * std_acc\nmean_auc = np.mean(aucs) if aucs else None\n\nprint(f\"\\n{'='*50}\")\nprint(f\"Ensemble 4-class accuracy: {mean_acc:.4f} ± {std_acc:.4f}\")\nprint(f\"95% CI: [{ci_lo:.4f}, {ci_hi:.4f}]\")\nif mean_auc:\n    print(f\"d1v2 AUC: {mean_auc:.4f}\")\n\npythia_ref = 0.785\nolmo_ref = 0.745\ngpt2xl_ref = 0.673\n\nprint(f\"\\nComparison:\")\nprint(f\"  Pythia ref alone: {pythia_ref:.1%}\")\nprint(f\"  OLMo ref alone:   {olmo_ref:.1%}\")\nprint(f\"  GPT-2 XL ref:     {gpt2xl_ref:.1%}\")\nprint(f\"  Ensemble (3-model avg): {mean_acc:.1%}\")\nprint(f\"  vs GPT-2 XL: {(mean_acc - gpt2xl_ref)*100:+.1f}pp\")\nprint(f\"  vs OLMo:     {(mean_acc - olmo_ref)*100:+.1f}pp\")\nprint(f\"  vs Pythia:   {(mean_acc - pythia_ref)*100:+.1f}pp\")\n\nhyp_pass = mean_acc > gpt2xl_ref + 0.05\nprint(f\"\\nHypothesis (ensemble > GPT2XL + 5pp): {'PASS' if hyp_pass else 'FAIL'}\")\n\nos.makedirs(\"results/ensemble_reference\", exist_ok=True)\nsummary = {\n    \"n_ref_models\": 3,\n    \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"],\n    \"n_samples\": len(pythia),\n    \"ensemble_4class_acc\": round(mean_acc, 4),\n    \"ensemble_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    \"ensemble_d1v2_auc\": round(mean_auc, 4) if mean_auc else None,\n    \"fold_details\": fold_details,\n    \"vs_pythia_ref\": round((mean_acc - pythia_ref) * 100, 1),\n    \"vs_olmo_ref\": round((mean_acc - olmo_ref) * 100, 1),\n    \"vs_gpt2xl_ref\": round((mean_acc - gpt2xl_ref) * 100, 1),\n    \"hypothesis_pass\": hyp_pass,\n    \"conclusion\": f\"3-model ensemble achieves {mean_acc:.1%} 4-class accuracy, \"\n                  f\"{(mean_acc - gpt2xl_ref)*100:+.1f}pp vs GPT-2 XL (worst single ref). \"\n                  f\"{'Hypothesis confirmed.' if hyp_pass else 'Hypothesis NOT confirmed.'}\"\n}\n\nwith open(\"results/ensemble_reference/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(f\"\\nSaved: results/ensemble_reference/summary.json\")\nprint(json.dumps(summary, indent=2))\nEOF",
+              "warn": "True",
+              "timeout": "180000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T05:01:17.455986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"All rows depth-aligned (by position).\\\\nFeature matrix: (20000, 19), Labels: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000)}\\\\n\\\", \\\"stderr\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/_array_api.py:878: RuntimeWarning: overflow encountered in cast\\\\n  array = numpy.asarray(array, order=order, dtype=dtype)\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 67, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/base.py\\\\\\\", line 1336, in wrapper\\\\n    return fit_method(estimator, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/ensemble/_forest.py\\\\\\\", line 374, in fit\\\\n    estimator._compute_missing_values_in_feature_mask(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/tree/_classes.py\\\\\\\", line 225, in _compute_missing_values_in_feature_mask\\\\n    _assert_all_finite_element_wise(X, xp=np, allow_nan=True, **common_kwargs)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py\\\\\\\", line 182, in _assert_all_finite_element_wise\\\\n    raise ValueError(msg_err)\\\\nValueError: Input X contains infinity or a value too large for dtype('float32').\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T05:01:17.456198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 << 'EOF'\nimport json\nimport numpy as np\n\ndef load_features_list(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            data.append(json.loads(line))\n    return data\n\npythia = load_features_list(\"data/features_all.jsonl\")\nolmo = load_features_list(\"results/ref_model_ablation_001/olmo_features.jsonl\")\ngpt2xl = load_features_list(\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")\n\nsurprisal_features = ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n                      'mean_ppl', 'var_ppl', 'kurtosis_ppl', 'skewness_ppl',\n                      'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl']\ntext_features = ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n                 'rep_2gram', 'rep_3gram', 'rep_4gram']\n\n# Check for problematic values in each dataset\nfor name, data in [(\"Pythia\", pythia), (\"OLMo\", olmo), (\"GPT2XL\", gpt2xl)]:\n    issues = {}\n    for feat in surprisal_features + text_features:\n        vals = [d[feat] for d in data]\n        arr = np.array(vals, dtype=np.float64)\n        n_inf = np.isinf(arr).sum()\n        n_nan = np.isnan(arr).sum()\n        max_val = np.nanmax(arr[np.isfinite(arr)]) if np.isfinite(arr).any() else 0\n        if n_inf > 0 or n_nan > 0 or max_val > 1e30:\n            issues[feat] = {\"inf\": int(n_inf), \"nan\": int(n_nan), \"max\": float(max_val)}\n    if issues:\n        print(f\"{name} issues:\")\n        for f, v in issues.items():\n            print(f\"  {f}: inf={v['inf']}, nan={v['nan']}, max={v['max']:.2e}\")\n    else:\n        print(f\"{name}: no issues\")\n    print()\nEOF"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T05:01:17.456385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && python3 << \\\\\\\\'EOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\ndef load_features_list(path):\\\\\\\\n    data = []\\\\\\\\n    with open(path) as f:\\\\\\\\n        for line in f:\\\\\\\\n            data.append(json.loads(line))\\\\\\\\n    return data\\\\\\\\n\\\\\\\\npythia = load_features_list(\\\\\\\"data/features_all.jsonl\\\\\\\")\\\\\\\\nolmo = load_features_list(\\\\\\\"results/ref_model_ablation_001/olmo_features.jsonl\\\\\\\")\\\\\\\\ngpt2xl = load_features_list(\\\\\\\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\\\\\\\")\\\\\\\\n\\\\\\\\nsurprisal_features = [\\\\\\\\'mean_surprisal\\\\\\\\', \\\\\\\\'var_surprisal\\\\\\\\', \\\\\\\\'entropy_of_surprisal\\\\\\\\',\\\\\\\\n                      \\\\\\\\'mean_ppl\\\\\\\\', \\\\\\\\'var_ppl\\\\\\\\', \\\\\\\\'kurtosis_ppl\\\\\\\\', \\\\\\\\'skewness_ppl\\\\\\\\',\\\\\\\\n                      \\\\\\\\'p10_ppl\\\\\\\\', \\\\\\\\'p25_ppl\\\\\\\\', \\\\\\\\'p50_ppl\\\\\\\\', \\\\\\\\'p75_ppl\\\\\\\\', \\\\\\\\'p90_ppl\\\\\\\\']\\\\\\\\ntext_features = [\\\\\\\\'type_token_ratio\\\\\\\\', \\\\\\\\'hapax_ratio\\\\\\\\', \\\\\\\\'bigram_entropy\\\\\\\\', \\\\\\\\'trigram_entropy\\\\\\\\',\\\\\\\\n                 \\\\\\\\'rep_2gram\\\\\\\\', \\\\\\\\'rep_3gram\\\\\\\\', \\\\\\\\'rep_4gram\\\\\\\\']\\\\\\\\n\\\\\\\\n# Check for problematic values in each dataset\\\\\\\\nfor name, data in [(\\\\\\\"Pythia\\\\\\\", pythia), (\\\\\\\"OLMo\\\\\\\", olmo), (\\\\\\\"GPT2XL\\\\\\\", gpt2xl)]:\\\\\\\\n    issues = {}\\\\\\\\n    for feat in surprisal_features + text_features:\\\\\\\\n        vals = [d[feat] for d in data]\\\\\\\\n        arr = np.array(vals, dtype=np.float64)\\\\\\\\n        n_inf = np.isinf(arr).sum()\\\\\\\\n        n_nan = np.isnan(arr).sum()\\\\\\\\n        max_val = np.nanmax(arr[np.isfinite(arr)]) if np.isfinite(arr).any() else 0\\\\\\\\n        if n_inf > 0 or n_nan > 0 or max_val > 1e30:\\\\\\\\n            issues[feat] = {\\\\\\\"inf\\\\\\\": int(n_inf), \\\\\\\"nan\\\\\\\": int(n_nan), \\\\\\\"max\\\\\\\": float(max_val)}\\\\\\\\n    if issues:\\\\\\\\n        print(f\\\\\\\"{name} issues:\\\\\\\")\\\\\\\\n        for f, v in issues.items():\\\\\\\\n            print(f\\\\\\\"\n…[truncated 408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T05:01:17.456567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json\nimport numpy as np\n\ndef load_features_list(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            data.append(json.loads(line))\n    return data\n\npythia = load_features_list(\"data/features_all.jsonl\")\nolmo = load_features_list(\"results/ref_model_ablation_001/olmo_features.jsonl\")\ngpt2xl = load_features_list(\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")\n\nsurprisal_features = ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n                      'mean_ppl', 'var_ppl', 'kurtosis_ppl', 'skewness_ppl',\n                      'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl']\ntext_features = ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n                 'rep_2gram', 'rep_3gram', 'rep_4gram']\n\nfor name, data in [(\"Pythia\", pythia), (\"OLMo\", olmo), (\"GPT2XL\", gpt2xl)]:\n    issues = {}\n    for feat in surprisal_features + text_features:\n        vals = [d[feat] for d in data]\n        arr = np.array(vals, dtype=np.float64)\n        n_inf = np.isinf(arr).sum()\n        n_nan = np.isnan(arr).sum()\n        finite = arr[np.isfinite(arr)]\n        max_val = float(np.max(finite)) if len(finite) > 0 else 0\n        if n_inf > 0 or n_nan > 0 or max_val > 1e15:\n            issues[feat] = f\"inf={int(n_inf)}, nan={int(n_nan)}, max={max_val:.2e}\"\n    if issues:\n        print(f\"{name}:\")\n        for f, v in issues.items():\n            print(f\"  {f}: {v}\")\n    else:\n        print(f\"{name}: clean\")\nEOF",
+              "warn": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T05:01:17.456717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pythia:\\\\n  var_ppl: inf=0, nan=0, max=1.47e+17\\\\nOLMo:\\\\n  var_ppl: inf=0, nan=0, max=4.44e+20\\\\nGPT2XL:\\\\n  mean_ppl: inf=0, nan=0, max=1.31e+33\\\\n  var_ppl: inf=0, nan=0, max=8.37e+67\\\\n  p90_ppl: inf=0, nan=0, max=2.44e+31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T05:01:17.456918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, roc_auc_score\nimport os\n\ndef load_features_list(path):\n    data = []\n    with open(path) as f:\n        for line in f:\n            data.append(json.loads(line))\n    return data\n\npythia = load_features_list(\"data/features_all.jsonl\")\nolmo = load_features_list(\"results/ref_model_ablation_001/olmo_features.jsonl\")\ngpt2xl = load_features_list(\"results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\")\n\nsurprisal_features = ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n                      'mean_ppl', 'var_ppl', 'kurtosis_ppl', 'skewness_ppl',\n                      'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl']\ntext_features = ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n                 'rep_2gram', 'rep_3gram', 'rep_4gram']\nfeature_cols = surprisal_features + text_features\n\n# Build ensemble with log1p for ppl/surprisal features to handle extreme values\nX_rows = []\ny_list = []\nfor i in range(len(pythia)):\n    row = []\n    for feat in surprisal_features:\n        avg = (pythia[i][feat] + olmo[i][feat] + gpt2xl[i][feat]) / 3.0\n        # log1p transform for magnitude features to compress range\n        if 'ppl' in feat or 'surprisal' in feat:\n            avg = np.log1p(abs(avg)) * np.sign(avg)\n        row.append(avg)\n    for feat in text_features:\n        row.append(pythia[i][feat])\n    X_rows.append(row)\n    y_list.append(pythia[i]['depth'])\n\nX = np.array(X_rows, dtype=np.float64)\ny = np.array(y_list)\n\n# Replace any remaining inf/nan\nfor col in range(X.shape[1]):\n    bad = ~np.isfinite(X[:, col])\n    if bad.any():\n        median_val = np.median(X[np.isfinite(X[:, col]), col])\n        X[bad, col] = median_val\n\nprint(f\"X shape: {X.shape}, range: [{X.min():.4f}, {X.max():.4f}]\")\nprint(f\"Labels: {dict(zip(*np.unique(y, return_counts=True)))}\")\n\n# Also prepare single-model features with same log1p transform for fair comparison\ndef prepare_single(data):\n    rows = []\n    for d in data:\n        row = []\n        for feat in surprisal_features:\n            v = d[feat]\n            if 'ppl' in feat or 'surprisal' in feat:\n                v = np.log1p(abs(v)) * np.sign(v)\n            row.append(v)\n        for feat in text_features:\n            row.append(d[feat])\n        rows.append(row)\n    Xs = np.array(rows, dtype=np.float64)\n    for col in range(Xs.shape[1]):\n        bad = ~np.isfinite(Xs[:, col])\n        if bad.any():\n            Xs[bad, col] = np.median(Xs[np.isfinite(Xs[:, col]), col])\n    return Xs\n\nX_pythia = prepare_single(pythia)\nX_olmo = prepare_single(olmo)\nX_gpt2xl = prepare_single(gpt2xl)\n\n# Run 5-fold CV for all 4 conditions\ndef run_cv(X_in, y_in, label):\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n    accs = []\n    aucs = []\n    for train_idx, test_idx in skf.split(X_in, y_in):\n        clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n        clf.fit(X_in[train_idx], y_in[train_idx])\n        pred = clf.predict(X_in[test_idx])\n        accs.append(accuracy_score(y_in[test_idx], pred))\n        \n        proba = clf.predict_proba(X_in[test_idx])\n        classes = clf.classes_\n        p_ge1 = proba[:, classes >= 1].sum(axis=1)\n        y_bin = (y_in[test_idx] >= 1).astype(int)\n        if len(np.unique(y_bin)) == 2:\n            aucs.append(roc_auc_score(y_bin, p_ge1))\n    \n    mean_acc = np.mean(accs)\n    std_acc = np.std(accs)\n    mean_auc = np.mean(aucs) if aucs else None\n    print(f\"  {label}: acc={mean_acc:.4f}±{std_acc:.4f}\" + (f\", d1v2_auc={mean_auc:.4f}\" if mean_auc else \"\"))\n    return mean_acc, std_acc, mean_auc, accs\n\nprint(\"\\n=== Results (all with log1p transform, same RF config) ===\")\nacc_p, std_p, auc_p, folds_p = run_cv(X_pythia, y, \"Pythia-1.4B ref\")\nacc_o, std_o, auc_o, folds_o = run_cv(X_olmo, y, \"OLMo-1B ref\")\nacc_g, std_g, auc_g, folds_g = run_cv(X_gpt2xl, y, \"GPT-2 XL ref\")\nacc_e, std_e, auc_e, folds_e = run_cv(X, y, \"Ensemble (3-model avg)\")\n\nci_lo = acc_e - 1.96 * std_e\nci_hi = acc_e + 1.96 * std_e\n\nprint(f\"\\n{'='*50}\")\nprint(f\"Ensemble 95% CI: [{ci_lo:.4f}, {ci_hi:.4f}]\")\nprint(f\"\\nDelta vs baselines:\")\nprint(f\"  vs Pythia:  {(acc_e - acc_p)*100:+.1f}pp\")\nprint(f\"  vs OLMo:    {(acc_e - acc_o)*100:+.1f}pp\")\nprint(f\"  vs GPT2XL:  {(acc_e - acc_g)*100:+.1f}pp\")\n\nhyp_pass = acc_e > acc_g + 0.05\nprint(f\"\\nHypothesis (ensemble > GPT2XL + 5pp): {'PASS' if hyp_pass else 'FAIL'}\")\nprint(f\"  (ensemble={acc_e:.4f} vs threshold={acc_g + 0.05:.4f})\")\n\n# Save\nos.makedirs(\"results/ensemble_reference\", exist_ok=True)\nsummary = {\n    \"n_ref_models\": 3,\n    \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"],\n    \"n_samples\": len(pythia),\n    \"transform\": \"log1p on ppl/surprisal features\",\n    \"ensemble_4class_acc\": round(acc_e, 4),\n    \"ensemble_ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    \"ensemble_d1v2_auc\": round(auc_e, 4) if auc_e else None,\n    \"single_model_accs_log1p\": {\n        \"pythia_1.4b\": round(acc_p, 4),\n        \"olmo_1b\": round(acc_o, 4),\n        \"gpt2_xl\": round(acc_g, 4)\n    },\n    \"vs_pythia_ref\": round((acc_e - acc_p) * 100, 1),\n    \"vs_olmo_ref\": round((acc_e - acc_o) * 100, 1),\n    \"vs_gpt2xl_ref\": round((acc_e - acc_g) * 100, 1),\n    \"hypothesis_pass\": hyp_pass,\n    \"conclusion\": f\"3-model ensemble achieves {acc_e:.1%} (log1p transform). \"\n                  f\"Delta vs GPT-2 XL: {(acc_e - acc_g)*100:+.1f}pp. \"\n                  f\"{'Hypothesis confirmed.' if hyp_pass else 'Hypothesis NOT confirmed.'}\"\n}\n\nwith open(\"results/ensemble_reference/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(f\"\\nSaved: results/ensemble_reference/summary.json\")\nprint(json.dumps(summary, indent=2))\nEOF",
+              "warn": "True",
+              "timeout": "300000"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T05:01:17.457177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"X shape: (20000, 19), range: [0.0000, 155.2997]\\\\nLabels: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000)}\\\\n\\\\n=== Results (all with log1p transform, same RF config) ===\\\\n  Pythia-1.4B ref: acc=0.7857±0.0056, d1v2_auc=0.9999\\\\n  OLMo-1B ref: acc=0.7425±0.0048, d1v2_auc=0.9984\\\\n  GPT-2 XL ref: acc=0.7005±0.0085, d1v2_auc=0.9968\\\\n  Ensemble (3-model avg): acc=0.7365±0.0054, d1v2_auc=0.9989\\\\n\\\\n==================================================\\\\nEnsemble 95% CI: [0.7258, 0.7471]\\\\n\\\\nDelta vs baselines:\\\\n  vs Pythia:  -4.9pp\\\\n  vs OLMo:    -0.6pp\\\\n  vs GPT2XL:  +3.6pp\\\\n\\\\nHypothesis (ensemble > GPT2XL + 5pp): FAIL\\\\n  (ensemble=0.7365 vs threshold=0.7505)\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 148, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\\\\\", line 179, in dump\\\\n    for chunk in iterable:\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 432, in _iterencode\\\\n    yield from _iterencode_dict(o, _current_indent_level)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 439, in _iterencode\\\\n    o = _default(o)\\\\n        ^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 180, in default\\\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\\\nTypeError: Object of type bool is not JSON serializable\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T05:01:17.457359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json, os\n\nsummary = {\n    \"n_ref_models\": 3,\n    \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"],\n    \"n_samples\": 20000,\n    \"transform\": \"log1p on ppl/surprisal features\",\n    \"ensemble_4class_acc\": 0.7365,\n    \"ensemble_ci_95\": [0.7258, 0.7471],\n    \"ensemble_d1v2_auc\": 0.9989,\n    \"single_model_accs_log1p\": {\n        \"pythia_1.4b\": 0.7857,\n        \"olmo_1b\": 0.7425,\n        \"gpt2_xl\": 0.7005\n    },\n    \"vs_pythia_ref\": -4.9,\n    \"vs_olmo_ref\": -0.6,\n    \"vs_gpt2xl_ref\": 3.6,\n    \"hypothesis_pass\": False,\n    \"note\": \"log1p transform applied uniformly; baseline numbers differ slightly from previously reported (78.5/74.5/67.3) due to consistent transform. GPT-2 XL improves from 67.3->70.05 with log1p.\",\n    \"conclusion\": \"3-model ensemble achieves 73.65% (log1p). +3.6pp vs GPT-2 XL but -4.9pp vs Pythia. Averaging hurts because it dilutes the best model's signal. Hypothesis NOT confirmed.\"\n}\n\nos.makedirs(\"results/ensemble_reference\", exist_ok=True)\nwith open(\"results/ensemble_reference/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(\"Saved.\")\nprint(json.dumps(summary, indent=2))\nEOF"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T05:01:17.457570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved.\\\\n{\\\\n  \\\\\\\"n_ref_models\\\\\\\": 3,\\\\n  \\\\\\\"ref_models\\\\\\\": [\\\\n    \\\\\\\"pythia-1.4b\\\\\\\",\\\\n    \\\\\\\"olmo-1b\\\\\\\",\\\\n    \\\\\\\"gpt2-xl\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_samples\\\\\\\": 20000,\\\\n  \\\\\\\"transform\\\\\\\": \\\\\\\"log1p on ppl/surprisal features\\\\\\\",\\\\n  \\\\\\\"ensemble_4class_acc\\\\\\\": 0.7365,\\\\n  \\\\\\\"ensemble_ci_95\\\\\\\": [\\\\n    0.7258,\\\\n    0.7471\\\\n  ],\\\\n  \\\\\\\"ensemble_d1v2_auc\\\\\\\": 0.9989,\\\\n  \\\\\\\"single_model_accs_log1p\\\\\\\": {\\\\n    \\\\\\\"pythia_1.4b\\\\\\\": 0.7857,\\\\n    \\\\\\\"olmo_1b\\\\\\\": 0.7425,\\\\n    \\\\\\\"gpt2_xl\\\\\\\": 0.7005\\\\n  },\\\\n  \\\\\\\"vs_pythia_ref\\\\\\\": -4.9,\\\\n  \\\\\\\"vs_olmo_ref\\\\\\\": -0.6,\\\\n  \\\\\\\"vs_gpt2xl_ref\\\\\\\": 3.6,\\\\n  \\\\\\\"hypothesis_pass\\\\\\\": false,\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"log1p transform applied uniformly; baseline numbers differ slightly from previously reported (78.5/74.5/67.3) due to consistent transform. GPT-2 XL improves from 67.3->70.05 with log1p.\\\\\\\",\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"3-model ensemble achieves 73.65% (log1p). +3.6pp vs GPT-2 XL but -4.9pp vs Pythia. Averaging hurts because it dilutes the best model's signal. Hypothesis NOT confirmed.\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T05:01:17.457756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T05:01:17.457908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T05:01:17.458101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "hypothesis",
+              "value": "Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T05:01:17.458270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5092}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T05:01:17.458414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "parent",
+              "value": "gpt2xl_ref_ablation_001",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T05:01:17.458551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T04:59:54.992Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\", \\\"parent\\\": \\\"gpt2xl_ref_ablation_001\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.611}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T05:01:17.458684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python3 ensemble_eval.py (inline script)', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T05:01:17.458938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3176}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T05:01:17.459141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T05:01:17.459285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:05.248Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\", \\\"parent\\\": \\\"gpt2xl_ref_ablation_001\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2966}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T05:01:17.459422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python3 ensemble_eval.py (inline script)', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42}"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T05:01:17.459555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3596}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T05:01:17.459677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python3 ensemble_eval.py (inline script)', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42, 'checkpoint_source': 'N/A (sklearn RF, no checkpoint)', 'eval_data': '20000 samples from 3 feature files (pythia+olmo+gpt2xl)'}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T05:01:17.459838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:17.023Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\", \\\"parent\\\": \\\"gpt2xl_ref_ablation_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 ensemble_eval.py (inline script)\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"RandomForest(n=200)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (sklearn RF, no checkpoint)\\\", \\\"eval_data\\\": \\\"20000 samples from 3 feature files (pythia+olmo+gpt2xl)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1464}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T05:01:17.460225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "metrics",
+              "value": "{'ensemble_4class_acc': 0.7365, 'ensemble_ci_95': [0.7258, 0.7471], 'd1v2_auc': 0.9989, 'pythia_acc': 0.7857, 'olmo_acc': 0.7425, 'gpt2xl_acc': 0.7005, 'delta_vs_gpt2xl': 3.6, 'delta_vs_pythia': -4.9}",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T05:01:17.460411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:23.485Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\", \\\"parent\\\": \\\"gpt2xl_ref_ablation_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 ensemble_eval.py (inline script)\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"RandomForest(n=200)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (sklearn RF, no checkpoint)\\\", \\\"eval_data\\\": \\\"20000 samples from 3 feature files (pythia+olmo+gpt2xl)\\\"}, \\\"metrics\\\": {\\\"ensemble_4class_acc\\\": 0.7365, \\\"ensemble_ci_95\\\": [0.7258, 0.7471], \\\"d1v2_auc\\\": 0.9989, \\\"pythia_acc\\\": 0.7857, \\\"olmo_acc\\\": 0.7425, \\\"gpt2xl_acc\\\": 0.7005, \\\"delta_vs_gpt2xl\\\": 3.6, \\\"delta_vs_pythia\\\": -4.9}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5406}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T05:01:17.460557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "conclusion",
+              "value": "NEGATIVE: 3-model ensemble (73.65%) fails to beat GPT-2 XL by ≥5pp (+3.6pp only) and is worse than Pythia alone (-4.9pp). Simple averaging dilutes the best model's discriminative signal rather than improving robustness.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T05:01:17.460694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'NEGATIVE: 3-model ensemble (73.65%) fails to beat GPT-2 XL by ≥5pp (+3.6pp only) and is worse than Pythia alone (-4.9pp). Simple averaging dilutes the best model's discriminative signal rather than improving robustness.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3621}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T05:01:17.460830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T05:01:17.461001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:29.804Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\", \\\"parent\\\": \\\"gpt2xl_ref_ablation_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 ensemble_eval.py (inline script)\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"RandomForest(n=200)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (sklearn RF, no checkpoint)\\\", \\\"eval_data\\\": \\\"20000 samples from 3 feature files (pythia+olmo+gpt2xl)\\\"}, \\\"metrics\\\": {\\\"ensemble_4class_acc\\\": 0.7365, \\\"ensemble_ci_95\\\": [0.7258, 0.7471], \\\"d1v2_auc\\\": 0.9989, \\\"pythia_acc\\\": 0.7857, \\\"olmo_acc\\\": 0.7425, \\\"gpt2xl_acc\\\": 0.7005, \\\"delta_vs_gpt2xl\\\": 3.6, \\\"delta_vs_pythia\\\": -4.9}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5031}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T05:01:17.461148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "ensemble_reference_001",
+              "field": "status",
+              "value": "DONE",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'results/ensemble_reference/summary.json'}"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T05:01:17.461319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:59:54.150Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:00:34.741Z\\\", \\\"hypothesis\\\": \\\"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\\\", \\\"parent\\\": \\\"gpt2xl_ref_ablation_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 ensemble_eval.py (inline script)\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"RandomForest(n=200)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (sklearn RF, no checkpoint)\\\", \\\"eval_data\\\": \\\"20000 samples from 3 feature files (pythia+olmo+gpt2xl)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/ensemble_reference/summary.json\\\"}, \\\"metrics\\\": {\\\"ensemble_4class_acc\\\": 0.7365, \\\"ensemble_ci_95\\\": [0.7258, 0.7471], \\\"d1v2_auc\\\": 0.9989, \\\"pythia_acc\\\": 0.7857, \\\"olmo_acc\\\": 0.7425, \\\"gpt2xl_acc\\\": 0.7005, \\\"delta_vs_gpt2xl\\\": 3.6, \\\"delta_vs_pythia\\\": -4.9}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-17T05:00:34.741Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5789}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T05:01:17.461465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "ensemble_reference_001_summary",
+              "type": "report",
+              "description": "Ensemble reference model experiment results: 3-model average surprisal achieves 73.65% (negative result, worse than best single model Pythia 78.57%)",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "ensemble_reference_001",
+              "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/ensemble_reference/summary.json"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T05:01:17.461751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/ensemble_reference/summary.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T05:01:17.461916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "ensemble_reference_001_summary",
+              "type": "report",
+              "description": "Ensemble reference model experiment results: 3-model average surprisal achieves 73.65% (negative result, worse than best single model Pythia 78.57%)",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "ensemble_reference_001",
+              "content": "{\"n_ref_models\": 3, \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"], \"n_samples\": 20000, \"transform\": \"log1p on ppl/surprisal features\", \"ensemble_4class_acc\": 0.7365, \"ensemble_ci_95\": [0.7258, 0.7471], \"ensemble_d1v2_auc\": 0.9989, \"single_model_accs_log1p\": {\"pythia_1.4b\": 0.7857, \"olmo_1b\": 0.7425, \"gpt2_xl\": 0.7005}, \"vs_pythia_ref\": -4.9, \"vs_olmo_ref\": -0.6, \"vs_gpt2xl_ref\": 3.6, \"hypothesis_pass\": false, \"conclusion\": \"3-model ensemble (73.65%) fails hypothesis. +3.6pp vs GPT-2 XL but -4.9pp vs Pythia. Simple averaging dilutes the best model signal.\"}",
+              "content_filename": "summary.json"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T05:01:17.462060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'n_ref_models': 3, 'ref_...the best model signal.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T05:01:17.462190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "ensemble_reference_001_summary",
+              "type": "report",
+              "description": "Ensemble reference model experiment results: 3-model average surprisal achieves 73.65% (negative result, worse than best single model Pythia 78.57%)",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "ensemble_reference_001",
+              "content": "{\"n_ref_models\": 3, \"ref_models\": [\"pythia-1.4b\", \"olmo-1b\", \"gpt2-xl\"], \"n_samples\": 20000, \"transform\": \"log1p on ppl/surprisal features\", \"ensemble_4class_acc\": 0.7365, \"ensemble_ci_95\": [0.7258, 0.7471], \"ensemble_d1v2_auc\": 0.9989, \"single_model_accs_log1p\": {\"pythia_1.4b\": 0.7857, \"olmo_1b\": 0.7425, \"gpt2_xl\": 0.7005}, \"vs_pythia_ref\": -4.9, \"vs_olmo_ref\": -0.6, \"vs_gpt2xl_ref\": 3.6, \"hypothesis_pass\": false, \"conclusion\": \"3-model ensemble (73.65%) fails hypothesis. +3.6pp vs GPT-2 XL but -4.9pp vs Pythia. Simple averaging dilutes the best model signal.\"}",
+              "content_filename": "summary.json"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-17T05:01:17.462355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'n_ref_models': 3, 'ref_...the best model signal.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-17T05:01:17.462484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "ensemble_reference_001_summary",
+              "type": "report",
+              "description": "Ensemble reference model experiment: 3-model avg surprisal 73.65% acc (negative, -4.9pp vs Pythia alone)",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "ensemble_reference_001",
+              "content": "n_ref_models: 3\\nref_models: pythia-1.4b, olmo-1b, gpt2-xl\\nn_samples: 20000\\ntransform: log1p on ppl/surprisal features\\nensemble_4class_acc: 0.7365\\nensemble_ci_95: [0.7258, 0.7471]\\nensemble_d1v2_auc: 0.9989\\npythia_1.4b_acc: 0.7857\\nolmo_1b_acc: 0.7425\\ngpt2_xl_acc: 0.7005\\nvs_pythia_ref: -4.9pp\\nvs_olmo_ref: -0.6pp\\nvs_gpt2xl_ref: +3.6pp\\nhypothesis_pass: false\\nconclusion: 3-model ensemble (73.65%) fails hypothesis. +3.6pp vs GPT-2 XL but -4.9pp vs Pythia. Simple averaging dilutes the best model signal.",
+              "content_filename": "summary.txt"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-17T05:01:17.462635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_6b3d59\\\", \\\"name\\\": \\\"ensemble_reference_001_summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Ensemble reference model experiment: 3-model avg surprisal 73.65% acc (negative, -4.9pp vs Pythia alone)\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/ensemble_reference_001/report/summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": \\\"ensemble_reference_001\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T05:01:05.966642+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-17T05:01:17.462802+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果总结：\n\n## ensemble_reference_001 — Negative Result\n\n| Model | 4-class Acc |\n|-------|------------|\n| Pythia-1.4B (best single) | **78.57%** |\n| OLMo-1B | 74.25% |\n| Ensemble (3-model avg) | 73.65% |\n| GPT-2 XL | 70.05% |\n\n**Hypothesis FAIL**: Ensemble 仅比 GPT-2 XL 高 +3.6pp（未达 +5pp 阈值），且比最优单模型 Pythia 低 4.9pp。\n\n**原因分析**: 简单平均将最优模型（Pythia）的判别信号与两个较弱模型混合，结果被拉低。Ensemble 取平均不适合此场景——各 ref model 的 surprisal 分布质量差异过大（Pythia >> OLMo > GPT-2 XL），averaging 相当于给弱信号等权重，稀释了强信号。\n\n如需进一步探索 ensemble 方向，可考虑：加权平均（按单模型性能加权）或 stacking（用各模型 surprisal 作为独立特征输入，让 RF 自行学习最优组合权重）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ensemble_reference_20260517T045532"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    }
+  ]
+}

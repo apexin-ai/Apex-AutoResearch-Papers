@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7fa13fda3e3275b62e7e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra dl progress check",
+  "task_key": "worker_infra_dl-progress-check_20260521T204816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dl-progress-check_20260521T204816_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "52168a14b7cce531ff4da5cd2018b8df0d55f9cc80b64bf2c4295a9b429430ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 模型 | safetensors | 目标 | 状态 | 详情 |\n|------|------------|------|------|------|\n| **Qwen-72B** | 11/11 | 11 | **完成** | 日志显示 `DOWNLOAD COMPLETE`，总大小 39G |\n| **Llama-70B** | 8/9 | 9 | **下载中** | 缺 shard 5，`.incomplete` 文件 2.7G/~4.6G（约 59%），PID 19524 存活 |\n| **Mistral-Large** | 13/14 | 14 | **下载中** | 缺 shard 8，`.incomplete` 文件 4.1G/~4.6G（约 89%），PID 19219 存活 |\n\n**进程状态**：\n- PID 19519 (Llama bash wrapper) — 存活\n- PID 19524 (Llama python 实际下载) — 存活，已运行 ~18 分钟\n- PID 19214 (Mistral bash wrapper) — 存活\n- PID 19219 (Mistral python 实际下载) — 存活，已运行 ~18 分钟，CPU 7.4%\n\n**预估完成**：\n- Mistral shard 8：剩余 ~0.5G，按当前速度约 1-2 分钟内完成\n- Llama shard 5：剩余 ~1.9G，约 3-5 分钟完成\n\n**磁盘**：/root/autodl-tmp 250G 已用 174G，剩余 77G，空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

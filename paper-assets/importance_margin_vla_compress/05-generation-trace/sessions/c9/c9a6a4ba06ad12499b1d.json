@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c9a6a4ba06ad12499b1d",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_13_1779801231.md",
+  "task_key": "loop_13_1779801231",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_13_1779801231.md",
+    "occurrence": 1,
+    "bytes": 4928,
+    "sha256": "48d8c24e8e9598f33054342f60d0c5b4489f1a81c11f2d1fd54c27f0e5e06837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-26T13:13:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 = cuda:0/1/2/3（每台服务器 4 张以内），超出必须 push back Director\n- cqa1-33015 提交命令必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，cqa1 只能跑 π0.5（transformers 5.5.3）\n- OpenVLA 非 Object 套件必须显式传 `--model_path` + `--unnorm_key`，脚本默认会静默加载 Object 模型产出垃圾结果（M122）\n- 各服务器模型路径不同（westd-38929 在 `/root/autodl-tmp/models/` 下有前缀），部署前必须 `ls` 验证（M123）\n- π0.5 Random Long cliff 数据非单调（k=0.9 骤降 → k=0.75 回升），**暂不可用于定稿图表**，需交叉验证\n- Kill 进程前必须 `stat -c %Y <log>` 验证 >30min 无更新，Long suite 日志间隔 10-20min 是正常的（M121）\n- westd-41074 部署脆弱：tee 方式（非 tmux）的实验易崩溃（M129），新部署必须用 tmux\n\n### 2. 🖥️ 基础设施快照\n- **westd-38929** (4 GPU): 工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，模型在 `/root/autodl-tmp/models/`（有 models/ 前缀）。有 Object + Long 模型\n- **westd-41074** (4 GPU): 工作目录 `/root/autodl-tmp/importance_margin_vla_compress`。有 Object + Long（Long 已 rsync 2026-05-26）。GPU2 空闲（Attn k=0.7 Obj 崩溃待重跑）\n- **westd-27271** (2 GPU): 有 Object + Goal 模型\n- **cqa1-33015** (4 GPU): conda base 环境 Python 3.x，有 Object + Goal 模型。只跑 π0.5\n- **项目路径**: 所有服务器 `/root/autodl-tmp/importance_margin_vla_compress`\n- **W&B**: 无显式配置，实验靠 cron 监控进程存活 + log sentinel\n- **Cron 活跃**: 4 条（2 个 running on westd-38929, 1 个 process-gone 需处理, 1 个 running）\n\n### 3. 📊 当前状态\n**刚完成**：Crossover table 16/16 ✅，Abstract 定稿 ✅，D237 L2norm 单调确认 + Paper Agent 叙事升级 + Limitations 补丁 ✅\n\n**RUNNING 实验 (14)**：\n| 实验 | 服务器/摘要 |\n|------|------------|\n| eval_openvla_random_k07_goal_seed42_v4 | Goal cliff curve |\n| eval_openvla_attn_k085_long_seed42_v5 | Long Attn cliff 中间点 |\n| eval_openvla_attn_k085_goal_seed42_v3 | Goal Attn 唯一中间点 |\n| eval_openvla_random_k085_goal_seed42 | Goal Random cliff |\n| eval_openvla_l2norm_k085_goal_seed42 | Goal L2norm cliff |\n| eval_openvla_attn_k07_object_seed42_v2 | Object Attn cliff（tmux 重跑）|\n| eval_openvla_random_k05_long_seed42_v2 | Long extreme（pid=279274）|\n| eval_openvla_random_k085_long_seed42_v3 | Long Random cliff（pid=415537）|\n| eval_openvla_l2norm_k095_object_seed42 | ⚠️ process gone miss 2/5 |\n| eval_openvla_l2norm_k085_object_seed42 | Object L2norm cliff |\n| eval_pi05_attention_k085_long_seed42_v2 | π0.5 Attn Long cliff |\n| eval_pi05_attention_k05_long_seed42_v2 | π0.5 Attn k=0.5 重跑 |\n| eval_pi05_attention_k075_long_seed42_v2 | π0.5 Attn k=0.75 |\n| eval_pi05_l2norm_k075_long_seed42 | π0.5 L2norm k=0.75 |\n\n**⚠️ 紧急**：`eval_openvla_l2norm_k095_object_seed42` cron 报 process gone (miss 2/5)，需立即 spawn Worker SSH 诊断（查 log、是否有结果文件、是否需要重跑）\n\n**Workers**: 0 running（上一轮全部完成/销毁）\n\n### 4. 📋 待办（条件触发式）\n- `eval_openvla_l2norm_k095_object_seed42` process gone → spawn Worker 诊断 log + 结果 → 有结果则提取 SR 更新 registry → 无结果则 tmux 重跑\n- 任一 RUNNING 实验 cron 回调 DONE → on-experiment-done 流程（分析 + 更新 registry + report.md + 汇报 Director）\n- westd-41074 GPU2 空闲 → 重跑 `eval_openvla_attn_k07_object_seed42_v2`（如果还没在跑的话，从 registry 看已 RUNNING，确认是否真的在 41074 GPU2）\n- 全部 cliff curve 数据回收 → 整合进论文图表 → 通知 Paper Agent\n- CoRL paper deadline May 29 → 所有实验需在 May 28 前完成以留时间整合\n\n### 5. 🎯 战略上下文\n- **核心论文 claim**: VLA vision token compressibility 取决于 scoring method × connector × task 的三维交互，不存在全局最优 scoring method（importance margin 概念）\n- **关键证据链**: (1) Crossover table 16/16 ✅ (2) L2norm Long 完美单调 → position encoding sensitivity (D237) (3) zeromask k=0.9=98% → 置零保留位置编码 (D234) (4) π0.5 Object L2norm/Random crossover @ k≈0.75\n- **当前批次实验都是 cliff curve 中间点**，补论文图表密度，不是新 claim\n- **最容易判断错的事**: π0.5 Random Long 数据非单调，不要把它当作正常 cliff curve 写入论文；westd-38929 模型路径有 `models/` 前缀别漏；cqa1 上的 π0.5 实验必须 conda activate\n- **SimplerEnv 已放弃** (D209)，论文 benchmark = LIBERO only\n- **PREPARING 实验 92 项**多为历史残留/诊断任务，不要盲目提交，只关注 RUNNING 的 14 个回收结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

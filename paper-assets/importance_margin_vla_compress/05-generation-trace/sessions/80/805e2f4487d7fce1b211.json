@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "805e2f4487d7fce1b211",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "probe westd38929 gpu status",
+  "task_key": "worker_probe_westd38929-gpu-status_20260522T004040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_probe_westd38929-gpu-status_20260522T004040_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "7292f46806514017bead7d3b6a28b8493c5b9e3c50dc0ed67cdec025f9b7a5be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n```\nGPU0: π0.5 L2norm k=0.9 Spatial seed42  PID=48433  状态=alive  进度=350/500 (T6完成, 进入T7)  GPU占用=10044 MiB  利用率=43%\nGPU1: π0.5 random k=0.9 Spatial seed42  PID=9135   状态=alive  进度=300/500 (T5完成, 进入T6)  GPU占用=10602 MiB  利用率=46%\nGPU2: π0.5 random k=0.925 Object seed43 PID=68039  状态=alive  进度=~160/500 (T3 ep10/50)    GPU占用=10541 MiB  利用率=56%\nGPU3: π0.5 random k=0.85 Spatial seed42 PID=48598  状态=alive  进度=~190/500 (T3 ep40/50)    GPU占用=10038 MiB  利用率=14%\n```\n\n**GPU1 确认**：跑的是 `π0.5 random k=0.9 Spatial seed42`，之前未知的实验。\n\n**中间结果概览**：\n| GPU | 实验 | 当前累积 SR |\n|-----|------|------------|\n| 0 | l2norm k=0.9 Spatial | 94.9% (332/350) |\n| 1 | random k=0.9 Spatial | 50.0% (150/300) |\n| 2 | random k=0.925 Object | 39.3% (59/150) |\n| 3 | random k=0.85 Spatial | 74.7% (112/150) |\n\nGPU0 的 l2norm k=0.9 表现极强（94.9%），远超 random k=0.9（50.0%），差距非常显著。预计全部实验还需 ~1-1.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

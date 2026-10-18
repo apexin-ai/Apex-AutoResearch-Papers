@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "099847cf68442fc7d651",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check uncovered experiments status",
+  "task_key": "worker_check_uncovered-experiments-status_20260521T175243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_uncovered-experiments-status_20260521T175243_result.json",
+    "occurrence": 1,
+    "bytes": 1563,
+    "sha256": "8033087d25469eb60d3c801d076fab2a122a69bfa3ef3f825a0a35f300f2395a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n## 实验状态汇总\n\n| 服务器 | 实验 | 状态 | SR | 进度/备注 |\n|--------|------|------|-----|-----------|\n| **westd-38929** GPU0 | smolvla baseline seed43 | **COMPLETED** | **59.6%** (298/500) | 结果已保存 |\n| **westd-38929** GPU1 | smolvla random k=0.95 seed43 | **RUNNING** | ~0.2% | Task 9/10, ep 12/50 (Task 0-7完成, 仅Task3有1/50) |\n| **westd-38929** GPU2 | smolvla random k=0.50 seed43 | **RUNNING** | 0% | Task 8/10, ep 39/50 (Task 0-6全0%) |\n| **cqa1-33015** GPU0 | smolvla baseline seed42 | **COMPLETED** | **57.2%** (286/500) | 文件: official_libero_object_baseline.json |\n| **cqa1-33015** GPU1 | smolvla random k=0.95 seed42 | **COMPLETED** | **0.0%** (0/500) | 文件: smolvla_official_random_k095_object_seed42.json |\n| **cqa1-33015** GPU2 | smolvla l2norm k=0.50 seed42 | **COMPLETED** | **0.0%** (0/500) | 文件: smolvla_official_l2norm_k050_object_seed42.json |\n| **westd-27271** GPU0 | openvla l2norm k=0.5 seed43 | **COMPLETED** | **39.2%** (196/500) | 文件: openvla_l2norm_prune_k05_object_seed43.json |\n\n### 额外发现\n\n- **cqa1-33015** 当前 4 个 GPU 正在跑 registry 未列出的实验：random k=0.9/k=0.5 + l2norm k=0.7/k=0.9 (均 seed42)\n- **westd-27271** GPU1 当前在跑 **训练** 任务 (`train_openvla_smart_compress_m32`)，不是 eval\n- **westd-38929** GPU1/GPU2 的两个 RUNNING 实验预计再 ~1-2 小时完成（每 task ~5min，剩余 ~3 tasks）\n- pruning 实验 SR≈0% 符合预期（pixel-shuffle cliff-edge）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

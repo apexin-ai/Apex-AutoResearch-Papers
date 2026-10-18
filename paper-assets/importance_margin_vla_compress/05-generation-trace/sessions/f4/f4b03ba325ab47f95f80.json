@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f4b03ba325ab47f95f80",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd38929 gpu2 smolvla baseline spatial",
+  "task_key": "worker_ops_westd38929-gpu2-smolvla-baseline-spatial_20260521T003643",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd38929-gpu2-smolvla-baseline-spatial_20260521T003643_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "d919d2f862f54cc89a5fdf9c574922da3476c0829319d31f4047208b6ecd137b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval running smoothly. Summary:\n\n- **Experiment**: `eval_smolvla_baseline_spatial_seed42` — RUNNING on westd-38929 GPU 2\n- **PID**: 224849 (2.8 GB VRAM, GPUs 0/1/3 untouched)\n- **tmux session**: `smolvla_baseline_spatial`\n- **Log**: `logs/smolvla_baseline_spatial_seed42.log`\n- **Output**: `eval_results/smolvla_baseline_spatial_seed42.json`\n- **Progress**: Task 0, Ep 9/50 — 4 SUCCESS out of 8 (50% so far on task 0)\n- **Rate**: ~8s/episode (280 max steps for fails, faster for successes)\n- **Estimated total time**: 10 tasks × 50 eps × ~8s ≈ ~65 min\n\nKey fixes applied:\n1. Replaced `LiberoEnv` with `OffScreenRenderEnv` (raw robosuite obs format)\n2. Bypassed LIBERO-Plus benchmark class (returns perturbation variants with missing XML assets) — hardcoded original 10 base task names\n3. Adapted `extract_state()` and `obs_to_batch()` for raw robosuite obs keys (`robot0_eef_pos`, `agentview_image`, etc.)\n4. Patched `torch.load` for PyTorch 2.6+ `weights_only=True` default\n5. Registered in experiment registry with full provenance metadata"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

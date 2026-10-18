@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9ae1b4c6b6c7823e61ad",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp plan 021 instruct model",
+  "task_key": "worker_exp_plan_021_instruct_model_20260517T153626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_021_instruct_model_20260517T153626_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "03c22253bf790c6675bef4a07bbecd6522a368078e61430e868d6a98badda65f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "446/5000 d0 samples 完成，GPU 1 稳定运行 (4187 MiB, 47%)。\n\n总结执行情况：\n\n**Plan_021 Qwen2.5-1.5B-Instruct 验证实验 - 已启动运行**\n\n完成的操作：\n1. **清理**：杀掉 2 个孤立的重复 pipeline 进程，保留 tmux session `qwen25-1p5b-instruct-001`\n2. **修复 pipeline**：\n   - `generate_d0` 和 `generate_next_depth` 从 BOS-seeded 改为 **chat template** 生成 (`apply_chat_template` + \"Write a passage about a random topic.\")\n   - 添加 `repetition_penalty=1.0, top_k=0` 覆盖 Qwen 默认的 generation_config，确保与 base model 实验一致 (仅用 nucleus p=0.95, temp=1.0)\n3. **模型下载**：aria2c 下载完成 (Qwen2.5-1.5B-Instruct, 2.9GB)\n4. **Pipeline 运行中**：PID 795692, cuda:1, 当前 d0 生成 ~446/5000\n\n**预计总时长**：~4-5 小时（d0-d3 生成 + 3x LoRA finetune + feature extraction + classification）\n\n**关键配置**：\n- exp_id: `qwen25-1p5b-instruct-001`\n- tmux session: `qwen25-1p5b-instruct-001`\n- GPU: cuda:1 (RTX PRO 6000 Blackwell, 98GB VRAM)\n- 结果路径: `/root/autodl-tmp/recursive_gen_depth_est/results/qwen25_1.5b_instruct/summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6a2aa8aa10bb4b630ad7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops accum v3 progress check",
+  "task_key": "worker_ops_accum_v3_progress_check_20260519T103219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_accum_v3_progress_check_20260519T103219_result.json",
+    "occurrence": 1,
+    "bytes": 1935,
+    "sha256": "221264cdff2483011819faeb8ed3b0a0935a05342518737bfaf022175bd900bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Accumulation v3 训练进度报告\n\n### 1. 进程状态\n| PID | 命令 | CPU | 状态 |\n|-----|------|-----|------|\n| 114337 | `python3 accumulation_pipeline_gpt2xl.py --mix_ratio 0.5 --seed 42` | 80.7% | Running |\n| 114478 | `python3 accumulation_pipeline_gpt2xl.py --mix_ratio 0.25 --seed 42` | 80.4% | Running |\n\ntmux sessions: `accum_v3_mix50`, `accum_v3_mix25`（均创建于 16:17）\n\n### 2. GPU 利用率\n| GPU | 显存 | 利用率 | 温度 |\n|-----|------|--------|------|\n| GPU 0 (RTX PRO 6000) | 15681 / 97887 MiB | 73% | 44°C |\n| GPU 1 (RTX PRO 6000) | 15681 / 97887 MiB | 74% | 44°C |\n\n### 3. 当前进度\n\n**Pipeline 阶段**: d1 train → d1 gen → d2 train → **d2 gen (当前)** → d3 train → d3 gen → 特征提取 → RF 评估\n\n| 阶段 | mix50 (GPU 0) | mix25 (GPU 1) |\n|------|---------------|---------------|\n| d1 train | ✅ loss=完成 | ✅ 完成 |\n| d1 generation | ✅ 5000 samples | ✅ 5000 samples |\n| d2 train | ✅ loss=1.892, 11min | ✅ loss=1.586, 10.8min |\n| **d2 generation** | 🔄 **1582/5000 (32%)** | 🔄 **1901/5000 (38%)** |\n| d3 train | ⏳ | ⏳ |\n| d3 generation | ⏳ | ⏳ |\n| 特征提取+RF | ⏳ | ⏳ |\n\n### 4. 日志最后关键行\n两个任务日志一致显示：d2 LoRA 训练完成 → adapter 已保存 → \"Phase 2c: Generating text...\" → 正在加载模型权重生成 d2 文本。\n\n### 5. 时间估算\n\n生成速率：~79 samples/min（基于 d2 实测）\n\n| 剩余阶段 | 预估时间 |\n|----------|---------|\n| d2 gen 剩余 | ~43 min (mix50) / ~39 min (mix25) |\n| d3 train | ~11 min |\n| d3 gen | ~63 min |\n| 特征提取 + RF | ~21 min |\n| **总剩余** | **~2h15m - 2h20m** |\n\n已运行 ~2h16m（16:17 启动），预计完成时间：**~20:50 服务器本地时间**（约 12:50 UTC）。实际进度比原估计的 6.3h/ratio 快，两个 ratio 并行在双卡上跑，总耗时约 4.5h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

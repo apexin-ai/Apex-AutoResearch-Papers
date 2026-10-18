@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "393dc6bb591358ac934c",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research task specificity",
+  "task_key": "worker_research_task_specificity_20260519T130406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_task_specificity_20260519T130406_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "e841e62cc1581ce52556f3b1ed744c1618d2aef94e9e38e435578ea079eb1909"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出文件已生成。关键发现：\n\n| Benchmark | Taxonomy | ρ | p (one-tailed) | Significant |\n|-----------|----------|---:|---:|:---:|\n| LAMBADA (acc) | Retrieval-dependent | **−1.00** | **0.008** | **Yes** |\n| HellaSwag (acc_norm) | Reasoning-dependent | +0.30 | 0.742 | No |\n| ARC-Challenge (acc_norm) | Reasoning-dependent | +0.60 | 0.883 | No |\n| Winogrande (acc) | Reasoning-dependent | +0.10 | 0.608 | No |\n| ARC-Easy (acc) | Mixed | −0.70 | 0.117 | No |\n| MMLU (acc) | Mixed | −0.70 | 0.117 | No |\n\n**结论**：\n\n1. **LAMBADA 是唯一显著的 equalizer effect** (ρ=−1.0, p=0.008)：cross-arch std 从 pure 的 0.024 单调下降到 h3-1 的 0.005，完美负相关。这与其 retrieval-dependent 性质一致——full attention 层直接提供精确检索能力，使不同架构趋同。\n\n2. **Reasoning-dependent tasks（HellaSwag、ARC-Challenge、Winogrande）完全没有收敛趋势**，ρ 甚至为正。这些任务的跨架构差异不受 attention ratio 影响，说明 reasoning 能力更多由非 attention 组件决定。\n\n3. **Mixed tasks（ARC-Easy、MMLU）有中等负相关**（ρ=−0.7）但未达显著（p=0.117），可能因 n=5 统计功效不足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

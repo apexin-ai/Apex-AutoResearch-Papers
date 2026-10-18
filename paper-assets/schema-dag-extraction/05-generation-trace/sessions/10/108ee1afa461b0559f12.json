@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "108ee1afa461b0559f12",
+  "project": "schema-dag-extraction",
+  "kind": "history",
+  "title": "agent / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4996,
+    "sha256": "15f66c22b97b4c42e63dd574f75d23fbf231fe5ea2194d7a5cfad281c2814738"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T16:39:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只有 1 块 GPU：cqa1-38874 上的 cuda:0（RTX PRO 6000 Blackwell 98GB）。无其他 GPU。\n- Blackwell SM120 不支持 FP8 GEMM JIT（flashinfer 旧版），**所有新脚本必须**包含 `export CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13`。\n- `VLLM_ATTENTION_BACKEND` env var 在 vLLM 0.20.2 已废弃，**不要设置**。\n- 磁盘几乎满：248/250GB。AWQ 残留（~36GB）必须先清理才能跑新大任务。\n- `exp012_llama_8b_fewnerd` 是死条目（PID 295200 被 r4 OOM 杀掉），不要当成活跃实验。真正在跑的是 `exp012_llama_fewnerd_r4`。\n- Claim 3（SDGD）已正式放弃（D019），**不要再跑 SDGD 实验**，只在论文中作为 negative result + future work 讨论。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-38874，工作目录 `/root/schema-dag-extraction`\n- **Python**: conda base `/root/miniconda3/bin/python`（Python 3.12.3），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **关键包**: vLLM 0.20.2, torch 2.10.0+cu128, flashinfer 0.6.11.post2, nvidia-cuda-nvcc 13.2.78\n- **模型路径**: Qwen3-32B-FP8 → `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`; LLaMA-3.3-70B-FP8 → `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/`（FP8 路径已废弃）; LLaMA-3.1-8B-Instruct → ModelScope 下载（具体路径需 SSH 确认）\n- **数据**: Few-NERD `/root/schema-dag-extraction/data/parquet/test.parquet` (1000 samples); FewRel `/root/schema-dag-extraction/data/fewrel_parquet/`; MAVEN `/root/schema-dag-extraction/data/maven_parquet/valid.parquet`\n- **活跃进程**: exp012_llama_fewnerd_r4 (PID 294443, tmux session, cuda:0)\n- **Cron**: 无活跃 cron（reconcile 返回 0）\n- **Worker**: 无活跃 Worker\n\n### 3. 📊 当前状态\n**刚做完**: 处理了 exp012 系列的 Blackwell FP8 兼容性问题（r1/r2/r3 均因 flashinfer JIT 失败），最终决策 D022 放弃 70B FP8/AWQ，转用 LLaMA-3.1-8B-Instruct BF16。exp_fewrel_40rel 跑完后被进程 kill（无增量保存）。\n\n**正在跑**: `exp012_llama_fewnerd_r4`（LLaMA-3.1-8B-Instruct BF16 on Few-NERD, PID 294443, cuda:0）。这是最后一个 P0 实验——多模型验证。\n\n**Registry 摘要**:\n- RUNNING: exp012_llama_fewnerd_r4（真正在跑）, exp012_llama_8b_fewnerd（死条目，需清理）\n- PREPARING: exp012_llama_8b（被 r4 取代）, exp012_llama_awq（被 kill，磁盘不足）\n- 成功: 11 个（核心证据链完整）\n- 负向: 3 个（SDGD v1/v2, MAVEN per-type）\n- 失败: 5 个（主要是 FP8 兼容性）\n\n**等待**: exp012_llama_fewnerd_r4 的 cron 完成回调。无 Worker 回调。Paper Agent Full Draft 写作应在进行中但无对应 Worker。\n\n### 4. 📋 待办（条件触发式）\n- exp012_llama_fewnerd_r4 cron 回调到达 → 分析 LLaMA 8B 结果：若复现 confusability effect → success，patch 进论文 multi-model section；若不复现 → 评估是 8B 模型能力不足还是 effect 不存在，产 Framing 提案\n- exp012 完成后 GPU 空闲 → 重跑 exp_fewrel_40rel（加 incremental save），填充 16↔80 中间点 scaling curve\n- 磁盘清理 → `rm -rf /root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/` 释放 ~36GB（AWQ 下载残留可能在其他路径，需 SSH 确认 `du -sh /root/autodl-tmp/.hf_cache/*`）\n- 40-rel + 8B 结果就绪 → spawn Worker patch 进论文对应 section\n- Paper Full Draft 完成 → 进入 Reviewer 对抗循环 → 目标 ARR May 25（距今 10 天）\n- 清理 registry 死条目：exp012_llama_8b_fewnerd（OOM killed）、exp012_llama_8b（superseded by r4）\n\n### 5. 🎯 战略上下文\n**论文核心**: 2-claim analysis paper。Claim 1（confusability independence）+ Claim 2（multi-channel degradation），三任务验证（NER/RE/ED）。Claim 3（SDGD）已放弃，作 negative result 讨论。\n\n**证据链状态**: Claims 1+2 证据完整且强（所有 bootstrap CI 排除 null）。关键数字：pairwise r=0.112 [0.076,0.156]; BCS Δ=-31.2pp; IntraSub ρ=1.0 (NER), 0.954 (RE); confusion ratio 10-28x。exp012（多模型）是\"nice to have\"加固，非 make-or-break。\n\n**易踩的坑**:\n1. **exp012_llama_8b_fewnerd 是死条目**——PID 295200 被 r4 的 OOM 杀掉了，别误以为有两个实验在跑\n2. **pairwise r 用 0.112 不是 0.156**——0.156 是旧值，V2 prompt 覆盖了数据，bootstrap 确认 0.112\n3. **MAVEN per-type 正方向不是 bug**——是 centrality confound，论文里当 boundary condition case study 讲，不要试图\"修复\"\n4. **FP8 模型在 Blackwell 上需要 CUDA_HOME hack**——不设就 JIT fail，已在 memory.md 记录\n5. **Dream review 两轮均 Weak Reject**，主因写作质量——Paper Agent 已有约束，但下一个\"你\"要盯住写作质量不能再犯\n6. **deadline 紧迫（10 天）**——不要开新实验线，聚焦 exp012 + 40rel rerun + 论文完稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

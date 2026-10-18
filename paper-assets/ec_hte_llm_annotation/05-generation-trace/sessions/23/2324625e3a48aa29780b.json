@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2324625e3a48aa29780b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "run exp 001",
+  "task_key": "worker_run_exp-001_20260520T202832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-001_20260520T202832_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "044297af4e5ab21b2875d6a5f4edf051360a12a3063b596fe17fa8310a8af618"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### Complete Summary\n\n**Run**: 3600 MC runs, 36 cells, 69 min, 0 errors, Gibbs sampler (median 0.86s/fit)\n\n**MCMC Diagnostics**:\n- R-hat max: 1.024 (a few small-sample cells slightly above 1.01)\n- ESS min: 129 (worst case; bulk of runs well above 200)\n- Divergent: 0\n\n**HB vs MLE RMSE** — HB consistently beats MLE, but gains are modest:\n- K=2: +1–9% at n=50, <1% at n≥250\n- K=4: +6–9% at n=50 (moderate/homogeneous), +1–3% at n=100, <1% at n≥500\n- K=4 extreme at n=50/100: both MLE and HB blow up (too few labels per subgroup for stable matrix inversion)\n\n**HB Coverage** — all ≥ 0.90:\n- z0 coverage: 0.91–0.99 across all configs\n- z1 coverage: 0.91–0.96\n- Lowest: K=4 extreme n=50 (z1=0.907) — borderline but passes\n\n**K=4 vs K=2**: K=4 shows larger RMSE everywhere (more subgroups = fewer expert labels each), bigger HB advantage at small n_expert, and more fragility in the extreme regime at low budgets.\n\n**Output files**:\n- `results/exp001_hb_results.csv` — 540 rows (36 cells × 5 methods × 3 subgroup-averaged entries)\n- `results/exp001_hb_diagnostics.csv` — 3600 rows"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

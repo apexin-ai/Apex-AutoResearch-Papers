@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f0d8657007337550d22d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research ref audit w3",
+  "task_key": "worker_research_ref-audit-w3_20260526T103506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-w3_20260526T103506_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "c738e13fe420ed59a742073309c7d2cfbeaee91a0e4638b690d1ee5df744e926"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。59 条引用全部经 WebSearch 验证，无幻觉论文。\n\n**3 个必须修复的错误**：\n1. **baan-2023-ecological** — key 写了 \"baan\" 但作者里没有 Baan（实际是 Orlikowski 等人），需改 key 并更新所有 cite\n2. **reflect-learn-2026** — 作者 \"Li, Shaoyuan\" 应为 \"Li, Shao-Yuan\"（带连字符）\n3. **promptner-2023** — 已被 ICLR 2024 接收，bib 仍引 arXiv，应改为 ICLR 2024 正式版\n\n**8 个建议关注项**（⚠）：主要是 arXiv preprint 可能已被正式接收（dlisc-2025/spt-2025/chen-2026-multi-instance），以及若干 venue 命名惯例差异。\n\n报告已写入 `artifacts/_project/report/ref_audit_worker3.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

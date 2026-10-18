@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e77ce655c342f5758177",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r26 fix results",
+  "task_key": "worker_paper_r26_fix_results_20260522T043732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_fix_results_20260522T043732_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "f0cbe70045287ae83ce8a1e1322fa766815f4201cc00dc0723c5ce1e808afd5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改全部完成。修改摘要：\n\n| Task | 文件 | 行号 | 修改内容 |\n|------|------|------|----------|\n| 3 | `results.tex:52` | §4.3 DocRED段 \"shared with centrality.\" 之后 | 插入 VIF=50.9 标准误膨胀 ~7 倍 caveat + Ridge regression 方向确认 + Appendix ref |\n| 4 | `discussion.tex:11` | §Discussion \"independently addressable\" | 替换为 \"approximately additive on the probability scale within the observed accuracy range (0.37–0.86)\" + 新增 logit scale inconclusive 句 |\n| 7 | `results.tex:78` | §4.4 NER null \"absence of evidence rather than evidence of absence.\" 之后 | 插入 NER error-mode structure 解释（miss/boundary/type channels）+ `\\ref{app:relaxed-matching}` (label 已验证存在) |\n| 8 | `main.tex:52` | Limitations → Multiple comparisons 段末 | 插入 Bonferroni robustness 声明，标注 logit-scale interaction p=0.047 为唯一临界值结果 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

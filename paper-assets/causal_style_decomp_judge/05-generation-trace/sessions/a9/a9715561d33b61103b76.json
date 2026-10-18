@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "a9715561d33b61103b76",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code alpacaeval qwen32b scoring",
+  "task_key": "worker_code_alpacaeval_qwen32b_scoring_20260521T074636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpacaeval_qwen32b_scoring_20260521T074636.log",
+    "occurrence": 1,
+    "bytes": 659317,
+    "sha256": "a8d182ebaa5cc579ea2c8728625b906c8246f03a48ed6936baacba8d843d7350"
+  },
+  "statistics": {
+    "messages": 345,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 37,
+      "record": 1,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 345,
+      "chunks": [
+        {
+          "path": "a9715561d33b61103b76-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9715561d33b61103b76-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ]
+}

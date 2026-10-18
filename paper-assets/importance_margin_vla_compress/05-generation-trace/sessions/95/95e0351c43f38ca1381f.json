@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "95e0351c43f38ca1381f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval pi05 random k09 long seed43 strict cqa1 v2",
+  "task_key": "worker_analyze_eval_pi05_random_k09_long_seed43_strict_cqa1_v2_20260527T184155",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_pi05_random_k09_long_seed43_strict_cqa1_v2_20260527T184155_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "631c06360c8a389d586bc42d1f9223a5618dba7ac67b5710599bb990e5779cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n**结果汇总**：\n- **Overall SR: 32.4%** (162/500)，与 seed42 的 34.2% 高度一致\n- 两个 seed 的 Random k=0.9 均值：(34.2 + 32.4) / 2 = **33.3%**\n- Per-task: T0=10%, T1=40%, T2=32%, T3=62%, T4=24%, T5=26%, T6=20%, T7=32%, T8=6%, T9=72%\n- 运行时间 309.6 min，10 tasks × 50 episodes 全部完成\n- Status: DONE, conclusion: success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

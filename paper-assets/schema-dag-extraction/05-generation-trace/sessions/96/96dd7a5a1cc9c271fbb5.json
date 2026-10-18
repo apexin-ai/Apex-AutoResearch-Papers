@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "96dd7a5a1cc9c271fbb5",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp1 text reeval",
+  "task_key": "worker_ssh_exp1-text-reeval_20260514T231942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp1-text-reeval_20260514T231942_result.json",
+    "occurrence": 1,
+    "bytes": 2378,
+    "sha256": "6f92248f1d5836e9034dc6ae37685b688469627788b484be6d2b09cee120722a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整重评估完成（94 batches, 94000 entries）。结果：\n\n## Per-Count Text-Match F1 曲线\n\n| Count | Batches | MicroP | MicroR | MicroF1 | AvgPred | AvgGold | P/G Ratio |\n|-------|---------|--------|--------|---------|---------|---------|-----------|\n| 1 | 64 | 0.105 | 0.720 | **0.184** | 283.7 | 41.4 | 6.85 |\n| 2 | 5 | 0.068 | 0.698 | **0.123** | 959.0 | 92.8 | 10.33 |\n| 6 | 5 | 0.088 | 0.620 | **0.155** | 1355.4 | 193.2 | 7.02 |\n| 12 | 5 | 0.160 | 0.539 | **0.246** | 1616.8 | 478.2 | 3.38 |\n| 22 | 5 | 0.232 | 0.527 | **0.322** | 2009.4 | 884.2 | 2.27 |\n| 44 | 5 | 0.414 | 0.551 | **0.473** | 2532.0 | 1899.6 | 1.33 |\n| 64 | 5 | 0.520 | 0.418 | **0.463** | 2133.2 | 2652.0 | 0.80 |\n\n## 核心发现\n\n**Count curve 仍然反转**（inverted-U，峰值 count_44=0.473）：\n- Recall 单调下降（0.72→0.42）：符合\"类型多→遗漏多\"的预期\n- Precision 单调上升（0.11→0.52）：因为 over-prediction 随 count 减少\n- F1 先升后略降，受 precision 上升主导\n\n**Over-prediction 是反转的根因**：\n- count_1 时 pred/gold=6.85:1（严重过度预测）\n- count_2 最严重：pred/gold=10.33:1\n- count_44 趋于平衡（1.33:1），count_64 开始欠预测（0.80:1）\n\n## FP 错误分类\n\n| Count | Hallucinated | WrongType | Spurious | Total FP |\n|-------|-------------|-----------|----------|----------|\n| 1 | 283 | 0 | 15,950 | 16,233 |\n| 2 | 81 | 8 | 4,382 | 4,471 |\n| 6 | 229 | 44 | 5,901 | 6,174 |\n| 12 | 917 | 199 | 5,675 | 6,791 |\n| 22 | 357 | 541 | 6,814 | 7,712 |\n| 44 | 199 | 1,563 | 5,637 | 7,399 |\n| 64 | 175 | 2,434 | 2,495 | 5,104 |\n\n- **Spurious**（文本存在于原文但不是 gold entity）占绝对主体，尤其 count_1\n- **Type confusion**（文本匹配 gold 但 type 错）随 count 增加而增长（0→2434），符合类型混淆假设\n- **Hallucination**（文本不在原文中）占比很小（~1-5%）\n\n## 结论\n\n修正后的 count curve **不支持** \"schema complexity hurts extraction\"。真实 pattern 是：低 count 时模型 over-predict 严重（把非 entity 的文本也标注为 entity），拉低 precision 从而拉低 F1。类型混淆（WrongType）随 count 增加才成为显著因素，但其影响被 over-prediction 消减所抵消。\n\n三个输出文件已保存至 `/root/schema-dag-extraction/results/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

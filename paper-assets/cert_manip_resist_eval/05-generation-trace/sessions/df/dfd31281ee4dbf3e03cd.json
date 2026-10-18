@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dfd31281ee4dbf3e03cd",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis taxonomy check",
+  "task_key": "worker_analysis_taxonomy-check_20260522T035438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_taxonomy-check_20260522T035438_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "dbb1157428c1394ef8600e3e140702146ce52a644a33a3ee35b7d90f68f265d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ANALYZING → RUNNING 不允许。Registry 状态机限制，不影响判断。\n\n## 实验状态：**正在运行**\n\n**进程**：VLLM EngineCore (PID 73796)，GPU 1 占用 85.8GB / 97.9GB，利用率 100%\n\n**进度**：Phase 1 数据收集中，`phase1_complete: false`\n- 每个模型需跑 8 个评分任务（2 数据集 × 4 条件：clean + verbosity_bias + position_bias + authority_bias）\n- **已完成**：qwen2.5-72b（8/8 tasks，11:43–11:53，约 10 分钟）\n- **进行中**：llama3.1-70b（11:55 开始 mmlu clean）\n- **待跑**：还有 4 个模型（qwen2.5-32b, qwen2.5-14b, llama3.1-8b, mistral-large 等）\n\n**预计剩余时间**：~50 分钟（5 个模型 × ~10 分钟/模型），之后还有 Phase 2 分析\n\n**日志路径**：`/root/cert_manip_resist_eval/artifacts/logs/taxonomy_broadspectrum_20260522_114119.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

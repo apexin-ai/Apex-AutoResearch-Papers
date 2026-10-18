@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d87157f75c6207152f3b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis docred bcs r2",
+  "task_key": "worker_analysis_docred_bcs_r2_20260519T140257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_bcs_r2_20260519T140257_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "9039b7b50e62e06ea215e68207a070adc53796c52c7a8a06605c9b0eb2fd4341"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `r2_analysis.json`。汇总：\n\n### Per count level (n=55 each)\n\n| Metric | count_16 | count_32 |\n|--------|----------|----------|\n| **R²** | **0.6528** | **0.6135** |\n| R² 95% CI | [0.5272, 0.7661] | [0.4662, 0.7482] |\n| Pearson r | −0.808 (p=8.9e-14) | −0.783 (p=1.6e-12) |\n| Spearman ρ | −0.762 (p=1.4e-11) | −0.693 (p=4.6e-09) |\n| Slope | −0.7317 | −0.6296 |\n| Intercept | 0.9775 | 0.8558 |\n\n### Pooled (n=110)\n- R² (BCS only) = 0.5779, CI [0.4629, 0.6838]\n- R² (BCS + count covariate) = 0.6784\n- Semi-partial R² of BCS = 0.5676\n\n### vs. original\n- Original count_16: R² = 0.525, n=35, CI [0.27, 0.73]\n- Expanded count_16: R² = **0.6528**, n=55, CI [0.53, 0.77] — 更高且 CI 更窄\n\n### 论文引用\n**R² = 0.61–0.65 (61–65%)**，替代原来的 \"22–53%\"。原来那个范围对应的是旧实验（n=35, R²=0.525 是 count_16 的，其他 count levels 的 R² 更低），expanded 实验两个 count level 都稳定在 61–65%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

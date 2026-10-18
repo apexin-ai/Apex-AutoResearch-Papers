@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "64ef75a6ab73d28563f2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis edd t070 balanced acc",
+  "task_key": "worker_analysis_edd_t070_balanced_acc_20260518T142916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_edd_t070_balanced_acc_20260518T142916_result.json",
+    "occurrence": 1,
+    "bytes": 1705,
+    "sha256": "72cd5b756562effe467b4f5fc2c25d6e601e92db8fa1ce6ca389783207600a66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件已正确生成。以下是汇总：\n\n---\n\n## Task A: EDD at T=0.70\n\n**9-Cell (4-class d0-d3):**\n\n| Cell | d1v2 | d2v3 | EDD@.70 | EDD@.75 |\n|------|------|------|---------|---------|\n| pythia_nucleus | 0.8607 | 0.8005 | 3 | 3 |\n| pythia_temp09 | 0.8327 | 0.7928 | 3 | 3 |\n| pythia_topk50 | 0.7518 | 0.6918 | **2** | 2 |\n| olmo_nucleus | 0.8673 | 0.8124 | 3 | 3 |\n| olmo_temp09 | 0.9010 | 0.8214 | 3 | 3 |\n| olmo_topk50 | 0.8305 | 0.7357 | **3** | **2** |\n| gpt2xl_nucleus | 0.9131 | 0.8829 | 3 | 3 |\n| gpt2xl_temp09 | 0.9367 | 0.8815 | 3 | 3 |\n| gpt2xl_topk50 | 0.8259 | 0.7708 | 3 | 3 |\n\n- T=0.70: **8/9 cells EDD=3**, mean=2.89\n- T=0.75: **7/9 cells EDD=3**, mean=2.78\n- 降低阈值多收回 olmo_topk50 (d2v3=0.7357 介于 0.70-0.75 之间)\n\n**Depth Extension (binary classifiers, d1-d5):**\n\n| Model | d3v4 | d4v5 | EDD@.70 | EDD@.75 |\n|-------|------|------|---------|---------|\n| Pythia | 0.7837 | 0.6832 | 4 | 4 |\n| GPT-2 XL | 0.7501 | 0.6805 | 4 | 4 |\n| OLMo | 0.7649 | 0.6843 | 4 | 4 |\n\n**3/3 models EDD=4 at T=0.70**，与 T=0.75 完全一致（d3v4 已 >= 0.75, d4v5 仍 < 0.70）。\n\n---\n\n## Task B: d1-d3 Balanced Accuracy\n\n**Within-Distribution (9-cell mean):** **0.7109**\n- 最高: gpt2xl_temp09 = 0.8053\n- 最低: pythia_topk50 = 0.5845\n\n**Cross-Model Transfer (LOO mean):** **0.5544**\n- Holdout Pythia: 0.4990\n- Holdout OLMo: 0.5920\n- Holdout GPT-2 XL: 0.5723\n\n**最弱 d2 recall:**\n- Within-distribution: pythia_topk50 = 0.4560\n- Cross-model: holdout Pythia = **0.2677** (overall minimum)\n\n---\n\n产出文件:\n- `results/reviewer_metrics/edd_t070.json`\n- `results/reviewer_metrics/d1d3_balanced_acc.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

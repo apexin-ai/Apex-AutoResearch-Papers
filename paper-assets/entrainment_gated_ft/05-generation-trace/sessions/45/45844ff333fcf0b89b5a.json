@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "45844ff333fcf0b89b5a",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 007 340m rebound",
+  "task_key": "worker_analysis_exp-007-340m-rebound_20260519T185316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-007-340m-rebound_20260519T185316_result.json",
+    "occurrence": 1,
+    "bytes": 1718,
+    "sha256": "a0d06abf92dc61ad7b75aee06a248f3049eb7d5bd3e5f6265f333b6acbc6e2df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n### (a) Cross-Architecture Convergence (340M)\n| Ratio | σ | vs 1.3B σ |\n|-------|------|-----------|\n| pure | 0.0248 | 1.03× (持平) |\n| h24-1 | 0.0116 | 0.71× |\n| h12-1 | 0.0178 | 1.31× |\n| **h6-1** | **0.0110** | 1.82× |\n| h3-1 | 0.0160 | 3.24× |\n\n- **Non-monotonic rebound 确认**：σ 在 h6-1 最低 (0.011)，h3-1 回弹到 0.016\n- Peak reduction: 55.6%，endpoint reduction: 35.5%\n- 340M 的 rebound 比 1.3B 更强（1.3B 的 σ 持续下降到 0.00494）\n\n### (b) Per-Example Helped/Hurt\n- GDN: helped=422, hurt=678 (net -256) — attention 伤害 GDN\n- RetNet: helped=373, hurt=479 (net -106)\n- HGRN2: helped=575, hurt=337 (net **+238**) — attention 帮助 HGRN2\n- **Pairwise Jaccard 极低** (~0.08-0.11)：各架构被 help/hurt 的是不同的样本\n\n### (c) Cross-Scale Jaccard\n- GDN: helped_J=0.047, hurt_J=0.087\n- HGRN2: helped_J=0.089, hurt_J=0.055\n- RetNet: null（1.3B RetNet-pure log_samples 数据异常，全部 acc=0）\n- **跨 scale 的 per-example 效应几乎不重叠**\n\n### (d) Rebound 样本特征\n- Rebound samples: 1165, stay-correct: 1432\n- Context length **无显著差异** (mean ~58.5 words, Mann-Whitney p=0.31)\n- **关键发现**：rebound 样本的 pure acc rate = 0.519，stay-correct 的 = 0.763 — rebound 样本本身就更难（baseline 正确率低 24pp）\n\n### (e) Attention Ratio Evolution\n- **h6-1→h3-1** 是所有架构唯一的共同 hurt 转折点（GDN net=-129, RetNet net=-8, HGRN2 net=-37）\n- GDN 路径非单调：先降后升再降 (pure→h12-1 净减少, h12-1→h6-1 净增 132, h6-1→h3-1 再减 129)\n- HGRN2 持续受益直到 h6-1，在 h3-1 才首次转负"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,3293 @@
+{
+  "schema_version": "1.0",
+  "id": "9042644ff89d54f050b9",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "deploy check baseline readiness gpu6000pro2",
+  "task_key": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707.jsonl",
+    "occurrence": 1,
+    "bytes": 94975,
+    "sha256": "f298038bdd767868f9244ce9dde280d76c8a3106a0f3ed8e3815d5611ff1966e"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 0,
+    "tool_calls": 83,
+    "roles": {
+      "tool_call": 83,
+      "tool_result": 83,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:41:14.434690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:41:14.435063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:41:14.435245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/data/"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:41:14.435411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/ /root/autodl-tmp/recursive_gen_depth_est/data/pythia/ /root/autodl-tmp/recursive_gen_depth_est/data/olmo/ 2>&1"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:41:14.435593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 166080\\\\ndrwxr-xr-x 31 root root     4096 May 19 11:00 .\\\\ndrwxr-xr-x 14 root root     4096 May 19 18:48 ..\\\\ndrwxr-xr-x  2 root root      136 May 16 13:51 cross_model_chain\\\\ndrwxr-xr-x  2 root root     4096 May 16 07:58 curation_poc\\\\n-rw-r--r--  1 root root 11053344 May 14 18:14 depth_0.jsonl\\\\n-rw-r--r--  1 root root  3424287 May 14 20:54 depth_0_features.jsonl\\\\n-rw-r--r--  1 root root  9204414 May 14 20:41 depth_1.jsonl\\\\n-rw-r--r--  1 root root  9315971 May 14 21:14 depth_2.jsonl\\\\n-rw-r--r--  1 root root  9718929 May 14 21:47 depth_3.jsonl\\\\n-rw-r--r--  1 root root 10048659 May 15 12:36 depth_4.jsonl\\\\n-rw-r--r--  1 root root  9950121 May 15 13:08 depth_5.jsonl\\\\ndrwxr-xr-x  2 root root      110 May 16 15:38 domain_extension\\\\ndrwxr-xr-x  2 root root      151 May 17 23:59 downstream\\\\n-rw-r--r--  1 root root 10277831 May 14 22:10 features_3class.jsonl\\\\n-rw-r--r--  1 root root 13702118 May 14 21:58 features_all.jsonl\\\\n-rw-r--r--  1 root root  6781286 May 15 14:12 features_d4d5.jsonl\\\\n-rw-r--r--  1 root root  3390688 May 15 14:13 features_depth_4.jsonl\\\\n-rw-r--r--  1 root root  3390598 May 15 14:13 features_depth_5.jsonl\\\\n-rw-r--r--  1 root root 11640844 May 14 21:59 features_filtered.jsonl\\\\ndrwxr-xr-x  2 root root      186 May 15 18:34 gpt2xl\\\\ndrwxr-xr-x  2 root root      110 May 18 19:13 gpt2xl_seed43\\\\ndrwxr-xr-x  2 root root      110 May 15 05:23 gpt2xl_temp09\\\\ndrwxr-xr-x  2 root root      110 May 15 09:12 gpt2xl_topk50\\\\ndrwxr-xr-x  2 root root      186 May 16 17:25 llama3_8b_nucleus\\\\ndrwxr-xr-x  2 root root      186 May 17 00:32 llama3_base_nucleus\\\\ndrwxr-xr-x  2 root root      186 May 15 18:01 olmo\\\\ndrwxr-xr-x  2 root root      110 May 19 00:25 olmo_seed43\\\\ndrwxr-xr-x  2 root root      110 May 15 07:26 olmo_temp09\\\\ndrwxr-xr-x  2 root root      110 May 15 09:12 olmo_topk50\\\\ndrwxr-xr-x  2 root root      160 May 17 22:08 prompted_gen\\\\ndrwxr-xr-x  2 root root      110 May 18 22:18 \n…[truncated 1069 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:41:14.435755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:41:14.435908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/scripts/mink_prob_baseline.py /root/autodl-tmp/recursive_gen_depth_est/scripts/detectgpt_baseline_v2.py 2>&1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:41:14.436044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:41:14.436166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts/ -name \"*binocular*\" -o -name \"*bino*\" 2>&1"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:41:14.436298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:41:14.436418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/models/ 2>&1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:41:14.436538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:41:14.436654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/.hf_cache/hub/ -maxdepth 1 -name \"models--*\" -type d 2>&1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:41:14.436770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:41:14.436902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:41:14.437030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:41:14.437152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "pip list 2>&1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:41:14.437267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:41:14.437379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "df -h /root/autodl-tmp/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:41:14.437490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -660 /root/autodl-tmp/recursive_gen_depth_est/scripts/accumulation_pipeline_gpt2xl.py 2>&1"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:41:14.437605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  168G   83G  68% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:41:14.437718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T13:41:14.437861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:41:14.438001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/olmo/"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T13:41:14.438119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\ndepth_4.jsonl\\\\ndepth_5.jsonl\\\\nfeatures.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:41:14.438239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T13:41:14.438475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\ndepth_4.jsonl\\\\ndepth_5.jsonl\\\\nfeatures.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T13:41:14.438604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/mink_prob_baseline.py"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T13:41:14.438726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\nfeatures.jsonl\\\\nfeatures_3class.jsonl\\\\nfeatures_filtered.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T13:41:14.438841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/detectgpt_baseline_v2.py"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T13:41:14.438985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recursive_gen_depth_est/scripts/mink_prob_baseline.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T13:41:14.439100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts/ -name \"*bino*\""
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T13:41:14.439213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/models/"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T13:41:14.439331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recursive_gen_depth_est/scripts/detectgpt_baseline_v2.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T13:41:14.439451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/.hf_cache/hub/ -maxdepth 1 -name \"models--*\" -type d"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T13:41:14.439569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T13:41:14.439681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T13:41:14.439792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "pip list"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T13:41:14.439926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recursive_gen_depth_est/models/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T13:41:14.440059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen3-8B\\\\n/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen2.5-1.5B\\\\n/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b\\\\n/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-v3-base\\\\n/root/autodl-tmp/.hf_cache/hub/models--allenai--OLMo-1B\\\\n/root/autodl-tmp/.hf_cache/hub/models--openai-community--gpt2-xl\\\\n/root/autodl-tmp/.hf_cache/hub/models--allenai--OLMo-1B-hf\\\\n/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-v3-large\\\\n/root/autodl-tmp/.hf_cache/hub/models--roberta-large\\\\n/root/autodl-tmp/.hf_cache/hub/models--roberta-base\\\\n/root/autodl-tmp/.hf_cache/hub/models--FacebookAI--roberta-base\\\\n/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-410m\\\\n/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen2.5-14B\\\\n/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen2.5-1.5B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T13:41:14.440177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T13:41:14.440294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pip' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T13:41:14.440440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available())\""
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T13:41:14.440559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T13:41:14.440673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import transformers; print('transformers', transformers.__version__)\""
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T13:41:14.440787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T13:41:14.440915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import sklearn; print('sklearn', sklearn.__version__)\""
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T13:41:14.441035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T13:41:14.441148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import scipy; print('scipy', scipy.__version__)\""
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T13:41:14.441260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T13:41:14.441370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T13:41:14.441489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts/ -name \"*baseline*\""
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T13:41:14.441652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nadd_seed_id.py\\\\natlas_analysis.py\\\\natlas_v2_analysis.py\\\\natlas_v2_complete.py\\\\natlas_v2_heavy_plots.py\\\\natlas_v2_plots.py\\\\nbaseline_ce_classification.py\\\\nbaseline_coral.py\\\\nbaseline_diveye_ordinal.py\\\\nbaseline_ppl_regression.py\\\\nbaseline_utils.py\\\\nbaseline_zeroshot_llm.py\\\\nbatch_feature_extraction.sh\\\\nbootstrap_ci_table1.py\\\\nbootstrap_ci_v2.py\\\\ncompute_reviewer_metrics.py\\\\ncross_seed_transfer.py\\\\ncross_strategy_da\\\\ncross_strategy_pipeline.py\\\\nd4_extension_eval.py\\\\nd4_extension_eval_olmo.py\\\\nd4_extension_eval_pythia.py\\\\ndcol_train_standalone_deprecated.py\\\\ndcol_trainer_v4.py\\\\ndetection_baselines.py\\\\ndetector_baselines\\\\ndownload_qwen25_14b.sh\\\\ndownload_wild_data.py\\\\ndownstream_eval.sh\\\\ndownstream_filter.py\\\\ndownstream_finetune.py\\\\ndownstream_score_data.py\\\\neval_d1d3.py\\\\neval_lora_rank_ablation.py\\\\neval_second_seed.py\\\\nextract_features.py\\\\nfeature_ablation.py\\\\nfilter_code.py\\\\nfilter_features_d1d3.py\\\\ngen_length_ablation.py\\\\ngenerate_next_depth.py\\\\ngpt2xl_c4_calibration.py\\\\ninvestigate_table2.py\\\\ninvestigate_table2_v2.py\\\\ninvestigate_table2_v3.py\\\\nlearned_estimator_sweep.py\\\\nlearned_estimator_train.py\\\\nlearned_estimator_train.py.bak\\\\nlearned_estimator_utils.py\\\\nlearned_estimator_utils.py.bak\\\\nllama3_eval.py\\\\nlora_finetune.py\\\\nlr_cross_strategy_zscore.py\\\\nmixed_depth_corpus_eval.py\\\\nmlp_baseline.py\\\\nmulti_tau_eval.py\\\\npipeline_conditional_decomp.py\\\\nplan_015_wild_data.py\\\\nprepare_arxiv_seeds.py\\\\nprepare_seed_data.py\\\\nprompted_generation_eval.py\\\\nqwen25_1.5b_instruct_pipeline.py\\\\nqwen25_1.5b_instruct_pipeline.py.bak\\\\nqwen25_14b_scale_validation.py\\\\nqwen25_14b_temp09.py\\\\nqwen25_14b_topk50.py\\\\nqwen7b_eval.py\\\\nqwen7b_generate.py\\\\nqwen7b_lora_finetune.py\\\\nref_model_ablation.py\\\\nreference_free_baseline.py\\\\nresume_olmo_step5.sh\\\\nrf_seed_robustness.py\\\\nrun_accumulation.py\\\\nrun_atlas_analysis.sh\\\\nrun_cross_model_chain.sh\\\\nrun_dcol_train\n…[truncated 1673 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T13:41:14.441792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts/ -name \"*mink*\" -o -name \"*detectgpt*\""
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T13:41:14.441945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_utils.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_ce_classification.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_coral.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_zeroshot_llm.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_ppl_regression.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/baseline_diveye_ordinal.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/__pycache__/baseline_utils.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/__pycache__/baseline_zeroshot_llm.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/__pycache__/baseline_ce_classification.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/__pycache__/baseline_coral.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_zeroshot_baseline.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/reference_free_baseline.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/mlp_baseline.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T13:41:14.442081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T13:41:14.442197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -rn \"0.859\" /root/autodl-tmp/recursive_gen_depth_est/scripts/accumulation_pipeline_gpt2xl.py"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T13:41:14.442364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/recursive_gen_depth_est/scripts/accumulation_pipeline_gpt2xl.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T13:41:14.442490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T13:41:14.442607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T13:41:14.442723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T13:41:14.442839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/olmo_temp09/"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T13:41:14.442979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T13:41:14.443102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/olmo_topk50/"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T13:41:14.443220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T13:41:14.443332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50/"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T13:41:14.443446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T13:41:14.443558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/mink_prob_baseline*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T13:41:14.443673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T13:41:14.443780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/mink_prob_baseline.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T13:41:14.443903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*baseline*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T13:41:14.444027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/intermediate/baseline_battery_readme.md\nartifacts/_project/data/baseline_unified_comparison.md\nartifacts/baseline_perplexity_regression.py\nartifacts/baseline_diveye.py\nartifacts/baseline_zero_shot_llm.py\nartifacts/baselines.py\nartifacts/_project/data/9cell_baseline_battery.txt\nartifacts/_project/data/detector_baselines_summary_v2.json\nartifacts/mink_prob_baseline.py\nartifacts/detectgpt_baseline.py\nartifacts/cross_strategy_da/dann_vs_baseline_comparison.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T13:41:14.444185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T13:41:14.444307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"run_all_detectors.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T13:41:14.444420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -50 /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T13:41:14.444566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDetection-based baselines for recursive generation depth estimation.\\\\n\\\\nComputes Binoculars and Fast-DetectGPT continuous scores on 3x3 grid data,\\\\nthen calibrates to 4-class ordinal prediction via LR and optimal binning.\\\\n\\\\nModels used:\\\\n  - Binoculars: gpt2-xl (observer) + pythia-1.4b (performer)\\\\n  - Fast-DetectGPT: gpt2-xl (scoring model)\\\\n\\\\nUsage:\\\\n  python scripts/detection_baselines.py --gpu 0\\\\n  python scripts/detection_baselines.py --gpu 0 --pilot  # only pythia_nucleus\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom sklearn.metrics import accuracy_score\\\\n\\\\nGRID_CELLS = {\\\\n    \\\\\\\"pythia_nucleus\\\\\\\": \\\\\\\"data/\\\\\\\",\\\\n    \\\\\\\"pythia_temp09\\\\\\\": \\\\\\\"data/pythia_temp09/\\\\\\\",\\\\n    \\\\\\\"pythia_topk50\\\\\\\": \\\\\\\"data/pythia_topk50/\\\\\\\",\\\\n    \\\\\\\"olmo_nucleus\\\\\\\": \\\\\\\"data/olmo/\\\\\\\",\\\\n    \\\\\\\"olmo_temp09\\\\\\\": \\\\\\\"data/olmo_temp09/\\\\\\\",\\\\n    \\\\\\\"olmo_topk50\\\\\\\": \\\\\\\"data/olmo_topk50/\\\\\\\",\\\\n    \\\\\\\"gpt2xl_nucleus\\\\\\\": \\\\\\\"data/gpt2xl/\\\\\\\",\\\\n    \\\\\\\"gpt2xl_temp09\\\\\\\": \\\\\\\"data/gpt2xl_temp09/\\\\\\\",\\\\n    \\\\\\\"gpt2xl_topk50\\\\\\\": \\\\\\\"data/gpt2xl_topk50/\\\\\\\",\\\\n}\\\\n\\\\nMODEL_PATHS = {\\\\n    \\\\\\\"gpt2xl\\\\\\\": \\\\\\\"/root/autodl-tmp/models/gpt2-xl\\\\\\\",\\\\n    \\\\\\\"pythia\\\\\\\": \\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\",\\\\n}\\\\n\\\\nNUM_DEPTHS = 4\\\\nMAX_SEQ_LEN = 512\\\\nBATCH_SIZE = 16\\\\n\\\\n\\\\nclass TextDataset(Dataset):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T13:41:14.444695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts/ -name \"*accumulation*\""
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T13:41:14.444924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import torch; print(torch.__version__)\""
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T13:41:14.445066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/run_accumulation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T13:41:14.445186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T13:41:14.445300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"print(torch.cuda.is_available())\" "
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-19T13:41:14.445415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-19T13:41:14.445532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nNameError: name 'torch' is not defined\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-19T13:41:14.445646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-19T13:41:14.445984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import sklearn; print(sklearn.__version__)\""
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-19T13:41:14.446135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-19T13:41:14.446273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "python3 -c \"import scipy; print(scipy.__version__)\""
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-19T13:41:14.446420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-19T13:41:14.446539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*binocular*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-19T13:41:14.446653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/intermediate/binoculars_ordinal_eval.py\nartifacts/binoculars_baseline/binoculars_ordinal_eval.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-19T13:41:14.446763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*accumulation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-19T13:41:14.446889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-19T13:41:14.447254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-19T13:41:14.447471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDetection-based baselines for recursive generation depth estimation.\\\\n\\\\nComputes 5 continuous detection scores on 3x3 grid data, then evaluates\\\\nordinal depth prediction via LR, RF, and quantile binning.\\\\n\\\\nDetectors:\\\\n  1. Binoculars: CE_observer / CE_performer (gpt2-xl / pythia-1.4b)\\\\n  2. Fast-DetectGPT: normalized (token_ll + entropy) discrepancy\\\\n  3. Log-Rank: average log-rank of actual tokens under scoring model\\\\n  4. Entropy: average predictive entropy\\\\n  5. LLR: log-likelihood ratio (ll_observer - ll_performer)\\\\n\\\\nEvaluation:\\\\n  - 5-fold CV Logistic Regression (per-score + combined)\\\\n  - 5-fold CV Random Forest (per-score + combined)\\\\n  - Quantile binning\\\\n  - Pairwise AUC: d0v1, d1v2, d2v3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom sklearn.metrics import accuracy_score, roc_auc_score\\\\n\\\\nPROJECT_ROOT = \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est\\\\\\\"\\\\n\\\\nGRID_CELLS = {\\\\n    \\\\\\\"pythia_nucleus\\\\\\\": \\\\\\\"data/\\\\\\\",\\\\n    \\\\\\\"pythia_temp09\\\\\\\": \\\\\\\"data/pythia_temp09/\\\\\\\",\\\\n    \\\\\\\"pythia_topk50\\\\\\\": \\\\\\\"data/pythia_topk50/\\\\\\\",\\\\n    \\\\\\\"olmo_nucleus\\\\\\\": \\\\\\\"data/olmo/\\\\\\\",\\\\n    \\\\\\\"olmo_temp09\\\\\\\": \\\\\\\"data/olmo_temp09/\\\\\\\",\\\\n    \\\\\\\"olmo_topk50\\\\\\\": \\\\\\\"data/olmo_topk50/\\\\\\\",\\\\n    \\\\\\\"gpt2xl_nucleus\\\\\\\": \\\\\\\"data/gpt2xl/\\\\\\\",\\\\n    \\\\\\\"gpt2xl_temp09\\\\\\\": \\\\\\\"data/gpt2xl_temp09/\\\\\\\",\\\\n    \\\\\\\"gpt2xl_topk50\\\\\\\": \\\\\\\"data/gpt2xl_topk50/\\\\\\\",\\\\n}\\\\n\\\\nMODEL_PATHS = {\\\\n    \\\\\\\"gpt2xl\\\\\\\": \\\\\\\"/root/autodl-tmp/models/gpt2-xl\\\\\\\",\\\\n    \\\\\\\"pythia\\\\\\\": \\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\",\\\\n}\\\\n\\\\nNUM_D\n…[truncated 1747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-19T13:41:14.447632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"0.859\" /root/autodl-tmp/recursive_gen_depth_est/scripts/run_accumulation.py"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-19T13:41:14.447762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-19T13:41:14.447962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -rn \"0.859\" /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-19T13:41:14.448111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-19T13:41:14.448234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-19T13:41:14.448351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"mink\\|min_k\\|Min-K\\|MinK\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-19T13:41:14.448471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"368 /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-19T13:41:14.448588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-19T13:41:14.448711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"mink\\|min_k\\|Min-K\\|MinK\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-19T13:41:14.448829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-19T13:41:14.448968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/bin/activate && python3 -c \"import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'gpus', torch.cuda.device_count())\""
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-19T13:41:14.449097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/bin/activate && python3 -c \"import transformers; print('transformers', transformers.__version__)\" && python3 -c \"import sklearn; print('sklearn', sklearn.__version__)\" && python3 -c \"import scipy; print('scipy', scipy.__version__)\""
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-19T13:41:14.449291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"MODEL_PATHS\\|model_path\\|model_name\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-19T13:41:14.449427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"torch 2.10.0+cu128 cuda True gpus 2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-19T13:41:14.449546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"transformers 5.8.1\\\\nsklearn 1.8.0\\\\nscipy 1.17.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-19T13:41:14.449659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-19T13:41:14.449792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -in \"mink\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-19T13:41:14.450107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -in \"mink\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-19T13:41:14.450296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-19T13:41:14.450431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -in \"min_k\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-19T13:41:14.450668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-19T13:41:14.451017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -30 /root/autodl-tmp/recursive_gen_depth_est/scripts/reference_free_baseline.py"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-19T13:41:14.451155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-19T13:41:14.451272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"MODEL_PATHS\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-19T13:41:14.451390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/models/"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-19T13:41:14.451524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom sklearn.metrics import accuracy_score, recall_score, roc_auc_score\\\\nfrom sklearn.preprocessing import label_binarize\\\\n\\\\nREF_DEPENDENT = [\\\\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\\\\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\\\\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal'\\\\n]\\\\n\\\\nREF_FREE = [\\\\n    'type_token_ratio', 'hapax_ratio',\\\\n    'bigram_entropy', 'trigram_entropy',\\\\n    'rep_2gram', 'rep_3gram', 'rep_4gram'\\\\n]\\\\n\\\\n# Load data\\\\ndata = []\\\\nwith open('data/features_all.jsonl') as f:\\\\n    for line in f:\\\\n        data.append(json.loads(line))\\\\n\\\\nX_ref_free = np.array([[d[feat] for feat in REF_FREE] for d in data])\\\\nX_all = np.array([[d[feat] for feat in REF_FREE + REF_DEPENDENT] for d in data])\\\\ny = np.array([d['depth'] for d in data])\\\\n\\\\n# 5-fold CV for reference-free\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-19T13:41:14.451661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"model\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-19T13:41:14.451794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49:MODEL_PATHS = {\\\\n338:        tok_obs = AutoTokenizer.from_pretrained(MODEL_PATHS[\\\\\\\"gpt2xl\\\\\\\"])\\\\n341:            MODEL_PATHS[\\\\\\\"gpt2xl\\\\\\\"], dtype=torch.float16\\\\n346:        tok_perf = AutoTokenizer.from_pretrained(MODEL_PATHS[\\\\\\\"pythia\\\\\\\"])\\\\n349:            MODEL_PATHS[\\\\\\\"pythia\\\\\\\"], dtype=torch.float16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-19T13:41:14.451949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EleutherAI\\\\nQwen\\\\nQwen2.5-1.5B\\\\nQwen2.5-1.5B-Instruct\\\\nQwen3-8B\\\\ndeberta-v3-base\\\\ndeberta-v3-base-ms\\\\ndeberta-v3-large\\\\ngpt2-xl\\\\nolmo-1b\\\\nolmo-1b-hf\\\\npythia-1.4b\\\\npythia-410m\\\\nqwen25_14b\\\\nroberta-base\\\\nroberta-base-ms\\\\nroberta-large\\\\nroberta-large-ms\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-19T13:41:14.452090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"9:  - Fast-DetectGPT: gpt2-xl (scoring model)\\\\n24:from sklearn.linear_model import LogisticRegression\\\\n25:from sklearn.model_selection import StratifiedKFold\\\\n41:    \\\\\\\"gpt2xl\\\\\\\": \\\\\\\"/root/autodl-tmp/models/gpt2-xl\\\\\\\",\\\\n42:    \\\\\\\"pythia\\\\\\\": \\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\",\\\\n88:def compute_log_likelihoods(model, tokenizer, texts, device, batch_size=16):\\\\n98:        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\\\\n118:def compute_fast_detectgpt_scores(model, tokenizer, texts, device, batch_size=16):\\\\n121:    and expected log-prob under model's own distribution.\\\\n131:        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\\\\n184:def run_cell(cell_name, data_dir, model_obs, model_perf, tok_obs, tok_perf, device, batch_size):\\\\n198:    ll_obs = compute_log_likelihoods(model_obs, tok_obs, texts, device, batch_size)\\\\n203:    ll_perf = compute_log_likelihoods(model_perf, tok_perf, texts, device, batch_size)\\\\n208:    fdgpt_scores = compute_fast_detectgpt_scores(model_obs, tok_obs, texts, device, batch_size)\\\\n275:    print(\\\\\\\"Loading models...\\\\\\\")\\\\n280:    model_obs = AutoModelForCausalLM.from_pretrained(\\\\n288:    model_perf = AutoModelForCausalLM.from_pretrained(\\\\n298:        result = run_cell(cell_name, data_dir, model_obs, model_perf,\\\\n345:        \\\\\\\"models\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-19T13:41:14.452270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mink_prob_baseline.py",
+              "limit": "60"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-19T13:41:14.452421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Min-K% Prob ordinal depth baseline for recursive generation depth estimation.\n2\t# Computes token-level log-probs via GPT-2 Large, takes the mean of the\n3\t# bottom-K% tokens as a membership-inference score, then calibrates to 4-class\n4\t# ordinal bins (d0-d3) using three methods: equal-interval, CORAL ordinal\n5\t# regression, and threshold-based (ROC-optimal).\n6\t\n7\timport os\n8\tos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n9\timport json\n10\timport warnings\n11\timport numpy as np\n12\tfrom pathlib import Path\n13\tfrom collections import defaultdict\n14\t\n15\timport torch\n16\timport torch.nn as nn\n17\tfrom torch.utils.data import DataLoader, Dataset\n18\tfrom transformers import GPT2LMHeadModel, GPT2TokenizerFast\n19\tfrom sklearn.model_selection import StratifiedKFold\n20\tfrom sklearn.metrics import accuracy_score, balanced_accuracy_score\n21\tfrom tqdm import tqdm\n22\t\n23\twarnings.filterwarnings(\"ignore\")\n24\t\n25\tos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n26\tDEVICE = torch.device(\"cuda:0\")\n27\t\n28\tDATA_ROOT = Path(\"/root/autodl-tmp/recursive_gen_depth_est/data\")\n29\tOUTPUT_DIR = Path(\"/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline\")\n30\t\n31\tCELL_DIRS = {\n32\t    \"pythia_nucleus\": DATA_ROOT,\n33\t    \"pythia_temp09\":  DATA_ROOT / \"pythia_temp09\",\n34\t    \"pythia_topk50\":  DATA_ROOT / \"pythia_topk50\",\n35\t    \"olmo_nucleus\":   DATA_ROOT / \"olmo\",\n36\t    \"olmo_temp09\":    DATA_ROOT / \"olmo_temp09\",\n37\t    \"olmo_topk50\":    DATA_ROOT / \"olmo_topk50\",\n38\t    \"gpt2xl_nucleus\": DATA_ROOT / \"gpt2xl\",\n39\t    \"gpt2xl_temp09\":  DATA_ROOT / \"gpt2xl_temp09\",\n40\t    \"gpt2xl_topk50\":  DATA_ROOT / \"gpt2xl_topk50\",\n41\t}\n42\t\n43\tK_VALUES = [10, 20, 30]\n44\tN_FOLDS = 5\n45\tSEED = 42\n46\tMAX_LENGTH = 512\n47\tBATCH_SIZE = 48\n48\t\n49\t\n50\tdef load_cell_texts(cell_dir: Path):\n51\t    \"\"\"Load depth_0..depth_3 jsonl files, return (texts, labels).\"\"\"\n52\t    texts, labels = [], []\n53\t    for d in range(4):\n54\t        fpath = cell_dir / f\"depth_{d}.jsonl\"\n55\t        if not fpath.exists():\n56\t           \n…[truncated 195 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-19T13:41:14.452566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-19T13:41:14.452689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"474 /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-19T13:41:14.452814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"class\\|def \\|Binoculars\\|DetectGPT\\|mink\\|Min-K\\|min_k\\|log_rank\\|entropy\\|LLR\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-19T13:41:14.452960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-19T13:41:14.453079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"features\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detection_baselines.py"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-19T13:41:14.453196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/detectgpt_baseline.py",
+              "limit": "50"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-19T13:41:14.453317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-19T13:41:14.453446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"DetectGPT ordinal depth baseline (Mitchell et al. 2023).\n2\t\n3\tComputes perturbation discrepancy scores using T5-large (perturbation, fp16)\n4\tand GPT-2 Large (scoring, fp16), then calibrates to 4-class ordinal depth\n5\t(d0-d3) via three methods: equal-width binning, CORAL ordinal regression,\n6\tand threshold-based ROC optimization.\n7\t\n8\tUsage:\n9\t    CUDA_VISIBLE_DEVICES=1 python detectgpt_baseline.py\n10\t\"\"\"\n11\t\n12\timport json\n13\timport os\n14\timport random\n15\timport time\n16\timport warnings\n17\tfrom pathlib import Path\n18\t\n19\timport numpy as np\n20\timport torch\n21\tfrom sklearn.linear_model import LogisticRegression\n22\tfrom sklearn.metrics import balanced_accuracy_score, accuracy_score, roc_curve\n23\tfrom sklearn.model_selection import StratifiedKFold\n24\tfrom transformers import (\n25\t    AutoModelForCausalLM,\n26\t    AutoTokenizer,\n27\t    T5ForConditionalGeneration,\n28\t    T5Tokenizer,\n29\t)\n30\t\n31\twarnings.filterwarnings(\"ignore\")\n32\t\n33\tSEED = 42\n34\trandom.seed(SEED)\n35\tnp.random.seed(SEED)\n36\ttorch.manual_seed(SEED)\n37\t\n38\tDATA_ROOT = Path(\"/root/autodl-tmp/recursive_gen_depth_est/data\")\n39\tRESULT_DIR = Path(\"/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline\")\n40\tRESULT_DIR.mkdir(parents=True, exist_ok=True)\n41\t\n42\tCELLS = [\n43\t    \"gpt2xl\", \"gpt2xl_temp09\", \"gpt2xl_topk50\",\n44\t    \"olmo\", \"olmo_temp09\", \"olmo_topk50\",\n45\t    \"pythia_temp09\", \"pythia_topk50\",\n46\t]\n47\tCELL_DISPLAY = {\n48\t    \"gpt2xl\": \"gpt2xl_nucleus\",\n49\t    \"olmo\": \"olmo_nucleus\",\n50\t}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-19T13:41:14.453595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/detectgpt_baseline.py",
+              "offset": "50",
+              "limit": "30"
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-19T13:41:14.453727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50\t}\n51\t\n52\tDEPTHS = [0, 1, 2, 3]\n53\tSAMPLES_PER_DEPTH = 200\n54\tN_PERTURBATIONS = 5\n55\tMASK_RATIO = 0.15\n56\tMAX_TOKENS = 512\n57\tN_FOLDS = 5\n58\t\n59\tDEVICE = torch.device(\"cuda:0\")\n60\tSCORING_MODEL_NAME = \"openai-community/gpt2-large\"\n61\tPERTURB_MODEL_NAME = \"google-t5/t5-large\"\n62\t\n63\tT5_BATCH_SIZE = 48\n64\tT5_MAX_NEW_TOKENS = 64\n65\tSCORING_BATCH_SIZE = 32\n66\t\n67\t\n68\tdef load_cell_data(cell_name):\n69\t    texts, labels = [], []\n70\t    for d in DEPTHS:\n71\t        fpath = DATA_ROOT / cell_name / f\"depth_{d}.jsonl\"\n72\t        if not fpath.exists():\n73\t            print(f\"  WARNING: {fpath} not found, skipping depth {d}\")\n74\t            continue\n75\t        lines = fpath.read_text().strip().split(\"\\n\")\n76\t        random.shuffle(lines)\n77\t        sampled = lines[:SAMPLES_PER_DEPTH]\n78\t        for line in sampled:\n79\t            obj = json.loads(line)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-19T13:41:14.453850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mink_prob_baseline.py",
+              "offset": "60",
+              "limit": "40"
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-19T13:41:14.454141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t                texts.append(rec[\"text\"])\n61\t                labels.append(d)\n62\t    return texts, np.array(labels)\n63\t\n64\t\n65\tclass TextDataset(Dataset):\n66\t    def __init__(self, texts, tokenizer, max_length):\n67\t        self.encodings = tokenizer(\n68\t            texts,\n69\t            max_length=max_length,\n70\t            truncation=True,\n71\t            padding=False,\n72\t            return_attention_mask=False,\n73\t        )[\"input_ids\"]\n74\t\n75\t    def __len__(self):\n76\t        return len(self.encodings)\n77\t\n78\t    def __getitem__(self, idx):\n79\t        return self.encodings[idx]\n80\t\n81\t\n82\tdef collate_fn(batch):\n83\t    max_len = max(len(ids) for ids in batch)\n84\t    padded = []\n85\t    masks = []\n86\t    for ids in batch:\n87\t        pad_len = max_len - len(ids)\n88\t        padded.append(ids + [0] * pad_len)\n89\t        masks.append([1] * len(ids) + [0] * pad_len)\n90\t    return torch.tensor(padded, dtype=torch.long), torch.tensor(masks, dtype=torch.long)\n91\t\n92\t\n93\t@torch.no_grad()\n94\tdef compute_token_logprobs(model, dataloader):\n95\t    \"\"\"Return list of 1-D numpy arrays, each containing per-token log-probs.\"\"\"\n96\t    all_logprobs = []\n97\t    for input_ids, attention_mask in tqdm(dataloader, desc=\"  logprob\"):\n98\t        input_ids = input_ids.to(DEVICE)\n99\t        attention_mask = attention_mask.to(DEVICE)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-19T13:41:14.454416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"mink\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-19T13:41:14.454555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-19T13:41:14.454683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"min_k\" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-19T13:41:14.454807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-19T13:41:14.454946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"def \" /root/autodl-tmp/recursive_gen_depth_est/scripts/detector_baselines/run_all_detectors.py"
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-19T13:41:14.455083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"59:    def __init__(self, texts, tokenizer, max_len=512):\\\\n65:    def __len__(self):\\\\n68:    def __getitem__(self, idx):\\\\n72:def load_cell_data(data_dir, max_per_depth=5000):\\\\n96:def compute_all_scores(model, tokenizer, texts, device, batch_size=8, label=\\\\\\\"model\\\\\\\"):\\\\n155:def quantile_binning(scores, labels, n_bins=4):\\\\n161:def cv_evaluate(X, labels, clf_factory, n_splits=5, seed=42):\\\\n179:def pairwise_auc(scores, labels, d_low, d_high):\\\\n192:def score_stats(scores, labels):\\\\n200:def evaluate_single_score(name, scores, labels):\\\\n230:def compute_cell_scores(cell_name, data_dir, model_obs, model_perf,\\\\n275:def evaluate_cell(cell_name, scores_dict):\\\\n319:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-19T13:41:14.455208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/.hf_cache/hub/ -maxdepth 1 -name \"models--*t5*\" -type d"
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-19T13:41:14.455328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/models/ -maxdepth 1 -name \"*t5*\" -type d"
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-19T13:41:14.455446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-19T13:41:14.455561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/models/ -maxdepth 1 -name \"*gpt2*\" -type d"
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-19T13:41:14.455685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-19T13:41:14.455997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/gpt2-xl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-19T13:41:14.456202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mink_prob_baseline.py",
+              "offset": "100",
+              "limit": "60"
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-19T13:41:14.456365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n101\t        logits = outputs.logits  # (B, T, V)\n102\t\n103\t        # shift: logits[:, :-1] predicts input_ids[:, 1:]\n104\t        shift_logits = logits[:, :-1, :]\n105\t        shift_labels = input_ids[:, 1:]\n106\t        shift_mask = attention_mask[:, 1:]\n107\t\n108\t        log_probs = torch.log_softmax(shift_logits, dim=-1)\n109\t        # gather the log-prob of the actual next token\n110\t        token_lp = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)\n111\t        # mask out padding\n112\t        token_lp = token_lp * shift_mask\n113\t\n114\t        for i in range(token_lp.size(0)):\n115\t            length = shift_mask[i].sum().item()\n116\t            if length > 0:\n117\t                lp = token_lp[i, :int(length)].cpu().numpy()\n118\t            else:\n119\t                lp = np.array([0.0])\n120\t            all_logprobs.append(lp)\n121\t    return all_logprobs\n122\t\n123\t\n124\tdef mink_score(token_logprobs: np.ndarray, k_pct: int) -> float:\n125\t    \"\"\"Mean of the bottom k% log-probs (most surprising tokens).\"\"\"\n126\t    n = max(1, int(len(token_logprobs) * k_pct / 100))\n127\t    sorted_lp = np.sort(token_logprobs)\n128\t    return float(np.clip(np.mean(sorted_lp[:n]), -100, 0))\n129\t\n130\t\n131\tdef calibrate_equal_interval(scores_train, labels_train, scores_test):\n132\t    \"\"\"Method A: divide train score range into 4 equal-width bins.\"\"\"\n133\t    smin, smax = scores_train.min(), scores_train.max()\n134\t    eps = 1e-8\n135\t    width = (smax - smin + eps) / 4\n136\t    # bin 0 = most negative (most machine-like), bin 3 = least negative\n137\t    # but depth 0 = human = highest score, depth 3 = most recursive = lowest score\n138\t    # so invert: highest score → d0, lowest → d3\n139\t    preds = np.clip(3 - ((scores_test - smin) / width).astype(int), 0, 3)\n140\t    return preds\n141\t\n142\t\n143\tdef calibrate_threshold(scores_train, labels_train, scores_test):\n144\t    \"\"\"Method C: find 3 optimal thresholds via brute-forc\n…[truncated 660 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-19T13:41:14.456512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/models/"
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-19T13:41:14.456631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/models/ -maxdepth 1 -type d"
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-19T13:41:14.456763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EleutherAI\\\\nQwen\\\\nQwen2.5-1.5B\\\\nQwen2.5-1.5B-Instruct\\\\nQwen3-8B\\\\ndeberta-v3-base\\\\ndeberta-v3-base-ms\\\\ndeberta-v3-large\\\\ngpt2-xl\\\\nolmo-1b\\\\nolmo-1b-hf\\\\npythia-1.4b\\\\npythia-410m\\\\nqwen25_14b\\\\nroberta-base\\\\nroberta-base-ms\\\\nroberta-large\\\\nroberta-large-ms\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-19T13:41:14.456913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/\\\\n/root/autodl-tmp/models/.lock\\\\n/root/autodl-tmp/models/Qwen\\\\n/root/autodl-tmp/models/._____temp\\\\n/root/autodl-tmp/models/Qwen3-8B\\\\n/root/autodl-tmp/models/Qwen2.5-1.5B\\\\n/root/autodl-tmp/models/EleutherAI\\\\n/root/autodl-tmp/models/deberta-v3-base\\\\n/root/autodl-tmp/models/deberta-v3-base-ms\\\\n/root/autodl-tmp/models/olmo-1b-hf\\\\n/root/autodl-tmp/models/olmo-1b\\\\n/root/autodl-tmp/models/gpt2-xl\\\\n/root/autodl-tmp/models/deberta-v3-large\\\\n/root/autodl-tmp/models/roberta-large\\\\n/root/autodl-tmp/models/roberta-large-ms\\\\n/root/autodl-tmp/models/roberta-base-ms\\\\n/root/autodl-tmp/models/roberta-base\\\\n/root/autodl-tmp/models/pythia-410m\\\\n/root/autodl-tmp/models/qwen25_14b\\\\n/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-19T13:41:14.457060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "model_name|from_pretrained|MODEL_NAME|gpt2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/mink_prob_baseline.py",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-19T13:41:14.457225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38:    \"gpt2xl_nucleus\": DATA_ROOT / \"gpt2xl\",\n39:    \"gpt2xl_temp09\":  DATA_ROOT / \"gpt2xl_temp09\",\n40:    \"gpt2xl_topk50\":  DATA_ROOT / \"gpt2xl_topk50\",\n265:    tokenizer = GPT2TokenizerFast.from_pretrained(\"gpt2-large\")\n267:    model = GPT2LMHeadModel.from_pretrained(\"gpt2-large\").to(DEVICE)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-19T13:41:14.457386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/models/ -maxdepth 1 -name \"*pythia-1.4b*\" -type d"
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-19T13:41:14.457509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/models/pythia-1.4b/"
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-19T13:41:14.457629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-19T13:41:14.457753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nconfig.json\\\\nconfiguration.json\\\\nmodel.safetensors\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-19T13:41:14.457960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/.hf_cache/hub/ -maxdepth 1 -name \"models--*gpt2*\" -type d"
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-19T13:41:14.458114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/models/ -maxdepth 1 -name \"*gpt2*\""
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-19T13:41:14.458243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--openai-community--gpt2-xl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-19T13:41:14.458403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/gpt2-xl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-19T13:41:14.458600+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查完成。以下是报告。\n\n---\n\n## Ordinal Baseline 就绪状态报告\n\n### 1. 9-Cell Atlas 数据 ✅ 全部就绪\n\n| Cell | 路径 | 内容 |\n|------|------|------|\n| pythia_nucleus | `data/` (根目录) | depth_0-5.jsonl |\n| pythia_temp09 | `data/pythia_temp09/` | depth_0-3.jsonl |\n| pythia_topk50 | `data/pythia_topk50/` | depth_0-3.jsonl |\n| olmo_nucleus | `data/olmo/` | depth_0-5.jsonl |\n| olmo_temp09 | `data/olmo_temp09/` | depth_0-3.jsonl |\n| olmo_topk50 | `data/olmo_topk50/` | depth_0-3.jsonl |\n| gpt2xl_nucleus | `data/gpt2xl/` | depth_0-5.jsonl |\n| gpt2xl_temp09 | `data/gpt2xl_temp09/` | depth_0-3.jsonl |\n| gpt2xl_topk50 | `data/gpt2xl_topk50/` | depth_0-3.jsonl |\n\n### 2. Baseline 脚本\n\n| Baseline | 服务器上 | 本地 artifacts | 状态 |\n|----------|---------|---------------|------|\n| **Binoculars** | `detection_baselines.py` (368行) + `detector_baselines/run_all_detectors.py` (474行) | — | ✅ 就绪 |\n| **Fast-DetectGPT** | 同上两个脚本均含 | — | ✅ 就绪 |\n| **Min-K%** | ❌ 不在服务器 | `artifacts/mink_prob_baseline.py` | ⚠️ 需部署 |\n| **DetectGPT (原版)** | ❌ 不在服务器 | `artifacts/detectgpt_baseline.py` | ⚠️ 需部署 + 下载模型 |\n\n### 3. 模型权重\n\n| 模型 | 路径 | 需要方 | 状态 |\n|------|------|--------|------|\n| gpt2-xl | `/root/autodl-tmp/models/gpt2-xl` | Binoculars, Fast-DetectGPT | ✅ |\n| pythia-1.4b | `/root/autodl-tmp/models/pythia-1.4b` | Binoculars, Fast-DetectGPT | ✅ |\n| pythia-410m | `/root/autodl-tmp/models/pythia-410m` | — | ✅ (备用) |\n| **gpt2-large** | 不存在 | Min-K%, 原版 DetectGPT | ❌ ~1.5GB |\n| **t5-large** | 不存在 | 原版 DetectGPT | ❌ ~3GB |\n\n### 4. Python 环境 ✅ 全部就绪\n\n- torch 2.10.0+cu128, CUDA True, 2 GPUs\n- transformers 5.8.1, sklearn 1.8.0, scipy 1.17.1\n\n### 5. 磁盘 ✅\n\n83GB 可用 (/root/autodl-tmp/)，足够下载模型和存储结果。\n\n### 6. accumulation_pipeline_gpt2xl.py\n\n文件不存在于服务器。`0.859` 在所有 scripts/ 文件中均未找到。只有 `run_accumulation.py` 存在。**无需修复。**\n\n---\n\n## 缺失项及补齐方案\n\n### 方案 A：使用现有脚本（推荐，零下载）\n\n服务器上的 `detection_baselines.py` 已包含 **Binoculars + Fast-DetectGPT**（5 个检测器），模型全部就绪。只需部署 Min-K% 脚本并改为使用 gpt2-xl（已有）代替 gpt2-large（未有）：\n\n```bash\n# 1. 部署 Min-K% 脚本\nscp artifacts/mink_prob_baseline.py gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/scripts/\n\n# 2. 修改 Min-K% 使用 gpt2-xl（本地已有）\n# 第265行: \"gpt2-large\" → \"/root/autodl-tmp/models/gpt2-xl\"\n# 第267行: \"gpt2-large\" → \"/root/autodl-tmp/models/gpt2-xl\"\n# 第25行: CUDA_VISIBLE_DEVICES = \"1\" → 去掉或改为合适的 GPU\n```\n\n预计部署时间：**< 2 分钟**\n\n### 方案 B：完整部署（需下载 ~4.5GB 模型）\n\n如果需要原版 DetectGPT（T5 perturbation）和 gpt2-large：\n\n```bash\n# 1. 部署脚本\nscp artifacts/mink_prob_baseline.py artifacts/detectgpt_baseline.py gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/scripts/\n\n# 2. 下载 gpt2-large (~1.5GB)\nsource /etc/network_turbo\nHF_HOME=/root/autodl-tmp/.hf_cache python3 -c \"\nfrom transformers import GPT2LMHeadModel, GPT2TokenizerFast\nGPT2LMHeadModel.from_pretrained('gpt2-large', cache_dir='/root/autodl-tmp/.hf_cache')\nGPT2TokenizerFast.from_pretrained('gpt2-large', cache_dir='/root/autodl-tmp/.hf_cache')\n\"\n\n# 3. 下载 t5-large (~3GB)\nHF_HOME=/root/autodl-tmp/.hf_cache python3 -c \"\nfrom transformers import T5ForConditionalGeneration, T5Tokenizer\nT5ForConditionalGeneration.from_pretrained('google-t5/t5-large', cache_dir='/root/autodl-tmp/.hf_cache')\nT5Tokenizer.from_pretrained('google-t5/t5-large', cache_dir='/root/autodl-tmp/.hf_cache')\n\"\n```\n\n预计部署时间：**10-20 分钟**（取决于下载速度）\n\n---\n\n**建议**：方案 A 足够覆盖论文需要的 3 个 baseline（Min-K%、Fast-DetectGPT、Binoculars），且零等待。如果审稿人要求原版 DetectGPT（T5 perturbation 版），再走方案 B。需要我现在执行哪个方案？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707"
+          },
+          "id": "event-000167"
+        }
+      ],
+      "message_count": 167
+    }
+  ]
+}

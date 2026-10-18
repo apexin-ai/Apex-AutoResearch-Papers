@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc9e06d3b49f899c1e6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train smart compress m32 official",
+  "task_key": "worker_train_smart_compress_m32_official_20260519T015833",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_smart_compress_m32_official_20260519T015833_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "170548ce07d2ed75a2f94c2900f3f1ac1083ee42ea5d3c6e17c168bea81a99be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行中。\n\n**总结：**\n\n1. **下载了 2 个模型**：`HuggingFaceVLA/smolvla_libero` (official checkpoint) 和 `HuggingFaceTB/SmolVLM2-500M-Instruct` (VLM backbone)，通过 hf-mirror.com 绕过直连限制\n2. **兼容性验证**：\n   - Official 架构差异：expert_width=0.5 (vs 0.75), num_expert_layers=-1 (vs 0), VLM=SmolVLM2-500M-Instruct (vs Video-Instruct)\n   - Hidden size 相同 (960)，compressor 完全兼容\n   - Trainable params: 119.6M / 627.1M (19.08%)\n3. **创建配置** `configs/smart_compress_m32_official.yaml`：继承 base config，覆盖 pretrained 路径指向 official checkpoint\n4. **训练已启动**：cqa1-33015 GPU cuda:3, PID=742207\n   - Step 0→350, loss 正常（1.29→0.31）, sps=4.1\n   - 日志：`logs/train_smart_compress_m32_official.log`\n5. **Registry 已更新**：exp_id=`train_smart_compress_m32_official`, status=RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

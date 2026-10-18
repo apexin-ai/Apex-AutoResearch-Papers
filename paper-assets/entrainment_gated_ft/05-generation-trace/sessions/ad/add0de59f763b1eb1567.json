@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "add0de59f763b1eb1567",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code 1 3b remaining eval",
+  "task_key": "worker_code_1_3b_remaining_eval_20260518T151747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_1_3b_remaining_eval_20260518T151747_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "5a6d21c6473e0d5c53714b38a88e423df35d84c7352a5aa81833cc542cef1cbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部评测完成。\n\n## 完整结果表（4 模型 × 6 tasks, acc）\n\n| Model | lambada | hellaswag | winogrande | arc_easy | arc_challenge | mmlu |\n|---|---|---|---|---|---|---|\n| **GDN-pure** | 0.5430 | 0.4646 | 0.6077 | 0.7125 | 0.3712 | 0.2606 |\n| **GDN-hybrid-12-1** | 0.5337 | 0.4623 | 0.6117 | 0.6995 | 0.3746 | 0.2541 |\n| **Transformer** | 0.4805 | 0.4512 | 0.6180 | 0.7113 | 0.3729 | 0.2358 |\n| **RetNet-pure** | 0.5166 | 0.4419 | 0.6038 | 0.7121 | 0.3729 | 0.2452 |\n| **RetNet-hybrid-12-1** | 0.5071 | 0.4473 | 0.5888 | 0.7214 | 0.3703 | 0.2389 |\n\n## 结果文件路径\n\n- `/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json`\n- `/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1.json`\n- `/root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline.json`\n- `/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json`\n- `/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-12-1.json`\n\n## 执行情况\n\n- GDN-pure、GDN-hybrid-12-1、Transformer、RetNet-pure 四个模型已有完整结果，无需重跑\n- 仅 **RetNet-hybrid-12-1** 需要新跑，已完成（6 tasks，118K loglikelihood requests，~6 分钟推理）\n- 无报错，所有数值合理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

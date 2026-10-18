@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c5160db50be628ac5c",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis tost delta",
+  "task_key": "worker_analysis_tost-delta_20260522T035524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-delta_20260522T035524_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "ad45d76bb3abec314822b835915537835a5c4a1b775c0e5e9eeb2119c7ef2df8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**TOST Minimum Detectable Equivalence Margin 结果**:\n\n**Proportions TOST**（实际分析所用方法，win-rate 检验）:\n\n| 参数 | 值 |\n|------|---|\n| n | 87 pairs |\n| α | 0.05 (one-sided) |\n| SE(p=0.5) | 0.0536 |\n| **Δ_min (80% power)** | **0.157** |\n| Equivalence region | [0.343, 0.657] |\n\n**关键发现**: 实际分析用 Δ=0.10 时 power 仅 **17.5%**——严重 underpowered。要达到 80% power 需要 Δ≥0.157。\n\n**Margin-Power 对照**:\n\n| Margin Δ | Power | Region |\n|----------|-------|--------|\n| 0.10 | 17.5% | [0.40, 0.60] |\n| 0.157 | 80% | [0.343, 0.657] |\n| 0.176 | 90% | [0.324, 0.676] |\n\n**论文用句**: \"With n≈87 pairs and α=0.05, the TOST procedure achieves 80% power to reject non-equivalence only when the equivalence margin is Δ≥0.157 (win-rate within [0.343, 0.657]); at the pre-registered margin Δ=0.10, achieved power is only 17.5%.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "716c2189e14f85f5ade3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "registry cleanup phantom running",
+  "task_key": "worker_registry_cleanup_phantom_running_20260522T200606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_registry_cleanup_phantom_running_20260522T200606_result.json",
+    "occurrence": 1,
+    "bytes": 1842,
+    "sha256": "05f0d1e3ed1699f789d03c0b706e71605c750cff24fe3fef4ed947635496a8e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 汇报\n\n**RUNNING 数变化：31 → 10**\n\n### 标为 DONE (negative) — 20 条\n\n**>24h 无 metrics（2 条）：**\n- `train_openvla_sc_m64_seed42_v6` — stale >24h\n- `train_openvla_sc_m96_seed42_v3` — stale >24h\n\n**短名重复（5 条）：**\n| 短名（已清理） | 对应长名 |\n|---|---|\n| `pi05_l2norm_k085_goal_s42` | `eval_pi05_l2norm_k085_goal_seed42_w38929` |\n| `pi05_random_k09_goal_s42` | `eval_pi05_random_k09_goal_seed42` |\n| `pi05_l2norm_k095_long_s42` | `eval_pi05_l2norm_k095_long_seed42` |\n| `random_k095_long_seed42` | `eval_pi05_random_k095_long_seed42` |\n| `l2norm_k095_goal_seed42` | `eval_pi05_l2norm_k095_goal_seed42` |\n\n**版本替代（1 条）：**\n- `eval_pi05_random_k085_goal_seed42_v2` — superseded by v3\n\n**4-24h 无 metrics（12 条）：**\n- `eval_pi05_l2norm_k07_goal_seed42` (6h)\n- `eval_pi05_l2norm_k085_goal_seed42_w38929` (6h)\n- `eval_pi05_random_k09_goal_seed42` (8h)\n- `eval_pi05_l2norm_k095_long_seed42` (8h)\n- `pi05_l2norm_k09_goal_s42` (9h, 50-ep)\n- `random_k095_goal_seed42` (10h, 50-ep)\n- `eval_pi05_baseline_long_seed42` (10h, 50-ep)\n- `eval_pi05_l2norm_k0925_object_seed43_v2` (10h)\n- `eval_pi05_l2norm_k095_object_seed43_v2` (10h)\n- `eval_pi05_l2norm_k09_object_seed43` (11h)\n- `eval_pi05_random_k05_spatial_seed43` (14h)\n- `eval_pi05_l2norm_k0925_spatial_seed43` (14h)\n\n### 保留 RUNNING — 10 条\n全部为最近 4h 内启动的 eval 任务（Long/Goal suite）。\n\n### Metrics 格式问题\n被清理的 20 条均无 metrics 记录，无需格式修正。\n\n### 注意\nRegistry 不支持 `FAILED` 状态（合法值：ALLOCATED/ANALYZING/DEPLOYED/DEPLOYING/DONE/PENDING/PREPARING/QUEUED/RUNNING），所有需要标记失败的条目统一用 `DONE(negative)` + `failure_reason` 字段记录原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "38bbcb23a1309c8195e8",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code hgrn2 h6 1 eval",
+  "task_key": "worker_code_hgrn2_h6_1_eval_20260518T165351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_h6_1_eval_20260518T165351.log",
+    "occurrence": 1,
+    "bytes": 563952,
+    "sha256": "e1a7c9764463ebe71ddd629ffdf0018efeec97fdf75efd16afe3fe1c725ebaed"
+  },
+  "statistics": {
+    "messages": 273,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "38bbcb23a1309c8195e8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "38bbcb23a1309c8195e8-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ]
+}

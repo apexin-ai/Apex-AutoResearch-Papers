@@ -1,0 +1,1417 @@
+{
+  "schema_version": "1.0",
+  "id": "8fe3df39334065ed854a",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "code plan 010 cross domain",
+  "task_key": "worker_code_plan_010_cross_domain_20260514T084200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_plan_010_cross_domain_20260514T084200.jsonl",
+    "occurrence": 1,
+    "bytes": 77221,
+    "sha256": "1b97635faffce71aa255ede491d157733903d7261002780206e60147f6f4d368"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:53:09.460006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:53:09.460343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:53:09.460523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ls -la /root/ratekv/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:53:09.460685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ls /root/ratekv/*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:53:09.460965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4852\\\\ndrwxr-xr-x 4 root root   8192 May 14 16:35 .\\\\ndrwx------ 1 root root   4096 May 14 01:37 ..\\\\ndrwxr-xr-x 2 root root   4096 May 14 16:02 __pycache__\\\\n-rw-r--r-- 1 root root   5400 May 14 05:55 allocation_full_0.125.json\\\\n-rw-r--r-- 1 root root   5104 May 14 05:55 allocation_full_0.25.json\\\\n-rw-r--r-- 1 root root   5002 May 14 05:55 allocation_full_0.5.json\\\\n-rw-r--r-- 1 root root   4984 May 14 05:55 allocation_qonly_0.125.json\\\\n-rw-r--r-- 1 root root   4985 May 14 05:55 allocation_qonly_0.25.json\\\\n-rw-r--r-- 1 root root   5002 May 14 05:55 allocation_qonly_0.5.json\\\\n-rw-r--r-- 1 root root   3340 May 14 14:31 bf16_reeval.log\\\\n-rw-r--r-- 1 root root    434 May 14 14:31 bf16_reeval_results.json\\\\n-rw-r--r-- 1 root root   1041 May 14 07:47 budget_matched.log\\\\n-rw-r--r-- 1 root root   1637 May 14 07:47 budget_matched_test.py\\\\n-rw-r--r-- 1 root root   5734 May 14 09:13 budget_sweep.log\\\\n-rw-r--r-- 1 root root    267 May 14 09:13 budget_sweep_results.csv\\\\n-rw-r--r-- 1 root root  21481 May 14 09:13 budget_sweep_results.json\\\\n-rw-r--r-- 1 root root 406260 May 14 05:33 c4_calibration.json\\\\n-rw-r--r-- 1 root root  10605 May 14 09:26 c4_cross_dataset.log\\\\n-rw-r--r-- 1 root root  20414 May 14 09:28 c4_eval_results.json\\\\n-rw-r--r-- 1 root root   4831 May 14 09:28 c4_phase2_4.log\\\\n-rw-r--r-- 1 root root  14277 May 14 09:25 c4_profiling_results.json\\\\n-rw-r--r-- 1 root root 137195 May 14 05:39 calibration_data.json\\\\n-rw-r--r-- 1 root root 796954 May 14 07:25 calibration_hires.json\\\\n-rw-r--r-- 1 root root  26968 May 14 06:22 cliff_1.5B_results.json\\\\n-rw-r--r-- 1 root root  53917 May 14 06:28 cliff_7B_results.json\\\\n-rw-r--r-- 1 root root   9605 May 14 07:24 cliff_test.py\\\\n-rw-r--r-- 1 root root  11971 May 14 09:01 compounding_k10_12_results.json\\\\n-rw-r--r-- 1 root root    270 May 14 08:41 compounding_sweep_results.csv\\\\n-rw-r--r-- 1 root root  47866 May 14 08:41 compounding_sweep_results.json\n…[truncated 6453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:53:09.461171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/budget_matched_test.py\\\\n/root/ratekv/cliff_test.py\\\\n/root/ratekv/eval_exp_c_bf16.py\\\\n/root/ratekv/eval_ppl.py\\\\n/root/ratekv/eval_uniform_4bit_bf16.py\\\\n/root/ratekv/full_bitwidth_profiler.py\\\\n/root/ratekv/generate_calibration_hires.py\\\\n/root/ratekv/generate_figures.py\\\\n/root/ratekv/heterogeneity_analysis.py\\\\n/root/ratekv/hires_quant_profiler.py\\\\n/root/ratekv/l0_heuristic_eval.py\\\\n/root/ratekv/l0_heuristic_eval_part2.py\\\\n/root/ratekv/manual_alloc_test.py\\\\n/root/ratekv/ppl_profiler.py\\\\n/root/ratekv/profiler.py\\\\n/root/ratekv/rerun_mckp_eval.py\\\\n/root/ratekv/rerun_mistral_constrained16.py\\\\n/root/ratekv/rerun_mistral_remaining.py\\\\n/root/ratekv/run_bf16_reeval.py\\\\n/root/ratekv/run_budget_sweep.py\\\\n/root/ratekv/run_c4_cross_dataset.py\\\\n/root/ratekv/run_c4_phase2_4.py\\\\n/root/ratekv/run_compounding_k10_12.py\\\\n/root/ratekv/run_compounding_sweep.py\\\\n/root/ratekv/run_downstream_eval.py\\\\n/root/ratekv/run_exp_c.py\\\\n/root/ratekv/run_exp_c_no2bit.py\\\\n/root/ratekv/run_exp_d.py\\\\n/root/ratekv/run_exp_e.py\\\\n/root/ratekv/run_exp_e_eval.py\\\\n/root/ratekv/run_exp_e_eval_fix.py\\\\n/root/ratekv/run_exp_e_phase23.py\\\\n/root/ratekv/run_full_bitwidth.py\\\\n/root/ratekv/run_greedy_constrained.py\\\\n/root/ratekv/run_hires_quant.py\\\\n/root/ratekv/run_hires_reeval.py\\\\n/root/ratekv/run_hires_reeval_v2.py\\\\n/root/ratekv/run_k_ablation.py\\\\n/root/ratekv/run_kv_separation.py\\\\n/root/ratekv/run_l0_heuristic.py\\\\n/root/ratekv/run_l0_heuristic_corrected.py\\\\n/root/ratekv/run_llama_aggressive.py\\\\n/root/ratekv/run_llama_eval_fix.py\\\\n/root/ratekv/run_llama_eval_recovery.py\\\\n/root/ratekv/run_llama_hires_pipeline.py\\\\n/root/ratekv/run_llama_phase23.py\\\\n/root/ratekv/run_llama_pipeline.py\\\\n/root/ratekv/run_mistral_aggressive.py\\\\n/root/ratekv/run_mistral_hires_pipeline.py\\\\n/root/ratekv/run_mistral_pipeline.py\\\\n/root/ratekv/run_monotonicity_comparison.py\\\\n/root/ratekv/run_multi_seed.py\\\\n/root/ratekv/run_mvp.py\n…[truncated 327 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:53:09.461362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/run_c4_cross_dataset.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T08:53:09.461606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"C4 Cross-Dataset Evaluation (plan_007).\\\\nProfile with C4 calibration data, solve MCKP, eval PPL, compare with WikiText-2 results.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport time\\\\nimport torch\\\\nfrom full_bitwidth_profiler import FullBitwidthProfiler\\\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\n\\\\nMODEL = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nC4_CALIBRATION = \\\\\\\"c4_calibration.json\\\\\\\"\\\\nWT2_REF_FILE = \\\\\\\"budget_sweep_results.json\\\\\\\"\\\\nBUDGET = 0.25\\\\nMAX_2BIT = 8\\\\n\\\\n\\\\ndef load_wt2_reference():\\\\n    with open(WT2_REF_FILE) as f:\\\\n        data = json.load(f)\\\\n    for r in data[\\\\\\\"results\\\\\\\"]:\\\\n        if abs(r[\\\\\\\"budget\\\\\\\"] - BUDGET) < 1e-6:\\\\n            return r\\\\n    raise ValueError(f\\\\\\\"No budget={BUDGET} entry in {WT2_REF_FILE}\\\\\\\")\\\\n\\\\n\\\\ndef compute_agreement(alloc_a, alloc_b):\\\\n    keys = set(alloc_a.keys()) & set(alloc_b.keys())\\\\n    if not keys:\\\\n        return 0.0, {}\\\\n    agree = 0\\\\n    disagree_details = {}\\\\n    for k in sorted(keys):\\\\n        a_type, a_param = alloc_a[k]\\\\n        b_type, b_param = alloc_b[k]\\\\n        if a_type == b_type and a_param == b_param:\\\\n            agree += 1\\\\n        else:\\\\n            disagree_details[k] = {\\\\\\\"wt2\\\\\\\": [a_type, a_param], \\\\\\\"c4\\\\\\\": [b_type, b_param]}\\\\n    return agree / len(keys), disagree_details\\\\n\\\\n\\\\ndef main():\\\\n    t_start = time.time()\\\\n\\\\n    # === Phase 1: C4 Profiling ===\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"[Phase 1] Profiling with C4 calibration data...\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    t0 = time.time()\\\\n\\\\n    profiler = FullBitwidthProfiler(\\\\n        model_path=MODEL,\\\\n        calibration_data=C4_CALIBRATION,\\\\n        device=DEVICE,\\\\n        num_samples=16,\\\\n        seq_len=512\\\\n    )\\\\n    baseline_cal_ppl =\n…[truncated 6721 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:53:09.461848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/eval_ppl.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:53:09.461987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:53:09.462196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluate perplexity on WikiText-2 with per-head KV compression.\\\\nInput: model + allocation decisions\\\\nOutput: perplexity number\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport importlib\\\\nimport json\\\\nimport math\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\n\\\\n\\\\ndef _get_rotary_fn(model):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Import apply_rotary_pos_emb matching the model architecture.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model_type = model.config.model_type\\\\n    module_name = f\\\\\\\"transformers.models.{model_type}.modeling_{model_type}\\\\\\\"\\\\n    module = importlib.import_module(module_name)\\\\n    return module.apply_rotary_pos_emb\\\\n\\\\n\\\\ndef patch_attention(model, allocations):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Monkey-patch attention layers to apply per-head compression.\\\\n\\\\n    Returns dict of original forward methods for restoration.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    config = model.config\\\\n    num_kv_heads = config.num_key_value_heads\\\\n    num_q_heads = config.num_attention_heads\\\\n    head_dim = config.hidden_size // num_q_heads\\\\n    n_groups = num_q_heads // num_kv_heads\\\\n\\\\n    rotary_fn = _get_rotary_fn(model)\\\\n    original_forwards = {}\\\\n\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\n        attn = layer.self_attn\\\\n\\\\n        head_allocs = {}\\\\n        for h in range(num_kv_heads):\\\\n            key = f\\\\\\\"{layer_idx},{h}\\\\\\\"\\\\n            if key in allocations:\\\\n                atype, param = allocations[key]\\\\n                head_allocs[h] = (atype, param)\\\\n            else:\\\\n                head_allocs[h] = (\\\\\\\"full\\\\\\\", 16)\\\\n\\\\n        all_full = all(a[0] == \\\\\\\"full\\\\\\\" for a in head_allocs.values())\\\\n        if all_full:\\\\n            continue\\\\n\\\\n        has_eviction = any(a[0] == \\\\\\\"evict\\\\\\\" for a in head_allocs.values())\\\\n        original_forwards[layer_idx] = attn.forw\n…[truncated 6841 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T08:53:09.462483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MCKP solver for KV cache allocation.\\\\nInput: distortion profiles + memory budget\\\\nOutput: per-head allocation decisions\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\\n\\\\ndef _build_pareto(head_data, mode):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build Pareto-optimal action set for a single head.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    actions = [(1.0, 0.0, \\\\\\\"full\\\\\\\", 16)]\\\\n\\\\n    if mode == \\\\\\\"full\\\\\\\":\\\\n        for r_str, mse in head_data.get(\\\\\\\"eviction\\\\\\\", {}).items():\\\\n            r = float(r_str)\\\\n            actions.append((r, mse, \\\\\\\"evict\\\\\\\", r))\\\\n\\\\n    for b_str, mse in head_data.get(\\\\\\\"quantization\\\\\\\", {}).items():\\\\n        b = int(float(b_str))\\\\n        actions.append((b / 16.0, mse, \\\\\\\"quant\\\\\\\", b))\\\\n\\\\n    # Deduplicate by memory: keep lowest distortion per memory level\\\\n    by_mem = {}\\\\n    for a in actions:\\\\n        mem = round(a[0], 6)\\\\n        if mem not in by_mem or a[1] < by_mem[mem][1]:\\\\n            by_mem[mem] = a\\\\n\\\\n    # Sort by memory ascending, build Pareto front\\\\n    sorted_actions = sorted(by_mem.values(), key=lambda x: x[0])\\\\n    pareto = [sorted_actions[0]]\\\\n    for a in sorted_actions[1:]:\\\\n        if a[1] < pareto[-1][1] - 1e-12:\\\\n            pareto.append(a)\\\\n\\\\n    # Sort by memory descending for greedy downgrade\\\\n    pareto.sort(key=lambda x: -x[0])\\\\n    return pareto\\\\n\\\\n\\\\ndef solve_mckp(profiles, budget, mode=\\\\\\\"full\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Solve MCKP for KV cache allocation via greedy downgrade.\\\\n\\\\n    Args:\\\\n        profiles: {layer: {head: {eviction: {ratio: mse}, quantization: {bits: mse}}}}\\\\n        budget: target average memory ratio per head (e.g. 0.25 for 4x compression)\\\\n        mode: \\\\\\\"full\\\\\\\" (eviction + quantization) or \\\\\\\"quant_only\\\\\\\"\\\\n    Returns:\\\\n        dict with allocation, total_distortion, actual_memory_ratio\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    heads = []\\\\n    for l_str in sorted(profiles.keys(), key=lambda x: int(x)):\\\\n        for h_s\n…[truncated 6951 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:53:09.462723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/full_bitwidth_profiler.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T08:53:09.462939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full bit-width PPL profiler for quant-only MCKP.\\\\nProfiles each KV head at {2, 4, 8, 16}-bit quantization.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport math\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention\\\\n\\\\n\\\\nclass FullBitwidthProfiler:\\\\n    def __init__(self, model_path, calibration_data, device='cuda:0',\\\\n                 num_samples=16, seq_len=512):\\\\n        self.device = device\\\\n        self.seq_len = seq_len\\\\n        self.num_samples = num_samples\\\\n\\\\n        print(f\\\\\\\"Loading model {model_path}...\\\\\\\")\\\\n        self.tokenizer = AutoTokenizer.from_pretrained(model_path)\\\\n        self.model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path, torch_dtype=torch.bfloat16, attn_implementation=\\\\\\\"eager\\\\\\\"\\\\n        )\\\\n        self.model = self.model.to(device)\\\\n        self.model.eval()\\\\n\\\\n        config = self.model.config\\\\n        self.num_layers = config.num_hidden_layers\\\\n        self.num_kv_heads = config.num_key_value_heads\\\\n\\\\n        self.input_ids = self._load_calibration_data(calibration_data)\\\\n        total_heads = self.num_layers * self.num_kv_heads\\\\n        print(f\\\\\\\"Config: {self.num_layers} layers, {self.num_kv_heads} KV heads/layer, \\\\\\\"\\\\n              f\\\\\\\"{total_heads} heads total\\\\\\\")\\\\n        print(f\\\\\\\"Calibration: {self.input_ids.shape[0]} seqs x {self.input_ids.shape[1]} tokens\\\\\\\")\\\\n\\\\n        self._baseline_ppl = None\\\\n\\\\n    def _load_calibration_data(self, path):\\\\n        with open(path) as f:\\\\n            samples = json.load(f)\\\\n        all_ids = []\\\\n        for s in samples:\\\\n            tokens = self.tokenizer.encode(s[\\\\\\\"text\\\\\\\"], add_special_tokens=False)\\\\n            if len(tokens) >= self.seq_len:\\\\n                all_ids.append(tokens[:self.seq_len])\\\\n            if len(all_ids) >= self.num_sampl\n…[truncated 2540 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:53:09.463098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -80 /root/ratekv/run_multi_seed.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T08:53:09.463277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed error bars: Qwen2.5-7B constrained MCKP.\\\\nDifferent calibration subsets (seeds 0,1,2) → profile → solve → eval.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport json\\\\nimport math\\\\nimport random\\\\nimport time\\\\nimport sys\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom datasets import Dataset, concatenate_datasets\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/ratekv\\\\\\\")\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import solve_mckp_constrained\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nBUDGET = 0.25\\\\nMAX_2BIT = 8\\\\nNUM_SAMPLES = 64\\\\nSEQ_LEN = 2048\\\\nBATCH_SIZE = 16\\\\nBIT_WIDTHS = (2, 4, 8)\\\\nSEEDS = [0, 1, 2]\\\\nOUTPUT = \\\\\\\"/root/ratekv/multi_seed_results.json\\\\\\\"\\\\n\\\\nWIKI103_ARROWS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef load_wiki103_train():\\\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\\\n    return concatenate_datasets(parts)\\\\n\\\\n\\\\ndef build_candidate_texts(dataset, min_chars=12000):\\\\n    candidates = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n    for item in dataset:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            candidates.append(buffer.strip())\\\\n    \n…[truncated 898 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:53:09.463456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/run_multi_seed.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T08:53:09.463585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/utils.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T08:53:09.463908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed error bars: Qwen2.5-7B constrained MCKP.\\\\nDifferent calibration subsets (seeds 0,1,2) → profile → solve → eval.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport json\\\\nimport math\\\\nimport random\\\\nimport time\\\\nimport sys\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom datasets import Dataset, concatenate_datasets\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/ratekv\\\\\\\")\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import solve_mckp_constrained\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nBUDGET = 0.25\\\\nMAX_2BIT = 8\\\\nNUM_SAMPLES = 64\\\\nSEQ_LEN = 2048\\\\nBATCH_SIZE = 16\\\\nBIT_WIDTHS = (2, 4, 8)\\\\nSEEDS = [0, 1, 2]\\\\nOUTPUT = \\\\\\\"/root/ratekv/multi_seed_results.json\\\\\\\"\\\\n\\\\nWIKI103_ARROWS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef load_wiki103_train():\\\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\\\n    return concatenate_datasets(parts)\\\\n\\\\n\\\\ndef build_candidate_texts(dataset, min_chars=12000):\\\\n    candidates = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n    for item in dataset:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            candidates.append(buffer.strip())\\\\n    \n…[truncated 7231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T08:53:09.464115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Quantization utilities and attention helpers for ratekv MVP.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\n\\\\n\\\\ndef quantize_per_channel(tensor, bits):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Symmetric uniform quantization per channel (last dim).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    qmax = 2 ** (bits - 1) - 1\\\\n    abs_max = tensor.abs().amax(dim=-2, keepdim=True).clamp(min=1e-8)\\\\n    scale = abs_max / qmax\\\\n    return (tensor / scale).round().clamp(-qmax - 1, qmax) * scale\\\\n\\\\n\\\\ndef quantize_per_token(tensor, bits):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Symmetric uniform quantization per token (second-to-last dim).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    qmax = 2 ** (bits - 1) - 1\\\\n    abs_max = tensor.abs().amax(dim=-1, keepdim=True).clamp(min=1e-8)\\\\n    scale = abs_max / qmax\\\\n    return (tensor / scale).round().clamp(-qmax - 1, qmax) * scale\\\\n\\\\n\\\\ndef repeat_kv(hidden_states, n_rep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Repeat KV heads for GQA.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if n_rep == 1:\\\\n        return hidden_states\\\\n    batch, n_kv, seq_len, head_dim = hidden_states.shape\\\\n    hidden_states = hidden_states[:, :, None, :, :].expand(batch, n_kv, n_rep, seq_len, head_dim)\\\\n    return hidden_states.reshape(batch, n_kv * n_rep, seq_len, head_dim)\\\\n\\\\n\\\\ndef compute_attention_output(Q, K, V, causal_mask=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scaled dot-product attention with GQA support.\\\\n\\\\n    Args:\\\\n        Q: (batch, n_heads, seq_q, head_dim)\\\\n        K: (batch, n_kv_heads, seq_kv, head_dim)\\\\n        V: (batch, n_kv_heads, seq_kv, head_dim)\\\\n        causal_mask: (seq_q, seq_kv) additive mask (-inf for masked)\\\\n    Returns:\\\\n        output: (batch, n_heads, seq_q, head_dim)\\\\n        attn_weights: (batch, n_heads, seq_q, seq_kv)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_heads = Q.shape[1]\\\\n    n_kv_heads = K.shape[1]\\\\n    head_dim = Q.shape[-1]\\\\n    n_groups = n_heads // n_kv_heads\\\\n\\\\n    if n_groups > 1:\\\\n        K = K.repeat_interleave(n_groups, dim=1)\\\\n        V = V.repeat_interleave(\n…[truncated 1275 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T08:53:09.464306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "find /root/autodl-tmp/.hf_cache/datasets -name \"*.arrow\" -path \"*c4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T08:53:09.464441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T08:53:09.464565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "find /root/autodl-tmp/.hf_cache/datasets -name \"*.arrow\" -path \"*wikitext*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T08:53:09.464718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-validation.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-validation.arrow\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T08:53:09.464847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -5 /root/ratekv/c4_calibration.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T08:53:09.465040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"text\\\\\\\": \\\\\\\" = Valkyria Chronicles III = \\\\\\\\n\\\\\\\\n Senj\\\\\\\\u014d no Valkyria 3 : Unrecorded Chronicles ( Japanese : \\\\\\\\u6226\\\\\\\\u5834\\\\\\\\u306e\\\\\\\\u30f4\\\\\\\\u30a1\\\\\\\\u30eb\\\\\\\\u30ad\\\\\\\\u30e5\\\\\\\\u30ea\\\\\\\\u30a23 , lit . Valkyria of the Battlefield 3 ) , commonly referred to as Valkyria Chronicles III outside Japan , is a tactical role @-@ playing video game developed by Sega and Media.Vision for the PlayStation Portable . Released in January 2011 in Japan , it is the third game in the Valkyria series . Employing the same fusion of tactical and real @-@ time gameplay as its predecessors , the story runs parallel to the first game and follows the \\\\\\\\\\\\\\\" Nameless \\\\\\\\\\\\\\\" , a penal military unit serving the nation of Gallia during the Second Europan War who perform secret black operations and are pitted against the Imperial unit \\\\\\\\\\\\\\\" Calamaty Raven \\\\\\\\\\\\\\\" . \\\\\\\\n\\\\\\\\n The game began development in 2010 , carrying over a large portion of the work done on Valkyria Chronicles II . While it retained the standard features of the series , it also underwent multiple adjustments , such as making the game more forgiving for series newcomers . Character designer Raita Honjou and composer Hitoshi Sakimoto both returned from previous entries , along with Valkyria Chronicles II director Takeshi Ozawa . A large team of writers handled the script . The game 's opening theme was sung by May 'n . \\\\\\\\n\\\\\\\\n It met with positive sales in Japan , and was praised by both Japanese and western critics . After release , it received downloadable content , along with an expanded edition in November of that year . It was also adapted into manga and an original video animation series . Due to low sales of Valkyria Chronicles II , Valkyria Chronicles III was not localized , but a fan translation compatible with the game 's expanded edition was released in 2014 . Media.Vision would return to the franchise with the development of \n…[truncated 6443 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T08:53:09.465242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "python3 -c \"import json; d=json.load(open('/root/ratekv/c4_calibration.json')); print(f'samples={len(d)}, first_text_len={len(d[0][\\\"text\\\"])}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T08:53:09.465378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T08:53:09.465501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "python3 -c \"from datasets import Dataset; ds=Dataset.from_file('/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train.arrow'); print(f'rows={len(ds)}, total_chars={sum(len(t) for t in ds[\\\"text\\\"])}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T08:53:09.465622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T08:53:09.465768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "wc -c /root/ratekv/c4_calibration.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T08:53:09.465889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"406260 /root/ratekv/c4_calibration.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T08:53:09.466002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "python3 -c \"import json; d=json.load(open('/root/ratekv/c4_calibration.json')); print(len(d))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T08:53:09.466116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T08:53:09.466228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "python3 -c \"import json; d=json.load(open('/root/ratekv/c4_calibration.json')); print(f'samples={len(d)}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T08:53:09.466347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/ratekv/c4_calibration.json\\\\\\\\')); print(f\\\\\\\\'samples={len(d)}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T08:53:09.466461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import json; d=json.load(open('/root/ratekv/c4_calibration.json')); print(f'samples={len(d)}, first_text_len={len(d[0][\\\"text\\\"])}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T08:53:09.466579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"samples=100, first_text_len=4000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T08:53:09.466741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/generate_calibration_hires.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T08:53:09.466893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\n\\\\ndef main():\\\\n    model_path = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\\\\\\"\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path)\\\\n\\\\n    print(\\\\\\\"Loading WikiText-103 train split...\\\\\\\")\\\\n    ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-103-raw-v1\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n\\\\n    min_chars = 12000\\\\n    num_samples = 64\\\\n    samples = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n\\\\n    for item in ds:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            samples.append({\\\\\\\"text\\\\\\\": buffer.strip()})\\\\n            buffer = \\\\\\\"\\\\\\\"\\\\n            if len(samples) >= num_samples:\\\\n                break\\\\n\\\\n    print(f\\\\\\\"Generated {len(samples)} samples, verifying token lengths...\\\\\\\")\\\\n    for i, s in enumerate(samples):\\\\n        tokens = tokenizer.encode(s[\\\\\\\"text\\\\\\\"], add_special_tokens=False)\\\\n        n_tok = len(tokens)\\\\n        if n_tok < 2048:\\\\n            raise RuntimeError(f\\\\\\\"Sample {i} has only {n_tok} tokens (need >= 2048)\\\\\\\")\\\\n        if i < 5 or i == len(samples) - 1:\\\\n            print(f\\\\\\\"  Sample {i}: {n_tok} tokens, {len(s['text'])} chars\\\\\\\")\\\\n\\\\n    out_path = \\\\\\\"/root/ratekv/calibration_hires.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(samples, f, ensure_ascii=False)\\\\n    print(f\\\\\\\"Saved to {out_path}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T08:53:09.467175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "grep -n \"def solve_mckp_constrained\" /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T08:53:09.467315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"198:def solve_mckp_constrained(profiles, budget, mode=\\\\\\\"quant_only\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T08:53:09.467436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -230 /root/ratekv/solver.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T08:53:09.467735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MCKP solver for KV cache allocation.\\\\nInput: distortion profiles + memory budget\\\\nOutput: per-head allocation decisions\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\n\\\\n\\\\ndef _build_pareto(head_data, mode):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build Pareto-optimal action set for a single head.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    actions = [(1.0, 0.0, \\\\\\\"full\\\\\\\", 16)]\\\\n\\\\n    if mode == \\\\\\\"full\\\\\\\":\\\\n        for r_str, mse in head_data.get(\\\\\\\"eviction\\\\\\\", {}).items():\\\\n            r = float(r_str)\\\\n            actions.append((r, mse, \\\\\\\"evict\\\\\\\", r))\\\\n\\\\n    for b_str, mse in head_data.get(\\\\\\\"quantization\\\\\\\", {}).items():\\\\n        b = int(float(b_str))\\\\n        actions.append((b / 16.0, mse, \\\\\\\"quant\\\\\\\", b))\\\\n\\\\n    # Deduplicate by memory: keep lowest distortion per memory level\\\\n    by_mem = {}\\\\n    for a in actions:\\\\n        mem = round(a[0], 6)\\\\n        if mem not in by_mem or a[1] < by_mem[mem][1]:\\\\n            by_mem[mem] = a\\\\n\\\\n    # Sort by memory ascending, build Pareto front\\\\n    sorted_actions = sorted(by_mem.values(), key=lambda x: x[0])\\\\n    pareto = [sorted_actions[0]]\\\\n    for a in sorted_actions[1:]:\\\\n        if a[1] < pareto[-1][1] - 1e-12:\\\\n            pareto.append(a)\\\\n\\\\n    # Sort by memory descending for greedy downgrade\\\\n    pareto.sort(key=lambda x: -x[0])\\\\n    return pareto\\\\n\\\\n\\\\ndef solve_mckp(profiles, budget, mode=\\\\\\\"full\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Solve MCKP for KV cache allocation via greedy downgrade.\\\\n\\\\n    Args:\\\\n        profiles: {layer: {head: {eviction: {ratio: mse}, quantization: {bits: mse}}}}\\\\n        budget: target average memory ratio per head (e.g. 0.25 for 4x compression)\\\\n        mode: \\\\\\\"full\\\\\\\" (eviction + quantization) or \\\\\\\"quant_only\\\\\\\"\\\\n    Returns:\\\\n        dict with allocation, total_distortion, actual_memory_ratio\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    heads = []\\\\n    for l_str in sorted(profiles.keys(), key=lambda x: int(x)):\\\\n        for h_s\n…[truncated 6633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T08:53:09.468025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat > /root/ratekv/run_cross_domain.py << 'SCRIPT_EOF'\n\"\"\"Cross-domain calibration robustness (plan_010).\nCondition A: Calibrate on C4 → hires profile → constrained MCKP (k=8) → eval on WikiText-2 test\nCondition B: Calibrate on WikiText-2 train → hires profile → constrained MCKP (k=8) → eval on C4\nOutput: /root/ratekv/cross_domain_results.json\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport json\nimport math\nimport time\nimport sys\nimport torch\nimport torch.nn.functional as F\nfrom datasets import Dataset\n\nsys.path.insert(0, \"/root/ratekv\")\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\"\nDEVICE = \"cuda:0\"\nBUDGET = 0.25\nMAX_2BIT = 8\nNUM_SAMPLES = 64\nSEQ_LEN = 2048\nBATCH_SIZE = 16\nBIT_WIDTHS = (2, 4, 8)\nOUTPUT = \"/root/ratekv/cross_domain_results.json\"\n\nC4_CAL_PATH = \"/root/ratekv/c4_calibration.json\"\nWT2_TRAIN_ARROW = \"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train.arrow\"\nWT2_TEST_ARROW = \"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\"\n\nPLAN_007_REF = {\n    \"c4_cal_mckp_ppl\": 11.33,\n    \"wt2_cal_mckp_ppl\": 11.23,\n    \"agreement_rate\": 0.982,\n}\n\n\ndef build_calibration_ids(text, tokenizer, num_samples, seq_len, device):\n    \"\"\"Tokenize a long text and extract non-overlapping seq_len chunks.\"\"\"\n    token_ids = tokenizer.encode(text, add_special_tokens=False)\n    chunks = []\n    for i in range(0, len(token_ids) - seq_len + 1, seq_len):\n        chunks.append(token_ids[i:i + seq_len])\n        if len(chunks) >= num_samples:\n            break\n    actual = len(chunks)\n    if actual < num_samples:\n        print(f\"  WARNING: only got {actual}/{num_samples} sequences (total tokens={len(token_ids)})\", flush=True)\n    return torch.tensor(chunks, dtype=torch.long, device=device), actual\n\n\ndef load_c4_calibration(tokenizer, num_samples, seq_len, device):\n    \"\"\"Load C4 calibration data from pre-generated JSON.\"\"\"\n    with open(C4_CAL_PATH) as f:\n        samples = json.load(f)\n    text = \"\\n\\n\".join(s[\"text\"] for s in samples)\n    return build_calibration_ids(text, tokenizer, num_samples, seq_len, device)\n\n\ndef load_wt2_train_calibration(tokenizer, num_samples, seq_len, device):\n    \"\"\"Load WikiText-2 train for calibration.\"\"\"\n    ds = Dataset.from_file(WT2_TRAIN_ARROW)\n    text = \"\\n\\n\".join(t for t in ds[\"text\"] if t.strip())\n    return build_calibration_ids(text, tokenizer, num_samples, seq_len, device)\n\n\ndef compute_calibration_ppl(model, input_ids):\n    \"\"\"PPL on calibration data (batched).\"\"\"\n    total_loss = 0.0\n    total_tokens = 0\n    n = input_ids.shape[0]\n    sl = input_ids.shape[1]\n\n    with torch.no_grad():\n        for start in range(0, n, BATCH_SIZE):\n            end = min(start + BATCH_SIZE, n)\n            batch = input_ids[start:end]\n            outputs = model(\n                batch, use_cache=False,\n                cache_position=torch.arange(sl, device=batch.device)\n            )\n            shift_logits = outputs.logits[:, :-1].contiguous()\n            shift_labels = batch[:, 1:].contiguous()\n            loss = F.cross_entropy(\n                shift_logits.view(-1, shift_logits.shape[-1]),\n                shift_labels.view(-1),\n                reduction=\"sum\",\n            )\n            total_loss += loss.item()\n            total_tokens += shift_labels.numel()\n            del outputs, shift_logits, loss\n            torch.cuda.empty_cache()\n\n    return math.exp(total_loss / total_tokens)\n\n\ndef profile_all_heads(model, input_ids, num_layers, num_kv_heads):\n    \"\"\"Profile distortion of each head at each bit width.\"\"\"\n    baseline_ppl = compute_calibration_ppl(model, input_ids)\n    print(f\"  Calibration baseline PPL: {baseline_ppl:.4f}\", flush=True)\n\n    total_evals = num_layers * num_kv_heads * len(BIT_WIDTHS)\n    done = 0\n    profiles = {}\n\n    for l in range(num_layers):\n        profiles[str(l)] = {}\n        for h in range(num_kv_heads):\n            head_profile = {\"quantization\": {}}\n            for bits in BIT_WIDTHS:\n                alloc = {f\"{l},{h}\": [\"quant\", bits]}\n                orig = patch_attention(model, alloc)\n                ppl = compute_calibration_ppl(model, input_ids)\n                restore_attention(model, orig)\n                delta = ppl - baseline_ppl\n                head_profile[\"quantization\"][str(bits)] = delta\n                done += 1\n                if done % 56 == 0 or done == total_evals:\n                    print(f\"  [{done}/{total_evals}] L{l}H{h} @{bits}bit: delta={delta:.6f}\", flush=True)\n            profiles[str(l)][str(h)] = head_profile\n\n    return profiles, baseline_ppl\n\n\ndef evaluate_ppl_on_text(model, tokenizer, text, device, stride=512):\n    \"\"\"Evaluate PPL on arbitrary text with strided windows.\"\"\"\n    encodings = tokenizer(text, return_tensors=\"pt\")\n    input_ids = encodings.input_ids.to(device)\n    total_len = input_ids.shape[1]\n\n    total_loss = 0.0\n    total_tokens = 0\n    n_chunks = (total_len - 1) // stride\n\n    print(f\"  Eval: {total_len} tokens, stride={stride}, {n_chunks} chunks\", flush=True)\n\n    for i, begin in enumerate(range(0, total_len - 1, stride)):\n        end = min(begin + stride, total_len)\n        chunk = input_ids[:, begin:end]\n        with torch.no_grad():\n            outputs = model(chunk, use_cache=False,\n                            cache_position=torch.arange(chunk.shape[1], device=chunk.device))\n        shift_logits = outputs.logits[:, :-1].contiguous()\n        shift_labels = chunk[:, 1:].contiguous()\n        loss = F.cross_entropy(\n            shift_logits.view(-1, shift_logits.shape[-1]),\n            shift_labels.view(-1),\n            reduction=\"sum\",\n        )\n        total_loss += loss.item()\n        total_tokens += shift_labels.numel()\n        if (i + 1) % 50 == 0:\n            print(f\"    chunk {i+1}/{n_chunks}, running ppl={math.exp(total_loss / total_tokens):.2f}\", flush=True)\n\n    return math.exp(total_loss / total_tokens)\n\n\ndef compute_agreement(alloc_a, alloc_b):\n    \"\"\"Per-head allocation agreement between two conditions.\"\"\"\n    keys = set(alloc_a.keys()) & set(alloc_b.keys())\n    if not keys:\n        return 0.0, {}\n    agree = 0\n    disagree_details = {}\n    for k in sorted(keys):\n        a_type, a_param = alloc_a[k]\n        b_type, b_param = alloc_b[k]\n        if a_type == b_type and a_param == b_param:\n            agree += 1\n        else:\n            disagree_details[k] = {\"c4_cal\": [a_type, a_param], \"wt2_cal\": [b_type, b_param]}\n    return agree / len(keys), disagree_details\n\n\ndef main():\n    t_start = time.time()\n\n    print(\"=\" * 60)\n    print(\"Loading model...\")\n    print(\"=\" * 60, flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(DEVICE)\n    model.eval()\n\n    num_layers = model.config.num_hidden_layers\n    num_kv_heads = model.config.num_key_value_heads\n    n_heads_total = num_layers * num_kv_heads\n    print(f\"Config: {num_layers} layers, {num_kv_heads} KV heads/layer, {n_heads_total} total\", flush=True)\n\n    # ========================\n    # CONDITION A: C4 cal → eval WT2\n    # ========================\n    print(f\"\\n{'=' * 60}\")\n    print(\"CONDITION A: Calibrate on C4, eval on WikiText-2 test\")\n    print(\"=\" * 60, flush=True)\n\n    print(\"\\n[A1] Loading C4 calibration data...\", flush=True)\n    c4_cal_ids, c4_n_samples = load_c4_calibration(tokenizer, NUM_SAMPLES, SEQ_LEN, DEVICE)\n    print(f\"  Shape: {c4_cal_ids.shape}\", flush=True)\n\n    print(\"\\n[A2] Profiling all heads with C4 calibration...\", flush=True)\n    t_a = time.time()\n    c4_profiles, c4_cal_baseline = profile_all_heads(model, c4_cal_ids, num_layers, num_kv_heads)\n    t_a_profile = time.time() - t_a\n    print(f\"  Profile time: {t_a_profile:.1f}s ({t_a_profile/60:.1f}min)\", flush=True)\n\n    del c4_cal_ids\n    torch.cuda.empty_cache()\n\n    # Checkpoint profiles\n    with open(\"/root/ratekv/cross_domain_c4_profiles.json\", \"w\") as f:\n        json.dump({\"profiles\": c4_profiles, \"baseline_ppl\": c4_cal_baseline}, f, indent=2)\n    print(\"  Saved C4 profiles checkpoint\", flush=True)\n\n    print(\"\\n[A3] Solving MCKP (budget=0.25, max_2bit=8)...\", flush=True)\n    c4_profiles_mono = enforce_monotonicity(c4_profiles)\n    c4_mckp = solve_mckp_constrained(\n        c4_profiles_mono, BUDGET, mode=\"quant_only\",\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True\n    )\n    c4_uniform = uniform_quantization_baseline(c4_profiles_mono, bits=4)\n    print(f\"  Bit distribution: {c4_mckp['bit_distribution']}\")\n    print(f\"  Memory ratio: {c4_mckp['actual_memory_ratio']:.4f}\", flush=True)\n\n    print(\"\\n[A4] Evaluating on WikiText-2 test...\", flush=True)\n\n    print(\"  bf16 baseline...\", flush=True)\n    bf16_wt2_ppl = evaluate_perplexity(model, tokenizer, DEVICE)\n    print(f\"  >>> bf16 WT2 PPL = {bf16_wt2_ppl:.4f}\", flush=True)\n\n    print(\"  Uniform 4-bit...\", flush=True)\n    orig = patch_attention(model, c4_uniform[\"allocation\"])\n    uniform_wt2_ppl = evaluate_perplexity(model, tokenizer, DEVICE)\n    restore_attention(model, orig)\n    print(f\"  >>> Uniform 4-bit WT2 PPL = {uniform_wt2_ppl:.4f}\", flush=True)\n\n    print(\"  MCKP (C4-calibrated)...\", flush=True)\n    orig = patch_attention(model, c4_mckp[\"allocation\"])\n    c4cal_mckp_wt2_ppl = evaluate_perplexity(model, tokenizer, DEVICE)\n    restore_attention(model, orig)\n    print(f\"  >>> C4-cal MCKP WT2 PPL = {c4cal_mckp_wt2_ppl:.4f}\", flush=True)\n\n    # Checkpoint condition A\n    with open(\"/root/ratekv/cross_domain_checkpoint_a.json\", \"w\") as f:\n        json.dump({\n            \"bf16_wt2_ppl\": bf16_wt2_ppl,\n            \"uniform_wt2_ppl\": uniform_wt2_ppl,\n            \"c4cal_mckp_wt2_ppl\": c4cal_mckp_wt2_ppl,\n            \"c4_mckp_bit_dist\": c4_mckp[\"bit_distribution\"],\n        }, f, indent=2)\n\n    # ========================\n    # CONDITION B: WT2 cal → eval C4\n    # ========================\n    print(f\"\\n{'=' * 60}\")\n    print(\"CONDITION B: Calibrate on WikiText-2 train, eval on C4\")\n    print(\"=\" * 60, flush=True)\n\n    print(\"\\n[B1] Loading WikiText-2 train calibration data...\", flush=True)\n    wt2_cal_ids, wt2_n_samples = load_wt2_train_calibration(tokenizer, NUM_SAMPLES, SEQ_LEN, DEVICE)\n    print(f\"  Shape: {wt2_cal_ids.shape}\", flush=True)\n\n    print(\"\\n[B2] Profiling all heads with WT2 calibration...\", flush=True)\n    t_b = time.time()\n    wt2_profiles, wt2_cal_baseline = profile_all_heads(model, wt2_cal_ids, num_layers, num_kv_heads)\n    t_b_profile = time.time() - t_b\n    print(f\"  Profile time: {t_b_profile:.1f}s ({t_b_profile/60:.1f}min)\", flush=True)\n\n    del wt2_cal_ids\n    torch.cuda.empty_cache()\n\n    # Checkpoint profiles\n    with open(\"/root/ratekv/cross_domain_wt2_profiles.json\", \"w\") as f:\n        json.dump({\"profiles\": wt2_profiles, \"baseline_ppl\": wt2_cal_baseline}, f, indent=2)\n    print(\"  Saved WT2 profiles checkpoint\", flush=True)\n\n    print(\"\\n[B3] Solving MCKP (budget=0.25, max_2bit=8)...\", flush=True)\n    wt2_profiles_mono = enforce_monotonicity(wt2_profiles)\n    wt2_mckp = solve_mckp_constrained(\n        wt2_profiles_mono, BUDGET, mode=\"quant_only\",\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True\n    )\n    wt2_uniform = uniform_quantization_baseline(wt2_profiles_mono, bits=4)\n    print(f\"  Bit distribution: {wt2_mckp['bit_distribution']}\")\n    print(f\"  Memory ratio: {wt2_mckp['actual_memory_ratio']:.4f}\", flush=True)\n\n    print(\"\\n[B4] Evaluating on C4...\", flush=True)\n    with open(C4_CAL_PATH) as f:\n        c4_samples = json.load(f)\n    c4_eval_text = \"\\n\\n\".join(s[\"text\"] for s in c4_samples)\n\n    print(\"  bf16 baseline on C4...\", flush=True)\n    bf16_c4_ppl = evaluate_ppl_on_text(model, tokenizer, c4_eval_text, DEVICE)\n    print(f\"  >>> bf16 C4 PPL = {bf16_c4_ppl:.4f}\", flush=True)\n\n    print(\"  Uniform 4-bit on C4...\", flush=True)\n    orig = patch_attention(model, wt2_uniform[\"allocation\"])\n    uniform_c4_ppl = evaluate_ppl_on_text(model, tokenizer, c4_eval_text, DEVICE)\n    restore_attention(model, orig)\n    print(f\"  >>> Uniform 4-bit C4 PPL = {uniform_c4_ppl:.4f}\", flush=True)\n\n    print(\"  MCKP (WT2-calibrated) on C4...\", flush=True)\n    orig = patch_attention(model, wt2_mckp[\"allocation\"])\n    wt2cal_mckp_c4_ppl = evaluate_ppl_on_text(model, tokenizer, c4_eval_text, DEVICE)\n    restore_attention(model, orig)\n    print(f\"  >>> WT2-cal MCKP C4 PPL = {wt2cal_mckp_c4_ppl:.4f}\", flush=True)\n\n    # ========================\n    # AGREEMENT ANALYSIS\n    # ========================\n    print(f\"\\n{'=' * 60}\")\n    print(\"ALLOCATION AGREEMENT ANALYSIS\")\n    print(\"=\" * 60, flush=True)\n\n    agreement_rate, disagree_details = compute_agreement(c4_mckp[\"allocation\"], wt2_mckp[\"allocation\"])\n    n_agree = int(round(agreement_rate * n_heads_total))\n\n    print(f\"Agreement rate: {agreement_rate:.1%} ({n_agree}/{n_heads_total} heads)\")\n    print(f\"Disagreements: {len(disagree_details)}\")\n    if disagree_details:\n        for k, v in sorted(disagree_details.items()):\n            print(f\"  {k}: C4-cal={v['c4_cal']}, WT2-cal={v['wt2_cal']}\")\n\n    # ========================\n    # SUMMARY\n    # ========================\n    total_time = time.time() - t_start\n\n    print(f\"\\n{'=' * 70}\")\n    print(\"CROSS-DOMAIN CALIBRATION ROBUSTNESS RESULTS\")\n    print(\"=\" * 70)\n\n    print(f\"\\n{'Metric':<45} {'Cond A (C4→WT2)':>15} {'Cond B (WT2→C4)':>15}\")\n    print(\"-\" * 75)\n    print(f\"{'Cal samples':<45} {c4_n_samples:>15} {wt2_n_samples:>15}\")\n    print(f\"{'Cal baseline PPL':<45} {c4_cal_baseline:>15.4f} {wt2_cal_baseline:>15.4f}\")\n    print(f\"{'bf16 eval PPL':<45} {bf16_wt2_ppl:>15.4f} {bf16_c4_ppl:>15.4f}\")\n    print(f\"{'Uniform 4-bit eval PPL':<45} {uniform_wt2_ppl:>15.4f} {uniform_c4_ppl:>15.4f}\")\n    print(f\"{'MCKP eval PPL':<45} {c4cal_mckp_wt2_ppl:>15.4f} {wt2cal_mckp_c4_ppl:>15.4f}\")\n    print(f\"{'Delta (uniform - MCKP)':<45} {uniform_wt2_ppl - c4cal_mckp_wt2_ppl:>+15.4f} {uniform_c4_ppl - wt2cal_mckp_c4_ppl:>+15.4f}\")\n\n    print(f\"\\nBit dist (C4-cal):  {c4_mckp['bit_distribution']}\")\n    print(f\"Bit dist (WT2-cal): {wt2_mckp['bit_distribution']}\")\n    print(f\"Agreement: {agreement_rate:.1%} ({n_agree}/{n_heads_total})\")\n\n    print(f\"\\nplan_007 ref: C4-cal={PLAN_007_REF['c4_cal_mckp_ppl']}, WT2-cal={PLAN_007_REF['wt2_cal_mckp_ppl']}, agree={PLAN_007_REF['agreement_rate']:.1%}\")\n    print(f\"Total time: {total_time:.1f}s ({total_time/3600:.2f}h)\", flush=True)\n\n    results = {\n        \"experiment\": \"cross_domain_calibration_robustness\",\n        \"model\": \"Qwen2.5-7B\",\n        \"config\": {\n            \"budget\": BUDGET,\n            \"max_2bit\": MAX_2BIT,\n            \"l0_exclude_2bit\": True,\n            \"seq_len\": SEQ_LEN,\n            \"bit_widths\": list(BIT_WIDTHS),\n            \"batch_size\": BATCH_SIZE,\n        },\n        \"condition_a\": {\n            \"calibration_source\": \"C4 (c4_calibration.json)\",\n            \"calibration_n_samples\": c4_n_samples,\n            \"eval_dataset\": \"WikiText-2 test\",\n            \"calibration_baseline_ppl\": c4_cal_baseline,\n            \"bf16_ppl\": bf16_wt2_ppl,\n            \"uniform_4bit_ppl\": uniform_wt2_ppl,\n            \"mckp_ppl\": c4cal_mckp_wt2_ppl,\n            \"mckp_delta_over_uniform\": uniform_wt2_ppl - c4cal_mckp_wt2_ppl,\n            \"bit_distribution\": c4_mckp[\"bit_distribution\"],\n            \"memory_ratio\": c4_mckp[\"actual_memory_ratio\"],\n            \"total_distortion\": c4_mckp[\"total_distortion\"],\n            \"allocation\": c4_mckp[\"allocation\"],\n            \"profile_time_seconds\": t_a_profile,\n        },\n        \"condition_b\": {\n            \"calibration_source\": \"WikiText-2 train (wikitext-2-raw-v1)\",\n            \"calibration_n_samples\": wt2_n_samples,\n            \"eval_dataset\": \"C4 validation (c4_calibration.json, 100 samples)\",\n            \"calibration_baseline_ppl\": wt2_cal_baseline,\n            \"bf16_ppl\": bf16_c4_ppl,\n            \"uniform_4bit_ppl\": uniform_c4_ppl,\n            \"mckp_ppl\": wt2cal_mckp_c4_ppl,\n            \"mckp_delta_over_uniform\": uniform_c4_ppl - wt2cal_mckp_c4_ppl,\n            \"bit_distribution\": wt2_mckp[\"bit_distribution\"],\n            \"memory_ratio\": wt2_mckp[\"actual_memory_ratio\"],\n            \"total_distortion\": wt2_mckp[\"total_distortion\"],\n            \"allocation\": wt2_mckp[\"allocation\"],\n            \"profile_time_seconds\": t_b_profile,\n        },\n        \"agreement\": {\n            \"rate\": agreement_rate,\n            \"n_agree\": n_agree,\n            \"n_disagree\": len(disagree_details),\n            \"n_heads\": n_heads_total,\n            \"disagree_details\": disagree_details,\n        },\n        \"plan_007_reference\": PLAN_007_REF,\n        \"total_time_seconds\": total_time,\n    }\n\n    with open(OUTPUT, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {OUTPUT}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T08:53:09.468384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T08:53:09.468545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python3 -c \"import ast; ast.parse(open('run_cross_domain.py').read()); print('Syntax OK')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T08:53:09.468700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T08:53:09.468829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python3 -c \"\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\nfrom datasets import Dataset\nprint('All imports OK')\nprint('WT2 train arrow exists:', __import__('os').path.exists('/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train.arrow'))\nprint('C4 cal exists:', __import__('os').path.exists('/root/ratekv/c4_calibration.json'))\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T08:53:09.468958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All imports OK\\\\nWT2 train arrow exists: True\\\\nC4 cal exists: True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T08:53:09.469105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom transformers import AutoTokenizer\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B')\nwith open('/root/ratekv/c4_calibration.json') as f:\n    samples = json.load(f)\ntext = '\\n\\n'.join(s['text'] for s in samples)\nids = tok.encode(text, add_special_tokens=False)\nn_chunks = len(ids) // 2048\nprint(f'C4 total tokens: {len(ids)}, non-overlapping 2048-chunks: {n_chunks}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T08:53:09.469230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T08:53:09.469351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"C4 total tokens: 90533, non-overlapping 2048-chunks: 44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T08:53:09.469475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 74195 MiB, 97887 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T08:53:09.469628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom datasets import Dataset\nfrom transformers import AutoTokenizer\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B')\nds = Dataset.from_file('/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train.arrow')\ntext = '\\n\\n'.join(t for t in ds['text'] if t.strip())\nids = tok.encode(text, add_special_tokens=False)\nn_chunks = len(ids) // 2048\nprint(f'WT2 train total tokens: {len(ids)}, non-overlapping 2048-chunks: {n_chunks}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T08:53:09.469783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WT2 train total tokens: 2517232, non-overlapping 2048-chunks: 1229\\\\n\\\", \\\"stderr\\\": \\\"Token indices sequence length is longer than the specified maximum sequence length for this model (2517232 > 131072). Running this sequence through the model will result in indexing errors\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 14.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T08:53:09.469938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom datasets import load_dataset\nds = load_dataset('allenai/c4', 'en', split='validation', streaming=True)\nsamples = []\nfor item in ds:\n    text = item['text'].strip()\n    if len(text) >= 4000:\n        samples.append({'text': text})\n    if len(samples) >= 200:\n        break\nprint(f'Got {len(samples)} samples')\nwith open('/root/ratekv/c4_calibration_extended.json', 'w') as f:\n    json.dump(samples, f, ensure_ascii=False)\nprint('Saved c4_calibration_extended.json')\n\" 2>&1 | tail -5",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T08:53:09.470079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nfrom datasets import load_dataset\\\\\\\\nds = load_dataset(\\\\\\\\'allenai/c4\\\\\\\\', \\\\\\\\'en\\\\\\\\', split=\\\\\\\\'validation\\\\\\\\', streaming=True)\\\\\\\\nsamples = []\\\\\\\\nfor item in ds:\\\\\\\\n    text = item[\\\\\\\\'text\\\\\\\\'].strip()\\\\\\\\n    if len(text) >= 4000:\\\\\\\\n        samples.append({\\\\\\\\'text\\\\\\\\': text})\\\\\\\\n    if len(samples) >= 200:\\\\\\\\n        break\\\\\\\\nprint(f\\\\\\\\'Got {len(samples)} samples\\\\\\\\')\\\\\\\\nwith open(\\\\\\\\'/root/ratekv/c4_calibration_extended.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(samples, f, ensure_ascii=False)\\\\\\\\nprint(\\\\\\\\'Saved c4_calibration_extended.json\\\\\\\\')\\\\\\\\n\\\\\\\" 2>&1 | tail -5'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T08:53:09.470239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && CUDA_VISIBLE_DEVICES=1 nohup python3 run_cross_domain.py > /root/ratekv/cross_domain.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T08:53:09.470367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=204192\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T08:53:09.470502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cross_domain_calibration",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "ratekv",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python3 run_cross_domain.py', 'server': 'westd-37397', 'data_path': '/root/ratekv/c4_calibration.json + wikitext-2-raw-v1 train arrow', 'data_count': '44+64 calibration sequences x 2048 tokens', 'model_name': 'Qwen2.5-7B', 'seed': 0}"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T08:53:09.470651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0846}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T08:53:09.470781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cross_domain_calibration",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T08:53:09.470916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cross_domain_calibration\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T08:41:31.434Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:52:49.105Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Cross-domain calibration robustness (plan_010): 双向 calibration-eval 交叉验证 MCKP allocation 对 calibration 数据集的鲁棒性。(1) Cal=C4 → eval=WT2, (2) Cal=WT2 → eval=C4。报告 PPL + 逐头 bit allocation agreement rate。与 plan_007 对比。\\\", \\\"plan_id\\\": \\\"plan_010\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"server\\\": \\\"westd-37397\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3244}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T08:53:09.471043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cross_domain_calibration",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "ratekv",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python3 run_cross_domain.py', 'server': 'westd-37397', 'data_path': '/root/ratekv/c4_calibration.json + wikitext-2-raw-v1 train arrow', 'data_count': '44+64 calibration sequences x 2048 tokens', 'model_name': 'Qwen2.5-7B', 'seed': 0}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T08:53:09.471194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cross_domain_calibration\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T08:41:31.434Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:52:53.501Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Cross-domain calibration robustness (plan_010): 双向 calibration-eval 交叉验证 MCKP allocation 对 calibration 数据集的鲁棒性。(1) Cal=C4 → eval=WT2, (2) Cal=WT2 → eval=C4。报告 PPL + 逐头 bit allocation agreement rate。与 plan_007 对比。\\\", \\\"plan_id\\\": \\\"plan_010\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 run_cross_domain.py\\\", \\\"data_path\\\": \\\"/root/ratekv/c4_calibration.json + wikitext-2-raw-v1 train arrow\\\", \\\"data_count\\\": \\\"44+64 calibration sequences x 2048 tokens\\\", \\\"seed\\\": 0}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3264}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T08:53:09.471341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -20 /root/ratekv/cross_domain.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T08:53:09.471480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nLoading model...\\\\n============================================================\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  9.65it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  8.58it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.46it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  6.78it/s]\\\\nConfig: 28 layers, 4 KV heads/layer, 112 total\\\\n\\\\n============================================================\\\\nCONDITION A: Calibrate on C4, eval on WikiText-2 test\\\\n============================================================\\\\n\\\\n[A1] Loading C4 calibration data...\\\\n  WARNING: only got 44/64 sequences (total tokens=90533)\\\\n  Shape: torch.Size([44, 2048])\\\\n\\\\n[A2] Profiling all heads with C4 calibration...\\\\n  Calibration baseline PPL: 8.5016\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T08:53:09.471673+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，模型已加载，C4 calibration 44 样本，正在进行 Phase A2 profiling。\n\n112 heads × 3 bit-widths = 336 profiling 步骤 × 2 conditions + eval，预计 2-4 小时完成。\n\n实验详情：\n- **脚本**: `/root/ratekv/run_cross_domain.py`\n- **PID**: 204192\n- **GPU**: cuda:1 (RTX PRO 6000 Blackwell, 98GB)\n- **日志**: `/root/ratekv/cross_domain.log`\n- **输出**: `/root/ratekv/cross_domain_results.json`\n- **C4 calibration**: 44 序列 × 2048 tokens（c4_calibration.json 只有 90K tokens，不足 64 序列）\n- **WT2 calibration**: 64 序列 × 2048 tokens（充足）\n- 中间 checkpoint: `cross_domain_c4_profiles.json`, `cross_domain_checkpoint_a.json`, `cross_domain_wt2_profiles.json`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan_010_cross_domain_20260514T084200"
+          },
+          "id": "event-000069"
+        }
+      ],
+      "message_count": 69
+    }
+  ]
+}

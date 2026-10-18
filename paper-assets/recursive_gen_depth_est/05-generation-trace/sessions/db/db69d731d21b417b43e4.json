@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db69d731d21b417b43e4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops collect plan 022 results",
+  "task_key": "worker_ops_collect_plan_022_results_20260517T135026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_plan_022_results_20260517T135026_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "fb8d7228c1918aef7dda5d46d1daa8d73e3d575e29472694ab84f080745cc334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## Plan_022 文本长度敏感性分析 — 已完成\n\n| Truncation | 4-class Acc | 3-class Acc | d0 | d1 | d2 | d3 |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| 50 tokens | **51.5%** | 65.0% | 82.9% | 47.2% | 28.0% | 47.8% |\n| 100 tokens | **56.3%** | 72.8% | 89.8% | 54.3% | 27.5% | 53.4% |\n| 200 tokens | **60.4%** | 74.9% | 92.0% | 56.0% | 35.3% | 57.0% |\n| 500 tokens | **61.0%** | 78.9% | 93.8% | 66.9% | 42.7% | 55.2% |\n\n**关键发现：**\n\n1. **50 tokens 已可检测 depth signal** — 4-class 51.5% 远高于 chance (25%)，d0 recall 达 82.9%\n2. **收益递减明显** — 50→200 提升 ~9pp，200→500 仅 +0.7pp（4-class）；但 3-class 持续提升到 78.9%\n3. **200 tokens 是性价比拐点** — 实际部署推荐最小长度\n4. **d2 始终是瓶颈** — 即使 500 tokens 也仅 42.7% recall\n5. **结论：success** — 假设成立，depth signal 在短文本中优雅退化而非断崖式消失\n\n已注册：registry `text_length_sensitivity_001` (DONE/success)，artifact 已归档，memory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

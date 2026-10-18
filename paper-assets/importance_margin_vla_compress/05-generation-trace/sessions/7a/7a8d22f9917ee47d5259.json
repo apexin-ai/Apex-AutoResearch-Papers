@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7a8d22f9917ee47d5259",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy openvla random k09 seed42",
+  "task_key": "worker_deploy_openvla-random-k09-seed42_20260521T220946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla-random-k09-seed42_20260521T220946_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "9875ee7bd9fab4effbcdf02673861714fe6db0f6ccb55653a66511140ccaf415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**状态汇总：**\n- **实验**: `eval_openvla_random_k09_object_seed42` → RUNNING\n- **服务器**: westd-27271 GPU0 (15.9GB / 73% util)\n- **PID**: 360411\n- **配置**: OpenVLA random_prune k=0.9, libero_object, 500 episodes, seed 42\n- **进度**: 模型已加载(15.1GB)，Task 1/10 评估中，256→230 vision tokens\n- **GPU1**: M32 VTC 训练不受影响 (42GB occupied)\n- **预计耗时**: ~4h（参考 L2norm k=0.9 用了 228 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

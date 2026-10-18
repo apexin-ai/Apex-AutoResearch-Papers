@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0",
+  "id": "8767d9405cdc26b359a9",
+  "project": "schema-dag-extraction",
+  "kind": "conversation",
+  "title": "check sdgd v2 status",
+  "task_key": "worker_check_sdgd_v2_status_20260515T153409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_sdgd_v2_status_20260515T153409.jsonl",
+    "occurrence": 1,
+    "bytes": 14465,
+    "sha256": "d4af606da46962e574ad2a460a1ae794790a629cdc7fd3cfe8c67979984c7b78"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:34:50.724281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:34:50.724610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:34:50.724791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 278037 -o pid,etime,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:34:50.725012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:34:50.725152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/artifacts/exp008_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:34:50.725296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"278037       38:18 bash -c rm -f /tmp/agent-ml-exit/exp008_sdgd_v2_fewnerd.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/schema-dag-extraction/exp008_sdgd_v2_fewnerd.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp008_sdgd_v2_fewnerd.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/schema-dag-extraction && export CUDA_VISIBLE_DEVICES=0 && timeout 7200 env bash -c 'bash /root/schema-dag-extraction/scripts/run_sdgd_v2_fewnerd.sh'; } > ~/runs/schema-dag-extraction/exp008_sdgd_v2_fewnerd.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:34:50.725429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15 %, 94221 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:34:50.725567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 712\\\\ndrwxr-xr-x  2 root root   4096 May 15 23:11 .\\\\ndrwxr-xr-x 13 root root   4096 May 15 23:28 ..\\\\n-rw-r--r--  1 root root   3166 May 15 22:56 decomposition_per_type.json\\\\n-rw-r--r--  1 root root   2355 May 15 22:56 decomposition_random_batch.json\\\\n-rw-r--r--  1 root root   2509 May 15 22:56 decomposition_sdgd_zero.json\\\\n-rw-r--r--  1 root root   1934 May 15 22:56 decomposition_single_pass.json\\\\n-rw-r--r--  1 root root 275366 May 15 23:11 random_batch_predictions.json\\\\n-rw-r--r--  1 root root    815 May 15 23:11 random_batch_results.json\\\\n-rw-r--r--  1 root root 194968 May 15 23:02 sdgd_zero_predictions.json\\\\n-rw-r--r--  1 root root   1040 May 15 23:02 sdgd_zero_results.json\\\\n-rw-r--r--  1 root root 213168 May 15 23:03 single_pass_predictions.json\\\\n-rw-r--r--  1 root root    448 May 15 23:03 single_pass_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:34:50.725737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -50 /root/runs/schema-dag-extraction/exp008_sdgd_v2_fewnerd.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:34:50.726074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   2%|▏         | 23/1000 [00:00<00:04, 225.93it/s]\\\\rRendering prompts:   5%|▍         | 47/1000 [00:00<00:04, 230.38it/s]\\\\rRendering prompts:   7%|▋         | 71/1000 [00:00<00:04, 230.77it/s]\\\\rRendering prompts:  10%|▉         | 95/1000 [00:00<00:03, 229.76it/s]\\\\rRendering prompts:  12%|█▏        | 119/1000 [00:00<00:03, 231.60it/s]\\\\rRendering prompts:  14%|█▍        | 143/1000 [00:00<00:03, 232.96it/s]\\\\rRendering prompts:  17%|█▋        | 167/1000 [00:00<00:03, 234.16it/s]\\\\rRendering prompts:  19%|█▉        | 191/1000 [00:00<00:03, 234.12it/s]\\\\rRendering prompts:  22%|██▏       | 215/1000 [00:00<00:03, 233.99it/s]\\\\rRendering prompts:  24%|██▍       | 239/1000 [00:01<00:03, 232.55it/s]\\\\rRendering prompts:  26%|██▋       | 263/1000 [00:01<00:03, 233.32it/s]\\\\rRendering prompts:  29%|██▊       | 287/1000 [00:01<00:03, 232.38it/s]\\\\rRendering prompts:  31%|███       | 311/1000 [00:01<00:02, 233.17it/s]\\\\rRendering prompts:  34%|███▎      | 335/1000 [00:01<00:02, 234.62it/s]\\\\rRendering prompts:  36%|███▌      | 359/1000 [00:01<00:02, 235.34it/s]\\\\rRendering prompts:  38%|███▊      | 383/1000 [00:01<00:02, 235.22it/s]\\\\rRendering prompts:  41%|████      | 407/1000 [00:01<00:02, 232.00it/s]\\\\rRendering prompts:  43%|████▎     | 431/1000 [00:01<00:02, 233.13it/s]\\\\rRendering prompts:  46%|████▌     | 455/1000 [00:01<00:02, 234.26it/s]\\\\rRendering prompts:  48%|████▊     | 479/1000 [00:02<00:02, 235.09it/s]\\\\rRendering prompts:  50%|█████     | 503/1000 [00:02<00:02, 234.37it/s]\\\\rRendering prompts:  53%|█████▎    | 527/1000 [00:02<00:02, 233.04it/s]\\\\rRendering prompts:  55%|█████▌    | 551/1000 [00:02<00:01, 233.81it/s]\\\\rRendering prompts:  57%|█████▊    | 575/1000 [00:02<00:01, 233.42it/s]\\\\rRendering prompts:  60%|█████▉    | 599/1000 [00:02<00:01, 233.69it/s]\\\\rRendering prompts:  62%|██████▏   | 623/1000 [00:02<00:01,\n…[truncated 6406 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:34:50.726270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:34:50.726441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"sdgd_zero\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 4,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    18,\\\\n    19,\\\\n    14,\\\\n    15\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 261.4291949272156,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.32435981615233095,\\\\n    \\\\\\\"recall\\\\\\\": 0.19132455460883036,\\\\n    \\\\\\\"f1\\\\\\\": 0.24068209500609009,\\\\n    \\\\\\\"tp\\\\\\\": 494,\\\\n    \\\\\\\"pred_count\\\\\\\": 1523,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"merge_strategy\\\\\\\": \\\\\\\"confidence\\\\\\\",\\\\n  \\\\\\\"confidence_threshold\\\\\\\": -1.0,\\\\n  \\\\\\\"tau\\\\\\\": 0.867604847997427,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 4,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 19,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 14,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 16.5,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      19,\\\\n      18,\\\\n      15,\\\\n      14\\\\n    ]\\\\n  },\\\\n  \\\\\\\"min_batch_size\\\\\\\": 8,\\\\n  \\\\\\\"graph_stats_before_merge\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 8,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 18,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 3,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 8.25,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      18,\\\\n      12,\\\\n      11,\\\\n      7,\\\\n      7,\\\\n      5,\\\\n      3,\\\\n      3\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:34:50.726588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp008_v2/single_pass_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T15:34:50.726736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"single_pass\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 1,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    66\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 78.9313759803772,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.5631298162418494,\\\\n    \\\\\\\"recall\\\\\\\": 0.36793183578621225,\\\\n    \\\\\\\"f1\\\\\\\": 0.44506910283438744,\\\\n    \\\\\\\"tp\\\\\\\": 950,\\\\n    \\\\\\\"pred_count\\\\\\\": 1687,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"merge_strategy\\\\\\\": \\\\\\\"confidence\\\\\\\",\\\\n  \\\\\\\"confidence_threshold\\\\\\\": -1.0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T15:34:50.726887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/artifacts/exp008_v2/random_batch_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T15:34:50.727054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"random_batch\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 8,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    9,\\\\n    9,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 493.9285674095154,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.3307013469577334,\\\\n    \\\\\\\"recall\\\\\\\": 0.27575522850503487,\\\\n    \\\\\\\"f1\\\\\\\": 0.30073917634635694,\\\\n    \\\\\\\"tp\\\\\\\": 712,\\\\n    \\\\\\\"pred_count\\\\\\\": 2153,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"merge_strategy\\\\\\\": \\\\\\\"confidence\\\\\\\",\\\\n  \\\\\\\"confidence_threshold\\\\\\\": -1.0,\\\\n  \\\\\\\"tau\\\\\\\": 0.867604847997427,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 8,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 18,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 3,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 8.25,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      18,\\\\n      12,\\\\n      11,\\\\n      7,\\\\n      7,\\\\n      5,\\\\n      3,\\\\n      3\\\\n    ]\\\\n  },\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T15:34:50.727252+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SDGD v2 实验状态: **RUNNING**\n\n**PID 278037** — 已运行 38 分钟，当前正在执行第 4 个 mode (`per_type`)，推理进度 ~100%，即将完成。\n\n### GPU\n| GPU利用率 | 显存使用 | 总显存 |\n|-----------|---------|--------|\n| 15% | 94,221 MiB | 97,887 MiB |\n\n### 已完成的 3 个 mode 结果\n\n| Mode | F1 | Precision | Recall | Batches | Latency |\n|------|-----|-----------|--------|---------|---------|\n| **single_pass** | **0.4451** | 0.5631 | 0.3679 | 1 (66 types) | 79s |\n| **random_batch** | 0.3007 | 0.3307 | 0.2758 | 8 | 494s |\n| **sdgd_zero** | 0.2407 | 0.3244 | 0.1913 | 4 | 261s |\n\n**待完成**: `per_type` mode（日志显示正在处理最后一批 prompts，预计几分钟内完成）。\n\n关键观察：single_pass baseline 目前 F1 最高（0.445），sdgd_zero 分解反而最低（0.241）。`per_type` 结果出来后可做完整对比。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_sdgd_v2_status_20260515T153409"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ]
+}

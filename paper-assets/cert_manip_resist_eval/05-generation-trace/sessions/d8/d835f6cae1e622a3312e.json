@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d835f6cae1e622a3312e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis plan010 fdr and cv",
+  "task_key": "worker_analysis_plan010-fdr-and-cv_20260522T121717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan010-fdr-and-cv_20260522T121717_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "787175f0a83634700b20ae3b1db74241fe7b88ea0dda007b0a9515b9ed9b45f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n**FDR 校正 (48 tests 统一)**\n\n| Method | η_max raw | η_max FDR-48 | η_max Bonf | K_eff neg raw | K_eff neg FDR | K_eff neg Bonf |\n|--------|-----------|--------------|------------|---------------|---------------|----------------|\n| majority_vote | 8/12 | 5/12 | 1/12 | 1/12 | 1/12 | 0/12 |\n| weighted_vote | 7/12 | 6/12 | 1/12 | 1/12 | 1/12 | 0/12 |\n| threshold_vote | 7/12 | 6/12 | 5/12 | 0/12 | 0/12 | 0/12 |\n| bayesian | 3/12 | 2/12 | 1/12 | 0/12 | 0/12 | 0/12 |\n\n与 plan_009 的区别：plan_009 FDR 是 12 个 test 内部做的（majority only），本次是 48 个 test 统一 FDR，更保守。majority_vote 从 plan_009 的 6/12 (FDR-12) 到这里的 5/12 (FDR-48)，差异不大。\n\n**Bayesian 5-fold CV**\n\n| Variant | η_max sig raw | η_max sig FDR-12 |\n|---------|---------------|------------------|\n| Original (300-sample weights) | 3/12 | 2/12 |\n| 5-fold CV weights | 3/12 | 1/12 |\n\n结论：**robust** — CV 版本与原始版本显著性几乎一致，无信息泄漏伪影。3 个 raw significant condition 完全相同（mmlu__sycophancy, mmlu__verbosity_bias, arc_challenge__sycophancy），p-values 变化极小。\n\n输出已保存到 `/root/cert_manip_resist_eval/artifacts/results/results_plan010_fdr_cv.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

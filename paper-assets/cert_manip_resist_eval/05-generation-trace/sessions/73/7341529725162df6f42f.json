@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7341529725162df6f42f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis k7 aggregation bootstrap v2",
+  "task_key": "worker_analysis_k7-aggregation-bootstrap-v2_20260524T080423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k7-aggregation-bootstrap-v2_20260524T080423_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "9f56b693a9cfe0c85d2946a15da9d65cefd7a3d82806c69bb312df0b6f64845e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已在 PID 8443 后台运行。3 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

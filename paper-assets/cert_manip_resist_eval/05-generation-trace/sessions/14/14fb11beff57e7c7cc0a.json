@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "14fb11beff57e7c7cc0a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops d047 tex narrative numbers",
+  "task_key": "worker_ops_d047-tex-narrative-numbers_20260525T210434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-tex-narrative-numbers_20260525T210434_result.json",
+    "occurrence": 1,
+    "bytes": 2225235,
+    "sha256": "033663739701907596e3ff24936d14f44a13465dfc40218f85fad3b0ff03b85d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "14fb11beff57e7c7cc0a-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

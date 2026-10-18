@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "16e9b0b6ee7fc50cb3fe",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh maven qwen3 embeddings v2",
+  "task_key": "worker_ssh_maven-qwen3-embeddings-v2_20260515T053208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_maven-qwen3-embeddings-v2_20260515T053208_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "62f749cccca117fab7666647f6f332c66ce12c4f712610b8747a746eba1f0069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果：\n\n- **`artifacts/maven_type_embeddings_qwen3.pt`** — 168 embeddings, dim=5120, dtype=bfloat16（与 Few-NERD 格式一致）\n- **`artifacts/maven_bcs_matrix_qwen3.pt`** — 168×168 cosine similarity matrix\n- **BCS 统计**: mean=0.7016, std=0.1486, min=-0.1321, max=0.9832"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

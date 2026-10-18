@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d9799036cef8b864b548",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp 14b cross ref 001",
+  "task_key": "worker_exp_14b_cross_ref_001_20260521T070619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_14b_cross_ref_001_20260521T070619_result.json",
+    "occurrence": 1,
+    "bytes": 1397,
+    "sha256": "893074cf9e3c39780307347a3bf2649d2a82fa5fcce0d513c26dc90d995de2e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `14b_cross_ref_001` 完成。\n\n## 结果摘要\n\n### Self-ref (Qwen2.5-14B) vs Cross-ref (Pythia-1.4B) — 4-class accuracy\n\n| Strategy | Self-ref | Cross-ref | Delta |\n|----------|---------|-----------|-------|\n| nucleus  | 54.05%  | 44.97%    | -9.08pp |\n| temp09   | 50.50%  | 46.33%    | -4.17pp |\n| topk50   | 47.93%  | 40.85%    | -7.08pp |\n| **avg**  | **50.83%** | **44.05%** | **-6.78pp** |\n\n### Cross-ref 关键 metrics\n\n| Strategy | d1d3 bal acc | d0v1 AUC | d1v2 AUC | d2v3 AUC | EDD(T=0.70) |\n|----------|-------------|----------|----------|----------|-------------|\n| nucleus  | 39.47%      | 0.70     | 0.73     | 0.60     | 2           |\n| temp09   | 40.29%      | 0.74     | 0.72     | 0.61     | 2           |\n| topk50   | 35.27%      | 0.70     | 0.68     | 0.54     | 0           |\n\n### 解读\n\n- Cross-ref 比 self-ref 低 4-9pp，符合预期：Pythia-1.4B (1.4B) 计算 Qwen2.5-14B (14B) 生成文本的 perplexity 时，模型架构/tokenizer 不匹配导致特征信噪比降低。\n- 但 cross-ref 在全部 3 个策略上仍远高于 25% chance，深度信号依然可检测。\n- EDD(T=0.70): nucleus/temp09 仍可区分到 depth 2，topk50 边界（d0v1 AUC=0.699 极接近 0.70）。\n- 结论：reference model 选择影响准确率绝对值（-6.78pp），但不改变深度信号存在的核心结论。可回应 R17。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

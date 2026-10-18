@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "116c71891c6d2618ec2d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure fig compression curve",
+  "task_key": "worker_paper_figure_fig_compression_curve_20260521T105916",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_compression_curve_20260521T105916_result.json",
+    "occurrence": 1,
+    "bytes": 2109386,
+    "sha256": "400c71f65527d491693ae904c8db605c9c0c87506335ad5f7608c2ef60ff3b6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "116c71891c6d2618ec2d-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

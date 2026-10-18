@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "259af6ee212c40f125c3",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code sf7 timing benchmark",
+  "task_key": "worker_code_sf7-timing-benchmark_20260523T182038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sf7-timing-benchmark_20260523T182038_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "5ebe0abcc025bb75f611206cadf94a478348b38a8f4ff397f88d725b21692e5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results summary:\n\n| Step | Time (s) |\n|---|---|\n| Single DIM estimate | 0.002 ± 0.001 |\n| HB Centered EB (optimization) | 0.002 ± 0.000 |\n| HB Gibbs MCMC (4 chains × 6k iter) | 4.662 ± 0.114 |\n| EC-HTE full pipeline (DIM + EB + inversion) | 0.003 ± 0.000 |\n| Bootstrap SE (B=100) | 0.346 ± 0.018 (0.0035/rep) |\n\nKey takeaways:\n- The EC-HTE pipeline with centered EB is extremely fast (~3ms) — the optimization-based EB replaces MCMC and runs ~2000x faster than the Gibbs sampler (4.7s)\n- Bootstrap SE with B=100 takes ~0.35s total (3.5ms per replicate), since each replicate only re-estimates the EB CM on resampled expert data\n- The Gibbs MCMC sampler (4 chains × 2000 warmup + 4000 post-warmup) is the only computationally expensive step at ~4.7s\n\nSaved to `artifacts/timing_benchmark.csv`. Machine: Intel Xeon Platinum 8259CL @ 2.50GHz, 2 cores, 7.6GB RAM."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

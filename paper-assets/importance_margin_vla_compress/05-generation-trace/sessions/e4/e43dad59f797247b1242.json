@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e43dad59f797247b1242",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze finalize s44 analyzing",
+  "task_key": "worker_analyze_finalize_s44_analyzing_20260528T062200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_finalize_s44_analyzing_20260528T062200_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "851b9b5cf4e6c27c9ee9fe7e0d0f15842fd03f9bbc6e2f349d768cd63d566263"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 ANALYZING 实验全部处理完毕（实际发现 3 个而非 2 个），已更新至 DONE：\n\n| Experiment | SR | Conclusion |\n|---|---|---|\n| `eval_pi05_attn_k09_long_seed44_strict_w38` | **64.0%** | success |\n| `eval_pi05_random_k085_long_seed44_strict_w41` | **44.2%** | success |\n| `eval_pi05_l2norm_k095_long_seed45_strict_w38` | **87.8%** | success |\n\n交叉验证：Attn k=0.9 seed44 = 64.0%，与 seed42 的 64.0% 完全一致，plateau 稳定性确认。Random k=0.85 seed44 = 44.2%，与 seed42 (44.0%) / seed43 (47.2%) 一致，U-shape valley 误差棒收窄。L2norm k=0.95 seed45 = 87.8%，高位表现稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

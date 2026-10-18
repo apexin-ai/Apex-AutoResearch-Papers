@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7ebae02f4a23757cdb",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper research kv cache eviction",
+  "task_key": "worker_paper_research_kv_cache_eviction_20260514T080659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_kv_cache_eviction_20260514T080659_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "9ebded35ab850bdaf932142d8dec95fbc7b4ead3385fcbf4804c79ec29619521"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 papers added to `literature_map.yaml`, all with `category=\"KV Cache Eviction\"`, `role=\"background\"`, `verified=true`:\n\n| bibtex_key | Paper | Venue |\n|---|---|---|\n| `zhang2023h2o` | H2O: Heavy-Hitter Oracle | NeurIPS 2023 |\n| `li2024snapkv` | SnapKV | NeurIPS 2024 |\n| `ge2024fastgen` | FastGen (Model Tells You What to Discard) | ICLR 2024 |\n| `xiao2024streamingllm` | StreamingLLM (Attention Sinks) | ICLR 2024 |\n| `liu2024scissorhands` | Scissorhands | NeurIPS 2023 |\n| `yang2024pyramidinfer` | PyramidInfer | Findings of ACL 2024 |\n\nTotal papers in literature map: 12 (6 existing quantization + 6 new eviction)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

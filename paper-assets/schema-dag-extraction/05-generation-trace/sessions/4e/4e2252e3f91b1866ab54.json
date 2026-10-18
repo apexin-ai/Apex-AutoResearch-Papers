@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "4e2252e3f91b1866ab54",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r10 batch1 text changes",
+  "task_key": "worker_paper_r10-batch1-text-changes_20260517T075849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r10-batch1-text-changes_20260517T075849_result.json",
+    "occurrence": 1,
+    "bytes": 2212822,
+    "sha256": "454d4c9132c2035fcf3253270ed7d20f80693bb6a01d4fb67ef3aa66ab3f3fcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "4e2252e3f91b1866ab54-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

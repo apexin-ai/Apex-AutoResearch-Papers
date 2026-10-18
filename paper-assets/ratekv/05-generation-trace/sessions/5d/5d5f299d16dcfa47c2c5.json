@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5d5f299d16dcfa47c2c5",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code exp c no2bit",
+  "task_key": "worker_code_exp_c_no2bit_20260514T001702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_c_no2bit_20260514T001702_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "bb00193b1ce1278a3f5d1b5f6084dcc239aec33fbc7c0c32cf60d5df7c57483f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**总结**：\n\n- **exp_c_no2bit**: MCKP {4,8,16}-bit, budget=0.25 → **NEGATIVE**\n- Solver 输出 = 全部 112 heads 4-bit，PPL = 15.45，与 uniform 4-bit 完全相同\n- **根本原因**：budget=0.25 恰好等于 4-bit 的 memory ratio (4/16)，而 4-bit 是最低选项。solver 没有低于 4-bit 的选项来\"换取\"某些 head 用 8/16-bit 的空间，因此唯一可行解 = 全部 4-bit\n\n**后续方向**：\n1. 保留 2-bit 但用 constrained MCKP（已验证有效，exp_c PPL=11.23）\n2. 放松 budget（如 0.30）让 solver 有空间分配 8/16-bit 给关键 head\n3. 引入 3-bit 或 6-bit 等中间精度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

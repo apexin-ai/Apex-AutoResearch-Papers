@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1e4d3e07bb1bedf4772b",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis exp012 exp1 count curve",
+  "task_key": "worker_analysis_exp012_exp1_count_curve_20260515T195527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp012_exp1_count_curve_20260515T195527_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "7fbde2ef14784292dea43562d992ef911785c7a1dab6bc5ecd88a97a4ba6d1c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Channel 1 跨模型复现成功。** \n\n| | LLaMA-3.1-8B | Qwen3-8B |\n|---|---|---|\n| R(count_1) | 0.702 | 0.640 |\n| R(count_64) | 0.273 | 0.304 |\n| Recall decline | **-43pp** | **-34pp** |\n| Min-R | 0.178 @ count_22 | 0.271 @ count_22 |\n\n三个关键发现：\n\n1. **Per-batch recall 相关性 r=0.7249** — 对同一 batch，两个模型的 recall 高度相关，说明难度来自 schema 配置本身而非模型特异性\n2. **LLaMA 下降更陡**（-43pp vs -34pp），支持\"弱模型对 schema 复杂度更敏感\"的论述\n3. **exact/relaxed F1 = 0 是预期行为** — 预测缺少字符偏移量（start/end），不是类型格式问题。text_match 是两个模型的正确对比指标\n\n摘要已保存至 `artifacts/exp012/exp1_analysis_summary.txt`，registry metrics 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

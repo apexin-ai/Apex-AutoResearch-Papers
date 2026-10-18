@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "50064883fec173e7d9ec",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "paper ref audit A 20260526T104628 retry1",
+  "task_key": "worker_paper_ref-audit-A_20260526T104628_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref-audit-A_20260526T104628_retry1.log",
+    "occurrence": 1,
+    "bytes": 684500,
+    "sha256": "73c64471ba3576de6113df0ed01b1a1381cf2b7bbef0829460992e28afeba701"
+  },
+  "statistics": {
+    "messages": 192,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "50064883fec173e7d9ec-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "50064883fec173e7d9ec-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "960348c07c4b57893543",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 checkpoint integrity",
+  "task_key": "worker_diagnose_cqa1-checkpoint-integrity_20260521T230226",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1-checkpoint-integrity_20260521T230226_result.json",
+    "occurrence": 1,
+    "bytes": 2626,
+    "sha256": "c77d9919e00ac623d1188567b515cb607cb729d6b6fa03d53bf81a8517f97851"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整报告：\n\n---\n\n## 诊断报告：π0.5 Checkpoint 状态\n\n### 1. 服务器状态修正\n\n**任务描述与实际状态严重不符：**\n- π0.5 实验在 **westd-38929**，不在 westd-27271（cqa1）\n- 原始 4 个 PID (719440, 725484, 716056, 716134) **全部不存在**\n- westd-27271 上无任何 π0.5 文件，当前跑的是 OpenVLA 实验\n\n### 2. westd-38929 当前状态\n\n| GPU | PID | 实验 |\n|-----|-----|------|\n| GPU0 | — | 空闲 |\n| GPU1 | 829120 | `l2norm k=0.7 spatial seed42`（运行中） |\n| GPU2 | — | 空闲 |\n| GPU3 | 824152 | `random k=0.85 object seed42`（运行中，非 seed43） |\n\n### 3. Checkpoint 校验：**正常，未损坏**\n\nCheckpoint 位于 `/root/autodl-tmp/pi05_libero_finetuned/`，今天刚下载（7.47GB），文件完整。\n\n**Baseline spatial seed42 SR = 97.2%** (486/500) — checkpoint 完全健康。\n\n### 4. 已完成 π0.5 结果（全部 libero_spatial, seed42）\n\n| Mode | keep_ratio | Overall SR |\n|------|-----------|------------|\n| **baseline (none)** | **1.0** | **97.2%** |\n| random | 0.7 | 74.4% |\n| random | 0.5 | 71.6% |\n| random | 0.3 | 49.6% |\n| l2norm | 0.5 | 55.6% |\n| l2norm | 0.3 | 57.2% |\n\n降级曲线平滑合理，进一步证实 checkpoint 正常。\n\n### 5. \"k=0.85 全部 0%\" 的真实原因\n\n当前跑的 `random k=0.85 object seed42` 进度（9/10 tasks done）：\n\n| Task | SR |\n|------|----|\n| T0 | 6% |\n| T1 | 10% |\n| T2 | 2% |\n| T3 | 4% |\n| T4 | 12% |\n| T5 | 0% |\n| T6 | 0% |\n| T7 | 0% |\n| T8 | 6% |\n| **Running total** | **4.4%** (20/450) |\n\n**根因：π0.5 模型只在 `libero_spatial` 上微调过（训练配置来自 `pepijn223/pi05_libero_31_9_non_q`），在 `libero_object` 上属于 out-of-distribution 评测。** 即使保留 85% 的 token，模型在 object 任务上本来就不行——这不是 pruning 造成的 cliff，是模型本身不具备 object 能力。\n\n### 6. 结论\n\n| 检查项 | 结果 |\n|--------|------|\n| Checkpoint 完整性 | ✅ 正常（baseline spatial 97.2%） |\n| MD5 对比 | ❌ 无法对比（westd-27271 上不存在 pi05 checkpoint） |\n| 数据有效性 | **spatial 实验全部有效；object 实验无效**（模型未在 object 上训练） |\n| 需要 kill 实验？ | **建议 kill GPU3 的 random k=0.85 object（PID 824152）**——出来的数据没有意义 |\n\n**无需 kill 所有实验，无需重新下载 checkpoint。** 后续 π0.5 实验应限定在 `libero_spatial` 上，或先用 baseline 跑一次 `libero_object` 确认模型本身在该 suite 的表现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8ae61939df6ac0b5f9ec",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis copula gof",
+  "task_key": "worker_analysis_copula-gof_20260521T224845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_copula-gof_20260521T224845_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "443f90cb342253586b78e59747278d401ff67d8b4cfa2b1a8d4496698c167965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### MMLU\n| 指标 | 值 |\n|------|-----|\n| Mean ratio (MI_obs / MI_gauss) | **21.13** |\n| Pairs with ratio > 2 | **14/15** |\n| 结论 | Gaussian copula 假设系统性违反 |\n\n极端案例：`mistral-large <-> qwen2.5-14b` ratio = 235.86（ρ 极低但 MI 不低，说明依赖结构高度非线性）。\n\n### ARC Challenge\n| 指标 | 值 |\n|------|-----|\n| Mean ratio (MI_obs / MI_gauss) | **10.36** |\n| Pairs with ratio > 2 | **15/15** |\n| 结论 | Gaussian copula 假设系统性违反 |\n\n极端案例：`mistral-large <-> qwen2.5-14b` ratio = 69.43。\n\n**总结**：两个数据集上 Gaussian copula 假设均被系统性违反——观测 MI 远大于 Gaussian copula 对应的 MI，表明 judge 间的依赖结构包含大量非线性/尾部依赖，不能用简单的相关系数 ρ 刻画。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

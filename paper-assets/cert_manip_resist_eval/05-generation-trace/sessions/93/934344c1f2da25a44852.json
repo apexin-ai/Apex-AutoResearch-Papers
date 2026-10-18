@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "934344c1f2da25a44852",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment temperature pilot",
+  "task_key": "worker_experiment_temperature-pilot_20260523T084612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_temperature-pilot_20260523T084612_result.json",
+    "occurrence": 1,
+    "bytes": 68,
+    "sha256": "2be422c4e313523fac496e87a4625b11bebaf520fe78ede204621ca393fca527"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring scheduled. Will check back at ~09:49 UTC."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

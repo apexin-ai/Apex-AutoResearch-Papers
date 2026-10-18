@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f192ecb5b90a96cdcab8",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment r6 fp16 baseline v2",
+  "task_key": "worker_experiment_r6-fp16-baseline-v2_20260525T070622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r6-fp16-baseline-v2_20260525T070622_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "32336a8e22630083bd1488644ba1ab73ce847d90b89cae12377b55d80b9a4e76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Downloads running in parallel on the server:\n- **PID=10158**: FP16 models (Llama-3.1-8B ~90% done, then Qwen2.5-32B)\n- **PID=11087**: AWQ models (Qwen2.5-14B, Qwen2.5-32B, Llama-3.1-8B)\n\nI've fixed the script to handle ModelScope's different org names (`LLM-Research` vs `meta-llama`/`hugging-quants`) via `alt_ids` and uploaded it to the server. Will check back in ~4 minutes to see if Llama FP16 has finished."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

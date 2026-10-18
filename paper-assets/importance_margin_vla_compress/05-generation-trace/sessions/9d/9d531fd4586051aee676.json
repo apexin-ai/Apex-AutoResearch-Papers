@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d531fd4586051aee676",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis v8 checkpoint trajectory",
+  "task_key": "worker_analysis_v8-checkpoint-trajectory_20260516T011205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_v8-checkpoint-trajectory_20260516T011205_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "b5efaad69fbc0315a0477e31b021335ab24a867cfc956288d46939323bc52a02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：gradient isolation (v8) 下 ACIS 学到了有意义的 token selection，且这个能力随训练持续增强，不是 early artifact。** 关键证据是 ACIS advantage 的单调增长趋势和 ACIS prune < standard (no prune) 的反直觉结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

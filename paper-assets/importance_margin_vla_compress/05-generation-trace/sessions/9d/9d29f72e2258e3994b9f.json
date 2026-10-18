@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d29f72e2258e3994b9f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train acis stage1 k07 k03",
+  "task_key": "worker_train_acis_stage1_k07_k03_20260517T071117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_acis_stage1_k07_k03_20260517T071117_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "760f50ecedc236fda977a3af172d899f39142adbdb332e92ca7926958259bf7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个 ACIS Stage1-only 训练已成功启动：\n\n| 实验 | GPU | k_ratio | 状态 | sps |\n|------|-----|---------|------|-----|\n| `train_acis_stage1only_k07` | cuda:2 | 0.7 | RUNNING, step 50/10000 | ~3.7 |\n| `train_acis_stage1only_k03` | cuda:3 | 0.3 | RUNNING, step 50/10000 | ~3.3 |\n\n关键确认：\n- Expert 冻结 (0 trainable)，只训 ACIS (3.46M params)\n- `stage2_steps: 0` → Stage2 被跳过\n- baseline checkpoint: Full FT 100K step\n- 预计 ~45min 完成（按 3.5 sps 估算，比预期 2h 快）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

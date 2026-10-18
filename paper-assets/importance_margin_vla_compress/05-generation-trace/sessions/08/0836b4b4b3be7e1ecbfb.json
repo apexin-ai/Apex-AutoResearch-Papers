@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0836b4b4b3be7e1ecbfb",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_8_1779065803.md",
+  "task_key": "loop_8_1779065803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_8_1779065803.md",
+    "occurrence": 1,
+    "bytes": 4779,
+    "sha256": "eee5df34b4b5743d1ad2640682f247ddc79d9658c51533c8edcebecd9608bf72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-17T12:00:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-33015 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3；westd-27271 GPU 白名单: cuda:0, cuda:1\n- cqa1-33015 磁盘 /autodl-pub 已用 96%（仅 350G 剩余），提交实验前必须检查磁盘，checkpoint 写入可能因磁盘满而崩溃（train_acis_stage1only_k07/k03 疑似此原因失败）\n- Stage2 训练已被 D058 确认会彻底摧毁 expert weights（bypass SR=0%），**不要再提交任何 Stage2 训练实验**\n- Stage1-only pruning eval (D060) 确认 token pruning 对 SmolVLA 无效（0% SR），不要在此方向继续投入\n- W&B 在 cqa1-33015 上是 offline 模式，cron 监控依赖进程存活检测而非 W&B metrics\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-33015**: 工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，4× RTX 4090，Python via `/root/miniconda3/bin/activate`\n- **westd-27271**: 工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，2× RTX PRO 6000，Python via `/root/miniconda3/bin/activate`\n- 模型 base: `smolvla_base`（HuggingFace），Full FT checkpoint: `checkpoints/libero_full_ft/step_099999/checkpoint.pt`\n- 数据: LIBERO suites (object/spatial/goal)，HuggingFace 格式\n- 活跃进程:\n  - `eval_stage1only_object_v2_fixed` (PID 140050, westd:cuda:0) — Stage1-only pruning 修复后 eval\n  - `eval_stage1only_spatial` (PID 65128, westd:cuda:1) — Stage1-only spatial suite eval\n  - `libero_fullft_batch64_v2` (PID 14927, cqa1) — batch=64 baseline 训练，预计 May 21 完成\n- cqa1:cuda:0 和 cuda:3 空闲（分配了没跑）\n\n### 3. 📊 当前状态\n**刚做完**: 收到 train_acis_stage1only_k07 失败 cron 回调，已派 Worker `worker_diagnose_train_acis_stage1only_k07_k03` SSH 诊断两个失败实验（k07 + k03 同时失败），Worker 尚未返回。\n\n**Registry 关键状态**:\n- RUNNING: `eval_stage1only_object_v2_fixed`（westd:0）、`eval_stage1only_spatial`（westd:1）、`libero_fullft_batch64_v2`（cqa1）\n- PREPARING: `sanity_acis_prune`、`eval_random_prune_baseline`、`eval_k07_bypass`、`plan_005_formal_bound`、`eval_sim_success_rate`、`imm_two_stage_v9`\n- 刚失败: `train_acis_stage1only_k07`（cuda:2）+ `train_acis_stage1only_k03`（cuda:3），原因待诊断 Worker 确认\n\n**等待中**:\n- Worker 诊断回调（train_acis_stage1only_k07/k03 失败原因）\n- eval_stage1only_object_v2_fixed cron 回调（关键实验：修复 pruning bug 后的真实 SR）\n- eval_stage1only_spatial cron 回调\n- Director 尚未对 D060（Stage1-only pruning 0% SR）作出方向决策\n\n### 4. 📋 待办\n- 诊断 Worker 返回 → 确认 k07/k03 失败根因 → 更新 registry failure_reason → 如果是磁盘满则清理后重跑，如果是代码 bug 则修复后重跑，如果 Stage2 已无意义则不重跑\n- eval_stage1only_object_v2_fixed 完成 → 如果 SR>0% 说明 ACIS importance ranking 有效但 pruning 太激进；如果 SR=0% 则 token pruning 整条路径失败，需要 Director pivot 决策\n- eval_stage1only_spatial 完成 → 与 object suite 结果交叉验证泛化性\n- libero_fullft_batch64_v2 完成（~May 21）→ 这是 batch=64 baseline，决定能否 claim 接近官方 SR\n- Director 对 D058/D060 作出方向决策 → 根据决策调整 paper story（当前 Story A/B/C 分支见 ROADMAP）\n- cqa1:cuda:0 和 cuda:3 空闲 → 诊断完成后如有可跑实验应立即填满\n\n### 5. 🎯 战略上下文\n**核心决策链**:\n- D055: 87.3% SR gap 根因 = batch size 4 vs 64\n- D056: IMM k=0.5 closed-loop 灾难性失败（SR 3.5-15.4%）\n- D057: k=0.7 也只有 4.8% SR，排除 pruning ratio 假说\n- D058: **Story C 确认** — Stage2 训练彻底摧毁 expert weights（bypass SR=0%）\n- D059: Stage1-only bypass SR=44.8%（lossless 2x compression）— 这是唯一正面结果\n- D060: 修复后 Stage1-only pruning 确认 0% SR — token pruning 对 SmolVLA 无效\n\n**论文命运**: 原始 IMM 方案（两阶段训练 + token pruning）已全面失败。唯一亮点是 Stage1-only ACIS 在 bypass 模式下的 lossless compression（44.8% vs baseline 44.8%）。但这是\"不 prune 就没事\"的结论，离一篇完整的论文还很远。等 Director 决策是 pivot story 还是找新角度。\n\n**易错点**:\n- 不要混淆 bypass eval（全 token forward，不 prune）和 acis_prune eval（实际 prune tokens）— 前者 44.8% 后者 0%，结论完全不同\n- eval_stage1_only 之前报的 44.8% SR 是 bypass 模式的结果，不是 pruning 后的结果。eval_stage1only_object_v2_fixed 才是修复 bug 后的真实 pruning eval\n- cqa1-33015 磁盘紧张，不要盲目提交新训练，先 `list_large_dirs` 再决策\n- CoRL 2026 deadline May 29（12 天），时间极紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

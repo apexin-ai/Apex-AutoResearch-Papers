@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "4709ea651f23777ad8dc",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis cross cell baselines",
+  "task_key": "worker_analysis_cross_cell_baselines_20260515T035515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_cell_baselines_20260515T035515.log",
+    "occurrence": 1,
+    "bytes": 874200,
+    "sha256": "43015c88bf09a131d8b8b6b1dabf71fe6f4774a8026db8c437ee85f3888eb663"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 0,
+    "tool_calls": 247,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 111,
+      "tool_call": 247,
+      "tool_result": 247,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 611,
+      "chunks": [
+        {
+          "path": "4709ea651f23777ad8dc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4709ea651f23777ad8dc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4709ea651f23777ad8dc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4709ea651f23777ad8dc-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bccd6c55d53cf0d8fb0a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix kill lora eval cqa1",
+  "task_key": "worker_fix_kill_lora_eval_cqa1_20260516T215439",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill_lora_eval_cqa1_20260516T215439_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "2d9e8fb6fbc280c83403f2a2fa0ed34be8bd3e0120db7cb0b7b56b8dcdfb0435"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 1 已经是空闲状态** — 仅 1 MiB 显存占用，利用率 0%。\n\n没有 LoRA eval 进程在 GPU 1 上运行。当前各 GPU 状态：\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 5909 MiB | 15% (full_ft eval, PID 73186 + PID 45551) |\n| 1 | **1 MiB** | **0%** ✓ 已空闲 |\n| 2 | 2107 MiB | 29% |\n| 3 | 2749 MiB | 44% |\n\nLoRA 100K eval 进程可能已经自行结束或之前已被 kill。GPU 1 无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

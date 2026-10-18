@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c5cc7900f8c3f9e780fa",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit cqa1",
+  "task_key": "worker_ops_audit-cqa1_20260527T171326",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit-cqa1_20260527T171326_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "3fd01227f3c2f4cbfc3bf3ebaaa5a29fa0dda697a177a3f0864960afcad8e8a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1-33015 GPU 审计结果\n\n| GPU | 状态 | PID | 实验 | 进度 | 备注 |\n|-----|------|-----|------|------|------|\n| **GPU0** | **完成 ✓** | 300488 (已退出) | eval_pi05_attn_k075_long_seed42_strict | **SR=52.4%** (10 tasks done) | EXIT_CODE=0, 01:02完成 |\n| **GPU1** | 运行中 | 328563 | eval_pi05_attn_k07_long_seed42_strict | T8 ep30, 228/400=57.0% | ~2h剩余 |\n| **GPU1** | 运行中 | 330514 | eval_pi05_random_k09_long_seed43_strict_v2 | T7 ep20, 107/350=30.6% | ~2.5h剩余 |\n| **GPU2** | 运行中 | **503250** (非503245) | eval_pi05_attn_k09_long_seed43_strict | T1完成, 67/100=67.0% | 刚启动，~4h剩余 |\n| **GPU3** | 运行中 | 386864 | eval_pi05_l2norm_k09_long_seed43_strict | T8 ep10, 331/400=82.8% | ~1.5h剩余 |\n\n**GPU0 完成结果明细** (attn k=0.75 long seed42):\n```\nT0=82% T1=94% T2=64% T3=48% T4=26% T5=50% T6=76% T7=30% T8=6% T9=78%\nOverall: 262/500 = 52.4%\n```\n\n**GPU0 现在空闲，可部署新实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

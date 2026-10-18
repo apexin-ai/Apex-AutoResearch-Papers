@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c2d0b703dc3b4df6a320",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "deploy westd41074 westd38929 20260522b",
+  "task_key": "worker_deploy_westd41074_westd38929_20260522b_20260522T222130",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd41074_westd38929_20260522b_20260522T222130.log",
+    "occurrence": 1,
+    "bytes": 558459,
+    "sha256": "a96412c8174ac81463e99b84822b40422fabfc248efe711a9a0a5e83bfd70aca"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "c2d0b703dc3b4df6a320-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c2d0b703dc3b4df6a320-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ]
+}

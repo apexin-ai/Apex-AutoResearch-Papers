@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "831f9dd04c77483eecab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis statistical tests",
+  "task_key": "worker_analysis_statistical_tests_20260519T200645",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_statistical_tests_20260519T200645_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "c778dbb3446093aed6318ddb14cf26abfff838c30d995a0723e254e3264a311d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "统计检验完成，已注册为 `art_20260519_cd7566`。\n\n核心结论：\n- **仅 2/10 对显著 (p<0.05)**：M=64 VTC > M=96 VTC (p=0.034)，M=32 MLP > M=96 VTC (p=0.022)\n- **VTC vs MLP (M=32)：p=0.150，不显著** — MLP 领先 3.3pp 但 n=3 power 不足以确认\n- M=32/64/128 VTC 形成不可区分的性能平台（所有 p>0.25）\n- M=96 是确认的低点，Bonferroni 校正后 (α=0.005) 所有对均不显著\n- 论文措辞建议：VTC vs MLP 用 \"comparable\" / \"no significant difference\"，M=96 dip 可直接 claim"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

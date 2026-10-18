@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1101f318e0ad3b40a2e0",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops verbosity scoring pipeline",
+  "task_key": "worker_ops_verbosity_scoring_pipeline_20260520T215509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verbosity_scoring_pipeline_20260520T215509_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "6389bb700e8934001ca5aa232513a0af2593c455f9751d8c469abb044b3922cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API 返回 **402 Insufficient balance** — API key 余额不足，所有调用都失败了。\n\n需要充值或更换 API key 才能继续。当前状态：\n- 代码已同步到服务器\n- 输入数据 `verified_verbosity.jsonl` 100 行就绪\n- judge_scoring / pairwise_scoring 都需要 API 调用，余额不足无法执行\n\n请提供新的 API key 或充值后告知，我会立即继续 pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

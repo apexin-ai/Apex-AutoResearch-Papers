@@ -1,0 +1,327 @@
+{
+  "schema_version": "1.0",
+  "id": "df817c6631ca0b85de56",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "code zero mask ablation",
+  "task_key": "worker_code_zero_mask_ablation_20260525T120536",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_zero_mask_ablation_20260525T120536.jsonl",
+    "occurrence": 1,
+    "bytes": 24988,
+    "sha256": "c14b45a58a7e261646bbba526c129d7886c6cd2ed50147fce0b9795e6e6f416c"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T12:07:24.348218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T12:07:24.348579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T12:07:24.348768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-27271",
+              "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T12:07:24.349084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\\\n\\\\nUsage:\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nimport types\\\\nimport logging\\\\nfrom pathlib import Path\\\\nfrom collections import deque\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_TOKEN\\\\\\\"] = \\\\\\\"[REDACTED_HF_TOKEN]\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch._dynamo; torch._dynamo.config.disable = True\\\\nfrom safetensors.torch import load_file\\\\n\\\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\\\\\"%(asctime)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_CONFIG = {\\\\n    \\\\\\\"libero_object\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_object\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 280},\\\\n    \\\\\\\"libero_spatial\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 400},\\\\n    \\\\\\\"libero_goal\\\\\\\":     {\\\\\\\"name\\\\\\\": \\\\\\\"libero_goal\\\\\\\",     \\\\\\\"max_steps\\\\\\\": 400},\\\\n    \\\\\\\"libero_10\\\\\\\":       {\\\\\\\"name\\\\\\\": \\\\\\\"libero_10\\\\\\\",       \\\\\\\"max_steps\\\\\\\": 520},\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\", choices=list(SUITE_CONFIG))\\\\n    p.add_argument(\\\\\\\"--prune_mode\\\\\\\", type=str, default=\\\\\\\"none\\\\\\\", choices=[\\\\\\\"none\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"l2norm\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--keep_ratio\\\\\\\", type=float, default=1.0\n…[truncated 7095 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T12:07:24.349341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-27271",
+              "command": "head -200 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T12:07:24.349619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\\\n\\\\nUsage:\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nimport types\\\\nimport logging\\\\nfrom pathlib import Path\\\\nfrom collections import deque\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_TOKEN\\\\\\\"] = \\\\\\\"[REDACTED_HF_TOKEN]\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch._dynamo; torch._dynamo.config.disable = True\\\\nfrom safetensors.torch import load_file\\\\n\\\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\\\\\"%(asctime)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_CONFIG = {\\\\n    \\\\\\\"libero_object\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_object\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 280},\\\\n    \\\\\\\"libero_spatial\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 400},\\\\n    \\\\\\\"libero_goal\\\\\\\":     {\\\\\\\"name\\\\\\\": \\\\\\\"libero_goal\\\\\\\",     \\\\\\\"max_steps\\\\\\\": 400},\\\\n    \\\\\\\"libero_10\\\\\\\":       {\\\\\\\"name\\\\\\\": \\\\\\\"libero_10\\\\\\\",       \\\\\\\"max_steps\\\\\\\": 520},\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\", choices=list(SUITE_CONFIG))\\\\n    p.add_argument(\\\\\\\"--prune_mode\\\\\\\", type=str, default=\\\\\\\"none\\\\\\\", choices=[\\\\\\\"none\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"l2norm\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--keep_ratio\\\\\\\", type=float, default=1.0\n…[truncated 6912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T12:07:24.349880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_pi05_zeromask_ablation.py",
+              "content": "#!/usr/bin/env python\n\"\"\"Position-preserving ablation: token pruning vs zero-masking on π0.5.\n\nAblation question: does performance drop from pruning come from information loss\nor positional distortion?\n\n  - pruning (existing): physically remove low-importance tokens → sequence shorter,\n    positions shift\n  - zero_mask (new): keep all tokens at original positions, but set values of\n    low-importance tokens to zero → sequence length unchanged, positions preserved\n\nExperimental groups (libero_object, k=0.9):\n  1. pruning   + random  → 9.0%  (existing data)\n  2. zero_mask + random  → ?     (this script)\n  3. pruning   + l2norm  → 98.2% (existing data)\n  4. zero_mask + l2norm  → ?     (this script)\n\nInterpretation:\n  - zero_mask ≈ pruning → information loss is the main cause\n  - zero_mask >> pruning → positional distortion is the main cause\n\nUsage:\n    python eval_pi05_zeromask_ablation.py --prune_mode zero_mask_random --keep_ratio 0.9\n    python eval_pi05_zeromask_ablation.py --prune_mode zero_mask_l2norm --keep_ratio 0.9\n    python eval_pi05_zeromask_ablation.py --prune_mode random --keep_ratio 0.9\n    python eval_pi05_zeromask_ablation.py --prune_mode l2norm --keep_ratio 0.9\n    python eval_pi05_zeromask_ablation.py --prune_mode none\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time as time_mod\nimport types\nimport logging\nfrom pathlib import Path\nfrom collections import deque\n\nos.environ[\"MUJOCO_GL\"] = \"egl\"\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_TOKEN\"] = \"[REDACTED_HF_TOKEN]\"\n\nimport numpy as np\nimport torch\nimport torch._dynamo; torch._dynamo.config.disable = True\nfrom safetensors.torch import load_file\n\nlogging.basicConfig(level=logging.INFO, force=True, format=\"%(asctime)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSUITE_CONFIG = {\n    \"libero_object\":  {\"name\": \"libero_object\",  \"max_steps\": 280},\n    \"libero_spatial\":  {\"name\": \"libero_spatial\",  \"max_steps\": 400},\n    \"libero_goal\":     {\"name\": \"libero_goal\",     \"max_steps\": 400},\n    \"libero_10\":       {\"name\": \"libero_10\",       \"max_steps\": 520},\n}\n\nPRUNE_MODES = [\"none\", \"random\", \"l2norm\", \"zero_mask_random\", \"zero_mask_l2norm\"]\n\n\ndef parse_args():\n    p = argparse.ArgumentParser()\n    p.add_argument(\"--model_path\", type=str, default=\"/root/autodl-tmp/pi05_libero_finetuned\")\n    p.add_argument(\"--suite\", type=str, default=\"libero_object\", choices=list(SUITE_CONFIG))\n    p.add_argument(\"--prune_mode\", type=str, default=\"none\", choices=PRUNE_MODES)\n    p.add_argument(\"--keep_ratio\", type=float, default=1.0)\n    p.add_argument(\"--n_episodes\", type=int, default=50)\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--replan_steps\", type=int, default=5)\n    p.add_argument(\"--output_dir\", type=str,\n                   default=\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\")\n    return p.parse_args()\n\n\n# --------------- Token pruning (physical removal) ---------------\n\ndef prune_tokens_random(img_emb, keep_ratio):\n    bsize, n_tokens, dim = img_emb.shape\n    n_keep = max(1, int(n_tokens * keep_ratio))\n    indices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\n    if not hasattr(prune_tokens_random, \"_logged\"):\n        print(f\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\")\n        prune_tokens_random._logged = True\n    return img_emb[:, indices, :], n_keep\n\n\ndef prune_tokens_l2norm(img_emb, keep_ratio):\n    bsize, n_tokens, dim = img_emb.shape\n    n_keep = max(1, int(n_tokens * keep_ratio))\n    norms = torch.norm(img_emb[0].float(), dim=-1)\n    _, topk_idx = torch.topk(norms, n_keep)\n    topk_idx = topk_idx.sort().values\n    if not hasattr(prune_tokens_l2norm, \"_logged\"):\n        print(f\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx[:5].tolist()}\")\n        prune_tokens_l2norm._logged = True\n    return img_emb[:, topk_idx, :], n_keep\n\n\n# --------------- Zero-masking (position-preserving) ---------------\n\ndef zeromask_tokens_random(img_emb, keep_ratio):\n    \"\"\"Zero out randomly selected tokens while preserving all positions.\"\"\"\n    bsize, n_tokens, dim = img_emb.shape\n    n_keep = max(1, int(n_tokens * keep_ratio))\n    keep_indices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\n    mask = torch.zeros(n_tokens, dtype=torch.bool, device=img_emb.device)\n    mask[keep_indices] = True\n    out = img_emb.clone()\n    out[:, ~mask, :] = 0.0\n    if not hasattr(zeromask_tokens_random, \"_logged\"):\n        n_zeroed = n_tokens - n_keep\n        print(f\"[ZEROMASK-DIAG] random: keep={n_keep}/{n_tokens}, zeroed={n_zeroed}, \"\n              f\"shape_unchanged={out.shape}\")\n        zeromask_tokens_random._logged = True\n    return out, n_tokens  # sequence length unchanged\n\n\ndef zeromask_tokens_l2norm(img_emb, keep_ratio):\n    \"\"\"Zero out low-L2-norm tokens while preserving all positions.\"\"\"\n    bsize, n_tokens, dim = img_emb.shape\n    n_keep = max(1, int(n_tokens * keep_ratio))\n    norms = torch.norm(img_emb[0].float(), dim=-1)\n    _, topk_idx = torch.topk(norms, n_keep)\n    mask = torch.zeros(n_tokens, dtype=torch.bool, device=img_emb.device)\n    mask[topk_idx] = True\n    out = img_emb.clone()\n    out[:, ~mask, :] = 0.0\n    if not hasattr(zeromask_tokens_l2norm, \"_logged\"):\n        n_zeroed = n_tokens - n_keep\n        print(f\"[ZEROMASK-DIAG] l2norm: keep={n_keep}/{n_tokens}, zeroed={n_zeroed}, \"\n              f\"shape_unchanged={out.shape}\")\n        zeromask_tokens_l2norm._logged = True\n    return out, n_tokens  # sequence length unchanged\n\n\ndef get_prune_fn(prune_mode):\n    return {\n        \"random\": prune_tokens_random,\n        \"l2norm\": prune_tokens_l2norm,\n        \"zero_mask_random\": zeromask_tokens_random,\n        \"zero_mask_l2norm\": zeromask_tokens_l2norm,\n    }.get(prune_mode, None)\n\n\ndef main():\n    args = parse_args()\n    DEVICE = \"cuda:0\"\n    suite_cfg = SUITE_CONFIG[args.suite]\n\n    log.info(f\"Config: suite={args.suite}, prune={args.prune_mode}, keep={args.keep_ratio}, \"\n             f\"eps={args.n_episodes}, gpu={args.gpu}\")\n\n    log.info(f\"Loading π0.5 from {args.model_path} ...\")\n    from lerobot.policies.pi05.modeling_pi05 import PI05Policy\n    policy = PI05Policy.from_pretrained(args.model_path)\n\n    paligemma_expert = policy.model.paligemma_with_expert\n\n    def patched_embed_image(self, image):\n        out_dtype = image.dtype\n        if image.dtype != torch.float32:\n            image = image.to(torch.float32)\n        image_outputs = self.paligemma.model.vision_tower(image)\n        selected_image_feature = image_outputs.last_hidden_state\n        features = self.paligemma.model.multi_modal_projector(selected_image_feature)\n\n        if features.dtype != out_dtype:\n            features = features.to(out_dtype)\n        return features\n\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\n    log.info(\"Patched embed_image\")\n\n    policy = policy.to(DEVICE)\n    policy.eval()\n    log.info(f\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\")\n\n    N_PATCHES = (224 // 14) ** 2\n    log.info(f\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\")\n\n    prune_fn = get_prune_fn(args.prune_mode)\n    is_zeromask = args.prune_mode.startswith(\"zero_mask\")\n\n    if prune_fn is not None:\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\n            embs = []\n            pad_masks_list = []\n            att_masks = []\n\n            for img, img_mask in zip(images, img_masks, strict=True):\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\n                bsize, num_img_embs, dim = img_emb.shape\n\n                img_emb, n_out = prune_fn(img_emb, args.keep_ratio)\n\n                embs.append(img_emb)\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_out))\n                att_masks += [0] * n_out\n\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\n            embs.append(lang_emb)\n            pad_masks_list.append(masks)\n            att_masks += [0] * lang_emb.shape[1]\n\n            embs = torch.cat(embs, dim=1)\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\n\n            return embs, pad_masks_cat, att_masks_t\n\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix, policy.model)\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\n        mode_label = \"ZERO-MASK\" if is_zeromask else \"PRUNE\"\n        log.info(f\"{mode_label}: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \"\n                 f\"(seq_len={'unchanged' if is_zeromask else f'{n_keep*3} total'})\")\n\n    from lerobot.policies.factory import make_pre_post_processors\n    preprocess, postprocess = make_pre_post_processors(\n        policy.config,\n        args.model_path,\n        preprocessor_overrides={\"device_processor\": {\"device\": str(DEVICE)}},\n    )\n    log.info(\"Preprocessor/postprocessor loaded\")\n\n    from libero.libero import benchmark, get_libero_path\n    from libero.libero.envs import OffScreenRenderEnv\n\n    np.random.seed(args.seed)\n    torch.manual_seed(args.seed)\n    torch.cuda.manual_seed_all(args.seed)\n    task_suite = benchmark.get_benchmark_dict()[suite_cfg[\"name\"]]()\n    n_tasks = task_suite.n_tasks\n    max_steps = suite_cfg[\"max_steps\"]\n    log.info(f\"Suite: {args.suite}, {n_tasks} tasks, max_steps={max_steps}\")\n\n    def quat_to_axisangle(quat):\n        q = quat.copy()\n        if q[3] > 1.0: q[3] = 1.0\n        elif q[3] < -1.0: q[3] = -1.0\n        den = np.sqrt(1.0 - q[3]**2)\n        if abs(den) < 1e-8:\n            return np.zeros(3, dtype=np.float32)\n        return (q[:3] * 2.0 * np.arccos(q[3]) / den).astype(np.float32)\n\n    total_success = 0\n    total_episodes = 0\n    results = {\n        \"config\": {\n            \"model\": \"pi05\", \"ckpt\": args.model_path, \"suite\": args.suite,\n            \"prune_mode\": args.prune_mode, \"keep_ratio\": args.keep_ratio,\n            \"n_eps_per_task\": args.n_episodes, \"seed\": args.seed,\n            \"vision_tokens_per_image\": N_PATCHES,\n            \"total_vision_tokens\": N_PATCHES * 3,\n            \"n_keep_per_image\": max(1, int(N_PATCHES * args.keep_ratio)) if prune_fn else N_PATCHES,\n            \"is_zeromask\": is_zeromask,\n            \"ablation\": \"position-preserving\" if is_zeromask else \"token-pruning\",\n        },\n        \"per_task\": {},\n    }\n\n    t_start = time_mod.time()\n    for task_id in range(n_tasks):\n        task = task_suite.get_task(task_id)\n        init_states = task_suite.get_task_init_states(task_id)\n        bddl = Path(get_libero_path(\"bddl_files\")) / task.problem_folder / task.bddl_file\n        env = OffScreenRenderEnv(bddl_file_name=str(bddl),\n                                 camera_heights=256, camera_widths=256)\n        env.seed(args.seed)\n        task_desc = task.language\n        task_successes = 0\n\n        for ep in range(args.n_episodes):\n            env.reset()\n            obs = env.set_init_state(init_states[ep])\n            for _ in range(10):\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\n\n            done = False\n            action_queue = deque()\n\n            for t in range(max_steps):\n                if not action_queue:\n                    base_img = obs[\"agentview_image\"]\n                    wrist_img = obs[\"robot0_eye_in_hand_image\"]\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\n                    base_t = torch.flip(base_t, dims=[1, 2])\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])\n\n                    eef_pos = obs[\"robot0_eef_pos\"]\n                    eef_quat = obs[\"robot0_eef_quat\"]\n                    gripper_qpos = obs[\"robot0_gripper_qpos\"]\n                    state = np.concatenate([\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\n                    ]).astype(np.float32)\n                    state_t = torch.from_numpy(state)\n\n                    raw_obs = {\n                        \"observation.images.image\": base_t,\n                        \"observation.images.image2\": wrist_t,\n                        \"observation.state\": state_t,\n                        \"task\": task_desc,\n                    }\n                    batch = preprocess(raw_obs)\n\n                    with torch.no_grad():\n                        actions = policy.predict_action_chunk(batch)\n\n                    actions_unnorm = postprocess(actions)\n                    action_np = actions_unnorm[0].cpu().numpy()\n\n                    for a in action_np[:args.replan_steps]:\n                        action_queue.append(a[:7])\n\n                action = action_queue.popleft()\n                obs, reward, done, info = env.step(action.tolist())\n                if done:\n                    task_successes += 1\n                    total_success += 1\n                    break\n\n            total_episodes += 1\n\n            if (ep + 1) % 10 == 0:\n                log.info(f\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \"\n                         f\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\")\n\n        task_sr = task_successes / args.n_episodes\n        results[\"per_task\"][task_desc] = {\"id\": task_id, \"sr\": task_sr, \"n\": task_successes}\n        elapsed = time_mod.time() - t_start\n        log.info(f\"Task {task_id}: SR={task_sr*100:.1f}% | \"\n                 f\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \"\n                 f\"Time: {elapsed/60:.1f}min\")\n        env.close()\n\n    results[\"overall_sr\"] = total_success / total_episodes\n    results[\"total_successes\"] = total_success\n    results[\"total_episodes\"] = total_episodes\n    results[\"elapsed_min\"] = (time_mod.time() - t_start) / 60\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    if args.prune_mode == \"none\":\n        fname = f\"pi05_baseline_{args.suite}_seed{args.seed}.json\"\n    else:\n        fname = f\"pi05_{args.prune_mode}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\"\n    out_path = out_dir / fname\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    log.info(f\"\\n{'='*60}\")\n    log.info(f\"RESULT: {args.suite} mode={args.prune_mode} keep={args.keep_ratio} \"\n             f\"SR={results['overall_sr']*100:.1f}%\")\n    log.info(f\"Saved: {out_path}\")\n    log.info(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T12:07:24.350300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/eval_pi05_zeromask_ablation.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T12:07:24.350461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T12:07:24.350589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T12:07:24.350743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T12:07:24.350879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T12:07:24.351013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "+agent-ml-research artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T12:07:24.351151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T12:07:24.351339+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用工具列表中。脚本已写好：\n\n**文件**: `artifacts/eval_pi05_zeromask_ablation.py`\n\n**新增的两种 prune_mode**:\n- `zero_mask_random` — 随机选 k 个 token 保留，其余值置零，序列长度不变\n- `zero_mask_l2norm` — 按 L2 norm 选 top-k 保留，其余值置零，序列长度不变\n\n**关键区别**：原有 pruning 函数返回 `(pruned_emb, n_keep)` 其中 shape 变小；zero-mask 函数返回 `(masked_emb, n_tokens)` 其中 shape 不变，低重要性 token 的值被设为 0.0。`pruned_embed_prefix` monkey-patch 统一处理两种情况——返回的 `n_out` 决定了 pad_masks 和 att_masks 的长度。\n\n**运行示例**:\n```bash\n# zero-mask ablation\npython eval_pi05_zeromask_ablation.py --prune_mode zero_mask_random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42\n\n# 对照组（physical pruning，复现已有数据）\npython eval_pi05_zeromask_ablation.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42\n```\n\n脚本同时支持所有 5 种模式（none/random/l2norm/zero_mask_random/zero_mask_l2norm），输出 JSON 中增加了 `is_zeromask` 和 `ablation` 字段以区分实验类型。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_zero_mask_ablation_20260525T120536"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ]
+}

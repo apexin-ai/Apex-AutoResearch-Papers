@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1f36c64bcd2bafc8fb9a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "submit cross model olmo 002",
+  "task_key": "worker_submit_cross_model_olmo_002_20260514T163144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_cross_model_olmo_002_20260514T163144_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "f416f8697f628c7a10ccd7756fb44a1a3967a805ba1dda3eeb5050763ab996e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`cross_model_olmo_002` 已提交并标记为 RUNNING。\n\n**汇总：**\n- 服务器：`autodl-rtx6000`（即 westb-52439）\n- GPU：cuda:0，显存 20.2/97.9 GB\n- tmux session：`olmo_002`，PID 150550\n- 日志：`/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_002.log`\n- Depth-0 LoRA finetune 正在训练中（939 steps，~2.5 it/s，预计 ~6 min）\n- 注册表已更新为 RUNNING\n\n注意：cuda:0 上有 `pythia_temp09` 的 `extract_features.py` 残留进程（7.8 GB），但 96GB 显存足够容纳两个进程，不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

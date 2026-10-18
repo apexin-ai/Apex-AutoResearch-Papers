@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b614f1ed56f0263d4b5",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp008 fix relaunch",
+  "task_key": "worker_ssh_exp008-fix-relaunch_20260515T100611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp008-fix-relaunch_20260515T100611_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "3f90192d0a87570bd9857ffb853befce7409394afbe959e1d6fc84ee8c91457f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**修复内容**：vLLM EngineCore fork 死锁（PyTorch/NetworkX 在 fork 前已加载）\n\n**方案**：两阶段分离\n- `src/sdgd_decompose_cpu.py` — CPU 阶段：4 种 mode 的 graph decomposition，输出 JSON\n- `src/sdgd_extract_gpu.py` — GPU 阶段：**vLLM 第一个初始化**，然后加载其他模块，处理所有 mode（一次模型加载）\n- `src/run_sdgd_full.sh` — 编排脚本：先跑全部 CPU decomposition，再启动一次 GPU session\n\n**验证**：\n- Dry-run (5 samples, sdgd_zero 8 batches) 通过，EngineCore 正常 fork，F1=0.3077\n- 旧进程 PID 241208 + 残留 EngineCore 241610 已 kill，GPU 已释放\n\n**全量 exp-008 已启动**：\n- PID 254599，log: `artifacts/exp008_run2.log`\n- 4 modes (sdgd_zero → single_pass → random_batch → per_type)，1000 samples，Qwen3-32B-FP8\n- vLLM 加载 60s，Batch 1/8 extraction 进行中\n- 预计总耗时：sdgd_zero ~15min, single_pass ~3min, random_batch ~15min, per_type ~60min → 共约 1.5-2h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

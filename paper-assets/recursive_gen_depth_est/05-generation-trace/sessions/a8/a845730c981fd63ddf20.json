@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "a845730c981fd63ddf20",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis accum mix50 auc verification",
+  "task_key": "worker_analysis_accum_mix50_auc_verification_20260522T080642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_accum_mix50_auc_verification_20260522T080642.log",
+    "occurrence": 1,
+    "bytes": 941884,
+    "sha256": "02448223c706b44e682ab1a46e18410e6589dbf29866aecd581a933c50e2458a"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "a845730c981fd63ddf20-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "a845730c981fd63ddf20-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ]
+}

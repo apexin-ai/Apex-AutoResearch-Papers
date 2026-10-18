@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a0a5e7c6aa2a5ddf23d1",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check xvla k08 seed43 result",
+  "task_key": "worker_ops_check-xvla-k08-seed43-result_20260520T214308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-xvla-k08-seed43-result_20260520T214308_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "b3ef7c9a3ccae2853a86f60d5391d559a6573c7194ee5b1ff0b156135355eb62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。日志中有完整结果：\n\n## X-VLA k=0.8 seed43 — LIBERO-Object\n\n**Overall SR: 88.4% (442/500)** | 95% Wilson CI: [85.3%, 90.9%] | 耗时 61.4 min\n\n### Per-task 明细\n\n| Task | 物品 | SR |\n|------|------|-----|\n| 0 | alphabet soup | **100%** (50/50) |\n| 1 | cream cheese | **98%** (49/50) |\n| 2 | salad dressing | **100%** (50/50) |\n| 3 | bbq sauce | 82% (41/50) |\n| 4 | ketchup | 78% (39/50) |\n| 5 | tomato sauce | **98%** (49/50) |\n| 6 | butter | **58%** (29/50) |\n| 7 | milk | 84% (42/50) |\n| 8 | chocolate pudding | 88% (44/50) |\n| 9 | orange juice | **98%** (49/50) |\n\n短板任务：butter (58%)、ketchup (78%)、bbq sauce (82%)。结果文件保存在 `eval_results/xvla_prune_k08_libero_object_seed43.json`（路径相对于 X-VLA-Libero 项目目录）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

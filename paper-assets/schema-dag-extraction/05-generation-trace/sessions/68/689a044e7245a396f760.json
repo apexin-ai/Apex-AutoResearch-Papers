@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "689a044e7245a396f760",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "prep anon github tar",
+  "task_key": "worker_prep_anon-github-tar_20260517T013515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_anon-github-tar_20260517T013515.log",
+    "occurrence": 1,
+    "bytes": 1216377,
+    "sha256": "e5f8b9f4164187e7ee376f0aa92a75a2f4dfd146fa6f84806b24a42e5d761852"
+  },
+  "statistics": {
+    "messages": 265,
+    "user_turns": 1,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 90,
+      "tool_result": 90,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 128,
+      "chunks": [
+        {
+          "path": "689a044e7245a396f760-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "689a044e7245a396f760-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "689a044e7245a396f760-part-0002.json",
+          "message_count": 130
+        },
+        {
+          "path": "689a044e7245a396f760-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ]
+}

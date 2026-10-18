@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9dec750b4e92c8af21d7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops gpu check",
+  "task_key": "worker_ops_gpu-check_20260520T131105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check_20260520T131105_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "f24549102070478f7103d22ac68946fe4b0420de315e6215c10c145747fbe306"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n0, 100 %, 0 MiB, 97887 MiB\n---PROCESSES---\n(无计算进程)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "932fb4fca446cceb4855",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code olmo nucleus eval",
+  "task_key": "worker_code_olmo_nucleus_eval_20260514T182449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo_nucleus_eval_20260514T182449_result.json",
+    "occurrence": 1,
+    "bytes": 2704,
+    "sha256": "d75c5cb23ddcb7031b54d1c2ad74a68166d6c97875ca989dcda61a9c6cae0a94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是完整结果和对比。\n\n---\n\n## OLMo-1B nucleus (p=0.95) 完整 Evaluation 结果\n\n### 4-class Classification (RF)\n\n| Metric | OLMo nucleus | Pythia nucleus | Delta |\n|--------|-------------|---------------|-------|\n| **Accuracy** | **78.8%** [77.6, 80.0] | 78.2% [76.9, 79.4] | **+0.6%** |\n| LR Accuracy | 75.1% [73.7, 76.5] | — | — |\n| AUC 0v1 | 0.9834 | 0.9975 | -0.014 |\n| AUC 0v2 | 0.9949 | — | — |\n| AUC 0v3 | 0.9989 | — | — |\n| AUC 1v2 | 0.8673 | 0.8607 | **+0.007** |\n| AUC 1v3 | 0.9806 | — | — |\n| AUC 2v3 | 0.8124 | 0.8005 | **+0.012** |\n\n### 4-class Per-class (RF)\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| depth-0 | 0.95 | 0.99 | 0.97 |\n| depth-1 | 0.85 | 0.82 | 0.83 |\n| depth-2 | 0.63 | 0.59 | 0.61 |\n| depth-3 | 0.71 | 0.76 | 0.73 |\n\n### 3-class Classification (d1-d3 only, RF)\n\n| Metric | OLMo | Pythia | Delta |\n|--------|------|--------|-------|\n| **Accuracy** | **74.4%** [72.8, 76.0] | 70.8% [69.2, 72.5] | **+3.6%** |\n| MAE | 0.270 | 0.320 | -0.050 |\n| d1 recall | 0.864 | 0.790 | +0.074 |\n| d2 recall | 0.607 | 0.607 | 0.000 |\n| d3 recall | 0.761 | 0.728 | +0.033 |\n| d1 precision | 0.863 | 0.852 | +0.011 |\n| d2 precision | 0.646 | 0.605 | +0.041 |\n| d3 precision | 0.718 | 0.680 | +0.038 |\n| AUC d1v2 | 0.8664 | 0.854 | +0.012 |\n| AUC d1v3 | 0.9852 | 0.957 | +0.028 |\n| AUC d2v3 | 0.8274 | 0.793 | +0.034 |\n\n### Code Contamination (broad filter)\n\n| Depth | OLMo | Pythia | Delta |\n|-------|------|--------|-------|\n| d0 | **0.5%** | — | — |\n| d1 | **2.7%** | 5% | **-2.3pp** |\n| d2 | **0.7%** | 9% | **-8.3pp** |\n| d3 | **0.8%** | 12% | **-11.2pp** |\n\n### Other Metrics\n\n| Metric | OLMo | Pythia |\n|--------|------|--------|\n| Finetune loss d0 | 2.269 | — |\n| Finetune loss d1 | 1.650 | — |\n| Finetune loss d2 | 1.226 | — |\n| Feature dim | 19 | 19 |\n| Truncation length | 507 | 498 |\n| Top-5 features | p90_ppl, var_surprisal, p75_ppl, mean_surprisal, type_token_ratio | var_surprisal, p90_ppl, mean_ppl, mean_surprisal, p75_ppl |\n\n### 关键发现\n\n1. **4-class 准确率几乎一致**（78.8% vs 78.2%，CI 重叠），跨模型泛化成立\n2. **3-class 准确率 OLMo 明显更高**（74.4% vs 70.8%，+3.6pp），说明 OLMo 的递归深度信号在 d1-d3 间分离更清晰\n3. **Code contamination 极低**（OLMo d1=2.7%, d2/d3 < 1%），远低于 Pythia（5-12%），排除代码混入干扰\n4. **特征重要性排序高度一致**：top-5 特征重叠 4/5（p90_ppl, var_surprisal, p75_ppl, mean_surprisal）\n5. **相邻深度 AUC 全面优于 Pythia**：1v2 +0.007, 2v3 +0.012, d1v3 +0.028"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

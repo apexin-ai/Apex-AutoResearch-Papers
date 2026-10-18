@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "f7edc12cdb8069cf0e8a",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp docred phase2",
+  "task_key": "worker_code_exp_docred_phase2_20260516T043709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_docred_phase2_20260516T043709.log",
+    "occurrence": 1,
+    "bytes": 1546447,
+    "sha256": "68eed1a9a2977916466a935e02ebe2197eacda8f6a2eed722a5b3a9913ed70b3"
+  },
+  "statistics": {
+    "messages": 640,
+    "user_turns": 1,
+    "tool_calls": 244,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 142,
+      "tool_call": 244,
+      "tool_result": 244,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "f7edc12cdb8069cf0e8a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7edc12cdb8069cf0e8a-part-0002.json",
+          "message_count": 158
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "f7edc12cdb8069cf0e8a-part-0002.json",
+          "message_count": 22
+        },
+        {
+          "path": "f7edc12cdb8069cf0e8a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7edc12cdb8069cf0e8a-part-0004.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ]
+}

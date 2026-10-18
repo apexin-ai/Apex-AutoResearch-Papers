@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "97496d3bf25b528ca760",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd 38929",
+  "task_key": "worker_audit_westd-38929_20260523T110748",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd-38929_20260523T110748_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "19352b7cde22144ba785c0589e97d4b95075bbac1fcba6c368cea57d9a50426d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n**服务器: westd-38929**\n\n**GPU 状态:** 全部空闲（利用率 0-46%，显存 ~5GB/98GB，无活跃实验进程）\n\n**已完成实验（全部 exit code 0）:**\n\n| 实验 | Mode | Suite | k | SR | Episodes | 耗时 |\n|------|------|-------|---|-----|----------|------|\n| eval_e5_xvla_attn_last_obj_k05 | attention_last | Object | 0.5 | **99.2%** | 500 | 32min |\n| eval_e5_xvla_attn_mean_obj_k05 | attention_mean | Object | 0.5 | **98.4%** | 500 | 33min |\n| eval_e5_xvla_attn_rollout_obj_k05 | attention_rollout | Object | 0.5 | **97.4%** | 500 | 34min |\n| eval_e5_xvla_attn_last_long_k05 | attention_last | Long (libero_10) | 0.5 | **90.2%** | 500 | 59min |\n\n**注意：实际运行 suite 与预期不符。** 预期部署的是 3×Goal + 1×attention_mean Long，实际运行的是 3×Object + 1×attention_last Long。**Goal suite 的 xvla_attn 实验从未运行。** attention_mean Long 也未运行。\n\n**空闲 GPU:** 0, 1, 2, 3（全部空闲，可部署新实验）\n\n**与已有 E5 结果对比（Object k=0.5）:**\n- attention_last: 99.2% ← 已知结果重复确认\n- attention_mean: 98.4% ← **新结果**\n- attention_rollout: 97.4% ← **新结果**\n\n三种 attention 模式在 Object suite 上差距极小（97.4%–99.2%），都接近饱和。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "18b76d13222db3e91619",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis r15 mf3 gee n355",
+  "task_key": "worker_analysis_r15-mf3-gee-n355_20260523T055128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15-mf3-gee-n355_20260523T055128_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "53205cc1ba99013273a881aa2c873c8e3835a7ab31520a7f590810cefdf1ac13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果摘要：\n\n**GEE Decomposition: n=88 → n=355 (Qwen3-32B, Formality)**\n\n| | Style OR | 95% CI | p | Orig OR | 95% CI | p |\n|---|---|---|---|---|---|---|\n| **n=88** | 4.20 | [1.99, 8.87] | 0.0002 | 4.70 | [2.22, 9.96] | <0.0001 |\n| **n=355** | 2.15 | [1.46, 3.16] | <0.0001 | 4.99 | [3.40, 7.34] | <0.0001 |\n\n关键发现：\n\n- **Style OR 缩水 49%**：4.20 → 2.15，确认 n=88 时 Style 效应被高估（小样本偏差）\n- **Orig OR 稳定**：4.70 → 4.99，originality preference 不受样本量影响，是稳健效应\n- **CI 宽度缩窄约 1.94×**（log-OR 尺度），接近理论值 √(355/88)=2.01\n- **Regime 从 Mixed 变为 Orig-Dominated**：n=355 下 Style OR=2.15 远小于 Orig OR=4.99，说明 originality preference 是主导因素\n- **Power**：min detectable OR 从 1.56 (n=88) 降至 1.25 (n=355)\n- **无 verbosity 轴的 scaled 数据**\n\n产出已保存至 `artifacts/r15_analysis/gee_n355_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

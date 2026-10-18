@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e36d77865df2e94c8977",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "setup cqa1 full env",
+  "task_key": "worker_setup_cqa1_full_env_20260516T132736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_cqa1_full_env_20260516T132736_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "ac40c7b65ad5750d5ff0d23777d441ea633be608a2a91e4255f07223551d836c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cqa1-33015 环境搭建状态总结：**\n\n| 阶段 | 状态 | 详情 |\n|------|------|------|\n| Phase 0: 连接+探测 | ✅ | 4× RTX 4090 24GB, CUDA 12.4, Python 3.12 |\n| Phase 1: 基础环境 | ✅ | conda base, pip 26.1.1, PyTorch + flash-attn |\n| Phase 2: 项目依赖 | ✅ | transformers, lerobot (groot patch), num2words 等 |\n| Phase 3: 代码同步 | ✅ | 从 westd-27271 tar+scp 完成，含 train_expert_only 逻辑 |\n| Phase 4: LIBERO 数据集 | 🔄 87% | PID 4330, 333/383 files, ~32GB/~37GB, 磁盘充裕(206GB剩余) |\n| Phase 5: Full FT 配置 | ✅ | `configs/libero_full_ft.yaml` 已创建并同步 |\n| Phase 6: Dry-run 验证 | ✅ | 两个配置均通过 |\n\n**Dry-run 结果：**\n\n| 配置 | 可训练参数 | 占比 | 训练目标 |\n|------|-----------|------|---------|\n| Full Expert FT | 99,880,992 / 450,046,176 | **22.2%** | lm_expert 全部 + projections (155 modules) |\n| LoRA baseline | 1,485,312 / 451,531,488 | **0.3%** | lm_expert q/v_proj LoRA adapters (74 modules) |\n\nLIBERO 数据集下载预计 5-10 分钟内完成，完成后即可开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

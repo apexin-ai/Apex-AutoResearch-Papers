@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c0b07c0e537e7ee87ed5",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops a1 check final",
+  "task_key": "worker_ops_a1-check-final_20260524T125749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a1-check-final_20260524T125749_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "68203c8ac32a93d97f1acda1c93602f714584718cd99587adde93e46b971186d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## A1 Monte Carlo Size Calibration 状态\n\n**未完成，仍在运行。**\n\n| 指标 | 值 |\n|------|-----|\n| PID | 18494 |\n| 已运行 | 1h38m48s |\n| CPU | 1600%（16核并行） |\n| 结果文件 | 不存在（脚本在最后一次性写入） |\n| 日志 | 空（Python stdout 重定向到文件时使用块缓冲，未 flush） |\n\n**脚本参数**：N_PERMS=1000, B_BOOT=999, K∈{3,5,7}，对每个 K×dataset×attack 条件做完整 permutation + wild cluster bootstrap。计算量大，预计还需较长时间。\n\n没有中间输出可以判断具体进度，只能等结果文件出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

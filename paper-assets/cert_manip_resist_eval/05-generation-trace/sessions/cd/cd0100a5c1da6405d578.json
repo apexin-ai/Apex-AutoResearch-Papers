@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "cd0100a5c1da6405d578",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper writing related work expansion",
+  "task_key": "worker_paper_writing_related_work_expansion_20260522T232439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_expansion_20260522T232439_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "c5cb29df998115d55a320e8f02066b8c97643cfdcf1faa28f8a62378ff66bbe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "636 词（含 LaTeX 命令），目标范围内。各段扩展完成：\n\n1. **LLM-as-Judge**: 加入 Dawid & Skene（多标注者聚合渊源）、AlpacaEval（win-rate 自动化）、FLASK（fine-grained 评估），并加了一句过渡将这些 benign 框架与我们的 adversarial 测试连接。\n2. **Condorcet**: 加了一句关于 voter independence 条件被 LLM 相关性违反的说明。\n3. **Ensemble Diversity**: 展开了 Brown et al. 的 bias-variance-covariance 分解（弱模型 bias 抵消多样性收益），展开了 Kuncheva & Whitaker 的十种度量测试结果与我们 $K_{\\mathrm{eff}}$ 的对应关系。\n4. **Adversarial Robustness**: 展开了 Tramer et al. 的结果（提升但未消除跨模型漏洞），明确了 Kariyappa/Pang 依赖训练时协调而 LLM 面板缺乏这种控制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa73145babb3ce89410",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops goal long baseline debug",
+  "task_key": "worker_ops_goal_long_baseline_debug_20260522T121149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_goal_long_baseline_debug_20260522T121149_result.json",
+    "occurrence": 1,
+    "bytes": 2343838,
+    "sha256": "f9ec1db45d886de0f38797bae9a1736122a5102de407dc75e2694e9441db17c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "aaa73145babb3ce89410-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

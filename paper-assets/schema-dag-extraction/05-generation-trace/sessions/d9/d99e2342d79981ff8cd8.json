@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d99e2342d79981ff8cd8",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis m4 contamination",
+  "task_key": "worker_analysis_m4_contamination_20260522T091212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m4_contamination_20260522T091212_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "884ed252d1b6055fbd23878fb223a0ca846919aa9622f86855563de62d62e6bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结论：Contamination risk = LOW**\n\n核心证据：\n1. **Per-type accuracy 高方差** (std=0.147)：15/80 types 低于 70%（最低 16.7%），与记忆模式不符\n2. **跨模型一致性**：4 个模型家族（Qwen3/LLaMA/Gemini）的 count-degradation 斜率几乎相同（-30.1pp vs -30.7pp）\n3. **BCS 因果机制成立**：IntraSub 错误随 BCS 单调递增（ρ=0.954），100% 类型混淆都是 intra-batch，这个模式无法被记忆解释\n4. **跨数据集复现**：DocRED（r=-0.760）和 Few-NERD 上都观察到相同效应\n5. **Wikipedia 文本 vs 任务格式**：原始文本可能在预训练中，但 schema-conditioned extraction 的任务格式不在\n\n报告已保存并注册，包含论文中 address 此问题的建议措辞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b55161f1ae6fae38c0f",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "analysis exp015 016 failure deep dive",
+  "task_key": "worker_analysis_exp015-016-failure-deep-dive_20260521T143406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp015-016-failure-deep-dive_20260521T143406_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "2e2298f18dab89c6f4fbec5e8a6b1ad1021ab2f153173530d378e0c6dde788c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All deliverables complete. Here's the summary:\n\n**Report:** `artifacts/failure_analysis/exp015_016_deep_dive.md`\n**Figures:** 8 PNGs + 3 CSVs in `artifacts/failure_analysis/`\n\n### Key Findings\n\n**Root cause:** HB EC-HTE fails in exp-015/016 because P(Z=1)=0.18 yields only 2.5–34 minority-class experts per subgroup — far too few for reliable per-subgroup CM estimation. The HB model doesn't just fail to shrink; it **overshoots** global correction by 2–9x (shrinkage coefficients >> 1) because it pools CATE estimates but not CM estimates.\n\n**Decision boundary (from 368 observations across 5 experiments):**\n- `cond_number(M) ≤ 1.2` AND `eff_minority_n ≥ 25` → **93% HB win rate**\n- exp-015/016 fail both conditions (cond 1.55–2.38, eff_n 2.5–34)\n\n**Three improvement directions identified:**\n1. **CM quality diagnostic** — pre-check before applying EC-HTE (calibrated thresholds provided)\n2. **Hierarchical CM pooling** — pool the CM estimates themselves, not just downstream CATEs (architectural fix)\n3. **Sigmoid shrinkage to global** — smooth fallback when per-subgroup CM is unreliable (formula in report)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

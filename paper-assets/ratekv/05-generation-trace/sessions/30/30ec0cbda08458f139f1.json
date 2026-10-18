@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "30ec0cbda08458f139f1",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code greedy cardinality ablation",
+  "task_key": "worker_code_greedy_cardinality_ablation_20260514T061005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_greedy_cardinality_ablation_20260514T061005_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "f47400c5fe74ef04927c524ea5b53caa7856f0da97baa25e2babe66deac995a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验完成 — 结果摘要\n\n| 条件 | PPL | bit分布 (2/4/8/16) | \n|------|-----|---------------------|\n| (a) Greedy unconstrained | **32.45** | 68/30/4/10 |\n| (b) Greedy + max_2bit=8 | **11.23** | 8/100/4/0 |\n| (c) MCKP constrained k=8 | **11.23** | 8/100/4/0 |\n\n**Delta (b)-(c) = +0.0012** — 实质为零。\n\n**关键发现**：Greedy+constraint 产出了与 MCKP **完全相同的 bit allocation**（2-bit=8, 4-bit=100, 8-bit=4）。PPL 差异仅 0.001，在评估噪声范围内。\n\n**结论**：贡献完全来自 cardinality constraint，而非 MCKP solver 本身。在离散 bit-width {2,4,8,16} 上，greedy 已经是最优的——MCKP 相对 greedy 没有额外优势，性能提升 100% 归因于限制 2-bit head 数量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

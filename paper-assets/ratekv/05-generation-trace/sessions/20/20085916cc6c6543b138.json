@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20085916cc6c6543b138",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_7_1778819733.md",
+  "task_key": "loop_7_1778819733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778819733.md",
+    "occurrence": 1,
+    "bytes": 4206,
+    "sha256": "801d3c2699f7fa0ff2a1eacbd3980e9492dbe22768a70367893f65e4c2b2df91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T01:51:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-37397 的 cuda:0 和 cuda:1（两张 RTX PRO 6000 96GB），禁止使用其他 GPU\n- 论文数值已锁定：Qwen concentration=0.61（float32, commit bfaea4e）、Mistral concentration=0.24/t₁/t₅=0.41（hires, commit e52fb0e）、Gemma-2 concentration=0.2291/t₁/t₅=0.38（hires, commit 998592d）——修改这些值必须有新实验证据 + Director 批准\n- Profiler 代码中 KV cache 相减必须用 `.float()` 转 float32（D046 bf16 精度 bug 教训），否则 concentration 偏高\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 做物理→逻辑映射，脚本内 device 必须写 `cuda:0`\n- ARR deadline 2026-05-25（距今 10 天），所有论文修改须经 Director + Group C 审稿团队\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，工作目录 `/root/ratekv`，账户 root\n- GPU：2× RTX PRO 6000 96GB（cuda:0, cuda:1），当前**均空闲**\n- Python/Conda：需 SSH 探测确认（aml-train 镜像用 conda，路径 `/root/miniconda3/bin/python`）\n- 模型路径：Mistral 在 `/root/autodl-tmp/models/Mistral-7B-v0.3`（AutoDL 格式，非 ModelScope `___` 格式）\n- 活跃进程：无（0 个 cron，0 个 worker，0 个 RUNNING 实验）\n- reconcile_crons 返回 0 条\n\n### 3. 📊 当前状态\n**全部实验已完成。** Registry 共 67 个实验：35 success / 16 negative / 8 failed / 其余 killed。无 RUNNING/PREPARING/PENDING 实验。Worker 池为 0。\n\n**论文进度**：全章节完成 + refinement round 2 已提交。Group C 独立审稿中，尚未收到审稿报告。\n\n**5-Model hires panorama 全部齐全**：\n| Model | Concentration | Shape | Verdict |\n|-------|--------------|-------|---------|\n| Qwen 2.5-7B | 0.61 (float32) | Spread | ✅ PASS (+27.3%) |\n| Yi-1.5-9B | 0.71 | Spike | ❌ FAIL (≈0%) |\n| Llama-3.1-8B | 0.57 | Spike | ≈ Uniform |\n| Mistral-7B-v0.3 | 0.24 | Flat | ❌ FAIL (-0.4%) |\n| Gemma-2-9B | 0.23 | Flat | ❌ FAIL (-0.3%) |\n\n**待处理**：\n- P0 patches 待 Director 决策：Qwen concentration 用 0.61（单值）还是保留 0.59-0.66（range）\n- Heatmap 需重生成：Gemma-2 仍用 standard 数据，需切换到 hires + 移除 * 脚注\n- 等待 Group C 审稿报告回传\n\n### 4. 📋 待办（条件触发式）\n- Director 决策 0.61 vs 0.59-0.66 → spawn Worker 执行对应 .tex 值替换（Plan A1 已就绪）\n- Group C 审稿报告到达 → 按审稿意见分类处理（minor revision / rebuttal 准备）\n- Director 指示 heatmap 重生成 → spawn Worker 用 hires 数据重跑 Gemma-2 heatmap + 更新 scatter 图\n- Director 分配新 GPU 任务（如 plan_013 72B profiling 或新实验）→ 当前两张卡空闲可立即启动\n- 收到 `[FRAMING APPROVED]` → Read `framing-reaudit.skill.md` 执行全文 re-audit\n\n### 5. 🎯 战略上下文\n**核心结论**：cardinality constraint（≤k heads at 2-bit）是主要方法贡献——它让 greedy 和 MCKP 产生完全相同的最优解（Δ=0.0000）。分析贡献：heterogeneity 的 distribution shape（Spread/Spike/Flat）决定 non-uniform 是否有效，concentration + t₁/t₅ 双条件 5/5 正确分类。\n\n**关键决策链**：D046（bf16 bug 修复）→ D047（Yi-1.5 反证 GQA proxy）→ D048（float32 验证 0.61）→ D049（GQA ratio 不可靠，L0 dominance 更好）→ D050（诊断升级为 concentration + t₁/t₅）→ D051（Qwen 全文统一 0.61）\n\n**易错点**：\n- report.md 中列出的 5 个\"准备中\"实验（mistral_hires_v3、qwen_hires_constrained_d049 等）是**残留状态**，实际对应的实验已在其他 ID 下完成，不要重新启动\n- Llama hires constrained MCKP 结果与 standard profiling 方向相反（hires 选出更差的 2-bit 候选），说明 Spike 模型 hires profiling 可能有害——这是分析发现，不是 bug\n- 论文中 exp_e pipeline 数字（baseline=8.82）与统一 pipeline（baseline=9.81）不同，论文必须用统一 pipeline 数字\n- 两张 GPU 当前全空闲，属于\"分配了但没跑\"状态——如果 Director 没有新任务指示，应主动汇报询问下一步 GPU 利用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "acbd8093a4ba69d90d66",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code exp013 nli validation",
+  "task_key": "worker_code_exp013_nli_validation_20260521T004916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013_nli_validation_20260521T004916_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "4efb43dfb3275fab8ae5741330f0e0be2b6951d21857249398864e98ddf19794"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-013 完成。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| Cohen's kappa | **0.4304** (< 0.6, negative) |\n| Agreement rate | 91/100 (91%) |\n| FPR (NLI pass but LLM NO) | 1/88 (1.1%) |\n| FNR (NLI fail but LLM YES) | 8/12 (66.7%) |\n\n**Confusion Matrix:**\n```\n                     LLM=YES  LLM=NO\nNLI pass (>=0.90)      87       1\nNLI fail (<0.90)         8       4\n```\n\n**解读：** kappa 低不是因为 NLI gate 不可靠，而是因为它过于保守。NLI gate precision 极高（仅 1 例 false pass），但 recall 很低——12 条 NLI fail 中有 8 条 LLM 认为内容实际上是保持的。这意味着 NLI gate 以丢弃有效 pair 为代价保障了数据质量。在论文中这可以 frame 为：NLI gate 是 precision-oriented 的 conservative filter，对下游分析的可靠性提供了强保障。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

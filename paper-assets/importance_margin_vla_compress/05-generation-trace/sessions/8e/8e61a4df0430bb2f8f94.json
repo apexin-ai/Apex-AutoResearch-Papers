@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "8e61a4df0430bb2f8f94",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "code v8b twostage prep",
+  "task_key": "worker_code_v8b-twostage-prep_20260516T001056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_v8b-twostage-prep_20260516T001056.log",
+    "occurrence": 1,
+    "bytes": 849575,
+    "sha256": "7e823e8da1b6084ddeca148f402c79bafe6d24a8f4be2e382e2b1e84c11a08e7"
+  },
+  "statistics": {
+    "messages": 361,
+    "user_turns": 0,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 137,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 361,
+      "chunks": [
+        {
+          "path": "8e61a4df0430bb2f8f94-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e61a4df0430bb2f8f94-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e61a4df0430bb2f8f94-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

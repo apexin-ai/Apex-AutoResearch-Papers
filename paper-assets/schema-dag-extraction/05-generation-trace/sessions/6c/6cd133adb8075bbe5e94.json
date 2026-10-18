@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "6cd133adb8075bbe5e94",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper camera ready prose",
+  "task_key": "worker_paper_camera_ready_prose_20260522T063803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_camera_ready_prose_20260522T063803.log",
+    "occurrence": 1,
+    "bytes": 612124,
+    "sha256": "66a7d5f2267178ee36bbd002ebedd3e82a39dafa264d44136e817b3fe8f62b27"
+  },
+  "statistics": {
+    "messages": 126,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 126,
+      "chunks": [
+        {
+          "path": "6cd133adb8075bbe5e94-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "6cd133adb8075bbe5e94-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ]
+}

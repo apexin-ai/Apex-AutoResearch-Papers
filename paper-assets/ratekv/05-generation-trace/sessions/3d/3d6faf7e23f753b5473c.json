@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3d6faf7e23f753b5473c",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops kill gemma2 duplicate",
+  "task_key": "worker_ops_kill_gemma2_duplicate_20260514T221120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_gemma2_duplicate_20260514T221120_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "e3d622dc9af1d6a681b1b52a1c34868ae77c6110d8663908fb8ee5842702b187"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **PID 269018** (重复 Gemma-2) | 已 kill (SIGTERM，未需 force kill) |\n| **PID 268242** (Gemma-2 hires) | 运行中，**21/336** heads，已 8min，ETA ~121min，cuda:0 |\n| **PID 264489** (Mistral v4) | 运行中，**159/256** heads，已 35min，ETA ~21min，cuda:1 |\n\n**GPU 使用：**\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU 0 | 20.2 GB / 97.9 GB | 100% |\n| GPU 1 | 17.9 GB / 97.9 GB | 100% |\n\nMistral v4 约 21 分钟后完成。Gemma-2 刚开始，预计还需约 2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

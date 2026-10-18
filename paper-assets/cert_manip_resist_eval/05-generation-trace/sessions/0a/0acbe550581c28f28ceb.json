@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0acbe550581c28f28ceb",
+  "project": "cert_manip_resist_eval",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3710,
+    "sha256": "01843dae2c8d35d455a41744cda90dd54f6772c858a0e2fc5ad39e5031f722d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-23T19:51:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 当前无 GPU 任务，但若恢复实验需确认 seetacloud-rtx6000 的 `execution.gpu_ids` 白名单再操作\n- 匿名仓库 remote 含 token（`ghp_***`），禁止在任何输出中暴露完整 token\n- 论文 abstract 不超过 200 words（EMNLP 2026 硬约束）\n- Limitations 只放正文，appendix 不能有 limitations section\n- abstract.tex 与 main.tex 中的 abstract 存在双源问题（之前发现自相矛盾），修订时必须确认 single source of truth\n\n### 2. 🖥️ 基础设施快照\n- 服务器：seetacloud-rtx6000，代码根目录 `/root/cert_manip_resist_eval`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/`\n- 数据文件：`docs/paper/data/` 下 18+ JSON（15 个 V2 corrected + 原始）\n- 匿名仓库：99 文件，commit 3d1671d，**仍为 V1 代码**，待推送 V2\n- 无活跃进程 / 无 tmux / 无 cron（纯写作阶段）\n\n### 3. 📊 当前状态\n**V2 bug fix 全量完成。** 我审查了全部 15 个 V2 Worker 的输出，均已 post 给 Director。最后完成的是：\n- Figure 2 regime transition 图（视觉审查 PASS）\n- Appendix 三件套 V2 重跑（cross-benchmark IV / Cinelli-Hazlett / stability split）\n- Fractional logit V2、alt diversity V2、epsilon sensitivity K5 V2\n- Data traceability audit（118 个数字，52 个 V1 待更新，5 个内部矛盾）\n\n**Paper Agent 正在处理**：4 张 figure 重绘 + appendix 小改。论文文本据 ROADMAP 已全面修订。\n\n**无 RUNNING/PREPARING 实验。** 无等待中的 Worker 回调或 Cron。\n\n### 4. 📋 待办\n- Paper Agent 提交章节审查 → 按 §5 模式 B 做对抗审查（叙事一致性、claim-evidence 匹配、审稿人攻击面），注意前置读 `paper-quality-lessons.skill.md`\n- Figure 3/4（GAM 相关）完成 → 视觉审查，确认不再包含 6:6 split 叙事\n- Appendix 更新完成 → 核验 3 个数字：RV 9/24→12/24，fractional logit 93.1%→98.6%，epsilon max Δβ 0.067→0.073\n- 匿名仓库推送 → 确认包含 V2 修正代码（`_is_valid_score()`）和全部 corrected JSON\n- 最终编译 → 检查 8 页限制、abstract ≤200 words、无 LaTeX warnings\n\n### 5. 🎯 战略上下文\n**核心结论（V2 修正后）**：\n1. K_eff 与 ASR **一致正相关**（12/12 OLS，GAM 12/12 positive）——多样性增加脆弱性，反 CJT/BFT 直觉\n2. **Predictor shift**：K=3 η_max(3)≈K_eff(4) 共存 → K≥5 K_eff 主导(10/9)，η_max 消失(0)\n3. **Aggregation gradient**：Threshold R²=0.83 → Bayesian R²=0.09，无方向反转\n\n**已死 claim（V1 artifact）**：6:6 attack-type split、Bayesian reversal。论文中任何残留都是错误。\n\n**最容易判断错的事**：\n- K_eff \"12/12 significant\" 是 OLS 结论。Wild cluster bootstrap 给 4/12(K3)→10/12(K5)→9/12(K7)。Alt diversity clustered SE 更保守仅 1/12。**不要 claim \"universally significant\" 而不注明推断方法。**\n- arc×sycophancy 和 arc×authority 在**所有 K 值、所有推断方法**下 K_eff 均不显著——如果有人问\"为什么不是 12/12\"，答案在这两个条件\n- Worker 汇报有时用 \"all conditions direction\" 计数（12个），有时用 \"significant conditions direction\" 计数（仅显著的），导致同一指标出现不同数字（如 Bayesian 8+/4- vs 5+/1-）——前者是全部条件 OLS 方向，后者是仅显著条件方向，两者互洽\n- keff_distribution.json（mean=1.92）vs keff_distribution_corrected.json（mean=2.18）的差异不是 V1 bug 导致的，是 MI 方法变更（simple MI → Gaussian copula MI）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

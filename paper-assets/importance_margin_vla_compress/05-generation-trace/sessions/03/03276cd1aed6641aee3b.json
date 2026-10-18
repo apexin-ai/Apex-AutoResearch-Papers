@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "03276cd1aed6641aee3b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k09 spatial seed42 postfix v2",
+  "task_key": "worker_analysis_eval_pi05_random_k09_spatial_seed42_postfix_v2_20260524T051632",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k09_spatial_seed42_postfix_v2_20260524T051632_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "54f11eb7112e684a516ab9dad4c63e17b0f760279381d872a74de6c6b975e62c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果**: π0.5 Random k=0.9 Spatial SR=**53.4%**，baseline (k=1.0)=78%，Δ=-24.6pp。\n\n**Spatial Random post-fix 曲线**:\n| k | SR | Δ |\n|---|---|----|\n| 1.0 | 78% | — |\n| 0.925 | ~58-60% | -18~20pp |\n| **0.9** | **53.4%** | **-24.6pp** |\n| 0.85 | 60.8% | -17.2pp |\n| 0.5 | 71.8% | -6.2pp |\n\nDisruption peak 在 Spatial 套件确认：k=0.9 是曲线最低点，10% token 移除反而比 50% 移除退化更严重，与 Object 套件的 RoPE 位置编码干扰假说一致。\n\nRegistry 已更新为 DONE/negative，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

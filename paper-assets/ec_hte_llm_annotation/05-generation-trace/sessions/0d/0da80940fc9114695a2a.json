@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0da80940fc9114695a2a",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research task g bootstrap small n",
+  "task_key": "worker_research_task-g-bootstrap-small-n_20260523T092248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_task-g-bootstrap-small-n_20260523T092248_result.json",
+    "occurrence": 1,
+    "bytes": 86,
+    "sha256": "f7a54059127957696e17ab1f7a8f8c4742078a095c95a3b699c0bc9c0076a01e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor cleaned up — experiment already finished, no need to re-arm."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

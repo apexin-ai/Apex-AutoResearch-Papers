@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f84257ded48ce3451261",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "viz jaccard heatmap 5arch",
+  "task_key": "worker_viz_jaccard-heatmap-5arch_20260522T210326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_jaccard-heatmap-5arch_20260522T210326_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "5be061ed43bec9d3659f37d1da26543d2a7ccd629b44f5a9a714e4c661332c64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PDF**: `westb-48145:/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.pdf` (21KB)\n- **PNG**: `westb-48145:/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.png` (178KB)\n- **Artifact**: `art_20260522_c7641f` 已注册至 exp-005\n\n图表结构：双 subplot（LAMBADA 左 / ARC-Easy 右），5×5 heatmap，上三角 J_helped、下三角 J_hurt，对角线灰色，YlGnBu colormap range 0–0.20，cell 内标注 2 位小数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

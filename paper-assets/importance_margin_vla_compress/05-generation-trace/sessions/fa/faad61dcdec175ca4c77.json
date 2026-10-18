@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "faad61dcdec175ca4c77",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops accelerate openvla checkpoint download",
+  "task_key": "worker_ops_accelerate-openvla-checkpoint-download_20260520T235105",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_accelerate-openvla-checkpoint-download_20260520T235105.log",
+    "occurrence": 1,
+    "bytes": 997807,
+    "sha256": "62c62be93e99d4d6f3fe5668da8157cc02e1ce33f0e89fcdc17b40e03c876e52"
+  },
+  "statistics": {
+    "messages": 668,
+    "user_turns": 0,
+    "tool_calls": 252,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 160,
+      "tool_call": 252,
+      "tool_result": 252,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 668,
+      "chunks": [
+        {
+          "path": "faad61dcdec175ca4c77-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "faad61dcdec175ca4c77-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "faad61dcdec175ca4c77-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "faad61dcdec175ca4c77-part-0004.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ]
+}

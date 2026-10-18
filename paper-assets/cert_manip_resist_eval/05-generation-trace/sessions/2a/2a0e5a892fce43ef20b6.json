@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2a0e5a892fce43ef20b6",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code step3 5 pipeline prep",
+  "task_key": "worker_code_step3-5-pipeline-prep_20260522T145553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_step3-5-pipeline-prep_20260522T145553_result.json",
+    "occurrence": 1,
+    "bytes": 2106,
+    "sha256": "bcc45b76475f71772e5976e36d6589b57f141ddfe5ddef0f48b25e2734f8b0c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n## 汇报\n\n### 1. 各脚本原数据加载方式\n| 脚本 | 原来 | 变化 |\n|------|------|------|\n| Step 3 (MI) | 3 个函数: `load_local_clean_scores` + `load_api_clean_scores` + `merge_clean_scores` | → `clean, _ = load_all_scores()` |\n| Confound | 3 个函数: `load_local_individual_asr` + `load_api_individual_asr` + `merge_asr` | → `load_all_scores()` + `load_pairs()` + 统一 ASR 计算 |\n| Step 4 | 3 个函数: `load_mi_data` + `load_pairs` + `load_all_scores`（本地定义） | → 从 unified_data_loader 导入 |\n| Step 5 | 与 Step 4 完全重复的 3 个函数 | → 从 unified_data_loader 导入 |\n\n### 2. 完成项\n- **统一加载器** `src/unified_data_loader.py` — 已创建并验证\n  - 导出: `ALL_MODELS(15)`, `DATASETS`, `ATTACKS`, 所有路径常量\n  - 函数: `load_all_scores()`, `load_pairs()`, `load_mi_data()`, `load_api_asr()`, `validate_coverage()`\n  - 自动处理 checkpoint 嵌套格式 + individual JSON 格式\n  - position_bias winner 反转统一处理\n- **4 个脚本** — 已全部改用统一加载器，去除重复代码\n- **Pipeline 启动脚本** `scripts/run_pipeline_15model.sh` — 已创建并设为可执行\n- **目录结构** `individual_scores/` — 已就绪\n\n### 3. 验证结果\n- `loader OK` — import 验证通过\n- 4 个脚本语法检查全部通过\n- 当前数据: 8/15 模型 (6 local + haiku + gpt-4o partial)\n- C(15,2)=105 pairs, C(15,3)=455 panels, 12 conditions 确认\n\n### 4. Scoring 完成后操作步骤\n```bash\n# 1. 从本地 scp 9 个 API 模型的 scoring 结果\nscp /path/to/individual_scores/*__*.json seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/individual_scores/\n\n# 2. 一键启动 pipeline\nssh seetacloud-rtx6000 'bash /root/cert_manip_resist_eval/scripts/run_pipeline_15model.sh'\n```\n\n缺 7 个 API 模型的数据 (claude-opus-4, claude-sonnet-4, gpt-5.5, gpt-4.1, gpt-4o-mini, gemini-2.5-pro, gemini-2.5-flash)，加上 gpt-4o 缺 arc_challenge 的 5 个攻击条件。数据到位后零配置启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

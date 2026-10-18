@@ -1,0 +1,1224 @@
+{
+  "schema_version": "1.0",
+  "id": "a115aff6c1b51cf57948",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "code dcol readiness check",
+  "task_key": "worker_code_dcol_readiness_check_20260514T193655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_dcol_readiness_check_20260514T193655.jsonl",
+    "occurrence": 1,
+    "bytes": 50170,
+    "sha256": "c641a641b2654dca8a75553434b67ce5f9608a2da146adfc3509d7b183e649fc"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:40:07.880078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:40:07.880562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:40:07.880807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'dcol_deberta_001'}",
+              "project": "recursive_gen_depth_est",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:40:07.881094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0791}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:40:07.881298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-52439",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/scripts/dcol* /root/autodl-tmp/recursive_gen_depth_est/src/dcol* 2>&1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:40:07.881575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:40:07.881772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-52439",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"dcol*\" -type f"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:40:07.881975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'westb-52439'. Available: ['autodl-rtx6000', 'gpu-6000pro-2']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:40:07.882150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-52439",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:40:07.882322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Unknown server 'westb-52439'. Available: ['autodl-rtx6000', 'gpu-6000pro-2']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:40:07.882517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"dcol*\" -type f"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:40:07.882693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:40:07.882915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:40:07.883119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/src/"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:40:07.883306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/dcol_train_standalone_deprecated.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/__pycache__/dcol_dataset.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/__pycache__/dcol_trainer.cpython-312.pyc\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_dataset.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_eval.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_train.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:40:07.883473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts\\\\ncheckpoints\\\\ndata\\\\nlogs\\\\nresults\\\\nresults_filtered\\\\nscripts\\\\nsrc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:40:07.883614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nadd_seed_id.py\\\\natlas_analysis.py\\\\nbaseline_ce_classification.py\\\\nbaseline_coral.py\\\\nbaseline_diveye_ordinal.py\\\\nbaseline_ppl_regression.py\\\\nbaseline_utils.py\\\\nbaseline_zeroshot_llm.py\\\\ndcol_train_standalone_deprecated.py\\\\neval_d1d3.py\\\\nextract_features.py\\\\nfilter_code.py\\\\nfilter_features_d1d3.py\\\\ngenerate_next_depth.py\\\\nlora_finetune.py\\\\nprepare_seed_data.py\\\\nrun_atlas_analysis.sh\\\\nrun_dcol_training.sh\\\\nrun_eval_pythia_topk50.sh\\\\nrun_evaluation.sh\\\\nrun_pipeline.sh\\\\nrun_pipeline_base.sh\\\\nrun_pipeline_gpt2xl.sh\\\\nrun_pipeline_gpt2xl_temp09.sh\\\\nrun_pipeline_gpt2xl_topk50.sh\\\\nrun_pipeline_olmo.sh\\\\nrun_pipeline_olmo_temp09.sh\\\\nrun_pipeline_olmo_topk50.sh\\\\nrun_pipeline_pythia_temp09.sh\\\\nrun_pipeline_pythia_topk50.sh\\\\nrun_three_class_eval.py\\\\ntrain_classifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:40:07.883743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\natlas_analysis.py\\\\natlas_plots.py\\\\nbaselines.py\\\\ndcol_dataset.py\\\\ndcol_eval.py\\\\ndcol_train.py\\\\ndcol_trainer.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:40:07.883935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_train.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:40:07.884081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:40:07.884415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nFeature-based DCOL (Depth Contrastive Ordinal Learning) training framework.\\\\n\\\\nInput:  JSONL/CSV files with 19-dim statistical features + depth label (0-3)\\\\nOutput: Trained MLP checkpoint, evaluation metrics, embedding visualizations\\\\n\\\\nArchitecture:\\\\n  Encoder:     MLP  19 -> hidden_dim(128) -> 64,  ReLU + BatchNorm + Dropout\\\\n  Proj head:   64 -> proj_dim(32),  L2-normalized (contrastive space)\\\\n  Class head:  64 -> 4  (depth classification)\\\\n\\\\nLoss (Eq.1 — Dream D002 hard constraint):\\\\n  L_DCOL = L_attractive + L_repulsive + lambda * L_CE\\\\n\\\\nDependencies: torch, sklearn, numpy, pandas, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import Dataset, DataLoader, Sampler\\\\nfrom sklearn.model_selection import train_test_split\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, classification_report, roc_auc_score,\\\\n)\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# -- Feature schema (matches features_all.jsonl from MVP extraction) ----------\\\\nFEATURE_NAMES = [\\\\n    \\\\\\\"mean_ppl\\\\\\\", \\\\\\\"var_ppl\\\\\\\", \\\\\\\"skewness_ppl\\\\\\\", \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n    \\\\\\\"p10_ppl\\\\\\\", \\\\\\\"p25_ppl\\\\\\\", \\\\\\\"p50_ppl\\\\\\\", \\\\\\\"p75_ppl\\\\\\\", \\\\\\\"p90_ppl\\\\\\\",\\\\n    \\\\\\\"mean_surprisal\\\\\\\", \\\\\\\"var_surprisal\\\\\\\", \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n    \\\\\\\"type_token_ratio\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"bigram_entropy\\\\\\\", \\\\\\\"trigram_entropy\\\\\\\",\\\\n    \\\\\\\"rep_2gram\\\\\\\", \\\\\\\"rep_3gram\\\\\\\", \\\\\\\"rep_4gram\\\\\\\",\\\\n]\\\\nNUM_FEATURES = len(FEATURE_NAMES)  # 19\\\\n\\\\n\\\\n# =============================================================================\\\\n# Data loading\\\\n# =============\n…[truncated 7207 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T19:40:07.884795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_dataset.py"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T19:40:07.885224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Trainer: Deep Contrastive Ordinal Learning for recursive generation depth estimation.\\\\n\\\\nArchitecture: DeBERTa-v3-large + 19-dim feature projector + contrastive ordinal head\\\\nLoss: CE classification + multi-margin contrastive ordinal loss with LEARNABLE margins.\\\\n\\\\nThree text-specific modifications over vanilla CLOC:\\\\n  1. Strategy-aware margins  — separate learnable margins per decoding strategy\\\\n  2. Surprisal-augmented anchors — 19-dim statistical features concat to [CLS] embedding\\\\n  3. Non-uniform learned margins — initialized from MVP AUC difficulty ratios\\\\n\\\\nUsage:\\\\n  python src/dcol_trainer.py --data_dir data/ --output_dir checkpoints/dcol/\\\\n  python src/dcol_trainer.py --dry_run   # quick sanity check\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast\\\\nfrom torch.utils.data import DataLoader\\\\nfrom transformers import AutoModel, AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    FEATURE_NAMES,\\\\n    NUM_FEATURES,\\\\n    ContrastiveBatchSampler,\\\\n    DCOLDataset,\\\\n    collate_fn,\\\\n    load_all_data,\\\\n    split_data,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model components\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass OrdinalContrastiveHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Projects [CLS] + 19-dim features into L2-normalized contrastive embedding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size, feature_dim=19, embed_dim=128):\\\\n        super().__init__()\\\\n        self.feature_proj = nn.Sequential\n…[truncated 7004 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T19:40:07.885403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/src/dcol_eval.py"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T19:40:07.885583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/run_dcol_training.sh"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T19:40:07.885898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Dataset: data loading and contrastive batch sampling for depth estimation.\\\\n\\\\nInput:  data/depth_{0..3}.jsonl (root = Pythia default) + data/{subdir}/depth_{k}.jsonl\\\\nOutput: DCOLDataset yielding (input_ids, attention_mask, depth, model, strategy, features)\\\\n\\\\nEach JSONL line: {\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"depth\\\\\\\": N, \\\\\\\"seed_id\\\\\\\": M, \\\\\\\"token_count\\\\\\\": K}\\\\nModel/strategy inferred from directory name. 19-dim features optionally loaded from features_all.jsonl.\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import Dataset, Sampler\\\\nfrom collections import defaultdict\\\\nfrom sklearn.model_selection import train_test_split\\\\n\\\\nFEATURE_NAMES = [\\\\n    \\\\\\\"mean_ppl\\\\\\\", \\\\\\\"var_ppl\\\\\\\", \\\\\\\"skewness_ppl\\\\\\\", \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n    \\\\\\\"p10_ppl\\\\\\\", \\\\\\\"p25_ppl\\\\\\\", \\\\\\\"p50_ppl\\\\\\\", \\\\\\\"p75_ppl\\\\\\\", \\\\\\\"p90_ppl\\\\\\\",\\\\n    \\\\\\\"mean_surprisal\\\\\\\", \\\\\\\"var_surprisal\\\\\\\", \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n    \\\\\\\"type_token_ratio\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"bigram_entropy\\\\\\\", \\\\\\\"trigram_entropy\\\\\\\",\\\\n    \\\\\\\"rep_2gram\\\\\\\", \\\\\\\"rep_3gram\\\\\\\", \\\\\\\"rep_4gram\\\\\\\",\\\\n]\\\\nNUM_FEATURES = len(FEATURE_NAMES)\\\\n\\\\n\\\\ndef parse_model_strategy(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Infer model and decoding strategy from subdirectory name.\\\\n    \\\\\\\"gpt2xl\\\\\\\" -> (gpt2xl, default), \\\\\\\"pythia_temp09\\\\\\\" -> (pythia, temp09)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if dirname.startswith(\\\\\\\"pythia_\\\\\\\"):\\\\n        return \\\\\\\"pythia\\\\\\\", dirname[len(\\\\\\\"pythia_\\\\\\\"):]\\\\n    return dirname, \\\\\\\"default\\\\\\\"\\\\n\\\\n\\\\ndef load_features(features_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed 19-dim features from JSONL. Returns list aligned with extraction order.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    features = []\\\\n    with open(features_path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if not line:\n…[truncated 7227 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T19:40:07.886225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Evaluation: comprehensive metrics for depth classification.\\\\n\\\\nComputes: 4-class accuracy, MAE, per-adjacent-pair AUC, confusion matrix,\\\\nleave-one-model-out generalization, leave-one-strategy-out generalization.\\\\n\\\\nUsage:\\\\n  python src/dcol_eval.py --checkpoint checkpoints/dcol/best_model.pt --data_dir data/\\\\n  python src/dcol_eval.py --checkpoint checkpoints/dcol/best_model.pt --eval_mode per_model\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast\\\\nfrom torch.utils.data import DataLoader\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, classification_report, roc_auc_score,\\\\n)\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    NUM_FEATURES, DCOLDataset, collate_fn, load_all_data, split_data,\\\\n)\\\\nfrom dcol_trainer import DCOLModel\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef pairwise_auc(labels, probs, d1, d2, label_list):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"AUC for binary distinction between depth d1 and d2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = np.isin(labels, [d1, d2])\\\\n    if mask.sum() < 2:\\\\n        return None\\\\n    yt = (labels[mask] == d2).astype(int)\\\\n    if len(np.unique(yt)) < 2:\\\\n        return None\\\\n    d2_idx = list(label_list).index(d2)\\\\n    yp = probs[mask, d2_idx]\\\\n    return float(roc_auc_score(yt, yp))\\\\n\\\\n\\\\ndef compute_all_pairwise_auc(labels, probs, depths=(0, 1, 2, 3)):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute AUC for every depth pair.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = {}\\\\n    for i, d1 in enumerate(depths):\\\\n        for d2 in depths[i + 1:]:\\\\n            auc = pairwise_auc(labels, probs, d1, d2, depths)\\\\n            result[f\\\\\\\"d{d1}_vs_d{d2}\\\\\\\"] = round(auc, 4) if auc is not None else None\\\\n    return\n…[truncated 7188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T19:40:07.886463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# DCOL training pipeline: data loading -> training -> evaluation -> checkpoint\\\\n#\\\\n# Usage:\\\\n#   bash scripts/run_dcol_training.sh                          # defaults\\\\n#   bash scripts/run_dcol_training.sh --gpu 1 --dry_run        # dry run on GPU 1\\\\n#   bash scripts/run_dcol_training.sh --batch_size 64 --epochs 15\\\\n\\\\nset -euo pipefail\\\\n\\\\n# ----- Defaults (override via CLI) -----\\\\nGPU=\\\\\\\"${GPU:-0}\\\\\\\"\\\\nDATA_DIR=\\\\\\\"${DATA_DIR:-data/}\\\\\\\"\\\\nOUTPUT_DIR=\\\\\\\"${OUTPUT_DIR:-checkpoints/dcol/}\\\\\\\"\\\\nLOG_DIR=\\\\\\\"${LOG_DIR:-logs/}\\\\\\\"\\\\nMODEL_PATH=\\\\\\\"${MODEL_PATH:-/root/autodl-tmp/models/deberta-v3-large}\\\\\\\"\\\\nFEATURES_PATH=\\\\\\\"${FEATURES_PATH:-data/features_all.jsonl}\\\\\\\"\\\\nBATCH_SIZE=\\\\\\\"${BATCH_SIZE:-32}\\\\\\\"\\\\nEPOCHS=\\\\\\\"${EPOCHS:-10}\\\\\\\"\\\\nLR=\\\\\\\"${LR:-2e-5}\\\\\\\"\\\\nMARGIN_LR=\\\\\\\"${MARGIN_LR:-1e-3}\\\\\\\"\\\\nCL_WEIGHT=\\\\\\\"${CL_WEIGHT:-0.5}\\\\\\\"\\\\nMAX_LENGTH=\\\\\\\"${MAX_LENGTH:-512}\\\\\\\"\\\\nSEED=\\\\\\\"${SEED:-42}\\\\\\\"\\\\nDRY_RUN=\\\\\\\"\\\\\\\"\\\\nEXTRA_ARGS=\\\\\\\"\\\\\\\"\\\\n\\\\n# Parse command-line overrides\\\\nwhile [[ $# -gt 0 ]]; do\\\\n    case \\\\\\\"$1\\\\\\\" in\\\\n        --gpu)         GPU=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --data_dir)    DATA_DIR=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --output_dir)  OUTPUT_DIR=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --model_path)  MODEL_PATH=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --batch_size)  BATCH_SIZE=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --epochs)      EPOCHS=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --lr)          LR=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --margin_lr)   MARGIN_LR=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --seed)        SEED=\\\\\\\"$2\\\\\\\"; shift 2 ;;\\\\n        --dry_run)     DRY_RUN=\\\\\\\"--dry_run\\\\\\\"; shift ;;\\\\n        *)             EXTRA_ARGS=\\\\\\\"$EXTRA_ARGS $1\\\\\\\"; shift ;;\\\\n    esac\\\\ndone\\\\n\\\\n# ----- Environment -----\\\\nPROJ_ROOT=\\\\\\\"$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")/..\\\\\\\" && pwd)\\\\\\\"\\\\ncd \\\\\\\"$PROJ_ROOT\\\\\\\"\\\\n\\\\n# Conda activation (AutoDL aml-train image)\\\\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; t\n…[truncated 3335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T19:40:07.886667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T19:40:07.886807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"526 /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T19:40:07.886956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -200 /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T19:40:07.887080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/models/deberta-v3-large/"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T19:40:07.887285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Trainer: Deep Contrastive Ordinal Learning for recursive generation depth estimation.\\\\n\\\\nArchitecture: DeBERTa-v3-large + 19-dim feature projector + contrastive ordinal head\\\\nLoss: CE classification + multi-margin contrastive ordinal loss with LEARNABLE margins.\\\\n\\\\nThree text-specific modifications over vanilla CLOC:\\\\n  1. Strategy-aware margins  — separate learnable margins per decoding strategy\\\\n  2. Surprisal-augmented anchors — 19-dim statistical features concat to [CLS] embedding\\\\n  3. Non-uniform learned margins — initialized from MVP AUC difficulty ratios\\\\n\\\\nUsage:\\\\n  python src/dcol_trainer.py --data_dir data/ --output_dir checkpoints/dcol/\\\\n  python src/dcol_trainer.py --dry_run   # quick sanity check\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast\\\\nfrom torch.utils.data import DataLoader\\\\nfrom transformers import AutoModel, AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    FEATURE_NAMES,\\\\n    NUM_FEATURES,\\\\n    ContrastiveBatchSampler,\\\\n    DCOLDataset,\\\\n    collate_fn,\\\\n    load_all_data,\\\\n    split_data,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model components\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass OrdinalContrastiveHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Projects [CLS] + 19-dim features into L2-normalized contrastive embedding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size, feature_dim=19, embed_dim=128):\\\\n        super().__init__()\\\\n        self.feature_proj = nn.Sequential\n…[truncated 6325 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T19:40:07.887442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/depth_*.jsonl"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T19:40:07.887566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T19:40:07.887689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T19:40:07.887812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_0_features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T19:40:07.888043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T19:40:07.888290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -n +200 /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T19:40:07.888667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    pos_sim = (sim * same_f).sum(dim=1) / same_f.sum(dim=1).clamp(min=1)  # (B,)\\\\n\\\\n    # Build margin matrix M[i, j] using cumsum trick\\\\n    if margins_module.strategy_names is not None and strategies is not None:\\\\n        # Per-strategy margins\\\\n        all_adj = F.softplus(margins_module.raw_margins)           # (S, K-1)\\\\n        eff_all = margins_module.build_effective_matrix(all_adj)   # (S, K, K)\\\\n        strat_idx = torch.tensor(\\\\n            [margins_module.strategy_to_idx.get(s, 0) for s in strategies],\\\\n            device=device,\\\\n        )\\\\n        # Gather per-anchor: (B, K, K) from (S, K, K) indexed by strat_idx\\\\n        anchor_eff = eff_all[strat_idx]                            # (B, K, K)\\\\n        arange_B = torch.arange(B, device=device)\\\\n        margin_matrix = anchor_eff[\\\\n            arange_B.unsqueeze(1).expand(B, B),\\\\n            depths.unsqueeze(1).expand(B, B),\\\\n            depths.unsqueeze(0).expand(B, B),\\\\n        ]\\\\n    else:\\\\n        adj = margins_module.get_adj_margins()                     # (K-1,)\\\\n        eff = margins_module.build_effective_matrix(adj)           # (K, K)\\\\n        margin_matrix = eff[depths.unsqueeze(1), depths.unsqueeze(0)]  # (B, B)\\\\n\\\\n    # Loss: max(0, margin + neg_sim - pos_sim)\\\\n    raw_loss = F.relu(margin_matrix + sim - pos_sim.unsqueeze(1))  # (B, B)\\\\n    loss_mask = diff_depth & valid.unsqueeze(1)\\\\n    total = (raw_loss * loss_mask.float()).sum()\\\\n    count = loss_mask.float().sum().clamp(min=1)\\\\n\\\\n    return total / count\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Training / evaluation loops\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef train_epoch(model, loader, optimizer, scheduler, device, epoch,\\\\n                cl_weight=0.5, log_interval=20):\\\\n    model.train()\\\\n    sum_loss = sum_ce = sum_cl = 0.0\\\\n    correct = total = 0\\\\n\n…[truncated 7017 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T19:40:07.888979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"def parse_args\\|dry_run\\|dry-run\\|--help\\|argparse\\|def main\" /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T19:40:07.889183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T19:40:07.889368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"dry_run\" /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T19:40:07.889583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"def parse_args\\|def main\" /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T19:40:07.889770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14:  python src/dcol_trainer.py --dry_run   # quick sanity check\\\\n349:    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n361:    if not args.dry_run:\\\\n385:    if args.dry_run:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T19:40:07.889971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T19:40:07.890149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"def \" /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T19:40:07.890340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:    def __init__(self, hidden_size, feature_dim=19, embed_dim=128):\\\\n70:    def forward(self, cls_hidden, features):\\\\n93:    def __init__(self, num_depths=4, num_strategies=1, strategy_names=None):\\\\n112:    def get_adj_margins(self, strategy=None):\\\\n120:    def build_effective_matrix(self, adj_margins):\\\\n148:    def __init__(self, model_name, feature_dim=19, embed_dim=128,\\\\n157:    def forward(self, input_ids, attention_mask, features):\\\\n169:def contrastive_ordinal_loss(embeddings, depths, margins_module, strategies=None):\\\\n237:def train_epoch(model, loader, optimizer, scheduler, device, epoch,\\\\n287:def evaluate(model, loader, device):\\\\n322:def parse_args():\\\\n354:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T19:40:07.890534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -420 /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T19:40:07.890848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Trainer: Deep Contrastive Ordinal Learning for recursive generation depth estimation.\\\\n\\\\nArchitecture: DeBERTa-v3-large + 19-dim feature projector + contrastive ordinal head\\\\nLoss: CE classification + multi-margin contrastive ordinal loss with LEARNABLE margins.\\\\n\\\\nThree text-specific modifications over vanilla CLOC:\\\\n  1. Strategy-aware margins  — separate learnable margins per decoding strategy\\\\n  2. Surprisal-augmented anchors — 19-dim statistical features concat to [CLS] embedding\\\\n  3. Non-uniform learned margins — initialized from MVP AUC difficulty ratios\\\\n\\\\nUsage:\\\\n  python src/dcol_trainer.py --data_dir data/ --output_dir checkpoints/dcol/\\\\n  python src/dcol_trainer.py --dry_run   # quick sanity check\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast\\\\nfrom torch.utils.data import DataLoader\\\\nfrom transformers import AutoModel, AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    FEATURE_NAMES,\\\\n    NUM_FEATURES,\\\\n    ContrastiveBatchSampler,\\\\n    DCOLDataset,\\\\n    collate_fn,\\\\n    load_all_data,\\\\n    split_data,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model components\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass OrdinalContrastiveHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Projects [CLS] + 19-dim features into L2-normalized contrastive embedding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size, feature_dim=19, embed_dim=128):\\\\n        super().__init__()\\\\n        self.feature_proj = nn.Sequential\n…[truncated 6907 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T19:40:07.891353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "grep -n \"parse_args\" /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T19:40:07.891507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -n 353 /root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T19:40:07.891642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"322:def parse_args():\\\\n351:    return p.parse_args()\\\\n355:    args = parse_args()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T19:40:07.891914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDCOL Trainer: Deep Contrastive Ordinal Learning for recursive generation depth estimation.\\\\n\\\\nArchitecture: DeBERTa-v3-large + 19-dim feature projector + contrastive ordinal head\\\\nLoss: CE classification + multi-margin contrastive ordinal loss with LEARNABLE margins.\\\\n\\\\nThree text-specific modifications over vanilla CLOC:\\\\n  1. Strategy-aware margins  — separate learnable margins per decoding strategy\\\\n  2. Surprisal-augmented anchors — 19-dim statistical features concat to [CLS] embedding\\\\n  3. Non-uniform learned margins — initialized from MVP AUC difficulty ratios\\\\n\\\\nUsage:\\\\n  python src/dcol_trainer.py --data_dir data/ --output_dir checkpoints/dcol/\\\\n  python src/dcol_trainer.py --dry_run   # quick sanity check\\\\n\\\\nDependencies: torch, transformers, numpy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.amp import autocast\\\\nfrom torch.utils.data import DataLoader\\\\nfrom transformers import AutoModel, AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom dcol_dataset import (\\\\n    FEATURE_NAMES,\\\\n    NUM_FEATURES,\\\\n    ContrastiveBatchSampler,\\\\n    DCOLDataset,\\\\n    collate_fn,\\\\n    load_all_data,\\\\n    split_data,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model components\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass OrdinalContrastiveHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Projects [CLS] + 19-dim features into L2-normalized contrastive embedding.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size, feature_dim=19, embed_dim=128):\\\\n        super().__init__()\\\\n        self.feature_proj = nn.Sequential\n…[truncated 7001 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T19:40:07.892150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T19:40:07.892287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/dcol_trainer.py --help"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T19:40:07.892419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 12731 MiB, 97887 MiB, 62 %\\\\n1, 15671 MiB, 97887 MiB, 13 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T19:40:07.892561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: dcol_trainer.py [-h] [--data_dir DATA_DIR] [--model_name MODEL_NAME]\\\\n                       [--model_path MODEL_PATH]\\\\n                       [--features_path FEATURES_PATH]\\\\n                       [--output_dir OUTPUT_DIR] [--log_dir LOG_DIR]\\\\n                       [--embed_dim EMBED_DIM] [--max_length MAX_LENGTH]\\\\n                       [--batch_size BATCH_SIZE] [--lr LR]\\\\n                       [--margin_lr MARGIN_LR] [--weight_decay WEIGHT_DECAY]\\\\n                       [--cl_weight CL_WEIGHT] [--epochs EPOCHS]\\\\n                       [--patience PATIENCE] [--warmup_ratio WARMUP_RATIO]\\\\n                       [--num_workers NUM_WORKERS] [--seed SEED] [--gpu GPU]\\\\n                       [--log_interval LOG_INTERVAL] [--dry_run]\\\\n\\\\nDCOL: Deep Contrastive Ordinal Learning\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --data_dir DATA_DIR\\\\n  --model_name MODEL_NAME\\\\n  --model_path MODEL_PATH\\\\n                        Local model path (overrides --model_name)\\\\n  --features_path FEATURES_PATH\\\\n                        Path to features_all.jsonl for surprisal augmentation\\\\n  --output_dir OUTPUT_DIR\\\\n  --log_dir LOG_DIR\\\\n  --embed_dim EMBED_DIM\\\\n  --max_length MAX_LENGTH\\\\n  --batch_size BATCH_SIZE\\\\n  --lr LR               Backbone learning rate\\\\n  --margin_lr MARGIN_LR\\\\n                        Learning rate for margin parameters\\\\n  --weight_decay WEIGHT_DECAY\\\\n  --cl_weight CL_WEIGHT\\\\n                        Weight for contrastive ordinal loss\\\\n  --epochs EPOCHS\\\\n  --patience PATIENCE\\\\n  --warmup_ratio WARMUP_RATIO\\\\n  --num_workers NUM_WORKERS\\\\n  --seed SEED\\\\n  --gpu GPU\\\\n  --log_interval LOG_INTERVAL\\\\n  --dry_run             Quick test: 1 epoch, 200 samples, batch=8\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 25.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T19:40:07.892720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/dcol_trainer.py --dry_run --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --gpu 1 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T19:40:07.892917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:39:29,660 [INFO] Args: {'data_dir': 'data/', 'model_name': 'microsoft/deberta-v3-large', 'model_path': '/root/autodl-tmp/models/deberta-v3-large', 'features_path': 'data/features_all.jsonl', 'output_dir': 'checkpoints/dcol/', 'log_dir': 'logs/', 'embed_dim': 128, 'max_length': 512, 'batch_size': 32, 'lr': 2e-05, 'margin_lr': 0.001, 'weight_decay': 0.01, 'cl_weight': 0.5, 'epochs': 10, 'patience': 3, 'warmup_ratio': 0.1, 'num_workers': 4, 'seed': 42, 'gpu': 1, 'log_interval': 20, 'dry_run': True}\\\\n2026-05-15 03:39:29,717 [INFO] Device: cuda:1\\\\n2026-05-15 03:39:29,717 [INFO] Loading data from data/\\\\n2026-05-15 03:39:31,725 [INFO] Total records: 118519\\\\n2026-05-15 03:39:31,746 [INFO]   depth: {0: 45000, 1: 28519, 2: 25000, 3: 20000}\\\\n2026-05-15 03:39:31,766 [INFO]   model: {'pythia': 55000, 'gpt2xl': 20000, 'gpt2xl_temp09': 8519, 'gpt2xl_topk50': 5000, 'olmo': 20000, 'olmo_temp09': 5000, 'olmo_topk50': 5000}\\\\n2026-05-15 03:39:31,822 [INFO]   strategy: {'default': 83519, 'temp09': 20000, 'topk50': 15000}\\\\n2026-05-15 03:39:31,861 [INFO] DRY RUN: 200 samples, batch=8\\\\n2026-05-15 03:39:31,863 [INFO] Split: train=139 val=31 test=30\\\\n2026-05-15 03:39:31,863 [INFO] Loading tokenizer: /root/autodl-tmp/models/deberta-v3-large\\\\n2026-05-15 03:39:33,089 [INFO] Strategies (3): ['default', 'temp09', 'topk50']\\\\n2026-05-15 03:39:33,089 [INFO] Loading backbone: /root/autodl-tmp/models/deberta-v3-large\\\\n\\\\rLoading weights:   0%|          | 0/390 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 390/390 [00:00<00:00, 8647.96it/s]\\\\n2026-05-15 03:39:38,234 [INFO] Parameters: 434,329,843 total, 434,329,843 trainable\\\\n2026-05-15 03:39:38,235 [INFO] \\\\n============================================================\\\\nEpoch 1/1\\\\n2026-05-15 03:39:44,020 [INFO] Train: loss=1.6477 acc=0.2361 | Val: loss=1.3852 acc=0.1613 mae=1.9355 | 6s\\\\n2026-05-15 03:39:44,020 [INFO] Margins: [[0.4981 0.2489 0.1991]\\\\n [0.4985 \n…[truncated 617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T19:40:07.893148+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全通过。\n\n## 汇报\n\n### 代码完成度：100%\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| `src/dcol_trainer.py` | 526 | ✅ 完整：模型定义 + loss + 训练循环 + argparse + dry_run |\n| `src/dcol_dataset.py` | ~200 | ✅ 完整：数据加载 + DCOLDataset + ContrastiveBatchSampler |\n| `src/dcol_eval.py` | ~200 | ✅ 完整：pairwise AUC + confusion matrix + per-model/strategy |\n| `scripts/run_dcol_training.sh` | ~100 | ✅ 完整：环境设置 + 参数传递 + 训练后自动 eval |\n\n### 核心组件\n- **模型**: `DCOLModel` = DeBERTa-v3-large backbone + `OrdinalContrastiveHead`（CLS + 19-dim features → L2-normalized 128-d embedding）+ linear classifier\n- **Loss**: `contrastive_ordinal_loss` — 完整 N-pair formulation，`L = CE + λ·CL`，CL 用 margin matrix 实现 attractive + repulsive\n- **Learnable margins**: `LearnableOrdinalMargins` — K-1 个 softplus 参数，cumsum 构建 effective margin matrix，支持 per-strategy margins（3 个策略：default/temp09/topk50）\n- **初始化**: 从 MVP RF AUC 反推，softplus(raw) ≈ [0.50, 0.25, 0.20]\n\n### Dry-run 结果\n- `python src/dcol_trainer.py --dry_run --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --gpu 1` ✅\n- 数据加载正常：118,519 条（7 个模型×策略组合，depth 0-3）\n- 模型加载正常：434M 参数，全部可训练\n- 前向传播 + 反向传播正常，margins 在训练中有梯度更新\n- 1 epoch × 200 samples 耗时 ~6s\n\n### 数据与模型\n- `/root/autodl-tmp/models/deberta-v3-large/` ✅\n- `data/depth_{0..3}.jsonl` ✅（45k/28.5k/25k/20k）\n- `data/features_all.jsonl` ✅\n\n### 启动命令\n```bash\ncd /root/autodl-tmp/recursive_gen_depth_est\nbash scripts/run_dcol_training.sh --gpu <0或1>\n```\n\n### 无 bug，无缺失组件。GPU 释放后可直接启动训练。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_dcol_readiness_check_20260514T193655"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ]
+}

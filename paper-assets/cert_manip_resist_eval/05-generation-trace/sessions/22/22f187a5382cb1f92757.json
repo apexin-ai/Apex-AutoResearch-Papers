@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "22f187a5382cb1f92757",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan001 parallel v2",
+  "task_key": "worker_code_plan001-parallel-v2_20260522T094736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-parallel-v2_20260522T094736_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "9cee88eb87c9398f717c87673452d8cb2db3a2d12a3fc7b74f6b80549a60b6ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动正常。9 个模型全部同时开跑，无 stagger。已完成的 23 个 checkpoint 全部正确 SKIP。\n\n当前状态：\n- **已完成**: 23/126 (claude-3-haiku 全部 14 条 + gpt-4o 9 条)\n- **剩余**: 103 conditions 正在并发执行\n- **配置**: 25 workers/model, max_rps=50 (实质无限制), 无全局信号量\n- **tmux session**: `plan001_step1_v2`, PID 94836\n- **日志**: `~/runs/cert_manip_resist_eval/plan001_step1_v2.log`\n\nvs 旧版：3 workers/model + 全局 15 并发 + 3 RPS → 12 分钟 0 新 checkpoint。新版理论上快 8x+。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

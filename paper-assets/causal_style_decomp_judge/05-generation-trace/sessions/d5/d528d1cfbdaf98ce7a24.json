@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d528d1cfbdaf98ce7a24",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code alpacaeval verbosity qwen32b",
+  "task_key": "worker_code_alpacaeval_verbosity_qwen32b_20260521T082429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpacaeval_verbosity_qwen32b_20260521T082429_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "362275e5397ea1e343be22c8195db5b9c5ba7c76af8e846f94e70dfe86ffacfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here are the results:\n\n## AlpacaEval Verbosity × Qwen3-32B\n```\nData source: 新生成\nPairs: 82 (NLI≥0.90)\nConsistency: 68/82 (82.9%)\nBT: P(verbose)=84.1% [77.4%, 90.2%], p=0.0001\nLikert: ATE=0.732, p=0.0003, d=0.375, tie_rate=24.4%\n  mean(verbose)=7.32, mean(concise)=6.59\nBlindspot: Yes\nGEE: Style OR=28.64 [9.16, 89.56] p=< 0.0001, Orig OR=0.18 [0.06, 0.54] p=0.0024\n```\n\nQwen3-32B exhibits a strong verbosity bias on AlpacaEval: 84.1% probability of preferring the verbose version (BT), with an ATE of +0.73 points on the Likert scale (d=0.375, medium effect). The GEE decomposition shows the style effect (OR=28.64) massively dominates the originality effect (OR=0.18), confirming the bias is driven by verbosity preference rather than content familiarity. The originality OR < 1 (p=0.0024) indicates a slight preference for counterfactual text over original, likely because verbose expansions appear more \"complete.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

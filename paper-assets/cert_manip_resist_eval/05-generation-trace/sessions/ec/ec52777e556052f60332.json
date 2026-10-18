@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec52777e556052f60332",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper framework figure fix",
+  "task_key": "worker_paper_framework-figure-fix_20260523T012315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_framework-figure-fix_20260523T012315_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "19e89309f4430faab4e6e451c7a7793416e715c106e0f723147d9a53122379cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修复已完成：\n\n1. **攻击名称** — \"Confidence\" → \"Score Manipulation\"，\"Anchor\" → \"Prompt Injection\" ✓\n2. **Section 引用** — §4.1, §3, §4.3, §4.4 ✓\n3. **6 个 model family** — GPT(4), Claude(3), Gemini(2), Qwen(3), Llama(2), Mistral(1) 共 15 judges，6 种颜色 ✓\n\n文件已保存到服务器和本地 `artifacts/figures/fig_framework.{pdf,png}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

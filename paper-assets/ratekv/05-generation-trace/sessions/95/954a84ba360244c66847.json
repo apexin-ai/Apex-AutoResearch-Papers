@@ -1,0 +1,1179 @@
+{
+  "schema_version": "1.0",
+  "id": "954a84ba360244c66847",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "code yi15 hires bf16 2bitonly",
+  "task_key": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_yi15_hires_bf16_2bitonly_20260514T191141.jsonl",
+    "occurrence": 1,
+    "bytes": 58327,
+    "sha256": "50db6e968c025b6bcbe55cefae20c24fb6ce9ae490de3b0679c464a6c5faf5d1"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:15:21.051499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__kill_job,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:15:21.051874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:15:21.052053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__kill_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "tool_args": {
+              "server": "westd-37397",
+              "pid": "251122",
+              "reason": "Director 指令: float32 太慢 (19h ETA), 改用 bf16 2-bit only",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:15:21.052195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat /root/ratekv/run_yi15_hires_profiling.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:15:21.052340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"251122\\\", \\\"reason\\\": \\\"Director 指令: float32 太慢 (19h ETA), 改用 bf16 2-bit only\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:15:21.052591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Yi-1.5-9B hires float32 profiling — concentration re-measurement.\\\\n64 samples x 2048 tokens, float32 precision.\\\\nOnly profiling + concentration analysis (no MCKP, no eval, no k ablation).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\\\nfrom eval_ppl import patch_attention, restore_attention\\\\n\\\\n\\\\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\\\\n    with open(path) as f:\\\\n        samples = json.load(f)\\\\n    all_ids = []\\\\n    for s in samples:\\\\n        tokens = tokenizer.encode(s[\\\\\\\"text\\\\\\\"], add_special_tokens=False)\\\\n        if len(tokens) >= seq_len:\\\\n            all_ids.append(tokens[:seq_len])\\\\n        if len(all_ids) >= num_samples:\\\\n            break\\\\n    if not all_ids:\\\\n        raise RuntimeError(f\\\\\\\"No calibration seqs with >= {seq_len} tokens\\\\\\\")\\\\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(seq_len, device=device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n            shift_labels = batch[:, 1:].contiguous()\\\\n            loss = F.cross_entropy(\\\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\\\n                shift_labels.view(-1),\\\\n          \n…[truncated 7136 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:15:21.052814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__kill_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "tool_args": {
+              "server": "westd-37397",
+              "pid": "251127",
+              "reason": "子进程，随主进程一起 kill",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:15:21.052954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -n 130 /root/ratekv/run_yi15_hires_profiling.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:15:21.053086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"251127\\\", \\\"reason\\\": \\\"子进程，随主进程一起 kill\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:15:21.053277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Yi-1.5-9B hires float32 profiling — concentration re-measurement.\\\\n64 samples x 2048 tokens, float32 precision.\\\\nOnly profiling + concentration analysis (no MCKP, no eval, no k ablation).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\\\nfrom eval_ppl import patch_attention, restore_attention\\\\n\\\\n\\\\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\\\\n    with open(path) as f:\\\\n        samples = json.load(f)\\\\n    all_ids = []\\\\n    for s in samples:\\\\n        tokens = tokenizer.encode(s[\\\\\\\"text\\\\\\\"], add_special_tokens=False)\\\\n        if len(tokens) >= seq_len:\\\\n            all_ids.append(tokens[:seq_len])\\\\n        if len(all_ids) >= num_samples:\\\\n            break\\\\n    if not all_ids:\\\\n        raise RuntimeError(f\\\\\\\"No calibration seqs with >= {seq_len} tokens\\\\\\\")\\\\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(seq_len, device=device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n            shift_labels = batch[:, 1:].contiguous()\\\\n            loss = F.cross_entropy(\\\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\\\n                shift_labels.view(-1),\\\\n          \n…[truncated 3580 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:15:21.053443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -n +130 /root/ratekv/run_yi15_hires_profiling.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:15:21.053653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                head_profile[\\\\\\\"quantization\\\\\\\"][str(bits)] = delta\\\\n                done += 1\\\\n                elapsed = time.time() - profile_start\\\\n                eta_min = (elapsed / done) * (total_evals - done) / 60\\\\n                print(f\\\\\\\"[{done}/{total_evals}] L{l}H{h} @{bits}bit: delta={delta:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"(elapsed {elapsed/60:.1f}min, ETA {eta_min:.0f}min)\\\\\\\", flush=True)\\\\n            profiles[str(l)][str(h)] = head_profile\\\\n\\\\n    profile_time = time.time() - profile_start\\\\n\\\\n    with open(\\\\\\\"yi15_hires_float32_profiles.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(profiles, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nPhase 1 done in {profile_time / 60:.1f}min\\\\\\\")\\\\n\\\\n    # ========== Phase 4: Concentration Analysis ==========\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"PHASE 4: Concentration Analysis\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    all_deltas_2bit = []\\\\n    layer_deltas = {}\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        l = int(l_str)\\\\n        layer_deltas[l] = []\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            d2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            all_deltas_2bit.append((l, int(h_str), d2))\\\\n            layer_deltas[l].append(d2)\\\\n\\\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\\\n\\\\n    l0_deltas = layer_deltas.get(0, [0])\\\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\\\n    other_means = []\\\\n    for l in range(1, num_layers):\\\\n        if l in layer_deltas and layer_deltas[l]:\\\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\\\n    other_avg = sum(other_\n…[truncated 3547 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:15:21.053846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ls -la /root/ratekv/calibration_hires.json /root/ratekv/calibration_data.json 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:15:21.053975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:15:21.054093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ls -la /root/ratekv/calibration_hires.json /root/ratekv/calibration_data.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:15:21.054216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 137195 May 14 05:39 /root/ratekv/calibration_data.json\\\\n-rw-r--r-- 1 root root 796954 May 14 07:25 /root/ratekv/calibration_hires.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:15:21.054370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_yi15_hires_profiling.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:15:21.054575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Yi-1.5-9B hires float32 profiling — concentration re-measurement.\n2\t64 samples x 2048 tokens, float32 precision.\n3\tOnly profiling + concentration analysis (no MCKP, no eval, no k ablation).\n4\t\"\"\"\n5\timport os\n6\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n7\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n8\t\n9\timport argparse\n10\timport json\n11\timport math\n12\timport time\n13\timport torch\n14\timport torch.nn.functional as F\n15\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\n16\tfrom eval_ppl import patch_attention, restore_attention\n17\t\n18\t\n19\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n20\t    with open(path) as f:\n21\t        samples = json.load(f)\n22\t    all_ids = []\n23\t    for s in samples:\n24\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n25\t        if len(tokens) >= seq_len:\n26\t            all_ids.append(tokens[:seq_len])\n27\t        if len(all_ids) >= num_samples:\n28\t            break\n29\t    if not all_ids:\n30\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n31\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n32\t\n33\t\n34\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n35\t    total_loss = 0.0\n36\t    total_tokens = 0\n37\t    n = input_ids.shape[0]\n38\t    with torch.no_grad():\n39\t        for start in range(0, n, batch_size):\n40\t            end = min(start + batch_size, n)\n41\t            batch = input_ids[start:end]\n42\t            outputs = model(\n43\t                batch, use_cache=False,\n44\t                cache_position=torch.arange(seq_len, device=device)\n45\t            )\n46\t            shift_logits = outputs.logits[:, :-1].contiguous()\n47\t            shift_labels = batch[:, 1:].contiguous()\n48\t            loss = F.cross_entropy(\n49\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n50\t                shift_labels.view(-1),\n51\t                reduction=\"sum\"\n52\t            )\n53\t            total_loss +\n…[truncated 8508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:15:21.054817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_yi15_hires_bf16_2bitonly.py",
+              "content": "\"\"\"Yi-1.5-9B hires bf16 profiling — 2-bit only concentration measurement.\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport argparse\nimport json\nimport math\nimport time\nimport torch\nimport torch.nn.functional as F\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention\n\n\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n    with open(path) as f:\n        samples = json.load(f)\n    all_ids = []\n    for s in samples:\n        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n        if len(tokens) >= seq_len:\n            all_ids.append(tokens[:seq_len])\n        if len(all_ids) >= num_samples:\n            break\n    if not all_ids:\n        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\n\n\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n    total_loss = 0.0\n    total_tokens = 0\n    n = input_ids.shape[0]\n    with torch.no_grad():\n        for start in range(0, n, batch_size):\n            end = min(start + batch_size, n)\n            batch = input_ids[start:end]\n            outputs = model(\n                batch, use_cache=False,\n                cache_position=torch.arange(seq_len, device=device)\n            )\n            shift_logits = outputs.logits[:, :-1].contiguous()\n            shift_labels = batch[:, 1:].contiguous()\n            # .float() on logits is critical for bf16 — ULP=128 truncates single-head deltas to zero\n            loss = F.cross_entropy(\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\n                shift_labels.view(-1),\n                reduction=\"sum\"\n            )\n            total_loss += loss.item()\n            total_tokens += shift_labels.numel()\n            del outputs, shift_logits, loss\n            torch.cuda.empty_cache()\n    return math.exp(total_loss / total_tokens)\n\n\ndef profile_single_head(model, input_ids, seq_len, batch_size, device, baseline_ppl, layer, head, bits):\n    if bits >= 16:\n        return 0.0\n    allocations = {f\"{layer},{head}\": [\"quant\", bits]}\n    orig_fwds = patch_attention(model, allocations)\n    ppl = compute_ppl_batched(model, input_ids, seq_len, batch_size, device)\n    restore_attention(model, orig_fwds)\n    return ppl - baseline_ppl\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Yi-1.5-9B hires bf16 2-bit-only profiling\")\n    parser.add_argument(\"--model\", type=str, required=True)\n    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:1\")\n    parser.add_argument(\"--batch_size\", type=int, default=2)\n    parser.add_argument(\"--num_samples\", type=int, default=64)\n    parser.add_argument(\"--seq_len\", type=int, default=2048)\n    args = parser.parse_args()\n\n    device = args.gpu\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(args.model)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n\n    print(f\"Yi-1.5-9B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n\n    print(\"\\n\" + \"=\" * 60)\n    print(f\"BF16 2-bit-only Profiling ({args.num_samples}seq x {args.seq_len}tok)\")\n    print(\"=\" * 60)\n\n    profile_start = time.time()\n\n    print(f\"Loading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"BF16 model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    input_ids = load_calibration_data(tokenizer, args.calibration_data,\n                                       args.num_samples, args.seq_len, device)\n    print(f\"Calibration: {input_ids.shape[0]} seqs x {input_ids.shape[1]} tokens\")\n\n    print(\"Computing baseline PPL...\")\n    baseline_ppl = compute_ppl_batched(model, input_ids, args.seq_len, args.batch_size, device)\n    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n\n    total_evals = total_kv_heads\n    done = 0\n    profiles = {}\n\n    for l in range(num_layers):\n        profiles[str(l)] = {}\n        for h in range(num_kv_heads):\n            delta = profile_single_head(\n                model, input_ids, args.seq_len, args.batch_size,\n                device, baseline_ppl, l, h, 2\n            )\n            profiles[str(l)][str(h)] = {\"quantization\": {\"2\": delta}}\n            done += 1\n            elapsed = time.time() - profile_start\n            eta_min = (elapsed / done) * (total_evals - done) / 60\n            print(f\"[{done}/{total_evals}] L{l}H{h} @2bit: delta={delta:.6f}  \"\n                  f\"(elapsed {elapsed/60:.1f}min, ETA {eta_min:.0f}min)\", flush=True)\n\n    profile_time = time.time() - profile_start\n\n    with open(\"yi15_hires_bf16_2bitonly_profiles.json\", \"w\") as f:\n        json.dump(profiles, f, indent=2)\n    print(f\"\\nProfiling done in {profile_time / 60:.1f}min\")\n\n    # ========== Concentration Analysis ==========\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Concentration Analysis\")\n    print(\"=\" * 60)\n\n    all_deltas_2bit = []\n    layer_deltas = {}\n    for l_str in sorted(profiles.keys(), key=int):\n        l = int(l_str)\n        layer_deltas[l] = []\n        for h_str in sorted(profiles[l_str].keys(), key=int):\n            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n            all_deltas_2bit.append((l, int(h_str), d2))\n            layer_deltas[l].append(d2)\n\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\n    total_sum = sum(x[2] for x in all_deltas_2bit)\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n\n    l0_deltas = layer_deltas.get(0, [0])\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\n    other_means = []\n    for l in range(1, num_layers):\n        if l in layer_deltas and layer_deltas[l]:\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\"inf\")\n\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\n    n_positive = int((d_tensor > 1e-6).sum().item())\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\n\n    print(f\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\")\n    print(f\"Layer 0 mean delta(2bit): {l0_mean:.6f}\")\n    print(f\"Other layers mean delta(2bit): {other_avg:.6f}\")\n    print(f\"L0 dominance ratio: {l0_ratio:.2f}x\")\n    print(f\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\")\n    print(f\"CV of delta(2bit): {cv:.4f}\")\n\n    print(\"\\nTop-5 most sensitive heads:\")\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\n        print(f\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\")\n\n    # ========== Save Results ==========\n    total_time = time.time() - t0\n\n    results = {\n        \"model\": args.model,\n        \"model_name\": \"Yi-1.5-9B\",\n        \"precision\": \"bfloat16\",\n        \"profiling_config\": {\n            \"num_samples\": args.num_samples,\n            \"seq_len\": args.seq_len,\n            \"batch_size\": args.batch_size,\n            \"bitwidths\": [2],\n        },\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"baseline_calibration_ppl\": baseline_ppl,\n        \"analysis\": {\n            \"top5_concentration\": round(top5_concentration, 4),\n            \"top5_n_heads\": n_top5,\n            \"layer0_mean_delta_2bit\": round(l0_mean, 6),\n            \"other_layers_mean_delta_2bit\": round(other_avg, 6),\n            \"layer0_dominance_ratio\": round(l0_ratio, 2),\n            \"delta_2bit_mean\": round(d_tensor.mean().item(), 6),\n            \"delta_2bit_std\": round(d_tensor.std().item(), 6),\n            \"delta_2bit_cv\": round(cv, 4),\n            \"heads_with_positive_delta\": n_positive,\n            \"total_heads\": len(all_deltas_2bit),\n        },\n        \"top5_sensitive_heads\": [\n            {\"layer\": l, \"head\": h, \"delta_2bit\": round(d2, 6)}\n            for l, h, d2 in sorted_by_d2[:5]\n        ],\n        \"timing\": {\n            \"profile_seconds\": round(profile_time, 1),\n            \"total_seconds\": round(total_time, 1),\n        },\n    }\n\n    with open(\"yi15_hires_bf16_2bitonly_results.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\nTotal time: {total_time / 3600:.2f}h\")\n    print(f\"Saved: yi15_hires_bf16_2bitonly_results.json, yi15_hires_bf16_2bitonly_profiles.json\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:15:21.055089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_yi15_hires_bf16_2bitonly.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:15:21.055271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "cat > /root/ratekv/run_yi15_hires_bf16_2bitonly.py << 'SCRIPT_EOF'\n\"\"\"Yi-1.5-9B hires bf16 profiling — 2-bit only concentration measurement.\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n\nimport argparse\nimport json\nimport math\nimport time\nimport torch\nimport torch.nn.functional as F\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention\n\n\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n    with open(path) as f:\n        samples = json.load(f)\n    all_ids = []\n    for s in samples:\n        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n        if len(tokens) >= seq_len:\n            all_ids.append(tokens[:seq_len])\n        if len(all_ids) >= num_samples:\n            break\n    if not all_ids:\n        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\n\n\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n    total_loss = 0.0\n    total_tokens = 0\n    n = input_ids.shape[0]\n    with torch.no_grad():\n        for start in range(0, n, batch_size):\n            end = min(start + batch_size, n)\n            batch = input_ids[start:end]\n            outputs = model(\n                batch, use_cache=False,\n                cache_position=torch.arange(seq_len, device=device)\n            )\n            shift_logits = outputs.logits[:, :-1].contiguous()\n            shift_labels = batch[:, 1:].contiguous()\n            # .float() on logits is critical for bf16 — ULP=128 truncates single-head deltas to zero\n            loss = F.cross_entropy(\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\n                shift_labels.view(-1),\n                reduction=\"sum\"\n            )\n            total_loss += loss.item()\n            total_tokens += shift_labels.numel()\n            del outputs, shift_logits, loss\n            torch.cuda.empty_cache()\n    return math.exp(total_loss / total_tokens)\n\n\ndef profile_single_head(model, input_ids, seq_len, batch_size, device, baseline_ppl, layer, head, bits):\n    if bits >= 16:\n        return 0.0\n    allocations = {f\"{layer},{head}\": [\"quant\", bits]}\n    orig_fwds = patch_attention(model, allocations)\n    ppl = compute_ppl_batched(model, input_ids, seq_len, batch_size, device)\n    restore_attention(model, orig_fwds)\n    return ppl - baseline_ppl\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Yi-1.5-9B hires bf16 2-bit-only profiling\")\n    parser.add_argument(\"--model\", type=str, required=True)\n    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:1\")\n    parser.add_argument(\"--batch_size\", type=int, default=2)\n    parser.add_argument(\"--num_samples\", type=int, default=64)\n    parser.add_argument(\"--seq_len\", type=int, default=2048)\n    args = parser.parse_args()\n\n    device = args.gpu\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(args.model)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n\n    print(f\"Yi-1.5-9B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n\n    print(\"\\n\" + \"=\" * 60)\n    print(f\"BF16 2-bit-only Profiling ({args.num_samples}seq x {args.seq_len}tok)\")\n    print(\"=\" * 60)\n\n    profile_start = time.time()\n\n    print(f\"Loading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"BF16 model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    input_ids = load_calibration_data(tokenizer, args.calibration_data,\n                                       args.num_samples, args.seq_len, device)\n    print(f\"Calibration: {input_ids.shape[0]} seqs x {input_ids.shape[1]} tokens\")\n\n    print(\"Computing baseline PPL...\")\n    baseline_ppl = compute_ppl_batched(model, input_ids, args.seq_len, args.batch_size, device)\n    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n\n    total_evals = total_kv_heads\n    done = 0\n    profiles = {}\n\n    for l in range(num_layers):\n        profiles[str(l)] = {}\n        for h in range(num_kv_heads):\n            delta = profile_single_head(\n                model, input_ids, args.seq_len, args.batch_size,\n                device, baseline_ppl, l, h, 2\n            )\n            profiles[str(l)][str(h)] = {\"quantization\": {\"2\": delta}}\n            done += 1\n            elapsed = time.time() - profile_start\n            eta_min = (elapsed / done) * (total_evals - done) / 60\n            print(f\"[{done}/{total_evals}] L{l}H{h} @2bit: delta={delta:.6f}  \"\n                  f\"(elapsed {elapsed/60:.1f}min, ETA {eta_min:.0f}min)\", flush=True)\n\n    profile_time = time.time() - profile_start\n\n    with open(\"yi15_hires_bf16_2bitonly_profiles.json\", \"w\") as f:\n        json.dump(profiles, f, indent=2)\n    print(f\"\\nProfiling done in {profile_time / 60:.1f}min\")\n\n    # ========== Concentration Analysis ==========\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Concentration Analysis\")\n    print(\"=\" * 60)\n\n    all_deltas_2bit = []\n    layer_deltas = {}\n    for l_str in sorted(profiles.keys(), key=int):\n        l = int(l_str)\n        layer_deltas[l] = []\n        for h_str in sorted(profiles[l_str].keys(), key=int):\n            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n            all_deltas_2bit.append((l, int(h_str), d2))\n            layer_deltas[l].append(d2)\n\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\n    total_sum = sum(x[2] for x in all_deltas_2bit)\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n\n    l0_deltas = layer_deltas.get(0, [0])\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\n    other_means = []\n    for l in range(1, num_layers):\n        if l in layer_deltas and layer_deltas[l]:\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\"inf\")\n\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\n    n_positive = int((d_tensor > 1e-6).sum().item())\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\n\n    print(f\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\")\n    print(f\"Layer 0 mean delta(2bit): {l0_mean:.6f}\")\n    print(f\"Other layers mean delta(2bit): {other_avg:.6f}\")\n    print(f\"L0 dominance ratio: {l0_ratio:.2f}x\")\n    print(f\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\")\n    print(f\"CV of delta(2bit): {cv:.4f}\")\n\n    print(\"\\nTop-5 most sensitive heads:\")\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\n        print(f\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\")\n\n    # ========== Save Results ==========\n    total_time = time.time() - t0\n\n    results = {\n        \"model\": args.model,\n        \"model_name\": \"Yi-1.5-9B\",\n        \"precision\": \"bfloat16\",\n        \"profiling_config\": {\n            \"num_samples\": args.num_samples,\n            \"seq_len\": args.seq_len,\n            \"batch_size\": args.batch_size,\n            \"bitwidths\": [2],\n        },\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"baseline_calibration_ppl\": baseline_ppl,\n        \"analysis\": {\n            \"top5_concentration\": round(top5_concentration, 4),\n            \"top5_n_heads\": n_top5,\n            \"layer0_mean_delta_2bit\": round(l0_mean, 6),\n            \"other_layers_mean_delta_2bit\": round(other_avg, 6),\n            \"layer0_dominance_ratio\": round(l0_ratio, 2),\n            \"delta_2bit_mean\": round(d_tensor.mean().item(), 6),\n            \"delta_2bit_std\": round(d_tensor.std().item(), 6),\n            \"delta_2bit_cv\": round(cv, 4),\n            \"heads_with_positive_delta\": n_positive,\n            \"total_heads\": len(all_deltas_2bit),\n        },\n        \"top5_sensitive_heads\": [\n            {\"layer\": l, \"head\": h, \"delta_2bit\": round(d2, 6)}\n            for l, h, d2 in sorted_by_d2[:5]\n        ],\n        \"timing\": {\n            \"profile_seconds\": round(profile_time, 1),\n            \"total_seconds\": round(total_time, 1),\n        },\n    }\n\n    with open(\"yi15_hires_bf16_2bitonly_results.json\", \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\nTotal time: {total_time / 3600:.2f}h\")\n    print(f\"Saved: yi15_hires_bf16_2bitonly_results.json, yi15_hires_bf16_2bitonly_profiles.json\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T19:15:21.055498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T19:15:21.055675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "head -5 /root/ratekv/run_yi15_hires_bf16_2bitonly.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T19:15:21.055823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T19:15:21.055960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Yi-1.5-9B hires bf16 profiling — 2-bit only concentration measurement.\\\\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T19:15:21.056089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T19:15:21.056219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python -c \"import py_compile; py_compile.compile('run_yi15_hires_bf16_2bitonly.py', doraise=True)\" && echo \"SYNTAX_OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T19:15:21.056345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T19:15:21.056476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && nohup python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1 > /root/ratekv/logs/yi15_hires_bf16_2bitonly.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T19:15:21.056602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && nohup python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1 > /root/ratekv/logs/yi15_hires_bf16_2bitonly.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=252209\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T19:15:21.056774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ps -p 252209 -o pid,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T19:15:21.056893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -20 /root/ratekv/logs/yi15_hires_bf16_2bitonly.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T19:15:21.057012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n252209 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && nohup python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1 > /root/ratekv/logs/yi15_hires_bf16_2bitonly.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T19:15:21.057148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\nYi-1.5-9B: 48L x 4KV, GQA 8:1, 192 total heads\\\\n\\\\n============================================================\\\\nBF16 2-bit-only Profiling (64seq x 2048tok)\\\\n============================================================\\\\nLoading model in bf16 to cuda:1...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 162.66it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T19:15:21.057287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -10 /root/ratekv/logs/yi15_hires_bf16_2bitonly.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T19:15:21.057417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\nYi-1.5-9B: 48L x 4KV, GQA 8:1, 192 total heads\\\\n\\\\n============================================================\\\\nBF16 2-bit-only Profiling (64seq x 2048tok)\\\\n============================================================\\\\nLoading model in bf16 to cuda:1...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 162.66it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T19:15:21.057566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_float32_profiling",
+              "field": "status",
+              "value": "DONE",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T19:15:21.057726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_float32_profiling\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:57:38.177Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:14:37.401Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B hires float32 profiling (64seq × 2048tok) 重新测量 top5_concentration。当前标准 profiling 值 0.4934 卡在 0.50 阈值边缘，是 Claim 3 最关键的边界案例。float32 hires 是否能推过 0.50？\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_profiling.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_data.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}, \\\"pid\\\": 251122, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T19:12:02.208Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7941}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T19:15:21.057864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_float32_profiling",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T19:15:21.058018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_float32_profiling\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:57:38.177Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:14:41.100Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B hires float32 profiling (64seq × 2048tok) 重新测量 top5_concentration。当前标准 profiling 值 0.4934 卡在 0.50 阈值边缘，是 Claim 3 最关键的边界案例。float32 hires 是否能推过 0.50？\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_profiling.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_data.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}, \\\"pid\\\": 251122, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T19:12:02.208Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2258}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T19:15:21.058150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_float32_profiling",
+              "field": "notes",
+              "value": "Director 指令: float32 太慢 (576 points × 2min = 19h ETA), 改用 bf16 2-bit only",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T19:15:21.058290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_float32_profiling\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:57:38.177Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:14:45.437Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B hires float32 profiling (64seq × 2048tok) 重新测量 top5_concentration。当前标准 profiling 值 0.4934 卡在 0.50 阈值边缘，是 Claim 3 最关键的边界案例。float32 hires 是否能推过 0.50？\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_profiling.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_data.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}, \\\"pid\\\": 251122, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T19:12:02.208Z\\\", \\\"notes\\\": \\\"Director 指令: float32 太慢 (576 points × 2min = 19h ETA), 改用 bf16 2-bit only\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.317}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T19:15:21.058432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "ps --ppid 252209 -o pid,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T19:15:21.058554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n252214 python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T19:15:21.058694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-37397",
+              "command": "tail -10 /root/ratekv/logs/yi15_hires_bf16_2bitonly.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T19:15:21.058831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nBF16 2-bit-only Profiling (64seq x 2048tok)\\\\n============================================================\\\\nLoading model in bf16 to cuda:1...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 162.66it/s]\\\\nBF16 model loaded. GPU mem: 17.7GB\\\\nCalibration: 64 seqs x 2048 tokens\\\\nComputing baseline PPL...\\\\nBaseline PPL: 5.8880\\\\n[1/192] L0H0 @2bit: delta=0.002874  (elapsed 0.7min, ETA 129min)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T19:15:21.058973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_bf16_2bitonly",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "ratekv",
+              "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1', 'server': 'westd-37397', 'data_path': '/root/ratekv/calibration_hires.json', 'data_count': 64, 'model_name': 'Yi-1.5-9B', 'seed': 42}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T19:15:21.059106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1251}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T19:15:21.059225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_bf16_2bitonly",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "ratekv",
+              "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1', 'server': 'westd-37397', 'data_path': '/root/ratekv/calibration_hires.json', 'data_count': 64, 'model_name': 'Yi-1.5-9B', 'seed': 42}"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T19:15:21.059360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_bf16_2bitonly\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:15:01.523Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:15:01.523Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4351}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T19:15:21.059486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_bf16_2bitonly",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T19:15:21.059612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_bf16_2bitonly\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:15:01.523Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:15:05.346Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4193}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T19:15:21.059790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_bf16_2bitonly",
+              "field": "pid",
+              "value": "252214",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T19:15:21.059923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_bf16_2bitonly\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:15:01.523Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:15:09.126Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}, \\\"pid\\\": 252214}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2162}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T19:15:21.060046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "yi15_hires_bf16_2bitonly",
+              "field": "hypothesis",
+              "value": "Yi-1.5-9B hires bf16 2-bit-only profiling: 测量 bf16 下 top-5% concentration。bf16 是 concentration 上界（bf16 bug 抬高 concentration），如果 hires bf16 仍 < 0.50 则结论定论。",
+              "project": "ratekv"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T19:15:21.060187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"yi15_hires_bf16_2bitonly\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:15:01.523Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:15:11.694Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42}, \\\"pid\\\": 252214, \\\"hypothesis\\\": \\\"Yi-1.5-9B hires bf16 2-bit-only profiling: 测量 bf16 下 top-5% concentration。bf16 是 concentration 上界（bf16 bug 抬高 concentration），如果 hires bf16 仍 < 0.50 则结论定论。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2338}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T19:15:21.060354+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n- **旧进程**: PID 251122 + 251127 已 kill\n- **新脚本**: `run_yi15_hires_bf16_2bitonly.py` — bf16 加载，只做 2-bit delta profiling（192 evals vs 原来 576）\n- **新进程**: PID **252214**，cuda:1\n- **首个数据点**: L0H0 @2bit delta=0.002874，单 head 耗时 ~0.7min/192 = **ETA ~2.2h**（日志显示 129min）\n- **Baseline PPL**: 5.8880 (bf16)\n- **GPU 显存**: 17.7GB（bf16 vs float32 的 ~35GB，大幅节省）\n- **cross_entropy `.float()` 硬约束**: 已保留\n- **Registry**: `yi15_hires_float32_profiling` → DONE/killed，`yi15_hires_bf16_2bitonly` → RUNNING\n\n预计完成时间：~21:20 UTC (约 2h)。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_yi15_hires_bf16_2bitonly_20260514T191141"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ]
+}

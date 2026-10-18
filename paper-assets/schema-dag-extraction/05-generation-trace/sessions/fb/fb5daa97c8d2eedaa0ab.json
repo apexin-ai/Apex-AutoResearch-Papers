@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb5daa97c8d2eedaa0ab",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops submit docred bcs expanded r3",
+  "task_key": "worker_ops_submit_docred_bcs_expanded_r3_20260519T135700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_docred_bcs_expanded_r3_20260519T135700_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "bc6aec78cfc7908e82de1b3ce8582d51ce77a953a7549af5cc6dbe729d70ee91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `exp_docred_bcs_expanded` **已经完成且结果完整**：\n\n- 110 个 batch 全部有结果（包括 40 个新 extreme batches, idx>=5）\n- Registry 状态: DONE (success)，有完整 metrics\n- BCS effect: count_16 = -25.04pp, count_32 = -15.65pp, interaction = -9.39pp CI[-12.91, -5.95]\n\n脚本的 OOM 防护和断点续跑改造已完成（`max_model_len=8192`, `gpu_memory_utilization=0.85`, JSONL checkpoint），但无需重新提交——数据已经齐了。\n\n要重跑吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

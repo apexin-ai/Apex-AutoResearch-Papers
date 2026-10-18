@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bba0920b6fa2e152245e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops d047 remaining fixes",
+  "task_key": "worker_ops_d047-remaining-fixes_20260525T214133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-remaining-fixes_20260525T214133_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "22882c51c8568b5d1abf9d447c96266c7f2dedf0982a7ae6d2b2c480198c836e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。汇总如下：\n\n---\n\n### 1. I² 值（DerSimonian-Laird）\n\n| K | η_max I² | K_eff I² |\n|---|----------|----------|\n| 3 | 87.3% | 98.2% |\n| 5 | 99.1% | 99.7% |\n| 7 | 99.6% | 99.9% |\n\n已更新 `appendix.tex` lines 554-556，替换 TBD。\n\n### 2. 编译结果\n- **0 errors, 0 undefined references/citations**\n- **Abstract: 154 words**（限制 200）\n- **正文: 8 页**（Limitations 从第 9 页开始，不计入 8 页限制）\n- 总 PDF: 42 页\n\n### 3. 已完成的修改\n- `appendix.tex`: 6 个 I² 值填入\n- `results.tex` line 74: Majority direction `12+/0−` → `10+/2−`\n- `fig_beta_trajectory.pdf/png`: 重新生成（脚本数据已是修正后的值，ylim 已适配）\n- `fig_regime_transition`: 脚本 `gen_fig_regime_transition_fixed.py` 数据已是新值 (K_eff=[8,8,7], η_max=[5,0,1])，今日 worker 已重画并同步\n\n### 4. 需要额外重跑的分析\n- **Threshold/Weighted aggregation**: results.tex lines 73, 75 的 `K_eff β dir.` 列仍用旧数据（`11+/0−` 和 `12+/0−`），需要用修正后 position_bias 数据重跑 threshold/weighted aggregation\n- **appendix `tab:kappa_regime` 表**: K_eff WCB sig 仍是旧值 (4/12, 7/12, 8/12)，对应文本 \"K_eff's pattern (4→7→8)\" 也需更新为 (8→8→7)\n- **appendix `app:bft_reversal` 段**: 文本提到 \"η_max retains 3/12 and K_eff retains 4/12\"，需更新\n- **Near-chance filtered analysis**: 如有修正后 near-chance 数据，appendix 相关部分需更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

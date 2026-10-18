@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8fe40733741a661cccb4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "fix fewnerd r value deep investigation",
+  "task_key": "worker_fix_fewnerd_r_value_deep_investigation_20260516T061932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fewnerd_r_value_deep_investigation_20260516T061932_result.json",
+    "occurrence": 1,
+    "bytes": 2132,
+    "sha256": "2133df2dedcee5ce932d4b66e75ccf0ff018d29f2437240dd5a43c9ae5a8756a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 148's \"$p < 10^{-10}$\" for MAVEN is conservatively correct (actual p is 7e-42). No change needed there.\n\n---\n\n## 根因分析\n\n三个 r 值来自**同一组 1953 type pairs**的**同一份 confusion matrix** (predictions_exp2.json)，差异的唯一根因是 **Y 变量定义**：\n\n| 分析 | Y 变量 | 嵌入来源 | r | 来源 |\n|------|--------|----------|---|------|\n| bootstrap_ci.py | confusion **rate** = (c_ij+c_ji)/(gold_i+gold_j) | type_embeddings.pt | **0.112** | 论文 Table 2 |\n| cross_embedding_sensitivity.py | raw confusion **count** = c_ij+c_ji | sim_matrix.pt | **0.138** | 附录分析 |\n| \"exp002 原始 r=0.156\" | **不是点估计** — 是 r=0.112 的 naive bootstrap CI 上界 [0.076, **0.156**] | — | — | CI 上界 |\n\n验证：\n- case-sensitive vs case-insensitive 对结果**无影响**（两者产生相同的 859 confusion events）\n- sim_matrix.pt vs type_embeddings.pt 差异极小（max diff=0.004，对 r 影响 <0.001）\n- count_filter（count_6/count_12）未参与——三个分析都聚合了所有 count 条件\n\n**根因总结**：rate 归一化消除了 gold frequency 的混淆效应（高频类型天然有更多 confusion events），降低了 r；raw count 未消除此效应，r 更高。r=0.156 是 CI 边界，非独立分析结果。\n\n## 推荐论文值\n\n**r = 0.112（confusion rate）**，原因：\n1. 论文方法节明确定义 \"confusion rate—the fraction of t_i gold instances misclassified as t_j\"\n2. rate 控制了 gold frequency 混淆\n3. 更保守（下界），不会被 reviewer 质疑为 inflation\n\n## 已做修改\n\n文件：`docs/paper/results.tex`\n\n| 位置 | 原值 | 新值 | 原因 |\n|------|------|------|------|\n| L57 p-value | $<10^{-12}$ | $7{\\times}10^{-7}$ | 原值是 Spearman p，非 Pearson p |\n| L58 p-value | $<10^{-10}$ | $7{\\times}10^{-42}$ | 使用实际 Pearson p |\n| Caption | 无计算说明 | 添加 confusion rate 定义、聚合方式、bootstrap 参数 | 让读者可复现 |\n| Caption p-threshold | $p < 10^{-10}$ | $p \\ll 0.001$ | 与修正后的 Few-NERD p 值一致 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

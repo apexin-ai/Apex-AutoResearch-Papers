@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "40a4343b59a9c4f19c63",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing r3n4 scope claims",
+  "task_key": "worker_writing_r3n4-scope-claims_20260516T011030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r3n4-scope-claims_20260516T011030_result.json",
+    "occurrence": 1,
+    "bytes": 1664,
+    "sha256": "eafeb0293c307790e53410f14de6b8be6feaab49f0de75c95375d1612ced34bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits confirmed. Here's the summary:\n\n**Checklist results:**\n\n| Check | Status |\n|---|---|\n| Every \"consistent\"/\"universal\" followed by scope | ✅ — abstract, introduction, method already scoped; fixed 1 unscoped instance in discussion.tex |\n| Introduction \"key insight\" scoped | ✅ — L14 already says \"the three model families and three decoding strategies studied\" |\n| Method scope disclaimer | ✅ — L26 already present |\n| Limitations: LoRA vs wild contamination gap | ✅ — **added** sentence in \"Controlled vs ecological setting\" paragraph |\n| No implied universal generalization | ✅ — fixed discussion.tex \"generalizes across model families\" and conclusion.tex \"across all settings\" |\n\n**Edits made (3 files, 3 changes):**\n\n1. **discussion.tex L5**: \"generalizes across model families\" → \"across the three studied model families\"; \"a measurable early warning\" → \"a candidate early-warning signal...within this experimental scope\"\n2. **conclusion.tex L9**: \"across all settings\" → \"across all nine model--strategy settings\"\n3. **conclusion.tex L13-14**: Added LoRA-vs-wild divergence sentence: *\"This protocol isolates the recursive depth variable but diverges from wild recursive contamination, where models are pretrained on mixed corpora containing prior-generation outputs at unknown proportions; the fingerprints we identify may attenuate or shift under such diffuse exposure.\"*\n\nR3-N4 scope-界定 action item updated to `done` in review_issues.yaml. The overall R3-N4 status remains `in_progress` because the pilot experiment (plan_015) is still running separately."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

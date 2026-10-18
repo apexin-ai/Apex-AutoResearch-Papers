@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7957fedee78129b9821d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260519T193014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260519T193014_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "a2573dc4c4f764d4949ecc41d9d5db483cbb32102c8fc6d28ea7c24c4746c65e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "768 words (including LaTeX commands). Clean on all banned words and AI-style patterns.\n\nRelated Work written to `docs/paper/sections/related_work.tex`. Six paragraphs covering hybrid architectures, linear recurrent models, underspecification, ensemble diversity, per-example analysis, and attention interpretability. All 27 citations drawn exclusively from `references.bib`. No banned words, no em-dashes, no -ing ending phrases, no paper stacking."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

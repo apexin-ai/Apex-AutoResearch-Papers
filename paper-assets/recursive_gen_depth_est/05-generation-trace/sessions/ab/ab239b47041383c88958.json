@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "ab239b47041383c88958",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code n2 deberta finetune",
+  "task_key": "worker_code_n2_deberta_finetune_20260515T112648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n2_deberta_finetune_20260515T112648.log",
+    "occurrence": 1,
+    "bytes": 915426,
+    "sha256": "53d65dfc2f96e5984e04c388259031f2066818f58d86069ce0ae4825bbb369b1"
+  },
+  "statistics": {
+    "messages": 495,
+    "user_turns": 0,
+    "tool_calls": 203,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 203,
+      "tool_result": 203,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 495,
+      "chunks": [
+        {
+          "path": "ab239b47041383c88958-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab239b47041383c88958-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab239b47041383c88958-part-0003.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ]
+}

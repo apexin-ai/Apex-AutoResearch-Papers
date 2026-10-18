@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9c6b4cef827091087dbb",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code llama budget sweep k4",
+  "task_key": "worker_code_llama-budget-sweep-k4_20260521T210604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-budget-sweep-k4_20260521T210604_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "3d905b8db71eb7e80023dc4064a46c85186830ba384c4443f011c32b39cdbfd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现：\n\n**|Bias|**: EC-HTE 在所有 budget 下都优于 Naive（crossover 在最小的 n_expert=100 就已存在）。\n\n**RMSE**: EC-HTE 在测试范围内始终不优于 Naive。根因清晰可见于 bias-variance 分解：\n- Naive 的方差恒定在 0.008（不依赖 expert budget）\n- EC-HTE 的方差从 n=100 的 0.176 降至 n=2000 的 0.024，但即使在 n=2000 仍略高于 Naive 的 0.016 MSE\n\n**结论**: 在 Llama K=4 真实 CM 下（delta_pi ≈ 0.137，中等异质性），方差膨胀始终主导 bias reduction。RMSE crossover 需要 n_expert > 2000，或更大的 CM 异质性才能实现。\n\n输出文件：\n- `budget_sweep_k4_results.csv` — 8000 行原始结果\n- `budget_sweep_k4_analysis.md` — 汇总表 + crossover 分析 + bias-variance 分解"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

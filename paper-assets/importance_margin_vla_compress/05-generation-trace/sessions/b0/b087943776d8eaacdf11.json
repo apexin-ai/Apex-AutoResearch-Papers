@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b087943776d8eaacdf11",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval pi05 random k085 object seed42 postfix",
+  "task_key": "worker_analysis_eval_pi05_random_k085_object_seed42_postfix_20260524T042601",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_pi05_random_k085_object_seed42_postfix_20260524T042601_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "e85cef58d16a7a974f6fd19fe8268079914bedb0b646b57906c0067eb6f26ac3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n```\ntotal_episodes: 500\ntotal_successes: 28\nsuccess_rate: 5.6%\nper_task: [6%, 2%, 2%, 2%, 12%, 8%, 4%, 8%, 4%, 8%]\nconclusion: negative — disruption peak 是真实现象，非 RNG bug\n```\n\n**关键发现：** Post-fix (5.6%) 与 pre-fix (5.0%) 基本一致，+0.6pp 在噪声范围内 (binomial SE ~1pp)。CPU RNG fix 没有改变结果。\n\n**这意味着：**\n- k=0.85 random pruning 在 Object suite 上的极端退化 (~94pp drop) 是**真实的 disruption peak**\n- L2-norm 同样 k=0.85 保持 99.0%，说明 importance-based 选择在此区间至关重要\n- Object suite 对 random token removal 的敏感度远超 Goal (52.4%) 和 Spatial (56.6%)\n\n产出已写入 `artifacts/eval_pi05_random_k085_object_postfix_results.md` 并注册到 manifest。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

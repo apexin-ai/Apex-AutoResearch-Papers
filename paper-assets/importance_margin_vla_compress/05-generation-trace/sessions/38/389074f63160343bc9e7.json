@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "389074f63160343bc9e7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 pi05 cliff batch",
+  "task_key": "worker_deploy_cqa1_pi05_cliff_batch_20260525T053430",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1_pi05_cliff_batch_20260525T053430_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "25fbf8dca396e090f671a86237d223258ebb6eaf1808b9f08476dec0b751da62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部成功启动，日志确认配置正确且已开始加载模型：\n\n| GPU | exp_id | suite | prune_mode | 状态 |\n|-----|--------|-------|------------|------|\n| 0 | eval_pi05_random_k085_goal_seed42_postfix_v3 | libero_goal | random | ✅ 加载模型中 |\n| 1 | eval_pi05_l2norm_k085_object_seed42_postfix_v2 | libero_object | l2norm | ✅ 加载模型中 |\n| 2 | eval_pi05_random_k085_long_seed42_postfix_v3 | libero_10 | random | ✅ 加载模型中 |\n| 3 | eval_pi05_l2norm_k085_long_seed42_postfix_v3 | libero_10 | l2norm | ✅ 加载模型中 |\n\n所有实验已正常启动，正在加载 π0.5 模型权重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

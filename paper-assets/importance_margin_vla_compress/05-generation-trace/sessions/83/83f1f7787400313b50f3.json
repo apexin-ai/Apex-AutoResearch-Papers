@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "83f1f7787400313b50f3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "cleanup westd 41074 disk",
+  "task_key": "worker_cleanup_westd-41074-disk_20260525T180952",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cleanup_westd-41074-disk_20260525T180952_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "eb33cc29ce64ec9aacb074b870dd276e1d8a4b13c0cf6e3fbb9761a46cd84e19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 249GB | 57GB |\n| 可用 | **1.9GB** | **194GB** |\n\n**释放 192GB**，清理内容：\n- HF datasets 处理缓存 (66GB)\n- HF lerobot hub 下载缓存 (33GB)\n- 未引用的模型缓存：SmolVLM2 backbone/Instruct, X-VLA, SmolVLA official (19GB)\n- 未引用的 openvla baseline 模型：libero-goal, libero-spatial, libero-10 (45GB)\n- Checkpoint 中间步骤：m64 的 step 70k/80k/90k, m96 的重复 step99999 (33GB)\n- pip cache, clip 模型等小文件 (~1GB)\n\n**保留不动**：`openvla-libero-object/` (pretrained 基座), `smolvla_base/`, `libero_data/`, 所有 results/eval_results/脚本, 两个实验的 final checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "920095c440d92b83f10c",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "ops goal long baseline debug",
+  "task_key": "worker_ops_goal_long_baseline_debug_20260522T121149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_goal_long_baseline_debug_20260522T121149.log",
+    "occurrence": 1,
+    "bytes": 2527385,
+    "sha256": "30e1692abfd513c72f86278d8752964a6d3a0320b024242ba619c0795ffaddae"
+  },
+  "statistics": {
+    "messages": 1021,
+    "user_turns": 2,
+    "tool_calls": 361,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 279,
+      "tool_call": 361,
+      "tool_result": 361,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 414,
+      "chunks": [
+        {
+          "path": "920095c440d92b83f10c-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "920095c440d92b83f10c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "920095c440d92b83f10c-part-0003.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 351,
+      "chunks": [
+        {
+          "path": "920095c440d92b83f10c-part-0003.json",
+          "message_count": 125
+        },
+        {
+          "path": "920095c440d92b83f10c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "920095c440d92b83f10c-part-0005.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "920095c440d92b83f10c-part-0005.json",
+          "message_count": 134
+        },
+        {
+          "path": "920095c440d92b83f10c-part-0006.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ]
+}

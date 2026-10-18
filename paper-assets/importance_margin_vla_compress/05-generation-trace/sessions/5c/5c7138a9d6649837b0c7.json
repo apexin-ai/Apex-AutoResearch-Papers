@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5c7138a9d6649837b0c7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check w41 running progress",
+  "task_key": "worker_check_w41_running_progress_20260528T111751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_w41_running_progress_20260528T111751_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "5b3171d260c0f8bc34f6d26e5377995970e43fafbeab1177bd2501e4de1bfe8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-41074 当前状态：**\n\n| 实验 | 状态 | 进度 | 预计完成 |\n|------|------|------|----------|\n| `pi05_random_k095_seed46` | **RUNNING** | T8 ep40/50 (440/500 = **88%**) | ~25min → **~19:40 UTC** |\n| `pi05_random_k05_seed46` | **RUNNING** | T8 ep20/50 (420/500 = **84%**) | ~35min → **~19:50 UTC** |\n| `pi05_l2norm_k085_seed46` | **COMPLETED** | SR=**78.6%** | 18:32 UTC 结束 |\n\n两个仍在跑的实验都在 Task 8，每个 task 约 15min，各剩约 1.5-2 个 task，预计 20:00 UTC 前完成。\n\n**westd-27271 无活跃实验**（最新日志停在 May 27）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

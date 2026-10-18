@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "5ab48cdbd5367c2ac4c3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check read diagnostic data",
+  "task_key": "worker_check_read-diagnostic-data_20260516T013022",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_read-diagnostic-data_20260516T013022_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "c008603dc492de2e5d5d98c92024c4acab1882588af700ef7ebcd996eb93a07b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### margin_distribution_stats.json\n\n```json\n{\n  \"n_vis\": 64,\n  \"n_samples\": 400,\n  \"mean\": -6.0494,\n  \"median\": -2.8366,\n  \"std\": 10.8459,\n  \"min\": -150.3705,\n  \"max\": 23.4338,\n  \"n_peaks\": 1,\n  \"peaks\": [\n    {\"score\": -0.7861, \"density\": 0.0948}\n  ],\n  \"per_sample_range_mean\": 70.4355\n}\n```\n\n### keep_ratio_sensitivity.json\n\n```json\n{\n  \"keep_ratios\": [0.3, 0.5, 0.7, 0.9],\n  \"acis_losses\": [0.0622, 0.0421, 0.0392, 0.0393],\n  \"random_losses\": [0.0687, 0.0424, 0.0398, 0.0402],\n  \"full_loss\": 0.0444,\n  \"n_batches\": 100\n}\n```\n\n关键观察：\n- Margin 分布单峰（peak 在 -0.79），均值 -6.05，范围极大（-150 ~ +23），std=10.85\n- ACIS 在所有 keep ratio 下均优于 random pruning，且在 0.7 和 0.9 时 loss（0.0392/0.0393）低于 full loss（0.0444），说明剪枝反而有正则化效果\n- 0.5 是性价比拐点：keep 50% tokens 时 ACIS loss 0.0421 已接近 full loss"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "keep_ratios": [
+                0.3,
+                0.5,
+                0.7,
+                0.9
+              ],
+              "acis_losses": [
+                0.0622,
+                0.0421,
+                0.0392,
+                0.0393
+              ],
+              "random_losses": [
+                0.0687,
+                0.0424,
+                0.0398,
+                0.0402
+              ],
+              "full_loss": 0.0444,
+              "n_batches": 100
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5eb412f18f50fbe115cc",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix experiments tex s42 update",
+  "task_key": "worker_fix_experiments-tex-s42-update_20260519T191447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_experiments-tex-s42-update_20260519T191447_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "68b0cf6da20aeef5affa04d3661d765c9824dfce5474d875bfea74e6804e4e23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n1. **Line 47**: `36\\%` ✓（原 `39\\%` 已修正）\n2. **Line 49**: Cross-scale Jaccard 句子已添加，数据正确（helped: 0.094/0.096, hurt: 0.090）✓\n3. **p-value 格式**: §4.2 无 p-value，无前导零问题 ✓\n4. **无 em-dash**: 全节仅用 hyphen 和 comma ✓\n5. **无 forbidden terms**: 无 paradox/co-evolution/paradoxical ✓\n6. **Appendix~E 引用**: 已加入，为首次引用 ✓\n7. **连贯性**: 新句子紧接 \"beyond the scope of this study\" 后，以 \"Despite the aggregate divergence\" 开头，自然承接上文的 scale 对比讨论 ✓\n\n修改行号清单：\n- **Line 47**: `39\\%` → `36\\%`\n- **Line 49**: 末尾追加 3 句 cross-scale Jaccard stability + Appendix E 引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

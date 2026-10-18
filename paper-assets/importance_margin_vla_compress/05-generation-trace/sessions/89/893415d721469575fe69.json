@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "893415d721469575fe69",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy cqa1 gpu3 openvla profiling",
+  "task_key": "worker_deploy_cqa1-gpu3-openvla-profiling_20260525T203134",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-gpu3-openvla-profiling_20260525T203134_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "259500f0b0f6e2c21e3a750849966e06d0f8c6393a0aec2e38429c2d32ba6d65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动。\n\n**状态确认：**\n- GPU3: 14891 MiB / 62% utilization — 模型已加载\n- 模型: OpenVLA 7.5B, **256 vision tokens**, RTX 4090 D\n- tmux session: `profiling_openvla_latency` 运行中\n- 日志: `~/runs/importance_margin_vla_compress/profiling_openvla_latency.log`\n- k=1.0 warmup 阶段已开始，单步 ~153ms（warmup step 3）\n\n**配置：**\n- 4 个 k 点: 1.0 / 0.9 / 0.7 / 0.5\n- 每个 k 点 220 步（20 warmup + 200 measure）\n- 统计: median + P5/P95\n- 输出: `results/profiling_latency_openvla.json`\n\n预计总运行时间约 15-20 分钟（880 步 × ~150ms）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

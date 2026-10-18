@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "33df2cc4eb2fcdc3ce21",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis v2 data inventory",
+  "task_key": "worker_analysis_v2-data-inventory_20260523T184626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2-data-inventory_20260523T184626_result.json",
+    "occurrence": 1,
+    "bytes": 346,
+    "sha256": "b210701ee02cfe927c8b9220f9ac7fab673ce3dc858b8c614789b5be44549439"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `docs/paper/data/DATA_INVENTORY.md`。18 个 JSON 文件按 Table 1 / Table 2 / Regime Transition / GAM / K_eff Distribution / Robustness / Supplementary 分组，每个文件包含内容类型、是否 V1→V2 corrected、关键数字摘要。末尾附 Section→Data File 交叉引用表和 V2 修正影响汇总表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5f212f699985558a27f6",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260521T022955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260521T022955_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "aa8775872731bb89248cb4e20b10a3cb36b1e92e89bac0f4a958e6ef77a56d02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已生成并注册（`art_20260521_5a4552`）。\n\n**结果**：\n- 路径：`artifacts/figures/paper/power_curve.pdf`（44KB，矢量 PDF）\n- 80% power 交叉点：Pairwise n≈54，Binarized Likert n≈172，Likert ATE n≈760\n- 在 typical evaluation scale (n=100-200) 范围内，pairwise 有 97-100% power，binarized 55-85%，Likert ATE 仅 17-30%\n\n**注意**：按给定 effect sizes 计算，binarized Likert 在 n≈172 即达 80% power，Likert ATE 在 n≈760 达到——而非 design notes 中预期的 n≈5000。如需让曲线更晚达到 80%，需调小 effect size（如 binarized p₁≈0.52 才需 n≈5000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

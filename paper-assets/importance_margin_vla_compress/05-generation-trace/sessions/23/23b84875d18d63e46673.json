@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23b84875d18d63e46673",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit westd41074 v3",
+  "task_key": "worker_ops_audit_westd41074_v3_20260522T074046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit_westd41074_v3_20260522T074046_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "83f8205a3e64cb568b1d062d6d447aa8a6072bc1ae21a3dd882f178c3541eec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "二次确认通过。两个 eval 都已占用 GPU 显存（各 10528 MiB）并开始推理。\n\n---\n\n## 审计结果\n\n| GPU | PID | 进程状态 | 显存 | 实验 | 行动 |\n|-----|-----|---------|------|------|------|\n| 0 | ~~132954~~ → **273012** | ✅ 运行中 (2m) | 10528 MiB | eval_pi05_random_k05_spatial_seed43 | 新部署 |\n| 1 | ~~121033/133121~~ → **273085** | ✅ 运行中 (2m) | 10528 MiB | eval_pi05_l2norm_k05_spatial_seed43 | 新部署 |\n| 2 | 68539 | ✅ 运行中 (2d4h) | 28555 MiB | train_openvla_sc_m96_seed42 (91.7%, ~4.6h) | 保持 |\n| 3 | 59671 | ✅ 运行中 (22h25m) | 27535 MiB | train_openvla_sc_m64_seed42_v6 (46.5%, ~24.8h) | 保持 |\n\n**空闲 GPU**: 0, 1 → 已部署\n\n**新部署**:\n- `eval_pi05_random_k05_spatial_seed43` → GPU 0, PID 273012, 二次确认 ✅ (10528 MiB, pruning 128/256 tokens)\n- `eval_pi05_l2norm_k05_spatial_seed43` → GPU 1, PID 273085, 二次确认 ✅ (10528 MiB, pruning 128/256 tokens)\n\n**收割 metrics**:\n\n| 实验 | Overall SR | Per-task SR (T0→T9) |\n|------|-----------|---------------------|\n| eval_pi05_l2norm_k0925_spatial_seed42 | **97.0%** | 100, 98, 98, 94, 92, 94, 100, 98, 100, 96 |\n| eval_pi05_l2norm_k0925_spatial_seed43 | **97.0%** | 100, 98, 100, 98, 90, 94, 100, 94, 98, 98 |\n| eval_pi05_random_k095_object_seed43 | **72.8%** | 70, 90, 78, 66, 54, 80, 82, 66, 78, 64 |\n\n**待部署队列** (GPU 0/1 完成后):\n3. eval_pi05_l2norm_k03_spatial_seed43\n4. eval_pi05_random_k03_spatial_seed43"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4a13ae88d62663e07b6f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval fullft 50k libero goal",
+  "task_key": "worker_eval_fullft_50k_libero_goal_20260516T204037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_fullft_50k_libero_goal_20260516T204037_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "ea4b1ab3e5555586b328bc521e28ea13f5d16a8800643a2d5ba5d756465cfd89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Full FT 50K libero_goal EVAL ===\nOverall SR: 42/100 (42%)\n95% Wilson CI: [32.8%, 51.8%]\n\nPer-task:\n  Task 0: 20% (2/10) -- open the middle drawer of the cabinet\n  Task 1: 70% (7/10) -- put the bowl on the stove\n  Task 2: 50% (5/10) -- put the wine bottle on top of the cabinet\n  Task 3: 10% (1/10) -- open the top drawer and put the bowl inside\n  Task 4: 60% (6/10) -- put the bowl on top of the cabinet\n  Task 5: 50% (5/10) -- push the plate to the front of the stove\n  Task 6: 20% (2/10) -- put the cream cheese in the bowl\n  Task 7: 80% (8/10) -- turn on the stove\n  Task 8: 50% (5/10) -- put the bowl on the plate\n  Task 9: 10% (1/10) -- put the wine bottle on the rack\n\nPer-task array: [2, 7, 5, 1, 6, 5, 2, 8, 5, 1]\n\nComparison:\n  libero_object  = 33%\n  libero_spatial = 34%\n  libero_goal    = 42%  ← highest of the three\n```\n\n**Observations:**\n- `libero_goal` 表现最好 (42% vs object 33% / spatial 34%)\n- Task 7 \"turn on the stove\" 表现最佳 (80%)，Task 3 和 Task 9 最差 (各 10%)\n- 所有 FAIL episodes 均 timeout 到 max_steps=300，无 crash\n- 日志末尾显示又启动了一次模型加载（可能是脚本内部第二阶段），进程可能仍在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

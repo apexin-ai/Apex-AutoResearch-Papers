@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "91b60693b2bc45a7d1bc",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp cross embedding sensitivity",
+  "task_key": "worker_exp_cross-embedding-sensitivity_20260516T050545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cross-embedding-sensitivity_20260516T050545_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "3877f0d2dd52272b034df36d5240f6c4fb9aedb7e8a55461cd93d185478fc4d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**Few-NERD（pairwise SCS vs confusion counts, n=1953 pairs）**\n| Embedding | Pearson r | p-value | Spearman ρ | p-value |\n|-----------|-----------|---------|------------|---------|\n| Qwen3 | 0.138 | 1.0e-9 | 0.168 | 7.3e-14 |\n| MiniLM | 0.172 | 2.0e-14 | 0.144 | 1.7e-10 |\n\n两种 embedding 均高度显著，方向一致。信号对 embedding 选择鲁棒。\n\n**FewRel BCS-accuracy regression（27 count_8 batches）**\n| Embedding | slope | r | p |\n|-----------|-------|------|------|\n| MiniLM | -0.485 | -0.398 | 0.040 |\n| Qwen3 | -0.542 | -0.185 | 0.356 |\n\nQwen3 方向一致（负斜率）但不显著，原因是 BCS range 被压缩（std=0.034 vs MiniLM std=0.081）。Qwen3 的 causal-LM embeddings 对短文本标签的 cosine similarity 几乎均匀分布在 0.82-0.95 之间，缺乏区分力。\n\n**结论**：SCS-confusion 信号对 embedding 选择鲁棒（方向一致）。MiniLM sentence-transformer 是 BCS 计算的合适编码器（专门训练做语义相似度），Qwen3 因 range compression 不适合此用途。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

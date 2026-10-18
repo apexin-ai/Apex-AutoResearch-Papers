@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a04c2de8e8449d00047d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh check fewrel r2 status",
+  "task_key": "worker_ssh_check-fewrel-r2-status_20260515T165333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-fewrel-r2-status_20260515T165333_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "d33a04a2b8a89a7d3fc6b2d48750fb2b9cdf6ab8eafba9d47c6435c17e52fdf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态\n- **PID 299625: DEAD**\n- tmux sessions: 无法通过 ssh_read_only 查询（命令被屏蔽）\n- GPU 使用: 无（无进程占用 GPU）\n\n## 日志\n最后输出显示 **两次连续崩溃**，都是 vLLM 初始化失败：\n\n1. **第一次**：主进程直接调 `LLM()` 加载 Qwen3-32B-FP8 → vLLM EngineCore 初始化失败 → `RuntimeError: Engine core initialization failed`\n2. **第二次**：主进程 fallback 到 subprocess 调自己 `--stage extract` → 子进程同样在 vLLM 初始化阶段被 **SIGKILL (9)** 杀掉\n\n**根因**：加载 Qwen3-32B-FP8 时，模型 checkpoint 32GB + vLLM KV cache (`gpu_memory_utilization=0.95`) 超出单卡显存。EngineCore 子进程在加载 safetensors shard 1/7 (14%) 时就被 OOM Killer 杀了（SIGKILL）。\n\n## 脚本路径确认\n- `scripts/run_fewrel_40rel.sh`: **存在** (624 bytes)\n- `run_fewrel_40rel.py`: **不存在**\n- `src/run_fewrel_40rel.py`: **存在** (16904 bytes)\n\n## 结论\n\n实验已崩溃，原因是 **Qwen3-32B-FP8 在单卡上 OOM**。需要：\n- 降低 `gpu_memory_utilization`（但 32B FP8 模型本身就需要 ~32GB，单张 A6000 48GB 勉强够，KV cache 空间不足）\n- 或改用更小模型 / 降低 `max_model_len`（当前 4096）\n- 或使用多卡 tensor parallel"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94a2e460db23f1155978",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14.md",
+    "occurrence": 1,
+    "bytes": 3456,
+    "sha256": "f68ddd168987f5781a198d1f9424c7b933609220edc44258f74ce8bf920a6b6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T18:24:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- AutoDL 代理下 `load_dataset(\"allenai/c4\")` 会静默挂死，必须用 FineWeb 或预下载\n- EDD 报告必须附 bootstrap CI + p-value（D027）\n- Cohen's d 用 d_z（差值 SD 做分母），不用 pooled SD\n- 模型下载与训练不得并发操作同一目录\n- submit_training_job 命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && python train.py`），不要假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，工作目录 /root/autodl-tmp/recursive_gen_depth_est\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型路径：/root/autodl-tmp/recursive_gen_depth_est/data/（含 GPT-2 XL / OLMo-1B / Pythia-1.4B 各深度生成数据）\n- HF cache：/root/autodl-tmp/.hf_cache\n- W&B project：recursive_gen_depth_est（entity 从 project config 加载）\n- 活跃进程：cross_scale_llama3_base_001 (PID 561301, cuda:0, RUNNING)\n- Cron 监控：cross_scale_llama3_base_001 活跃（reconcile 确认 still running）\n\n### 3. 📊 当前状态\n- **刚触发**: cross_model_reverse_chain_001 (cuda:1) 进程正常退出，状态 ANALYZING\n- **已派 Worker**: `worker_analysis_cross_model_reverse_chain_001_20260516T142302` 正在分析该实验（读日志 + W&B metrics + 判断 conclusion + 更新 registry）\n- **仍在跑**: cross_scale_llama3_base_001 (cuda:0, PID 561301) — Llama-3.1-8B base cross-scale probe\n- **等待回调**: 上述分析 Worker 完成后需要处理结果（on-worker-done + on-experiment-done 后续流程）\n- **cuda:1 空闲**: reverse_chain 跑完后 cuda:1 已释放，分析 Worker 完成后应安排下一个实验\n\n### 4. 📋 待办（条件触发式）\n- Worker `analysis_cross_model_reverse_chain_001` 回调到达 → 读 conclusion：\n  - success → 更新 report.md，向 Director 汇报（reverse chain 验证 N4 cross-model claim），安排 cuda:1 下一个实验\n  - negative → 按 red-section 产 Framing 调整提案，向 Director 汇报，不动 paper\n  - failed → 按 on-experiment-failed skill 诊断\n- cross_scale_llama3_base_001 cron 回调 → 同样走 on-experiment-done 流程\n- cuda:1 空闲 → 查 experiment_plan.yaml 下一个待跑实验（可能是 wild_data_calibration_005 FineWeb 替代 C4，ROADMAP 提到准备中）\n\n### 5. 🎯 战略上下文\n- **项目阶段**: Phase 2 写作 + ARR 审稿，DDL = EMNLP ARR May 25（剩 9 天）\n- **核心贡献**: Depth Degradation Atlas + EDD metric + feature universality\n- **3×3 矩阵已 9/9 完成**，当前实验是补充性的（cross-scale + cross-model reverse chain）用于加强 generalization claim\n- **D030 决策**: R4 审稿回应策略是全面降级 overclaiming + 补 Llama-3.1-8B base 数据\n- **cross_model_reverse_chain_001 的意义**: 验证 reverse chain (GPT2XL→OLMo→Pythia) 下 depth signal 仍可迁移，直接支撑 N4 cross-model generalization claim。已有正向证据: cross_model_loo 均值 66.4%\n- **易错点**: \n  - EDD 声明已降级（D026/D027）——Pythia 显著、OLMo 边际、GPT-2 XL 不显著，不能说\"三模型均显著\"\n  - cross-strategy claim 已被 D021 推翻降级为 RF-only，不要再用 LR z-score 做 cross-strategy 论证\n  - DCOL 路线已彻底放弃（5 个版本全失败），不要再尝试\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

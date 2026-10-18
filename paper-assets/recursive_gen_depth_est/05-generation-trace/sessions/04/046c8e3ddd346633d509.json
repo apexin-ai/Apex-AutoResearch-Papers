@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "046c8e3ddd346633d509",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code plan 025 learned estimator",
+  "task_key": "worker_code_plan_025_learned_estimator_20260517T155600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_025_learned_estimator_20260517T155600.log",
+    "occurrence": 1,
+    "bytes": 873561,
+    "sha256": "bcfcf77f445e188a24c18fc9ce9772c7a7717be18c51cc90dbb3301f637fc1ea"
+  },
+  "statistics": {
+    "messages": 545,
+    "user_turns": 0,
+    "tool_calls": 224,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 93,
+      "tool_call": 224,
+      "tool_result": 224,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 545,
+      "chunks": [
+        {
+          "path": "046c8e3ddd346633d509-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "046c8e3ddd346633d509-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "046c8e3ddd346633d509-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "046c8e3ddd346633d509-part-0004.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ]
+}

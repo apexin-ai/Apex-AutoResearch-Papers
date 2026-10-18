@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "043cab10443f8406aab5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "diagnose dcol deberta 002 oom",
+  "task_key": "worker_diagnose_dcol_deberta_002_oom_20260514T224140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_dcol_deberta_002_oom_20260514T224140_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "0d2635120453d160747a68aa201540a6c6dd69311f2dac2715e875f96d2de33c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。总结：\n\n- **OOM 根因**: dcol_deberta_002 (57GB) 与 gpt2xl_temp09 extract_features (9GB) 同时占用 GPU 0，显存竞争导致 OOM。**不是代码 bug，不是残留进程**——PID 193689 就是 dcol_deberta_002 本身。\n- **GPU 0 已清空**: 所有进程已自行退出，当前 0MiB / 97887MiB，完全空闲。GPU 1 上 olmo_temp09_001 未受影响。\n- **代码和数据完好**: `dcol_trainer.py` 和 `features_all.jsonl` 均正常。\n- **可以安全重试 dcol_deberta_002**，建议确保 GPU 0 独占或适当降低 batch_size。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

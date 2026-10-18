@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b8719283b57e13f402a0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "cleanup gpu collision fix 20260522",
+  "task_key": "worker_cleanup_gpu_collision_fix_20260522_20260522T230218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cleanup_gpu_collision_fix_20260522_20260522T230218_result.json",
+    "occurrence": 1,
+    "bytes": 2118,
+    "sha256": "acd06295e4f292e647bb962b72651046df3b470a2f2d71a95ced90bb85dd689a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成报告\n\n### 任务 1: westd-41074:cuda:2\n- **无需 kill** — cuda:2 上已无进程（重复实验已自行结束），GPU 空闲\n- **已部署** `eval_pi05_random_k05_long_seed43_v2`\n  - tmux session: `eval_pi05_random_k05_long_seed43_v2`\n  - PID: **192839**（正在加载模型，376% CPU，尚未上 GPU，属正常加载阶段）\n  - Registry 已更新（server=westd-41074, CUDA_VISIBLE_DEVICES=2）\n\n### 任务 2: westd-38929:cuda:3\n- **Killed PID 236139** — scan worker 残留的 `random --keep_ratio 0.5 --seed 43`（06:54 启动，比正确实验早 3 分钟）\n- GPU 3 现在只剩 **PID 239588**（`random --keep_ratio 0.3 --seed 43`），10420→9709MiB，运行正常\n- GPU 3 已从 20375MiB 降至 9709MiB，释放了 ~10GB\n\n### 任务 3: westd-27271:cuda:0\n- **L2norm k=0.3 Long s42**: PID 912230，GPU 0，10190MiB，正常运行中（Task 2 SR=92%，进展到 46%）\n- **X-VLA Random k=0.95 Object**: **已消失** — PID 941409 不存在，无 tmux session，无 log 文件（`xvla_random_k095_object` 不在 logs 目录中）。该实验很可能在启动时就崩溃了，没有产生任何输出。\n- GPU 0 上只有 L2norm 一个实验在跑\n- GPU 1: PID 912303（eval_l2norm_k05_long_s43），正常运行\n\n### nvidia-smi 摘要\n\n| 服务器 | GPU | 进程 | 显存 | 状态 |\n|--------|-----|------|------|------|\n| westd-41074 | 0 | PID 185720 | 10737MiB | 运行中 |\n| westd-41074 | 1 | PID 149709 | 10767MiB | 运行中 |\n| westd-41074 | 2 | PID 192839 | 加载中 | **新部署** |\n| westd-41074 | 3 | PID 59671 | 27526MiB | 运行中 |\n| westd-38929 | 0 | PID 209581 | 10743MiB | 运行中 |\n| westd-38929 | 1 | PID 84327 | 10190MiB | 运行中 |\n| westd-38929 | 2 | PID 84491 | 10401MiB | 运行中 |\n| westd-38929 | 3 | PID 239588 | 9700MiB | 运行中（已清理残留） |\n| westd-27271 | 0 | PID 912230 | 10190MiB | 运行中（仅 L2norm） |\n| westd-27271 | 1 | PID 912303 | 10343MiB | 运行中 |\n\n**需要你决定**: westd-27271:cuda:0 上 X-VLA Object 实验需要重新部署吗？GPU 0 还有 ~87GB 空余。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

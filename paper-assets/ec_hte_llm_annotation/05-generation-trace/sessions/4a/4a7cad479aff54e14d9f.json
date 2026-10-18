@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7cad479aff54e14d9f",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "research second dataset v2",
+  "task_key": "worker_research_second-dataset-v2_20260522T044026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_second-dataset-v2_20260522T044026.log",
+    "occurrence": 1,
+    "bytes": 1266737,
+    "sha256": "77d5bdd705b5907bd402fa7ac7f5d4656eabb3ba384079699b448285ce573164"
+  },
+  "statistics": {
+    "messages": 684,
+    "user_turns": 1,
+    "tool_calls": 244,
+    "roles": {
+      "log": 1,
+      "system": 48,
+      "record": 1,
+      "assistant": 144,
+      "tool_call": 244,
+      "tool_result": 244,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 440,
+      "chunks": [
+        {
+          "path": "4a7cad479aff54e14d9f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a7cad479aff54e14d9f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4a7cad479aff54e14d9f-part-0003.json",
+          "message_count": 80
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "4a7cad479aff54e14d9f-part-0003.json",
+          "message_count": 100
+        },
+        {
+          "path": "4a7cad479aff54e14d9f-part-0004.json",
+          "message_count": 144
+        }
+      ]
+    }
+  ]
+}

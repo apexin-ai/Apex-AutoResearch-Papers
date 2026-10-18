@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3e42ff4612bcee8495dd",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 005 gla eval",
+  "task_key": "worker_analysis_exp-005-gla-eval_20260522T154011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-gla-eval_20260522T154011_result.json",
+    "occurrence": 1,
+    "bytes": 1653,
+    "sha256": "b6e7662dfa57934e5a587487ccebee4d17ae27ffac4719d00b3b46302b9a9df1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果如下：\n\n```\nGLA hybrid-3-1 (340M) eval 结果:\n- 评估状态: ❌ 失败\n- 失败原因: gla_eval.log 中 pretrained='' (空字符串)，模型路径未传入 lm_eval\n- lambada_openai: 无结果\n- arc_easy: 无结果\n- per-example log_samples: 不存在（无结果目录 GLA_hybrid-3-1/）\n- 模型路径: /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/\n- 模型文件: ✅ 存在（model.safetensors + config.json 等完整）\n```\n\n**问题分析：**\n\n1. `gla_eval.log` 不是由 `run_eval_p1.sh` 产生的——该脚本输出到 `eval_p1.log`，但 `eval_p1.log` 不存在，说明该脚本从未执行。\n\n2. `gla_eval.log` 由某个单独的命令产生，该命令传了空的 `pretrained=''`，导致 HuggingFace 报 `HFValidationError: Repo id must use alphanumeric chars`。\n\n3. `priority1_v4.log` 也失败了——卡在下载 DeltaNet 模型时网络断开（下载了 97MB/1.3GB 后连接被对端关闭）。\n\n4. **模型本身没问题**，`340M-20B-GLA-hybrid-3-1/` 目录下 safetensors、config 等文件齐全，可以直接评估。\n\n**需要重新运行评估。** 正确的命令应该是运行 `run_eval_p1.sh`（它的路径拼接逻辑是对的），或者手动执行：\n\n```bash\npython -m lm_eval --model hf \\\n  --model_args pretrained=/root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1,trust_remote_code=True \\\n  --tasks lambada_openai,arc_easy --device cuda:0 --batch_size auto --log_samples \\\n  --output_path /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/\n```\n\n要我现在重新运行 GLA 评估吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

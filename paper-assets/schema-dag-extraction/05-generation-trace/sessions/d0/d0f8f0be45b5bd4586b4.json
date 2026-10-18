@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f8f0be45b5bd4586b4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis exp006 interaction 2x2",
+  "task_key": "worker_analysis_exp006_interaction_2x2_20260515T183441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp006_interaction_2x2_20260515T183441_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "f9d9e834fd314e99aefff9ed2ef87d9d82fe63904cc43f1aa7d89a59dac1f151"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n## exp006_interaction_2x2 结果 — **Conclusion: negative**\n\n### 2×2 Cell Means (F1)\n\n| | low BCS | high BCS |\n|---|---|---|\n| **low count (6 types)** | **0.324** ± 0.106 | **0.313** ± 0.099 |\n| **high count (22 types)** | **0.325** ± 0.070 | **0.277** ± 0.059 |\n\n### 主效应\n- Count: **-0.018** (高 count 略差)\n- BCS: **-0.029** (高 confusability 略差)\n\n### 交互效应\n- BCS effect @ low count: **-0.011**\n- BCS effect @ high count: **-0.048**\n- 交互项: **-0.036** — 方向符合 multiplicative（高 count 放大了 BCS 的负效应）\n- **z = -0.667, p = 0.505 — 不显著**\n\n交互方向虽然与假设一致，但效应量小（~3.6% F1）且 batch 间方差大，统计功效不足以拒绝 additive null。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3ddfaeb71026333ebadd",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops westd connectivity check",
+  "task_key": "worker_ops_westd_connectivity_check_20260519T072057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_connectivity_check_20260519T072057_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "4b5accd951e2808f7d80a0ba3977de0dd2697c7df0916c104543bd81e41508ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-48862 状态\n\n### 连通性: ✅\n- uptime: 186 days\n\n### GPU\n- 型号: NVIDIA RTX PRO 6000 Blackwell\n- 数量: 2\n- 空闲: ✅（无进程占用）\n- 显存: 0 / 97887 MiB × 2 (共 ~192 GB，完全空闲)\n\n### 磁盘\n- 根分区: 25G / 30G (81% used, **5.9 GB 可用**)\n- 数据分区 (/usr/bin/nvidia-smi 挂载点): 418G / 879G (51% used, 417 GB 可用)\n- autodl-pub 共享盘: 1.6T / 7.3T (24% used)\n\n### 项目代码: ✅\n- `/root/autodl-tmp/recursive_gen_depth_est/` 存在\n- scripts/: 16 文件（含训练脚本、baseline 脚本等）\n- data/: 13 子目录（gpt2xl, olmo, pythia 等多模型多策略数据）\n\n### Python 环境: ✅\n| 包 | 版本 |\n|---|---|\n| torch | 2.11.0+cu128 |\n| transformers | 5.8.1 |\n| scikit-learn | 1.7.2 |\n| numpy | 2.2.6 |\n| pandas | 2.3.3 |\n\n### 结论\nwestd-48862 可用于 accumulation 实验: **✅**\n- GPT-2 XL ~6GB 显存需求，单卡 98GB 显存绰绰有余\n- 两张卡完全空闲\n- ⚠️ 根分区仅剩 5.9GB，注意不要往 `/` 写大文件，数据和 checkpoint 应放 `/root/autodl-tmp/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

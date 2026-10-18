@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b318b479a96c7025430",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis docred bcs range matched",
+  "task_key": "worker_analysis_docred_bcs_range_matched_20260519T170948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_bcs_range_matched_20260519T170948_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "d6f9a3ddc9ca214e20cbf0c26e0f91ba31447fa9c3f3266f8b36909050168741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清晰：\n\n```\n=== Before Range Matching ===\ncount_16: n=55, BCS range=[0.380, 0.757], spread=0.377\n  BCS effect = 15.95pp, ρ = -0.7623, slope = -0.7317\ncount_32: n=55, BCS range=[0.432, 0.695], spread=0.262\n  BCS effect = 8.44pp,  ρ = -0.6929, slope = -0.6296\nInteraction = 7.52pp, 95% CI: [1.49pp, 12.83pp]\n\n=== After Range Matching (BCS ∈ [0.4325, 0.6950]) ===\ncount_16: n=29, BCS range=[0.478, 0.690], spread=0.212\n  BCS effect = 9.37pp, ρ = -0.5958, slope = -1.3087\ncount_32: n=55, BCS range=[0.432, 0.695], spread=0.262\n  BCS effect = 8.44pp, ρ = -0.6929, slope = -0.6296\nInteraction = 0.93pp, 95% CI: [-7.13pp, 7.44pp]\n\n=== Conclusion ===\nInteraction change: 7.52pp → 0.93pp (Δ = -6.59pp)\n```\n\n**Reviewer 的担忧成立。** Range matching 后 interaction 从 7.52pp 降到 0.93pp（几乎为零），bootstrap CI 跨零 [-7.13pp, 7.44pp]。原始的 sub-additive interaction 基本是 BCS range restriction 的 artifact——count_16 有更宽的 BCS range（0.377 vs 0.262），使得 median split 能捕获更大的 BCS effect，而非 count 本身产生的调节效应。\n\n值得注意的是 range-matched 后 count_16 的线性斜率（-1.31）反而比 count_32（-0.63）更陡，说明在可比 BCS 范围内，count_16 对 BCS 的敏感度更高而非更低。但这个差异的解读需谨慎，因为 count_16 只剩 29 个 batches（主要是 random 组）。\n\n结果已保存到 `/root/schema-dag-extraction/analysis/bcs_range_matched_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

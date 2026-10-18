@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "33e5376bd68415a3ca50",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis boolq confidence margin",
+  "task_key": "worker_analysis_boolq-confidence-margin_20260520T144742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_boolq-confidence-margin_20260520T144742_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "4d5de6ee27d930deff0fc92f60ea8a15dcc44bf0a5a0cc434a79a55af0cd2376"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总表：\n\n### Control 1: hurt vs stayed-right (within pure-correct)\n\n| Arch | n(hurt) | n(SR) | hurt_mean | SR_mean | Cohen's d | p | hypothesis |\n|------|---------|-------|-----------|---------|-----------|---|------------|\n| GDN | 441 | 1471 | 3.003 | 2.979 | 0.041 | 0.461 | supported (n.s.) |\n| RetNet | 648 | 1351 | 3.084 | 3.080 | 0.006 | 0.956 | supported (n.s.) |\n| HGRN2 | 488 | 1388 | 2.988 | 3.061 | −0.098 | 0.154 | **not supported** |\n\n### Control 2: helped vs stayed-wrong (within pure-wrong)\n\n| Arch | n(helped) | n(SW) | helped_mean | SW_mean | Cohen's d | p | hypothesis |\n|------|-----------|-------|-------------|---------|-----------|---|------------|\n| GDN | 605 | 753 | 3.505 | 3.732 | −0.357 | **1.68e-10** | **supported** |\n| RetNet | 550 | 721 | 3.592 | 3.696 | −0.158 | 0.054 | supported (marginal) |\n| HGRN2 | 691 | 703 | 3.554 | 3.779 | −0.312 | **5.61e-09** | **supported** |\n\n**要点**：\n- **C1 全部不显著** — BoolQ 中 pure-correct 样本被 hurt 与否与 pure confidence 无关\n- **C2 GDN/HGRN2 高度显著**（小到中等效应量 d≈0.31–0.36），helped 样本的 pure confidence 更低，符合\"低信心样本更易被 hybrid 修正\"的假设\n- RetNet C2 borderline (p=0.054)，方向一致但效应量较小 (d=−0.16)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6e18cb02be77ea10c6e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis bayesian equivalence bf01",
+  "task_key": "worker_analysis_bayesian_equivalence_bf01_20260522T015858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bayesian_equivalence_bf01_20260522T015858_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "f01af6783061880dea6829c2835a1330301e3cee82395cddb6f4e99f7853e7c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| | BF₀₁ | 解读 |\n|---|---|---|\n| σ=1pp | 1.19 | anecdotal |\n| σ=2pp | 1.40 | anecdotal |\n| **σ=3pp** | **1.62** | **anecdotal** |\n| σ=5pp | 2.08 | anecdotal |\n\n- **Observed interaction**: −0.48 pp（magnitude 符合预期 ~0.47 pp）\n- **SE**: 4.27 pp（每 cell 仅 12–13 个 batch，精度不足）\n- **t(46) = −0.112**\n\nBF₀₁ 全部 < 3，无法达到 \"moderate evidence for null\" 的门槛。根本原因是 2×2 median-split 后每个 cell 只有 12–13 个 batch，SE 相对于 effect size 太大（4.27 vs 0.48），数据信息量不足以让 Bayes factor 区分 H₀ 和 H₁。\n\nBF₀₁ < 3，LaTeX 未生成。这个结果与 TOST p=0.209 一致——两种方法都指向同一个结论：**当前样本量下无法给出 interaction 是否为零的确定性结论**，但方向上数据略偏向 null（BF₀₁ > 1）。\n\n脚本和 JSON 已保存到 artifacts 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

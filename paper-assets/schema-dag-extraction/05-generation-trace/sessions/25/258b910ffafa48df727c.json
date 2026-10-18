@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "258b910ffafa48df727c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp012 multi model prep",
+  "task_key": "worker_code_exp012-multi-model-prep_20260515T131112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012-multi-model-prep_20260515T131112_result.json",
+    "occurrence": 1,
+    "bytes": 1815,
+    "sha256": "bb11468d5408ceb5602556ed19aded88eacf9f0ce00b2c738c079c93689d4e1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改验证通过。\n\n---\n\n## 产出总结\n\n### 模型选择：LLaMA-3.3-70B-Instruct-FP8\n\n| 维度 | 详情 |\n|------|------|\n| 模型 | `meta-llama/Llama-3.3-70B-Instruct` (FP8, modelopt quantized) |\n| 选择理由 | (a) 不同模型家族（Meta LLaMA vs Alibaba Qwen），满足差异化验证要求；(b) 已下载在服务器 68GB/15 shards；(c) 指令遵循能力与 Qwen2.5-72B 基准持平；(d) Qwen3-72B 未发布，不存在该选项 |\n| FP8 方案 | W8A8 FP8 + FP8 KV cache（`hf_quant_config.json` 确认），vLLM 原生支持 |\n| VRAM 预估 | ~68GB 模型权重 + KV cache，98GB VRAM 充裕（`gpu_memory_utilization=0.90` 留约 10GB headroom） |\n| vLLM 兼容 | `LlamaForCausalLM` 架构，vLLM 一等公民支持，有官方 [Quick Start Recipe](https://docs.vllm.ai/projects/recipes/en/latest/Llama/Llama3.3-70B.html) |\n\n### 代码修改\n\n**`src/run_experiment.py`**：\n- 新增 `--model_name` 参数（默认从 model_path 推导）\n- 新增 `--gpu_memory_utilization` 参数（默认 0.95）\n- 输出文件名包含 model_name（`eval_fewnerd_exp1_llama-3.3-70b-fp8.json`）\n- `gpu_memory_utilization` 透传至 `run_extraction()`\n- Help text 泛化（移除 Qwen3 硬引用）\n\n**`src/run_extraction.py`**：\n- `run_extraction()` 新增 `gpu_memory_utilization` 参数\n- `LLM()` 初始化使用参数化 `gpu_memory_utilization`\n- Docstring 泛化\n\n**`scripts/run_exp012_llama.sh`**：\n- 添加 `MODEL_NAME=llama-3.3-70b-fp8` 和 `--model_name` 传参\n- `gpu_memory_utilization=0.90`（70B 模型留更多 headroom）\n\n### 运行方式\n\n```bash\n# 在服务器上\nbash scripts/run_exp012_llama.sh\n```\n\n输出文件将在 `artifacts/exp012/` 下，以 `*_llama-3.3-70b-fp8.json` 命名，与 Qwen3-32B 结果可直接对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

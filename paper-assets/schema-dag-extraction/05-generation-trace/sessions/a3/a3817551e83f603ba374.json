@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a3817551e83f603ba374",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp012 llama 8b r2",
+  "task_key": "worker_code_exp012_llama_8b_r2_20260515T170630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012_llama_8b_r2_20260515T170630_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "ae0c6b0f7d4a835c938124040e30d9c5242ec5c0f1b37bd2c38141905746d09d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp1 is at 19/94 batches. I'll check back in ~4.5 minutes to track progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

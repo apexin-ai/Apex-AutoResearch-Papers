@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "df9d54783cc23cbc943d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp docred pilot",
+  "task_key": "worker_code_exp_docred_pilot_20260516T040940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_docred_pilot_20260516T040940_result.json",
+    "occurrence": 1,
+    "bytes": 1443,
+    "sha256": "e85e2eeb3fde6e5c8ca3260c3f89e110482ab6e65c72e5535c1216f5c534177a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pilot complete. Here's the summary:\n\n---\n\n## DocRED Confusability Pilot — Complete\n\n**Experiment**: `exp_docred_confusability` | **Status**: DONE (success)\n\n### Results (Count Curve)\n\n| Count | Mean Accuracy | Batches | BCS Range |\n|-------|-------------|---------|-----------|\n| 4 | **75.0%** | 100%, 55%, 70% | 0.58–0.86 |\n| 16 | **56.7%** | 51.3%, 64.9%, 53.8% | 0.77–0.84 |\n| 64 | **42.6%** | 44.0%, 39.1%, 44.6% | 0.92–0.99 |\n\n### Key Findings\n- Clear monotone count→accuracy degradation on DocRED (96 relation types)\n- Pattern matches FewRel (80 types): more candidate types = lower accuracy\n- Within count_4, BCS correlates with accuracy (BCS=0.58 → 100% vs BCS=0.86 → 55%)\n- All accuracies well above random baseline (1/count), pipeline works correctly\n- Total runtime: ~80s (1240 inferences), model: Qwen3-32B-FP8\n\n### Artifacts on Server (`cqa1-38874:/root/schema-dag-extraction/artifacts/exp_docred_confusability/`)\n- `scs_matrix.npy` — 96×96 SCS matrix\n- `scs_matrix.pt` — PyTorch format with type_names/type_to_idx\n- `pilot_results.json` — structured results\n- `predictions.json` — full per-sample predictions (1240 entries)\n- `eval_results.json` — per-batch evaluation\n\n### Code\n- `src/run_docred.py` — full pipeline (data loading, SCS, batch construction, vLLM inference, evaluation)\n- Data: `data/docred/{dev.json, train_annotated.json, rel_info.json}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

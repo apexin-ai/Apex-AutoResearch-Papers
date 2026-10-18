@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b20df157abb6fc6faa75",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops gpu probe kill deploy s47",
+  "task_key": "worker_ops_gpu_probe_kill_deploy_s47_20260529T035751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu_probe_kill_deploy_s47_20260529T035751_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "e690abf0ec540f0a691a95146665d9299b3a695a2ef928da0428c20236d35227"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30 秒等待已完成，但验证已在前面提前执行过了，结果确认进程存活正常。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

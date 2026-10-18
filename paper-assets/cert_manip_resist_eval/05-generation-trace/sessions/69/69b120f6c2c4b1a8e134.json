@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "69b120f6c2c4b1a8e134",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper framework figure",
+  "task_key": "worker_paper_framework-figure_20260523T004646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_framework-figure_20260523T004646_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "83f0ec78f0acdd8efa12c87bfa2afd44ebccf74ec2e6f4c86a118b765b413f91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并复制到本地。\n\n**输出文件**：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/fig_framework.pdf` (49KB)\n- `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/figures/fig_framework.png` (207KB)\n\n**布局**：4 个模块从左到右，箭头连接：\n- **Panel Construction** (蓝) — 15 judges 按 5 family 着色，select K → panel + K_eff\n- **Adversary Model** (红) — adaptive adversary + 6 attack types (2×3 grid)\n- **Vulnerability Metrics** (灰) — η_max (红底) + K_eff (蓝底) + log-linear regression\n- **Aggregation** (绿) — 4 methods 从浅到深表示 robustness 梯度\n\n尺寸 7.5×3.8 inches，300 DPI，适合 `\\textwidth` 双栏排版。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

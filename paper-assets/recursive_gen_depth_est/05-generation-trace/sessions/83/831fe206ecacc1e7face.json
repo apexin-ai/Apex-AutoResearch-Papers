@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "831fe206ecacc1e7face",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "diagnose qwen25 14b scale 002 failure",
+  "task_key": "worker_diagnose_qwen25_14b_scale_002_failure_20260518T181615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen25_14b_scale_002_failure_20260518T181615_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "f6decd4913ae0416870f55726ed884e38dbbb9687f1e547ede66e2e19de4eb20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 失败原因\n**注册实验 `qwen25_14b_scale_002` 的 EXIT_CODE=1 来自模型下载阶段**，不是实验本身。\n\n具体错误：下载 `model-00005-of-00008.safetensors` 时，aria2c 遇到 SSL/TLS handshake failure（`The TLS connection was non-properly terminated`），hf-mirror.com CDN 连接断开。脚本有 `set -e`，download 子脚本返回非零码后整个 pipeline 立即退出。\n\n### 失败阶段\n**模型下载阶段**（第一步），Python 实验脚本从未执行。\n\n### 实验实际已完成\n好消息：实验**后来被成功重跑了**（可能是手动或另一个 job）。内部日志 `logs/qwen25_14b_scale_validation.log` 显示：\n- 模型全部 8 个 shards 下载完成（时间戳 May 17 19:37 ~ May 18 01:25）\n- Python pipeline 跑了 **24.8 小时**，于 May 19 02:12 完成\n- 结果已保存到 `results/qwen25_14b_scale/summary.json`\n\n### 实验结果摘要\n| 指标 | 值 |\n|------|-----|\n| RF 4-class acc | 0.5405 [0.5337, 0.5474] |\n| LR 4-class acc | 0.4881 [0.4815, 0.4949] |\n| RF 3-class (no d0) acc | 0.5739 [0.5659, 0.5811] |\n| d0v1 AUC | 0.6432 |\n| d1v2 AUC | 0.7133 |\n| d2v3 AUC | 0.7283 |\n| Top features | kurt_ppl, skew_ppl, var_surprisal, p90_ppl, p90_surprisal |\n\n### 修复建议\n**无需修复**。实验已成功完成，结果完整。只需将 registry 中 `qwen25_14b_scale_002` 的状态更新为反映实际完成情况即可。\n\n如果未来要防止同类下载失败，可以在 `download_qwen25_14b.sh` 中加 retry 逻辑（当前 aria2c 虽设了 `--max-tries=10`，但 SSL/TLS 断开不在其重试范围内），或将下载和实验分成两个独立 step，下载失败不影响后续重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

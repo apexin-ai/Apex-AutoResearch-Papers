@@ -1,0 +1,1417 @@
+{
+  "schema_version": "1.0",
+  "id": "0419ee46c27523feb1b3",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260522T195705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260522T195705.log",
+    "occurrence": 1,
+    "bytes": 103240,
+    "sha256": "482cd86f7ec72ea704d9bb4e7dbbaf0a206dfc420d72614f6ea5bc0461fa6e89"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 9,
+      "tool_result": 9,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bf2cdb1c-3778-4cef-83a2-785c316db665",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779492000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "19d300ab-0041-485e-8349-a89573286ec6",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the paper-writing-norms skill and the current main.tex to get the actual title and context."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "4edfb34e-9390-480e-b183-112c0598f6e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCkYH8sEKau39cSJteVUpJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12502,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12502
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ShFSC6KUcRWv7tWGn62Enx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "5205f150-69d9-455c-9a2a-b1f9e092d25a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCkYH8sEKau39cSJteVUpJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12502,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12502
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T19:57:18.266Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ShFSC6KUcRWv7tWGn62Enx",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "e77a6fd6-d372-464c-be0e-dbb69c732068",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+              "name": "Agent",
+              "input": {
+                "description": "Find paper title and context",
+                "subagent_type": "Explore",
+                "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/, find:\n1. The actual title in main.tex (look for \\title{...})\n2. Any existing abstract.tex content\n3. The structure of the paper (section files, what's included)\nReport the exact title, any existing abstract text, and list of section files."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "102c623f-a4a6-4c09-af96-08bc492f0a1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCkYH8sEKau39cSJteVUpJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12502,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12502
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "aedbb0b0e61c849fb",
+                "tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+                "description": "Find paper title and context",
+                "task_type": "local_agent",
+                "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/, find:\n1. The actual title in main.tex (look for \\title{...})\n2. Any existing abstract.tex content\n3. The structure of the paper (section files, what's included)\nReport the exact title, any existing abstract text, and list of section files.",
+                "uuid": "30eb85ad-1327-42ad-acf5-042fea60a642",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387"
+              }
+            }
+          ],
+          "id": "event-000008"
+        }
+      ],
+      "message_count": 8
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T19:57:20.850Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/, find:\n1. The actual title in main.tex (look for \\title{...})\n2. Any existing abstract.tex content\n3. The structure of the paper (section files, what's included)\nReport the exact title, any existing abstract text, and list of section files."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "1463bd3d-e5d6-443f-a573-a5dc5ec07ede"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedbb0b0e61c849fb",
+                "tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+                "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_051…",
+                "usage": {
+                  "total_tokens": 27708,
+                  "tool_uses": 1,
+                  "duration_ms": 1943
+                },
+                "last_tool_name": "Bash",
+                "uuid": "6df3b616-8d2a-43ba-b1fe-51370373db55",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387"
+              }
+            }
+          ],
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Es4x1VTjtLB2q5up1hqZYx",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper -type f -name \"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "6d75a5e2-b488-4250-816b-cfea08764012",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0167dDcaXTxCVBwhza3Xw2Tr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27699,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T19:57:22.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Es4x1VTjtLB2q5up1hqZYx",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "c0766ef7-779f-472b-9695-24d4a99aa254"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedbb0b0e61c849fb",
+                "tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+                "description": "Reading docs/paper/main.tex",
+                "usage": {
+                  "total_tokens": 28990,
+                  "tool_uses": 2,
+                  "duration_ms": 3908
+                },
+                "last_tool_name": "Read",
+                "uuid": "dc615c6c-6cfa-4132-859e-49cd6436059f",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQiEjGpswti6XbWhpdWCkZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "b936ea73-7968-4298-9ab6-e2c67775121a",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JkQwWJqdQcTbWiefDbxNWC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1278,
+                "cache_read_input_tokens": 27699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1278,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T19:57:24.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQiEjGpswti6XbWhpdWCkZ",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath,amssymb,amsthm}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{multirow}\n12\t\\usepackage{xcolor}\n13\t\\usepackage{subcaption}\n14\t\n15\t\\newtheorem{theorem}{Theorem}\n16\t\\newtheorem{definition}{Definition}\n17\t\\newtheorem{proposition}{Proposition}\n18\t\n19\t\\title{The Weakest Link: Why Judge Diversity Fails Under\\\\Adaptive Adversaries in Multi-LLM Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\begin{abstract}\n27\t% [PLACEHOLDER — waiting for plan_001 results]\n28\t\\end{abstract}\n29\t\n30\t% Section files managed by write_paper_section\n31\t\\input{introduction}    % [PLACEHOLDER — waiting for plan_001 results]\n32\t\\input{related_work}\n33\t\\input{threat_model}\n34\t\\input{methodology}\n35\t\\input{results}          % [PLACEHOLDER — waiting for plan_001 results]\n36\t\\input{analysis}         % [PLACEHOLDER — waiting for plan_001 results]\n37\t\\input{conclusion}       % [PLACEHOLDER — waiting for plan_001 results]\n38\t\n39\t\\section*{Limitations}\n40\t\n41\tOur study has three principal limitations. First, the 15-model pool, while spanning 6 families and 3 capability tiers, does not cover all commercially deployed LLMs; the generality of the diversity-vulnerability association to larger or differently composed pools remains to be tested. Second, the six local models are served with AWQ INT4 quantization, which substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). Although the sensitivity analysis (\\S\\ref{sec:stat_framework}) excludes judges with accuracy below 0.5, the quantization-induced capability reduction may affect vulnerability patterns in ways that do not transfer to full-precision deployments. Third, the analysis is observational: the $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation ($r = 0.70$) prevents definitive causal attribution of vulnerability to diversity per se, and the six attack types, while covering distinct manipulation strategies, do not exhaust the space of possible adversarial interventions.\n42\t\n43\t\\bibliography{references}\n44\t\\bibliographystyle{acl_natbib}\n45\t\n46\t\\end{document}\n47\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "3bfa9898-325a-442e-8447-926d74b56cba"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedbb0b0e61c849fb",
+                "tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+                "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+                "usage": {
+                  "total_tokens": 29845,
+                  "tool_uses": 3,
+                  "duration_ms": 7283
+                },
+                "last_tool_name": "Bash",
+                "uuid": "cf0e1c18-d6a1-4807-ab98-29a6d87f2389",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VGh8zmBJAqPap5vc3jTi84",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ | grep -E \"\\.tex$\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "6d50d5b8-7721-4145-b5cd-dd736c6ccd1a",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015GRvSzPRQ78KMBP17kbM41",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 853,
+                "cache_read_input_tokens": 28977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 853,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T19:57:28.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VGh8zmBJAqPap5vc3jTi84",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  5052 May 22 19:29 analysis.tex\n-rw-r--r-- 1 ubuntu ubuntu  1886 May 22 19:39 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu  5087 May 22 19:24 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  2177 May 22 19:56 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  8813 May 22 19:19 methodology.tex\n-rw-r--r-- 1 ubuntu ubuntu  9121 May 22 19:25 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu  7443 May 22 19:36 results.tex\n-rw-r--r-- 1 ubuntu ubuntu  5077 May 22 19:24 threat_model.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "f3b41500-8b91-4bfb-ae51-fbf8656993b9"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "aedbb0b0e61c849fb",
+                "tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Find paper title and context",
+                "usage": {
+                  "total_tokens": 30219,
+                  "tool_uses": 3,
+                  "duration_ms": 11756
+                },
+                "uuid": "32bf6379-4687-46b1-9232-442926674e84",
+                "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T19:57:32.611Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UsgNpms7SFFQkmcTEViFoU",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Based on my search, here are my findings:\n\n## Paper Information\n\n**1. Actual Title (from main.tex):**\n```\nThe Weakest Link: Why Judge Diversity Fails Under Adaptive Adversaries in Multi-LLM Evaluation\n```\n\n**2. Abstract Content:**\nThe abstract is currently a placeholder - it's empty with only a comment:\n```latex\n\\begin{abstract}\n% [PLACEHOLDER — waiting for plan_001 results]\n\\end{abstract}\n```\n\n**3. Paper Structure:**\nThe paper includes the following section files (all located in `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/`):\n\n| Section File | Status |\n|---|---|\n| introduction.tex | Placeholder (waiting for plan_001 results) |\n| related_work.tex | Complete |\n| threat_model.tex | Complete |\n| methodology.tex | Complete |\n| results.tex | Placeholder (waiting for plan_001 results) |\n| analysis.tex | Placeholder (waiting for plan_001 results) |\n| conclusion.tex | Placeholder (waiting for plan_001 results) |\n| Limitations section | Inline in main.tex (complete) |\n\nThe paper also includes:\n- A bibliography section that references `references.bib`\n- Uses the ACL paper format (`\\usepackage[review]{acl}`)\n- Author listed as \"Anonymous\"\n- Uses ACL citation style (`acl_natbib`)\n\nSeveral sections are marked as waiting for `plan_001` results, indicating they depend on experimental outcomes that haven't been finalized yet."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "3b2d1fb0-5d1d-41f1-9ad9-5cae2ac8ad55",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/, find:\n1. The actual title in main.tex (look for \\title{...})\n2. Any existing abstract.tex content\n3. The structure of the paper (section files, what's included)\nReport the exact title, any existing abstract text, and list of section files.",
+              "agentId": "aedbb0b0e61c849fb",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Based on my search, here are my findings:\n\n## Paper Information\n\n**1. Actual Title (from main.tex):**\n```\nThe Weakest Link: Why Judge Diversity Fails Under Adaptive Adversaries in Multi-LLM Evaluation\n```\n\n**2. Abstract Content:**\nThe abstract is currently a placeholder - it's empty with only a comment:\n```latex\n\\begin{abstract}\n% [PLACEHOLDER — waiting for plan_001 results]\n\\end{abstract}\n```\n\n**3. Paper Structure:**\nThe paper includes the following section files (all located in `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/`):\n\n| Section File | Status |\n|---|---|\n| introduction.tex | Placeholder (waiting for plan_001 results) |\n| related_work.tex | Complete |\n| threat_model.tex | Complete |\n| methodology.tex | Complete |\n| results.tex | Placeholder (waiting for plan_001 results) |\n| analysis.tex | Placeholder (waiting for plan_001 results) |\n| conclusion.tex | Placeholder (waiting for plan_001 results) |\n| Limitations section | Inline in main.tex (complete) |\n\nThe paper also includes:\n- A bibliography section that references `references.bib`\n- Uses the ACL paper format (`\\usepackage[review]{acl}`)\n- Author listed as \"Anonymous\"\n- Uses ACL citation style (`acl_natbib`)\n\nSeveral sections are marked as waiting for `plan_001` results, indicating they depend on experimental outcomes that haven't been finalized yet."
+                }
+              ],
+              "totalDurationMs": 11760,
+              "totalTokens": 30598,
+              "totalToolUseCount": 3,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 373,
+                "cache_read_input_tokens": 29830,
+                "output_tokens": 390,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 373
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 390,
+                    "cache_read_input_tokens": 29830,
+                    "cache_creation_input_tokens": 373,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 373,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 1,
+                "searchCount": 0,
+                "bashCount": 2,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have:\n1. The actual title: \"The Weakest Link: Why Judge Diversity Fails Under Adaptive Adversaries in Multi-LLM Evaluation\"\n2. The abstract is currently a placeholder\n3. The paper-writing-norms skill content\n\nLet me also check some key files to understand the paper's content better - the methodology, results analysis, etc. to make sure the abstract accurately reflects the paper.\n\nLet me read a few more files to get the full context.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "9f7d246e-318a-4dab-acad-e1bd585e3b4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmK3b7MNifyd6YXhLiPRR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6212,
+                "cache_read_input_tokens": 24343,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6212
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The actual title is \"The Weakest Link: Why Judge Diversity Fails Under Adaptive Adversaries in Multi-LLM Evaluation\". Let me read the completed sections for full context before writing the abstract."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "f5dffead-18a3-42ea-a98c-32a5532a1ef9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmK3b7MNifyd6YXhLiPRR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6212,
+                "cache_read_input_tokens": 24343,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6212
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ESN7zKiAU6sLNvxSLZdEda",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "a2d2c5fa-7d16-45f9-9b9b-e527539855e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmK3b7MNifyd6YXhLiPRR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6212,
+                "cache_read_input_tokens": 24343,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6212
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T19:57:39.086Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ESN7zKiAU6sLNvxSLZdEda",
+              "type": "tool_result",
+              "content": "1\t\\section{Experimental Methodology}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Models and Panel Construction}\n5\t\n6\tWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API; six open-weight models are served locally using vLLM~0.21.0 with AWQ INT4 quantization on an NVIDIA RTX~6000 (96\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). All panels consist of $K{=}3$ judges with majority-vote threshold $t{=}2$. Exhaustive enumeration yields $\\binom{15}{3} = 455$ unique panels, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor.\n7\t\n8\t\\begin{table}[t]\n9\t\\centering\n10\t\\small\n11\t\\begin{tabular}{lllccc}\n12\t\\toprule\n13\t\\textbf{Model} & \\textbf{Family} & \\textbf{Tier} & \\textbf{Deploy} & \\textbf{MMLU} & \\textbf{ARC} \\\\\n14\t\\midrule\n15\tgpt-5.5              & OpenAI    & frontier    & API   & .957 & .983 \\\\\n16\tgemini-3.1-pro-preview & Google  & frontier    & API   & .955 & .987 \\\\\n17\tclaude-opus-4-6       & Anthropic & frontier   & API   & .890 & .987 \\\\\n18\t\\addlinespace\n19\tgemini-3.5-flash      & Google    & mid-tier   & API   & .968 & 1.00$^\\dagger$ \\\\\n20\tgpt-4.1               & OpenAI    & mid-tier   & API   & .837 & .967 \\\\\n21\tclaude-sonnet-4-6     & Anthropic & mid-tier   & API   & .810 & .953 \\\\\n22\t\\addlinespace\n23\tgpt-4.1-mini          & OpenAI    & lightweight & API  & .800 & .963 \\\\\n24\tgpt-4.1-nano          & OpenAI    & lightweight & API  & .633 & .853 \\\\\n25\tclaude-3-haiku        & Anthropic & lightweight & API  & .767 & .450 \\\\\n26\tmistral-large (123B)  & Mistral   & lightweight & local & .537 & .533 \\\\\n27\tllama3.1-70b          & Llama     & lightweight & local & .523 & .520 \\\\\n28\tllama3.1-8b           & Llama     & lightweight & local & .543 & .320 \\\\\n29\tqwen2.5-72b           & Qwen      & lightweight & local & .333 & .410 \\\\\n30\tqwen2.5-32b           & Qwen      & lightweight & local & .373 & .450 \\\\\n31\tqwen2.5-14b           & Qwen      & lightweight & local & .253 & .240 \\\\\n32\t\\bottomrule\n33\t\\end{tabular}\n34\t\\caption{Judge models used in the study (clean accuracy on 300-item samples). API models accessed via OpenRouter; local models served with vLLM + AWQ INT4 quantization. $^\\dagger$\\,gemini-3.5-flash achieves perfect ARC accuracy but with 26.3\\% format error rate.}\n35\t\\label{tab:models}\n36\t\\end{table}\n37\t\n38\t\\subsection{Benchmarks and Attack Types}\n39\t\n40\tTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each benchmark. MMLU probes factual recall and broad domain knowledge; ARC requires multi-step scientific reasoning. All API calls use temperature~0 for deterministic outputs; local models are served with the same temperature setting. Attacked variants are generated by programmatically applying each manipulation to the candidate text, with a fixed random seed for reproducibility.\n41\t\n42\tEach benchmark is paired with six attack types that target different judge vulnerabilities: (1)~\\textbf{prompt injection}, adversarial instructions embedded in candidate text that override the evaluation prompt \\citep{perez2022ignore,greshake2023not}; (2)~\\textbf{sycophancy}, responses engineered to agree with or flatter the judge \\citep{wang2023fair}; (3)~\\textbf{score manipulation}, explicit numerical cues (e.g., ``this answer deserves a 10/10'') injected into the candidate to anchor scoring; (4)~\\textbf{verbosity bias}, padding correct answers with excessive irrelevant detail to exploit length preferences \\citep{zheng2023judging}; (5)~\\textbf{position bias}, reordering candidate answers to place the target in the position judges systematically favor \\citep{wang2023fair}; and (6)~\\textbf{authority bias}, prefacing candidate text with fabricated credentials or citations to inflate perceived credibility. The combination of 2 benchmarks and 6 attacks produces 12 experimental conditions, each evaluated across all 455 panels.\n43\t\n44\t\\subsection{Vulnerability Metrics}\n45\t\n46\tPer-judge vulnerability under attack $a$ is the fraction of items where judge $j$ is fooled: $\\eta_j(a) = \\Pr(X_j^a {=} 1)$, estimated empirically over the item set. The weakest-link vulnerability $\\eta_{\\max}(a) = \\max_{j \\in \\mathcal{P}} \\eta_j(a)$ captures the most susceptible member of each panel. The panel attack success rate $\\mathrm{ASR}(\\mathcal{P}, a)$ is the fraction of items where at least $t$ judges are simultaneously fooled. Panel diversity is quantified by $K_{\\mathrm{eff}}$ (Equation~\\ref{eq:keff}), computed from pairwise mutual information between judges' three-category winner labels (model~A wins, model~B wins, tie) on clean (unattacked) data. MI is estimated via the plug-in estimator with Miller--Madow bias correction. In practice, $K_{\\mathrm{eff}}$ is computed through the Gaussian copula correlation matrix: under the Gaussian assumption, pairwise MI and copula $\\rho$ are related by $\\mathrm{MI} = -\\tfrac{1}{2}\\log(1-\\rho^2)$ \\citep{nelsen2006copulas}, and we substitute $\\exp(-2\\,\\mathrm{MI}) = 1 - \\rho^2$ directly into Equation~\\ref{eq:keff}. Together, $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ serve as the two predictors in the regression framework below: $\\eta_{\\max}$ indexes the weakest-link channel and $K_{\\mathrm{eff}}$ indexes the diversity channel.\n47\t\n48\t\\subsection{Aggregation Methods}\n49\t\n50\tBeyond the default majority vote, we evaluate three alternative aggregation rules to test whether the diversity-vulnerability association persists under different decision mechanisms. The aggregation comparison uses the same log-log regression specification as the primary analysis (Equation~\\ref{eq:regression}).\n51\t\n52\t\\paragraph{Majority Vote.} Accept if $\\sum_{j=1}^K \\mathbf{1}[J_j \\text{ approves}] \\geq \\lceil K/2 \\rceil$. This is the standard baseline aggregation assumed throughout the main analysis.\n53\t\n54\t\\paragraph{Accuracy-Weighted Vote.} Accept if $\\sum_{j=1}^K w_j \\cdot \\mathbf{1}[J_j \\text{ approves}] > 0.5$, where $w_j \\propto \\mathrm{acc}_j$ on held-out clean data, normalized so that $\\sum_j w_j = 1$. Judges with higher clean-data accuracy receive proportionally greater influence.\n55\t\n56\t\\paragraph{Threshold Vote (Unanimity).} Accept only if all $K$ judges approve ($t = K$). A single dissenting judge suffices to reject, making this the most conservative rule.\n57\t\n58\t\\paragraph{Bayesian Calibration.} Compute $P(\\text{correct} \\mid \\mathbf{v}) \\propto P(\\text{correct}) \\prod_j P(v_j \\mid \\text{correct})$, where $P(v_j \\mid \\cdot)$ is derived from judge $j$'s confusion matrix on clean data and $\\mathbf{v}$ is the observed vote vector. Accept if the posterior exceeds 0.5. This rule uses each judge's calibrated reliability rather than treating all votes equally.\n59\t\n60\t\\subsection{Statistical Framework}\n61\t\\label{sec:stat_framework}\n62\t\n63\tTo disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:\n64\t\\begin{equation}\n65\t\\label{eq:regression}\n66\t\\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),\n67\t\\end{equation}\n68\twith $\\epsilon = 10^{-6}$ to handle zero values. Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini-Hochberg correction for multiple testing, controlling the false discovery rate per predictor across the 12 conditions.\n69\t\n70\tTo assess relative predictor importance beyond regression coefficients, we perform dominance analysis \\citep{budescu1993dominance}. This method decomposes $R^2$ by averaging each predictor's incremental $R^2$ contribution across all possible subsets of predictors. A predictor is \\emph{dominant} if its average contribution exceeds that of the competing predictor in every subset ordering. With two predictors, dominance reduces to comparing each predictor's solo $R^2$ with its incremental $R^2$ conditional on the other.\n71\t\n72\t\\subsection{Sensitivity Analysis}\n73\t\n74\tJudges with clean-data accuracy below 0.5 perform at or below chance and could drive regression results through extreme outlier behavior rather than meaningful vulnerability patterns. We exclude such judges from panel construction and re-run the log-log regression (Equation~\\ref{eq:regression}) to verify that the $K_{\\mathrm{eff}}$ effect remains stable after removing these potential confounds.\n75\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "ca80c43d-5b3f-42d0-b533-8cc9c305bbcf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex",
+                "content": "\\section{Experimental Methodology}\n\\label{sec:experiments}\n\n\\subsection{Models and Panel Construction}\n\nWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API; six open-weight models are served locally using vLLM~0.21.0 with AWQ INT4 quantization on an NVIDIA RTX~6000 (96\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). All panels consist of $K{=}3$ judges with majority-vote threshold $t{=}2$. Exhaustive enumeration yields $\\binom{15}{3} = 455$ unique panels, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lllccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Tier} & \\textbf{Deploy} & \\textbf{MMLU} & \\textbf{ARC} \\\\\n\\midrule\ngpt-5.5              & OpenAI    & frontier    & API   & .957 & .983 \\\\\ngemini-3.1-pro-preview & Google  & frontier    & API   & .955 & .987 \\\\\nclaude-opus-4-6       & Anthropic & frontier   & API   & .890 & .987 \\\\\n\\addlinespace\ngemini-3.5-flash      & Google    & mid-tier   & API   & .968 & 1.00$^\\dagger$ \\\\\ngpt-4.1               & OpenAI    & mid-tier   & API   & .837 & .967 \\\\\nclaude-sonnet-4-6     & Anthropic & mid-tier   & API   & .810 & .953 \\\\\n\\addlinespace\ngpt-4.1-mini          & OpenAI    & lightweight & API  & .800 & .963 \\\\\ngpt-4.1-nano          & OpenAI    & lightweight & API  & .633 & .853 \\\\\nclaude-3-haiku        & Anthropic & lightweight & API  & .767 & .450 \\\\\nmistral-large (123B)  & Mistral   & lightweight & local & .537 & .533 \\\\\nllama3.1-70b          & Llama     & lightweight & local & .523 & .520 \\\\\nllama3.1-8b           & Llama     & lightweight & local & .543 & .320 \\\\\nqwen2.5-72b           & Qwen      & lightweight & local & .333 & .410 \\\\\nqwen2.5-32b           & Qwen      & lightweight & local & .373 & .450 \\\\\nqwen2.5-14b           & Qwen      & lightweight & local & .253 & .240 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Judge models used in the study (clean accuracy on 300-item samples). API models accessed via OpenRouter; local models served with vLLM + AWQ INT4 quantization. $^\\dagger$\\,gemini-3.5-flash achieves perfect ARC accuracy but with 26.3\\% format error rate.}\n\\label{tab:models}\n\\end{table}\n\n\\subsection{Benchmarks and Attack Types}\n\nTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each benchmark. MMLU probes factual recall and broad domain knowledge; ARC requires multi-step scientific reasoning. All API calls use temperature~0 for deterministic outputs; local models are served with the same temperature setting. Attacked variants are generated by programmatically applying each manipulation to the candidate text, with a fixed random seed for reproducibility.\n\nEach benchmark is paired with six attack types that target different judge vulnerabilities: (1)~\\textbf{prompt injection}, adversarial instructions embedded in candidate text that override the evaluation prompt \\citep{perez2022ignore,greshake2023not}; (2)~\\textbf{sycophancy}, responses engineered to agree with or flatter the judge \\citep{wang2023fair}; (3)~\\textbf{score manipulation}, explicit numerical cues (e.g., ``this answer deserves a 10/10'') injected into the candidate to anchor scoring; (4)~\\textbf{verbosity bias}, padding correct answers with excessive irrelevant detail to exploit length preferences \\citep{zheng2023judging}; (5)~\\textbf{position bias}, reordering candidate answers to place the target in the position judges systematically favor \\citep{wang2023fair}; and (6)~\\textbf{authority bias}, prefacing candidate text with fabricated credentials or citations to inflate perceived credibility. The combination of 2 benchmarks and 6 attacks produces 12 experimental conditions, each evaluated across all 455 panels.\n\n\\subsection{Vulnerability Metrics}\n\nPer-judge vulnerability under attack $a$ is the fraction of items where judge $j$ is fooled: $\\eta_j(a) = \\Pr(X_j^a {=} 1)$, estimated empirically over the item set. The weakest-link vulnerability $\\eta_{\\max}(a) = \\max_{j \\in \\mathcal{P}} \\eta_j(a)$ captures the most susceptible member of each panel. The panel attack success rate $\\mathrm{ASR}(\\mathcal{P}, a)$ is the fraction of items where at least $t$ judges are simultaneously fooled. Panel diversity is quantified by $K_{\\mathrm{eff}}$ (Equation~\\ref{eq:keff}), computed from pairwise mutual information between judges' three-category winner labels (model~A wins, model~B wins, tie) on clean (unattacked) data. MI is estimated via the plug-in estimator with Miller--Madow bias correction. In practice, $K_{\\mathrm{eff}}$ is computed through the Gaussian copula correlation matrix: under the Gaussian assumption, pairwise MI and copula $\\rho$ are related by $\\mathrm{MI} = -\\tfrac{1}{2}\\log(1-\\rho^2)$ \\citep{nelsen2006copulas}, and we substitute $\\exp(-2\\,\\mathrm{MI}) = 1 - \\rho^2$ directly into Equation~\\ref{eq:keff}. Together, $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ serve as the two predictors in the regression framework below: $\\eta_{\\max}$ indexes the weakest-link channel and $K_{\\mathrm{eff}}$ indexes the diversity channel.\n\n\\subsection{Aggregation Methods}\n\nBeyond the default majority vote, we evaluate three alternative aggregation rules to test whether the diversity-vulnerability association persists under different decision mechanisms. The aggregation comparison uses the same log-log regression specification as the primary analysis (Equation~\\ref{eq:regression}).\n\n\\paragraph{Majority Vote.} Accept if $\\sum_{j=1}^K \\mathbf{1}[J_j \\text{ approves}] \\geq \\lceil K/2 \\rceil$. This is the standard baseline aggregation assumed throughout the main analysis.\n\n\\paragraph{Accuracy-Weighted Vote.} Accept if $\\sum_{j=1}^K w_j \\cdot \\mathbf{1}[J_j \\text{ approves}] > 0.5$, where $w_j \\propto \\mathrm{acc}_j$ on held-out clean data, normalized so that $\\sum_j w_j = 1$. Judges with higher clean-data accuracy receive proportionally greater influence.\n\n\\paragraph{Threshold Vote (Unanimity).} Accept only if all $K$ judges approve ($t = K$). A single dissenting judge suffices to reject, making this the most conservative rule.\n\n\\paragraph{Bayesian Calibration.} Compute $P(\\text{correct} \\mid \\mathbf{v}) \\propto P(\\text{correct}) \\prod_j P(v_j \\mid \\text{correct})$, where $P(v_j \\mid \\cdot)$ is derived from judge $j$'s confusion matrix on clean data and $\\mathbf{v}$ is the observed vote vector. Accept if the posterior exceeds 0.5. This rule uses each judge's calibrated reliability rather than treating all votes equally.\n\n\\subsection{Statistical Framework}\n\\label{sec:stat_framework}\n\nTo disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:\n\\begin{equation}\n\\label{eq:regression}\n\\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),\n\\end{equation}\nwith $\\epsilon = 10^{-6}$ to handle zero values. Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini-Hochberg correction for multiple testing, controlling the false discovery rate per predictor across the 12 conditions.\n\nTo assess relative predictor importance beyond regression coefficients, we perform dominance analysis \\citep{budescu1993dominance}. This method decomposes $R^2$ by averaging each predictor's incremental $R^2$ contribution across all possible subsets of predictors. A predictor is \\emph{dominant} if its average contribution exceeds that of the competing predictor in every subset ordering. With two predictors, dominance reduces to comparing each predictor's solo $R^2$ with its incremental $R^2$ conditional on the other.\n\n\\subsection{Sensitivity Analysis}\n\nJudges with clean-data accuracy below 0.5 perform at or below chance and could drive regression results through extreme outlier behavior rather than meaningful vulnerability patterns. We exclude such judges from panel construction and re-run the log-log regression (Equation~\\ref{eq:regression}) to verify that the $K_{\\mathrm{eff}}$ effect remains stable after removing these potential confounds.\n",
+                "numLines": 75,
+                "startLine": 1,
+                "totalLines": 75
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReHAjNRDPUfxMbw3fynPfR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "6851b5cd-a9b3-4c37-ae4b-61472584768e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmK3b7MNifyd6YXhLiPRR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6212,
+                "cache_read_input_tokens": 24343,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6212
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T19:57:39.596Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReHAjNRDPUfxMbw3fynPfR",
+              "type": "tool_result",
+              "content": "1\t\\section{Threat Model and Problem Formulation}\n2\t\n3\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n4\t\n5\tTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutual information among judges:\n6\t\\begin{equation}\n7\t\\label{eq:keff}\n8\tK_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n9\t\\end{equation}\n10\tThis formulation computes effective independence from pairwise MI estimates without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\\mathrm{eff}} \\approx K$ when judges are nearly independent ($\\mathrm{MI} \\to 0$) to $K_{\\mathrm{eff}} \\approx 1$ when judges are highly correlated ($\\mathrm{MI} \\to \\infty$). Under the strong data-processing inequality (SDPI), the joint vulnerability satisfies $\\eta_{\\mathrm{joint}} \\leq \\min(1,\\; K_{\\mathrm{eff}} \\cdot \\eta_{\\max})$, suggesting that diversity should help, but this bound assumes non-adaptive faults.\n11\t\n12\t\\begin{definition}[Adaptive Adversary]\n13\t\\label{def:adversary}\n14\tA \\emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\\mathcal{P}$, the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$, and the inter-judge correlation structure. It selects the attack $a^* = \\arg\\max_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$ to maximize the panel ASR, yielding $\\mathrm{ASR}^*(\\mathcal{P}) = \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$. This oracle model represents an \\emph{upper bound} on adversarial capability; realistic adversaries with partial knowledge of panel composition would achieve lower ASR.\n15\t\\end{definition}\n16\t\n17\tThis departs from Byzantine fault-tolerance (BFT) models~\\cite{lamport1982byzantine,castro1999practical}, which tolerate arbitrary (including malicious) faults provided the number of faulty nodes satisfies $f < n/3$, but do not model adversaries that strategically target system structure. An adaptive adversary instead concentrates attack effort on the weakest link~\\cite{schneier2000secrets}, rendering diversity-based defenses less effective than the SDPI bound implies.\n18\t\n19\tThe distinction suggests a \\emph{reversal mechanism}: under random faults, independent judges fail via uncorrelated events, and majority voting aggregates away individual errors, so higher $K_{\\mathrm{eff}}$ reduces joint failure probability. Under adaptive adversaries, however, independent judges may present a \\emph{wider attack surface}: the adversary can exploit judge-specific vulnerabilities across a broader space of attacks, because functionally diverse judges respond to different manipulation strategies. Diversity may cease to provide mutual protection and instead co-occur with a larger set of viable attack vectors.\n20\t\n21\t\\begin{theorem}[Weakest-Link Monotonicity]\n22\t\\label{thm:monotonicity}\n23\tLet $\\mathcal{P}$ and $\\mathcal{P}'$ be two panels sharing $K{-}1$ judges and differing only in the $K$-th member, where $J_K'$ is pointwise more vulnerable than $J_K$ (i.e., $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$). Then for any adversary, including an adaptive one: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$.\n24\t\\end{theorem}\n25\t\n26\t\\noindent Proof in Appendix~\\ref{app:proof}. Intuitively, the replaced judge is \\emph{pivotal} exactly when $t{-}1$ of the remaining judges have already failed; in such configurations, a more vulnerable replacement can only increase the probability of tipping the majority, never decrease it. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n27\t\n28\tThe theorem establishes that $\\eta_{\\max}$ is monotonically linked to panel vulnerability, but is silent on the role of diversity. To disentangle the two drivers, we fit a regression $\\log(\\mathrm{ASR}) \\sim \\beta_1 \\log(\\eta_{\\max}) + \\beta_2 \\log(K_{\\mathrm{eff}})$ across panels. The theorem predicts $\\beta_1 > 0$; the SDPI bound under non-adaptive faults would suggest $\\beta_2 \\leq 0$; but the reversal mechanism predicts $\\beta_2 > 0$ when attacks exploit judge-specific vulnerabilities, and $\\beta_2 < 0$ when attacks exploit shared cognitive biases that diverse panels can dilute, a distinction our experiments in \\S\\ref{sec:experiments} test across 12 conditions spanning two benchmarks and six attack types, using dominance analysis to isolate each driver's independent contribution."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "e84b183e-8ed2-434e-97ca-7c8a6e1332ee",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex",
+                "content": "\\section{Threat Model and Problem Formulation}\n\nA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n\nTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutual information among judges:\n\\begin{equation}\n\\label{eq:keff}\nK_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n\\end{equation}\nThis formulation computes effective independence from pairwise MI estimates without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\\mathrm{eff}} \\approx K$ when judges are nearly independent ($\\mathrm{MI} \\to 0$) to $K_{\\mathrm{eff}} \\approx 1$ when judges are highly correlated ($\\mathrm{MI} \\to \\infty$). Under the strong data-processing inequality (SDPI), the joint vulnerability satisfies $\\eta_{\\mathrm{joint}} \\leq \\min(1,\\; K_{\\mathrm{eff}} \\cdot \\eta_{\\max})$, suggesting that diversity should help, but this bound assumes non-adaptive faults.\n\n\\begin{definition}[Adaptive Adversary]\n\\label{def:adversary}\nA \\emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\\mathcal{P}$, the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$, and the inter-judge correlation structure. It selects the attack $a^* = \\arg\\max_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$ to maximize the panel ASR, yielding $\\mathrm{ASR}^*(\\mathcal{P}) = \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$. This oracle model represents an \\emph{upper bound} on adversarial capability; realistic adversaries with partial knowledge of panel composition would achieve lower ASR.\n\\end{definition}\n\nThis departs from Byzantine fault-tolerance (BFT) models~\\cite{lamport1982byzantine,castro1999practical}, which tolerate arbitrary (including malicious) faults provided the number of faulty nodes satisfies $f < n/3$, but do not model adversaries that strategically target system structure. An adaptive adversary instead concentrates attack effort on the weakest link~\\cite{schneier2000secrets}, rendering diversity-based defenses less effective than the SDPI bound implies.\n\nThe distinction suggests a \\emph{reversal mechanism}: under random faults, independent judges fail via uncorrelated events, and majority voting aggregates away individual errors, so higher $K_{\\mathrm{eff}}$ reduces joint failure probability. Under adaptive adversaries, however, independent judges may present a \\emph{wider attack surface}: the adversary can exploit judge-specific vulnerabilities across a broader space of attacks, because functionally diverse judges respond to different manipulation strategies. Diversity may cease to provide mutual protection and instead co-occur with a larger set of viable attack vectors.\n\n\\begin{theorem}[Weakest-Link Monotonicity]\n\\label{thm:monotonicity}\nLet $\\mathcal{P}$ and $\\mathcal{P}'$ be two panels sharing $K{-}1$ judges and differing only in the $K$-th member, where $J_K'$ is pointwise more vulnerable than $J_K$ (i.e., $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$). Then for any adversary, including an adaptive one: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$.\n\\end{theorem}\n\n\\noindent Proof in Appendix~\\ref{app:proof}. Intuitively, the replaced judge is \\emph{pivotal} exactly when $t{-}1$ of the remaining judges have already failed; in such configurations, a more vulnerable replacement can only increase the probability of tipping the majority, never decrease it. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n\nThe theorem establishes that $\\eta_{\\max}$ is monotonically linked to panel vulnerability, but is silent on the role of diversity. To disentangle the two drivers, we fit a regression $\\log(\\mathrm{ASR}) \\sim \\beta_1 \\log(\\eta_{\\max}) + \\beta_2 \\log(K_{\\mathrm{eff}})$ across panels. The theorem predicts $\\beta_1 > 0$; the SDPI bound under non-adaptive faults would suggest $\\beta_2 \\leq 0$; but the reversal mechanism predicts $\\beta_2 > 0$ when attacks exploit judge-specific vulnerabilities, and $\\beta_2 < 0$ when attacks exploit shared cognitive biases that diverse panels can dilute, a distinction our experiments in \\S\\ref{sec:experiments} test across 12 conditions spanning two benchmarks and six attack types, using dominance analysis to isolate each driver's independent contribution.",
+                "numLines": 28,
+                "startLine": 1,
+                "totalLines": 28
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BtC4w6PpLP1794hxzb8yKs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "5da46c99-782a-4e10-9e51-8ef3454feb99",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhmK3b7MNifyd6YXhLiPRR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6212,
+                "cache_read_input_tokens": 24343,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6212
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T19:57:40.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BtC4w6PpLP1794hxzb8yKs",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath,amssymb,amsthm}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{multirow}\n12\t\\usepackage{xcolor}\n13\t\\usepackage{subcaption}\n14\t\n15\t\\newtheorem{theorem}{Theorem}\n16\t\\newtheorem{definition}{Definition}\n17\t\\newtheorem{proposition}{Proposition}\n18\t\n19\t\\title{The Weakest Link: Why Judge Diversity Fails Under\\\\Adaptive Adversaries in Multi-LLM Evaluation}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\begin{abstract}\n27\t% [PLACEHOLDER — waiting for plan_001 results]\n28\t\\end{abstract}\n29\t\n30\t% Section files managed by write_paper_section\n31\t\\input{introduction}    % [PLACEHOLDER — waiting for plan_001 results]\n32\t\\input{related_work}\n33\t\\input{threat_model}\n34\t\\input{methodology}\n35\t\\input{results}          % [PLACEHOLDER — waiting for plan_001 results]\n36\t\\input{analysis}         % [PLACEHOLDER — waiting for plan_001 results]\n37\t\\input{conclusion}       % [PLACEHOLDER — waiting for plan_001 results]\n38\t\n39\t\\section*{Limitations}\n40\t\n41\tOur study has three principal limitations. First, the 15-model pool, while spanning 6 families and 3 capability tiers, does not cover all commercially deployed LLMs; the generality of the diversity-vulnerability association to larger or differently composed pools remains to be tested. Second, the six local models are served with AWQ INT4 quantization, which substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). Although the sensitivity analysis (\\S\\ref{sec:stat_framework}) excludes judges with accuracy below 0.5, the quantization-induced capability reduction may affect vulnerability patterns in ways that do not transfer to full-precision deployments. Third, the analysis is observational: the $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation ($r = 0.70$) prevents definitive causal attribution of vulnerability to diversity per se, and the six attack types, while covering distinct manipulation strategies, do not exhaust the space of possible adversarial interventions.\n42\t\n43\t\\bibliography{references}\n44\t\\bibliographystyle{acl_natbib}\n45\t\n46\t\\end{document}\n47\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "3145b175-6d62-4d51-8f15-097595434de2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+                "content": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{amsmath,amssymb,amsthm}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{definition}{Definition}\n\\newtheorem{proposition}{Proposition}\n\n\\title{The Weakest Link: Why Judge Diversity Fails Under\\\\Adaptive Adversaries in Multi-LLM Evaluation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n% [PLACEHOLDER — waiting for plan_001 results]\n\\end{abstract}\n\n% Section files managed by write_paper_section\n\\input{introduction}    % [PLACEHOLDER — waiting for plan_001 results]\n\\input{related_work}\n\\input{threat_model}\n\\input{methodology}\n\\input{results}          % [PLACEHOLDER — waiting for plan_001 results]\n\\input{analysis}         % [PLACEHOLDER — waiting for plan_001 results]\n\\input{conclusion}       % [PLACEHOLDER — waiting for plan_001 results]\n\n\\section*{Limitations}\n\nOur study has three principal limitations. First, the 15-model pool, while spanning 6 families and 3 capability tiers, does not cover all commercially deployed LLMs; the generality of the diversity-vulnerability association to larger or differently composed pools remains to be tested. Second, the six local models are served with AWQ INT4 quantization, which substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). Although the sensitivity analysis (\\S\\ref{sec:stat_framework}) excludes judges with accuracy below 0.5, the quantization-induced capability reduction may affect vulnerability patterns in ways that do not transfer to full-precision deployments. Third, the analysis is observational: the $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation ($r = 0.70$) prevents definitive causal attribution of vulnerability to diversity per se, and the six attack types, while covering distinct manipulation strategies, do not exhaust the space of possible adversarial interventions.\n\n\\bibliography{references}\n\\bibliographystyle{acl_natbib}\n\n\\end{document}\n",
+                "numLines": 47,
+                "startLine": 1,
+                "totalLines": 47
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a thorough understanding of the paper. Let me also check the related_work.tex to get more context on the positioning.\n\nKey facts for the abstract:\n- Title: \"The Weakest Link: Why Judge Diversity Fails Under Adaptive Adversaries in Multi-LLM Evaluation\"\n- 15 models, 6 families, 455 panels (K=3), 6 attack types, 2 benchmarks (MMLU, ARC), 12 conditions\n- Log-log regression + dominance analysis to disentangle K_eff (diversity) and η_max (weakest-link robustness)\n\n\n- The weakest-link effect dominates across nearly all conditions—η_max is statistically significant in 11 out of 12 cases, while diversity shows mixed results with only 7 out of 12 conditions showing positive effects and one showing negative effects from sycophancy attacks\n- Bayesian aggregation actually reverses the diversity signal, suggesting the relationship is more complex than simple ensemble benefits\n- This is observational data, not a causal study\n\nNow I'm drafting the abstract following standard conventions, starting with the problem statement about how multi-LLM panels are assumed to provide robustness through diversity. We evaluate 455 three-judge panels from 15 LLMs across 6 model families under 6 attack types on two benchmarks, using log-log regression with dominance analysis to decompose panel vulnerability into weakest-link effects and effective panel independence. The weakest-link channel dominates: individual judge robustness predicts panel success in 11 of 12 conditions, while diversity shows a counterintuitive pattern where higher independence is associated with greater vulnerability in 7 of 12 conditions, with dominance analysis confirming that judge robustness is the primary or co-dominant factor.\n\nBayesian calibration that weights judges by reliability reverses the diversity association, suggesting that strengthening weaker judges may be more effective than relying on diversity alone for securing multi-LLM evaluation. I'm verifying my summary against the constraints—too many numbers scattered throughout, so I need to pare those down to just the most critical ones. The framing looks solid otherwise: I'm avoiding em-dashes, keeping causal language precise with \"is associated with,\" and using the paper's own terminology rather than introducing new shorthand. The weakest-link effect dominates across nearly all conditions, while the diversity trap emerges as a counterintuitive finding—higher panel diversity actually correlates with increased vulnerability in most cases, likely because diverse judges expand the attack surface. Bayesian calibration that weights judges by reliability can reverse this pattern, suggesting that improving individual judge robustness matters more than simply adding diverse judges to the panel. The diversity trap finding is striking—panels with higher effective independence actually become more vulnerable, which contradicts the intuition that diversity provides protection. Bayesian calibration flips this relationship by weighting judges by their actual reliability, suggesting that aggregation design matters as much as panel composition. So the core insight is that fixing the weakest link outweighs chasing diversity for its own sake. I need to be careful about the tension between avoiding data clutter and ensuring accuracy—when I do cite numbers, they have to be precisely correct. With only 3-4 key figures allowed, I should focus on the most narratively essential ones: the 455 panels and 15 models for context, the 11/12 result for η_max, and the 7/12 finding for K_eff that reveals the diversity trap. That gives me three solid quantitative anchors without overloading the abstract. I'm also checking that my punctuation follows the guidelines—colons are acceptable, so my current phrasing works fine.\n\nFrom a reviewer's perspective, the structure should be immediately clear: I'm identifying an untested assumption about LLM panel robustness, showing the methodological gap, explaining my experimental approach, and presenting the key findings that challenge the conventional wisdom. The draft reads cleanly through that arc.\n\nNow I'm refining the abstract text itself. I've laid out the core contribution: a decomposition framework showing that panel vulnerability is driven primarily by the weakest judge rather than diversity, and that higher diversity can paradoxically increase attack surface. The Bayesian calibration result suggests a practical mitigation path. I'm checking the word count to ensure it stays within typical abstract limits while keeping the technical precision intact. The weakest-link vulnerability dominates across nearly all conditions, while the diversity channel reveals a counterintuitive pattern: higher diversity actually correlates with greater panel vulnerability in most cases, suggesting diverse panels expose a larger attack surface rather than providing mutual protection. Bayesian calibration that weights judges by reliability can reverse this effect, indicating that improving the weakest judge and refining aggregation methods matter more than simply increasing diversity. More checks on the abstract formatting — I need to verify what goes into abstract.tex since the main file currently has a placeholder. The task is asking me to write the abstract content, and I should prepare it as the text that belongs inside the LaTeX abstract environment, letting the build system handle how it gets integrated. I'm settling on just writing the text content without the wrapper since main.tex already has the \\begin{abstract} markup, so I'll go ahead and finalize the draft.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "5fd279a8-9241-4d3c-98c3-d6199a1bf8b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pz8LdGQSfEDFqdcjjmzFtC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5754,
+                "cache_read_input_tokens": 30555,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5754
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have full context. Let me write the abstract."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "3032ebfe-6240-4713-9c2a-ba364d4590b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pz8LdGQSfEDFqdcjjmzFtC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5754,
+                "cache_read_input_tokens": 30555,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5754
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AXwyfTtkMUSarFmGBrmDcA",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex",
+                "content": "Multi-judge panels of Large Language Models (LLMs) are widely assumed to resist adversarial manipulation through judge diversity, by analogy to Byzantine fault tolerance. This assumption remains empirically untested, and no prior work disentangles the contributions of panel diversity and individual judge robustness to panel vulnerability.\n\nWe construct 455 three-judge panels from 15 LLMs across 6 model families and evaluate them under six attack types on two benchmarks (MMLU and ARC). A log-log regression framework with dominance analysis decomposes panel attack success rate into two channels: weakest-link vulnerability ($\\eta_{\\max}$) and effective independence ($K_{\\mathrm{eff}}$), a mutual-information-based diversity measure.\n\nThe weakest-link channel dominates: $\\eta_{\\max}$ is significant in 11 of 12 conditions after FDR correction and is the sole or co-dominant predictor in all but one. The diversity channel reveals what we term the \\emph{diversity trap}: higher $K_{\\mathrm{eff}}$ is associated with \\emph{higher} panel vulnerability in 7 of 12 conditions, consistent with diverse panels presenting a wider attack surface rather than mutual protection. Bayesian calibration, which weights judges by empirical reliability, reverses this association. These observational findings suggest that strengthening the weakest judge matters more than increasing panel diversity, and that aggregation design can mitigate the diversity trap without reducing panel variety.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "ac84ee92-6195-4529-b028-07f167aba2b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pz8LdGQSfEDFqdcjjmzFtC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5754,
+                "cache_read_input_tokens": 30555,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5754
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T19:59:06.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AXwyfTtkMUSarFmGBrmDcA",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "d02a9441-7e96-4161-9867-d8c5180494b5",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex",
+              "content": "Multi-judge panels of Large Language Models (LLMs) are widely assumed to resist adversarial manipulation through judge diversity, by analogy to Byzantine fault tolerance. This assumption remains empirically untested, and no prior work disentangles the contributions of panel diversity and individual judge robustness to panel vulnerability.\n\nWe construct 455 three-judge panels from 15 LLMs across 6 model families and evaluate them under six attack types on two benchmarks (MMLU and ARC). A log-log regression framework with dominance analysis decomposes panel attack success rate into two channels: weakest-link vulnerability ($\\eta_{\\max}$) and effective independence ($K_{\\mathrm{eff}}$), a mutual-information-based diversity measure.\n\nThe weakest-link channel dominates: $\\eta_{\\max}$ is significant in 11 of 12 conditions after FDR correction and is the sole or co-dominant predictor in all but one. The diversity channel reveals what we term the \\emph{diversity trap}: higher $K_{\\mathrm{eff}}$ is associated with \\emph{higher} panel vulnerability in 7 of 12 conditions, consistent with diverse panels presenting a wider attack surface rather than mutual protection. Bayesian calibration, which weights judges by empirical reliability, reverses this association. These observational findings suggest that strengthening the weakest judge matters more than increasing panel diversity, and that aggregation design can mitigate the diversity trap without reducing panel variety.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (~200 words). Three paragraphs mapping to the four required elements:\n\n1. **Problem + why important** (P1): BFT-diversity assumption untested, diversity vs robustness not disentangled\n2. **What we do** (P2): 455 panels, 15 models, 6 families, 6 attacks, 2 benchmarks; log-log regression + dominance analysis separating η_max and K_eff channels\n3. **Results** (P3): η_max significant 11/12, K_eff positively associated with vulnerability 7/12 (\"diversity trap\"), Bayesian calibration reverses the association; framed as observational\n\nKey numbers used: 11/12 (η_max) and 7/12 (K_eff positive), with setup numbers kept to one compact sentence. All red lines checked: no em-dash, no -ing endings, no causal language, LLM expanded, \"observational\" explicit."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "uuid": "0aad7f72-bd1e-490c-8d15-0c722a5cd941",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DfnJ6TSsAXdTBaBC9R2BUQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4993,
+                "cache_read_input_tokens": 36309,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4993
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (~200 words). Three paragraphs mapping to the four required elements:\n\n1. **Problem + why important** (P1): BFT-diversity assumption untested, diversity vs robustness not disentangled\n2. **What we do** (P2): 455 panels, 15 models, 6 families, 6 attacks, 2 benchmarks; log-log regression + dominance analysis separating η_max and K_eff channels\n3. **Results** (P3): η_max significant 11/12, K_eff positively associated with vulnerability 7/12 (\"diversity trap\"), Bayesian calibration reverses the association; framed as observational\n\nKey numbers used: 11/12 (η_max) and 7/12 (K_eff positive), with setup numbers kept to one compact sentence. All red lines checked: no em-dash, no -ing endings, no causal language, LLM expanded, \"observational\" explicit."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 120472,
+            "duration_api_ms": 121643,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "5d9e3f82-f34e-484e-b189-261604e7f387",
+            "total_cost_usd": 0.4338596,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 29461,
+              "cache_read_input_tokens": 103048,
+              "output_tokens": 5864,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29461,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 230,
+                  "cache_read_input_tokens": 36309,
+                  "cache_creation_input_tokens": 4993,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4993
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1365,
+                "outputTokens": 762,
+                "cacheReadInputTokens": 86506,
+                "cacheCreationInputTokens": 30203,
+                "webSearchRequests": 0,
+                "costUSD": 0.05157935,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 5864,
+                "cacheReadInputTokens": 103048,
+                "cacheCreationInputTokens": 29461,
+                "webSearchRequests": 0,
+                "costUSD": 0.38228025,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "202de891-3a88-4f34-b133-cfd2fd0c7364"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 26
+    }
+  ]
+}

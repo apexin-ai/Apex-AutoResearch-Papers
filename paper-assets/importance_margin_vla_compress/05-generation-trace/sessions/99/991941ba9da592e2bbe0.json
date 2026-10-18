@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "991941ba9da592e2bbe0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval geometric prior k07",
+  "task_key": "worker_eval_geometric_prior_k07_20260517T160521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_geometric_prior_k07_20260517T160521_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "78529caedf483de842cb2b83ee33429deff1fa882c767fed80f94b80a0586d88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is 108/500 episodes complete, 0% SR across all completed tasks. Checking back in 30 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

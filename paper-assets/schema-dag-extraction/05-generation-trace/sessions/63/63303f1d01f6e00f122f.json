@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "63303f1d01f6e00f122f",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "fix fewnerd r value deep investigation",
+  "task_key": "worker_fix_fewnerd_r_value_deep_investigation_20260516T061932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fewnerd_r_value_deep_investigation_20260516T061932.log",
+    "occurrence": 1,
+    "bytes": 767448,
+    "sha256": "4bdd11cccc5a0cbe118a9ccfb31555b36ce01e02b58edbdbb7a1fc726d9dcf3f"
+  },
+  "statistics": {
+    "messages": 154,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 42,
+      "record": 1,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "63303f1d01f6e00f122f-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "63303f1d01f6e00f122f-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ]
+}

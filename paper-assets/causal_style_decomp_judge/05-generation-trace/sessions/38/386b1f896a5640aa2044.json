@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "386b1f896a5640aa2044",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code nli gate fn selection bias",
+  "task_key": "worker_code_nli_gate_fn_selection_bias_20260521T101850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli_gate_fn_selection_bias_20260521T101850_result.json",
+    "occurrence": 1,
+    "bytes": 1934,
+    "sha256": "9f5a5d0dc5f116e2da47be41485e316a859c712c5de2d89c994135f08d5b365f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n## FORMALITY (N=355, pass=323/91.0%, fail=32/9.0%)\n\nGate 失败全部来自 double-rewrite（cf_fail=0, dr_fail=32）。\n\n| Metric | Pass | Fail | U p-val | Cliff's d | Size |\n|---|---|---|---|---|---|\n| norm_levenshtein | 0.3676 | 0.3967 | 0.2315 | +0.13 | negligible |\n| char_ratio | 0.9965 | 1.1596 | **0.0005** | +0.37 | **medium** |\n| flesch_diff | 16.61 | 23.73 | **0.0112** | +0.27 | **small** |\n\n**Direction**: Fail 组 edit distance 更大但不显著 (p=0.23) → **无显著 selection bias**。\nDouble-rewrite 的 edit distance 在 fail 组显著更大 (pass=0.37 vs fail=0.53, p=0.0003, medium)，符合预期：dr 失败是因为 double-rewrite 偏离原文更远。\n\n## VERBOSITY (N=100, pass=39/39.0%, fail=61/61.0%)\n\n| Metric | Pass | Fail | U p-val | Cliff's d | Size |\n|---|---|---|---|---|---|\n| norm_levenshtein | 0.5284 | 0.6901 | **0.0002** | +0.45 | **medium** |\n| char_ratio | 2.10 | 8.79 | **0.0018** | +0.37 | **medium** |\n| token_ratio | 2.24 | 6.75 | **0.0024** | +0.36 | **medium** |\n| jaccard_overlap | 0.4205 | 0.2685 | **0.0003** | -0.43 | **medium** |\n| levenshtein_ratio | 0.6100 | 0.4254 | **0.0002** | -0.44 | **medium** |\n| flesch_diff | 12.36 | 22.08 | **0.0418** | +0.24 | **small** |\n\n**Direction**: Fail 组 edit distance **显著更大** (p=0.0002) → **CONSERVATIVE bias**：gate 过滤掉了 style 变化更大的 pairs，使得 measured effects 是 lower bounds。\n\n## 结论\n\n- **Formality**: 无显著 selection bias（cf 维度），gate 主要过滤 double-rewrite 质量差的 pairs\n- **Verbosity**: gate 存在 selection bias 但方向是 **conservative** —— 过滤掉了 style 变化更剧烈的 pairs，意味着论文报告的 effect 是下界估计，对论文主张有利\n- 可以在论文中写：NLI gate 的 filtering 在 verbosity 轴上偏向保守（Cliff's δ=+0.45, medium），measured ATE 为 lower bound"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

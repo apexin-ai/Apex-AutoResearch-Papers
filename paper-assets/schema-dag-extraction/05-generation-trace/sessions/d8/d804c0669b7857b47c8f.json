@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d804c0669b7857b47c8f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis exp007 error taxonomy",
+  "task_key": "worker_analysis_exp007-error-taxonomy_20260515T131936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp007-error-taxonomy_20260515T131936_result.json",
+    "occurrence": 1,
+    "bytes": 1628,
+    "sha256": "449309b8d1986a85a1a37d5f37973fa1aba2cf544f239ce435a617320d90feb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已就绪。汇报结果：\n\n---\n\n**exp-007 Error Taxonomy 分析完成**\n\n核心发现 — **intra-batch type substitution 随 BCS 单调递增，强力支撑 Claim 2 (confusability channel)**：\n\n### exp1_random (BCS 0→0.97, 94 batches)\n\n| BCS bin | #FP | IntraSub% | ExtraSub% | IntraSub/gold |\n|---------|-----|-----------|-----------|---------------|\n| zero (=0) | 6172 | **0.0%** | 90.3% | 0.00% |\n| low (<0.90) | 2231 | **1.6%** | 89.9% | 3.40% |\n| medium (0.90-0.95) | 3843 | **10.6%** | 78.1% | 6.47% |\n| high (≥0.95) | 6188 | **49.4%** | 30.8% | 12.93% |\n\n- **IntraSub fraction ~ BCS: Spearman ρ=1.000, p<0.001 \\*\\*\\***\n- **IntraSub rate/gold ~ BCS: Spearman ρ=1.000, p<0.001 \\*\\*\\***\n- Chi-square: χ²=6952, p≈0 \\*\\*\\*\n\n### exp2_controlled (BCS 0.86→0.97, 54 batches)\n同一趋势在窄 BCS 区间也成立：IntraSub 从 3.2% → 7.3% → 8.6% (ρ=1.0, p<0.001)\n\n### 解读\n- BCS=0（单类型）时 intra-batch type confusion 不可能发生（0%），符合理论预期\n- BCS≥0.95 时 **49.4% 的 FP 是 batch 内类型混淆**，每 100 个 gold entity 产生 ~13 个 intra-batch type_sub\n- Extra-batch type_sub 反向下降（90.3% → 30.8%），说明高 BCS 环境下 batch 内混淆取代了 batch 外混淆\n- Hallucination 和 boundary_error 占比始终很低（<3%），说明 LLM 的主要错误模式是类型混淆而非幻觉或边界偏移\n\n### 产出\n- `artifacts/exp007/error_taxonomy_report.txt`\n- `artifacts/exp007/error_taxonomy_by_bcs.csv`\n- `artifacts/exp007/error_taxonomy_raw.json`\n- `src/error_taxonomy.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

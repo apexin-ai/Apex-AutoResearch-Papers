@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "47907e62ca8e698821b1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh d051 status check",
+  "task_key": "worker_ssh_d051-status-check_20260517T033813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d051-status-check_20260517T033813_result.json",
+    "occurrence": 1,
+    "bytes": 2629,
+    "sha256": "dbf89cd9137d84656782e03ab551096b03b7f70dd5b4827205af047f6dd107ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总如下：\n\n## D051 Count Curves 实验状态\n\n### FewRel（RE，7 levels: 4/8/16/32/40/64/80）\n\n| Dataset × Seed | Status | Levels |\n|---|---|---|\n| **FewRel seed=42** | **complete** | 7/7 |\n| **FewRel seed=123** | **complete** | 7/7 |\n| **FewRel seed=456** | **complete** | 7/7 |\n\n### Few-NERD（NER，6 levels: 2/6/12/22/44/66）\n\n| Dataset × Seed | Status | Levels |\n|---|---|---|\n| **Few-NERD seed=42** | **complete** | 6/6 |\n| **Few-NERD seed=123** | **complete** | 6/6 |\n| **Few-NERD seed=456** | **running** | 2/6（完成 count_12, count_2；缺 count_6, count_22, count_44, count_66） |\n\n---\n\n### 当前运行进程\n\n```\npython3 scripts/run_d051_count_curves_25.py --dataset fewnerd --n_batches 25 --seed 456\n```\n在 tmux session `d051_batch2` 中运行，从 10:47 开始（已运行约 1 小时）。\n\n---\n\n### 完成结果明细\n\n**FewRel seed=42** (accuracy):\n| count | mean | std |\n|---|---|---|\n| 4 | 0.8700 | 0.0680 |\n| 8 | 0.8050 | 0.0816 |\n| 16 | 0.7188 | 0.0629 |\n| 32 | 0.6518 | 0.0490 |\n| 40 | 0.6058 | 0.0417 |\n| 64 | 0.5393 | 0.0262 |\n| 80 | 0.5041 | 0.0002 |\n\n**FewRel seed=123** (accuracy):\n| count | mean | std |\n|---|---|---|\n| 4 | 0.8475 | 0.1072 |\n| 8 | 0.7988 | 0.0778 |\n| 16 | 0.7454 | 0.0599 |\n| 32 | 0.6379 | 0.0436 |\n| 40 | 0.6092 | 0.0446 |\n| 64 | 0.5357 | 0.0222 |\n| 80 | 0.4958 | 0.0000 |\n\n**FewRel seed=456** (accuracy):\n| count | mean | std |\n|---|---|---|\n| 4 | 0.8508 | 0.0871 |\n| 8 | 0.7858 | 0.0863 |\n| 16 | 0.6915 | 0.0649 |\n| 32 | 0.6549 | 0.0458 |\n| 40 | 0.6091 | 0.0400 |\n| 64 | 0.5352 | 0.0249 |\n| 80 | 0.4865 | 0.0000 |\n\n**Few-NERD seed=42** (recall):\n| count | mean | std |\n|---|---|---|\n| 2 | 0.5267 | 0.1905 |\n| 6 | 0.3899 | 0.1153 |\n| 12 | 0.3057 | 0.1017 |\n| 22 | 0.2684 | 0.1029 |\n| 44 | 0.3007 | 0.1116 |\n| 66 | 0.4071 | 0.0017 |\n\n**Few-NERD seed=123** (recall):\n| count | mean | std |\n|---|---|---|\n| 2 | 0.4460 | 0.1984 |\n| 6 | 0.4217 | 0.1341 |\n| 12 | 0.3568 | 0.1119 |\n| 22 | 0.2768 | 0.0905 |\n| 44 | 0.2724 | 0.1146 |\n| 66 | 0.4067 | 0.0014 |\n\n**Few-NERD seed=456** (recall, partial):\n| count | mean | std |\n|---|---|---|\n| 2 | — | — |\n| 6 | — | — |\n| 12 | ✓ (file exists) | — |\n| 22 | — | — |\n| 44 | — | — |\n| 66 | — | — |\n\n注意：seed=456 目前只有 `results_count_12.jsonl`（13MB）和 `results_count_2.jsonl`（7MB），无 summary。脚本按 count 降序（或字母序）处理中，正在计算剩余 4 个 levels。按已完成 seeds 的用时估算，剩余约 2-3 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

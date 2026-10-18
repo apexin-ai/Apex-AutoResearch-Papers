@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3e80ad60559758232227",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k085 object seed42",
+  "task_key": "worker_diagnose_eval_pi05_random_k085_object_seed42_20260521T201334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k085_object_seed42_20260521T201334_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "e08c922219e05942cd804279178f48f30686270c11bb9f421e255aaa4496ab08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：网络不可达（`[Errno 101] Network is unreachable`）。`AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224')` 在模型加载后尝试连接 HuggingFace Hub 失败。与同服务器 k095 实验完全相同的问题。\n\nGPU、磁盘均正常。可以直接重跑，但启动前需 `source /etc/network_turbo` 或设置 `TRANSFORMERS_OFFLINE=1`（需 tokenizer 已缓存）。\n\n报告已写入 `artifacts/diagnose_eval_pi05_random_k085.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

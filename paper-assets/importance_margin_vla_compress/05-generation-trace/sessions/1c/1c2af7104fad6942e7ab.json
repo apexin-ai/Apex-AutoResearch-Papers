@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1c2af7104fad6942e7ab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code pi05 eval fix and launch",
+  "task_key": "worker_code_pi05-eval-fix-and-launch_20260521T031225",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pi05-eval-fix-and-launch_20260521T031225_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "c5f04517c295d2ba8895d38a8f27b42de615a6554b922e5a44393bfd274e6524"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 eval 已正常启动，正在运行 episodes。\n\n## 汇报\n\n### 1. 修复内容\n\n**Fix 1: 图像 180° 翻转**（line 213-215）\n```python\nbase_t = torch.flip(base_t, dims=[1, 2])   # agentview\nwrist_t = torch.flip(wrist_t, dims=[1, 2])  # wrist\n```\n在 `[C,H,W]` tensor 上 flip H 和 W，匹配 LeRobot 训练时的 `torch.flip(img, dims=[2,3])` (for `[B,C,H,W]`)。\n\n**Fix 2: Tokenizer gated repo 访问**\n- 在脚本顶部添加 `os.environ[\"HF_TOKEN\"] = \"hf_bZtnDVV...\"` \n- 预下载 paligemma tokenizer 到 HF cache\n\n**Fix 3: Postprocessor API 不兼容**（额外发现并修复）\n- 新版 LeRobot postprocessor 期望 `torch.Tensor`，不是 `dict`\n- `postprocess({\"action\": actions})` → `postprocess(actions)`\n- `post_out[\"action\"][0]` → `actions_unnorm[0]`\n\n### 2. 5 episodes 验证结果\n\n- 前 3 个 task 均为 0% SR（5 ep/task）\n- 但 action debug 显示 actions 明显合理：\n  - delta position: -0.3 ~ 0.1（正常范围）\n  - delta rotation: -0.01 ~ 0.02（正常范围）\n  - gripper: 有开/合交替\n  - 模型有方向性意图（持续向下探）\n- 0% SR 可能因为：checkpoint 质量（community fine-tune `pepijn223/pi05_libero_31_9_non_q`）、seed 42 或 5 ep 样本太小\n\n### 3. 完整 eval 已启动\n\n- **PID**: 754154（python 进程）\n- **GPU**: cuda:1, 9700MiB / 97887MiB\n- **Log**: `logs/eval_pi05_baseline_object_seed42.log`\n- **配置**: `--suite libero_object --prune_mode none --seed 42 --n_episodes 50 --gpu 1`\n- 预计运行时间：10 tasks × 50 eps × ~15s/ep ≈ 2+ hours"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

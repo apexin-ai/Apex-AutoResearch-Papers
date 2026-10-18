@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "id": "e1fbd00fe9c6a3485d38",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code multi tau ablation 001",
+  "task_key": "worker_code_multi_tau_ablation_001_20260516T015650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi_tau_ablation_001_20260516T015650.log",
+    "occurrence": 1,
+    "bytes": 1187983,
+    "sha256": "bb0b10d7a6924fd7063a62bcfa37c16d02e4a807b32bad6cf35721a2a1a9588e"
+  },
+  "statistics": {
+    "messages": 711,
+    "user_turns": 2,
+    "tool_calls": 279,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 131,
+      "tool_call": 279,
+      "tool_result": 279,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "e1fbd00fe9c6a3485d38-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 662,
+      "chunks": [
+        {
+          "path": "e1fbd00fe9c6a3485d38-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "e1fbd00fe9c6a3485d38-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1fbd00fe9c6a3485d38-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1fbd00fe9c6a3485d38-part-0004.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "e1fbd00fe9c6a3485d38-part-0004.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ]
+}

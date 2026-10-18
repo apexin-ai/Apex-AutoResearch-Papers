@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e7188781b883a8751e32",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu1 l2norm long seed43",
+  "task_key": "worker_deploy-westd38929-gpu1-l2norm-long-seed43_20260523T233254",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy-westd38929-gpu1-l2norm-long-seed43_20260523T233254_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "72d6bfa4224b28ee4e21df84d2971d00b50cb3fcfe83ab52000f7fd832052888"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n- **实验**: `eval_xvla_l2norm_k05_long_seed43`\n- **服务器**: westd-38929, GPU 1 (4141 MiB)\n- **命令**: `CUDA_VISIBLE_DEVICES=1 python eval_xvla_pruning_libero.py --mode l2_norm --keep_ratio 0.5 --suite libero_10 --domain_id 3 --seed 43 --model_path /root/autodl-tmp/X-VLA-Libero`\n- **tmux session**: `eval_xvla_l2norm_k05_long_seed43`\n- **日志**: `/tmp/eval_xvla_l2norm_k05_long_seed43.log`\n- **状态**: Task 0 已开始运行，预计 ~95 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

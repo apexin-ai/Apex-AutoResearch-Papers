@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "22c9299dc44ec9a9a074",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy seed43 object random cliff",
+  "task_key": "worker_deploy_seed43_object_random_cliff_20260523T015443",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_seed43_object_random_cliff_20260523T015443_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "a409b1f37c93fcd8fa2fe8a4276036733244df5ff0cf5a9c55801b45c0e8f418"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署汇报：\n\n| 实验 | 状态 | 服务器 | PID | 显存 |\n|------|------|--------|-----|------|\n| eval_pi05_random_k095_object_seed43 (k=0.95) | **跳过** — registry 已有 DONE 结果 (SR=72.8%) | - | killed 101650 | - |\n| eval_pi05_random_k09_object_seed43_v3 (k=0.9) | **RUNNING** | westd-27271:cuda:1 | 101722 | 10535 MiB |\n| eval_pi05_random_k085_object_seed43 (k=0.85) | **跳过** — registry 已有 DONE 结果 (SR=3.8%) | - | killed 260638 | - |\n\n实际部署 1 个实验（k=0.9 v3），2 个因 registry 已有完成结果而跳过并 kill。日志路径：`/tmp/eval_pi05_random_k09_object_seed43_v3.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

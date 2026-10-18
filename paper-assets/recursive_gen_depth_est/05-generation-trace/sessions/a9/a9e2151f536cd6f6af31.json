@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a9e2151f536cd6f6af31",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code temp07 pilot pythia 001",
+  "task_key": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_temp07_pilot_pythia_001_20260515T163617_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "fe2ddd6d687b8604a69afa205e20561caf7b2a59e4c6b189cdc3e761a8708cdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果总结\n\n**temp07_pilot_pythia_001** — 已完成 ✅\n\n| 指标 | τ=0.7 | τ=0.9 baseline |\n|------|-------|----------------|\n| d1v2 AUC (RF) | **0.8378** | 0.8327 |\n| d1v2 AUC (LR) | **0.8031** | 0.7833 |\n| 6-class RF acc | 57.3% | — |\n\n**核心发现：d1v2 inversion 在 τ=0.7 within-strategy 评估中未出现。** τ=0.7 的 d1v2 AUC 与 τ=0.9 几乎一致（RF +0.005, LR +0.020），说明 temperature 均匀缩放 logit 不影响组内深度可分性。\n\nCross-strategy LOO 中观察到的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是**跨策略泛化**问题——temperature 策略的 d1 特征分布与 nucleus/topk50 的 d2 重叠，导致跨策略分类器系统性高估深度。这不是 τ=0.7 特有的，而是 temperature 解码策略的固有属性。\n\n产出文件：`results/temp07_pilot/` (features.jsonl, pairwise_auc.json, results.json, confusion_matrix.png, classification_report.txt)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

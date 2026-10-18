@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "30fcc86b35305c0660c3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k07 long seed42 strict",
+  "task_key": "worker_diagnose_eval_pi05_random_k07_long_seed42_strict_20260527T081917",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k07_long_seed42_strict_20260527T081917_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "39cf942cdaa35788f03402ad052186ed70d5c229c5a868dbfacf927dc8115ee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断与重跑总结\n\n**失败原因**：cqa1-33015 无出站网络。`transformers` 的 `_patch_mistral_regex` 在初始化 `google/paligemma-3b-pt-224` tokenizer 时调用 `huggingface_hub.model_info()` 尝试连接 HF Hub，触发 `httpx.ConnectError: [Errno 99] Cannot assign requested address`。tokenizer 文件本身已缓存在 `/root/autodl-tmp/.hf_cache/hub/models--google--paligemma-3b-pt-224/` 中。\n\n**修复**：在运行命令中添加 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`，阻止所有网络调用。\n\n**重跑状态**：\n- exp_id: `eval_pi05_random_k07_long_seed42_strict_v2`\n- 服务器: cqa1-33015, cuda:0 (空闲)\n- PID: 109152, tmux session: `eval_pi05_random_k07_v2`\n- 日志已开始写入，模型加载中（已成功跳过 tokenizer 网络调用阶段）\n- Registry 已更新：原实验 `failure_reason` 已记录，新实验状态 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

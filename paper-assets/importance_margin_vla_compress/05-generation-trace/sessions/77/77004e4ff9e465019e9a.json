@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "77004e4ff9e465019e9a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code prepare m128 train script",
+  "task_key": "worker_code_prepare_m128_train_script_20260518T013452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prepare_m128_train_script_20260518T013452_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "936cc6c4fdd2cf31aa11babd613c02e6b49062e353431c5ce142083fed0a8d28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。创建了两个文件：\n\n**`configs/smart_compress_m128.yaml`** — 继承 `smart_compress.yaml`，仅覆盖 `num_queries: 128` 和 `output_dir`\n\n**`run_train_m128.sh`** — 启动脚本，格式与 M=96/M=16 的运行方式完全一致：\n- `CUDA_VISIBLE_DEVICES=X`（待分配）\n- `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline`\n- `--config configs/smart_compress_m128.yaml --wandb_run smart_compress_m128`\n- 输出到 `train_M128.log`\n\n**完整参数（继承自 smart_compress.yaml）：**\n\n| 参数 | 值 |\n|---|---|\n| num_queries | **128**（control，不压缩） |\n| num_heads | 12 |\n| num_layers | 2 |\n| total_steps | 100,000 |\n| batch_size | 4 |\n| lr | 1e-4 |\n| warmup_steps | 1,000 |\n| decay_lr | 2.5e-6 |\n| grad_clip | 10.0 |\n| seed | 42 |\n| weight_decay | 1e-10 |\n\n**显存预估：** M=96 当前占用 ~2.6GB（进程 RSS），M=128 的 cross-attention query 多 33%，预计 ~2.8-3.0GB，不会成为瓶颈。\n\nGPU 编号留 `X`，未启动，等 Director 分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

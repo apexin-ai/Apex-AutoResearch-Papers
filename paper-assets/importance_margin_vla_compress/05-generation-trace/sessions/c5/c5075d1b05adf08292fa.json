@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "c5075d1b05adf08292fa",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "figure fig pruning overview",
+  "task_key": "worker_figure_fig_pruning_overview_20260526T073252",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig_pruning_overview_20260526T073252_result.json",
+    "occurrence": 1,
+    "bytes": 2153236,
+    "sha256": "3d4ec8dfa375632d72e46e0a15daf841706399b43ceab14b56fed51bc81079ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c5075d1b05adf08292fa-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

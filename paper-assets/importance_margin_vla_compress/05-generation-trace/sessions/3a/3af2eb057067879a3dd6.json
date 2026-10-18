@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3af2eb057067879a3dd6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 xvla k05 seed43 check",
+  "task_key": "worker_ops_cqa1-xvla-k05-seed43-check_20260521T075354",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-xvla-k05-seed43-check_20260521T075354_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "bff2086f90ea20c9b9b94931c95eaa174456e40406539570ecbec1f699a76dac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "L2norm k=0.5/k=0.7 seed42 结果文件不存在，确认 GPU 1/2 上的实验仍在运行。\n\n## 汇总\n\n### 已完成（registry 已更新为 DONE）\n\n| 实验 | GPU | Mode | k | Seed | SR | 对照 |\n|------|-----|------|---|------|----|------|\n| eval_xvla_random_k05_object_seed43 | 3 | random | 0.5 | 43 | **71.0%** | seed42=70.6% |\n| eval_xvla_random_k07_object_seed43_v2 | 0 | random | 0.7 | 43 | **65.0%** | seed42=65.2% |\n\n**非单调性再次确认**：两个 seed 都显示 k=0.5 > k=0.7 (seed43: 71.0% > 65.0%, seed42: 70.6% > 65.2%)\n\n### 仍在运行\n\n| 实验 | GPU | Mode | k | Seed |\n|------|-----|------|---|------|\n| eval_xvla_l2norm_k05_object_seed42 | 1 | L2norm | 0.5 | 42 |\n| eval_xvla_l2norm_k07_object_seed42_v2 | 2 | L2norm | 0.7 | 42 |\n\n### GPU 状态\n- GPU 0/1/2: 有进程（~4.5GB），GPU 0 可能已启动新实验\n- **GPU 3: 空闲**\n\n### 额外发现（batch sweep 结果，非 registry）\n- random k=0.3 seed42 = 62.8%\n- random k=0.85 seed42 = 63.6%\n- random k=0.5 spatial seed42 = 71.4%\n- random k=0.85 spatial seed42 = 67.6%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

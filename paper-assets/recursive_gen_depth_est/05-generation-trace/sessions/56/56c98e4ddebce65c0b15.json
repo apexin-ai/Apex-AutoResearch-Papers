@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "56c98e4ddebce65c0b15",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code plan 015 wild data prep",
+  "task_key": "worker_code_plan_015_wild_data_prep_20260516T045647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_015_wild_data_prep_20260516T045647.log",
+    "occurrence": 1,
+    "bytes": 668916,
+    "sha256": "0d750796853c3c90b4eb51faae62fb69982e4be1b4e378b965a02289ed6781f0"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "56c98e4ddebce65c0b15-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "56c98e4ddebce65c0b15-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ]
+}

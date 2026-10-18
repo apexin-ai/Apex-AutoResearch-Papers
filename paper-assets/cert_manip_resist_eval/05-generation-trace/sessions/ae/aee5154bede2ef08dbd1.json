@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "aee5154bede2ef08dbd1",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "code mvp step1 subset",
+  "task_key": "worker_code_mvp-step1-subset_20260521T204933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-step1-subset_20260521T204933.log",
+    "occurrence": 1,
+    "bytes": 1229459,
+    "sha256": "5a01b6df8a8f931ab2fef5408b7f55d2f54646b90b0ddad97f3ef0355a2d7f2e"
+  },
+  "statistics": {
+    "messages": 602,
+    "user_turns": 1,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 160,
+      "tool_call": 207,
+      "tool_result": 207,
+      "user": 1,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 485,
+      "chunks": [
+        {
+          "path": "aee5154bede2ef08dbd1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aee5154bede2ef08dbd1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "aee5154bede2ef08dbd1-part-0003.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 117,
+      "chunks": [
+        {
+          "path": "aee5154bede2ef08dbd1-part-0003.json",
+          "message_count": 55
+        },
+        {
+          "path": "aee5154bede2ef08dbd1-part-0004.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ]
+}

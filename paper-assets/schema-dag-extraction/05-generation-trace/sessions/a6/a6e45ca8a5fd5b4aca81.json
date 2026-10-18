@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a6e45ca8a5fd5b4aca81",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r11 d054 phase4 5",
+  "task_key": "worker_paper_r11-d054-phase4-5_20260517T100338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r11-d054-phase4-5_20260517T100338_result.json",
+    "occurrence": 1,
+    "bytes": 1470,
+    "sha256": "1a68cb5e9b36b48eb2fab8891759fba59da9b4e510a94d5c40b89c77c5dd79df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both compile cleanly. Summary of all changes:\n\n**Phase 4a+4b**: results.tex line 87 — expanded \"TOST\" to \"Two One-Sided Tests (TOST)\" with `\\citep{lakens-2017-equivalence}`, rewrote to specify ±3pp as primary margin with ±2pp sensitivity analysis pointer.\n\n**Phase 4c**: main.tex appendix §prompt_variants — added Bonferroni/directional-consistency sentence citing `rothman-1990` (already in bib). Rothman-1990 verified real.\n\n**Phase 5a**: experimental_setup.tex — \"eliminates model-level randomness\" → \"substantially reduces model-level randomness (residual SD = 0.88 pp...)\". Also updated main.tex variance decomposition section for consistency (\"deterministic\" → \"nearly deterministic\").\n\n**Phase 5b**: supplementary.tex — replaced 449-line duplicate appendix with 1-page declaration pointing to main paper appendix.\n\n**Phase 5c**: Added `levy-2024-same-task` (ACL 2024, verified) and `dror-2018-significance` (ACL 2018, verified) to references.bib. Cited Levy in discussion.tex (prompt length), Dror in Limitations multiple-comparisons paragraph. GenRES/ULTRA not found as specific relevant 2025 papers; skipped.\n\n**Phase 5d**: Causal language scan found 2 instances of \"causes\" in related_work.tex and sdgd_negative.tex — replaced with \"is associated with ... collapsing\". Title \"Shape\" left as deliberate framing. All other matches are allowed exceptions (schema-driven, Causal mechanism, U-shaped)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

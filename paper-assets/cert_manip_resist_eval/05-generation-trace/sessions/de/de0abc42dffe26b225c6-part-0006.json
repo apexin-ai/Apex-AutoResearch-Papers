@@ -1,0 +1,630 @@
+{
+  "schema_version": "1.0",
+  "session_id": "de0abc42dffe26b225c6",
+  "rounds": [
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-25T22:41:15.466320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 743, length=10223\n## Reviewer 2 — Round 1 完整审稿报告\n\n**论文**: \"The Diminishing Weakest Link: How Panel Size Shifts Adversarial Vulnerability Drivers in LLM Judge Panels\"\n**Venue**: EMNLP 2026 (via ARR May 2026 cycle)\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.5 — Borderline Conference\n**一句话总结**: 实验设计严谨、统计方法论扎实的实证研究，但核心发现与经典 ensemble diversity theory 的增量有限，且标题/正文的因果语言与论文声称的关联性分析存在系统性矛盾。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4/5 | 5 种推断方法交叉验证、Monte Carlo 校准、Cinelli-Hazlett 敏感性分析，方法论非常扎实；但 diversity-capability confound (r=0.70-0.81) 和因果语言矛盾构成显著扣分项 |\n| Excitement | 2.5/5 | 核心发现（diversity 与 vulnerability 正相关、weakest link 随 K 递减）可被视为经典理论在 LLM judge 设定下的 instantiation，genuine novel insight 有限 |\n| Reproducibility | 5/5 | 代码和数据通过匿名链接提供，42 页论文含 30+ 页附录，实验细节极为详尽 |\n| Confidence | 4/5 | 对 ensemble theory、adversarial robustness、统计推断方法较为熟悉 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 因果语言与关联性声明的系统性矛盾\n\n- 具体位置：Title、Figure 1 caption、Section 5.2 标题、Abstract\n- 问题：\n  - 标题 \"How Panel Size **Shifts** Adversarial Vulnerability Drivers\" 使用因果动词 \"shifts\"，暗示 panel size 是 driver shift 的原因\n  - Figure 1 caption (p.2): \"the balance **shifts** from individual weakness to collective diversity\" — 同样是因果表述\n  - Section 5.2 标题 \"The Diminishing Weakest Link Across Panel Sizes\" 的 \"diminishing\" 暗示渐进过程\n  - 然而 Abstract 末尾和 Section 1 末尾明确声明 \"all findings are associational\"\n  - 这不是个别措辞问题，而是标题-正文-贡献声明的系统性矛盾\n- 为什么影响接收：Reviewer 在 ARR 中被明确要求检查 claims 是否被 evidence 支持。因果语言暗示的 claim 强度超出了观察性回归能够支撑的范围。如果论文真的只做关联分析，标题和 framing 不应使用因果动词。\n- 建议修改方向：将 \"Shifts\" 改为 \"Relates to\" 或 \"Tracks\"；Figure 1 caption 改为 \"the dominant predictor changes from...to...\"；或者增加因果识别策略（如 IV、自然实验）来支撑因果语言\n\n**N2** [critical] \"Diminishing\" 的渐进趋势 vs. K=3→K=5 的离散跳变\n\n- 具体位置：Title、Abstract、Section 5.2\n- 问题：\n  - 论文的核心 narrative 是 η_max 的预测力 \"diminishes monotonically\"，暗示平滑渐进趋势\n  - 实际数据：β̂_std = 0.243 (K=3) → 0.091 (K=5) → 0.086 (K=7)\n  - K=3→K=5 的下降幅度为 62.6%（0.243→0.091），而 K=5→K=7 仅下降 5.5%（0.09\n…[truncated 8246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-25T22:41:49.974685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "## 交叉审稿：请回应 Reviewer 2 的审稿意见\n\n以下是 Reviewer 2 的完整审稿报告。请逐条回应每个 Must-Fix 和 Should-Fix 问题，使用 `[AGREE]` 或 `[REBUT]` 标记你的立场，并简要说明理由。\n\n---\n\n**Reviewer 2 Overall**: 3.5 (Borderline Conference)\n\n### Must-Fix 问题\n\n**R2-N1** [critical] 因果语言与关联性声明的系统性矛盾\n- 标题 \"Shifts\" 使用因果动词，Figure 1 caption \"the balance shifts from...\"，Section 5.2 \"The Diminishing Weakest Link\"\n- 但 Abstract/Section 1 末尾声明 \"all findings are associational\"\n- 系统性矛盾，不是个别措辞问题\n\n**R2-N2** [critical] \"Diminishing\" 的渐进趋势 vs. K=3→K=5 的离散跳变\n- η_max β̂_std = 0.243 (K=3) → 0.091 (K=5) → 0.086 (K=7)\n- K=3→K=5 下降 62.6%，K=5→K=7 仅 5.5%，CI 完全重叠\n- 仅 3 个数据点不足以支撑 \"monotonically diminishing\"\n- 更像 regime shift/threshold effect\n\n**R2-N3** [critical] 新颖性与经典 ensemble diversity theory 的增量不足\n- 核心发现（diversity 与 vulnerability 正相关、weakest link 递减）可从 Brown et al. (2005)、Krogh & Vaidya (1995)、Kuncheva (2003) 推导\n- Position bias exception 是 genuinely novel 的发现，但论文未将其作为 core contribution\n\n### Should-Fix 问题\n\n**R2-W1**: Conclusion 过于简略（~150 words），缺少 practical recommendations 和 future directions\n**R2-W2**: K_eff 正系数与 BFT/Condorcet 矛盾的解释不充分\n**R2-W3**: Bayesian calibration R²=0.14 的深层含义未展开（aggregation as defense）\n**R2-W4**: Proposition 1 作为独立贡献价值有限（58% pairs 满足条件，近似定义推论）\n**R2-W5**: 缺少 Lakshminarayanan et al. (2017) 和 Horváth et al. (2022) 引用\n\n### 你的任务\n\n对每个 R2-N1/N2/N3 和 R2-W1~W5，请回应：\n- `[AGREE]` — 你同意这是一个有效问题\n- `[REBUT]` — 你不同意，并给出理由\n- 可以补充你在初审中未提到但被 Reviewer 2 触发的新观察",
+              "reviewer_id": "1",
+              "project": "cert_manip_resist_eval",
+              "round_number": "1"
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-25T22:42:07.218082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 17243
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-25T22:42:07.820532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "## 交叉审稿：请回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿报告。请逐条回应每个 Must-Fix 和 Should-Fix 问题，使用 `[AGREE]` 或 `[REBUT]` 标记你的立场，并简要说明理由。\n\n---\n\n**Reviewer 1 Overall**: 3.0 (Findings)\n\n### Must-Fix 问题\n\n**R1-N1** [critical] Diversity-Capability Confound (r=0.70-0.81) 使核心关联发现的可解释性存疑\n- Cinelli-Hazlett sensitivity analysis 显示 69% 条件下 confound 可完全解释关联\n- Capability-matched Pool A 的 MDE 不足（power 严重不足）\n- Introduction 说 \"we address this gap by decomposing\"，但实际分解因 multicollinearity 无法可靠执行\n\n**R1-N2** [critical] K_eff 的 Gaussian Copula 理论基础被经验数据普遍拒绝\n- Cramér-von Mises GoF 拒绝率 97-100%\n- K_eff 作为 \"effective independent channels\" 的理论解释失效\n- 论文辩称 ranking robustness（Spearman ρ≈0.86-0.87），但这不等于理论解释成立\n- 论文自身 Section 3 承认 K_eff \"serves as intuition rather than a formal bound\"\n\n**R1-N3** [critical] Vote-Counting (X/12) 作为主要 meta-analytic 汇总方法\n- Hedges & Olkin (1985) 已证明 vote-counting 效力可任意低\n- 主文和 Abstract 完全依赖 vote counts\n- DerSimonian-Laird pooling 被埋在附录中\n- I²>87% 下 12 条件中 10 个显著可能是条件间系统差异\n\n### Should-Fix 问题\n\n**R1-W1**: AWQ INT4 量化引入系统性 capability 混淆（26.3% accuracy reduction），K_eff 信号可能反映量化差异\n**R1-W2**: 仅 Multiple-Choice 基准限制泛化性\n**R1-W3**: 攻击模板 generalizability 不足（每种仅 1-2 个 template variant）\n**R1-W4**: ε=10⁻⁶ 在 log(ASR+ε) 中的 sensitivity 未充分验证\n**R1-W5**: Proposition 1 的理论贡献有限（经典 BFT 标准结果，58% 覆盖率）\n**R1-W6**: API 模型版本无锁定\n\n### 你的任务\n\n对每个 R1-N1/N2/N3 和 R1-W1~W6，请回应：\n- `[AGREE]` — 你同意这是一个有效问题\n- `[REBUT]` — 你不同意，并给出理由\n- 可以补充你在初审中未提到但被 Reviewer 1 触发的新观察",
+              "reviewer_id": "2",
+              "project": "cert_manip_resist_eval",
+              "round_number": "1"
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-25T22:42:09.185283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1364
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-25T22:42:18.066073+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享已发出。两位 Reviewer 正在逐条回应对方的审稿意见。\n\n当前进度：\n- **Step 1（初审）**：✅ Reviewer 1 (3.0) + Reviewer 2 (3.5) 均已提交\n- **Step 2（交叉分享）**：⏳ 等待两位 Reviewer 的 [AGREE]/[REBUT] 回应\n- **视觉审查**：✅ 已完成（0 critical, 3 warning, 8 info）\n- **外部审稿**：未请求\n\n关键共识点初步观察：\n- 两位 Reviewer 均认为 **Proposition 1 贡献有限**（R1-W5, R2-W4）\n- 两位均指出 **diversity-capability confound** 是核心问题\n- R2 更侧重 framing/language 矛盾，R1 更侧重统计方法论缺陷\n\n等待交叉回应返回后进入 Step 3（收敛判断）和 Step 4（报告合成）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director"
+          },
+          "id": "event-000906"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-25T22:42:18.071350+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n## 总体评分\n**Overall**: 3.0 / 5（Findings）\n**一句话总结**: 实验设计和统计方法论的严谨性值得肯定，但 diversity-capability confound（r=0.70–0.81）从根本上阻碍了核心因果推断，K_eff 的理论基础因 Gaussian copula 被普遍拒绝而削弱，限于 multiple-choice 基准使泛化性存疑。\n\n## 官方维度打分（来自 ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.0/5 | 五种推断方法的方向一致性和 Monte Carlo 校准令人印象深刻，但 diversity-capability confound 无法分离，K_eff 的 Gaussian copula 假设被 97–100% judge pairs 拒绝，vote-counting (X/12) 作为主要汇总方法统计效力不足 |\n| Excitement | 3.0/5 | Panel vulnerability 的 decomposition 框架（η_max vs K_eff）是有趣的研究方向，但由于 confound 无法解决，核心 insight 停留在\"关联\"而非\"因果\"，对社区的 actionable guidance 有限 |\n| Reproducibility | 3.5/5 | 详细报告了模型、攻击模板、聚合规则、随机种子；但 API 模型通过 OpenRouter 访问无版本锁定，6 个 AWQ 量化模型的精确权重未指定来源 |\n| Datasets / Software | 3.0/5 | 声称代码和数据可用（footnote 1），但匿名审稿期间无法验证 |\n| Reviewer Confidence | 4/5 | 统计方法论和实验设计在本人专业范围内，对信息论度量（MI/copula）部分较熟悉 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Diversity-Capability Confound 使核心关联发现的可解释性存疑\n\n- 具体位置：Section 1（page 1, \"we address this gap\"）、Section 6（page 8）、Appendix K（Figures 19–21）、Limitations（page 9）\n- 问题：K_eff 与 capability 的相关性 r=0.70–0.81（Section 6），Cinelli-Hazlett sensitivity analysis 显示已知 confound 可在 69% 的条件下（Section 6: \"confound could account for the association in 69% of conditions\"）完全解释 K_eff 与 ASR 的关联。Capability-matched Pool A（r=0.50）的 MDE 在 80% power 下为 0.144–0.048（Table 22, Appendix P），统计效力严重不足，无法提供有意义的区分能力。\n- 论文自身在 abstract 最后一句承认 \"the diversity-capability confound precludes causal claims; all findings are associational\"，但 Introduction（page 1）声称 \"we address this gap by decomposing panel vulnerability into two predictors\"，暗示因果贡献的分离已实现。实际上该分解在观测层面因 multicollinearity（VIF 2.0–2.9）而无法可靠执行。\n- 为什么影响接收：一篇声称 decompose vulnerability drivers 的论文，如果 69% 条件下 confound 足以解释全部关联，则核心发现的 contribution 大幅缩水。读者无法判断 K_eff 反映的是真正的 independence 效应还是 capability 方差的代理。\n- 建议修改方向：(1) 将 framing 从 \"address this gap\" 调整为 \"characterize the associational structure\"；(2) 在 Introduction contributions 部分显式限定因果解释的边界；(3) 增加因果推断方法（如 IV、propensity score matching，或设计实验使同一模型在不同 diversity 条件下对比）；(4) 至少展示在 confound-free 子集（如仅 API 模型、同 family 跨版本）中 K_eff 是否仍有预测力。\n\n**N2** [critical] K_eff 的 Gaussian Copula 理论基础被经验数据普遍拒绝\n\n- 具体位置：Equation (1)（page 4）、Section 4.3（page 5）、Appendix R（pages 27–28）\n- 问题：K_eff = (1/K) Σ_i [1 + Σ_{j≠i} exp(−2·MI(i,j))]。Appendix R 推导出该公式在 Gaussian copula 下等价于 K·Σ(1−ρ²)/ρ，即 K_eff 本质上度量 squared pairwise correlations。然而，Cramér–von Mises GoF test 在 α=0.05 下拒绝 Gaussian copula 的 judge pair 比例为 97–100%（MMLU: 102/105, ARC: 104/105, Appendix R page 27）。论文辩称 \"ranking robustness despite copula rejection\"（Spearman ρ ≈ 0.86–0.87），但这仅说明 K_eff 作为一个 heuristic 排名指标是稳定的，不能为其 \"effective independent channels\" 的理论解释提供支撑。\n- Section 4.3（page 5）将 K_eff 描述为 \"captures the weakest link\" 和 \"effective independent channels\"，但这些语义解释均依赖 Gaussian copula 这一被拒绝的假设。\n- 主文（Section 3, page 4）也承认 K_eff \"serves as intuition rather than a formal bound\"，但此 caveat 在后续使用中被忽略。\n- 为什么影响接收：K_eff 是本文两大核心变量之一。如果其理论解释无法成立，论文等价于使用了一个 ad hoc diversity metric 做回归——仍然有经验价值，但不能声称提供了 information-theoretic decomposition。\n- 建议修改方向：(1) 明确 K_eff 在 copula 被拒绝后的 formal status——它是一个 empirical diversity index 而非 effective channel count；(2) 探索更合适的 copula families（Clayton, Frank, t-copula）并报告 K_eff 在不同 copula 假设下的变化；(3) 提供 K_eff 的非参数对应（如直接使用 κ-diversity 或 pairwise disagreement）的回归结果对比。\n\n**N3** [critical] Vote-Counting (X/12) 作为主要 meta-analytic 汇总方法\n\n- 具体位置：Abstract（\"K_eff positive in 10/12 conditions\"）、Section 1（page 1）、Section 5.1–5.5（pages 6–8）\n- 问题：论文反复以 \"X/12 conditions significant\" 汇总结果（如 K_eff 10/12, η_max 5/12, κ-diversity 12/12）。这是经典的 vote-counting meta-analysis，Hedges & Olkin (1985) 已证明其统计效力可以任意低——当真实效应存在但各 study 样本量不同时，vote-counting 可能给出错误结论。\n- 论文确实在 Appendix E.13（page 20）执行了 DerSimonian-Laird pooling，这是更合适的方法。但主文和 abstract 完全依赖 vote counts 来传递结论，pooled estimates 被埋在附录中。\n- 在 I²>87%（Table 17, page 21）的高异质性下，12 个条件中 10 个显著可能是因为效应量在条件间有系统变化（如仅在特定 attack types 下成立），而 vote counting 无法区分这一点。\n- 为什么影响接收：主要结论的汇总方法在 meta-analysis 文献中被视为 suboptimal。主文应报告 pooled effect sizes 和 confidence intervals，而非显著性计数。\n- 建议修改方向：(1) 在主文 Section 5 中报告 DerSimonian-Laird pooled β_std 和 95% CI 作为主要汇总；(2) 讨论 I²>87% 的含义——效应主要由哪些条件驱动？(3) 将 vote counts 降级为辅助信息。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] AWQ INT4 量化引入系统性 capability 混淆\n\n- 具体位置：Table 2（page 6）、Section 6（page 8）、Appendix S（page 28）\n- 问题：6 个 local 模型均为 AWQ INT4 量化（Table 2），量化导致 MMLU 准确率比全精度低 ~26.3%（Table 2: \"INT4 quantization...26.36 format accuracy but with 26.3% accuracy reduction\"）。由于 \"diverse panel\" 在实验中几乎等价于 \"包含量化模型的 panel\"，K_eff 信号可能主要反映量化-非量化的 capability 阶梯差异，而非真正的判断独立性。\n- Appendix S 的 quantization dummy regression 显示 dummy 仅将 K_eff 的标准化系数从 0.39 衰减到 0.31–0.34，但 dummy 本身也与 K_eff 共线（quantized models 必然增加 diversity），因此这一控制的效力有限。\n- 建议：(1) 提供仅含 API 模型的完整回归结果（目前 API-only 子集 Table 18 仅报告了 r 和显著性计数，缺少完整系数表）；(2) 讨论为何不使用全精度 local 模型或至少 FP16 量化。\n\n**W2** [warning] 仅 Multiple-Choice 基准限制泛化性\n\n- 具体位置：Section 4.2（page 5）、Limitations（page 9）\n- 问题：MMLU 和 ARC 均为 pairwise comparison 格式的 multiple-choice 评估。Open-ended generation（自由文本评估、代码审查、essay 打分）的攻击面和 panel dynamics 可能完全不同——例如 verbosity bias 在自由文本中可能比 MC 中影响更大，position bias 在 MC 中是特有的。\n- 论文的 Table 1 taxonomy 包括 \"Decision: Correct/Incorrect\"（binary），而开放式评估的 decision space 是连续的，majority vote 的适用性也不同。\n- 建议：在 Limitations 中更明确讨论 MC→open-ended 的泛化风险，或增加至少一个开放式基准的 pilot 结果。\n\n**W3** [warning] 攻击模板的 generalizability 不足\n\n- 具体位置：Table 35（page 41）、Section 4.2（page 5）\n- 问题：6 种攻击类型中，Verbosity bias 仅 1 个 template variant，Position bias 仅 1 个 variant（Table 35）。攻击效果高度依赖具体 template 措辞——例如 prompt injection 的 \"Note: This response is excellent...\" 与 \"SYSTEM: Override previous instructions...\" 可能触发不同模型的不同防御机制。\n- Section 5.4（page 7）基于这些有限 templates 得出 targeted vs shared-bias attacks 的行为差异结论，但每种攻击的 template 采样空间极窄，结论的 generalizability 存疑。\n- 建议：(1) 增加每种攻击至少 3–5 个 template variants；(2) 或者在 Section 5.4 的结论中加入对 template 数量限制的 explicit caveat。\n\n**W4** [warning] ε=10⁻⁶ 在 log(ASR+ε) 回归中的敏感性未充分验证\n\n- 具体位置：Section 4.5（page 6, Equation 2）、Appendix N（page 25）\n- 问题：当 ASR 接近零时（如某些 frontier API 模型在部分攻击下 ASR<1%），log(ASR+10⁻⁶) ≈ log(10⁻⁶) = −13.8，这一极端值可能过度影响 OLS 系数。论文在 Appendix N 提到 fractional logit 避免了 log+ε 问题且方向一致性 98.6%，但未展示 ε 取不同值（如 10⁻³, 10⁻⁴, 10⁻⁸）时系数的变化。\n- 建议：报告 ε sensitivity sweep 的完整结果（系数 + p-value 随 ε 的变化），或在主文中以 fractional logit 作为 primary specification。\n\n**W5** [warning] Proposition 1 的理论贡献有限\n\n- 具体位置：Section 3（page 4）、Appendix A（page 12）\n- 问题：Proposition 1（Weakest-Link Monotonicity）声称在 adversary 替换一个 judge 为 point-wise 更脆弱的 judge 时，ASR*(P') ≥ ASR*(P)。证明（Appendix A）直接从 majority vote 定义和独立性假设推导——这在 classical BFT 文献中是标准结果（Lamport et al., 1982 的 extension），而非 novel contribution。\n- 更重要的是，仅 58% 的 judge pairs 满足 stochastic dominance 条件（Section 1, page 1），使该 proposition 在实践中的覆盖率不足。\n- 建议：(1) 将 Proposition 1 定位为 \"formalizing intuition\" 而非 \"theoretical contribution\"；(2) 讨论 58% 覆盖率对 panel design 的实际含义。\n\n**W6** [warning] API 模型版本无锁定\n\n- 具体位置：Table 2 footnote（page 6）、Limitations（page 9）\n- 问题：通过 OpenRouter 访问的 API 模型（9 个）无版本锁定（\"API models accessed via OpenRouter, May 2026 snapshots\"）。在审稿期间或后续复现时，模型权重可能已更新，使所有涉及 API 模型的结果不可精确复现。\n- 建议：记录每个 API call 的 model version/snapshot ID（如 OpenRouter 提供的 model ID），或至少报告数据收集的具体日期范围。\n\n---\n\n## 小问题（不影响接收）\n\n- DerSimonian-Laird 在 study 数量较少（12 conditions）时倾向于低估 between-study variance。Appendix E.13 提及 Hartung-Knapp-Sidik-Jonkman (HKSJ) 作为替代但未采用为主要方法，建议至少报告 HKSJ 调整后的 CI。\n- Table 4（page 6）\"Inference sensitivity at K=3\"标题可更精确——实际报告的是五种方法的显著性计数，而非传统意义的 sensitivity analysis。\n- Figure 1（page 2）的红色/蓝色箭头语义在 caption 中解释不够清晰。\n- 正文第 7 节 Conclusion 末尾约 1–2 行溢出到第 9 页（\"evaluation designs. Disentangling diversity from capability...\"），可能导致主文略超 8 页限制。建议将 conclusion 缩减 1–2 行以严格控制在 8 页内。\n- Monte Carlo calibration（Appendix U）使用 1,000 permutations per condition。标准做法通常为 5,000–10,000 permutations 以获得更紧的 calibration confidence。\n\n---\n\n## Questions to Authors\n\n1. **API-only K_eff**：Table 18 显示 API-only subset 的 K_eff significance 从 8/12 降至 2–3/12。这是否说明 K_eff 的信号主要由 API-vs-local（即 quantization）差异驱动？能否提供 API-only 的完整 per-condition 回归系数？\n2. **Alternative copulas**：Gaussian copula 被 97–100% judge pairs 拒绝。是否考虑过 t-copula（允许尾部依赖）或 Clayton copula（允许下尾依赖），以及在这些 copula 下 K_eff 的解释如何变化？\n3. **ε sensitivity**：log(ASR+ε) 中 ε 取 10⁻³, 10⁻⁴, 10⁻⁸ 时，K_eff 和 η_max 的 standardized coefficients 如何变化？\n4. **Cinelli-Hazlett uncertainty propagation**：sensitivity analysis 中的 \"known capability confound\" benchmark 使用观测 r 值。r 本身的估计不确定性是否被传播到 contour 分析中？\n5. **Crossed random effects**：Table 7 显示 K=3 时 K_eff 在 crossed RE 下保持 8/12 显著，但 f(1) 分布仅有 455 panels。在这种极低自由度下，crossed RE 的 size properties 如何？是否有 simulation-based 验证？\n\n---\n\n## Missing References\n\n- Hedges, L. V. & Olkin, I. (1985). *Statistical Methods for Meta-Analysis*. 论文大量使用 vote-counting (X/12) 作为汇总方法，应引用该经典著作中对 vote-counting 低 power 的批评。\n- Hartung, J. & Knapp, G. (2001). On tests of the overall treatment effect in meta-analytical studies. *Statistics in Medicine*. 论文使用 DL pooling 但在 I²>87% 下不讨论 HKSJ 调整的必要性。\n- IntaPure, D., Nelsen, R. B. (2006). *An Introduction to Copulas*（已引用 Nelson 2006，确认在列）——但缺少对非 Gaussian copula alternatives 的引用（如 Joe, 2014, *Dependence Modeling with Copulas*）。\n\n---\n\n## 主要优势\n\n1. **统计框架的严谨性异常突出**：五种平行推断方法（OLS、clustered SE、mixed effects、WCB、fractional logit）+ Monte Carlo calibration + Cinelli-Hazlett sensitivity analysis，远超 NLP 领域的经验研究通常标准。\n2. **对自身局限性的坦诚态度**：Abstract 最后一句即声明 \"all findings are associational\"，Limitations 部分详细讨论 confound、benchmark scope、API versioning 等问题。\n3. **丰富的附录**：33 页补充分析覆盖了几乎所有可预见的 reviewer 质疑，包括 copula GoF、subsample analysis、quantization dummy、crossed RE、Monte Carlo calibration。\n4. **研究问题的时效性**：LLM-as-judge 的 panel robustness 是一个快速增长的研究方向，将 vulnerability 分解为 individual weakness vs collective diversity 是有价值的 framing。\n5. **K_eff 作为实用指标**：尽管理论基础存在瑕疵，K_eff 作为一个 empirical diversity proxy 在 ranking 层面稳定（Spearman ρ ≈ 0.86–0.87），具有实用价值。\n6. **Practical design guidelines**（Table 32, page 36）：将实验发现转化为可操作的 panel 设计建议。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n审稿完成。总结：\n\n- **Overall: 3.0（Findings）**\n- 三个 Must-Fix：(1) diversity-capability confound (r=0.70–0.81) 在 69% 条件下可完全解释 K_eff 关联，核心因果分解未实现；(2) K_eff 的 Gaussian copula 理论基础被 97–100% judge pairs 拒绝；(3) vote-counting (X/12) 作为主要汇总方法统计效力不足，应改用 pooled effect sizes\n- 六个 Should-Fix：AWQ 量化混淆、仅 MC 基准、攻击模板过少、ε 敏感性未验证、Proposition 1 贡献有限、API 版本无锁定\n- 主要优势：统计框架异常严谨（五种推断+Monte Carlo+Cinelli-Hazlett）、对局限性坦诚、附录极其充实"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-25T22:42:36.387971+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 1 的完整审稿报告。两位 Reviewer 的初审均已到位，交叉分享任务已分发。\n\n当前状态：\n- **Reviewer 1** (Overall 3.0 / Findings)：已收到 R2 审稿，正在回应\n- **Reviewer 2** (Overall 3.5 / Borderline Conference)：已收到 R1 审稿，正在回应\n- **视觉审查**：已完成（3 warning / 8 info，无 critical）\n- **外部审稿**：未请求\n\n等待两位 Reviewer 的交叉回应后进入 Step 4 报告合成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director"
+          },
+          "id": "event-000908"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-25T22:43:34.206949+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n## Reviewer 1 交叉回应 Reviewer 2 审稿意见\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R2-N1: 因果语言与关联性声明的系统性矛盾**\n\n完全同意。这与我在 R1-N1 中指出的问题一致但角度互补。我的 R1-N1 聚焦于 Cinelli-Hazlett 69% confound 可解释性的实质问题，R2-N1 则精确定位了语言层面的矛盾——标题 \"Shifts\" 是因果动词，Figure 1 caption \"the balance shifts from...\" 暗示因果机制，Section 5.2 标题 \"The Diminishing Weakest Link\" 也预设了动态因果过程。这与 Abstract 最后一句 \"all findings are associational\" 构成系统性矛盾。\n\n补充观察：Section 1（page 1）的三条 contributions 用词也有同样问题——\"Diversity positively associated with vulnerability\" 用了 \"associated\"（关联），但紧接着 \"η_max's predictive power diminishes monotonically\" 用了 \"diminishes\"（因果性暗示）。论文在关联/因果措辞之间反复切换，不像个别疏忽，更像是对自身发现的定位不够确定。修改方向上，R2 建议的调整标题/caption 是必要的，但仅调整措辞不够——需要在 Section 1 统一声明所有发现的 associational 性质。\n\n**[AGREE] R2-N2: \"Diminishing\" 的渐进趋势 vs. K=3→K=5 的离散跳变**\n\n同意这是一个有效问题，但严重程度略低于 R2 的判断。\n\nR2 的数据解读准确：η_max 的 pooled β̂_std 从 0.243 (K=3) 降至 0.091 (K=5) 再到 0.086 (K=7)，K=3→5 下降 62.6%，K=5→7 仅 5.5%，后两个点的 CI 完全重叠（Figure 26, page 42）。3 个数据点确实不足以区分 \"monotonic decline\" 与 \"threshold/regime shift at K=5\"。\n\n然而，我认为这个问题的修复成本较低：(1) 将 \"monotonically diminishing\" 改为 \"sharply declining between K=3 and K=5, then stabilizing\" 即可准确描述数据；(2) 论文实际已在 Figure 26 中可视化了这一 trajectory，读者可以自行判断。核心 insight——η_max 在 K≥5 时 CI 穿过零——不受此措辞问题影响。\n\n补充：论文仅测试 K ∈ {3,5,7}，缺少 K=4 和 K=6 的数据点，无法精确定位转折点。如果 K=4 时 β̂_std 已经接近 0.09，则 threshold 在 K=4；如果 K=4 仍在 0.15-0.20 区间，则可能确实是渐进下降。建议作者至少补充 K=4 的结果以区分这两种解释。\n\n**[REBUT] R2-N3: 新颖性与经典 ensemble diversity theory 的增量不足**\n\n部分不同意。R2 的论点是核心发现可从 Brown et al. (2005)、Krogh & Vaidya (1995)、Kuncheva (2003) 推导，但这一论点忽略了几个重要差异：\n\n1. **经典 ensemble theory 假设非对抗性环境**。Brown et al. (2005) 的 ambiguity decomposition 和 Krogh & Vaidya (1995) 的 bias-variance-covariance 分解均在 i.i.d. 数据下成立。LLM judge panels 面对 adversarial manipulation（prompt injection、sycophancy exploitation 等），attack surfaces 和 panel dynamics 完全不同。论文 Section 2（page 3）明确讨论了这一区别：\"LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise.\"\n\n2. **K_eff 的正系数方向与经典理论预期相反**。经典 ensemble theory 预测 diversity 应降低 error（Brown et al. 2005），但论文发现 K_eff（diversity）与 ASR 正相关。这一反直觉发现正是因为 LLM 生态系统中 diversity 与 capability 结构性耦合（Section 6, page 8），这在经典 ensemble 文献中没有对应物。\n\n3. **Position bias exception** 的 genuine novelty 我同意 R2 的观察——Table 3（page 6）显示 position bias 在所有 K 值下 K_eff 系数为负，是唯一违反正关联模式的攻击类型。论文在 Section 5.4（page 7）讨论了 targeted vs shared-bias 分类，但确实未将此作为 core contribution 突出。\n\n总体判断：论文的 novelty 不在于理论框架本身（decomposition 确实是标准做法），而在于 (a) 在 adversarial LLM judging 这一新场景下的经验发现，(b) K_eff 正系数的反直觉方向，(c) position bias 的异常行为。R2 将 novelty 不足标为 critical 过重——应为 should-fix 级别，建议作者在 Introduction 中更清晰地定位 novelty 来源。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R2-W1: Conclusion 过于简略**\n\n同意。Section 7（page 8）的 conclusion 约 150 words，缺少：(1) practical recommendations——Table 32（page 36, Appendix）有详细的 panel design guidelines，但主文未提及任何一条；(2) future directions——除了 \"remains the central open question\" 外无具体规划。将 Table 32 的核心建议（如 \"cross-family diversity with capability ≥0.15\"、\"Bayesian calibration\"）搬入 conclusion 会显著提升实用价值。\n\n**[AGREE] R2-W2: K_eff 正系数与 BFT/Condorcet 矛盾的解释不充分**\n\n同意。论文在 Appendix W（page 30）详细讨论了 Condorcet Jury Theorem 的 assumptions 在 adversarial 设定下如何被违反（CJT 假设 independent、non-adversarial errors），但主文 Section 5.1（page 6）仅有一句 \"consistent with Proposition 1\"，未解释为什么 diversity 作为理论上的优势因子在经验中却与 vulnerability 正相关。这一反直觉发现值得在主文中用至少一段来解释 structural coupling 机制——目前的解释完全依赖读者自行阅读附录。\n\n**[AGREE] R2-W3: Bayesian calibration R²=0.14 的深层含义未展开**\n\n同意。Table 5（page 7）显示 threshold R²=0.75 vs Bayesian R²=0.14，这意味着 Bayesian calibration 几乎消除了 panel composition 对 ASR 的可预测性——从防御角度看，这是非常有价值的发现。Section 5.5（page 8）仅用一句 \"Bayesian calibration flattens the relationship\" 带过。\n\n补充观察：Bayesian calibration 的低 R² 可能有两种解释——(1) 它真正中和了 diversity-driven vulnerability，或 (2) 它引入了额外噪声使所有 panel 的 ASR 趋于均匀。论文未区分这两种机制。如果 Bayesian calibration 同时降低了所有 panel 的 mean ASR（即真正提升了鲁棒性），这是积极的；如果它仅压缩了 ASR 方差而 mean ASR 不变，则只是 mask 了 compositional 差异。建议作者在此处补充 Bayesian calibration 下的 mean ASR 对比。\n\n**[AGREE] R2-W4: Proposition 1 作为独立贡献价值有限**\n\n完全同意，与我在 R1-W5 中的判断一致。Proposition 1 在独立性假设下是 BFT 的直接推论，58% judge pairs 满足 stochastic dominance 进一步限制了实用价值。\n\n**[AGREE] R2-W5: 缺少 Lakshminarayanan et al. (2017) 和 Horváth et al. (2022) 引用**\n\n同意。Lakshminarayanan et al. (2017) \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\" 是 deep ensemble 的奠基性工作，与本文的 multi-judge panel 设定直接相关。论文引用了 Brown et al. (2005) 和 Dietterich (2000) 等经典 ensemble 文献，但缺少 deep ensemble 在 neural network 时代的标志性工作，确实是遗漏。\n\n---\n\n### 总结：与 R2 的分歧与共识\n\n| 问题 | R1 立场 | 原因 |\n|------|---------|------|\n| R2-N1 因果语言矛盾 | AGREE | 与 R1-N1 互补，措辞层面的系统性问题 |\n| R2-N2 Diminishing vs threshold | AGREE | 数据支持 regime shift 解读，但修复成本低 |\n| R2-N3 Novelty 不足 | REBUT | 对抗性场景与经典 ensemble 有本质差异，正系数方向反直觉是 genuine contribution，严重程度应降为 should-fix |\n| R2-W1–W5 | 全部 AGREE | 均为有效但非决定性问题 |\n\n**与 R2 评分的分歧**：R2 给 3.5（Borderline Conference），我给 3.0（Findings）。差距主要来自对 confound 严重性的判断——R2 的 N1 聚焦措辞，而我的 R1-N1 聚焦 Cinelli-Hazlett 69% 的实质性可解释问题。我认为即使修复了因果措辞（R2-N1），confound 仍使核心发现的 interpretability 受限（R1-N1），因此 3.0 更合适。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-25T22:43:41.641008+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 1 的交叉回应。等待 Reviewer 2 的交叉回应。\n\n当前状态：\n- Reviewer 1 交叉回应：已完成（对 R2-N1 AGREE, R2-N2 AGREE, R2-N3 REBUT, R2-W1~W5 全部 AGREE）\n- Reviewer 2 交叉回应：待提交"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director"
+          },
+          "id": "event-000910"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-25T22:43:45.185805+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n交叉回应已提交。\n\n核心分歧点：R2-N3（novelty 不足）我给了 REBUT——对抗性 LLM 场景与经典 ensemble theory 有本质差异，K_eff 正系数的反直觉方向是 genuine contribution，应降级为 should-fix。其余 7 条意见均 AGREE。\n\n与 R2 的评分差距（3.0 vs 3.5）主要源于对 diversity-capability confound 实质严重性的不同权重——R2 侧重措辞问题，我侧重 Cinelli-Hazlett 69% confound 可解释性对核心发现的实质性削弱。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-25T22:44:32.822393+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 1 交叉回应。\n\n**R1 立场摘要**：\n- 7/8 条 AGREE R2 意见\n- REBUT R2-N3（novelty 不足）：认为对抗性 LLM 场景 vs 经典 ensemble theory 有本质差异，K_eff 正系数方向是 genuine contribution，应降级为 should-fix\n- 维持 3.0 评分，核心分歧在于 Cinelli-Hazlett 69% confound 对核心发现的实质性削弱权重\n\n等待 Reviewer 2 交叉回应到达后进行收敛判断。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director"
+          },
+          "id": "event-000912"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-25T22:44:41.540284+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n## Reviewer 2 — 交叉审稿回应（针对 Reviewer 1）\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R1-N1: Diversity-Capability Confound 使核心关联发现可解释性存疑**\n\n同意这是一个有效问题，但对严重程度有不同判断。\n\n论文在 Section 6 (Analysis) 明确报告了 Cinelli-Hazlett 69% 结果，Abstract 和 Introduction 末尾反复声明 \"all findings are associational\"，且 Limitations 首段专门讨论此 confound。这种透明度在实证论文中是加分项。\n\nR1 指出 Introduction 的 \"we address this gap by decomposing\" 与 confound 的矛盾——我同意这个 framing 问题存在。\"decomposing\" 暗示可以干净地分离两个因子的贡献，但 r=0.70-0.81 的 multicollinearity 使得这种分离不可靠。这与我在初审 N1 中指出的因果语言问题属于同一类别：论文在具体数字上诚实，但在 high-level framing 上过度乐观。\n\n不过，我认为 R1 对此问题的定性为 \"critical\" 偏严厉。理由：(1) 正方向在 5 种推断方法中均保持一致（10/12 conditions），这不太可能完全由 confound 解释——confound 应当增加不确定性而非系统性地产生一致的正方向；(2) κ-diversity 作为独立的 diversity metric 在 12/12 conditions 中确认正方向；(3) position bias exception（2 个负方向条件）与 attack taxonomy 的一致性提供了 construct validity。\n\n**建议分级**：Should-Fix（framing 调整），而非 Must-Fix（方法论重做）。\n\n---\n\n**[REBUT] R1-N2: K_eff Gaussian Copula GoF 拒绝率 97-100%**\n\n部分不同意 R1 的严重程度判定。\n\nR1 正确指出 Cramér-von Mises GoF 在 97-100% 条件下拒绝 Gaussian copula 假设。但关键问题是：K_eff 在论文中的 actual role 是什么？\n\nSection 3 明确说 K_eff 的理论动机 \"serves as intuition rather than a formal bound\"（原文）。论文没有在任何结论中依赖 K_eff 的 Gaussian copula 理论解释——所有核心结论依赖的是 K_eff 作为回归预测变量的 empirical association（系数方向和显著性），而非其 distributional properties。\n\nR1 承认 ranking robustness（Spearman ρ≈0.86-0.87）但认为 \"这不等于理论解释成立\"。然而，对于一个回归预测变量来说，ranking consistency 正是最重要的属性——它确保 OLS/bootstrap 回归中的 coefficient 方向和显著性不会因 metric 的单调变换而改变。\n\n真正的问题不是 GoF 拒绝，而是 **terminology**: 使用 \"effective independent channels\" 这个名称暗示 K_eff 有精确的信息论解释，而 GoF 拒绝表明这种解释不成立。但这是一个 labeling/presentation 问题，不是一个 methodological 问题。\n\n**我的判断**：Should-Fix（建议将 \"effective independent channels\" 改为更中性的名称如 \"pairwise-MI-based diversity index\"，并明确声明 K_eff 仅作为 empirical predictor 使用），而非 Must-Fix。\n\n补充观察：R1 的这个发现与我初审未涉及的技术层面相关。GoF 拒绝率确实值得在正文中报告（目前仅在附录），因为读者可能会将 \"effective independent channels\" 字面理解为理论量。\n\n---\n\n**[AGREE] R1-N3: Vote-Counting (X/12) 作为主要汇总方法**\n\n同意这是一个有效的方法论问题，但需要修正 R1 的一个事实性陈述。\n\nR1 声称 \"DerSimonian-Laird pooling 被埋在附录中\"——这不准确。Section 5.2 (main text) 明确报告了 DL pooled β̂_std 及 95% CI：η_max 的 0.243 [0.163, 0.323] → 0.091 [-0.031, 0.212] → 0.086 [-0.039, 0.211]，以及 K_eff 的 0.286-0.353（CI excluding zero）。这是正文而非附录。\n\n然而，R1 的核心论点仍然成立：\n\n1. **Abstract 和 Introduction 完全依赖 vote counts**: \"K_eff positive in 10/12 conditions, κ-diversity 12/12\"（Abstract）、\"10/12 direction under OLS\"（Contribution 1）——这些 framing 使用的是 Hedges & Olkin (1985) 已证明 power 可任意低的 vote-counting 方法\n2. **I²>87% 的高异质性**：在这种异质性下，\"10/12 显著\" 可能反映条件间的系统差异（如 attack type × benchmark 交互），而非一致的效应。DL pooled effect 在 I²>87% 下的可解释性也值得质疑——random-effects model 在高异质性下给出的 pooled estimate 可能无意义\n3. 论文应将 **DL pooled effect sizes 作为 primary summary**（已在 Section 5.2），并将 vote counts 降级为 supplementary description\n\n**建议**：将 Abstract 和 Introduction 中的 framing 从 \"X/12 conditions\" 改为基于 pooled β̂_std 及 CI 的表述。例如 \"K_eff's pooled standardized coefficient is 0.286-0.353 (CI excludes zero across all K)\" 比 \"10/12 conditions\" 更 informative 且方法论更正确。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R1-W1: AWQ INT4 量化混淆**\n\n同意。Section 6 (API-Only vs. Full Pool) 报告 API-only pool 中 K_eff 降到 2-3/12 且 MDE > 0.9（power 严重不足），无法排除 K_eff 信号部分来自 API vs. quantized 的 capability gap 而非 genuine diversity。论文在 Limitations 中已承认 \"quantization-induced accuracy reduction conflates genuine capability limitations with quantization damage\"（Table 2 caption），但这个 confound 的严重性值得在主文 Analysis 部分更显著地讨论。\n\n**[AGREE] R1-W2: 仅 Multiple-Choice 基准**\n\n同意。论文 Limitations 已承认 \"open-ended generation may present different attack surfaces\"。Multiple-choice 格式的 bounded output space 可能使某些攻击类型（如 verbosity bias）的效果被低估。不过这是一个 scope limitation 而非 methodological flaw——论文的标题和 claims 没有过度泛化到 open-ended settings。\n\n**[AGREE] R1-W3: 攻击模板 generalizability**\n\n同意。每种攻击仅 1-2 个 template variant 是合理的 scope limitation，已在 Limitations 中承认。但我补充一个 R1 未提到的具体担忧：如果 template 选择与某些 model families 的 vulnerability 有系统性交互（例如某个 template 恰好对 Qwen 系列特别有效），那么 1-2 个 templates 可能引入 template-specific bias。\n\n**[AGREE] R1-W4: ε=10⁻⁶ sensitivity**\n\n同意这值得验证，但预期影响较小。log(ASR+ε) 转换中 ε 主要影响 ASR 接近 0 的条件——即 frontier models 在多数攻击下的情况。由于这些 panels 的 ASR 本身接近 0，它们在回归中的 leverage 有限。不过，一个简单的 sensitivity check（ε=10⁻⁴, 10⁻⁸）应该在附录中报告。\n\n**[AGREE] R1-W5: Proposition 1 理论贡献有限**\n\n强烈同意。这与我初审 W4 的观点完全一致。Stochastic dominance 下 ASR monotonicity 近似于定义推论，58% 覆盖率进一步限制其实用性。建议降级为 Observation 或 Remark。\n\n**[AGREE] R1-W6: API 模型版本无锁定**\n\n同意。论文在 Limitations 的 \"Temporal snapshot\" 段承认了这个问题，Table 2 caption 注明 \"May 2026 snapshots\"。但这是 LLM 实证研究的通病——所有使用 API models 的论文都面临版本漂移问题。建议在 Table 2 中增加具体的 model version/snapshot ID（如果 OpenRouter 提供的话）。\n\n---\n\n### 综合评价\n\nR1 的审稿在统计方法论层面非常深入（特别是 N2 的 GoF 分析和 N3 的 vote-counting 批评），发现了我初审中未涉及的技术细节。我与 R1 在以下几点高度一致：\n\n1. **Proposition 1 应降级**（R1-W5 = 我的 W4）\n2. **Confound 是核心限制**（R1-N1 ≈ 我的 N3 的部分内容）\n3. **格式和 scope limitations 是 acknowledged weaknesses**（R1-W2/W3/W6）\n\n主要分歧在 **严重程度判定**：\n- R1 给 3.0 (Findings)，我给 3.5 (Borderline Conference)\n- 差异主要来自对 \"实证严谨性是否能补偿 novelty 不足\" 的权重不同\n- R1 侧重方法论缺陷的 disqualifying 效应；我更看重 5 种推断方法交叉验证的工程质量和 position bias exception 的理论洞见\n\n**我维持 3.5 (Borderline Conference)** 的总体评分，但 R1 的 N3 (vote-counting) 触发了一个新的关注点：如果 Abstract/Introduction 的 framing 从 vote counts 转为 pooled effect sizes，论文的统计可信度会显著提升。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-25T22:45:04.610591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_external_review_status,get_visual_check_status,update_review_issues,submit_review_report_to_research_director,read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-25T22:45:04.611041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-25T22:45:08.827148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-25T22:45:08.877782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-25T22:45:12.449338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "cert_manip_resist_eval"
+            }
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-25T22:45:12.700709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 251
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-25T22:45:12.701154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "cert_manip_resist_eval"
+            }
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-25T22:45:13.053098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-25T22:30:20.813885+00:00\\\", \\\"completed_at\\\": \\\"2026-05-25T22:35:09.859177+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"正文（Sections 1-7）看起来略微溢出至第 9 页左栏（Section 6 的末尾 + Section 7 Conclusion），总正文约 8.2-8.3 页。EMNLP 2026 限制 8 页正文（Limitations 和 References 不计），建议确认是否符合页数限制，必要时压缩 Section 6 Analysis 几行文字\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 37-39\\\", \\\"message\\\": \\\"Cinelli-Hazlett 敏感性分析等高线图（Figures 19-21）每页 4×3 子图网格，子图内轴标签和 benchmark 标注文字极小（估计 ~5-6pt），审稿人在屏幕上阅读时可能需要放大才能辨认。建议适当增大子图标注字号或减少每页子图数量\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"页面非常密集，同时包含 Figure 5（forest plot）、Table 4（inference sensitivity）和 Figure 6（scatter plot），三个 display items 堆叠在一页中，视觉上略显拥挤\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 底部 bar chart 的标注文字（如 β 值、regression 公式）偏小，但在 150dpi 下仍可辨读\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Figure 7（forest plot with 95% CI）子面板中的文字较小，附录图可接受但如被 reviewer 仔细查看可能觉得费力\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 40\\\", \\\"message\\\": \\\"Table 34（attack prompt templates）使用彩色背景框区分攻击类型，视觉效果好；但页面底部约 40% 为空白\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 42\\\", \\\"message\\\": \\\"末页（Figure 25 + Figure 26）内容占页面约 75%，底部有空白，但作为附录末页可接受\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 36\\\", \\\"message\\\": \\\"Table 33（judge pool specification）下方约 30% 空白\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"不同图表间颜色语义不完全一致（如 Figure 1 的红/蓝/绿 代表 panel 角色，Figure 25 的蓝/红/绿 代表 K=3/5/7），但各图内部颜色区分度良好，不造成混淆\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"所有表格均使用 booktabs 风格（\\\\\\\\toprule/\\\\\\\\midrule/\\\\\\\\bottomrule），无竖线，最优值加粗标注。格式规范\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"未发现公式渲染错误、未解析引用（[?]）、margin 溢出、section heading 孤悬等问题\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 3, \\\"info\\\": 8}}, \\\"err\n…[truncated 31 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 351
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-25T22:45:18.473244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000922"
+        },
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-25T22:45:18.473568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-25T22:45:22.286867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-25T22:45:22.287712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tissues:\n2\t  # ============================================================\n3\t  # ROUND 7 — PERSISTING CRITICAL ISSUES\n4\t  # ============================================================\n5\t\n6\t  - id: \"R1-N1\"\n7\t    summary: \"Cinelli-Hazlett 25/36→69% 条件下 K_eff 效应可被已知 confound 解释，diversity-vulnerability 关联无法与 capability confound 区分\"\n8\t    category: method\n9\t    severity: critical\n10\t    status: open\n11\t    first_raised_round: 3\n12\t    last_seen_round: 7\n13\t    mentions:\n14\t      - round: 3\n15\t        reviewers: [1, 2]\n16\t        note: \"R1 首提，R2 AGREE。当时 78% (full pool)。\"\n17\t      - round: 4\n18\t        reviewers: [1, 2]\n19\t        note: \"数值更新为 69% (25/36)。Cinelli-Hazlett 前置到 Abstract。\"\n20\t      - round: 5\n21\t        reviewers: [1, 2]\n22\t        note: \"Pool A 10/12 在 power 仅 30.1% 下是 trivially expected。\"\n23\t      - round: 6\n24\t        reviewers: [1, 2]\n25\t        note: \"R1 重提。R2 AGREE 并指出跨基准预测可能仅反映混杂变量稳定性。\"\n26\t      - round: 7\n27\t        reviewers: [1, 2]\n28\t        note: \"R2-N1 首提 confound 为 headline contribution 的致命弱点。R1-W6 同意。交叉回应中双方 AGREE：r=0.70-0.81 confound 是最核心方法论限制。Pool A (r=0.50) 功效不足 (MDE>0.9) 无法提供充分 de-confounding。\"\n29\t    action_items:\n30\t      - round: 3\n31\t        action: \"Cinelli-Hazlett 结果前置到 Abstract/Intro\"\n32\t        assigned_to: paper_agent\n33\t        status: done\n34\t      - round: 4\n35\t        action: \"主文明确呈现 25/36 条件下 confound 可解释 K_eff\"\n36\t        assigned_to: paper_agent\n37\t        status: done\n38\t      - round: 7\n39\t        action: \"[复发 ×5] Contribution 1 重述为 'diversity and vulnerability confounded by capability, with partial survival under matching'；Pool A 完整回归移入正文\"\n40\t        assigned_to: paper_agent\n41\t        status: open\n42\t    resolution: \"\"\n43\t    resolution_round: null\n44\t\n45\t  - id: \"R1-N2\"\n46\t    summary: \"因果语言残留——标题 'shifts' 暗示因果，framing 与 associational 声明矛盾\"\n47\t    category: framing\n48\t    severity: critical\n49\t    status: open\n50\t    first_raised_round: 3\n51\t    last_seen_round: 7\n52\t    mentions:\n53\t      - round: 3\n54\t        revie\n…[truncated 19002 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-25T22:50:48.757238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "cert_manip_resist_eval",
+              "issues_yaml": "issues:\n  # ============================================================\n  # ROUND 8 — CRITICAL ISSUES\n  # ============================================================\n\n  - id: \"R1-N1\"\n    summary: \"Cinelli-Hazlett 69% 条件下 K_eff 效应可被已知 confound 解释，diversity-vulnerability 关联无法与 capability confound 区分\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 3\n    last_seen_round: 8\n    mentions:\n      - round: 3\n        reviewers: [1, 2]\n        note: \"R1 首提，R2 AGREE。当时 78% (full pool)。\"\n      - round: 4\n        reviewers: [1, 2]\n        note: \"数值更新为 69% (25/36)。Cinelli-Hazlett 前置到 Abstract。\"\n      - round: 5\n        reviewers: [1, 2]\n        note: \"Pool A 10/12 在 power 仅 30.1% 下是 trivially expected。\"\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R1 重提。R2 AGREE 并指出跨基准预测可能仅反映混杂变量稳定性。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-N1 首提 confound 为 headline contribution 的致命弱点。R1-W6 同意。交叉回应中双方 AGREE：r=0.70-0.81 confound 是最核心方法论限制。Pool A (r=0.50) 功效不足 (MDE>0.9) 无法提供充分 de-confounding。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1 Must-Fix，R2 AGREE 但降级为 Should-Fix（framing 调整）。R2 论证 10/12 方向一致性不太可能完全由 confound 解释。分歧在严重程度。Director 判定 Must-Fix（framing 级别：删 'decomposing'、Contribution 1 重述为条件性关联）。\"\n    action_items:\n      - round: 3\n        action: \"Cinelli-Hazlett 结果前置到 Abstract/Intro\"\n        assigned_to: paper_agent\n        status: done\n      - round: 4\n        action: \"主文明确呈现 25/36 条件下 confound 可解释 K_eff\"\n        assigned_to: paper_agent\n        status: done\n      - round: 7\n        action: \"[复发 ×5] Contribution 1 重述为 'diversity and vulnerability confounded by capability, with partial survival under matching'；Pool A 完整回归移入正文\"\n        assigned_to: paper_agent\n        status: open\n      - round: 8\n        action: \"[复发 ×6] 删除 Introduction 'decomposing' 表述；Contribution 1 明确为条件性关联\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R1-N2\"\n    summary: \"因果语言残留——标题 'shifts' 暗示因果，framing 与 associational 声明矛盾\"\n    category: framing\n    severity: critical\n    status: open\n    first_raised_round: 3\n    last_seen_round: 8\n    mentions:\n      - round: 3\n        reviewers: [1, 2]\n        note: \"Title/Abstract 中强因果动词。\"\n      - round: 4\n        reviewers: [1, 2]\n        note: \"Title 改为 Shifting Bottleneck，局部泄漏。\"\n      - round: 5\n        reviewers: [1, 2]\n        note: \"Title 改为 Shifting Predictor。但 Contribution 1 仍暗示独立性。\"\n      - round: 6\n        reviewers: [1, 2]\n        note: \"Figure 1 caption、Abstract、Section 1 仍有因果语言。第 4 次被标记。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-W1 标 warning：标题 'How Panel Size Shifts' 使用因果动词。R1 交叉回应 AGREE。第 5 次被标记。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"第 6 次被标记。R1 和 R2 均再次确认。Introduction 'decomposing' 同样暗示因果分离。\"\n    action_items:\n      - round: 7\n        action: \"[复发 ×5] 标题中 'shifts' 替换为中性表述；全文 grep 因果动词\"\n        assigned_to: paper_agent\n        status: open\n      - round: 8\n        action: \"[复发 ×6] 标题 'shifts' → 中性词；Introduction 'decomposing' → 中性表述\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R7-N1\"\n    summary: \"'diminishing weakest link' 标题发现的 CI 在 K≥5 跨零，claim strength 超出统计证据\"\n    category: framing\n    severity: critical\n    status: open\n    first_raised_round: 7\n    last_seen_round: 8\n    mentions:\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1-N1 首提。R2 交叉回应 AGREE 并补充：'diminishing' 暗示渐进趋势，实际更像 K=3→K=5 的 discrete transition。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"通过 MF2 (vote-counting) 间接确认——Abstract 的 framing 整体需修正。\"\n    action_items:\n      - round: 7\n        action: \"Abstract/Conclusion 加限定 'becomes statistically non-significant at K≥5'\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R7-N2\"\n    summary: \"多样性度量操作化依赖性：K_eff/κ-diversity/Shannon MI 显著性轨迹完全相反，'uniformly positive' 声明需限定\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 7\n    last_seen_round: 8\n    mentions:\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1-N2 首提。R2 AGREE。三种 metric 三种 K-trajectory。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R2 交叉回应中再次确认 operationalization dependence。\"\n    action_items:\n      - round: 7\n        action: \"Abstract 区分 direction consistency (12/12) 和 significance consistency (metric-dependent)\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R8-N1\"\n    summary: \"K_eff Gaussian Copula GoF 拒绝率 97-100%，'effective independent channels' 理论标签无基础\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 8\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1 Must-Fix，R2 REBUT 降级为 Should-Fix。R2 论证 K_eff 实际功能是 empirical predictor（ranking ρ≈0.86-0.87），不依赖 Gaussian copula 分布假设。Director 采纳 R2 立场：terminology issue，非 method failure。\"\n    action_items:\n      - round: 8\n        action: \"K_eff 改名为中性术语（如 'pairwise-MI-based diversity index'）；正文声明 empirical-only usage；GoF 拒绝率移至正文报告\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-W5\"\n    summary: \"Vote-counting (X/12) 作为主要汇总方法在统计上不当——Abstract/Intro 应以 pooled β̂_std 为主\"\n    category: method\n    severity: critical\n    status: open\n    first_raised_round: 6\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R1 提出。建议 pooled effect size + I²/Q-test。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"DerSimonian-Laird 在 I²>87% 下 pooled estimate 意义有限。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-N3 升级为 Must-Fix。R2 AGREE 并纠正事实：DL pooling 在 Section 5.2 正文（非附录）。两位共识：Abstract/Intro 应从 vote counts 改为 pooled β̂_std ± CI 表述。\"\n    action_items:\n      - round: 7\n        action: \"主文限定 pooled estimate 可解释性；报告 prediction interval\"\n        assigned_to: main_agent\n        status: open\n      - round: 8\n        action: \"[升级 Must-Fix] Abstract/Intro 从 'X/12 conditions' 改为 'pooled β̂_std [CI]' 表述\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R5-W2\"\n    summary: \"K_eff 与 κ-diversity ρ=0.978，显著性模式定性相反，shift 可能是数学变换 artifact\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 5\n    last_seen_round: 8\n    mentions:\n      - round: 5\n        reviewers: [1, 2]\n        note: \"K_eff 唯一优势在 shift，但 shift 受质疑。\"\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R2 详细论证：ρ=0.978 + 趋势相反 = artifact。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R7-N2 再次确认。三种 metric 三种模式进一步强化 artifact 怀疑。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"通过 R8-N1 (GoF rejection) 和 operationalization dependence 间接确认。\"\n    action_items:\n      - round: 6\n        action: \"κ-diversity 替代回归 36 conditions WCB\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  # ============================================================\n  # ROUND 8 — WARNING ISSUES\n  # ============================================================\n\n  - id: \"R1-W1-v3\"\n    summary: \"Predictor shift 在 crossed RE 下崩溃 (K=3 0/12, K=7 0/12)，显著性计数受功效机械增长污染\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 7\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"crossed RE K=3 0/12, K=7 0/12。样本量 455→6435 (14×) 功效机械增长。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"本轮通过 R7-N1 (CI 跨零) 和 R7-N2 (metric dependence) 间接确认。\"\n    action_items:\n      - round: 6\n        action: \"crossed RE 功效分析 + 等量下采样\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R1-W2\"\n    summary: \"INT4 量化混淆：API-only 中 K_eff 降至 2-3/12 但功效不足 (MDE>0.9)\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 3\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"FP16 V3 failed (2/5 models)。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-W6 重提。R1 交叉 AGREE。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-W1, R2 AGREE。正文 Analysis 部分应更显著讨论。\"\n    action_items:\n      - round: 7\n        action: \"[复发] 正文（非仅 Limitations）讨论 AWQ confound 程度\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R4-N1\"\n    summary: \"K_eff exp(-2·MI) 缺乏充分理论 justification——三种 metric 给出不同 pattern\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 4\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"K_eff 与 κ-diversity ρ=0.978 但 shift 模式相反。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-W3 重提。R1 交叉 AGREE。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R8-N1 补充：GoF 拒绝 97-100% 进一步削弱理论 justification。但 R2 论证 empirical predictor 角色不受影响。\"\n    action_items:\n      - round: 7\n        action: \"[复发] 提供明确 metric selection 理由；正文讨论三种 metric 不同结论的含义\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-W1\"\n    summary: \"核心发现与经典 ensemble diversity theory 增量区分不足\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"Krogh & Vaidya 1995, Brown et al. 2005 已预测 diversity 在大 ensemble 更重要。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-W2 重提。R1 交叉 AGREE。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R2 维持 novelty 不足判断；R1 REBUT 认为 adversarial LLM 场景与经典 ensemble theory 有本质差异，K_eff 正系数方向是 genuine contribution。分歧记录。\"\n    action_items:\n      - round: 7\n        action: \"[复发 ×2] §2 或 §6 加段明确讨论：本文发现在多大程度上是经典理论的 instantiation vs novel\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-W2\"\n    summary: \"仅 MMLU+ARC (MC 基准)，开放式评估场景未验证\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 3\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"MC 结构可能使 weakest-link 特别适用。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-W5 重提。建议标题/abstract 限定 scope。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-W2, R2 AGREE。scope limitation 非 methodological flaw。\"\n    action_items:\n      - round: 7\n        action: \"[复发] 标题或 abstract 明确 'multiple-choice evaluation' scope\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-W3\"\n    summary: \"Proposition 1 (Weakest-Link Monotonicity) 作为独立贡献过于 trivial\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R2 提出，R1 建议降级为 supporting result。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-N2 升级为 Must-Fix。R1-W4 AGREE。交叉后双方共识：不构成有意义的独立贡献。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-W5 AGREE，R2 strongly agrees。两位强烈共识：降级为 Observation。\"\n    action_items:\n      - round: 7\n        action: \"[复发 ×2] 降级为 supporting observation / §3 自然推论，删除 Contribution 独立条目\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R5-W1\"\n    summary: \"Conclusion 过于简略，缺少 implications 和 future work\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 5\n    last_seen_round: 8\n    mentions:\n      - round: 5\n        reviewers: [1, 2]\n        note: \"约 5-6 行。\"\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R2 重提。建议加 2-3 句前瞻性讨论。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R2-W4 重提：约 150 words。R1 交叉 AGREE。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"未单独提及但未解决。\"\n    action_items:\n      - round: 7\n        action: \"[复发 ×3] 扩展至 2-3 段：practical implications + theoretical implications + future directions\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R1-W4\"\n    summary: \"攻击模板覆盖不足（每种 1-2 variants），无 template sensitivity analysis\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 3\n    last_seen_round: 8\n    mentions:\n      - round: 5\n        reviewers: [1, 2]\n        note: \"Limitations 已提及。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1-N3 升级。R2 REBUT 建议降级。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-W3, R2 AGREE 并补充 template-model family 交互风险。\"\n    action_items:\n      - round: 7\n        action: \"§4.2 增加 template coverage caveat；§7 建议 future work 增加 template diversity\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R7-W1\"\n    summary: \"ε=10⁻⁶ 对 log-log 回归的敏感性：3 个条件 K_eff 系数变号\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 7\n    last_seen_round: 8\n    mentions:\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1-W1 提出。R2 AGREE。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-W4, R2 AGREE。预期影响小但应在附录验证。\"\n    action_items:\n      - round: 7\n        action: \"Fractional logit 与 OLS 并列报告\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R7-W2\"\n    summary: \"API 模型版本控制缺失——OpenRouter 无版本锁定\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 7\n    last_seen_round: 8\n    mentions:\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1-W5 提出。R2 AGREE。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-W6, R2 AGREE。LLM 实证研究通病。\"\n    action_items:\n      - round: 7\n        action: \"Appendix 列出 OpenRouter 返回的具体 model version/snapshot ID\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R4-W3\"\n    summary: \"聚合规则分析表面化——Bayesian R²=0.09 的深层含义未展开\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 4\n    last_seen_round: 7\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"R² 对比缺乏 CI 或统计检验。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"本轮未单独提及，可能部分改善。\"\n    action_items:\n      - round: 6\n        action: \"讨论 R²=0.09 含义；RF vs adaptive R² 加 bootstrap CI\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-W6\"\n    summary: \"Missing references: ensemble diversity 经典文献 + deep ensembles\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 8\n    mentions:\n      - round: 6\n        reviewers: [2]\n        note: \"经典 ensemble learning + ML BFT 文献。\"\n      - round: 7\n        reviewers: [2]\n        note: \"补充缺失：Krogh & Vaidya 1995, Horváth et al. 2022, Lakshminarayanan et al. 2017。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R2 再次确认缺失。R1 补充 MacKinnon & Webb 2017 few-cluster bootstrap。Kuncheva 2003 也应引用。\"\n    action_items:\n      - round: 7\n        action: \"补充引用并在 Related Work 实质性讨论\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-W4\"\n    summary: \"K_eff 正系数直觉解释不充分——与 BFT/Condorcet 定理矛盾未展开\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 6\n    last_seen_round: 7\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"Random faults vs adaptive attacks 下独立性的不同作用是关键区分。\"\n      - round: 7\n        reviewers: [1, 2]\n        note: \"本轮未单独提及。\"\n    action_items:\n      - round: 6\n        action: \"Section 5.1/5.3 扩展 random vs adversarial K_eff 方向差异讨论\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R6-AUD1\"\n    summary: \"Fractional logit 数字错误：论文引用 11/12 和 12/12，实际为 9/12 at ALL K\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 6\n    last_seen_round: 7\n    mentions:\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1 引用了 fractional logit 10-11/12 数字（§5.2），与 R6 标记的 9/12 不一致。需确认。\"\n    action_items:\n      - round: 6\n        action: \"全文 grep fractional logit 相关数字\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R5-M1\"\n    summary: \"OpenRouter API 快照一致性未充分讨论\"\n    category: experiment\n    severity: info\n    status: in_progress\n    first_raised_round: 5\n    last_seen_round: 8\n    mentions:\n      - round: 7\n        reviewers: [1, 2]\n        note: \"R1-W5 重提。论文 footnote 和 Limitations 已有声明但缺 version IDs。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"与 R7-W2 合并处理。\"\n    action_items:\n      - round: 7\n        action: \"与 R7-W2 合并处理\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  # ============================================================\n  # RESOLVED ISSUES\n  # ============================================================\n\n  - id: \"R4-W4\"\n    summary: \"log(ASR + ε) 在高零值率下不稳定，fractional logit 更稳健\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"Fractional logit 98.6% concordance。Table 2 并列报告。\"\n    resolution_round: 6\n\n  - id: \"R2-W6\"\n    summary: \"仅 MMLU+ARC (multiple-choice)，scope qualifier 已加\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"Abstract now says 'two multiple-choice benchmarks'. Limitations also mentions open-ended tasks.\"\n    resolution_round: 6\n\n  - id: \"R1-N3\"\n    summary: \"K=3 'co-determination' 叙事随推断方法改变\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 4\n    resolution: \"Table 3 五种方法对比，K=3 叙事标注为 method-sensitive\"\n    resolution_round: 4\n\n  - id: \"R2-N1\"\n    summary: \"'Diversity hurts' 方向非 novel，CJT framing overclaiming\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 4\n    resolution: \"CJT 定位修正，Contributions 聚焦 predictor shift\"\n    resolution_round: 4\n\n  - id: \"R2-N2-v3\"\n    summary: \"K_eff 相对 κ-diversity 无显著量化优势\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 4\n    resolution: \"K_eff vs κ-diversity 对比完成，shift 差异化论证\"\n    resolution_round: 4\n\n  - id: \"R1-W5-v3\"\n    summary: \"K_eff–η_max 共线性使 predictor decomposition 不可靠\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 4\n    resolution: \"升级为 Limitations 首要讨论项\"\n    resolution_round: 4\n\n  - id: \"R2-W1-v3\"\n    summary: \"相关工作遗漏：Maloyan 2025, TAMAS, Credibility Scoring\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 4\n    resolution: \"三篇引用全部加入\"\n    resolution_round: 4\n\n  - id: \"R2-W4\"\n    summary: \"'regime transition' vs 'predictor shift' 术语不一致\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 4\n    resolution: \"全文术语统一为 predictor shift\"\n    resolution_round: 4\n\n  - id: \"R4-W1\"\n    summary: \"'uniformly positive' 表述误导\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"Abstract 已区分 direction vs significance\"\n    resolution_round: 5\n\n  - id: \"R4-W5\"\n    summary: \"Crossed random effects 分析\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"Appendix C 实现 crossed RE\"\n    resolution_round: 5\n\n  - id: \"R4-W6\"\n    summary: \"缺少相关工作：CollabEval (2026)\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"已引用并讨论\"\n    resolution_round: 5\n\n  - id: \"R2-W2\"\n    summary: \"Kuai et al. (2026) DBEI 与 K_eff 正文对比\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 3\n    last_seen_round: 5\n    resolution: \"DBEI 在 Related Work 和 Appendix 中已讨论\"\n    resolution_round: 5\n\n  - id: \"R4-W2\"\n    summary: \"标题 overclaiming\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    resolution: \"标题改为描述性表述\"\n    resolution_round: 5\n"
+            }
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-25T22:50:48.859047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 20643}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 101
+          },
+          "id": "event-000927"
+        },
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-25T22:52:53.778614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "report": "# 审稿报告 — Round 8\n\n**Venue**: EMNLP 2026 (ARR)  |  **Reviewers**: R1 (方法严谨性), R2 (新颖性/完整性)  |  **轮次**: 2 轮（初审 + 交叉回应，收敛）\n\n---\n\n## Summary\n\n本文研究 LLM-as-a-judge 评分面板中 panel 规模（K=3,5,7）对多种证书操纵攻击抵抗力的影响。研究在 MMLU 和 ARC-Challenge 两个多选基准上，系统评估了 12 个 LLM 在 6 种攻击下的攻击成功率（ASR），并引入 K_eff（有效独立通道数）作为多样性度量，探讨多样性与攻击抵抗力之间的关联。实验使用 5 种统计推断方法（OLS、WCB、fractional logit、Bayesian、crossed RE），发现 K_eff 与 ASR 呈正关联（多数条件下），η_max（最大评委权重）的预测力随 K 增大而减弱，但这些关联受 diversity-capability confound 显著影响（69% 条件下 K_eff 效应可被已知混杂变量完全解释）。\n\n## Strengths\n\n1. **实验规模和系统性**：12 模型 × 6 攻击 × 2 基准 × 3 panel 规模 = 36 conditions 的 full-factorial 设计在 LLM judge safety 文献中属大规模系统评估。\n\n2. **多种推断方法交叉验证**：5 种统计方法（OLS、WCB、fractional logit、Bayesian、crossed RE）提供 robustness，β_std 方向在 10/12 conditions 一致（position bias 除外）。\n\n3. **Position bias exception 的理论洞见**：2 个负方向条件与 position bias 攻击的 taxonomy 一致性提供 construct validity，是论文中最具原创性的发现之一。\n\n4. **透明的局限性声明**：Abstract、Introduction、Limitations 反复标注 \"all findings are associational\"，Cinelli-Hazlett 69% 结果前置，体现实证研究的诚实态度。\n\n5. **敏感性分析框架**：Cinelli-Hazlett sensitivity analysis、ε robustness check、多种 diversity metrics 对比展示严谨的方法论意识。\n\n## Weaknesses\n\n### Must-Fix\n\n**MF1. Diversity-Capability Confound 削弱核心关联的可解释性** [R1 Must-Fix, R2 Should-Fix → Director: Must-Fix (framing)]\n\nCinelli-Hazlett 分析显示 69%（25/36）条件下 K_eff 的正效应可被已知 confound（diversity 与 capability 的 r=0.70-0.81 相关）完全解释。Introduction 中 \"we address this gap by decomposing the roles of diversity and capability\" 暗示可以干净分离两个因子，但 multicollinearity 使这种分离在统计上不可靠。\n\nR2 反驳：10/12 方向一致性不太可能完全由 confound 解释（confound 应增加不确定性而非系统性产生一致方向），κ-diversity 12/12 confirmation 和 position bias exception 提供 construct validity。R2 建议降为 Should-Fix。\n\nDirector 判断：R2 的缓解论点有说服力，但 69% coverage 仍然是核心 contribution 的根本性限制。至少需要：(1) 删除 \"decomposing\" 表述，(2) Contribution 1 重述为条件性关联（\"diversity and vulnerability show positive association, partially confounded by capability\"），(3) 正文 Analysis 部分（非仅 Limitations）讨论 confound 的实质影响。本 issue 跨 6 轮审稿持续被标记。\n\n**MF2. Vote-Counting (X/12) 作为主要汇总方法在统计上不当** [R1-R2 共识]\n\nAbstract 和 Introduction 完全依赖 vote-counting 汇总（\"K_eff positive in 10/12 conditions, κ-diversity 12/12\"）。Hedges & Olkin (1985) 已证明 vote-counting power 可任意低。I²>87% 的高异质性下，\"10/12 显著\"可能反映条件间系统差异（如 attack type × benchmark 交互）而非一致效应。\n\n论文在 Section 5.2 已有 DerSimonian-Laird pooled β̂_std（K_eff 0.286-0.353, CI excluding zero），R2 纠正了 R1 的事实错误——DL pooling 在正文 Section 5.2 而非附录。但两位 Reviewer 共识：Abstract/Introduction 应以 pooled β̂_std ± CI 为主要 framing，vote counts 降为补充描述。例如 \"K_eff's pooled standardized coefficient is 0.286–0.353 (CI excludes zero)\" 比 \"10/12 conditions\" 更 informative 且方法论更正确。\n\n**MF3. 因果语言持续残留** [R1-R2 共识，第 6 次标记]\n\n标题 \"How Panel Size Shifts...\" 中 \"shifts\" 是因果动词，与 \"associational\" 定位矛盾。Introduction \"decomposing\" 同样暗示因果分离。此 issue 自 Round 3 起被反复标记，至今未解决。需全文 grep 因果动词并替换为中性表述。\n\n### Should-Fix\n\n**SF1. K_eff \"Effective Independent Channels\" 名称的理论基础已被 GoF 拒绝** [R1 Must-Fix, R2 REBUT → Director: Should-Fix]\n\nCramér-von Mises GoF 在 97-100% conditions 下拒绝 Gaussian copula 假设。R1 认为理论解释失效（Must-Fix），R2 反驳：K_eff 在论文中作为 empirical predictor 使用，ranking robustness（Spearman ρ≈0.86-0.87）保证回归系数方向稳定性，GoF 拒绝不影响 empirical role。\n\nDirector 采纳 R2 立场：这是 terminology issue 而非 method failure。建议 (1) 改名为更中性术语（如 \"pairwise-MI-based diversity index\"），(2) 正文声明 K_eff 仅作 empirical predictor，(3) GoF 拒绝率从附录提升到正文。\n\n**SF2. AWQ INT4 量化混淆** [R1-R2 共识]\n\n6 个 local AWQ INT4 模型人为放大 diversity-capability confound。API-only pool 中 K_eff 降到 2-3/12 但 MDE>0.9，无法判断 K_eff 信号来自 genuine diversity 还是 quantization damage。应在正文 Analysis 部分更显著讨论（非仅 Limitations）。\n\n**SF3. Proposition 1 应降级** [R1-R2 强烈共识]\n\nStochastic dominance 下 ASR monotonicity 近似于定义推论，证明仅 3 行，仅 58% pairs 适用。降级为 Observation 或 §3 自然推论，删除 Contribution 独立条目。此 issue 自 Round 6 起被反复标记。\n\n**SF4. ε=10⁻⁶ 对 log-log 回归的 Sensitivity** [R1-R2 共识]\n\nlog(ASR+ε) 中 ε=10⁻⁶ 的选择未经 sensitivity analysis。R2 指出影响预期较小（ASR≈0 的条件 leverage 有限），但应在附录报告 ε=10⁻⁴, 10⁻⁸ 结果，或升级 fractional logit 为 co-primary analysis。\n\n**SF5. 仅 Multiple-Choice 基准** [R1-R2 共识]\n\nMMLU+ARC 的 bounded output space 可能使某些攻击效果被低估。论文标题和 claims 未过度泛化，但标题或 Abstract 应明确 \"multiple-choice evaluation\" scope。\n\n**SF6. 攻击模板覆盖不足** [R1-R2 共识]\n\n每种攻击仅 1-2 template variants。R2 补充：template 选择可能与 model family vulnerability 有系统性交互，引入 template-specific bias。§4.2 增加 caveat，future work 建议增加 template diversity。\n\n**SF7. API 模型版本无锁定** [R1-R2 共识]\n\nTable 2 注明 \"May 2026 snapshots\" 但缺具体 version/snapshot ID。Appendix 应列出 OpenRouter 返回的版本信息。\n\n**SF8. Conclusion 过于简略** [跨 4 轮标记]\n\n约 150 words，缺 practical implications、AI safety 连接、future directions。建议扩展至 2-3 段。\n\n**SF9. Novelty 与经典 Ensemble Theory 区分不足** [R2 flag, R1 rebut — 分歧记录]\n\nR2：核心发现（diversity 在低 bias 时有益）是 Brown et al. (2005) 的 LLM instantiation，novelty 有限。R1 反驳：adversarial LLM 场景有本质差异（adaptive attacks vs random faults），K_eff 正系数的反直觉方向是 genuine contribution。论文应在 §2 或 §6 明确讨论——哪些发现是已知理论的 instantiation，哪些是 genuinely novel（如 position bias exception）。\n\n## Questions\n\n1. 如果用 κ-diversity（12/12 正方向）替代 K_eff 作为主要 diversity metric，核心结论是否改变？三种 metric 的 K-trajectory 差异（K_eff 4→7→8, κ 8→7→6, Shannon 4→4→0）如何解读？\n2. Pool A (API-only) 能否通过增加 K 取值（K=9,11）提升功效以有效 de-confound？\n3. \"Effective independent channels\" 名称在 GoF 拒绝后是否会误导后续研究的引用和解读？\n\n## Missing References\n\n以下文献应在 Related Work 中实质性讨论：\n- **Krogh & Vaidya (1995)** — bias-variance-covariance decomposition，论文发现可能是其 LLM instantiation\n- **Brown et al. (2005)** — diversity 仅在低 bias 时有益的理论预测\n- **Horváth et al. (2022)** — certified ensemble robustness\n- **Lakshminarayanan et al. (2017)** — deep ensembles\n- **Kuncheva (2003)** — diversity measures 不一致性（与三种 metric 不同结论吻合）\n- **MacKinnon & Webb (2017)** — few-cluster bootstrap\n\n## External Review\n\n外部审稿：未请求。\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（0 critical, 3 warnings, 8 info）：\n- ⚠️ **页数疑似溢出**：正文约 8.2-8.3 页，EMNLP 2026 限制 8 页正文。需压缩 Section 6 或 Section 7。\n- ⚠️ **附录 Figures 19-21**（Cinelli-Hazlett 等高线图）子图标注约 5-6pt，建议增大字号或减少每页子图数。\n- ⚠️ **Page 7 视觉拥挤**：Figure 5 + Table 4 + Figure 6 三个 display items 堆叠。\n- ℹ️ 全文表格 booktabs 格式规范，未发现渲染错误、引用缺失或 margin 溢出。\n\n## Overall Assessment\n\n**3.0 — Findings**\n\n| 维度 | R1 | R2 | 综合 |\n|------|----|----|------|\n| 整体评分 | 3.0 (Findings) | 3.5 (Borderline Conference) | **3.0 (Findings)** |\n| Soundness | 弱 | 中 | 中偏弱 |\n| Novelty | 低 | 中偏低 | 低-中 |\n| Significance | 中 | 中 | 中 |\n| Clarity | 中 | 中偏高 | 中 |\n\n**评分依据**：\n\n论文的实验规模（36 conditions × 5 推断方法）和方法论透明度值得肯定，但两个结构性限制制约其贡献等级：\n\n(1) **Confound 是结构性的**：69% conditions 下核心关联可被 capability confound 解释，API-only pool 功效不足无法 de-confound。这使论文核心 contribution（diversity-vulnerability association）的因果方向无法确认。\n\n(2) **Novelty 受限**：核心发现与 Brown et al. (2005) 理论预测一致。K_eff 正系数方向虽在 adversarial 语境下有解释价值，但论文未充分论证超越经典理论的增量贡献。Position bias exception 是最具原创性的发现但未被提升为主要叙事。\n\n(3) **持续性问题未解决**：因果语言（6 轮标记）、Proposition 1 trivial（3 轮标记）、Conclusion 过简（4 轮标记）等问题跨多轮审稿仍在，反映修订对审稿反馈的响应不充分。\n\n**适合 Findings 理由**：实验设计系统性和统计框架多样性使论文在实证方法论层面有参考价值。Position bias exception、operationalization dependence 等发现对 LLM judge safety 社区有贡献。但 confound 的结构性限制和 novelty 不足使其难以达到主会议接收标准。\n\n**R1-R2 分歧记录**：\n- K_eff GoF (R1-N2)：R1 Must-Fix vs R2 Should-Fix → Director 采纳 R2（terminology issue）\n- Novelty (R2-N3)：R2 novelty 不足 vs R1 adversarial context genuine contribution → 分歧记录，建议论文明确论证\n- Confound 严重程度 (R1-N1)：R1 Must-Fix (critical) vs R2 Should-Fix (framing) → Director Must-Fix (framing 级别)\n- 评分差异根源：R1 侧重方法论缺陷的 disqualifying 效应，R2 侧重 5 种推断方法交叉验证的工程质量\n\n## Detailed Comments\n\n### 致作者\n\n1. **优先级最高**：将 Abstract/Introduction framing 从 vote counts (X/12) 改为 pooled β̂_std ± CI。这是最容易修复且回报最大的改动。\n2. **K_eff 命名**：GoF 拒绝后 \"effective independent channels\" 可能误导后续研究。建议改为中性名称并在正文声明 empirical-only usage。\n3. **Position bias exception 叙事价值**：2/12 负方向条件与 position bias taxonomy 的一致性是论文最具原创性的发现——考虑在 Contribution 列表中提升其地位，替代 Proposition 1。\n4. **页数溢出**：正文约 8.2-8.3 页，超 EMNLP 2026 的 8 页限制。建议压缩 Section 6 Analysis。\n5. **因果语言**：第 6 轮被标记。建议全文 `grep -iE \"shift|decompos|determin|driv|caus\"` 系统清理。",
+              "project": "cert_manip_resist_eval",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.0 — Findings",
+              "review_chat_id": "oc_8afaeea93cf69f72a8cefdfe533b3c23"
+            }
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-25T22:52:58.250969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_511319d9c17dfa45ec974a0123143d46:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "elapsed_ms": 4472
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-25T22:53:05.632739+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 8 审稿报告已投递。\n\n**综合评分：3.0 (Findings)**，R1 给 3.0，R2 给 3.5。\n\n核心问题：\n- **MF1**: Confound 69% coverage 是结构性限制，\"decomposing\" framing 站不住\n- **MF2**: Abstract/Intro 依赖 vote-counting (X/12)，应改为 pooled β̂_std ± CI\n- **MF3**: 因果语言第 6 轮被标记仍未清理\n\n两位 Reviewer 的关键分歧（K_eff GoF 严重程度、novelty 判断）已记录在报告中。Issue tracker 已同步更新至 Round 8。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director"
+          },
+          "id": "event-000930"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-25T22:53:08.252508+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉审稿回应已提交。总结：\n\n- **R1-N1 (Confound)**: [AGREE] 但建议降级为 Should-Fix——论文透明度高，framing 调整即可\n- **R1-N2 (K_eff GoF)**: [REBUT] K_eff 作为 empirical predictor 有效（ranking ρ≈0.87），问题在 terminology 而非 methodology\n- **R1-N3 (Vote-counting)**: [AGREE] 但修正 R1 的事实错误——DL pooling 在 Section 5.2 主文而非附录；同意 Abstract/Intro 应改用 pooled effect sizes\n- **R1-W1~W6**: 全部 [AGREE]，其中 W5 (Proposition 1) 与我初审 W4 完全一致\n\n维持 Overall 3.5 (Borderline Conference)，与 R1 的 3.0 差距主要在于对实证严谨性 vs. novelty 的权重不同。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-25T22:53:15.725048+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 8 审稿报告已在上一轮提交完毕（3.0 — Findings），Issue Tracker 已同步更新。R2 的交叉回应摘要与之前收到的完整版内容一致，无需追加操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8afaeea93cf69f72a8cefdfe533b3c23:director"
+          },
+          "id": "event-000932"
+        }
+      ]
+    }
+  ]
+}

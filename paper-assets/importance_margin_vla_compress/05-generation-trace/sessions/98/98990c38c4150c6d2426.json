@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "98990c38c4150c6d2426",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper writing efficiency subsection",
+  "task_key": "worker_paper_writing_efficiency_subsection_20260525T192453",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_efficiency_subsection_20260525T192453_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "a52610bab91cb0a691c3f02a83e1c454c5f498bfe2a49b18c0bd0b9bf615bb78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inserted. Two changes made:\n\n1. **`main.tex`**: Added `\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}` in the preamble (uses the `color` package already loaded by `corl_2026.sty`).\n\n2. **`experiments.tex`** (lines 157-167): New `\\subsection{Computational Efficiency}` with:\n   - **Paragraph 1** (~150 words): Quadratic attention FLOPs formula (Eq. \\ref{eq:flops_ratio}), concrete numbers for π₀.₅ (16% attention savings at k=0.9, 67% at k=0.5), notes that X-VLA's 50 tokens limit gains, and SmolVLA VTR at M=16 gives the largest practical compression (87.5%).\n   - **Paragraph 2** (~30 words): Three `\\placeholder{}` markers for wall-clock latency measurements (baseline, k=0.9, speedup %)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0720f0c60056e760a60b",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code gpu speed fix",
+  "task_key": "worker_code_gpu-speed-fix_20260521T194005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-speed-fix_20260521T194005_result.json",
+    "occurrence": 1,
+    "bytes": 1893,
+    "sha256": "c75451c249d6627d1774c5e90c850ff4a2a21eba7b9e5804f6b994f1433b5586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen 在下载中（PID 25292），两个 shard 并行下载。预计 ~8 分钟完成。\n\n---\n\n## 任务完成报告\n\n### 1. 网络诊断结果\n| CDN | 速度 |\n|-----|------|\n| HF-Mirror (代理) | 270 bytes/s — **不可用** |\n| ModelScope (代理) | ~0.6 MB/s |\n| **ModelScope (无代理)** | **~12 MB/s** |\n\n**关键发现：AutoDL 的 `network_turbo` 代理反而拖慢 ModelScope（国内 CDN），去掉代理后速度提升 20 倍。**\n\n### 2. 选择的下载方案\n- 方案：**ModelScope 无代理直连**\n- 杀掉所有使用代理的下载进程，重启时 `unset` 所有 proxy 环境变量\n- `max_workers=4` 并行下载多个 shard\n- 优先 Llama（当时最接近完成），单模型独占带宽\n\n### 3. 实际下载速度\n- 代理下：0.6-1.0 MB/s（每个 shard）\n- **无代理：10-12 MB/s（总计），每 shard 5-6 MB/s**\n\n### 4. 第一个模型标注 ✅ 已完成\n- **模型**：Llama-3.1-8B-Instruct\n- **状态**：标注全部完成\n- **结果**：500 条推文，0 失败，17.5 秒（28.5 tweets/s）\n- **输出**：`/root/work/results/exp008_checkpoint_llama-3.1-8b_balanced.csv`\n- **GPU**：cuda:0（RTX PRO 6000 Blackwell 97GB）\n- **修复**：transformers 5.9 兼容性问题（`apply_chat_template` 返回类型变化 + `temperature=None` 参数），已修复所有 4 个标注脚本\n\n### 5. 第二个模型下载进度\n- **Qwen2.5-7B-Instruct**（PID 25292）：\n  - model-00001: ✅ 完成 (1.1G)\n  - model-00002: 2.2G / 3.60G (61%)\n  - model-00003: ✅ 完成 (1.7G)\n  - model-00004: 237M / 3.31G (7%)\n  - **预计 ~04:13 完成**，下载完即可启动标注\n\n### 时间线\n- 03:44 — 开始诊断\n- 03:49 — 发现无代理快 20 倍，重启下载\n- 04:00 — Llama 下载完成\n- 04:03 — **Llama 标注完成**（从诊断开始 ~19 分钟）\n- ~04:13 — Qwen 预计下载完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

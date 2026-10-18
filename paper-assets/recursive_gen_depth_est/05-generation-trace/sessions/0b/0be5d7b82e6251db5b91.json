@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0be5d7b82e6251db5b91",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code wild data pipeline plan 015",
+  "task_key": "worker_code_wild_data_pipeline_plan_015_20260517T143556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wild_data_pipeline_plan_015_20260517T143556_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "e00450407b373dda47c77816410c517b7abcec0719dbcaddec16a480afe7f806"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**数据下载**\n- `data/wild/c4_10k.jsonl` — 10,000 样本, 22MB (C4 en validation, seed=42)\n- `data/wild/fineweb_10k.jsonl` — 10,000 样本, 31MB (FineWeb sample-10BT, seed=42)\n\n**脚本**\n- `scripts/wild_data_features.py` — 特征提取，复用 19-feature pipeline + Pythia-1.4B，输出 CSV\n- `scripts/wild_data_eval.py` — RF 分类 + depth 分布统计 + bar chart 可视化\n- `scripts/download_wild_data.py` — 数据下载脚本（C4 从本地缓存 gz，FineWeb 通过 hf_hub_download parquet）\n\n**Dry-run 验证**\n- 两个脚本 `--help` 均正常\n- 数据格式正确（JSONL，含 text_id/source/text）\n- 3 个 artifact 已注册\n\n**Python 环境**: `/root/miniconda3/bin/python3.12`（numpy/torch/transformers/sklearn/datasets 均已安装）\n\n**下一步运行特征提取**（需要 GPU）:\n```bash\ncd /root/autodl-tmp/recursive_gen_depth_est\n/root/miniconda3/bin/python3.12 scripts/wild_data_features.py \\\n  --input data/wild/c4_10k.jsonl,data/wild/fineweb_10k.jsonl \\\n  --device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

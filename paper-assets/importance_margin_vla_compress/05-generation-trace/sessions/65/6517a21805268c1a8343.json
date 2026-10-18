@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6517a21805268c1a8343",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "debug inference pipeline audit",
+  "task_key": "worker_debug_inference_pipeline_audit_20260516T122642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_inference_pipeline_audit_20260516T122642_result.json",
+    "occurrence": 1,
+    "bytes": 2812,
+    "sha256": "622eca6593c2671f475c6e98ef2a4b10bd73f1e2c88e5b4f32e2d263aa3ff660"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断完成。** 以下是完整结论。\n\n---\n\n## 诊断结果\n\n### Bug #1（确认）: Action 裁剪错误\n\n`eval_success_rate.py` 第 328 行：\n```python\naction = np.clip(action, -1.0, 1.0)\n```\n\n**问题**: 数据集 action 范围 [-1.60, 1.21]，arm joint positions 是弧度值，不受 [-1, 1] 约束。只有 gripper（dim 6, 13）被 normalize 到 [0, 1]。LeRobot 官方 eval 不做 clip。\n\n**影响**: 中-高。截断了必要的关节运动。\n\n**修复**: 删除这行 clip。\n\n---\n\n### Bug #2（核心问题）: Flow Matching ODE 不收敛\n\n对同一输入（seed 0 的 env image）做 5 次推理，shoulder joint 预测从 -0.6 到 -2.2 剧烈波动：\n```\nTrial 0: -1.700    Trial 1: -1.260    Trial 2: -2.193\nTrial 3: -1.625    Trial 4: -0.596\n```\n\n**原因**: Flow matching 用 10 步 Euler ODE 积分从 noise → action。模型学到的 velocity field 不够精确，导致不同 noise initialization 收敛到完全不同的 action trajectory。训练 loss=0.003 是在 velocity level 的均值误差，不代表 sample quality 好。\n\n**影响**: 致命。即使在训练数据配置上，单次预测也不可靠。50步 open-loop 执行让误差无法纠正。\n\n---\n\n### Bug #3（核心问题）: 对未见/略异配置 mode collapse\n\nSeed 42 的 env image 和 seed 0 仅差 0.35%（peg/socket 位置不同）。模型行为：\n- Seed 0: 输出范围 [-1.7, 1.3]（合理但高方差）\n- Seed 42: 输出范围 [-0.15, 0.73]（坍缩到全局均值，5次试验一致）\n\n**原因**: 50 episodes 训练数据不足以泛化到所有 peg/socket 配置。模型对视觉 token 中的 peg/socket 位置极度敏感——未见配置直接触发 mean regression。\n\n---\n\n### 非 Bug（已排除）\n\n| 检查项 | 结果 |\n|--------|------|\n| Action unnormalization 缺失 | ✗ 不是 bug。训练 bypass 了 SmolVLA 的标准 normalization pipeline，eval 和训练一致 |\n| Obs preprocessing (image) | ✓ 一致。训练/eval 都是 [0,1] float32 CHW，`prepare_images` 统一处理 |\n| Obs preprocessing (state) | ✓ 一致。raw joint positions，`prepare_state` 只做 padding |\n| Task text | ✓ 一致。\"Insert the peg into the socket.\\n\" |\n| Action chunk size / horizon | ✓ n_action_steps=50 是 SmolVLA 标准配置 |\n| Image mismatch (env vs dataset) | ✓ 对于相同 seed，像素差仅 0.0027 |\n\n---\n\n### 修复建议\n\n1. **立即修复**: 删除 `np.clip(action, -1.0, 1.0)`\n2. **关键改进**: 增加 flow matching ODE steps（当前 10 步太少）或降低 temperature（使用 0.0 = 确定性 ODE）\n3. **根本性改进**: 增加训练数据多样性（更多 episodes），或使用 SmolVLA 标准的 normalization pipeline（MEAN_STD）使模型对输入分布变化更鲁棒"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

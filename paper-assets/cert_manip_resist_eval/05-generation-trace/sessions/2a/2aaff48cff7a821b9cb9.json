@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2aaff48cff7a821b9cb9",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fig p3 composition scatter",
+  "task_key": "worker_ops_fig-p3-composition-scatter_20260525T153949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig-p3-composition-scatter_20260525T153949_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "94d22abdf29a0da44d43b3683496ed0b9c162c76e92ee03dfdc9881fc93d711a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个图都已生成，视觉检查通过：\n\n**Figure A (Panel Composition)**: API 模型占比越高，panel ASR 越低（更鲁棒）。K=7 下降最陡、ASR 最低。趋势清晰，误差条合理。\n\n**Figure B (Cross-benchmark K_eff)**: MMLU 与 ARC 的 K_eff 高度相关（r = 0.901），点大致沿对角线分布但 ARC 侧略高。K=3/5/7 三组清晰分层。\n\n输出文件：\n- `docs/paper/figures/fig_panel_composition.pdf` + `.png`\n- `docs/paper/figures/fig_keff_cross_benchmark.pdf` + `.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

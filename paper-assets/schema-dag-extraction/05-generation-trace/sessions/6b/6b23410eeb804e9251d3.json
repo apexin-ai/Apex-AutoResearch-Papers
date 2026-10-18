@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6b23410eeb804e9251d3",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh fix exp3 eval metric",
+  "task_key": "worker_ssh_fix_exp3_eval_metric_20260517T125735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_exp3_eval_metric_20260517T125735_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "7d02e5c5fa8263a2a0a46ab177d92ed7c07bc95e9db0fd670896a1d4e486b63d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## LLaMA 70B Few-NERD: text-only vs type+text recall\n\n| count_key | text-only (旧) | type+text (修正) | delta |\n|-----------|---------------|-----------------|-------|\n| count_2   | 0.9623 | 0.9618 | -0.0004 |\n| count_6   | 0.9024 | 0.9003 | -0.0022 |\n| count_12  | 0.8293 | 0.8218 | -0.0075 |\n| count_22  | 0.6840 | 0.6663 | -0.0176 |\n| count_44  | 0.5309 | 0.4803 | -0.0506 |\n| count_66  | 0.4072 | 0.3388 | -0.0684 |\n\n## 关键结论\n\n1. **Bug 影响随 count 增大而加剧**：count_2 仅差 0.04pp，count_66 差 6.84pp。type 越多，错误类型匹配的概率越高，符合预期。\n\n2. **Qwen3 无需重新评估**：Qwen3 的评估走 `src/evaluate.py` 的 `_text_match` 函数，该函数第一行就检查 `pred.get(\"type\") != gold[\"type\"]`，已经是 type+text 匹配。\n\n3. **count_66 的 type+text recall = 0.3388**，非零且合理。\n\n4. **Sanity check 通过**：所有 count level 的 type+text recall <= text-only recall。\n\n5. 修正后的 summary 已保存至 `/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_type_text.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

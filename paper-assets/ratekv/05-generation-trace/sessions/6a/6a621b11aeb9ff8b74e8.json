@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6a621b11aeb9ff8b74e8",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "monitor running experiments check",
+  "task_key": "worker_monitor_running_experiments_check_20260515T195508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_running_experiments_check_20260515T195508_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "b66ad9c6023ae01548338d472e8167af4415c26f97f57c6df8d5dcc11f543e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | PID | 进程 | GPU | VRAM | 进度 | ETA | 错误 |\n|------|-----|------|-----|------|------|-----|------|\n| codellama_hires_profiling | 362950 | 活 | GPU 0 | 13.6 GB | 286/1024 heads (28%) | ~160 min | 无 |\n| qwen_3seed_downstream_ci | 369210 | 活 | GPU 1 | 17.5 GB | loglikelihood 8294/51065 (16%) | ~11 min (当前task) | 无 |\n| gemma2_downstream_k8_4task_v2 | 369818 | 活 | GPU 1 | 21.4 GB | loglikelihood 3715/51065 (7%) | ~15 min (当前task) | 无 |\n\n补充：\n- qwen 和 gemma2 共享 GPU 1，两者目前都在跑 downstream evaluation 的 loglikelihood 阶段\n- qwen 的 wrapper PID 是 369205（`CUDA_VISIBLE_DEVICES=1`），registry 里缺 GPU/PID 信息已确认——实际在 cuda:1 上\n- codellama 稳定推进中，每个 head 约 13s，预计还需 ~2.7h 完成全部 1024 heads"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

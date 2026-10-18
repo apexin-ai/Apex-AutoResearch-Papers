@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b38c84e3c86143280425",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code openrouter prep",
+  "task_key": "worker_code_openrouter-prep_20260522T125308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openrouter-prep_20260522T125308_result.json",
+    "occurrence": 1,
+    "bytes": 4649,
+    "sha256": "3943e08fdb6c31de08672894a49147c3778899d48269b6c5a66b1b78c1ff5e72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"raw\": \"全部信息已收集完毕。以下是汇报：\\n\\n---\\n\\n## 1. 进程已 Kill\\n\\n`kill 101904` — 完成。\\n\\n## 2. 已有 Checkpoint（23 条）\\n\\n| 模型 | mmlu | arc_challenge |\\n|------|------|---------------|\\n| claude-3-haiku | 7/7 ✅ | 7/7 ✅ |\\n| gpt-4o | 7/7 ✅ | 2/7 (clean, prompt_injection) |\\n| 其余 7 个模型 | 0/7 | 0/7 |\\n\\n剩余：9×2×7 - 23 = **103 条**待跑。\\n\\n## 3. OpenRouter 模型可用性与 ID 映射\\n\\n| 代码内 model_id | OpenRouter model ID | 可用性 |\\n|---|---|---|\\n| `gpt-4o` | `openai/gpt-4o` | ✅ |\\n| `gpt-4o-mini` | `openai/gpt-4o-mini` | ✅ |\\n| `gpt-4.1` | `openai/gpt-4.1` | ✅ |\\n| `gpt-5.5` | `openai/gpt-5.5` | ✅ 确认有页面（$5/M input, $30/M output）|\\n| `claude-sonnet-4` | `anthropic/claude-sonnet-4` | ✅ |\\n| `claude-opus-4` | `anthropic/claude-opus-4` | ✅ |\\n| `claude-3-haiku` | `anthropic/claude-3-haiku` | ✅ |\\n| `gemini-2.5-pro` | `google/gemini-2.5-pro` | ✅ |\\n| `gemini-2.5-flash` | `google/gemini-2.5-flash` | ✅ |\\n\\n**全部 9 个模型均在 OpenRouter 上可用。**\\n\\n## 4. 修改方案\\n\\n### 方案核心：最小改动，保持 checkpoint 兼容\\n\\n**A. `api_judge_service.py` 改动：**\\n\\n1. **新增模型名映射表**（~L32，`API_MODEL_REGISTRY` 后面）：\\n```python\\n_OPENROUTER_MODEL_MAP = {\\n    \\\"gpt-4o\\\":          \\\"openai/gpt-4o\\\",\\n    \\\"gpt-4o-mini\\\":     \\\"openai/gpt-4o-mini\\\",\\n    \\\"gpt-4.1\\\":         \\\"openai/gpt-4.1\\\",\\n    \\\"gpt-5.5\\\":         \\\"openai/gpt-5.5\\\",\\n    \\\"claude-sonnet-4\\\": \\\"anthropic/claude-sonnet-4\\\",\\n    \\\"claude-opus-4\\\":   \\\"anthropic/claude-opus-4\\\",\\n    \\\"claude-3-haiku\\\":  \\\"anthropic/claude-3-haiku\\\",\\n    \\\"gemini-2.5-pro\\\":  \\\"google/gemini-2.5-pro\\\",\\n    \\\"gemini-2.5-flash\\\":\\\"google/gemini-2.5-flash\\\",\\n}\\n```\\n\\n2. **修改 `__init__` 默认 `api_base`**（L81）：\\n```python\\n# 旧: api_base: str = \\\"http://47.94.22.126/v1\\\",\\napi_base: str = \\\"https://openrouter.ai/api/v1\\\",\\n```\\n\\n3. **修改 `_call_api` 中 payload 的 model 字段**（L109）：\\n```python\\n# 旧: \\\"model\\\": self.model_id,\\n\\\"model\\\": _OPENROUTER_MODEL_MAP.get(self.model_id, self.model_id),\\n```\\n\\n4. **添加 OpenRouter 推荐 headers**（L96-98 的 session headers）：\\n```python\\nself._session.headers.update({\\n    \\\"Content-Type\\\": \\\"application/json\\\",\\n    \\\"Authorization\\\": f\\\"Bearer {self.api_key}\\\",\\n    \\\"HTTP-Referer\\\": \\\"https://github.com/cert-manip-resist-eval\\\",\\n    \\\"X-Title\\\": \\\"cert_manip_resist_eval\\\",\\n})\\n```\\n\\n5. **不改 `self.model_id` 本身** — checkpoint 文件名用的是 `model_id`（如 `gpt-4o__mmlu__clean.json`），改了就不兼容。映射只在 API payload 里用。\\n\\n**B. `run_plan001_step1_batched.py` 改动：**\\n\\n1. **`API_BASE` 改为 OpenRouter**（L30）：\\n```python\\n# 旧: API_BASE = \\\"http://47.94.22.126/v1\\\"\\nAPI_BASE = \\\"https://openrouter.ai/api/v1\\\"\\n```\\n\\n2. **`API_KEY` 改为从环境变量读**（L29）：\\n```python\\n# 旧: API_KEY = [REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\"\\nAPI_KEY = os.environ[\\\"OPENROUTER_API_KEY\\\"]\\n```\\n\\n3. **调高并发**（BATCHES 配置）：\\n```python\\nBATCHES = [\\n    {\\\"name\\\": \\\"Claude\\\",  \\\"models\\\": [\\\"claude-sonnet-4\\\", \\\"claude-opus-4\\\", \\\"claude-3-haiku\\\"],\\n     \\\"max_workers\\\": 3, \\\"max_rps\\\": 3.0},\\n    {\\\"name\\\": \\\"Gemini\\\",  \\\"models\\\": [\\\"gemini-2.5-pro\\\", \\\"gemini-2.5-flash\\\"],\\n     \\\"max_workers\\\": 3, \\\"max_rps\\\": 3.0},\\n    {\\\"name\\\": \\\"OpenAI\\\",  \\\"models\\\": [\\\"gpt-4o\\\", \\\"gpt-4o-mini\\\", \\\"gpt-4.1\\\", \\\"gpt-5.5\\\"],\\n     \\\"max_workers\\\": 3, \\\"max_rps\\\": 3.0},\\n]\\n```\\n先 3 并发/model 起步，观察 429 错误率后再提到 5-10。\\n\\n4. **model_id 不变** — 保持 `\\\"gpt-4o\\\"` 格式，映射在 service 层做。\\n\\n## 5. 风险点\\n\\n| 风险 | 影响 | 缓解 |\\n|------|------|------|\\n| **Rate limit** | OpenRouter 按 tier/model 限流，不同于代理 | 先 3 并发保守起步；429 retry 已有 |\\n| **Pricing** | gpt-5.5 $5/$30/M，claude-opus-4 更贵，全量跑 300×7×2=4200 calls/model | 估算：~$20-50 总计（每 call ~1.5K tokens） |\\n| **模型行为差异** | OpenRouter 转发可能有细微差异（timeout、截断） | 已有 `_parse_judge_output_robust` 兜底；`max_tokens` 设置正确 |\\n| **gpt-5.5 温度** | `_NO_TEMP_ZERO` 已包含 gpt-5.5，OpenRouter 行为应一致 | 低风险 |\\n| **已完成的 23 条 checkpoint** | 通过代理跑的，模型行为可能与 OpenRouter 略不同 | 可接受——同一模型底层 API 一致，代理只是转发 |\\n| **API key 泄露** | 当前脚本里硬编码了旧代理 key | 迁移后改为环境变量，顺便清理 |\"\n}\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

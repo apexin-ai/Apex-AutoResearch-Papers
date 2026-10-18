@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b7b22232cfd1bbece7db",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code mvp simulation",
+  "task_key": "worker_code_mvp_simulation_20260520T175313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_simulation_20260520T175313_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "9f7d23ef23817756326119c13583b925a89b7b79836f4f5477e0d69d418060d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "N_MC=100 完整结果，3.4 秒完成。关键发现清晰且稳定：\n\n**Extreme regime (misclass_A=0.25, misclass_B=0.05), n_expert=500:**\n\n| 子群 | 方法 | bias_z0 | bias_z1 | rmse_z0 | rmse_z1 |\n|------|------|---------|---------|---------|---------|\n| A (高误差) | Naive | **+0.098** | **-0.100** | 0.116 | 0.120 |\n| A | Global | +0.054 | -0.055 | 0.096 | 0.100 |\n| A | **EC-HTE** | **-0.009** | **+0.008** | 0.111 | 0.113 |\n| B (低误差) | Naive | +0.009 | -0.025 | 0.058 | 0.066 |\n| B | Global | **-0.070** | **+0.055** | 0.100 | 0.093 |\n| B | **EC-HTE** | **-0.014** | **-0.002** | 0.063 | 0.066 |\n\n核心验证：\n1. **Naive** 在高误差子群 A 偏差大 (|bias_z1|=0.10)\n2. **Global 在子群 A 欠校正** (|bias_z1|=0.055 vs EC-HTE's 0.008)，**在子群 B 过校正加偏** (|bias_z1|=0.055 vs Naive's 0.025)\n3. **EC-HTE 在两个子群均接近无偏** (|bias| < 0.015)\n4. **Homogeneous regime**: Global ≈ EC-HTE（符合预期——无异质性时两者等价）\n5. n_expert 增加时 EC-HTE 的 bias 下降（100→500: subgroup A bias_z1 从 0.024→0.008）\n\nCSV 已保存到 `/home/ubuntu/ec_hte_llm_annotation/results/mvp_results.csv` 和 `mvp_results_raw.csv`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

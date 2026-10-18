@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "e277ba69a5d15b81ecf2",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code verify 520 configs",
+  "task_key": "worker_code_verify-520-configs_20260522T095244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-520-configs_20260522T095244.log",
+    "occurrence": 1,
+    "bytes": 698254,
+    "sha256": "3e318b22ef40a35837b7bdb9810a1e71de53f16c9acbf09a036646efcd8a424e"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 1,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 72,
+      "tool_result": 72,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "e277ba69a5d15b81ecf2-part-0001.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "e277ba69a5d15b81ecf2-part-0001.json",
+          "message_count": 54
+        },
+        {
+          "path": "e277ba69a5d15b81ecf2-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ]
+}

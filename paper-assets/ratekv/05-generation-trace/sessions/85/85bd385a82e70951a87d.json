@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "85bd385a82e70951a87d",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analyze llama c4 hires crossdataset",
+  "task_key": "worker_analyze_llama_c4_hires_crossdataset_20260514T225021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_llama_c4_hires_crossdataset_20260514T225021_result.json",
+    "occurrence": 1,
+    "bytes": 1804,
+    "sha256": "42f1035949305801a758f531064fbb6def442cb42d03d0adb62d99ad895d81bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成，EXIT_CODE=0。\n\n```\nMETRICS:\n- baseline_ppl_wt2: 8.0922\n- baseline_ppl_c4:  7.1333\n- c4_cal_mckp_ppl_wt2: 8.5103\n- c4_cal_mckp_ppl_c4:  7.5351\n- uniform_ppl_wt2: 8.4701\n- uniform_ppl_c4:  7.5351\n- delta_wt2 (uniform - mckp): -0.0402\n- delta_c4 (uniform - mckp):  +0.0000\n- verdict: FAIL (C4 eval)\n- bit_distribution: {4: 253, 2: 2, 8: 1}\n- 2-bit heads: L2H3, L24H2\n- 8-bit heads: L31H6\n- concentration: N/A (未单独计算，但 253/256=98.8% 的 head 分配到 4-bit → Flat)\n- timing: hires=4.7min, std=0.0s(reused), eval=93.9s, total=6.3min\n```\n\n**WT2-cal reference 对比**:\n| | C4-cal (本次) | WT2-cal (参考) |\n|---|---|---|\n| MCKP WT2 PPL | 8.5103 | 8.5042 |\n| Uniform WT2 PPL | 8.4701 | 8.4701 |\n| Delta (uni-mckp) | -0.0402 | -0.0341 |\n| Bit distribution | {4:253, 2:2, 8:1} | {4:253, 2:2, 8:1} |\n| Verdict | FAIL | FAIL |\n\n```\nANALYSIS:\n```\n\n**C4 校准与 WT2 校准的 MCKP 结果高度一致**。两次实验产生了完全相同的 bit allocation（253×4bit + 2×2bit + 1×8bit），allocation agreement 为 **100%**。C4-cal MCKP 在 WT2 上 PPL=8.5103，甚至略差于 WT2-cal 的 8.5042，两者 delta 均为负值（MCKP 劣于 uniform），一致判定 **FAIL**。\n\n这确认了 Llama-3.1-8B 的 Flat 特性（注意力分布极度均匀，concentration ~0）是模型内在属性，不受校准数据集选择影响。MCKP solver 在两个不同校准集上给出了相同的 allocation，说明 distortion profile 跨数据集高度稳定——对 Flat 模型来说，所有 head 的量化敏感度几乎一样，没有可利用的差异化来获得增益。\n\n```\nJSON_RESULT_PATH: /root/ratekv/llama_c4_hires_crossdataset_results.json\nLOG_PATH: /root/runs/ratekv/llama_c4_hires_crossdataset.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

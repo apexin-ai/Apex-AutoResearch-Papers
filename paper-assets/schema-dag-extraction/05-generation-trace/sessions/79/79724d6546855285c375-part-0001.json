@@ -1,0 +1,3524 @@
+{
+  "schema_version": "1.0",
+  "session_id": "79724d6546855285c375",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:53:39.015935+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Research Reviewer，这是 Loop #2。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0（cqa1-38874 上唯一分配的 GPU）\n- 模型必须放 `/root/autodl-tmp/`，根分区仅 9GB 剩余，禁止往根分区写大文件\n- BCS 定义必须用 **max** pairwise cosine similarity（非 mean），已修正过一次，代码在 `compute_bcs.py:44`\n- exp2 random samples 必须 25/档（非 10），已修正过一次，代码在 `run_experiment.py:120`\n- Few-NERD 必须用 `fine_ner_tags`（66 细粒度类型），非 `ner_tags`（8 粗粒度），已修正过一次\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874(root)，工作目录 `/root/schema-dag-extraction/`\n- Python：`/root/miniconda3/bin/python3`（Python 3.12，conda base env，不是 venv）\n- torch 2.10.0+cu128, vLLM 0.20.2\n- 模型：`/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`（Qwen3-32B-FP8, 32GB 权重）\n- 数据：`/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`（Few-NERD）\n- Type defs：`/root/schema-dag-extraction/configs/few_nerd_types.json`（66 types）\n- Embeddings：`data/type_embeddings.pt`（Qwen3）+ `data/type_embeddings_e5.pt`（E5-large-v2，两个变体）\n- Sim matrix：`artifacts/sim_matrix.pt`\n- 活跃进程：exp1 via vLLM EngineCore PID 188307（cuda:0, 94GB VRAM）\n- 磁盘：根分区 9GB free / 30GB，数据盘 31GB free / 250GB\n- 无 W&B（`--no_wandb`），无 tmux session 记录\n\n### 3. 📊 当前状态\n- **exp001_count_baseline**: RUNNING。count=[1,2,6,12,22,44,66]，37648 test samples，PID 188307。Dry run 已完成（100 samples），full exp1 日志最后可见在跑 count_1 的 solo batches（66 个 type 各跑一次）。预估还需 1-2h。\n- **exp002_confusability_controlled**: PREPARING。等 exp1 完成后启动。\n- **E5 alternate embeddings**: 已计算完毕（`data/type_embeddings_e5.pt`），但 BCS 分布对比数值未持久化到 log 文件——需要 Agent 确认 E5 vs Qwen3 的 BCS range，决定 exp2 用哪个 embedding。\n- **等待中**: exp1 完成回调 → 审查结果 → exp2 启动决策\n\n### 4. 📋 待办\n- exp1 完成 → 审查 eval_exp1.json：(1) count-quality curve 是否单调递减？(2) solo baseline per-type F1 分布是否合理？(3) exact F1 是否仍 <5%（dry run 仅 0-3%，如果 full exp 也这样，需要切到 relaxed F1 或审查 prompt）\n- exp1 审查通过 → 确认 exp2 用哪套 embedding（E5 vs Qwen3），看 BCS range 是否足够宽\n- exp2 完成 → 核心审查：Pearson |r| ≥ 0.3 且 p < 0.05？Δ(solo_F1 - batch_F1) vs BCS 的相关性？\n- |r| ≥ 0.3 → go，推进 Contribution B（SDGD 实现）\n- |r| < 0.3 → pivot 到 negative result study，需要审查 framing 提案（加载 negative-framing-review skill）\n\n### 5. 🎯 战略上下文\n- 核心假设：type confusability（非 count）独立驱动 training-free LLM IE 质量下降。Day-3 go/no-go gate。\n- 决策链：D001 立项 → D002 统计修正（25 random/档 + solo baseline + BCS max）\n- ARR May 25 DDL = 距今 11 天。MVP 3h GPU，全项目 170h。单卡 11 天理论上限 264h，够用但无 buffer。\n- **最容易判断错的事**：(1) dry run 的 exact F1 极低（0-3%）不一定是 bug——LLM 不擅长精确 char offset 是已知问题，relaxed F1（9-14%）说明模型确实在抽取实体。需要关注 full exp 的结果再判断。(2) BCS range 窄（0.88-0.92 with Qwen3 embedding）可能使 exp2 correlation 不显著——E5 embedding 是 Plan B，但数值对比还没确认。(3) 不要因为\"11 天很紧\"就发 deadline warning——AI Agent 速度与人类不同，只看 GPU-hours 够不够。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T21:53:48.453893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T21:53:48.504598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T21:53:51.366828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T21:53:51.869793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp001_count_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:13:40.180Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:39:38.466Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"design\\\": \\\"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\\\", \\\"command\\\": \\\"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 188307, \\\"vllm_version\\\": \\\"0.20.2\\\", \\\"max_model_len\\\": 4096, \\\"gpu_memory_utilization\\\": 0.95}}, \\\"exp002_confusability_controlled\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:13:42.626Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:13:42.626Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"固定 type count 时，高 BCS batch 的 F1 显著低于低 BCS batch（confusability 独立驱动质量下降）\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-TBD\\\", \\\"design\\\": \\\"count=6,12 × low/medium/high BCS，Pearson correlation + paired t-test\\\", \\\"pass_criteria\\\": \\\"Pearson |r| >= 0.3 且 high-BCS vs low-BCS p < 0.05\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0029}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T21:53:52.171585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T21:53:53.427079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 15 %, 94221 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T21:54:08.238439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 188307 -o pid,etime,pcpu,rss,args --no-headers"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T21:54:09.393664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"188307    02:20:30  102 2398436 VLLM::EngineCore\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1155
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T21:54:09.444993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lhtr /root/schema-dag-extraction/results/"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T21:54:09.545913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -80 /root/schema-dag-extraction/logs/exp1_full.log"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T21:54:09.847385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 56K\\\\ndrwxr-xr-x 2 root root  10 May 15 02:12 exp2\\\\ndrwxr-xr-x 2 root root  10 May 15 02:12 exp1\\\\ndrwxr-xr-x 2 root root  10 May 15 02:12 analysis\\\\n-rw-r--r-- 1 root root 21K May 15 02:14 sim_matrix.pt\\\\n-rw-r--r-- 1 root root 32K May 15 02:32 batch_config_exp1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T21:54:10.350568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/schema-dag-extraction/logs/exp1_full.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T21:54:16.173650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/logs -type f -name \"*.log\" 2>/dev/null"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T21:54:16.625902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T21:54:17.128462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/results -type f 2>/dev/null"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T21:54:17.530584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T21:54:17.581265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"nohup.out\" -o -name \"*.log\" -type f 2>/dev/null"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T21:54:17.631861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T21:54:21.652081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/logs -type f"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T21:54:22.104222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/logs/embeddings.log\\\\n/root/schema-dag-extraction/logs/exp1.log\\\\n/root/schema-dag-extraction/logs/dry_run.log\\\\n/root/schema-dag-extraction/logs/dry_run_plain.log\\\\n/root/schema-dag-extraction/logs/dry_run_triton.log\\\\n/root/schema-dag-extraction/logs/dry_run_v0.log\\\\n/root/schema-dag-extraction/logs/cuda_test.log\\\\n/root/schema-dag-extraction/logs/transformers_test.log\\\\n/root/schema-dag-extraction/logs/dry_run_v0_020.log\\\\n/root/schema-dag-extraction/logs/dry_run_structured.log\\\\n/root/schema-dag-extraction/logs/test_structured.log\\\\n/root/schema-dag-extraction/logs/dry_run_pipeline.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T21:54:22.104695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/results -type f"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T21:54:22.607015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/results/sim_matrix.pt\\\\n/root/schema-dag-extraction/results/batch_config_exp1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T21:54:22.757956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -maxdepth 1 -name \"nohup.out\" -type f"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T21:54:23.160029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T21:54:28.381432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -100 /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T21:54:28.883577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "wc -l /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T21:54:29.386073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\n\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\n\\\\n\\\\n\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\n\\\\n\\\\n\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\n\\\\n\\\\n\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\n\\\\n\\\\n\\\\n2026-05-15 05:37:11,840 WARNING Failed to parse JSON for sample 656 batch count_6_random_0: [\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"Alaska\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location-bodiesofwater\\\\\\\", \\\\\\\"start\\\\\\\": 54, \\\\\\\"end\\\\\\\": 60},\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"Mt\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"other-livingthing\\\\\\\", \\\\\\\"start\\\\\\\": 75, \\\\\\\"end\\\\\\\": 77}  \\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\n\\\\t\\\\t\\\\t\\\\n2026-05-15 05:37:11,844 INFO   Batch count_6_random_0 done: 225.2s total, 1000 outputs\\\\n2026-05-15 05:37:11,844 INFO Running batch count_6_random_1 (6 types, BCS=0.8868) on 1000 samples\\\\n\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 131.80it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 135.66it/s]\\\\rRendering prompts:   4%|▍         | 45/1000 [00:00<00:06, 147.55it/s]\\\\rRendering prompts:   6%|▌         | 62/1000 [00:00<00:06, 153.75it/s]\\\\rRendering prompts:   8%|▊         | 79/1000 [00:00<00:05, 157.68it/s]\\\\rRendering prompts:  10%|▉         | 96/1000 [00:00<00:05, 159.72it/s]\\\\rRendering prompts:  11%|█▏        | 113/1000 [00:00<00:05, 160.91it/s]\\\\rRendering prompts:  13%|█▎        | 130/1000 [00:00<00:05, 161.45it/s]\\\\rRendering prompts:  15%|█▍        | 147/1000 [00:00<00:05, 162.27it/s]\\\\rRendering prompts:  16%|█▋        | 164/1000 [00:01<00:05, 162.45it/s]\\\\rRendering prompts:  18%|█▊        | 181/1000 [00:01<00:05, 162.56it/s]\\\\rRendering prompts:  20%|█▉        | 198/1000 [00:01<00:04, 162.98it/s]\\\\rRendering prompts:  22%|██▏       | 215/1000 [00:01<00:04, 162.73it/s]\\\\rRendering prompts:  23%|██▎       | 232/1000 [00:01<00:04, 162.62it/s]\\\\rRendering prompts:  25%|██▍       | 249/1000 [00:01<00:04, 163.61it/s]\\\\\n…[truncated 6635 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T21:54:29.386425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/results/batch_config_exp1.json"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T21:54:29.437239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"893 /root/schema-dag-extraction/logs/exp1.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T21:54:29.940599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_1\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-broadcastprogram\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-film\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-music\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-other\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-painting\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-writtenart\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-airport\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-hospital\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-hotel\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-library\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-other\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-restaurant\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-sportsfacility\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-theater\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n \n…[truncated 8481 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 554
+          },
+          "id": "event-000031"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T21:54:34.028638+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Research Reviewer，这是 Loop #2。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0（cqa1-38874 上唯一分配的 GPU）\n- 模型必须放 `/root/autodl-tmp/`，根分区仅 9GB 剩余，禁止往根分区写大文件\n- BCS 定义必须用 **max** pairwise cosine similarity（非 mean），已修正过一次，代码在 `compute_bcs.py:44`\n- exp2 random samples 必须 25/档（非 10），已修正过一次，代码在 `run_experiment.py:120`\n- Few-NERD 必须用 `fine_ner_tags`（66 细粒度类型），非 `ner_tags`（8 粗粒度），已修正过一次\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874(root)，工作目录 `/root/schema-dag-extraction/`\n- Python：`/root/miniconda3/bin/python3`（Python 3.12，conda base env，不是 venv）\n- torch 2.10.0+cu128, vLLM 0.20.2\n- 模型：`/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`（Qwen3-32B-FP8, 32GB 权重）\n- 数据：`/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`（Few-NERD）\n- Type defs：`/root/schema-dag-extraction/configs/few_nerd_types.json`（66 types）\n- Embeddings：`data/type_embeddings.pt`（Qwen3）+ `data/type_embeddings_e5.pt`（E5-large-v2，两个变体）\n- Sim matrix：`artifacts/sim_matrix.pt`\n- 活跃进程：exp1 via vLLM EngineCore PID 188307（cuda:0, 94GB VRAM）\n- 磁盘：根分区 9GB free / 30GB，数据盘 31GB free / 250GB\n- 无 W&B（`--no_wandb`），无 tmux session 记录\n\n### 3. 📊 当前状态\n- **exp001_count_baseline**: RUNNING。count=[1,2,6,12,22,44,66]，37648 test samples，PID 188307。Dry run 已完成（100 samples），full exp1 日志最后可见在跑 count_1 的 solo batches（66 个 type 各跑一次）。预估还需 1-2h。\n- **exp002_confusability_controlled**: PREPARING。等 exp1 完成后启动。\n- **E5 alternate embeddings**: 已计算完毕（`data/type_embeddings_e5.pt`），但 BCS 分布对比数值未持久化到 log 文件——需要 Agent 确认 E5 vs Qwen3 的 BCS range，决定 exp2 用哪个 embedding。\n- **等待中**: exp1 完成回调 → 审查结果 → exp2 启动决策\n\n### 4. 📋 待办\n- exp1 完成 → 审查 eval_exp1.json：(1) count-quality curve 是否单调递减？(2) solo baseline per-type F1 分布是否合理？(3) exact F1 是否仍 <5%（dry run 仅 0-3%，如果 full exp 也这样，需要切到 relaxed F1 或审查 prompt）\n- exp1 审查通过 → 确认 exp2 用哪套 embedding（E5 vs Qwen3），看 BCS range 是否足够宽\n- exp2 完成 → 核心审查：Pearson |r| ≥ 0.3 且 p < 0.05？Δ(solo_F1 - batch_F1) vs BCS 的相关性？\n- |r| ≥ 0.3 → go，推进 Contribution B（SDGD 实现）\n- |r| < 0.3 → pivot 到 negative result study，需要审查 framing 提案（加载 negative-framing-review skill）\n\n### 5. 🎯 战略上下文\n- 核心假设：type confusability（非 count）独立驱动 training-free LLM IE 质量下降。Day-3 go/no-go gate。\n- 决策链：D001 立项 → D002 统计修正（25 random/档 + solo baseline + BCS max）\n- ARR May 25 DDL = 距今 11 天。MVP 3h GPU，全项目 170h。单卡 11 天理论上限 264h，够用但无 buffer。\n- **最容易判断错的事**：(1) dry run 的 exact F1 极低（0-3%）不一定是 bug——LLM 不擅长精确 char offset 是已知问题，relaxed F1（9-14%）说明模型确实在抽取实体。需要关注 full exp 的结果再判断。(2) BCS range 窄（0.88-0.92 with Qwen3 embedding）可能使 exp2 correlation 不显著——E5 embedding 是 Plan B，但数值对比还没确认。(3) 不要因为\"11 天很紧\"就发 deadline warning——AI Agent 速度与人类不同，只看 GPU-hours 够不够。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T21:54:44.416015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T21:54:44.466700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T21:54:47.378871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "schema-dag-extraction",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T21:54:47.831326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp001_count_baseline\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:13:40.180Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:39:38.466Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"design\\\": \\\"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\\\", \\\"command\\\": \\\"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 188307, \\\"vllm_version\\\": \\\"0.20.2\\\", \\\"max_model_len\\\": 4096, \\\"gpu_memory_utilization\\\": 0.95}}, \\\"exp002_confusability_controlled\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:13:42.626Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:13:42.626Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"固定 type count 时，高 BCS batch 的 F1 显著低于低 BCS batch（confusability 独立驱动质量下降）\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-TBD\\\", \\\"design\\\": \\\"count=6,12 × low/medium/high BCS，Pearson correlation + paired t-test\\\", \\\"pass_criteria\\\": \\\"Pearson |r| >= 0.3 且 high-BCS vs low-BCS p < 0.05\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0031}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T21:54:48.334099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T21:54:49.289831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps aux --no-headers -o pid,user,%cpu,%mem,etime,command --sort=-%mem"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T21:54:49.641818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 94221 MiB, 97887 MiB, 15 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1307
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T21:54:50.094128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T21:54:54.161713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -100 /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T21:54:54.162218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ps -p 188307 -o pid,etime,pcpu,pmem,comm"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T21:54:54.563851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED %CPU %MEM COMMAND\\\\n188307    02:21:16  102  0.2 VLLM::EngineCor\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T21:54:54.614350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/results/"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T21:54:55.066309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:33:02,367 INFO Loading Few-NERD test data...\\\\n2026-05-15 03:33:02,367 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-15 03:33:04,576 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-15 03:33:04,579 INFO Data loaded: 1000 samples, 64 active types\\\\n2026-05-15 03:33:04,580 INFO Loading embeddings from ../data/type_embeddings.pt\\\\n2026-05-15 03:33:04,606 INFO Loading existing similarity matrix\\\\n2026-05-15 03:33:04,610 INFO Active types (in both embeddings and data): 64\\\\n2026-05-15 03:33:04,881 INFO Saved batch config to ../artifacts/batch_config_exp1.json\\\\n2026-05-15 03:33:04,882 INFO Starting extraction...\\\\n2026-05-15 03:33:31,755 INFO Loading vLLM model from /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\nINFO 05-15 03:33:31 [utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 4096, 'gpu_memory_utilization': 0.95, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/'}\\\\nINFO 05-15 03:33:31 [model.py:555] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-15 03:33:31 [model.py:1680] Using max model len 4096\\\\nINFO 05-15 03:33:36 [nixl_utils.py:20] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.\\\\nWARNING 05-15 03:33:36 [nixl_utils.py:34] NIXL is not available\\\\nWARNING 05-15 03:33:36 [nixl_utils.py:44] NIXL agent config is not available\\\\nINFO 05-15 03:33:37 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-15 03:33:37 [vllm.py:840] Asynchronous scheduling is enabled.\\\\nWARNING 05-15 03:33:37 [vllm.py:896] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-15 03:33:37 [vllm.py:914] Inductor compilation was disabled by user settings, optimizations settings that ar\n…[truncated 6394 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T21:54:55.066786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"done:\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T21:54:55.068698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 56\\\\n-rw-r--r-- 1 root root 32484 May 15 02:32 batch_config_exp1.json\\\\n-rw-r--r-- 1 root root 20926 May 15 02:14 sim_matrix.pt\\\\ndrwxr-xr-x 2 root root    10 May 15 02:12 analysis\\\\ndrwxr-xr-x 2 root root    10 May 15 02:12 exp1\\\\ndrwxr-xr-x 2 root root    10 May 15 02:12 exp2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T21:54:55.119417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -lt /root/schema-dag-extraction/logs/"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T21:54:55.267827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"done:\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T21:54:55.469266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"74\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T21:54:55.521172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1132\\\\n-rw-r--r-- 1 root root 880147 May 15 05:53 exp1.log\\\\n-rw-r--r-- 1 root root  30257 May 15 03:31 dry_run_pipeline.log\\\\n-rw-r--r-- 1 root root  10014 May 15 03:24 test_structured.log\\\\n-rw-r--r-- 1 root root   5620 May 15 03:20 dry_run_structured.log\\\\n-rw-r--r-- 1 root root   9668 May 15 03:17 dry_run_v0_020.log\\\\n-rw-r--r-- 1 root root   1389 May 15 03:08 transformers_test.log\\\\n-rw-r--r-- 1 root root    186 May 15 03:06 cuda_test.log\\\\n-rw-r--r-- 1 root root   6337 May 15 03:05 dry_run_v0.log\\\\n-rw-r--r-- 1 root root   7485 May 15 03:04 dry_run_triton.log\\\\n-rw-r--r-- 1 root root   7245 May 15 03:03 dry_run_plain.log\\\\n-rw-r--r-- 1 root root   7363 May 15 02:59 dry_run.log\\\\n-rw-r--r-- 1 root root   2544 May 15 02:13 embeddings.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T21:54:55.971600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:35:17,323 INFO   Batch count_1_random_0 done: 52.7s total, 1000 outputs\\\\n2026-05-15 03:36:39,734 INFO   Batch count_1_random_1 done: 82.4s total, 1000 outputs\\\\n2026-05-15 03:37:40,174 INFO   Batch count_1_random_2 done: 60.4s total, 1000 outputs\\\\n2026-05-15 03:39:13,026 INFO   Batch count_1_random_3 done: 92.8s total, 1000 outputs\\\\n2026-05-15 03:41:24,700 INFO   Batch count_1_random_4 done: 131.7s total, 1000 outputs\\\\n2026-05-15 03:42:12,232 INFO   Batch count_1_random_5 done: 47.5s total, 1000 outputs\\\\n2026-05-15 03:42:53,378 INFO   Batch count_1_random_6 done: 41.1s total, 1000 outputs\\\\n2026-05-15 03:43:47,822 INFO   Batch count_1_random_7 done: 54.4s total, 1000 outputs\\\\n2026-05-15 03:44:43,346 INFO   Batch count_1_random_8 done: 55.5s total, 1000 outputs\\\\n2026-05-15 03:48:24,174 INFO   Batch count_1_random_9 done: 220.8s total, 1000 outputs\\\\n2026-05-15 03:48:54,273 INFO   Batch count_1_random_10 done: 30.1s total, 1000 outputs\\\\n2026-05-15 03:49:37,297 INFO   Batch count_1_random_11 done: 43.0s total, 1000 outputs\\\\n2026-05-15 03:50:06,079 INFO   Batch count_1_random_12 done: 28.8s total, 1000 outputs\\\\n2026-05-15 03:51:50,797 INFO   Batch count_1_random_13 done: 104.7s total, 1000 outputs\\\\n2026-05-15 03:52:23,832 INFO   Batch count_1_random_14 done: 33.0s total, 1000 outputs\\\\n2026-05-15 03:53:59,208 INFO   Batch count_1_random_15 done: 95.4s total, 1000 outputs\\\\n2026-05-15 03:57:32,975 INFO   Batch count_1_random_16 done: 213.7s total, 1000 outputs\\\\n2026-05-15 03:58:50,218 INFO   Batch count_1_random_17 done: 77.2s total, 1000 outputs\\\\n2026-05-15 04:02:37,114 INFO   Batch count_1_random_18 done: 226.9s total, 1000 outputs\\\\n2026-05-15 04:03:39,293 INFO   Batch count_1_random_19 done: 62.2s total, 1000 outputs\\\\n2026-05-15 04:04:47,202 INFO   Batch count_1_random_20 done: 67.9s total, 1000 outputs\\\\n2026-05-15 04:05:49,280 INFO   Batch count_1_random_21 done: 62.1s total, 1000 o\n…[truncated 4752 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T21:55:01.046372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "log_path": "/root/schema-dag-extraction/logs/exp1.log",
+              "n": "80"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T21:55:02.001410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Alaska\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location-bodiesofwater\\\\\\\", \\\\\\\"start\\\\\\\": 54, \\\\\\\"end\\\\\\\": 60},\\\", \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Mt\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"other-livingthing\\\\\\\", \\\\\\\"start\\\\\\\": 75, \\\\\\\"end\\\\\\\": 77}  \\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\\t\\\\t\\\", \\\"\\\\t\\\\t\\\\t\\\", \\\"2026-05-15 05:37:11,844 INFO   Batch count_6_random_0 done: 225.2s total, 1000 outputs\\\", \\\"2026-05-15 05:37:11,844 INFO Running batch count_6_random_1 (6 types, BCS=0.8868) on 1000 samples\\\", \\\"\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 14/1000 [00:00<00:07, 131.80it/s]\\\\rRendering prompts:   3%|▎         | 28/1000 [00:00<00:07, 135.66it/s]\\\\rRendering prompts:   4%|▍         | 45/1000 [00:00<00:06, 147.55it/s]\\\\rRendering prompts:   6%|▌         | 62/1000 [00:00<00:06, 153.75it/s]\\\\rRendering prompts:   8%|▊         | 79/1000 [00:00<00:05, 157.68it/s]\\\\rRendering prompts:  10%|▉         | 96/1000 [00:00<00:05, 159.72it/s]\\\\rRendering prompts:  11%|█▏        | 113/1000 [00:00<00:05, 160.91it/s]\\\\rRendering prompts:  13%|█▎        | 130/1000 [00:00<00:05, 161.45it/s]\\\\rRendering prompts:  15%|█▍        | 147/1000 [00:00<00:05, 162.27it/s]\\\\rRendering prompts:  16%|█▋        | 164/1000 [00:01<00:05, 162.45it/s]\\\\rRendering prompts:  18%|█▊        | 181/1000 [00:01<00:05, 162.56it/s]\\\\rRendering prompts:  20%|█▉        | 198/1000 [00:01<00:04, 162.98it/s]\\\\rRendering prompts:  22%|██▏       | 215/1000 [00:01<00:04, 162.73it/s]\\\\rRendering prompts:  23%|██▎       | 232/1000 [00:01<00:04, 162.62it/s]\\\\rRendering prompts:  25%|██▍       | 249/1000 [00:01<00:04, 163.61it/s]\\\\rRendering prompts:  27%|██▋       | 266/1000 [00:01<00:04, 163.51it/s]\\\\rRendering prompts:  28%|██▊       | 283/1000 [00:01<00:04, 163.12it/s]\\\\rRendering prompts:  30%|███       | 300/10\n…[truncated 6662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 955
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T21:55:02.052114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "ls -la /root/schema-dag-extraction/results/exp1/"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T21:55:02.403794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -50 /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T21:55:02.454405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 2 root root  10 May 15 02:12 .\\\\ndrwxr-xr-x 5 root root 121 May 15 02:14 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T21:55:02.856599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:33:02,367 INFO Loading Few-NERD test data...\\\\n2026-05-15 03:33:02,367 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-15 03:33:04,576 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-15 03:33:04,579 INFO Data loaded: 1000 samples, 64 active types\\\\n2026-05-15 03:33:04,580 INFO Loading embeddings from ../data/type_embeddings.pt\\\\n2026-05-15 03:33:04,606 INFO Loading existing similarity matrix\\\\n2026-05-15 03:33:04,610 INFO Active types (in both embeddings and data): 64\\\\n2026-05-15 03:33:04,881 INFO Saved batch config to ../artifacts/batch_config_exp1.json\\\\n2026-05-15 03:33:04,882 INFO Starting extraction...\\\\n2026-05-15 03:33:31,755 INFO Loading vLLM model from /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\nINFO 05-15 03:33:31 [utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 4096, 'gpu_memory_utilization': 0.95, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/'}\\\\nINFO 05-15 03:33:31 [model.py:555] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-15 03:33:31 [model.py:1680] Using max model len 4096\\\\nINFO 05-15 03:33:36 [nixl_utils.py:20] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.\\\\nWARNING 05-15 03:33:36 [nixl_utils.py:34] NIXL is not available\\\\nWARNING 05-15 03:33:36 [nixl_utils.py:44] NIXL agent config is not available\\\\nINFO 05-15 03:33:37 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-15 03:33:37 [vllm.py:840] Asynchronous scheduling is enabled.\\\\nWARNING 05-15 03:33:37 [vllm.py:896] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-15 03:33:37 [vllm.py:914] Inductor compilation was disabled by user settings, optimizations settings that ar\n…[truncated 6318 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T21:55:24.457997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -20 /root/schema-dag-extraction/results/batch_config_exp1.json"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T21:55:25.362105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_1\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-broadcastprogram\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-film\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-music\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T21:55:25.413133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"n_samples\\|num_samples\\|test_size\\|max_samples\\|1000\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T21:55:25.814818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T21:55:26.016469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"count_\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T21:55:26.418431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"192\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T21:55:30.588299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"n_samples\\|num_samples\\|test_size\\|max_samples\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T21:55:31.593222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T21:55:31.693968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"Batch count_\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T21:55:31.945154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"1000\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T21:55:32.146118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:35:17,323 INFO   Batch count_1_random_0 done: 52.7s total, 1000 outputs\\\\n2026-05-15 03:36:39,734 INFO   Batch count_1_random_1 done: 82.4s total, 1000 outputs\\\\n2026-05-15 03:37:40,174 INFO   Batch count_1_random_2 done: 60.4s total, 1000 outputs\\\\n2026-05-15 03:39:13,026 INFO   Batch count_1_random_3 done: 92.8s total, 1000 outputs\\\\n2026-05-15 03:41:24,700 INFO   Batch count_1_random_4 done: 131.7s total, 1000 outputs\\\\n2026-05-15 03:42:12,232 INFO   Batch count_1_random_5 done: 47.5s total, 1000 outputs\\\\n2026-05-15 03:42:53,378 INFO   Batch count_1_random_6 done: 41.1s total, 1000 outputs\\\\n2026-05-15 03:43:47,822 INFO   Batch count_1_random_7 done: 54.4s total, 1000 outputs\\\\n2026-05-15 03:44:43,346 INFO   Batch count_1_random_8 done: 55.5s total, 1000 outputs\\\\n2026-05-15 03:48:24,174 INFO   Batch count_1_random_9 done: 220.8s total, 1000 outputs\\\\n2026-05-15 03:48:54,273 INFO   Batch count_1_random_10 done: 30.1s total, 1000 outputs\\\\n2026-05-15 03:49:37,297 INFO   Batch count_1_random_11 done: 43.0s total, 1000 outputs\\\\n2026-05-15 03:50:06,079 INFO   Batch count_1_random_12 done: 28.8s total, 1000 outputs\\\\n2026-05-15 03:51:50,797 INFO   Batch count_1_random_13 done: 104.7s total, 1000 outputs\\\\n2026-05-15 03:52:23,832 INFO   Batch count_1_random_14 done: 33.0s total, 1000 outputs\\\\n2026-05-15 03:53:59,208 INFO   Batch count_1_random_15 done: 95.4s total, 1000 outputs\\\\n2026-05-15 03:57:32,975 INFO   Batch count_1_random_16 done: 213.7s total, 1000 outputs\\\\n2026-05-15 03:58:50,218 INFO   Batch count_1_random_17 done: 77.2s total, 1000 outputs\\\\n2026-05-15 04:02:37,114 INFO   Batch count_1_random_18 done: 226.9s total, 1000 outputs\\\\n2026-05-15 04:03:39,293 INFO   Batch count_1_random_19 done: 62.2s total, 1000 outputs\\\\n2026-05-15 04:04:47,202 INFO   Batch count_1_random_20 done: 67.9s total, 1000 outputs\\\\n2026-05-15 04:05:49,280 INFO   Batch count_1_random_21 done: 62.1s total, 1000 o\n…[truncated 4842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T21:55:32.547943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/schema-dag-extraction/run_experiment.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T21:55:41.939935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -c \"WARNING Failed to parse\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-14T21:55:42.843900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"41\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-14T21:55:42.844275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"num_samples\\|max_samples\\|sample_size\\|--samples\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-14T21:55:43.346561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T21:55:43.798401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"Running batch count_12\\|Running batch count_22\\|Running batch count_44\\|Running batch count_66\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-14T21:55:43.849073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-14T21:55:47.566955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"num_samples\\|max_samples\\|sample_size\\|n_samples\\|1000\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T21:55:48.069108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-14T21:55:48.521384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"Running batch count_12\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-14T21:55:48.977829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 05:51:30,331 INFO Running batch count_12_random_0 (12 types, BCS=0.9122) on 1000 samples\\\\n2026-05-15 05:55:19,619 INFO Running batch count_12_random_1 (12 types, BCS=0.9184) on 1000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T21:55:48.978292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"Running batch count_22\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T21:55:49.430138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T21:55:50.887085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction/ -name \"*.py\" -type f"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T21:55:51.087971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"Running batch count_\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T21:55:51.291552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/few_nerd_utils.py\\\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\\\n/root/schema-dag-extraction/src/compute_bcs.py\\\\n/root/schema-dag-extraction/src/select_type_batches.py\\\\n/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/evaluate.py\\\\n/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/test_structured.py\\\\n/root/schema-dag-extraction/scripts/compute_e5_embeddings.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 404
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-14T21:55:51.743532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:34:24,574 INFO Running batch count_1_random_0 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:35:17,323 INFO Running batch count_1_random_1 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:36:39,734 INFO Running batch count_1_random_2 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:37:40,175 INFO Running batch count_1_random_3 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:39:13,026 INFO Running batch count_1_random_4 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:41:24,700 INFO Running batch count_1_random_5 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:42:12,233 INFO Running batch count_1_random_6 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:42:53,378 INFO Running batch count_1_random_7 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:43:47,823 INFO Running batch count_1_random_8 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:44:43,346 INFO Running batch count_1_random_9 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:48:24,174 INFO Running batch count_1_random_10 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:48:54,274 INFO Running batch count_1_random_11 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:49:37,298 INFO Running batch count_1_random_12 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:50:06,079 INFO Running batch count_1_random_13 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:51:50,797 INFO Running batch count_1_random_14 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:52:23,833 INFO Running batch count_1_random_15 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:53:59,209 INFO Running batch count_1_random_16 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:57:32,975 INFO Running batch count_1_random_17 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 03:58:50,219 INFO Running batch count_1_random_18 (1 types, BCS=0.0000) on 1000 samples\\\\n2026-05-15 04:02:37,114 INFO Runnin\n…[truncated 5818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 655
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-14T21:55:56.614428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"num_samples\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-14T21:55:57.116721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/schema-dag-extraction/run_experiment.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-14T21:55:57.117246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"max_samples\" /root/schema-dag-extraction/run_experiment.py"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-14T21:55:57.619949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/schema-dag-extraction/run_experiment.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-14T21:55:57.620309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"count_12.*done\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-14T21:55:58.072411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 05:55:19,619 INFO   Batch count_12_random_0 done: 229.3s total, 1000 outputs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-14T21:56:02.441578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"*.py\" -maxdepth 2 -type f"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-14T21:56:02.993982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/few_nerd_utils.py\\\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\\\n/root/schema-dag-extraction/src/compute_bcs.py\\\\n/root/schema-dag-extraction/src/select_type_batches.py\\\\n/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/evaluate.py\\\\n/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/test_structured.py\\\\n/root/schema-dag-extraction/scripts/compute_e5_embeddings.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-14T21:56:03.195828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"count_12.*done\\|count_22\\|count_44\\|count_66\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-14T21:56:03.296538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-14T21:56:06.812028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"num_samples\\|max_samples\\|n_samples\\|sample\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-14T21:56:06.812425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-14T21:56:07.116219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"count_12.*done\" /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-14T21:56:07.518800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 05:55:19,619 INFO   Batch count_12_random_0 done: 229.3s total, 1000 outputs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-14T21:56:09.274560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"1000\\|n_samples\\|num_samples\\|max_samples\\|test_size\\|sample\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-14T21:56:09.827259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-14T21:56:10.178642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"active types\\|n_types\\|len(active\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-14T21:56:10.682981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-14T21:56:10.783628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/configs/few_nerd_types.json"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-14T21:56:11.185480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"person-actor\\\\\\\": \\\\\\\"A person who performs in movies, TV shows, theater, or other entertainment productions.\\\\\\\",\\\\n  \\\\\\\"person-artist/author\\\\\\\": \\\\\\\"A person who creates artistic or literary works, including writers, painters, sculptors, musicians as creators, and other creative professionals.\\\\\\\",\\\\n  \\\\\\\"person-athlete\\\\\\\": \\\\\\\"A person who competes in sports or athletic events, whether professional or amateur.\\\\\\\",\\\\n  \\\\\\\"person-director\\\\\\\": \\\\\\\"A person who directs movies, TV shows, theater productions, or other media content.\\\\\\\",\\\\n  \\\\\\\"person-other\\\\\\\": \\\\\\\"A person who does not fit into the other specific person subcategories, such as historical figures, activists, or ordinary individuals mentioned by name.\\\\\\\",\\\\n  \\\\\\\"person-politician\\\\\\\": \\\\\\\"A person who holds or campaigns for political office, or is primarily known for political activities.\\\\\\\",\\\\n  \\\\\\\"person-scholar\\\\\\\": \\\\\\\"A person primarily known for academic or scientific work, including professors, researchers, and intellectuals.\\\\\\\",\\\\n  \\\\\\\"person-soldier\\\\\\\": \\\\\\\"A person who serves or served in a military or armed force, including officers, generals, and enlisted personnel.\\\\\\\",\\\\n  \\\\\\\"organization-company\\\\\\\": \\\\\\\"A commercial business entity, corporation, or firm engaged in trade, manufacturing, or services for profit.\\\\\\\",\\\\n  \\\\\\\"organization-education\\\\\\\": \\\\\\\"An educational institution such as a university, college, school, or research institute.\\\\\\\",\\\\n  \\\\\\\"organization-government/governmentagency\\\\\\\": \\\\\\\"A government body, department, ministry, or agency that exercises governmental authority or provides public services.\\\\\\\",\\\\n  \\\\\\\"organization-media/newspaper\\\\\\\": \\\\\\\"A media organization, news outlet, newspaper, magazine, broadcasting network, or publishing house.\\\\\\\",\\\\n  \\\\\\\"organization-other\\\\\\\": \\\\\\\"An organization that does not fit into the other specific organization subcategories, such as NGOs, fou\n…[truncated 7094 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-14T21:56:12.338494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"num_samples\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-14T21:56:13.292740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-14T21:56:13.293361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"max_samples\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-14T21:56:13.494178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"1000\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-14T21:56:13.695170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"28:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n53:        max_samples = 100\\\\n56:        max_samples = args.max_samples\\\\n59:    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=max_samples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-14T21:56:14.146950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 652
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-14T21:56:20.022288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"max_samples\" /root/schema-dag-extraction/src/few_nerd_utils.py"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-14T21:56:20.474580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:    max_samples: Optional[int] = None,\\\\n29:        max_samples: If set, only return first N samples.\\\\n47:        if max_samples is not None and i >= max_samples:\\\\n134:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max samples to load\\\\\\\")\\\\n139:    data = load_few_nerd(split=args.split, max_samples=args.max_samples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-14T21:56:20.977178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "wc -l /root/schema-dag-extraction/data/parquet/test.parquet"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-14T21:56:21.329459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -rn \"max_samples\" /root/schema-dag-extraction/src/few_nerd_utils.py"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-14T21:56:21.430476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"28071 /root/schema-dag-extraction/data/parquet/test.parquet\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-14T21:56:21.882530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:    max_samples: Optional[int] = None,\\\\n29:        max_samples: If set, only return first N samples.\\\\n47:        if max_samples is not None and i >= max_samples:\\\\n134:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max samples to load\\\\\\\")\\\\n139:    data = load_few_nerd(split=args.split, max_samples=args.max_samples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-14T21:56:27.357710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -80 /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-14T21:56:27.358081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"sample\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-14T21:56:27.759546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Main experiment orchestrator.\\\\n\\\\nModes:\\\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\\\nDependencies: all src/ modules, vllm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Schema-DAG Extraction MVP Experiment\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to Qwen3 model\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\", help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--embeddings_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed embeddings .pt (required)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"dry_run\\\\\\\", \\\\\\\"exp1\\\\\\\", \\\\\\\"exp2\\\\\\\"], required=True, help=\\\\\\\"Experiment mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    random.seed(args.seed)\\\\n\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n\\\\n    import os as _\n…[truncated 2106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-14T21:56:28.211538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\\\n28:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n53:        max_samples = 100\\\\n54:        logger.info(\\\\\\\"Dry run mode: using 100 samples\\\\\\\")\\\\n56:        max_samples = args.max_samples\\\\n59:    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=max_samples)\\\\n61:    all_types = get_all_types(samples)\\\\n62:    logger.info(\\\\\\\"Data loaded: %d samples, %d active types\\\\\\\", len(samples), len(all_types))\\\\n148:        samples=samples,\\\\n162:    eval_results = evaluate_all(results, samples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 853
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-14T21:56:32.582643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /proc/188307/cmdline"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-14T21:56:32.583059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -60 /root/schema-dag-extraction/src/few_nerd_utils.py"
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-14T21:56:32.984490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"VLLM::EngineCore\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T21:56:33.436364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Few-NERD data loading and preprocessing utilities.\\\\n\\\\nInput: Few-NERD dataset (token-level annotation, 66 fine-grained entity types)\\\\n       Loaded from local parquet files; falls back to HF Hub if parquet missing.\\\\nOutput: List of {\\\\\\\"text\\\\\\\": str, \\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": str, \\\\\\\"type\\\\\\\": str, \\\\\\\"start\\\\\\\": int, \\\\\\\"end\\\\\\\": int}]}\\\\nDependencies: datasets\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nfrom datasets import load_dataset\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_DATA_DIR = \\\\\\\"/root/schema-dag-extraction/data/parquet\\\\\\\"\\\\n\\\\n\\\\ndef load_few_nerd(\\\\n    split: str = \\\\\\\"test\\\\\\\",\\\\n    max_samples: Optional[int] = None,\\\\n    data_dir: str = DEFAULT_DATA_DIR,\\\\n) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load Few-NERD and convert token-level tags to span-level entities.\\\\n\\\\n    Args:\\\\n        split: Dataset split (\\\\\\\"train\\\\\\\", \\\\\\\"validation\\\\\\\", \\\\\\\"test\\\\\\\").\\\\n        max_samples: If set, only return first N samples.\\\\n        data_dir: Directory containing {split}.parquet files.\\\\n\\\\n    Returns:\\\\n        List of dicts with \\\\\\\"text\\\\\\\" (reconstructed sentence) and \\\\\\\"entities\\\\\\\" (span-level).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    parquet_path = os.path.join(data_dir, f\\\\\\\"{split}.parquet\\\\\\\")\\\\n    if os.path.exists(parquet_path):\\\\n        logger.info(\\\\\\\"Loading Few-NERD from local parquet: %s\\\\\\\", parquet_path)\\\\n        ds = load_dataset(\\\\\\\"parquet\\\\\\\", data_files=parquet_path, split=\\\\\\\"train\\\\\\\")\\\\n    else:\\\\n        logger.info(\\\\\\\"Local parquet not found, falling back to HF Hub\\\\\\\")\\\\n        ds = load_dataset(\\\\\\\"DFKI-SLT/few-nerd\\\\\\\", \\\\\\\"supervised\\\\\\\", split=split, trust_remote_code=True)\\\\n\\\\n    tag_names = ds.features[\\\\\\\"fine_ner_tags\\\\\\\"].feature.names\\\\n\\\\n    samples = []\\\\n    for i, example in enumerate(ds):\\\\n        if max_samples is not None and i >= max_samples:\\\\n         \n…[truncated 569 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 853
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-14T21:56:34.490029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"def load_few_nerd\" /root/schema-dag-extraction/src/few_nerd_utils.py"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-14T21:56:34.942287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20:def load_few_nerd(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-14T21:56:34.942674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -60 /root/schema-dag-extraction/src/few_nerd_utils.py"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T21:56:35.395091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Few-NERD data loading and preprocessing utilities.\\\\n\\\\nInput: Few-NERD dataset (token-level annotation, 66 fine-grained entity types)\\\\n       Loaded from local parquet files; falls back to HF Hub if parquet missing.\\\\nOutput: List of {\\\\\\\"text\\\\\\\": str, \\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": str, \\\\\\\"type\\\\\\\": str, \\\\\\\"start\\\\\\\": int, \\\\\\\"end\\\\\\\": int}]}\\\\nDependencies: datasets\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nfrom datasets import load_dataset\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_DATA_DIR = \\\\\\\"/root/schema-dag-extraction/data/parquet\\\\\\\"\\\\n\\\\n\\\\ndef load_few_nerd(\\\\n    split: str = \\\\\\\"test\\\\\\\",\\\\n    max_samples: Optional[int] = None,\\\\n    data_dir: str = DEFAULT_DATA_DIR,\\\\n) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load Few-NERD and convert token-level tags to span-level entities.\\\\n\\\\n    Args:\\\\n        split: Dataset split (\\\\\\\"train\\\\\\\", \\\\\\\"validation\\\\\\\", \\\\\\\"test\\\\\\\").\\\\n        max_samples: If set, only return first N samples.\\\\n        data_dir: Directory containing {split}.parquet files.\\\\n\\\\n    Returns:\\\\n        List of dicts with \\\\\\\"text\\\\\\\" (reconstructed sentence) and \\\\\\\"entities\\\\\\\" (span-level).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    parquet_path = os.path.join(data_dir, f\\\\\\\"{split}.parquet\\\\\\\")\\\\n    if os.path.exists(parquet_path):\\\\n        logger.info(\\\\\\\"Loading Few-NERD from local parquet: %s\\\\\\\", parquet_path)\\\\n        ds = load_dataset(\\\\\\\"parquet\\\\\\\", data_files=parquet_path, split=\\\\\\\"train\\\\\\\")\\\\n    else:\\\\n        logger.info(\\\\\\\"Local parquet not found, falling back to HF Hub\\\\\\\")\\\\n        ds = load_dataset(\\\\\\\"DFKI-SLT/few-nerd\\\\\\\", \\\\\\\"supervised\\\\\\\", split=split, trust_remote_code=True)\\\\n\\\\n    tag_names = ds.features[\\\\\\\"fine_ner_tags\\\\\\\"].feature.names\\\\n\\\\n    samples = []\\\\n    for i, example in enumerate(ds):\\\\n        if max_samples is not None and i >= max_samples:\\\\n         \n…[truncated 568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-14T21:56:35.495881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /proc/188307/cmdline"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-14T21:56:35.897757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"VLLM::EngineCore\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-14T21:56:42.628208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /proc/188307/status"
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T21:56:42.829629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"import pyarrow.parquet as pq; t=pq.read_table('/root/schema-dag-extraction/data/parquet/test.parquet'); print(len(t))\""
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-14T21:56:42.980585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Name:\\\\tVLLM::EngineCor\\\\nUmask:\\\\t0022\\\\nState:\\\\tR (running)\\\\nTgid:\\\\t188307\\\\nNgid:\\\\t21062\\\\nPid:\\\\t188307\\\\nPPid:\\\\t188000\\\\nTracerPid:\\\\t0\\\\nUid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nGid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nFDSize:\\\\t256\\\\nGroups:\\\\t0 \\\\nNStgid:\\\\t188307\\\\nNSpid:\\\\t188307\\\\nNSpgid:\\\\t187994\\\\nNSsid:\\\\t187994\\\\nVmPeak:\\\\t160767708 kB\\\\nVmSize:\\\\t160574600 kB\\\\nVmLck:\\\\t       0 kB\\\\nVmPin:\\\\t       0 kB\\\\nVmHWM:\\\\t 6385516 kB\\\\nVmRSS:\\\\t 2402568 kB\\\\nRssAnon:\\\\t 1885884 kB\\\\nRssFile:\\\\t  233220 kB\\\\nRssShmem:\\\\t  283464 kB\\\\nVmData:\\\\t26845060 kB\\\\nVmStk:\\\\t     132 kB\\\\nVmExe:\\\\t    2412 kB\\\\nVmLib:\\\\t 3363268 kB\\\\nVmPTE:\\\\t    8652 kB\\\\nVmSwap:\\\\t       0 kB\\\\nHugetlbPages:\\\\t       0 kB\\\\nCoreDumping:\\\\t0\\\\nTHP_enabled:\\\\t1\\\\nThreads:\\\\t246\\\\nSigQ:\\\\t5/4126135\\\\nSigPnd:\\\\t0000000000000000\\\\nShdPnd:\\\\t0000000000000000\\\\nSigBlk:\\\\t0000000000000000\\\\nSigIgn:\\\\t0000000001001001\\\\nSigCgt:\\\\t0000000100004402\\\\nCapInh:\\\\t0000000000000000\\\\nCapPrm:\\\\t00000000a80425fb\\\\nCapEff:\\\\t00000000a80425fb\\\\nCapBnd:\\\\t00000000a80425fb\\\\nCapAmb:\\\\t0000000000000000\\\\nNoNewPrivs:\\\\t0\\\\nSeccomp:\\\\t2\\\\nSeccomp_filters:\\\\t1\\\\nSpeculation_Store_Bypass:\\\\tthread vulnerable\\\\nSpeculationIndirectBranch:\\\\tconditional enabled\\\\nCpus_allowed:\\\\tffffffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff\\\\nCpus_allowed_list:\\\\t0-191\\\\nMems_allowed:\\\\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000003\\\\nMems_allowed_list:\\\\t0-1\\\\nvoluntary_ctxt_switches:\\\\t353975\\\\nnonvoluntary_ctxt_switches:\\\\t8243\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-14T21:56:43.031311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 201
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T21:56:44.184702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep \"nohup\" /root/.bash_history"
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-14T21:56:44.586706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/.bash_history: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-14T21:56:44.587040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/nohup.out"
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-14T21:56:44.989981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/schema-dag-extraction/nohup.out: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-14T21:56:47.553997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /proc/188000/cmdline"
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-14T21:56:47.905808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python3\\\\u0000-u\\\\u0000run_experiment.py\\\\u0000--mode\\\\u0000exp1\\\\u0000--model_path\\\\u0000/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\u0000--types_file\\\\u0000../configs/few_nerd_types.json\\\\u0000--embeddings_path\\\\u0000../data/type_embeddings.pt\\\\u0000--output_dir\\\\u0000../artifacts/\\\\u0000--max_model_len\\\\u00004096\\\\u0000--max_samples\\\\u00001000\\\\u0000--seed\\\\u000042\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-14T21:56:48.458302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "python3 -c \"from datasets import load_dataset as ld; print(len(ld('parquet', data_files='/root/schema-dag-extraction/data/parquet/test.parquet', split='train')))\""
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-14T21:56:48.509090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T21:56:48.709110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "find /root/schema-dag-extraction -name \"nohup*\" -type f"
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-14T21:56:49.060695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -5 /root/schema-dag-extraction/logs/exp1.log"
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-14T21:56:49.111467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-14T21:56:49.513696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:33:02,367 INFO Loading Few-NERD test data...\\\\n2026-05-15 03:33:02,367 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-15 03:33:04,576 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-15 03:33:04,579 INFO Data loaded: 1000 samples, 64 active types\\\\n2026-05-15 03:33:04,580 INFO Loading embeddings from ../data/type_embeddings.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-14T21:56:53.183063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /proc/188307/status"
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-14T21:56:53.535761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Name:\\\\tVLLM::EngineCor\\\\nUmask:\\\\t0022\\\\nState:\\\\tR (running)\\\\nTgid:\\\\t188307\\\\nNgid:\\\\t21062\\\\nPid:\\\\t188307\\\\nPPid:\\\\t188000\\\\nTracerPid:\\\\t0\\\\nUid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nGid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nFDSize:\\\\t256\\\\nGroups:\\\\t0 \\\\nNStgid:\\\\t188307\\\\nNSpid:\\\\t188307\\\\nNSpgid:\\\\t187994\\\\nNSsid:\\\\t187994\\\\nVmPeak:\\\\t160767708 kB\\\\nVmSize:\\\\t160574600 kB\\\\nVmLck:\\\\t       0 kB\\\\nVmPin:\\\\t       0 kB\\\\nVmHWM:\\\\t 6385516 kB\\\\nVmRSS:\\\\t 2402568 kB\\\\nRssAnon:\\\\t 1885884 kB\\\\nRssFile:\\\\t  233220 kB\\\\nRssShmem:\\\\t  283464 kB\\\\nVmData:\\\\t26845060 kB\\\\nVmStk:\\\\t     132 kB\\\\nVmExe:\\\\t    2412 kB\\\\nVmLib:\\\\t 3363268 kB\\\\nVmPTE:\\\\t    8652 kB\\\\nVmSwap:\\\\t       0 kB\\\\nHugetlbPages:\\\\t       0 kB\\\\nCoreDumping:\\\\t0\\\\nTHP_enabled:\\\\t1\\\\nThreads:\\\\t246\\\\nSigQ:\\\\t5/4126135\\\\nSigPnd:\\\\t0000000000000000\\\\nShdPnd:\\\\t0000000000000000\\\\nSigBlk:\\\\t0000000000000000\\\\nSigIgn:\\\\t0000000001001001\\\\nSigCgt:\\\\t0000000100004402\\\\nCapInh:\\\\t0000000000000000\\\\nCapPrm:\\\\t00000000a80425fb\\\\nCapEff:\\\\t00000000a80425fb\\\\nCapBnd:\\\\t00000000a80425fb\\\\nCapAmb:\\\\t0000000000000000\\\\nNoNewPrivs:\\\\t0\\\\nSeccomp:\\\\t2\\\\nSeccomp_filters:\\\\t1\\\\nSpeculation_Store_Bypass:\\\\tthread vulnerable\\\\nSpeculationIndirectBranch:\\\\tconditional enabled\\\\nCpus_allowed:\\\\tffffffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff\\\\nCpus_allowed_list:\\\\t0-191\\\\nMems_allowed:\\\\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000003\\\\nMems_allowed_list:\\\\t0-1\\\\nvoluntary_ctxt_switches:\\\\t354120\\\\nnonvoluntary_ctxt_switches:\\\\t8252\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-14T21:56:56.044999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /proc/188000/cmdline"
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-14T21:56:56.446972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python3\\\\u0000-u\\\\u0000run_experiment.py\\\\u0000--mode\\\\u0000exp1\\\\u0000--model_path\\\\u0000/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\u0000--types_file\\\\u0000../configs/few_nerd_types.json\\\\u0000--embeddings_path\\\\u0000../data/type_embeddings.pt\\\\u0000--output_dir\\\\u0000../artifacts/\\\\u0000--max_model_len\\\\u00004096\\\\u0000--max_samples\\\\u00001000\\\\u0000--seed\\\\u000042\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-14T21:57:05.839439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"max\\|mean\\|pairwise\" /root/schema-dag-extraction/src/compute_bcs.py"
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-14T21:57:05.839918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-14T21:57:06.091266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "cat /root/schema-dag-extraction/src/compute_bcs.py"
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-14T21:57:06.493974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute pairwise cosine similarity matrix and BCS scores.\\\\n\\\\nInput: Type embeddings .pt file\\\\nOutput: Similarity matrix .pt, heatmap PDF\\\\nDependencies: torch, matplotlib, seaborn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_embeddings(path: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load {type_name: tensor} from .pt file.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return torch.load(path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n\\\\n\\\\ndef compute_similarity_matrix(embeddings: dict) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute pairwise cosine similarity matrix.\\\\n\\\\n    Returns:\\\\n        (sim_matrix, type_names, type_to_idx) where sim_matrix is N×N tensor.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_names = sorted(embeddings.keys())\\\\n    type_to_idx = {name: i for i, name in enumerate(type_names)}\\\\n\\\\n    vecs = torch.stack([embeddings[name] for name in type_names]).float()\\\\n    vecs = F.normalize(vecs, dim=1)\\\\n    sim_matrix = vecs @ vecs.T  # N×N cosine similarity\\\\n\\\\n    return sim_matrix, type_names, type_to_idx\\\\n\\\\n\\\\ndef compute_bcs(type_subset: list, sim_matrix: torch.Tensor, type_to_idx: dict) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Batch Confusability Score for a subset of types.\\\\n\\\\n    BCS = max pairwise cosine similarity (IDEA_BRIEF definition).\\\\n\\\\n    Args:\\\\n        type_subset: List of type names in the batch.\\\\n        sim_matrix: Full N×N similarity matrix.\\\\n        type_to_idx: Mapping from type name to matrix index.\\\\n\\\\n    Returns:\\\\n        BCS value (float).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(type_subset) < 2:\\\\n        return 0.0\\\\n\\\\n    indices = [type_to_idx[t] for t in type_subset]\\\\n    max_sim = float(\\\\\\\"-inf\\\\\\\")\\\\n    for i in range(len(indices)):\\\\n        for j in range(i + 1, len(indices)):\\\\n            val = sim_matrix[indices[i], indices[j]].item()\\\\n            if v\n…[truncated 2320 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T21:57:13.475996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"25\\|n_random\\|num_random\\|samples_per\" /root/schema-dag-extraction/src/select_type_batches.py"
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-14T21:57:13.878177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-14T21:57:14.229875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"n_random\\|num_random\\|samples_per\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-14T21:57:14.280618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-14T21:57:17.194299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"n_random\" /root/schema-dag-extraction/src/select_type_batches.py"
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-14T21:57:17.647068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-14T21:57:17.798055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"n_random\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-14T21:57:18.199826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T21:57:21.623122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"random\" /root/schema-dag-extraction/src/select_type_batches.py"
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-14T21:57:22.075022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:Output: JSON with low/high/random type batches and their BCS scores\\\\n10:import random\\\\n95:def select_random_batches(\\\\n108:    rng = random.Random(seed)\\\\n122:    parser.add_argument(\\\\\\\"--num_random\\\\\\\", type=int, default=10, help=\\\\\\\"Number of random batches per count\\\\\\\")\\\\n145:        random_batches = select_random_batches(count, args.num_random, type_names, sim_matrix, type_to_idx, args.seed)\\\\n150:            \\\\\\\"random\\\\\\\": random_batches,\\\\n153:        logger.info(\\\\\\\"  low BCS=%.4f, high BCS=%.4f, random BCS range=[%.4f, %.4f]\\\\\\\",\\\\n155:                     min(b[\\\\\\\"bcs\\\\\\\"] for b in random_batches),\\\\n156:                     max(b[\\\\\\\"bcs\\\\\\\"] for b in random_batches))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-14T21:57:22.225911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -50 /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-14T21:57:22.577716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Main experiment orchestrator.\\\\n\\\\nModes:\\\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\\\nDependencies: all src/ modules, vllm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Schema-DAG Extraction MVP Experiment\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to Qwen3 model\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\", help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--embeddings_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed embeddings .pt (required)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"dry_run\\\\\\\", \\\\\\\"exp1\\\\\\\", \\\\\\\"exp2\\\\\\\"], required=True, help=\\\\\\\"Experiment mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    random.seed(args.seed)\\\\n\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n\\\\n    import os as _\n…[truncated 669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-14T21:57:31.212395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"exp2\\|num_random\\|25\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-14T21:57:31.263167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-14T21:57:34.124693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"exp2\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-14T21:57:34.526897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\\\n27:    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"dry_run\\\\\\\", \\\\\\\"exp1\\\\\\\", \\\\\\\"exp2\\\\\\\"], required=True, help=\\\\\\\"Experiment mode\\\\\\\")\\\\n121:    elif args.mode == \\\\\\\"exp2\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-14T21:57:37.389109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "head -160 /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-14T21:57:37.791402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Main experiment orchestrator.\\\\n\\\\nModes:\\\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\\\nDependencies: all src/ modules, vllm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Schema-DAG Extraction MVP Experiment\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to Qwen3 model\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\", help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--embeddings_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed embeddings .pt (required)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"dry_run\\\\\\\", \\\\\\\"exp1\\\\\\\", \\\\\\\"exp2\\\\\\\"], required=True, help=\\\\\\\"Experiment mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    random.seed(args.seed)\\\\n\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n\\\\n    import os as _\n…[truncated 6178 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-14T21:57:39.381141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "grep -n \"save\\|write\\|json.dump\\|eval_exp1\\|output\" /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-14T21:57:39.431883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-14T21:57:40.185159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "tail -30 /root/schema-dag-extraction/src/run_experiment.py"
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-14T21:57:40.436568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-38874",
+              "command": "wc -l /root/schema-dag-extraction/data/parquet/test.parquet"
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-14T21:57:40.587714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        max_model_len=args.max_model_len,\\\\n    )\\\\n    extraction_time = time.time() - t0\\\\n    logger.info(\\\\\\\"Extraction done in %.1fs, %d result entries\\\\\\\", extraction_time, len(results))\\\\n\\\\n    predictions_path = output_dir / f\\\\\\\"predictions_{args.mode}.json\\\\\\\"\\\\n    with open(predictions_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n\\\\n    # --- Step 5: Evaluate ---\\\\n    logger.info(\\\\\\\"Evaluating...\\\\\\\")\\\\n    eval_results = evaluate_all(results, samples)\\\\n\\\\n    eval_path = output_dir / f\\\\\\\"eval_{args.mode}.json\\\\\\\"\\\\n    with open(eval_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(eval_results, f, indent=2)\\\\n\\\\n    # --- Step 6: Summary ---\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"EXPERIMENT SUMMARY (%s)\\\\\\\", args.mode)\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for bid, metrics in sorted(eval_results.items()):\\\\n        logger.info(\\\\\\\"  %-30s exact_F1=%.4f  relaxed_F1=%.4f  BCS=%.4f\\\\\\\",\\\\n                     bid, metrics[\\\\\\\"exact\\\\\\\"][\\\\\\\"f1\\\\\\\"], metrics[\\\\\\\"relaxed\\\\\\\"][\\\\\\\"f1\\\\\\\"], metrics[\\\\\\\"bcs\\\\\\\"])\\\\n    logger.info(\\\\\\\"Total extraction time: %.1fs\\\\\\\", extraction_time)\\\\n    logger.info(\\\\\\\"Results saved to: %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-14T21:57:41.040015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"28071 /root/schema-dag-extraction/data/parquet/test.parquet\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 603
+          },
+          "id": "event-000180"
+        }
+      ]
+    }
+  ]
+}

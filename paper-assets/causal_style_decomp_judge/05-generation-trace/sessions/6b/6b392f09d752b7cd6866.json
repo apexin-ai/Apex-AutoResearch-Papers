@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6b392f09d752b7cd6866",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "verify table23 bt values",
+  "task_key": "worker_verify_table23_bt_values_20260524T093035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_table23_bt_values_20260524T093035_result.json",
+    "occurrence": 1,
+    "bytes": 2175,
+    "sha256": "7ee1adc63f8fe1408fca94a3bff1a4325de2cd84c4277fe28897252f1327b5f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24 条记录的 trial choices 不同——两个文件来自不同的评估运行。\n\n## 验证结果汇总\n\n| Config | 文件 | NLI过滤后 n | 计算 BT | Table 23 期望 | 匹配 |\n|--------|------|-----------|---------|-------------|------|\n| AEval × Qwen3 × Formality | `pairwise_results_alpacaeval_qwen32b.jsonl` | 86 | **0.6569** | .657 | **匹配** (四舍五入 .657) |\n| AEval × Qwen3 × Verbosity | `pairwise_results_alpacaeval_verbosity_qwen32b.jsonl` | 82 | **0.8414** | .841 | **匹配** (四舍五入 .841) |\n| AEval × Llama-70B × Formality | `pairwise_results_alpacaeval_llama70b_formality.jsonl` | 86 | **0.7499** | .756 | **不匹配** → .750 (已知问题确认) |\n| MTB × Qwen3 × Formality | `pairwise_results_mtbench_qwen32b.jsonl` | 73 | **0.7123** | .712 | **匹配** (四舍五入 .712) |\n\n### 关键发现\n\n1. **Config 1 & 2**：完全匹配 Table 23。NLI ≥ 0.90 过滤是关键（不过滤时分别为 .650 和 .840）。\n\n2. **Config 3 (AEval × Llama-70B × Formality)**：当前数据计算为 **.750**，Table 23 报告 **.756**。\n   - `cross_benchmark_local.json` 中的旧值为 0.7558（→ .756），与 Table 23 匹配\n   - 当前 `pairwise_results_alpacaeval_llama70b_formality.jsonl`（5月24日生成）是更新后的数据，BT 降为 .750\n   - 数据文件在 Table 23 制表后被重新生成了\n\n3. **Config 4 (MTB × Qwen3 × Formality)**：\n   - `pairwise_results_mtbench_qwen32b.jsonl`（NLI≥0.90）→ BT=0.7123 → **.712** ✅ 匹配\n   - `scored_mtbench_qwen32b_formality.jsonl`（NLI≥0.90）→ BT=0.6986 → **.699** ❌ 不匹配\n   - 两文件有 24/80 条 trial choices 不同，来自不同评估运行\n   - `cross_benchmark_analysis.py` 当前配置指向 `scored_` 文件，会产生 .699 而非 .712\n   - Table 23 的 .712 来自 `pairwise_results_` 文件\n\n### 需要注意的问题\n\n- **Config 3**：如需论文值与数据一致，要么用旧数据恢复 .756，要么将 Table 23 更新为 .750\n- **Config 4**：`cross_benchmark_analysis.py` 的 `pairwise_file` 配置应改为 `pairwise_results_mtbench_qwen32b.jsonl` 以匹配 Table 23 的 .712"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

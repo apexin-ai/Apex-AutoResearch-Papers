@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fb75195f7591a987e005",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r26 fix intro abstract",
+  "task_key": "worker_paper_r26_fix_intro_abstract_20260522T043723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_fix_intro_abstract_20260522T043723_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "8a1e2c3661bba62cc17d01cf8df333ce156b1a2656e346346cdda9cb6d3aa31f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied successfully. Here's the modification summary:\n\n| # | 文件 | 行号 | 修改前 | 修改后 | Task |\n|---|------|------|--------|--------|------|\n| 1 | `abstract.tex` | 2 | `while inter-type confusability drives type substitution errors.` | `while inter-type confusability predicts type substitution errors.` | T1 |\n| 2 | `abstract.tex` | 3 | `confusability-driven substitution is documented primarily in RE, with bounded interaction;` | `inter-type confusability (measured by BCS) predicts type substitution errors in RE ($R^2 \\approx 0.22$ on FewRel, VIF${}\\,=\\,1.18$); the batch-level BCS signal is not detected in NER at current statistical power;` | T2 |\n| 3 | `introduction.tex` | 24 | `independently predicts type substitution errors in RE, explaining` | `independently predicts type substitution errors in RE (on FewRel where confusability is not confounded with centrality, VIF${}\\,=\\,1.18$), explaining` | T2 |\n| 4 | `introduction.tex` | 15 | `the first controlled study isolating type confusability from type count via stratified design in zero-shot LLM IE` | `the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE` | T6 |\n\n说明：\n- Task 1 仅有 1 处 confusability 相关 \"drives\"（abstract.tex:2）。`related_work.tex`、`results.tex`、`discussion.tex`、`sdgd_negative.tex`、`supplementary.tex` 中无 \"drives\"。Abstract 中 \"type count drives recall decline\" 保留未动（count 有更强因果支持）。\n- Task 2 Abstract (1) 项重写为带 R²/VIF 数值的精确限定；Introduction Contribution #1 加括号限定 FewRel+VIF。\n- Task 6 Introduction \"first controlled study\" 扩展为完整限定语。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

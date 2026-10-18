@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1c6d12c205ef13524e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260521T051630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260521T051630_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "646a0d1ef6a39462ac27ed6c826746ed1be960d4dbaad304cca7645fbc9a5d30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`introduction.tex` written and registered. Summary:\n\n- **P1** (Hook): LLM annotation in CSS, heterogeneous error rates (Ashwin et al.), propagation to CATE estimates\n- **P2** (Importance): HTE guides policy, biased CATEs cause misallocation, subtle failure mode where correction hurts low-error subgroups\n- **P3** (Gap): PPI/DSL correct marginals; PPCI targets outcome-side; Mozer limited to ATE; ForestIV targets outcome model; no method handles effect-modifier misclassification\n- **P4** (Insight): Exact bias decomposition identity (not a bound), \"debiasing can hurt\" in 50% of configs, EC-HTE with HB + CausalForestDML, computable diagnostic AUC=0.833, conditional advantage explicitly stated\n- **P5** (Contributions): 5 items, each mapped to a specific section, with exact experimental numbers\n\nAll style constraints satisfied: no em-dashes, no -ing endings, no AI markers, no forward claims, no \"bias bound,\" EC-HTE framed as conditionally advantageous. ~800 prose words."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

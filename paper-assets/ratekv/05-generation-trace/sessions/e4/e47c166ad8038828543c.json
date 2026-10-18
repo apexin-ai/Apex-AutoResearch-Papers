@@ -1,0 +1,1509 @@
+{
+  "schema_version": "1.0",
+  "id": "e47c166ad8038828543c",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code canonical t1t5 7models",
+  "task_key": "worker_code_canonical_t1t5_7models_20260515T130817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_canonical_t1t5_7models_20260515T130817.log",
+    "occurrence": 1,
+    "bytes": 62154,
+    "sha256": "cdd66413a49948f0a36f83d6a6c2cd16d3d5966733c63e7d5d915e817da803a0"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ffa86e7a-ede9-4c1b-a276-f7875866b3fe",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778868000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f2296794-4490-4e06-91db-1a2990852a56",
+                "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the current script and finding the profiling files for the two new models."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "51d1ce53-0bdf-4c69-8aae-eb5de85defae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F63pZjNF8M9XMWeYFPfdUS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12293,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12293
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ARTu6TGwD7Df7zupGDpk8K",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "f1301055-4f66-46dd-bdc0-949466bf778f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F63pZjNF8M9XMWeYFPfdUS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12293,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12293
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:08:27.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01ARTu6TGwD7Df7zupGDpk8K",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "bba30f87-f577-4cf7-adea-6f6123ee34cf",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the current script and find the profiling files in parallel.",
+              "signature": "EoMCClkIDRgCKkDRcsQqfjQMI1zhNDJrjbNVmcfwLJa0EV6OnoZ8/7zOnwOfAIJ1Ay4D3dPSYGs8kO97s9Qt0IyLPO3wOmQAbmHHMg9jbGF1ZGUtb3B1cy00LTY4ABIMv7f/yrFoXpFJ+JeIGgwk0D7sGKLK3tWn/dwiMIHwEKxWlQxcYFbLSZZP8/C8ocaCMPu4KEAYiHunR7sQW7XKtAUU9CR7y99BURc9VipYVtDHTg+gHddfcgVc4RXg8eldB0gqbzMcF/WKGb/tzN8N/4OfHsGz8upCMmWB0qnOI/QO8HXvAFoF35Xt9WhRpZieBBVZ3Y3mtbxaGAoK/K/jg32HiiqvrxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "7a5f5945-02f3-4660-a896-691655285f83",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YNHaAHdjtz9Vb2fgstzcjN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 692,
+                "cache_read_input_tokens": 24134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 692
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lf2w55YFmLEXRTtV5hvRtc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/ratekv/compute_shape_metrics.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "3cbbcd3f-6c4c-4581-9957-5e60d23dd54d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YNHaAHdjtz9Vb2fgstzcjN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 692,
+                "cache_read_input_tokens": 24134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 692
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VRKNhd12TSKJUzADuXh4M8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "find /root/ratekv/artifacts /root/ratekv/profiling_results -type f -name \"*.json\" 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "a6c1ee61-d91b-4c67-bc2e-598414c35bb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YNHaAHdjtz9Vb2fgstzcjN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 692,
+                "cache_read_input_tokens": 24134,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 692
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T13:08:31.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lf2w55YFmLEXRTtV5hvRtc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json, numpy as np\\\\n\\\\nFILES = {\\\\n    \\\\\\\"Qwen2.5-7B\\\\\\\": \\\\\\\"/root/ratekv/hires_profiles.json\\\\\\\",\\\\n    \\\\\\\"Yi-1.5-9B\\\\\\\": \\\\\\\"/root/ratekv/yi15_hires_bf16_2bitonly_profiles.json\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\": \\\\\\\"/root/ratekv/llama_profiling_results.json\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\": \\\\\\\"/root/ratekv/mistral_ppl_profiles_hires.json\\\\\\\",\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\": \\\\\\\"/root/ratekv/gemma2_profiling_results.json\\\\\\\",\\\\n}\\\\n\\\\ndef extract_2bit_deltas(path):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    profiles = data.get(\\\\\\\"profiles\\\\\\\", data)\\\\n    # filter out non-layer keys\\\\n    layer_keys = [k for k in profiles.keys() if k.isdigit()]\\\\n    all_d2 = []\\\\n    for l in sorted(layer_keys, key=int):\\\\n        head_keys = [k for k in profiles[l].keys() if k.isdigit()]\\\\n        for h in sorted(head_keys, key=int):\\\\n            entry = profiles[l][h]\\\\n            q = entry.get(\\\\\\\"quantization\\\\\\\", entry)\\\\n            d2 = q.get(\\\\\\\"2\\\\\\\", q.get(2, 0.0))\\\\n            all_d2.append(float(d2))\\\\n    return all_d2\\\\n\\\\ndef gini(arr):\\\\n    s = np.sort(arr)\\\\n    n = len(s)\\\\n    idx = np.arange(1, n + 1)\\\\n    return float((2 * np.sum(idx * s) / (n * np.sum(s))) - (n + 1) / n)\\\\n\\\\ndef compute(name, path):\\\\n    d2 = extract_2bit_deltas(path)\\\\n    n = len(d2)\\\\n    s = sorted(d2, reverse=True)\\\\n    n5 = max(1, int(n * 0.05))\\\\n    total = sum(d2)\\\\n    top5_sum = sum(s[:n5])\\\\n\\\\n    conc = top5_sum / total if total > 0 else 0\\\\n    top1_share = s[0] / total if total > 0 else 0\\\\n    t1_t5 = s[0] / top5_sum if top5_sum > 0 else 0\\\\n    t1_t2 = s[0] / s[1] if len(s) > 1 and s[1] > 0 else float('inf')\\\\n\\\\n    arr = np.array(d2)\\\\n    cv = float(np.std(arr) / np.mean(arr)) if np.mean(arr) > 0 else 0\\\\n    g = gini(arr)\\\\n\\\\n    return {\\\\n        \\\\\\\"model\\\\\\\": name,\\\\n        \\\\\\\"n_heads\\\\\\\": n,\\\\n        \\\\\\\"n_top5\\\\\\\": n5,\\\\n        \\\\\\\"top5_concentration\\\\\\\": round(conc, 4),\\\\n        \\\\\\\"top1_share\\\\\\\": round(top1_share, 4),\\\\n        \\\\\\\"top1_top5_ratio\\\\\\\": round(t1_t5, 4),\\\\n        \\\\\\\"top1_top2_ratio\\\\\\\": round(t1_t2, 4),\\\\n        \\\\\\\"cv\\\\\\\": round(cv, 4),\\\\n        \\\\\\\"gini\\\\\\\": round(g, 4),\\\\n        \\\\\\\"top3_deltas\\\\\\\": [round(d, 6) for d in s[:3]],\\\\n    }\\\\n\\\\nresults = []\\\\nfor name, path in FILES.items():\\\\n    r = compute(name, path)\\\\n    results.append(r)\\\\n\\\\n# Print table\\\\nprint(f\\\\\\\"{'Model':<16} {'Heads':>5} {'top5%conc':>10} {'top1share':>10} {'t1/t5':>8} {'t1/t2':>8} {'CV':>8} {'Gini':>8}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 80)\\\\nfor r in results:\\\\n    print(f\\\\\\\"{r['model']:<16} {r['n_heads']:>5} {r['top5_concentration']:>10.4f} {r['top1_share']:>10.4f} {r['top1_top5_ratio']:>8.4f} {r['top1_top2_ratio']:>8.4f} {r['cv']:>8.4f} {r['gini']:>8.4f}\\\\\\\")\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nTop-3 deltas per model:\\\\\\\")\\\\nfor r in results:\\\\n    print(f\\\\\\\"  {r['model']}: {r['top3_deltas']}\\\\\\\")\\\\n\\\\n# Save\\\\nwith open(\\\\\\\"/root/ratekv/shape_metrics.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\nSaved to /root/ratekv/shape_metrics.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "d4ffe223-b2b8-4c62-8864-4688ba1cec32",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json, numpy as np\\\\n\\\\nFILES = {\\\\n    \\\\\\\"Qwen2.5-7B\\\\\\\": \\\\\\\"/root/ratekv/hires_profiles.json\\\\\\\",\\\\n    \\\\\\\"Yi-1.5-9B\\\\\\\": \\\\\\\"/root/ratekv/yi15_hires_bf16_2bitonly_profiles.json\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\": \\\\\\\"/root/ratekv/llama_profiling_results.json\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\": \\\\\\\"/root/ratekv/mistral_ppl_profiles_hires.json\\\\\\\",\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\": \\\\\\\"/root/ratekv/gemma2_profiling_results.json\\\\\\\",\\\\n}\\\\n\\\\ndef extract_2bit_deltas(path):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    profiles = data.get(\\\\\\\"profiles\\\\\\\", data)\\\\n    # filter out non-layer keys\\\\n    layer_keys = [k for k in profiles.keys() if k.isdigit()]\\\\n    all_d2 = []\\\\n    for l in sorted(layer_keys, key=int):\\\\n        head_keys = [k for k in profiles[l].keys() if k.isdigit()]\\\\n        for h in sorted(head_keys, key=int):\\\\n            entry = profiles[l][h]\\\\n            q = entry.get(\\\\\\\"quantization\\\\\\\", entry)\\\\n            d2 = q.get(\\\\\\\"2\\\\\\\", q.get(2, 0.0))\\\\n            all_d2.append(float(d2))\\\\n    return all_d2\\\\n\\\\ndef gini(arr):\\\\n    s = np.sort(arr)\\\\n    n = len(s)\\\\n    idx = np.arange(1, n + 1)\\\\n    return float((2 * np.sum(idx * s) / (n * np.sum(s))) - (n + 1) / n)\\\\n\\\\ndef compute(name, path):\\\\n    d2 = extract_2bit_deltas(path)\\\\n    n = len(d2)\\\\n    s = sorted(d2, reverse=True)\\\\n    n5 = max(1, int(n * 0.05))\\\\n    total = sum(d2)\\\\n    top5_sum = sum(s[:n5])\\\\n\\\\n    conc = top5_sum / total if total > 0 else 0\\\\n    top1_share = s[0] / total if total > 0 else 0\\\\n    t1_t5 = s[0] / top5_sum if top5_sum > 0 else 0\\\\n    t1_t2 = s[0] / s[1] if len(s) > 1 and s[1] > 0 else float('inf')\\\\n\\\\n    arr = np.array(d2)\\\\n    cv = float(np.std(arr) / np.mean(arr)) if np.mean(arr) > 0 else 0\\\\n    g = gini(arr)\\\\n\\\\n    return {\\\\n        \\\\\\\"model\\\\\\\": name,\\\\n        \\\\\\\"n_heads\\\\\\\": n,\\\\n        \\\\\\\"n_top5\\\\\\\": n5,\\\\n        \\\\\\\"top5_concentration\\\\\\\": round(conc, 4),\\\\n        \\\\\\\"top1_share\\\\\\\": round(top1_share, 4),\\\\n        \\\\\\\"top1_top5_ratio\\\\\\\": round(t1_t5, 4),\\\\n        \\\\\\\"top1_top2_ratio\\\\\\\": round(t1_t2, 4),\\\\n        \\\\\\\"cv\\\\\\\": round(cv, 4),\\\\n        \\\\\\\"gini\\\\\\\": round(g, 4),\\\\n        \\\\\\\"top3_deltas\\\\\\\": [round(d, 6) for d in s[:3]],\\\\n    }\\\\n\\\\nresults = []\\\\nfor name, path in FILES.items():\\\\n    r = compute(name, path)\\\\n    results.append(r)\\\\n\\\\n# Print table\\\\nprint(f\\\\\\\"{'Model':<16} {'Heads':>5} {'top5%conc':>10} {'top1share':>10} {'t1/t5':>8} {'t1/t2':>8} {'CV':>8} {'Gini':>8}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 80)\\\\nfor r in results:\\\\n    print(f\\\\\\\"{r['model']:<16} {r['n_heads']:>5} {r['top5_concentration']:>10.4f} {r['top1_share']:>10.4f} {r['top1_top5_ratio']:>8.4f} {r['top1_top2_ratio']:>8.4f} {r['cv']:>8.4f} {r['gini']:>8.4f}\\\\\\\")\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nTop-3 deltas per model:\\\\\\\")\\\\nfor r in results:\\\\n    print(f\\\\\\\"  {r['model']}: {r['top3_deltas']}\\\\\\\")\\\\n\\\\n# Save\\\\nwith open(\\\\\\\"/root/ratekv/shape_metrics.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\nSaved to /root/ratekv/shape_metrics.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"import json, numpy as np\\n\\nFILES = {\\n    \\\"Qwen2.5-7B\\\": \\\"/root/ratekv/hires_profiles.json\\\",\\n    \\\"Yi-1.5-9B\\\": \\\"/root/ratekv/yi15_hires_bf16_2bitonly_profiles.json\\\",\\n    \\\"Llama-3.1-8B\\\": \\\"/root/ratekv/llama_profiling_results.json\\\",\\n    \\\"Mistral-7B-v0.3\\\": \\\"/root/ratekv/mistral_ppl_profiles_hires.json\\\",\\n    \\\"Gemma-2-9B\\\": \\\"/root/ratekv/gemma2_profiling_results.json\\\",\\n}\\n\\ndef extract_2bit_deltas(path):\\n    with open(path) as f:\\n        data = json.load(f)\\n    profiles = data.get(\\\"profiles\\\", data)\\n    # filter out non-layer keys\\n    layer_keys = [k for k in profiles.keys() if k.isdigit()]\\n    all_d2 = []\\n    for l in sorted(layer_keys, key=int):\\n        head_keys = [k for k in profiles[l].keys() if k.isdigit()]\\n        for h in sorted(head_keys, key=int):\\n            entry = profiles[l][h]\\n            q = entry.get(\\\"quantization\\\", entry)\\n            d2 = q.get(\\\"2\\\", q.get(2, 0.0))\\n            all_d2.append(float(d2))\\n    return all_d2\\n\\ndef gini(arr):\\n    s = np.sort(arr)\\n    n = len(s)\\n    idx = np.arange(1, n + 1)\\n    return float((2 * np.sum(idx * s) / (n * np.sum(s))) - (n + 1) / n)\\n\\ndef compute(name, path):\\n    d2 = extract_2bit_deltas(path)\\n    n = len(d2)\\n    s = sorted(d2, reverse=True)\\n    n5 = max(1, int(n * 0.05))\\n    total = sum(d2)\\n    top5_sum = sum(s[:n5])\\n\\n    conc = top5_sum / total if total > 0 else 0\\n    top1_share = s[0] / total if total > 0 else 0\\n    t1_t5 = s[0] / top5_sum if top5_sum > 0 else 0\\n    t1_t2 = s[0] / s[1] if len(s) > 1 and s[1] > 0 else float('inf')\\n\\n    arr = np.array(d2)\\n    cv = float(np.std(arr) / np.mean(arr)) if np.mean(arr) > 0 else 0\\n    g = gini(arr)\\n\\n    return {\\n        \\\"model\\\": name,\\n        \\\"n_heads\\\": n,\\n        \\\"n_top5\\\": n5,\\n        \\\"top5_concentration\\\": round(conc, 4),\\n        \\\"top1_share\\\": round(top1_share, 4),\\n        \\\"top1_top5_ratio\\\": round(t1_t5, 4),\\n        \\\"top1_top2_ratio\\\": round(t1_t2, 4),\\n        \\\"cv\\\": round(cv, 4),\\n        \\\"gini\\\": round(g, 4),\\n        \\\"top3_deltas\\\": [round(d, 6) for d in s[:3]],\\n    }\\n\\nresults = []\\nfor name, path in FILES.items():\\n    r = compute(name, path)\\n    results.append(r)\\n\\n# Print table\\nprint(f\\\"{'Model':<16} {'Heads':>5} {'top5%conc':>10} {'top1share':>10} {'t1/t5':>8} {'t1/t2':>8} {'CV':>8} {'Gini':>8}\\\")\\nprint(\\\"-\\\" * 80)\\nfor r in results:\\n    print(f\\\"{r['model']:<16} {r['n_heads']:>5} {r['top5_concentration']:>10.4f} {r['top1_share']:>10.4f} {r['top1_top5_ratio']:>8.4f} {r['top1_top2_ratio']:>8.4f} {r['cv']:>8.4f} {r['gini']:>8.4f}\\\")\\n\\nprint(\\\"\\\\nTop-3 deltas per model:\\\")\\nfor r in results:\\n    print(f\\\"  {r['model']}: {r['top3_deltas']}\\\")\\n\\n# Save\\nwith open(\\\"/root/ratekv/shape_metrics.json\\\", \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(\\\"\\\\nSaved to /root/ratekv/shape_metrics.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:08:31.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VRKNhd12TSKJUzADuXh4M8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "8ab7bb2a-6fff-420d-ae29-bde799e46c72",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `find` command with `2>/dev/null` was blocked because of the `>` metacharacter. Let me search without the redirect.",
+              "signature": "ErMCClkIDRgCKkBBgIn6Yu08FioM4AyO5dExeGMdxsjCyhDv0xb86wkwCQSOu4STeuQmd6k3YCKD3DA0cIcjvMyKiMFj3TCyk7k3Mg9jbGF1ZGUtb3B1cy00LTY4ABIM8p+dI5DFXeWQ0/sJGgxyc0j0fpIs9aglx+EiMIde6jOwsxF1QK0mqk/rEuVkZoN/ohzsPbS3QEXEJnBJ3keSOaFi6m9LWcXXoPNQdSqHAcNtjqKZntueTMc3g3rc7QKypqjSScGmfmgCrcoS1sy4IuaBQiyFzzdL4QGnNbDHTbZxR37ptKkWEExW4HgSSD3WP2xJbCdRTLramDOI1wEO5sdXMCnGSUIMVZ9JTd5pQxzEWBiCQuH47y6dLnh803h+jjpSgS201m7Vn6H9iG0OhkTP9F7OkBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "4dd47a7d-134c-4acc-bd91-9ff7f720c220",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LNFi7XNzJ8UBTjLor8cGET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1910,
+                "cache_read_input_tokens": 24826,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1910
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017keTyTPrcDKywjqPpVA5zx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "find /root/ratekv -type f -name \"*.json\" -path \"*qwen14*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "30905569-fb4a-4e03-981c-59ff82322f6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LNFi7XNzJ8UBTjLor8cGET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1910,
+                "cache_read_input_tokens": 24826,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1910
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T13:08:36.300Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017keTyTPrcDKywjqPpVA5zx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/artifacts/qwen14b_constrained_pipeline_results.json\\\\n/root/ratekv/qwen14b_hires_bf16_2bitonly_profiles.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "07804d7c-0dc8-4356-b5db-794e36a877fb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/artifacts/qwen14b_constrained_pipeline_results.json\\\\n/root/ratekv/qwen14b_hires_bf16_2bitonly_profiles.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/artifacts/qwen14b_constrained_pipeline_results.json\\n/root/ratekv/qwen14b_hires_bf16_2bitonly_profiles.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JfnPwR9uQ3kqSsMbjVr67Z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "find /root/ratekv -type f -name \"*.json\" -path \"*pythia*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "34fe38cc-8f52-491e-9f28-a83febaf30f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LNFi7XNzJ8UBTjLor8cGET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1910,
+                "cache_read_input_tokens": 24826,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1910
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T13:08:36.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JfnPwR9uQ3kqSsMbjVr67Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/artifacts/pythia14b_constrained_pipeline_results.json\\\\n/root/ratekv/pythia14b_hires_bf16_2bitonly_profiles.json\\\\n/root/ratekv/pythia14b_hires_bf16_2bitonly_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "f43a9390-0bad-42e6-901b-839db935595b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/artifacts/pythia14b_constrained_pipeline_results.json\\\\n/root/ratekv/pythia14b_hires_bf16_2bitonly_profiles.json\\\\n/root/ratekv/pythia14b_hires_bf16_2bitonly_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/artifacts/pythia14b_constrained_pipeline_results.json\\n/root/ratekv/pythia14b_hires_bf16_2bitonly_profiles.json\\n/root/ratekv/pythia14b_hires_bf16_2bitonly_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the profiling files. Let me verify both JSONs have the expected delta structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "8e4cb11e-9048-4849-accf-e3130c6928e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFTgoFfnkHC9L6dNMfEq2T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 615,
+                "cache_read_input_tokens": 26736,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 615
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HipHx9KcJJmpbdd2TKWdQv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "python3 -c \"import json; d=json.load(open('/root/ratekv/qwen14b_hires_bf16_2bitonly_profiles.json')); p=d.get('profiles',d); lks=[k for k in p if k.isdigit()]; print(f'layers={len(lks)}'); l0=p[lks[0]]; hks=[k for k in l0 if k.isdigit()]; print(f'heads_per_layer={len(hks)}'); print('sample:', l0[hks[0]])\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "51688b54-edac-4c55-8fbf-fe93bc8d5882",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFTgoFfnkHC9L6dNMfEq2T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 615,
+                "cache_read_input_tokens": 26736,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 615
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T13:08:42.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HipHx9KcJJmpbdd2TKWdQv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "ed9dc86c-12bb-44fd-9ed4-bd8124511886",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QiSR42wX7u1jVh1xSe41rd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "python3 -c \"import json; d=json.load(open('/root/ratekv/pythia14b_hires_bf16_2bitonly_profiles.json')); p=d.get('profiles',d); lks=[k for k in p if k.isdigit()]; print(f'layers={len(lks)}'); l0=p[lks[0]]; hks=[k for k in l0 if k.isdigit()]; print(f'heads_per_layer={len(hks)}'); print('sample:', l0[hks[0]])\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "c4cac657-bdc1-485f-96d0-1c5339d04cc4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFTgoFfnkHC9L6dNMfEq2T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 615,
+                "cache_read_input_tokens": 26736,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 615
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T13:08:43.927Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QiSR42wX7u1jVh1xSe41rd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "5875b8be-0595-4f76-94e8-11757ece8cc5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E2bUMJz7DCudmsKdb3U7VZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "head -50 /root/ratekv/qwen14b_hires_bf16_2bitonly_profiles.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "ce567a1a-435b-438d-b914-c1b5099c39be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013uHu5NfdX5sfds2pfya34K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 729,
+                "cache_read_input_tokens": 27351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 729
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T13:08:47.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E2bUMJz7DCudmsKdb3U7VZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"profiles\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.07001787531584647\\\\n        }\\\\n      },\\\\n      \\\\\\\"1\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.0567862891270865\\\\n        }\\\\n      },\\\\n      \\\\\\\"2\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.1369705373934842\\\\n        }\\\\n      },\\\\n      \\\\\\\"3\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.052178611585809165\\\\n        }\\\\n      },\\\\n      \\\\\\\"4\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.23666921718583112\\\\n        }\\\\n      },\\\\n      \\\\\\\"5\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 1.8449403436271918\\\\n        }\\\\n      },\\\\n      \\\\\\\"6\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.009744463392489244\\\\n        }\\\\n      },\\\\n      \\\\\\\"7\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.019079812063860224\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": -0.00024647950247569383\\\\n        }\\\\n      },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "60ca130b-852f-482a-a0b7-74b4147ab40e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"profiles\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.07001787531584647\\\\n        }\\\\n      },\\\\n      \\\\\\\"1\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.0567862891270865\\\\n        }\\\\n      },\\\\n      \\\\\\\"2\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.1369705373934842\\\\n        }\\\\n      },\\\\n      \\\\\\\"3\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.052178611585809165\\\\n        }\\\\n      },\\\\n      \\\\\\\"4\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.23666921718583112\\\\n        }\\\\n      },\\\\n      \\\\\\\"5\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 1.8449403436271918\\\\n        }\\\\n      },\\\\n      \\\\\\\"6\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.009744463392489244\\\\n        }\\\\n      },\\\\n      \\\\\\\"7\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.019079812063860224\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": -0.00024647950247569383\\\\n        }\\\\n      },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"profiles\\\": {\\n    \\\"0\\\": {\\n      \\\"0\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.07001787531584647\\n        }\\n      },\\n      \\\"1\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.0567862891270865\\n        }\\n      },\\n      \\\"2\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.1369705373934842\\n        }\\n      },\\n      \\\"3\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.052178611585809165\\n        }\\n      },\\n      \\\"4\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.23666921718583112\\n        }\\n      },\\n      \\\"5\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 1.8449403436271918\\n        }\\n      },\\n      \\\"6\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.009744463392489244\\n        }\\n      },\\n      \\\"7\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.019079812063860224\\n        }\\n      }\\n    },\\n    \\\"1\\\": {\\n      \\\"0\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": -0.00024647950247569383\\n        }\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017srgvQAMf9xU7FxyjFBkni",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "head -50 /root/ratekv/pythia14b_hires_bf16_2bitonly_profiles.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "ab0c3dae-8fbf-4ade-abdd-a54492a15471",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013uHu5NfdX5sfds2pfya34K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 729,
+                "cache_read_input_tokens": 27351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 729
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T13:08:47.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017srgvQAMf9xU7FxyjFBkni",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"profiles\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.009254073346900427\\\\n        }\\\\n      },\\\\n      \\\\\\\"1\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.021396776164062103\\\\n        }\\\\n      },\\\\n      \\\\\\\"2\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": -0.006355867540044358\\\\n        }\\\\n      },\\\\n      \\\\\\\"3\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.041265872180971996\\\\n        }\\\\n      },\\\\n      \\\\\\\"4\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.05623942582708885\\\\n        }\\\\n      },\\\\n      \\\\\\\"5\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": -0.006533850136571928\\\\n        }\\\\n      },\\\\n      \\\\\\\"6\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.28566135377029056\\\\n        }\\\\n      },\\\\n      \\\\\\\"7\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.02936298965401818\\\\n        }\\\\n      },\\\\n      \\\\\\\"8\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.04660897919628937\\\\n        }\\\\n      },\\\\n      \\\\\\\"9\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "244b0004-c4ac-47c2-b6e3-351d21e6238e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"profiles\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.009254073346900427\\\\n        }\\\\n      },\\\\n      \\\\\\\"1\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.021396776164062103\\\\n        }\\\\n      },\\\\n      \\\\\\\"2\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": -0.006355867540044358\\\\n        }\\\\n      },\\\\n      \\\\\\\"3\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.041265872180971996\\\\n        }\\\\n      },\\\\n      \\\\\\\"4\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.05623942582708885\\\\n        }\\\\n      },\\\\n      \\\\\\\"5\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": -0.006533850136571928\\\\n        }\\\\n      },\\\\n      \\\\\\\"6\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.28566135377029056\\\\n        }\\\\n      },\\\\n      \\\\\\\"7\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.02936298965401818\\\\n        }\\\\n      },\\\\n      \\\\\\\"8\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n          \\\\\\\"2\\\\\\\": 0.04660897919628937\\\\n        }\\\\n      },\\\\n      \\\\\\\"9\\\\\\\": {\\\\n        \\\\\\\"quantization\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"profiles\\\": {\\n    \\\"0\\\": {\\n      \\\"0\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.009254073346900427\\n        }\\n      },\\n      \\\"1\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.021396776164062103\\n        }\\n      },\\n      \\\"2\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": -0.006355867540044358\\n        }\\n      },\\n      \\\"3\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.041265872180971996\\n        }\\n      },\\n      \\\"4\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.05623942582708885\\n        }\\n      },\\n      \\\"5\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": -0.006533850136571928\\n        }\\n      },\\n      \\\"6\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.28566135377029056\\n        }\\n      },\\n      \\\"7\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.02936298965401818\\n        }\\n      },\\n      \\\"8\\\": {\\n        \\\"quantization\\\": {\\n          \\\"2\\\": 0.04660897919628937\\n        }\\n      },\\n      \\\"9\\\": {\\n        \\\"quantization\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both JSONs have the correct structure (profiles → layer → head → quantization → \"2\"). Qwen-14B has 8 KV heads/layer (GQA), Pythia-1.4B has 16 heads/layer (MHA). Now I'll update the script and run it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "e310d475-6e45-417b-96ea-2033a1fd04b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdpE7TjhgpBJKZ75N1zU54",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1542,
+                "cache_read_input_tokens": 28080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1542
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011VhFZhMNHHjW1LwzByy5ST",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat > /root/ratekv/compute_shape_metrics.py << 'PYEOF'\nimport json, numpy as np\n\nFILES = {\n    \"Qwen2.5-7B\": \"/root/ratekv/hires_profiles.json\",\n    \"Qwen2.5-14B\": \"/root/ratekv/qwen14b_hires_bf16_2bitonly_profiles.json\",\n    \"Llama-3.1-8B\": \"/root/ratekv/llama_profiling_results.json\",\n    \"Yi-1.5-9B\": \"/root/ratekv/yi15_hires_bf16_2bitonly_profiles.json\",\n    \"Mistral-7B-v0.3\": \"/root/ratekv/mistral_ppl_profiles_hires.json\",\n    \"Gemma-2-9B\": \"/root/ratekv/gemma2_profiling_results.json\",\n    \"Pythia-1.4B\": \"/root/ratekv/pythia14b_hires_bf16_2bitonly_profiles.json\",\n}\n\ndef extract_2bit_deltas(path):\n    with open(path) as f:\n        data = json.load(f)\n    profiles = data.get(\"profiles\", data)\n    # filter out non-layer keys\n    layer_keys = [k for k in profiles.keys() if k.isdigit()]\n    all_d2 = []\n    for l in sorted(layer_keys, key=int):\n        head_keys = [k for k in profiles[l].keys() if k.isdigit()]\n        for h in sorted(head_keys, key=int):\n            entry = profiles[l][h]\n            q = entry.get(\"quantization\", entry)\n            d2 = q.get(\"2\", q.get(2, 0.0))\n            all_d2.append(float(d2))\n    return all_d2\n\ndef gini(arr):\n    s = np.sort(arr)\n    n = len(s)\n    idx = np.arange(1, n + 1)\n    return float((2 * np.sum(idx * s) / (n * np.sum(s))) - (n + 1) / n)\n\ndef compute(name, path):\n    d2 = extract_2bit_deltas(path)\n    n = len(d2)\n    s = sorted(d2, reverse=True)\n    n5 = max(1, int(n * 0.05))\n    total = sum(d2)\n    top5_sum = sum(s[:n5])\n\n    conc = top5_sum / total if total > 0 else 0\n    top1_share = s[0] / total if total > 0 else 0\n    t1_t5 = s[0] / top5_sum if top5_sum > 0 else 0\n    t1_t2 = s[0] / s[1] if len(s) > 1 and s[1] > 0 else float('inf')\n\n    arr = np.array(d2)\n    cv = float(np.std(arr) / np.mean(arr)) if np.mean(arr) > 0 else 0\n    g = gini(arr)\n\n    return {\n        \"model\": name,\n        \"n_heads\": n,\n        \"n_top5\": n5,\n        \"top5_concentration\": round(conc, 4),\n        \"top1_share\": round(top1_share, 4),\n        \"top1_top5_ratio\": round(t1_t5, 4),\n        \"top1_top2_ratio\": round(t1_t2, 4),\n        \"cv\": round(cv, 4),\n        \"gini\": round(g, 4),\n        \"top3_deltas\": [round(d, 6) for d in s[:3]],\n    }\n\nresults = []\nfor name, path in FILES.items():\n    r = compute(name, path)\n    results.append(r)\n\n# Print table\nprint(f\"{'Model':<16} {'Heads':>5} {'top5%conc':>10} {'top1share':>10} {'t1/t5':>8} {'t1/t2':>8} {'CV':>8} {'Gini':>8}\")\nprint(\"-\" * 80)\nfor r in results:\n    print(f\"{r['model']:<16} {r['n_heads']:>5} {r['top5_concentration']:>10.4f} {r['top1_share']:>10.4f} {r['top1_top5_ratio']:>8.4f} {r['top1_top2_ratio']:>8.4f} {r['cv']:>8.4f} {r['gini']:>8.4f}\")\n\nprint(\"\\nTop-3 deltas per model:\")\nfor r in results:\n    print(f\"  {r['model']}: {r['top3_deltas']}\")\n\n# Save\nwith open(\"/root/ratekv/shape_metrics.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"\\nSaved to /root/ratekv/shape_metrics.json\")\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "388bc889-56fd-4945-b6dd-91cb405a1d9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdpE7TjhgpBJKZ75N1zU54",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1542,
+                "cache_read_input_tokens": 28080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1542
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T13:09:11.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011VhFZhMNHHjW1LwzByy5ST",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "308a9987-1cd7-4661-b6ed-6967a43df01e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SiM6cmjCFNhhwJW2jByE5A",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-37397",
+                "command": "cd /root/ratekv && python3 compute_shape_metrics.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "47e364c2-9f41-4a40-9c17-ca0cabd6762d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GdkbgLnNPgvcRzd5846Pgt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1545,
+                "cache_read_input_tokens": 29622,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1545
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T13:09:14.885Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SiM6cmjCFNhhwJW2jByE5A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/ratekv && python3 compute_shape_metrics.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "b6750059-7ed1-4252-8963-115eee6a57d7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/ratekv && python3 compute_shape_metrics.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/ratekv && python3 compute_shape_metrics.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01URQsRcv3MnEme8y7DHRwjM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "ls /root/miniconda3/bin/python3",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "7e4926cc-ab12-4043-82b6-dd2cb1ac283c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KcexAaYkmSQ6ZDKArtCnsJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 251,
+                "cache_read_input_tokens": 31167,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 251
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T13:09:18.008Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01URQsRcv3MnEme8y7DHRwjM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "d3ac753d-20bb-4700-b88d-fad520147956",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WYZ2QDEMFFen3YSkruEjcq",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-37397",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python3 compute_shape_metrics.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "3350fe50-7631-46fa-b91e-f90a86e0ac85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7uCxqjtF2payJ3i6heN9b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 31418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T13:09:21.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WYZ2QDEMFFen3YSkruEjcq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model            Heads  top5%conc  top1share    t1/t5    t1/t2       CV     Gini\\\\n--------------------------------------------------------------------------------\\\\nQwen2.5-7B         112     0.6104     0.3461   0.5670   3.1741   3.8752   0.7065\\\\nQwen2.5-14B        384     0.3312     0.1885   0.5693   7.7954   3.7370   0.5626\\\\nLlama-3.1-8B       256     0.3387     0.2418   0.7139  21.7098   3.8343   0.3688\\\\nYi-1.5-9B          192     0.7139     0.6434   0.9012  23.7210   8.8759   0.7772\\\\nMistral-7B-v0.3    256     0.2200     0.0401   0.1820   1.8655   1.0994   0.4941\\\\nGemma-2-9B         336     0.2299     0.0404   0.1757   1.5213   1.2344   0.5305\\\\nPythia-1.4B        384     0.2439     0.0289   0.1183   1.2955   1.2157   0.5301\\\\n\\\\nTop-3 deltas per model:\\\\n  Qwen2.5-7B: [6.738795, 2.123065, 1.310489]\\\\n  Qwen2.5-14B: [1.84494, 0.236669, 0.136971]\\\\n  Llama-3.1-8B: [11.982141, 0.551924, 0.551924]\\\\n  Yi-1.5-9B: [13.123636, 0.55325, 0.229302]\\\\n  Mistral-7B-v0.3: [0.215991, 0.115782, 0.115782]\\\\n  Gemma-2-9B: [0.215958, 0.141953, 0.089217]\\\\n  Pythia-1.4B: [1.016355, 0.784513, 0.759118]\\\\n\\\\nSaved to /root/ratekv/shape_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "99b7c6a1-d3b6-41d5-9099-eaf55e02ad25",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model            Heads  top5%conc  top1share    t1/t5    t1/t2       CV     Gini\\\\n--------------------------------------------------------------------------------\\\\nQwen2.5-7B         112     0.6104     0.3461   0.5670   3.1741   3.8752   0.7065\\\\nQwen2.5-14B        384     0.3312     0.1885   0.5693   7.7954   3.7370   0.5626\\\\nLlama-3.1-8B       256     0.3387     0.2418   0.7139  21.7098   3.8343   0.3688\\\\nYi-1.5-9B          192     0.7139     0.6434   0.9012  23.7210   8.8759   0.7772\\\\nMistral-7B-v0.3    256     0.2200     0.0401   0.1820   1.8655   1.0994   0.4941\\\\nGemma-2-9B         336     0.2299     0.0404   0.1757   1.5213   1.2344   0.5305\\\\nPythia-1.4B        384     0.2439     0.0289   0.1183   1.2955   1.2157   0.5301\\\\n\\\\nTop-3 deltas per model:\\\\n  Qwen2.5-7B: [6.738795, 2.123065, 1.310489]\\\\n  Qwen2.5-14B: [1.84494, 0.236669, 0.136971]\\\\n  Llama-3.1-8B: [11.982141, 0.551924, 0.551924]\\\\n  Yi-1.5-9B: [13.123636, 0.55325, 0.229302]\\\\n  Mistral-7B-v0.3: [0.215991, 0.115782, 0.115782]\\\\n  Gemma-2-9B: [0.215958, 0.141953, 0.089217]\\\\n  Pythia-1.4B: [1.016355, 0.784513, 0.759118]\\\\n\\\\nSaved to /root/ratekv/shape_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Model            Heads  top5%conc  top1share    t1/t5    t1/t2       CV     Gini\\n--------------------------------------------------------------------------------\\nQwen2.5-7B         112     0.6104     0.3461   0.5670   3.1741   3.8752   0.7065\\nQwen2.5-14B        384     0.3312     0.1885   0.5693   7.7954   3.7370   0.5626\\nLlama-3.1-8B       256     0.3387     0.2418   0.7139  21.7098   3.8343   0.3688\\nYi-1.5-9B          192     0.7139     0.6434   0.9012  23.7210   8.8759   0.7772\\nMistral-7B-v0.3    256     0.2200     0.0401   0.1820   1.8655   1.0994   0.4941\\nGemma-2-9B         336     0.2299     0.0404   0.1757   1.5213   1.2344   0.5305\\nPythia-1.4B        384     0.2439     0.0289   0.1183   1.2955   1.2157   0.5301\\n\\nTop-3 deltas per model:\\n  Qwen2.5-7B: [6.738795, 2.123065, 1.310489]\\n  Qwen2.5-14B: [1.84494, 0.236669, 0.136971]\\n  Llama-3.1-8B: [11.982141, 0.551924, 0.551924]\\n  Yi-1.5-9B: [13.123636, 0.55325, 0.229302]\\n  Mistral-7B-v0.3: [0.215991, 0.115782, 0.115782]\\n  Gemma-2-9B: [0.215958, 0.141953, 0.089217]\\n  Pythia-1.4B: [1.016355, 0.784513, 0.759118]\\n\\nSaved to /root/ratekv/shape_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 7 模型表：\n\n| Model | Heads | top5%conc | top1share | t1/t5 | t1/t2 | CV | Gini |\n|---|---|---|---|---|---|---|---|\n| Qwen2.5-7B | 112 | 0.6104 | 0.3461 | 0.5670 | 3.1741 | 3.8752 | 0.7065 |\n| **Qwen2.5-14B** | 384 | 0.3312 | 0.1885 | 0.5693 | 7.7954 | 3.7370 | 0.5626 |\n| Llama-3.1-8B | 256 | 0.3387 | 0.2418 | 0.7139 | 21.7098 | 3.8343 | 0.3688 |\n| Yi-1.5-9B | 192 | 0.7139 | 0.6434 | 0.9012 | 23.7210 | 8.8759 | 0.7772 |\n| Mistral-7B-v0.3 | 256 | 0.2200 | 0.0401 | 0.1820 | 1.8655 | 1.0994 | 0.4941 |\n| Gemma-2-9B | 336 | 0.2299 | 0.0404 | 0.1757 | 1.5213 | 1.2344 | 0.5305 |\n| **Pythia-1.4B** | 384 | 0.2439 | 0.0289 | 0.1183 | 1.2955 | 1.2157 | 0.5301 |\n\n关键观察：\n- **Qwen2.5-14B** (384 KV heads): t1/t5 = 0.57, 与 Qwen-7B 的 0.57 几乎一致，但 top5 concentration 从 0.61 降到 0.33（heads 数量增加稀释了集中度）\n- **Pythia-1.4B** (384 heads, MHA): t1/t5 = 0.12, 是所有模型中最低的——delta 分布最均匀，没有显著 outlier head（top1 delta 仅 1.02，且 top3 紧密相邻 1.02/0.78/0.76）\n- 三档 shape 清晰：spike-dominated (Yi, Qwen) → moderate (Llama, Qwen-14B) → diffuse (Mistral, Gemma, Pythia)\n\n结果已保存到 `/root/ratekv/shape_metrics.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "uuid": "1ff00cac-58b6-42bf-aebf-4b42089c223f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkUv3VzWgW1E2kqzLfmY8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 31619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 799
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 7 模型表：\n\n| Model | Heads | top5%conc | top1share | t1/t5 | t1/t2 | CV | Gini |\n|---|---|---|---|---|---|---|---|\n| Qwen2.5-7B | 112 | 0.6104 | 0.3461 | 0.5670 | 3.1741 | 3.8752 | 0.7065 |\n| **Qwen2.5-14B** | 384 | 0.3312 | 0.1885 | 0.5693 | 7.7954 | 3.7370 | 0.5626 |\n| Llama-3.1-8B | 256 | 0.3387 | 0.2418 | 0.7139 | 21.7098 | 3.8343 | 0.3688 |\n| Yi-1.5-9B | 192 | 0.7139 | 0.6434 | 0.9012 | 23.7210 | 8.8759 | 0.7772 |\n| Mistral-7B-v0.3 | 256 | 0.2200 | 0.0401 | 0.1820 | 1.8655 | 1.0994 | 0.4941 |\n| Gemma-2-9B | 336 | 0.2299 | 0.0404 | 0.1757 | 1.5213 | 1.2344 | 0.5305 |\n| **Pythia-1.4B** | 384 | 0.2439 | 0.0289 | 0.1183 | 1.2955 | 1.2157 | 0.5301 |\n\n关键观察：\n- **Qwen2.5-14B** (384 KV heads): t1/t5 = 0.57, 与 Qwen-7B 的 0.57 几乎一致，但 top5 concentration 从 0.61 降到 0.33（heads 数量增加稀释了集中度）\n- **Pythia-1.4B** (384 heads, MHA): t1/t5 = 0.12, 是所有模型中最低的——delta 分布最均匀，没有显著 outlier head（top1 delta 仅 1.02，且 top3 紧密相邻 1.02/0.78/0.76）\n- 三档 shape 清晰：spike-dominated (Yi, Qwen) → moderate (Llama, Qwen-14B) → diffuse (Mistral, Gemma, Pythia)\n\n结果已保存到 `/root/ratekv/shape_metrics.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 68686,
+            "duration_api_ms": 66324,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "9fea9a8b-1bf8-4bd6-b2ae-94491cca6836",
+            "total_cost_usd": 0.36271925,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 20577,
+              "cache_read_input_tokens": 266794,
+              "output_tokens": 3970,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20577,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 735,
+                  "cache_read_input_tokens": 31619,
+                  "cache_creation_input_tokens": 799,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 799
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1231,
+                "outputTokens": 33,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001396,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 3970,
+                "cacheReadInputTokens": 266794,
+                "cacheCreationInputTokens": 20577,
+                "webSearchRequests": 0,
+                "costUSD": 0.36132325,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4af533df-ef68-4931-b84d-c6369cc25f4f"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ]
+}

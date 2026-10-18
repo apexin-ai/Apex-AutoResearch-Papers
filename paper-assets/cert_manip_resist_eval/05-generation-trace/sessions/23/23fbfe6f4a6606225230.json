@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "23fbfe6f4a6606225230",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops a6 bash wait",
+  "task_key": "worker_ops_a6-bash-wait_20260524T124738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a6-bash-wait_20260524T124738_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "ba10f289eb3c0598800617e5f4a063fb3687485b0d008bfb77c213d1d6ab42a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=7 阶段正在运行（10/12 完成），约 3 分钟后回来检查结果文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

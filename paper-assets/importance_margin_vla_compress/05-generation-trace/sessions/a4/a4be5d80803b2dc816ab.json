@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a4be5d80803b2dc816ab",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops harvest xvla random k09 long",
+  "task_key": "worker_ops_harvest_xvla_random_k09_long_20260523T080003",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest_xvla_random_k09_long_20260523T080003_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "7b412d5c3c48bb26e01f8332b191d413f417a866cd57048d3355749e6ad3b323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。汇总：\n\n### eval_xvla_random_k09_long_seed42 — DONE ✓\n- **SR = 29.6%** (148/500)，95% CI [25.8%, 33.7%]\n- Suite: libero_10, mode: random, keep_ratio=0.9\n- Per-task: T3=96%, T5=98%, T9=50%, T4=36%, T1=16%, 其余 5 个 task=0%\n- Registry 已更新 → DONE/success\n\n### eval_xvla_random_k05_goal_seed42 — 仍在运行\n- PID 250272 存活，已跑 1h47m\n- 当前可见 episodes 全部 FAIL（steps=800），尚未完成\n\n### 分析\nX-VLA Random LIBERO-10 完整曲线：\n\n| keep_ratio | SR |\n|---|---|\n| k=0.95 | 48.2% |\n| **k=0.9** | **29.6%** |\n| k=0.7 | 53.0% |\n| k=0.5 | 61.6% |\n\nk=0.9 是全系列最低点（29.6%），显著低于 k=0.95（48.2%），且远低于更激进的 k=0.7（53.0%）和 k=0.5（61.6%）。Random pruning 的非单调性在 k=0.9 处最为极端——保留 90% token 反而是最差的。这与 L2 norm 在 k=0.9 崩溃（27.5%）的模式一致，说明 ~10% pruning 是一个\"最差点\"，pruning 太少反而引入最大干扰。\n\n无活跃 cron 需要删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

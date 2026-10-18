@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "51be6c26ba42a7b13e4a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis a1 monte carlo collect",
+  "task_key": "worker_analysis_a1-monte-carlo-collect_20260524T120609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1-monte-carlo-collect_20260524T120609_result.json",
+    "occurrence": 1,
+    "bytes": 60,
+    "sha256": "6cf2a1755882ea39736903ee8d3021f8f9c8106b295676fc174e22e28a695937"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动再次检查进程状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

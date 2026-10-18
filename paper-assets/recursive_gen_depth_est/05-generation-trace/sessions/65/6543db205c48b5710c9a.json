@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6543db205c48b5710c9a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code 13b scale validation",
+  "task_key": "worker_code_13b_scale_validation_20260517T084540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_13b_scale_validation_20260517T084540_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "d835ae05d2f17ef5fffb168a16ff74b36887fdc223da0f4d89af1404af807665"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_014 已执行完毕。\n\n**已完成：**\n- `scripts/qwen25_14b_scale_validation.py` — 697 行全 pipeline 脚本（d0-d3 生成 → 19 特征自引用提取 → RF/LR 5-fold CV）\n- `scripts/run_qwen25_14b_scale_validation.sh` — shell wrapper（环境设置 + 模型下载）\n- Registry: `qwen25_14b_scale_001` 状态 RUNNING\n- tmux session: `qwen25_14b_scale`\n\n**运行参数：**\n- Qwen2.5-14B FP16（无量化），cuda:0\n- 5000 samples/depth × 4 depths (d0-d3)\n- LoRA r=16, alpha=32, q/k/v_proj, 3 epochs, lr=2e-4, gradient_checkpointing\n- 自引用特征提取（Qwen2.5-14B 计算自身生成文本的 surprisal）\n- RF (n=200) + LR, 5-fold CV\n\n**预计耗时：** 模型下载 ~30min + pipeline ~15-18h。日志：`logs/qwen25_14b_scale_validation.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

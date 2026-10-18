@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4173926c920d44b46673",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 027c cf oracle mf2dgp",
+  "task_key": "worker_code_exp-027c-cf-oracle-mf2dgp_20260522T142157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-027c-cf-oracle-mf2dgp_20260522T142157_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "59708dd5a84f2e3e20ff82c839c8e28115b6d13f1783c4ddaa1111d849b0b020"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done in 7.2 min. Results:\n\n```\n=== exp-027c: MF2 DGP (τ(0)=0.10, τ(1)=0.40) ===\n\nMethod                       | Coverage |  |Bias| |    RMSE | Mean SE\nOracle (true Z)              |   0.960  |  0.077  |  0.091  |  0.090\nEC-HTE true CM               |   0.913  |  0.103  |  0.112  |  0.114\nEC-HTE estimated CM (HB)     |   0.923  |  0.100  |  0.111  |  0.119\nGlobal true CM               |   0.950  |  0.107  |  0.114  |  0.107\nGlobal estimated CM          |   0.943  |  0.105  |  0.114  |  0.109\nNaive                        |   0.773  |  0.120  |  0.125  |  0.087\n```\n\n**Diagnostics:**\n- Oracle: 027b=94.0% → 027c=96.0% (both well-calibrated)\n- EC-HTE estimated CM: 027b=92.5% → 027c=92.25% (nearly identical)\n- MF2 original plugin coverage (aggregate): 83%\n\n**Key finding:** The DGP difference (τ values, Y-generation, covariates) is NOT the source of the 83% vs 92.5% gap. Per-subgroup coverage is 92.25% in both experiments. The 83% in MF2 comes from subgroup 0 (π=0.05, low misclass) having 83% coverage while subgroup 1 (π=0.25) has 99% — the MF2 aggregate across subgroups mixes these. The low-misclass subgroup gets insufficient SE amplification from M⁻¹, while the high-misclass subgroup gets over-amplified SE."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

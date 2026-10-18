@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e72e915e1a25ccd902c7",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code dcol fix leakage",
+  "task_key": "worker_code_dcol_fix_leakage_20260514T162652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_fix_leakage_20260514T162652_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "74a68cdb24e128709588d7081d4fa910d67e5e0c42e6b45cbeaec2972c7b0215"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改总结：\n\n1. `--test_size` 默认值 0.2→0.15，新增 `--val_size` 参数(默认 0.15)\n2. 2-way split → 3-way split (train 70% / val 15% / test 15%)，depth-stratified\n3. 新增 `val_ds`/`val_loader`\n4. Training loop 中 early stopping 改用 `val_loader`（不再碰 test set）\n5. Final evaluation 先报告 Val Set 指标（参考），再报告 held-out Test Set 指标\n6. `results.json` 中增加 `val_accuracy_4class` 字段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

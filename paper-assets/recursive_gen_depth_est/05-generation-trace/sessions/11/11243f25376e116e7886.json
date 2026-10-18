@@ -1,0 +1,1379 @@
+{
+  "schema_version": "1.0",
+  "id": "11243f25376e116e7886",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "exp fpr coverage 001",
+  "task_key": "worker_exp_fpr_coverage_001_20260521T070655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_fpr_coverage_001_20260521T070655.jsonl",
+    "occurrence": 1,
+    "bytes": 72034,
+    "sha256": "db0593389c7ad89b91e82cd4eb1e2d8a8c9e629de8254b36cef1e2c376af39a5"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:13:40.543526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:13:40.543903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:13:40.544106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'fpr_coverage_001'}",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:13:40.544293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6634}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:13:40.544427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/wild_features/ /root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/ 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:13:40.544555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:13:40.544676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/wild_features/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:13:40.544793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:13:40.544969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7232\\\\ndrwxr-xr-x  2 root root    4096 May 18 01:26 .\\\\ndrwxr-xr-x 86 root root    8192 May 20 03:41 ..\\\\n-rw-r--r--  1 root root 3580067 May 17 23:21 c4_10k_features.csv\\\\n-rw-r--r--  1 root root   34864 May 18 01:26 depth_comparison.png\\\\n-rw-r--r--  1 root root     674 May 18 01:26 depth_distribution.json\\\\n-rw-r--r--  1 root root   42815 May 18 01:26 depth_distribution.png\\\\n-rw-r--r--  1 root root 3712916 May 17 23:23 fineweb_10k_features.csv\\\\n-rw-r--r--  1 root root    1046 May 18 01:26 wild_eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:13:40.545142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14224\\\\ndrwxr-xr-x  2 root root    4096 May 16 06:47 .\\\\ndrwxr-xr-x 86 root root    8192 May 20 03:41 ..\\\\n-rw-r--r--  1 root root   11733 May 16 06:52 c4_calibration.json\\\\n-rw-r--r--  1 root root 3555561 May 16 06:33 c4_features.jsonl\\\\n-rw-r--r--  1 root root 8610026 May 16 06:32 c4_passages.jsonl\\\\n-rw-r--r--  1 root root  543466 May 16 06:34 c4_predictions.jsonl\\\\n-rw-r--r--  1 root root    2133 May 16 05:34 calibration_table.json\\\\n-rw-r--r--  1 root root    2809 May 16 05:34 domain_shift.json\\\\n-rw-r--r--  1 root root    1808 May 16 06:52 gpt2xl_c4_calibration.json\\\\n-rw-r--r--  1 root root    2007 May 16 06:52 olmo_wild_calibration.json\\\\n-rw-r--r--  1 root root    2511 May 16 05:34 probability_stats.json\\\\n-rw-r--r--  1 root root   12808 May 16 05:34 reliability_diagram.json\\\\n-rw-r--r--  1 root root   22131 May 16 05:34 results.json\\\\n-rw-r--r--  1 root root  391086 May 16 05:33 wikitext_features.jsonl\\\\n-rw-r--r--  1 root root 1298873 May 16 05:33 wikitext_passages.jsonl\\\\n-rw-r--r--  1 root root   57692 May 16 05:34 wikitext_predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:13:40.545318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -5 /root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:13:40.545465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"sample_id\\\\\\\": 0, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"prob_d0\\\\\\\": 1.0, \\\\\\\"prob_d1\\\\\\\": 0.0, \\\\\\\"prob_d2\\\\\\\": 0.0, \\\\\\\"prob_d3\\\\\\\": 0.0}\\\\n{\\\\\\\"sample_id\\\\\\\": 1, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"prob_d0\\\\\\\": 0.81, \\\\\\\"prob_d1\\\\\\\": 0.17, \\\\\\\"prob_d2\\\\\\\": 0.015, \\\\\\\"prob_d3\\\\\\\": 0.005}\\\\n{\\\\\\\"sample_id\\\\\\\": 2, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"prob_d0\\\\\\\": 1.0, \\\\\\\"prob_d1\\\\\\\": 0.0, \\\\\\\"prob_d2\\\\\\\": 0.0, \\\\\\\"prob_d3\\\\\\\": 0.0}\\\\n{\\\\\\\"sample_id\\\\\\\": 3, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"prob_d0\\\\\\\": 1.0, \\\\\\\"prob_d1\\\\\\\": 0.0, \\\\\\\"prob_d2\\\\\\\": 0.0, \\\\\\\"prob_d3\\\\\\\": 0.0}\\\\n{\\\\\\\"sample_id\\\\\\\": 4, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"prob_d0\\\\\\\": 0.87, \\\\\\\"prob_d1\\\\\\\": 0.095, \\\\\\\"prob_d2\\\\\\\": 0.035, \\\\\\\"prob_d3\\\\\\\": 0.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:13:40.545592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_calibration.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:13:40.545985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan_015_c4_supplement\\\\\\\",\\\\n  \\\\\\\"data_source\\\\\\\": \\\\\\\"allenai/c4 (en, validation)\\\\\\\",\\\\n  \\\\\\\"model_cell\\\\\\\": \\\\\\\"pythia_nucleus\\\\\\\",\\\\n  \\\\\\\"feature_model\\\\\\\": \\\\\\\"gpt2-base-124m\\\\\\\",\\\\n  \\\\\\\"rf_config\\\\\\\": {\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"cv_accuracy\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7878,\\\\n    \\\\\\\"std\\\\\\\": 0.0056\\\\n  },\\\\n  \\\\\\\"n_c4_passages\\\\\\\": 5000,\\\\n  \\\\\\\"trunc_len\\\\\\\": 507,\\\\n  \\\\\\\"min_tokens\\\\\\\": 100,\\\\n  \\\\\\\"c4_d0_prediction_rate\\\\\\\": 79.76,\\\\n  \\\\\\\"c4_prediction_distribution\\\\\\\": {\\\\n    \\\\\\\"d0\\\\\\\": 3988,\\\\n    \\\\\\\"d1\\\\\\\": 984,\\\\n    \\\\\\\"d2\\\\\\\": 17,\\\\n    \\\\\\\"d3\\\\\\\": 11\\\\n  },\\\\n  \\\\\\\"c4_prediction_pct\\\\\\\": {\\\\n    \\\\\\\"d0\\\\\\\": 79.76,\\\\n    \\\\\\\"d1\\\\\\\": 19.68,\\\\n    \\\\\\\"d2\\\\\\\": 0.34,\\\\n    \\\\\\\"d3\\\\\\\": 0.22\\\\n  },\\\\n  \\\\\\\"c4_mean_prob\\\\\\\": {\\\\n    \\\\\\\"d0\\\\\\\": 0.8,\\\\n    \\\\\\\"d1\\\\\\\": 0.1493,\\\\n    \\\\\\\"d2\\\\\\\": 0.0356,\\\\n    \\\\\\\"d3\\\\\\\": 0.0151\\\\n  },\\\\n  \\\\\\\"c4_std_prob\\\\\\\": {\\\\n    \\\\\\\"d0\\\\\\\": 0.3111,\\\\n    \\\\\\\"d1\\\\\\\": 0.231,\\\\n    \\\\\\\"d2\\\\\\\": 0.064,\\\\n    \\\\\\\"d3\\\\\\\": 0.0384\\\\n  },\\\\n  \\\\\\\"calibration_table\\\\\\\": {\\\\n    \\\\\\\"c4_web\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 5000,\\\\n      \\\\\\\"true_depth\\\\\\\": \\\\\\\"d0 (human, C4 web crawl)\\\\\\\",\\\\n      \\\\\\\"pred_distribution\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 3988,\\\\n        \\\\\\\"d1\\\\\\\": 984,\\\\n        \\\\\\\"d2\\\\\\\": 17,\\\\n        \\\\\\\"d3\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"pred_pct\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 79.76,\\\\n        \\\\\\\"d1\\\\\\\": 19.68,\\\\n        \\\\\\\"d2\\\\\\\": 0.34,\\\\n        \\\\\\\"d3\\\\\\\": 0.22\\\\n      },\\\\n      \\\\\\\"mean_prob\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 0.8,\\\\n        \\\\\\\"d1\\\\\\\": 0.1493,\\\\n        \\\\\\\"d2\\\\\\\": 0.0356,\\\\n        \\\\\\\"d3\\\\\\\": 0.0151\\\\n      }\\\\n    },\\\\n    \\\\\\\"wikitext\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 546,\\\\n      \\\\\\\"true_depth\\\\\\\": \\\\\\\"d0 (human, WikiText-103)\\\\\\\",\\\\n      \\\\\\\"pred_distribution\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 546\\\\n      },\\\\n      \\\\\\\"pred_pct\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 100.0\n…[truncated 8620 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:13:40.546174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/wild_features/wild_eval_results.json"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:13:40.546304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:13:40.546466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"rf_config\\\\\\\": {\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"train_features\\\\\\\": \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"c4_10k\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 10000,\\\\n      \\\\\\\"pred_distribution\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 6598,\\\\n        \\\\\\\"d1\\\\\\\": 3354,\\\\n        \\\\\\\"d2\\\\\\\": 18,\\\\n        \\\\\\\"d3\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"pred_pct\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 65.98,\\\\n        \\\\\\\"d1\\\\\\\": 33.54,\\\\n        \\\\\\\"d2\\\\\\\": 0.18,\\\\n        \\\\\\\"d3\\\\\\\": 0.3\\\\n      },\\\\n      \\\\\\\"mean_prob\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 0.6951,\\\\n        \\\\\\\"d1\\\\\\\": 0.2311,\\\\n        \\\\\\\"d2\\\\\\\": 0.0576,\\\\n        \\\\\\\"d3\\\\\\\": 0.0163\\\\n      },\\\\n      \\\\\\\"fpr\\\\\\\": 34.02,\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"c4_10k\\\\\\\"\\\\n    },\\\\n    \\\\\\\"fineweb_10k\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 10000,\\\\n      \\\\\\\"pred_distribution\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 8285,\\\\n        \\\\\\\"d1\\\\\\\": 1708,\\\\n        \\\\\\\"d2\\\\\\\": 4,\\\\n        \\\\\\\"d3\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"pred_pct\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 82.85,\\\\n        \\\\\\\"d1\\\\\\\": 17.08,\\\\n        \\\\\\\"d2\\\\\\\": 0.04,\\\\n        \\\\\\\"d3\\\\\\\": 0.03\\\\n      },\\\\n      \\\\\\\"mean_prob\\\\\\\": {\\\\n        \\\\\\\"d0\\\\\\\": 0.8349,\\\\n        \\\\\\\"d1\\\\\\\": 0.1282,\\\\n        \\\\\\\"d2\\\\\\\": 0.0285,\\\\n        \\\\\\\"d3\\\\\\\": 0.0083\\\\n      },\\\\n      \\\\\\\"fpr\\\\\\\": 17.15,\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"fineweb_10k\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:13:40.546609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000 /root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:13:40.546780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -name \"*prediction*\" -type f"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:13:40.546924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -3 /root/autodl-tmp/recursive_gen_depth_est/results/wild_features/c4_10k_features.csv"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:13:40.547058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/n2_deberta_finetune/fold_predictions.npz\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/n2_roberta_finetune/fold_predictions.npz\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/wikitext_predictions.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_calibration_005/redpajama_predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:13:40.547186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"text_id,source,mean_ppl,var_ppl,skewness_ppl,kurtosis_ppl,p10_ppl,p25_ppl,p50_ppl,p75_ppl,p90_ppl,mean_surprisal,var_surprisal,entropy_of_surprisal,type_token_ratio,hapax_ratio,bigram_entropy,trigram_entropy,rep_2gram,rep_3gram,rep_4gram\\\\r\\\\nc4_0,c4,1046.4430036439496,67614803.6985458,13.951804709154292,220.11414824747266,1.024054454749552,1.2700746164969186,4.771008443019775,33.78767092613192,414.2231362968696,2.3326566863299614,6.2580345873051275,3.1070444490401052,0.568922305764411,0.7312775330396476,5.731627398321047,5.894002136315588,0.14321608040201006,0.057934508816120944,0.02777777777777779\\\\r\\\\nc4_1,c4,1992.7509422782139,334340386.71746856,15.026499262700398,253.04852284320947,1.122240025296545,2.2845695011936176,8.538445222391852,66.52271321423177,806.1978007879277,2.8050757552324077,6.523533111245946,3.312695824867502,0.504930966469428,0.68359375,6.042423041222238,6.181309099167779,0.11264822134387353,0.02970297029702973,0.005952380952380931\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:13:40.547612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"*.pkl\" -o -name \"*.joblib\" -type f"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:13:40.547754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:13:40.547900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:13:40.548029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:13:40.548148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -2 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:13:40.548264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:13:40.548409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 0, \\\\\\\"mean_ppl\\\\\\\": 1607.154718291221, \\\\\\\"var_ppl\\\\\\\": 158779688.72304317, \\\\\\\"skewness_ppl\\\\\\\": 10.406051089379453, \\\\\\\"kurtosis_ppl\\\\\\\": 114.01617768762445, \\\\\\\"p10_ppl\\\\\\\": 1.0253935757537525, \\\\\\\"p25_ppl\\\\\\\": 1.4685526791140988, \\\\\\\"p50_ppl\\\\\\\": 4.352294272371119, \\\\\\\"p75_ppl\\\\\\\": 39.40245503911115, \\\\\\\"p90_ppl\\\\\\\": 369.16657551683574, \\\\\\\"mean_surprisal\\\\\\\": 2.372938156607645, \\\\\\\"var_surprisal\\\\\\\": 6.239684146274182, \\\\\\\"entropy_of_surprisal\\\\\\\": 3.1822611603270903, \\\\\\\"type_token_ratio\\\\\\\": 0.570281124497992, \\\\\\\"hapax_ratio\\\\\\\": 0.7922535211267606, \\\\\\\"bigram_entropy\\\\\\\": 6.013228236535451, \\\\\\\"trigram_entropy\\\\\\\": 6.165336778855558, \\\\\\\"rep_2gram\\\\\\\": 0.11066398390342047, \\\\\\\"rep_3gram\\\\\\\": 0.028225806451612878, \\\\\\\"rep_4gram\\\\\\\": 0.014141414141414121}\\\\n{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 1, \\\\\\\"mean_ppl\\\\\\\": 54002.03770697733, \\\\\\\"var_ppl\\\\\\\": 1413175348996.3547, \\\\\\\"skewness_ppl\\\\\\\": 22.22576987428103, \\\\\\\"kurtosis_ppl\\\\\\\": 491.99058066317076, \\\\\\\"p10_ppl\\\\\\\": 1.0160609078135314, \\\\\\\"p25_ppl\\\\\\\": 1.3728577706965877, \\\\\\\"p50_ppl\\\\\\\": 4.021285238082237, \\\\\\\"p75_ppl\\\\\\\": 27.293282919182133, \\\\\\\"p90_ppl\\\\\\\": 357.73944974520754, \\\\\\\"mean_surprisal\\\\\\\": 2.2523334503653545, \\\\\\\"var_surprisal\\\\\\\": 6.201062234123705, \\\\\\\"entropy_of_surprisal\\\\\\\": 2.7942398797704473, \\\\\\\"type_token_ratio\\\\\\\": 0.46987951807228917, \\\\\\\"hapax_ratio\\\\\\\": 0.6965811965811965, \\\\\\\"bigram_entropy\\\\\\\": 5.875689416994851, \\\\\\\"trigram_entropy\\\\\\\": 6.089798063352047, \\\\\\\"rep_2gram\\\\\\\": 0.17907444668008043, \\\\\\\"rep_3gram\\\\\\\": 0.06451612903225812, \\\\\\\"rep_4gram\\\\\\\": 0.02020202020202022}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:13:40.548568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20000 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:13:40.548774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python fpr_coverage_sweep.py', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl', 'data_count': 15000, 'model_name': 'RandomForest-200trees', 'seed': 42}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:13:40.548938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.585}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:13:40.549071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "hypothesis",
+              "value": "Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T07:13:40.549202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:10:04.657Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.957}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:13:40.549325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T07:13:40.549456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:10:08.043Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0136}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T07:13:40.549579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python fpr_coverage_sweep.py', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl', 'data_count': 15000, 'model_name': 'RandomForest-200trees', 'seed': 42}"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T07:13:40.549752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:10:13.423Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python fpr_coverage_sweep.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"RandomForest-200trees\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8173}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T07:13:40.550011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/scripts/fpr_coverage_sweep.py\nimport json\nimport csv\nimport os\nimport numpy as np\nfrom collections import defaultdict\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import cross_val_predict\nimport pandas as pd\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nOUTDIR = '/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage'\nos.makedirs(OUTDIR, exist_ok=True)\n\nFEATURE_COLS = [\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n    'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n    'rep_2gram', 'rep_3gram', 'rep_4gram'\n]\n\n# === 1. Load training data (20k controlled samples) ===\nprint(\"Loading training data...\")\ntrain_data = []\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl') as f:\n    for line in f:\n        train_data.append(json.loads(line))\n\nX_train = np.array([[d[c] for c in FEATURE_COLS] for d in train_data])\ny_train = np.array([d['depth'] for d in train_data])\nprint(f\"Training data: {len(train_data)} samples, depths {np.bincount(y_train)}\")\n\n# === 2. Train RF ===\nprint(\"Training RF (200 trees, seed=42)...\")\nrf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\nrf.fit(X_train, y_train)\n\n# === 3. 5-fold CV on controlled data for threshold-filtered accuracy ===\nprint(\"5-fold CV on controlled data...\")\ncv_proba = cross_val_predict(\n    RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1),\n    X_train, y_train, cv=5, method='predict_proba'\n)\ncv_preds = np.argmax(cv_proba, axis=1)\ncv_max_prob = np.max(cv_proba, axis=1)\n\n# === 4. Load C4 5k predictions (plan_015) ===\nprint(\"Loading C4 5k predictions...\")\npreds_5k = []\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl') as f:\n    for line in f:\n        preds_5k.append(json.loads(line))\n\nprobs_5k = np.array([[p['prob_d0'], p['prob_d1'], p['prob_d2'], p['prob_d3']] for p in preds_5k])\ndepths_5k = np.array([p['predicted_depth'] for p in preds_5k])\nmaxprob_5k = np.max(probs_5k, axis=1)\n\n# === 5. Load C4 10k features and predict ===\nprint(\"Loading C4 10k features and predicting...\")\nc4_10k = pd.read_csv('/root/autodl-tmp/recursive_gen_depth_est/results/wild_features/c4_10k_features.csv')\nX_10k = c4_10k[FEATURE_COLS].values\nproba_10k = rf.predict_proba(X_10k)\ndepths_10k = np.argmax(proba_10k, axis=1)\nmaxprob_10k = np.max(proba_10k, axis=1)\n\n# === 6. Threshold sweep ===\nTHRESHOLDS = [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.99]\n\ndef sweep(max_probs, pred_depths, n_total, name):\n    results = []\n    for t in THRESHOLDS:\n        mask = max_probs >= t\n        n_pass = int(mask.sum())\n        coverage = n_pass / n_total\n        if n_pass > 0:\n            passing_preds = pred_depths[mask]\n            fpr = float((passing_preds != 0).sum()) / n_pass\n            dist = {int(d): int((passing_preds == d).sum()) for d in range(4)}\n        else:\n            fpr = 0.0\n            dist = {0: 0, 1: 0, 2: 0, 3: 0}\n        results.append({\n            'dataset': name, 'threshold': t,\n            'n_passing': n_pass, 'n_total': n_total,\n            'coverage': coverage, 'fpr': fpr,\n            'd0': dist.get(0, 0), 'd1': dist.get(1, 0),\n            'd2': dist.get(2, 0), 'd3': dist.get(3, 0)\n        })\n    return results\n\ndef sweep_controlled(max_probs, preds, labels, n_total):\n    results = []\n    for t in THRESHOLDS:\n        mask = max_probs >= t\n        n_pass = int(mask.sum())\n        coverage = n_pass / n_total\n        if n_pass > 0:\n            p = preds[mask]\n            l = labels[mask]\n            overall_acc = float((p == l).sum()) / n_pass\n            # Balanced accuracy for d1-d3\n            accs = []\n            for d in [1, 2, 3]:\n                d_mask = l == d\n                if d_mask.sum() > 0:\n                    accs.append(float((p[d_mask] == d).sum()) / d_mask.sum())\n            bal_acc_d1d3 = np.mean(accs) if accs else 0.0\n        else:\n            overall_acc = 0.0\n            bal_acc_d1d3 = 0.0\n        results.append({\n            'threshold': t, 'n_passing': n_pass, 'n_total': n_total,\n            'coverage': coverage, 'overall_acc': overall_acc,\n            'bal_acc_d1d3': bal_acc_d1d3\n        })\n    return results\n\nres_5k = sweep(maxprob_5k, depths_5k, len(preds_5k), 'c4_5k')\nres_10k = sweep(maxprob_10k, depths_10k, len(c4_10k), 'c4_10k')\nres_ctrl = sweep_controlled(cv_max_prob, cv_preds, y_train, len(y_train))\n\n# === 7. Save CSV ===\ncsv_path = os.path.join(OUTDIR, 'fpr_coverage_tradeoff.csv')\nwith open(csv_path, 'w', newline='') as f:\n    w = csv.writer(f)\n    w.writerow(['dataset', 'threshold', 'n_passing', 'n_total', 'coverage',\n                'fpr', 'ctrl_bal_acc_d1d3', 'd0', 'd1', 'd2', 'd3'])\n    for r5, rc in zip(res_5k, res_ctrl):\n        w.writerow(['c4_5k', r5['threshold'], r5['n_passing'], r5['n_total'],\n                     f\"{r5['coverage']:.4f}\", f\"{r5['fpr']:.4f}\",\n                     f\"{rc['bal_acc_d1d3']:.4f}\",\n                     r5['d0'], r5['d1'], r5['d2'], r5['d3']])\n    for r10, rc in zip(res_10k, res_ctrl):\n        w.writerow(['c4_10k', r10['threshold'], r10['n_passing'], r10['n_total'],\n                     f\"{r10['coverage']:.4f}\", f\"{r10['fpr']:.4f}\",\n                     f\"{rc['bal_acc_d1d3']:.4f}\",\n                     r10['d0'], r10['d1'], r10['d2'], r10['d3']])\n\n# === 8. Print tables ===\ndef print_table(name, results, ctrl_results=None):\n    print(f\"\\n{'='*80}\")\n    print(f\"  {name}\")\n    print(f\"{'='*80}\")\n    hdr = f\"{'Thresh':>7} {'Coverage':>10} {'FPR':>8} {'n_pass':>8} {'d0':>6} {'d1':>6} {'d2':>5} {'d3':>5}\"\n    if ctrl_results:\n        hdr += f\" {'ctrl_bal':>10}\"\n    print(hdr)\n    print('-' * len(hdr))\n    for i, r in enumerate(results):\n        line = f\"{r['threshold']:>7.2f} {r['coverage']*100:>9.1f}% {r['fpr']*100:>7.1f}% {r['n_passing']:>8} {r['d0']:>6} {r['d1']:>6} {r['d2']:>5} {r['d3']:>5}\"\n        if ctrl_results:\n            line += f\" {ctrl_results[i]['bal_acc_d1d3']*100:>9.1f}%\"\n        print(line)\n\nprint_table('C4 5k (plan_015, FPR_base=20.2%)', res_5k, res_ctrl)\nprint_table('C4 10k (wild_features, FPR_base=34.0%)', res_10k, res_ctrl)\nprint_table('Controlled 5-fold CV (20k samples)', res_ctrl)\n\n# === 9. Plot ===\nfig, axes = plt.subplots(1, 2, figsize=(14, 5.5))\n\n# Panel A: FPR vs Coverage\nax = axes[0]\ncov_5k = [r['coverage'] * 100 for r in res_5k]\nfpr_5k = [r['fpr'] * 100 for r in res_5k]\ncov_10k = [r['coverage'] * 100 for r in res_10k]\nfpr_10k = [r['fpr'] * 100 for r in res_10k]\n\nax.plot(cov_5k, fpr_5k, 'o-', color='#1976D2', label='C4 (N=5k)', markersize=6, linewidth=2)\nax.plot(cov_10k, fpr_10k, 's-', color='#D32F2F', label='C4 (N=10k)', markersize=6, linewidth=2)\n\nfor i, t in enumerate(THRESHOLDS):\n    if t in [0.50, 0.70, 0.90, 0.99]:\n        ax.annotate(f'{t}', (cov_5k[i], fpr_5k[i]),\n                    textcoords=\"offset points\", xytext=(8, 5), fontsize=7.5, color='#1976D2')\n        ax.annotate(f'{t}', (cov_10k[i], fpr_10k[i]),\n                    textcoords=\"offset points\", xytext=(8, -10), fontsize=7.5, color='#D32F2F')\n\nax.set_xlabel('Coverage (%)', fontsize=11)\nax.set_ylabel('False Positive Rate (%)', fontsize=11)\nax.set_title('(a) FPR vs Coverage', fontsize=12)\nax.legend(fontsize=9, loc='upper right')\nax.grid(True, alpha=0.3)\n\n# Panel B: Controlled accuracy vs Coverage\nax2 = axes[1]\ncov_ctrl = [r['coverage'] * 100 for r in res_ctrl]\nacc_ctrl = [r['bal_acc_d1d3'] * 100 for r in res_ctrl]\nacc_overall = [r['overall_acc'] * 100 for r in res_ctrl]\n\nax2.plot(cov_ctrl, acc_ctrl, 'D-', color='#388E3C', label='d1–d3 balanced acc', markersize=6, linewidth=2)\nax2.plot(cov_ctrl, acc_overall, '^-', color='#7B1FA2', label='Overall acc (d0–d3)', markersize=6, linewidth=2)\n\nfor i, t in enumerate(THRESHOLDS):\n    if t in [0.50, 0.70, 0.90, 0.99]:\n        ax2.annotate(f'{t}', (cov_ctrl[i], acc_ctrl[i]),\n                     textcoords=\"offset points\", xytext=(8, -8), fontsize=7.5, color='#388E3C')\n\nax2.set_xlabel('Coverage (%)', fontsize=11)\nax2.set_ylabel('Accuracy (%)', fontsize=11)\nax2.set_title('(b) Controlled Accuracy vs Coverage', fontsize=12)\nax2.legend(fontsize=9, loc='lower right')\nax2.grid(True, alpha=0.3)\n\nplt.tight_layout()\nplt.savefig(os.path.join(OUTDIR, 'fpr_coverage_curve.png'), dpi=150, bbox_inches='tight')\nprint(f\"\\nSaved: {csv_path}\")\nprint(f\"Saved: {OUTDIR}/fpr_coverage_curve.png\")\n\n# === 10. Summary JSON ===\nsummary = {\n    'c4_5k': {r['threshold']: {'fpr': round(r['fpr'], 4), 'coverage': round(r['coverage'], 4)} for r in res_5k},\n    'c4_10k': {r['threshold']: {'fpr': round(r['fpr'], 4), 'coverage': round(r['coverage'], 4)} for r in res_10k},\n    'controlled_cv': {r['threshold']: {'bal_acc_d1d3': round(r['bal_acc_d1d3'], 4), 'coverage': round(r['coverage'], 4)} for r in res_ctrl},\n    'key_operating_points': {}\n}\n\n# Find best operating points\nfor name, results in [('c4_5k', res_5k), ('c4_10k', res_10k)]:\n    for r in results:\n        if r['fpr'] <= 0.05 and r['coverage'] >= 0.3:\n            if name not in summary['key_operating_points']:\n                summary['key_operating_points'][name] = {\n                    'threshold': r['threshold'],\n                    'fpr': round(r['fpr'], 4),\n                    'coverage': round(r['coverage'], 4)\n                }\n\nwith open(os.path.join(OUTDIR, 'summary.json'), 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(f\"Saved: {OUTDIR}/summary.json\")\nPYEOF\necho \"Script written successfully\""
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T07:13:40.550273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T07:13:40.550407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python scripts/fpr_coverage_sweep.py"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T07:13:40.550547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python scripts/fpr_coverage_sweep.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n   0.85      58.5%     0.0%     5853   5852      1     0     0      89.6%\\\\n   0.90      56.3%     0.0%     5630   5630      0     0     0      89.3%\\\\n   0.95      52.7%     0.0%     5269   5269      0     0     0      88.8%\\\\n   0.99      41.1%     0.0%     4108   4108      0     0     0      75.0%\\\\n\\\\n================================================================================\\\\n  Controlled 5-fold CV (20k samples)\\\\n================================================================================\\\\n Thresh   Coverage      FPR   n_pass     d0     d1    d2    d3\\\\n--------------------------------------------------------------\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/fpr_coverage_sweep.py\\\\\\\", line 159, in <module>\\\\n    print_table('Controlled 5-fold CV (20k samples)', res_ctrl)\\\\n  File \\\\\\\"/root/autodl-tmp/recursive_gen_depth_est/scripts/fpr_coverage_sweep.py\\\\\\\", line 152, in print_table\\\\n    line = f\\\\\\\"{r['threshold']:>7.2f} {r['coverage']*100:>9.1f}% {r['fpr']*100:>7.1f}% {r['n_passing']:>8} {r['d0']:>6} {r['d1']:>6} {r['d2']:>5} {r['d3']:>5}\\\\\\\"\\\\n                                                                ~^^^^^^^\\\\nKeyError: 'fpr'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T07:13:40.550732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python -c \"\nimport json, csv, os, numpy as np\nfrom collections import defaultdict\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import cross_val_predict\nimport pandas as pd\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nOUTDIR = 'results/fpr_coverage'\nos.makedirs(OUTDIR, exist_ok=True)\nFEATURE_COLS = ['mean_ppl','var_ppl','skewness_ppl','kurtosis_ppl','p10_ppl','p25_ppl','p50_ppl','p75_ppl','p90_ppl','mean_surprisal','var_surprisal','entropy_of_surprisal','type_token_ratio','hapax_ratio','bigram_entropy','trigram_entropy','rep_2gram','rep_3gram','rep_4gram']\n\n# Load training data\ntrain_data = [json.loads(l) for l in open('data/features_all.jsonl')]\nX_train = np.array([[d[c] for c in FEATURE_COLS] for d in train_data])\ny_train = np.array([d['depth'] for d in train_data])\n\n# Train RF\nrf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\nrf.fit(X_train, y_train)\n\n# CV on controlled\ncv_proba = cross_val_predict(RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1), X_train, y_train, cv=5, method='predict_proba')\ncv_preds = np.argmax(cv_proba, axis=1)\ncv_max_prob = np.max(cv_proba, axis=1)\n\n# C4 5k\npreds_5k = [json.loads(l) for l in open('results/plan_015_wild_data/c4_predictions.jsonl')]\nprobs_5k = np.array([[p['prob_d0'],p['prob_d1'],p['prob_d2'],p['prob_d3']] for p in preds_5k])\ndepths_5k = np.array([p['predicted_depth'] for p in preds_5k])\nmaxprob_5k = np.max(probs_5k, axis=1)\n\n# C4 10k\nc4_10k = pd.read_csv('results/wild_features/c4_10k_features.csv')\nX_10k = c4_10k[FEATURE_COLS].values\nproba_10k = rf.predict_proba(X_10k)\ndepths_10k = np.argmax(proba_10k, axis=1)\nmaxprob_10k = np.max(proba_10k, axis=1)\n\nTHRESHOLDS = [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.99]\n\ndef sweep_c4(max_probs, pred_depths, n_total, name):\n    results = []\n    for t in THRESHOLDS:\n        mask = max_probs >= t\n        n_pass = int(mask.sum())\n        cov = n_pass / n_total\n        if n_pass > 0:\n            pp = pred_depths[mask]\n            fpr = float((pp != 0).sum()) / n_pass\n            dist = {int(d): int((pp == d).sum()) for d in range(4)}\n        else:\n            fpr = 0.0\n            dist = {0:0,1:0,2:0,3:0}\n        results.append(dict(dataset=name, threshold=t, n_passing=n_pass, n_total=n_total, coverage=cov, fpr=fpr, **{f'd{d}':dist.get(d,0) for d in range(4)}))\n    return results\n\ndef sweep_ctrl(max_probs, preds, labels, n_total):\n    results = []\n    for t in THRESHOLDS:\n        mask = max_probs >= t\n        n_pass = int(mask.sum())\n        cov = n_pass / n_total\n        if n_pass > 0:\n            p, l = preds[mask], labels[mask]\n            overall_acc = float((p==l).sum()) / n_pass\n            accs = []\n            for d in [1,2,3]:\n                dm = l == d\n                if dm.sum() > 0: accs.append(float((p[dm]==d).sum()) / dm.sum())\n            bal_d1d3 = np.mean(accs) if accs else 0.0\n        else:\n            overall_acc, bal_d1d3 = 0.0, 0.0\n        results.append(dict(threshold=t, n_passing=n_pass, n_total=n_total, coverage=cov, overall_acc=overall_acc, bal_acc_d1d3=bal_d1d3))\n    return results\n\nres_5k = sweep_c4(maxprob_5k, depths_5k, len(preds_5k), 'c4_5k')\nres_10k = sweep_c4(maxprob_10k, depths_10k, len(c4_10k), 'c4_10k')\nres_ctrl = sweep_ctrl(cv_max_prob, cv_preds, y_train, len(y_train))\n\n# Print\nprint(f\\\"{'':>7} {'--- C4 5k ---':>30} {'--- C4 10k ---':>30} {'--- Ctrl CV ---':>25}\\\")\nprint(f\\\"{'Thresh':>7} {'Cov%':>7} {'FPR%':>7} {'n_pass':>7}  {'Cov%':>7} {'FPR%':>7} {'n_pass':>7}  {'Cov%':>7} {'bal_d1d3':>8}\\\")\nprint('-'*90)\nfor i in range(len(THRESHOLDS)):\n    r5, r10, rc = res_5k[i], res_10k[i], res_ctrl[i]\n    print(f\\\"{r5['threshold']:>7.2f} {r5['coverage']*100:>6.1f}% {r5['fpr']*100:>6.1f}% {r5['n_passing']:>7}  {r10['coverage']*100:>6.1f}% {r10['fpr']*100:>6.1f}% {r10['n_passing']:>7}  {rc['coverage']*100:>6.1f}% {rc['bal_acc_d1d3']*100:>7.1f}%\\\")\n\n# Save CSV\ncsv_path = os.path.join(OUTDIR, 'fpr_coverage_tradeoff.csv')\nwith open(csv_path, 'w', newline='') as f:\n    w = csv.writer(f)\n    w.writerow(['dataset','threshold','n_passing','n_total','coverage','fpr','ctrl_bal_acc_d1d3','d0','d1','d2','d3'])\n    for r5, rc in zip(res_5k, res_ctrl):\n        w.writerow(['c4_5k', r5['threshold'], r5['n_passing'], r5['n_total'], f\\\"{r5['coverage']:.4f}\\\", f\\\"{r5['fpr']:.4f}\\\", f\\\"{rc['bal_acc_d1d3']:.4f}\\\", r5['d0'], r5['d1'], r5['d2'], r5['d3']])\n    for r10, rc in zip(res_10k, res_ctrl):\n        w.writerow(['c4_10k', r10['threshold'], r10['n_passing'], r10['n_total'], f\\\"{r10['coverage']:.4f}\\\", f\\\"{r10['fpr']:.4f}\\\", f\\\"{rc['bal_acc_d1d3']:.4f}\\\", r10['d0'], r10['d1'], r10['d2'], r10['d3']])\n\n# Plot\nfig, axes = plt.subplots(1, 2, figsize=(13, 5))\nax = axes[0]\ncov_5k = [r['coverage']*100 for r in res_5k]\nfpr_5k = [r['fpr']*100 for r in res_5k]\ncov_10k = [r['coverage']*100 for r in res_10k]\nfpr_10k = [r['fpr']*100 for r in res_10k]\n\nax.plot(cov_5k, fpr_5k, 'o-', color='#1976D2', label='C4 (N=5,000)', ms=6, lw=2)\nax.plot(cov_10k, fpr_10k, 's-', color='#D32F2F', label='C4 (N=10,000)', ms=6, lw=2)\nfor i, t in enumerate(THRESHOLDS):\n    if t in [0.50, 0.70, 0.90, 0.99]:\n        ax.annotate(f'{t}', (cov_5k[i], fpr_5k[i]), textcoords='offset points', xytext=(8,5), fontsize=7.5, color='#1976D2')\n        ax.annotate(f'{t}', (cov_10k[i], fpr_10k[i]), textcoords='offset points', xytext=(8,-10), fontsize=7.5, color='#D32F2F')\nax.set_xlabel('Coverage (%)', fontsize=11)\nax.set_ylabel('False Positive Rate (%)', fontsize=11)\nax.set_title('(a) FPR vs Coverage on C4', fontsize=12)\nax.legend(fontsize=9)\nax.grid(True, alpha=0.3)\n\nax2 = axes[1]\ncov_ctrl = [r['coverage']*100 for r in res_ctrl]\nacc_d1d3 = [r['bal_acc_d1d3']*100 for r in res_ctrl]\nacc_all = [r['overall_acc']*100 for r in res_ctrl]\nax2.plot(cov_ctrl, acc_d1d3, 'D-', color='#388E3C', label='d1-d3 balanced acc', ms=6, lw=2)\nax2.plot(cov_ctrl, acc_all, '^-', color='#7B1FA2', label='Overall acc (d0-d3)', ms=6, lw=2)\nfor i, t in enumerate(THRESHOLDS):\n    if t in [0.50, 0.70, 0.90, 0.99]:\n        ax2.annotate(f'{t}', (cov_ctrl[i], acc_d1d3[i]), textcoords='offset points', xytext=(8,-8), fontsize=7.5, color='#388E3C')\nax2.set_xlabel('Coverage (%)', fontsize=11)\nax2.set_ylabel('Accuracy (%)', fontsize=11)\nax2.set_title('(b) Controlled Accuracy vs Coverage', fontsize=12)\nax2.legend(fontsize=9, loc='lower right')\nax2.grid(True, alpha=0.3)\nplt.tight_layout()\nplt.savefig(os.path.join(OUTDIR, 'fpr_coverage_curve.png'), dpi=150, bbox_inches='tight')\n\n# Summary JSON\nsummary = {\n    'c4_5k': {str(r['threshold']): {'fpr': round(r['fpr'],4), 'coverage': round(r['coverage'],4)} for r in res_5k},\n    'c4_10k': {str(r['threshold']): {'fpr': round(r['fpr'],4), 'coverage': round(r['coverage'],4)} for r in res_10k},\n    'controlled_cv': {str(r['threshold']): {'bal_acc_d1d3': round(r['bal_acc_d1d3'],4), 'coverage': round(r['coverage'],4)} for r in res_ctrl},\n    'key_findings': []\n}\nfor name, results in [('c4_5k', res_5k), ('c4_10k', res_10k)]:\n    for r in results:\n        if r['fpr'] <= 0.05:\n            summary['key_findings'].append(f\\\"{name}: at threshold={r['threshold']}, FPR={r['fpr']*100:.1f}%, coverage={r['coverage']*100:.1f}%\\\")\n            break\nwith open(os.path.join(OUTDIR, 'summary.json'), 'w') as f:\n    json.dump(summary, f, indent=2)\n\nprint(f'\\nSaved: {csv_path}')\nprint(f'Saved: {OUTDIR}/fpr_coverage_curve.png')\nprint(f'Saved: {OUTDIR}/summary.json')\n\"\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T07:13:40.550981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                         --- C4 5k ---                 --- C4 10k ---           --- Ctrl CV ---\\\\n Thresh    Cov%    FPR%  n_pass     Cov%    FPR%  n_pass     Cov% bal_d1d3\\\\n------------------------------------------------------------------------------------------\\\\n   0.50   94.7%   17.5%    4733    96.1%   32.4%    9608    88.2%    77.0%\\\\n   0.55   89.7%   14.0%    4484    92.3%   30.5%    9226    80.7%    79.8%\\\\n   0.60   84.5%    9.8%    4225    83.7%   24.0%    8373    73.9%    82.0%\\\\n   0.65   79.0%    4.7%    3951    72.1%   12.8%    7208    67.4%    84.0%\\\\n   0.70   75.2%    1.4%    3761    64.5%    3.5%    6448    61.3%    85.8%\\\\n   0.75   73.4%    0.4%    3672    61.5%    0.4%    6150    55.3%    86.9%\\\\n   0.80   72.1%    0.1%    3604    60.1%    0.1%    6014    49.5%    88.1%\\\\n   0.85   70.1%    0.0%    3504    58.5%    0.0%    5853    44.2%    89.6%\\\\n   0.90   67.4%    0.0%    3372    56.3%    0.0%    5630    38.9%    89.3%\\\\n   0.95   62.6%    0.0%    3130    52.7%    0.0%    5269    33.3%    88.8%\\\\n   0.99   54.4%    0.0%    2720    41.1%    0.0%    4108    27.2%    75.0%\\\\n\\\\nSaved: results/fpr_coverage/fpr_coverage_tradeoff.csv\\\\nSaved: results/fpr_coverage/fpr_coverage_curve.png\\\\nSaved: results/fpr_coverage/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 14.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T07:13:40.551181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "conclusion",
+              "value": "Confidence thresholding effectively controls FPR on C4. At τ=0.70: FPR drops from 20.2%→1.4% (5k) / 34.0%→3.5% (10k) while retaining 75.2% / 64.5% coverage. At τ=0.75: FPR→0.4% with 73.4% / 61.5% coverage. Controlled d1-d3 balanced accuracy remains >85% until τ=0.95. The tradeoff is favorable: modest coverage loss buys near-zero FPR.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T07:13:40.551327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'Confidence thresholding effectively controls FPR on C4. At τ=0.70: FPR drops from 20.2%→1.4% (5k) / 34.0%→3.5% (10k) while retaining 75.2% / 64.5% coverage. At τ=0.75: FPR→0.4% with 73.4% / 61.5% coverage. Controlled d1-d3 balanced accuracy remains >85% until τ=0.95. The tradeoff is favorable: modest coverage loss buys near-zero FPR.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4609}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T07:13:40.551467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "metrics",
+              "value": "{'c4_5k_base_fpr': 0.202, 'c4_10k_base_fpr': 0.34, 'c4_5k_t070_fpr': 0.014, 'c4_5k_t070_coverage': 0.752, 'c4_10k_t070_fpr': 0.035, 'c4_10k_t070_coverage': 0.645, 'c4_5k_t075_fpr': 0.004, 'c4_5k_t075_coverage': 0.734, 'c4_10k_t075_fpr': 0.004, 'c4_10k_t075_coverage': 0.615, 'ctrl_t070_bal_acc_d1d3': 0.858, 'ctrl_t075_bal_acc_d1d3': 0.869}",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T07:13:40.551625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:12:48.259Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python fpr_coverage_sweep.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"RandomForest-200trees\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"c4_5k_base_fpr\\\": 0.202, \\\"c4_10k_base_fpr\\\": 0.34, \\\"c4_5k_t070_fpr\\\": 0.014, \\\"c4_5k_t070_coverage\\\": 0.752, \\\"c4_10k_t070_fpr\\\": 0.035, \\\"c4_10k_t070_coverage\\\": 0.645, \\\"c4_5k_t075_fpr\\\": 0.004, \\\"c4_5k_t075_coverage\\\": 0.734, \\\"c4_10k_t075_fpr\\\": 0.004, \\\"c4_10k_t075_coverage\\\": 0.615, \\\"ctrl_t070_bal_acc_d1d3\\\": 0.858, \\\"ctrl_t075_bal_acc_d1d3\\\": 0.869}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8601}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T07:13:40.551763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T07:13:40.551915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "log_path",
+              "value": "/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T07:13:40.552101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:12:49.550Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python fpr_coverage_sweep.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"RandomForest-200trees\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"c4_5k_base_fpr\\\": 0.202, \\\"c4_10k_base_fpr\\\": 0.34, \\\"c4_5k_t070_fpr\\\": 0.014, \\\"c4_5k_t070_coverage\\\": 0.752, \\\"c4_10k_t070_fpr\\\": 0.035, \\\"c4_10k_t070_coverage\\\": 0.645, \\\"c4_5k_t075_fpr\\\": 0.004, \\\"c4_5k_t075_coverage\\\": 0.734, \\\"c4_10k_t075_fpr\\\": 0.004, \\\"c4_10k_t075_coverage\\\": 0.615, \\\"ctrl_t070_bal_acc_d1d3\\\": 0.858, \\\"ctrl_t075_bal_acc_d1d3\\\": 0.869}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9114}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T07:13:40.552251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:12:50.401Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python fpr_coverage_sweep.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"RandomForest-200trees\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"c4_5k_base_fpr\\\": 0.202, \\\"c4_10k_base_fpr\\\": 0.34, \\\"c4_5k_t070_fpr\\\": 0.014, \\\"c4_5k_t070_coverage\\\": 0.752, \\\"c4_10k_t070_fpr\\\": 0.035, \\\"c4_10k_t070_coverage\\\": 0.645, \\\"c4_5k_t075_fpr\\\": 0.004, \\\"c4_5k_t075_coverage\\\": 0.734, \\\"c4_10k_t075_fpr\\\": 0.004, \\\"c4_10k_t075_coverage\\\": 0.615, \\\"ctrl_t070_bal_acc_d1d3\\\": 0.858, \\\"ctrl_t075_bal_acc_d1d3\\\": 0.869}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7552}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T07:13:40.552387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T07:13:40.552508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "fpr_coverage_001",
+              "field": "status",
+              "value": "DONE",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T07:13:40.552646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:12:54.014Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python fpr_coverage_sweep.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"RandomForest-200trees\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"c4_5k_base_fpr\\\": 0.202, \\\"c4_10k_base_fpr\\\": 0.34, \\\"c4_5k_t070_fpr\\\": 0.014, \\\"c4_5k_t070_coverage\\\": 0.752, \\\"c4_10k_t070_fpr\\\": 0.035, \\\"c4_10k_t070_coverage\\\": 0.645, \\\"c4_5k_t075_fpr\\\": 0.004, \\\"c4_5k_t075_coverage\\\": 0.734, \\\"c4_10k_t075_fpr\\\": 0.004, \\\"c4_10k_t075_coverage\\\": 0.615, \\\"ctrl_t070_bal_acc_d1d3\\\": 0.858, \\\"ctrl_t075_bal_acc_d1d3\\\": 0.869}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8664}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T07:13:40.552813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:04:56.729Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:12:54.883Z\\\", \\\"hypothesis\\\": \\\"Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python fpr_coverage_sweep.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"RandomForest-200trees\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"c4_5k_base_fpr\\\": 0.202, \\\"c4_10k_base_fpr\\\": 0.34, \\\"c4_5k_t070_fpr\\\": 0.014, \\\"c4_5k_t070_coverage\\\": 0.752, \\\"c4_10k_t070_fpr\\\": 0.035, \\\"c4_10k_t070_coverage\\\": 0.645, \\\"c4_5k_t075_fpr\\\": 0.004, \\\"c4_5k_t075_coverage\\\": 0.734, \\\"c4_10k_t075_fpr\\\": 0.004, \\\"c4_10k_t075_coverage\\\": 0.615, \\\"ctrl_t070_bal_acc_d1d3\\\": 0.858, \\\"ctrl_t075_bal_acc_d1d3\\\": 0.869}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T07:12:54.883Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7467}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T07:13:40.553014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fpr_coverage_tradeoff_csv",
+              "type": "data",
+              "description": "FPR vs Coverage tradeoff CSV for C4 5k and 10k datasets across 11 confidence thresholds (0.50-0.99)",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "fpr_coverage_001",
+              "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_tradeoff.csv"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T07:13:40.553154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_tradeoff.csv\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T07:13:40.553277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fpr_coverage_curve_png",
+              "type": "chart",
+              "description": "Two-panel plot: (a) FPR vs Coverage on C4 for 5k/10k, (b) Controlled d1-d3 balanced accuracy vs coverage",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "fpr_coverage_001",
+              "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_curve.png"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T07:13:40.553401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_curve.png\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T07:13:40.553548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_tradeoff.csv"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T07:13:40.553713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dataset,threshold,n_passing,n_total,coverage,fpr,ctrl_bal_acc_d1d3,d0,d1,d2,d3\\\\r\\\\nc4_5k,0.5,4733,5000,0.9466,0.1754,0.7695,3903,827,0,3\\\\r\\\\nc4_5k,0.55,4484,5000,0.8968,0.1401,0.7985,3856,625,0,3\\\\r\\\\nc4_5k,0.6,4225,5000,0.8450,0.0982,0.8205,3810,414,0,1\\\\r\\\\nc4_5k,0.65,3951,5000,0.7902,0.0468,0.8399,3766,184,0,1\\\\r\\\\nc4_5k,0.7,3761,5000,0.7522,0.0138,0.8575,3709,51,0,1\\\\r\\\\nc4_5k,0.75,3672,5000,0.7344,0.0035,0.8693,3659,13,0,0\\\\r\\\\nc4_5k,0.8,3604,5000,0.7208,0.0008,0.8806,3601,3,0,0\\\\r\\\\nc4_5k,0.85,3504,5000,0.7008,0.0003,0.8960,3503,1,0,0\\\\r\\\\nc4_5k,0.9,3372,5000,0.6744,0.0000,0.8927,3372,0,0,0\\\\r\\\\nc4_5k,0.95,3130,5000,0.6260,0.0000,0.8885,3130,0,0,0\\\\r\\\\nc4_5k,0.99,2720,5000,0.5440,0.0000,0.7500,2720,0,0,0\\\\r\\\\nc4_10k,0.5,9608,10000,0.9608,0.3241,0.7695,6494,3109,0,5\\\\r\\\\nc4_10k,0.55,9226,10000,0.9226,0.3047,0.7985,6415,2807,0,4\\\\r\\\\nc4_10k,0.6,8373,10000,0.8373,0.2402,0.8205,6362,2008,0,3\\\\r\\\\nc4_10k,0.65,7208,10000,0.7208,0.1279,0.8399,6286,921,0,1\\\\r\\\\nc4_10k,0.7,6448,10000,0.6448,0.0352,0.8575,6221,226,0,1\\\\r\\\\nc4_10k,0.75,6150,10000,0.6150,0.0036,0.8693,6128,21,0,1\\\\r\\\\nc4_10k,0.8,6014,10000,0.6014,0.0007,0.8806,6010,4,0,0\\\\r\\\\nc4_10k,0.85,5853,10000,0.5853,0.0002,0.8960,5852,1,0,0\\\\r\\\\nc4_10k,0.9,5630,10000,0.5630,0.0000,0.8927,5630,0,0,0\\\\r\\\\nc4_10k,0.95,5269,10000,0.5269,0.0000,0.8885,5269,0,0,0\\\\r\\\\nc4_10k,0.99,4108,10000,0.4108,0.0000,0.7500,4108,0,0,0\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T07:13:40.553891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fpr_coverage_tradeoff",
+              "type": "data",
+              "description": "FPR vs Coverage tradeoff CSV for C4 5k/10k across 11 confidence thresholds (0.50-0.99), with controlled d1-d3 balanced accuracy",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "fpr_coverage_001",
+              "content": "dataset,threshold,n_passing,n_total,coverage,fpr,ctrl_bal_acc_d1d3,d0,d1,d2,d3\nc4_5k,0.5,4733,5000,0.9466,0.1754,0.7695,3903,827,0,3\nc4_5k,0.55,4484,5000,0.8968,0.1401,0.7985,3856,625,0,3\nc4_5k,0.6,4225,5000,0.8450,0.0982,0.8205,3810,414,0,1\nc4_5k,0.65,3951,5000,0.7902,0.0468,0.8399,3766,184,0,1\nc4_5k,0.7,3761,5000,0.7522,0.0138,0.8575,3709,51,0,1\nc4_5k,0.75,3672,5000,0.7344,0.0035,0.8693,3659,13,0,0\nc4_5k,0.8,3604,5000,0.7208,0.0008,0.8806,3601,3,0,0\nc4_5k,0.85,3504,5000,0.7008,0.0003,0.8960,3503,1,0,0\nc4_5k,0.9,3372,5000,0.6744,0.0000,0.8927,3372,0,0,0\nc4_5k,0.95,3130,5000,0.6260,0.0000,0.8885,3130,0,0,0\nc4_5k,0.99,2720,5000,0.5440,0.0000,0.7500,2720,0,0,0\nc4_10k,0.5,9608,10000,0.9608,0.3241,0.7695,6494,3109,0,5\nc4_10k,0.55,9226,10000,0.9226,0.3047,0.7985,6415,2807,0,4\nc4_10k,0.6,8373,10000,0.8373,0.2402,0.8205,6362,2008,0,3\nc4_10k,0.65,7208,10000,0.7208,0.1279,0.8399,6286,921,0,1\nc4_10k,0.7,6448,10000,0.6448,0.0352,0.8575,6221,226,0,1\nc4_10k,0.75,6150,10000,0.6150,0.0036,0.8693,6128,21,0,1\nc4_10k,0.8,6014,10000,0.6014,0.0007,0.8806,6010,4,0,0\nc4_10k,0.85,5853,10000,0.5853,0.0002,0.8960,5852,1,0,0\nc4_10k,0.9,5630,10000,0.5630,0.0000,0.8927,5630,0,0,0\nc4_10k,0.95,5269,10000,0.5269,0.0000,0.8885,5269,0,0,0\nc4_10k,0.99,4108,10000,0.4108,0.0000,0.7500,4108,0,0,0",
+              "content_filename": "fpr_coverage_tradeoff.csv"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T07:13:40.554087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_c6a218\\\", \\\"name\\\": \\\"fpr_coverage_tradeoff\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"FPR vs Coverage tradeoff CSV for C4 5k/10k across 11 confidence thresholds (0.50-0.99), with controlled d1-d3 balanced accuracy\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/fpr_coverage_001/data/fpr_coverage_tradeoff.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T07:13:24.213971+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T07:13:40.554228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fpr_coverage_curve",
+              "type": "chart",
+              "description": "Two-panel plot: (a) FPR vs Coverage on C4 5k/10k, (b) Controlled d1-d3 balanced accuracy vs coverage. Remote path: /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_curve.png",
+              "project": "recursive_gen_depth_est",
+              "exp_id": "fpr_coverage_001",
+              "content": "Chart saved on gpu-6000pro-2 at /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_curve.png",
+              "content_filename": "fpr_coverage_curve_location.txt"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T07:13:40.554368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_2abdc3\\\", \\\"name\\\": \\\"fpr_coverage_curve\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Two-panel plot: (a) FPR vs Coverage on C4 5k/10k, (b) Controlled d1-d3 balanced accuracy vs coverage. Remote path: /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_curve.png\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/fpr_coverage_001/chart/fpr_coverage_curve_location.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": \\\"fpr_coverage_001\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T07:13:27.551164+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T07:13:40.554529+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| τ | C4-5k FPR | C4-5k Cov | C4-10k FPR | C4-10k Cov | Ctrl d1-d3 bal_acc |\n|---|-----------|-----------|------------|------------|-------------------|\n| 0.50 | 17.5% | 94.7% | 32.4% | 96.1% | 77.0% |\n| 0.60 | 9.8% | 84.5% | 24.0% | 83.7% | 82.0% |\n| **0.65** | **4.7%** | **79.0%** | **12.8%** | **72.1%** | **84.0%** |\n| **0.70** | **1.4%** | **75.2%** | **3.5%** | **64.5%** | **85.8%** |\n| **0.75** | **0.4%** | **73.4%** | **0.4%** | **61.5%** | **86.9%** |\n| 0.80 | 0.1% | 72.1% | 0.1% | 60.1% | 88.1% |\n| 0.90 | 0.0% | 67.4% | 0.0% | 56.3% | 89.3% |\n| 0.99 | 0.0% | 54.4% | 0.0% | 41.1% | 75.0% |\n\n**推荐 operating point**: τ=0.70，C4 FPR 从 20.2%→1.4%（5k）/ 34.0%→3.5%（10k），保留 75%/65% coverage，controlled d1-d3 精度 85.8%。τ=0.75 可进一步降至 FPR≈0.4%，coverage 代价仅 ~2-3pp。\n\n产出：\n- CSV: `results/fpr_coverage/fpr_coverage_tradeoff.csv`\n- 图: `results/fpr_coverage/fpr_coverage_curve.png`\n- Registry: `fpr_coverage_001` → DONE (success)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_fpr_coverage_001_20260521T070655"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ]
+}

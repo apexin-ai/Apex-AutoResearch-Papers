@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9c9977e5b7a79933c837",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis temperature cost estimate",
+  "task_key": "worker_analysis_temperature-cost-estimate_20260523T080404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_temperature-cost-estimate_20260523T080404_result.json",
+    "occurrence": 1,
+    "bytes": 3029,
+    "sha256": "0d25b526a2d0d5a47bd25f5ee60115f79a85bd47b3b0a4129f5f119058ad4fa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data needed. The validation file has real per-model token counts from actual API calls. Let me compile the estimate.\n\nKey findings from the codebase:\n\n**Prompt structure** (pairwise judge scoring):\n- System prompt: ~80 tokens (fixed)\n- User message: question + response_a + response_b (~180-210 tokens, varies by question)\n\n**Empirical token counts** (from `api_adapter_validation.json`):\n\n| Model | Input tokens | Output tokens |\n|-------|-------------|---------------|\n| claude-opus-4 | 290 | 134 |\n| gpt-5.5 | 262 | 195 |\n| gemini-pro | 263 | 1020 (verbose/truncated) |\n| gpt-4.1 | 263 | 101 |\n| claude-sonnet-4 | 290 | 106 |\n| gemini-flash | 263 | 88 |\n| claude-3-haiku | 290 | 109 |\n| gpt-4o-mini equiv | 263 | 60 |\n\n---\n\n```\n=== Temperature Experiment Cost Estimate ===\nPer-call avg tokens: input=275, output=~130 (median, excl. gemini-pro outlier)\n\nCalls per model: 4 temps × 1000 questions × 3 repeats = 12,000\n\nFull experiment (9 models × 108K calls):\n\n  Model               | In tok | Out tok | $/call   | Subtotal\n  ---------------------|--------|---------|----------|----------\n  claude-opus-4-6      |  290   |  160    | $0.0164  | $196.20\n  gpt-5.5              |  265   |  235    | $0.0060  |  $72.30\n  claude-sonnet-4-6    |  290   |  130    | $0.0028  |  $33.84\n  gemini-3.1-pro-prev  |  265   |  300    | $0.0018  |  $21.33\n  gpt-4.1              |  265   |  120    | $0.0015  |  $17.88\n  claude-3-haiku       |  290   |  130    | $0.0002  |   $2.82\n  gpt-4.1-mini         |  265   |   75    | $0.0002  |   $2.71\n  gpt-4.1-nano         |  265   |   80    | $0.0001  |   $0.70\n  gemini-3.5-flash     |  265   |  105    | $0.0001  |   $0.62\n  ---------------------------------------------------------\n  Total cost: ~$348                    (≈$350 conservative)\n\n  Cost dominated by:\n    claude-opus-4-6: $196 (56%)\n    gpt-5.5:          $72 (21%)\n    top-2 = 77% of total cost\n\nPilot (3 cheapest × 36K calls):\n  Models: gpt-4.1-nano ($0.70) + gemini-3.5-flash ($0.62) + claude-3-haiku ($2.82)\n  Total cost: ~$4.14\n\nTimeline estimate:\n  Parallel (all 9 models, 25 workers each):\n    Bottleneck = claude-opus-4-6 (~14.5s/call × 480 batches ≈ 2 hours)\n  Sequential: ~8-10 hours\n  Pilot (3 cheap, parallel): ~20 min\n\nRecommendation: pilot first ($4, 20 min)\n  → validate temperature actually affects scores before spending $350\n  → if opus needed, consider dropping repeats from 3→1 first (saves $131)\n  → without opus: full experiment = ~$152 (remove opus saves 56%)\n```\n\n**Notes**:\n- Output tokens buffered +20% for higher-temperature verbosity\n- gemini-pro output tokens estimated at 300 (validation showed 1020 due to verbose/truncated JSON — real cost could be higher)\n- Prices are direct API rates; OpenRouter pass-through may add small markup\n- `gpt-5.5` doesn't support `temperature=0` (code already has `_NO_TEMP_ZERO` set), will need `{0.01, 0.3, 0.7, 1.0}` or skip temp=0 for that model"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

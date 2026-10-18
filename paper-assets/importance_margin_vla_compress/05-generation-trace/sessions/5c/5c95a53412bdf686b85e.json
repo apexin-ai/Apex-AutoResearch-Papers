@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "5c95a53412bdf686b85e",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "viz importance heatmap",
+  "task_key": "worker_viz_importance_heatmap_20260524T194142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_importance_heatmap_20260524T194142_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "30ba2bdc5d86c18d63ea632a55b73892950040d723413db400048306b0ba728f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbMyXnze2Zv5LkKjvuPB1\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbMyXnze2Zv5LkKjvuPB1"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

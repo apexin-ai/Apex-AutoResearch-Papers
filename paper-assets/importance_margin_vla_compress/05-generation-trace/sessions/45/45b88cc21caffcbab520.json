@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "45b88cc21caffcbab520",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check seed47 harvest cqa1",
+  "task_key": "worker_check_seed47_harvest_cqa1_20260528T221102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_seed47_harvest_cqa1_20260528T221102_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "76ddb14f9b0e9dd1374aeaf555c58cc5f1f546f30be963e434d8e4d0d5673f91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，registry 已更新。汇总：\n\n```\nexp_id                                    | success_rate | status\neval_pi05_l2norm_k075_long_seed47_cqa1    | 71.0%        | DONE\neval_pi05_random_k07_long_seed47_cqa1     | 59.0%        | DONE\neval_pi05_random_k075_long_seed47_cqa1    | 62.4%        | DONE\n\nGPU: 4x 24GB 全部空闲 (0% util, 0 MiB mem)\n```\n\n与已有 5-seed 均值对比：\n- L2norm k=0.75: seed47=71.0% vs 5-seed mean=70.6% — 一致\n- Random k=0.7: seed47=59.0% vs 5-seed mean=64.6% — 偏低 5.6pp\n- Random k=0.75: seed47=62.4% vs 5-seed mean=63.0% — 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "08fb912d1e444cdda800",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp d hatespeech upgrade",
+  "task_key": "worker_code_exp-d-hatespeech-upgrade_20260523T184152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-d-hatespeech-upgrade_20260523T184152_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "1a17f84a00b8bffd58642dd0a23f17bf0a6f70edfeb9455b79595b26daa5798a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both outputs are complete. Here's the summary:\n\n---\n\n**Outputs produced:**\n\n1. **`artifacts/hatespeech_analysis.csv`** — 12 rows (3 LLMs × 4 subgroups), with columns: FPR, FNR, accuracy, κ(C_s), π_s, δ_s, predicted/observed bias (at Δτ=0.3), SE, max |bias|, debiasing-hurts fraction.\n\n2. **`artifacts/hatespeech_analysis_report.md`** — Full report with tables and takeaways.\n\n**Key numbers:**\n\n| Metric | Value |\n|--------|-------|\n| Pooled R² (CivilComments, all 3 LLMs) | **0.944** |\n| gpt-4o R² | 0.979 |\n| gpt-3.5-turbo R² | 0.935 |\n| gpt-4o-mini R² | 0.756 |\n| Debiasing hurts | **55.0%** of LLM×subgroup×z×Δτ combos (66/120) |\n| Most extreme bias | gpt-4o × S3 (long+question), max |bias| = 0.099, κ = 2.68 |\n| κ range | 1.64 – 2.99 |\n| FPR range across subgroups | 0.241 – 0.569 |\n| FNR range across subgroups | 0.045 – 0.295 |\n\n**Key findings:**\n- Theorem 1 predictions match MC simulations well (R² ≥ 0.93 for gpt-4o and gpt-3.5-turbo; gpt-4o-mini is lower at 0.76 due to near-singular confusion matrices from very high FPR ~0.5)\n- S3 (long text + question mark) is consistently the worst-conditioned subgroup across all LLMs\n- 3 LLM-subgroup combinations show extreme bias amplification (max |bias| > 0.05), all involving S3 or S1 (question-containing subgroups)\n- CivilComments R² is comparable to TweetEval (0.944 vs 0.951 pooled across overlapping LLMs)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

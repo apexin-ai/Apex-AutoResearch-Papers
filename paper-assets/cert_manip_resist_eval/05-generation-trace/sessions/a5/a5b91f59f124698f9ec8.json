@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5b91f59f124698f9ec8",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code plan010 aggregation",
+  "task_key": "worker_code_plan010-aggregation_20260522T120049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan010-aggregation_20260522T120049_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "6561fb09f1bbda2ec4c2fcfbeb1604a94d01546d4153a34c0e65cf0a0a2be956"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果：\n\n| 方法 | η_max sig | K_eff sig neg | mean R² |\n|------|-----------|---------------|---------|\n| majority_vote | 8/12 | 1/12 | 0.446 |\n| weighted_vote | 7/12 | 1/12 | 0.378 |\n| threshold_vote | 7/12 | 0/12 | 0.693 |\n| bayesian | 3/12 | 0/12 | 0.223 |\n\n**关键发现：**\n\n1. **Majority 和 weighted vote** 模式一致：η_max 在多数条件下显著，支持 weakest-link。\n\n2. **Threshold vote**（unanimous）很特殊：η_max 仍然在 7/12 显著，但 K_eff 在 7+ 条件下呈**正**显著（不是负）。解释：unanimity 要求下，diversity 高的 panel 更容易被攻击打破共识。R² 最高（0.693）。\n\n3. **Bayesian** η_max 仅在 3/12 显著 — 可靠性加权有效缓解了 weakest-link 效应。Bayesian 对弱 judge 降权后，最弱 judge 的影响力下降。\n\n**结论：** Theorem 1 的 weakest-link 效应不是普适的，依赖聚合规则。Bayesian aggregation 部分打破了 η_max 主导。结果已保存到 `results_plan010_aggregation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

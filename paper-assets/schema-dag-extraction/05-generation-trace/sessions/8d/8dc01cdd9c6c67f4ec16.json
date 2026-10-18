@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8dc01cdd9c6c67f4ec16",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh per type f1 analysis v2",
+  "task_key": "worker_ssh_per-type-f1-analysis-v2_20260515T055130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_per-type-f1-analysis-v2_20260515T055130_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "65e04a8bdfea8a83d52d603516fbf67a90f0c65078dc97c114243846ff4d5ebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### Per-type BCS vs F1 分析（63 types, freq≥5）\n\n**相关性（micro_F1）**\n| 指标 | r/ρ | p |\n|------|-----|---|\n| Pearson r | **-0.1828** | 0.1516 |\n| Spearman ρ | **-0.2927** | **0.0199** |\n| Partial r (控制 log-freq) | **-0.1998** | 0.1163 |\n\n**相关性（mean_F1）**\n| 指标 | r/ρ | p |\n|------|-----|---|\n| Pearson r | -0.1374 | 0.2830 |\n| Spearman ρ | -0.2412 | 0.0568 |\n| Partial r (控制 log-freq) | -0.1428 | 0.2641 |\n\n**Quartile 对比**\n- Low BCS (≤0.798): avg F1 = **0.3098**, avg freq = 2134\n- High BCS (≥0.827): avg F1 = **0.2275**, avg freq = 2049\n- **Δ F1 = -0.0823**（高 BCS 组 F1 低 8.2 个百分点）\n\n**混淆变量检查**\n- r(BCS, log_freq) = 0.042, p=0.74 → BCS 和 frequency **几乎不相关**\n- r(log_freq, F1) = 0.250, p=0.048 → frequency 和 F1 弱正相关\n\n### 结论\n\n**方向支持假设「高 BCS → 低 F1」**：\n- Spearman ρ = -0.29 显著 (p=0.02)，per-type 分析确认负相关方向\n- Quartile 对比显示高 BCS 类型 F1 比低 BCS 低 8.2 个百分点，且两组 frequency 几乎相同（2049 vs 2134），排除 frequency 混淆\n- Partial correlation 控制 log-freq 后仍为负 (r=-0.20)，但 p=0.12 未达显著\n- 关键发现：**BCS 和 frequency 在 type 级别几乎不相关** (r=0.04)，说明之前 batch-level 正相关确实是 frequency 混淆，type-level 分析消除了这个混淆后方向翻转为负\n\n输出文件：`results/per_type_analysis.json` + `results/per_type_bcs_f1_scatter.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

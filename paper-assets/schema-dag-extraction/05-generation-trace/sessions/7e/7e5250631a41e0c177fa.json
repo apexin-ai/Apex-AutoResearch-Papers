@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7e5250631a41e0c177fa",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp fewrel 40rel r4 progress",
+  "task_key": "worker_check_exp_fewrel_40rel_r4_progress_20260515T213748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_fewrel_40rel_r4_progress_20260515T213748_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "b9d91e651b2f736799c1adfb7d22c17f26e44a36ac1a539a16ec1f6ac5c12f2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_fewrel_40rel_r4 结果报告\n\n**状态**: 已完成，退出码 0  \n**运行时间**: ~21:13 → 05:29 UTC（约 8h16m），其中 exp1 ~8h9m，exp2 ~6m  \n**产出文件**: eval_exp1.json, eval_exp2.json, predictions_exp1/exp2.json, results_incremental.jsonl (14736 行)\n\n---\n\n### EXP1: Count Curve（Qwen3-32B-FP8, FewRel 40-rel）\n\n| count | batches | avg_acc | 趋势 |\n|------:|--------:|--------:|------|\n| 1 | 80 | ~0.858 | baseline |\n| 4 | 5 | 0.867 | ≈持平 |\n| 8 | 5 | 0.802 | 下降 |\n| 16 | 5 | 0.697 | 明显下降 |\n| 32 | 5 | 0.658 | 继续下降 |\n| 40 | 5 | 0.588 | 最低 |\n\n**count_1→40 accuracy 从 ~0.86 降到 ~0.59，降幅 ~27pp。** 符合预期的 schema 复杂度效应。\n\n---\n\n### EXP2: BCS-Controlled\n\n| 条件 | count | BCS | acc | \n|------|------:|----:|----:|\n| low_bcs | 8 | 0.4715 | **0.833** |\n| high_bcs | 8 | 0.9706 | **0.500** |\n| low_bcs | 16 | 0.5705 | **0.818** |\n| high_bcs | 16 | 0.9706 | **0.500** |\n\n**BCS 效应极强**:\n- count_8: low vs high BCS → Δacc = **0.333**（0.833 vs 0.500）\n- count_16: low vs high BCS → Δacc = **0.318**（0.818 vs 0.500）\n- high_bcs 条件下 acc 恰好 0.500，模型几乎在语义相近的关系间随机猜"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

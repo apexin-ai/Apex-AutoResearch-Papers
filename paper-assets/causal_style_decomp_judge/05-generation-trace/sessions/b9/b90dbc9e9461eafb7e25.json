@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "b90dbc9e9461eafb7e25",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "code exp006 scaled cf gen",
+  "task_key": "worker_code_exp006_scaled_cf_gen_20260521T041045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_scaled_cf_gen_20260521T041045.log",
+    "occurrence": 1,
+    "bytes": 1232261,
+    "sha256": "0385296fddfce16bdb9ba4f37fac8c4f1e8a02c1ea5a06b8180309ab1092df6f"
+  },
+  "statistics": {
+    "messages": 974,
+    "user_turns": 1,
+    "tool_calls": 383,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 4,
+      "assistant": 193,
+      "tool_call": 383,
+      "tool_result": 383,
+      "result": 2,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 927,
+      "chunks": [
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0006.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "b90dbc9e9461eafb7e25-part-0006.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ]
+}

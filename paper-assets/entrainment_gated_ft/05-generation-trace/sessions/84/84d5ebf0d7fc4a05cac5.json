@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "84d5ebf0d7fc4a05cac5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 005 5arch jaccard",
+  "task_key": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-005-5arch-jaccard_20260522T171842_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "444b53d3a050f32ea7a979ad990f1285ad9348e44826433a6faa91515277ceb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 架构 Jaccard 分析完成。结果：\n\n### ARC-Easy (n=2376)\n| 指标 | 值 |\n|------|-----|\n| Mean J_helped | **0.1081** |\n| Mean J_hurt | **0.1047** |\n| 10/10 对显著 | z = 3.49–9.19 (helped), 3.72–7.48 (hurt) |\n\n### LAMBADA (n=5153)\n| 指标 | 值 |\n|------|-----|\n| Mean J_helped | **0.1221** |\n| Mean J_hurt | **0.0946** |\n| 10/10 对显著 | z = 9.03–12.21 (helped), 6.33–10.89 (hurt) |\n\n### 子组对比 (LAMBADA J_helped)\n- 3-arch (GDN/RetNet/HGRN2): 0.1194\n- 4-arch (+GLA): 0.1219\n- **5-arch (+DeltaNet): 0.1221**\n- DeltaNet vs others: 0.1224\n\nDeltaNet 融入得很好——它与其他架构的 Jaccard 值与已有架构间的互相重叠水平一致。加入第 5 个架构后 Jaccard 均值几乎不变，进一步支持 \"helped/hurt overlap 是 architecture-independent\" 的假设。\n\n### HGRN 模型状态\n- HGRN h3-1: ✅ 已下载 (1.33GB)\n- HGRN2 pure: ✅ 已下载\n\nArtifact 和 registry 已更新。服务器完整 JSON: `results/exp005_zoo_expansion/jaccard_5arch.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e0355725b8c68d66979",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research missing references mr1 4",
+  "task_key": "worker_research_missing_references_mr1_4_20260517T145447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_missing_references_mr1_4_20260517T145447_result.json",
+    "occurrence": 1,
+    "bytes": 4064,
+    "sha256": "0d2f6cf0edf10c469df2e12e1d1183667f97fa368d0115548f4180e78dc89ca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已确认。MR4 有一个重要发现：COLING 2025 关于 universal entity taxonomy 的论文实际上是 Yang et al.（B2NER），而非 Fetahu/Li。Review report 可能记错了作者。\n\n---\n\n## MR1: Constrained Decoding — §Related Work / §Methodology (routing failure analysis)\n\n```bibtex\n@article{willard2023efficient,\n  title     = {Efficient Guided Generation for Large Language Models},\n  author    = {Willard, Brandon T. and Louf, R{\\'e}mi},\n  journal   = {arXiv preprint arXiv:2307.09702},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2307.09702}\n}\n```\n\nVenue 说明：仅有 arXiv 预印本，未正式发表于会议/期刊。Outlines 库的基础论文。\n\n---\n\n## MR2: Batch Prompting — §Methodology (count-curve / efficiency)\n\n```bibtex\n@inproceedings{cheng2023batch,\n  title     = {Batch Prompting: Efficient Inference with Large Language Model {API}s},\n  author    = {Cheng, Zhoujun and Kasai, Jungo and Yu, Tao},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing: Industry Track},\n  pages     = {792--810},\n  year      = {2023},\n  address   = {Singapore},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2023.emnlp-industry.74/},\n  doi       = {10.18653/v1/2023.emnlp-industry.74}\n}\n```\n\n---\n\n## MR3: Prompt Order Sensitivity — §Related Work (label ordering)\n\n```bibtex\n@inproceedings{lu2022fantastically,\n  title     = {Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity},\n  author    = {Lu, Yao and Bartolo, Max and Moore, Alastair and Riedel, Sebastian and Stenetorp, Pontus},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {8086--8098},\n  year      = {2022},\n  address   = {Dublin, Ireland},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2022.acl-long.556/},\n  doi       = {10.18653/v1/2022.acl-long.556}\n}\n```\n\n---\n\n## MR4: Universal Entity Taxonomy — §Related Work (type hierarchy)\n\n**注意**：Review round 12 标注为 \"Fetahu/Li et al. (COLING 2025)\"，但 COLING 2025 唯一关于 universal entity taxonomy 的论文是 Yang et al. (B2NER)。Fetahu 的相关工作是 MultiCoNER（SemEval-2023），并非 COLING 2025。请确认是否引用此篇：\n\n```bibtex\n@inproceedings{yang2025beyond,\n  title     = {Beyond Boundaries: Learning a Universal Entity Taxonomy across Datasets and Languages for Open Named Entity Recognition},\n  author    = {Yang, Yuming and Zhao, Wantong and Huang, Caishuang and Ye, Junjie and Wang, Xiao and Zheng, Huiyuan and Nan, Yang and Wang, Yuran and Xu, Xueying and Huang, Kaixin and Zhang, Yunke and Gui, Tao and Zhang, Qi and Huang, Xuanjing},\n  booktitle = {Proceedings of the 31st International Conference on Computational Linguistics},\n  pages     = {10902--10923},\n  year      = {2025},\n  address   = {Abu Dhabi, UAE},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2025.coling-main.725/}\n}\n```\n\n如果 review 指的确实是 Fetahu 的工作，则应引的是 MultiCoNER 2（SemEval-2023）：\n\n```bibtex\n@inproceedings{fetahu2023semeval,\n  title     = {{SemEval}-2023 Task 2: Fine-grained Multilingual Named Entity Recognition ({MultiCoNER} 2)},\n  author    = {Fetahu, Besnik and Kar, Sudipta and Chen, Zhiyu and Rokhlenko, Oleg and Malmasi, Shervin},\n  booktitle = {Proceedings of the 17th International Workshop on Semantic Evaluation (SemEval-2023)},\n  year      = {2023},\n  address   = {Toronto, Canada},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2023.semeval-1.310/}\n}\n```\n\nMR1-MR3 信息已通过 ACL Anthology / arXiv 交叉验证。MR4 需要你确认 Yang et al. (COLING 2025) vs Fetahu et al. (SemEval 2023) 哪个是目标引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

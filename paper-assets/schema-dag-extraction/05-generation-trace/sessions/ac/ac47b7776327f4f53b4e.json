@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac47b7776327f4f53b4e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "exp fewrel partial correlation freq",
+  "task_key": "worker_exp_fewrel_partial_correlation_freq_20260516T093306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_fewrel_partial_correlation_freq_20260516T093306_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "a3e22c4b9b980b0b0440160f452c391c916a617a223c4eaa6107c72870da9431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**FewRel 是完美平衡数据集**（每种 relation 恰好 700 样本），type frequency 方差为 0，不可能是 BCS-confusion 关系的 confound。\n\n| 指标 | 值 |\n|------|-----|\n| Raw Pearson r (BCS vs pairwise confusion) | **0.187**, p = 2.56e-26 |\n| 95% CI (10k bootstrap) | [0.145, 0.231] |\n| Spearman ρ | 0.227, p = 3.63e-38 |\n| Partial r (dataset frequency) | = raw r（零方差协变量，undefined） |\n| Partial r (eval-level frequency) | 0.189（仅变化 1.2%） |\n| n_pairs | 3160 (C(80,2)) |\n\n**Reviewer 回应要点**：FewRel is a balanced dataset with exactly 700 samples per relation type. Type frequency is constant and cannot confound the BCS-accuracy relationship (zero-variance covariate makes partial correlation undefined/equal to raw correlation). Even when using evaluation-level frequency variation as a secondary control, the correlation changes by only 1.2%.\n\n结果保存在服务器 `artifacts/fewrel_partial_correlation_freq/results.json`，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

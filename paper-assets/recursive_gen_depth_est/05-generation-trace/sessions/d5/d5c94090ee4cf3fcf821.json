@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c94090ee4cf3fcf821",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "audit global reconciliation check",
+  "task_key": "worker_audit_global_reconciliation_check_20260515T045928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_global_reconciliation_check_20260515T045928_result.json",
+    "occurrence": 1,
+    "bytes": 1305,
+    "sha256": "f6426487c5427ed9014a3283be9c1c9c97e20e329b7e96c9dee030b5cead2c27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reconciliation 完成。文件已写入 `/root/autodl-tmp/recursive_gen_depth_est/artifacts/reconciliation_check.md`（231 行）。\n\n## 结果总览\n\n| 检查项 | 数量 | 匹配 | 差异 |\n|--------|------|------|------|\n| Pipeline vs edd_sensitivity AUC | 27 consecutive pairs | **27/27** | 0 |\n| Pipeline vs Registry AUC | 41 pairs (有数据的) | **41/41** | 0 |\n| Battery accuracy vs Registry | 9 cells | **9/9** | 0 |\n| EDD T=0.75 vs Registry | 9 cells + 2 summaries | **全部** | 0 |\n\n## 发现的问题\n\n1. **Registry 字段命名错误**：`baseline_battery_9cell_001.best_acc_matrix_rf` 实际存储的是**所有方法中的最优 accuracy**，不是 RF accuracy。影响 olmo_topk50：registry 记 0.759（实为 LR），RF 实际为 0.737，差 2.2pp。如果论文引用此字段作为\"RF accuracy\"会出错。\n\n2. **Registry 覆盖缺口**：54 个 pipeline AUC pair 中有 13 个无 registry 对应条目（olmo_temp09 缺 5/6，gpt2xl_topk50 缺 5/6，pythia_nucleus 缺 3/6）。值在 pipeline 文件中存在，但未入 registry。\n\n3. **核心论文数值无问题**：所有 AUC（pipeline ↔ edd_sensitivity）完全一致，EDD 值一致。Battery 与 pipeline 的 AUC 差异均为随机种子方差（max |Δ|=0.015），非数据错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

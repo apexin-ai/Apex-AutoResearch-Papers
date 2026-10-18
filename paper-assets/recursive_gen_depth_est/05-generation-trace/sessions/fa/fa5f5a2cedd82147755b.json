@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fa5f5a2cedd82147755b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh dcol v5 verify",
+  "task_key": "worker_ssh_dcol_v5_verify_20260515T024845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dcol_v5_verify_20260515T024845_result.json",
+    "occurrence": 1,
+    "bytes": 1391,
+    "sha256": "9fb9a36869ab1a492f24db0c8d7cdad2a164235a7fe76b596f255e89404b574f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已获取到 step 200，汇报如下：\n\n---\n\n## dcol_deberta_005 验证结果\n\n**1. PID 存活** — PID 283191 运行中 ✓\n\n**2. 显存占用** — cuda:1 占用 13,734 MiB（<15GB） ✓\n- GPU 1 上有两个 python 进程：PID 278173 (9,026 MiB) + PID 283196 (4,694 MiB)\n\n**3. margin_lr 确认** — 命令行参数 `--margin_lr 1e-4` ✓，日志显示 `'margin_lr': 0.0001` ✓\n\n**4. 前 10 个 log points (step 20-200) loss 值：**\n\n| Step | loss | ce | cl | acc | lr |\n|------|------|------|------|------|------|\n| 20 | 1.9047 | 1.3883 | 0.5164 | 25.47% | 3.05e-06 |\n| 40 | 1.9053 | 1.3889 | 0.5163 | 24.92% | 6.10e-06 |\n| 60 | 1.9053 | 1.3887 | 0.5165 | 25.10% | 9.15e-06 |\n| 80 | 1.9049 | 1.3886 | 0.5164 | 25.08% | 1.22e-05 |\n| 100 | 1.9046 | 1.3885 | 0.5161 | 25.03% | 1.52e-05 |\n| 120 | 1.9046 | 1.3884 | 0.5161 | 24.87% | 1.83e-05 |\n| 140 | 1.9044 | 1.3883 | 0.5161 | 25.13% | 2.13e-05 |\n| 160 | 1.9043 | 1.3880 | 0.5163 | 25.23% | 2.44e-05 |\n| 180 | 1.9040 | 1.3877 | 0.5163 | 25.43% | 2.74e-05 |\n| 200 | 1.8963 | 1.3863 | 0.5100 | 26.44% | 3.05e-05 |\n\n**状态：正常** — loss 无 NaN，acc 从 ~25% 随机基线起步（4分类），step 200 开始出现轻微下降趋势（loss 1.905→1.896，acc 25%→26.4%）。仍处于 warmup 阶段（lr 还在爬升中，warmup_ratio=0.05 对应约 197 steps，刚过 warmup）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

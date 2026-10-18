@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a01fbae654444488f354",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cqa1 check and fill random",
+  "task_key": "worker_ops_cqa1-check-and-fill-random_20260521T022829",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cqa1-check-and-fill-random_20260521T022829_result.json",
+    "occurrence": 1,
+    "bytes": 1552,
+    "sha256": "a3e359039ef5a3d335182f0dd56877ce39b4994e04fa54ae125ae56b8d9249d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 models are loading. Here's the summary:\n\n## 实验状态\n\n### 4 个原始实验\n\n| 实验 | GPU | 状态 | 结果 |\n|------|-----|------|------|\n| eval_xvla_goal_k09_seed42 | cuda:0 | **日志不存在** | — |\n| eval_xvla_goal_k05_seed42 | cuda:3 | **日志不存在** | — |\n| eval_xvla_baseline_long_seed42 | cuda:1 | **日志不存在** | — |\n| eval_xvla_spatial_k085_seed42 | cuda:2 | **运行中** (Task 7, Ep 17/50) | 见下 |\n\nGoal k=0.9、Goal k=0.5、Long baseline 的日志在 cqa1-33015 上不存在——可能从未在此服务器启动，或在其他服务器上。\n\n### Spatial k=0.85 逐 task 结果（进行中）\n\n| Task | SR |\n|------|----|\n| 0 | 100.0% (50/50) |\n| 1 | 2.0% (1/50) |\n| 2 | 96.0% (48/50) |\n| 3 | 98.0% (49/50) |\n| 4 | 88.0% (44/50) |\n| 5 | 4.0% (2/50) |\n| 6 | 94.0% (47/50) |\n| 7 | 进行中 (Ep 17/50, 多数 FAIL) |\n| 8-9 | 待跑 |\n\n**剩余时间估计**: Task 7 多数 fail（每 ep ~20s），剩 33 eps ~11 min。Task 8、9 各 5-18 min。预计 **20-45 min** 后完成（~11:15 前）。\n\n### 新提交的 Random Pruning 实验\n\n| exp_id | GPU | keep_ratio | 状态 |\n|--------|-----|-----------|------|\n| eval_xvla_random_k09_object_seed42 | cuda:0 | 0.9 | 模型加载中 |\n| eval_xvla_random_k085_object_seed42 | cuda:3 | 0.85 | 模型加载中 |\n| eval_xvla_random_k08_object_seed42 | cuda:1 | 0.8 | 模型加载中 |\n\n**cuda:2** 仍被 spatial_k085 占用，待其完成后可提交 `eval_xvla_random_k05_object_seed42` (keep_ratio=0.5)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2bcc9cf70050030d9832",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp3a diagnose fix",
+  "task_key": "worker_ssh_exp3a-diagnose-fix_20260515T024903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp3a-diagnose-fix_20260515T024903_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "ee3157c1223e35b34dcfda1d176c31ac7dbb85da53b233b5cadf47901d692023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本正常启动，参数解析通过，embeddings 加载成功，开始 extraction。\n\n---\n\n## 诊断结果\n\n**1. 失败根因**\n`python3 run_experiment.py` — 文件不在项目根目录，实际路径是 `src/run_experiment.py`。Python 报 `can't open file: No such file or directory`，EXIT_CODE=2。\n\n**2. 修复内容**\n- 脚本路径：`run_experiment.py` → `src/run_experiment.py`\n- 缺少必需参数：`--types_file configs/few_nerd_types.json`\n- 前置依赖：`artifacts/type_embeddings.pt` 不存在，已用 `compute_type_embeddings.py` 生成\n\n**3. 验证结果**\n脚本能正常启动，参数解析通过，embeddings 加载成功，开始 extraction 阶段。\n\n**4. 正确的提交命令**\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --types_file configs/few_nerd_types.json --max_samples 1000 && python3 src/run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --types_file configs/few_nerd_types.json --max_samples 1000\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

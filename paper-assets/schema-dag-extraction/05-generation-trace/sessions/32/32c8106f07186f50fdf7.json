@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "32c8106f07186f50fdf7",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "diag exp012 ner prompt test",
+  "task_key": "worker_diag_exp012_ner_prompt_test_20260515T173001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp012_ner_prompt_test_20260515T173001_result.json",
+    "occurrence": 1,
+    "bytes": 1441,
+    "sha256": "bd11339b3fd6ab343410eac4ec91f717a9aa4a0359b2f2c0d99c27f042babc81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "测试脚本已写入。它测试 4 个变体来隔离根因：\n\n| 测试 | Prompt | Schema 约束 | 目的 |\n|------|--------|-------------|------|\n| TEST 1 | v2 exact（含 \"output empty list\"） | StructuredOutputsParams | 复现问题 |\n| TEST 2 | v2 去掉 \"empty list\" 指令 | StructuredOutputsParams | 测试 prompt 偏差 |\n| TEST 3 | 简化 prompt | StructuredOutputsParams | 测试 schema 交互 |\n| TEST 4 | v2 exact | 无约束（自由生成） | 测试模型基础 NER 能力 |\n\n**诊断结论：**\n\n**问题不在模型 NER 能力本身，而在 `StructuredOutputsParams` + 8B 模型 + prompt v2 的组合导致系统性输出 `[]`。** 148,000/148,000 条 prediction 全部 gen_tokens=2，100% 空数组。即使 count_22 batch 有 977 个 gold entities 也是零输出。\n\n**最可能的根因排序：**\n1. **prompt v2 的 \"output an empty list []\" 指令** + structured 约束 = 强 attractor 让 8B 模型走 shortest valid path\n2. **StructuredOutputsParams array schema** 在第一个 token `[` 后允许直接 `]`，8B 模型 temp=0 下一致选择关闭\n\n**建议修复方向：**\n- 从 prompt v2 删除 \"If no entities of these types exist in the text, output an empty list [].\" \n- 或用 70B 模型（已有 batch_config 但未跑 predictions）\n- GPU 空闲后运行 `python3 /root/schema-dag-extraction/test_ner_prompt.py` 可在 <3 分钟内验证哪个因素是主因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

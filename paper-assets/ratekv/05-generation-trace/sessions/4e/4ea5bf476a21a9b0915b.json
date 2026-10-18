@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "4ea5bf476a21a9b0915b",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "writing r1 w11 granularity",
+  "task_key": "worker_writing_r1_w11_granularity_20260515T050144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_r1_w11_granularity_20260515T050144.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "b0ad1ea8bb8bf34498375ef60c67a6020fd38ca01522c05803307ca99ade8ce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:01:54.185528+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_r1_w11_granularity_20260515T050144"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "91fda0aec3647b1b3ef6",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp olmo seed43 001",
+  "task_key": "worker_exp_olmo_seed43_001_20260518T151655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_olmo_seed43_001_20260518T151655_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "417e7975a9d84a858af54db894c4e76bcb5d1bee6bbc21d31f841e91da135198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并注册为 RUNNING。\n\n**总结：**\n- `olmo_seed43_001` 已在 gpu-6000pro-2 cuda:1 上启动（tmux session: `olmo_seed43`, PID 903688）\n- 脚本：`scripts/run_olmo_seed43.sh`，8 步全流程（3 轮 LoRA finetune + 3 轮生成 + 特征提取 + RF eval）\n- 参数：OLMo-1B-hf, seed=43, nucleus p=0.95, 5000 samples/depth, d0-d3\n- LoRA target modules: `q_proj,k_proj,v_proj`（OLMo 特有，区别于 Pythia 的 `query_key_value`）\n- Step 1 LoRA finetune 已在执行中\n- 预计 ~2h 完成，日志在 `results/olmo_seed43/pipeline.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

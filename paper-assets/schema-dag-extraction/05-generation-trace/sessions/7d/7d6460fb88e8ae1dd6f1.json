@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7d6460fb88e8ae1dd6f1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "research ace05 data prep",
+  "task_key": "worker_research_ace05-data-prep_20260515T025909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ace05-data-prep_20260515T025909_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "7130d6c5df1dc80d2e85f1bd4efe7456198f038f5f31bd38d30c8cab5ecacc35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。产出摘要：\n\n**调研报告** → `artifacts/exp-004/report/ace05_data_prep_report.md` (art_20260515_08dc50)\n\n核心发现：\n\n1. **类型体系**：7 entity types (PER/ORG/GPE/LOC/FAC/VEH/WEA) + 6 relation types 细分为 18 subtypes（ART→1, GEN-AFF→2, ORG-AFF→7, PART-WHOLE→3, PER-SOC→3, PHYS→2）\n\n2. **数据获取**：需 LDC 许可 (LDC2006T06, $300)，HuggingFace 上无公开版本。GitHub 有多个预处理工具（PURE, DyGIE++, ACE05-Processor）\n\n3. **许可证**：可用于研究发表，不可重分发原始数据\n\n4. **与 Few-NERD 关键差异**：ACE05 是新闻领域、7 types + 18 relation subtypes、联合标注；Few-NERD 是 Wikipedia、66 fine-grained NER types、无关系标注\n\n5. **预处理方案**：NER 和 RE 分开处理，NER 复用 Few-NERD pipeline 改 type 列表，RE 需新增 relation triple 匹配逻辑\n\n6. **快速推进建议**：BCS 验证可先用 18 个 relation subtype names 计算 embeddings + 分析混淆度分布，不依赖原始数据。同时并行获取 LDC 数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

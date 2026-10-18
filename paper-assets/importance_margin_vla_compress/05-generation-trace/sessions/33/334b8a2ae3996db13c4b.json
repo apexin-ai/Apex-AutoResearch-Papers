@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "334b8a2ae3996db13c4b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops rerun l2norm k07 seed43 westd27271",
+  "task_key": "worker_ops_rerun-l2norm-k07-seed43-westd27271_20260520T221911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_rerun-l2norm-k07-seed43-westd27271_20260520T221911_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "51920db8ed219904be56f7880ea1679d691effffd10603c385a3d12e6327327e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**脚本参数确认**：`--mode` (choices: baseline/random_prune/l2norm_prune) + `--k_ratio` (float, default 0.5) — 之前错误用了 `--keep_ratio`。\n\n**进程状态**：\n- tmux session: `eval_l2norm_k07_s43_v2`\n- 服务器: westd-27271, GPU 0\n- 日志: `/tmp/eval_l2norm_k07_s43_v2.log`\n\n**初始日志确认 pruning 生效**：\n```\n[*] L2 norm pruning: k=0.7\n[L2 Pruning] 256 -> 179 vision tokens (k=0.7)\n```\n256 × 0.7 = 179.2 → 保留 179 tokens，符合预期。\n\n**Registry**: `eval_openvla_prune_l2norm_k07_seed43_v2` → RUNNING，parent = `eval_openvla_prune_l2norm_k07_seed43`。\n\n预计运行约 4 小时（参考旧 run 238 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "35535a4f61562c37a1c3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy westd38929 gpu1 ov attn k075 long",
+  "task_key": "worker_deploy_westd38929_gpu1_ov_attn_k075_long_20260527T121027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd38929_gpu1_ov_attn_k075_long_20260527T121027_result.json",
+    "occurrence": 1,
+    "bytes": 302,
+    "sha256": "a1bf3fdf0e023b38575c0f8753ce4148fc3d0b2695ac93c797643f0c438fe662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动并确认：\n\n- **GPU1**: PID 258418，占用 10651MiB，35% util — 模型加载中\n- **Registry**: `eval_openvla_attn_k075_long_seed42_v3` (RUNNING)\n- **tmux session**: `ov_attn_k075_long`\n- **日志**: TensorFlow 初始化正常，正在加载模型\n- **PID**: 258418"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "83000bfea5622914912c",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code cuda0 sequence",
+  "task_key": "worker_code_cuda0_sequence_20260514T005232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cuda0_sequence_20260514T005232_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "e0dbb096ecdc226c414809e36942d1cea05bbc88bebc3521f6938ba65c755587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已完成。\n\n### 实验 1: compounding_sweep_k10_12\n- k=10: PPL=11.50, k=12: PPL=11.42\n- 完整曲线: k=8→11.23, k=10→11.50, k=12→11.42, k=16→11.81\n- **k=8 确认为 U 型曲线极值点**\n\n### 实验 2: ratequant_greedy_comparison\n- Greedy PPL=**32.45** vs MCKP PPL=**11.23**，差距 +21.22\n- Greedy 把 68/112 个 head 降到 2-bit（MCKP 只降 8 个），同时保留 10 个 16-bit head\n- 证明离散 {2,4,8,16} 的非均匀步长破坏 polymatroid 结构，greedy 严重次优\n- Cardinality constraint 是 greedy 无法自动发现的关键约束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

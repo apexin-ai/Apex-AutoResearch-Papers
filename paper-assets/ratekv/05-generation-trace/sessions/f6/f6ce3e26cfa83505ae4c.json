@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f6ce3e26cfa83505ae4c",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "check gpu status and mistral",
+  "task_key": "worker_check_gpu_status_and_mistral_20260515T144742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_and_mistral_20260515T144742_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "7a7b3d8a2d13d1c33906bb9126713892c53f2cf7e66b53dac8a5176eacf56db0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n**GPU 状态**\n| GPU | 型号 | 显存 | 利用率 | 进程 |\n|-----|------|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell (96GB) | 0MiB | 100% | 无 |\n| 1 | RTX PRO 6000 Blackwell (96GB) | 0MiB | 0% | 无 |\n\nGPU 0 显示 100% utilization 但 0MiB 显存且无进程，可能是刚结束任务的残留状态或驱动异常，实际应为空闲。GPU 1 完全空闲。**两张卡无实验进程占用。**\n\n**Python 进程**：无实验进程运行。仅有系统服务（jupyter-lab、tensorboard、autopanel、supervisord）。\n\n**tmux session**：存在 `gemma2_9b_full_pipeline` session（00:50 创建），但内部无活跃实验进程。\n\n**Mistral hires 结果**：\n- **结果文件已完整**（`mistral_hires_bf16_2bitonly_results.json`，May 15 06:33）\n- 全部 256 heads profiled，耗时 ~56 分钟\n- baseline PPL = 5.870\n- Top-5 sensitive heads 占总 delta 的 24.1%\n- 最敏感 head：L2H5 (delta=0.324)，L12H1 (0.144)，L0H7 (0.140)\n- 252/256 heads 有正 delta（几乎所有 head 量化到 2bit 都有损失）\n- v3 日志显示只跑到 39/256 就停了，说明 v3 是后续重跑但被中断，**最终结果来自之前的完整运行**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

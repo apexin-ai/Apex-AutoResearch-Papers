@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "7bf399770b28ddd77151",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper fix anon github",
+  "task_key": "worker_paper_fix_anon_github_20260522T081854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_anon_github_20260522T081854_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "e5cd282947c565cdae31ce0742c8b7ac370a4e027101672d7db2bcf2b6d5f4d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "扫描结果干净。\n\n### 修复报告\n\n**修复 1：API key 泄露**\n- `src/run_fewrel_gpt4o_mini.py:42` — `DEFAULT_API_KEY = \"tum_XXB3sZIL...\"` → `os.environ.get(\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")`\n- `src/run_fewrel_gpt4o_mini.py:378` — 消除冗余的双重 `os.environ.get` 嵌套，改为直接使用 `DEFAULT_API_KEY`\n- 全包扫描：`tum_` 前缀 0 匹配，key 片段 0 匹配，无其他硬编码 key\n\n**修复 2：configs/ 目录缺失**\n- 创建 `configs/` 目录，从主仓库复制 3 个配置文件：\n  - `fewrel_relation_types.json`（被 12+ 个脚本引用）\n  - `few_nerd_types.json`（被 6+ 个脚本引用）\n  - `maven_event_types.json`（被 3 个脚本引用）\n- `README.md` 第 56、66 行：`configs/fewnerd_type_definitions.json` → `configs/few_nerd_types.json`（修正为实际文件名）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

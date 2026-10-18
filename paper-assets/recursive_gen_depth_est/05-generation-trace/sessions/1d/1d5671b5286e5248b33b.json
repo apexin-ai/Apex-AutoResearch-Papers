@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1d5671b5286e5248b33b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "paper comprehensive revision r3",
+  "task_key": "worker_paper_comprehensive-revision-r3_20260515T231048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_comprehensive-revision-r3_20260515T231048_result.json",
+    "occurrence": 1,
+    "bytes": 2194,
+    "sha256": "a6cc1c10d836d5cf9c335e05567936699b9fce14836fabf3835e3310a7e1952f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All Round 3 review fixes complete. Summary:\n\n### Fixed (edits made)\n\n| Issue | Action |\n|-------|--------|\n| **R3-N2** | Replaced \"19-dimensional\"/\"19 statistical features\" with compact feature set framing across abstract, introduction, method, atlas, discussion. Added top-2 ablation (91.1%), VIF analysis (14-16/19, eff. dim ≈4-5). |\n| **R3-N3** | Rewrote generalization.tex §5.4 \"Feature space divergence\" with SHAP as primary (88.8%, W=0.896, ρ=0.931/0.839, 9/9 + 8/9 top-2). Linear probing as auxiliary. Removed attention-importance from appendix. Softened to \"targeted statistical features\". |\n| **R3-N4** | Renamed atlas §4.2 \"Feature Universality\" → \"Feature Consistency Across the Grid\". Abstract already scoped to \"studied 3×3 grid\"; method.tex already has explicit scope limitation. |\n| **R3-N5** | Expanded discussion.tex: added d1/d2 inversion deployment constraint, two-stage pipeline feasibility discussion, lowered depth-curation expectations. Updated appendix depth-graduated curation to note strategy-conditioning requirement. |\n| **R3-W6** | Added mixed-depth corpus discussion (2 sentences) in discussion.tex. |\n| **R3-M1** | Fixed bib years: holtzman2020 → 2019, basu2021 → 2020. |\n| **Abstract consistency** | Updated var_surprisal count from 7/9 to 8/9 to match SHAP-primary framing. |\n\n### Already done (verified, no changes needed)\n\n| Issue | Status |\n|-------|--------|\n| **R3-N1** | EDD formula already uses continuous `∀ d' ≤ d*` form; Limitations already discusses non-monotonic AUC |\n| **R3-W1** | d0-excluded accuracy already in abstract (58.8–82.6%) and Table 2 (parenthetical d1-d3) |\n| **R3-W4** | No experiment IDs found in any table caption |\n| **R3-M1 sub-items** | §3 already \"Method\"; ρ=0.868 not in abstract; \"standard LoRA\" already removed; Ghostbuster/M4-SemEval/DNA-GPT already cited; Ethics Statement already present |\n| **RR3-W1** | No residual section_*.tex files in artifacts/_project/paper/ |\n| **RR3-W2** | No XX.X% placeholders remaining |\n| **RR3-W3** | Already reads \"2.5×\" (not 3.4×) |\n| **RR3-W5** | Sub-A does not reference per_class_recall ≈1.0 values |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

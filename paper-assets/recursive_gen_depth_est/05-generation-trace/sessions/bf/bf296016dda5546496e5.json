@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bf296016dda5546496e5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh dcol midtraining check",
+  "task_key": "worker_ssh_dcol_midtraining_check_20260514T223230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dcol_midtraining_check_20260514T223230_result.json",
+    "occurrence": 1,
+    "bytes": 1492,
+    "sha256": "145e6fb00e1bf6c17f3f29f1201f5053b9d39ee4dfff3cb62cee0f1219715855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DCOL 训练中期检查结果\n\n### 进度\n- **当前**: Epoch 6/10, step 280/2187\n- **已运行**: 2h13m\n- **进程状态**: PID 193684 正常运行\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 100% | 58.7G / 95.6G |\n| cuda:1 | 58% | 9.7G / 95.6G |\n\n### Epoch 级 Loss/Acc 趋势\n\n| Epoch | Train Loss | Train Acc | Val Loss | Val Acc | Val MAE | 耗时 |\n|-------|-----------|-----------|----------|---------|---------|------|\n| 1 | 1.5623 | 0.2929 | 1.3186 | 0.4217 | 1.0767 | 28m |\n| 2 | 1.4057 | 0.3063 | 1.2982 | 0.4308 | 1.0601 | 25m |\n| 3 | 1.3523 | 0.3121 | 1.2752 | 0.4325 | 1.0573 | 25m |\n| 4 | 1.3345 | 0.3122 | 1.2711 | 0.4305 | 1.0605 | 25m |\n| 5 | 1.3227 | 0.3170 | **1.2659** | **0.4347** | **1.0547** | 26m |\n| 6 | (训练中) step 280/2187, loss≈1.323 | | | | | |\n\n### 判断\n\n- **趋势**: Loss 持续下降，val_acc 持续改善（0.4217→0.4347），无异常震荡或 NaN\n- **收敛信号**: Epoch 3-5 改善速度明显放缓，train loss 从 1.56→1.32 的大幅下降已趋平，后续 epoch 边际收益递减\n- **Epoch 4 轻微回退**: val_acc 0.4325→0.4305，但 Epoch 5 恢复并创新高，属正常波动\n- **Checkpoint**: best_model.pt 于 Epoch 5 结束时保存（val_acc=0.4347）\n- **预计剩余时间**: 还剩 ~4.4 个 epoch（Epoch 6 剩 87% + Epoch 7-10），约 **1h50m**\n- **无异常**: contrastive loss (cl) 稳定下降 0.033→0.027，lr 按计划衰减"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

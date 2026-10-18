@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "592eed5dbbdf08594de5",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "code plan001 parallel scoring",
+  "task_key": "worker_code_plan001-parallel-scoring_20260522T091827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-parallel-scoring_20260522T091827.log",
+    "occurrence": 1,
+    "bytes": 1361326,
+    "sha256": "f954d2e07a212b54c2f37552ef867b1b299da6895d34df8e143cd0208b96232d"
+  },
+  "statistics": {
+    "messages": 492,
+    "user_turns": 1,
+    "tool_calls": 167,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 151,
+      "tool_call": 167,
+      "tool_result": 167,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "592eed5dbbdf08594de5-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "592eed5dbbdf08594de5-part-0002.json",
+          "message_count": 126
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "592eed5dbbdf08594de5-part-0002.json",
+          "message_count": 48
+        },
+        {
+          "path": "592eed5dbbdf08594de5-part-0003.json",
+          "message_count": 159
+        }
+      ]
+    }
+  ]
+}

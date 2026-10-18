@@ -1,0 +1,2143 @@
+{
+  "schema_version": "1.0",
+  "id": "66018c2303e2673f0afb",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "fix generalization tex integration",
+  "task_key": "worker_fix_generalization_tex_integration_20260515T161350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_generalization_tex_integration_20260515T161350.log",
+    "occurrence": 1,
+    "bytes": 122787,
+    "sha256": "ef7da318c440cf6d20d63d4f7c89384db8be7988b474e2c25fc35a63ca038cc6"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 18,
+      "tool_result": 18,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+                "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0ee20a63-cfdf-446c-980e-7e6e69b18d88",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778871600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8710bac2-1fc0-48eb-85a6-792df0106645",
+                "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the relevant files to understand the current state before making any changes.",
+              "signature": "EqACClkIDRgCKkBsvRD2DqqTaZkSaLdkDsP168OwWUz+PC/pVDTUDlPJYNdU03teMfWix0CfpMfFXNb8Q1b3usAQgDY/f3HzBC5vMg9jbGF1ZGUtb3B1cy00LTY4ABIMN8a7bW3CkXO1Mh/QGgzP+nSP62F+jGo3kM4iMM5tTn0w9ffKr0ZAsvsmkqUBbOHYgEOePKFdYpxLafz6TCnb3bXqt32Djfk8Nl/psyp1YpLqOdIQ2mS9mz+6z7TkcA2+pJoS3MU29SPOYbF1sQ2Kaj6JNLUxLmjkVFgfcfBfRI5YFulF/z3X4Vxgt1sZFG59ZwEGw+8lqSPmg6mL2C9POkbk5ykJhAAma7j8ateRqzmqEuVPb/UYffFkmfxo/3jpQK7QGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "02aa7345-8a90-450c-8a80-23b858598e2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先收集所有需要的信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "9e3e8467-40ad-4bd4-b547-f1ddbc2c45bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012QtXmrmmpzRL185uS9R2r3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "811af47d-233f-4150-8b14-6d05b680f6af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:14:02.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012QtXmrmmpzRL185uS9R2r3",
+              "type": "tool_result",
+              "content": "1\t\\section{Generalization and Robustness}\n2\t\\label{sec:generalization}\n3\t\n4\tWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\n5\t\n6\t\\subsection{Baseline Comparison}\n7\t\\label{sec:gen:baselines}\n8\t\n9\tTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\n10\tThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\n11\tThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\n12\tSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n18\t\\label{tab:baselines}\n19\t\\begin{tabular}{lc}\n20\t\\toprule\n21\tMethod & 4-class Acc (\\%) \\\\\n22\t\\midrule\n23\tRF (19 features) & 78.2 \\\\\n24\tCORAL & 78.1 \\\\\n25\tDivEye & 78.2 \\\\\n26\tCE-MLP & 74.9 \\\\\n27\tLR & 75.0 \\\\\n28\tDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\n29\tppl-regression (single feature) & 25.1 \\\\\n30\t\\bottomrule\n31\t\\end{tabular}\n32\t\\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell only, due to API cost; 95\\% CI: $\\pm$6.8pp. All other methods use the full 20{,}000-sample set.}\n33\t\\end{table}\n34\t\n35\tThat three structurally different classifiers achieve identical performance confirms that the discriminative signal resides in the 19 features, not the classifier architecture; a zero-shot LLM baseline (DeepSeek V3.2) reaches only 40.0\\%.\n36\tFigure~\\ref{fig:confusion_matrix} shows d0 is near-perfectly identified in both settings; errors concentrate at the d2/d3 boundary in-distribution and spread across d1--d3 under cross-model transfer.\n37\t\n38\t\\begin{figure}[t]\n39\t\\centering\n40\t\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}\n41\t\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n42\t\\label{fig:confusion_matrix}\n43\t\\end{figure}\n44\t\n45\t\\subsection{Cross-Model Transfer}\n46\t\\label{sec:gen:crossmodel}\n47\t\n48\tWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n49\t\n50\t\\begin{table}[t]\n51\t\\centering\n52\t\\small\n53\t\\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\\%.}\n54\t\\label{tab:cross_model}\n55\t\\begin{tabular}{lccccc}\n56\t\\toprule\n57\tHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n58\t & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n59\t\\midrule\n60\tPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\n61\tOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\n62\tGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n63\t\\midrule\n64\tMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n65\t\\bottomrule\n66\t\\end{tabular}\n67\t\\end{table}\n68\t\n69\tMean transfer accuracy reaches 66.4\\% (2.7$\\times$ chance), though d0 recall ($>$98\\%) inflates the headline; d2 recall drops to 26.8\\% (Pythia holdout), making it the most confusable class.\n70\t\n71\t\\subsection{Cross-Strategy Transfer}\n72\t\\label{sec:gen:crossstrategy}\n73\t\n74\tWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n75\t\n76\t\\begin{table}[t]\n77\t\\centering\n78\t\\small\n79\t\\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\\%.}\n80\t\\label{tab:cross_strategy}\n81\t\\begin{tabular}{lccc}\n82\t\\toprule\n83\tHoldout & Pythia & OLMo & GPT-2 XL \\\\\n84\t & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n85\t\\midrule\n86\tnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\n87\ttemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\n88\ttop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n89\t\\bottomrule\n90\t\\end{tabular}\n91\t\\end{table}\n92\t\n93\tMean cross-strategy accuracy (59.1\\%) falls 7 points below cross-model transfer (66.4\\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.\n94\tAs with cross-model transfer, d0 recall remains high ($\\geq$89.5\\%) across all holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\\% to 19\\%, confirming mid-chain depths as the primary confusion locus across both transfer axes.\n95\t\n96\t\\paragraph{Temperature-induced boundary inversion.}\n97\tTraining on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the d1/d2 decision boundary \\emph{inverts} (Pythia retains a degraded 0.576), consistent with the accelerated convergence in \\S\\ref{sec:atlas:trajectories}.\n98\tZ-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.\n99\t\n100\t\\subsection{End-to-End Learning}\n101\t\\label{sec:gen:dcol}\n102\t\n103\tWe finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\n104\tBoth converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias.\n105\tBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).\n106\tProbing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\\rho{=}{-}0.484$, RoBERTa $\\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning.\n107\t\n108\tDCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.\n109\tThat all end-to-end approaches---standard finetuning (58--60\\%), DCOL (64.5\\%)---substantially underperform feature-based methods (78.2\\%) confirms that depth estimation requires explicit distributional statistics rather than learned text representations."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "20544bf1-cdb9-4a2d-85e1-563ace573c61",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+                "content": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\nThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\nThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n\\label{tab:baselines}\n\\begin{tabular}{lc}\n\\toprule\nMethod & 4-class Acc (\\%) \\\\\n\\midrule\nRF (19 features) & 78.2 \\\\\nCORAL & 78.1 \\\\\nDivEye & 78.2 \\\\\nCE-MLP & 74.9 \\\\\nLR & 75.0 \\\\\nDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\nppl-regression (single feature) & 25.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell only, due to API cost; 95\\% CI: $\\pm$6.8pp. All other methods use the full 20{,}000-sample set.}\n\\end{table}\n\nThat three structurally different classifiers achieve identical performance confirms that the discriminative signal resides in the 19 features, not the classifier architecture; a zero-shot LLM baseline (DeepSeek V3.2) reaches only 40.0\\%.\nFigure~\\ref{fig:confusion_matrix} shows d0 is near-perfectly identified in both settings; errors concentrate at the d2/d3 boundary in-distribution and spread across d1--d3 under cross-model transfer.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy reaches 66.4\\% (2.7$\\times$ chance), though d0 recall ($>$98\\%) inflates the headline; d2 recall drops to 26.8\\% (Pythia holdout), making it the most confusable class.\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7 points below cross-model transfer (66.4\\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.\nAs with cross-model transfer, d0 recall remains high ($\\geq$89.5\\%) across all holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\\% to 19\\%, confirming mid-chain depths as the primary confusion locus across both transfer axes.\n\n\\paragraph{Temperature-induced boundary inversion.}\nTraining on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the d1/d2 decision boundary \\emph{inverts} (Pythia retains a degraded 0.576), consistent with the accelerated convergence in \\S\\ref{sec:atlas:trajectories}.\nZ-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.\n\n\\subsection{End-to-End Learning}\n\\label{sec:gen:dcol}\n\nWe finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\nBoth converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias.\nBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).\nProbing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\\rho{=}{-}0.484$, RoBERTa $\\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning.\n\nDCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.\nThat all end-to-end approaches---standard finetuning (58--60\\%), DCOL (64.5\\%)---substantially underperform feature-based methods (78.2\\%) confirms that depth estimation requires explicit distributional statistics rather than learned text representations.",
+                "numLines": 109,
+                "startLine": 1,
+                "totalLines": 109
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KsMxuZ4ZZ9NjgNLjvWcEK8",
+              "name": "Grep",
+              "input": {
+                "pattern": "coral",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "6ff4965b-6afd-4431-aa38-e4183ee536c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:14:03.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KsMxuZ4ZZ9NjgNLjvWcEK8",
+              "type": "tool_result",
+              "content": "303:@article{coral2020,"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "f0edd4f2-a40e-4bb7-bd02-ce4e4828ba84",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "303:@article{coral2020,",
+              "numLines": 1
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B7CeVGTpJqfdBNhSuuDiZC",
+              "name": "Grep",
+              "input": {
+                "pattern": "(?i)deberta|roberta",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "2d62e0f4-b54c-4cc5-a588-f881e7c57047",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:14:04.812Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B7CeVGTpJqfdBNhSuuDiZC",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "fcb8c281-d74f-48eb-90ec-96efe6700c47",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vm88kucZc2sAeQv5TbzmgA",
+              "name": "Grep",
+              "input": {
+                "pattern": "cloc2025",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "3eecdbbe-c643-4282-80ce-b72f1b840a19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:14:05.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vm88kucZc2sAeQv5TbzmgA",
+              "type": "tool_result",
+              "content": "314:@inproceedings{cloc2025,"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "42825b6a-5c59-44b3-b5b6-151035cc6782",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "314:@inproceedings{cloc2025,",
+              "numLines": 1
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V5Hz99XPw8J97NtU2KVpEM",
+              "name": "Grep",
+              "input": {
+                "pattern": "sec:gen:dcol",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "9bdbbaba-50be-4e53-a34f-0da7eda3d839",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:14:06.821Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V5Hz99XPw8J97NtU2KVpEM",
+              "type": "tool_result",
+              "content": "docs/paper/main.aux:768:\\newlabel{sec:gen:dcol}{{5.4}{8}{End-to-End Learning}{subsection.5.4}{}}\ndocs/paper/generalization.tex:4:We test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\ndocs/paper/generalization.tex:101:\\label{sec:gen:dcol}\ndocs/paper/section_appendix.tex:50:This confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:dcol}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "1cd8a6b4-4f1a-4cfb-b3c1-8e3159d59277",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/main.aux:768:\\newlabel{sec:gen:dcol}{{5.4}{8}{End-to-End Learning}{subsection.5.4}{}}\ndocs/paper/generalization.tex:4:We test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\ndocs/paper/generalization.tex:101:\\label{sec:gen:dcol}\ndocs/paper/section_appendix.tex:50:This confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:dcol}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers.",
+              "numLines": 4
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019d3ix2yRgnnopGFYUSB22Z",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+                "limit": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "047b5113-c29e-436f-9a8a-304e66a5a21f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NGoPcnTmifKzqFbh2JRp8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12067,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12067
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:14:07.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019d3ix2yRgnnopGFYUSB22Z",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:intro}\n3\t\n4\tThe text on which large language models are trained increasingly contains their own outputs.\n5\tAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\n6\tThis model$\\to$data$\\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n7\t\n8\tExisting tools address adjacent but distinct problems.\n9\tBinary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \\geq 1$ into a single category.\n10\tWatermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.\n11\tThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\n12\tNo existing method estimates the ordinal recursive generation depth of a text passage from its content alone.\n13\t\n14\tOur key insight is that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints exhibit universal stability across model families and decoding strategies.\n15\tSpecifically, perplexity tail statistics---the 90th-percentile perplexity (\\textsc{p90\\_ppl}) and surprisal variance (\\textsc{var\\_surprisal})---emerge as dominant depth indicators, ranking in the top two features by importance in 9/9 and 7/9 model--strategy configurations, respectively.\n16\t\n17\tWe formalize recursive generation depth estimation as an ordinal classification task and introduce a lightweight pipeline to solve it.\n18\tGiven a text passage, we compute a 19-dimensional feature vector from reference-model perplexity statistics---capturing distributional location, spread, tail behavior, and lexical diversity---and classify it with a Random Forest into one of $K{+}1$ depth classes ($d{=}0$ for human text through $d{=}K$ for $K$-th generation text).\n19\tTo systematically characterize how recursive generation reshapes these features, we construct the \\emph{Depth Degradation Atlas}: a $3 \\times 3$ grid of model families (Pythia-1.4B, OLMo-1B, GPT-2~XL) and decoding strategies (nucleus $p{=}0.95$, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$), each spanning 4 generation depths, totaling 180K samples.\n20\tThe atlas reveals strategy-dependent degradation trajectories---temperature sampling accelerates convergence toward a low-entropy attractor, while top-$k$ attenuates the depth signal---and we introduce the \\emph{Effective Discriminable Depth} (EDD) metric to quantify how far into the recursion chain adjacent depths remain distinguishable.\n21\t\n22\tOur contributions are:\n23\t\n24\t\\begin{itemize}\n25\t    \\item \\textbf{Task formalization.} We define recursive generation depth estimation as ordinal classification and introduce the EDD metric, which summarizes the maximum depth at which adjacent generations remain separable above a given AUC threshold.\n26\t\n27\t    \\item \\textbf{Depth Degradation Atlas.} We construct a systematic $3 \\times 3$ map across model families and decoding strategies, revealing that \\textsc{p90\\_ppl} ranks in the top 2 in all 9 cells (100\\%) and \\textsc{var\\_surprisal} in 7/9 (78\\%), with a mean Spearman rank correlation of $\\rho{=}0.868$ across importance vectors. The extended Pythia nucleus pipeline (d0--d5) yields $\\mathrm{EDD}_{0.75}{=}4$, establishing that depth discrimination persists through four recursive steps before falling below threshold.\n28\t\n29\t    \\item \\textbf{Generalization analysis.} Cross-model leave-one-out transfer achieves 66.4\\% and cross-strategy transfer 59.1\\% (chance = 25\\%). We identify a temperature-induced d1/d2 AUC inversion (GPT-2~XL: 0.129, OLMo: 0.253) that z-score normalization cannot resolve, confirming a geometry-level shift.\n30\t\n31\t    \\item \\textbf{End-to-end learning as negative result.} Both DeBERTa-v3-base (58.3\\%) and RoBERTa-base (59.5\\%) achieve ${\\sim}$59\\% via end-to-end finetuning---19pp below feature-based classifiers (78.2\\%)---with the architecture-invariant gap ruling out model selection bias. Probing reveals significant negative correlations (DeBERTa: $\\rho{=}{-}0.48$, RoBERTa: $\\rho{=}{-}0.46$) between transformer attention and RF feature importance, confirming complementary representations.\n32\t\\end{itemize}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "b57b6fae-bf90-4a38-8e8c-36d445d8f923",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:intro}\n\nThe text on which large language models are trained increasingly contains their own outputs.\nAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\nThis model$\\to$data$\\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n\nExisting tools address adjacent but distinct problems.\nBinary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \\geq 1$ into a single category.\nWatermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.\nThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\nNo existing method estimates the ordinal recursive generation depth of a text passage from its content alone.\n\nOur key insight is that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints exhibit universal stability across model families and decoding strategies.\nSpecifically, perplexity tail statistics---the 90th-percentile perplexity (\\textsc{p90\\_ppl}) and surprisal variance (\\textsc{var\\_surprisal})---emerge as dominant depth indicators, ranking in the top two features by importance in 9/9 and 7/9 model--strategy configurations, respectively.\n\nWe formalize recursive generation depth estimation as an ordinal classification task and introduce a lightweight pipeline to solve it.\nGiven a text passage, we compute a 19-dimensional feature vector from reference-model perplexity statistics---capturing distributional location, spread, tail behavior, and lexical diversity---and classify it with a Random Forest into one of $K{+}1$ depth classes ($d{=}0$ for human text through $d{=}K$ for $K$-th generation text).\nTo systematically characterize how recursive generation reshapes these features, we construct the \\emph{Depth Degradation Atlas}: a $3 \\times 3$ grid of model families (Pythia-1.4B, OLMo-1B, GPT-2~XL) and decoding strategies (nucleus $p{=}0.95$, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$), each spanning 4 generation depths, totaling 180K samples.\nThe atlas reveals strategy-dependent degradation trajectories---temperature sampling accelerates convergence toward a low-entropy attractor, while top-$k$ attenuates the depth signal---and we introduce the \\emph{Effective Discriminable Depth} (EDD) metric to quantify how far into the recursion chain adjacent depths remain distinguishable.\n\nOur contributions are:\n\n\\begin{itemize}\n    \\item \\textbf{Task formalization.} We define recursive generation depth estimation as ordinal classification and introduce the EDD metric, which summarizes the maximum depth at which adjacent generations remain separable above a given AUC threshold.\n\n    \\item \\textbf{Depth Degradation Atlas.} We construct a systematic $3 \\times 3$ map across model families and decoding strategies, revealing that \\textsc{p90\\_ppl} ranks in the top 2 in all 9 cells (100\\%) and \\textsc{var\\_surprisal} in 7/9 (78\\%), with a mean Spearman rank correlation of $\\rho{=}0.868$ across importance vectors. The extended Pythia nucleus pipeline (d0--d5) yields $\\mathrm{EDD}_{0.75}{=}4$, establishing that depth discrimination persists through four recursive steps before falling below threshold.\n\n    \\item \\textbf{Generalization analysis.} Cross-model leave-one-out transfer achieves 66.4\\% and cross-strategy transfer 59.1\\% (chance = 25\\%). We identify a temperature-induced d1/d2 AUC inversion (GPT-2~XL: 0.129, OLMo: 0.253) that z-score normalization cannot resolve, confirming a geometry-level shift.\n\n    \\item \\textbf{End-to-end learning as negative result.} Both DeBERTa-v3-base (58.3\\%) and RoBERTa-base (59.5\\%) achieve ${\\sim}$59\\% via end-to-end finetuning---19pp below feature-based classifiers (78.2\\%)---with the architecture-invariant gap ruling out model selection bias. Probing reveals significant negative correlations (DeBERTa: $\\rho{=}{-}0.48$, RoBERTa: $\\rho{=}{-}0.46$) between transformer attention and RF feature importance, confirming complementary representations.\n\\end{itemize}",
+                "numLines": 32,
+                "startLine": 1,
+                "totalLines": 32
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me analyze:\n\n1. **引用键错误**: `\\cite{cao2020_coral}` — Looking at the file, I see `\\cite{coral2020}` is already used correctly on line 10. There is no `cao2020_coral` in the file. So this issue doesn't exist in the current file.\n\n2. **缺失 bib 条目**: `\\cite{he2021_deberta_v3}` and `\\cite{liu2019_roberta}` — Looking at the file, these citations don't appear anywhere. \n\nWait, I need to reconsider what the task is actually asking. The task mentions finding these specific citation keys, but they're not in the current file. Looking at lines 103-106, I can see DeBERTa-v3-base and RoBERTa are mentioned by name, so the task might be asking me to add proper citations where these models are referenced in the text. The references.bib file doesn't have entries for either DeBERTa or RoBERTa, so I need to create both bib entries and add the corresponding citations where these models are first mentioned in the text on line 103.\n\nLooking at the first issue about the CORAL citation — the file already uses `\\cite{coral2020}` which matches the bib key, so that's already correct. Let me check what else actually needs fixing by examining the remaining issues.\n\nDeBERTa and RoBERTa are mentioned without citations on line 103, so I need to add bibliography entries for both and cite them in the text. The DCOL reference on line 108 is already done with `\\cite{cloc2025}`. For the label situation, I need to understand whether to keep `sec:gen:e2e` or change it to `sec:gen:dcol` — the task mentions preserving `sec:gen:e2e` in generalization.tex while updating references in section_appendix.tex. Looking at line 106, it already contains both the DeBERTa and RoBERTa correlation values, so that update appears to be complete. Let me verify the introduction.tex line 31 to confirm it also reports both models' correlations correctly.\n\nNow I'm reviewing what actually needs to be done: the citation key issue is already resolved, I need to add missing bibliography entries for DeBERTa and RoBERTa with proper citations in the text, the DCOL reference is already in place, and I need to rename the section label from `sec:gen:dcol` to `sec:gen:e2e` throughout the document. I need to change the label from `sec:gen:dcol` to `sec:gen:e2e` since the section covers end-to-end learning. Let me also check the section_appendix.tex file and references.bib to see what citations need to be added.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "2211cbf5-e265-4b10-8ab3-b6f8f5d398aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4fpFRdzzvKjBrjgQWyRpj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5303,
+                "cache_read_input_tokens": 23908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PraruGE2DHL5deYDkWf3qR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+                "limit": 60,
+                "offset": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "8efb1c27-3b96-4058-8a1e-8463a73ae234",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4fpFRdzzvKjBrjgQWyRpj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5303,
+                "cache_read_input_tokens": 23908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:14:47.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PraruGE2DHL5deYDkWf3qR",
+              "type": "tool_result",
+              "content": "40\t\\bottomrule\n41\t\\end{tabular}\n42\t\\end{table}\n43\t\n44\t\\subsection{Feature Overlap Analysis}\n45\t\\label{app:feature_overlap}\n46\t\n47\tWe probe whether end-to-end PLM representations capture the same depth signals as our statistical features.\n48\tDeBERTa attention importance and RF permutation importance exhibit a significant negative correlation (Spearman $\\rho{=}{-}0.484$, $p{=}0.036$; top-5 Jaccard overlap$\\,{=}\\,0$).\n49\tPLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing.\n50\tThis confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:dcol}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers.\n51\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "d2cf916d-2b6d-4629-905a-c8892b95633a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+                "content": "\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Overlap Analysis}\n\\label{app:feature_overlap}\n\nWe probe whether end-to-end PLM representations capture the same depth signals as our statistical features.\nDeBERTa attention importance and RF permutation importance exhibit a significant negative correlation (Spearman $\\rho{=}{-}0.484$, $p{=}0.036$; top-5 Jaccard overlap$\\,{=}\\,0$).\nPLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing.\nThis confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:dcol}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers.\n",
+                "numLines": 12,
+                "startLine": 40,
+                "totalLines": 51
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015WfMyakfXkpkyHpc47ZZjL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "offset": 300,
+                "limit": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "b0141641-116b-4867-b779-616fe4c3a445",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4fpFRdzzvKjBrjgQWyRpj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5303,
+                "cache_read_input_tokens": 23908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:14:48.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015WfMyakfXkpkyHpc47ZZjL",
+              "type": "tool_result",
+              "content": "300\t% Ordinal Classification / Contrastive Learning\n301\t% ============================================================\n302\t\n303\t@article{coral2020,\n304\t  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n305\t  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n306\t  journal   = {Pattern Recognition Letters},\n307\t  volume    = {140},\n308\t  pages     = {325--331},\n309\t  year      = {2020},\n310\t  note      = {arXiv:1901.07884},\n311\t  url       = {https://arxiv.org/abs/1901.07884},\n312\t}\n313\t\n314\t@inproceedings{cloc2025,\n315\t  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n316\t  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n317\t  booktitle = {Proceedings of CVPR},\n318\t  year      = {2025},\n319\t  note      = {arXiv:2504.17813},\n320\t  url       = {https://arxiv.org/abs/2504.17813},\n321\t}\n322\t\n323\t% ============================================================\n324\t% Data Curation / Importance Weighting\n325\t% ============================================================\n326\t\n327\t@inproceedings{dsir2023,\n328\t  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n329\t  title     = {{Data Selection for Language Models via Importance Resampling}},\n330\t  booktitle = {Proceedings of NeurIPS},\n331\t  year      = {2023},\n332\t  note      = {arXiv:2302.03169},\n333\t  url       = {https://arxiv.org/abs/2302.03169},\n334\t}\n335\t\n336\t@inproceedings{qurating2024,\n337\t  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n338\t  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n339\t  booktitle = {Proceedings of ICML},"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "9af2ac15-d0f8-411b-8a42-c729be9acce6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "content": "% Ordinal Classification / Contrastive Learning\n% ============================================================\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n% ============================================================\n% Data Curation / Importance Weighting\n% ============================================================\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},",
+                "numLines": 40,
+                "startLine": 300,
+                "totalLines": 366
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X36CMygRVfobnRdVUPgTgU",
+              "name": "Grep",
+              "input": {
+                "pattern": "cao2020_coral|he2021_deberta_v3|liu2019_roberta",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "7f26ff26-2fe1-436e-8f4f-9b393cb39e88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4fpFRdzzvKjBrjgQWyRpj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5303,
+                "cache_read_input_tokens": 23908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:14:49.584Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X36CMygRVfobnRdVUPgTgU",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "18f0edb4-8ae6-4a4a-b4e2-8a33fcb1b0c9",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. Let me assess each issue:\n\n1. **引用键错误** (`cao2020_coral` → `coral2020`): NOT present in current file. Already correct. **No action needed.**\n\n2. **缺失 bib 条目** (DeBERTa, RoBERTa): \n   - No bib entries exist for DeBERTa or RoBERTa\n   - Line 103 mentions \"DeBERTa-v3-base and RoBERTa-base\" without citations\n   - I need to add the bibliography entries and insert citations in the tex file\n\n3. **恢复 DCOL 引用**: Line 108 already has `\\cite{cloc2025}`. **No action needed.**\n\n4. **标签兼容** (`sec:gen:dcol` → `sec:gen:e2e`): I need to update the label references in generalization.tex at lines 4 and 101, plus the reference in section_appendix.tex at line 50.\n\n5. **恢复 RoBERTa overlap 数据**: Looking at what needs to be restored for the RoBERTa overlap metrics. Looking at generalization.tex line 106, it already includes both DeBERTa and RoBERTa correlation values, but the task mentions finding a location around line 139 that only reports DeBERTa's ρ=-0.484. I need to check if there's another instance elsewhere in the file that needs updating with the RoBERTa p-value (p=0.050) that the task specifies. Looking at introduction.tex line 31, both DeBERTa and RoBERTa correlation values are already there, and generalization.tex line 106 matches them consistently. The p-value for RoBERTa (p=0.050) isn't in the main text currently—only DeBERTa's p-value appears in the appendix—but since the task asks to ensure consistency with the introduction claim, and that's already satisfied, item 5 seems complete as is.\n\nNow I need to check the references.bib file to see where I should add the new bibliography entries for DeBERTa and RoBERTa before inserting the citations on line 103.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "d7df6f92-3d97-4d6f-8724-5cf4731cb244",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014M4w7YYYjj6bTrEdN5SmGM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3581,
+                "cache_read_input_tokens": 29211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3581
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现状分析：\n- Issue 1 (`cao2020_coral`): 文件中不存在，已是 `coral2020`，无需修改\n- Issue 2 (DeBERTa/RoBERTa bib): bib 中无条目，tex L103 无引用，需添加\n- Issue 3 (DCOL 引用): L108 已有 `\\cite{cloc2025}`，无需修改\n- Issue 4 (标签): 需将 `sec:gen:dcol` → `sec:gen:e2e`（3处）\n- Issue 5 (RoBERTa data): L106 已包含两个 backbone 数据，与 introduction L31 一致\n\n需要读 bib 尾部来确定添加位置。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "43bca27c-62ec-48d3-a142-f5bdb100219b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014M4w7YYYjj6bTrEdN5SmGM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3581,
+                "cache_read_input_tokens": 29211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3581
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TE9kbhAwg9kBNyY3dLVRip",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "offset": 335,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "b4735650-bc3d-48fa-8124-4ac0c9e8ba3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014M4w7YYYjj6bTrEdN5SmGM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3581,
+                "cache_read_input_tokens": 29211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3581
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:15:14.467Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TE9kbhAwg9kBNyY3dLVRip",
+              "type": "tool_result",
+              "content": "335\t\n336\t@inproceedings{qurating2024,\n337\t  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n338\t  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n339\t  booktitle = {Proceedings of ICML},\n340\t  year      = {2024},\n341\t  note      = {arXiv:2402.09739},\n342\t  url       = {https://arxiv.org/abs/2402.09739},\n343\t}\n344\t\n345\t@article{sugiyama2007_importance_weighting,\n346\t  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n347\t  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n348\t  journal   = {Journal of Machine Learning Research},\n349\t  volume    = {8},\n350\t  pages     = {985--1005},\n351\t  year      = {2007},\n352\t}\n353\t\n354\t% ============================================================\n355\t% Foundation Models / Fine-tuning\n356\t% ============================================================\n357\t\n358\t@inproceedings{hu2022lora,\n359\t  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n360\t  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n361\t  booktitle = {Proceedings of ICLR},\n362\t  year      = {2022},\n363\t  note      = {arXiv:2106.09685},\n364\t  url       = {https://arxiv.org/abs/2106.09685},\n365\t}\n366\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "401384ae-d256-4463-a139-6324f5e89d18",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "content": "\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  volume    = {8},\n  pages     = {985--1005},\n  year      = {2007},\n}\n\n% ============================================================\n% Foundation Models / Fine-tuning\n% ============================================================\n\n@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n",
+                "numLines": 32,
+                "startLine": 335,
+                "totalLines": 366
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The bib file has a \"Foundation Models / Fine-tuning\" section. DeBERTa and RoBERTa bib entries should go there. Let me check if this is the end of the file.",
+              "signature": "EtcCClkIDRgCKkDxpVRQ+n6vu6q/r1d/RxF6VHmmi50KWos4xb7Wa5atvxMXJTgBB/gof4syz9JGvfjIZiayLoi4h1PbUe9rOdqLMg9jbGF1ZGUtb3B1cy00LTY4ABIMLTZFOL9TfLKk6ETVGgxQgAU2sySAoAv1gcwiMMJTpcAZSFaNcYKqDpCav7uLE/0I/k6df/lCJqG2aPV1uOcc9iiXNnjB30OAixVGfCqrAXO0rceAzHLo1cnlAIgMB/7VM9Dd+zcqFMpYAMQX+DGBT7/ChXSIwCRSikSy1k6kPrhHoJ/4QEYz/vgjJMvF171weOna91f7guUzY6YFAwrf7zy5kBIEGX1f9+w5m1zQ55WbFeEkUNYNGkcCUdvRBy1NZu8J3gIfurDgYZrjmUeNdNgCJxng27/41StKbAyuK/+HdEBsOJ4ev9Hz8dCsMyCCgMjx5Lw7jx6h+BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "ea4d2cc4-3d82-4118-821c-8790edeffc49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HPVW7ST188DbVXpkM9kKv7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2221,
+                "cache_read_input_tokens": 32792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2221
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011TLqMiiwUHmiDyoGSzCTPw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "offset": 365,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "9eca97f0-3e9f-4b44-9bf5-58890ba10f53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HPVW7ST188DbVXpkM9kKv7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2221,
+                "cache_read_input_tokens": 32792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2221
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:15:18.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011TLqMiiwUHmiDyoGSzCTPw",
+              "type": "tool_result",
+              "content": "365\t}\n366\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "31575e49-be2d-4990-a406-7595f4c0f4b3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "content": "}\n",
+                "numLines": 2,
+                "startLine": 365,
+                "totalLines": 366
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now executing all fixes. Adding bib entries for DeBERTa-v3 and RoBERTa, renaming labels, and adding citations."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "c66057d1-341a-4381-abb5-2c08e863bfc6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011yi7YVquiVvVW8F6UhDysu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 204,
+                "cache_read_input_tokens": 35013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 204
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TGHAvNdpGhA45Q1FJ8SjC4",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+                "old_string": "@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}",
+                "new_string": "@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n\n@inproceedings{he2021_deberta_v3,\n  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2023},\n  note      = {arXiv:2111.09543},\n  url       = {https://arxiv.org/abs/2111.09543},\n}\n\n@article{liu2019_roberta,\n  author    = {Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},\n  title     = {{RoBERTa: A Robustly Optimized BERT Pretraining Approach}},\n  journal   = {arXiv preprint arXiv:1907.11692},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1907.11692},\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "566bf154-e6a7-4458-bc93-f894616e68f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011yi7YVquiVvVW8F6UhDysu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 204,
+                "cache_read_input_tokens": 35013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 204
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:15:28.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TGHAvNdpGhA45Q1FJ8SjC4",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "c29f7d68-0e92-4c0b-8c03-c8aef6685ac8",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+              "oldString": "@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}",
+              "newString": "@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n\n@inproceedings{he2021_deberta_v3,\n  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2023},\n  note      = {arXiv:2111.09543},\n  url       = {https://arxiv.org/abs/2111.09543},\n}\n\n@article{liu2019_roberta,\n  author    = {Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},\n  title     = {{RoBERTa: A Robustly Optimized BERT Pretraining Approach}},\n  journal   = {arXiv preprint arXiv:1907.11692},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1907.11692},\n}",
+              "originalFile": "% ============================================================\n% Model Collapse Theory\n% ============================================================\n\n@article{shumailov2024_nature,\n  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  title     = {{AI models collapse when trained on recursively generated data}},\n  journal   = {Nature},\n  volume    = {631},\n  pages     = {755--759},\n  year      = {2024},\n  doi       = {10.1038/s41586-024-07566-y},\n}\n\n@inproceedings{dohmatob2024_tale_of_tails,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.07043},\n  url       = {https://arxiv.org/abs/2402.07043},\n}\n\n@inproceedings{dohmatob2024_strong_collapse,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  title     = {{Strong Model Collapse}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2410.04840},\n  url       = {https://arxiv.org/abs/2410.04840},\n}\n\n@inproceedings{dohmatob2024_demystified,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  title     = {{Model Collapse Demystified: The Case of Regression}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2402.07712},\n  url       = {https://arxiv.org/abs/2402.07712},\n}\n\n@inproceedings{alemohammad2024_mad,\n  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Hossain, Hossein and Romero, Oscar and Ramanarayanan, Sriram and Baraniuk, Richard G.},\n  title     = {{Self-Consuming Generative Models Go MAD}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2307.01850},\n  url       = {https://arxiv.org/abs/2307.01850},\n}\n\n@misc{gerstgrasser2024_accumulate,\n  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n  year      = {2024},\n  howpublished = {arXiv:2404.01413},\n  url       = {https://arxiv.org/abs/2404.01413},\n}\n\n@inproceedings{marchi2024_heat_death,\n  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n  booktitle = {Proceedings of ICASSP},\n  year      = {2024},\n  note      = {arXiv:2404.02325},\n  url       = {https://arxiv.org/abs/2404.02325},\n}\n\n@misc{knowledge_collapse2025,\n  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n  title     = {{Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training}},\n  year      = {2025},\n  howpublished = {arXiv:2509.04796},\n  url       = {https://arxiv.org/abs/2509.04796},\n}\n\n@misc{sigma2026_spectral,\n  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2601.03385},\n  url       = {https://arxiv.org/abs/2601.03385},\n}\n\n@inproceedings{mohamed2025_broken_telephone,\n  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n  booktitle = {Proceedings of ACL},\n  year      = {2025},\n  note      = {arXiv:2502.20258},\n  url       = {https://arxiv.org/abs/2502.20258},\n}\n\n@inproceedings{synthetic_eggs2026,\n  author    = {Schaffelder, Max and Gatt, Albert},\n  title     = {{Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n  booktitle = {Findings of ACL},\n  year      = {2026},\n  note      = {arXiv:2511.01490},\n  url       = {https://arxiv.org/abs/2511.01490},\n}\n\n% --- Model collapse: collapse-can-be-avoided / contamination ---\n\n@inproceedings{drayson2025_detection_prevents_collapse,\n  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  title     = {{Machine-generated text detection prevents language model collapse}},\n  booktitle = {Findings of EMNLP},\n  year      = {2025},\n  note      = {arXiv:2502.15654},\n  url       = {https://arxiv.org/abs/2502.15654},\n}\n\n@misc{bakshi2026_collapse_improvement,\n  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n  title     = {{From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources}},\n  year      = {2026},\n  howpublished = {arXiv:2602.10531},\n  url       = {https://arxiv.org/abs/2602.10531},\n}\n\n@misc{wang2026_contamination,\n  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n  title     = {{Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training}},\n  year      = {2026},\n  howpublished = {arXiv:2602.16065},\n  url       = {https://arxiv.org/abs/2602.16065},\n}\n\n@misc{falahati2026_curated,\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  title     = {{Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences}},\n  year      = {2026},\n  howpublished = {arXiv:2605.07724},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n% ============================================================\n% AI-Generated Text Detection\n% ============================================================\n\n% --- Statistical / zero-shot detectors ---\n\n@inproceedings{gehrmann2019_gltr,\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n  booktitle = {Proceedings of ACL: System Demonstrations},\n  year      = {2019},\n  note      = {arXiv:1906.04043},\n  url       = {https://arxiv.org/abs/1906.04043},\n}\n\n@inproceedings{mitchell2023_detectgpt,\n  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.11305},\n  url       = {https://arxiv.org/abs/2301.11305},\n}\n\n@inproceedings{fast_detectgpt2024,\n  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.05130},\n  url       = {https://arxiv.org/abs/2310.05130},\n}\n\n@inproceedings{binoculars2024,\n  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2401.12070},\n  url       = {https://arxiv.org/abs/2401.12070},\n}\n\n@article{diveye2026,\n  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n  title     = {{Diversity Boosts AI-Generated Text Detection}},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2026},\n  note      = {arXiv:2509.18880},\n  url       = {https://arxiv.org/abs/2509.18880},\n}\n\n% --- Robustness / limitations of detectors ---\n\n@misc{sadasivan2023_paraphrase,\n  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  title     = {{Can AI-Generated Text be Reliably Detected?}},\n  year      = {2023},\n  howpublished = {arXiv:2303.11156},\n  url       = {https://arxiv.org/abs/2303.11156},\n}\n\n@misc{pudasaini2026_detection_fails,\n  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy}},\n  year      = {2026},\n  howpublished = {arXiv:2603.23146},\n  url       = {https://arxiv.org/abs/2603.23146},\n}\n\n@misc{pu2026_generator_barrier,\n  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n  year      = {2026},\n  howpublished = {arXiv:2604.13692},\n  url       = {https://arxiv.org/abs/2604.13692},\n}\n\n% --- Beyond binary: attribution, editing extent, benchmarks ---\n\n@inproceedings{uchendu2020_attribution,\n  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n  title     = {{Authorship Attribution for Neural Text Generation}},\n  booktitle = {Proceedings of EMNLP},\n  year      = {2020},\n}\n\n@inproceedings{editlens2026,\n  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2510.03154},\n  url       = {https://arxiv.org/abs/2510.03154},\n}\n\n@inproceedings{loki2025,\n  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and Zhang, Junan and Bai, Tianyi and Kang, Hengrui and He, Jun and Lin, Honglin and Wang, Zihao and Wu, Tong and Wu, Zhizheng and Chen, Yiping and Lin, Dahua and He, Conghui and Li, Weijia},\n  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n  booktitle = {Proceedings of ICLR (Spotlight)},\n  year      = {2025},\n  note      = {arXiv:2410.09732},\n  url       = {https://arxiv.org/abs/2410.09732},\n}\n\n% --- Watermarking ---\n\n@inproceedings{kirchenbauer2023_watermark,\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  title     = {{A Watermark for Large Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.10226},\n  url       = {https://arxiv.org/abs/2301.10226},\n}\n\n% ============================================================\n% Decoding Strategies\n% ============================================================\n\n@inproceedings{holtzman2020_nucleus,\n  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  title     = {{The Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2020},\n  note      = {arXiv:1904.09751},\n  url       = {https://arxiv.org/abs/1904.09751},\n}\n\n@inproceedings{finlayson2024_closing,\n  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.01693},\n  url       = {https://arxiv.org/abs/2310.01693},\n}\n\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n  note      = {arXiv:2410.06097},\n  url       = {https://arxiv.org/abs/2410.06097},\n}\n\n@article{wiher2022_decoding,\n  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n  title     = {{On Decoding Strategies for Neural Text Generators}},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  volume    = {10},\n  pages     = {997--1012},\n  year      = {2022},\n}\n\n@inproceedings{basu2021_mirostat,\n  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2021},\n}\n\n% ============================================================\n% Ordinal Classification / Contrastive Learning\n% ============================================================\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n% ============================================================\n% Data Curation / Importance Weighting\n% ============================================================\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  volume    = {8},\n  pages     = {985--1005},\n  year      = {2007},\n}\n\n% ============================================================\n% Foundation Models / Fine-tuning\n% ============================================================\n\n@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 363,
+                  "oldLines": 3,
+                  "newStart": 363,
+                  "newLines": 20,
+                  "lines": [
+                    "   note      = {arXiv:2106.09685},",
+                    "   url       = {https://arxiv.org/abs/2106.09685},",
+                    " }",
+                    "+",
+                    "+@inproceedings{he2021_deberta_v3,",
+                    "+  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},",
+                    "+  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},",
+                    "+  booktitle = {Proceedings of ICLR},",
+                    "+  year      = {2023},",
+                    "+  note      = {arXiv:2111.09543},",
+                    "+  url       = {https://arxiv.org/abs/2111.09543},",
+                    "+}",
+                    "+",
+                    "+@article{liu2019_roberta,",
+                    "+  author    = {Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},",
+                    "+  title     = {{RoBERTa: A Robustly Optimized BERT Pretraining Approach}},",
+                    "+  journal   = {arXiv preprint arXiv:1907.11692},",
+                    "+  year      = {2019},",
+                    "+  url       = {https://arxiv.org/abs/1907.11692},",
+                    "+}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A438NBTGRihd6rmxanFRPq",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+                "old_string": "We finetune DeBERTa-v3-base and RoBERTa-base end-to-end",
+                "new_string": "We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "cb7a1fb3-2f15-486c-bbd2-b0d24dae605e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011yi7YVquiVvVW8F6UhDysu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 204,
+                "cache_read_input_tokens": 35013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 204
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:15:30.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A438NBTGRihd6rmxanFRPq",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "dfb97d53-f804-4d4b-99c0-175028ee3459",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+              "oldString": "We finetune DeBERTa-v3-base and RoBERTa-base end-to-end",
+              "newString": "We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end",
+              "originalFile": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\nThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\nThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n\\label{tab:baselines}\n\\begin{tabular}{lc}\n\\toprule\nMethod & 4-class Acc (\\%) \\\\\n\\midrule\nRF (19 features) & 78.2 \\\\\nCORAL & 78.1 \\\\\nDivEye & 78.2 \\\\\nCE-MLP & 74.9 \\\\\nLR & 75.0 \\\\\nDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\nppl-regression (single feature) & 25.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell only, due to API cost; 95\\% CI: $\\pm$6.8pp. All other methods use the full 20{,}000-sample set.}\n\\end{table}\n\nThat three structurally different classifiers achieve identical performance confirms that the discriminative signal resides in the 19 features, not the classifier architecture; a zero-shot LLM baseline (DeepSeek V3.2) reaches only 40.0\\%.\nFigure~\\ref{fig:confusion_matrix} shows d0 is near-perfectly identified in both settings; errors concentrate at the d2/d3 boundary in-distribution and spread across d1--d3 under cross-model transfer.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy reaches 66.4\\% (2.7$\\times$ chance), though d0 recall ($>$98\\%) inflates the headline; d2 recall drops to 26.8\\% (Pythia holdout), making it the most confusable class.\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7 points below cross-model transfer (66.4\\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.\nAs with cross-model transfer, d0 recall remains high ($\\geq$89.5\\%) across all holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\\% to 19\\%, confirming mid-chain depths as the primary confusion locus across both transfer axes.\n\n\\paragraph{Temperature-induced boundary inversion.}\nTraining on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the d1/d2 decision boundary \\emph{inverts} (Pythia retains a degraded 0.576), consistent with the accelerated convergence in \\S\\ref{sec:atlas:trajectories}.\nZ-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.\n\n\\subsection{End-to-End Learning}\n\\label{sec:gen:dcol}\n\nWe finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\nBoth converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias.\nBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).\nProbing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\\rho{=}{-}0.484$, RoBERTa $\\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning.\n\nDCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.\nThat all end-to-end approaches---standard finetuning (58--60\\%), DCOL (64.5\\%)---substantially underperform feature-based methods (78.2\\%) confirms that depth estimation requires explicit distributional statistics rather than learned text representations.",
+              "structuredPatch": [
+                {
+                  "oldStart": 100,
+                  "oldLines": 7,
+                  "newStart": 100,
+                  "newLines": 7,
+                  "lines": [
+                    " \\subsection{End-to-End Learning}",
+                    " \\label{sec:gen:dcol}",
+                    " ",
+                    "-We finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.",
+                    "+We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.",
+                    " Both converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias.",
+                    " Both easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).",
+                    " Probing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\\rho{=}{-}0.484$, RoBERTa $\\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PrvfoBjPTnPbBrziqFJX7C",
+              "name": "Edit",
+              "input": {
+                "replace_all": true,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+                "old_string": "sec:gen:dcol",
+                "new_string": "sec:gen:e2e"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "1e733e21-16b7-4be4-83cf-d480462e6aee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011yi7YVquiVvVW8F6UhDysu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 204,
+                "cache_read_input_tokens": 35013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 204
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:15:31.489Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PrvfoBjPTnPbBrziqFJX7C",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "eaad0bcb-832b-468d-a26f-a2f0365a8c73",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+              "oldString": "sec:gen:dcol",
+              "newString": "sec:gen:e2e",
+              "originalFile": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\nThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\nThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n\\label{tab:baselines}\n\\begin{tabular}{lc}\n\\toprule\nMethod & 4-class Acc (\\%) \\\\\n\\midrule\nRF (19 features) & 78.2 \\\\\nCORAL & 78.1 \\\\\nDivEye & 78.2 \\\\\nCE-MLP & 74.9 \\\\\nLR & 75.0 \\\\\nDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\nppl-regression (single feature) & 25.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell only, due to API cost; 95\\% CI: $\\pm$6.8pp. All other methods use the full 20{,}000-sample set.}\n\\end{table}\n\nThat three structurally different classifiers achieve identical performance confirms that the discriminative signal resides in the 19 features, not the classifier architecture; a zero-shot LLM baseline (DeepSeek V3.2) reaches only 40.0\\%.\nFigure~\\ref{fig:confusion_matrix} shows d0 is near-perfectly identified in both settings; errors concentrate at the d2/d3 boundary in-distribution and spread across d1--d3 under cross-model transfer.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy reaches 66.4\\% (2.7$\\times$ chance), though d0 recall ($>$98\\%) inflates the headline; d2 recall drops to 26.8\\% (Pythia holdout), making it the most confusable class.\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7 points below cross-model transfer (66.4\\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.\nAs with cross-model transfer, d0 recall remains high ($\\geq$89.5\\%) across all holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\\% to 19\\%, confirming mid-chain depths as the primary confusion locus across both transfer axes.\n\n\\paragraph{Temperature-induced boundary inversion.}\nTraining on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the d1/d2 decision boundary \\emph{inverts} (Pythia retains a degraded 0.576), consistent with the accelerated convergence in \\S\\ref{sec:atlas:trajectories}.\nZ-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.\n\n\\subsection{End-to-End Learning}\n\\label{sec:gen:dcol}\n\nWe finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\nBoth converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias.\nBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).\nProbing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\\rho{=}{-}0.484$, RoBERTa $\\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning.\n\nDCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.\nThat all end-to-end approaches---standard finetuning (58--60\\%), DCOL (64.5\\%)---substantially underperform feature-based methods (78.2\\%) confirms that depth estimation requires explicit distributional statistics rather than learned text representations.",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 7,
+                  "newStart": 1,
+                  "newLines": 7,
+                  "lines": [
+                    " \\section{Generalization and Robustness}",
+                    " \\label{sec:generalization}",
+                    " ",
+                    "-We test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).",
+                    "+We test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:e2e}).",
+                    " ",
+                    " \\subsection{Baseline Comparison}",
+                    " \\label{sec:gen:baselines}"
+                  ]
+                },
+                {
+                  "oldStart": 98,
+                  "oldLines": 7,
+                  "newStart": 98,
+                  "newLines": 7,
+                  "lines": [
+                    " Z-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.",
+                    " ",
+                    " \\subsection{End-to-End Learning}",
+                    "-\\label{sec:gen:dcol}",
+                    "+\\label{sec:gen:e2e}",
+                    " ",
+                    " We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.",
+                    " Both converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": true
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N5CdrSfY9SrJVEVSVDsebV",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+                "old_string": "sec:gen:dcol",
+                "new_string": "sec:gen:e2e"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "24f5eb8d-3ac6-4b60-9b6a-70e82fbf7428",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011yi7YVquiVvVW8F6UhDysu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 204,
+                "cache_read_input_tokens": 35013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 204
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:15:32.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N5CdrSfY9SrJVEVSVDsebV",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "2afab521-f008-48a4-ab5e-f9fe73caffa2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+              "oldString": "sec:gen:dcol",
+              "newString": "sec:gen:e2e",
+              "originalFile": "\\section{Additional Results}\n\\label{app:additional}\n\n\\subsection{Top-$k$ Feature Trajectories}\n\\label{app:topk_trajectories}\n\nFigure~\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\tau{=}0.9$) sampling.\nTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\S\\ref{sec:atlas:trajectories}.\nConcretely, the d0$\\to$d1 drop in \\textsc{p90\\_ppl} under top-$k$ is 78\\% (vs.\\ 87\\% for nucleus), and the d2$\\to$d3 reduction is 31\\% (vs.\\ 39\\% for nucleus).\nDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\n\n\\subsection{Permutation Importance}\n\\label{app:permutation}\n\nTo verify that the Gini-based importance rankings in \\S\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\nResults are highly consistent: \\textsc{p90\\_ppl} ranks in the top 2 in 9/9 cells under both measures, and \\textsc{var\\_surprisal} in 8/9 (vs.\\ 7/9 for Gini, with the additional cell being OLMo top-$k$).\nThe mean Spearman rank correlation between Gini and permutation importance vectors across all 9 cells is $\\rho{=}0.94$, confirming that the reported feature universality is robust to the choice of importance measure.\n\n\\subsection{DCOL Iteration Details}\n\\label{app:dcol_iterations}\n\nTable~\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\nDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\\%.}\n\\label{tab:dcol_iterations}\n\\begin{tabular}{llll}\n\\toprule\nVer. & Backbone & Config & Outcome \\\\\n\\midrule\nv1 & DeBERTa-large & Full FT, margin\\_lr$\\,{=}\\,10^{-3}$ & Embed.\\ collapse (acc 31.5\\%) \\\\\nv2 & DeBERTa-large & Full FT, margin\\_lr$\\,{=}\\,10^{-4}$ & OOM (GPU contention) \\\\\nv3 & DeBERTa-large & Full FT, margin\\_lr$\\,{=}\\,10^{-4}$ & Forgetting $+$ OOM \\\\\nv4 & DeBERTa-large & LoRA $r{=}16$, m\\_lr$\\,{=}\\,10^{-3}$ & Embed.\\ collapse (v1 repeat) \\\\\nv5 & DeBERTa-large & LoRA $r{=}16$, m\\_lr$\\,{=}\\,10^{-4}$ & NaN gradient explosion \\\\\nv6 & RoBERTa-large & Full FT, grad clip 1.0 & Stable; acc 64.5\\% ($-$13.7pp) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Overlap Analysis}\n\\label{app:feature_overlap}\n\nWe probe whether end-to-end PLM representations capture the same depth signals as our statistical features.\nDeBERTa attention importance and RF permutation importance exhibit a significant negative correlation (Spearman $\\rho{=}{-}0.484$, $p{=}0.036$; top-5 Jaccard overlap$\\,{=}\\,0$).\nPLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing.\nThis confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:dcol}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 47,
+                  "oldLines": 4,
+                  "newStart": 47,
+                  "newLines": 4,
+                  "lines": [
+                    " We probe whether end-to-end PLM representations capture the same depth signals as our statistical features.",
+                    " DeBERTa attention importance and RF permutation importance exhibit a significant negative correlation (Spearman $\\rho{=}{-}0.484$, $p{=}0.036$; top-5 Jaccard overlap$\\,{=}\\,0$).",
+                    " PLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing.",
+                    "-This confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:dcol}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers.",
+                    "+This confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{sec:gen:e2e}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the statistical features capture distributional tail properties that constitute the dominant depth markers."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修复结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "52b51613-e87a-41b7-80c4-30f0e19919da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NsNdnEZpYsh4xRnZMW6Q16",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1606,
+                "cache_read_input_tokens": 35217,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1606
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MwDK2Qi9nKZxsFH2xrtHHz",
+              "name": "Grep",
+              "input": {
+                "pattern": "cao2020_coral|he2021_deberta_v3|liu2019_roberta|sec:gen:dcol",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "09b6501f-145a-44e9-b2cd-fc6ad755a1f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NsNdnEZpYsh4xRnZMW6Q16",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1606,
+                "cache_read_input_tokens": 35217,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1606
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:15:35.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MwDK2Qi9nKZxsFH2xrtHHz",
+              "type": "tool_result",
+              "content": "103:We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "af3ee659-aeeb-4b93-b2d2-87f9150c9e48",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "103:We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.",
+              "numLines": 1
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FXPxBup438bjU9mrqVRp9R",
+              "name": "Grep",
+              "input": {
+                "pattern": "sec:gen:dcol",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "31b477ea-e306-403a-9fec-edbc0433b180",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NsNdnEZpYsh4xRnZMW6Q16",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1606,
+                "cache_read_input_tokens": 35217,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1606
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:15:36.772Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FXPxBup438bjU9mrqVRp9R",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "bc32d43f-e9db-4cfb-b4a5-642ed71330dd",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RAKwUPMJXoYqt3kZ7EuLxJ",
+              "name": "Grep",
+              "input": {
+                "pattern": "coral2020|cloc2025|he2021_deberta_v3|liu2019_roberta",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "0d0beccd-6096-47b2-92d7-17c5e97c8e99",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NsNdnEZpYsh4xRnZMW6Q16",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1606,
+                "cache_read_input_tokens": 35217,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1606
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:15:39.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RAKwUPMJXoYqt3kZ7EuLxJ",
+              "type": "tool_result",
+              "content": "10:Three feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\n103:We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\n108:DCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "352b09b6-3aba-4774-905d-b4610a6bfb70",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "10:Three feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\n103:We finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\n108:DCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.",
+              "numLines": 3
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证第一条 grep 结果说明 `he2021_deberta_v3` 和 `liu2019_roberta` 现在出现在 generalization.tex 是因为我们添加了引用——这不是残留的错误键名，而是正确的 `\\cite{}` 引用。让我重新检查验证条件。\n\n验证结果中 `he2021_deberta_v3` 和 `liu2019_roberta` 出现是作为 `\\cite{}` 引用（正确），不是任务清单中说的\"错误键名\"。原始清单中的错误键名（`cao2020_coral`）和标签（`sec:gen:dcol`）均已清除。\n\n验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `cao2020_coral` 残留 | 无（原本就不存在） |\n| `sec:gen:dcol` 残留 | 无（3处全部替换为 `sec:gen:e2e`） |\n| `\\cite{coral2020}` 存在 | L10 |\n| `\\cite{cloc2025}` 存在 | L108 |\n| `\\cite{he2021_deberta_v3}` 添加 | L103 |\n| `\\cite{liu2019_roberta}` 添加 | L103 |\n| bib 条目添加 | DeBERTa-v3 + RoBERTa |\n| RoBERTa ρ 数据 | L106 已含两个 backbone（原本就有） |\n| section_appendix.tex 标签更新 | `\\ref{sec:gen:e2e}` |\n\n修改涉及 3 个文件：`generalization.tex`（引用+标签）、`section_appendix.tex`（标签）、`references.bib`（2条新条目）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "uuid": "7e10fef6-6511-496f-b124-4eab1067cb76",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G7sCXYPqLKcaHmEfmDhVoA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 36823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 999
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证第一条 grep 结果说明 `he2021_deberta_v3` 和 `liu2019_roberta` 现在出现在 generalization.tex 是因为我们添加了引用——这不是残留的错误键名，而是正确的 `\\cite{}` 引用。让我重新检查验证条件。\n\n验证结果中 `he2021_deberta_v3` 和 `liu2019_roberta` 出现是作为 `\\cite{}` 引用（正确），不是任务清单中说的\"错误键名\"。原始清单中的错误键名（`cao2020_coral`）和标签（`sec:gen:dcol`）均已清除。\n\n验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `cao2020_coral` 残留 | 无（原本就不存在） |\n| `sec:gen:dcol` 残留 | 无（3处全部替换为 `sec:gen:e2e`） |\n| `\\cite{coral2020}` 存在 | L10 |\n| `\\cite{cloc2025}` 存在 | L108 |\n| `\\cite{he2021_deberta_v3}` 添加 | L103 |\n| `\\cite{liu2019_roberta}` 添加 | L103 |\n| bib 条目添加 | DeBERTa-v3 + RoBERTa |\n| RoBERTa ρ 数据 | L106 已含两个 backbone（原本就有） |\n| section_appendix.tex 标签更新 | `\\ref{sec:gen:e2e}` |\n\n修改涉及 3 个文件：`generalization.tex`（引用+标签）、`section_appendix.tex`（标签）、`references.bib`（2条新条目）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 110879,
+            "duration_api_ms": 111884,
+            "num_turns": 19,
+            "stop_reason": "end_turn",
+            "session_id": "92b85bc2-1337-4f44-a253-ff6cadfee778",
+            "total_cost_usd": 0.44866575,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 25981,
+              "cache_read_input_tokens": 204805,
+              "output_tokens": 7273,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25981,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 517,
+                  "cache_read_input_tokens": 36823,
+                  "cache_creation_input_tokens": 999,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 999
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1932,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002012,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 7273,
+                "cacheReadInputTokens": 204805,
+                "cacheCreationInputTokens": 25981,
+                "webSearchRequests": 0,
+                "costUSD": 0.44665374999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c0500c99-65bd-4108-a4c3-2c5a57917f42"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ]
+}

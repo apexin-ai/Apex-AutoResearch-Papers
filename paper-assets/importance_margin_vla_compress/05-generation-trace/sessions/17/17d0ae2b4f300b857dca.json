@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17d0ae2b4f300b857dca",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "paper figure5 entropy comparison",
+  "task_key": "worker_paper_figure5_entropy_comparison_20260518T070809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure5_entropy_comparison_20260518T070809_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "98cc78815aae7d6740035451d0b96b50a2fdd85c1db385108c62c2131e5c366e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已生成，20KB，`entropy_comparison.pdf`。图表清晰展示了两个模型的 entropy 差异：SmolVLA 全层高且平坦（~0.94），OpenVLA 从浅层急剧下降到深层（~0.48-0.57）。`gen_figures.py` 已更新，`fig5_entropy_comparison()` 数据 hardcode 在函数内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "31eceb079f99c6e838d9",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code zeroshot qwen7b 500 001",
+  "task_key": "worker_code_zeroshot_qwen7b_500_001_20260516T013534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_zeroshot_qwen7b_500_001_20260516T013534_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "a7f50dbf0452a4f9d0dcb008b51d7f86a24617a8a2598c8001548128c2e0d1cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的 Monitor 超时通知，可以忽略——实验已经完成，registry 和 artifact 都已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

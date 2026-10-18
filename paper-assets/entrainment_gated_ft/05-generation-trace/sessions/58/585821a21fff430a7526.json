@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "585821a21fff430a7526",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix e4 clean restart",
+  "task_key": "worker_fix_e4-clean-restart_20260522T113236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_e4-clean-restart_20260522T113236_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "e77e09b8dd64eb4c5b3761da7788f8bc3a20ec674e52413278b48573b0551402"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **进程已启动**：PID=**844923**，seed1 正在评估中\n- **GPU 占用**：1846 MiB（cuda:0）\n- **Cron 已注册**：job `7609a3b9`，每 10 分钟检查 `eval_all.log` 和 GPU 状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

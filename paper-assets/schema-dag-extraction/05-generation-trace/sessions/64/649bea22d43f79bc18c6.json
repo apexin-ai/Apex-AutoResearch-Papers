@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "649bea22d43f79bc18c6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "prep supplementary tex",
+  "task_key": "worker_prep_supplementary-tex_20260517T003241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_supplementary-tex_20260517T003241_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "5634c59bf64d32901eaff7ffe2c27aa0302918415edacb14f35da4088335e5ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。结果：\n\n- **PDF 生成成功**：`supplementary.pdf`，7 页\n- **无编译错误**\n- **Undefined references**：存在指向 main.tex 正文中定义的 `\\label`（如 `sec:model`, `sec:count_curves`, `sec:bcs_controlled` 等）的交叉引用 warning。这是预期行为，因为这些 label 定义在主文档中，supplementary 作为独立文档无法解析它们。同理有几个 citation warning（`fewnerd-2021` 等来自 `prompt_appendix.tex` 中引用但 `references.bib` 中可能缺少的条目）。\n- **所有 appendix 内 `\\label{}` 均保留**，内部交叉引用正常工作\n- **main.tex 未修改**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

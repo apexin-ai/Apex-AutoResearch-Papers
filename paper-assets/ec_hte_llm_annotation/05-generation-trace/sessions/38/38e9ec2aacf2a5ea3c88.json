@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "38e9ec2aacf2a5ea3c88",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260521T050131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260521T050131_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "654d689d0651bf276945d91c19f94c5fae56fc6e45324b1ceb8fb4e3e7947899"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `docs/paper/method.tex`. The section covers all five content blocks within ~700 words:\n\n- **Stage 1** (~200w): Dirichlet-Multinomial HB model with Gamma(2,1) hyperprior, Gibbs sampler specs, convergence diagnostics, and the n_expert/K ≥ 25 boundary condition\n- **Stage 2** (~150w): Per-subgroup CM inversion with explicit invertibility assumption, κ > 100 singularity guard with global fallback, and contrast to global correction via Proposition 1\n- **Stage 3** (~130w): CausalForestDML with honest splitting, plug-in SE propagation formula, and explicit statement that CM estimation uncertainty is not propagated (valid at n_expert ≥ 100)\n- **Diagnostic** (~80w): Δπ×Δτ product as practical corollary, pilot sample requirements, AUC = 0.833\n- **Composition** (~90w): EC-HTE + PPCI complementarity, bias reduction from 0.179 to <0.01\n\nAll three boundary conditions are stated. Notation matches theory.tex (δ_s, Δτ, π̄, C_s, κ, n_expert). No em-dashes, no -ing phrase endings, no AI style markers."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

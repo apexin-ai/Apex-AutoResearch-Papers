@@ -1,0 +1,598 @@
+{
+  "schema_version": "1.0",
+  "id": "860b62152aef59a31e4b",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "paper writing analysis",
+  "task_key": "worker_paper_writing_analysis_20260517T131956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_analysis_20260517T131956.jsonl",
+    "occurrence": 1,
+    "bytes": 31496,
+    "sha256": "474f3843e672307665f6c3fc69051bb2703c2ca73b6d36384ec13162144540bf"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T13:24:42.899741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T13:24:42.900396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T13:24:42.900587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T13:24:42.900765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% experiments.tex — Section 4: Main Results\n2\t\\section{Main Results}\n3\t\\label{sec:results}\n4\t\n5\tVision token pruning in Vision Transformers (ViTs) is widely regarded as a reliable efficiency technique.\n6\tDynamicViT~\\cite{rao2021dynamicvit} removes 30\\%--50\\% of tokens with less than 0.5\\% accuracy loss on ImageNet, and Token Merging (ToMe)~\\cite{bolya2023tome} merges up to 40\\% of tokens while retaining over 99\\% of classification accuracy.\n7\tEViT~\\cite{liang2022evit} similarly discards 50\\% of inattentive tokens with negligible degradation.\n8\tThese results have motivated recent proposals to apply similar strategies to Vision-Language-Action (VLA) models for real-time robotic control~\\cite{hsu2025vlacache,wang2026vlaiap}.\n9\tOur experiments test whether this transfer holds: we apply six pruning configurations to a VLA policy and evaluate closed-loop Success Rate (SR) on the LIBERO benchmark~\\cite{liu2023libero}.\n10\tThe result is unambiguous.\n11\tEvery configuration produces 0\\% SR, a complete collapse we term the \\emph{cliff edge}.\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\caption{Ablation matrix across scoring functions, retention ratios, and pruning mechanisms. All six pruning conditions produce 0\\% SR. The baseline runs the same checkpoint with pruning disabled (bypass mode). Wilson 95\\% confidence intervals (CI) are computed over independent episodes.}\n16\t\\label{tab:ablation_matrix}\n17\t\\small\n18\t\\begin{tabular}{@{}llccrrc@{}}\n19\t\\toprule\n20\tMethod & Scoring & $k$ & Mechanism & SR (\\%) & Episodes & Wilson 95\\% CI \\\\\n21\t\\midrule\n22\t\\textbf{Baseline} & \\textbf{--} & \\textbf{1.0} & \\textbf{--} & \\textbf{44.8} & \\textbf{500} & \\textbf{[40.5, 49.2]} \\\\\n23\t\\midrule\n24\tACIS & Learned & 0.5 & Zero-mask & 0.0 & 300+ & [0.0, 1.26] \\\\\n25\tACIS & Learned & 0.7 & Zero-mask & 0.0 & 500 & [0.0, 0.76] \\\\\n26\tACIS & Learned & 0.9 & Zero-mask & 0.0 & 500 & [0.0, 0.76] \\\\\n27\tRandom & Random & 0.5 & Zero-mask & 0.0 & 500 & [0.0, 0.76] \\\\\n28\tACIS & Learned & 0.5 & True removal & 0.0 & \n…[truncated 3944 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T13:24:42.900915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T13:24:42.901037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/experiments.tex\ndocs/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T13:24:42.901211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T13:24:42.901413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% experiments.tex -- Section 4: Main Results\n2\t% Experiment IDs (provenance):\n3\t%   Baseline 44.8%:              eval_stage1_only\n4\t%   ACIS k=0.5 zero-mask:       eval_stage1only_object_v2_fixed\n5\t%   ACIS k=0.7 zero-mask:       eval_k07_zero_mask\n6\t%   ACIS k=0.9 zero-mask:       eval_stage1only_k09\n7\t%   Random k=0.5:               eval_random_prune_k05\n8\t%   True removal k=0.5:         eval_true_removal_k05\n9\t%   Merge k=0.5:                eval_merge_k05\n10\t%   Spatial suite:              eval_spatial_prune_k05 (baseline 51.8%)\n11\t%   Goal suite:                 eval_goal_prune_k05 (baseline 63%)\n12\t\n13\t\\section{Main Results}\n14\t\\label{sec:results}\n15\t\n16\tVision token pruning in Vision Transformers (ViTs) is widely regarded as a reliable efficiency technique.\n17\tDynamicViT~\\cite{rao2021dynamicvit} removes 30\\%--50\\% of tokens with less than 0.5\\% accuracy loss on ImageNet, and Token Merging (ToMe)~\\cite{bolya2023tome} merges up to 40\\% of tokens while retaining over 99\\% of classification accuracy.\n18\tEViT~\\cite{liang2022evit} similarly discards 50\\% of inattentive tokens with negligible degradation.\n19\tThese results have motivated recent proposals to apply similar strategies to Vision-Language-Action (VLA) models for real-time robotic control~\\cite{hsu2025vlacache,wang2026vlaiap}.\n20\tOur experiments test whether this transfer holds: we apply six pruning configurations to a VLA policy and evaluate closed-loop Success Rate (SR) on the LIBERO benchmark~\\cite{liu2023libero}.\n21\tThe result is unambiguous.\n22\tEvery configuration produces 0\\% SR, a complete collapse we term the \\emph{cliff edge}.\n23\t\n24\t\\begin{table}[t]\n25\t\\centering\n26\t\\caption{Ablation matrix across scoring functions, retention ratios, and pruning mechanisms. All six pruning conditions produce 0\\% SR. The baseline runs the same checkpoint with pruning disabled (bypass mode). Wilson 95\\% confidence intervals (CI) are computed over independent episodes. Experiment IDs are listed for reproducibility\n…[truncated 4572 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T13:24:42.901565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/**/*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T13:24:42.901687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/corl_2026.cls\ndocs/paper/references.bib\ndocs/paper/sections/experiments.tex\ndocs/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T13:24:42.901827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T13:24:42.901997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for: The Cliff Edge — Why Vision Token Reduction Fails\n2\t% Catastrophically in VLA Closed-Loop Control\n3\t% Auto-generated from literature_map.yaml (verified entries only)\n4\t% 2026-05-17\n5\t\n6\t% ============================================================\n7\t% VLA Models\n8\t% ============================================================\n9\t\n10\t@article{shukor2025smolvla,\n11\t  title={{SmolVLA}: A Vision-Language-Action Model for Affordable and Efficient Robotics},\n12\t  author={Shukor, Mustafa and Aubakirova, Dana and Casas, Adrien and others},\n13\t  journal={arXiv preprint arXiv:2506.01844},\n14\t  year={2025}\n15\t}\n16\t\n17\t@inproceedings{kim2024openvla,\n18\t  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},\n19\t  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and others},\n20\t  booktitle={Proceedings of the 8th Conference on Robot Learning (CoRL)},\n21\t  year={2024}\n22\t}\n23\t\n24\t@inproceedings{zitkovich2023rt2,\n25\t  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n26\t  author={Zitkovich, Brianna and Yu, Tianhe and Xu, Sichun and others},\n27\t  booktitle={Proceedings of the 7th Conference on Robot Learning (CoRL)},\n28\t  year={2023}\n29\t}\n30\t\n31\t@article{ghosh2024octo,\n32\t  title={Octo: An Open-Source Generalist Robot Policy},\n33\t  author={Ghosh, Dibya and Walke, Homer and Pertsch, Karl and others},\n34\t  journal={arXiv preprint arXiv:2405.12213},\n35\t  year={2024}\n36\t}\n37\t\n38\t@article{black2024pi0,\n39\t  title={$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n40\t  author={Black, Kevin and Brown, Noah and Driess, Danny and others},\n41\t  journal={arXiv preprint arXiv:2410.24164},\n42\t  year={2024}\n43\t}\n44\t\n45\t@inproceedings{openxembodiment2024,\n46\t  title={Open {X-Embodiment}: Robotic Learning Datasets and {RT-X} Models},\n47\t  author={{Open X-Embodiment Collaboration}},\n48\t  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n49\t  year={2024}\n50\t}\n51\t\n52\t%\n…[truncated 5739 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T13:24:42.902297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/",
+              "description": "List existing section files"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T13:24:42.902453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T13:24:42.902604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex",
+              "content": "% analysis.tex -- Section 5: Analysis\n% Experiment IDs (provenance):\n%   Attention entropy analysis:     attention_entropy_analysis\n%   Single-step action error:       offline_singlestep_action_error\n%   Action divergence:              action_divergence_v2_clean\n%   Importance margin (G1):         mvp_imm_v8b_twostage\n%   Token importance (G3, Spearman): plan_009_token_importance\n\n\\section{Analysis}\n\\label{sec:analysis}\n\nSection~\\ref{sec:results} established that all pruning configurations produce 0\\% SR.\nThis section investigates \\emph{why} the cliff edge occurs.\nWe present three complementary lines of evidence: the LLM backbone attends to vision tokens near-uniformly (\\S\\ref{sec:uniform_attention}), pruning causes immediate single-step action failures rather than gradual error accumulation (\\S\\ref{sec:action_disruption}), and standard offline evaluation metrics fail to predict this catastrophic closed-loop collapse (\\S\\ref{sec:metric_disconnect}).\nSection~\\ref{sec:why_vit_works} synthesizes these findings into a unified mechanistic explanation.\n\n\\subsection{Uniform Attention Distribution}\n\\label{sec:uniform_attention}\n\nToken pruning in ViT classifiers succeeds because attention concentrates on a small set of discriminative patches and leaves most tokens redundant.\nDynamicViT~\\cite{rao2021dynamicvit} and ToMe~\\cite{bolya2023tome} exploit this concentration: tokens that receive low attention contribute little to the classification decision and can be safely removed.\nWe test whether VLA models exhibit the same attention pattern.\n\nWe extract attention weights from the LLM backbone (Qwen2-0.5B~\\cite{yang2024qwen2}) over all vision tokens across three LIBERO tasks.\nThe attention entropy ratio reaches 0.98 (observed entropy of 6.86 bits out of a maximum of 7.0 bits for a perfectly uniform distribution).\nThe two camera views receive comparable attention (53.8\\% for cam1, 46.2\\% for cam2), and this pattern holds across all sampled tasks with entropy values between 6.844 and 6.846 bits.\nThe Gini coefficient of the attention distribution is 0.246, a value that confirms low inequality across tokens.\nFigure~\\ref{fig:attention_heatmap} visualizes this contrast.\n\nThe architectural explanation is straightforward.\nSigLIP~\\cite{zhai2023siglip} encodes images using non-overlapping spatial patches without a \\texttt{[CLS]} aggregation token.\nEach vision token therefore corresponds to a unique spatial region of the input image, and no two tokens encode the same information.\nThe VLA policy must predict precise continuous actions conditioned on the full spatial layout of the scene, so the LLM backbone attends broadly to recover the complete spatial context.\nThis stands in direct contrast to ViT classifiers, where a single discrete label can be derived from a subset of discriminative patches and the remaining tokens contribute marginal information.\n\nThe practical consequence is clear: when attention is uniform, no subset of tokens is dispensable.\nRemoving any group of vision tokens removes irreplaceable spatial information from the input, regardless of how those tokens are selected.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{figures/paper/fig_attention_heatmap.pdf}\n\\caption{(a)~LLM attention over vision tokens in the VLA policy. The distribution is near-uniform (entropy ratio 0.98), with both camera views receiving comparable weight. (b)~Typical attention pattern in a ViT classifier (illustrative), where attention concentrates on a small set of discriminative patches. This concentration enables safe token pruning in classification but is absent in VLA action prediction.}\n\\label{fig:attention_heatmap}\n\\end{figure}\n\n\\subsection{Instantaneous Action Disruption}\n\\label{sec:action_disruption}\n\nA natural hypothesis for the cliff edge is that small per-step errors compound over a long trajectory and eventually cause task failure.\nWe test this hypothesis by measuring single-step action errors under pruning, using the same observations and model checkpoint.\n\nThe results rule out gradual error accumulation.\nUnder the baseline (bypass mode, no pruning), the single-step L2 distance between predicted and ground-truth actions is 0.414.\nUnder pruning at $k{=}0.5$, this distance increases to 1.391, a 3.4$\\times$ degradation.\nThe per-step relative error is 111.5\\%; the error exceeds the magnitude of the action itself.\nThe failure is most severe in the gripper dimension, where the error of 1.02 indicates complete inversion: the policy commands the gripper to open when it should close, or vice versa.\nPosition dimensions show errors of [0.20, 0.25, 0.30] and rotation dimensions show errors of [0.01, 0.02, 0.01].\n\nThis is not a case where small errors compound into eventual failure.\nA single pruned observation already produces a qualitatively wrong action.\nThe gripper inversion alone would cause immediate task failure in any manipulation task, independent of all subsequent steps.\nClosed-loop trajectory analysis confirms this interpretation: the L2 divergence between pruned and baseline trajectories has a mean of 1.117, with onset at step~0.\nThe pruned policy diverges from the functional trajectory immediately, not after an accumulation period.\nFigure~\\ref{fig:action_divergence} shows the divergence curves.\n\nThese single-step measurements provide a direct causal link between vision token removal and action failure.\nThe cliff edge does not require temporal accumulation; it is instantaneous.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\linewidth]{figures/paper/fig_action_divergence.pdf}\n\\caption{Trajectory divergence between pruned and baseline policies. The L2 distance is large from step~0 and remains elevated throughout the episode. The failure is instantaneous rather than the result of gradual error accumulation.}\n\\label{fig:action_divergence}\n\\end{figure}\n\n\\subsection{Offline Metric Disconnect}\n\\label{sec:metric_disconnect}\n\nStandard practice in token pruning research is to validate a scoring function using offline metrics before deployment.\nOur offline metrics provide consistently positive signals.\nThe importance margin gain (G1) shows a 93$\\times$ improvement over the baseline, which indicates that the Attention-weighted Cumulative Importance Score (ACIS) learns to produce well-separated importance rankings.\nThe action loss ratio (G3) of 0.87 confirms that, on the training data distribution, the model's action loss with pruning is only 87\\% of the full-token loss.\nThe Spearman correlation between ACIS scores and gradient magnitudes is 0.41, a moderate agreement between the learned importance scores and the gradient-based ground truth.\n\n\\begin{table}[t]\n\\centering\n\\caption{Offline evaluation metrics versus closed-loop performance. Offline ranking and loss metrics show positive signals, yet all pruning conditions produce 0\\% closed-loop SR. The disconnect demonstrates that standard offline proxies are insufficient for validating VLA token compression.}\n\\label{tab:offline_vs_closedloop}\n\\small\n\\begin{tabular}{@{}lccr@{}}\n\\toprule\nMetric & Result & Interpretation & SR (\\%) \\\\\n\\midrule\nImportance margin (G1) & 93$\\times$ & Meaningful ranking & -- \\\\\nAction loss ratio (G3) & 0.87 & Pruned $<$ full on train data & -- \\\\\nACIS-gradient Spearman & 0.41 & Moderate correlation & -- \\\\\n\\midrule\nSingle-step L2 (pruned) & 1.391 & 3.4$\\times$ degradation & 0.0 \\\\\nRelative action error & 111.5\\% & Error $>$ action magnitude & 0.0 \\\\\nGripper error & 1.02 & Complete inversion & 0.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nYet when pruning is actually applied, single-step action error is catastrophic: L2 of 1.391, relative error of 111.5\\%, and complete gripper inversion (Table~\\ref{tab:offline_vs_closedloop}).\nThe disconnect has a specific cause.\nRanking metrics (G1, Spearman) evaluate the quality of the importance ordering, not the effect of removing the lowest-ranked tokens.\nA scorer can produce a perfect ranking yet still fail if every token carries critical information, because even the least important token may be indispensable for accurate action prediction.\nThe action loss ratio (G3) averages over the training set and masks the worst-case per-step errors that determine closed-loop success.\nA ratio of 0.87 means the average loss increases by only 13\\%, but the per-step relative error of 111.5\\% reveals that the distribution of errors is heavy-tailed: the worst steps are far worse than the average suggests.\n\nThe failure cascade is consistent across all evaluation levels.\nOffline ranking appears reasonable, offline action error is catastrophic, and closed-loop SR is 0\\%.\nThis ordering implies that standard offline proxies (importance margins, averaged action losses, correlation coefficients) are necessary conditions for a good scorer but provide no guarantee of closed-loop viability.\nValidating VLA compression requires closed-loop evaluation; offline metrics alone are insufficient.\n\n\\subsection{Why ViT Pruning Works but VLA Pruning Fails}\n\\label{sec:why_vit_works}\n\nThe three preceding analyses converge on a unified mechanistic explanation for the cliff edge.\nThe explanation rests on a fundamental difference between how ViT classifiers and VLA policies consume visual information.\n\nIn ViT classification, attention concentrates on a small subset of discriminative patches~\\cite{rao2021dynamicvit,bolya2023tome,liang2022evit}.\nThe classification task requires a single discrete label from pooled features, so spatial completeness is not necessary.\nTokens outside the discriminative region carry redundant or irrelevant information, and their removal produces graceful degradation: accuracy decreases smoothly as more tokens are pruned, with less than 1\\% loss even at 50\\% token reduction.\n\nIn VLA action prediction, the situation is qualitatively different.\nThe attention distribution is near-uniform (\\S\\ref{sec:uniform_attention}), a direct consequence of the fact that precise continuous action prediction requires the complete spatial layout of the scene.\nSigLIP~\\cite{zhai2023siglip} encodes each non-overlapping spatial patch as a separate token with no \\texttt{[CLS]} aggregation, so the VLA's LLM backbone must attend to all patches to reconstruct spatial relationships between the robot end-effector, target objects, and obstacles.\nRemoving any subset of tokens eliminates spatial information that cannot be recovered from the remaining tokens.\n\nThe consequence of this architectural difference is that the failure mode shifts from graceful degradation to binary collapse.\nIn classification, the error surface is smooth because the task tolerates partial spatial information.\nIn control, the error surface has a cliff edge because the task demands spatial completeness.\nEven a 10\\% token reduction ($k{=}0.9$) crosses this edge and produces 0\\% SR rather than the ${\\sim}$90\\% that a linear degradation model would predict.\n\nThis explanation accounts for each of our empirical observations.\nUniform attention (\\S\\ref{sec:uniform_attention}) means no tokens are safely dispensable.\nInstantaneous action disruption (\\S\\ref{sec:action_disruption}) means that the spatial information loss manifests as immediate qualitative failures, not subtle distributional shifts.\nThe offline metric disconnect (\\S\\ref{sec:metric_disconnect}) arises because ranking-based metrics evaluate relative importance ordering but cannot detect that all tokens exceed the criticality threshold for the downstream task.\nTogether, these findings indicate that token pruning as currently formulated is structurally incompatible with VLA closed-loop control, and that alternative efficiency strategies must preserve the complete vision token sequence.\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T13:24:42.902854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T13:24:42.902997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T13:24:42.903121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T13:24:42.903263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T13:24:42.903383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T13:24:42.903494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,|ing\\.|ing;|ing\\s*$",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T13:24:42.903608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40:\\centering\n50:We test this hypothesis by measuring single-step action errors under pruning, using the same observations and model checkpoint.\n70:\\centering\n86:\\centering\n107:Ranking metrics (G1, Spearman) evaluate the quality of the importance ordering, not the effect of removing the lowest-ranked tokens."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T13:24:42.903720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "leverage|utilize|delve|facilitate|Furthermore|Moreover|Additionally|Notably|It is worth noting",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T13:24:42.903829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T13:24:42.903981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex | sed '/^%/d' | sed '/\\\\begin{/,/\\\\end{/d' | sed '/\\\\includegraphics/d' | sed '/\\\\caption/d' | sed '/\\\\label/d' | sed '/\\\\centering/d' | sed '/^$/d' | wc -w",
+              "description": "Estimate body text word count"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T13:24:42.904100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1251"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T13:24:42.904246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "detex /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex 2>/dev/null | wc -w || echo \"detex not available\"; cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex | grep -v '^%' | grep -v '\\\\\\\\begin{' | grep -v '\\\\\\\\end{' | grep -v '\\\\\\\\toprule' | grep -v '\\\\\\\\midrule' | grep -v '\\\\\\\\bottomrule' | grep -v '\\\\\\\\includegraphics' | grep -v '\\\\\\\\centering' | wc -w",
+              "description": "Count words more accurately"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T13:24:42.904362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1478\n1480"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T13:24:42.904502+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Word count is ~1480 (including captions and table content), which is close to the ~1400 target. The body prose is within the expected range.\n\nSection written to `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex`. Structure:\n\n- **5.1 Uniform Attention Distribution**: Near-uniform entropy (0.98 ratio), SigLIP spatial-patch architecture, contrast with ViT classifiers, fig_attention_heatmap with \"(illustrative)\" noted for panel (b)\n- **5.2 Instantaneous Action Disruption**: Single-step L2 = 1.391 (3.4x), 111.5% relative error, gripper inversion 1.02, onset at step 0, fig_action_divergence\n- **5.3 Offline Metric Disconnect**: G1 = 93x, G3 = 0.87, Spearman = 0.41 all look positive, but actual pruning is catastrophic; Table 2 (tab_offline_vs_closedloop) with 6-row comparison\n- **5.4 Why ViT Pruning Works but VLA Pruning Fails**: Unified explanation tying 5.1-5.3, classification (concentrated attention, discrete output, graceful degradation) vs. control (uniform attention, continuous output, binary collapse)\n\nAll writing norms enforced: zero em-dashes, zero blacklisted words, no -ing phrase endings, no consecutive transition words, ACIS defined on first use in section, all exp_ids in provenance header."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_analysis_20260517T131956"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ]
+}

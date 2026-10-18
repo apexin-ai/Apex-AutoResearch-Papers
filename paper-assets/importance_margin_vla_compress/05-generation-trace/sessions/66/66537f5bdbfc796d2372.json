@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "66537f5bdbfc796d2372",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy eval pi05 l2norm k07 long seed47 cqa1",
+  "task_key": "worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1_20260528T222235",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1_20260528T222235_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "54f08a2f6088edb1e7dc854f1e4ed339acb843558a1c1d232a8f0756e4a7faaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动，正在加载 π0.5 模型（从磁盘加载到 CPU，尚未传到 GPU）。\n\n**部署完成：**\n- **exp_id**: `eval_pi05_l2norm_k07_long_seed47_w41`\n- **服务器**: cqa1-33015, cuda:0\n- **tmux session**: `eval_pi05_l2norm_k07_long_seed47_w41`\n- **日志**: `~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed47_w41.log`\n- **Registry**: RUNNING，spec 已补充完整\n- **参数**: `--prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0`\n- **环境变量**: HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl (符合 C004)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

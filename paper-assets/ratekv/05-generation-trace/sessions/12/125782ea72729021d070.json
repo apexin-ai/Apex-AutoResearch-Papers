@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "125782ea72729021d070",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops codellama profiling v2",
+  "task_key": "worker_ops_codellama_profiling_v2_20260515T180914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_codellama_profiling_v2_20260515T180914_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "7770dfc59cc91937daeafabd4432e2d2547168edff25db57dee8a54823466fd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling scheduled. Current status:\n- **PID 357563** running for ~16 min\n- **Shards in temp**: 1-4 of 6 (shard 4 at 40%, ~2.10 MB/s)\n- **No incomplete/tmp files** in final directory, **no completed model weights yet** — ModelScope stages to `._____temp/` then moves on completion\n- Estimated ~90 min remaining for full download\n\nI'll check back in ~4.5 minutes and keep polling until download completes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

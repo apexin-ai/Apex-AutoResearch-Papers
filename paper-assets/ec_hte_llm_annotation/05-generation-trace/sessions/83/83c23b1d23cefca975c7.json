@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "83c23b1d23cefca975c7",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "paper r20 fixes full",
+  "task_key": "worker_paper_r20-fixes-full_20260524T120136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r20-fixes-full_20260524T120136.log",
+    "occurrence": 1,
+    "bytes": 623735,
+    "sha256": "38988fd108b984be3d6176eb6f2494436edac926e9e104ad0b12bc536a98b231"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "83c23b1d23cefca975c7-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "83c23b1d23cefca975c7-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ]
+}

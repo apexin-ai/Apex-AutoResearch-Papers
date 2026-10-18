@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6b039ae1f20ecbdbe7e5",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing ref ablation fix",
+  "task_key": "worker_writing_ref_ablation_fix_20260516T080519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_ref_ablation_fix_20260516T080519_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "17f1d7a17c189829e22ffa07c9f6501d79c49280e0ee44a842bb04067c984039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改均已生效：\n\n1. **method.tex L43**: `78.6%` → `78.5%`（四舍五入修正）\n2. **method.tex L43**: claim 弱化为 \"suggesting ... not critically dependent on the specific reference model\"，加入 robustness threshold 量化\n3. **conclusion.tex L37-38**: 删除 \"future work should validate with a truly independent reference model\" 旧句，替换为与 ablation 结果一致的表述，明确指出 scale/architecture 共性及 encoder-only/larger-scale 验证仍 open"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

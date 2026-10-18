@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "b19bf1854205a7aa4bad",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp paired constrained",
+  "task_key": "worker_code_exp_paired_constrained_20260519T195857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_paired_constrained_20260519T195857.log",
+    "occurrence": 1,
+    "bytes": 1170788,
+    "sha256": "8de85fc3707ffe091a2df1a8b5777bbfd33a7bb8049d53f112f63bcf27c53ac2"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 1,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 87,
+      "tool_result": 87,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "b19bf1854205a7aa4bad-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "b19bf1854205a7aa4bad-part-0002.json",
+          "message_count": 123
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "b19bf1854205a7aa4bad-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ]
+}

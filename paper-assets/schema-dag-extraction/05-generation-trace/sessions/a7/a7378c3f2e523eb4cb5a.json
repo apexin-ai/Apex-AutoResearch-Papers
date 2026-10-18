@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a7378c3f2e523eb4cb5a",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh exp schema intervention v2",
+  "task_key": "worker_ssh_exp_schema_intervention_v2_20260517T153900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_schema_intervention_v2_20260517T153900_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "d1b355ccc279d1698dd8919ce70b5694158424ccb91dc946567f40f074e4e7d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here's the summary of the **final, corrected** Schema Intervention results:\n\n---\n\n## Phase 3 Results (Corrected RENAME_MAP)\n\n| Group | Control | Treatment | Δ | t | p | Cohen's d |\n|-------|---------|-----------|---|---|---|-----------|\n| HIGH-BCS (n=25) | 69.3% | 60.5% | **-8.83%** | -14.61 | <0.001 | -2.92 |\n| LOW-BCS (n=25) | 90.1% | 87.1% | **-2.96%** | -5.44 | <0.001 | -1.09 |\n\n**Interaction:** Δhigh - Δlow = **-5.88pp**, t=-7.23, **p<0.001** (highly significant)\n\n**Rename count correlation:** r=-0.625, p<0.001\n\n---\n\n## Key Findings\n\n1. **Renaming hurts accuracy in both groups**, but the damage is **3x larger in high-BCS batches** (-8.83%) vs low-BCS (-2.96%).\n\n2. **Significant interaction** (p<0.001) — the first run showed no interaction (p=0.547) because the broken renamings (\"civic registration land\", \"birthplace domain\") inflated low-BCS damage equally.\n\n3. **Dose-response relationship**: more renamed types per batch → larger accuracy drop (r=-0.625). High-BCS batches have 3-4 renamed types each vs 0-2 in low-BCS.\n\n4. **Interpretation**: The LLM has deeply learned the original type names. Renaming disrupts recognition even when solo accuracy is preserved (11/12 passed). The compound effect of multiple renames in a batch creates additional confusion beyond individual type-level degradation."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

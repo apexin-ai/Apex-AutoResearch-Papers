@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Research Trace Atlas</title>
+  <link rel="stylesheet" href="viewer.css">
+  <script src="viewer.js" defer></script>
+</head>
+<body>
+  <!-- EMBEDDED_DATA -->
+  <header class="masthead">
+    <a class="brand" href="../README.md"><span class="mark">R<span>↗</span></span><span>RESEARCH<br><strong>TRACE ATLAS</strong></span></a>
+    <div class="mastnote">AUTOMATED RESEARCH / OPEN FOR INSPECTION</div>
+    <nav><a href="../paper-assets/index.html">Paper assets</a><a href="FORMAT.md">About the records ↗</a></nav>
+  </header>
+  <div id="offline-banner" class="banner" hidden>OFFLINE PREVIEW · One bounded conversation per available paper. <a href="index.html">Open the complete collection →</a></div>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="side-top"><label for="project">01 / SELECT A PAPER</label><select id="project" aria-label="Paper project"></select><h2 id="project-title"></h2><a id="paper-link" target="_blank" rel="noopener">Read the paper ↗</a></div>
+      <div class="side-controls"><label for="session-search">02 / FIND A SOURCE RECORD</label><input id="session-search" type="search" placeholder="Search task, filename, prompt…"><select id="source-kind" aria-label="Source type"><option value="conversation">Conversations</option><option value="worker">Worker execution</option><option value="result">Task results</option><option value="history">Context &amp; loop notes</option><option value="all">All source records</option></select><p id="list-count" class="muted" aria-live="polite"></p></div>
+      <div id="session-list" class="session-list"></div><button id="more-sessions" class="more" hidden>Load more records</button>
+    </aside>
+    <section class="workspace">
+      <div class="intro"><div class="eyebrow">A RECORD OF THE RESEARCH PROCESS</div><h1>From a task<br>to its recorded evidence<span>.</span></h1><p>Read the conversations, inspect the tool calls, and trace each record back to its archived source.</p></div>
+      <div id="metrics" class="metrics"></div>
+      <div id="status" class="status" role="status" aria-live="polite">Loading collection…</div>
+      <div id="empty" class="empty" hidden><span class="eyebrow">START EXPLORING</span><h2>Choose a conversation on the left.</h2><p>Each source keeps its own sequence. Select a round to inspect messages, tools, and outcomes together.</p><a id="catalog-link">View the JSON catalogue ↗</a></div>
+      <section id="reader" hidden>
+        <div class="reader-head"><div class="eyebrow" id="record-kind"></div><h2 id="session-title"></h2><p id="source-path" class="source-path"></p><div class="reader-links"><a id="json-link" target="_blank" rel="noopener">Session JSON ↗</a><a id="source-index-link">Source archive index ↗</a><button id="download-round" class="text-button">Download selected round ↓</button></div><details class="provenance"><summary>Source provenance &amp; related records</summary><div id="provenance"></div><div id="related"></div></details></div>
+        <div class="reader-controls"><div class="round-nav"><button id="prev-round" aria-label="Previous round">←</button><select id="round" aria-label="Conversation round"></select><button id="next-round" aria-label="Next round">→</button></div><select id="role-filter" aria-label="Message role"><option value="all">All messages</option><option value="user">User-role messages</option><option value="assistant">Assistant messages</option><option value="tool">Tool calls &amp; results</option><option value="other">System, logs &amp; notes</option></select><input id="message-search" type="search" placeholder="Search within this round…" aria-label="Search within selected round"></div>
+        <p id="round-description" class="round-description"></p><div id="messages" class="messages"></div><button id="more-messages" class="more" hidden>Load more messages</button>
+      </section>
+      <footer>Recorded source text is preserved in its original language. User-role entries may come from agents or the system. Missing messages and timestamps are not reconstructed. <a href="FORMAT.md">Read the format guide ↗</a></footer>
+    </section>
+  </main>
+</body>
+</html>

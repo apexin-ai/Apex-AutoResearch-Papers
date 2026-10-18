@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "155d90adeddeafd10c49",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops reanalysis batch",
+  "task_key": "worker_ops_reanalysis_batch_20260520T234525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reanalysis_batch_20260520T234525_result.json",
+    "occurrence": 1,
+    "bytes": 4931,
+    "sha256": "942dd6f0584565130b8d8eeb141f6e9e2850ebeac543cc41b9de380d6f18a368"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部完成。以下是完整报告：\n\n---\n\n## exp-011: NLI Threshold Sensitivity\n\n### Formality axis (n=100)\n```\nThreshold    N pass     Pass%      NLI mean     BS mean      PW N     PW win%    PW p\n0.70         89         89.0       0.9894       0.8799       47       72.3       0.0031\n0.75         89         89.0       0.9894       0.8799       47       72.3       0.0031\n0.80         89         89.0       0.9894       0.8799       47       72.3       0.0031\n0.85         89         89.0       0.9894       0.8799       47       72.3       0.0031\n0.90         88         88.0       0.9906       0.8798       46       73.9       0.0016\n0.95         85         85.0       0.9925       0.8794       45       73.3       0.0025\n\nNLI distribution: mean=0.8956, std=0.2792, min=0.0001, max=0.9990\nformal (n=59): NLI mean=0.8793\ncasual (n=41): NLI mean=0.9190\n```\n\n**关键发现：** 0.70→0.90 阈值范围内 pass rate 几乎不变（89%→88%），说明 NLI 分布是双峰的（大部分样本要么 >0.90 要么很低），**0.90 阈值不在 cliff edge 上**。Pairwise win rate 在所有阈值下稳定在 72-74%，p<0.005，结论 robust。\n\n### Tone axis (n=20)\n```\nThreshold    N pass     Pass%      NLI mean     BS mean\n0.70         13         65.0       0.9903       0.9399\n0.75         13         65.0       0.9903       0.9399\n...\n0.95         13         65.0       0.9903       0.9399\n\nNLI distribution: mean=0.7039, std=0.4208\nassertive (n=13): NLI mean=0.6559\nhedging (n=7): NLI mean=0.7930\n```\n\n**关键发现：** Tone 在 0.70 阈值下 pass rate = 65%，比 formality 的 89% 低很多。7/20 样本 NLI < 0.70，说明 tone counterfactual 质量显著差于 formality。Assertive 方向的 NLI 尤其低（0.6559），暗示 assertive→hedging 的 rewrite 改变了更多内容。\n\n---\n\n## exp-012: Consistency Filter Bias Analysis\n\n```\nTotal valid: 98\nConsistent:   55 (56.1%)\nInconsistent: 43 (43.9%)\n\n--- NLI Score ---\nConsistent (n=55):   mean=0.8588, std=0.3270\nInconsistent (n=43): mean=0.9383, std=0.2056\nMann-Whitney U: U=1214.0, p=0.824367\nKS test: D=0.1383, p=0.680267\n\n--- BERTScore ---\nConsistent (n=55):   mean=0.8547\nInconsistent (n=43): mean=0.8847\nMann-Whitney U: U=965.0, p=0.120293\n\n--- Response Length ---\nOriginal length — consistent: mean=560, inconsistent: mean=733\n  Mann-Whitney U: p=0.137405\n|orig-cf| length diff — consistent: mean=110, inconsistent: mean=127\n  Mann-Whitney U: p=0.714958\n\n--- Position Bias ---\nConsistent (n=55): Trial1 A rate=69.1%, Trial2 A rate=30.9%\nInconsistent (n=43): Trial1 A rate=55.8%, Trial2 A rate=55.8%\n\n--- Interpretation ---\n✓ No significant systematic bias detected in consistency filter\n```\n\n**关键发现：** \n- NLI、BERTScore、response length 在 consistent/inconsistent 组间**均无显著差异**（所有 p > 0.12）\n- 43.9% 的不一致率合理\n- Consistent 组的 position bias 符合预期（Trial1 A=69%, Trial2 A=31%，互补），inconsistent 组则 Trial1/Trial2 都是 55.8%（随机）\n- **结论：一致性过滤不引入系统性偏差**\n\n---\n\n## exp-014: Logistic Decomposition\n\n### Direction-Asymmetry Analysis\n```\nConsistent pairs: 55\n\n--- formal→casual (n=33) ---\nformal wins: 26/33 (78.8%)\n95% CI (Wilson): [0.6225, 0.8932]\nSign test p: 0.001319  ← Significant: YES\nInterpretation: formal=original → formal win = prefer ORIGINAL\n  Formality effect and original preference are CONFOUNDED\n\n--- casual→formal (n=22) ---\nformal wins: 12/22 (54.5%)\n95% CI (Wilson): [0.3466, 0.7308]\nSign test p: 0.831812  ← Significant: NO\nInterpretation: casual=original → formal win = prefer REWRITE\n  This subset cleanly isolates formality effect from original preference\n```\n\n### Logistic Regression\n```\nObservations: 196 (2 trials × 98 records)\n\nIntercept (position A bias): -0.5851\n\nformal_effect:\n  Coefficient: 0.7928 (SE=0.3117)\n  95% CI (bootstrap): [0.2029, 1.4304]\n  Odds ratio: 2.2095\n  z=2.5434, p=0.010979  ← Significant: YES\n\noriginal_effect:\n  Coefficient: 0.5958 (SE=0.3012)\n  95% CI (bootstrap): [0.0135, 1.1914]\n  Odds ratio: 1.8145\n  z=1.9781, p=0.047914  ← Significant: YES\n```\n\n**关键发现：**\n- **Formality effect**: coefficient=0.79, OR=2.21, p=0.011 — 显著。控制 original preference 后，formal 版本仍有 2.2x 的 odds 被偏好\n- **Original preference effect**: coefficient=0.60, OR=1.81, p=0.048 — 勉强显著。judges 倾向选择原始版本（OR=1.81）\n- **casual→formal 子集**（关键隔离子集）：formal win rate = 54.5%，CI 跨 50%，not significant。在这个 formality effect 与 original preference 对冲的子集中，formality bias 被 original preference 几乎完全抵消\n- **formal→casual 子集**：78.8% formal wins（p=0.001），但这里两个效应混淆叠加，不能单独归因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

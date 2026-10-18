@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0e5cbab18eb4e24180f7",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper writing analysis",
+  "task_key": "worker_paper_writing_analysis_20260521T022453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_analysis_20260521T022453_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "6c8b92f19a0b81399254a2ff62a4d4a9512999a891e16f7ecb1d935c0b2a2a6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File written at `docs/paper/sections/experiments.tex`. All 6 blocks present:\n\n1. **Statistical Framework** (Block 1): 9-cell primary family with Holm-Bonferroni, exploratory/confirmatory classification\n2. **NLI FNR Defense** (Block 2): 8.4% overall FNR (not 67%), three-part evidence (threshold sweep, consistency check, direction analysis), precision = 98.9%\n3. **NLI Threshold Sensitivity** (Block 3): 72.3--73.9% across 0.70/0.90/0.95, bimodal distribution, plateau argument\n4. **RATE Head-to-Head** (Block 4): Likert $d=0.10$, $p=0.33$ vs pairwise 69.1%, $p=0.006$; complementary framing\n5. **Power Analysis Fix** (Block 5): CI-based approach per Hoenig & Heisey, Wilson CI [55.97%, 79.72%], width 23.75pp\n6. **Consistency Filter** (Block 6): 55/98 retained, four-covariate MWU all $p>0.12$, BT planned\n\nAll numbers match registry data. No em-dashes, no AI-style markers, `\\citet`/`\\citep` used correctly, \"style-transformed\" throughout."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d80eae14a9af1e2c1fc",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh write internlm2 custom profiling",
+  "task_key": "worker_ssh_write_internlm2_custom_profiling_20260515T231058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_write_internlm2_custom_profiling_20260515T231058_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "e9aadefeff194df73a2bb96be7b7f34a56114d2932035c2e9f6a536074eafb60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。\n\n**产出总结：**\n\n1. **InternLM2 attention 结构分析：**\n   - 使用 fused `self.wqkv` 而非 `q_proj/k_proj/v_proj`\n   - 输出投影 `self.wo` 而非 `o_proj`\n   - 层路径 `model.model.layers[i].attention` 而非 `self_attn`\n   - QKV 拆分通过 `einops.rearrange` 实现：`\"b q (h gs d) -> b q h gs d\"`, `gs=2+num_kv_groups`\n   - 架构：32L × 8KV heads, GQA 4:1, head_dim=128, 共 256 个 KV heads\n\n2. **eval_ppl.py 兼容性：不兼容。** 三处硬编码不匹配（`q_proj/k_proj/v_proj`, `self_attn`, `position_embeddings`）\n\n3. **脚本 `/root/ratekv/run_internlm2_hires_profiling.py`** 已完成，包含自定义 `patch_attention_internlm2`：\n   - 正确处理 fused wqkv → einops rearrange → Q/K/V split\n   - 使用模型自带的 `rotary_emb` 做 RoPE\n   - 在 RoPE 后对目标 head 的 K/V 做 round-trip quantization\n   - forward 签名与 InternLM2Attention 完全匹配（`position_ids` 而非 `position_embeddings`）\n   - 默认 `--gpu cuda:1`\n\n4. **验证：** 语法 OK，所有 imports 正常，config 确认 32L×8KV。模型权重仍在下载中，无法 dry-run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

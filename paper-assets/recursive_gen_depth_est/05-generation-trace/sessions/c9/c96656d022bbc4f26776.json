@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c96656d022bbc4f26776",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops 14b gpu status check",
+  "task_key": "worker_ops_14b_gpu_status_check_20260519T043631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b_gpu_status_check_20260519T043631_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "97321f69bc8b7d8922c80c95f6d01f1eb776d53e355fbe271d4125c5087b3436"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### nvidia-smi\n\n| GPU | 进程 | PID | 显存 | GPU利用率 | 温度 | 功耗 |\n|-----|------|-----|------|-----------|------|------|\n| cuda:0 | python | 776616 | 32304 MiB | 100% | 57°C | 298W/600W |\n| cuda:0 | python | 776770 | 32302 MiB | | | |\n| cuda:1 | (无) | - | 0 MiB | 0% | 32°C | 36W/600W |\n\n### PID 存活状态\n\n- temp09 PID 776596 存活：**YES**（bash wrapper，子进程 python PID=776616）\n- topk50 PID 776750 存活：**YES**（bash wrapper，子进程 python PID=776770）\n\n### tmux sessions\n\n- `qwen25_14b_temp09` — created 11:00:03\n- `qwen25_14b_topk50` — created 11:00:05\n\n### 日志状态\n\n两个日志都只有 15 行，模型权重加载已完成（100%），当前处于 d0 生成阶段。生成进度未写入日志（tqdm 用 `\\r` 覆盖行，日志文件未刷新新进度）。\n\n### 关键问题：两个实验都跑在 cuda:0 上\n\ntopk50 的 bash wrapper 设置了 `CUDA_VISIBLE_DEVICES=1`，但日志头打印的是 `CUDA_VISIBLE_DEVICES=0`，nvidia-smi 也确认 PID 776770 在 GPU 0 上。**run script 内部可能覆盖了 CUDA_VISIBLE_DEVICES**，导致两个 14B 模型（共 ~64GB）挤在同一张 GPU 上，cuda:1 完全空闲。\n\n建议检查 `scripts/run_qwen25_14b_topk50.sh` 是否有硬编码 `CUDA_VISIBLE_DEVICES=0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c56fb2b192be2cc8b980",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 random k07 object seed42 v2",
+  "task_key": "worker_harvest_eval_pi05_random_k07_object_seed42_v2_20260523T225134",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_random_k07_object_seed42_v2_20260523T225134_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "7099807113333ed6db395e17db08789187cc69da65afba093164baeded396534"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不在当前 session 中（可能已在之前的 session 删除或过期），无需处理。\n\n## 结果报告\n\n**eval_pi05_random_k07_object_seed42_v2** — **FAILED（崩溃）**\n\n- **原因**：启动阶段加载 tokenizer (`google/paligemma-3b-pt-224`) 时网络错误 `httpx.ConnectError: [Errno 99] Cannot assign requested address`，评估未执行任何 task\n- **结果**：无结果产出，无 JSON 文件\n- **对比**：无法与 pre-fix 值对比（本次无数据）\n- **Registry**：已更新为 DONE/failed\n- **Log**：`/tmp/eval_pi05_random_k07_object_seed42_v2.log`\n\n这是第 2 次失败（retry_count=1，前一次被 killed）。如需重跑，建议先在 cqa1-33015 上确认网络连通性，或预先离线缓存 paligemma tokenizer 避免运行时下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

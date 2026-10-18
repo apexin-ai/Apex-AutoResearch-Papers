@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3715f7310ecaf13f6cc9",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "director / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3826,
+    "sha256": "f4a932a5dc34094adcdf8cc3a14d346a2cdd4736ca07ed6c0c29d0106907327b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-15T11:27:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-37397 的 cuda:0 和 cuda:1（2× RTX PRO 6000 96GB）\n- 模型路径统一在 `/root/autodl-tmp/.hf_cache/`，根分区空间紧张（之前 OPT-6.7B 差点撑爆磁盘）\n- Qwen2.5-7B 是唯一 Spread 模型（N=1），论文 claim 不能 overclaim 为 \"diagnostic framework\"，只能说 \"empirical decision rule\"\n- Paper 严格 8 页 EMNLP 限制，当前刚好 8 页，任何新增内容必须同步压缩其他部分\n- 用户明确指示：不因资源或时间放弃任何必要实验，GPU 不够可以申请\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397 (connect.westd.seetacloud.com)，account=root\n- 工作目录：/root/ratekv\n- Python：conda base 环境 `/root/miniconda3/bin/python`\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 已下载模型：Qwen2.5-7B, Qwen2.5-14B, Yi-1.5-9B, Llama-3.1-8B, Mistral-7B-v0.3, Gemma-2-9B, Pythia-1.4B\n- 论文本地路径：`projects/ratekv/docs/paper/`（main.tex, 31 refs in .bbl, compiles clean）\n- Paper Agent session 活跃，已接收 A+B 写作任务（等数据）\n- Review group 活跃（C群），审稿阶段进行中\n\n### 3. 📊 当前状态\n刚完成 Dream 分析（D054）+ Qwen2.5-14B Spike 确认（D055）+ KIVI baseline 审批。\n\n**Registry 关键状态：**\n- `kivi_baseline_qwen_llama` — ALLOCATED cuda:0，Agent 收到启动指令但在 RESET 前可能未执行。KIVI 脚本 `run_kivi_baseline.py` 已在服务器上，dry-run 已通过。两模型(Qwen-7B + Llama-8B) × 两位宽(2bit, 4bit)\n- `w1_qwen14b_hires_profiling` — 实验完成但 registry 可能仍标 RUNNING（Agent 被 RESET 前未确认修复）。数据：concentration=0.3312, t₁/t₅=24.35, Spike\n- `w1_pythia14b_hires_profiling` — DONE ✅\n\n**等待中：**\n- Agent RESET 后需要立即执行 KIVI（cuda:0）+ 提交 Qwen-14B constrained pipeline（cuda:1）\n- Paper Agent 等 Pythia constrained PPL + 14B constrained PPL 数据后执行 A+B 级联更新\n\n### 4. 📋 待办（条件触发式）\n- Agent RESET 完成 → 确认 KIVI 在 cuda:0 启动 + 提交 Qwen-14B constrained pipeline 审批（cuda:1）\n- KIVI 完成 → 对比表：KIVI-2bit / KIVI-4bit / uniform-4bit / constrained-MCKP on Qwen-7B。如果 constrained MCKP 优于 KIVI-4bit → 强 competitive positioning；反之需调整 framing\n- Qwen-14B constrained 完成 → 验证 Spike 预测（MCKP≈uniform）→ Paper Agent patch 14B 数据行\n- 上述两个完成后 → 启动 P1 实验：long-context eval (4K/8K) + Pythia constrained pipeline\n- P1 完成后 → P2：multi-seed Qwen-7B (3 seeds) + compounding on Gemma-2\n- 全部实验完成 → Paper Agent 最终 patch → reference audit → submit_paper_to_review (continue mode)\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 Main (ARR May 25, 距今 10 天)，审稿 R1 从 Weak Reject 2.25/5 提升中\n- **核心叙事转向（D053）**：从 \"universal catastrophe\" → \"concentration-dependent benefit\"，三档梯度（catastrophic 3.31× / moderate 1.47× / mild 1.07-1.08×）\n- **D055 关键**：Qwen-14B=Spike，N=1 Spread 不变。新叙事 \"7/7 diagnostic accuracy + scale-dependent dilution\" 比追求 N=2 更有说服力\n- **Dream 最大共识缺陷**：(1) N=1 Spread 无法改变；(2) 缺 concurrent baseline → KIVI 正在补\n- **易错点**：\n  - 不要试图把 14B 说成 \"borderline Spread\"——concentration=0.33 明确低于 0.50 阈值\n  - KIVI 对比要注明 fairness caveat（residual buffer 128 fp16 tokens + group metadata = slightly more memory）\n  - 论文 .bbl 有 31 refs，Dream worst-tier 的 \"3 refs\" 是虚假场景，已验证排除\n  - 磁盘空间紧张，不要下载新的大模型（OPT-6.7B 教训），Pythia-1.4B 替代了 OPT\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "7b8123d61e093eae5ac4",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops check second seed status",
+  "task_key": "worker_ops_check_second_seed_status_20260517T043444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_second_seed_status_20260517T043444_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "175815525650c36fc423c2b7e02a8c139f007bde5e2885fe803c5d2bde4df04b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：已完成 (completed)**\n\n`summary.json` 已生成，实验结束。完整结果：\n\n```json\n{\n  \"seed\": 43,\n  \"4class_acc\": 0.7715,\n  \"ci_95\": [0.764, 0.7815],\n  \"d1v2_auc\": 0.8531,\n  \"delta_vs_baseline\": -0.0105,\n  \"baseline_acc\": 0.782,\n  \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"var_ppl\", \"p75_ppl\"],\n  \"per_class_recall\": {\n    \"d0\": 0.99,\n    \"d1\": 0.816,\n    \"d2\": 0.586,\n    \"d3\": 0.694\n  },\n  \"fold_accuracies\": [0.77, 0.77, 0.79, 0.7675, 0.76]\n}\n```\n\n**关键数据：**\n- 4-class accuracy: **77.15%** (baseline 78.2%, delta = -1.05%)\n- 95% CI: [76.4%, 78.15%]\n- d1v2 AUC: 0.8531\n- seed 43 的结果略低于 baseline，d2 recall 偏弱 (0.586)"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "seed": 43,
+              "4class_acc": 0.7715,
+              "ci_95": [
+                0.764,
+                0.7815
+              ],
+              "d1v2_auc": 0.8531,
+              "delta_vs_baseline": -0.0105,
+              "baseline_acc": 0.782,
+              "top_features": [
+                "var_surprisal",
+                "p90_ppl",
+                "mean_ppl",
+                "var_ppl",
+                "p75_ppl"
+              ],
+              "per_class_recall": {
+                "d0": 0.99,
+                "d1": 0.816,
+                "d2": 0.586,
+                "d3": 0.694
+              },
+              "fold_accuracies": [
+                0.77,
+                0.77,
+                0.79,
+                0.7675,
+                0.76
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

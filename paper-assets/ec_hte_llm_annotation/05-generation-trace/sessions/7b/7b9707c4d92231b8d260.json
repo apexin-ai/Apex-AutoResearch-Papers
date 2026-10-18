@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "7b9707c4d92231b8d260",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code gpu speed fix",
+  "task_key": "worker_code_gpu-speed-fix_20260521T194005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-speed-fix_20260521T194005.log",
+    "occurrence": 1,
+    "bytes": 669873,
+    "sha256": "825b1a1f238080cf9cf4f904bccf36f1b9b1b9fa20905591d2feaaf1101a4852"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 1,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 169,
+      "tool_call": 114,
+      "tool_result": 114,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "7b9707c4d92231b8d260-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 400,
+      "chunks": [
+        {
+          "path": "7b9707c4d92231b8d260-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "7b9707c4d92231b8d260-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b9707c4d92231b8d260-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ]
+}

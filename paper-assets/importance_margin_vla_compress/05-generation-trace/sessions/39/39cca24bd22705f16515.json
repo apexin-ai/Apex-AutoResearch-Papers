@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "39cca24bd22705f16515",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval pi05 crossmodel fix and run",
+  "task_key": "worker_eval_pi05_crossmodel_fix_and_run_20260517T163437",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_pi05_crossmodel_fix_and_run_20260517T163437_result.json",
+    "occurrence": 1,
+    "bytes": 2348064,
+    "sha256": "5ada50e390a5c97d9adc64301a3d5f98158e6b51a79ef85a5e8e576201b80575"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "39cca24bd22705f16515-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

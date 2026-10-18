@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "729e47944ea9522e35ea",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code deploy d011 fix",
+  "task_key": "worker_code_deploy-d011-fix_20260515T181108",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_deploy-d011-fix_20260515T181108_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "9281cb7a04405ca86ff70456cffbc862b92910a593fb9ee915295f4817e3d322"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台计时器完成，评估已在之前结束。结果已在上方完整报告。\n\n核心结论：D011 修复 + 额外发现的 3 个 bug（baseline_forward 签名、缺少 preprocess_batch、connector 模块名）全部修复完成，评估结果符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

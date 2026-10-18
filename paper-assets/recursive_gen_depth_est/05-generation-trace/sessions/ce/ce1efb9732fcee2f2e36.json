@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "ce1efb9732fcee2f2e36",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "exp proto full rerun westd cuda1",
+  "task_key": "worker_exp_proto_full_rerun_westd_cuda1_20260517T182509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_proto_full_rerun_westd_cuda1_20260517T182509.log",
+    "occurrence": 1,
+    "bytes": 543687,
+    "sha256": "36a2807627bf4db6d921e09aa770945237380550f61f1ffa99d866d45d682847"
+  },
+  "statistics": {
+    "messages": 363,
+    "user_turns": 0,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 148,
+      "tool_result": 148,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 363,
+      "chunks": [
+        {
+          "path": "ce1efb9732fcee2f2e36-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce1efb9732fcee2f2e36-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce1efb9732fcee2f2e36-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ]
+}

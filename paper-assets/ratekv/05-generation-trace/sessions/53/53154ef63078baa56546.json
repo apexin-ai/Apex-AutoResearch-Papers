@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "53154ef63078baa56546",
+  "project": "ratekv",
+  "kind": "conversation",
+  "title": "exp w9 compounding scaling",
+  "task_key": "worker_exp_w9_compounding_scaling_20260515T043948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_w9_compounding_scaling_20260515T043948.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "faca8d919de95ccec6f5ddff9e569c58d6eb9c57d43edce400945098e915ca67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:39:55.328940+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 16, 9am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_w9_compounding_scaling_20260515T043948"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

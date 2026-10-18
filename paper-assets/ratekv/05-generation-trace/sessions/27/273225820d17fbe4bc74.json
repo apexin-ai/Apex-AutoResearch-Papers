@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "273225820d17fbe4bc74",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "figure heatmap hires regen",
+  "task_key": "worker_figure_heatmap_hires_regen_20260514T215716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_heatmap_hires_regen_20260514T215716_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "db621775defec898f763437575e4232918e258d85e133ae92b2851744917181c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完成。\n\n**验证结果：**\n- Llama L2H5=15.3 是最亮 cell ✓\n- Qwen L0 区域（L0H0=6.7）最亮 ✓\n- Yi-1.5 L4H3=13.1 标注 ✓\n- 维度：Gemma-2 42×8, Llama 32×8, Mistral 32×8, Qwen 28×4, Yi-1.5 48×4 ✓\n- Gemma-2 标 `*` 注明使用 standard profiling ✓\n\n**数据源：**\n| 模型 | 文件 | 类型 |\n|------|------|------|\n| Qwen2.5-7B | `hires_profiles.json` | hires float32 |\n| Llama-3.1-8B | `llama_hires_bf16_2bitonly_profiles.json` | hires bf16 |\n| Yi-1.5-9B | `yi15_hires_bf16_2bitonly_profiles.json` | hires bf16 |\n| Mistral-7B-v0.3 | `mistral_ppl_profiles_hires.json` | hires |\n| Gemma-2-9B | `gemma2_profiling_results.json` | standard* |\n\n文件已保存至论文目录和 artifacts。注意 Yi-1.5 实际维度是 48×4（非任务预期的 48×1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

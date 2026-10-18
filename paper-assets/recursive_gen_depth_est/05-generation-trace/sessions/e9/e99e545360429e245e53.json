@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e99e545360429e245e53",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "check qwen25 7b selfref 001 status v2",
+  "task_key": "worker_check_qwen25_7b_selfref_001_status_v2_20260522T181713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen25_7b_selfref_001_status_v2_20260522T181713_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "ff605d8652dfde24209f9cbaa6beba8cc1a38b7923239d3e55bf7c9e84785e77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告：qwen25_7b_selfref_001\n\n### 进程状态：**运行中**\n\n- PID 825150，GPU 0，17.7GB 显存占用，GPU 利用率 80%\n\n### 当前 Phase 和进度\n\n| Phase | 状态 | 详情 |\n|-------|------|------|\n| Phase 2: Generate d0 | ✅ 完成 | 5000/5000 samples → `depth_0.jsonl` (7.7MB) |\n| Phase 3.1a: LoRA finetune d0 | ✅ 完成 | 3 epochs, 939 steps, loss=0.6937, runtime=1249s (~21min) |\n| Phase 3.1b: Generate d1 | 🔄 **进行中** | **3975/5000 samples** (79.5%) → `depth_1.jsonl` (7.8MB, 仍在增长) |\n| Phase 3.2a: LoRA finetune d1 | ⏳ 待执行 | |\n| Phase 3.2b: Generate d2 | ⏳ 待执行 | |\n| Phase 3.3a: LoRA finetune d2 | ⏳ 待执行 | |\n| Phase 3.3b: Generate d3 | ⏳ 待执行 | |\n| Phase 4: Feature extraction | ⏳ 待执行 | |\n| Phase 5: Classification | ⏳ 待执行 | |\n\n### Checkpoint\n\n- `lora_depth_0/` 已保存（d0 LoRA adapter）\n\n### 预估剩余时间\n\n- d1 生成剩余 ~1025 samples（~20%），按当前速度约 10-15 分钟完成\n- 后续还需 3 轮 finetune+generate (d1→d2, d2→d3) + feature extraction + classification\n- 每轮 finetune ~21min + generate ~60min，剩余约 **3.5-4.5 小时**完成全部流程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

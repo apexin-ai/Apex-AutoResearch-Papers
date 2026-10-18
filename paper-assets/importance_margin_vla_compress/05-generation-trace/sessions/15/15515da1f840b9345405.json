@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "15515da1f840b9345405",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy smolvla cqa1 gpu0",
+  "task_key": "worker_deploy_smolvla-cqa1-gpu0_20260521T155507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-cqa1-gpu0_20260521T155507_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "5425f1cdb5cbc1e6bcf512de07b02bad1384243fc0562f22fafd554c42adfc98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "k=0.9 已 RUNNING。k=0.7 保持 ALLOCATED（等 k=0.9 完成后自动启动）。\n\n## GPU0 部署完成\n\n**tmux session**: `sweep_gpu0`\n**服务器**: cqa1-33015, GPU0\n**串行队列**:\n1. `eval_smolvla_official_l2norm_k090_object_seed42` — **RUNNING**，已在加载 Task 0\n2. `eval_smolvla_official_l2norm_k070_object_seed42` — **ALLOCATED**，排在 k=0.9 后\n\n**GPU 状态**: GPU0 显存 2182 MiB, 利用率 24%（正在启动中）\n\n**GPU1 队列**: sweep_gpu1 仍在等 baseline 完成，L2norm k=0.9/0.7 还在其队列中。由于 k=0.95 sanity check 大概率 0% SR，这些 config 会很快结束，重复跑的代价不大，不修改 GPU1 队列。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5b6642bf0db54f105cd8",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval pi05 random k07 long seed44 strict w38",
+  "task_key": "worker_diagnose_eval_pi05_random_k07_long_seed44_strict_w38_20260528T003051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_pi05_random_k07_long_seed44_strict_w38_20260528T003051_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "0674c3445c947b4f8d8bc14bba2a87d97ed7ac969d34fe579dd9a6c4fa3628c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**判定：SUCCESS**\n\n- **SR = 65.6%**（328/500），10 个任务全部完成\n- 三 seed 汇总：s42=66.0%, s43=64.4%, s44=65.6% → mean=65.3%±0.7pp\n- 各任务 SR：T0=88%, T1=70%, T2=74%, T3=76%, T4=74%, T5=44%, T6=64%, T7=74%, T8=16%, T9=76%\n- Registry 已更新为 DONE/success，cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

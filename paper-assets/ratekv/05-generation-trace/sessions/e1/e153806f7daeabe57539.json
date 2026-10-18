@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e153806f7daeabe57539",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code qwen hires constrained mckp",
+  "task_key": "worker_code_qwen_hires_constrained_mckp_20260514T194934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_hires_constrained_mckp_20260514T194934_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "8c2e883bc5ffc6afa1e89765b665a64660796fbc19bdbf25c1a3597f481f549f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job completed successfully. Results:\n\n| Method | WikiText-2 PPL | Delta vs Uniform |\n|---|---|---|\n| **Baseline (bf16)** | 9.8106 | — |\n| **Constrained MCKP (k=8)** | 10.8909 | **+4.5575** |\n| **Uniform 4-bit** | 15.4484 | — |\n\nKey metrics:\n- **MCKP improvement over uniform**: +4.5575 PPL (**80.8%** gap recovery)\n- **Bit distribution**: 8-bit: 4 (Layer 0), 2-bit: 8, 4-bit: 100\n- **Compression ratio**: 4x (memory ratio 0.25)\n- **Top-5% concentration**: 0.4233\n- Layer 0 heads all assigned 8-bit (l0_exclude_2bit=True), 2-bit heads spread across layers 1, 2, 11, 12, 13, 14, 15, 20\n\nResults saved to `/root/ratekv/qwen_hires_constrained_results.json`. The float32 hires profiling data produces a strong result — 80.8% gap recovery vs uniform is substantially better than the previous bf16 data's improvement, confirming the value of higher-precision profiling."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

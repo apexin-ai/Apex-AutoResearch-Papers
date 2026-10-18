@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "c8bd6932b043dc329b39",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval pi05 crossmodel pruning",
+  "task_key": "worker_eval_pi05_crossmodel_pruning_20260517T145858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_pi05_crossmodel_pruning_20260517T145858.log",
+    "occurrence": 1,
+    "bytes": 3390316,
+    "sha256": "2e1a0398d3cdd5c16a2c96d3dbf76df6fd0907600f37cf145a052b6f49317a46"
+  },
+  "statistics": {
+    "messages": 1495,
+    "user_turns": 2,
+    "tool_calls": 605,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 2,
+      "assistant": 272,
+      "tool_call": 605,
+      "tool_result": 605,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 367,
+      "chunks": [
+        {
+          "path": "c8bd6932b043dc329b39-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 439,
+      "chunks": [
+        {
+          "path": "c8bd6932b043dc329b39-part-0003.json",
+          "message_count": 173
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0005.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 689,
+      "chunks": [
+        {
+          "path": "c8bd6932b043dc329b39-part-0005.json",
+          "message_count": 94
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8bd6932b043dc329b39-part-0009.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ]
+}

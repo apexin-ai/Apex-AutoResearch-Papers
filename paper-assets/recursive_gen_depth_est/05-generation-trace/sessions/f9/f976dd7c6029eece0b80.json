@@ -1,0 +1,1513 @@
+{
+  "schema_version": "1.0",
+  "id": "f976dd7c6029eece0b80",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "experiment depth extension binary pairwise 002",
+  "task_key": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_experiment_depth_extension_binary_pairwise_002_20260515T060515.jsonl",
+    "occurrence": 1,
+    "bytes": 86854,
+    "sha256": "5690a8be74be65e73e56d006d3f2d3c59bb189beff62340c43ca99b6f8ff25e2"
+  },
+  "statistics": {
+    "messages": 75,
+    "user_turns": 0,
+    "tool_calls": 37,
+    "roles": {
+      "tool_call": 37,
+      "tool_result": 37,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T06:14:40.576809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/src/binary_pairwise_eval.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T06:14:40.577296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Binary pairwise RF evaluation for d3v4 and d4v5.\n2\t# Dedicated binary classifiers to replace 6-class pairwise AUC\n3\t# (which suffers from decision boundary dilution).\n4\t# Also runs d1v2 and d2v3 as sanity checks (should match 4-class pipeline).\n5\t\n6\timport json, sys\n7\timport numpy as np\n8\tfrom sklearn.ensemble import RandomForestClassifier\n9\tfrom sklearn.model_selection import train_test_split\n10\tfrom sklearn.metrics import roc_auc_score, accuracy_score, precision_score, recall_score\n11\tfrom pathlib import Path\n12\t\n13\tBASE = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\n14\t\n15\tFEATURE_COLS = [\n16\t    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n17\t    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n18\t    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n19\t    \"type_token_ratio\", \"hapax_ratio\",\n20\t    \"bigram_entropy\", \"trigram_entropy\",\n21\t    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n22\t]\n23\t\n24\t\n25\tdef load_features(path):\n26\t    X, y = [], []\n27\t    with open(path) as f:\n28\t        for line in f:\n29\t            rec = json.loads(line)\n30\t            feats = [rec[c] for c in FEATURE_COLS]\n31\t            if not any(np.isnan(feats) | np.isinf(feats)):\n32\t                X.append(feats)\n33\t                y.append(rec[\"depth\"])\n34\t    return np.array(X), np.array(y)\n35\t\n36\t\n37\tdef find_and_load_all_features():\n38\t    \"\"\"Search for features files covering depths 0-5.\"\"\"\n39\t    candidates = [\n40\t        BASE / \"results\" / \"depth_extension\" / \"features_all.jsonl\",\n41\t        BASE / \"results\" / \"depth_extension\" / \"features_6class.jsonl\",\n42\t        BASE / \"data\" / \"features_all_6class.jsonl\",\n43\t    ]\n44\t    for c in candidates:\n45\t        if c.exists():\n46\t            print(f\"Found combined features: {c}\")\n47\t            return load_features(c)\n48\t\n49\t    # Fallback: combine original d0-d3 + extension d4-d5\n50\t    print(\"No combined file found, assembling from individual sources...\")\n51\t    X_all, y_all = [], []\n52\t\n53\t    # d0-d3 from or\n…[truncated 5522 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T06:14:40.577555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T06:14:40.577722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T06:14:40.577915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport base64, os\ncode = base64.b64decode('IyBCaW5hcnkgcGFpcndpc2UgUkYgZXZhbHVhdGlvbiBmb3IgZDN2NCBhbmQgZDR2NS4KIyBEZWRpY2F0ZWQgYmluYXJ5IGNsYXNzaWZpZXJzIHRvIHJlcGxhY2UgNi1jbGFzcyBwYWlyd2lzZSBBVUMKIyAod2hpY2ggc3VmZmVycyBmcm9tIGRlY2lzaW9uIGJvdW5kYXJ5IGRpbHV0aW9uKS4KIyBBbHNvIHJ1bnMgZDF2MiBhbmQgZDJ2MyBhcyBzYW5pdHkgY2hlY2tzIChzaG91bGQgbWF0Y2ggNC1jbGFzcyBwaXBlbGluZSkuCgppbXBvcnQganNvbiwgc3lzCmltcG9ydCBudW1weSBhcyBucApmcm9tIHNrbGVhcm4uZW5zZW1ibGUgaW1wb3J0IFJhbmRvbUZvcmVzdENsYXNzaWZpZXIKZnJvbSBza2xlYXJuLm1vZGVsX3NlbGVjdGlvbiBpbXBvcnQgdHJhaW5fdGVzdF9zcGxpdApmcm9tIHNrbGVhcm4ubWV0cmljcyBpbXBvcnQgcm9jX2F1Y19zY29yZSwgYWNjdXJhY3lfc2NvcmUsIHByZWNpc2lvbl9zY29yZSwgcmVjYWxsX3Njb3JlCmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKQkFTRSA9IFBhdGgoIi9yb290L2F1dG9kbC10bXAvcmVjdXJzaXZlX2dlbl9kZXB0aF9lc3QiKQoKRkVBVFVSRV9DT0xTID0gWwogICAgIm1lYW5fcHBsIiwgInZhcl9wcGwiLCAic2tld25lc3NfcHBsIiwgImt1cnRvc2lzX3BwbCIsCiAgICAicDEwX3BwbCIsICJwMjVfcHBsIiwgInA1MF9wcGwiLCAicDc1X3BwbCIsICJwOTBfcHBsIiwKICAgICJtZWFuX3N1cnByaXNhbCIsICJ2YXJfc3VycHJpc2FsIiwgImVudHJvcHlfb2Zfc3VycHJpc2FsIiwKICAgICJ0eXBlX3Rva2VuX3JhdGlvIiwgImhhcGF4X3JhdGlvIiwKICAgICJiaWdyYW1fZW50cm9weSIsICJ0cmlncmFtX2VudHJvcHkiLAogICAgInJlcF8yZ3JhbSIsICJyZXBfM2dyYW0iLCAicmVwXzRncmFtIiwKXQoKCmRlZiBsb2FkX2ZlYXR1cmVzKHBhdGgpOgogICAgWCwgeSA9IFtdLCBbXQogICAgd2l0aCBvcGVuKHBhdGgpIGFzIGY6CiAgICAgICAgZm9yIGxpbmUgaW4gZjoKICAgICAgICAgICAgcmVjID0ganNvbi5sb2FkcyhsaW5lKQogICAgICAgICAgICBmZWF0cyA9IFtyZWNbY10gZm9yIGMgaW4gRkVBVFVSRV9DT0xTXQogICAgICAgICAgICBpZiBub3QgYW55KG5wLmlzbmFuKGZlYXRzKSB8IG5wLmlzaW5mKGZlYXRzKSk6CiAgICAgICAgICAgICAgICBYLmFwcGVuZChmZWF0cykKICAgICAgICAgICAgICAgIHkuYXBwZW5kKHJlY1siZGVwdGgiXSkKICAgIHJldHVybiBucC5hcnJheShYKSwgbnAuYXJyYXkoeSkKCgpkZWYgZmluZF9hbmRfbG9hZF9hbGxfZmVhdHVyZXMoKToKICAgICIiIlNlYXJjaCBmb3IgZmVhdHVyZXMgZmlsZXMgY292ZXJpbmcgZGVwdGhzIDAtNS4iIiIKICAgIGNhbmRpZGF0ZXMgPSBbCiAgICAgICAgQkFTRSAvICJyZXN1bHRzIiAvICJkZXB0aF9leHRlbnNpb24iIC8gImZlYXR1cmVzX2FsbC5qc29ubCIsCiAgICAgICAgQkFTRSAvICJyZXN1bHRzIiAvICJkZXB0aF9leHRlbnNpb24iIC8gImZlYXR1cmVzXzZjbGFzcy5qc29ubCIsCiAgICAgICAgQkFTRSAvICJkYXRhIiAvICJmZWF0dXJlc19hbGxfNmNsYXNzLmpzb25sIiwKICAgIF0KICAgIGZvciBjIGluIGNhbmRpZGF0ZXM6CiAgICAgICAgaWYgYy5leGlzdHMoKToKICAgICAgICAgICAgcHJpbnQoZiJGb3VuZCBjb21iaW5lZCBmZWF0dXJlczoge2N9IikKICAgICAgICAgICAgcmV0dXJuIGxvYWRfZmVhdHVyZXMoYykKCiAgICAjIEZhbGxiYWNrOiBjb21iaW5lIG9yaWdpbmFsIGQwLWQzICsgZXh0ZW5zaW9uIGQ0LWQ1CiAgICBwcmludCgiTm8gY29tYmluZWQgZmlsZSBmb3VuZCwgYXNzZW1ibGluZyBmcm9tIGluZGl2aWR1YWwgc291cmNlcy4uLiIpCiAgICBYX2FsbCwgeV9hbGwgPSBbXSwgW10KCiAgICAjIGQwLWQzIGZyb20gb3JpZ2luYWwgcGlwZWxpbmUKICAgIG9yaWcgPSBCQVNFIC8gImRhdGEiIC8gImZlYXR1cmVzX2FsbC5qc29ubCIKICAgIGlmIG9yaWcuZXhpc3RzKCk6CiAgICAgICAgWCwgeSA9IGxvYWRfZmVhdHVyZXMob3JpZykKICAgICAgICBwcmludChmIiAgT3JpZ2luYWwgZmVhdHVyZXNfYWxsLmpzb25sOiB7bGVuKFgpfSBzYW1wbGVzLCBkZXB0aHMge25wLnVuaXF1ZSh5KX0iKQogICAgICAgIFhfYWxsLmFwcGVuZChYKQogICAgICAgIHlfYWxsLmFwcGVuZCh5KQoKICAgICMgZDQsIGQ1IGZyb20gZGVwdGggZXh0ZW5zaW9uCiAgICBmb3IgZCBpbiBbNCwgNV06CiAgICAgICAgZm9yIHBhdHRlcm4gaW4gWwogICAgICAgICAgICBCQVNFIC8gInJlc3VsdHMiIC8gImRlcHRoX2V4dGVuc2lvbiIgLyBmImZlYXR1cmVzX2RlcHRoX3tkfS5qc29ubCIsCiAgICAgICAgICAgIEJBU0UgLyAicmVzdWx0cyIgLyAiZGVwdGhfZXh0ZW5zaW9uIiAvIGYiZGVwdGhfe2R9X2ZlYXR1cmVzLmpzb25sIiwKICAgICAgICAgICAgQkFTRSAvICJkYXRhIiAvIGYiZmVhdHVyZXNfZGVwdGhfe2R9Lmpzb25sIiwKICAgICAgICAgICAgQkFTRSAvICJkYXRhIiAvIGYiZGVwdGhfe2R9X2ZlYXR1cmVzLmpzb25sIiwKICAgICAgICBdOgogICAgICAgICAgICBpZiBwYXR0ZXJuLmV4aXN0cygpOgogICAgICAgICAgICAgICAgWCwgeSA9IGxvYWRfZmVhdHVyZXMocGF0dGVybikKICAgICAgICAgICAgICAgIHByaW50KGYiICBEZXB0aCB7ZH06IHtsZW4oWCl9IHNhbXBsZXMgZnJvbSB7cGF0dGVybn0iKQogICAgICAgICAgICAgICAgWF9hbGwuYXBwZW5kKFgpCiAgICAgICAgICAgICAgICB5X2FsbC5hcHBlbmQoeSkKICAgICAgICAgICAgICAgIGJyZWFrCiAgICAgICAgZWxzZToKICAgICAgICAgICAgcHJpbnQoZiIgIFdBUk5JTkc6IE5vIGZlYXR1cmVzIGZvdW5kIGZvciBkZXB0aCB7ZH0iKQoKICAgIGlmIG5vdCBYX2FsbDoKICAgICAgICByZXR1cm4gbnAuYXJyYXkoW10pLCBucC5hcnJheShbXSkKICAgIHJldHVybiBucC52c3RhY2soWF9hbGwpLCBucC5jb25jYXRlbmF0ZSh5X2FsbCkKCgpkZWYgYmluYXJ5X3JmX2V2YWwoWCwgeSwgZF9sb3csIGRfaGlnaCwgc2VlZD00Miwgbl9ib290c3RyYXA9MTAwMCk6CiAgICBtYXNrID0gbnAuaXNpbih5LCBbZF9sb3csIGRfaGlnaF0pCiAgICBYYiA9IFhbbWFza10KICAgIHliID0gKHlbbWFza10gPT0gZF9oaWdoKS5hc3R5cGUoaW50KQoKICAgIHByaW50KGYiXG57Jz0nKjUwfSIpCiAgICBwcmludChmIkJpbmFyeSBke2RfbG93fXZ7ZF9oaWdofToge2xlbih5Yil9IHNhbXBsZXMgIgogICAgICAgICAgZiIoY2xhc3MwPXtucC5zdW0oeWI9PTApfSwgY2xhc3MxPXtucC5zdW0oeWI9PTEpfSkiKQoKICAgIFhfdHIsIFhfdGUsIHlfdHIsIHlfdGUgPSB0cmFpbl90ZXN0X3NwbGl0KAogICAgICAgIFhiLCB5YiwgdGVzdF9zaXplPTAuMiwgc3RyYXRpZnk9eWIsIHJhbmRvbV9zdGF0ZT1zZWVkCiAgICApCiAgICByZiA9IFJhbmRvbUZvcmVzdENsYXNzaWZpZXIobl9lc3RpbWF0b3JzPTUwMCwgcmFuZG9tX3N0YXRlPXNlZWQsIG5fam9icz0tMSkKICAgIHJmLmZpdChYX3RyLCB5X3RyKQoKICAgIHlfcHJvYiA9IHJmLnByZWRpY3RfcHJvYmEoWF90ZSlbOiwgMV0KICAgIHlfcHJlZCA9IHJmLnByZWRpY3QoWF90ZSkKICAgIGF1YyA9IHJvY19hdWNfc2NvcmUoeV90ZSwgeV9wcm9iKQogICAgYWNjID0gYWNjdXJhY3lfc2NvcmUoeV90ZSwgeV9wcmVkKQogICAgcHJlYyA9IHByZWNpc2lvbl9zY29yZSh5X3RlLCB5X3ByZWQpCiAgICByZWMgPSByZWNhbGxfc2NvcmUoeV90ZSwgeV9wcmVkKQoKICAgIHJuZyA9IG5wLnJhbmRvbS5SYW5kb21TdGF0ZShzZWVkKQogICAgYXVjcyA9IFtdCiAgICBmb3IgXyBpbiByYW5nZShuX2Jvb3RzdHJhcCk6CiAgICAgICAgaWR4ID0gcm5nLmNob2ljZShsZW4oeV90ZSksIGxlbih5X3RlKSwgcmVwbGFjZT1UcnVlKQogICAgICAgIGlmIGxlbihucC51bmlxdWUoeV90ZVtpZHhdKSkgPT0gMjoKICAgICAgICAgICAgYXVjcy5hcHBlbmQocm9jX2F1Y19zY29yZSh5X3RlW2lkeF0sIHlfcHJvYltpZHhdKSkKICAgIGNpX2xvLCBjaV9oaSA9IG5wLnBlcmNlbnRpbGUoYXVjcywgWzIuNSwgOTcuNV0pCgogICAgZmkgPSByZi5mZWF0dXJlX2ltcG9ydGFuY2VzXwogICAgdG9wNV9pZHggPSBucC5hcmdzb3J0KGZpKVs6Oi0xXVs6NV0KICAgIHRvcDUgPSBbKEZFQVRVUkVfQ09MU1tpXSwgcm91bmQoZmxvYXQoZmlbaV0pLCA0KSkgZm9yIGkgaW4gdG9wNV9pZHhdCgogICAgcmVzdWx0ID0gewogICAgICAgICJwYWlyIjogZiJke2RfbG93fXZ7ZF9oaWdofSIsCiAgICAgICAgImF1YyI6IHJvdW5kKGZsb2F0KGF1YyksIDQpLAogICAgICAgICJhdWNfY2k5NSI6IFtyb3VuZChmbG9hdChjaV9sbyksIDQpLCByb3VuZChmbG9hdChjaV9oaSksIDQpXSwKICAgICAgICAiYWNjdXJhY3kiOiByb3VuZChmbG9hdChhY2MpLCA0KSwKICAgICAgICAicHJlY2lzaW9uIjogcm91bmQoZmxvYXQocHJlYyksIDQpLAogICAgICAgICJyZWNhbGwiOiByb3VuZChmbG9hdChyZWMpLCA0KSwKICAgICAgICAibl90cmFpbiI6IGludChsZW4oeV90cikpLAogICAgICAgICJuX3Rlc3QiOiBpbnQobGVuKHlfdGUpKSwKICAgICAgICAidG9wNV9mZWF0dXJlcyI6IHRvcDUsCiAgICB9CgogICAgcHJpbnQoZiIgIEFVQzogIHthdWM6LjRmfSBbe2NpX2xvOi40Zn0sIHtjaV9oaTouNGZ9XSIpCiAgICBwcmludChmIiAgQWNjOiAge2FjYzouNGZ9ICBQcmVjOiB7cHJlYzouNGZ9ICBSZWM6IHtyZWM6LjRmfSIpCiAgICBwcmludChmIiAgVG9wNToge3RvcDV9IikKICAgIHJldHVybiByZXN1bHQKCgpkZWYgbWFpbigpOgogICAgWCwgeSA9IGZpbmRfYW5kX2xvYWRfYWxsX2ZlYXR1cmVzKCkKICAgIGlmIGxlbihYKSA9PSAwOgogICAgICAgIHByaW50KCJFUlJPUjogTm8gZmVhdHVyZXMgbG9hZGVkLiIpCiAgICAgICAgcHJpbnQoIkxpc3RpbmcgcG90ZW50aWFsIGRpcmVjdG9yaWVzOiIpCiAgICAgICAgZm9yIGQgaW4gWyJyZXN1bHRzL2RlcHRoX2V4dGVuc2lvbiIsICJkYXRhIiwgInJlc3VsdHMiXToKICAgICAgICAgICAgcCA9IEJBU0UgLyBkCiAgICAgICAgICAgIGlmIHAuZXhpc3RzKCk6CiAgICAgICAgICAgICAgICBmaWxlcyA9IGxpc3QocC5nbG9iKCIqLmpzb25sIikpCiAgICAgICAgICAgICAgICBwcmludChmIiAge3B9OiB7W2YubmFtZSBmb3IgZiBpbiBmaWxlc119IikKICAgICAgICBzeXMuZXhpdCgxKQoKICAgIGRlcHRoc19mb3VuZCA9IGRpY3QoemlwKCpucC51bmlxdWUoeSwgcmV0dXJuX2NvdW50cz1UcnVlKSkpCiAgICBwcmludChmIlxuVG90YWw6IHtsZW4oWCl9IHNhbXBsZXMsIGRlcHRoczoge2RlcHRoc19mb3VuZH0iKQoKICAgICMgUnVuIGJpbmFyeSBSRiBmb3IgZDF2MiwgZDJ2MyAoc2FuaXR5IGNoZWNrKSArIGQzdjQsIGQ0djUgKHRhcmdldCkKICAgIHJlc3VsdHMgPSB7fQogICAgZm9yIGRfbG93LCBkX2hpZ2ggaW4gWygxLCAyKSwgKDIsIDMpLCAoMywgNCksICg0LCA1KV06CiAgICAgICAgaWYgZF9sb3cgaW4gZGVwdGhzX2ZvdW5kIGFuZCBkX2hpZ2ggaW4gZGVwdGhzX2ZvdW5kOgogICAgICAgICAgICByZXN1bHRzW2YiZHtkX2xvd312e2RfaGlnaH0iXSA9IGJpbmFyeV9yZl9ldmFsKFgsIHksIGRfbG93LCBkX2hpZ2gpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgcHJpbnQoZiJcbldBUk5JTkc6IFNraXBwaW5nIGR7ZF9sb3d9dntkX2hpZ2h9IOKAlCBkZXB0aCBub3QgaW4gZGF0YSIpCgogICAgIyBFREQgZGV0ZXJtaW5hdGlvbgogICAgZDN2NF9hdWMgPSByZXN1bHRzLmdldCgiZDN2NCIsIHt9KS5nZXQoImF1YyIsIDApCiAgICBkNHY1X2F1YyA9IHJlc3VsdHMuZ2V0KCJkNHY1Iiwge30pLmdldCgiYXVjIiwgMCkKICAgIGlmIGQzdjRfYXVjID4gMC43NSBhbmQgZDR2NV9hdWMgPiAwLjc1OgogICAgICAgIGVkZCA9ICI+PTUiCiAgICBlbGlmIGQzdjRfYXVjID4gMC43NToKICAgICAgICBlZGQgPSAiNCIKICAgIGVsc2U6CiAgICAgICAgZWRkID0gIjMiCgogICAgcHJpbnQoZiJcbnsnPScqNTB9IikKICAgIHByaW50KGYiRUREIERFVEVSTUlOQVRJT046IGQzdjQ9e2QzdjRfYXVjOi40Zn0sIGQ0djU9e2Q0djVfYXVjOi40Zn0g4oaSIEVERCB7ZWRkfSIpCgogICAgIyBSZWZlcmVuY2U6IDQtY2xhc3MgcGlwZWxpbmUgcGFpcndpc2UgQVVDIChQeXRoaWEgbnVjbGV1cykKICAgIHJlZiA9IHsiZDB2MSI6IDAuOTk3NSwgImQxdjIiOiAwLjg2MDcsICJkMnYzIjogMC44MDA1fQogICAgcHJpbnQoZiJcblNhbml0eSBjaGVjayB2cyA0LWNsYXNzIHBpcGVsaW5lOiIpCiAgICBmb3IgcGFpciBpbiBbImQxdjIiLCAiZDJ2MyJdOgogICAgICAgIGlmIHBhaXIgaW4gcmVzdWx0czoKICAgICAgICAgICAgZGVsdGEgPSByZXN1bHRzW3BhaXJdWyJhdWMiXSAtIHJlZltwYWlyXQogICAgICAgICAgICBwcmludChmIiAge3BhaXJ9OiBiaW5hcnk9e3Jlc3VsdHNbcGFpcl1bJ2F1YyddOi40Zn0gdnMgNC1jbGFzcz17cmVmW3BhaXJdOi40Zn0gKM6UPXtkZWx0YTorLjRmfSkiKQoKICAgICMgU2F2ZQogICAgb3V0X2RpciA9IEJBU0UgLyAicmVzdWx0cyIgLyAiYmluYXJ5X3BhaXJ3aXNlIgogICAgb3V0X2Rpci5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICBvdXRwdXQgPSB7CiAgICAgICAgInBhaXJzIjogcmVzdWx0cywKICAgICAgICAiZWRkX2RldGVybWluYXRpb24iOiBlZGQsCiAgICAgICAgInRocmVzaG9sZCI6IDAuNzUsCiAgICAgICAgInJlZmVyZW5jZV80Y2xhc3MiOiByZWYsCiAgICB9CiAgICBvdXRfcGF0aCA9IG91dF9kaXIgLyAiYmluYXJ5X3BhaXJ3aXNlX3Jlc3VsdHMuanNvbiIKICAgIHdpdGggb3BlbihvdXRfcGF0aCwgInciKSBhcyBmOgogICAgICAgIGpzb24uZHVtcChvdXRwdXQsIGYsIGluZGVudD0yKQogICAgcHJpbnQoZiJcblJlc3VsdHMgc2F2ZWQgdG8ge291dF9wYXRofSIpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIG1haW4oKQo=').decode()\nos.makedirs('/root/autodl-tmp/recursive_gen_depth_est/src', exist_ok=True)\nwith open('/root/autodl-tmp/recursive_gen_depth_est/src/binary_pairwise_eval.py', 'w') as f:\n    f.write(code)\nprint('WRITTEN OK', len(code), 'bytes')\n\""
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T06:14:40.578139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WRITTEN OK 6846 bytes\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T06:14:40.578312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/src/binary_pairwise_eval.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T06:14:40.578452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 6851 May 15 14:08 /root/autodl-tmp/recursive_gen_depth_est/src/binary_pairwise_eval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T06:14:40.578581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python3 src/binary_pairwise_eval.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T06:14:40.578736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"No combined file found, assembling from individual sources...\\\\n  Original features_all.jsonl: 20000 samples, depths [0 1 2 3]\\\\n  WARNING: No features found for depth 4\\\\n  WARNING: No features found for depth 5\\\\n\\\\nTotal: 20000 samples, depths: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000)}\\\\n\\\\n==================================================\\\\nBinary d1v2: 10000 samples (class0=5000, class1=5000)\\\\n  AUC:  0.9250 [0.9138, 0.9354]\\\\n  Acc:  0.8480  Prec: 0.8210  Rec: 0.8900\\\\n  Top5: [('var_surprisal', 0.1837), ('p90_ppl', 0.1421), ('p75_ppl', 0.0744), ('var_ppl', 0.0656), ('mean_ppl', 0.0641)]\\\\n\\\\n==================================================\\\\nBinary d2v3: 10000 samples (class0=5000, class1=5000)\\\\n  AUC:  0.8225 [0.8052, 0.8402]\\\\n  Acc:  0.7330  Prec: 0.7232  Rec: 0.7550\\\\n  Top5: [('p90_ppl', 0.1111), ('var_surprisal', 0.1006), ('p75_ppl', 0.063), ('mean_surprisal', 0.0541), ('p50_ppl', 0.0538)]\\\\n\\\\nWARNING: Skipping d3v4 — depth not in data\\\\n\\\\nWARNING: Skipping d4v5 — depth not in data\\\\n\\\\n==================================================\\\\nEDD DETERMINATION: d3v4=0.0000, d4v5=0.0000 → EDD 3\\\\n\\\\nSanity check vs 4-class pipeline:\\\\n  d1v2: binary=0.9250 vs 4-class=0.8607 (Δ=+0.0643)\\\\n  d2v3: binary=0.8225 vs 4-class=0.8005 (Δ=+0.0220)\\\\n\\\\nResults saved to /root/autodl-tmp/recursive_gen_depth_est/results/binary_pairwise/binary_pairwise_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T06:14:40.578934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/results/depth_extension -type f -name \"*.jsonl\""
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T06:14:40.579079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/data -type f -name \"*depth*\" -o -name \"*d4*\" -o -name \"*d5*\" -o -name \"*features*\""
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T06:14:40.579213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/recursive_gen_depth_est/results/depth_extension': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T06:14:40.579367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_0_features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_filtered.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_3class.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/depth_0.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features_3class.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features_filtered.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50/depth_1.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50/depth_2.jsonl\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50/depth_3.jsonl\\\\n/root/autodl-tmp/recursive_gen_\n…[truncated 1096 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T06:14:40.579550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/depth_4.jsonl"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T06:14:40.579681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T06:14:40.579831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"I hope you guys have a good week and if you haven’t been on Instagram you might be missing out on some of the best photos of the year! If you haven’t heard of it, Instagram is a mobile social network that allows users to post pictures and text to their followers and followers of their followers. It’s a pretty simple concept, but it’s hard to master and has become very popular. Instagram has a lot to offer, but some of its features and features that are most popular include:\\\\\\\\n\\\\\\\\nInstagram has many different features that you can use to make your life easier, but it’s important to know what they are so that you can use them the best! If you haven’t used Instagram yet, then you’re missing out on some of the best photos of the year! Here are some of the best photos of Instagram that you can use to make your life easier!\\\\\\\\n\\\\\\\\nInstagram is used by millions of people every day, but not all of them know what to use or how to use it! If you are interested in using Instagram to take great photos, then you have to know how to use it! Here are some of the most popular Instagram features!\\\\\\\\n\\\\\\\\n1. Using the Instagram App\\\\\\\\n\\\\\\\\nWhen you first start using Instagram, you might have a hard time figuring out how to use the app. When you first start using the app, you should be able to access it by hitting the ‘App’ button on your phone. If you don’t see it, you can access it by tapping the ‘App’ button on your phone, then selecting ‘Settings’ and tapping ‘Instagram’ on the screen.\\\\\\\\n\\\\\\\\nOnce you have access to the app, you will see a few different options that you can use to make your life easier. You can view your pictures, follow other users, view your Instagram stories, and much more!\\\\\\\\n\\\\\\\\nIf you want to see a photo that other people have uploaded, then you can click on the ‘Instagram’ button on the left side of the screen. If you want to follow other users, then you can select the ‘Fo\n…[truncated 506 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T06:14:40.580013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est/src -type f -name \"*.py\""
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T06:14:40.580160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"depth\\\\\\\": 0, \\\\\\\"sample_id\\\\\\\": 0, \\\\\\\"mean_ppl\\\\\\\": 1607.154718291221, \\\\\\\"var_ppl\\\\\\\": 158779688.72304317, \\\\\\\"skewness_ppl\\\\\\\": 10.406051089379453, \\\\\\\"kurtosis_ppl\\\\\\\": 114.01617768762445, \\\\\\\"p10_ppl\\\\\\\": 1.0253935757537525, \\\\\\\"p25_ppl\\\\\\\": 1.4685526791140988, \\\\\\\"p50_ppl\\\\\\\": 4.352294272371119, \\\\\\\"p75_ppl\\\\\\\": 39.40245503911115, \\\\\\\"p90_ppl\\\\\\\": 369.16657551683574, \\\\\\\"mean_surprisal\\\\\\\": 2.372938156607645, \\\\\\\"var_surprisal\\\\\\\": 6.239684146274182, \\\\\\\"entropy_of_surprisal\\\\\\\": 3.1822611603270903, \\\\\\\"type_token_ratio\\\\\\\": 0.570281124497992, \\\\\\\"hapax_ratio\\\\\\\": 0.7922535211267606, \\\\\\\"bigram_entropy\\\\\\\": 6.013228236535451, \\\\\\\"trigram_entropy\\\\\\\": 6.165336778855558, \\\\\\\"rep_2gram\\\\\\\": 0.11066398390342047, \\\\\\\"rep_3gram\\\\\\\": 0.028225806451612878, \\\\\\\"rep_4gram\\\\\\\": 0.014141414141414121}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T06:14:40.580311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/src/atlas_plots.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/__init__.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/atlas_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_dataset.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_eval.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/baselines.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_feature_mlp.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_strategy_loo.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_model_loo.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/dcol_trainer_v6.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/plot_atlas_figures.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/atlas_v2_analysis.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_model_loo_detailed.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/cross_strategy_loo_zscore.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/binary_pairwise_eval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T06:14:40.580476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/src/baselines.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T06:14:40.580657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBaseline battery for recursive generation depth estimation.\\\\n\\\\nBaselines (feature-based, 19-dim input):\\\\n  1. PPLRegressionBaseline  -- OLS regression on mean_ppl (single) or all 19 features (multi)\\\\n  2. CEClassificationBaseline -- MLP with cross-entropy loss (DCOL ablation, no contrastive loss)\\\\n  3. CORALBaseline -- Ordinal regression with K-1 binary classifiers (Cao et al., 2020)\\\\n  4. DivEyeBaseline -- Surprisal diversity features + XGBoost (Basani & Chen, TMLR 2026)\\\\n  5. RandomForestBaseline -- sklearn RF on 19-dim features\\\\n  6. LogisticRegressionBaseline -- sklearn LR on 19-dim features\\\\n\\\\nBaselines (text-based, raw text input):\\\\n  7. ZeroShotLLMBaseline -- Prompt an LLM (Claude/OpenAI) to classify depth directly\\\\n\\\\nUsage:\\\\n  python src/baselines.py --method ppl_reg --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method ce_mlp  --features_path data/features_all.jsonl --epochs 50\\\\n  python src/baselines.py --method coral   --features_path data/features_all.jsonl --epochs 50\\\\n  python src/baselines.py --method diveye  --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method rf      --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method lr      --features_path data/features_all.jsonl\\\\n  python src/baselines.py --method zeroshot --data_dirs data/ --provider claude --max_eval_samples 200\\\\n  python src/baselines.py --method all     --features_path data/features_all.jsonl --epochs 50\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.optim as optim\\\\nfrom torch.utils.data import DataLoader, TensorDataset\\\\n\\\\nfrom sklearn.linear_model import LinearRegression\\\\nfrom sklearn.preprocessing import StandardScaler\\\\nfrom sklearn.model_selection import train_tes\n…[truncated 2633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T06:14:40.580837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"extract_features*\" -type f"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T06:14:40.581003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/logs/extract_features_temp09.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T06:14:40.581134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T06:14:40.581310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nExtract statistical features from depth-level JSONL files using frozen Pythia-1.4B.\\\\n\\\\nInput:  data/depth_{0,1,2,3}.jsonl — each line: {\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"depth\\\\\\\": N, ...}\\\\nOutput: data/features.jsonl — each line: {\\\\\\\"depth\\\\\\\": N, \\\\\\\"sample_id\\\\\\\": M, \\\\\\\"mean_ppl\\\\\\\": ..., ...}\\\\n\\\\nDependencies: torch, transformers, scipy, numpy, tqdm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport torch\\\\nfrom collections import Counter\\\\nfrom scipy.stats import skew, kurtosis, entropy\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom tqdm import tqdm\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Extract statistical features from depth JSONL files.\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/models/pythia-1.4b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_path\\\\\\\", default=\\\\\\\"data/features.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=1)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=0, help=\\\\\\\"Max samples per depth (0=all)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_depth\\\\\\\", type=int, default=3, help=\\\\\\\"Maximum depth index to load (default: 3 for depth_0..depth_3)\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef load_depth_data(data_dir, max_samples, max_depth=3):\\\\n    depth_data = {}\\\\n    for d in range(max_depth + 1):\\\\n        fpath = os.path.join(data_dir, f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n        if not os.path.exists(fpath):\\\\n            print(f\\\\\\\"[WARN] {fpath} not found, skipping\\\\\\\")\\\\n            continue\\\\n        records = []\\\\n        with open(fpath) as f:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if not line:\\\\n                    continue\\\\n                try:\\\\\n…[truncated 1606 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T06:14:40.581548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "ls -la /root/autodl-tmp/models/pythia-1.4b"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T06:14:40.581699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lrwxrwxrwx 1 root root 48 May 14 19:37 /root/autodl-tmp/models/pythia-1.4b -> /root/autodl-tmp/models/EleutherAI/pythia-1___4b\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T06:14:40.581828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/depth_4.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_5.jsonl"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T06:14:40.582036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_4.jsonl\\\\n    5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_5.jsonl\\\\n   10000 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T06:14:40.582195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T06:14:40.582365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n        feats = {}\\\\n        feats.update(compute_perplexity_features(losses_np))\\\\n        feats.update(compute_lexical_features(encoded[i]))\\\\n        results.append(feats)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef print_depth_summary(features_list, depth):\\\\n    if not features_list:\\\\n        return\\\\n    keys = list(features_list[0].keys())\\\\n    print(f\\\\\\\"\\\\\\\\n  Depth {depth} feature summary ({len(features_list)} samples):\\\\\\\")\\\\n    for k in keys:\\\\n        vals = [f[k] for f in features_list]\\\\n        print(f\\\\\\\"    {k:25s}: mean={np.mean(vals):.4f}, std={np.std(vals):.4f}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n    print(f\\\\\\\"Device: {device}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"Loading data from {args.data_dir} ...\\\\\\\")\\\\n    depth_data = load_depth_data(args.data_dir, args.max_samples, args.max_depth)\\\\n    if not depth_data:\\\\n        print(\\\\\\\"No data loaded. Exiting.\\\\\\\")\\\\n        return\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nLoading tokenizer from {args.model_path} ...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    print(\\\\\\\"Computing truncation length ...\\\\\\\")\\\\n    trunc_len = compute_truncation_length(depth_data, tokenizer)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nLoading model from {args.model_path} ...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        args.model_path, torch_dtype=torch.float16\\\\n    ).to(device)\\\\n    model.eval()\\\\n\\\\n    os.makedirs(os.path.dirname(args.output_path) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    out_f = open(args.output_path, \\\\\\\"w\\\\\\\")\\\\n    sample_id = 0\\\\n\\\\n    for d in sorted(depth_data.keys()):\\\\n        records = depth_data[d]\\\\n        texts = [r[\\\\\\\"text\\\\\\\"] for r in records]\\\\n        depth_features = []\\\\n\\\\n        for start in tqdm(range(0, len(tex\n…[truncated 1206 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T06:14:40.582562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && mkdir -p /tmp/d4d5_data && ln -sf /root/autodl-tmp/recursive_gen_depth_est/data/depth_4.jsonl /tmp/d4d5_data/depth_4.jsonl && ln -sf /root/autodl-tmp/recursive_gen_depth_est/data/depth_5.jsonl /tmp/d4d5_data/depth_5.jsonl && ls -la /tmp/d4d5_data/"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T06:14:40.582706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x 2 root root     60 May 15 14:10 .\\\\ndrwxrwxrwt 1 root root 172032 May 15 14:10 ..\\\\nlrwxrwxrwx 1 root root     59 May 15 14:10 depth_4.jsonl -> /root/autodl-tmp/recursive_gen_depth_est/data/depth_4.jsonl\\\\nlrwxrwxrwx 1 root root     59 May 15 14:10 depth_5.jsonl -> /root/autodl-tmp/recursive_gen_depth_est/data/depth_5.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T06:14:40.582836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && nohup python3 scripts/extract_features.py --data_dir /tmp/d4d5_data --max_depth 5 --output_path data/features_d4d5.jsonl --gpu 0 --batch_size 16 > /tmp/extract_d4d5.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T06:14:40.582995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && nohup python3 scripts/extract_features.py --data_dir /tmp/d4d5_data --max_depth 5 --output_path data/features_d4d5.jsonl --gpu 0 --batch_size 16 > /tmp/extract_d4d5.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=182369\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T06:14:40.583159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -20 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T06:14:40.583362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\nDevice: cuda:0\\\\nLoading data from /tmp/d4d5_data ...\\\\n[WARN] /tmp/d4d5_data/depth_0.jsonl not found, skipping\\\\n[WARN] /tmp/d4d5_data/depth_1.jsonl not found, skipping\\\\n[WARN] /tmp/d4d5_data/depth_2.jsonl not found, skipping\\\\n[WARN] /tmp/d4d5_data/depth_3.jsonl not found, skipping\\\\nLoaded depth 4: 5000 samples\\\\nLoaded depth 5: 5000 samples\\\\n\\\\nLoading tokenizer from /root/autodl-tmp/models/pythia-1.4b ...\\\\nComputing truncation length ...\\\\n  Depth 4: n=5000, median=512, min=20, max=537, mean=460\\\\n  Depth 5: n=5000, median=512, min=18, max=540, mean=463\\\\n  => Truncation length (min median): 512 tokens\\\\n\\\\nLoading model from /root/autodl-tmp/models/pythia-1.4b ...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 292/292 [00:00<00:00, 6346.12it/s]\\\\n\\\\rDepth 4:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 4:   0%|          | 1/313 [00:00<02:48,  1.85batch/s]\\\\rDepth 4:   1%|          | 2/313 [00:00<01:34,  3.30batch/s]\\\\rDepth 4:   1%|          | 3/313 [00:00<01:10,  4.40batch/s]\\\\rDepth 4:   1%|▏         | 4/313 [00:00<00:59,  5.23batch/s]\\\\rDepth 4:   2%|▏         | 5/313 [00:01<00:52,  5.84batch/s]\\\\rDepth 4:   2%|▏         | 6/313 [00:01<00:48,  6.27batch/s]\\\\rDepth 4:   2%|▏         | 7/313 [00:01<00:46,  6.60batch/s]\\\\rDepth 4:   3%|▎         | 8/313 [00:01<00:44,  6.85batch/s]\\\\rDepth 4:   3%|▎         | 9/313 [00:01<00:43,  7.03batch/s]\\\\rDepth 4:   3%|▎         | 10/313 [00:01<00:42,  7.17batch/s]\\\\rDepth 4:   4%|▎         | 11/313 [00:01<00:41,  7.22batch/s]\\\\rDepth 4:   4%|▍         | 12/313 [00:02<00:41,  7.26batch/s]\\\\rDepth 4:   4%|▍         | 13/313 [00:02<00:40,  7.35batch/s]\\\\rDepth 4:   4%|▍         | 14/313 [00:02<00:40,  7.37batch/s]\\\\rDepth 4:   5%|▍         | 15/313 [00:02<00:40,  7.42batch/s]\\\\rDepth 4:   5%|▌         | 16/313 [00:02<00:40,  7.40batch/s]\\\\rDept\n…[truncated 6475 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T06:14:40.583548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -5 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T06:14:40.583748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  => Truncation length (min median): 512 tokens\\\\n\\\\nLoading model from /root/autodl-tmp/models/pythia-1.4b ...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 292/292 [00:00<00:00, 6346.12it/s]\\\\n\\\\rDepth 4:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 4:   0%|          | 1/313 [00:00<02:48,  1.85batch/s]\\\\rDepth 4:   1%|          | 2/313 [00:00<01:34,  3.30batch/s]\\\\rDepth 4:   1%|          | 3/313 [00:00<01:10,  4.40batch/s]\\\\rDepth 4:   1%|▏         | 4/313 [00:00<00:59,  5.23batch/s]\\\\rDepth 4:   2%|▏         | 5/313 [00:01<00:52,  5.84batch/s]\\\\rDepth 4:   2%|▏         | 6/313 [00:01<00:48,  6.27batch/s]\\\\rDepth 4:   2%|▏         | 7/313 [00:01<00:46,  6.60batch/s]\\\\rDepth 4:   3%|▎         | 8/313 [00:01<00:44,  6.85batch/s]\\\\rDepth 4:   3%|▎         | 9/313 [00:01<00:43,  7.03batch/s]\\\\rDepth 4:   3%|▎         | 10/313 [00:01<00:42,  7.17batch/s]\\\\rDepth 4:   4%|▎         | 11/313 [00:01<00:41,  7.22batch/s]\\\\rDepth 4:   4%|▍         | 12/313 [00:02<00:41,  7.26batch/s]\\\\rDepth 4:   4%|▍         | 13/313 [00:02<00:40,  7.35batch/s]\\\\rDepth 4:   4%|▍         | 14/313 [00:02<00:40,  7.37batch/s]\\\\rDepth 4:   5%|▍         | 15/313 [00:02<00:40,  7.42batch/s]\\\\rDepth 4:   5%|▌         | 16/313 [00:02<00:40,  7.40batch/s]\\\\rDepth 4:   5%|▌         | 17/313 [00:02<00:39,  7.41batch/s]\\\\rDepth 4:   6%|▌         | 18/313 [00:02<00:39,  7.42batch/s]\\\\rDepth 4:   6%|▌         | 19/313 [00:02<00:39,  7.44batch/s]\\\\rDepth 4:   6%|▋         | 20/313 [00:03<00:39,  7.44batch/s]\\\\rDepth 4:   7%|▋         | 21/313 [00:03<00:39,  7.44batch/s]\\\\rDepth 4:   7%|▋         | 22/313 [00:03<00:38,  7.47batch/s]\\\\rDepth 4:   7%|▋         | 23/313 [00:03<00:38,  7.49batch/s]\\\\rDepth 4:   8%|▊         | 24/313 [00:03<00:38,  7.52batch/s]\\\\rDepth 4:   8%|▊         | 25/313 [00:03<00:38,  7.54batch/s]\\\\rDepth 4:   8%|▊         | 26/313 [00:03<00:38,  7.50batch/s]\\\\rDepth 4:   \n…[truncated 6467 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T06:14:40.583959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -3 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T06:14:40.584169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/models/pythia-1.4b ...\\\\n\\\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 292/292 [00:00<00:00, 6346.12it/s]\\\\n\\\\rDepth 4:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 4:   0%|          | 1/313 [00:00<02:48,  1.85batch/s]\\\\rDepth 4:   1%|          | 2/313 [00:00<01:34,  3.30batch/s]\\\\rDepth 4:   1%|          | 3/313 [00:00<01:10,  4.40batch/s]\\\\rDepth 4:   1%|▏         | 4/313 [00:00<00:59,  5.23batch/s]\\\\rDepth 4:   2%|▏         | 5/313 [00:01<00:52,  5.84batch/s]\\\\rDepth 4:   2%|▏         | 6/313 [00:01<00:48,  6.27batch/s]\\\\rDepth 4:   2%|▏         | 7/313 [00:01<00:46,  6.60batch/s]\\\\rDepth 4:   3%|▎         | 8/313 [00:01<00:44,  6.85batch/s]\\\\rDepth 4:   3%|▎         | 9/313 [00:01<00:43,  7.03batch/s]\\\\rDepth 4:   3%|▎         | 10/313 [00:01<00:42,  7.17batch/s]\\\\rDepth 4:   4%|▎         | 11/313 [00:01<00:41,  7.22batch/s]\\\\rDepth 4:   4%|▍         | 12/313 [00:02<00:41,  7.26batch/s]\\\\rDepth 4:   4%|▍         | 13/313 [00:02<00:40,  7.35batch/s]\\\\rDepth 4:   4%|▍         | 14/313 [00:02<00:40,  7.37batch/s]\\\\rDepth 4:   5%|▍         | 15/313 [00:02<00:40,  7.42batch/s]\\\\rDepth 4:   5%|▌         | 16/313 [00:02<00:40,  7.40batch/s]\\\\rDepth 4:   5%|▌         | 17/313 [00:02<00:39,  7.41batch/s]\\\\rDepth 4:   6%|▌         | 18/313 [00:02<00:39,  7.42batch/s]\\\\rDepth 4:   6%|▌         | 19/313 [00:02<00:39,  7.44batch/s]\\\\rDepth 4:   6%|▋         | 20/313 [00:03<00:39,  7.44batch/s]\\\\rDepth 4:   7%|▋         | 21/313 [00:03<00:39,  7.44batch/s]\\\\rDepth 4:   7%|▋         | 22/313 [00:03<00:38,  7.47batch/s]\\\\rDepth 4:   7%|▋         | 23/313 [00:03<00:38,  7.49batch/s]\\\\rDepth 4:   8%|▊         | 24/313 [00:03<00:38,  7.52batch/s]\\\\rDepth 4:   8%|▊         | 25/313 [00:03<00:38,  7.54batch/s]\\\\rDepth 4:   8%|▊         | 26/313 [00:03<00:38,  7.50batch/s]\\\\rDepth 4:   9%|▊         | 27/313 [00:04<00:38,  7.46batch/s]\\\\rD\n…[truncated 6464 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T06:14:40.584358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -3 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T06:14:40.584530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    rep_3gram                : mean=0.4283, std=0.2062\\\\n    rep_4gram                : mean=0.3673, std=0.2171\\\\n\\\\rDepth 5:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 5:   0%|          | 1/313 [00:00<00:41,  7.45batch/s]\\\\rDepth 5:   1%|          | 2/313 [00:00<00:41,  7.44batch/s]\\\\rDepth 5:   1%|          | 3/313 [00:00<00:41,  7.50batch/s]\\\\rDepth 5:   1%|▏         | 4/313 [00:00<00:41,  7.51batch/s]\\\\rDepth 5:   2%|▏         | 5/313 [00:00<00:40,  7.52batch/s]\\\\rDepth 5:   2%|▏         | 6/313 [00:00<00:41,  7.49batch/s]\\\\rDepth 5:   2%|▏         | 7/313 [00:00<00:40,  7.48batch/s]\\\\rDepth 5:   3%|▎         | 8/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   3%|▎         | 9/313 [00:01<00:40,  7.49batch/s]\\\\rDepth 5:   3%|▎         | 10/313 [00:01<00:40,  7.50batch/s]\\\\rDepth 5:   4%|▎         | 11/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 12/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   4%|▍         | 13/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 14/313 [00:01<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▍         | 15/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   5%|▌         | 16/313 [00:02<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▌         | 17/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   6%|▌         | 18/313 [00:02<00:39,  7.51batch/s]\\\\rDepth 5:   6%|▌         | 19/313 [00:02<00:39,  7.49batch/s]\\\\rDepth 5:   6%|▋         | 20/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 21/313 [00:02<00:39,  7.45batch/s]\\\\rDepth 5:   7%|▋         | 22/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 23/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 24/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 25/313 [00:03<00:38,  7.50batch/s]\\\\rDepth 5:   8%|▊         | 26/313 [00:03<00:38,  7.47batch/s]\\\\rDepth 5:   9%|▊         | 27/313 [00:03<00:38,  7.46batch/s]\\\\rDepth 5:   9%|▉         | 28/313 [00:03<00:38,  7.41batch/s]\\\\rDepth 5:   9%|▉   \n…[truncated 1532 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T06:14:40.584796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -3 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T06:14:40.585078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    rep_3gram                : mean=0.4283, std=0.2062\\\\n    rep_4gram                : mean=0.3673, std=0.2171\\\\n\\\\rDepth 5:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 5:   0%|          | 1/313 [00:00<00:41,  7.45batch/s]\\\\rDepth 5:   1%|          | 2/313 [00:00<00:41,  7.44batch/s]\\\\rDepth 5:   1%|          | 3/313 [00:00<00:41,  7.50batch/s]\\\\rDepth 5:   1%|▏         | 4/313 [00:00<00:41,  7.51batch/s]\\\\rDepth 5:   2%|▏         | 5/313 [00:00<00:40,  7.52batch/s]\\\\rDepth 5:   2%|▏         | 6/313 [00:00<00:41,  7.49batch/s]\\\\rDepth 5:   2%|▏         | 7/313 [00:00<00:40,  7.48batch/s]\\\\rDepth 5:   3%|▎         | 8/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   3%|▎         | 9/313 [00:01<00:40,  7.49batch/s]\\\\rDepth 5:   3%|▎         | 10/313 [00:01<00:40,  7.50batch/s]\\\\rDepth 5:   4%|▎         | 11/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 12/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   4%|▍         | 13/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 14/313 [00:01<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▍         | 15/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   5%|▌         | 16/313 [00:02<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▌         | 17/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   6%|▌         | 18/313 [00:02<00:39,  7.51batch/s]\\\\rDepth 5:   6%|▌         | 19/313 [00:02<00:39,  7.49batch/s]\\\\rDepth 5:   6%|▋         | 20/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 21/313 [00:02<00:39,  7.45batch/s]\\\\rDepth 5:   7%|▋         | 22/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 23/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 24/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 25/313 [00:03<00:38,  7.50batch/s]\\\\rDepth 5:   8%|▊         | 26/313 [00:03<00:38,  7.47batch/s]\\\\rDepth 5:   9%|▊         | 27/313 [00:03<00:38,  7.46batch/s]\\\\rDepth 5:   9%|▉         | 28/313 [00:03<00:38,  7.41batch/s]\\\\rDepth 5:   9%|▉   \n…[truncated 5900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T06:14:40.585306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -5 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T06:14:40.585581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    trigram_entropy          : mean=5.0901, std=0.7085\\\\n    rep_2gram                : mean=0.5319, std=0.1782\\\\n    rep_3gram                : mean=0.4283, std=0.2062\\\\n    rep_4gram                : mean=0.3673, std=0.2171\\\\n\\\\rDepth 5:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 5:   0%|          | 1/313 [00:00<00:41,  7.45batch/s]\\\\rDepth 5:   1%|          | 2/313 [00:00<00:41,  7.44batch/s]\\\\rDepth 5:   1%|          | 3/313 [00:00<00:41,  7.50batch/s]\\\\rDepth 5:   1%|▏         | 4/313 [00:00<00:41,  7.51batch/s]\\\\rDepth 5:   2%|▏         | 5/313 [00:00<00:40,  7.52batch/s]\\\\rDepth 5:   2%|▏         | 6/313 [00:00<00:41,  7.49batch/s]\\\\rDepth 5:   2%|▏         | 7/313 [00:00<00:40,  7.48batch/s]\\\\rDepth 5:   3%|▎         | 8/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   3%|▎         | 9/313 [00:01<00:40,  7.49batch/s]\\\\rDepth 5:   3%|▎         | 10/313 [00:01<00:40,  7.50batch/s]\\\\rDepth 5:   4%|▎         | 11/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 12/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   4%|▍         | 13/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 14/313 [00:01<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▍         | 15/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   5%|▌         | 16/313 [00:02<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▌         | 17/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   6%|▌         | 18/313 [00:02<00:39,  7.51batch/s]\\\\rDepth 5:   6%|▌         | 19/313 [00:02<00:39,  7.49batch/s]\\\\rDepth 5:   6%|▋         | 20/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 21/313 [00:02<00:39,  7.45batch/s]\\\\rDepth 5:   7%|▋         | 22/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 23/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 24/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 25/313 [00:03<00:38,  7.50batch/s]\\\\rDepth 5:   8%|▊         | 26/313 [00:03<00:38,  7.47batch/s]\\\\rDepth 5:   9%|▊         | 27/3\n…[truncated 6463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T06:14:40.585788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -5 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T06:14:40.586058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    trigram_entropy          : mean=5.0901, std=0.7085\\\\n    rep_2gram                : mean=0.5319, std=0.1782\\\\n    rep_3gram                : mean=0.4283, std=0.2062\\\\n    rep_4gram                : mean=0.3673, std=0.2171\\\\n\\\\rDepth 5:   0%|          | 0/313 [00:00<?, ?batch/s]\\\\rDepth 5:   0%|          | 1/313 [00:00<00:41,  7.45batch/s]\\\\rDepth 5:   1%|          | 2/313 [00:00<00:41,  7.44batch/s]\\\\rDepth 5:   1%|          | 3/313 [00:00<00:41,  7.50batch/s]\\\\rDepth 5:   1%|▏         | 4/313 [00:00<00:41,  7.51batch/s]\\\\rDepth 5:   2%|▏         | 5/313 [00:00<00:40,  7.52batch/s]\\\\rDepth 5:   2%|▏         | 6/313 [00:00<00:41,  7.49batch/s]\\\\rDepth 5:   2%|▏         | 7/313 [00:00<00:40,  7.48batch/s]\\\\rDepth 5:   3%|▎         | 8/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   3%|▎         | 9/313 [00:01<00:40,  7.49batch/s]\\\\rDepth 5:   3%|▎         | 10/313 [00:01<00:40,  7.50batch/s]\\\\rDepth 5:   4%|▎         | 11/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 12/313 [00:01<00:40,  7.47batch/s]\\\\rDepth 5:   4%|▍         | 13/313 [00:01<00:40,  7.48batch/s]\\\\rDepth 5:   4%|▍         | 14/313 [00:01<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▍         | 15/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   5%|▌         | 16/313 [00:02<00:39,  7.48batch/s]\\\\rDepth 5:   5%|▌         | 17/313 [00:02<00:39,  7.50batch/s]\\\\rDepth 5:   6%|▌         | 18/313 [00:02<00:39,  7.51batch/s]\\\\rDepth 5:   6%|▌         | 19/313 [00:02<00:39,  7.49batch/s]\\\\rDepth 5:   6%|▋         | 20/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 21/313 [00:02<00:39,  7.45batch/s]\\\\rDepth 5:   7%|▋         | 22/313 [00:02<00:39,  7.46batch/s]\\\\rDepth 5:   7%|▋         | 23/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 24/313 [00:03<00:38,  7.51batch/s]\\\\rDepth 5:   8%|▊         | 25/313 [00:03<00:38,  7.50batch/s]\\\\rDepth 5:   8%|▊         | 26/313 [00:03<00:38,  7.47batch/s]\\\\rDepth 5:   9%|▊         | 27/3\n…[truncated 6463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T06:14:40.586259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "tail -10 /tmp/extract_d4d5.log"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T06:14:40.586406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    entropy_of_surprisal     : mean=1.9267, std=0.6917\\\\n    type_token_ratio         : mean=0.2221, std=0.1098\\\\n    hapax_ratio              : mean=0.4288, std=0.1567\\\\n    bigram_entropy           : mean=4.4943, std=0.7350\\\\n    trigram_entropy          : mean=4.7619, std=0.7855\\\\n    rep_2gram                : mean=0.6152, std=0.1847\\\\n    rep_3gram                : mean=0.5297, std=0.2184\\\\n    rep_4gram                : mean=0.4769, std=0.2346\\\\n\\\\nDone. 10000 samples x 19 features -> data/features_d4d5.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T06:14:40.586582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd4, d5 = [], []\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/features_d4d5.jsonl') as f:\n    for line in f:\n        rec = json.loads(line)\n        if rec['depth'] == 4:\n            d4.append(line)\n        elif rec['depth'] == 5:\n            d5.append(line)\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/features_depth_4.jsonl', 'w') as f:\n    f.writelines(d4)\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/features_depth_5.jsonl', 'w') as f:\n    f.writelines(d5)\nprint(f'd4: {len(d4)} lines, d5: {len(d5)} lines')\n\""
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T06:14:40.586774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d4: 5000 lines, d5: 5000 lines\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T06:14:40.586995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python3 src/binary_pairwise_eval.py"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T06:14:40.587174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"No combined file found, assembling from individual sources...\\\\n  Original features_all.jsonl: 20000 samples, depths [0 1 2 3]\\\\n  Depth 4: 5000 samples from /root/autodl-tmp/recursive_gen_depth_est/data/features_depth_4.jsonl\\\\n  Depth 5: 5000 samples from /root/autodl-tmp/recursive_gen_depth_est/data/features_depth_5.jsonl\\\\n\\\\nTotal: 30000 samples, depths: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000), np.int64(4): np.int64(5000), np.int64(5): np.int64(5000)}\\\\n\\\\n==================================================\\\\nBinary d1v2: 10000 samples (class0=5000, class1=5000)\\\\n  AUC:  0.9250 [0.9138, 0.9354]\\\\n  Acc:  0.8480  Prec: 0.8210  Rec: 0.8900\\\\n  Top5: [('var_surprisal', 0.1837), ('p90_ppl', 0.1421), ('p75_ppl', 0.0744), ('var_ppl', 0.0656), ('mean_ppl', 0.0641)]\\\\n\\\\n==================================================\\\\nBinary d2v3: 10000 samples (class0=5000, class1=5000)\\\\n  AUC:  0.8225 [0.8052, 0.8402]\\\\n  Acc:  0.7330  Prec: 0.7232  Rec: 0.7550\\\\n  Top5: [('p90_ppl', 0.1111), ('var_surprisal', 0.1006), ('p75_ppl', 0.063), ('mean_surprisal', 0.0541), ('p50_ppl', 0.0538)]\\\\n\\\\n==================================================\\\\nBinary d3v4: 10000 samples (class0=5000, class1=5000)\\\\n  AUC:  0.7837 [0.7648, 0.8024]\\\\n  Acc:  0.6985  Prec: 0.7118  Rec: 0.6670\\\\n  Top5: [('p90_ppl', 0.0854), ('kurtosis_ppl', 0.0807), ('skewness_ppl', 0.0744), ('var_surprisal', 0.0689), ('p75_ppl', 0.0555)]\\\\n\\\\n==================================================\\\\nBinary d4v5: 10000 samples (class0=5000, class1=5000)\\\\n  AUC:  0.6832 [0.6611, 0.7045]\\\\n  Acc:  0.6285  Prec: 0.6211  Rec: 0.6590\\\\n  Top5: [('p90_ppl', 0.0785), ('var_surprisal', 0.0646), ('p75_ppl', 0.0621), ('mean_surprisal', 0.0587), ('trigram_entropy', 0.0522)]\\\\n\\\\n==================================================\\\\nEDD DETERMINATION: d3v4=0.7837, d4v5=0.6832 → EDD 4\\\\n\\\\nSanity check\n…[truncated 353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T06:14:40.587366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "gpu-6000pro-2",
+              "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/binary_pairwise/binary_pairwise_results.json"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T06:14:40.587563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pairs\\\\\\\": {\\\\n    \\\\\\\"d1v2\\\\\\\": {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"d1v2\\\\\\\",\\\\n      \\\\\\\"auc\\\\\\\": 0.925,\\\\n      \\\\\\\"auc_ci95\\\\\\\": [\\\\n        0.9138,\\\\n        0.9354\\\\n      ],\\\\n      \\\\\\\"accuracy\\\\\\\": 0.848,\\\\n      \\\\\\\"precision\\\\\\\": 0.821,\\\\n      \\\\\\\"recall\\\\\\\": 0.89,\\\\n      \\\\\\\"n_train\\\\\\\": 8000,\\\\n      \\\\\\\"n_test\\\\\\\": 2000,\\\\n      \\\\\\\"top5_features\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          0.1837\\\\n        ],\\\\n        [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          0.1421\\\\n        ],\\\\n        [\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          0.0744\\\\n        ],\\\\n        [\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          0.0656\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          0.0641\\\\n        ]\\\\n      ]\\\\n    },\\\\n    \\\\\\\"d2v3\\\\\\\": {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"d2v3\\\\\\\",\\\\n      \\\\\\\"auc\\\\\\\": 0.8225,\\\\n      \\\\\\\"auc_ci95\\\\\\\": [\\\\n        0.8052,\\\\n        0.8402\\\\n      ],\\\\n      \\\\\\\"accuracy\\\\\\\": 0.733,\\\\n      \\\\\\\"precision\\\\\\\": 0.7232,\\\\n      \\\\\\\"recall\\\\\\\": 0.755,\\\\n      \\\\\\\"n_train\\\\\\\": 8000,\\\\n      \\\\\\\"n_test\\\\\\\": 2000,\\\\n      \\\\\\\"top5_features\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          0.1111\\\\n        ],\\\\n        [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          0.1006\\\\n        ],\\\\n        [\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          0.063\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          0.0541\\\\n        ],\\\\n        [\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          0.0538\\\\n        ]\\\\n      ]\\\\n    },\\\\n    \\\\\\\"d3v4\\\\\\\": {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"d3v4\\\\\\\",\\\\n      \\\\\\\"auc\\\\\\\": 0.7837,\\\\n      \\\\\\\"auc_ci95\\\\\\\": [\\\\n        0.7648,\\\\n        0.8024\\\\n      ],\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6985,\\\\n      \\\\\\\"precision\\\\\\\": 0.7118,\\\\n      \\\\\\\"recall\\\\\\\": 0.667,\\\\n      \\\\\\\"n_train\\\\\\\": 8000,\\\\n      \\\\\\\"n_test\\\\\\\": 2000,\\\\n      \\\\\\\"top5_features\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          0.0854\\\\n        ],\\\\n \n…[truncated 1387 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T06:14:40.587740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "status",
+              "value": "DONE",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python3 src/binary_pairwise_eval.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl', 'data_count': 30000, 'model_name': 'sklearn RF (500 trees) binary pairwise', 'seed': 42, 'checkpoint_path': 'N/A (sklearn, no checkpoint)', 'log_path': 'results/binary_pairwise/binary_pairwise_results.json', 'parent': 'depth_extension_pythia_d4d5_001'}"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T06:14:40.587914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1442}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T06:14:40.588288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T06:14:40.588591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:04:35.570Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:13:49.952Z\\\", \\\"hypothesis\\\": \\\"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\\\", \\\"parent\\\": \\\"depth_extension_binary_pairwise_001\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5645}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T06:14:40.588757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python3 src/binary_pairwise_eval.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl', 'data_count': 30000, 'model_name': 'sklearn RF (500 trees) binary pairwise', 'seed': 42, 'checkpoint_path': 'N/A', 'log_path': 'results/binary_pairwise/binary_pairwise_results.json', 'parent': 'depth_extension_pythia_d4d5_001'}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T06:14:40.588923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1832}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T06:14:40.589062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'python3 src/binary_pairwise_eval.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl', 'data_count': 30000, 'model_name': 'sklearn RF (500 trees) binary pairwise', 'seed': 42, 'checkpoint_path': 'N/A', 'log_path': 'results/binary_pairwise/binary_pairwise_results.json', 'checkpoint_source': 'N/A (sklearn, no pretrained checkpoint)', 'eval_data': 'data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl'}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T06:14:40.589233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:04:35.570Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:14:08.811Z\\\", \\\"hypothesis\\\": \\\"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\\\", \\\"parent\\\": \\\"depth_extension_binary_pairwise_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/binary_pairwise_eval.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"sklearn RF (500 trees) binary pairwise\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/binary_pairwise/binary_pairwise_results.json\\\", \\\"checkpoint_source\\\": \\\"N/A (sklearn, no pretrained checkpoint)\\\", \\\"eval_data\\\": \\\"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5015}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T06:14:40.589420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "metrics",
+              "value": "{'d1v2_auc': 0.925, 'd1v2_ci95': [0.9138, 0.9354], 'd2v3_auc': 0.8225, 'd2v3_ci95': [0.8052, 0.8402], 'd3v4_auc': 0.7837, 'd3v4_ci95': [0.7648, 0.8024], 'd4v5_auc': 0.6832, 'd4v5_ci95': [0.6611, 0.7045], 'edd_determination': '4'}",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T06:14:40.589625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:04:35.570Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:14:16.215Z\\\", \\\"hypothesis\\\": \\\"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\\\", \\\"parent\\\": \\\"depth_extension_binary_pairwise_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/binary_pairwise_eval.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"sklearn RF (500 trees) binary pairwise\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/binary_pairwise/binary_pairwise_results.json\\\", \\\"checkpoint_source\\\": \\\"N/A (sklearn, no pretrained checkpoint)\\\", \\\"eval_data\\\": \\\"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\"}, \\\"metrics\\\": {\\\"d1v2_auc\\\": 0.925, \\\"d1v2_ci95\\\": [0.9138, 0.9354], \\\"d2v3_auc\\\": 0.8225, \\\"d2v3_ci95\\\": [0.8052, 0.8402], \\\"d3v4_auc\\\": 0.7837, \\\"d3v4_ci95\\\": [0.7648, 0.8024], \\\"d4v5_auc\\\": 0.6832, \\\"d4v5_ci95\\\": [0.6611, 0.7045], \\\"edd_determination\\\": \\\"4\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2359}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T06:14:40.589778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T06:14:40.589959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:04:35.570Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:14:17.171Z\\\", \\\"hypothesis\\\": \\\"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\\\", \\\"parent\\\": \\\"depth_extension_binary_pairwise_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/binary_pairwise_eval.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"sklearn RF (500 trees) binary pairwise\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/binary_pairwise/binary_pairwise_results.json\\\", \\\"checkpoint_source\\\": \\\"N/A (sklearn, no pretrained checkpoint)\\\", \\\"eval_data\\\": \\\"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\"}, \\\"metrics\\\": {\\\"d1v2_auc\\\": 0.925, \\\"d1v2_ci95\\\": [0.9138, 0.9354], \\\"d2v3_auc\\\": 0.8225, \\\"d2v3_ci95\\\": [0.8052, 0.8402], \\\"d3v4_auc\\\": 0.7837, \\\"d3v4_ci95\\\": [0.7648, 0.8024], \\\"d4v5_auc\\\": 0.6832, \\\"d4v5_ci95\\\": [0.6611, 0.7045], \\\"edd_determination\\\": \\\"4\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2517}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T06:14:40.590109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "notes",
+              "value": "Binary pairwise RF (500 trees) on Pythia nucleus d0-d5 (30k samples, 5k/depth). Results: d1v2 AUC=0.9250 (vs 4-class 0.8607, +0.0643), d2v3 AUC=0.8225 (vs 4-class 0.8005, +0.0220), d3v4 AUC=0.7837 [0.7648,0.8024], d4v5 AUC=0.6832 [0.6611,0.7045]. Binary classifiers consistently outperform 4-class pipeline pairwise AUC (as expected, no decision boundary dilution). EDD=4: d3v4 above threshold (0.75) but d4v5 below. Feature extraction for d4/d5 done via Pythia-1.4B frozen model on LoRA-generated text. Top features shift from var_surprisal (d1v2) to p90_ppl/kurtosis (d3v4/d4v5), suggesting tail perplexity becomes the key discriminator at higher depths.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T06:14:40.590277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:04:35.570Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:14:24.383Z\\\", \\\"hypothesis\\\": \\\"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\\\", \\\"parent\\\": \\\"depth_extension_binary_pairwise_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/binary_pairwise_eval.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"sklearn RF (500 trees) binary pairwise\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/binary_pairwise/binary_pairwise_results.json\\\", \\\"checkpoint_source\\\": \\\"N/A (sklearn, no pretrained checkpoint)\\\", \\\"eval_data\\\": \\\"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\"}, \\\"metrics\\\": {\\\"d1v2_auc\\\": 0.925, \\\"d1v2_ci95\\\": [0.9138, 0.9354], \\\"d2v3_auc\\\": 0.8225, \\\"d2v3_ci95\\\": [0.8052, 0.8402], \\\"d3v4_auc\\\": 0.7837, \\\"d3v4_ci95\\\": [0.7648, 0.8024], \\\"d4v5_auc\\\": 0.6832, \\\"d4v5_ci95\\\": [0.6611, 0.7045], \\\"edd_determination\\\": \\\"4\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Binary pairwise RF (500 trees) on Pythia nucleus d0-d5 (30k samples, 5k/depth). Results: d1v2 AUC=0.9250 (vs 4-class 0.8607, +0.0643), d2v3 AUC=0.8225 (vs 4-class 0.8005, +0.0220), d3v4 AUC=0.7837 [0.7648,0.8024], d4v5 AUC=0.6832 [0.6611,0.7045]. Binary classifiers consistently outperform 4-class pipeline pairwise AUC (as expected, no decision boundary dilution). EDD=4: d3v4 above threshold (0.75) but d4v5 below. Feature extraction for d4/d5 done via Pythia-1.4B frozen model on LoRA-generated text. Top features shift from var_surprisal (d1v2) to p90_ppl/kurtosis (d3v4/d4v5), suggesting tail perpl\n…[truncated 122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T06:14:40.590433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "depth_extension_binary_pairwise_002",
+              "field": "status",
+              "value": "DONE",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T06:14:40.590616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:04:35.570Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:14:30.023Z\\\", \\\"hypothesis\\\": \\\"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\\\", \\\"parent\\\": \\\"depth_extension_binary_pairwise_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/binary_pairwise_eval.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"sklearn RF (500 trees) binary pairwise\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/binary_pairwise/binary_pairwise_results.json\\\", \\\"checkpoint_source\\\": \\\"N/A (sklearn, no pretrained checkpoint)\\\", \\\"eval_data\\\": \\\"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\\\"}, \\\"metrics\\\": {\\\"d1v2_auc\\\": 0.925, \\\"d1v2_ci95\\\": [0.9138, 0.9354], \\\"d2v3_auc\\\": 0.8225, \\\"d2v3_ci95\\\": [0.8052, 0.8402], \\\"d3v4_auc\\\": 0.7837, \\\"d3v4_ci95\\\": [0.7648, 0.8024], \\\"d4v5_auc\\\": 0.6832, \\\"d4v5_ci95\\\": [0.6611, 0.7045], \\\"edd_determination\\\": \\\"4\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Binary pairwise RF (500 trees) on Pythia nucleus d0-d5 (30k samples, 5k/depth). Results: d1v2 AUC=0.9250 (vs 4-class 0.8607, +0.0643), d2v3 AUC=0.8225 (vs 4-class 0.8005, +0.0220), d3v4 AUC=0.7837 [0.7648,0.8024], d4v5 AUC=0.6832 [0.6611,0.7045]. Binary classifiers consistently outperform 4-class pipeline pairwise AUC (as expected, no decision boundary dilution). EDD=4: d3v4 above threshold (0.75) but d4v5 below. Feature extraction for d4/d5 done via Pythia-1.4B frozen model on LoRA-generated text. Top features shift from var_surprisal (d1v2) to p90_ppl/kurtosis (d3v4/d4v5), suggesting tail perplexi\n…[truncated 218 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T06:14:40.590813+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。Registry 已更新为 DONE/success。\n\n**结果摘要：**\n\n| Pair | Binary AUC | 95% CI | 4-class ref | Δ |\n|------|-----------|--------|------------|---|\n| d1v2 | 0.9250 | [0.914, 0.935] | 0.8607 | +0.064 |\n| d2v3 | 0.8225 | [0.805, 0.840] | 0.8005 | +0.022 |\n| d3v4 | **0.7837** | [0.765, 0.802] | — | — |\n| d4v5 | **0.6832** | [0.661, 0.705] | — | — |\n\n**EDD = 4**：d3v4 AUC (0.784) > 0.75 阈值，d4v5 AUC (0.683) < 0.75 阈值。Binary classifiers 一致优于 4-class pipeline（消除了决策边界稀释效应）。d4 和 d5 之间的统计特征区分度明显下降，d5 生成文本在特征空间中趋于饱和。\n\n注：原任务中 d4/d5 的 features 文件不存在，额外执行了 Pythia-1.4B 特征提取（`extract_features.py`）生成了 `features_depth_4.jsonl` 和 `features_depth_5.jsonl`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_experiment_depth_extension_binary_pairwise_002_20260515T060515"
+          },
+          "id": "event-000075"
+        }
+      ],
+      "message_count": 75
+    }
+  ]
+}

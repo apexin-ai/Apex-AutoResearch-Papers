@@ -1,0 +1,703 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3765370abd36097ec7",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "analysis pi05 l2norm k03 spatial",
+  "task_key": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_pi05_l2norm_k03_spatial_20260521T210255.jsonl",
+    "occurrence": 1,
+    "bytes": 39259,
+    "sha256": "dd80b9e923d976280a3cd6a9be615bec67ac4f2de241b5d9b1959b9c77950194"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T21:05:07.174454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T21:05:07.174800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T21:05:07.174971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "tail -80 ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T21:05:07.175101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_pi05_l2norm_k05_spatial_seed42'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T21:05:07.175371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 03:11:40,250 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-22 03:11:40,287 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-22 03:11:40,287 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-22 03:11:40,287 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-22 03:11:40,336 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-22 03:11:40,735 Suite: libero_spatial, 10 tasks, max_steps=400\\\\n[PRUNE-DIAG] l2norm: n_keep=76/256, first_indices=[6, 7, 8, 18, 54]\\\\n2026-05-22 03:13:39,524   T0 [pick up the black bowl between the plate] ep=10: 7/10=70%\\\\n2026-05-22 03:15:56,799   T0 [pick up the black bowl between the plate] ep=20: 12/20=60%\\\\n2026-05-22 03:17:39,908   T0 [pick up the black bowl between the plate] ep=30: 19/30=63%\\\\n2026-05-22 03:19:44,934   T0 [pick up the black bowl between the plate] ep=40: 25/40=62%\\\\n2026-05-22 03:21:53,525   T0 [pick up the black bowl between the plate] ep=50: 31/50=62%\\\\n2026-05-22 03:21:53,525 Task 0: SR=62.0% | Total: 31/50=62.0% | Time: 10.2min\\\\n2026-05-22 03:23:30,847   T1 [pick up the black bowl next to the ramek] ep=10: 8/10=80%\\\\n2026-05-22 03:25:59,756   T1 [pick up the black b\n…[truncated 5194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T21:05:07.175534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_pi05_l2norm_k03_spatial_seed42'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T21:05:07.175732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9884}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T21:05:07.175921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4605}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T21:05:07.176156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics']",
+              "limit": "30"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T21:05:07.176316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "ls ~/autodl-tmp/importance_margin_vla_compress/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T21:05:07.176591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_random_k05_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"success_rate\\\": 71.6, \\\"total_successes\\\": 358, \\\"total_episodes\\\": 500, \\\"per_task\\\": {\\\"T0_bowl_between_plate_ramekin\\\": 88, \\\"T1_bowl_next_to_ramekin\\\": 82, \\\"T2_bowl_from_table_center\\\": 88, \\\"T3_bowl_on_cookie_box\\\": 52, \\\"T4_bowl_in_top_drawer\\\": 44, \\\"T5_bowl_on_ramekin\\\": 38, \\\"T6_bowl_next_to_cookie_box\\\": 84, \\\"T7_bowl_on_stove\\\": 84, \\\"T8_bowl_next_to_plate\\\": 80, \\\"T9_bowl_on_wooden_cabinet\\\": 76}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_random_k085_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_random_k09_fixedmask_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"error\\\": \\\"Network unreachable - AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224') failed because AutoDL network was not enabled (source /etc/network_turbo not run). No episodes executed.\\\", \\\"overall_sr\\\": null, \\\"total_episodes\\\": 0}}, \\\"eval_pi05_baseline_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 97.2, \\\"total_successes\\\": 486, \\\"num_episodes\\\": 500, \\\"elapsed_minutes\\\": 55.8, \\\"seed\\\": 42, \\\"per_task\\\": {\\\"T0_pick_up_black_bowl_between_plate\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T1_pick_up_black_bowl_next_to_ramekin\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T2_pick_up_black_bowl_from_stove\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T3_pick_up_black_bowl_on_cookie_box\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T4_pick_up_black_bowl_in_top_drawer\\\": {\\\"sr\\\": 98, \\\"success\\\": 49, \\\"total\\\": 50}, \\\"T5_pick_up_black_bowl_on_ramekin\\\": {\\\"sr\\\": 78, \\\"success\\\": 39, \\\"total\\\": 50}, \\\"T6_pick_up_black_bowl_next_to_cookie\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T7_pick_up_black_bowl_on_stove\\\": {\\\"sr\\\": 98, \\\"success\\\": 49, \\\"total\\\": 50}, \\\"T8_pick_up_black_bowl_next_t\n…[truncated 5927 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T21:05:07.176786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"debug_test.json\\\\nliberoplus_smoke.log\\\\nlog_k0.1.txt\\\\nlog_k0.2.txt\\\\nlog_k0.3.txt\\\\nlog_k0.5.txt\\\\nlog_k0.7.txt\\\\nlog_k0.9.txt\\\\nlog_k0.95.txt\\\\nlog_k1.0.txt\\\\nofficial_libero_object_l2_norm_k0.95_true_removal.json\\\\nofficial_libero_object_random_prune_k0.5_true_removal.json\\\\noft_object_stdonly_test.json\\\\noft_prune_none_k1.0_libero_object.json\\\\nopenvla_l2norm_prune_k03_object.json\\\\nopenvla_l2norm_prune_k05_object.json\\\\nopenvla_l2norm_prune_k07_object.json\\\\nopenvla_l2norm_prune_k0_3_object.json\\\\nopenvla_l2norm_prune_k0_3_object.log\\\\nopenvla_l2norm_prune_k0_5_object.json\\\\nopenvla_l2norm_prune_k0_5_object.log\\\\nopenvla_l2norm_prune_k0_95_object.json\\\\nopenvla_l2norm_prune_k0_9_object.json\\\\nopenvla_liberoplus_camera_viewpoints_L1_smoke.json\\\\nopenvla_random_k07_seed42_v2.json\\\\nopenvla_random_k095_seed42_v2.json\\\\nopenvla_random_prune_k03_object.json\\\\nopenvla_random_prune_k05_object.json\\\\nopenvla_random_prune_k07_object.json\\\\npi05_baseline_libero_spatial_seed42.json\\\\npi05_l2norm_k0.30_libero_spatial_seed42.json\\\\npi05_l2norm_k0.50_libero_spatial_seed42.json\\\\npi05_random_k0.50_libero_spatial_seed42.json\\\\nsmoke_test.json\\\\nsmolvla_baseline_object_seed43.json\\\\nsmolvla_baseline_spatial_seed42.json\\\\nsmolvla_baseline_spatial_seed42.log\\\\nsmolvla_random_prune_k095_object_seed43.json\\\\ntiming_test.json\\\\nxvla_baseline_task0_test.json\\\\nxvla_prune_k0.1_libero_object.json\\\\nxvla_prune_k0.1_libero_object.log\\\\nxvla_prune_k0.2_libero_object.json\\\\nxvla_prune_k0.2_libero_object.log\\\\nxvla_prune_k0.3_libero_object.json\\\\nxvla_prune_k0.3_libero_object.log\\\\nxvla_prune_k0.5_libero_object.json\\\\nxvla_prune_k0.5_libero_object.log\\\\nxvla_prune_k0.7_libero_object.json\\\\nxvla_prune_k0.7_libero_object.log\\\\nxvla_prune_k0.95_libero_object.json\\\\nxvla_prune_k0.95_libero_object.log\\\\nxvla_prune_k0.9_libero_object.json\\\\nxvla_prune_k0.9_libero_object.log\\\\nxvla_prune_k1.0_libero_object.json\\\\nxvla_prune_k1.0_libero_objec\n…[truncated 138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T21:05:07.176969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-38929",
+              "command": "cat ~/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.50_libero_spatial_seed42.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T21:05:07.177171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"l2norm\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 128\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick up the black bowl between the plate and the ramekin and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.74,\\\\n      \\\\\\\"n\\\\\\\": 37\\\\n    },\\\\n    \\\\\\\"pick up the black bowl next to the ramekin and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.82,\\\\n      \\\\\\\"n\\\\\\\": 41\\\\n    },\\\\n    \\\\\\\"pick up the black bowl from table center and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.78,\\\\n      \\\\\\\"n\\\\\\\": 39\\\\n    },\\\\n    \\\\\\\"pick up the black bowl on the cookie box and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.28,\\\\n      \\\\\\\"n\\\\\\\": 14\\\\n    },\\\\n    \\\\\\\"pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.38,\\\\n      \\\\\\\"n\\\\\\\": 19\\\\n    },\\\\n    \\\\\\\"pick up the black bowl on the ramekin and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.44,\\\\n      \\\\\\\"n\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"pick up the black bowl next to the cookie box and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.32,\\\\n      \\\\\\\"n\\\\\\\": 16\\\\n    },\\\\n    \\\\\\\"pick up the black bowl on the stove and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 0.74,\\\\n      \\\\\\\"n\\\\\\\": 37\\\\n    },\\\\n    \\\\\\\"pick up the black bowl next to the plate and place it on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.62,\\\\n      \n…[truncated 446 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T21:05:07.177346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ANALYZING'}",
+              "project": "importance_margin_vla_compress",
+              "fields": "['exp_id', 'status', 'hypothesis', 'metrics']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T21:05:07.177522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k05_spatial_seed42\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\\\"}, \\\"eval_pi05_l2norm_k03_spatial_seed42\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\\\"}, \\\"train_smart_compress_m16_seed44_v3\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"Third attempt of M=16 seed44 training (v1 failed: server restart, v2 failed: disk full at step=1000). Disk now cleared to 73GB free. Third seed for extreme compression point (87.5%). Prior: seed42=55.8%. Completes 3-seed data for M=16 on M-curve.\\\"}, \\\"train_smart_compress_m16_seed43\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"Second seed (seed=43) for Smart Compress M=16 (87.5% compression). Prior: seed42=55.8%. M=16 showed lowest SR among tested M values, confirming information bottleneck at extreme compression. Second seed establishes variance at this extreme point for M-curve robustness.\\\"}, \\\"train_smart_compress_m128_seed43\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"Third seed (seed=43) for Smart Compress M=128 passthrough control. Prior seeds: seed42=59.8%, seed44=60.2%. M=128 retains all 128 tokens through cross-attention re-encoding, isolating architecture effect from compression. Third seed makes \\\\\\\"re-encoding > compression\\\\\\\" argument 3-seed bulletproof (C4).\\\"}, \\\"train_smart_compress_m64_seed44\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"Third seed (seed=44) for Smart Compress M=64 to strengthen multi-seed robustness. Prior seeds: seed42=61.6%, seed43=60.0%. If seed44 yields ~60% SR, confirms M=64 matches M=32 performance with mean ~60% across 3 seeds.\\\"}, \\\"train_smart_compress_m32_seed44\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"hypothesis\\\": \\\"Smart compress with M=32 vision token compression train\n…[truncated 1112 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T21:05:07.177726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k03_spatial_seed42",
+              "field": "metrics",
+              "value": "{'overall_sr': 57.2, 'total_successes': 286, 'total_episodes': 500, 'elapsed_min': 108.4, 'seed': 42, 'per_task_sr': {'T0_bowl_between_plate': 62, 'T1_bowl_next_to_ramekin': 72, 'T2_bowl_from_table_center': 78, 'T3_bowl_on_cookie_box': 24, 'T4_bowl_in_top_drawer': 34, 'T5_bowl_on_ramekin': 26, 'T6_bowl_next_to_cookie': 74, 'T7_bowl_on_stove': 90, 'T8_bowl_next_to_plate': 66, 'T9_bowl_on_wooden_cabinet': 46}, 'log_path': '~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log', 'checkpoint_path': '/root/autodl-tmp/pi05_libero_finetuned', 'result_json': '/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json'}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T21:05:07.177927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k03_spatial_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:48.329Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:17.176Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"590816\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:50.353Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\"}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:00:31.958Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:00:40.481357+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 57.2, \\\"total_successes\\\": 286, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.4, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 62, \\\"T1_bowl_next_to_ramekin\\\": 72, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 24, \\\"T4_bowl_in_top_drawer\\\": 34, \\\"T5_bowl_on_ramekin\\\": 26, \\\"T6_bowl_next_to_cookie\\\": 74, \\\"T7_bowl_on_stove\\\": 90, \\\"T8_bowl_next_to_plate\\\": 66, \\\"T9_bowl_on_wooden_cabinet\\\": 46}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_sp\n…[truncated 86 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T21:05:07.178083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k05_spatial_seed42",
+              "field": "metrics",
+              "value": "{'overall_sr': 55.6, 'total_successes': 278, 'total_episodes': 500, 'elapsed_min': 108.9, 'seed': 42, 'per_task_sr': {'T0_bowl_between_plate': 74, 'T1_bowl_next_to_ramekin': 82, 'T2_bowl_from_table_center': 78, 'T3_bowl_on_cookie_box': 28, 'T4_bowl_in_top_drawer': 38, 'T5_bowl_on_ramekin': 44, 'T6_bowl_next_to_cookie': 32, 'T7_bowl_on_stove': 74, 'T8_bowl_next_to_plate': 62, 'T9_bowl_on_wooden_cabinet': 44}, 'log_path': '~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log', 'checkpoint_path': '/root/autodl-tmp/pi05_libero_finetuned', 'result_json': '/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.50_libero_spatial_seed42.json'}",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T21:05:07.178305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k05_spatial_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:43.315Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:20.588Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"590423\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:44.831Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\"}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:02:42.865Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:02:50.761973+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.6, \\\"total_successes\\\": 278, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.9, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 74, \\\"T1_bowl_next_to_ramekin\\\": 82, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 28, \\\"T4_bowl_in_top_drawer\\\": 38, \\\"T5_bowl_on_ramekin\\\": 44, \\\"T6_bowl_next_to_cookie\\\": 32, \\\"T7_bowl_on_stove\\\": 74, \\\"T8_bowl_next_to_plate\\\": 62, \\\"T9_bowl_on_wooden_cabinet\\\": 44}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l\n…[truncated 107 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T21:05:07.178467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k03_spatial_seed42",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T21:05:07.178591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k05_spatial_seed42",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T21:05:07.178765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k03_spatial_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:48.329Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:27.021Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"590816\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:50.353Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\"}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:00:31.958Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:00:40.481357+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 57.2, \\\"total_successes\\\": 286, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.4, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 62, \\\"T1_bowl_next_to_ramekin\\\": 72, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 24, \\\"T4_bowl_in_top_drawer\\\": 34, \\\"T5_bowl_on_ramekin\\\": 26, \\\"T6_bowl_next_to_cookie\\\": 74, \\\"T7_bowl_on_stove\\\": 90, \\\"T8_bowl_next_to_plate\\\": 66, \\\"T9_bowl_on_wooden_cabinet\\\": 46}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_sp\n…[truncated 116 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T21:05:07.178952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k05_spatial_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:43.315Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:28.257Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"590423\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:44.831Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\"}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:02:42.865Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:02:50.761973+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.6, \\\"total_successes\\\": 278, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.9, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 74, \\\"T1_bowl_next_to_ramekin\\\": 82, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 28, \\\"T4_bowl_in_top_drawer\\\": 38, \\\"T5_bowl_on_ramekin\\\": 44, \\\"T6_bowl_next_to_cookie\\\": 32, \\\"T7_bowl_on_stove\\\": 74, \\\"T8_bowl_next_to_plate\\\": 62, \\\"T9_bowl_on_wooden_cabinet\\\": 44}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l\n…[truncated 138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T21:05:07.179110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k03_spatial_seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T21:05:07.179264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k05_spatial_seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T21:05:07.179389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7291}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T21:05:07.179505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6753}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T21:05:07.179641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k03_spatial_seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/pi05_libero_finetuned', 'log_path': '~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log'}"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T21:05:07.179764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pi05_l2norm_k05_spatial_seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "importance_margin_vla_compress",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/pi05_libero_finetuned', 'log_path': '~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log'}"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T21:05:07.179952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k03_spatial_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:48.329Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:40.771Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"590816\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:50.353Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"wall_clock_seconds\\\": 6890.4, \\\"gpu_hours\\\": 1.91}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:00:31.958Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:00:40.481357+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 57.2, \\\"total_successes\\\": 286, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.4, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 62, \\\"T1_bowl_next_to_ramekin\\\": 72, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 24, \\\"T4_bowl_in_top_drawer\\\": 34, \\\"T5_bowl_on_ramekin\\\": 26, \\\"T6_bowl_next_to_cookie\\\": 74, \\\"T7_bowl_on_stove\\\": 90, \\\"T8_bowl_next_to_plate\\\": 66, \\\"T9_bowl_on_wooden_cabinet\\\": 46}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetun\n…[truncated 329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T21:05:07.180202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k05_spatial_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:43.315Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:43.483Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"590423\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:44.831Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"wall_clock_seconds\\\": 6898.7, \\\"gpu_hours\\\": 1.92}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:02:42.865Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:02:50.761973+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.6, \\\"total_successes\\\": 278, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.9, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 74, \\\"T1_bowl_next_to_ramekin\\\": 82, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 28, \\\"T4_bowl_in_top_drawer\\\": 38, \\\"T5_bowl_on_ramekin\\\": 44, \\\"T6_bowl_next_to_cookie\\\": 32, \\\"T7_bowl_on_stove\\\": 74, \\\"T8_bowl_next_to_plate\\\": 62, \\\"T9_bowl_on_wooden_cabinet\\\": 44}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tm\n…[truncated 350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T21:05:07.180416+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments marked DONE (negative). Here's the analysis:\n\n---\n\n## π0.5 L2norm Spatial Suite Results\n\n### Overall SR Comparison\n\n| Configuration | Spatial SR | Object SR |\n|---|---|---|\n| **Baseline (no pruning)** | **97.2%** | — |\n| Random k=0.5 | 71.6% | 68.4% |\n| L2norm k=0.3 | **57.2%** | 51.0% |\n| L2norm k=0.5 | **55.6%** | 33.4% |\n| L2norm k=0.7 | — | 55.0% |\n\n### Per-task Breakdown (k=0.3 vs k=0.5)\n\n| Task | k=0.3 | k=0.5 | Baseline |\n|---|---|---|---|\n| T0 between plate | 62% | 74% | 100% |\n| T1 next to ramekin | 72% | 82% | 100% |\n| T2 from table center | 78% | 78% | 100% |\n| T3 on cookie box | 24% | 28% | 100% |\n| T4 in top drawer | 34% | 38% | 98% |\n| T5 on ramekin | 26% | 44% | 78% |\n| T6 next to cookie | **74%** | 32% | 100% |\n| T7 on stove | **90%** | 74% | 98% |\n| T8 next to plate | 66% | 62% | 98% |\n| T9 on wooden cabinet | 46% | 44% | 100% |\n\n### V-shape 分析：**不复现**\n\n- **Object suite** 有清晰 V-shape：k=0.3 (51%) → k=0.5 (33.4%) → k=0.7 (55%)，valley 深度 ~18pp\n- **Spatial suite** 曲线基本平坦：k=0.3 (57.2%) ≈ k=0.5 (55.6%)，差异仅 1.6pp，在噪声范围内\n\nk=0.3 略高于 k=0.5，但这是因为个别 task 的大幅波动（T6: 74% vs 32%, T7: 90% vs 74%），而非系统性 V-shape recovery。其他 task 反而是 k=0.5 更好（T0/T1/T5）。\n\n### 关键发现\n\n1. **L2norm 在 Spatial 上同样远劣于 random**：k=0.5 处 L2norm 55.6% vs random 71.6%（-16pp），与 Object suite 上的 method gap 一致\n2. **V-shape 是 Object-specific 现象**，不是 L2norm pruning 的通用行为模式\n3. **Spatial 任务整体更 robust**：即使 70% token 被 L2norm 裁掉（k=0.3），仍有 57.2% SR；Object suite 同条件只有 51.0%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05_l2norm_k03_spatial_20260521T210255"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ]
+}

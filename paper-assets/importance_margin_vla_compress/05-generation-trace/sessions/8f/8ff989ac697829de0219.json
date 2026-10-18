@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8ff989ac697829de0219",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla random k05 goal seed42 v2",
+  "task_key": "worker_diagnose_eval_openvla_random_k05_goal_seed42_v2_20260526T152435",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_random_k05_goal_seed42_v2_20260526T152435_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "5a820f242798b88c01800c72bf50eead9b7c99659a8919ce031fba19a15b6ee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n```\nRESULT: negative\nSR: 52.2%\nDETAILS: v2 进程在 Task 2 开头死亡（日志仅 23 行，无错误），但 v1 已完成完整 eval。SR=52.2% (261/500)，与历史结果一致。per-task 范围 10%~94%。已更新 registry metrics 和 conclusion=negative（随机裁剪作为 baseline，性能低于 full tokens）。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

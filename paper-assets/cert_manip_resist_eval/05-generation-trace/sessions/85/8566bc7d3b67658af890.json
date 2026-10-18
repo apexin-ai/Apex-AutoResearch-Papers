@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8566bc7d3b67658af890",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper appendix wording fix",
+  "task_key": "worker_paper_appendix-wording-fix_20260523T014745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-wording-fix_20260523T014745_result.json",
+    "occurrence": 1,
+    "bytes": 1465,
+    "sha256": "a175468c711937710a63d4a71e421790f115b8687a46da5f5aa7cdf1f73bf110"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes complete. Summary of edits across 3 files:\n\n---\n\n**`appendix.tex` (lines 45–50)** — Rewrote `\\subsection{Oracle Adversary Limitations}` → `\\subsection{Metric Robustness Under Partial Panel Information}`:\n- Removed all adversary-capability framing (\"attacker cannot optimally select\", \"partial-knowledge attacker can exploit\", \"effect attenuates\")\n- Replaced with metric-robustness framing: η_max recomputed from 2/3 known judges via leave-one-out masking\n- Reports actual results: partial + clustered SE gives η_max 12/12 (stronger than oracle 8/12), K_eff 0/12, β_std = 0.589\n- Explains mechanism: averaging over masking scenarios smooths estimation noise\n\n**`methodology.tex` (after line 2)** — Inserted `figure*` environment:\n- Full-width framework overview figure (`fig_framework.pdf`)\n- Caption references corrected to actual labels: `sec:experiments`, `sec:threat_model`, `sec:aggregation`\n- Label: `fig:framework`\n\n**`main.tex` (Limitations, line 40)** — Updated future-work sentence:\n- Old: \"Future directions also include partial-knowledge adversary models and bootstrapped GAM confidence intervals.\"\n- New: \"A partial-information analysis (Appendix~\\ref{app:oracle}) shows that η_max computed from incomplete panel knowledge retains full predictive power; future directions include bootstrapped GAM confidence intervals and causal identification via training-time diversity control.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

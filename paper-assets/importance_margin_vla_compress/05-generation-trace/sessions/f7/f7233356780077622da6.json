@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f7233356780077622da6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check westd27271 status 20250525",
+  "task_key": "worker_check_westd27271_status_20250525_20260525T230846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_westd27271_status_20250525_20260525T230846_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "0f28ae27de97eb54b084ed683787a2c825c1632ec935b43a08bb66f3d4da35de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU0: [运行中] Random k=0.7 Goal — Task 3/10 进行中 (ep 40/50)\n  Task 1: 0.0% (0/50)\n  Task 2: 0.0% (0/50)\n  Task 3: 0.0% (0/40 so far)\n  Overall SR (2 tasks done): 0.0% — 全部失败\n  速度: ~1.5 eps/min | 剩余 ~360 eps ≈ 4h\n\nGPU1: [运行中] L2norm k=0.9 Goal seed43 — Task 6/10 进行中 (ep 40/50)\n  Task 1: 66.0% (33/50)\n  Task 2: 92.0% (46/50)\n  Task 3: 82.0% (41/50)\n  Task 4: 38.0% (19/50)\n  Task 5: 94.0% (47/50)\n  Task 6: ~67.5% (27/40 so far)\n  Avg SR (5 tasks done): 74.4%\n  速度: ~2.6 eps/min | 剩余 ~210 eps ≈ 1.3h\n\n空闲 GPU: 无\n```\n\n**关键发现：**\n\n- **Random k=0.7 Goal**: 3 个 task 全部 0% SR，已不是样本量问题——random pruning 去掉 30% vision tokens 直接导致模型完全失效。与 L2norm 方法形成鲜明对比。\n- **L2norm k=0.9 Goal seed43**: 5 tasks avg 74.4%，与 seed42 的 74.8% 高度一致，验证了结果的稳定性。预计 ~1.3h 后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

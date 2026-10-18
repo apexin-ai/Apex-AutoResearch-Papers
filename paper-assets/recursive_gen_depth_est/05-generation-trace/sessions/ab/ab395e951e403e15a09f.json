@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ab395e951e403e15a09f",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "reviewer / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_17.md",
+    "occurrence": 1,
+    "bytes": 3150,
+    "sha256": "96f77394261c10320a54f32433e8a4efcbda24c907cd0581fa358451ac8eadff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_wall_time\nupdated: '2026-05-23T19:43:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 `gpu-6000pro-2`，GPU 白名单需从 `execution.gpu_ids` 读取，审查训练实验时必须核对 CUDA_VISIBLE_DEVICES 是否越界\n- 论文 FPR 数据：结论段已改为 \"15–34%\" raw / \"below 7%\" calibrated，不可回退到旧版 \"2–3%\"（此前因 RedPajama 6.98% 触发过 CRITICAL）\n- Abstract 硬限 200 words（EMNLP 2026）\n- Limitations 只能有一个，放正文，appendix 不能有 limitations section\n- fig_confusion_matrix 已移回附录，Figure 5 现在是 fig_transfer_comparison——不要误认为正文有 confusion matrix\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`gpu-6000pro-2`，远程代码根目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/`\n- 论文目录：`docs/paper/`，编译产物 `main.pdf`（27 页，8 页正文 + Limitations + References + Appendix）\n- Registry：`registry.yaml`，150 实验（95 success, 14 negative, 17 failed）\n- 活跃进程：无。全部实验已完成，GPU 空闲。Director 此前确认不再跑新实验。\n\n### 3. 📊 当前状态\n刚完成最终图表审查：确认 2 张新图（fig_feature_trajectory 提升为 Figure 3，fig_transfer_comparison 新画为 Figure 5）数据一致、布局合理、PASS。\n\n论文处于投稿前终态：\n- 正文 8 页，5 图 5 表，§6 Discussion 压缩为单段\n- 模拟审稿预测：Overall 3.0（Findings 线）\n- 无 RUNNING/PREPARING 实验\n- 无等待中的 Worker 回调或 Cron\n\n### 4. 📋 待办\n- Director 要求最终 consistency scan → 已完成并 PASS，无 pending action\n- 若 Director 再次要求审查 → 注意 8 个仍未引用的 orphaned appendix sections（app:depth4_ext, app:detector_baselines, app:zeroshot_prompt, app:e2e, app:ref_ablation, app:learned_estimator, app:multi_tau, app:domain_bias），优先级低但审稿人可能注意到\n- 若论文修改涉及 Discussion → 建议加一句 FPR 到 \"Deployment considerations\" 段（目前 FPR 只在 Limitations 提及，Discussion 无覆盖）\n- 若 Contribution 3 措辞被问到 → 建议 \"Accumulation robustness\" 改为 \"Accumulation characterization\"（claim 强度与证据更匹配）\n\n### 5. 🎯 战略上下文\n- 论文核心结论：(1) perplexity tail features 主导 depth signal，(2) strategy effect > model effect，(3) scale attenuation at 14B\n- 7B self-reference ceiling（52.1%, EDD=0）是关键发现，已整合到 Discussion 但未进 Abstract——审稿人可能追问\n- **易错点 1**：本地 workspace 和远程服务器可能有同名文件但版本不同（论文在本地，代码/数据在远程）。断言\"未修改\"前必须双边核对\n- **易错点 2**：Explore agent 曾报告不存在的文本位于特定行号——永远用 Grep/Read 独立验证，不信 agent summary\n- **易错点 3**：cross-strategy 数据（64.9/59.0/53.3）是从附录表按模型取均值计算的派生值，不是 registry 直接记录的——修改附录表会连锁影响 Figure 5\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

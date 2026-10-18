@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "70fbd74f4b52eac6033c",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis docred ridge",
+  "task_key": "worker_analysis_docred_ridge_20260522T045710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_docred_ridge_20260522T045710_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "4311c76d42e7a26a5545e1ecf427ffa2e6552421a9c7fb093f5cf64df4e354f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Ridge Regression (110 DocRED batches)**\n- GCV 选择 λ = 0.001（极小正则化即可稳定）\n- 标准化系数：β_BCS = **-1.53**, β_centrality = 0.78, R² = 0.594\n- OLS 系数：β_BCS = -1.68, β_centrality = 0.93（VIF≈50.9 下轻度膨胀）\n- **BCS 系数在所有 λ ≥ 0 下均为负**（解析证明：分子 = −0.033 − λ×0.760，单调递减）\n\n注意事项：\n- `semipartial_r2_verification.json` 中 `zero_order_r_cent: 0.7344` 有符号错误，实际应为 **-0.7344**（已通过 R²=0.5949 和 partial_r=-0.3476 交叉验证）\n- 由于 SSH 密钥未配置在此环境，分析使用相关矩阵解析计算（数学等价于 RidgeCV on standardized data）\n- 产出已注册：`docred_ridge_regression.json` + `docred_ridge_appendix.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

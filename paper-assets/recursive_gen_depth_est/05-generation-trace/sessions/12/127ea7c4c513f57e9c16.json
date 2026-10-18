@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "127ea7c4c513f57e9c16",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops verify gpu split",
+  "task_key": "worker_ops_verify_gpu_split_20260519T045944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_gpu_split_20260519T045944_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "8fe615f1d130f5d430e4b8b30b6796dab87538f16282185d5724ad1b653afb57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验确认正常运行：\n\n**nvidia-smi:**\n| GPU | PID | 显存 | GPU-Util |\n|-----|-----|------|----------|\n| cuda:0 | 776616 (temp09) | 32304 MiB | 97% |\n| cuda:1 | 787051 (topk50) | 32302 MiB | 97% |\n\n**topk50 日志头部确认：**\n- `CUDA_VISIBLE_DEVICES=1` — 正确绑定 cuda:1\n- 模型已加载完成（579/579 shards），正在生成 d0（5000 unconditional samples）\n- 配置：Qwen2.5-14B FP16, top-k k=50, depths 0-3\n\n两张卡各跑一个 14B 实验，互不干扰，GPU 利用率都在 97%。注意 topk50 的实际 PID 是 787051（不是预期的 787031，差异正常，可能是启动时的进程分配）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

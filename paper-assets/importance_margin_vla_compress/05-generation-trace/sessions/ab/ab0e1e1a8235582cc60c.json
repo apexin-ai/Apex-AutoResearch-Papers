@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "ab0e1e1a8235582cc60c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code xvla libero eval 41074",
+  "task_key": "worker_code_xvla-libero-eval-41074_20260520T074020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_xvla-libero-eval-41074_20260520T074020_result.json",
+    "occurrence": 1,
+    "bytes": 2330344,
+    "sha256": "df318012735a91dcc966d54c44188f936b19a339eac5002ca983c7d3a461b568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ab0e1e1a8235582cc60c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

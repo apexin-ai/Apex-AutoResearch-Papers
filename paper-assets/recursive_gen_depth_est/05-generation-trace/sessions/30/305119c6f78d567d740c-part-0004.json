@@ -1,0 +1,434 @@
+{
+  "schema_version": "1.0",
+  "session_id": "305119c6f78d567d740c",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部评估完成。现在更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "uuid": "bf45bab7-b77a-4790-ab4b-fbd95fddd8d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VxE9kpVc6qAk6xX5Kfdk1T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1375,
+                "cache_read_input_tokens": 157419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1375
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019nj5Vk1wT1Kvg2z4NUSKAe",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "gpt2xl_topk50_001",
+                "project": "recursive_gen_depth_est",
+                "field": "metrics",
+                "value": {
+                  "evaluator_model": "gpt2-xl",
+                  "truncation_length": 492,
+                  "four_class": {
+                    "rf_accuracy": 0.7445,
+                    "rf_accuracy_ci": [
+                      0.7302,
+                      0.7578
+                    ],
+                    "lr_accuracy": 0.713,
+                    "lr_accuracy_ci": [
+                      0.699,
+                      0.727
+                    ]
+                  },
+                  "pairwise_auc": {
+                    "rf": {
+                      "d0v1": 0.9906,
+                      "d0v2": 0.9975,
+                      "d0v3": 0.9986,
+                      "d1v2": 0.8126,
+                      "d1v3": 0.9708,
+                      "d2v3": 0.7529
+                    },
+                    "lr": {
+                      "d0v1": 0.9727,
+                      "d0v2": 0.9839,
+                      "d0v3": 0.9988,
+                      "d1v2": 0.7813,
+                      "d1v3": 0.9469,
+                      "d2v3": 0.7282
+                    }
+                  },
+                  "three_class": {
+                    "rf_accuracy": 0.6947,
+                    "rf_accuracy_ci": [
+                      0.677,
+                      0.7107
+                    ],
+                    "lr_accuracy": 0.6507,
+                    "lr_accuracy_ci": [
+                      0.6337,
+                      0.6673
+                    ]
+                  },
+                  "three_class_auc": {
+                    "rf": {
+                      "d1v2": 0.8392,
+                      "d1v3": 0.9726,
+                      "d2v3": 0.7596
+                    },
+                    "lr": {
+                      "d1v2": 0.7733,
+                      "d1v3": 0.9548,
+                      "d2v3": 0.7388
+                    }
+                  },
+                  "three_class_filtered": {
+                    "rf_accuracy": 0.6836,
+                    "rf_accuracy_ci": [
+                      0.6678,
+                      0.701
+                    ],
+                    "lr_accuracy": 0.6453,
+                    "lr_accuracy_ci": [
+                      0.6281,
+                      0.6641
+                    ],
+                    "n_samples": 14885
+                  },
+                  "three_class_filtered_auc": {
+                    "rf": {
+                      "d1v2": 0.8314,
+                      "d1v3": 0.9753,
+                      "d2v3": 0.776
+                    },
+                    "lr": {
+                      "d1v2": 0.7754,
+                      "d1v3": 0.9534,
+                      "d2v3": 0.7385
+                    }
+                  },
+                  "feature_importance_top5": [
+                    "p90_ppl",
+                    "p75_ppl",
+                    "mean_surprisal",
+                    "var_surprisal",
+                    "p50_ppl"
+                  ],
+                  "finetune_loss": {
+                    "depth_1": 1.9886,
+                    "depth_2": 1.7554
+                  },
+                  "code_contamination": {
+                    "narrow_pct": {
+                      "depth_0": 0.4,
+                      "depth_1": 0.7,
+                      "depth_2": 1.6,
+                      "depth_3": 1.4
+                    },
+                    "broad_pct": {
+                      "depth_0": 0.5,
+                      "depth_1": 0.9,
+                      "depth_2": 0.8,
+                      "depth_3": 0.6
+                    }
+                  }
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "uuid": "7fa34b1e-7ac9-44e7-a555-dc658bc5dd88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VxE9kpVc6qAk6xX5Kfdk1T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1375,
+                "cache_read_input_tokens": 157419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1375
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-15T02:50:39.299Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019nj5Vk1wT1Kvg2z4NUSKAe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gpt2xl_topk50_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:30:51.976Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:50:39.191Z\\\", \\\"hypothesis\\\": \\\"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\\\", \\\"parent\\\": \\\"cross_model_gpt2xl_001\\\", \\\"plan_id\\\": \\\"plan_003c\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_pipeline_topk.sh gpt2xl 50\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211326\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T22:47:20.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"gpt2-xl\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/models/gpt2-xl/\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"target_modules\\\": [\\\"c_attn\\\", \\\"c_proj\\\"], \\\"epochs\\\": 3, \\\"lr\\\": \\\"2e-4\\\", \\\"batch_size\\\": 8, \\\"gradient_accumulation\\\": 2, \\\"max_seq_len\\\": 512, \\\"max_new_tokens\\\": 512, \\\"temperature\\\": 1, \\\"decoding_strategy\\\": \\\"topk\\\", \\\"top_k\\\": 50}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\\\", \\\"checkpoint_source\\\": \\\"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\\\", \\\"eval_data\\\": \\\"data/depth_0.jsonl (seed) + generated depths 1-3\\\", \\\"decoding\\\": \\\"top-k k=50\\\", \\\"wall_clock_seconds\\\": 14226.7, \\\"gpu_hours\\\": 3.95}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T02:16:55.268Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:16:56.661715+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"evaluator_model\\\": \\\"gpt2-xl\\\", \\\"truncation_length\\\": 492, \\\"four_class\\\": {\\\"rf_accuracy\\\": 0.7445, \\\"rf_accuracy_ci\\\": [0.7302, 0.7578], \\\"lr_accuracy\\\": 0.713, \\\"lr_accuracy_ci\\\": [0.699, 0.727]}, \\\"pairwise_auc\\\": {\\\"rf\\\": {\\\"d0v1\\\": 0.9906, \\\"d0v2\\\": 0.9975, \\\"d0v3\\\": 0.9986, \\\"d1v2\\\": 0.8126, \\\"d1v3\\\": 0.9708, \\\"d2v3\\\": 0.7529}, \\\"lr\\\": {\\\"d0v1\\\": 0.9727, \\\"d0v2\\\": 0.9839, \\\"d0v3\\\": 0.9988, \\\"d1v2\\\": 0.7813, \\\"d1v3\\\": 0.9469, \\\"d2v3\\\": 0.7282}}, \\\"three_class\\\": {\\\"rf_accuracy\\\": 0.6947, \\\"rf_accuracy_ci\\\": [0.677, 0.7107], \\\"lr_accuracy\\\": 0.6507, \\\"lr_accuracy_ci\\\": [0.6337, 0.6673]}, \\\"three_class_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8392, \\\"d1v3\\\": 0.9726, \\\"d2v3\\\": 0.7596}, \\\"lr\\\": {\\\"d1v2\\\": 0.7733, \\\"d1v3\\\": 0.9548, \\\"d2v3\\\": 0.7388}}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.6836, \\\"rf_accuracy_ci\\\": [0.6678, 0.701], \\\"lr_accuracy\\\": 0.6453, \\\"lr_accuracy_ci\\\": [0.6281, 0.6641], \\\"n_samples\\\": 14885}, \\\"three_class_filtered_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8314, \\\"d1v3\\\": 0.9753, \\\"d2v3\\\": 0.776}, \\\"lr\\\": {\\\"d1v2\\\": 0.7754, \\\"d1v3\\\": 0.9534, \\\"d2v3\\\": 0.7385}}, \\\"feature_importance_top5\\\": [\\\"p90_ppl\\\", \\\"p75_ppl\\\", \\\"mean_surprisal\\\", \\\"var_surprisal\\\", \\\"p50_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_1\\\": 1.9886, \\\"depth_2\\\": 1.7554}, \\\"code_contamination\\\": {\\\"narrow_pct\\\": {\\\"depth_0\\\": 0.4, \\\"depth_1\\\": 0.7, \\\"depth_2\\\": 1.6, \\\"depth_3\\\": 1.4}, \\\"broad_pct\\\": {\\\"depth_0\\\": 0.5, \\\"depth_1\\\": 0.9, \\\"depth_2\\\": 0.8, \\\"depth_3\\\": 0.6}}}, \\\"completed_at\\\": \\\"2026-05-15T02:44:27.004Z\\\", \\\"notes\\\": \\\"GPT-2 XL top-k k=50 完成 (3×3 矩阵第 9 格)。RF 74.45% [73.0-75.8%], LR 71.3% [69.9-72.7%], d1v2 AUC 0.813, 3-class RF 69.47%。\\\\n\\\\nvs 同模型: nucleus 83.3% (-8.85pp), temp09 85.4% (-10.95pp)。Top-k 截断对 GPT-2 XL 深度信号破坏与 Pythia (-8.6pp) 一致, OLMo 仅 -3.1pp 更鲁棒。\\\\n\\\\n3-class filtered 待 load_features bug 修复后重跑。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2336}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "uuid": "56b4ec5c-59b8-4a09-a256-0094ba7ed28c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gpt2xl_topk50_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:30:51.976Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:50:39.191Z\\\", \\\"hypothesis\\\": \\\"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\\\", \\\"parent\\\": \\\"cross_model_gpt2xl_001\\\", \\\"plan_id\\\": \\\"plan_003c\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_pipeline_topk.sh gpt2xl 50\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211326\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T22:47:20.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"gpt2-xl\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/models/gpt2-xl/\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"target_modules\\\": [\\\"c_attn\\\", \\\"c_proj\\\"], \\\"epochs\\\": 3, \\\"lr\\\": \\\"2e-4\\\", \\\"batch_size\\\": 8, \\\"gradient_accumulation\\\": 2, \\\"max_seq_len\\\": 512, \\\"max_new_tokens\\\": 512, \\\"temperature\\\": 1, \\\"decoding_strategy\\\": \\\"topk\\\", \\\"top_k\\\": 50}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\\\", \\\"checkpoint_source\\\": \\\"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\\\", \\\"eval_data\\\": \\\"data/depth_0.jsonl (seed) + generated depths 1-3\\\", \\\"decoding\\\": \\\"top-k k=50\\\", \\\"wall_clock_seconds\\\": 14226.7, \\\"gpu_hours\\\": 3.95}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T02:16:55.268Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:16:56.661715+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"evaluator_model\\\": \\\"gpt2-xl\\\", \\\"truncation_length\\\": 492, \\\"four_class\\\": {\\\"rf_accuracy\\\": 0.7445, \\\"rf_accuracy_ci\\\": [0.7302, 0.7578], \\\"lr_accuracy\\\": 0.713, \\\"lr_accuracy_ci\\\": [0.699, 0.727]}, \\\"pairwise_auc\\\": {\\\"rf\\\": {\\\"d0v1\\\": 0.9906, \\\"d0v2\\\": 0.9975, \\\"d0v3\\\": 0.9986, \\\"d1v2\\\": 0.8126, \\\"d1v3\\\": 0.9708, \\\"d2v3\\\": 0.7529}, \\\"lr\\\": {\\\"d0v1\\\": 0.9727, \\\"d0v2\\\": 0.9839, \\\"d0v3\\\": 0.9988, \\\"d1v2\\\": 0.7813, \\\"d1v3\\\": 0.9469, \\\"d2v3\\\": 0.7282}}, \\\"three_class\\\": {\\\"rf_accuracy\\\": 0.6947, \\\"rf_accuracy_ci\\\": [0.677, 0.7107], \\\"lr_accuracy\\\": 0.6507, \\\"lr_accuracy_ci\\\": [0.6337, 0.6673]}, \\\"three_class_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8392, \\\"d1v3\\\": 0.9726, \\\"d2v3\\\": 0.7596}, \\\"lr\\\": {\\\"d1v2\\\": 0.7733, \\\"d1v3\\\": 0.9548, \\\"d2v3\\\": 0.7388}}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.6836, \\\"rf_accuracy_ci\\\": [0.6678, 0.701], \\\"lr_accuracy\\\": 0.6453, \\\"lr_accuracy_ci\\\": [0.6281, 0.6641], \\\"n_samples\\\": 14885}, \\\"three_class_filtered_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8314, \\\"d1v3\\\": 0.9753, \\\"d2v3\\\": 0.776}, \\\"lr\\\": {\\\"d1v2\\\": 0.7754, \\\"d1v3\\\": 0.9534, \\\"d2v3\\\": 0.7385}}, \\\"feature_importance_top5\\\": [\\\"p90_ppl\\\", \\\"p75_ppl\\\", \\\"mean_surprisal\\\", \\\"var_surprisal\\\", \\\"p50_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_1\\\": 1.9886, \\\"depth_2\\\": 1.7554}, \\\"code_contamination\\\": {\\\"narrow_pct\\\": {\\\"depth_0\\\": 0.4, \\\"depth_1\\\": 0.7, \\\"depth_2\\\": 1.6, \\\"depth_3\\\": 1.4}, \\\"broad_pct\\\": {\\\"depth_0\\\": 0.5, \\\"depth_1\\\": 0.9, \\\"depth_2\\\": 0.8, \\\"depth_3\\\": 0.6}}}, \\\"completed_at\\\": \\\"2026-05-15T02:44:27.004Z\\\", \\\"notes\\\": \\\"GPT-2 XL top-k k=50 完成 (3×3 矩阵第 9 格)。RF 74.45% [73.0-75.8%], LR 71.3% [69.9-72.7%], d1v2 AUC 0.813, 3-class RF 69.47%。\\\\n\\\\nvs 同模型: nucleus 83.3% (-8.85pp), temp09 85.4% (-10.95pp)。Top-k 截断对 GPT-2 XL 深度信号破坏与 Pythia (-8.6pp) 一致, OLMo 仅 -3.1pp 更鲁棒。\\\\n\\\\n3-class filtered 待 load_features bug 修复后重跑。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2336}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"gpt2xl_topk50_001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T02:50:39.191Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\", \"wall_clock_seconds\": 14226.7, \"gpu_hours\": 3.95}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"evaluator_model\": \"gpt2-xl\", \"truncation_length\": 492, \"four_class\": {\"rf_accuracy\": 0.7445, \"rf_accuracy_ci\": [0.7302, 0.7578], \"lr_accuracy\": 0.713, \"lr_accuracy_ci\": [0.699, 0.727]}, \"pairwise_auc\": {\"rf\": {\"d0v1\": 0.9906, \"d0v2\": 0.9975, \"d0v3\": 0.9986, \"d1v2\": 0.8126, \"d1v3\": 0.9708, \"d2v3\": 0.7529}, \"lr\": {\"d0v1\": 0.9727, \"d0v2\": 0.9839, \"d0v3\": 0.9988, \"d1v2\": 0.7813, \"d1v3\": 0.9469, \"d2v3\": 0.7282}}, \"three_class\": {\"rf_accuracy\": 0.6947, \"rf_accuracy_ci\": [0.677, 0.7107], \"lr_accuracy\": 0.6507, \"lr_accuracy_ci\": [0.6337, 0.6673]}, \"three_class_auc\": {\"rf\": {\"d1v2\": 0.8392, \"d1v3\": 0.9726, \"d2v3\": 0.7596}, \"lr\": {\"d1v2\": 0.7733, \"d1v3\": 0.9548, \"d2v3\": 0.7388}}, \"three_class_filtered\": {\"rf_accuracy\": 0.6836, \"rf_accuracy_ci\": [0.6678, 0.701], \"lr_accuracy\": 0.6453, \"lr_accuracy_ci\": [0.6281, 0.6641], \"n_samples\": 14885}, \"three_class_filtered_auc\": {\"rf\": {\"d1v2\": 0.8314, \"d1v3\": 0.9753, \"d2v3\": 0.776}, \"lr\": {\"d1v2\": 0.7754, \"d1v3\": 0.9534, \"d2v3\": 0.7385}}, \"feature_importance_top5\": [\"p90_ppl\", \"p75_ppl\", \"mean_surprisal\", \"var_surprisal\", \"p50_ppl\"], \"finetune_loss\": {\"depth_1\": 1.9886, \"depth_2\": 1.7554}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.7, \"depth_2\": 1.6, \"depth_3\": 1.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 0.9, \"depth_2\": 0.8, \"depth_3\": 0.6}}}, \"completed_at\": \"2026-05-15T02:44:27.004Z\", \"notes\": \"GPT-2 XL top-k k=50 完成 (3×3 矩阵第 9 格)。RF 74.45% [73.0-75.8%], LR 71.3% [69.9-72.7%], d1v2 AUC 0.813, 3-class RF 69.47%。\\n\\nvs 同模型: nucleus 83.3% (-8.85pp), temp09 85.4% (-10.95pp)。Top-k 截断对 GPT-2 XL 深度信号破坏与 Pythia (-8.6pp) 一致, OLMo 仅 -3.1pp 更鲁棒。\\n\\n3-class filtered 待 load_features bug 修复后重跑。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2336}}"
+              }
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EYAGy9Fy9H7nP8mapK4FyP",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "gpt2xl_topk50_001",
+                "project": "recursive_gen_depth_est",
+                "field": "notes",
+                "value": "GPT-2 XL top-k k=50 完成（3×3 矩阵第 9 格，最后一格）。evaluator=GPT-2 XL。\n\n核心指标: RF 74.45% [73.0-75.8%], LR 71.3%, d1v2 AUC RF 0.813 / LR 0.781。3-class RF 69.47%, 3-class filtered RF 68.36%。Code contamination 极低 (narrow ≤1.6%)。\n\nvs 同模型不同解码策略:\n| Config     | RF 4-class | d1v2 AUC | 3-class RF |\n|------------|-----------|----------|------------|\n| temp09     | 85.4%     | 0.937    | 82.0%      |\n| nucleus    | 83.3%     | 0.913    | 79.3%      |\n| topk50     | 74.45%    | 0.813    | 69.5%      |\n\nTop-k 使 GPT-2 XL 深度信号下降 -8.85pp (vs nucleus), -10.95pp (vs temp09)。这与 Pythia (-8.6pp nucleus→topk) 一致，但 OLMo 仅降 -3.1pp。说明 top-k 的截断效应对大模型更显著。\n\n跨模型 topk50 对比:\n| Model     | RF 4-class | d1v2 AUC |\n|-----------|-----------|----------|\n| GPT-2 XL  | 74.45%    | 0.813    |\n| OLMo-1B   | 74.2%     | 0.831    |\n| Pythia-1.4B | 69.6%   | 0.752    |\n\nAUC 单调性保持: d0v1(0.991) > d1v2(0.813) > d2v3(0.753) ✓\nFeature importance top-5 与其他配置一致: p90_ppl, p75_ppl, mean_surprisal, var_surprisal。\n\n3×3 矩阵（3模型 × 3解码策略）全部完成。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "uuid": "f893e9cc-5d99-4e1b-8c22-85040bdea9da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EDDduT1C5Frxo7tTgwgRGS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4403,
+                "cache_read_input_tokens": 158794,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4403
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-15T02:50:54.215Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EYAGy9Fy9H7nP8mapK4FyP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gpt2xl_topk50_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:30:51.976Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:50:54.133Z\\\", \\\"hypothesis\\\": \\\"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\\\", \\\"parent\\\": \\\"cross_model_gpt2xl_001\\\", \\\"plan_id\\\": \\\"plan_003c\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_pipeline_topk.sh gpt2xl 50\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211326\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T22:47:20.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"gpt2-xl\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/models/gpt2-xl/\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"target_modules\\\": [\\\"c_attn\\\", \\\"c_proj\\\"], \\\"epochs\\\": 3, \\\"lr\\\": \\\"2e-4\\\", \\\"batch_size\\\": 8, \\\"gradient_accumulation\\\": 2, \\\"max_seq_len\\\": 512, \\\"max_new_tokens\\\": 512, \\\"temperature\\\": 1, \\\"decoding_strategy\\\": \\\"topk\\\", \\\"top_k\\\": 50}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\\\", \\\"checkpoint_source\\\": \\\"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\\\", \\\"eval_data\\\": \\\"data/depth_0.jsonl (seed) + generated depths 1-3\\\", \\\"decoding\\\": \\\"top-k k=50\\\", \\\"wall_clock_seconds\\\": 14226.7, \\\"gpu_hours\\\": 3.95}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T02:16:55.268Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:16:56.661715+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"evaluator_model\\\": \\\"gpt2-xl\\\", \\\"truncation_length\\\": 492, \\\"four_class\\\": {\\\"rf_accuracy\\\": 0.7445, \\\"rf_accuracy_ci\\\": [0.7302, 0.7578], \\\"lr_accuracy\\\": 0.713, \\\"lr_accuracy_ci\\\": [0.699, 0.727]}, \\\"pairwise_auc\\\": {\\\"rf\\\": {\\\"d0v1\\\": 0.9906, \\\"d0v2\\\": 0.9975, \\\"d0v3\\\": 0.9986, \\\"d1v2\\\": 0.8126, \\\"d1v3\\\": 0.9708, \\\"d2v3\\\": 0.7529}, \\\"lr\\\": {\\\"d0v1\\\": 0.9727, \\\"d0v2\\\": 0.9839, \\\"d0v3\\\": 0.9988, \\\"d1v2\\\": 0.7813, \\\"d1v3\\\": 0.9469, \\\"d2v3\\\": 0.7282}}, \\\"three_class\\\": {\\\"rf_accuracy\\\": 0.6947, \\\"rf_accuracy_ci\\\": [0.677, 0.7107], \\\"lr_accuracy\\\": 0.6507, \\\"lr_accuracy_ci\\\": [0.6337, 0.6673]}, \\\"three_class_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8392, \\\"d1v3\\\": 0.9726, \\\"d2v3\\\": 0.7596}, \\\"lr\\\": {\\\"d1v2\\\": 0.7733, \\\"d1v3\\\": 0.9548, \\\"d2v3\\\": 0.7388}}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.6836, \\\"rf_accuracy_ci\\\": [0.6678, 0.701], \\\"lr_accuracy\\\": 0.6453, \\\"lr_accuracy_ci\\\": [0.6281, 0.6641], \\\"n_samples\\\": 14885}, \\\"three_class_filtered_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8314, \\\"d1v3\\\": 0.9753, \\\"d2v3\\\": 0.776}, \\\"lr\\\": {\\\"d1v2\\\": 0.7754, \\\"d1v3\\\": 0.9534, \\\"d2v3\\\": 0.7385}}, \\\"feature_importance_top5\\\": [\\\"p90_ppl\\\", \\\"p75_ppl\\\", \\\"mean_surprisal\\\", \\\"var_surprisal\\\", \\\"p50_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_1\\\": 1.9886, \\\"depth_2\\\": 1.7554}, \\\"code_contamination\\\": {\\\"narrow_pct\\\": {\\\"depth_0\\\": 0.4, \\\"depth_1\\\": 0.7, \\\"depth_2\\\": 1.6, \\\"depth_3\\\": 1.4}, \\\"broad_pct\\\": {\\\"depth_0\\\": 0.5, \\\"depth_1\\\": 0.9, \\\"depth_2\\\": 0.8, \\\"depth_3\\\": 0.6}}}, \\\"completed_at\\\": \\\"2026-05-15T02:44:27.004Z\\\", \\\"notes\\\": \\\"GPT-2 XL top-k k=50 完成（3×3 矩阵第 9 格，最后一格）。evaluator=GPT-2 XL。\\\\n\\\\n核心指标: RF 74.45% [73.0-75.8%], LR 71.3%, d1v2 AUC RF 0.813 / LR 0.781。3-class RF 69.47%, 3-class filtered RF 68.36%。Code contamination 极低 (narrow ≤1.6%)。\\\\n\\\\nvs 同模型不同解码策略:\\\\n| Config     | RF 4-class | d1v2 AUC | 3-class RF |\\\\n|------------|-----------|----------|------------|\\\\n| temp09     | 85.4%     | 0.937    | 82.0%      |\\\\n| nucleus    | 83.3%     | 0.913    | 79.3%      |\\\\n| topk50     | 74.45%    | 0.813    | 69.5%      |\\\\n\\\\nTop-k 使 GPT-2 XL 深度信号下降 -8.85pp (vs nucleus), -10.95pp (vs temp09)。这与 Pythia (-8.6pp nucleus→topk) 一致，但 OLMo 仅降 -3.1pp。说明 top-k 的截断效应对大模型更显著。\\\\n\\\\n跨模型 topk50 对比:\\\\n| Model     | RF 4-class | d1v2 AUC |\\\\n|-----------|-----------|----------|\\\\n| GPT-2 XL  | 74.45%    | 0.813    |\\\\n| OLMo-1B   | 74.2%     | 0.831    |\\\\n| Pythia-1.4B | 69.6%   | 0.752    |\\\\n\\\\nAUC 单调性保持: d0v1(0.991) > d1v2(0.813) > d2v3(0.753) ✓\\\\nFeature importance top-5 与其他配置一致: p90_ppl, p75_ppl, mean_surprisal, var_surprisal。\\\\n\\\\n3×3 矩阵（3模型 × 3解码策略）全部完成。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.201}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "uuid": "ff836d09-832d-43a3-a23f-5e43e9af86de",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gpt2xl_topk50_001\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:30:51.976Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:50:54.133Z\\\", \\\"hypothesis\\\": \\\"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\\\", \\\"parent\\\": \\\"cross_model_gpt2xl_001\\\", \\\"plan_id\\\": \\\"plan_003c\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_pipeline_topk.sh gpt2xl 50\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"211326\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T22:47:20.282Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"gpt2-xl\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/models/gpt2-xl/\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"target_modules\\\": [\\\"c_attn\\\", \\\"c_proj\\\"], \\\"epochs\\\": 3, \\\"lr\\\": \\\"2e-4\\\", \\\"batch_size\\\": 8, \\\"gradient_accumulation\\\": 2, \\\"max_seq_len\\\": 512, \\\"max_new_tokens\\\": 512, \\\"temperature\\\": 1, \\\"decoding_strategy\\\": \\\"topk\\\", \\\"top_k\\\": 50}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\\\", \\\"checkpoint_source\\\": \\\"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\\\", \\\"eval_data\\\": \\\"data/depth_0.jsonl (seed) + generated depths 1-3\\\", \\\"decoding\\\": \\\"top-k k=50\\\", \\\"wall_clock_seconds\\\": 14226.7, \\\"gpu_hours\\\": 3.95}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T02:16:55.268Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:16:56.661715+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"evaluator_model\\\": \\\"gpt2-xl\\\", \\\"truncation_length\\\": 492, \\\"four_class\\\": {\\\"rf_accuracy\\\": 0.7445, \\\"rf_accuracy_ci\\\": [0.7302, 0.7578], \\\"lr_accuracy\\\": 0.713, \\\"lr_accuracy_ci\\\": [0.699, 0.727]}, \\\"pairwise_auc\\\": {\\\"rf\\\": {\\\"d0v1\\\": 0.9906, \\\"d0v2\\\": 0.9975, \\\"d0v3\\\": 0.9986, \\\"d1v2\\\": 0.8126, \\\"d1v3\\\": 0.9708, \\\"d2v3\\\": 0.7529}, \\\"lr\\\": {\\\"d0v1\\\": 0.9727, \\\"d0v2\\\": 0.9839, \\\"d0v3\\\": 0.9988, \\\"d1v2\\\": 0.7813, \\\"d1v3\\\": 0.9469, \\\"d2v3\\\": 0.7282}}, \\\"three_class\\\": {\\\"rf_accuracy\\\": 0.6947, \\\"rf_accuracy_ci\\\": [0.677, 0.7107], \\\"lr_accuracy\\\": 0.6507, \\\"lr_accuracy_ci\\\": [0.6337, 0.6673]}, \\\"three_class_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8392, \\\"d1v3\\\": 0.9726, \\\"d2v3\\\": 0.7596}, \\\"lr\\\": {\\\"d1v2\\\": 0.7733, \\\"d1v3\\\": 0.9548, \\\"d2v3\\\": 0.7388}}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.6836, \\\"rf_accuracy_ci\\\": [0.6678, 0.701], \\\"lr_accuracy\\\": 0.6453, \\\"lr_accuracy_ci\\\": [0.6281, 0.6641], \\\"n_samples\\\": 14885}, \\\"three_class_filtered_auc\\\": {\\\"rf\\\": {\\\"d1v2\\\": 0.8314, \\\"d1v3\\\": 0.9753, \\\"d2v3\\\": 0.776}, \\\"lr\\\": {\\\"d1v2\\\": 0.7754, \\\"d1v3\\\": 0.9534, \\\"d2v3\\\": 0.7385}}, \\\"feature_importance_top5\\\": [\\\"p90_ppl\\\", \\\"p75_ppl\\\", \\\"mean_surprisal\\\", \\\"var_surprisal\\\", \\\"p50_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_1\\\": 1.9886, \\\"depth_2\\\": 1.7554}, \\\"code_contamination\\\": {\\\"narrow_pct\\\": {\\\"depth_0\\\": 0.4, \\\"depth_1\\\": 0.7, \\\"depth_2\\\": 1.6, \\\"depth_3\\\": 1.4}, \\\"broad_pct\\\": {\\\"depth_0\\\": 0.5, \\\"depth_1\\\": 0.9, \\\"depth_2\\\": 0.8, \\\"depth_3\\\": 0.6}}}, \\\"completed_at\\\": \\\"2026-05-15T02:44:27.004Z\\\", \\\"notes\\\": \\\"GPT-2 XL top-k k=50 完成（3×3 矩阵第 9 格，最后一格）。evaluator=GPT-2 XL。\\\\n\\\\n核心指标: RF 74.45% [73.0-75.8%], LR 71.3%, d1v2 AUC RF 0.813 / LR 0.781。3-class RF 69.47%, 3-class filtered RF 68.36%。Code contamination 极低 (narrow ≤1.6%)。\\\\n\\\\nvs 同模型不同解码策略:\\\\n| Config     | RF 4-class | d1v2 AUC | 3-class RF |\\\\n|------------|-----------|----------|------------|\\\\n| temp09     | 85.4%     | 0.937    | 82.0%      |\\\\n| nucleus    | 83.3%     | 0.913    | 79.3%      |\\\\n| topk50     | 74.45%    | 0.813    | 69.5%      |\\\\n\\\\nTop-k 使 GPT-2 XL 深度信号下降 -8.85pp (vs nucleus), -10.95pp (vs temp09)。这与 Pythia (-8.6pp nucleus→topk) 一致，但 OLMo 仅降 -3.1pp。说明 top-k 的截断效应对大模型更显著。\\\\n\\\\n跨模型 topk50 对比:\\\\n| Model     | RF 4-class | d1v2 AUC |\\\\n|-----------|-----------|----------|\\\\n| GPT-2 XL  | 74.45%    | 0.813    |\\\\n| OLMo-1B   | 74.2%     | 0.831    |\\\\n| Pythia-1.4B | 69.6%   | 0.752    |\\\\n\\\\nAUC 单调性保持: d0v1(0.991) > d1v2(0.813) > d2v3(0.753) ✓\\\\nFeature importance top-5 与其他配置一致: p90_ppl, p75_ppl, mean_surprisal, var_surprisal。\\\\n\\\\n3×3 矩阵（3模型 × 3解码策略）全部完成。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.201}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"gpt2xl_topk50_001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T02:50:54.133Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\", \"wall_clock_seconds\": 14226.7, \"gpu_hours\": 3.95}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"evaluator_model\": \"gpt2-xl\", \"truncation_length\": 492, \"four_class\": {\"rf_accuracy\": 0.7445, \"rf_accuracy_ci\": [0.7302, 0.7578], \"lr_accuracy\": 0.713, \"lr_accuracy_ci\": [0.699, 0.727]}, \"pairwise_auc\": {\"rf\": {\"d0v1\": 0.9906, \"d0v2\": 0.9975, \"d0v3\": 0.9986, \"d1v2\": 0.8126, \"d1v3\": 0.9708, \"d2v3\": 0.7529}, \"lr\": {\"d0v1\": 0.9727, \"d0v2\": 0.9839, \"d0v3\": 0.9988, \"d1v2\": 0.7813, \"d1v3\": 0.9469, \"d2v3\": 0.7282}}, \"three_class\": {\"rf_accuracy\": 0.6947, \"rf_accuracy_ci\": [0.677, 0.7107], \"lr_accuracy\": 0.6507, \"lr_accuracy_ci\": [0.6337, 0.6673]}, \"three_class_auc\": {\"rf\": {\"d1v2\": 0.8392, \"d1v3\": 0.9726, \"d2v3\": 0.7596}, \"lr\": {\"d1v2\": 0.7733, \"d1v3\": 0.9548, \"d2v3\": 0.7388}}, \"three_class_filtered\": {\"rf_accuracy\": 0.6836, \"rf_accuracy_ci\": [0.6678, 0.701], \"lr_accuracy\": 0.6453, \"lr_accuracy_ci\": [0.6281, 0.6641], \"n_samples\": 14885}, \"three_class_filtered_auc\": {\"rf\": {\"d1v2\": 0.8314, \"d1v3\": 0.9753, \"d2v3\": 0.776}, \"lr\": {\"d1v2\": 0.7754, \"d1v3\": 0.9534, \"d2v3\": 0.7385}}, \"feature_importance_top5\": [\"p90_ppl\", \"p75_ppl\", \"mean_surprisal\", \"var_surprisal\", \"p50_ppl\"], \"finetune_loss\": {\"depth_1\": 1.9886, \"depth_2\": 1.7554}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.7, \"depth_2\": 1.6, \"depth_3\": 1.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 0.9, \"depth_2\": 0.8, \"depth_3\": 0.6}}}, \"completed_at\": \"2026-05-15T02:44:27.004Z\", \"notes\": \"GPT-2 XL top-k k=50 完成（3×3 矩阵第 9 格，最后一格）。evaluator=GPT-2 XL。\\n\\n核心指标: RF 74.45% [73.0-75.8%], LR 71.3%, d1v2 AUC RF 0.813 / LR 0.781。3-class RF 69.47%, 3-class filtered RF 68.36%。Code contamination 极低 (narrow ≤1.6%)。\\n\\nvs 同模型不同解码策略:\\n| Config     | RF 4-class | d1v2 AUC | 3-class RF |\\n|------------|-----------|----------|------------|\\n| temp09     | 85.4%     | 0.937    | 82.0%      |\\n| nucleus    | 83.3%     | 0.913    | 79.3%      |\\n| topk50     | 74.45%    | 0.813    | 69.5%      |\\n\\nTop-k 使 GPT-2 XL 深度信号下降 -8.85pp (vs nucleus), -10.95pp (vs temp09)。这与 Pythia (-8.6pp nucleus→topk) 一致，但 OLMo 仅降 -3.1pp。说明 top-k 的截断效应对大模型更显著。\\n\\n跨模型 topk50 对比:\\n| Model     | RF 4-class | d1v2 AUC |\\n|-----------|-----------|----------|\\n| GPT-2 XL  | 74.45%    | 0.813    |\\n| OLMo-1B   | 74.2%     | 0.831    |\\n| Pythia-1.4B | 69.6%   | 0.752    |\\n\\nAUC 单调性保持: d0v1(0.991) > d1v2(0.813) > d2v3(0.753) ✓\\nFeature importance top-5 与其他配置一致: p90_ppl, p75_ppl, mean_surprisal, var_surprisal。\\n\\n3×3 矩阵（3模型 × 3解码策略）全部完成。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.201}}"
+              }
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## gpt2xl_topk50_001 结果（3×3 矩阵第 9 格）\n\n**核心指标：**\n- 4-class RF **74.45%** [73.0-75.8%], LR 71.3%\n- d1v2 AUC: RF **0.813**, LR 0.781\n- 3-class RF 69.47%, filtered RF 68.36%\n- Code contamination 极低（narrow ≤1.6%）\n- AUC 单调性 ✓: d0v1(0.991) > d1v2(0.813) > d2v3(0.753)\n\n**GPT-2 XL 跨策略对比：**\n| Config | RF 4-class | d1v2 AUC |\n|--------|-----------|----------|\n| temp09 | 85.4% | 0.937 |\n| nucleus | 83.3% | 0.913 |\n| **topk50** | **74.45%** | **0.813** |\n\nTop-k 使深度信号下降 **-8.85pp**（vs nucleus），与 Pythia 的 -8.6pp 一致。OLMo 仅降 -3.1pp，对 top-k 截断更鲁棒。\n\n**跨模型 topk50 对比：**\n| Model | RF 4-class | d1v2 AUC |\n|-------|-----------|----------|\n| GPT-2 XL | 74.45% | 0.813 |\n| OLMo-1B | 74.2% | 0.831 |\n| Pythia-1.4B | 69.6% | 0.752 |\n\n**关键结论：** 深度信号在所有 9 格（3 模型 × 3 解码策略）均显著存在（74.45% >> 25% chance），PASS。Top-k 是最弱的解码策略，但信号仍然稳健。Feature importance top-5 跨配置完全一致（p90_ppl, p75_ppl, mean_surprisal, var_surprisal）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "uuid": "1411cb68-e2f4-4bbd-b793-c675df90b9f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0146X1oATzzuh3Pi6X6G37NF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3045,
+                "cache_read_input_tokens": 163197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3045
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## gpt2xl_topk50_001 结果（3×3 矩阵第 9 格）\n\n**核心指标：**\n- 4-class RF **74.45%** [73.0-75.8%], LR 71.3%\n- d1v2 AUC: RF **0.813**, LR 0.781\n- 3-class RF 69.47%, filtered RF 68.36%\n- Code contamination 极低（narrow ≤1.6%）\n- AUC 单调性 ✓: d0v1(0.991) > d1v2(0.813) > d2v3(0.753)\n\n**GPT-2 XL 跨策略对比：**\n| Config | RF 4-class | d1v2 AUC |\n|--------|-----------|----------|\n| temp09 | 85.4% | 0.937 |\n| nucleus | 83.3% | 0.913 |\n| **topk50** | **74.45%** | **0.813** |\n\nTop-k 使深度信号下降 **-8.85pp**（vs nucleus），与 Pythia 的 -8.6pp 一致。OLMo 仅降 -3.1pp，对 top-k 截断更鲁棒。\n\n**跨模型 topk50 对比：**\n| Model | RF 4-class | d1v2 AUC |\n|-------|-----------|----------|\n| GPT-2 XL | 74.45% | 0.813 |\n| OLMo-1B | 74.2% | 0.831 |\n| Pythia-1.4B | 69.6% | 0.752 |\n\n**关键结论：** 深度信号在所有 9 格（3 模型 × 3 解码策略）均显著存在（74.45% >> 25% chance），PASS。Top-k 是最弱的解码策略，但信号仍然稳健。Feature importance top-5 跨配置完全一致（p90_ppl, p75_ppl, mean_surprisal, var_surprisal）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1490513,
+            "duration_api_ms": 1154243,
+            "num_turns": 230,
+            "stop_reason": "end_turn",
+            "session_id": "22fe4104-fb20-43fe-ac3b-dd021d074571",
+            "total_cost_usd": 14.688636750000002,
+            "usage": {
+              "input_tokens": 209,
+              "cache_creation_input_tokens": 154401,
+              "cache_read_input_tokens": 25087153,
+              "output_tokens": 47083,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 154401,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 584,
+                  "cache_read_input_tokens": 163197,
+                  "cache_creation_input_tokens": 3045,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3045
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1819,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019340000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 209,
+                "outputTokens": 47083,
+                "cacheReadInputTokens": 25087153,
+                "cacheCreationInputTokens": 154401,
+                "webSearchRequests": 0,
+                "costUSD": 14.686702750000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d40b94fa-fed7-4667-9e74-100f4c23cd21"
+          },
+          "id": "event-000547"
+        }
+      ]
+    }
+  ]
+}

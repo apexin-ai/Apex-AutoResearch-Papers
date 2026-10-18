@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a5fd5788d1b905f68342",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval d014 baseline all phases",
+  "task_key": "worker_eval_d014-baseline-all-phases_20260515T210325",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_d014-baseline-all-phases_20260515T210325_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "aff2d54a66ca1af19f4c84a6c9e6e7e239b1a244926f83f01020f0a3bb0814c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2-3-4 全部完成。以下是完整报告。\n\n---\n\n## D014 Gate Report\n\n### Phase 2: Baseline Final Eval (step_029999, 500 batches)\n\n| 指标 | 值 |\n|------|------|\n| action_loss (clean, eps=0.0, prune=False) | **0.004077** |\n| margin_median (clean) | **0.010022** |\n| preservation_rate (eps=0.01) | 0.3352 |\n| preservation_rate (eps=0.02) | 0.3362 |\n| preservation_rate (eps=0.05) | 0.3381 |\n| LED median (eps=0.02) | 0.0 (baseline 无 IMM，LED 恒为 0) |\n\n### Phase 3: Mid-Checkpoint Evals (50 batches)\n\n| Checkpoint | action_loss (clean) | margin_median (clean) |\n|-----------|--------------------|-----------------------|\n| step_005000 | **0.018910** | 0.010016 |\n| step_010000 | **0.009740** | 0.010016 |\n| step_029999 | **0.004077** | 0.010022 |\n\n训练曲线正常：action_loss 随步数单调下降 (0.0189 → 0.0097 → 0.0041)。\n\n### Phase 4: Gate Results (Baseline vs IMM)\n\n| Gate | 指标 | 值 | 阈值 | 结果 |\n|------|------|------|------|------|\n| **G1** | margin_median ratio (IMM/BL) | **55.15** | ≥ 2.0 | **PASS** |\n| **G2** | preservation_rate diff | **0.4427** (+44.3pp) | ≥ 0.10 | **PASS** |\n| **G3** | clean action_loss ratio (IMM/BL) | **3.2813** (BL=0.00408, IMM=0.01338) | ≤ 1.10 | **FAIL** |\n| **G4** | LED ratio median | **0.2726** | < 1.0 | **PASS** |\n\n### Overall Verdict: **FAIL**\n\nG3 未通过：IMM 的 clean action_loss (0.01338) 是 baseline (0.00408) 的 3.28 倍，远超 1.10 上限。G1/G2/G4 均大幅通过阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

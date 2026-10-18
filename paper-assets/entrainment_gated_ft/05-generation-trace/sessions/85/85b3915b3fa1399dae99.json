@@ -1,0 +1,1247 @@
+{
+  "schema_version": "1.0",
+  "id": "85b3915b3fa1399dae99",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "prep code release fix",
+  "task_key": "worker_prep_code-release-fix_20260522T192431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_code-release-fix_20260522T192431.log",
+    "occurrence": 1,
+    "bytes": 52188,
+    "sha256": "d2cc75d40ba289ebc12a6f9b470ae61a3ba448a8fb3d7b23019faa28aaccec78"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "dc5853f6-9f01-412c-9a8f-c3f8033fd43a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779490800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "d64c73d1-5729-4f9f-b85a-bcc77ac1906e",
+                "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll fix the three issues and repackage. Let me start by reading the current README and cleaning up the dirty files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "ca56b967-d908-49f0-9c39-3edb59e06663",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpLVwH5NDJXoZYQcCgwhrt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12276,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12276
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015p9eVxq9dEKjftVK2dBkYY",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "e8cc06cb-c4c4-4799-8db7-741ed20e2322",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpLVwH5NDJXoZYQcCgwhrt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12276,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12276
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T19:24:43.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015p9eVxq9dEKjftVK2dBkYY",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "3f6a1e97-1322-4be8-9835-7e19bf315cac",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the current README and check the dirty files in parallel.",
+              "signature": "EooCCmMIDRgCKkBSRYZxt3qX10RDs4tOLgbhiDcRURSPEkw4zyR0euHU8vwwFE+J8h2BzHOHQd7Cq6nCjIoZP4/rh9yKul9kCI0YMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLBL/UTFAk91HAp8AhoMJS/OHonFrSgE0oEyIjA6S1hxmTIkJstPvzZu2KYqDKy6EmV5+w8tkn8vzcmLjTKxl3ge1EC/ThOGzmJoSUoqVULOonYc/CnLPaeC3tyyK0tOwEUs++HAOso638vJVfKAzkY1qEE86Z8Wt8DXEtkgPYbuE9vdFbTPHGlWe1HHIfmpkdsEZph6W2T8RUwG+cWSQ7WuABoYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "aa18b1fa-cb9d-4d5f-929d-7d77265c603e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ryx6mnuzQW8Wdp7u3nMcXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 24117,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Hzds1nPp8pw1cXEKvxbDe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "cat /root/entrainment_gated_ft/README.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "cab79bed-5c45-40d2-821c-8cd9afd47def",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ryx6mnuzQW8Wdp7u3nMcXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 24117,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PQxDUa9mYoKeeSsgxngXFA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "ls /root/entrainment_gated_ft/scripts/__pycache__/ /root/entrainment_gated_ft/scripts/eval_composition.py.bak",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "2290a3b1-3382-4e9a-9b75-8df5be7bc329",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ryx6mnuzQW8Wdp7u3nMcXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 24117,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T19:24:50.485Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Hzds1nPp8pw1cXEKvxbDe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\\n\\\\nCode for reproducing the experiments in the paper.\\\\n\\\\n## Environment\\\\n\\\\n- Python 3.10+\\\\n- PyTorch 2.x (with CUDA support)\\\\n- Key packages: `transformers`, `lm-eval`, `flash-linear-attention` (fla), `scipy`, `numpy`\\\\n\\\\nInstall dependencies:\\\\n```bash\\\\npip install torch transformers lm-eval scipy numpy\\\\npip install flash-linear-attention  # for fla model support\\\\n```\\\\n\\\\n## Directory Structure\\\\n\\\\n```\\\\nscripts/\\\\n├── download_models.py         # Download 340M model zoo from ModelScope\\\\n├── download_1.3b_models.py    # Download 1.3B model zoo from HF mirror\\\\n├── run_lmeval_clean.py        # Run lm-eval-harness with fla model registration\\\\n├── fla_lm_eval.py             # fla model registration wrapper for lm-eval CLI\\\\n├── patch_fla_eval.py          # Patched fla model registration (broader arch support)\\\\n├── run_lmeval_fla.py          # Lightweight lm-eval runner with weight-tying fix\\\\n├── eval_composition.py        # L-Sequential Function Composition evaluation\\\\n├── eval_logprob.py            # Log-probability evaluation for composition tasks\\\\n├── analyze_w3_multiplicity.py # Per-example multiplicity analysis (WinoGrande, PIQA)\\\\n└── analyze_340m_multi.py      # Cross-scale (340M vs 1.3B) multiplicity analysis\\\\n\\\\nresults/exp005_zoo_expansion/\\\\n├── jaccard_5arch.json          # Jaccard overlap analysis (5 architectures)\\\\n└── jaccard_6arch.json          # Jaccard overlap analysis (6 architectures)\\\\n```\\\\n\\\\n## Model Zoo\\\\n\\\\nWe use the pre-trained model zoo from Wang et al. (2025), available on HuggingFace:\\\\n- 340M models (20B tokens): `m-a-p/340M-20B-{arch}-{config}`\\\\n- 1.3B models (100B tokens): `m-a-p/1.3B-100B-{arch}-{config}`\\\\n\\\\nArchitectures: GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet, HGRN, Transformer (baseline).\\\\nHybrid ratios: pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1.\\\\n\\\\nDownload models:\\\\n```bash\\\\n# 340M models (via ModelScope)\\\\nMODEL_DIR=./models python scripts/download_models.py\\\\n\\\\n# 1.3B models (via HF mirror)\\\\nMODEL_DIR=./models_1.3b python scripts/download_1.3b_models.py\\\\n```\\\\n\\\\n## Reproducing Results\\\\n\\\\n### Step 1: Run lm-eval-harness evaluations\\\\n\\\\n```bash\\\\npython scripts/run_lmeval_clean.py \\\\\\\\\\\\n    --model_path ./models/340M-20B-GatedDeltaNet-pure-baseline \\\\\\\\\\\\n    --tasks lambada_openai \\\\\\\\\\\\n    --output_dir ./lm_eval_clean\\\\n```\\\\n\\\\n### Step 2: Per-example multiplicity analysis\\\\n\\\\n```bash\\\\n# WinoGrande & PIQA analysis\\\\npython scripts/analyze_w3_multiplicity.py\\\\n\\\\n# Cross-scale (340M vs 1.3B) analysis\\\\npython scripts/analyze_340m_multi.py\\\\n```\\\\n\\\\n### Step 3: Function composition evaluation\\\\n\\\\n```bash\\\\npython scripts/eval_composition.py \\\\\\\\\\\\n    --models ./models/340M-20B-GatedDeltaNet-pure-baseline \\\\\\\\\\\\n              ./models/340M-20B-GatedDeltaNet-hybrid-3-1 \\\\\\\\\\\\n    --depths 1 2 3 4 5 \\\\\\\\\\\\n    --output-dir results/func_comp\\\\n```\\\\n\\\\n## Pre-computed Results\\\\n\\\\n`results/exp005_zoo_expansion/jaccard_*.json` contain Jaccard overlap analysis across architecture families, showing per-example prediction agreement patterns.\\\\n\\\\n## License\\\\n\\\\nThis code is released for research purposes.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "39f7eb74-ea16-4804-aa98-2eac5755895d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\\n\\\\nCode for reproducing the experiments in the paper.\\\\n\\\\n## Environment\\\\n\\\\n- Python 3.10+\\\\n- PyTorch 2.x (with CUDA support)\\\\n- Key packages: `transformers`, `lm-eval`, `flash-linear-attention` (fla), `scipy`, `numpy`\\\\n\\\\nInstall dependencies:\\\\n```bash\\\\npip install torch transformers lm-eval scipy numpy\\\\npip install flash-linear-attention  # for fla model support\\\\n```\\\\n\\\\n## Directory Structure\\\\n\\\\n```\\\\nscripts/\\\\n├── download_models.py         # Download 340M model zoo from ModelScope\\\\n├── download_1.3b_models.py    # Download 1.3B model zoo from HF mirror\\\\n├── run_lmeval_clean.py        # Run lm-eval-harness with fla model registration\\\\n├── fla_lm_eval.py             # fla model registration wrapper for lm-eval CLI\\\\n├── patch_fla_eval.py          # Patched fla model registration (broader arch support)\\\\n├── run_lmeval_fla.py          # Lightweight lm-eval runner with weight-tying fix\\\\n├── eval_composition.py        # L-Sequential Function Composition evaluation\\\\n├── eval_logprob.py            # Log-probability evaluation for composition tasks\\\\n├── analyze_w3_multiplicity.py # Per-example multiplicity analysis (WinoGrande, PIQA)\\\\n└── analyze_340m_multi.py      # Cross-scale (340M vs 1.3B) multiplicity analysis\\\\n\\\\nresults/exp005_zoo_expansion/\\\\n├── jaccard_5arch.json          # Jaccard overlap analysis (5 architectures)\\\\n└── jaccard_6arch.json          # Jaccard overlap analysis (6 architectures)\\\\n```\\\\n\\\\n## Model Zoo\\\\n\\\\nWe use the pre-trained model zoo from Wang et al. (2025), available on HuggingFace:\\\\n- 340M models (20B tokens): `m-a-p/340M-20B-{arch}-{config}`\\\\n- 1.3B models (100B tokens): `m-a-p/1.3B-100B-{arch}-{config}`\\\\n\\\\nArchitectures: GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet, HGRN, Transformer (baseline).\\\\nHybrid ratios: pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1.\\\\n\\\\nDownload models:\\\\n```bash\\\\n# 340M models (via ModelScope)\\\\nMODEL_DIR=./models python scripts/download_models.py\\\\n\\\\n# 1.3B models (via HF mirror)\\\\nMODEL_DIR=./models_1.3b python scripts/download_1.3b_models.py\\\\n```\\\\n\\\\n## Reproducing Results\\\\n\\\\n### Step 1: Run lm-eval-harness evaluations\\\\n\\\\n```bash\\\\npython scripts/run_lmeval_clean.py \\\\\\\\\\\\n    --model_path ./models/340M-20B-GatedDeltaNet-pure-baseline \\\\\\\\\\\\n    --tasks lambada_openai \\\\\\\\\\\\n    --output_dir ./lm_eval_clean\\\\n```\\\\n\\\\n### Step 2: Per-example multiplicity analysis\\\\n\\\\n```bash\\\\n# WinoGrande & PIQA analysis\\\\npython scripts/analyze_w3_multiplicity.py\\\\n\\\\n# Cross-scale (340M vs 1.3B) analysis\\\\npython scripts/analyze_340m_multi.py\\\\n```\\\\n\\\\n### Step 3: Function composition evaluation\\\\n\\\\n```bash\\\\npython scripts/eval_composition.py \\\\\\\\\\\\n    --models ./models/340M-20B-GatedDeltaNet-pure-baseline \\\\\\\\\\\\n              ./models/340M-20B-GatedDeltaNet-hybrid-3-1 \\\\\\\\\\\\n    --depths 1 2 3 4 5 \\\\\\\\\\\\n    --output-dir results/func_comp\\\\n```\\\\n\\\\n## Pre-computed Results\\\\n\\\\n`results/exp005_zoo_expansion/jaccard_*.json` contain Jaccard overlap analysis across architecture families, showing per-example prediction agreement patterns.\\\\n\\\\n## License\\\\n\\\\nThis code is released for research purposes.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.03}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\n\\nCode for reproducing the experiments in the paper.\\n\\n## Environment\\n\\n- Python 3.10+\\n- PyTorch 2.x (with CUDA support)\\n- Key packages: `transformers`, `lm-eval`, `flash-linear-attention` (fla), `scipy`, `numpy`\\n\\nInstall dependencies:\\n```bash\\npip install torch transformers lm-eval scipy numpy\\npip install flash-linear-attention  # for fla model support\\n```\\n\\n## Directory Structure\\n\\n```\\nscripts/\\n├── download_models.py         # Download 340M model zoo from ModelScope\\n├── download_1.3b_models.py    # Download 1.3B model zoo from HF mirror\\n├── run_lmeval_clean.py        # Run lm-eval-harness with fla model registration\\n├── fla_lm_eval.py             # fla model registration wrapper for lm-eval CLI\\n├── patch_fla_eval.py          # Patched fla model registration (broader arch support)\\n├── run_lmeval_fla.py          # Lightweight lm-eval runner with weight-tying fix\\n├── eval_composition.py        # L-Sequential Function Composition evaluation\\n├── eval_logprob.py            # Log-probability evaluation for composition tasks\\n├── analyze_w3_multiplicity.py # Per-example multiplicity analysis (WinoGrande, PIQA)\\n└── analyze_340m_multi.py      # Cross-scale (340M vs 1.3B) multiplicity analysis\\n\\nresults/exp005_zoo_expansion/\\n├── jaccard_5arch.json          # Jaccard overlap analysis (5 architectures)\\n└── jaccard_6arch.json          # Jaccard overlap analysis (6 architectures)\\n```\\n\\n## Model Zoo\\n\\nWe use the pre-trained model zoo from Wang et al. (2025), available on HuggingFace:\\n- 340M models (20B tokens): `m-a-p/340M-20B-{arch}-{config}`\\n- 1.3B models (100B tokens): `m-a-p/1.3B-100B-{arch}-{config}`\\n\\nArchitectures: GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet, HGRN, Transformer (baseline).\\nHybrid ratios: pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1.\\n\\nDownload models:\\n```bash\\n# 340M models (via ModelScope)\\nMODEL_DIR=./models python scripts/download_models.py\\n\\n# 1.3B models (via HF mirror)\\nMODEL_DIR=./models_1.3b python scripts/download_1.3b_models.py\\n```\\n\\n## Reproducing Results\\n\\n### Step 1: Run lm-eval-harness evaluations\\n\\n```bash\\npython scripts/run_lmeval_clean.py \\\\\\n    --model_path ./models/340M-20B-GatedDeltaNet-pure-baseline \\\\\\n    --tasks lambada_openai \\\\\\n    --output_dir ./lm_eval_clean\\n```\\n\\n### Step 2: Per-example multiplicity analysis\\n\\n```bash\\n# WinoGrande & PIQA analysis\\npython scripts/analyze_w3_multiplicity.py\\n\\n# Cross-scale (340M vs 1.3B) analysis\\npython scripts/analyze_340m_multi.py\\n```\\n\\n### Step 3: Function composition evaluation\\n\\n```bash\\npython scripts/eval_composition.py \\\\\\n    --models ./models/340M-20B-GatedDeltaNet-pure-baseline \\\\\\n              ./models/340M-20B-GatedDeltaNet-hybrid-3-1 \\\\\\n    --depths 1 2 3 4 5 \\\\\\n    --output-dir results/func_comp\\n```\\n\\n## Pre-computed Results\\n\\n`results/exp005_zoo_expansion/jaccard_*.json` contain Jaccard overlap analysis across architecture families, showing per-example prediction agreement patterns.\\n\\n## License\\n\\nThis code is released for research purposes.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.03}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T19:24:51.846Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PQxDUa9mYoKeeSsgxngXFA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/scripts/eval_composition.py.bak\\\\n\\\\n/root/entrainment_gated_ft/scripts/__pycache__/:\\\\npatch_fla_eval.cpython-312.pyc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "afa6ffb6-8d33-4a37-a8d4-8963cefec6e9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/scripts/eval_composition.py.bak\\\\n\\\\n/root/entrainment_gated_ft/scripts/__pycache__/:\\\\npatch_fla_eval.cpython-312.pyc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/scripts/eval_composition.py.bak\\n\\n/root/entrainment_gated_ft/scripts/__pycache__/:\\npatch_fla_eval.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the current README content and confirmed the dirty files exist. Let me:\n\n1. Fix the README title (add \"Linear\")\n2. Delete the dirty files\n3. Rewrite the \"Reproducing Results\" section\n\nLet me prepare the new README content. The current title is:\n```\n# Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\n```\nShould be:\n```\n# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\n```\n\nFor the Reproducing Results section, I need to replace the existing one with the new content that includes:\n\n\n- A command for evaluating individual models with specific tasks and batch sizes\n- A script for running batch evaluations across multiple models\n- A script for analyzing Jaccard similarity metrics related to multiplicity\n- A script for analyzing results across multiple benchmarks\n\nNow I'll construct the updated README and write it via SSH.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "b30d8418-c047-4fad-8896-2376ee5bd711",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0158iESkyeshtG47ovBhxqws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1678,
+                "cache_read_input_tokens": 24815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1678
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got the current state. Now I'll fix the title, clean dirty files, and rewrite the Reproducing Results section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "3ded890c-3dfc-4756-a727-7f4fba567b2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0158iESkyeshtG47ovBhxqws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1678,
+                "cache_read_input_tokens": 24815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1678
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GHiUNPwJuUGmLW13tyZsTD",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "command": "rm -rf /root/entrainment_gated_ft/scripts/__pycache__/ && rm -f /root/entrainment_gated_ft/scripts/eval_composition.py.bak && ls /root/entrainment_gated_ft/scripts/__pycache__/ 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "4068a17f-8183-4418-8812-8db0544faa93",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0158iESkyeshtG47ovBhxqws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1678,
+                "cache_read_input_tokens": 24815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1678
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T19:25:07.703Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GHiUNPwJuUGmLW13tyZsTD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'rm -rf /root/entrainment_gated_ft/scripts/__pycache__/ && rm -f /root/entrainment_gated_ft/scripts/eval_composition.py.bak && ls /root/entrainment_gated_ft/scripts/__pycache__/ 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\nls: cannot access '/root/entrainment_gated_ft/scripts/__pycache__/': No such file or directory\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "f0c4ede0-2bc2-4a34-9939-37b3fac5326b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'rm -rf /root/entrainment_gated_ft/scripts/__pycache__/ && rm -f /root/entrainment_gated_ft/scripts/eval_composition.py.bak && ls /root/entrainment_gated_ft/scripts/__pycache__/ 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\nls: cannot access '/root/entrainment_gated_ft/scripts/__pycache__/': No such file or directory\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'rm -rf /root/entrainment_gated_ft/scripts/__pycache__/ && rm -f /root/entrainment_gated_ft/scripts/eval_composition.py.bak && ls /root/entrainment_gated_ft/scripts/__pycache__/ 2>&1'\\n\\nExit code: 2\\n\\nStdout:\\n\\nls: cannot access '/root/entrainment_gated_ft/scripts/__pycache__/': No such file or directory\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.17}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsUd6j1eNBPpH8yPpuijry",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "command": "cat > /root/entrainment_gated_ft/README.md << 'READMEEOF'\n# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\n\nCode for reproducing the experiments in the paper.\n\n## Environment\n\n- Python 3.10+\n- PyTorch 2.x (with CUDA support)\n- Key packages: `transformers`, `lm-eval`, `flash-linear-attention` (fla), `scipy`, `numpy`\n\nInstall dependencies:\n```bash\npip install torch transformers lm-eval scipy numpy\npip install flash-linear-attention  # for fla model support\n```\n\n## Directory Structure\n\n```\nscripts/\n├── download_models.py         # Download 340M model zoo from ModelScope\n├── download_1.3b_models.py    # Download 1.3B model zoo from HF mirror\n├── run_lmeval_clean.py        # Run lm-eval-harness with fla model registration\n├── fla_lm_eval.py             # fla model registration wrapper for lm-eval CLI\n├── patch_fla_eval.py          # Patched fla model registration (broader arch support)\n├── run_lmeval_fla.py          # Lightweight lm-eval runner with weight-tying fix\n├── eval_composition.py        # L-Sequential Function Composition evaluation\n├── eval_logprob.py            # Log-probability evaluation for composition tasks\n├── analyze_w3_multiplicity.py # Per-example multiplicity analysis (WinoGrande, PIQA)\n└── analyze_340m_multi.py      # Cross-scale (340M vs 1.3B) multiplicity analysis\n\nresults/exp005_zoo_expansion/\n├── jaccard_5arch.json          # Jaccard overlap analysis (5 architectures)\n└── jaccard_6arch.json          # Jaccard overlap analysis (6 architectures)\n```\n\n## Model Zoo\n\nWe use the pre-trained model zoo from Wang et al. (2025), available on HuggingFace:\n- 340M models (20B tokens): `m-a-p/340M-20B-{arch}-{config}`\n- 1.3B models (100B tokens): `m-a-p/1.3B-100B-{arch}-{config}`\n\nArchitectures: GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet, HGRN, Transformer (baseline).\nHybrid ratios: pure, hybrid-24-1, hybrid-12-1, hybrid-6-1, hybrid-3-1.\n\nDownload models:\n```bash\n# 340M models (via ModelScope)\nMODEL_DIR=./models python scripts/download_models.py\n\n# 1.3B models (via HF mirror)\nMODEL_DIR=./models_1.3b python scripts/download_1.3b_models.py\n```\n\n## Reproducing Results\n\n### Evaluate a single model\n\nUse `patch_fla_eval.py` to evaluate individual models. This script wraps lm-evaluation-harness and fixes compatibility issues between flash-linear-attention v0.5.0 and transformers. You must use this script rather than calling `lm_eval` directly, as fla models will fail to load otherwise.\n\n```bash\npython scripts/patch_fla_eval.py \\\n    --model <model_path> \\\n    --tasks lambada_openai arc_easy \\\n    --batch_size 8 \\\n    --device cuda:0 \\\n    --output_path results/<arch_name>/ \\\n    --log_samples\n```\n\n### Batch evaluation\n\n`scripts/run_lmeval_clean.py` evaluates multiple models in sequence:\n\n```bash\npython scripts/run_lmeval_clean.py\n```\n\n### Jaccard overlap analysis\n\nAfter evaluation, compute pairwise Jaccard overlap across architectures:\n\n```bash\npython scripts/analyze_w3_multiplicity.py\n```\n\nInput: per-model `log_samples` JSONL files produced by `--log_samples` in the evaluation step.\nOutput: `jaccard_Xarch.json` containing all pairwise Jaccard values, z-scores, and p-values.\n\n### Multi-benchmark alpha spectrum analysis\n\nFor cross-benchmark analysis of the alpha spectrum:\n\n```bash\npython scripts/analyze_340m_multi.py\n```\n\n### Function composition evaluation\n\n```bash\npython scripts/eval_composition.py \\\n    --models ./models/340M-20B-GatedDeltaNet-pure-baseline \\\n              ./models/340M-20B-GatedDeltaNet-hybrid-3-1 \\\n    --depths 1 2 3 4 5 \\\n    --output-dir results/func_comp\n```\n\n## Pre-computed Results\n\n`results/exp005_zoo_expansion/jaccard_*.json` contain Jaccard overlap analysis across architecture families, showing per-example prediction agreement patterns.\n\n## License\n\nThis code is released for research purposes.\nREADMEEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "dd8dfe8f-5a44-46ac-b3d4-477535d0fa82",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0158iESkyeshtG47ovBhxqws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1678,
+                "cache_read_input_tokens": 24815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1678
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T19:25:25.703Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsUd6j1eNBPpH8yPpuijry",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "cf3cc520-0d18-4b3a-9817-110b1d3c3848",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.83}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.83}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The dirty file cleanup succeeded (the \"No such file or directory\" is expected - it's the verification `ls` confirming the directory was deleted). The README was written successfully. Now let me repackage and verify.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "9f500a37-0c99-4d2e-b91b-dadd947779cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAb7aD1EBoFtsWYiAANj13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2222,
+                "cache_read_input_tokens": 26493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2222
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dirty files cleaned (confirmed \"No such file or directory\"), README updated. Now repackaging and verifying."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "dbccec70-0a16-4419-84f5-a94e5582b03c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAb7aD1EBoFtsWYiAANj13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2222,
+                "cache_read_input_tokens": 26493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2222
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ZbDSTiWctpUSioxE6wqJd",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "command": "cd /root/entrainment_gated_ft/ && rm -f code_release.zip && zip -r code_release.zip scripts/*.py scripts/*.sh results/exp005_zoo_expansion/*.json README.md -x \"*__pycache__*\" \"*.pyc\" \"*.bak\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "9e282771-56b5-4271-8042-aea7a4ce476f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAb7aD1EBoFtsWYiAANj13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2222,
+                "cache_read_input_tokens": 26493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2222
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T19:25:33.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ZbDSTiWctpUSioxE6wqJd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  adding: scripts/analyze_340m_multi.py (deflated 73%)\\\\n  adding: scripts/analyze_w3_multiplicity.py (deflated 69%)\\\\n  adding: scripts/download_1.3b_models.py (deflated 66%)\\\\n  adding: scripts/download_models.py (deflated 67%)\\\\n  adding: scripts/eval_composition.py (deflated 74%)\\\\n  adding: scripts/eval_logprob.py (deflated 74%)\\\\n  adding: scripts/fla_lm_eval.py (deflated 69%)\\\\n  adding: scripts/patch_fla_eval.py (deflated 65%)\\\\n  adding: scripts/run_lmeval_clean.py (deflated 63%)\\\\n  adding: scripts/run_lmeval_fla.py (deflated 65%)\\\\n  adding: scripts/download_1.3b_aria2c.sh (deflated 61%)\\\\n  adding: scripts/download_1.3b_models.sh (deflated 61%)\\\\n  adding: scripts/download_models.sh (deflated 65%)\\\\n  adding: scripts/run_all_benchmarks.sh (deflated 76%)\\\\n  adding: scripts/run_mvp.sh (deflated 69%)\\\\n  adding: scripts/run_mvp_1.3b.sh (deflated 65%)\\\\n  adding: scripts/wait_and_eval_retnet.sh (deflated 59%)\\\\n  adding: results/exp005_zoo_expansion/jaccard_4arch.json (deflated 84%)\\\\n  adding: results/exp005_zoo_expansion/jaccard_5arch.json (deflated 86%)\\\\n  adding: results/exp005_zoo_expansion/jaccard_6arch.json (deflated 87%)\\\\n  adding: README.md (deflated 59%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "e7442f6f-ebf8-414e-a4e6-89478c3ab51b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  adding: scripts/analyze_340m_multi.py (deflated 73%)\\\\n  adding: scripts/analyze_w3_multiplicity.py (deflated 69%)\\\\n  adding: scripts/download_1.3b_models.py (deflated 66%)\\\\n  adding: scripts/download_models.py (deflated 67%)\\\\n  adding: scripts/eval_composition.py (deflated 74%)\\\\n  adding: scripts/eval_logprob.py (deflated 74%)\\\\n  adding: scripts/fla_lm_eval.py (deflated 69%)\\\\n  adding: scripts/patch_fla_eval.py (deflated 65%)\\\\n  adding: scripts/run_lmeval_clean.py (deflated 63%)\\\\n  adding: scripts/run_lmeval_fla.py (deflated 65%)\\\\n  adding: scripts/download_1.3b_aria2c.sh (deflated 61%)\\\\n  adding: scripts/download_1.3b_models.sh (deflated 61%)\\\\n  adding: scripts/download_models.sh (deflated 65%)\\\\n  adding: scripts/run_all_benchmarks.sh (deflated 76%)\\\\n  adding: scripts/run_mvp.sh (deflated 69%)\\\\n  adding: scripts/run_mvp_1.3b.sh (deflated 65%)\\\\n  adding: scripts/wait_and_eval_retnet.sh (deflated 59%)\\\\n  adding: results/exp005_zoo_expansion/jaccard_4arch.json (deflated 84%)\\\\n  adding: results/exp005_zoo_expansion/jaccard_5arch.json (deflated 86%)\\\\n  adding: results/exp005_zoo_expansion/jaccard_6arch.json (deflated 87%)\\\\n  adding: README.md (deflated 59%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  adding: scripts/analyze_340m_multi.py (deflated 73%)\\n  adding: scripts/analyze_w3_multiplicity.py (deflated 69%)\\n  adding: scripts/download_1.3b_models.py (deflated 66%)\\n  adding: scripts/download_models.py (deflated 67%)\\n  adding: scripts/eval_composition.py (deflated 74%)\\n  adding: scripts/eval_logprob.py (deflated 74%)\\n  adding: scripts/fla_lm_eval.py (deflated 69%)\\n  adding: scripts/patch_fla_eval.py (deflated 65%)\\n  adding: scripts/run_lmeval_clean.py (deflated 63%)\\n  adding: scripts/run_lmeval_fla.py (deflated 65%)\\n  adding: scripts/download_1.3b_aria2c.sh (deflated 61%)\\n  adding: scripts/download_1.3b_models.sh (deflated 61%)\\n  adding: scripts/download_models.sh (deflated 65%)\\n  adding: scripts/run_all_benchmarks.sh (deflated 76%)\\n  adding: scripts/run_mvp.sh (deflated 69%)\\n  adding: scripts/run_mvp_1.3b.sh (deflated 65%)\\n  adding: scripts/wait_and_eval_retnet.sh (deflated 59%)\\n  adding: results/exp005_zoo_expansion/jaccard_4arch.json (deflated 84%)\\n  adding: results/exp005_zoo_expansion/jaccard_5arch.json (deflated 86%)\\n  adding: results/exp005_zoo_expansion/jaccard_6arch.json (deflated 87%)\\n  adding: README.md (deflated 59%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G1ojMibh5DMH2Pxi5Vzxua",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-48145",
+                "command": "unzip -l /root/entrainment_gated_ft/code_release.zip",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "cd0dbaab-1336-43d9-a296-9da40ac7ce17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017mVpDSy21wtDiEHHwriPpN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 786,
+                "cache_read_input_tokens": 28715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 786
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T19:25:36.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G1ojMibh5DMH2Pxi5Vzxua",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'unzip' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "019a83b6-a248-4a79-89fd-f96116da5565",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'unzip' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'unzip' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MYtBqUi6GShiWk12dwoop9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "command": "cd /tmp && rm -rf _verify_zip && mkdir _verify_zip && unzip -o /root/entrainment_gated_ft/code_release.zip README.md -d _verify_zip && head -1 _verify_zip/README.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "7c588b77-7380-491c-8a3f-2124386a018c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017mVpDSy21wtDiEHHwriPpN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 786,
+                "cache_read_input_tokens": 28715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 786
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T19:25:39.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MYtBqUi6GShiWk12dwoop9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Archive:  /root/entrainment_gated_ft/code_release.zip\\\\n  inflating: _verify_zip/README.md   \\\\n# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "640a6b3b-7648-4d5c-b4fa-0619108df89b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Archive:  /root/entrainment_gated_ft/code_release.zip\\\\n  inflating: _verify_zip/README.md   \\\\n# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Archive:  /root/entrainment_gated_ft/code_release.zip\\n  inflating: _verify_zip/README.md   \\n# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015DsVXnjfc9cbDjQuH1Sgqa",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-48145",
+                "command": "unzip -l /root/entrainment_gated_ft/code_release.zip",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "3da40a26-5d00-43ab-a0b7-ea6d9a81b2e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WECgjSfWBfLHBXP73cGGmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 653,
+                "cache_read_input_tokens": 29501,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 653
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T19:25:42.464Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015DsVXnjfc9cbDjQuH1Sgqa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Archive:  /root/entrainment_gated_ft/code_release.zip\\\\n  Length      Date    Time    Name\\\\n---------  ---------- -----   ----\\\\n    14444  2026-05-23 03:19   scripts/analyze_340m_multi.py\\\\n     8780  2026-05-23 03:19   scripts/analyze_w3_multiplicity.py\\\\n     5839  2026-05-23 03:19   scripts/download_1.3b_models.py\\\\n     2930  2026-05-23 03:19   scripts/download_models.py\\\\n    18517  2026-05-18 15:15   scripts/eval_composition.py\\\\n    14795  2026-05-18 15:27   scripts/eval_logprob.py\\\\n     2606  2026-05-22 23:48   scripts/fla_lm_eval.py\\\\n     1731  2026-05-23 00:03   scripts/patch_fla_eval.py\\\\n     2378  2026-05-23 03:19   scripts/run_lmeval_clean.py\\\\n     1586  2026-05-18 19:43   scripts/run_lmeval_fla.py\\\\n     3078  2026-05-23 03:19   scripts/download_1.3b_aria2c.sh\\\\n     3446  2026-05-23 03:19   scripts/download_1.3b_models.sh\\\\n     2605  2026-05-23 03:19   scripts/download_models.sh\\\\n     3079  2026-05-23 03:19   scripts/run_all_benchmarks.sh\\\\n     1314  2026-05-23 03:19   scripts/run_mvp.sh\\\\n     2851  2026-05-23 03:19   scripts/run_mvp_1.3b.sh\\\\n     2454  2026-05-23 03:19   scripts/wait_and_eval_retnet.sh\\\\n     9995  2026-05-23 01:09   results/exp005_zoo_expansion/jaccard_4arch.json\\\\n    15386  2026-05-23 01:23   results/exp005_zoo_expansion/jaccard_5arch.json\\\\n    23651  2026-05-23 02:05   results/exp005_zoo_expansion/jaccard_6arch.json\\\\n     3836  2026-05-23 03:25   README.md\\\\n---------                     -------\\\\n   145301                     21 files\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "76c8d424-aec4-4d9c-93b9-d119db02d4ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Archive:  /root/entrainment_gated_ft/code_release.zip\\\\n  Length      Date    Time    Name\\\\n---------  ---------- -----   ----\\\\n    14444  2026-05-23 03:19   scripts/analyze_340m_multi.py\\\\n     8780  2026-05-23 03:19   scripts/analyze_w3_multiplicity.py\\\\n     5839  2026-05-23 03:19   scripts/download_1.3b_models.py\\\\n     2930  2026-05-23 03:19   scripts/download_models.py\\\\n    18517  2026-05-18 15:15   scripts/eval_composition.py\\\\n    14795  2026-05-18 15:27   scripts/eval_logprob.py\\\\n     2606  2026-05-22 23:48   scripts/fla_lm_eval.py\\\\n     1731  2026-05-23 00:03   scripts/patch_fla_eval.py\\\\n     2378  2026-05-23 03:19   scripts/run_lmeval_clean.py\\\\n     1586  2026-05-18 19:43   scripts/run_lmeval_fla.py\\\\n     3078  2026-05-23 03:19   scripts/download_1.3b_aria2c.sh\\\\n     3446  2026-05-23 03:19   scripts/download_1.3b_models.sh\\\\n     2605  2026-05-23 03:19   scripts/download_models.sh\\\\n     3079  2026-05-23 03:19   scripts/run_all_benchmarks.sh\\\\n     1314  2026-05-23 03:19   scripts/run_mvp.sh\\\\n     2851  2026-05-23 03:19   scripts/run_mvp_1.3b.sh\\\\n     2454  2026-05-23 03:19   scripts/wait_and_eval_retnet.sh\\\\n     9995  2026-05-23 01:09   results/exp005_zoo_expansion/jaccard_4arch.json\\\\n    15386  2026-05-23 01:23   results/exp005_zoo_expansion/jaccard_5arch.json\\\\n    23651  2026-05-23 02:05   results/exp005_zoo_expansion/jaccard_6arch.json\\\\n     3836  2026-05-23 03:25   README.md\\\\n---------                     -------\\\\n   145301                     21 files\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Archive:  /root/entrainment_gated_ft/code_release.zip\\n  Length      Date    Time    Name\\n---------  ---------- -----   ----\\n    14444  2026-05-23 03:19   scripts/analyze_340m_multi.py\\n     8780  2026-05-23 03:19   scripts/analyze_w3_multiplicity.py\\n     5839  2026-05-23 03:19   scripts/download_1.3b_models.py\\n     2930  2026-05-23 03:19   scripts/download_models.py\\n    18517  2026-05-18 15:15   scripts/eval_composition.py\\n    14795  2026-05-18 15:27   scripts/eval_logprob.py\\n     2606  2026-05-22 23:48   scripts/fla_lm_eval.py\\n     1731  2026-05-23 00:03   scripts/patch_fla_eval.py\\n     2378  2026-05-23 03:19   scripts/run_lmeval_clean.py\\n     1586  2026-05-18 19:43   scripts/run_lmeval_fla.py\\n     3078  2026-05-23 03:19   scripts/download_1.3b_aria2c.sh\\n     3446  2026-05-23 03:19   scripts/download_1.3b_models.sh\\n     2605  2026-05-23 03:19   scripts/download_models.sh\\n     3079  2026-05-23 03:19   scripts/run_all_benchmarks.sh\\n     1314  2026-05-23 03:19   scripts/run_mvp.sh\\n     2851  2026-05-23 03:19   scripts/run_mvp_1.3b.sh\\n     2454  2026-05-23 03:19   scripts/wait_and_eval_retnet.sh\\n     9995  2026-05-23 01:09   results/exp005_zoo_expansion/jaccard_4arch.json\\n    15386  2026-05-23 01:23   results/exp005_zoo_expansion/jaccard_5arch.json\\n    23651  2026-05-23 02:05   results/exp005_zoo_expansion/jaccard_6arch.json\\n     3836  2026-05-23 03:25   README.md\\n---------                     -------\\n   145301                     21 files\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，全部通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| 标题含 \"Linear\" | `# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures` |\n| 无 `__pycache__` | 无 |\n| 无 `.bak` | 无 |\n| 无 `.pyc` | 无 |\n| README.md 存在 | 存在 |\n| Reproducing Results 段落 | 已添加（patch_fla_eval 单模型评估、批量评估、Jaccard 分析、多 benchmark 分析） |\n| **文件数** | **21 files** |\n| **zip 大小** | 145,301 bytes (原始)，压缩后约 ~55KB |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "uuid": "d5fac6f6-c893-4830-9916-d4fafac07b33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013uwvESwLZ2vExu3sZp2EBU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 839,
+                "cache_read_input_tokens": 30154,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 839
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，全部通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| 标题含 \"Linear\" | `# Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures` |\n| 无 `__pycache__` | 无 |\n| 无 `.bak` | 无 |\n| 无 `.pyc` | 无 |\n| README.md 存在 | 存在 |\n| Reproducing Results 段落 | 已添加（patch_fla_eval 单模型评估、批量评估、Jaccard 分析、多 benchmark 分析） |\n| **文件数** | **21 files** |\n| **zip 大小** | 145,301 bytes (原始)，压缩后约 ~55KB |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 68806,
+            "duration_api_ms": 59766,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "a1800cff-a0f9-46a5-8c0a-501531fe5355",
+            "total_cost_usd": 0.287871,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 19152,
+              "cache_read_input_tokens": 175636,
+              "output_tokens": 3147,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19152,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 219,
+                  "cache_read_input_tokens": 30154,
+                  "cache_creation_input_tokens": 839,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 839
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1548,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016229999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 3147,
+                "cacheReadInputTokens": 175636,
+                "cacheCreationInputTokens": 19152,
+                "webSearchRequests": 0,
+                "costUSD": 0.286248,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "813928b1-46a9-416e-82e1-30d88a923025"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ]
+}

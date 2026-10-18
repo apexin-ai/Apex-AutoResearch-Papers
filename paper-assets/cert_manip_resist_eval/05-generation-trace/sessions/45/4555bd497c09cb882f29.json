@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "4555bd497c09cb882f29",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "exp step2 wait and continue",
+  "task_key": "worker_exp_step2-wait-and-continue_20260522T004503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_step2-wait-and-continue_20260522T004503.log",
+    "occurrence": 1,
+    "bytes": 743522,
+    "sha256": "b1594f4b9b6b9215b78619ce412b1adfddec2443b4feed5ea78fa100c12e8d47"
+  },
+  "statistics": {
+    "messages": 591,
+    "user_turns": 0,
+    "tool_calls": 272,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 272,
+      "tool_result": 272,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 591,
+      "chunks": [
+        {
+          "path": "4555bd497c09cb882f29-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4555bd497c09cb882f29-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4555bd497c09cb882f29-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4555bd497c09cb882f29-part-0004.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ]
+}

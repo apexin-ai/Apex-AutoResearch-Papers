@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "2ecf324abd99603346c3",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper page compression",
+  "task_key": "worker_paper_page_compression_20260516T082034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page_compression_20260516T082034.log",
+    "occurrence": 1,
+    "bytes": 883648,
+    "sha256": "dafe7d881e9ba524190a7e6dce8c8673fdc268a8d222be115beb480e174358ba"
+  },
+  "statistics": {
+    "messages": 178,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "2ecf324abd99603346c3-part-0001.json",
+          "message_count": 105
+        },
+        {
+          "path": "2ecf324abd99603346c3-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ]
+}

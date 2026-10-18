@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6472e7e78a4b005d2d81",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code mvp simulation v3",
+  "task_key": "worker_code_mvp_simulation_v3_20260520T185209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_simulation_v3_20260520T185209_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "0b5a9e91170654dfc106edbf0753b3378ed0a3583862ebff63c1ce69ff3fcdfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results match expectations:\n\n**Extreme regime, n_expert=500, subgroup_A (misclass=25%):**\n| Method | bias_z0 | bias_z1 |\n|--------|---------|---------|\n| Oracle | -0.002 | -0.002 |\n| EC-HTE | -0.009 | +0.008 |\n| Global | **+0.054** | **-0.055** |\n| Naive | +0.098 | -0.100 |\n\n**Extreme regime, subgroup_B (misclass=5%):**\n| Method | bias_z0 | bias_z1 |\n|--------|---------|---------|\n| Oracle | -0.012 | -0.005 |\n| EC-HTE | -0.014 | -0.002 |\n| Global | **-0.070** | **+0.055** |\n| Naive | +0.009 | -0.025 |\n\n**Marginal CATE:** Global ≈ EC-HTE ≈ Oracle (all near-unbiased), Naive biased.\n\n**Homogeneous regime:** EC-HTE ≈ Global (no heterogeneity → no advantage), confirming EC-HTE only helps when misclassification rates differ across subgroups.\n\nGlobal under-corrects in subgroup A (uses ~15% global rate vs 25% true) and over-corrects in subgroup B (uses ~15% vs 5% true). EC-HTE eliminates this by using subgroup-specific confusion matrices.\n\nFiles saved:\n- `results/mvp_results_v3_raw.csv`\n- `results/mvp_results_v3.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

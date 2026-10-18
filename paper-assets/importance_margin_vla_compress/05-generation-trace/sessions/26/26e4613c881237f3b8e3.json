@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "26e4613c881237f3b8e3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd27271 kill deploy v2",
+  "task_key": "worker_ops_westd27271_kill_deploy_v2_20260522T091858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd27271_kill_deploy_v2_20260522T091858_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "eb5030df2cbae460c0e1221021ae6ce9154bdcb66a0aaef98957be6bd6e6de47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报：\n\n---\n\n**Kill:** PID 213482 → 已杀（PID 212585 也连带退出，两个 GPU 均释放）\n\n**Object seed43 缺口:**\n- l2norm k=0.925 → MISSING（已部署 GPU 0）\n- l2norm k=0.95 → 被误杀需重跑（已部署 GPU 1）\n- l2norm k=0.9 → RUNNING（registry 中标记 RUNNING，需确认在哪台服务器）\n\n**Spatial seed43 缺口:**\n- l2norm k=0.3 → MISSING\n- random k=0.3 → MISSING\n- l2norm k=0.5 → MISSING\n\n**部署:**\n- GPU 0 → l2norm_k0925_object_seed43 (PID 325659)\n- GPU 1 → l2norm_k095_object_seed43_v2 (PID 325931)\n\n**GPU 状态:**\n\n| GPU | PID | 实验 | 显存 |\n|-----|-----|------|------|\n| 0 | 325659 | l2norm k=0.925 object seed43 | 加载中（CPU→GPU） |\n| 1 | 325931 | l2norm k=0.95 object seed43 v2 | 加载中（CPU→GPU） |\n\n⚠️ 注意：registry 中 `eval_pi05_l2norm_k09_object_seed43` 和 `eval_pi05_l2norm_k0925_spatial_seed43`、`eval_pi05_random_k05_spatial_seed43` 标记为 RUNNING，但不在本机——可能在其他服务器上，或已失效需核实。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

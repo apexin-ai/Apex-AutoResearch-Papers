@@ -1,0 +1,1650 @@
+{
+  "schema_version": "1.0",
+  "id": "4eda2129ba33dcbd42e4",
+  "project": "ratekv",
+  "kind": "worker",
+  "title": "code prep yi gemma multiseed",
+  "task_key": "worker_code_prep_yi_gemma_multiseed_20260516T053010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_yi_gemma_multiseed_20260516T053010.log",
+    "occurrence": 1,
+    "bytes": 115024,
+    "sha256": "79d31dba78373b389c16b94c3ba501e602b485c159d9c3c00da8fc3036accd62"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 16,
+      "tool_result": 16,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "80398d19-6a50-4c00-9ce3-e7b4b71209ed",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778926800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "dd2ad895-6965-4120-a834-ccae61f1ba79",
+                "session_id": "c52158e0-face-44a4-80eb-640f300ea996"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to verify readiness of `run_multi_seed_ppl.py` for Yi-1.5-9B and Gemma-2-9B models. I need to:\n1. Read the script on the server\n2. Check model support, BOS handling for Gemma-2, Yi config\n3. Report findings\n\nLet me start by reading the script and checking model files on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "efd22bd3-3b96-428b-a437-5579a7552056",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JywKrmMNTs39YEFNFntzKH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12590,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12590
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ZYjqnSCTqT3qvhhECYKYE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "84d9a268-45a3-4d20-9753-94b783db7fc8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JywKrmMNTs39YEFNFntzKH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12590,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12590
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T05:30:21.634Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014ZYjqnSCTqT3qvhhECYKYE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "fba2824f-22c8-4265-bac4-fda9bf7e237b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me read the script and check for model files on the server.",
+              "signature": "Ev4BClkIDRgCKkDI27NhsNnQ2LeAfUb3IlcNegjPIP+4EE2Co6wkA+yTb541mPg8uLQkaHy06D6iZURJGKVN/pvTi2qU0pNRwz9PMg9jbGF1ZGUtb3B1cy00LTY4ABIMYly9ScehdlYVJXePGgwA2+zGSXqrZQ+dCfciMGdag+VciMDUyYK0ubln4mIQlLPpkUB0Q2nwyZUZPJNJlBoaa+9dbkNOWA7fxTfNBypTGzUEWx4i/UkvmW5C8dpDePi4+IKEZ57XWEpexdPRhFaf1EQYYYySLz65mX/gnIiEi06T/foZTWvf/xmrekakANPALmwevo6rgD8OAAiXjqgiL0AYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "c14902a1-b8ed-4170-8153-ffbc6c722bd2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LgPQJYbZSATinYQCHrHsdV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 535,
+                "cache_read_input_tokens": 24431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 535
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0125hJzEbpSbEQXqd8hZ5JJ3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/ratekv/run_multi_seed_ppl.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "c77582d9-4896-4bb8-b637-587795db6680",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LgPQJYbZSATinYQCHrHsdV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 535,
+                "cache_read_input_tokens": 24431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 535
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:30:26.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0125hJzEbpSbEQXqd8hZ5JJ3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed constrained MCKP PPL evaluation for statistical significance.\\\\n\\\\nRe-profiles per-head distortion with different calibration subsets (from WikiText-103\\\\ntrain), solves constrained MCKP, and evaluates WikiText-2 PPL for each seed.\\\\nReports mean +/- std across seeds.\\\\n\\\\nUsage:\\\\n  python run_multi_seed_ppl.py --model llama --gpu 0\\\\n  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\\\n  python run_multi_seed_ppl.py --model mistral --seeds 42,123,456 --gpu 1\\\\n  python run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 8\\\\n  python run_multi_seed_ppl.py --model llama --dry-run  # verify seed produces different calibration\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport math\\\\nimport random\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom datasets import Dataset, concatenate_datasets\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/ratekv\\\\\\\")\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import solve_mckp_constrained, enforce_monotonicity\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"llama\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"yi\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"gemma2\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 8,\\\\n        \\\\\\\"gemma2\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nBUDGET = 0.25\\\\nNUM_SAMPLES = 64\\\\nSEQ_LEN = 2048\\\\nBIT_WIDTHS = (2, 4, 8)\\\\n\\\\nWIKI103_ARROWS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef load_wiki103_train():\\\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\\\n    return concatenate_datasets(parts)\\\\n\\\\n\\\\ndef build_candidate_texts(dataset, min_chars=12000):\\\\n    candidates = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n    for item in dataset:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            candidates.append(buffer.strip())\\\\n            buffer = \\\\\\\"\\\\\\\"\\\\n    return candidates\\\\n\\\\n\\\\ndef generate_calibration(tokenizer, seed, candidates, device):\\\\n    rng = random.Random(seed)\\\\n    shuffled = list(range(len(candidates)))\\\\n    rng.shuffle(shuffled)\\\\n\\\\n    samples = []\\\\n    for idx in shuffled:\\\\n        tokens = tokenizer.encode(candidates[idx], add_special_tokens=False)\\\\n        if len(tokens) >= SEQ_LEN:\\\\n            samples.append(tokens[:SEQ_LEN])\\\\n            if len(samples) >= NUM_SAMPLES:\\\\n                break\\\\n\\\\n    if len(samples) < NUM_SAMPLES:\\\\n        raise RuntimeError(f\\\\\\\"Seed {seed}: only got {len(samples)} samples (need {NUM_SAMPLES})\\\\\\\")\\\\n    return torch.tensor(samples, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_calibration_ppl(model, input_ids, batch_size):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    sl = input_ids.shape[1]\\\\n\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(sl, device=batch.device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 11569 字符] ...\\\\n\\\\n     )\\\\n        print(f\\\\\\\"  Bit distribution: {solver_result['bit_distribution']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  Memory ratio: {solver_result['actual_memory_ratio']:.4f}\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"  Evaluating constrained MCKP on WikiText-2...\\\\\\\", flush=True)\\\\n        orig = patch_fn(model, solver_result[\\\\\\\"allocation\\\\\\\"])\\\\n        constrained_ppl = eval_fn(model, tokenizer, device)\\\\n        restore_attention(model, orig)\\\\n        print(f\\\\\\\"  Constrained PPL: {constrained_ppl:.4f}\\\\\\\", flush=True)\\\\n\\\\n        del input_ids\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        seed_time = time.time() - t_seed\\\\n        seed_results[seed] = {\\\\n            \\\\\\\"constrained_ppl\\\\\\\": constrained_ppl,\\\\n            \\\\\\\"calibration_baseline_ppl\\\\\\\": calib_baseline,\\\\n            \\\\\\\"bit_distribution\\\\\\\": solver_result[\\\\\\\"bit_distribution\\\\\\\"],\\\\n            \\\\\\\"n_2bit\\\\\\\": solver_result[\\\\\\\"n_2bit\\\\\\\"],\\\\n            \\\\\\\"total_distortion\\\\\\\": solver_result[\\\\\\\"total_distortion\\\\\\\"],\\\\n            \\\\\\\"memory_ratio\\\\\\\": solver_result[\\\\\\\"actual_memory_ratio\\\\\\\"],\\\\n            \\\\\\\"profile_time_seconds\\\\\\\": round(profile_time, 1),\\\\n            \\\\\\\"seed_time_seconds\\\\\\\": round(seed_time, 1),\\\\n        }\\\\n        all_allocations[seed] = solver_result[\\\\\\\"allocation\\\\\\\"]\\\\n\\\\n        ckpt_path = f\\\\\\\"{checkpoint_dir}/{args.model}_multi_seed_checkpoint_s{seed}.json\\\\\\\"\\\\n        with open(ckpt_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump({\\\\n                \\\\\\\"seed_results\\\\\\\": {str(k): v for k, v in seed_results.items()},\\\\n                \\\\\\\"allocations\\\\\\\": {str(k): v for k, v in all_allocations.items()},\\\\n            }, f, indent=2)\\\\n        print(f\\\\\\\"  Seed {seed} done in {seed_time:.1f}s ({seed_time/60:.1f}min)\\\\\\\", flush=True)\\\\n\\\\n    # Aggregate\\\\n    constrained_ppls = [seed_results[s][\\\\\\\"constrained_ppl\\\\\\\"] for s in seeds]\\\\n    agreement = compute_agreement(all_allocations, seeds)\\\\n    total_time = time.time() - t_start\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 60}\\\\\\\")\\\\n    print(\\\\\\\"FINAL RESULTS\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * 60}\\\\\\\")\\\\n    print(f\\\\\\\"Model:         {cfg['name']}\\\\\\\")\\\\n    print(f\\\\\\\"Baseline PPL:  {baseline_ppl:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Uniform 4-bit: {uniform_ppl:.4f}\\\\\\\")\\\\n    for s in seeds:\\\\n        print(f\\\\\\\"Seed {s} constrained: {seed_results[s]['constrained_ppl']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConstrained mean +/- std: {np.mean(constrained_ppls):.4f} +/- {np.std(constrained_ppls):.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Allocation agreement: {agreement['full_agreement_rate']:.1%} \\\\\\\"\\\\n          f\\\\\\\"({agreement['full_agreement_count']}/{agreement['n_heads']})\\\\\\\")\\\\n    for k, v in agreement[\\\\\\\"pairwise_agreement\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Total time: {total_time:.1f}s ({total_time/3600:.2f}h)\\\\\\\", flush=True)\\\\n\\\\n    final = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"multi_seed_ppl_eval\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": cfg[\\\\\\\"path\\\\\\\"],\\\\n        \\\\\\\"model_name\\\\\\\": cfg[\\\\\\\"name\\\\\\\"],\\\\n        \\\\\\\"seeds\\\\\\\": seeds,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"budget\\\\\\\": BUDGET,\\\\n            \\\\\\\"max_2bit\\\\\\\": cfg[\\\\\\\"max_2bit\\\\\\\"],\\\\n            \\\\\\\"l0_exclude_2bit\\\\\\\": True,\\\\n            \\\\\\\"num_samples\\\\\\\": NUM_SAMPLES,\\\\n            \\\\\\\"seq_len\\\\\\\": SEQ_LEN,\\\\n            \\\\\\\"batch_size\\\\\\\": batch_size,\\\\n            \\\\\\\"bit_widths\\\\\\\": list(BIT_WIDTHS),\\\\n            \\\\\\\"calibration_source\\\\\\\": \\\\\\\"wikitext-103-raw-v1 train\\\\\\\",\\\\n            \\\\\\\"eval_dataset\\\\\\\": \\\\\\\"wikitext-2-raw-v1 test\\\\\\\",\\\\n            \\\\\\\"eval_stride\\\\\\\": 512,\\\\n            \\\\\\\"gemma2_bos_fix\\\\\\\": cfg[\\\\\\\"gemma2\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"baseline_ppl\\\\\\\": round(baseline_ppl, 4),\\\\n        \\\\\\\"uniform_4bit_ppl\\\\\\\": round(uniform_ppl, 4),\\\\n        \\\\\\\"seed_results\\\\\\\": {str(k): v for k, v in seed_results.items()},\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"constrained_ppl_mean\\\\\\\": round(float(np.mean(constrained_ppls)), 4),\\\\n            \\\\\\\"constrained_ppl_std\\\\\\\": round(float(np.std(constrained_ppls)), 4),\\\\n            \\\\\\\"constrained_ppl_values\\\\\\\": [round(p, 4) for p in constrained_ppls],\\\\n        },\\\\n        \\\\\\\"allocation_agreement\\\\\\\": agreement,\\\\n        \\\\\\\"allocations\\\\\\\": {str(k): v for k, v in all_allocations.items()},\\\\n        \\\\\\\"total_time_seconds\\\\\\\": round(total_time, 1),\\\\n    }\\\\n\\\\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(final, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {output_path}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "52285c40-bd89-466a-a206-f0a1227ae424",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed constrained MCKP PPL evaluation for statistical significance.\\\\n\\\\nRe-profiles per-head distortion with different calibration subsets (from WikiText-103\\\\ntrain), solves constrained MCKP, and evaluates WikiText-2 PPL for each seed.\\\\nReports mean +/- std across seeds.\\\\n\\\\nUsage:\\\\n  python run_multi_seed_ppl.py --model llama --gpu 0\\\\n  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\\\n  python run_multi_seed_ppl.py --model mistral --seeds 42,123,456 --gpu 1\\\\n  python run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 8\\\\n  python run_multi_seed_ppl.py --model llama --dry-run  # verify seed produces different calibration\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport math\\\\nimport random\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom datasets import Dataset, concatenate_datasets\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/ratekv\\\\\\\")\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import solve_mckp_constrained, enforce_monotonicity\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"llama\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"yi\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"gemma2\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 8,\\\\n        \\\\\\\"gemma2\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nBUDGET = 0.25\\\\nNUM_SAMPLES = 64\\\\nSEQ_LEN = 2048\\\\nBIT_WIDTHS = (2, 4, 8)\\\\n\\\\nWIKI103_ARROWS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef load_wiki103_train():\\\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\\\n    return concatenate_datasets(parts)\\\\n\\\\n\\\\ndef build_candidate_texts(dataset, min_chars=12000):\\\\n    candidates = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n    for item in dataset:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            candidates.append(buffer.strip())\\\\n            buffer = \\\\\\\"\\\\\\\"\\\\n    return candidates\\\\n\\\\n\\\\ndef generate_calibration(tokenizer, seed, candidates, device):\\\\n    rng = random.Random(seed)\\\\n    shuffled = list(range(len(candidates)))\\\\n    rng.shuffle(shuffled)\\\\n\\\\n    samples = []\\\\n    for idx in shuffled:\\\\n        tokens = tokenizer.encode(candidates[idx], add_special_tokens=False)\\\\n        if len(tokens) >= SEQ_LEN:\\\\n            samples.append(tokens[:SEQ_LEN])\\\\n            if len(samples) >= NUM_SAMPLES:\\\\n                break\\\\n\\\\n    if len(samples) < NUM_SAMPLES:\\\\n        raise RuntimeError(f\\\\\\\"Seed {seed}: only got {len(samples)} samples (need {NUM_SAMPLES})\\\\\\\")\\\\n    return torch.tensor(samples, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_calibration_ppl(model, input_ids, batch_size):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    sl = input_ids.shape[1]\\\\n\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(sl, device=batch.device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 11569 字符] ...\\\\n\\\\n     )\\\\n        print(f\\\\\\\"  Bit distribution: {solver_result['bit_distribution']}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  Memory ratio: {solver_result['actual_memory_ratio']:.4f}\\\\\\\", flush=True)\\\\n\\\\n        print(f\\\\\\\"  Evaluating constrained MCKP on WikiText-2...\\\\\\\", flush=True)\\\\n        orig = patch_fn(model, solver_result[\\\\\\\"allocation\\\\\\\"])\\\\n        constrained_ppl = eval_fn(model, tokenizer, device)\\\\n        restore_attention(model, orig)\\\\n        print(f\\\\\\\"  Constrained PPL: {constrained_ppl:.4f}\\\\\\\", flush=True)\\\\n\\\\n        del input_ids\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        seed_time = time.time() - t_seed\\\\n        seed_results[seed] = {\\\\n            \\\\\\\"constrained_ppl\\\\\\\": constrained_ppl,\\\\n            \\\\\\\"calibration_baseline_ppl\\\\\\\": calib_baseline,\\\\n            \\\\\\\"bit_distribution\\\\\\\": solver_result[\\\\\\\"bit_distribution\\\\\\\"],\\\\n            \\\\\\\"n_2bit\\\\\\\": solver_result[\\\\\\\"n_2bit\\\\\\\"],\\\\n            \\\\\\\"total_distortion\\\\\\\": solver_result[\\\\\\\"total_distortion\\\\\\\"],\\\\n            \\\\\\\"memory_ratio\\\\\\\": solver_result[\\\\\\\"actual_memory_ratio\\\\\\\"],\\\\n            \\\\\\\"profile_time_seconds\\\\\\\": round(profile_time, 1),\\\\n            \\\\\\\"seed_time_seconds\\\\\\\": round(seed_time, 1),\\\\n        }\\\\n        all_allocations[seed] = solver_result[\\\\\\\"allocation\\\\\\\"]\\\\n\\\\n        ckpt_path = f\\\\\\\"{checkpoint_dir}/{args.model}_multi_seed_checkpoint_s{seed}.json\\\\\\\"\\\\n        with open(ckpt_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump({\\\\n                \\\\\\\"seed_results\\\\\\\": {str(k): v for k, v in seed_results.items()},\\\\n                \\\\\\\"allocations\\\\\\\": {str(k): v for k, v in all_allocations.items()},\\\\n            }, f, indent=2)\\\\n        print(f\\\\\\\"  Seed {seed} done in {seed_time:.1f}s ({seed_time/60:.1f}min)\\\\\\\", flush=True)\\\\n\\\\n    # Aggregate\\\\n    constrained_ppls = [seed_results[s][\\\\\\\"constrained_ppl\\\\\\\"] for s in seeds]\\\\n    agreement = compute_agreement(all_allocations, seeds)\\\\n    total_time = time.time() - t_start\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 60}\\\\\\\")\\\\n    print(\\\\\\\"FINAL RESULTS\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * 60}\\\\\\\")\\\\n    print(f\\\\\\\"Model:         {cfg['name']}\\\\\\\")\\\\n    print(f\\\\\\\"Baseline PPL:  {baseline_ppl:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Uniform 4-bit: {uniform_ppl:.4f}\\\\\\\")\\\\n    for s in seeds:\\\\n        print(f\\\\\\\"Seed {s} constrained: {seed_results[s]['constrained_ppl']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConstrained mean +/- std: {np.mean(constrained_ppls):.4f} +/- {np.std(constrained_ppls):.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Allocation agreement: {agreement['full_agreement_rate']:.1%} \\\\\\\"\\\\n          f\\\\\\\"({agreement['full_agreement_count']}/{agreement['n_heads']})\\\\\\\")\\\\n    for k, v in agreement[\\\\\\\"pairwise_agreement\\\\\\\"].items():\\\\n        print(f\\\\\\\"  {k}: {v:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Total time: {total_time:.1f}s ({total_time/3600:.2f}h)\\\\\\\", flush=True)\\\\n\\\\n    final = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"multi_seed_ppl_eval\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": cfg[\\\\\\\"path\\\\\\\"],\\\\n        \\\\\\\"model_name\\\\\\\": cfg[\\\\\\\"name\\\\\\\"],\\\\n        \\\\\\\"seeds\\\\\\\": seeds,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"budget\\\\\\\": BUDGET,\\\\n            \\\\\\\"max_2bit\\\\\\\": cfg[\\\\\\\"max_2bit\\\\\\\"],\\\\n            \\\\\\\"l0_exclude_2bit\\\\\\\": True,\\\\n            \\\\\\\"num_samples\\\\\\\": NUM_SAMPLES,\\\\n            \\\\\\\"seq_len\\\\\\\": SEQ_LEN,\\\\n            \\\\\\\"batch_size\\\\\\\": batch_size,\\\\n            \\\\\\\"bit_widths\\\\\\\": list(BIT_WIDTHS),\\\\n            \\\\\\\"calibration_source\\\\\\\": \\\\\\\"wikitext-103-raw-v1 train\\\\\\\",\\\\n            \\\\\\\"eval_dataset\\\\\\\": \\\\\\\"wikitext-2-raw-v1 test\\\\\\\",\\\\n            \\\\\\\"eval_stride\\\\\\\": 512,\\\\n            \\\\\\\"gemma2_bos_fix\\\\\\\": cfg[\\\\\\\"gemma2\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"baseline_ppl\\\\\\\": round(baseline_ppl, 4),\\\\n        \\\\\\\"uniform_4bit_ppl\\\\\\\": round(uniform_ppl, 4),\\\\n        \\\\\\\"seed_results\\\\\\\": {str(k): v for k, v in seed_results.items()},\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"constrained_ppl_mean\\\\\\\": round(float(np.mean(constrained_ppls)), 4),\\\\n            \\\\\\\"constrained_ppl_std\\\\\\\": round(float(np.std(constrained_ppls)), 4),\\\\n            \\\\\\\"constrained_ppl_values\\\\\\\": [round(p, 4) for p in constrained_ppls],\\\\n        },\\\\n        \\\\\\\"allocation_agreement\\\\\\\": agreement,\\\\n        \\\\\\\"allocations\\\\\\\": {str(k): v for k, v in all_allocations.items()},\\\\n        \\\\\\\"total_time_seconds\\\\\\\": round(total_time, 1),\\\\n    }\\\\n\\\\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(final, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {output_path}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-seed constrained MCKP PPL evaluation for statistical significance.\\n\\nRe-profiles per-head distortion with different calibration subsets (from WikiText-103\\ntrain), solves constrained MCKP, and evaluates WikiText-2 PPL for each seed.\\nReports mean +/- std across seeds.\\n\\nUsage:\\n  python run_multi_seed_ppl.py --model llama --gpu 0\\n  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\n  python run_multi_seed_ppl.py --model mistral --seeds 42,123,456 --gpu 1\\n  python run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 8\\n  python run_multi_seed_ppl.py --model llama --dry-run  # verify seed produces different calibration\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport math\\nimport random\\nimport time\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom datasets import Dataset, concatenate_datasets\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/ratekv\\\")\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import solve_mckp_constrained, enforce_monotonicity\\n\\nMODEL_CONFIGS = {\\n    \\\"llama\\\": {\\n        \\\"name\\\": \\\"Llama-3.1-8B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\",\\n        \\\"max_2bit\\\": 2,\\n        \\\"gemma2\\\": False,\\n    },\\n    \\\"mistral\\\": {\\n        \\\"name\\\": \\\"Mistral-7B-v0.3\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\",\\n        \\\"max_2bit\\\": 2,\\n        \\\"gemma2\\\": False,\\n    },\\n    \\\"yi\\\": {\\n        \\\"name\\\": \\\"Yi-1.5-9B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\",\\n        \\\"max_2bit\\\": 2,\\n        \\\"gemma2\\\": False,\\n    },\\n    \\\"gemma2\\\": {\\n        \\\"name\\\": \\\"Gemma-2-9B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\",\\n        \\\"max_2bit\\\": 8,\\n        \\\"gemma2\\\": True,\\n    },\\n}\\n\\nBUDGET = 0.25\\nNUM_SAMPLES = 64\\nSEQ_LEN = 2048\\nBIT_WIDTHS = (2, 4, 8)\\n\\nWIKI103_ARROWS = [\\n    \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\"\\n    \\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\"\\n    \\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\",\\n]\\n\\n\\ndef load_wiki103_train():\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\n    return concatenate_datasets(parts)\\n\\n\\ndef build_candidate_texts(dataset, min_chars=12000):\\n    candidates = []\\n    buffer = \\\"\\\"\\n    for item in dataset:\\n        text = item[\\\"text\\\"].strip()\\n        if not text:\\n            continue\\n        buffer += \\\" \\\" + text\\n        if len(buffer) >= min_chars:\\n            candidates.append(buffer.strip())\\n            buffer = \\\"\\\"\\n    return candidates\\n\\n\\ndef generate_calibration(tokenizer, seed, candidates, device):\\n    rng = random.Random(seed)\\n    shuffled = list(range(len(candidates)))\\n    rng.shuffle(shuffled)\\n\\n    samples = []\\n    for idx in shuffled:\\n        tokens = tokenizer.encode(candidates[idx], add_special_tokens=False)\\n        if len(tokens) >= SEQ_LEN:\\n            samples.append(tokens[:SEQ_LEN])\\n            if len(samples) >= NUM_SAMPLES:\\n                break\\n\\n    if len(samples) < NUM_SAMPLES:\\n        raise RuntimeError(f\\\"Seed {seed}: only got {len(samples)} samples (need {NUM_SAMPLES})\\\")\\n    return torch.tensor(samples, dtype=torch.long, device=device)\\n\\n\\ndef compute_calibration_ppl(model, input_ids, batch_size):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n = input_ids.shape[0]\\n    sl = input_ids.shape[1]\\n\\n    with torch.no_grad():\\n        for start in range(0, n, batch_size):\\n            end = min(start + batch_size, n)\\n            batch = input_ids[start:end]\\n            outputs = model(\\n                batch, use_cache=False,\\n                cache_position=torch.arange(sl, device=batch.device)\\n            )\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\n  \\n\\n... [截断: 输出过长，省略 11569 字符] ...\\n\\n     )\\n        print(f\\\"  Bit distribution: {solver_result['bit_distribution']}\\\", flush=True)\\n        print(f\\\"  Memory ratio: {solver_result['actual_memory_ratio']:.4f}\\\", flush=True)\\n\\n        print(f\\\"  Evaluating constrained MCKP on WikiText-2...\\\", flush=True)\\n        orig = patch_fn(model, solver_result[\\\"allocation\\\"])\\n        constrained_ppl = eval_fn(model, tokenizer, device)\\n        restore_attention(model, orig)\\n        print(f\\\"  Constrained PPL: {constrained_ppl:.4f}\\\", flush=True)\\n\\n        del input_ids\\n        torch.cuda.empty_cache()\\n\\n        seed_time = time.time() - t_seed\\n        seed_results[seed] = {\\n            \\\"constrained_ppl\\\": constrained_ppl,\\n            \\\"calibration_baseline_ppl\\\": calib_baseline,\\n            \\\"bit_distribution\\\": solver_result[\\\"bit_distribution\\\"],\\n            \\\"n_2bit\\\": solver_result[\\\"n_2bit\\\"],\\n            \\\"total_distortion\\\": solver_result[\\\"total_distortion\\\"],\\n            \\\"memory_ratio\\\": solver_result[\\\"actual_memory_ratio\\\"],\\n            \\\"profile_time_seconds\\\": round(profile_time, 1),\\n            \\\"seed_time_seconds\\\": round(seed_time, 1),\\n        }\\n        all_allocations[seed] = solver_result[\\\"allocation\\\"]\\n\\n        ckpt_path = f\\\"{checkpoint_dir}/{args.model}_multi_seed_checkpoint_s{seed}.json\\\"\\n        with open(ckpt_path, \\\"w\\\") as f:\\n            json.dump({\\n                \\\"seed_results\\\": {str(k): v for k, v in seed_results.items()},\\n                \\\"allocations\\\": {str(k): v for k, v in all_allocations.items()},\\n            }, f, indent=2)\\n        print(f\\\"  Seed {seed} done in {seed_time:.1f}s ({seed_time/60:.1f}min)\\\", flush=True)\\n\\n    # Aggregate\\n    constrained_ppls = [seed_results[s][\\\"constrained_ppl\\\"] for s in seeds]\\n    agreement = compute_agreement(all_allocations, seeds)\\n    total_time = time.time() - t_start\\n\\n    print(f\\\"\\\\n{'=' * 60}\\\")\\n    print(\\\"FINAL RESULTS\\\")\\n    print(f\\\"{'=' * 60}\\\")\\n    print(f\\\"Model:         {cfg['name']}\\\")\\n    print(f\\\"Baseline PPL:  {baseline_ppl:.4f}\\\")\\n    print(f\\\"Uniform 4-bit: {uniform_ppl:.4f}\\\")\\n    for s in seeds:\\n        print(f\\\"Seed {s} constrained: {seed_results[s]['constrained_ppl']:.4f}\\\")\\n    print(f\\\"\\\\nConstrained mean +/- std: {np.mean(constrained_ppls):.4f} +/- {np.std(constrained_ppls):.4f}\\\")\\n    print(f\\\"Allocation agreement: {agreement['full_agreement_rate']:.1%} \\\"\\n          f\\\"({agreement['full_agreement_count']}/{agreement['n_heads']})\\\")\\n    for k, v in agreement[\\\"pairwise_agreement\\\"].items():\\n        print(f\\\"  {k}: {v:.1%}\\\")\\n    print(f\\\"Total time: {total_time:.1f}s ({total_time/3600:.2f}h)\\\", flush=True)\\n\\n    final = {\\n        \\\"experiment\\\": \\\"multi_seed_ppl_eval\\\",\\n        \\\"model\\\": cfg[\\\"path\\\"],\\n        \\\"model_name\\\": cfg[\\\"name\\\"],\\n        \\\"seeds\\\": seeds,\\n        \\\"config\\\": {\\n            \\\"budget\\\": BUDGET,\\n            \\\"max_2bit\\\": cfg[\\\"max_2bit\\\"],\\n            \\\"l0_exclude_2bit\\\": True,\\n            \\\"num_samples\\\": NUM_SAMPLES,\\n            \\\"seq_len\\\": SEQ_LEN,\\n            \\\"batch_size\\\": batch_size,\\n            \\\"bit_widths\\\": list(BIT_WIDTHS),\\n            \\\"calibration_source\\\": \\\"wikitext-103-raw-v1 train\\\",\\n            \\\"eval_dataset\\\": \\\"wikitext-2-raw-v1 test\\\",\\n            \\\"eval_stride\\\": 512,\\n            \\\"gemma2_bos_fix\\\": cfg[\\\"gemma2\\\"],\\n        },\\n        \\\"baseline_ppl\\\": round(baseline_ppl, 4),\\n        \\\"uniform_4bit_ppl\\\": round(uniform_ppl, 4),\\n        \\\"seed_results\\\": {str(k): v for k, v in seed_results.items()},\\n        \\\"summary\\\": {\\n            \\\"constrained_ppl_mean\\\": round(float(np.mean(constrained_ppls)), 4),\\n            \\\"constrained_ppl_std\\\": round(float(np.std(constrained_ppls)), 4),\\n            \\\"constrained_ppl_values\\\": [round(p, 4) for p in constrained_ppls],\\n        },\\n        \\\"allocation_agreement\\\": agreement,\\n        \\\"allocations\\\": {str(k): v for k, v in all_allocations.items()},\\n        \\\"total_time_seconds\\\": round(total_time, 1),\\n    }\\n\\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(final, f, indent=2)\\n    print(f\\\"\\\\nSaved to {output_path}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U8KXyxoFwWHvYN2qjZHMiL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "ls /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/config.json /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/*.safetensors",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "cede2f2c-a10b-472c-b3f3-ada6ae597724",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQrTEHV5W7AE3SNbubbFng",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3772,
+                "cache_read_input_tokens": 24966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3772
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:30:30.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U8KXyxoFwWHvYN2qjZHMiL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/config.json\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00001-of-00004.safetensors\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00002-of-00004.safetensors\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00003-of-00004.safetensors\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00004-of-00004.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "04226161-be67-4811-9b10-64103380fb72",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/config.json\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00001-of-00004.safetensors\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00002-of-00004.safetensors\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00003-of-00004.safetensors\\\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00004-of-00004.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/config.json\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00001-of-00004.safetensors\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00002-of-00004.safetensors\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00003-of-00004.safetensors\\n/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/model-00004-of-00004.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T2ojDnQWAr5eR3kf8Pdvuv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "ls /root/autodl-tmp/.hf_cache/google/gemma-2-9b/config.json /root/autodl-tmp/.hf_cache/google/gemma-2-9b/*.safetensors",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "9dba8834-bdfd-40fd-ab91-278e8b356c20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQrTEHV5W7AE3SNbubbFng",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3772,
+                "cache_read_input_tokens": 24966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3772
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T05:30:31.164Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T2ojDnQWAr5eR3kf8Pdvuv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b/config.json\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00001-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00002-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00003-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00004-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00005-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00006-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00007-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00008-of-00008.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "d78cba75-bda8-4ef3-8129-3d2455997311",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b/config.json\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00001-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00002-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00003-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00004-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00005-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00006-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00007-of-00008.safetensors\\\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00008-of-00008.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/google/gemma-2-9b/config.json\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00001-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00002-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00003-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00004-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00005-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00006-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00007-of-00008.safetensors\\n/root/autodl-tmp/.hf_cache/google/gemma-2-9b/model-00008-of-00008.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y3LFKJFRYDuUqJSav1x6jS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "python3 -c \"import json; c=json.load(open('/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/config.json')); print(f'num_attention_heads={c[\\\"num_attention_heads\\\"]}, num_key_value_heads={c[\\\"num_key_value_heads\\\"]}, num_hidden_layers={c[\\\"num_hidden_layers\\\"]}')\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "2d878b99-37c6-445e-9269-93d3ed766c58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NftjBZf1QL3iWCJzW7G9aF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1038,
+                "cache_read_input_tokens": 28738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1038
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:30:37.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y3LFKJFRYDuUqJSav1x6jS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "4add53cd-7a6f-4cc7-9883-6955011fbcd4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VmaBCPDTjLS6JSoENeE1wn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "python3 -c \"import json; c=json.load(open('/root/autodl-tmp/.hf_cache/google/gemma-2-9b/config.json')); print(f'num_attention_heads={c[\\\"num_attention_heads\\\"]}, num_key_value_heads={c[\\\"num_key_value_heads\\\"]}, num_hidden_layers={c[\\\"num_hidden_layers\\\"]}')\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "c0a00329-c0da-469f-b328-c9f2b101afd3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NftjBZf1QL3iWCJzW7G9aF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1038,
+                "cache_read_input_tokens": 28738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1038
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T05:30:38.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VmaBCPDTjLS6JSoENeE1wn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "d54e2d9a-9be8-493b-a196-d29c16ed984f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018vDxqcxbj4tVJ7X7JkK3L6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/config.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "36c4c0e3-c52b-4ec3-b67c-3bd36e65fc1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WViqbLHJD2eFgwX67ikJ2d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 642,
+                "cache_read_input_tokens": 29776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 642
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018f6vpGMyqT4sngLVktbToY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "cat /root/autodl-tmp/.hf_cache/google/gemma-2-9b/config.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "2d34d0f9-7e72-401c-8237-7e54540701a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WViqbLHJD2eFgwX67ikJ2d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 642,
+                "cache_read_input_tokens": 29776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 642
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T05:30:42.457Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018vDxqcxbj4tVJ7X7JkK3L6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"LlamaForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 1,\\\\n  \\\\\\\"eos_token_id\\\\\\\": 2,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"silu\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 4096,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 11008,\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 4096,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"llama\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 32,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 48,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 4,\\\\n  \\\\\\\"pad_token_id\\\\\\\": 0,\\\\n  \\\\\\\"pretraining_tp\\\\\\\": 1,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_scaling\\\\\\\": null,\\\\n  \\\\\\\"rope_theta\\\\\\\": 5000000.0,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.37.2\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"vocab_size\\\\\\\": 64000\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "087cb243-b8c6-4238-ad38-251e2881da07",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"LlamaForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 1,\\\\n  \\\\\\\"eos_token_id\\\\\\\": 2,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"silu\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 4096,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 11008,\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 4096,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"llama\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 32,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 48,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 4,\\\\n  \\\\\\\"pad_token_id\\\\\\\": 0,\\\\n  \\\\\\\"pretraining_tp\\\\\\\": 1,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_scaling\\\\\\\": null,\\\\n  \\\\\\\"rope_theta\\\\\\\": 5000000.0,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.37.2\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"vocab_size\\\\\\\": 64000\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"architectures\\\": [\\n    \\\"LlamaForCausalLM\\\"\\n  ],\\n  \\\"attention_bias\\\": false,\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"bos_token_id\\\": 1,\\n  \\\"eos_token_id\\\": 2,\\n  \\\"hidden_act\\\": \\\"silu\\\",\\n  \\\"hidden_size\\\": 4096,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 11008,\\n  \\\"max_position_embeddings\\\": 4096,\\n  \\\"model_type\\\": \\\"llama\\\",\\n  \\\"num_attention_heads\\\": 32,\\n  \\\"num_hidden_layers\\\": 48,\\n  \\\"num_key_value_heads\\\": 4,\\n  \\\"pad_token_id\\\": 0,\\n  \\\"pretraining_tp\\\": 1,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 5000000.0,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"torch_dtype\\\": \\\"bfloat16\\\",\\n  \\\"transformers_version\\\": \\\"4.37.2\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"vocab_size\\\": 64000\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T05:30:42.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018f6vpGMyqT4sngLVktbToY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"Gemma2ForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"attn_logit_softcapping\\\\\\\": 50.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 2,\\\\n  \\\\\\\"cache_implementation\\\\\\\": \\\\\\\"hybrid\\\\\\\",\\\\n  \\\\\\\"eos_token_id\\\\\\\": 1,\\\\n  \\\\\\\"final_logit_softcapping\\\\\\\": 30.0,\\\\n  \\\\\\\"head_dim\\\\\\\": 256,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"gelu_pytorch_tanh\\\\\\\",\\\\n  \\\\\\\"hidden_activation\\\\\\\": \\\\\\\"gelu_pytorch_tanh\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 3584,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 14336,\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 8192,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"gemma2\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 16,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 42,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\\n  \\\\\\\"pad_token_id\\\\\\\": 0,\\\\n  \\\\\\\"query_pre_attn_scalar\\\\\\\": 256,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_theta\\\\\\\": 10000.0,\\\\n  \\\\\\\"sliding_window\\\\\\\": 4096,\\\\n  \\\\\\\"sliding_window_size\\\\\\\": 4096,\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"float32\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.42.0.dev0\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"vocab_size\\\\\\\": 256000\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "791b7beb-e347-44c9-8ac0-f5ff4cd625bd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"Gemma2ForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"attn_logit_softcapping\\\\\\\": 50.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 2,\\\\n  \\\\\\\"cache_implementation\\\\\\\": \\\\\\\"hybrid\\\\\\\",\\\\n  \\\\\\\"eos_token_id\\\\\\\": 1,\\\\n  \\\\\\\"final_logit_softcapping\\\\\\\": 30.0,\\\\n  \\\\\\\"head_dim\\\\\\\": 256,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"gelu_pytorch_tanh\\\\\\\",\\\\n  \\\\\\\"hidden_activation\\\\\\\": \\\\\\\"gelu_pytorch_tanh\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 3584,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 14336,\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 8192,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"gemma2\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 16,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 42,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\\n  \\\\\\\"pad_token_id\\\\\\\": 0,\\\\n  \\\\\\\"query_pre_attn_scalar\\\\\\\": 256,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_theta\\\\\\\": 10000.0,\\\\n  \\\\\\\"sliding_window\\\\\\\": 4096,\\\\n  \\\\\\\"sliding_window_size\\\\\\\": 4096,\\\\n  \\\\\\\"torch_dtype\\\\\\\": \\\\\\\"float32\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.42.0.dev0\\\\\\\",\\\\n  \\\\\\\"use_cache\\\\\\\": true,\\\\n  \\\\\\\"vocab_size\\\\\\\": 256000\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"architectures\\\": [\\n    \\\"Gemma2ForCausalLM\\\"\\n  ],\\n  \\\"attention_bias\\\": false,\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"attn_logit_softcapping\\\": 50.0,\\n  \\\"bos_token_id\\\": 2,\\n  \\\"cache_implementation\\\": \\\"hybrid\\\",\\n  \\\"eos_token_id\\\": 1,\\n  \\\"final_logit_softcapping\\\": 30.0,\\n  \\\"head_dim\\\": 256,\\n  \\\"hidden_act\\\": \\\"gelu_pytorch_tanh\\\",\\n  \\\"hidden_activation\\\": \\\"gelu_pytorch_tanh\\\",\\n  \\\"hidden_size\\\": 3584,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 14336,\\n  \\\"max_position_embeddings\\\": 8192,\\n  \\\"model_type\\\": \\\"gemma2\\\",\\n  \\\"num_attention_heads\\\": 16,\\n  \\\"num_hidden_layers\\\": 42,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"pad_token_id\\\": 0,\\n  \\\"query_pre_attn_scalar\\\": 256,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_theta\\\": 10000.0,\\n  \\\"sliding_window\\\": 4096,\\n  \\\"sliding_window_size\\\": 4096,\\n  \\\"torch_dtype\\\": \\\"float32\\\",\\n  \\\"transformers_version\\\": \\\"4.42.0.dev0\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"vocab_size\\\": 256000\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the Gemma-2 BOS handling in the script. I saw the script was truncated — let me look at the relevant BOS fix section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "0dcdae45-6c96-486f-8a9e-f5584c039fec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dMu9WJL2WR8CHbdYP5RkA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1462,
+                "cache_read_input_tokens": 30418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1462
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GEyCnS63CTWZPuVkUWS3FF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "grep -n \"bos\\|gemma2\\|add_bos\\|prepend\" /root/ratekv/run_multi_seed_ppl.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "3e916ab6-8d7f-47a5-aaec-f5e1c5865cf9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dMu9WJL2WR8CHbdYP5RkA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1462,
+                "cache_read_input_tokens": 30418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1462
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:30:48.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GEyCnS63CTWZPuVkUWS3FF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "393ada0b-76b1-4178-b09d-f4bd7cfecc9d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NL4mLrS54ih2erBLxTfYcf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "grep -n \"gemma2\\|bos\" /root/ratekv/eval_ppl.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "eb48659c-e6c2-4ddc-b8ed-e08fa36de1fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dMu9WJL2WR8CHbdYP5RkA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1462,
+                "cache_read_input_tokens": 30418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1462
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T05:30:49.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NL4mLrS54ih2erBLxTfYcf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "9ff095c1-5ffd-4501-9e0a-90441089d862",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015xkVio9huT1wHCr1YYhs7F",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "grep -n \"bos\" /root/ratekv/run_multi_seed_ppl.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "242ea0b8-bffd-49aa-8e09-f29c5fbf3502",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuwAbQDfZrSqTWnj8mLjdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 638,
+                "cache_read_input_tokens": 31880,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 638
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SF24nawbNzqqZsP2Lha6iR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "grep -n \"gemma2\" /root/ratekv/run_multi_seed_ppl.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "56f24b15-1934-42d0-a0b5-991ef3e04853",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PuwAbQDfZrSqTWnj8mLjdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 638,
+                "cache_read_input_tokens": 31880,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 638
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:30:53.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015xkVio9huT1wHCr1YYhs7F",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"189:    bos_id = tokenizer.bos_token_id\\\\n190:    bos_tensor = torch.tensor([[bos_id]], device=device)\\\\n202:        needs_bos = (chunk[0, 0].item() != bos_id)\\\\n203:        if needs_bos:\\\\n204:            chunk_input = torch.cat([bos_tensor, chunk], dim=1)\\\\n212:        bos_offset = 1 if needs_bos else 0\\\\n213:        shift_logits = logits[:, bos_offset:-1].float()\\\\n500:            \\\\\\\"gemma2_bos_fix\\\\\\\": cfg[\\\\\\\"gemma2\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "c86bea3b-ba5f-4c3a-a797-72c72ce32e9c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"189:    bos_id = tokenizer.bos_token_id\\\\n190:    bos_tensor = torch.tensor([[bos_id]], device=device)\\\\n202:        needs_bos = (chunk[0, 0].item() != bos_id)\\\\n203:        if needs_bos:\\\\n204:            chunk_input = torch.cat([bos_tensor, chunk], dim=1)\\\\n212:        bos_offset = 1 if needs_bos else 0\\\\n213:        shift_logits = logits[:, bos_offset:-1].float()\\\\n500:            \\\\\\\"gemma2_bos_fix\\\\\\\": cfg[\\\\\\\"gemma2\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"189:    bos_id = tokenizer.bos_token_id\\n190:    bos_tensor = torch.tensor([[bos_id]], device=device)\\n202:        needs_bos = (chunk[0, 0].item() != bos_id)\\n203:        if needs_bos:\\n204:            chunk_input = torch.cat([bos_tensor, chunk], dim=1)\\n212:        bos_offset = 1 if needs_bos else 0\\n213:        shift_logits = logits[:, bos_offset:-1].float()\\n500:            \\\"gemma2_bos_fix\\\": cfg[\\\"gemma2\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T05:30:53.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SF24nawbNzqqZsP2Lha6iR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"9:  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\\\n42:        \\\\\\\"gemma2\\\\\\\": False,\\\\n48:        \\\\\\\"gemma2\\\\\\\": False,\\\\n54:        \\\\\\\"gemma2\\\\\\\": False,\\\\n56:    \\\\\\\"gemma2\\\\\\\": {\\\\n60:        \\\\\\\"gemma2\\\\\\\": True,\\\\n174:def evaluate_perplexity_gemma2(model, tokenizer, device, stride=512, max_length=2048):\\\\n353:    if cfg[\\\\\\\"gemma2\\\\\\\"]:\\\\n354:        from run_gemma2_full_pipeline import patch_attention_gemma2\\\\n355:        patch_fn = patch_attention_gemma2\\\\n356:        eval_fn = lambda m, t, d: evaluate_perplexity_gemma2(m, t, d)\\\\n500:            \\\\\\\"gemma2_bos_fix\\\\\\\": cfg[\\\\\\\"gemma2\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "eb529b15-c5e2-45f2-a309-f5d0ec7af682",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"9:  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\\\n42:        \\\\\\\"gemma2\\\\\\\": False,\\\\n48:        \\\\\\\"gemma2\\\\\\\": False,\\\\n54:        \\\\\\\"gemma2\\\\\\\": False,\\\\n56:    \\\\\\\"gemma2\\\\\\\": {\\\\n60:        \\\\\\\"gemma2\\\\\\\": True,\\\\n174:def evaluate_perplexity_gemma2(model, tokenizer, device, stride=512, max_length=2048):\\\\n353:    if cfg[\\\\\\\"gemma2\\\\\\\"]:\\\\n354:        from run_gemma2_full_pipeline import patch_attention_gemma2\\\\n355:        patch_fn = patch_attention_gemma2\\\\n356:        eval_fn = lambda m, t, d: evaluate_perplexity_gemma2(m, t, d)\\\\n500:            \\\\\\\"gemma2_bos_fix\\\\\\\": cfg[\\\\\\\"gemma2\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"9:  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\n42:        \\\"gemma2\\\": False,\\n48:        \\\"gemma2\\\": False,\\n54:        \\\"gemma2\\\": False,\\n56:    \\\"gemma2\\\": {\\n60:        \\\"gemma2\\\": True,\\n174:def evaluate_perplexity_gemma2(model, tokenizer, device, stride=512, max_length=2048):\\n353:    if cfg[\\\"gemma2\\\"]:\\n354:        from run_gemma2_full_pipeline import patch_attention_gemma2\\n355:        patch_fn = patch_attention_gemma2\\n356:        eval_fn = lambda m, t, d: evaluate_perplexity_gemma2(m, t, d)\\n500:            \\\"gemma2_bos_fix\\\": cfg[\\\"gemma2\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RnreHQna4udgbvKxXyiP5k",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "head -230 /root/ratekv/run_multi_seed_ppl.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "888b833f-fb0f-4794-9e83-4762930df1e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2EN2R8ifFbuHjVpV8Wq99",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 872,
+                "cache_read_input_tokens": 32518,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 872
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VD6JDAqoTkuJPLKWVNQW4F",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "ls /root/ratekv/run_gemma2_full_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "c8926dd5-8320-44f5-993f-ba1e8491b8aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2EN2R8ifFbuHjVpV8Wq99",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 872,
+                "cache_read_input_tokens": 32518,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 872
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T05:31:00.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RnreHQna4udgbvKxXyiP5k",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed constrained MCKP PPL evaluation for statistical significance.\\\\n\\\\nRe-profiles per-head distortion with different calibration subsets (from WikiText-103\\\\ntrain), solves constrained MCKP, and evaluates WikiText-2 PPL for each seed.\\\\nReports mean +/- std across seeds.\\\\n\\\\nUsage:\\\\n  python run_multi_seed_ppl.py --model llama --gpu 0\\\\n  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\\\n  python run_multi_seed_ppl.py --model mistral --seeds 42,123,456 --gpu 1\\\\n  python run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 8\\\\n  python run_multi_seed_ppl.py --model llama --dry-run  # verify seed produces different calibration\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport math\\\\nimport random\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom datasets import Dataset, concatenate_datasets\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/ratekv\\\\\\\")\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import solve_mckp_constrained, enforce_monotonicity\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"llama\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"yi\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"gemma2\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 8,\\\\n        \\\\\\\"gemma2\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nBUDGET = 0.25\\\\nNUM_SAMPLES = 64\\\\nSEQ_LEN = 2048\\\\nBIT_WIDTHS = (2, 4, 8)\\\\n\\\\nWIKI103_ARROWS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef load_wiki103_train():\\\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\\\n    return concatenate_datasets(parts)\\\\n\\\\n\\\\ndef build_candidate_texts(dataset, min_chars=12000):\\\\n    candidates = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n    for item in dataset:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            candidates.append(buffer.strip())\\\\n            buffer = \\\\\\\"\\\\\\\"\\\\n    return candidates\\\\n\\\\n\\\\ndef generate_calibration(tokenizer, seed, candidates, device):\\\\n    rng = random.Random(seed)\\\\n    shuffled = list(range(len(candidates)))\\\\n    rng.shuffle(shuffled)\\\\n\\\\n    samples = []\\\\n    for idx in shuffled:\\\\n        tokens = tokenizer.encode(candidates[idx], add_special_tokens=False)\\\\n        if len(tokens) >= SEQ_LEN:\\\\n            samples.append(tokens[:SEQ_LEN])\\\\n            if len(samples) >= NUM_SAMPLES:\\\\n                break\\\\n\\\\n    if len(samples) < NUM_SAMPLES:\\\\n        raise RuntimeError(f\\\\\\\"Seed {seed}: only got {len(samples)} samples (need {NUM_SAMPLES})\\\\\\\")\\\\n    return torch.tensor(samples, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_calibration_ppl(model, input_ids, batch_size):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    sl = input_ids.shape[1]\\\\n\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(sl, device=batch.device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n            shift_labels = batch[:, 1:].contiguous()\\\\n            loss = F.cross_entropy(\\\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\\\n                shift_labels.view(-1),\\\\n                reduction=\\\\\\\"sum\\\\\\\"\\\\n            )\\\\n            total_loss += loss.item()\\\\n            total_tokens += shift_labels.numel()\\\\n            del outputs, shift_logits, loss\\\\n            torch.cuda.empty_cache()\\\\n\\\\n    return math.exp(total_loss / total_tokens)\\\\n\\\\n\\\\ndef profile_all_heads(model, input_ids, num_layers, num_kv_heads, batch_size, patch_fn):\\\\n    baseline_ppl = compute_calibration_ppl(model, input_ids, batch_size)\\\\n    print(f\\\\\\\"  Calibration baseline PPL: {baseline_ppl:.4f}\\\\\\\", flush=True)\\\\n\\\\n    total_heads = num_layers * num_kv_heads\\\\n    done = 0\\\\n    profiles = {}\\\\n\\\\n    for l in range(num_layers):\\\\n        profiles[str(l)] = {}\\\\n        for h in range(num_kv_heads):\\\\n            head_profile = {\\\\\\\"quantization\\\\\\\": {}}\\\\n            for bits in BIT_WIDTHS:\\\\n                alloc = {f\\\\\\\"{l},{h}\\\\\\\": [\\\\\\\"quant\\\\\\\", bits]}\\\\n                orig = patch_fn(model, alloc)\\\\n                ppl = compute_calibration_ppl(model, input_ids, batch_size)\\\\n                restore_attention(model, orig)\\\\n                delta = ppl - baseline_ppl\\\\n                head_profile[\\\\\\\"quantization\\\\\\\"][str(bits)] = delta\\\\n\\\\n            profiles[str(l)][str(h)] = head_profile\\\\n            done += 1\\\\n            if done % 10 == 0 or done == total_heads:\\\\n                print(f\\\\\\\"  [{done}/{total_heads}] L{l}H{h}: \\\\\\\"\\\\n                      f\\\\\\\"q2={head_profile['quantization']['2']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"q4={head_profile['quantization']['4']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"q8={head_profile['quantization']['8']:.6f}\\\\\\\", flush=True)\\\\n\\\\n    return profiles, baseline_ppl\\\\n\\\\n\\\\ndef evaluate_perplexity_gemma2(model, tokenizer, device, stride=512, max_length=2048):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"WikiText-2 PPL with BOS prepend + overlapping sliding window (Gemma-2 fix).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        from datasets import load_dataset\\\\n        ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-2-raw-v1\\\\\\\", split=\\\\\\\"test\\\\\\\")\\\\n    except Exception:\\\\n        arrow_path = (\\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/\\\\\\\"\\\\n                      \\\\\\\"0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\\\\\")\\\\n        ds = Dataset.from_file(arrow_path)\\\\n\\\\n    text = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join([t for t in ds[\\\\\\\"text\\\\\\\"] if t.strip()])\\\\n    encodings = tokenizer(text, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    input_ids = encodings.input_ids.to(device)\\\\n    seq_len = input_ids.shape[1]\\\\n\\\\n    bos_id = tokenizer.bos_token_id\\\\n    bos_tensor = torch.tensor([[bos_id]], device=device)\\\\n\\\\n    total_nll = 0.0\\\\n    total_tokens = 0\\\\n    prev_end = 0\\\\n\\\\n    for begin in range(0, seq_len, stride):\\\\n        end = min(begin + max_length, seq_len)\\\\n        chunk = input_ids[:, begin:end]\\\\n        trg_len = end - prev_end\\\\n        chunk_len = end - begin\\\\n\\\\n        needs_bos = (chunk[0, 0].item() != bos_id)\\\\n        if needs_bos:\\\\n            chunk_input = torch.cat([bos_tensor, chunk], dim=1)\\\\n        else:\\\\n            chunk_input = chunk\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(chunk_input, use_cache=False)\\\\n            logits = outputs.logits\\\\n\\\\n        bos_offset = 1 if needs_bos else 0\\\\n        shift_logits = logits[:, bos_offset:-1].float()\\\\n        shift_labels = chunk[:, 1:].clone()\\\\n\\\\n        mask_len = chunk_len - trg_len\\\\n        if mask_len > 0:\\\\n            shift_labels[:, :mask_len] = -100\\\\n\\\\n        loss = F.cross_entropy(\\\\n            shift_logits.reshape(-1, shift_logits.shape[-1]),\\\\n            shift_labels.reshape(-1),\\\\n            ignore_index=-100,\\\\n            reduction=\\\\\\\"sum\\\\\\\",\\\\n        )\\\\n        valid_count = (shift_labels != -100).sum().item()\\\\n        total_nll += loss.item()\\\\n        total_tokens += valid_count\\\\n        prev_end = end\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "60224d80-a844-4a06-8f3d-9a5e88f91119",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed constrained MCKP PPL evaluation for statistical significance.\\\\n\\\\nRe-profiles per-head distortion with different calibration subsets (from WikiText-103\\\\ntrain), solves constrained MCKP, and evaluates WikiText-2 PPL for each seed.\\\\nReports mean +/- std across seeds.\\\\n\\\\nUsage:\\\\n  python run_multi_seed_ppl.py --model llama --gpu 0\\\\n  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\\\n  python run_multi_seed_ppl.py --model mistral --seeds 42,123,456 --gpu 1\\\\n  python run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 8\\\\n  python run_multi_seed_ppl.py --model llama --dry-run  # verify seed produces different calibration\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport math\\\\nimport random\\\\nimport time\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom datasets import Dataset, concatenate_datasets\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/ratekv\\\\\\\")\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import solve_mckp_constrained, enforce_monotonicity\\\\n\\\\nMODEL_CONFIGS = {\\\\n    \\\\\\\"llama\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"mistral\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"yi\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 2,\\\\n        \\\\\\\"gemma2\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"gemma2\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"max_2bit\\\\\\\": 8,\\\\n        \\\\\\\"gemma2\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nBUDGET = 0.25\\\\nNUM_SAMPLES = 64\\\\nSEQ_LEN = 2048\\\\nBIT_WIDTHS = (2, 4, 8)\\\\n\\\\nWIKI103_ARROWS = [\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\\\\\"\\\\n    \\\\\\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef load_wiki103_train():\\\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\\\n    return concatenate_datasets(parts)\\\\n\\\\n\\\\ndef build_candidate_texts(dataset, min_chars=12000):\\\\n    candidates = []\\\\n    buffer = \\\\\\\"\\\\\\\"\\\\n    for item in dataset:\\\\n        text = item[\\\\\\\"text\\\\\\\"].strip()\\\\n        if not text:\\\\n            continue\\\\n        buffer += \\\\\\\" \\\\\\\" + text\\\\n        if len(buffer) >= min_chars:\\\\n            candidates.append(buffer.strip())\\\\n            buffer = \\\\\\\"\\\\\\\"\\\\n    return candidates\\\\n\\\\n\\\\ndef generate_calibration(tokenizer, seed, candidates, device):\\\\n    rng = random.Random(seed)\\\\n    shuffled = list(range(len(candidates)))\\\\n    rng.shuffle(shuffled)\\\\n\\\\n    samples = []\\\\n    for idx in shuffled:\\\\n        tokens = tokenizer.encode(candidates[idx], add_special_tokens=False)\\\\n        if len(tokens) >= SEQ_LEN:\\\\n            samples.append(tokens[:SEQ_LEN])\\\\n            if len(samples) >= NUM_SAMPLES:\\\\n                break\\\\n\\\\n    if len(samples) < NUM_SAMPLES:\\\\n        raise RuntimeError(f\\\\\\\"Seed {seed}: only got {len(samples)} samples (need {NUM_SAMPLES})\\\\\\\")\\\\n    return torch.tensor(samples, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_calibration_ppl(model, input_ids, batch_size):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    sl = input_ids.shape[1]\\\\n\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(sl, device=batch.device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n            shift_labels = batch[:, 1:].contiguous()\\\\n            loss = F.cross_entropy(\\\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\\\n                shift_labels.view(-1),\\\\n                reduction=\\\\\\\"sum\\\\\\\"\\\\n            )\\\\n            total_loss += loss.item()\\\\n            total_tokens += shift_labels.numel()\\\\n            del outputs, shift_logits, loss\\\\n            torch.cuda.empty_cache()\\\\n\\\\n    return math.exp(total_loss / total_tokens)\\\\n\\\\n\\\\ndef profile_all_heads(model, input_ids, num_layers, num_kv_heads, batch_size, patch_fn):\\\\n    baseline_ppl = compute_calibration_ppl(model, input_ids, batch_size)\\\\n    print(f\\\\\\\"  Calibration baseline PPL: {baseline_ppl:.4f}\\\\\\\", flush=True)\\\\n\\\\n    total_heads = num_layers * num_kv_heads\\\\n    done = 0\\\\n    profiles = {}\\\\n\\\\n    for l in range(num_layers):\\\\n        profiles[str(l)] = {}\\\\n        for h in range(num_kv_heads):\\\\n            head_profile = {\\\\\\\"quantization\\\\\\\": {}}\\\\n            for bits in BIT_WIDTHS:\\\\n                alloc = {f\\\\\\\"{l},{h}\\\\\\\": [\\\\\\\"quant\\\\\\\", bits]}\\\\n                orig = patch_fn(model, alloc)\\\\n                ppl = compute_calibration_ppl(model, input_ids, batch_size)\\\\n                restore_attention(model, orig)\\\\n                delta = ppl - baseline_ppl\\\\n                head_profile[\\\\\\\"quantization\\\\\\\"][str(bits)] = delta\\\\n\\\\n            profiles[str(l)][str(h)] = head_profile\\\\n            done += 1\\\\n            if done % 10 == 0 or done == total_heads:\\\\n                print(f\\\\\\\"  [{done}/{total_heads}] L{l}H{h}: \\\\\\\"\\\\n                      f\\\\\\\"q2={head_profile['quantization']['2']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"q4={head_profile['quantization']['4']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"q8={head_profile['quantization']['8']:.6f}\\\\\\\", flush=True)\\\\n\\\\n    return profiles, baseline_ppl\\\\n\\\\n\\\\ndef evaluate_perplexity_gemma2(model, tokenizer, device, stride=512, max_length=2048):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"WikiText-2 PPL with BOS prepend + overlapping sliding window (Gemma-2 fix).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        from datasets import load_dataset\\\\n        ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-2-raw-v1\\\\\\\", split=\\\\\\\"test\\\\\\\")\\\\n    except Exception:\\\\n        arrow_path = (\\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/\\\\\\\"\\\\n                      \\\\\\\"0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\\\\\")\\\\n        ds = Dataset.from_file(arrow_path)\\\\n\\\\n    text = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join([t for t in ds[\\\\\\\"text\\\\\\\"] if t.strip()])\\\\n    encodings = tokenizer(text, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    input_ids = encodings.input_ids.to(device)\\\\n    seq_len = input_ids.shape[1]\\\\n\\\\n    bos_id = tokenizer.bos_token_id\\\\n    bos_tensor = torch.tensor([[bos_id]], device=device)\\\\n\\\\n    total_nll = 0.0\\\\n    total_tokens = 0\\\\n    prev_end = 0\\\\n\\\\n    for begin in range(0, seq_len, stride):\\\\n        end = min(begin + max_length, seq_len)\\\\n        chunk = input_ids[:, begin:end]\\\\n        trg_len = end - prev_end\\\\n        chunk_len = end - begin\\\\n\\\\n        needs_bos = (chunk[0, 0].item() != bos_id)\\\\n        if needs_bos:\\\\n            chunk_input = torch.cat([bos_tensor, chunk], dim=1)\\\\n        else:\\\\n            chunk_input = chunk\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(chunk_input, use_cache=False)\\\\n            logits = outputs.logits\\\\n\\\\n        bos_offset = 1 if needs_bos else 0\\\\n        shift_logits = logits[:, bos_offset:-1].float()\\\\n        shift_labels = chunk[:, 1:].clone()\\\\n\\\\n        mask_len = chunk_len - trg_len\\\\n        if mask_len > 0:\\\\n            shift_labels[:, :mask_len] = -100\\\\n\\\\n        loss = F.cross_entropy(\\\\n            shift_logits.reshape(-1, shift_logits.shape[-1]),\\\\n            shift_labels.reshape(-1),\\\\n            ignore_index=-100,\\\\n            reduction=\\\\\\\"sum\\\\\\\",\\\\n        )\\\\n        valid_count = (shift_labels != -100).sum().item()\\\\n        total_nll += loss.item()\\\\n        total_tokens += valid_count\\\\n        prev_end = end\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-seed constrained MCKP PPL evaluation for statistical significance.\\n\\nRe-profiles per-head distortion with different calibration subsets (from WikiText-103\\ntrain), solves constrained MCKP, and evaluates WikiText-2 PPL for each seed.\\nReports mean +/- std across seeds.\\n\\nUsage:\\n  python run_multi_seed_ppl.py --model llama --gpu 0\\n  python run_multi_seed_ppl.py --model gemma2 --gpu 0\\n  python run_multi_seed_ppl.py --model mistral --seeds 42,123,456 --gpu 1\\n  python run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 8\\n  python run_multi_seed_ppl.py --model llama --dry-run  # verify seed produces different calibration\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport math\\nimport random\\nimport time\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom datasets import Dataset, concatenate_datasets\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/ratekv\\\")\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import solve_mckp_constrained, enforce_monotonicity\\n\\nMODEL_CONFIGS = {\\n    \\\"llama\\\": {\\n        \\\"name\\\": \\\"Llama-3.1-8B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\",\\n        \\\"max_2bit\\\": 2,\\n        \\\"gemma2\\\": False,\\n    },\\n    \\\"mistral\\\": {\\n        \\\"name\\\": \\\"Mistral-7B-v0.3\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\",\\n        \\\"max_2bit\\\": 2,\\n        \\\"gemma2\\\": False,\\n    },\\n    \\\"yi\\\": {\\n        \\\"name\\\": \\\"Yi-1.5-9B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\",\\n        \\\"max_2bit\\\": 2,\\n        \\\"gemma2\\\": False,\\n    },\\n    \\\"gemma2\\\": {\\n        \\\"name\\\": \\\"Gemma-2-9B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\",\\n        \\\"max_2bit\\\": 8,\\n        \\\"gemma2\\\": True,\\n    },\\n}\\n\\nBUDGET = 0.25\\nNUM_SAMPLES = 64\\nSEQ_LEN = 2048\\nBIT_WIDTHS = (2, 4, 8)\\n\\nWIKI103_ARROWS = [\\n    \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\"\\n    \\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00000-of-00002.arrow\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/0.0.0/\\\"\\n    \\\"b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train-00001-of-00002.arrow\\\",\\n]\\n\\n\\ndef load_wiki103_train():\\n    parts = [Dataset.from_file(p) for p in WIKI103_ARROWS]\\n    return concatenate_datasets(parts)\\n\\n\\ndef build_candidate_texts(dataset, min_chars=12000):\\n    candidates = []\\n    buffer = \\\"\\\"\\n    for item in dataset:\\n        text = item[\\\"text\\\"].strip()\\n        if not text:\\n            continue\\n        buffer += \\\" \\\" + text\\n        if len(buffer) >= min_chars:\\n            candidates.append(buffer.strip())\\n            buffer = \\\"\\\"\\n    return candidates\\n\\n\\ndef generate_calibration(tokenizer, seed, candidates, device):\\n    rng = random.Random(seed)\\n    shuffled = list(range(len(candidates)))\\n    rng.shuffle(shuffled)\\n\\n    samples = []\\n    for idx in shuffled:\\n        tokens = tokenizer.encode(candidates[idx], add_special_tokens=False)\\n        if len(tokens) >= SEQ_LEN:\\n            samples.append(tokens[:SEQ_LEN])\\n            if len(samples) >= NUM_SAMPLES:\\n                break\\n\\n    if len(samples) < NUM_SAMPLES:\\n        raise RuntimeError(f\\\"Seed {seed}: only got {len(samples)} samples (need {NUM_SAMPLES})\\\")\\n    return torch.tensor(samples, dtype=torch.long, device=device)\\n\\n\\ndef compute_calibration_ppl(model, input_ids, batch_size):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n = input_ids.shape[0]\\n    sl = input_ids.shape[1]\\n\\n    with torch.no_grad():\\n        for start in range(0, n, batch_size):\\n            end = min(start + batch_size, n)\\n            batch = input_ids[start:end]\\n            outputs = model(\\n                batch, use_cache=False,\\n                cache_position=torch.arange(sl, device=batch.device)\\n            )\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\n            shift_labels = batch[:, 1:].contiguous()\\n            loss = F.cross_entropy(\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\n                shift_labels.view(-1),\\n                reduction=\\\"sum\\\"\\n            )\\n            total_loss += loss.item()\\n            total_tokens += shift_labels.numel()\\n            del outputs, shift_logits, loss\\n            torch.cuda.empty_cache()\\n\\n    return math.exp(total_loss / total_tokens)\\n\\n\\ndef profile_all_heads(model, input_ids, num_layers, num_kv_heads, batch_size, patch_fn):\\n    baseline_ppl = compute_calibration_ppl(model, input_ids, batch_size)\\n    print(f\\\"  Calibration baseline PPL: {baseline_ppl:.4f}\\\", flush=True)\\n\\n    total_heads = num_layers * num_kv_heads\\n    done = 0\\n    profiles = {}\\n\\n    for l in range(num_layers):\\n        profiles[str(l)] = {}\\n        for h in range(num_kv_heads):\\n            head_profile = {\\\"quantization\\\": {}}\\n            for bits in BIT_WIDTHS:\\n                alloc = {f\\\"{l},{h}\\\": [\\\"quant\\\", bits]}\\n                orig = patch_fn(model, alloc)\\n                ppl = compute_calibration_ppl(model, input_ids, batch_size)\\n                restore_attention(model, orig)\\n                delta = ppl - baseline_ppl\\n                head_profile[\\\"quantization\\\"][str(bits)] = delta\\n\\n            profiles[str(l)][str(h)] = head_profile\\n            done += 1\\n            if done % 10 == 0 or done == total_heads:\\n                print(f\\\"  [{done}/{total_heads}] L{l}H{h}: \\\"\\n                      f\\\"q2={head_profile['quantization']['2']:.4f} \\\"\\n                      f\\\"q4={head_profile['quantization']['4']:.4f} \\\"\\n                      f\\\"q8={head_profile['quantization']['8']:.6f}\\\", flush=True)\\n\\n    return profiles, baseline_ppl\\n\\n\\ndef evaluate_perplexity_gemma2(model, tokenizer, device, stride=512, max_length=2048):\\n    \\\"\\\"\\\"WikiText-2 PPL with BOS prepend + overlapping sliding window (Gemma-2 fix).\\\"\\\"\\\"\\n    try:\\n        from datasets import load_dataset\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=\\\"test\\\")\\n    except Exception:\\n        arrow_path = (\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/\\\"\\n                      \\\"0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\")\\n        ds = Dataset.from_file(arrow_path)\\n\\n    text = \\\"\\\\n\\\\n\\\".join([t for t in ds[\\\"text\\\"] if t.strip()])\\n    encodings = tokenizer(text, return_tensors=\\\"pt\\\")\\n    input_ids = encodings.input_ids.to(device)\\n    seq_len = input_ids.shape[1]\\n\\n    bos_id = tokenizer.bos_token_id\\n    bos_tensor = torch.tensor([[bos_id]], device=device)\\n\\n    total_nll = 0.0\\n    total_tokens = 0\\n    prev_end = 0\\n\\n    for begin in range(0, seq_len, stride):\\n        end = min(begin + max_length, seq_len)\\n        chunk = input_ids[:, begin:end]\\n        trg_len = end - prev_end\\n        chunk_len = end - begin\\n\\n        needs_bos = (chunk[0, 0].item() != bos_id)\\n        if needs_bos:\\n            chunk_input = torch.cat([bos_tensor, chunk], dim=1)\\n        else:\\n            chunk_input = chunk\\n\\n        with torch.no_grad():\\n            outputs = model(chunk_input, use_cache=False)\\n            logits = outputs.logits\\n\\n        bos_offset = 1 if needs_bos else 0\\n        shift_logits = logits[:, bos_offset:-1].float()\\n        shift_labels = chunk[:, 1:].clone()\\n\\n        mask_len = chunk_len - trg_len\\n        if mask_len > 0:\\n            shift_labels[:, :mask_len] = -100\\n\\n        loss = F.cross_entropy(\\n            shift_logits.reshape(-1, shift_logits.shape[-1]),\\n            shift_labels.reshape(-1),\\n            ignore_index=-100,\\n            reduction=\\\"sum\\\",\\n        )\\n        valid_count = (shift_labels != -100).sum().item()\\n        total_nll += loss.item()\\n        total_tokens += valid_count\\n        prev_end = end\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T05:31:01.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VD6JDAqoTkuJPLKWVNQW4F",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/run_gemma2_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "a6ce73dd-25a3-4dab-be03-edd3f498fa1e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/run_gemma2_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/run_gemma2_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BJF7BQ6sbnLYMY7M8wuZJD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "grep -n \"patch_attention_gemma2\" /root/ratekv/run_gemma2_full_pipeline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "a785fb06-3589-43db-b6b6-578222a656fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PJoyCUqnxCGtHPtD9zK3Ze",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3644,
+                "cache_read_input_tokens": 33390,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3644
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T05:31:04.882Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BJF7BQ6sbnLYMY7M8wuZJD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"40:def patch_attention_gemma2(model, allocations):\\\\n199:        orig_fwds = patch_attention_gemma2(self.model, allocations)\\\\n410:    orig_fwds = patch_attention_gemma2(model, mckp_result[\\\\\\\"allocation\\\\\\\"])\\\\n417:    orig_fwds = patch_attention_gemma2(model, uniform_result[\\\\\\\"allocation\\\\\\\"])\\\\n446:        orig = patch_attention_gemma2(model, sol[\\\\\\\"allocation\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "514adb07-7d0d-470d-8c1d-91f10e92a753",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"40:def patch_attention_gemma2(model, allocations):\\\\n199:        orig_fwds = patch_attention_gemma2(self.model, allocations)\\\\n410:    orig_fwds = patch_attention_gemma2(model, mckp_result[\\\\\\\"allocation\\\\\\\"])\\\\n417:    orig_fwds = patch_attention_gemma2(model, uniform_result[\\\\\\\"allocation\\\\\\\"])\\\\n446:        orig = patch_attention_gemma2(model, sol[\\\\\\\"allocation\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"40:def patch_attention_gemma2(model, allocations):\\n199:        orig_fwds = patch_attention_gemma2(self.model, allocations)\\n410:    orig_fwds = patch_attention_gemma2(model, mckp_result[\\\"allocation\\\"])\\n417:    orig_fwds = patch_attention_gemma2(model, uniform_result[\\\"allocation\\\"])\\n446:        orig = patch_attention_gemma2(model, sol[\\\"allocation\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Uu7sgDeRCtvRgFU2Mzw1o",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-37397",
+                "command": "ls /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/tokenizer_config.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "e841d780-a6df-45e8-be7e-4f052cea173e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PJoyCUqnxCGtHPtD9zK3Ze",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3644,
+                "cache_read_input_tokens": 33390,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3644
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T05:31:05.514Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Uu7sgDeRCtvRgFU2Mzw1o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "a4ccac1d-64ef-43a8-935a-2273395fe71a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B/tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the report:\n\n---\n\n## 就绪性报告\n\n### Yi-1.5-9B: **就绪 ✓**\n\n| 项目 | 状态 |\n|------|------|\n| 脚本支持 | `--model yi` 已配置 |\n| 模型路径 | `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B` |\n| 模型文件 | config.json + 4 safetensors shards ✓ |\n| Tokenizer | tokenizer_config.json 存在 ✓ |\n| 架构 | LlamaForCausalLM（标准 patch_attention 兼容）|\n| GQA | 32 attention heads / 4 KV heads = **GQA ratio 8:1**，48 layers |\n| BOS 问题 | 不适用（`gemma2: False`，走标准 eval_ppl 路径）|\n| max_2bit | 2 |\n\n### Gemma-2-9B: **就绪 ✓**\n\n| 项目 | 状态 |\n|------|------|\n| 脚本支持 | `--model gemma2` 已配置 |\n| 模型路径 | `/root/autodl-tmp/.hf_cache/google/gemma-2-9b` |\n| 模型文件 | config.json + 8 safetensors shards ✓ |\n| 架构 | Gemma2ForCausalLM |\n| GQA | 16 attention heads / 8 KV heads = **GQA ratio 2:1**，42 layers |\n| BOS fix | **已处理** — `evaluate_perplexity_gemma2()` 内置 BOS prepend 逻辑（L189-213），每个 chunk 检测首 token 是否为 BOS，缺则 prepend |\n| Gemma2 专用 patch | 使用 `patch_attention_gemma2`（从 `run_gemma2_full_pipeline.py` 导入），处理 sliding window attention |\n| max_2bit | 8（允许更多 2-bit heads，适应 Gemma-2 的 head 敏感度分布）|\n\n### 推荐命令\n\n```bash\n# Yi-1.5-9B\npython run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 4\n\n# Gemma-2-9B\npython run_multi_seed_ppl.py --model gemma2 --gpu 0 --batch-size 4\n```\n\n### 预估运行时间\n\n| 模型 | KV heads × Layers | 总 profiling 点 | 预估时间（3 seeds） |\n|------|--------------------|-----------------|---------------------|\n| Yi-1.5-9B | 4 × 48 = 192 heads | 192 × 3 bits × 3 seeds | ~3.5-4.5h |\n| Gemma-2-9B | 8 × 42 = 336 heads | 336 × 3 bits × 3 seeds | ~5-7h |\n\nYi 的 KV head 数少（4），profiling 快于 Gemma-2（8 KV heads）。两者都建议 `--batch-size 4`（9B 模型 + profiling overhead，防 OOM）。如果 GPU 是 80GB A100 可以试 `--batch-size 8`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "uuid": "6974bc2f-70be-4c50-8ec2-fd5f17a10df0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018tJKZvr2STRML82kaPBDYs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 37034,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 620
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the report:\n\n---\n\n## 就绪性报告\n\n### Yi-1.5-9B: **就绪 ✓**\n\n| 项目 | 状态 |\n|------|------|\n| 脚本支持 | `--model yi` 已配置 |\n| 模型路径 | `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B` |\n| 模型文件 | config.json + 4 safetensors shards ✓ |\n| Tokenizer | tokenizer_config.json 存在 ✓ |\n| 架构 | LlamaForCausalLM（标准 patch_attention 兼容）|\n| GQA | 32 attention heads / 4 KV heads = **GQA ratio 8:1**，48 layers |\n| BOS 问题 | 不适用（`gemma2: False`，走标准 eval_ppl 路径）|\n| max_2bit | 2 |\n\n### Gemma-2-9B: **就绪 ✓**\n\n| 项目 | 状态 |\n|------|------|\n| 脚本支持 | `--model gemma2` 已配置 |\n| 模型路径 | `/root/autodl-tmp/.hf_cache/google/gemma-2-9b` |\n| 模型文件 | config.json + 8 safetensors shards ✓ |\n| 架构 | Gemma2ForCausalLM |\n| GQA | 16 attention heads / 8 KV heads = **GQA ratio 2:1**，42 layers |\n| BOS fix | **已处理** — `evaluate_perplexity_gemma2()` 内置 BOS prepend 逻辑（L189-213），每个 chunk 检测首 token 是否为 BOS，缺则 prepend |\n| Gemma2 专用 patch | 使用 `patch_attention_gemma2`（从 `run_gemma2_full_pipeline.py` 导入），处理 sliding window attention |\n| max_2bit | 8（允许更多 2-bit heads，适应 Gemma-2 的 head 敏感度分布）|\n\n### 推荐命令\n\n```bash\n# Yi-1.5-9B\npython run_multi_seed_ppl.py --model yi --gpu 0 --batch-size 4\n\n# Gemma-2-9B\npython run_multi_seed_ppl.py --model gemma2 --gpu 0 --batch-size 4\n```\n\n### 预估运行时间\n\n| 模型 | KV heads × Layers | 总 profiling 点 | 预估时间（3 seeds） |\n|------|--------------------|-----------------|---------------------|\n| Yi-1.5-9B | 4 × 48 = 192 heads | 192 × 3 bits × 3 seeds | ~3.5-4.5h |\n| Gemma-2-9B | 8 × 42 = 336 heads | 336 × 3 bits × 3 seeds | ~5-7h |\n\nYi 的 KV head 数少（4），profiling 快于 Gemma-2（8 KV heads）。两者都建议 `--batch-size 4`（9B 模型 + profiling overhead，防 OOM）。如果 GPU 是 80GB A100 可以试 `--batch-size 8`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 68180,
+            "duration_api_ms": 65941,
+            "num_turns": 17,
+            "stop_reason": "end_turn",
+            "session_id": "c52158e0-face-44a4-80eb-640f300ea996",
+            "total_cost_usd": 0.38542925,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 25813,
+              "cache_read_input_tokens": 284992,
+              "output_tokens": 3205,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25813,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 933,
+                  "cache_read_input_tokens": 37034,
+                  "cache_creation_input_tokens": 620,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 620
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1247,
+                "outputTokens": 32,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001407,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 3205,
+                "cacheReadInputTokens": 284992,
+                "cacheCreationInputTokens": 25813,
+                "webSearchRequests": 0,
+                "costUSD": 0.38402224999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f1a0d74a-fbec-4d08-9348-75d8968ad1b0"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ]
+}

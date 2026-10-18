@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ac25390d00cb640d1c34",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code kappa sweep",
+  "task_key": "worker_code_kappa-sweep_20260521T155209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kappa-sweep_20260521T155209_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "e7cb52a6fa059023dbb3eb3e32133cc7c5e295c853bc88fc11705417e5331d73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are complete and correct. The stress test section provides valuable context showing that the guard only matters with near-random labeling (π_s ≈ 0.4–0.5).\n\nResults summary:\n\n- **350 rows** in `artifacts/kappa_sweep/results.csv` (7 κ values × 50 seeds)\n- **Guard never triggers** in the specified moderate regime — max condition number is 1.89, far below any κ threshold\n- All κ values produce identical RMSE (HB=0.0759, Global=0.0765, ratio≈1.05)\n- Zero numerical instability\n- **Stress test** reveals the guard becomes relevant only with near-random labeling (π_s ≈ 0.35–0.40, n_expert=50), where condition numbers reach ~1000+\n- **κ=100 is validated**: it provides a ~53× safety margin over observed condition numbers. The formula κ = 10·√(n_expert/K) recovers κ=100 for these settings."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

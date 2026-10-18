@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ec585e8ead1f0ecafe9a",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops organize 8b results and monitor 32b",
+  "task_key": "worker_ops_organize_8b_results_and_monitor_32b_20260520T144630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_organize_8b_results_and_monitor_32b_20260520T144630_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "be701a52e2f88a60c39fad2bfc7b7e740081cfce29dfe64a2f97f2ce90b7ea88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 8B 结果整理 ✅\n已复制到 `data/ate_results/`：\n- `ate_summary.csv` (2.7KB)\n- `ate_bar.png` (38KB)\n- `score_violin.png` (69KB)\n\n### 2. 32B 下载状态：进行中 🔄\n- **当前大小**: 61GB（目标 ~65GB）\n- **已完成 shard**: 13/17（model-00001 ~ 00009, 00011, 00012, 00013, 00016）\n- **缺失 shard**: 00010, 00014, 00015, 00017\n- **下载进程**: PID 12163 运行中（从 17:59 开始，已运行约 5 小时）\n- **辅助文件**: config.json ✅ tokenizer.json ✅ tokenizer_config.json ✅\n- **`._____temp` 目录存在**，说明正在写入\n\n### 3. 32B 验证：跳过\n下载未完成，暂不验证。\n\n### 4. vLLM 状态：未运行\n\n### 5. 预估剩余时间\n13 个 shard 在约 4.5 小时内完成（~21 min/shard），剩余 4 个 shard 预计还需 **~1.5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

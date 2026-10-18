@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8c3aba08695880f61e3b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest eval pi05 random k09 spatial seed42 postfix",
+  "task_key": "worker_harvest_eval_pi05_random_k09_spatial_seed42_postfix_20260524T010437",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval_pi05_random_k09_spatial_seed42_postfix_20260524T010437_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "a8be10781bc8c4d194dd77f9c46aa29c884d760fda20aa4bf49cbc675ccb0626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或从未在本 session 创建）。\n\n**结果报告：**\n\n| 项目 | 值 |\n|------|-----|\n| 实验 | eval_pi05_random_k09_spatial_seed42_postfix |\n| SR | N/A（0/10 tasks completed） |\n| Conclusion | **failed** — 进程在模型加载后静默崩溃，日志仅 15 行，无 traceback |\n| Registry | DONE (failed) |\n| GPU 1 (westd-41074) | **空闲可用**（9.7GB/97.9GB, 0% util） |\n\n需要重试此实验才能获得 π0.5 Random k=0.9 Spatial 的 post-fix 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

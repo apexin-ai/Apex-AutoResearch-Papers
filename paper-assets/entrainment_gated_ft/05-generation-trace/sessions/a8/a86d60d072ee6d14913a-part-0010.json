@@ -1,0 +1,3535 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a86d60d072ee6d14913a",
+  "rounds": [
+    {
+      "number": 32,
+      "messages": [
+        {
+          "source_line": 1621,
+          "timestamp": "2026-05-25T16:05:59.299205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\end{tabular*}",
+              "new_string": "\\end{tabular}"
+            }
+          },
+          "id": "event-001621"
+        },
+        {
+          "source_line": 1622,
+          "timestamp": "2026-05-25T16:05:59.350606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001622"
+        },
+        {
+          "source_line": 1623,
+          "timestamp": "2026-05-25T16:06:05.424003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-001623"
+        },
+        {
+          "source_line": 1624,
+          "timestamp": "2026-05-25T16:06:09.362461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 1028) has occurred while \\\\\\\\output is active []\\\\n\\\\n [20]\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n[21]\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [22\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16627 strings out of 469438\\\\n 262361 string characters out of 5468411\\\\n 736915 words of memory out of 5000000\\\\n 44421 multiletter control sequences out of 15000+600000\\\\n 708220 words of font info\n…[truncated 8991 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 3938
+          },
+          "id": "event-001624"
+        },
+        {
+          "source_line": 1625,
+          "timestamp": "2026-05-25T16:06:13.880032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001625"
+        },
+        {
+          "source_line": 1626,
+          "timestamp": "2026-05-25T16:06:14.540448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 660
+          },
+          "id": "event-001626"
+        },
+        {
+          "source_line": 1627,
+          "timestamp": "2026-05-25T16:06:40.717821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "Table 3 列间距已修复。\n\n**原因**：默认 `\\tabcolsep=6pt`（即列间距 12pt），对于双栏宽度的表格来说数值列之间留白过多，尤其是最后两列（σ_{h3-1} 和 Ratio）视觉上更明显。\n\n**修复**：将 Table 3 的 `\\tabcolsep` 从 6pt 降到 3.5pt，并去掉左右外侧 padding（`@{}`），整体更紧凑均匀。正文仍为 8 页，排版无溢出。"
+            }
+          },
+          "id": "event-001627"
+        },
+        {
+          "source_line": 1628,
+          "timestamp": "2026-05-25T16:06:43.632481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 2914
+          },
+          "id": "event-001628"
+        },
+        {
+          "source_line": 1629,
+          "timestamp": "2026-05-25T16:06:48.734237+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The table is now much more compact with reduced column spacing (3.5pt vs default 6pt). The gap between σ_{h3-1} and Ratio is now proportional to other columns. Let me report to the user."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director"
+          },
+          "id": "event-001629"
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "messages": [
+        {
+          "source_line": 1630,
+          "timestamp": "2026-05-25T16:37:58.063205+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉 (ou_ed2f4ceeab862a8049a88352dc56181e)]: Figure 2 还是改成单栏图，放到第 5 页右栏的顶部吧。\n\n然后第 8 页的 Table 3：\n1. 标题大小和字体不用动\n2. 表格内的字体再小一点"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "source": "feishu:oc_1f8f0d6d9482071694045c30143bb993"
+          },
+          "id": "event-001630"
+        },
+        {
+          "source_line": 1631,
+          "timestamp": "2026-05-25T16:38:06.288124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "43",
+              "limit": "10"
+            }
+          },
+          "id": "event-001631"
+        },
+        {
+          "source_line": 1632,
+          "timestamp": "2026-05-25T16:38:06.758480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43\t\\begin{figure*}[t]\n44\t\\centering\n45\t\\includegraphics[width=0.7\\textwidth]{figures/fig_method_overview.pdf}\n46\t\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n47\t\\label{fig:method_overview}\n48\t\\end{figure*}\n49\t\n50\t\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n51\t\n52\tWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 470
+          },
+          "id": "event-001632"
+        },
+        {
+          "source_line": 1633,
+          "timestamp": "2026-05-25T16:38:10.321726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "offset": "64",
+              "limit": "30"
+            }
+          },
+          "id": "event-001633"
+        },
+        {
+          "source_line": 1634,
+          "timestamp": "2026-05-25T16:38:10.522828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "64\t\\begin{table*}[t]\n65\t\\centering\n66\t\\caption{Cross-architecture variance trends across benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and cross-architecture standard deviation $\\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\\sigma$ values reported $\\times 10^{2}$ (accuracy percentage points). Ratio: $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$. \\textbf{Bold}: only benchmark with $\\rho = -1.0$. HellaSwag evaluated using normalized accuracy (acc\\_norm), the standard metric for this benchmark.}\n67\t\\label{tab:convergence}\n68\t\\setlength{\\tabcolsep}{3.5pt}\n69\t\\begin{tabular}{@{}llrrrrr@{}}\n70\t\\toprule\n71\tBenchmark & Category & $\\rho$ & $p$ & $\\sigma_{\\text{pure}}$ & $\\sigma_{\\text{h3-1}}$ & Ratio \\\\\n72\t\\midrule\n73\t\\textbf{LAMBADA$^{\\ddagger}$} & \\textbf{Retrieval} & $\\mathbf{-1.0}$ & \\textbf{.017} & \\textbf{2.41} & \\textbf{0.49} & \\textbf{4.87} \\\\\n74\t\\quad\\emph{(excl.\\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\\\\n75\tBoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\\\\n76\tARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\\\\n77\tHellaSwag & Reasoning & $0.3$ & .683 & 1.17 & 1.18 & 0.99 \\\\\n78\tPIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\\\\n79\tWinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\\\\n80\tARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\\\\n81\tMMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\\\\n82\tSciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\\\\n83\tXStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\\\\n84\t\\midrule\n85\tCOPA$^{\\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\\\\n86\t\\bottomrule\n87\t\\multicolumn{7}{l}{\\footnotesize $^{\\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\\\\n88\t\\multicolumn{7}{l}{\\footnotesize $^{\\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\\S\\ref{ssec:robustness}).} \\\\\n89\t\\multicolumn{7}{@{}p{\\textwidth}@{}}{\\footnotesize Bonferroni-adjusted $p = .\n…[truncated 196 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-001634"
+        },
+        {
+          "source_line": 1635,
+          "timestamp": "2026-05-25T16:38:22.064666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.7\\textwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure*}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}"
+            }
+          },
+          "id": "event-001635"
+        },
+        {
+          "source_line": 1636,
+          "timestamp": "2026-05-25T16:38:22.564261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 499
+          },
+          "id": "event-001636"
+        },
+        {
+          "source_line": 1637,
+          "timestamp": "2026-05-25T16:38:28.759288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llrrrrr@{}}",
+              "new_string": "\\small\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llrrrrr@{}}"
+            }
+          },
+          "id": "event-001637"
+        },
+        {
+          "source_line": 1638,
+          "timestamp": "2026-05-25T16:38:28.809996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001638"
+        },
+        {
+          "source_line": 1639,
+          "timestamp": "2026-05-25T16:38:32.184895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-001639"
+        },
+        {
+          "source_line": 1640,
+          "timestamp": "2026-05-25T16:38:37.931008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 742087 words of memory out of 5000000\\\\n 44419 multile\n…[truncated 8647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5746
+          },
+          "id": "event-001640"
+        },
+        {
+          "source_line": 1641,
+          "timestamp": "2026-05-25T16:38:46.312471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-001641"
+        },
+        {
+          "source_line": 1642,
+          "timestamp": "2026-05-25T16:38:47.007239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 694
+          },
+          "id": "event-001642"
+        },
+        {
+          "source_line": 1643,
+          "timestamp": "2026-05-25T16:38:47.057829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001643"
+        },
+        {
+          "source_line": 1644,
+          "timestamp": "2026-05-25T16:38:47.762126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 704
+          },
+          "id": "event-001644"
+        },
+        {
+          "source_line": 1645,
+          "timestamp": "2026-05-25T16:38:47.762568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001645"
+        },
+        {
+          "source_line": 1646,
+          "timestamp": "2026-05-25T16:38:48.063973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001646"
+        },
+        {
+          "source_line": 1647,
+          "timestamp": "2026-05-25T16:38:48.168707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 406
+          },
+          "id": "event-001647"
+        },
+        {
+          "source_line": 1648,
+          "timestamp": "2026-05-25T16:38:48.773010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 709
+          },
+          "id": "event-001648"
+        },
+        {
+          "source_line": 1649,
+          "timestamp": "2026-05-25T16:39:34.354391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig:method_overview",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001649"
+        },
+        {
+          "source_line": 1650,
+          "timestamp": "2026-05-25T16:39:34.841304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex:47:\\label{fig:method_overview}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Grep",
+            "elapsed_ms": 486
+          },
+          "id": "event-001650"
+        },
+        {
+          "source_line": 1651,
+          "timestamp": "2026-05-25T16:39:45.838176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "55",
+              "limit": "35"
+            }
+          },
+          "id": "event-001651"
+        },
+        {
+          "source_line": 1652,
+          "timestamp": "2026-05-25T16:39:46.321512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\n56\t\\begin{figure}[t]\n57\t\\centering\n58\t\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n59\t\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n60\t\\label{fig:per_example_bars}\n61\t\\end{figure}\n62\t\n63\t\\begin{figure*}[t]\n64\t\\centering\n65\t\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n66\t\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n67\t\\label{fig:alpha_routing}\n68\t\\end{figure*}\n69\t\n70\t\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n71\t\n72\tWe decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270) and WinoGrande (1{,}267) appear in Appendix~\\ref{app:boolq} and \\ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\\% attention), which maximizes the recurrent--hybrid contrast; \\S\\ref{ssec:per_example} confirms that $\\alpha$ is stable across intermediate ratios (variation $< 0.03$). Each example is classified as:\n73\t\n74\t\\begin{itemize}\n75\t    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n76\t    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n77\t    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n78\t\\end{itemize}\n79\t\n80\tThe net effect for each architectur\n…[truncated 2019 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 483
+          },
+          "id": "event-001652"
+        },
+        {
+          "source_line": 1653,
+          "timestamp": "2026-05-25T16:40:19.952825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\subsection{Convergence Metrics}",
+              "new_string": "\\subsection{Convergence Metrics}"
+            }
+          },
+          "id": "event-001653"
+        },
+        {
+          "source_line": 1654,
+          "timestamp": "2026-05-25T16:40:20.507032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 554
+          },
+          "id": "event-001654"
+        },
+        {
+          "source_line": 1655,
+          "timestamp": "2026-05-25T16:40:25.842416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\subsection{Statistical Methods}\\label{ssec:statistical_methods}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}"
+            }
+          },
+          "id": "event-001655"
+        },
+        {
+          "source_line": 1656,
+          "timestamp": "2026-05-25T16:40:25.893137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001656"
+        },
+        {
+          "source_line": 1657,
+          "timestamp": "2026-05-25T16:40:31.612421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-001657"
+        },
+        {
+          "source_line": 1658,
+          "timestamp": "2026-05-25T16:40:37.974870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 742087 words of memory out of 5000000\\\\n 44419 multile\n…[truncated 8647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6362
+          },
+          "id": "event-001658"
+        },
+        {
+          "source_line": 1659,
+          "timestamp": "2026-05-25T16:40:41.538430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001659"
+        },
+        {
+          "source_line": 1660,
+          "timestamp": "2026-05-25T16:40:42.099547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 561
+          },
+          "id": "event-001660"
+        },
+        {
+          "source_line": 1661,
+          "timestamp": "2026-05-25T16:41:40.472398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "40",
+              "limit": "55"
+            }
+          },
+          "id": "event-001661"
+        },
+        {
+          "source_line": 1662,
+          "timestamp": "2026-05-25T16:41:40.523156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\n41\tAll evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.\n42\t\n43\t\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n44\t\n45\tWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n46\t\n47\tWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n48\t\n49\t\\begin{figure}[t]\n50\t\\centering\n51\t\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n52\t\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n53\t\\label{fig:per_example_bars}\n54\t\\end{figure}\n55\t\n56\t\\begin{figure*}[t]\n57\t\\centering\n58\t\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n59\t\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n60\t\\label{fig:alpha_routing}\n61\t\\end{figure*}\n62\t\n63\n…[truncated 3749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001662"
+        },
+        {
+          "source_line": 1663,
+          "timestamp": "2026-05-25T16:41:53.482803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}\n\n\\subsection{Per-Example Decomposition}",
+              "new_string": "\\subsection{Per-Example Decomposition}"
+            }
+          },
+          "id": "event-001663"
+        },
+        {
+          "source_line": 1664,
+          "timestamp": "2026-05-25T16:41:54.031035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 548
+          },
+          "id": "event-001664"
+        },
+        {
+          "source_line": 1665,
+          "timestamp": "2026-05-25T16:42:02.780276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}"
+            }
+          },
+          "id": "event-001665"
+        },
+        {
+          "source_line": 1666,
+          "timestamp": "2026-05-25T16:42:02.831191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001666"
+        },
+        {
+          "source_line": 1667,
+          "timestamp": "2026-05-25T16:42:06.996573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-001667"
+        },
+        {
+          "source_line": 1668,
+          "timestamp": "2026-05-25T16:42:12.556353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 738879 words of memory out of 5000000\\\\n 44419 multile\n…[truncated 8731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5559
+          },
+          "id": "event-001668"
+        },
+        {
+          "source_line": 1669,
+          "timestamp": "2026-05-25T16:44:07.677568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/output/ 2>/dev/null | head -20",
+              "description": "List compiled PDF output files"
+            }
+          },
+          "id": "event-001669"
+        },
+        {
+          "source_line": 1670,
+          "timestamp": "2026-05-25T16:44:08.172181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "elapsed_ms": 494
+          },
+          "id": "event-001670"
+        },
+        {
+          "source_line": 1671,
+          "timestamp": "2026-05-25T16:44:08.222763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/pdf_images/ 2>/dev/null | head -20",
+              "description": "List PDF preview images"
+            }
+          },
+          "id": "event-001671"
+        },
+        {
+          "source_line": 1672,
+          "timestamp": "2026-05-25T16:44:08.323567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001672"
+        },
+        {
+          "source_line": 1673,
+          "timestamp": "2026-05-25T16:44:11.486870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ -name \"*.pdf\" -path \"*/paper/*\" 2>/dev/null | head -10",
+              "description": "Find compiled PDF files"
+            }
+          },
+          "id": "event-001673"
+        },
+        {
+          "source_line": 1674,
+          "timestamp": "2026-05-25T16:44:12.491085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/jaccard_heatmap_5arch.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/fig_method_overview.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/matplotlib.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/move.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/help.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/hand.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/qt4_editor_options.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/home.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/forward.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/matplotlib/mpl-data/images/subplots.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001674"
+        },
+        {
+          "source_line": 1675,
+          "timestamp": "2026-05-25T16:44:12.692349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/ -name \"*.png\" -newer /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex 2>/dev/null | sort | head -20",
+              "description": "Find recent PNG preview images"
+            }
+          },
+          "id": "event-001675"
+        },
+        {
+          "source_line": 1676,
+          "timestamp": "2026-05-25T16:44:12.794038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-001676"
+        },
+        {
+          "source_line": 1677,
+          "timestamp": "2026-05-25T16:44:18.715821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_compile_and_check,mcp__agent-ml-research__pdf_to_images",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001677"
+        },
+        {
+          "source_line": 1678,
+          "timestamp": "2026-05-25T16:44:19.195416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 479
+          },
+          "id": "event-001678"
+        },
+        {
+          "source_line": 1679,
+          "timestamp": "2026-05-25T16:44:23.712736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-001679"
+        },
+        {
+          "source_line": 1680,
+          "timestamp": "2026-05-25T16:44:26.180677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 738879 words of memory out of 5000000\\\\n 44419 multile\n…[truncated 8731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2467
+          },
+          "id": "event-001680"
+        },
+        {
+          "source_line": 1681,
+          "timestamp": "2026-05-25T16:44:33.462815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-001681"
+        },
+        {
+          "source_line": 1682,
+          "timestamp": "2026-05-25T16:44:34.417463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-001682"
+        },
+        {
+          "source_line": 1683,
+          "timestamp": "2026-05-25T16:44:34.417943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001683"
+        },
+        {
+          "source_line": 1684,
+          "timestamp": "2026-05-25T16:44:34.719503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001684"
+        },
+        {
+          "source_line": 1685,
+          "timestamp": "2026-05-25T16:44:35.273029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 855
+          },
+          "id": "event-001685"
+        },
+        {
+          "source_line": 1686,
+          "timestamp": "2026-05-25T16:44:35.526380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 806
+          },
+          "id": "event-001686"
+        },
+        {
+          "source_line": 1687,
+          "timestamp": "2026-05-25T16:44:47.595594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001687"
+        },
+        {
+          "source_line": 1688,
+          "timestamp": "2026-05-25T16:44:47.997546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001688"
+        },
+        {
+          "source_line": 1689,
+          "timestamp": "2026-05-25T16:44:48.002138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 406
+          },
+          "id": "event-001689"
+        },
+        {
+          "source_line": 1690,
+          "timestamp": "2026-05-25T16:44:48.504774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 507
+          },
+          "id": "event-001690"
+        },
+        {
+          "source_line": 1691,
+          "timestamp": "2026-05-25T16:45:05.749043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "40",
+              "limit": "50"
+            }
+          },
+          "id": "event-001691"
+        },
+        {
+          "source_line": 1692,
+          "timestamp": "2026-05-25T16:45:05.799940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\n41\tAll evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.\n42\t\n43\t\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n44\t\n45\tWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n46\t\n47\tWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n48\t\n49\t\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n50\t\n51\tWe decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270) and WinoGrande (1{,}267) appear in Appendix~\\ref{app:boolq} and \\ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\\% attention), which maximizes the recurrent--hybrid contrast; \\S\\ref{ssec:per_example} confirms that $\\alpha$ is stable across intermediate ratios (variation $\n…[truncated 3749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001692"
+        },
+        {
+          "source_line": 1693,
+          "timestamp": "2026-05-25T16:45:29.257291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}",
+              "new_string": "\\subsection{Statistical Methods}\\label{ssec:statistical_methods}"
+            }
+          },
+          "id": "event-001693"
+        },
+        {
+          "source_line": 1694,
+          "timestamp": "2026-05-25T16:45:29.735365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 478
+          },
+          "id": "event-001694"
+        },
+        {
+          "source_line": 1695,
+          "timestamp": "2026-05-25T16:45:32.696379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "60"
+            }
+          },
+          "id": "event-001695"
+        },
+        {
+          "source_line": 1696,
+          "timestamp": "2026-05-25T16:45:33.168823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t\n61\tTo measure cross-architecture overlap, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true divergence may exceed what binary Jaccard captures. Appendix~\\ref{app:continuous_jaccard} confirms robustness under continuous Jaccard similarity.\n62\t\n63\t\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n64\t\n65\tAll tests are two-tailed. Spearman $\\rho$ uses exact permutation tests ($5! = 120$ permutations); with $n = 5$, only $|\\rho| = 1.0$ achieves $p < .05$ ($p = .017$), so all Spearman-based inferences are descriptive and exploratory. Bonferroni correction spans all 10 benchmarks (adjusted threshold $\\alpha / 10 = 0.005$). Bootstrap 95\\% bias-corrected and accelerated (BCa) confidence intervals use 10{,}000 resamples; with $n = 3$ architectures, these are heuristic indicators of effect direction. Within-architecture comparisons use Mann-Whitney U; cross-architecture comparisons use Kruskal-Wallis. Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\\ref{app:attention_patterns}). The permutation null does not condition on item difficulty; if difficulty-driven correlations inflate observed Jaccard while permutation destroys this structure, the test may be anti-conservative. However, the ${\\sim}2.5\\times$ observed-to-null ratio (all $z > 5.9$) provides substantial margin against this bias.\n66\t\n67\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 472
+          },
+          "id": "event-001696"
+        },
+        {
+          "source_line": 1697,
+          "timestamp": "2026-05-25T16:45:41.887805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "However, the ${\\sim}2.5\\times$ observed-to-null ratio (all $z > 5.9$) provides substantial margin against this bias.",
+              "new_string": "However, the ${\\sim}2.5\\times$ observed-to-null ratio (all $z > 5.9$) provides substantial margin against this bias.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}"
+            }
+          },
+          "id": "event-001697"
+        },
+        {
+          "source_line": 1698,
+          "timestamp": "2026-05-25T16:45:42.335114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 447
+          },
+          "id": "event-001698"
+        },
+        {
+          "source_line": 1699,
+          "timestamp": "2026-05-25T16:45:45.095994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "preview": "True"
+            }
+          },
+          "id": "event-001699"
+        },
+        {
+          "source_line": 1700,
+          "timestamp": "2026-05-25T16:45:49.021028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 738879 words of memory out of 5000000\\\\n 44419 multilet\n…[truncated 8683 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 3925
+          },
+          "id": "event-001700"
+        },
+        {
+          "source_line": 1701,
+          "timestamp": "2026-05-25T16:45:53.688669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001701"
+        },
+        {
+          "source_line": 1702,
+          "timestamp": "2026-05-25T16:45:54.279569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 590
+          },
+          "id": "event-001702"
+        },
+        {
+          "source_line": 1703,
+          "timestamp": "2026-05-25T16:45:54.280265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001703"
+        },
+        {
+          "source_line": 1704,
+          "timestamp": "2026-05-25T16:45:55.022630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 742
+          },
+          "id": "event-001704"
+        },
+        {
+          "source_line": 1705,
+          "timestamp": "2026-05-25T16:46:13.311091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "limit": "20"
+            }
+          },
+          "id": "event-001705"
+        },
+        {
+          "source_line": 1706,
+          "timestamp": "2026-05-25T16:46:13.361734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\\label{sec:experiments}\n2\t\n3\tUsing the model zoo of \\citet{wang2025hybrid} (\\S\\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\\% attention.\n4\t\n5\t\\subsection{Per-Example Divergence}\\label{ssec:per_example}\n6\t\n7\tDo architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped, hurt, or unchanged. Although the decomposition is binary, it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\\ref{app:cm_cross}). Binarization discards confidence magnitude, so we supplement with continuous confidence margin analysis (Appendix~\\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard}).\n8\t\n9\tEach architecture displays a distinct profile of per-example changes (Figure~\\ref{fig:per_example_bars}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395; full counts in Appendix~\\ref{app:per_example_counts}). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\\bar{J} \\leq 0.10$, indicating ${\\sim}90$\\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\\text{null}} \\approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\\ref{app:jaccard_permutation}), plausibly reflecting shared sensitivity to example difficulty. Normalizing by $J_{\\max}$, observed overlap reaches only 6--7\\% of the achievable range above chance (Appendix~\\ref{app:normalized_es}), confirming that low Jaccard cannot be attribute\n…[truncated 3114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001706"
+        },
+        {
+          "source_line": 1707,
+          "timestamp": "2026-05-25T16:47:19.998630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}",
+              "new_string": ""
+            }
+          },
+          "id": "event-001707"
+        },
+        {
+          "source_line": 1708,
+          "timestamp": "2026-05-25T16:47:20.460628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 461
+          },
+          "id": "event-001708"
+        },
+        {
+          "source_line": 1709,
+          "timestamp": "2026-05-25T16:47:35.149574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "Do architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped, hurt, or unchanged. Although the decomposition is binary, it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\\ref{app:cm_cross}). Binarization discards confidence magnitude, so we supplement with continuous confidence margin analysis (Appendix~\\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard}).\n\nEach architecture displays",
+              "new_string": "Do architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped, hurt, or unchanged. Although the decomposition is binary, it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\\ref{app:cm_cross}). Binarization discards confidence magnitude, so we supplement with continuous confidence margin analysis (Appendix~\\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}\n\nEach architecture displays"
+            }
+          },
+          "id": "event-001709"
+        },
+        {
+          "source_line": 1710,
+          "timestamp": "2026-05-25T16:47:35.200366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001710"
+        },
+        {
+          "source_line": 1711,
+          "timestamp": "2026-05-25T16:47:39.014842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "preview": "True"
+            }
+          },
+          "id": "event-001711"
+        },
+        {
+          "source_line": 1712,
+          "timestamp": "2026-05-25T16:47:45.253347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 738879 words of memory out of 5000000\\\\n 44419 multilet\n…[truncated 8681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6238
+          },
+          "id": "event-001712"
+        },
+        {
+          "source_line": 1713,
+          "timestamp": "2026-05-25T16:47:47.863304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001713"
+        },
+        {
+          "source_line": 1714,
+          "timestamp": "2026-05-25T16:47:48.388348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001714"
+        },
+        {
+          "source_line": 1715,
+          "timestamp": "2026-05-25T16:47:48.439719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 576
+          },
+          "id": "event-001715"
+        },
+        {
+          "source_line": 1716,
+          "timestamp": "2026-05-25T16:47:48.942847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 554
+          },
+          "id": "event-001716"
+        },
+        {
+          "source_line": 1717,
+          "timestamp": "2026-05-25T16:48:07.229188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001717"
+        },
+        {
+          "source_line": 1718,
+          "timestamp": "2026-05-25T16:48:07.782476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-001718"
+        },
+        {
+          "source_line": 1719,
+          "timestamp": "2026-05-25T16:48:23.290425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images,mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001719"
+        },
+        {
+          "source_line": 1720,
+          "timestamp": "2026-05-25T16:48:23.730796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 440
+          },
+          "id": "event-001720"
+        },
+        {
+          "source_line": 1721,
+          "timestamp": "2026-05-25T16:48:28.032955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-001721"
+        },
+        {
+          "source_line": 1722,
+          "timestamp": "2026-05-25T16:48:30.952352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 2919
+          },
+          "id": "event-001722"
+        },
+        {
+          "source_line": 1723,
+          "timestamp": "2026-05-25T16:48:31.103358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "曹晓玉的两个修改已完成并验证：\n\n1. **Figure 2**：已改为单栏图，放在第 5 页右栏顶部 ✅\n2. **Table 3**：标题字体大小不变，表格内容字体已缩小（`\\small`）✅\n\n正文仍在 8 页限制内，Figure 编号正确（2→method overview, 3→per-example bars, 4→alpha routing）。"
+            }
+          },
+          "id": "event-001723"
+        },
+        {
+          "source_line": 1724,
+          "timestamp": "2026-05-25T16:48:33.966867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 2863
+          },
+          "id": "event-001724"
+        },
+        {
+          "source_line": 1725,
+          "timestamp": "2026-05-25T16:48:37.739913+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成并通知用户。两项修改均已验证通过：Figure 2 在第 5 页右栏顶部，Table 3 内容字体缩小但标题不变，正文 8 页限制内。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director"
+          },
+          "id": "event-001725"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "messages": [
+        {
+          "source_line": 1726,
+          "timestamp": "2026-05-25T16:50:37.477830+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉 (ou_ed2f4ceeab862a8049a88352dc56181e)]: 第七页的图有点多。\n\n第五页的图，你一个放左栏，一个放右栏吧。然后第三页、第四页没有图，就感觉整体正文的图分布得不均匀。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "source": "feishu:oc_1f8f0d6d9482071694045c30143bb993"
+          },
+          "id": "event-001726"
+        },
+        {
+          "source_line": 1727,
+          "timestamp": "2026-05-25T16:51:17.051400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "preview": "True"
+            }
+          },
+          "id": "event-001727"
+        },
+        {
+          "source_line": 1728,
+          "timestamp": "2026-05-25T16:51:19.630365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16624 strings out of 469438\\\\n 262339 string characters out of 5468411\\\\n 738879 words of memory out of 5000000\\\\n 44419 multilet\n…[truncated 8681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2578
+          },
+          "id": "event-001728"
+        },
+        {
+          "source_line": 1729,
+          "timestamp": "2026-05-25T16:51:23.092604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-001729"
+        },
+        {
+          "source_line": 1730,
+          "timestamp": "2026-05-25T16:51:24.026825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 934
+          },
+          "id": "event-001730"
+        },
+        {
+          "source_line": 1731,
+          "timestamp": "2026-05-25T16:51:24.027275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-001731"
+        },
+        {
+          "source_line": 1732,
+          "timestamp": "2026-05-25T16:51:24.481406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001732"
+        },
+        {
+          "source_line": 1733,
+          "timestamp": "2026-05-25T16:51:24.883968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-001733"
+        },
+        {
+          "source_line": 1734,
+          "timestamp": "2026-05-25T16:51:24.884369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001734"
+        },
+        {
+          "source_line": 1735,
+          "timestamp": "2026-05-25T16:51:25.388227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-001735"
+        },
+        {
+          "source_line": 1736,
+          "timestamp": "2026-05-25T16:51:25.490360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-001736"
+        },
+        {
+          "source_line": 1737,
+          "timestamp": "2026-05-25T16:51:53.548375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "offset": "18",
+              "limit": "55"
+            }
+          },
+          "id": "event-001737"
+        },
+        {
+          "source_line": 1738,
+          "timestamp": "2026-05-25T16:51:53.599178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "18\t\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n19\t\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n20\t\\label{fig:per_example_bars}\n21\t\\end{figure}\n22\t\n23\t\\begin{figure*}[t]\n24\t\\centering\n25\t\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n26\t\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n27\t\\label{fig:alpha_routing}\n28\t\\end{figure*}\n29\t\n30\tEach architecture displays a distinct profile of per-example changes (Figure~\\ref{fig:per_example_bars}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395; full counts in Appendix~\\ref{app:per_example_counts}). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\\bar{J} \\leq 0.10$, indicating ${\\sim}90$\\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\\text{null}} \\approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\\ref{app:jaccard_permutation}), plausibly reflecting shared sensitivity to example difficulty. Normalizing by $J_{\\max}$, observed overlap reaches only 6--7\\% of the achievable range above chance (Appendix~\\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.\n31\t\n32\t\n33\t\\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74, a non-parametric measure equivalent to Mann-Whitney $U$; Appendix~\\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\\% spread) but disruption threshol\n…[truncated 4697 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001738"
+        },
+        {
+          "source_line": 1739,
+          "timestamp": "2026-05-25T16:52:27.100948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\begin{figure}[t]",
+              "new_string": "\\begin{figure}[t]"
+            }
+          },
+          "id": "event-001739"
+        },
+        {
+          "source_line": 1740,
+          "timestamp": "2026-05-25T16:52:27.576846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 475
+          },
+          "id": "event-001740"
+        },
+        {
+          "source_line": 1741,
+          "timestamp": "2026-05-25T16:52:31.792766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "40",
+              "limit": "30"
+            }
+          },
+          "id": "event-001741"
+        },
+        {
+          "source_line": 1742,
+          "timestamp": "2026-05-25T16:52:32.263157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\n41\tAll evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.\n42\t\n43\t\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n44\t\n45\tWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n46\t\n47\tWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n48\t\n49\t\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n50\t\n51\tWe decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270) and WinoGrande (1{,}267) appear in Appendix~\\ref{app:boolq} and \\ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\\% attention), which maximizes the recurrent--hybrid contrast; \\S\\ref{ssec:per_example} confirms that $\\alpha$ is stable across intermediate ratios (variation $\n…[truncated 2399 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 470
+          },
+          "id": "event-001742"
+        },
+        {
+          "source_line": 1743,
+          "timestamp": "2026-05-25T16:52:44.820712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "We also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}",
+              "new_string": "We also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\subsection{Per-Example Decomposition}"
+            }
+          },
+          "id": "event-001743"
+        },
+        {
+          "source_line": 1744,
+          "timestamp": "2026-05-25T16:52:45.264734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 444
+          },
+          "id": "event-001744"
+        },
+        {
+          "source_line": 1745,
+          "timestamp": "2026-05-25T16:53:05.894829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\begin{figure*}[t]\n\\begin{minipage}[t]{0.48\\textwidth}\n\\vspace{0pt}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{minipage}%\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\vspace{0pt}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig2_task_specificity.pdf}\n\\caption{Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\\rho = -1.0$; BCa 95\\% CI $[-1.0,\\,-0.7]$, heuristic) is the only benchmark whose CI excludes zero. Bootstrap CI is heuristic given $n = 3$ architectures.}\n\\label{fig:task_specificity}\n\\end{minipage}\n\\end{figure*}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}\n\\caption{Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\\rho = -1.0$; BCa 95\\% CI $[-1.0,\\,-0.7]$, heuristic) is the only benchmark whose CI excludes zero. Bootstrap CI is heuristic given $n = 3$ architectures.}\n\\label{fig:task_specificity}\n\\end{figure}"
+            }
+          },
+          "id": "event-001745"
+        },
+        {
+          "source_line": 1746,
+          "timestamp": "2026-05-25T16:53:05.895487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001746"
+        },
+        {
+          "source_line": 1747,
+          "timestamp": "2026-05-25T16:53:13.933940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "offset": "16",
+              "limit": "35"
+            }
+          },
+          "id": "event-001747"
+        },
+        {
+          "source_line": 1748,
+          "timestamp": "2026-05-25T16:53:14.406019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "16\t\\begin{figure*}[t]\n17\t\\centering\n18\t\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n19\t\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n20\t\\label{fig:alpha_routing}\n21\t\\end{figure*}\n22\t\n23\tEach architecture displays a distinct profile of per-example changes (Figure~\\ref{fig:per_example_bars}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395; full counts in Appendix~\\ref{app:per_example_counts}). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\\bar{J} \\leq 0.10$, indicating ${\\sim}90$\\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\\text{null}} \\approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\\ref{app:jaccard_permutation}), plausibly reflecting shared sensitivity to example difficulty. Normalizing by $J_{\\max}$, observed overlap reaches only 6--7\\% of the achievable range above chance (Appendix~\\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.\n24\t\n25\t\n26\t\\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74, a non-parametric measure equivalent to Mann-Whitney $U$; Appendix~\\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\\% spread) but disruption thresholds vary 47\\%, explaining cross-architecture Jaccard divergence (Appendix~\\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\\ref{app:boolq\n…[truncated 3746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 472
+          },
+          "id": "event-001748"
+        },
+        {
+          "source_line": 1749,
+          "timestamp": "2026-05-25T16:53:46.405124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\end{figure*}\n\nEach architecture displays a distinct profile of per-example changes",
+              "new_string": "\\end{figure*}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}\n\nEach architecture displays a distinct profile of per-example changes"
+            }
+          },
+          "id": "event-001749"
+        },
+        {
+          "source_line": 1750,
+          "timestamp": "2026-05-25T16:53:46.857051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 451
+          },
+          "id": "event-001750"
+        },
+        {
+          "source_line": 1751,
+          "timestamp": "2026-05-25T16:53:50.084266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "offset": "37",
+              "limit": "25"
+            }
+          },
+          "id": "event-001751"
+        },
+        {
+          "source_line": 1752,
+          "timestamp": "2026-05-25T16:53:50.690591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "37\t\\paragraph{Multiplicity variation.} Extending to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). Ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy; Appendix~\\ref{app:arceasy}) to 0.30 (LAMBADA). Format does not drive this ordering: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\\alpha$ despite different answer-space sizes ($\\rho = -0.60$, $p = .24$ with task accuracy). This suggests multiplicity is associated with cognitive demands rather than evaluation format, though the confound cannot be fully resolved (Limitations). Bootstrap 95\\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Table~\\ref{tab:arceasy_ambiguity}). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$), indicating architectures affect different examples regardless of how many are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$) but differs $2\\times$ across task types, confirming that multiplicity magnitude depends on task, not attention ratio \\citep[cf.][]{gorbett2026crossmodel}.\n38\t\n39\t\\begin{figure}[t]\n40\t\\centering\n41\t\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n42\t\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n43\t\\label{fig:jaccard_hierarchy}\n44\t\\end{figure}\n45\t\n46\t\\begin{figure}[t]\n47\t\\centering\n48\t\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}\n49\t\\caption{Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\\rho = -1.0$; BCa 9\n…[truncated 746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 606
+          },
+          "id": "event-001752"
+        },
+        {
+          "source_line": 1753,
+          "timestamp": "2026-05-25T16:53:59.184432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}"
+            }
+          },
+          "id": "event-001753"
+        },
+        {
+          "source_line": 1754,
+          "timestamp": "2026-05-25T16:53:59.612603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 428
+          },
+          "id": "event-001754"
+        },
+        {
+          "source_line": 1755,
+          "timestamp": "2026-05-25T16:54:03.176811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "preview": "True"
+            }
+          },
+          "id": "event-001755"
+        },
+        {
+          "source_line": 1756,
+          "timestamp": "2026-05-25T16:54:08.777521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16628 strings out of 469438\\\\n 262383 string characters out of 5468411\\\\n 738878 words of memory out of 5000000\\\\n 44419 multilet\n…[truncated 8681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5600
+          },
+          "id": "event-001756"
+        },
+        {
+          "source_line": 1757,
+          "timestamp": "2026-05-25T16:54:13.594980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-001757"
+        },
+        {
+          "source_line": 1758,
+          "timestamp": "2026-05-25T16:54:14.425500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 830
+          },
+          "id": "event-001758"
+        },
+        {
+          "source_line": 1759,
+          "timestamp": "2026-05-25T16:54:14.576822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001759"
+        },
+        {
+          "source_line": 1760,
+          "timestamp": "2026-05-25T16:54:14.577262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001760"
+        },
+        {
+          "source_line": 1761,
+          "timestamp": "2026-05-25T16:54:15.631965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 1055
+          },
+          "id": "event-001761"
+        },
+        {
+          "source_line": 1762,
+          "timestamp": "2026-05-25T16:54:15.632693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 1055
+          },
+          "id": "event-001762"
+        },
+        {
+          "source_line": 1763,
+          "timestamp": "2026-05-25T16:54:39.042395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001763"
+        },
+        {
+          "source_line": 1764,
+          "timestamp": "2026-05-25T16:54:39.595322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-001764"
+        },
+        {
+          "source_line": 1765,
+          "timestamp": "2026-05-25T16:55:54.006748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\begin{figure*}[t]",
+              "new_string": "\\begin{figure*}[t]"
+            }
+          },
+          "id": "event-001765"
+        },
+        {
+          "source_line": 1766,
+          "timestamp": "2026-05-25T16:55:54.475137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 468
+          },
+          "id": "event-001766"
+        },
+        {
+          "source_line": 1767,
+          "timestamp": "2026-05-25T16:55:57.985685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "offset": "70"
+            }
+          },
+          "id": "event-001767"
+        },
+        {
+          "source_line": 1768,
+          "timestamp": "2026-05-25T16:55:58.414513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n71\t\n72\tAll tests are two-tailed. Spearman $\\rho$ uses exact permutation tests ($5! = 120$ permutations); with $n = 5$, only $|\\rho| = 1.0$ achieves $p < .05$ ($p = .017$), so all Spearman-based inferences are descriptive and exploratory. Bonferroni correction spans all 10 benchmarks (adjusted threshold $\\alpha / 10 = 0.005$). Bootstrap 95\\% bias-corrected and accelerated (BCa) confidence intervals use 10{,}000 resamples; with $n = 3$ architectures, these are heuristic indicators of effect direction. Within-architecture comparisons use Mann-Whitney U; cross-architecture comparisons use Kruskal-Wallis. Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\\ref{app:attention_patterns}). The permutation null does not condition on item difficulty; if difficulty-driven correlations inflate observed Jaccard while permutation destroys this structure, the test may be anti-conservative. However, the ${\\sim}2.5\\times$ observed-to-null ratio (all $z > 5.9$) provides substantial margin against this bias.\n73\t\n74\t\n75\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 428
+          },
+          "id": "event-001768"
+        },
+        {
+          "source_line": 1769,
+          "timestamp": "2026-05-25T16:56:05.489781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "However, the ${\\sim}2.5\\times$ observed-to-null ratio (all $z > 5.9$) provides substantial margin against this bias.\n\n\n",
+              "new_string": "However, the ${\\sim}2.5\\times$ observed-to-null ratio (all $z > 5.9$) provides substantial margin against this bias.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n"
+            }
+          },
+          "id": "event-001769"
+        },
+        {
+          "source_line": 1770,
+          "timestamp": "2026-05-25T16:56:05.969896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 480
+          },
+          "id": "event-001770"
+        },
+        {
+          "source_line": 1771,
+          "timestamp": "2026-05-25T16:56:08.734372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "preview": "True"
+            }
+          },
+          "id": "event-001771"
+        },
+        {
+          "source_line": 1772,
+          "timestamp": "2026-05-25T16:56:14.344908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16628 strings out of 469438\\\\n 262383 string characters out of 5468411\\\\n 737878 words of memory out of 5000000\\\\n 44419 multilet\n…[truncated 8847 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5610
+          },
+          "id": "event-001772"
+        },
+        {
+          "source_line": 1773,
+          "timestamp": "2026-05-25T16:56:30.535355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001773"
+        },
+        {
+          "source_line": 1774,
+          "timestamp": "2026-05-25T16:56:33.872860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 3337
+          },
+          "id": "event-001774"
+        },
+        {
+          "source_line": 1775,
+          "timestamp": "2026-05-25T16:56:34.324822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001775"
+        },
+        {
+          "source_line": 1776,
+          "timestamp": "2026-05-25T16:56:34.676808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-001776"
+        },
+        {
+          "source_line": 1777,
+          "timestamp": "2026-05-25T16:56:34.880933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 556
+          },
+          "id": "event-001777"
+        },
+        {
+          "source_line": 1778,
+          "timestamp": "2026-05-25T16:56:35.283351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 606
+          },
+          "id": "event-001778"
+        },
+        {
+          "source_line": 1779,
+          "timestamp": "2026-05-25T16:57:12.808289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001779"
+        },
+        {
+          "source_line": 1780,
+          "timestamp": "2026-05-25T16:57:13.361266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-001780"
+        },
+        {
+          "source_line": 1781,
+          "timestamp": "2026-05-25T16:57:30.454182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-001781"
+        },
+        {
+          "source_line": 1782,
+          "timestamp": "2026-05-25T16:57:30.945747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 491
+          },
+          "id": "event-001782"
+        },
+        {
+          "source_line": 1783,
+          "timestamp": "2026-05-25T16:57:43.698012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "已调整图表分布，当前各页视觉元素：\n\n| 页 | 视觉元素 | 变化 |\n|---|--------|------|\n| 3 | Table 1 | 不变 |\n| 4 | Figure 2（右栏） | **新增** |\n| 5 | Figure 3（左栏） | 从右栏两张→左栏一张 |\n| 6 | Figure 4*（双栏）+ Figure 5（左栏）+ Figure 6（右栏） | 重新分布 |\n| 7 | Figure 7*（双栏）+ Table 2 | **从3图→1图+1表** |\n| 8 | Table 3 | 不变 |\n\n**改善点**：\n- Page 4 新增 Figure 2，解决了 3-4 页无图的问题\n- Page 7 从 3 个图减至 1 图+1 表\n\n**限制**：Page 5 目前只有左栏一张图。由于 Figure 4 是双栏图（会浮动到 page 6 顶部），Figure 5 必须在编号上排在 Figure 4 之后，无法在不打乱编号顺序的情况下把 Figure 5 放到 page 5 右栏。如果需要进一步调整，可以考虑：\n1. 将 Figure 5 和 Figure 4 交换编号（jaccard_hierarchy 变为 Figure 4）\n2. 或接受当前分布（page 5 左栏一图 + 右栏纯文本）"
+            }
+          },
+          "id": "event-001783"
+        },
+        {
+          "source_line": 1784,
+          "timestamp": "2026-05-25T16:57:46.565834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 2867
+          },
+          "id": "event-001784"
+        },
+        {
+          "source_line": 1785,
+          "timestamp": "2026-05-25T16:57:49.129401+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Main text fits within 8 pages. Let me clean up and report the results."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director"
+          },
+          "id": "event-001785"
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "messages": [
+        {
+          "source_line": 1786,
+          "timestamp": "2026-05-25T17:01:00.334915+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：idle 480min\n  本轮累计 2 条消息 / 9h 1min\n\n⚠️ 你自己的 context 状态：已 34 条消息 / 9h 1min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001786"
+        },
+        {
+          "source_line": 1787,
+          "timestamp": "2026-05-25T17:01:08.359498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001787"
+        },
+        {
+          "source_line": 1788,
+          "timestamp": "2026-05-25T17:01:08.410502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001788"
+        },
+        {
+          "source_line": 1789,
+          "timestamp": "2026-05-25T17:01:11.271312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_REVIEWER"
+            }
+          },
+          "id": "event-001789"
+        },
+        {
+          "source_line": 1790,
+          "timestamp": "2026-05-25T17:01:11.372217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_REVIEWER\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 100
+          },
+          "id": "event-001790"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "messages": [
+        {
+          "source_line": 1791,
+          "timestamp": "2026-05-25T17:08:35.401228+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉 (ou_ed2f4ceeab862a8049a88352dc56181e)]: 交换编号"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "source": "feishu:oc_1f8f0d6d9482071694045c30143bb993"
+          },
+          "id": "event-001791"
+        },
+        {
+          "source_line": 1792,
+          "timestamp": "2026-05-25T17:08:48.788848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "limit": "40"
+            }
+          },
+          "id": "event-001792"
+        },
+        {
+          "source_line": 1793,
+          "timestamp": "2026-05-25T17:08:49.286235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\\label{sec:experiments}\n2\t\n3\tUsing the model zoo of \\citet{wang2025hybrid} (\\S\\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\\% attention.\n4\t\n5\t\\subsection{Per-Example Divergence}\\label{ssec:per_example}\n6\t\n7\tDo architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped, hurt, or unchanged. Although the decomposition is binary, it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\\ref{app:cm_cross}). Binarization discards confidence magnitude, so we supplement with continuous confidence margin analysis (Appendix~\\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard}).\n8\t\n9\t\\begin{figure*}[t]\n10\t\\centering\n11\t\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n12\t\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n13\t\\label{fig:alpha_routing}\n14\t\\end{figure*}\n15\t\n16\t\\begin{figure}[t]\n17\t\\centering\n18\t\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n19\t\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n20\t\\label{fig:jaccard_hierarchy}\n\n…[truncated 4409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 497
+          },
+          "id": "event-001793"
+        },
+        {
+          "source_line": 1794,
+          "timestamp": "2026-05-25T17:09:11.408721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure*}"
+            }
+          },
+          "id": "event-001794"
+        },
+        {
+          "source_line": 1795,
+          "timestamp": "2026-05-25T17:09:11.885317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Edit",
+            "elapsed_ms": 476
+          },
+          "id": "event-001795"
+        },
+        {
+          "source_line": 1796,
+          "timestamp": "2026-05-25T17:09:15.598688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "preview": "True"
+            }
+          },
+          "id": "event-001796"
+        },
+        {
+          "source_line": 1797,
+          "timestamp": "2026-05-25T17:09:21.343776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n[20]\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1484) in paragraph at lines 784--785\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\\\node\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 794--796\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [21] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: F7DF7CDD47A3B1C0649AA16E4A91D6DC;9192.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16628 strings out of 469438\\\\n 262383 string characters out of 5468411\\\\n 737878 words of memory out of 5000000\\\\n 44419 multilet\n…[truncated 8847 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5745
+          },
+          "id": "event-001797"
+        },
+        {
+          "source_line": 1798,
+          "timestamp": "2026-05-25T17:09:25.610723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-001798"
+        },
+        {
+          "source_line": 1799,
+          "timestamp": "2026-05-25T17:09:26.197795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-001799"
+        },
+        {
+          "source_line": 1800,
+          "timestamp": "2026-05-25T17:09:26.500261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+            "tool": "Read",
+            "elapsed_ms": 889
+          },
+          "id": "event-001800"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4eb18d91e09cb7881184",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops live status all servers",
+  "task_key": "worker_ops_live_status_all_servers_20260520T005811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_live_status_all_servers_20260520T005811_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "7006c6b192252c65ee375a9f582ed9dcb96afbd5fdea1ecf2f7b36821fc991a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== cqa1-33015 (4x RTX 4090D) ===\nGPU 0: eval m16_seed44   PID=994858  VRAM=3459MiB  进度=415/500 ep (~83%)\nGPU 1: eval m128_seed43  PID=818806  VRAM=3461MiB  进度=124/500 ep (~25%)\nGPU 2: eval m16_seed43   PID=819552  VRAM=3427MiB  进度=105/500 ep (~21%)\nGPU 3: 空闲 (1MiB)\nEval 结果: 已有大量历史 JSON，当前三个 eval 尚未完成\n磁盘: 140/250GB used (111GB free)\n\n=== westd-41074 (4x RTX PRO 6000 Blackwell 96GB) ===\nGPU 0: C5 RoboFlamingo v2  PID=26118  VRAM=30108MiB  step=9950 (epoch 2/50)\n         loss=0.1464  arm=0.0789  grip=0.7106  LR=9.99e-05\n         epoch 1 耗时 7217s → 50 epochs 预计总耗时 ~100h\nGPU 1: 空闲 (0MiB)\nGPU 2: 空闲 (0MiB)\nGPU 3: 空闲 (0MiB)\n磁盘: 230/250GB used (21GB free) ⚠️ 紧张\n\n=== westd-27271 (2x RTX PRO 6000 Blackwell 96GB) ===\nGPU 0: VTC+LoRA M=128  PID=841334  VRAM=32276MiB  GPU-Util=95%\n         运行中 (自 02:38 启动，约6.3h)\n         checkpoint_step10000.pt 保存于 07:51 → 当前估计 ~12K steps\n         未找到独立 log 文件，wandb run=cl5xi7q3 活跃中\nGPU 1: M=32 VTC-only  PID=855140  VRAM=25942MiB\n         step=1400/100K  loss=3.54  sps=0.6  lr=1e-4\n         启动于 ~08:16，预计总耗时 ~46h\n磁盘: 160/250GB used (91GB free) ✓\n```\n\n**要点：**\n- cqa1 GPU 0 的 eval 即将完成（~10min），GPU 1/2 还需 ~40min\n- westd-41074 有 3 块 GPU 空闲，磁盘仅剩 21GB 需关注\n- westd-27271 两块 GPU 都在跑长训练，VTC+LoRA M=128 缺少可读 log"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

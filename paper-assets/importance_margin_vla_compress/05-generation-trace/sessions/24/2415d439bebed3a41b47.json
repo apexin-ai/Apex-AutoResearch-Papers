@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2415d439bebed3a41b47",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops pi05 status and continue",
+  "task_key": "worker_ops_pi05_status_and_continue_20260517T172834",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_pi05_status_and_continue_20260517T172834_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "12de0cde018015f1341b780fcd1ef3dc15f4475985e34cb830d06a2544f84bf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**进程状态**：已结束，GPU 空闲，无 python 进程。\n\n**Checkpoint**：确认使用了 finetuned 版本 `/root/autodl-tmp/pi05-libero-finetuned`（来源 `pepijn223/pi05_libero_31_9_non_q`）。\n\n**Eval 结果**：**0% SR，早停退出。**\n- Task 0: 0/50 (完整跑完)\n- Task 1: 0/10 (部分)\n- 早停原因：60+ episodes 跨 2 个 task 均 0% SR，低于 20% 阈值\n- 只完成了 1.2/10 个 task，总耗时 15.4 分钟\n\n**Vision fix 已生效**：日志确认 `Patched embed_image: bypass get_image_features, use vision_tower+projector directly`，结果文件也记录了 vision fix 信息。结论中提到模型确实产生了 varying、reasonable-magnitude 的 actions，但没有 episode 成功。\n\n**关键判断**：vision bug 修复后 baseline 仍然是 0%。结果文件的结论指向两个可能原因：\n1. **Checkpoint 本身质量问题** — `pepijn223/pi05_libero_31_9_non_q` 这个 finetuned checkpoint 可能不 work\n2. **Preprocessing mismatch** — tokenizer vocabulary、state normalization 或 action post-processing 可能与原始 OpenPI 实现不一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

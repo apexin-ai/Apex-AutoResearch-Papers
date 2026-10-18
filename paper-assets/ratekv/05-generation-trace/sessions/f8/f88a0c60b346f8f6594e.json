@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f88a0c60b346f8f6594e",
+  "project": "ratekv",
+  "kind": "history",
+  "title": "agent / loop_3_1778770984.md",
+  "task_key": "loop_3_1778770984",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778770984.md",
+    "occurrence": 1,
+    "bytes": 4053,
+    "sha256": "2b55c4f441ac90677994e8ff44e4440ba1f75a508714459301eb33a28d0a68c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-14T12:07:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-37397 的 cuda:0 和 cuda:1，只有这两张。不可用其他 GPU。\n- Table 4 heuristic baselines **必须用 per-model optimal k**（Qwen k=8, Llama k=2, Mistral k=4），不能用统一 k=16。这是 D041/D042 Reviewer critical 的核心。\n- 论文主表 PPL 数字用 **standard profiling (16×512)**，headline = 27.3% (11.23 vs 15.45)。29.4% (hires) 只出现在 §5.4 ablation 上下文中。\n- runtime_benchmark latency 数字**不入论文** (D038)，simulated quantization 无优化 kernel。\n- plan_013 (70B) **已 defer** (D039)，双卡不可用于 70B。\n- Mistral 是 genuine negative (MCKP 7.16 vs uniform 7.13 = -0.4%)，不可美化为 positive。\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-37397, 2× RTX PRO 6000 96GB\n- 工作目录: /root/ratekv/\n- Python: /root/miniconda3/bin/python (conda base), 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存: /root/autodl-tmp/.hf_cache/ (Qwen2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3 均已下载)\n- Figures: /root/ratekv/figures/ (fig1/fig2/fig3 PDF, 本地已同步到 docs/paper/figures/)\n- 活跃进程: \n  - llama_heuristic_k2: tmux=d041_k2, cuda:0, 进程已退出, cron 已触发, Worker `worker_analysis_llama_heuristic_k2_exit_20260514T120541` 正在检查结果\n  - mistral_heuristic_k4: Worker `worker_code_mistral_heuristic_k4_20260514T115500` 状态未知（可能已完成/正在运行）\n\n### 3. 📊 当前状态\n**刚做完**: 处理 D041/D042 Reviewer critical — Table 4 heuristic k 值不公平。两个 Worker 并行派出修复。\n\n**RUNNING 实验**:\n- `llama_heuristic_k2`: cuda:0, 进程已退出, exit check worker 正在分析日志\n- `mistral_heuristic_k4`: cuda:1, 状态待确认（Worker 回调尚未到达）\n\n**等待中**:\n- Worker `worker_analysis_llama_heuristic_k2_exit_20260514T120541` 回调 → 读取 Llama k=2 结果\n- Worker `worker_code_mistral_heuristic_k4_20260514T115500` 回调 → 确认 Mistral k=4 是否已提交/完成\n- Mistral 可能还有 cron 回调待处理\n\n**已清理**: multi_seed_lowres, cross_domain_calibration_v2, greedy_constrained_ablation, qwen72b_profiling 全部 killed。\n\n### 4. 📋 待办\n- llama_heuristic_k2 exit worker 回调到达 → 读取新 PPL 数字，汇报 Director，对比旧 k=16 结果 (旧 L0-random mean=10.479, k=2 应大幅缩小 gap)\n- mistral_heuristic_k4 worker 回调到达 → 如果只完成代码准备，检查 tmux/cron 状态；如果实验完成，读取结果\n- mistral_heuristic_k4 进程退出 cron → spawn exit check worker 分析日志\n- 两个实验全部完成 → 汇报 Director 完整 Table 4 corrected 数字（Qwen k=8 不变 + Llama k=2 新 + Mistral k=4 新），unblock 论文 Step 5\n- Director 确认新数字后 → 更新 paper_framing.md Table 4 部分\n\n### 5. 🎯 战略上下文\n- **核心结论**: cardinality constraint 是唯一必要贡献。greedy=MCKP (Δ=0.0000), MCKP≈oracle (gap<0.018)。\n- **决策链**: D030(make-or-break resolved) → D033/D034(standard profiling统一) → D035/D036(Mistral MCKP修正) → D037(per-model optimal k) → D038(runtime不入论文) → D039(70B defer) → D040(论文写作启动) → D041/D042(Table 4 k值公平性修复, **当前阻塞项**)\n- **易错点**: \n  1. Llama k=2 只有 2 个 2-bit heads，L0-random 和 MCKP 的 gap 可能极小甚至为零 — 这不是 bug，是 \"constraint narrows solution space\" 的又一个证据\n  2. Mistral k=4 仍是 negative（MCKP 7.16 > uniform 7.13），corrected heuristic 可能也在 7.1x 附近 — 低异质性架构的预期行为\n  3. Budget 精确匹配 0.25 很重要：Llama 256 heads 中如果全部 8 L0 heads@8-bit + 2@2-bit，budget=0.2568≠0.25。Worker 可能只保护 1 个 L0 head@8-bit 来凑 budget — 检查结果时留意\n  4. D040 论文写作全面启动，Agent 角色已转为论文支持（提供数据/图表/确认数字），不再主导新实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ce3d1d0968bc42762dc0",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops a4 check final",
+  "task_key": "worker_ops_a4-check-final_20260524T131602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_a4-check-final_20260524T131602_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "138943b1ab4c2615858d0f87684b1210b172a110cb8a702d0917ef5211896124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID 22154 已完成。** 生产运行（n_sim=1000, n_boot=999）K=3 和 K=5 均已跑完，总耗时 4342 秒（~72 分钟）。\n\n### 结果摘要\n\n**Power by beta_std:**\n\n| beta_std | K=3 | K=5 |\n|----------|------|------|\n| 0.1 | 0.015 | 0.001 |\n| 0.15 | 0.025 | 0.003 |\n| 0.2 | 0.046 | 0.006 |\n| 0.25 | 0.081 | 0.012 |\n| 0.3 | 0.126 | 0.022 |\n| 0.5 | 0.421 | 0.085 |\n| 0.7 | 0.690 | 0.175 |\n| 1.0 | 0.858 | 0.301 |\n\n**MDE@80% power:**\n- **K=3**: 0.897 (需要很大的效应才能达到 80% power)\n- **K=5**: **不可达** (最大 power 仅 0.301)\n\nK=5 的 power 远低于 K=3，因为每个 position 只有 5 个 cluster，WCB 在如此少的 cluster 下极度保守。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

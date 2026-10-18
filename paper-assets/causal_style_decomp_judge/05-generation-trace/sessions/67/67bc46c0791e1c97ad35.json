@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "67bc46c0791e1c97ad35",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code double rewrite placebo qwen",
+  "task_key": "worker_code_double_rewrite_placebo_qwen_20260521T132436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_double_rewrite_placebo_qwen_20260521T132436_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "03255db9c99d731b47fd7fcbbd1a94bd04b5e1367b908fa36933bfaf2ae1756e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 已 kill，结果已保存到 `data/double_rewrite_placebo_qwen32b.json`。\n\n## 结果\n\nPlacebo test **未通过** — Qwen3-32B 对 double_rewrite 有强烈偏好，而非预期的 ~50%：\n\n| Axis | n_pairs | n_consistent | consistency | original win rate | p-value |\n|------|---------|-------------|-------------|-------------------|---------|\n| **Formality** | 81 | 45 | 55.6% | **26.7%** [13.3%, 40.0%] | 0.0025 |\n| **Verbosity** | 43 | 36 | 83.7% | **0.0%** [0.0%, 0.0%] | ≈0 |\n\n**解读**：\n- Judge 强烈偏好 double_rewrite（经过两轮 LLM 改写的文本）而非原始文本\n- Verbosity 轴尤为极端：36/36 一致性判断全部选 double_rewrite\n- Formality 轴 consistency 仅 55.6%（几乎等于随机），说明判断本身很噪\n- 这意味着 pairwise format 确实会从 rewriting artifact 产生 bias — **MF1 防御不成立**，rewriting 过程本身引入了 LLM 偏好的文本特征（更平滑、更结构化），judge 能区分并偏好 LLM 改写版本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

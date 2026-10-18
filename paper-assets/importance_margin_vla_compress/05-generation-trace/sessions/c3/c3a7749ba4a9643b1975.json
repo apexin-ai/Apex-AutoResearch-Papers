@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c3a7749ba4a9643b1975",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ssh check l2norm k07 s46 and s47",
+  "task_key": "worker_ssh_check_l2norm_k07_s46_and_s47_20260528T120704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_l2norm_k07_s46_and_s47_20260528T120704_result.json",
+    "occurrence": 1,
+    "bytes": 1450,
+    "sha256": "37ad55eec4f30d8ffd7601e73e87e43bffed475f9661f402c5227d84a869bd54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 任务 1：westd-41074 — L2norm k=0.7 seed46 ✅ 已完成\n\nPID 923767 已退出。实验**成功完成**，结果：\n\n**Overall SR = 62.2%**\n\nPer-task 结果：\n| Task | SR |\n|------|------|\n| T0 | 74% |\n| T1 | 92% |\n| T2 | 66% |\n| T3 | 40% |\n| T4 | 58% |\n| T5 | 66% |\n| T6 | 58% |\n| T7 | 62% |\n| T8 | 10% |\n| T9 | 96% |\n\n结果已保存至 `eval_results/pi05_l2norm_k0.70_libero_10_seed46.json`。总耗时 ~155.7 分钟。\n\n---\n\n### 任务 2：westd-38929 — 3 个 seed47 实验 🟢 运行中\n\n3 个 PID 全部存活（已运行 ~57 分钟），当前进度：\n\n| 实验 | 当前进度 | 最新 Task SR |\n|------|---------|-------------|\n| random k=0.85 s47 | Task 2 完成 (ep 50) | T0=42%, T1=50%, T2=42%（累计 44.7%）|\n| l2norm k=0.5 s47 | Task 3 进行中 (ep 30) | T0=68%, T1=68%, T2=86%（累计 74.0%）|\n| attn k=0.5 s47 | Task 3 进行中 (ep 30) | T0=76%, T1=44%, T2=64%（累计 61.3%）|\n\n预计每个还需 ~100 分钟完成（总 ~2.5h）。\n\n---\n\n### 任务 3：Stale RUNNING PIDs ✅ 全部已死\n\n| 服务器 | PID | 实验 | 状态 |\n|--------|--------|------|------|\n| westd-38929 | 457257 | attn k=0.95 s46 | DEAD |\n| westd-41074 | 899098 | random k=0.5 s46 | DEAD |\n| westd-41074 | 898746 | random k=0.95 s46 | DEAD |\n| westd-27271 | 616102 | l2norm k=0.95 s46 | DEAD |\n\n4 个 stale PID 均已退出，registry 可标记为完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

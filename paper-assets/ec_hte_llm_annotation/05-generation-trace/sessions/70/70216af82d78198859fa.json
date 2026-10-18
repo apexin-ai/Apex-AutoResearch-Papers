@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "70216af82d78198859fa",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 025 positive scenario",
+  "task_key": "worker_code_exp-025-positive-scenario_20260522T124553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-025-positive-scenario_20260522T124553_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "1ae64db5ff86f153553ff4a531f14fdcf27701a69d0ec2b4ad88902a8bd9f1fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Here's the summary of results:\n\n## Key Results (exp-025)\n\n### Screening\n- **0/16 combinations pass all conditions**. The bottleneck is κ(C_s) ≤ 1.25 — this requires FPR+FNR ≲ 0.20, which no real LLM achieves across all subgroups. Closest: Qwen2.5-7B True_short (κ=1.23), Mistral-7B True_short (κ=1.27).\n- max(FPR,FNR) < 0.5 fails for 4 combos: gpt-4.1, gpt-4o, gpt-4-turbo (TweetEval), gpt-4o-mini (CivilComments)\n- Budget passes for K=2 at both n=250 and n=500, and for K=4 at n=500\n\n### Oracle Screening (excluding subgroups with max error ≥ 0.4)\n- **EC-HTE (HB) beats Global in 41/52 comparisons** on aggregate RMSE\n- **All 4 open-source LLMs** (Llama, Qwen, Mistral, Gemma) on TweetEval: HB wins consistently (32/32), with RMSE reductions of 0.001-0.008\n- GPT-4o-mini/TweetEval and GPT-4-turbo/TweetEval also show HB advantages\n- **HB loses** on GPT-3.5-turbo/TweetEval (very asymmetric FPR ~0.39) and GPT-4o/CivilComments (low P(Z=1)=0.3 amplifies correction noise)\n- **Best case**: Qwen2.5-7B K=4 n=500 Z=0: RMSE reduction = 0.0075\n\n### Output Files\n- `results/exp_screening.csv` — 56 rows (16 combos × subgroups)\n- `results/exp_oracle_screening.csv` — 1040 rows (MC-aggregated results)\n- `results/exp_positive_scenario_summary.md` — full analysis report"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

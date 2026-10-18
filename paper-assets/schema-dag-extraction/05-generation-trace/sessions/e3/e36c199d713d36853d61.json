@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e36c199d713d36853d61",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper experimental setup",
+  "task_key": "worker_paper_experimental-setup_20260515T164246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experimental-setup_20260515T164246_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "c2bb72608914b828cc305f237223ee0206ccb852a306ce63c4a2492d5657d248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§3 Experimental Setup 完成。两个文件已写入并注册：\n\n**`experimental_setup.tex`** (~850 words, 5 subsections):\n- §3.1 三数据集描述 + Table 1 引用\n- §3.2 SCS/BCS 形式化定义（Eq.1-2），Qwen3-32B + MiniLM 双 embedding\n- §3.3 Exp1 count curve（5 batches/count, 固定 1000 samples）+ Exp2 BCS-controlled factorial（Few-NERD n=54, FewRel 80-rel count {8,16}）\n- §3.4 NER text-match F1, RE accuracy, ED relaxed F1（formal definition: token overlap + exact type match, 解释 exact F1 < 0.04），bootstrap 95% CI (1000 resamples)\n- §3.5 Qwen3-32B-FP8 via vLLM, greedy decoding, thinking mode disabled, max 4096 tokens\n\n**`dataset_stats.tex`** (Table 1): Few-NERD 66 types / 1000 / cross, FewRel 80 / 1000 / cross, MAVEN 168 / 18904† / same\n\n**待处理 citation keys**: 5 个 `TODO-` 标记（ding-fewnerd-2021, han-fewrel-2018, wang-maven-2020, reimers-gurevych-2019, kwon-vllm-2023），需在 bib 文件中补齐后替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9357b39f19ab0ac3b3c6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "check seed47 status",
+  "task_key": "worker_check_seed47_status_20260529T015749",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_seed47_status_20260529T015749_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "f0304e1fe24a23b6d80c5b25f69f09b20332879a19a6ad4e184300c82c840a43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 seed47 bonus 实验已完成，exit code 均为 0。\n\n**注意**：cqa1-33015 上实际运行的实验名与预期不同——实际是 `l2norm_k0.75`、`random_k0.70`、`random_k0.75`（而非 `l2norm_k0.5`、`attn_k0.75`、`attn_k0.7`）。\n\n## 状态表\n\n| exp_id | server | status | success_rate | elapsed | notes |\n|--------|--------|--------|-------------|---------|-------|\n| pi05_l2norm_k0.75_seed47 | cqa1-33015 | ✅ Done (exit 0) | **71.0%** | 221 min | completed 2026-05-28T20:48 UTC |\n| pi05_random_k0.70_seed47 | cqa1-33015 | ✅ Done (exit 0) | **59.0%** | 228 min | completed 2026-05-28T20:55 UTC |\n| pi05_random_k0.75_seed47 | cqa1-33015 | ✅ Done (exit 0) | **62.4%** | 228 min | completed 2026-05-28T20:55 UTC |\n| pi05_l2norm_k0.70_seed47 | westd-41074 | ✅ Done (exit 0) | **62.0%** | 156 min | completed 2026-05-28T19:44 UTC |\n\n实验名与你预期的 3 个（l2norm_k0.5, attn_k0.75, attn_k0.7）不同——实际提交的是 l2norm_k0.75、random_k0.70、random_k0.75。可能提交时实验配置做了调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

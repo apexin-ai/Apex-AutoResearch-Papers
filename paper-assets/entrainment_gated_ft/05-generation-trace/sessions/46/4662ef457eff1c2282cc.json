@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4662ef457eff1c2282cc",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "fix retnet pure 1 3b rerun",
+  "task_key": "worker_fix_retnet-pure-1_3b-rerun_20260519T191634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_retnet-pure-1_3b-rerun_20260519T191634_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "7f68553801d5fa73f904fdc1a789e3a6ad49cff800569269afaf64f3a8081b51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **补跑结果**：RetNet-pure 1.3B LAMBADA logsamples 已生成，5153 行，acc = 51.7%（正常）\n- **Cross-scale Jaccard**：\n  - RetNet helped_jaccard = **0.0587**（对比 GDN 0.0474, HGRN2 0.0892）\n  - RetNet hurt_jaccard = **0.0725**（对比 GDN 0.0874, HGRN2 0.0550）\n- **JSON 已更新**：`exp007_340m_analysis.json` 中 `RetNet_h3_1` 从 null 更新为实际值\n\n三个架构的 cross-scale Jaccard 都很低（<0.09），说明 340M 和 1.3B 尺度上被 hybrid 帮助/伤害的样本集合高度不重叠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

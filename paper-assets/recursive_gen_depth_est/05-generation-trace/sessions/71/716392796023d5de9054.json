@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "716392796023d5de9054",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "diagnose qwen25 1p5b instruct 001",
+  "task_key": "worker_diagnose_qwen25_1p5b_instruct_001_20260517T161832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen25_1p5b_instruct_001_20260517T161832_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "6a2ba46307b2fca50c56a4f4b083a2034f3a4b7cdee334e67e420a7a8335201a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "runs log 确认一致。stdout 被缓冲，d0 生成的进度没有实时刷入日志，但进程正常运行。\n\n**诊断结论：实验仍在运行，不需要干预。**\n\n- 状态：Phase 2（d0 生成），5000 samples，模型权重已加载完毕\n- 开始时间：00:02（下载完成后），已运行 ~17 分钟\n- GPU 1 正常使用中（4187MiB, 45%）\n- 后续 pipeline：d0 → LoRA finetune → d1-d3 生成 → 特征提取 → 分类评估，预计还需较长时间\n- timeout 设置为 28800 秒（8 小时），远未到期\n\n**不执行任何 registry 更新或 cron 删除。** Cron 应继续监控直到进程真正退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

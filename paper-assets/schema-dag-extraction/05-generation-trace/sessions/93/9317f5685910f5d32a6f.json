@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "9317f5685910f5d32a6f",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "paper c3 evidence hierarchy",
+  "task_key": "worker_paper_c3_evidence_hierarchy_20260522T085201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_c3_evidence_hierarchy_20260522T085201.log",
+    "occurrence": 1,
+    "bytes": 567038,
+    "sha256": "a7e0b61a7c17c743f2dae875e4aa517dddbce688865f2cc8be5817dd12e5bcf0"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 108,
+      "user": 1,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "9317f5685910f5d32a6f-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "9317f5685910f5d32a6f-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "9317f5685910f5d32a6f-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f3ee8be223d9a6884578",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval official smolvla prune k05 v2",
+  "task_key": "worker_eval_official_smolvla_prune_k05_v2_20260518T132056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_official_smolvla_prune_k05_v2_20260518T132056_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "6bddb23da484932d44d892409e47cefc17909523ceb8adcccdb8b14f4f7737d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**状态总结：**\n- `eval_official_smolvla_prune_k05_v2` 已在 westd-27271 cuda:1 上运行（tmux session，PID 136801）\n- 脚本已确认包含 normalization fix + random pruning 支持\n- Dry-run 验证通过：模型加载正常，pruning hook 注册成功（k=0.50, true_removal），前 4 个 task 全部 0% SR（符合预期）\n- 完整 eval：10 tasks x 50 episodes = 500 episodes，预计运行约 1-2 小时\n- Registry 已更新为 RUNNING，parent 设为 eval_official_smolvla_baseline\n- 日志：`~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log`\n- 结果输出：`eval_results/official_libero_object_random_prune_k05.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

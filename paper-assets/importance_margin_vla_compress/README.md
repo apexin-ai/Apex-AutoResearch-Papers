@@ -2,6 +2,12 @@
 
 Project directory: `importance_margin_vla_compress`
 
+## Browse generation traces
+
+[Visual browser](../../traces/index.html?project=importance_margin_vla_compress) · [Offline preview](../../traces/demo.html?project=importance_margin_vla_compress) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
+
+Includes 5,754 source files and 413,702 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+
 ## Asset review matrix
 
 | Requirement | Status | Organized contents and evidence | Still to verify |

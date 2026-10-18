@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "323f51efc24d4887e264",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code aria2c batch download",
+  "task_key": "worker_code_aria2c-batch-download_20260518T102414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_aria2c-batch-download_20260518T102414_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "09c922deab9f974e4ec10b85a1d892aa191c0b82a31d08f10691e7056e9b68e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载稳定运行中：\n- 当前：`1.3B-100B-GatedDeltaNet-pure` shard 1/2，193MiB/4.6GiB，**3.9 MB/s**，ETA ~19 分钟\n- 每个模型约 9.2G (2 shards)，13 个模型共 ~65G\n- 预估总耗时：**~4-5 小时**\n\n下载在 screen `download` 中运行，不占 GPU。可以随时用以下命令监控：\n```bash\nscreen -S download -X hardcopy /tmp/dl_status.txt && cat /tmp/dl_status.txt\ndu -sh /root/autodl-tmp/models_1.3b/*/\n```\n\n需要我过一会儿再检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

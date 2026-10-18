@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2bc8c7f10ec6fa7467ce",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing r4 text fixes",
+  "task_key": "worker_writing_r4_text_fixes_20260516T130055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r4_text_fixes_20260516T130055_result.json",
+    "occurrence": 1,
+    "bytes": 2343,
+    "sha256": "99d09c722050d775574bad948003816bbd4bdcfc8245b35c6ff361da7d18ed5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files pass brace balance. Here's the summary of all modifications:\n\n| 修改项 | 文件 | 变更 |\n|--------|------|------|\n| **N1** | `abstract.tex:6` | EDD 加统计限定 (Pythia p=0.001, graded support) |\n| **N2** | `generalization.tex:5-15` | §4.1 标题改为 \"Classifier Comparison and Surface-Text Ablation\"，LLM 段落 reframe 为 ablation |\n| **N2** | `discussion.tex:7` | LLM 段落同步改为 surface-text ablation 语调 |\n| **N3** | `abstract.tex:8` | \"Extending to two 7B\" → \"Preliminary cross-scale observations\" |\n| **N3** | `generalization.tex:4` | \"cross-scale generalization\" → \"preliminary cross-scale observations\" |\n| **N3** | `generalization.tex:99` | §4.4 标题改为 \"Preliminary Cross-Scale Observations\" |\n| **N3** | `generalization.tex:169-170` | §4.4 末尾加 confound 声明 (4 条) |\n| **N3** | `discussion.tex:32` | Scaling behavior 段落降级 + 加 confound 说明 |\n| **N4** | `abstract.tex:7` | \"depth signal is a property of...\" → \"preliminary evidence consistent with...\" |\n| **N4** | `section_appendix.tex:324-330` | Cross-Boundary 加 confound 讨论段 |\n| **W1** | `atlas.tex:47` | 加 \"perplexity tail statistics as a feature group dominate\" + VIF 脚注 |\n| **W1** | `discussion.tex:5` | 同步改为 \"dominant feature group\" 表述 |\n| **W2** | `discussion.tex:18` | Curation PoC 改为 \"inconclusive pilot\"，移除 positive framing |\n| **W2** | `section_appendix.tex:346` | Extended Discussion 同步降级 |\n| **W3** | `method.tex:35` | §3.2 加 BOS-seeded 限制说明 |\n| **W3** | `discussion.tex:23` | provenance toolkit 加 \"within controlled generation settings\" |\n| **W4** | `abstract.tex:7` | 66.4% 后加 \"(d1--d3 balanced accuracy: 55.4%, 1.7× chance)\" |\n| **W5** | `introduction.tex:28-30` | Contribution bullets 改为 empirical investigation 语调 |\n| **I1** | `abstract.tex` | 数字从 ~22 个精简到 6-7 个核心指标 |\n| **I2** | `method.tex:101` | 脚注加 Qwen U-shaped 说明 |\n| **I3** | `related_work.tex:8` | `yi2026_escaping_collapse` 引入 model collapse mitigation 列表 |\n| **I4** | `related_work.tex:25-27` | Mohamed et al. 扩展为 3 句，强调 depth estimation vs detection 区别 |\n| **I5** | `section_appendix.tex:223-237` | Calibration 表加 95% Wilson CI 列 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d9a1753d58d96ab26a04",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "audit westd27271 refresh 20260522T2",
+  "task_key": "worker_audit_westd27271_refresh_20260522T2_20260522T203146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_westd27271_refresh_20260522T2_20260522T203146_result.json",
+    "occurrence": 1,
+    "bytes": 2006,
+    "sha256": "af0dca8fe581a65e7d40a606eca667d200251553adcea4471fb0c7850c18d8a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计报告：westd-27271\n\n### GPU 状态\n| GPU | 显存 | 利用率 | 任务 |\n|-----|------|--------|------|\n| cuda:0 | 4.9/98 GB | 1% | X-VLA Random k=0.9 Goal — **Task 5/10** (push plate, 0% 预期) |\n| cuda:1 | 4.4/98 GB | 0% | X-VLA Random k=0.9 Spatial — **Task 6/10** (cookie box, 全 SUCCESS) |\n\n两卡均忙。tmux 链式命令：k=0.95（已完成）→ k=0.9（正在跑）→ k=0.7（自动排队）。\n\n### 预计完成时间\n- k=0.9 Goal：~25 min 剩余 → k=0.7 Goal 自动启动 (~60 min)\n- k=0.9 Spatial：~20 min 剩余 → k=0.7 Spatial 自动启动 (~60 min)\n- **全部完成预计 ~85 min**\n\n### 已收割 X-VLA 结果汇总\n\n**L2norm（从 eval_xvla_pruning_libero.py，同一 eval 管线）：**\n| k | Goal | Spatial |\n|---|------|---------|\n| 1.0 (baseline) | **98.4%** | **93.0%** |\n| 0.9 | 70.2% | 78.8% |\n| 0.7 | 53.4% | 72.0% |\n\n**Random：**\n| k | Goal | Spatial |\n|---|------|---------|\n| 0.95 | 54.0% | 70.2% |\n| 0.9 | RUNNING | RUNNING |\n| 0.7 | QUEUED | QUEUED |\n\n**Random k=0.9 中间结果（截至 Task 5-6/10）：**\n- Goal 已完成任务：T0=100%, T1=88%, T2=96%, T3=6%, T4=96%, T5=进行中(0%)\n- Spatial 已完成任务：T0=100%, T1=64%, T2=100%, T3=100%, T4=82%, T5=6%, T6=进行中(100%)\n\n### Registry 更新\n- `eval_xvla_random_k09_goal_seed42` → RUNNING\n- `eval_xvla_random_k09_spatial_seed42` → RUNNING\n- `eval_xvla_random_k07_goal_seed42` → QUEUED\n- `eval_xvla_random_k07_spatial_seed42` → QUEUED\n- 所有已完成的 L2norm 和 Random k=0.95 已在 registry 中\n\n### 部署\n**无可用 GPU**，两卡链式任务将自动完成 Random k=0.9→k=0.7 的 Goal 和 Spatial。无需人工干预。\n\n### 关键发现\nX-VLA 对 random pruning 极其敏感：仅移除 2.5/50 tokens (k=0.95) 即导致 Goal 从 98.4%→54.0%，Spatial 从 93.0%→70.2%。这与 π0.5（256+ tokens，Random k=0.95 ≈ 97.6%）形成鲜明对比，证实了 fewer-tokens-higher-sensitivity 假说。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

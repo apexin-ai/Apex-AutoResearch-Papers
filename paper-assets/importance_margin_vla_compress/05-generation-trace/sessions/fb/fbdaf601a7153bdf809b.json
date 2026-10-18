@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fbdaf601a7153bdf809b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v7 step20k check",
+  "task_key": "worker_eval_v7-step20k-check_20260515T191127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v7-step20k-check_20260515T191127_result.json",
+    "occurrence": 1,
+    "bytes": 2164,
+    "sha256": "b79724344cc8a054cca12d8a643821864e1e72892bf821d5564059f5dff73d41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## v7 Step 20K Intermediate Eval 报告\n\n### 训练趋势 (Step 16000→20000)\n- **Loss**: 在 0.002–0.088 范围内正常波动，无持续上升趋势\n- **Grad norm**: 最大 27.18 (step 20000)，远低于 50 的警戒线\n- **LR**: 4.86e-5 → 2.84e-5，cosine decay 正常\n- **Speed**: 稳定 3.2 sps\n- **结论: 训练健康，无退化迹象**\n\n### GPU 状态\n- GPU 0: 2.4GB / 96GB used (RTX PRO 6000 Black)\n- GPU 1: 2.5GB / 96GB used\n- Eval 在 GPU 0 上成功与训练并行运行\n\n### Step 20K Eval vs Step 8K 对比\n\n| 指标 | 条件 | Step 8K | Step 20K | 变化 |\n|------|------|---------|----------|------|\n| **action_loss** | clean | 0.0303 | **0.0107** | **-65%** |\n| **action_loss** | eps=0.01 | 0.0199 | **0.0120** | **-40%** |\n| **action_loss** | eps=0.05 | 0.0563 | **0.0340** | **-40%** |\n| **margin_mean** | clean | 0.540 | **1.074** | **+99%** |\n| **margin_mean** | eps=0.01 | 0.612 | **1.008** | **+65%** |\n| preservation | eps=0.01 | 0.952 | 0.913 | -4% |\n| preservation | eps=0.05 | 0.718 | 0.617 | -14% |\n| kendall_tau | eps=0.01 | 0.868 | 0.770 | -11% |\n| kendall_tau | eps=0.05 | 0.466 | 0.141 | -70% |\n| lipschitz_emp | — | 0.145 | 0.266 | +83% |\n\n### 分析\n\n**正面信号**:\n- Action loss 全面大幅下降（核心任务指标）\n- Margin 近乎翻倍，importance 区分度更强\n- Clean 条件下 preservation/kendall 保持 1.0\n\n**需关注**:\n- 高 eps 下 preservation_rate 和 kendall_tau 下降，尤其 eps=0.05 的 kendall 从 0.47 降到 0.14\n- Empirical Lipschitz 从 0.145 升到 0.266，模型对扰动更敏感\n- 但注意：此次 eval 用 max_batches=10（8K 用 50），方差更大\n\n**解读**: 模型学到了更强的 importance 区分（高 margin），但同时对输入扰动更敏感（高 Lipschitz）。核心任务性能（action_loss）持续改善，**后半程无退化**。高 eps 下的 robustness 下降可能部分是 eval 样本量差异导致，建议训练结束后用 max_batches=100 做完整评估确认。\n\n**结论: v7 训练可安全继续到 30K。** 结果已保存至 `results/eval_imm_v7_step020000_quick.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

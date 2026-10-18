@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b0f056bbd801bc5273a4",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh sdgd framework impl",
+  "task_key": "worker_ssh_sdgd-framework-impl_20260515T065822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sdgd-framework-impl_20260515T065822_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "5a19d4a294c09ef32a4c3c2e532437a0f8d5c0c6f3cea022964a9415bc4ea62c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 结果汇总\n\n**文件清单** (服务器 `/root/schema-dag-extraction/src/`):\n| 文件 | 状态 |\n|------|------|\n| `sdgd/__init__.py` | ✓ 已有 |\n| `sdgd/similarity.py` | ✓ 已有 |\n| `sdgd/graph.py` | ✓ 已有 |\n| `sdgd/decompose.py` | ✓ 已有 |\n| `sdgd/merge.py` | ✓ 已有 |\n| `sdgd/evaluate.py` | ✓ 已有 |\n| `run_sdgd_experiment.py` | ✓ 新建 |\n\n**Coloring 测试结果** (66 Few-NERD types, `type_embeddings.pt`):\n- `tau = 0.8684`\n- `n_batches = 9`\n- `batch_sizes = [19, 13, 10, 8, 5, 4, 4, 2, 1]`\n\n**CLI**: 4 种模式 `sdgd_zero | single_pass | per_type | random_batch`，支持 `--decompose_only` 仅运行分解（无 GPU）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

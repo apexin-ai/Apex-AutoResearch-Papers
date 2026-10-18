@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "ce2f358e7fef174331a0",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis a1 a2 check restart",
+  "task_key": "worker_analysis_a1-a2-check-restart_20260524T112358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1-a2-check-restart_20260524T112358.log",
+    "occurrence": 1,
+    "bytes": 1241262,
+    "sha256": "e75a684a0273ff5feabd7a875efb480d44073104e20c38ca4b86b96e2edf5207"
+  },
+  "statistics": {
+    "messages": 1101,
+    "user_turns": 1,
+    "tool_calls": 492,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 492,
+      "tool_result": 492,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1083,
+      "chunks": [
+        {
+          "path": "ce2f358e7fef174331a0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2f358e7fef174331a0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2f358e7fef174331a0-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2f358e7fef174331a0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2f358e7fef174331a0-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2f358e7fef174331a0-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2f358e7fef174331a0-part-0007.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "ce2f358e7fef174331a0-part-0007.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ]
+}

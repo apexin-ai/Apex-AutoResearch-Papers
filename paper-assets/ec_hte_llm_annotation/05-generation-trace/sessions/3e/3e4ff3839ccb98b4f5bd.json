@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "3e4ff3839ccb98b4f5bd",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 007 hb backfill",
+  "task_key": "worker_code_exp-007-hb-backfill_20260521T043502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-hb-backfill_20260521T043502_result.json",
+    "occurrence": 1,
+    "bytes": 756878,
+    "sha256": "4079462a1394063229c13ddece2ae72dfb8c833182f6b7683bd41def2de9604f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "3e4ff3839ccb98b4f5bd-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

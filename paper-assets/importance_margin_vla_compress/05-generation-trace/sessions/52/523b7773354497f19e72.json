@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "523b7773354497f19e72",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analyze eval openvla random k085 long seed42 v3",
+  "task_key": "worker_analyze_eval_openvla_random_k085_long_seed42_v3_20260526T143107",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval_openvla_random_k085_long_seed42_v3_20260526T143107_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "b5cbe86342e1422f262de35508696f2c8ae4a12c9d03dad1e08d85cdc476176c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验结果：OpenVLA Random k=0.85 Long (libero_10) seed42**\n\n**Overall SR: 45.2% (226/500)**\n\n10 tasks 各 50 episodes 全部完成，无错误。\n\n| Task | SR |\n|---|---|\n| 1. alphabet soup + tomato sauce → basket | 66.0% (33/50) |\n| 2. cream cheese + butter → basket | 56.0% (28/50) |\n| 3. stove + moka pot | 66.0% (33/50) |\n| 4. black bowl → drawer + close | 34.0% (17/50) |\n| 5. white mug left + yellow mug right | 22.0% (11/50) |\n| 6. book → caddy | 78.0% (39/50) |\n| 7. white mug plate + chocolate pudding | 20.0% (10/50) |\n| 8. alphabet soup + cream cheese → basket | 66.0% (33/50) |\n| 9. both moka pots → stove | 30.0% (15/50) |\n| 10. yellow mug → microwave + close | 14.0% (7/50) |\n\n**与已知数据点对比（Long suite）：**\n\n| 方法 | SR |\n|---|---|\n| Random k=0.9 | 46.8% |\n| **Random k=0.85** | **45.2%** |\n| Random k=0.7 | 38.8% |\n| L2norm k=0.85 | 38.8% |\n\nRandom k=0.85 比 k=0.9 仅降 1.6pp，仍显著优于 L2norm k=0.85（+6.4pp），符合预期的单调递减趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

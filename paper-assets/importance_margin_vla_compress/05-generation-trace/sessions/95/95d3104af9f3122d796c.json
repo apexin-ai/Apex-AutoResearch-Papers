@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "95d3104af9f3122d796c",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_16_1780011814.md",
+  "task_key": "loop_16_1780011814",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1780011814.md",
+    "occurrence": 1,
+    "bytes": 4403,
+    "sha256": "c4301c3c4d52c389172cf550b76ddeca9148b1b05b9ae5b072bb735386767fb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-28T23:07:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3，4 台服务器各 4 张，共 14 张（westd-27271/westd-38929/westd-41074/cqa1-33015）\n- westd-38929 cuda:1 刚 OOM kill 了 eval_pi05_l2norm_k07_long_seed46_strict_w38，重试前必须确认该卡显存已释放\n- Attn k=0.75 seed43 统一用 cqa1=52.0%，不引用 w27 数据（w27 不支持 attention scoring）\n- Random k=0.9 seed43 统一用 v2=35.0%（D292），不引用旧版 32.4%\n- metrics 格式：最终收割统一转百分比，error bar 用 sample std (n-1)（D301）\n- 实验硬截止：May 28 20:00 BJT（今天！），截止前 30min 停止新部署，全面收割\n\n### 2. 🖥️ 基础设施快照\n- **westd-38929**: /root/autodl-tmp/importance_margin_vla_compress, conda base (/root/miniconda3), HF_HOME=/root/autodl-tmp/.hf_cache\n- **westd-41074**: 同上路径结构\n- **westd-27271**: 同上（注意：不支持 attention scoring eval）\n- **cqa1-33015**: 同上路径结构，account=root\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- eval 脚本：`eval_pi05_pruning_libero.py`（π0.5）/ 类似命名（OpenVLA）\n- 活跃 cron 监控 10 个实验（reconcile 刚确认），详见§3\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化 + 收到 eval_pi05_l2norm_k07_long_seed46_strict_w38 失败回调（EXIT_CODE=137 OOM）。已派诊断 Worker（worker_diagnose_eval_pi05_l2norm_k07_long_seed46_strict_w38_20260528T070539）去 westd-38929 读日志，**尚未收到回调**。\n\n**RUNNING 实验**（10 个，cron 监控中）：\n| exp_id | 服务器 | 摘要 |\n|--------|--------|------|\n| eval_pi05_random_k095_long_seed45_strict_w38 | w38 | s45 Random k=0.95 |\n| eval_pi05_random_k07_long_seed45_strict_w38 | w38 | s45 Random k=0.7 crossover |\n| eval_pi05_attn_k07_long_seed45_strict_w41 | w41 | s45 Attn k=0.7 plateau |\n| eval_openvla_random_k095_goal_seed42_v4 | ? | OV Random k=0.95 goal |\n| eval_pi05_random_k085_long_seed46_strict_w41 | w41 | s46 Random k=0.85 |\n| eval_pi05_l2norm_k075_long_seed46_strict_w41 | w41 | s46 L2norm k=0.75 |\n| eval_pi05_attn_k085_long_seed46_strict_w38 | w38 | s46 Attn k=0.85 |\n| eval_openvla_l2norm_k095_long_seed43_w27 | w27 | OV L2norm k=0.95 |\n| eval_pi05_random_k07_long_seed46_strict_w41 | w41 | s46 Random k=0.7 |\n| eval_pi05_random_k09_long_seed46_strict_cqa1 | cqa1 | s46 Random k=0.9 peak |\n\n**等待中**：\n- 诊断 Worker 回调 → 根据结果决定是否重试 L2norm k=0.7 s46\n- 上述 10 个实验的 cron 完成回调\n- 未向 Director 汇报本次失败（等诊断结果后一并汇报）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调到达 → 若 OOM 可重试：在 w38 cuda:1（确认空闲后）重新提交 eval_pi05_l2norm_k07_long_seed46_strict_w38（重置 registry→QUEUED→submit）；若不可重试：换服务器/调参\n- 任一 s45/s46 实验完成 → 收割 metrics，更新 ROADMAP 表格，更新 report.md\n- s45 全部完成 → 汇总 4-seed 表（L2norm/Random/Attn × 6 个 k 值），更新 Importance Margin Profile 表\n- s46 3 个高 variance 点全部完成 → 计算 5-seed error bar，确认是否收窄到可接受水平\n- 接近 20:00 BJT（约 19:30）→ 停止新部署，全面收割所有已完成实验，整合数据\n- 全部闭合 → 通知 Director，Paper Agent 更新 figures\n\n### 5. 🎯 战略上下文\n- **核心结论**：VLA vision token 的 importance scoring（L2norm vs Random vs Attn）在不同 keep ratio 下表现出 inverted-U margin curve，peak margin 在 k=0.9（+46pp），crossover 在 k=0.7（margin≈0）\n- **当前阶段**：2-seed 主表已完成，正在加 s44(✅)/s45(收割中)/s46(加固中) 收窄 error bar，为 CoRL 2026 论文（May 29 截止）提供 robust 数据\n- **这次 OOM 的影响**：L2norm k=0.7 是 crossover 点（L2norm≈Random 的关键数据点），s46 是第 5 个 seed，缺了它 crossover 区的 error bar 只有 4-seed。必须重试成功\n- **易错点**：\n  - w38 上同时跑 3 个实验（k095_s45 + k07_s45 + attn_k085_s46），OOM 可能是显存竞争导致，重试时注意检查同卡是否有冲突\n  - 不要混淆 v2/v3 版本的 metrics（见 ROADMAP 数据整合注意事项）\n  - 截止时间是今天 20:00 BJT，时间极紧，诊断+重试必须在分钟级完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

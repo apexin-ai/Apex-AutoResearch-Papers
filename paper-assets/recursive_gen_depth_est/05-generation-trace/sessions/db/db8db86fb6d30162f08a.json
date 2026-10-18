@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db8db86fb6d30162f08a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops sync compile paper v2",
+  "task_key": "worker_ops_sync_compile_paper_v2_20260518T222317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_compile_paper_v2_20260518T222317_result.json",
+    "occurrence": 1,
+    "bytes": 281,
+    "sha256": "4401f07018c953fedefbf4f8a1af44995b3335c72e6820ff4385b7946114c3da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Sync & Compile Report**\n\n| Item | Result |\n|------|--------|\n| Files synced | 15/15 |\n| Compile | **PASS** |\n| Errors (`^!`) | 0 |\n| Undefined refs | 0 |\n| Overfull hbox | **0** (target: 0) |\n| Pages | 24 |\n| PDF copied | `artifacts/main.pdf` (517 KB) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

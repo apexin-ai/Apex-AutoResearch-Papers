@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9f757faf7b615487db4a",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_9_1778873248.md",
+  "task_key": "loop_9_1778873248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778873248.md",
+    "occurrence": 1,
+    "bytes": 4176,
+    "sha256": "7f27840fe48f6e40d724c9068c8bfb1776aff04def3795d75ae57199b4e11e46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T19:11:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：gpu-6000pro-2 的 cuda:0 和 cuda:1（2× RTX 6000 Pro）。禁止使用其他 GPU\n- 工作目录：`/root/autodl-tmp/recursive_gen_depth_est`（根分区空间小，大文件必须在 autodl-tmp）\n- DDL：EMNLP ARR May 25, 2026 — 剩余 **10 天**，Phase 2 写作阶段\n- feat_ablation_v1 正在跑（PID 473989），不要 kill 它——这是 feature ablation forward selection v2（4/9 cells done, olmo_temp09 running）\n- feature_ablation_9cell 是 PREPARING+failed 的僵尸条目，不要提交，是被 feat_ablation_v1 替代的旧版本\n- 三个模型 pipeline（Pythia/OLMo/GPT-2 XL）共用同一份 **Wikipedia 种子数据**——Worker 写 paper 时曾错误改成 \"OpenWebText/Dolma/WebText\"，必须保持 Wikipedia\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**gpu-6000pro-2**，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- Python 环境：需 SSH 探测确认（可能是 conda base 或 venv，上次用 miniconda3）\n- 模型/数据：所有实验数据和 results 在 `/root/autodl-tmp/recursive_gen_depth_est/results/`\n- Feature ablation 结果：`/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/`\n- 活跃进程：feat_ablation_v1 (PID 473989, gpu-6000pro-2)，cron 监控中\n- W&B：未配置（feature ablation 是 RF 实验，无 W&B tracking）\n- HF cache：应在 `/root/autodl-tmp/.hf_cache`（AutoDL 规范）\n\n### 3. 📊 当前状态\n**Phase 1 实验全部完成**（48 DONE + 1 RUNNING + 1 僵尸 PREPARING），**Phase 2 写作已启动**。\n\n**RUNNING**：\n- `feat_ablation_v1`：feature ablation 9-cell forward selection v2，4/9 cells done，olmo_temp09 正在跑。Phase 1 已完成 topk ablation、category ablation、LOGO、PCA、VIF。关键发现：var_surprisal 是 6/9 cells 的 top-1 特征；top-3 features 达到 93% full accuracy；perplexity category 单独捕获 92-99% accuracy\n\n**Worker 池**：0 running workers（Phase 2 写作尚未派 Worker）\n\n**等待中**：\n- feat_ablation_v1 cron 回调（forward selection 剩余 5/9 cells）\n- 无 Director 待决事项\n\n**实验总览**：成功 26 / 负向 3 / 失败 6 / killed 13 / 共 50\n\n### 4. 📋 待办（条件触发式）\n- feat_ablation_v1 cron 回调(DONE) → 分析 forward selection 结果 → 更新 registry notes → 汇报 Director\n- feat_ablation_v1 完成 → spawn Paper Agent Worker 开始 Phase 2 写作：纳入 N2 双 backbone 结果 + feature overlap 到 Section 5.4\n- Phase 2 写作启动 → 处理所有 Warning 级审稿修改（R1-N1 EDD公式 / W1 permutation / W3 LoRA引用 / W5 无条件生成 / W6 per-class recall / R2-N2 文献 / R2-W2 术语 / R2-W4 Limitations / R2-W6 orphan bib）\n- Paper draft 完成 → Reviewer 对抗迭代 (max 5 rounds)\n- May 23 → 最终 polish + bibliography audit → 提交 ARR\n\n### 5. 🎯 战略上下文\n- **核心 Framing (Plan A, D011)**：Atlas/EDD 为 primary contribution，DCOL 已放弃（v1-v6 全败）。论文定位为 task formalization + systematic empirical study，非 method paper\n- **3×3 矩阵 9/9 完成**：70-85% 4-class acc，最佳 GPT-2 XL temp09 85.4%\n- **EDD 叙事 (D024/D027)**：从硬阈值转向连续 AUC 衰减曲线。d3v4 三模型收敛于 AUC ~0.75，d4v5 均 <0.70。Pythia 显著 (p=0.001)，OLMo 边际 — 需按统计强度分层报告\n- **Cross-strategy 关键发现 (D028)**：temperature 的 uniform logit scaling 导致 d1v2 feature boundary inversion（AUC 低至 0.13）。Z-score normalization 不能修复（LR d1v2 AUC 反降），确认是几何级别的特征空间偏移而非 scale artifact\n- **N2 reviewer concern 已解决**：DeBERTa 58.3% / RoBERTa 59.5% 均远低于 RF 78.2%，Spearman ρ=-0.484 说明是 representation bias 非训练不足\n- **易错点**：\n  - 不要把 GC4-par (temperature parallel) 和 GC4-seq (nucleus/topk sequential) 直接对比\n  - Worker 写 method section 时会错改种子数据来源，必须审查\n  - EXIT_CODE=129 是 tmux SIGHUP，不一定是真失败——先查 results 文件完整性\n  - DCOL 已死透，不要再尝试任何变体\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

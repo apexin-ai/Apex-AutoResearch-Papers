@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f59081b081cda2f8201a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh kill dcol v5 urgent",
+  "task_key": "worker_ssh_kill_dcol_v5_urgent_20260515T034609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_dcol_v5_urgent_20260515T034609_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "587167e088801949bb9297977c23296957e56bedf7a730c04ef00ffaab911492"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**最终验证结果：**\n\n| 项目 | 状态 |\n|------|------|\n| tmux session `dcol_deberta_005` | 已终止 |\n| dcol 相关进程 | 全部清除，`ps` 无残留 |\n| **GPU 0** | 占用 6981 MiB — `extract_features.py`（olmo 任务，非 dcol） |\n| **GPU 1** | **0 MiB，完全释放** |\n\nGPU 1 已完全空闲，dcol_deberta_005 所有进程已彻底清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

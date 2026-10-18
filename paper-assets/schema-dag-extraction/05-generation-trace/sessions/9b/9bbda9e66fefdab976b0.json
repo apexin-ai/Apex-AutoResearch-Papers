@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9bbda9e66fefdab976b0",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh sdgd cal impl",
+  "task_key": "worker_ssh_sdgd-cal-impl_20260515T082408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sdgd-cal-impl_20260515T082408_result.json",
+    "occurrence": 1,
+    "bytes": 1560,
+    "sha256": "f7948d05b3e1131ba7cbd6b3aa88f83849bf79755211f06ddf262aeb8e069227"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n## 代码结构\n\n### 新文件\n- **`src/sdgd/calibrate.py`** — SDGD-cal 核心模块\n  - `build_confusion_matrix(predictions, gold_labels, type_list)` — 从 calibration 样本构建 empirical confusion matrix，基于 text overlap 匹配 gold↔pred entity\n  - `confusion_to_similarity(C, normalize='symmetric')` — 将 confusion matrix 转为 [0,1] similarity matrix，对角线=0，格式与 cosine sim 一致\n  - `run_calibration(...)` — 用 vLLM 在 calibration 样本上做 single-pass 推理，返回 `(confusion_matrix, similarity_matrix)`\n\n### 修改文件\n- **`src/sdgd/decompose.py`**\n  - `sdgd_decompose()` — 新增 `confusion_matrix_path` 支持，优先加载 `.npz` confusion-based sim matrix\n  - `sdgd_cal_extract()` — 新函数，完整 SDGD-cal pipeline：calibration → confusion → similarity → threshold → graph coloring → batched extraction → merge\n- **`src/sdgd/__init__.py`** — 导出 `sdgd_cal_extract`, `build_confusion_matrix`, `confusion_to_similarity`, `run_calibration`\n- **`src/run_sdgd_experiment.py`**\n  - `--mode sdgd_cal` 新选项\n  - `--cal_samples 100`（calibration 样本数）\n  - `--confusion_matrix_path`（跳过 calibration，加载预计算的 confusion matrix）\n\n### 验证结果\n- `build_confusion_matrix`: gold org→pred person 正确记录为 C[org][person]=1 ✓\n- `confusion_to_similarity`: symmetric normalization + rescaling 数值正确 ✓\n- 所有 import 正常，experiment runner `--help` 显示新参数 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

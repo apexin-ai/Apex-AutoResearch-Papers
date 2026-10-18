@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94185a6e605f8feb5f02",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_11_1779404941.md",
+  "task_key": "loop_11_1779404941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1779404941.md",
+    "occurrence": 1,
+    "bytes": 5041,
+    "sha256": "fe5fc319fb6594f53c1980c03b2bf255265c219b2ea77ae3259a2de76aaf8185"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-21T23:08:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-27271 (cuda:0,1), westd-38929 (cuda:0,1,2,3), westd-41074 (cuda:0,1,2,3), cqa1-33015 (cuda:0,1,2,3)，共 14 张\n- westd-41074 PID 818531 是废进程占 GPU1（10GB/0%util），ROADMAP P0 标记需 kill，但未确认是否已处理\n- OFT eval 在 Blackwell GPU 上有 SDPA numerical bug（D136），OFT 相关实验降至 P2，不要主动重启\n- eval 脚本用 `eval_openvla_l2norm_libero.py`（同时支持 random 和 l2norm mode），不是 `eval_openvla_libero.py`（旧版，seed43 系列用的）\n- M128 eval 有 LoRA adapter merge bug（291 missing + 419 unexpected keys → 0% SR），westd-27271:GPU0 上的 eval_openvla_sc_m128_object_seed42_v2 可能仍受此影响，需确认是否已修复\n\n### 2. 🖥️ 基础设施快照\n- **westd-38929**: 工作目录 `/root/autodl-tmp/importance_margin_vla_compress/`，日志 `logs/`，eval 结果 `eval_results/`。刚发生批量失败，4 张 GPU 状态待诊断 Worker 确认\n- **westd-41074**: 同上路径。GPU2=VTC M96 train (pid 68539), GPU3=VTC M64v4 train (pid 738642), GPU0=pi05 l2norm eval (pid 838823), GPU1=废进程待 kill\n- **westd-27271**: GPU0=M128 eval v2 (pid 188248, 可能 LoRA bug), GPU1=VTC M32 train (pid 921279)\n- **cqa1-33015**: GPU0=X-VLA spatial random k=0.5, GPU1=X-VLA random k=0.7 seed43, GPU2=X-VLA l2norm k=0.7 v2, GPU3=X-VLA random k=0.5 seed43。reconcile 确认全部存活\n- W&B / HF cache / conda 路径：未在本 session 确认，需 SSH 探查\n\n### 3. 📊 当前状态\n**刚做完**: 收到 westd-38929 批量失败 cron 回调，完成 session 初始化（read_registry + reconcile + report.md + ROADMAP），已派 1 个 diagnostic Worker 去 westd-38929 SSH 诊断。系统自动也派了 2 个（共 3 个 diagnostic Worker 在跑）。已向 Director 汇报批量失败。\n\n**RUNNING 实验** (registry):\n| exp_id | 服务器 | GPU | 摘要 |\n|--------|--------|-----|------|\n| train_openvla_sc_m96_seed42_v3 | westd-41074 | cuda:2 | VTC M96 训练 ~45750步 |\n| train_openvla_sc_m32_vtconly_seed42 | westd-27271 | cuda:1 | VTC M32 训练 ~44650步 |\n| train_openvla_sc_m64_seed42_v4 | westd-41074 | cuda:3 | VTC M64v4 训练 ~5400步 |\n| eval_pi05_l2norm_k05_object_seed42 | westd-41074 | cuda:0 | π0.5 L2norm k=0.5 |\n| eval_openvla_l2norm_k03_object_seed42 | westd-38929 | cuda:3 | **存疑——可能已死** |\n| eval_openvla_sc_m128_object_seed42_v2 | westd-27271 | cuda:0 | M128 eval（可能 LoRA bug） |\n| eval_xvla_random_k05_spatial_seed42 | cqa1-33015 | cuda:0 | X-VLA spatial |\n| eval_xvla_random_k07_object_seed43 | cqa1-33015 | cuda:1 | D132 multi-seed |\n| eval_xvla_l2norm_k07_object_seed42_v2 | cqa1-33015 | cuda:2 | D132 curve |\n| eval_xvla_random_k05_object_seed43 | cqa1-33015 | cuda:3 | D132 multi-seed |\n| eval_pi05_random_k05_object_seed42 | westd-41074 | ? | π0.5 random（GPU 未记录） |\n\n**等待中**:\n- 3 个 diagnostic Worker 回调（westd-38929 批量失败根因）\n- Director 对批量失败汇报的回复\n\n### 4. 📋 待办（条件触发式）\n- **diagnostic Worker 回调到** → 读根因，更新 3 个失败实验 registry（failure_reason 写具体原因），确认 eval_openvla_l2norm_k03_object_seed42 是否也死了 → 若 westd-38929 GPU 可用，立即重提 4 个 OpenVLA eval（L2norm k=0.3/0.5/0.7 + random k=0.3），这些是 D132 crossover 证据链必需数据点\n- **VTC M32/M96 训练完成** → 跑 50K gate eval（已在 ROADMAP P2）\n- **X-VLA seed43 eval 完成** → 与 seed42 对比验证 D132 non-monotonicity，若一致则 claim 可升级\n- **π0.5 eval 完成** → 确认 immune class 在 pruning 下的行为，填 7-model matrix\n- **westd-41074 GPU1 释放**（kill 废进程后）→ 安排 eval_pi05_random_k05 或其他排队实验\n- **M128 eval v2 完成** → 若仍 0% SR = LoRA bug 未修，需派 Worker fix merge 逻辑\n\n### 5. 🎯 战略上下文\n- **核心方向**: Connector type 决定 vision token compressibility。7 模型 × 3 connector families。论文 8 页 main body 已达标\n- **D132 是关键发现**: CV 不仅预测剪枝容忍度，还预测最优策略。低 CV 模型(X-VLA) random 优于 L2norm（+28pp@k=0.5），高 CV 模型 L2norm 有效。这是 paper story 的核心 claim 之一\n- **42-token cliff**: k=0.85 处存在架构性 cliff（BART encoder），L2norm 和 random 都复现，方法无关\n- **Deadline**: CoRL 2026 Abstract May 26 (5天), Paper May 29 (8天)\n- **最容易判断错的事**: \n  1. westd-38929 批量失败可能是临时性系统问题（重启即恢复）也可能是持续性问题（需换服务器）——诊断 Worker 结果决定策略\n  2. resource_usage 报 14 分配/3 在跑 是因为 GPU health 数据缺失导致 cqa1 和部分 westd-41074 实验未被识别，reconcile 确认它们实际在跑，不要误判为大面积空闲\n  3. eval_openvla_l2norm_libero.py 和 eval_openvla_libero.py 是两个不同脚本，新实验都用前者\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

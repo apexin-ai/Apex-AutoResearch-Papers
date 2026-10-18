@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "dbdcb2655282422e49cb",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis api only power betastd",
+  "task_key": "worker_analysis_api-only-power-betastd_20260524T190307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_api-only-power-betastd_20260524T190307.log",
+    "occurrence": 1,
+    "bytes": 812169,
+    "sha256": "2d87e8279e86dbd5952ea6b23d8d91b8c430863f517c9c70e3f383f1bfcb1e9e"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "dbdcb2655282422e49cb-part-0001.json",
+          "message_count": 106
+        },
+        {
+          "path": "dbdcb2655282422e49cb-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ]
+}

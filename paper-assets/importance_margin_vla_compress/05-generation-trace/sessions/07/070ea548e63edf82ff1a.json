@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "070ea548e63edf82ff1a",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose cqa1 xvla failures",
+  "task_key": "worker_diagnose_cqa1-xvla-failures_20260521T091921",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1-xvla-failures_20260521T091921_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "a1bc90f4a0a16f2abe2fd5d13a4c35a6bb89e69f0a1b17155772777784541f42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。两个实验实际上都**成功完成了**，不需要重跑。\n\n## 诊断结果\n\n### 1. eval_xvla_l2norm_k05_object_seed42 — 已完成\n- 启动: 15:27:19, 完成: 17:09:17 (101.7 min)\n- **结果: 43.4% (217/500)**, 95% CI [39.1%, 47.8%]\n- Per-task: 56%, 2%, 76%, 70%, 42%, 56%, 2%, 44%, 16%, 70%\n\n### 2. eval_xvla_random_k05_object_seed44 — 已完成\n- 启动: 15:58:59, 完成: 17:17:05 (77.8 min)\n- **结果: 69.2% (346/500)**, 95% CI [65.0%, 73.1%]\n- Per-task: 100%, 30%, 100%, 88%, 98%, 62%, 4%, 80%, 32%, 98%\n\n### 失败根因：不是实验失败，是监控误判\n两个实验今天下午都正常跑完了。监控系统报\"进程死亡\"可能是因为这些 eval 脚本**不上报 W&B 也不写 sentinel 文件**，导致 cron 检查时判定为失败。\n\n### 结果文件覆盖问题\n两个实验都写入同一文件 `xvla_prune_k0.5_libero_object.json`（脚本不带 mode/seed 后缀）。random_k05_seed44 后完成，覆盖了 l2norm 的结果。当前 JSON 里是 random seed44 的数据。**l2norm k=0.5 seed42 的结果只存在于日志文件中**，需要手动提取或修复脚本重新保存。\n\n### GPU 使用情况\n| GPU | 状态 | 占用 |\n|-----|------|------|\n| 0 | **空闲** | 1MiB |\n| 1 | **空闲** | 1MiB |\n| 2 | 运行中 | 4539MiB — `eval_xvla_l2norm_k03_object_seed42` (PID 707317) |\n| 3 | **空闲** | 1MiB |\n\n### 建议行动\n1. 从日志文件提取 l2norm k=0.5 seed42 的结果，保存为独立 JSON（如 `xvla_l2_norm_k0.5_libero_object_seed42.json`）\n2. 检查 eval 脚本的输出文件命名逻辑，加上 mode 和 seed 后缀防止再次覆盖\n3. 3 张空闲 GPU (0/1/3) 可安排新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "dbaf75b11563831d87a3",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "audit data truth maintext",
+  "task_key": "worker_audit_data-truth-maintext_20260525T194155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-truth-maintext_20260525T194155.log",
+    "occurrence": 1,
+    "bytes": 716830,
+    "sha256": "ea13343802034edabc22ce18eb56154df1a0da4ffc586d07302fd29af0036d26"
+  },
+  "statistics": {
+    "messages": 145,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "dbaf75b11563831d87a3-part-0001.json",
+          "message_count": 113
+        },
+        {
+          "path": "dbaf75b11563831d87a3-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ]
+}

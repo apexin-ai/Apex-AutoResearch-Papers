@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "280e3eeacdad3bd051e5",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "analysis gpt4o aeval gee artifact",
+  "task_key": "worker_analysis_gpt4o-aeval-gee-artifact_20260523T031251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt4o-aeval-gee-artifact_20260523T031251_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "1ce78b93c3acb1f484eacd7844549f125365e57f9b92b81bbac69ca65cda95fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "复现完成，结果与 registry 完全一致。\n\n**AlpacaEval × formality (GPT-4o)**:\n- BT: P(formal)=0.727 [0.663, 0.785], p<0.001 — **Blindspot=YES**（BT显著但Likert不显著）\n- Likert: ATE=0.012, d=0.005, Wilcoxon p=0.909, tie=66.3%\n- GEE: Style OR=4.91 [2.59, 9.31] p=1.1e-6, Orig OR=1.99 [1.05, 3.77] p=0.036, VIF=1.51\n\n**MT-Bench × formality (GPT-4o)**:\n- BT: P(formal)=0.692 [0.623, 0.760], p<0.001\n- Likert: ATE=0.192, d=0.135, Wilcoxon p=0.007\n- GEE: Style OR=2.28 [0.84, 6.20] p=0.106 (n.s.), Orig OR=6.24 [2.22, 17.51] p=5.1e-4, VIF=1.95\n\n**AlpacaEval × verbosity**: 数据不可用（所有 100 条记录的 trial1_choice/trial2_choice 均为 null，pairwise 评分未完成）。\n\nArtifact 已保存到本地和远程 `artifacts/r14_fixes/gpt4o_crossbench_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1d3c9fec550e9938668c",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "monitor westd eval progress",
+  "task_key": "worker_monitor_westd_eval_progress_20260516T233748",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_westd_eval_progress_20260516T233748_result.json",
+    "occurrence": 1,
+    "bytes": 1870,
+    "sha256": "08fc2c661db1af8f1ea9f7037aa4829ec7a969f703644b951b98b6b422b6ebf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| cuda:0 | 3558MiB / 97887MiB | 1% | IMM v2 eval (PID 455965) |\n| cuda:1 | 3702MiB / 97887MiB | 1% | Full FT seed0 libero_spatial eval (PID 452461) |\n\n### TMux Sessions\n只有 `imm_v2_eval` 一个 session。cuda:1 的 libero_spatial eval 是后台进程（非 tmux）。\n\n---\n\n### cuda:0 — IMM v2 eval (libero_object, acis_prune, 50 eps/task)\n\n**状态: 进行中 — Task 1/10, Ep 1/50**\n\n刚完成 Task 0（SR = 0/50 = 0.0%），正在跑 Task 1。启动时间 07:33，当前 07:38，Task 0 耗时约 4 分钟。\n\n预计总时间: ~40 分钟（10 tasks × 4 min/task），预计 ~08:13 完成。\n\nTask 0 全部 FAIL（都跑满 280 steps）。Task 1 第一个 ep 已 SUCCESS。\n\n---\n\n### cuda:1 — Full FT seed0 100K libero_spatial eval\n\n**状态: 进行中**\n\n命令: `eval_success_rate_libero.py --suite libero_spatial --num_episodes 50 --output eval_results/full_ft_seed0_100k_libero_spatial.json`\n\n输出文件 `full_ft_seed0_100k_libero_spatial.json` 尚未生成（未在 ls 结果中出现），正在运行。启动时间 07:32。\n\n---\n\n### 已完成的新结果文件\n\n#### `full_ft_seed0_100k_libero_object.json` (完成于 07:32)\n| Task | SR |\n|------|----|\n| alphabet soup | 4% |\n| cream cheese | 74% |\n| salad dressing | 56% |\n| bbq sauce | 68% |\n| ketchup | 54% |\n| tomato sauce | 32% |\n| butter | 68% |\n| milk | 14% |\n| chocolate pudding | 80% |\n| orange juice | 60% |\n| **Overall** | **51.0%** (CI: 46.6%–55.4%) |\n\n#### `full_ft_100k_libero_object_formal.json` (完成于 06:09)\n- Overall SR: **44.8%** (CI: 40.5%–49.2%)\n- 这是 `checkpoints/libero_full_ft_100k/checkpoint.pt`（非 seed0 版）\n\n**对比**: seed0 (51.0%) vs 原版 (44.8%)，seed0 高 ~6 个百分点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

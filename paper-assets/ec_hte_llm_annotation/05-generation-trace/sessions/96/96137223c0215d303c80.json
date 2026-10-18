@@ -1,0 +1,1608 @@
+{
+  "schema_version": "1.0",
+  "id": "96137223c0215d303c80",
+  "project": "ec_hte_llm_annotation",
+  "kind": "conversation",
+  "title": "code debiasing hurts summary",
+  "task_key": "worker_code_debiasing-hurts-summary_20260523T145836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_debiasing-hurts-summary_20260523T145836.jsonl",
+    "occurrence": 1,
+    "bytes": 65831,
+    "sha256": "5dbd8245ddc110e69768abc68160c529ef79809a679463b392e5d30261cc1dd3"
+  },
+  "statistics": {
+    "messages": 81,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "tool_call": 40,
+      "tool_result": 40,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T15:04:31.166798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv",
+              "description": "Preview exp002 bias bound data"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T15:04:31.167187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "delta_misclass,delta_cate,subgroup,z_value,analytic_bias,mc_bias,mc_bias_se,tightness_ratio\n0.0,0.0,A,0,0.0,-0.0037363400640839407,0.00246404340627477,\n0.0,0.0,A,1,-0.0,0.0018923876410683975,0.002426830740922833,\n0.0,0.0,B,0,0.0,0.004333920230851034,0.0024682308570266923,\n0.0,0.0,B,1,-0.0,-0.00235868204834078,0.00248272401349006,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T15:04:31.167357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv",
+              "description": "Preview exp002 debiasing hurts data"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T15:04:31.167491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "k_subgroups,example_name,pi_values,tau_z0,tau_z1,subgroup,z_value,bias_naive,bias_global,ratio\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,A,0,0.1,0.0571428571428571,0.5714285714285715\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,A,1,-0.1,-0.0571428571428571,0.5714285714285715\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,B,0,0.02,-0.0571428571428571,2.8571428571428568\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,B,1,-0.02,0.0571428571428571,2.8571428571428568"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T15:04:31.167614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/exp_realcm_bias_identity.csv",
+              "description": "Preview real LLM bias identity data"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T15:04:31.167737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "llm,dataset,subgroup,z,delta_tau,predicted_bias,observed_bias,se\ngpt-4o,CivilComments,S0,0,0.1,-0.0033826290933589662,-0.00627266363365102,0.002563432027346233\ngpt-4o,CivilComments,S0,1,0.1,0.0058278393760816454,0.016539234590230302,0.004810287515290609\ngpt-4o,CivilComments,S1,0,0.1,-0.006645107729130197,-0.00707447593606786,0.004082984401499374\ngpt-4o,CivilComments,S1,1,0.1,0.014125399819356966,0.01437552165335902,0.0089111722919001"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T15:04:31.167905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv",
+              "description": "Preview real LLM validation data"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T15:04:31.168040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "llm,dataset,n_expert,method,mean_abs_bias,rmse,coverage\nGemma-2-9B,TweetEval,100,naive,0.09836059696455798,0.11669798845196484,0.7875000000000001\nGemma-2-9B,TweetEval,100,global_corrected,0.11940147040811236,0.15300874266830766,0.92875\nGemma-2-9B,TweetEval,100,hb_ec_hte,0.16756770531400678,0.2520616627665732,0.9025000000000001\nGemma-2-9B,TweetEval,100,oracle_ec_hte,0.09854596487083149,0.1250981498681179,0.94"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T15:04:31.168159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/ec_hte_llm_annotation/results/exp_fl_comparison_summary.csv",
+              "description": "Preview F-L comparison data"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T15:04:31.168277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "method,mean_abs_bias,rmse,coverage,mean_se\nF-L Per-Subgroup,0.1119773208546588,0.15817564552247493,0.8375,0.09211603472759572\nF-L Scalar,0.0908657778385808,0.11612934403431932,0.85,0.08322034695468786\nGlobal (CM inv),0.06432027408159903,0.0806430248818081,0.9375,0.0724176469488324\nHB EC-HTE,0.06427077627879843,0.08584069951930953,0.9525,0.07901965473864472"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T15:04:31.168406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -30 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/kappa_stratified_analysis.md",
+              "description": "Preview kappa stratified analysis"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T15:04:31.168539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# κ Stratified Performance Analysis\n\n## 1. κ Distribution (520 Synthetic Configs)\n\nSource: `results/exp002_bias_bound.csv` — 520 configs with δ_cate > 0 (26 δ_misclass × 20 δ_cate).\n\nFor each config: π̄ = 0.15, π_A = 0.15 − δ_misclass/2, π_B = 0.15 + δ_misclass/2.\nSymmetric 2×2 confusion matrix: C_s = [[1−π_s, π_s], [π_s, 1−π_s]], κ(C_s) = 1/(1−2π_s).\nPer-config: max_s κ(C_s) = 1/(0.7 − δ_misclass).\n\n| κ bin | Range    | n_configs | %     | δ_misclass range |\n|-------|----------|-----------|-------|------------------|\n| 1     | ≤1.25    | 0         | 0.0%  | —                |\n| 2     | (1.25,2] | 420       | 80.8% | [0.00, 0.20]     |\n| 3     | (2,5]    | 100       | 19.2% | [0.21, 0.25]     |\n| 4     | (5,10]   | 0         | 0.0%  | —                |\n| 5     | >10      | 0         | 0.0%  | —                |\n\nκ range across all 520 configs: [1.429, 2.222].\n\n**Note**: Bins 1, 4, 5 are empty because π̄=0.15 sets a floor of κ=1/(1−2·0.15)=1.429.\nThe synthetic grid was designed for moderate misclassification rates (π_s ∈ [0.025, 0.275]).\n\n---\n\n## 2. Performance by κ Bin\n\n### 2A. Analytic Bias Analysis (520 Synthetic Configs)\n\nEC-HTE uses per-subgroup confusion matrices → analytically unbiased (bias = 0) for all κ."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T15:04:31.168703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv && echo \"---\" && head -1 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv",
+              "description": "Count rows in debiasing hurts"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T15:04:31.168844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv\n---\nk_subgroups,example_name,pi_values,tau_z0,tau_z1,subgroup,z_value,bias_naive,bias_global,ratio"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T15:04:31.168968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv && echo \"---\" && head -1 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv",
+              "description": "Count rows in bias bound"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T15:04:31.169083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2185 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv\n---\ndelta_misclass,delta_cate,subgroup,z_value,analytic_bias,mc_bias,mc_bias_se,tightness_ratio"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T15:04:31.169194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp_realcm_bias_identity.csv && echo \"---\" && head -1 /home/ubuntu/ec_hte_llm_annotation/results/exp_realcm_bias_identity.csv",
+              "description": "Count rows in realcm bias identity"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T15:04:31.169315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "441 /home/ubuntu/ec_hte_llm_annotation/results/exp_realcm_bias_identity.csv\n---\nllm,dataset,subgroup,z,delta_tau,predicted_bias,observed_bias,se"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T15:04:31.169427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv && echo \"---\" && head -1 /home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv && echo \"---\" && cut -d',' -f4 /home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv | sort -u",
+              "description": "Count and inspect validation data"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T15:04:31.169542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "157 /home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv\n---\nllm,dataset,n_expert,method,mean_abs_bias,rmse,coverage\n---\nglobal_corrected\nhb_ec_hte\nmethod\nnaive\noracle_ec_hte"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T15:04:31.169651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp_fl_comparison_summary.csv && cat /home/ubuntu/ec_hte_llm_annotation/results/exp_fl_comparison_summary.csv",
+              "description": "Full F-L comparison data"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T15:04:31.169765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7 /home/ubuntu/ec_hte_llm_annotation/results/exp_fl_comparison_summary.csv\nmethod,mean_abs_bias,rmse,coverage,mean_se\nF-L Per-Subgroup,0.1119773208546588,0.15817564552247493,0.8375,0.09211603472759572\nF-L Scalar,0.0908657778385808,0.11612934403431932,0.85,0.08322034695468786\nGlobal (CM inv),0.06432027408159903,0.0806430248818081,0.9375,0.0724176469488324\nHB EC-HTE,0.06427077627879843,0.08584069951930953,0.9525,0.07901965473864472\nNaive,0.06205581774146367,0.0766514453427854,0.8575,0.057942003913304084\nOracle,0.04540897989104595,0.05615697247347616,0.9425,0.056462535331301106"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T15:04:31.169948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -20 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv | column -t -s','",
+              "description": "Inspect exp002 bias bound data structure"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T15:04:31.170069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv | column -t -s','",
+              "description": "Full debiasing hurts data"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T15:04:31.170197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "delta_misclass  delta_cate  subgroup  z_value  analytic_bias  mc_bias                  mc_bias_se             tightness_ratio\n0.0             0.0         A         0        0.0            -0.0037363400640839407   0.00246404340627477    \n0.0             0.0         A         1        -0.0           0.0018923876410683975    0.002426830740922833   \n0.0             0.0         B         0        0.0            0.004333920230851034     0.0024682308570266923  \n0.0             0.0         B         1        -0.0           -0.00235868204834078     0.00248272401349006    \n0.0             0.025       A         0        0.0            -0.0025570799162762787   0.002517424838459963   \n0.0             0.025       A         1        -0.0           -0.003436946511211173    0.0025377076467012014  \n0.0             0.025       B         0        0.0            0.0014870087516374482    0.0023952273337157033  \n0.0             0.025       B         1        -0.0           0.0004088365536445468    0.0024446128487949216  \n0.0             0.05        A         0        0.0            0.0008105694735568052    0.0025109914239363974  \n0.0             0.05        A         1        -0.0           0.0026197443119294864    0.002455015275707552   \n0.0             0.05        B         0        0.0            -0.0025889092228723043   0.0024814475610151704  \n0.0             0.05        B         1        -0.0           0.0018136696494903649    0.002429024590732176   \n0.0             0.075       A         0        0.0            -0.00023692356607939158  0.002381936058946489   \n0.0             0.075       A         1        -0.0           -0.0011261703253379965   0.0024934458871635006  \n0.0             0.075       B         0        0.0            -5.901586032979611e-05   0.0024933712034239295  \n0.0             0.075       B         1        -0.0           -0.0007042760968194842   0.0025460101086302667  \n0.0             0.1         A         0        0.0            0.00626764742924115      0.002476673\n…[truncated 232 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T15:04:31.170342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -20 /home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv | column -t -s','",
+              "description": "Inspect validation data structure"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T15:04:31.170472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "k_subgroups  example_name  pi_values           tau_z0             tau_z1            subgroup             z_value  bias_naive  bias_global  ratio                                                              \n2            extreme_k2    \"[0.25              0.05]\"             0.1               0.5                  A        0           0.1          0.0571428571428571   0.5714285714285715                            \n2            extreme_k2    \"[0.25              0.05]\"             0.1               0.5                  A        1           -0.1         -0.0571428571428571  0.5714285714285715                            \n2            extreme_k2    \"[0.25              0.05]\"             0.1               0.5                  B        0           0.02         -0.0571428571428571  2.8571428571428568                            \n2            extreme_k2    \"[0.25              0.05]\"             0.1               0.5                  B        1           -0.02        0.0571428571428571   2.8571428571428568                            \n4            base_k4       \"[np.float64(0.25)   np.float64(0.15)   np.float64(0.1)   np.float64(0.05)]\"  0.1      0.5         0            0                    0.1                    0.06206896551724138    0.6206896551724137\n4            base_k4       \"[np.float64(0.25)   np.float64(0.15)   np.float64(0.1)   np.float64(0.05)]\"  0.1      0.5         0            1                    -0.1                   -0.06206896551724138   0.6206896551724137\n4            base_k4       \"[np.float64(0.25)   np.float64(0.15)   np.float64(0.1)   np.float64(0.05)]\"  0.1      0.5         1            0                    0.06                   0.006896551724137923   0.11494252873563206\n4            base_k4       \"[np.float64(0.25)   np.float64(0.15)   np.float64(0.1)   np.float64(0.05)]\"  0.1      0.5         1            1                    -0.06                  -0.006896551724137923  0.11494252873563206\n4            base_k4       \"[np.float64(0.25)   np.float64(0.15\n…[truncated 834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T15:04:31.170615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "llm           dataset    n_expert  method            mean_abs_bias        rmse                 coverage\nGemma-2-9B    TweetEval  100       naive             0.09836059696455798  0.11669798845196484  0.7875000000000001\nGemma-2-9B    TweetEval  100       global_corrected  0.11940147040811236  0.15300874266830766  0.92875\nGemma-2-9B    TweetEval  100       hb_ec_hte         0.16756770531400678  0.2520616627665732   0.9025000000000001\nGemma-2-9B    TweetEval  100       oracle_ec_hte     0.09854596487083149  0.1250981498681179   0.94\nGemma-2-9B    TweetEval  250       naive             0.09836059696455798  0.11669798845196484  0.7875000000000001\nGemma-2-9B    TweetEval  250       global_corrected  0.11112335604136024  0.1406085415603356   0.9400000000000001\nGemma-2-9B    TweetEval  250       hb_ec_hte         0.11845418183074566  0.15381001505197334  0.9299999999999999\nGemma-2-9B    TweetEval  250       oracle_ec_hte     0.09854596487083149  0.1250981498681179   0.94\nGemma-2-9B    TweetEval  500       naive             0.09836059696455798  0.11669798845196484  0.7875000000000001\nGemma-2-9B    TweetEval  500       global_corrected  0.10816020129343693  0.13679623923960263  0.93875\nGemma-2-9B    TweetEval  500       hb_ec_hte         0.10696787942731036  0.13775809038793196  0.9375\nGemma-2-9B    TweetEval  500       oracle_ec_hte     0.09854596487083149  0.1250981498681179   0.94\nLlama-3.1-8B  TweetEval  100       naive             0.09721038397176755  0.1162806713503423   0.81375\nLlama-3.1-8B  TweetEval  100       global_corrected  0.1290520165914677   0.16571765946226602  0.9325\nLlama-3.1-8B  TweetEval  100       hb_ec_hte         0.18667912944060677  0.2749017046557778   0.91125\nLlama-3.1-8B  TweetEval  100       oracle_ec_hte     0.10541935733594256  0.1318656172951948   0.9524999999999999\nLlama-3.1-8B  TweetEval  250       naive             0.09721038397176755  0.1162806713503423   0.81375\nLlama-3.1-8B  TweetEval  250       global_corrected  0.11711181423689082  0.147\n…[truncated 126 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T15:04:31.170942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find exp002 bias analysis code",
+              "prompt": "In /home/ubuntu/ec_hte_llm_annotation/, find the code that generates:\n1. results/exp002_bias_bound.csv - what does `analytic_bias` column represent? Is it naive estimator bias or global correction bias?\n2. results/exp002_debiasing_hurts.csv - how is this generated from the bias_bound data?\n\nSearch for files that write these CSVs. Look in scripts/, notebooks/, src/ etc. I need to understand whether exp002_bias_bound.csv has enough info to compute naive vs global bias comparison, or if it only has one estimator's bias. Search breadth: medium."
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T15:04:31.171169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/ec_hte_llm_annotation -type f -name \"*.py\" -o -name \"*.ipynb\" | head -20"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T15:04:31.171312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py\n/home/ubuntu/ec_hte_llm_annotation/exp037_calibration.py\n/home/ubuntu/ec_hte_llm_annotation/exp027b_cf_oracle_k2.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/plot_applicability_frontier.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/cross_llm_heatmap.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/fig1_bias_mechanism.py\n/home/ubuntu/ec_hte_llm_annotation/exp015_semi_real_cm.py\n/home/ubuntu/ec_hte_llm_annotation/compute_fl_for_table1.py\n/home/ubuntu/ec_hte_llm_annotation/exp033_k8_adaptive.py\n/home/ubuntu/ec_hte_llm_annotation/exp004_hate_speech.py\n/home/ubuntu/ec_hte_llm_annotation/exp017_rlearner.py\n/home/ubuntu/ec_hte_llm_annotation/exp031_confounded_dgp.py\n/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py\n/home/ubuntu/ec_hte_llm_annotation/exp035_asymmetric_cm.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/utils.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/impl.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/_staggered.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/__init__.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/types.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T15:04:31.171452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/ec_hte_llm_annotation/results/exp_realcm_bias_identity.csv | python3 -c \"\nimport pandas as pd, sys\ndf = pd.read_csv(sys.stdin)\nprint('Shape:', df.shape)\nprint('Columns:', list(df.columns))\nprint('LLMs:', df['llm'].unique())\nprint('Datasets:', df['dataset'].unique())\nprint('delta_tau:', df['delta_tau'].unique())\nprint()\nprint(df.head(10).to_string())\n\"",
+              "description": "Inspect realcm bias identity data"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T15:04:31.171586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp002_bias_bound\\.csv",
+              "path": "/home/ubuntu/ec_hte_llm_annotation"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T15:04:31.171710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp002_debiasing_hurts\\.csv",
+              "path": "/home/ubuntu/ec_hte_llm_annotation"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T15:04:31.171913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 3 files\nsign_reversal_analysis.py\nresults/exp002_run.log\nexp002_bias_bound.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T15:04:31.172167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 2 files\nresults/exp002_run.log\nexp002_bias_bound.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T15:04:31.172322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp002_bias_bound.py"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T15:04:31.172526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\texp002_bias_bound.py — Formal Bias Bound Verification (exp-002)\n3\t\n4\tVerifies the exact identity under A1-A4:\n5\t  bias_global(z=0, s) = +δ_s · Δτ / (1 - 2π̄)\n6\t  bias_global(z=1, s) = -δ_s · Δτ / (1 - 2π̄)\n7\t\n8\twhere δ_s = π_s - π̄, Δτ = τ(Z=1) - τ(Z=0).\n9\t\n10\tParts:\n11\t  1. Derivation (see results/exp002_derivation.md)\n12\t  2. K=2 systematic parameter grid validation\n13\t  3. \"Debiasing can hurt\" analysis\n14\t  4. K=4 extension\n15\t\"\"\"\n16\t\n17\timport numpy as np\n18\timport pandas as pd\n19\timport time\n20\timport os\n21\t\n22\tN = 5000\n23\tN_MC = 1000\n24\tBASE_MISCLASS = 0.15\n25\tTAU_Z0 = 0.1\n26\tRESULTS_DIR = 'results'\n27\tos.makedirs(RESULTS_DIR, exist_ok=True)\n28\t\n29\t\n30\t# ============================================================\n31\t# Analytic formulas (exact under A1-A4)\n32\t# ============================================================\n33\t\n34\tdef analytic_bias_global(pi_s, pi_bar, delta_tau):\n35\t    \"\"\"bias[z=0] = +δ_s·Δτ/(1-2π̄), bias[z=1] = -δ_s·Δτ/(1-2π̄).\"\"\"\n36\t    delta_s = pi_s - pi_bar\n37\t    denom = 1.0 - 2.0 * pi_bar\n38\t    if abs(denom) < 1e-12:\n39\t        return 0.0, 0.0\n40\t    b = delta_s * delta_tau / denom\n41\t    return b, -b\n42\t\n43\t\n44\tdef analytic_bias_naive(pi_s, delta_tau):\n45\t    \"\"\"bias[z=0] = +π_s·Δτ, bias[z=1] = -π_s·Δτ.\"\"\"\n46\t    return pi_s * delta_tau, -pi_s * delta_tau\n47\t\n48\t\n49\tdef bias_ratio(pi_s, pi_bar):\n50\t    \"\"\"Ratio |bias_global|/|bias_naive| (independent of Δτ).\"\"\"\n51\t    denom = (1.0 - 2.0 * pi_bar) * pi_s\n52\t    if abs(denom) < 1e-12:\n53\t        return np.nan\n54\t    return abs(pi_s - pi_bar) / denom\n55\t\n56\t\n57\t# ============================================================\n58\t# MC simulation — vectorized K=2\n59\t# ============================================================\n60\t\n61\tdef mc_simulate_k2(pi_A, pi_B, tau_z0, tau_z1, n, n_mc, seed=0):\n62\t    \"\"\"Run n_mc Monte Carlo simulations with known global confusion matrix.\"\"\"\n63\t    pi_bar = 0.5 * (pi_A + pi_B)\n64\t    denom = 1.0 - 2.0 * pi_bar\n65\t    M_inv = np.array([[1 - pi_bar, \n…[truncated 21701 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T15:04:31.172697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp002*.py"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T15:04:31.172836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp002_bias_bound.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T15:04:31.172971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lh /home/ubuntu/ec_hte_llm_annotation/results/exp002* 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T15:04:31.173228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 201K May 20 20:51 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv\n-rw-r--r-- 1 ubuntu ubuntu  32K May 20 20:51 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_heatmap.csv\n-rw-r--r-- 1 ubuntu ubuntu 1.6K May 20 20:53 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv\n-rw-r--r-- 1 ubuntu ubuntu 5.9K May 20 20:17 /home/ubuntu/ec_hte_llm_annotation/results/exp002_derivation.md\n-rw-r--r-- 1 ubuntu ubuntu  40K May 20 20:53 /home/ubuntu/ec_hte_llm_annotation/results/exp002_k4_validation.csv\n-rw-r--r-- 1 ubuntu ubuntu 3.8K May 20 20:53 /home/ubuntu/ec_hte_llm_annotation/results/exp002_run.log"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T15:04:31.173392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -3 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T15:04:31.173510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "delta_misclass,delta_cate,subgroup,z_value,analytic_bias,mc_bias,mc_bias_se,tightness_ratio\n0.0,0.0,A,0,0.0,-0.0037363400640839407,0.00246404340627477,\n0.0,0.0,A,1,-0.0,0.0018923876410683975,0.002426830740922833,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T15:04:31.173634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -3 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T15:04:31.173746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "k_subgroups,example_name,pi_values,tau_z0,tau_z1,subgroup,z_value,bias_naive,bias_global,ratio\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,A,0,0.1,0.0571428571428571,0.5714285714285715\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,A,1,-0.1,-0.0571428571428571,0.5714285714285715"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T15:04:31.173888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/sign_reversal_analysis.py"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T15:04:31.174062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tSign-Reversal Analysis: Extract cases where global correction flips bias sign,\n3\tand generate a 3-panel academic figure.\n4\t\"\"\"\n5\t\n6\timport numpy as np\n7\timport pandas as pd\n8\timport matplotlib\n9\tmatplotlib.use('Agg')\n10\timport matplotlib.pyplot as plt\n11\tfrom matplotlib.ticker import AutoMinorLocator\n12\timport os\n13\t\n14\tRESULTS_DIR = 'results'\n15\tARTIFACTS_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts'\n16\tos.makedirs(ARTIFACTS_DIR, exist_ok=True)\n17\t\n18\tBASE_MISCLASS = 0.15\n19\tTAU_Z0 = 0.1\n20\t\n21\t# ============================================================\n22\t# Step 1: Synthetic data sign-reversal extraction\n23\t# ============================================================\n24\t\n25\tdf = pd.read_csv(f'{RESULTS_DIR}/exp002_bias_bound.csv')\n26\t\n27\t# Compute naive bias for each row\n28\t# pi_A = 0.15 + dm/2, pi_B = 0.15 - dm/2\n29\t# bias_naive(z=0) = +pi_s * dc, bias_naive(z=1) = -pi_s * dc\n30\tdf['pi_s'] = np.where(\n31\t    df['subgroup'] == 'A',\n32\t    BASE_MISCLASS + df['delta_misclass'] / 2.0,\n33\t    BASE_MISCLASS - df['delta_misclass'] / 2.0\n34\t)\n35\tdf['bias_naive'] = np.where(\n36\t    df['z_value'] == 0,\n37\t    df['pi_s'] * df['delta_cate'],\n38\t    -df['pi_s'] * df['delta_cate']\n39\t)\n40\tdf['bias_global'] = df['analytic_bias']\n41\t\n42\t# True CATE for each row\n43\tdf['true_cate'] = np.where(df['z_value'] == 0, TAU_Z0, TAU_Z0 + df['delta_cate'])\n44\t\n45\t# Sign reversal: naive and global bias have opposite signs (exclude both-zero)\n46\tnonzero = (df['bias_naive'].abs() > 1e-12) & (df['bias_global'].abs() > 1e-12)\n47\tdf['sign_flip'] = nonzero & (np.sign(df['bias_naive']) != np.sign(df['bias_global']))\n48\tdf['sign_flip_magnitude'] = np.where(df['sign_flip'], (df['bias_naive'] - df['bias_global']).abs(), 0.0)\n49\t\n50\tn_total = nonzero.sum()\n51\tn_flip = df['sign_flip'].sum()\n52\tn_configs = len(df[['delta_misclass', 'delta_cate']].drop_duplicates())\n53\tflip_pct = n_flip / n_total * 100 if n_total > 0 else 0\n54\t\n55\tprint(f\"Total \n…[truncated 15468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T15:04:31.174228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -10 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv | tail -8"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T15:04:31.174354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0.0,0.0,A,1,-0.0,0.0018923876410683975,0.002426830740922833,\n0.0,0.0,B,0,0.0,0.004333920230851034,0.0024682308570266923,\n0.0,0.0,B,1,-0.0,-0.00235868204834078,0.00248272401349006,\n0.0,0.025,A,0,0.0,-0.0025570799162762787,0.002517424838459963,\n0.0,0.025,A,1,-0.0,-0.003436946511211173,0.0025377076467012014,\n0.0,0.025,B,0,0.0,0.0014870087516374482,0.0023952273337157033,\n0.0,0.025,B,1,-0.0,0.0004088365536445468,0.0024446128487949216,\n0.0,0.05,A,0,0.0,0.0008105694735568052,0.0025109914239363974,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T15:04:31.174492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T15:04:31.174609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  2185 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv\n    13 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv\n  2198 total"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T15:04:31.174729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/exp002_derivation.md"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T15:04:31.174895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Formal Bias Bound Derivation (exp-002)\n2\t\n3\t## Assumptions\n4\t\n5\t- **(A1)** Known confusion matrix (not estimated from data)\n6\t- **(A2)** Symmetric misclassification per subgroup: P(Ẑ=1|Z=0,S=s) = P(Ẑ=0|Z=1,S=s) = π_s\n7\t- **(A3)** Balanced effect modifier: P(Z=0) = P(Z=1) = 0.5\n8\t- **(A4)** Known subgroup weights w_s with Σ_s w_s = 1\n9\t\n10\t## Step 1: Subgroup Confusion Matrix\n11\t\n12\tUnder A2, the confusion matrix for subgroup s (rows = true Z, cols = Ẑ):\n13\t\n14\t```\n15\tC_s = [[1 - π_s,  π_s    ],\n16\t       [π_s,      1 - π_s ]]\n17\t```\n18\t\n19\twhere C_s[z, ẑ] = P(Ẑ = ẑ | Z = z, S = s).\n20\t\n21\t## Step 2: Mixing Matrix\n22\t\n23\tThe mixing matrix M_s[ẑ, z] = P(Z = z | Ẑ = ẑ, S = s).\n24\t\n25\tBy Bayes' rule:\n26\t\n27\t```\n28\tP(Z=z | Ẑ=ẑ, S=s) = P(Ẑ=ẑ | Z=z, S=s) · P(Z=z) / P(Ẑ=ẑ | S=s)\n29\t```\n30\t\n31\tUnder A3, P(Z=z) = 0.5 for z ∈ {0,1}. The marginal:\n32\t\n33\t```\n34\tP(Ẑ=ẑ | S=s) = Σ_z P(Ẑ=ẑ | Z=z, S=s) · P(Z=z)\n35\t             = 0.5 · [C_s[0,ẑ] + C_s[1,ẑ]]\n36\t```\n37\t\n38\tFor ẑ=0: P(Ẑ=0|S=s) = 0.5·[(1-π_s) + π_s] = 0.5\n39\tFor ẑ=1: P(Ẑ=1|S=s) = 0.5·[π_s + (1-π_s)] = 0.5\n40\t\n41\tTherefore:\n42\t\n43\t```\n44\tM_s[ẑ, z] = C_s[z, ẑ] · 0.5 / 0.5 = C_s[z, ẑ]\n45\t```\n46\t\n47\tSince C_s is symmetric under A2:\n48\t\n49\t```\n50\tM_s = [[1 - π_s,  π_s    ],\n51\t       [π_s,      1 - π_s ]]\n52\t```\n53\t\n54\t## Step 3: Global Confusion/Mixing Matrix\n55\t\n56\tThe global confusion matrix is the weight-averaged subgroup matrix:\n57\t\n58\t```\n59\tC_global = Σ_s w_s · C_s\n60\t```\n61\t\n62\tUnder A2, each C_s has the same symmetric structure, so:\n63\t\n64\t```\n65\tC_global = [[1 - π̄,  π̄    ],\n66\t            [π̄,      1 - π̄ ]]\n67\t```\n68\t\n69\twhere **π̄ = Σ_s w_s · π_s** is the weighted average misclassification rate.\n70\t\n71\tBy the same Bayes' rule argument: M_global = C_global (under A2+A3).\n72\t\n73\t## Step 4: Observed CATE Under Misclassification\n74\t\n75\tThe observed CATE in subgroup s, conditioning on Ẑ:\n76\t\n77\t```\n78\tτ_obs(Ẑ=ẑ, S=s) = E[Y(1) - Y(0) | Ẑ=ẑ, S=s]\n79\t                 = Σ_z P(Z=z | Ẑ=ẑ, S=s) · τ(Z=z)\n80\t             \n…[truncated 4345 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T15:04:31.175063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -5 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T15:04:31.175192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -5 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T15:04:31.175308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,1,1,-0.06,-0.006896551724137923,0.11494252873563206\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,2,0,0.04000000000000001,-0.020689655172413796,0.5172413793103449\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,2,1,-0.04000000000000001,0.020689655172413796,0.5172413793103449\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,3,0,0.020000000000000004,-0.048275862068965524,2.413793103448276\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,3,1,-0.020000000000000004,0.048275862068965524,2.413793103448276"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T15:04:31.175423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0.25,0.475,B,1,0.0848214285714286,0.08579757535805496,0.0023869536239870303,1.0115082568528582\n0.25,0.5,A,0,0.08928571428571429,0.09308627726451098,0.0024199028320792742,1.042566305362523\n0.25,0.5,A,1,-0.08928571428571429,-0.09268058390287817,0.002461985349328366,1.0380225397122356\n0.25,0.5,B,0,-0.08928571428571432,-0.09384657181771552,0.00246944118194608,1.0510816043584135\n0.25,0.5,B,1,0.08928571428571432,0.09371657712124132,0.0024235583147952516,1.0496256637579024"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T15:04:31.175594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information I need. Let me create a comprehensive summary.\n\n## Summary: Understanding exp002_bias_bound.csv and exp002_debiasing_hurts.csv\n\n### 1. **exp002_bias_bound.csv** - What `analytic_bias` Represents\n\nThe `analytic_bias` column in **exp002_bias_bound.csv** represents **global-corrected bias**, NOT naive estimator bias. \n\n**Specifically:**\n- It stores the **global correction bias** defined as: `bias_global(z, s) = δ_s · Δτ / (1 - 2π̄)`\n  - Where: δ_s = π_s - π̄ (subgroup's deviation from mean misclassification)\n  - Δτ = τ(Z=1) - τ(Z=0) (treatment effect heterogeneity)\n  - π̄ = weighted average misclassification rate\n  \n- This is computed analytically from the formula in lines 34-41 of exp002_bias_bound.py (the `analytic_bias_global()` function)\n\n**File structure (2185 rows):**\n- Columns: `delta_misclass, delta_cate, subgroup, z_value, analytic_bias, mc_bias, mc_bias_se, tightness_ratio`\n- Each row represents one (parameter configuration, subgroup, Z-value) point from a K=2 grid sweep\n- `delta_misclass`: controls π_A and π_B (deviation from base 0.15 misclass rate)\n- `delta_cate`: controls Δτ (τ(Z=1) = 0.1 + delta_cate)\n- Rows cover all combinations with delta_misclass ∈ [0, 0.25] (step 0.01) and delta_cate ∈ [0, 0.525] (step 0.025)\n\n---\n\n### 2. **exp002_debiasing_hurts.csv** - How It's Generated\n\n**exp002_debiasing_hurts.csv** contains **constructive examples** of when global correction increases bias magnitude (|bias_global| > |bias_naive|), NOT derived computations from bias_bound.csv.\n\n**Generation process (lines 261-346):**\n1. Analytically computes the **ratio condition**: `|δ_s| / (1 - 2π̄) > π_s` \n   - This determines when debiasing hurts for each subgroup\n2. Creates a **heatmap of these boolean conditions** and saves to exp002_bias_heatmap.csv (which has `debiasing_hurts_A` and `debiasing_hurts_B` flags)\n3. Constructs **two concrete examples**:\n   - **K=2 extreme example**: π_A=0.25, π_B=0.05, τ(0)=0.1, τ(1)=0.5\n   - **K=4 \n…[truncated 1868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Agent",
+            "elapsed_ms": 4
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T15:04:31.175748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shape: (440, 8)\nColumns: ['llm', 'dataset', 'subgroup', 'z', 'delta_tau', 'predicted_bias', 'observed_bias', 'se']\nLLMs: <ArrowStringArray>\n[       'gpt-4o',   'gpt-4o-mini', 'gpt-3.5-turbo',       'gpt-4.1',\n   'gpt-4-turbo',    'Gemma-2-9B',    'Mistral-7B',    'Qwen2.5-7B']\nLength: 8, dtype: str\nDatasets: <ArrowStringArray>\n['CivilComments', 'TweetEval']\nLength: 2, dtype: str\ndelta_tau: [0.1 0.2 0.3 0.4 0.5]\n\n      llm        dataset subgroup  z  delta_tau  predicted_bias  observed_bias        se\n0  gpt-4o  CivilComments       S0  0        0.1       -0.003383      -0.006273  0.002563\n1  gpt-4o  CivilComments       S0  1        0.1        0.005828       0.016539  0.004810\n2  gpt-4o  CivilComments       S1  0        0.1       -0.006645      -0.007074  0.004083\n3  gpt-4o  CivilComments       S1  1        0.1        0.014125       0.014376  0.008911\n4  gpt-4o  CivilComments       S2  0        0.1        0.002655       0.003952  0.002752\n5  gpt-4o  CivilComments       S2  1        0.1       -0.001964      -0.004992  0.005748\n6  gpt-4o  CivilComments       S3  0        0.1        0.007258       0.010254  0.003759\n7  gpt-4o  CivilComments       S3  1        0.1       -0.019849      -0.029671  0.007872\n8  gpt-4o  CivilComments       S0  0        0.2       -0.006765      -0.006666  0.002433\n9  gpt-4o  CivilComments       S0  1        0.2        0.011656       0.010483  0.004318"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 4
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T15:04:31.176051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/ 2>/dev/null | head -5",
+              "description": "Check artifacts directory"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T15:04:31.176188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\ncross_llm_heatmap.pdf\ncross_llm_heatmap.png\ncross_llm_heatmap_report.txt\ncross_llm_rank_corr_heatmap.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T15:04:31.176310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\n# Check the sign convention in exp002_bias_bound\ndf = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv')\n# For delta_misclass=0, analytic_bias should be 0 (no heterogeneity in misclass)\nprint('When delta_misclass=0 and delta_cate>0:')\nprint(df[(df.delta_misclass==0) & (df.delta_cate==0.1)][['subgroup','z_value','analytic_bias']].to_string())\nprint()\n# For delta_misclass>0 and delta_cate>0, there should be non-zero global bias\nprint('When delta_misclass=0.1 and delta_cate=0.1:')\nprint(df[(df.delta_misclass==0.1) & (df.delta_cate==0.1)][['subgroup','z_value','analytic_bias']].to_string())\nprint()\nprint('When delta_misclass=0.2 and delta_cate=0.5:')\nprint(df[(df.delta_misclass==0.2) & (df.delta_cate==0.5)][['subgroup','z_value','analytic_bias']].to_string())\n\"",
+              "description": "Verify bias formula conventions"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T15:04:31.176436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "When delta_misclass=0 and delta_cate>0:\n   subgroup  z_value  analytic_bias\n16        A        0            0.0\n17        A        1           -0.0\n18        B        0            0.0\n19        B        1           -0.0\n\nWhen delta_misclass=0.1 and delta_cate=0.1:\n    subgroup  z_value  analytic_bias\n856        A        0       0.007143\n857        A        1      -0.007143\n858        B        0      -0.007143\n859        B        1       0.007143\n\nWhen delta_misclass=0.2 and delta_cate=0.5:\n     subgroup  z_value  analytic_bias\n1760        A        0       0.071429\n1761        A        1      -0.071429\n1762        B        0      -0.071429\n1763        B        1       0.071429"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T15:04:31.176662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/ec_hte_llm_annotation/scripts/debiasing_hurts_summary.py",
+              "content": "\"\"\"\nDebiasing Hurts: Panoramic Summary\nCompute proportion of cases where global correction worsens bias, across all data sources.\n\"\"\"\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\nfrom pathlib import Path\n\nRESULTS = Path(\"/home/ubuntu/ec_hte_llm_annotation/results\")\nARTIFACTS = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts\")\nARTIFACTS.mkdir(parents=True, exist_ok=True)\n\nBASE_MISCLASS = 0.15\n\n# ── Source 1: exp002 Synthetic Full Grid ──────────────────────────────────────\n\ndef analyze_exp002_full():\n    df = pd.read_csv(RESULTS / \"exp002_bias_bound.csv\")\n\n    # Reconstruct naive bias\n    # pi_A = BASE + delta_misclass/2, pi_B = BASE - delta_misclass/2\n    pi_s = np.where(df.subgroup == \"A\",\n                    BASE_MISCLASS + df.delta_misclass / 2,\n                    BASE_MISCLASS - df.delta_misclass / 2)\n\n    # bias_naive(z=0) = +pi_s * delta_cate, bias_naive(z=1) = -pi_s * delta_cate\n    sign = np.where(df.z_value == 0, 1.0, -1.0)\n    df[\"bias_naive\"] = sign * pi_s * df.delta_cate\n    df[\"bias_global\"] = df.analytic_bias\n\n    # Exclude trivial cases where both biases are exactly 0\n    nontrivial = (df.bias_naive.abs() > 1e-15) | (df.bias_global.abs() > 1e-15)\n    df_nt = df[nontrivial].copy()\n\n    total = len(df_nt)\n    hurts = (df_nt.bias_global.abs() > df_nt.bias_naive.abs()).sum()\n    severe = (df_nt.bias_global.abs() > 2 * df_nt.bias_naive.abs()).sum()\n\n    # Worst case ratio\n    safe = df_nt.bias_naive.abs() > 1e-15\n    ratios = df_nt.loc[safe, \"bias_global\"].abs() / df_nt.loc[safe, \"bias_naive\"].abs()\n    worst = ratios.max() if len(ratios) > 0 else np.nan\n\n    return {\n        \"source\": \"Synthetic (exp002 grid)\",\n        \"total\": total,\n        \"helps\": total - hurts,\n        \"hurts\": hurts,\n        \"severe_hurts\": severe,\n        \"hurts_pct\": 100 * hurts / total if total > 0 else 0,\n        \"severe_hurts_pct\": 100 * severe / total if total > 0 else 0,\n        \"worst_ratio\": worst,\n    }\n\n\n# ── Source 2: exp002 Debiasing Hurts Examples ─────────────────────────────────\n\ndef analyze_exp002_examples():\n    df = pd.read_csv(RESULTS / \"exp002_debiasing_hurts.csv\")\n\n    total = len(df)\n    hurts = (df.bias_global.abs() > df.bias_naive.abs()).sum()\n    severe = (df.bias_global.abs() > 2 * df.bias_naive.abs()).sum()\n\n    safe = df.bias_naive.abs() > 1e-15\n    ratios = df.loc[safe, \"bias_global\"].abs() / df.loc[safe, \"bias_naive\"].abs()\n    worst = ratios.max() if len(ratios) > 0 else np.nan\n\n    return {\n        \"source\": \"Synthetic (extreme examples)\",\n        \"total\": total,\n        \"helps\": total - hurts,\n        \"hurts\": hurts,\n        \"severe_hurts\": severe,\n        \"hurts_pct\": 100 * hurts / total if total > 0 else 0,\n        \"severe_hurts_pct\": 100 * severe / total if total > 0 else 0,\n        \"worst_ratio\": worst,\n    }\n\n\n# ── Source 3: Real LLM Validation ────────────────────────────────────────────\n\ndef analyze_real_validation():\n    df = pd.read_csv(RESULTS / \"exp_real_cm_validation.csv\")\n\n    naive = df[df.method == \"naive\"][[\"llm\", \"dataset\", \"n_expert\", \"mean_abs_bias\"]].rename(\n        columns={\"mean_abs_bias\": \"bias_naive\"})\n    globl = df[df.method == \"global_corrected\"][[\"llm\", \"dataset\", \"n_expert\", \"mean_abs_bias\"]].rename(\n        columns={\"mean_abs_bias\": \"bias_global\"})\n\n    merged = naive.merge(globl, on=[\"llm\", \"dataset\", \"n_expert\"])\n\n    total = len(merged)\n    hurts = (merged.bias_global > merged.bias_naive).sum()\n    severe = (merged.bias_global > 2 * merged.bias_naive).sum()\n\n    safe = merged.bias_naive > 1e-15\n    ratios = merged.loc[safe, \"bias_global\"] / merged.loc[safe, \"bias_naive\"]\n    worst = ratios.max() if len(ratios) > 0 else np.nan\n\n    return {\n        \"source\": \"Real LLM (MC validation)\",\n        \"total\": total,\n        \"helps\": total - hurts,\n        \"hurts\": hurts,\n        \"severe_hurts\": severe,\n        \"hurts_pct\": 100 * hurts / total if total > 0 else 0,\n        \"severe_hurts_pct\": 100 * severe / total if total > 0 else 0,\n        \"worst_ratio\": worst,\n    }\n\n\n# ── Source 4: F-L Comparison ─────────────────────────────────────────────────\n\ndef analyze_fl_comparison():\n    df = pd.read_csv(RESULTS / \"exp_fl_comparison_summary.csv\")\n\n    naive_bias = df.loc[df.method == \"Naive\", \"mean_abs_bias\"].values[0]\n    global_bias = df.loc[df.method == \"Global (CM inv)\", \"mean_abs_bias\"].values[0]\n\n    hurts = 1 if global_bias > naive_bias else 0\n    severe = 1 if global_bias > 2 * naive_bias else 0\n\n    return {\n        \"source\": \"F-L comparison\",\n        \"total\": 1,\n        \"helps\": 1 - hurts,\n        \"hurts\": hurts,\n        \"severe_hurts\": severe,\n        \"hurts_pct\": 100.0 * hurts,\n        \"severe_hurts_pct\": 100.0 * severe,\n        \"worst_ratio\": global_bias / naive_bias if naive_bias > 1e-15 else np.nan,\n    }\n\n\n# ── Main ─────────────────────────────────────────────────────────────────────\n\nresults = []\nfor fn in [analyze_exp002_full, analyze_exp002_examples, analyze_real_validation, analyze_fl_comparison]:\n    try:\n        r = fn()\n        results.append(r)\n        print(f\"✓ {r['source']}: {r['total']} pairs, hurts={r['hurts']} ({r['hurts_pct']:.1f}%), \"\n              f\"severe={r['severe_hurts']} ({r['severe_hurts_pct']:.1f}%), worst_ratio={r['worst_ratio']:.2f}\")\n    except Exception as e:\n        print(f\"✗ {fn.__name__}: {e}\")\n\nsummary_df = pd.DataFrame(results)\n\n# Grand total\ngt_total = summary_df.total.sum()\ngt_hurts = summary_df.hurts.sum()\ngt_severe = summary_df.severe_hurts.sum()\ngt_helps = summary_df.helps.sum()\n\nprint(f\"\\n{'='*70}\")\nprint(f\"GRAND TOTAL: {gt_total} subgroup-configuration pairs\")\nprint(f\"  Global correction HELPS:         {gt_helps} ({100*gt_helps/gt_total:.1f}%)\")\nprint(f\"  Global correction HURTS:          {gt_hurts} ({100*gt_hurts/gt_total:.1f}%)\")\nprint(f\"  Severely hurts (>2× bias):        {gt_severe} ({100*gt_severe/gt_total:.1f}%)\")\nprint(f\"{'='*70}\")\n\n# ── Save CSV ─────────────────────────────────────────────────────────────────\n\nout_cols = [\"source\", \"total\", \"helps\", \"hurts\", \"severe_hurts\", \"hurts_pct\", \"severe_hurts_pct\", \"worst_ratio\"]\nsummary_df[out_cols].to_csv(ARTIFACTS / \"debiasing_hurts_summary.csv\", index=False)\nprint(f\"\\nCSV saved: {ARTIFACTS / 'debiasing_hurts_summary.csv'}\")\n\n# ── Visualization ────────────────────────────────────────────────────────────\n\nmpl.rcParams.update({\n    \"font.size\": 13,\n    \"font.family\": \"sans-serif\",\n    \"axes.spines.top\": False,\n    \"axes.spines.right\": False,\n    \"figure.facecolor\": \"white\",\n    \"axes.facecolor\": \"white\",\n    \"savefig.facecolor\": \"white\",\n    \"savefig.bbox\": \"tight\",\n    \"savefig.dpi\": 300,\n})\n\nfig, ax = plt.subplots(figsize=(10, 5.5))\n\nsources = summary_df.source.tolist()\nn = len(sources)\ny = np.arange(n)\nbar_h = 0.6\n\nhelps_pct = 100 * summary_df.helps / summary_df.total\nhurts_pct = 100 * summary_df.hurts / summary_df.total - 100 * summary_df.severe_hurts / summary_df.total\nsevere_pct = 100 * summary_df.severe_hurts / summary_df.total\n\nc_helps = \"#4CAF50\"\nc_hurts = \"#FF9800\"\nc_severe = \"#F44336\"\n\nbars_h = ax.barh(y, helps_pct, bar_h, label=\"Helps (|bias| decreases)\", color=c_helps, edgecolor=\"white\", linewidth=0.5)\nbars_m = ax.barh(y, hurts_pct, bar_h, left=helps_pct, label=\"Hurts (|bias| increases)\", color=c_hurts, edgecolor=\"white\", linewidth=0.5)\nbars_s = ax.barh(y, severe_pct, bar_h, left=helps_pct + hurts_pct, label=\"Severely hurts (>2× |bias|)\", color=c_severe, edgecolor=\"white\", linewidth=0.5)\n\n# Percentage labels on bars\nfor i in range(n):\n    total_i = summary_df.total.iloc[i]\n\n    # Helps label\n    hp = helps_pct.iloc[i]\n    if hp > 8:\n        ax.text(hp / 2, y[i], f\"{hp:.0f}%\", ha=\"center\", va=\"center\", color=\"white\", fontweight=\"bold\", fontsize=11)\n\n    # Hurts label\n    hup = hurts_pct.iloc[i]\n    if hup > 8:\n        ax.text(hp + hup / 2, y[i], f\"{hup:.0f}%\", ha=\"center\", va=\"center\", color=\"white\", fontweight=\"bold\", fontsize=11)\n\n    # Severe label\n    sp = severe_pct.iloc[i]\n    if sp > 8:\n        ax.text(hp + hup + sp / 2, y[i], f\"{sp:.0f}%\", ha=\"center\", va=\"center\", color=\"white\", fontweight=\"bold\", fontsize=11)\n\n    # N on the right\n    ax.text(101, y[i], f\"n={total_i}\", ha=\"left\", va=\"center\", fontsize=10, color=\"#555\")\n\nax.set_yticks(y)\nax.set_yticklabels(sources, fontsize=12)\nax.set_xlabel(\"Proportion (%)\", fontsize=13)\nax.set_xlim(0, 115)\nax.set_ylim(-0.5, n - 0.5)\nax.invert_yaxis()\n\nax.legend(loc=\"lower right\", fontsize=10, framealpha=0.9, edgecolor=\"#ccc\")\n\n# Grand total title\nax.set_title(\n    f\"When Does Global Correction Hurt?\\n\"\n    f\"Across {gt_total:,} pairs: hurts in {100*gt_hurts/gt_total:.1f}% of cases, \"\n    f\"severely (>2×) in {100*gt_severe/gt_total:.1f}%\",\n    fontsize=14, fontweight=\"bold\", pad=15\n)\n\nplt.tight_layout()\nfig.savefig(ARTIFACTS / \"debiasing_hurts_summary.pdf\")\nfig.savefig(ARTIFACTS / \"debiasing_hurts_summary.png\")\nprint(f\"Figure saved: {ARTIFACTS / 'debiasing_hurts_summary.pdf'}\")\nprint(f\"Figure saved: {ARTIFACTS / 'debiasing_hurts_summary.png'}\")\nplt.close()\n"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T15:04:31.176964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/ec_hte_llm_annotation/scripts/debiasing_hurts_summary.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T15:04:31.177101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 scripts/debiasing_hurts_summary.py",
+              "description": "Run debiasing hurts summary analysis"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T15:04:31.177233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "✓ Synthetic (exp002 grid): 2080 pairs, hurts=520 (25.0%), severe=320 (15.4%), worst_ratio=7.14\n✓ Synthetic (extreme examples): 12 pairs, hurts=4 (33.3%), severe=4 (33.3%), worst_ratio=2.86\n✓ Real LLM (MC validation): 39 pairs, hurts=39 (100.0%), severe=0 (0.0%), worst_ratio=1.45\n✓ F-L comparison: 1 pairs, hurts=1 (100.0%), severe=0 (0.0%), worst_ratio=1.04\n\n======================================================================\nGRAND TOTAL: 2132 subgroup-configuration pairs\n  Global correction HELPS:         1568 (73.5%)\n  Global correction HURTS:          564 (26.5%)\n  Severely hurts (>2× bias):        324 (15.2%)\n======================================================================\n\nCSV saved: /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.csv\nFigure saved: /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.pdf\nFigure saved: /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T15:04:31.177400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('/home/ubuntu/ec_hte_llm_annotation/results/exp_real_cm_validation.csv')\nnaive = df[df.method=='naive'][['llm','dataset','n_expert','mean_abs_bias']].rename(columns={'mean_abs_bias':'naive'})\nglobl = df[df.method=='global_corrected'][['llm','dataset','n_expert','mean_abs_bias']].rename(columns={'mean_abs_bias':'global'})\nm = naive.merge(globl, on=['llm','dataset','n_expert'])\nm['ratio'] = m['global'] / m['naive']\nm['hurts'] = m['global'] > m['naive']\nprint(m[['llm','dataset','n_expert','naive','global','ratio','hurts']].to_string())\nprint(f'\\nAll hurts: {m.hurts.all()}, count: {m.hurts.sum()}/{len(m)}')\nprint(f'Mean ratio: {m.ratio.mean():.3f}')\n\"",
+              "description": "Verify real LLM validation details"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T15:04:31.177531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.png"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T15:04:31.177675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "              llm        dataset  n_expert     naive    global     ratio  hurts\n0      Gemma-2-9B      TweetEval       100  0.098361  0.119401  1.213916   True\n1      Gemma-2-9B      TweetEval       250  0.098361  0.111123  1.129755   True\n2      Gemma-2-9B      TweetEval       500  0.098361  0.108160  1.099629   True\n3    Llama-3.1-8B      TweetEval       100  0.097210  0.129052  1.327554   True\n4    Llama-3.1-8B      TweetEval       250  0.097210  0.117112  1.204725   True\n5    Llama-3.1-8B      TweetEval       500  0.097210  0.115319  1.186284   True\n6      Mistral-7B      TweetEval       100  0.090261  0.111559  1.235956   True\n7      Mistral-7B      TweetEval       250  0.090261  0.105101  1.164407   True\n8      Mistral-7B      TweetEval       500  0.090261  0.103543  1.147148   True\n9      Qwen2.5-7B      TweetEval       100  0.089905  0.109115  1.213671   True\n10     Qwen2.5-7B      TweetEval       250  0.089905  0.102489  1.139968   True\n11     Qwen2.5-7B      TweetEval       500  0.089905  0.101249  1.126174   True\n12  gpt-3.5-turbo  CivilComments       100  0.118220  0.163589  1.383762   True\n13  gpt-3.5-turbo  CivilComments       250  0.118220  0.149912  1.268074   True\n14  gpt-3.5-turbo  CivilComments       500  0.118220  0.145244  1.228588   True\n15  gpt-3.5-turbo      TweetEval       100  0.088862  0.109725  1.234770   True\n16  gpt-3.5-turbo      TweetEval       250  0.088862  0.103454  1.164205   True\n17  gpt-3.5-turbo      TweetEval       500  0.088862  0.102185  1.149925   True\n18    gpt-4-turbo      TweetEval       100  0.100861  0.127980  1.268878   True\n19    gpt-4-turbo      TweetEval       250  0.100861  0.116274  1.152818   True\n20    gpt-4-turbo      TweetEval       500  0.100861  0.116058  1.150678   True\n21        gpt-4.1      TweetEval       100  0.099759  0.126979  1.272863   True\n22        gpt-4.1      TweetEval       250  0.099759  0.116435  1.167167   True\n23        gpt-4.1      TweetEval       500  0.099759  0.114291  1.145668   True\n\n…[truncated 1248 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T15:04:31.178202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T15:04:31.178404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.csv | column -t -s','",
+              "description": "View final summary CSV"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T15:04:31.178540+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "source                        total  helps  hurts  severe_hurts  hurts_pct           severe_hurts_pct    worst_ratio\nSynthetic (exp002 grid)       2080   1560   520    320           25.0                15.384615384615385  7.142857142857148\nSynthetic (extreme examples)  12     8      4      4             33.333333333333336  33.333333333333336  2.857142857142855\nReal LLM (MC validation)      39     0      39     0             100.0               0.0                 1.4535634717454298\nF-L comparison                1      0      1      0             100.0               0.0                 1.036490637341523"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T15:04:31.178667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T15:04:31.178785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T15:04:31.178931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "debiasing_hurts_summary",
+              "type": "chart",
+              "description": "Panoramic summary of when global correction worsens bias across all data sources (synthetic grid, extreme examples, real LLM validation, F-L comparison). Stacked bar chart showing helps/hurts/severely-hurts proportions. Grand total: 26.5% hurts, 15.2% severely hurts across 2132 pairs.",
+              "project": "ec_hte_llm_annotation",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.png",
+              "tags": "['debiasing', 'bias', 'global-correction', 'summary']"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T15:04:31.179077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_ba1eae\\\", \\\"name\\\": \\\"debiasing_hurts_summary\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Panoramic summary of when global correction worsens bias across all data sources (synthetic grid, extreme examples, real LLM validation, F-L comparison). Stacked bar chart showing helps/hurts/severely-hurts proportions. Grand total: 26.5% hurts, 15.2% severely hurts across 2132 pairs.\\\", \\\"path\\\": \\\"projects/ec_hte_llm_annotation/artifacts/_project/chart/debiasing_hurts_summary.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"ec_hte_llm_annotation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T15:04:14.811450+00:00\\\", \\\"tags\\\": [\\\"debiasing\\\", \\\"bias\\\", \\\"global-correction\\\", \\\"summary\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T15:04:31.179203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "debiasing_hurts_summary_csv",
+              "type": "data",
+              "description": "Per-source breakdown of debiasing hurts statistics: total pairs, helps/hurts/severe counts and percentages, worst ratio. 4 data sources.",
+              "project": "ec_hte_llm_annotation",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/debiasing_hurts_summary.csv",
+              "tags": "['debiasing', 'bias', 'global-correction', 'summary']"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T15:04:31.179340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_65cede\\\", \\\"name\\\": \\\"debiasing_hurts_summary_csv\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Per-source breakdown of debiasing hurts statistics: total pairs, helps/hurts/severe counts and percentages, worst ratio. 4 data sources.\\\", \\\"path\\\": \\\"projects/ec_hte_llm_annotation/artifacts/_project/data/debiasing_hurts_summary.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"ec_hte_llm_annotation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T15:04:17.640050+00:00\\\", \\\"tags\\\": [\\\"debiasing\\\", \\\"bias\\\", \\\"global-correction\\\", \\\"summary\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T15:04:31.179509+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results\n\n**Grand Total: Across 2,132 subgroup-configuration pairs, global correction increases |bias| in 26.5% of cases; in 15.2% the increase exceeds 2×.**\n\n### Per-source breakdown:\n\n| Data Source | N | Hurts (%) | Severely Hurts (%) | Worst Ratio |\n|---|---|---|---|---|\n| **Synthetic (exp002 grid)** | 2,080 | 520 (25.0%) | 320 (15.4%) | 7.14× |\n| **Synthetic (extreme examples)** | 12 | 4 (33.3%) | 4 (33.3%) | 2.86× |\n| **Real LLM (MC validation)** | 39 | 39 (100%) | 0 (0%) | 1.45× |\n| **F-L comparison** | 1 | 1 (100%) | 0 (0%) | 1.04× |\n\nKey findings:\n- **Synthetic data**: 1 in 4 subgroup-config pairs is hurt by global correction; the worst case inflates bias by 7×\n- **Real LLM data**: global correction hurts in **100% of 39 LLM×dataset×n_expert configurations** (mean ratio 1.20×) — no severe cases, but universally worse than naive\n- The `exp_realcm_bias_identity.csv` was skipped for this analysis because it only contains predicted/observed bias of the global corrected estimator without a naive baseline for direct comparison\n\nOutputs:\n- `artifacts/debiasing_hurts_summary.pdf` + `.png`\n- `artifacts/debiasing_hurts_summary.csv`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_debiasing-hurts-summary_20260523T145836"
+          },
+          "id": "event-000081"
+        }
+      ],
+      "message_count": 81
+    }
+  ]
+}

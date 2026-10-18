@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "634fca5c15db09464a5a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis fractional logit v2",
+  "task_key": "worker_analysis_fractional-logit-v2_20260523T193141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fractional-logit-v2_20260523T193141_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "8860cdcacb0a927e343421a2c41eef1705a04c36e3348763cf0480f323504b6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "V2 fractional logit rerun complete.\n\n**Results:**\n- **Direction concordance: 98.6%** (V1 was 93.1%) — improved after V2 bug fix\n- Only **1 direction flip** remains: K7 `arc_challenge × score_manipulation` for `eta_max` (frac_logit negative, OLS positive)\n- **K_eff direction: 36/36 perfect concordance** across all K values and conditions\n- Basic fractional logit sig counts are lower than OLS (conservative z-scored predictors), but robust HC1 variant closely matches OLS significance\n\nSaved to `docs/paper/data/fractional_logit_corrected.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

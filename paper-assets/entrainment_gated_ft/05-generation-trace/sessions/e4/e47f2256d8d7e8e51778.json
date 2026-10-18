@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e47f2256d8d7e8e51778",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp 011 check and analyze",
+  "task_key": "worker_analysis_exp-011-check-and-analyze_20260519T150016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-011-check-and-analyze_20260519T150016_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "a0ff9d81e8cd655618fcdf972375704ad625a0aa1d4fea90677e59b04b5ce808"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-011 仍在运行。**\n\n进度：**4/16** 模型已完成，第 5 个正在评估中。\n\n已完成的 4 个全是 GatedDeltaNet 系列：\n- pure (22:31)\n- hybrid-24-1 (22:42)  \n- hybrid-12-1 (22:49)\n- hybrid-6-1 (22:56)\n\n当前正在跑第 5 个模型（GatedDeltaNet-hybrid-3-1），处于 tokenizing/loglikelihood 阶段。每个模型约 7-10 分钟，剩余 12 个模型预计还需 ~90 分钟（约 UTC 00:30 完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

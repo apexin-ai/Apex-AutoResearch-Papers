@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "65bbeb3a2b27b36830b8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing discussion and s54 expansion",
+  "task_key": "worker_writing_discussion-and-s54-expansion_20260515T200231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_discussion-and-s54-expansion_20260515T200231_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "731dcb3f3189120f01a95f96db8eb8cacf200add65063567c114085a0768b466"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No other files reference `sec:discussion` or `sec:conclusion` — labels are clean.\n\nSummary of changes:\n\n**`discussion.tex`** — expanded from 2 lines to full §6 Discussion + §7 Conclusion (~450 words):\n- §6.1 Implications: depth-graduated curation (cites dsir2023, qurating2024, sugiyama2007), feature evolution tracking collapse dynamics (cites shumailov2024_nature, marchi2024_heat_death), provenance toolkit positioning (cites kirchenbauer2023_watermark, uchendu2020_attribution)\n- §7 Conclusion: task definition summary, dual-layer signal structure, key numbers (69.6–85.4%, EDD=4, cross-model 66.4%, cross-strategy 59.1%), future work (wild-data, 7B+, cross-domain, cites pudasaini2026_detection_fails)\n\n**`generalization.tex` §5.4** — enhanced with:\n- Table 6 (`tab:e2e_detail`): per-backbone F1 breakdown (DeBERTa 58.3%±4.7, RoBERTa 59.5%±3.2, RF d2 recall 0.596)\n- \"Feature space divergence\" paragraph: negative Spearman correlations (DeBERTa ρ=−0.484, RoBERTa ρ=−0.456), zero top-5 overlap, both backbones converge to same anti-correlated subspace\n- Fixed `\\textsc` → `\\texttt` for feature names\n\n**`conclusion.tex`** — unchanged; already covers all 5 required Limitations points (cross-strategy constraint, controlled setting, reference model circularity, feature domain fragility via Pudasaini, EDD monotonicity via Bakshi)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

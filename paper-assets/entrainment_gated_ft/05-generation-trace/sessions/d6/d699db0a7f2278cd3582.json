@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d699db0a7f2278cd3582",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis copa rho recompute",
+  "task_key": "worker_analysis_copa-rho-recompute_20260519T170027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_copa-rho-recompute_20260519T170027_result.json",
+    "occurrence": 1,
+    "bytes": 1692,
+    "sha256": "acea8f6e774dbc6c31180e33b4aefc8db30f50f9b9c5979efebfc5c5e6604916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。汇总：\n\n---\n\n### 完整结果\n\n**COPA Accuracy 矩阵：**\n\n| Config | Attn Ratio | GDN | RetNet | HGRN2 | Transformer | cross-arch σ |\n|--------|-----------|-----|--------|-------|-------------|-------------|\n| pure | 0.000 | 0.79 | 0.74 | 0.80 | 0.77 | 0.02625 |\n| h24-1 | 0.040 | 0.75 | 0.79 | 0.77 | 0.77 | 0.01633 |\n| h12-1 | 0.077 | 0.80 | 0.76 | 0.79 | 0.77 | 0.01700 |\n| h6-1 | 0.143 | 0.75 | 0.76 | 0.79 | 0.77 | 0.01700 |\n| h3-1 | 0.250 | 0.78 | 0.79 | 0.78 | 0.77 | 0.00471 |\n\n**Cross-arch σ 序列:** [0.02625, 0.01633, 0.01700, 0.01700, 0.00471]\n\n**Spearman ρ = -0.6669, exact permutation p = 0.2667** (two-tailed, n=5, 120 permutations)\n\n### 哪个数据源是错的\n\n| 数据源 | ρ | p | 正确？ |\n|--------|---|---|--------|\n| **Registry (exp-011)** | -0.667 | 0.267 | **正确** |\n| **Summary JSON** | +0.300 | 0.683 | **错误** |\n| 重算结果 | -0.667 | 0.267 | 基准 |\n\n### Bug 根因\n\n`xstorycloze_convergence_analysis.py` 第 ~108 行硬编码了 COPA 占位值：\n```python\ncopa_supp = {\"rho\": 0.3, \"raw_p\": 0.6833}  # placeholder\n```\n这是 **HellaSwag 的值**被误用为 COPA placeholder，从未被实际计算替换。\n\n### 修复内容\n\n1. **`all_benchmark_convergence_summary.json`** — `copa_supplementary` 已从 `{rho: 0.3, p: 0.683}` 修正为 `{rho: -0.6669, p: 0.2667}`\n2. **`xstorycloze_convergence_analysis.py`** — 硬编码占位值已替换为从 exp011 原始 JSON 实时计算 COPA Spearman ρ 的代码\n3. **`convergence_table.csv`** — 无需修改，已是正确值 (ρ=-0.67, p=0.2667)\n4. **Registry (exp-011)** — 无需修改，已是正确值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

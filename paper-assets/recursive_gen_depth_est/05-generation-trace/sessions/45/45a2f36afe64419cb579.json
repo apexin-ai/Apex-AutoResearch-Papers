@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "45a2f36afe64419cb579",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops cpu inference benchmark",
+  "task_key": "worker_ops_cpu_inference_benchmark_20260519T032144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cpu_inference_benchmark_20260519T032144_result.json",
+    "occurrence": 1,
+    "bytes": 1921,
+    "sha256": "821046fc7494d10363cb980d3bdccdb758a1570ea954541e335dd982f7859630"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收齐。汇总如下：\n\n---\n\n## CPU Inference Benchmark 结果\n\n### 1. 硬件\n\n| 项目 | 值 |\n|---|---|\n| CPU | Intel Xeon Platinum 8470Q × 2 |\n| 物理核心 | 104 (52/socket) |\n| 逻辑线程 | 208 |\n| GPU 状态 | cuda:0 被 14B 训练占满 (64.6GB), cuda:1 空闲 |\n\n### 2. Benchmark 结果（Pythia-1.4B, float32, CPU only, seq_len=512）\n\n| Threads | Batch Size | Per-sample (s) | 5000 samples 外推 |\n|---------|-----------|---------------|-------------------|\n| 16 | 1 | 0.981 | **81.8 min** |\n| 16 | 8 | 1.213 | 101.1 min |\n| **32** | **8** | **0.563** | **46.9 min** |\n| 64 | 8 | 1.327 | 110.6 min |\n| 104 | 8 | 1.251 | 104.2 min |\n| 64 | 16 | 0.957 | 79.7 min |\n| 104 | 16 | 0.735 | 61.2 min |\n\n### 3. 关键发现\n\n- **最优配置**：32 threads, bs=8 → 每样本 0.563s → 5000 samples ≈ **47 分钟**\n- 超过 32 线程后因 NUMA 跨 socket 竞争反而变慢（64/104 线程 bs=8 比 32 线程慢 2x+）\n- 大 batch (16) 在高线程数下可以部分补偿，但仍然 >60 min\n\n### 4. 论文 \"2 分钟\" 声明评估\n\n**严重不准确。** 即使在 104 核 Xeon 服务器上最优配置，5000×512 的 CPU 推理需要 **~47 分钟**，是声称值的 ~25 倍。\n\n\"2 分钟\"很可能是 GPU 上的实际时间（`extract_features.py` 默认用 `cuda:1` + float16 + bs=16）。\n\n### 5. 建议修正\n\n论文中应改为以下之一：\n- **方案 A**（推荐）：删除 \"requires no GPU\" 的表述，改为 \"Feature extraction takes ~2 minutes on a single GPU (Pythia-1.4B forward pass)\" — 诚实反映实际使用场景\n- **方案 B**：如果坚持宣传 CPU 可用性，改为 \"Feature extraction can run on CPU without GPU, taking approximately 45-80 minutes on a server-grade CPU (Intel Xeon, 32 threads) for 5,000 passages\"\n- **方案 C**：同时给出两个数字 \"~2 min on GPU / ~50 min on CPU\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

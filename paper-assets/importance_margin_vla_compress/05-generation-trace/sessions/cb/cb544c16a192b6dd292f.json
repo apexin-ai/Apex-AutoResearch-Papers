@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "cb544c16a192b6dd292f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy fill cqa1 idle gpus",
+  "task_key": "worker_deploy_fill_cqa1_idle_gpus_20260528T110757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_fill_cqa1_idle_gpus_20260528T110757_result.json",
+    "occurrence": 1,
+    "bytes": 815535,
+    "sha256": "c501f1efcb7e728bdf89de188be4b22833f9e3d323ae4a7b4f1bff7d9d11e2ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cb544c16a192b6dd292f-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "194905111f7a0ce7be42",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260521T004826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260521T004826_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "119465510457677f1848743cab5060b077571306d76c4b949f854116b214010f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `docs/paper/sections/related_work.tex`。两段内容：\n\n1. **Counterfactual Approaches to Judge Bias**: 定位 RATE 的 Likert ATE 依赖为其核心弱点（受 Likert Blindspot 影响），列出 CSD 与 RATE 的三点差异（per-axis targeting, pairwise comparison, NLI entailment gate）；Qiu et al. 的 persona-level vs style-axis-level 区分和 Bradley-Terry vs sign test 差异。\n\n2. **Measurement Sensitivity in NLG Evaluation**: 从 Thurstone 1927 的心理测量学基础出发，经 Kiritchenko & Mohammad 2017 和 Novikova et al. 2018 的 NLP 验证，到指定的定位句（量化 magnitude + binarized Likert diagnostic isolates mechanism）。\n\n末尾保留 TODO 注释标记后续扩展 Style Bias Detection 和 Multi-Feature Decomposition 段落。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

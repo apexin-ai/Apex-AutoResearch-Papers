@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "06bc4cbda2b5062a7d61",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "transfer scp figures to local",
+  "task_key": "worker_transfer_scp_figures_to_local_20260514T074635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_transfer_scp_figures_to_local_20260514T074635_result.json",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "8d3db8e8da91b225fa08a90b9a605755a56219080360beb66562431b99070fff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。6 个图表文件已从 westd-37397 拷贝到本地 `artifacts/figures/`，文件格式验证通过（3 个 PDF、3 个 PNG），`manifest.yaml` 已创建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

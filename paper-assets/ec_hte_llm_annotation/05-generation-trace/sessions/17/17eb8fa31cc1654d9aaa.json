@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17eb8fa31cc1654d9aaa",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 026 low budget hb v2",
+  "task_key": "worker_code_exp-026-low-budget-hb-v2_20260522T132122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-026-low-budget-hb-v2_20260522T132122_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "f8cc14877f4fd7b82d7d59c565065045917d697b5644d1e118afe5cfe7bfe0de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Script completed in ~3.5 minutes, 0 errors, 360 rows output.\n\n**Key findings:**\n\n- **K=2**: HB shows clear advantage at n_expert=50 (+16.1% RMSE reduction). At n_expert=25 HB is slightly worse (-4.9%), likely because even Gibbs can't overcome extreme data scarcity with only ~6 labels per subgroup-cell. At n_expert≥75, both converge.\n\n- **K=4**: HB underperforms MLE at very low budgets (n_expert=25,50) — with 4 subgroups the per-cell counts are ~3-6, causing even Gibbs posteriors to be dominated by the prior. At n_expert≥75, HB consistently beats MLE (+1-4% RMSE), confirming the shrinkage benefit in the moderate-data regime.\n\n- **Coverage**: Both methods maintain ≥0.88 across the board. No catastrophic blowups (MLE RMSE stays under 1.0).\n\n- **Notable**: At very low budgets, `global_corrected` (pooled CM) actually outperforms both MLE and HB, suggesting that when per-subgroup data is near-zero, pooling all subgroups is the better strategy."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

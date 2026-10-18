@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0cd9e54b30df344086c0",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check exp012 llama fewrel ch2 alive",
+  "task_key": "worker_check_exp012_llama_fewrel_ch2_alive_20260515T223520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp012_llama_fewrel_ch2_alive_20260515T223520_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "e4ec0ed0e9994d707c1bf0d209c95be447e1a966f160e17a294680a08fed2b5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**进程已结束，实验正常完成。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 330872 / 330198 | 已退出（ps 返回 exit code 1，进程不存在） |\n| 退出码 | **0**（正常退出），时间 2026-05-15T21:47:41Z（UTC） |\n| GPU | RTX PRO 6000 Black (98GB) 空闲，0% 利用率，无进程占用 |\n| 日志最后写入 | 2026-05-16 05:47（服务器本地时间），最后一行 `EXIT_CODE=0` |\n| 产出目录 | 5 个文件已生成，包括 `eval_exp2.json`(100KB)、`predictions_exp2.json`(5.3MB) 等 |\n\n日志末尾显示 `count_8_random_*` 系列评估已跑完（acc 范围 0.625–0.979，BCS 范围 0.709–0.820），实验正常结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

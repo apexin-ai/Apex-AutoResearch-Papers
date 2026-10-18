@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b2bdd61a89fa5c2d44dd",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "ops fp16 eval status check",
+  "task_key": "worker_ops_fp16-eval-status-check_20260525T171007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fp16-eval-status-check_20260525T171007_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "b6d2c9defc395985137662218d83f4ea50c717e8b3c45705ae950abe46940300"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**服务器 seetacloud-rtx6000 无法连接**（port 25392 on 36.103.198.204 连接被拒）。\n\n可能原因：\n1. **实例已关机/休眠** — SeetaCloud 实例闲置后会自动关机\n2. **SSH 端口已变** — SeetaCloud 重启后端口会变化\n\n**需要你操作**：去 SeetaCloud 控制台确认实例状态，如果已重启，更新 `~/.ssh/config` 中 seetacloud-rtx6000 的端口号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

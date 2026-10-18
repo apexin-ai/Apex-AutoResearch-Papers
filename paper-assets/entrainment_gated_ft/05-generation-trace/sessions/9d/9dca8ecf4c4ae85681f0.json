@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9dca8ecf4c4ae85681f0",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis e1 confidence selection",
+  "task_key": "worker_analysis_e1_confidence_selection_20260522T095139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_e1_confidence_selection_20260522T095139_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "fc0f6a7ddae67c8589e90cdbcb511e51419c95c76f45520956c650b9bf645b3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "E1 完成。结果总结：\n\n| Benchmark | MV | Best Single | Max-Conf | Rescue-Thresh | CW-Vote | Oracle |\n|-----------|-----|-------------|----------|---------------|---------|--------|\n| LAMBADA | .5090 | .5089 | .5254(+1.6) | **.5623(+5.3)** | .5272(+1.8) | .6546 |\n| HellaSwag | .5952 | .6008 | .5964(+0.1) | .5950(-0.0) | .5952(+0.0) | .6686 |\n| PIQA | .7402 | .7317 | .7289(-1.1) | .7341(-0.6) | .7307(-0.9) | .7956 |\n| ARC-Easy | .7062 | .7133 | .7109(+0.5) | **.7164(+1.0)** | .7141(+0.8) | .8084 |\n\n核心发现：\n\n1. **Rescue-threshold routing 在 LAMBADA 上大幅领先**：+5.33pp vs MV，阈值稳定在 |logp|=1.72±0.17，与 A2 的 rescue threshold（~3.3）不同——E1 用的是跨架构 routing（per-arch pure/hybrid 决策再 MV），而 A2 是 within-arch 预测\n2. **ARC-Easy** 也有中等改善（rescue +1.0pp，CW +0.8pp）\n3. **HellaSwag/PIQA 无改善**——与 A2 中这两个 benchmark 的低 AUC（0.51-0.56）一致，confidence signal 太弱无法支持 routing\n4. Oracle upper bound（任一架构答对即算对）显示 LAMBADA 有 65.5%、ARC-Easy 有 80.8% 的潜力，说明架构间的互补性很强\n\n分析脚本: `/root/entrainment_gated_ft/analysis/e1_confidence_selection.py`\n结果 JSON: 已注册为 artifact `art_20260522_e4231e`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

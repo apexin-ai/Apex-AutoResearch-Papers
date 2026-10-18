@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "a923542509b4d4affceb",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code plan 018 binoculars fdgpt",
+  "task_key": "worker_code_plan_018_binoculars_fdgpt_20260522T094023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_018_binoculars_fdgpt_20260522T094023_result.json",
+    "occurrence": 1,
+    "bytes": 2460796,
+    "sha256": "3886f64b8104155fbf0d81a2cf475c9d1be40a1b49f39dde9c0eeaef238a66b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "a923542509b4d4affceb-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

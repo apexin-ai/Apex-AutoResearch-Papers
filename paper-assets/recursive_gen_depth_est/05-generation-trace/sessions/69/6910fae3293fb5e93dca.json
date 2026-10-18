@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6910fae3293fb5e93dca",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing patch cross scale llama3",
+  "task_key": "worker_writing_patch_cross_scale_llama3_20260516T101415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_patch_cross_scale_llama3_20260516T101415_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "93c137ad338b5822bdfe2b4b462d99ddef044081f8834ff0435e518008678edb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§4.6 修改完成。总结：\n\n**已完成的修改**:\n1. 删除 `% TODO: Add Llama-3-8B results when available`\n2. Table 7 重构为 models-as-rows，加入 Llama-3.1-8B（acc=70.2%, EDD=4, d0v1=0.949）\n3. Table 8 增加 Llama-3.1-8B AUC 行（单调递减：0.949→0.877→0.771→0.716→0.618）\n4. Finding (1) 更新为双模型结果\n5. Finding (2) 区分两模型 EDD：Qwen >5（U-shape 保持 all pairs >T），Llama-3 = 4（monotonic decay 使 d4v5 跌破 T）\n6. Finding (3) 从 \"Non-monotonic\" 重写为 \"Divergent trajectories\"：Llama-3 monotonic = 符合小模型 pattern，Qwen U-shape = model-specific\n7. Caveats 更新：承认两个数据点不足以做 strong generalization\n\n**数据一致性修正**：任务描述中 Llama-3 EDD 标为 >5，但 d4v5=0.618 < T=0.70，实际 EDD_{T=0.70} = 4。已修正为 4，文本解释了原因（monotonic decay 导致末对跌破阈值）。这反而让 narrative 更有趣——Qwen 的 EDD >5 恰恰是因为 U-shape 把后面的 AUC 抬回 >0.70。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

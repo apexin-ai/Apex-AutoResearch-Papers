@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d62251216db5ec57a43",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis per error mode bcs quartile",
+  "task_key": "worker_analysis_per_error_mode_bcs_quartile_20260520T141053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_error_mode_bcs_quartile_20260520T141053_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "fce3c70a7d27038edacd07b53305ebb1abb1e35e6ff9e07fd0f1cb9f65d5a28e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `/root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json`.\n\n## 结果\n\n### BCS Quartile × Error Mode (%)\n\n| Quartile | N | BCS range | Miss% | Boundary% | TypeSub% | Correct% |\n|---|---|---|---|---|---|---|\n| Q1 | 113 | [0.580, 0.801] | 55.53 | 6.54 | 3.05 | 33.81 |\n| Q2 | 112 | [0.801, 0.808] | 48.26 | 5.48 | 9.85 | 32.95 |\n| Q3 | 112 | [0.808, 0.815] | 55.51 | 5.11 | 7.60 | 29.18 |\n| Q4 | 113 | [0.815, 0.936] | 53.65 | 6.44 | 3.11 | 35.78 |\n\n### Spearman 相关 (N=450)\n\n| Error mode | ρ | p | |\n|---|---|---|---|\n| miss | +0.017 | 0.722 | ns |\n| boundary | −0.043 | 0.366 | ns |\n| type_sub | −0.010 | 0.840 | ns |\n| correct | −0.009 | 0.848 | ns |\n\n### 总结\n\n**三种 error mode 均与 BCS 无显著相关**（所有 p > 0.3）。BCS 既不选择性增加某一类错误，也不减少——miss 始终是主导 error mode（~49-56%），boundary 和 type_sub 占比在各 quartile 间无单调趋势。\n\n值得注意的是 BCS 分布高度集中：Q2 和 Q3 的 BCS 范围极窄（0.801–0.815），这限制了检测 BCS 效应的统计功效。Q1 的低 BCS 主要来自小 count level（count_2 type 少→BCS 低），所以 quartile 间的变化可能被 count level 混淆。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

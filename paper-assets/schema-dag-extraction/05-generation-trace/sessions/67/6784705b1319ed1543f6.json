@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "6784705b1319ed1543f6",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis three way d035",
+  "task_key": "worker_analysis_three_way_d035_20260516T021400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_three_way_d035_20260516T021400_result.json",
+    "occurrence": 1,
+    "bytes": 2298,
+    "sha256": "48c10ebf267a2248cfb054fb0bc72f9fe5c992377de252e3396b64ce80ba8e85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都完成了。汇总如下：\n\n---\n\n## 任务 1：三方比较结果\n\n| Metric | Independent 16-rel | 80-pool → 16-sub | Full 80-rel |\n|--------|-------------------|------------------|-------------|\n| N batches | 100 | 100 | 25 |\n| BCS mean±std | 0.826±0.067 | 0.557±0.044 | 0.720±0.046 |\n| Slope | -0.449 | -0.401 | -0.151 |\n| Slope 95% CI | [-0.549, -0.345] | [-0.694, -0.057] | [-0.930, 0.657] |\n| Pearson r | -0.637 (p<1e-12) | -0.221 (p=0.027) | -0.082 (p=0.698) |\n| Δ(Q4-Q1) pp | -7.42 | -3.92 | +0.35 |\n| Δ CI 95% | [-9.45, -4.49] | [-8.62, -0.16] | [-9.38, 7.55] |\n\n**Permutation tests (slope difference)**：三对比较均不显著（p=0.44, 0.15, 0.33），slope 差异未达统计显著。\n\n---\n\n## 任务 2：D035 极端批次分析\n\nΔ = acc(low BCS) - acc(high BCS)，正值表示低 BCS 准确率更高（BCS 越高 → 越难 → 准确率越低）。\n\n### 16-rel Independent (100 batches)\n\n| n_extreme | Δ (pp) | 95% CI | Low BCS mean | High BCS mean |\n|-----------|--------|--------|-------------|--------------|\n| 1 | +14.11 | [14.11, 14.11] | 0.6532 | 0.9002 |\n| 3 | +13.51 | [7.72, 18.35] | 0.6741 | 0.9002 |\n| **5** | **+11.45** | **[7.66, 15.48]** | 0.6879 | 0.9002 |\n| 10 | +9.38 | [6.57, 12.12] | 0.7026 | 0.9002 |\n\n### 80-pool → 16-sub (100 batches)\n\n| n_extreme | Δ (pp) | 95% CI | Low BCS mean | High BCS mean |\n|-----------|--------|--------|-------------|--------------|\n| 1 | +20.83 | [20.83, 20.83] | 0.4578 | 0.6836 |\n| 3 | +11.81 | [2.43, 21.18] | 0.4639 | 0.6695 |\n| **5** | **+9.79** | **[1.87, 17.50]** | 0.4690 | 0.6552 |\n| 10 | +7.40 | [1.46, 12.81] | 0.4816 | 0.6401 |\n\n### 与 80-rel Table 3 对比\n\n80-rel controlled comparison (from bootstrap_ci.json): Δ=**31.25pp** CI [22.92, 39.58]，BCS 范围 0.5705 vs 0.9706。\n\n极端批次方法下的 BCS-accuracy 效应在所有设置中均显著（CI 不含 0），且：\n- 16-rel 的 BCS 差距小（0.69 vs 0.90）但仍有 11.45pp 效应\n- 80-pool-16sub 的 BCS 差距更小（0.47 vs 0.66）仍有 9.79pp 效应\n- 80-rel controlled 的 BCS 差距最大（0.57 vs 0.97），效应最强 31.25pp\n\n结果保存在服务器 `artifacts/extreme_batch_analysis.json` 和 `artifacts/three_way_comparison/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

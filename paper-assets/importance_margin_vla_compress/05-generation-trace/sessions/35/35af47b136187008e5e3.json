@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "35af47b136187008e5e3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops status check westd",
+  "task_key": "worker_ops_status_check_westd_20260517T164409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_status_check_westd_20260517T164409_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "6a9c3b791dd806b3fa0aca4e57e24c3c65188218975858301b0717bc0072963f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**进程状态：ALIVE**\n- PID 643978 运行中，已运行 ~60 分钟\n- 命令：`python -u eval_openvla_libero.py --mode baseline --suite libero_object --num_episodes 50 --seed 7`\n\n**GPU 占用：**\n- GPU 0：RTX PRO 6000，16016MiB / 97887MiB，72% 利用率，python 进程在跑\n- GPU 1：空闲\n\n**当前进度：**\n- 任务：libero_object，10 tasks × 50 episodes = 500 total\n- 已完成 Task 1-2，Task 3 进行中（约到 ep 30）\n- 速度：~2.2-2.3 eps/min\n- 已完成 task SR：\n  - Task 1 (alphabet soup): **0.780** (39/50)\n  - Task 2 (cream cheese): **0.800** (40/50)\n  - Task 3 (salad dressing): 进行中，26/30 暂时\n\n**预估剩余时间：** 已完成约 130/500 episodes，剩余 ~370 eps ÷ 2.2 eps/min ≈ 168 min（~2.8 小时）\n\n**eval_results/ 目录：** 大量已有结果 JSON（来自之前的 eval runs），当前这次 seed 7 的 baseline eval 尚未输出最终 JSON（还在跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

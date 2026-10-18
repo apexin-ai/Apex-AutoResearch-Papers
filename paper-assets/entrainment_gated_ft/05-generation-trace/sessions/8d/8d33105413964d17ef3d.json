@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8d33105413964d17ef3d",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "verify appendix data audit",
+  "task_key": "worker_verify_appendix-data-audit_20260523T191632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_appendix-data-audit_20260523T191632_result.json",
+    "occurrence": 1,
+    "bytes": 6895,
+    "sha256": "793c4636c82b0266279236a93e99b624ca717af0e4c27cb11416ac6118442124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核查基本完成。现在整理所有发现。\n\n## 数据自查报告 — Appendix\n\n---\n\n### ✅ 已核对一致\n\n**与源数据一致：**\n- Pythia seed calibration: J_h=0.273, J_u=0.393 (LAMBADA), J_h=0.312, J_u=0.354 (ARC-Easy), α=0.36/0.49 ← `e4_analysis.json`\n- ECE values: GDN 0.222, RetNet 0.224, HGRN2 0.235 ← `e3_calibration.json` (0.222327, 0.223559, 0.235154)\n- Disruption thresholds: GDN 0.70, RetNet 1.00, HGRN2 1.14, spread 46.7% ← `e3_calibration.json` (0.696, 0.998, 1.137)\n- 5-arch LAMBADA/ARC-Easy Jaccard: 全部 10 pair × 2 benchmark 值与 `jaccard_5arch_extended.json` 一致（1处微小四舍五入除外）\n- Cross-benchmark Jaccard Spearman ρ/p: LAMBADA 0.80/.333, HellaSwag 0.60/.417, PIQA 0.00/1.00, ARC-Easy 0.80/.333 ← `cross_benchmark_jaccard_trajectories.json` ✓\n- 互补性分解分数 (Tab complementarity): LAMBADA h3-1 .361/.151/.145/.343 ← `complementarity_decomposition.json` (36.10%/15.12%/14.48%/34.31%) ✓\n- MV exploitation ratios: 51.1% (LAMBADA), 50.9% (ARC-Easy) 均验算正确\n- GDN 0.543→0.513, HGRN2 0.484→0.514 ← `e3_calibration.json` (0.543373, 0.513293, 0.483990, 0.514264) ✓\n- Routing LAMBADA: 56.2% vs 50.9%, +5.3pp, oracle 65.5%, 36% gap ← `e1_confidence_selection.json` (0.562321, 0.509042, 0.654637) ✓\n- Routing ARC-Easy: +1.0pp ← source vs_mv_pp=1.019 ✓\n- Bonferroni 计算: .017×10=.170, .017×6=.100 ✓\n- Bootstrap CI [-1.0, -0.7] ✓\n- 340M σ trajectory (0.025→0.012→0.018→0.011→0.016) 及 56%/36% 计算 ✓\n- Scale comparison Δα (全部4个benchmark 差值计算正确) ✓\n\n**Appendix 内部验算一致：**\n- Within-architecture pairwise Jaccard 全表 (Tab 12) 手动重算18个值全部一致\n- Within-architecture summary means (Tab 10): GDN .338/.319, RetNet .333/.321, HGRN2 .373/.291, overall .348/.310 ✓\n- Adjacent vs non-adjacent means: .353/.311 vs .343/.310 ✓\n- Arceasy_ambiguity (Tab 9) within-benchmark ranges: .004/.011/.025/.022 均正确\n- 补充 benchmark sum check: LAMBADA .361+.151+.145+.343=1.000, ARC-Easy 1.000 ✓\n\n---\n\n### ⚠️ 发现的不一致\n\n#### P1: 严重 — Normalized Jaccard ES 表 (Tab 7) J_obs 值与其他表不一致\n\n同一数据（1.3B h3-1 LAMBADA），三张表报告的 J_obs 不同：\n\n| Pair | Category | Tab 7 (norm\\_es) | Tab 6 (within\\_scale) | Tab 8 (perm) |\n|------|----------|------------------|-----------------------|--------------|\n| GDN-RetNet | helped | **.086** | .092 | .092 |\n| GDN-RetNet | hurt | **.092** | .103 | .103 |\n| GDN-HGRN2 | hurt | **.070** | .089 | .088 |\n\nTab 6 和 Tab 8 互相一致（仅 GDN-HGRN2 hurt 差 .001），但 Tab 7 的 J_obs 明显偏低。J_null 也不同。Tab 7 可能来自不同版本的分析脚本。\n\n**影响**：Tab 7 的 Normalized ES 值全部需要重算。\"6–7% of the achievable range\" 结论方向不变但数值可能改变。\n\n#### P2: 中等 — Per-example counts 在不同表之间不一致\n\n| Architecture | Tab 5 (per\\_example) | Tab 13/14 (CM) | Source JSON |\n|-------------|---------------------|----------------|-------------|\n| RetNet h3-1 helped | **426** | 420 | 420 |\n| RetNet h3-1 hurt | **495** | 497 | 497 |\n| HGRN2 h3-1 hurt | **395** | 392 | 392 |\n| GDN h3-1 helped | **462** | — (h12-1) | 461 |\n| GDN h3-1 hurt | **615** | — (h12-1) | 616 |\n\nSource JSON (`a2_prediction_framework`) 和 CM tables 一致；Tab 5 与两者均有小差异。可能来自不同分析脚本或 correctness 判定逻辑微妙不同（如 tie-breaking）。\n\n**影响**：Tab 5 的 J̄ 值 (.096/.100/.104) 与 Tab 6 的 pairwise Jaccard 一致，说明 Tab 5 的 J̄ 是用 Tab 6 的数据算的；但 helped/hurt 计数与 CM 表和 source JSON 不一致。需确认哪个是正确版本并统一。\n\n#### P3: 中等 — ECE spread 百分比错误\n\nAppendix §app:calibration 写道：\n> \"The cross-architecture ECE spread (17%, computed as range/mean)\"\n\n实际计算：range = 0.235−0.222 = 0.013, mean = 0.227, range/mean = **5.7%**，不是 17%。\n\n**影响**：定性结论（ECE spread 远小于 disruption threshold spread 47%）反而更强（5.7% vs 47%），但 17% 这个数字是错的。\n\n#### P4: 轻微 — Cross-benchmark Jaccard 表 (Tab 11) caption 与内容不符\n\nCaption: \"Mean pairwise Jaccard (**helped sets**, 3 architecture pairs)\"\n实际报告的是 **J_mean**（helped 和 hurt 的平均）。与 source JSON 的 J_mean 字段完全对应。\n\n验证：HellaSwag h24-1 J_helped=0.0838 (source), J_mean=0.0842 (source), 表中为 .084 → 匹配 J_mean 而非 J_helped。\n\n#### P5: 轻微 — \"6–7%\" 描述范围不准确\n\nAppendix §app:normalized_es 和主文均称 normalized ES 为 \"6–7%\"。但 Tab 7 自身数据：\n- Helped mean = .065 (6.5%)\n- Hurt mean = .047 (4.7%)\n- 总体 ≈ 5.6%\n\n\"6–7%\" 仅描述 helped；考虑 hurt 后应为 \"5–7%\" 或 \"5–9%\"（含个体值 .044–.090）。\n\n#### P6: 轻微 — 若干四舍五入微差\n\n| 位置 | 期望值 | 实际值 | 来源 |\n|------|--------|--------|------|\n| Tab 11 LAMBADA h3-1 | .096 | .097 | source J_mean=0.0965 |\n| Tab extended_arch GDN-HGRN2 J_h | .122 | .123 | source=0.12247 |\n| HellaSwag MV expl. | 51.7% | 51.6% | 781/(781+730)=51.69% |\n| Tab 6 vs Tab 8: GDN-HGRN2 hurt | .089 vs .088 | — | 同一数据两种四舍五入 |\n\n---\n\n### ❌ 待人工确认\n\n1. **Tab 5 vs CM tables per-example counts**: 需要确认哪组 helped/hurt 计数是 ground truth（RetNet 426/495 还是 420/497）。建议从原始 lm-eval 输出重新计算。\n\n2. **Tab 7 (normalized_es) 全表数据**: J_obs 和 J_null 与其他表均不一致。需要找到 `jaccard_upper_bound.py` 的输出文件，或用 Tab 6/8 的一致数据重算 normalized ES。\n\n3. **主文 routing 数值** (非 appendix 但交叉验证时发现):\n   - HellaSwag routing: 主文 −0.06pp, source JSON −0.02pp\n   - PIQA routing: 主文 −0.49pp, source JSON −0.61pp\n\n4. **Attention weight analysis (Tab 3/4/5 of §app:attention_patterns)**: cosine similarity, entropy, last-5 mass 数值无对应 JSON 文件可追溯。需确认 `extract_attention_weights.py` 的输出是否保存。\n\n5. **Confidence margin Cohen's d, p-values, prediction AUC (Tab 13–18)**: 无对应的独立 JSON 输出。CM tables 的 `d` 值和 `p` 值需从 `confidence_margin_within_category.py` 的输出追溯。\n\n---\n\n### 修复优先级建议\n\n1. **立即修复** (P3): 将 ECE spread \"17%\" 改为 \"6%\" 或重新验证计算\n2. **需要调查后修复** (P1): 用统一数据重算 Tab 7 normalized ES\n3. **需要调查后修复** (P2): 确认 per-example counts ground truth 并统一\n4. **低优先级** (P4): 修正 Tab 11 caption \"helped sets\" → \"mean of helped and hurt sets\"\n5. **低优先级** (P5/P6): 四舍五入和措辞精确性修正"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

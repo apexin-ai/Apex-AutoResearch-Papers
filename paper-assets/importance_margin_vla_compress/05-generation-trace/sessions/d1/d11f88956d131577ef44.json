@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d11f88956d131577ef44",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval openvla crossmodel pruning",
+  "task_key": "worker_eval_openvla_crossmodel_pruning_20260517T151030",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_openvla_crossmodel_pruning_20260517T151030_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "83057496bd2b7a42f876d83a9e6f2accb372ba8fcdaf0674f802f7a82af8c5bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All existing results are from the IMM model. The current OpenVLA eval is the first of its kind on this server.\n\n**Current status:**\n- OpenVLA baseline eval running (PID 643978, 686% CPU)\n- Task 1/10, episode 10/50 completed, 7/10 success rate (70% so far)\n- Rate: 2 episodes/min\n- Estimated total time: ~8 hours for both conditions (baseline + random prune k=0.5)\n- Started: ~23:44 CST (May 17)\n- Expected completion: ~07:45 CST (May 18)\n\nEarly signal from baseline Task 1: 7/10 (70%) success rate on \"pick up the alphabet soup and place it in the basket\" — this is a strong baseline, suggesting OpenVLA is well-calibrated on LIBERO-Object. This will make the pruning comparison meaningful.\n\nI'll check back on progress later to track completion and collect final results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

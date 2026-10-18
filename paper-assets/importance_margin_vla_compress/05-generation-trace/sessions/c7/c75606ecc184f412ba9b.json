@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c75606ecc184f412ba9b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval smart compress m32 spatial",
+  "task_key": "worker_eval_smart_compress_m32_spatial_20260519T113052",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smart_compress_m32_spatial_20260519T113052_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "99a58ac5452e96fa2d349e37421257feec86a239ba32b4ad3dc7e068769b0971"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已完成，无需重新运行。结果已注册到 registry（`eval_smart_compress_m32_spatial`, status=DONE, conclusion=success）。\n\n**结果摘要：** Smart Compress M=32 在 LIBERO-Spatial 上 SR=**53.2%**（CI [48.8%, 57.5%]），比 LIBERO-Object 的 61.2% 低约 8pp。任务间方差大（18%~82%），spatial reasoning 类任务（drawer、stacked objects）明显更难。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

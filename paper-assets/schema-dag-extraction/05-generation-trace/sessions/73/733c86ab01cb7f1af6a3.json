@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "733c86ab01cb7f1af6a3",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "ssh westd 24295 env setup r2",
+  "task_key": "worker_ssh_westd-24295-env-setup-r2_20260517T073227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-24295-env-setup-r2_20260517T073227.log",
+    "occurrence": 1,
+    "bytes": 1227534,
+    "sha256": "630ecc327b4036c3707458101a22d42d9406c921a82b580b276f0af602928f32"
+  },
+  "statistics": {
+    "messages": 477,
+    "user_turns": 1,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 151,
+      "tool_call": 159,
+      "tool_result": 159,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "733c86ab01cb7f1af6a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "733c86ab01cb7f1af6a3-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "733c86ab01cb7f1af6a3-part-0002.json",
+          "message_count": 47
+        },
+        {
+          "path": "733c86ab01cb7f1af6a3-part-0003.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ]
+}

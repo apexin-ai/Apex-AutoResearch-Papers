@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "515aedf0ba2b4baeb458",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops compute placeholder values",
+  "task_key": "worker_ops_compute-placeholder-values_20260515T233122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_compute-placeholder-values_20260515T233122_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "0718d910f07bde7c3d6d5491a8d1a885c42a53a11562f609a5f997f4bee1c98c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。\n\n**结果：**\n\n| Placeholder | 位置 | 值 |\n|---|---|---|\n| d0-excluded 3-class range | abstract.tex L5 | **58.8%–82.6%** |\n| cross-strategy d1-d3 accuracy | generalization.tex L95 | **45.9%** |\n\n**关键发现：** cross-strategy LOO 的 4-class mean accuracy 是 59.1%，但排除 d0 后降至 45.9%——d0 的近乎完美分类（recall ≈ 100%）大幅拉高了整体数字。d1-d3 间的区分在跨策略泛化场景下相当困难，最差的 fold（pythia_topk50）仅 35.4%，接近 3-class 随机基线（33.3%）。\n\n产出已写入 `artifacts/placeholder_values.json` 并注册，`memory.md` 已更新供 Paper Agent 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

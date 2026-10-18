@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "04de568a8c0dea264179",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh zeroshot baseline dryrun",
+  "task_key": "worker_ssh_zeroshot_baseline_dryrun_20260515T015646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_zeroshot_baseline_dryrun_20260515T015646_result.json",
+    "occurrence": 1,
+    "bytes": 127,
+    "sha256": "3ac26ea0e4459c4516850e8c18e164b3a0b321d7d35c95f43c37542a23f1c72b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Batch loop is progressing steadily: 106/200 samples done, ~44% accuracy so far. Checking again in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

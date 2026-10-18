@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "011647bd12ad1bc5cd50",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops cleanup smoke test westd38929",
+  "task_key": "worker_ops_cleanup_smoke_test_westd38929_20260523T015334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup_smoke_test_westd38929_20260523T015334_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "54322da93f9e85a1fd08cdef0f0564b2b0a30f646c263c74f639ba1aa7daad53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。目标文件已移至 `eval_results/smoke_test/`。\n\n扫描发现以下 <50 episodes 的可疑文件（仅报告，未移动）：\n\n| 文件 | Episodes |\n|------|----------|\n| `debug_test.json` | 5 |\n| `oft_prune_none_k1.0_libero_object.json` | 5 |\n| `openvla_l2norm_prune_k05_object.json` | 20 |\n| `openvla_liberoplus_camera_viewpoints_L1_smoke.json` | 30 |\n| `smoke_test.json` | 1 |\n| `timing_test.json` | 3 |\n| `xvla_baseline_task0_test.json` | 10 |\n\n其中 `oft_object_stdonly_test.json`（50 eps）刚好在边界上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

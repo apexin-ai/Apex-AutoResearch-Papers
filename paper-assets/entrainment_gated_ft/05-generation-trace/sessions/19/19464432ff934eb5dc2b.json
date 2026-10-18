@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "19464432ff934eb5dc2b",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "diagnose e4 pythia seed calibration",
+  "task_key": "worker_diagnose_e4-pythia-seed-calibration_20260522T111122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_e4-pythia-seed-calibration_20260522T111122_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "3a5af0b5142efad93db6a4d5dc83715390542bcf105f255919263290eb12b5f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/report_e4_diagnosis.md`。\n\n**根因**：aria2 并行下载 9 个 Pythia 410M seed 权重（各 869MB）时，仅下载 1-5% 即触发 Emergency shutdown 中断。seed1-5 权重文件损坏（缺 `model_type`），seed6-9 完全没下载。Eval 阶段在损坏文件上运行全部失败。0/9 seed 完成。\n\n**修复**：弃用 aria2 直接下载方式，改用已有的 `run_eval.sh`（通过 HF transformers 自动下载，已配置 `HF_HUB_DISABLE_XET=1`）。重跑前需：\n1. 确认 `EleutherAI/pythia-410m-seed{1..9}` 在 HuggingFace 上的实际 repo 名称\n2. 清理残留的空 seed 目录\n3. 用 `nohup` 运行避免 SSH 断连"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

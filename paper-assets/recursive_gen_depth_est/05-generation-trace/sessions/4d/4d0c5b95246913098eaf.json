@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4d0c5b95246913098eaf",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code baseline rf lr unified",
+  "task_key": "worker_code_baseline_rf_lr_unified_20260514T164446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline_rf_lr_unified_20260514T164446_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "d275497c40567274fcfa3827f31204b5c529afc4d004deb2aa15962c49093bc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。全部 7 个方法在同一 70/15/15 test set 上的对比结果：\n\n| Method | 4-class Acc | 95% CI | 3-class Acc | MAE |\n|--------|------------|--------|-------------|-----|\n| CE-MLP (DCOL ablation) | **0.7897** | [0.7743, 0.8037] | **0.7204** | **0.2280** |\n| DivEye (XGBoost) | 0.7817 | [0.7663, 0.7970] | 0.7098 | 0.2363 |\n| **Random Forest** | 0.7813 | [0.7663, 0.7973] | 0.7093 | 0.2387 |\n| CORAL Ordinal Regression | 0.7807 | [0.7653, 0.7950] | 0.7089 | 0.2273 |\n| **Logistic Regression** | 0.7497 | [0.7337, 0.7653] | 0.6671 | 0.2767 |\n| PPL Regression (multi OLS) | 0.6223 | [0.6047, 0.6397] | 0.5200 | 0.3890 |\n| PPL Regression (single) | 0.2513 | [0.2370, 0.2670] | 0.3351 | 0.9440 |\n\n要点：\n- RF 在统一 split 下 4-class acc = 0.7813，与之前 80/20 split 的 0.7815 几乎一致，说明之前的结果是可靠的\n- RF 和 DivEye/CORAL 在同一量级，CE-MLP 略领先\n- LR 是线性模型，低于非线性方法约 3pp，符合预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

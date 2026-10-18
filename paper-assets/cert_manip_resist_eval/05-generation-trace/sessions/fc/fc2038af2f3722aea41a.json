@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "fc2038af2f3722aea41a",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "debug correlation discrepancy",
+  "task_key": "worker_debug_correlation-discrepancy_20260523T075444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_correlation-discrepancy_20260523T075444_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "311caf5cfd091fdbf758b3427197227d99209d6f58e82648a9e1b1a4eca0ddc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 JSON 现在完全一致。\n\n## 诊断结果\n\n**根因**：`compute_keff_eta_correlation` 有两个 bug 叠加导致 r 虚高：\n\n| Bug | 描述 | 对 K=3 的影响 | 对 K=5 的影响 |\n|-----|------|-------------|-------------|\n| K_eff 公式错误 | K=3 应用 `keff_maxmi`（最大 MI），实际用了 `keff_avg_pairwise` | r: 0.489 → 0.877 | 无（两者 K=5 都用 avg_pairwise） |\n| MI 来源错误 | `mi_flat` 在循环中被覆盖，只保留最后一个 dataset (arc_challenge) 的值；K_eff 应按 dataset 分别计算后取均值 | r: 0.877 → 0.980 | r: 0.853 → 0.969 |\n\n**修正内容**：\n- 新增 `_keff_maxmi_np` 和 `_keff_avg_pairwise_np`，使用 per-dataset numpy MI 矩阵\n- 重写 `compute_keff_eta_correlation`：K_eff 按 (combo, dataset) 分别计算，跨 condition 取均值\n- 更新所有 4 处调用点（strategy 和 API-only）\n\n**修正后的正确值**：\n- K=3: r_raw=**0.489**, VIF=**1.30**\n- K=5: r_raw=**0.853**, VIF=**4.40**\n\n与 `api_only_diagnostic.json` 完全一致，数值到小数点后 4 位匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "661802f9bff4d5ca8c7d",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra model download v2",
+  "task_key": "worker_infra_model_download_v2_20260520T084430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_download_v2_20260520T084430_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "cdc76de5765cdf4c8fd2b597eaa3032fc03099044ee1d702199b838e9aae5966"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "速度提升到 ~1MB/s。Qwen3 下载 2.3GB/~64GB，多文件并行。NLI wget 进行中。\n\n当前状态汇报：\n\n**Qwen3-32B（ModelScope 下载，PID 2964）**\n- 已下载：2.3GB / ~64GB\n- 速度：~1MB/s per shard，多个 shard 并行下载\n- 路径：`/root/autodl-tmp/models/Qwen3-32B/`\n- 预计：3-5 小时完成\n\n**NLI 模型（wget 下载，PID 4220）**\n- 已下载：~18MB / ~1.5GB\n- 速度：~300-400 kB/s\n- 路径：`/root/autodl-tmp/models/nli-deberta-v3-large/`\n- 配置文件（config.json, tokenizer 等）已就绪\n- 预计：~1 小时完成 model.safetensors\n\n**问题说明**\n- 服务器带宽有限，HuggingFace xet CDN 完全不通\n- ModelScope CDN 和 hf-mirror.com 的直接文件下载可用但较慢\n- 两个下载都在后台 nohup 运行，不会因 SSH 断开而中断\n\n**磁盘空间**\n- `/root/autodl-tmp/` 数据盘 250GB，当前几乎空，足够容纳两个模型\n\n需要我定期轮询进度吗？还是等你下次回来再检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

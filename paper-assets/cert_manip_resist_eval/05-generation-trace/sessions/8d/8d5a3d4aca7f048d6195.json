@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "8d5a3d4aca7f048d6195",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis v2 pattern mining",
+  "task_key": "worker_analysis_v2-pattern-mining_20260523T184437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2-pattern-mining_20260523T184437.log",
+    "occurrence": 1,
+    "bytes": 802372,
+    "sha256": "f42013064fe769e6f54b87de81df22c53b0fc786e2a8c2f10f9c6f12d3cdf033"
+  },
+  "statistics": {
+    "messages": 382,
+    "user_turns": 0,
+    "tool_calls": 150,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 150,
+      "tool_result": 150,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 382,
+      "chunks": [
+        {
+          "path": "8d5a3d4aca7f048d6195-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d5a3d4aca7f048d6195-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d5a3d4aca7f048d6195-part-0003.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ]
+}

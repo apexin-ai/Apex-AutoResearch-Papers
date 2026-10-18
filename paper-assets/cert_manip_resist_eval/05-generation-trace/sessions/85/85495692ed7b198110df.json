@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "85495692ed7b198110df",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "check temperature pilot final",
+  "task_key": "worker_check_temperature-pilot-final_20260523T134430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_temperature-pilot-final_20260523T134430_result.json",
+    "occurrence": 1,
+    "bytes": 1749,
+    "sha256": "3c672c7cf9394a93d87e59d0b005271f93306b36885370605291621d8da8342c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 判定：**partial** — 数据采集 100% 完成，仅最终 JSON 序列化崩溃\n\n### 状态总结\n\n| 阶段 | 状态 |\n|------|------|\n| Phase 1: Clean evaluation (72 runs) | 完成 |\n| Phase 2: Attack scoring (144 runs) | 完成 (0 skipped, 144 scored) |\n| Phase 3: Analysis & JSON dump | **崩溃** |\n\n**崩溃原因**：`run_temperature_pilot.py:603` — `json.dump()` 遇到 `numpy.bool_` 类型无法序列化（`TypeError: Object of type bool is not JSON serializable`）。\n\n**数据完整性**：checkpoint 目录 216 个 JSON 文件齐全（72 clean + 144 attack），部分结果 JSON `temperature_pilot.json`（3.4KB）已写入大部分分析数据但被截断。\n\n### 已有关键 Metrics（从部分 JSON 提取）\n\n**Accuracy vs Temperature — 温度几乎无影响：**\n\n| Model | t=0.0 | t=0.3 | t=0.7 | t=1.0 | max Δ |\n|-------|-------|-------|-------|-------|-------|\n| gpt-4.1-nano | 0.751 | 0.739 | 0.745 | 0.745 | 0.007 |\n| gemini-3.5-flash | 0.956 | 0.960 | 0.965 | 0.965 | 0.009 |\n| claude-3-haiku | 0.647 | 0.652 | 0.659 | 0.647 | 0.000 |\n\n**K_eff vs Temperature — 极其稳定：**\n\n| Benchmark | t=0.0 | t=0.3 | t=0.7 | t=1.0 | Δ |\n|-----------|-------|-------|-------|-------|---|\n| MMLU | 2.584 | 2.598 | 2.564 | 2.592 | +0.008 |\n| ARC | 2.698 | 2.711 | 2.686 | 2.684 | -0.014 |\n\n**结论**：温度 0→1 对 accuracy 最大变化 <1%，K_eff 变化 <0.02。温度对评估结果影响可忽略。\n\n### 修复\n\n`json.dump` 崩溃因 `numpy.bool_` 不可序列化。需在 `run_temperature_pilot.py:603` 附近加 `default=` handler 或预先转换 numpy 类型，然后重跑 Phase 3 即可（数据已全部在 checkpoint 中，不需要重新调 API）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

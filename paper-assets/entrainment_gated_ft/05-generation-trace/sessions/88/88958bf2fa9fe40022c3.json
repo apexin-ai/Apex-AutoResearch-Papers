@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "88958bf2fa9fe40022c3",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "fix exp 005 download fix",
+  "task_key": "worker_fix_exp-005-download-fix_20260522T151052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp-005-download-fix_20260522T151052.log",
+    "occurrence": 1,
+    "bytes": 822787,
+    "sha256": "b68dfa7357b0dc8c4cbe24b857d69d800f7bea7b453169b9d0b2487e2455af98"
+  },
+  "statistics": {
+    "messages": 648,
+    "user_turns": 0,
+    "tool_calls": 225,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 172,
+      "tool_call": 225,
+      "tool_result": 225,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 648,
+      "chunks": [
+        {
+          "path": "88958bf2fa9fe40022c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "88958bf2fa9fe40022c3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "88958bf2fa9fe40022c3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "88958bf2fa9fe40022c3-part-0004.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ]
+}

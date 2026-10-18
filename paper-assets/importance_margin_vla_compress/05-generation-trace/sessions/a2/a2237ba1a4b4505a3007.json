@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a2237ba1a4b4505a3007",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy ov attn k05 goal westd27271",
+  "task_key": "worker_deploy_ov_attn_k05_goal_westd27271_20260527T101738",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_ov_attn_k05_goal_westd27271_20260527T101738_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "e1fc96efbfa5dc1fd98a85e5b820676615fc3a4aa8134a287e65cfff02fffa9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 `eval_openvla_attn_k05_goal_seed42_v4` **已在 westd-27271 GPU0 上运行**，无需重新提交。\n\n状态：\n- **PID 830291**，17:55 启动，已运行 ~2.4h\n- 当前进度：Task 1/10（`open the middle drawer of the cabinet`），30/50 episodes，~1.5 eps/min\n- Attention pruning 正常：256 → 128 vision tokens (k=0.5)\n- 模型路径：`/root/autodl-tmp/openvla-7b-finetuned-libero-goal`（实际路径，非任务中假设的 `models/` 子目录）\n\nRegistry 已更新为 RUNNING，failure_reason 已清空。conclusion 字段不支持置空，但实验跑完后会被正确覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b91edf28283508da9b5",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis exp003 p2 data check",
+  "task_key": "worker_analysis_exp003-p2-data-check_20260520T022655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp003-p2-data-check_20260520T022655_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "ed3e1db0e1a3961ebd393fcfdfee460d61f72aabb6f7794baafd34df318d88c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/exp003_p2_data_check.md`。\n\n核心发现：\n- **Pure 模型 log_samples**: 3/3 完整（GDN/RetNet/HGRN2，各 127MB）\n- **H3-1 模型 log_samples**: 2/3 — RetNet 和 HGRN2 存在，**GDN h3-1 缺失**（只有 14K 的聚合 results，无 per-example 数据）\n- **分析结果**: 完整，5153 examples 覆盖 LAMBADA 全集。但 `lambada_per_example.csv` 中 GDN 用的是 **h12-1**（非 h3-1）做 hybrid baseline，可能正是因为 h3-1 log_samples 缺失\n- **统计结论不变**: 三个 arch 的 helped vs hurt perplexity 差异均不显著（p=0.21/0.66/0.25）\n\n如果要求三个 arch 统一用 h3-1 对比，需补跑 GDN h3-1 的 `--log_samples` eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

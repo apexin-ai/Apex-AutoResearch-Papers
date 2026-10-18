@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f82c4307dc70ea11b47a",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "writing r3w1 d0 inflation",
+  "task_key": "worker_writing_r3w1-d0-inflation_20260516T010831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r3w1-d0-inflation_20260516T010831_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "b054a9d77a155cb87d5f7a89f7e26d4e08ff58494485878c22dcd4576e9d0468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| Abstract 同时报告含/不含 d0 的 accuracy | **通过** — L5: \"70--85% four-class accuracy ... 58.8--82.6% when excluding the near-perfectly separable d0 class\" |\n| Table 1 含 d1-d3 三分类 accuracy | **通过** — caption 明确 \"d1--d3 three-class accuracy in parentheses (chance = 25% / 33%)\"，数据行如 `78.2\\,(71.2)` |\n| Table 5 (cross-model) 含排除 d0 的 balanced accuracy | **通过** — caption: \"d1--d3 bal. acc: Pythia 49.9%, OLMo 59.2%, GPT-2~XL 57.2% (mean 55.4%)\"；正文 L64-65 明确说明 d0 膨胀 |\n| Table 6 (cross-strategy) 含排除 d0 的 accuracy | **通过** — caption: \"d0 recall ≥89% inflates headline; d1--d3 mean: 45.9%\"；正文 L89 同步 |\n| 无仅报 4-class 而不提 d0 inflation 的位置 | **通过** — Table 3 (baselines) 仅报 4-class，但其目的是展示分类器收敛性（spread ≤0.4pp），非 headline claim；Table 4 (e2e) 直接列 per-class F1 使 d0 膨胀可见 |\n\nR3-W1 在 `review_issues.yaml` 中已标记为 `resolved`（L492, resolution_round: 3），resolution 描述准确覆盖全部 5 处修改。无需额外修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

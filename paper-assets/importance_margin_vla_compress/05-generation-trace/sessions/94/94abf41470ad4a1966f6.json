@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "94abf41470ad4a1966f6",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval v8 step2k read results",
+  "task_key": "worker_eval_v8-step2k-read-results_20260516T001442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v8-step2k-read-results_20260516T001442_result.json",
+    "occurrence": 1,
+    "bytes": 2089,
+    "sha256": "1dbb2b67a0d1ec72a069e6e1b951b43ffc090652bba309607f0bd4a5180cffd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v8 (Gradient Isolation) Step 2K Early Eval 结果\n\n### Bypass Eval (bypass-ACIS, 纯模型质量)\n\n| 条件 | action_loss |\n|------|------------|\n| **eps0.0_pruneFalse (clean)** | **0.05790** |\n| eps0.0_pruneTrue | 0.04700 |\n| eps0.01_pruneFalse | 0.05165 |\n| eps0.02_pruneFalse | 0.05505 |\n| eps0.05_pruneFalse | 0.06057 |\n\n### Standard Eval (含 ACIS)\n\n| 条件 | action_loss | margin_median | preservation | LED_median |\n|------|------------|---------------|-------------|------------|\n| **eps0.0 clean** | **0.04036** | 0.166 | 1.000 | 0.281 |\n| eps0.0 prune | 0.04502 | 0.172 | 1.000 | 0.273 |\n| eps0.01 | 0.03525 | 0.166 | 0.921 | 0.282 |\n| eps0.02 | 0.04545 | 0.166 | 0.828 | 0.564 |\n| eps0.05 | 0.04321 | 0.172 | 0.644 | 1.359 |\n\n### Gate 评估\n\n| Gate | 值 | 阈值 | 结果 |\n|------|-----|------|------|\n| **G1** margin ratio | **15.83x** | ≥ 2.0 | **PASS** |\n| **G2** preservation diff | **+0.461** | ≥ 0.10 | **PASS** |\n| **G3** clean loss ratio | **9.90x** | ≤ 1.10 | **FAIL** |\n| **G4** LED median | **0.564** | < 1.0 | **PASS** |\n\n### G3 指标计算\n\n- **G3a** (bypass clean / baseline final) = 0.05790 / 0.00408 = **14.19x**\n- **G3b** (standard clean / baseline final) = 0.04036 / 0.00408 = **9.89x**\n\n### 总结\n\n**OVERALL: FAIL** — G1/G2/G4 全过，但 G3 严重不达标。\n\nStep 2K 时 clean action_loss 0.04036 (standard) / 0.05790 (bypass)，远高于 baseline final 0.00408。这是预期中的——step 2K 仅训练了 6.7%，模型还远未收敛。参考 baseline 自身 step 2K 时大约在 ~0.04-0.05 范围（step 5K 为 0.01891），所以 v8 step 2K 的 loss 水平与 baseline 同期基本一致，并无异常退化。\n\n**与 v7/v7.2 对比建议**: v7/v7.2 只有 final (30K) 数据，无法直接对比 step 2K。但 v8 的 margin (15.8x) 和 preservation (+0.461) 显著优于 v7 final 的水平，gradient isolation 的 ACIS 学习效率明显更高。关键问题是 v8 能否在继续训练后让 clean loss 收敛到 baseline 水平——需要等更多 checkpoint 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "1b000ae3c96052accd7f",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "eval libero 10k checkpoint v2",
+  "task_key": "worker_eval_libero_10k_checkpoint_v2_20260516T151045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_libero_10k_checkpoint_v2_20260516T151045.log",
+    "occurrence": 1,
+    "bytes": 922561,
+    "sha256": "a4eb42a271170fa31fdb5a7db960612b20121dd550dbae2ac5b827c7dc4e9215"
+  },
+  "statistics": {
+    "messages": 372,
+    "user_turns": 0,
+    "tool_calls": 132,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 132,
+      "tool_result": 132
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 372,
+      "chunks": [
+        {
+          "path": "1b000ae3c96052accd7f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b000ae3c96052accd7f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b000ae3c96052accd7f-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ]
+}

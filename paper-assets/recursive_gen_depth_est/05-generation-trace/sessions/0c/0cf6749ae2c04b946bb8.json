@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0cf6749ae2c04b946bb8",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code cross seed transfer",
+  "task_key": "worker_code_cross_seed_transfer_20260517T052138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_seed_transfer_20260517T052138_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "a51624f2be9cfa141115c085ecd972ae167440202158d1c22e4d5196a27fd29a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Hypothesis PASS.** 结果：\n\n| Metric | Accuracy | 95% CI |\n|--------|----------|--------|\n| Within-seed CV (seed=42) | 78.68% | ±0.44% |\n| Within-seed CV (seed=43) | 77.45% | ±1.18% |\n| **Within-seed avg** | **78.07%** | — |\n| train=42 → test=43 | 77.85% | [76.10%, 79.65%] |\n| train=43 → test=42 | 75.68% | [75.07%, 76.25%] |\n| **Cross-seed avg** | **76.76%** | — |\n| **Delta (cross - within)** | **-1.30pp** | — |\n\nCross-seed avg = 76.76% ≥ 75% threshold, delta = -1.30pp (within the ≤3pp tolerance).\n\n注意：seed=43 数据集只有 2000 samples（vs seed=42 的 20000），所以 train=43→test=42 方向略低属于预期（训练数据少 10x）。train=42→test=43 方向几乎无损（77.85% vs within 78.07%），进一步确认 feature space 跨 seed 一致性。\n\n结果已保存至 `/root/autodl-tmp/recursive_gen_depth_est/results/cross_seed_transfer/summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3a04808398683add54aa",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_9_1778872283.md",
+  "task_key": "loop_9_1778872283",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778872283.md",
+    "occurrence": 1,
+    "bytes": 4207,
+    "sha256": "86bfa5f64bafa1d6aa98f2df33eafe6b980663ce1741665dcf0c7a4afe368492"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T19:10:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **gpu-6000pro-2 cuda:0, cuda:1**（config 白名单）。其他 GPU 一律 push back Director\n- DDL: **EMNLP ARR May 25**，剩余 **10 天**，Phase 2 写作 + 提交全部在这个窗口内\n- **种子语料是 Wikipedia subset**，三个模型 pipeline 共用同一份。worker_write_section_method artifact 错误地写成 \"OpenWebText/Dolma/WebText\"——**不要合并该修改**，原 method.tex 正确\n- DCOL 已死（v1-v6 全失败），Plan A 已激活：Atlas/EDD 为 primary contribution，**不要再尝试 DCOL**\n- feat_ablation_v1 正在 gpu-6000pro-2 上跑（PID 473989），**不要 kill 或干扰**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: 未确认具体路径（aml-train 镜像则 `/root/miniconda3/bin/python`，需 detect_image 确认）\n- **结果目录**: `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/`\n- **活跃进程**: feat_ablation_v1 (PID 473989, cron 监控中, forward selection v2 Phase 2, 4/9 cells done, olmo_temp09 running)\n- **Worker 池**: 0 个运行中\n- **Cron**: 1 个活跃（feat_ablation_v1，reconcile 确认 still running）\n\n### 3. 📊 当前状态\n**Phase 1 全部完成**（9/9 cells, 70-85% 4-class acc）。**Phase 2 写作刚启动**。\n\n**RUNNING 实验**:\n- `feat_ablation_v1`: feature ablation 9-cell 分析。Phase 1（topk/category/LOGO/PCA/VIF）已完成，Phase 2 forward selection v2 进行中（4/9 cells done）。关键发现：var_surprisal 是 6/9 cells 的 top-1 特征，top-3 features 达到 93% full accuracy，perplexity category 单独捕获 92-99%。\n\n**等待中**: 无 Worker 回调。feat_ablation_v1 的 cron 会在完成时触发回调。\n\n**审稿 issue 进度**:\n- Critical 未完成: R1-N1 EDD 公式 ⏳, R2-N2 文献 ⏳\n- Warning 数据已就绪，等 Paper Agent 写入论文: W3 LoRA引用, W5 论文文本, W6 per-class recall, R2-W2 术语, R2-W4 Limitations, R2-W6 orphan bib\n- Open (rebuttal 材料): W2 domain bias, W4 zero-shot 样本量, R2-W3 multi-τ\n\n### 4. 📋 待办（条件触发式）\n- feat_ablation_v1 cron 回调到达 → spawn Worker 分析完整 ablation 结果 → 更新 registry + report.md → 将 ablation findings 整合进 paper Section 5\n- feat_ablation_v1 完成后 → GPU 释放 → 立即启动 Paper Agent patch 工作（N2 双 backbone + feature overlap 写入 Section 5.4）\n- Phase 2 写作启动 → spawn 多个 Worker 并行：(1) Paper Agent 处理 Warning 级审稿修改, (2) R1-N1 EDD 公式修正, (3) R2-N2 文献补充\n- 所有 Warning 修改完成 → spawn Reviewer Worker 做对抗迭代（max 5 rounds）\n- May 23 → 进入 Phase 3 提交流程：bibliography audit + final polish\n\n### 5. 🎯 战略上下文\n**核心叙事 (Plan A, D011)**: 这是 task formalization + systematic empirical study，不是 method paper。Primary = Depth Degradation Atlas + EDD metric + feature universality。DCOL 全线失败后已确认此路线。\n\n**关键数据点**:\n- 3×3 矩阵 70-85% acc (chance=25%)，var_surprisal/p90_ppl 是 universal top features\n- EDD=4 跨模型一致（d3v4 AUC~0.75, d4v5<0.70），但统计强度分层（Pythia 显著 p=0.001, OLMo 边际）→ D026/D027 已调整声明\n- N2 双 backbone (DeBERTa 58.3%, RoBERTa 59.5%) 远低于 RF 78.2%，feature overlap Spearman ρ=-0.484 → representation bias 解释，非训练不足\n- Cross-strategy LOO d1v2 AUC 极低（GPT-2 XL 0.129）→ temperature 导致 genuine geometry shift (D021/D028)\n- Z-score normalization 不能修复 cross-strategy（D021/D028），RF-only finding\n\n**易错点**:\n- 不要把 cross-strategy 和 within-strategy 的 AUC 直接对比——d1v2 inversion 只在 cross-strategy 出现\n- τ=0.7 pilot (Pythia) 没有 inversion，说明 inversion 是模型特性差异而非温度本身\n- worker_write_section_method 的种子语料描述是错的，合并时必须跳过该段\n- feat_ablation_v1 notes 里的 findings 是实时更新的，但 registry spec 可能不完整——完成后需 Worker SSH 读完整结果文件\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

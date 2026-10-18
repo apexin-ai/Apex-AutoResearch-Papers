@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e99edbaba635c9c73d7f",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure regenerate count curves and audit",
+  "task_key": "worker_figure_regenerate_count_curves_and_audit_20260515T225822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_regenerate_count_curves_and_audit_20260515T225822_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "3ae78170cd57b1f0ac11dc060b916bec66428217d199e479f20941746bec90c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总结果：\n\n---\n\n## 任务 1：fig_count_curves.pdf ✓\n\n- 在 FewRel RE panel (b) 加入 `count_40=0.588` 数据点（位于 32→64 之间）\n- 其他所有数据点未变\n- PDF 已重新生成：`/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf` (29619 bytes, valid)\n- 脚本副本：`/root/schema-dag-extraction/scripts/gen_fig_count_curves.py`\n\n## 任务 2：图表审计\n\n`/root/schema-dag-extraction/figures/paper/` 中共 2 个图表：\n\n| 文件 | 状态 | 说明 |\n|------|------|------|\n| `fig_count_curves.pdf` | ✓ 已更新 | 加入 count_40 点 |\n| `fig_error_taxonomy.pdf` | ⚠️ 可能需更新 | 当前仅含 Qwen3 数据。exp012 LLaMA 跨模型 BCS 效应 (count_8 Δ=-27.1pp, count_16 Δ=-24.0pp) 可作为补充 panel 或在文字中引用，但图表本身是 error distribution by BCS bin，不是 count curve，LLaMA 数据加入方式取决于论文叙事选择 |\n\n**无其他图表文件。** 如果论文需要 cross-model comparison figure（如 Qwen3 vs LLaMA BCS degradation 对比图），需要新建。当前 figures/paper/ 没有这类图表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

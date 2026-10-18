@@ -1,0 +1,439 @@
+{
+  "schema_version": "1.0",
+  "id": "5f2fb70b42b0f87e0199",
+  "project": "cert_manip_resist_eval",
+  "kind": "conversation",
+  "title": "paper figure fig regime transition",
+  "task_key": "worker_paper_figure_fig_regime_transition_20260523T194555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure_fig_regime_transition_20260523T194555.jsonl",
+    "occurrence": 1,
+    "bytes": 14271,
+    "sha256": "7f44021da58d79092b401cbaa51ff563e2c8804ba8259c7aba75ee5b9948b3e3"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:47:50.022761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/figure2_plot_data.json"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:47:50.023112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"figure_type\": \"regime_transition_crossing\",\n3\t  \"x_axis\": \"K (panel size)\",\n4\t  \"y_axis\": \"Number of FDR-significant conditions (out of 12)\",\n5\t  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\n6\t  \"data\": {\n7\t    \"K_values\": [3, 5, 7],\n8\t    \"eta_max_sig\": [3, 0, 0],\n9\t    \"keff_sig\": [4, 10, 9],\n10\t    \"old_eta_max_sig\": [5, 0, 0],\n11\t    \"old_keff_sig\": [1, 7, 5]\n12\t  },\n13\t  \"annotations\": {\n14\t    \"crossing_point\": \"K=3 (V2): K_eff already exceeds eta_max (4 vs 3)\",\n15\t    \"old_crossing_point\": \"K~4 (V1): K_eff overtook eta_max between K=3 and K=5\",\n16\t    \"note\": \"V2 corrected data shows regime transition occurs earlier — K_eff dominates from K=3 onward\",\n17\t    \"v1_v2_diff\": {\n18\t      \"K3\": \"eta_max: 5→3 (-2), K_eff: 1→4 (+3) — crossing moved to K=3\",\n19\t      \"K5\": \"eta_max: 0→0 (same), K_eff: 7→10 (+3)\",\n20\t      \"K7\": \"eta_max: 0→0 (same), K_eff: 5→9 (+4)\"\n21\t    }\n22\t  }\n23\t}\n24\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:47:50.023293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/",
+              "description": "Check figures directory exists"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:47:50.023432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:47:50.023584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\nK_values = [3, 5, 7]\neta_max_sig = [3, 0, 0]\nkeff_sig = [4, 10, 9]\n\nx = np.arange(len(K_values))\nwidth = 0.32\n\ncolor_eta = '#E69F00'\ncolor_keff = '#0072B2'\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\n# Shaded transition zone between K=3 and K=5\nax.axvspan(0.5, 1.0, alpha=0.10, color='gray', zorder=0)\nax.text(0.75, 11.3, r'$K^* \\in (3,5)$', ha='center', va='center', fontsize=9, color='0.4', style='italic')\n\n# Horizontal dashed line at y=12\nax.axhline(y=12, color='0.6', linestyle='--', linewidth=0.8, zorder=1)\nax.text(2.42, 12.3, 'all conditions', ha='right', va='bottom', fontsize=8, color='0.5')\n\nbars_eta = ax.bar(x - width/2, eta_max_sig, width, color=color_eta, label=r'$\\eta_{\\max}$', edgecolor='white', linewidth=0.5, zorder=3)\nbars_keff = ax.bar(x + width/2, keff_sig, width, color=color_keff, label=r'$K_{\\mathrm{eff}}$', edgecolor='white', linewidth=0.5, zorder=3)\n\n# Bar labels\nfor bar, val in zip(bars_eta, eta_max_sig):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3, str(val),\n            ha='center', va='bottom', fontsize=9, fontweight='bold', color=color_eta)\n\nfor bar, val in zip(bars_keff, keff_sig):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3, str(val),\n            ha='center', va='bottom', fontsize=9, fontweight='bold', color=color_keff)\n\nax.set_xlabel('Panel size $K$')\nax.set_ylabel('FDR-significant conditions (of 12)')\nax.set_xticks(x)\nax.set_xticklabels([str(k) for k in K_values])\nax.set_ylim(0, 13.5)\nax.set_yticks(range(0, 13, 2))\nax.legend(loc='upper right', framealpha=0.9, edgecolor='0.8')\n\nfig.tight_layout()\n\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{out_dir}/fig_regime_transition.pdf')\nfig.savefig(f'{out_dir}/fig_regime_transition.png')\nprint('Done')\nPYEOF",
+              "description": "Generate regime transition figure"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:47:50.023766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nModuleNotFoundError: No module named 'matplotlib'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:47:50.023891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip install matplotlib -q 2>&1 | tail -1",
+              "description": "Install matplotlib"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:47:50.024008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "hint: See PEP 668 for the detailed specification."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:47:50.024120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip install matplotlib -q --break-system-packages 2>&1 | tail -3",
+              "description": "Install matplotlib with PEP 668 override"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:47:50.024245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/ubuntu/.local/bin' which is not on PATH.\n  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:47:50.024368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\nK_values = [3, 5, 7]\neta_max_sig = [3, 0, 0]\nkeff_sig = [4, 10, 9]\n\nx = np.arange(len(K_values))\nwidth = 0.32\n\ncolor_eta = '#E69F00'\ncolor_keff = '#0072B2'\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\n# Shaded transition zone between K=3 and K=5\nax.axvspan(0.5, 1.0, alpha=0.10, color='gray', zorder=0)\nax.text(0.75, 11.3, r'$K^* \\in (3,5)$', ha='center', va='center', fontsize=9, color='0.4', style='italic')\n\n# Horizontal dashed line at y=12\nax.axhline(y=12, color='0.6', linestyle='--', linewidth=0.8, zorder=1)\nax.text(2.42, 12.3, 'all conditions', ha='right', va='bottom', fontsize=8, color='0.5')\n\nbars_eta = ax.bar(x - width/2, eta_max_sig, width, color=color_eta, label=r'$\\eta_{\\max}$', edgecolor='white', linewidth=0.5, zorder=3)\nbars_keff = ax.bar(x + width/2, keff_sig, width, color=color_keff, label=r'$K_{\\mathrm{eff}}$', edgecolor='white', linewidth=0.5, zorder=3)\n\nfor bar, val in zip(bars_eta, eta_max_sig):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3, str(val),\n            ha='center', va='bottom', fontsize=9, fontweight='bold', color=color_eta)\n\nfor bar, val in zip(bars_keff, keff_sig):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3, str(val),\n            ha='center', va='bottom', fontsize=9, fontweight='bold', color=color_keff)\n\nax.set_xlabel('Panel size $K$')\nax.set_ylabel('FDR-significant conditions (of 12)')\nax.set_xticks(x)\nax.set_xticklabels([str(k) for k in K_values])\nax.set_ylim(0, 13.5)\nax.set_yticks(range(0, 13, 2))\nax.legend(loc='upper right', framealpha=0.9, edgecolor='0.8')\n\nfig.tight_layout()\n\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{out_dir}/fig_regime_transition.pdf')\nfig.savefig(f'{out_dir}/fig_regime_transition.png')\nprint('Done')\nPYEOF",
+              "description": "Generate regime transition figure"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:47:50.024505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:47:50.024620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_regime_transition.*",
+              "description": "Verify output files"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:47:50.024758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 20429 May 23 19:46 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_regime_transition.pdf\n-rw-r--r-- 1 ubuntu ubuntu 63531 May 23 19:46 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_regime_transition.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:47:50.024872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_regime_transition.png"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:47:50.025234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:47:50.025401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\nK_values = [3, 5, 7]\neta_max_sig = [3, 0, 0]\nkeff_sig = [4, 10, 9]\n\nx = np.arange(len(K_values))\nwidth = 0.32\n\ncolor_eta = '#E69F00'\ncolor_keff = '#0072B2'\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\n# Shaded transition zone between K=3 and K=5\nax.axvspan(0.5, 1.0, alpha=0.10, color='gray', zorder=0)\nax.text(0.75, 11.3, r'$K^* \\in (3,5)$', ha='center', va='center', fontsize=9, color='0.4', style='italic')\n\n# Horizontal dashed line at y=12\nax.axhline(y=12, color='0.6', linestyle='--', linewidth=0.8, zorder=1)\nax.text(0.02, 12.35, 'all conditions', ha='left', va='bottom', fontsize=8, color='0.5',\n        transform=ax.get_yaxis_transform())\n\nbars_eta = ax.bar(x - width/2, eta_max_sig, width, color=color_eta, label=r'$\\eta_{\\max}$', edgecolor='white', linewidth=0.5, zorder=3)\nbars_keff = ax.bar(x + width/2, keff_sig, width, color=color_keff, label=r'$K_{\\mathrm{eff}}$', edgecolor='white', linewidth=0.5, zorder=3)\n\nfor bar, val in zip(bars_eta, eta_max_sig):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3, str(val),\n            ha='center', va='bottom', fontsize=9, fontweight='bold', color=color_eta)\n\nfor bar, val in zip(bars_keff, keff_sig):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3, str(val),\n            ha='center', va='bottom', fontsize=9, fontweight='bold', color=color_keff)\n\nax.set_xlabel('Panel size $K$')\nax.set_ylabel('FDR-significant conditions (of 12)')\nax.set_xticks(x)\nax.set_xticklabels([str(k) for k in K_values])\nax.set_ylim(0, 13.5)\nax.set_yticks(range(0, 13, 2))\nax.legend(loc='upper right', framealpha=0.9, edgecolor='0.8')\n\nfig.tight_layout()\n\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures'\nfig.savefig(f'{out_dir}/fig_regime_transition.pdf')\nfig.savefig(f'{out_dir}/fig_regime_transition.png')\nprint('Done')\nPYEOF",
+              "description": "Regenerate figure with fixed text position"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:47:50.025546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:47:50.025677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_regime_transition.png"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:47:50.026042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:47:50.026226+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成，文件大小合理：\n\n- `fig_regime_transition.pdf` — 20KB\n- `fig_regime_transition.png` — 64KB\n\nV2 数据正确反映：K=3 时 K_eff(4) 已超过 η_max(3)，K≥5 后 η_max 降至 0，K_eff 成为 sole predictor。transition zone 标注在 K∈(3,5) 区间。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_regime_transition_20260523T194555"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ]
+}

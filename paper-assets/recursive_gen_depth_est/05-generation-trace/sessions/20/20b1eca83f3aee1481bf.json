@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20b1eca83f3aee1481bf",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops s3 backup upload retry",
+  "task_key": "worker_ops_s3-backup-upload-retry_20260525T215615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-upload-retry_20260525T215615_result.json",
+    "occurrence": 1,
+    "bytes": 211,
+    "sha256": "40588419ddea9810e4793585ede1295478fa8c1e5d00ab8d8bfbc582f7b99d61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台轮询任务已结束（因 SSH 权限问题未能通过 Bash 直接连接，但已通过 MCP SSH 工具完成全部监控）。\n\n上传任务已全部完成，报告已在上方输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

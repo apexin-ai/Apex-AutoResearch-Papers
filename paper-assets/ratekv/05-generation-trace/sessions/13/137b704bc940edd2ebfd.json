@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "137b704bc940edd2ebfd",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ssh check experiments status",
+  "task_key": "worker_ssh_check-experiments-status_20260514T183858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-experiments-status_20260514T183858_result.json",
+    "occurrence": 1,
+    "bytes": 1671,
+    "sha256": "a08f66b91ca0d69d0d840d2e04042bd72352749a3235e92cb14dee7d6b005508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. qwen_hires_float32_d048 — **ALIVE**\n- PID 247429，运行 9 分 19 秒，状态 `Ss+`\n- 日志显示：模型已加载，正在执行 Step 1 (High-resolution quantization profiling)\n- 输出文件 `qwen_hires_results.json` 尚未生成\n- 已有前次 float32 验证文件：`qwen_float32_profiles.json`（28 层 × 4 heads，baseline PPL=10.77）\n\n### 2. yi15_9b_full_pipeline — **DEAD (crashed)**\n- PID 229912 / 233153 均已不存在\n- 退出时间：2026-05-14T14:51:26Z，exit code=0（wrapper 层面）\n- **实际崩溃于 Phase 5**：`ImportError: cannot import name 'solve_ratequant_greedy' from 'solver'`\n- Phase 1-4 完成，Phase 4 输出了 heterogeneity 指标（top5_concentration=0.6274）\n- 但 `yi15_full_results.json` 存在（应为**更早一次成功运行**的结果），关键指标：\n\n| 指标 | 值 |\n|------|-----|\n| baseline wikitext2 PPL | 7.016 |\n| MCKP wikitext2 PPL | 7.313 |\n| uniform 4-bit PPL | 7.217 |\n| MCKP vs uniform | **-0.096 (FAIL)** |\n| top5_concentration | 0.4934 |\n| best_k | 2 (PPL=7.221) |\n| verdict | **FAIL** |\n\n### 3. GPU\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 100% | 35,427 / 97,887 MiB |\n| 1 | **0% (idle)** | 0 / 97,887 MiB |\n\n### 4. 磁盘\n\n| 挂载点 | 大小 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 150G | 101G | 60% |\n| / (overlay) | 30G | 17G | 14G | 55% |\n\n---\n\n**需要关注**：yi15 最新一次运行因 `solver.py` 中缺少 `solve_ratequant_greedy` 函数而崩溃，GPU 1 当前空闲。如需重跑需先修复 solver 的导入问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

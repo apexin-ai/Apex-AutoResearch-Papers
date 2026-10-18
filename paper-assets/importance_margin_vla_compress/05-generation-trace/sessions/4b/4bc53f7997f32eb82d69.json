@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4bc53f7997f32eb82d69",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "analysis eval openvla attn k07 long seed42 v2",
+  "task_key": "worker_analysis_eval_openvla_attn_k07_long_seed42_v2_20260526T035838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval_openvla_attn_k07_long_seed42_v2_20260526T035838_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "534d8a20f7d4191c3801edaa2dd6f90903bf59f3feff6eede25e4864e6974c4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n实验: eval_openvla_attn_k07_long_seed42_v2\nSR: 24.0% (120/500)\n对比: Attn k=0.9=44.0%, L2norm k=0.7=31.2%, Random k=0.7=38.8%\nconclusion: negative\n```\n\nAttention pruning 在 k=0.7 时 cliff 明显：从 k=0.9 的 44.0% 骤降到 24.0%（-20pp）。且 Attn k=0.7 (24.0%) 是三种 scoring 方法在 k=0.7 下表现最差的（L2norm 31.2%, Random 38.8%），说明 attention scoring 在高压缩率下退化最严重，cliff 位置大约在 k=0.7~0.9 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

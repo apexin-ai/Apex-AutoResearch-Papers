@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8b66d117b43eaab7369e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code download all annotations",
+  "task_key": "worker_code_download-all-annotations_20260521T214803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_download-all-annotations_20260521T214803_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "a2d5cb76cf19668491b75353cfb158a8cc65228bde763bc5708d69b9103df231"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n**4-Model Misclassification Analysis (binary Z, K=4 subgroups, 'long' excluded)**\n\n| Model | N | Accuracy | Δπ | max κ | Prop2 triggered |\n|-------|---|----------|----|-------|-----------------|\n| Llama-3.1-8B | 490 | 0.755 | 0.141 | 2.30 | 1/4 |\n| Qwen-2.5-7B | 490 | 0.798 | 0.165 | 1.91 | 1/4 |\n| Gemma-2-9B | 490 | 0.763 | 0.125 | 2.49 | 4/4 |\n| Mistral-7B | 490 | 0.802 | 0.134 | 1.96 | 0/4 |\n\n**Key findings:**\n- All 4 models show Δπ > 0.05, confirming heterogeneous misclassification across subgroups\n- `True_short` (has hashtag, short text) consistently has the lowest π_s across all models\n- **Gemma-2-9B** triggers Prop2 in all 4 subgroups — strong FNR > FPR asymmetry (it under-predicts Z=1)\n- **Mistral-7B** has the best accuracy (0.802) and triggers Prop2 in 0 subgroups — most balanced error profile\n- **Qwen-2.5-7B** has the largest Δπ (0.165) with FPR=0.000 in `True_short`, creating extreme heterogeneity\n\n**Output files:**\n- `all_models_analysis.md` — full report with MLE + HB EB tables per model\n- `all_models_metrics.csv` — 16 rows (4 models × 4 subgroups)\n- `all_models_summary.csv` — 4-row model-level summary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

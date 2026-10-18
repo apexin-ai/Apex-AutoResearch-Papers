@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a4fa36674af670e09733",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh disk usage audit",
+  "task_key": "worker_ssh_disk-usage-audit_20260515T063235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_disk-usage-audit_20260515T063235_result.json",
+    "occurrence": 1,
+    "bytes": 3098,
+    "sha256": "992e3019005227f7bf688676a3df850f98fda8eebbf9e31fb7cc295792678928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是审计结果：\n\n---\n\n## 磁盘空间审计报告\n\n### 分区概览\n\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| `/root/autodl-tmp` (数据盘) | 250G | 219G | 32G |\n| `/` (根分区) | 30G | 27G | 4G |\n\n### `/root/autodl-tmp/` 详细占用 (219GB)\n\n| 目录 | 大小 | 状态 | 说明 |\n|------|------|------|------|\n| **`.hf_cache/Qwen/Qwen3-32B/`** | **62G** | ⚠️ 可能可清理 | Qwen3-32B **BF16 全精度**版本（17个 shard） |\n| **`.hf_cache/qwen3-32b-fp8/`** | **32G** | ✅ 必须保留 | Qwen3-32B-FP8，当前实验在用 |\n| **`output_seed0/`** | **92G** | ⚠️ 部分可清理 | 3轮实验输出 (G0/G1/G2 各~31G)，每轮含 5个 checkpoint×5.7G |\n| **`dryrun2/`** | **27G** | 🗑️ 建议清理 | dry run 实验，G0+G1 各含旧 checkpoint |\n| **`output_v7/`** | **6.3G** | ⚠️ 可能可清理 | 旧版本实验输出 |\n| **`output_dryrun_seed0/`** | **446M** | 🗑️ 建议清理 | 另一个 dry run |\n| **`pip_cache/`** | **1.4G** | 🗑️ 建议清理 | pip 下载缓存 |\n| **`.hf_cache/` 其他** | **~250M** | ✅ 保留 | datasets, sentence-transformers 等小文件 |\n\n### 清理方案\n\n#### Tier 1: 确定可清理（无风险）\n\n| 项目 | 释放空间 |\n|------|---------|\n| `dryrun2/` — dry run 实验，无正式结果价值 | **27G** |\n| `output_dryrun_seed0/` — dry run | **0.4G** |\n| `pip_cache/` — 可随时重建 | **1.4G** |\n| **Tier 1 合计** | **~29G** |\n\n#### Tier 2: Qwen3-32B BF16 全精度模型\n\n| 项目 | 释放空间 |\n|------|---------|\n| `.hf_cache/Qwen/Qwen3-32B/` — BF16版，实验用的是 FP8 版 | **62G** |\n\n如果当前实验确实只用 FP8 版本，这个 BF16 全精度版本可以删除。需要时可重新下载。\n\n#### Tier 3: output_seed0 中间 checkpoint\n\n`output_seed0/` 每轮 (G0/G1/G2) 都保存了 5 个 training checkpoint（每个 5.7G），总计 ~85G 的 checkpoint。如果只需要 `final_model/` 和 `metrics.jsonl`，可以删除中间 checkpoint：\n\n| 项目 | 释放空间 |\n|------|---------|\n| `output_seed0/G*/training/` — 保留 final_model，删 checkpoint | **~85G** |\n\n#### Tier 4: 旧版本实验\n\n| 项目 | 释放空间 |\n|------|---------|\n| `output_v7/` — 看是否还有参考价值 | **6.3G** |\n\n### 总结\n\n| 清理方案 | 释放空间 | 清理后剩余 | 够装 LLaMA-70B？ |\n|---------|---------|-----------|-----------------|\n| Tier 1 only | ~29G | ~61G 可用 | ❌ 不够 |\n| Tier 1 + Tier 2 | ~91G | ~123G 可用 | ✅ 够 |\n| Tier 1 + Tier 2 + Tier 3 | ~176G | ~208G 可用 | ✅ 充裕 |\n| 全部清理 | ~182G | ~214G 可用 | ✅ 充裕 |\n\n**最小可行方案**：清理 Tier 1 + Tier 2（删 dry run + BF16 全精度 Qwen3-32B），释放 ~91G，足够下载 LLaMA-3.3-70B-FP8。\n\n**推荐方案**：Tier 1 + Tier 2 + Tier 3（额外删 output_seed0 中间 checkpoint），释放 ~176G，留出充足空间。需确认 output_seed0 的 final_model 已经是最终结果、不需要从 checkpoint 恢复训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

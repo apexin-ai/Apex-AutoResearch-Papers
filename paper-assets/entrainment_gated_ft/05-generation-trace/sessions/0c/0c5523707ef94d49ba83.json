@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "id": "0c5523707ef94d49ba83",
+  "project": "entrainment_gated_ft",
+  "kind": "worker",
+  "title": "code lmeval clean v2",
+  "task_key": "worker_code_lmeval_clean_v2_20260518T125954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lmeval_clean_v2_20260518T125954.log",
+    "occurrence": 1,
+    "bytes": 4817096,
+    "sha256": "420d63cea2a892362b066d8b6e1e0154383d788d8b1309662fc151c87783dbd7"
+  },
+  "statistics": {
+    "messages": 1493,
+    "user_turns": 4,
+    "tool_calls": 496,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 4,
+      "assistant": 478,
+      "tool_call": 496,
+      "tool_result": 496,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "0c5523707ef94d49ba83-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 373,
+      "chunks": [
+        {
+          "path": "0c5523707ef94d49ba83-part-0003.json",
+          "message_count": 71
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0005.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "0c5523707ef94d49ba83-part-0005.json",
+          "message_count": 14
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0006.json",
+          "message_count": 104
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0007.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "0c5523707ef94d49ba83-part-0007.json",
+          "message_count": 48
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0008.json",
+          "message_count": 80
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0009.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 344,
+      "chunks": [
+        {
+          "path": "0c5523707ef94d49ba83-part-0009.json",
+          "message_count": 136
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5523707ef94d49ba83-part-0011.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ]
+}

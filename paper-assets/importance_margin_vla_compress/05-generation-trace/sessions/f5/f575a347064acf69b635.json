@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f575a347064acf69b635",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "fix w41 cuda3 kill attn k05 deploy attn k075 s45",
+  "task_key": "worker_fix_w41_cuda3_kill_attn_k05_deploy_attn_k075_s45_20260528T005155",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_w41_cuda3_kill_attn_k05_deploy_attn_k075_s45_20260528T005155_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "0096ec4c9bc71a8c4532b84c57a6fa5dfd1bbbbe2ddcefa340c0dea081589be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志显示已开始加载模型，但 GPU 3 还没出现在 compute apps 中（模型加载阶段在 CPU，正常）。配置正确：`suite=libero_10, prune=attention, keep=0.75, eps=50, gpu=0`。\n\n完成：\n- **已杀** `eval_pi05_attn_k05_long_seed44_strict_w41` (PID 448236)，registry 标记 killed\n- **已部署** `eval_pi05_attn_k075_long_seed45_strict_w41` (PID 459963) 到 w41:cuda:3，模型加载中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "af956f746aa024c2f7d3",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "gpu gemma2 rerun v2",
+  "task_key": "worker_gpu_gemma2_rerun_v2_20260514T162542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_gemma2_rerun_v2_20260514T162542_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "1ba8ddc971fd3b81035f7f2bea97a49f37a8079244ac2b3c179f973bad7bd537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 运行正常：\n\n1. **修复验证** — L181, L270 两处 `.float().view` 已到位\n2. **GPU 占用** — GPU 0 python 进程 7496MiB\n3. **Baseline PPL = 9.3785** — 正常范围（不是之前 bug 时的 711）\n4. **Profiling 已开始** — L0H0 @2bit delta=0.001494, @4bit delta=-0.000607，非零 delta 确认修复生效\n\n日志路径: `/root/runs/ratekv/gemma2_9b_rerun_v2.log`，tmux session: `gemma2_9b_full_pipeline`。1008 个 head 需要跑一段时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

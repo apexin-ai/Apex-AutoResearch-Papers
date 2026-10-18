@@ -1,0 +1,810 @@
+{
+  "schema_version": "1.0",
+  "id": "fc34dc84765422235a78",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "analysis gemini dim2 bcs v2",
+  "task_key": "worker_analysis_gemini_dim2_bcs_v2_20260519T174158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemini_dim2_bcs_v2_20260519T174158.log",
+    "occurrence": 1,
+    "bytes": 78289,
+    "sha256": "02eb3c9077013e71598481112544ffabe2f5f89ef68cc1ddaa7872e53bc0e1d3"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9596e296-9fc8-4986-8d1c-d147eafaf7b6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779226200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "630a4785-11c4-4807-b93b-396d03efbbfb",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先验证 API key 是否可用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "2b77fa19-e543-4831-ac9a-42cf83077354",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012d2jhWcve9Bqe85bRfi5xN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12414,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12414
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GmsJLRjthUoBTetMQxgEuw",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport openai\nclient = openai.OpenAI(api_key='[REDACTED]', base_url='http://47.94.22.126/v1')\nresp = client.chat.completions.create(model='gemini-2.5-flash', messages=[{'role':'user','content':'hi'}], max_tokens=5)\nprint(resp.choices[0].message.content)\n\"",
+                "description": "Verify Gemini 2.5 Flash API key",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "ea87263b-f5b2-474c-b52c-be224111b2f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012d2jhWcve9Bqe85bRfi5xN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12414,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12414
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "blgi1l7mr",
+                "tool_use_id": "toolu_01GmsJLRjthUoBTetMQxgEuw",
+                "description": "Verify Gemini 2.5 Flash API key",
+                "task_type": "local_bash",
+                "uuid": "643803d8-9b5d-4342-8ad9-044be07784cd",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "blgi1l7mr",
+                "tool_use_id": "toolu_01GmsJLRjthUoBTetMQxgEuw",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Verify Gemini 2.5 Flash API key",
+                "uuid": "721b352f-3141-4c47-8b28-882d3fc0c187",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T17:42:16.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GmsJLRjthUoBTetMQxgEuw",
+              "type": "tool_result",
+              "content": "Hi there! How can",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "db7b8f3a-0d89-44e9-9090-f8ef99fc3e95",
+            "tool_use_result": {
+              "stdout": "Hi there! How can",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "API key works. Now let me check the current state of the incremental results file and the script before running Part2.",
+              "signature": "ErICClkIDRgCKkCl8qXBfoDRY5Tptru6YhjphSJX4YPFpngdd4XwM0VFG6S7LpnH5HAznEceIHVqDaL8VTEn77vc9qChMc6D8BnFMg9jbGF1ZGUtb3B1cy00LTY4ABIMqFqIGa2Zc5ckH+uiGgxpNAuwnNJrchuwFI4iMLUKd4WH5HX/x30eFdfNYboTXgRSHiDZefRysZJJ5sYCdvyaisGjnGvsQPeADItVIiqGAfmEKF0i9Cmv481D2U6qVIJrB3jORbnYsOJZzGaX9ppQ3irEZZcfKWFvnswzccVYz2r3FcjkDLNVxAgLqOHrC59rKAfJr2V133EQbM4DdlBJks+U+jDehL5QZtoIQHOfL/0txnjPa+9V1R1TI/1yRl0nU/PblpRuYAofG80uwo1A8jiVsLLTGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "25d3b526-bb1a-4bce-bf59-9b25aa9c24c6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WELqiEA9vGyqgnFQ6dxt48",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 24255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API key 正常。检查当前进度和脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "5e05fa60-9e35-4673-8d3d-fd93b8ec6b88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WELqiEA9vGyqgnFQ6dxt48",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 24255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012z9A5zy3owzABD97Sc5cSa",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l artifacts/exp_gemini_flash/part2/results_incremental.jsonl 2>/dev/null; ls -la artifacts/exp_gemini_flash/part2/ 2>/dev/null",
+                "description": "Check current Part2 progress"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "9dff1e72-7856-455f-9e7a-af08ebb1306a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WELqiEA9vGyqgnFQ6dxt48",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 24255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ohiwCtetfMr9XFd76a7MW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "4711a269-5542-4099-863a-37b9de8e645b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WELqiEA9vGyqgnFQ6dxt48",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 24255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T17:42:21.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012z9A5zy3owzABD97Sc5cSa",
+              "type": "tool_result",
+              "content": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 19 17:39 .\ndrwxr-xr-x 4 ubuntu ubuntu 4096 May 19 17:39 ..",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "724e88ce-4a3c-4e46-84ec-d3a4afd0aa58",
+            "tool_use_result": {
+              "stdout": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 19 17:39 .\ndrwxr-xr-x 4 ubuntu ubuntu 4096 May 19 17:39 ..",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T17:42:21.586Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ohiwCtetfMr9XFd76a7MW",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Gemini 2.5 Flash cross-model validation: FewRel RE count curve + BCS-controlled.\n3\t\n4\tProves schema degradation is model-agnostic by replicating Qwen3-32B experiments\n5\ton Gemini 2.5 Flash via TUM proxy (OpenAI-compatible API).\n6\t\n7\tPart 1 (Count Curve): count={1,4,8,16,32,64,80}, 25 random batches per count\n8\tPart 2 (BCS-Controlled): count=8 + count=16, 25 low-BCS + 25 high-BCS batches each\n9\t\n10\tUsage:\n11\t    python3 scripts/run_gemini_flash_fewrel.py --mode dry_run\n12\t    python3 scripts/run_gemini_flash_fewrel.py --mode part1\n13\t    python3 scripts/run_gemini_flash_fewrel.py --mode part2\n14\t    python3 scripts/run_gemini_flash_fewrel.py --mode all\n15\t\"\"\"\n16\timport argparse\n17\timport json\n18\timport logging\n19\timport os\n20\timport random\n21\timport sys\n22\timport time\n23\tfrom collections import defaultdict\n24\tfrom pathlib import Path\n25\tfrom typing import Dict, List, Optional\n26\t\n27\timport numpy as np\n28\t\n29\tlogger = logging.getLogger(__name__)\n30\t\n31\tBASE_DIR = Path(__file__).resolve().parent.parent\n32\tOUTPUT_DIR = BASE_DIR / \"artifacts\" / \"exp_gemini_flash\"\n33\t\n34\t# TUM proxy config (OpenAI-compatible)\n35\tDEFAULT_API_KEY = \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\n36\tDEFAULT_BASE_URL = \"http://47.94.22.126/v1\"\n37\tDEFAULT_MODEL = \"gemini-2.5-flash\"\n38\t\n39\tPART1_COUNTS = [1, 4, 8, 16, 32, 64, 80]\n40\tN_BATCHES_PER_COUNT = 25\n41\tN_SAMPLES_PER_REL = 12\n42\tN_RELATIONS = 80\n43\tTOTAL_SAMPLES = N_SAMPLES_PER_REL * N_RELATIONS  # 960\n44\t\n45\t\n46\tdef build_prompt_re(sentence: str, head: str, tail: str,\n47\t                    relation_types: List[str]) -> str:\n48\t    \"\"\"Build RE classification prompt (matches Qwen3 experiments exactly).\"\"\"\n49\t    candidates = \", \".join(sorted(relation_types))\n50\t    return (\n51\t        \"Given the following sentence and two entities, \"\n52\t        \"classify the relation between them.\\n\\n\"\n53\t        f'Sentence: \"{sentence}\"\\n'\n54\t        f'Head entity: \"{head}\"\\n'\n55\t        f'Tail entity: \"{tail}\"\\n\\n'\n56\t        f\"Candidate relations: {candidates}\\n\\n\"\n57\t        'Output a single JSON object: {\"relation\": \"<relation_type>\"}\\n'\n58\t        'If none of the candidate relations apply, output: {\"relation\": \"none\"}'\n59\t    )\n60\t\n61\t\n62\tdef call_api_single(client, model: str, prompt: str, relation_types: List[str],\n63\t                    max_retries: int = 5) -> str:\n64\t    \"\"\"Single API call with exponential backoff retry.\"\"\"\n65\t    valid_relations = set(relation_types + [\"none\"])\n66\t\n67\t    for attempt in range(max_retries):\n68\t        try:\n69\t            response = client.chat.completions.create(\n70\t                model=model,\n71\t                messages=[{\"role\": \"user\", \"content\": prompt}],\n72\t                temperature=0.0,\n73\t                max_tokens=64,\n74\t                response_format={\"type\": \"json_object\"},\n75\t            )\n76\t            text = response.choices[0].message.content.strip()\n77\t            parsed = json.loads(text)\n78\t            pred = parsed.get(\"relation\", \"none\")\n79\t            if pred not in valid_relations:\n80\t                pred = \"none\"\n81\t            return pred\n82\t        except json.JSONDecodeError:\n83\t            logger.warning(\"JSON decode error attempt %d: %s\", attempt + 1,\n84\t                           text[:100] if 'text' in dir() else \"N/A\")\n85\t            if attempt == max_retries - 1:\n86\t                return \"none\"\n87\t        except Exception as e:\n88\t            wait = min(2 ** attempt, 30)\n89\t            logger.warning(\"API error attempt %d/%d: %s (retry in %ds)\",\n90\t                           attempt + 1, max_retries, str(e)[:200], wait)\n91\t            if attempt < max_retries - 1:\n92\t                time.sleep(wait)\n93\t            else:\n94\t                return \"none\"\n95\t    return \"none\"\n96\t\n97\t\n98\tdef load_fewrel_samples(seed: int = 42) -> List[Dict]:\n99\t    \"\"\"Load 960 balanced FewRel samples from pre-sampled JSON.\"\"\"\n100\t    samples_path = BASE_DIR / \"data\" / \"fewrel\" / \"fewrel_samples_960.json\"\n101\t    with open(samples_path) as f:\n102\t        data = json.load(f)\n103\t    samples = data[\"samples\"]\n104\t    n_rels = len(data[\"relations\"])\n105\t    logger.info(\"Loaded %d samples (%d relations)\", len(samples), n_rels)\n106\t    return samples\n107\t\n108\t\n109\tdef generate_count_curve_batches(type_names: List[str], seed: int = 42) -> Dict:\n110\t    \"\"\"Generate count curve batch configs deterministically (matches cqa1).\"\"\"\n111\t    config = {}\n112\t    for count in PART1_COUNTS:\n113\t        if count == 1:\n114\t            continue\n115\t        rng = random.Random(seed + count)\n116\t        batches = []\n117\t        for _ in range(N_BATCHES_PER_COUNT):\n118\t            types = rng.sample(type_names, count)\n119\t            batches.append({\"types\": types, \"bcs\": 0.0})\n120\t        config[f\"count_{count}\"] = {\"random\": batches}\n121\t    return config\n122\t\n123\t\n124\tdef generate_count1_batches(all_relations: List[str], n_batches: int = 25,\n125\t                            seed: int = 42) -> List[Dict]:\n126\t    \"\"\"Generate count=1 batches (each is a single relation).\"\"\"\n127\t    rng = random.Random(seed)\n128\t    selected = rng.sample(all_relations, min(n_batches, len(all_relations)))\n129\t    if len(selected) < n_batches:\n130\t        selected = selected + rng.choices(all_relations, k=n_batches - len(selected))\n131\t    return [{\"types\": [rel], \"bcs\": 0.0} for rel in selected[:n_batches]]\n132\t\n133\t\n134\tdef load_extreme_batches() -> Dict:\n135\t    \"\"\"Load BCS-controlled extreme batches for count=8 and count=16.\"\"\"\n136\t    # Count=8: from exp_v2_re_n25\n137\t    c8_path = BASE_DIR / \"artifacts\" / \"exp_v2_re_n25\" / \"batch_groups.json\"\n138\t    with open(c8_path) as f:\n139\t        c8_groups = json.load(f)\n140\t\n141\t    # Count=16: from bcs_controlled_llama-3.1-70b-fp8\n142\t    c16_path = (BASE_DIR / \"artifacts\" / \"bcs_controlled_llama-3.1-70b-fp8\"\n143\t                / \"count_16\" / \"batch_groups.json\")\n144\t    with open(c16_path) as f:\n145\t        c16_groups = json.load(f)\n146\t\n147\t    logger.info(\"Loaded extreme batches: count_8 (%d low, %d high), count_16 (%d low, %d high)\",\n148\t                len(c8_groups[\"low\"]), len(c8_groups[\"high\"]),\n149\t                len(c16_groups[\"low\"]), len(c16_groups[\"high\"]))\n150\t    return {\"count_8\": c8_groups, \"count_16\": c16_groups}\n151\t\n152\t\n153\tdef run_batch(client, model: str, samples: List[Dict], batch_types: List[str],\n154\t              batch_id: str, batch_bcs: float, count_key: str,\n155\t              inter_call_sleep: float = 0.1) -> List[Dict]:\n156\t    \"\"\"Run a single batch: filter samples by batch types, call API for each.\"\"\"\n157\t    type_set = set(batch_types)\n158\t    batch_samples = [s for s in samples if s[\"relation_type\"] in type_set]\n159\t\n160\t    if not batch_samples:\n161\t        logger.warning(\"No samples for batch %s\", batch_id)\n162\t        return []\n163\t\n164\t    results = []\n165\t    for s in batch_samples:\n166\t        prompt = build_prompt_re(s[\"text\"], s[\"head_entity\"], s[\"tail_entity\"],\n167\t                                 batch_types)\n168\t        pred = call_api_single(client, model, prompt, batch_types)\n169\t        results.append({\n170\t            \"sample_id\": s.get(\"_idx\", 0),\n171\t            \"batch_id\": batch_id,\n172\t            \"count_key\": count_key,\n173\t            \"batch_types\": batch_types,\n174\t            \"batch_bcs\": batch_bcs,\n175\t            \"prediction\": pred,\n176\t            \"ground_truth\": s[\"relation_type\"],\n177\t            \"head_entity\": s[\"head_entity\"],\n178\t            \"tail_entity\": s[\"tail_entity\"],\n179\t        })\n180\t        time.sleep(inter_call_sleep)\n181\t\n182\t    correct = sum(1 for r in results if r[\"prediction\"] == r[\"ground_truth\"])\n183\t    acc = correct / len(results) if results else 0\n184\t    logger.info(\"  %s: %d samples, acc=%.4f (%d/%d)\",\n185\t                batch_id, len(results), acc, correct, len(results))\n186\t    return results\n187\t\n188\t\n189\tdef compute_batch_accuracy(results: List[Dict]) -> float:\n190\t    if not results:\n191\t        return 0.0\n192\t    correct = sum(1 for r in results if r[\"prediction\"] == r[\"ground_truth\"])\n193\t    return correct / len(results)\n194\t\n195\t\n196\tdef save_incremental(results: List[Dict], path: Path):\n197\t    \"\"\"Append results to JSONL file for resume support.\"\"\"\n198\t    with open(path, \"a\") as f:\n199\t        for r in results:\n200\t            f.write(json.dumps(r, ensure_ascii=False) + \"\\n\")\n201\t\n202\t\n203\tdef load_completed_batches(path: Path) -> set:\n204\t    \"\"\"Load already-completed batch IDs from incremental results file.\"\"\"\n205\t    if not path.exists():\n206\t        return set()\n207\t    completed = set()\n208\t    with open(path) as f:\n209\t        for line in f:\n210\t            r = json.loads(line)\n211\t            completed.add(r[\"batch_id\"])\n212\t    return completed\n213\t\n214\t\n215\tdef run_part1(client, model: str, samples: List[Dict], output_dir: Path,\n216\t              inter_call_sleep: float = 0.1):\n217\t    \"\"\"Part 1: Count curve experiment.\"\"\"\n218\t    logger.info(\"=\" * 60)\n219\t    logger.info(\"PART 1: Count Curve (counts=%s, %d batches each)\",\n220\t                PART1_COUNTS, N_BATCHES_PER_COUNT)\n221\t    logger.info(\"=\" * 60)\n222\t\n223\t    output_dir.mkdir(parents=True, exist_ok=True)\n224\t    results_path = output_dir / \"results_incremental.jsonl\"\n225\t    completed = load_completed_batches(results_path)\n226\t    if completed:\n227\t        logger.info(\"Resuming: %d batches already completed\", len(completed))\n228\t\n229\t    # Generate batch configs deterministically (matches cqa1)\n230\t    all_relations = sorted(set(s[\"relation_type\"] for s in samples))\n231\t    batch_config = generate_count_curve_batches(all_relations)\n232\t\n233\t    # Add count=1 batches\n234\t    batch_config[\"count_1\"] = {\"random\": generate_count1_batches(all_relations)}\n235\t\n236\t    # Add sample indices for filtering\n237\t    for i, s in enumerate(samples):\n238\t        s[\"_idx\"] = i\n239\t\n240\t    all_results = []\n241\t    for count in PART1_COUNTS:\n242\t        count_key = f\"count_{count}\"\n243\t        if count_key not in batch_config:\n244\t            logger.warning(\"No batch config for %s, skipping\", count_key)\n245\t            continue\n246\t\n247\t        batches = batch_config[count_key][\"random\"][:N_BATCHES_PER_COUNT]\n248\t        logger.info(\"Processing %s: %d batches\", count_key, len(batches))\n249\t\n250\t        for bi, batch in enumerate(batches):\n251\t            batch_id = f\"{count_key}_random_{bi}\"\n252\t            if batch_id in completed:\n253\t                continue\n254\t\n255\t            batch_results = run_batch(\n256\t                client, model, samples, batch[\"types\"], batch_id,\n257\t                batch[\"bcs\"], count_key, inter_call_sleep\n258\t            )\n259\t            save_incremental(batch_results, results_path)\n260\t            all_results.extend(batch_results)\n261\t\n262\t    # Compute summary\n263\t    summary = compute_count_curve_summary(results_path)\n264\t    with open(output_dir / \"count_curve_results.json\", \"w\") as f:\n265\t        json.dump(summary, f, indent=2)\n266\t    logger.info(\"Part 1 complete. Summary saved.\")\n267\t\n268\t    for ck in sorted(summary.keys()):\n269\t        info = summary[ck]\n270\t        logger.info(\"  %s: acc=%.4f +/- %.4f (%d batches)\",\n271\t                    ck, info[\"mean_acc\"], info[\"std_acc\"], info[\"n_batches\"])\n272\t\n273\t\n274\tdef run_part2(client, model: str, samples: List[Dict], output_dir: Path,\n275\t              inter_call_sleep: float = 0.1):\n276\t    \"\"\"Part 2: BCS-controlled extreme batch experiment.\"\"\"\n277\t    logger.info(\"=\" * 60)\n278\t    logger.info(\"PART 2: BCS-Controlled Extreme Batches\")\n279\t    logger.info(\"=\" * 60)\n280\t\n281\t    output_dir.mkdir(parents=True, exist_ok=True)\n282\t    results_path = output_dir / \"results_incremental.jsonl\"\n283\t    completed = load_completed_batches(results_path)\n284\t    if completed:\n285\t        logger.info(\"Resuming: %d batches already completed\", len(completed))\n286\t\n287\t    extreme_config = load_extreme_batches()\n288\t\n289\t    for i, s in enumerate(samples):\n290\t        s[\"_idx\"] = i\n291\t\n292\t    for count_key, groups in extreme_config.items():\n293\t        for group_name in [\"low\", \"high\"]:\n294\t            batches = groups[group_name][:N_BATCHES_PER_COUNT]\n295\t            logger.info(\"Processing %s %s-BCS: %d batches\",\n296\t                        count_key, group_name, len(batches))\n297\t\n298\t            for bi, batch in enumerate(batches):\n299\t                batch_id = f\"{count_key}_{group_name}_{bi}\"\n300\t                if batch_id in completed:\n301\t                    continue\n302\t\n303\t                batch_results = run_batch(\n304\t                    client, model, samples, batch[\"types\"], batch_id,\n305\t                    batch[\"bcs\"], count_key, inter_call_sleep\n306\t                )\n307\t                save_incremental(batch_results, results_path)\n308\t\n309\t    # Compute summary\n310\t    summary = compute_extreme_batch_summary(results_path)\n311\t    with open(output_dir / \"extreme_batch_results.json\", \"w\") as f:\n312\t        json.dump(summary, f, indent=2)\n313\t    logger.info(\"Part 2 complete. Summary saved.\")\n314\t\n315\t    for ck in sorted(summary.keys()):\n316\t        info = summary[ck]\n317\t        logger.info(\"  %s: low_acc=%.4f, high_acc=%.4f, delta=%.2f pp\",\n318\t                    ck, info[\"low_mean_acc\"], info[\"high_mean_acc\"],\n319\t                    (info[\"low_mean_acc\"] - info[\"high_mean_acc\"]) * 100)\n320\t\n321\t\n322\tdef compute_count_curve_summary(results_path: Path) -> Dict:\n323\t    \"\"\"Compute per-count accuracy statistics from incremental results.\"\"\"\n324\t    batch_results = defaultdict(lambda: defaultdict(lambda: {\"correct\": 0, \"total\": 0, \"bcs\": 0}))\n325\t\n326\t    with open(results_path) as f:\n327\t        for line in f:\n328\t            r = json.loads(line)\n329\t            bid = r[\"batch_id\"]\n330\t            ck = r[\"count_key\"]\n331\t            batch_results[ck][bid][\"total\"] += 1\n332\t            batch_results[ck][bid][\"bcs\"] = r[\"batch_bcs\"]\n333\t            if r[\"prediction\"] == r[\"ground_truth\"]:\n334\t                batch_results[ck][bid][\"correct\"] += 1\n335\t\n336\t    summary = {}\n337\t    for ck in sorted(batch_results.keys()):\n338\t        batches = batch_results[ck]\n339\t        accs = []\n340\t        batch_details = []\n341\t        for bid, stats in sorted(batches.items()):\n342\t            acc = stats[\"correct\"] / stats[\"total\"] if stats[\"total\"] else 0\n343\t            accs.append(acc)\n344\t            batch_details.append({\n345\t                \"batch_id\": bid, \"accuracy\": acc, \"bcs\": stats[\"bcs\"],\n346\t                \"n_samples\": stats[\"total\"]\n347\t            })\n348\t        summary[ck] = {\n349\t            \"n_batches\": len(accs),\n350\t            \"mean_acc\": float(np.mean(accs)),\n351\t            \"std_acc\": float(np.std(accs)),\n352\t            \"min_acc\": float(np.min(accs)),\n353\t            \"max_acc\": float(np.max(accs)),\n354\t            \"batches\": batch_details,\n355\t        }\n356\t    return summary\n357\t\n358\t\n359\tdef compute_extreme_batch_summary(results_path: Path) -> Dict:\n360\t    \"\"\"Compute BCS-controlled extreme batch statistics.\"\"\"\n361\t    batch_results = defaultdict(lambda: {\"correct\": 0, \"total\": 0, \"bcs\": 0})\n362\t\n363\t    with open(results_path) as f:\n364\t        for line in f:\n365\t            r = json.loads(line)\n366\t            bid = r[\"batch_id\"]\n367\t            batch_results[bid][\"total\"] += 1\n368\t            batch_results[bid][\"bcs\"] = r[\"batch_bcs\"]\n369\t            batch_results[bid][\"count_key\"] = r[\"count_key\"]\n370\t            if r[\"prediction\"] == r[\"ground_truth\"]:\n371\t                batch_results[bid][\"correct\"] += 1\n372\t\n373\t    # Group by count_key and low/high\n374\t    grouped = defaultdict(lambda: {\"low\": [], \"high\": []})\n375\t    for bid, stats in batch_results.items():\n376\t        ck = stats[\"count_key\"]\n377\t        acc = stats[\"correct\"] / stats[\"total\"] if stats[\"total\"] else 0\n378\t        if \"_low_\" in bid:\n379\t            grouped[ck][\"low\"].append({\"batch_id\": bid, \"accuracy\": acc, \"bcs\": stats[\"bcs\"]})\n380\t        elif \"_high_\" in bid:\n381\t            grouped[ck][\"high\"].append({\"batch_id\": bid, \"accuracy\": acc, \"bcs\": stats[\"bcs\"]})\n382\t\n383\t    summary = {}\n384\t    for ck in sorted(grouped.keys()):\n385\t        low_accs = [b[\"accuracy\"] for b in grouped[ck][\"low\"]]\n386\t        high_accs = [b[\"accuracy\"] for b in grouped[ck][\"high\"]]\n387\t\n388\t        result = {\n389\t            \"low_mean_acc\": float(np.mean(low_accs)) if low_accs else 0,\n390\t            \"high_mean_acc\": float(np.mean(high_accs)) if high_accs else 0,\n391\t            \"low_std_acc\": float(np.std(low_accs)) if low_accs else 0,\n392\t            \"high_std_acc\": float(np.std(high_accs)) if high_accs else 0,\n393\t            \"n_low\": len(low_accs),\n394\t            \"n_high\": len(high_accs),\n395\t            \"low_batches\": grouped[ck][\"low\"],\n396\t            \"high_batches\": grouped[ck][\"high\"],\n397\t        }\n398\t\n399\t        # Bootstrap CI for delta\n400\t        if low_accs and high_accs:\n401\t            result.update(bootstrap_delta_ci(low_accs, high_accs))\n402\t\n403\t        summary[ck] = result\n404\t    return summary\n405\t\n406\t\n407\tdef bootstrap_delta_ci(low_accs, high_accs, n_bootstrap=10000, seed=42):\n408\t    \"\"\"Bootstrap 95% CI for mean(low) - mean(high).\"\"\"\n409\t    rng = np.random.default_rng(seed)\n410\t    low_arr = np.array(low_accs)\n411\t    high_arr = np.array(high_accs)\n412\t    observed_delta = float(low_arr.mean() - high_arr.mean())\n413\t\n414\t    deltas = []\n415\t    for _ in range(n_bootstrap):\n416\t        l_boot = rng.choice(low_arr, size=len(low_arr), replace=True)\n417\t        h_boot = rng.choice(high_arr, size=len(high_arr), replace=True)\n418\t        deltas.append(l_boot.mean() - h_boot.mean())\n419\t\n420\t    deltas = np.array(deltas)\n421\t    return {\n422\t        \"delta_pp\": round(observed_delta * 100, 2),\n423\t        \"ci_lower_pp\": round(float(np.percentile(deltas, 2.5)) * 100, 2),\n424\t        \"ci_upper_pp\": round(float(np.percentile(deltas, 97.5)) * 100, 2),\n425\t    }\n426\t\n427\t\n428\tdef run_dry_run(client, model: str, samples: List[Dict]):\n429\t    \"\"\"Quick validation: 1 batch, ~5 samples.\"\"\"\n430\t    logger.info(\"=== DRY RUN: testing API connectivity ===\")\n431\t\n432\t    # Pick a count_8 batch\n433\t    all_relations = sorted(set(s[\"relation_type\"] for s in samples))\n434\t    batch_config = generate_count_curve_batches(all_relations)\n435\t    test_batch = batch_config[\"count_8\"][\"random\"][0]\n436\t    batch_types = test_batch[\"types\"]\n437\t    type_set = set(batch_types)\n438\t\n439\t    test_samples = [s for s in samples if s[\"relation_type\"] in type_set][:5]\n440\t    if not test_samples:\n441\t        test_samples = samples[:5]\n442\t        batch_types = list(set(s[\"relation_type\"] for s in test_samples))\n443\t\n444\t    logger.info(\"Testing with %d samples, %d candidate types\", len(test_samples), len(batch_types))\n445\t    logger.info(\"Batch types: %s\", batch_types)\n446\t\n447\t    correct = 0\n448\t    for s in test_samples:\n449\t        prompt = build_prompt_re(s[\"text\"], s[\"head_entity\"], s[\"tail_entity\"], batch_types)\n450\t        t0 = time.time()\n451\t        pred = call_api_single(client, model, prompt, batch_types)\n452\t        elapsed = time.time() - t0\n453\t        is_correct = pred == s[\"relation_type\"]\n454\t        correct += int(is_correct)\n455\t        logger.info(\"  GT=%-35s PRED=%-35s %.2fs %s\",\n456\t                    s[\"relation_type\"], pred, elapsed,\n457\t                    \"OK\" if is_correct else \"MISS\")\n458\t        time.sleep(0.2)\n459\t\n460\t    logger.info(\"=== DRY RUN COMPLETE: %d/%d correct ===\", correct, len(test_samples))\n461\t\n462\t\n463\tdef main():\n464\t    parser = argparse.ArgumentParser(description=\"Gemini 2.5 Flash FewRel cross-model validation\")\n465\t    parser.add_argument(\"--mode\", choices=[\"dry_run\", \"part1\", \"part2\", \"all\"], default=\"all\")\n466\t    parser.add_argument(\"--api_key\", default=os.environ.get(\"GEMINI_API_KEY\", DEFAULT_API_KEY))\n467\t    parser.add_argument(\"--base_url\", default=os.environ.get(\"OPENAI_BASE_URL\", DEFAULT_BASE_URL))\n468\t    parser.add_argument(\"--model\", default=DEFAULT_MODEL)\n469\t    parser.add_argument(\"--output_dir\", default=str(OUTPUT_DIR))\n470\t    parser.add_argument(\"--seed\", type=int, default=42)\n471\t    parser.add_argument(\"--sleep\", type=float, default=0.1,\n472\t                        help=\"Sleep between API calls (seconds)\")\n473\t    args = parser.parse_args()\n474\t\n475\t    logging.basicConfig(\n476\t        level=logging.INFO,\n477\t        format=\"%(asctime)s %(levelname)s %(name)s: %(message)s\",\n478\t        handlers=[\n479\t            logging.StreamHandler(),\n480\t            logging.FileHandler(Path(args.output_dir) / \"run.log\", mode=\"a\"),\n481\t        ]\n482\t    )\n483\t\n484\t    logger.info(\"Config: model=%s, base_url=%s, seed=%d, sleep=%.2f\",\n485\t                args.model, args.base_url, args.seed, args.sleep)\n486\t\n487\t    # Initialize OpenAI-compatible client\n488\t    from openai import OpenAI\n489\t    client = OpenAI(api_key=[REDACTED], base_url=args.base_url, timeout=60.0)\n490\t    logger.info(\"Client initialized (OpenAI-compatible, model=%s)\", args.model)\n491\t\n492\t    # Load data\n493\t    samples = load_fewrel_samples(seed=args.seed)\n494\t\n495\t    output_dir = Path(args.output_dir)\n496\t    output_dir.mkdir(parents=True, exist_ok=True)\n497\t\n498\t    if args.mode == \"dry_run\":\n499\t        run_dry_run(client, args.model, samples)\n500\t        return\n501\t\n502\t    if args.mode in (\"part1\", \"all\"):\n503\t        run_part1(client, args.model, samples, output_dir / \"part1\", args.sleep)\n504\t\n505\t    if args.mode in (\"part2\", \"all\"):\n506\t        run_part2(client, args.model, samples, output_dir / \"part2\", args.sleep)\n507\t\n508\t    logger.info(\"All done.\")\n509\t\n510\t\n511\tif __name__ == \"__main__\":\n512\t    main()\n513\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "fdb56c14-22e0-49f5-bef8-49f6da1980c5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Gemini 2.5 Flash cross-model validation: FewRel RE count curve + BCS-controlled.\n\nProves schema degradation is model-agnostic by replicating Qwen3-32B experiments\non Gemini 2.5 Flash via TUM proxy (OpenAI-compatible API).\n\nPart 1 (Count Curve): count={1,4,8,16,32,64,80}, 25 random batches per count\nPart 2 (BCS-Controlled): count=8 + count=16, 25 low-BCS + 25 high-BCS batches each\n\nUsage:\n    python3 scripts/run_gemini_flash_fewrel.py --mode dry_run\n    python3 scripts/run_gemini_flash_fewrel.py --mode part1\n    python3 scripts/run_gemini_flash_fewrel.py --mode part2\n    python3 scripts/run_gemini_flash_fewrel.py --mode all\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\nfrom typing import Dict, List, Optional\n\nimport numpy as np\n\nlogger = logging.getLogger(__name__)\n\nBASE_DIR = Path(__file__).resolve().parent.parent\nOUTPUT_DIR = BASE_DIR / \"artifacts\" / \"exp_gemini_flash\"\n\n# TUM proxy config (OpenAI-compatible)\nDEFAULT_API_KEY = \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\nDEFAULT_BASE_URL = \"http://47.94.22.126/v1\"\nDEFAULT_MODEL = \"gemini-2.5-flash\"\n\nPART1_COUNTS = [1, 4, 8, 16, 32, 64, 80]\nN_BATCHES_PER_COUNT = 25\nN_SAMPLES_PER_REL = 12\nN_RELATIONS = 80\nTOTAL_SAMPLES = N_SAMPLES_PER_REL * N_RELATIONS  # 960\n\n\ndef build_prompt_re(sentence: str, head: str, tail: str,\n                    relation_types: List[str]) -> str:\n    \"\"\"Build RE classification prompt (matches Qwen3 experiments exactly).\"\"\"\n    candidates = \", \".join(sorted(relation_types))\n    return (\n        \"Given the following sentence and two entities, \"\n        \"classify the relation between them.\\n\\n\"\n        f'Sentence: \"{sentence}\"\\n'\n        f'Head entity: \"{head}\"\\n'\n        f'Tail entity: \"{tail}\"\\n\\n'\n        f\"Candidate relations: {candidates}\\n\\n\"\n        'Output a single JSON object: {\"relation\": \"<relation_type>\"}\\n'\n        'If none of the candidate relations apply, output: {\"relation\": \"none\"}'\n    )\n\n\ndef call_api_single(client, model: str, prompt: str, relation_types: List[str],\n                    max_retries: int = 5) -> str:\n    \"\"\"Single API call with exponential backoff retry.\"\"\"\n    valid_relations = set(relation_types + [\"none\"])\n\n    for attempt in range(max_retries):\n        try:\n            response = client.chat.completions.create(\n                model=model,\n                messages=[{\"role\": \"user\", \"content\": prompt}],\n                temperature=0.0,\n                max_tokens=64,\n                response_format={\"type\": \"json_object\"},\n            )\n            text = response.choices[0].message.content.strip()\n            parsed = json.loads(text)\n            pred = parsed.get(\"relation\", \"none\")\n            if pred not in valid_relations:\n                pred = \"none\"\n            return pred\n        except json.JSONDecodeError:\n            logger.warning(\"JSON decode error attempt %d: %s\", attempt + 1,\n                           text[:100] if 'text' in dir() else \"N/A\")\n            if attempt == max_retries - 1:\n                return \"none\"\n        except Exception as e:\n            wait = min(2 ** attempt, 30)\n            logger.warning(\"API error attempt %d/%d: %s (retry in %ds)\",\n                           attempt + 1, max_retries, str(e)[:200], wait)\n            if attempt < max_retries - 1:\n                time.sleep(wait)\n            else:\n                return \"none\"\n    return \"none\"\n\n\ndef load_fewrel_samples(seed: int = 42) -> List[Dict]:\n    \"\"\"Load 960 balanced FewRel samples from pre-sampled JSON.\"\"\"\n    samples_path = BASE_DIR / \"data\" / \"fewrel\" / \"fewrel_samples_960.json\"\n    with open(samples_path) as f:\n        data = json.load(f)\n    samples = data[\"samples\"]\n    n_rels = len(data[\"relations\"])\n    logger.info(\"Loaded %d samples (%d relations)\", len(samples), n_rels)\n    return samples\n\n\ndef generate_count_curve_batches(type_names: List[str], seed: int = 42) -> Dict:\n    \"\"\"Generate count curve batch configs deterministically (matches cqa1).\"\"\"\n    config = {}\n    for count in PART1_COUNTS:\n        if count == 1:\n            continue\n        rng = random.Random(seed + count)\n        batches = []\n        for _ in range(N_BATCHES_PER_COUNT):\n            types = rng.sample(type_names, count)\n            batches.append({\"types\": types, \"bcs\": 0.0})\n        config[f\"count_{count}\"] = {\"random\": batches}\n    return config\n\n\ndef generate_count1_batches(all_relations: List[str], n_batches: int = 25,\n                            seed: int = 42) -> List[Dict]:\n    \"\"\"Generate count=1 batches (each is a single relation).\"\"\"\n    rng = random.Random(seed)\n    selected = rng.sample(all_relations, min(n_batches, len(all_relations)))\n    if len(selected) < n_batches:\n        selected = selected + rng.choices(all_relations, k=n_batches - len(selected))\n    return [{\"types\": [rel], \"bcs\": 0.0} for rel in selected[:n_batches]]\n\n\ndef load_extreme_batches() -> Dict:\n    \"\"\"Load BCS-controlled extreme batches for count=8 and count=16.\"\"\"\n    # Count=8: from exp_v2_re_n25\n    c8_path = BASE_DIR / \"artifacts\" / \"exp_v2_re_n25\" / \"batch_groups.json\"\n    with open(c8_path) as f:\n        c8_groups = json.load(f)\n\n    # Count=16: from bcs_controlled_llama-3.1-70b-fp8\n    c16_path = (BASE_DIR / \"artifacts\" / \"bcs_controlled_llama-3.1-70b-fp8\"\n                / \"count_16\" / \"batch_groups.json\")\n    with open(c16_path) as f:\n        c16_groups = json.load(f)\n\n    logger.info(\"Loaded extreme batches: count_8 (%d low, %d high), count_16 (%d low, %d high)\",\n                len(c8_groups[\"low\"]), len(c8_groups[\"high\"]),\n                len(c16_groups[\"low\"]), len(c16_groups[\"high\"]))\n    return {\"count_8\": c8_groups, \"count_16\": c16_groups}\n\n\ndef run_batch(client, model: str, samples: List[Dict], batch_types: List[str],\n              batch_id: str, batch_bcs: float, count_key: str,\n              inter_call_sleep: float = 0.1) -> List[Dict]:\n    \"\"\"Run a single batch: filter samples by batch types, call API for each.\"\"\"\n    type_set = set(batch_types)\n    batch_samples = [s for s in samples if s[\"relation_type\"] in type_set]\n\n    if not batch_samples:\n        logger.warning(\"No samples for batch %s\", batch_id)\n        return []\n\n    results = []\n    for s in batch_samples:\n        prompt = build_prompt_re(s[\"text\"], s[\"head_entity\"], s[\"tail_entity\"],\n                                 batch_types)\n        pred = call_api_single(client, model, prompt, batch_types)\n        results.append({\n            \"sample_id\": s.get(\"_idx\", 0),\n            \"batch_id\": batch_id,\n            \"count_key\": count_key,\n            \"batch_types\": batch_types,\n            \"batch_bcs\": batch_bcs,\n            \"prediction\": pred,\n            \"ground_truth\": s[\"relation_type\"],\n            \"head_entity\": s[\"head_entity\"],\n            \"tail_entity\": s[\"tail_entity\"],\n        })\n        time.sleep(inter_call_sleep)\n\n    correct = sum(1 for r in results if r[\"prediction\"] == r[\"ground_truth\"])\n    acc = correct / len(results) if results else 0\n    logger.info(\"  %s: %d samples, acc=%.4f (%d/%d)\",\n                batch_id, len(results), acc, correct, len(results))\n    return results\n\n\ndef compute_batch_accuracy(results: List[Dict]) -> float:\n    if not results:\n        return 0.0\n    correct = sum(1 for r in results if r[\"prediction\"] == r[\"ground_truth\"])\n    return correct / len(results)\n\n\ndef save_incremental(results: List[Dict], path: Path):\n    \"\"\"Append results to JSONL file for resume support.\"\"\"\n    with open(path, \"a\") as f:\n        for r in results:\n            f.write(json.dumps(r, ensure_ascii=False) + \"\\n\")\n\n\ndef load_completed_batches(path: Path) -> set:\n    \"\"\"Load already-completed batch IDs from incremental results file.\"\"\"\n    if not path.exists():\n        return set()\n    completed = set()\n    with open(path) as f:\n        for line in f:\n            r = json.loads(line)\n            completed.add(r[\"batch_id\"])\n    return completed\n\n\ndef run_part1(client, model: str, samples: List[Dict], output_dir: Path,\n              inter_call_sleep: float = 0.1):\n    \"\"\"Part 1: Count curve experiment.\"\"\"\n    logger.info(\"=\" * 60)\n    logger.info(\"PART 1: Count Curve (counts=%s, %d batches each)\",\n                PART1_COUNTS, N_BATCHES_PER_COUNT)\n    logger.info(\"=\" * 60)\n\n    output_dir.mkdir(parents=True, exist_ok=True)\n    results_path = output_dir / \"results_incremental.jsonl\"\n    completed = load_completed_batches(results_path)\n    if completed:\n        logger.info(\"Resuming: %d batches already completed\", len(completed))\n\n    # Generate batch configs deterministically (matches cqa1)\n    all_relations = sorted(set(s[\"relation_type\"] for s in samples))\n    batch_config = generate_count_curve_batches(all_relations)\n\n    # Add count=1 batches\n    batch_config[\"count_1\"] = {\"random\": generate_count1_batches(all_relations)}\n\n    # Add sample indices for filtering\n    for i, s in enumerate(samples):\n        s[\"_idx\"] = i\n\n    all_results = []\n    for count in PART1_COUNTS:\n        count_key = f\"count_{count}\"\n        if count_key not in batch_config:\n            logger.warning(\"No batch config for %s, skipping\", count_key)\n            continue\n\n        batches = batch_config[count_key][\"random\"][:N_BATCHES_PER_COUNT]\n        logger.info(\"Processing %s: %d batches\", count_key, len(batches))\n\n        for bi, batch in enumerate(batches):\n            batch_id = f\"{count_key}_random_{bi}\"\n            if batch_id in completed:\n                continue\n\n            batch_results = run_batch(\n                client, model, samples, batch[\"types\"], batch_id,\n                batch[\"bcs\"], count_key, inter_call_sleep\n            )\n            save_incremental(batch_results, results_path)\n            all_results.extend(batch_results)\n\n    # Compute summary\n    summary = compute_count_curve_summary(results_path)\n    with open(output_dir / \"count_curve_results.json\", \"w\") as f:\n        json.dump(summary, f, indent=2)\n    logger.info(\"Part 1 complete. Summary saved.\")\n\n    for ck in sorted(summary.keys()):\n        info = summary[ck]\n        logger.info(\"  %s: acc=%.4f +/- %.4f (%d batches)\",\n                    ck, info[\"mean_acc\"], info[\"std_acc\"], info[\"n_batches\"])\n\n\ndef run_part2(client, model: str, samples: List[Dict], output_dir: Path,\n              inter_call_sleep: float = 0.1):\n    \"\"\"Part 2: BCS-controlled extreme batch experiment.\"\"\"\n    logger.info(\"=\" * 60)\n    logger.info(\"PART 2: BCS-Controlled Extreme Batches\")\n    logger.info(\"=\" * 60)\n\n    output_dir.mkdir(parents=True, exist_ok=True)\n    results_path = output_dir / \"results_incremental.jsonl\"\n    completed = load_completed_batches(results_path)\n    if completed:\n        logger.info(\"Resuming: %d batches already completed\", len(completed))\n\n    extreme_config = load_extreme_batches()\n\n    for i, s in enumerate(samples):\n        s[\"_idx\"] = i\n\n    for count_key, groups in extreme_config.items():\n        for group_name in [\"low\", \"high\"]:\n            batches = groups[group_name][:N_BATCHES_PER_COUNT]\n            logger.info(\"Processing %s %s-BCS: %d batches\",\n                        count_key, group_name, len(batches))\n\n            for bi, batch in enumerate(batches):\n                batch_id = f\"{count_key}_{group_name}_{bi}\"\n                if batch_id in completed:\n                    continue\n\n                batch_results = run_batch(\n                    client, model, samples, batch[\"types\"], batch_id,\n                    batch[\"bcs\"], count_key, inter_call_sleep\n                )\n                save_incremental(batch_results, results_path)\n\n    # Compute summary\n    summary = compute_extreme_batch_summary(results_path)\n    with open(output_dir / \"extreme_batch_results.json\", \"w\") as f:\n        json.dump(summary, f, indent=2)\n    logger.info(\"Part 2 complete. Summary saved.\")\n\n    for ck in sorted(summary.keys()):\n        info = summary[ck]\n        logger.info(\"  %s: low_acc=%.4f, high_acc=%.4f, delta=%.2f pp\",\n                    ck, info[\"low_mean_acc\"], info[\"high_mean_acc\"],\n                    (info[\"low_mean_acc\"] - info[\"high_mean_acc\"]) * 100)\n\n\ndef compute_count_curve_summary(results_path: Path) -> Dict:\n    \"\"\"Compute per-count accuracy statistics from incremental results.\"\"\"\n    batch_results = defaultdict(lambda: defaultdict(lambda: {\"correct\": 0, \"total\": 0, \"bcs\": 0}))\n\n    with open(results_path) as f:\n        for line in f:\n            r = json.loads(line)\n            bid = r[\"batch_id\"]\n            ck = r[\"count_key\"]\n            batch_results[ck][bid][\"total\"] += 1\n            batch_results[ck][bid][\"bcs\"] = r[\"batch_bcs\"]\n            if r[\"prediction\"] == r[\"ground_truth\"]:\n                batch_results[ck][bid][\"correct\"] += 1\n\n    summary = {}\n    for ck in sorted(batch_results.keys()):\n        batches = batch_results[ck]\n        accs = []\n        batch_details = []\n        for bid, stats in sorted(batches.items()):\n            acc = stats[\"correct\"] / stats[\"total\"] if stats[\"total\"] else 0\n            accs.append(acc)\n            batch_details.append({\n                \"batch_id\": bid, \"accuracy\": acc, \"bcs\": stats[\"bcs\"],\n                \"n_samples\": stats[\"total\"]\n            })\n        summary[ck] = {\n            \"n_batches\": len(accs),\n            \"mean_acc\": float(np.mean(accs)),\n            \"std_acc\": float(np.std(accs)),\n            \"min_acc\": float(np.min(accs)),\n            \"max_acc\": float(np.max(accs)),\n            \"batches\": batch_details,\n        }\n    return summary\n\n\ndef compute_extreme_batch_summary(results_path: Path) -> Dict:\n    \"\"\"Compute BCS-controlled extreme batch statistics.\"\"\"\n    batch_results = defaultdict(lambda: {\"correct\": 0, \"total\": 0, \"bcs\": 0})\n\n    with open(results_path) as f:\n        for line in f:\n            r = json.loads(line)\n            bid = r[\"batch_id\"]\n            batch_results[bid][\"total\"] += 1\n            batch_results[bid][\"bcs\"] = r[\"batch_bcs\"]\n            batch_results[bid][\"count_key\"] = r[\"count_key\"]\n            if r[\"prediction\"] == r[\"ground_truth\"]:\n                batch_results[bid][\"correct\"] += 1\n\n    # Group by count_key and low/high\n    grouped = defaultdict(lambda: {\"low\": [], \"high\": []})\n    for bid, stats in batch_results.items():\n        ck = stats[\"count_key\"]\n        acc = stats[\"correct\"] / stats[\"total\"] if stats[\"total\"] else 0\n        if \"_low_\" in bid:\n            grouped[ck][\"low\"].append({\"batch_id\": bid, \"accuracy\": acc, \"bcs\": stats[\"bcs\"]})\n        elif \"_high_\" in bid:\n            grouped[ck][\"high\"].append({\"batch_id\": bid, \"accuracy\": acc, \"bcs\": stats[\"bcs\"]})\n\n    summary = {}\n    for ck in sorted(grouped.keys()):\n        low_accs = [b[\"accuracy\"] for b in grouped[ck][\"low\"]]\n        high_accs = [b[\"accuracy\"] for b in grouped[ck][\"high\"]]\n\n        result = {\n            \"low_mean_acc\": float(np.mean(low_accs)) if low_accs else 0,\n            \"high_mean_acc\": float(np.mean(high_accs)) if high_accs else 0,\n            \"low_std_acc\": float(np.std(low_accs)) if low_accs else 0,\n            \"high_std_acc\": float(np.std(high_accs)) if high_accs else 0,\n            \"n_low\": len(low_accs),\n            \"n_high\": len(high_accs),\n            \"low_batches\": grouped[ck][\"low\"],\n            \"high_batches\": grouped[ck][\"high\"],\n        }\n\n        # Bootstrap CI for delta\n        if low_accs and high_accs:\n            result.update(bootstrap_delta_ci(low_accs, high_accs))\n\n        summary[ck] = result\n    return summary\n\n\ndef bootstrap_delta_ci(low_accs, high_accs, n_bootstrap=10000, seed=42):\n    \"\"\"Bootstrap 95% CI for mean(low) - mean(high).\"\"\"\n    rng = np.random.default_rng(seed)\n    low_arr = np.array(low_accs)\n    high_arr = np.array(high_accs)\n    observed_delta = float(low_arr.mean() - high_arr.mean())\n\n    deltas = []\n    for _ in range(n_bootstrap):\n        l_boot = rng.choice(low_arr, size=len(low_arr), replace=True)\n        h_boot = rng.choice(high_arr, size=len(high_arr), replace=True)\n        deltas.append(l_boot.mean() - h_boot.mean())\n\n    deltas = np.array(deltas)\n    return {\n        \"delta_pp\": round(observed_delta * 100, 2),\n        \"ci_lower_pp\": round(float(np.percentile(deltas, 2.5)) * 100, 2),\n        \"ci_upper_pp\": round(float(np.percentile(deltas, 97.5)) * 100, 2),\n    }\n\n\ndef run_dry_run(client, model: str, samples: List[Dict]):\n    \"\"\"Quick validation: 1 batch, ~5 samples.\"\"\"\n    logger.info(\"=== DRY RUN: testing API connectivity ===\")\n\n    # Pick a count_8 batch\n    all_relations = sorted(set(s[\"relation_type\"] for s in samples))\n    batch_config = generate_count_curve_batches(all_relations)\n    test_batch = batch_config[\"count_8\"][\"random\"][0]\n    batch_types = test_batch[\"types\"]\n    type_set = set(batch_types)\n\n    test_samples = [s for s in samples if s[\"relation_type\"] in type_set][:5]\n    if not test_samples:\n        test_samples = samples[:5]\n        batch_types = list(set(s[\"relation_type\"] for s in test_samples))\n\n    logger.info(\"Testing with %d samples, %d candidate types\", len(test_samples), len(batch_types))\n    logger.info(\"Batch types: %s\", batch_types)\n\n    correct = 0\n    for s in test_samples:\n        prompt = build_prompt_re(s[\"text\"], s[\"head_entity\"], s[\"tail_entity\"], batch_types)\n        t0 = time.time()\n        pred = call_api_single(client, model, prompt, batch_types)\n        elapsed = time.time() - t0\n        is_correct = pred == s[\"relation_type\"]\n        correct += int(is_correct)\n        logger.info(\"  GT=%-35s PRED=%-35s %.2fs %s\",\n                    s[\"relation_type\"], pred, elapsed,\n                    \"OK\" if is_correct else \"MISS\")\n        time.sleep(0.2)\n\n    logger.info(\"=== DRY RUN COMPLETE: %d/%d correct ===\", correct, len(test_samples))\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Gemini 2.5 Flash FewRel cross-model validation\")\n    parser.add_argument(\"--mode\", choices=[\"dry_run\", \"part1\", \"part2\", \"all\"], default=\"all\")\n    parser.add_argument(\"--api_key\", default=os.environ.get(\"GEMINI_API_KEY\", DEFAULT_API_KEY))\n    parser.add_argument(\"--base_url\", default=os.environ.get(\"OPENAI_BASE_URL\", DEFAULT_BASE_URL))\n    parser.add_argument(\"--model\", default=DEFAULT_MODEL)\n    parser.add_argument(\"--output_dir\", default=str(OUTPUT_DIR))\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--sleep\", type=float, default=0.1,\n                        help=\"Sleep between API calls (seconds)\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s %(levelname)s %(name)s: %(message)s\",\n        handlers=[\n            logging.StreamHandler(),\n            logging.FileHandler(Path(args.output_dir) / \"run.log\", mode=\"a\"),\n        ]\n    )\n\n    logger.info(\"Config: model=%s, base_url=%s, seed=%d, sleep=%.2f\",\n                args.model, args.base_url, args.seed, args.sleep)\n\n    # Initialize OpenAI-compatible client\n    from openai import OpenAI\n    client = OpenAI(api_key=[REDACTED], base_url=args.base_url, timeout=60.0)\n    logger.info(\"Client initialized (OpenAI-compatible, model=%s)\", args.model)\n\n    # Load data\n    samples = load_fewrel_samples(seed=args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.mode == \"dry_run\":\n        run_dry_run(client, args.model, samples)\n        return\n\n    if args.mode in (\"part1\", \"all\"):\n        run_part1(client, args.model, samples, output_dir / \"part1\", args.sleep)\n\n    if args.mode in (\"part2\", \"all\"):\n        run_part2(client, args.model, samples, output_dir / \"part2\", args.sleep)\n\n    logger.info(\"All done.\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 513,
+                "startLine": 1,
+                "totalLines": 513
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The incremental results file doesn't exist yet (directory is empty). The script supports incremental resume. Let me run Part2 now. Based on the task description:\n\n- count_8: 50 batches (25 low + 25 high) × 96 samples each\n- count_16: 50 batches (25 low + 25 high) × 192 samples each\n\nThis will take a while. Let me start with 10 minutes timeout and check progress.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "1cfb3311-21ea-4b5d-b6a1-ab6df781a7f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013wBWxNt5V64emuXxoHkTgH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7831,
+                "cache_read_input_tokens": 24523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7831
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Part2 结果文件为空，从头开始。启动前台运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "a9ee96ac-1c55-4d29-89a3-998f7738f699",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013wBWxNt5V64emuXxoHkTgH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7831,
+                "cache_read_input_tokens": 24523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7831
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WgzEFJCnAkGthbYEbBftsM",
+              "name": "Bash",
+              "input": {
+                "command": "python3 scripts/run_gemini_flash_fewrel.py --mode part2 --sleep 0.15 2>&1",
+                "description": "Run Gemini Flash Part2 BCS-controlled experiment (foreground, 10min timeout)",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "9ae66b7c-87f0-4d00-b1d9-d0951c3b01c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013wBWxNt5V64emuXxoHkTgH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7831,
+                "cache_read_input_tokens": 24523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7831
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bu12r4ppk",
+                "tool_use_id": "toolu_01WgzEFJCnAkGthbYEbBftsM",
+                "description": "Run Gemini Flash Part2 BCS-controlled experiment (foreground, 10min timeout)",
+                "task_type": "local_bash",
+                "uuid": "68580de5-b04a-4149-b75c-63453f80c024",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bu12r4ppk",
+                "tool_use_id": "toolu_01WgzEFJCnAkGthbYEbBftsM",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "Run Gemini Flash Part2 BCS-controlled experiment (foreground, 10min timeout)",
+                "uuid": "83f79e43-8ad8-4cec-83b2-856eeb8f8a52",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bu12r4ppk",
+                "tool_use_id": "toolu_01WgzEFJCnAkGthbYEbBftsM",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "Run Gemini Flash Part2 BCS-controlled experiment (foreground, 10min timeout)",
+                "uuid": "fed19454-b996-439e-b859-81e57b76f224",
+                "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5"
+              }
+            }
+          ],
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T17:47:21.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 137\n2026-05-19 17:42:30,738 INFO __main__: Config: model=gemini-2.5-flash, base_url=http://47.94.22.126/v1, seed=42, sleep=0.15\n2026-05-19 17:42:31,512 INFO __main__: Client initialized (OpenAI-compatible, model=gemini-2.5-flash)\n2026-05-19 17:42:31,516 INFO __main__: Loaded 960 samples (80 relations)\n2026-05-19 17:42:31,516 INFO __main__: ============================================================\n2026-05-19 17:42:31,516 INFO __main__: PART 2: BCS-Controlled Extreme Batches\n2026-05-19 17:42:31,516 INFO __main__: ============================================================\n2026-05-19 17:42:31,516 INFO __main__: Loaded extreme batches: count_8 (25 low, 25 high), count_16 (5 low, 5 high)\n2026-05-19 17:42:31,517 INFO __main__: Processing count_8 low-BCS: 25 batches\n2026-05-19 17:42:33,135 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:34,496 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:38,219 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:56,981 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:59,863 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:01,813 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:09,835 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:20,343 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:21,860 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:23,388 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:24,696 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:25,916 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:27,168 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:29,823 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:31,265 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:33,113 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:34,660 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:37,101 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:55,385 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:03,858 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:06,229 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:07,451 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:09,104 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:10,389 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:12,985 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:14,474 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:15,784 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:17,104 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:18,710 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:20,497 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:21,832 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:23,222 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:24,640 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:29,213 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:31,191 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:32,394 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:33,912 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:35,242 INFO httpx:\n\n... [2170 characters truncated] ...\n\np://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:18,940 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:20,861 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:23,378 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:24,821 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:26,175 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:27,457 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:29,011 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:30,339 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:31,748 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:33,383 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:36,035 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:37,749 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:46,632 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:53,135 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:54,445 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:55,897 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:04,191 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:05,644 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:12,581 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:18,150 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:19,674 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:22,855 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:25,017 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:27,394 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:28,808 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:31,227 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:33,899 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:36,009 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:44,991 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:46,344 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:47,583 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:50,306 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:56,398 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:59,331 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:00,773 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:02,008 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:03,644 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:05,412 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:06,542 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:06,693 INFO __main__:   count_8_low_0: 96 samples, acc=0.8542 (82/96)\n2026-05-19 17:47:09,415 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:14,846 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:16,124 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:18,349 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"",
+              "is_error": true,
+              "tool_use_id": "toolu_01WgzEFJCnAkGthbYEbBftsM"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c341865-5e1b-431f-861e-4d113dde13e5",
+            "uuid": "341c25f8-742f-4ffd-b9ad-bdc7fa33c644",
+            "tool_use_result": "Error: Exit code 137\n2026-05-19 17:42:30,738 INFO __main__: Config: model=gemini-2.5-flash, base_url=http://47.94.22.126/v1, seed=42, sleep=0.15\n2026-05-19 17:42:31,512 INFO __main__: Client initialized (OpenAI-compatible, model=gemini-2.5-flash)\n2026-05-19 17:42:31,516 INFO __main__: Loaded 960 samples (80 relations)\n2026-05-19 17:42:31,516 INFO __main__: ============================================================\n2026-05-19 17:42:31,516 INFO __main__: PART 2: BCS-Controlled Extreme Batches\n2026-05-19 17:42:31,516 INFO __main__: ============================================================\n2026-05-19 17:42:31,516 INFO __main__: Loaded extreme batches: count_8 (25 low, 25 high), count_16 (5 low, 5 high)\n2026-05-19 17:42:31,517 INFO __main__: Processing count_8 low-BCS: 25 batches\n2026-05-19 17:42:33,135 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:34,496 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:38,219 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:56,981 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:42:59,863 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:01,813 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:09,835 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:20,343 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:21,860 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:23,388 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:24,696 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:25,916 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:27,168 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:29,823 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:31,265 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:33,113 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:34,660 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:37,101 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:43:55,385 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:03,858 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:06,229 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:07,451 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:09,104 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:10,389 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:12,985 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:14,474 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:15,784 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:17,104 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:18,710 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:20,497 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:21,832 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:23,222 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:24,640 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:29,213 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:31,191 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:32,394 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:33,912 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:44:35,242 INFO httpx:\n\n... [2170 characters truncated] ...\n\np://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:18,940 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:20,861 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:23,378 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:24,821 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:26,175 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:27,457 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:29,011 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:30,339 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:31,748 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:33,383 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:36,035 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:37,749 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:46,632 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:53,135 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:54,445 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:45:55,897 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:04,191 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:05,644 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:12,581 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:18,150 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:19,674 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:22,855 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:25,017 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:27,394 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:28,808 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:31,227 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:33,899 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:36,009 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:44,991 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:46,344 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:47,583 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:50,306 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:56,398 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:46:59,331 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:00,773 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:02,008 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:03,644 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:05,412 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:06,542 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:06,693 INFO __main__:   count_8_low_0: 96 samples, acc=0.8542 (82/96)\n2026-05-19 17:47:09,415 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:14,846 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:16,124 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:47:18,349 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\""
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ]
+}

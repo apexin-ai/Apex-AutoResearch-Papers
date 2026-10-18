@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "36f314c8d3924071ee77",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh westd 70b exp23 fix",
+  "task_key": "worker_ssh_westd-70b-exp23-fix_20260517T093802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-70b-exp23-fix_20260517T093802_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "016e2848e8ef21bf9a77cbe80146fd04e4f78d631af47d4a8c272582bc960ffb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验状态确认：\n\n**汇报：**\n\n1. **batch_config_exp2.json 传输** — 成功。在 westd 上直接从 similarity matrix + D051 random batches 重新生成（BCS 值验证与 cqa1 一致：count_8 low=0.4715 / high=0.9706）\n\n2. **vLLM 服务状态** — 70B FP8 模型已加载到两张 GPU（TP=2），每张 36.7GB/97.9GB 显存占用。vLLM Worker_TP0 和 Worker_TP1 进程运行中\n\n3. **Exp 2 和 Exp 3 已启动** — 在 tmux session `exp23_70b` 中串行运行：\n   - Exp 2: `run_bcs_controlled_llama70b.py --stage all --resume`（BCS-controlled RE，count_8 + count_16，各 10 batches）\n   - Exp 3: `run_d051_count_curves_llama70b.py --dataset fewnerd`（Few-NERD count curves，25 batches × 6 count levels）\n\n4. **GPU 利用率** — 两张 GPU 已被占用（模型加载完成中），马上开始推理\n\n5. **预计完成时间** — 基于 Exp 1（FewRel 125 batches ≈ 26min）：\n   - Exp 2: ~30-40 min（含模型加载，20 batches + bootstrap analysis）\n   - Exp 3: ~40-50 min（模型复用，150 batches）\n   - 总计: ~1.5h，预计 19:15-19:30 UTC 完成，远在 deadline (5/18 12:00 UTC) 之前"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

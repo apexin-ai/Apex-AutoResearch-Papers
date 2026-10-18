@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "d3efe15f5e1e6cacec7a",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "experiment r1w2 fp16 baseline",
+  "task_key": "worker_experiment_r1w2-fp16-baseline_20260524T163008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r1w2-fp16-baseline_20260524T163008.log",
+    "occurrence": 1,
+    "bytes": 1485603,
+    "sha256": "1369e8ee8fb40613912c319a3af7921fc6120671dc8450cee519d92ff9bf9903"
+  },
+  "statistics": {
+    "messages": 800,
+    "user_turns": 1,
+    "tool_calls": 320,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 152,
+      "tool_call": 320,
+      "tool_result": 320,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 614,
+      "chunks": [
+        {
+          "path": "d3efe15f5e1e6cacec7a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d3efe15f5e1e6cacec7a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d3efe15f5e1e6cacec7a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d3efe15f5e1e6cacec7a-part-0004.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "d3efe15f5e1e6cacec7a-part-0004.json",
+          "message_count": 106
+        },
+        {
+          "path": "d3efe15f5e1e6cacec7a-part-0005.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ]
+}

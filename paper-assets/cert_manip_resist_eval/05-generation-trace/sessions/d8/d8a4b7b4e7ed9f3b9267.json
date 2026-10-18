@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "d8a4b7b4e7ed9f3b9267",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis gam bootstrap ci k3",
+  "task_key": "worker_analysis_gam-bootstrap-ci-k3_20260523T163711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gam-bootstrap-ci-k3_20260523T163711.log",
+    "occurrence": 1,
+    "bytes": 1114333,
+    "sha256": "81217c73c9778a6a0c1b1c0f9de0de57466dbdcdc9daf19854005c2c8a8ce3fe"
+  },
+  "statistics": {
+    "messages": 568,
+    "user_turns": 1,
+    "tool_calls": 229,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 229,
+      "tool_result": 229,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 552,
+      "chunks": [
+        {
+          "path": "d8a4b7b4e7ed9f3b9267-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8a4b7b4e7ed9f3b9267-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8a4b7b4e7ed9f3b9267-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8a4b7b4e7ed9f3b9267-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "d8a4b7b4e7ed9f3b9267-part-0004.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ]
+}

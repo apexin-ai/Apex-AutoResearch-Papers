@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "ee00a279adbd01761acb",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "code dcol train script 20260514T183422 retry1",
+  "task_key": "worker_code_dcol_train_script_20260514T183422_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcol_train_script_20260514T183422_retry1.log",
+    "occurrence": 1,
+    "bytes": 948993,
+    "sha256": "dc520f038138593cd0f0a7948f0eacc476e22670424cb36702aa0a988979887d"
+  },
+  "statistics": {
+    "messages": 327,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "system": 4,
+      "record": 2,
+      "assistant": 99,
+      "tool_call": 110,
+      "tool_result": 110,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "ee00a279adbd01761acb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee00a279adbd01761acb-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "ee00a279adbd01761acb-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ]
+}

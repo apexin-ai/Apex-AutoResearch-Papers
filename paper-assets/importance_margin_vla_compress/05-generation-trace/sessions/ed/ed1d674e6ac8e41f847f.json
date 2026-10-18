@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ed1d674e6ac8e41f847f",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest attn k05 s47 w41 then deploy",
+  "task_key": "worker_harvest_attn_k05_s47_w41_then_deploy_20260529T054143",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_attn_k05_s47_w41_then_deploy_20260529T054143_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "09200b442133ac31209ea427ab58e27818488415380373a0ad30e220664d835a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background wait completed. Both tasks already verified — no further action needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

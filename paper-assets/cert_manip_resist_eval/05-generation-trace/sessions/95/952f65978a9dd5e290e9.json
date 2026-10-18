@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "952f65978a9dd5e290e9",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "exp step2v3 regression",
+  "task_key": "worker_exp_step2v3-regression_20260522T011536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_step2v3-regression_20260522T011536_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "fad36776ad9b3c81a6ee2451789909efbf4239db0006f000b481355f66f20b65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已在 seetacloud-rtx6000 上启动 (PID 60679)，registry 已更新为 RUNNING。\n\n- **日志**: `/tmp/step2v3.log`\n- **脚本**: `/root/cert_manip_resist_eval/scripts/run_step2v3_regression.py`\n- **检查点**: `artifacts/results/_step2v3_checkpoint.json`（每个模型推理完成后自动保存）\n- **最终输出**: `artifacts/results/results_step2v3_regression_*.json`\n\nPhase 1 推理（6 模型 × 2 数据集 × 4 条件）预计 1-2 小时，Phase 2-4 分析几秒即完。每个模型完成后会保存 checkpoint，crash 可断点恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

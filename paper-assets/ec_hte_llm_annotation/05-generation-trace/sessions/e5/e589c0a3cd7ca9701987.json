@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e589c0a3cd7ca9701987",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code sign reversal analysis",
+  "task_key": "worker_code_sign-reversal-analysis_20260523T144810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sign-reversal-analysis_20260523T144810_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "9f578381e34205896737e2aa895af8bda73d23e45fffe1dd485d8bc36e6a6456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are generated. Here's the final report:\n\n---\n\n**Sign-Reversal Analysis Results**\n\n**Synthetic data (K=2 grid, 546 configs):**\n- **50%** of non-zero subgroup-rows (1000/2000) experience sign reversal\n- **92%** of configs (500/546) have at least one affected subgroup\n- Sign reversal occurs exclusively in subgroup B (π_B < π̄), where global correction overcorrects\n- Top 5 most extreme cases all have high δ_misclass (0.23-0.25) and δ_cate (0.50), subgroup B with π_B = 0.025-0.035. Maximum flip magnitude = 0.1018.\n\n**Real LLM data:**\n- **215/435** subgroup-rows (49%) experience sign reversal across **all 8 LLMs**\n- Affected across both datasets (CivilComments and TweetEval)\n- All 8 LLMs (gpt-4o, gpt-4o-mini, gpt-3.5-turbo, gpt-4.1, gpt-4-turbo, Gemma-2-9B, Mistral-7B, Qwen2.5-7B) show sign reversal in at least some subgroups\n\n**EC-HTE: 0% sign reversals** — per-subgroup correction is analytically unbiased, so it never introduces sign reversal.\n\n**Outputs:**\n- Figure: `artifacts/sign_reversal_figure.pdf` + `.png`\n- CSV: `artifacts/sign_reversal_summary.csv` (1215 rows)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

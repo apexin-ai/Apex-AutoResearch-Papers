@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b3b7777f1453b46e0bde",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "eval imm v7 step8k killcheck",
+  "task_key": "worker_eval_imm-v7-step8k-killcheck_20260515T182245",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_imm-v7-step8k-killcheck_20260515T182245_result.json",
+    "occurrence": 1,
+    "bytes": 122,
+    "sha256": "9e7599ebc9d2771ed74a586fd1ac5c1fea4abaade798490e40a1081959ec5c1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background sleep completed — eval was already done and results reported above. No further action needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

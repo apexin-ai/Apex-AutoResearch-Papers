@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3c18f4b1adff08bc5c16",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops audit w27",
+  "task_key": "worker_ops_audit-w27_20260527T165304",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit-w27_20260527T165304_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "7e755c286c31e034b9afdbc92c0b094991c6e4cd3101d02c5eed1be0ae63ab5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，汇总：\n\n```\nGPU0: [完成] Random k=0.85 seed43 — 运行 ~169min\nGPU1: [完成] L2norm k=0.85 seed43 — 运行 ~132min\n```\n\n### 结果\n\n| 实验 | avg SR | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 |\n|------|--------|----|----|----|----|----|----|----|----|----|-----|\n| **Random k=0.85 seed43** | **47.2%** | 96% | 42% | 56% | 82% | 16% | 46% | 38% | 40% | 10% | 76% |\n| **L2norm k=0.85 seed43** | **78.6%** | 96% | 98% | 86% | 98% | 74% | 98% | 2% | 88% | 64% | 86% |\n\n两块 GPU 当前均空闲，可部署新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

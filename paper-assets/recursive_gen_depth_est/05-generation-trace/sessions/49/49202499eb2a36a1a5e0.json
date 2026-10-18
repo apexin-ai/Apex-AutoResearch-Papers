@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "49202499eb2a36a1a5e0",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis shap treexplainer",
+  "task_key": "worker_analysis_shap-treexplainer_20260515T191657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_shap-treexplainer_20260515T191657.log",
+    "occurrence": 1,
+    "bytes": 832705,
+    "sha256": "a3451dd5c6dc1f683c360cba7eab0da317e55f30dd541e7ac2ba49232a194f82"
+  },
+  "statistics": {
+    "messages": 324,
+    "user_turns": 0,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 137,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 324,
+      "chunks": [
+        {
+          "path": "49202499eb2a36a1a5e0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "49202499eb2a36a1a5e0-part-0002.json",
+          "message_count": 144
+        }
+      ]
+    }
+  ]
+}

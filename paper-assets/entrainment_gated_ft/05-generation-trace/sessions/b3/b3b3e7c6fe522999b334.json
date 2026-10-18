@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b3b3e7c6fe522999b334",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code hgrn2 eval followup",
+  "task_key": "worker_code_hgrn2_eval_followup_20260518T154915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hgrn2_eval_followup_20260518T154915_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "0c63571f7c5ce6b17d4d6db4789bfa5444e1636d709a23e61e98ccc374000cb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "hybrid-24-1 evaluation is running in the screen session (GPU 50%, 9.4GB memory used). I'll check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

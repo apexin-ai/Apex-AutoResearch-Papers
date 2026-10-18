@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "8b03f9b7ade620320d03",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code balanced z 4gpu annotation",
+  "task_key": "worker_code_balanced-z-4gpu-annotation_20260521T163919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_balanced-z-4gpu-annotation_20260521T163919.log",
+    "occurrence": 1,
+    "bytes": 709220,
+    "sha256": "e574f724a8f6c2119ff552fc3980c53b12e089e3d8e5e8c6d8a963d784ecd144"
+  },
+  "statistics": {
+    "messages": 486,
+    "user_turns": 1,
+    "tool_calls": 127,
+    "roles": {
+      "log": 1,
+      "system": 58,
+      "record": 1,
+      "assistant": 157,
+      "tool_call": 127,
+      "tool_result": 127,
+      "user": 1,
+      "result": 14
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "8b03f9b7ade620320d03-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 472,
+      "chunks": [
+        {
+          "path": "8b03f9b7ade620320d03-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "8b03f9b7ade620320d03-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b03f9b7ade620320d03-part-0003.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ]
+}

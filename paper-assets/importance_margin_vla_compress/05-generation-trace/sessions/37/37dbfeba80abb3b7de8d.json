@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "37dbfeba80abb3b7de8d",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose mlp adapter control",
+  "task_key": "worker_diagnose_mlp_adapter_control_20260519T115543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_mlp_adapter_control_20260519T115543_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "9279c4f2af716408ed084b6937bf3bff51d38f6f76cd91900230e3d60b8941b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary:\n\n1. **Training complete**: `train_mlp_adapter_control` finished 100K steps (checkpoint step=99999). Registry updated to DONE/success.\n\n2. **Eval launched**: `eval_mlp_adapter_control` running in tmux session `eval_mlp_adapter_control` on westd cuda:0.\n   - Suite: libero_object, 10 tasks x 50 episodes\n   - Model loaded with strict match, MLPCompressor 22.14M params, M=32\n   - Already processing (task 0, ep 1 SUCCESS at step 141)\n\n3. **Fix applied**: Patched `eval_smart_compress_libero.py` line 84 to inherit `compressor.type` from checkpoint config (was hardcoded to cross-attention only).\n\n4. **Registry**: `eval_mlp_adapter_control` registered as RUNNING, parent=`train_mlp_adapter_control`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

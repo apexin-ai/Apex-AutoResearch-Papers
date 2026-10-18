@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f82335bdad5788e6da4b",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp accum pythia nuc mix50",
+  "task_key": "worker_exp_accum_pythia_nuc_mix50_20260522T021144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_accum_pythia_nuc_mix50_20260522T021144_result.json",
+    "occurrence": 1,
+    "bytes": 222,
+    "sha256": "6ef49f6b72309df61ef8607afc65f88c58b7e350f3fb91816f675bb2ca8d4f20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`accum_pythia_nuc_mix50` 已提交并标记 RUNNING。\n\n- PID: 907272\n- tmux session: `accum_pythia_nuc_mix50`\n- 日志: `~/runs/recursive_gen_depth_est/accum_pythia_nuc_mix50.log`\n- 预计 2-3h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

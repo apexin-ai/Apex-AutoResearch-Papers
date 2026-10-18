@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf311745143876f741e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code r19 paper fixes",
+  "task_key": "worker_code_r19-paper-fixes_20260524T013802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r19-paper-fixes_20260524T013802_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "5db684d09b4e15145d9ef535a1af7970606e22155003a1b3be34c4052f697fc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Summary:\n\n| Check | Result |\n|-------|--------|\n| Undefined refs | 0 |\n| Main text pages | 8 (Conclusion on p8) |\n| Limitations | p9 (not counted) |\n| Abstract words | 200 |\n\n### Modifications applied\n\n| # | Item | File | Lines |\n|---|------|------|-------|\n| 1 | SF2: A1 γ\\_T=0.10 quantitative | theory.tex:98 | Replaced last sentence with coverage degradation figure |\n| 2 | SF3: AUC=0.63 explanation | experiments.tex:73 | Added explanation sentence; trimmed K=2 meta-criterion detail |\n| 3 | SF5: 7.4× stratified MLE comparison | experiments.tex:27 | Added 1.5× comparison to stratified MLE with partial pooling note |\n| 4 | SF6: Finite-sample remainder | appendix.tex:100-105 | Added paragraph with CLT bound and κ-guard motivation; `stewart1990matrix` bib added |\n| 5 | M7: Hyperprior robustness | method.tex:12 | Added \"robust to 2× perturbation\" parenthetical |\n| 6 | M3: CausalForest bootstrap | experiments.tex:65 | Already present in footnote — confirmed, no change needed |\n| 7 | Missing reference | related_work.tex:35, references.bib | Added Blette et al. sentence and bib entry |\n\nPage compression: trimmed contribution 1 bullet (introduction.tex) and operating conditions paragraph (experiments.tex) to keep Conclusion on page 8. Abstract trimmed from 201→200 words."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

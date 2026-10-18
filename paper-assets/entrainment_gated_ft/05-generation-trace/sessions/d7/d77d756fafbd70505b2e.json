@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "d77d756fafbd70505b2e",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis figure table prep",
+  "task_key": "worker_analysis_figure-table-prep_20260519T160629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure-table-prep_20260519T160629_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "5e47d69da937850cb0b190798ff9f5c053b847da1c649e43b44bba627a70b2b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbCFvDwGMaPR3TPsph6xv\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbCFvDwGMaPR3TPsph6xv"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

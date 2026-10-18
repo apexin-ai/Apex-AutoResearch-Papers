@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5aa823e274bf1963533a",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "code exp 007 data collection script",
+  "task_key": "worker_code_exp-007-data-collection-script_20260519T170803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-007-data-collection-script_20260519T170803_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "653260f983f9d1fb829df2ae98ca71dafcfab747c60ef09baaf95fbe4496d21d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出：**\n1. `/root/entrainment_gated_ft/run_exp007_logsamples.sh` — 批处理脚本，27 个模型（16×340M + 11×1.3B）\n2. `/root/entrainment_gated_ft/run_lm_eval_fla.py` — 统一 Python wrapper（预注册 fla auto classes + HGRN2 monkey-patch）\n3. 报告已注册为 artifact `art_20260519_8eb8cf`\n\n**关键发现：** 所有 fla 模型（不只 HGRN2）都需要通过 Python wrapper 运行，因为模型目录中没有 `modeling_*.py`，直接 `lm_eval` CLI + `trust_remote_code=True` 会报 `model_type` 未注册。\n\n**Dry-run 验证通过：** 340M GDN-pure，acc=0.3435，~3.5 min。预估全部跑完约 2 小时。\n\n**启动：** `tmux new -s exp007 && bash /root/entrainment_gated_ft/run_exp007_logsamples.sh 2>&1 | tee /tmp/exp007_batch.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "228e3bf5240dfd3ff154",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "ops codellama submit profiling",
+  "task_key": "worker_ops_codellama_submit_profiling_20260515T180633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_codellama_submit_profiling_20260515T180633_result.json",
+    "occurrence": 1,
+    "bytes": 58,
+    "sha256": "c8558dfaa53d0842c11f107ec6efb1d5376f7331685ed127be440f7fa132915f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "约 4 分钟后回来检查下载进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

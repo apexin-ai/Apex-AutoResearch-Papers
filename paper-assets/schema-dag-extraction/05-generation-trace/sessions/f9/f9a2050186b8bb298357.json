@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "f9a2050186b8bb298357",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code exp fewrel 16rel 100batch",
+  "task_key": "worker_code_exp_fewrel_16rel_100batch_20260516T010231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_fewrel_16rel_100batch_20260516T010231.log",
+    "occurrence": 1,
+    "bytes": 807280,
+    "sha256": "9508889780127f2fe8ca881dfe32a35986e413ca998f1e7cbbab360361389650"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 117,
+      "tool_result": 117
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "f9a2050186b8bb298357-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "f9a2050186b8bb298357-part-0002.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ]
+}

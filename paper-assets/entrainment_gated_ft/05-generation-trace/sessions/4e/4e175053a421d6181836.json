@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4e175053a421d6181836",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "analysis confidence margin within category",
+  "task_key": "worker_analysis_confidence-margin-within-category_20260520T035123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_confidence-margin-within-category_20260520T035123_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "bafa5ba9bcc4558757cc4df96ae3333d779052a5e0d85a845bb5dfd4c210d2aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**结论：`within_category_significant`** — 类内对照消除定义性混淆后，confidence margin 仍然显著预测 attention 效果。\n\n### Control 1: Pure-correct 内部（hurt vs stayed-right）\n\n| 架构 | hurt n | stayed-right n | hurt mean |loglik| | stayed-right mean |loglik| | Cohen's d | p |\n|------|--------|----------------|-----------|-----------|-----------|---|\n| GDN | 519 | 2281 | 1.049 | 0.576 | 0.87 | 1.4e-66 |\n| RetNet | 497 | 2169 | 1.293 | 0.785 | 0.83 | 5.6e-60 |\n| HGRN2 | 392 | 2102 | 1.481 | 0.899 | 0.92 | 8.4e-55 |\n\nHurt 样本的 |loglik| 显著更高（target 概率更低 = 勉强答对），确认弱正确答案更容易被 attention 翻转。\n\n### Control 2: Pure-wrong 内部（helped vs stayed-wrong）\n\n| 架构 | helped n | stayed-wrong n | helped mean |loglik| | stayed-wrong mean |loglik| | Cohen's d | p |\n|------|----------|----------------|-------------|-------------|-----------|---|\n| GDN | 480 | 1873 | 2.459 | 4.189 | -0.75 | 1.9e-67 |\n| RetNet | 420 | 2067 | 2.478 | 4.103 | -0.73 | 1.8e-60 |\n| HGRN2 | 548 | 2111 | 2.500 | 4.112 | -0.77 | 1.1e-81 |\n\nHelped 样本的 |loglik| 显著更低（target 概率更高 = 差一点就对），确认 near-miss 错误答案更容易被 attention 拯救。\n\n两个对照组在 3 个架构上方向完全一致、效应量大（|d| = 0.73–0.92），原始 across-category 效应不是定义性 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

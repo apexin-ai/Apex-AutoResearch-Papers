@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "a1dcfed3092c778a3d55",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "fix westd38929 gpu3 redeploy v3",
+  "task_key": "worker_fix-westd38929-gpu3-redeploy-v3_20260523T221708",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_fix-westd38929-gpu3-redeploy-v3_20260523T221708.jsonl",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "58a0da7d87398f625dee75a17dbd80240996a49868bdfc54953ed9bf147f422e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T22:17:21.326043+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 26, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix-westd38929-gpu3-redeploy-v3_20260523T221708"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

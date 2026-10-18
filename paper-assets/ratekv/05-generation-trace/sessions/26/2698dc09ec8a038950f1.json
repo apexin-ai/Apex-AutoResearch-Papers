@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2698dc09ec8a038950f1",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper claim3 revision",
+  "task_key": "worker_paper_claim3_revision_20260514T210100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_claim3_revision_20260514T210100_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "9764335db440b063228f2268346611217135167123a9be865228be0a591e81e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，appendix.tex 无需改动（float32 validation 已存在于 lines 29-30）。汇总：\n\n### 改动清单\n\n**analysis.tex** (4 处)\n1. **§5.1 开头**（L11-12）：插入机制洞察——\"MCKP benefit requires *spread heterogeneity*—multiple heads with cross-bitwidth sensitivity gradients\"，置于 Qwen 数据之前\n2. **§5.1 Yi-1.5 段**（L17-22）：以 \"critical counterexample\" 开头，强调 \"mechanism is clear from cross-bitwidth gradient structure\"，\"only one lever\" 替代 \"no gradient to exploit\"\n3. **§5.2 诊断条目**（L70-72）：显式阈值——Spread: `concentration ≳ 0.50, t₁/t₅ ≲ 0.70`；Spike: `t₁/t₅ ≳ 0.70, any concentration`；Flat: `concentration ≲ 0.50, low t₁/t₅`；Mistral/Gemma-2 加上浓度数值\n4. **§5.2 阈值声明**（L76-77）：联合条件 \"correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied\"，两个阈值均标注 illustrative\n\n**abstract.tex**（L8）：\"can indicate\" → \"correctly identifies all five architectures studied\"，加入 t₁/t₅ ratio 和 spike/flat 术语\n\n**introduction.tex**（L53 Claim 3）：\"to indicate\" → \"correctly separates\"，加 Yi-1.5 as critical test 说明\n\n**conclusion.tex**（L9-10）：加显式阈值 (≳ 0.50, ≲ 0.70)，拆为两句，新增 practical guideline 表述\n\n**appendix.tex**：无改动（float32 validation 已在 ¶Numerical precision）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "04e0cd86f4ae08a9ed52",
+  "project": "schema-dag-extraction",
+  "kind": "worker",
+  "title": "code unconstrained ablation n25",
+  "task_key": "worker_code_unconstrained_ablation_n25_20260518T140859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unconstrained_ablation_n25_20260518T140859.log",
+    "occurrence": 1,
+    "bytes": 716268,
+    "sha256": "2a1a676eb3e8895f4ff756000687dc99c2ea6650645567fc665239d4ca5db96e"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "04e0cd86f4ae08a9ed52-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "04e0cd86f4ae08a9ed52-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ]
+}

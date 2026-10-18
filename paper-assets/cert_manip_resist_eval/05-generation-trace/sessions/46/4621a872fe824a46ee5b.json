@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4621a872fe824a46ee5b",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis r6 1b synthetic validation",
+  "task_key": "worker_analysis_r6-1b-synthetic-validation_20260525T064809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r6-1b-synthetic-validation_20260525T064809_result.json",
+    "occurrence": 1,
+    "bytes": 86,
+    "sha256": "bb2ed7519253e3e695ea4f8787cac5ff176480a9d822b043701fedc516f615a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scenario B K=7 is at 50/200 — waiting ~2 minutes for it to complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f4f33b3abbbe83e77d46",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "infra 8b progress and bertscore",
+  "task_key": "worker_infra_8b_progress_and_bertscore_20260520T120645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_8b_progress_and_bertscore_20260520T120645_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "d148c8e65d3bb8a3f75bede5e2f9a4f6b144d0a90b8c4ebdd3e59f8af7a8f044"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**8B NOT READY — 下载仍在进行中**\n\n| 项目 | 状态 |\n|------|------|\n| **Qwen3-8B** | 1/5 shards 完成 (model-00005, 1.2G)，4 shards 在 `._____temp/` 中 (2.9G + 2.5G + 3.2G + 2.8G = 11.4G)，总计 ~12.6G。PID 12091 运行中 (2h07m) |\n| **Qwen3-32B** | 31G 已下载，PID 12163 运行中 (2h07m) |\n| **磁盘** | `/root/autodl-tmp/` 47G/250G used (19%)，空间充足 |\n| **BERTScore** | `microsoft/deberta-xlarge-mnli` 后台下载已启动，**PID: 21528** |\n\nModelScope 下载模式：先写入 `._____temp/`，全部完成后移到正式目录。当前 shards 00001-00004 仍在 temp 中等待校验/移动，进程仍活跃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

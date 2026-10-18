@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca51316c694cd78f941",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code gamma sensitivity rd2m5",
+  "task_key": "worker_code_gamma-sensitivity-rd2m5_20260521T193704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gamma-sensitivity-rd2m5_20260521T193704_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "7ee82c078096227e82385e73aef0847a47058dfe7c3f3e1f25e50069ce07d74d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are complete. Summary:\n\n**Deliverables:**\n- `artifacts/gamma_sensitivity/run_gamma_sweep.py` — sweep script with MAP-EB (fast penalized EB incorporating Gamma prior)\n- `artifacts/gamma_sensitivity/results.csv` — 1800 rows (15 configs x 20 seeds x 2 subgroups x 3 methods)\n- `artifacts/gamma_sensitivity/analysis.md` — full analysis\n\n**Key findings:**\n- For reasonable priors (shape 1-5), RMSE varies by only **6.0%** across 12 configurations\n- The full 17.3% range is inflated by Gamma(10,2) which has prior mean α₀=20 (extreme over-regularization)\n- Gamma(3,1) default ranks 8/15, within 1.9% of best — solidly mid-pack\n- Coverage is stable (0.925-0.938) across all configs\n- 9/15 HB configs beat stratified MLE; global correction happens to do well here because K=2 pooling is safe"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

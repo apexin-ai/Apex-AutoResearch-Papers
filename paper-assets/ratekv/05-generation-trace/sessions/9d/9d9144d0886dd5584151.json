@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9d9144d0886dd5584151",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "paper p0 concentration patch",
+  "task_key": "worker_paper_p0-concentration-patch_20260514T221709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-concentration-patch_20260514T221709_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "a1143759640172302c2a96e900462f6ec8891d60e5a9df54c720cac47d0701bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**核查结果**：\n- `docs/paper/` 下所有 .tex 文件中 Qwen 的 top-5% concentration 值已全部为 **0.61**（共 6 处：`analysis.tex` ×4、`introduction.tex` ×1、`conclusion.tex` ×1）\n- 旧值 `0.59--0.66` / `0.59-0.66` / `0.5856` / `0.5909` / `0.66` / `0.6156` / `0.6104` 已无残留\n- 其他模型值未动：Yi=0.71、Llama=0.57、Mistral=0.22、Gemma-2=0.23\n- 5-model table（`analysis.tex:40`）Qwen 行 concentration 列为 `0.61`，未标 float32/range\n- 无 \"bf16 range\" 表述\n\n**Commit**: `bfaea4e P0: unify Qwen concentration to 0.61 (float32 verified)` — 7 files changed (含 `related_work.tex` 引用更新一并提交)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

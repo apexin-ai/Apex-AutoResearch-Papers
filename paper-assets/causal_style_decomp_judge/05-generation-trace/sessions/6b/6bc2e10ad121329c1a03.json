@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "6bc2e10ad121329c1a03",
+  "project": "causal_style_decomp_judge",
+  "kind": "worker",
+  "title": "audit data truth experiments",
+  "task_key": "worker_audit_data-truth-experiments_20260525T194216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-truth-experiments_20260525T194216.log",
+    "occurrence": 1,
+    "bytes": 1020475,
+    "sha256": "1832632e8a589e9e836e567b4e840b2c39dbb24b24af21597db94bc5a941ce9d"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 66,
+      "tool_result": 66,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "6bc2e10ad121329c1a03-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 141,
+      "chunks": [
+        {
+          "path": "6bc2e10ad121329c1a03-part-0001.json",
+          "message_count": 102
+        },
+        {
+          "path": "6bc2e10ad121329c1a03-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ]
+}

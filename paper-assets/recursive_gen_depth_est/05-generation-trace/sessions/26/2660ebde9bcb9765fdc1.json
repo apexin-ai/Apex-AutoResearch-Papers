@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "2660ebde9bcb9765fdc1",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_11_1778894990.md",
+  "task_key": "loop_11_1778894990",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778894990.md",
+    "occurrence": 1,
+    "bytes": 5236,
+    "sha256": "f73f4222fb399567de9d0f292c9da058a0d4bbeed507e3ae6d35ccf092c9a3a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:22:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 gpu-6000pro-2 cuda:0, cuda:1**（2× RTX 6000 Pro）。禁止使用其他 GPU。\n- **EDD=4 措辞禁区**：禁止写 \"three models all achieve statistically significant EDD=4\"。实际：Pythia p=0.001 ✅, OLMo p=0.091 ⚠️, GPT-2 XL p=0.505 ❌。正确措辞用\"方向一致性 + 完整报告 CI/p-values\"（D026/D027）。\n- **Curation PoC (plan_013) 是 NEGATIVE**：RF vs unfiltered 不显著（p=0.407）。禁止 claim \"RF approximates oracle\"。只能 claim \"data efficiency\"（RF 用 44% 数据 ≈ 全量 PPL）+ \"RF vs random 显著\"。\n- **DCOL 已死（v1-v6 全败）**：论文定位是 task formalization + empirical study，不是 method paper。Atlas/EDD 是 PRIMARY contribution。\n- **C4 在 AutoDL 上 HF streaming 会 silent hang**：wild_data_calibration_002 因此失败。重试需换方案（预下载 / ModelScope / 换数据源）。\n- **Cross-strategy 三档分类硬约束**（D015）：nucleus≠temperature，禁止合并为 \"soft sampling\"。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**gpu-6000pro-2**，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- Python：先 `detect_image` 确认是否 aml-train 镜像。若是 → `/root/miniconda3/bin/python`，conda base 环境\n- AutoDL 特殊：pip 前 `source /etc/network_turbo`，HF 设 `HF_HOME=/root/autodl-tmp/.hf_cache` + `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/`\n- 论文：`paper/` 子目录（LaTeX）\n- 活跃进程：**无 RUNNING 实验**（registry 无 RUNNING/PREPARING）\n- 活跃 Worker 2 个（见 §3）\n- Cron：reconcile 返回 0（无活跃 cron）\n\n### 3. 📊 当前状态\n**阶段**：Phase 2 写作 + R3 审稿修改。**DDL: EMNLP ARR May 25（剩 9 天）**。\n\n**刚完成**：上一轮 session 密集处理了 R3 审稿修改，派了大量 writing workers：\n- R3-N2 ablation text ✅ → R3-N3 SHAP text ✅ → R3-N4 scope claims ✅ → R3-W1 d0 inflation headline ✅ → R3-W2 Discussion expand ✅ → R3-W4 exp ID cleanup ✅ → Discussion final polish ✅\n- Curation PoC (plan_013) 分析完成 → negative → 已写入论文（data efficiency framing）\n- random_soft_control_001 补充实验完成（RF vs random: t=17.98, p=5.6e-05）\n- wild_data_calibration_001 成功（WikiText 100% d0），OLMo/GPT-2 XL calibration 也成功\n\n**2 个 Running Workers**：\n1. `worker_code_wild_data_calibration_002` (turn 3) — 重写 wild_data_calibration_002 代码，上次因 C4 HF streaming hang 失败，正在上传修复版\n2. `worker_analysis_sub-b-logo-fix` (turn 8) — 修复 Sub-B LOGO 的 seed_id 提取 bug，用于 W2 domain bias 分析\n\n**ROADMAP 显示未完成但实际可能已由 workers 写入的**：R3-N2/N3/N4/W1/W2/W4 的写作 workers 已 done，但 ROADMAP 标记可能未同步（上一轮 session 可能没来得及更新 ROADMAP）。需要验证论文 .tex 文件确认这些修改是否已合并。\n\n**Open rebuttal items**：W2 domain bias (Sub-B LOGO bug 正在修)、W4 zero-shot 样本量、R2-W3 multi-τ\n\n### 4. 📋 待办（条件触发式）\n- `worker_code_wild_data_calibration_002` 完成 → 检查修复方案 → 提交 wild_data_calibration_002 实验（用双卡 cuda:0,1）→ 注册 cron 监控\n- `worker_analysis_sub-b-logo-fix` 完成 → 拿到修正后的 LOGO domain bias 数据 → 更新 W2 rebuttal → 写入论文 Discussion\n- wild_data_calibration_002 实验完成 → 更新 calibration 表（补 C4/RedPajama/Dolma 结果）→ 写入论文 wild-data section\n- W2 domain bias 修复后 → 确认 \"depth dominates, residual exists\" 叙事（D029）是否需要调整\n- **所有 R3 + Open items 关闭后** → Reviewer 对抗迭代（max 5 rounds）→ 最终 polish + bib audit → 提交 ARR\n- GPU 空闲时 → 看是否有补充实验可跑（W4 zero-shot 样本量扩展 / R2-W3 multi-τ sensitivity）\n\n### 5. 🎯 战略上下文\n- **核心叙事**：Depth Degradation Atlas + EDD 是 PRIMARY contribution。论文是 task formalization + systematic empirical study，对标 HELM/MMLU 类 benchmark papers。EMNLP \"New Missions\" track 是 venue fit 关键。\n- **63 个实验**（37 success / 4 negative / 7 failed）。3×3 矩阵 9/9 完成，70-85% 4-class acc。\n- **决策链关键节点**：D011 DCOL contingency → D015 三档策略分类 → D024 EDD 连续衰减曲线 → D026/D027 EDD=4 统计强度分层 → D029 域偏差叙事调整\n- **最易判断错的事**：\n  1. 不要把 R3 writing workers \"done\" 等同于\"论文已改好\"——worker done 只是代码/文字提交了，需要检查 .tex 是否真的包含修改、是否编译通过\n  2. wild_data_calibration_002 的 C4 问题不是网络抖动，是 AutoDL 代理与 HF streaming 的系统性冲突，需要换加载方式\n  3. Curation PoC negative 已经被 framing 为 \"data efficiency\" 而非 \"failure\"——不要重新跑 curation 实验试图翻转结论，这个 framing 已被 Director 接受\n  4. ROADMAP 里的 R3 进度标记滞后——先检查实际 .tex 再更新标记，不要反过来\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

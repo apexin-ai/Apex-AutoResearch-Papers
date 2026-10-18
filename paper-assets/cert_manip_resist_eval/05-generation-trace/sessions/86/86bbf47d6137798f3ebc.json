@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "86bbf47d6137798f3ebc",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code mvp step1 subset",
+  "task_key": "worker_code_mvp-step1-subset_20260521T204933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-step1-subset_20260521T204933_result.json",
+    "occurrence": 1,
+    "bytes": 2071,
+    "sha256": "17aabb19d05136a780b513004c66fda4afbe6b18ceef1af815253bc3200cb5a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3-model pipeline 完成。结果汇总：\n\n## Pairwise Correlation Table\n\n### MMLU (300 samples)\n\n| Pair | MI | MI 95% CI | Copula ρ | ρ 95% CI | Agreement |\n|------|-----|-----------|----------|----------|-----------|\n| llama-8b ↔ qwen-14b | 0.037 | [0.016, 0.073] | 0.177 | [0.056, 0.261] | 0.460 |\n| llama-8b ↔ qwen-32b | 0.024 | [0.010, 0.053] | 0.144 | [-0.026, 0.198] | 0.533 |\n| **qwen-14b ↔ qwen-32b** | **0.191** | [0.141, 0.267] | **0.263** | [0.095, 0.333] | **0.667** |\n\n### ARC Challenge (300 samples)\n\n| Pair | MI | MI 95% CI | Copula ρ | ρ 95% CI | Agreement |\n|------|-----|-----------|----------|----------|-----------|\n| llama-8b ↔ qwen-14b | 0.132 | [0.085, 0.190] | 0.203 | [0.078, 0.300] | 0.670 |\n| llama-8b ↔ qwen-32b | 0.112 | [0.066, 0.166] | 0.301 | [0.184, 0.378] | 0.700 |\n| **qwen-14b ↔ qwen-32b** | **0.319** | [0.247, 0.397] | **0.278** | [0.109, 0.335] | **0.723** |\n\n### Cross-vs-Within Family Validation\n\n| Dataset | Within-family MI | Cross-family MI | Hypothesis holds | Permutation p |\n|---------|-----------------|-----------------|-----------------|---------------|\n| MMLU | 0.191 | 0.031 | **True** (6.3×) | 0.331 |\n| ARC | 0.319 | 0.122 | **True** (2.6×) | 0.331 |\n\n**核心发现：**\n\n1. **Within-family MI 显著高于 cross-family** — MMLU 上 within/cross 比值为 6.3×，ARC 上为 2.6×，方向一致且效应量大。\n2. **Permutation p=0.331** — 因为只有 1 个 within-family pair 和 2 个 cross-family pairs（共 3 对，排列空间极小），统计检验力不足。这是预期内的，扩展到更多模型后 p 值会下降。\n3. **Bootstrap CI 无重叠** — qwen-14b↔qwen-32b 的 MI CI 下界（MMLU: 0.141, ARC: 0.247）远高于两个 cross-family pair 的 CI 上界，信号清晰。\n4. **管道端到端验证通过** — 模型加载/卸载、batch scoring、pairwise correlation、bootstrap CI、cross-vs-within validation 全链路正常。\n\n结果保存在 `artifacts/results/results_step1_subset_20260521_214027.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

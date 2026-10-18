@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f1f71365cce5617e4e7c",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "agent / loop_11_1779404929.md",
+  "task_key": "loop_11_1779404929",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1779404929.md",
+    "occurrence": 1,
+    "bytes": 5426,
+    "sha256": "ff656a320d527ab9343a3f8d011a88e450014b7cf72d7715d31a4b2e5c484741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-21T22:29:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 14 张：westd-27271:cuda:0/1, cqa1-33015:cuda:0/1/2/3, westd-41074:cuda:0/1/2/3, westd-38929:cuda:0/1/2/3。白名单外的 GPU 即使 Director 指令也必须 push back\n- π0.5 eval 脚本 `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 曾有 `hidden_size**0.5` 缩放 bug（~45.25x），已修复。新模型接入时必须先用官方 eval 验证 checkpoint，再写自定义 pruning eval\n- eval_pi05_baseline_object_seed42 已被 cron 误报 failed 三次（脚本不输出 W&B metrics），**我已手动改 conclusion=success**。如果再收到同 exp_id 的 CRON failed 回调，忽略——实验已完成 98.2%\n- eval_openvla_sc_m128_object_seed42 标记 failed 原因是 LoRA adapter 未 merge（291 missing keys），需修复 eval 脚本后重跑\n- X-VLA random k=0.5 Object 结果 (70.6%) 已被 cron 标记 failed 但实际有数据（D132 已用），registry 需修正 failed→success\n\n### 2. 🖥️ 基础设施快照\n**服务器共 4 台**：\n| 服务器 | 工作目录 | Python | GPU 型号 |\n|--------|----------|--------|----------|\n| westd-27271 | /root/autodl-tmp/importance_margin_vla_compress | /root/miniconda3/bin/python | 4× GPU |\n| westd-41074 | /root/autodl-tmp/importance_margin_vla_compress | /root/miniconda3/bin/python | 4× GPU |\n| westd-38929 | /root/autodl-tmp/importance_margin_vla_compress | /root/miniconda3/bin/python | 4× GPU |\n| cqa1-33015 | /root/autodl-tmp/importance_margin_vla_compress | /root/miniconda3/bin/python | 4× GPU |\n\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（aml-train 镜像，不是 venv）\n- π0.5 checkpoint: `/root/autodl-tmp/pi05_libero_finetuned` (= lerobot/pi05_libero official, 7.47GB) on westd-41074\n- OpenVLA checkpoints: westd-27271 `/root/autodl-tmp/openvla-7b-finetuned-libero-*`\n- X-VLA checkpoint: cqa1-33015 上 `/root/autodl-tmp/` 下\n- VTC checkpoints: westd-27271/westd-41074 `checkpoints/openvla_sc_m*/`\n- 磁盘安全：cqa1-33015 `/autodl-pub` 94% 占用 ⚠️，其他服务器充足\n\n**活跃进程**（session 初始化时 reconcile 确认）：\n- train_openvla_sc_m32_vtconly_seed42: westd-27271:cuda:1, PID 921279（~43K steps, 50K ETA ~16:30 UTC）\n- train_openvla_sc_m96_seed42_v3: westd-41074:cuda:2, PID 68539（~43K steps）\n- train_openvla_sc_m64_seed42_v4: westd-41074:cuda:3, PID 738642（~3K steps, 长跑）\n\n### 3. 📊 当前状态\n**刚完成**：eval_pi05_baseline_object_seed42 = **98.2%** (491/500) — π0.5 baseline 建立成功。Cron 误报 failed 已修正为 success。\n\n**RUNNING 实验** (3 个训练)：\n- `train_openvla_sc_m32_vtconly_seed42` — VTC M=32 train, ~43K/50K\n- `train_openvla_sc_m96_seed42_v3` — VTC M=96 train, ~43K/50K\n- `train_openvla_sc_m64_seed42_v4` — VTC M=64 v4 train, ~3K/100K\n\n**Worker 池** (2 running，都跑了 3+ 小时可能卡住)：\n- `worker_ops_westd38929-kill-and-oft-check` — OFT 调查 (turn 14)\n- `worker_code_oft-eval-full-alignment` — OFT eval 对齐 (turn 20)\n\n**资源危机**：14 GPU 分配，仅 3 在跑，**11 GPU 空闲**。已向 Director 汇报并请求批准填充。\n\n**等待中**：\n- Director 审批 π0.5 pruning sweep + 空闲 GPU 填充方案\n- 两个 OFT Worker 回调（可能需要 cancel 并重新派）\n- eval_xvla_random_k085_spatial_seed42 进程异常退出，cron 监控中（miss 1/5）\n\n### 4. 📋 待办（条件触发式）\n- Director 批准 GPU 填充 → 立即派 Worker 铺：π0.5 pruning k=0.7/0.5/0.3 (westd-41074:0/1), X-VLA random k=0.5 seed43 (westd-38929:0), OpenVLA random k=0.3 (westd-38929:1), OpenVLA L2norm k=0.7 (westd-38929:2), X-VLA random k=0.3 (westd-38929:3 or cqa1)\n- M32/M96 train 完成（~16:00-16:30 UTC）→ 立即提交 eval on LIBERO-Object\n- OFT Worker 回调 → 根据结论决定 OFT 是否继续（D131 已降 P2）\n- eval_xvla_random_k085_spatial_seed42 升级 failed (miss 5/5) → 诊断日志、更新 registry\n- M128 eval 需修复 LoRA merge → 派 Worker 修 eval 脚本后重跑\n- Registry 修复 3 项：eval_xvla_random_k05 failed→success, 注册 OpenVLA k=0.7/k=0.95 结果\n\n### 5. 🎯 战略上下文\n**核心叙事**：Vision token compressibility 由 connector 架构决定。CV (coefficient of variation) 预测压缩行为。低 CV (linear proj) = 近免疫, 高 CV (pixel-shuffle) = cliff collapse, 中 CV (MLP) = graded degradation。\n\n**关键决策链**：\n- D132（最新最重要）: 低 CV + 激进压缩 (k≤0.5) → random 优于 L2norm（X-VLA 实证：random k=0.5=70.6% >> L2norm=42.6%）。这改变了 story：CV 不仅预测容忍度，还预测最优策略\n- D128: 方法独立性仅适用 k≥0.8；k<0.8 见 D132 反转\n- D125: OpenVLA eval 有 env.seed(0) bug（已修复）\n\n**7-model CV spectrum**：π0=0.038, π0.5=0.055, X-VLA=0.151, OpenVLA=0.215, OFT=0.219, SmolVLA=0.314（缺 π0 和 SmolVLA 的 LIBERO-Object baseline SR）\n\n**易错点**：\n- π0.5 eval 的 cron 会反复误报 failed（不输出 W&B），不要每次都走诊断流程\n- cqa1-33015 磁盘快满，提交实验前必须 check_disk\n- 两个 OFT Worker 已跑 3+ 小时，很可能陷入调试循环，考虑 cancel 重派或等回调\n- CoRL deadline 5/26 abstract + 5/29 paper = 8 天，11 GPU 空转每小时都在浪费\n\n**Deadline**：CoRL 2026 Abstract May 26 (5天), Paper May 29 (8天)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

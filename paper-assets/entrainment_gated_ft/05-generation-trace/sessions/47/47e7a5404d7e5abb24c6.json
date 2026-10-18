@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "47e7a5404d7e5abb24c6",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "research attn heads audit",
+  "task_key": "worker_research_attn-heads-audit_20260518T055457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_attn-heads-audit_20260518T055457_result.json",
+    "occurrence": 1,
+    "bytes": 2204,
+    "sha256": "53a210f4cced2e974104d5a065a5b3d2730a90de20d01cbc25aba7295bb4668c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已获取。\n\n## 对比表\n\n### HGRN2\n\n| Ratio | attn.num_heads | attn.num_kv_heads | head_dim | attn.layers | 其他 attn 参数 |\n|-------|---------------|-------------------|----------|-------------|---------------|\n| pure  | N/A (attn=null) | N/A | N/A | N/A | recurrent num_heads=8 |\n| 24:1  | **16** | **8** | 64 | [23] | qkv_bias=false, rope_theta=10000, window_size=null |\n| 12:1  | **16** | **8** | 64 | [11, 23] | 同上 |\n| 6:1   | **16** | **8** | 64 | [5, 11, 17, 23] | 同上 |\n| 3:1   | **16** | **8** | 64 | [2, 5, 8, 11, 14, 17, 20, 23] | 同上 |\n\n### RetNet\n\n| Ratio | attn.num_heads | attn.num_kv_heads | head_dim | attn.layers | 其他 attn 参数 |\n|-------|---------------|-------------------|----------|-------------|---------------|\n| pure  | N/A (attn=null) | N/A | N/A | N/A | recurrent num_heads=4 |\n| 24:1  | **16** | **8** | 64 | [23] | qkv_bias=false, rope_theta=10000, window_size=null |\n| 12:1  | **16** | **8** | 64 | [11, 23] | 同上 |\n| 6:1   | **16** | **8** | 64 | [5, 11, 17, 23] | 同上 |\n| 3:1   | **16** | **8** | 64 | [2, 5, 8, 11, 14, 17, 20, 23] | 同上 |\n\n## 结论\n\n1. **HGRN2 各 ratio 之间完全一致。** 所有 hybrid 变体的 full attention 层配置完全相同：num_heads=16, num_kv_heads=8, head_dim=64。唯一区别是 attention 层的数量和位置（均匀分布在 24 层中）。\n\n2. **RetNet 各 ratio 之间完全一致。** 与 HGRN2 完全相同的 attention 配置。\n\n3. **HGRN2 和 RetNet 之间也完全一致。** 两者的 hybrid attention 层使用了完全相同的 num_heads/num_kv_heads 配置。\n\n4. **与 GatedDeltaNet 的对比：GatedDeltaNet 是唯一存在 cross-ratio 不一致的架构。** GatedDeltaNet 的 3:1 ratio 使用 num_heads=16，而 6:1/12:1/24:1 使用 num_heads=32。HGRN2 和 RetNet 不存在这个问题。\n\n### 影响评估\n\nHGRN2 和 RetNet 的 cross-ratio 实验可比性没有问题。GatedDeltaNet 3:1 的 num_heads 差异（16 vs 32）是该架构独有的配置异常，意味着 GatedDeltaNet 3:1 的 attention 层 head_dim=64，而其他 ratio 的 head_dim=32。这可能混淆 ratio 效果和 head 配置效果的归因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

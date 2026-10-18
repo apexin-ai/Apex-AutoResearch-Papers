@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3281d437dd4e05d93343",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops deploy entropy measurement",
+  "task_key": "worker_ops_deploy_entropy_measurement_20260518T052914",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy_entropy_measurement_20260518T052914_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "91fc2861d02a276bccb4a86a76de16b8590ddedac8e838b0b8b1ea2946261c16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job confirmed running on GPU 0:\n- **PID**: 5915\n- **GPU memory**: 15,176 MiB on GPU 0\n- **Progress**: 20/250 images processed, entropy_ratio ≈ 0.639\n- **ETA**: ~17 minutes remaining\n- **tmux session**: `openvla_entropy_real`\n- **Log**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_entropy_real.log`\n\nKey adaptation: LIBERO HDF5 files weren't on the server, so the script was rewritten to render 250 frames (25 per task x 10 tasks) directly from the LIBERO-Object simulation environment using MuJoCo/EGL, with diverse init states and random actions for frame variety. Early results (entropy_ratio ≈ 0.639) are consistent with the prior 20-image measurement (0.617), confirming OpenVLA attention is significantly more concentrated than SmolVLA's 0.98."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

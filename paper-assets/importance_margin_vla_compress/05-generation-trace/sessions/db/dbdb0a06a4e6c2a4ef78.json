@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "dbdb0a06a4e6c2a4ef78",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "deploy s44 freed gpus w38 w41",
+  "task_key": "worker_deploy_s44_freed_gpus_w38_w41_20260528T004002",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_s44_freed_gpus_w38_w41_20260528T004002_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "44c048722351efa9eb40700693b2015cddd5cb39e0d5e1eb3e9beb184c6a9267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "w38:cuda:1 仍在加载 pi0.5 模型（磁盘读取阶段，尚未上显存），正常行为——pi0.5 模型加载需 2-5 分钟。\n\n## 部署结果\n\n| 实验 | 服务器:GPU | PID | 状态 |\n|------|-----------|-----|------|\n| `eval_pi05_attn_k085_long_seed44_strict_w38_v2` | westd-38929:cuda:1 | 885137 | RUNNING（模型加载中） |\n| `eval_pi05_attn_k05_long_seed44_strict_w41` | westd-41074:cuda:3 | 448227 | RUNNING（已开始评估） |\n\n**注意**：w38 的实验用了 `_v2` 后缀，因为原 exp_id `eval_pi05_attn_k085_long_seed44_strict_w38` 的 tmux 会话仍在 cuda:0 上运行（PID 672324，同参数实验）。如果 cuda:0 的旧实验是冗余的，可以 kill 掉释放资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

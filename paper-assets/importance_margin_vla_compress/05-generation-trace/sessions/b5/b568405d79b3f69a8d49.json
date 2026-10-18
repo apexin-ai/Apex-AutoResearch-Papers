@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "b568405d79b3f69a8d49",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "sync westd artifacts to local",
+  "task_key": "worker_sync_westd_artifacts_to_local_20260517T114009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_sync_westd_artifacts_to_local_20260517T114009_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "3d931cbf5898cdacd41949f457e7ea4a5ee697878f23a01ca1973927b9338ac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，汇总：\n\n| 类别 | 文件数 | 位置 |\n|------|--------|------|\n| Attention visualization | 3 PDF + 3 PNG + 1 NPZ + 1 JSON | `artifacts/` |\n| Action divergence | 2 PDF + 1 PNG + 1 JSON | `artifacts/` |\n| Eval results | 61 JSON | `artifacts/eval_results/` |\n| Eval trajectory | 30 JSON | `artifacts/eval_results/trajectory/` |\n\n临时 SSH key 已清理（本地和远程均已删除）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

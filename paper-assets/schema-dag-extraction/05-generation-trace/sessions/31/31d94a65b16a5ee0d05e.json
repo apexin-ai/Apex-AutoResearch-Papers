@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "31d94a65b16a5ee0d05e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "figure fix bcs scaling label",
+  "task_key": "worker_figure_fix_bcs_scaling_label_20260515T232224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix_bcs_scaling_label_20260515T232224_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "a9172ac50e6e70e4f7832e38a87e9b20c0ba39f0626b2ca2a6e777c722a49e79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**改动汇总：**\n- `Qwen2.5-7B` → `Qwen3-32B-FP8`（注释 + 图例标签）\n- `LLaMA-3.1-8B` → `LLaMA-3.1-8B-Instruct`（注释 + 图例标签）\n- 数据未动，与要求一致（Qwen: 9.1/33.3/31.2pp, LLaMA: 27.1pp）\n- PDF 已重新生成（30KB, 2026-05-16 07:23）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

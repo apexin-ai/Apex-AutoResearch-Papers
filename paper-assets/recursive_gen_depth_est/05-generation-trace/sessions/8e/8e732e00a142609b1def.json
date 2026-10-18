@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "8e732e00a142609b1def",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_10_1778887642.md",
+  "task_key": "loop_10_1778887642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778887642.md",
+    "occurrence": 1,
+    "bytes": 4468,
+    "sha256": "fbe2971f2a74a773cb738c96798cf3e33ca056534615efc66ed1a7e68d7114da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T23:06:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **gpu-6000pro-2** 的 **cuda:0, cuda:1**（2× RTX 6000 Pro）。不要碰其他服务器或其他 GPU\n- EMNLP ARR **May 25, 2026** 截稿，剩余 **10 天**。所有决策以此为硬约束\n- DCOL 已彻底放弃（v1-v6 全部失败，D011/D018/D020），**不要再尝试任何 DCOL 相关实验**\n- EDD 叙事已从硬阈值判定转为 **连续 AUC 衰减曲线 + d3v4 borderline 透明报告**（D024/D026/D027），不要回退到旧叙事\n- Cross-strategy temp09 d1v2 反转是 **结构性 distributional shift**，z-score 无法修复（D021/D028），不要再尝试 normalization 方案\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`\n- **Python**: conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`，激活用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **活跃进程**: `downstream_curation_poc_001` (PID 364466, cron 监控中)——Pythia-410M LoRA finetune，40 runs (8 conditions × 5 seeds)\n- **数据**: `/root/autodl-tmp/recursive_gen_depth_est/data/` 下各子目录（pythia_nucleus095, olmo_*, gpt2xl_*, curation_poc 等）\n- **SHAP 产出**: `results/shap_analysis/` 下 concordance_summary.json, beeswarm plots 等（已完成）\n- **Atlas 产出**: `artifacts/atlas/` 下 4 个 JSON（monotonicity_scores, cross_model_comparison, edd_analysis, feature_trajectory）\n\n### 3. 📊 当前状态\n**刚做完**: Phase 1 全部实验完成（59 个实验，成功 36 / 负向 3 / 失败 6）。SHAP TreeExplainer 9-cell 分析完成（替代被审稿人质疑的 attention-importance 方法，Kendall's W=0.90）。N2 Dual Backbone 完成（DeBERTa 58.3%, RoBERTa 59.5%, 均远低于 RF 78.2%）。\n\n**RUNNING**: `downstream_curation_poc_001`——RF depth-based data curation PoC (plan_013)，8 conditions × 5 seeds，log 在 `/tmp/finetune_full.log`，完成后自动执行 `python src/curation_poc.py --phase analyze`\n\n**等待中**:\n- `downstream_curation_poc_001` 的 cron 回调（进程还在跑）\n- Worker 池 = 0（Phase 2 写作期间暂无活跃 Worker）\n\n**审稿 Issue 未关闭**: R1-N1 EDD 公式 ⏳ | R2-N2 文献 ⏳ | 多个 Warning 级修改待 Paper Agent 处理（W3 LoRA引用, W5 论文文本, W6 per-class recall 纳入, R2-W2 术语, R2-W4 Limitations 位置, R2-W6 orphan bib）\n\n### 4. 📋 待办（条件触发式）\n- `downstream_curation_poc_001` cron 回调到达 → 按 on-experiment-done 处理：分析 8 条件对比结果，更新 registry + report.md，汇报 Director（这是 Claim 3 的唯一实验证据）\n- curation PoC success → 结果纳入 Discussion section，作为 \"depth-graduated curation\" 的实验支撑\n- curation PoC negative → 降级为纯 conceptual argument，Discussion 只保留\"future work\"\n- **Phase 2 写作启动** → 派 Paper Agent Worker 批量处理审稿修改（R1-N1 EDD公式重写 + R2-N2 文献补充 + 所有 Warning 级修改）\n- 写作完成后 → 派 Reviewer 对抗迭代（max 5 rounds），然后 bibliography audit → 提交\n\n### 5. 🎯 战略上下文\n**核心结论链**: 递归生成深度可估计（70-85% 4-class acc）→ perplexity tail stats 是跨模型/跨策略的 universal depth marker（SHAP/Gini/Perm 三方法一致，W=0.90）→ EDD=4 跨三模型一致（d3v4 AUC ≈ 0.75 borderline, d4v5 < 0.70）→ temp09 造成结构性 distributional shift（不可 normalize 修复）→ DeBERTa/RoBERTa end-to-end 远不如 RF（-19.9pp/-18.7pp），特征工程仍是王道\n\n**易错点**:\n- **不要把 GC4-par (cross-model LOO 66.4%) 和 GC4-seq (cross-strategy LOO 59.1%) 混为一谈**——前者是跨模型泛化，后者是跨策略泛化，难度和含义完全不同\n- **Baseline 排名**: RF ≈ CORAL ≈ DivEye 统计不可区分（D022/D023），核心贡献在特征发现而非分类器选择。不要 claim RF \"显著优于\" CORAL\n- **Domain bias (D029)**: 叙事已从\"无偏差\"调整为\"depth dominates, residual exists\"，不要回退\n- **Feature overlap (Spearman ρ=-0.484)**: DeBERTa 和 RF 关注完全相反的特征，这是 end-to-end 方法失败的解释——可以 claim 但要谨慎措辞\n- **GPU 两卡都应该在跑**——curation PoC 只用了部分资源，如果有其他补充实验（如 RoBERTa feature overlap 分析），应该并行铺上\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

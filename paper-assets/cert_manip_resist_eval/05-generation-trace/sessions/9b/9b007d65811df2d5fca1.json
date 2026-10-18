@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9b007d65811df2d5fca1",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "audit provenance trace 8values",
+  "task_key": "worker_audit_provenance-trace-8values_20260523T111959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_provenance-trace-8values_20260523T111959_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "fa714f7305adae9622120525daad115801a441b60119868ec2aa315ed10b6a1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。8 个数值的溯源结果：\n\n| # | 论文值 | 源文件 | 一致? |\n|---|--------|--------|-------|\n| 1 | VIF avg 3.0, 10/12<5 | `vif_partial_corr.json:vif.mean`=2.978 | Y |\n| 2 | partial r 0.31/0.12 | `vif_partial_corr.json:partial_correlation.summary.*` | Y |\n| 3 | MDE=0.14 | `power_cr2_cr3.json:power_analysis.MDE_80`=0.144 | Y |\n| 3 | β_std=0.164 | `k5_rf_contrast.json:rf_ols.mmlu.keff_std_beta`=0.165 | **~N** (差0.001) |\n| 4 | RF R²=0.73–0.81 | `k5_rf_contrast.json:comparison_table.k3_rf` | Y |\n| 5 | β_std=-0.192, p≈0.06 | `wild_cluster_bootstrap_v2.json` + `wild_cluster_bootstrap.json` (arc×sycophancy) | Y |\n| 6 | 58% (61/105) | `stochastic_dominance.json:global_12_conditions` | Y |\n| 7 | r≈0.82 log space | `capability_matched_subsample.json:full_set_correlation.log`=0.82 | Y (精确) |\n| 8 | mean sig 1.85/12 | `random_subsample_transition.json:overall.cl_keff_sig_mean`=1.849 | Y |\n\n唯一不完全一致的是 #3 的 β_std：JSON 为 0.16518（→0.165），论文写 0.164，差一个末位。其余 7 个数值全部匹配。\n\n结果已写入 `docs/paper/data/provenance_trace.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

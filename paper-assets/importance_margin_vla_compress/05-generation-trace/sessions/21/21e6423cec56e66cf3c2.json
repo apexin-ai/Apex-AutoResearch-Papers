@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "21e6423cec56e66cf3c2",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "harvest westd41074 xvla attention results",
+  "task_key": "worker_harvest_westd41074_xvla_attention_results_20260522T155701",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_westd41074_xvla_attention_results_20260522T155701_result.json",
+    "occurrence": 1,
+    "bytes": 1894,
+    "sha256": "afda428b832ea16c07af2844a9b7376cb7625c799aa98a1472f29ac7e5569f73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇报如下：\n\n---\n\n## X-VLA Long 结果\n\n| 实验 | SR | Tokens | CI 95% | 文件路径 |\n|------|-----|--------|--------|---------|\n| baseline (k=1.0) | **92.5%** | 50→50 | [88.0%, 95.4%] | `results/xvla_long_baseline.json` |\n| L2norm k=0.95 | **47.0%** | 50→47 | [40.2%, 53.9%] | `results/xvla_long_l2norm_k095.json` |\n| L2norm k=0.9 | **27.5%** | 50→45 | [21.8%, 34.1%] | `results/xvla_long_l2norm_k09.json` |\n\nX-VLA Long 对 token pruning 极其敏感：仅去掉 5% tokens（3个）就从 92.5% 暴跌到 47%。\n\n## Attention Pruning k=0.95 Object (π0.5)\n\n- **SR: 98.4%** (492/500)\n- 文件: `eval_results/pi05_attention_k0.95_libero_object_seed42.json`\n- 768 vision tokens → keep 690 (230/256 per image, 2-layer probe)\n- Attention k=0.9 Object 仍在运行中（当前到 T3，~98.7%）\n\n## GPU 冲突审查\n\n**确认 bug**: `eval_pi05_pruning_libero.py` line 151 `DEVICE = \"cuda:0\"` 硬编码。`args.gpu` 仅用于 line 155 日志打印，从未用于设备分配。\n\n**受影响实验**（指定 `--gpu 1` 但实际跑在 cuda:0）：\n\n| 实验 | 声称 GPU | 实际 GPU | 启动时间 |\n|------|---------|---------|---------|\n| baseline_object_s42 | 1 | 0 | 05-21 11:31 |\n| baseline_object_s42_official | 1 | 0 | 05-21 13:18 |\n| diag_5ep | 1 | 0 | 05-21 11:21 |\n| l2norm_k03_object_s42 | 1 | 0 | 05-21 15:43 |\n| l2norm_k05_goal_s42 | 1 | 0 | 05-22 23:46 |\n| random_k05_object_s43 | 1 | 0 | 05-21 17:54 |\n| random_k07_object_s42 | 1 | 0 | 05-21 17:51 |\n| random_k09_s43 | 1 | 0 | 05-22 01:53 |\n\n**OOM 事件**: 无（所有日志无 \"CUDA out of memory\" 或 \"RuntimeError\"）\n\n**结果可信度: 高** — 推理任务无梯度状态，GPU 共享不影响计算正确性，只影响速度。无 OOM 说明显存充足。两个模型共享 cuda:0 做 inference 不会产生数值差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

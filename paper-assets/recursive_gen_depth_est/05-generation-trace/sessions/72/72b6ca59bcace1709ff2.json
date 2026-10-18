@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "72b6ca59bcace1709ff2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "fix n2 roberta finetune 001",
+  "task_key": "worker_fix_n2_roberta_finetune_001_20260515T122400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_n2_roberta_finetune_001_20260515T122400_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "e9610c56298bc912b45f573141a8806a16cc6b2cf6aae805ed839e694b2456b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中，loss 在下降 (1.4434 → 1.3990)。\n\n**诊断总结：**\n- **失败原因**：模型文件 `model.safetensors` 损坏（上一个 Worker 用 ModelScope 下载时截断），safetensors 反序列化失败\n- **修复**：从 hf-mirror.com 用 aria2c 重新下载 `pytorch_model.bin`（safetensors 版本有 xet storage 兼容性问题，data_offsets 与实际文件大小不匹配）\n- **脚本代码无需修改**：`n2_deberta_finetune.py` 使用 Auto 类，兼容 RoBERTa\n- **已重新提交**：`n2_roberta_finetune_001`，GPU cuda:1，训练已正常进行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3d46c865e1af13bd7173",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "code domain extension 001",
+  "task_key": "worker_code_domain_extension_001_20260516T071538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_domain_extension_001_20260516T071538_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "6191ea44e331ba835d6173f4d8ad4c93f1f77df6bce496e135b4405bb6d41039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动，正在通过 arXiv API 下载 seed data。\n\n**已完成：**\n- `scripts/prepare_arxiv_seeds.py` — arXiv API 下载 abstracts，清洗过滤，输出 JSONL（depth_0）\n- `scripts/run_domain_extension_arxiv.sh` — 完整 pipeline：seed 准备 → QLoRA finetune×3 → generate d1-d3 → feature extraction → 标准分类 + 5-fold CV\n- Registry 已更新为 RUNNING（PID=528179，cuda:1）\n\n**Pipeline 流程：**\n1. arXiv API → 500 abstracts → `data/domain_extension/depth_0.jsonl`\n2. depth 0→3 循环：QLoRA finetune → nucleus generate（500 samples/depth）\n3. Feature extraction（Pythia-1.4B reference）\n4. `train_classifier.py`（单 split baseline）+ inline 5-fold CV（RF）\n5. 结果输出 `results/domain_extension_001/`，含 `cv_results.json`\n\n**预计用时：** arXiv 下载 ~2min + 3×(finetune ~10min + generate ~15min) + feature extraction ~10min ≈ 1.5-2h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

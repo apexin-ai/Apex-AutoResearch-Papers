@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "3e33e93ca1906f25aeea",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "infra ssh diagnose and download",
+  "task_key": "worker_infra_ssh-diagnose-and-download_20260521T173107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_ssh-diagnose-and-download_20260521T173107.log",
+    "occurrence": 1,
+    "bytes": 1054956,
+    "sha256": "128b2346ecc99bacab1f2ba27f65694f93f6ba341732d66c48457d34b8d988ab"
+  },
+  "statistics": {
+    "messages": 843,
+    "user_turns": 0,
+    "tool_calls": 340,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 159,
+      "tool_call": 340,
+      "tool_result": 340,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 843,
+      "chunks": [
+        {
+          "path": "3e33e93ca1906f25aeea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e33e93ca1906f25aeea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e33e93ca1906f25aeea-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e33e93ca1906f25aeea-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e33e93ca1906f25aeea-part-0005.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ]
+}

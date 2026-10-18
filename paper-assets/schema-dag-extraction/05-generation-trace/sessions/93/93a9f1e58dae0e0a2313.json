@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "93a9f1e58dae0e0a2313",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ssh backup westd logs to cqa1",
+  "task_key": "worker_ssh_backup_westd_logs_to_cqa1_20260517T140753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_backup_westd_logs_to_cqa1_20260517T140753_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "24ae1f9455206ed353e219e3a1df0c7bc20fde1b0ae23dbf578e405821b8452e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。\n\n## 汇报\n\n**备份文件列表（位于 cqa1:/root/schema-dag-extraction/backup_westd/）：**\n\n| 文件 | 大小 |\n|------|------|\n| logs/llama70b_cross_model.log | 324K |\n| logs/exp2_bcs_70b.log | 55K |\n| logs/exp3_fewnerd_70b.log | 1.4M |\n| scripts/reeval_d051_type_text.py | 4.9K |\n| scripts/run_d051_count_curves_25.py | 17K |\n| scripts/run_d051_count_curves_llama70b.py | 18K |\n| scripts/run_bcs_controlled_llama70b.py | 14K |\n| scripts/run_llama70b_cross_model.sh | 3.0K |\n| run_d051_batch2.sh | 1.2K |\n| results/d051_70b_reeval_summary.json | 5.3K |\n| src/run_reeval_70b.py | 6.3K |\n\n**总备份大小：~1.85MB（解压后）**\n\n**找不到的文件：无。** 所有 d051/70b 相关的日志和脚本均已备份。临时 SSH 密钥已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

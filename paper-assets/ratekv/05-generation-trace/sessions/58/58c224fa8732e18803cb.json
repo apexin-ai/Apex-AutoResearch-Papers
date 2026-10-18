@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "58c224fa8732e18803cb",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "analyze gemma2 hires bf16 2bitonly",
+  "task_key": "worker_analyze_gemma2_hires_bf16_2bitonly_20260514T225101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_gemma2_hires_bf16_2bitonly_20260514T225101_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "765ac62222b135ea2e2a2c1002c3778fef25c6c4ff3d3e62725b3e157326fc88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: still_running\nPROGRESS: 160/336 heads (47.6%), elapsed 46.6min, ETA ~51min\nPID: 268242 (alive)\nGPU: cuda:0 @ 100% utilization, 20229 MiB / 97887 MiB\n\ncron sentinel exit_code=0 确认为假阳性——进程仍在跑。\n\n当前速度: ~17.5s/head\n预计完成时间: ~2026-05-14 01:10 UTC (约51min后)\n\n目前高 delta heads (top-5 so far):\n  L13H3: 0.039025\n  L15H7: 0.030296\n  L17H6: 0.025366\n  L15H6: 0.025188\n  L19H6: 0.019447\n\n趋势: L15+ 层 delta 明显增大，与其他模型一致的后层集中模式。\n结果文件尚未生成，需等实验完成。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

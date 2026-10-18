@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "62c8483a73a83f12a936",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops kill vllm",
+  "task_key": "worker_ops_kill_vllm_20260520T211250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_vllm_20260520T211250_result.json",
+    "occurrence": 1,
+    "bytes": 285,
+    "sha256": "f14ecb6a319c74c735fc21a530e99be63e2b6070f2ad09e895ef843d12dfc417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败（exit code -1）。可能原因：\n\n1. **实例未开机**或已关机\n2. **SSH 端口已变**（AutoDL 重启后端口会变）\n\n请检查 AutoDL 控制台确认实例状态和当前 SSH 端口，如果端口变了需要更新 `~/.ssh/config`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

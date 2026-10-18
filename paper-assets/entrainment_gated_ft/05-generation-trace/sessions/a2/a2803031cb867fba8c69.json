@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a2803031cb867fba8c69",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "infra ssh check westb",
+  "task_key": "worker_infra_ssh-check-westb_20260523T164237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_ssh-check-westb_20260523T164237_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "5006f755effc9bfb761d2e330ad60e699981b5607712450847e6a9f160b8df14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SSH 连接报告：westb-48145\n\n**连接状态**：✓ 正常\n\n**GPU**：\n| GPU | 显存占用 | 总显存 | 利用率 |\n|-----|---------|--------|--------|\n| NVIDIA RTX PRO 6000 Blackwell Server Edition | 0 MiB | 97,887 MiB (~96 GB) | 0% |\n\n**磁盘**：\n| 挂载点 | 已用 | 可用 | 使用率 |\n|--------|------|------|--------|\n| `/` (根分区) | 17G | 14G | 56% |\n| `/root/autodl-tmp` (数据盘) | 135G | 116G | 54% |\n\n**运行中进程**：\n- JupyterLab（系统自带，空闲）\n- ModelScope 下载任务：正在下载 `m-a-p/340M-20B-HGRN-pure-baseline` 到 `/root/autodl-tmp/.ms_cache`\n\nGPU 空闲，磁盘两个分区均有充足余量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

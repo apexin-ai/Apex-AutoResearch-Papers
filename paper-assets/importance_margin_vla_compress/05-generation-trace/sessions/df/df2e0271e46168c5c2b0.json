@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "df2e0271e46168c5c2b0",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "train imm fullft seed0 cqa1",
+  "task_key": "worker_train_imm_fullft_seed0_cqa1_20260516T225210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_imm_fullft_seed0_cqa1_20260516T225210_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "c40f63aeb91ab6f4563ce4d84d895e12df38486e6f9971b6a2287e6bbeae56ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并运行。\n\n## 确认结果\n\n**配置文件**: `configs/libero_imm_twostage_fullft_seed0.yaml`\n- `baseline_checkpoint`: `checkpoints/libero_full_ft_seed0/step_099999/checkpoint.pt`\n- `output_dir`: `checkpoints/libero_imm_twostage_fullft_seed0`\n- seed=0 通过 CLI `--seed 0` 传入\n\n**GPU 状态**: cuda:2 使用 2881 MiB，正常\n\n**训练状态**: Stage 1 已开始\n- step=50/10000, margin_loss=0.2983, lr=3.06e-05, grad=8.04, sps=3.6\n- ACIS 参数: 3.46M trainable (0.76%), expert 全冻结"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "17d025075a1ef0910b08",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper d044 results two fixes",
+  "task_key": "worker_paper_d044_results_two_fixes_20260516T105401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d044_results_two_fixes_20260516T105401_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "889db28381d479eb8611745f2c3c33fae38da155accad721086274616a643dc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成，大括号平衡：\n\n1. **§4.3 confound disclosure**（line 72）：段末添加了 \"FewRel's balanced design (700 instances per type) inherently eliminates type frequency as a confound.\"\n2. **v1/v2 对比句后**（line 136）：在 \"attenuates modestly\" 句后添加了 BCS range caveat，说明 attenuation 部分源于 v2 balanced sampling 的 narrower BCS range，同时 stronger per-pair correlation 表明 per-unit sensitivity 不低于 v1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

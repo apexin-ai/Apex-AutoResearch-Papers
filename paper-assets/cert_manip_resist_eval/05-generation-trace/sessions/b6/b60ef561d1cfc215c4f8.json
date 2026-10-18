@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "b60ef561d1cfc215c4f8",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "ops d047 r2 figures final",
+  "task_key": "worker_ops_d047-r2-figures-final_20260525T220524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d047-r2-figures-final_20260525T220524.log",
+    "occurrence": 1,
+    "bytes": 1572084,
+    "sha256": "6cbcca677af0d3338c1f027c0aac429d80bf1af04f6687c31b9a0b9b6b5bd85e"
+  },
+  "statistics": {
+    "messages": 278,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "b60ef561d1cfc215c4f8-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "b60ef561d1cfc215c4f8-part-0002.json",
+          "message_count": 40
+        },
+        {
+          "path": "b60ef561d1cfc215c4f8-part-0003.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "5077280f20113d622c5b",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd27271 eval sc m128",
+  "task_key": "worker_ops_westd27271-eval-sc-m128_20260521T030106",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd27271-eval-sc-m128_20260521T030106_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "960e8573c9227569090937212e0e5660907d7f08eb6ebe771eb487aba6033ab1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。汇报：\n\n**Checkpoint**: `checkpoints/openvla_sc_m128_seed42/checkpoint.pt`（完整训练，20GB，6 keys: step/model_state_dict/optimizer_state_dict/scheduler_state_dict/config/info）\n\n**PID**: 176320（实际 python 进程），父 bash PID 176314\n\n**GPU 占用**: cuda:0 已占用 36288 MiB / 97887 MiB\n\n**日志摘要**:\n- 模型加载成功，`OpenVLASmartCompressWrapper loaded: M=128, compressor params=403308544`\n- 有 missing/unexpected keys 警告（LoRA 格式 vs 标准格式的 key 名差异，属正常行为）\n- Suite: libero_object, 10 tasks, 50 episodes, max 280 steps\n- Task 0 已开始推理（`pick up the alphabet soup and place it in the basket`），首个 action 已成功输出\n\n**注意**: cuda:1 上有 M32 训练在跑（PID 921279），两个互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

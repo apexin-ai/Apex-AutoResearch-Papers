@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "506495ecdcc98ba5d080",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code mistral constrained mckp",
+  "task_key": "worker_code_mistral_constrained_mckp_20260515T143635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_constrained_mckp_20260515T143635_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "c00460c2032d54f0c3381fa0ae2644fb7ebb30dff76471c57632670b678ee5e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_mistral_hires_constrained.py` 已就绪，验证通过：\n\n- **模型**: `/root/autodl-tmp/models/Mistral-7B-v0.3`（32L × 8KV, GQA 4:1, 256 heads）\n- **输入**: `mistral_hires_bf16_2bitonly_profiles.json` + `mistral_profiling_results.json`（两文件均已存在）\n- **MCKP**: constrained, max_2bit=2, budget=0.25, l0_exclude_2bit=True\n- **Eval**: BF16 baseline → Constrained MCKP → Uniform 4-bit，WikiText-2 PPL\n- **输出**: `artifacts/mistral_hires_constrained_results.json`\n- **运行**: `python run_mistral_hires_constrained.py`（cuda:0 空闲后直接跑）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

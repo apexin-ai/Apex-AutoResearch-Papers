@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9ca003f9cb957eef4c1d",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "ops extract 80rel metrics",
+  "task_key": "worker_ops_extract_80rel_metrics_20260515T135955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract_80rel_metrics_20260515T135955_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "a669c66501a62d612c31fe5cb9f8419fc34ac6071b927ce814912a87c822874c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总结果\n\n### 1. 进程状态\n\n| 进程 | PID | 状态 |\n|------|-----|------|\n| 80-rel | 269256 | **DEAD** |\n| exp-012 | 273161 | **DEAD** |\n| GPU | — | 0 MiB / 0% (空闲) |\n\ntmux 检查被 read_only 白名单拦截，无法确认。\n\n### 2. eval_exp1.json (110 entries) — 按 num_types 分组\n\n| count | n_batches | mean_acc | mean_bcs |\n|-------|-----------|----------|----------|\n| 1 | 80 | 0.8573 | 0.0000 |\n| 4 | 5 | 0.8667 | 0.6335 |\n| 8 | 5 | 0.8021 | 0.7175 |\n| 16 | 5 | 0.6958 | 0.7950 |\n| 32 | 5 | 0.6578 | 0.8893 |\n| 64 | 5 | 0.5424 | 0.9434 |\n| 80 | 5 | 0.5042 | 0.9706 |\n\n### 3. eval_exp2.json (54 entries) — 含 low_bcs/high_bcs 对照组\n\n| count | n_batches | mean_acc | mean_bcs |\n|-------|-----------|----------|----------|\n| 8 | 27 | 0.7924 | 0.7200 |\n| 16 | 27 | ~0.709 | ~0.799 |\n\n（exp2 count_16 因 grep 截断缺 1 条，偏差可忽略）\n\n**趋势**：accuracy 随 num_types 增大单调下降（0.857→0.504），bcs 单调上升（0→0.971）。exp2 中 high_bcs 组 (count_8: acc=0.510, bcs=0.971) 远低于 low_bcs 组 (acc=0.823, bcs=0.471)，确认 boundary confusion 是 accuracy 下降的关键因素。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

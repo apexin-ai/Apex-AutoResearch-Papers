@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e98828d8c2a87db72343",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops check 14b westd",
+  "task_key": "worker_ops_check_14b_westd_20260517T213624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_14b_westd_20260517T213624_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "c52ef309b9313b40fcff129b6cd2d6aca4ed84ea695fa200788ab13763061eb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告：qwen25_14b_scale_003\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 存活，PID 20700，CPU 103%，运行 ~2.5h |\n| GPU | cuda:0 占用 32.3GB/97.9GB，利用率 93% |\n| 阶段 | Phase 2: 生成 d0（5000 unconditional samples） |\n| 进度 | 2557/5000 samples (~51%)，正在持续写入 |\n| Error/Warning | 无 error。有一个非致命 warning：tee 目标路径 `results/qwen25_14b_scale/` 目录不存在，导致 tee 写入失败，但不影响实际生成 |\n| 预估 | d0 已跑 2.5h 完成 51%，预计再 ~2.5h 完成 d0。之后还有 d1-d3 三轮生成（每轮需要前一轮输出作为 prompt），总计预估还需 ~10-12h |\n\n**结论**：实验正常运行中，无 stall/error。唯一问题是 `results/qwen25_14b_scale/` 目录不存在导致 tee 日志副本写入失败，但主数据正常产出到 `data/qwen25_14b/depth_0.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

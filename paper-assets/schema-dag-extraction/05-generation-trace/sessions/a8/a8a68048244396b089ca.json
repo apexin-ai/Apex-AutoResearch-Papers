@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a68048244396b089ca",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis a1 bootstrap corrected",
+  "task_key": "worker_analysis_a1_bootstrap_corrected_20260519T184730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1_bootstrap_corrected_20260519T184730_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "da4718088f4d97325ce8e2e4ebf5cc5b1061d284351fedfd78e32d3158b09e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 方法 | 95% CI |\n|------|--------|\n| Bootstrap-only (resample, no noise) | **[3.02, 20.10]** |\n| Noise-propagated (resample + N(0, 0.88²)) | **[2.98, 20.08]** |\n\n两组 CI 几乎相同——noise-propagated CI 仅比 bootstrap-only 宽约 0.04–0.06 pp。这是因为 FP8 noise σ=0.88 pp 远小于 batch 间的 sampling variance（high-BCS 组标准差 ~10 pp），噪声贡献被 resample variance 淹没了。\n\n两组 CI 下界均 >0，delta=10.94 pp 在两种方法下都显著排除零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

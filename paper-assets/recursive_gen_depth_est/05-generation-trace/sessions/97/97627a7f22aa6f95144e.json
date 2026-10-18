@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "97627a7f22aa6f95144e",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "eval binoculars 14b topk50",
+  "task_key": "worker_eval_binoculars_14b_topk50_20260520T053504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_binoculars_14b_topk50_20260520T053504_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "612a7b0ce5d9514e80a27cbae94448fc9ab0d939a247c17a78489bc87a416e03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry already has the complete `binoculars_14b_topk50` entry with all metrics, status=DONE, conclusion=success. This was populated earlier in the session.\n\nAll 4 steps complete:\n\n| Step | Status | Result |\n|------|--------|--------|\n| 1. Binoculars extraction | Done | RF_multi = **37.68%** (11 features) |\n| 2. Merged ablation | Done | merged 30-feat = **51.49%**, stat_only = 48.84%, bino_only = 37.74% |\n| 3. Baseline alignment (方案 A) | Done | Δ = **+3.56pp** (51.49% − 47.93% main pipeline) |\n| 4. Artifact + registry | Done | `artifacts/binoculars_14b_topk50_results.md` registered, registry updated |\n\nCompared to temp09: merged lift is comparable (+3.56pp vs +3.7pp), but Binoculars RF_multi drops from 42.52% to 37.68% under top-k truncation."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

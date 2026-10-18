@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c98f981536d7f6470b8e",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "paper writing introduction reframe",
+  "task_key": "worker_paper_writing_introduction_reframe_20260523T011835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_reframe_20260523T011835_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "b1c883cfeaf2d203430d1f284989c944e746f081e9576535047068cfa7ca689f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction rewritten. Key changes from old version:\n\n- **Framing**: \"weakest-link dominance\" → \"K-dependent vulnerability regime transition\" (η_max dominates at K=3, K_eff dominates at K≥5)\n- **Diversity direction**: corrected to \"harmful in both regimes\" (K_eff coefficient positive throughout), not protective at any K\n- **Mechanism**: added the 2/3 majority-flip explanation for the K=3→K≥5 transition\n- **Evidence**: updated bootstrap counts (5/12→0/12 for η_max, 1/12→7/12 for K_eff) and K∈{3,5,7} scope\n- **Section refs**: updated to actual labels (sec:dominance, sec:robustness, sec:gam_taxonomy, sec:aggregation)\n- **Style**: no em-dashes, no -ing endings, no AI vocabulary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

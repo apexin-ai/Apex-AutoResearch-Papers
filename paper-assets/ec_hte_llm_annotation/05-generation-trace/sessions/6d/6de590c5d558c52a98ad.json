@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "6de590c5d558c52a98ad",
+  "project": "ec_hte_llm_annotation",
+  "kind": "worker",
+  "title": "code task h writing fixes",
+  "task_key": "worker_code_task-h-writing-fixes_20260523T092318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_task-h-writing-fixes_20260523T092318.log",
+    "occurrence": 1,
+    "bytes": 762541,
+    "sha256": "eaea0548eb4cc78b62b905c2c0fb461bf61f7bf3f243ab9517256d6594c735f9"
+  },
+  "statistics": {
+    "messages": 96,
+    "user_turns": 0,
+    "tool_calls": 37,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 37,
+      "tool_result": 37,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "6de590c5d558c52a98ad-part-0001.json",
+          "message_count": 76
+        },
+        {
+          "path": "6de590c5d558c52a98ad-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ]
+}

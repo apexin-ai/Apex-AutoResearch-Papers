@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "07f120ee104198e48f96",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis atlas v2 prep",
+  "task_key": "worker_analysis_atlas_v2_prep_20260515T010628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_atlas_v2_prep_20260515T010628_result.json",
+    "occurrence": 1,
+    "bytes": 1477,
+    "sha256": "21b38fadc04da42874f482e7908c49598d7892a42af6f403b5feee9a7fa6372e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出汇总：\n\n### 文件清单\n\n| 文件 | 说明 |\n|------|------|\n| `artifacts/atlas_v2/matrix_data.json` | 7/9 cells 统一格式数据 |\n| `src/atlas_v2.py` | 分析框架（5 项分析） |\n| `artifacts/atlas_v2/monotonicity_scores.json` | Spearman ρ per feature per cell |\n| `artifacts/atlas_v2/edd_analysis.json` | EDD 饱和深度 |\n| `artifacts/atlas_v2/cross_model_heatmap.json` | 3×3 热力图矩阵 |\n| `artifacts/atlas_v2/feature_trajectory_summary.json` | 特征变化轨迹 |\n| `artifacts/atlas_v2/jaccard_matrix.json` | 跨策略 top-5 特征 Jaccard |\n\n### 3×3 矩阵（RF 4-class accuracy）\n\n|  | Nucleus | Temp09 | TopK50 |\n|--|---------|--------|--------|\n| **Pythia-1.4B** | 78.2% | 76.2% | 69.6% |\n| **OLMo-1B** | 78.8% | 82.0% | --- |\n| **GPT-2-XL** | 83.3% | 85.4% | --- |\n\n### 关键发现\n\n- **EDD**: 6/7 cells 信号持续到 depth 3 无饱和（d2v3 AUC > 0.7），仅 **Pythia topk50** 在 depth 3 饱和（d2v3 AUC = 0.692）\n- **Jaccard**: Pythia 三种策略 top-5 特征完全一致（J=1.0）；OLMo 和 GPT-2 XL 的 nucleus vs temp09 J=0.667（4/5 overlap，差异在 mean_ppl/type_token_ratio vs p50_ppl）\n- **Feature trajectory**: p90_ppl、var_surprisal、mean_surprisal 随 depth 单调递减（ρ = -1.0）；rep_2gram/3gram/4gram 单调递增\n- **缺失**: olmo_topk50 和 gpt2xl_topk50 仍在运行，完成后填入 matrix_data.json 并重跑 `python src/atlas_v2.py` 即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

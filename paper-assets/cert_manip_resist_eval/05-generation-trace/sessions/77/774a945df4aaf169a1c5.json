@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "774a945df4aaf169a1c5",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis random fault contrast v2",
+  "task_key": "worker_analysis_random-fault-contrast-v2_20260523T182424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random-fault-contrast-v2_20260523T182424.log",
+    "occurrence": 1,
+    "bytes": 676131,
+    "sha256": "44997cd54a8a7dbe8ade9156ad24e68ff6a2ed6ad0c779e1a974d1526809ccaf"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "774a945df4aaf169a1c5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "774a945df4aaf169a1c5-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ]
+}

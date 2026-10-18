@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "0b8b6f2c90b286afba99",
+  "project": "entrainment_gated_ft",
+  "kind": "result",
+  "title": "exp exp 005 hgrn eval watch",
+  "task_key": "worker_exp_exp-005-hgrn-eval-watch_20260522T161920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp-005-hgrn-eval-watch_20260522T161920_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "39099b16f0d63901946bddb68bb37244a158b1e7be65024fe60e6e99f034c063"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HGRN h3-1 下载 94%，速度 ~70KB/s，ETA ~16 分钟。2 分钟后回来检查。\n\n同时注意到服务器上有 `exp-005-pure-eval` tmux session 正在运行（看起来是 DeltaNet-pure 评估），GPU 当前被占用。HGRN 评估需要等 GPU 空闲后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

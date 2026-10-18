@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "6a1564e5b0311777dd08",
+  "project": "importance_margin_vla_compress",
+  "kind": "worker",
+  "title": "train smart compress m32 official",
+  "task_key": "worker_train_smart_compress_m32_official_20260519T015833",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_smart_compress_m32_official_20260519T015833.log",
+    "occurrence": 1,
+    "bytes": 530645,
+    "sha256": "b2959308e464702c6c8c7d1566515181c4077d695ec3e60b33b51cf21669a139"
+  },
+  "statistics": {
+    "messages": 269,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "6a1564e5b0311777dd08-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6a1564e5b0311777dd08-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ]
+}

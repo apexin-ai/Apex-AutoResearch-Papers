@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "98fb6c5456bed4b34e69",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "code prep eval v8 1 v8b",
+  "task_key": "worker_code_prep_eval_v8_1_v8b_20260516T051455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep_eval_v8_1_v8b_20260516T051455_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "e9f310bbeac0b9e733787cef0e072da9e40a9af518ef8a1d85999e4640b1b5ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建并通过语法检查：\n\n**`run_v8_1_final_eval.sh`** — v8_1 (gradient isolation + λ_margin=0.2)\n- Checkpoint: `checkpoints/imm_anchor_v8_1/latest`\n- Config: `configs/imm_anchor_v8_1.yaml`\n\n**`run_v8b_final_eval.sh`** — v8b (ACIS-only two-stage)\n- Checkpoint: `checkpoints/imm_anchor_v8b_twostage/stage2/latest`\n- Config: `configs/imm_anchor_v8b_twostage.yaml`\n\n每个脚本流程：\n1. **Phase 1**: Standard eval (500 batch, train mode soft forward) — 产出 standard + ACIS+prune 条件\n2. **Phase 2**: Bypass-ACIS eval (500 batch) — 产出 bypass + random prune 条件\n3. **Phase 3**: 从 standard eval 提取 ACIS-prune JSON（remap `pruneTrue→pruneFalse` 以适配 analyze_gate.py 接口）\n4. **Phase 4**: Gate analysis (G1-G4，baseline=0.004077)，含 `--acis-prune` 和 `--bypass`\n5. **Summary**: 打印 4 条件 clean action_loss 对比表\n\n关键设计点：\n- Train mode 通过 monkey-patch `evaluate.load_model_and_checkpoint` 实现，加载后调 `model.train()` 替代默认的 `model.eval()`\n- `CUDA_VISIBLE_DEVICES=$GPU` + `--gpu 0`，默认 GPU=0，参数可覆盖\n- Pre-flight 检查 checkpoint 存在性，训练未完成会报错退出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

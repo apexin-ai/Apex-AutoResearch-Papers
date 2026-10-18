@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "06a4cbd5421d82a6fa37",
+  "project": "cert_manip_resist_eval",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3280,
+    "sha256": "ee402a93d5c06442c7d587d781e78aa0bae31a055e95e89135e4ec6044ae6040"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-25T06:02:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 只有 seetacloud-rtx6000 的 cuda:0（单卡）\n- 论文主文严格 ≤8 页（EMNLP 2026），Limitations 不计入。当前刚好卡在 8 页边界，任何正文增加都可能溢出\n- Abstract ≤200 words（当前 ~154 words）\n- 结论已被极限压缩到 2 行，不能再扩展（之前 Paper Agent 扩展导致溢出，被反复修剪）\n- Table 2 定义已从 results.tex 移到 methodology.tex（§4.2 后），Table 1 从 methodology.tex 移到 threat_model.tex 末尾——这是布局优化，不要移回去\n\n### 2. 🖥️ 基础设施快照\n- 服务器：seetacloud-rtx6000，GPU cuda:0\n- 论文目录：`projects/cert_manip_resist_eval/docs/paper/`（本地 workspace）\n- 代码目录（远程）：需从 project config 确认 `execution.project_path`\n- r1w2-fp16-baseline 实验在远程服务器运行中（FP16 vs AWQ 对比）\n- 无活跃 W&B / cron 任务\n\n### 3. 📊 当前状态\n刚完成：\n- R5 审稿全部修复整合到论文（fractional logit 9/12 flat 修正、β_std 轨迹、quant dummy、API-only power、Bayesian entropy、K_eff framing 降级、scope qualifier、OpenRouter footnote）\n- 图表布局重排（Table 2 → p5, Table 1 → p4，解决 p3-5 纯文本墙问题）\n- R6 审稿已提交（apr_20260524T194848_a22r，pending 用户审批，推荐 continue 模式）\n- PDF 已上传给用户（main_layout_rebalanced.pdf）\n\nRegistry: `r1w2-fp16-baseline` RUNNING（Qwen2.5-14B/32B AWQ vs FP16 accuracy 对比，验证量化是否引入 <2pp 精度下降）。上一轮已派 Agent 去 SSH 检查状态，Agent 已处理完但未返回明确结果。\n\n等待中：用户审批 R6 审稿模式（continue/fresh）；FP16 实验完成回调。\n\n### 4. 📋 待办\n- R6 审稿卡片被用户审批 → 等待 Review Director 出报告，收到后按 `review-report-action` skill 处理\n- FP16 baseline 完成 → 分析 AWQ vs FP16 accuracy diff，<2pp 则 R1-W2 resolved，≥2pp 则需调整论文 claim\n- 用户反馈第 3 页仍无图 → 可考虑画 Related Work positioning 概念图（PaperBanana），但非必须\n- Agent idle 且无待办 → 可派去检查 FP16 进度或准备下一批实验\n\n### 5. 🎯 战略上下文\n核心 narrative 已从\"K_eff 是独立预测变量\"降级为\"predictor shift 的系统性记录 + confound 本身作为发现\"。这是 3 轮审稿后的根本性重新定位。\n\n关键数据点：\n- Predictor shift 是 method-dependent：bootstrap 支持 (4→7→8)，fractional logit 不支持 (9→9→9 flat)，quant dummy 下减弱 (6→6→4)\n- Diversity-capability confound r=0.70-0.81，69% 条件下 Cinelli-Hazlett 失败\n- API-only 子集 predictor shift 消失（K_eff 2-3/12 vs η_max 8/12），但 power 不足（MDE>0.897）\n\n易错点：\n- 不要试图恢复 K_eff 的因果解释——copula 被 97-100% 拒绝，\"有效独立通道数\"语义已放弃，只保留 motivating analogy\n- 不要扩展结论——当前 2 行是页面预算极限\n- R5 的 fractional logit 数字是 9/12 at ALL K（不是 4/12→9/12→9/12），之前论文里写错过，已全部修正\n- review_issues.yaml 已更新到 R5 修复状态，R4-W4 和 R2-W6 标记为 resolved\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

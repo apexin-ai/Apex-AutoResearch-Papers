@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "9c784852fb8ab81fcd51",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diag eval spatial prune k05",
+  "task_key": "worker_diag_eval_spatial_prune_k05_20260517T113819",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval_spatial_prune_k05_20260517T113819_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "3f3e4738bd8f12d6d251bc04d52d4a1291e107c86bbf98acfa707f31e0333b8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**总结**：\n- `eval_spatial_prune_k05` 已正常完成（19:35 结束），非崩溃\n- **SR = 0.0%**（0/500），10 个 task 全部 0%，所有 episode 跑满 280 步 timeout\n- 与 libero_object 上的 true_removal 结果一致（也是 0%），确认 cliff-edge 效应跨 suite 成立\n- Baseline spatial SR = 51.8% → pruning 后完全崩溃\n- Registry 已更新：status=DONE, conclusion=success, metrics 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

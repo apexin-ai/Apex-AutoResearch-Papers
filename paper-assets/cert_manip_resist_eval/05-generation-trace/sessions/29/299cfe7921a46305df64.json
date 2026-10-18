@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "299cfe7921a46305df64",
+  "project": "cert_manip_resist_eval",
+  "kind": "worker",
+  "title": "analysis condition dependent dominance",
+  "task_key": "worker_analysis_condition-dependent-dominance_20260522T173756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_condition-dependent-dominance_20260522T173756.log",
+    "occurrence": 1,
+    "bytes": 792907,
+    "sha256": "c89fd16cb2f8fb9f97604a647a6d2b87968fc3436c98697a6ffe3ffb8ea9afdf"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 1,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 63,
+      "user": 1,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "299cfe7921a46305df64-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "299cfe7921a46305df64-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "299cfe7921a46305df64-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ]
+}

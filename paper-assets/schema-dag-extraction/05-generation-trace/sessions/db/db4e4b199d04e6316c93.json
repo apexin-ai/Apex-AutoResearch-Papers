@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "db4e4b199d04e6316c93",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "code exp confusability batch composition",
+  "task_key": "worker_code_exp_confusability_batch_composition_20260516T061306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_confusability_batch_composition_20260516T061306_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "cb8325771d086f6cdf2dd63b24ce4d183e303989c86a79cf027be57f05934dff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-018 已提交运行。\n\n**摘要**：\n- 脚本：`src/run_confusability_batch_composition.py` — 统一运行所有 3 个条件，vLLM 只加载一次\n- **17 个条件**：1 confusability_aware + 15 random seeds (CI) + 1 single_pass\n- **16,320 次推理**，预计 ~218 分钟\n- Graph coloring 分组成功降低了 intra-batch BCS（0.5524 vs random 均值 ~0.558）\n- PID=373174，日志：`logs/exp018_confusability_batch.log`\n- Registry: `exp_confusability_batch_composition` → RUNNING\n- 支持 `--resume` 断点续传（按 condition 粒度记录进度）\n- 分析阶段自动计算 random batch 的 95% CI、per-type accuracy delta（confusability vs random mean）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "38514203ff78973102a1",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "paper r26 integrate analyses",
+  "task_key": "worker_paper_r26_integrate_analyses_20260522T052238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_integrate_analyses_20260522T052238_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "07da682534a3ea312e3e436c88473bac7d3d19ade9f655e929c9af9251e3b37e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix starts on page 13; body is within 8 pages (pages 1–8 body + references on pages 9–12).\n\n### 修改摘要\n\n| 任务 | 位置 | 内容 |\n|------|------|------|\n| **A: Ridge Regression** | `main.tex` 原 line 329, subsection E.1 内新 `\\paragraph{Ridge regression under multicollinearity.}` | RidgeCV λ=0.001, β_BCS=−1.53, β_centrality=0.78, R²=0.594; 解析证明 β_BCS<0 对所有 λ≥0 成立; 仅做方向性解读 |\n| **B: Bootstrap CI** | 新 subsection E.3 (`sec:appendix_bootstrap_ci`, page 17) | 164 FewRel batches, 6 个 Jaccard 阈值下 cluster-robust SE = 0.96–0.97× OLS SE, slope 显著 (p<10⁻¹¹), R² CI 宽度变化 −6%~+6%, 结论 robust |\n| **C: Domain Distribution** | 新 subsection E.4 (`sec:appendix_domain_distribution`, page 17) | χ²=230.74 (p<0.001), high-BCS→science/taxonomy 49.5% + event/temporal 26.0%, low-BCS→geography 45.5% + creative_work 25.5%; 解释为 mediator 非独立 confound |\n\n**编译结果**: 0 errors, 0 undefined references, 27 pages total (body ≤ 8 pages, appendix 从 page 13 起)。`\\ref{sec:appendix_partial_corr}` 正确解析为 E.1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

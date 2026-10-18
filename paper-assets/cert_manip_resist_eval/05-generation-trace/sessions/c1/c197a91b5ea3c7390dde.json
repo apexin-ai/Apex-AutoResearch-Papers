@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "c197a91b5ea3c7390dde",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis rf keff correction",
+  "task_key": "worker_analysis_rf-keff-correction_20260522T201836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rf-keff-correction_20260522T201836_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "0370db45beb51940a7b0331d4881e532787dfdca96985ffb8040e7d01bc38f45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**Results: RF K_eff Non-Independence Correction**\n\n| Regime | Method | η\\_max sig | K\\_eff sig |\n|---|---|---|---|\n| Adaptive | OLS | 11/12 | 8/12 |\n| Adaptive | Wild Bootstrap v2 | 5/12 | 1/12 |\n| Adaptive | Clustered SE | 8/12 | 0/12 |\n| **RF** | **OLS** | **2/2** | **2/2** |\n| **RF** | **Wild Bootstrap v2** | **2/2** | **2/2** |\n| **RF** | **Clustered SE** | **2/2** | **2/2** |\n\n**Per-condition detail:**\n\n| Dataset | Method | K\\_eff p | η\\_max p | R² |\n|---|---|---|---|---|\n| mmlu | OLS | 6.3e-10 | 1.1e-65 | 0.734 |\n| mmlu | Clustered SE | 3.7e-04 | 3.8e-28 | — |\n| mmlu | Bootstrap v2 | 0.0035 | 0.0013 | — |\n| arc\\_challenge | OLS | 3.0e-12 | 2.9e-22 | 0.813 |\n| arc\\_challenge | Clustered SE | 0.0085 | 2.7e-05 | — |\n| arc\\_challenge | Bootstrap v2 | 0.0185 | 0.0219 | — |\n\n**Key findings:**\n\n1. **RF K\\_eff remains significant under ALL correction methods** (2/2 on both clustered SE and bootstrap v2), in stark contrast with adaptive regime where K\\_eff drops to 0/12 (clustered SE) or 1/12 (bootstrap).\n\n2. This supports Claim 2: under random faults, panel diversity (K\\_eff) genuinely predicts robustness; under adaptive attacks, this diversity benefit is largely illusory (inflated by non-independence).\n\n3. SE inflation is moderate: 1.76x (mmlu) to 2.71x (arc\\_challenge) for K\\_eff — comparable to adaptive regime — but the RF signal is strong enough to survive it.\n\n4. RF uses 2 conditions (dataset-level clean accuracy), no FDR needed. The RF error rate (1 - clean\\_acc) is attack-independent, so all 6 attacks within a dataset would produce identical regression results.\n\nOutput saved to `/root/cert_manip_resist_eval/artifacts/results/plan001/rf_keff_correction.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

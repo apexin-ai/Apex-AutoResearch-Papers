@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "id": "68d57106b1647a736522",
+  "project": "recursive_gen_depth_est",
+  "kind": "worker",
+  "title": "analysis cross scale qwen7b 001",
+  "task_key": "worker_analysis_cross_scale_qwen7b_001_20260516T052541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_scale_qwen7b_001_20260516T052541.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": []
+}

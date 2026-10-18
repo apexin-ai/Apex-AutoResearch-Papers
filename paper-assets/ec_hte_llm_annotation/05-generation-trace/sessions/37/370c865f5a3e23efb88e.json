@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "370c865f5a3e23efb88e",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "code exp 014 asymmetric",
+  "task_key": "worker_code_exp-014-asymmetric_20260521T072959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-014-asymmetric_20260521T072959_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "3df0b19ae11272dde286e3768a704cf0b6066919e47d8f9f04fb2a78a51529ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs verified. Here's the summary:\n\n**exp-014 Asymmetric Misclassification — Complete**\n\nResults:\n- **R² = 0.992** (analytic vs MC bias) — formula verified\n- **Product structure CV ≈ 10⁻¹⁶** — bias(z,s) = Δτ · [B_s]_{z,1} holds exactly, regardless of symmetry\n- **EC-HTE dominates** across all 3 configs:\n\n| Method | |Bias| | RMSE | Coverage |\n|--------|-------|------|----------|\n| naive | 0.047 | 0.053 | 0.48 |\n| global_est | 0.025 | 0.040 | 0.78 |\n| echte | 0.006 | 0.033 | 0.90 |\n\nEC-HTE reduces bias ~7x vs naive, ~4x vs global. Config 2 (co-directional asymmetry) is where global performs worst (|bias| = 0.037 vs echte 0.007).\n\nOutput files:\n- `exp014_asymmetric.py` — experiment script\n- `results/exp014_asymmetric_bias.csv` — analytic vs MC bias (60 rows)\n- `results/exp014_asymmetric_correction.csv` — method comparison (180 rows)\n- `results/exp014_asymmetric_analysis.md` — full analysis with LaTeX derivation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

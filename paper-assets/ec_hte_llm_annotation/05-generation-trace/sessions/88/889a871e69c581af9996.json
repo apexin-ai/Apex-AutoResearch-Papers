@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "889a871e69c581af9996",
+  "project": "ec_hte_llm_annotation",
+  "kind": "result",
+  "title": "research adaptive shrinkage",
+  "task_key": "worker_research_adaptive-shrinkage_20260523T071542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_adaptive-shrinkage_20260523T071542_result.json",
+    "occurrence": 1,
+    "bytes": 1831,
+    "sha256": "377bf0211c702e8fddb7cf36de04a45fe8518e3d0633b56a65fbe35ab7d26fe9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n### 核心发现：Centered EB 全面优于 Original HB\n\n| Config | Method | RMSE_z0 | RMSE_z1 | \\|bias\\|_z0 | \\|bias\\|_z1 |\n|--------|--------|---------|---------|------------|------------|\n| **K2 moderate** | global_corrected | 0.0684 | 0.0783 | 0.0080 | 0.0014 |\n| | hb_original | 0.0703 | 0.0787 | 0.0109 | 0.0039 |\n| | **hb_centered** | **0.0691** | **0.0781** | 0.0083 | 0.0014 |\n| **K2 extreme** | global_corrected | 0.0912 | 0.1022 | 0.0496 | 0.0569 |\n| | hb_original | 0.0879 | 0.0942 | 0.0134 | 0.0041 |\n| | **hb_centered** | **0.0839** | **0.0909** | 0.0070 | 0.0068 |\n| **K4 moderate** | global_corrected | 0.0978 | 0.1070 | 0.0089 | 0.0078 |\n| | hb_original | 0.1006 | 0.1089 | 0.0131 | 0.0096 |\n| | **hb_centered** | **0.0983** | **0.1070** | 0.0100 | 0.0081 |\n| **K4 extreme** | global_corrected | 0.1040 | 0.1140 | 0.0277 | 0.0314 |\n| | hb_original | 0.1081 | 0.1158 | 0.0163 | 0.0094 |\n| | **hb_centered** | **0.1027** | **0.1117** | 0.0094 | 0.0066 |\n\n### 关键结论\n\n1. **Moderate heterogeneity**: `hb_centered` RMSE ≈ Global（不更差）— 目标达成\n2. **Extreme heterogeneity**: `hb_centered` RMSE 低于 Global 和 original HB — 优势保持并增强\n3. **原因**: 原始 HB 用 Dir(α/2, α/2) 向 (0.5, 0.5) 收缩（错误目标），Centered EB 向 global CM 收缩（正确目标），允许更强 pooling 而不引入偏差\n4. **Pre-test**: moderate 下 79% 选 Global，extreme 下 97-100% 选 stratified — 决策合理\n5. **意外发现**: K4 extreme 下原始 HB 的 RMSE 比 Global 还高，Centered EB 修复了这个问题\n\n脚本：`/home/ubuntu/ec_hte_llm_annotation/exp_adaptive_shrinkage.py`\n结果：`results/exp_adaptive_shrinkage.csv` (聚合) / `results/exp_adaptive_shrinkage_raw.csv` (原始)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

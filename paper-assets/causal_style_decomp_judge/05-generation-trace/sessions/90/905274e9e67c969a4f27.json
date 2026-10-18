@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "905274e9e67c969a4f27",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code gee model diagnostics",
+  "task_key": "worker_code_gee_model_diagnostics_20260521T060943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gee_model_diagnostics_20260521T060943_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "ff91d0ac2874e6f1f3e52d7fa09736f37bdc9f6136644a3f81b58cbcc4046d64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本 `csd_pipeline/gee_diagnostics.py` 已在服务器上运行成功。\n\n---\n\n### 结果摘要\n\n**TABLE A: Correlation Structure Comparison**\n- |ΔQIC| < 0.001 且 Max|ΔCoef| < 0.02（所有 6 cells），Exchangeable 和 Independence 结果实质等价——预期中，因为 cluster size = 2\n- α 范围 [-0.25, +0.11]，within-pair correlation 较弱\n\n**TABLE B: GEE Coefficients (Exchangeable)**\n\n| Judge | Axis | Style OR | Style p | Orig OR | Orig p |\n|-------|------|----------|---------|---------|--------|\n| GPT-4o | Formality | 2.58 | 0.002 | 2.32 | 0.006 |\n| GPT-4o | Verbosity | **11.34** | 1.1e-8 | 0.45 | 0.062 |\n| GPT-4o | Register | 1.88 | 0.027 | 2.21 | 0.005 |\n| Qwen3-32B | Formality | 4.20 | 0.0002 | 4.70 | 5.2e-5 |\n| Qwen3-32B | Verbosity | **13.10** | 2.6e-9 | 0.49 | 0.096 |\n| Qwen3-32B | Register | 1.91 | 0.046 | 5.72 | 8.5e-8 |\n\n- Verbosity 的 style effect 最强（OR~11-13），originality 不显著\n- Formality 两个 effect 均显著\n- Register 的 originality effect 在 Qwen3-32B 上极强（OR=5.72）\n\n**TABLE C: Interaction (Formality)**\n- 两个 judge 的 style×originality interaction 均不显著（p=0.53, 0.32），两个 effect 可视为独立"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

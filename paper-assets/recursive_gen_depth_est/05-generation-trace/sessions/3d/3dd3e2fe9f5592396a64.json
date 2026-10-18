@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3dd3e2fe9f5592396a64",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ops olmo seed43 result check",
+  "task_key": "worker_ops_olmo_seed43_result_check_20260518T173047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo_seed43_result_check_20260518T173047_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "89f39df2b0f25f476bc61599d3052e46b7a7e680549704764886b986688181ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`olmo_seed43_001` 已完成，全部 8 步执行完毕（pipeline.log 最后一行 `=== Pipeline complete ===`）。\n\n## 结果汇总\n\n| 指标 | 值 |\n|---|---|\n| **4-class accuracy** | **82.11%** (95% CI: 81.77–82.54%) |\n| baseline accuracy | 78.2% |\n| **delta vs baseline** | **+3.91pp** |\n| d1 vs d2 AUC | 0.9089 |\n\n### Per-class recall\n\n| Class | Recall |\n|---|---|\n| d0 (human) | 99.6% |\n| d1 | 87.8% |\n| d2 | 63.7% |\n| d3 | 77.4% |\n\n### 5-fold CV\n\nFold accuracies: 82.0%, 82.2%, 81.6%, 83.0%, 81.9% — 方差很小，结果稳定。\n\n### Top 5 features\n\n1. `p90_ppl`\n2. `var_surprisal`\n3. `p75_ppl`\n4. `mean_surprisal`\n5. `mean_ppl`\n\nd2 recall 偏低 (63.7%) 是主要瓶颈，d0 和 d1 区分很好。跟之前其他 seed 的 pattern 一致：perplexity 分位数和 surprisal 方差是最强特征。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

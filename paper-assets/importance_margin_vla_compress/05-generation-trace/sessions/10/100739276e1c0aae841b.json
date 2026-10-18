@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "100739276e1c0aae841b",
+  "project": "importance_margin_vla_compress",
+  "kind": "history",
+  "title": "director / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_16.md",
+    "occurrence": 1,
+    "bytes": 3094,
+    "sha256": "cd7237b85bc44c3ddc01e8fdc51ac75257e406a9d8f97286453d271dc3a340b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_messages\nupdated: '2026-05-26T13:32:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（每台服务器 4 张），严禁使用其他 GPU\n- 4 台服务器：westd-27271, cqa1-33015, westd-41074, westd-38929，不可跨项目占用\n- C001 约束：Spatial suite 对比禁止用 LoRA baseline (6.2%) 作基准，必须用 official baseline 或 full-FT\n- **CoRL 2026 Paper DDL: May 29**（距今 3 天），Abstract 已提交\n- 审稿阶段已启动（review_chat_id: oc_83179cdc26b856fbbaf531d145edb3bd），Group C 独立处理论文格式/投稿\n\n### 2. 🖥️ 基础设施快照\n- 服务器均为 AutoDL，工作目录 `/root/autodl-tmp/importance_margin_vla_compress`\n- 账户：root（所有服务器）\n- westd-27271: 2 GPU 在用（cuda:0, cuda:1）\n- westd-38929: 4 GPU 满载\n- westd-41074: 4 GPU 满载（cuda:1 刚部署 Attn k=0.5 Object seed42）\n- cqa1-33015: 4 GPU 满载（π0.5 系列实验）\n- Provenance 覆盖率 70/73，3 个 tier-3 gap 待补\n\n### 3. 📊 当前状态\n刚完成本轮 session 6 个新结果收割 + 14/14 GPU 满载部署 + Abstract 提交确认 + D237 position encoding sensitivity 叙事升级。\n\n**13 个 RUNNING 实验**（cliff curve 填充）：\n- westd-38929: Rnd k=0.85 Goal / Rnd k=0.5 Long / Attn k=0.7 Goal / Attn k=0.85 Long\n- westd-41074: Rnd k=0.85 Long / L2n k=0.85 Obj / Attn k=0.7 Obj / L2n k=0.75 Obj（cuda:1 部署中 Attn k=0.5 Obj）\n- westd-27271: L2n k=0.7 Goal / Rnd k=0.7 Goal\n- cqa1: π0.5 Rnd k=0.85 Long v2 / π0.5 Attn k=0.75 Long / π0.5 Attn k=0.5 Long / π0.5 Attn k=0.85 Long\n\n**等待中**：91 个 PENDING 实验（大部分是 cliff curve 候选点）；Agent 已 stall 16h 被 RESET。\n\n### 4. 📋 待办（条件触发式）\n- Agent RESET 完成 → 立即检查 13 个 RUNNING 实验状态，收割已完成的结果\n- 任一 cliff curve 实验完成 → 更新 ROADMAP 表格，部署下一个 PENDING 到空出的 GPU\n- OpenVLA Object/Goal/Long 三方法 cliff curve 数据齐全 → 整合 cliff curve 图表数据，通知 Paper Agent patch\n- Provenance 3 个 tier-3 gap 补全 → 通知 Paper Agent 更新\n- 所有 cliff curve 完成 + Paper Agent 收敛 → May 29 提交\n\n### 5. 🎯 战略上下文\n- **核心结论**：VLA vision token 压缩的 scoring method × connector × task 三维交互。L2norm 在 OpenVLA（linear proj）上单调优于 Random/Attn，但在 Long suite 该优势消失——因为 position encoding 敏感性（D237 确认）\n- **关键证据链**：crossover table 16/16 完成 ✅；π0.5 L2norm 完美单调 ✅；Random V-shape 非单调性确认为真实现象 ✅；zeromask 实验证明 Random 置零后性能恢复（D234）\n- **最容易判断错的事**：westd-41074 cuda:1 在 session 末尾刚从 Random k=0.85 Object 改派为 Attn k=0.5 Object seed42，Agent stall 前 Worker 正在部署，需确认是否成功启动\n- **易踩坑**：M129/M130 教训——所有实验必须 tmux 部署，部署后必须验证 GPU PID；report.md 资源状态段经常漂移，以 SSH 实际查询为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "20736cb51155fdb8e05f",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "experiment r6 fp16 baseline v2 followup",
+  "task_key": "worker_experiment_r6-fp16-baseline-v2-followup_20260525T080727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_r6-fp16-baseline-v2-followup_20260525T080727_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "df94b1db110c79fd036d6aca704b825fd17702e8cab5e8698ba6cd35f9205a5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待 60 秒后检查下载进度。当前状态:\n\n- **PID 10158** (FP16): Llama-8B FP16 ✅, Qwen2.5-32B FP16 正在下载 (17 shards, ~28-42%)\n- **PID 11087** (AWQ via ModelScope): Qwen2.5-14B AWQ 正在下载 (3 shards, ~36-72%)\n- **PID 163039** (HF 补缺): 正在下载 Qwen2.5-14B AWQ 缺失的 shard 2\n- **脚本验证**: 所有修复已确认正确，且有 checkpoint resume 机制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

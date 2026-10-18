@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "e35d537a58d8fdc3573e",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "analysis permutation equivalence test",
+  "task_key": "worker_analysis_permutation_equivalence_test_20260522T015431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_permutation_equivalence_test_20260522T015431_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "64a5b954bda3750e899c504b823db12159a8a49d1d481883c6444f72d265531f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果摘要：\n\n| 指标 | 值 |\n|------|-----|\n| Observed interaction | -0.48 pp |\n| Permutation p (H0: interaction=0) | 0.914 |\n| Permutation TOST p (equivalence) | 0.285 |\n| Null distribution SD | 4.26 pp |\n| Equivalence supported | **No** |\n\n**核心问题**：每个 cell 只有 12-13 个 batch（25 batches per count level → median split），导致 permutation null distribution 的 SD (4.26 pp) 远大于 ±3pp equivalence margin。Permutation TOST 没有足够统计功效来建立等价性。\n\n这与 logit 尺度 TOST p=0.209 一致——都是功效不足的问题，不是效应量的问题。\n\n**LaTeX 段落的策略**：我写了一段 \"complementary evidence\" 风格的文字，强调：\n1. Point estimate 极小 (0.48 pp ≪ 3 pp margin)\n2. p=0.914 说明 interaction 与零无法区分\n3. 承认 TOST 不显著是因为 cell size 限制\n4. 将其定位为\"corroborates\"parametric TOST 而非独立证明\n\n如果你想要更强的结果，有两个可能的方向：\n- **使用所有 7 个 count level** 做回归型 permutation test（permute BCS 在所有 175 batches 内），power 会大很多\n- **使用连续 BCS**（不做 median split）做 permutation regression，避免信息损失\n\n要我尝试其中一种方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

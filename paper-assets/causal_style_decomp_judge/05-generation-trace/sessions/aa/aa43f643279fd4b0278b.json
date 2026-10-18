@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "aa43f643279fd4b0278b",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code qwen32b bt and decomp",
+  "task_key": "worker_code_qwen32b_bt_and_decomp_20260521T042835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen32b_bt_and_decomp_20260521T042835_result.json",
+    "occurrence": 1,
+    "bytes": 1440,
+    "sha256": "486e0341a1c6f0556cab14879dd8b4c081f02a43bdc2a4a437b637c07fc9a4e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n```\n| Analysis           | Metric           | Value    | 95% CI               | p          |\n|--------------------|------------------|----------|----------------------|------------|\n| BT Formality       | P(formal)        | 0.6647   | [0.5852, 0.7386]     | < 0.0001   |\n| BT Verbosity       | P(verbose)       | 0.7732   | [0.7034, 0.8429]     | < 0.0001   |\n| GEE Register       | academic OR      | 1.9053   | [1.0131, 3.5834]     | 0.0455     |\n| GEE Register       | originality OR   | 5.7181   | [3.0207, 10.8244]    | < 0.0001   |\n| GEE Formality      | formal OR        | 4.2008   | [1.9893, 8.8707]     | 0.0002     |\n| GEE Formality      | originality OR   | 4.7041   | [2.2228, 9.9552]     | < 0.0001   |\n```\n\n关键发现：\n\n- **BT**: Formality (66.5%) 和 verbosity (77.3%) 偏差均高度显著，verbosity 效应更强\n- **GEE Register**: academic 偏好勉强显著 (OR=1.91, p=0.046)，但 originality bias 极强 (OR=5.72, p<0.0001) — 与之前方向分析一致（academic→conv 89.3% prefer original）\n- **GEE Formality**: formal 偏好 (OR=4.20, p=0.0002) 和 originality bias (OR=4.70, p<0.0001) 都高度显著且效应量相近。对比 GPT-4o (formal OR=2.21, originality OR=1.82)，Qwen3-32B 两个效应都更强约 2 倍\n\n脚本已保存在服务器 `csd_pipeline/qwen32b_analysis.py`，本地同步在 `csd_pipeline/qwen32b_analysis.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

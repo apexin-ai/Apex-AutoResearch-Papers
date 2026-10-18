@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "79f279cfbbe71cc80f93",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "ssh gpu0 data contamination fix",
+  "task_key": "worker_ssh_gpu0_data_contamination_fix_20260515T032636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu0_data_contamination_fix_20260515T032636_result.json",
+    "occurrence": 1,
+    "bytes": 1344,
+    "sha256": "64087b3c66f8b804fcb65a3ad31db288e1301c12e4a48209f0620ade4e5048d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "第一个 cell（gpt2xl_topk50）已在 GPU 0 上运行。\n\n---\n\n## 执行结果汇总\n\n| 步骤 | 操作 | 结果 |\n|------|------|------|\n| 1 | kill 286383（未注册 eval 进程） | SIGTERM 成功 |\n| 2 | kill 287201（batch 子进程） | SIGTERM 成功 |\n| 3 | 确认两进程终止 | CLEAN |\n| 4 | rm `gpt2xl_topk50/features.jsonl` | DELETED |\n| 5 | 检查父进程 287192 | 仍存活 → 额外 kill → 成功 |\n| 6 | 检查 5 个 cell 目录 | `pythia_temp09`/`pythia_topk50`/`gpt2xl_topk50` 有历史结果文件；`pythia_nucleus095`/`olmo_nucleus095` 不存在（脚本实际 cell 为 gpt2xl_temp09/olmo_topk50/olmo_temp09）；无进程占用 |\n| 7 | GPU 0 残留 Python 进程检查 | 发现并 kill 了 2 个额外残留进程：PID 290217（gpt2xl filtered）、PID 291036（olmo_temp09）；dcol 进程（CUDA:1）未动 |\n| 8 | 重新启动 batch 脚本 | **新 PID=292018**（父 bash），Python 子进程 PID 292028 正在处理第 1/5 cell（gpt2xl_topk50），日志：`/tmp/batch_feature_extraction.log` |\n\n**注意**：脚本中的 5 个 cell（gpt2xl_topk50, gpt2xl_temp09, olmo_topk50, olmo_temp09, pythia_topk50）与任务描述中的 5 个目录不完全一致（脚本没有 pythia_nucleus095/pythia_temp09/olmo_nucleus095，而是有 gpt2xl_temp09/olmo_topk50/olmo_temp09）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

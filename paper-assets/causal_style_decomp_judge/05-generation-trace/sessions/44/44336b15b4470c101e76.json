@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "44336b15b4470c101e76",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "code llama70b poll 3",
+  "task_key": "worker_code_llama70b_poll_3_20260521T141629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b_poll_3_20260521T141629_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "c7f654a3bc8706ac88e2f3c7b7c63acdfc15907d4bc638667dd7eaac9eee719e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "第 1 轮完成：**8/30 shards (26.7%), 36GB, 进程存活**。将在 ~4 分钟后执行第 2 轮检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

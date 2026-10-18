@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "970595da2f83c32856a3",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "code qwen14b inference test",
+  "task_key": "worker_code_qwen14b-inference-test_20260521T194130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b-inference-test_20260521T194130_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "18819af8dc54e0214fbb9fd82fc89de1b89357b102b735b3d6786ad9fc454cb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "测试通过。完整结果汇总：\n\n## Qwen2.5-14B-Instruct-AWQ 端到端推理链测试结果\n\n| 指标 | 结果 |\n|------|------|\n| **模型加载时间** | 56.1s（torch.compile cache hit，实际编译仅 5.25s） |\n| **Pairwise 推理时间** | 47.9s（30 pairs） |\n| **吞吐量** | 0.6 pairs/sec（峰值 ~200 toks/s input, ~43 toks/s output） |\n| **Valid response 比例** | 26/30 (87%)，parse errors = 0 |\n| **Winner 分布** | A=5, B=21, tie=0 |\n| **Likert 结果** | 5/5 valid — scores: [3, 3, 2, 2, 5] |\n| **Unload** | 成功（EngineCore shutdown complete） |\n| **总耗时** | 153.9s |\n| **判定** | **PASSED** |\n\n**样本输出：**\n- `[0]` winner=A, score_a=5, score_b=2 — LIFO/inflation 库存问题，正确判断\n- `[1]` winner=A, score_a=5, score_b=2 — 矩阵维度判断正确\n- `[2]` winner=B, score_a=2, score_b=5 — 规范性/描述性伦理分类正确\n\n4 个 invalid responses（26/30 = 87%）未报 parse error，说明是 JSON 结构正确但内容不符合预期（如 winner 与 score 不一致等）。整体管道 vLLM load → pairwise → Likert → JSON parse → unload 全链路通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

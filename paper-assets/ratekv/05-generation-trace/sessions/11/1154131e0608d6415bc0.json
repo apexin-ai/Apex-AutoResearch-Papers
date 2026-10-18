@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1154131e0608d6415bc0",
+  "project": "ratekv",
+  "kind": "result",
+  "title": "code kv separation",
+  "task_key": "worker_code_kv_separation_20260514T060217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kv_separation_20260514T060217_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "110741e078fada3a238f57ba901f1f8997ca26bfa59234568ea5fe18efdb247e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，运行状态正常。\n\n**Summary:**\n- `run_kv_separation.py` 已部署到 `/root/ratekv/`\n- 任务在 westd-37397 cuda:1 运行，tmux session `kv_separation`\n- **Phase 1**: K/V 分离 profiling（672 passes，ETA ~2h）\n  - 每个 KV head 分别测量 K-only 和 V-only 在 {2,4,8} bit 下的 PPL delta\n  - L0H0 K 结果: 2bit=+6.24, 4bit=+0.36, 8bit=0.0 (与 joint K+V 的 L0H0 profile 6.76 对比，说明 K 贡献了大部分 distortion)\n  - 带 checkpoint 自动恢复\n- **Phase 2**: MCKP solver（224 items vs 112 items）\n- **Phase 3**: WikiText-2 PPL eval（baseline / K/V sep / joint K=V / uniform 4-bit）\n- Registry: `kv_separation` → RUNNING\n- 日志: `/root/ratekv/kv_separation.log`\n- 结果输出: `/root/ratekv/kv_separation_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "4a3af93b8110d7e89522",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260514T095535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260514T095535_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "88b80ecec42d98b650db5079cb28a374d06e4dba2afc799e00102af432dcff19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "约 10MB/轮询间隔。模型下载在持续进行中。\n\n当前状态汇报：\n\n## 环境搭建完成报告\n\n### 1. GPU\n- **2x NVIDIA RTX PRO 6000 Blackwell Server Edition**，每卡 **94GB** 显存\n\n### 2. Python/CUDA/Torch 版本\n- Python 3.12.3 (conda base 环境)\n- CUDA 12.8\n- torch 2.10.0+cu128\n\n### 3. 依赖安装状态\n| 包 | 版本 | 状态 |\n|---|---|---|\n| torch | 2.10.0+cu128 | ✅ 预装 |\n| transformers | 5.8.1 | ✅ 已升级 |\n| peft | 0.19.1 | ✅ 已升级 |\n| datasets | 4.8.4 | ✅ 预装 |\n| accelerate | 1.13.0 | ✅ 预装 |\n| scikit-learn | 1.8.0 | ✅ 预装 |\n| scipy | 1.17.1 | ✅ 预装 |\n| wandb | 0.26.0 | ✅ 预装 |\n| modelscope | 1.36.3 | ✅ 已安装 |\n\n### 4. Qwen2.5 模型\n- **Qwen2.5-1.5B-Instruct** 已存在于 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct/` (2.9GB) ✅\n- **Qwen2.5-1.5B (base)** 正在通过 HuggingFace 下载中 (当前 ~740MB/~3GB)，后台进程 PID=89239 继续运行\n\n### 5. 注意事项\n- AutoDL 网络到 HuggingFace 速度约 5-10MB/s，模型下载较慢\n- vllm 0.18.1 与 transformers 5.8.1 有兼容性冲突（vllm 要求 transformers<5），但不影响本项目\n- 项目目录 `/root/autodl-tmp/recursive_gen_depth_est/{data,checkpoints,logs,scripts}` 已创建\n- 服务器上已有 lora_finetune.py 在使用 Qwen2.5-1.5B-Instruct 训练（4 个进程）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

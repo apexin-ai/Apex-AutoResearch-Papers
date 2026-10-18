@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f9f0493968a3d6977a33",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "analysis cinelli hazlett sensitivity",
+  "task_key": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "232a391a9f448c240b5f8f7f2536f89e896642817dabfcb90624aa19ae3b2fbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**Cinelli & Hazlett (2020) Sensitivity Analysis — 36 conditions**\n\n| K | RV > eta benchmarks | 含义 |\n|---|---|---|\n| K=3 | 1/12 | 大多数 condition 下 eta_max 的解释力已超过 RV，K_eff 系数对混淆较敏感 |\n| K=5 | 3/12 | 随 K 增大，K_eff 系数更稳健 |\n| K=7 | 4/12 | K_eff 系数的 robustness 继续提升 |\n| **合计** | **8/36** | |\n\n关键发现（以 K=3, mmlu×prompt_injection 为例）：\n- RV = 0.419：未观测混淆需要同时解释 41.9% 的 K_eff 和 ASR 方差才能归零 β\n- 但 eta_max 的 partial R² with treatment = 0.587（已超过 RV），说明一个 eta_max 量级的混淆就足以影响结论\n- 总体趋势：更大的 K 值使 K_eff 系数更 robust\n\n**产出文件**：\n- JSON: `/root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json`\n- 图: `artifacts/figures/sensitivity_contour_K{3,5,7}.png`（4×3 subplot grid，黑色等高线=β=0，绿色菱形=eta_max benchmark）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "bffdb79676c251ef1db3",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops batch64 faulthandler restart",
+  "task_key": "worker_ops_batch64_faulthandler_restart_20260517T083602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_batch64_faulthandler_restart_20260517T083602_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "021a1c2c3711b88c82b48e18994f90f1ed2e455df671e07290f216096f79f67a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **faulthandler 已添加** — 在 `train.py` 第 16 行后插入 `import faulthandler; faulthandler.enable()`\n2. **原 checkpoint (step_000267) 损坏** — `PytorchStreamReader failed reading zip archive`，文件写入不完整，已删除\n3. **训练已从 step 0 重启** — tmux session `batch64_v2`，GPU 0，从 step 0 开始，loss=1.5052 正常\n4. 配置：`grad_accum=16, effective_batch=64, total_steps=100000`\n\n无法从 checkpoint 恢复是因为上次进程被 kill 时 checkpoint 正在写入（文件只有 ~102MB 且 zip 结构不完整）。下次 save_every=2000 时会生成新的有效 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

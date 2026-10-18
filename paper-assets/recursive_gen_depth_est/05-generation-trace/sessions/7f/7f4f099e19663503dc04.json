@@ -1,0 +1,327 @@
+{
+  "schema_version": "1.0",
+  "id": "7f4f099e19663503dc04",
+  "project": "recursive_gen_depth_est",
+  "kind": "conversation",
+  "title": "paper figure fig atlas heatmap",
+  "task_key": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure_fig_atlas_heatmap_20260515T074238.jsonl",
+    "occurrence": 1,
+    "bytes": 12277,
+    "sha256": "3a965f540c0186907e3a89e9d7c953155671a91e67aad39fcf4910a16b1ac256"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T07:43:41.662446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/feature_importance_9cell.json"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T07:43:41.662992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"per_cell\": {\n3\t    \"pythia_nucleus095\": {\n4\t      \"importances\": {\n5\t        \"mean_ppl\": 0.10716758771082995,\n6\t        \"var_ppl\": 0.07740850441432406,\n7\t        \"skewness_ppl\": 0.03286266784419421,\n8\t        \"kurtosis_ppl\": 0.031929905684061836,\n9\t        \"p10_ppl\": 0.024029483276217026,\n10\t        \"p25_ppl\": 0.027317173597260068,\n11\t        \"p50_ppl\": 0.03504506427894151,\n12\t        \"p75_ppl\": 0.06707821627752608,\n13\t        \"p90_ppl\": 0.15096280956327154,\n14\t        \"mean_surprisal\": 0.06476269867828334,\n15\t        \"var_surprisal\": 0.1682468414193017,\n16\t        \"entropy_of_surprisal\": 0.028962540897797658,\n17\t        \"type_token_ratio\": 0.03215810543346349,\n18\t        \"hapax_ratio\": 0.02861178516513645,\n19\t        \"bigram_entropy\": 0.02669134972797738,\n20\t        \"trigram_entropy\": 0.02525903556505515,\n21\t        \"rep_2gram\": 0.026689967754896092,\n22\t        \"rep_3gram\": 0.022160774560468357,\n23\t        \"rep_4gram\": 0.022655488150993996\n24\t      },\n25\t      \"ranking\": [\n26\t        \"var_surprisal\",\n27\t        \"p90_ppl\",\n28\t        \"mean_ppl\",\n29\t        \"var_ppl\",\n30\t        \"p75_ppl\",\n31\t        \"mean_surprisal\",\n32\t        \"p50_ppl\",\n33\t        \"skewness_ppl\",\n34\t        \"type_token_ratio\",\n35\t        \"kurtosis_ppl\",\n36\t        \"entropy_of_surprisal\",\n37\t        \"hapax_ratio\",\n38\t        \"p25_ppl\",\n39\t        \"bigram_entropy\",\n40\t        \"rep_2gram\",\n41\t        \"trigram_entropy\",\n42\t        \"p10_ppl\",\n43\t        \"rep_4gram\",\n44\t        \"rep_3gram\"\n45\t      ],\n46\t      \"top2\": [\n47\t        \"var_surprisal\",\n48\t        \"p90_ppl\"\n49\t      ],\n50\t      \"cv5_accuracy_mean\": 0.78685,\n51\t      \"cv5_accuracy_std\": 0.006396483408873965\n52\t    },\n53\t    \"pythia_temp09\": {\n54\t      \"importances\": {\n55\t        \"mean_ppl\": 0.10648970726994873,\n56\t        \"var_ppl\": 0.06796420749995562,\n57\t        \"skewness_ppl\": 0.025017761176211444,\n58\t        \"kurtosis_ppl\": 0.023732816074906724,\n59\t        \"p10_ppl\": 0.02581494040593017,\n60\t        \"p25_ppl\": 0.029529585277606008,\n…[truncated 13438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T07:43:41.663223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+              "description": "Check output directory exists"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T07:43:41.663375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 660\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 15 07:06 .\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 15 06:42 ..\n-rw-r--r-- 1 ubuntu ubuntu  19997 May 15 07:22 fig_auc_decay.pdf\n-rw-r--r-- 1 ubuntu ubuntu 194912 May 15 07:22 fig_auc_decay.png\n-rw-r--r-- 1 ubuntu ubuntu   2656 May 15 06:44 fig_auc_decay.py\n-rw-r--r-- 1 ubuntu ubuntu  24479 May 15 07:06 fig_feature_trajectory.pdf\n-rw-r--r-- 1 ubuntu ubuntu 411653 May 15 07:06 fig_feature_trajectory.png\n-rw-r--r-- 1 ubuntu ubuntu   4444 May 15 07:05 fig_feature_trajectory.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T07:43:41.663559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\nimport json\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 12,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/atlas_v2/feature_importance_9cell.json') as f:\n    data = json.load(f)\n\nper_cell = data['per_cell']\n\ncell_keys = [\n    'pythia_nucleus095', 'pythia_temp09', 'pythia_topk50',\n    'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50',\n    'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50',\n]\n\nfeatures = ['p90_ppl', 'var_surprisal', 'mean_ppl', 'p75_ppl', 'mean_surprisal', 'var_ppl', 'type_token_ratio']\nuniversal_top2 = {'p90_ppl', 'var_surprisal'}\n\n# Build importance matrix and rank matrix\nimp_matrix = np.zeros((len(features), len(cell_keys)))\nrank_matrix = np.zeros((len(features), len(cell_keys)), dtype=int)\n\nfor j, ck in enumerate(cell_keys):\n    cell = per_cell[ck]\n    ranking = cell['ranking']\n    for i, feat in enumerate(features):\n        imp_matrix[i, j] = cell['importances'][feat]\n        rank_matrix[i, j] = ranking.index(feat) + 1\n\nfig, ax = plt.subplots(figsize=(10, 4))\n\nim = ax.imshow(imp_matrix, cmap='YlOrRd', aspect='auto', vmin=0, vmax=imp_matrix.max())\n\n# Annotate cells\nfor i in range(len(features)):\n    for j in range(len(cell_keys)):\n        val = imp_matrix[i, j]\n        rank = rank_matrix[i, j]\n        txt = f'{val:.3f}\\n#{rank}'\n        # text color: white on dark cells\n        color = 'white' if val > 0.16 else 'black'\n        weight = 'bold' if rank <= 2 else 'normal'\n        ax.text(j, i, txt, ha='center', va='center', fontsize=7,\n                color=color, fontweight=weight)\n\n# Row labels with star for universal top-2\nylabels = []\nfor feat in features:\n    label = f'★ {feat}' if feat in universal_top2 else f'   {feat}'\n    ylabels.append(label)\nax.set_yticks(range(len(features)))\nax.set_yticklabels(ylabels, fontsize=9)\n\n# Column labels (strategy abbreviations at bottom)\nstrategy_labels = ['nuc', 'tmp', 'topk'] * 3\nax.set_xticks(range(len(cell_keys)))\nax.set_xticklabels(strategy_labels, fontsize=8)\n\n# Model group titles at top\nmodel_names = ['Pythia-1B', 'OLMo-1B', 'GPT-2 XL']\nfor g, name in enumerate(model_names):\n    center = g * 3 + 1\n    ax.text(center, -0.85, name, ha='center', va='bottom', fontsize=10, fontweight='bold',\n            transform=ax.get_xaxis_transform())\n\n# Vertical separators between model groups\nfor x in [2.5, 5.5]:\n    ax.axvline(x, color='white', linewidth=2.5)\n\n# Thin grid lines within groups\nfor x in [0.5, 1.5, 3.5, 4.5, 6.5, 7.5]:\n    ax.axvline(x, color='white', linewidth=0.5, alpha=0.5)\nfor y in [0.5, 1.5, 2.5, 3.5, 4.5, 5.5]:\n    ax.axhline(y, color='white', linewidth=0.5, alpha=0.5)\n\n# Colorbar\ncbar = fig.colorbar(im, ax=ax, shrink=0.8, pad=0.02)\ncbar.set_label('Feature Importance', fontsize=9)\ncbar.ax.tick_params(labelsize=8)\n\nax.tick_params(top=False, bottom=True, labeltop=False, labelbottom=True)\n\nplt.tight_layout()\n\nout_base = '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap'\nfig.savefig(f'{out_base}.pdf')\nfig.savefig(f'{out_base}.png')\nplt.close()\n\nimport os\nfor ext in ['pdf', 'png']:\n    p = f'{out_base}.{ext}'\n    sz = os.path.getsize(p)\n    print(f'{p}: {sz} bytes')\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T07:43:41.663756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T07:43:41.663912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper && python3 fig_atlas_heatmap.py",
+              "description": "Generate heatmap figure"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T07:43:41.664047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap.pdf: 34404 bytes\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap.png: 240288 bytes"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T07:43:41.664169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap.png"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T07:43:41.664653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T07:43:41.664826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T07:43:41.664977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T07:43:41.665103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_atlas_heatmap",
+              "type": "chart",
+              "description": "Feature Importance × 9-cell heatmap: top-7 features across 3 models × 3 decoding strategies, with importance values and ranks annotated. Stars mark universal top-2 features (p90_ppl, var_surprisal).",
+              "project": "recursive_gen_depth_est",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/figures/paper/fig_atlas_heatmap.pdf",
+              "tags": "['paper', 'figure', 'feature_importance', 'heatmap', 'atlas_v2']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T07:43:41.665257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_93792f\\\", \\\"name\\\": \\\"fig_atlas_heatmap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Feature Importance × 9-cell heatmap: top-7 features across 3 models × 3 decoding strategies, with importance values and ranks annotated. Stars mark universal top-2 features (p90_ppl, var_surprisal).\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/_project/chart/fig_atlas_heatmap.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T07:43:35.831922+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"feature_importance\\\", \\\"heatmap\\\", \\\"atlas_v2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T07:43:41.665442+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (34KB) 和 PNG (240KB) 已生成并注册：\n\n- PDF: `figures/paper/fig_atlas_heatmap.pdf`\n- PNG: `figures/paper/fig_atlas_heatmap.png`\n- Artifact ID: `art_20260515_93792f`\n\n图表包含 7 行 feature × 9 列 cell，每格标注 importance 值和排名，top-2 加粗，★ 标记 universal top-2（p90_ppl 9/9, var_surprisal 7/9），白色竖线分隔三个 model group。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_atlas_heatmap_20260515T074238"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ]
+}

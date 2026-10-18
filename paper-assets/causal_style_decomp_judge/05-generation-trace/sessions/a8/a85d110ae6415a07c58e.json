@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "a85d110ae6415a07c58e",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "mvp nli count and sync",
+  "task_key": "worker_mvp_nli_count_and_sync_20260520T142108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_mvp_nli_count_and_sync_20260520T142108_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "4814d19c328d12d7cbd14c9c08f89d38565d349ee3c682ebebca90fd5c56e710"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## NLI 统计结果\n\n| 阈值 | 通过数 | 比例 |\n|------|--------|------|\n| NLI ≥ 0.85 | 95/100 | 95.0% |\n| NLI ≥ 0.88 | 95/100 | 95.0% |\n| **NLI ≥ 0.90** | **95/100** | **95.0%** |\n| NLI ≥ 0.92 | 93/100 | 93.0% |\n| NLI ≥ 0.95 | 90/100 | 90.0% |\n\n**PRIMARY gate (NLI ≥ 0.90): 95/100**，其中 formal 59 条、casual 36 条。\n\nNLI_cf 均值 0.9422 (std=0.2032)，BERTScore_cf 均值 0.8932 (std=0.0730)。\n\n## 代码同步确认\n\n- `judge_scoring.py` — 已同步，无 `passed_cf` 过滤（grep 返回 0 匹配）\n- `ate_analysis.py` — 已同步，含 `primary: nli_cf≥0.90` 分层分析逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "12993f9eab34445f6d45",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "diagnose eval openvla attn k09 long seed42 v3",
+  "task_key": "worker_diagnose_eval_openvla_attn_k09_long_seed42_v3_20260525T140644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval_openvla_attn_k09_long_seed42_v3_20260525T140644_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "e3b3800da284e7b2b4dae5e115da1567688bd8629ba171425c9b7c521476fc2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n**不需要重新提交。** 实验 `eval_openvla_attn_k09_long_seed42_v3` 实际已成功完成。\n\n| 项目 | 详情 |\n|------|------|\n| 失败根因 | 监控误报 — 检查了不存在的日志路径 `~/runs/...`，实际日志在 `/root/autodl-tmp/logs/` |\n| 实验状态 | ✅ 完成，attention_prune k=0.9 on libero_10 |\n| **Overall SR** | **0.4400 (220/500)** |\n| 耗时 | 544.2 min |\n| 结果文件 | 已从日志重建并保存为 `openvla_attn_prune_k09_10_seed42.json` |\n\n**需要修的 bug**：`eval_openvla_l2norm_libero.py` 第 393 行 `else` 分支把 `attention_prune` 和 `l2norm_prune` 的输出写到同一文件名，导致后跑的实验覆盖前面的结果。应加一个 `elif args.mode == \"attention_prune\"` 分支用 `openvla_attn_prune_*` 命名。\n\nGPU 0-3 全部空闲，可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

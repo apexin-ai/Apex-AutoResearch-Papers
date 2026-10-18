@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "ecabc4566529917c03a7",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops westd41074 gpu01 check deploy",
+  "task_key": "worker_ops_westd41074-gpu01-check-deploy_20260522T021534",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_westd41074-gpu01-check-deploy_20260522T021534_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "d4ba914c2fe6c29221af8f14eb42c886cbab2095730cc39db861983eb3748765"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常加载模型，显存刚开始分配（3 MiB，模型还在 CPU 加载中）。\n\n## 汇报\n\n**GPU 状态：**\n- GPU 0: 空闲（之前的实验已结束/失败）\n- GPU 1: 空闲（之前的实验已结束/失败）\n- GPU 2: VTC M96 train 正常运行中（28.5GB 显存）\n- GPU 3: VTC M64v6 train 正常运行中（27.5GB 显存）\n\n**已部署：**\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | `eval_pi05_random_k095_spatial_seed42_v2` (random k=0.95 Spatial) | 922845 | 模型加载中 |\n| 1 | `eval_pi05_random_k085_object_seed43_v3` (random k=0.85 Object s43) | 922925 | 模型加载中 |\n\n4 块 GPU 现在全部在工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

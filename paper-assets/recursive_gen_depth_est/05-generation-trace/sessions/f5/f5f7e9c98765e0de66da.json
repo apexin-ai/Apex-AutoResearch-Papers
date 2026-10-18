@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f5f7e9c98765e0de66da",
+  "project": "recursive_gen_depth_est",
+  "kind": "history",
+  "title": "agent / loop_2_1778801846.md",
+  "task_key": "loop_2_1778801846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778801846.md",
+    "occurrence": 1,
+    "bytes": 3949,
+    "sha256": "f40c736f1453c5b4a88221704f553e039206ba6d663430642d91ef47793a4d6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-14T23:37:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（项目配置白名单）\n- Registry/cron server 名必须用 `gpu-6000pro-2`（不是 `westb-52439`，后者不在系统列表 → cron SSH 失败 → 误杀实验）\n- OLMo 必须用 `allenai/OLMo-1B-hf`（非 OLMo-1B），LoRA targets 是三个模块 `q_proj,k_proj,v_proj`\n- GPT-2 XL LoRA targets 是 `c_attn,c_proj`（Conv1D 不是 nn.Linear）\n- Pipeline 脚本提交前必须 `bash -n script.sh` 验证语法（olmo_001 事故教训）\n- submit_training_job 的命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && ...`）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，2× NVIDIA RTX PRO 6000 Blackwell 98GB\n- 工作目录：`/root/autodl-tmp/recursive_gen_depth_est`\n- Python：conda base，`/root/miniconda3/bin/python`（aml-train 镜像）\n- 模型路径：\n  - Pythia-1.4B: `/root/autodl-tmp/models/pythia-1.4b/`\n  - OLMo-1B-hf: `/root/autodl-tmp/models/olmo-1b-hf/`\n  - GPT-2 XL: `/root/autodl-tmp/models/gpt2-xl/`\n  - DeBERTa-v3-large: `/root/autodl-tmp/models/deberta-v3-large/`\n- 数据：`/root/autodl-tmp/recursive_gen_depth_est/data/`（depth_0.jsonl = 5000 samples）\n- Checkpoints: `/root/autodl-tmp/recursive_gen_depth_est/checkpoints/{olmo,gpt2xl,pythia_temp09}/`\n- 日志：`/root/autodl-tmp/recursive_gen_depth_est/logs/`\n- 活跃进程：无（两块 GPU 均空闲）\n- Cron：reconcile 返回 0 条活跃\n\n### 3. 📊 当前状态\n刚收到 cross_model_olmo_002 失败回调（process dead 5×, no W&B metrics），已派 Worker 诊断（worker_diagnose_cross_model_olmo_002_20260514T182106）。\n\n同时 cross_model_gpt2xl_001 进入 ANALYZING（pipeline 完成），已派 Worker 分析结果（worker_analyze_cross_model_gpt2xl_001_20260514T182129）。\n\n**两个 Worker 都还没回调**——下一个 session 需要等回调或主动 get_worker_status 检查。\n\nRegistry 关键状态：\n| exp_id | status | conclusion |\n|--------|--------|------------|\n| cross_model_olmo_002 | DONE | failed（第 2 次，olmo_001 脚本语法错 → 修复后重跑仍失败）|\n| cross_model_gpt2xl_001 | ANALYZING | 待分析 |\n| pythia_topk50_001 | PREPARING | 等 GPU 空出 |\n| pythia_temp09_001 | DONE | success（4-class 76.25%）|\n| mvp_pipeline_pythia_002 | DONE | success（4-class 78.2%）|\n\n### 4. 📋 待办（条件触发式）\n- Worker diagnose olmo_002 回调 → 读诊断 JSON，按 error_type 决策：infrastructure 可自动修→重提交(第3次)；resource/其他→汇报 Director\n- Worker analyze gpt2xl_001 回调 → 读分类指标，update_registry(metrics/conclusion)，与 Pythia baseline 对比，汇报 Director\n- gpt2xl_001 分析完成 + GPU 空出 → 立即提交 pythia_topk50_001（cuda:0 或 cuda:1）\n- OLMo 修复后 → 重提交 cross_model_olmo_003（cuda:0）\n- 3×3 矩阵 nucleus 列完成后 → 每个模型接排 temp09 → topk50\n- **两个 Worker 回调后必须汇报 Director**（带 [资源] 行）\n\n### 5. 🎯 战略上下文\n- D001: MVP PASS（Pythia 4-class 78.2%），进入 Research phase\n- D002: Dream 三档审稿完成，Atlas/EDD 为 primary contribution，DCOL 为 secondary\n- 当前目标：填满 3×3 矩阵（3 模型 × 3 解码策略），2/9 done, 1/9 analyzing, 1/9 preparing, 1/9 failed×2, 4/9 待排\n- OLMo 连续失败 2 次是关键瓶颈——如果第 3 次仍失败，需要考虑换模型（如 GPT-Neo / Llama）或向 Director 升级\n- 易错点：OLMo 的 failure_reason 是 \"process dead 5× with no sentinel/W&B\"，说明进程跑了 ~1.7h 后才死，不是启动即崩——可能是生成阶段 OOM 或脚本逻辑错误而非语法错误。上一次修复只改了语法，root cause 可能不同\n- GPT-2 XL 是第一个非 Pythia 模型的结果，如果 success 则跨模型泛化 claim 成立，对论文 story 至关重要\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

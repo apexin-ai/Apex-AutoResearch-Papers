@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "b6250a35e38b478194f2",
+  "project": "importance_margin_vla_compress",
+  "kind": "conversation",
+  "title": "diagnose xvla random goal seed43 crash",
+  "task_key": "worker_diagnose-xvla-random-goal-seed43-crash_20260523T222112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diagnose-xvla-random-goal-seed43-crash_20260523T222112.jsonl",
+    "occurrence": 1,
+    "bytes": 194,
+    "sha256": "a90caccc84f34d8ad7eeac5deba5b18f8c8b6c7de9dd2dc91d00d145a7fc9c35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T22:21:21.248903+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 26, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose-xvla-random-goal-seed43-crash_20260523T222112"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "39337319f9021b873a64",
+  "project": "schema-dag-extraction",
+  "kind": "result",
+  "title": "check fewshot bcs status",
+  "task_key": "worker_check_fewshot_bcs_status_20260517T120917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_fewshot_bcs_status_20260517T120917_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "0245f0eabcb652858cf8cbcf5af423725ff392d60bb5fa28c24c1fa7deda91db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，12/12 batch 全部跑完。\n\n关键发现：**所有条件下 gap 均为负值或零**，即 low-BCS 子集表现 >= high-BCS 子集。count_8 上效果更明显（1-shot gap=-0.2083 最大），count_16 上几乎无差异（gap 接近 0）。\n\n状态文件已写入 `artifacts/fewshot_bcs_status.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

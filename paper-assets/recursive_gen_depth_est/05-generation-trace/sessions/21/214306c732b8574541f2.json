@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "214306c732b8574541f2",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "exp feature ablation 9cell",
+  "task_key": "worker_exp_feature_ablation_9cell_20260515T171759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_feature_ablation_9cell_20260515T171759_result.json",
+    "occurrence": 1,
+    "bytes": 2547305,
+    "sha256": "2b0b38cdfd703e715ac7c8474c8cf24a3e8ff42e80384a9f90945cdf34691ce8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "214306c732b8574541f2-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ]
+}

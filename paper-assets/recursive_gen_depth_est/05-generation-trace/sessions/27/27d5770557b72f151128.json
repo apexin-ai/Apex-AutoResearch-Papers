@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "27d5770557b72f151128",
+  "project": "recursive_gen_depth_est",
+  "kind": "result",
+  "title": "analysis atlas v2 prep",
+  "task_key": "worker_analysis_atlas-v2-prep_20260515T020901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_atlas-v2-prep_20260515T020901_result.json",
+    "occurrence": 1,
+    "bytes": 3416,
+    "sha256": "0c9c84e13e7ba2096b2802c98cf68ed32782b8cef4b896dc58347ab7936c8474"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete Atlas v2 analysis summary.\n\n---\n\n## Atlas v2 — 8/9 Cells Analysis Summary\n\n### 产出文件\n- `artifacts/atlas_v2/atlas_v2_data.json` — 8-cell 数据集\n- `artifacts/atlas_v2/atlas_v2_results.json` — 完整分析结果\n- `artifacts/atlas_v2/edd_sensitivity.json` — EDD 阈值敏感性\n- `artifacts/atlas_v2/atlas_summary.json` — 含 monotonicity 及 feature clustering\n- `scripts/atlas_v2_complete.py` — 分析脚本\n\n### 1. Monotonicity Scores\n\n**AUC 单调性（consecutive AUC 递降）**：所有 8 cells 均为 **1.0000**（完美单调）。d0v1 > d1v2 > d2v3 在每个 cell 都成立。\n\n**Feature-level 单调性（mean |score|）**：\n| Cell | mean\\|score\\| | 完美单调特征数 |\n|------|-------------|--------------|\n| gpt2xl_temp09 | 0.9649 | 18/19 |\n| pythia_nucleus | 0.8947 | 16/19 |\n| pythia_temp09 | 0.8245 | 14/19 |\n| gpt2xl_nucleus | 0.7894 | 13/19 |\n| olmo_temp09 | 0.7894 | 13/19 |\n| pythia_topk50 | 0.7192 | 11/19 |\n| olmo_nucleus | 0.7192 | 11/19 |\n| olmo_topk50 | **0.6489** | **9/19** |\n\n范围：**[0.6489, 0.9649]**\n\n### 2. EDD Threshold Sensitivity\n\n| Cell | th=0.65 | th=0.70 | th=0.75 | th=0.80 |\n|------|---------|---------|---------|---------|\n| pythia_nucleus | 3 | 3 | 3 | 3 |\n| pythia_temp09 | 3 | 3 | 3 | **2** |\n| pythia_topk50 | 3 | **2** | **2** | **1** |\n| olmo_nucleus | 3 | 3 | 3 | 3 |\n| olmo_temp09 | 3 | 3 | 3 | 3 |\n| olmo_topk50 | 3 | 3 | **2** | **2** |\n| gpt2xl_nucleus | 3 | 3 | 3 | 3 |\n| gpt2xl_temp09 | 3 | 3 | 3 | 3 |\n| **Mean** | **3.0000** | **2.8750** | **2.7500** | **2.5000** |\n\n**EDD 饱和 cells**（所有阈值 EDD=3）：pythia_nucleus, olmo_nucleus, olmo_temp09, gpt2xl_nucleus, gpt2xl_temp09 — **5/8 cells**\n\n**最敏感**：pythia_topk50（EDD: 3→1，range=2）\n**最不敏感**：5 cells 并列（range=0）\n\n### 3. Cross-Model / Cross-Strategy 一致性\n\n**Cross-model rank correlation (Spearman rho of feature importance)**:\n- nucleus_p095: ρ = 0.8005\n- temperature_09: ρ = 0.7461\n- topk_k50: ρ = 0.7363（仅 2 模型）\n\n**Cross-cell Jaccard (top-5 features)**:\n- 全局 mean = 0.7500 ± 0.1443\n- Same-model: Pythia=1.0, OLMo=0.6667, GPT-2 XL=0.6667\n- Same-strategy: nucleus=0.7778, temp09=0.7778, topk50=0.6667\n\n**Universal top-5 features**：p90_ppl, var_surprisal, p75_ppl, mean_surprisal, mean_ppl\n- var_surprisal 最稳定（CV=0.1323），mean_ppl 最不稳定（CV=0.8580）\n\n### 4. Signal Strength Heatmap (RF acc)\n\n|  | nucleus | temp09 | topk50 |\n|--|---------|--------|--------|\n| Pythia | 0.7815 | 0.7625 | 0.6963 |\n| OLMo | 0.7877 | 0.8203 | 0.7420 |\n| GPT-2 XL | 0.8333 | 0.8542 | — |\n\nMean: 0.7847, Std: 0.0482, Range: [0.6963, 0.8542]\n\n### Key takeaways\n1. **完美 AUC 单调性**：8/8 cells，depth degradation signal 在所有 model×strategy 组合中一致递降\n2. **EDD 饱和现象明显**：62.5% 的 cells 在所有阈值下 EDD=3（最大深度仍可区分），only topk50 策略出现 EDD 下降\n3. **topk50 是最弱信号策略**：在 Pythia 和 OLMo 上都导致最低 acc 和最早的 EDD 衰减\n4. **GPT-2 XL + temp09 是最强组合**：最高 acc (0.8542)、最高 feature 单调性 (0.9649)、EDD 全程饱和\n5. **Feature importance 跨模型一致性高**（mean Jaccard=0.75），perplexity 相关特征（p90_ppl, var_surprisal）普遍主导"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

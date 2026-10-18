@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "1607d9fcccb4206b0301",
+  "project": "cert_manip_resist_eval",
+  "kind": "result",
+  "title": "infra dl mistral resume",
+  "task_key": "worker_infra_dl-mistral-resume_20260521T202809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dl-mistral-resume_20260521T202809_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "7f8b3dcb972a3fcc76d19774caaceedfc7deb12a7885a92060116d1a94e6259f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载状态：\n\n- **目标分片大小**：~4.85GB（参考 shard 07）\n- **当前进度**：~335MB（约 7%）\n- **下载速度**：~55MB/min（~900KB/s）\n- **预计剩余时间**：~80 分钟\n\n进程以 nohup 后台运行（PID 19214），不会因 SSH 断开而中断。\n\n下载完成后需要验证：\n```bash\nls /root/autodl-tmp/models/Mistral-Large-Instruct-2407-AWQ/model-00008-of-00014.safetensors\nls /root/autodl-tmp/models/Mistral-Large-Instruct-2407-AWQ/._____temp/  # 应为空或不存在\n```\n\n需要我过一段时间再来检查完成状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

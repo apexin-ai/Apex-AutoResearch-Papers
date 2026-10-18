@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "14a76e21ba8c5b260793",
+  "project": "importance_margin_vla_compress",
+  "kind": "result",
+  "title": "ops check westd27271 l2norm k07 seed43",
+  "task_key": "worker_ops_check-westd27271-l2norm-k07-seed43_20260520T221501",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-westd27271-l2norm-k07-seed43_20260520T221501_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "f73d9500e5e24a5b1e12977fb8bcd08c7aca4936f5c7b78c2ac5702d4c0577f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **Success Rate** | **74.0%** (370/500) |\n| **Wilson CI 95%** | [0.700, 0.777] |\n| Seed | 43 |\n| 耗时 | 237.8 min |\n\n**Per-task 分布**：ketchup 最高 (96%)，bbq_sauce 最低 (46%)，butter 偏低 (58%)。\n\n**关键发现**：假设预期 seed43 ≈ seed42 的 49.8%，但实际 seed43 得到 **74.0%**，差距巨大（+24.2pp）。结果 JSON 中 `mode: \"baseline\"`, `k_ratio: null` 的 metadata 异常，**这很可能实际跑的是 baseline（未剪枝）而非 k=0.7 剪枝模型**。建议核查 eval 脚本是否正确应用了 L2 norm pruning。\n\n**GPU 状态**：\n- GPU 0: 空闲（0%, 0 MiB）\n- GPU 1: 无计算但占用 42 GiB 显存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}

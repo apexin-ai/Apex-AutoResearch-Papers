@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "61727421dec463448d30",
+  "project": "causal_style_decomp_judge",
+  "kind": "result",
+  "title": "ops exp002 benchmark data",
+  "task_key": "worker_ops_exp002_benchmark_data_20260520T232219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp002_benchmark_data_20260520T232219_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "b07554d94c9f0a4c654c28a9054d9374879d30574a0118a1788e18903241f7f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据准备完成。\n\n### 产出报告\n\n| 数据集 | 状态 | 条数 | Response 长度 (min/mean/max) | 文件大小 |\n|--------|------|------|------------------------------|----------|\n| `benchmark_alpacaeval.jsonl` | 成功 | 100 | 2 / 519 / 3104 | 75.3KB |\n| `benchmark_mtbench.jsonl` | 成功 | 80 | 5 / 1176 / 3736 | 122.9KB |\n\n**数据来源：**\n- **AlpacaEval**: HF Hub `tatsu-lab/alpaca_eval` (805 条中随机采样 100 条，seed=42)\n- **MT-Bench**: HF `lmsys/mt_bench_human_judgments` parquet，提取 80 个 question 的 GPT-4 first-turn response（每题一条，全部来自 GPT-4）\n\n**格式**：`id`, `instruction`, `response`, `source` — 与 LLMBar 的 `mvp_samples.jsonl` 对齐（后者额外有 `label` 字段）。\n\n**路径**：\n- `/root/causal_style_decomp_judge/data/benchmark_alpacaeval.jsonl`\n- `/root/causal_style_decomp_judge/data/benchmark_mtbench.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ]
+}
